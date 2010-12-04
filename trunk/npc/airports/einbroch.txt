@@ -1,0 +1,110 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                     brAthena Script                    |
+// |--------------------------------------------------------|
+// | Nome do Script: Equipe do Aeroporto de Einbroch	    |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.4/1.0                                |
+// |--------------------------------------------------------|
+// | Descrição: -                                           |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Modificação [Autor]                                |
+// | - Anotações		   			    | 
+// \________________________________________________________/
+
+airport,126,43,4	script	Airport Staff#01::AirportE	90,{
+	mes "[Airport Staff]";
+	mes "Welcome to the Airport.";
+	mes "How may I help you?";
+	next;
+	if (select("Board the Airship:Cancel") == 1) {
+		mes "[Airport Staff]";
+		mes "The Airship boarding fee";
+		mes "is 1,200 zeny, but if you've";
+		mes "got a Free Ticket for Airship,"; 
+		mes "the fee will be waived. Will";
+		mes "you board the Airship?";
+		next;
+		if (select("Yes:No") == 1) {
+			if(countitem(7311) > 0) {
+				delitem 7311,1;
+				warp "airport",148,51;
+				close;
+			}
+			if(Zeny >= 1200) {
+				set Zeny, Zeny - 1200;
+				warp "airport",148,51;
+				close;
+			}
+			mes "[Airport Staff]";
+			mes "You don't have enough zeny.";
+			close;
+		}
+	}
+	mes "[Airport Staff]";
+	mes "Thank you and";
+	mes "have a nice day.";
+	close;
+}
+
+airport,143,43,4	duplicate(AirportE)	Airport Staff#02	90
+airport,156,43,4	duplicate(AirportE)	Airport Staff#03	90
+
+airport,126,51,4	script	Airport Staff#04::AirportE2	90,{
+	mes "[Airport Staff]";
+	mes "Welcome~";
+	mes "Please head this";
+	mes "way to board the Airship.";
+	next;
+	if (select("Exit to Main Terminal:Cancel") == 1) {
+		mes "[Airport Staff]";
+		mes "If you leave the";
+		mes "main terminal, you'll";
+		mes "have to pay the admission";
+		mes "fee again in order to board";
+		mes "the Airship. Are you sure";
+		mes "that you want to exit?";
+		next;
+		if (select("Yes:No") == 1) {
+			warp "airport",142,40;
+			close;
+		}
+	}
+	mes "[Airport Staff]";
+	mes "Alright, thank you";
+	mes "for your patronage";
+	mes "and I hope you have";
+	mes "a pleasant flight~";
+	close;
+}
+
+airport,143,51,4	duplicate(AirportE2)	Airport Staff#05	90
+airport,156,51,4	duplicate(AirportE2)	Airport Staff#06	90
+
+einbroch,94,267,4	script	Airship Staff#07	91,{
+	mes "[Airship Staff]";
+	mes "Welcome to the";
+	mes "Einbroch Airport.";
+	mes "Please use this door to";
+	mes "board the Airship wich stops";
+	mes "over Lighthalzen and Juno in";
+	mes "the Schwarzwald Republic";
+	next;
+	mes "[Airship Staff]";
+	mes "Otherwise, if Einbroch is";
+	mes "your intended destination,";
+	mes "please head down the stairs";
+	mes "and ask the Arrival Staff to lead";
+	mes "you to the main terminal. Thank";
+	mes "you, and enjoy your travels.";
+	close;
+}

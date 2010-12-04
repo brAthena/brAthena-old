@@ -1,0 +1,60 @@
+//  ___________________________________________________________________________
+// /                                                                           \
+// |                 _           _   _   _                                      |
+// |                | |__  _ __ / \ | |_| |__   ___ _ __   __ _                 |
+// |                | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                |
+// |                | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                |
+// |                |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                |
+// |                                                                            |
+// |                              brAthena Script                               |
+// |----------------------------------------------------------------------------|
+// | Nome do Script: noguildstorage.txt                                         |
+// |----------------------------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                                               |
+// |----------------------------------------------------------------------------|
+// | Descrição: Configuração Mapflag que desabilita o uso do comando @gstorage. |
+// |----------------------------------------------------------------------------|
+// | Changelog:                                                                 |
+// | 1.0 Modificação [brAthena]                                                 |
+// | - Anotações                                                                |
+// | Mapflag não-oficial. Recomendado apenas para servidores que liberarem o co-|
+// | mando GM @gstorage em qualquer local, prevenindo abuso do comando na WoE.  |
+// \___________________________________________________________________________/
+
+// Castelos
+//aldeg_cas01	mapflag	noguildstorage
+//aldeg_cas02	mapflag	noguildstorage
+//aldeg_cas03	mapflag	noguildstorage
+//aldeg_cas04	mapflag	noguildstorage
+//aldeg_cas05	mapflag	noguildstorage
+//gefg_cas01	mapflag	noguildstorage
+//gefg_cas02	mapflag	noguildstorage
+//gefg_cas03	mapflag	noguildstorage
+//gefg_cas04	mapflag	noguildstorage
+//gefg_cas05	mapflag	noguildstorage
+//payg_cas01	mapflag	noguildstorage
+//payg_cas02	mapflag	noguildstorage
+//payg_cas03	mapflag	noguildstorage
+//payg_cas04	mapflag	noguildstorage
+//payg_cas05	mapflag	noguildstorage
+//prtg_cas01	mapflag	noguildstorage
+//prtg_cas02	mapflag	noguildstorage
+//prtg_cas03	mapflag	noguildstorage
+//prtg_cas04	mapflag	noguildstorage
+//prtg_cas05	mapflag	noguildstorage
+//schg_cas01	mapflag	noguildstorage
+//schg_cas02	mapflag	noguildstorage
+//schg_cas03	mapflag	noguildstorage
+//schg_cas04	mapflag	noguildstorage
+//schg_cas05	mapflag	noguildstorage
+//arug_cas01	mapflag	noguildstorage
+//arug_cas02	mapflag	noguildstorage
+//arug_cas03	mapflag	noguildstorage
+//arug_cas04	mapflag	noguildstorage
+//arug_cas05	mapflag	noguildstorage
+
+// Castelos dos Aprendizes
+//nguild_alde	mapflag	noguildstorage
+//nguild_gef	mapflag	noguildstorage
+//nguild_pay	mapflag	noguildstorage
+//nguild_prt	mapflag	noguildstorage

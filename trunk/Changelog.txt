@@ -1,0 +1,27 @@
+// Estrutura para o Changelog.
+//
+//	r0000 - Dia/Mês/Ano [Autor(es)]
+//	* Notação
+//	- Comentário (opcional)
+// *Dica: Para encontrar atualizações de uma revisão específica pressione Ctrl+F
+//	e digite rxxxx onde "xxxx" refere-se a revisão desejada. 
+// *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
+//	Acesse o link: http://svn.brathena.org/trac/timeline
+// ==============================================================================
+
+	r0001 - 28/10/2010 [Protimus]
+	* brAthena reiniciado.
+        - A tradução de algumas pastas e arquivos não será modificada do inglês para português devido não existir uma tradução coesa, sendo preferível deixar como está.
+        - Os arquivos serão adicionados aos poucos e enviado os merges de traduções, iniciaremos do zero dando merge em tudo.
+	OBS: O antigo changelog foi apago e não há importância e restituí-lo devido ao trabalho ter sido totalmente recomeçado e apenas enviados os merges.
+	* Adição dos ramos de controle. 
+	- Apenas versão trunk no momento que corresponde a mesma versão trunk do eAthena sem o renewal.
+	* Adicionado core banner do brAthena.
+	* Adicionadas traduções da pasta CONF, BATTLE & MAPFLAG.
+	- Explicações foram feitas e algumas escritas modificadas para maior coesão.
+	* Adicionadas traduções de alguns arquivos da pasta de database (DB).
+	* Adicionados cabeçalhos em todos os scripts (NPCs) e arquivos de configuração (CONF).
+	* Modificados nomes dos projetos de building (v-project) para brAthena.
+	* Removidas pastas desnecessárias do eAthena.
+	* Atualizado conforme eAthena r14556
+	- Necessário revisar pastas CONF & NPC, alguma modificação pode ter sido esquecida, visto que é uma atualização de mais de 1000 commits.

@@ -1,0 +1,70 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: War of Emperium - WoE Auto-Start	    |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 2.0/1.0                                |
+// |--------------------------------------------------------|
+// | Descrição: Auto Start for War of Emperium              |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Modificação [Autor]                                |
+// | - Anotações		   			    | 
+// \________________________________________________________/
+
+-	script	Agit_Event	-1,{
+	end;
+
+OnClock2100:	//start time for Tues(2), Thurs(4)
+OnClock2300:	//end time for Tues(2), Thurs(4)
+OnClock1600:	//start time for Sat(6)
+OnClock1800:	//end time for Sat(6)
+
+OnAgitInit:
+	// starting time checks
+	if((gettime(4)==2) && (gettime(3)>=21 && gettime(3)<23) ||
+	   (gettime(4)==4) && (gettime(3)>=21 && gettime(3)<23) ||
+	   (gettime(4)==6) && (gettime(3)>=16 && gettime(3)<18)) {
+		if (!agitcheck()) {
+			AgitStart;
+			callsub S_DisplayOwners;
+		}
+		end;
+	}
+
+	// end time checks
+	if ((gettime(4)==2) && (gettime(3)==23) ||
+	    (gettime(4)==4) && (gettime(3)==23) ||
+	    (gettime(4)==6) && (gettime(3)==18)) { 
+		if (agitcheck()) {
+			AgitEnd;
+			callsub S_DisplayOwners;
+		}
+		end;
+	}
+	end;
+
+S_DisplayOwners:
+	setarray .@maps$[0],"aldeg_cas01","aldeg_cas02","aldeg_cas03","aldeg_cas04","aldeg_cas05";
+	setarray .@maps$[5],"gefg_cas01","gefg_cas02","gefg_cas03","gefg_cas04","gefg_cas05";
+	setarray .@maps$[10],"payg_cas01","payg_cas02","payg_cas03","payg_cas04","payg_cas05";
+	setarray .@maps$[15],"prtg_cas01","prtg_cas02","prtg_cas03","prtg_cas04","prtg_cas05";
+	for( set .@i, 0; .@i <= 19; set .@i, .@i+1 ) {
+		if (GetCastleData(.@maps$[.@i],1)) {
+			Announce "The [" + GetCastleName(.@maps$[.@i]) + "] castle has been conquered by the [" + GetGuildName(GetCastleData(.@maps$[.@i],1)) + "] guild.",bc_all|bc_woe;
+		}
+		else {
+			Announce "The [" + GetCastleName(.@maps$[.@i]) + "] castle is currently unoccupied.",bc_all|bc_woe;
+		}		
+	}
+	end;
+}
