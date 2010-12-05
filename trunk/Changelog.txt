@@ -9,7 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
-	r0001 - 28/10/2010 [Protimus]
+	r0002 - 05/10/2010 [Protimus]
+	* Iniciada revisão das traduções da pasta e arquivos de configuração (CONF).
+	- Revisado atcommand_athena.conf
+	* Atualizado conforme eAthena r14558.
+
+	r0001 - 04/10/2010 [Protimus]
 	* brAthena reiniciado.
         - A tradução de algumas pastas e arquivos não será modificada do inglês para português devido não existir uma tradução coesa, sendo preferível deixar como está.
         - Os arquivos serão adicionados aos poucos e enviado os merges de traduções, iniciaremos do zero dando merge em tudo.
@@ -23,5 +28,5 @@
 	* Adicionados cabeçalhos em todos os scripts (NPCs) e arquivos de configuração (CONF).
 	* Modificados nomes dos projetos de building (v-project) para brAthena.
 	* Removidas pastas desnecessárias do eAthena.
-	* Atualizado conforme eAthena r14556
+	* Atualizado conforme eAthena r14556.
 	- Necessário revisar pastas CONF & NPC, alguma modificação pode ter sido esquecida, visto que é uma atualização de mais de 1000 commits.
