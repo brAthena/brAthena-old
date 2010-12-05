@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0003 - 05/10/2010 [Protimus]
+	* Reformulada pasta 3rdparty de acordo com eAthena.
+	- Havia sido esquecida e não foi atualizada.
+	* Removido save-tmpl
+	- Será feita conversão e remoção de versões TXT do emulador, não há necessidade em manter tal pasta. Assim agilizamos o processo para futuramente efetuar as ações de remoção.
+
 	r0002 - 05/10/2010 [Protimus]
 	* Iniciada revisão das traduções da pasta e arquivos de configuração (CONF).
 	- Revisado atcommand_athena.conf
