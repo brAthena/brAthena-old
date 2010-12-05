@@ -9,26 +9,26 @@ while [ true ]; do
 #    if [ "      0" = "$(ps | grep -e login | wc -l)" ] ||
        [ "      0" = "$(ps | grep -e char  | wc -l)" ] ||
        [ "      0" = "$(ps | grep -e map   | wc -l)" ]; then
-        printf "Error:"
+        printf "Erro:"
         date
         sleep 10
-        printf "Checking:"
+        printf "Checando:"
         date
         if [ "      0" = "$(ps | grep -e log | wc -l)" ] ||
 #        if [ "      0" = "$(ps | grep -e login | wc -l)" ] ||
            [ "      0" = "$(ps | grep -e char  | wc -l)" ] ||
            [ "      0" = "$(ps | grep -e map   | wc -l)" ]; then
-            printf "Error Confirmation:"
+            printf "Confirmação de Erro:"
             date
-            printf "Restoration:"
+            printf "Restauração:"
             date
-            ./athena-start start
+            ./brathena-start start
         else
-            printf "Check Miss Sorry:"
+            printf "Checagem Incompleta:"
             date
         fi
 #    else
-#        printf "Check OK:"
+#        printf "Checagem Completa:"
 #        date
     fi
     sleep 10

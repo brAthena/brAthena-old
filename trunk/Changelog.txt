@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0004 - 05/10/2010 [Protimus]
+	* Adicionada traduções dos arquivos brathena-start e start (para inicialização do emulador).
+	* Adicionado novo script para upgrade do emulador, brathena-upgrade (apenas para linux).
+	- Modo de usar: Ir até a pasta do emulador com cd /diretório e usar sh ./brathena-upgrade
+	OBS: É útil pelo motivo do SVN poder ser alterado, assim não é necessário pegar a URL toda hora para atualizar.
+
 	r0003 - 05/10/2010 [Protimus]
 	* Reformulada pasta 3rdparty de acordo com eAthena.
 	- Havia sido esquecida e não foi atualizada.

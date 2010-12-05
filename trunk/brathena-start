@@ -10,14 +10,14 @@ M_SRV=map-server_sql
 
 print_start() {
 #    more << EOF
-echo "Athena Starting..."
+echo "brAthena Iniciando..."
 echo "            brAthena (c) 2010"
 echo "              modificado por Protimus"
 echo ""
 #echo "Informações de Debug (Depuração) aparecerão,"
 #echo "visto que essa é uma versão de testes."
 #echo ""
-echo "checking..."
+echo "checando..."
 #EOF
 }
 
@@ -27,7 +27,7 @@ check_files() {
     do
         if [ ! -f ./$i ]; then
             echo "$i Não existe ou não pode ser executado."
-            echo "Stop. Verifique seu compilador."
+            echo "Desligado! Verifique seu compilador."
             exit 1;
         fi
     done
@@ -47,7 +47,7 @@ case $1 in
         exec ./${C_SRV}&
         exec ./${M_SRV}&
 
-        echo "brAthena foi iniciado."
+        echo "O brAthena foi Iniciado!"
 ;;
     'stop')
         ps ax | grep -E "${L_SRV}|${C_SRV}|${M_SRV}" | awk '{print $1}' | xargs kill
