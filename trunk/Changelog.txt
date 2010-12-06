@@ -9,7 +9,14 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
-	r0011 - 06/12/2010 [Protimus]
+	
+	r0015 - 06/12/2010 [Natsuhi]
+	* Revisado e corrigido arquivos da pasta configurações (CONF)
+	-atcommand_athena.txt
+	-battle_athena.txt
+	-char_athena.txt
+
+ 	r0011 - 06/12/2010 [Protimus]
 	* Adicionado comando @whosell, criado por mim em 2008 a partir da idéia original de zephyrus do eAthena.
 	- Coloquei o comando porque acho útil, hoje em dia vários servidores usam.
 
