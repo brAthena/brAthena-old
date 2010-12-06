@@ -9,24 +9,32 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
-	r0004 - 05/10/2010 [Protimus]
+	r0006 - 06/12/2010 [Protimus]
+	* Adicionado novo comando de script na source, checkmap.
+	- Modo de usar: checkmap através do if ou else. 
+	Ex: if (mapcheck("nomedomapa")).
+
+	r0005 - 05/12/2010 [Damascus]
+	* Adicionados cabeçalhos para maior parte dos arquivos na pasta de database (DB).
+
+	r0004 - 05/12/2010 [Protimus]
 	* Adicionada traduções dos arquivos brathena-start e start (para inicialização do emulador).
 	* Adicionado novo script para upgrade do emulador, brathena-upgrade (apenas para linux).
 	- Modo de usar: Ir até a pasta do emulador com cd /diretório e usar sh ./brathena-upgrade
 	OBS: É útil pelo motivo do SVN poder ser alterado, assim não é necessário pegar a URL toda hora para atualizar.
 
-	r0003 - 05/10/2010 [Protimus]
+	r0003 - 05/12/2010 [Protimus]
 	* Reformulada pasta 3rdparty de acordo com eAthena.
 	- Havia sido esquecida e não foi atualizada.
 	* Removido save-tmpl
 	- Será feita conversão e remoção de versões TXT do emulador, não há necessidade em manter tal pasta. Assim agilizamos o processo para futuramente efetuar as ações de remoção.
 
-	r0002 - 05/10/2010 [Protimus]
+	r0002 - 05/12/2010 [Protimus]
 	* Iniciada revisão das traduções da pasta e arquivos de configuração (CONF).
 	- Revisado atcommand_athena.conf
 	* Atualizado conforme eAthena r14558.
 
-	r0001 - 04/10/2010 [Protimus]
+	r0001 - 04/12/2010 [Protimus]
 	* brAthena reiniciado.
         - A tradução de algumas pastas e arquivos não será modificada do inglês para português devido não existir uma tradução coesa, sendo preferível deixar como está.
         - Os arquivos serão adicionados aos poucos e enviado os merges de traduções, iniciaremos do zero dando merge em tudo.

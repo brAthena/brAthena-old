@@ -14487,6 +14487,19 @@ BUILDIN_FUNC(pushpc)
 	return 0;
 }
 
+/*==========================================
+ * Mapcheck [Protimus]
+ * Verifica a existência de um mapa.
+ *------------------------------------------*/
+ 
+BUILDIN_FUNC(mapcheck)
+{
+	int m;
+    m = map_mapname2mapid(script_getstr(st,2));
+    script_pushint(st, (m >= 0));
+    return 0;
+}
+
 // declarations that were supposed to be exported from npc_chat.c
 #ifdef PCRE_SUPPORT
 BUILDIN_FUNC(defpattern);
@@ -14886,5 +14899,8 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(checkquest, "i*"),
 	BUILDIN_DEF(changequest, "ii"),
 	BUILDIN_DEF(showevent, "ii"),
+	
+	//brAthena Modificações
+	BUILDIN_DEF(mapcheck,"s"),
 	{NULL,NULL,NULL},
 };
