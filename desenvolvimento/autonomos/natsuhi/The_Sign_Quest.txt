@@ -1,30 +1,25 @@
-//===== eAthena Script ======================================= 
-//= The Sign Quest
-//===== By: ================================================== 
-//= SinSloth(Most of the NPCs), MasterOfMuppets(Some of the NPCs + bug fixes) & Kargha(The quiz NPCs)
-//===== Current Version: ===================================== 
-//= 3.2
-//===== Compatible With: ===================================== 
-//= eAthena SVN
-//===== Description: ========================================= 
-//= [Aegis Conversion]
-//= Quest for opening the doors to Geffenia.
-//= This script uses sign_01.bmp - sign_04.bmp, these will be
-//= found in the language of your client.
-//===== Additional Comments: ================================= 
-//= 3.0 Rewritten based on most recent Aegis script. [L0ne_W0lf]
-//=     Due to the incompatabity of the old script with this
-//=     version, variables will attmept to be translated to the
-//=     new version, however it is untested.
-//= 3.1 Corrected time check for Sir Jore. [L0ne_W0lf]
-//= 3.2 Removed mapannounce used while debugging. [L0ne_W0lf]
-//=     Moved the disablewaitingroomevent in dancing portion.
-//= 3.3 Applied Kazukin's fix for the dancing portion. (bugreport:3966) [L0ne_W0lf]
-//============================================================ 
-
-//============================================================ 
-// The Sign (Part 1)
-//============================================================ 
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Guias de Aldebaran			    |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.7/1.0                                |
+// |--------------------------------------------------------|
+// | Descrição: Guias da cidade de Aldebaran                |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Modificação [Autor]                                |
+// | - Anotações		   			    | 
+// \________________________________________________________/
 prontera,147,305,0	script	Sign#prontera::TheSign	111,{
 	callfunc "F_UpdateSignVars";
 	cutin "sign_01",4;
@@ -399,67 +394,67 @@ prt_in,227,45,0	script	Archeologist#sign	804,{
 	else if (sign_q == 76) {
 		mes "[Metz]";
 		mes "ótimo...!";
-		mes "You were able to get the";
-		mes "text in the gem printed on a";
-		mes "Record of Ancient Language?";
+		mes "Você conseguiu obter";
+		mes "o texto da gema impresso em um";
+		mes "Registro de Língua Antiga";
 		next;
 		mes "[Metz]";
-		mes "Just as I thought.";
-		mes "This language isn't";
-		mes "one I recognize. It's";
-		mes "probably ^333333too^000000 ancient.";
+		mes "Como pensei.";
+		mes "Essa língua não";
+		mes "é uma que eu reconheça. é";
+		mes "provavelmente ^333333MUITO^000000 antiga.";
 		next;
 		mes "[Metz]";
-		mes "Fortunately, I know";
-		mes "one person who may";
-		mes "be able to translate this.";
-		mes "If he's not able to do it...";
-		mes "We'll have to give up.";
+		mes "Felizmente, eu sei de";
+		mes "uma pessoa que pode";
+		mes "conseguir traduzir isso.";
+		mes "Se ele não conseguir...";
+		mes "Nós vamos ter de desistir.";
 		next;
 		mes "[Metz]";
-		mes "Bring this Record";
-		mes "of Ancient Language";
-		mes "to a man named Frank.";
-		mes "I hope he'll be able to";
-		mes "understand what it says...";
+		mes "Leve esse Registro";
+		mes "de Língua Antiga";
+		mes "para um homem chamado Frank.";
+		mes "Espero que ele possa";
+		mes "entender o que o texto diz...";
 		next;
 		while(1) {
-			switch(select("Who is Frank?:Where is he?:I see.")) {
+			switch(select("Quem é Frank?:Onde ele está?:Entendo.")) {
 			case 1:
 				mes "[Metz]";
-				mes "Frank Franklin has lived";
-				mes "in seclusion and only a few";
-				mes "people are aware of his skill.";
-				mes "But I can assure you that his";
-				mes "knowledge of ancient languages";
-				mes "is unrivaled by any mortal.";
+				mes "Frank Franklin vive";
+				mes "recluso e apenas algumas";
+				mes "pessoas têm conhecimento de sua técnica.";
+				mes "Mas posso lhe garantir que seu";
+				mes "conhecimento de línguas antigas";
+				mes "é incomparável entre os mortais.";
 				next;
 				mes "[Metz]";
-				mes "I suppose his interest";
-				mes "in history is what drives";
-				mes "him in work. Still, I've";
-				mes "heard that he doesn't like";
-				mes "meeting people. I hope you";
-				mes "can convince him to help us...";
+				mes "Suponho que o interesse";
+				mes "por história é o que impulsiona";
+				mes "o seu trabalho. Porém, eu";
+				mes "ouvi dizer que ele não é ";
+				mes "muito sociável. Espero que você ";
+				mes "consiga convencê-lo a nos ajudar...";
 				next;
 				break;
 			case 2:
 				mes "[Metz]";
-				mes "It's said that";
-				mes "Frank Franklin lives";
-				mes "on the Alberta Sunken Ship";
-				mes "where he devotes his time";
-				mes "to his research. He may not";
-				mes "always be home though...";
+				mes "Diz em que";
+				mes "Frank Franklin vive";
+				mes "no Navio Fantasma de Alberta,";
+				mes "onde devota todo o seu tempo";
+				mes "para sua pesquisa. Ele nem";
+				mes "sempre está em casa, porém...";
 				set sign_q,77;
 				next;
 				break;
 			case 3:
 				mes "[Metz]";
-				mes "Good luck, then.";
-				mes "I hope that you can";
-				mes "find a way to get Frank";
-				mes "Franklin to help us...";
+				mes "Boa sorte.";
+				mes "Espero que você consiga";
+				mes "encontrar um meio de Frank";
+				mes "Franklin nos ajudar...";
 				close2;
 				cutin "mets_alpha",255;
 				end;
@@ -468,37 +463,37 @@ prt_in,227,45,0	script	Archeologist#sign	804,{
 	}
 	else if (sign_q < 80) {
 		mes "[Metz]";
-		mes "Frank Franklin has lived";
-		mes "in seclusion and only a few";
-		mes "people are aware of his skill.";
-		mes "But I can assure you that his";
-		mes "knowledge of ancient languages";
-		mes "is unrivaled by any mortal.";
+		mes "Frank Franklin vive";
+		mes "recluso e apenas algumas";
+		mes "pessoas têm conhecimento de sua técnica.";
+		mes "Mas posso lhe garantir que seu";
+		mes "conhecimento de línguas antigas";
+		mes "é incomparável entre os mortais.";
 		next;
 		mes "[Metz]";
-		mes "I suppose his interest";
-		mes "in history is what drives";
-		mes "him in work. Still, I've";
-		mes "heard that he doesn't like";
-		mes "meeting people. I hope you";
-		mes "can convince him to help us...";
+		mes "Suponho que o interesse";
+		mes "por história é o que impulsiona";
+		mes "o seu trabalho. Porém, eu";
+		mes "ouvi dizer que ele não é ";
+		mes "muito sociável. Espero que você ";
+		mes "consiga convencê-lo a nos ajudar...";
 	}
 	else if (sign_q < 82) {
 		mes "[Metz]";
-		mes "So far, I've learned";
-		mes "from my research that";
-		mes "the gem's message has";
-		mes "details about a certain";
-		mes "location and an item that";
-		mes "serves as some kind of key...";
+		mes "Até agora, descobri";
+		mes "com a minha pesquisa que";
+		mes "a mensagem da pedra tem";
+		mes "detalhes sobre uma certa";
+		mes "localização e um item que";
+		mes "funciona como um tipo de chave...";
 		next;
 		mes "[Metz]";
-		mes "While I investigate,";
-		mes "please try to have Frank";
-		mes "Franklin translate the";
-		mes "message in the Record of";
-		mes "Ancient Language. Keep up";
-		mes "the good work, "+ strcharinfo(0) +".";
+		mes "Enquanto investigo,";
+		mes "por favor, tente convencer Frank";
+		mes "Franklin a traduzir a";
+		mes "mensagem no Registro de";
+		mes "Língua Antiga. Continue";
+		mes "com o bom trabalho, "+ strcharinfo(0) +".";
 	}
 	else if (sign_q == 82) {
 		mes "[Metz]";
