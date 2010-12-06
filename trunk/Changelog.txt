@@ -9,7 +9,15 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
-	r009 - 06/12/2010 [Protimus]
+	r0010 - 06/12/2010 [Protimus]
+	* Corrigido todos os warnings do Visual Studio C++ 2010, agora o compilador não acusa erros inválidos
+	* Removida as opção de compilação para versões TXT do Visual C++ 2010. 
+	- Pelo motivo que essa opção será removida futuramente do emulador por completo.
+	OBS: Deixei a opção para compilação em TXT no VC++ 2009 por enquanto, quem quiser use até iniciarmos o trabalho de remoção dos códigos TXT na source.
+	* Removidos Visual Studio 6, 7 e 8.
+	- Não há necessidade de manter algo tão antigo no emulador, qual a importância?
+
+	r0009 - 06/12/2010 [Protimus]
 	* Adicionado novo projeto do Visual Studio C++ 2010.
 	- Visando maior upgrades e respostas de possíveis erros do emulador com um projeto atualizado.
 	OBS: Podem ocorrer alguns erros de compatibilidade que ainda não foram corrigidos.
