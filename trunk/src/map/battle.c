@@ -3928,7 +3928,7 @@ static const struct _battle_data {
 	{ "hide_woe_damage",                    &battle_config.hide_woe_damage,                 0,      0,      1,              },
 	{ "display_version",                    &battle_config.display_version,                 1,      0,      1,              },
 	{ "display_hallucination",              &battle_config.display_hallucination,           1,      0,      1,              },
-	{ "use_statpoint_table",                &battle_config.use_statpoint_table,             1,      0,      1,              },
+	{ "use_statpoint_table",               &battle_config.use_statpoint_table,             1,      0,      1,              },
 	{ "ignore_items_gender",                &battle_config.ignore_items_gender,             1,      0,      1,              },
 	{ "copyskill_restrict",                 &battle_config.copyskill_restrict,              2,      0,      2,              },
 	{ "berserk_cancels_buffs",              &battle_config.berserk_cancels_buffs,           0,      0,      1,              },
@@ -4013,6 +4013,8 @@ static const struct _battle_data {
 	{ "bg_magic_attack_damage_rate",        &battle_config.bg_magic_damage_rate,            60,     0,      INT_MAX,        },
 	{ "bg_misc_attack_damage_rate",         &battle_config.bg_misc_damage_rate,             60,     0,      INT_MAX,        },
 	{ "bg_flee_penalty",                    &battle_config.bg_flee_penalty,                 20,     0,      INT_MAX,        },
+// brAthena Modificações
+	{ "use_statpoint2_table",                &battle_config.use_statpoint2_table,             1,      0,      1,              },
 };
 
 

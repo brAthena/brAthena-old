@@ -9,6 +9,13 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 	
+	r0008 - 05/12/2010 [Protimus]
+	* Adicionado sistema de distribuição de status para servidores de rate alta. (statpoint2.txt)
+	- Adicionada tabela com os cálculos de status ganhos para cada level ganho.
+	- Adiciona opção para uso de tabela do database, statpoint2.txt
+	OBS: Lembrando que caso você use esse sistema, desabilite o sistema padrão, statpoint.txt
+	OBS2: Creio que ainda faltam modificações na source para os status lerem a database custom quando ativada, se alguém tiver um tempo favor verificar depois.
+	
 	r0007 - 06/12/2010 [Floozie]
 	* Revisado os cabeçalhos da pasta npc/merchants.
 
