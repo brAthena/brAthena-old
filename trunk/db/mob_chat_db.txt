@@ -1,7 +1,28 @@
-// Monster Chat Database
-//
-// Structure of Database:
-// Line_ID,Color_Code,Dialog
+//  ___________________________________________________________________________
+// /                                                                           \
+// |                 _           _   _   _                                      |
+// |                | |__  _ __ / \ | |_| |__   ___ _ __   __ _                 |
+// |                | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                |
+// |                | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                |
+// |                |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                |
+// |                                                                            |
+// |                              brAthena Script                               |
+// |----------------------------------------------------------------------------|
+// | Nome do Script: mob_chat_db.txt                                            |
+// |----------------------------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                                               |
+// |----------------------------------------------------------------------------|
+// | Versões eA/brA: y.x/1.0                                                    |
+// |----------------------------------------------------------------------------|
+// | Descrição: Monster Chat Database.                                          |
+// |----------------------------------------------------------------------------|
+// | Changelog:                                                                 |
+// | 1.0 Modificação [brAthena]                                                 |
+// | - Anotações                                                                |
+// | Estrutura da Database:                                                     |
+// | Line_ID,Color_Code,Dialog                                                  |
+// \___________________________________________________________________________/
+
 1,0xFF0000,Weakling! Challenge me if you have any courage!
 2,0xFF0000,Impressive! I wonder how far your recklessness will take you.
 3,0xFF0000,I almost pity how outmatched you are against me. Now prepare for my attack!

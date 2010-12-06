@@ -1,18 +1,39 @@
-// item id,sprite id
-// Replaces an item client-side while keeping them separate server-side.
-// Think of it as a way to disguise items.
-// If 0 is used then item will be disabled.
+//  ___________________________________________________________________________
+// /                                                                           \
+// |                 _           _   _   _                                      |
+// |                | |__  _ __ / \ | |_| |__   ___ _ __   __ _                 |
+// |                | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                |
+// |                | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                |
+// |                |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                |
+// |                                                                            |
+// |                              brAthena Script                               |
+// |----------------------------------------------------------------------------|
+// | Nome do Script: item_avail.txt                                             |
+// |----------------------------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                                               |
+// |----------------------------------------------------------------------------|
+// | Versões eA/brA: y.x/1.0                                                    |
+// |----------------------------------------------------------------------------|
+// | Descrição: Database para modificar a aparência de itens.                   |
+// |----------------------------------------------------------------------------|
+// | Changelog:                                                                 |
+// | 1.0 Modificação [brAthena]                                                 |
+// | - Anotações                                                                |
+// | item id,sprite id                                                          |
+// | Replaces an item client-side while keeping them separate server-side.      |
+// | Think of it as a way to disguise items.                                    |
+// | If 0 is used then item will be disabled.                                   |
+// \___________________________________________________________________________/
+
 2240,2241 //Beard - Grampa Beard
 
-//Treasure Hunters Quest Items
-//use these aliases if your game client doesn't support them normally
+// Treasure Hunters Quest Items, Use these aliases if your client doesn't support them normally.
 //7950,7021
 //7951,7042
 //1998,1250
 //1999,1472
 
-//St. Patric's Day Quest (2008) Items
-//Enable if you plan to use the quest.
+// St. Patric's Day Quest (2008) Items, Enable if you plan to use the quest.
 //12715,7721
 //7915,673
 //7916,675

@@ -1,48 +1,73 @@
-//id,range,hit,inf,element,nk,splash,max,list_num,castcancel,cast_defence_rate,inf2,maxcount,skill_type,blow_count,name,description
-// 01 ID
-// 02 range (combo skills do not check for range when used,
-//           if range is < 5, the skill is considered melee-range)
-// 03 hit (8- repeated hitting, 6- single-hit)
-// 04 inf (0- passive, 1- enemy, 2- place, 4- self, 16- friend, 32- trap)
-// 05 element (0 - neutral, 1 - water, 2 - earth, 3 - fire, 4 - wind, 5 - poison,
-//             6 - holy, 7 - dark, 8 - ghost, 9 - undead, -1 - use weapon element
-//             -2 - use endowed element, -3 - use random element.)
-// 06 nk (skill damage properties):
-//    0x01 - No damage skill
-//    0x02 - Has splash area
-//    0x04 - Damage should be split among targets
-//    0x08 - Skill ignores caster's % damage cards (misc type always ignores)
-//    0x10 - Skill ignores elemental adjustments
-//    0x20 - Skill ignores target's defense (misc type always ignores)
-//    0x40 - Skill ignores target's flee (magic type always ignores)
-//    0x80 - Skill ignores target's def cards
-// 07 splash/effect range (-1 for screen-wide)
-// 08 MaxLv
-// 09 Number of hits (when positive, damage is increased by hits, 
-//    negative values just show number of hits without increasing total damage)
-// 10 Cast interrupted when hit?
-// 11 defense-reduction rate during cast.
-// 12 inf2 (skill information 2):
-//    0x0001- quest skill
-//    0x0002- npc skill
-//    0x0004- wedding skill
-//    0x0008- spirit skill
-//    0x0010- guild skill
-//    0x0020- song/dance
-//    0x0040- ensemble skill
-//    0x0080- trap
-//    0x0100- skill that damages/targets yourself
-//    0x0200- cannot be casted on self (if inf = 4, auto-select target skill)
-//    0x0400- usable only on party-members (and enemies if skill is offensive)
-//    0x0800- usable only on guild-mates (and enemies if skill is offensive)
-//    0x1000- disable usage on enemies (for non-offensive skills).
-// 13 maxcount: max amount of skill instances to place on the ground when
-//    player_land_skill_limit/monster_land_skill_limit is enabled. For skills
-//    that attack using a path, this is the path length to be used.
-// 14 attack type (none, weapon, magic, misc)
-// 15 Blowcount (amount of tiles skill knockbacks)
-// 16 Name
-// 17 Description
+//  ___________________________________________________________________________
+// /                                                                           \
+// |                 _           _   _   _                                      |
+// |                | |__  _ __ / \ | |_| |__   ___ _ __   __ _                 |
+// |                | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                |
+// |                | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                |
+// |                |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                |
+// |                                                                            |
+// |                              brAthena Script                               |
+// |----------------------------------------------------------------------------|
+// | Nome do Script: skill_db.txt                                               |
+// |----------------------------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                                               |
+// |----------------------------------------------------------------------------|
+// | Versões eA/brA: y.x/1.0                                                    |
+// |----------------------------------------------------------------------------|
+// | Descrição: Database contendo as habilidades.                               |
+// |----------------------------------------------------------------------------|
+// | Changelog:                                                                 |
+// | 1.0 Modificação [brAthena]                                                 |
+// | - Anotações                                                                |
+// | id,range,hit,inf,element,nk,splash,max,list_num,castcancel,                |
+// | cast_defence_rate,inf2,maxcount,skill_type,blow_count,name,description
+// | 01 ID
+// | 02 range (combo skills do not check for range when used,
+// |           if range is < 5, the skill is considered melee-range)
+// | 03 hit (8- repeated hitting, 6- single-hit)
+// | 04 inf (0- passive, 1- enemy, 2- place, 4- self, 16- friend, 32- trap)
+// | 05 element (0 - neutral, 1 - water, 2 - earth, 3 - fire, 4 - wind,
+// |             5 - poison, 6 - holy, 7 - dark, 8 - ghost, 9 - undead,
+// |            -1 - use weapon element, -2 - use endowed element,
+// |            -3 - use random element.)
+// | 06 nk (skill damage properties):
+// |    0x01 - No damage skill
+// |    0x02 - Has splash area
+// |    0x04 - Damage should be split among targets
+// |    0x08 - Skill ignores caster's % damage cards (misc type always ignores)
+// |    0x10 - Skill ignores elemental adjustments
+// |    0x20 - Skill ignores target's defense (misc type always ignores)
+// |    0x40 - Skill ignores target's flee (magic type always ignores)
+// |    0x80 - Skill ignores target's def cards
+// | 07 splash/effect range (-1 for screen-wide)
+// | 08 MaxLv
+// | 09 Number of hits (when positive, damage is increased by hits, 
+// |    negative values just show number of hits without increasing total damage)
+// | 10 Cast interrupted when hit?
+// | 11 defense-reduction rate during cast.
+// | 12 inf2 (skill information 2):
+// |    0x0001- quest skill
+// |    0x0002- npc skill
+// |    0x0004- wedding skill
+// |    0x0008- spirit skill
+// |    0x0010- guild skill
+// |    0x0020- song/dance
+// |    0x0040- ensemble skill
+// |    0x0080- trap
+// |    0x0100- skill that damages/targets yourself
+// |    0x0200- cannot be casted on self (if inf = 4, auto-select target skill)
+// |    0x0400- usable only on party-members (and enemies if skill is offensive)
+// |    0x0800- usable only on guild-mates (and enemies if skill is offensive)
+// |    0x1000- disable usage on enemies (for non-offensive skills).
+// | 13 maxcount: max amount of skill instances to place on the ground when
+// |    player_land_skill_limit/monster_land_skill_limit is enabled. For skills
+// |    that attack using a path, this is the path length to be used.
+// | 14 attack type (none, weapon, magic, misc)
+// | 15 Blowcount (amount of tiles skill knockbacks)
+// | 16 Name
+// | 17 Description
+// \___________________________________________________________________________/
+
 1,0,0,0,0,0,0,9,0,no,0,0,0,none,0,		NV_BASIC,Basic Skill
 2,0,0,0,0,0,0,10,0,no,0,0,0,weapon,0,		SM_SWORD,Sword Mastery
 3,0,0,0,0,0,0,10,0,no,0,0,0,weapon,0,		SM_TWOHAND,Two-Handed Sword Mastery
@@ -997,7 +1022,7 @@
 8239,9,6,16,0,0x1,0,10,1,yes,0,0,0,magic,0,	MER_BLESSING,Blessing
 8240,9,6,16,0,0x1,0,10,1,yes,0,0,0,magic,0,	MER_INCAGI,Increase Agility
 
-// Summons skills. 
+// Summons skills
 //8416,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_AQUAPLAY,
 //8420,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_BLAST,
 //8418,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_CHILLY_AIR,
