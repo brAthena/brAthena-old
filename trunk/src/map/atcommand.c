@@ -8590,6 +8590,66 @@ ACMD_FUNC(font)
 	return 0;
 }
 
+/*==========================================================
+* @whosell criado por Protimus e idéia original zephyrus_cr
+*-----------------------------------------------------------
+*/
+
+int atcommand_whosell(const int fd, struct map_session_data* sd, const char* command, const char* message)
+{
+	char item_name[100], output[255];
+	struct s_mapiterator* iter;
+	int item_id, map_id = 0, j, count = 0;
+	struct map_session_data *pl_sd;
+	unsigned int MinPrize = battle_config.vending_max_value, MaxPrize = 0;
+	struct item_data *item_data;
+
+	memset(item_name, '\0', sizeof(item_name));
+
+	if (!message || !*message || sscanf(message, "%99[^\n]", item_name) < 1) {
+		clif_displaymessage(fd, "Por favor digite a ID do item requisitado (use: @whosell <nome_do_item> ou <id_do_item>).");
+		return -1;
+	}
+
+	if ((item_data = itemdb_searchname(item_name)) == NULL &&
+		(item_data = itemdb_exists(atoi(item_name))) == NULL)
+	{
+			clif_displaymessage(fd, msg_txt(19)); // ID ou nome inválido.
+			return -1;
+	}
+
+	item_id = item_data->nameid;
+	map_id = sd->bl.m;
+
+	iter = mapit_getallusers();
+	for( pl_sd = (TBL_PC*)mapit_first(iter); mapit_exists(iter); pl_sd = (TBL_PC*)mapit_next(iter))
+	{
+		if (pl_sd->vender_id)
+		{
+			// Um dos jogadores on-line estão no mesmo mapa e são vendedores.
+			for (j = 0; j < pl_sd->vend_num; j++) {
+				if(pl_sd->status.cart[pl_sd->vending[j].index].nameid == item_id) {
+					// Se o item é o mesmo, ele vai mostrar isso?
+					sprintf(output, "Vendedor: %s | Quantia: %d | Preço: %d | Loja: %s | Coordenada: %d,%d", pl_sd->status.name, pl_sd->vending[j].amount, pl_sd->vending[j].value,pl_sd->message,pl_sd->bl.x,pl_sd->bl.y);
+					clif_viewpoint(sd, sd->bl.id , 1, pl_sd->bl.x, pl_sd->bl.y, count+1, 0xFFFFFF);
+					if(pl_sd->vending[j].value < MinPrize) MinPrize = pl_sd->vending[j].value;
+					if(pl_sd->vending[j].value > MaxPrize) MaxPrize = pl_sd->vending[j].value;
+					clif_displaymessage(fd, output); // Mensagem enviada ao jogador
+					count++;
+				}
+			}
+		}
+	}
+	mapit_free(iter);
+
+	if(count > 0) {
+		sprintf(output, "Encontrado %d sendo vendido. Variação de preços: %d ~ %d.", count, MinPrize, MaxPrize);
+		clif_displaymessage(fd, output);
+	} else
+		clif_displaymessage(fd, "O item não foi encontrado.");
+
+	return 0;
+}
 
 /*==========================================
  * atcommand_info[] structure definition
@@ -8895,6 +8955,8 @@ AtCommandInfo atcommand_info[] = {
 	{ "delitem",           60,60,     atcommand_delitem },
 	{ "charcommands",       1,1,      atcommand_commands },
 	{ "font",               1,1,      atcommand_font },
+// brAthena Modificações
+	{ "whosell",            1,1,      atcommand_whosell },
 };
 
 
