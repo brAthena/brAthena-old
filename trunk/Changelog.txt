@@ -8,8 +8,14 @@
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
+
+	r009 - 06/12/2010 [Protimus]
+	* Adicionado novo projeto do Visual Studio C++ 2010.
+	- Visando maior upgrades e respostas de possíveis erros do emulador com um projeto atualizado.
+	OBS: Podem ocorrer alguns erros de compatibilidade que ainda não foram corrigidos.
+	* Pequena falha no envio de tabela do statpoint2.txt do commit r0008 resolvida.
 	
-	r0008 - 05/12/2010 [Protimus]
+	r0008 - 06/12/2010 [Protimus]
 	* Adicionado sistema de distribuição de status para servidores de rate alta. (statpoint2.txt)
 	- Adicionada tabela com os cálculos de status ganhos para cada level ganho.
 	- Adiciona opção para uso de tabela do database, statpoint2.txt
