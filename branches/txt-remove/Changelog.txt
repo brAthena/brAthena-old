@@ -8,6 +8,13 @@
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
+	
+	r0021 - 07/12/2010 [Protimus]
+	* Removido suporte para engines TXT das conexões de mapa e char.
+	* Removido estrutura de conversão TXT para SQL do char.
+	OBS: É necessário revisar os arquivos de script em script.c e remover certos comandos
+	ou então certos suportes e também não se esquecer de remoções no map.c e possível
+	remodelação do código de mail em mail.c para que uma das funções sejam usadas corretamente.
 
 	r0020 - 07/12/2010 [Protimus]
 	* Atualizado conforme eAthena r14560.
