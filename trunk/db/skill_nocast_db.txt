@@ -12,13 +12,8 @@
 // |----------------------------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                                               |
 // |----------------------------------------------------------------------------|
-// | Versões eA/brA: y.x/1.0                                                    |
-// |----------------------------------------------------------------------------|
 // | Descrição: Database das habilidades em áreas controladas.                  |
 // |----------------------------------------------------------------------------|
-// | Changelog:                                                                 |
-// | 1.0 Modificação [brAthena]                                                 |
-// | - Anotações                                                                |
 // | Estrutura da Database:                                                     |
 // | SkillID,Flag                                                               |
 // |                                                                            |
@@ -80,14 +75,14 @@
 440,8	//SG_STAR_BLESS
 691,8	//CASH_ASSUMPITO
 
-//MIXED
+//mixed
 488,3	//CG_HERMODE
 
-//CLONE Forbidden - pointless skills
+//Clone Forbidden/pointless skills
 77,16	//PR_TURNUNDEAD
 79,16	//PR_MAGNUS
 
-//ZONE 1 - Aldebaran Turbo Track
+//Zone 1 - Aldebaran Turbo Track
 219,32	//Snatch
 26,32	//Teleport
 27,32	//Warp portal
@@ -102,18 +97,18 @@
 357,32	//Spear Dynamo (Concentration)
 264,32	//Snap (Body Relocation)
 
-//ZONE 2 - Jail
+//Zone 2 - Jail
 421,64	//TK_JUMPKICK#Flying Side Kick#
 426,64	//TK_HIGHJUMP#Taekwon Jump#
 
-//ZONE 3 - Izlude Battle Arena
+//Zone 3 - Izlude Battle Arena
 219,128 //Snatch
 26,128	//Teleport
 
-//ZONE 4 - WoE:SE
+//Zone 4 - WoE:SE
 426,256 //High Jump
 
-//ZONE 5 - Sealed Shrine
+//Zone 5 - Sealed Shrine
 12,512	//MG_SAFETYWALL
 26,512	//AL_TELEPORT
 219,512	//Snatch

@@ -16,17 +16,14 @@
 // |----------------------------------------------------------------------------|
 // | Descrição: Database da habilidade 'Descobrir Minério' do Ferreiro.         |
 // |----------------------------------------------------------------------------|
-// | Changelog:                                                                 |
-// | 1.0 Modificação [brAthena]                                                 |
-// | - Anotações                                                                |
 // | Estrutura da Database:                                                     |
 // | GroupID,ItemID,Rate                                                        |
 // \___________________________________________________________________________/
 
-6,714,3		//Emperium
+6,714,3	//Emperium
 6,756,20	//Rough Oridecon
 6,757,20	//Rough Elunium
-6,969,2		//Gold
+6,969,2	//Gold
 6,984,10	//Oridecon
 6,985,10	//Elunium
 6,990,30	//Red Blood

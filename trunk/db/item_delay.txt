@@ -12,13 +12,8 @@
 // |----------------------------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                                               |
 // |----------------------------------------------------------------------------|
-// | Versões eA/brA: y.x/1.0                                                    |
-// |----------------------------------------------------------------------------|
 // | Descrição: Database contendo Delay para Itens.                             |
 // |----------------------------------------------------------------------------|
-// | Changelog:                                                                 |
-// | 1.0 Modificação [brAthena]                                                 |
-// | - Anotações                                                                |
 // | O número máx. de entradas é definido na source: itemdb.h, MAX_ITEMDELAYS.  |
 // | Estrutura da Database:                                                     |
 // | Item(ID),Delay(millisegundos)                                              |

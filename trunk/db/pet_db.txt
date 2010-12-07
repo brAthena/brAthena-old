@@ -12,13 +12,8 @@
 // |----------------------------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                                               |
 // |----------------------------------------------------------------------------|
-// | Versões eA/brA: y.x/1.0                                                    |
-// |----------------------------------------------------------------------------|
 // | Descrição: Database dos Bichinhos de Estimação.                            |
 // |----------------------------------------------------------------------------|
-// | Changelog:                                                                 |
-// | 1.0 Modificação [brAthena]                                                 |
-// | - Anotações                                                                |
 // | Estrutura da Database:                                                     |
 // | MobID,Name,JName,LureID,EggID,EquipID,FoodID,Fullness,HungryDelay,R_Hungry,|
 // | R_Full,Intimate,Die,Capture,Speed,S_Performance,talk_convert_class,        |

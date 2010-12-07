@@ -12,13 +12,8 @@
 // |----------------------------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                                               |
 // |----------------------------------------------------------------------------|
-// | Versões eA/brA: y.x/1.0                                                    |
-// |----------------------------------------------------------------------------|
 // | Descrição: Database contendo todos os monstros oficiais.                   |
 // |----------------------------------------------------------------------------|
-// | Changelog:                                                                 |
-// | 1.0 Modificação [brAthena]                                                 |
-// | - Anotações                                                                |
 // | Estrutura da Database:                                                     |
 // | ID,Sprite_Name,kROName,iROName,LV,HP,SP,EXP,JEXP,Range1,ATK1,ATK2,DEF,     |
 // | MDEF,STR,AGI,VIT,INT,DEX,LUK,Range2,Range3,Scale,Race,Element,Mode,Speed,  |

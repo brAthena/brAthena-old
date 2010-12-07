@@ -12,13 +12,8 @@
 // |----------------------------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                                               |
 // |----------------------------------------------------------------------------|
-// | Versões eA/brA: y.x/1.0                                                    |
-// |----------------------------------------------------------------------------|
 // | Descrição: Database packet para suporte de clients de acesso.              |
 // |----------------------------------------------------------------------------|
-// | Changelog:                                                                 |
-// | 1.0 Modificação [brAthena]                                                 |
-// | - Anotações                                                                |
 // | The packet database allows you to add support for new clients,             |
 // | because packets change every release.                                      |
 // | Note: Every packet version needs a wanttoconnection specification, since   |
@@ -30,7 +25,9 @@
 // Main packet version of the DB to use (default = max available version)
 // Client detection is faster when all clients use this version.
 // Version 23 is the latest Sakexe (above versions are for Renewal clients)
-packet_db_ver: 23 //packet_db_ver: default
+packet_db_ver: 23
+//packet_db_ver: default
+
 
 packet_ver: 5
 0x0064,55

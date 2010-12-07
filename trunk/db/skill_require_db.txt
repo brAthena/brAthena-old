@@ -12,14 +12,9 @@
 // |----------------------------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                                               |
 // |----------------------------------------------------------------------------|
-// | Versões eA/brA: y.x/1.0                                                    |
-// |----------------------------------------------------------------------------|
 // | Descrição: Database de referência aos requisitos das habilidades.          |
 // |----------------------------------------------------------------------------|
-// | Changelog:                                                                 |
-// | 1.0 Modificação [brAthena]                                                 |
-// | - Anotações                                                                |
-// | Structure of Database:                                                     |
+// | Estrutura da Database:                                                     |
 // | SkillID,HPCost,MaxHPTrigger,SPCost,HPRateCost,SPRateCost,ZenyCost,         |
 // | RequiredWeapons,RequiredAmmoTypes,RequiredAmmoAmount,RequiredState,        |
 // | SpiritSphereCost,RequiredItemID1,RequiredItemAmount1,RequiredItemID2,      |

@@ -12,16 +12,11 @@
 // |----------------------------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                                               |
 // |----------------------------------------------------------------------------|
-// | Versões eA/brA: y.x/1.0                                                    |
-// |----------------------------------------------------------------------------|
 // | Descrição: ???                                                             |
 // |----------------------------------------------------------------------------|
-// | Changelog:                                                                 |
-// | 1.0 Modificação [brAthena]                                                 |
-// | - Anotações                                                                |
 // | NOTA: Tabela não-oficial até Nível 1.000.                                  |
 // | Se customizar a experiência, utilize exp.txt e edite max level de acordo.  |
-// | Formato da Tabela de Experiência:                                          |
+// | Estrutura da Database:       				                                |
 // | Max Level,Class list,Type (0 - Base Exp / 1 - Job Exp),Exp 1,2,3,...       |
 // \___________________________________________________________________________/
 

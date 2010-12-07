@@ -12,13 +12,9 @@
 // |----------------------------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                                               |
 // |----------------------------------------------------------------------------|
-// | Versões eA/brA: y.x/1.0                                                    |
-// |----------------------------------------------------------------------------|
 // | Descrição: Database das habilidades que dispensam tempo de conjuração.     |
 // |----------------------------------------------------------------------------|
-// | Changelog:                                                                 |
-// | 1.0 Modificação [brAthena]                                                 |
-// | - Anotações                                                                |
+// | Estrutura da Database:														|
 // | <Skill id>,<Cast>,<Delay (optional)>                                       |
 // |                                                                            |
 // | Cast: 0 - everything affects the skill's cast time                         |
@@ -36,7 +32,6 @@
 // | Ex.: 46,1,1 = Double Strafe's cast time and delay is not affected by dex.  |
 // \___________________________________________________________________________/
 
-// Caracters Skills
 136,0,2	//AS_SONICBLOW
 263,0,2	//MO_TRIPLEATTACK
 272,0,2	//MO_CHAINCOMBO

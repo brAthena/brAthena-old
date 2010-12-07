@@ -12,13 +12,8 @@
 // |----------------------------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                                               |
 // |----------------------------------------------------------------------------|
-// | Versões eA/brA: y.x/1.0                                                    |
-// |----------------------------------------------------------------------------|
 // | Descrição: Database da 'Árvore de Habilidades' dos chars.                  |
 // |----------------------------------------------------------------------------|
-// | Changelog:                                                                 |
-// | 1.0 Modificação [brAthena]                                                 |
-// | - Anotações                                                                |
 // | Estrutura da Database:                                                     |
 // | JobNo,Skill-ID,MaxLV{,JobLV},Prerequisite Skill-ID-1,Prerequisite Skill-ID |
 // | -1-Lv,PrereqSkill-ID-2,PrereqSkill-ID-2-Lv,PrereqSkill-ID-3,PrereqSkill-ID |
