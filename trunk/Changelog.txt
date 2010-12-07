@@ -9,6 +9,13 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0022 - 07/12/2010 [Protimus]
+	* Removidos bats e shs de inicialização para versões TXT.
+	- Não há necessidade em mantê-los, visto que só é possível versões SQL agora.
+	* Corrigido pequeno erro para solução de configuração "configure" para o Linux.
+	- Remoção de building para configuração de txt converter que não existe mais.
+	* Removida pasta save-tmpl onde ficava o "banco de dados" das versões TXT.
+
 	r0020 - 07/12/2010 [Protimus]
 	* Atualizada source de acordo com r14560.
 	- Agora só falta a revisão de atualizações da pasta NPC.
