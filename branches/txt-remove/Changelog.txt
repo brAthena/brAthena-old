@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0020 - 07/12/2010 [Protimus]
+	* Atualizado conforme eAthena r14560.
+
 	r0019 - 07/12/2010 [Protimus]
 	* Removida leitura das contas de login para engines TXT
 	* Removida conexão de login para engines TXT.

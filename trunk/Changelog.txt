@@ -9,8 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0020 - 07/12/2010 [Protimus]
+	* Atualizada source de acordo com r14560.
+	- Agora só falta a revisão de atualizações da pasta NPC.
 
-	r0018 - 06/12/2010 [Lord]
+	r0018 - 07/12/2010 [Lord]
 	* Efetuado limpeza no 'Solution' brAthena-10.
 	* Removido a possibilidade de compilar TXT no  'Solution' brAthena-9.
 	- Em breve a elminação total do servidor TXT será efetuada no emulador.
@@ -21,8 +24,7 @@
 	- Irei revisar todos npc de acordo com o eA e traduzir os nomes deles, após isso reativo.
 	* Atualizado toda pasta DB com eA rev 14560 e corrigido erros nas DB's.
 	- Tradução para algumas DB's será enviada em breve.
-	
-	
+		
 	r0015 - 06/12/2010 [Natsuhi]
 	* Revisado e corrigido arquivos da pasta configurações (CONF)
 	-atcommand_athena.txt
