@@ -9,6 +9,13 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0019 - 07/12/2010 [Protimus]
+	* Removida leitura das contas de login para engines TXT
+	* Removida conexão de login para engines TXT.
+	* Limpo códigos desnecessários de admin.c da pasta login
+	* Removida criações de objetos para engines TXT ao compilar.
+	NOTA: Pasta src/login - concluída remoção do TXT.
+
 	r0013 - 06/12/2010 [Protimus]
 	* Removida pasta txt-converter.
 	- Não há mais necessidade de realizar conversões, apenas versões SQL serão utilizadas.
