@@ -15,10 +15,12 @@
 // | Versões eA/brA: 1.5/1.0                                |
 // |--------------------------------------------------------|
 // | Descrição: Mudança de Classe para Espiritualista       |
+// | [Vars Used]											|
+// | SOUL_Q = Job Change Phase. (Max 4)						|
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    | 
+// | - Anotações		   			    					| 
 // \________________________________________________________/
 
 morocc_in,174,30,6	script	Kid#link1	716,{
@@ -651,12 +653,3 @@ OnTimer183000:
 	set getvariableofnpc(.SoulLinkerTest,"Kid#link1"),0;
 	stopnpctimer;
 }
-
-//============================================================ 
-// Old changelog
-//============================================================ 
-//= A temp Soul Linker Job Changer based on the kRO quest.
-//= Quest info from RagnaInfo. Sprites from kRO screenshots
-//= 1.0	Optimized and updated [Lupus]
-//= 1.1 Fixed NPC names according to iRO [Lupus]
-//============================================================ 

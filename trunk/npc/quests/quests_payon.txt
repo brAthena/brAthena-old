@@ -1,29 +1,30 @@
 //  ________________________________________________________
-// /							    \
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
+// |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Quest NPCs related to Payon	    |
+// | Nome do Script: Quest NPCs related to Payon    		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.7/1.0				    |
+// | Versões eA/brA: 1.7/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Quests de Payon: Pretend Murder, Ear Muffs, |
-// | Oxygen, Derivuchi Cap, Helm of Angel Quests.	    |
+// | Descrição: Pretend Murder, Ear Muffs, Oxygen, 			|
+// | Derivuchi Cap, Helm of Angel Quests.					|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \________________________________________________________/
 
-//Pretend Murdered Quest
-
+//==========================================================================================//
+//				Pretend Murdered quest
+//==========================================================================================//
 payon_in01,99,72,4	script	Granny	103,{
 	if (checkweight(908,1) == 0) {
 		mes "^3355FFWait a second! Right now, you're carrying too many items with you. Please come back after putting some of your things into Kafra Storage.^000000";
@@ -49,7 +50,7 @@ payon_in01,99,72,4	script	Granny	103,{
 			mes "If it's okay...";
 			mes "I'd like to give you this.";
 			next;
-			getitem 2293,1; //Pretend_Murdered
+			getitem 2293,1; // Pretend_Murdered
 			mes "[Granny]";
 			mes "Goodbye, adventurer~!";
 			mes "Thank you for making an old woman so happy...";
@@ -74,8 +75,9 @@ payon_in01,99,72,4	script	Granny	103,{
 	}
 }
 
-//Ear Muffs Quest
-
+//========================================================================================//
+//					Ear Muffs Quest
+//========================================================================================//
 payon_in01,18,10,4	script	Mystic Lady	76,{
 	mes "[Mystic Lady]";
 	mes "My family has produced and sold the special Winter product ^3355FFEar Muffs^000000 for many years. We just moved here, but the weather is always warm so we can hardly make a living.";
@@ -97,7 +99,7 @@ payon_in01,18,10,4	script	Mystic Lady	76,{
 			delitem 5001,1;  //Headset
 			set Zeny,Zeny-5000;
 			mes "Here, I will give you this pre-made one.";
-			getitem 2283,1; //Ear_Mufs
+			getitem 2283,1; // Ear_Mufs
 			next;
 			mes "[Mystic Lady]";
 			mes "Thank you for buying our product. You won't regret purchasing our Ear Muffs: Satisfaction guaranteed~";
@@ -122,8 +124,9 @@ payon_in01,18,10,4	script	Mystic Lady	76,{
 	}
 }
 
-//Oxygen Mask Quest
-
+//========================================================================================//
+//					Oxygen Mask Quest
+//========================================================================================//
 payon_in02,25,71,4	script	Boy	86,{
 	if (countitem(701) > 4) {
 		mes "[Young Man]";
@@ -162,7 +165,7 @@ payon_in02,25,71,4	script	Boy	86,{
 			mes "Huk...Huk...";
 			mes "Sorry, I was out of control with pleasure for a while. Now, I will give my treasure as promised.";
 			next;
-			getitem 5004,1; //Oxygen_Mask
+			getitem 5004,1; // Oxygen_Mask
 			mes "[Young Man]";
 			mes "When you wear this over your mouth and start to breathe, it filters junk out before getting to your lungs.";
 			next;
@@ -217,8 +220,9 @@ payon_in02,25,71,4	script	Boy	86,{
 	}
 }
 
-//Derivuchi Cap (Hat of Petite Diablo), Helm of Angel Quests
-
+//========================================================================================//
+//			Derivuchi Cap(Hat of Petite Diablo), Helm of Angel
+//========================================================================================//
 payon_in01,56,12,7	script	Young man#12	89,{
 	mes "[Young man]";
 	mes "...What is it?";
@@ -255,7 +259,7 @@ payon_in01,56,12,7	script	Young man#12	89,{
 					delitem 2254,1;  //Angelic_Chain
 					delitem 7036,5;  //Fang_Of_Garm
 					close2;
-					getitem 5025,1; //Helm_Of_Angel
+					getitem 5025,1; // Helm_Of_Angel
 					end;
 				}
 				else {
@@ -291,7 +295,7 @@ payon_in01,56,12,7	script	Young man#12	89,{
 					delitem 1038,600;  //Petite_DiablOfs_Horn
 					delitem 7048,40;  //Talon_Of_Griffin
 					close2;
-					getitem 5038,1; //Deviruchi_Cap
+					getitem 5038,1; // Deviruchi_Cap
 					end;
 				}
 				else {

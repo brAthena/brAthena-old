@@ -8,18 +8,18 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: PvP NPCs				    |
+// | Nome do Script: PvP NPCs				    			|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.4/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição:						    |
+// | Descrição:						    					|
 // | PvP NPCs that are found in the Inns in major cities.   |
 // | Includes Yoyo Mode, Nightmare Mode, and Event Mode	    |
-// |							    |
-// | Breakdown of function "F_PVPNarrator"		    |
-// | arg(0): Map to save player on			    |
+// |							    						|
+// | Breakdown of function "F_PVPNarrator"		    		|
+// | arg(0): Map to save player on			    			|
 // | arg(1): X position on getarg(0) map to save player	    |
 // | arg(2): Y position on getarg(0) map to save player     |
 // |--------------------------------------------------------|

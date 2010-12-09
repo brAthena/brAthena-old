@@ -1,24 +1,26 @@
-//  _______________________________________________________
-// /							   \
+//  ________________________________________________________
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
-// |			brAthena Script			    |
+// |                                                        |
+// |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: 					    |
+// | Nome do Script: iRO Repeatable EXP Quests		   		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			   				|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0				    |
+// | Versões eA/brA: 1.0/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Quest repetível do monstro Fabre.	    |
+// | Descrição: 										    |
+// | Added Monster Killing quests.							|
+// | Repeatable EXP Quest (Fluffs)							|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \_______________________________________________________/
 
 gef_fild07,321,193,4	script	Langry#Fabre_Hunt	754,{
@@ -161,7 +163,7 @@ gef_fild07,321,193,4	script	Langry#Fabre_Hunt	754,{
 				next;
 				switch(select("Gather Items:Hunt Fabres:Cancel")) {
 				case 1:
-					//Item turn in
+					// Item turn in
 					mes "[Langry]";
 					mes "I need to collect ^0000CE25 Fluff^000000 to";
 					mes "complete this community service project.";
@@ -188,7 +190,7 @@ gef_fild07,321,193,4	script	Langry#Fabre_Hunt	754,{
 						close;
 					}
 				case 2:
-					//Kill Count Quest
+					// Kill Count Quest
 					mes "[Langry]";
 					mes "Ah, ok I think you can help me out by hunting some Fabres.";
 					mes "How many would you like to hunt?";
@@ -234,3 +236,5 @@ gef_fild07,321,193,4	script	Langry#Fabre_Hunt	754,{
 		close;
 	}
 }
+
+

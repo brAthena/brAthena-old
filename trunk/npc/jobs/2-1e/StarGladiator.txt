@@ -18,7 +18,7 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    | 
+// | - Anotações		   			    					| 
 // \________________________________________________________/
 
 payon,215,102,3	script	Moohyun#job_star	828,3,3,{
@@ -1637,12 +1637,3 @@ job_star,161,33,0	script	Cheehee#job_star	77,{
 	mes "starlight in this room...";
 	close;
 }
-
-//============================================================ 
-// Old changelog
-//============================================================ 
-//= A temp Star Gladiator Job Changer based on the kRO quest.
-//= Quest info from RagnaInfo.
-//= Sprites from kRO screenshots, bar two which I just had to guess at.
-//= 1.0 Optimized, updated [Lupus]
-//============================================================ 

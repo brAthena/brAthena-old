@@ -1,24 +1,26 @@
-//  _______________________________________________________
-// /							   \
+//  ________________________________________________________
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
-// |			brAthena Script			    |
+// |                                                        |
+// |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: iRO Repeatable EXP Quests		    |
+// | Nome do Script: iRO Repeatable EXP Quests		   		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			   				|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0				    |
+// | Versões eA/brA: 1.0/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Quest repetível do monstro Caramelo.	    |
+// | Descrição:											    |
+// | Added Monster Killing quests.							|
+// | Repeatable EXP Quest (Porcupine Quills)				|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \_______________________________________________________/
 
 mjolnir_01,296,29,6	script	Yullo#Caramel_Hunt	95,{
@@ -161,7 +163,7 @@ mjolnir_01,296,29,6	script	Yullo#Caramel_Hunt	95,{
 				next;
 				switch(select("Gather Items:Hunt Caramels:Cancel")) {
 				case 1:
-					//Item turn in
+					// Item turn in
 					mes "[Yullo]";
 					mes "Ok, so I need 25 Porcupine";
 					mes "Quill's.";
@@ -200,7 +202,7 @@ mjolnir_01,296,29,6	script	Yullo#Caramel_Hunt	95,{
 						close;
 					}
 				case 2:
-					//Kill Count Quest
+					// Kill Count Quest
 					mes "[Yullo]";
 					mes "Ah, ok I think you can help me out by hunting some Caramels.";
 					mes "How many would you like to hunt?";

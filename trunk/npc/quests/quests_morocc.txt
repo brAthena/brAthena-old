@@ -1,30 +1,33 @@
 //  ________________________________________________________
-// /							    \
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
+// |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Quest NPCs related to Morroc	    |
+// | Nome do Script: Quest NPCs related to Morroc    		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 2.8/1.0				    |
+// | Versões eA/brA: 2.8/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Quests de Morroc: Stop Post, Binoculars,    |
-// | Resurrection of Satan Morroc, The Crow of the Fate	    |
-// | e Succession of the Prince.			    |
+// | Descrição: - Stop Post									|
+// | - Binoculars Quest										|
+// | - Assassin Pub NPCs/supporting quest NPCS. [Disabled]	|
+// | - Resurrection of Satan Morroc							|
+// | - The Crow of the Fate									|
+// | - Succession of the Prince								|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \________________________________________________________/
 
-//Stop Post Quest
-
+// Stop Post Quest
+// ============================================================
 moc_ruins,113,181,4	script	William	89,{
 	mes "[William]";
 	mes "Welcome to";
@@ -68,8 +71,8 @@ moc_ruins,113,181,4	script	William	89,{
 	}
 }
 
-//Binoculars Quest
-
+// Binoculars Quest
+// ============================================================
 moc_ruins,118,176,4	script	Alchemist	64,{
 	mes "[Marius]";
 	mes "Howdy, new customer!!";
@@ -140,8 +143,8 @@ moc_ruins,118,176,4	script	Alchemist	64,{
 	}
 }
 
-//Morroc Assassin Guild Bar [Disabled]
-
+// Morroc Assassin Guild Bar [Disabled]
+// ============================================================
 /*
 morocc,43,108,5	script	Sharp-Looking Kid#dan_07	82,{
 	if (BaseClass == Job_Assassin) {
@@ -866,8 +869,8 @@ que_job01,70,84,1	script	Girl#moc_ex002	882,{
 	close;
 }
 
-//Resurrection of Satan Morroc
-
+// Resurrection of Satan Morroc
+// ============================================================
 moc_fild20,354,183,3	script	Continental Guard#01::MocConGuard	707,3,3,{
 	if ((rebirth_moc_edq == 0) && (rebirth_moc_edq < 4)) {
 		mes "[Continental Guard]";
@@ -1079,6 +1082,7 @@ moc_fild20,354,183,3	script	Continental Guard#01::MocConGuard	707,3,3,{
 		end;
 	}
 
+//OnTouch2:
 OnTouch:
 	mes "[Continental Guard]";
 	mes "No commoners are allowed in the area beyond this point.";
@@ -1996,8 +2000,8 @@ OnTimer5415000:
 	end;
 }
 
-//The Crow of the Fate
-
+// The Crow of the Fate
+// ============================================================
 moc_ruins,137,70,3	script	Book-Touching Man#garas	48,{
 	if (BaseLevel > 59) {
 		if (checkweight(703,3) == 0) {
@@ -2547,6 +2551,7 @@ yuno,333,210,5	script	Library Master#garas	57,{
 }
 
 yuno,336,203,0	script	#garas_catch	139,3,3,{
+//OnTouch2:
 OnTouch:
 	if (barmunt_crow == 2) {
 		mes "[Dog]";
@@ -2811,6 +2816,7 @@ yuno_in04,100,5,3	script	Hot Bestseller Corner	111,{
 }
 
 yuno_in04,100,3,0	script	#garas_path	139,1,1,{
+//OnTouch2:
 OnTouch2:
 	if (barmunt_crow == 6) {
 		mes "...................................";
@@ -3470,6 +3476,7 @@ yuno_in04,167,120,3	script	Worn-out Book#garas	111,{
 }
 
 que_ba,247,33,0	script	#bpast_1_1	-1,1,1,{
+//OnTouch2:
 OnTouch:
 	if (barmunt_crow < 4) {
 		warp "ama_dun03",119,110;
@@ -3537,6 +3544,7 @@ que_ba,183,25,0	warp	#bpast_2to3_1	1,1,que_ba,72,25;
 que_ba,183,52,0	warp	#bpast_2to3_2	1,1,que_ba,72,51;
 
 que_ba,102,56,0	script	#3room_barmunt	-1,3,3,{
+//OnTouch2:
 OnTouch:
 	if (barmunt_crow < 4) {
 		warp "yuno_in04",100,3;
@@ -3608,6 +3616,7 @@ que_ba,99,51,7	script	Grotesque Man#zid1	999,{
 }
 
 que_ba,53,232,0	script	#garas_f_yume	139,1,1,{
+//OnTouch2:
 OnTouch:
 	if (barmunt_crow == 5) {
 		//GetHEALTHSTATE VAR_HEALTHSTATENORMAL 0
@@ -3652,6 +3661,7 @@ que_ba,48,227,7	script	Grotesque Man#zid2	999,{
 }
 
 que_ba,264,186,0	script	#barmut_room1	139,2,2,{
+//OnTouch2:
 OnTouch:
 	if (barmunt_crow == 11) {
 		mes "^660000You wake up, and look around you. Somehow, you've now ended up in a huge mansion.^000000";
@@ -3691,6 +3701,7 @@ que_ba,270,181,3	script	#barmunt_fire	755,{
 }
 
 que_ba,270,270,0	script	#barmunt_living	139,1,1,{
+//OnTouch2:
 OnTouch:
 	mes "..................";
 	mes "..................";
@@ -3867,6 +3878,7 @@ cave,82,97,3	script	Cave Settler#g1	996,3,3,{
 		close;
 	}
 
+//OnTouch2:
 OnTouch:
 	if (barmunt_crow == 8) {
 		mes "[Cave Settler]";
@@ -4211,8 +4223,8 @@ cave,105,32,7	script	Cave Settler#f_cave7	979,{
 	close;
 }
 
-//Succession of the Prince
-
+// Succession of the Prince
+// ============================================================
 prontera,153,353,4	script	Messenger#prince1	105,{
 	if (nk_prince == 0) {
 		if (rebirth_moc_edq > 1) {
@@ -6718,6 +6730,7 @@ prt_castle,368,312,4	script	Prince#ern	985,{
 }
 
 prt_castle,163,319,0	script	#twonoble	-1,3,3,{
+//OnTouch2:
 OnTouch:
 	if (nkprince_eisen == 7) {
 		donpcevent "Aged Noble 1#valter::OnEnable";
@@ -7650,6 +7663,7 @@ prt_castle,176,170,5	script	Guard#princein	105,{
 }
 
 prt_castle,121,168,0	script	#arm	111,4,4,{
+//OnTouch2:
 OnTouch:
 	if (nk_prince == 8) {
 		mes "[" + strcharinfo(0) + "]";
@@ -7670,6 +7684,7 @@ OnTouch:
 }
 
 prt_castle,316,313,0	script	#arm1	111,3,3,{
+//OnTouch2:
 OnTouch:
 	if (nkprince_eisen > 14) {
 		mes "[" + strcharinfo(0) + "]";

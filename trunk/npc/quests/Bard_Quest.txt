@@ -1,24 +1,29 @@
 //  ________________________________________________________
-// /							    \
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
+// |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Wandering Minstrel Quest		    |
+// | Nome do Script: Wandering Minstrel Quest	    		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.4/1.0				    |
+// | Versões eA/brA: 1.4/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Ajude o Bardo a recordar sua canção.	    |
+// | Descrição: Help the bard remember how his song goes.	|
+// | Variables:												|
+// | 	@random : temp var 									|
+// | 	@inputstr$ : temp var 								|
+// | 														|
+// |This Quest has relation with brisingamen_seal.txt(Seals)|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \________________________________________________________/
 
 geffen,132,38,3	script	Bard#2	51,{

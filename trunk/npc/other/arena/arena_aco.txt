@@ -8,17 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Arena de Izlude - Noviços	            |
+// | Nome do Script: Izlude Arena script		            |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.1/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: Noviços - Arena de batalha de Izlude	    |
+// | Descrição: Izlude Acolyte Battle Arena				    |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    | 
+// | - Anotações		   			    					| 
 // \________________________________________________________/
 
 arena_room,114,102,0	script	onlyaco#arena	45,1,1,{

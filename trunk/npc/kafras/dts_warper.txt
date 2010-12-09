@@ -9,7 +9,7 @@
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
 // | Nome do Script: Serviço de Teleporte para Calabouços   |
-// | (Dungeons)                     			    |
+// | (Dungeons)                     			    		|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
@@ -25,13 +25,13 @@
 // | Variáveis globais em uso:                              |
 // | Checagem do tempo de votação: $DTS_Time                |
 // | Cool Event Corp. - Número de votos:$DTS_JondaVotes     |
-// | Kafra - Número de votos:		$DTS_KafraVotes     |
-// | Vencedor:				$DTS_Result         |
+// | Kafra - Número de votos:		$DTS_KafraVotes     	|
+// | Vencedor:				$DTS_Result         			|
 // | Checagem do periodo do serviço de teleport:            |
 // |                                      $DTS_PeriodCheck  |
-// | Kafra - Pontos:			$DTS_KafraWins      |
+// | Kafra - Pontos:			$DTS_KafraWins      		|
 // | Cool Event Corp. - Points:	$DTS_JondaWins              |
-// | Checagem Setitem:			$DTS_VoteCount      |
+// | Checagem Setitem:			$DTS_VoteCount      		|
 // |                                                        |
 // | Para obter informações detalhadas sobre o que cada um  |
 // | faz varibale, consulte o "Vote Globalvar Girl # yuno"  |
@@ -42,7 +42,7 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    | 
+// | - Anotações		   			    					| 
 // \________________________________________________________/
 
 einbroch,246,70,0	script	Vote Timer#ein	-1,{

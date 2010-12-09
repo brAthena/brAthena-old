@@ -1,29 +1,29 @@
 //  ________________________________________________________
-// /							    \ 
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
+// |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Quest NPCs related to Gonryun	    |
+// | Nome do Script: Quest NPCs related to Gonryun    		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.2b/1.0				    |
+// | Versões eA/brA: 1.2b/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Quests de Gon Ryun: Broken Sword (Kept old  |
-// | mechanics) e Lost Knife Quests.			    |
+// | Descrição: Broken Sword Quest (Kept old mechanics)		|
+// | Lost Knife Quest										|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \________________________________________________________/
 
-//Broken Sword Quest
-
+// Broken Sword
+//============================================================ 
 gon_in,17,93,5	script	Chief#gon	775,{
 	if (BaseLevel > 50) {
 		if (b_sword == 0) {
@@ -3705,8 +3705,8 @@ OnTouch:
 	end;
 }					
 
-//Lost Knife
-
+// Lost Knife
+//============================================================ 
 gonryun,237,226,3	script	Han Ran Jiao#gon	776,{
 	if (nakha == 0) {
 		mes "[Han Ran Jiao]";

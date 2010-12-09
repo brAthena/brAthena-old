@@ -12,13 +12,13 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 2.1/1.0                                |
+// | Versões eA/brA: 2.2/1.0                                |
 // |--------------------------------------------------------|
 // | Descrição: NPCs da Cidade de Morroc                    |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações		                            |
+// | - Anotações		                     			    |
 // \________________________________________________________/
 
 // Morroc
@@ -710,6 +710,7 @@ moc_fild16,211,254,4	script	Assassin#07rhea_30	118,{
 // Other NPCs
 //============================================================
 //Bartender
+/*
 morocc_in,166,76,3	script	Bartender#02	46,{
 	mes "[Bartender]";
 	mes "What are you going to order?";
@@ -747,6 +748,7 @@ morocc_in,166,76,3	script	Bartender#02	46,{
 	mes "Don't even think about drinking if you don't have 1,000 zeny.";
 	close;
 }
+*/
 
 // Assassin Guild Guards
 //===================================================

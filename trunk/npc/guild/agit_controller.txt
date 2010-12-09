@@ -15,10 +15,13 @@
 // | Versões eA/brA: 2.0/1.0                                |
 // |--------------------------------------------------------|
 // | Descrição: Auto Start for War of Emperium              |
+// | gettime(3): Gets hour (24 hour time)					|
+// | gettime(4): Gets day of week 1=Monday, 2=Tuesday,		|
+// | 3=Wednesday, 4=Thursday, etc.							|
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    | 
+// | - Anotações		   			    					| 
 // \________________________________________________________/
 
 -	script	Agit_Event	-1,{

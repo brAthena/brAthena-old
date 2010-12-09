@@ -1,27 +1,27 @@
 //  ________________________________________________________
-// /							    \
+// /							    						\
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
+// |							    						|
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Geffen Dungeon Warp Script		    |
+// | Nome do Script: Geffen Dungeon Warp Script		    	|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.1/1.0				    |
+// | Versões eA/brA: 1.1/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Portais da Torre de Geffen.		    |
+// | Descrição: Portais da Torre de Geffen.		    		|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \________________________________________________________/
 
-//Torre de Geffen
+//= Geffen Tower =============================================
 gef_tower,106,115,0	warp	geft01	1,1,gef_tower,106,72
 gef_tower,106,69,0	warp	geft01-1	1,1,gef_tower,106,112
 gef_tower,44,36,0	warp	geft02	1,1,gef_tower,106,162
@@ -44,7 +44,7 @@ gef_tower,52,181,0	warp	gef006	4,1,geffen,120,110
 gef_tower,60,32,0	warp	geft09	1,1,gef_tower,62,90
 gef_tower,62,87,0	warp	geft09-1	1,1,gef_tower,60,30
 
-//Subterrâneo da Torre de Geffen
+//= Geffen Dungeon =============================================
 gef_dun00,104,103,0	warp	gef024	3,3,gef_tower,153,31
 gef_dun00,107,169,0	warp	gefd01	2,1,gef_dun01,115,236
 gef_dun01,115,240,0	warp	gefd01-1	2,2,gef_dun00,107,165

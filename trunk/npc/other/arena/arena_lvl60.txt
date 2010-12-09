@@ -8,17 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Arena de Izlude - Lv 60	            |
+// | Nome do Script: Izlude Arena lvl 60		            |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.2/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: Arena de batalha de Izlude level 60 	    |
+// | Descrição: Izlude Battle Arena Level 60			    |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    | 
+// | - Anotações		   			  						| 
 // \________________________________________________________/
 
 arena_room,38,88,5	script	lvl 60s Waiting Room	124,{

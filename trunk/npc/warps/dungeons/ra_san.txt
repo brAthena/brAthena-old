@@ -1,24 +1,24 @@
 //  ________________________________________________________
-// /							    \
+// /							    						\
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
+// |							    						|
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
 // | Nome do Script: Rachel Sanctuary Dungeon Warp Script   |
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.4/1.0				    |
+// | Versões eA/brA: 1.4/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Portais do Santuário de Rachel.		    |
+// | Descrição: Portais do Santuário de Rachel.		    	|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \________________________________________________________/
 
 ra_san01,139,13,0	script	sanctuary01	45,1,1,{
@@ -44,4 +44,5 @@ ra_san02,213,4,0	warp	sanctuary12	1,1,ra_san04,35,216
 ra_san04,35,221,0	warp	sanctuary13	1,1,ra_san02,213,9
 ra_san02,30,21,0	warp	sanctuary14	1,1,ra_san05,14,149
 
+//Additional Dungeon warp. (Exit)
 ra_san01,139,139,0	warp	sanctuary15	1,1,ra_temin,27,314

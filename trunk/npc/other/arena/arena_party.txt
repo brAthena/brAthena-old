@@ -8,17 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Arena de Grupo de Izlude               |
+// | Nome do Script: Izlude Party Arena			            |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.3/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: Arena de batalha de Izlude - Grupo  	    |
+// | Descrição: Izlude Party Battle Arena			  	    |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    | 
+// | - Anotações		   			  						| 
 // \________________________________________________________/
 
 arena_room,162,88,3	script	Ponox	124,{

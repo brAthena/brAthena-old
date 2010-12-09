@@ -19,7 +19,7 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    | 
+// | - Anotações		   			    					| 
 // \________________________________________________________/
 
 hugel,88,168,4	script	Cool Event Corp. Staff::CoolEventCorpStaffHugel	874,{

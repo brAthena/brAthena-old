@@ -1,42 +1,42 @@
 //  _______________________________________________________
-// /							   \
+// /							   							\
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
-// |			brAthena Script			    |
+// |							   							|
+// |			brAthena Script			  					|
 // |--------------------------------------------------------|
-// | Nome do Script: 2004 Headgear Quests		    |
+// | Nome do Script: 2004 Headgear Quests		   			|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.6/1.0				    |
+// | Versões eA/brA: 1.6/1.0				    			|
 // |--------------------------------------------------------|
 // | Descrição: Quests dos Chapéis de 2004: Black Cat Ears  |
 // | (payon 115 131), X Hairpin, Band Aid, Flower Hairpin   |
 // | (geffen 129 148), Hot-blooded Headband (yuno 300 188), |
-// | Red Ribbon (prontera 165 232), Indian Headband	    |
+// | Red Ribbon (prontera 165 232), Indian Headband	    	|
 // | (comodo 237 217), Mushroom Band (geffen 67 87), Angel  |
 // | Wing Ears, Devil Wing Ears (yuno 241 52), Sea-Otter Hat|
 // | (xmas 183 267), Teddybear Hat (xmas 175 156), Model    |
-// | Training Hat (payon_in03 8 193), Tulip Haipin	    |
+// | Training Hat (payon_in03 8 193), Tulip Haipin	    	|
 // | (geffen 83 189), Party Hat, Straw Hat, Cowboy Hat,	    |
 // | Sombrero, Beanie (xmas_in 35 30), Decorative Golden    |
 // | Bell, Crown of Ancient Queen, Crown of Mistress	    |
 // | (yuno_in03 20 18), Alarm Mask (alde_alche 88 180),	    |
 // | Drooping Cat, Smokie Leaf, Lazy Smokie, Blue Fish	    |
 // | (morocc 273 79), Kitsune Mask (pay_dun03 48 84),	    |
-// | Orc Hero Helm (in_orcs01 31 93 & 162 33).|		    |
+// | Orc Hero Helm (in_orcs01 31 93 & 162 33).		    	|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \_______________________________________________________/
 
-//Black Cat Ears Quest
-
+// Black Cat Ears
+//============================================================
 payon,115,131,3	script	Neko Neko#1	725,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Wait a minute! -";
@@ -102,8 +102,8 @@ payon,115,131,3	script	Neko Neko#1	725,{
 	close;
 }
 
-//X Hairpin, Band Aid, Flower Hairpin Quests
-
+// X Hairpin, Band Aid, Flower Hairpin
+//============================================================
 geffen,129,148,3	script	Argen#1	779,{
 	if (checkweight(1201,1) == 0) {
 		mes "[Argen]";
@@ -291,8 +291,8 @@ geffen,129,148,3	script	Argen#1	779,{
 	close;
 }
 
-//Hot-blooded Headband Quest
-
+// Hot-blooded Headband
+//============================================================
 yuno,300,188,5	script	Zhenbolt#1	753,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Wait a minute! -";
@@ -386,8 +386,8 @@ yuno,300,188,5	script	Zhenbolt#1	753,{
 	close;
 }
 
-//Red Ribbon Quest
-
+// Red Ribbon
+//============================================================
 prontera,165,232,3	script	Nephia#1	744,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Wait a minute! -";
@@ -500,8 +500,8 @@ prontera,165,232,3	script	Nephia#1	744,{
 	}
 }
 
-//Indian Headband Quest
-
+// Indian Headband
+//============================================================
 comodo,237,217,5	script	Meruntei#1	732,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Wait a minute! -";
@@ -554,8 +554,8 @@ comodo,237,217,5	script	Meruntei#1	732,{
 	close;
 }
 
-//Mushroom Band Quest
-
+// Mushroom Band
+//============================================================
 geffen,67,87,3	script	Ipore#1	700,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Wait a minute! -";
@@ -634,8 +634,8 @@ geffen,67,87,3	script	Ipore#1	700,{
 	close;
 }
 
-//Angel Wing Ears, Devil Wing Ears Quests
-
+// Angel Wing Ears, Devil Wing Ears
+//============================================================
 yuno,241,52,3	script	Old Blacksmith#hgear	813,{
 	//DisableItemMove
 	if (checkweight(1201,1) == 0) {
@@ -963,8 +963,8 @@ yuno,241,52,3	script	Old Blacksmith#hgear	813,{
 	//EnableItemMove
 }
 
-//Sea-Otter Hat Quest
-
+// Sea-Otter Hat
+//============================================================
 xmas,183,267,3	script	Pretty Lindsay#1	793,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Wait a minute! -";
@@ -1078,8 +1078,8 @@ xmas,183,267,3	script	Pretty Lindsay#1	793,{
 	close;
 }
 
-//Teddybear Hat Quest
-
+// Teddybear Hat
+//============================================================
 xmas,175,156,3	script	Fuzzy Fuzz#1	712,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Wait a minute! -";
@@ -1165,8 +1165,8 @@ xmas,175,156,3	script	Fuzzy Fuzz#1	712,{
 	close;
 }
 
-//Model Training Hat Quest
-
+// Model Training Hat
+//============================================================
 payon_in03,8,193,4	script	Nanhyang#1	77,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Wait a minute! -";
@@ -1325,8 +1325,8 @@ payon_in03,8,193,4	script	Nanhyang#1	77,{
 	close;
 }
 
-//Tulip Hairpin Quest
-
+// Tulip Hairpin
+//============================================================
 geffen,83,189,5	script	Seth#1	716,{
 	if (checkweight(1201,1) == 0) {
 		mes " [Seth]";
@@ -1443,8 +1443,8 @@ geffen,83,189,5	script	Seth#1	716,{
 	}
 }
 	
-//Party Hat, Straw Hat, Cowboy Hat, Sombrero, Beanie Quests
-
+// Party Hat, Straw Hat, Cowboy Hat, Sombrero, Beanie
+//============================================================
 xmas_in,35,30,3	script	Hat Merchant#zero	797,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Wait a minute !! -";
@@ -1733,8 +1733,8 @@ xmas_in,35,30,3	script	Hat Merchant#zero	797,{
 	}
 }
 
-//Decorative Golden Bell, Crown of Ancient Queen, Crown of Mistress Quests
-
+// Decorative Golden Bell, Crown of Ancient Queen, Crown of Mistress
+//============================================================
 yuno_in03,20,18,6	script	Nehris#1	726,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Wait a minute! -";
@@ -1897,8 +1897,8 @@ yuno_in03,20,18,6	script	Nehris#1	726,{
 	}
 }
 
-//Alarm Mask Quest
-
+// Alarm Mask
+//============================================================
 alde_alche,88,180,0	script	Muscle Man#Alarm Mask	748,{
 	if (checkweight(1201,1) == 0) {
 		mes "[Muscle Man]";
@@ -2070,8 +2070,8 @@ OnInit:
 	end;
 }
 
-//Drooping Cat, Smokie Leaf, Lazy Smokie, Blue Fish Quests
-
+// Drooping Cat, Smokie Leaf, Lazy Smokie, Blue Fish
+//============================================================
 morocc,273,79,4	script	Educated Traveller	99,{
 	if ((MaxWeight-Weight) < 5000 || checkweight(1201,1) == 0) {
 		mes "- Wait a minute! -";
@@ -2450,8 +2450,8 @@ morocc,273,79,4	script	Educated Traveller	99,{
 	}
 }
 
-//Kitsune Mask Quest
-
+// Kitsune Mask
+//============================================================
 pay_dun03,48,84,4	script	Nine Tails#Kitsune Mask	1180,1,1,{
 	end;
 
@@ -2626,8 +2626,8 @@ OnMyMobDead2:
 
 }
 
-//Orc Hero Helmet Quest
-
+// Orc Hero Helmet
+//============================================================
 in_orcs01,31,93,1	script	Orc Warrior#1	1023,2,2,{
 OnTouch:
 	if (checkweight(1201,1) == 0) {

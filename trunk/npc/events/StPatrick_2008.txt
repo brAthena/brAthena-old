@@ -15,12 +15,28 @@
 // | Versões eA/brA: 1.4/1.0                                |
 // |--------------------------------------------------------|
 // | Descrição:                                             |
-// |                                                        |
+// | iRO St. Patrick's Day. (2008)							|
+// | Find O'Riley's treasure for him, then hunt down coinds	|
+// | from the snakes to get Green Ale in return for them.	|
+// | 														|
+// | Mobs 1841 through 1844 have been modified for this		|
+// | event you must use the mob edits provided for this 	|
+// | quest. Enable in mob_db2.txt							|
+// | 														|
+// | The item 12715 Black_Treasure_Chest contains a script	|
+// | that relies explicitly on this script being loaded.	|
+// | Remove the "end" from the item script to enable.		|
+// | In addition to that, you must enable the item_avail	|
+// | entries if you are using a kRO client, as the items	|
+// | were removed from the client between testing and this	|
+// | updated.												|
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    | 
+// | - Anotações		   			 						| 
 // \________________________________________________________/
+
+//============================================================
 
 prt_fild05,170,286,4	script	Anxious Leprechaun#8pday	954,{
 	if (StPatrick2008 < 1) {

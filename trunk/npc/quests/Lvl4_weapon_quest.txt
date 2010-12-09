@@ -1,25 +1,24 @@
 //  ________________________________________________________
-// /							    \ 
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
+// |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Grade A and Grade S weapon Quests	    |
+// | Nome do Script: Grade A and Grade S weapon quests 		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.6/1.0				    |
+// | Versões eA/brA: 1.6/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Grade A and Grade S weapon quests.	    |
+// | Descrição: Grade A and Grade S weapon quests			|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
-// | Requires jA Script System.				    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \________________________________________________________/
 
 umbala,117,285,3	script	Bazo#lv4	85,{
@@ -2139,7 +2138,8 @@ niflheim,240,193,3	script	Kayron#lv4	794,{
 }
 
 niflheim,99,268,5	script	Reyghema#lv4	794,{
-	if (now_weight < 3000) {
+	set .@now_weight,MaxWeight-Weight;
+	if (.@now_weight < 3000) {
 		mes "^3355FFWait a second! Right now, you're carrying too many items with you. Please come back after putting some of your things into Kafra Storage.^000000";
 		close;
 	}

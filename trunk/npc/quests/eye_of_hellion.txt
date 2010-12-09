@@ -1,25 +1,28 @@
 //  ________________________________________________________
-// /							    \
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
+// |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: The Eye of Hellion Quest		    |
+// | Nome do Script: The Eye of Hellion Quest.	    		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.9/1.0				    |
+// | Versões eA/brA: 1.9/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Quest do Olho de Hellion e Quest for	    |
-// | getting a Nile Rose.				    |
+// | Descrição: Quest for getting a Nile Rose				|
+// | There are two versions of this quest.					|
+// | Version 1 (Not implemented) was used on iRO as an event|
+// | for it's anniversary, while version 2 (this version),	|
+// | is the one that remained active on main servers.		|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \________________________________________________________/
 
 morocc_in,116,101,3	script	Old Scholar Tyus#hellion	735,3,3,{

@@ -1,28 +1,43 @@
 //  ________________________________________________________
-// /							    \
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
+// |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Quest NPCs related to Ash-Vacuum	    |
+// | Nome do Script: Quest NPCs related to Ash-Vacuum  		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.6/1.0				    |
+// | Versões eA/brA: 1.6/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Quests para o 'Outro Mundo'.		    |
+// | Descrição: Contains Quests:							|
+// | Onward to the Other World								|
+// | - Will differ from iRO wiki's version as iRO changed it|
+// |  I may mimic the change later for those who want it.	|
+// | New Surroundings										|
+// | Attitude to the New									|
+// | Finding a Fairy & Finding a Giant Tree					|
+// | The Tripartite Union's Feud							|
+// | Cat Hand Agent											|
+// | - Contains untranslated dialog.						|
+// | Part Time Work											|
+// | - Contains Custom translated dialog.					|
+// | Report from the New World								|
+// | - Contains Custom translated dialog.					|
+// | Persuing Rayan Moore									|
+// | - Contains Custom translated dialog.					|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \________________________________________________________/
 
-//Onward to the New World Quests
-
+// Onward to the New World
+//============================================================ 
 prontera,163,53,3	script	Promotional Staff#prt	100,{
 	mes "[Promotional Staff]";
 	mes "We are looking for adventurers who are super curious and extremely brave.";
@@ -2545,7 +2560,7 @@ moc_fild22b,370,370,3	script	Allied Manager#gm	100,{
 }
 */
 
-//New Surroundings
+// New Surroundings
 //============================================================ 
 mid_camp,222,283,4	script	Marian#ep13bs	727,{
 	if (checkweight(1201,1) == 0) {
@@ -4279,7 +4294,7 @@ mid_camp,267,258,0	script	Post#ep13bs2	111,{
 	}
 }
 
-//Attitude to the New
+// Attitude to the New
 //============================================================ 
 mid_camp,188,254,3	script	Monster Scholar#ep13	883,{
 	if (ep13_ryu < 100) {
@@ -4854,7 +4869,7 @@ mid_camp,188,254,3	script	Monster Scholar#ep13	883,{
 		}
 		else if (ep13_animal == 15) {
 			if (countitem(6033) > 0) {
-				//Custom Translation.
+				// Custom Translation.
 				mes "["+strcharinfo(0)+"]";
 				mes "Rumis! Come see this!";
 				next;
@@ -4952,12 +4967,12 @@ mid_camp,188,254,3	script	Monster Scholar#ep13	883,{
 			}
 		}
 		else if (ep13_animal == 100) {
-			//Custom Translation.
+			// Custom Translation.
 			mes "Rumis seems anxious.";
 			close;
 		}
 		else {
-			//Custom Translation.
+			// Custom Translation.
 			mes "[Rumis Block]";
 			mes "If only I can go back to Rune Midgard....";
 			close;
@@ -5989,7 +6004,7 @@ man_fild01,92,230,3	script	Frozen Tree#evt_lumis	111,1,1,{
 	end;
 }
 
-//Finding a Fairy & Finding a Giant Tree
+// Finding a Fairy & Finding a Giant Tree
 //============================================================ 
 spl_fild02,34,223,5	script	Small Fairy#spl	442,{
 	if (BaseLevel > 69) {
@@ -6159,7 +6174,7 @@ mid_camp,212,237,5	script	Camp Guard Captain#man1	852,{
 	}
 }
 
-//The Tripartite Union's Feud
+// The Tripartite Union's Feud
 //============================================================ 
 mid_campin,376,120,0	script	Research Official#ep131	754,3,3,{
 	mes "[United Research Official]";
@@ -8159,7 +8174,7 @@ OnTimer300000:
 	end;
 }
 
-//Part Time Work
+// Part Time Work
 //============================================================ 
 mid_camp,1,1,0	script	#timer_alba01	844,{
 	/*
@@ -8383,7 +8398,7 @@ mid_camp,143,306,5	script	Breeder Taab#ep13_alba	946,{
 							close;
 						}
 						else {
-							//Custom Translation
+							// Custom Translation
 							set ep13_alba,5;
 							setquest 7046;
 							mes "[Taab]";
@@ -8751,7 +8766,7 @@ OnMyMobDead:
 	end;
 }
 
-//Cat Hand Trading Post
+// Cat Hand Trading Post
 //============================================================ 
 mid_camp,62,125,4	script	Cat Hand Agent	421,{
 	if (ep13_yong1 < 1) {
@@ -9255,7 +9270,7 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 				}
 			}
 			else {
-				//Custom Translation.
+				// Custom Translation.
 				mes "[Cat Hand Agent]";
 				mes "I am sorry, but you don't have enough credit points to use the warp service. Please come back when you have more points.";
 			}
@@ -9679,7 +9694,7 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 				}
 			}
 			else {
-				//Custom Translation
+				// Custom Translation
 				mes "[Cat Hand Agent]";
 				mes "I am sorry, but you don't have enough credit points to use the warp service. Please come back when you have more points.";
 			}
@@ -9986,7 +10001,7 @@ mid_camp,69,144,0	script	Ferocious Gorurug	421,{
 				close;
 			}
 			else {
-				//custom translation				
+				// custom translation				
 				mes "Ferocious Gorurug welcomes you gracefully.";
 				next;
 				mes "[Ferocious Gorurug]";
@@ -11022,7 +11037,7 @@ OnTimer120000:
 	end;
 }
 
-//Report from the New World
+// Report from the New World
 //============================================================ 
 mid_campin,90,121,5	script	Hibba Agip	459,{
 	cutin "ep13_captin_edq",2;
@@ -11214,19 +11229,19 @@ mid_campin,90,121,5	script	Hibba Agip	459,{
 		mes "[Hibba Agip]";
 		mes "Now, search everywhere for the pages of that report. Staff Officer Abidal will bind them into the full report for you.";
 		next;
-		//custom translation
+		// custom translation
 		mes "[Hibba Agip]";
 		mes "Hmm... and... I received a report, that you surrendered the report to the enemy, right?";
 		next;
-		//custom translation
+		// custom translation
 		mes "[Instructor Igrid]";
 		mes "Hmm...";
 		next;
-		//custom translation
+		// custom translation
 		mes "[Hibba Agip]";
 		mes "Hehehehe. How smart of you... Thou feel not safe for you to be my subordinate...";
 		next;
-		//custom translation
+		// custom translation
 		mes "[Hibba Agip]";
 		mes "Hey, I said. It is justice as well, injustice as well. But, trust and deal... is very important. Understand? You must remember this.";
 		set ep13_1_edq,61;
@@ -13755,7 +13770,7 @@ OnMyMobDead:
 	end;
 }
 
-//Persuing Rayan Moore
+// Persuing Rayan Moore
 //============================================================ 
 mid_campin,68,185,3	script	Pursuit Party Leader#1	803,{
 	if (checkweight(714,1) == 0) {
@@ -15942,7 +15957,7 @@ que_job01,49,49,5	script	Tao#dan_09	877,{
 que_job01,51,55,0	script	que_job01#room_1	45,1,1,{
 OnInit:
 	set $@moc_mao_room1,0; //Global Variable
-	//remove the old global variable.
+	// remove the old global variable.
 	if ($maobar_room) {
 		set $maobar_room,0;
 	}
@@ -16480,7 +16495,7 @@ que_job01,84,17,3	script	Rin#moc_room2_1	885,{
 		close2;
 	}
 	else if (mao_morocc2 == 8) {
-		//Missed
+		// Missed
 		cutin "moc2_rin02",2;
 		mes "[Rin]";
 		mes "Anything new?";
@@ -16858,7 +16873,7 @@ que_job01,144,54,3	script	Rin#moc_room2_2	885,{
 		close2;
 	}
 	else if ((mao_morocc2 > 25) && (mao_morocc2 < 29)) {
-		//Missed
+		// Missed
 		cutin "moc2_rin01",2;
 		mes "[Rin]";
 		mes "Ouch, my head..";
@@ -17234,7 +17249,7 @@ que_dan01,49,36,5	script	Corpse#moc2_dead01	457,{
 			close;
 		}
 		else {
-			//Missed
+			// Missed
 			mes "It's just a corpse, but there seems to be something unnatural about it.";
 			close2;
 			warp "morocc",104,108;
@@ -17668,3 +17683,4 @@ que_dan02,102,42,3	script	Disfigured Corpse#moc2	457,{
 	mes "... . . . . . !!!";
 	close;
 }
+

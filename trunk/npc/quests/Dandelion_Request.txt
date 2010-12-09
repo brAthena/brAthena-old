@@ -1,29 +1,28 @@
 //  ________________________________________________________
-// /							    \
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
+// |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Dandelion's Request Quest		    |
+// | Nome do Script: Dandelion's Request		    		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0				    |
+// | Versões eA/brA: 1.0/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Quest da Invasão de Morroc.		    |
+// | Descrição: Morocc Invasion quest						|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \________________________________________________________/
 
-//Dandelion's Request and Morocc Invasion Quests
-
 izlude,103,106,3	script	Guildsman#1	48,3,3,{
+
 	if(checkweight(7416,1) != 1)
 	{
 		mes "^3355FFWait a second!";

@@ -1,28 +1,39 @@
 //  ________________________________________________________
-// /							    \
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
+// |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Collection of Episode 13.2 Quests	    |
+// | Nome do Script: Collection of episode 13.2 quests.		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 2.1/1.0				    |
+// | Versões eA/brA: 2.2/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Coleção de Quests do Episódio 13.2.	    |
+// | Descrição: Cat Hand Addition. (Leads to 13.2 areas)	|
+// | Two Tribes												|
+// | Monster Suppression									|
+// | Daily Quests:											|
+// | - Bradium Collection									|
+// | - Laphine Craftsman									|
+// | - Drago Egg Collection (npc includes 'Wanted' quest)	|
+// | Otherworld language									|
+// | Daily Quests:											|
+// | - Midgard Ore											|
+// | - Alfheim Perfume										|
+// | Yggdrasil Dungeon Floor 2 puzzle.						|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \________________________________________________________/
 
-//Cat Hand Addition.
-
+// Cat Hand Addition.
+//============================================================ 
 spl_fild02,25,211,4	script	Cat Hand Agent#spl	421,{
 	if (ep13_yong1 < 3) {
 		mes "[Cat Hand Agent]";
@@ -139,7 +150,7 @@ spl_fild02,25,211,4	script	Cat Hand Agent#spl	421,{
 				close;
 			}
 		case 3:
-			//Custom Translation.
+			// Custom Translation.
 			mes "[Cat Hand Agent]";
 			mes "With " + ep13_yong1 + " credit points, we offer the following warp services. Please remember, you can't come back easily once you move to Midgard.";
 			next;
@@ -494,7 +505,7 @@ spl_fild02,25,211,4	script	Cat Hand Agent#spl	421,{
 				}
 			}
 			else {
-				//Custom Translation.
+				// Custom Translation.
 				mes "[Cat Hand Agent]";
 				mes "I am sorry, but you don't have enough credit points to use the warp service. Please come back when you have more points.";
 				close;
@@ -546,7 +557,7 @@ spl_fild02,25,211,4	script	Cat Hand Agent#spl	421,{
 				close;
 			}
 		case 3:
-			//Custom Translation.
+			// Custom Translation.
 			mes "[Cat Hand Agent]";
 			mes "With " + ep13_yong1 + " credit points, we offer the following warp services. Please remember, you can't come back easily once you move to Midgard.";
 			next;
@@ -952,7 +963,7 @@ spl_fild02,25,211,4	script	Cat Hand Agent#spl	421,{
 				close;
 			}
 			else {
-				//Custom Translation
+				// Custom Translation
 				mes "[Cat Hand Agent]";
 				mes "I am sorry, but you don't have enough credit points to use the warp service. Please come back when you have more points.";
 				close;
@@ -1116,7 +1127,7 @@ man_fild02,132,47,4	script	Cat Hand Agent#man	421,{
 				close;
 			}
 		case 3:
-			//Custom Translation.
+			// Custom Translation.
 			mes "[Cat Hand Agent]";
 			mes "With " + ep13_yong1 + " credit points, we offer the following warp services. Please remember, you can't come back easily once you move to Midgard.";
 			next;
@@ -1471,7 +1482,7 @@ man_fild02,132,47,4	script	Cat Hand Agent#man	421,{
 				}
 			}
 			else {
-				//Custom Translation.
+				// Custom Translation.
 				mes "[Cat Hand Agent]";
 				mes "I am sorry, but you don't have enough credit points to use the warp service. Please come back when you have more points.";
 				close;
@@ -1523,7 +1534,7 @@ man_fild02,132,47,4	script	Cat Hand Agent#man	421,{
 				close;
 			}
 		case 3:
-			//Custom Translation.
+			// Custom Translation.
 			mes "[Cat Hand Agent]";
 			mes "With " + ep13_yong1 + " credit points, we offer the following warp services. Please remember, you can't come back easily once you move to Midgard.";
 			next;
@@ -1929,7 +1940,7 @@ man_fild02,132,47,4	script	Cat Hand Agent#man	421,{
 				close;
 			}
 			else {
-				//Custom Translation
+				// Custom Translation
 				mes "[Cat Hand Agent]";
 				mes "I am sorry, but you don't have enough credit points to use the warp service. Please come back when you have more points.";
 				close;
@@ -2603,7 +2614,7 @@ spl_fild01,55,269,0	duplicate(FishingHole_spl1)	School of Fish#12	844
 spl_fild01,332,131,0	duplicate(FishingHole_spl1)	School of Fish#13	844
 spl_fild01,170,74,0	duplicate(FishingHole_spl1)	School of Fish#14	844
 
-//Two Tribes
+// Two Tribes
 //============================================================
 spl_in01,32,306,3	script	Splendide Guard#ep13md01	447,2,2,{
 	if (checkweight(1201,2) == 0) {
@@ -3385,7 +3396,7 @@ nyd_dun01,58,223,0	script	Petrified Sapha#ep13md03	844,{
 		close;
 	}
 	else {
-		//custom translation
+		// custom translation
 		mes "Before you is a statue made of stone and wood. It's so life-like it's eerie.";
 		close;
 	}
@@ -3471,7 +3482,7 @@ manuk,278,177,5	script	Villager#ep13_11	454,{
 				changequest 7060,7061;
 				close;
 			case 2:
-				//Custom Translation
+				// Custom Translation
 				mes "[Villager Lawine]";
 				mes "I heard a fairy was crying and begging, she was badly hurt.";
 				next;
@@ -3569,7 +3580,7 @@ manuk,281,177,3	script	Villager#ep13_12	449,{
 				changequest 7060,7061;
 				close;
 			case 2:
-				//Custom Translation
+				// Custom Translation
 				mes "[Villager Lawine]";
 				mes "I heard a fairy was crying and begging, she was badly hurt.";
 				next;
@@ -4104,7 +4115,7 @@ man_in01,22,126,3	script	Captured Laphine#ep13md	441,{
 			close;
 		}
 		else {
-			//custom translation
+			// custom translation
 			mes "[Luik]";
 			mes "She can leave any time she likes.";
 			mes "It feels so dry in here.";
@@ -4161,7 +4172,7 @@ man_in01,17,128,5	script	Snorren#ep13md_15	454,{
 			close;
 		}
 		else if (ep13_mdrama == 19) {
-			//custom translation
+			// custom translation
 			mes "[Snorren]";
 			mes "Please help me translater.";
 			mes "We'll be watching as you speak to her.";
@@ -4229,7 +4240,7 @@ man_in01,17,128,5	script	Snorren#ep13md_15	454,{
 				close;
 			}
 			else {
-				//custom translation
+				// custom translation
 				mes "[Luik]";
 				mes "You should bring something that can prove it?";
 				mes "... We have been fighting them for so long, it is hard for us to believe you.";
@@ -4246,7 +4257,7 @@ man_in01,17,128,5	script	Snorren#ep13md_15	454,{
 			close;
 		}
 		else {
-			//custom translation
+			// custom translation
 			mes "[Snorren]";
 			mes "How did you get in here?!";
 			mes "Get out!";
@@ -4399,7 +4410,7 @@ man_in01,19,126,3	script	Luik#ep13md16	450,{
 				close;
 			}
 			else {
-				//custom translation
+				// custom translation
 				mes "[Luik]";
 				mes "You should bring something that can prove it?";
 				mes "... We have been fighting them for so long, it is hard for us to believe you.";
@@ -4415,7 +4426,7 @@ man_in01,19,126,3	script	Luik#ep13md16	450,{
 			close;
 		}
 		else {
-			//custom translation
+			// custom translation
 			mes "[Luik]";
 			mes "How did you get in here?";
 			mes "You shouldn't be here.";
@@ -4554,7 +4565,7 @@ spl_in02,239,93,3	script	Terra#ep13md_l03	441,{
 			mes "but you are ok...";
 			next;
 			mes "[Terra]";
-			//custom translation
+			// custom translation
 			mes "You are always welcome to visit us...";
 			set ep13_mdrama,28;
 			close;
@@ -4566,7 +4577,7 @@ spl_in02,239,93,3	script	Terra#ep13md_l03	441,{
 			close;
 		}
 		else {
-			//custom translation
+			// custom translation
 			mes "[Terra]";
 			mes "I'm sorry... I'm so sleepy...";
 			mes "...I want to sleep...";
@@ -4709,7 +4720,7 @@ spl_in02,236,92,5	script	Arc#ep13md_l02	447,{
 			close;
 		}
 		else {
-			//custom translation
+			// custom translation
 			mes "[Arc]";
 			mes "The back of the right ... ";
 			mes "......";
@@ -4892,7 +4903,7 @@ spl_fild01,329,29,0	script	???#ep13mdf03	844,{
 	}
 }
 
-//Monster Suppression
+// Monster Suppression
 //============================================================
 manuk,252,116,3	script	Manuk Galtun#ep13_2day	450,{
 	if (checkweight(1201,2) == 0) {
@@ -4999,12 +5010,13 @@ manuk,252,116,3	script	Manuk Galtun#ep13_2day	450,{
 		mes "EW pisdn psa?";
 		mes "We psis?";
 	}
+	close;
 }
 
-//Daily Quests
-//- Bradium Collection
-//- Laphine Craftsman
-//- Drago Egg Collection (npc includes 'Wanted' quest)
+// Daily Quests
+// - Bradium Collection
+// - Laphine Craftsman
+// - Drago Egg Collection (npc includes 'Wanted' quest)
 //============================================================
 man_in01,378,276,3	script	Manuk Engineer#ep13_2	453,{
 	if (checkweight(1201,2) == 0) {
@@ -6001,7 +6013,7 @@ OnTimer300000:
 	end;
 }
 
-//Otherworld language
+// Otherworld language
 //============================================================ 
 mid_camp,197,237,3	script	Schwartzvalt Mechanic#1	869,{
 	if (ep13_1_edq > 2) {
@@ -6301,7 +6313,7 @@ mid_campin,168,82,3	script	Arunafeltz Linguist#1	935,{
 		set .@check_splque00,checkquest(2158);
 		set .@check_manque00,checkquest(2159);
 		if ((.@check_splque00 == 0) && (.@check_manque00 == 0)) {
-			//custom translation
+			// custom translation
 			mes "[Linguist Dictionary]";
 			mes "Looks like you haven't encountered them yet.";
 			next;
@@ -6506,7 +6518,7 @@ mid_campin,168,82,3	script	Arunafeltz Linguist#1	935,{
 			close;
 		}
 		else {
-			//custom translation
+			// custom translation
 			mes "[Linguist Dictionary]";
 			mes "According to the Expedition Camp's investigation, there is a different ethnic race that is similar to fairy's, along with a different ethnic race that is similar to giants.";
 			next;
@@ -6773,7 +6785,7 @@ mid_camp,147,256,3	script	Rune Midgarts Magician#1	735,{
 				close;
 			}
 			else {
-				//custom translation
+				// custom translation
 				mes "[Magician Whisper]";
 				mes "Ah, that was quick.";
 				next;
@@ -6855,7 +6867,7 @@ mid_camp,147,256,3	script	Rune Midgarts Magician#1	735,{
 			mes "[Magician Whisper]";
 			mes "Lumos Nox Densaugeo Dissendium Diffindo Engorgio Mobiliarbus Expecto patronum!!!!";
 			next;
-			specialeffect EF_FLASHER; //99 : "Rune Midgarts Magician#ep132_rhea03" EF_FLASHER
+			specialeffect EF_FLASHER; // 99 : "Rune Midgarts Magician#ep132_rhea03" EF_FLASHER
 			emotion e_gasp;
 			mes "[Magician Whisper]";
 			mes "Wow!!! Th, This is unbelievable!";
@@ -7188,9 +7200,9 @@ mid_camp,7,3,0	script	Translator Preparation#1	708,{
 }
 */
 
-//Daily Quests
-//- Midgard Ore
-//- Alfheim Perfume
+// Daily Quests
+// - Midgard Ore
+// - Alfheim Perfume
 //============================================================ 
 man_in01,372,221,5	script	Scientist#lifeguard	449,{
 	if ((isequipped(2782) == 1) && (ep13_2_rhea == 100)) {
@@ -10771,7 +10783,7 @@ OnTimer60000:
 	end;
 }
 
-//Yggdrasil Dungeon Floor 2 puzzle.
+// Yggdrasil Dungeon Floor 2 puzzle.
 //============================================================ 
 nyd_dun02,178,255,0	script	Strange Device#ep13_out	844,3,3,{
 	mes "There's something strange here.";

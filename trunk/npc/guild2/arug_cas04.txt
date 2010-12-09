@@ -8,19 +8,19 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: War of Emperium Second Edition	    |
+// | Nome do Script: War of Emperium Second Edition	   		|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 2.2/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: WoE SE Arunafeltz Castle 4		    |
-// |                                                        |
+// | Descrição: WoE SE Arunafeltz Castle 4		    		|
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    | 
+// | - Anotações		   			    					| 
 // \________________________________________________________/
+
 
 arug_cas04,1,1,0	script	Manager#aru04_02	111,{
 	end;

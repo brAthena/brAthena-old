@@ -1,24 +1,26 @@
-//  _______________________________________________________
-// /							   \
+//  ________________________________________________________
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
-// |			brAthena Script			    |
+// |                                                        |
+// |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: iRO Repeatable EXP Quests		    |
+// | Nome do Script: iRO Repeatable EXP Quests		   		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			   				|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0				    |
+// | Versões eA/brA: 1.0/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Quest repetível do monstro Bode (Goat).	    |
+// | Descrição: 										    |
+// | Added Monster Killing quests.							|
+// | Repeatable EXP Quest (Antelope Horns)					|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \_______________________________________________________/
 
 ein_fild06,82,171,0	script	Vegetable Farmer#Goat	919,{
@@ -162,7 +164,7 @@ ein_fild06,82,171,0	script	Vegetable Farmer#Goat	919,{
 				next;
 				switch(select("Gather Items:Hunt Goats:Cancel")) {
 				case 1:
-					//Item turn in
+					// Item turn in
 					mes "[Vegetable Farmer]";
 					mes "I need ^FF0000Antelope Horns^000000 to show for your hard work, and I will reward you.";
 					next;
@@ -200,7 +202,7 @@ ein_fild06,82,171,0	script	Vegetable Farmer#Goat	919,{
 						close;
 					}
 				case 2:
-					//Kill Count Quest
+					// Kill Count Quest
 					mes "[Vegetable Farmer]";
 					mes "Thank you.";
 					mes "How many Goats would you like to hunt?";
@@ -249,3 +251,4 @@ ein_fild06,82,171,0	script	Vegetable Farmer#Goat	919,{
 		close;
 	}
 }
+

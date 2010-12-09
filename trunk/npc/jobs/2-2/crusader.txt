@@ -18,8 +18,9 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    | 
+// | - Anotações		   			    					| 
 // \________________________________________________________/
+
 
 //=============== Senior Crusader: 1st Collect Items Test============================
 prt_castle,45,169,5	script	Senior Crusader	752,{
@@ -1443,29 +1444,3 @@ OnStop:
 	stopnpctimer;
 	end;
 }
-
-//============================================================ 
-// mapflag
-//============================================================ 
-
-//============================================================ 
-// Old changelog
-//============================================================ 
-//= Need optimalization and fixing
-//= thanks to Komurka, KiLLaLeN, Lupus (fixing error)
-//= just a temp Job Quest
-//= 1.2 minor fix of announcement by Freya people
-//= 1.3 Added Baby Class Support, fixed 40/50 lvl item reward
-//=     also fixed too common script names [Lupus]
-//= 1.3a fixed "dead lock" bugs [Lupus]
-//= 1.3b changed monsters ID in patience test [Komurka]
-//= 1.4 Fixed Job Level parameters mix-up. [massdriller] (Thanks to Komurka)
-//= 1.5 Fixed possible EXP abuse [Lupus]
-//= 1.6 Added a func which prevent advanced classes passing
-//=     2nd Job Quests again. It also guides adv classes where
-//=     to go. [Lupus]
-//= 1.7 Updated names and required items, Chivalry Emblem +
-//=     Hand of God allow to skip item gathering [DracoRPG]
-//= 2.0 Changed numbers to constants. [Vicious]
-//= 2.1 Fixed endless loop, wrong condition check [Lupus]
-//=	also changed all job numbers to constants, fixed logic

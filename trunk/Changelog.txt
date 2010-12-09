@@ -9,6 +9,17 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0024 - 09/12/2010 [Lord]
+	* Adicionado pasta /npc/customizados e scripts_customizados.conf.
+	* Liberado npcs e adicionado import dos scripts_customizados em scripts_main.conf.
+	* Toda pasta /npc atulizada à eA rev 14562.
+	* Adicionado os cabeçalhos do brA em todos scripts.
+	* Emulador em geral agora se encontra na eA rev 14562.
+	* Corrigido alguns erros na pasta /npc.
+	* Aviso: A pasta dos npcs será traduzida em meu próximo commit.
+	* Reenviado pasta mapflag atualizada.
+	* Emulador encontra-se sem erros.
+
 	r0023 - 07/12/2010 [Floozie]
 	* Revisado e corrigido pasta conf/battle.
 	- Correções na escrita e pequenas traduções.

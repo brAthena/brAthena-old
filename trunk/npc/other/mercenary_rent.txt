@@ -8,15 +8,15 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Mercenary related NPCs		    |
+// | Nome do Script: Mercenary related NPCs		    		|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.2/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição:						    |
-// | Sells Lancer, Sword, and Archer, mercenaries	    |
-// | Sells related mercenary items.			    |
+// | Descrição:						    					|
+// | Sells Lancer, Sword, and Archer, mercenaries	    	|
+// | Sells related mercenary items.			    			|
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |

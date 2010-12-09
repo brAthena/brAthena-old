@@ -1,30 +1,29 @@
 //  ________________________________________________________
-// /							    \
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
+// |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Hugel Quest NPCs			    |
+// | Nome do Script: Hugel Quest NPCs			    		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 2.0/1.0				    |
+// | Versões eA/brA: 2.1/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Quests de Hugel: Medicine, Biological	    |
-// | Weapon, Rebellion, Memory, Hide and Seek, Fish cake    |
-// | soup delivery, Juno Remedy, Cow Milking e Odin Temple  |
-// | Excavation Quests.					    |
+// | Descrição: Quest NPC's related to Hugel				|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \________________________________________________________/
 
-//Medicine Quest
+//-------------------------------------------------------------------------
+// Medicine Quest
+//-------------------------------------------------------------------------
 
 hu_in01,387,245,0	script	Allen Schuwell	849,2,2,{
 
@@ -794,7 +793,9 @@ OnTimer4500:
 	
 }
 
-//Biological Weapon Quest
+//-------------------------------------------------------------------------
+// Biological Weapon Quest
+//-------------------------------------------------------------------------
 
 ein_in01,16,36,3	script	Morriphen	86,{
 
@@ -2050,7 +2051,9 @@ lhz_in03,193,28,3	script	Makkie	83,{
 	
 }
 
-//Rebellion Quest
+//-------------------------------------------------------------------------
+// Rebellion Quest
+//-------------------------------------------------------------------------
 
 hugel,70,137,5	script	Shede	879,{
 
@@ -4598,7 +4601,9 @@ hu_in01,377,106,3	script	Pub Granny	892,{
 	close;
 }
 
-//Memory Quest
+//-------------------------------------------------------------------------
+// Memory Quest
+//-------------------------------------------------------------------------
 
 hugel,198,169,0	script	#HugelTree	139,2,2,{
 
@@ -5368,7 +5373,9 @@ hugel,196,164,3	script	El Schatt	50,{
 
 }
 
-//Hide and Seek Quest
+//-------------------------------------------------------------------------
+// Hide and Seek quest
+//-------------------------------------------------------------------------
 
 hugel,107,67,3	script	Torpy	706,{
 
@@ -6020,7 +6027,9 @@ OnTimer60000:
 	
 }
 
-//Fish cake soup delivery
+//-------------------------------------------------------------------------
+// Fish cake soup delivery
+//-------------------------------------------------------------------------
 
 hu_in01,15,372,3	script	Cellette Lavit	74,{
 
@@ -6795,7 +6804,9 @@ hugel,102,161,3	script	Erjan	100,{
 	}
 }
 
-//Juno Remedy Quest
+//-------------------------------------------------------------------------
+// Juno Remedy Quest
+//-------------------------------------------------------------------------
 
 yuno,111,156,3	script	Euslan	90,{
 
@@ -6953,6 +6964,7 @@ yuno,111,156,3	script	Euslan	90,{
 			mes "know as soon as you can,";
 			mes "okay? Thanks for cheering";
 			mes "me up, "+strcharinfo(0)+".";
+			setquest 8044;
 			set hg_ma1,3;
 			close;
 		break;
@@ -7026,6 +7038,7 @@ yuno,111,156,3	script	Euslan	90,{
 			mes "know as soon as you can,";
 			mes "okay? Thanks for cheering";
 			mes "me up, "+strcharinfo(0)+".";
+			setquest 8044;
 			set hg_ma1,3;
 			close;
 		break;
@@ -7089,6 +7102,7 @@ yuno,111,156,3	script	Euslan	90,{
 		mes "of your way. Still, I'd really";
 		mes "appreciate your help if you";
 		mes "happen to pass through Hugel.";
+		changequest 8046,8047;
 		set hg_ma1,6;
 		close;
 	}
@@ -7148,6 +7162,7 @@ yuno,111,156,3	script	Euslan	90,{
 		mes "your safety in your adventures.";
 		mes "Take care of yourself...";
 		close2;
+		completequest 8052;
 		set hg_ma1,13;
 		specialeffect EF_ABSORBSPIRITS;
 		getexp 900000,600000;
@@ -7227,6 +7242,7 @@ que_bingo,53,190,7	script	Eukran	778,{
 		mes "would Thierry go to such a";
 		mes "dangerous place? No one goes^FFFFFF ^000000 to the Odin Shrine for no reason.";
 		close2;
+		changequest 8047,8048;
 		set hg_ma1,8;
 		warp "que_bingo",37,24;
 		end;
@@ -7340,6 +7356,7 @@ odin_tem01,130,134,4	script	Young Man#Hu_Quest	774,{
 		mes "Euslan's disease. It's not";
 		mes "curable by modern medicine...";
 		close2;
+		changequest 8048,8049;
 		set hg_ma1,9;
 		end;
 	}
@@ -7472,6 +7489,7 @@ odin_tem01,130,134,4	script	Young Man#Hu_Quest	774,{
 		mes "If they get me, I'll never be";
 		mes "able to make the medicine!";
 		close2;
+		changequest 8050,8051;
 		set hg_ma1,11;
 		end;
 	}
@@ -7527,6 +7545,7 @@ odin_tem01,130,134,4	script	Young Man#Hu_Quest	774,{
 		mes "has made to give to Euslan.^000000";
 		close2;
 		delitem 7511,5; //Darkness rune
+		changequest 8051,8052;
 		set hg_ma1,12;
 		end;
 	}
@@ -7583,12 +7602,15 @@ OnTouch:
 		mes "you better go tell him";
 		mes "about this right now!^000000";
 		close2;
+		changequest 8049,8050;
 		set hg_ma1,10;
 		end;
 	}
 }
 
-//Cow Milking Quest
+//-------------------------------------------------------------------------
+// Cow Milking Quest
+//-------------------------------------------------------------------------
 
 hugel,56,104,3	script	Kurupe	709,3,3,{
 
@@ -8439,7 +8461,9 @@ function	script	Func_MilkCow	{
 	close;
 }
 
-//Odin Temple Excavation Quest
+//-------------------------------------------------------------------------
+// Odin Temple Excavation quest
+//-------------------------------------------------------------------------
 
 hugel,91,152,1	script	Sign	837,{
 
@@ -9012,7 +9036,7 @@ hu_in01,14,11,4	script	Laura	70,{
 					case 2:
 						break;
 				}
-				//Allow fall-through into the next case statment as this is a minor bug in aegis.
+				// Allow fall-through into the next case statment as this is a minor bug in aegis.
 				//break;
 			
 			case 2:

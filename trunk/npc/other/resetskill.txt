@@ -8,18 +8,18 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Hypnotist				    |
+// | Nome do Script: Hypnotist				    			|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.0/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição:						    |
+// | Descrição:						    					|
 // | Permenent first class, base level 40 and under skill   |
-// | resetter.						    |
+// | resetter.						    					|
 // | First Class characters and expanded classes only.	    |
 // | Baby Classes and First Class trans can't use this	    |
-// | service.						    |
+// | service.						    					|
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |

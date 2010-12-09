@@ -1,28 +1,31 @@
 //  ________________________________________________________
-// /							    \
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
+// |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: The Sign Quest			    |
+// | Nome do Script: Bunny Band Quest			    		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 3.2/1.0				    |
+// | Versões eA/brA: 3.3/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Quest 'O Sinal", abertura de Geffenia (01). |
+// | Descrição: Quest for opening the doors to Geffenia.	|
+// | This script uses sign_01.bmp - sign_04.bmp, these will |
+// | be found in the language of your client.				|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \________________________________________________________/
 
-//The Sign (Part 1)
-
+//============================================================ 
+// The Sign (Part 1)
+//============================================================ 
 prontera,147,305,0	script	Sign#prontera::TheSign	111,{
 	callfunc "F_UpdateSignVars";
 	cutin "sign_01",4;
@@ -45,12 +48,12 @@ prontera,147,305,0	script	Sign#prontera::TheSign	111,{
 	end;
 
 OnInit:
-	//Remove old depreciated settings.
+	// Remove old depreciated settings.
 	set $signbmps,0;
 	set $signmazemonster,0;
 	
-	//Set the time zone of the server.
-	//- Not official but seemed like a nice way to handle it.
+	// Set the time zone of the server.
+	// - Not official but seemed like a nice way to handle it.
 	set $timezonestring$,"^FF0000GMT^000000";
 	end;
 }
@@ -7251,7 +7254,9 @@ yuno,330,100,4	script	Knight#ss	734,{
 	}
 }
 
-//The Sign (Part 2)
+//============================================================ 
+// The Sign (Part 2)
+//============================================================ 
 
 geffen_in,159,48,5	script	Lonely-looking Woman	711,{
 	callfunc "F_UpdateSignVars";
@@ -8929,7 +8934,9 @@ himinn,48,86,5	script	Valkyrie#sign	811,{
 	}
 }
 
-//The Sign (Part 3)
+//============================================================ 
+// The Sign (Part 3)
+//============================================================ 
 
 que_sign01,196,39,4	script	Serin#dummy	90,{
 	end;
@@ -12810,7 +12817,7 @@ gl_dun02,262,265,0	script	Mysterious Energy#1	111,{
 	}
 }
 
-//Angrboda's Seal 2 big 4 O'clock 270 198
+// Angrboda's Seal 2 big 4 O'clock 270 198
 gl_dun02,271,100,0	script	Mysterious Energy#2	111,{
 	callfunc "F_UpdateSignVars";
 	set .@crash_s,rand(1,1000);
@@ -12992,7 +12999,7 @@ gl_dun02,271,100,0	script	Mysterious Energy#2	111,{
 	}
 }
 
-//Angrboda's Seal 3 big 5 O'clock 268 32
+// Angrboda's Seal 3 big 5 O'clock 268 32
 gl_dun02,268,32,0	script	Mysterious Energy#3	111,{
 	callfunc "F_UpdateSignVars";
 	set .@crash_s,rand(1,1000);
@@ -13177,7 +13184,7 @@ gl_dun02,268,32,0	script	Mysterious Energy#3	111,{
 	}
 }
 
-//Angrboda's Seal 4 big 7 O'clock 16 26
+// Angrboda's Seal 4 big 7 O'clock 16 26
 gl_dun02,16,26,0	script	Mysterious Energy#4	111,{
 	callfunc "F_UpdateSignVars";
 	set .@crash_s,rand(1,1000);
@@ -13356,7 +13363,7 @@ gl_dun02,16,26,0	script	Mysterious Energy#4	111,{
 	}
 }
 
-//Angrboda's Seal 5 big 11 O'clock 42 251
+// Angrboda's Seal 5 big 11 O'clock 42 251
 gl_dun02,42,251,0	script	Mysterious Energy#5	111,{
 	callfunc "F_UpdateSignVars";
 	set .@crash_s,rand(1,1000);
@@ -13538,7 +13545,7 @@ gl_dun02,42,251,0	script	Mysterious Energy#5	111,{
 	}
 }
 
-//Angrboda's Seal 6 small 11 O'clock 123 234
+// Angrboda's Seal 6 small 11 O'clock 123 234
 gl_dun02,123,234,0	script	Mysterious Energy#6	111,{
 	callfunc "F_UpdateSignVars";
 	set .@crash_s,rand(1,1000);
@@ -13889,7 +13896,7 @@ gl_dun02,123,234,0	script	Mysterious Energy#6	111,{
 	}
 }
 
-//Angrboda's Seal 7 small 6 O'clock 140 72
+// Angrboda's Seal 7 small 6 O'clock 140 72
 gl_dun02,140,72,0	script	Mysterious Energy#7	111,{
 	callfunc "F_UpdateSignVars";
 	set .@crash_s,rand(1,1000);
@@ -14242,7 +14249,7 @@ gl_dun02,140,72,0	script	Mysterious Energy#7	111,{
 	}
 }
 
-//Angrboda's Seal 8 °¡Àå small 119 182
+// Angrboda's Seal 8 °¡Àå small 119 182
 gl_dun02,119,182,0	script	Mysterious Energy#8	111,{
 	callfunc "F_UpdateSignVars";
 	set .@crash_s,rand(1,1000);
@@ -14741,72 +14748,72 @@ OnTouch:
 
 function	script	F_UpdateSignVars	{
 	if (!sign_q) {
-		//Attempt to save current progress, to some degree...
-		//P.S. I want to slit someone's throat.
+		// Attempt to save current progress, to some degree...
+		// P.S. I want to slit someone's throat.
 
-		//Attmept to save using the main (old) tracting variable
+		// Attmept to save using the main (old) tracting variable
 		if (signquest <= 4) { set sign_q,signquest; }
-		//ariantest = 5-11
-		//gaanantest = 12 & 13
+		// ariantest = 5-11
+		// gaanantest = 12 & 13
 		else if (signquest == 5) { set sign_q,14; }
 		else if (signquest == 6) { set sign_q,15; }
-		//SighJore = 16
+		// SighJore = 16
 		else if (signquest == 7) { set sign_q,17; }
-		//ScareAlchSign = 18
+		// ScareAlchSign = 18
 		else if (signquest == 8) { set sign_q,19; }
 		else if (signquest == 9) { set sign_q,20; }
-		//There is noequivilent for sign_q 21-24
+		// There is noequivilent for sign_q 21-24
 		else if (signquest == 10) { set sign_q,25; }
-		//There is noequivilent for sign_q 26
+		// There is noequivilent for sign_q 26
 		else if (signquest == 11) { set sign_q,27; }
-		//deales_test = 28-30
-		//31 is not used.
-		//SignDance = 32 & 33
-		//there is no equivilent to sign_q 34
+		// deales_test = 28-30
+		// 31 is not used.
+		// SignDance = 32 & 33
+		// there is no equivilent to sign_q 34
 		else if (signquest == 12) { set sign_q,35; }
-		//bakerlan_test - 36-42
-		//there is no equivilent to sign_q 43-45
-		//bakerlan_test - 46-52
+		// bakerlan_test - 36-42
+		// there is no equivilent to sign_q 43-45
+		// bakerlan_test - 46-52
 		else if (signquest == 13) { set sign_q,53; }
 		else if ((signquest >= 14) && (signquest <= 15)) { set sign_q,54; }
 		else if ((signquest >= 16) && (signquest <= 18)) { set sign_q,signquest+39; }
-		//signanvil = 58-61
+		// signanvil = 58-61
 		else if ((signquest == 19) && (countitem(7278))) { set sign_q,61; }
-		//there is no equivilent to sign_q 62-64
+		// there is no equivilent to sign_q 62-64
 		else if (signquest == 20) { set sign_q,65; }
-		//there is no equivilent to sign_q 66-68
+		// there is no equivilent to sign_q 66-68
 		else if (signquest == 21) { set sign_q,69; }
-		else if ((signquest >= 22) && (signquest <= 28)) { set sign_q,signquest+48; } //70-76
-		//there is no equivilent to sign_q 77
-		else if ((signquest >= 29) && (signquest <= 34)) { set sign_q,signquest+49; } //78-83
+		else if ((signquest >= 22) && (signquest <= 28)) { set sign_q,signquest+48; } // 70-76
+		// there is no equivilent to sign_q 77
+		else if ((signquest >= 29) && (signquest <= 34)) { set sign_q,signquest+49; } // 78-83
 		else if (signquest == 35) { set sign_q,83; set sign_sq,1; }
 		else if (signquest == 36) { set sign_q,83; set sign_sq,1; }
 		else if (signquest == 37) { set sign_q,83; set sign_sq,2; }
 		else if (signquest == 38) { set sign_q,83; set sign_sq,3; }
-		//there is no equivilent to sign_sq 4
+		// there is no equivilent to sign_sq 4
 		else if (signquest == 39) { set sign_q,83; set sign_sq,5; }
 		else if (signquest == 40) { set sign_q,83; set sign_sq,6; }
 		else if (signquest == 41) { set sign_q,83; set sign_sq,7; }
 		else if (signquest == 42) { set sign_q,83; set sign_sq,8; }
-		//there is no equivilent to sign_q 84
-		else if ((signquest >= 43) && (signquest <= 48)) { set sign_q,signquest+42; } //85-90
-		//91-92
-		else if ((signquest >= 49) && (signquest <= 52)) { set sign_q,signquest+44; } //93-96
-		//signlaichin97-99
+		// there is no equivilent to sign_q 84
+		else if ((signquest >= 43) && (signquest <= 48)) { set sign_q,signquest+42; } // 85-90
+		// 91-92
+		else if ((signquest >= 49) && (signquest <= 52)) { set sign_q,signquest+44; } // 93-96
+		// signlaichin97-99
 		else if (signquest == 53) { set sign_q,100; }
-		//101-116
+		// 101-116
 		else if (signquest == 54) { set sign_q,117; }
 		else if (signquest == 55) { set sign_q,118; }
-		//119-126
+		// 119-126
 		else if (signquest == 56) { set sign_q,127; }
-		//128
+		// 128
 		else if (signquest == 57) { set sign_q,129; }
 		else if (signquest == 58) { set sign_q,130; }
-		//131-136
-		else if ((signquest >= 59) && (signquest <= 66)) { set sign_q,signquest+78; } //137-144
-		//144-199
+		// 131-136
+		else if ((signquest >= 59) && (signquest <= 66)) { set sign_q,signquest+78; } // 137-144
+		// 144-199
 
-		//Attmept to save using the intermediate variables.
+		// Attmept to save using the intermediate variables.
 		if (sign_fail == 1) { set sign_q,200; }
 		else if (sign_fail >= 2) { set sign_q,201; }
 
@@ -14829,9 +14836,9 @@ function	script	F_UpdateSignVars	{
 
 		if ((signanvil >= 1) && (signanvil <= 4)) { set sign_sq,signanvil+57; }
 
-		//Because of the horrible way this was scripted, it's incompatable
-		//With the new script, So I am resetting the quest to the start
-		//of this step.
+		// Because of the horrible way this was scripted, it's incompatable
+		// With the new script, So I am resetting the quest to the start
+		// of this step.
 		if (signlaichin >= 1) { 
 			mes "^FF0000You stumble and drop the your^000000";
 			if (countitem(7306)) {
@@ -14849,7 +14856,7 @@ function	script	F_UpdateSignVars	{
 			set sign_q,rand(97,100); 
 		}
 
-		//Same BS as above, unable to save pickup time for 'The Sign' from Engel.
+		// Same BS as above, unable to save pickup time for 'The Sign' from Engel.
 		if (signengelhour) { 
 			mes "^FF0000You see that Engel has forgotten to look at 'The Sign', how you got it back is a mystery too you, but you should remind Engel that he needs to look at it.^000000";
 			getitem 7314,1; //The_Sign
@@ -14863,25 +14870,25 @@ function	script	F_UpdateSignVars	{
 		else if (Sign_Branch8A == 5) { set sign_q,134; }
 		else if ((Sign_Branch8A == 7) || (Sign_Branch8A == 8)) { set sign_q,126; }
 
-		//Incompatable with the new version.
+		// Incompatable with the new version.
 		if (Sign_Branch8B > 0) {
 			mes "^FF0000Something is wrong, perhaps you should go talk to Serin again.^000000";
 			set sign_q,132;
 		}
 
-		//Incompatable with the new version. Again.
+		// Incompatable with the new version. Again.
 		if (Sign_Branch2B) {
 			set sign_q,91;
 		}
 
-		//Unable to save when the Sign should be picked up from Metz
+		// Unable to save when the Sign should be picked up from Metz
 		if (signmetzhour) { 
 			mes "^FF0000You see that Metz has forgotten to look at 'The Sign', how you got it back is a mystery too you, but you should remind Metz that he needs to look at it.^000000";
 			getitem 7314,1; //The_Sign
 			set sign_q,138;
 		}
 
-		//Clear old variables.
+		// Clear old variables.
 		set signquest,0;
 		set sign_fail,0;
 		set gaananpoint,0;

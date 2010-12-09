@@ -1,32 +1,35 @@
 //  ________________________________________________________
-// /							    \
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
+// |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Quest NPCs related to Moscovia	    |
+// | Nome do Script: Moscovia Quests			    		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.8/1.0				    |
+// | Versões eA/brA: 1.8/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Quests de Moscovia: The Moving Island, Help |
-// | Mikhail, Acorn Exchange, Banish Winter, Shafka Hat,    |
-// | Hotcake, Golden Key e Koshei the Immortal.		    |
+// | Descrição: Quests for Moscovia.						|
+// | The Moving Island, Help Mikhail, Acorn Exchange,		|
+// | Banish Winter, Shafka Hat, Koshei the Immortal.		|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \________________________________________________________/
 
-//The Moving Island
+//============================================================================
+// The Moving Island
+//============================================================================
 
-//Berbayeff - Starting Point
-
+//----------------------------------------------------------------------------
+// Berbayeff - Starting Point
+//----------------------------------------------------------------------------
 moscovia,171,71,3	script	Berbayeff#npc	968,{
 	if (mos_whale_edq < 1) {
 		emotion e_an;
@@ -250,8 +253,9 @@ moscovia,171,71,3	script	Berbayeff#npc	968,{
 	}
 }
 
-//Bulletin Board - List Tide Times
-
+//----------------------------------------------------------------------------
+// Bulletin Board - List Tide Times
+//----------------------------------------------------------------------------
 moscovia,135,52,0	script	Bulletin Board#npc	837,{
 	mes "[Charabel Schedule]";
 	mes "NOTICE, due to the varying";
@@ -269,8 +273,9 @@ moscovia,135,52,0	script	Bulletin Board#npc	837,{
 	close;
 }
 
-//Mr. Ibanoff - Docks
-
+//----------------------------------------------------------------------------
+// Mr. Ibanoff - Docks
+//----------------------------------------------------------------------------
 moscovia,135,49,5	script	Mr. Ibanoff#npc	964,{
 	if (mos_whale_edq == 1 || mos_whale_edq == 2) {
 		mes "["+strcharinfo(0)+"]";
@@ -1015,8 +1020,9 @@ moscovia,135,49,5	script	Mr. Ibanoff#npc	964,{
 	}
 }
 
-//Mr. Ibanoff - Ship
-
+//----------------------------------------------------------------------------
+// Mr. Ibanoff - Ship
+//----------------------------------------------------------------------------
 mosk_ship,98,110,3	script	Mr. Ibanoff#npc2	964,{
 	if (mos_whale_edq == 4) {
 		mes "[Mr. Ibanoff]";
@@ -1558,8 +1564,9 @@ mosk_ship,98,110,3	script	Mr. Ibanoff#npc2	964,{
 	}
 }
 
-//Rudder
-
+//----------------------------------------------------------------------------
+// Rudder
+//----------------------------------------------------------------------------
 mosk_ship,101,111,4	script	rudder#ship	111,{
 	if (mos_whale_edq == 5) {
 		mes "Which way?";
@@ -3200,8 +3207,9 @@ mosk_ship,101,111,4	script	rudder#ship	111,{
 	}
 }
 
+//----------------------------------------------------------------------------
 // Aged Stranger - Whale Island
-
+//----------------------------------------------------------------------------
 mosk_fild01,86,104,3	script	Aged Stranger#npc	963,{
 	if (checkweight(1201,1) == 0 ) {
 		mes "[Aged Stranger]";
@@ -4150,8 +4158,9 @@ mosk_fild01,86,104,3	script	Aged Stranger#npc	963,{
 	}
 }
 
+//----------------------------------------------------------------------------
 // Csar Alexsay III - Moscovia Palace
-
+//----------------------------------------------------------------------------
 mosk_in,131,92,3	script	Csar Alexsay III#npc	965,{
 	if (checkweight(1201,1) == 0 ) {
 		mes "[Csar Alexsay III]";
@@ -4716,8 +4725,9 @@ mosk_in,131,92,3	script	Csar Alexsay III#npc	965,{
 	}
 }
 
-//Prime Minister Dmitree - Moscovia Palace
-
+//----------------------------------------------------------------------------
+// Prime Minister Dmitree - Moscovia Palace
+//----------------------------------------------------------------------------
 mosk_in,127,89,3	script	Prime Minister Dmitree#m	967,{
 	if (mos_nowinter > 11 && mos_nowinter < 14) {
 		mes "[Prime Minister Dmitree]";
@@ -4857,8 +4867,9 @@ mosk_in,127,89,3	script	Prime Minister Dmitree#m	967,{
 	}
 }
 
-//Island Trigger - Docks
-
+//----------------------------------------------------------------------------
+// Island Trigger - Docks
+//----------------------------------------------------------------------------
 moscovia,136,46,4	script	Find#ship	844,4,4,{
 	end;
 	
@@ -4911,7 +4922,9 @@ OnTouch:
 	}
 }
 
-//Triggers
+//----------------------------------------------------------------------------
+// Triggers
+//----------------------------------------------------------------------------
 
 mosk_ship,1,1,4	script	Baehideun#ship	-1,{
 OnInit:
@@ -5124,10 +5137,13 @@ OnTimer300000:
 	end;
 }
 
-//Help Mikhail
+//============================================================================
+// Help Mikhail
+//============================================================================
 
-//Gallina - Starting Point
-
+//----------------------------------------------------------------------------
+// Gallina - Starting Point
+//----------------------------------------------------------------------------
 mosk_in,144,279,5	script	Gallina#mos	959,{
 	if (mos_swan == 0) {
 		mes "[Gallina]";
@@ -5262,8 +5278,9 @@ mosk_in,144,279,5	script	Gallina#mos	959,{
 	}
 }
 
-//Anna - Sister
-
+//----------------------------------------------------------------------------
+// Anna - Sister
+//----------------------------------------------------------------------------
 mosk_in,148,274,1	script	Anna#mos	958,{
 	if (mos_swan == 0) {
 		mes "[Gallina]";
@@ -5525,8 +5542,9 @@ mosk_in,148,274,1	script	Anna#mos	958,{
 	}
 }
 
-//Bed
-
+//----------------------------------------------------------------------------
+// Bed
+//----------------------------------------------------------------------------
 mosk_in,136,279,3	script	Bed#mos1	111,{
 	if (mos_swan == 11) {
 		mes "- There are sheets and a pillow which seem so neat and soft that I'll probably fall asleep as soon as I lie down on them. -";
@@ -5558,8 +5576,9 @@ mosk_in,136,279,3	script	Bed#mos1	111,{
 
 mosk_in,161,279,3	duplicate(Bed#mos1)	Bed#mos2	111
 
-//Fire pot + Mikhail
-
+//----------------------------------------------------------------------------
+// Fire pot + Mikhail
+//----------------------------------------------------------------------------
 mosk_in,205,268,3	script	Fire pot#mos	111,{
 	if (mos_swan == 0) {
 		mes "- It's a fire pot to heat the room or bake something -";
@@ -5764,8 +5783,9 @@ OnEnable:
 	end;
 }
 
-//Sticky Herb Tree Inn NPCs
-
+//----------------------------------------------------------------------------
+// Sticky Herb Tree Inn NPCs
+//----------------------------------------------------------------------------
 mosk_in,135,191,5	script	Landlord#mos	961,{
 	mes "[Landlord]";
 	mes "Oh, welcome to the Inn 'Sticky Herb Tree'.";
@@ -6430,8 +6450,9 @@ OnTouch:
 	}
 }
 
-//Swamp
-
+//----------------------------------------------------------------------------
+// Swamp
+//----------------------------------------------------------------------------
 mosk_dun03,153,90,3	script	Bubbling Swamp#mos1	844,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Your bag is very heavy today -";
@@ -6490,8 +6511,9 @@ mosk_dun03,153,90,3	script	Bubbling Swamp#mos1	844,{
 	}
 }
 
-//Larissa - Hotcake Quests
-
+//----------------------------------------------------------------------------
+// Larissa - Hotcake Quests
+//----------------------------------------------------------------------------
 mosk_in,211,259,5	script	Larissa#mos_01	960,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Please stop here !! -";
@@ -6694,10 +6716,13 @@ mosk_in,211,259,5	script	Larissa#mos_01	960,{
 	}
 }
 
-//Acorn Exchange
+//============================================================================
+// Acorn Exchange
+//============================================================================
 
-//Acorn Dealer - Sells Acorns
-
+//----------------------------------------------------------------------------
+// Acorn Dealer - Sells Acorns
+//----------------------------------------------------------------------------
 moscovia,208,182,7	script	Acorn Dealer#mos	967,{
 	mes "[Acorn Dealer]";
 	mes "We have very fresh acorns. Everyone will like them!";
@@ -6759,8 +6784,9 @@ moscovia,208,182,7	script	Acorn Dealer#mos	967,{
 	}
 }
 
-//Big Squirrel - Trade Acorns for Gems
-
+//----------------------------------------------------------------------------
+// Big Squirrel - Trade Acorns for Gems
+//----------------------------------------------------------------------------
 mosk_fild01,113,108,3	script	Big Squirrel#mos	111,{
 	if (checkweight(1201,1) == 0 ) {
 		mes "- Please stop here !! -";
@@ -7402,10 +7428,13 @@ OnTouch:
 	}
 }
 
-//Banish Winter
+//============================================================================
+// Banish Winter
+//============================================================================
 
-//Baba Yaga, the Horrible - Starting Point
-
+//----------------------------------------------------------------------------
+// Baba Yaga, the Horrible - Starting Point
+//----------------------------------------------------------------------------
 mosk_in,215,46,5	script	#babayaga	-1,7,7,{
 	end;
 	
@@ -8318,8 +8347,9 @@ mosk_in,215,46,5	script	Baba Yaga, the Horrible	970,{
 	}
 }
 
-//Book
-
+//----------------------------------------------------------------------------
+// Book
+//----------------------------------------------------------------------------
 mosk_in,217,45,0	script	#book_russia	111,{
 	if (mos_nowinter == 15) {
 		mes "-Beside the pot,";
@@ -8568,8 +8598,9 @@ mosk_in,217,45,0	script	#book_russia	111,{
 	}
 }
 
-//Mixing Pot
-
+//----------------------------------------------------------------------------
+// Mixing Pot
+//----------------------------------------------------------------------------
 mosk_in,221,43,0	script	#bowl	111,{
 	if (mos_nowinter == 16) {
 		mes "-It is a very dirty pot.";
@@ -9034,8 +9065,9 @@ mosk_in,221,43,0	script	#bowl	111,{
 	}
 }
 
-//Center of Town
-
+//----------------------------------------------------------------------------
+// Center of Town
+//----------------------------------------------------------------------------
 moscovia,224,190,0	script	#nowinterplz	844,{
 	if (mos_nowinter == 19) {
 		if (countitem(7765) > 0) {
@@ -9077,8 +9109,9 @@ moscovia,224,190,0	script	#nowinterplz	844,{
 	}
 }
 
-//Villagers
-
+//----------------------------------------------------------------------------
+// Villagers
+//----------------------------------------------------------------------------
 moscovia,252,203,5	script	A Little Girl#mos1	958,{
 	if (mos_nowinter == 10) {
 		if (mos_kid == 1) {
@@ -9965,8 +9998,9 @@ moscovia,228,80,3	script	A Little Boy#mos16	962,{
 	}
 }
 
-//Magic Bottle
-
+//----------------------------------------------------------------------------
+// Magic Bottle
+//----------------------------------------------------------------------------
 mosk_dun03,225,233,0	script	Pile of skeletons#mosk	111,{
 	if (mos_nowinter == 8) {
 		mes "-There are ugly skulls";
@@ -10036,8 +10070,9 @@ OnTouch:
 	}
 }
 
-//Csar Alexsay III
-
+//----------------------------------------------------------------------------
+// Csar Alexsay III
+//----------------------------------------------------------------------------
 mosk_in,131,92,3	script	#Csar	-1,7,7,{
 	if (mos_nowinter == 12) {
 		mes "[Csar Alexsay III]";
@@ -10129,8 +10164,9 @@ mosk_in,131,92,3	script	#Csar	-1,7,7,{
 	}
 }
 
-//Shafka Hat
-
+//============================================================================
+// Shafka Hat
+//============================================================================
 moscovia,211,93,3	script	Irina#edq	958,{
 	if (checkweight(1201,1) == 0 ) {
 		mes "Wait a moment!!";
@@ -10239,9 +10275,13 @@ moscovia,211,93,3	script	Irina#edq	958,{
 	}
 }
 
-//Koshei the Immortal
+//============================================================================
+// Koshei the Immortal
+//============================================================================
 
-//Sage - Starting Point
+//----------------------------------------------------------------------------
+// Sage - Starting Point
+//----------------------------------------------------------------------------
 mosk_fild02,198,252,3	script	Sage#rus01	755,{
 	if (rhea_rus_main < 1) {
 		mes "[Sage]";
@@ -10328,8 +10368,9 @@ mosk_fild02,198,252,3	script	Sage#rus01	755,{
 	}
 }
 
-//Mysterious Stone
-
+//----------------------------------------------------------------------------
+// Mysterious Stone
+//----------------------------------------------------------------------------
 mosk_dun01,169,162,0	script	Mysterious Stone#rus02	111,{
 	if (rhea_rus_main < 1) {
 		mes "- The road forks here -";
@@ -10443,8 +10484,9 @@ mosk_dun01,169,162,0	script	Mysterious Stone#rus02	111,{
 	}
 }
 
-//Gray Wolf
-
+//----------------------------------------------------------------------------
+// Gray Wolf
+//----------------------------------------------------------------------------
 mosk_dun01,167,160,3	script	Gray Wolf#rus03	972,{
 	if (rhea_rus_main < 2) {
 		mes "[Gray Wolf]";
@@ -10567,8 +10609,9 @@ OnTimer120000:
 	end;
 }
 
-//Wall (Maria Morebna, Gray Wolf, Koshei)
-
+//----------------------------------------------------------------------------
+// Wall (Maria Morebna, Gray Wolf, Koshei)
+//----------------------------------------------------------------------------
 mosk_dun01,45,259,0	script	Wall#rus04	111,{
 	if (rhea_rus_main < 5) {
 		mes "["+ strcharinfo(0) +"]";
@@ -11073,8 +11116,9 @@ OnMyMobDead:
 	end;
 }
 
+//----------------------------------------------------------------------------
 // Koshei, The Immortal
-
+//----------------------------------------------------------------------------
 mosk_dun01,5,5,0	script	Koshei#rus47	-1,0,0,{
 	end;
 
@@ -11110,8 +11154,9 @@ OnTimer300000:
 	end;
 }
 
-//Gray Wolf
-
+//----------------------------------------------------------------------------
+// Gray Wolf
+//----------------------------------------------------------------------------
 mosk_dun01,50,256,3	script	Gray Wolf#rus05	972,{
 	end;
 
@@ -11135,8 +11180,9 @@ OnTimer120000:
 	end;
 }
 
-//Maria Morebna
-
+//----------------------------------------------------------------------------
+// Maria Morebna
+//----------------------------------------------------------------------------
 mosk_dun01,46,256,3	script	Maria Morebna#rus46	958,{
 	end;
 
@@ -11159,8 +11205,9 @@ OnTimer120000:
 	end;
 }
 
-//The Blacksmith (Golden Key)
-
+//----------------------------------------------------------------------------
+// The Blacksmith (Golden Key)
+//----------------------------------------------------------------------------
 moscovia,178,127,0	script	The Blacksmith#rus06	63,{
 	if (checkweight(1201,1) == 0) {
 		mes "[The Blacksmith]";
@@ -11507,8 +11554,9 @@ moscovia,178,127,0	script	The Blacksmith#rus06	63,{
 	}
 }
 
-//Vassili Grandpapa (Red Ring)
-
+//----------------------------------------------------------------------------
+// Vassili Grandpapa (Red Ring)
+//----------------------------------------------------------------------------
 moscovia,206,81,0	script	Vassili Grandpapa#rus07	712,{
 	if (checkweight(1201,1) == 0) {
 		mes "[Vassili Grandpapa]";
@@ -11796,8 +11844,9 @@ moscovia,206,81,0	script	Vassili Grandpapa#rus07	712,{
 	}
 }
 
-//Ryubaba (Red Ring)
-
+//----------------------------------------------------------------------------
+// Ryubaba (Red Ring)
+//----------------------------------------------------------------------------
 moscovia,213,216,3	script	Ryubaba#rus08	960,{
 	if (checkweight(1201,1) == 0) {
 		mes "[Ryubaba]";
@@ -12159,8 +12208,9 @@ moscovia,213,216,3	script	Ryubaba#rus08	960,{
 	}
 }
 
-//Little Boy (Ryubaba Info)
-
+//----------------------------------------------------------------------------
+// Little Boy (Ryubaba Info)
+//----------------------------------------------------------------------------
 moscovia,223,210,3	script	Little Boy#rus09	962,{
 	if (rhea_rus_main < 8) {
 		mes "[Little Boy]";
@@ -12243,8 +12293,9 @@ moscovia,223,210,3	script	Little Boy#rus09	962,{
 	}
 }
 
+//----------------------------------------------------------------------------
 // Shepherdess (Wooden Flute for Red Ring)
-
+//----------------------------------------------------------------------------
 mosk_fild02,157,233,0	script	Shepherdess#rus10	69,{
 	if (rhea_rus_main < 8) {
 		mes "[Shepherdess]";
@@ -12386,8 +12437,9 @@ mosk_fild02,157,233,0	script	Shepherdess#rus10	69,{
 	}
 }
 
-//Pointed Trees (Wooden Flute)
-
+//----------------------------------------------------------------------------
+// Pointed Trees (Wooden Flute)
+//----------------------------------------------------------------------------
 mosk_fild02,151,188,0	script	Pointed Tree#rus11	111,{
 	if (rhea_rus_ring == 6) {
 		if (countitem(7882) < 50) {
@@ -12692,8 +12744,9 @@ OnTimer60000:
 	end;
 }
 
-//Worried Mother (Lusalka's Hair)
-
+//----------------------------------------------------------------------------
+// Worried Mother (Lusalka's Hair)
+//----------------------------------------------------------------------------
 moscovia,166,145,1	script	Worried Mother#rus19	961,{
 	if (rhea_rus_main < 8) {
 		mes "[Worried Mother]";
@@ -12807,8 +12860,9 @@ moscovia,166,145,1	script	Worried Mother#rus19	961,{
 	}
 }
 
-//Marsh Warning Signs
-
+//----------------------------------------------------------------------------
+// Marsh Warning Signs
+//----------------------------------------------------------------------------
 -	script	Caution#07rus::NoSwim	837,{
 	mes " WARNING !! ";
 	mes "No Swimming";
@@ -12817,8 +12871,9 @@ moscovia,166,145,1	script	Worried Mother#rus19	961,{
 mosk_fild02,101,204,0	duplicate(NoSwim)	Caution#rus01	837
 mosk_fild02,101,200,0	duplicate(NoSwim)	Caution#rus02	837
 
-//Lusalka Trigger (Lusalka's Hair)
-
+//----------------------------------------------------------------------------
+// Lusalka Trigger (Lusalka's Hair)
+//----------------------------------------------------------------------------
 mosk_fild02,116,202,3	script	Lusalka#07russai_22	-1,3,3,{
 	end;
 
@@ -12926,8 +12981,9 @@ OnTouch:
 	}
 }
 
-//Lusalka (Lusalka's Hair)
-
+//----------------------------------------------------------------------------
+// Lusalka (Lusalka's Hair)
+//----------------------------------------------------------------------------
 mosk_fild02,124,202,3	script	Lusalka#rus23	971,{
 	if (countitem(523) > 0) {
 		if (rhea_rus_main < 8) {
@@ -13162,8 +13218,9 @@ OnTimer300000:
 	end;
 }
 
-//Wanderer (Lusalka's Hair)
-
+//----------------------------------------------------------------------------
+// Wanderer (Lusalka's Hair)
+//----------------------------------------------------------------------------
 prontera,228,279,3	script	Wanderer#rus24	968,{
 	if (rhea_rus_main < 8) {
 		mes "[A Wanderer from a strange land]";
@@ -13279,8 +13336,9 @@ prontera,228,279,3	script	Wanderer#rus24	968,{
 	}
 }
 
-//Morroc Villager (Lusalka's Hair)
-
+//----------------------------------------------------------------------------
+// Morroc Villager (Lusalka's Hair)
+//----------------------------------------------------------------------------
 morocc,165,82,0	script	Morroc Villager#rus25	48,{
 	if (rhea_rus_main < 8) {
 		mes "[Morroc Villager]";
@@ -13361,8 +13419,9 @@ morocc,165,82,0	script	Morroc Villager#rus25	48,{
 	}
 }
 
-//Soldier/Igor (Lusalka's Hair)
-
+//----------------------------------------------------------------------------
+// Soldier/Igor (Lusalka's Hair)
+//----------------------------------------------------------------------------
 moc_pryd04,126,120,0	script	Soldier#rus26	967,{
 	if (rhea_rus_main < 8) {
 		mes "[A gloomy looking soldier]";
@@ -13523,8 +13582,9 @@ moc_pryd04,126,120,0	script	Soldier#rus26	967,{
 	}
 }
 
-//Marozka's Dungeon (Golden Thread)
-
+//----------------------------------------------------------------------------
+// Marozka's Dungeon (Golden Thread)
+//----------------------------------------------------------------------------
 mosk_dun01,45,250,3	script	1#rus27	45,3,3,{
 	end;
 
@@ -13732,8 +13792,9 @@ mosk_que,56,202,0	script	Occult Apple Tree#rus29	111,{
 
 mosk_que,47,217,0	warp	Escape#rus30	1,1,mosk_fild02,237,266
 
-//Marozka (Golden Thread)
-
+//----------------------------------------------------------------------------
+// Marozka (Golden Thread)
+//----------------------------------------------------------------------------
 mosk_fild02,243,270,0	script	Marozka#rus31	866,{
 	if (rhea_rus_main < 8) {
 		mes "[Marozka]";
@@ -13960,8 +14021,9 @@ mosk_fild02,243,270,0	script	Marozka#rus31	866,{
 	}
 }
 
-//Baba Yaga (Golden Key)
-
+//----------------------------------------------------------------------------
+// Baba Yaga (Golden Key)
+//----------------------------------------------------------------------------
 mosk_dun02,48,214,5	script	Baba Yaga#rus32	970,{
 	if (rhea_rus_main < 9) {
 		mes "[Baba Yaga]";
@@ -14751,8 +14813,9 @@ OnMyMobDead:
 	end;
 }
 
-//Baba Yaga's Tasks (Golden Key)
-
+//----------------------------------------------------------------------------
+// Baba Yaga's Tasks (Golden Key)
+//----------------------------------------------------------------------------
 mosk_dun02,257,193,0	script	Cow#rus33	889,3,3,{
 	end;
 

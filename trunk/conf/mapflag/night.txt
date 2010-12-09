@@ -1,23 +1,14 @@
-//  ___________________________________________________________________________
-// /                                                                           \
-// |                 _           _   _   _                                      |
-// |                | |__  _ __ / \ | |_| |__   ___ _ __   __ _                 |
-// |                | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                |
-// |                | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                |
-// |                |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                |
-// |                                                                            |
-// |                              brAthena Script                               |
-// |----------------------------------------------------------------------------|
-// | Nome do Script: night.txt                                                  |
-// |----------------------------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team                                               |
-// |----------------------------------------------------------------------------|
-// | Descrição: Configuração Mapflag para mapas poderem entrar em modo noturno. |
-// |----------------------------------------------------------------------------|
-// | Changelog:                                                                 |
-// | 1.0 Modificação [brAthena]                                                 |
-// | - Anotações                                                                |
-// \___________________________________________________________________________/
+//===== eAthena Script =======================================
+//= Map Flags for maps where the night is visible.
+//===== By: ==================================================
+//= eAthena Dev Team
+//===== Current Version: =====================================
+//= 1.0 [Skotlex]
+//===== Compatible With: =====================================
+//=
+//===== Description: =========================================
+//= 'nightenabled' specifies which maps can display "night".
+//============================================================
 
 alb2trea	mapflag	nightenabled
 alberta	mapflag	nightenabled
@@ -249,7 +240,7 @@ ve_fild05	mapflag	nightenabled
 ve_fild06	mapflag	nightenabled
 ve_fild07	mapflag	nightenabled
 
-// Episódio 12
+//Episode 12 ====================
 poring_c01	mapflag	nightenabled
 poring_c02	mapflag	nightenabled
 nameless_i	mapflag	nightenabled
@@ -280,7 +271,15 @@ que_qaru03	mapflag	nightenabled
 que_qaru04	mapflag	nightenabled
 que_qaru05	mapflag	nightenabled
 
-// Episódio 13
+// Battle Grounds ==============
+bat_c01	mapflag	nightenabled
+bat_c02	mapflag	nightenabled
+bat_c03	mapflag	nightenabled
+
+//Endless Tower ==================
+e_tower	mapflag	nightenabled
+
+// Episode 13 ====================
 mid_camp	mapflag	nightenabled
 man_fild01	mapflag	nightenabled
 man_fild03	mapflag	nightenabled
@@ -296,9 +295,5 @@ manuk	mapflag	nightenabled
 man_fild02	mapflag	nightenabled
 splendide	mapflag	nightenabled
 spl_fild01	mapflag	nightenabled
-bat_c01	mapflag	nightenabled
-bat_c02	mapflag	nightenabled
-bat_c03	mapflag	nightenabled
 
-// Torre Sem Fim
-e_tower	mapflag	nightenabled
+//evt_zombie	mapflag	nightenabled

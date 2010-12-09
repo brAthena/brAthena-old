@@ -8,17 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Cidade de Lighthalzen	            |
+// | Nome do Script: Cidade de Lighthalzen	      		    |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 2.0/1.0                                |
+// | Versões eA/brA: 2.1/1.0                                |
 // |--------------------------------------------------------|
 // | Descrição: NPCs da Cidade de Lighthalzen               |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    |
+// | - Anotações		   								    |
 // \________________________________________________________/
 
 lighthalzen,198,285,5	script	Jiwon#zen5	862,{
@@ -257,8 +257,8 @@ lighthalzen,78,120,3	script	Maivi#zen1	862,{
 	close;
 }
 
+/*
 lighthalzen,226,210,3	script	Nannan	86,{
-
 	mes "[Nannan]";
 	mes "You know, I always thought";
 	mes "that all Alchemists were bookish,";
@@ -284,6 +284,7 @@ lighthalzen,226,210,3	script	Nannan	86,{
 	mes "to a street guy like me...";
 	close;
 }
+*/
 
 lighthalzen,230,182,4	script	Klaubis#zen3	866,{
 	mes "[Klaubis]";
@@ -3123,6 +3124,7 @@ lhz_in02,36,284,0	script	Cool Event Staff#Cesuna	874,{
 	close;
 }
 
+/*
 lhz_in02,19,274,2	script	Maintenance Guy#lhz	851,{
 	mes "[Kudiuu]";
 	mes "Holy...!";
@@ -3133,6 +3135,7 @@ lhz_in02,19,274,2	script	Maintenance Guy#lhz	851,{
 	mes "almost a health hazard!";
 	close;
 }
+*/
 
 // Lighthalzen Mushroom.
 // Don't really understand why it's there, but it's funny regardless.

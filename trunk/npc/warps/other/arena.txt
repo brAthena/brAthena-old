@@ -1,25 +1,25 @@
 //  ________________________________________________________
-// /							    \
+// /							    						\
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
+// |							    						|
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Arena Warps			    |
+// | Nome do Script: Arena Warps			    			|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.2/1.0				    |
+// | Versões eA/brA: 1.2/1.0				    			|
 // |--------------------------------------------------------|
 // | Descrição: Portais da Arena de Batalha de Izlude e     |
-// | do Painel de Controle.				    |
+// | do Painel de Controle.				   					|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \________________________________________________________/
 
 izlude,128,226,0	warp	welcome_arena	1,1,arena_room,100,30
@@ -38,32 +38,35 @@ prt_are_in,54,13,0	warp	toarn_room	1,1,arena_room,100,77
 
 sec_in02,79,180,3	script	#arenacontrol	81,{
 
-	do {
-		input @input_arena;
-	} while (@input_arena < 0 || @input_arena > 2000); //CHECK
+DLGTEMP:
+	input @input_arena;
+	if (@input_arena < 0 || @input_arena > 2000) goto DLGTEMP;	//CHECK
 	if (@input_arena == 0)
 	{
-		mes "Erro!";
+		mes "Error!";
 		close;
 	}
 	else if (@input_arena == 1357)
 	{
-		mes "Abrindo o painel de controle.";
-		mes "' A - R - E - N - A '";
+		mes "Opening Control Panel";	
+		mes "' A - R - E - N - A '";	
 		next;
-		mes "Por favor, selecione o status.";
+		mes "Please select a";	
+		mes "state for the arena.";	
 		next;
-		switch( select("Aberta","Fechada"))
+		switch( select( "Open.","Closed.") )
 		{
 			case 1:
-				mes "Perfeitamente, abrindo a arena.";
-				misceffect EF_ENHANCE; //CHECK
+				mes "Currently";	
+				mes "opening arena.";	
+				misceffect EF_ENHANCE;	//CHECK
 				enablenpc "welcome_arena";
 				next;
 				break;
 			case 2:
-				mes "Perfeitamente, fechando a arena.";
-				misceffect EF_EXIT; //CHECK
+				mes "Currently";	
+				mes "closing arena.";	
+				misceffect EF_EXIT;	//CHECK
 				disablenpc "welcome_arena";
 				next;
 				break;
@@ -71,7 +74,7 @@ sec_in02,79,180,3	script	#arenacontrol	81,{
 	}
 	else
 	{
-		mes "Fechando o painel de controle.";
+		mes "Closing control panel.";	
 		close;
 	}
 }

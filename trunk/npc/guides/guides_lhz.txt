@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Guias de Lighthalzen		    |
+// | Nome do Script: Guias de Lighthalzen		 			|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
@@ -18,8 +18,9 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    | 
+// | - Anotações		   			    					| 
 // \________________________________________________________/
+
 
 lighthalzen,207,310,5	script	Guide#lhz::LhzGuide	852,{
 	cutin "ein_soldier",2;

@@ -19,8 +19,9 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    |
+// | - Anotações		   			  						|
 // \________________________________________________________/
+
 
 prontera,146,92,3	script	Cellerb	58,{
 	set @npcname$,"[Staff Idul Fitri]";

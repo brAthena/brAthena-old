@@ -1,24 +1,26 @@
-//  _______________________________________________________
-// /							   \
+//  ________________________________________________________
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
-// |			brAthena Script			    |
+// |                                                        |
+// |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: iRO Repeatable EXP Quests		    |
+// | Nome do Script: iRO Repeatable EXP Quests		   		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			   				|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0				    |
+// | Versões eA/brA: 1.0/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Quest repetível do monstro Dokebi.	    |
+// | Descrição: 										    |
+// | Added Monster Killing quests.							|
+// | Repeatable EXP Quest (Dokebi Horns)					|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \_______________________________________________________/
 
 pay_fild10,108,357,5	script	Li#Dokebi_Hunt	90,{
@@ -159,7 +161,7 @@ pay_fild10,108,357,5	script	Li#Dokebi_Hunt	90,{
 				next;
 				switch(select("Gather Items:Hunt Dokebis:Cancel")) {
 				case 1:
-					//Item turn in
+					// Item turn in
 					mes "[Li]";
 					mes "My fortune teller business needs a good supply of ^FF0000Dokebi Horns^000000 to give my customers good luck.";
 					next;
@@ -188,7 +190,7 @@ pay_fild10,108,357,5	script	Li#Dokebi_Hunt	90,{
 						close;
 					}
 				case 2:
-					//Kill Count Quest
+					// Kill Count Quest
 					mes "[Li]";
 					mes "Ah, ok I think you can help me out by hunting some Dokebis.";
 					mes "How many would you like to hunt?";
@@ -237,3 +239,5 @@ pay_fild10,108,357,5	script	Li#Dokebi_Hunt	90,{
 		close;
 	}
 }
+
+

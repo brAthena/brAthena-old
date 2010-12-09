@@ -1,29 +1,29 @@
 //  ________________________________________________________
-// /							    \
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
+// |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Quest NPCs related to Geffen	    |
+// | Nome do Script: Quest NPCs related to Geffen    		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.4/1.0				    |
+// | Versões eA/brA: 1.4/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Quests de Geffen: Véu de Noiva (WeldingMask)|
-// | e Fone de Ouvido (Headset Quests).			    |
+// | Descrição: Welding Mask and Headset Quests.			|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \________________________________________________________/
 
-//Loja do Ferreiro: Quest Véu de Noiva
-
+//==============================================================================================//
+// 					Blacksmith: 'Welding Mask' Quest
+//==============================================================================================//
 geffen_in,144,166,4	script	Blacksmith	63,{
 	mes "[Blacksmith]";
 	mes "You've never heard of me? Why, I'm the Veteran Blacksmith of this land. I've spent 30 years in this hot and bloody hellfire, bending steel to my iron will!";
@@ -88,8 +88,11 @@ geffen_in,144,166,4	script	Blacksmith	63,{
 	}
 }
 
-//Eric: Quest Fone de Ouvido
 
+
+//=============================================================================================//
+//					Eric: Headset Quest
+//=============================================================================================//
 geffen_in,30,71,4	script	Eric	83,{
 	mes "[Eric]";
 	mes "Please listen";

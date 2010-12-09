@@ -8,18 +8,19 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Guias de Prontera			    |
+// | Nome do Script: Guias de Prontera			    		|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.6a/1.0                               |
+// | Versões eA/brA: 1.6b/1.0                               |
 // |--------------------------------------------------------|
 // | Descrição: Guias da cidade de Prontera                 |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    | 
+// | - Anotações		   			    					| 
 // \________________________________________________________/
+
 
 prontera,154,187,4	script	Guide#prt::PrtGuide	105,{
 	cutin "prt_soldier",2;

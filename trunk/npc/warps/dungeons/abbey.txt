@@ -1,26 +1,27 @@
 //  ________________________________________________________
-// /							    \
+// /							    						\
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
+// |							    						|
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Abbey Dungeon Warp Script		    |
+// | Nome do Script: Abbey Dungeon Warp Script		    	|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0				    |
+// | Versões eA/brA: 1.0/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Portais da Abadia Amaldiçoada de Moskovia.  |
+// | Descrição: Warp Points for Abbey Dungeon.  			|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \________________________________________________________/
 
+//= Abbey Dungeon ============================================
 abbey01,51,9,0	warp	namelesswarp0101	1,1,nameless_n,160,184
 abbey01,87,122,0	warp	namelesswarp4001	1,1,abbey01,13,201
 abbey01,13,204,0	warp	namelesswarp4002	1,1,abbey01,88,118

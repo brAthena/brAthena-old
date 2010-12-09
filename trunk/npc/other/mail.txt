@@ -8,14 +8,14 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Mail Boxes     			    |
+// | Nome do Script: Mail Boxes     			    		|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.5/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição:						    |
-// | Pickup and write mail from/to players in game.	    |
+// | Descrição:						    					|
+// | Pickup and write mail from/to players in game.	    	|
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |

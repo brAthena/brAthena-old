@@ -1,24 +1,26 @@
-//  _______________________________________________________
-// /							   \
+//  ________________________________________________________
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
-// |			brAthena Script			    |
+// |                                                        |
+// |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: iRO Repeatable EXP Quests		    |
+// | Nome do Script: iRO Repeatable EXP Quests		   		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			   				|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0				    |
+// | Versões eA/brA: 1.0/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Quest repetível do monstro Pupa.	    |
+// | Descrição: 										    |
+// | Added Monster Killing quests.							|
+// | Repeatable EXP Quest (Chrysalis)						|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \_______________________________________________________/
 
 gef_fild04,191,54,3	script	Halgus#Pupa_Hunt	123,{
@@ -168,7 +170,7 @@ gef_fild04,191,54,3	script	Halgus#Pupa_Hunt	123,{
 				next;
 				switch(select("Gather Items:Get rid of Pupa:Cancel")) {
 				case 1:
-					//Item turn in
+					// Item turn in
 					mes "[Halgus]";
 					mes "Can you collect ^00CE0025 Chrysalis^000000 and return them to me, I promise to reward you well.";
 					next;
@@ -193,7 +195,7 @@ gef_fild04,191,54,3	script	Halgus#Pupa_Hunt	123,{
 						close;
 					}
 				case 2:
-					//Kill Count Quest
+					// Kill Count Quest
 					mes "[Halgus]";
 					mes "Thank you so much!";
 					mes "How many would you like to get rid of?";

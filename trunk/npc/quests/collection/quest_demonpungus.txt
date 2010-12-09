@@ -1,24 +1,26 @@
-//  _______________________________________________________
-// /							   \
+//  ________________________________________________________
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
-// |			brAthena Script			    |
+// |                                                        |
+// |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: iRO Repeatable EXP Quests		    |
+// | Nome do Script: iRO Repeatable EXP Quests		   		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			   				|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0				    |
+// | Versões eA/brA: 1.0/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Quest repetível do monstro Pungus.	    |
+// | Descrição: 										    |
+// | Added Monster Killing quests.							|
+// | Repeatable EXP Quest (Bacillus)						|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \_______________________________________________________/
 
 ein_fild01,43,249,0	script	Local Villager#hunt	898,{
@@ -160,7 +162,7 @@ ein_fild01,43,249,0	script	Local Villager#hunt	898,{
 				next;
 				switch(select("Gather Items:Hunt Demon Pungus:Cancel")) {
 				case 1:
-					//Item turn in
+					// Item turn in
 					mes "[Local Villager]";
 					mes "Can you help by collecting ^FF0000Bacillus^000000?";
 					mes "I will reward you for helping clear this out for me.";
@@ -198,7 +200,7 @@ ein_fild01,43,249,0	script	Local Villager#hunt	898,{
 						close;
 					}
 				case 2:
-					//Kill Count Quest
+					// Kill Count Quest
 					mes "[Local Villager]";
 					mes "Ah, ok I think you can help me out by hunting some Demon Pungus.";
 					mes "How many would you like to hunt?";
@@ -247,3 +249,5 @@ ein_fild01,43,249,0	script	Local Villager#hunt	898,{
 		close;
 	}
 }
+
+

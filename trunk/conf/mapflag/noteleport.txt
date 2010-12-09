@@ -1,25 +1,13 @@
-//  ___________________________________________________________________________
-// /                                                                           \
-// |                 _           _   _   _                                      |
-// |                | |__  _ __ / \ | |_| |__   ___ _ __   __ _                 |
-// |                | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                |
-// |                | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                |
-// |                |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                |
-// |                                                                            |
-// |                              brAthena Script                               |
-// |----------------------------------------------------------------------------|
-// | Nome do Script: noteleport.txt                                             |
-// |----------------------------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team                                               |
-// |----------------------------------------------------------------------------|
-// | Descrição: Configuração Mapflag que desabilita o uso de Asas de Mosca.     |
-// |----------------------------------------------------------------------------|
-// | Changelog:                                                                 |
-// | 1.0 Modificação [brAthena]                                                 |
-// | - Anotações                                                                |
-// \___________________________________________________________________________/
+//===== eAthena Script =======================================
+//= Map flags that disable use of fly wings
+//===== By: ==================================================
+//= eAthena Dev Team
+//= 1.6a [Lupus]
+//===== Notes: ===============================================
+//= For disabling Butterfly wings use noreturn
+//===== Current Version: =====================================
 
-// Cidades
+// Cities ========================
 ayo_in01	mapflag	noteleport
 ayo_in02	mapflag	noteleport
 alb_ship	mapflag	noteleport
@@ -129,20 +117,19 @@ kh_dun01	mapflag	noteleport
 ve_in	mapflag	noteleport
 ve_in02	mapflag	noteleport
 thor_camp	mapflag	noteleport
+moc_para01	mapflag	noteleport
 
-// Quest de classes
+// Job Quests ====================
 job_sword1	mapflag	noteleport
 job_thief1	mapflag	noteleport
-
-// Classes 2-1
+// 2-1 -----------------------
 job_knt	mapflag	noteleport
 job_prist	mapflag	noteleport
 job_wiz	mapflag	noteleport
 job_hunte	mapflag	noteleport
 in_hunter	mapflag	noteleport
 in_moc_16	mapflag	noteleport
-
-// Classes 2-2
+// 2-2 --------------------
 alde_alche	mapflag	noteleport
 job_cru	mapflag	noteleport
 job_duncer	mapflag	noteleport
@@ -155,7 +142,7 @@ job_star	mapflag	noteleport
 job_soul	mapflag	noteleport
 que_ng	mapflag	noteleport
 
-// Locais de quests especiais
+// Special Quests Places =========
 que_god01	mapflag	noteleport
 que_god02	mapflag	noteleport
 que_bingo	mapflag	noteleport
@@ -169,9 +156,9 @@ poring_c02	mapflag	noteleport
 que_job01	mapflag	noteleport
 que_job02	mapflag	noteleport
 que_job03	mapflag	noteleport
-cave		mapflag	noteleport
+cave	mapflag	noteleport
 
-// Castelos
+// Guild Castles =================
 aldeg_cas01	mapflag	noteleport
 aldeg_cas02	mapflag	noteleport
 aldeg_cas03	mapflag	noteleport
@@ -207,7 +194,14 @@ nguild_gef	mapflag	noteleport
 nguild_pay	mapflag	noteleport
 nguild_prt	mapflag	noteleport
 
-// Arenas
+// GvG Arenas ===================
+guild_vs1	mapflag	noteleport
+guild_vs2	mapflag	noteleport
+guild_vs3	mapflag	noteleport
+guild_vs4	mapflag	noteleport
+guild_vs5	mapflag	noteleport
+
+// Arenas =====================>\\
 arena_room	mapflag	noteleport
 force_1-1	mapflag	noteleport
 force_2-1	mapflag	noteleport
@@ -219,14 +213,7 @@ force_1-3	mapflag	noteleport
 sec_in01	mapflag	noteleport
 sec_in02	mapflag	noteleport
 
-// Arenas GvG
-guild_vs1	mapflag	noteleport
-guild_vs2	mapflag	noteleport
-guild_vs3	mapflag	noteleport
-guild_vs4	mapflag	noteleport
-guild_vs5	mapflag	noteleport
-
-// Arenas PvP
+// PvP Arenas=======================
 pvp_y_room	mapflag	noteleport
 pvp_y_1-1	mapflag	noteleport
 pvp_y_1-2	mapflag	noteleport
@@ -311,7 +298,7 @@ pvp_n_8-4	mapflag	noteleport
 pvp_n_8-5	mapflag	noteleport
 pvp_2vs2	mapflag	noteleport
 
-// Aldebaran Turbo Track
+//Aldebaran Turbo Track ==========
 turbo_room	mapflag	noteleport
 turbo_n_1	mapflag	noteleport
 turbo_n_4	mapflag	noteleport
@@ -321,18 +308,11 @@ turbo_e_4	mapflag	noteleport
 turbo_e_8	mapflag	noteleport
 turbo_e_16	mapflag	noteleport
 
-// Corrida de Monstros
+//Monster Races ================
 p_track01	mapflag	noteleport
 p_track02	mapflag	noteleport
 
-// Batalhas Campais
-bat_room	mapflag	noteleport
-bat_a01	mapflag	noteleport
-bat_a02	mapflag	noteleport
-bat_b01	mapflag	noteleport
-bat_b02	mapflag	noteleport
-
-// Visões de Okolnir
+//Vision of Okolnir ==============
 que_qsch01	mapflag	noteleport
 que_qsch01	mapflag	monster_noteleport
 que_qsch02	mapflag	noteleport
@@ -354,13 +334,13 @@ que_qaru04	mapflag	monster_noteleport
 que_qaru05	mapflag	noteleport
 que_qaru05	mapflag	monster_noteleport
 
-// Santuário Selado
+//Sealed Shrine ==================
 1@cata	mapflag	noteleport
 1@cata	mapflag	monster_noteleport
 2@cata	mapflag	noteleport
 2@cata	mapflag	monster_noteleport
 
-// Torre Sem Fim
+//Endless Tower ==================
 e_tower	mapflag	noteleport
 1@tower	mapflag	noteleport
 1@tower	mapflag	monster_noteleport
@@ -375,7 +355,17 @@ e_tower	mapflag	noteleport
 6@tower	mapflag	noteleport
 6@tower	mapflag	monster_noteleport
 
-// Episódio 13
+// Battle Grounds ==============
+bat_c01	mapflag	noteleport
+bat_c02	mapflag	noteleport
+bat_c03	mapflag	noteleport
+bat_room	mapflag	noteleport
+bat_b01	mapflag	noteleport
+bat_b02	mapflag	noteleport
+bat_a01	mapflag	noteleport
+bat_a02	mapflag	noteleport
+
+// Episode 13 ====================
 mid_campin	mapflag	noteleport
 moc_fild22b	mapflag	noteleport
 que_dan01	mapflag	noteleport
@@ -385,17 +375,19 @@ arug_que01	mapflag	noteleport
 man_in01	mapflag	noteleport
 spl_in01	mapflag	noteleport
 
-// Memorial dos Orc
+//Orc's Memory ===================
 1@orcs	mapflag	noteleport
 1@orcs	mapflag	monster_noteleport
 2@orcs	mapflag	noteleport
 2@orcs	mapflag	monster_noteleport
 
-// Calabouço de Yggdrasil
+// Yggdrasil Dungeon =============
 nyd_dun02	mapflag	noteleport
 
-// Instância de Nidhoggr
+// Nidhoggr's Instance ===========
 1@nyd	mapflag	noteleport
 1@nyd	mapflag	monster_noteleport
 2@nyd	mapflag	noteleport
 2@nyd	mapflag	monster_noteleport
+
+//evt_zombie	mapflag	noteleport

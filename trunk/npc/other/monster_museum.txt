@@ -8,15 +8,15 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Juno Monster Museum		    |
+// | Nome do Script: Juno Monster Museum		    		|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.4a/1.0                               |
 // |--------------------------------------------------------|
-// | Descrição:						    |
+// | Descrição:						    					|
 // | Juno Monster Museum - Non Player Character Locations   |
-// | - Information about various monsters		    |
+// | - Information about various monsters		    		|
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |

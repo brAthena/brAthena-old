@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Hugel Bingo script			    |
+// | Nome do Script: Hugel Bingo script			    		|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
@@ -20,6 +20,7 @@
 // | 1.0 Modificação [Autor]                                |
 // | - Anotações                                            | 
 // \________________________________________________________/
+
 
 que_bingo,48,84,5	script	Bingo Waiting Room	124,{
 	end;

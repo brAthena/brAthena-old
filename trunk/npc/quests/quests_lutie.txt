@@ -1,26 +1,26 @@
 //  ________________________________________________________
-// /							    \ 
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
+// |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Quest NPCs related to Lutie	    |
+// | Nome do Script: Quest NPCs related to Lutie    		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.3b/1.0				    |
+// | Versões eA/brA: 1.4/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Quests de Lutie: Blush, Cake Hat, Candle,   |
-// | Chef Hat, Raccoon Hat, Rainbow Eggshell, Spore Hat e   |
-// | Wonder Nutshell Quests.				    |
+// | Descrição: Blush, Cake Hat, Candle, Chef Hat, 			|
+// | Raccoon Hat, Rainbow Eggshell, Spore Hat, 				|
+// | Wonder Nutshell Quests									|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \________________________________________________________/
 
 xmas,117,295,4	script	Vending Machine Man	704,{
@@ -181,7 +181,7 @@ xmas,115,297,4	script	Vending Machine	111,{
 			mes "*Bzzzzzt*";
 			mes "*choogachooga*";
 			mes "*Kapang!*^000000";
-			getitem 5033,1; //Smokie_Hat
+			getitem 5033,1; // Smokie_Hat
 			next;
 			mes "[Audi]";
 			mes "^555555Thank you for coming by.";
@@ -203,7 +203,7 @@ xmas,115,297,4	script	Vending Machine	111,{
 			mes "*choogachooga*";
 			mes "*Kapang!*";
 			mes "*Wek Wek*^000000";
-			getitem 5029,1; //Spore_Hat
+			getitem 5029,1; // Spore_Hat
 			next;
 			mes "^555555Thank you for coming by.";
 			mes "Please come again!";
@@ -224,7 +224,7 @@ xmas,115,297,4	script	Vending Machine	111,{
 			mes "*BeepBoopBeepBoop*";
 			mes "*Beeeeeeoop*^000000";
 			Emotion e_oh;
-			getitem 5050,1; //Mystery_Fruit_Shell
+			getitem 5050,1; // Mystery_Fruit_Shell
 			next;
 			mes "[Audi]";
 			mes "^555555Thank you for coming by.";
@@ -245,7 +245,7 @@ xmas,115,297,4	script	Vending Machine	111,{
 			mes "*Bzzzzzt*";
 			mes "*choogachooga*";
 			mes "*OoooEeeeeeee~*^000000";
-			getitem 5039,1; //Mottled_Egg_Shell
+			getitem 5039,1; // Mottled_Egg_Shell
 			next;
 			mes "[Audi]";
 			mes "^555555Thank you for coming by.";
@@ -266,7 +266,7 @@ xmas,115,297,4	script	Vending Machine	111,{
 			mes "*Kapang!*";
 			mes "*ChoopChoop*";
 			mes "*Chaaawah!*^000000";
-			getitem 5040,1; //Blush
+			getitem 5040,1; // Blush
 			mes "[Audi]";
 			mes "^555555Thank you for coming by.";
 			mes "Please come again!";
@@ -291,7 +291,7 @@ xmas,115,297,4	script	Vending Machine	111,{
 			mes "*choogachooga*";
 			mes "*Kapang!*";
 			mes "*Muuuuuuugeeee*^000000";
-			getitem 5026,1; //Hat_Of_Cook
+			getitem 5026,1; // Hat_Of_Cook
 			next;
 			mes "[Audi]";
 			mes "^555555Thank you for coming by.";
@@ -312,7 +312,7 @@ xmas,115,297,4	script	Vending Machine	111,{
 			mes "*Bzzzzzt*";
 			mes "*choogachooga*";
 			mes "*Kapang!*^000000";
-			getitem 5028,1; //Candle
+			getitem 5028,1; // Candle
 			next;
 			mes "[Audi]";
 			mes "^555555Thank you for coming by.";
@@ -335,7 +335,7 @@ xmas,115,297,4	script	Vending Machine	111,{
 			mes "*Bzzzzzt*";
 			mes "*choogachooga*";
 			mes "*Kapang!*^000000";
-			getitem 5024,1; //Hat_Of_Cake
+			getitem 5024,1; // Hat_Of_Cake
 			next;
 			mes "[Audi]";
 			mes "^555555Thank you for coming by.";

@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Valentine Event Script	            |
+// | Nome do Script: Valentine Event Script	           		|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
@@ -19,8 +19,9 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    |
+// | - Anotações		   			   						|
 // \________________________________________________________/
+
 
 // Stephen - Valentine Event Chocolate seller ------------------
 alberta,26,243,4	script	Stephen	58,{

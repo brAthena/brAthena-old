@@ -1,25 +1,30 @@
 //  ________________________________________________________
-// /							    \
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
+// |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Doomed Swords Quest Part 3		    |
+// | Nome do Script: Doomed Swords Quest Part 3	    		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0				    |
+// | Versões eA/brA: 1.0/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Quest das Espadas Amaldiçoadas:		    |
-// | Grimtooth, Mysteltain, Executioner.		    |
+// | Descrição:												|
+// | - Creation of Doomed Swords: Grimtooth, Mysteltain,	|
+// | and Executioner.										|
+// | - Continuation of the Comodo Quest						|
+// | - Part 1: Found in Quests_Comodo.txt					|
+// | - Part 2: Found in Quests_Yuno.txt						|
+// | - Variable in use: dmdswrd_Q (Max 45)					|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \________________________________________________________/
 
 mjolnir_02,186,193,4	script	Middle-Aged Man#magum1	57,{

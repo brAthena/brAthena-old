@@ -1,25 +1,25 @@
 //  ________________________________________________________
-// /							    \
+// /							    						\
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
+// |							    						|
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Another World Warp Script		    |
+// | Nome do Script: Another World Warp Script		    	|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.4/1.0				    |
+// | Versões eA/brA: 1.4/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Portais para o Novo Mundo (EP.12),	    |
-// | fild22b e mid_camp temporariamente.		    |
+// | Descrição: Portais para o Novo Mundo (EP.12).	    	|
+// | Portais para fild22b e mid_camp são temporarios.	    |
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					   						|
 // \________________________________________________________/
 
 mid_camp,205,211,0	warp	mid_weapon1-1	1,1,mid_campin,229,123
@@ -48,3 +48,4 @@ mid_camp,266,260,0	warp	mid_house1-1	1,1,mid_campin,284,124
 mid_campin,282,124,0	warp	mid_house1-2	1,1,mid_camp,263,260
 mid_camp,163,231,0	warp	mid_house2-1	1,1,mid_campin,376,133
 mid_campin,376,136,0	warp	mid_house2-2	1,1,mid_camp,163,234
+

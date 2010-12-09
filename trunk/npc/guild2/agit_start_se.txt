@@ -1,0 +1,61 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: War of Emperium SE - Auto-Start	    |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.0/1.0                                |
+// |--------------------------------------------------------|
+// | Descrição: Auto Start for War of Emperium		    	|
+// | To know how to set up WoE times, go to 		  		|
+// | doc\woe_time_explanation.txt			    			|
+// |                                                        |
+// | gettime(3): Gets hour (24 hour time)	           		|
+// | gettime(4): Gets day of week 1=Monday, 2=Tuesday,	    |
+// | 3=Wednesday, 4=Thursday, etc.		            		|
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Modificação [Autor]                                |
+// | - Anotações		   			    					| 
+// \________________________________________________________/
+
+// WoE Start/Stop times
+//============================================================
+-	script	Agit2_Event	-1,{
+	end;
+
+OnClock1800:	//start time for Tues(2), Thurs(4)
+OnClock2000:	//end time for Tues(2), Thurs(4)
+OnClock2100:	//start time for Sat(6)
+OnClock2300:	//end time for Sat(6)
+
+OnAgitInit2:
+	// starting time checks
+	if((gettime(4)==2) && (gettime(3)>=18 && gettime(3)<21) ||
+	   (gettime(4)==4) && (gettime(3)>=18 && gettime(3)<21) ||
+	   (gettime(4)==6) && (gettime(3)>=22 && gettime(3)<23)) {
+		if (!agitcheck2()) {
+			AgitStart2;
+		}
+		end;
+	}
+
+	// end time checks
+	if ((gettime(4)==2) && (gettime(3)==21) ||
+	    (gettime(4)==4) && (gettime(3)==21) ||
+	    (gettime(4)==6) && (gettime(3)==23)) { 
+		if (agitcheck2()) {
+			AgitEnd2;
+		}
+		end;
+	}
+	end;
+}

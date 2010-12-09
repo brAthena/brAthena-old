@@ -1,26 +1,27 @@
 //  ________________________________________________________
-// /							    \
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
+// |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Quiz (Revolution) Part 1		    |
+// | Nome do Script: Quiz (Revolution) Part 1		    	|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0				    |
+// | Versões eA/brA: 1.0/1.0				   				|
 // |--------------------------------------------------------|
-// | Descrição: Quest 'Quiz Revolution' (parte 1).	    |
+// | Descrição: Quest 'Quiz Revolution' (parte 1).	    	|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \________________________________________________________/
 
+//=========================================================================================================================================
 prontera,152,286,4	script	Receptionist::RecepQuiz	755,{
 
 if (countitem(1201) > 3) goto M_MaxItem;
@@ -2127,21 +2128,21 @@ OnTouch:
 }
 
 //-------------------------------------------------------------------------------------------------------------
-//Comments
-//0 = Didn't receive a quest from Tsuji
-//1 = Failed Tsuji's quest
-//2 = Pass Tsuji's quest and to 2nd round
-//3 = Seeil's randomly collecting job item quest 1
-//4 = Seeil's randomly collecting job item quest 
-//5 = Seeil's randomly collecting job item quest 
-//6 = Clear with collecting job item. start Marathon test
-//7~12 =Checking Marathon quest occasionally.
-//13 = Use after clearing Marathon quest
-//14 = Clear 3rd quest, start Radeng(4th) quest
-//15 = check after reporting errors of Radeng
-//16 = randomly collecting job items at Radeng quest 1
-//17 = randomly collecting job items at Radeng quest 2
-//18 = Radeng quest clear. Possible time to apply. Begin Kantryl apply.
-//19 = checked if you show intention to join 
-//20 = checked If you don't show intention to join 
-//21 = 3 items for the one who gets compansation
+// Comments
+// 0 = Didn't receive a quest from Tsuji
+// 1 = Failed Tsuji's quest
+// 2 = Pass Tsuji's quest and to 2nd round
+// 3 = Seeil's randomly collecting job item quest 1
+// 4 = Seeil's randomly collecting job item quest 
+// 5 = Seeil's randomly collecting job item quest 
+// 6 = Clear with collecting job item. start Marathon test
+// 7~12 =Checking Marathon quest occasionally.
+// 13 = Use after clearing Marathon quest
+// 14 = Clear 3rd quest, start Radeng(4th) quest
+// 15 = check after reporting errors of Radeng
+// 16 = randomly collecting job items at Radeng quest 1
+// 17 = randomly collecting job items at Radeng quest 2
+// 18 = Radeng quest clear. Possible time to apply. Begin Kantryl apply.
+// 19 = checked if you show intention to join 
+// 20 = checked If you don't show intention to join 
+// 21 = 3 items for the one who gets compansation

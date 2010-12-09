@@ -1,26 +1,27 @@
 //  ________________________________________________________
-// /							    \
+// /							    						\
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
+// |							    						|
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Glastheim Warp Script		    |
+// | Nome do Script: Glastheim Warp Script		    		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.4/1.0				    |
+// | Versões eA/brA: 1.4/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Portais do Reino Caído de Glast Heim.	    |
+// | Descrição: Portais de Glast Heim.	    				|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \________________________________________________________/
 
+//Glastheim
 gef_fild06,20,304,0	warp	gef027	3,3,glast_01,370,304
 gl_cas01,135,40,0	warp	gl01	1,1,gl_cas01,144,314
 gl_cas01,149,314,0	warp	gl02	1,1,gl_prison,14,70
@@ -58,7 +59,11 @@ gl_knt02,10,138,0	warp	gl14-1	1,1,gl_knt01,7,148
 gl_knt02,157,292,0	warp	gl16-1	1,1,gl_knt01,150,286
 gl_knt02,289,138,0	warp	gl17-1	1,1,gl_knt01,292,144
 gl_prison,149,183,0	warp	gl18-1	1,1,gl_prison1,150,14
-gl_prison,10,70,4	script	gl18-2	45,1,1,{ if(rand(2)==1) warp "gl_cas01",164,191; else warp "gl_cas01",236,192; end; }
+gl_prison,10,70,4	script	gl18-2	45,1,1,{
+if(rand(2)==1) goto w2;
+	warp "gl_cas01",236,192; end;
+w2: warp "gl_cas01",164,191; end;
+}
 gl_prison1,150,10,0	warp	gl18	1,1,gl_prison,149,178
 gl_prison1,62,187,0	warp	gl10	1,1,gl_sew01,258,255
 gl_sew01,19,21,0	warp	gl19	1,1,gl_sew02,108,291

@@ -1,29 +1,36 @@
-//  ___________________________________________________________________________
-// /                                                                           \
-// |                 _           _   _   _                                      |
-// |                | |__  _ __ / \ | |_| |__   ___ _ __   __ _                 |
-// |                | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                |
-// |                | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                |
-// |                |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                |
-// |                                                                            |
-// |                              brAthena Script                               |
-// |----------------------------------------------------------------------------|
-// | Nome do Script: advanced_refiner.txt                                       |
-// |----------------------------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team                                               |
-// |----------------------------------------------------------------------------|
-// | Descrição: Refinador que usa minérios enriquecidos para aumentar a chance  |
-// | de sucesso.                                                                |
-// |----------------------------------------------------------------------------|
-// | Versões eA/brA: 1.4/1.0
-// |----------------------------------------------------------------------------|
-// | Changelog:                                                                 |
-// | 1.0 Modificação [brAthena]                                                 |
-// | - Anotações                                                                |
-// | "Comentários" devem ser adicionados com // no início da frase, senão você  |
-// | causará problemas de conf, pois o texto será inválido conforme a source.   |
-// | Lembre-se que "NOTAS" dão recomendações importantes.                       |
-// \___________________________________________________________________________/
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Advanced Refiner			    		|
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.4/1.0                                |
+// |--------------------------------------------------------|
+// | Descrição: 								            |
+// | Refiner that uses Enriched ores to increase upgrade	|
+// | success.												|
+// | After a conversation with Doddler, it's been			|
+// | established that the advanced refiner works similar	|
+// | the the "Bubble Gum" item. The success percentage		|
+// | is not "increased" however, if it fails You get		|
+// |  a second try. This tries twice at the same time,		|
+// | effectively giving you a re-roll on your attempt.		|
+// | - Dialog is only partly official to iRO.				|
+// | - Uses the iRO position for this NPC.					|
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Modificação [Autor]                                |
+// | - Anotações		   			    					| 
+// \________________________________________________________/
+
 
 payon,174,138,0	script	Suhnbi#cash	85,{
 	mes "[Suhnbi]";

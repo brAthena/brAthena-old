@@ -1,25 +1,24 @@
 //  ________________________________________________________
-// /							    \
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
+// |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Juperos Dungeon Quests		    |
+// | Nome do Script: Juperos Dungeon Quests		    		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.7/1.0				    |
+// | Versões eA/brA: 1.7/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Quests e Eventos das Rínas de Juperos.	    |
-// | * Script parcial do Aegis Oficial kRO.		    |
+// | Descrição: Juperos Ruins related Quests/Events			|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \________________________________________________________/
 
 yuno_in04,190,125,4	script	Scholar	700,{
@@ -1353,7 +1352,7 @@ yuno_in04,188,118,4	script	Book#juperos	111,{
 	close;
 }
 
-//Bronze Statue - juperos_01 99 112
+// Bronze Statue - juperos_01 99 112
 
 juperos_01,99,112,4	script	Bronze Statue#1	844,{
 
@@ -1753,10 +1752,12 @@ juperos_01,215,127,4	script	Machine Statue	844,{
 	close;
 }
 
-//Jupers Core access Story Event
-
-//1rd Floor - 2nd Floor
-
+//============================================================
+// Jupers Core access Story Event
+//============================================================
+//============================================================
+// 1rd Floor -> 2nd Floor
+//============================================================
 juperos_01,100,91,0	script	jupe_goto#1	-1,2,2,{
 	end;
 
@@ -1820,7 +1821,9 @@ OnTimer2000:
 	end;
 }
 
-//2nd Floor 
+//============================================================
+// 2nd Floor 
+//============================================================
 
 juperos_02,97,70,0	script	3F Gate Switch#jupe	-1,{
 OnInit:
@@ -1943,8 +1946,9 @@ OnTouch:
 	end;
 }
 
-//Security Checkpoint 1-1
-
+//============================================================
+// Security Checkpoint 1-1
+//============================================================
 jupe_area1,88,224,0	script	#hole#1-1	844,{
 	cutin "1",2;
 	if ($@JupreArea1InUse == 1) {
@@ -2234,8 +2238,9 @@ OnMyMobDead:
 	end;
 }
 
-//Security Checkpoint 1-2
-
+//============================================================
+// Security Checkpoint 1-2
+//============================================================
 jupe_area1,25,238,0	script	#hole#1-2	844,{
 	cutin "2",2;
 	if ($@JupreArea1InUse == 1) {
@@ -2522,8 +2527,9 @@ OnMyMobDead:
 	end;
 }
 
-//Security Checkpoint 1-3
-
+//============================================================
+// Security Checkpoint 1-3
+//============================================================
 jupe_area1,36,146,0	script	#hole#1-3	844,{
 	cutin "3",2;
 	if ($@JupreArea1InUse == 1) {
@@ -2809,7 +2815,9 @@ OnMyMobDead:
 	end;
 }
 
-//Security Checkpoint 1-4
+//============================================================
+// Security Checkpoint 1-4
+//============================================================
 jupe_area1,50,49,0	script	#hole#1-4	844,{
 	cutin "4",2;
 	if ($@JupreArea1InUse == 1) {
@@ -3095,8 +3103,9 @@ OnMyMobDead:
 	end;
 }
 
-//Move to Elevator
-
+//============================================================
+// Move to Elevator
+//============================================================
 jupe_area1,112,162,0	script	Lever#ufe	844,{
 	mes "^3355FFIt's a lever";
 	mes "whose function";
@@ -3146,8 +3155,9 @@ OnTimer3000:
 	end;
 }
 
-//Security Checkpoint 2-1
-
+//============================================================
+// Security Checkpoint 2-1
+//============================================================
 jupe_area2,74,224,0	script	#hole#2-1	844,{
 	cutin "1",2;
 	if ($@JupreArea2InUse == 1) {
@@ -3437,8 +3447,9 @@ OnMyMobDead:
 	end;
 }
 
-//Security Checkpoint 2-2
-
+//============================================================
+// Security Checkpoint 2-2
+//============================================================
 jupe_area2,138,238,0	script	#hole#2-2	844,{
 	cutin "2",2;
 	if ($@JupreArea2InUse == 1) {
@@ -3725,8 +3736,9 @@ OnMyMobDead:
 	end;
 }
 
-//Security Checkpoint 2-3
-
+//============================================================
+// Security Checkpoint 2-3
+//============================================================
 jupe_area2,127,146,0	script	#hole#2-3	844,{
 	cutin "3",2;
 	if ($@JupreArea2InUse == 1) {
@@ -4014,8 +4026,9 @@ OnMyMobDead:
 	end;
 }
 	
-//Security Checkpoint 2-4
-
+//============================================================
+// Security Checkpoint 2-4
+//============================================================
 jupe_area2,113,49,0	script	#hole#2-4	844,{
 	cutin "4",2;
 	if ($@JupreArea2InUse == 1) {
@@ -4303,8 +4316,9 @@ OnMyMobDead:
 	end;
 }
 
-//Move to Elevator
-
+//============================================================
+// Move to Elevator
+//============================================================
 jupe_area2,51,162,0	script	Lever#ufe2	844,{
 	mes "^3355FFIt's a lever";
 	mes "whose function";
@@ -4354,8 +4368,9 @@ OnTimer3000:
 	end;
 }
 
-//Elevator Reception Room
-
+//============================================================
+// Elevator Reception Room
+//============================================================
 jupe_ele_r,51,98,0	script	Switch#ufe	844,{
 	if ($@JupeElevatorInUse == 1) {
 		mes "^3355FFIt's some sort of";
@@ -4518,8 +4533,9 @@ OnInit:
 	end;
 }
 
-//Elevator Receptoin Guards
-
+//============================================================
+// Elevator Receptoin Guards
+//============================================================
 jupe_ele_r,10,50,0	script	Elevator Guard1#ufe	-1,{
 OnInit:
 	disablenpc "Elevator Guard1#ufe";
@@ -4675,8 +4691,9 @@ OnTimer10000:
 	end;
 }
 
-//Elevator NPCs
-
+//============================================================
+// Elevator NPCs
+//============================================================
 jupe_ele,14,6,1	script	TimeOut#ufe	844,{
 OnEnable:
 	initnpctimer;
@@ -5032,8 +5049,9 @@ OnTouch:
 	end;
 }
 
-//Warps
-
+//============================================================
+// Warps
+//============================================================
 jupe_gate,50,173,0	script	gate#start	-1,2,3,{
 	end;
 

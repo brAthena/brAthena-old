@@ -1,24 +1,26 @@
-//  _______________________________________________________
-// /							   \
+//  ________________________________________________________
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
-// |			brAthena Script			    |
+// |                                                        |
+// |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: iRO Repeatable EXP Quests		    |
+// | Nome do Script: iRO Repeatable EXP Quests		   		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			   				|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0				    |
+// | Versões eA/brA: 1.0/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Quest repetível do monstro Creamy.	    |
+// | Descrição: 										    |
+// | Added Monster Killing quests. (Dialog is semi-custom)	|
+// | Repeatable EXP Quest (Powder of Butterfly)				|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \_______________________________________________________/
 
 prt_fild04,356,148,3	script	Laertes#Creamy_Hunt	798,{
@@ -161,7 +163,7 @@ prt_fild04,356,148,3	script	Laertes#Creamy_Hunt	798,{
 				next;
 				switch(select("Gather Items:Hunt Creamys:Cancel")) {
 				case 1:
-					//Item turn in
+					// Item turn in
 					mes "[Laertes]";
 					mes "I need to have a good supply of ^FF0000Powder of Butterfly^000000";
 					next;
@@ -201,7 +203,7 @@ prt_fild04,356,148,3	script	Laertes#Creamy_Hunt	798,{
 						close;
 					}
 				case 2:
-					//Kill Count Quest
+					// Kill Count Quest
 					mes "[Laertes]";
 					mes "Ah, ok I think you can help me out by hunting some Creamys.";
 					mes "How many would you like to hunt?";

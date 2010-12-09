@@ -1,55 +1,48 @@
-//  ___________________________________________________________________________
-// /                                                                           \
-// |                 _           _   _   _                                      |
-// |                | |__  _ __ / \ | |_| |__   ___ _ __   __ _                 |
-// |                | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                |
-// |                | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                |
-// |                |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                |
-// |                                                                            |
-// |                              brAthena Script                               |
-// |----------------------------------------------------------------------------|
-// | Nome do Script: jail.txt                                                   |
-// |----------------------------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team                                               |
-// |----------------------------------------------------------------------------|
-// | Descrição: Configuração Mapflag da Prisão.                                 |
-// |----------------------------------------------------------------------------|
-// | Changelog:                                                                 |
-// | 1.0 Modificação [brAthena]                                                 |
-// | - Anotações                                                                |
-// | pvp: Liga o PVP.                                                           |
-// | pvp_noparty: possibilita atacar pessoas de um mesmo grupo.                 |
-// | nobranch: Não é permitido Galho Seco.                                      |
-// | nomemo: Não é permitido salvar o lugar com a habilidade Portal.            |
-// | nosave: Não é permitido salvar lugar como ponto de retorno.                |
-// | noteleport: Teleporte proibido mesmo com Asa de Mosca ou Asa de Borboleta. |
-// \___________________________________________________________________________/
+//===== eAthena Script =======================================
+//= Map Flags for Jails ( ATCommand @jail <player> )
+//===== By: ==================================================
+//= eAthena Dev Team
+//===== Current Version: =====================================
+//= 1.0
+//===== Compatible With: =====================================
+//=
+//===== Description: =========================================
+//= pvp: Turns on PvP mode
+//= pvp_noparty: Can't attack player in same party
+//= nobranch: No Dead Branching allowed.
+//= nomemo: No Warp Portal Memory Point allowed.
+//= nopenalty: No Exp. penalty when player dies.
+//= nosave: No saving respawn point allowed. Use SavePoint to use the
+//=                players previous savepoint, or choose one manually.
+//= noteleport: No Teleporting allowed.  No f-wings or b-wings.
+//===== Additional Comments: =================================
+//= 
+//============================================================
 
-// Não memorizar.
+
+// No Memory =============================
 sec_pri	mapflag	nomemo
 
-// Não salvar.
+// No Save ===============================
 sec_pri	mapflag	nosave	SavePoint
 
-// Não teletransportar.
+// No Teleport ===========================
 sec_pri	mapflag	noteleport
 
-// Não usar Portal.
+// No Warp ===============================
 sec_pri	mapflag	nowarp
 
-// Não retornar: não deixa os jogadores serem puxados pelo Chamado Urgente ou por Grupo.
+// No Return, Stop people from being pulled out of jail (warpparty/guild)
 sec_pri	mapflag	noreturn
 
-// Não usar Galho Seco.
-sec_pri	mapflag	nobranch
+// Bloody Jail ===========================
+//Uncomment following mapflags to let your prisoners fight with other prisoners
 
-// Prisão sangüinária. É permitido PVP entre os presos.
-
-// PvP
+// PvP ===================================
 sec_pri	mapflag	pvp
 
-// Permite atacar membros do grupo.
+// No Party ==============================
 sec_pri	mapflag	pvp_noparty
 
-// Equipamentos são dropados no modo pesadelo.
+//Nightmare Equipment Drops PVP ==========
 sec_pri	mapflag	pvp_nightmaredrop	random,equip,300

@@ -1,29 +1,30 @@
 //  ________________________________________________________
-// /							    \
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
+// |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Quest NPCs related to Ayothaya	    |
+// | Nome do Script: Quest NPCs related to Ayothaya   		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 2.3/1.0				    |
+// | Versões eA/brA: 2.3/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Quests de Ayothaya: Ayothaya Ring,	    |
-// | yothaya Dungeon, Tom Yum Goong Quests.		    |
+// | Descrição: Ayothaya Ring Quest							|
+// | Ayothaya Dungeon Quest									|
+// | Tom Yum Goong Quest									|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \________________________________________________________/
 
-//Ayothaya Ring Quest
-
+// Ayothaya Ring Quest
+//============================================================
 ayothaya,233,105,3	script	Powerful-Looking Woman	838,2,2,{
 
 	if(thai_find == 14)
@@ -1388,8 +1389,8 @@ ayothaya,193,171,3	script	Old Man#02	842,{
 	
 }
 
-//Ayothaya Dungeon Quest
-
+// Ayothaya Dungeon Quest
+//============================================================
 ayothaya,83,132,0	script	Dusit#thai	843,{
 	if (ayodunquest == 0) {
 		mes "[Dusit]";
@@ -2073,7 +2074,7 @@ ayo_fild02,25,154,0	script	Aik#thai	843,{
 	close;
 }
 
-//Water Traps
+// Water Traps
 ayo_dun01,273,26,0	script	 #th_dun1_1_1::AyoTrap1	111,0,4,{
 	mes "^3355FFYou look down and see a pool";
 	mes "of water in the distance. It looks like a long drop to the bottom.^000000";
@@ -2117,7 +2118,7 @@ ayo_dun01,28,273,0	duplicate(AyoTrap2)	 #th_dun1_10	-1,0,1
 ayo_dun01,27,271,0	duplicate(AyoTrap2)	 #th_dun1_11	-1,1,0
 ayo_dun01,25,271,0	duplicate(AyoTrap2)	 #th_dun1_12	-1
 
-//Hints
+// Hints
 ayo_dun01,156,148,0	script	 #hint01::AyoHint	-1,0,4,{
 OnTouch:
 	if (rand(1,100) > 60 && ayodunquest < 11) {
@@ -2137,7 +2138,7 @@ ayo_dun01,259,42,0	duplicate(AyoHint)	 #hint02	-1,2,0
 ayo_dun01,259,44,0	duplicate(AyoHint)	 #hint02_2	-1,2,0
 ayo_dun01,259,46,0	duplicate(AyoHint)	 #hint02_3	-1,2,0
 
-//Puzzle pieces
+// Puzzle pieces
 ayo_dun01,198,164,0	script	 #hun_thai_1	111,{
 	if (ayodunquest == 3) {
 		set ayodunquest,4;
@@ -2255,8 +2256,8 @@ ayo_dun02,268,108,0	script	 #reward_tiger	111,{
 	}
 }
 
-//Tom Tung Goong Quest
-
+// Tom Tung Goong Quest
+//============================================================
 ayothaya,196,265,3	script	Einon#ayo	842,{
 	if (tomyumgoong == 0) {
 		mes "[Einon]";

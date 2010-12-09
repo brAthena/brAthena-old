@@ -1,29 +1,35 @@
 //  ________________________________________________________
-// /							    \
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
+// |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Quest NPCs related to Louyang	    |
+// | Nome do Script: Quest NPCs related to Louyang	   		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 2.2/1.0				    |
+// | Versões eA/brA: 2.2/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Quests de Lou Yang: Soup, Doctor,	    |
-// | Poison King e Revolution Quests.			    |
+// | Descrição: Soup Quest									|
+// | - Variable in use: che_tre (max 5)						|
+// | Doctor Quest											|
+// | - Variable in use: che_par (max 18)					|
+// | Poison King Quest 										|
+// | - Variable in use: ch_poison (max 20)					|
+// | Revolution Quest										|
+// | - Variable in use: QL_REVO (max 9)						|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \________________________________________________________/
 
-//Soup Quest
-
+// Soup Quest
+//============================================================
 lou_in02,53,174,7	script	Employee#1	822,6,62,{
 	if (gettime(3) >= 10 && gettime(3) < 22) {
 		mes "[Chang Pai]";
@@ -1073,8 +1079,8 @@ louyang,174,150,5	script	Jiu Chi Ling#lou	815,{
 	close;
 }
 
-//Doctor Quest
-
+// Doctor Quest
+//============================================================
 lou_in02,265,69,5	script	Doctor#lyang	814,{
 	//Remove outdated variables and attempt to preserve prior quest progress.
 	if(QL_DOC1STTIME == 1 || QL_DOCQUEST == 1) set ch_par,2;
@@ -2385,15 +2391,15 @@ louyang,125,121,0	warp	Storage Warp#2	1,1,lou_in02,198,161;
 lou_in02,198,159,0	warp	Storage Warp#3	1,1,louyang,124,118;
 lou_in02,203,159,0	warp	Storage Warp#4	1,1,louyang,129,118
 
-//Poison King Quest
-
+// Poison King Quest
+//============================================================
 lou_in02,123,39,4	script	Poison King#lou	824,{
-	//Attempt to preserve prior quest progress.
+	// Attempt to preserve prior quest progress.
 	if (ch_poison == 0 && CL_POISONKING != 0) {
 		if (QL_POISONKING <= 12) set ch_poison,QL_POISONKING;
 		else if (QL_POISONKING == 16) set ch_poison,19;
 		else if (QL_POISONKING >= 17) set ch_poison,20;
-		//Remove outdated variable.
+		// Remove outdated variable.
 		set QL_POISONKING,0;
 	}
 	if (checkweight(1201,1) == 0) {
@@ -4554,8 +4560,8 @@ lou_in01,99,144,4	script	Soldier#bailong4	825,{
 	close;
 }
 
-//Revolution Quest
-
+// Revolution Quest
+//===================================================================
 lou_in02,77,37,7	script	Hermit	824,{
 
 	if(!QL_REVOL)

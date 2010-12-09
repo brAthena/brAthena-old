@@ -8,20 +8,20 @@
 // |                                                        |
 // |                 brAthena Script                        |
 // |--------------------------------------------------------|
-// | Nome do Script: Misc. Message Boards		    |
+// | Nome do Script: Misc. Message Boards		    		|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.6/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição:						    |
-// | Misc. Message Boards for:				    |
-// | - Prontera						    |
-// | - Morroc						    |
-// | - Geffen						    |
-// | - Al De Baran					    |
-// | - Izlude						    |
-// | - Alberta						    |
+// | Descrição:						    					|
+// | Misc. Message Boards for:				    			|
+// | - Prontera						    					|
+// | - Morroc						    					|
+// | - Geffen						    					|
+// | - Al De Baran					    					|
+// | - Izlude						    					|
+// | - Alberta						    					|
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |

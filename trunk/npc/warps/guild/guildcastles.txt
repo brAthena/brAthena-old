@@ -14,19 +14,19 @@
 // |--------------------------------------------------------|
 // | Versões eA/brA: 2.6/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: Portais dos Castelos Aprendizes, Aldebaran, |
-// | Geffen, Juno, Payon, Prontera e seus Calabouços.       |
+// | Descrição:  Warp Points for Al de Baran, Payon, 		|
+// | Prontera, Geffen, and Juno Guild Castles 				|
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    |
+// | - Anotações		   			    					|
 // \________________________________________________________/
 
-//Portais de Ligação dos Castelos de Aldebaran
+//Al de Baran Guild Castles Map Connection
 aldebaran,35,140,0	warp	aldg001	1,1,alde_gld,280,160
 alde_gld,284,160,0	warp	aldg002	1,1,aldebaran,39,140
 
-//Portais dos Castelos de Aldebaran
+//Al de Baran Guild Castles Map
 alde_gld,48,79,0	warp	aldg01	1,1,aldeg_cas01,34,248
 aldeg_cas01,34,252,0	warp	aldg01-1	1,1,alde_gld,48,83
 alde_gld,95,253,0	warp	aldg02	1,1,aldeg_cas02,88,163
@@ -38,7 +38,7 @@ aldeg_cas04,145,17,0	warp	aldg04-1	1,1,alde_gld,239,242
 alde_gld,259,90,0	warp	aldg05	1,1,aldeg_cas05,216,103
 aldeg_cas05,216,107,0	warp	aldg05-1	1,1,alde_gld,264,90
 
-//Portais das Guildas de Aldebaran
+//Al de Baran Guild Castles
 aldeg_cas01,50,222,0	warp	aldg101	1,1,aldeg_cas01,104,108
 aldeg_cas01,104,112,0	warp	aldg101-1	1,1,aldeg_cas01,45,224
 aldeg_cas01,66,191,0	warp	aldg102	1,1,aldeg_cas01,122,61
@@ -124,130 +124,129 @@ aldeg_cas05,166,194,0	warp	aldg506-1	1,1,aldeg_cas05,13,179
 aldeg_cas05,156,231,0	warp	aldg507	1,1,aldeg_cas05,18,88
 aldeg_cas05,14,88,0	warp	aldg507-1	1,1,aldeg_cas05,156,227
 
-//Portais dos Castelos de Geffen
-gef_fild13,112,269,0	warp	gefg05	1,1,gefg_cas03,100,280
-gef_fild13,139,240,0	warp	gefg06	1,1,gefg_cas03,125,250
-gef_fild13,150,54,0	warp	gefg01	1,1,gefg_cas01,34,140
-gef_fild13,196,281,0	warp	gefg08	1,1,gefg_cas04,24,149
-gef_fild13,210,75,0	warp	gefg02	1,1,gefg_cas01,95,178
-gef_fild13,256,57,0	warp	gefg09	1,1,gefg_cas05,11,134
-gef_fild13,305,83,0	warp	gefg09-1	1,1,gefg_cas05,99,200
-gef_fild13,308,244,0	warp	gefg03	1,1,gefg_cas02,70,143
-gef_fild13,77,284,0	warp	gefg04	1,1,gefg_cas03,60,286
-gef_fild13,83,185,0	warp	gefg07	1,1,gefg_cas03,89,159
+// Geffen Castles Map		
+gef_fild13,112,269,0	warp	gefg05	1,1,gefg_cas03,100,280	
+gef_fild13,139,240,0	warp	gefg06	1,1,gefg_cas03,125,250	
+gef_fild13,150,54,0	warp	gefg01	1,1,gefg_cas01,34,140	
+gef_fild13,196,281,0	warp	gefg08	1,1,gefg_cas04,24,149	
+gef_fild13,210,75,0	warp	gefg02	1,1,gefg_cas01,95,178	
+gef_fild13,256,57,0	warp	gefg09	1,1,gefg_cas05,11,134	
+gef_fild13,305,83,0	warp	gefg09-1	1,1,gefg_cas05,99,200	
+gef_fild13,308,244,0	warp	gefg03	1,1,gefg_cas02,70,143	
+gef_fild13,77,284,0	warp	gefg04	1,1,gefg_cas03,60,286	
+gef_fild13,83,185,0	warp	gefg07	1,1,gefg_cas03,89,159	
 
-//Portais das Guildas de Geffen
-gefg_cas01,170,14,0	warp	gefg106-1	1,1,gefg_cas01,50,84
-gefg_cas01,170,34,0	warp	gefg105-1	1,1,gefg_cas01,30,167
-gefg_cas01,181,52,0	warp	gefg107	1,1,gefg_cas01,198,160
-gefg_cas01,202,160,0	warp	gefg107-1	1,1,gefg_cas01,185,52
-gefg_cas01,209,34,0	warp	gefg103-1	1,1,gefg_cas01,56,170
-gefg_cas01,31,185,0	warp	gefg104	1,1,gefg_cas01,33,47
-gefg_cas01,33,51,0	warp	gefg104-1	1,1,gefg_cas01,35,185
-gefg_cas01,34,136,0	warp	gefg01-1	1,1,gef_fild13,150,50
-gefg_cas01,34,167,0	warp	gefg105	1,1,gefg_cas01,174,34
-gefg_cas01,39,196,0	warp	gefg101	1,1,gefg_cas01,62,13
-gefg_cas01,54,84,0	warp	gefg106	1,1,gefg_cas01,174,14
-gefg_cas01,58,185,0	warp	gefg102	1,1,gefg_cas01,90,47
-gefg_cas01,59,170,0	warp	gefg103	1,1,gefg_cas01,205,34
-gefg_cas01,62,9,0	warp	gefg101-1	1,1,gefg_cas01,39,192
-gefg_cas01,90,51,0	warp	gefg102-1	1,1,gefg_cas01,54,185
-gefg_cas01,99,178,0	warp	gefg02-1	1,1,gef_fild13,214,75
-gefg_cas02,148,18,0	warp	gefg205-1	1,1,gefg_cas02,35,150
-gefg_cas02,150,36,0	warp	gefg208	1,1,gefg_cas02,152,186
-gefg_cas02,152,190,0	warp	gefg208-1	1,1,gefg_cas02,150,41
-gefg_cas02,174,11,0	warp	gefg207-1	1,1,gefg_cas02,21,13
-gefg_cas02,184,36,0	warp	gefg204-1	1,1,gefg_cas02,48,155
-gefg_cas02,185,18,0	warp	gefg206-1	1,1,gefg_cas02,53,136
-gefg_cas02,22,160,0	warp	gefg203	1,1,gefg_cas02,34,17
-gefg_cas02,25,13,0	warp	gefg207	1,1,gefg_cas02,170,11
-gefg_cas02,34,13,0	warp	gefg203-1	1,1,gefg_cas02,22,156
-gefg_cas02,34,152,0	warp	gefg205	1,1,gefg_cas02,153,18
-gefg_cas02,34,68,0	warp	gefg202-1	1,1,gefg_cas02,50,175
-gefg_cas02,35,173,0	warp	gefg201	1,1,gefg_cas02,76,42
-gefg_cas02,46,175,0	warp	gefg202	1,1,gefg_cas02,34,64
-gefg_cas02,48,159,0	warp	gefg204	1,1,gefg_cas02,184,41
-gefg_cas02,57,136,0	warp	gefg206	1,1,gefg_cas02,180,18
-gefg_cas02,70,147,0	warp	gefg03-1	1,1,gef_fild13,308,240
-gefg_cas02,80,42,0	warp	gefg201-1	1,1,gefg_cas02,39,173
-gefg_cas03,103,283,0	warp	gefg05-1	1,1,gef_fild13,117,273
-gefg_cas03,106,217,0	warp	gefg307	1,1,gefg_cas03,131,15
-gefg_cas03,115,210,0	warp	gefg308	1,1,gefg_cas03,92,215
-gefg_cas03,130,250,0	warp	gefg06-1	1,1,gef_fild13,143,240
-gefg_cas03,135,15,0	warp	gefg307-1	1,1,gefg_cas03,110,217
-gefg_cas03,135,92,0	warp	gefg302-1	1,1,gefg_cas03,34,282
-gefg_cas03,152,92,0	warp	gefg304-1	1,1,gefg_cas03,59,255
-gefg_cas03,154,16,0	warp	gefg314	1,1,gefg_cas03,252,11
-gefg_cas03,17,206,0	warp	gefg306-1	1,1,gefg_cas03,29,219
-gefg_cas03,212,46,0	warp	gefg315	1,1,gefg_cas03,225,158
-gefg_cas03,225,154,0	warp	gefg315-1	1,1,gefg_cas03,212,42
-gefg_cas03,237,74,0	warp	gefg312-1	1,1,gefg_cas03,62,213
-gefg_cas03,256,11,0	warp	gefg314-1	1,1,gefg_cas03,159,16
-gefg_cas03,266,47,0	warp	gefg309-1	1,1,gefg_cas03,45,175
-gefg_cas03,27,215,0	warp	gefg306-2	1,1,gefg_cas03,17,202
-gefg_cas03,34,286,0	warp	gefg302	1,1,gefg_cas03,131,92
-gefg_cas03,38,243,0	warp	gefg306	1,1,gefg_cas03,29,219
-gefg_cas03,38,259,0	warp	gefg303-1	1,1,gefg_cas03,43,271
-gefg_cas03,42,175,0	warp	gefg309	1,1,gefg_cas03,266,43
-gefg_cas03,43,191,0	warp	gefg310-1	1,1,gefg_cas03,70,185
-gefg_cas03,47,271,0	warp	gefg303	1,1,gefg_cas03,38,255
-gefg_cas03,50,248,0	warp	gefg305	1,1,gefg_cas03,54,229
-gefg_cas03,58,232,0	warp	gefg305-1	1,1,gefg_cas03,62,213
-gefg_cas03,63,255,0	warp	gefg304	1,1,gefg_cas03,156,92
-gefg_cas03,65,215,0	warp	gefg312	1,1,gefg_cas03,233,74
-gefg_cas03,66,223,0	warp	gefg301	1,1,gefg_cas03,96,53
-gefg_cas03,68,290,0	warp	gefg04-1	1,1,gef_fild13,74,287
-gefg_cas03,70,182,0	warp	gefg310	1,1,gefg_cas03,39,191
-gefg_cas03,79,244,0	warp	gefg313-1	1,1,gefg_cas03,91,250
-gefg_cas03,88,248,0	warp	gefg311-1	1,1,gefg_cas03,76,242
-gefg_cas03,90,218,0	warp	gefg308-1	1,1,gefg_cas03,111,210
-gefg_cas03,92,53,0	warp	gefg301-1	1,1,gefg_cas03,62,223
-gefg_cas03,93,159,0	warp	gefg07-1	1,1,gef_fild13,83,181
-gefg_cas03,93,209,0	warp	gefg311	1,1,gefg_cas03,92,250
-gefg_cas03,95,251,0	warp	gefg313	1,1,gefg_cas03,91,209
-gefg_cas04,140,168,0	warp	gefg407-1	1,1,gefg_cas04,178,61
-gefg_cas04,142,33,0	warp	gefg406-1	1,1,gefg_cas04,52,21
-gefg_cas04,142,55,0	warp	gefg404-1	1,1,gefg_cas04,32,180
-gefg_cas04,174,36,0	warp	gefg403-1	1,1,gefg_cas04,53,192
-gefg_cas04,178,57,0	warp	gefg407	1,1,gefg_cas04,143,166
-gefg_cas04,18,82,0	warp	gefg401-1	1,1,gefg_cas04,34,215
-gefg_cas04,18,9,0	warp	gefg402-1	1,1,gefg_cas04,57,220
-gefg_cas04,24,145,0	warp	gefg08-1	1,1,gef_fild13,193,278
-gefg_cas04,27,180,0	warp	gefg404	1,1,gefg_cas04,142,59
-gefg_cas04,34,211,0	warp	gefg401	1,1,gefg_cas04,18,78
-gefg_cas04,42,81,0	warp	gefg405	1,1,gefg_cas04,42,13
-gefg_cas04,42,9,0	warp	gefg405-1	1,1,gefg_cas04,42,77
-gefg_cas04,52,25,0	warp	gefg406	1,1,gefg_cas04,142,37
-gefg_cas04,53,196,0	warp	gefg403	1,1,gefg_cas04,170,36
-gefg_cas04,57,224,0	warp	gefg402	1,1,gefg_cas04,18,13
-gefg_cas05,149,44,0	warp	gefg506-1	1,1,gefg_cas05,37,20
-gefg_cas05,178,72,0	warp	gefg501-1	1,1,gefg_cas05,46,165
-gefg_cas05,190,20,0	warp	gefg508	1,1,gefg_cas05,194,151
-gefg_cas05,194,147,0	warp	gefg508-1	1,1,gefg_cas05,190,16
-gefg_cas05,206,44,0	warp	gefg507-1	1,1,gefg_cas05,93,20
-gefg_cas05,37,16,0	warp	gefg506	1,1,gefg_cas05,153,44
-gefg_cas05,43,62,0	warp	gefg505-1	1,1,gefg_cas05,78,138
-gefg_cas05,44,143,0	warp	gefg503	1,1,gefg_cas05,70,155
-gefg_cas05,50,165,0	warp	gefg501	1,1,gefg_cas05,178,68
-gefg_cas05,66,76,0	warp	gefg504-1	1,1,gefg_cas05,80,155
-gefg_cas05,68,150,0	warp	gefg503-1	1,1,gefg_cas05,44,147
-gefg_cas05,7,134,0	warp	gefg10	1,1,gef_fild13,252,57
-gefg_cas05,74,138,0	warp	gefg505	1,1,gefg_cas05,47,62
-gefg_cas05,83,152,0	warp	gefg504	1,1,gefg_cas05,66,72
-gefg_cas05,87,165,0	warp	gefg502	1,1,gefg_cas05,84,62
-gefg_cas05,88,62,0	warp	gefg502-1	1,1,gefg_cas05,83,165
+//Geffen Guild Castles
+gefg_cas01,170,14,0	warp	gefg106-1	1,1,gefg_cas01,50,84	
+gefg_cas01,170,34,0	warp	gefg105-1	1,1,gefg_cas01,30,167	
+gefg_cas01,181,52,0	warp	gefg107	1,1,gefg_cas01,198,160	
+gefg_cas01,202,160,0	warp	gefg107-1	1,1,gefg_cas01,185,52	
+gefg_cas01,209,34,0	warp	gefg103-1	1,1,gefg_cas01,56,170	
+gefg_cas01,31,185,0	warp	gefg104	1,1,gefg_cas01,33,47	
+gefg_cas01,33,51,0	warp	gefg104-1	1,1,gefg_cas01,35,185	
+gefg_cas01,34,136,0	warp	gefg01-1	1,1,gef_fild13,150,50	
+gefg_cas01,34,167,0	warp	gefg105	1,1,gefg_cas01,174,34	
+gefg_cas01,39,196,0	warp	gefg101	1,1,gefg_cas01,62,13	
+gefg_cas01,54,84,0	warp	gefg106	1,1,gefg_cas01,174,14	
+gefg_cas01,58,185,0	warp	gefg102	1,1,gefg_cas01,90,47	
+gefg_cas01,59,170,0	warp	gefg103	1,1,gefg_cas01,205,34	
+gefg_cas01,62,9,0	warp	gefg101-1	1,1,gefg_cas01,39,192	
+gefg_cas01,90,51,0	warp	gefg102-1	1,1,gefg_cas01,54,185	
+gefg_cas01,99,178,0	warp	gefg02-1	1,1,gef_fild13,214,75	
+gefg_cas02,148,18,0	warp	gefg205-1	1,1,gefg_cas02,35,150	
+gefg_cas02,150,36,0	warp	gefg208	1,1,gefg_cas02,152,186	
+gefg_cas02,152,190,0	warp	gefg208-1	1,1,gefg_cas02,150,41	
+gefg_cas02,174,11,0	warp	gefg207-1	1,1,gefg_cas02,21,13	
+gefg_cas02,184,36,0	warp	gefg204-1	1,1,gefg_cas02,48,155	
+gefg_cas02,185,18,0	warp	gefg206-1	1,1,gefg_cas02,53,136	
+gefg_cas02,22,160,0	warp	gefg203	1,1,gefg_cas02,34,17	
+gefg_cas02,25,13,0	warp	gefg207	1,1,gefg_cas02,170,11	
+gefg_cas02,34,13,0	warp	gefg203-1	1,1,gefg_cas02,22,156	
+gefg_cas02,34,152,0	warp	gefg205	1,1,gefg_cas02,153,18	
+gefg_cas02,34,68,0	warp	gefg202-1	1,1,gefg_cas02,50,175	
+gefg_cas02,35,173,0	warp	gefg201	1,1,gefg_cas02,76,42	
+gefg_cas02,46,175,0	warp	gefg202	1,1,gefg_cas02,34,64	
+gefg_cas02,48,159,0	warp	gefg204	1,1,gefg_cas02,184,41	
+gefg_cas02,57,136,0	warp	gefg206	1,1,gefg_cas02,180,18	
+gefg_cas02,70,147,0	warp	gefg03-1	1,1,gef_fild13,308,240	
+gefg_cas02,80,42,0	warp	gefg201-1	1,1,gefg_cas02,39,173	
+gefg_cas03,103,283,0	warp	gefg05-1	1,1,gef_fild13,117,273	
+gefg_cas03,106,217,0	warp	gefg307	1,1,gefg_cas03,131,15	
+gefg_cas03,115,210,0	warp	gefg308	1,1,gefg_cas03,92,215	
+gefg_cas03,130,250,0	warp	gefg06-1	1,1,gef_fild13,143,240	
+gefg_cas03,135,15,0	warp	gefg307-1	1,1,gefg_cas03,110,217	
+gefg_cas03,135,92,0	warp	gefg302-1	1,1,gefg_cas03,34,282	
+gefg_cas03,152,92,0	warp	gefg304-1	1,1,gefg_cas03,59,255	
+gefg_cas03,154,16,0	warp	gefg314	1,1,gefg_cas03,252,11	
+gefg_cas03,17,206,0	warp	gefg306-1	1,1,gefg_cas03,29,219	
+gefg_cas03,212,46,0	warp	gefg315	1,1,gefg_cas03,225,158	
+gefg_cas03,225,154,0	warp	gefg315-1	1,1,gefg_cas03,212,42	
+gefg_cas03,237,74,0	warp	gefg312-1	1,1,gefg_cas03,62,213	
+gefg_cas03,256,11,0	warp	gefg314-1	1,1,gefg_cas03,159,16	
+gefg_cas03,266,47,0	warp	gefg309-1	1,1,gefg_cas03,45,175	
+gefg_cas03,27,215,0	warp	gefg306-2	1,1,gefg_cas03,17,202	
+gefg_cas03,34,286,0	warp	gefg302	1,1,gefg_cas03,131,92	
+gefg_cas03,38,243,0	warp	gefg306	1,1,gefg_cas03,29,219	
+gefg_cas03,38,259,0	warp	gefg303-1	1,1,gefg_cas03,43,271	
+gefg_cas03,42,175,0	warp	gefg309	1,1,gefg_cas03,266,43	
+gefg_cas03,43,191,0	warp	gefg310-1	1,1,gefg_cas03,70,185	
+gefg_cas03,47,271,0	warp	gefg303	1,1,gefg_cas03,38,255	
+gefg_cas03,50,248,0	warp	gefg305	1,1,gefg_cas03,54,229	
+gefg_cas03,58,232,0	warp	gefg305-1	1,1,gefg_cas03,62,213	
+gefg_cas03,63,255,0	warp	gefg304	1,1,gefg_cas03,156,92	
+gefg_cas03,65,215,0	warp	gefg312	1,1,gefg_cas03,233,74	
+gefg_cas03,66,223,0	warp	gefg301	1,1,gefg_cas03,96,53	
+gefg_cas03,68,290,0	warp	gefg04-1	1,1,gef_fild13,74,287	
+gefg_cas03,70,182,0	warp	gefg310	1,1,gefg_cas03,39,191	
+gefg_cas03,79,244,0	warp	gefg313-1	1,1,gefg_cas03,91,250	
+gefg_cas03,88,248,0	warp	gefg311-1	1,1,gefg_cas03,76,242	
+gefg_cas03,90,218,0	warp	gefg308-1	1,1,gefg_cas03,111,210	
+gefg_cas03,92,53,0	warp	gefg301-1	1,1,gefg_cas03,62,223	
+gefg_cas03,93,159,0	warp	gefg07-1	1,1,gef_fild13,83,181	
+gefg_cas03,93,209,0	warp	gefg311	1,1,gefg_cas03,92,250	
+gefg_cas03,95,251,0	warp	gefg313	1,1,gefg_cas03,91,209	
+gefg_cas04,140,168,0	warp	gefg407-1	1,1,gefg_cas04,178,61	
+gefg_cas04,142,33,0	warp	gefg406-1	1,1,gefg_cas04,52,21	
+gefg_cas04,142,55,0	warp	gefg404-1	1,1,gefg_cas04,32,180	
+gefg_cas04,174,36,0	warp	gefg403-1	1,1,gefg_cas04,53,192	
+gefg_cas04,178,57,0	warp	gefg407	1,1,gefg_cas04,143,166	
+gefg_cas04,18,82,0	warp	gefg401-1	1,1,gefg_cas04,34,215	
+gefg_cas04,18,9,0	warp	gefg402-1	1,1,gefg_cas04,57,220	
+gefg_cas04,24,145,0	warp	gefg08-1	1,1,gef_fild13,193,278	
+gefg_cas04,27,180,0	warp	gefg404	1,1,gefg_cas04,142,59	
+gefg_cas04,34,211,0	warp	gefg401	1,1,gefg_cas04,18,78	
+gefg_cas04,42,81,0	warp	gefg405	1,1,gefg_cas04,42,13	
+gefg_cas04,42,9,0	warp	gefg405-1	1,1,gefg_cas04,42,77	
+gefg_cas04,52,25,0	warp	gefg406	1,1,gefg_cas04,142,37	
+gefg_cas04,53,196,0	warp	gefg403	1,1,gefg_cas04,170,36	
+gefg_cas04,57,224,0	warp	gefg402	1,1,gefg_cas04,18,13	
+gefg_cas05,149,44,0	warp	gefg506-1	1,1,gefg_cas05,37,20	
+gefg_cas05,178,72,0	warp	gefg501-1	1,1,gefg_cas05,46,165	
+gefg_cas05,190,20,0	warp	gefg508	1,1,gefg_cas05,194,151	
+gefg_cas05,194,147,0	warp	gefg508-1	1,1,gefg_cas05,190,16	
+gefg_cas05,206,44,0	warp	gefg507-1	1,1,gefg_cas05,93,20	
+gefg_cas05,37,16,0	warp	gefg506	1,1,gefg_cas05,153,44	
+gefg_cas05,43,62,0	warp	gefg505-1	1,1,gefg_cas05,78,138	
+gefg_cas05,44,143,0	warp	gefg503	1,1,gefg_cas05,70,155	
+gefg_cas05,50,165,0	warp	gefg501	1,1,gefg_cas05,178,68	
+gefg_cas05,66,76,0	warp	gefg504-1	1,1,gefg_cas05,80,155	
+gefg_cas05,68,150,0	warp	gefg503-1	1,1,gefg_cas05,44,147	
+gefg_cas05,7,134,0	warp	gefg10	1,1,gef_fild13,252,57	
+gefg_cas05,74,138,0	warp	gefg505	1,1,gefg_cas05,47,62	
+gefg_cas05,83,152,0	warp	gefg504	1,1,gefg_cas05,66,72	
+gefg_cas05,87,165,0	warp	gefg502	1,1,gefg_cas05,84,62	
+gefg_cas05,88,62,0	warp	gefg502-1	1,1,gefg_cas05,83,165	
 gefg_cas05,93,16,0	warp	gefg507	1,1,gefg_cas05,202,44	
 gefg_cas05,99,204,0	warp	gefg10-1	1,1,gef_fild13,305,87
 
-//Portais de Ligação dos Castelos de Payon
-//Temporariamente desabilitados e repassados para payon.txt
+//Payon Guild Castles Map Connection
 // Temp Disabled till i replace them from the ones in payon.txt!!
 //payon,17,151,0	warp	payg001	1,1,pay_gld,370,149
 //pay_gld,374,149,0	warp	payg001-1	1,1,payon,21,151
 moc_fild02,378,272,0	warp	payg002	1,1,pay_gld,20,276
 pay_gld,16,276,0	warp	payg002-1	1,1,moc_fild02,374,272
 
-//Portais dos Castelos de Payon
+//Payon Guild Castles Map
 pay_gld,121,238,0	warp	payg01	1,1,payg_cas01,214,48
 payg_cas01,214,44,0	warp	payg01-1	1,1,pay_gld,121,233
 pay_gld,291,116,0	warp	payg02	1,1,payg_cas02,272,57
@@ -259,7 +258,7 @@ payg_cas04,252,275,0	warp	payg04-1	1,1,pay_gld,140,160
 pay_gld,204,269,0	warp	payg05	3,1,payg_cas05,62,225
 payg_cas05,62,222,0	warp	payg05-1	5,1,pay_gld,204,266
 
-//Portais das Guildas de Payon
+//Payon Guild Castles
 payg_cas01,201,125,0	warp	payg101	1,1,payg_cas01,102,19
 payg_cas01,102,16,0	warp	payg101-1	3,1,payg_cas01,201,122
 payg_cas01,222,130,0	warp	payg102	1,1,payg_cas01,130,43
@@ -318,7 +317,7 @@ payg_cas05,290,43,0	warp	payg504-1	1,1,payg_cas05,287,256
 payg_cas05,242,41,0	warp	payg505	1,1,payg_cas05,18,18
 payg_cas05,14,14,0	warp	payg505-1	1,1,payg_cas05,246,41
 
-//Portais dos Castelos de Prontera
+//Prontera Castles Map
 prt_gld,107,240,0	warp	prtg04-1	1,1,prtg_cas04,86,13
 prt_gld,129,65,0	warp	prtg01	1,1,prtg_cas01,99,32
 prt_gld,153,141,0	warp	prtg03-1	1,1,prtg_cas03,168,12
@@ -327,7 +326,7 @@ prt_gld,159,298,0	warp	prtg001	1,1,prt_fild01,199,30
 prt_gld,212,240,0	warp	prtg05-1	1,1,prtg_cas05,17,235
 prt_gld,240,124,0	warp	prtg02-1	1,1,prtg_cas02,43,229
 
-//Portais das Guildas de Prontera
+//Prontera Guild Castles
 prtg_cas01,103,32,0	warp	prtg01-1	1,1,prt_gld,134,65
 prtg_cas01,109,163,0	warp	prtg107	1,1,prtg_cas01,202,183
 prtg_cas01,147,120,0	warp	prtg106	1,1,prtg_cas01,75,187
@@ -400,13 +399,12 @@ prtg_cas05,58,7,0	warp	prtg506	1,1,prtg_cas05,253,290
 prtg_cas05,66,225,0	warp	prtg503	1,1,prtg_cas05,260,92
 prtg_cas05,76,242,0	warp	prtg502	1,1,prtg_cas05,288,13
 
-//Episódio 12: WoE:SE
-
-//Portais de Ligação dos Castelos de Juno Schwaltzvalt
+// Episode 12: WoE:SE
+// Schwaltzvalt Guild Castles Map Connection
 yuno,13,126,0	warp	schg001	1,1,sch_gld,351,89
 sch_gld,354,89,0	warp	schg002	1,1,yuno,16,126
 
-//Portais dos Castelos de Juno Schwaltzvalt
+// Schwaltzvalt Castle Maps
 schg_cas01,119,4,0	warp	schg101	1,1,sch_gld,293,100
 sch_gld,293,90,0	warp	schg102	1,1,schg_cas01,119,8
 schg_cas01,275,240,0	warp	schg103	1,1,schg_cas01,120,7
@@ -423,11 +421,11 @@ schg_cas05,119,4,0	warp	schg501	1,1,sch_gld,71,315
 sch_gld,65,315,0	warp	schg502	1,1,schg_cas05,119,8
 schg_cas05,275,240,0	warp	schg503	1,1,schg_cas05,120,7
 
-//Portais de Ligação dos Castelos de Rachel Arunafeltz
+// Arunafeltz Map Guild Castles Map Connection
 ve_fild02,191,21,0	warp	arug001	1,1,aru_gld,195,360
 aru_gld,195,363,0	warp	arug002	1,1,ve_fild02,191,24
 
-//Portais dos Castelos de Rachel Arunafeltz
+// Arunafeltz Castle Maps
 arug_cas01,281,93,0	warp	arug101	1,1,aru_gld,158,272
 aru_gld,155,274,0	warp	arug102	1,1,arug_cas01,275,93
 arug_cas01,127,357,0	warp	arug103	1,1,arug_cas01,275,93
@@ -444,9 +442,8 @@ arug_cas05,141,40,0	warp	arug501	1,1,aru_gld,292,107
 aru_gld,287,107,0	warp	arug502	1,1,arug_cas05,141,45
 arug_cas05,321,52,0	warp	arug503	1,1,arug_cas05,141,45
 
-//============ 4 Castelos das Guildas Aprendizes ============
-
-//Portais das Guildas Aprendizes de Aldebaran
+//==================  4 Novices Guild Castles =============================
+//Novices Guild: Al de Baran Guild Castles Map
 n_castle,184,16,0	warp	naldg01	1,1,nguild_alde,34,248
 nguild_alde,34,252,0	warp	naldg01-1	1,1,n_castle,187,16
 
@@ -468,27 +465,27 @@ nguild_alde,46,197,0	warp	naldg107-1	1,1,nguild_alde,232,182
 nguild_alde,171,175,0	warp	naldg108	1,1,nguild_alde,35,197
 nguild_alde,31,197,0	warp	naldg108-1	1,1,nguild_alde,175,175
 
-//Portais das Guildas Aprendizes de Geffen
+//Novices Guild: Geffen Castles Map		
 n_castle,183,183,0	warp	ngefg01	1,1,nguild_gef,34,140
 nguild_gef,34,136,0	warp	ngefg01-1	1,1,n_castle,183,180
 nguild_gef,99,178,0	warp	ngefg02-1	1,1,n_castle,183,180
 
-nguild_gef,170,14,0	warp	ngefg106-1	1,1,nguild_gef,50,84
-nguild_gef,170,34,0	warp	ngefg105-1	1,1,nguild_gef,30,167
-nguild_gef,181,52,0	warp	ngefg107	1,1,nguild_gef,198,160
-nguild_gef,202,160,0	warp	ngefg107-1	1,1,nguild_gef,185,52
-nguild_gef,209,34,0	warp	ngefg103-1	1,1,nguild_gef,56,170
-nguild_gef,31,185,0	warp	ngefg104	1,1,nguild_gef,33,47
-nguild_gef,33,51,0	warp	ngefg104-1	1,1,nguild_gef,35,185
-nguild_gef,34,167,0	warp	ngefg105	1,1,nguild_gef,174,34
-nguild_gef,39,196,0	warp	ngefg101	1,1,nguild_gef,62,13
-nguild_gef,54,84,0	warp	ngefg106	1,1,nguild_gef,174,14
-nguild_gef,58,185,0	warp	ngefg102	1,1,nguild_gef,90,47
-nguild_gef,59,170,0	warp	ngefg103	1,1,nguild_gef,205,34
-nguild_gef,62,9,0	warp	ngefg101-1	1,1,nguild_gef,39,192
-nguild_gef,90,51,0	warp	ngefg102-1	1,1,nguild_gef,54,185
+nguild_gef,170,14,0	warp	ngefg106-1	1,1,nguild_gef,50,84	
+nguild_gef,170,34,0	warp	ngefg105-1	1,1,nguild_gef,30,167	
+nguild_gef,181,52,0	warp	ngefg107	1,1,nguild_gef,198,160	
+nguild_gef,202,160,0	warp	ngefg107-1	1,1,nguild_gef,185,52	
+nguild_gef,209,34,0	warp	ngefg103-1	1,1,nguild_gef,56,170	
+nguild_gef,31,185,0	warp	ngefg104	1,1,nguild_gef,33,47	
+nguild_gef,33,51,0	warp	ngefg104-1	1,1,nguild_gef,35,185	
+nguild_gef,34,167,0	warp	ngefg105	1,1,nguild_gef,174,34	
+nguild_gef,39,196,0	warp	ngefg101	1,1,nguild_gef,62,13	
+nguild_gef,54,84,0	warp	ngefg106	1,1,nguild_gef,174,14	
+nguild_gef,58,185,0	warp	ngefg102	1,1,nguild_gef,90,47	
+nguild_gef,59,170,0	warp	ngefg103	1,1,nguild_gef,205,34	
+nguild_gef,62,9,0	warp	ngefg101-1	1,1,nguild_gef,39,192	
+nguild_gef,90,51,0	warp	ngefg102-1	1,1,nguild_gef,54,185	
 
-//Portais das Guildas Aprendizes de Payon
+//Novices Guild: Payon Guild Castles Map
 n_castle,18,181,0	warp	npayg01	1,1,nguild_pay,214,48
 nguild_pay,214,44,0	warp	npayg01-1	1,1,n_castle,18,178
 
@@ -505,7 +502,7 @@ nguild_pay,11,115,0	warp	npayg105-1	1,1,nguild_pay,81,15
 nguild_pay,53,111,0	warp	npayg106	1,1,nguild_pay,115,147
 nguild_pay,115,151,0	warp	npayg106-1	1,1,nguild_pay,53,115
 
-//Portais das Guildas Aprendizes de Prontera
+//Novices Guild: Prontera Castles Map
 n_castle,16,14,0	warp	nprtg01	1,1,nguild_prt,99,32
 nguild_prt,103,32,0	warp	nprtg01-1	1,1,n_castle,19,14
 
@@ -526,7 +523,7 @@ nguild_prt,75,183,0	warp	nprtg106-1	1,1,nguild_prt,147,116
 nguild_prt,84,19,0	warp	nprtg109	1,1,nguild_prt,192,65
 nguild_prt,84,49,0	warp	nprtg101-1	1,1,nguild_prt,61,19
 
-//Portais dos Calabouços das Guildas (WoE 1.0)
+//Guild Dungeons
 gld_dun01,119,14,0	warp	gldd_001	1,1,pay_gld,53,141
 gld_dun02,180,112,0	warp	gldd_002	1,1,alde_gld,242,121
 gld_dun02,20,160,0	warp	gldd_003	1,1,alde_gld,229,185
@@ -534,6 +531,3 @@ gld_dun03,42,30,0	warp	gldd_004	1,1,prt_gld,63,66
 gld_dun03,238,274,0	warp	gldd_005	1,1,prt_gld,252,247
 gld_dun04,37,230,0	warp	gldd_006	1,1,gef_fild13,42,331
 gld_dun04,110,20,0	warp	gldd_007	1,1,gef_fild13,373,62
-
-//Portais dos Calabouços das Guildas (WoE 2.0).
-//Estes mapas não são acessíveis por portais: schg_dun01, arug_dun01.

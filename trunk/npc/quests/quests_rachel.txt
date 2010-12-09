@@ -1,28 +1,48 @@
 //  ________________________________________________________
-// /							    \
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
+// |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Quest NPCs related to Rachel	    |
+// | Nome do Script: Rachel Quests				    		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 3.3a/1.0				    |
+// | Versões eA/brA: 3.4/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Quests de Rachel: Collection of Rachel	    |
-// | Quests, Bruspetti, Ice Necklace e Sanctuary Quests.    |
+// | Descrição: Collection of Rachel Quests 				|
+// | Lost Child Quest:										|
+// | - End of quest coincides with opening the Sanctuary.	|
+// | - Variable in use: lost_boy (max 13)					|
+// | Bruspetti Quest:										|
+// | - [Aegis conversion]									|
+// | - Requires friendship quest as a prerequisite.			|
+// | - Variable in use: rach_vice (max 24)					|
+// | Ice Necklace Quest:									|
+// | - iRO uses a different sprite for Urstia, and no cutins|
+// | - Variable in use: ice_necklace_q (max 7)				|
+// | Sanctuary Quest:										|
+// | - Actually two quests in one. Donation and 			|
+// | 	dungeon quest.										|
+// | - Requires 10000 donations before players can start 	|
+// | 	the quest.											|
+// | - Variable in use: ra_tem_q (max 23) (unset at end)	|
+// | - Variable in use: Once completed MISC_QUEST			|
+// |  	bit 8192 is set										|
+// | - Variable in use: ra_have_donated (0 no/1 yes)		|
+// | - Variable in use: $rachel_donate (max 10000)			|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \________________________________________________________/
 
-//Lost Child Quest (Prerequisite to High Priest quest)
+// Lost Child Quest (Prerequisite to High Priest quest)
+//============================================================ 
 ra_in01,384,246,3	script	Vincent#ra_in01	47,{
 	if (BaseLevel < 60) {
 		mes "[Vincent]";
@@ -1247,9 +1267,12 @@ rachel,263,32,3	script	Kid#ra_in01	931,{
 	}
 
 }
+
 //End of Lost Child quest
+//============================================================ 
 
 //Bruspetti Quest (Perequisite: Lighthalzen "Friendship" quest)
+//============================================================ 
 ra_in01,235,194,5	script	Katinshuell	931,{
 	if (rach_vice > 21) {
 		mes "[Katinshuell]";
@@ -2687,10 +2710,12 @@ ra_in01,255,25,0	script	Book#ra_in	111,{
 	}
 
 }
+
 //End of Bruspetti quest
+//============================================================ 
 
-//Ice Necklace/Summon Ktullanux Quest and Glacial Heart buyer
-
+// Ice Necklace/Summon Ktullanux Quest and Glacial Heart buyer
+//============================================================ 
 //iRO Changed this NPC to avoid "offending" people.
 //To enable how it originally looked, uncomment the
 //line below (npc header), and comment the line
@@ -2838,6 +2863,7 @@ rachel,157,183,3	script	Sincere Follower Urstia	916,{
 			mes "to restore its luster. Then,";
 			mes "it'll be a fitting tribute to";
 			mes "our loving goddess Freya.";
+			setquest 2109;
 			getitem 7572,1; //Magic_Necklace
 			set ice_necklace_q,1;
 			close2;
@@ -2877,6 +2903,7 @@ rachel,157,183,3	script	Sincere Follower Urstia	916,{
 			mes " what you have done for me.";
 			delitem 7573,1; //Magic_Necklace_
 			getexp 700000,0;
+			completequest 2113;
 			set ice_necklace_q,6;
 			next;
 			mes "["+strcharinfo(0)+"]";
@@ -3104,6 +3131,7 @@ ice_dun02,120,105,3	script	Man Stuck in Ice#cave	924,5,5,{
 		mes "this prison of ice. He can";
 		mes "be found near Freya's Spring:";
 		mes "beseech him on my behalf!";
+		changequest 2109,2110;
 		set ice_necklace_q,2;
 		close2;
 		cutin "",255;
@@ -3230,6 +3258,7 @@ ice_dun02,120,105,3	script	Man Stuck in Ice#cave	924,5,5,{
 		delitem 7569,1; //Wind Of_Hammer
 		getitem 7574,4; //Freezing Snow Powder
 		getitem 7573,1; //Magic_Necklace_
+		changequest 2112,2113;
 		set ice_necklace_q,5;
 		close2;
 		cutin "",255;
@@ -3335,6 +3364,7 @@ rachel,265,98,3	script	Hamion#aru	930,{
 		mes "not one of those smithing tools.";
 		mes "I'd help you if I could, but...";
 		mes "I'm just smart, not strong.";
+		changequest 2110,2111;
 		set ice_necklace_q,3;
 		close;
 	}
@@ -3405,6 +3435,7 @@ rachel,265,98,3	script	Hamion#aru	930,{
 		delitem 1354,1; //Empty_Scroll
 		delitem 7433,1; //Hammer
 		getitem 7569,1; //Hammer_of_Wind
+		changequest 2111,2112;
 		set ice_necklace_q,4;
 		close;
 	}
@@ -3848,9 +3879,13 @@ OnEnable:
 	end;
 
 }
-//End of Ice Necklace/Summon Ktullanux Quest
 
-//Donation Lottery Quest/High Priest Quest
+// End of Ice Necklace/Summon Ktullanux Quest
+//============================================================ 
+
+
+// Donation Lottery Quest/High Priest Quest
+//============================================================ 
 ra_temple,119,180,0	script	Temple Entrance#ra_tem	45,1,1,{
 OnTouch:
 	if ($rachel_donate >= 10000) {
@@ -5416,9 +5451,9 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 		end;
 	}
 	else if (MISC_QUEST & 8192) {
-		//Start Veins "Thor Volcano Base" Quest Addition
+		// Start Veins "Thor Volcano Base" Quest Addition
 		if (rachel_camel == 25) {
-			//Start Nameless Island Access Quest Addition
+			// Start Nameless Island Access Quest Addition
 			if (aru_monas == 11) {
 				cutin "ra_gman",2;
 				mes "[High Priest Zhed]";
@@ -5488,7 +5523,7 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 					break;
 				}
 			}
-			//End Nameless Island Access Quest Addition.
+			// End Nameless Island Access Quest Addition.
 			else if (aru_vol == 0) {
 				cutin "ra_gman",2;
 				mes "[High Priest Zhed]";
@@ -5718,6 +5753,7 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 				mes "of a really good way";
 				mes "for you to infiltrate";
 				mes "that place. Hmmmm...";
+				setquest 2114;
 				set aru_vol,1;
 				close2;
 				cutin "ra_gman",255;
@@ -5890,6 +5926,7 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 					mes "best chance of entering the Thor";
 					mes "Volcano camp without suspicion.";
 					delitem 7342,1; //File01
+					changequest 2115,2116;
 					set aru_vol,6;
 				}
 				else {
@@ -5964,6 +6001,7 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 				mes "I will be contacting you again.";
 				mes "Together, we can protect";
 				mes "peace between our nations.";
+				completequest 60213;
 				set aru_vol,27;
 				getexp 200000,0;
 				close2;
@@ -5971,7 +6009,7 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 				end;
 			}
 			else if (aru_vol > 26) {
-				//Start Peace to Arunafeltz addition
+				// Start Peace to Arunafeltz addition
 				if (aru_em < 7) {
 					mes "[High Priest Zhed]";
 					mes "I'll be sure to contact";
@@ -6413,7 +6451,7 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 					mes "on all your journeys,";
 					mes "my good friend.";
 				}
-				//End Peace to Arunafeltz addition
+				// End Peace to Arunafeltz addition
 			}
 			else {
 				cutin "ra_gman",2;
@@ -6429,7 +6467,7 @@ ra_temin,277,159,3	script	High Priest Zhed#rachel	932,{
 			mes "I should rest for now.";
 			mes "Please travel in safety.";
 		}
-	//End Veins "Thor Volcano Base" Quest Addition.
+	// End Veins "Thor Volcano Base" Quest Addition.
 	}
 	else {
 		cutin "ra_gman",2;
@@ -7631,4 +7669,6 @@ OnTouch:
 	}
 
 }
-//End of Donation Lottery/High Priest quest
+
+// End of Donation Lottery/High Priest quest
+//============================================================

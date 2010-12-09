@@ -8,17 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Hugel Monster Races		    |
+// | Nome do Script: Hugel Monster Races		    		|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.4a/1.0                               |
+// | Versões eA/brA: 1.4/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição:						    |
-// | - Hugel Monster Races (Single and Double)		    |
+// | Descrição:						    					|
+// | - Hugel Monster Races (Single and Double)		    	|
 // | - Prize Medal Exchanging, and Monster Track NPCs.	    |
-// | - Contains both euRO and iRO dialog.		    |
-// | - There are no permenent variables.		    |
+// | - Contains both euRO and iRO dialog.		    		|
+// | - There are no permenent variables.		    		|
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |

@@ -15,11 +15,14 @@
 // | Versões eA/brA: 1.02/1.0                               |
 // |--------------------------------------------------------|
 // | Descrição:                                             |
-// |                                                        |
+// | Skill Reset with payment, minimum BaseLv.60 			|
+// | to reset skill.										|
+// | Each 1 BaseLv need 20.000 Zeny, so be careful			|
+// | to use skill.											|
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    | 
+// | - Anotações		   			   						| 
 // \________________________________________________________/
 
 yuno,138,187,4	script	Hypnotist Teacher	124,{

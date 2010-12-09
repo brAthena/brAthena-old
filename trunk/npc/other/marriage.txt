@@ -8,21 +8,21 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Player Marriage			    |
+// | Nome do Script: Player Marriage			   			|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.2/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição:						    |
-// | Official Marriage script.				    |
+// | Descrição:						    					|
+// | Official Marriage script.				    			|
 // | Added isloggedin() check, even though Aegis doesn't    |
-// | do it.						    |
-// | Currently does not support same-sex marriages.	    |
-// | Old script located in: npc/custom/marriage.txt	    |
-// | - Variable in use: wedding_sign (max 1)		    |
-// | - Variable in use: $Wedding (max 1)        	    |
-// | - Variab;e in use: $wed_groom$ $wed_bride$             |
+// | do it.						    						|
+// | Currently does not support same-sex marriages.	    	|
+// | Old script located in: npc/custom/marriage.txt	    	|
+// | - Variable in use: wedding_sign (max 1)		    	|
+// | - Variable in use: $Wedding (max 1)        	    	|
+// | - Variable in use: $wed_groom$ $wed_bride$             |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |

@@ -1,32 +1,36 @@
-//  _______________________________________________________
-// /							   \
+//  ________________________________________________________
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
-// |			brAthena Script			    |
+// |                                                        |
+// |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Magican Class Tutorial and Job Quest   |
+// | Nome do Script:								   		|
+// | 	Magican Class Tutorial and Job Specific Quest		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			   				|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.2/1.0				    |
+// | Versões eA/brA: 1.2/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Quest e Tutorial da Profissão Mago.	    |
+// | Descrição: 										    |
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \_______________________________________________________/
 
+//=================================================Sign====================================================
 geffen,61,174,4	script	Sign#M	111,{
   mes "~sign reads...~";
   mes "Greetings!! This is the Geffen Magic Academy.  Come in if you have an interest in all things magic!";
   close;
 }
 
+
+//=================================================New Mage Manager====================================================
 geffen,67,180,4	script	New Mage Manager#M	102,{
 	mes "[Mana]";
 	if(Class == Job_Novice){

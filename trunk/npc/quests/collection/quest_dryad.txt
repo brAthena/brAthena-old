@@ -1,24 +1,26 @@
-//  _______________________________________________________
-// /							   \
+//  ________________________________________________________
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
-// |			brAthena Script			    |
+// |                                                        |
+// |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: iRO Repeatable EXP Quests		    |
+// | Nome do Script: iRO Repeatable EXP Quests		   		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			   				|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0				    |
+// | Versões eA/brA: 1.0/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Quest repetível do monstro Dríade.	    |
+// | Descrição: 										    |
+// | Added Monster Killing quests.							|
+// | Repeatable EXP Quest (Sharp Leaves)					|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \_______________________________________________________/
 
 um_fild01,34,281,5	script	Lilla#Dryad_Hunt	724,{
@@ -161,7 +163,7 @@ um_fild01,34,281,5	script	Lilla#Dryad_Hunt	724,{
 				next;
 				switch(select("Gather Items:Hunt Dryads:Cancel")) {
 				case 1:
-					//Item turn in
+					// Item turn in
 					mes "[Lilla]";
 					mes "I really need to gather ^00CE0050 Sharp Leafs^000000 for my garden tea party.";
 					mes "Do you have any?";
@@ -201,7 +203,7 @@ um_fild01,34,281,5	script	Lilla#Dryad_Hunt	724,{
 						close;
 					}
 				case 2:
-					//Kill Count Quest
+					// Kill Count Quest
 					mes "[Lilla]";
 					mes "Ah, ok I think you can help me out by hunting some Dryads.";
 					mes "How many would you like to hunt?";

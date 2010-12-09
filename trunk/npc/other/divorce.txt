@@ -14,10 +14,10 @@
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.5/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: 					    |
-// | Official Divorce script.				    |
+// | Descrição: 					    					|
+// | Official Divorce script.				   				|
 // | Added isloggedin() check, even though Aegis doesn't    |
-// | do it;						    |
+// | do it;						    						|
 // | should be able to divorce even when the spouse is not  |
 // | online.                                                |
 // |--------------------------------------------------------|

@@ -1,29 +1,45 @@
 //  ________________________________________________________
-// /							    \
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
+// |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Quest NPCs related to Veins	    |
+// | Nome do Script: Veins Quests				    		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.8/1.0				    |
+// | Versões eA/brA: 1.9/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Quests de Veins: Stone Quest, Spy Quest,    |
-// | Siblings Quest,Thor Volcano Base Quest.		    |
+// | Descrição: Collection of Veins Quests 					|
+// | Stone Quest:											|
+// | - Help an Old Man with his job.						|
+// | - Dialog obtained from iRO.							|
+// | - Variable in use: veins_stone (max 8)					|
+// | Spy Quest:												|
+// | - Help prove (or disprove) a bard's innocence.			|
+// | - Dialog obtained from iRO.							|
+// | - Variable in use: que_sch (max 26)					|
+// | Siblings Quest:										|
+// | - Help a boy save his little sister.					|
+// | - Dialog partially obtained from iRO.					|
+// | - Variable in use: rachel_camel (max 25)				|
+// | Thor Volcano Base Quest:								|
+// | - Missing addition to High Priest Zhed to start quest.	|
+// | - Infiltrate Thor Volcano Base. What is 				|
+// | 		Arunafeltz up to?								|
+// | - Variable in use: rachel_camel (max 27)				|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \________________________________________________________/
 
-//Stone Quest
-
+// Stone Quest
+//============================================================ 
 ve_fild05,257,130,4	script	Wincing Old Man#ve	945,{
 	if ((MaxWeight - Weight) < 2000 || checkweight(1201,1) == 0) {
 		mes "- Wait a moment! -";
@@ -619,8 +635,8 @@ ve_in02,68,39,7	script	Factory Worker#ve2	943,{
 	close;
 }
 
-//Spy Quest
-
+// Spy Quest
+//============================================================ 
 prontera,202,122,0	script	Kid#sch	703,{
 	if (que_sch == 0) {
 		mes "[Rooney]";
@@ -1427,8 +1443,7 @@ ra_in01,58,389,0	script	Guant Prisoner#sch	929,{
 	close;
 }
 
-//Escort Dancers to Schwaltzvalt Republic
-
+// Escort Dancers to Schwaltzvalt Republic
 job_duncer,93,106,6	script	Dance Instructor#sch	892,{
 	if ((MaxWeight-Weight) < 2000 || checkweight(1201,1) == 0) {
 		mes "^3355FFWait a second!";
@@ -2010,7 +2025,6 @@ ein_in01,166,282,4	script	Employee#sch	904,{
 }
 
 ein_in01,176,285,0	script	°ÍµÂ ÌØÀæ¸ê#sch	-1,1,1,{
-
 OnTouch:
 	if (que_sch == 15) {
 		disablenpc "Corporate Figure#sch";
@@ -2636,8 +2650,8 @@ comodo,135,299,0	script	Young Man#sch2	809,{
 	}
 }
 
-//Siblings Quest
-
+// Siblings Quest
+//============================================================ 
 veins,327,185,3	script	Kid#camelcamel	944,{
 	if (MISC_QUEST & 8192) {
 		if (rachel_camel == 0) {
@@ -2774,6 +2788,7 @@ veins,327,185,3	script	Kid#camelcamel	944,{
 				mes "I'll go search Thor";
 				mes "Volcano to find your";
 				mes "little sister Curdie.";
+				setquest 3060;
 				set rachel_camel,1;
 				close;
 			}
@@ -2813,6 +2828,7 @@ veins,327,185,3	script	Kid#camelcamel	944,{
 			mes "locksmith in the market";
 			mes "street! You can ask him";
 			mes "to help free Curdie!";
+			changequest 3061,3062;
 			set rachel_camel,3;
 			close;
 		}
@@ -3012,13 +3028,14 @@ veins,327,185,3	script	Kid#camelcamel	944,{
 			mes "Good, good...";
 			mes "It's a promise, then.";
 			mes "I'll see you later~";
+			completequest 3083;
 			set rachel_camel,25;
 			specialeffect2 EF_ABSORBSPIRITS;
 			getexp 1000000,700000;
 			close;
 		}
 		else {
-//Start Nameless Island Access Quest Addition
+// Start Nameless Island Access Quest Addition
 			if (aru_monas == 15) {
 				mes "[Kid Karyn]";
 				mes "Hi! It's good to see";
@@ -3097,7 +3114,7 @@ veins,327,185,3	script	Kid#camelcamel	944,{
 				mes "Oh, and Kurdi says hi!";
 				close;
 			}
-//End Nameless Island Access Quest Addition.
+// End Nameless Island Access Quest Addition.
 			mes "[Kid Karyn]";
 			mes "Hello, hello!";
 			mes "Hey, did you need";
@@ -3197,6 +3214,7 @@ que_thor,36,66,5	script	Little Curdie	941,{
 		mes "in town will know of a way";
 		mes "to unlock your shackles.";
 		mes "I'll be back as soon as I can!";
+		changequest 3060,3061;
 		set rachel_camel,2;
 		close;
 	}
@@ -3389,6 +3407,7 @@ que_thor,36,66,5	script	Little Curdie	941,{
 		mes "Now you need to take";
 		mes "the mold back to town";
 		mes "to Mr. Lockenlock.^000000";
+		changequest 3079,3080;
 		set rachel_camel,21;
 		close;
 	}
@@ -3458,6 +3477,7 @@ que_thor,36,66,5	script	Little Curdie	941,{
 		mes "volcano? It must have been";
 		mes "dangerous... Something";
 		mes "related to the Rachel Army...";
+		changequest 3082,3083;
 		set rachel_camel,24;
 		close;
 	}
@@ -3600,6 +3620,7 @@ veins,181,166,3	script	Lockenlock	900,{
 			mes "["+strcharinfo(0)+"]";
 			mes "...........";
 			delitem 503,1; //Yellow_Potion
+			changequest 3063,3064;
 			set rachel_camel,5;
 			close;
 		}
@@ -3790,6 +3811,7 @@ veins,181,166,3	script	Lockenlock	900,{
 		next;
 		mes "["+strcharinfo(0)+"]";
 		mes "Alright.";
+		changequest 3078,3079;
 		set rachel_camel,20;
 		close;
 	}
@@ -3836,6 +3858,7 @@ veins,181,166,3	script	Lockenlock	900,{
 		mes "the key, so I can get it done";
 		mes "as soon as you can bring";
 		mes "me the Steel. I'll be waiting.";
+		changequest 3080,3081;
 		set rachel_camel,22;
 		close;
 	}
@@ -3929,6 +3952,7 @@ veins,181,166,3	script	Lockenlock	900,{
 			mes "Make sure that you";
 			mes "bring that child back";
 			mes "safe to her family!";
+			changequest 3081,3082;
 			set rachel_camel,23;
 			close;
 		}
@@ -4098,6 +4122,7 @@ veins,227,127,5	script	Ivory	940,{
 		mes "^4D4DFF5 Empty Bottles^000000.";
 		mes "Then we can move";
 		mes "on to the hard part.";
+		changequest 3064,3065;
 		set rachel_camel,6;
 		close;
 	}
@@ -4143,6 +4168,7 @@ veins,227,127,5	script	Ivory	940,{
 			mes "Okay, so I need to visit";
 			mes "him if I really need you";
 			mes "to make the soap...";
+			changequest 3065,3066;
 			set rachel_camel,7;
 			close;
 		}
@@ -4315,6 +4341,7 @@ veins,227,127,5	script	Ivory	940,{
 		mes "Silk Sand Camel Soap.";
 		mes "you should bring it";
 		mes "to Mr. Lockenlock.^000000";
+		changequest 3077,3078;
 		set rachel_camel,19;
 		close;
 	}
@@ -4460,6 +4487,7 @@ veins,115,59,5	script	Saraman	847,{
 		mes "^4D4DFF5 Monster's Feed^000000,";
 		mes "^4D4DFF1 Empty Bottle^000000, and";
 		mes "^4D4DFF1 Yellow Potion^000000.";
+		changequest 3066,3067;
 		set rachel_camel,8;
 		close;
 	}
@@ -4504,6 +4532,7 @@ veins,115,59,5	script	Saraman	847,{
 			delitem 503,1; //Yellow_Potion
 			delitem 619,1; //Unripe_Apple
 			delitem 713,1; //Empty_Bottle
+			changequest 3067,3068;
 			set rachel_camel,9;
 			close;
 		}
@@ -4586,6 +4615,7 @@ veins,115,59,5	script	Saraman	847,{
 		mes "so she shouldn't be far from";
 		mes "here. Please find my camel";
 		mes "Soony as soon as you can!";
+		changequest 3069,3070;
 		set rachel_camel,11;
 		close;
 	}
@@ -4655,6 +4685,7 @@ veins,115,59,5	script	Saraman	847,{
 		mes "what you've done for me.";
 		mes "Good luck with getting";
 		mes "that soap you want made.";
+		changequest 3076,3077;
 		getitem 617,1; //Old_Violet_Box
 		set rachel_camel,18;
 		close;
@@ -4693,6 +4724,7 @@ veins,78,226,5	script	Camel#camelcc1::VeinsCamel	938,{
 		mes "appetite stimulant, but";
 		mes "brusquely turned its";
 		mes "nose away from it.^000000";
+		changequest 3068,3069;
 		set rachel_camel,10;
 		close;
 	}
@@ -4703,7 +4735,6 @@ veins,78,226,5	script	Camel#camelcc1::VeinsCamel	938,{
 		mes "nose away from it.";
 		mes "This probably isn't the";
 		mes "camel you're looking for.^000000";
-		set rachel_camel,10;
 		close;
 	}
 	else {
@@ -4745,6 +4776,7 @@ ve_fild07,235,42,3	script	Silk Sand Camel	938,{
 		mes "I guess all I need to";
 		mes "do is collect some of";
 		mes "that precious camel dung.";
+		changequest 3070,3071;
 		set rachel_camel,12;
 		close;
 	}
@@ -4898,12 +4930,12 @@ ve_fild07,235,42,3	script	Silk Sand Camel	938,{
 					next;
 					mes "^3355FFIt's time for you to";
 					mes "return to Mr. Saraman.^000000";
-
 				}
 				delitem 519,2; //Milk
 				delitem 511,20; //Green_Herb
 				delitem 909,10; //Jellopy
 				delitem 713,1; //Empty_Bottle
+				changequest 3059+rachel_camel,3060+rachel_camel;
 				set rachel_camel,rachel_camel+1;
 				close;
 			case 6:
@@ -5036,6 +5068,7 @@ veins,221,120,5	script	Young Town Native	943,{
 		mes "^3355FFFind Mr. Lockenlock";
 		mes "in the market street, and";
 		mes "bring him a Yellow Potion.^000000";
+		changequest 3062,3063;
 		set rachel_camel,4;
 		close;
 	}
@@ -5072,7 +5105,8 @@ veins,221,120,5	script	Young Town Native	943,{
 	}
 }
 
-//Thor Volcano Base Quest
+// Thor Volcano Base Quest
+//============================================================ 
 
 ra_temin,87,133,1	script	Rachel Guard#vol1	934,5,2,{
 	if (aru_vol == 2) {
@@ -5477,6 +5511,7 @@ ra_temin,85,118,3	script	Drawer#vol3	111,{
 			mes "Research Institute'' on";
 			mes "the cover, and then you";
 			mes "close the drawer.^000000";
+			changequest 2114,2115;
 			set aru_vol,5;
 			getitem 7342,1; //File01
 			close;
@@ -5836,6 +5871,7 @@ ve_in,233,116,3	script	Drunken Man#vol	901,{
 		mes "the feeling that this will";
 		mes "all turn out in your favor.";
 		mes "You know that feeling, right?^000000";
+		changequest 2116,2117;
 		set aru_vol,8;
 		getitem 7705,1; //Note_Of_Geologist
 		close;
@@ -5958,6 +5994,7 @@ ve_in,233,116,3	script	Drunken Man#vol	901,{
 		mes "well done. Good work!";
 		mes "I expected nothing less";
 		mes "from my star pupil!";
+		changequest 60211,60212;
 		set aru_vol,25;
 		delitem 7342,1; //File01
 		delitem 7704,1; //Broken_Thermometer
@@ -6085,6 +6122,7 @@ ve_in,281,214,3	script	Bookshelf#vol	111,{
 		mes "your eyes, and reach inside";
 		mes "Gio's purple box of goodies.^000000";
 		next;
+		changequest 60212,60213;
 		set aru_vol,26;
 		set .@box_box,rand(1,20);
 		if (.@box_box < 7) {
@@ -6128,6 +6166,7 @@ thor_v01,37,234,3	script	Hot Land Surface#1	111,{
 			mes "^3355FFYou record the";
 			mes "temperature in";
 			mes "your report.^000000";
+			changequest 2117,2118;
 			set aru_vol,9;
 			next;
 			mes "["+strcharinfo(0)+"]";
@@ -6165,6 +6204,7 @@ thor_v02,165,37,3	script	Hot Land Surface#2	111,{
 			mes "^3355FFYou record the";
 			mes "temperature in";
 			mes "your report.^000000";
+			changequest 2118,2119;
 			set aru_vol,10;
 			close;
 		}
@@ -6202,6 +6242,7 @@ thor_v02,170,100,3	script	Hot Land Surface#3	111,{
 			mes "measurements. I should";
 			mes "submit this report to the";
 			mes "geological camp now~";
+			changequest 2119,2120;
 			set aru_vol,11;
 			close;
 		}
@@ -6248,6 +6289,7 @@ que_thor,145,66,3	script	Guard#vol::VeinsGuard	939,{
 		mes "ask Sahedi to help you.";
 		mes "He's at the airship just";
 		mes "south of the train station.";
+		changequest 2120,2121;
 		set aru_vol,12;
 		close2;
 		warp "thor_camp",248,190;
@@ -6360,6 +6402,7 @@ thor_camp,250,104,3	script	Sahedi#vol	934,{
 		mes "Please go ahead, and";
 		mes "see if this camp will be";
 		mes "safe from any disaster.";
+		changequest 2121,2122;
 		set aru_vol,13;
 		delitem 7342,1; //File01
 		close;
@@ -6474,6 +6517,7 @@ thor_camp,250,104,3	script	Sahedi#vol	934,{
 		mes "Hopefully he'll have some";
 		mes "advice for what we can";
 		mes "do about this disaster...";
+		changequest 2128,60211;
 		set aru_vol,24;
 		getitem 7342,1; //File01
 		close;
@@ -6518,6 +6562,7 @@ OnTouch:
 		mes "great Colonel Vito. I'll mold";
 		mes "you into a true warrior for";
 		mes "Freya! Now follow me!";
+		changequest 2122,2123;
 		set aru_vol,14;
 		close2;
 		disablenpc "Colonel Vito#1";
@@ -6572,6 +6617,7 @@ OnTouch:
 		mes "great Colonel Vito. I'll mold";
 		mes "you into a true warrior for";
 		mes "Freya! Now follow me!";
+		changequest 2122,2123;
 		set aru_vol,14;
 		disablenpc "Colonel Vito#2";
 		close2;
@@ -6822,6 +6868,7 @@ thor_camp,159,74,3	script	Colonel Vito#3	946,{
 		mes "in Freya's service. That";
 		mes "is all for the first exercise,";
 		mes "but there's one more left.";
+		changequest 2123,2124;
 		set aru_vol,16;
 		close;
 	}
@@ -6863,6 +6910,7 @@ thor_camp,159,74,3	script	Colonel Vito#3	946,{
 		mes "body. See the dummy in";
 		mes "front of you? Practice by";
 		mes "chopping it 10 times. Go!";
+		changequest 2125,2126;
 		set aru_vol,19;
 		next;
 		if (select("Yes, sir!:What do you mean by chop?") == 1) {
@@ -6913,6 +6961,7 @@ thor_camp,159,74,3	script	Colonel Vito#3	946,{
 		mes "he'll think of me as";
 		mes "a geological researcher";
 		mes "instead of as a soldier.^000000)";
+		changequest 2126,2127;
 		set aru_vol,21;
 		close;
 	}
@@ -6966,6 +7015,7 @@ OnTouch:
 		mes "["+strcharinfo(0)+"]";
 		mes "I should go back";
 		mes "to Sahedi now.";
+		changequest 2127,2128;
 		set aru_vol,23;
 		close;
 	}
@@ -7021,6 +7071,7 @@ thor_camp,109,167,3	script	Control Panel#vol	111,{
 		mes "No problems here.";
 		mes "I guess I can go";
 		mes "back to that colonel.";
+		changequest 2124,2125;
 		set aru_vol,18;
 		close;
 	}
@@ -7240,7 +7291,7 @@ thor_camp,98,213,5	script	Thor Volcano Soldier#vo9	939,{
 }
 
 thor_v02,143,78,0	script	#totcamp	45,2,2,{
-OnTouch:
+OnTouch_:
 	if (rachel_camel < 24) {
 		warp "que_thor",65,55;
 		end;
@@ -7250,13 +7301,13 @@ OnTouch:
 }
 
 que_thor,69,56,0	script	#tov_1	45,2,2,{
-OnTouch:
+OnTouch_:
 	warp "thor_v02",146,84;
 	end;
 }
 
 que_thor,187,56,0	script	#tov_2	45,2,2,{
-OnTouch:
+OnTouch_:
 	warp "thor_v02",146,84;
 	end;
 }
@@ -7293,7 +7344,7 @@ thor_camp,246,191,3	script	Guard#goto	939,{
 }
 
 veins,302,166,0	script	#whoau	-1,2,2,{
-OnTouch:
+OnTouch_:
 	mes "[House Owner]";
 	mes "Wh-who the hell";
 	mes "are you? Honey!";

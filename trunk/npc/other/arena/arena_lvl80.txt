@@ -8,17 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Arena de Izlude - Lv 80	            |
+// | Nome do Script: Izlude Arena lvl 80		            |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.1/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: Arena de batalha de Izlude level 80 	    |
+// | Descrição: Izlude Battle Arena Level 80		 	    |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    | 
+// | - Anotações		   			   						| 
 // \________________________________________________________/
 
 arena_room,147,42,1	script	lvl 80s Waiting Room	124,{

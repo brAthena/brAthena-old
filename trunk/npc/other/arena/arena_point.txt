@@ -8,18 +8,18 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Trocador de Pontos			    |
+// | Nome do Script: Point Exchanger					    |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.0/1.0                                |
 // |--------------------------------------------------------|
 // | Descrição:                                             |
-// | Trocador de pontos: Turbo track points -> Arena Points |
+// | Point exchanger: Turbo track points -> Arena Points	|
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    | 
+// | - Anotações		   			    					| 
 // \________________________________________________________/
 
 prt_are_in,103,11,3	script	Arena Point Manager	732,{

@@ -8,17 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Cidade de Einbroch		            |
+// | Nome do Script: Cidade de Einbroch		        	    |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.8/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: NPCs da Cidade de Einbroch		    |
+// | Descrição: NPCs da Cidade de Einbroch		   			|
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    |
+// | - Anotações		   			    					|
 // \________________________________________________________/
 
 einbroch,218,198,5	script	Mark#ein	855,{

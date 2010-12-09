@@ -1,31 +1,32 @@
 //  ________________________________________________________
-// /							    \
+// /							    						\
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
+// |							    						|
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Yuno Field Warp Script		    |
+// | Nome do Script: Yuno Field Warp Script		    		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.2/1.0				    |
+// | Versões eA/brA: 1.2/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Portais dos Campos de Juno.		    |
+// | Descrição: Portais dos Campos de Juno.		    		|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				  				|
+// | - Anotações					    					|
 // \________________________________________________________/
 
-//Campos de Juno
+//= Yuno Field ===============================================
 //yuno_fild01,286,368,0	warp	yunfild01	1,1,yuno_fild02,294,26
 //yuno_fild02,294,24,0	warp	yunfild01-1	1,1,yuno_fild01,286,366
 //yuno_fild01,70,378,0	warp	yunfild02	1,1,yuno_fild02,70,25
 //yuno_fild02,70,23,0	warp	yunfild02-1	1,1,yuno_fild01,70,376
+
 yuno_fild02,18,337,0	warp	yunfild03	1,1,yuno_fild03,381,331
 yuno_fild03,383,331,0	warp	yunfild03-1	1,1,yuno_fild02,20,337
 yuno_fild03,19,79,0	warp	yunfild04	1,1,yuno_fild04,373,84
@@ -35,7 +36,7 @@ yuno_fild04,375,150,0	warp	yunfild05-1	1,1,yuno_fild03,22,155
 yuno_fild04,231,288,0	warp	yunfild-yun	1,1,yuno,158,17
 yuno_fild03,32,139,0	warp	yunfild-mag01	1,1,mag_dun01,126,68
 
-//Campos de Juno (novos)
+//= New Yuno Fields ==========================================
 yuno_fild01,26,246,0	warp	newjun01	1,1,yuno_fild12,373,239
 yuno_fild12,375,239,0	warp	newjun01a	1,1,yuno_fild01,28,246
 yuno_fild12,23,338,0	warp	newjun02	1,1,yuno_fild11,366,361
@@ -57,7 +58,7 @@ yuno_fild07,354,291,0	warp	newjun09a	1,1,yuno_fild08,22,278
 yuno_fild08,31,58,0	warp	newjun10	1,1,yuno_fild07,358,72
 yuno_fild07,360,72,0	warp	newjun10a	1,1,yuno_fild08,33,58
 
-//eAthena...
+//= (By speculation only) ====================================
 yuno_fild07,179,354,0	warp	newjun11	1,1,yuno_fild03,179,17
 yuno_fild03,179,15,0	warp	newjun11a	1,1,yuno_fild07,179,352
 yuno_fild08,74,376,0	warp	newjun12	1,1,yuno_fild02,70,25
@@ -67,11 +68,13 @@ yuno_fild02,294,24,0	warp	newjun13a	1,1,yuno_fild08,286,384
 yuno_fild04,42,369,0	warp	newjun14	1,1,yuno_fild05,59,30
 yuno_fild05,59,28,0	warp	newjun14a	1,1,yuno_fild04,42,367
 
-//Campos de Juno e Aldebaran
+
+//= Al de Baran <-> Yuno Connection ==========================
 aldebaran,140,244,0	warp	alde-yunfild	1,1,yuno_fild01,208,19
 yuno_fild01,208,17,0	warp	yunfild-alde	1,1,aldebaran,140,242
 
-//Campos de Juno e Hugel
+//= Hugel Field
+//= Version 1
 yuno_fild05,372,325,0	warp	hu001	1,1,yuno_fild06,42,319
 yuno_fild06,40,319,0	warp	hu001a	1,1,yuno_fild05,370,325
 yuno_fild06,217,27,0	warp	hu002	1,1,yuno_fild03,214,381

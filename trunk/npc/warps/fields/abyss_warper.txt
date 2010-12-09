@@ -1,24 +1,24 @@
 //  ________________________________________________________
-// /							    \
+// /							    						\
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
+// |							    						|
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Abyss Lake Field Warp Script	    |
+// | Nome do Script: Abyss Lake Field Warp Script	    	|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.4/1.0				    |
+// | Versões eA/brA: 1.4/1.0				    			|
 // |--------------------------------------------------------|
 // | Descrição: Portais do Abismo do Lago e Teleportes.	    |
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \________________________________________________________/
 
 hu_fild05,168,304,0	script	Column#abyss1	111,{
@@ -33,7 +33,7 @@ hu_fild05,168,304,0	script	Column#abyss1	111,{
 	if((countitem(1035)) && (countitem(1036)) && (countitem(1037)))
 	{
 		next;
-		switch(select("Insert Dragon Body Parts","Eat Dragon Body Parts" ))
+		switch( select( "Insert Dragon Body Parts","Eat Dragon Body Parts" ) )
 		{
 			case 1:
 				mes "^3355FFYou carefully place a";
@@ -99,7 +99,7 @@ hu_fild05,171,211,0	script	Column#abyss2	111,1,1,{
 	mes "a conspicious blue";
 	mes "groove on its surface.^000000";
 	next;
-	switch(select( "Touch the Groove","Remove Item from Groove"))
+	switch( select( "Touch the Groove","Remove Item from Groove" ) )
 	{
 		case 1:
 			mes "^3355FF*Clatter Clatter*^000000";

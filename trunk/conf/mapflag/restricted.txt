@@ -1,26 +1,13 @@
-//  ___________________________________________________________________________
-// /                                                                           \
-// |                 _           _   _   _                                      |
-// |                | |__  _ __ / \ | |_| |__   ___ _ __   __ _                 |
-// |                | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                |
-// |                | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                |
-// |                |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                |
-// |                                                                            |
-// |                              brAthena Script                               |
-// |----------------------------------------------------------------------------|
-// | Nome do Script: restricted.txt                                             |
-// |----------------------------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team                                               |
-// |----------------------------------------------------------------------------|
-// | Descrição: Configuração Mapflag que desabilita o uso de itens/habilidades  |
-// | configuradas no item_noequip.txt e skill_nocast_db.txt.                    |
-// |----------------------------------------------------------------------------|
-// | Changelog:                                                                 |
-// | 1.0 Modificação [brAthena]                                                 |
-// | - Anotações                                                                |
-// \___________________________________________________________________________/
+//===== eAthena Script =======================================
+//= Map flags that disable certain items/skills configured in
+//= item_noequip.txt and skill_nocast_db.txt
+//===== By: ==================================================
+//= eAthena Dev Team
+//= 1.0 [Komurka]
+//= 1.1 Added WoE:SE Map restrictions. [L0ne_W0lf]
+//===== Current Version: =====================================
 
-// Aldebaran Turbo Track
+//Aldebaran Turbo Track
 alde_tt02	mapflag	restricted	1
 turbo_n_1	mapflag	restricted	1
 turbo_n_4	mapflag	restricted	1
@@ -30,10 +17,10 @@ turbo_e_4	mapflag	restricted	1
 turbo_e_8	mapflag	restricted	1
 turbo_e_16	mapflag	restricted	1
 
-// Prisão
+//Jail
 sec_pri	mapflag	restricted	2
 
-// Arena de Batalha de Izlude
+//Izlude Battle Arena
 force_1-1	mapflag	restricted	3
 force_2-1	mapflag	restricted	3
 force_3-1	mapflag	restricted	3
@@ -43,7 +30,7 @@ force_1-2	mapflag	restricted	3
 force_1-3	mapflag	restricted	3
 prt_are_in	mapflag	restricted	3
 
-// WoE 2.0
+//WoE:SE Maps
 schg_cas01	mapflag	restricted	4
 schg_cas02	mapflag	restricted	4
 schg_cas03	mapflag	restricted	4
@@ -55,6 +42,6 @@ arug_cas03	mapflag	restricted	4
 arug_cas04	mapflag	restricted	4
 arug_cas05	mapflag	restricted	4
 
-// Santuário Selado
+//Sealed Shrine ==================
 1@cata	mapflag	restricted	5
 2@cata	mapflag	restricted	5

@@ -8,17 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Cidade de Kunlun			    |
+// | Nome do Script: Cidade de Kunlun					    |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.5/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: NPCs da Cidade de Kunlun		    |
+// | Descrição: NPCs da Cidade de Kunlun				    |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    |
+// | - Anotações		   			 						|
 // \________________________________________________________/
 
 // Kunlun Transportation
@@ -414,14 +414,3 @@ gonryun,169,71,3	script	Guidev#gon	770,{
 	mes "sights throughout the town.";
 	close;
 }
-
-//============================================================ 
-// Old changelog
-//============================================================ 
-// May be missing npc's and dialogue.
-//= 1.1 Fixed Typo’s [Nexon]
-//= 1.2 Removed Duplicates [Silent]
-//= 1.3 Max NPC Name is 23 [Toms]
-//= 1.3a Removed temp NPC plugs due Broken Sword quest [Lupus]
-//= 1.4 Added missing NPC [KarLaeda]
-//============================================================

@@ -8,17 +8,17 @@
 // |                                                       |
 // |                    brAthena Script                    |
 // |-------------------------------------------------------|
-// | Nome do Script: Cidade de Aldebaran    		   |
+// | Nome do Script: Cidade de Aldebaran    			   |
 // |-------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                          |
 // |-------------------------------------------------------|
 // | Versões eA/brA: 2.3/1.0                               |
 // |-------------------------------------------------------|
-// | Descrição: NPCs da Cidade de Aldebaran	           |
+// | Descrição: NPCs da Cidade de Aldebaran				   |
 // |-------------------------------------------------------|
 // | Changelog:               	                           |
 // | 1.0 Modificação [Autor]                               |
-// | - Anotações		                           |
+// | - Anotações		                          		   |
 // \_______________________________________________________/
 
 // Al De Baran

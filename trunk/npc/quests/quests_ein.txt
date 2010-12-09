@@ -1,29 +1,40 @@
 //  ________________________________________________________
-// /							    \
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
+// |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Quest NPCs related to Einbroch-Einbech |
+// | Nome do Script: 							    		|
+// |	 Quest NPCs related to Einbroch and Einbech			|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 2.4/1.0				    |
+// | Versões eA/brA: 2.5/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Quests de Einbroch-Einbeach: Oridecon ou    |
-// | Mineral Stone, Uwe Kliene, Murder e Lovers Quests.	    |
+// | Descrição: Oridecon/Mineral Quest						|
+// | - Variable in use: ein_gear1 (max 2)					|
+// | - Variable in use: $ein_amano (max 60)					|
+// | Uwe Kliene Quest										|
+// | - Variable in use: ein_cook (max ???)					|
+// | Factory Quest											|
+// | - Variable in use: EinFactory (max 16)					|
+// | - Variable in use: $EinPolution (max 10)				|
+// | Murder Quest											|
+// | - Variable in use: Shinokas_Quest (max 11)				|
+// | Lovers Quest											|
+// | - Variable in use: EIN_LOVERQ (max 17)					|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \________________________________________________________/
 
-//Oridecon Stone or Mineral Stone Quests
-
+// Oridecon Stone OR Mineral Stone Quest
+//============================================================ 
 einbech,97,167,5	script	Cavitar	847,{
 	if (ein_gear1 == 2){
 		mes "[Cavitar]";
@@ -441,8 +452,8 @@ einbech,97,167,5	script	Cavitar	847,{
 	}
 }
 
-//Uwe Kleine Quest
-
+// Uwe Kleine
+//============================================================
 einbroch,215,180,6	script	Uwe Kleine#ein	85,{
 	set EinUwe,0;
 	if (BaseClass == Job_Blacksmith) {
@@ -3180,8 +3191,8 @@ einbroch,215,180,6	script	Uwe Kleine#ein	85,{
 	}
 }
 
-//Factory Quest
-
+// Factory Quest
+//============================================================
 einbroch,1,1,0	script	Einbroch Smog Alert	-1,{
 	end;
 
@@ -3342,6 +3353,7 @@ OnTimer600000:
 
 einbroch,132,84,3	script	Liotzburg#ein	853,2,2,{
 	if ((EinFactory == 13) || (EinFactory == 14)) {
+		changequest 8029,8030;
 		set EinFactory,14;
 		mes "[Liotzburg]";
 		mes "What...?";
@@ -3521,6 +3533,7 @@ ein_in01,67,242,3	script	Zelmeto	851,{
 			delitem 7317,10; //Screw
 			delitem 7319,10; //Old_Steel_Plate
 			set $EinPolution,$EinPolution+1;
+			completequest 8031;
 			set EinFactory,16;
 			if (BaseLevel < 41) {
 				getexp 615,0;
@@ -3613,6 +3626,7 @@ ein_in01,67,242,3	script	Zelmeto	851,{
 		mes "10 ^FF0000Used Iron Plate^000000,";
 		mes "we could make those repairs.";
 		next;
+		changequest 8030,8031;
 		set EinFactory,15;
 		mes "[Zelmeto]";
 		mes "But without funds, there's";
@@ -3658,6 +3672,7 @@ ein_in01,67,242,3	script	Zelmeto	851,{
 		mes "the machines will be safely";
 		mes "functioning again.";
 		next;
+		changequest 8028,8029;
 		set EinFactory,13;
 		mes "[Zelmeto]";
 		mes "First, I better";
@@ -3711,6 +3726,7 @@ ein_in01,67,242,3	script	Zelmeto	851,{
 		mes "use it. I really don't know";
 		mes "where it could be now.";
 		next;
+		changequest 8026,8027;
 		set EinFactory,11;
 		mes "[Zelmeto]";
 		mes "Still, I'm sure that";
@@ -3763,6 +3779,7 @@ ein_in01,67,242,3	script	Zelmeto	851,{
 		mes "of molten metal. You should";
 		mes "be able to find it pretty easily.";
 		next;
+		changequest 8024,8025;
 		set EinFactory,9;
 		mes "[Zelmeto]";
 		mes "Thanks again";
@@ -3817,6 +3834,7 @@ ein_in01,67,242,3	script	Zelmeto	851,{
 		mes "broken, we need to know";
 		mes "and fix it right away.";
 		next;
+		changequest 8022,8023;
 		set EinFactory,7;
 		mes "[Zelmeto]";
 		mes "Thanks again";
@@ -3864,6 +3882,7 @@ ein_in01,67,242,3	script	Zelmeto	851,{
 		mes "condition, even though it's";
 		mes "operating fine for now...";
 		next;
+		changequest 8020,8021;
 		set EinFactory,5;
 		mes "[Zelmeto]";
 		mes "We need to ensure that";
@@ -3915,6 +3934,7 @@ ein_in01,67,242,3	script	Zelmeto	851,{
 		mes "problem seems small, please";
 		mes "report it to me. I know it might seem fine now, but I want to prevent an accident if I can.";
 		next;
+		changequest 8018,8019;
 		set EinFactory,3;
 		mes "[Zelmeto]";
 		mes "Thank you";
@@ -4007,6 +4027,7 @@ ein_in01,67,242,3	script	Zelmeto	851,{
 			mes "it wouldn't hurt to make sure.";
 			mes "You should find it easily.";
 			next;
+			setquest 8017;
 			set EinFactory,1;
 			mes "[Zelmeto]";
 			mes "When you finish your";
@@ -4038,6 +4059,7 @@ ein_in01,67,242,3	script	Zelmeto	851,{
 
 ein_in01,49,232,3	script	2nd Control Panel#ins	111,{
 	if ((EinFactory == 1) || (EinFactory == 2)) {
+		changequest 8017,8018;
 		set EinFactory,2;
 		mes "^3355FFIt's the 2nd control panel";
 		mes "Zelmeto asked you to inspect.";
@@ -4052,6 +4074,7 @@ ein_in01,49,232,3	script	2nd Control Panel#ins	111,{
 
 ein_in01,108,217,3	script	3rd Pressure Governor#1	111,{
 	if ((EinFactory == 3) || (EinFactory == 4)) {
+		changequest 8019,8020;
 		set EinFactory,4;
 		mes "^3355FFAt first glance, this";
 		mes "pressure governor looks";
@@ -4067,6 +4090,7 @@ ein_in01,108,217,3	script	3rd Pressure Governor#1	111,{
 
 ein_in01,62,258,3	script	Main Control Panel#ins	111,{
 	if ((EinFactory == 5) || (EinFactory == 6)) {
+		changequest 8021,8022;
 		set EinFactory,6;
 		mes "^3355FFThe main control panel";
 		mes "doesn't look like it has";
@@ -4082,6 +4106,7 @@ ein_in01,62,258,3	script	Main Control Panel#ins	111,{
 
 ein_in01,46,197,3	script	Conveyor#ins	111,{
 	if ((EinFactory == 7) || (EinFactory == 8)) {
+		changequest 8023,8024;
 		set EinFactory,8;
 		mes "^3355FFThe conveyor's movements";
 		mes "look jittery and clumsy. The";
@@ -4096,6 +4121,7 @@ ein_in01,46,197,3	script	Conveyor#ins	111,{
 
 ein_in01,100,266,3	script	Pipe#ins	111,{
 	if ((EinFactory == 9) || (EinFactory == 10)) {
+		changequest 8025,8026;
 		set EinFactory,10;
 		mes "^3355FFThe inspection of this";
 		mes "pipe didn't take very long.";
@@ -4111,6 +4137,7 @@ ein_in01,100,266,3	script	Pipe#ins	111,{
 
 ein_in01,95,239,3	script	Conveyor#ins2	111,{
 	if ((EinFactory == 11) || (EinFactory == 12)) {
+		changequest 8027,8028;
 		set EinFactory,12;
 		mes "^3355FFThis conveyor seems";
 		mes "to have similar problems";
@@ -4128,18 +4155,18 @@ ein_in01,95,239,3	script	Conveyor#ins2	111,{
 sec_in02,127,86,3	script	Factory Quest Test	851,{
 	input .@input; //,0,9000;
 	if ((.@input < 0) || (.@input > 9000)) {
-		mes "[Factory Quest Test1]";
+		mes "[Test1]";
 		mes "Boo~ya.";
 		close;
 	}
 	else if (.@input == 0) {
-		mes "[Factory Quest Test1]";
+		mes "[Test1]";
 		mes "Do you want";
 		mes "to cancel~?";
 		close;
 	}
 	else if (.@input == 8028) {
-		mes "[Factory Quest Test1]";
+		mes "[Test1]";
 		mes "The current value";
 		mes "of the global variable";
 		mes "for the Factory Quest";
@@ -4148,14 +4175,14 @@ sec_in02,127,86,3	script	Factory Quest Test	851,{
 		next;
 		switch(select("0:10:Invade")) {
 		case 1:
-			mes "[Factory Quest Test1]";
+			mes "[Test1]";
 			mes "Okay...!";
 			mes "It's been";
 			mes "changed to ''0.''";
 			set $EinPolution,0;
 			close;
 		case 2:
-			mes "[Factory Quest Test2]";
+			mes "[Test2]";
 			mes "Okay...!";
 			mes "It's been";
 			mes "changed to ''10.''";
@@ -4167,7 +4194,7 @@ sec_in02,127,86,3	script	Factory Quest Test	851,{
 		}
 	}
 	else {
-		mes "[Factory Quest Test1]";
+		mes "[Test1]";
 		mes "Whoa...";
 		mes "That is";
 		mes "sooo wrong!";
@@ -4176,8 +4203,8 @@ sec_in02,127,86,3	script	Factory Quest Test	851,{
 }
 /**/
 
-//Murder Quest
-
+// Murder Quest
+//============================================================ 
 einbech,165,105,7	script	Buender Hikeman#ein	847,{
 	cutin "ein_hicman",2;
 	if (Shinokas_Quest == 0) {
@@ -4354,6 +4381,7 @@ einbech,165,105,7	script	Buender Hikeman#ein	847,{
 		mes "[Buender Hikeman]";
 		mes "Then I learned...";
 		mes "You planned it all along.";
+		setquest 2071;
 		set Shinokas_Quest,1;
 		close2;
 		cutin "ein_hicman",255;
@@ -4465,6 +4493,7 @@ einbech,165,105,7	script	Buender Hikeman#ein	847,{
 		mes "It wouldn't be a good idea to";
 		mes "provoke the old man anymore,";
 		mes "intentionally or not.^000000";
+		changequest 2071,2072;
 		set Shinokas_Quest,2;
 		close2;
 		cutin "ein_hicman",255;
@@ -4623,6 +4652,7 @@ einbech,165,105,7	script	Buender Hikeman#ein	847,{
 			mes "their intentions can't be good.";
 			close2;
 			cutin "ein_hicman",255;
+			completequest 2078;
 			set Shinokas_Quest,11;
 			if (BaseLevel < 70) {
 				getexp 100000,80000;
@@ -4859,6 +4889,7 @@ ein_in01,231,163,7	script	Sick Old Man#ein	849,{
 		mes "Alright, I'll tell you what";
 		mes "happened. But it's a";
 		mes "long story...";
+		changequest 2072,2073;
 		set Shinokas_Quest,3;
 		close;
 	}
@@ -4937,6 +4968,7 @@ ein_in01,231,163,7	script	Sick Old Man#ein	849,{
 		mes "[Shinokas]";
 		mes "I'm too old and weak to leave";
 		mes "this house, and there's the chance that those men will find me. If you can sympathize with my situation, please find out if the Kapellthaine family has any unique ores...";
+		changequest 2073,2074;
 		set Shinokas_Quest,4;
 		close;
 	}
@@ -4982,6 +5014,7 @@ ein_in01,231,163,7	script	Sick Old Man#ein	849,{
 		mes "Please go and search the";
 		mes "Factory for that ore as";
 		mes "soon as you can.";
+		changequest 2074,2075;
 		set Shinokas_Quest,6;
 		close;
 	}
@@ -5062,6 +5095,7 @@ ein_in01,231,163,7	script	Sick Old Man#ein	849,{
 				mes "can enter that kind";
 				mes "of place. But I'm sure";
 				mes "you'll figure something out.";
+				changequest 2075,2076;
 				set Shinokas_Quest,7;
 				close;
 			}
@@ -5190,6 +5224,7 @@ ein_in01,231,163,7	script	Sick Old Man#ein	849,{
 		mes "Shinokas!";
 		mes "Why, God?";
 		mes "Why...";
+		changequest 2077,2078;
 		set Shinokas_Quest,10;
 		close;
 	}
@@ -5526,6 +5561,7 @@ airplane,31,77,5	script	Drunken Man#ein	853,{
 			mes "must have been a piece";
 			mes "of ^3131FFYmir's Heart^333333. I better";
 			mes "tell Shinokas about this.)^000000";
+			changequest 2076,2077;
 			set Shinokas_Quest,9;
 			close;
 		case 2:
@@ -5779,8 +5815,8 @@ OnTouch:
 	}
 }
 
-//Lovers Quest
-
+// Lovers Quest
+//============================================================ 
 ein_in01,31,138,3	script	Calla#ein	90,{
 	if (checkweight(908,70) == 0) {
 		mes "^3355FFWait a second!";

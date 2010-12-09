@@ -14,11 +14,31 @@
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.7/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: x                                           |
+// | Descrição:                                          	|
+// | - Enables AGIT Manager inside Guild Strongholds.		|
+// | Visible Name required: Agit							|
+// | Manages the various functions used in and out of WoE.	|
+// | 														|
+// | - Enables Stewards inside Guild Strongholds which let's|
+// | the guild master invest in Defense and Economy, and	|
+// | to summon guardians, a Kafra, and enter master's room.	|
+// | 														|
+// | - Guardian Spawning Template							|
+// | Visible Name required: Guardian						|
+// | Spawn guardians when guild castle data is recieved.	|
+// | 														|
+// | - Enables Kafra Services inside Guild Strongholds.		|
+// | Visible Name required: Kafra Staff						|
+// | Storage, Guild Storage, Teleport Service, Cart rental.	|
+// | 														|
+// | - Treasure Room Protection and Chest spawning.			|
+// | Chests will NOT be saved anymore in the event 			|
+// | of crashes. Treasures will NOT spawn on a location 	|
+// | that already has treasure chest spawned.				|
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    | 
+// | - Anotações		   			    					| 
 // \________________________________________________________/
 
 // AGIT Manager Template

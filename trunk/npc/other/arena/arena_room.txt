@@ -8,17 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Arena de Izlude			    |
+// | Nome do Script: Izlude Arena Room			    		|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.1/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: Sala principal da arena de batalha de Izlude|
+// | Descrição: Izlude Battle Arena Main Room				|
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    | 
+// | - Anotações		   			   						| 
 // \________________________________________________________/
 
 arena_room,94,93,5	script	Vendigos	97,{

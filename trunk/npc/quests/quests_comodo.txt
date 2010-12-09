@@ -1,33 +1,39 @@
 //  ________________________________________________________
-// /							    \
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
+// |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Quest NPCs related to Comodo	    |
+// | Nome do Script: Quest NPCs related to Comodo    		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.6/1.0				    |
+// | Versões eA/brA: 1.6/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Quests de Comodo: Headgear Quests 1 - Cross |
-// | Hat, Bulb Hairband, Striped Hairband, Blue Hairband,   |
-// | Headgear Quests 2 - Mine Helmet, Parcel Hat, Money	    |
-// | Loser's Grief, Phantom of the Opera Mask, Doomed Swords|
-// | Part 1 - Creation of doomed swords, Part 2 - Found in  |
-// | Quests_Yuno.txt, Part 3 - Found in Doomed_Swords.txt.  |
+// | Descrição: Headgear Quests 1 [Aegis Conversion]:		|
+// | - 'Cross Hat', 'Bulb Hairband'							|
+// | - 'Striped Hairband', 'Blue Hairband'					|
+// | Headgear Quests 2:										|
+// | - 'Mine Helmet', 'Parcel Hat'							|
+// | - 'Money Loser's Grief', 'Phantom of the Opera Mask'	|
+// | Doomed Swords Part 1:									|
+// | - Creation of doomed swords.							|
+// | - Part 2: Found in Quests_Yuno.txt						|
+// | - Part 3: Found in Doomed_Swords.txt					|
+// | - Variable in use: dmdswrd_Q (Max 45)					|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \________________________________________________________/
 
-//Headgear Quests 1 - Cross Hat, Bulb Hairband, Striped Hairband, Blue Hairband
-
+// Headgear Quests 1
+// Cross Hat, Bulb Hairband, Striped Hairband, Blue Hairband
+//============================================================ 
 comodo,228,159,3	script	Hair Ornament Girl	700,{
 	mes "[Hair Ornament Girl]";
 	if (Sex == 1) {
@@ -70,7 +76,7 @@ comodo,228,159,3	script	Hair Ornament Girl	700,{
 				mes "[Hair Ornament Girl]";
 				mes "Look at this! Well done~";
 				mes "Please come again~ hoooo!";
-				getitem 5036,1; //Cross_Band
+				getitem 5036,1; // Cross_Band
 				close;
 			}
 		}
@@ -115,7 +121,7 @@ comodo,228,159,3	script	Hair Ornament Girl	700,{
 				mes "[Hair Ornament Girl]";
 				mes "Look at this! Well done~";
 				mes "Please come again~ hoooo!";
-				getitem 5034,1; //Light_Bulb_Band
+				getitem 5034,1; // Light_Bulb_Band
 				close;
 			}
 		}
@@ -155,7 +161,7 @@ comodo,228,159,3	script	Hair Ornament Girl	700,{
 				mes "[Hair Ornament Girl]";
 				mes "Look at this! Well done~";
 				mes "Please come again~";
-				getitem 5049,1; //Stripe_Band
+				getitem 5049,1; // Stripe_Band
 				close;
 			}
 		}
@@ -199,7 +205,7 @@ comodo,228,159,3	script	Hair Ornament Girl	700,{
 				mes "[Hair Ornament Girl]";
 				mes "Look, at this! Well done!";
 				mes "Please come again~ ";
-				getitem 5052,1; //Blue_Hair_Band
+				getitem 5052,1; // Blue_Hair_Band
 				close;
 			}
 		}
@@ -222,8 +228,9 @@ comodo,228,159,3	script	Hair Ornament Girl	700,{
 	}
 }
 
-//Headgear Quests 2 - Mine Helmet, Parcel Hat, Money Loser's Grief, Phantom of the Opera Mask
-
+// Headgear Quests 2
+// 'Mine Helmet', 'Parcel Hat', 'Money Loser's Grief', 'Phantom of the Opera Mask'
+//============================================================ 
 comodo,273,137,4	script	Traveler#head	702,{
 	mes "[Isac Mari]";
 	mes "I travel around the world, and collect many interesting stories from people. Sometimes they teach me how to make special items.";
@@ -261,7 +268,7 @@ comodo,273,137,4	script	Traveler#head	702,{
 				delitem 999,25;  //Steel
 				mes "[Isac Mari]";
 				mes "I'm not quite sure if this is the right one, but it looks about right. Ha ha~";
-				getitem 5031,1; //Mine_Helm
+				getitem 5031,1; // Mine_Helm
 				close;
 			}
 		}
@@ -316,7 +323,7 @@ comodo,273,137,4	script	Traveler#head	702,{
 				mes "[Isac Mari]";
 				mes "Well...";
 				mes "Um, it looks like a Parcel Hat. So that's good enough for me! Ha ha~";
-				getitem 5023,1; //Hat_Of_Bundle
+				getitem 5023,1; // Hat_Of_Bundle
 				close;
 			}
 		}
@@ -373,7 +380,7 @@ comodo,273,137,4	script	Traveler#head	702,{
 				delitem 938,800;  //Sticky_Mucus
 				mes "[Isac Mari]";
 				mes "I might have made a few mistakes, but it looks good enough. Here you go, your own Grief for Greed hat!";
-				getitem 5021,1; //Bankruptcy_Of_Heart
+				getitem 5021,1; // Bankruptcy_Of_Heart
 				close;
 			}
 		}
@@ -432,7 +439,7 @@ comodo,273,137,4	script	Traveler#head	702,{
 				mes "[Isac Mari]";
 				mes "I'm not quite sure if this is the right one.";
 				mes "But it looks fine. Ha ha";
-				getitem 5043,1; //Opera_Ghost_Mask
+				getitem 5043,1; // Opera_Ghost_Mask
 				close;
 			}
 		}
@@ -466,8 +473,8 @@ comodo,273,137,4	script	Traveler#head	702,{
 	}
 }
 
-//Doomed Swords - Comodo Portion (Continued in Juno)
-
+// Doomed Swords - Comodo Portion. (Continued in Juno)
+//============================================================ 
 comodo,206,310,4	script	Campground Boy#cmd	704,{
 	if (dmdswrd_Q < 4) {
 		switch(dmdswrd_Q) {

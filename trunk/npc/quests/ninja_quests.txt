@@ -1,25 +1,25 @@
-//  _______________________________________________________
-// /							   \
+//  ________________________________________________________
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
-// |			brAthena Script			    |
+// |                                                        |
+// |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Ninja Quests			    |
+// | Nome do Script: Ninja quests				    		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.2/1.0				    |
+// | Versões eA/brA: 1.2/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Quests das Armas e Equipamentos Ninjas.	    |
+// | Descrição: Ninja quests								|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
-// \_______________________________________________________/
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
+// \________________________________________________________/
 
 que_ng,28,50,3	script	Boshuu	709,{
 
@@ -1159,8 +1159,7 @@ que_ng,22,62,3	script	Tetsu	709,{
 	menu "Fuuma Shuriken Beneki",M_BENEKI,"Fuuma Shuriken Daisharin",M_DAIS,
 		"Fuuma Shuriken Daisharin[4]",M_DAIS4,"Fuuma Shuriken Rekka",M_REKKA,"Cancel",M_CANCEL;
 
-//BENEKI
-
+//=====================BENEKI========================
 M_BENEKI:
 	mes "[Tetsu]";
 	mes "Hmm~ You've chose the ^ff0000Fuuma Beneki^000000.";
@@ -1208,8 +1207,7 @@ M_BENEKI:
 	mes "Here is your completed Fuuma Shuriken Beneki";
 	close;
 
-//DAISHARIN
-
+//=====================DAISHARIN========================
 M_DAIS:
 	mes "[Tetsu]";
 	mes "Hmm~ I see you've chose the ^ff0000Fuuma Shuriken Daisharin^000000.";
@@ -1257,8 +1255,7 @@ M_DAIS:
 	mes "Here is your completed Fuuma Shuriken Daisharin";
 	close;
 
-//DAISHARIN4
-
+//=====================DAISHARIN4========================
 M_DAIS4:
 	mes "[Tetsu]";
 	mes "Hmm~ I see you've chose the ^ff0000Fuuma Shuriken Daisharin[4]^000000.";
@@ -1311,8 +1308,7 @@ M_DAIS4:
 	mes "Here is your completed Fuuma Shuriken Daisharin[4].";
 	close;
 
-//REKKA
-
+//=====================REKKA========================
 M_REKKA:
 	mes "[Tetsu]";
 	mes "Hmm~ I see you've chose the ^ff0000Fuuma Shuriken Rekka^000000.";
@@ -1360,8 +1356,7 @@ M_REKKA:
 	mes "Here is your completed Fuuma Shuriken Rekka.";
 	close;
 
-//I'M SORRY!
-
+//=====================I'M SORRY========================
 M_NOPE:
 	mes "[Tetsu]";
 	mes "Hmm. The cost to create this item is kind of expensive...";

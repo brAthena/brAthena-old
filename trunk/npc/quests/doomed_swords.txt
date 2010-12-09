@@ -1,25 +1,30 @@
 //  ________________________________________________________
-// /							    \
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
+// |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Doomed Swords Quest Part 1-2	    |
+// | Nome do Script: Doomed Swords Quest		    		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.5/1.0				    |
+// | Versões eA/brA: 1.5/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Quest das Espadas Amaldiçoadas:		    |
-// | Grimtooth, Mysteltain, Executioner.		    |
+// | Descrição: Doomed Swords Quest: 						|
+// | - Quest for Doomed Swords: Grimtooth, Mysteltain, 		|
+// | Executioner. Although this quest is enabled on iRO, 	|
+// | the Mysteltainn portion is NOT completable as the 		|
+// | item "Young Twig" does not drop.						|
+// | - Variable in use: event_magum (max 6)					|
+// | - Variable in use: dmdswrd_Q2 (bits 1 - 32)			|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \________________________________________________________/
 
 prt_in,162,11,2	script	Ghatu#magum	86,{

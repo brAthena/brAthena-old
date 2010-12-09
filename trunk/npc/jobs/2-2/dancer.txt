@@ -18,7 +18,7 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    | 
+// | - Anotações		   			    					| 
 // \________________________________________________________/
 
 comodo,180,153,4	script	Sonotora#1	90,{
@@ -1373,27 +1373,3 @@ OnOmg:
 	Emotion e_omg;
 	end;
 }
-
-//============================================================ 
-// Old changelog
-//============================================================ 
-//= 1.1 Removed the warp I left here my accident, added a check for using 
-//=     Improved Concentration and arrow shower, people could get away with it
-//=     [Fredzilla]
-//= 1.0 I tried to keep as much the same from the Jap version as possible
-//=     this turned out to be quite hard, but on the whole it is the same script
-//=     I have added some new things, and changed some of the used commands,
-//=     along with some optimization. [Fredzilla]
-//= 1.5 Added Baby Class Support [Fredzilla]
-//= 1.6 Added a func which prevent advanced classes passing
-//= 2nd Job Quests again. It also guides adv classes where
-//= to go. [Lupus]
-//= 2.0 Changed numbers to constants. [Vicious]
-//= 2.1 Script check #1. [Lance]
-//= 2.2 Fixed unpassable part, thx2 Alis [Lupus]
-//= 2.3 Updated initnpctimer to attach player to jobDq script [Skotlex]
-//= 2.4 Attached chrid to be able obtain player's SP on mobs death, optimized a bit [Lupus]
-//= 2.5 Final fix of chrid issues, changed 'Improved
-//=	Concentration' to 'Attention Concentrate' [Lupus]
-//= 3.0 Some optimization, typos, added missing dialogues (4Kb lighter) [Lupus]
-//= 3.1 Implemented JOBLVL as in other quests [Lupus]

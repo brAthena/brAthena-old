@@ -15,7 +15,7 @@
 // | Versões eA/brA: 1.0/1.0                                |
 // |--------------------------------------------------------|
 // | Descrição: Fortune teller NPC. Displays random Cards   |
-// | image. 						    |
+// | image. 						    					|
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |

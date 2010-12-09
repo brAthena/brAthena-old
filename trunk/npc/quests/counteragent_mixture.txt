@@ -1,24 +1,26 @@
 //  ________________________________________________________
-// /							    \
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |							    |
+// |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Counteragent and Mixture Quest	    |
+// | Nome do Script: 							    		|
+// | 		Counteragent and Mixture Quest(Morgenstein)		|
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 2.2b/1.0				    |
+// | Versões eA/brA: 2.2b/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Quest Tinturas & Teste da Prof. Alquimista. |
+// | Descrição: Counteragent and Mixtures for making dyes 	|
+// | & Alchemist Job Quest									|
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Modificação [Autor]				    |
-// | - Anotações					    |
+// | Changelog:						    					|
+// | 1.0 Modificação [Autor]				    			|
+// | - Anotações					    					|
 // \________________________________________________________/
 
 alberta_in,133,55,3	script	Louitz#cm	84,{
