@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0025 - 09/12/2010 [Protimus]
+	* Removida pasta log devido ser desnecessária.
+	* Adicionado novo comando de script na source, skillcheck.
+	- Depois será modificado para ter mais uma função de checagem de status.
+
 	r0024 - 09/12/2010 [Lord]
 	* Adicionado pasta /npc/customizados e scripts_customizados.conf.
 	* Liberado npcs e adicionado import dos scripts_customizados em scripts_main.conf.
