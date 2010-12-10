@@ -12,7 +12,7 @@
 // |----------------------------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                                               |
 // |----------------------------------------------------------------------------|
-// | Descrição: Database da magia Abracadabra/Hocus-Pocus do Criador!           |
+// | Descrição: Database da magia Abracadabra/Hocus-Pocus do Criador.           |
 // |----------------------------------------------------------------------------|
 // | Estrutura da Database:                                                     |
 // | SkillID,DummyName,RequiredHocusPocusLevel,Rate                             |
@@ -20,15 +20,11 @@
 
 //1,Basic Skill,1,0
 
-//2,Sword Mastery,1,0
-//3,Two-Handed Sword Mastery,1,0
-//4,Increase HP Recovery,1,0
 5,Bash,1,5000
 6,Provoke,1,5000
 7,Magnum Break,1,5000
 8,Endure,1,5000
 
-//9,Increase SP Recovery,1,0
 10,Sight,1,5000
 11,Napalm Beat,1,5000
 12,Safety Wall,4,5000
@@ -42,8 +38,6 @@
 20,Lightning Bolt,1,5000
 21,Thunder Storm,2,5000
 
-//22,Divine Protection,1,0
-//23,Demon Bane,1,0
 24,Ruwach,1,5000
 25,Pneuma,6,5000
 26,Teleport,2,5000
@@ -57,22 +51,14 @@
 34,Blessing,2,5000
 35,Cure,1,5000
 
-//36,Enlarge Weight Limit,1,0
-//37,Discount,1,0
-//38,Overcharge,1,0
-//39,Pushcart,1,0
 40,Item Appraisal,1,5000
 41,Vending,4,5000
 42,Mammonite,1,5000
 
-//43,Owl's Eye,1,0
-//44,Vulture's Eye,1,0
 45,Improve Concentration,4,5000
 46,Double Strafe,1,5000
 47,Arrow Shower,2,5000
 
-//48,Double Attack,1,0
-//49,Improve Dodge,1,0
 50,Steal,2,5000
 51,Hiding,2,5000
 52,Envenom,1,5000
@@ -80,7 +66,6 @@
 
 54,Resurrection,1,5000
 
-//55,Spear Mastery,1,0
 56,Pierce,2,4000
 57,Brandish Spear,6,4000
 58,Spear Stab,1,4000
@@ -88,10 +73,7 @@
 60,TwoHand Quicken,1,4000
 61,Counter Attack,2,4000
 62,Bowling Bash,6,4000
-//63,Peco Peco Riding,1,0
-//64,Cavalier Mastery,1,0
 
-//65,Mace Mastery,1,0
 66,Impositio Manus,1,4000
 67,Suffragium,2,4000
 68,Aspersio,2,4000
@@ -109,7 +91,6 @@
 
 80,Fire Pillar,2,4000
 81,Sightrasher,2,4000
-//82,Fire Ivy,1,0
 83,Meteor Storm,6,4000
 84,Jupitel Thunder,2,4000
 85,Lord of Vermilion,6,4000
@@ -122,22 +103,7 @@
 92,Quagmire,4,4000
 93,Sense,1,4000
 
-//94,Iron Tempering,1,0
-//95,Steel Tempering,1,0
-//96,Enchanted Stone Craft,1,0
-//97,Oridecon Research,1,0
-//98,Smith Dagger,1,0
-//99,Smith Sword,1,0
-//100,Smith Two-handed Sword,1,0
-//101,Smith Axe,1,0
-//102,Smith Mace,1,0
-//103,Smith Knucklebrace,1,0
-//104,Smith Spear,1,0
-//105,Hilt Binding,1,0
-//106,Ore Discovery,1,0
-//107,Weaponry Research,1,0
 108,Weapon Repair,1,0
-//109,Skin Tempering,1,0
 110,Hammer Fall,1,4000
 111,Adrenaline Rush,2,4000
 112,Weapon Perfection,4,4000
@@ -155,16 +121,10 @@
 123,Claymore Trap,6,4000
 124,Remove Trap,1,4000
 125,Talkie box,1,4000
-//126,Beast Bane,1,0
-//127,Falconry Mastery,1,0
-//128,Steel Crow,1,0
 129,Blitz Beat,4,4000
 130,Detect,1,4000
 131,Spring Trap,1,4000
 
-//132,Righthand Mastery,1,0
-//133,Lefthand Mastery,1,0
-//134,Katar Mastery,1,0
 135,Cloaking,2,4000
 136,Sonic Blow,2,4000
 137,Grimtooth,4,4000
@@ -173,11 +133,10 @@
 140,Venom Dust,4,4000
 141,Venom Splasher,4,4000
 
-//---JP2.0 Additional skill---
+// JP2.0 Habilidades adicionais
+
 142,First Aid,1,5000
 143,Act Dead,1,5000
-//144,Moving HP-Recovery,1,0
-//145,Fatal Blow,1,0
 146,Auto Berserk,1,0
 147,Arrow Crafting,1,5000
 148,Arrow Repel,1,5000
@@ -191,8 +150,8 @@
 156,Holy Light,1,5000
 157,Energy Coat,1,5000
 
-//---EP4.0 Skill---
-//210,Gank,1,0
+// EP4.0 Habilidades
+
 211,Mug,1,4000
 212,Back Stab,4,4000
 //213,Stalk,1,0
@@ -205,12 +164,7 @@
 220,Scribble,1,4000
 221,Piece,1,0
 222,Remover,4,4000
-//223,Slyness,1,0
-//224,Haggle,1,0
-//225,Intimidate,1,0
 
-//226,Axe Mastery,1,0
-//227,Potion Research,1,0
 228,Prepare Potion,1,4000
 229,Bomb,2,4000
 230,Acid terror,2,4000
@@ -222,18 +176,6 @@
 236,Synthetic Armor,4,4000
 237,Biochemical Helm,4,4000
 
-//238,Bioethics,1,0
-//239,Biotechnology,1,0
-//240,Life Creation,1,0
-//241,Cultivation,1,0
-//242,Flame control,1,0
-//243,Call Homunculus,1,0
-//244,Vaporize,1,0
-//245,Drillmaster,1,0
-//246,Heal Homunculus,1,0
-//247,Resurrect Homunculus,1,0
-
-//248,Faith,1,0
 249,Guard,1,4000
 250,Smite,2,4000
 251,Shield boomerang,2,4000
@@ -245,13 +187,9 @@
 257,Defending Aura,4,4000
 258,Spear Quicken,1,4000
 
-//259,Iron fists,1,0
-//260,Spiritual Cadence,1,0
 261,Summon Spirit Sphere,1,4000
 262,Absorb Spirit Sphere,1,4000
-//263,Raging Trifecta Blow,1,0
 264,Snap,4,4000
-//265,Dodge,1,0
 266,Occult Impact,2,4000
 267,Throw Spirit Sphere,2,4000
 268,Mental Strength,4,4000
@@ -261,17 +199,14 @@
 272,Raging Quadruple Blow,1,0
 273,Raging Thrust,1,0
 
-//274,Study,1,0
 275,Cast Cancel,1,4000
 276,Magic Rod,1,4000
 277,Spell Break,2,4000
-//278,Free Cast,1,0
 279,Hindsight,2,4000
 280,Endow Blaze,2,4000
 281,Endow Tsunami,2,4000
 282,Endow Tornado,2,4000
 283,Endow Quake,2,4000
-//284,Dragonology,1,0
 285,Volcano,4,4000
 286,Deluge,4,4000
 287,Whirlwind,4,4000
@@ -279,7 +214,8 @@
 289,Dispel,6,4000
 290,Hocus-pocus,4,4000
 
-// Abracadabra Derivation Skill
+// Abracadabra, Habilidades derivadas
+
 291,Monocell,4,2500
 292,Class Change,8,2500
 293,Summon Monster,6,3500
@@ -294,7 +230,7 @@
 302,Rejuvination,8,3000
 303,Coma,4,4000
 
-// Dancer / Bard commonness
+// Duetos Bardo e Odalisca
 304,Amp,1,0
 305,Encore,1,0
 306,Lullaby,1,0
@@ -305,10 +241,8 @@
 311,Classical Pluck,1,0
 312,Power Chord,1,0
 313,Acoustic Rhythm,1,0
-//314,Ragnarok,1,0
 
-// Bard skill
-//315,Music Lessons,1,0
+// Bardo, Habilidades
 316,Melody Strike,1,4000
 317,Unchained Serenade,1,0
 318,Unbarring Octave,2,4000
@@ -317,8 +251,7 @@
 321,Magic Strings,1,0
 322,Song of Lutie,1,0
 
-// Dancer skill
-//323,Dance Lessons,1,0
+// Odalisca, Habilidades
 324,Slinging Arrow,1,4000
 325,Hip Shaker,1,0
 326,Dazzler,2,4000

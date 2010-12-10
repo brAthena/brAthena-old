@@ -31,8 +31,8 @@
 // | 11.  Advanced Jobs Skills (2)                                              |
 // | 12.  Taekwon Jobs Skills (2)                                               |
 // | 13.  2nd Jobs Quest Skills                                                 |
-// | 14.	Homunculus Skills                                               |
-// | 15.	Mercenary Skills                                                |
+// | 14.  Homunculus Skills                                                     |
+// | 15.  Mercenary Skills                                                      |
 // | 16.  Guild Skills                                                          |
 // |                                                                            |
 // | This is just a rough overview to help giving an overview on the document   |

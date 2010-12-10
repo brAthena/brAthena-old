@@ -12,9 +12,12 @@
 // |----------------------------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                                               |
 // |----------------------------------------------------------------------------|
-// | Descrição: Database da Raça Porings, invocáveis pela 'Caixa Poring'.       |
+// | Descrição: Database da Raça Poring, invocável pela 'Caixa Poring'.         |
 // |----------------------------------------------------------------------------|
-// | Estrutura da Database:                                                     |
+// | Changelog:                                                                 |
+// | 1.0 Modificação [brAthena]                                                 |
+// | - Anotações                                                                |
+// | Estrutura do Database:                                                     |
 // | MobID,DummyName,Rate                                                       |
 // \___________________________________________________________________________/
 
@@ -31,3 +34,7 @@
 1582,Deviling,200000
 1613,Metaling,1000000
 1784,Stapo,800000
+1836,Magmaring,800000
+1894,Pouring,800000
+1904,Bomb Poring,800000
+1977,Heavy Metaling,800000

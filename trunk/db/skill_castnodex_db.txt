@@ -14,7 +14,7 @@
 // |----------------------------------------------------------------------------|
 // | Descrição: Database das habilidades que dispensam tempo de conjuração.     |
 // |----------------------------------------------------------------------------|
-// | Estrutura da Database:														|
+// | Estrutura da Database:                                                     |
 // | <Skill id>,<Cast>,<Delay (optional)>                                       |
 // |                                                                            |
 // | Cast: 0 - everything affects the skill's cast time                         |
@@ -58,7 +58,7 @@
 10012,6	//GD_RESTORE
 10013,7	//GD_EMERGENCYCALL
 
-// Mercenary Skills
+// Habilidades dos Mercenários
 8214,7	//MA_CHARGEARROW
 8215,7	//MA_SHARPSHOOTING
 8217,7	//ML_BRANDISHSPEAR

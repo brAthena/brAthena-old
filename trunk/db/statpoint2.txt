@@ -12,8 +12,8 @@
 // |----------------------------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                                               |
 // |----------------------------------------------------------------------------|
-// | Descrição: Database contendo os pontos de experiência do Nível 1 ao 1000.  |
-// | Especial para servidores de rate alta, customizada.                        | 
+// | Descrição: Database de pontos de experiência para '3 Atributos 99'.        |
+// | Especial para servidores Base 99, mas de alta pontuação customizada.       |
 // \___________________________________________________________________________/
 48
 66
