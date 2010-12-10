@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0028 - 10/12/2010 [Protimus]
+	* Removidas opções para compilar o release de TXT no Visual Studio C++ 2009.
+	- Preparações para primeiro merge de limpezas do txt.
+
 	r0026 - 09/12/2010 [Protimus]
 	* Atualizado conforme eAthena r14571.
 	* Adicionadas propriedas svn:eol-style para o projeto do Visual Studio C++ 2010.

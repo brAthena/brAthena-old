@@ -8,6 +8,9 @@
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
+
+	r0027 - 10/12/2010 [Protimus]
+	* Atualizado conforme eAthena 14571.
 	
 	r0021 - 07/12/2010 [Protimus]
 	* Removido suporte para engines TXT das conexões de mapa e char.
