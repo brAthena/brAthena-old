@@ -8,6 +8,10 @@
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
+	
+	r0029 - 10/12/2010 [Protimus]
+	* Realizado primeiro merge de remoções do TXT da source.
+	- Merge de acordo com r28 da branch txt-remove.
 
 	r0028 - 10/12/2010 [Protimus]
 	* Removidas opções para compilar o release de TXT no Visual Studio C++ 2009.

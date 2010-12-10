@@ -30,26 +30,8 @@ static struct{
 	AccountDB* (*constructor)(void);
 	AccountDB* db;
 } account_engines[] = {
-#ifdef WITH_TXT
-	{account_db_txt, NULL},
-#endif
 #ifdef WITH_SQL
 	{account_db_sql, NULL},
-#endif
-#ifdef ACCOUNTDB_ENGINE_0
-	{ACCOUNTDB_CONSTRUCTOR(ACCOUNTDB_ENGINE_0), NULL},
-#endif
-#ifdef ACCOUNTDB_ENGINE_1
-	{ACCOUNTDB_CONSTRUCTOR(ACCOUNTDB_ENGINE_1), NULL},
-#endif
-#ifdef ACCOUNTDB_ENGINE_2
-	{ACCOUNTDB_CONSTRUCTOR(ACCOUNTDB_ENGINE_2), NULL},
-#endif
-#ifdef ACCOUNTDB_ENGINE_3
-	{ACCOUNTDB_CONSTRUCTOR(ACCOUNTDB_ENGINE_3), NULL},
-#endif
-#ifdef ACCOUNTDB_ENGINE_4
-	{ACCOUNTDB_CONSTRUCTOR(ACCOUNTDB_ENGINE_4), NULL},
 #endif
 	// end of structure
 	{NULL, NULL}
