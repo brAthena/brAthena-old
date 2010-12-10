@@ -1,5 +1,5 @@
 --
--- eAthena Database Converter ( InnoDB -> MyISAM )
+-- Conversor de Banco de Dados brAthena ( InnoDB -> MyISAM )
 --
 
 ALTER TABLE `auction` ENGINE = MyISAM;

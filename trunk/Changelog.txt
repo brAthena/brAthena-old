@@ -8,6 +8,13 @@
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
+
+	r0030 - 10/12/2010 [Lord]
+	* Iniciado organização e tradução da pasta /sql-files
+	* Iniciada tradução dos nomes dos arquivos e pastas em /npc
+	* Corrigido pequeno erro no castle_db.
+	* Readcionada a pata /log
+	- A mesma pode ser utilizada para a versão SQL do emulador.
 	
 	r0029 - 10/12/2010 [Protimus]
 	* Realizado primeiro merge de remoções do TXT da source.
