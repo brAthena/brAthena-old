@@ -4762,7 +4762,7 @@ int pc_checkbaselevelup(struct map_session_data *sd)
 
 		sd->status.base_level ++;
 
-		if (battle_config.use_statpoint_table)
+		if (battle_config.use_statpoint_table || battle_config.use_statpoint2_table)
 			next = statp[sd->status.base_level] - statp[sd->status.base_level-1];
 		else //Estimated way.
 			next = (sd->status.base_level+14) / 5 ;
@@ -5315,7 +5315,7 @@ int pc_resetstate(struct map_session_data* sd)
 {
 	nullpo_ret(sd);
 	
-	if (battle_config.use_statpoint_table)
+	if (battle_config.use_statpoint_table || battle_config.use_statpoint2_table)
 	{	// New statpoint table used here - Dexity
 		if (sd->status.base_level > MAX_LEVEL)
 		{	//statp[] goes out of bounds, can't reset!
@@ -8115,7 +8115,10 @@ int pc_readdb(void)
 	// ƒXƒLƒ‹ƒcƒŠ?
 	memset(statp,0,sizeof(statp));
 	i=1;
-	sprintf(line, "%s/statpoint.txt", db_path);
+	if(battle_config.use_statpoint2_table)
+		sprintf(line, "%s/statpoint2.txt", db_path);
+	else
+		sprintf(line, "%s/statpoint.txt", db_path);
 	fp=fopen(line,"r");
 	if(fp == NULL){
 		ShowStatus("Can't read '"CL_WHITE"%s"CL_RESET"'... Generating DB.\n",line);
@@ -8134,6 +8137,9 @@ int pc_readdb(void)
 			i++;
 		}
 		fclose(fp);
+		if(battle_config.use_statpoint2_table)
+			ShowStatus("Done reading '"CL_WHITE"%s"CL_RESET"'.\n","statpoint2.txt");
+		else
 		ShowStatus("Done reading '"CL_WHITE"%s"CL_RESET"'.\n","statpoint.txt");
 	}
 	// generate the remaining parts of the db if necessary
