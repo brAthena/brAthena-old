@@ -8,17 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Cooking Quest				    		|
+// | Nome do Script: Cooking Quest		            |
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    			|
+// | Criado por: eA/brA Dev. Team			    |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.8/1.0				    			|
+// | Versões eA/brA: 1.8/1.0				    |
 // |--------------------------------------------------------|
-// | Descrição: Official Cooking Quest (10.3)				|
+// | Descrição: Official Cooking Quest (10.3)		    |
 // |--------------------------------------------------------|
-// | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
-// | - Anotações					    					|
+// | Changelog:						    |
+// | 1.0 Modificação [Autor]				    |
+// | - Anotações					    |
 // \________________________________________________________/
 
 prt_castle,43,30,3	script	Charles Orleans#cook	878,{

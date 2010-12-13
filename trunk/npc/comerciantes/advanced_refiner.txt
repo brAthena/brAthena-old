@@ -8,16 +8,16 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Advanced Refiner			    		|
+// | Nome do Script: Advanced Refiner			    |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.4/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: 								            |
-// | Refiner that uses Enriched ores to increase upgrade	|
-// | success.												|
-// | After a conversation with Doddler, it's been			|
+// | Descrição:                                             |
+// | Refiner that uses Enriched ores to increase upgrade    |
+// | success.						    |
+// | After a conversation with Doddler, it's been	    |
 // | established that the advanced refiner works similar	|
 // | the the "Bubble Gum" item. The success percentage		|
 // | is not "increased" however, if it fails You get		|

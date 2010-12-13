@@ -14,9 +14,9 @@
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.1/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: Spawns monsters to clean up city. 	    |
-// | Apparently spawning occured in iRO and kRO.	    |
-// | Enable this if you want.                               |
+// | Descrição: Sumona monstros para limpar a cidade. 	    |
+// | Aparentemente summona no kRO e no iRO.	            |
+// | Ative isso se desejar.                                 |
 // |                                                        |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
