@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0033 - 13/12/2010 [Floozie]
+	* Alterado nome da pasta npc/classes/novice para 'aprendiz'
+	
 	r0032 - 10/12/2010 [Protimus]
 	* Atualizado conforme eAthena r14589. 
 
