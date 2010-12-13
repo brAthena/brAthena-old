@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0035 - 13/12/2010 [Lord]
+	* Corrigido pequeno erro de escrita na pasta conf.
+	* Iniciada tradução e organização da pasta /db
+	* Atualizado conforme eAthena r14590. 
+
 	r0033 - 13/12/2010 [Floozie]
 	* Alterado nome da pasta npc/classes/novice para 'aprendiz'
 	

@@ -12,327 +12,327 @@
 // |----------------------------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                                               |
 // |----------------------------------------------------------------------------|
-// | Descrição: Database contendo os drops de itens tipo misc.                  |
+// | Descrição: Banco de Dados contendo os drops de itens de Caixas.            |
 // |----------------------------------------------------------------------------|
-// | Estrutura da Database:                                                     |
-// | GroupID,ItemID,Rate                                                        |
+// | Estrutura do Banco de Dados:                                               |
+// | ID do Grupo de Itens , ID do Item , Taxa                                   |
 // \___________________________________________________________________________/
 
-// First Aid Kit
-8,501,5		// Red Potion
-8,502,5		// Orange Potion
-8,503,5		// Yellow Potion
-8,504,5		// White Potion
-8,505,5		// Blue Potion
-8,506,5		// Green Potion
-8,545,5		// Condensed Red Potion
-8,546,5		// Condensed Yellow Potion
-8,547,5		// Condensed White Potion
-8,569,5		// Novice Potion
-8,605,5		// Anodyne
-8,645,5		// Concentration Potion
-8,656,5		// Awakening Potion
-8,657,5		// Berserk Potion
-8,678,1		// Poison Bottle
-8,12016,4	// Speed Potion
-8,12017,5	// Slow Potion
-8,12020,5	// Cursed_Water
-// Herbs
-9,507,1		// Red Herb
-9,508,1		// Yellow Herb
-9,509,1		// White Herb
-// Fruits
-10,512,1	// Apple
+// Kit de Primeiros Socorros
+8,501,5	// Poção Vermelha
+8,502,5	// Poção Laranja
+8,503,5	// Poção Amarela
+8,504,5	// Poção Branca
+8,505,5	// Poção Azul
+8,506,5	// Poção Verde
+8,545,5	// Poção Vermelha Compacta
+8,546,5	// Poção Amarela Compacta
+8,547,5	// Poção Branca Compacta
+8,569,5	// Poção de Aprendiz
+8,605,5	// Analgésico
+8,645,5	// Poção da Concentração
+8,656,5	// Poção do Despertar
+8,657,5	// Poção da Fúria Selvagem
+8,678,1	// Garrafa de Veneno
+8,12016,4	// Poção do Vento
+8,12017,5	// Poção da Lentidão
+8,12020,5	// Água Amaldiçoada
+// Ervas
+9,507,1	// Erva Vermelha
+9,508,1	// Erva Amarela
+9,509,1	// Erva Branca
+// Fruts
+10,512,1	// Maçã
 10,513,1	// Banana
-10,514,1	// Grape
-10,515,1	// Carrot
-10,516,1	// Potato
-// Meat
-11,517,1	// Meat
-11,528,1	// Monster Food
-// Candy
-12,529,1	// Candy
-12,530,1	// Candy Cane
-// Juice
-13,531,1	// Apple Juice
-13,532,1	// Banana Juice
-13,534,1	// Carrot Juice
-// Fish
-14,544,1	// Raw Fish
+10,514,1	// Uvas
+10,515,1	// Cenoura
+10,516,1	// Batata Doce
+// Carne
+11,517,1	// Carne
+11,528,1	// Ração para Monstros
+// Doçe
+12,529,1	// Bala
+12,530,1	// Bengala Doce
+// Suco
+13,531,1	// Suco de Maçã
+13,532,1	// Suco de Banana
+13,534,1	// Suco de Cenoura
+// Peixe
+14,544,1	// Peixe Cru
 14,551,1	// Sushi
-// Boxes
-15,603,1	// Old Blue Box
-15,617,1	// Old Purple Box
-15,644,1	// Gift Box
-// Gemstones
-16,715,1	// Yellow Gemstone
-16,716,1	// Red Gemstone
-16,717,1	// Blue Gemstone
-// Elemental Resist Potions
-17,12118,1	// Fire Resist Potion
-17,12119,1	// Cold Resist Potion
-17,12120,1	// Earth Resist Potion
-17,12121,1	// Thunder Resist Potion
-// Ores
-18,1002,30	// Iron_Ore
-18,998,28	// Iron
-18,993,26	// Yellow_Live
-18,1003,24	// Coal
-18,992,22	// Wind_Of_Verdure
-18,1010,20	// Phracon
-18,991,18	// Crystal_Blue
-18,990,16	// Boody_Red
-18,999,14	// Steel
+// Caixas
+15,603,1	// Velha Caixa Azul
+15,617,1	// Velha Caixa Roxa
+15,644,1	// Caixa de Presente
+// Gemas
+16,715,1	// Gema Amarela
+16,716,1	// Gema Vermelha
+16,717,1	// Gema Azul
+// Poções de Resistência Elemental
+17,12118,1	// Poção Anti-Fogo
+17,12119,1	// Poção Anti-Água
+17,12120,1	// Poção Anti-Terra
+17,12121,1	// Poção Anti-Vento
+// Minérios
+18,1002,30	// Minério de Ferro
+18,998,28	// Ferro
+18,993,26	// Vida Verdejante
+18,1003,24	// Carvão
+18,992,22	// Frescor do Vento
+18,1010,20	// Fracon
+18,991,18	// Cristal Azul
+18,990,16	// Sangue Escarlate
+18,999,14	// Aço
 18,1011,12	// Emveretarcon
-18,757,10	// Elunium_Stone
-18,756,9	// Oridecon_Stone
-18,997,8	// Great_Nature
-18,996,7	// Rough_Wind
-18,995,6	// Mistic_Frozen
-18,994,5	// Flame_Heart
+18,757,10	// Minério de Elunium
+18,756,9	// Minério de Oridecon
+18,997,8	// Natureza Grandiosa
+18,996,7	// Vento Bruto
+18,995,6	// Gelo Místico
+18,994,5	// Coração Flamejante
 18,985,4	// Elunium
 18,984,3	// Oridecon
-18,969,2	// Gold
+18,969,2	// Ouro
 18,714,1	// Emperium
-// Food Types
-19,526,5	// Royal_Jelly
-19,12042,10	// Str_Dish02
-19,12057,10	// Agi_Dish02
-19,12068,10	// Vit_Dish03
-19,12062,10	// Dex_Dish02
-19,12068,10	// Luk_Dish03
-19,12047,10	// Int_Dish02
-19,531,30	// Apple_Juice
-19,532,30	// Banana_Juice
-19,533,30	// Grape_Juice
-19,534,30	// Carrot_Juice
-19,538,30	// Well_Baked_Cookie
-19,536,50	// Ice_Cream
-19,544,50	// Fish_Slice
-19,548,50	// Cheese
-19,551,50	// Shusi
-19,553,50	// Bun
-19,554,50	// Mojji
-19,535,50	// Pumpkin
-19,516,100	// Sweet_Potato
+// Tipos de Comida
+19,526,5	// Geléia Real
+19,12042,10	// Palmípede Temperado
+19,12057,10	// Macarrão Liso
+19,12068,10	// Batata-Doce Frita
+19,12062,10	// Bolo-Mousse de Chocolate
+19,12068,10	// Batata-Doce Frita
+19,12047,10	// Chá Vermelho de Outono
+19,531,30	// Suco de Maçã
+19,532,30	// Suco de Banana
+19,533,30	// Suco de Uva
+19,534,30	// Suco de Cenoura
+19,538,30	// Biscoito de Gengibre
+19,536,50	// Sorvete
+19,544,50	// Peixe Cru
+19,548,50	// Queijo
+19,551,50	// Sushi
+19,553,50	// Pão de Carne
+19,554,50	// Mochi
+19,535,50	// Abóbora
+19,516,100	// Batata Doce
 19,513,100	// Banana
-19,512,600	// Apple
-// Recovery Types
-20,522,5	// Fruit_Of_Mastela
-20,521,5	// Leaflet_Of_Aloe
-20,520,10	// Leaflet_Of_Hinal
-20,545,10	// Red_Slim_Potion
-20,12118,10	// Resist_Earth
-20,508,20	// Yellow_Herb
-20,501,20	// Red_Potion
-20,511,30	// Green_Herb
-20,507,30	// Red_Herb
-20,569,50	// Novice_Potion
-20,549,50	// Nice_Sweet_Potato
-20,529,100	// Candy
-20,528,200	// Monster's_Feed
-20,550,600	// Popped_Rice
-// Minerals - Unused
+19,512,600	// Maçã
+// Itens de Recuperação
+20,522,5	// Mastela
+20,521,5	// Folha de Aloe
+20,520,10	// Folha de Hinalle
+20,545,10	// Poção Vermelha Compacta
+20,12118,10	// Poção Anti-Fogo
+20,508,20	// Erva Amarela
+20,501,20	// Poção Vermelha
+20,511,30	// Erva Verde
+20,507,30	// Erva Vermelha
+20,569,50	// Poção de Aprendiz
+20,549,50	// Batata Doce Assada
+20,529,100	// Bala
+20,528,200	// Ração para Monstros
+20,550,600	// Bolinhos de Arroz
+// Minerais - Não utilizados
 21,714,1	// Emperium
-21,756,1	// Rough Oridecon
-21,757,1	// Rough Elunium
-21,969,1	// Gold
+21,756,1	// Minério de Oridecon
+21,757,1	// Minério de Elunium
+21,969,1	// Ouro
 21,984,1	// Oridecon
 21,985,1	// Elunium
-21,990,1	// Red Blood
-21,991,1	// Crystal Blue
-21,992,1	// Wind of Verdure
-21,993,1	// Green Live
-21,994,1	// Flame Heart
-21,995,1	// Mystic Frozen
-21,996,1	// Rough Wind
-21,997,1	// Great Nature
-21,998,1	// Iron
-21,999,1	// Steel
-21,1002,1	// Iron Ore
-21,1003,1	// Coal
-21,1010,1	// Phracon
+21,990,1	// Sangue Escarlate
+21,991,1	// Cristal Azul
+21,992,1	// Frescor do Vento
+21,993,1	// Vida Verdejante
+21,994,1	// Coração Flamejante
+21,995,1	// Gelo Místico
+21,996,1	// Vento Bruto
+21,997,1	// Natureza Grandiosa
+21,998,1	// Ferro
+21,999,1	// Aço
+21,1002,1	// Minério de Ferro
+21,1003,1	// Carvão
+21,1010,1	// Fracon
 21,1011,1	// Emveretarcon
-// Set Of Taiming Item
-22,619,1	// Unripe Apple
-22,620,1	// Orange Juice
-22,621,1	// Bitter Herb
-22,622,1	// Rainbow Carrot
-22,623,1	// Earthworm the Dude
-22,624,1	// Rotten Fish
-22,625,1	// Rusty Iron
-22,626,1	// Monster Juice
-22,627,1	// Sweet Milk
-22,628,1	// Well-Dried Bone
-22,629,1	// Singing Flower
-22,630,1	// Dew Laden Moss
-22,631,1	// Deadly Noxious Herb
-22,632,1	// Fatty Chubby Earthworm
-22,633,1	// Sweet Potato
-22,634,1	// Tropical Banana
-22,635,1	// Orc Trophy
-22,636,1	// No Recipient
-22,637,1	// Old Broom
-22,638,1	// Silver Knife of Chastity
-22,639,1	// Armlet of Obedience
-22,640,1	// Shining Stone
-22,641,1	// Contracts in Shadow
-22,642,1	// Book of the Devil
-22,659,1	// Her Heart
-22,660,1	// Forbidden Red Candle
-22,661,1	// Soft Apron
-22,10001,1	// Skull Helm
-22,10002,1	// Monster Oxygen Mask
-22,10003,1	// Transparent Headgear
-22,10004,1	// Pacifier
-22,10005,1	// Wig
-22,10006,1	// Queen's Hair Ornament
-22,10007,1	// Silk Ribbon
-22,10008,1	// Punisher
-22,10009,1	// Wild Flower
-22,10010,1	// Battered Pot
-22,10011,1	// Stellar Hairpin
-22,10012,1	// Tiny Egg Shell
-22,10013,1	// Backpack
-22,10014,1	// Rocker Glasses
-22,10015,1	// Green Lace
-22,10016,1	// Golden Bell
-22,10017,1	// Bark Shorts
-22,10018,1	// Monkey Circlet
-22,10019,1	// Red Scarf
-22,10020,1	// Grave Keeper's Sword
-22,12373,1	// 
-22,12374,1	// 
-22,12395,1	// 
-// Bundle Of Magic Scroll
-23,686,1	// Level 3 Earth Spike
-23,687,1	// Level 5 Earth Spike
-23,688,1	// Level 3 Cold Bolt
-23,689,1	// Level 5 Cold Bolt
-23,690,1	// Level 3 Fire Bolt
-23,691,1	// Level 5 Fire Bolt
-23,692,1	// Level 3 Lightening Bolt
-23,693,1	// Level 5 Lightening Bolt
-23,694,1	// Level 3 Soul Strike
-23,695,1	// Level 5 Soul Strike
-23,696,1	// Level 1 Fire Ball
-23,697,1	// Level 5 Fire Ball
-23,698,1	// Level 1 Fire Wall
-23,699,1	// Level 5 Fire Wall
-23,700,1	// Level 1 Frost Diver
-23,12000,1	// Level 5 Frost Diver
-23,12001,1	// Level 3 Heal
-23,12002,1	// Level 5 Heal
-// Random Quiver
-24,12004,1	// Quiver
-24,12005,1	// Iron Arrow Quiver
-24,12006,1	// Steel Arrow Quiver
-24,12007,1	// Oridecon Arrow Quiver
-24,12008,1	// Fire Arrow Quiver
-24,12009,1	// Silver Arrow Quiver
-24,12010,1	// Wind Arrow Quiver
-24,12011,1	// Stone Arrow Quiver
-24,12012,1	// Crystal Arrow Quiver
-24,12013,1	// Shadow Arrow Quiver
-24,12014,1	// Immaterial Arrow Quiver
-24,12015,1	// Rusty Arrow Quiver
-24,12183,1	// Holy Arrow Quiver
-// Wrapped Mask
-25,2278,10	// Mr. Smile
-25,2281,10	// Opera Masque
-25,2288,10	// Mr. Scream
-25,2292,10	// Welding Mask
-25,2297,10	// Goblin Mask
-25,5005,10	// Gas Mask
-25,5086,10	// Alarm Mask
-25,5087,10	// Poker Face
-25,5088,10	// Surprised Mask
-25,5089,10	// Annoyed Mask
-25,5090,10	// Goblin Leader Mask
-25,5121,1	// Zherlthsh Mask
-25,5176,2	// Hahoe Mask
-// Accessory Box
-26,2601,10	// Ring
-26,2602,11	// Earring
-26,2603,12	// Necklace
-26,2604,12	// Glove
-26,2605,12	// Brooch
-26,2607,12	// Clip
-26,2608,14	// Rosary
-26,2609,14	// Skull Ring
-26,2610,14	// Gold Ring
-26,2611,14	// Silver Ring
-26,2612,14	// Flower Ring
-26,2613,12	// Diamond Ring
-26,2615,1	// Safety Ring
-26,2616,1	// Critical Ring
-26,2617,10	// Celebrant's Mitten
-26,2618,11	// Matyr's Leash
-26,2619,10	// Bow Thimble
-26,2621,1	// Ring
-26,2622,1	// Earring
-26,2623,10	// Necklace
-26,2624,1	// Glove
-26,2625,1	// Brooch
-26,2626,1	// Rosary
-26,2627,10	// Belt
-26,2628,14	// Novice Armlet
-26,2654,1	// Shinobi Sash
-26,2656,1	// Armor Charm
-26,2658,10	// Nile Rose
-26,2659,2	// Vesper Core 01
-26,2660,2	// Vesper Core 02
-26,2661,2	// Vesper Core 03
-26,2662,2	// Vesper Core 04
-26,2671,1	// Bow Thimble
-26,2700,2	// Red Silk of Seal
-26,2701,1	// Glove of Orleans
-26,2677,1	// Spiritual Ring
-26,2680,9	// Ring of Minor Spirits
-26,2703,1	// Expert Ring
-26,2716,1	// Librarian Glove
-26,2717,1	// Pocket Watch
-26,2718,1	// Lunatic Brooch
-26,2719,1	// Iron Wrist
-// jewels
-27,715,100	// Yellow_Gemstone
-27,716,100	// Red_Gemstone
-27,717,100	// Blue_Gemstone
-27,718,10	// Dark_Red_Jewel
-27,719,10	// Violet_Jewel
-27,720,10	// Skyblue_Jewel
-27,721,10	// Azure_Jewel
-27,722,10	// Scarlet_Jewel
-27,723,10	// Cardinal_Jewel
-27,724,10	// Cardinal_Jewel_
-27,725,10	// Red_Jewel
-27,726,10	// Blue_Jewel
-27,727,10	// White_Jewel
-27,728,10	// Golden_Jewel
-27,729,10	// Bluish_Green_Jewel 
-27,730,5	// Crystal_Jewel
-27,731,4	// Crystal_Jewel_
-27,732,3	// Crystal_Jewel__
-27,733,27	// Crystal_Jewel___
-27,746,50	// Glass_Bead
-// Egg Boy
-32,514,300	// Grape
-32,564,522	// Rice Ball
-32,660,20	// Forbidden Red Candle
-32,682,100	// Distilled Fighting Spirit
-32,683,50	// Herb of Incantation
-32,2235,2	// Crown
-32,2274,5	// Ghost Bandana
-32,5072,1	// Incubus Horn
-// Egg Girl
-33,514,300	// Grape
-33,564,522	// Rice Ball
-33,661,20	// Soft Apron
-33,682,100	// Distilled Fighting Spirit
-33,683,50	// Herb of Incantation
-33,2234,2	// Tiara
-33,5042,5	// Bao Bao
-33,5066,1	// Succubus Horn
+// Itens de Captura
+22,619,1	// Maçã Verde
+22,620,1	// Suco de Laranja
+22,621,1	// Erva Amarga
+22,622,1	// Cenoura Arco-Íris
+22,623,1	// Minhoca Boa-Pinta
+22,624,1	// Peixe Podre
+22,625,1	// Ferro Enferrujado
+22,626,1	// Suco de Monstro
+22,627,1	// Leite Doce
+22,628,1	// Osso Seco
+22,629,1	// Flor Cantante
+22,630,1	// Musgo Encharcado
+22,631,1	// Erva Letal
+22,632,1	// Minhoca Gorducha
+22,633,1	// Batata Assada
+22,634,1	// Banana Tropical
+22,635,1	// Horror da Tribo
+22,636,1	// Sem Destinatário
+22,637,1	// Vassoura Velha
+22,638,1	// Faca de Prata da Castidade
+22,639,1	// Bracelete da Obediência
+22,640,1	// Pedra Brilhante
+22,641,1	// Contratos das Sombras
+22,642,1	// Livro do Diabo
+22,659,1	// Coração Apaixonado
+22,660,1	// Vela do Marquês de Sade
+22,661,1	// Avental Elegante
+22,10001,1	// Elmo de Crânio
+22,10002,1	// Máscara de Oxigênio para Bichinhos
+22,10003,1	// Capacete Espacial
+22,10004,1	// Chupeta
+22,10005,1	// Peruca
+22,10006,1	// Ornamento da Rainha
+22,10007,1	// Laço de Seda
+22,10008,1	// Pavana
+22,10009,1	// Flor Selvagem
+22,10010,1	// Panela Velha
+22,10011,1	// Ornato Estelar
+22,10012,1	// Casca de Ovo Minúscula
+22,10013,1	// Mochila
+22,10014,1	// Óculos de Rocker
+22,10015,1	// Laço Verde
+22,10016,1	// Sino de Ouro
+22,10017,1	// Saia Havaiana
+22,10018,1	// Coroa de Macaco
+22,10019,1	// Pano Vermelho
+22,10020,1	// Espada chinesa
+22,12373,1	// Coração Puro
+22,12374,1	// Chama Azulada
+22,12395,1	// Guloseima Recheada
+// Pacotes de Pergaminhos de Magia
+23,686,1	// Coluna de Pedra Nível 3
+23,687,1	// Coluna de Pedra Nível 5
+23,688,1	// Lanças de Gelo Nível 3
+23,689,1	// Lanças de Gelo Nível 5
+23,690,1	// Lanças de Fogo Nível 3
+23,691,1	// Lanças de Fogo Nível 5
+23,692,1	// Relâmpago Nível 3
+23,693,1	// Relâmpago Nível 5
+23,694,1	// Espíritos Anciões Nível 3
+23,695,1	// Espíritos Anciões Nível 5
+23,696,1	// Bolas de Fogo Nível 1
+23,697,1	// Bolas de Fogo Nível 5
+23,698,1	// Barreira de Fogo Nível 1
+23,699,1	// Barreira de Fogo Nível 5
+23,700,1	// Rajada Congelante Nível 1
+23,12000,1	// Rajada Congelante Nível 5
+23,12001,1	// Cura Nível 3
+23,12002,1	// Cura Nível 5
+// Aljaves
+24,12004,1	// Aljave
+24,12005,1	// Aljave de Flechas de Ferro
+24,12006,1	// Aljave de Flechas de Aço
+24,12007,1	// Aljave de Flechas de Oridecon
+24,12008,1	// Aljave de Flechas de Fogo
+24,12009,1	// Aljave de Flechas de Prata
+24,12010,1	// Aljave de Flechas de Vento
+24,12011,1	// Aljave de Flechas de Pedra
+24,12012,1	// Aljave de Flechas de Cristal
+24,12013,1	// Aljave de Flechas de Sombra
+24,12014,1	// Aljave de Flechas Imateriais
+24,12015,1	// Aljave de Flechas Enferrujadas
+24,12183,1	// Aljave de Flechas Sagradas
+// Máscaras
+25,2278,10	// Máscara Feliz
+25,2281,10	// Máscara do Fantasma
+25,2288,10	// Máscara Assustadora
+25,2292,10	// Máscara de Solda
+25,2297,10	// Máscara de Goblin
+25,5005,10	// Máscara de Gás
+25,5086,10	// Máscara de Alarme
+25,5087,10	// Máscara sem Expressão
+25,5088,10	// Máscara Surpresa
+25,5089,10	// Máscara Aflita
+25,5090,10	// Máscara de Líder Goblin
+25,5121,1	// Máscara de Jirtas
+25,5176,2	// Máscara Hahoe
+// Caixa de Acessórios
+26,2601,10	// Anel
+26,2602,11	// Brinco
+26,2603,12	// Colar
+26,2604,12	// Luvas
+26,2605,12	// Broche
+26,2607,12	// Presilha
+26,2608,14	// Rosário
+26,2609,14	// Anel de Caveira
+26,2610,14	// Anel de Ouro
+26,2611,14	// Anel de Prata
+26,2612,14	// Anel de Flor
+26,2613,12	// Anel de Diamante
+26,2615,1	// Anel de Defesa
+26,2616,1	// Anel Certeiro
+26,2617,10	// Luva Sacra
+26,2618,11	// Coleira de Matyr
+26,2619,10	// Luva de Puxada
+26,2621,1	// Anel
+26,2622,1	// Brinco
+26,2623,10	// Colar
+26,2624,1	// Luva
+26,2625,1	// Broche
+26,2626,1	// Rosário
+26,2627,10	// Cinto
+26,2628,14	// Bracelete de Aprendiz
+26,2654,1	// Cinto Shinobi
+26,2656,1	// Talismã da Armadura
+26,2658,10	// Rosa do Nilo
+26,2659,2	// Núcleo Vesper 01
+26,2660,2	// Núcleo Vesper 02
+26,2661,2	// Núcleo Vesper 03
+26,2662,2	// Núcleo Vesper 04
+26,2671,1	// Luva de Puxada
+26,2700,2	// Brasão de Seda Vermelha
+26,2701,1	// Luvas de Orleans
+26,2677,1	// Anel Espiritual
+26,2680,9	// Anel Elemental Menor
+26,2703,1	// Anel do Especialista
+26,2716,1	// Luva de Bibliotecário
+26,2717,1	// Relógio de Bolso
+26,2718,1	// Broche Lunático
+26,2719,1	// Pulso de Ferro
+// Jóias
+27,715,100	// Gema Amarela
+27,716,100	// Gema Vermelha
+27,717,100	// Gema Azul
+27,718,10	// Granada
+27,719,10	// Ametista
+27,720,10	// Aquamarina
+27,721,10	// Esmeralda
+27,722,10	// Pérola
+27,723,10	// Rubi
+27,724,10	// Rubi Amaldiçoado
+27,725,10	// Peridoto
+27,726,10	// Safira
+27,727,10	// Opala
+27,728,10	// Topázio
+27,729,10	// Zircônio
+27,730,5	// Diamante de 1 quilate
+27,731,4	// Diamante de 2 quilates
+27,732,3	// Diamante de 3 quilates
+27,733,27	// Diamante Rachado
+27,746,50	// Bolinha de Gude
+// Ovo do Festival de Dano
+32,514,300	// Uvas
+32,564,522	// Bolinho de Arroz
+32,660,20	// Vela do Marquês de Sade
+32,682,100	// Bebida de Realgar
+32,683,50	// Erva de Exorcismo
+32,2235,2	// Coroa
+32,2274,5	// Faixa de Fantasma
+32,5072,1	// Chifre de Incubus
+// Ovo do Festival de Dano
+33,514,300	// Uvas
+33,564,522	// Bolinho de Arroz
+33,661,20	// Avental Elegante
+33,682,100	// Bebida de Realgar
+33,683,50	// Erva de Exorcismo
+33,2234,2	// Diadema
+33,5042,5	// Bao-Bao
+33,5066,1	// Chifre de Succubus
 // Lotto Box
 35,7391,1	// Lotto Ball 31
 35,7392,1	// Lotto Ball 32
@@ -344,255 +344,255 @@
 35,7398,1	// Lotto Ball 38
 35,7540,1	// Lotto Ball 39
 35,7541,1	// Lotto Ball 40
-// Food Package
-36,512,1	// Apple
+// Pacote de Comida
+36,512,1	// Maçã
 36,513,1	// Banana
-36,514,1	// Grape
-36,515,1	// Carrot
-36,516,1	// Potato
-36,517,1	// Meat
-36,518,1	// Honey
-36,519,1	// Milk
-36,520,1	// Hinalle Leaflet
-36,521,1	// Aloe Leaflet
-36,522,1	// Mastela Fruit
-36,526,1	// Royal Jelly
-36,529,1	// Candy
-36,530,1	// Candy Cane
-36,531,1	// Apple Juice
-36,532,1	// Banana Juice
-36,533,1	// Grape Juice
-36,534,1	// Carrot Juice
-36,536,1	// Ice Cream
-36,538,1	// Well-baked Cookie
-36,539,1	// Piece of Cake
-36,544,1	// Raw Fish
-36,548,1	// Cheese
-36,549,1	// Yam
-36,550,1	// Rice Cake
+36,514,1	// Uvas
+36,515,1	// Cenoura
+36,516,1	// Batata Doce
+36,517,1	// Carne
+36,518,1	// Mel
+36,519,1	// Leite
+36,520,1	// Folha de Hinalle
+36,521,1	// Folha de Aloe
+36,522,1	// Mastela
+36,526,1	// Geléia Real
+36,529,1	// Bala
+36,530,1	// Bengala Doce
+36,531,1	// Suco de Maçã
+36,532,1	// Suco de Banana
+36,533,1	// Suco de Uva
+36,534,1	// Suco de Cenoura
+36,536,1	// Sorvete
+36,538,1	// Biscoito de Gengibre
+36,539,1	// Pedaço de Bolo
+36,544,1	// Peixe Cru
+36,548,1	// Queijo
+36,549,1	// Batata Doce Assada
+36,550,1	// Bolinhos de Arroz
 36,551,1	// Sushi
-36,553,1	// Bao
+36,553,1	// Pão de Carne
 36,554,1	// Mochi
-36,555,1	// Traditional Rice Cake
-36,556,1	// Rice Cake Stick
-36,557,1	// Neatly Sliced Rice Cake
+36,555,1	// Bolinho de Arroz
+36,556,1	// Bolinho de Arroz no Palito
+36,557,1	// Fatia de Bolo de Arroz
 36,558,1	// Chocolate
-36,559,1	// Hand-made Chocolate
-36,560,1	// Hand-made White Chocolate
-36,561,1	// White Chocolate
-36,564,1	// Rice Ball
-36,566,1	// Tom Yum Goong
-36,567,1	// Shrimp
-36,568,1	// Lemon
-36,576,1	// Prickly Fruit
-36,607,1	// Yggdrasil Berry
-36,608,1	// Yggdrasil Seed
-36,663,1	// Songpyun
-36,669,1	// Rice-Cake Soup
-// Potions
-37,501,1	// Red Potion
-37,502,1	// Orange Potion
-37,503,1	// Yellow Potion
-37,504,1	// White Potion
-// Red Box_
-38,5137,1	// Alice Doll
-38,5138,9	// Magic Eyes
-38,5139,10	// Lotus
-38,5140,10	// Kawaii Ribbon
-// Old Bleu Box
-39,687,1	// Level 5 Earth Spike
-39,689,1	// Level 5 Cold Bolt
-39,691,1	// Level 5 Fire Bolt
-39,693,1	// Level 5 Lightening Bolt
-39,697,1	// Level 5 Fire Ball
-39,699,1	// Level 5 Fire Wall
-39,12002,1	// Level 5 Heal
-39,12000,1	// Level 5 Frost Diver
-39,644,1	// Gift Box
-39,519,1	// Milk
-39,538,1	// Well-baked Cookie
-// Red Box
-40,5187,10	// Twin Ribbon
-40,5181,11	// Helm of Darkness
-40,5182,1	// Puppy Hat
-40,5186,11	// Geographer Decoration
-40,5185,11	// Laurel Crown
-40,5183,11	// Nest Hat
-40,5137,11	// Alice Doll
-40,5139,11	// Lotus
-40,5138,11	// Magic Eyes
-40,5140,11	// Kawaii Ribbon
-40,5152,1	// Phoenix Crown
-40,5142,11	// Crescent Helm
-40,5143,12	// Kabuki Mask
-40,5099,12	// Neko Mimi
-// Green Box
-41,12075,100	// Steamed Tongue
-41,12080,100	// Dragon Breath Cocktail
-41,12085,100	// Immortal Stew
-41,12090,100	// Steamed Desert Scorpions
-41,12095,100	// Hwergelmir's Tonic
-41,12100,100	// Cooked Nine Tail
-41,607,100	// Yggdrasil Berry
-41,608,100	// Yggdrasil Seed
-41,12018,100	// Firecracker
-41,573,100	// Chocolate Drink
-41,5182,1	// Puppy Hat
-// Old Yellow Box
-42,5259,1	// Elephant Hat
+36,559,1	// Chocolate Caseiro
+36,560,1	// Chocolate Branco feito a mão
+36,561,1	// Chocolate Branco
+36,564,1	// Bolinho de Arroz
+36,566,1	// Sopa Tailandesa
+36,567,1	// Camarão
+36,568,1	// Limão
+36,576,1	// Fruta Espinhosa
+36,607,1	// Fruto de Yggdrasil
+36,608,1	// Semente de Yggdrasil
+36,663,1	// Ovos de Chocolate Branco
+36,669,1	// Sopa de Arroz
+// Poções
+37,501,1	// Poção Vermelha
+37,502,1	// Poção Laranja
+37,503,1	// Poção Amarela
+37,504,1	// Poção Branca
+// Caixa Vermelha
+38,5137,1	// Boneca de Alice
+38,5138,9	// Chapéu do Olho Mágico
+38,5139,10	// Hibiscus
+38,5140,10	// Lacinho Meigo
+// Velha Caixa Azul
+39,687,1	// Coluna de Pedra Nível 5
+39,689,1	// Lanças de Gelo Nível 5
+39,691,1	// Lanças de Fogo Nível 5
+39,693,1	// Relâmpago Nível 5
+39,697,1	// Bolas de Fogo Nível 5
+39,699,1	// Barreira de Fogo Nível 5
+39,12002,1	// Cura Nível 5
+39,12000,1	// Rajada Congelante Nível 5
+39,644,1	// Caixa de Presente
+39,519,1	// Leite
+39,538,1	// Biscoito de Gengibre
+// Caixa Vermelha
+40,5187,10	// Lacinhos Floridos
+40,5181,11	// Máscara do Senhor das Trevas
+40,5182,1	// Chapéu de Cachorrinho
+40,5186,11	// Tiara de Planta Carnívora
+40,5185,11	// Grinalda de Flores
+40,5183,11	// Chapéu de Ninho
+40,5137,11	// Boneca de Alice
+40,5139,11	// Hibiscus
+40,5138,11	// Chapéu do Olho Mágico
+40,5140,11	// Lacinho Meigo
+40,5152,1	// Coroa Chinesa
+40,5142,11	// Elmo de Samurai
+40,5143,12	// Máscara de Kabuki
+40,5099,12	// Chapéu de Gatinho
+// Caixa Verde
+41,12075,100	// Língua no Vapor
+41,12080,100	// Coquetel Sopro do Dragão
+41,12085,100	// Cozido Imortal
+41,12090,100	// Escorpiões do Deserto no Vapor
+41,12095,100	// Tônico de Hwergelmir
+41,12100,100	// Nove Caudas Cozidas
+41,607,100	// Fruto de Yggdrasil
+41,608,100	// Semente de Yggdrasil
+41,12018,100	// Fogo de Artifício
+41,573,100	// Chocolate Quente
+41,5182,1	// Chapéu de Cachorrinho
+// Velha Caixa Amarela
+42,5259,1	// Chapéu de Elefante 2.0
 42,5260,1	// Cookie Hat
-42,5261,1	// Silver Tiara
-42,5262,1	// Golden Tiara
-// Old Gift Box
-43,5271,15	// Phoenix Crown
-43,5272,40	// Smiling Mask
-43,5270,45	// Happy Wig
-// Magic Card Album
-44,4047,1	// Ghostring Card
-44,4054,1	// Angeling Card
-44,4163,1	// Gryphon Card
-44,4169,1	// Dark Illusion Card
-44,4174,1	// Deviling Card
-44,4179,10	// Dragon Fly Card
-44,4183,10	// Vagabond Wolf Card
-44,4197,10	// Mastering Card
-44,4198,1	// Maya Purple Card
-44,4203,10	// Mutant Dragonoid Card
-44,4207,1	// Mysteltainn Card
-44,4211,1	// Vocal card
-44,4237,5	// Owl Duke Card
-44,4238,5	// Owl Baron Card
-44,4241,1	// Arc Angeling Card
-44,4250,1	// Executioner Card
-44,4254,1	// Tirfing Card
-44,4266,10	// Eclipse Card
-44,4284,10	// Chepet Card
-44,4285,10	// Choco Card
-44,4290,5	// Cat O' Nine Tails Card
-44,4291,10	// Kobold Leader Card
-44,4300,10	// Chimera Card
-44,4306,10	// Toad Card
-44,4320,1	// Bloody Knight Card
-44,4336,1	// Ungoliant Card
-44,4354,1	// Gemini-S58 Card
-44,4384,1	// Hydro Card
-44,4395,3	// Thanatos Maero Card
-44,4396,3	// Thanatos Odium Card
-44,4397,3	// Thanatos Despero Card
+42,5261,1	// Diadema Prateada
+42,5262,1	// Diadema Dourada
+// Velha Caixa de Presente
+43,5271,15	// Coroa Chique
+43,5272,40	// Máscara Juvenil
+43,5270,45	// Folhas de Outono
+// Album de Carta Mágico
+44,4047,1	// Carta Ghostring
+44,4054,1	// Carta Angeling
+44,4163,1	// Carta Grifo
+44,4169,1	// Carta Ilusão das Trevas
+44,4174,1	// Carta Deviling
+44,4179,10	// Carta Libélula
+44,4183,10	// Carta Lobo Errante
+44,4197,10	// Carta Mastering
+44,4198,1	// Carta Maya Macho
+44,4203,10	// Carta Dragão Mutante
+44,4207,1	// Carta Mysteltainn
+44,4211,1	// Carta Vocal
+44,4237,5	// Carta Duque Coruja
+44,4238,5	// Carta Barão Coruja
+44,4241,1	// Carta ArchAngeling
+44,4250,1	// Carta Executor
+44,4254,1	// Carta Tirfing
+44,4266,10	// Carta Eclipse
+44,4284,10	// Carta Chepet
+44,4285,10	// Carta Choco
+44,4290,5	// Carta Gato de Nove Caudas
+44,4291,10	// Carta Líder Cobold
+44,4300,10	// Carta Quimera
+44,4306,10	// Carta Sapo-Cururu
+44,4320,1	// Carta Cavaleiro Sanguinário
+44,4336,1	// Carta Ungoliant
+44,4354,1	// Carta Gemini-S58
+44,4384,1	// Carta Hydrolancer
+44,4395,3	// Carta Maero de Thanatos
+44,4396,3	// Carta Odium de Thanatos
+44,4397,3	// Carta Despero de Thanatos
 // Hometown Gift
 45,12195,1	// Plain Rice Cake
 45,12196,1	// Hearty Rice Cake
 45,12197,1	// Salty Rice Cake
 45,12198,1	// Lucky Rice Cake
-45,12122,1	// Sesame Pastry
-45,12123,1	// Honey Pastry
-45,12124,1	// Rainbow Cake
-45,663,1	// Korean Rice Cake
+45,12122,1	// Ovinhos Coloridos
+45,12123,1	// Biscoito de Mel
+45,12124,1	// Bolo Arco-Íris
+45,663,1	// Ovos de Chocolate Branco
 // Masquerade Ball Box
 46,5296,10	// Drooping Nine Tail
 46,5297,1	// Soul Wing
 46,5298,10	// Dokebi's Wig
-46,5299,10	// Pagdayaw
+46,5299,10	// Cocar
 // Tresure Box WoE
-47,12010,24	// Wind Arrow Quiver
-47,12011,25	// Stone Arrow Quiver
-47,12012,26	// Crystal Arrow Quiver
-47,12183,7	// Holy Arrow Quiver
-47,12149,27	// Bullet Casing
-47,12150,27	// Shell of Blood Casing
-47,12151,27	// Silver Bullet Casing
-47,12105,12	// Taming Gift Set
-47,12110,8	// First Aid Kit
-47,12111,36	// Bundle of Food
-47,12108,9	// Scroll Package
-47,12702,8	// Old Bleu Box
-47,12130,48	// Cookie Bag
+47,12010,24	// Aljave de Flechas de Vento
+47,12011,25	// Aljave de Flechas de Pedra
+47,12012,26	// Aljave de Flechas de Cristal
+47,12183,7	// Aljave de Flechas Sagradas
+47,12149,27	// Carregador
+47,12150,27	// Carregador Sanguinário
+47,12151,27	// Carregador de Prata
+47,12105,12	// Kit de Domesticação
+47,12110,8	// Kit de Primeiros Socorros
+47,12111,36	// Trouxa de Comida
+47,12108,9	// Pacote de Pergaminho
+47,12702,8	// Nova Velha Caixa Azul
+47,12130,48	// Sacola de Biscoitos
 47,12194,6	// Present from Home
-47,12260,22	// Summer Event Suit
-47,658,6	// Tribal Solidarity
-47,12107,2	// Wrapped Mask
-47,678,3	// Poison Bottle
-47,603,6	// Old Blue Box
-47,732,8	// 3carat Diamond
+47,12260,22	// Roupas de Praia
+47,658,6	// União da Tribo
+47,12107,2	// Máscara Embrulhada
+47,678,3	// Garrafa de Veneno
+47,603,6	// Velha Caixa Azul
+47,732,8	// Diamante de 3 quilates
 // Masquerade Ball Box2
-48,5213,13	// Rabbit Ears
-48,5289,10	// Vanilmirth Hat
-48,5304,9	// Executioner Hood
-48,5211,1	// Ribbon Hat
+48,5213,13	// Orelhas de Coelho Pretas
+48,5289,10	// Chapéu de Vanilmirth
+48,5304,9	// Capuz da Escuridão
+48,5211,1	// Chapéu de Donzela
 // Easter Scroll
-49,638,110	// Silver Knife of Chastity
-49,659,110	// Her Heart
-49,636,110	// No Recipient
-49,637,110	// Old Broom
-49,639,110	// Armlet of Obedience
-49,640,110	// Shining Stone
-49,641,110	// Contracts in Shadow
-49,642,110	// Book of the Devil
-49,643,205	// Pet Incubator
-49,2264,1	// Munak Hat
-49,5046,1	// Bongun Hat
-49,5167,1	// Munak Hat [1]
-49,5168,1	// Bongun Hat [1]
-49,2274,1	// Ghost Bandana
-// Pierre Treasurebox
-50,12018,2	// Firecracker
-50,975,3	// Scarlet Dyestuff
-50,976,3	// Lemon Dyestuff
-50,978,3	// Cobaltblue Dyestuff
-50,979,3	// Darkgreen Dyestuff
-50,980,3	// Orange Dyestuff
-50,981,3	// Violet Dyestuff
-50,982,3	// White Dyestuff
-50,983,3	// Black Dyestuff
-50,7289,3	// Peridot
-50,7290,3	// Phlogopite
-50,7291,3	// Agate
-50,7292,3	// Muscovite
-50,7293,3	// Rose Quartz
-50,7294,3	// Turquoise
-50,7295,3	// Citrin
-50,7296,3	// Pyroxene
-50,7297,3	// Biotite
-50,12075,3	// Steamed Tongue
-50,12090,3	// Steamed Desert Scorpions
-50,12085,3	// Immortal Stew
-50,12100,3	// Cooked Nine Tail
-50,12095,3	// Hwergelmir's Tonic
-50,604,3	// Dead Branch
-50,617,4	// Old Purple Box
-50,644,3	// Gift Box
-50,603,11	// Old Blue Box
-50,12103,1	// Bloody Branch
+49,638,110	// Faca de Prata da Castidade
+49,659,110	// Coração Apaixonado
+49,636,110	// Sem Destinatário
+49,637,110	// Vassoura Velha
+49,639,110	// Bracelete da Obediência
+49,640,110	// Pedra Brilhante
+49,641,110	// Contratos das Sombras
+49,642,110	// Livro do Diabo
+49,643,205	// Incubadora
+49,2264,1	// Chapéu de Munak
+49,5046,1	// Chapéu de Bongun
+49,5167,1	// Chapéu de Munak
+49,5168,1	// Chapéu de Bongun
+49,2274,1	// Faixa de Fantasma
+// Caixa do Tesouro de Pierre
+50,12018,2	// Fogo de Artifício
+50,975,3	// Tintura Vermelha
+50,976,3	// Tintura Amarela
+50,978,3	// Tintura Azul
+50,979,3	// Tintura Verde
+50,980,3	// Tintura Laranja
+50,981,3	// Tintura Violeta
+50,982,3	// Tintura Branca
+50,983,3	// Tintura Preta
+50,7289,3	// Cristal de Peridoto
+50,7290,3	// Flogopita
+50,7291,3	// Ágata
+50,7292,3	// Moscovita
+50,7293,3	// Quartzo Rosa
+50,7294,3	// Turquesa
+50,7295,3	// Citrina
+50,7296,3	// Piroxênio
+50,7297,3	// Biotita
+50,12075,3	// Língua no Vapor
+50,12090,3	// Escorpiões do Deserto no Vapor
+50,12085,3	// Cozido Imortal
+50,12100,3	// Nove Caudas Cozidas
+50,12095,3	// Tônico de Hwergelmir
+50,604,3	// Galho Seco
+50,617,4	// Velha Caixa Roxa
+50,644,3	// Caixa de Presente
+50,603,11	// Velha Caixa Azul
+50,12103,1	// Galho Sangrento
 // Cherish Box
-51,5454,1	// Puppy Hat
+51,5454,1	// Boneco de Cachorrinho
 51,5455,4	// Decorative Geographer
 51,5456,4	// Summer Hat
 // Cherish Box Ori
-52,5256,1	// Valkyrie Feather Band
-52,5212,2	// Solar Panels
-52,5305,2	// Pirate Dagger
-52,5332,2	// Loki Mask
+52,5256,1	// Penacho da Valquíria
+52,5212,2	// Chapéu de Satélite
+52,5305,2	// Adaga de Arremesso
+52,5332,2	// Máscara de Loki
 52,2712,2	// Collector's Edition Book
-// Louise_Costume_Box
-53,12132,9	// Red_Bag
-53,12260,1	// Cool_Summer_Outfit
-// Xmas_Gift
-54,14550,3	// Fire_Cracker_Xmas
-54,14546,3	// Fire_Cracker_Love
-54,644,33	// Gift_Box
-54,12702,18	// Old_Bleu_Box
-54,12105,3	// Set_Of_Taiming_Item
-54,12107,3	// Wrapped_Mask
-54,603,12	// Old_Blue_Box
-54,12108,6	// Bundle_Of_Magic_Scroll
-54,12354,21	// Buche_De_Noel
-54,12016,6	// Speed_Up_Potion
-54,12017,6	// Slow_Down_Potion
-54,12130,6	// Cookie_Bag
-54,12132,3	// Red_Bag
-54,12110,6	// First_Aid_Kit
-54,732,6	// Crystal_Jewel__
-54,559,9	// Light_Orange_Pot
-54,560,9	// HandMade_Chocolate_
-54,573,9	// Chocolate_Drink
-54,5136,6	// Santa's_Hat_
+// Caixa de Fantasia da Louise
+53,12132,9	// Bolsa de Papai Noel
+53,12260,1	// Roupas de Praia
+// Presente de Natal
+54,14550,3	// Fogos de Artifício: Natal
+54,14546,3	// Fogos de Artifício: Dia dos Namorados 1
+54,644,33	// Caixa de Presente
+54,12702,18	// Nova Velha Caixa Azul
+54,12105,3	// Kit de Domesticação
+54,12107,3	// Máscara Embrulhada
+54,603,12	// Velha Caixa Azul
+54,12108,6	// Pacote de Pergaminho
+54,12354,21	// Sobremesa de Noel
+54,12016,6	// Poção do Vento
+54,12017,6	// Poção da Lentidão
+54,12130,6	// Sacola de Biscoitos
+54,12132,3	// Bolsa de Papai Noel
+54,12110,6	// Kit de Primeiros Socorros
+54,732,6	// Diamante de 3 quilates
+54,559,9	// Chocolate Caseiro
+54,560,9	// Chocolate Branco feito a mão
+54,573,9	// Chocolate Quente
+54,5136,6	// Gorro de Natal do Antonio

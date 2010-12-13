@@ -12,10 +12,10 @@
 // |----------------------------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                                               |
 // |----------------------------------------------------------------------------|
-// | Descrição: Database da magia Abracadabra/Hocus-Pocus do Criador.           |
+// | Descrição: Banco de Dados da magia Abracadabra/Hocus-Pocus.			    |
 // |----------------------------------------------------------------------------|
-// | Estrutura da Database:                                                     |
-// | SkillID,DummyName,RequiredHocusPocusLevel,Rate                             |
+// | Estrutura do Database:                                                     |
+// | ID da Habilidade, Nome da Habilidade , Level do Abracadabra , Taxa         |
 // \___________________________________________________________________________/
 
 //1,Basic Skill,1,0
