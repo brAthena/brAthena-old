@@ -23,29 +23,29 @@
 // \___________________________________________________________________________/
 
  40:--- COMANDOS DE PERSONAGENS ---
- 40:#statsall - Mostra os status de todos os personagens.
- 40:#itemlist <nome> - Mostra todos os itens de um personagem.
- 40:#storagelist <nome> - Mostra todos os itens do armazém do personagem.
- 40:#stats <nome> - Mostra os status do personagem.
- 60:#option <param1> <param2> <param3> <nome> - Mesmo que @option mas para outro personagem.
- 50:#mountpeco <nome> - Dá/retira do personagem um peco (Classe requerida, mas habilidade não).
- 50:#petrename <nome> - Permite que o personagem renomeia o pet.
- 60:#save <map> <x> <y> <nome> - Muda o ponto de restauração do personagem.
- 60:#baselvl <Quantidade> <nome> - Muda o nível de base do personagem.
- 60:#jlvl <Quantidade> <nome> - Muda o nível de classe do personagem.
- 60:#job/#jobchange <ID da classe> <nome> - Muda a classe do personagem.
- 60:#zeny <quantidade> <nome> - Muda o Zeny do Personagem.
- 60:#stpoint <quantidade> <nome> - Dá pontos de status ao personagem.
- 60:#skpoint <quantidade> <nome> - Dá pontos de classe ao personagem.
- 60:#skreset <nome> - Reseta os status do personagem.
- 60:#streset <nome> - Reseta as habilidades do personagem.
- 60:#reset <nome> - Reseta os status e as habilidades do personagem.
- 60:#questskill <ID da Habilidade> <nome> - Ensina certa habilidade de quest ao personagem.
- 60:#lostskill <ID da habilidade> <nome> - Tira certa habilidade de quest do personagem.
- 60:#delitem <Nome/Id do item> <quantidade> <nome> - Deleta os itens do personagem.
- 50:#model <estilo do cabelo> <cor do cabelo> <cor da roupa> <nome> - Muda a aparência do personagem.
- 60:#disguise <Nome/ID do monstro> <nome> - Transforma o personagem em algum Monstro/NPC.
- 60:#undisguise <nome> - Volta o personagem ao normal.
- 60:#changesex <nome> - Troca o sexo de todos os personagens da conta.
- 60:#warp/#rura+ <nome do mapa> <x> <y> <nome> - Teleporta o personagem para o lugar escolhido.
- 60:#makemerc <id do assistente> <tempo de contrato> <nome do personagem> - Cria um Assistente para o Personagem.
+ 40:#statsall <nome do personagem> - Dá todos os status para um personagem.
+ 40:#itemlist <nome do personagem> - Mostra todos os itens de um personagem.
+ 40:#storagelist <nome do personagem> - Mostra todos os itens do armazém do personagem.
+ 40:#stats <nome do personagem> - Mostra os status do personagem.
+ 60:#option <nome do personagem> <param1> <param2> <param3> - Mesmo que @option mas para outro personagem.
+ 50:#mountpeco <nome do personagem> - Dá/retira do personagem um peco (Classe requerida, mas habilidade não).
+ 50:#petrename <nome do personagem> - Permite que o personagem renomeia o pet.
+ 60:#save <nome do personagem> <map> <x> <y> - Muda o ponto de restauração do personagem.
+ 60:#baselvl/#blvl <Quantidade> <nome do personagem> - Muda o nível de base do personagem.
+ 60:#jlvl/#jlvl <#> <nome do personagem> - Muda o nível de classe do personagem.
+ 60:#job/#jobchange <nome do personagem> <id da classe> - Muda a classe do personagem.
+ 60:#zeny <nome do personagem> <quantidade> - Muda o Zeny do Personagem.
+ 60:#stpoint <nome do personagem> <quantidade> - Dá pontos de status ao personagem.
+ 60:#skpoint <nome do personagem> <quantidade> - Dá pontos de classe ao personagem.
+ 60:#skreset <nome do personagem> - Reseta os status do personagem.
+ 60:#streset <nome do personagem> - Reseta as habilidades do personagem.
+ 60:#reset <nome do personagem> - Reseta os status e as habilidades do personagem.
+ 60:#questskill <nome do personagem> <ID da Habilidade> - Ensina certa habilidade de quest ao personagem.
+ 60:#lostskill  <nome do personagem> <ID da Habilidade> - Tira certa habilidade de quest do personagem.
+ 60:#delitem <nome do personagem> <id do item/nome> <quantidade> - Deleta os itens do personagem.
+ 50:#model <nome do personagem> <estilo do cabelo> <cor do cabelo> <cor da roupa> - Muda a aparência do personagem.
+ 60:#disguise <nome do personagem> <nome/id do monstro> - Transforma o personagem em algum Monstro/NPC.
+ 60:#undisguise <nome do personagem> - Volta o personagem ao normal.
+ 60:#changesex <nome do personagem> - Troca o sexo de todos os personagens da conta.
+ 60:#warp/#rura+ <nome do personagem> <nome do mapa> <x> <y> - Teleporta o personagem para o lugar escolhido.
+ 60:#makemerc <nome do personagem> <id do assistente> <tempo de contrato> - Cria um Assistente para o Personagem.

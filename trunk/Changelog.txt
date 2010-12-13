@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0032 - 10/12/2010 [Protimus]
+	* Atualizado conforme eAthena r14589. 
+
+	r0031 - 10/12/2010 [RawArkanis]
+        * Adicionada o carregamento e utilização do statpoint2.txt de acordo com a ativação nos arquivos de configuração.
+
 	r0030 - 10/12/2010 [Lord]
 	* Iniciado organização e tradução da pasta /sql-files
 	* Iniciada tradução dos nomes dos arquivos e pastas em /npc
