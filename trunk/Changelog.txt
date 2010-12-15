@@ -9,9 +9,14 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0037 - 15/12/2010 [Protimus]
+	* Atualizado conforme eAthena r14592.
+	* Revisão de estrutura e traduções dos arquivos da pasta das configurações de batalhas (BATTLE).
+	- Arquivos revisados: drops.conf, exp.conf e gm.conf
+
 	r0036 - 15/12/2010 [Protimus]
 	* Remoção de códigos inutilizáveis para uso do configure na hora de compilar o emulador.
-	* Revisão de estrutura e traduções dos arquivos da pasta das configurações de batalhas (BATLLE)
+	* Revisão de estrutura e traduções dos arquivos da pasta das configurações de batalhas (BATLLE).
 	- Arquivos revisados: battle.conf, battleground.conf e client.conf
 	OBS: Favor não mexerem nos arquivos da pasta de configurações (CONF) até que eu termine as revisões. 
 
