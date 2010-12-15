@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0036 - 15/12/2010 [Protimus]
+	* Remoção de códigos inutilizáveis para uso do configure na hora de compilar o emulador.
+	* Revisão de estrutura e traduções dos arquivos da pasta das configurações de batalhas (BATLLE)
+	- Arquivos revisados: battle.conf, battleground.conf e client.conf
+	OBS: Favor não mexerem nos arquivos da pasta de configurações (CONF) até que eu termine as revisões. 
+
 	r0035 - 13/12/2010 [Lord]
 	* Corrigido pequeno erro de escrita na pasta conf.
 	* Iniciada tradução e organização da pasta /db
@@ -21,7 +27,7 @@
 	* Atualizado conforme eAthena r14589. 
 
 	r0031 - 10/12/2010 [RawArkanis]
-        * Adicionada o carregamento e utilização do statpoint2.txt de acordo com a ativação nos arquivos de configuração.
+    * Adicionada o carregamento e utilização do statpoint2.txt de acordo com a ativação nos arquivos de configuração.
 
 	r0030 - 10/12/2010 [Lord]
 	* Iniciado organização e tradução da pasta /sql-files
@@ -84,7 +90,7 @@
 	- Irei revisar todos npc de acordo com o eA e traduzir os nomes deles, após isso reativo.
 	* Atualizado toda pasta DB com eA rev 14560 e corrigido erros nas DB's.
 	- Tradução para algumas DB's será enviada em breve.
-		
+
 	r0015 - 06/12/2010 [Natsuhi]
 	* Revisado e corrigido arquivos da pasta configurações (CONF)
 	-atcommand_athena.txt
@@ -146,8 +152,8 @@
 
 	r0001 - 04/12/2010 [Protimus]
 	* brAthena reiniciado.
-        - A tradução de algumas pastas e arquivos não será modificada do inglês para português devido não existir uma tradução coesa, sendo preferível deixar como está.
-        - Os arquivos serão adicionados aos poucos e enviado os merges de traduções, iniciaremos do zero dando merge em tudo.
+    - A tradução de algumas pastas e arquivos não será modificada do inglês para português devido não existir uma tradução coesa, sendo preferível deixar como está.
+    - Os arquivos serão adicionados aos poucos e enviado os merges de traduções, iniciaremos do zero dando merge em tudo.
 	OBS: O antigo changelog foi apago e não há importância e restituí-lo devido ao trabalho ter sido totalmente recomeçado e apenas enviados os merges.
 	* Adição dos ramos de controle. 
 	- Apenas versão trunk no momento que corresponde a mesma versão trunk do eAthena sem o renewal.
