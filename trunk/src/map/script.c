@@ -14806,7 +14806,7 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(npcshopattach,"s?"),
 	BUILDIN_DEF(equip,"i"),
 	BUILDIN_DEF(autoequip,"ii"),
-	BUILDIN_DEF(setbattleflag,"ss"),
+	BUILDIN_DEF(setbattleflag,"si"),
 	BUILDIN_DEF(getbattleflag,"s"),
 	BUILDIN_DEF(setitemscript,"is?"), //Set NEW item bonus script. Lupus
 	BUILDIN_DEF(disguise,"i"), //disguise player. Lupus
