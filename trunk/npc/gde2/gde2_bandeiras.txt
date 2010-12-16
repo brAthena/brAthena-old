@@ -14,8 +14,7 @@
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.0/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: WoE SE Guild dungeon entrances in Juno 	    |
-// | and Rachel						   						|
+// | Descrição: WoE SE Guild Flags in Juno and Rachel	    |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |

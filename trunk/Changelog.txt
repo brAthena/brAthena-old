@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0041 - 16/12/2010 [Lord]
+	* Corrigido pequeno erro de tradução na pasta /db.
+	* Efetuada mais uma parte da tradução do nomes dos scripts da pasta /npc.
+
 	r0038 - 16/12/2010 [Protimus]
 	* Atualizado conforme eAthena r14593.
 	* Revisão de estrutura e traduções dos arquivos da pasta das configurações de batalhas (BATTLE).
