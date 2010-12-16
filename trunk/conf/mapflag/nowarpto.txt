@@ -1,11 +1,25 @@
-//===== eAthena Script =======================================
-//= Map flags that disable warpto
-//===== By: ==================================================
-//= eAthena Dev Team
-//= v 1.3
-//===== Current Version: =====================================
+//  ___________________________________________________________________________
+// /                                                                           \
+// |                 _           _   _   _                                      |
+// |                | |__  _ __ / \ | |_| |__   ___ _ __   __ _                 |
+// |                | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                |
+// |                | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                |
+// |                |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                |
+// |                                                                            |
+// |                              brAthena Script                               |
+// |----------------------------------------------------------------------------|
+// | Nome do Script: nowarpto.txt                                               |
+// |----------------------------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                                               |
+// |----------------------------------------------------------------------------|
+// | Descrição: Configuração Mapflag que impede a teleportação para o mapa.     |
+// |----------------------------------------------------------------------------|
+// | Changelog:                                                                 |
+// | 1.0 Modificação [brAthena]                                                 |
+// | - Anotações                                                                |
+// \___________________________________________________________________________/
 
-// Guild Castles ========================
+// Castelos
 //alde_gld	mapflag	nowarpto
 aldeg_cas01	mapflag	nowarpto
 aldeg_cas02	mapflag	nowarpto
@@ -39,21 +53,24 @@ arug_cas02	mapflag	nowarpto
 arug_cas03	mapflag	nowarpto
 arug_cas04	mapflag	nowarpto
 arug_cas05	mapflag	nowarpto
-//Novice Guild
+
+// Castelos dos Aprendizes
 n_castle	mapflag	nowarpto
 nguild_alde	mapflag	nowarpto
 nguild_gef	mapflag	nowarpto
 nguild_pay	mapflag	nowarpto
 nguild_prt	mapflag	nowarpto
-//Lighthalzen Bio-Lab 3F
+
+// Laboratório de Somatologia Nv. 3
 lhz_dun03	mapflag	nowarpto
-// Special Quests Places =======
+
+// Locais de quests especiais
 ama_test	mapflag	nowarpto
 gon_test	mapflag	nowarpto
 que_rachel	mapflag	nowarpto
 que_san04	mapflag	nowarpto
-cave	mapflag	nowarpto
-//Aldebaran Turbo Track ========
+
+// Aldebaran Turbo Track
 turbo_n_1	mapflag	nowarpto
 turbo_n_4	mapflag	nowarpto
 turbo_n_8	mapflag	nowarpto
@@ -61,7 +78,8 @@ turbo_n_16	mapflag	nowarpto
 turbo_e_4	mapflag	nowarpto
 turbo_e_8	mapflag	nowarpto
 turbo_e_16	mapflag	nowarpto
-// Izlude Battle Arena =========
+
+// Arena de Batalha de Izlude
 force_1-1	mapflag	nowarpto
 force_2-1	mapflag	nowarpto
 force_3-1	mapflag	nowarpto
@@ -71,11 +89,18 @@ force_1-2	mapflag	nowarpto
 force_1-3	mapflag	nowarpto
 prt_are_in	mapflag	nowarpto
 
-//Monster Races ================
+// Corrida de Monstros
 p_track01	mapflag	nowarpto
 p_track02	mapflag	nowarpto
 
-//Vision of Okolnir ============
+//Batalhas Campais
+bat_room	mapflag	nowarpto
+bat_a01	mapflag	nowarpto
+bat_a02	mapflag	nowarpto
+bat_b01	mapflag	nowarpto
+bat_b02	mapflag	nowarpto
+
+// Visões de Okolnir
 que_qsch01	mapflag	nowarpto
 que_qsch02	mapflag	nowarpto
 que_qsch03	mapflag	nowarpto
@@ -87,11 +112,11 @@ que_qaru03	mapflag	nowarpto
 que_qaru04	mapflag	nowarpto
 que_qaru05	mapflag	nowarpto
 
-//Sealed Shrine ==================
+// Santuário Selado
 1@cata	mapflag	nowarpto
 2@cata	mapflag	nowarpto
 
-//Endless Tower ==================
+// Torre Sem Fim
 e_tower	mapflag	nowarpto
 1@tower	mapflag	nowarpto
 2@tower	mapflag	nowarpto
@@ -100,17 +125,7 @@ e_tower	mapflag	nowarpto
 5@tower	mapflag	nowarpto
 6@tower	mapflag	nowarpto
 
-// Battle Grounds ==============
-bat_c01	mapflag	nowarpto
-bat_c02	mapflag	nowarpto
-bat_c03	mapflag	nowarpto
-bat_room	mapflag	nowarpto
-bat_b01	mapflag	nowarpto
-bat_b02	mapflag	nowarpto
-bat_a01	mapflag	nowarpto
-bat_a02	mapflag	nowarpto
-
-// Episode 13 ====================
+// Episódio 13
 mid_campin	mapflag	nowarpto
 man_fild01	mapflag	nowarpto
 man_fild03	mapflag	nowarpto
@@ -132,10 +147,10 @@ splendide	mapflag	nowarpto
 spl_fild01	mapflag	nowarpto
 spl_in01	mapflag	nowarpto
 
-//Orc's Memory ===================
+// Memorial dos Orc
 1@orcs	mapflag	nowarpto
 2@orcs	mapflag	nowarpto
 
-// Nidhoggr's Instance ===========
+// Instância de Nidhoggr
 1@nyd	mapflag	nowarpto
 2@nyd	mapflag	nowarpto
