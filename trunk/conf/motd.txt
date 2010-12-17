@@ -16,14 +16,15 @@
 // |----------------------------------------------------------------------------|
 // | Changelog:                                                                 |
 // | 1.0 Modificação [brAthena]                                                 |
+// | 1.1 Traduções revisadas [Constantini]                                      |
 // | - Anotações                                                                |
 // | "Comentários" devem ser adicionados com // no início da frase, senão você  |
 // | causará problemas de conf, pois o texto será inválido conforme a source.   |
 // | Lembre-se que "NOTAS" dão recomendações importantes.                       |
 // \___________________________________________________________________________/
 
-// NOTA: O motd serve para informar notícias aos personagem ao logar no servidor,
-// adicione abaixo sua notícia ou saudações.
+// NOTA: O motd serve para informar notícias aos personagens que logarem no servidor,
+// adicione abaixo suas notícias ou saudações.
 // O limite de linhas é de 128, se você precisar de mais linhas precisará modificar
 // o MOTD_LINE_SIZE na pasta: source/map no arquivo pc.c e recompilar o emulador.
 Bem-vindo à versão SVN Trunk do brAthena Emulador! Favor reportar bugs no fórum: www.brathena.org!

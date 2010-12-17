@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0042 - 17/12/2010 [Constantini]
+	* Revisão das traduções da pasta e arquivos de configuração (CONF).
+
 	r0041 - 16/12/2010 [Lord]
 	* Corrigido pequeno erro de tradução na pasta /db.
 	* Efetuada mais uma parte da tradução do nomes dos scripts da pasta /npc.

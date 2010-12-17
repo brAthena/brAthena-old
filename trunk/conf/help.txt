@@ -16,6 +16,7 @@
 // |----------------------------------------------------------------------------|
 // | Changelog:                                                                 |
 // | 1.0 Modificação [brAthena]                                                 |
+// | 1.1 Traduções revisadas [Constantini]                                      |
 // | - Anotações                                                                |
 // | "Comentários" devem ser adicionados com // no início da frase, senão você  |
 // | causará problemas de conf, pois o texto será inválido conforme a source.   |
@@ -71,7 +72,7 @@
  99:
   1:--- Comandos de mudança de status ---
   1:
-  1:@die - Mata você mesmo.
+  1:@die - Mata você mesmo/Suicidio.
  10:@go <número/nome_da_cidade> - Teleporta você à uma cidade.
  10:-3: (Memo point 2)  1: morocc    5: izlude         9: yuno          13: niflheim
  10:-2: (Memo point 1)  2: geffen    6: aldebaran     10: amatsu        14: louyang
@@ -101,7 +102,7 @@
  40:	5: Mercador	4002: Cavaleiro T		4020: Menestrel
  40:	6: Gatuno	4003: Mago T		4021: Cigana
  40:	7: Cavaleiro	4004: Arqueiro T		4046: Taekwon
- 40:	8: Sacerdote	4005: NOviço T		4047: Mestre Taekwon
+ 40:	8: Sacerdote	4005: Noviço T		4047: Mestre Taekwon
  40:	9: Bruxo		4006: Mercador T		4049: Espiritualista
  40:	10: Ferreiro	4007: Mercenário T		24: Justiceiro
  40:	11: Caçador	4008: Lorde		25: Ninja
@@ -173,12 +174,12 @@
  60:@points <quantidade> - Dá a você o número designado de Kafra Points.
  60:@str, @agi, @vit, @int, @dex, @luk <quantidade> - Adiciona uma quantia designada pra cada atributo. Ex: "@str 10" aumenta 10 pontos de For.
  60:@statall / @statsall / @allstats / @allstat [valor] - Adiciona uma quantia a todos os atributos (máximo se não tiver valor designado).
- 60:@addwarp <nome do mapa> <x coord> <y coord>
+ 60:@addwarp <nome do mapa> <x coord> <y coord> - Adiciona um portal no local que voce estiver para as coordenadas designadas.
  60:
  40:--- Comandos de Monstros ---
  40:
- 40:@killmonster2 - Mata todos os monstros do mapa (sem os drops)
- 50:/monster <nome do monstro> - Invoca uma unidade do monstro designado
+ 40:@killmonster2 - Mata todos os monstros do mapa. (sem os drops)
+ 50:/monster <nome do monstro> - Invoca uma unidade do monstro designado.
  50:@spawn / @monster / @summon <nome do monstro ou ID do monstro> [<quantidade> [<nome do monstro designado> [<x coord> [<y coord>]]]]
  50:@monster2 <nome do monstro designado> <nome do monstro ou ID do monstro> [<quantidade> [<x coord> [<y coord>]]]
  50:@spawn / @monster / @summon / @monster2 "nome do monstro designado" <nome do monstro ou ID do monstro> [<quantidade> [<x coord> [<y coord>]]]
@@ -186,21 +187,21 @@
  50:Invoca o monstro designado com o nome que você designar.
  50:@monstersmall [ID do monstro|Nome do monstro] - Invoca uma versão pequena do monstro.
  50:@monsterbig [ID do monstro|Nome do monstro] - Invoca uma versão grande do monstro.
- 60:@killmonster [mapa] - mata todos os monstros do mapa (com drop)
+ 60:@killmonster [mapa] - mata todos os monstros do mapa. (com drop)
  60:
  10:--- Comandos Variados ---
  10:
  10:@autoloot [on|off|#] - Faz com que itens dropados sejam colocados automaticamente em seu inventário.
  10:@autotrade / @at - Permite que sua loja continue vendendo mesmo que você esteja offline.
- 10:@changegm [nome] - Muda o líder da sua Guilda (você precisa ser o Guild Master pra usar esse comando)
- 10:@changeleader [nome] - Muda o líder do seu grupo (você precisa ser o líder do grupo pra usar esse comando)
- 20:@request [mensagem] - Envia uma mensagem para todos os GMs conectados
+ 10:@changegm [nome] - Muda o líder da sua Guilda. (você precisa ser o Guild Master pra usar esse comando)
+ 10:@changeleader [nome] - Muda o líder do seu grupo. (você precisa ser o líder do grupo pra usar esse comando)
+ 20:@request [mensagem] - Envia uma mensagem para todos os GMs conectados.
  40:@sound [caminho para o arquivo na pasta Data ou no arquivo GRF] - Toca um som da pasta data ou do arquivo GRF do cliente.
  50:@clone [nome] - Invoca uma cópia de suporte de um jogador.
  50:@slaveclone [nome] - Invoca uma cópia de suporte de um jogador que o segue.
  50:@evilclone [nome] - Invoca uma cópia agressiva de um jogador.
  60:@changesex - Muda seu gênero.
- 60:@auction - Abre uma janela de leilão
+ 60:@auction - Abre uma janela de leilão.
  60:
   1:--- Comandos de Duelo ---
   1:
@@ -210,7 +211,7 @@
   1:@reject - Rejeita o convite para um duelo.
   1:@leave - Retira-se do duelo.
   1:
-  1:--- Sistema de E-mail --- (SQL somente) (se habilitado)
+  1:--- Sistema de E-mail --- (se habilitado)
   1:@checkmail - Checar # de mensagens.
   1:@listmail - Listar todas as mensagens.
   1:@listnewmail - Listar somente mensagens novas.

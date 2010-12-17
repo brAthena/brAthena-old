@@ -16,6 +16,7 @@
 // |----------------------------------------------------------------------------|
 // | Changelog:                                                                 |
 // | 1.0 Modificação [brAthena]                                                 |
+// | 1.1 Traduções revisadas [Constantini]                                      |
 // | - Anotações                                                                |
 // | "Comentários" devem ser adicionados com // no início da frase, senão você  |
 // | causará problemas de conf, pois o texto será inválido conforme a source.   |
@@ -29,8 +30,8 @@
  40:#stats <nome do personagem> - Mostra os status do personagem.
  60:#option <nome do personagem> <param1> <param2> <param3> - Mesmo que @option mas para outro personagem.
  50:#mountpeco <nome do personagem> - Dá/retira do personagem um peco (Classe requerida, mas habilidade não).
- 50:#petrename <nome do personagem> - Permite que o personagem renomeia o pet.
- 60:#save <nome do personagem> <map> <x> <y> - Muda o ponto de restauração do personagem.
+ 50:#petrename <nome do personagem> - Permite que o personagem renomeie o pet.
+ 60:#save <nome do personagem> <map> <x> <y> - Muda o ponto de retorno do personagem.
  60:#baselvl/#blvl <Quantidade> <nome do personagem> - Muda o nível de base do personagem.
  60:#jlvl/#jlvl <#> <nome do personagem> - Muda o nível de classe do personagem.
  60:#job/#jobchange <nome do personagem> <id da classe> - Muda a classe do personagem.
