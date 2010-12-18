@@ -1,21 +1,35 @@
-// The equipment/items/cards restriction file 
-// here you define which items may not be used at PvP / GvG 
-// format: <item id>,<mode>
-// mode
-// 1- restricted in PVP
-// 2- restricted in GVG
-// 3- restricted in both PvP and GvG
-// Restricted zones - they're configured by 'restricted <number>' mapflag
-// 4   - restricted in zone 1
-// 8   - restricted in zone 2
-// 16  - restricted in zone 3
-// 32  - restricted in zone 4
-// 64 -  restricted in zone 5
-// 128 - restricted in zone 6
-// 256 - restricted in zone 7
-
+//  ___________________________________________________________________________
+// /                                                                           \
+// |                 _           _   _   _                                      |
+// |                | |__  _ __ / \ | |_| |__   ___ _ __   __ _                 |
+// |                | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                |
+// |                | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                |
+// |                |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                |
+// |                                                                            |
+// |                             brAthena Database                              |
+// |----------------------------------------------------------------------------|
+// | Nome do Database: item_noequip.txt                                         |
+// |----------------------------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                                               |
+// |----------------------------------------------------------------------------|
+// | Descrição: Database de restrições dos itens                                |
+// |----------------------------------------------------------------------------|
+// | Estrutura da Database:                                                     |
+// | itemID,Regra (ou área restrita)                                            |
+// | Regras e Áreas restritas (que podem ser somadas):                          |
+// | 1 - Restrito em PvP                                                        |
+// | 2 - Restrito em GvG                                                        |
+// | 3 - Restrito em PvP e GvG                                                  |
+// | 4 - Restrito na zona 1                                                     |
+// | 8 - Restrito na zona 2                                                     |
+// | 16 - Restrito na zona 3                                                    |
+// | 32 - Restrito na zona 4                                                    |
+// | 64 - Restrito na zona 5                                                    |
+// | 128 - Restrito na zona 6                                                   |
+// | 256 - Restrito na zona 7                                                   |
+// \___________________________________________________________________________/
 //Examples:
-//1201,1 you can't use KNIFE(ID 1201) on PvP and GvG
+//1201,3 you can't use KNIFE(ID 1201) on PvP and GvG
 //608,3 you can't use Yggdrasil Seed(ID 608) on both PvP & GvG & WoE Castles
 //4174,3 Forbid Deviling Card in every PVP or GVG map, and during woes.
 //501,4 you can't use Red Potion on map marked as 'restricted zone 1'

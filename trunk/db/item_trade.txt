@@ -1,17 +1,33 @@
-//Item Trading Restrictions File
-//Specify here special rules for item trading.
-//Item ID, TradeMask, GM-Level Override
-//Trading mask values:
-//1:Item can't be drop
-//2:Item can't be traded (nor vended)
-//4:Wedded partner can override restriction 2.
-//8:Item can't be sold to npcs
-//16:Item can't be placed in the cart
-//32:Item can't be placed in the storage
-//64:Item can't be placed in the guild storage
-//Example:
-//1161,67,50 //Balmung: No drop, No trade, No Guild Store (1+2+64 =67),
-//only GMs of GM-level 50 and up can override the setting.
+//  ___________________________________________________________________________
+// /                                                                           \
+// |                 _           _   _   _                                      |
+// |                | |__  _ __ / \ | |_| |__   ___ _ __   __ _                 |
+// |                | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                |
+// |                | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                |
+// |                |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                |
+// |                                                                            |
+// |                             brAthena Database                              |
+// |----------------------------------------------------------------------------|
+// | Nome do Database: item_trade.txt                                           |
+// |----------------------------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                                               |
+// |----------------------------------------------------------------------------|
+// | Descrição: Banco de Dados de restrições para trocas de itens               |
+// |----------------------------------------------------------------------------|
+// | Estrutura do Banco de Dados:                                               |
+// | Item ID, TradeMask, GM-Level mínimo para não aplicação da regra            |
+// | Valores para a regra TradeMask:                                            |
+// | 1:Item não pode ser dropado                                                |
+// | 2:Item não pode ser trocado ou vendido à outro jogador                     |
+// | 4:A regra '2' não se aplica ao cônjuge do personagem                       |
+// | 8:Item não pode ser vendido à NPCs                                         |
+// | 16:Item não pode ser colocado no carrinho                                  |
+// | 32:Item não pode ser colocado no depósito                                  |
+// | 64:Item não pode ser colocado no depósito da Guild                         |
+// | Exemplo:                                                                   |
+// | 1161,67,50 (Balmung: Sem drop, Sem troca, Sem guardar no depósito da Guild |
+// | (1+2+64 =67), regra não aplicada à GMs com GM-level 50 ou mais             |
+// \___________________________________________________________________________/
 
 // Wedding Related items
 2634,123,100	// Bridegroom_Ring

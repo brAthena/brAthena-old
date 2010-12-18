@@ -1,17 +1,30 @@
-// Job-specific Stat Bonuses Database
-//
-// Structure of Database:
-// JobID,JobLv1,JobLv2,JobLv3,...
-//
-// Legend for 'JobLvN' fields:
-//  0 = No stat bonus at this job level
-//  1 = STR increased by 1 at this job level
-//  2 = AGI increased by 1 at this job level
-//  3 = VIT increased by 1 at this job level
-//  4 = INT increased by 1 at this job level
-//  5 = DEX increased by 1 at this job level
-//  6 = LUK increased by 1 at this job level
-//
+//  ___________________________________________________________________________
+// /                                                                           \
+// |                 _           _   _   _                                      |
+// |                | |__  _ __ / \ | |_| |__   ___ _ __   __ _                 |
+// |                | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                |
+// |                | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                |
+// |                |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                |
+// |                                                                            |
+// |                             brAthena Database                              |
+// |----------------------------------------------------------------------------|
+// | Nome do Database: job_db2.txt                                              |
+// |----------------------------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                                               |
+// |----------------------------------------------------------------------------|
+// | Descrição: Banco de Dados bônus de status das classes                      |
+// |----------------------------------------------------------------------------|
+// | Estrutura do Banco de Dados:                                               |
+// | JobID,JobLv1,JobLv2,JobLv3,JobLv4,JobLv5,JobLv6,JobLv7,JobLv8,JobLv9...    |
+// | Legenda para os campos 'JobLvX':                                           |
+// | 0 = Nenhum bônus de status nesse level                                     |
+// | 1 = STR + 1 nesse job level                                                |
+// | 2 = AGI + 1 nesse job level                                                |
+// | 3 = VIT + 1 nesse job level                                                |
+// | 4 = INT + 1 nesse job level                                                |
+// | 5 = DEX + 1 nesse job level                                                |
+// | 6 = LUK + 1 nesse job level                                                |
+// \___________________________________________________________________________/
 // Novice
 0,0,0,0,0,0,0,0,0,0
 // Swordman

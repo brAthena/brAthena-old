@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0043 - 18/12/2010 [Wiskovisky]
+	* Tradução e edição dos cabeçalhos dos arquivos de database (db).
+	* Corrigida palavra do battle/client.conf incorreta.
+
 	r0042 - 17/12/2010 [Constantini]
 	* Revisão das traduções da pasta e arquivos de configuração (CONF).
 
