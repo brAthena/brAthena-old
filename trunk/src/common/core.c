@@ -65,7 +65,6 @@ sigfunc *compat_signal(int signo, sigfunc *func)
 	return (oact.sa_handler);
 }
 #endif
-
 /*======================================
  *	CORE : Signal Sub Function
  *--------------------------------------*/
@@ -90,7 +89,7 @@ static void sig_proc(int sn)
 #ifndef _WIN32
 	case SIGXFSZ:
 		// ignore and allow it to set errno to EFBIG
-		ShowWarning ("Max file size reached!\n");
+		ShowWarning ("Tamanho maximo do arquivo alcancado!\n");
 		//run_flag = 0;	// should we quit?
 		break;
 	case SIGPIPE:
@@ -188,7 +187,7 @@ static void display_title(void)
 	ShowMessage(""CL_XXBL"           ("CL_BT_GREEN"       Projeto brAthena (c) 2008 - 2010        "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
 	ShowMessage(""CL_WTBL"           (=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=)"CL_CLL""CL_NORMAL"\n\n");
 
-	ShowInfo("Revisão do SVN: '"CL_WHITE"%s"CL_RESET"'.\n", get_svn_revision());
+	ShowInfo("Revisao do SVN: '"CL_WHITE"%s"CL_RESET"'.\n", get_svn_revision());
 }
 
 // Warning if logged in as superuser (root)
@@ -196,8 +195,8 @@ void usercheck(void)
 {
 #ifndef _WIN32
     if ((getuid() == 0) && (getgid() == 0)) {
-	ShowWarning ("You are running eAthena as the root superuser.\n");
-	ShowWarning ("It is unnecessary and unsafe to run eAthena with root privileges.\n");
+	ShowWarning ("Você está executando o brAthena como root superuser.\n");
+	ShowWarning ("E desnecessario e inseguro executar o brAthena com privilegios root.\n");
 	sleep(3);
     }
 #endif

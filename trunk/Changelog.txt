@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0045 - 18/12/2010 [Wiskovisky]
+	* Enviada mais uma parte da tradução do emulador
+	- Algumas partes do Login-server, Char-server e Map-server
+
 	r0044 - 18/12/2010 [Wiskovisky]
 	* Finalizadas as edições nos arquivos de database.
 	- Exemplos do item_noequip.txt modificados de acordo com a src

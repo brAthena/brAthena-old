@@ -318,17 +318,17 @@ int parse_console(char* buf)
 	if( strcmpi("desligar", command) == 0 ||
 	    strcmpi("sair", command) == 0 ||
 	    strcmpi("fechar", command) == 0 ||
-	    strcmpi("finalizar", command) == 0 )
+	    strcmpi("desativar", command) == 0 )
 		runflag = 0;
 	else
 	if( strcmpi("estado", command) == 0 ||
 	    strcmpi("status", command) == 0 )
-		ShowInfo(CL_CYAN"Console: "CL_BOLD"conectado e respondendo."CL_RESET"\n");
+		ShowInfo(CL_CYAN"Console: "CL_BOLD"Conectado e respondendo."CL_RESET"\n");
 	else
 	if( strcmpi("ajuda", command) == 0 ) {
 		ShowInfo(CL_BOLD"Ajuda dos comandos:"CL_RESET"\n");
 		ShowInfo("  Para desligar o servidor:\n");
-		ShowInfo("  'desligar|sair|fechar|finalizar'\n");
+		ShowInfo("  'desligar|sair|fechar|desativar'\n");
 		ShowInfo("  Para saber se o servidor esta respondendo:\n");
 		ShowInfo("  'estado|status'\n");
 	}
@@ -1502,7 +1502,7 @@ int login_config_read(const char* cfgName)
 		else if(!strcmpi(w1,"stdout_with_ansisequence"))
 			stdout_with_ansisequence = config_switch(w2);
 		else if(!strcmpi(w1,"console_silent")) {
-			ShowInfo("Console Silent Setting: %d\n", atoi(w2));
+			ShowInfo("Cnfiguracao Console Silent: %d\n", atoi(w2));
 			msg_silent = atoi(w2);
 		}
 		else if( !strcmpi(w1, "bind_ip") ) {
