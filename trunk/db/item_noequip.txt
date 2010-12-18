@@ -27,17 +27,12 @@
 // | 64 - Restrito na zona 5                                                    |
 // | 128 - Restrito na zona 6                                                   |
 // | 256 - Restrito na zona 7                                                   |
+// | É possível somar regras (ex: 4+1 = 5 - Restrito em PvP e zona 1)           |
+// |----------------------------------------------------------------------------|
+// | Exemplos:                                                                  |
+// | 1201,3 (Faca não será usada em PvPs ou GvGs)                               |
+// | 501,4 (Poção vermelha não será usada em mapas com 'zona de restrição 1')   |
 // \___________________________________________________________________________/
-//Examples:
-//1201,3 you can't use KNIFE(ID 1201) on PvP and GvG
-//608,3 you can't use Yggdrasil Seed(ID 608) on both PvP & GvG & WoE Castles
-//4174,3 Forbid Deviling Card in every PVP or GVG map, and during woes.
-//501,4 you can't use Red Potion on map marked as 'restricted zone 1'
-//502,8 you can't use Orange Potion on map marked as 'restricted zone 2'
-//503,16 you can't use Yellow Potion on map marked as 'restricted zone 3'
-// you can even mix modes
-//519,41 (32+8+1) you can't use Milk on PVP, and maps marked as 'restricted zone 2' and 'restricted zone 4'
-
 
 //Zone 1 - Aldebaran Turbo Track
 601,4 //Fly Wing

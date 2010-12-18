@@ -3830,7 +3830,7 @@ int char_config_read(const char* cfgName)
 		return 1;
 	}
 
-	ShowInfo("Reading configuration file %s...\n", cfgName);
+	ShowInfo("Carregando arquivo de configuracao %s...\n", cfgName);
 	while(fgets(line, sizeof(line), fp))
 	{
 		if (line[0] == '/' && line[1] == '/')

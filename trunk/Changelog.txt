@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0044 - 18/12/2010 [Wiskovisky]
+	* Finalizadas as edições nos arquivos de database.
+	- Exemplos do item_noequip.txt modificados de acordo com a src
+	* Enviada grande parte da tradução do login-server
+
 	r0043 - 18/12/2010 [Wiskovisky]
 	* Tradução e edição dos cabeçalhos dos arquivos de database (db).
 	* Corrigida palavra do battle/client.conf incorreta.

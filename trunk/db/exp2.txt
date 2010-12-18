@@ -8,16 +8,16 @@
 // |                                                                            |
 // |                             brAthena Database                              |
 // |----------------------------------------------------------------------------|
-// | Nome do Database:                                                          |
+// | Nome do Database: exp2.txt                                                 |
 // |----------------------------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                                               |
 // |----------------------------------------------------------------------------|
-// | Descrição: ???                                                             |
+// | Descrição: Database das Tabelas de Experiência das Classes.                |
 // |----------------------------------------------------------------------------|
 // | NOTA: Tabela não-oficial até Nível 1.000.                                  |
 // | Se customizar a experiência, utilize exp.txt e edite max level de acordo.  |
 // | Estrutura da Database:       				                                |
-// | Max Level,Class list,Type (0 - Base Exp / 1 - Job Exp),Exp 1,2,3,...       |
+// | Max Level,Class list,Tipo (0 - Base Exp / 1 - Job Exp),Exp 1,2,3,...       |
 // \___________________________________________________________________________/
 
 //Base - Normal Jobs
