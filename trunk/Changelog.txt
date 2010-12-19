@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0047 - 19/12/2010 [SoulSyntax]
+	* Traduções revisadas da pasta battle
+	
 	r0046 - 18/12/2010 [Wiskovisky]
 	* Enviada mais uma parte da tradução do emulador
 	- Principalmente do Map-server
