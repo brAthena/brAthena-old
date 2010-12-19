@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0046 - 18/12/2010 [Wiskovisky]
+	* Enviada mais uma parte da tradução do emulador
+	- Principalmente do Map-server
+
 	r0045 - 18/12/2010 [Wiskovisky]
 	* Enviada mais uma parte da tradução do emulador
 	- Algumas partes do Login-server, Char-server e Map-server

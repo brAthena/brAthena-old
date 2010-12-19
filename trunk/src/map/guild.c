@@ -140,7 +140,7 @@ int guild_read_guildskill_tree_db(void)
 	ln++;
 	}
 	fclose(fp);
-	ShowStatus("Done reading '"CL_WHITE"%d"CL_RESET"' entries in '"CL_WHITE"%s"CL_RESET"'.\n",ln,"guild_skill_tree.txt");
+	ShowStatus("Leitura de '"CL_WHITE"%d"CL_RESET"' entradas finalizada em '"CL_WHITE"%s"CL_RESET"'.\n",ln,"guild_skill_tree.txt");
 
 	return 0;
 }
@@ -211,7 +211,7 @@ static int guild_read_castledb(void)
 		ln++;
 	}
 	fclose(fp);
-	ShowStatus("Done reading '"CL_WHITE"%d"CL_RESET"' entries in '"CL_WHITE"%s"CL_RESET"'.\n",ln,"castle_db.txt");
+	ShowStatus("Leitura de '"CL_WHITE"%d"CL_RESET"' entradas finalizada em '"CL_WHITE"%s"CL_RESET"'.\n",ln,"castle_db.txt");
 	return 0;
 }
 

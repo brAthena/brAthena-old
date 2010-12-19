@@ -194,7 +194,7 @@ int charif_sendallwos(int sfd, uint8* buf, size_t len)
 static int sync_ip_addresses(int tid, unsigned int tick, int id, intptr data)
 {
 	uint8 buf[2];
-	ShowInfo("Sincronização de IP em progresso...\n");
+	ShowInfo("Sincronizacao de IP em progresso...\n");
 	WBUFW(buf,0) = 0x2735;
 	charif_sendallwos(-1, buf, 2);
 	return 0;
@@ -262,7 +262,7 @@ int login_lan_config_read(const char *lancfgName)
 	char line[1024], w1[64], w2[64], w3[64], w4[64];
 
 	if((fp = fopen(lancfgName, "r")) == NULL) {
-		ShowWarning("Arquivo de configuracao do suporte para LAN não encontrado: %s\n", lancfgName);
+		ShowWarning("Arquivo de configuracao do suporte para LAN nao encontrado: %s\n", lancfgName);
 		return 1;
 	}
 
@@ -884,7 +884,7 @@ int mmo_auth_new(const char* userid, const char* pass, const char sex, const cha
 	if( !accounts->create(accounts, &acc) )
 		return 0;
 
-	ShowNotice("Conta criada (conta %s, id: %d, senha: %s, sexo: %c)\n", acc.userid, acc.account_id, acc.pass, acc.sex);
+	ShowNotice("Conta criada (conta: %s, id: %d, senha: %s, sexo: %c)\n", acc.userid, acc.account_id, acc.pass, acc.sex);
 
 	if( DIFF_TICK(tick, new_reg_tick) > 0 )
 	{// Update the registration check.
@@ -1364,7 +1364,7 @@ int parse_login(int fd)
 			new_ = RFIFOW(fd,84);
 			RFIFOSKIP(fd,86);
 
-			ShowInfo("Conexão do char-server '%s' @ %u.%u.%u.%u:%u requisitada (conta: '%s', senha: '%s', ip: '%s')\n", server_name, CONVIP(server_ip), server_port, sd->userid, sd->passwd, ip);
+			ShowInfo("Conexao do char-server '%s' @ %u.%u.%u.%u:%u requisitada (conta: '%s', senha: '%s', ip: '%s')\n", server_name, CONVIP(server_ip), server_port, sd->userid, sd->passwd, ip);
 			sprintf(message, "charserver - %s@%u.%u.%u.%u:%u", server_name, CONVIP(server_ip), server_port);
 			login_log(session[fd]->client_addr, sd->userid, 100, message);
 
@@ -1502,7 +1502,7 @@ int login_config_read(const char* cfgName)
 		else if(!strcmpi(w1,"stdout_with_ansisequence"))
 			stdout_with_ansisequence = config_switch(w2);
 		else if(!strcmpi(w1,"console_silent")) {
-			ShowInfo("Cnfiguracao Console Silent: %d\n", atoi(w2));
+			ShowInfo("Configuracao Console Silent: %d\n", atoi(w2));
 			msg_silent = atoi(w2);
 		}
 		else if( !strcmpi(w1, "bind_ip") ) {

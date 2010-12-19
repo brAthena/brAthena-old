@@ -1026,7 +1026,7 @@ int read_homunculusdb(void)
 		if (j > MAX_HOMUNCULUS_CLASS)
 			ShowWarning("read_homunculusdb: Reached max number of homunculus [%d]. Remaining homunculus were not read.\n ", MAX_HOMUNCULUS_CLASS);
 		fclose(fp);
-		ShowStatus("Done reading '"CL_WHITE"%d"CL_RESET"' homunculus in '"CL_WHITE"db/%s"CL_RESET"'.\n",j,filename[i]);
+		ShowStatus("Leitura de '"CL_WHITE"%d"CL_RESET"' homunculus finalizada em '"CL_WHITE"db/%s"CL_RESET"'.\n",j,filename[i]);
 	}
 	return 0;
 }
@@ -1095,7 +1095,7 @@ int read_homunculus_skilldb(void)
 	}
 
 	fclose(fp);
-	ShowStatus("Done reading '"CL_WHITE"%s"CL_RESET"'.\n","homun_skill_tree.txt");
+	ShowStatus("Leitura de '"CL_WHITE"%s"CL_RESET"' finalizada.\n","homun_skill_tree.txt");
 	return 0;
 }
 
@@ -1131,7 +1131,7 @@ void read_homunculus_expdb(void)
 			hexptbl[MAX_LEVEL - 1] = 0;
 		}
 		fclose(fp);
-		ShowStatus("Done reading '"CL_WHITE"%d"CL_RESET"' levels in '"CL_WHITE"%s"CL_RESET"'.\n", j, filename[i]);
+		ShowStatus("Leitura de '"CL_WHITE"%d"CL_RESET"' niveis em '"CL_WHITE"%s"CL_RESET"'.\n", j, filename[i]);
 	}
 }
 

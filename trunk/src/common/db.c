@@ -750,7 +750,7 @@ static void db_free_remove(DBMap_impl* db, DBNode node)
 	}
 	node->deleted = 0;
 	if (i == db->free_count) {
-		ShowWarning("db_free_remove: node não encontrado - banco de dados alocado em %s:%d\n", db->alloc_file, db->alloc_line);
+		ShowWarning("db_free_remove: node nao encontrado - banco de dados alocado em %s:%d\n", db->alloc_file, db->alloc_line);
 	} else {
 		db->free_count--;
 	}
@@ -1419,7 +1419,7 @@ static void* db_obj_get(DBMap* self, DBKey key)
 	DB_COUNTSTAT(db_get);
 	if (db == NULL) return NULL; // nullpo candidate
 	if (!(db->options&DB_OPT_ALLOW_NULL_KEY) && db_is_key_null(db->type, key)) {
-		ShowError("db_get: Tentativa de capturar chave NULL não permitida para bd alocado em %s:%d\n",db->alloc_file, db->alloc_line);
+		ShowError("db_get: Tentativa de capturar chave NULL nao permitida para bd alocado em %s:%d\n",db->alloc_file, db->alloc_line);
 		return NULL; // nullpo candidate
 	}
 
@@ -1580,7 +1580,7 @@ static void *db_obj_vensure(DBMap* self, DBKey key, DBCreateData create, va_list
 		return NULL; // nullpo candidate
 	}
 	if (!(db->options&DB_OPT_ALLOW_NULL_KEY) && db_is_key_null(db->type, key)) {
-		ShowError("db_ensure: Tentativa de usar chave NULL não permitida para bd alocado em %s:%d\n",db->alloc_file, db->alloc_line);
+		ShowError("db_ensure: Tentativa de usar chave NULL nao permitida para bd alocado em %s:%d\n",db->alloc_file, db->alloc_line);
 		return NULL; // nullpo candidate
 	}
 
@@ -1708,11 +1708,11 @@ static void *db_obj_put(DBMap* self, DBKey key, void *data)
 		return NULL; // nullpo candidate
 	}
 	if (!(db->options&DB_OPT_ALLOW_NULL_KEY) && db_is_key_null(db->type, key)) {
-		ShowError("db_put: Tentativa de usar chave NULL não permitida para bd alocado em %s:%d\n",db->alloc_file, db->alloc_line);
+		ShowError("db_put: Tentativa de usar chave NULL nao permitida para bd alocado em %s:%d\n",db->alloc_file, db->alloc_line);
 	  	return NULL; // nullpo candidate
 	}
 	if (!(data || db->options&DB_OPT_ALLOW_NULL_DATA)) {
-		ShowError("db_put: Tentativa de usar chave NULL não permitida para bd alocado em %s:%d\n",db->alloc_file, db->alloc_line);
+		ShowError("db_put: Tentativa de usar chave NULL nao permitida para bd alocado em %s:%d\n",db->alloc_file, db->alloc_line);
 		return NULL; // nullpo candidate
 	}
 
@@ -1810,7 +1810,7 @@ static void *db_obj_remove(DBMap* self, DBKey key)
 		return NULL; // nullpo candidate
 	}
 	if (!(db->options&DB_OPT_ALLOW_NULL_KEY) && db_is_key_null(db->type, key))	{
-		ShowError("db_remove: Tentativa de usar chave NULL não permitida para bd alocado em %s:%d\n",db->alloc_file, db->alloc_line);
+		ShowError("db_remove: Tentativa de usar chave NULL nao permitida para bd alocado em %s:%d\n",db->alloc_file, db->alloc_line);
 		return NULL; // nullpo candidate
 	}
 

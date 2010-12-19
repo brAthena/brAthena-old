@@ -215,7 +215,7 @@ int chrif_setip(const char* ip)
 	char ip_str[16];
 	char_ip = host2ip(ip);
 	if (!char_ip) {
-		ShowWarning("Falha ao determinar endereço do Char Server! (%s)\n", ip);
+		ShowWarning("Falha ao determinar endereco do Char Server! (%s)\n", ip);
 		return 0;
 	}
 	strncpy(char_ip_str, ip, sizeof(char_ip_str));

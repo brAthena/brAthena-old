@@ -1178,7 +1178,7 @@ int mmo_char_sql_init(void)
 	// (useful when servers crashs and don't clean the database)
 	set_all_offline_sql();
 
-	ShowInfo("Inicialização terminada.......\n");
+	ShowInfo("Inicializacao terminada.......\n");
 
 	return 0;
 }
@@ -1389,7 +1389,7 @@ int delete_char_sql(int char_id)
 
 	if( SQL_SUCCESS != Sql_NextRow(sql_handle) )
 	{
-		ShowError("delete_char_sql: Não foi possível encontrar dados do personagem, eliminação cancelada.\n");
+		ShowError("delete_char_sql: Nao foi possível encontrar dados do personagem, eliminacao cancelada.\n");
 		Sql_FreeResult(sql_handle);
 		return -1;
 	}
@@ -1411,7 +1411,7 @@ int delete_char_sql(int char_id)
 	if( ( char_del_level > 0 && base_level >= char_del_level )
 	 || ( char_del_level < 0 && base_level <= -char_del_level )
 	) {
-			ShowInfo("Eliminação cancelada do personagem: %s, BaseLevel: %i\n", name, base_level);
+			ShowInfo("Eliminacao cancelada do personagem: %s, BaseLevel: %i\n", name, base_level);
 			return -1;
 	}
 
@@ -3691,7 +3691,7 @@ int char_lan_config_read(const char *lancfgName)
 	char line[1024], w1[64], w2[64], w3[64], w4[64];
 	
 	if((fp = fopen(lancfgName, "r")) == NULL) {
-		ShowWarning("Arquivo de configuracao do suporte para LAN não encontrado: %s\n", lancfgName);
+		ShowWarning("Arquivo de configuracao do suporte para LAN nao encontrado: %s\n", lancfgName);
 		return 1;
 	}
 
@@ -3866,7 +3866,7 @@ int char_config_read(const char* cfgName)
 			login_ip = host2ip(w2);
 			if (login_ip) {
 				strncpy(login_ip_str, w2, sizeof(login_ip_str));
-				ShowStatus("Endereço de IP do Login server : %s -> %s\n", w2, ip2str(login_ip, ip_str));
+				ShowStatus("Endereco de IP do Login server : %s -> %s\n", w2, ip2str(login_ip, ip_str));
 			}
 		} else if (strcmpi(w1, "login_port") == 0) {
 			login_port = atoi(w2);
@@ -4062,7 +4062,7 @@ int do_init(int argc, char **argv)
 		ip2str(addr_[0], ip_str);
 
 		if (naddr_ > 1)
-			ShowStatus("Multiplas interfaces detectadas..  usando %s como endereço de IP\n", ip_str);
+			ShowStatus("Multiplas interfaces detectadas..  usando %s como endereco de IP\n", ip_str);
 		else
 			ShowStatus("Utilizando endereco de IP padronizado %s\n", ip_str);
 		if (!login_ip) {
@@ -4121,7 +4121,7 @@ int do_init(int argc, char **argv)
 
 	ShowInfo("Fim da funcao de inicializacao do char server.\n");
 
-	ShowInfo("abrir porta %d.....\n",char_port);
+	ShowInfo("abrindo porta %d.....\n",char_port);
 	char_fd = make_listen_bind(bind_ip, char_port);
 	ShowStatus("Char-server "CL_GREEN"ativado"CL_RESET" (porta %d).\n\n", char_port);
 
