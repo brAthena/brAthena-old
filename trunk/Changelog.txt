@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0049 - 20/12/2010 [Protimus]
+	* Atualizado conforme eAthena r14609.
+
 	r0048 - 19/12/2010 [Protimus]
 	* Pequena correção relacionada ao commit da r22.
 	- As configurações para leitura da pasta char-sql haviam sido removidas por engano, através de ac_config_files.

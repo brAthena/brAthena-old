@@ -159,6 +159,9 @@
 		if( script_hasdata(st,n) ) \
 			(t)=script_getnum(st,n);
 
+/// Maximum amount of elements in script arrays
+#define SCRIPT_MAX_ARRAYSIZE 128
+
 #define SCRIPT_BLOCK_SIZE 512
 enum { LABEL_NEXTLINE=1,LABEL_START };
 
@@ -281,13 +284,11 @@ typedef struct script_function {
 extern script_function buildin_func[];
 
 static struct linkdb_node* sleep_db;// int oid -> struct script_state*
-uint32 crctab[256];
 
 /*==========================================
  * ローカルプロトタイプ宣言 (必要な物のみ)
  *------------------------------------------*/
 const char* parse_subexpr(const char* p,int limit);
-void push_val(struct script_stack *stack,int type,int val);
 int run_func(struct script_state *st);
 
 enum {
@@ -515,6 +516,44 @@ static void script_reportdata(struct script_data* data)
 	}
 }
 
+
+/// Reports on the console information about the current built-in function.
+static void script_reportfunc(struct script_state* st)
+{
+	int i, params, id;
+	struct script_data* data;
+
+	if( !script_hasdata(st,0) )
+	{// no stack
+		return;
+	}
+
+	data = script_getdata(st,0);
+
+	if( !data_isreference(data) || str_data[reference_getid(data)].type != C_FUNC )
+	{// script currently not executing a built-in function or corrupt stack
+		return;
+	}
+
+	id     = reference_getid(data);
+	params = script_lastdata(st)-1;
+
+	if( params > 0 )
+	{
+		ShowDebug("Function: %s (%d parameter%s):\n", get_str(id), params, ( params == 1 ) ? "" : "s");
+
+		for( i = 2; i <= script_lastdata(st); i++ )
+		{
+			script_reportdata(script_getdata(st,i));
+		}
+	}
+	else
+	{
+		ShowDebug("Function: %s (no parameters)\n", get_str(id));
+	}
+}
+
+
 /*==========================================
  * エラーメッセージ出力
  *------------------------------------------*/
@@ -741,8 +780,8 @@ void set_label(int l,int pos, const char* script_pos)
 {
 	int i,next;
 
-	if(str_data[l].type==C_INT || str_data[l].type==C_PARAM)
-	{	//Prevent overwriting constants values and parameters [Skotlex]
+	if(str_data[l].type==C_INT || str_data[l].type==C_PARAM || str_data[l].type==C_FUNC)
+	{	//Prevent overwriting constants values, parameters and built-in functions [Skotlex]
 		disp_error_message("set_label: invalid label name",script_pos);
 		return;
 	}
@@ -842,7 +881,7 @@ int add_word(const char* p)
 		disp_error_message("script:add_word: invalid word. A word consists of undercores and/or alfanumeric characters, and valid variable prefixes/postfixes.", p);
 
 	// Duplicate the word
-	CREATE(word, char, len+1);
+	word = aMalloc(len+1);
 	memcpy(word, p, len);
 	word[len] = 0;
 	
@@ -1502,7 +1541,7 @@ const char* parse_syntax(const char* p)
 				// function declaration - just register the name
 				int l;
 				l = add_word(func_name);
-				if( str_data[l].type == C_NOP )//## ??? [FlavioJS]
+				if( str_data[l].type == C_NOP )// set type only if the name did not exist before
 					str_data[l].type = C_USERFUNC;
 
 				// if, for , while の閉じ判定
@@ -1528,7 +1567,7 @@ const char* parse_syntax(const char* p)
 
 				// Set the position of the function (label)
 				l=add_word(func_name);
-				if( str_data[l].type == C_NOP )//## ??? [FlavioJS]
+				if( str_data[l].type == C_NOP )// set type only if the name did not exist before
 					str_data[l].type = C_USERFUNC;
 				set_label(l, script_pos, p);
 				if( parse_options&SCRIPT_USE_LABEL_DB )
@@ -2120,6 +2159,7 @@ TBL_PC *script_rid2sd(struct script_state *st)
 	TBL_PC *sd=map_id2sd(st->rid);
 	if(!sd){
 		ShowError("script_rid2sd: fatal error ! player not attached!\n");
+		script_reportfunc(st);
 		script_reportsrc(st);
 		st->state = END;
 	}
@@ -3804,7 +3844,12 @@ BUILDIN_FUNC(menu)
 		sd->state.menu_or_input = 1;
 		clif_scriptmenu(sd, st->oid, StringBuf_Value(&buf));
 		StringBuf_Destroy(&buf);
-		//TODO what's the maximum number of options that can be displayed and/or received? -> give warning
+
+		if( sd->npc_menu >= 0xff )
+		{// client supports only up to 254 entries; 0 is not used and 255 is reserved for cancel; excess entries are displayed but cause 'uint8' overflow
+			ShowWarning("buildin_menu: Too many options specified (current=%d, max=254).\n", sd->npc_menu);
+			script_reportsrc(st);
+		}
 	}
 	else if( sd->npc_menu == 0xff )
 	{// Cancel was pressed
@@ -3886,6 +3931,12 @@ BUILDIN_FUNC(select)
 		sd->state.menu_or_input = 1;
 		clif_scriptmenu(sd, st->oid, StringBuf_Value(&buf));
 		StringBuf_Destroy(&buf);
+
+		if( sd->npc_menu >= 0xff )
+		{
+			ShowWarning("buildin_select: Too many options specified (current=%d, max=254).\n", sd->npc_menu);
+			script_reportsrc(st);
+		}
 	}
 	else if( sd->npc_menu == 0xff )
 	{// Cancel was pressed
@@ -3948,6 +3999,12 @@ BUILDIN_FUNC(prompt)
 		sd->state.menu_or_input = 1;
 		clif_scriptmenu(sd, st->oid, StringBuf_Value(&buf));
 		StringBuf_Destroy(&buf);
+
+		if( sd->npc_menu >= 0xff )
+		{
+			ShowWarning("buildin_prompt: Too many options specified (current=%d, max=254).\n", sd->npc_menu);
+			script_reportsrc(st);
+		}
 	}
 	else if( sd->npc_menu == 0xff )
 	{// Cancel was pressed
@@ -4694,7 +4751,7 @@ static int32 getarraysize(struct script_state* st, int32 id, int32 idx, int isst
 
 	if( isstring )
 	{
-		for( ; idx < 128; ++idx )
+		for( ; idx < SCRIPT_MAX_ARRAYSIZE; ++idx )
 		{
 			char* str = (char*)get_val2(st, reference_uid(id, idx), ref);
 			if( str && *str )
@@ -4704,7 +4761,7 @@ static int32 getarraysize(struct script_state* st, int32 id, int32 idx, int isst
 	}
 	else
 	{
-		for( ; idx < 128; ++idx )
+		for( ; idx < SCRIPT_MAX_ARRAYSIZE; ++idx )
 		{
 			int32 num = (int32)get_val2(st, reference_uid(id, idx), ref);
 			if( num )
@@ -4757,8 +4814,8 @@ BUILDIN_FUNC(setarray)
 	}
 
 	end = start + script_lastdata(st) - 2;
-	if( end > 127 )
-		end = 127;
+	if( end >= SCRIPT_MAX_ARRAYSIZE )
+		end = SCRIPT_MAX_ARRAYSIZE-1;
 
 	if( is_string_variable(name) )
 	{// string array
@@ -4820,8 +4877,8 @@ BUILDIN_FUNC(cleararray)
 		v = (void*)script_getnum(st, 3);
 
 	end = start + script_getnum(st, 4);
-	if( end > 127 )
-		end = 127;
+	if( end >= SCRIPT_MAX_ARRAYSIZE )
+		end = SCRIPT_MAX_ARRAYSIZE-1;
 
 	for( ; start <= end; ++start )
 		set_reg(st, sd, reference_uid(id, start), name, v, script_getref(st,2));
@@ -4890,8 +4947,8 @@ BUILDIN_FUNC(copyarray)
 	}
 
 	count = script_getnum(st, 4);
-	if( count > 128 - idx1 )
-		count = 128 - idx1;
+	if( count >= SCRIPT_MAX_ARRAYSIZE - idx1 )
+		count = (SCRIPT_MAX_ARRAYSIZE-1) - idx1;
 	if( count <= 0 || (id1 == id2 && idx1 == idx2) )
 		return 0;// nothing to copy
 
@@ -4908,7 +4965,7 @@ BUILDIN_FUNC(copyarray)
 	{// normal copy
 		for( i = 0; i < count; ++i )
 		{
-			if( idx2 + i < 128 )
+			if( idx2 + i < SCRIPT_MAX_ARRAYSIZE )
 			{
 				v = get_val2(st, reference_uid(id2, idx2 + i), reference_getref(data2));
 				set_reg(st, sd, reference_uid(id1, idx1 + i), name1, v, reference_getref(data1));
@@ -5064,7 +5121,7 @@ BUILDIN_FUNC(getelementofarray)
 	}
 
 	i = script_getnum(st, 3);
-	if( i < 0 || i >= 128 )
+	if( i < 0 || i >= SCRIPT_MAX_ARRAYSIZE )
 	{
 		ShowWarning("script:getelementofarray: index out of range (%d)\n", i);
 		script_reportdata(data);
@@ -7833,8 +7890,15 @@ BUILDIN_FUNC(clone)
 BUILDIN_FUNC(doevent)
 {
 	const char* event = script_getstr(st,2);
+	struct map_session_data* sd;
+
+	if( ( sd = script_rid2sd(st) ) == NULL )
+	{
+		return 0;
+	}
+
 	check_event(st, event);
-	npc_event(map_id2sd(st->rid),event,0);
+	npc_event(sd, event, 0);
 	return 0;
 }
 /*==========================================
@@ -12088,7 +12152,7 @@ BUILDIN_FUNC(setbattleflag)
 	const char *flag, *value;
 
 	flag = script_getstr(st,2);
-	value = script_getstr(st,3);
+	value = script_getstr(st,3);  // HACK: Retrieve number as string (auto-converted) for battle_set_value
 	
 	if (battle_set_value(flag, value) == 0)
 		ShowWarning("buildin_setbattleflag: unknown battle_config flag '%s'\n",flag);
@@ -12179,7 +12243,7 @@ BUILDIN_FUNC(setnpcdisplay)
 	if( newname )
 		npc_setdisplayname(nd, newname);
 
-	if( size != -1 && size != nd->size )
+	if( size != -1 && size != (int)nd->size )
 		nd->size = size;
 	else
 		size = -1;
@@ -12302,7 +12366,7 @@ int buildin_query_sql_sub(struct script_state* st, Sql* handle)
 	const char* query;
 	struct script_data* data;
 	const char* name;
-	int max_rows = 128;// maximum number of rows
+	int max_rows = SCRIPT_MAX_ARRAYSIZE;// maximum number of rows
 	int num_vars;
 	int num_cols;
 
@@ -12584,6 +12648,7 @@ BUILDIN_FUNC(npcshopdelitem)
 {
 	const char* npcname = script_getstr(st,2);
 	struct npc_data* nd = npc_name2id(npcname);
+	unsigned int nameid;
 	int n, i;
 	int amount;
 	int size;
@@ -12600,7 +12665,9 @@ BUILDIN_FUNC(npcshopdelitem)
 	// remove specified items from the shop item list
 	for( i = 3; i < 3 + amount; i++ )
 	{
-		ARR_FIND( 0, size, n, nd->u.shop.shop_item[n].nameid == script_getnum(st,i) );
+		nameid = script_getnum(st,i);
+
+		ARR_FIND( 0, size, n, nd->u.shop.shop_item[n].nameid == nameid );
 		if( n < size )
 		{
 			memmove(&nd->u.shop.shop_item[n], &nd->u.shop.shop_item[n+1], sizeof(nd->u.shop.shop_item[0])*(size-n));
