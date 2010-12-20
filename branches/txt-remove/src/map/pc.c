@@ -61,7 +61,7 @@ struct fame_list taekwon_fame_list[MAX_FAME_LIST];
 static unsigned short equip_pos[EQI_MAX]={EQP_ACC_L,EQP_ACC_R,EQP_SHOES,EQP_GARMENT,EQP_HEAD_LOW,EQP_HEAD_MID,EQP_HEAD_TOP,EQP_ARMOR,EQP_HAND_L,EQP_HAND_R,EQP_AMMO};
 
 #define MOTD_LINE_SIZE 128
-char motd_text[MOTD_LINE_SIZE][256]; // Message of the day buffer [Valaris]
+static char motd_text[MOTD_LINE_SIZE][CHAT_SIZE_MAX]; // Message of the day buffer [Valaris]
 
 struct duel duel_list[MAX_DUEL];
 int duel_count = 0;
@@ -840,6 +840,23 @@ bool pc_authok(struct map_session_data *sd, int login_id2, time_t expiration_tim
 		sd->class_ = MAPID_NOVICE;
 	} else
 		sd->class_ = i; 
+
+	// Checks and fixes to character status data, that are required
+	// in case of configuration change or stuff, which cannot be
+	// checked on char-server.
+	if( sd->status.hair < MIN_HAIR_STYLE || sd->status.hair > MAX_HAIR_STYLE )
+	{
+		sd->status.hair = MIN_HAIR_STYLE;
+	}
+	if( sd->status.hair_color < MIN_HAIR_COLOR || sd->status.hair_color > MAX_HAIR_COLOR )
+	{
+		sd->status.hair_color = MIN_HAIR_COLOR;
+	}
+	if( sd->status.clothes_color < MIN_CLOTH_COLOR || sd->status.clothes_color > MAX_CLOTH_COLOR )
+	{
+		sd->status.clothes_color = MIN_CLOTH_COLOR;
+	}
+
 	//Initializations to null/0 unneeded since map_session_data was filled with 0 upon allocation.
 	if(!sd->status.hp) pc_setdead(sd);
 	sd->state.connect_new = 1;
@@ -1500,13 +1517,7 @@ static int pc_bonus_autospell_onskill(struct s_autospell *spell, int max, short 
 
 	for( i = 0; i < max && spell[i].id; i++ )  
 	{  
-		if( spell[i].flag == src_skill && spell[i].id == id && spell[i].lv == lv && (spell[i].card_id == card_id || spell[i].rate <= 0 || rate < 0) )  
-		{  
-			if( !battle_config.autospell_stacking && spell[i].rate > 0 && rate > 0 )
-				return 0;
-			rate += spell[i].rate;
-			break; 
-		}  
+		;  // each autospell works independently
 	}
 
 	if( i == max )
@@ -4762,7 +4773,7 @@ int pc_checkbaselevelup(struct map_session_data *sd)
 
 		sd->status.base_level ++;
 
-		if (battle_config.use_statpoint_table)
+		if (battle_config.use_statpoint_table || battle_config.use_statpoint2_table)
 			next = statp[sd->status.base_level] - statp[sd->status.base_level-1];
 		else //Estimated way.
 			next = (sd->status.base_level+14) / 5 ;
@@ -5315,7 +5326,7 @@ int pc_resetstate(struct map_session_data* sd)
 {
 	nullpo_ret(sd);
 	
-	if (battle_config.use_statpoint_table)
+	if (battle_config.use_statpoint_table || battle_config.use_statpoint2_table)
 	{	// New statpoint table used here - Dexity
 		if (sd->status.base_level > MAX_LEVEL)
 		{	//statp[] goes out of bounds, can't reset!
@@ -6340,10 +6351,8 @@ int pc_changelook(struct map_session_data *sd,int type,int val)
 
 	switch(type){
 	case LOOK_HAIR:	//Use the battle_config limits! [Skotlex]
-		if (val < battle_config.min_hair_style)
-			val = battle_config.min_hair_style;
-		else if (val > battle_config.max_hair_style)
-			val = battle_config.max_hair_style;
+		val = cap_value(val, MIN_HAIR_STYLE, MAX_HAIR_STYLE);
+
 		if (sd->status.hair != val)
 		{
 			sd->status.hair=val;
@@ -6365,10 +6374,8 @@ int pc_changelook(struct map_session_data *sd,int type,int val)
 		sd->status.head_mid=val;
 		break;
 	case LOOK_HAIR_COLOR:	//Use the battle_config limits! [Skotlex]
-		if (val < battle_config.min_hair_color)
-			val = battle_config.min_hair_color;
-		else if (val > battle_config.max_hair_color)
-			val = battle_config.max_hair_color;
+		val = cap_value(val, MIN_HAIR_COLOR, MAX_HAIR_COLOR);
+
 		if (sd->status.hair_color != val)
 		{
 			sd->status.hair_color=val;
@@ -6378,10 +6385,8 @@ int pc_changelook(struct map_session_data *sd,int type,int val)
 		}
 		break;
 	case LOOK_CLOTHES_COLOR:	//Use the battle_config limits! [Skotlex]
-		if (val < battle_config.min_cloth_color)
-			val = battle_config.min_cloth_color;
-		else if (val > battle_config.max_cloth_color)
-			val = battle_config.max_cloth_color;
+		val = cap_value(val, MIN_CLOTH_COLOR, MAX_CLOTH_COLOR);
+
 		sd->status.clothes_color=val;
 		break;
 	case LOOK_SHIELD:
@@ -8055,7 +8060,7 @@ int pc_readdb(void)
 		if (!max_level[j][1])
 			ShowWarning("Class %s (%d) does not has a job exp table.\n", job_name(i), i);
 	}
-	ShowStatus("Done reading '"CL_WHITE"%s"CL_RESET"'.\n","exp.txt");
+	ShowStatus("Leitura de '"CL_WHITE"%s"CL_RESET"' finalizada.\n","exp.txt");
 
 	// スキルツリ?
 	memset(skill_tree,0,sizeof(skill_tree));
@@ -8110,12 +8115,15 @@ int pc_readdb(void)
 		}
 	}
 	fclose(fp);
-	ShowStatus("Done reading '"CL_WHITE"%s"CL_RESET"'.\n","attr_fix.txt");
+	ShowStatus("Leitura de '"CL_WHITE"%s"CL_RESET"' finalizada.\n","attr_fix.txt");
 
 	// スキルツリ?
 	memset(statp,0,sizeof(statp));
 	i=1;
-	sprintf(line, "%s/statpoint.txt", db_path);
+	if(battle_config.use_statpoint2_table)
+		sprintf(line, "%s/statpoint2.txt", db_path);
+	else
+		sprintf(line, "%s/statpoint.txt", db_path);
 	fp=fopen(line,"r");
 	if(fp == NULL){
 		ShowStatus("Can't read '"CL_WHITE"%s"CL_RESET"'... Generating DB.\n",line);
@@ -8134,7 +8142,10 @@ int pc_readdb(void)
 			i++;
 		}
 		fclose(fp);
-		ShowStatus("Done reading '"CL_WHITE"%s"CL_RESET"'.\n","statpoint.txt");
+		if(battle_config.use_statpoint2_table)
+			ShowStatus("Leitura de '"CL_WHITE"%s"CL_RESET"' finalizada.\n","statpoint2.txt");
+		else
+		ShowStatus("Leitura de '"CL_WHITE"%s"CL_RESET"' finalizada.\n","statpoint.txt");
 	}
 	// generate the remaining parts of the db if necessary
 	statp[0] = 45; // seed value
@@ -8147,30 +8158,60 @@ int pc_readdb(void)
 // Read MOTD on startup. [Valaris]
 int pc_read_motd(void)
 {
-	FILE *fp;
-	int ln=0,i=0;
+	char* buf, * ptr;
+	unsigned int lines = 0, entries = 0;
+	size_t len;
+	FILE* fp;
 
-	memset(motd_text,0,sizeof(motd_text));
-	if ((fp = fopen(motd_txt, "r")) != NULL) {
-		while ((ln < MOTD_LINE_SIZE) && fgets(motd_text[ln], sizeof(motd_text[ln])-1, fp) != NULL) {
-			if(motd_text[ln][0] == '/' && motd_text[ln][1] == '/')
+	// clear old MOTD
+	memset(motd_text, 0, sizeof(motd_text));
+
+	// read current MOTD
+	if( ( fp = fopen(motd_txt, "r") ) != NULL )
+	{
+		while( entries < MOTD_LINE_SIZE && fgets(motd_text[entries], sizeof(motd_text[entries]), fp) )
+		{
+			lines++;
+
+			buf = motd_text[entries];
+
+			if( buf[0] == '/' && buf[1] == '/' )
+			{
 				continue;
-			for(i=0; motd_text[ln][i]; i++) {
-				if (motd_text[ln][i] == '\r' || motd_text[ln][i]== '\n') {
-					if(i)
-						motd_text[ln][i]=0;
-					else
-						motd_text[ln][0]=' ';
-					ln++;
-					break;
+			}
+
+			len = strlen(buf);
+
+			while( len && ( buf[len-1] == '\r' || buf[len-1] == '\n' ) )
+			{// strip trailing EOL characters
+				len--;
+			}
+
+			if( len )
+			{
+				buf[len] = 0;
+
+				if( ( ptr = strstr(buf, " :") ) != NULL && ptr-buf >= NAME_LENGTH )
+				{// crashes newer clients
+					ShowWarning("Found sequence '"CL_WHITE" :"CL_RESET"' on line '"CL_WHITE"%u"CL_RESET"' in '"CL_WHITE"%s"CL_RESET"'. This can cause newer clients to crash.\n", lines, motd_txt);
 				}
 			}
+			else
+			{// empty line
+				buf[0] = ' ';
+				buf[1] = 0;
+			}
+			entries++;
 		}
 		fclose(fp);
+
+		ShowStatus("Leitura de '"CL_WHITE"%u"CL_RESET"' entradas finalizada em '"CL_WHITE"%s"CL_RESET"'.\n", entries, motd_txt);
 	}
 	else
-		ShowWarning("In function pc_read_motd() -> File '"CL_WHITE"%s"CL_RESET"' not found.\n", motd_txt);
-	
+	{
+		ShowWarning("Arquivo '"CL_WHITE"%s"CL_RESET"' nao encontrado.\n", motd_txt);
+	}
+
 	return 0;
 }
 

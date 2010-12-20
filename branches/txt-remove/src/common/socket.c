@@ -509,11 +509,11 @@ int make_connection(uint32 ip, uint16 port)
 	remote_address.sin_addr.s_addr = htonl(ip);
 	remote_address.sin_port        = htons(port);
 
-	ShowStatus("Connecting to %d.%d.%d.%d:%i\n", CONVIP(ip), port);
+	ShowStatus("Conectando a %d.%d.%d.%d:%i\n", CONVIP(ip), port);
 
 	result = sConnect(fd, (struct sockaddr *)(&remote_address), sizeof(struct sockaddr_in));
 	if( result == SOCKET_ERROR ) {
-		ShowError("make_connection: connect failed (socket #%d, code %d)!\n", fd, sErrno);
+		ShowError("make_connection: conexao falhou (socket #%d, code %d)!\n", fd, sErrno);
 		do_close(fd);
 		return -1;
 	}

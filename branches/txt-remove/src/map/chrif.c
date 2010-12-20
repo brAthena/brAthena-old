@@ -199,13 +199,13 @@ void chrif_setpasswd(char *pwd)
 void chrif_checkdefaultlogin(void)
 {
 	if (strcmp(userid, "s1")==0 && strcmp(passwd, "p1")==0) {
-		ShowError("Using the default user/password s1/p1 is NOT RECOMMENDED.\n");
+		ShowError("Utilizar o usuario/senha padrao s1/p1 NAO E RECOMENDADO.\n");
 #ifdef TXT_ONLY
-		ShowNotice("Please edit your save/account.txt file to create a proper inter-server user/password (gender 'S')\n");
+		ShowNotice("Por favor edite seu arquivo save/account.txt para criar usuario/senha corretos para o inter-server (sexo 'S')\n");
 #else
-		ShowNotice("Please edit your 'login' table to create a proper inter-server user/password (gender 'S')\n");
+		ShowNotice("Por favor edite sua tabela 'login' para criar usuario/senha corretos para o inter-server (sexo 'S')\n");
 #endif
-		ShowNotice("and then edit your user/password in conf/map_athena.conf (or conf/import/map_conf.txt)\n");
+		ShowNotice("e entao modifique usuario/senha utilizados no conf/map_athena.conf (ou conf/import/map_conf.txt)\n");
 	}
 }
 
@@ -215,11 +215,11 @@ int chrif_setip(const char* ip)
 	char ip_str[16];
 	char_ip = host2ip(ip);
 	if (!char_ip) {
-		ShowWarning("Failed to Resolve Char Server Address! (%s)\n", ip);
+		ShowWarning("Falha ao determinar endereco do Char Server! (%s)\n", ip);
 		return 0;
 	}
 	strncpy(char_ip_str, ip, sizeof(char_ip_str));
-	ShowInfo("Char Server IP Address : '"CL_WHITE"%s"CL_RESET"' -> '"CL_WHITE"%s"CL_RESET"'.\n", ip, ip2str(char_ip, ip_str));
+	ShowInfo("Endereco de IP do Char Server : '"CL_WHITE"%s"CL_RESET"' -> '"CL_WHITE"%s"CL_RESET"'.\n", ip, ip2str(char_ip, ip_str));
 	return 1;
 }
 
@@ -252,7 +252,7 @@ int chrif_save(struct map_session_data *sd, int flag)
 		//FIXME: SC are lost if there's no connection at save-time because of the way its related data is cleared immediately after this function. [Skotlex]
 		if (chrif_isconnected()) chrif_save_scdata(sd);
 		if (!chrif_auth_logout(sd, flag==1?ST_LOGOUT:ST_MAPCHANGE))
-			ShowError("chrif_save: Failed to set up player %d:%d for proper quitting!\n", sd->status.account_id, sd->status.char_id);
+			ShowError("chrif_save: Falha ao configurar jogador %d:%d para sair corretamente!\n", sd->status.account_id, sd->status.char_id);
 	}
 
 	if(!chrif_isconnected())
@@ -297,7 +297,7 @@ int chrif_save(struct map_session_data *sd, int flag)
 // connects to char-server (plaintext)
 int chrif_connect(int fd)
 {
-	ShowStatus("Logging in to char server...\n", char_fd);
+	ShowStatus("Conectando ao char server...\n", char_fd);
 	WFIFOHEAD(fd,60);
 	WFIFOW(fd,0) = 0x2af8;
 	memcpy(WFIFOP(fd,2), userid, NAME_LENGTH);
@@ -314,7 +314,7 @@ int chrif_connect(int fd)
 int chrif_sendmap(int fd)
 {
 	int i;
-	ShowStatus("Sending maps to char server...\n");
+	ShowStatus("Enviando mapas ao char server...\n");
 	// Sending normal maps, not instances
 	WFIFOHEAD(fd, 4 + instance_start * 4);
 	WFIFOW(fd,0) = 0x2afa;
@@ -337,7 +337,7 @@ int chrif_recvmap(int fd)
 		map_setipport(RFIFOW(fd,i), ip, port);
 	}
 	if (battle_config.etc_log)
-		ShowStatus("Received maps from %d.%d.%d.%d:%d (%d maps)\n", CONVIP(ip), port, j);
+		ShowStatus("Mapas recebidos de %d.%d.%d.%d:%d (%d mapas)\n", CONVIP(ip), port, j);
 
 	other_mapserver_count++;
 	return 0;
@@ -355,7 +355,7 @@ int chrif_removemap(int fd)
 
 	other_mapserver_count--;
 	if(battle_config.etc_log)
-		ShowStatus("remove map of server %d.%d.%d.%d:%d (%d maps)\n", CONVIP(ip), port, j);
+		ShowStatus("Remover mapa do servidor %d.%d.%d.%d:%d (%d mapas)\n", CONVIP(ip), port, j);
 	return 0;
 }
 
@@ -404,7 +404,7 @@ int chrif_changemapserverack(int account_id, int login_id1, int login_id2, int c
 		return -1;
 
 	if (!login_id1) {
-		ShowError("map server change failed.\n");
+		ShowError("Falha ao mudar o map server.\n");
 		clif_authfail_fd(node->fd, 0);
 	} else
 		clif_changemapserver(node->sd, map_index, x, y, ntohl(ip), ntohs(port));
@@ -423,20 +423,20 @@ int chrif_connectack(int fd)
 	static bool char_init_done = false;
 
 	if (RFIFOB(fd,2)) {
-		ShowFatalError("Connection to char-server failed %d.\n", RFIFOB(fd,2));
+		ShowFatalError("Falha ao conectar ao char-server %d.\n", RFIFOB(fd,2));
 		exit(EXIT_FAILURE);
 	}
 
-	ShowStatus("Successfully logged on to Char Server (Connection: '"CL_WHITE"%d"CL_RESET"').\n",fd);
+	ShowStatus("Conectado com sucesso ao Char Server (Conexao: '"CL_WHITE"%d"CL_RESET"').\n",fd);
 	chrif_state = 1;
 	chrif_connected = 1;
 
 	chrif_sendmap(fd);
 
-	ShowStatus("Event '"CL_WHITE"OnInterIfInit"CL_RESET"' executed with '"CL_WHITE"%d"CL_RESET"' NPCs.\n", npc_event_doall("OnInterIfInit"));
+	ShowStatus("Evento '"CL_WHITE"OnInterIfInit"CL_RESET"' executado em '"CL_WHITE"%d"CL_RESET"' NPCs.\n", npc_event_doall("OnInterIfInit"));
 	if( !char_init_done ) {
 		char_init_done = true;
-		ShowStatus("Event '"CL_WHITE"OnInterIfInitOnce"CL_RESET"' executed with '"CL_WHITE"%d"CL_RESET"' NPCs.\n", npc_event_doall("OnInterIfInitOnce"));
+		ShowStatus("Evento '"CL_WHITE"OnInterIfInitOnce"CL_RESET"' executado em '"CL_WHITE"%d"CL_RESET"' NPCs.\n", npc_event_doall("OnInterIfInitOnce"));
 	}
 
 	return 0;
@@ -478,12 +478,12 @@ static int chrif_reconnect(DBKey key,void *data,va_list ap)
 int chrif_sendmapack(int fd)
 {
 	if (RFIFOB(fd,2)) {
-		ShowFatalError("chrif : send map list to char server failed %d\n", RFIFOB(fd,2));
+		ShowFatalError("chrif : envio da lista de mapas ao char server falhou %d\n", RFIFOB(fd,2));
 		exit(EXIT_FAILURE);
 	}
 
 	memcpy(wisp_server_name, RFIFOP(fd,3), NAME_LENGTH);
-	ShowStatus("Map sending complete. Map Server is now online.\n");
+	ShowStatus("Envio de mapas completo. Map Server agora esta online.\n");
 	chrif_state = 2;
 
 	//If there are players online, send them to the char-server. [Skotlex]
@@ -557,7 +557,7 @@ void chrif_authok(int fd)
 	//Check if both servers agree on the struct's size
 	if( RFIFOW(fd,2) - 24 != sizeof(struct mmo_charstatus) )
 	{
-		ShowError("chrif_authok: Data size mismatch! %d != %d\n", RFIFOW(fd,2) - 24, sizeof(struct mmo_charstatus));
+		ShowError("chrif_authok: Tamanho de dados incompatÌvel! %d != %d\n", RFIFOW(fd,2) - 24, sizeof(struct mmo_charstatus));
 		return;
 	}
 
@@ -713,7 +713,7 @@ int chrif_searchcharid(int char_id)
 int chrif_changeemail(int id, const char *actual_email, const char *new_email)
 {
 	if (battle_config.etc_log)
-		ShowInfo("chrif_changeemail: account: %d, actual_email: '%s', new_email: '%s'.\n", id, actual_email, new_email);
+		ShowInfo("chrif_changeemail: conta: %d, e-mail atual: '%s', novo e-mail: '%s'.\n", id, actual_email, new_email);
 
 	chrif_check(-1);
 
@@ -764,7 +764,7 @@ int chrif_changesex(struct map_session_data *sd)
 	WFIFOW(char_fd,30) = 5;
 	WFIFOSET(char_fd,44);
 
-	clif_displaymessage(sd->fd, "Need disconnection to perform change-sex request...");
+	clif_displaymessage(sd->fd, "E necessario desconectar para requisitar mudanca de sexo...");
 
 	if (sd->fd)
 		clif_authfail_fd(sd->fd, 15);
@@ -792,24 +792,24 @@ static void chrif_char_ask_name_answer(int acc, const char* player_name, uint16 
 	
 	sd = map_id2sd(acc);
 	if( acc < 0 || sd == NULL ) {
-		ShowError("chrif_char_ask_name_answer failed - player not online.\n");
+		ShowError("chrif_char_ask_name_answer falhou - jogador nao esta online.\n");
 		return;
 	}
 
 	switch( type ) {
-	case 1 : action = "block"; break;
-	case 2 : action = "ban"; break;
-	case 3 : action = "unblock"; break;
-	case 4 : action = "unban"; break;
-	case 5 : action = "change the sex of"; break;
+	case 1 : action = "bloquear o"; break;
+	case 2 : action = "banir o"; break;
+	case 3 : action = "desbloquear o"; break;
+	case 4 : action = "desbanir o"; break;
+	case 5 : action = "mudar o sexo do"; break;
 	default: action = "???"; break;
 	}
 	
 	switch( answer ) {
-	case 0 : sprintf(output, "Login-server has been asked to %s the player '%.*s'.", action, NAME_LENGTH, player_name); break;
-	case 1 : sprintf(output, "The player '%.*s' doesn't exist.", NAME_LENGTH, player_name); break;
-	case 2 : sprintf(output, "Your GM level don't authorise you to %s the player '%.*s'.", action, NAME_LENGTH, player_name); break;
-	case 3 : sprintf(output, "Login-server is offline. Impossible to %s the player '%.*s'.", action, NAME_LENGTH, player_name); break;
+	case 0 : sprintf(output, "Login-server foi requisitado para %s jogador '%.*s'.", action, NAME_LENGTH, player_name); break;
+	case 1 : sprintf(output, "O jogador '%.*s' nao existe.", NAME_LENGTH, player_name); break;
+	case 2 : sprintf(output, "Seu level GM nao o autoriza a %s jogador '%.*s'.", action, NAME_LENGTH, player_name); break;
+	case 3 : sprintf(output, "Login-server esta offline. Impossivel %s jogador '%.*s'.", action, NAME_LENGTH, player_name); break;
 	default: output[0] = '\0'; break;
 	}
 	
@@ -863,7 +863,7 @@ int chrif_changedsex(int fd)
 		// save character
 		sd->login_id1++; // change identify, because if player come back in char within the 5 seconds, he can change its characters
 							  // do same modify in login-server for the account, but no in char-server (it ask again login_id1 to login, and don't remember it)
-		clif_displaymessage(sd->fd, "Your sex has been changed (need disconnection by the server)...");
+		clif_displaymessage(sd->fd, "Seu sexo foi trocado (necessario desconectar do servidor)...");
 		set_eof(sd->fd); // forced to disconnect for the change
 		map_quit(sd); // Remove leftovers (e.g. autotrading) [Paradox924X]
 	}
@@ -957,13 +957,13 @@ int chrif_accountdeletion(int fd)
 	if (acc > 0) {
 		if (sd != NULL) {
 			sd->login_id1++; // change identify, because if player come back in char within the 5 seconds, he can change its characters
-			clif_displaymessage(sd->fd, "Your account has been deleted (disconnection)...");
+			clif_displaymessage(sd->fd, "Sua conta foi removida (desconectando)...");
 			set_eof(sd->fd); // forced to disconnect for the change
 			map_quit(sd); // Remove leftovers (e.g. autotrading) [Paradox924X]
 		}
 	} else {
 		if (sd != NULL)
-			ShowError("chrif_accountdeletion failed - player not online.\n");
+			ShowError("chrif_accountdeletion falhou - jogador nao esta online.\n");
 	}
 
 	return 0;
@@ -983,7 +983,7 @@ int chrif_accountban(int fd)
 	sd = map_id2sd(acc);
 
 	if (acc < 0 || sd == NULL) {
-		ShowError("chrif_accountban failed - player not online.\n");
+		ShowError("chrif_accountban falhou - jogador nao esta online.\n");
 		return 0;
 	}
 
@@ -991,17 +991,17 @@ int chrif_accountban(int fd)
 	if (RFIFOB(fd,6) == 0) // 0: change of statut, 1: ban
 	{ 
 		switch (RFIFOL(fd,7)) { // status or final date of a banishment
-		case 1: clif_displaymessage(sd->fd, "Your account has 'Unregistered'."); break;
-		case 2: clif_displaymessage(sd->fd, "Your account has an 'Incorrect Password'..."); break;
-		case 3: clif_displaymessage(sd->fd, "Your account has expired."); break;
-		case 4: clif_displaymessage(sd->fd, "Your account has been rejected from server."); break;
-		case 5: clif_displaymessage(sd->fd, "Your account has been blocked by the GM Team."); break;
-		case 6: clif_displaymessage(sd->fd, "Your Game's EXE file is not the latest version."); break;
-		case 7: clif_displaymessage(sd->fd, "Your account has been prohibited to log in."); break;
-		case 8: clif_displaymessage(sd->fd, "Server is jammed due to over populated."); break;
-		case 9: clif_displaymessage(sd->fd, "Your account has not more authorised."); break;
-		case 100: clif_displaymessage(sd->fd, "Your account has been totally erased."); break;
-		default:  clif_displaymessage(sd->fd, "Your account has not more authorised."); break;
+		case 1: clif_displaymessage(sd->fd, "Sua conta n„o est· 'registrada'."); break;
+		case 2: clif_displaymessage(sd->fd, "Sua conta possui 'Senha incorreta'..."); break;
+		case 3: clif_displaymessage(sd->fd, "Sua conta expirou."); break;
+		case 4: clif_displaymessage(sd->fd, "Sua conta foi rejeitada pelo servidor."); break;
+		case 5: clif_displaymessage(sd->fd, "Sua conta foi bloqueada pela equipe GM."); break;
+		case 6: clif_displaymessage(sd->fd, "Seu EXE do jogo est· desatualizado."); break;
+		case 7: clif_displaymessage(sd->fd, "O login em sua conta foi proibido."); break;
+		case 8: clif_displaymessage(sd->fd, "Servidor lotado."); break;
+		case 9: clif_displaymessage(sd->fd, "Sua conta n„o possui autorizaÁ„o."); break;
+		case 100: clif_displaymessage(sd->fd, "Sua conta foi totalmente removida."); break;
+		default:  clif_displaymessage(sd->fd, "Sua conta n„o possui autorizaÁ„o."); break;
 		}
 	}
 	else if (RFIFOB(fd,6) == 1) // 0: change of statut, 1: ban
@@ -1009,7 +1009,7 @@ int chrif_accountban(int fd)
 		time_t timestamp;
 		char tmpstr[2048];
 		timestamp = (time_t)RFIFOL(fd,7); // status or final date of a banishment
-		strcpy(tmpstr, "Your account has been banished until ");
+		strcpy(tmpstr, "Sua conta foi banida atÈ ");
 		strftime(tmpstr + strlen(tmpstr), 24, "%d-%m-%Y %H:%M:%S", localtime(&timestamp));
 		clif_displaymessage(sd->fd, tmpstr);
 	}
@@ -1124,7 +1124,7 @@ int chrif_recvfamelist(int fd)
 	}
 	total += num;
 
-	ShowInfo("Received Fame List of '"CL_WHITE"%d"CL_RESET"' characters.\n", total);
+	ShowInfo("Recebida Fame List de '"CL_WHITE"%d"CL_RESET"'personagens.\n", total);
 
 	return 0;
 }
@@ -1209,12 +1209,12 @@ int chrif_load_scdata(int fd)
 	sd = map_id2sd(aid);
 	if (!sd)
 	{
-		ShowError("chrif_load_scdata: Player of AID %d not found!\n", aid);
+		ShowError("chrif_load_scdata: Jogador de AID %d nao encontrado!\n", aid);
 		return -1;
 	}
 	if (sd->status.char_id != cid)
 	{
-		ShowError("chrif_load_scdata: Receiving data for account %d, char id does not matches (%d != %d)!\n", aid, sd->status.char_id, cid);
+		ShowError("chrif_load_scdata: Recebendo dados da conta %d, char id incompativel (%d != %d)!\n", aid, sd->status.char_id, cid);
 		return -1;
 	}
 	count = RFIFOW(fd,12); //sc_count
@@ -1344,7 +1344,7 @@ int chrif_disconnect(int fd)
 {
 	if(fd == char_fd) {
 		char_fd = 0;
-		ShowWarning("Map Server disconnected from Char Server.\n\n");
+		ShowWarning("Map Server desconectou do Char Server.\n\n");
 		chrif_connected = 0;
 		
 	 	other_mapserver_count=0; //Reset counter. We receive ALL maps from all map-servers on reconnect.
@@ -1393,7 +1393,7 @@ int chrif_parse(int fd)
 	// only process data from the char-server
 	if (fd != char_fd)
 	{
-		ShowDebug("chrif_parse: Disconnecting invalid session #%d (is not the char-server)\n", fd);
+		ShowDebug("chrif_parse: Desconectando sessao invalida #%d (nao e o char-server)\n", fd);
 		do_close(fd);
 		return 0;
 	}
@@ -1417,7 +1417,7 @@ int chrif_parse(int fd)
 			if (r == 1) continue;	// intifÇ≈èàóùÇµÇΩ
 			if (r == 2) return 0;	// intifÇ≈èàóùÇµÇΩÇ™ÅAÉfÅ[É^Ç™ë´ÇËÇ»Ç¢
 
-			ShowWarning("chrif_parse: session #%d, intif_parse failed (unrecognized command 0x%.4x).\n", fd, cmd);
+			ShowWarning("chrif_parse: sessao #%d, intif_parse falhou (comando nao reconhecido 0x%.4x).\n", fd, cmd);
 			set_eof(fd);
 			return 0;
 		}
@@ -1461,7 +1461,7 @@ int chrif_parse(int fd)
 		case 0x2b25: chrif_deadopt(RFIFOL(fd,2), RFIFOL(fd,6), RFIFOL(fd,10)); break;
 		case 0x2b27: chrif_authfail(fd); break;
 		default:
-			ShowError("chrif_parse : unknown packet (session #%d): 0x%x. Disconnecting.\n", fd, cmd);
+			ShowError("chrif_parse : packet desconhecido (sessao #%d): 0x%x. Desconectando.\n", fd, cmd);
 			set_eof(fd);
 			return 0;
 		}
@@ -1532,7 +1532,7 @@ int check_connect_char_server(int tid, unsigned int tick, int id, intptr data)
 	{
 		if (!displayed)
 		{
-			ShowStatus("Attempting to connect to Char Server. Please wait.\n");
+			ShowStatus("Tentando conectar ao Char Server. Por favor aguarde.\n");
 			displayed = 1;
 		}
 
