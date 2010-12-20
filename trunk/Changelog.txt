@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0050 - 20/12/2010 [Floozie]
+	* Adicionado novo comando de script 'sc_check'.
+	
 	r0049 - 20/12/2010 [Protimus]
 	* Atualizado conforme eAthena r14609.
 
