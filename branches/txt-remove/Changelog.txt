@@ -8,6 +8,10 @@
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
+	
+	r0052 - 20/12/2010 [Protimus]
+	* Modificado em todos os v-proj e configures as leituras da pasta char_sql para char.
+	- Os que tinham do char antigamente foram removidos em commits anteriores para evitar conflitos com esse merge.
 
 	r0051 - 20/12/2010 [Protimus]
 	* Removida pasta char_sql, agora é a pasta char.
