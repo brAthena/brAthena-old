@@ -14554,6 +14554,23 @@ BUILDIN_FUNC(mapcheck)
 }
 
 /*=====================================================
+ * Skillcheck [Protimus]
+ * Verifica se o jogador possui determinada habilidade.
+ *----------------------------------------------------*/
+
+BUILDIN_FUNC(skillcheck)
+{
+    int id;
+    TBL_PC* sd;
+
+    sd = script_rid2sd(st);
+    id = script_isstring(st,2) ? skill_name2id(script_getstr(st,2)) : script_getnum(st,2);
+    script_pushint(st, pc_checkskill(sd,id));
+
+    return(0);
+}
+
+/*=====================================================
  * sc_check(<sc_type>) - [MidNight] & [Floozie]
  * Verifica se o jogador está sobre efeito do status
  * especificado.
@@ -14969,6 +14986,7 @@ struct script_function buildin_func[] = {
 	
 	//brAthena Modificações
 	BUILDIN_DEF(mapcheck,"s"),
+	BUILDIN_DEF(skillcheck,"v"),
 	BUILDIN_DEF(sc_check,"i"),
 	{NULL,NULL,NULL},
 };

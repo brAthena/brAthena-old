@@ -1,28 +1,30 @@
-//  ___________________________________________________________________________
-// /                                                                           \
-// |                 _           _   _   _                                      |
-// |                | |__  _ __ / \ | |_| |__   ___ _ __   __ _                 |
-// |                | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                |
-// |                | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                |
-// |                |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                |
-// |                                                                            |
-// |                             brAthena Database                              |
-// |----------------------------------------------------------------------------|
-// | Nome do Database: produce_db.txt                                           |
-// |----------------------------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team                                               |
-// |----------------------------------------------------------------------------|
-// | Descrição: Database de produção de armas do Ferreiro.                      |
-// |----------------------------------------------------------------------------|
-// | Estrutura da Database:                                                     |
-// | ProduceItemID,ItemLV,RequireSkill,RequireSkillLv,MaterialID1,              |
-// | MaterialAmount1,......                                                     |
-// |                                                                            |
-// | NOTA: If MaterialAmount=0, then you just need that item in your inventory. |
-// | Exemplo: Mine Bottle is 7138,32,228,7131,0,713,1,1050,1,1051,1             |
-// | 7131 is the Guide needed to create mine bottles and the amount needed of   |
-// | this item is 0 (.. ,7131,0, ..).                                           |
-// \___________________________________________________________________________/
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Database: produce_db.txt                       |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Descrição: Database de produção de armas do Ferreiro.  |
+// |--------------------------------------------------------|
+// | Estrutura da Database:                                 |
+// | ProduceItemID,ItemLV,RequireSkill,RequireSkillLv,      |
+// | MaterialID1,MaterialAmount1,......                     |
+// |                                                        |
+// | NOTA: If MaterialAmount=0, then you just need that     |
+// | item in your inventory.                                |
+// | Exemplo: Mine Bottle is 7138,32,228,7131,0,713,1,1050, |
+// | 1,1051,1                                               |
+// | 7131 is the Guide needed to create mine bottles and the| 
+// | amount needed of this item is 0 (.. ,7131,0, ..).      |
+// \________________________________________________________/
 
 //===== Weapon === ItemLV=1~3 ==================
 

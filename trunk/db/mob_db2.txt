@@ -1,27 +1,29 @@
-//  ___________________________________________________________________________
-// /                                                                           \
-// |                 _           _   _   _                                      |
-// |                | |__  _ __ / \ | |_| |__   ___ _ __   __ _                 |
-// |                | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                |
-// |                | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                |
-// |                |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                |
-// |                                                                            |
-// |                             brAthena Database                              |
-// |----------------------------------------------------------------------------|
-// | Nome do Database: mob_db2.txt                                              |
-// |----------------------------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team                                               |
-// |----------------------------------------------------------------------------|
-// | Descrição: Database adicional para custom mobs.                            |
-// |----------------------------------------------------------------------------|
-// | Estrutura da Database:                                                     |
-// | ID,Sprite_Name,kROName,iROName,LV,HP,SP,EXP,JEXP,Range1,ATK1,ATK2,DEF,     |
-// | MDEF,STR,AGI,VIT,INT,DEX,LUK,Range2,Range3,Scale,Race,Element,Mode,Speed,  |
-// | aDelay,aMotion,dMotion,MEXP,ExpPer,MVP1id,MVP1per,MVP2id,MVP2per,MVP3id,   |
-// | MVP3per,Drop1id,Drop1per,Drop2id,Drop2per,Drop3id,Drop3per,Drop4id,        |
-// | Drop4per,Drop5id,Drop5per,Drop6id,Drop6per,Drop7id,Drop7per,Drop8id,       |
-// | Drop8per,Drop9id,Drop9per,DropCardid,DropCardper                           |
-// \___________________________________________________________________________/
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Database: mob_db2.txt                          |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Descrição: Database adicional para custom mobs.        |
+// |--------------------------------------------------------|
+// | Estrutura da Database:                                 |
+// | ID,Sprite_Name,kROName,iROName,LV,HP,SP,EXP,JEXP,      |
+// | Range1,ATK1,ATK2,DEF,MDEF,STR,AGI,VIT,INT,DEX,LUK,     |
+// | Range2,Range3,Scale,Race,Element,Mode,Speed,aDelay,    |
+// | aMotion,dMotion,MEXP,ExpPer,MVP1id,MVP1per,MVP2id,     |
+// | MVP2per,MVP3id,MVP3per,Drop1id,Drop1per,Drop2id,       |
+// | Drop2per,Drop3id,Drop3per,Drop4id,Drop4per,Drop5id,    |
+// | Drop5per,Drop6id,Drop6per,Drop7id,Drop7per,Drop8id,    |
+// | Drop8per,Drop9id,Drop9per,DropCardid,DropCardper       |
+// \________________________________________________________/
 
 // Easter Event Monsters
 //1920,EASTER_EGG,Easter Egg,Easter Egg,3,300,0,4,4,0,1,2,20,20,1,1,1,1,1,20,10,12,0,0,60,128,1000,1001,1,1,0,0,0,0,0,0,0,0,1010,250,935,500,558,300,501,200,501,200,713,800,558,300,558,300,0,0,0,0

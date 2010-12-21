@@ -9,7 +9,15 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
-	r0050 - 20/12/2010 [Floozie]
+	r0054 - 21/12/2010 [Protimus]
+	* Readicionado comando skillcheck que foi removido em r53.
+	- Não remover, será utilizado para o renewal todos os três novos comandos: skillcheck, mapcheck e sc_check.
+	* Corrigigo pequeno erro no main.sql através dos updates que foram realizados do merge do eA e limpezas que o Lord fez.
+	* Revisão de TODOS os cabeçalhos de arquivos do emulador.
+	- Favor não modificar a estrutura mais, vamos manter um padrão e será esse, caso tenham ou dúvidas ou queiram alterar comuniquem na área da equipe.
+	OBS: Isso é válido para os NPCs, os cabeçalhos de CONF e DB que foram modificados serão alterados depois por um novo layout mas por enquanto será esse.
+
+	r0053 - 20/12/2010 [Floozie]
 	* Adicionado novo comando de script 'sc_check'.
 	
 	r0049 - 20/12/2010 [Protimus]

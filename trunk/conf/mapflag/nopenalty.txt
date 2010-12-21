@@ -1,26 +1,29 @@
-//  ___________________________________________________________________________
-// /                                                                           \
-// |                 _           _   _   _                                      |
-// |                | |__  _ __ / \ | |_| |__   ___ _ __   __ _                 |
-// |                | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                |
-// |                | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                |
-// |                |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                |
-// |                                                                            |
-// |                              brAthena Script                               |
-// |----------------------------------------------------------------------------|
-// | Nome do Script: nopenalty.txt                                              |
-// |----------------------------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team                                               |
-// |----------------------------------------------------------------------------|
-// | Descrição: Configuração Mapflag que não penaliza a experiência ao morrer.  |
-// |----------------------------------------------------------------------------|
-// | Changelog:                                                                 |
-// | 1.0 Modificação [brAthena]                                                 |
-// | - Anotações                                                                |
-// | Sempre que adicionar mapa custom de cidade, quest ou evento, você deve com-|
-// | pletar este mapflag na Pasta Import ou no Script do mapa. Jogadores nunca  |
-// | devem perder experiência em cidades ou ocasiões especiais em seu servidor. |
-// \___________________________________________________________________________/
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: nopenalty.txt                          |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Descrição: Configuração Mapflag que não penaliza a     |
+// | experiência ao morrer.                                 |
+// |--------------------------------------------------------|
+// | Changelog:                                             |
+// | 1.0 Modificação [brAthena]                             |
+// | - Anotações                                            |
+// | Sempre que adicionar mapa custom de cidade, quest ou   |
+// | evento, você deve completar este mapflag na Pasta      |
+// | Import ou no Script do mapa. Jogadores nunca devem     |
+// | perder experiência em cidades ou ocasiões especiais em |
+// | seu servidor.                                          |
+// \________________________________________________________/
 
 // Cidades
 ayo_in01	mapflag	nopenalty

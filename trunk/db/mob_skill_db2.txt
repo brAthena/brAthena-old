@@ -1,61 +1,73 @@
-//  ___________________________________________________________________________
-// /                                                                           \
-// |                 _           _   _   _                                      |
-// |                | |__  _ __ / \ | |_| |__   ___ _ __   __ _                 |
-// |                | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                |
-// |                | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                |
-// |                |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                |
-// |                                                                            |
-// |                             brAthena Database                              |
-// |----------------------------------------------------------------------------|
-// | Nome do Database: mob_skill_db2.txt                                        |
-// |----------------------------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team                                               |
-// |----------------------------------------------------------------------------|
-// | Descrição: Database adicional contendo as habilidades dos custom mobs.     |
-// |----------------------------------------------------------------------------|
-// | Estrutura da Database:                                                     |
-// | MOB_ID, mob@SKILL (apenas para referência), estado, skill_id, skill_lv,    |
-// | rate (10000 = 100%), casttime, delay, cancelável, alvo, tipo de condição,  |
-// | valor da condição, valor1, valor2, valor3, valor4, valor5, emotion, chat   |                                           
-// | Exemplo:                                                                   |
-// | 1001,Poring@TF_POISON,attack,52,3,100,1500,10000,no,target,always,0,,,,,7  |
-// | Rate = chance da habilidade ser usada com as condições requeridas          |
-// | Delay = Tempo em milissegundos antes de reutilizar a mesma habilidade      |
-// | -------------------- ---------------- ------------------ ----------------- |
-// | Estados:                                                                   |
-// | any (qualquer), idle (parado), walk (em movimento), dead (ao morrer), loot,|
-// | attack (ao atacar), angry (ao atacar antes de ser atacado), chase (persegu-|
-// | indo alvo após ser atacado), follow (perseguindo alvo antes de ser atacado)|
-// | -------------------- ---------------- ------------------ ----------------- |
-// | Alvos:                                                                     |
-// | target (um jogador), self (próprio mob), friend (outro mob), master (quem o|
-// | sumonou) e os utilizados em habilidades de terreno, onde um tile aleatório |
-// | é selecionado na área específicada ao redor de si: around (11x11),         |
-// | around1 (3x3), around2 (5x5), around3 (7x7), around4 (9x9) ou do alvo:     |
-// | around5 (3x3), around6 (5x5), around7 (7x7), around8 (9x9)                 |
-// | -------------------- ---------------- ------------------ ----------------- |
-// | Condições: (tipo) - (valor)                                                |
-// | always - Qualquer momento (*)                                              |
-// | myhpltmaxrate - HP do mob igual a X (%)                                    |
-// | mystatuson - Status ativo no mob (**)                                      |
-// | mystatusoff - Status não ativo no mob (**)                                 |
-// | friendhpltmaxrate - HP de outro mob igual a X (%)                          |
-// | friendstatuson - Status ativo em outro mob (**)                            |
-// | friendstatusoff - Status não ativo em outro mob (**)                       |
-// | attackpcgt - Jogador atacado X vezes                                       |
-// | attackpcge - Jogador atacado X ou mais vezes                               |
-// | slavelt - Número de summons menor do que X                                 |
-// | slavele - Número de summons menor ou igual a X                             |
-// | closedattacked - Atacado à curta distância (*)                             |
-// | longrangeattacked - Atacado à longa distância (*)                          |
-// | skillused - Habilidade X usada no mob                                      |
-// | afterskill - Após o mob utilizar a habilidade X                            |
-// | casttargeted - Quando o alvo está ao alcance da habilidade (*)             |
-// | rudeattacked - Quando o alvo for atacado rudemente (*)                     |
-// | * Valor = 0 | ** Status:  anybad (qualquer), stone, freeze, stun, sleep,   |
-// | poison, curse, silence, confusion, blind, hiding, sight                    |
-// \___________________________________________________________________________/
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Database: mob_skill_db2.txt                    |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Descrição: Database adicional contendo as habilidades  |
+// |  dos custom mobs.                                      |
+// |--------------------------------------------------------|
+// | Estrutura da Database:                                 |
+// | MOB_ID, mob@SKILL (apenas para referência), estado,    |
+// | skill_id, skill_lv,rate (10000 = 100%), casttime,      |
+// | delay, cancelável, alvo, tipo de condição,             |
+// | valor da condição, valor1, valor2, valor3, valor4,     |
+// | valor5, emotion, chat                                  |                                           
+// | Exemplo:                                               |
+// | 1001,Poring@TF_POISON,attack,52,3,100,1500,10000,no,   |
+// | target,always,0,,,,,7                                  |
+// | Rate = chance da habilidade ser usada com as condições |
+// | requeridas                                             |
+// | Delay = Tempo em milissegundos antes de reutilizar     |
+// | a mesma habilidade                                     |
+// |--------------------------------------------------------|
+// | Estados:                                               |
+// | any (qualquer), idle (parado), walk (em movimento),    |
+// | dead (ao morrer), loot, attack (ao atacar),            |
+// | angry (ao atacar antes de ser atacado),                |
+// | chase (perseguindo alvo após ser atacado),             |
+// | follow (perseguindo alvo antes de ser atacado)         | 
+// |--------------------------------------------------------|
+// | Alvos:                                                 |
+// | target (um jogador), self (próprio mob),               |
+// | friend (outro mob), master (quem o sumonou) e os       |
+// | utilizados em habilidades de terreno, onde um tile     |
+// | aleatório é selecionado na área específicada ao redor  |
+// | de si: around (11x11),around1 (3x3), around2 (5x5),    |
+// | around3 (7x7), around4 (9x9) ou do alvo: around5 (3x3),| 
+// | around6 (5x5), around7 (7x7), around8 (9x9)            |
+// |--------------------------------------------------------|
+// | Condições: (tipo) - (valor)                            |
+// | always - Qualquer momento (*)                          |
+// | myhpltmaxrate - HP do mob igual a X (%)                |
+// | mystatuson - Status ativo no mob (**)                  |
+// | mystatusoff - Status não ativo no mob (**)             |
+// | friendhpltmaxrate - HP de outro mob igual a X (%)      |
+// | friendstatuson - Status ativo em outro mob (**)        |
+// | friendstatusoff - Status não ativo em outro mob (**)   |
+// | attackpcgt - Jogador atacado X vezes                   |
+// | attackpcge - Jogador atacado X ou mais vezes           |
+// | slavelt - Número de summons menor do que X             |
+// | slavele - Número de summons menor ou igual a X         |
+// | closedattacked - Atacado à curta distância (*)         |
+// | longrangeattacked - Atacado à longa distância (*)      |
+// | skillused - Habilidade X usada no mob                  |
+// | afterskill - Após o mob utilizar a habilidade X        |
+// | casttargeted - Quando o alvo está ao alcance da        |
+// | habilidade (*)                                         |
+// | rudeattacked - Quando o alvo for atacado rudemente (*) |
+// | * Valor = 0 | ** Status:  anybad (qualquer), stone,    |
+// | freeze, stun, sleep, poison, curse, silence, confusion,|
+// | blind, hiding, sight                                   |
+// \________________________________________________________/
 
 // eAthena Dev Team
 //1900,Valaris@AL_TELEPORT,idle,26,1,10000,0,0,yes,self,rudeattacked,,,,,,,,

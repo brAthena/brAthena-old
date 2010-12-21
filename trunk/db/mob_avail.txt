@@ -1,26 +1,28 @@
-//  ___________________________________________________________________________
-// /                                                                           \
-// |                 _           _   _   _                                      |
-// |                | |__  _ __ / \ | |_| |__   ___ _ __   __ _                 |
-// |                | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                |
-// |                | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                |
-// |                |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                |
-// |                                                                            |
-// |                             brAthena Database                              |
-// |----------------------------------------------------------------------------|
-// | Nome do Database: mob_avail.txt                                            |
-// |----------------------------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team                                               |
-// |----------------------------------------------------------------------------|
-// | Descrição: Database de uso compartilhado de sprites.                       |
-// |----------------------------------------------------------------------------|
-// | Estrutura da Database:                                                     |
-// | mob_id,sprite_id,equip <- Utiliza como sprite a mesma de outro mob         |
-// | sprite_id = 0 <- desativa o mob                                            |
-// | O equipamento deve ser o mesmo usado pelo mob como pet                     |
-// | MobID,SpriteID,Sex,Hair,Hair_Color,WeaponId,ShieldId,Head_Top,Head_Middle, |
-// | Head_Bottom,Option,Dye_Color <- Utiliza sprite de um jogador para o mob    |
-// \___________________________________________________________________________/
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Database: mob_avail.txt                        |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Descrição: Database de uso compartilhado de sprites.   |
+// |--------------------------------------------------------|
+// | Estrutura da Database:                                 |
+// | mob_id,sprite_id,equip <- Utiliza como sprite a mesma  |
+// | de outro mob                                           |
+// | sprite_id = 0 <- desativa o mob                        |
+// | O equipamento deve ser o mesmo usado pelo mob como pet |
+// | MobID,SpriteID,Sex,Hair,Hair_Color,WeaponId,ShieldId,  |
+// | Head_Top,Head_Middle,Head_Bottom,Option,Dye_Color      |
+// | <- Utiliza sprite de um jogador para o mob             |
+// \________________________________________________________/
 
 //1002,1039	//Poring,Bafomé (Faz Porings parecerem Bafomés)
 //1970,1002,10013	// Novo mob que parece um Poring com mochila

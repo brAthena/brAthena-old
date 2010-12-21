@@ -1,43 +1,46 @@
-//  ___________________________________________________________________________
-// /                                                                           \
-// |                 _           _   _   _                                      |
-// |                | |__  _ __ / \ | |_| |__   ___ _ __   __ _                 |
-// |                | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                |
-// |                | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                |
-// |                |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                |
-// |                                                                            |
-// |                             brAthena Database                              |
-// |----------------------------------------------------------------------------|
-// | Nome do Database: skill_cast_db.txt                                        |
-// |----------------------------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team                                               |
-// |----------------------------------------------------------------------------|
-// | Descrição: Database do tempo de conjuração das habilidades.                |
-// |----------------------------------------------------------------------------|
-// | Estrutura da Database:                                                     |
-// | SkillID,CastingTime,AfterCastActDelay,AfterCastWalkDelay,Duration,Duration2|
-// |                                                                            |
-// | Rough list of Contents:                                                    |
-// |  1.  1st Jobs Skills                                                       |
-// |  2.  2-1 Jobs Skills                                                       |
-// |  3.  1st Jobs Quest Skills                                                 |
-// |  4.  NPC Skills (1)                                                        |
-// |  5.  2-2 Jobs Skills                                                       |
-// |  6.  Wedding Skills                                                        |
-// |  7.  NPC Skills (2)                                                        |
-// |  8.  Advanced Jobs Skills (1)                                              |
-// |  9.  Adoption Skills                                                       |
-// | 10.  Taekwon Jobs Skills (1)                                               |
-// | 11.  Advanced Jobs Skills (2)                                              |
-// | 12.  Taekwon Jobs Skills (2)                                               |
-// | 13.  2nd Jobs Quest Skills                                                 |
-// | 14.  Homunculus Skills                                                     |
-// | 15.  Mercenary Skills                                                      |
-// | 16.  Guild Skills                                                          |
-// |                                                                            |
-// | This is just a rough overview to help giving an overview on the document   |
-// | and help navigating through it. (Vedurin).                                 |
-// \___________________________________________________________________________/
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Database: skill_cast_db.txt                    |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Descrição: Database do tempo de conjuração das         |
+// | habilidades.                                           |
+// |--------------------------------------------------------|
+// | Estrutura da Database:                                 |
+// | SkillID,CastingTime,AfterCastActDelay,                 |
+// | AfterCastWalkDelay,Duration,Duration2                  |
+// |                                                        |
+// | Rough list of Contents:                                |
+// |  1.  1st Jobs Skills                                   |
+// |  2.  2-1 Jobs Skills                                   |
+// |  3.  1st Jobs Quest Skills                             |
+// |  4.  NPC Skills (1)                                    |
+// |  5.  2-2 Jobs Skills                                   |
+// |  6.  Wedding Skills                                    |
+// |  7.  NPC Skills (2)                                    |
+// |  8.  Advanced Jobs Skills (1)                          |
+// |  9.  Adoption Skills                                   |
+// | 10.  Taekwon Jobs Skills (1)                           |
+// | 11.  Advanced Jobs Skills (2)                          |
+// | 12.  Taekwon Jobs Skills (2)                           |
+// | 13.  2nd Jobs Quest Skills                             |
+// | 14.  Homunculus Skills                                 |
+// | 15.  Mercenary Skills                                  |
+// | 16.  Guild Skills                                      |
+// |                                                        |
+// | This is just a rough overview to help giving an        | 
+// | overview on the document                               | 
+// | and help navigating through it. (Vedurin).             |
+// \________________________________________________________/
 
 //===== Swordman ===========================
 //-- SM_PROVOKE
