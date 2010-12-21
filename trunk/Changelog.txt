@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0057 - 21/12/2010 [Protimus]
+	* Enviadas traduções.
+	- classes/1-1/novico.txt
+	- classes/1-1/gatuno.txt
+
 	r0056 - 21/12/2010 [Protimus]
 	* Iniciado processo de merge das traduções de npcs.
 	- Traduzido classes/1-1/arqueiro.txt
