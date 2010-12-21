@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0056 - 21/12/2010 [Protimus]
+	* Iniciado processo de merge das traduções de npcs.
+	- Traduzido classes/1-1/arqueiro.txt
+
 	r0055 - 21/12/2010 [Protimus]
 	* Realizado segundo merge de remoções do TXT da source.
 	- Merge de acordo com r28 da branch txt-remove.
