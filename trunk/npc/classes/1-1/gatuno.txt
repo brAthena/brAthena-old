@@ -17,8 +17,9 @@
 // | Descrição: Mudança de Classe para Gatuno               |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    					| 
+// | 1.0 Script Traduzido [Protimus]                        |
+// | 1.1 Script Revisado [Protimus]							|
+// | - Apenas erros do próprio script, não tradução.		|
 // \________________________________________________________/
 
 moc_prydb1,39,129,2	script	Gatuna Ajudante	69,{
@@ -121,7 +122,7 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante	69,{
 			mes "[Gatuna Ajudante]";
 			mes "Caramba! Você é O cara mesmo!";
 			mes "Todos os outros foram uns %#@%#%%@ comparados a você!";
-			mes ""hmmm... Você não vai tentar me substituir, não é? Por que se você sequer tentar, eu vou enfiar uma faca em você tão rápido que você nem vai perceber...";
+			mes "hmmm... Você não vai tentar me substituir, não é? Por que se você sequer tentar, eu vou enfiar uma faca em você tão rápido que você nem vai perceber...";
 			close;
 		}
 		mes "[Gatuna Ajudante]";
@@ -166,7 +167,7 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante	69,{
 	}
 	else {
 		mes "Ah...";
-		mes "Então você voltou... Dessa vez é pra valer?"";
+		mes "Então você voltou... Dessa vez é pra valer?";
 	}
 	next;
 	if (select("Sim, estou pronto para ser um Gatuno!:Err... não, eu acho que não...") == 1) {
@@ -279,7 +280,7 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante	69,{
 		}
 		next;
 		mes "[Gatuna Ajudante]";
-		mes "Lembre-se de duas coisas muitos importantes"";
+		mes "Lembre-se de duas coisas muitos importantes";
 		next;
 		mes "[Gatuna Ajudante]";
 		mes "Sabia que existem monstros terríveis guardando a fazenda?";
@@ -417,7 +418,7 @@ moc_ruins,141,125,3	script	Bogus	83,{
 			close;
 		default:
 			mes "Que dia ensolarado, não?";
-			mes "Acho que vou fazer um piquenique hoje com os meu amigos, bem na sombra das pirâmides.";.";
+			mes "Acho que vou fazer um piquenique hoje com os meu amigos, bem na sombra das pirâmides.";
 			close;
 		}
 	}

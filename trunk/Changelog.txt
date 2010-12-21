@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0058 - 21/12/2010 [Protimus]
+	* Enviada tradução.
+	- classes/1-1/mago.txt
+	* Revisado código de gatuno.txt, falta corrigir mais alguns erros.
+
 	r0057 - 21/12/2010 [Protimus]
 	* Enviadas traduções.
 	- classes/1-1/novico.txt
