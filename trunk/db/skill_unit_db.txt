@@ -26,7 +26,7 @@
 // | flags:                                                 |
 // | 0x001(UF_DEFNOTENEMY) - O alvo é trocado para 'friend' |
 // | 0x002(UF_NOREITERRATION) - Habilidade não pode sobrepor|
-/  | /ser sobreposta                                        |
+// | /ser sobreposta                                        |
 // | 0x004(UF_NOFOOTSET) - Habilidade não pode ser usada    |
 // | perto/sobre o alvo                                     |
 // | 0x008(UF_NOOVERLAP) - Efeitos da habilidade não são    |

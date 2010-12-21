@@ -3056,8 +3056,7 @@ int parse_console(char* buf)
 	} else if( n == 2 && strcmpi("server",type) == 0 ){
 		if( strcmpi("desligar",command) == 0 ||
 		    strcmpi("sair",command) == 0 ||
-		    strcmpi("fechar",command) == 0 ||
-		    strcmpi("desativar",command) == 0 ){
+		    strcmpi("fechar",command) == 0 ){
 			runflag = 0;
 		}
 	} else if( strcmpi("ajuda",type) == 0 ){

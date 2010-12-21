@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0055 - 21/12/2010 [Protimus]
+	* Realizado segundo merge de remoções do TXT da source.
+	- Merge de acordo com r28 da branch txt-remove.
+	* Correções do commit de r49.
+
 	r0054 - 21/12/2010 [Protimus]
 	* Readicionado comando skillcheck que foi removido em r53.
 	- Não remover, será utilizado para o renewal todos os três novos comandos: skillcheck, mapcheck e sc_check.
