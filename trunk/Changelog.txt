@@ -9,6 +9,14 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0060 - 21/12/2010 [Protimus]
+	* Enviadas traduções.
+	- guias/guias_alb.txt
+	- guias/guias_gef.txt
+	- guias/guias_izl.txt
+	- guias/guias_pay.txt
+	- guias/guias_pron.txt
+
 	r0059 - 21/12/2010 [Wiskovisky]
 	* Enviada mais uma parta da tradução do emulador
 	- src/map/npc.c
