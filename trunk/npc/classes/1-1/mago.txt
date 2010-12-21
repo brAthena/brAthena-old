@@ -34,12 +34,12 @@ geffen_in,164,124,4	script	Instrutora	123,{
 					mes "Você precisa aprender o básico e voltar.";
 					next;
 					mes "Venha depois que a sua memória voltar...";
-					mes "então você poderá aprender magia novamente."
+					mes "então você poderá aprender magia novamente.";
 					close;
 				}
 				mes "[Instrutora de Magia]";
 				mes "Eu não faço outra vez o teste para quem já passou por ele.";
-				mes "Você apenas quer a sua magia de volta o mais rápido possível?"
+				mes "Você apenas quer a sua magia de volta o mais rápido possível?";
 				next;
 				skill 143,0,0;
 				jobchange Job_Mage_High;
@@ -78,9 +78,14 @@ geffen_in,164,124,4	script	Instrutora	123,{
 			mes "Você não tem mais o que fazer? Você sabe que não pode ser um Mago porque já tem outra Classe.";
 			close;
 		}
-		if (job_magician_q != 0) {
 		mes "[Instrutora de Magia]";
-			mes "" + strcharinfo(0) + " o que eu posso fazer por você?";
+		mes "" + strcharinfo(0) + " o que eu posso fazer por você?";
+	switch(select("Quero ser Mago!:O que é preciso para ser um Mago?:Nada.")) {
+	case 1:		
+		mes "[Instrutora de Magia]";
+		mes "Você quer ser Mago?";
+		next;	
+		if (job_magician_q == 0) {
 			if (sex)
 				mes "Você é mesmo uma gracinha. Definitivamente, meu tipo...";
 			else {
@@ -218,6 +223,7 @@ geffen_in,164,124,4	script	Instrutora	123,{
 		mes "[Instrutora de Magia]";
 		mes "Agora que você é um mago como nós, vamos ser amigos, okay?";
 		close;
+		end;
 	case 2:
 		mes "[Instrutora de Magia]";
 		mes "Quer ser um mago, eh?";
@@ -269,10 +275,12 @@ geffen_in,164,124,4	script	Instrutora	123,{
 		mes "[Instrutora de Magia]";
 		mes "Me diga quando estiver pronto para ser um mago, tudo bem?";
 		close;
+		end;
 	case 3:
 		mes "[Instrutora de Magia]";
 		mes "Nada...?";
 		close;
+		end;
 	}
 }
 

@@ -99,6 +99,7 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante	69,{
 		case 5:
 			mes "Ahhh um mercador trambiqueiro!! Vou te denunciar pros GMs...";
 			break;
+		}	
 		next;
 		mes "[Gatuna Ajudante]";
 		mes "*O quê que você tá fazendo aqui? Volta pra sua mamãezinha, vai.";
@@ -381,8 +382,8 @@ moc_prydb1,42,133,2	script	Camarada	118,{
 		mes "Eu me chamo Bernardo e sou responsável pelos Recursos Humanos da nossa guilda";
 		mes "Você não me conhece muito bem ainda, mas você me verá de vez em quando.";
 		next;
-		dialog "[Bernardo]"
-		dialog "Aqui está um ajudinha para você começar sua vida de Gatuno. Gaste no que quiser."
+		mes "[Bernardo]";
+		mes "Aqui está um ajudinha para você começar sua vida de Gatuno. Gaste no que quiser.";
 		set zeny,zeny+.@money_thief;
 		next;
 		mes "Ok, acho que você está pronto para o mundo! E espero que o mundo esteja pronto para mais um Gatuno!";

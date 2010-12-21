@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0059 - 21/12/2010 [Wiskovisky]
+	* Enviada mais uma parta da tradução do emulador
+	- src/map/npc.c
+	* Revisado e corrigido código de gatuno.txt e mago.txt.
+	* Correção dos arquivos homunculus_db.txt e castle_db.txt
+
 	r0058 - 21/12/2010 [Protimus]
 	* Enviada tradução.
 	- classes/1-1/mago.txt

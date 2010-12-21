@@ -19,8 +19,7 @@
 // | Flag(2), (1) Expulsão do Castelo conquistado,          |
 // | (2) Reservado.                                         |
 // \________________________________________________________/
-
-
+//
 0,aldeg_cas01,Neuschwanstein,Agit#aldeg_cas01,1		// kRO : Noisyubantian
 1,aldeg_cas02,Hohenschwangau,Agit#aldeg_cas02,1		// kRO : Hohensyubangawoo
 2,aldeg_cas03,Nuenberg,Agit#aldeg_cas03,1		// kRO : Nyirenverk
