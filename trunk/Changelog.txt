@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0061 - 22/12/2010 [Protimus]
+	* Realizado terceiro merge de remoções do TXT da source.
+	- Merge de acordo com r61 da branch txt-remove.
+
 	r0060 - 21/12/2010 [Protimus]
 	* Enviadas traduções.
 	- guias/guias_alb.txt

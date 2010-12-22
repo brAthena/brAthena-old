@@ -19,7 +19,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-bool ladmin_auth(struct login_session_data* sd, const char* ip);
 struct Login_Config login_config;
 
 int login_fd; // login server socket
@@ -1414,30 +1413,6 @@ int parse_login(int fd)
 			WFIFOB(fd,7) = ATHENA_SERVER_LOGIN;
 			WFIFOW(fd,8) = ATHENA_MOD_VERSION;
 			WFIFOSET(fd,10);
-		break;
-
-		case 0x7918:	// Request for administation login
-			if ((int)RFIFOREST(fd) < 4 || (int)RFIFOREST(fd) < ((RFIFOW(fd,2) == 0) ? 28 : 20))
-				return 0;
-		{
-			int passwdenc = (int)RFIFOW(fd,2);
-			const char* passwd = (char*)RFIFOP(fd,4);
-
-			if( passwdenc == 0 ) { // non encrypted password
-				safestrncpy(sd->passwd, passwd, NAME_LENGTH);
-				sd->passwdenc = 0;
-			} else { // encrypted password
-				memcpy(sd->passwd, passwd, 16); sd->passwd[16] = '\0'; // raw binary data here!
-				sd->passwdenc = passwdenc;
-			}
-
-			RFIFOSKIP(fd, (passwdenc == 0) ? 28 : 20);
-
-			WFIFOHEAD(fd,3);
-			WFIFOW(fd,0) = 0x7919;
-			WFIFOB(fd,2) = ladmin_auth(sd, ip) ? 0 : 1;
-			WFIFOSET(fd,3);
-		}
 		break;
 
 		default:

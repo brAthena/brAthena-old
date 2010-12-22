@@ -1435,7 +1435,6 @@ int parse_login(int fd)
 
 			WFIFOHEAD(fd,3);
 			WFIFOW(fd,0) = 0x7919;
-			WFIFOB(fd,2) = ladmin_auth(sd, ip) ? 0 : 1;
 			WFIFOSET(fd,3);
 		}
 		break;

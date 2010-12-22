@@ -8,6 +8,12 @@
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
+
+	r0061 - 21/12/2010 [Protimus]
+	* Removido ladmin do branche.
+	- Totalmente desnecessário, só funciona em windows com TXT e teremos o brAEditor que é muito melhor.
+	- Removido parcela de códigos para resposta de execuções no console do ladmin.
+	* Removidos códigos desnecessários que estavam em alguns dos make e configure files.
 	
 	r0052 - 20/12/2010 [Protimus]
 	* Modificado em todos os v-proj e configures as leituras da pasta char_sql para char.
