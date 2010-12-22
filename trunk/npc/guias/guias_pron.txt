@@ -53,7 +53,7 @@ prontera,154,187,4	script	Guia#prt::PrtGuide	105,{
 					break;
 				case 2:
 					mes "[Guia de Prontera]";
-					mes "A 'Catedral' se encontra na ponta nordeste da cidade, lá é possivel se tornar um Padre.";
+					mes "A 'Catedral' se encontra na ponta nordeste da cidade, lá é possivel se tornar um Noviço.";
 					if (.@compass_check)
 						viewpoint 1,236,316,5,0xFF0000;
 					break;
