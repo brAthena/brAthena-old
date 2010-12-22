@@ -3547,6 +3547,74 @@ void script_add_autobonus(const char *autobonus)
 	}
 }
 
+
+/// resets a temporary character array variable to given value
+void script_cleararray_pc(struct map_session_data* sd, const char* varname, void* value)
+{
+	int key;
+	uint8 idx;
+
+	if( not_array_variable(varname[0]) || !not_server_variable(varname[0]) )
+	{
+		ShowError("script_cleararray_pc: Variable '%s' has invalid scope (char_id=%d).\n", varname, sd->status.char_id);
+		return;
+	}
+
+	key = add_str(varname);
+
+	if( is_string_variable(varname) )
+	{
+		for( idx = 0; idx < SCRIPT_MAX_ARRAYSIZE; idx++ )
+		{
+			pc_setregstr(sd, reference_uid(key, idx), (const char*)value);
+		}
+	}
+	else
+	{
+		for( idx = 0; idx < SCRIPT_MAX_ARRAYSIZE; idx++ )
+		{
+			pc_setreg(sd, reference_uid(key, idx), (int)value);
+		}
+	}
+}
+
+
+/// sets a temporary character array variable element idx to given value
+/// @param refcache Pointer to an int variable, which keeps a copy of the reference to varname and must be initialized to 0. Can be NULL if only one element is set.
+void script_setarray_pc(struct map_session_data* sd, const char* varname, uint8 idx, void* value, int* refcache)
+{
+	int key;
+
+	if( not_array_variable(varname[0]) || !not_server_variable(varname[0]) )
+	{
+		ShowError("script_setarray_pc: Variable '%s' has invalid scope (char_id=%d).\n", varname, sd->status.char_id);
+		return;
+	}
+
+	if( idx >= SCRIPT_MAX_ARRAYSIZE )
+	{
+		ShowError("script_setarray_pc: Variable '%s' has invalid index '%d' (char_id=%d).\n", varname, (int)idx, sd->status.char_id);
+		return;
+	}
+
+	key = ( refcache && refcache[0] ) ? refcache[0] : add_str(varname);
+
+	if( is_string_variable(varname) )
+	{
+		pc_setregstr(sd, reference_uid(key, idx), (const char*)value);
+	}
+	else
+	{
+		pc_setreg(sd, reference_uid(key, idx), (int)value);
+	}
+
+	if( refcache )
+	{// save to avoid repeated add_str calls
+		refcache[0] = key;
+	}
+}
+
+
 /*==========================================
  * I—¹
  *------------------------------------------*/
@@ -6102,13 +6170,13 @@ BUILDIN_FUNC(getpartymember)
 			if(p->party.member[i].account_id){
 				switch (type) {
 				case 2:
-					mapreg_setreg(add_str("$@partymemberaid")+(j<<24),p->party.member[i].account_id);
+					mapreg_setreg(reference_uid(add_str("$@partymemberaid"), j),p->party.member[i].account_id);
 					break;
 				case 1:
-					mapreg_setreg(add_str("$@partymembercid")+(j<<24),p->party.member[i].char_id);
+					mapreg_setreg(reference_uid(add_str("$@partymembercid"), j),p->party.member[i].char_id);
 					break;
 				default:
-					mapreg_setregstr(add_str("$@partymembername$")+(j<<24),p->party.member[i].name);
+					mapreg_setregstr(reference_uid(add_str("$@partymembername$"), j),p->party.member[i].name);
 				}
 				j++;
 			}
@@ -7674,8 +7742,8 @@ BUILDIN_FUNC(getmobdrops)
 		if( itemdb_exists(mob->dropitem[i].nameid) == NULL )
 			continue;
 
-		mapreg_setreg(add_str("$@MobDrop_item") + (j<<24), mob->dropitem[i].nameid);
-		mapreg_setreg(add_str("$@MobDrop_rate") + (j<<24), mob->dropitem[i].p);
+		mapreg_setreg(reference_uid(add_str("$@MobDrop_item"), j), mob->dropitem[i].nameid);
+		mapreg_setreg(reference_uid(add_str("$@MobDrop_rate"), j), mob->dropitem[i].p);
 
 		j++;
 	}
@@ -9208,11 +9276,11 @@ BUILDIN_FUNC(warpwaitingpc)
 		if( sd == NULL )
 		{
 			ShowDebug("script:warpwaitingpc: no user in chat room position 0 (cd->users=%d,%d/%d)\n", cd->users, i, n);
-			mapreg_setreg(add_str("$@warpwaitingpc")+(i<<24), 0);
+			mapreg_setreg(reference_uid(add_str("$@warpwaitingpc"), i), 0);
 			continue;// Broken npc chat room?
 		}
 
-		mapreg_setreg(add_str("$@warpwaitingpc")+(i<<24), sd->bl.id);
+		mapreg_setreg(reference_uid(add_str("$@warpwaitingpc"), i), sd->bl.id);
 
 		if( strcmp(map_name,"Random") == 0 )
 			pc_randomwarp(sd,CLR_TELEPORT);
@@ -10708,18 +10776,18 @@ BUILDIN_FUNC(getinventorylist)
 	if(!sd) return 0;
 	for(i=0;i<MAX_INVENTORY;i++){
 		if(sd->status.inventory[i].nameid > 0 && sd->status.inventory[i].amount > 0){
-			pc_setreg(sd,add_str("@inventorylist_id")+(j<<24),sd->status.inventory[i].nameid);
-			pc_setreg(sd,add_str("@inventorylist_amount")+(j<<24),sd->status.inventory[i].amount);
-			pc_setreg(sd,add_str("@inventorylist_equip")+(j<<24),sd->status.inventory[i].equip);
-			pc_setreg(sd,add_str("@inventorylist_refine")+(j<<24),sd->status.inventory[i].refine);
-			pc_setreg(sd,add_str("@inventorylist_identify")+(j<<24),sd->status.inventory[i].identify);
-			pc_setreg(sd,add_str("@inventorylist_attribute")+(j<<24),sd->status.inventory[i].attribute);
+			pc_setreg(sd,reference_uid(add_str("@inventorylist_id"), j),sd->status.inventory[i].nameid);
+			pc_setreg(sd,reference_uid(add_str("@inventorylist_amount"), j),sd->status.inventory[i].amount);
+			pc_setreg(sd,reference_uid(add_str("@inventorylist_equip"), j),sd->status.inventory[i].equip);
+			pc_setreg(sd,reference_uid(add_str("@inventorylist_refine"), j),sd->status.inventory[i].refine);
+			pc_setreg(sd,reference_uid(add_str("@inventorylist_identify"), j),sd->status.inventory[i].identify);
+			pc_setreg(sd,reference_uid(add_str("@inventorylist_attribute"), j),sd->status.inventory[i].attribute);
 			for (k = 0; k < MAX_SLOTS; k++)
 			{
 				sprintf(card_var, "@inventorylist_card%d",k+1);
-				pc_setreg(sd,add_str(card_var)+(j<<24),sd->status.inventory[i].card[k]);
+				pc_setreg(sd,reference_uid(add_str(card_var), j),sd->status.inventory[i].card[k]);
 			}
-			pc_setreg(sd,add_str("@inventorylist_expire")+(j<<24),sd->status.inventory[i].expire_time);
+			pc_setreg(sd,reference_uid(add_str("@inventorylist_expire"), j),sd->status.inventory[i].expire_time);
 			j++;
 		}
 	}
@@ -10734,9 +10802,9 @@ BUILDIN_FUNC(getskilllist)
 	if(!sd) return 0;
 	for(i=0;i<MAX_SKILL;i++){
 		if(sd->status.skill[i].id > 0 && sd->status.skill[i].lv > 0){
-			pc_setreg(sd,add_str("@skilllist_id")+(j<<24),sd->status.skill[i].id);
-			pc_setreg(sd,add_str("@skilllist_lv")+(j<<24),sd->status.skill[i].lv);
-			pc_setreg(sd,add_str("@skilllist_flag")+(j<<24),sd->status.skill[i].flag);
+			pc_setreg(sd,reference_uid(add_str("@skilllist_id"), j),sd->status.skill[i].id);
+			pc_setreg(sd,reference_uid(add_str("@skilllist_lv"), j),sd->status.skill[i].lv);
+			pc_setreg(sd,reference_uid(add_str("@skilllist_flag"), j),sd->status.skill[i].flag);
 			j++;
 		}
 	}
@@ -12513,7 +12581,7 @@ BUILDIN_FUNC(getd)
 		elem = 0;
 
 	// Push the 'pointer' so it's more flexible [Lance]
-	push_val(st->stack, C_NAME, (elem<<24) | add_str(varname));
+	push_val(st->stack, C_NAME, reference_uid(add_str(varname), elem));
 
 	return 0;
 }
@@ -13876,9 +13944,9 @@ BUILDIN_FUNC(waitingroom2bg)
 	for( i = 0; i < n && i < MAX_BG_MEMBERS; i++ )
 	{
 		if( (sd = cd->usersd[i]) != NULL && bg_team_join(bg_id, sd) )
-			mapreg_setreg(add_str("$@arenamembers") + (i<<24), sd->bl.id);
+			mapreg_setreg(reference_uid(add_str("$@arenamembers"), i), sd->bl.id);
 		else
-			mapreg_setreg(add_str("$@arenamembers") + (i<<24), 0);
+			mapreg_setreg(reference_uid(add_str("$@arenamembers"), i), 0);
 	}
 
 	mapreg_setreg(add_str("$@arenamembersnum"), i);
