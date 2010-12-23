@@ -18,129 +18,130 @@
 // | Consists of 101 floors.				    			|
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   		 	    					| 
+// | 1.0 Traduzido para Português BR [SoulSyntax]           |
+// | - Anotações		   		 	    					|
+// | Foram feitas adaptações nos nomes dos NPCs para pt_BR  |
 // \________________________________________________________/
 
-alberta,214,77,6	script	Captain Janssen	709,{
+alberta,214,77,6	script	Capitão Janssen	709,{
 	if (checkweight(1201,1) == 0) {
-		mes "^008800Wait here!!";
-		mes "You're carrying too much stuff. Why don't you put some of it away, and then come back.^000000";
+		mes "^008800Espere aqui!!";
+		mes "Você está carregando muito equipamento. Porque não joga alguns fora, e depois retorna.^000000";
 		close;
 	}
 	set .@name_102$,strcharinfo(0);
 	if (BaseLevel < 50) {
-		mes "[Captain Janssen]";
-		mes "Sigh... I don't know if I can ever go back to sailing the sea...";
+		mes "[Capitão Janssen]";
+		mes "*Suspiro*... Eu não sei se posso sempre voltar a velejar no mar...";
 		close;
 	}
 	if (in_102tower == 1) {
-		mes "^0000ffLooking incredibly excited, the old man ran into the marine shop hurriedly ordering goods. You don't have anything better to do, so you decide to ask him why he is in such a rush.^000000";
+		mes "^0000ffOlhando incrivelmente animado, o velho correu as pressas para loja de marinha encomendar coisas. Você não tem nada melhor pra fazer, então você decide perguntar por que ele está em uma correria dessas.^000000";
 		next;
-		mes "^0000ffThe old man, after finishing his orders, walks towards you.^000000";
+		mes "^0000ffO velho, depois de ter feito suas encomendas, anda em sua direção.^000000";
 		next;
-		mes "[Captain Janssen]";
-		mes "I was touched when you accepted a request from me, a stranger, so easily. You must truly be one of those good, heroic adventurers. Are you interested in setting out on an ocean voyage?";
+		mes "[Capitão Janssen]";
+		mes "Eu fiquei comovido quando você aceitou um pedido meu, um estranho, tão facilmente. Você deve ser realmente um dos bons, herói aventureiro. Você está interessado em sair numa viagem oceânica?";
 		next;
 		mes "["+.@name_102$+"]";
-		mes "I've sailed a few times... But now that I think about it, I've never gone across the continent.";
+		mes "Já naveguei algumas vezes... Mas agora penso sobre isto, e vejo que nunca cruzei todo o continente"; 
 		next;
-		mes "[Captain Janssen]";
-		mes "No, that's good enough. I may just have one small fishing vessel, but I used to be a captain that commanded a fleet.";
+		mes "[Capitão Janssen]";
+		mes "Não, isso é bom o suficiente. Talvez eu só tenha uma pequena embarcação de pesca, mas eu costumava ser um capitão que comandou uma frota"; 
 		next;
-		mes "[Captain Janssen]";
-		mes "As you may know after a few sea voyages, not many people have gone across the ocean beyond the continent. I too have failed to conquer the ocean.";
+		mes "[Capitão Janssen]";
+		mes "Como você deve saber após algumas viagens marítimas, muitas pessoas não tenham atravessado o oceano além do continente. Eu também falhei na conquista do oceano.";
 		next;
-		mes "^0000ffMr. Janssen talked about his perilous ocean journeys for quite a while. You have enough time on your hands, so you sit down, quietly listening to his story.^000000";
+		mes "^0000ffMr. Janssen falou sobre suas perigosas viagens oceânicas durante um bom tempo. Você tem bastante tempo livre, então você senta, e em silêncio ouve a sua história.^000000";
 		next;
-		mes "^0000ffAt least half of his story sounded grossly exaggerated, but something caught your ear: he insists that a humongous tower exists on the ocean, and that it's so tall, it scrapes across the sky.^000000";
+		mes "^0000ffPelo menos metade de sua história soou muito exagerado, mas algo chamou sua atenção: ele insiste que uma torre monstruosa existe no oceano, e que é tão alta, que raspa no céu.^000000";
 		set in_102tower,2;
 		close;
 	}
 	else if (in_102tower == 2) {
-		mes "[Captain Janssen]";
-		mes "So all I could do was cast anchor at that humongous tower after my fleet was wrecked. At first, we were only going to stay there until the rainstorm was over, but it didn't end as soon as we had hoped.";
+		mes "[Capitão Janssen]";
+		mes "Então tudo que eu podia fazer era lançar âncora naquela torre monstruosa depois que minha frota foi destruída. No início, éramos somente para ficar lá até que a tempestade acabasse, mas não chegou acabou tão cedo quanto esperávamos.";
 		next;
-		mes "[Captain Janssen]";
-		mes "My crew was starving, and a few of them walked into the tower in order to find food... They never came back.";
-		next;
-		mes "["+.@name_102$+"]";
-		mes "Why didn't you go in there with them?";
-		next;
-		mes "[Captain Janssen]";
-		mes "My instincts told me that tower was dangerous. I was curious, but I wasn't going to risk my life. We waited for them to come back for 7 days until the rainstorm was finally over, but no one returned.";
-		next;
-		mes "[Captain Janssen]";
-		mes "In our desperation to survive, we abandoned all our goods, and left the tower only with a little bit of the water and edible plants we'd found around the tower. When we finally reached land, I was the only one alive...";
-		next;
-		mes "^0000ffYou could imagine the heartwretching scene of the dying fleet on their last voyage, even if he didn't explain it any further. A look of somber regret swept over his face as he remained silent a while, and then he said:^000000";
-		next;
-		mes "[Captain Janssen]";
-		mes "I have something I must do before I die. I must retrieve the remains of my crew that died in the tower, and give them a proper burial.";
-		next;
-		mes "[Captain Janssen]";
-		mes "I feel so lucky to meet a warm-hearted adventurer like you. With the money you've given me, I can finally go sailing to the tower again.";
+		mes "[Capitão Janssen]";
+		mes "Minha equipe estava com fome, e alguns entraram na torre a fim de encontrar alimento... Eles nunca mais voltaram.";
 		next;
 		mes "["+.@name_102$+"]";
-		mes "How about hiring me as your first mate?";
+		mes "Por que você não foi lá com eles?";
 		next;
-		mes "[Captain Janssen]";
-		mes "Thank you, but it is an extremely dangerous place. I have my duty to fulfill, but you don't have any obligation to me or them. I don't wish to sacrifice someone as young as you to such a dangerous place.";
+		mes "[Capitão Janssen]";
+		mes "Meus instintos me disseram que a torre era perigosa. Fiquei curioso, mas eu não iria arriscar a minha vida. Nós esperamos que retornassem por 7 dias até que a tempestade finalmente acabou, mas ninguém retornou.";
+		next;
+		mes "[Capitão Janssen]";
+		mes "Em nosso desespero para sobreviver, abandonamos todos os nossos bens, e deixamos a torre semente com um pouco de água e plantas comestíveis que haviamos encontrado ao redor da torre. Quando finalmente em terra firme, eu era o único vivo...";
+		next;
+		mes "^0000ffVocê pode imaginar a cena desesperadora da frota morrendo em sua última viagem, mesmo que ele não explicasse mais nada. Um olhar de lamento sombrio varreu seu rosto enquanto ele permaneceu em silêncio, e então ele disse:^000000";
+		next;
+		mes "[Capitão Janssen]";
+		mes "Tenho algo que devo fazer antes de morrer. Preciso recuperar os restos mortais de minha tripulação que morreu na torre, e dar-lhes um enterro apropriado.";
+		next;
+		mes "[Capitão Janssen]";
+		mes "Eu me sinto tão afortunado por receber um aventureiro caloroso como você. Com o dinheiro que você me deu, eu finalmente posso velejar até a torre novamente.";
 		next;
 		mes "["+.@name_102$+"]";
-		mes "No...";
+		mes "Que tal me contratar como seu primeiro marujo?";
+		next;
+		mes "[Capitão Janssen]";
+		mes "Obrigado, mas é um lugar extremamente perigoso. Eu tenho o meu dever de cumprir, e você não tem nenhuma obrigação comigo ou com eles. Não quero sacrificar alguém tão jovem como você para ir à um lugar tão perigoso.";
+		next;
+		mes "["+.@name_102$+"]";
+		mes "Nâo...";
 		mes ".";
 		mes ".";
-		mes "As an adventurer, there's my obligation to those in need. I'm also very curious about that place...";
+		mes "Como um aventureiro, é minha obrigação àqueles que precisam. Eu também estou muito curioso sobre esse lugar...";
 		next;
-		mes "[Captain Janssen]";
-		mes "I was going to leave right away, but since you've joined me, I should give you time to prepare. I'll be waiting here until you're ready to go.";
+		mes "[Capitão Janssen]";
+		mes "Eu ia a sair imediatamente, mas desde que você se juntou a mim, eu devo dar-lhe tempo para se preparar. Eu vou estar aqui esperando até que você esteja pronto para ir.";
 		next;
-		mes "[Captain Janssen]";
-		mes "...Okay then...";
-		mes "Welcome aboard, first mate.";
+		mes "[Capitão Janssen]";
+		mes "...então ok...";
+		mes "Bem vindo à bordo, primeiro marujo.";
 		set in_102tower,3;
 		close;
 	}
 	else if (in_102tower == 3) {
-		mes "[Captain Janssen]";
-		mes "Shall we leave now?";
+		mes "[Capitão Janssen]";
+		mes "Vamos partir agora?";
 		next;
-		switch(select("Yes, let's go!:No, I'm not quite ready...")) {
+		switch(select("Sim, vamos!:Não, ainda não estou pronto...")) {
 		case 1:
-			mes "[Captain Janssen]";
-			mes "Then pull up the anchor, first mate!";
+			mes "[Capitão Janssen]";
+			mes "Em seguida puxe a âncora, primeiro marujo!";
 			close2;
 			set in_102tower,4;
 			warp "e_tower",70,114;
 			end;
 		case 2:
-			mes "[Captain Janssen]";
-			mes "Sure, no problem. Come back when you're ready.";
+			mes "[Capitão Janssen]";
+			mes "Claro, sem problemas. Volte quando estiver pronto.";
 			close;
 		}
 	}
 	else if (in_102tower > 3) {
-		mes "[Captain Janssen]";
-		mes "Well, to travel the ocean again, we need to restock on goods. If you give me 10,000 Zeny, I'll take care of the rest.";
+		mes "[Capitão Janssen]";
+		mes "Bem, para viajar pelo oceano novamente, precisamos repor os suprimentos. Se você me der 10.000 Zeny, eu cuido do resto.";
 		next;
-		switch(select("I'll come back later.:Let's go, now!")) {
+		switch(select("Voltarei depois.:Vamos, agora!")) {
 		case 1:
 			mes "["+.@name_102$+"]";
-			mes "I'm sorry, but I don't have that much money. I'll come back when I save enough.";
+			mes "Me desculpe, mas eu não tenho muito dinheiro. Eu vou voltar quando eu economizar o suficiente.";
 			next;
-			mes "[Captain Janssen]";
-			mes "Sure, no problem. I'll be waiting for your return.";
+			mes "[Capitão Janssen]";
+			mes "Claro, sem problemas. Eu estarei esperando pelo seu retorno.";
 			close;
 		case 2:
 			if (zeny < 10000) {
-				mes "[Captain Janssen]";
-				mes "I'm sorry, but you don't have enough money. I need at least 10,000 Zeny to restock our supplies...";
+				mes "[Capitão Janssen]";
+				mes "Me desculpe, mas você não tem dinheiro suficiente. Eu preciso de pelo menos 10.000 Zeny para reabastecer as nossos suprimentos...";
 				close;
 			}
 			else {
-				mes "[Captain Janssen]";
-				mes "Excellent! Now we're good to go. Let's pull up the anchor again!";
+				mes "[Capitão Janssen]";
+				mes "Excelente! Agora estamos pronto para ir. Vamos levantar a âncora de novo!";
 				set zeny,zeny-10000;
 				close2;
 				warp "e_tower",70,114;
@@ -149,40 +150,40 @@ alberta,214,77,6	script	Captain Janssen	709,{
 		}
 	}
 	else {
-		mes "[Captain Janssen]";
-		mes "Excuse me, are you an adventurer?";
+		mes "[Capitão Janssen]";
+		mes "Desculpe-me, você é um aventureiro?";
 		next;
-		mes "[Captain Janssen]";
-		mes "I'm sorry to ask you this, especially when this is the first time we've ever met, but can you do me a favor? I'll make it short.";
+		mes "[Capitão Janssen]";
+		mes "Desculpe perguntar isso, principalmente quando esta é a primeira vez que nos vemos, mas você pode me fazer um favor? Serei breve.";
 		next;
-		mes "[Captain Janssen]";
-		mes "Can you donate ^0000ff10,000 Zeny^000000 to me? It's for a cause that's important to me...";
+		mes "[Capitão Janssen]";
+		mes "Você pode doar ^0000ff10.000^000000 zeny para mim? É por uma causa importante para mim ...";
 		next;
-		switch(select("No!:Sure thing.")) {
+		switch(select("Não!:Claro.")) {
 		case 1:
 			mes "["+.@name_102$+"]";
-			mes "I'm sorry, but you've got the wrong person to ask that.";
+			mes "Me desculpe, mas você perguntou isso a pessoa errada.";
 			next;
-			mes "[Captain Janssen]";
-			mes "I see... Sorry to bother you. I understand it was too rude to ask something like that to begin with.";
+			mes "[Capitão Janssen]";
+			mes "Entendo... Desculpe incomodá-lo. Eu entendo que seria muito rude perguntar algo assim.";
 			close;
 		case 2:
-			mes "[Captain Janssen]";
-			mes "Huh? Are you sure that you don't mind giving me that much money? Wow, thank you so much!";
+			mes "[Capitão Janssen]";
+			mes "Hã? Tem certeza que você não se importa em me dar tanto dinheiro? Uau, muito obrigado!";
 			next;
 			if (zeny < 10000) {
-				mes "[Captain Janssen]";
-				mes "...I'm sorry, but I don't think you have 10,000 Zeny. Thank you for your kindness, but I need more than that.";
+				mes "[Capitão Janssen]";
+				mes "...Sinto muito, mas eu não acho que você tenha 10.000 Zeny. Obrigado pela sua gentileza, mas eu preciso mais do que isso.";
 				close;
 			}
 			else {
 				mes "["+.@name_102$+"]";
-				mes "I don't know why you'd need so much money, but here. You can take it.";
+				mes "Eu não sei porque você precisa de tanto dinheiro, mas aqui está. Pode pegar.";
 				next;
-				mes "^0000ffYou have donated 10,000 Zeny to Captain Janssen^000000.";
+				mes "^0000ffVocê dôou 10.000 Zeny para o Capitão Janssen^000000.";
 				next;
-				mes "[Captain Janssen]";
-				mes "Thank you so much! Now I can stock up on food and materials for my ship. You're kind, very kind!";
+				mes "[Capitão Janssen]";
+				mes "Muito obrigado! Agora posso estocar alimentos e materiais para o meu navio. Você é gentil e muito amável!";
 				set zeny,zeny-10000;
 				set in_102tower,1;
 				close;
@@ -197,18 +198,18 @@ e_tower,81,105,0	script	Tower Protection Stone	406,{
 	set .@ins_mas,getpartyleader(.@party_id,2);
 	set .@p_name$,getpartyname(.@party_id);
 	set .@p_reader$,strcharinfo(0);
-	set .@md_name$,"Endless Tower";
+	set .@md_name$,"Torre Infinita";
 	set .@p_name2$,strcharinfo(0);
 
 	getpartymember(.@party_id);
 	set .@partymembercount,$@partymembercount;
 	copyarray .@partymembername$[0],$@partymembername$[0],.@partymembercount;
 
-	set .@etower_timer,checkquest(60200,PLAYTIME); // 1 week
-	set .@etower_timer2,checkquest(60201,PLAYTIME); // 4 hours
+	set .@etower_timer,checkquest(60200,PLAYTIME); // 1 semana
+	set .@etower_timer2,checkquest(60201,PLAYTIME); // 4 horas
 
-	set .@dun_lim_time,etower_timer+604800; // 1 week
-	set .@dun_lim_time2,etower_timer+14400; // 4 hours
+	set .@dun_lim_time,etower_timer+604800; // 1 semana
+	set .@dun_lim_time2,etower_timer+14400; // 4 horas
 	set .@dun_cur_time,gettimetick(2);
 	set .@dun_ent_t,(.@dun_lim_time - .@dun_cur_time);
 	set .@dun_h,(.@dun_ent_t / 3600);
@@ -218,45 +219,45 @@ e_tower,81,105,0	script	Tower Protection Stone	406,{
 	if ((.@party_id > 0) && (.@partymembercount > 1)) {
 		if (.@etower_timer == -1) {
 			if (.@ins_mas == getcharid(0)) {
-				mes "Confirmed the party has been made. Would you like to reserve entrance to the Endless Tower?";
+				mes "Confirmado, o grupo foi feito. Você gostaria de reservar a entrada para a Torre Infinita?";
 				next;
-				switch(select(.@md_name$ + " Dungeon Generated:Enter the dungeon:Return to Alberta:Cancel")) {
+				switch(select("Gerar Calabouço da " + .@md_name$ + ":Entrar no Calabouço:Retornar para Alberta:Cancelar")) {
 				case 1:
 					set .@instance, instance_create(.@md_name$, .@party_id);
 					if (.@instance < 0) {
-						mes "Party Name:"+.@p_name$+"";
-						mes "Party Leader:"+.@p_reader$+"";
-						mes "^0000ff"+.@md_name$+" ^000000- Reservation Failed!";
+						mes "Nome do grupo: "+.@p_name$+"";
+						mes "Líder do grupo: "+.@p_reader$+"";
+						mes "^0000ff"+.@md_name$+" ^000000- A reserva falhou!";
 					}
 					else {
-						mes "^0000ff"+.@md_name$+"^000000 - Try to reserve";
-						mes "After making a reservation, you have to talk to NPC behind and select the menu 'Enter the Dungeon' to enter the dungeon.";
+						mes "^0000ff"+.@md_name$+"^000000 - Tentar reservar"; //^0000ff"+.@md_name$+"^000000 - Try to reserve";
+						mes "Depois de fazer uma reserva, você tem que falar com o NPC logo atrás e selecione o menu 'Entrar no Calabouço' para entrar no calabouço.";
 						for( set .@i, 1; .@i <= 6; set .@i, .@i + 1 ) {
 							if( instance_attachmap(.@i + "@tower", .@instance) == "" )
 								break;
 						}
 						if( .@i < 6 ) {
-							mes "^0000ff"+.@md_name$+" ^000000- Reservation Failed!";
+							mes "^0000ff"+.@md_name$+" ^000000- A reserva falhou!";
 							instance_destroy(.@instance);
 							close;
 						}
 						instance_attach(.@instance);
 						instance_set_timeout 14400,300,.@instance;
 						instance_init(.@instance);
-						// Spawn the first floor of each map, which will then spawn the rest when cleared.
+						// Revive o primeiro andar de cada mapa, que irá gerar o resto quando terminada.
 						donpcevent instance_npcname("#1F Controller", instance_id())+"::OnInstanceInit";
 						donpcevent instance_npcname("Immortal Furnace#1", instance_id())+"::OnInstanceInit";
 						donpcevent instance_npcname("Immortal Furnace#2", instance_id())+"::OnInstanceInit";
 						donpcevent instance_npcname("Immortal Furnace#3", instance_id())+"::OnInstanceInit";
-						// Disable the warps on all floor. (enable as floors are cleared)
+						// Desabilita os teleportes em todos os mapas. (habilita como andares que estão limpos)
 						for( set .@i, 1; .@i <= 99; set .@i, .@i + 1 )
 							donpcevent instance_npcname(.@i+"FGate102tower", instance_id())+"::OnInstanceInit";
-						// Warps activate on timer, so players can't get unlimited Ashes.
+						// Teleportes habilitam com contador, então jogadores não poderão pegar Cinzas ilimitadas. 
 						donpcevent instance_npcname("25FGate102tower-2", instance_id())+"::OnInstanceInit";
 						donpcevent instance_npcname("50FGate102tower-2", instance_id())+"::OnInstanceInit";
 						donpcevent instance_npcname("75FGate102tower-2", instance_id())+"::OnInstanceInit";
 						donpcevent instance_npcname("99FGate102tower-2", instance_id())+"::OnInstanceInit";
-						// Disable and ready NPCs for the 100th and 101st floors.
+						// Desabilita e ativa NPCs para o 100° e 101° andares.
 						donpcevent instance_npcname("Lucid Crystal#102", instance_id())+"::OnInstanceInit";
 						donpcevent instance_npcname("#102Effect1", instance_id())+"::OnInstanceInit";
 						donpcevent instance_npcname("#102Effect2", instance_id())+"::OnInstanceInit";
@@ -264,20 +265,20 @@ e_tower,81,105,0	script	Tower Protection Stone	406,{
 						donpcevent instance_npcname("#102FShadowDust", instance_id())+"::OnInstanceInit";
 						donpcevent instance_npcname("Spring of Life#1", instance_id())+"::OnInstanceInit";
 						donpcevent instance_npcname("Tyrant's Throne#", instance_id())+"::OnInstanceInit";
-						donpcevent instance_npcname("Lost Soul#102", instance_id())+"::OnInstanceInit";
+						donpcevent instance_npcname("Alma Perdida#102", instance_id())+"::OnInstanceInit";
 						donpcevent instance_npcname("#Effect30", instance_id())+"::OnInstanceInit";
 						donpcevent instance_npcname("#Effect31", instance_id())+"::OnInstanceInit";
 					}
 					break;
 				case 2:
 					if (has_instance("1@tower") == "") {
-						mes "The memorial dungeon " + .@md_name$ + " does not exist.";
-						mes "The party leader did not generate the dungeon yet.";
+						mes "O calabouço da " + .@md_name$ + " não existe.";
+						mes "O líder do grupo não gerou o calabouço ainda.";
 					}
 					else if ((has_instance("1@tower") != "") && (.@partymembercount < 2))
-						mes "You can enter the dungeon after making a party.";
+						mes "Você pode entrar no calabouço depois de fazer um grupo.";
 					else {
-						mapannounce "e_tower", .@p_name2$ + " of the party, " + .@p_name$ + ", is entering the dungeon, " + .@md_name$ + ".",bc_map,"0x00ff99",FW_NORMAL,12;
+						mapannounce "e_tower", .@p_name2$ + " do grupo " + .@p_name$ + " está entrando no calabouço da " + .@md_name$ + ".",bc_map,"0x00ff99",FW_NORMAL,12;
 						set etower_timer,gettimetick(2);
 						setquest 60200;
 						setquest 60201;
@@ -286,7 +287,7 @@ e_tower,81,105,0	script	Tower Protection Stone	406,{
 					}
 					break;
 				case 3:
-					mes "I will move you to Alberta.";
+					mes "Eu irei te levar de volta para Alberta.";
 					close2;
 					warp "alberta",223,36;
 					end;
@@ -296,16 +297,16 @@ e_tower,81,105,0	script	Tower Protection Stone	406,{
 				close;
 			}
 			else {
-				switch(select(.@md_name$ + "Enter the dungeon:Return to Alberta:Cancel")) {
+				switch(select("Entrar no calabouço da " + .@md_name$ + ":Voltar para Alberta:Cancelar")) {
 				case 1:
 					if (has_instance("1@tower") == "") {
-						mes "The memorial dungeon " + .@md_name$ + " does not exist.";
-						mes "The party leader did not generate the dungeon yet.";
+						mes "O calabouço da " + .@md_name$ + " não existe.";
+						mes "O líder do grupo não gerou o calabouço ainda.";
 					}
 					else if ((has_instance("1@tower") != "") && (.@partymembercount < 2))
-						mes "You can enter the dungeon after making a party.";
+						mes "Você pode entrar no calabouço depois de fazer um grupo.";
 					else {
-						mapannounce "e_tower", .@p_name2$ + " of the party, " + .@p_name$ + ", is entering the dungeon, " + .@md_name$ + ".",bc_map,"0x00ff99",FW_NORMAL,12;
+						mapannounce "e_tower", .@p_name2$ + " do grupo " + .@p_name$ + " está entrando no calabouço da " + .@md_name$ + ".",bc_map,"0x00ff99",FW_NORMAL,12;
 						set etower_timer,gettimetick(2);
 						setquest 60200;
 						setquest 60201;
@@ -314,7 +315,7 @@ e_tower,81,105,0	script	Tower Protection Stone	406,{
 					}
 					break;
 				case 2:
-					mes "I will move you to Alberta.";
+					mes "Eu irei te levar de volta para Alberta.";
 					close2;
 					warp "alberta",223,36;
 					end;
@@ -325,24 +326,24 @@ e_tower,81,105,0	script	Tower Protection Stone	406,{
 			}
 		}
 		else if ((.@etower_timer >= 0) && (.@etower_timer2 < 2)) {
-			mes "If you have the dungeon generated already, you can enter it. ";
+			mes "Se você já gerou o calabouço, você poderá entrar.";
 			next;
-			switch(select(.@md_name$ + "Enter the dungeon:Return to Alberta:Cancel")) {
+			switch(select("Entrar no calabouço da " + .@md_name$ + ":Voltar para Alberta:Cancelar")) {
 			case 1:
 				if (has_instance("1@tower") == "") {
-					mes "The memorial dungeon " + .@md_name$ + " does not exist.";
-					mes "The party leader did not generate the dungeon yet.";
+					mes "O calabouço da " + .@md_name$ + " não existe.";
+					mes "O líder do grupo não gerou o calabouço ainda.";
 				}
 				else if ((has_instance("1@tower") != "") && (.@partymembercount < 2))
-					mes "You can enter the dungeon after making a party.";
+					mes "Você pode entrar no calabouço depois de fazer um grupo.";
 				else {
-					mapannounce "e_tower", .@p_name2$ + " of the party, " + .@p_name$ + ", is entering the dungeon, " + .@md_name$ + ".",bc_map,"0x00ff99",FW_NORMAL,12;
+					mapannounce "e_tower", .@p_name2$ + " do grupo " + .@p_name$ + " está entrando no calabouço da " + .@md_name$ + ".",bc_map,"0x00ff99",FW_NORMAL,12;
 					warp "1@tower",52,354;
 					end;
 				}
 				break;
 			case 2:
-				mes "I will move you to Alberta.";
+				mes "Eu irei te levar de volta para Alberta.";
 				close2;
 				warp "alberta",223,36;
 				end;
@@ -352,9 +353,9 @@ e_tower,81,105,0	script	Tower Protection Stone	406,{
 			close;
 		}
 		else if ((.@etower_timer >= 0) && (.@etower_timer2 == 2)) {
-			mes "Due to the tower's aftereffects, you cannot enter the dungeon right now, " + .@dun_h + "hours " + .@dun_m + "minutes " + .@dun_s + "seconds left to enter the next dungeon.";
+			mes "Devido às seqüelas da torre, você não pode entrar no calabouço agora, " + .@dun_h + "horas " + .@dun_m + "minutos " + .@dun_s + "segundos restando para entrar no próximo calabouço.";
 			next;
-			mes "It is dangerous here. Let me move you to Alberta.";
+			mes "É perigoso aqui. Deixe-me levá-lo para Alberta.";
 			close2;
 			warp "alberta",223,36;
 			end;
@@ -363,53 +364,53 @@ e_tower,81,105,0	script	Tower Protection Stone	406,{
 			set etower_timer,0;
 			erasequest 60200;
 			erasequest 60201;
-			mes "^0000ffThe records and after effects related to the Endless Tower have been removed. You can generate and enter the Endless Tower again.^000000";
+			mes "^0000ffOs registros e efeitos relacionados com a Torre Infinita foram removidos. Você pode gerar e entrar no calabouço da Torre Infinita novamente.^000000";
 			close;
 		}
 	}
 	else {
-		mes "Make or join a party with more than 1 member and try again.";
+		mes "Faça ou entre num grupo com mais de 1 membro e tente novamente.";
 		close;
 	}
 }
 
 e_tower,30,30,2	script	Huge Vortex	844,2,2,{
 OnTouch:
-	mapannounce "e_tower","[ " + strcharinfo(0) + " ], seems to be engulfed by a huge vortex",bc_map,"0x00ff99",FW_NORMAL,12;
+	mapannounce "e_tower","[ " + strcharinfo(0) + " ], parece ter sido engolido por um enorme vórtice",bc_map,"0x00ff99",FW_NORMAL,12;
 	warp "alberta",223,36;
 	end;
 }
 
 /*
 e_tower,1,1,2	script	#102Administrator Mode104	844,{
-	mes "Please enter the password";
+	mes "Por favor, digite a senha";
 	input .@inputstr$;
 	next;
 	if (.@inputstr$ == "dmc2008") {
-		switch(select("Generate Purification Stone:Remove Purification Stone:Cancel")) {
+		switch(select("Gerar Pedra da Purificação:Remover Pedra da Purificação:Cancelar")) {
 		case 1:
-			mes "Create the Purification Stone that stays for 30 minutes.";
+			mes "Criar a pedra da Purificação que permanece por 30 minutos.";
 			donpcevent "Purification Stone#et1::Enable";
 			break;
 		case 2:
-			mes "Destroy the Purification Stone immediately";
+			mes "Destruir a Pedra da Purificação imediatamente"; //Destroy the Purification Stone immediately";
 			donpcevent "Purification Stone#et1::OnDisable";
 			break;
 		case 3:
-			mes "You have canceled it.";
+			mes "Abortado.";
 			break;
 		}
 		close;
 	}
 	else {
-		mes "Enter the password exactly.";
+		mes "Entre com a senha corretamente.";
 		close;
 	}
 }
 
 e_tower,69,117,4	script	Purification Stone#et1	406,{
 	set etower_timer,0;
-	mes "^0000ffThe records and aftereffects related to the Endless Tower have been removed. You can generate and enter the Endless Tower again.^000000";
+	mes "^0000ffOs registros e efeitos relacionados com a Torre Infinita foram removidos. Você pode gerar e entrar no calabouço da Torre Infinita novamente.^000000";
 	close;
 
 OnInit:
@@ -430,7 +431,7 @@ OnTimer1000:
 	end;
 
 OnTimer1740000:
-	mapannounce "e_tower", "The Purification Stone will be destroyed in one minute.",bc_map,"0x00ff99";
+	mapannounce "e_tower", "A Pedra da Purificação será distruida em um minuto.",bc_map,"0x00ff99";
 	end;
 
 OnTimer1800000:
@@ -440,7 +441,7 @@ OnTimer1800000:
 
 e_tower,151,185,4	script	Purification Stone#et2	844,{
 	set etower_timer,0;
-	mes "^0000ffThe records and aftereffects related to the Endless Tower have been removed. You can generate and enter the Endless Tower again.^000000";
+	mes "^0000ffOs registros e efeitos relacionados com a Torre Infinita foram removidos. Você pode gerar e entrar no calabouço da Torre Infinita novamente.^000000";
 	close;
 	warp "e_tower",75,108;
 	end;
@@ -448,45 +449,45 @@ e_tower,151,185,4	script	Purification Stone#et2	844,{
 */
 
 // Floors 1-25
-1@tower,50,360,0	script	Immortal Brazier#	844,{
-	mes "- A Message is Engraved on the Brazier -";
-	mes "The one who scatters the ashes of the darkness in this place shall become one step closer to Nacht Sieger, the Hegemon King of the Darkness...";
+1@tower,50,360,0	script	Braseiro Imortal#	844,{
+	mes "- A mensagem é gravada no Braseiro -";
+	mes "Aquele que espalha as cinzas da escuridão neste lugar estará um passo mais perto de Nacht Sieger, o Rei dos Reis das Trevas...";
 	next;
 	set .@move_name$,strcharinfo(0);
-	switch(select("26th Floor:51st Floor:76th Floor")) {
+	switch(select("26° Andar:51° Andar:76° Andar")) {
 	case 1:
 		if (countitem(6000) < 1) {
-			mes "-Warning-";
-			mes "To warp to the 26th Floor, you need 1 Ashes of the Darkness.";
+			mes "-Aviso-";
+			mes "Para ir ao 26° Andar, você precisa de 1 Cinza da Escuridão.";
 			close;
 		}
 		else {
 			delitem 6000,1; //Dark_Ashes
-			instance_announce 0, .@move_name$ + ". You will be warped to the 26th Floor.",bc_map,"0x00ff99";
+			instance_announce 0, .@move_name$ + ". Você será teleportado para o 26° Andar.",bc_map,"0x00ff99";
 			warp "2@tower",52,354;
 		}
 		break;
 	case 2:
 		if (countitem(6000) < 2) {
-			mes "-Warning-";
-			mes "To warp to the 51st Floor, you need 2 Ashes of the Darkness.";
+			mes "-Aviso-";
+			mes "Para ir ao 51° Andar, você precisa de 2 Cinza da Escuridão.";
 			close;
 		}
 		else {
 			delitem 6000,2; //Dark_Ashes
-			instance_announce 0, .@move_name$ + ". You will be warped to the 51st Floor.",bc_map,"0x00ff99";
+			instance_announce 0, .@move_name$ + ". Você será teleportado para o 51° Andar.",bc_map,"0x00ff99";
 			warp "3@tower",52,354;
 		}
 		break;
 	case 3:
 		if (countitem(6000) < 3) {
-			mes "-Warning-";
-			mes "To warp to the 76th Floor, you need 3 Ashes of the Darkness.";
+			mes "-Aviso-";
+			mes "Para ir ao 76° Andar, você precisa de 3 Cinza da Escuridão.";
 			close;
 		}
 		else {
 			delitem 6000,3; //Dark_Ashes
-			instance_announce 0, .@move_name$ + ". You will be warped to the 76th Floor.",bc_map,"0x00ff99";
+			instance_announce 0, .@move_name$ + ". Você será teleportado para o 76° Andar..",bc_map,"0x00ff99";
 			warp "4@tower",52,354;
 		}
 		break;
@@ -509,12 +510,12 @@ OnInstanceInit:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("1@tower",instance_npcname("#1F Controller", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 1st Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 1° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("1FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 1
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 1st Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 1° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -537,12 +538,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("1@tower",instance_npcname("1FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 2nd Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 2° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("2FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 2
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 2nd Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 2° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -568,12 +569,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("1@tower",instance_npcname("2FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 3rd Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 3° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("3FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 3
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 3rd Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 3° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -599,7 +600,7 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("1@tower",instance_npcname("3FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 4th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 4° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("4FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 4
 	}
@@ -629,12 +630,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("1@tower",instance_npcname("4FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 5th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 5° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("5FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 5
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 5th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 5° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -658,12 +659,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("1@tower",instance_npcname("5FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 6th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 6° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("6FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 6
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 6th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 6° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -687,12 +688,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("1@tower",instance_npcname("6FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 7th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 7° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("7FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 7
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 7th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 7° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -714,12 +715,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("1@tower",instance_npcname("7FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 8th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 8° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("8FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 8
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 8th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 8° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -742,12 +743,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("1@tower",instance_npcname("8FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 9th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 9° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("9FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 9
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 9th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 9° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -770,12 +771,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("1@tower",instance_npcname("9FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 10th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 10° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("10FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 10
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 10th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 10° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -799,12 +800,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("1@tower",instance_npcname("10FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 11th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 11° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("11FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 11
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 11th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 11° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -826,12 +827,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("1@tower",instance_npcname("11FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 12th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 12° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("12FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 12
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 12th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 12° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -854,12 +855,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("1@tower",instance_npcname("12FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 13th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 13° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("13FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 13
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 13th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 13° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -884,12 +885,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("1@tower",instance_npcname("13FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 14th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 14° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("14FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 14
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 14th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 14° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -916,12 +917,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("1@tower",instance_npcname("14FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 15th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 15° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("15FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 15
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 15th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 15° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -945,12 +946,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("1@tower",instance_npcname("15FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 16th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 16° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("16FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 16
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 16th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 16° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -974,12 +975,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("1@tower",instance_npcname("16FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 17th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 17° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("17FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 17
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 17th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 17° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -1001,12 +1002,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("1@tower",instance_npcname("17FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 18th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 18° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("18FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 18
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 18th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 18° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -1030,12 +1031,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("1@tower",instance_npcname("18FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 19th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 19° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("19FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 19
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 19th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 19° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -1057,12 +1058,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("1@tower",instance_npcname("19FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 20th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 20° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("20FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 20
 	}
 	else
-		instance_announce 0, "Remaining Monsters on 20th the Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 20° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -1087,12 +1088,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("1@tower",instance_npcname("20FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 21st Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 21° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("21FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 21
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 21st Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 21° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -1118,12 +1119,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("1@tower",instance_npcname("21FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 22nd Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 22° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("22FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 22
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 22nd Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 22° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -1148,12 +1149,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("1@tower",instance_npcname("22FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 23rd Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 23° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("23FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 23
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 23rd Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 23° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -1176,12 +1177,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("1@tower",instance_npcname("23FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 24th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 24° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("24FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 24
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 24th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 24° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -1204,12 +1205,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("1@tower",instance_npcname("24FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 25th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 25° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("25FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 25
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 25th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 25° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -1251,20 +1252,20 @@ OnTouch_:
 
 /*
 1@tower,71,1,0	script	#Manager Mode1	844,{
-	mes "Please enter the password.";
+	mes "Por favor, digite a senha";
 	input .@inputstr$;
 	next;
 	if (.@inputstr$ == "dmc2008") {
-		mes "This NPC manages the tower from the 1st to the 25th Floor.";
-		mes "Please enter the Floor number to open.";
-		mes "(i.g.: 1F->1, 25F->25)";
+		mes "Este NPC controla a torre do 1° ao 25° Andar.";
+		mes "Por favor, digite o número do andar que queria abrir.";
+		mes "(ex.: 1F->1, 25F->25)";
 		input .@input,1,25;
 		next;
 		if (.@input < 1 || .@input > 25)
-			mes "You can only enter a number from 1 to 25.";
+			mes "Digite apenas números entre 1 e 25.";
 		else {
 			donpcevent instance_npcname(.@input+"FGate102tower", instance_id())+"::OnEnable";
-			mes "*** Floor "+ .@input + " is now being opened. ***";
+			mes "*** "+ .@input + "° Andar está abrindo. ***";
 		}
 	}
 	close;
@@ -1284,12 +1285,12 @@ OnInstanceInit:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("2@tower",instance_npcname("Immortal Furnace#1", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 26th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 26° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("26FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 26
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 26th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 26° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -1315,12 +1316,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("2@tower",instance_npcname("26FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 27th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 27° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("27FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 27
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 27th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 27° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -1344,12 +1345,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("2@tower",instance_npcname("27FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 28th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 28° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("28FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 28
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 28th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 28° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -1376,12 +1377,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("2@tower",instance_npcname("28FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 29th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 29° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("29FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 29
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 29th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 29° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -1403,12 +1404,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("2@tower",instance_npcname("29FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 30th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 30° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("30FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 30
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 30th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 30° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -1432,12 +1433,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("2@tower",instance_npcname("30FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 31st Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 31° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("31FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 31
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 31st Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 31° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -1464,12 +1465,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("2@tower",instance_npcname("31FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 32nd Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 32° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("32FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 32
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 32nd Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 32° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -1494,12 +1495,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("2@tower",instance_npcname("32FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 33rd Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 33° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("33FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 33
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 33rd Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 33° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -1522,12 +1523,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("2@tower",instance_npcname("33FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 34th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 34° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("34FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 34
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 34th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 34° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -1552,12 +1553,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("2@tower",instance_npcname("34FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 35th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 35° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("35FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 35
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 35th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 35° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -1580,12 +1581,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("2@tower",instance_npcname("35FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 36th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 36° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("36FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 36
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 36th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 36° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -1608,12 +1609,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("2@tower",instance_npcname("36FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 37th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 37° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("37FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 37
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 37th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 37° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -1635,12 +1636,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("2@tower",instance_npcname("37FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 38th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 38° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("38FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 38
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 38th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 38° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -1665,12 +1666,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("2@tower",instance_npcname("38FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 39th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 39° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("39FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 39
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 39th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 39° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -1696,12 +1697,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("2@tower",instance_npcname("39FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 40th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 40° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("40FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 40
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 40th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 40° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -1722,12 +1723,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("2@tower",instance_npcname("40FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 41st Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 41° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("41FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 41
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 41st Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 41° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -1752,12 +1753,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("2@tower",instance_npcname("41FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 42nd Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 42° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("42FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 42
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 42nd Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 42° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -1781,12 +1782,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("2@tower",instance_npcname("42FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 43rd Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 43° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("43FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 43
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 43rd Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 43° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -1811,12 +1812,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("2@tower",instance_npcname("43FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 44th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 44° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("44FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 44
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 44th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 44° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -1840,12 +1841,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("2@tower",instance_npcname("44FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 45th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 45° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("45FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 45
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 45th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 45° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -1867,12 +1868,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("2@tower",instance_npcname("45FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 46th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 46° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("46FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 46
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 46th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 46° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -1896,12 +1897,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("2@tower",instance_npcname("46FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 47th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 47° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("47FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 47
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 47 Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 47° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -1924,12 +1925,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("2@tower",instance_npcname("47FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 48th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 48° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("48FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 48
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 48th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 48° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -1954,12 +1955,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("2@tower",instance_npcname("48FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 49th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 49° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("49FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 49
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 49th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 49° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -1984,12 +1985,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("2@tower",instance_npcname("49FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 50th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 50° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("50FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 50
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 50th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 50° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -2030,20 +2031,20 @@ OnTouch_:
 }
 
 2@tower,71,1,0	script	#Manager Mode2	844,{
-	mes "Please enter the password.";
+	mes "Por favor, digite a senha.";
 	input .@inputstr$;
 	next;
 	if (.@inputstr$ == "dmc2008") {
-		mes "This NPC manages the tower from the 26st to the 50th Floor.";
-		mes "Please enter the Floor number to open.";
-		mes "(i.g.: 26F->26, 50F->50)";
+		mes "Este NPC controla a torre do 26° até o 50° Andar.";
+		mes "Por favor, digite o número do Andar que quer abrir.";
+		mes "ex.: 26F->26, 50F->50";
 		input .@input,26,50;
 		next;
-		if (.@onput < 26 || .@input > 50)
-			mes "You can only enter a number from 26 to 50.";
+		if (.@input < 26 || .@input > 50)
+			mes "Você deve digitar apenas números entre 26 e 50.";
 		else {
 			donpcevent instance_npcname(.@input+"FGate102tower", instance_id())+"::OnEnable";
-			mes "*** Floor "+ .@input + " is now being opened. ***";
+			mes "*** "+.@input+"° Andar está sendo aberto. ***";
 		}
 	}
 	close;
@@ -2060,12 +2061,12 @@ OnInstanceInit:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("3@tower",instance_npcname("Immortal Furnace#2", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 51st Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 51° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("51FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 51
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 51st Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 51° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -2091,12 +2092,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("3@tower",instance_npcname("51FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 52nd Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 52° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("52FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 52
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 52nd Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 52° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -2118,12 +2119,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("3@tower",instance_npcname("52FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 53rd Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 53° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("53FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 53
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 53rd Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 53° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -2146,12 +2147,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("3@tower",instance_npcname("53FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 54th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 54° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("54FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 54
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 54th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 54° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -2175,12 +2176,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("3@tower",instance_npcname("54FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 55th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 55° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("55FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 55
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 55th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 55° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -2205,12 +2206,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("3@tower",instance_npcname("55FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 56th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 56° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("56FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 56
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 56th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 56° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -2239,12 +2240,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("3@tower",instance_npcname("56FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 57th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 57° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("57FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 57
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 57th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 57° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -2269,12 +2270,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("3@tower",instance_npcname("57FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 58th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 58° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("58FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 58
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 58th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 58° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -2297,12 +2298,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("3@tower",instance_npcname("58FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 59th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 59° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("59FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 59
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 59th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 59° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -2330,12 +2331,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("3@tower",instance_npcname("59FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 60th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 60° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("60FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 60
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 60th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 60° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -2361,12 +2362,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("3@tower",instance_npcname("60FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 61st Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 61° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("61FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 61
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 61st Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 61° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -2387,12 +2388,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("3@tower",instance_npcname("61FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 62nd Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 62° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("62FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 62
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 62nd Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 62° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -2417,12 +2418,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("3@tower",instance_npcname("62FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 63rd Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 63° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("63FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 63
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 63rd Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 63° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -2448,12 +2449,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("3@tower",instance_npcname("63FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 64th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 64° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("64FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 64
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 64th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 64° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -2475,12 +2476,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("3@tower",instance_npcname("64FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 65th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 65° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("65FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 65
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 65th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 65° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -2503,12 +2504,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("3@tower",instance_npcname("65FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 66th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 66° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("66FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 66
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 66th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 66° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -2533,12 +2534,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("3@tower",instance_npcname("66FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 67th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 67° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("67FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 67
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 67th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 67° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -2563,12 +2564,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("3@tower",instance_npcname("67FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 68th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 68° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("68FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 68
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 68th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 68° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -2593,12 +2594,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("3@tower",instance_npcname("68FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 69th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 69° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("69FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 69
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 69th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 69° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -2621,12 +2622,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("3@tower",instance_npcname("69FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 70th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 70° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("70FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 70
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 70th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 70° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -2650,12 +2651,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("3@tower",instance_npcname("70FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 71st Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 71° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("71FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 71
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 71st Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 71° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -2679,12 +2680,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("3@tower",instance_npcname("71FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 72nd Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 72° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("72FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 72
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 72nd Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 72° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -2710,12 +2711,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("3@tower",instance_npcname("72FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 73rd Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 73° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("73FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 73
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 73rd Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 73° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -2744,12 +2745,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("3@tower",instance_npcname("73FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 74th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 74° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("74FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 74
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 74th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 74° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -2773,12 +2774,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("3@tower",instance_npcname("74FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "All Monsters on the 75th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0, "Todos os monstros no 75° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("75FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 75
 	}
 	else
-		instance_announce 0, "Remaining Monsters on the 75th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0, "Monstros vivos no 75° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -2819,20 +2820,20 @@ OnTouch_:
 }
 
 3@tower,71,1,0	script	#Manager Mode3	844,{
-	mes "Please enter the password.";
+	mes "Por favor, digite a senha";
 	input .@inputstr$;
 	next;
 	if (.@inputstr$ == "dmc2008") {
-		mes "This NPC manages the tower from the 51st to the 75th Floor.";
-		mes "Please enter the Floor number to open.";
-		mes "(i.g.: 51F->51, 75F->75)";
+		mes "Este NPC controla a torre do 51° ao 75° Andar.";
+		mes "Por favor, digite o número do andar que queria abrir.";
+		mes "(ex.: 51F->51, 75F->75)";
 		input .@input,51,75;
 		next;
 		if (.@input < 51 || .@input > 75)
-			mes "You can only enter a number from 51 to 75.";
+			mes "Você deve digitar apenas números entre 51 e 75.";
 		else {
 			donpcevent instance_npcname(.@input+"FGate102tower", instance_id())+"::OnEnable";
-			mes "*** Floor "+ .@input + " is now being opened. ***";
+			mes "*** "+.@input+"° Andar está sendo aberto. ***";
 		}
 	}
 	close;
@@ -2849,12 +2850,12 @@ OnInstanceInit:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("4@tower",instance_npcname("Immortal Furnace#3", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0,"All Monsters on the 76th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0,"Todos os monstros no 76° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("76FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 76
 	}
 	else
-		instance_announce 0,"Remaining Monsters on the 76th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0,"Monstros vivos no 76° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -2879,12 +2880,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("4@tower",instance_npcname("76FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0,"All Monsters on the 77th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0,"Todos os monstros no 77° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("77FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 77
 	}
 	else
-		instance_announce 0,"Remaining Monsters on the 77th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0,"Monstros vivos no 77° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -2909,12 +2910,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("4@tower",instance_npcname("77FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0,"All Monsters on the Floor 78th have been defeated.",bc_map,"0xffff00";
+		instance_announce 0,"Todos os monstros no 78° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("78FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 78
 	}
 	else
-		instance_announce 0,"Remaining Monsters on the 78th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0,"Monstros vivos no 78° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -2939,12 +2940,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("4@tower",instance_npcname("78FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0,"All Monsters on the 79th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0,"Todos os monstros no 79° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("79FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 79
 	}
 	else
-		instance_announce 0,"Remaining Monsters on the 79th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0,"Monstros vivos no 79° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -2966,12 +2967,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("4@tower",instance_npcname("79FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0,"All Monsters on the 80th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0,"Todos os monstros no 80° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("80FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 80
 	}
 	else
-		instance_announce 0,"Remaining Monsters on the 80th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0,"Monstros vivos no 80° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -2994,12 +2995,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("4@tower",instance_npcname("80FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0,"All Monsters on the 81st Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0,"Todos os monstros no 81° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("81FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 81
 	}
 	else
-		instance_announce 0,"Remaining Monsters on the 81st Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0,"Monstros vivos no 81° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -3024,12 +3025,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("4@tower",instance_npcname("81FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0,"All Monsters on the 82nd Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0,"Todos os monstros no 82° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("82FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 82
 	}
 	else
-		instance_announce 0,"Remaining Monsters on the 82nd Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0,"Monstros vivos no 82° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -3053,12 +3054,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("4@tower",instance_npcname("82FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0,"All Monsters on the 83rd Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0,"Todos os monstros no 83° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("83FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 83
 	}
 	else
-		instance_announce 0,"Remaining Monsters on the 83rd Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0,"Monstros vivos no 83° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -3083,12 +3084,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("4@tower",instance_npcname("83FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0,"All Monsters on the 84th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0,"Todos os monstros no 84° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("84FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 84
 	}
 	else
-		instance_announce 0,"Remaining Monsters on the 84th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0,"Monstros vivos no 84° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -3109,12 +3110,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("4@tower",instance_npcname("84FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0,"All Monsters on the 85th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0,"Todos os monstros no 85° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("85FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 85
 	}
 	else
-		instance_announce 0,"Remaining Monsters on the 85th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0,"Monstros vivos no 85° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -3138,12 +3139,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("4@tower",instance_npcname("85FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0,"All Monsters on the 86th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0,"Todos os monstros no 86° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("86FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 86
 	}
 	else
-		instance_announce 0,"Remaining Monsters on the 86th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0,"Monstros vivos no 86° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -3167,12 +3168,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("4@tower",instance_npcname("86FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0,"All Monsters on the 87th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0,"Todos os monstros no 87° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("87FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 87
 	}
 	else
-		instance_announce 0,"Remaining Monsters on the 87th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0,"Monstros vivos no 87° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -3197,12 +3198,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("4@tower",instance_npcname("87FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0,"All Monsters on the 88th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0,"Todos os monstros no 88° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("88FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 88
 	}
 	else
-		instance_announce 0,"Remaining Monsters on the 88th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0,"Monstros vivos no 88° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -3226,12 +3227,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("4@tower",instance_npcname("88FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0,"All Monsters on the 89th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0,"Todos os monstros no 89° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("89FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 89
 	}
 	else
-		instance_announce 0,"Remaining Monsters on the 89th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0,"Monstros vivos no 89° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -3255,12 +3256,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("4@tower",instance_npcname("89FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0,"All Monsters on the 90th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0,"Todos os monstros no 90° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("90FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 90
 	}
 	else
-		instance_announce 0,"Remaining Monsters on the 90th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0,"Monstros vivos no 90° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -3283,12 +3284,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("4@tower",instance_npcname("90FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0,"All Monsters on the 91st Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0,"Todos os monstros no 91° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("91FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 91
 	}
 	else 
-		instance_announce 0,"Remaining Monsters on the 91st Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0,"Monstros vivos no 91° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -3313,12 +3314,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("4@tower",instance_npcname("91FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0,"All Monsters on the 92nd Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0,"Todos os monstros no 92° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("92FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 92
 	}
 	else
-		instance_announce 0,"Remaining Monsters on the 92nd Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0,"Monstros vivos no 92° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -3342,12 +3343,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("4@tower",instance_npcname("92FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0,"All Monsters on the 93rd Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0,"Todos os monstros no 93° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("93FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 93
 	}
 	else
-		instance_announce 0,"Remaining Monsters on the 93rd Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0,"Monstros vivos no 93° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -3369,12 +3370,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("4@tower",instance_npcname("93FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0,"All Monsters on the 94th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0,"Todos os monstros no 94° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("94FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 94
 	}
 	else
-		instance_announce 0,"Remaining Monsters on the 94th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0,"Monstros vivos no 94° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -3399,12 +3400,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("4@tower",instance_npcname("94FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0,"All Monsters on the 95th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0,"Todos os monstros no 95° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("95FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 95
 	}
 	else
-		instance_announce 0,"Remaining Monsters on the 95th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0,"Monstros vivos no 95° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -3427,12 +3428,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("4@tower",instance_npcname("95FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0,"All Monsters on the 96th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0,"Todos os monstros no 96° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("96FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 96
 	}
 	else
-		instance_announce 0,"Remaining Monsters on the 96th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0,"Monstros vivos no 96° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -3456,12 +3457,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("4@tower",instance_npcname("96FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0,"All Monsters on the 97th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0,"Todos os monstros no 97° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("97FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 97
 	}
 	else
-		instance_announce 0,"Remaining Monsters on the 97th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0,"Monstros vivos no 97° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -3487,12 +3488,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("4@tower",instance_npcname("97FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0,"All Monsters on the 98th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0,"Todos os monstros no 98° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("98FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 98
 	}
 	else
-		instance_announce 0,"Remaining Monsters on the 98th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0,"Monstros vivos no 98° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -3575,12 +3576,12 @@ OnTouch_:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("4@tower",instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0,"All Monsters on the 99th Floor have been defeated.",bc_map,"0xffff00";
+		instance_announce 0,"Todos os monstros no 99° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("99FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 99
 	}
 	else
-		instance_announce 0,"Remaining Monsters on the 99th Floor - " + .@mob_dead_num,bc_map,"0x00ff99";
+		instance_announce 0,"Monstros vivos no 99° Andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -3621,20 +3622,20 @@ OnTouch_:
 }
 
 4@tower,71,1,0	script	#Manager Mode4	844,{
-	mes "Please enter the password.";
+	mes "Por favor, digite a senha";
 	input .@inputstr$;
 	next;
 	if (.@inputstr$ == "dmc2008") {
-		mes "This NPC manages the tower from the 76th to the 99th Floor.";
-		mes "Please enter the Floor number to open.";
-		mes "(i.g.: 76F->76, 99F->99)";
+		mes "Este NPC controla a torre do 76° ao 99° Andar.";
+		mes "Por favor, digite o número do andar que queria abrir.";
+		mes "(ex.: 76F->76, 99F->99)";
 		input .@input,76,99;
 		next;
 		if (.@input < 76 || .@input > 99)
-			mes "You can only enter a number from 76 to 99.";
+			mes "Você deve digitar apenas números entre 51 e 75.";
 		else {
 			donpcevent instance_npcname(.@input+"FGate102tower", instance_id())+"::OnEnable";
-			mes "*** Floor "+ .@input + " is now being opened. ***";
+			mes "*** "+.@input+"° Andar está sendo aberto. ***";
 		}
 	}
 	close;
@@ -3643,40 +3644,40 @@ OnTouch_:
 // Floor 100
 5@tower,106,109,2	script	Lucid Crystal#102	844,{
 	if (in_102tower < 10) {
-		mes "^0000ffA mysterious voice echoes through the room as you touch the lucid crystal radiating a strong light.^000000";
+		mes "^0000ffUma misteriosa voz ecoa pela sala dizendo para você tocar o cristal lúcido irradiando uma luz forte.^000000";
 		next;
-		mes "[Mysterious Voice]";
-		mes "Welcome to my place, intruders. I've had fun watching you endure all the difficulties I've set before you.";
+		mes "[Voz Misteriosa]";
+		mes "Bem-vindo ao meu lar, intrusos. Eu me diverti vendo vocês suportarem todas as dificuldades que eu tenho posto diante de vocês.";
 		next;
-		mes "[Mysterious Voice]";
-		mes "Unfortunately, the time has come to end the show.";
+		mes "[Voz Misteriosa]";
+		mes "Infelizmente, chegou a hora de terminar o show.";
 		next;
-		mes "[Mysterious Voice]";
-		mes "It's still too early to celebrate your victory against my right-hand man Knothen because he isn't completely destroyed!";
+		mes "[Voz Misteriosa]";
+		mes "Ainda é muito cedo para comemorar a vitória contra o meu braço direito Knothen porque ele não está completamente destruído!";
 		next;
-		mes "[Mysterious Voice]";
-		mes "I shall resurrect him for your next show. Defeat him again, and then I'll gladly accept your challenge.";
+		mes "[Voz Misteriosa]";
+		mes "Vou ressuscitá-lo para o próximo show. Derrote-o novamente, e então aceitarei com prazer seu desafio.";
 		next;
-		mes "[Mysterious Voice]";
-		mes "Good-bye for now.";
-		mes "Once again, I had such a great time, humans. I look forward to seeing you again.";
+		mes "[Voz Misteriosa]";
+		mes "Até logo.";
+		mes "Mais uma vez, havia um bom tempo, os seres humanos. Estou ansioso para vê-los novamente.";
 		next;
-		mes "^0000ffAs soon as the voice stopped talking, an irresistible force lifted and moved you somewhere else.";
+		mes "^0000ffAssim que a voz parou de falar, uma força irresistível o levantou e lhe moveu para algum lugar.";
 		close2;
 		set in_102tower,10;
 		warp "alberta",223,36;
 	}
 	else {
-		mes "^0000ffThe radiating crystal piece seems to beckon you, just like last time.^000000";
+		mes "^0000ffA peça de cristal irradiando parece acenar para você, assim como da última vez.^000000";
 		next;
-		mes "[Mysterious Voice]";
-		mes "I must have underestimated you... I didn't expect to see you again.";
+		mes "[Voz Misteriosa]";
+		mes "Devo ter subestimado você... Eu não esperava vê-lo novamente.";
 		next;
-		mes "[Mysterious Voice]";
-		mes "I can smell your sweat, hear the gasps of your exhaustion in combat. Ah~ The human desire for victory always excites me.";
+		mes "[Voz Misteriosa]";
+		mes "Eu posso sentir o seu suor, ouvir os suspiros de cansaço em combate. Ah~ O desejo humano pela vitória sempre me excita.";
 		next;
-		mes "[Mysterious Voice]";
-		mes "I now allow you to come receive an audience from me. Come to me, to Nacht Sieger the Hegemon-King of the Darkness!";
+		mes "[Voz Misteriosa]";
+		mes "Eu agora permito que você venha à meu encontro. Venha à mim, para Nacht Sieger Rei dos Reis das Trevas!";
 		close2;
 		warp "6@tower",32,12;
 	}
@@ -3808,15 +3809,15 @@ OnEnable:
 }
 
 5@tower,71,1,0	script	#Manager Mode5	844,{
-	mes "This NPC manages the crystal on the 100th Floor. Please enter the password.";
+	mes "Este NPC controla o cristal no 100° Andar. Por favor, digite a senha.";
 	input .@inputstr$;
 	next;
 	if (.@inputstr$ == "dmc2008") {
 		donpcevent instance_npcname("Lucid Crystal#102", instance_id())+"::OnEnable";
-		mes "The 100th Floor's crystal has been activated.";
+		mes "O cristal do 100° Andar foi ativado.";
 	}
 	else
-		mes "Please enter the correct password.";
+		mes "Por favor, digite a senha corretamente.";
 	close;
 }
 
@@ -3824,7 +3825,7 @@ OnEnable:
 6@tower,45,89,2	script	Spring of Life#1	844,{
 	set .@pc_hp,MaxHp-Hp;
 	set .@pc_sp,MaxSp-Sp;
-	mes "^0066ffYou took a sip of the spring's clear water, and you feel invigorated.^000000";
+	mes "^0066ffVocê tomou um gole de água límpida e sentiu-se revigorado.^000000";
 	percentheal .@pc_hp,.@pc_sp;
 	close;
 
@@ -3888,23 +3889,23 @@ OnEnable:
 	end;
 
 OnTimer500:
-	instance_announce 0,"Guests, huh? I hope you've come here knowing that you'll be buried in this place. If you didn't know, well... it's too late!",bc_map,"0x00ffcc";
+	instance_announce 0,"Hóspedes, hein? Eu espero que vocês venham aqui, sabendo que vocês serão enterrados neste lugar. Se vocês não sabem, bem... é tarde demais!",bc_map,"0x00ffcc";
 	end;
 
 OnTimer5500:
-	instance_announce 0,"This is why you adventurers always end up dead.",bc_map,"0x00ffcc";
+	instance_announce 0,"É por isso que vocês, aventureiros, sempre acabam mortos.",bc_map,"0x00ffcc";
 	end;
 
 OnTimer10500:
-	instance_announce 0,"I may applaud you for your courage... Of course, I intend to play with you a little bit first.",bc_map,"0x00ffcc";
+	instance_announce 0,"Eu pretendo aplaudi-los por sua coragem... Mas é claro que, antes, pretendo brincar um pouco com vocês.",bc_map,"0x00ffcc";
 	end;
 
 OnTimer15500:
-	instance_announce 0,"You know, I like watching humans running around in fear.",bc_map,"0x00ffcc";
+	instance_announce 0,"Sabem, eu gosto de ver seres humanos correndo com medo.",bc_map,"0x00ffcc";
 	end;
 
 OnTimer20500:
-	instance_announce 0,"Let's see who runs fastest. Are you ready?",bc_map,"0x00ffcc";
+	instance_announce 0,"Vamos ver quem corre mais rápido. Estão prontos?",bc_map,"0x00ffcc";
 	stopnpctimer;
 	areamonster "6@tower",151,66,153,106,"Bone Guardian",1152,50,instance_npcname("#1st Beeper", instance_id())+"::OnMyMobDead";
 	areamonster "6@tower",158,66,160,106,"Bone Guardian",1152,50,instance_npcname("#1st Beeper", instance_id())+"::OnMyMobDead";
@@ -3929,15 +3930,15 @@ OnEnable:
 	end;
 
 OnTimer500:
-	instance_announce 0,"Well, I guess they aren't too challenging for you.",bc_map,"0x00ffcc";
+	instance_announce 0,"Bem, acho que eles não foram muito desafiadores para vocês.",bc_map,"0x00ffcc";
 	end;
 
 OnTimer5500:
-	instance_announce 0,"Let's speed up a little bit, shall we?",bc_map,"0x00ffcc";
+	instance_announce 0,"Vamos acelerar um pouco, vamos?",bc_map,"0x00ffcc";
 	end;
 
 OnTimer10500:
-	instance_announce 0,"I demand an encore!",bc_map,"0x00ffcc";
+	instance_announce 0,"Eu quero bis!",bc_map,"0x00ffcc";
 	stopnpctimer;
 	areamonster "6@tower",151,66,153,106,"Wind Guardian",1263,30,instance_npcname("#2nd Beeper", instance_id())+"::OnMyMobDead";
 	areamonster "6@tower",158,66,160,106,"Wind Guardian",1263,30,instance_npcname("#2nd Beeper", instance_id())+"::OnMyMobDead";
@@ -3950,7 +3951,7 @@ OnMyMobDead:
 		//SetItemPartyInMap in_102floor 102
 	}
 	else
-		instance_announce 0,"Remaining Targets " + .@mob_dead_num + "ea",bc_map,"0x00ff99";
+		instance_announce 0,"Monstros vivos: " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -3962,15 +3963,15 @@ OnEnable:
 	end;
 
 OnTimer500:
-	instance_announce 0,"Yes, this is getting exciting!",bc_map,"0x00ffcc";
+	instance_announce 0,"Sim, isso está ficando emocionante!",bc_map,"0x00ffcc";
 	end;
 
 OnTimer5500:
-	instance_announce 0,"I'll remember you as one of a few that have managed to entertain me.",bc_map,"0x00ffcc";
+	instance_announce 0,"Lembrarei de vocês como uns dos poucos que conseguiram me entreter.",bc_map,"0x00ffcc";
 	end;
 
 OnTimer10500:
-	instance_announce 0,"How would you like to play one more round?",bc_map,"0x00ffcc";
+	instance_announce 0,"Como quer jogar o próximo round?",bc_map,"0x00ffcc";
 	stopnpctimer;
 	areamonster "6@tower",151,66,153,106,"Sword Edge Guardian",1132,20,instance_npcname("#3rd Beeper", instance_id())+"::OnMyMobDead";
 	areamonster "6@tower",158,66,160,106,"Sword Edge Guardian",1132,20,instance_npcname("#3rd Beeper", instance_id())+"::OnMyMobDead";
@@ -3983,7 +3984,7 @@ OnMyMobDead:
 		//SetItemPartyInMap in_102floor 103
 	}
 	else
-		instance_announce 0,"Remaining Targets " + .@mob_dead_num + "ea",bc_map,"0x00ff99";
+		instance_announce 0,"Monstros vivos: " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
 
@@ -3995,91 +3996,91 @@ OnEnable:
 	end;
 
 OnTimer500:
-	instance_announce 0,"Okay, the time has come to make my appearance!",bc_map,"0x00ffcc";
+	instance_announce 0,"Ok, chegou o momento de fazer a minha aparição!",bc_map,"0x00ffcc";
 	end;
 
 OnTimer5500:
-	instance_announce 0,"Do you want to know who I am?",bc_map,"0x00ffcc";
+	instance_announce 0,"Vocês querem saber quem sou?",bc_map,"0x00ffcc";
 	end;
 
 OnTimer10500:
-	instance_announce 0,"You'll soon know. Mine is the face of death!",bc_map,"0x00ffcc";
+	instance_announce 0,"Saberão em breve. Eu tenho a face da morte!",bc_map,"0x00ffcc";
 	stopnpctimer;
 	monster "6@tower",156,147,"Nacht Sieger",1956,1,instance_npcname("#4th Beeper", instance_id())+"::OnMyMobDead";
 	end;
 
 OnMyMobDead:
-	donpcevent instance_npcname("Lost Soul#102", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("Alma Perdida#102", instance_id())+"::OnEnable";
 	end;
 }
 
-6@tower,169,127,2	script	Lost Soul#102	796,{
+6@tower,169,127,2	script	Alma Perdida#102	796,{
 	if (checkweight(1201,1) == 0) {
-		mes "You're carrying too much stuff. Why don't you put some of it away, and then come back?";
+		mes "Você está carregando muito equipamento. Porque não joga alguns fora, e depois retorna.";
 		close;
 	}
-	mes "[Lost Souls]";
-	mes "It's you that have liberated us from the evil Nacht Sieger.";
+	mes "[Alma Perdida]";
+	mes "Foram vocês que nos libertaram do terrível Nacht Sieger.";
 	next;
-	mes "[Lost Souls]";
-	mes "Thank you so much. Now we can escape from this cold and dark place... to heaven.";
+	mes "[Alma Perdida]";
+	mes "Muito obrigado. Agora podemos escapar deste lugar frio e escuro... para o céu.";
 	next;
 	if ((countitem(13412) > 0) && (countitem(13413) > 0)) {
-		mes "[Lost Souls]";
-		mes "Hey, you have the remnants of Nacht Sieger with you.";
+		mes "[Alma Perdida]";
+		mes "Ei, você tem os restos de Nacht Sieger com você.";
 		next;
-		mes "[Lost Souls]";
-		mes "They may appear to be one-handed swords, but I can put them together to make a two-handed one if you want. That's the only way I can repay you for freeing me.";
+		mes "[Alma Perdida]";
+		mes "Elas podem parecer espadas de uma mão, mas posso colocá-las juntas para fazer uma de duas mãos se quiser. Essa é a única maneira para que eu possa retribuir-lhes por me libertar.";
 		next;
-		switch(select("Make a Two-Handed Sword.:No, thanks.")) {
+		switch(select("Faça uma espada de 2 mãos.:Não, obrigado.")) {
 		case 1:
-			mes "[Lost Souls]";
-			mes "Good, then I'll combine these to create a two-handed sword.";
+			mes "[Alma Perdida]";
+			mes "Bom, então eu vou combiná-las para criar uma espada de duas mãos.";
 			next;
 			delitem 13412,1; //Twin_Edge_B
 			delitem 13413,1; //Twin_Edge_R
 			getitem 1185,1; //Violet_Fear
-			mes "[Lost Souls]";
-			mes "I'd like to talk to you more, but I've... I've got to go now.";
+			mes "[Alma Perdida]";
+			mes "Eu gostaria de falar mais com vocês, mas eu tenho... Eu tenho que ir agora.";
 			next;
 			break;
 		case 2:
-			mes "[Lost Souls]";
-			mes "I see. I guess you aren't as greedy or ambitious as those other adventurers.";
+			mes "[Alma Perdida]";
+			mes "Eu vejo. Eu acho que você não são tão gananciosos ou ambiciosos quanto aqueles outros aventureiros.";
 			next;
-			mes "[Lost Souls]";
-			mes "I'd like to talk to you more, but I've... I've got to go now.";
+			mes "[Alma Perdida]";
+			mes "Eu gostaria de falar mais com vocês, mas eu tenho... Eu tenho que ir agora.";
 			next;
 			break;
 		}
 	}
-	mes "[Lost Souls]";
-	mes "Farewell, young adventurer. I wish you good luck.";
+	mes "[Alma Perdida]";
+	mes "Adeus, jovem aventureiro. Desejo-lhes boa sorte.";
 	close2;
 	warp "alberta",223,36;
 	end;
 
 OnInstanceInit:
-	disablenpc instance_npcname("Lost Soul#102", instance_id());
+	disablenpc instance_npcname("Alma Perdida#102", instance_id());
 	end;
 
 OnEnable:
 	initnpctimer;
-	enablenpc instance_npcname("Lost Soul#102", instance_id());
+	enablenpc instance_npcname("Alma Perdida#102", instance_id());
 	donpcevent instance_npcname("#Effect30", instance_id())+"::OnEnable";
 	//SetItemPartyInMap in_102floor 104
 	end;
 
 OnTimer500:
-	instance_announce 0,"This... This can't be happening! I can't be defeated!",bc_map,"0xffff00";
+	instance_announce 0,"Isso... Isso não pode estar acontecendo! Eu não posso ser derrotado!",bc_map,"0xffff00";
 	end;
 
 OnTimer5500:
-	instance_announce 0,"Nooo! My soul... My shell...! Nooo~!",bc_map,"0xffff00";
+	instance_announce 0,"Nããão! Minha alma... Meu corpo...! Nããããoo~!",bc_map,"0xffff00";
 	end;
 
 OnTimer10500:
-	instance_announce 0,"Nacht Sieger's body has turned into dark ashes that scattered in the wind.",bc_map,"0x00ffcc";
+	instance_announce 0,"O corpo de Nacht Sieger se transformou em cinzas escuras que se espalharam ao vento.",bc_map,"0x00ffcc";
 	stopnpctimer;
 	end;
 }
