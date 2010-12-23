@@ -22,6 +22,8 @@
 #include <string.h>
 #ifndef _WIN32
 #include <unistd.h>
+#include <locale.h>
+setlocale(LC_ALL,""); 
 #endif
 
 int runflag = 1;
@@ -163,7 +165,7 @@ const char* get_svn_revision(void)
 	}
 
 	if(!(*eA_svn_version))
-		snprintf(eA_svn_version, sizeof(eA_svn_version), "Unknown");
+		snprintf(eA_svn_version, sizeof(eA_svn_version), "Desconhecida");
 
 	return eA_svn_version;
 }
@@ -195,7 +197,7 @@ void usercheck(void)
 {
 #ifndef _WIN32
     if ((getuid() == 0) && (getgid() == 0)) {
-	ShowWarning ("Você está executando o brAthena como root superuser.\n");
+	ShowWarning ("Voce esta executando o brAthena como root superuser.\n");
 	ShowWarning ("E desnecessario e inseguro executar o brAthena com privilegios root.\n");
 	sleep(3);
     }
@@ -207,6 +209,10 @@ void usercheck(void)
  *--------------------------------------*/
 int main (int argc, char **argv)
 {
+#ifdef _WIN32
+	SetConsoleOutputCP(1252);
+#endif
+	
 	{// initialize program arguments
 		char *p1 = SERVER_NAME = argv[0];
 		char *p2 = p1;

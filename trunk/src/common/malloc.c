@@ -20,7 +20,7 @@ void* aMalloc_(size_t size, const char *file, int line, const char *func)
 	void *ret = MALLOC(size, file, line, func);
 	// ShowMessage("%s:%d: in func %s: aMalloc %d\n",file,line,func,size);
 	if (ret == NULL){
-		ShowFatalError("%s:%d: in func %s: aMalloc error out of memory!\n",file,line,func);
+		ShowFatalError("%s:%d: na funcao %s: erro aMalloc sem memoria!\n",file,line,func);
 		exit(EXIT_FAILURE);
 	}
 
@@ -31,7 +31,7 @@ void* aMallocA_(size_t size, const char *file, int line, const char *func)
 	void *ret = MALLOCA(size, file, line, func);
 	// ShowMessage("%s:%d: in func %s: aMallocA %d\n",file,line,func,size);
 	if (ret == NULL){
-		ShowFatalError("%s:%d: in func %s: aMallocA error out of memory!\n",file,line,func);
+		ShowFatalError("%s:%d: na funcao %s: erro aMallocA sem memoria!\n",file,line,func);
 		exit(EXIT_FAILURE);
 	}
 
@@ -42,7 +42,7 @@ void* aCalloc_(size_t num, size_t size, const char *file, int line, const char *
 	void *ret = CALLOC(num, size, file, line, func);
 	// ShowMessage("%s:%d: in func %s: aCalloc %d %d\n",file,line,func,num,size);
 	if (ret == NULL){
-		ShowFatalError("%s:%d: in func %s: aCalloc error out of memory!\n", file, line, func);
+		ShowFatalError("%s:%d: na funcao %s: erro aCalloc sem memoria!\n", file, line, func);
 		exit(EXIT_FAILURE);
 	}
 	return ret;
@@ -52,7 +52,7 @@ void* aCallocA_(size_t num, size_t size, const char *file, int line, const char 
 	void *ret = CALLOCA(num, size, file, line, func);
 	// ShowMessage("%s:%d: in func %s: aCallocA %d %d\n",file,line,func,num,size);
 	if (ret == NULL){
-		ShowFatalError("%s:%d: in func %s: aCallocA error out of memory!\n",file,line,func);
+		ShowFatalError("%s:%d: na funcao %s: erro aCallocA sem memoria!\n",file,line,func);
 		exit(EXIT_FAILURE);
 	}
 	return ret;
@@ -62,7 +62,7 @@ void* aRealloc_(void *p, size_t size, const char *file, int line, const char *fu
 	void *ret = REALLOC(p, size, file, line, func);
 	// ShowMessage("%s:%d: in func %s: aRealloc %p %d\n",file,line,func,p,size);
 	if (ret == NULL){
-		ShowFatalError("%s:%d: in func %s: aRealloc error out of memory!\n",file,line,func);
+		ShowFatalError("%s:%d: na funcao %s: erro aRealloc sem memoria!\n",file,line,func);
 		exit(EXIT_FAILURE);
 	}
 	return ret;
@@ -72,7 +72,7 @@ char* aStrdup_(const char *p, const char *file, int line, const char *func)
 	char *ret = STRDUP(p, file, line, func);
 	// ShowMessage("%s:%d: in func %s: aStrdup %p\n",file,line,func,p);
 	if (ret == NULL){
-		ShowFatalError("%s:%d: in func %s: aStrdup error out of memory!\n", file, line, func);
+		ShowFatalError("%s:%d: na funcao %s: erro aStrdup sem memoria!\n", file, line, func);
 		exit(EXIT_FAILURE);
 	}
 	return ret;
@@ -191,7 +191,7 @@ static void          block_free(struct block* p);
 static size_t        memmgr_usage_bytes;
 
 #define block2unit(p, n) ((struct unit_head*)(&(p)->data[ p->unit_size * (n) ]))
-#define memmgr_assert(v) do { if(!(v)) { ShowError("Memory manager: assertion '" #v "' failed!\n"); } } while(0)
+#define memmgr_assert(v) do { if(!(v)) { ShowError("Memory manager: afirmacao '" #v "' falhou!\n"); } } while(0)
 
 static unsigned short size2hash( size_t size )
 {
@@ -251,7 +251,7 @@ void* _mmalloc(size_t size, const char *file, int line, const char *func )
 			*(long*)((char*)p + sizeof(struct unit_head_large) - sizeof(long) + size) = 0xdeadbeaf;
 			return (char *)p + sizeof(struct unit_head_large) - sizeof(long);
 		} else {
-			ShowFatalError("Memory manager::memmgr_alloc failed (allocating %d+%d bytes at %s:%d).\n", sizeof(struct unit_head_large), size, file, line);
+			ShowFatalError("Memory manager::memmgr_alloc falhou (alocando %d+%d bytes em %s:%d).\n", sizeof(struct unit_head_large), size, file, line);
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -298,11 +298,11 @@ void* _mmalloc(size_t size, const char *file, int line, const char *func )
 			{
 				if( head->line != 0xfdfd )
 				{
-					ShowError("Memory manager: freed-data is changed. (freed in %s line %d)\n", head->file,head->line);
+					ShowError("Memory manager: dados liberados modificados. (liberado em %s linha %d)\n", head->file,head->line);
 				}
 				else
 				{
-					ShowError("Memory manager: not-allocated-data is changed.\n");
+					ShowError("Memory manager: dados nao alocados modificados.\n");
 				}
 				break;
 			}
@@ -378,7 +378,7 @@ void _mfree(void *ptr, const char *file, int line, const char *func )
 			*(long*)((char*)head_large + sizeof(struct unit_head_large) - sizeof(long) + head_large->size)
 			!= 0xdeadbeaf)
 		{
-			ShowError("Memory manager: args of aFree 0x%p is overflowed pointer %s line %d\n", ptr, file, line);
+			ShowError("Memory manager: args de aFree 0x%p e um ponteiro sobrecarregado %s linha %d\n", ptr, file, line);
 		} else {
 			head->size = -1;
 			if(head_large->prev) {
@@ -400,11 +400,11 @@ void _mfree(void *ptr, const char *file, int line, const char *func )
 		/* ユニット解放 */
 		struct block *block = head->block;
 		if( (char*)head - (char*)block > sizeof(struct block) ) {
-			ShowError("Memory manager: args of aFree 0x%p is invalid pointer %s line %d\n", ptr, file, line);
+			ShowError("Memory manager: args de aFree 0x%p e um ponteiro invalido %s linha %d\n", ptr, file, line);
 		} else if(head->block == NULL) {
-			ShowError("Memory manager: args of aFree 0x%p is freed pointer %s:%d@%s\n", ptr, file, line, func);
+			ShowError("Memory manager: args de aFree 0x%p e um ponteiro liberado %s:%d@%s\n", ptr, file, line, func);
 		} else if(*(long*)((char*)head + sizeof(struct unit_head) - sizeof(long) + head->size) != 0xdeadbeaf) {
-			ShowError("Memory manager: args of aFree 0x%p is overflowed pointer %s line %d\n", ptr, file, line);
+			ShowError("Memory manager: args de aFree 0x%p e um ponteiro sobrecarregado %s linha %d\n", ptr, file, line);
 		} else {
 			memmgr_usage_bytes -= head->size;
 			head->block         = NULL;
@@ -447,7 +447,7 @@ static struct block* block_malloc(unsigned short hash)
 		/* ブロック用の領域を新たに確保する */
 		p = (struct block*)MALLOC(sizeof(struct block) * (BLOCK_ALLOC), __FILE__, __LINE__, __func__ );
 		if(p == NULL) {
-			ShowFatalError("Memory manager::block_alloc failed.\n");
+			ShowFatalError("Memory manager::block_alloc falhou.\n");
 			exit(EXIT_FAILURE);
 		}
 
@@ -530,7 +530,7 @@ static void memmgr_log (char *buf)
 
 		time(&raw);
 		t = localtime(&raw);
-		fprintf(log_fp, "\nMemory manager: Memory leaks found at %d/%02d/%02d %02dh%02dm%02ds (Revision %s).\n",
+		fprintf(log_fp, "\nMemory manager: Vazamentos de memoria encontrados em %d/%02d/%02d %02dh%02dm%02ds (Revisao %s).\n",
 			(t->tm_year+1900), (t->tm_mon+1), t->tm_mday, t->tm_hour, t->tm_min, t->tm_sec, get_svn_revision());
 	}
 	fprintf(log_fp, "%s", buf);
@@ -603,7 +603,7 @@ static void memmgr_final (void)
 #ifdef LOG_MEMMGR
 					char buf[1024];
 					sprintf (buf,
-						"%04d : %s line %d size %lu address 0x%p\n", ++count,
+						"%04d : %s linha %d tamanho %lu endereco 0x%p\n", ++count,
 						head->file, head->line, (unsigned long)head->size, ptr);
 					memmgr_log (buf);
 #endif /* LOG_MEMMGR */
@@ -620,7 +620,7 @@ static void memmgr_final (void)
 #ifdef LOG_MEMMGR
 		char buf[1024];
 		sprintf (buf,
-			"%04d : %s line %d size %lu address 0x%p\n", ++count,
+			"%04d : %s linha %d tamanho %lu endereco 0x%p\n", ++count,
 			large->unit_head.file, large->unit_head.line, (unsigned long)large->size, &large->unit_head.checksum);
 		memmgr_log (buf);
 #endif /* LOG_MEMMGR */
@@ -630,9 +630,9 @@ static void memmgr_final (void)
 	}
 #ifdef LOG_MEMMGR
 	if(count == 0) {
-		ShowInfo("Memory manager: No memory leaks found.\n");
+		ShowInfo("Memory manager: Nenhum vazamento de memoria encontrado.\n");
 	} else {
-		ShowWarning("Memory manager: Memory leaks found and fixed.\n");
+		ShowWarning("Memory manager: Vazamentos de memoria encontrados e consertados\n");
 		fclose(log_fp);
 	}
 #endif /* LOG_MEMMGR */
@@ -643,7 +643,7 @@ static void memmgr_init (void)
 {
 #ifdef LOG_MEMMGR
 	sprintf(memmer_logfile, "log/%s.leaks", SERVER_NAME);
-	ShowStatus("Memory manager initialised: "CL_WHITE"%s"CL_RESET"\n", memmer_logfile);
+	ShowStatus("Gerenciador de Memoria inicializado: "CL_WHITE"%s"CL_RESET"\n", memmer_logfile);
 	memset(hash_unfill, 0, sizeof(hash_unfill));
 #endif /* LOG_MEMMGR */
 	return;

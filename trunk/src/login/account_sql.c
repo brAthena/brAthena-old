@@ -188,7 +188,7 @@ static bool account_db_sql_get_property(AccountDB* self, const char* key, char* 
 			safesnprintf(buf, buflen, "%d", ACCOUNT_SQL_DB_VERSION);
 		else
 		if( strcmpi(key, "comment") == 0 )
-			safesnprintf(buf, buflen, "SQL Account Database");
+			safesnprintf(buf, buflen, "Banco de Dados de Contas SQL");
 		else
 			return false;// not found
 		return true;
@@ -436,7 +436,7 @@ static bool account_db_sql_load_str(AccountDB* self, struct mmo_account* acc, co
 
 	if( Sql_NumRows(sql_handle) > 1 )
 	{// serious problem - duplicit account
-		ShowError("account_db_sql_load_str: multiple accounts found when retrieving data for account '%s'!\n", userid);
+		ShowError("account_db_sql_load_str: contas multiplas encontradas ao acessar dados da conta '%s'!\n", userid);
 		Sql_FreeResult(sql_handle);
 		return false;
 	}

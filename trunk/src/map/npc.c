@@ -3459,8 +3459,7 @@ int do_init_npc(void)
 		ShowStatus("Carregando NPC: %s"CL_CLL"\r", file->name);
 		npc_parsesrcfile(file->name);
 	}
-
-	ShowInfo ("Done loading '"CL_WHITE"%d"CL_RESET"' NPCs:"CL_CLL"\n"
+    ShowInfo ("Carregamento de '"CL_WHITE"%d"CL_RESET"' NPCs finalizado:"CL_CLL"\n"
 		"\t-'"CL_WHITE"%d"CL_RESET"' Portais\n"
 		"\t-'"CL_WHITE"%d"CL_RESET"' Lojas\n"
 		"\t-'"CL_WHITE"%d"CL_RESET"' Scripts\n"

@@ -179,7 +179,7 @@ Plugin* plugin_open(const char* filename)
 	while (plugin) {
 		// returns handle to the already loaded plugin
 		if( plugin->state && strcmpi(plugin->filename, filename) == 0 ){
-			ShowWarning("plugin_open: not loaded (duplicate) : '"CL_WHITE"%s"CL_RESET"'\n", filename);
+			ShowWarning("plugin_open: nao carregado (duplicado) : '"CL_WHITE"%s"CL_RESET"'\n", filename);
 			return plugin;
 		}
 		plugin = plugin->next;
@@ -190,7 +190,7 @@ Plugin* plugin_open(const char* filename)
 
 	plugin->dll = DLL_OPEN(filename);
 	if( !plugin->dll ){
-		ShowWarning("plugin_open: not loaded (invalid file) : '"CL_WHITE"%s"CL_RESET"'\n", filename);
+		ShowWarning("plugin_open: nao caregado (arquivo invalido) : '"CL_WHITE"%s"CL_RESET"'\n", filename);
 		plugin_unload(plugin);
 		return NULL;
 	}
@@ -211,7 +211,7 @@ Plugin* plugin_open(const char* filename)
 		}
 	} else if( !plugin_iscompatible(info->req_version) )
 	{// incompatible version
-		ShowWarning("plugin_open: not loaded (incompatible version '%s' -> '%s') : '"CL_WHITE"%s"CL_RESET"'\n", info->req_version, PLUGIN_VERSION, filename);
+		ShowWarning("plugin_open: nao carregado (versao incompativel '%s' -> '%s') : '"CL_WHITE"%s"CL_RESET"'\n", info->req_version, PLUGIN_VERSION, filename);
 		plugin_unload(plugin);
 		return NULL;
 	} else if( (info->type != PLUGIN_ALL && info->type != PLUGIN_CORE && info->type != SERVER_TYPE) ||
@@ -261,7 +261,7 @@ Plugin* plugin_open(const char* filename)
 	plugin_head = plugin;
 
 	plugin->state = init_flag;	// fully loaded
-	ShowStatus("Done loading plugin '"CL_WHITE"%s"CL_RESET"'\n", (info) ? plugin->info->name : filename);
+	ShowStatus("Plugin '"CL_WHITE"%s"CL_RESET"' carregado\n", (info) ? plugin->info->name : filename);
 
 	return plugin;
 }
@@ -301,7 +301,7 @@ static int plugins_config_read(const char *cfgName)
 
 	fp = fopen(cfgName, "r");
 	if( fp == NULL ){
-		ShowError("File not found: %s\n", cfgName);
+		ShowError("Arquivo nao encontrado: %s\n", cfgName);
 		return 1;
 	}
 	while( fgets(line, sizeof(line), fp) )

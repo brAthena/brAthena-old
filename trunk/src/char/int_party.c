@@ -115,7 +115,7 @@ int inter_party_tosql(struct party *p, int flag, int index)
 	party_id = p->party_id;
 
 #ifdef NOISY
-	ShowInfo("Save party request ("CL_BOLD"%d"CL_RESET" - %s).\n", party_id, p->name);
+	ShowInfo("Salvamento de grupo requisitado ("CL_BOLD"%d"CL_RESET" - %s).\n", party_id, p->name);
 #endif
 	Sql_EscapeStringLen(sql_handle, esc_name, p->name, strnlen(p->name, NAME_LENGTH));
 
@@ -189,7 +189,7 @@ int inter_party_tosql(struct party *p, int flag, int index)
 	}
 #endif //TXT_SQL_CONVERT
 	if( save_log )
-		ShowInfo("Party Saved (%d - %s)\n", party_id, p->name);
+		ShowInfo("Grupo salvo (%d - %s)\n", party_id, p->name);
 	return 1;
 }
 #ifndef TXT_SQL_CONVERT
@@ -205,7 +205,7 @@ struct party_data *inter_party_fromsql(int party_id)
 	int i;
 
 #ifdef NOISY
-	ShowInfo("Load party request ("CL_BOLD"%d"CL_RESET")\n", party_id);
+	ShowInfo("Carregamento de grupo requisitada ("CL_BOLD"%d"CL_RESET")\n", party_id);
 #endif
 	if( party_id <= 0 )
 		return NULL;
@@ -256,7 +256,7 @@ struct party_data *inter_party_fromsql(int party_id)
 	Sql_FreeResult(sql_handle);
 
 	if( save_log )
-		ShowInfo("Party loaded (%d - %s).\n", party_id, p->party.name);
+		ShowInfo("Grupo carregado (%d - %s).\n", party_id, p->party.name);
 	//Add party to memory.
 	CREATE(p, struct party_data, 1);
 	memcpy(p, party_pt, sizeof(struct party_data));
@@ -345,7 +345,7 @@ int mapif_party_created(int fd,int account_id,int char_id,struct party *p)
 		WFIFOB(fd,10)=0;
 		WFIFOL(fd,11)=p->party_id;
 		memcpy(WFIFOP(fd,15),p->name,NAME_LENGTH);
-		ShowInfo("int_party: Party created (%d - %s)\n",p->party_id,p->name);
+		ShowInfo("int_party: Grupo criado (%d - %s)\n",p->party_id,p->name);
 	}else{
 		WFIFOB(fd,10)=1;
 		WFIFOL(fd,11)=0;
@@ -364,7 +364,7 @@ int mapif_party_noinfo(int fd,int party_id)
 	WFIFOW(fd,2)=8;
 	WFIFOL(fd,4)=party_id;
 	WFIFOSET(fd,8);
-	ShowWarning("int_party: info not found %d\n",party_id);
+	ShowWarning("int_party: informacao nao encontrada %d\n",party_id);
 	return 0;
 }
 // パーティ情報まとめ送り
@@ -793,7 +793,7 @@ int inter_party_CharOnline(int char_id, int party_id)
 	
 	p = inter_party_fromsql(party_id);
 	if(!p) {
-		ShowError("Character %d's party %d not found!\n", char_id, party_id);
+		ShowError("Grupo %d do personagem %d nao encontrado!\n", party_id, char_id);
 		return 0;
 	}
 

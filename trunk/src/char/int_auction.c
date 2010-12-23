@@ -113,7 +113,7 @@ unsigned int auction_create(struct auction_data *auction)
 
 		auction->auction_id = (unsigned int)SqlStmt_LastInsertId(stmt);
 		auction->auction_end_timer = add_timer( gettick() + tick , auction_end_timer, auction->auction_id, 0);
-		ShowInfo("New Auction %u | time left %u ms | By %s.\n", auction->auction_id, tick, auction->seller_name);
+		ShowInfo("Novo Leilao %u | tempo restante %u ms | Por %s.\n", auction->auction_id, tick, auction->seller_name);
 
 		CREATE(auction_, struct auction_data, 1);
 		memcpy(auction_, auction, sizeof(struct auction_data));
@@ -143,14 +143,14 @@ static int auction_end_timer(int tid, unsigned int tick, int id, intptr data)
 	{
 		if( auction->buyer_id )
 		{
-			mail_sendmail(0, "Auction Manager", auction->buyer_id, auction->buyer_name, "Auction", "Thanks, you won the auction!.", 0, &auction->item);
+			mail_sendmail(0, "Gerente de Leilão", auction->buyer_id, auction->buyer_name, "Leilão", "Obrigado, você venceu o leilão!.", 0, &auction->item);
 			mapif_Auction_message(auction->buyer_id, 6); // You have won the auction
-			mail_sendmail(0, "Auction Manager", auction->seller_id, auction->seller_name, "Auction", "Payment for your auction!.", auction->price, NULL);
+			mail_sendmail(0, "Gerente de Leilão", auction->seller_id, auction->seller_name, "Leilão", "Pagamento pelo seu leilão!.", auction->price, NULL);
 		}
 		else
-			mail_sendmail(0, "Auction Manager", auction->seller_id, auction->seller_name, "Auction", "No buyers have been found for your auction.", 0, &auction->item);
+			mail_sendmail(0, "Gerente de Leilão", auction->seller_id, auction->seller_name, "Leilão", "Nenhum comprador encontrado para seu leilão.", 0, &auction->item);
 		
-		ShowInfo("Auction End: id %u.\n", auction->auction_id);
+		ShowInfo("Fim do Leilao: id %u.\n", auction->auction_id);
 
 		auction->auction_end_timer = INVALID_TIMER;
 		auction_delete(auction);
@@ -352,7 +352,7 @@ static void mapif_parse_Auction_cancel(int fd)
 		return;
 	}
 
-	mail_sendmail(0, "Auction Manager", auction->seller_id, auction->seller_name, "Auction", "Auction canceled.", 0, &auction->item);
+	mail_sendmail(0, "Gerente de Leilão", auction->seller_id, auction->seller_name, "Leilão", "Leilão cancelado.", 0, &auction->item);
 	auction_delete(auction);
 
 	mapif_Auction_cancel(fd, char_id, 0); // The auction has been canceled
@@ -391,9 +391,9 @@ static void mapif_parse_Auction_close(int fd)
 	}
 
 	// Send Money to Seller
-	mail_sendmail(0, "Auction Manager", auction->seller_id, auction->seller_name, "Auction", "Auction closed.", auction->price, NULL);
+	mail_sendmail(0, "Gerente de Leilão", auction->seller_id, auction->seller_name, "Leilão", "Leilão finalizado.", auction->price, NULL);
 	// Send Item to Buyer
-	mail_sendmail(0, "Auction Manager", auction->buyer_id, auction->buyer_name, "Auction", "Auction winner.", 0, &auction->item);
+	mail_sendmail(0, "Gerente de Leilão", auction->buyer_id, auction->buyer_name, "Leilão", "Você venceu o leilão.", 0, &auction->item);
 	mapif_Auction_message(auction->buyer_id, 6); // You have won the auction
 	auction_delete(auction);
 
@@ -432,11 +432,11 @@ static void mapif_parse_Auction_bid(int fd)
 	{ // Send Money back to the previous Buyer
 		if( auction->buyer_id != char_id )
 		{
-			mail_sendmail(0, "Auction Manager", auction->buyer_id, auction->buyer_name, "Auction", "Someone has placed a higher bid.", auction->price, NULL);
+			mail_sendmail(0, "Gerente do Leilão", auction->buyer_id, auction->buyer_name, "Leilão", "Alguém deu um lance maior.", auction->price, NULL);
 			mapif_Auction_message(auction->buyer_id, 7); // You have failed to win the auction
 		}
 		else
-			mail_sendmail(0, "Auction Manager", auction->buyer_id, auction->buyer_name, "Auction", "You have placed a higher bid.", auction->price, NULL);
+			mail_sendmail(0, "Gerente do Leilão", auction->buyer_id, auction->buyer_name, "Leilão", "Você deu um lance maior.", auction->price, NULL);
 	}
 
 	auction->buyer_id = char_id;
@@ -447,9 +447,9 @@ static void mapif_parse_Auction_bid(int fd)
 	{ // Automatic won the auction
 		mapif_Auction_bid(fd, char_id, bid - auction->buynow, 1); // You have successfully bid in the auction
 
-		mail_sendmail(0, "Auction Manager", auction->buyer_id, auction->buyer_name, "Auction", "You have won the auction.", 0, &auction->item);
+		mail_sendmail(0, "Gerente do Leilão", auction->buyer_id, auction->buyer_name, "Leilão", "Você venceu o leilão.", 0, &auction->item);
 		mapif_Auction_message(char_id, 6); // You have won the auction
-		mail_sendmail(0, "Auction Manager", auction->seller_id, auction->seller_name, "Auction", "Payment for your auction!.", auction->buynow, NULL);
+		mail_sendmail(0, "Gerente do Leilão", auction->seller_id, auction->seller_name, "Leilão", "Pagamento pelo seu leilão!.", auction->buynow, NULL);
 
 		auction_delete(auction);
 		return;

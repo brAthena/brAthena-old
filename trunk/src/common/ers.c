@@ -182,7 +182,7 @@ static void *ers_obj_alloc_entry(ERS self)
 	void *ret;
 
 	if (obj == NULL) {
-		ShowError("ers::alloc : NULL object, aborting entry allocation.\n");
+		ShowError("ers::alloc : Objeto NULO, cancelando alocacao de entrada.\n");
 		return NULL;
 	}
 
@@ -195,8 +195,8 @@ static void *ers_obj_alloc_entry(ERS self)
 	} else { // allocate a new block
 		if (obj->num == obj->max) { // expand the block array
 			if (obj->max == UINT32_MAX) { // No more space for blocks
-				ShowFatalError("ers::alloc : maximum number of blocks reached, increase ERS_BLOCK_ENTRIES.\n"
-						"exiting the program...\n");
+				ShowFatalError("ers::alloc : numero maximo de blocos alcancado, aumente ERS_BLOCK_ENTRIES.\n"
+						"saindo do programa...\n");
 				exit(EXIT_FAILURE);
 			}
 			obj->max = (obj->max*4)+3; // left shift bits '11' - overflow won't happen
@@ -226,10 +226,10 @@ static void ers_obj_free_entry(ERS self, void *entry)
 	ERLinkedList reuse;
 
 	if (obj == NULL) {
-		ShowError("ers::free : NULL object, aborting entry freeing.\n");
+		ShowError("ers::free : Objeto NULO, cancelando liberacao da entrada.\n");
 		return;
 	} else if (entry == NULL) {
-		ShowError("ers::free : NULL entry, nothing to free.\n");
+		ShowError("ers::free : Entrada NULA, nada a ser liberado.\n");
 		return;
 	}
 
@@ -250,7 +250,7 @@ static size_t ers_obj_entry_size(ERS self)
 	ERS_impl obj = (ERS_impl)self;
 
 	if (obj == NULL) {
-		ShowError("ers::entry_size : NULL object, returning 0.\n");
+		ShowError("ers::entry_size : Objeto NULO, retornando 0.\n");
 		return 0;
 	}
 
@@ -274,7 +274,7 @@ static void ers_obj_destroy(ERS self)
 	uint32 count;
 
 	if (obj == NULL) {
-		ShowError("ers::destroy: NULL object, aborting instance destruction.\n");
+		ShowError("ers::destroy: Objeto NULO, cancelando destruicao de instancia.\n");
 		return;
 	}
 
@@ -311,14 +311,14 @@ static void ers_obj_destroy(ERS self)
 		}
 	}
 	if (count) { // missing entries
-		ShowWarning("ers::destroy : %u entries missing (possible double free), continuing destruction (entry size=%u).\n",
+		ShowWarning("ers::destroy : %u entradas faltando (possivel liberacao dupla), continuando destruicao (tamanho da entrada=%u).\n",
 				count, obj->size);
 	} else if (reuse) { // extra entries
 		while (reuse && count != UINT32_MAX) {
 			count++;
 			reuse = reuse->next;
 		}
-		ShowWarning("ers::destroy : %u extra entries found, continuing destruction (entry size=%u).\n",
+		ShowWarning("ers::destroy : %u entradas extras encontradas, continuando destruicao (tamanho da entrada=%u).\n",
 				count, obj->size);
 	}
 	// destroy the entry manager
@@ -356,7 +356,7 @@ ERS ers_new(uint32 size)
 	uint32 i;
 
 	if (size == 0) {
-		ShowError("ers_new: invalid size %u, aborting instance creation.\n",
+		ShowError("ers_new: tamanho invalido %u, cancelando criacao da instancia.\n",
 				size);
 		return NULL;
 	}
@@ -376,8 +376,8 @@ ERS ers_new(uint32 size)
 	}
 	// create a new manager to handle the entry size
 	if (ers_num == ERS_ROOT_SIZE) {
-		ShowFatalError("ers_alloc: too many root objects, increase ERS_ROOT_SIZE.\n"
-				"exiting the program...\n");
+		ShowFatalError("ers_alloc: muitos objetos root, aumente ERS_ROOT_SIZE.\n"
+				"saindo do programa...\n");
 		exit(EXIT_FAILURE);
 	}
 	obj = (ERS_impl)aMalloc(sizeof(struct ers_impl));
@@ -421,10 +421,10 @@ void ers_report(void)
 	ERS_impl obj;
 
 	// Root system report
-	ShowMessage(CL_BOLD"Entry Reusage System report:\n"CL_NORMAL);
-	ShowMessage("root array size     : %u\n", ERS_ROOT_SIZE);
-	ShowMessage("root entry managers : %u\n", ers_num);
-	ShowMessage("entries per block   : %u\n", ERS_BLOCK_ENTRIES);
+	ShowMessage(CL_BOLD"Relatorio do Sistema de Reutilizacao de Entradas:\n"CL_NORMAL);
+	ShowMessage("tamanho da array root     : %u\n", ERS_ROOT_SIZE);
+	ShowMessage("gerenciadores de entrada root : %u\n", ers_num);
+	ShowMessage("entradas por bloco   : %u\n", ERS_BLOCK_ENTRIES);
 	for (i = 0; i < ers_num; i++) {
 		obj = ers_root[i];
 		reuse = obj->reuse;
@@ -460,18 +460,18 @@ void ers_report(void)
 			reuse = reuse->next;
 		}
 		// Entry manager report
-		ShowMessage(CL_BOLD"[Entry manager #%u report]\n"CL_NORMAL, i);
-		ShowMessage("\tinstances          : %u\n", obj->destroy);
-		ShowMessage("\tentry size         : %u\n", obj->size);
-		ShowMessage("\tblock array size   : %u\n", obj->max);
-		ShowMessage("\tallocated blocks   : %u\n", obj->num);
-		ShowMessage("\tentries being used : %u\n", used);
-		ShowMessage("\tunused entries     : %u\n", obj->free);
-		ShowMessage("\treusable entries   : %u\n", reusable);
+		ShowMessage(CL_BOLD"[Relatorio do Gerenciador de Entradas #%u ]\n"CL_NORMAL, i);
+		ShowMessage("\tinstancias          : %u\n", obj->destroy);
+		ShowMessage("\ttamanho de entrada         : %u\n", obj->size);
+		ShowMessage("\ttamanho da array de blocos   : %u\n", obj->max);
+		ShowMessage("\tblocos alocados   : %u\n", obj->num);
+		ShowMessage("\tentradas em uso : %u\n", used);
+		ShowMessage("\tentradas sem uso     : %u\n", obj->free);
+		ShowMessage("\tentradar reutilizaveis   : %u\n", reusable);
 		if (extra)
-			ShowMessage("\tWARNING - %u extra reusable entries were found.\n", extra);
+			ShowMessage("\tATENCAO - %u entradas reutilizaveis extras encontradas.\n", extra);
 	}
-	ShowMessage("End of report\n");
+	ShowMessage("Fim do Relatorio\n");
 }
 
 /**

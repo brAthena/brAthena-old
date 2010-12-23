@@ -76,7 +76,7 @@ int msg_silent = 0; //Specifies how silent the console is.
 		buf.d_ = StringBuf_Malloc();					\
 		buf.l_ = StringBuf_Vprintf(buf.d_, fmt, args);	\
 		buf.v_ = StringBuf_Value(buf.d_);				\
-		ShowDebug("showmsg: dynamic buffer used, increase the static buffer size to %d or more.\n", buf.l_+1);\
+		ShowDebug("showmsg: buffer dinamico usado, aumente o tamanho do buffer estatico para %d ou mais.\n", buf.l_+1);\
 	}													\
 //define BUFVPRINTF
 
@@ -680,7 +680,7 @@ int _vShowMessage(enum msg_type flag, const char *string, va_list ap)
 #endif
 	
 	if (!string || *string == '\0') {
-		ShowError("Empty string passed to _vShowMessage().\n");
+		ShowError("Texto vazio passado ao _vShowMessage().\n");
 		return 1;
 	}
 	if(
@@ -713,10 +713,10 @@ int _vShowMessage(enum msg_type flag, const char *string, va_list ap)
 			strcat(prefix,CL_WHITE"[Info]"CL_RESET":");
 			break;
 		case MSG_NOTICE: //Bright White (Less than a warning)
-			strcat(prefix,CL_WHITE"[Notice]"CL_RESET":");
+			strcat(prefix,CL_WHITE"[Aviso]"CL_RESET":");
 			break;
 		case MSG_WARNING: //Bright Yellow
-			strcat(prefix,CL_YELLOW"[Warning]"CL_RESET":");
+			strcat(prefix,CL_YELLOW"[Atencao]"CL_RESET":");
 			break;
 		case MSG_DEBUG: //Bright Cyan, important stuff!
 			strcat(prefix,CL_CYAN"[Debug]"CL_RESET":");
@@ -725,10 +725,10 @@ int _vShowMessage(enum msg_type flag, const char *string, va_list ap)
 			strcat(prefix,CL_RED"[Erro]"CL_RESET":");
 			break;
 		case MSG_FATALERROR: //Bright Red (Fatal errors, abort(); if possible)
-			strcat(prefix,CL_RED"[Fatal Error]"CL_RESET":");
+			strcat(prefix,CL_RED"[Erro Fatal]"CL_RESET":");
 			break;
 		default:
-			ShowError("In function _vShowMessage() -> Invalid flag passed.\n");
+			ShowError("Na funcao _vShowMessage() -> flag invalida passada.\n");
 			return 1;
 	}
 
@@ -752,7 +752,7 @@ int _vShowMessage(enum msg_type flag, const char *string, va_list ap)
 	if(strlen(DEBUGLOGPATH) > 0) {
 		fp=fopen(DEBUGLOGPATH,"a");
 		if (fp == NULL)	{
-			FPRINTF(STDERR, CL_RED"[ERRO]"CL_RESET": Could not open '"CL_WHITE"%s"CL_RESET"', access denied.\n", DEBUGLOGPATH);
+			FPRINTF(STDERR, CL_RED"[ERRO]"CL_RESET": Nao foi possivel abrir '"CL_WHITE"%s"CL_RESET"', acesso negado.\n", DEBUGLOGPATH);
 			FFLUSH(STDERR);
 		} else {
 			fprintf(fp,"%s ", prefix);
@@ -762,7 +762,7 @@ int _vShowMessage(enum msg_type flag, const char *string, va_list ap)
 			fclose(fp);
 		}
 	} else {
-		FPRINTF(STDERR, CL_RED"[ERRO]"CL_RESET": DEBUGLOGPATH not defined!\n");
+		FPRINTF(STDERR, CL_RED"[ERRO]"CL_RESET": DEBUGLOGPATH nao definido!\n");
 		FFLUSH(STDERR);
 	}
 #endif

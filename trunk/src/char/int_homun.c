@@ -223,7 +223,7 @@ bool mapif_homunculus_load(int homun_id, struct s_homunculus* hd)
 	Sql_FreeResult(sql_handle);
 
 	if( save_log )
-		ShowInfo("Homunculus loaded (%d - %s).\n", hd->hom_id, hd->name);
+		ShowInfo("Homunculo carregado (%d - %s).\n", hd->hom_id, hd->name);
 
 	return true;
 }
