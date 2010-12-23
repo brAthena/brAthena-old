@@ -9,6 +9,13 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0064 - 22/12/2010 [Protimus]
+	* Atualizado conforme eAthena r146016.
+	* Correções em alguns guias.
+	* Enviadas traduções.
+	- guias/guias_hu.txt
+	- guias/guias_mosk.txt
+
 	r0063 - 22/12/2010 [Protimus]
 	* Atualizado conforme eAthena r146015.
 	* Pequena correção em guias_pront.txt

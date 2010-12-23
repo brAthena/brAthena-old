@@ -17,8 +17,7 @@
 // | Descrição: Guias da cidade de Morroc                   |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			  						| 
+// | 1.0 Script Traduzido [Protimus]                        |
 // \________________________________________________________/
 
 morocc,153,286,6	script	Guia#moc::MocGuide	707,{
