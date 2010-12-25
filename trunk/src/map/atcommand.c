@@ -6925,9 +6925,9 @@ ACMD_FUNC(mail)
  *------------------------------------------*/
 ACMD_FUNC(mobinfo)
 {
-	unsigned char msize[3][7] = {"Pequeno", "Médio", "Grande"};
-	unsigned char mrace[12][11] = {"Deformado", "Morto-vivo", "Besta", "Planta", "Inseto", "Peixe", "Demônio", "Demi-Humano", "Anjo", "Dragão", "Chefe", "Não-Chefe"};
-	unsigned char melement[10][8] = {"Neutro", "Água", "Terra", "Fogo", "Vento", "Veneno", "Sagrado", "Escuridão", "Fantasma", "Morto-vivo"};
+	unsigned char msize[3][8] = {"Pequeno", "Médio", "Grande"};
+	unsigned char mrace[12][12] = {"Deformado", "Morto-vivo", "Besta", "Planta", "Inseto", "Peixe", "Demônio", "Demi-Humano", "Anjo", "Dragão", "Chefe", "Não-Chefe"};
+	unsigned char melement[10][11] = {"Neutro", "Água", "Terra", "Fogo", "Vento", "Veneno", "Sagrado", "Sombrio", "Fantasma", "Morto-vivo"};
 	char atcmd_output2[CHAT_SIZE_MAX];
 	struct item_data *item_data;
 	struct mob_db *mob, *mob_array[MAX_SEARCH];

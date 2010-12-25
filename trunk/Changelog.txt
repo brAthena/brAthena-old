@@ -9,6 +9,20 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0067 - 25/12/2010 [Lord]
+	* Enviada tradução da pasta /monstros .
+	- Traduzida por K2X.
+	* Enviada tradução do mob_db.
+	- Traduzida por SoulSyntax, Natushi e Floozie.
+	* Corrigido codificação do script espadachim.txt .
+	* Corrigido cabeçalho da torre_infinita.txt .
+	-  Também foi enviada uma pequena tradução faltante .
+	* Renomeado script professor_.txt para professor.txt .
+	* Corrigido pequeno waring na source ( atcommand.c ) .
+	- Aumentado o máximo de caracteres declarados de uma array.
+	* Corrigido algumas traduções da source ( log.c ).
+	- Removido alguns acentos.
+
 	r0066 - 23/12/2010 [Wiskovisky]
 	* Enviada mais uma grande parte da tradução do emulador
 

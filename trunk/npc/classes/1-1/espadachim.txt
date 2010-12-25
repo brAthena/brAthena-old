@@ -12,13 +12,13 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | VersÃµes eA/brA: 2.3/1.0                                |
+// | Versões eA/brA: 2.3/1.0                                |
 // |--------------------------------------------------------|
-// | DescriÃ§Ã£o: MudanÃ§a de Classe para Espadachim           |
+// | Descrição: Mudança de Classe para Espadachim           |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 ModificaÃ§Ã£o [Autor]                                |
-// | - AnotaÃ§Ãµes		   			    					| 
+// | 1.0 Modificação [Autor]                                |
+// | - Anotações		   			    					| 
 // \________________________________________________________/
 
 izlude_in,74,172,4	script	Swordman#swd_1	119,{
@@ -381,10 +381,10 @@ job_sword1,193,168,0	script	Test Hall Staff#swd_9	45,1,3,{
 
 // Pitfalls (Set 1)
 //============================================================ 
-job_sword1,65,117,0	warp	ï¿½ï¿½ï¿½ï¿½01-01	1,1,job_sword1,10,245
-job_sword1,98,27,0	warp	ï¿½ï¿½ï¿½ï¿½02-01	1,1,job_sword1,11,207
-job_sword1,161,27,0	warp	ï¿½ï¿½ï¿½ï¿½02-02	1,1,job_sword1,11,207
-job_sword1,239,117,0	warp	ï¿½ï¿½ï¿½ï¿½03-01	1,1,job_sword1,11,169
+job_sword1,65,117,0	warp	????01-01	1,1,job_sword1,10,245
+job_sword1,98,27,0	warp	????02-01	1,1,job_sword1,11,207
+job_sword1,161,27,0	warp	????02-02	1,1,job_sword1,11,207
+job_sword1,239,117,0	warp	????03-01	1,1,job_sword1,11,169
 
 job_sword1,16,251,0	script	1_blank_1_a::SwdTrap1	-1,0,1,{
 OnTouch:

@@ -18,9 +18,8 @@
 // | Consists of 101 floors.				    			|
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Traduzido para Português BR [SoulSyntax]           |
-// | - Anotações		   		 	    					|
-// | Foram feitas adaptações nos nomes dos NPCs para pt_BR  |
+// | 1.0 Script Traduzido [SoulSyntax]                      |
+// | - Foram feitas adaptações nos nomes dos NPCs para pt_BR|
 // \________________________________________________________/
 
 alberta,214,77,6	script	Capitão Janssen	709,{
@@ -3748,7 +3747,7 @@ OnInstanceInit:
 OnMyMobDead:
 	set .@mob_dead_num,mobcount("5@tower",instance_npcname("#102FShadowDust1", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
-		instance_announce 0, "Mysterious Voice: Who are you to dare intrude upon my sanctuary?!",bc_map,"0xffff00";
+		instance_announce 0, "Voz misteriosa: Quem é você para ousar invadir o meu santuário?!",bc_map,"0xffff00";
 		donpcevent instance_npcname("#102FShadowDust", instance_id())+"::OnDisable";
 		donpcevent instance_npcname("Lucid Crystal#102", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 100

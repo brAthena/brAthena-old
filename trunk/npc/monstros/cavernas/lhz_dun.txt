@@ -16,7 +16,7 @@
 // | Versões eA/brA: 1.8/1.0                                |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
+// | 1.0 Script Traduzido [K2X]                             |
 // | - Anotações		   			   						| 
 // \________________________________________________________/
 
@@ -27,7 +27,7 @@
 
 lhz_dun01,0,0,0,0	monster	Metaling	1613,50,0,0,0
 lhz_dun01,0,0,0,0	monster	Anopheles	1627,70,0,0,0
-lhz_dun01,0,0,0,0	monster	Remover	1682,100,0,0,0
+lhz_dun01,0,0,0,0	monster	Exterminador	1682,100,0,0,0
 lhz_dun01,0,0,0,0	monster	Egnigem Cenia	1652,1,0,0,0
 lhz_dun01,0,0,0,0	monster	Wickebine Tres	1653,1,0,0,0
 lhz_dun01,0,0,0,0	monster	Armeyer Dinze	1654,1,0,0,0
@@ -88,7 +88,7 @@ lhz_dun02,0,0,0,0	monster	Armeyer Dinze	1654,10,300000,150000,1
 lhz_dun02,0,0,0,0	monster	Errende Ebecee	1655,10,300000,150000,1
 lhz_dun02,0,0,0,0	monster	Kavach Icarus	1656,10,300000,150000,1
 lhz_dun02,0,0,0,0	monster	Laurell Weinder	1657,10,300000,150000,1
-lhz_dun02,0,0,0,0	monster	Remover	1682,20,300000,150000,1
+lhz_dun02,0,0,0,0	monster	Exterminador	1682,20,300000,150000,1
 lhz_dun02,0,0,0,0	monster	Eremes Guile	1635,1,180000,120000,0
 lhz_dun02,0,0,0,0	monster	Gemini-S58	1681,10,5400000,180000,0
 lhz_dun02,0,0,0,0	boss_monster	Egnigem Cenia	1658,1,7200000,600000,1
@@ -212,12 +212,12 @@ lhz_dun03,180,113,13,9	monster	Margaretha Sorin	1637,2,300000,120000,0
 lhz_dun03,180,113,13,9	monster	Cecil Damon	1638,5,0,0,0
 lhz_dun03,180,113,13,9	monster	Kathryne Keyron	1639,3,0,0,0
 
-lhz_dun03,114,138,12,16	monster	Lord Knight Seyren	1640,1,2700000,2400000,1
-lhz_dun03,163,138,12,16	monster	Whitesmith Howard	1642,1,3000000,2700000,1
-lhz_dun03,139,158,20,11	monster	Assassin Cross Eremes	1641,1,2580000,2340000,1
-lhz_dun03,139,117,20,11	monster	Sniper Cecil	1644,1,2700000,2500000,1
-lhz_dun03,138,138,36,34	monster	High Priest Margaretha	1643,1,3300000,3000000,1
-lhz_dun03,138,138,36,34	monster	High Wizard Kathryne	1645,1,2580000,2460000,1
+lhz_dun03,114,138,12,16	monster	Lorde Seyren	1640,1,2700000,2400000,1
+lhz_dun03,163,138,12,16	monster	Mestre-ferreiro Howard	1642,1,3000000,2700000,1
+lhz_dun03,139,158,20,11	monster	Algoz Eremes	1641,1,2580000,2340000,1
+lhz_dun03,139,117,20,11	monster	Atiradora de Elite Cecil	1644,1,2700000,2500000,1
+lhz_dun03,138,138,36,34	monster	Suma-Sacerdotisa Margaretha	1643,1,3300000,3000000,1
+lhz_dun03,138,138,36,34	monster	Arquimaga Kathryne	1645,1,2580000,2460000,1
 
 lhz_dun03,2,2,0	script	summon_boss_lt	-1,{
 OnInit:
