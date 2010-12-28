@@ -9,6 +9,32 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0069 - 28/12/2010 [Protimus]
+	* Adicionadas traduções da pasta GdE.
+	- gde/aldeg_cas01.txt
+	- gde/aldeg_cas02.txt
+	- gde/aldeg_cas03.txt
+	- gde/aldeg_cas04.txt
+	- gde/aldeg_cas05.txt
+	- gde/gde_controlador.txt
+	- gde/gde_padrao.txt
+	- gde/gefg_cas01.txt
+	- gde/gefg_cas02.txt
+	- gde/gefg_cas03.txt
+	- gde/gefg_cas04.txt
+	- gde/gefg_cas05.txt
+	- gde/payg_cas01.txt
+	- gde/payg_cas02.txt
+	- gde/payg_cas03.txt
+	- gde/payg_cas04.txt
+	- gde/payg_cas05.txt
+	- gde/prtg_cas01.txt
+	- gde/prtg_cas02.txt
+	- gde/prtg_cas03.txt
+	- gde/prtg_cas04.txt
+	- gde/prtg_cas05.txt
+	NOTA: Farei a revisão ainda hoje.
+	
 	r0068 - 28/12/2010 [Protimus]
 	* Atualizado conforme eAthena r14635.
 	* Corrigidos problemas com linux na hora de compilar.

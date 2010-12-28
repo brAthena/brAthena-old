@@ -17,8 +17,7 @@
 // | Descrição: NPCs that relate to Aldebaran Guild Castle 3|
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    					| 
+// | 1.0 Script Traduzido [cleyton]     		            | 
 // \________________________________________________________/
 
 // Guild Flag (Town)
@@ -36,24 +35,24 @@ OnRecvCastleA03:
 alde_gld,138,82,0	script	Nuenberg#a3-2::Nuenberg2	722,{
 	set .@GID, GetCastleData("aldeg_cas03",1);
 	if (.@GID == 0) {
-		mes " [ Edict of the Divine Rune Midgard Kingdom ]";
+		mes " [ Decreto do Reino de Rune Midgard ]";
 		mes " ";
-		mes "1. Follow the ordinance of The Divine Rune Midgard Kingdom, ";
-		mes "We declare that";
-		mes "there is no formal master of this castle.";
+		mes "1. Conforme o Pacto do Reino de Rune Midgard, ";
+		mes "declaro que este Castelo";
+		mes "não possui um Senhor.";
 		mes " ";
-		mes "2. To the one who can ";
-		mes "overcome all trials";
-		mes "and destroy the Emperium,";
-		mes "the king will endow the one with";
-		mes "ownership of this castle.";
+		mes "2. Para quem puder ";
+		mes "superar terríveis desafios";
+		mes "e destruir o Emperium,";
+		mes "receberá a posse do castelo";
+		mes "com o apoio do nosso rei.";
 	}
 	else {
 		if (getcharid(2) == .@GID) {
-			mes "Brave ones...";
-			mes "Do you wish to return to your honorable place?";
+			mes "Bravo guerreiro...";
+			mes "Você deseja retornar ao seu lugar de honra?";
 			next;
-			if (select("Return to the guild castle.:Quit.") == 1) {
+			if (select("Retornar para o castelo do Clã.:Não.") == 1) {
 				if (getcharid(2) == GetCastleData("aldeg_cas03",1)) {
 					warp "aldeg_cas03",118,76;
 					//warp "aldeg_cas03",205,186;
@@ -62,17 +61,17 @@ alde_gld,138,82,0	script	Nuenberg#a3-2::Nuenberg2	722,{
 			}
 			close;
 		}
-		mes "[ Edict of the Divine Rune Midgard Kingdom ]";
+		mes "[ Decreto do Reino de Rune Midgard ]";
 		mes " ";
-		mes "1. Following the ordinance of the";
-		mes "Divine Rune Midgard Kingdom,";
-		mes "we approve that this place is in";
-		mes "the private possession of ^ff0000" + GetGuildName(.@GID) + "^000000 Guild.";
+		mes "1. Seguindo o decredo do";
+		mes "Reino de Rune Midgard,";
+		mes "Nós declaramos que esse castelo";
+		mes "pertence ao clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
 		mes " ";
-		mes "2. The guild Master of ^ff0000"+ GetGuildName(.@GID) + "^000000 Guild is";
+		mes "2. O líder do lã ^ff0000"+ GetGuildName(.@GID) + "^000000 se chama";
 		mes "^FF0000" + GetGuildMaster(.@GID) + "^000000";
-		mes "If there is anyone who objects to this,";
-		mes " prove your strength and honor with a steel blade in your hand.";
+		mes "Se alguem se opõe a esse decreto,";
+		mes " prove sua força e honra com uma espada em suas mãos.";
 	}
 	close;
 
@@ -130,9 +129,9 @@ aldeg_cas03,118,76,0	duplicate(Gld_Kafra_Template)	Kafra Staff#aldeg_cas03	117
 //============================================================
 aldeg_cas03,229,267,0	script	#switch_A03	111,{
 	mes " ";
-	mes "There's a small lever. Will you pull it? ";
+	mes "Há uma pequena alavanca aqui. Deseja puxar ela? ";
 	next;
-	if(select("Pull.:Do not.") == 2) close;
+	if(select("Puxar.:Não puxar.") == 2) close;
 	warp "aldeg_cas03",110,119;
 	end;
 }
