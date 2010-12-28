@@ -9,36 +9,45 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0068 - 28/12/2010 [Protimus]
+	* Atualizado conforme eAthena r14635.
+	* Corrigidos problemas com linux na hora de compilar.
+	* Removidas traduções da source e criada uma branche para isso.
+	- Devem ser traduzidas em outra branche e passadas para essa quando estiverem revisadas.
+	* Revertido merge da txt-remove r28.
+	- Necessários mais testes e fusão do limpezas que foram feitas no charmerge do eAthena e não lançadas.
+	NOTA: Não se esquecer de modificar o comando whosell conforme novos parâmetros de indexação.
+
 	r0067 - 25/12/2010 [Lord]
-	* Enviada tradução da pasta /monstros .
+	* Enviada tradução da pasta /monstros.
 	- Traduzida por K2X.
 	* Enviada tradução do mob_db.
 	- Traduzida por SoulSyntax, Natushi e Floozie.
-	* Corrigido codificação do script espadachim.txt .
-	* Corrigido cabeçalho da torre_infinita.txt .
-	-  Também foi enviada uma pequena tradução faltante .
-	* Renomeado script professor_.txt para professor.txt .
-	* Corrigido pequeno waring na source ( atcommand.c ) .
+	* Corrigido codificação do script espadachim.txt.
+	* Corrigido cabeçalho da torre_infinita.txt.
+	-  Também foi enviada uma pequena tradução faltante.
+	* Renomeado script professor_.txt para professor.txt.
+	* Corrigido pequeno waring na source ( atcommand.c ).
 	- Aumentado o máximo de caracteres declarados de uma array.
 	* Corrigido algumas traduções da source ( log.c ).
 	- Removido alguns acentos.
 
 	r0066 - 23/12/2010 [Wiskovisky]
-	* Enviada mais uma grande parte da tradução do emulador
+	* Enviada mais uma grande parte da tradução do emulador.
 
 	r0065 - 23/12/2010 [Soul Syntax]
 	* Enviada tradução.
 	- instancias/torre_infinita.txt
 
 	r0064 - 22/12/2010 [Protimus]
-	* Atualizado conforme eAthena r146016.
+	* Atualizado conforme eAthena r14616.
 	* Correções em alguns guias.
 	* Enviadas traduções.
 	- guias/guias_hu.txt
 	- guias/guias_mosk.txt
 
 	r0063 - 22/12/2010 [Protimus]
-	* Atualizado conforme eAthena r146015.
+	* Atualizado conforme eAthena r14615.
 	* Pequena correção em guias_pront.txt
 	* Enviadas traduções.
 	- guias/guias_veins.txt
@@ -47,7 +56,7 @@
 	- guias/guias_lhz.txt
 
 	r0062 - 22/12/2010 [Protimus]
-	* Atualizado conforme eAthena r146013.
+	* Atualizado conforme eAthena r14613.
 
 	r0061 - 22/12/2010 [Protimus]
 	* Realizado terceiro merge de remoções do TXT da source.

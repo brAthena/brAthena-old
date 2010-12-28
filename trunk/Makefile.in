@@ -2,7 +2,7 @@
 
 HAVE_MYSQL=@HAVE_MYSQL@
 ifeq ($(HAVE_MYSQL),yes)
-	ALL_DEPENDS=common_sql login_sql char_sql map_sql tools converters plugins import save
+	ALL_DEPENDS=common common_sql login login_sql char char_sql map map_sql tools plugins import save
 	SQL_DEPENDS=common_sql login_sql char_sql map_sql import save
 	COMMON_SQL_DEPENDS=
 	LOGIN_SQL_DEPENDS=common_sql
@@ -21,14 +21,16 @@ endif
 
 #####################################################################
 .PHONY: txt sql conf \
-	common_sql \
-	login_sql \
-	char_sql \
-	map_sql \
-	tools converters plugins addons import save \
+	common common_sql \
+	login login_sql \
+	char char_sql \
+	map map_sql \
+	tools plugins addons import save \
 	clean help
 
 all: $(ALL_DEPENDS)
+
+txt: common login char map import save
 
 sql: $(SQL_DEPENDS)
 
@@ -39,6 +41,9 @@ common_sql: $(COMMON_SQL_DEPENDS)
 
 login_sql: $(LOGIN_SQL_DEPENDS)
 	@$(MAKE) -C src/login sql
+
+char: common
+	@$(MAKE) -C src/char
 
 char_sql: $(CHAR_SQL_DEPENDS)
 	@$(MAKE) -C src/char_sql
@@ -74,6 +79,7 @@ clean:
 	@$(MAKE) -C src/common $@
 	@$(MAKE) -C src/login $@
 	@$(MAKE) -C src/char $@
+	@$(MAKE) -C src/char_sql $@
 	@$(MAKE) -C src/map $@
 	@$(MAKE) -C src/plugins $@
 	@$(MAKE) -C src/tool $@
@@ -81,10 +87,15 @@ clean:
 help:
 	@echo "most common targets are 'all' 'txt' 'sql' 'conf' 'clean' 'help'"
 	@echo "possible targets are:"
+	@echo "'common'      - builds object files used in TXT servers"
 	@echo "'common_sql'  - builds object files used in SQL servers"
+	@echo "'login'       - builds login server (TXT version)"
 	@echo "'login_sql'   - builds login server (SQL version)"
+	@echo "'char'        - builds char server (TXT version)"
 	@echo "'char_sql'    - builds char server (SQL version)"
+	@echo "'map'         - builds map server (TXT version)"
 	@echo "'map_sql'     - builds map server (SQL version)"
+	@echo "'ladmin'      - builds remote administration tool"
 	@echo "'tools'       - builds all the tools in src/tools"
 	@echo "'converters'  - builds the login/char converters"
 	@echo "'plugins'     - builds all the plugins in src/plugins"
@@ -92,6 +103,7 @@ help:
 	@echo "'import'      - builds conf/import folder from the template conf/import-tmpl"
 	@echo "'save'        - builds save folder from the template save-tmpl"
 	@echo "'all'         - builds all the above targets"
+	@echo "'txt'         - builds txt servers (targets 'common' 'login' 'char' 'map'"
 	@echo "                'import' and 'save')"
 	@echo "'sql'         - builds sql servers (targets 'common_sql' 'login_sql' 'char_sql'"
 	@echo "                'map_sql' 'import' and 'save')"
@@ -119,6 +131,7 @@ install:	conf/%.conf conf/%.txt
 	$(shell mv npc /opt/eathena/etc/eathena/npc)
 	$(shell mv log/* /opt/eathena/var/log/eathena/)
 	$(shell cp *-server* /opt/eathena/bin/)
+	$(shell cp ladmin /opt/eathena/bin/)
 	$(shell ln -s /opt/eathena/etc/eathena/save/ /opt/eathena/bin/)
 	$(shell ln -s /opt/eathena/etc/eathena/db/ /opt/eathena/bin/)
 	$(shell ln -s /opt/eathena/etc/eathena/conf/ /opt/eathena/bin/)
@@ -129,6 +142,7 @@ bin-clean:
 	$(shell rm /opt/eathena/bin/login-server*)
 	$(shell rm /opt/eathena/bin/char-server*)
 	$(shell rm /opt/eathena/bin/map-server*)
+	$(shell rm /opt/eathena/bin/ladmin)
 
 uninstall:
 	$(shell read -p "WARNING: This target does not work properly yet. Press Ctrl+C to cancel or Enter to continue.")
