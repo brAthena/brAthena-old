@@ -14711,19 +14711,6 @@ BUILDIN_FUNC(pushpc)
 	return 0;
 }
 
-/*==========================================
- * Mapcheck [Protimus]
- * Verifica a existência de um mapa.
- *------------------------------------------*/
- 
-BUILDIN_FUNC(mapcheck)
-{
-    int m;
-    m = map_mapname2mapid(script_getstr(st,2));
-    script_pushint(st, (m >= 0));
-    return 0;
-}
-
 /*======================================================
  * Skillcheck [Protimus & MidNight]
  * Verifica se o jogador possui determinada habilidade.
@@ -15155,7 +15142,6 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(changequest, "ii"),
 	BUILDIN_DEF(showevent, "ii"),
     //brAthena Modificações
-    BUILDIN_DEF(mapcheck,"s"),
 	BUILDIN_DEF(sc_check,"i"),
 	BUILDIN_DEF(skillcheck,"v"),
 	{NULL,NULL,NULL},
