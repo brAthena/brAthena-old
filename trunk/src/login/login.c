@@ -328,7 +328,7 @@ int parse_console(char* buf)
 
 	sscanf(buf, "%[^\n]", command);
 
-	ShowInfo("Comando de console :%s", command);
+	ShowInfo("Comando de console :%s\n", command);
 
 	if( strcmpi("desligar", command) == 0 ||
 	    strcmpi("sair", command) == 0 ||
@@ -521,8 +521,6 @@ int parse_fromchar(int fd)
 		break;
 
 		case 0x2719: // ping request from charserver
-			if( RFIFOREST(fd) < 2 )
-				return 0;
 			RFIFOSKIP(fd,2);
 
 			WFIFOHEAD(fd,2);
@@ -730,8 +728,8 @@ int parse_fromchar(int fd)
 				// Sending information towards the other char-servers.
 				RFIFOW(fd,0) = 0x2729;// reusing read buffer
 				charif_sendallwos(fd, RFIFOP(fd,0), RFIFOW(fd,2));
-				RFIFOSKIP(fd,RFIFOW(fd,2));
 			}
+			RFIFOSKIP(fd,RFIFOW(fd,2));
 		}
 		break;
 
@@ -851,7 +849,6 @@ int parse_fromchar(int fd)
 		} // switch
 	} // while
 
-	RFIFOSKIP(fd,RFIFOREST(fd));
 	return 0;
 }
 
@@ -1461,7 +1458,6 @@ int parse_login(int fd)
 		}
 	}
 
-	RFIFOSKIP(fd,RFIFOREST(fd));
 	return 0;
 }
 

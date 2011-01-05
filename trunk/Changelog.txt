@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0071 - 05/01/2010 [Dani]
+	* Atualizado conforme eAthena r14651
+
 	r0070 - 28/12/2010 [Protimus]
 	* Removido comando mapcheck
 	- Redundânte, não iremos usar no renewal e é possível usar outros meios.
