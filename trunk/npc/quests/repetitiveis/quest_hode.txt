@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: iRO Repeatable EXP Quests		   		|
+// | Nãome do Script: iRO Repeatable EXP Quests		   		|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			   				|
 // |--------------------------------------------------------|
@@ -18,47 +18,46 @@
 // | Added Monster Killing quests.							|
 // | Repeatable EXP Quest (Earthworm Peelings)				|
 // |--------------------------------------------------------|
-// | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
-// | - Anotações					    					|
+// | Changelog:               	                        	|
+// | 1.0 Script Traduzido [insidemybrain]					|
 // \_______________________________________________________/
 
 moc_fild17,208,346,5	script	Shone#Hode_Hunt	707,{
 	if (checkquest(60104) != -1) {
 		if (checkquest(60104,HUNTING) != 2 ) {
 			mes "[Shone]";
-			mes "Have you finished hunting the 50 Hodes?";
+			mes "Você terminou de caçar os 50 Hodes?";
 			next;
-			switch(select("Yes:No:I want to quit")) {
+			switch(select("Sim:Não:Quero desistir")) {
 			case 1:
 				mes "[Shone]";
-				mes "Hmm, I don't think you've hunted 50 yet...";
+				mes "Hm... Acho que você não terminou de caçar os 50 Hodes...";
 				close;
 			case 2:
 				mes "[Shone]";
-				mes "Remember, I need help hunting Hodes so go and hunt 50 of them.";
+				mes "Lembre-se, eu preciso de ajuda para caçar os 50 Hodes.";
 				close;
 			case 3:
 				mes "[Shone]";
-				mes "Are you sure that you want to stop hunting?";
-				mes "Any progress that you've made will be erased";
+				mes "Você tem certeza que deseja parar a caça?";
+				mes "Todo o seu processo até agora será apagado";
 				next;
-				switch(select("Yes:No")) {
+				switch(select("Sim:Não")) {
 				case 1:
 					mes "[Shone]";
-					mes "Ok then, well come back here if you change your mind.";
+					mes "Tudo bem então, volte quando mudar de ideia.";
 					erasequest 60104;
 					close;
 				case 2:
 					mes "[Shone]";
-					mes "Please kill 50 Hodes.";
+					mes "Por favor mate 50 Hodes.";
 					close;
 				}
 			}
 		}
 		else {
 			mes "[Shone]";
-			mes "Amazing, you did that with speed.";
+			mes "Impressionante! Você conseguiu completar a quest com facilidade.";
 			getexp 15775,1125;
 			erasequest 60104;
 			close;
@@ -67,38 +66,38 @@ moc_fild17,208,346,5	script	Shone#Hode_Hunt	707,{
 	if (checkquest(60105) != -1) {
 		if (checkquest(60105,HUNTING) != 2 ) {
 			mes "[Shone]";
-			mes "Have you finished hunting the 50 Hodes?";
+			mes "Você terminou de caçar os 100 Hodes?";
 			next;
-			switch(select("Yes:No:I want to quit")) {
+			switch(select("Sim:Não:Quero desistir")) {
 			case 1:
 				mes "[Shone]";
-				mes "Hmm, I don't think you've hunted 100 yet...";
+				mes "Hm... Acho que você não terminou de caçar os 100 Hodes...";
 				close;
 			case 2:
 				mes "[Shone]";
-				mes "Remember, I need help hunting Hodes so go and hunt 100 of them.";
+				mes "Lembre-se, eu preciso de ajuda para caçar os 100 Hodes.";
 				close;
 			case 3:
 				mes "[Shone]";
-				mes "Are you sure that you want to stop hunting?";
-				mes "Any progress that you've made will be erased";
+				mes "Você tem certeza que deseja parar a caça?";
+				mes "Todo o seu processo até agora será apagado";
 				next;
-				switch(select("Yes:No")) {
+				switch(select("Sim:Não")) {
 				case 1:
 					mes "[Shone]";
-					mes "Ok then, well come back here if you change your mind.";
+					mes "Tudo bem então, volte quando mudar de ideia.";
 					erasequest 60105;
 					close;
 				case 2:
 					mes "[Shone]";
-					mes "Please kill 100 Hodes.";
+					mes "Por favor mate 100 Hodes.";
 					close;
 				}
 			}
 		}
 		else {
 			mes "[Shone]";
-			mes "Amazing, you did that with speed.";
+			mes "Impressionante! Você conseguiu completar a quest com facilidade.";
 			getexp 15775,1125;
 			getexp 15775,1125;
 			erasequest 60105;
@@ -108,38 +107,38 @@ moc_fild17,208,346,5	script	Shone#Hode_Hunt	707,{
 	if (checkquest(60106) != -1) {
 		if (checkquest(60106,HUNTING) != 2 ) {
 			mes "[Shone]";
-			mes "Have you finished hunting the 150 Hodes?";
+			mes "Você terminou de caçar os 150 Hodes?";
 			next;
-			switch(select("Yes:No:I want to quit")) {
+			switch(select("Sim:Não:Quero desistir")) {
 			case 1:
 				mes "[Shone]";
-				mes "Hmm, I don't think you've hunted 150 yet...";
+				mes "Hm... Acho que você não terminou de caçar os 150 Hodes...";
 				close;
 			case 2:
 				mes "[Shone]";
-				mes "Remember, I need help hunting Hodes so go and hunt 150 of them.";
+				mes "Lembre-se, eu preciso de ajuda para caçar os 150 Hodes.";
 				close;
 			case 3:
 				mes "[Shone]";
-				mes "Are you sure that you want to stop hunting?";
-				mes "Any progress that you've made will be erased";
+				mes "Você tem certeza que deseja parar a caça?";
+				mes "Todo o seu processo até agora será apagado";
 				next;
-				switch(select("Yes:No")) {
+				switch(select("Sim:Não")) {
 				case 1:
 					mes "[Shone]";
-					mes "Ok then, well come back here if you change your mind.";
+					mes "Tudo bem então, volte quando mudar de ideia.";
 					erasequest 60106;
 					close;
 				case 2:
 					mes "[Shone]";
-					mes "Please kill 150 Hodes.";
+					mes "Por favor mate 150 Hodes.";
 					close;
 				}
 			}
 		}
 		else {
 			mes "[Shone]";
-			mes "Amazing, you did that with speed.";
+			mes "Impressionante! Você conseguiu completar a quest com facilidade.";
 			getexp 15775,1125;
 			getexp 15775,1125;
 			getexp 15775,1125;
@@ -152,99 +151,98 @@ moc_fild17,208,346,5	script	Shone#Hode_Hunt	707,{
 		//for maximum level
 		if (BaseLevel < 61) {
 			mes "[Shone]";
-			mes "Wait! You can see me?";
-			mes "Oh well, I haven't yet mastered my skills.";
+			mes "Espere! Você consegue me ver??";
+			mes "Ah, eu ainda não dominei minhas habilidades.";
 			next;
 			mes "[Shone]";
-			mes "Hey do you think you can help me?";
+			mes "Ei, acha que pode me ajudar?";
 			next;
-			switch(select("Sure:No")) {
+			switch(select("Claro:Não")) {
 			case 1:
 				mes "[Shone]";
-				mes "Thanks a lot, pal!";
+				mes "Muito obrigado, cara!";
 				next;
-				switch(select("Gather Items:Hunt Hodes:Cancel")) {
+				switch(select("Pegar Itens:Caçar Hodes:Cancelar")) {
 				case 1:
 					// Item turn in
 					mes "[Shone]";
-					mes "I am trying to collect ^00CE0025 Earthworm Peelings^000000.";
-					mes "I will reward you if you help.";
+					mes "Estou tentando juntar ^00CC0025 Peles de Minhoca^000000.";
+					mes "Você receberá uma recompensa pela ajuda.";
 					next;
-					switch(select("I have 25 Earthworm Peelings:What was it again?")) {
+					switch(select("Eu tenho ^00CC0025 Peles de Minhoca^000000:O que você precisava?")) {
 					case 1:
 						/*
 						if (checkweight(502,10) == 0) {
 							mes "[Shone]";
-							mes "Hey, it looks like that the weight on";
-							mes "your back will crush you. Come back";
-							mes "after you have lost some weight.";
+							mes "Ei, parece que você vai ser esmagado pelo";
+							mes "peso nas suas costas. Volte quando";
+							mes "não estiver carregando tanta coisa.";
 							close;
 						}
 						*/
 						if (countitem(1055) > 24) {
-							mes "Thank you for the 25 Earthworm";
-							mes "Peelings!";
-							mes "Here is that reward I promised you, I hope take this wisdom I have passed on to you and share it with others.";
-							delitem 1055,25; //Earthworm_Peeling
+							mes "Obrigado pelas 25 Peles de Minhoca";
+							mes "Aqui está a recompensa que prometi. Espero que compartilhe com os outros a sabedoria que passei a você.";
+							delitem 1055,25; //Pele de MInhoca
 							getexp 15775,1125;
-							//getitem 502,10; //Orange_Potion
+							//getitem 502,10; //Poção Laranja
 							close;
 						}
 						else {
 							mes "[Shone]";
-							mes "I don't see any ^00CE00Earthworm Peerlings^000000.";
-							mes "Are you trying to scam me?";
+							mes "Não estou vendo nenhuma ^00CC00Pele de Minhoca^000000.";
+							mes "Está tentando me enganar?";
 							close;
 						}
 					case 2:
 						mes "[Shone]";
-						mes "I need ^00CE0025 Earthworm Peelings^000000.";
+						mes "Eu preciso de ^00CC0025 Peles de Minhoca^000000.";
 						close;
 					}
 				case 2:
 					// Kill Count Quest
 					mes "[Shone]";
-					mes "Ah, ok I think you can help me out by hunting some Hodes.";
-					mes "How many would you like to hunt?";
+					mes "Então você vai caçar alguns Hodes.";
+					mes "Quantos gostaria de caçar?";
 					next;
 					switch(select("50 Hodes:100 Hodes:150 Hodes")) {
 					case 1:
 						mes "[Shone]";
-						mes "Come back when you've finished your task and I will give you a small reward.";
+						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
 						setquest 60104;
 						close;
 					case 2:
 						mes "[Shone]";
-						mes "Come back when you've finished your task and I will give you a small reward.";
+						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
 						setquest 60105;
 						close;
 					case 3:
 						mes "[Shone]";
-						mes "Come back when you've finished your task and I will give you a small reward.";
+						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
 						setquest 60106;
 						close;
 					}
 				case 3:
 					mes "[Shone]";
-					mes "If you change your mind, please come back.";
+					mes "Caso mude de ideia, venha falar comigo novamente.";
 					close;
 				}
 			case 2:
 				mes "[Shone]";
-				mes "If you change your mind, please come back.";
+				mes "Caso mude de ideia, venha falar comigo novamente.";
 				close;
 			}
 		}
 		else {
 			mes "[Shone]";
-			mes "You are much too strong to be fighting these things!";
+			mes "Você é forte demais para lutar com esses monstros!";
 			close;
 		}
 	}
 	else {
 		mes "[Shone]";
-		mes "You need some help, but I can't provide that for you.";
-		mes "Come back when you are stronger and have earned much more wisdom.";
+		mes "Você precisa de ajuda, mas não sou eu que posso te dar.";
+		mes "Volte quando estiver mais forte e muito mais sábio.";
 		close;
 	}
 }

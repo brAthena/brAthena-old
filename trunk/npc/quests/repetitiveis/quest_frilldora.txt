@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: iRO Repeatable EXP Quests		   		|
+// | Nãome do Script: iRO Repeatable EXP Quests		   		|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			   				|
 // |--------------------------------------------------------|
@@ -18,47 +18,46 @@
 // | Added Monster Killing quests.							|
 // | Repeatable EXP Quest (Frills)							|
 // |--------------------------------------------------------|
-// | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
-// | - Anotações					    					|
+// | Changelog:               	                        	|
+// | 1.0 Script Traduzido [insidemybrain]					|
 // \_______________________________________________________/
 
-moc_fild17,66,273,5	script	Lemly#Frilldora_Hunt	725,{
+moc_fild17,66,273,5	script	Lemly#Frilldoras_Hunt	725,{
 	if (checkquest(60134) != -1) {
 		if (checkquest(60134,HUNTING) != 2 ) {
 			mes "[Lemly]";
-			mes "Have you finished hunting the 50 Frilldora?";
+			mes "Você terminou de caçar as 50 Frilldoras?";
 			next;
-			switch(select("Yes:No:I want to quit")) {
+			switch(select("Sim:Não:Quero desistir")) {
 			case 1:
 				mes "[Lemly]";
-				mes "Hmm, I don't think you've hunted 50 yet...";
+				mes "Hm... Acho que você não terminou de caçar as 50 Frilldoras...";
 				close;
 			case 2:
 				mes "[Lemly]";
-				mes "Remember, I need help hunting Frilldora so go and hunt 50 of them.";
+				mes "Lembre-se, eu preciso de ajuda para caçar as 50 Frilldoras.";
 				close;
 			case 3:
 				mes "[Lemly]";
-				mes "Are you sure that you want to stop hunting?";
-				mes "Any progress that you've made will be erased";
+				mes "Você tem certeza que deseja parar a caça?";
+				mes "Todo o seu processo até agora será apagado";
 				next;
-				switch(select("Yes:No")) {
+				switch(select("Sim:Não")) {
 				case 1:
 					mes "[Lemly]";
-					mes "Ok then, well come back here if you change your mind.";
+					mes "Tudo bem então, volte quando mudar de ideia.";
 					erasequest 60134;
 					close;
 				case 2:
 					mes "[Lemly]";
-					mes "Please kill 50 Frilldora.";
+					mes "Por favor mate 50 Frilldoras.";
 					close;
 				}
 			}
 		}
 		else {
 			mes "[Lemly]";
-			mes "Amazing, you did that with speed.";
+			mes "Impressionante! Você conseguiu completar a quest com facilidade.";
 			getexp 30000,23000;
 			erasequest 60134;
 			close;
@@ -67,38 +66,38 @@ moc_fild17,66,273,5	script	Lemly#Frilldora_Hunt	725,{
 	if (checkquest(60135) != -1) {
 		if (checkquest(60135,HUNTING) != 2 ) {
 			mes "[Lemly]";
-			mes "Have you finished hunting the 50 Frilldora?";
+			mes "Você terminou de caçar as 100 Frilldoras?";
 			next;
-			switch(select("Yes:No:I want to quit")) {
+			switch(select("Sim:Não:Quero desistir")) {
 			case 1:
 				mes "[Lemly]";
-				mes "Hmm, I don't think you've hunted 100 yet...";
+				mes "Hm... Acho que você não terminou de caçar as 100 Frilldoras...";
 				close;
 			case 2:
 				mes "[Lemly]";
-				mes "Remember, I need help hunting Frilldora so go and hunt 100 of them.";
+				mes "Lembre-se, eu preciso de ajuda para caçar as 100 Frilldoras.";
 				close;
 			case 3:
 				mes "[Lemly]";
-				mes "Are you sure that you want to stop hunting?";
-				mes "Any progress that you've made will be erased";
+				mes "Você tem certeza que deseja parar a caça?";
+				mes "Todo o seu processo até agora será apagado";
 				next;
-				switch(select("Yes:No")) {
+				switch(select("Sim:Não")) {
 				case 1:
 					mes "[Lemly]";
-					mes "Ok then, well come back here if you change your mind.";
+					mes "Tudo bem então, volte quando mudar de ideia.";
 					erasequest 60135;
 					close;
 				case 2:
 					mes "[Lemly]";
-					mes "Please kill 100 Frilldora.";
+					mes "Por favor mate 100 Frilldoras.";
 					close;
 				}
 			}
 		}
 		else {
 			mes "[Lemly]";
-			mes "Amazing, you did that with speed.";
+			mes "Impressionante! Você conseguiu completar a quest com facilidade.";
 			getexp 30000,23000;
 			getexp 30000,23000;
 			erasequest 60135;
@@ -108,38 +107,38 @@ moc_fild17,66,273,5	script	Lemly#Frilldora_Hunt	725,{
 	if (checkquest(60136) != -1) {
 		if (checkquest(60136,HUNTING) != 2 ) {
 			mes "[Lemly]";
-			mes "Have you finished hunting the 150 Frilldora?";
+			mes "Você terminou de caçar as 150 Frilldoras?";
 			next;
-			switch(select("Yes:No:I want to quit")) {
+			switch(select("Sim:Não:Quero desistir")) {
 			case 1:
 				mes "[Lemly]";
-				mes "Hmm, I don't think you've hunted 150 yet...";
+				mes "Hm... Acho que você não terminou de caçar as 150 Frilldoras...";
 				close;
 			case 2:
 				mes "[Lemly]";
-				mes "Remember, I need help hunting Frilldora so go and hunt 150 of them.";
+				mes "Lembre-se, eu preciso de ajuda para caçar as 150 Frilldoras.";
 				close;
 			case 3:
 				mes "[Lemly]";
-				mes "Are you sure that you want to stop hunting?";
-				mes "Any progress that you've made will be erased";
+				mes "Você tem certeza que deseja parar a caça?";
+				mes "Todo o seu processo até agora será apagado";
 				next;
-				switch(select("Yes:No")) {
+				switch(select("Sim:Não")) {
 				case 1:
 					mes "[Lemly]";
-					mes "Ok then, well come back here if you change your mind.";
+					mes "Tudo bem então, volte quando mudar de ideia.";
 					erasequest 60136;
 					close;
 				case 2:
 					mes "[Lemly]";
-					mes "Please kill 150 Frilldora.";
+					mes "Por favor mate 150 Frilldoras.";
 					close;
 				}
 			}
 		}
 		else {
 			mes "[Lemly]";
-			mes "Amazing, you did that with speed.";
+			mes "Impressionante! Você conseguiu completar a quest com facilidade.";
 			getexp 30000,23000;
 			getexp 30000,23000;
 			getexp 30000,23000;
@@ -152,96 +151,96 @@ moc_fild17,66,273,5	script	Lemly#Frilldora_Hunt	725,{
 		//for maximum level
 		if (BaseLevel < 66) {
 			mes "[Lemly]";
-			mes "Hey there cutie!";
+			mes "Ei, bonitinho!";
 			next;
 			mes "[Lemly]";
-			mes "Think you could take some time to give me a hand?";
+			mes "Acha que poderia me dar uma mãozinha aqui?";
 			next;
-			switch(select("Sure:No")) {
+			switch(select("Claro:Não")) {
 			case 1:
 				mes "[Lemly]";
-				mes "I am looking for lizard ^FF0000Frills^000000.";
+				mes "Estou procurando por "^FF0000Brasões^000000 de lagartos.";
 				next;
 				mes "[Lemly]";
-				mes "The lizards around here have a natural stealth, a property that the Assassin's Guild wants to study.";
+				mes "Os lagartos desta região têm uma capacidade furtiva natural que a Guilda dos Mercenários quer estudar.";
 				next;
-				switch(select("Gather Items:Hunt Frilldora:Cancel")) {
+				switch(select("Pegar itens:Caçar Frilldoras:Cancelar")) {
 				case 1:
 					// Item turn in
-					switch(select("I have some Frills:What did you need?")) {
+					switch(select("Eu tenho alguns Brasões:Do que você precisava?")) {
 					case 1:
 						if (countitem(1012) > 24) {
 							mes "[Lemly]";
-							mes "Hey, thank you.";
-							mes "These are pretty icky though.";
-							delitem 1012,25; //Lizard_Scruff
+							mes "Ei, obrigada!.";
+							mes "Esses negócios são meio gosmentos, não?";
+							delitem 1012,25; // Brasões
 							getexp 30000,23000;
 							close;
 						}
 						else {
 							mes "[Lemly]";
-							mes "Sigh,";
-							mes "Please, don't waste my time.";
+							mes "....";
+							mes "Por favor, não perca mais tempo!";
 							next;
 							mes "[Lemly]";
-							mes "I need ^FF000025 Frills^000000 for the Assassin's Guild.";
+							mes "Eu preciso de ^FF000025 Brasões^000000 para a Guilda dos Mercenários.";
 							close;
 						}
 					case 2:
 						mes "[Lemly]";
-						mes "I need ^FF000025 Frills^000000 for the Assassin's Guild.";
+						mes "Eu preciso de ^FF000025 Brasões^000000 para a Guilda dos Mercenários.";
 						close;
 					}
 				case 2:
 					// Kill Count Quest
 					mes "[Lemly]";
-					mes "Ah, ok I think you can help me out by hunting some Frilldora.";
-					mes "How many would you like to hunt?";
+					mes "Ah sim, então você quer caçar algumas Frilldoras.";
+					mes "Gostaria de caçar quanta?";
 					next;
-					switch(select("50 Frilldora:100 Frilldora:150 Frilldora")) {
+					switch(select("50 Frilldoras:100 Frilldoras:150 Frilldoras")) {
 					case 1:
 						mes "[Lemly]";
-						mes "Come back when you've finished your task and I will give you a small reward.";
+						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
 						setquest 60134;
 						close;
 					case 2:
 						mes "[Lemly]";
-						mes "Come back when you've finished your task and I will give you a small reward.";
+						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
 						setquest 60135;
 						close;
 					case 3:
 						mes "[Lemly]";
-						mes "Come back when you've finished your task and I will give you a small reward.";
+						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
 						setquest 60136;
 						close;
 					}
 				case 3:
 					mes "[Lemly]";
-					mes "If you change your mind, please come back.";
+					mes "Caso mude de ideia, venha falar comigo novamente.";
 					close;
 				}
 			case 2:
 				mes "[Lemly]";
-				mes "If you change your mind, please come back.";
+				mes "Caso mude de ideia, venha falar comigo novamente.";
 				close;
 			}
 		}
 		else {
 			mes "[Lemly]";
-			mes "Hey there.";
+			mes "Olá!.";
 			next;
 			mes "[Lemly]";
-			mes "These lizards are gross.";
+			mes "Esses lagartos são nojentos.";
 			next;
 			mes "[Lemly]";
-			mes "I can't believe I am stuck doing this.";
+			mes "Não acredito que pediram para eu fazer isso.";
 			close;
 		}
 	}
 	else {
 		mes "[Lemly]";
-		mes "What are you doing here?";
-		mes "The desert will kill you here!";
+		mes "O que está fazendo aqui?";
+		mes "O deserto vai matar você!";
 		close;
 	}
 }

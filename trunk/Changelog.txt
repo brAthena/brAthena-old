@@ -9,7 +9,25 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
-	r0071 - 05/01/2010 [Dani]
+	r0072 - 06/01/2011 [Protimus]
+	* Adicionadas traduções da pasta repetitiveis.
+	- quests/repetitiveis/quest_alligator.txt
+	- quests/repetitiveis/quest_caramel.txt
+	- quests/repetitiveis/quest_coco.txt
+	- quests/repetitiveis/quest_creamy.txt
+	- quests/repetitiveis/quest_demonpungus.txt
+	- quests/repetitiveis/quest_dokebi.txt
+	- quests/repetitiveis/quest_dryad.txt
+	- quests/repetitiveis/quest_fabre.txt
+	- quests/repetitiveis/quest_frilldora.txt
+	- quests/repetitiveis/quest_goat.txt
+	- quests/repetitiveis/quest_golem.txt
+	- quests/repetitiveis/quest_hode.txt
+	- quests/repetitiveis/quest_leafcat.txt
+	- quests/repetitiveis/quest_pecopeco.txt
+	- quests/repetitiveis/quest_pupa.txt
+	
+	r0071 - 05/01/2011 [Dani]
 	* Atualizado conforme eAthena r14651
 
 	r0070 - 28/12/2010 [Protimus]

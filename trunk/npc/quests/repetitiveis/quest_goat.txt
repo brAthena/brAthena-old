@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: iRO Repeatable EXP Quests		   		|
+// | Nãome do Script: iRO Repeatable EXP Quests		   		|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			   				|
 // |--------------------------------------------------------|
@@ -18,47 +18,46 @@
 // | Added Monster Killing quests.							|
 // | Repeatable EXP Quest (Antelope Horns)					|
 // |--------------------------------------------------------|
-// | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
-// | - Anotações					    					|
+// | Changelog:               	                        	|
+// | 1.0 Script Traduzido [insidemybrain]					|
 // \_______________________________________________________/
 
-ein_fild06,82,171,0	script	Vegetable Farmer#Goat	919,{
+ein_fild06,82,171,0	script	Fazendeiro#Bodes	919,{
 	if (checkquest(60137) != -1) {
 		if (checkquest(60137,HUNTING) != 2 ) {
-			mes "[Vegetable Farmer]";
-			mes "Have you finished hunting the 50 Goats?";
+			mes "[Fazendeiro]";
+			mes "Você terminou de caçar os 50 Bodes?";
 			next;
-			switch(select("Yes:No:I want to quit")) {
+			switch(select("Sim:Não:Quero desistir")) {
 			case 1:
-				mes "[Vegetable Farmer]";
-				mes "Hmm, I don't think you've hunted 50 yet.";
+				mes "[Fazendeiro]";
+				mes "Hm... Acho que você não terminou de caçar os 50 Bodes.";
 				close;
 			case 2:
-				mes "[Vegetable Farmer]";
-				mes "Remember, I need help hunting Goats so go and hunt 50 of them.";
+				mes "[Fazendeiro]";
+				mes "Lembre-se, eu preciso de ajuda para caçar os 50 Bodes.";
 				close;
 			case 3:
-				mes "[Vegetable Farmer]";
-				mes "Are you sure that you want to stop hunting?";
-				mes "Any progress that you've made will be erased";
+				mes "[Fazendeiro]";
+				mes "Você tem certeza que deseja parar a caça?";
+				mes "Todo o seu processo até agora será apagado";
 				next;
-				switch(select("Yes:No")) {
+				switch(select("Sim:Não")) {
 				case 1:
-					mes "[Vegetable Farmer]";
-					mes "Ok then, well come back here if you change your mind.";
+					mes "[Fazendeiro]";
+					mes "Tudo bem então, volte quando mudar de ideia.";
 					erasequest 60137;
 					close;
 				case 2:
-					mes "[Vegetable Farmer]";
-					mes "Please kill 50 Goats so I can farm my vegetables without any worries.";
+					mes "[Fazendeiro]";
+					mes "Por favor mate 50 Bodes.";
 					close;
 				}
 			}
 		}
 		else {
-			mes "[Vegetable Farmer]";
-			mes "Amazing, you did that with speed.";
+			mes "[Fazendeiro]";
+			mes "Impressionante! Você conseguiu completar a quest com facilidade.";
 			getexp 258489,155155;
 			erasequest 60137;
 			close;
@@ -66,39 +65,39 @@ ein_fild06,82,171,0	script	Vegetable Farmer#Goat	919,{
 	}
 	if (checkquest(60138) != -1) {
 		if (checkquest(60138,HUNTING) != 2) {
-			mes "[Vegetable Farmer]";
-			mes "Have you finished hunting the 100 Goats?";
+			mes "[Fazendeiro]";
+			mes "Você terminou de caçar os 100 Bodes?";
 			next;
-			switch(select("Yes:No:I want to quit")) {
+			switch(select("Sim:Não:Quero desistir")) {
 			case 1:
-				mes "[Vegetable Farmer]";
-				mes "Hmm, I don't think you've hunted 100 yet.";
+				mes "[Fazendeiro]";
+				mes "Hm... Acho que você não terminou de caçar os 100 Bodes.";
 				close;
 			case 2:
-				mes "[Vegetable Farmer]";
-				mes "Remember, I need help hunting Goats so go and hunt 100 of them.";
+				mes "[Fazendeiro]";
+				mes "Lembre-se, eu preciso de ajuda para caçar os 100 Bodes.";
 				close;
 			case 3:
-				mes "[Vegetable Farmer]";
-				mes "Are you sure that you want to stop hunting?";
-				mes "Any progress that you've made will be erased";
+				mes "[Fazendeiro]";
+				mes "Você tem certeza que deseja parar a caça?";
+				mes "Todo o seu processo até agora será apagado";
 				next;
-				switch(select("Yes:No")) {
+				switch(select("Sim:Não")) {
 				case 1:
-					mes "[Vegetable Farmer]";
-					mes "Ok then, well come back here if you change your mind.";
+					mes "[Fazendeiro]";
+					mes "Tudo bem então, volte quando mudar de ideia.";
 					erasequest 60138;
 					close;
 				case 2:
-					mes "[Vegetable Farmer]";
-					mes "Please kill 100 Goats so I can farm my vegetables without any worries.";
+					mes "[Fazendeiro]";
+					mes "Por favor mate 100 Bodes.";
 					close;
 				}
 			}
 		}
 		else {
-			mes "[Vegetable Farmer]";
-			mes "Amazing, you did that with speed.";
+			mes "[Fazendeiro]";
+			mes "Impressionante! Você conseguiu completar a quest com facilidade.";
 			getexp 258489,155155;
 			getexp 258489,155155;
 			erasequest 60138;
@@ -107,39 +106,39 @@ ein_fild06,82,171,0	script	Vegetable Farmer#Goat	919,{
 	}
 	if (checkquest(60139) != -1) {
 		if (checkquest(60139,HUNTING) != 2) {
-			mes "[Vegetable Farmer]";
-			mes "Have you finished hunting the 150 Goats?";
+			mes "[Fazendeiro]";
+			mes "Você terminou de caçar os 150 Bodes?";
 			next;
-			switch(select("Yes:No:I want to quit")) {
+			switch(select("Sim:Não:Quero desistir")) {
 			case 1:
-				mes "[Vegetable Farmer]";
-				mes "Hmm, I don't think you've hunted 150 yet.";
+				mes "[Fazendeiro]";
+				mes "Hm... Acho que você não terminou de caçar os 150 Bodes.";
 				close;
 			case 2:
-				mes "[Vegetable Farmer]";
-				mes "Remember, I need help hunting Goats so go and hunt 150 of them.";
+				mes "[Fazendeiro]";
+				mes "Lembre-se, eu preciso de ajuda para caçar os 150 Bodes.";
 				close;
 			case 3:
-				mes "[Vegetable Farmer]";
-				mes "Are you sure that you want to stop hunting?";
-				mes "Any progress that you've made will be erased";
+				mes "[Fazendeiro]";
+				mes "Você tem certeza que deseja parar a caça?";
+				mes "Todo o seu processo até agora será apagado";
 				next;
-				switch(select("Yes:No")) {
+				switch(select("Sim:Não")) {
 				case 1:
-					mes "[Vegetable Farmer]";
-					mes "Ok then, well come back here if you change your mind.";
+					mes "[Fazendeiro]";
+					mes "Tudo bem então, volte quando mudar de ideia.";
 					erasequest 60139;
 					close;
 				case 2:
-					mes "[Vegetable Farmer]";
-					mes "Please kill 150 Goats so I can farm my vegetables without any worries.";
+					mes "[Fazendeiro]";
+					mes "Por favor mate 150 Bodes.";
 					close;
 				}
 			}
 		}
 		else {
-			mes "[Vegetable Farmer]";
-			mes "Amazing, you did that with speed.";
+			mes "[Fazendeiro]";
+			mes "Impressionante! Você conseguiu completar a quest com facilidade.";
 			getexp 258489,155155;
 			getexp 258489,155155;
 			getexp 258489,155155;
@@ -151,103 +150,105 @@ ein_fild06,82,171,0	script	Vegetable Farmer#Goat	919,{
 	if (BaseLevel > 69) {
 		//for maximum level
 		if (BaseLevel < 85) {
-			mes "[Vegetable Farmer]";
-			mes "Oh great!";
-			mes "You are here to help me right?";
-			mes "If not, then I am in a world of hurt.";
+			mes "[Fazendeiro]";
+			mes "Ah ótimo!";
+			mes "Está aqui para me ajudar, certo?";
+			mes "Se não, então eu estou perdido.";
 			next;
-			switch(select("Sure:No")) {
+			switch(select("Claro:Não")) {
 			case 1:
-				mes "[Vegetable Farmer]";
-				mes "These Goats keep eating my vegetables.";
-				mes "Can you do what you can to help me?";
+				mes "[Fazendeiro]";
+				mes "Esses Bodes não param de comer meus legumes.";
+				mes "Você pode fazer algo para me ajudar?";
 				next;
-				switch(select("Gather Items:Hunt Goats:Cancel")) {
+				switch(select("Pegar Itens:Caçar Bodes:Cancelar")) {
 				case 1:
 					// Item turn in
-					mes "[Vegetable Farmer]";
-					mes "I need ^FF0000Antelope Horns^000000 to show for your hard work, and I will reward you.";
+					mes "[Fazendeiro]";
+					mes "Eu preciso de ^FF0000Chifres de Bode^000000,";
+					mes "como prova do seu trabalho duro, para depois recompensá-lo.";
 					next;
-					switch(select("I have Antelope Horns:What did you need?")) {
+					switch(select("Eu tenho Chifres de Bode:O que precisava?")) {
 					case 1:
 						/*
 						if (checkweight(504,10) == 0) {
-							mes "[Vegetable Farmer]";
-							mes "Hey, it looks like that the weight on";
-							mes "your back will crush you. Come back";
-							mes "after you have lost some weight.";
+							mes "[Fazendeiro]";
+							mes "Ei, parece que você vai ser esmagado pelo";
+							mes "peso nas suas costas. Volte quando";
+							mes "não estiver carregando tanta coisa.";
 							close;
 						}
 						*/
 						if (countitem(7106) > 49) {
-							mes "[Vegetable Farmer]";
-							mes "Amazing, you did that with speed.";
-							mes "I am truly grateful.";
-							delitem 7106,50; //Goat's_Horn
+							mes "[Fazendeiro]";
+							mes "Impressionante, e com incrível rapidez. Eu agradeço muito mesmo.";
+							delitem 7106,50; //Chifres de Bode
 							getexp 258489,155155;
-							//getitem 504,10; //White_Potion
+							//getitem 504,10; // Poção Branca
 							close;
 						}
 						else {
-							mes "[Vegetable Farmer]";
-							mes "It doesn't look like you have enough.";
+							mes "[Fazendeiro]";
+							mes "Parece quevocê não tem o suficiente.";
 							next;
-							mes "[Vegetable Farmer]";
-							mes "I need to see that you have gathered ^FF000050 Antelope Horns^000000, and then I can reward you.";
+							mes "[Fazendeiro]";
+							mes "Eu preciso ver que você juntou";
+							mes "^FF000050 Chifres de Bode^000000,, antes de dar sua recompensa.";
 							close;
 						}
 					case 2:
-						mes "[Vegetable Farmer]";
-						mes "I need to see that you have gathered ^FF000050 Antelope Horns^000000, and then I can reward you.";
+						mes "[Fazendeiro]";
+						mes "Eu preciso ver que você juntou";
+						mes "^FF000050 Chifres de Bode^000000,, antes de dar sua recompensa.";
 						close;
 					}
 				case 2:
 					// Kill Count Quest
-					mes "[Vegetable Farmer]";
-					mes "Thank you.";
-					mes "How many Goats would you like to hunt?";
+					mes "[Fazendeiro]";
+					mes "Obrigado.";
+					mes "Quantos Bodes gostaria de caçar?";
 					next;
-					switch(select("50 Goats:100 Goats:150 Goats")) {
+					switch(select("50 Bodes:100 Bodes:150 Bodes")) {
 					case 1:
-						mes "[Vegetable Farmer]";
-						mes "Kill 50 of those Goats and let me know when you're done. I will reward you for your efforts.";
+						mes "[Fazendeiro]";
+						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
 						setquest 60137;
 						close;
 					case 2:
-						mes "[Vegetable Farmer]";
-						mes "Kill 100 of those Goats and let me know when you're done. I will reward you for your efforts.";
+						mes "[Fazendeiro]";
+						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
 						setquest 60138;
 						close;
 					case 3:
-						mes "[Vegetable Farmer]";
-						mes "Kill 150 of those Goats and let me know when you're done. I will reward you for your efforts.";
+						mes "[Fazendeiro]";
+						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
 						setquest 60139;
 						close;
 					}
 				case 3:
-					mes "[Vegetable Farmer]";
-					mes "If you change your mind, please come back.";
+					mes "[Fazendeiro]";
+					mes "Caso mude de ideia, venha falar comigo novamente.";
 					close;
 				}
 			case 2:
-				mes "[Vegetable Farmer]";
-				mes "If you change your mind, please come back.";
+				mes "[Fazendeiro]";
+				mes "Caso mude de ideia, venha falar comigo novamente.";
 				close;
 			}
 		}
 		else {
-			mes "[Vegetable Farmer]";
-			mes "Oh boy, Oh boy!";
+			mes "[Fazendeiro]";
+			mes "Opa, Opa!";
 			next;
-			mes "[Vegetable Farmer]";
-			mes "Sorry I can't talk right now I am in a world of hurt here, these darn Goats are going to kill me.";
+			mes "[Fazendeiro]";
+			mes "Desculpe não poder falar direito, mas essas porcarias desses Bodes vão acabar me matando.";
 			close;
 		}
 	}
 	else {
-		mes "[Vegetable Farmer]";
-		mes "My vegetables, where did they all go?";
-		mes "Oh, no..no!!!";
+		mes "[Fazendeiro]";
+		mes "Meu legumes... AONDE ELES FORAM!?";
+		mes "Ah, não..não!!!";
 		close;
 	}
 }

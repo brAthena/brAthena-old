@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: iRO Repeatable EXP Quests		   		|
+// | Nãome do Script: iRO Repeatable EXP Quests		   		|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			   				|
 // |--------------------------------------------------------|
@@ -18,47 +18,46 @@
 // | Added Monster Killing quests.							|
 // | Repeatable EXP Quest (Sharp Leaves)					|
 // |--------------------------------------------------------|
-// | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
-// | - Anotações					    					|
+// | Changelog:               	                        	|
+// | 1.0 Script Traduzido [insidemybrain]					|
 // \_______________________________________________________/
 
 um_fild01,34,281,5	script	Lilla#Dryad_Hunt	724,{
 	if (checkquest(60131) != -1) {
 		if (checkquest(60131,HUNTING) != 2 ) {
 			mes "[Lilla]";
-			mes "Have you finished hunting the 50 Dryads?";
+			mes "Você terminou de caçar as 50 Driádes?";
 			next;
-			switch(select("Yes:No:I want to quit")) {
+			switch(select("Sim:Não:Quero desistir")) {
 			case 1:
 				mes "[Lilla]";
-				mes "Hmm, I don't think you've hunted 50 yet...";
+				mes "Hm... Acho que você não caçou as 50 Driádes...";
 				close;
 			case 2:
 				mes "[Lilla]";
-				mes "Remember, I need help hunting Dryads so go and hunt 50 of them.";
+				mes "Lembre-se que eu preciso de ajuda para matar as 50 Driádes.";
 				close;
 			case 3:
 				mes "[Lilla]";
-				mes "Are you sure that you want to stop hunting?";
-				mes "Any progress that you've made will be erased";
+				mes "Deseja realmente parar a caça?";
+				mes "Todo o seu processo até agora será apagado";
 				next;
-				switch(select("Yes:No")) {
+				switch(select("Sim:Não")) {
 				case 1:
 					mes "[Lilla]";
-					mes "Ok then, well come back here if you change your mind.";
+					mes "Tudo bem, volte quando mudar de ideia.";
 					erasequest 60131;
 					close;
 				case 2:
 					mes "[Lilla]";
-					mes "Please kill 50 Dryads.";
+					mes "Por favor mate 50 Driádes.";
 					close;
 				}
 			}
 		}
 		else {
 			mes "[Lilla]";
-			mes "Amazing, you did that with speed.";
+			mes "Incrível, você terminou a quest rapidamente.";
 			getexp 262485,141835;
 			erasequest 60131;
 			close;
@@ -67,38 +66,38 @@ um_fild01,34,281,5	script	Lilla#Dryad_Hunt	724,{
 	if (checkquest(60132) != -1) {
 		if (checkquest(60132,HUNTING) != 2 ) {
 			mes "[Lilla]";
-			mes "Have you finished hunting the 50 Dryads?";
+			mes "Você terminou de caçar as 100 Driádes?";
 			next;
-			switch(select("Yes:No:I want to quit")) {
+			switch(select("Sim:Não:Quero desistir")) {
 			case 1:
 				mes "[Lilla]";
-				mes "Hmm, I don't think you've hunted 100 yet...";
+				mes "Hm... Acho que você não caçou as 100 Driádes...";
 				close;
 			case 2:
 				mes "[Lilla]";
-				mes "Remember, I need help hunting Dryads so go and hunt 100 of them.";
+				mes "Lembre-se que eu preciso de ajuda para matar as 100 Driádes.";
 				close;
 			case 3:
 				mes "[Lilla]";
-				mes "Are you sure that you want to stop hunting?";
-				mes "Any progress that you've made will be erased";
+				mes "ADeseja realmente parar a caça?";
+				mes "Todo o seu processo até agora será apagado";
 				next;
-				switch(select("Yes:No")) {
+				switch(select("Sim:Não")) {
 				case 1:
 					mes "[Lilla]";
-					mes "Ok then, well come back here if you change your mind.";
+					mes "Tudo bem, volte quando mudar de ideia.";
 					erasequest 60132;
 					close;
 				case 2:
 					mes "[Lilla]";
-					mes "Please kill 100 Dryads.";
+					mes "Por favor mate 100 Driádes.";
 					close;
 				}
 			}
 		}
 		else {
 			mes "[Lilla]";
-			mes "Amazing, you did that with speed.";
+			mes "Incrível, você terminou a quest rapidamente.";
 			getexp 262485,141835;
 			getexp 262485,141835;
 			erasequest 60132;
@@ -108,38 +107,38 @@ um_fild01,34,281,5	script	Lilla#Dryad_Hunt	724,{
 	if (checkquest(60133) != -1) {
 		if (checkquest(60133,HUNTING) != 2 ) {
 			mes "[Lilla]";
-			mes "Have you finished hunting the 150 Dryads?";
+			mes "Você terminou de caçar as 150 Driádes?";
 			next;
-			switch(select("Yes:No:I want to quit")) {
+			switch(select("Sim:Não:Quero desistir")) {
 			case 1:
 				mes "[Lilla]";
-				mes "Hmm, I don't think you've hunted 150 yet...";
+				mes "Hm... Acho que você não caçou as 150 Driádes...";
 				close;
 			case 2:
 				mes "[Lilla]";
-				mes "Remember, I need help hunting Dryads so go and hunt 150 of them.";
+				mes "Lembre-se que eu preciso de ajuda para matar as 150 Driádes.";
 				close;
 			case 3:
 				mes "[Lilla]";
-				mes "Are you sure that you want to stop hunting?";
-				mes "Any progress that you've made will be erased";
+				mes "ADeseja realmente parar a caça?";
+				mes "Todo o seu processo até agora será apagado";
 				next;
-				switch(select("Yes:No")) {
+				switch(select("Sim:Não")) {
 				case 1:
 					mes "[Lilla]";
-					mes "Ok then, well come back here if you change your mind.";
+					mes "Tudo bem, volte quando mudar de ideia.";
 					erasequest 60133;
 					close;
 				case 2:
 					mes "[Lilla]";
-					mes "Please kill 150 Dryads.";
+					mes "Por favor mate 150 Driádes.";
 					close;
 				}
 			}
 		}
 		else {
 			mes "[Lilla]";
-			mes "Amazing, you did that with speed.";
+			mes "Incrível, você terminou a quest rapidamente.";
 			getexp 262485,141835;
 			getexp 262485,141835;
 			getexp 262485,141835;
@@ -152,100 +151,100 @@ um_fild01,34,281,5	script	Lilla#Dryad_Hunt	724,{
 		//for maximum level
 		if (BaseLevel < 86) {
 			mes "[Lilla]";
-			mes "Why hello!";
-			mes "You look like someone who is willing to help a lil thing like myself out.";
+			mes "Ora, ora, olá!";
+			mes "Você parece ser alguém que ajudaria uma pessoa indefesa como eu. Poderia?";
 			next;
-			switch(select("Sure:No")) {
+			switch(select("Claro:Não")) {
 			case 1:
 				mes "[Lilla]";
-				mes "Really?!";
-				mes "That's great!";
+				mes "Sério?!";
+				mes "Que ótimo!";
 				next;
-				switch(select("Gather Items:Hunt Dryads:Cancel")) {
+				switch(select("Pegar Itens:Caçar Driádes:Cancelar")) {
 				case 1:
 					// Item turn in
 					mes "[Lilla]";
-					mes "I really need to gather ^00CE0050 Sharp Leafs^000000 for my garden tea party.";
-					mes "Do you have any?";
+					mes "Eu preciso muito de ^00CC0050 Folhas Afiadas^000000 para um chá no meu jardim.";
+					mes "Você tem algumas??";
 					next;
-					switch(select("I have some Sharp Leafs:What did you need?")) {
+					switch(select("Eu tenho 50 Folhas Afiadas:O quê? Desculpe, estava pensando em outra coisa?")) {
 					case 1:
 						/*
 						if (checkweight(504,10) == 0) {
 							mes "[Lilla]";
-							mes "Hey, it looks like that the weight on";
-							mes "your back will crush you. Come back";
-							mes "after you have lost some weight.";
+							mes "Ei, parece que você vai ser esmagado pelo";
+							mes "peso nas suas costas. Volte quando";
+							mes "não estiver carregando tanta coisa.";
 							close;
 						}
 						*/
 						if (countitem(7100) > 49) {
 							mes "[Lilla]";
-							mes "Hey, your a sweet little thing.";
-							mes "Thanks so much for helping me!";
+							mes "Ei, mas que gentileza da sua parte.";
+							mes " Eu agradeço muito por me ajudar!";
 							next;
 							mes "[Lilla]";
-							mes "Oh, I almost forgot. I have something for you ^_^";
-							mes "Thank you so much again for your help.";
-							delitem 7100,50; //Sharp_Leaf
+							mes "Oh, eu quase me esqueci. Tenho algo para você ^_^";
+							mes "Muito obrigada novamente por sua ajuda.";
+							delitem 7100,50; // Folha Afiada
 							getexp 262485,141835;
-							//getitem 504,10; //White_Potion
+							//getitem 504,10; // POção Branca
 							close;
 						}
 						else {
 							mes "[Lilla]";
-							mes "Why, I may look cute and silly but please don't play games with me.";
+							mes "Ora, eu posso ser bonitinha e meio tola, mas não brinque comigo.";
 							close;
 						}
 					case 2:
 						mes "[Lilla]";
-						mes "I need ^00CE0050 Sharp Leafs^000000.";
+						mes "Eu preciso de ^00CC0050 Folhas Afiadas^000000.";
 						close;
 					}
 				case 2:
 					// Kill Count Quest
 					mes "[Lilla]";
-					mes "Ah, ok I think you can help me out by hunting some Dryads.";
-					mes "How many would you like to hunt?";
+					mes "Ah sim, você quer caçar algumas Driádes.";
+					mes "Quantas gostaria de caçar?";
 					next;
-					switch(select("50 Dryads:100 Dryads:150 Dryads")) {
+					switch(select("50 Driádes:100 Driádes:150 Driádes")) {
 					case 1:
 						mes "[Lilla]";
-						mes "Come back when you've finished your task and I will give you a small reward.";
+						mes "Volte quando terminar e lhe darei um pequena recompensa.";
 						setquest 60131;
 						close;
 					case 2:
 						mes "[Lilla]";
-						mes "Come back when you've finished your task and I will give you a small reward.";
+						mes "Volte quando terminar e lhe darei um pequena recompensa.";
 						setquest 60132;
 						close;
 					case 3:
 						mes "[Lilla]";
-						mes "Come back when you've finished your task and I will give you a small reward.";
+						mes "Volte quando terminar e lhe darei um pequena recompensa.";
 						setquest 60133;
 						close;
 					}
 				case 3:
 					mes "[Lilla]";
-					mes "If you change your mind, please come back.";
+					mes "Se mudar de ideia, fale comigo novamente";
 					close;
 				}
 			case 2:
 				mes "[Lilla]";
-				mes "If you change your mind, please come back.";
+				mes "Se mudar de ideia, fale comigo novamente";
 				close;
 			}
 		}
 		else {
 			mes "[Lilla]";
-			mes "Sorry but you are a little too old and scary to talk to!";
+			mes "Desculpe-me, mas você é um pouco velho e assustador demais para conversar!";
 			close;
 		}
 	}
 	else {
 		mes "[Lilla]";
-		mes "You are way too tiny to be helping me.";
-		mes "Thank you for your offer though.";
+		mes "Você é muito pequenininho para me ajudar.";
+		mes "Mas obrigada pela oferta";
 		close;
 	}
 }

@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: iRO Repeatable EXP Quests		   		|
+// | Nãome do Script: iRO Repeatable EXP Quests		   		|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			   				|
 // |--------------------------------------------------------|
@@ -19,46 +19,45 @@
 // | Repeatable EXP Quest (Bacillus)						|
 // |--------------------------------------------------------|
 // | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
-// | - Anotações					    					|
+// | 1.0 Script Traduzido [insidemybrain]					|
 // \_______________________________________________________/
 
-ein_fild01,43,249,0	script	Local Villager#hunt	898,{
+ein_fild01,43,249,0	script	Camponês#hunt	898,{
 	if (checkquest(60125) != -1) {
 		if (checkquest(60125,HUNTING) != 2 ) {
-			mes "[Local Villager]";
-			mes "Have you finished hunting the 50 Demon Pungus?";
+			mes "[Camponês]";
+			mes "Você terminou de caçar os 50 Pungus?";
 			next;
-			switch(select("Yes:No:I want to quit")) {
+			switch(select("Sim:Não:Quero desistir")) {
 			case 1:
-				mes "[Local Villager]";
-				mes "Hmm, I don't think you've hunted 50 yet...";
+				mes "[Camponês]";
+				mes "Hm... Acho que você não terminou de caçar os 50 Pungus...";
 				close;
 			case 2:
-				mes "[Local Villager]";
-				mes "Remember, I need help hunting Demon Pungus so go and hunt 50 of them.";
+				mes "[Camponês]";
+				mes "Lembre-se, eu preciso de ajuda para caçar os 50 Pungus.";
 				close;
 			case 3:
-				mes "[Local Villager]";
-				mes "Are you sure that you want to stop hunting?";
-				mes "Any progress that you've made will be erased";
+				mes "[Camponês]";
+				mes "Você tem certeza que deseja parar a caça?";
+				mes "Todo o seu processo até agora será apagado";
 				next;
-				switch(select("Yes:No")) {
+				switch(select("Sim:Não")) {
 				case 1:
-					mes "[Local Villager]";
-					mes "Ok then, well come back here if you change your mind.";
+					mes "[Camponês]";
+					mes "Tudo bem então, volte quando mudar de ideia.";
 					erasequest 60125;
 					close;
 				case 2:
-					mes "[Local Villager]";
-					mes "Please kill 50 Demon Pungus.";
+					mes "[Camponês]";
+					mes "Por favor mate 50 Pungus.";
 					close;
 				}
 			}
 		}
 		else {
-			mes "[Local Villager]";
-			mes "Amazing, you did that with speed.";
+			mes "[Camponês]";
+			mes "Impressionante! Você conseguiu completar a quest com facilidade.";
 			getexp 250266,144452;
 			erasequest 60125;
 			close;
@@ -66,39 +65,39 @@ ein_fild01,43,249,0	script	Local Villager#hunt	898,{
 	}
 	if (checkquest(60126) != -1) {
 		if (checkquest(60126,HUNTING) != 2 ) {
-			mes "[Local Villager]";
-			mes "Have you finished hunting the 50 Demon Pungus?";
+			mes "[Camponês]";
+			mes "Você terminou de caçar os 100 Pungus?";
 			next;
-			switch(select("Yes:No:I want to quit")) {
+			switch(select("Sim:Não:Quero desistir")) {
 			case 1:
-				mes "[Local Villager]";
-				mes "Hmm, I don't think you've hunted 100 yet...";
+				mes "[Camponês]";
+				mes "Hm... Acho que você não terminou de caçar os 100 Pungus...";
 				close;
 			case 2:
-				mes "[Local Villager]";
-				mes "Remember, I need help hunting Demon Pungus so go and hunt 100 of them.";
+				mes "[Camponês]";
+				mes "Lembre-se, eu preciso de ajuda para caçar os 100 Pungus.";
 				close;
 			case 3:
-				mes "[Local Villager]";
-				mes "Are you sure that you want to stop hunting?";
-				mes "Any progress that you've made will be erased";
+				mes "[Camponês]";
+				mes "Você tem certeza que deseja parar a caça?";
+				mes "Todo o seu processo até agora será apagado";
 				next;
-				switch(select("Yes:No")) {
+				switch(select("Sim:Não")) {
 				case 1:
-					mes "[Local Villager]";
-					mes "Ok then, well come back here if you change your mind.";
+					mes "[Camponês]";
+					mes "Tudo bem então, volte quando mudar de ideia.";
 					erasequest 60126;
 					close;
 				case 2:
-					mes "[Local Villager]";
-					mes "Please kill 100 Demon Pungus.";
+					mes "[Camponês]";
+					mes "Por favor mate 100 Pungus.";
 					close;
 				}
 			}
 		}
 		else {
-			mes "[Local Villager]";
-			mes "Amazing, you did that with speed.";
+			mes "[Camponês]";
+			mes "Impressionante! Você conseguiu completar a quest com facilidade.";
 			getexp 250266,144452;
 			getexp 250266,144452;
 			erasequest 60126;
@@ -107,39 +106,39 @@ ein_fild01,43,249,0	script	Local Villager#hunt	898,{
 	}
 	if (checkquest(60127) != -1) {
 		if (checkquest(60127,HUNTING) != 2 ) {
-			mes "[Local Villager]";
-			mes "Have you finished hunting the 150 Demon Pungus?";
+			mes "[Camponês]";
+			mes "Você terminou de caçar os 150 Pungus?";
 			next;
-			switch(select("Yes:No:I want to quit")) {
+			switch(select("Sim:Não:Quero desistir")) {
 			case 1:
-				mes "[Local Villager]";
-				mes "Hmm, I don't think you've hunted 150 yet...";
+				mes "[Camponês]";
+				mes "Hm... Acho que você não terminou de caçar os 150 Pungus...";
 				close;
 			case 2:
-				mes "[Local Villager]";
-				mes "Remember, I need help hunting Demon Pungus so go and hunt 150 of them.";
+				mes "[Camponês]";
+				mes "Lembre-se, eu preciso de ajuda para caçar os 150 Pungus.";
 				close;
 			case 3:
-				mes "[Local Villager]";
-				mes "Are you sure that you want to stop hunting?";
-				mes "Any progress that you've made will be erased";
+				mes "[Camponês]";
+				mes "Você tem certeza que deseja parar a caça?";
+				mes "Todo o seu processo até agora será apagado";
 				next;
-				switch(select("Yes:No")) {
+				switch(select("Sim:Não")) {
 				case 1:
-					mes "[Local Villager]";
-					mes "Ok then, well come back here if you change your mind.";
+					mes "[Camponês]";
+					mes "Tudo bem então, volte quando mudar de ideia.";
 					erasequest 60127;
 					close;
 				case 2:
-					mes "[Local Villager]";
-					mes "Please kill 150 Demon Pungus.";
+					mes "[Camponês]";
+					mes "Por favor mate 150 Pungus.";
 					close;
 				}
 			}
 		}
 		else {
-			mes "[Local Villager]";
-			mes "Amazing, you did that with speed.";
+			mes "[Camponês]";
+			mes "Impressionante! Você conseguiu completar a quest com facilidade.";
 			getexp 250266,144452;
 			getexp 250266,144452;
 			getexp 250266,144452;
@@ -151,101 +150,102 @@ ein_fild01,43,249,0	script	Local Villager#hunt	898,{
 	if (BaseLevel > 59) {
 		//for maximum level
 		if (BaseLevel < 75) {
-			mes "[Local Villager]";
-			mes "Hey, you there. Yeah you!";
-			mes "Do you think you can help me with something?";
+			mes "[Camponês]";
+			mes "Ei, você aí. Você mesmo!";
+			mes "Acha que pode me ajudar com um problema?";
 			next;
-			switch(select("Sure:No")) {
+			switch(select("Claro:Não")) {
 			case 1:
-				mes "[Local Villager]";
-				mes "I am trying to make my way through but I can't seem to get past these Demon Pungus.";
+				mes "[Camponês]";
+				mes "Estou tentando ir pelo meu caminho, mas não consigo passar por esses Pungus.";
+				mes "Como pode me ajudar?";
 				next;
-				switch(select("Gather Items:Hunt Demon Pungus:Cancel")) {
+				switch(select("Pegar Itens:Caçar Pungus:Cancelar")) {
 				case 1:
 					// Item turn in
-					mes "[Local Villager]";
-					mes "Can you help by collecting ^FF0000Bacillus^000000?";
-					mes "I will reward you for helping clear this out for me.";
+					mes "[Camponês]";
+					mes "Você pode me ajudar trazendo algumas ^FF0000Bactérias^000000?";
+					mes "Irei dar uma recompensa a você por me ajudar com isso.";
 					next;
-					switch(select("I have Bacillus:What did you need?")) {
+					switch(select("Eu tenho Bactérias:Do que você precisava?")) {
 					case 1:
 						/*
 						if (checkweight(504,10) == 0) {
-							mes "[Local Villager]";
-							mes "Hey, it looks like that the weight on";
-							mes "your back will crush you. Come back";
-							mes "after you have lost some weight.";
+							mes "[Camponês]";
+							mes "Ei, parece que você vai ser esmagado pelo";
+							mes "peso nas suas costas. Volte quando";
+							mes "não estiver carregando tanta coisa.";
 							close;
 						}
 						*/
 						if (countitem(7119) > 49) {
-							mes "[Local Villager]";
-							mes "I had my doubts, but you have proven me wrong.";
-							delitem 7119,50; //Spawns
+							mes "[Camponês]";
+							mes "Eu tinha minhas dúvidas, mas você provou seu valor.";
+							delitem 7119,50; //Bactétias
 							getexp 250266,144452;
-							//getitem 504,10; //White_Potion
+							//getitem 504,10; //Poção Branca
 							close;
 						}
 						else {
-							mes "[Local Villager]";
-							mes "It doesn't look like you have enough.";
+							mes "[Camponês]";
+							mes "Parece que você não tem o suficiente.";
 							next;
-							mes "[Local Villager]";
-							mes "I need to see that you have gathered ^FF000050 Bacillus^000000, and then I can reward you.";
+							mes "[Camponês]";
+							mes "Eu preciso ver que você juntou ^FF000050 Bactérias^000000, antes de dar a sua recompensa.";
 							close;
 						}
 					case 2:
-						mes "[Local Villager]";
-						mes "I need to see that you have gathered ^FF000050 Bacillus^000000, and then I can reward you.";
+						mes "[Camponês]";
+						mes "Eu preciso ver que você juntou ^FF000050 Bactérias^000000, antes de dar a sua recompensa.";
 						close;
 					}
 				case 2:
 					// Kill Count Quest
-					mes "[Local Villager]";
-					mes "Ah, ok I think you can help me out by hunting some Demon Pungus.";
-					mes "How many would you like to hunt?";
+					mes "[Camponês]";
+					mes "Então gostaria de caçar Pungus, não é?";
+					mes "Quantos gostaria de caçar?";
 					next;
-					switch(select("50 Demon Pungus:100 Demon Pungus:150 Demon Pungus")) {
+					switch(select("50 Pungus:100 Pungus:150 Pungus")) {
 					case 1:
-						mes "[Local Villager]";
-						mes "Come back when you've finished your task and I will give you a small reward.";
+						mes "[Camponês]";
+						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
 						setquest 60125;
 						close;
 					case 2:
-						mes "[Local Villager]";
-						mes "Come back when you've finished your task and I will give you a small reward.";
+						mes "[Camponês]";
+						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
 						setquest 60126;
 						close;
 					case 3:
-						mes "[Local Villager]";
-						mes "Come back when you've finished your task and I will give you a small reward.";
+						mes "[Camponês]";
+						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
 						setquest 60127;
 						close;
 					}
 				case 3:
-					mes "[Local Villager]";
-					mes "If you change your mind, please come back.";
+					mes "[Camponês]";
+					mes "Caso mude de ideia, venha falar comigo novamente.";
 					close;
 				}
 			case 2:
-				mes "[Local Villager]";
-				mes "If you change your mind, please come back.";
+				mes "[Camponês]";
+				mes "Caso mude de ideia, venha falar comigo novamente.";
 				close;
 			}
 		}
 		else {
-			mes "[Local Villager]";
-			mes "Um, um. I don't think..";
+			mes "[Camponês]";
+			mes "Ah, tá. Acho que não...";
 			next;
-			mes "[Local Villager]";
-			mes "Yeah, sorry I can't talk right now.";
+			mes "[Camponês]";
+			mes "É, desculpe por não poder conversar agora...";
 			close;
 		}
 	}
 	else {
-		mes "[Local Villager]";
-		mes "Its amazing, truly it is.";
-		mes "I just wish I could get through this all.";
+		mes "[Camponês]";
+		mes "É impressionante, realmente.";
+		mes "Eu só queria poder passar por lá.";
 		close;
 	}
 }
