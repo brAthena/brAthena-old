@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0073 - 06/01/2011 [Protimus]
+	* Renomeado nome da pasta customizados para personalizados.
+	- O nome customizados é aportuguêsado, por isso optei em por um nome mais bonito a nossa língua.
+	* Renomeado nome da pasta repetitiveis para repetiveis.
+	- A tradução de repetitivel não é incorreta mas é algo mais informal, por isso optamos pela mudança.
+
 	r0072 - 06/01/2011 [Protimus]
 	* Adicionadas traduções da pasta repetitiveis.
 	- quests/repetitiveis/quest_alligator.txt
