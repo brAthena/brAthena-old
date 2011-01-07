@@ -9,6 +9,14 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0077 - 07/01/2011 [Protimus]
+	* Atualizada data do projeto no core banner: 2008 ~ 2011.
+	* Corrigido pequeno erro no script_main, havia esquecido de trocar o nome da pasta customizados para personalizados.
+	* Removidos arquivo desnecessário:
+	- conf/ladmin_athena.conf 
+	* Códigos de funções para TXT removidas de arquivos da pasta conf.
+	- Importante: Configuração de logs agora são apenas por meio de database.
+
 	r0076 - 07/01/2011 [Protimus]
 	* Adicionada tradução de npcs da pasta de classes.
 	- classes/1-1/espadachim.txt
