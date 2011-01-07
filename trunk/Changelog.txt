@@ -9,6 +9,14 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0076 - 07/01/2011 [Protimus]
+	* Adicionada tradução de npcs da pasta de classes.
+	- classes/1-1/espadachim.txt
+	* Corrigido pequeno erro do commit anterior, acabei removendo um código por engano.
+	* Aumentado o número de caracteres para nomes de NPCs para 30.
+	- Devido label ser maior e o nome ser extenso estava dando truncating.
+	OBS: O nome original não passa de 29 caracteres, foi aumentado apenas por causa da label, não use nomes com + de 29 caracteres.
+
 	r0075 - 07/01/2011 [Protimus]
 	* Adicionada nova definição para nome máximo de NPCs: NPC_NAME_LENGTH.
 	- Foi alterado o nome máximo e as labeis para 29 caracteres, não é possível mais porque o hexed não suporta.
