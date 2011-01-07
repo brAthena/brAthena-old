@@ -232,7 +232,7 @@ gef_fild07,321,193,4	script	Langry#Fabre_Hunt	754,{
 	else {
 		mes "[Langry]";
 		mes "Você deve ser a pessoa mais azarada da história,";
-		mes "vá reciclar alguns Fabres e depois volte."
+		mes "vá reciclar alguns Fabres e depois volte.";
 		close;
 	}
 }

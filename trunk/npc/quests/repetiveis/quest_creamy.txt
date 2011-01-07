@@ -191,13 +191,13 @@ prt_fild04,356,148,3	script	Laertes#Creamy_Hunt	798,{
 							mes "Não parece que você tem o suficiente.";
 							next;
 							mes "[Laertes]";
-							mes "Se você me trouxer "^FF000025 Pó de Borboleta^000000,";
+							mes "Se você me trouxer ^FF000025 Pó de Borboleta^000000,";
 							mes "vou dar a você suprimentos médicos.";
 							close;
 						}
 					case 2:
 						mes "[Laertes]";
-						mes "Se você me trouxer "^FF000025 Pó de Borboleta^000000,";
+						mes "Se você me trouxer ^FF000025 Pó de Borboleta^000000,";
 						mes "vou dar a você suprimentos médicos.";
 						close;
 					}

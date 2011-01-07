@@ -159,7 +159,7 @@ moc_fild17,66,273,5	script	Lemly#Frilldoras_Hunt	725,{
 			switch(select("Claro:Não")) {
 			case 1:
 				mes "[Lemly]";
-				mes "Estou procurando por "^FF0000Brasões^000000 de lagartos.";
+				mes "Estou procurando por ^FF0000Brasões^000000 de lagartos.";
 				next;
 				mes "[Lemly]";
 				mes "Os lagartos desta região têm uma capacidade furtiva natural que a Guilda dos Mercenários quer estudar.";

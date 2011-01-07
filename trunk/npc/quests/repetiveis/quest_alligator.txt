@@ -243,7 +243,7 @@ cmd_fild01,362,256,3	script	Cuir#Gator_Hunt	106,{
 	}
 	else {
 		mes "[Cuir]";
-		mes "Você certamente é corajoso, mas a coragem se torna loucura se continuar a ir para o Leste.".";
+		mes "Você certamente é corajoso, mas a coragem se torna loucura se continuar a ir para o Leste.";
 		mes "Talvez quando ficar mais forte você e eu possamos fazer negócios.";
 		close;
 	}

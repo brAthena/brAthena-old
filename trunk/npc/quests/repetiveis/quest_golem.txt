@@ -179,12 +179,12 @@ moc_fild11,57,138,0	script	Jeremy#hunt	707,{
 							mes "It doesn't look like you have enough.";
 							next;
 							mes "[Jeremy]";
-							mes "A Guarda de Morroc precisa de "^FF000025 Corações de Pedra^000000 para o nosso programa de treinos.";
+							mes "A Guarda de Morroc precisa de ^FF000025 Corações de Pedra^000000 para o nosso programa de treinos.";
 							close;
 						}
 					case 2:
 						mes "[Jeremy]";
-						mes "A Guarda de Morroc precisa de "^FF000025 Corações de Pedra^000000 para o nosso programa de treinos.";
+						mes "A Guarda de Morroc precisa de ^FF000025 Corações de Pedra^000000 para o nosso programa de treinos.";
 						close;
 					}
 				case 2:
