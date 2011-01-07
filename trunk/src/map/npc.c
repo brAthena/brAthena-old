@@ -105,7 +105,7 @@ struct view_data* npc_get_viewdata(int class_)
 
 int npc_ontouch_event(struct map_session_data *sd, struct npc_data *nd)
 {
-	char name[NAME_LENGTH*2+3];
+	char name[NPC_NAME_LENGTH*2+3];
 
 	if( nd->touching_id )
 		return 0; // Attached a player already. Can't trigger on anyone else.
@@ -119,7 +119,7 @@ int npc_ontouch_event(struct map_session_data *sd, struct npc_data *nd)
 
 int npc_ontouch2_event(struct map_session_data *sd, struct npc_data *nd)
 {
-	char name[NAME_LENGTH*2+3];
+	char name[NPC_NAME_LENGTH*2+3];
 
 	if( sd->areanpc_id == nd->bl.id )
 		return 0;
@@ -241,14 +241,14 @@ int npc_event_export(char* lname, void* data, va_list ap)
 
 	if ((lname[0]=='O' || lname[0]=='o')&&(lname[1]=='N' || lname[1]=='n')) {
 		struct event_data *ev;
-		char buf[NAME_LENGTH*2+3];
+		char buf[NPC_NAME_LENGTH*2+3];
 		char* p = strchr(lname, ':');
 		// エクスポートされる
 		ev = (struct event_data *) aMalloc(sizeof(struct event_data));
 		if (ev==NULL) {
 			ShowFatalError("npc_event_export: out of memory !\n");
 			exit(EXIT_FAILURE);
-		}else if (p==NULL || (p-lname)>NAME_LENGTH) {
+		}else if (p==NULL || (p-lname)>NPC_NAME_LENGTH) {
 			ShowFatalError("npc_event_export: label name error !\n");
 			exit(EXIT_FAILURE);
 		}else{
@@ -632,7 +632,7 @@ void npc_timerevent_quit(struct map_session_data* sd)
 	// Execute OnTimerQuit
 	if( nd && nd->bl.type == BL_NPC )
 	{
-		char buf[NAME_LENGTH*2+3];
+		char buf[NPC_NAME_LENGTH*2+3];
 		struct event_data *ev;
 
 		snprintf(buf, ARRAYLENGTH(buf), "%s::OnTimerQuit", nd->exname);
@@ -809,7 +809,7 @@ int npc_touchnext_areanpc(struct map_session_data* sd, bool leavemap)
 		sd->bl.y < nd->bl.y - ys || sd->bl.y > nd->bl.y + ys ||
 		pc_ishiding(sd) || leavemap )
 	{
-		char name[NAME_LENGTH*2+3];
+		char name[NPC_NAME_LENGTH*2+3];
 
 		nd->touching_id = sd->touching_id = 0;
 		snprintf(name, ARRAYLENGTH(name), "%s::%s", nd->exname, script_config.ontouch_name);
@@ -890,7 +890,7 @@ int npc_touch_areanpc(struct map_session_data* sd, int m, int x, int y)
 int npc_touch_areanpc2(struct mob_data *md)
 {
 	int i, m = md->bl.m, x = md->bl.x, y = md->bl.y, id;
-	char eventname[NAME_LENGTH*2+3];
+	char eventname[NPC_NAME_LENGTH*2+3];
 	struct event_data* ev;
 	int xs, ys;
 
@@ -1140,7 +1140,7 @@ int npc_buysellsel(struct map_session_data* sd, int id, int type)
 //npc_buylist for script-controlled shops.
 static int npc_buylist_sub(struct map_session_data* sd, int n, unsigned short* item_list, struct npc_data* nd)
 {
-	char npc_ev[NAME_LENGTH*2+3];
+	char npc_ev[NPC_NAME_LENGTH*2+3];
 	int i;
 	int key_nameid = 0;
 	int key_amount = 0;
@@ -1375,7 +1375,7 @@ int npc_buylist(struct map_session_data* sd, int n, unsigned short* item_list)
 /// npc_selllist for script-controlled shops
 static int npc_selllist_sub(struct map_session_data* sd, int n, unsigned short* item_list, struct npc_data* nd)
 {
-	char npc_ev[NAME_LENGTH*2+3];
+	char npc_ev[NPC_NAME_LENGTH*2+3];
 	int i, idx;
 	int key_nameid = 0;
 	int key_amount = 0;
@@ -1713,16 +1713,16 @@ static void npc_parsename(struct npc_data* nd, const char* name, const char* sta
 {
 	const char* p;
 	struct npc_data* dnd;// duplicate npc
-	char newname[NAME_LENGTH];
+	char newname[NPC_NAME_LENGTH];
 
 	// parse name
 	p = strstr(name,"::");
 	if( p )
 	{// <Display name>::<Unique name>
 		size_t len = p-name;
-		if( len > NAME_LENGTH )
+		if( len > NPC_NAME_LENGTH )
 		{
-			ShowWarning("npc_parsename: Display name of '%s' is too long (len=%u) in file '%s', line'%d'. Truncating to %u characters.\n", name, (unsigned int)len, filepath, strline(buffer,start-buffer), NAME_LENGTH);
+			ShowWarning("npc_parsename: Display name of '%s' is too long (len=%u) in file '%s', line'%d'. Truncating to %u characters.\n", name, (unsigned int)len, filepath, strline(buffer,start-buffer), NPC_NAME_LENGTH);
 			safestrncpy(nd->name, name, sizeof(nd->name));
 		}
 		else
@@ -1731,15 +1731,15 @@ static void npc_parsename(struct npc_data* nd, const char* name, const char* sta
 			memset(nd->name+len, 0, sizeof(nd->name)-len);
 		}
 		len = strlen(p+2);
-		if( len > NAME_LENGTH )
-			ShowWarning("npc_parsename: Unique name of '%s' is too long (len=%u) in file '%s', line'%d'. Truncating to %u characters.\n", name, (unsigned int)len, filepath, strline(buffer,start-buffer), NAME_LENGTH);
+		if( len > NPC_NAME_LENGTH )
+			ShowWarning("npc_parsename: Unique name of '%s' is too long (len=%u) in file '%s', line'%d'. Truncating to %u characters.\n", name, (unsigned int)len, filepath, strline(buffer,start-buffer), NPC_NAME_LENGTH);
 		safestrncpy(nd->exname, p+2, sizeof(nd->exname));
 	}
 	else
 	{// <Display name>
 		size_t len = strlen(name);
-		if( len > NAME_LENGTH )
-			ShowWarning("npc_parsename: Name '%s' is too long (len=%u) in file '%s', line'%d'. Truncating to %u characters.\n", name, (unsigned int)len, filepath, strline(buffer,start-buffer), NAME_LENGTH);
+		if( len > NPC_NAME_LENGTH )
+			ShowWarning("npc_parsename: Name '%s' is too long (len=%u) in file '%s', line'%d'. Truncating to %u characters.\n", name, (unsigned int)len, filepath, strline(buffer,start-buffer), NPC_NAME_LENGTH);
 		safestrncpy(nd->name, name, sizeof(nd->name));
 		safestrncpy(nd->exname, name, sizeof(nd->exname));
 	}
@@ -2207,7 +2207,7 @@ static const char* npc_parse_script(char* w1, char* w2, char* w3, char* w4, cons
 		if ((lname[0] == 'O' || lname[0] == 'o') && (lname[1] == 'N' || lname[1] == 'n'))
 		{
 			struct event_data* ev;
-			char buf[NAME_LENGTH*2+3]; // 24 for npc name + 24 for label + 2 for a "::" and 1 for EOS
+			char buf[NPC_NAME_LENGTH*2+3]; // 24 for npc name + 24 for label + 2 for a "::" and 1 for EOS
 			snprintf(buf, ARRAYLENGTH(buf), "%s::%s", nd->exname, lname);
 
 			// generate the data and insert it
@@ -2390,7 +2390,7 @@ const char* npc_parse_duplicate(char* w1, char* w2, char* w3, char* w4, const ch
 		if ((lname[0] == 'O' || lname[0] == 'o') && (lname[1] == 'N' || lname[1] == 'n'))
 		{
 			struct event_data* ev;
-			char buf[NAME_LENGTH*2+3]; // 24 for npc name + 24 for label + 2 for a "::" and 1 for EOS
+			char buf[NPC_NAME_LENGTH*2+3]; // 24 for npc name + 24 for label + 2 for a "::" and 1 for EOS
 			snprintf(buf, ARRAYLENGTH(buf), "%s::%s", nd->exname, lname);
 
 			// generate the data and insert it
@@ -2435,7 +2435,7 @@ const char* npc_parse_duplicate(char* w1, char* w2, char* w3, char* w4, const ch
 
 int npc_duplicate4instance(struct npc_data *snd, int m)
 {
-	char newname[NAME_LENGTH];
+	char newname[NPC_NAME_LENGTH];
 
 	if( map[m].instance_id == 0 )
 		return 1;
@@ -3489,8 +3489,8 @@ int do_init_npc(void)
 	for( i = 1; i < MAX_NPC_CLASS; i++ ) 
 		npc_viewdb[i].class_ = i;
 
-	ev_db = strdb_alloc((DBOptions)(DB_OPT_DUP_KEY|DB_OPT_RELEASE_DATA),2*NAME_LENGTH+2+1);
-	npcname_db = strdb_alloc(DB_OPT_BASE,NAME_LENGTH);
+	ev_db = strdb_alloc((DBOptions)(DB_OPT_DUP_KEY|DB_OPT_RELEASE_DATA),2*NPC_NAME_LENGTH+2+1);
+	npcname_db = strdb_alloc(DB_OPT_BASE,NPC_NAME_LENGTH);
 
 	timer_event_ers = ers_new(sizeof(struct timer_event_data));
 

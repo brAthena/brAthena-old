@@ -9,7 +9,14 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
-	r0074 - 06/01/2011 [Protimus]
+	r0075 - 07/01/2011 [Protimus]
+	* Adicionada nova definição para nome máximo de NPCs: NPC_NAME_LENGTH.
+	- Foi alterado o nome máximo e as labeis para 29 caracteres, não é possível mais porque o hexed não suporta.
+	- Agradecimentos ao Rafael que ajudou com o código.
+	* Adicionada tradução de npcs da pasta de classes.
+	- classes/aprendiz.txt
+
+	r0074 - 07/01/2011 [Protimus]
 	* Atualizado conforme eAthena r14653.
 	* Enviadas correções de códigos de npcs da pasta repetíveis.
 	- Agora só falta revisar a escrita e renomear os arquivos para português.

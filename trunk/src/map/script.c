@@ -5147,8 +5147,7 @@ BUILDIN_FUNC(deletearray)
 			return 0;// no player attached
 	}
 
-	end = SCRIPT_MAX_ARRAYSIZE;
-
+	end = getarraysize(st, id, start, is_string_variable(name), reference_getref(data));
 	if( start >= end )
 		return 0;// nothing to free
 
@@ -11761,7 +11760,7 @@ BUILDIN_FUNC(npctalk)
 	str = script_getstr(st,2);
 
 	if(nd) {
-		memcpy(message, nd->name, NAME_LENGTH);
+		memcpy(message, nd->name, NPC_NAME_LENGTH);
 		strtok(message, "#"); // discard extra name identifier if present
 		strcat(message, " : ");
 		strncat(message, str, 254); //Prevent overflow possibility. [Skotlex]
@@ -14511,7 +14510,7 @@ BUILDIN_FUNC(instance_npcname)
 
 	if( instance_id && (nd = npc_name2id(str)) != NULL )
  	{
-		static char npcname[NAME_LENGTH];
+		static char npcname[NPC_NAME_LENGTH];
 		snprintf(npcname, sizeof(npcname), "dup_%d_%d", instance_id, nd->bl.id);
  		script_pushconststr(st,npcname);
 	}
