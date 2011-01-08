@@ -33,21 +33,6 @@ static struct{
 #ifdef WITH_SQL
 	{account_db_sql, NULL},
 #endif
-#ifdef ACCOUNTDB_ENGINE_0
-	{ACCOUNTDB_CONSTRUCTOR(ACCOUNTDB_ENGINE_0), NULL},
-#endif
-#ifdef ACCOUNTDB_ENGINE_1
-	{ACCOUNTDB_CONSTRUCTOR(ACCOUNTDB_ENGINE_1), NULL},
-#endif
-#ifdef ACCOUNTDB_ENGINE_2
-	{ACCOUNTDB_CONSTRUCTOR(ACCOUNTDB_ENGINE_2), NULL},
-#endif
-#ifdef ACCOUNTDB_ENGINE_3
-	{ACCOUNTDB_CONSTRUCTOR(ACCOUNTDB_ENGINE_3), NULL},
-#endif
-#ifdef ACCOUNTDB_ENGINE_4
-	{ACCOUNTDB_CONSTRUCTOR(ACCOUNTDB_ENGINE_4), NULL},
-#endif
 	// end of structure
 	{NULL, NULL}
 };
@@ -1566,9 +1551,6 @@ int login_config_read(const char* cfgName)
 
 		else if(!strcmpi(w1, "import"))
 			login_config_read(w2);
-		else
-		if(!strcmpi(w1, "account.engine"))
-			safestrncpy(login_config.account_engine, w2, sizeof(login_config.account_engine));
 		else
 		{// try the account engines
 			int i;

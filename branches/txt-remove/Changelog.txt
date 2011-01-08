@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0078 - 08/01/2011 [Wiskovisky]
+	* Removidos vários if's relacionados ao TXT
+
 	r0061 - 21/12/2010 [Protimus]
 	* Removido ladmin do branche.
 	- Totalmente desnecessário, só funciona em windows com TXT e teremos o brAEditor que é muito melhor.

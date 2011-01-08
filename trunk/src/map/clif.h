@@ -518,7 +518,6 @@ int clif_send(const uint8* buf, int len, struct block_list* bl, enum send_target
 int do_final_clif(void);
 int do_init_clif(void);
 
-#ifndef TXT_ONLY
 // MAIL SYSTEM
 void clif_Mail_window(int fd, int flag);
 void clif_Mail_read(struct map_session_data *sd, int mail_id);
@@ -534,7 +533,6 @@ void clif_Auction_results(struct map_session_data *sd, short count, short pages,
 void clif_Auction_message(int fd, unsigned char flag);
 void clif_Auction_close(int fd, unsigned char flag);
 void clif_parse_Auction_cancelreg(int fd, struct map_session_data *sd);
-#endif
 
 void clif_bossmapinfo(int fd, struct mob_data *md, short flag);
 void clif_cashshop_show(struct map_session_data *sd, struct npc_data *nd);

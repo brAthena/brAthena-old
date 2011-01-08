@@ -65,7 +65,6 @@ int log_branch(struct map_session_data *sd)
 
 	nullpo_ret(sd);
 
-#ifndef TXT_ONLY
 	if( log_config.sql_logs )
 	{
 		SqlStmt* stmt;
@@ -81,7 +80,6 @@ int log_branch(struct map_session_data *sd)
 		SqlStmt_Free(stmt);
 	}
 	else
-#endif
 	{
 		FILE* logfp;
 		if((logfp = fopen(log_config.log_branch, "a+")) == NULL)
@@ -103,7 +101,6 @@ int log_pick_pc(struct map_session_data *sd, const char *type, int nameid, int a
 	if (!should_log_item(log_config.filter, nameid, amount))
 		return 0; //we skip logging this item set - it doesn't meet our logging conditions [Lupus]
 
-#ifndef TXT_ONLY
 	if( log_config.sql_logs )
 	{
 		if( itm == NULL ) { //We log common item
@@ -123,7 +120,6 @@ int log_pick_pc(struct map_session_data *sd, const char *type, int nameid, int a
 		}
 	}
 	else
-#endif
 	{
 		FILE* logfp;
 
@@ -158,7 +154,6 @@ int log_pick_mob(struct mob_data *md, const char *type, int nameid, int amount, 
 	if(mapname==NULL)
 		mapname="";
 
-#ifndef TXT_ONLY
 	if( log_config.sql_logs )
 	{
 		if( itm == NULL ) { //We log common item
@@ -178,7 +173,6 @@ int log_pick_mob(struct mob_data *md, const char *type, int nameid, int amount, 
 		}
 	}
 	else
-#endif
 	{
 		FILE *logfp;
 
@@ -205,7 +199,6 @@ int log_zeny(struct map_session_data *sd, char *type, struct map_session_data *s
 
 	nullpo_ret(sd);
 
-#ifndef TXT_ONLY
 	if( log_config.sql_logs )
 	{
 		if (SQL_ERROR == Sql_Query(logmysql_handle, "INSERT DELAYED INTO `%s` (`time`, `char_id`, `src_id`, `type`, `amount`, `map`) VALUES (NOW(), '%d', '%d', '%s', '%d', '%s')",
@@ -216,7 +209,6 @@ int log_zeny(struct map_session_data *sd, char *type, struct map_session_data *s
 		}
 	}
 	else
-#endif
 	{
 		FILE* logfp;
 		if((logfp=fopen(log_config.log_zeny,"a+")) == NULL)
@@ -237,7 +229,6 @@ int log_mvpdrop(struct map_session_data *sd, int monster_id, int *log_mvp)
 
 	nullpo_ret(sd);
 
-#ifndef TXT_ONLY
 	if( log_config.sql_logs )
 	{
 		if (SQL_ERROR == Sql_Query(logmysql_handle, "INSERT DELAYED INTO `%s` (`mvp_date`, `kill_char_id`, `monster_id`, `prize`, `mvpexp`, `map`) VALUES (NOW(), '%d', '%d', '%d', '%d', '%s') ",
@@ -248,7 +239,6 @@ int log_mvpdrop(struct map_session_data *sd, int monster_id, int *log_mvp)
 		}
 	}
 	else
-#endif
 	{
 		FILE* logfp;
 		if((logfp=fopen(log_config.log_mvpdrop,"a+")) == NULL)
@@ -270,7 +260,6 @@ int log_atcommand(struct map_session_data* sd, const char* message)
 
 	nullpo_ret(sd);
 
-#ifndef TXT_ONLY
 	if( log_config.sql_logs )
 	{
 		SqlStmt* stmt;
@@ -288,7 +277,6 @@ int log_atcommand(struct map_session_data* sd, const char* message)
 		SqlStmt_Free(stmt);
 	}
 	else
-#endif
 	{
 		FILE* logfp;
 		if((logfp = fopen(log_config.log_gm, "a+")) == NULL)
@@ -309,7 +297,6 @@ int log_npc(struct map_session_data* sd, const char* message)
 
 	nullpo_ret(sd);
 
-#ifndef TXT_ONLY
 	if( log_config.sql_logs )
 	{
 		SqlStmt* stmt;
@@ -326,7 +313,6 @@ int log_npc(struct map_session_data* sd, const char* message)
 		SqlStmt_Free(stmt);
 	}
 	else
-#endif
 	{
 		FILE* logfp;
 		if((logfp = fopen(log_config.log_npc, "a+")) == NULL)
@@ -359,7 +345,6 @@ int log_chat(const char* type, int type_id, int src_charid, int src_accid, const
 	if(log_config.chat <= 0)
 		return 0; //Deactivated
 
-#ifndef TXT_ONLY
 	if( log_config.sql_logs )
 	{
 		SqlStmt* stmt;
@@ -377,7 +362,6 @@ int log_chat(const char* type, int type_id, int src_charid, int src_accid, const
 		SqlStmt_Free(stmt);
 	}
 	else
-#endif
 	{
 		FILE* logfp;
 		if((logfp = fopen(log_config.log_chat, "a+")) == NULL)
@@ -456,8 +440,6 @@ int log_config_read(char *cfgName)
 			} else if(strcmpi(w1,"log_mvpdrop") == 0) {
 				log_config.mvpdrop = (atoi(w2));
 			}
-
-#ifndef TXT_ONLY
 			else if(strcmpi(w1, "log_branch_db") == 0) {
 				strcpy(log_config.log_branch_db, w2);
 				if(log_config.branch == 1)
@@ -487,7 +469,6 @@ int log_config_read(char *cfgName)
 				if(log_config.chat > 0)
 					ShowNotice("Logging CHAT to table `%s`\n", w2);
 			}
-#endif
 
 			else if(strcmpi(w1, "log_branch_file") == 0) {
 				strcpy(log_config.log_branch, w2);

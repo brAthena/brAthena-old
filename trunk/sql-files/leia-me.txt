@@ -11,7 +11,7 @@
 |																			 |
 | Os arquivos de atualização do Banco de dados contidos nesta pasta fazem 	 |
 | referência às revisões do próprio SVN do brAthena.						 |
-| Caso você esteje migrando do eAtehna para o brAthena, certifique-se de ter | 
+| Caso você esteja migrando do eAtehna para o brAthena, certifique-se de ter | 
 | aplicado em seu Banco de Dados todos os patches de 'upgrade' do eAthena	 | 
 | referente a sua versão (se necessário).									 |
 |																			 |

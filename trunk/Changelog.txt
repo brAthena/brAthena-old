@@ -9,10 +9,18 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0078 - 08/01/2011 [Wiskovisky]
+	* Configurações relacionadas ao MYSQL do login_athena.conf passadas ao inter_athena.conf
+	* Configuração inútil removida (account_engine)
+	* Descrição do log_login corrigida
+	* Correção no arquivo leia-me.txt
+	* Removido arquivo desnecessário:
+	- import/ladmin_conf.txt
+
 	r0077 - 07/01/2011 [Protimus]
 	* Atualizada data do projeto no core banner: 2008 ~ 2011.
 	* Corrigido pequeno erro no script_main, havia esquecido de trocar o nome da pasta customizados para personalizados.
-	* Removidos arquivo desnecessário:
+	* Removido arquivo desnecessário:
 	- conf/ladmin_athena.conf 
 	* Códigos de funções para TXT removidas de arquivos da pasta conf.
 	- Importante: Configuração de logs agora são apenas por meio de database.

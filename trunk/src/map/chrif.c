@@ -200,11 +200,7 @@ void chrif_checkdefaultlogin(void)
 {
 	if (strcmp(userid, "s1")==0 && strcmp(passwd, "p1")==0) {
 		ShowError("Using the default user/password s1/p1 is NOT RECOMMENDED.\n");
-#ifdef TXT_ONLY
-		ShowNotice("Please edit your save/account.txt file to create a proper inter-server user/password (gender 'S')\n");
-#else
 		ShowNotice("Please edit your 'login' table to create a proper inter-server user/password (gender 'S')\n");
-#endif
 		ShowNotice("and then edit your user/password in conf/map_athena.conf (or conf/import/map_conf.txt)\n");
 	}
 }
@@ -1528,16 +1524,12 @@ int check_connect_char_server(int tid, unsigned int tick, int id, intptr data)
 
 		chrif_connect(char_fd);
 		chrif_connected = (chrif_state == 2);
-#ifndef TXT_ONLY
 		srvinfo = 0;
-#endif /* not TXT_ONLY */
 	} else {
-#ifndef TXT_ONLY
 		if (srvinfo == 0) {
 			chrif_ragsrvinfo(battle_config.base_exp_rate, battle_config.job_exp_rate, battle_config.item_rate_common);
 			srvinfo = 1;
 		}
-#endif /* not TXT_ONLY */
 	}
 	if (chrif_isconnected()) displayed = 0;
 	return 0;

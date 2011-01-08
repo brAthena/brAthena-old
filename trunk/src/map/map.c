@@ -42,9 +42,7 @@
 #include "mercenary.h"
 #include "atcommand.h"
 #include "log.h"
-#ifndef TXT_ONLY
 #include "mail.h"
-#endif
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -54,7 +52,6 @@
 #include <unistd.h>
 #endif
 
-#ifndef TXT_ONLY
 char default_codepage[32] = "";
 
 int map_server_port = 3306;
@@ -78,7 +75,6 @@ char log_db_pw[32] = "ragnarok";
 char log_db_db[32] = "log";
 Sql* logmysql_handle;
 
-#endif /* not TXT_ONLY */
 
 // This param using for sending mainchat
 // messages like whispers to this nick. [LuzZza]
@@ -3220,9 +3216,7 @@ int inter_config_read(char *cfgName)
 			continue;
 
 		if(strcmpi(w1, "main_chat_nick")==0)
-			safestrncpy(main_chat_nick, w2, sizeof(main_chat_nick));
-			
-	#ifndef TXT_ONLY
+			safestrncpy(main_chat_nick, w2, sizeof(main_chat_nick));	
 		else
 		if(strcmpi(w1,"item_db_db")==0)
 			strcpy(item_db_db,w2);
@@ -3273,7 +3267,6 @@ int inter_config_read(char *cfgName)
 		else
 		if(strcmpi(w1,"log_db_db")==0)
 			strcpy(log_db_db, w2);
-	#endif
 		else
 		if( mapreg_config_read(w1,w2) )
 			continue;
@@ -3287,7 +3280,6 @@ int inter_config_read(char *cfgName)
 	return 0;
 }
 
-#ifndef TXT_ONLY
 /*=======================================
  *  MySQL Init
  *---------------------------------------*/
@@ -3341,7 +3333,6 @@ int log_sql_init(void)
 	return 0;
 }
 
-#endif /* not TXT_ONLY */
 
 int map_db_final(DBKey k,void *d,va_list ap)
 {
@@ -3477,9 +3468,7 @@ void do_final(void)
 	iwall_db->destroy(iwall_db, NULL);
 	regen_db->destroy(regen_db, NULL);
 
-#ifndef TXT_ONLY
     map_sql_close();
-#endif /* not TXT_ONLY */
 	ShowStatus("Successfully terminated.\n");
 }
 
@@ -3600,10 +3589,8 @@ int do_init(int argc, char *argv[])
 			MSG_CONF_NAME = argv[i+1];
 		else if (strcmp(argv[i],"--grf_path_file") == 0 || strcmp(argv[i],"--grf-path-file") == 0)
 			GRF_PATH_FILENAME = argv[i+1];
-#ifndef TXT_ONLY
 		else if (strcmp(argv[i],"--inter_config") == 0 || strcmp(argv[i],"--inter-config") == 0)
 			INTER_CONF_NAME = argv[i+1];
-#endif
 		else if (strcmp(argv[i],"--log_config") == 0 || strcmp(argv[i],"--log-config") == 0)
 			LOG_CONF_NAME = argv[i+1];
 		else if (strcmp(argv[i],"--run_once") == 0)	// close the map-server as soon as its done.. for testing [Celest]
@@ -3650,11 +3637,9 @@ int do_init(int argc, char *argv[])
 
 	iwall_db = strdb_alloc(DB_OPT_RELEASE_DATA,2*NAME_LENGTH+2+1); // [Zephyrus] Invisible Walls
 
-#ifndef TXT_ONLY
 	map_sql_init();
 	if (log_config.sql_logs)
 		log_sql_init();
-#endif /* not TXT_ONLY */
 
 	mapindex_init();
 	if(enable_grf)
