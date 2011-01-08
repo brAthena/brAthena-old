@@ -9,6 +9,13 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0079 - 08/01/2011 [Protimus]
+	* Alterações nos nomes de mobs dos Guardiões.
+	- Guardião Cavaleiro, Guardião Soldado e Guardião Arqueiro são os nomes corretos, Guardião sucedido pelas suas patentes.
+	* Revisões dos npcs da pasta GdE.
+	- Todos os NPCs estão concluídos não sendo necessário mais alterá-los. Foi revisado a escrita, código e layout.
+	OBS: Os nomes dos castelos estão conforme o bRO. Decidi alterará-los dessa forma, porque a maioria conhece e joga conforme os nomes do bRO.
+
 	r0078 - 08/01/2011 [Wiskovisky]
 	* Configurações relacionadas ao MYSQL do login_athena.conf passadas ao inter_athena.conf
 	* Configuração inútil removida (account_engine)

@@ -8,58 +8,38 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: War of Emperium Guild Template Files   |
+// | Nome do Script: Guerra do Emperium - Padrões		    |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.7/1.0                                |
+// | Versões eA/brA: 1.7/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição:                                          	|
-// | - Enables AGIT Manager inside Guild Strongholds.		|
-// | Visible Name required: Agit							|
-// | Manages the various functions used in and out of WoE.	|
-// | 														|
-// | - Enables Stewards inside Guild Strongholds which let's|
-// | the guild master invest in Defense and Economy, and	|
-// | to summon guardians, a Kafra, and enter master's room.	|
-// | 														|
-// | - Guardian Spawning Template							|
-// | Visible Name required: Guardian						|
-// | Spawn guardians when guild castle data is recieved.	|
-// | 														|
-// | - Enables Kafra Services inside Guild Strongholds.		|
-// | Visible Name required: Kafra Staff						|
-// | Storage, Guild Storage, Teleport Service, Cart rental.	|
-// | 														|
-// | - Treasure Room Protection and Chest spawning.			|
-// | Chests will NOT be saved anymore in the event 			|
-// | of crashes. Treasures will NOT spawn on a location 	|
-// | that already has treasure chest spawned.				|
+// | Descrição: NPCs padrões de todos os castelos.        	|
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [cleyton]     		            |
+// | 1.1 Script Revisado [Protimus]							|
 // \________________________________________________________/
 
-// AGIT Manager Template
+// Gerenciador Automático
 //============================================================
 -	script	Gld_Agit_Manager::Gld_Agit_Manager	-1,{
 	end;
 
-// Load (or reload) specific information for a castle.
+// Leitura das informações dos castelos.
 OnInterIfInitOnce:
 	if (strnpcinfo(0) == "Gld_Agit_Manager") end;
 	GetCastleData strnpcinfo(2),0,strnpcinfo(0) + "::OnRecvCastle";
 	end;
 
-// War of Emperium has started.
+// Início da Guerra do Emperium.
 OnAgitStart:
 	if (strnpcinfo(0) == "Gld_Agit_Manager") end;
 	MapRespawnGuildID strnpcinfo(2),GetCastleData(strnpcinfo(2),1),2;
 	GvgOn strnpcinfo(2);
 
-// Spawn (fall through), or respawn the Emperium once it has been broken.
+// Spawn do Emperium.
 OnStartArena:
-	// OnAgitStart will fall through and spawn the Emperium.
 	if (strnpcinfo(2) == "aldeg_cas01") { setarray .@emproom[0],216,23; }
 	else if (strnpcinfo(2) == "aldeg_cas02") { setarray .@emproom[0],213,23; }
 	else if (strnpcinfo(2) == "aldeg_cas03") { setarray .@emproom[0],205,31; }
@@ -80,7 +60,7 @@ OnStartArena:
 	else if (strnpcinfo(2) == "prtg_cas03") { setarray .@emproom[0],16,220; }
 	else if (strnpcinfo(2) == "prtg_cas04") { setarray .@emproom[0],291,14; }
 	else if (strnpcinfo(2) == "prtg_cas05") { setarray .@emproom[0],266,266; }
-	// Add custom Guild Castles here.
+	// Adicione seus Castelos Personalizados abaixo desta mensagem.
 	else {
 		end;
 	}
@@ -89,70 +69,69 @@ OnStartArena:
 	}
 	end;
 
-// The Emperium has been broken.
+// Quebra do Emperium.
 OnAgitBreak:
 	set .@GID,getcharid(2);
-	// Show and log error if an unguilded player breaks the Emperium. (Should NEVER happen)
+	// Exibição do log de erro caso um personagem sem Clã quebra um Emperium (Isso nunca deve ocorrer em padrões oficiais - kRO/bRO).
 	if (.@GID <= 0) {
-		set .@notice$,"Character "+strcharinfo(0)+" ("+getcharid(0)+") broke the Emperium in Castle: "+strnpcinfo(2)+" while guildless. No data will be saved and Emperium respawned.";
+		set .@notice$,"O personagem "+strcharinfo(0)+" ("+getcharid(0)+") Quebrou o Emperium do Castelo: "+strnpcinfo(2)+", sem uma Clã. Nenhum dado será salvo e o Emperium retornará.";
  		logmes .@notice$; debugmes .@notice$;
 		donpcevent "Agit#"+strnpcinfo(2)+"::OnStartArena";
 		end;
 	}
-	// Adjust Economy Invest Level for Castle
+	// Ajustes dos Leveis de Ecônomia e Investimento para o Castelo.
 	set .@Economy,GetCastleData(strnpcinfo(2),2) - 5;
 	if (.@Economy < 0) set .@Economy, 0;
 	SetCastleData strnpcinfo(2), 2, .@Economy;
-	// Adjust Defense Invest Level for Castle
+	// Ajustes dos Leveis de Defesa do Investimento para o Castelo.
 	set .@Defence,GetCastleData(strnpcinfo(2),3) - 5;
 	if (.@Defence < 0) set .@Defence, 0;
 	SetCastleData strnpcinfo(2), 3, .@Defence;
 
-	// Set new Castle Occupant
+	// Adiciona uma nova Clã ao Castelo.
 	SetCastleData strnpcinfo(2),1, .@GID;
 
-	// Announce that the Emperium is destroyed, and respawn all but new castle-occupants.
+	// Anúncio de Destruição do Emperium e sua nova Clã ocupante.
 	mapannounce strnpcinfo(2),"O emperium foi destruido.",bc_map|bc_woe,"0x00CCFF",FW_NORMAL,12;
 	MapRespawnGuildID strnpcinfo(2),.@GID,2;
 
-	// Refresh castle data, disable Kafra and reset Invest information.
+	// Repara os dados do Castelo, Desabilita a Kafra e Investimentos do Castelo.
 	GetCastleData strnpcinfo(2),0,strnpcinfo(0)+"::OnRecvCastle";
 	disablenpc "Kafra Staff#"+strnpcinfo(2);
 	for( set .@i, 4; .@i <= 9; set .@i, .@i+1 ) {
 		SetCastleData strnpcinfo(2), .@i, 0;
 	}
-	// Erase Guardian Database information if the new owners do not have Guardian Research.
+	// Limpa os dados dos Guardiões, caso a nova Clã não tenha habilidades para usar Guardiões.
 	if( getgdskilllv(.@GID,10002) == 0 ) {
 		for( set .@i, 10; .@i <= 17; set .@i, .@i+1 ) {
 			SetCastleData strnpcinfo(2), .@i, 0;
 		}
 	}
-	// Respawn the Emperium, and display new owners.
-	sleep 500; // Slow down script execution slightly.
+	// Readiciona o Emperium e mostra a nova Clã ocupante.
+	sleep 500;
 	if( agitcheck() )
 		donpcevent "Agit#"+strnpcinfo(2)+"::OnStartArena";
 	sleep getbattleflag("gvg_eliminate_time");
 	announce "O castelo [" + getcastlename(strnpcinfo(2)) + "] foi conquistado pelo Clã [" + getguildName(.@GID) + "].",bc_all|bc_woe;
 	end;
 
-// War of Emperium has ended.
+// Termino da Guerra do Emperium.
 OnAgitEnd:
 	if (strnpcinfo(0) == "Gld_Agit_Manager") end;
 	GvgOff strnpcinfo(2);
-	// If the castle has no owner at the end of WoE, do not kill Emperium.
+	// Caso o castelo não tenha nenhum Clã ocupante, o Emperium não é destruído.
 	if (GetCastleData(strnpcinfo(2),1)) {
 		KillMonster strnpcinfo(2),"Agit#"+strnpcinfo(2)+"::OnAgitBreak";
 	}
 	end;
 
-// Occupying Guild has been disbanded.
+// Caso a Clã abandone o Castelo.
 OnGuildBreak:
 	if (strnpcinfo(0) == "Gld_Agit_Manager") end;
-	// Kill guardians, disable the Kafra, and set owner to 0.
+	// Destroí os Guardiões, desabilita a Kafra e modifica o Guild Master (Dono do Castelo) para 0.
 	killmonster strnpcinfo(2),"Guardian#"+strnpcinfo(2)+"::OnGuardianDied";
 	disablenpc "Kafra Staff#"+strnpcinfo(2);
 	SetCastleData strnpcinfo(2),0,0;
-	// Wait before refreshing guild information.
 	sleep getbattleflag("gvg_eliminate_time");
 	Announce "O castelo [" + GetCastleName(strnpcinfo(2)) + "] foi abandonado.",0;
 	GetCastleData strnpcinfo(2),0,strnpcinfo(0)+"::OnRecvCastle";
@@ -161,12 +140,12 @@ OnGuildBreak:
 OnRecvCastle:
 	RequestGuildInfo GetCastleData(strnpcinfo(2),1);
 
-	// Spawn Monsters if the castle is empty.
+	// Cria o Spawn de Monstros caso o castelo esteja sem ocupantes (vazio).
 	set .@GID, GetCastleData(strnpcinfo(2),1);
 	if (.@GID == 0) {
 		killmonsterall strnpcinfo(2);
+		// Spawns Normais (Fora da Sala do Emperium).
 		if (compare(strnpcinfo(2),"aldeg")) {
-			// Normal Spawns
 			monster strnpcinfo(2),0,0,"Druida Malígno",1117,10;
 			monster strnpcinfo(2),0,0,"Khalitzburg",1132,4;
 			monster strnpcinfo(2),0,0,"Cavaleiro do Abismo",1219,2;
@@ -179,7 +158,7 @@ OnRecvCastle:
 			monster strnpcinfo(2),0,0,"Alice",1275,1;
 			monster strnpcinfo(2),0,0,"Cavaleiro Sanguinário",1268,1;
 			monster strnpcinfo(2),0,0,"Senhor das Trevas",1272,1;
-			// Set Emperium room spawn coordinates and spawn monsters.
+			// Spawns Dentro da Sala do Emperium.
 			if (strnpcinfo(2) == "aldeg_cas01") { setarray .@emproom[0],216,23; }
 			else if (strnpcinfo(2) == "aldeg_cas02") { setarray .@emproom[0],213,23; }
 			else if (strnpcinfo(2) == "aldeg_cas03") { setarray .@emproom[0],205,31; }
@@ -192,7 +171,7 @@ OnRecvCastle:
 			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"Raydric Arqueiro",1276,5;
 		}
 		else if (compare(strnpcinfo(2),"gefg")) {
-			// Normal Spawns
+			// Spawns Normais (Fora da Sala do Emperium).
 			monster strnpcinfo(2),0,0,"Druida Malígno",1117,10;
 			monster strnpcinfo(2),0,0,"Xamã do vento",1263,11;
 			monster strnpcinfo(2),0,0,"Bathory",1102,10;
@@ -203,7 +182,7 @@ OnRecvCastle:
 			monster strnpcinfo(2),0,0,"Cavaleiro do Abismo",1219,1;
 			monster strnpcinfo(2),0,0,"Flor do Luar",1150,1;
 			monster strnpcinfo(2),0,0,"Phreeoni",1159,1;
-			// Set Emperium room spawn coordinates and spawn monsters.
+			// Spawns Dentro da Sala do Emperium.
 			if (strnpcinfo(2) == "gefg_cas01") { setarray .@emproom[0],197,181; }
 			else if (strnpcinfo(2) == "gefg_cas02") { setarray .@emproom[0],176,178; }
 			else if (strnpcinfo(2) == "gefg_cas03") { setarray .@emproom[0],244,166; }
@@ -215,10 +194,10 @@ OnRecvCastle:
 			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"Orc Arqueiro",1189,10;
 		}
 		else if (compare(strnpcinfo(2),"payg")) {
-			// Normal Spawns
+			// Spawns Normais (Fora da Sala do Emperium).
 			monster strnpcinfo(2),0,0,"Guardião da Floresta",1277,9;
 			monster strnpcinfo(2),0,0,"Andarilho",1208,10;
-			monster strnpcinfo(2),0,0,"Dragão mutante",1262,5;
+			monster strnpcinfo(2),0,0,"Dragão Mutante",1262,5;
 			monster strnpcinfo(2),0,0,"Bathory",1102,5;
 			monster strnpcinfo(2),0,0,"Flor do Luar",1150,1;
 			monster strnpcinfo(2),0,0,"Eddga",1115,1;
@@ -226,7 +205,7 @@ OnRecvCastle:
 			monster strnpcinfo(2),0,0,"Raydric Arqueiro",1276,5;
 			monster strnpcinfo(2),0,0,"Kobold Arqueiro",1282,4;
 			monster strnpcinfo(2),0,0,"Gargoyle",1253,5;
-			// Set Emperium room spawn coordinates and spawn monsters.
+			// Spawns Dentro da Sala do Emperium.
 			if (strnpcinfo(2) == "payg_cas01") { setarray .@emproom[0],139,139; }
 			else if (strnpcinfo(2) == "payg_cas02") { setarray .@emproom[0],38,25; }
 			else if (strnpcinfo(2) == "payg_cas03") { setarray .@emproom[0],268,264; }
@@ -238,7 +217,7 @@ OnRecvCastle:
 			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"Raydric Arqueiro",1276,5;
 		}
 		else if (compare(strnpcinfo(2),"prtg")) {
-			// Normal Spawns
+			// Spawns Normais (Fora da Sala do Emperium).
 			monster strnpcinfo(2),0,0,"Raydric",1163,1;
 			monster strnpcinfo(2),0,0,"Khalitzburg",1132,10;
 			monster strnpcinfo(2),0,0,"Cavaleiro do Abismo",1219,5;
@@ -250,7 +229,7 @@ OnRecvCastle:
 			monster strnpcinfo(2),0,0,"Quimera",1283,3;
 			monster strnpcinfo(2),0,0,"Alice",1275,1;
 			monster strnpcinfo(2),0,0,"Jirtas",1200,1;
-			// Set Emperium room spawn coordinates and spawn monsters.
+			// Spawns Dentro da Sala do Emperium.
 			if (strnpcinfo(2) == "prtg_cas01") { setarray .@emproom[0],197,197; }
 			else if (strnpcinfo(2) == "prtg_cas02") { setarray .@emproom[0],157,174; }
 			else if (strnpcinfo(2) == "prtg_cas03") { setarray .@emproom[0],16,220; }
@@ -262,7 +241,7 @@ OnRecvCastle:
 			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"Cavaleiro do Abismo",1219,1;
 			monster strnpcinfo(2),.@emproom[0],.@emproom[1],"Raydric Arqueiro",1276,5;
 		}
-		// Add custom Guild Castles here.
+		// Adicione seus Castelos Personalizados abaixo desta mensagem.
 		else {
 			end;
 		}
@@ -272,7 +251,7 @@ OnRecvCastle:
 		end;
 	}
 	else {
-		// Otherwise place the guild emblem on flags.
+		// Caso a Clã tenha conquistado o Castelo, adicionar seus Emblemas nas Bandeiras de todos os locais.
 		if (strnpcinfo(2) == "aldeg_cas01") { donpcevent "::OnRecvCastleA01"; }
 		else if (strnpcinfo(2) == "aldeg_cas02") { donpcevent "::OnRecvCastleA02"; }
 		else if (strnpcinfo(2) == "aldeg_cas03") { donpcevent "::OnRecvCastleA03"; }
@@ -297,31 +276,28 @@ OnRecvCastle:
 		else {
 			end;
 		}
-		// And load purchased Guardian in castles.
 		donpcevent "Guardian#"+strnpcinfo(2)+"::OnSpawnGuardians";
-		// And display Kafra if purchased.
 		if (GetCastleData(strnpcinfo(2),9) < 1) disablenpc "Kafra Staff#"+strnpcinfo(2);
 	}
 	end;
 }
 
-// Guild Steward Template
+// Administração
 //============================================================
 -	script	Gld_Mngr_Template::Gld_Mngr_Template	-1,{
-	// What is the Display Name of the NPC?
 	set .@name$,strnpcinfo(1);
 
-	// Store the Guild ID of castle occupant.
+	// Armazena a ID da Clã no Castelo.
 	set .@GID, GetCastleData(strnpcinfo(2),1);
 
-	// Define the types of guardians on a per castle basis.
-	// 1 - Soldier Guardian; 2 - Archer Guardian; 3 - Knight Guardian
-	// Define the x spawn point for each uardian.
-	// [0] = 1st guardian's x spawn point.
-	// Define the y spawn point for each guardian.
-	// [0] = 1st guardian's y spawn point.
-	// Define the coordinates of the "Treasure Room."
-	// Aldebaran (Luina) Castles
+	// Definições para os Guardiões nos Castelos.
+	// 1 - Guardião Soldado; 2 - Guardião Arqueiro; 3 - Guardião Cavaleiro
+	// Define a coordenada x para um Guardião.
+	// [0] = 1° Guardiões da coordenada x.
+	// Define a coordenada y para um Guardião.
+	// [0] = 1° Guardiões da coordenada y.
+	// Define as coordenadas da "Sala do Tesouro".
+	// Aldebaran (Luina).
 	if (strnpcinfo(2) == "aldeg_cas01") { 
 		setarray .@guardiantype[0],1,2,2,2,2,3,3,3;
 		setarray .@guardianposx[0],17,39,38,45,21,218,213,73;
@@ -352,7 +328,7 @@ OnRecvCastle:
 		setarray .@guardianposy[0],202,79,192,74,221,78,73,112;
 		setarray .@masterroom[0],64,8;
 	}
-	// Geffen (Britoniah) Castles
+	// Geffen (Britoniah)
 	else if (strnpcinfo(2) == "gefg_cas01") {
 		setarray .@guardiantype[0],1,1,1,2,2,3,3,3;
 		setarray .@guardianposx[0],67,184,62,36,50,50,189,200;
@@ -383,7 +359,7 @@ OnRecvCastle:
 		setarray .@guardianposy[0],149,163,142,47,50,17,35,166;
 		setarray .@masterroom[0],149,106;
 	}
-	// Payon (Baulder) Castles
+	// Payon (Baulder)
 	else if (strnpcinfo(2) == "payg_cas01") {
 		setarray .@guardiantype[0],2,2,2,2,2,2,2,3;
 		setarray .@guardianposx[0],229,225,222,99,65,36,51,138;
@@ -414,7 +390,7 @@ OnRecvCastle:
 		setarray .@guardianposy[0],279,260,234,279,37,21,22,36;
 		setarray .@masterroom[0],153,137;
 	}
-	// Prontera (Valkyrie Realms) Castles
+	// Prontera (Valkyrie Realms)
 	else if (strnpcinfo(2) == "prtg_cas01") {
 		setarray .@guardiantype[0],1,1,1,2,2,3,3,3;
 		setarray .@guardianposx[0],182,182,153,59,50,184,196,107;
@@ -445,7 +421,6 @@ OnRecvCastle:
 		setarray .@guardianposy[0],262,280,250,63,63,253,253,248;
 		setarray .@masterroom[0],281,176;
 	}
-	// Add custom Guild Castles here.
 	else {
 		end;
 	}
@@ -457,7 +432,7 @@ OnRecvCastle:
 		close;
 	}
 	if (getcharid(2) != .@GID || strcharinfo(0) != getguildmaster(.@GID)){
-		mes "Eu sou um leal seguidor do mestre ^ff0000" + getguildmaster(.@GID) + "^000000. Nós somos guardiões. Defendemos nosso castelo até o fim!";
+		mes "Eu sou um leal seguidor do mestre ^ff0000" + getguildmaster(.@GID) + "^000000. Nós somos guardiões e defendemos nosso castelo até o fim!";
 		close;
 	}
 	mes "Bem vindo, meu honorável mestre, ^ff0000" + getguildmaster(.@GID) + "^000000...";
@@ -468,13 +443,13 @@ OnRecvCastle:
 		mes "[ Mordomo " + .@name$ + " ]";
 		mes "Mestre, eu vou relatar as informações do castelo.";
 		mes " ";
-		mes " ^0000ffO nível de investimento comercial é " + GetCastleData(strnpcinfo(2),2) + ".";
+		mes "^0000ffO nível de investimento comercial é " + GetCastleData(strnpcinfo(2),2) + ".";
 		if (GetCastleData(strnpcinfo(2),4)) {
-			mes " E você investiu " + GetCastleData(strnpcinfo(2),4) + " vez(es) hoje.";
+			mes "E você investiu " + GetCastleData(strnpcinfo(2),4) + " vez(es) hoje.";
 		}
-		mes " O nível de defesa do castelo é " + GetCastleData(strnpcinfo(2),3) + ".^000000";
+		mes "O nível de defesa do castelo é " + GetCastleData(strnpcinfo(2),3) + ".^000000";
 		if (GetCastleData(strnpcinfo(2),5)) {
-			mes " ^0000ff- Você investiu " + GetCastleData(strnpcinfo(2),5) + " vez(es) hoje.^000000";
+			mes "E você investiu " + GetCastleData(strnpcinfo(2),5) + " vez(es) hoje.^000000";
 		}
 		mes " ";
 		mes "Mestre, esse é todo o relatório de hoje.";
@@ -501,7 +476,6 @@ OnRecvCastle:
 		else if ((.@Economy >= 86) && (.@Economy <= 90)) { set .@eco_invest,770000; }
 		else if ((.@Economy >= 91) && (.@Economy <= 95)) { set .@eco_invest,860000; }
 		else if ((.@Economy >= 96) && (.@Economy <= 100)) { set .@eco_invest,955000; }
-		//Quadruple the cost of investing if you've already invested once.
 		if (GetCastleData(strnpcinfo(2),4)) {
 			set .@eco_invest,.@eco_invest*4;
 		}
@@ -564,7 +538,6 @@ OnRecvCastle:
 		else if ((.@Defence >= 86) && (.@Defence <= 90)) { set .@def_invest,1540000; }
 		else if ((.@Defence >= 91) && (.@Defence <= 95)) { set .@def_invest,1720000; }
 		else if ((.@Defence >= 96) && (.@Defence <= 100)) { set .@def_invest,1910000; }
-		//Quadruple the cost of investing if you've already invested once.
 		if (GetCastleData(strnpcinfo(2),5)) {
 			set .@def_invest,.@def_invest*4;
 		}
@@ -613,9 +586,9 @@ OnRecvCastle:
 		mes "Por favor, escolha o guardião que irá defender o nosso castelo.";
 		next;
 		for( set .@i, 0; .@i <= 7 ; set .@i, .@i+1 ) {
-			if (.@guardiantype[.@i] == 1) { set .@type$,"Soltado Guardião"; }
-			else if (.@guardiantype[.@i] == 2) { set .@type$,"Arqueiro Guardião"; }
-			else { set .@type$,"Cavaleiro Guardião"; }
+			if (.@guardiantype[.@i] == 1) { set .@type$,"Guardião Soldado"; }
+			else if (.@guardiantype[.@i] == 2) { set .@type$,"Guardião Arqueiro"; }
+			else { set .@type$,"Guardião Cavaleiro"; }
 			if (guardianinfo(strnpcinfo(2),.@i,0)) {
 				setarray .@gname$[.@i], .@type$ + " - Implementado (" + guardianinfo(strnpcinfo(2),.@i,2) + "/" + guardianinfo(strnpcinfo(2),.@i,1) + ")";
 			}
@@ -718,7 +691,7 @@ OnRecvCastle:
 				mes "Nós concluimos o nosso contrato com o escritório das Kafras com êxito. Nós contratamos os serviços das Kafras.";
 				next;
 				cutin "kafra_01",2;
-				mes "[ Kafra contratada]";
+				mes "[ Kafra Contratada]";
 				mes "Como você está? Eu sou a Kafra enviada pelo escritório.";
 				mes "Nós faremos o nosso melhor para manter a reputação das Kafras.";
 				next;
@@ -756,20 +729,18 @@ OnRecvCastle:
 }
 
 
-// Guardian Spawner Template
+// Layout de Spawn para Guardiões
 //============================================================
 -	script	Gld_Guard_Template::Gld_Guard_Template	-1,{
-// Spawn Guardians in castles
-// When adding new castles, ensure that the coordinates coincide
-// with the coordinates defined in the Guild Steward template.
 OnSpawnGuardians:
-	// Define the types of guardians on a per castle basis.
-	// 1 - Soldier Guardian; 2 - Archer Guardian; 3 - Knight Guardian
-	// Define the x spawn point for each uardian.
-	// [0] = 1st guardian's x spawn point.
-	// Define the y spawn point for each uardian.
-	// [0] = 1st guardian's y spawn point.
-	// Aldebaran (Luina) Castles
+	// Definições para os Guardiões nos Castelos.
+	// 1 - Guardião Soldado; 2 - Guardião Arqueiro; 3 - Guardião Cavaleiro
+	// Define a coordenada x para um Guardião.
+	// [0] = 1° Guardiões da coordenada x.
+	// Define a coordenada y para um Guardião.
+	// [0] = 1° Guardiões da coordenada y.
+	// Define as coordenadas da "Sala do Tesouro".
+	// Aldebaran (Luina)
 	if (strnpcinfo(2) == "aldeg_cas01") { 
 		setarray .@guardiantype[0],1,2,2,2,2,3,3,3;
 		setarray .@guardianposx[0],17,39,38,45,21,218,213,73;
@@ -873,13 +844,11 @@ OnSpawnGuardians:
 		setarray .@guardianposx[0],266,287,245,236,251,278,32,44;
 		setarray .@guardianposy[0],262,280,250,63,63,253,253,248;
 	}
-	// Add custom Guild Castles here.
 	else {
 		end;
 	}
 
-	// Kill all existing guardians before spawning new ones.
-	// This should prevent duplicating Guardians when char Server disconnects.
+	// Matar todos os guardiões após serem criados novos.
 	killmonster strnpcinfo(2),strnpcinfo(0)+"::OnGuardianDied";
 
 	for( set .@i, 0; .@i <= 7 ; set .@i, .@i+1 ) {
@@ -897,10 +866,10 @@ OnGuardianDied:
 	end;
 }	
 
-// Kafra Template
+// Layout das Kafras.
 //============================================================
 -	script	Gld_Kafra_Template::Gld_Kafra_Template	-1,{
-	// Store the Guild ID of castle occupant.
+	// Armazena a ID da Clã no Castelo.
 	set .@GID, GetCastleData(strnpcinfo(2),1);
 
 	if (compare(strnpcinfo(2),"aldeg")) {
@@ -919,7 +888,6 @@ OnGuardianDied:
 		setarray .@destination$[0],"Prontera","prontera";
 		setarray .@coordinates[0],116,72;
 	}
-	// Add custom Guild Castles here.
 	else {
 		end;
 	}
@@ -927,27 +895,25 @@ OnGuardianDied:
 	cutin "kafra_01",2;
 	if (getcharid(2) == .@GID) {
 		mes "[Kafra]";
-		mes "Bem vindo. membro da guild ^ff0000" + getguildname(.@GID) + "^000000.";
+		mes "Bem vindo, membro do clã ^ff0000" + getguildname(.@GID) + "^000000.";
 		mes "A corporação kafra estará com você onde quer que vá.";
 		next;
-		switch(select("Usar Armazém:Usar Armazém da Guild:Usar serviço de Teleporte:Alugar um carrinho:Cancelar")) {
+		switch(select("Usar Armazém:Usar Armazém do Clã:Usar serviço de Teleporte:Alugar um carrinho:Cancelar")) {
 		case 1:
 			if (basicskillcheck() && getskilllv("NV_BASIC") < 6) {
 				mes "[Kafra]";
-				mes "Me desculpe, mas para poder usar o armazém, você precisa ser um noviço no mínimo com level 6 de profissão.";
+				mes "Me desculpe, mas para poder usar o armazém, você precisa ser um noviço com no mínimo level 6 de profissão.";
 			}
 			else {
-				callfunc("F_CheckKafCode");	//check your storage password, if set
+				callfunc("F_CheckKafCode");
 	 	 		openstorage;
 			}
 			break;
 		case 2:
-			// Unofficial, but since it's already been in eA for ages
-			// and used, I can't exactly remove it, now, can I? >:(
 			if(guildopenstorage() == 1){
 				mes "[Kafra]";
-				mes "Me desculpe, mas no momento existe um membro usando o armazém do Clã";
-				mes "agora.  Por favor, aguarde ele concluir.";
+				mes "Me desculpe, mas no momento existe um membro usando o armazém do Clã.";
+				mes "Por favor, aguarde ele concluir.";
 				close2;
 				cutin "", 255;
 				end;
@@ -986,7 +952,7 @@ OnGuardianDied:
 				mes "Você já está com um carrinho equipado.";
 			}
 			else {
-				mes "[Kafraf]"		;
+				mes "[Kafra]"		;
 				mes "O aluguel de carrinhos custa 800 zeny. Deseja alugar um carrinho?";
 				next;
 				switch(select("Sim.:Cancelar.")) {
@@ -1024,13 +990,12 @@ OnGuardianDied:
 	end;
 }
 
-// Guild Dungeon Switch Template
+// Layout para Mudanças de Caverna da Clã.
 //============================================================
 -	script	Gld_Dun_Template::Gld_Dun_Template	-1,{
-	// Store the Guild ID of castle occupant.
+	// Armazena a ID da Clã no Castelo.
 	set .@GID, GetCastleData(strnpcinfo(2),1);
 
-	// Pick what Dungeon I should warp too, and where in that dungeon.
 	if (compare(strnpcinfo(2),"aldeg")) {
 		set .@destination$,"gld_dun02";
 		if (compare(strnpcinfo(2),"cas01")) setarray .@coordinates[0],32,122;
@@ -1063,7 +1028,6 @@ OnGuardianDied:
 		else if (compare(strnpcinfo(2),"cas04")) setarray .@coordinates[0],268,203;
 		else if (compare(strnpcinfo(2),"cas05")) setarray .@coordinates[0],199,28;
 	}
-	// Add custom Guild Castles here.
 	else {
 		end;
 	}
@@ -1097,12 +1061,12 @@ OnGuardianDied:
 	}
 }
 
-// Treasure Room Protection Template
+// Layout de Proteção na Sala do Tesouro.
 //============================================================
 -	script	Gld_Trea_Protect::Gld_Trea_Protect	-1,{
 //OnTouch2:
 OnTouch:
-	// Store the Guild ID of castle occupant.
+	// Armazena a ID da Clã no Castelo.
 	set .@GID, GetCastleData(strnpcinfo(2),1);
 
 	if (strcharinfo(0) != getguildmaster(.@GID)) { 
@@ -1118,7 +1082,6 @@ OnTouch:
 		else if (compare(strnpcinfo(2),"prtg")) {
 			warp "prontera",116,72;
 		}
-		// Add custom Guild Castles here.
 		else {
 			end;
 		}
@@ -1126,22 +1089,18 @@ OnTouch:
 	end;
 }
 
-// Treasure Room Spawn Template
+// Layout de Spawns na Sala do Tesouro.
 //============================================================
 -	script	Gld_Trea_Spawn::Gld_Trea_Spawn	-1,{
 	end;
 
 OnClock0001:
-	// Do nothing if this script is the template.
 	if (strnpcinfo(1) == "Gld_Trea_Spawn") end;
 	
-	// If there is no owner, do nothing.
 	if (!GetCastleData(strnpcinfo(2),1)) end;
 
-	// Is there Economy in this castle?
 	set .@Treasure,GetCastleData(strnpcinfo(2),2)/5+4;
 
-	// Set information
 	if (strnpcinfo(2) == "aldeg_cas01") { 
 		set .@treasurebox,1324;
 		setarray .@treasurex[0],115,122,115,122,116,117,118,119,120,121,121,121,121,121,121,120,119,118,117,116,116,116,116,116;
@@ -1242,13 +1201,11 @@ OnClock0001:
 		setarray .@treasurex[0],275,276,276,275,273,274,275,276,277,278,278,278,278,278,278,277,276,275,274,273,273,273,273,273;
 		setarray .@treasurey[0],178,178,177,177,180,180,180,180,180,180,179,178,177,176,175,175,175,175,175,175,176,177,178,179;
 	}
-	// Add custom Guild Castles here.
 	else {
 		end;
 	}
 
-	// Apply investment to Eco. and Def. Only happens if there were investments made.
-	// Permanent Development can only happen once per day.
+	// Aplicar investimento a Eco. e Def. 
 	if (GetCastleData(strnpcinfo(2),4)) {
 		set .@Economy,GetCastleData(strnpcinfo(2),2);
 		SetCastleData strnpcinfo(2),2,.@Economy + GetCastleData(strnpcinfo(2),4) + (rand(2) && getgdskilllv(.@GID,10014));
@@ -1259,16 +1216,15 @@ OnClock0001:
 		SetCastleData strnpcinfo(2),3,.@Defence + GetCastleData(strnpcinfo(2),5);
 		if (GetCastleData(strnpcinfo(2),3) > 100) SetCastleData strnpcinfo(2),3,100;
 	}
-	// Reset daily investment limits.
+	// Resetar limite de investimentos diários.
 	setcastledata strnpcinfo(2),4,0;
 	setcastledata strnpcinfo(2),5,0;
 
-	// Spawn boxes in proper order.
+	// Spawn de caixas.
 	for (set .@i,0; .@i < .@Treasure ; set .@i,.@i+1) {
-		// set treasure box ID
+		// Adicionar ID da Caixa do Tesouro.
 		set .@boxid, .@treasurebox + (.@i+2) % 2;
 		set .@box,1 << .@i;
-		// Spawn or do not spawn chests if one already exists.
 		if ((getd("$@"+strnpcinfo(2)+"_treasure") & .@box) == 0) {
 			monster strnpcinfo(2),.@treasurex[.@i],.@treasurey[.@i],"Treasure Chest",.@boxid,1,"Treasure#"+strnpcinfo(2)+"::OnTreasureDied"+.@i;
 			setd "$@"+strnpcinfo(2)+"_treasure",getd("$@"+strnpcinfo(2)+"_treasure") | .@box;
@@ -1276,7 +1232,6 @@ OnClock0001:
 	}
 	end;
 
-// Individual "You killed a chest" events to ensure proper spawning at the change of day.
 OnTreasureDied0:
 	setd "$@"+strnpcinfo(2)+"_treasure",getd("$@"+strnpcinfo(2)+"_treasure") & ~1;
 	end;

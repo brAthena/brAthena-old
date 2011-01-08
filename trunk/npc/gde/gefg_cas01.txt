@@ -8,21 +8,22 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: War of Emperium (Geffen)	            |
+// | Nome do Script: Guerra do Emperium (Geffen)	        |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.1/1.0                                |
+// | Versões eA/brA: 1.1/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: NPCs that relate to Geffen Guild Castle 1   |
+// | Descrição: NPCs relacionados ao castelo Arsulf			|
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [cleyton]     		            |
+// | 1.1 Script Revisado [Protimus]							|
 // \________________________________________________________/
 
-// Guild Flag (Town)
+// Bandeira do Castelo (Cidade)
 //============================================================
-geffen,109,123,2	script	Repherion#g1-1::Repherion	722,{
+geffen,109,123,2	script	Arsulf#g1-1::Arsulf	722,{
 	end;
 
 OnRecvCastleG01:
@@ -30,22 +31,16 @@ OnRecvCastleG01:
 	end;
 }
 
-// Guild Flag (Outside Castle)
+// Bandeira do Castelo (Fora do Castelo)
 //============================================================
-gef_fild13,148,51,5	script	Repherion#g1-2::Repherion2	722,{
+gef_fild13,148,51,5	script	Arsulf#g1-2::Arsulf2	722,{
 	set .@GID, GetCastleData("gefg_cas01",1);
 	if (.@GID == 0) {
-		mes " [ Decreto do Reino de Rune Midgard ]";
+		mes " [ Decreto do Reino de Midgard ]";
 		mes " ";
-		mes "1. Conforme o Pacto do Reino de Rune Midgard, ";
-		mes "declaro que este Castelo";
-		mes "não possui um Senhor.";
+		mes "1. Conforme o Pacto do Reino de Midgard e o Feudo de Britoniah, declaro que este Castelo não possui um Senhor.";
 		mes " ";
-		mes "2. Para quem puder ";
-		mes "superar terríveis desafios";
-		mes "e destruir o Emperium,";
-		mes "receberá a posse do castelo";
-		mes "com o apoio do nosso rei.";
+		mes "2. Para quem puder superar terríveis desafios e destruir o Emperium, receberá a posse do castelo com o apoio do nosso rei.";
 	}
 	else {
 		if (getcharid(2) == .@GID) {
@@ -61,17 +56,13 @@ gef_fild13,148,51,5	script	Repherion#g1-2::Repherion2	722,{
 			}
 			close;
 		}
-		mes "[ Decreto do Reino de Rune Midgard ]";
+		mes "[ Decreto do Reino de Midgard ]";
 		mes " ";
-		mes "1. Seguindo o decredo do";
-		mes "Reino de Rune Midgard,";
-		mes "Nós declaramos que esse castelo";
-		mes "pertence ao clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
+		mes "1. Seguindo o decredo do Reino de Midgard.";
+		mes "Nós declaramos que esse castelo pertence ao clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
 		mes " ";
-		mes "2. O líder do lã ^ff0000"+ GetGuildName(.@GID) + "^000000 se chama";
-		mes "^FF0000" + GetGuildMaster(.@GID) + "^000000";
-		mes "Se alguem se opõe a esse decreto,";
-		mes " prove sua força e honra com uma espada em suas mãos.";
+		mes "2. O líder do clã ^ff0000"+ GetGuildName(.@GID) + "^000000 se chama ^FF0000" + GetGuildMaster(.@GID) + "^000000.";
+		mes "Se alguem se opõe a esse decreto, prove sua força e honra com uma espada em suas mãos.";
 	}
 	close;
 
@@ -80,13 +71,13 @@ OnRecvCastleG01:
 	end;
 }
 
-gef_fild13,155,54,5	duplicate(Repherion2)	Repherion#g1-3	722
-gef_fild13,212,79,6	duplicate(Repherion2)	Repherion#g1-4	722
-gef_fild13,211,71,6	duplicate(Repherion2)	Repherion#g1-5	722
+gef_fild13,155,54,5	duplicate(Arsulf2)	Arsulf#g1-3	722
+gef_fild13,212,79,6	duplicate(Arsulf2)	Arsulf#g1-4	722
+gef_fild13,211,71,6	duplicate(Arsulf2)	Arsulf#g1-5	722
 
-// Guild Flag (Inside Castle)
+// Bandeira do Castelo (Dentro do Castelo)
 //============================================================
-gefg_cas01,28,157,4	script	Repherion#g1-6::Repherion3	722,{
+gefg_cas01,28,157,4	script	Arsulf#g1-6::Arsulf3	722,{
 	end;
 
 OnRecvCastleG01:
@@ -94,47 +85,48 @@ OnRecvCastleG01:
 	end;
 }
 
-gefg_cas01,22,156,5	duplicate(Repherion3)	Repherion#g1-7	722
-gefg_cas01,68,185,3	duplicate(Repherion3)	Repherion#g1-8	722
-gefg_cas01,17,171,5	duplicate(Repherion3)	Repherion#g1-9	722
-gefg_cas01,59,16,4	duplicate(Repherion3)	Repherion#g1-10	722
-gefg_cas01,64,16,4	duplicate(Repherion3)	Repherion#g1-11	722
+gefg_cas01,22,156,5	duplicate(Arsulf3)	Arsulf#g1-7	722
+gefg_cas01,68,185,3	duplicate(Arsulf3)	Arsulf#g1-8	722
+gefg_cas01,17,171,5	duplicate(Arsulf3)	Arsulf#g1-9	722
+gefg_cas01,59,16,4	duplicate(Arsulf3)	Arsulf#g1-10	722
+gefg_cas01,64,16,4	duplicate(Arsulf3)	Arsulf#g1-11	722
 
-// AGIT Manager
+// Gerenciador Automático
 //============================================================
 gefg_cas01,198,182,0	duplicate(Gld_Agit_Manager)	Agit#gefg_cas01	-1
 
-// Steward
+// Administração
 //============================================================
 gefg_cas01,40,48,5	duplicate(Gld_Mngr_Template)	Gnahcher#gefg_cas01	55
 
-// Guardians
+// Guardiões
 //============================================================
 gefg_cas01,40,48,5	duplicate(Gld_Guard_Template)	Guardian#gefg_cas01	-1
 
-// Kafra Staff
+// Kafras
 //============================================================
 gefg_cas01,84,47,0	duplicate(Gld_Kafra_Template)	Kafra Staff#gefg_cas01	117
 
-// Master's Room Exit
+// Saída da Sala do Mestre
 //============================================================
 gefg_cas01,152,117,0	script	#switch_G01	111,{
 	mes " ";
-	mes "Há uma pequena alavanca aqui. Deseja puxar ela? ";
+	mes "Há uma pequena alavanca aqui.";
+	mes "Você deseja puxar ela?";
 	next;
 	if(select("Puxar.:Não puxar.") == 2) close;
 	warp "gefg_cas01",40,49;
 	end;
 }
 
-// Guild Treasure Protection
+// Proteção de Tesouros
 //============================================================
 gefg_cas01,154,112,0	duplicate(Gld_Trea_Protect)	ban_warp#gefg_cas01	-1,6,6
 
-// Guild Treasure Spawns
+// Spawns de Tesouros
 //============================================================
 gefg_cas01,154,112,0	duplicate(Gld_Trea_Spawn)	Treasure#gefg_cas01	-1
 
-// Guild Dungeon Switch
+// Mudanças de Cavernas
 //============================================================
 gefg_cas01,78,84,0	duplicate(Gld_Dun_Template)	#gefg_cas01	111

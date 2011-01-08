@@ -8,31 +8,32 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: War of Emperium - WoE Auto-Start	    |
+// | Nome do Script: Guerra do Emperium - Gerência: On/Off	|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 2.0/1.0                                |
+// | Versões eA/brA: 2.0/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: Auto Start for War of Emperium              |
-// | gettime(3): Gets hour (24 hour time)		    		|
-// | gettime(4): Gets day of week 1=Monday, 2=Tuesday,	    |
-// | 3=Wednesday, 4=Thursday, etc.			    			|
+// | Descrição: Gerenciador Automático.						|
+// | gettime(3): Serve para um horário (formato 24h).		|
+// | gettime(4): Serve para um dia da semana. 				|
+// | 1=Segunda, 2=Terça, 3=Quarta, 4=Quinta, etc.			|
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [cleyton]     		            |
+// | 1.1 Script Revisado [Protimus]							|
 // \________________________________________________________/
 
 -	script	Agit_Event	-1,{
 	end;
 
-OnClock2100:	//start time for Tues(2), Thurs(4)
-OnClock2300:	//end time for Tues(2), Thurs(4)
-OnClock1600:	//start time for Sat(6)
-OnClock1800:	//end time for Sat(6)
+OnClock2100:	//Início para Terça(2), Quinta(4)
+OnClock2300:	//Termino para Terça(2), Quinta(4)
+OnClock1600:	//Início para Sábado(6)
+OnClock1800:	//Termino para Sábado(6)
 
 OnAgitInit:
-	// starting time checks
+	// Checagens de Início
 	if((gettime(4)==2) && (gettime(3)>=21 && gettime(3)<23) ||
 	   (gettime(4)==4) && (gettime(3)>=21 && gettime(3)<23) ||
 	   (gettime(4)==6) && (gettime(3)>=16 && gettime(3)<18)) {
@@ -43,7 +44,7 @@ OnAgitInit:
 		end;
 	}
 
-	// end time checks
+	// Checagens de Termino
 	if ((gettime(4)==2) && (gettime(3)==23) ||
 	    (gettime(4)==4) && (gettime(3)==23) ||
 	    (gettime(4)==6) && (gettime(3)==18)) { 

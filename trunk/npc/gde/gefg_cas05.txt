@@ -8,21 +8,22 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: War of Emperium (Geffen)	            |
+// | Nome do Script: Guerra do Emperium (Geffen)	        |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.1/1.0                                |
+// | Versões eA/brA: 1.1/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: NPCs that relate to Geffen Guild Castle 5   |
+// | Descrição: NPCs relacionados ao castelo Arima 		    |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [cleyton]     		            |
+// | 1.1 Script Revisado [Protimus]							|
 // \________________________________________________________/
 
-// Guild Flag (Town)
+// Bandeira do Castelo (Cidade)
 //============================================================
-geffen,131,123,6	script	Mersetzdeitz#g5-1::Mersetzdeitz	722,{
+geffen,131,123,6	script	Arima#g5-1::Arima	722,{
 	end;
 
 OnRecvCastleG05:
@@ -30,22 +31,16 @@ OnRecvCastleG05:
 	end;
 }
 
-// Guild Flag (Outside Castle)
+// Bandeira do Castelo (Fora do Castelo)
 //============================================================
-gef_fild13,302,87,7	script	Mersetzdeitz#g5-2::Mersetzdeitz2	722,{
+gef_fild13,302,87,7	script	Arima#g5-2::Arima2	722,{
 	set .@GID, GetCastleData("gefg_cas05",1);
 	if (.@GID == 0) {
-		mes " [ Decreto do Reino de Rune Midgard ]";
+		mes " [ Decreto do Reino de Midgard ]";
 		mes " ";
-		mes "1. Conforme o Pacto do Reino de Rune Midgard, ";
-		mes "declaro que este Castelo";
-		mes "não possui um Senhor.";
+		mes "1. Conforme o Pacto do Reino de Midgard e o Feudo de Britoniah, declaro que este Castelo não possui um Senhor.";
 		mes " ";
-		mes "2. Para quem puder ";
-		mes "superar terríveis desafios";
-		mes "e destruir o Emperium,";
-		mes "receberá a posse do castelo";
-		mes "com o apoio do nosso rei.";
+		mes "2. Para quem puder superar terríveis desafios e destruir o Emperium, receberá a posse do castelo com o apoio do nosso rei.";
 	}
 	else {
 		if (getcharid(2) == .@GID) {
@@ -61,17 +56,13 @@ gef_fild13,302,87,7	script	Mersetzdeitz#g5-2::Mersetzdeitz2	722,{
 			}
 			close;
 		}
-		mes "[ Decreto do Reino de Rune Midgard ]";
+		mes "[ Decreto do Reino de Midgard ]";
 		mes " ";
-		mes "1. Seguindo o decredo do";
-		mes "Reino de Rune Midgard,";
-		mes "Nós declaramos que esse castelo";
-		mes "pertence ao clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
+		mes "1. Seguindo o decredo do Reino de Midgard.";
+		mes "Nós declaramos que esse castelo pertence ao clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
 		mes " ";
-		mes "2. O líder do lã ^ff0000"+ GetGuildName(.@GID) + "^000000 se chama";
-		mes "^FF0000" + GetGuildMaster(.@GID) + "^000000";
-		mes "Se alguem se opõe a esse decreto,";
-		mes " prove sua força e honra com uma espada em suas mãos.";
+		mes "2. O líder do clã ^ff0000"+ GetGuildName(.@GID) + "^000000 se chama ^FF0000" + GetGuildMaster(.@GID) + "^000000.";
+		mes "Se alguem se opõe a esse decreto, prove sua força e honra com uma espada em suas mãos.";
 	}
 	close;
 
@@ -80,13 +71,13 @@ OnRecvCastleG05:
 	end;
 }
 
-gef_fild13,313,83,0	duplicate(Mersetzdeitz2)	Mersetzdeitz#g5-3	722
-gef_fild13,252,51,2	duplicate(Mersetzdeitz2)	Mersetzdeitz#g5-4	722
-gef_fild13,26,147,2	duplicate(Mersetzdeitz2)	Mersetzdeitz#g5-5	722
+gef_fild13,313,83,0	duplicate(Arima2)	Arima#g5-3	722
+gef_fild13,252,51,2	duplicate(Arima2)	Arima#g5-4	722
+gef_fild13,26,147,2	duplicate(Arima2)	Arima#g5-5	722
 
-// Guild Flag (Inside Castle)
+// Bandeira do Castelo (Dentro do Castelo)
 //============================================================
-gefg_cas05,77,185,7	script	Mersetzdeitz#g5-5::Mersetzdeitz3	722,{
+gefg_cas05,77,185,7	script	Arima#g5-5::Arima3	722,{
 	end;
 
 OnRecvCastleG05:
@@ -94,48 +85,49 @@ OnRecvCastleG05:
 	end;
 }
 
-gefg_cas05,92,181,0	duplicate(Mersetzdeitz3)	Mersetzdeitz#g5-7	722
-gefg_cas05,83,158,1	duplicate(Mersetzdeitz3)	Mersetzdeitz#g5-8	722
-gefg_cas05,62,144,7	duplicate(Mersetzdeitz3)	Mersetzdeitz#g5-9	722
-gefg_cas05,62,66,4	duplicate(Mersetzdeitz3)	Mersetzdeitz#g5-10	722
-gefg_cas05,69,66,4	duplicate(Mersetzdeitz3)	Mersetzdeitz#g5-11	722
+gefg_cas05,92,181,0	duplicate(Arima3)	Arima#g5-7	722
+gefg_cas05,83,158,1	duplicate(Arima3)	Arima#g5-8	722
+gefg_cas05,62,144,7	duplicate(Arima3)	Arima#g5-9	722
+gefg_cas05,62,66,4	duplicate(Arima3)	Arima#g5-10	722
+gefg_cas05,69,66,4	duplicate(Arima3)	Arima#g5-11	722
 
 
-// AGIT Manager
+// Gerenciador Automático
 //============================================================
 gefg_cas05,194,184,0	duplicate(Gld_Agit_Manager)	Agit#gefg_cas05	-1
 
-// Steward
+// Administração
 //============================================================
 gefg_cas05,70,52,3	duplicate(Gld_Mngr_Template)	Byohre#gefg_cas05	55
 
-// Guardians
+// Guardiões
 //============================================================
 gefg_cas05,70,52,3	duplicate(Gld_Guard_Template)	Guardian#gefg_cas05	-1
 
-// Kafra Staff
+// Kafras
 //============================================================
 gefg_cas05,61,52,3	duplicate(Gld_Kafra_Template)	Kafra Staff#gefg_cas05	117
 
-// Master's Room Exit
+// Saída da Sala do Mestre
 //============================================================
 gefg_cas05,149,107,0	script	#switch_G05	111,{
 	mes " ";
-	mes "Há uma pequena alavanca aqui. Deseja puxar ela? ";
+	mes "Há uma pequena alavanca aqui.";
+	mes "Você deseja puxar ela?";
 	next;
 	if(select("Puxar.:Não puxar.") == 2) close;
 	warp "gefg_cas05",70,53;
 	end;
 }
 
-// Guild Treasure Protection
+// Proteção de Tesouros
 //============================================================
 gefg_cas05,144,110,0	duplicate(Gld_Trea_Protect)	ban_warp#gefg_cas05	-1,6,6
 
-// Guild Treasure Spawns
+// Spawns de Tesouros
 //============================================================
 gefg_cas05,144,110,0	duplicate(Gld_Trea_Spawn)	Treasure#gefg_cas05	-1
 
-// Guild Dungeon Switch
+// Mudanças de Cavernas
 //============================================================
 gefg_cas05,66,29,0	duplicate(Gld_Dun_Template)	#gefg_cas05	111

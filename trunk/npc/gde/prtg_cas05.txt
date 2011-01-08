@@ -8,19 +8,20 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: War of Emperium (Prontera)	            |
+// | Nome do Script: Guerra do Emperium (Prontera)	        |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.3/1.0                                |
+// | Versões eA/brA: 1.3/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: NPCs that relate to Prontera Guild Castle 5 |
+// | Descrição: NPCs relacionados ao castelo Gondul		    |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [cleyton]     		            |
+// | 1.1 Script Revisado [Protimus]							|
 // \________________________________________________________/
 
-// Guild Flag (Town)
+// Bandeira do Castelo (Cidade)
 //============================================================
 prontera,165,194,5	script	Gondul#p5-1::Gondul	722,{
 	end;
@@ -30,22 +31,16 @@ OnRecvCastlePt05:
 	end;
 }
 
-// Guild Flag (Outside Castle)
+// Bandeira do Castelo (Fora do Castelo)
 //============================================================
 prt_gld,199,243,2	script	Gondul#p5-2::Gondul2	722,{
 	set .@GID, GetCastleData("prtg_cas05",1);
 	if (.@GID == 0) {
-		mes " [ Decreto do Reino de Rune Midgard ]";
+		mes " [ Decreto do Reino de Midgard ]";
 		mes " ";
-		mes "1. Conforme o Pacto do Reino de Rune Midgard, ";
-		mes "declaro que este Castelo";
-		mes "não possui um Senhor.";
+		mes "1. Conforme o Pacto do Reino de Midgard e o Feudo das Valquírias, declaro que este Castelo não possui um Senhor.";
 		mes " ";
-		mes "2. Para quem puder ";
-		mes "superar terríveis desafios";
-		mes "e destruir o Emperium,";
-		mes "receberá a posse do castelo";
-		mes "com o apoio do nosso rei.";
+		mes "2. Para quem puder superar terríveis desafios e destruir o Emperium, receberá a posse do castelo com o apoio do nosso rei.";
 	}
 	else {
 		if (getcharid(2) == .@GID) {
@@ -60,17 +55,13 @@ prt_gld,199,243,2	script	Gondul#p5-2::Gondul2	722,{
 			}
 			close;
 		}
-		mes "[ Decreto do Reino de Rune Midgard ]";
+		mes "[ Decreto do Reino de Midgard ]";
 		mes " ";
-		mes "1. Seguindo o decredo do";
-		mes "Reino de Rune Midgard,";
-		mes "Nós declaramos que esse castelo";
-		mes "pertence ao clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
+		mes "1. Seguindo o decredo do Reino de Midgard.";
+		mes "Nós declaramos que esse castelo pertence ao clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
 		mes " ";
-		mes "2. O líder do lã ^ff0000"+ GetGuildName(.@GID) + "^000000 se chama";
-		mes "^FF0000" + GetGuildMaster(.@GID) + "^000000";
-		mes "Se alguem se opõe a esse decreto,";
-		mes " prove sua força e honra com uma espada em suas mãos.";
+		mes "2. O líder do clã ^ff0000"+ GetGuildName(.@GID) + "^000000 se chama ^FF0000" + GetGuildMaster(.@GID) + "^000000.";
+		mes "Se alguem se opõe a esse decreto, prove sua força e honra com uma espada em suas mãos.";
 	}
 	close;
 
@@ -83,7 +74,7 @@ prt_gld,199,236,2	duplicate(Gondul2)	Gondul#p5-3	722
 prt_gld,197,243,2	duplicate(Gondul2)	Gondul#p5-4	722
 prt_gld,197,236,2	duplicate(Gondul2)	Gondul#p5-5	722
 
-// Guild Flag (Inside Castle)
+// Bandeira do Castelo (Dentro do Castelo)
 //============================================================
 prtg_cas05,19,247,4	script	Gondul#p5-6::Gondul3	722,{
 	end;
@@ -101,41 +92,42 @@ prtg_cas05,256,289,4	duplicate(Gondul3)	Gondul#p5-11	722
 prtg_cas05,253,271,4	duplicate(Gondul3)	Gondul#p5-12	722
 prtg_cas05,273,257,4	duplicate(Gondul3)	Gondul#p5-13	722
 
-// AGIT Manager
+// Gerenciador Automático
 //============================================================
 prtg_cas05,266,266,0	duplicate(Gld_Agit_Manager)	Agit#prtg_cas05	-1
 
-// Steward
+// Administração
 //============================================================
 prtg_cas05,36,37,4	duplicate(Gld_Mngr_Template)	Raynor#prtg_cas05	55
 
-// Guardians
+// Guardiões
 //============================================================
 prtg_cas05,36,37,4	duplicate(Gld_Guard_Template)	Guardian#prtg_cas05	-1
 
-// Kafra Staff
+// Kafras
 //============================================================
 prtg_cas05,52,41,4	duplicate(Gld_Kafra_Template)	Kafra Staff#prtg_cas05	117
 
-// Master's Room Exit
+// Saída da Sala do Mestre
 //============================================================
 prtg_cas05,281,176,0	script	#switch_Pt05	111,{
 	mes " ";
-	mes "Há uma pequena alavanca aqui. Deseja puxar ela? ";
+	mes "Há uma pequena alavanca aqui.";
+	mes "Você deseja puxar ela?";
 	next;
 	if(select("Puxar.:Não puxar.") == 2) close;
 	warp "prtg_cas05",36,38;
 	end;
 }
 
-// Guild Treasure Protection
+// Proteção de Tesouros
 //============================================================
 prtg_cas05,276,178,0	duplicate(Gld_Trea_Protect)	ban_warp#prtg_cas05	-1,6,6
 
-// Guild Treasure Spawns
+// Spawns de Tesouros
 //============================================================
 prtg_cas05,276,178,0	duplicate(Gld_Trea_Spawn)	Treasure#prtg_cas05	-1
 
-// Guild Dungeon Switch
+// Mudanças de Cavernas
 //============================================================
 prtg_cas05,212,94,0	duplicate(Gld_Dun_Template)	#prtg_cas05	111

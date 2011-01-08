@@ -8,21 +8,22 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: War of Emperium (Geffen)	            |
+// | Nome do Script: Guerra do Emperium (Geffen)	        |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.1/1.0                                |
+// | Versões eA/brA: 1.1/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: NPCs that relate to Geffen Guild Castle 2   |
+// | Descrição: NPCs relacionados ao castelo Trapesac       |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [cleyton]     		            |
+// | 1.1 Script Revisado [Protimus]							|
 // \________________________________________________________/
 
-// Guild Flag (Town)
+// Bandeira do Castelo (Cidade)
 //============================================================
-geffen,113,130,1	script	Eeyolbriggar#g2-1::Eeyolbriggar	722,{
+geffen,113,130,1	script	Trapesac#g2-1::Trapesac	722,{
 	end;
 
 OnRecvCastleG02:
@@ -30,22 +31,16 @@ OnRecvCastleG02:
 	end;
 }
 
-// Guild Flag (Outside Castle)
+// Bandeira do Castelo (Fora do Castelo)
 //============================================================
-gef_fild13,303,243,4	script	Eeyolbriggar#g2-2::Eeyolbriggar2	722,{
+gef_fild13,303,243,4	script	Trapesac#g2-2::Trapesac2	722,{
 	set .@GID, GetCastleData("gefg_cas02",1);
 	if (.@GID == 0) {
-		mes " [ Decreto do Reino de Rune Midgard ]";
+		mes " [ Decreto do Reino de Midgard ]";
 		mes " ";
-		mes "1. Conforme o Pacto do Reino de Rune Midgard, ";
-		mes "declaro que este Castelo";
-		mes "não possui um Senhor.";
+		mes "1. Conforme o Pacto do Reino de Midgard e o Feudo de Britoniah, declaro que este Castelo não possui um Senhor.";
 		mes " ";
-		mes "2. Para quem puder ";
-		mes "superar terríveis desafios";
-		mes "e destruir o Emperium,";
-		mes "receberá a posse do castelo";
-		mes "com o apoio do nosso rei.";
+		mes "2. Para quem puder superar terríveis desafios e destruir o Emperium, receberá a posse do castelo com o apoio do nosso rei.";
 	}
 	else {
 		if (getcharid(2) == .@GID) {
@@ -61,17 +56,13 @@ gef_fild13,303,243,4	script	Eeyolbriggar#g2-2::Eeyolbriggar2	722,{
 			}
 			close;
 		}
-		mes "[ Decreto do Reino de Rune Midgard ]";
+		mes "[ Decreto do Reino de Midgard ]";
 		mes " ";
-		mes "1. Seguindo o decredo do";
-		mes "Reino de Rune Midgard,";
-		mes "Nós declaramos que esse castelo";
-		mes "pertence ao clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
+		mes "1. Seguindo o decredo do Reino de Midgard.";
+		mes "Nós declaramos que esse castelo pertence ao clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
 		mes " ";
-		mes "2. O líder do lã ^ff0000"+ GetGuildName(.@GID) + "^000000 se chama";
-		mes "^FF0000" + GetGuildMaster(.@GID) + "^000000";
-		mes "Se alguem se opõe a esse decreto,";
-		mes " prove sua força e honra com uma espada em suas mãos.";
+		mes "2. O líder do clã ^ff0000"+ GetGuildName(.@GID) + "^000000 se chama ^FF0000" + GetGuildMaster(.@GID) + "^000000.";
+		mes "Se alguem se opõe a esse decreto, prove sua força e honra com uma espada em suas mãos.";
 	}
 	close;
 
@@ -80,13 +71,13 @@ OnRecvCastleG02:
 	end;
 }
 
-gef_fild13,312,243,4	duplicate(Eeyolbriggar2)	Eeyolbriggar#g2-3	722
-gef_fild13,290,243,4	duplicate(Eeyolbriggar2)	Eeyolbriggar#g2-4	722
-gef_fild13,324,243,4	duplicate(Eeyolbriggar2)	Eeyolbriggar#g2-5	722
+gef_fild13,312,243,4	duplicate(Trapesac2)	Trapesac#g2-3	722
+gef_fild13,290,243,4	duplicate(Trapesac2)	Trapesac#g2-4	722
+gef_fild13,324,243,4	duplicate(Trapesac2)	Trapesac#g2-5	722
 
-// Guild Flag (Inside Castle)
+// Bandeira do Castelo (Dentro do Castelo)
 //============================================================
-gefg_cas02,65,130,5	script	Eeyolbriggar#g2-6::Eeyolbriggar3	722,{
+gefg_cas02,65,130,5	script	Trapesac#g2-6::Trapesac3	722,{
 	end;
 
 OnRecvCastleG02:
@@ -94,48 +85,49 @@ OnRecvCastleG02:
 	end;
 }
 
-gefg_cas02,30,123,5	duplicate(Eeyolbriggar3)	Eeyolbriggar#g2-7	722
-gefg_cas02,65,139,6	duplicate(Eeyolbriggar3)	Eeyolbriggar#g2-8	722
-gefg_cas02,37,177,6	duplicate(Eeyolbriggar3)	Eeyolbriggar#g2-9	722
-gefg_cas02,37,168,6	duplicate(Eeyolbriggar3)	Eeyolbriggar#g2-10	722
-gefg_cas02,68,47,2	duplicate(Eeyolbriggar3)	Eeyolbriggar#g2-11	722
-gefg_cas02,68,36,2	duplicate(Eeyolbriggar3)	Eeyolbriggar#g2-12	722
+gefg_cas02,30,123,5	duplicate(Trapesac3)	Trapesac#g2-7	722
+gefg_cas02,65,139,6	duplicate(Trapesac3)	Trapesac#g2-8	722
+gefg_cas02,37,177,6	duplicate(Trapesac3)	Trapesac#g2-9	722
+gefg_cas02,37,168,6	duplicate(Trapesac3)	Trapesac#g2-10	722
+gefg_cas02,68,47,2	duplicate(Trapesac3)	Trapesac#g2-11	722
+gefg_cas02,68,36,2	duplicate(Trapesac3)	Trapesac#g2-12	722
 
-// AGIT Manager
+// Gerenciador Automático
 //============================================================
 gefg_cas02,176,178,0	duplicate(Gld_Agit_Manager)	Agit#gefg_cas02	-1
 
-// Steward
+// Administração
 //============================================================
 gefg_cas02,12,66,5	duplicate(Gld_Mngr_Template)	Esmarehk#gefg_cas02	55
 
-// Guardians
+// Guardiãos
 //============================================================
 gefg_cas02,12,66,5	duplicate(Gld_Guard_Template)	Guardian#gefg_cas02	-1
 
-// Kafra Staff
+// Kafras
 //============================================================
 gefg_cas02,23,66,3	duplicate(Gld_Kafra_Template)	Kafra Staff#gefg_cas02	117
 
-// Master's Room Exit
+// Saída da Sala do Mestre
 //============================================================
 gefg_cas02,145,115,0	script	#switch_G02	111,{
 	mes " ";
-	mes "Há uma pequena alavanca aqui. Deseja puxar ela? ";
+	mes "Há uma pequena alavanca aqui.";
+	mes "Você deseja puxar ela?";
 	next;
 	if(select("Puxar.:Não puxar.") == 2) close;
 	warp "gefg_cas02",12,67;
 	end;
 }
 
-// Guild Treasure Protection
+// Proteção de Tesouros
 //============================================================
 gefg_cas02,140,116,0	duplicate(Gld_Trea_Protect)	ban_warp#gefg_cas02	-1,6,6
 
-// Guild Treasure Spawns
+// Spawns de Tesouros
 //============================================================
 gefg_cas02,140,116,0	duplicate(Gld_Trea_Spawn)	Treasure#gefg_cas02	-1
 
-// Guild Dungeon Switch
+// Mudanças de Cavernas
 //============================================================
 gefg_cas02,167,40,0	duplicate(Gld_Dun_Template)	#gefg_cas02	111

@@ -8,21 +8,23 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: War of Emperium (Payon)	            |
+// | Nome do Script: Guerra do Emperium (Payon)	            |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.2/1.0                                |
+// | Versões eA/brA: 1.2/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: NPCs that relate to Payon Guild Castle 2    |
+// | Descrição: NPCs relacionados ao castelo 				|
+// | Palácio do Lago Sagrado 							    |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [cleyton]     		            |
+// | 1.1 Script Revisado [Protimus]							|
 // \________________________________________________________/
 
-// Guild Flag (Town)
+// Bandeira do Castelo (Cidade)
 //============================================================
-payon,166,173,3	script	Scarlet Palace#f2-1::ScarletPalace	722,{
+payon,166,173,3	script	Palácio do Lago Sagrado#f2-1::Palácio do Lago Sagrado	722,{
 	end;
 
 OnRecvCastlePy02:
@@ -30,24 +32,18 @@ OnRecvCastlePy02:
 	end;
 }
 
-payon,97,322,4	duplicate(ScarletPalace)	Scarlet Palace#f2-2	722
+payon,97,322,4	duplicate(Palácio do Lago Sagrado)	Palácio do Lago Sagrado#f2-2	722
 
-// Guild Flag (Outside Castle)
+// Bandeira do Castelo (Fora do Castelo)
 //============================================================
-pay_gld,292,112,6	script	Scarlet Palace#f2-3::ScarletPalace2	722,{
+pay_gld,292,112,6	script	Palácio do Lago Sagrado#f2-3::Palácio do Lago Sagrado2	722,{
 	set .@GID, GetCastleData("payg_cas02",1);
 	if (.@GID == 0) {
-		mes " [ Decreto do Reino de Rune Midgard ]";
+		mes " [ Decreto do Reino de Midgard ]";
 		mes " ";
-		mes "1. Conforme o Pacto do Reino de Rune Midgard, ";
-		mes "declaro que este Castelo";
-		mes "não possui um Senhor.";
+		mes "1. Conforme o Pacto do Reino de Midgard e o Feudo do Bosque Celestial, declaro que este Castelo não possui um Senhor.";
 		mes " ";
-		mes "2. Para quem puder ";
-		mes "superar terríveis desafios";
-		mes "e destruir o Emperium,";
-		mes "receberá a posse do castelo";
-		mes "com o apoio do nosso rei.";
+		mes "2. Para quem puder superar terríveis desafios e destruir o Emperium, receberá a posse do castelo com o apoio do nosso rei.";
 	}
 	else {
 		if (getcharid(2) == .@GID) {
@@ -63,17 +59,13 @@ pay_gld,292,112,6	script	Scarlet Palace#f2-3::ScarletPalace2	722,{
 			}
 			close;
 		}
-		mes "[ Decreto do Reino de Rune Midgard ]";
+		mes "[ Decreto do Reino de Midgard ]";
 		mes " ";
-		mes "1. Seguindo o decredo do";
-		mes "Reino de Rune Midgard,";
-		mes "Nós declaramos que esse castelo";
-		mes "pertence ao clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
+		mes "1. Seguindo o decredo do Reino de Midgard.";
+		mes "Nós declaramos que esse castelo pertence ao clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
 		mes " ";
-		mes "2. O líder do lã ^ff0000"+ GetGuildName(.@GID) + "^000000 se chama";
-		mes "^FF0000" + GetGuildMaster(.@GID) + "^000000";
-		mes "Se alguem se opõe a esse decreto,";
-		mes " prove sua força e honra com uma espada em suas mãos.";
+		mes "2. O líder do clã ^ff0000"+ GetGuildName(.@GID) + "^000000 se chama ^FF0000" + GetGuildMaster(.@GID) + "^000000.";
+		mes "Se alguem se opõe a esse decreto, prove sua força e honra com uma espada em suas mãos.";
 	}
 	close;
 
@@ -82,13 +74,13 @@ OnRecvCastlePy02:
 	end;
 }
 
-pay_gld,292,120,6	duplicate(ScarletPalace2)	Scarlet Palace#f2-4	722
-pay_gld,291,135,6	duplicate(ScarletPalace2)	Scarlet Palace#f2-5	722
-pay_gld,271,163,0	duplicate(ScarletPalace2)	Scarlet Palace#f2-6	722
+pay_gld,292,120,6	duplicate(Palácio do Lago Sagrado2)	Palácio do Lago Sagrado#f2-4	722
+pay_gld,291,135,6	duplicate(Palácio do Lago Sagrado2)	Palácio do Lago Sagrado#f2-5	722
+pay_gld,271,163,0	duplicate(Palácio do Lago Sagrado2)	Palácio do Lago Sagrado#f2-6	722
 
-// Guild Flag (Inside Castle)
+// Bandeira do Castelo (Dentro do Castelo)
 //============================================================
-payg_cas02,254,40,6	script	Scarlet Palace#f2-7::ScarletPalace3	722,{
+payg_cas02,254,40,6	script	Palácio do Lago Sagrado#f2-7::Palácio do Lago Sagrado3	722,{
 	end;
 
 OnRecvCastlePy02:
@@ -96,47 +88,48 @@ OnRecvCastlePy02:
 	end;
 }
 
-payg_cas02,254,48,6	duplicate(ScarletPalace3)	Scarlet Palace#f2-8	722
-payg_cas02,202,49,0	duplicate(ScarletPalace3)	Scarlet Palace#f2-9	722
-payg_cas02,209,49,0	duplicate(ScarletPalace3)	Scarlet Palace#f2-10	722
-payg_cas02,59,282,4	duplicate(ScarletPalace3)	Scarlet Palace#f2-11	722
-payg_cas02,70,282,4	duplicate(ScarletPalace3)	Scarlet Palace#f2-12	722
+payg_cas02,254,48,6	duplicate(Palácio do Lago Sagrado3)	Palácio do Lago Sagrado#f2-8	722
+payg_cas02,202,49,0	duplicate(Palácio do Lago Sagrado3)	Palácio do Lago Sagrado#f2-9	722
+payg_cas02,209,49,0	duplicate(Palácio do Lago Sagrado3)	Palácio do Lago Sagrado#f2-10	722
+payg_cas02,59,282,4	duplicate(Palácio do Lago Sagrado3)	Palácio do Lago Sagrado#f2-11	722
+payg_cas02,70,282,4	duplicate(Palácio do Lago Sagrado3)	Palácio do Lago Sagrado#f2-12	722
 
-// AGIT Manager
+// Gerenciador Automático
 //============================================================
 payg_cas02,39,25,0	duplicate(Gld_Agit_Manager)	Agit#payg_cas02	-1
 
-// Steward
+// Administração
 //============================================================
 payg_cas02,22,260,7	duplicate(Gld_Mngr_Template)	Cherieos#payg_cas02	55
 
-// Guardians
+// Guardiões
 //============================================================
 payg_cas02,22,260,7	duplicate(Gld_Guard_Template)	Guardian#payg_cas02	-1
 
-// Kafra Staff
+// Kafras
 //============================================================
 payg_cas02,22,275,5	duplicate(Gld_Kafra_Template)	Kafra Staff#payg_cas02	117
 
-// Master's Room Exit
+// Saída da Sala do Mestre
 //============================================================
 payg_cas02,149,148,0	script	#switch_Py02	111,{
 	mes " ";
-	mes "Há uma pequena alavanca aqui. Deseja puxar ela? ";
+	mes "Há uma pequena alavanca aqui.";
+	mes "Você deseja puxar ela?";
 	next;
 	if(select("Puxar.:Não puxar.") == 2) close;
 	warp "payg_cas02",22,261;
 	end;
 }
 
-// Guild Treasure Protection
+// Proteção de Tesouros
 //============================================================
 payg_cas02,145,144,0	duplicate(Gld_Trea_Protect)	ban_warp#payg_cas02	-1,6,6
 
-// Guild Treasure Spawns
+// Spawns de Tesouros
 //============================================================
 payg_cas02,145,144,0	duplicate(Gld_Trea_Spawn)	Treasure#payg_cas02	-1
 
-// Guild Dungeon Switch
+// Mudanças de Cavernas
 //============================================================
 payg_cas02,278,247,0	duplicate(Gld_Dun_Template)	#payg_cas02	111

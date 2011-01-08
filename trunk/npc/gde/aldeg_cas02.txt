@@ -8,21 +8,22 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: War of Emperium (Aldebaran)	   		|
+// | Nome do Script: Guerra do Emperium (Al De Baran)	   	|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.2/1.0                                |
+// | Versões eA/brA: 1.2/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: NPCs that relate to Aldebaran Guild Castle 2|
+// | Descrição: NPCs relacionados ao castelo Astrum 		|
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [cleyton]     		            |
+// | 1.1 Script Revisado [Protimus]							|
 // \________________________________________________________/
 
-// Guild Flag (Town)
+// Bandeira do Castelo (Cidade)
 //============================================================
-aldebaran,149,97,4	script	Hohenschwangau#a2-1::Hohenschwangau	722,{
+aldebaran,149,97,4	script	Astrum#a2-1::Astrum	722,{
 	end;
 
 OnRecvCastleA02:
@@ -30,22 +31,16 @@ OnRecvCastleA02:
 	end;
 }
 
-// Guild Flag (Outside Castle)
+// Bandeira do Castelo (Fora do Castelo)
 //============================================================
-alde_gld,99,251,4	script	Hohenschwangau#a2-2::Hohenschwangau2	722,{
+alde_gld,99,251,4	script	Astrum#a2-2::Astrum2	722,{
 	set .@GID, GetCastleData("aldeg_cas02",1);
 	if (.@GID == 0) {
-		mes " [ Decreto do Reino de Rune Midgard ]";
+		mes " [ Decreto do Reino de Midgard ]";
 		mes " ";
-		mes "1. Conforme o Pacto do Reino de Rune Midgard, ";
-		mes "declaro que este Castelo";
-		mes "não possui um Senhor.";
+		mes "1. Conforme o Pacto do Reino de Midgard e o Feudo de Luina, declaro que este Castelo não possui um Senhor.";
 		mes " ";
-		mes "2. Para quem puder ";
-		mes "superar terríveis desafios";
-		mes "e destruir o Emperium,";
-		mes "receberá a posse do castelo";
-		mes "com o apoio do nosso rei.";
+		mes "2. Para quem puder superar terríveis desafios e destruir o Emperium, receberá a posse do castelo com o apoio do nosso rei.";
 	}
 	else {
 		if (getcharid(2) == .@GID) {
@@ -61,17 +56,13 @@ alde_gld,99,251,4	script	Hohenschwangau#a2-2::Hohenschwangau2	722,{
 			}
 			close;
 		}
-		mes "[ Decreto do Reino de Rune Midgard ]";
+		mes "[ Decreto do Reino de Midgard ]";
 		mes " ";
-		mes "1. Seguindo o decredo do";
-		mes "Reino de Rune Midgard,";
-		mes "Nós declaramos que esse castelo";
-		mes "pertence ao clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
+		mes "1. Seguindo o decredo do Reino de Midgard.";
+		mes "Nós declaramos que esse castelo pertence ao clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
 		mes " ";
-		mes "2. O líder do lã ^ff0000"+ GetGuildName(.@GID) + "^000000 se chama";
-		mes "^FF0000" + GetGuildMaster(.@GID) + "^000000";
-		mes "Se alguem se opõe a esse decreto,";
-		mes " prove sua força e honra com uma espada em suas mãos.";
+		mes "2. O líder do clã ^ff0000"+ GetGuildName(.@GID) + "^000000 se chama ^FF0000" + GetGuildMaster(.@GID) + "^000000.";
+		mes "Se alguem se opõe a esse decreto, prove sua força e honra com uma espada em suas mãos.";
 	}
 	close;
 
@@ -80,11 +71,11 @@ OnRecvCastleA02:
 	end;
 }
 
-alde_gld,99,244,4	duplicate(Hohenschwangau2)	Hohenschwangau#a2-3	722
+alde_gld,99,244,4	duplicate(Astrum2)	Astrum#a2-3	722
 
-// Guild Flag (Inside Castle)
+// Bandeira do Castelo (Dentro do Castelo)
 //============================================================
-aldeg_cas02,82,71,2	script	Hohenschwangau#a2-4::Hohenschwangau3	722,{
+aldeg_cas02,82,71,2	script	Astrum#a2-4::Astrum3	722,{
 	end;
 
 OnRecvCastleA02:
@@ -92,56 +83,57 @@ OnRecvCastleA02:
 	end;
 }
 
-aldeg_cas02,67,30,2	duplicate(Hohenschwangau3)	Hohenschwangau#a2-5	722
-aldeg_cas02,183,140,2	duplicate(Hohenschwangau3)	Hohenschwangau#a2-6	722
-aldeg_cas02,212,152,2	duplicate(Hohenschwangau3)	Hohenschwangau#a2-7	722
-aldeg_cas02,108,39,2	duplicate(Hohenschwangau3)	Hohenschwangau#a2-8	722
-aldeg_cas02,57,213,2	duplicate(Hohenschwangau3)	Hohenschwangau#a2-9	722
-aldeg_cas02,91,181,2	duplicate(Hohenschwangau3)	Hohenschwangau#a2-10	722
-aldeg_cas02,103,53,2	duplicate(Hohenschwangau3)	Hohenschwangau#a2-11	722
-aldeg_cas02,73,53,2	duplicate(Hohenschwangau3)	Hohenschwangau#a2-12	722
-aldeg_cas02,63,41,2	duplicate(Hohenschwangau3)	Hohenschwangau#a2-13	722
-aldeg_cas02,229,6,2	duplicate(Hohenschwangau3)	Hohenschwangau#a2-14	722
-aldeg_cas02,230,40,2	duplicate(Hohenschwangau3)	Hohenschwangau#a2-15	722
-aldeg_cas02,197,40,2	duplicate(Hohenschwangau3)	Hohenschwangau#a2-16	722
-aldeg_cas02,32,213,2	duplicate(Hohenschwangau3)	Hohenschwangau#a2-17	722
-aldeg_cas02,121,29,2	duplicate(Hohenschwangau3)	Hohenschwangau#a2-18	722
+aldeg_cas02,67,30,2	duplicate(Astrum3)	Astrum#a2-5	722
+aldeg_cas02,183,140,2	duplicate(Astrum3)	Astrum#a2-6	722
+aldeg_cas02,212,152,2	duplicate(Astrum3)	Astrum#a2-7	722
+aldeg_cas02,108,39,2	duplicate(Astrum3)	Astrum#a2-8	722
+aldeg_cas02,57,213,2	duplicate(Astrum3)	Astrum#a2-9	722
+aldeg_cas02,91,181,2	duplicate(Astrum3)	Astrum#a2-10	722
+aldeg_cas02,103,53,2	duplicate(Astrum3)	Astrum#a2-11	722
+aldeg_cas02,73,53,2	duplicate(Astrum3)	Astrum#a2-12	722
+aldeg_cas02,63,41,2	duplicate(Astrum3)	Astrum#a2-13	722
+aldeg_cas02,229,6,2	duplicate(Astrum3)	Astrum#a2-14	722
+aldeg_cas02,230,40,2	duplicate(Astrum3)	Astrum#a2-15	722
+aldeg_cas02,197,40,2	duplicate(Astrum3)	Astrum#a2-16	722
+aldeg_cas02,32,213,2	duplicate(Astrum3)	Astrum#a2-17	722
+aldeg_cas02,121,29,2	duplicate(Astrum3)	Astrum#a2-18	722
 
-// AGIT Manager
+// Gerenciador Automático
 //============================================================
 aldeg_cas02,214,24,0	duplicate(Gld_Agit_Manager)	Agit#aldeg_cas02	-1
 
-// Steward
+// Administração
 //============================================================
 aldeg_cas02,78,74,0	duplicate(Gld_Mngr_Template)	Chenchenlie#aldeg_cas02	55
 
-// Guardians
+// Guardiões
 //============================================================
 aldeg_cas02,78,74,0	duplicate(Gld_Guard_Template)	Guardian#aldeg_cas02	-1
 
-// Kafra Staff
+// Kafras
 //============================================================
 aldeg_cas02,84,74,0	duplicate(Gld_Kafra_Template)	Kafra Staff#aldeg_cas02	117
 
-// Master's Room Exit
+// Saída da Sala do Mestre
 //============================================================
 aldeg_cas02,139,235,0	script	#switch_A02	111,{
 	mes " ";
-	mes "Há uma pequena alavanca aqui. Deseja puxar ela? ";
+	mes "Há uma pequena alavanca aqui.";
+	mes "Você deseja puxar ela?";
 	next;
 	if(select("Puxar.:Não puxar.") == 2) close;
 	warp "aldeg_cas02",78,75;
 	end;
 }
 
-// Guild Treasure Protection
+// Proteção de Tesouros
 //============================================================
 aldeg_cas02,135,230,0	duplicate(Gld_Trea_Protect)	ban_warp#aldeg_cas02	-1,8,8
 
-// Guild Treasure Spawns
+// Spawns de Tesouros
 //============================================================
 aldeg_cas02,135,230,0	duplicate(Gld_Trea_Spawn)	Treasure#aldeg_cas02	-1
 
-// Guild Dungeon Switch
+// Mudanças de Cavernas
 //============================================================
 aldeg_cas02,194,136,0	duplicate(Gld_Dun_Template)	#aldeg_cas02	111

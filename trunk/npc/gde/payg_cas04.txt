@@ -8,21 +8,23 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: War of Emperium (Payon)	            |
+// | Nome do Script: Guerra do Emperium (Payon)	            |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.1/1.0                                |
+// | Versões eA/brA: 1.1/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: NPCs that relate to Payon Guild Castle 4    |
+// | Descrição: NPCs relacionados ao castelo 				|
+// | Palácio Escarlate  								    |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Script Traduzido [cleyton]     		            | 
+// | 1.0 Script Traduzido [cleyton]     		            |
+// | 1.1 Script Revisado [Protimus]							| 
 // \________________________________________________________/
 
-// Guild Flag (Town)
+// Bandeira do Castelo (Cidade)
 //============================================================
-payon,166,169,3	script	Sacred Altar#f4-1::SacredAltar	722,{
+payon,166,169,3	script	Palácio Escarlate#f4-1::Palácio Escarlate	722,{
 	end;
 
 OnRecvCastlePy04:
@@ -30,24 +32,18 @@ OnRecvCastlePy04:
 	end;
 }
 
-payon,118,322,4	duplicate(SacredAltar)	Sacred Altar#f4-2	722
+payon,118,322,4	duplicate(Palácio Escarlate)	Palácio Escarlate#f4-2	722
 
-// Guild Flag (Outside Castle)
+// Bandeira do Castelo (Fora do Castelo)
 //============================================================
-pay_gld,137,160,0	script	Sacred Altar#f4-3::SacredAltar2	722,{
+pay_gld,137,160,0	script	Palácio Escarlate#f4-3::Palácio Escarlate2	722,{
 	set .@GID, GetCastleData("payg_cas04",1);
 	if (.@GID == 0) {
-		mes " [ Decreto do Reino de Rune Midgard ]";
+		mes " [ Decreto do Reino de Midgard ]";
 		mes " ";
-		mes "1. Conforme o Pacto do Reino de Rune Midgard, ";
-		mes "declaro que este Castelo";
-		mes "não possui um Senhor.";
+		mes "1. Conforme o Pacto do Reino de Midgard e o Feudo do Bosque Celestial, declaro que este Castelo não possui um Senhor.";
 		mes " ";
-		mes "2. Para quem puder ";
-		mes "superar terríveis desafios";
-		mes "e destruir o Emperium,";
-		mes "receberá a posse do castelo";
-		mes "com o apoio do nosso rei.";
+		mes "2. Para quem puder superar terríveis desafios e destruir o Emperium, receberá a posse do castelo com o apoio do nosso rei.";
 	}
 	else {
 		if (getcharid(2) == .@GID) {
@@ -62,17 +58,13 @@ pay_gld,137,160,0	script	Sacred Altar#f4-3::SacredAltar2	722,{
 			}
 			close;
 		}
-		mes "[ Decreto do Reino de Rune Midgard ]";
+		mes "[ Decreto do Reino de Midgard ]";
 		mes " ";
-		mes "1. Seguindo o decredo do";
-		mes "Reino de Rune Midgard,";
-		mes "Nós declaramos que esse castelo";
-		mes "pertence ao clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
+		mes "1. Seguindo o decredo do Reino de Midgard.";
+		mes "Nós declaramos que esse castelo pertence ao clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
 		mes " ";
-		mes "2. O líder do lã ^ff0000"+ GetGuildName(.@GID) + "^000000 se chama";
-		mes "^FF0000" + GetGuildMaster(.@GID) + "^000000";
-		mes "Se alguem se opõe a esse decreto,";
-		mes " prove sua força e honra com uma espada em suas mãos.";
+		mes "2. O líder do clã ^ff0000"+ GetGuildName(.@GID) + "^000000 se chama ^FF0000" + GetGuildMaster(.@GID) + "^000000.";
+		mes "Se alguem se opõe a esse decreto, prove sua força e honra com uma espada em suas mãos.";
 	}
 	close;
 
@@ -81,13 +73,13 @@ OnRecvCastlePy04:
 	end;
 }
 
-pay_gld,143,160,0	duplicate(SacredAltar2)	Sacred Altar#f4-4	722
-pay_gld,133,151,2	duplicate(SacredAltar2)	Sacred Altar#f4-5	722
-pay_gld,153,166,1	duplicate(SacredAltar2)	Sacred Altar#f4-6	722
+pay_gld,143,160,0	duplicate(Palácio Escarlate2)	Palácio Escarlate#f4-4	722
+pay_gld,133,151,2	duplicate(Palácio Escarlate2)	Palácio Escarlate#f4-5	722
+pay_gld,153,166,1	duplicate(Palácio Escarlate2)	Palácio Escarlate#f4-6	722
 
-// Guild Flag (Inside Castle)
+// Bandeira do Castelo (Dentro do Castelo)
 //============================================================
-payg_cas04,255,259,0	script	Sacred Altar#f4-7::SacredAltar3	722,{
+payg_cas04,255,259,0	script	Palácio Escarlate#f4-7::Palácio Escarlate3	722,{
 	end;
 
 OnRecvCastlePy04:
@@ -95,47 +87,48 @@ OnRecvCastlePy04:
 	end;
 }
 
-payg_cas04,248,259,0	duplicate(SacredAltar3)	Sacred Altar#f4-8	722
-payg_cas04,248,168,6	duplicate(SacredAltar3)	Sacred Altar#f4-9	722
-payg_cas04,248,160,6	duplicate(SacredAltar3)	Sacred Altar#f4-10	722
-payg_cas04,232,181,4	duplicate(SacredAltar3)	Sacred Altar#f4-11	722
-payg_cas04,239,181,4	duplicate(SacredAltar3)	Sacred Altar#f4-12	722
+payg_cas04,248,259,0	duplicate(Palácio Escarlate3)	Palácio Escarlate#f4-8	722
+payg_cas04,248,168,6	duplicate(Palácio Escarlate3)	Palácio Escarlate#f4-9	722
+payg_cas04,248,160,6	duplicate(Palácio Escarlate3)	Palácio Escarlate#f4-10	722
+payg_cas04,232,181,4	duplicate(Palácio Escarlate3)	Palácio Escarlate#f4-11	722
+payg_cas04,239,181,4	duplicate(Palácio Escarlate3)	Palácio Escarlate#f4-12	722
 
-// AGIT Manager
+// Gerenciador Automático
 //============================================================
 payg_cas04,271,29,0	duplicate(Gld_Agit_Manager)	Agit#payg_cas04	-1
 
-// Steward
+// Administração
 //============================================================
 payg_cas04,38,284,3	duplicate(Gld_Mngr_Template)	DJ#payg_cas04	55
 
-// Guardians
+// Guardiões
 //============================================================
 payg_cas04,38,284,3	duplicate(Gld_Guard_Template)	Guardian#payg_cas04	-1
 
-// Kafra Staff
+// Kafras
 //============================================================
 payg_cas04,40,235,1	duplicate(Gld_Kafra_Template)	Kafra Staff#payg_cas04	117
 
-// Master's Room Exit
+// Saída da Sala do Mestre
 //============================================================
 payg_cas04,151,47,0	script	#switch_Py04	111,{
 	mes " ";
-	mes "Há uma pequena alavanca aqui. Deseja puxar ela? ";
+	mes "Há uma pequena alavanca aqui.";
+	mes "Você deseja puxar ela?";
 	next;
 	if(select("Puxar.:Não puxar.") == 2) close;
 	warp "payg_cas04",38,285;
 	end;
 }
 
-// Guild Treasure Protection
+// Proteção de Tesouros
 //============================================================
 payg_cas04,147,48,0	duplicate(Gld_Trea_Protect)	ban_warp#payg_cas04	-1,6,6
 
-// Guild Treasure Spawns
+// Spawns de Tesouros
 //============================================================
 payg_cas04,147,48,0	duplicate(Gld_Trea_Spawn)	Treasure#payg_cas04	-1
 
-// Guild Dungeon Switch
+// Mudanças de Cavernas
 //============================================================
 payg_cas04,52,48,0	duplicate(Gld_Dun_Template)	#payg_cas04	111
