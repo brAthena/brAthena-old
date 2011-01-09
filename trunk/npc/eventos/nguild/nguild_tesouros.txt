@@ -19,8 +19,8 @@
 // |                                                        |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			  						|
+// | 1.0 Tradução Português BR [cleyton]                    |
+// | 					   			 						|
 // \________________________________________________________/
 
 
@@ -52,7 +52,7 @@ function	script	F_GldTreas	{
 	for (set .@i,1; .@i <= getarg(3) ; set .@i,.@i+1) {
 		// set treasure box ID
 		set getarg(4), getarg(5) + (.@i+1) % 2;
-		areamonster getarg(0),getarg(6),getarg(7),getarg(8),getarg(9),"Treasure Chest",getarg(4),1,"Treasure_"+getarg(1)+"::OnDied";
+		areamonster getarg(0),getarg(6),getarg(7),getarg(8),getarg(9),"Baú do tesouros",getarg(4),1,"Treasure_"+getarg(1)+"::OnDied";
 	}
 	return;
 }
@@ -62,10 +62,10 @@ function	script	F_GldTreas	{
 //===============================================================
 function	script	F_GldTreasSw	{
 	mes " ";
-	mes "There's a small lever. Will you pull it?";
+	mes "Há uma pequena alavanca. Você deseja puxar ela?";
 	next;
 
-	if (select("Pull.:Do not.") == 1) {
+	if (select("Puxar.:Não.") == 1) {
 		warp getarg(0),getarg(1),getarg(2);
 		return;
 	}
@@ -86,9 +86,9 @@ OnInit:
 	end;
 
 OnDied:
-	mapannounce "nguild_alde","Treasure Chest Broken Open",17;
+	mapannounce "nguild_alde","Caixa do tesouro foi aberta",17;
 	set $boxNumN01, $boxNumN01 -1;
-	if($boxNumN01 == 0) mapannounce "nguild_alde", "All of the treasure boxes have been opened.  You must wait untill the next day for them to appear again.",0;
+	if($boxNumN01 == 0) mapannounce "nguild_alde", "Todos os tesouros foram abertos.  Você deve esperar até o próximo dia para abrir os tesouros novamente.",0;
 	end;
 }
 
@@ -112,9 +112,9 @@ OnInit:
 	end;
 
 OnDied:
-	mapannounce "nguild_gef","Treasure Chest Broken Open",17;
+	mapannounce "nguild_gef","Caixa do tesouro foi aberta",17;
 	set $boxNumN02, $boxNumN02 -1;
-	if($boxNumN02 == 0) mapannounce "nguild_gef", "All of the treasure boxes have been opened.  You must wait untill the next day for them to appear again.",0;
+	if($boxNumN02 == 0) mapannounce "nguild_gef", "Todos os tesouros foram abertos.  Você deve esperar até o próximo dia para abrir os tesouros novamente.",0;
 	end;
 }
 
@@ -137,9 +137,9 @@ OnInit:
 	end;
 
 OnDied:
-	mapannounce "nguild_pay","Treasure Chest Broken Open",17;
+	mapannounce "nguild_pay","Caixa do tesouro foi aberta",17;
 	set $boxNumN03, $boxNumN03 -1;
-	if($boxNumN03 == 0) mapannounce "nguild_pay", "All of the treasure boxes have been opened.  You must wait untill the next day for them to appear again.",0;
+	if($boxNumN03 == 0) mapannounce "nguild_pay", "Todos os tesouros foram abertos.  Você deve esperar até o próximo dia para abrir os tesouros novamente.",0;
 	end;
 }
 
@@ -162,9 +162,9 @@ OnInit:
 	end;
 
 OnDied:
-	mapannounce "nguild_prt","Treasure Chest Broken Open",17;
+	mapannounce "nguild_prt","Caixa do tesouro foi aberta",17;
 	set $boxNumN04, $boxNumN04 -1;
-	if($boxNumN04 == 0) mapannounce "nguild_prt", "All of the treasure boxes have been opened.  You must wait untill the next day for them to appear again.",0;
+	if($boxNumN04 == 0) mapannounce "nguild_prt", "Todos os tesouros foram abertos.  Você deve esperar até o próximo dia para abrir os tesouros novamente.",0;
 	end;
 }
 

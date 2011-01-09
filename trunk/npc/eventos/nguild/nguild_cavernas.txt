@@ -27,25 +27,25 @@
 function	script	F_GldDunSw	{
 	set .@GID, GetCastleData(getarg(0),1);
 	if (.@GID == 0) {
-		mes "[ Echoing Voice ]";
-		mes " ' The one who can overcome an ordeal and show true bravery... will find the way... ' ";
+		mes "[ Voz com eco ]";
+		mes " ' Aquele que superar as provações com bravura... encontrará o caminho... ' ";
 		close;
 	}
 	else {
-		mes "[ Echoing Voice ]";
-		mes " ' Only the one who can show true bravery can take this test. '";
+		mes "[ Voz com eco ]";
+		mes " ' Somente aquele que demonstrar bravura pode superar as provações. '";
 		next;
 		mes " ";
-		mes "There's a small lever. Will you pull it?";
+		mes "Há uma pequena alavanca. Deseja puxar ela?";
 		next;
 
-		if (select("Pull.:Do not.") == 1) {
+		if (select("Puxar.:Não.") == 1) {
 			if (getcharid(2) == .@GID) {
 				warp "gld_dun"+getarg(1),getarg(2),getarg(3);
 				end;
 			}
 			mes " ";
-			mes " Nothing happened.";
+			mes " Não aconteceu nada.";
 		}
 		return;
 	}

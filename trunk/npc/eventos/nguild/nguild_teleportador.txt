@@ -18,17 +18,17 @@
 // |                                                        |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			  						|
+// | 1.0 Tradução Português BR [cleyton]                    |
+// | 					   			 						|
 // \________________________________________________________/
 
 
-prontera,146,163,6	script	Novice Castles	729,{
+prontera,146,163,6	script	Castelos de Novatos	729,{
 	mes "[Cita]";
 	if(getcharid(2)!=0){
 		if(getgdskilllv(getcharid(2),10013)){
-			mes "I see... your guild has Emergency Call mastered.";
-			mes "You cannot enter the Novice Castle area.";
+			mes "Eu vejo ... seu Clã tem a habilidade de Chamado Urgente dominado.";
+			mes "Você não pode entrar na área de castelo para Novatos.";
 			emotion e_hmm;
 			emotion e_wah,1;
 			close;
@@ -50,22 +50,22 @@ prontera,146,163,6	script	Novice Castles	729,{
 			getgdskilllv(getcharid(2),10013) +
 			getgdskilllv(getcharid(2),10014) > 9
 		){
-			mes "I see... your guild has Emergency Call mastered.";
-			mes "You cannot enter the Novice Castle area.";
+			mes "Eu vejo ... seu Clã tem a habilidade de Chamado Urgente dominado.";
+			mes "Você não pode entrar na área de castelo para Novatos.";
 			emotion e_hmm;
 			emotion e_wah,1;
 			close;
 		}
 	} else {
-		mes "^FF0000You have to enter a guild to be able to hit Emperium!^000000";
+		mes "^FF0000Você precisa entrar em um Clão que seja capaz de acertar o Emperium!^000000";
 	}
-	mes "I'm a new usher of Novice Castles.";
+	mes "Eu sou o recepcionista para o castelo dos Novatos;
 	next;
 	if( !(eaclass()&(EAJL_2|EAJL_UPPER)) && BaseLevel<60 )
-		menu "Warp me to Novice Castles",M_WARP,"Cancel",-;
+		menu "Me teleporte para os castelos dos novatos",M_WARP,"Cancel",-;
 
 	mes "[Cita]";
-	mes "I'm sorry, you can't enter the sacred Novice Castles place.";
+	mes "Eu lamento, mas você não pode entrar no local sagrado dos castelos dos novatos.";
 	emotion e_sry;
 	close;
 
@@ -92,14 +92,14 @@ M_WARP:
 
 n_castle,102,107,5	script	Cita	729,{
 	mes "[Cita]";
-	mes "Hello, "+ strcharinfo(0) +". Can I help you?";
+	mes "Olá  "+ strcharinfo(0) +". Como posso ajudar você?";
 	next;
-	menu "Warp me to Prontera!",-,"Cancel",LEnd;
+	menu "Me teleporte para Prontera!",-,"Cancelar",LEnd;
 	
 		warp "prontera",155,177+rand(5);
 		close;
 	LEnd:
 		mes "[Cita]";
-		mes "Ok.";
+		mes "Está bem.";
 		close;
 }

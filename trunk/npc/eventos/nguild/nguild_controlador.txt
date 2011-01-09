@@ -18,8 +18,8 @@
 // | Event Triggers for NGuild Wars                         |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			 						|
+// | 1.0 Tradução Português BR [cleyton]                    |
+// | 					   			 						|
 // \________________________________________________________/
 
 
@@ -44,7 +44,7 @@ function	script	F_GuildBreak	{
 
 	killmonsterall .@map$;
 
-	Announce "Guild Base [" + GetCastleName(.@map$) + "] has been abandoned.",0;
+	Announce "O castelo [" + GetCastleName(.@map$) + "] foi abandonado.",0;
 	disablenpc "Kafra Staff#"+.@castle$;
 
 	SetCastleData .@map$,0,0;
@@ -68,8 +68,8 @@ function	script	F_AgitBreak	{
 	SetCastleData .@map$, 3, .@Defence;
 
 	SetCastleData .@map$,1, .@GID;
-	MapAnnounce .@map$,"The emperium has been destroyed.",bc_map,0x00CCFF;
-	Announce "The [" + GetCastleName(.@map$) + "] castle has been conquered by the [" + GetGuildName(.@GID) + "] guild.",bc_all;
+	MapAnnounce .@map$,"O emperium foi destruido.",bc_map,0x00CCFF;
+	Announce "O castelo [" + GetCastleName(.@map$) + "] foi conquistado pelo Clã [" + GetGuildName(.@GID) + "].",bc_all;
 	GetCastleData .@map$,0,"::OnRecvCastle"+.@castle$;
 
 	disablenpc "Kafra Staff#"+.@castle$;
