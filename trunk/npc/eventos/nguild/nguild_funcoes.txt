@@ -8,22 +8,21 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: War of Emperium - NGuild Wars Events   |
+// | Nome do Script: NGuild - Funções						|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.5/1.0                                |
+// | Versões eA/brA: 1.5/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição:                                             |
-// | Event Triggers for NGuild Wars                         |
+// | Descrição: Funções de Eventos da NGuild                |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Tradução Português BR [cleyton]                    |
-// | 					   			 						|
+// | 1.0 Script Traduzido [cleyton]          	            |
+// | 1.1 Script Revisado [Protimus]						 	|
 // \________________________________________________________/
 
 
-// Function for OnAgitStart =========================================
+// Função para OnAgitStart =========================================
 function	script	F_AgitStart	{
 	set .@map$, getarg(0);
 	set .@castle$, getarg(1);
@@ -37,7 +36,7 @@ function	script	F_AgitStart	{
 	end;
 }
 
-// Function for OnGuildBreak ======================================
+// Função para OnGuildBreak ======================================
 function	script	F_GuildBreak	{
 	set .@map$, getarg(0);
 	set .@castle$, getarg(1);
@@ -51,7 +50,7 @@ function	script	F_GuildBreak	{
 	return;
 }
 
-// Function for OnAgitBreak ======================================
+// Função para OnAgitBreak ======================================
 function	script	F_AgitBreak	{
 	set .@map$, getarg(0);
 	set .@castle$, getarg(1);
@@ -74,11 +73,11 @@ function	script	F_AgitBreak	{
 
 	disablenpc "Kafra Staff#"+.@castle$;
 
-	// remove investment data and kafra
+	// Removendo dados de investimento e kafra
 	for( set .@i, 4; .@i <= 9; set .@i, .@i+1 )
 		SetCastleData .@map$, .@i, 0;
 
-	// if the new guild doesn't have Guardian Research, erase guardians
+	// Se a guilda não tiver habilidades para usod e guardiões, removê-los
 	if( getgdskilllv(.@GID,10002) == 0 )
 		for( set .@i, 10; .@i <= 17; set .@i, .@i+1 )
 			SetCastleData .@map$, .@i, 0;
@@ -87,21 +86,19 @@ function	script	F_AgitBreak	{
 }
 
 
-// Function for OnAgitEnd ======================================
+// Função para OnAgitEnd ======================================
 function	script	F_AgitEnd	{
 	set .@map$, getarg(0);
 	set .@castle$, getarg(1);
 
 	GvgOff .@map$;
-	// Disable the following if statment to keep empty
-	// castles from being aquired after after WoE ends.
 	if (GetCastleData(.@map$,1) == 0) return;
 	MapRespawnGuildID .@map$,GetCastleData(.@map$,1),4;
 	KillMonster .@map$,"Agit_"+.@castle$+"::OnAgitBreak";
 	end;
 }
 
-// Castle 1 ================================================================
+// 1° Castelo ================================================================
 nguild_alde,0,0,0	script	Agit_N01	-1,{
 OnInterIfInitOnce:
 	GetCastleData "nguild_alde",0,"::OnRecvCastleN01";
@@ -128,7 +125,7 @@ OnAgitEnd:
 	end;
 }
 
-// Castle 2 ================================================================
+// 2° Castelo ================================================================
 nguild_gef,0,0,0	script	Agit_N02	-1,{
 OnInterIfInitOnce:
 	GetCastleData "nguild_gef",0,"::OnRecvCastleN02";
@@ -155,7 +152,7 @@ OnAgitEnd:
 	end;
 }
 
-// Castle 3 ================================================================
+// 3° Castelo ================================================================
 nguild_pay,0,0,0	script	Agit_N03	-1,{
 OnInterIfInitOnce:
 	GetCastleData "nguild_pay",0,"::OnRecvCastleN03";
@@ -182,7 +179,7 @@ OnAgitEnd:
 	end;
 }
 
-// Castle 4 ================================================================
+// 4° Castelo ================================================================
 nguild_prt,0,0,0	script	Agit_N04	-1,{
 OnInterIfInitOnce:
 	GetCastleData "nguild_prt",0,"::OnRecvCastleN04";
@@ -209,7 +206,7 @@ OnAgitEnd:
 	end;
 }
 
-// Treasure Spawn Time
+// Tempo de Spawn dos Tesouros
 //========================================
 -	script	TreasSpawn	-1,{
 	end;

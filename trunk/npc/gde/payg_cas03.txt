@@ -12,7 +12,7 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.2/1.1                                |
+// | Versões eA/brA: 1.2/1.2                                |
 // |--------------------------------------------------------|
 // | Descrição: NPCs relacionados ao castelo 				|
 // | Palácio da Sombra	   								    |
@@ -20,6 +20,8 @@
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [cleyton]     		            |
 // | 1.1 Script Revisado [Protimus]							|
+// | 1.2 Correção de Tradução [Protimus]					|
+// | - Corrigido erro de concordância nominal				| 
 // \________________________________________________________/
 
 // Bandeira do Castelo (Cidade)
@@ -43,7 +45,7 @@ pay_gld,321,298,2	script	Palácio da Sombra#f3-3::Palácio da Sombra2	722,{
 		mes " ";
 		mes "1. Conforme o Pacto do Reino de Midgard e o Feudo do Bosque Celestial, declaro que este Castelo não possui um Senhor.";
 		mes " ";
-		mes "2. Para quem puder superar terríveis desafios e destruir o Emperium, receberá a posse do castelo com o apoio do nosso rei.";
+		mes "2. Aquele que superar terríveis desafios e destruir o Emperium, receberá a posse do castelo com o apoio do nosso rei.";
 	}
 	else {
 		if (getcharid(2) == .@GID) {
