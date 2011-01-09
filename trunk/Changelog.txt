@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0080 - 08/01/2011 [Protimus]
+	* Atualizado conforme eAthena r14659.
+
 	r0079 - 08/01/2011 [Protimus]
 	* Alterações nos nomes de mobs dos Guardiões.
 	- Guardião Cavaleiro, Guardião Soldado e Guardião Arqueiro são os nomes corretos, Guardião sucedido pelas suas patentes.

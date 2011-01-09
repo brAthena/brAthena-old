@@ -6090,7 +6090,7 @@ ACMD_FUNC(autoloot)
 }
 
 /*==========================================
- * @autolootitem
+ * @alootid
  *------------------------------------------*/
 ACMD_FUNC(autolootitem)
 {
@@ -6099,9 +6099,9 @@ ACMD_FUNC(autolootitem)
 	if (!message || !*message) {
 		if (sd->state.autolootid) {
 			sd->state.autolootid = 0;
-			clif_displaymessage(fd, "Autolootitem have been turned OFF.");
+			clif_displaymessage(fd, "Autolootitem has been turned OFF.");
 		} else
-			clif_displaymessage(fd, "Please, enter Item name or its ID (usage: @autolootitem <item_name_or_ID>).");
+			clif_displaymessage(fd, "Please, enter item name or it's ID (usage: @alootid <item_name_or_ID>).");
 
 		return -1;
 	}
@@ -6117,7 +6117,7 @@ ACMD_FUNC(autolootitem)
 
 	sd->state.autolootid = item_data->nameid; // Autoloot Activated
 
-	sprintf(atcmd_output, "Autolooting Item: '%s'/'%s' {%d}",
+	sprintf(atcmd_output, "Autolooting item: '%s'/'%s' (%d)",
 		item_data->name, item_data->jname, item_data->nameid);
 	clif_displaymessage(fd, atcmd_output);
 
@@ -7108,19 +7108,18 @@ ACMD_FUNC(homlevel)
 
 	nullpo_retr(-1, sd);
 
-	if (!message || !*message) {
-		clif_displaymessage(fd, "Please, enter a level adjustment: (usage: @homlevel <+/- # of levels>.");
+	if ( !message || !*message || ( level = atoi(message) ) < 1 ) {
+		clif_displaymessage(fd, "Please, enter a level adjustment: (usage: @homlevel <# of levels to level up>.");
 		return -1;
 	}
-		
+
 	if ( !merc_is_hom_active(sd->hd) ) {
 		clif_displaymessage(fd, "You do not have a homunculus.");
 		return -1;
 	}
 
-	level = atoi(message);
 	hd = sd->hd;
-	
+
 	for (i = 1; i <= level && hd->exp_next; i++){
 		hd->homunculus.exp += hd->exp_next;
 		merc_hom_levelup(hd);
