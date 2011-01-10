@@ -8,18 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nãome do Script: iRO Repeatable EXP Quests		   		|
+// | Nãome do Script: Quests Repetíveis - Bodes		   		|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			   				|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0				    			|
+// | Versões eA/brA: 1.0/1.1				    			|
 // |--------------------------------------------------------|
-// | Descrição: 										    |
-// | Added Monster Killing quests.							|
-// | Repeatable EXP Quest (Antelope Horns)					|
+// | Descrição: Quests repetíveis para ganho de EXP 		|
 // |--------------------------------------------------------|
 // | Changelog:               	                        	|
 // | 1.0 Script Traduzido [insidemybrain]					|
+// | 1.1 Script Revisado [Protimus]							|
 // \_______________________________________________________/
 
 ein_fild06,82,171,0	script	Fazendeiro#Bodes	919,{
@@ -28,7 +27,7 @@ ein_fild06,82,171,0	script	Fazendeiro#Bodes	919,{
 			mes "[Fazendeiro]";
 			mes "Você terminou de caçar os 50 Bodes?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Fazendeiro]";
 				mes "Hm... Acho que você não terminou de caçar os 50 Bodes.";
@@ -39,13 +38,13 @@ ein_fild06,82,171,0	script	Fazendeiro#Bodes	919,{
 				close;
 			case 3:
 				mes "[Fazendeiro]";
-				mes "Você tem certeza que deseja parar a caça?";
-				mes "Todo o seu processo até agora será apagado";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
-				switch(select("Sim:Não")) {
+				switch(select("Sim.:Não.")) {
 				case 1:
 					mes "[Fazendeiro]";
-					mes "Tudo bem então, volte quando mudar de ideia.";
+					mes "Tudo bem então, volte quando mudar de idéia.";
 					erasequest 60137;
 					close;
 				case 2:
@@ -68,7 +67,7 @@ ein_fild06,82,171,0	script	Fazendeiro#Bodes	919,{
 			mes "[Fazendeiro]";
 			mes "Você terminou de caçar os 100 Bodes?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Fazendeiro]";
 				mes "Hm... Acho que você não terminou de caçar os 100 Bodes.";
@@ -79,13 +78,13 @@ ein_fild06,82,171,0	script	Fazendeiro#Bodes	919,{
 				close;
 			case 3:
 				mes "[Fazendeiro]";
-				mes "Você tem certeza que deseja parar a caça?";
-				mes "Todo o seu processo até agora será apagado";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
-				switch(select("Sim:Não")) {
+				switch(select("Sim.:Não.")) {
 				case 1:
 					mes "[Fazendeiro]";
-					mes "Tudo bem então, volte quando mudar de ideia.";
+					mes "Tudo bem então, volte quando mudar de idéia.";
 					erasequest 60138;
 					close;
 				case 2:
@@ -109,7 +108,7 @@ ein_fild06,82,171,0	script	Fazendeiro#Bodes	919,{
 			mes "[Fazendeiro]";
 			mes "Você terminou de caçar os 150 Bodes?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Fazendeiro]";
 				mes "Hm... Acho que você não terminou de caçar os 150 Bodes.";
@@ -120,13 +119,13 @@ ein_fild06,82,171,0	script	Fazendeiro#Bodes	919,{
 				close;
 			case 3:
 				mes "[Fazendeiro]";
-				mes "Você tem certeza que deseja parar a caça?";
-				mes "Todo o seu processo até agora será apagado";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
-				switch(select("Sim:Não")) {
+				switch(select("Sim.:Não.")) {
 				case 1:
 					mes "[Fazendeiro]";
-					mes "Tudo bem então, volte quando mudar de ideia.";
+					mes "Tudo bem então, volte quando mudar de idéia.";
 					erasequest 60139;
 					close;
 				case 2:
@@ -146,7 +145,7 @@ ein_fild06,82,171,0	script	Fazendeiro#Bodes	919,{
 			close;
 		}
 	}
-	//for minimum level
+	//Para level mínimo.
 	if (BaseLevel > 69) {
 		//for maximum level
 		if (BaseLevel < 85) {
@@ -155,33 +154,31 @@ ein_fild06,82,171,0	script	Fazendeiro#Bodes	919,{
 			mes "Está aqui para me ajudar, certo?";
 			mes "Se não, então eu estou perdido.";
 			next;
-			switch(select("Claro:Não")) {
+			switch(select("Claro.:Não.")) {
 			case 1:
 				mes "[Fazendeiro]";
 				mes "Esses Bodes não param de comer meus legumes.";
 				mes "Você pode fazer algo para me ajudar?";
 				next;
-				switch(select("Pegar Itens:Caçar Bodes:Cancelar")) {
+				switch(select("Pegar Itens.:Caçar Bodes.:Cancelar.")) {
 				case 1:
-					// Item turn in
 					mes "[Fazendeiro]";
-					mes "Eu preciso de ^FF0000Chifres de Bode^000000,";
-					mes "como prova do seu trabalho duro, para depois recompensá-lo.";
+					mes "Eu preciso de ^FF0000Chifres de Bode^000000, como prova do seu trabalho duro, para depois recompensá-lo.";
 					next;
-					switch(select("Eu tenho Chifres de Bode:O que precisava?")) {
+					switch(select("Eu tenho Chifres de Bode.:O que precisava?")) {
 					case 1:
 						/*
 						if (checkweight(504,10) == 0) {
 							mes "[Fazendeiro]";
-							mes "Ei, parece que você vai ser esmagado pelo";
-							mes "peso nas suas costas. Volte quando";
-							mes "não estiver carregando tanta coisa.";
+							mes "Ei, parece que você vai ser esmagado pelo peso nas suas costas.";
+							mes "Volte quando não estiver carregando tanta coisa.";
 							close;
 						}
 						*/
 						if (countitem(7106) > 49) {
 							mes "[Fazendeiro]";
-							mes "Impressionante, e com incrível rapidez. Eu agradeço muito mesmo.";
+							mes "Impressionante, e com incrível rapidez.";
+							mes "Eu agradeço muito mesmo.";
 							delitem 7106,50; //Chifres de Bode
 							getexp 258489,155155;
 							//getitem 504,10; // Poção Branca
@@ -189,50 +186,46 @@ ein_fild06,82,171,0	script	Fazendeiro#Bodes	919,{
 						}
 						else {
 							mes "[Fazendeiro]";
-							mes "Parece quevocê não tem o suficiente.";
+							mes "Parece que você não tem o suficiente.";
 							next;
-							mes "[Fazendeiro]";
-							mes "Eu preciso ver que você juntou";
-							mes "^FF000050 Chifres de Bode^000000,, antes de dar sua recompensa.";
 							close;
 						}
 					case 2:
 						mes "[Fazendeiro]";
-						mes "Eu preciso ver que você juntou";
-						mes "^FF000050 Chifres de Bode^000000,, antes de dar sua recompensa.";
+						mes "Eu preciso saber quantos ^FF000050 Chifres de Bode^000000 você juntou, antes de dar sua recompensa.";
 						close;
 					}
 				case 2:
-					// Kill Count Quest
+					// Matar Bodes
 					mes "[Fazendeiro]";
 					mes "Obrigado.";
 					mes "Quantos Bodes gostaria de caçar?";
 					next;
-					switch(select("50 Bodes:100 Bodes:150 Bodes")) {
+					switch(select("50 Bodes.:100 Bodes.:150 Bodes.")) {
 					case 1:
 						mes "[Fazendeiro]";
-						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
 						setquest 60137;
 						close;
 					case 2:
 						mes "[Fazendeiro]";
-						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
 						setquest 60138;
 						close;
 					case 3:
 						mes "[Fazendeiro]";
-						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
 						setquest 60139;
 						close;
 					}
 				case 3:
 					mes "[Fazendeiro]";
-					mes "Caso mude de ideia, venha falar comigo novamente.";
+					mes "Caso mude de idéia, venha falar comigo novamente.";
 					close;
 				}
 			case 2:
 				mes "[Fazendeiro]";
-				mes "Caso mude de ideia, venha falar comigo novamente.";
+				mes "Caso mude de idéia, venha falar comigo novamente.";
 				close;
 			}
 		}
@@ -247,9 +240,8 @@ ein_fild06,82,171,0	script	Fazendeiro#Bodes	919,{
 	}
 	else {
 		mes "[Fazendeiro]";
-		mes "Meu legumes... AONDE ELES FORAM!?";
+		mes "Meus legumes... AONDE ELES FORAM!?";
 		mes "Ah, não..não!!!";
 		close;
 	}
 }
-

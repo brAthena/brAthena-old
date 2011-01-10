@@ -8,18 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nãome do Script: iRO Repeatable EXP Quests		   		|
+// | Nãome do Script: Quests Repetíveis - Hode		   		|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			   				|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0				    			|
+// | Versões eA/brA: 1.0/1.1				    			|
 // |--------------------------------------------------------|
-// | Descrição: 										    |
-// | Added Monster Killing quests.							|
-// | Repeatable EXP Quest (Earthworm Peelings)				|
+// | Descrição: Quests repetíveis para ganho de EXP 		|
 // |--------------------------------------------------------|
 // | Changelog:               	                        	|
 // | 1.0 Script Traduzido [insidemybrain]					|
+// | 1.1 Script Revisado [Protimus]							|
 // \_______________________________________________________/
 
 moc_fild17,208,346,5	script	Shone#Hode_Hunt	707,{
@@ -28,7 +27,7 @@ moc_fild17,208,346,5	script	Shone#Hode_Hunt	707,{
 			mes "[Shone]";
 			mes "Você terminou de caçar os 50 Hodes?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Shone]";
 				mes "Hm... Acho que você não terminou de caçar os 50 Hodes...";
@@ -39,13 +38,13 @@ moc_fild17,208,346,5	script	Shone#Hode_Hunt	707,{
 				close;
 			case 3:
 				mes "[Shone]";
-				mes "Você tem certeza que deseja parar a caça?";
-				mes "Todo o seu processo até agora será apagado";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
-				switch(select("Sim:Não")) {
+				switch(select("Sim.:Não.")) {
 				case 1:
 					mes "[Shone]";
-					mes "Tudo bem então, volte quando mudar de ideia.";
+					mes "Tudo bem então, volte quando mudar de idéia.";
 					erasequest 60104;
 					close;
 				case 2:
@@ -68,7 +67,7 @@ moc_fild17,208,346,5	script	Shone#Hode_Hunt	707,{
 			mes "[Shone]";
 			mes "Você terminou de caçar os 100 Hodes?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Shone]";
 				mes "Hm... Acho que você não terminou de caçar os 100 Hodes...";
@@ -79,13 +78,13 @@ moc_fild17,208,346,5	script	Shone#Hode_Hunt	707,{
 				close;
 			case 3:
 				mes "[Shone]";
-				mes "Você tem certeza que deseja parar a caça?";
-				mes "Todo o seu processo até agora será apagado";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
-				switch(select("Sim:Não")) {
+				switch(select("Sim.:Não.")) {
 				case 1:
 					mes "[Shone]";
-					mes "Tudo bem então, volte quando mudar de ideia.";
+					mes "Tudo bem então, volte quando mudar de idéia.";
 					erasequest 60105;
 					close;
 				case 2:
@@ -109,7 +108,7 @@ moc_fild17,208,346,5	script	Shone#Hode_Hunt	707,{
 			mes "[Shone]";
 			mes "Você terminou de caçar os 150 Hodes?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Shone]";
 				mes "Hm... Acho que você não terminou de caçar os 150 Hodes...";
@@ -120,13 +119,13 @@ moc_fild17,208,346,5	script	Shone#Hode_Hunt	707,{
 				close;
 			case 3:
 				mes "[Shone]";
-				mes "Você tem certeza que deseja parar a caça?";
-				mes "Todo o seu processo até agora será apagado";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
-				switch(select("Sim:Não")) {
+				switch(select("Sim.:Não.")) {
 				case 1:
 					mes "[Shone]";
-					mes "Tudo bem então, volte quando mudar de ideia.";
+					mes "Tudo bem então, volte quando mudar de idéia.";
 					erasequest 60106;
 					close;
 				case 2:
@@ -146,37 +145,35 @@ moc_fild17,208,346,5	script	Shone#Hode_Hunt	707,{
 			close;
 		}
 	}
-	//for minimum level
+	//Para level mínimo
 	if (BaseLevel > 24) {
-		//for maximum level
+		//Para level máximo
 		if (BaseLevel < 61) {
 			mes "[Shone]";
-			mes "Espere! Você consegue me ver??";
+			mes "Espere! Você consegue me ver?";
 			mes "Ah, eu ainda não dominei minhas habilidades.";
 			next;
 			mes "[Shone]";
-			mes "Ei, acha que pode me ajudar?";
+			mes "Ei, pode me ajudar?";
 			next;
-			switch(select("Claro:Não")) {
+			switch(select("Claro.:Não.")) {
 			case 1:
 				mes "[Shone]";
-				mes "Muito obrigado, cara!";
+				mes "Muito obrigado!";
 				next;
-				switch(select("Pegar Itens:Caçar Hodes:Cancelar")) {
+				switch(select("Pegar Itens.:Caçar Hodes.:Cancelar.")) {
 				case 1:
-					// Item turn in
 					mes "[Shone]";
 					mes "Estou tentando juntar ^00CC0025 Peles de Minhoca^000000.";
 					mes "Você receberá uma recompensa pela ajuda.";
 					next;
-					switch(select("Eu tenho ^00CC0025 Peles de Minhoca^000000:O que você precisava?")) {
+					switch(select("Eu tenho ^00CC0025 Peles de Minhoca^000000.:O que você precisava?")) {
 					case 1:
 						/*
 						if (checkweight(502,10) == 0) {
 							mes "[Shone]";
-							mes "Ei, parece que você vai ser esmagado pelo";
-							mes "peso nas suas costas. Volte quando";
-							mes "não estiver carregando tanta coisa.";
+							mes "Ei, parece que você vai ser esmagado pelo peso nas suas costas."; 
+							mes "Volte quando não estiver carregando tanta coisa.";
 							close;
 						}
 						*/
@@ -200,36 +197,36 @@ moc_fild17,208,346,5	script	Shone#Hode_Hunt	707,{
 						close;
 					}
 				case 2:
-					// Kill Count Quest
+					// Matar Hodes.
 					mes "[Shone]";
 					mes "Então você vai caçar alguns Hodes.";
 					mes "Quantos gostaria de caçar?";
 					next;
-					switch(select("50 Hodes:100 Hodes:150 Hodes")) {
+					switch(select("50 Hodes.:100 Hodes.:150 Hodes.")) {
 					case 1:
 						mes "[Shone]";
-						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
 						setquest 60104;
 						close;
 					case 2:
 						mes "[Shone]";
-						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
 						setquest 60105;
 						close;
 					case 3:
 						mes "[Shone]";
-						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
 						setquest 60106;
 						close;
 					}
 				case 3:
 					mes "[Shone]";
-					mes "Caso mude de ideia, venha falar comigo novamente.";
+					mes "Caso mude de idéia, venha falar comigo novamente.";
 					close;
 				}
 			case 2:
 				mes "[Shone]";
-				mes "Caso mude de ideia, venha falar comigo novamente.";
+				mes "Caso mude de idéia, venha falar comigo novamente.";
 				close;
 			}
 		}

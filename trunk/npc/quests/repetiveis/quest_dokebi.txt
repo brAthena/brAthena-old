@@ -8,18 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nãome do Script: iRO Repeatable EXP Quests		   		|
+// | Nãome do Script: Quests Repetíveis - Dokebi		    |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			   				|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0				    			|
+// | Versões eA/brA: 1.0/1.1				    			|
 // |--------------------------------------------------------|
-// | Descrição: 										    |
-// | Added Monster Killing quests.							|
-// | Repeatable EXP Quest (Dokebi Horns)					|
+// | Descrição: Quests repetíveis para ganho de EXP 		|
 // |--------------------------------------------------------|
 // | Changelog:               	                        	|
 // | 1.0 Script Traduzido [insidemybrain]					|
+// | 1.1 Script Revisado [Protimus]							|
 // \_______________________________________________________/
 
 pay_fild10,108,357,5	script	Li#Dokebi_Hunt	90,{
@@ -28,7 +27,7 @@ pay_fild10,108,357,5	script	Li#Dokebi_Hunt	90,{
 			mes "[Li]";
 			mes "Você terminou de caçar os 50 Dokebis?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Li]";
 				mes "Hm... Acho que você não terminou de caçar os 50 Dokebis...";
@@ -39,13 +38,13 @@ pay_fild10,108,357,5	script	Li#Dokebi_Hunt	90,{
 				close;
 			case 3:
 				mes "[Li]";
-				mes "Você tem certeza que deseja parar a caça?";
-				mes "Todo o seu processo até agora será apagado";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
-				switch(select("Sim:Não")) {
+				switch(select("Sim.:Não.")) {
 				case 1:
 					mes "[Li]";
-					mes "Tudo bem então, volte quando mudar de ideia.";
+					mes "Tudo bem então, volte quando mudar de idéia.";
 					erasequest 60128;
 					close;
 				case 2:
@@ -68,7 +67,7 @@ pay_fild10,108,357,5	script	Li#Dokebi_Hunt	90,{
 			mes "[Li]";
 			mes "Você terminou de caçar os 100 Dokebis?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Li]";
 				mes "Hm... Acho que você não terminou de caçar os 100 Dokebis...";
@@ -79,13 +78,13 @@ pay_fild10,108,357,5	script	Li#Dokebi_Hunt	90,{
 				close;
 			case 3:
 				mes "[Li]";
-				mes "Você tem certeza que deseja parar a caça?";
-				mes "Todo o seu processo até agora será apagado";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado";
 				next;
-				switch(select("Sim:Não")) {
+				switch(select("Sim.:Não.")) {
 				case 1:
 					mes "[Li]";
-					mes "Tudo bem então, volte quando mudar de ideia.";
+					mes "Tudo bem então, volte quando mudar de idéia.";
 					erasequest 60129;
 					close;
 				case 2:
@@ -109,7 +108,7 @@ pay_fild10,108,357,5	script	Li#Dokebi_Hunt	90,{
 			mes "[Li]";
 			mes "Você terminou de caçar os 150 Dokebis?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Li]";
 				mes "Hm... Acho que você não terminou de caçar os 150 Dokebis...";
@@ -120,13 +119,13 @@ pay_fild10,108,357,5	script	Li#Dokebi_Hunt	90,{
 				close;
 			case 3:
 				mes "[Li]";
-				mes "Você tem certeza que deseja parar a caça?";
-				mes "Todo o seu processo até agora será apagado";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
-				switch(select("Sim:Não")) {
+				switch(select("Sim.:Não.")) {
 				case 1:
 					mes "[Li]";
-					mes "Tudo bem então, volte quando mudar de ideia.";
+					mes "Tudo bem então, volte quando mudar de idéia.";
 					erasequest 60130;
 					close;
 				case 2:
@@ -146,30 +145,29 @@ pay_fild10,108,357,5	script	Li#Dokebi_Hunt	90,{
 			close;
 		}
 	}
-	//for minimum level
+	//Para level mínimo
 	if (BaseLevel > 34) {
-		//for maximum level
+		//Para level máximo
 		if (BaseLevel < 71) {
 			mes "[Li]";
-			mes "Olá. Você poderia me ajudar?";
+			mes "Olá, você poderia me ajudar?";
 			next;
-			switch(select("Claro:Não")) {
+			switch(select("Claro.:Não.")) {
 			case 1:
 				mes "[Li]";
 				mes "Existem muitos dokebis aqui... Não estou em sentido muito segura.";
 				next;
-				switch(select("Pegar Itens:Caçar Dokebis:Cancelar")) {
+				switch(select("Pegar Itens.:Caçar Dokebis.:Cancelar.")) {
 				case 1:
-					// Item turn in
 					mes "[Li]";
 					mes "Como vidente profissional eu preciso de uma reserva de ^FF0000Chifres de Dokebi^000000 para dar boa sorte aos meus clientes.";
 					next;
-					switch(select("Eu tenho alguns Chifres de Dokebi:Do que você precisava?")) {
+					switch(select("Eu tenho alguns Chifres de Dokebi.:Do que você precisava?")) {
 					case 1:
 						if (countitem(1021) > 49) {
 							mes "[Li]";
 							mes "Ah, ótimo!";
-							mes "Obrigado pelos chifres.";
+							mes "Obrigada pelos chifres.";
 							delitem 1021,50; //Chifres de Dokebi
 							getexp 42000,36000;
 							close;
@@ -184,48 +182,45 @@ pay_fild10,108,357,5	script	Li#Dokebi_Hunt	90,{
 						}
 					case 2:
 						mes "[Li]";
-						mes "Se você me trouxer";
-						mes "^FF000050 Chifres de Dokebi^000000, eu posso lhe dar um boa sorte.";
+						mes "Se você me trouxer ^FF000050 Chifres de Dokebi^000000, eu posso lhe dar um boa sorte.";
 						close;
 					}
 				case 2:
-					// Kill Count Quest
 					mes "[Li]";
 					mes "Então gostaria de caçar Dokebis, não é?";
 					mes "Quantos gostaria de caçar?";
 					next;
-					switch(select("50 Dokebis:100 Dokebis:150 Dokebis")) {
+					switch(select("50 Dokebis.:100 Dokebis.:150 Dokebis.")) {
 					case 1:
 						mes "[Li]";
-						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
 						setquest 60128;
 						close;
 					case 2:
 						mes "[Li]";
-						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
 						setquest 60129;
 						close;
 					case 3:
 						mes "[Li]";
-						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
 						setquest 60130;
 						close;
 					}
 				case 3:
 					mes "[Li]";
-					mes "Caso mude de ideia, venha falar comigo novamente.";
+					mes "Caso mude de idéia, venha falar comigo novamente.";
 					close;
 				}
 			case 2:
 				mes "[Li]";
-				mes "Caso mude de ideia, venha falar comigo novamente.";
+				mes "Caso mude de idéia, venha falar comigo novamente.";
 				close;
 			}
 		}
 		else {
 			mes "[Li]";
-			mes "Olá,";
-			mes "eu sou uma vidente de Payon.";
+			mes "Olá, eu sou uma vidente de Payon.";
 			close;
 		}
 	}
@@ -238,5 +233,3 @@ pay_fild10,108,357,5	script	Li#Dokebi_Hunt	90,{
 		close;
 	}
 }
-
-

@@ -8,18 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nãome do Script: iRO Repeatable EXP Quests		   		|
+// | Nãome do Script: Quests Repetíveis - Pupa		   		|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			   				|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0				    			|
+// | Versões eA/brA: 1.0/1.1				    			|
 // |--------------------------------------------------------|
-// | Descrição: 										    |
-// | Added Monster Killing quests.							|
-// | Repeatable EXP Quest (Chrysalis)						|
+// | Descrição: Quests repetíveis para ganho de EXP 		|
 // |--------------------------------------------------------|
 // | Changelog:               	                        	|
 // | 1.0 Script Traduzido [insidemybrain]					|
+// | 1.1 Script Revisado [Protimus]							|
 // \_______________________________________________________/
 
 gef_fild04,191,54,3	script	Halgus#Pupa_Hunt	123,{
@@ -28,7 +27,7 @@ gef_fild04,191,54,3	script	Halgus#Pupa_Hunt	123,{
 			mes "[Halgus]";
 			mes "Você terminou de caçar as Pupas?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Halgus]";
 				mes "Hm... Acho que você não terminou de caçar as 50 Pupas...";
@@ -39,13 +38,13 @@ gef_fild04,191,54,3	script	Halgus#Pupa_Hunt	123,{
 				close;
 			case 3:
 				mes "[Halgus]";
-				mes "Você tem certeza que deseja parar a caça?";
-				mes "Todo o seu processo até agora será apagado";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
 				switch(select("Sim:Não")) {
 				case 1:
 					mes "[Halgus]";
-					mes "Tudo bem então, volte quando mudar de ideia.";
+					mes "Tudo bem então, volte quando mudar de idéia.";
 					erasequest 60110;
 					close;
 				case 2:
@@ -69,7 +68,7 @@ gef_fild04,191,54,3	script	Halgus#Pupa_Hunt	123,{
 			mes "[Halgus]";
 			mes "Você terminou de caçar as Pupas?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Halgus]";
 				mes "Hm... Acho que você não terminou de caçar as 100 Pupas...";
@@ -80,13 +79,13 @@ gef_fild04,191,54,3	script	Halgus#Pupa_Hunt	123,{
 				close;
 			case 3:
 				mes "[Halgus]";
-				mes "Você tem certeza que deseja parar a caça?";
-				mes "Todo o seu processo até agora será apagado";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
-				switch(select("Sim:Não")) {
+				switch(select("Sim.:Não.")) {
 				case 1:
 					mes "[Halgus]";
-					mes "Tudo bem então, volte quando mudar de ideia.";
+					mes "Tudo bem então, volte quando mudar de idéia.";
 					erasequest 60111;
 					close;
 				case 2:
@@ -111,7 +110,7 @@ gef_fild04,191,54,3	script	Halgus#Pupa_Hunt	123,{
 			mes "[Halgus]";
 			mes "Você terminou de caçar as Pupas?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Halgus]";
 				mes "Hm... Acho que você não terminou de caçar as 150 Pupas...";
@@ -122,13 +121,13 @@ gef_fild04,191,54,3	script	Halgus#Pupa_Hunt	123,{
 				close;
 			case 3:
 				mes "[Halgus]";
-				mes "Você tem certeza que deseja parar a caça?";
-				mes "Todo o seu processo até agora será apagado";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
-				switch(select("Sim:Não")) {
+				switch(select("Sim.:Não.")) {
 				case 1:
 					mes "[Halgus]";
-					mes "Tudo bem então, volte quando mudar de ideia.";
+					mes "Tudo bem então, volte quando mudar de idéia.";
 					erasequest 60112;
 					close;
 				case 2:
@@ -141,7 +140,7 @@ gef_fild04,191,54,3	script	Halgus#Pupa_Hunt	123,{
 		else {
 			mes "[Halgus]";
 			mes "Ah muito obrigado.";
-			mes "Eu sei que você deve estar se pergutnando por que eu não fiz isso sozinho...";
+			mes "Eu sei que você deve estar se perguntando por que eu não fiz isso sozinho...";
 			getexp 385,30;
 			getexp 385,30;
 			getexp 385,30;
@@ -149,9 +148,9 @@ gef_fild04,191,54,3	script	Halgus#Pupa_Hunt	123,{
 			close;
 		}
 	}
-	//for minimum level
+	//Para level mínimo
 	if (BaseLevel > 1) {
-		//for maximum level
+		//Para level máximo
 		if (BaseLevel < 21) {
 			mes "[Halgus]";
 			mes "Você não é daqui, é?";
@@ -161,21 +160,20 @@ gef_fild04,191,54,3	script	Halgus#Pupa_Hunt	123,{
 			mes "[Halgus]";
 			mes "De qualquer maneira, minha filha quer um colar novo.";
 			mes "Eu não sou nem um pouco rica, então quero juntar Crisálidas das Pupas desta região.";
-			mes "Poderia me ajudar?";
+			mes "Pode me ajudar?";
 			next;
-			switch(select("Claro:Não")) {
+			switch(select("Claro.:Não.")) {
 			case 1:
 				mes "[Halgus]";
 				mes "Sério? Como poderia me ajudar?";
 				next;
-				switch(select("Pegar Itens:Caçar Pupas:Cancelar")) {
+				switch(select("Pegar Itens.:Caçar Pupas.:Cancelar.")) {
 				case 1:
-					// Item turn in
 					mes "[Halgus]";
-					mes "Você pode juntar ^00cc0025 Crisálidas^000000 e entregá-las para mim?.";
+					mes "Você pode juntar ^00cc0025 Crisálidas^000000 e entregá-las para mim?";
 					mes "Eu prometo uma boa recompensa...";
 					next;
-					switch(select("Eu tenho Crisálidas:Do que você precisava?")) {
+					switch(select("Eu tenho Crisálidas.:Do que você precisava?")) {
 					case 1:
 						if (countitem(915) > 24) {
 							mes "[Halgus]";
@@ -196,36 +194,36 @@ gef_fild04,191,54,3	script	Halgus#Pupa_Hunt	123,{
 						close;
 					}
 				case 2:
-					// Kill Count Quest
+					// Matar Pupas
 					mes "[Halgus]";
 					mes "Muito obrigado por me ajudar!";
 					mes "Quantos Pupas gostaria de caçar?";
 					next;
-					switch(select("50 Pupas:100 Pupas:150 Pupas")) {
+					switch(select("50 Pupas.:100 Pupas.:150 Pupas.")) {
 					case 1:
 						mes "[Halgus]";
-						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
 						setquest 60110;
 						close;
 					case 2:
 						mes "[Halgus]";
-						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
 						setquest 60111;
 						close;
 					case 3:
 						mes "[Halgus]";
-						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
 						setquest 60112;
 						close;
 					}
 				case 3:
 					mes "[Halgus]";
-					mes "Caso mude de ideia, venha falar comigo novamente.";
+					mes "Caso mude de idéia, venha falar comigo novamente.";
 					close;
 				}
 			case 2:
 				mes "[Halgus]";
-				mes "Caso mude de ideia, venha falar comigo novamente.";
+				mes "Caso mude de idéia, venha falar comigo novamente.";
 				close;
 			}
 		}

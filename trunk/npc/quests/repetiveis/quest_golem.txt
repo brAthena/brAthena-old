@@ -8,18 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nãome do Script: iRO Repeatable EXP Quests		   		|
+// | Nãome do Script: Quests Repetíveis - Golem		   		|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			   				|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0				    			|
+// | Versões eA/brA: 1.0/1.1				    			|
 // |--------------------------------------------------------|
-// | Descrição: 										    |
-// | Added Monster Killing quests.							|
-// | Repeatable EXP Quest (Stone Hearts)					|
+// | Descrição: Quests repetíveis para ganho de EXP 		|
 // |--------------------------------------------------------|
 // | Changelog:               	                        	|
 // | 1.0 Script Traduzido [insidemybrain]					|
+// | 1.1 Script Revisado [Protimus]							|
 // \_______________________________________________________/
 
 moc_fild11,57,138,0	script	Jeremy#hunt	707,{
@@ -28,7 +27,7 @@ moc_fild11,57,138,0	script	Jeremy#hunt	707,{
 			mes "[Jeremy]";
 			mes "Você terminou de caçar os 50 Golems?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Jeremy]";
 				mes "Hm... Acho que você não terminou de caçar os 50 Golems...";
@@ -39,13 +38,13 @@ moc_fild11,57,138,0	script	Jeremy#hunt	707,{
 				close;
 			case 3:
 				mes "[Jeremy]";
-				mes "Você tem certeza que deseja parar a caça?";
-				mes "Todo o seu processo até agora será apagado";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
-				switch(select(" Sim:Não")) {
+				switch(select("Sim.:Não.")) {
 				case 1:
 					mes "[Jeremy]";
-					mes "Tudo bem então, volte quando mudar de ideia.";
+					mes "Tudo bem então, volte quando mudar de idéia.";
 					erasequest 60140;
 					close;
 				case 2:
@@ -68,7 +67,7 @@ moc_fild11,57,138,0	script	Jeremy#hunt	707,{
 			mes "[Jeremy]";
 			mes "Você terminou de caçar os 100 Golems?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Jeremy]";
 				mes "Hm... Acho que você não terminou de caçar os 100 Golems...";
@@ -79,13 +78,13 @@ moc_fild11,57,138,0	script	Jeremy#hunt	707,{
 				close;
 			case 3:
 				mes "[Jeremy]";
-				mes "Você tem certeza que deseja parar a caça?";
-				mes "Todo o seu processo até agora será apagado";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
-				switch(select(" Sim:Não")) {
+				switch(select("Sim.:Não.")) {
 				case 1:
 					mes "[Jeremy]";
-					mes "Tudo bem então, volte quando mudar de ideia.";
+					mes "Tudo bem então, volte quando mudar de idéia.";
 					erasequest 60141;
 					close;
 				case 2:
@@ -109,7 +108,7 @@ moc_fild11,57,138,0	script	Jeremy#hunt	707,{
 			mes "[Jeremy]";
 			mes "Você terminou de caçar os 150 Golems?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Jeremy]";
 				mes "Hm... Acho que você não terminou de caçar os 150 Golems...";
@@ -120,13 +119,13 @@ moc_fild11,57,138,0	script	Jeremy#hunt	707,{
 				close;
 			case 3:
 				mes "[Jeremy]";
-				mes "Você tem certeza que deseja parar a caça?";
-				mes "Todo o seu processo até agora será apagado";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
-				switch(select(" Sim:Não")) {
+				switch(select("Sim.:Não.")) {
 				case 1:
 					mes "[Jeremy]";
-					mes "Tudo bem então, volte quando mudar de ideia.";
+					mes "Tudo bem então, volte quando mudar de idéia.";
 					erasequest 60142;
 					close;
 				case 2:
@@ -146,40 +145,36 @@ moc_fild11,57,138,0	script	Jeremy#hunt	707,{
 			close;
 		}
 	}
-	//for minimum level
+	//Para level mínimo
 	if (BaseLevel > 24) {
-		//for maximum level
+		//Para level máximo
 		if (BaseLevel < 61) {
 			mes "[Jeremy]";
 			mes "Saudações, cidadão!";
 			mes "Diga, gostaria de me ajudar?";
 			next;
-			switch(select("Claro:Não")) {
+			switch(select("Claro.:Não.")) {
 			case 1:
 				mes "[Jeremy]";
-				mes "Obrigado! Eu realmente te admiro.";
+				mes "Obrigado! Eu realmente admiro-o.";
 				next;
-				switch(select("Pegar Itens:Caçar Golems:Cancelar")) {
+				switch(select("Pegar Itens.:Caçar Golems.:Cancelar.")) {
 				case 1:
-					// Item turn in
 					mes "[Jeremy]";
 					mes "A Guarda de Morroc precisa de ^FF0000Corações de Pedra^000000 para o nosso programa de treinos";
 					next;
-					switch(select("Eu tenho Corações de Pedra:O que você precisava?")) {
+					switch(select("Eu tenho Corações de Pedra.:O que você precisava?")) {
 					case 1:
 						if (countitem(953) > 24) {
 							mes "[Jeremy]";
-							mes "A Guarda de Morroc agradece a você, cidadão.";
+							mes "A Guarda de Morroc agradece-lhe, cidadão.";
 							delitem 953,25; //Corações de Pedra
 							getexp 14000,9000;
 							close;
 						}
 						else {
 							mes "[Jeremy]";
-							mes "It doesn't look like you have enough.";
-							next;
-							mes "[Jeremy]";
-							mes "A Guarda de Morroc precisa de ^FF000025 Corações de Pedra^000000 para o nosso programa de treinos.";
+							mes "Essa não foi a quantidade de Corações de Pedra que pedi!";
 							close;
 						}
 					case 2:
@@ -188,36 +183,36 @@ moc_fild11,57,138,0	script	Jeremy#hunt	707,{
 						close;
 					}
 				case 2:
-					// Kill Count Quest
+					// Matar Golems
 					mes "[Jeremy]";
 					mes "Ah sim, então você quer caçar alguns Golems.";
 					mes "Quantos gostaria de caçar?";
 					next;
-					switch(select("50 Golems:100 Golems:150 Golems")) {
+					switch(select("50 Golems.:100 Golems.:150 Golems.")) {
 					case 1:
 						mes "[Jeremy]";
-						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
 						setquest 60140;
 						close;
 					case 2:
 						mes "[Jeremy]";
-						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
 						setquest 60141;
 						close;
 					case 3:
 						mes "[Jeremy]";
-						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
 						setquest 60142;
 						close;
 					}
 				case 3:
 					mes "[Jeremy]";
-					mes "Caso mude de ideia, venha falar comigo novamente.";
+					mes "Caso mude de idéia, venha falar comigo novamente.";
 					close;
 				}
 			case 2:
 				mes "[Jeremy]";
-				mes "Caso mude de ideia, venha falar comigo novamente.";
+				mes "Caso mude de idéia, venha falar comigo novamente.";
 				close;
 			}
 		}
@@ -236,5 +231,3 @@ moc_fild11,57,138,0	script	Jeremy#hunt	707,{
 		close;
 	}
 }
-
-

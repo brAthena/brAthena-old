@@ -8,18 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nãome do Script: iRO Repeatable EXP Quests		   		|
+// | Nãome do Script: Quests Repetíveis - Koko		   		|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			   				|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0				    			|
+// | Versões eA/brA: 1.0/1.1				    			|
 // |--------------------------------------------------------|
-// | Descrição: 										    |
-// | Added Monster Killing quests.							|
-// | Repeatable EXP Quest (Acorns)							|
+// | Descrição: Quests repetíveis para ganho de EXP 		|
 // |--------------------------------------------------------|
 // | Changelog:               	                        	|
 // | 1.0 Script Traduzido [insidemybrain]					|
+// | 1.1 Script Revisado [Protimus]							|
 // \_______________________________________________________/
 
 mjolnir_01,293,20,3	script	Nutters#Coco_Hunt	779,{
@@ -28,7 +27,7 @@ mjolnir_01,293,20,3	script	Nutters#Coco_Hunt	779,{
 			mes "[Nutters]";
 			mes "Você terminou de caçar os 50 Kokos?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Nutters]";
 				mes "Hm... Acho que você não terminou de caçar os 50 Kokos...";
@@ -39,13 +38,13 @@ mjolnir_01,293,20,3	script	Nutters#Coco_Hunt	779,{
 				close;
 			case 3:
 				mes "[Nutters]";
-				mes "Você tem certeza que deseja parar a caça?";
-				mes "Todo o seu processo até agora será apagado";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
-				switch(select("Sim:Não")) {
+				switch(select("Sim.:Não.")) {
 				case 1:
 					mes "[Nutters]";
-					mes "Tudo bem então, volte quando mudar de ideia.";
+					mes "Tudo bem então, volte quando mudar de idéia.";
 					erasequest 60113;
 					close;
 				case 2:
@@ -68,7 +67,7 @@ mjolnir_01,293,20,3	script	Nutters#Coco_Hunt	779,{
 			mes "[Nutters]";
 			mes "Você terminou de caçar os 100 Kokos?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Nutters]";
 				mes "Hm... Acho que você não terminou de caçar os 100 Kokos...";
@@ -79,13 +78,13 @@ mjolnir_01,293,20,3	script	Nutters#Coco_Hunt	779,{
 				close;
 			case 3:
 				mes "[Nutters]";
-				mes "Você tem certeza que deseja parar a caça?";
-				mes "Todo o seu processo até agora será apagado";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
-				switch(select("Sim:Não")) {
+				switch(select("Sim.:Não.")) {
 				case 1:
 					mes "[Nutters]";
-					mes "Tudo bem então, volte quando mudar de ideia.";
+					mes "Tudo bem então, volte quando mudar de idéia.";
 					erasequest 60114;
 					close;
 				case 2:
@@ -109,7 +108,7 @@ mjolnir_01,293,20,3	script	Nutters#Coco_Hunt	779,{
 			mes "[Nutters]";
 			mes "Você terminou de caçar os 150 Kokos?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Nutters]";
 				mes "Hm... Acho que você não terminou de caçar os 150 Kokos...";
@@ -120,13 +119,13 @@ mjolnir_01,293,20,3	script	Nutters#Coco_Hunt	779,{
 				close;
 			case 3:
 				mes "[Nutters]";
-				mes "Você tem certeza que deseja parar a caça?";
-				mes "Todo o seu processo até agora será apagado";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
-				switch(select("Sim:Não")) {
+				switch(select("Sim.:Não.")) {
 				case 1:
 					mes "[Nutters]";
-					mes "Tudo bem então, volte quando mudar de ideia.";
+					mes "Tudo bem então, volte quando mudar de idéia.";
 					erasequest 60115;
 					close;
 				case 2:
@@ -146,35 +145,33 @@ mjolnir_01,293,20,3	script	Nutters#Coco_Hunt	779,{
 			close;
 		}
 	}
-	//for minimum level
+	//Para level mínimo
 	if (BaseLevel > 17) {
-		//for maximum level
+		//Para level máximo
 		if (BaseLevel < 60) {
 			mes "[Nutters]";
 			mes "Eu...Eu não consigo encontrar nenhuma.";
 			mes "As pestes dos Kokos esconderam todas as Avelãs.";
-			mes "Acha que poderia me ajudar?";
+			mes "Pode me ajudar?";
 			next;
-			switch(select("Claro:Não")) {
+			switch(select("Claro.:Não.")) {
 			case 1:
 				mes "[Nutters]";
 				mes "Agora sim! Eu sabia que poderia contar com você! Como quer me ajudar?";
 				next;
-				switch(select("Pegar Avelãs:Caçar Kokos:Cancelar")) {
+				switch(select("Pegar Avelãs.:Caçar Kokos.:Cancelar.")) {
 				case 1:
-					// Item turn in
 					mes "[Nutters]";
 					mes "Poderia me ajudar a achar ^00cc0025 Avelãs^000000.";
 					mes "Eu darei a você a maior recompensa que puder.";
 					next;
-					switch(select("Eu tenho 25 Avelãs:Pode voltar depois?")) {
+					switch(select("Eu tenho 25 Avelãs.:Pode voltar depois?")) {
 					case 1:
 						/*
 						if (checkweight(502,5) == 0) {
 							mes "[Nutters]";
-							mes "Ei, parece que você vai ser esmagado pelo";
-							mes "peso nas suas costas. Volte quando";
-							mes "não estiver carregando tanta coisa.";
+							mes "Ei, parece que você vai ser esmagado pelo peso nas suas costas.";
+							mes "Volte quando não estiver carregando tanta coisa.";
 							close;
 						}
 						*/
@@ -184,7 +181,7 @@ mjolnir_01,293,20,3	script	Nutters#Coco_Hunt	779,{
 							mes "Me dá, me dá!!!";
 							next;
 							mes "[Nutters]";
-							mes "Ah é, desculpe-me, mas eu adoro assar avelãs. Hmm.";
+							mes "Ah é, desculpe-me, mas eu adoro assar avelãs.";
 							mes "Aqui está o que prometi a você.";
 							delitem 1026,25; //Avelãs
 							getexp 3600,3905;
@@ -203,36 +200,36 @@ mjolnir_01,293,20,3	script	Nutters#Coco_Hunt	779,{
 						close;
 					}
 				case 2:
-					// Kill Count Quest
+					// Matar Kokos
 					mes "[Nutters]";
 					mes "Então gostaria de caçar alguns Kokos.";
 					mes "Quantos gostaria de caçar?";
 					next;
-					switch(select("50 Kokos:100 Kokos:150 Kokos")) {
+					switch(select("50 Kokos.:100 Kokos.:150 Kokos.")) {
 					case 1:
 						mes "[Nutters]";
-						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
 						setquest 60113;
 						close;
 					case 2:
 						mes "[Nutters]";
-						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
 						setquest 60114;
 						close;
 					case 3:
 						mes "[Nutters]";
-						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
 						setquest 60115;
 						close;
 					}
 				case 3:
 					mes "[Nutters]";
-					mes "Caso mude de ideia, venha falar comigo novamente.";
+					mes "Caso mude de idéia, venha falar comigo novamente.";
 					close;
 				}
 			case 2:
 				mes "[Nutters]";
-				mes "Caso mude de ideia, venha falar comigo novamente.";
+				mes "Caso mude de idéia, venha falar comigo novamente.";
 				close;
 			}
 		}

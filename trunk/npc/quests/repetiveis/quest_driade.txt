@@ -8,18 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nãome do Script: iRO Repeatable EXP Quests		   		|
+// | Nãome do Script: Quests Repetíveis - Driáde		   	|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			   				|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0				    			|
+// | Versões eA/brA: 1.0/1.1				    			|
 // |--------------------------------------------------------|
-// | Descrição: 										    |
-// | Added Monster Killing quests.							|
-// | Repeatable EXP Quest (Sharp Leaves)					|
+// | Descrição: Quests repetíveis para ganho de EXP 		|
 // |--------------------------------------------------------|
 // | Changelog:               	                        	|
 // | 1.0 Script Traduzido [insidemybrain]					|
+// | 1.1 Script Revisado [Protimus]							|
 // \_______________________________________________________/
 
 um_fild01,34,281,5	script	Lilla#Dryad_Hunt	724,{
@@ -28,7 +27,7 @@ um_fild01,34,281,5	script	Lilla#Dryad_Hunt	724,{
 			mes "[Lilla]";
 			mes "Você terminou de caçar as 50 Driádes?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Lilla]";
 				mes "Hm... Acho que você não caçou as 50 Driádes...";
@@ -39,13 +38,13 @@ um_fild01,34,281,5	script	Lilla#Dryad_Hunt	724,{
 				close;
 			case 3:
 				mes "[Lilla]";
-				mes "Deseja realmente parar a caça?";
-				mes "Todo o seu processo até agora será apagado";
+				mes "Deseja realmente parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
-				switch(select("Sim:Não")) {
+				switch(select("Sim.:Não;")) {
 				case 1:
 					mes "[Lilla]";
-					mes "Tudo bem, volte quando mudar de ideia.";
+					mes "Tudo bem, volte quando mudar de idéia.";
 					erasequest 60131;
 					close;
 				case 2:
@@ -68,7 +67,7 @@ um_fild01,34,281,5	script	Lilla#Dryad_Hunt	724,{
 			mes "[Lilla]";
 			mes "Você terminou de caçar as 100 Driádes?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Lilla]";
 				mes "Hm... Acho que você não caçou as 100 Driádes...";
@@ -79,13 +78,13 @@ um_fild01,34,281,5	script	Lilla#Dryad_Hunt	724,{
 				close;
 			case 3:
 				mes "[Lilla]";
-				mes "ADeseja realmente parar a caça?";
-				mes "Todo o seu processo até agora será apagado";
+				mes "Deseja realmente parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
-				switch(select("Sim:Não")) {
+				switch(select("Sim.:Não.")) {
 				case 1:
 					mes "[Lilla]";
-					mes "Tudo bem, volte quando mudar de ideia.";
+					mes "Tudo bem, volte quando mudar de idéia.";
 					erasequest 60132;
 					close;
 				case 2:
@@ -109,7 +108,7 @@ um_fild01,34,281,5	script	Lilla#Dryad_Hunt	724,{
 			mes "[Lilla]";
 			mes "Você terminou de caçar as 150 Driádes?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Lilla]";
 				mes "Hm... Acho que você não caçou as 150 Driádes...";
@@ -120,13 +119,13 @@ um_fild01,34,281,5	script	Lilla#Dryad_Hunt	724,{
 				close;
 			case 3:
 				mes "[Lilla]";
-				mes "ADeseja realmente parar a caça?";
-				mes "Todo o seu processo até agora será apagado";
+				mes "Deseja realmente parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
-				switch(select("Sim:Não")) {
+				switch(select("Sim.:Não.")) {
 				case 1:
 					mes "[Lilla]";
-					mes "Tudo bem, volte quando mudar de ideia.";
+					mes "Tudo bem, volte quando mudar de idéia.";
 					erasequest 60133;
 					close;
 				case 2:
@@ -146,49 +145,47 @@ um_fild01,34,281,5	script	Lilla#Dryad_Hunt	724,{
 			close;
 		}
 	}
-	//for minimum level
+	//Para level mínimo
 	if (BaseLevel > 59) {
-		//for maximum level
+		//Para level máximo
 		if (BaseLevel < 86) {
 			mes "[Lilla]";
 			mes "Ora, ora, olá!";
-			mes "Você parece ser alguém que ajudaria uma pessoa indefesa como eu. Poderia?";
+			mes "Você parece ser alguém que ajudaria uma pessoa indefesa como eu.";
 			next;
-			switch(select("Claro:Não")) {
+			switch(select("Claro.:Não.")) {
 			case 1:
 				mes "[Lilla]";
 				mes "Sério?!";
 				mes "Que ótimo!";
 				next;
-				switch(select("Pegar Itens:Caçar Driádes:Cancelar")) {
+				switch(select("Pegar Itens.:Caçar Driádes.:Cancelar.")) {
 				case 1:
-					// Item turn in
 					mes "[Lilla]";
 					mes "Eu preciso muito de ^00CC0050 Folhas Afiadas^000000 para um chá no meu jardim.";
 					mes "Você tem algumas??";
 					next;
-					switch(select("Eu tenho 50 Folhas Afiadas:O quê? Desculpe, estava pensando em outra coisa?")) {
+					switch(select("Eu tenho 50 Folhas Afiadas.:O quê? Desculpe, estava pensando em outra coisa?")) {
 					case 1:
 						/*
 						if (checkweight(504,10) == 0) {
 							mes "[Lilla]";
-							mes "Ei, parece que você vai ser esmagado pelo";
-							mes "peso nas suas costas. Volte quando";
-							mes "não estiver carregando tanta coisa.";
+							mes "Ei, parece que você vai ser esmagado pelo peso nas suas costas.";
+							mes "Volte quando não estiver carregando tanta coisa.";
 							close;
 						}
 						*/
 						if (countitem(7100) > 49) {
 							mes "[Lilla]";
 							mes "Ei, mas que gentileza da sua parte.";
-							mes " Eu agradeço muito por me ajudar!";
+							mes "Eu agradeço muito por me ajudar!";
 							next;
 							mes "[Lilla]";
-							mes "Oh, eu quase me esqueci. Tenho algo para você ^_^";
-							mes "Muito obrigada novamente por sua ajuda.";
+							mes "Oh, eu quase me esqueci, tenho algo para você.";
+							mes "Muito obrigada novamente.";
 							delitem 7100,50; // Folha Afiada
 							getexp 262485,141835;
-							//getitem 504,10; // POção Branca
+							//getitem 504,10; // Poção Branca
 							close;
 						}
 						else {
@@ -207,31 +204,31 @@ um_fild01,34,281,5	script	Lilla#Dryad_Hunt	724,{
 					mes "Ah sim, você quer caçar algumas Driádes.";
 					mes "Quantas gostaria de caçar?";
 					next;
-					switch(select("50 Driádes:100 Driádes:150 Driádes")) {
+					switch(select("50 Driádes.:100 Driádes.:150 Driádes.")) {
 					case 1:
 						mes "[Lilla]";
-						mes "Volte quando terminar e lhe darei um pequena recompensa.";
+						mes "Volte quando terminar e darei-lhe um pequena recompensa.";
 						setquest 60131;
 						close;
 					case 2:
 						mes "[Lilla]";
-						mes "Volte quando terminar e lhe darei um pequena recompensa.";
+						mes "Volte quando terminar e darei-lhe um pequena recompensa.";
 						setquest 60132;
 						close;
 					case 3:
 						mes "[Lilla]";
-						mes "Volte quando terminar e lhe darei um pequena recompensa.";
+						mes "Volte quando terminar e darei-lhe um pequena recompensa.";
 						setquest 60133;
 						close;
 					}
 				case 3:
 					mes "[Lilla]";
-					mes "Se mudar de ideia, fale comigo novamente";
+					mes "Se mudar de idéia, fale comigo novamente";
 					close;
 				}
 			case 2:
 				mes "[Lilla]";
-				mes "Se mudar de ideia, fale comigo novamente";
+				mes "Se mudar de idéia, fale comigo novamente";
 				close;
 			}
 		}

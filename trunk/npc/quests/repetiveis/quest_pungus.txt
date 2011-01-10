@@ -8,18 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nãome do Script: iRO Repeatable EXP Quests		   		|
+// | Nãome do Script: Quests Repetíveis - Pungus	   		|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			   				|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0				    			|
+// | Versões eA/brA: 1.0/1.1				    			|
 // |--------------------------------------------------------|
-// | Descrição: 										    |
-// | Added Monster Killing quests.							|
-// | Repeatable EXP Quest (Bacillus)						|
+// | Descrição: Quests repetíveis para ganho de EXP 		|
 // |--------------------------------------------------------|
 // | Changelog:						    					|
 // | 1.0 Script Traduzido [insidemybrain]					|
+// | 1.1 Script Revisado [Protimus]							|
 // \_______________________________________________________/
 
 ein_fild01,43,249,0	script	Camponês#hunt	898,{
@@ -28,7 +27,7 @@ ein_fild01,43,249,0	script	Camponês#hunt	898,{
 			mes "[Camponês]";
 			mes "Você terminou de caçar os 50 Pungus?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Camponês]";
 				mes "Hm... Acho que você não terminou de caçar os 50 Pungus...";
@@ -39,13 +38,13 @@ ein_fild01,43,249,0	script	Camponês#hunt	898,{
 				close;
 			case 3:
 				mes "[Camponês]";
-				mes "Você tem certeza que deseja parar a caça?";
-				mes "Todo o seu processo até agora será apagado";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
-				switch(select("Sim:Não")) {
+				switch(select("Sim.:Não.")) {
 				case 1:
 					mes "[Camponês]";
-					mes "Tudo bem então, volte quando mudar de ideia.";
+					mes "Tudo bem então, volte quando mudar de idéia.";
 					erasequest 60125;
 					close;
 				case 2:
@@ -68,7 +67,7 @@ ein_fild01,43,249,0	script	Camponês#hunt	898,{
 			mes "[Camponês]";
 			mes "Você terminou de caçar os 100 Pungus?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Camponês]";
 				mes "Hm... Acho que você não terminou de caçar os 100 Pungus...";
@@ -79,13 +78,13 @@ ein_fild01,43,249,0	script	Camponês#hunt	898,{
 				close;
 			case 3:
 				mes "[Camponês]";
-				mes "Você tem certeza que deseja parar a caça?";
-				mes "Todo o seu processo até agora será apagado";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
-				switch(select("Sim:Não")) {
+				switch(select("Sim.:Não.")) {
 				case 1:
 					mes "[Camponês]";
-					mes "Tudo bem então, volte quando mudar de ideia.";
+					mes "Tudo bem então, volte quando mudar de idéia.";
 					erasequest 60126;
 					close;
 				case 2:
@@ -109,7 +108,7 @@ ein_fild01,43,249,0	script	Camponês#hunt	898,{
 			mes "[Camponês]";
 			mes "Você terminou de caçar os 150 Pungus?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Camponês]";
 				mes "Hm... Acho que você não terminou de caçar os 150 Pungus...";
@@ -120,13 +119,13 @@ ein_fild01,43,249,0	script	Camponês#hunt	898,{
 				close;
 			case 3:
 				mes "[Camponês]";
-				mes "Você tem certeza que deseja parar a caça?";
-				mes "Todo o seu processo até agora será apagado";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
-				switch(select("Sim:Não")) {
+				switch(select("Sim.:Não.")) {
 				case 1:
 					mes "[Camponês]";
-					mes "Tudo bem então, volte quando mudar de ideia.";
+					mes "Tudo bem então, volte quando mudar de idéia.";
 					erasequest 60127;
 					close;
 				case 2:
@@ -146,35 +145,33 @@ ein_fild01,43,249,0	script	Camponês#hunt	898,{
 			close;
 		}
 	}
-	//for minimum level
+	//Para level mínimo
 	if (BaseLevel > 59) {
-		//for maximum level
+		//Para level máximo
 		if (BaseLevel < 75) {
 			mes "[Camponês]";
 			mes "Ei, você aí. Você mesmo!";
 			mes "Acha que pode me ajudar com um problema?";
 			next;
-			switch(select("Claro:Não")) {
+			switch(select("Claro.:Não.")) {
 			case 1:
 				mes "[Camponês]";
 				mes "Estou tentando ir pelo meu caminho, mas não consigo passar por esses Pungus.";
 				mes "Como pode me ajudar?";
 				next;
-				switch(select("Pegar Itens:Caçar Pungus:Cancelar")) {
+				switch(select("Pegar Itens.:Caçar Pungus.:Cancelar.")) {
 				case 1:
-					// Item turn in
 					mes "[Camponês]";
 					mes "Você pode me ajudar trazendo algumas ^FF0000Bactérias^000000?";
-					mes "Irei dar uma recompensa a você por me ajudar com isso.";
+					mes "Dar-lhe-ei uma recompensa a você por me ajudar com isso.";
 					next;
-					switch(select("Eu tenho Bactérias:Do que você precisava?")) {
+					switch(select("Eu tenho Bactérias.:Do que você precisava?")) {
 					case 1:
 						/*
 						if (checkweight(504,10) == 0) {
 							mes "[Camponês]";
-							mes "Ei, parece que você vai ser esmagado pelo";
-							mes "peso nas suas costas. Volte quando";
-							mes "não estiver carregando tanta coisa.";
+							mes "Ei, parece que você vai ser esmagado pelo peso nas suas costas.";
+							mes "Volte quando não estiver carregando tanta coisa.";
 							close;
 						}
 						*/
@@ -200,36 +197,36 @@ ein_fild01,43,249,0	script	Camponês#hunt	898,{
 						close;
 					}
 				case 2:
-					// Kill Count Quest
+					// Matar Pungus
 					mes "[Camponês]";
 					mes "Então gostaria de caçar Pungus, não é?";
 					mes "Quantos gostaria de caçar?";
 					next;
-					switch(select("50 Pungus:100 Pungus:150 Pungus")) {
+					switch(select("50 Pungus.:100 Pungus.:150 Pungus.")) {
 					case 1:
 						mes "[Camponês]";
-						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
 						setquest 60125;
 						close;
 					case 2:
 						mes "[Camponês]";
-						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
 						setquest 60126;
 						close;
 					case 3:
 						mes "[Camponês]";
-						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
 						setquest 60127;
 						close;
 					}
 				case 3:
 					mes "[Camponês]";
-					mes "Caso mude de ideia, venha falar comigo novamente.";
+					mes "Caso mude de idéia, venha falar comigo novamente.";
 					close;
 				}
 			case 2:
 				mes "[Camponês]";
-				mes "Caso mude de ideia, venha falar comigo novamente.";
+				mes "Caso mude de idéia, venha falar comigo novamente.";
 				close;
 			}
 		}
@@ -249,5 +246,3 @@ ein_fild01,43,249,0	script	Camponês#hunt	898,{
 		close;
 	}
 }
-
-

@@ -8,18 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nãome do Script: iRO Repeatable EXP Quests		   		|
+// | Nãome do Script: Quests Repetíveis - PecoPeco	   		|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			   				|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0				    			|
+// | Versões eA/brA: 1.0/1.1				    			|
 // |--------------------------------------------------------|
-// | Descrição: 										    |
-// | Added Monster Killing quests.							|
-// | Repeatable EXP Quest (Bill of Birds)					|
+// | Descrição: Quests repetíveis para ganho de EXP 		|
 // |--------------------------------------------------------|
 // | Changelog:               	                        	|
 // | 1.0 Script Traduzido [insidemybrain]					|
+// | 1.1 Script Revisado [Protimus]							|
 // \_______________________________________________________/
 
 moc_fild02,74,329,3	script	Gregor#PecoPeco_Hunt	97,{
@@ -28,7 +27,7 @@ moc_fild02,74,329,3	script	Gregor#PecoPeco_Hunt	97,{
 			mes "[Gregor]";
 			mes "Você terminou de caçar os 50 Peco-Pecos?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Gregor]";
 				mes "Hm... Acho que você não terminou de caçar os 50 Peco-Pecos...";
@@ -39,13 +38,13 @@ moc_fild02,74,329,3	script	Gregor#PecoPeco_Hunt	97,{
 				close;
 			case 3:
 				mes "[Gregor]";
-				mes "Você tem certeza que deseja parar a caça?";
-				mes "Todo o seu processo até agora será apagado";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
-				switch(select("Sim:Não")) {
+				switch(select("Sim.:Não.")) {
 				case 1:
 					mes "[Gregor]";
-					mes "Tudo bem então, volte quando mudar de ideia.";
+					mes "Tudo bem então, volte quando mudar de idéia.";
 					erasequest 60101;
 					close;
 				case 2:
@@ -69,7 +68,7 @@ moc_fild02,74,329,3	script	Gregor#PecoPeco_Hunt	97,{
 			mes "[Gregor]";
 			mes "Você terminou de caçar os 100 Peco-Pecos?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Gregor]";
 				mes "Hm... Acho que você não terminou de caçar os 100 Peco-Pecos...";
@@ -80,18 +79,18 @@ moc_fild02,74,329,3	script	Gregor#PecoPeco_Hunt	97,{
 				close;
 			case 3:
 				mes "[Gregor]";
-				mes "Você tem certeza que deseja parar a caça?";
-				mes "Todo o seu processo até agora será apagado";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
-				switch(select("Sim:Não")) {
+				switch(select("Sim.:Não.")) {
 				case 1:
 					mes "[Gregor]";
-					mes "Tudo bem então, volte quando mudar de ideia.";
+					mes "Tudo bem então, volte quando mudar de idéia.";
 					erasequest 60102;
 					close;
 				case 2:
 					mes "[Gregor]";
-					mes "Please hurry and kill 100 of those tasty err pesky Peco-Pecos.";
+					mes "Lembre-se, eu preciso de ajuda para caçar os 100 Peco-Pecos.";
 					close;
 				}
 			}
@@ -111,7 +110,7 @@ moc_fild02,74,329,3	script	Gregor#PecoPeco_Hunt	97,{
 			mes "[Gregor]";
 			mes "Você terminou de caçar os 150 Peco-Pecos?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Gregor]";
 				mes "Hm... Acho que você não terminou de caçar os 150 Peco-Pecos...";
@@ -122,18 +121,18 @@ moc_fild02,74,329,3	script	Gregor#PecoPeco_Hunt	97,{
 				close;
 			case 3:
 				mes "[Gregor]";
-				mes "Você tem certeza que deseja parar a caça?";
-				mes "Todo o seu processo até agora será apagado";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
-				switch(select("Sim:Não")) {
+				switch(select("Sim.:Não.")) {
 				case 1:
 					mes "[Gregor]";
-					mes "Tudo bem então, volte quando mudar de ideia.";
+					mes "Tudo bem então, volte quando mudar de idéia.";
 					erasequest 60103;
 					close;
 				case 2:
 					mes "[Gregor]";
-					mes "Please hurry and kill 150 of those tasty err pesky Peco-Pecos.";
+					mes "Lembre-se, eu preciso de ajuda para caçar os 150 Peco-Pecos.";
 					close;
 				}
 			}
@@ -149,23 +148,21 @@ moc_fild02,74,329,3	script	Gregor#PecoPeco_Hunt	97,{
 			close;
 		}
 	}
-	//for minimum level
+	//Para level mínimo
 	if (BaseLevel > 9) {
-		//for maximum level
+		//Para level máximo
 		if (BaseLevel < 31) {
 			mes "[Gregor]";
 			mes "Os PecoPecos são fascinantes.";
-			mes "Eu continuo com a minha....... pesquisa.";
+			mes "Eu continuo pesquisando-os.";
 			next;
 			mes "[Gregor]";
-			mes "Veja bem, para completar a minha ''pesquisa''";
-			mes "preciso coletar alguns";
-			mes "Bicos de Ave...";
+			mes "Veja bem, para completar a minha 'pesquisa' preciso coletar alguns Bicos de Ave...";
 			next;
 			mes "[Gregor]";
-			mes "Poderia me fazer um favor?";
+			mes "Pode me fazer um favor?";
 			next;
-			switch(select("Que tipo de favor?:Não")) {
+			switch(select("Que tipo de favor?:Não.")) {
 			case 1:
 				mes "[Gregor]";
 				mes "Estou com medo dos Pecos me atacarem e acabarem atrapalhando minha pesquisa.";
@@ -175,13 +172,12 @@ moc_fild02,74,329,3	script	Gregor#PecoPeco_Hunt	97,{
 				mes "Vou me sentir mais seguro...";
 				mes "Por favor...";
 				next;
-				switch(select("Pegar Itens:Caçar Peco-Pecos:Cancelar")) {
+				switch(select("Pegar Itens.:Caçar Peco-Pecos.:Cancelar.")) {
 				case 1:
-					// Item turn in
 					mes "[Gregor]";
-					mes "I need some ^FF0000Bill of Birds^000000 for my, uh, research...";
+					mes "Eu preciso de ^FF000024 Bicos de Ave^000000 para a minha pesquisa.";
 					next;
-					switch(select("Eu tenho Bicos de Ave:O que você precisava?")) {
+					switch(select("Eu tenho Bicos de Ave.:O que você precisava?")) {
 					case 1:
 						if (countitem(925) > 24) {
 							mes "[Gregor]";
@@ -207,36 +203,36 @@ moc_fild02,74,329,3	script	Gregor#PecoPeco_Hunt	97,{
 						close;
 					}
 				case 2:
-					// Kill Count Quest
+					// Matar Peco-Pecos
 					mes "[Gregor]";
 					mes "Então você quer caçar os Peco-Pecos.";
 					mes "Quantos gostaria de caçar?";
 					next;
-					switch(select("50 Peco-Pecos:100 Peco-Pecos:150 Peco-Pecos")) {
+					switch(select("50 Peco-Pecos.:100 Peco-Pecos.:150 Peco-Pecos.")) {
 					case 1:
 						mes "[Gregor]";
-						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
 						setquest 60101;
 						close;
 					case 2:
 						mes "[Gregor]";
-						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
 						setquest 60102;
 						close;
 					case 3:
 						mes "[Gregor]";
-						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
 						setquest 60103;
 						close;
 					}
 				case 3:
 					mes "[Gregor]";
-					mes "Caso mude de ideia, venha falar comigo novamente.";
+					mes "Caso mude de idéia, venha falar comigo novamente.";
 					close;
 				}
 			case 2:
 				mes "[Gregor]";
-				mes "Caso mude de ideia, venha falar comigo novamente.";
+				mes "Caso mude de idéia, venha falar comigo novamente.";
 				close;
 			}
 		}

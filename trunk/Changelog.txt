@@ -9,9 +9,16 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0083 - 09/10/2011 [Protimus]
+	* Adicionada tradução de npc da pasta instancias:
+	- instancias/santuario_selado.txt
+	* Revisões dos npcs da pasta repetíveis.
+	- Os nomes de alguns arquivos foram alterados.
+
 	r0082 - 09/10/2011 [Protimus]
 	* Corrigido pequeno erro de concordância nos NPCs da pasta GdE.
-	* Revisões dos npcs da pasta Nguild.
+	* Revisões dos npcs da pasta nguild.
+	- Os nomes de alguns arquivos foram alterados.
 	* Atualizado conforme eAthena r14660.
 
 	r0081 - 09/01/2011 [Protimus]

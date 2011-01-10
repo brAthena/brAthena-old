@@ -8,18 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nãome do Script: iRO Repeatable EXP Quests		   		|
+// | Nãome do Script: Quests Repetíveis - Anolian			|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			   				|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0				    			|
+// | Versões eA/brA: 1.0/1.1				    			|
 // |--------------------------------------------------------|
-// | Descrição: 										    |
-// | Added Monster Killing quests.							|
-// | Repeatable EXP Quest (Anolian Skins)					|
+// | Descrição: Quests repetíveis para ganho de EXP 		|
 // |--------------------------------------------------------|
 // | Changelog:               	                        	|
 // | 1.0 Script Traduzido [insidemybrain]					|
+// | 1.1 Script Revisado [Protimus]							|
 // \_______________________________________________________/
 
 cmd_fild01,362,256,3	script	Cuir#Gator_Hunt	106,{
@@ -28,10 +27,10 @@ cmd_fild01,362,256,3	script	Cuir#Gator_Hunt	106,{
 			mes "[Cuir]";
 			mes "Você terminou de caçar os 50 Anolians?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Cuir]";
-				mes "Hm... Acho que você não terminou de caçar os 50 Anolians";
+				mes "Hm... Acho que você não terminou de caçar os 50 Anolians.";
 				close;
 			case 2:
 				mes "[Cuir]";
@@ -39,13 +38,13 @@ cmd_fild01,362,256,3	script	Cuir#Gator_Hunt	106,{
 				close;
 			case 3:
 				mes "[Cuir]";
-				mes "Você tem certeza que deseja parar a caça?";
-				mes "Todo o seu processo até agora será apagado.";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
-				switch(select("Sim:Não")) {
+				switch(select("Sim.:Não.")) {
 				case 1:
 					mes "[Cuir]";
-					mes "Tudo bem então, volte quando mudar de ideia.";
+					mes "Tudo bem então, volte quando mudar de idéia.";
 					erasequest 60119;
 					close;
 				case 2:
@@ -68,10 +67,10 @@ cmd_fild01,362,256,3	script	Cuir#Gator_Hunt	106,{
 			mes "[Cuir]";
 			mes "Você terminou de caçar os 100 Anolians?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Cuir]";
-				mes "Hm... Acho que você não terminou de caçar os 100 Anolians";
+				mes "Hm... Acho que você não terminou de caçar os 100 Anolians.";
 				close;
 			case 2:
 				mes "[Cuir]";
@@ -79,13 +78,13 @@ cmd_fild01,362,256,3	script	Cuir#Gator_Hunt	106,{
 				close;
 			case 3:
 				mes "[Cuir]";
-				mes "Você tem certeza que deseja parar a caça?";
-				mes "Todo o seu processo até agora será apagado.";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
-				switch(select("Sim:Não")) {
+				switch(select("Sim.:Não.")) {
 				case 1:
 					mes "[Cuir]";
-					mes "Tudo bem então, volte quando mudar de ideia.";
+					mes "Tudo bem então, volte quando mudar de idéia.";
 					erasequest 60120;
 					close;
 				case 2:
@@ -109,10 +108,10 @@ cmd_fild01,362,256,3	script	Cuir#Gator_Hunt	106,{
 			mes "[Cuir]";
 			mes "Você terminou de caçar os 150 Anolians?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Cuir]";
-				mes "Hm... Acho que você não terminou de caçar os 150 Anolians";
+				mes "Hm... Acho que você não terminou de caçar os 150 Anolians.";
 				close;
 			case 2:
 				mes "[Cuir]";
@@ -121,12 +120,12 @@ cmd_fild01,362,256,3	script	Cuir#Gator_Hunt	106,{
 			case 3:
 				mes "[Cuir]";
 				mes "Você tem certeza que deseja parar a caça?";
-				mes "Todo o seu processo até agora será apagado.";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
-				switch(select("Sim:Não")) {
+				switch(select("Sim.:Não.")) {
 				case 1:
 					mes "[Cuir]";
-					mes "Tudo bem então, volte quando mudar de ideia.";
+					mes "Tudo bem então, volte quando mudar de idéia.";
 					erasequest 60121;
 					close;
 				case 2:
@@ -146,7 +145,7 @@ cmd_fild01,362,256,3	script	Cuir#Gator_Hunt	106,{
 			close;
 		}
 	}
-	//for minimum level
+	//Para level mínimo
 	if (BaseLevel > 44) {
 		//for maximum level
 		if (BaseLevel < 81) {
@@ -154,29 +153,27 @@ cmd_fild01,362,256,3	script	Cuir#Gator_Hunt	106,{
 			mes "Você parece um aventureiro resistente!";
 			next;
 			mes "[Cuir]";
-			mes "Vim para cá por que existem muitos Anolians para minha pesquisa, mas essa tarefa é difícil de se fazer sozinho.";
+			mes "Vim para cá por que existem muitos Anolians para minha pesquisa, mas essa tarefa é difícil de realizar sozinho.";
 			mes "Você gostaria de me ajudar?";
 			next;
-			switch(select("Claro:Não")) {
+			switch(select("Claro.:Não.")) {
 			case 1:
 				mes "[Cuir]";
 				mes "Você pode me ajudar caçando Anolians ou pegando a pele deles.";
 				mes "O que você deseja fazer?";
 				next;
-				switch(select("Pegar peles:Caçar os Anolians:Cancelar")) {
+				switch(select("Pegar peles.:Caçar os Anolians.:Cancelar.")) {
 				case 1:
-					// Item turn in
 					mes "[Cuir]";
 					mes "Se você me trouxer ^00CC0020 Peles de Anolian^000000, eu posso ajudar você a ficar mais forte.";
 					next;
-					switch(select("Eu tenho as Peles de Anolian:Mas jacarés mordem!!")) {
+					switch(select("Eu tenho as Peles de Anolian.:Mas jacarés mordem!")) {
 					case 1:
 						/*
 						if (checkweight(503,10) == 0) {
 							mes "[Cuir]";
-							mes "Ei, parece que você vai ser esmagado pelo";
-							mes "peso nas suas costas. Volte quando";
-							mes "não estiver carregando tanta coisa.";
+							mes "Ei, parece que você vai ser esmagado pelo peso nas suas costas."; 
+							mes "Volte quando não estiver carregando tanta coisa.";
 							close;
 						}
 						*/
@@ -184,10 +181,10 @@ cmd_fild01,362,256,3	script	Cuir#Gator_Hunt	106,{
 							mes "[Cuir]";
 							mes "Agradeço pelas ^00CC0020 Peles de Anolian^000000!";
 							mes "Espero que continue me ajudando a juntar essas peles.";
-							mes "Os fabricantes de armadura no mundo inteiro estão atrás delas.";
+							mes "Os fabricantes de armaduras do mundo inteiro estão atrás delas.";
 							delitem 7003,20; //Pele de Anolian
 							getexp 68950,43300;
-							//getitem 503,10; //(outra recompensa: Poção Amarela)
+							//getitem 503,10; //(Outra recompensa.: Poção Amarela.)
 							close;
 						}
 						else {
@@ -201,36 +198,36 @@ cmd_fild01,362,256,3	script	Cuir#Gator_Hunt	106,{
 						close;
 					}
 				case 2:
-					// Kill Count Quest
+					// Matar Anolians
 					mes "[Cuir]";
 					mes "Então gostaria de caçar Anolians, não é?.";
 					mes "Quantos gostaria de caçar?";
 					next;
-					switch(select("50 Anolians:100 Anolians:150 Anolians")) {
+					switch(select("50 Anolians.:100 Anolians.:150 Anolians.")) {
 					case 1:
 						mes "[Cuir]";
-						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
 						setquest 60119;
 						close;
 					case 2:
 						mes "[Cuir]";
-						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
 						setquest 60120;
 						close;
 					case 3:
 						mes "[Cuir]";
-						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
 						setquest 60121;
 						close;
 					}
 				case 3:
 					mes "[Cuir]";
-					mes "Caso mude de ideia, venha falar comigo novamente.";
+					mes "Caso mude de idéia, venha falar comigo novamente.";
 					close;
 				}
 			case 2:
 				mes "[Cuir]";
-				mes "Caso mude de ideia, venha falar comigo novamente.";
+				mes "Caso mude de idéia, venha falar comigo novamente.";
 				close;
 			}
 		}

@@ -8,18 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Simme do Script: iRO Repeatable EXP Quests		   		|
+// | Simme do Script: Quests Repetíveis - Creamy		   	|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			   				|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0				    			|
+// | Versões eA/brA: 1.0/1.1				    			|
 // |--------------------------------------------------------|
-// | Descrição: 										    |
-// | Added Monster Killing quests. (Dialog is semi-custom)	|
-// | Repeatable EXP Quest (Powder of Butterfly)				|
+// | Descrição: Quests repetíveis para ganho de EXP 		|
 // |--------------------------------------------------------|
 // | Changelog:               	                        	|
 // | 1.0 Script Traduzido [insidemybrain]					|
+// | 1.1 Script Revisado [Protimus]							|
 // \_______________________________________________________/
 
 prt_fild04,356,148,3	script	Laertes#Creamy_Hunt	798,{
@@ -28,7 +27,7 @@ prt_fild04,356,148,3	script	Laertes#Creamy_Hunt	798,{
 			mes "[Laertes]";
 			mes "Você terminou de caçar os 50 Creamys?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Laertes]";
 				mes "Hm... Acho que você não terminou de caçar os 50 Creamys...";
@@ -39,13 +38,13 @@ prt_fild04,356,148,3	script	Laertes#Creamy_Hunt	798,{
 				close;
 			case 3:
 				mes "[Laertes]";
-				mes "Você tem certeza que deseja parar a caça?";
-				mes "Todo o seu processo até agora será apagado.";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
-				switch(select("Sim:Não")) {
+				switch(select("Sim.:Não.")) {
 				case 1:
 					mes "[Laertes]";
-					mes "Tudo bem então, volte quando mudar de ideia.";
+					mes "Tudo bem então, volte quando mudar de idéia.";
 					erasequest 60122;
 					close;
 				case 2:
@@ -68,7 +67,7 @@ prt_fild04,356,148,3	script	Laertes#Creamy_Hunt	798,{
 			mes "[Laertes]";
 			mes "Você terminou de caçar os 50 Creamys?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Laertes]";
 				mes "Hm... Acho que você não terminou de caçar os 100 Creamys...";
@@ -79,13 +78,13 @@ prt_fild04,356,148,3	script	Laertes#Creamy_Hunt	798,{
 				close;
 			case 3:
 				mes "[Laertes]";
-				mes "Você tem certeza que deseja parar a caça?";
-				mes "Todo o seu processo até agora será apagado.";
+				mes "Você tem certeza que deseja parar de caçar";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
-				switch(select("Sim:Não")) {
+				switch(select("Sim.:Não.")) {
 				case 1:
 					mes "[Laertes]";
-					mes "Tudo bem então, volte quando mudar de ideia.";
+					mes "Tudo bem então, volte quando mudar de idéia.";
 					erasequest 60123;
 					close;
 				case 2:
@@ -109,7 +108,7 @@ prt_fild04,356,148,3	script	Laertes#Creamy_Hunt	798,{
 			mes "[Laertes]";
 			mes "Você terminou de caçar os 150 Creamys?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Laertes]";
 				mes "Hm... Acho que você não terminou de caçar os 150 Creamys...";
@@ -120,13 +119,13 @@ prt_fild04,356,148,3	script	Laertes#Creamy_Hunt	798,{
 				close;
 			case 3:
 				mes "[Laertes]";
-				mes "Você tem certeza que deseja parar a caça?";
-				mes "Todo o seu processo até agora será apagado.";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
-				switch(select("Sim:Não")) {
+				switch(select("Sim.:Não.")) {
 				case 1:
 					mes "[Laertes]";
-					mes "Tudo bem então, volte quando mudar de ideia.";
+					mes "Tudo bem então, volte quando mudar de idéia.";
 					erasequest 60124;
 					close;
 				case 2:
@@ -146,34 +145,32 @@ prt_fild04,356,148,3	script	Laertes#Creamy_Hunt	798,{
 			close;
 		}
 	}
-	//for minimum level
+	//Para level mínimo
 	if (BaseLevel > 14) {
-		//for maximum level
+		//Para level máximo
 		if (BaseLevel < 45) {
 			mes "[Laertes]";
 			mes "Bom Dia!";
-			mes "Acha que poderia me ajudar?";
+			mes "Você pode me ajudar?";
 			next;
-			switch(select("Claro:Não")) {
+			switch(select("Claro.:Não.")) {
 			case 1:
 				mes "[Laertes]";
 				mes "Eu trabalho para um farmacêutico em Prontera.";
-				mes "Me ajudando te daria alguma recompensa... Poderia me ajudar?";
+				mes "Caso me ajude darei-lhe uma recompensa... Que tal?";
 				next;
-				switch(select("Pega Itens:Caçar Creamys:Cancelar")) {
+				switch(select("Pega Itens.:Caçar Creamys.:Cancelar.")) {
 				case 1:
-					// Item turn in
 					mes "[Laertes]";
 					mes "Eu preciso de um bom suprimento de ^FF0000Pó de Borboleta^000000";
 					next;
-					switch(select("Eu tenho Pó de Borboleta:Do que você precisava?")) {
+					switch(select("Eu tenho Pó de Borboleta.:Do que você precisava?")) {
 					case 1:
 						/*
 						if (checkweight(502,5) == 0) {
 							mes "[Laertes]";
-							mes "Ei, parece que você vai ser esmagado pelo";
-							mes "peso nas suas costas. Volte quando";
-							mes "não estiver carregando tanta coisa.";
+							mes "Ei, parece que você vai ser esmagado pelo peso nas suas costas.";
+							mes "Volte quando não estiver carregando tanta coisa.";
 							close;
 						}
 						*/
@@ -191,47 +188,44 @@ prt_fild04,356,148,3	script	Laertes#Creamy_Hunt	798,{
 							mes "Não parece que você tem o suficiente.";
 							next;
 							mes "[Laertes]";
-							mes "Se você me trouxer ^FF000025 Pó de Borboleta^000000,";
-							mes "vou dar a você suprimentos médicos.";
+							mes "Se você me trouxer ^FF000025 Pó de Borboleta^000000, darei-lhe alguns suprimentos médicos.";
 							close;
 						}
 					case 2:
 						mes "[Laertes]";
-						mes "Se você me trouxer ^FF000025 Pó de Borboleta^000000,";
-						mes "vou dar a você suprimentos médicos.";
+						mes "Se você me trouxer ^FF000025 Pó de Borboleta^000000, darei-lhe suprimentos médicos.";
 						close;
 					}
 				case 2:
-					// Kill Count Quest
 					mes "[Laertes]";
 					mes "Então gostaria de caçar Creamys.";
 					mes "Quantos gostaria de caçar?";
 					next;
-					switch(select("50 Creamys:100 Creamys:150 Creamys")) {
+					switch(select("50 Creamys.:100 Creamys.:150 Creamys.")) {
 					case 1:
 						mes "[Laertes]";
-						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
 						setquest 60122;
 						close;
 					case 2:
 						mes "[Laertes]";
-						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
 						setquest 60123;
 						close;
 					case 3:
 						mes "[Laertes]";
-						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
 						setquest 60124;
 						close;
 					}
 				case 3:
 					mes "[Laertes]";
-					mes "Caso mude de ideia, venha falar comigo novamente.";
+					mes "Caso mude de idéia, venha falar comigo novamente.";
 					close;
 				}
 			case 2:
 				mes "[Laertes]";
-				mes "Caso mude de ideia, venha falar comigo novamente.";
+				mes "Caso mude de idéia, venha falar comigo novamente.";
 				close;
 			}
 		}
@@ -241,7 +235,7 @@ prt_fild04,356,148,3	script	Laertes#Creamy_Hunt	798,{
 			next;
 			mes "[Laertes]";
 			mes "Eu trabalho para um farmacêutico em Prontera";
-			mes "Eu venho até aqui para juntar materiais para reme´dios.";
+			mes "Eu venho até aqui para juntar materiais para remédios.";
 			close;
 		}
 	}

@@ -8,18 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nãome do Script: iRO Repeatable EXP Quests		   		|
+// | Nãome do Script: Quests Repetíveis - Caramelo		   	|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			   				|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0				    			|
+// | Versões eA/brA: 1.0/1.1				    			|
 // |--------------------------------------------------------|
-// | Descrição:											    |
-// | Added Monster Killing quests.							|
-// | Repeatable EXP Quest (Porcupine Quills)				|
+// | Descrição: Quests repetíveis para ganho de EXP			|
 // |--------------------------------------------------------|
 // | Changelog:               	                        	|
 // | 1.0 Script Traduzido [insidemybrain]					|
+// | 1.1 Script Revisado [Protimus]							|
 // \_______________________________________________________/
 
 mjolnir_01,296,29,6	script	Yullo#Caramel_Hunt	95,{
@@ -28,7 +27,7 @@ mjolnir_01,296,29,6	script	Yullo#Caramel_Hunt	95,{
 			mes "[Yullo]";
 			mes "Você terminou de caçar os 50 Caramelos?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Yullo]";
 				mes "Hm... Acho que você não terminou de caçar os 50 Caramelos...";
@@ -39,13 +38,13 @@ mjolnir_01,296,29,6	script	Yullo#Caramel_Hunt	95,{
 				close;
 			case 3:
 				mes "[Yullo]";
-				mes "Você tem certeza que deseja parar a caça?";
-				mes "Todo o seu processo até agora será apagado";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
-				switch(select("Sim:Não")) {
+				switch(select("Sim.:Não.")) {
 				case 1:
 					mes "[Yullo]";
-					mes "Tudo bem então, volte quando mudar de ideia.";
+					mes "Tudo bem então, volte quando mudar de idéia.";
 					erasequest 60116;
 					close;
 				case 2:
@@ -68,7 +67,7 @@ mjolnir_01,296,29,6	script	Yullo#Caramel_Hunt	95,{
 			mes "[Yullo]";
 			mes "Você terminou de caçar os 100 Caramelos?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Yullo]";
 				mes "Hm... Acho que você não terminou de caçar os 100 Caramelos...";
@@ -79,13 +78,13 @@ mjolnir_01,296,29,6	script	Yullo#Caramel_Hunt	95,{
 				close;
 			case 3:
 				mes "[Yullo]";
-				mes "Você tem certeza que deseja parar a caça?";
-				mes "Todo o seu processo até agora será apagado";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
 				switch(select("Sim:Não")) {
 				case 1:
 					mes "[Yullo]";
-					mes "Tudo bem então, volte quando mudar de ideia.";
+					mes "Tudo bem então, volte quando mudar de idéia.";
 					erasequest 60117;
 					close;
 				case 2:
@@ -109,7 +108,7 @@ mjolnir_01,296,29,6	script	Yullo#Caramel_Hunt	95,{
 			mes "[Yullo]";
 			mes "Você terminou de caçar os 150 Caramelos?";
 			next;
-			switch(select("Sim:Não:Quero desistir")) {
+			switch(select("Sim.:Não.:Quero desistir.")) {
 			case 1:
 				mes "[Yullo]";
 				mes "Hm... Acho que você não terminou de caçar os 150 Caramelos...";
@@ -121,12 +120,12 @@ mjolnir_01,296,29,6	script	Yullo#Caramel_Hunt	95,{
 			case 3:
 				mes "[Yullo]";
 				mes "Você tem certeza que deseja parar a caça?";
-				mes "Todo o seu processo até agora será apagado";
+				mes "Tudo o que você já fez será inválidado.";
 				next;
-				switch(select("Sim:Não")) {
+				switch(select("Sim.:Não.")) {
 				case 1:
 					mes "[Yullo]";
-					mes "Tudo bem então, volte quando mudar de ideia.";
+					mes "Tudo bem então, volte quando mudar de idéia.";
 					erasequest 60118;
 					close;
 				case 2:
@@ -146,23 +145,22 @@ mjolnir_01,296,29,6	script	Yullo#Caramel_Hunt	95,{
 			close;
 		}
 	}
-	//for minimum level
+	//Para level mínimo
 	if (BaseLevel > 23) {
-		//for maximum level
+		//Para level máximo
 		if (BaseLevel < 61) {
 			mes "[Yullo]";
-			mes "Não posso mais... estou falando sério.";
-			mes "Olhe pra mim, é sério, não posso trazer mais dessas coisas.";
+			mes "Não consigo mais... estou falando sério.";
+			mes "Olhe pra mim, é sério, não consigo trazer mais dessas coisas.";
 			next;
 			switch(select("Que coisas?:Ignorar.")) {
 			case 1:
 				mes "[Yullo]";
 				mes "Quer saber? Tenho uma idéia.";
-				mes "Se fizer alguns favores pra mim, te darei uma recompensa pelo seu esforço!";
+				mes "Se você fizer alguns favores para mim, te darei uma recompensa pelo seu esforço!";
 				next;
-				switch(select("Pegar itens:Caçar Caramelos:Cancelar")) {
+				switch(select("Pegar itens.:Caçar Caramelos.:Cancelar.")) {
 				case 1:
-					// Item turn in
 					mes "[Yullo]";
 					mes "Bem, então eu preciso de 25 Espinhos de Porco-Espinho.";
 					mes "Diga-me que você tem alguns ou que pode me ajudar!";
@@ -172,9 +170,8 @@ mjolnir_01,296,29,6	script	Yullo#Caramel_Hunt	95,{
 						/*
 						if (checkweight(501,10) == 0) {
 							mes "[Yullo]";
-							mes "Ei, parece que você vai ser esmagado pelo";
-							mes "peso nas suas costas. Volte quando";
-							mes "não estiver carregando tanta coisa.";
+							mes "Ei, parece que você vai ser esmagado pelo peso nas suas costas."; 
+							mes "Volte quando não estiver carregando tanta coisa.";
 							close;
 						}
 						*/
@@ -190,7 +187,7 @@ mjolnir_01,296,29,6	script	Yullo#Caramel_Hunt	95,{
 						else {
 							mes "[Yullo]";
 							mes "Onde estão os Espinhos de Porco-Espinho?";
-							mes "Você acha que não consigo perceber?";
+							mes "Você acha que não consigo perceber que não é isso que pedi?";
 							close;
 						}
 					case 2:
@@ -199,36 +196,36 @@ mjolnir_01,296,29,6	script	Yullo#Caramel_Hunt	95,{
 						close;
 					}
 				case 2:
-					// Kill Count Quest
+					// Matar Caramelos
 					mes "[Yullo]";
 					mes "Ah, sim, acho que você pode me ajudar caçando alguns Caramelos.";
 					mes "Quantos gostaria de caçar?";
 					next;
-					switch(select("50 Caramelos:100 Caramelos:150 Caramelos")) {
+					switch(select("50 Caramelos.:100 Caramelos.:150 Caramelos.")) {
 					case 1:
 						mes "[Yullo]";
-						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
 						setquest 60116;
 						close;
 					case 2:
 						mes "[Yullo]";
-						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
 						setquest 60117;
 						close;
 					case 3:
 						mes "[Yullo]";
-						mes "Volte quando terminar o serviço e te darei uma pequena recompensa.";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
 						setquest 60118;
 						close;
 					}
 				case 3:
 					mes "[Yullo]";
-					mes "Caso mude de ideia, venha falar comigo novamente.";
+					mes "Caso mude de idéia, venha falar comigo novamente.";
 					close;
 				}
 			case 2:
 				mes "[Yullo]";
-				mes "Caso mude de ideia, venha falar comigo novamente.";
+				mes "Caso mude de idéia, venha falar comigo novamente.";
 				close;
 			}
 		}
