@@ -8,22 +8,23 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Orc's Memorial                         |
+// | Nome do Script: Memorial dos Orc's                     |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.4/1.0                                |
+// | Versões eA/brA: 1.4/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: Relive the memory of an orc.                |
+// | Descrição: Reviva a memória de um orc.                 |
 // |--------------------------------------------------------|
 // | Changelog:               	                        	|
 // | 1.0 Script Traduzido [insidemybrain]					|
+// | 1.1 Script Revisado [Protimus]							|
 // \________________________________________________________/
 
-// Entrance
+// Entrada
 gef_fild10,242,202,0	script	Memorial Orc	406,{
 	if ((BaseLevel < 30) || (BaseLevel > 80)) {
-		mes "Apenas jogadores entre os níveis ^ff000030 ~ 80^000000 podem acessar esse calabouço";
+		mes "Apenas jogadores entre os níveis ^ff000030 ~ 80^000000 podem acessar esse calabouço.";
 		close;
 	}
 
@@ -43,7 +44,7 @@ gef_fild10,242,202,0	script	Memorial Orc	406,{
 			if (.@ins_mas == getcharid(0)) {
 				mes "Criação de grupo confirmada. Gostaria de agendar a entrada de " + .@md_name$ + "?";
 				next;
-				switch(select("Reservar o " + .@md_name$ + ":Entrar no calabouço:Cancelar")) {
+				switch(select("Reservar o " + .@md_name$ + ".:Entrar no calabouço.:Cancelar.")) {
 				case 1:
 					set .@instance, instance_create(.@md_name$, .@party_id);
 					if (.@instance < 0) {
@@ -104,7 +105,7 @@ gef_fild10,242,202,0	script	Memorial Orc	406,{
 					}
 				case 2:
 					//if (move_md == 3) {
-					//	mes "Ocorreu um erro não-identificado.";
+					//	mes "Ocorreu um erro desconhecido.";
 					//	close;
 					//}
 					//else if (move_md == 2) {
@@ -133,10 +134,10 @@ gef_fild10,242,202,0	script	Memorial Orc	406,{
 				}
 			}
 			else {
-				switch(select(.@md_name$ + " Entrar no Calabouço Memorial:Cancelar")) {
+				switch(select(.@md_name$ + " Entrar no Calabouço Memorial.:Cancelar.")) {
 				case 1:
 					//if (move_md == 3) {
-					//	mes "Ocorreu um erro não-identificado.";
+					//	mes "Ocorreu um erro desconhecido.";
 					//	close;
 					//}
 					//else if (move_md == 2) {
@@ -165,10 +166,10 @@ gef_fild10,242,202,0	script	Memorial Orc	406,{
 		else if ((.@orctime == 0) || (.@orctime == 1)) {
 			mes "Você pode entrar no calabouço, caso ele já tenha sido criado.";
 			next;
-			switch(select("Entar no calabouço " + .@md_name$ + ":Cancelar")) {
+			switch(select("Entar no calabouço " + .@md_name$ + ".:Cancelar.")) {
 			case 1:
 				//if (move_md == 3) {
-				//	mes "An unidentified error has occured.";
+				//	mes "Ocorreu um erro desconhecido.";
 				//	close;
 				//}
 				//else if (move_md == 2) {
@@ -260,7 +261,7 @@ gef_fild10,238,202,6	script	Cientista Maluco#orc	865,{
 			break;
 		case 2:
 			mes "[Cientista Maluco]";
-			mes "Tudo bem... então que seja assim!";
+			mes "Tudo bem... então que assim seja!";
 			break;
 		}
 	}
@@ -324,7 +325,7 @@ OnMyMobDead:
 	if (.@mob_dead_num > 0) {
 		set .@mob_ran,rand(1,30);
 		if (.@mob_ran > 29) {
-			monster "1@orcs",0,0,"Orc Guerreiro",1023,.@mob_dead_num,instance_npcname("#Resurrect Monsters1", instance_id())+"::OnMyMobDead";
+			monster "1@orcs",0,0,"Guerreiro Orc",1023,.@mob_dead_num,instance_npcname("#Resurrect Monsters1", instance_id())+"::OnMyMobDead";
 		}
 		else if ((.@mob_ran > 28) && (.@mob_ran < 30)) {
 			monster "1@orcs",0,0,"Grand Orc",1213,.@mob_dead_num,instance_npcname("#Resurrect Monsters1", instance_id())+"::OnMyMobDead";
