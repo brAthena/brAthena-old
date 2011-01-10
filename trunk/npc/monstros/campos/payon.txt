@@ -8,19 +8,19 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Payon Fields Monster Spawn Script	    |
+// | Nome do Script: Spawns dos Campos de Payon				|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.4/1.0                                |
+// | Versões eA/brA: 1.4/1.1                                |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | - Anotações		   			    					| 
+// | 1.1 Script Revisado [Protimus]							| 
 // \________________________________________________________/
 
 //==================================================
-// pay_fild01 - Payon Forest
+// pay_fild01 - Floresta de Payon
 //==================================================
 pay_fild01,0,0,0,0	monster	Salgueiro	1010,10,0,0,0
 pay_fild01,0,0,0,0	monster	Poporing	1031,10,0,0,0
@@ -44,7 +44,7 @@ pay_fild01,70,246,0,0	monster	Cogumelo Negro	1084,1,180000,90000,1
 pay_fild01,0,0,0,0	monster	Planta Verde	1080,5,180000,90000,1
 
 //==================================================
-// pay_fild02 - Payon Forest
+// pay_fild02 - Floresta de Payon
 //==================================================
 pay_fild02,0,0,0,0	monster	Jibóia	1025,30,0,0,0
 pay_fild02,0,0,0,0	monster	Lobo	1013,70,0,0,0
@@ -54,7 +54,7 @@ pay_fild02,105,256,10,10	monster	Planta Verde	1080,4,360000,180000,1
 pay_fild02,105,256,10,10	monster	Cogumelo Vermelho	1085,4,360000,180000,1
 
 //==================================================
-// pay_fild03 - Payon Forest
+// pay_fild03 - Floresta de Payon
 //==================================================
 pay_fild03,0,0,0,0	monster	Poring	1002,30,0,0,0
 pay_fild03,0,0,0,0	monster	Salgueiro	1010,30,0,0,0
@@ -64,7 +64,7 @@ pay_fild03,153,216,10,10	monster	Cogumelo Vermelho	1085,6,900000,450000,1
 pay_fild03,372,64,15,15	monster	Planta Verde	1080,4,180000,90000,1
 
 //==================================================
-// pay_fild04 - Sograt Desert
+// pay_fild04 - Deserto de Sograt
 //==================================================
 pay_fild04,0,0,0,0	monster	Poring	1002,40,0,0,0
 pay_fild04,0,0,0,0	monster	Drops	1113,40,0,0,0
@@ -78,7 +78,7 @@ pay_fild04,346,335,5,5	monster	Planta Brilhante	1083,1,1800000,900000,1
 pay_fild04,254,193,10,10	monster	Planta Verde	1080,5,360000,180000,1
 
 //==================================================
-// pay_fild05 - Payon Forest
+// pay_fild05 - Floresta de Payon
 //==================================================
 pay_fild05,0,0,0,0	monster	Lavadeira	1321,5,0,0,0
 pay_fild05,0,0,0,0	monster	Poporing	1031,20,0,0,0
@@ -87,7 +87,7 @@ pay_fild05,95,147,5,5	monster	Planta Verde	1080,4,900000,450000,1
 pay_fild05,86,90,5,5	monster	Planta Verde	1080,4,900000,450000,1
 
 //==================================================
-// pay_fild06 - Payon Forest
+// pay_fild06 - Floresta de Payon
 //==================================================
 pay_fild06,0,0,0,0	monster	Rabo de Verme	1024,90,0,0,0
 pay_fild06,0,0,0,0	monster	Esporo	1014,20,0,0,0
@@ -98,7 +98,7 @@ pay_fild06,268,155,20,20	monster	Planta Verde	1080,10,360000,180000,1
 pay_fild06,268,155,20,20	monster	Planta Brilhante	1083,1,1800000,900000,1
 
 //==================================================
-// pay_fild07 - Payon Forest
+// pay_fild07 - Floresta de Payon
 //==================================================
 pay_fild07,0,0,0,0	monster	Salgueiro Ancião	1033,70,0,0,0
 pay_fild07,0,0,0,0	monster	Eggyra	1116,40,0,0,0
@@ -108,7 +108,7 @@ pay_fild07,0,0,0,0	monster	Pé Grande	1060,30,0,0,0
 pay_fild07,171,331,20,20	monster	Planta Verde	1080,8,900000,450000,1
 
 //==================================================
-// pay_fild08 - Payon Forest
+// pay_fild08 - Floresta de Payon
 //==================================================
 pay_fild08,0,0,0,0	monster	Poring	1002,30,0,0,0
 pay_fild08,0,0,0,0	monster	Salgueiro	1010,50,0,0,0
@@ -118,7 +118,7 @@ pay_fild08,0,0,0,0	monster	Planta Verde	1080,10,60000,30000,1
 pay_fild08,143,156,40,40	monster	Planta Brilhante	1083,1,3600000,1800000,1
 
 //==================================================
-// pay_fild09 - Payon Forest
+// pay_fild09 - Floresta de Payon
 //==================================================
 pay_fild09,0,0,0,0	monster	Poporing	1031,20,0,0,0
 pay_fild09,0,0,0,0	monster	Fumacento	1056,80,0,0,0
@@ -127,7 +127,7 @@ pay_fild09,198,217,30,30	monster	Planta Verde	1080,10,360000,180000,0
 pay_fild09,198,217,30,30	monster	Planta Brilhante	1083,1,1800000,900000,1
 
 //==================================================
-// pay_fild10 - Payon Forest
+// pay_fild10 - Floresta de Payon
 //==================================================
 pay_fild10,0,0,0,0	monster	Guardião da Floresta	1277,65,0,0,0
 pay_fild10,0,0,0,0	monster	Dokebi	1110,70,0,0,0
@@ -143,7 +143,7 @@ pay_fild10,281,307,10,10	monster	Planta Azul	1079,1,360000,180000,1
 pay_fild10,66,332,10,10	monster	Planta Azul	1079,1,360000,180000,1
 
 //==================================================
-// pay_fild11 - Payon Forest
+// pay_fild11 - Floresta de Payon
 //==================================================
 pay_fild11,0,0,0,0	monster	Guardião da Floresta	1277,30,0,0,0
 pay_fild11,0,0,0,0	monster	Nove Caudas	1180,60,180000,0,0

@@ -8,19 +8,19 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Yggdrasil Root Dungeon		    		|
+// | Nome do Script: Spawns da Caverna de Yggdrasil			|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0                                |
+// | Versões eA/brA: 1.0/1.1                                |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | - Anotações		   			    					| 
+// | 1.1 Script Revisado [Protimus]							|   
 // \________________________________________________________/
 
 //==================================================
-// nyd_dun01 - Yggdrasil Root Dungeon
+// nyd_dun01 - Yggdrasil
 //==================================================
 nyd_dun01,0,0,0,0	monster	Draco	2013,40,0,0,0
 nyd_dun01,0,0,0,0	monster	Ovo de Draco	2014,10,0,0,0

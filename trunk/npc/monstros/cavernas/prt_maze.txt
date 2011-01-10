@@ -8,20 +8,19 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Prontera Maze(Hidden Temple) Dungeon   |
-// | Monster Spawn Script 				    				|
+// | Nome do Script: Spawns do Labirinto de Prontera	    |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.4/1.0                                |
+// | Versões eA/brA: 1.4/1.1                                |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | - Anotações		   			    					| 
+// | 1.1 Script Revisado [Protimus]							|  
 // \________________________________________________________/
 
 //==================================================
-// prt_maze01 - Labyrinth Forest F1
+// prt_maze01 - Labirinto da Floresta - 1° Andar
 //==================================================
 
 prt_maze01,179,20,21,21	monster	Poring	1002,5,120000,40000,1
@@ -70,7 +69,7 @@ prt_maze01,178,60,10,10	monster	Cogumelo Vermelho	1085,3,180000,90000,1
 prt_maze01,168,60,3,3	monster	Cogumelo Vermelho	1085,2,180000,90000,1
 
 //==================================================
-// prt_maze02 - Labyrinth Forest F2
+// prt_maze02 - Labirinto da Floresta - 2° Andar
 //==================================================
 prt_maze02,0,0,0,0	monster	Poporing	1031,25,0,0,0
 prt_maze02,0,0,0,0	monster	Pé Grande	1060,5,0,0,0
@@ -78,7 +77,7 @@ prt_maze02,0,0,0,0	monster	Sasquatch	1243,1,900000,40000,0
 prt_maze02,0,0,0,0	monster	Leib Olmai	1306,1,1800000,900000,0
 
 //==================================================
-// prt_maze03 - Labyrinth Forest F3
+// prt_maze03 - Labirinto da Floresta - 3° Andar
 //==================================================
 prt_maze03,0,0,0,0	monster	Poporing	1031,45,0,0,0
 prt_maze03,0,0,0,0	monster	Sorrateiro	1037,10,0,0,0

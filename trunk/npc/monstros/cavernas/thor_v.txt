@@ -8,18 +8,18 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Thor Volcano Monster Spawn Script	    |
+// | Nome do Script: Spawns do Vulcão de Thor			    |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.4/1.0                                |
+// | Versões eA/brA: 1.4/1.1                                |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | - Anotações		   			   						| 
+// | 1.1 Script Revisado [Protimus]							|  
 // \________________________________________________________/
 
-// ================= [Thor Volcano - 01] =====================
+// ================= [Vulcão de Thor - 01] =====================
 thor_v01,0,0,0,0	monster	Magmaring	1836,10,0,0,0
 thor_v01,0,0,0,0	monster	Imp	1837,5,0,0,0
 thor_v01,0,0,0,0	monster	Imp	1837,12,1800000,0,0
@@ -37,7 +37,7 @@ thor_v01,0,0,0,0	monster	Arqueiro Guardião	1830,5,420000,0,0
 thor_v01,0,0,0,0	monster	Salamandra	1831,5,3600000,0,0
 thor_v01,0,0,0,0	monster	Byorgue	1839,1,3600000,0,0
 
-// ================= [Thor Volcano - 02] =====================
+// ================= [Vulcão de Thor - 02] =====================
 thor_v02,0,0,0,0	monster	Magmaring	1836,10,0,0,0
 thor_v02,0,0,0,0	monster	Imp	1837,5,0,0,0
 thor_v02,75,125,50,85	monster	Imp	1837,3,0,0,0
@@ -52,7 +52,7 @@ thor_v02,0,0,0,0	monster	Salamandra	1831,1,18000000,0,0
 thor_v02,0,0,0,0	monster	Espadachim Guardião	1829,1,7200000,0,0
 thor_v02,0,0,0,0	monster	Arqueiro Guardião	1830,1,7200000,0,0
 
-// ================= [Thor Volcano - 03] =====================
+// ================= [Vulcão de Thor - 03] =====================
 thor_v03,0,0,0,0	monster	Kasa	1833,16,0,0,0
 thor_v03,95,220,64,55	monster	Kasa	1833,6,0,0,0
 thor_v03,223,224,65,60	monster	Kasa	1833,6,0,0,0

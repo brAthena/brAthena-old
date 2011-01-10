@@ -8,19 +8,19 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Louyang Dungeon Monster Spawn Script   |
+// | Nome do Script: Spawns da Caverna de Louyang			|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.3/1.0                                |
+// | Versões eA/brA: 1.3/1.1                                |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | - Anotações		   			   						| 
+// | 1.1 Script Revisado [Protimus]							|  
 // \________________________________________________________/
 
 //==================================================
-// lou_dun01 - The Royal Tomb
+// lou_dun01 - Tumba Real
 //==================================================
 lou_dun01,0,0,0,0	monster	Horong	1129,15,0,0,0
 lou_dun01,0,0,0,0	monster	Mi Gao	1516,15,0,0,0
@@ -33,7 +33,7 @@ lou_dun01,197,77,10,10	monster	Cogumelo Negro	1084,5,0,0,0
 lou_dun01,0,0,0,0	monster	Planta Brilhante	1083,5,0,0,0
 
 //==================================================
-// lou_dun02 - Inside the Royal Tomb
+// lou_dun02 - Dentro da Tumba Real
 //==================================================
 lou_dun02,0,0,0,0	monster	Yao Jun	1512,40,300000,120000,0
 lou_dun02,0,0,0,0	monster	Munak	1026,25,0,0,0

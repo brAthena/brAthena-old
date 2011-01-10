@@ -8,19 +8,19 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Moscovia Fields Monster Spawn Script   |
+// | Nome do Script: Spawns dos Campos de Moscóvia		    |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0                                |
+// | Versões eA/brA: 1.0/1.1                                |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | - Anotações		   	                    			| 
+// | 1.1 Script Revisado [Protimus]							|  
 // \________________________________________________________/
 
 //==================================================
-// mosk_fild02 - Moscovia Field
+// mosk_fild02 - Campos de Moscovia
 //==================================================
 mosk_fild02,0,0,0,0	monster	Pé Grande	1060,40,0,0,0
 mosk_fild02,0,0,0,0	monster	Caramelo	1103,20,0,0,0

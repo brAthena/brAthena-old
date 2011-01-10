@@ -8,20 +8,19 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Morocc Sphinx Dungeon Monster Spawns   |
-// | Script   						   						|
+// | Nome do Script: Spawns da Esfinge de Morocc			|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.4/1.0                                |
+// | Versões eA/brA: 1.4/1.1                                |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | - Anotações		   			    					| 
+// | 1.1 Script Revisado [Protimus]							|  
 // \________________________________________________________/
 
 //==================================================
-// In_sphinx1 - Sphinx F1
+// In_sphinx1 - Esfinge - 1° Andar
 //==================================================
 in_sphinx1,0,0,0,0	monster	Drainliar	1111,40,0,0,0
 in_sphinx1,0,0,0,0	monster	Réquiem	1164,20,0,0,0
@@ -29,7 +28,7 @@ in_sphinx1,0,0,0,0	monster	Zerom	1178,20,0,0,0
 in_sphinx1,0,0,0,0	monster	Matyr	1146,10,0,0,0
 
 //==================================================
-// In_sphinx2 - Sphinx F2
+// In_sphinx2 - Esfinge - 2° Andar
 //==================================================
 in_sphinx2,0,0,0,0	monster	Drainliar	1111,15,0,0,0
 in_sphinx2,0,0,0,0	monster	Réquiem	1164,50,0,0,0
@@ -37,7 +36,7 @@ in_sphinx2,0,0,0,0	monster	Zerom	1178,50,0,0,0
 in_sphinx2,0,0,0,0	monster	Matyr	1146,20,0,0,0
 
 //==================================================
-// In_sphinx3 - Sphinx F3
+// In_sphinx3 - Esfinge - 3° Andar
 //==================================================
 in_sphinx3,0,0,0,0	monster	Matyr	1146,15,0,0,0
 in_sphinx3,0,0,0,0	monster	Pasana	1154,5,0,0,0
@@ -45,7 +44,7 @@ in_sphinx3,0,0,0,0	monster	Marduk	1140,65,0,0,0
 in_sphinx3,0,0,0,0	monster	Mímico	1191,5,600000,300000,1
 
 //==================================================
-// In_sphinx4 - Sphinx F4
+// In_sphinx4 - Esfinge - 4° Andar
 //==================================================
 in_sphinx4,0,0,0,0	monster	Minorous	1149,50,0,0,0
 in_sphinx4,0,0,0,0	monster	Anubis	1098,15,0,0,0
@@ -53,7 +52,7 @@ in_sphinx4,0,0,0,0	monster	Mímico	1191,4,600000,300000,1
 in_sphinx4,0,0,0,0	monster	Pasana	1154,20,0,0,0
 
 //==================================================
-// In_sphinx5 - Sphinx F5
+// In_sphinx5 - Esfinge - 5° Andar
 //==================================================
 in_sphinx5,0,0,0,0	monster	Pasana	1154,70,0,0,0
 in_sphinx5,0,0,0,0	monster	Matyr	1146,10,0,0,0

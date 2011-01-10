@@ -8,19 +8,19 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Sunken Ship Monster Spawn Script	    |
+// | Nome do Script: Spawns do Navio Fantasma			    |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.3/1.0                                |
+// | Versões eA/brA: 1.3/1.1                                |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | - Anotações		   			    					| 
+// | 1.1 Script Revisado [Protimus]							|   
 // \________________________________________________________/
 
 //==================================================
-// treasure01 - Sunken Ship F1
+// treasure01 - Navio Fantasma - 1° Andar
 //==================================================
 treasure01,0,0,0,0	monster	Kukre	1070,20,0,0,1
 treasure01,0,0,0,0	monster	Sussurro	1179,5,0,0,1
@@ -111,7 +111,7 @@ treasure01,169,41,0,0	monster	Hidra	1068,1,313000,100000,1
 treasure01,169,40,0,0	monster	Hidra	1068,1,300000,100000,1
 
 //==================================================
-// treasure02 - Sunken Ship F2
+// treasure02 - Navio Fantasma - 2° Andar
 //==================================================
 treasure02,0,0,0,0	monster	Ghostring	1120,1,1980000,1200000,1
 treasure02,0,0,0,0	monster	Sussurro	1179,5,0,0,0

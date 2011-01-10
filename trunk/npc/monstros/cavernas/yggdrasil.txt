@@ -8,19 +8,19 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Yggdrasil Tree Monster Spawn Script    |
+// | Nome do Script: Spawns da Caverna de Yggdrasil   		|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.1/1.0                                |
+// | Versões eA/brA: 1.1/1.1                                |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | - Anotações		   			    					| 
+// | 1.1 Script Revisado [Protimus]							|   
 // \________________________________________________________/
 
 //==================================================
-// yggdrasil01 - Hvergelmir's Fountain (Trunk of Yggdrasil)
+// yggdrasil01 - Fonte de Hvergelmir
 //==================================================
 yggdrasil01,234,256,10,10	monster	Planta Azul	1079,5,1800000,600000,0
 yggdrasil01,273,234,3,3	monster	Planta Brilhante	1083,1,1800000,600000,0

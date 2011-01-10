@@ -8,19 +8,19 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Umbala Dungeon Monster Spawn Script    |
+// | Nome do Script: Spawns da Caverna de Umbala			|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.4/1.0                                |
+// | Versões eA/brA: 1.4/1.1                                |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | - Anotações		   			    					| 
+// | 1.1 Script Revisado [Protimus]							|   
 // \________________________________________________________/
 
 //==================================================
-// um_dun01 - Carpenter's Shop in the Tree
+// um_dun01 - 
 //==================================================
 um_dun01,0,0,0,0	monster	Atirador de Pedras	1495,70,0,0,0
 um_dun01,0,0,0,0	monster	Guerreiro Wootan	1499,10,0,0,0
@@ -29,7 +29,7 @@ um_dun01,0,0,0,0	monster	Planta Amarela	1081,5,180000,90000,1
 um_dun01,0,0,0,0	monster	Planta Verde	1080,5,180000,90000,1
 
 //==================================================
-// um_dun02 - Passage to a Foreign World
+// um_dun02 - Passagem para o Mundo Exterior
 //==================================================
 um_dun02,0,0,0,0	monster	Golem de Madeira	1497,50,0,0,0
 um_dun02,79,227,10,10	monster	Golem de Madeira	1497,2,240000,60000,0

@@ -8,19 +8,19 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Moscovia Dungeon Monster Spawn Script  |
+// | Nome do Script: Spawns da Caverna de Moscóvia		    |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.3/1.0                                |
+// | Versões eA/brA: 1.3/1.1                                |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | - Anotações		   			    					| 
+// | 1.1 Script Revisado [Protimus]							|   
 // \________________________________________________________/
 
 //==================================================
-// mosk_dun01 - Moscovia Dungeon 1
+// mosk_dun01 - Moscóvia - 1° Andar
 //==================================================
 mosk_dun01,64,236,100,100	monster	Leshij	1880,15,10000,0,1
 mosk_dun01,64,236,100,100	monster	Les	1881,7,10000,0,1
@@ -36,7 +36,7 @@ mosk_dun01,0,0,0,0	monster	Poporing	1031,20,10000,0,1
 mosk_dun01,0,0,0,0	monster	Mantis	1139,10,20000,0,0
 
 //==================================================
-// mosk_dun02 - Moscovia Dungeon 2
+// mosk_dun02 - Moscóvia - 2° Andar
 //==================================================
 mosk_dun02,0,0,0,0	monster	Leshij	1880,30,10000,10000,1
 mosk_dun02,0,0,0,0	monster	Les	1881,40,10000,10000,1
@@ -44,7 +44,7 @@ mosk_dun02,0,0,0,0	monster	Baba-Yaga	1882,20,20000,10000,1
 mosk_dun02,0,0,0,0	monster	Kikimora	1883,5,20000,10000,1
 
 //==================================================
-// mosk_dun03 - Moscovia Dungeon 3
+// mosk_dun03 - Moscóvia - 3° Andar
 //==================================================
 mosk_dun03,0,0,0,0	monster	Baba-Yaga	1882,60,10000,10000,1
 mosk_dun03,0,0,0,0	monster	Kikimora	1883,35,20000,10000,1

@@ -8,19 +8,19 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Ant Hell Monster Spawn Script          |
+// | Nome do Script: Spawns do Formigueiro Infernal		    |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.2/1.0                                |
+// | Versões eA/brA: 1.2/1.1                                |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | - Anotações		   			    					| 
+// | 1.1 Script Revisado [Protimus]							|
 // \________________________________________________________/
 
 //==================================================
-// anthell01 - Ant Hell F1
+// anthell01 - Formigueiro Infernal - 1° Andar
 //==================================================
 anthell01,0,0,0,0	monster	Familiar	1005,20,0,0,0
 anthell01,0,0,0,0	monster	Andre	1095,15,0,0,0
@@ -118,7 +118,7 @@ anthell01,102,121,0,0	monster	Ovo de Andre	1097,1,60000,30000,0
 anthell01,105,124,0,0	monster	Ovo de Andre	1097,1,60000,30000,0
 
 //==================================================
-// anthell02 - Ant Hell F2
+// anthell02 - Formigueiro Infernal - 2° Andar
 //==================================================
 anthell02,0,0,0,0	monster	Ovo de Andre	1097,15,0,0,0
 anthell02,0,0,0,0	monster	Familiar	1005,20,0,0,0

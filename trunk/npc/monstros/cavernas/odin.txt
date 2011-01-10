@@ -8,19 +8,19 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Odin Temple Monster Spawn Script	    |
+// | Nome do Script: Spawns da Caverna do Templo de Odin	|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.2/1.0                                |
+// | Versões eA/brA: 1.2/1.1                                |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | - Anotações		   			    					| 
+// | 1.1 Script Revisado [Protimus]							|  
 // \________________________________________________________/
 
 //==================================================
-// odin_tem01 - Odin Temple F1
+// odin_tem01 - Templo de Odin - 1° Andar
 //==================================================
 odin_tem01,0,0,0,0	monster	Breeze	1692,10,300000,240000,0
 odin_tem01,0,0,0,0	monster	Plasma	1697,3,900000,300000,0
@@ -35,7 +35,7 @@ odin_tem01,0,0,0,0	monster	Planta Amarela	1081,5,60000,30000,1
 odin_tem01,0,0,0,0	monster	Planta Azul	1079,5,600000,300000,1
 
 //==================================================
-// odin_tem02 - Odin Temple F2
+// odin_tem02 - Templo de Odin - 2° Andar
 //==================================================
 odin_tem02,0,0,0,0	monster	Plasma	1693,15,900000,300000,0
 odin_tem02,0,0,0,0	monster	Skeggiold	1754,1,1800000,0,0
@@ -51,7 +51,7 @@ odin_tem02,0,0,0,0	monster	Valquíria	1765,1,5400000,1800000,0
 odin_tem02,0,0,0,0	monster	Planta Azul	1079,10,1800000,900000,1
 
 //==================================================
-// odin_tem03 - Odin Temple F3
+// odin_tem03 - Templo de Odin - 3° Andar
 //==================================================
 odin_tem03,0,0,0,0	monster	Plasma	1693,20,900000,300000,0
 odin_tem03,0,0,0,0	monster	Skeggiold	1754,16,0,0,0

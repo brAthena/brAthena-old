@@ -8,18 +8,18 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Clock Tower Monster Spawn Script	    |
+// | Nome do Script: Spawns da Caverna da Torre do Relógio	|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0                                |
+// | Versões eA/brA: 1.0/1.1                                |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | - Anotações		   			    					| 
+// | 1.1 Script Revisado [Protimus]							|
 // \________________________________________________________/
 //==================================================
-// c_tower1 - Clock Tower F1
+// c_tower1 - Torre do Relógio - 1° Andar (Superior)
 //==================================================
 c_tower1,0,0,0,0	monster	Punk	1199,70,0,0,0
 c_tower1,0,0,0,0	monster	Rideword	1195,70,0,0,0
@@ -27,7 +27,7 @@ c_tower1,0,0,0,0	monster	Gerente	1270,1,0,0,0
 c_tower1,0,0,0,0	monster	Bathory	1102,1,0,0,0
 
 //==================================================
-// c_tower2 - Clock Tower F2
+// c_tower2 - Torre do Relógio - 2° Andar (Superior)
 //==================================================
 c_tower2,0,0,0,0	monster	Punk	1199,40,0,0,0
 c_tower2,0,0,0,0	monster	Relógio	1269,40,0,0,0
@@ -43,7 +43,7 @@ c_tower2,0,0,0,0	monster	Ancião	1377,1,3600000,1800000,0
 c_tower2,0,0,0,0	monster	Ancião	1377,1,3600000,1800000,0
 
 //==================================================
-// c_tower3 - Clock Tower F3
+// c_tower3 - Torre do Relógio - 3° Andar (Superior)
 //==================================================
 c_tower3,0,0,0,0	monster	Alarme	1193,80,0,0,0
 c_tower3,0,0,0,0	monster	Rideword	1195,5,0,0,0
@@ -52,7 +52,7 @@ c_tower3,0,0,0,0	monster	Mímico	1191,7,0,0,0
 c_tower3,0,0,0,0	monster	Gerente	1270,3,0,0,0
 
 //==================================================
-// c_tower4 - Clock Tower F4
+// c_tower4 - Torre do Relógio - 4° Andar (Superior)
 //==================================================
 c_tower4,0,0,0,0	monster	Gerente	1270,2,1800000,0,0
 c_tower4,0,0,0,0	monster	Gerente	1270,1,3600000,0,0

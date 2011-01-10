@@ -8,15 +8,15 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Veins Fields Monster Spawn Script	    |
+// | Nome do Script: Spawns dos Campos de Veins				|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.7/1.0                                |
+// | Versões eA/brA: 1.7/1.1                                |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | - Anotações		   			    					| 
+// | 1.1 Script Revisado [Protimus]							|  
 // \________________________________________________________/
 
 //======== [Veins Field-01] ==================================

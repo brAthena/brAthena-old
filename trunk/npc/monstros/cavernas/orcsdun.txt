@@ -8,19 +8,19 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Orc Dungeon Monster Spawn Script	    |
+// | Nome do Script: Spawns da Caverna dos Orcs			    |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.2/1.0                                |
+// | Versões eA/brA: 1.2/1.1                                |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | - Anotações		   			    					| 
+// | 1.1 Script Revisado [Protimus]							|  
 // \________________________________________________________/
 
 //==================================================
-// orcsdun01 - Orc Dungeon F1
+// orcsdun01 - Caverna dos Orcs - 1° Andar
 //==================================================
 orcsdun01,0,0,0,0	monster	ChonChon de Aço	1042,10,0,0,0
 orcsdun01,0,0,0,0	monster	Familiar	1005,15,0,0,0
@@ -35,7 +35,7 @@ orcsdun01,83,50,5,5	monster	Planta Branca	1082,2,180000,90000,1
 orcsdun01,58,67,10,10	monster	Planta Branca	1082,3,180000,90000,1
 
 //==================================================
-// orcsdun02 - Orc Dungeon F2
+// orcsdun02 - Caverna dos Orcs - 2° Andar
 //==================================================
 orcsdun02,0,0,0,0	monster	ChonChon de Aço	1042,20,0,0,0
 orcsdun02,0,0,0,0	monster	Drainliar	1111,20,0,0,0

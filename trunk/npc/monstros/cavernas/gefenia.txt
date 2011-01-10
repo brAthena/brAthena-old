@@ -8,15 +8,15 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Geffenia Dungeon Monster Spawn Script  |
+// | Nome do Script: Spawns de Geffenia						|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.1/1.0                                |
+// | Versões eA/brA: 1.1/1.1                                |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | - Anotações		   			    					| 
+// | 1.1 Script Revisado [Protimus]							| 
 // \________________________________________________________/
 
 //==================================================
@@ -76,9 +76,9 @@ gefenia04,0,0,0,0	monster	Executor	1205,1,18000000,14400000,0
 gefenia04,0,0,0,0	monster	Tirfing	1204,1,18000000,14400000,0
 
 
-//The spawns bellow, are old ones that were used in events.
+// Os Spawns abaixo são antigos, porém permanecem para uso de eventos.
 //==================================================
-// gefenia01 - Geffenia (Old)
+// gefenia01 - Geffenia
 //==================================================
 //gefenia01,0,0,0,0	monster	Anjo Fajuto	1371,10,0,0,0
 //gefenia01,0,0,0,0	monster	Diabinho	1292,6,300000,0,0
@@ -91,7 +91,7 @@ gefenia04,0,0,0,0	monster	Tirfing	1204,1,18000000,14400000,0
 //gefenia01,0,0,0,0	monster	Mysteltainn	1203,1,7200000,3600000,1
 
 //==================================================
-// gefenia02 - Geffenia (Old)
+// gefenia02 - Geffenia
 //==================================================
 //gefenia02,0,0,0,0	monster	Anjo Fajuto	1371,10,0,0,0
 //gefenia02,0,0,0,0	monster	Succubus	1370,6,0,0,0
@@ -105,7 +105,7 @@ gefenia04,0,0,0,0	monster	Tirfing	1204,1,18000000,14400000,0
 //gefenia02,0,0,0,0	monster	Quimera	1283,1,7200000,3600000,1
 
 //==================================================
-// gefenia03 - Geffenia (Old)
+// gefenia03 - Geffenia
 //==================================================
 //gefenia03,0,0,0,0	monster	Anjo Fajuto	1371,4,0,0,0
 //gefenia03,0,0,0,0	monster	Succubus	1370,5,0,0,0
@@ -120,7 +120,7 @@ gefenia04,0,0,0,0	monster	Tirfing	1204,1,18000000,14400000,0
 //gefenia03,0,0,0,0	monster	Barão Coruja	1295,1,0,0,0
 
 //==================================================
-// gefenia04 - Geffenia (Old)
+// gefenia04 - Geffenia
 //==================================================
 //gefenia04,0,0,0,0	monster	Anjo Fajuto	1371,10,0,0,0
 //gefenia04,0,0,0,0	monster	Succubus	1370,5,0,0,0

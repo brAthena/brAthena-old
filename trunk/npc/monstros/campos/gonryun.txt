@@ -8,19 +8,19 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Gon Ryun Monster Spawn Script          |
+// | Nome do Script: Spawns dos Campos de Gonryun			|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.1/1.0                                |
+// | Versões eA/brA: 1.1/1.1                                |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | - Anotações		  			    					| 
+// | 1.1 Script Revisado [Protimus]							|
 // \________________________________________________________/
 
 //==================================================
-// gon_fild01 - Gonryun Field
+// gon_fild01 - Campos de Gonryun
 //==================================================
 gon_fild01,0,0,0,0	monster	Filhote de Leopardo	1415,40,600000,300000,0
 gon_fild01,0,0,0,0	monster	Zipper	1417,20,0,0,0

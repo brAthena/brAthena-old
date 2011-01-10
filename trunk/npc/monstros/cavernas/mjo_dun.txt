@@ -8,27 +8,26 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Coal Mine(Dead pit) Dungeon Monster    | 
-// | Spawn Script 					    					|
+// | Nome do Script: Spawns da Caverna de Mina de Carvão	| 
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.1/1.0                                |
+// | Versões eA/brA: 1.1/1.1                                |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | - Anotações		   			    					| 
+// | 1.1 Script Revisado [Protimus]							|  
 // \________________________________________________________/
 
 //==================================================
-// mjo_dun01 - Mjolnir Dead Pit F1
+// mjo_dun01 - Mjolnir - 1° Andar
 //==================================================
 mjo_dun01,0,0,0,0	monster	Familiar	1005,30,0,0,0
 mjo_dun01,0,0,0,0	monster	Tarou	1175,60,0,0,0
 mjo_dun01,0,0,0,0	monster	Martin	1145,20,0,0,0
 
 //==================================================
-// mjo_dun02 - Mjolnir Dead Pit F2
+// mjo_dun02 - Mjolnir - 2° Andar
 //==================================================
 mjo_dun02,0,0,0,0	monster	Martin	1145,60,0,0,0
 mjo_dun02,0,0,0,0	monster	Drainliar	1111,20,0,0,0
@@ -36,7 +35,7 @@ mjo_dun02,0,0,0,0	monster	Esqueleto Operário	1169,20,0,0,0
 mjo_dun02,0,0,0,0	monster	Giearth	1121,35,30000,10000,0
 
 //==================================================
-// mjo_dun03 - Mjolnir Dead Pit F3
+// mjo_dun03 - Mjolnir - 3° Andar
 //==================================================
 mjo_dun03,0,0,0,0	monster	Martin	1145,5,0,0,0
 mjo_dun03,0,0,0,0	monster	Esqueleto Operário	1169,70,0,0,0

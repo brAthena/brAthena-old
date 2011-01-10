@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Ice Dungeon Monster Spawn Script	    |
+// | Nome do Script: Spawns da Caverna de Gelo				|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
@@ -16,11 +16,11 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | - Anotações		   			    					| 
+// | 1.1 Script Revisado [Protimus]							| 
 // \________________________________________________________/
 
 //==================================================
-// ice_dun01 - Ice Cave
+// ice_dun01 - Caverna de Gelo
 //==================================================
 ice_dun01,0,0,0,0	monster	Siroma	1776,75,0,0,0
 ice_dun01,0,0,0,0	monster	Roween	1782,5,0,0,0
@@ -28,7 +28,7 @@ ice_dun01,0,0,0,0	monster	Gazeti	1778,2,0,0,0
 ice_dun01,0,0,0,0	monster	Muscipular	1780,5,0,0,0
 
 //==================================================
-// ice_dun02 - Ice Cave
+// ice_dun02 - Caverna de Gelo
 //==================================================
 ice_dun02,0,0,0,0	monster	Yeti	1775,70,0,0,0
 ice_dun02,0,0,0,0	monster	Siroma	1776,30,0,0,0
@@ -52,7 +52,7 @@ ice_dun02,143,28,3,3	monster	Estalactite	1789,1,1020000,300000,0
 ice_dun02,280,20,5,5	monster	Estalactite	1789,1,960000,300000,0
 
 //==================================================
-// ice_dun03 - Ice Cave
+// ice_dun03 - Caverna de Gelo
 //==================================================
 ice_dun03,0,0,0,0	monster	Titã de Gelo	1777,12,0,0,0
 ice_dun03,0,0,0,0	monster	Titã de Gelo	1777,10,7200000,3600000,0

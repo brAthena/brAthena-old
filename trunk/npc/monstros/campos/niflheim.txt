@@ -8,19 +8,19 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Niflheim Monster Spawn Script          |
+// | Nome do Script: Spawns dos Campos de Niflheim     	    |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.6/1.0                                |
+// | Versões eA/brA: 1.6/1.1                                |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | - Anotações		   			   						| 
+// | 1.1 Script Revisado [Protimus]							| 
 // \________________________________________________________/
 
 //==================================================
-// nif_fild01 - Skellington, a Solitary Village in Niflheim
+// nif_fild01 - Skellington
 //==================================================
 nif_fild01,0,0,0,0	monster	Mascarado	1506,20,0,0,0
 nif_fild01,0,0,0,0	monster	Mascarado	1506,30,300000,120000,0
@@ -31,7 +31,7 @@ nif_fild01,0,0,0,0	monster	Poltergeist	1510,10,0,0,0
 nif_fild01,0,0,0,0	monster	Quve	1508,30,0,0,0
 
 //==================================================
-// nif_fild02 - Valley of Gyoll
+// nif_fild02 - Vale de Gyoll
 //==================================================
 nif_fild02,366,236,15,15	monster	Lude	1509,10,360000,150000,0
 nif_fild02,356,139,10,10	monster	Serial Killer	1507,1,1200000,600000,0
@@ -50,7 +50,7 @@ nif_fild02,0,0,0,0	monster	Poltergeist	1510,6,0,0,0
 nif_fild02,0,0,0,0	monster	Árvore Maldita	1503,10,0,0,0
 
 //==================================================
-// niflheim - Niflheim, Realm of the Dead
+// niflheim - Niflheim, Reino dos Mortos
 //==================================================
 niflheim,0,0,0,0	monster	Dullahan	1504,5,1800000,1200000,0
 niflheim,0,0,0,0	monster	Árvore Maldita	1503,10,1200000,600000,0

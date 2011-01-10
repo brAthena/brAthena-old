@@ -8,19 +8,19 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Umbala Fields Monster Spawn Script     |
+// | Nome do Script: Spawns dos Campos de Umbala		    |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.4/1.0                                |
+// | Versões eA/brA: 1.4/1.1                                |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | - Anotações		   			    					| 
+// | 1.1 Script Revisado [Protimus]							| 
 // \________________________________________________________/
 
 //==================================================
-// um_fild01 - Luluka Forest
+// um_fild01 - Floresta Luluka
 //==================================================
 um_fild01,0,0,0,0	monster	Guerreiro Wootan	1499,10,0,0,0
 um_fild01,0,0,0,0	monster	Talo de Verme	1215,15,0,0,0
@@ -32,7 +32,7 @@ um_fild01,0,0,0,0	monster	Planta Amarela	1081,10,180000,90000,1
 um_fild01,0,0,0,0	monster	Planta Brilhante	1083,6,180000,90000,1
 
 //==================================================
-// um_fild02 - Hoomga Forest
+// um_fild02 - Floresta Hoomga
 //==================================================
 um_fild02,0,0,0,0	monster	Koko	1104,10,0,0,0
 um_fild02,0,0,0,0	monster	Choco	1214,5,0,0,0
@@ -69,7 +69,7 @@ um_fild02,0,0,0,0	monster	Planta Vermelha	1078,5,180000,90000,1
 um_fild02,0,0,0,0	monster	Planta Amarela	1081,5,180000,90000,1
 
 //==================================================
-// um_fild03 - Kalala Swamp
+// um_fild03 - Pântano Kalala
 //==================================================
 um_fild03,0,0,0,0	monster	Parasita	1500,95,0,0,0
 um_fild03,0,0,0,0	monster	Lavadeira	1321,20,0,0,0
@@ -80,7 +80,7 @@ um_fild03,0,0,0,0	monster	Planta Verde	1080,10,180000,90000,1
 um_fild03,0,0,0,0	monster	Planta Brilhante	1083,2,180000,90000,1
 
 //==================================================
-// um_fild04 - Hoomga Jungle
+// um_fild04 - Floresta Hoomga 
 //==================================================
 um_fild04,0,0,0,0	monster	Besouro-Rei	1494,30,0,0,0
 um_fild04,0,0,0,0	monster	Besouro-Chifre	1128,15,0,0,0

@@ -8,19 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: City Monster Spawn Script	            |
+// | Nome do Script: Spawn de Monstros em Cidades	        |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.1/1.0                                |
+// | Versões eA/brA: 1.1/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: Sumona monstros para limpar a cidade. 	    |
-// | Aparentemente summona no kRO e no iRO.	            	|
-// | Ative isso se desejar.                                 |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | - Anotações		   			    					| 
+// | 1.1 Script Revisado [Protimus]							|
 // \________________________________________________________/
 
 prontera,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
@@ -37,12 +35,12 @@ amatsu,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
 gonryun,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
 
 //==================================================
-// einbech - Einbech, The Mining Village
+// Einbech
 //==================================================
 einbech,0,0,0,0	monster	Rosa Selvagem	1261,1,3600000,3000000,0
 einbech,0,0,0,0	monster	Tarou	1175,5,1800000,1500000,0
 
 //==================================================
-// payon_in02 - Inside Payon
+// payon_in02 - Dentro de Payon
 //==================================================
 payon_in02,23,68,5,5	monster	Besouro-Ladrão	1051,7,1200000,600000,0

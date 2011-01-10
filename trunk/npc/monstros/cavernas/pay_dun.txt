@@ -8,19 +8,19 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Payon Cave Monster Spawn Script	    |
+// | Nome do Script: Spawns da Caverna de Payon			    |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.3/1.0                                |
+// | Versões eA/brA: 1.3/1.1                                |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | - Anotações		   			    					| 
+// | 1.1 Script Revisado [Protimus]							|   
 // \________________________________________________________/
 
 //==================================================
-// pay_dun00 - Payon Cave F1
+// pay_dun00 - Caverna de Payon
 //==================================================
 pay_dun00,0,0,0,0	monster	Familiar	1005,15,0,0,0
 pay_dun00,0,0,0,0	monster	Zumbi	1015,20,0,0,0
@@ -30,7 +30,7 @@ pay_dun00,0,0,0,0	monster	Planta Vermelha	1078,15,180000,90000,1
 pay_dun00,140,140,5,5	monster	Cogumelo Negro	1084,3,360000,180000,1
 
 //==================================================
-// pay_dun01 - Payon Cave F2
+// pay_dun01 - Caverna de Payon - 1° Andar
 //==================================================
 pay_dun01,0,0,0,0	monster	Drainliar	1111,5,0,0,0
 pay_dun01,0,0,0,0	monster	Eggyra	1116,15,0,0,0
@@ -40,7 +40,7 @@ pay_dun01,235,54,10,10	monster	Cogumelo Negro	1084,7,900000,450000,1
 pay_dun01,0,0,0,0	monster	Planta Vermelha	1078,10,180000,90000,1
 
 //==================================================
-// pay_dun02 - Payon Cave F3
+// pay_dun02 - Caverna de Payon - 2° Andar
 //==================================================
 pay_dun02,0,0,0,0	monster	Esqueleto Soldado	1028,15,180000,90000,1
 pay_dun02,0,0,0,0	monster	Munak	1026,40,0,0,0
@@ -91,7 +91,7 @@ pay_dun02,197,113,10,10	monster	Planta Vermelha	1078,4,180000,90000,1
 pay_dun02,55,254,10,10	monster	Planta Vermelha	1078,4,180000,90000,1
 
 //==================================================
-// pay_dun03 - Payon Cave F4
+// pay_dun03 - Caverna de Payon - 3° Andar
 //==================================================
 pay_dun03,0,0,0,0	monster	Sohee	1170,50,0,0,0
 pay_dun03,0,0,0,0	monster	Munak	1026,3,0,0,0
@@ -150,7 +150,7 @@ pay_dun03,246,56,20,20	monster	Planta Branca	1082,3,180000,90000,1
 pay_dun03,52,262,10,4	monster	Planta Branca	1082,2,180000,90000,1
 
 //==================================================
-// pay_dun04 - Payon Cave F5
+// pay_dun04 - Caverna de Payon - 4° Andar
 //==================================================
 pay_dun04,0,0,0,0	monster	Dokebi	1110,40,0,0,0
 pay_dun04,0,0,0,0	monster	Horong	1129,30,0,0,0

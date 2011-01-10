@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0086 - 10/10/2011 [Protimus]
+	* Modificado nome de refinador_avançado.txt para refinador_avancado.txt
+	- Procurem não usar acentos nos nomes de arquivos dos NPCs.
+	* Revisado npcs da pasta de monstros.
+	- O que estiver sem uma especificação é porque eu não soube o nome de cabeça e é necessário por depois.
+
 	r0085 - 10/10/2011 [Protimus]
 	* Adionadas traduções de npcs da pasta de classes.
 	- classes/2-2/alquimista.txt
