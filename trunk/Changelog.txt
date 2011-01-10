@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0085 - 10/10/2011 [Protimus]
+	* Adionadas traduções de npcs da pasta de classes.
+	- classes/2-2/alquimista.txt
+	- classes/2-2/bardo.txt
+
 	r0084 - 09/10/2011 [Protimus]
 	* Revisado npc da pasta de instancias:
 	- instancias/memorial_orc.txt
