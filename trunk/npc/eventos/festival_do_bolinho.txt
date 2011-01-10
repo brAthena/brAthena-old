@@ -1,91 +1,91 @@
-//  ________________________________________________________
-// /                                                        \
-// |       _           _   _   _                            |
-// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
-// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
-// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
-// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |                                                        |
-// |                    brAthena Script                     |
-// |--------------------------------------------------------|
-// | Nome do Script: Imitation of Dumpling Festival         |
-// |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team                           |
-// |--------------------------------------------------------|
-// | Versões eA/brA: 1.01/1.0                               |
-// |--------------------------------------------------------|
-// | Descrição:                                             |
-// | A complete redering of the Dumpling Festival.          |
-// |--------------------------------------------------------|
-// | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			   						|
-// \________________________________________________________/
-  
-payon,93,81,4	script	Exorcist Master Fahae	834,{
+//  ____________________________________________________________
+// /                                                            \
+// |       _           _   _   _                                |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _           |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |          |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |          |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|          |
+// |                                                            |
+// |                    brAthena Script                         |
+// |------------------------------------------------------------|
+// | Nome do Script: Imitação do Festival do Bolinho            |
+// |------------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                               |
+// |------------------------------------------------------------|
+// | Versões eA/brA: 1.02/1.1                                   |
+// |------------------------------------------------------------|
+// | Descrição:                                                 |
+// | A interpretação completa do Festival do Bolinho.           |
+// |------------------------------------------------------------|
+// | Changelog:                                                 |
+// | 1.1 Modificação [Heaven]                                   |
+// | - Traduzido                                                | 
+// \____________________________________________________________/
 
-	mes "[Exorcist Master Fahae]";
-	mes "Greetings young warrior, I'm the Exorcist Master Fahae.";
-	mes "I have been tracking the elusive Bacsojin for some time.";
-	next;
-	mes "[Exorcist Master Fahae]";
-	mes "I feel it is time I let another warrior try to complete";
-	mes "my quest. I have some items to assist you in my quest.";
-	next;
-	menu "I wish to buy",-, "No thanks",M_FIN;
+payon,93,81,4   script  Mestre Exorcista Fahae  834,{
+
+        mes "[Mestre Exorcista Fahae]";
+        mes "Saudações jovem guerreiro, eu sou o Mestre Exorcista Fahae.";
+        mes "Eu estive seguindo a esquiva Lady Branca por algum tempo.";
+        next;
+        mes "[Mestre Exorcista Fahae]";
+        mes "Sinto que é hora de outro guerreiro tentar completar";
+        mes "minha busca. Eu tenho alguns itens para ajudá-lo a completá-la.";
+        next;
+        menu "Gostaria de comprar",-, "Não, obrigado",M_FIN;
   
-	mes "[Exorcist Master Fahae]";
-	mes "I have 2 items which might become useful to you.";
-	next;
-	menu "Realgar Wine",-, "Exorcize Herb",M_HERB;
+        mes "[Mestre Exorcista Fahae]";
+        mes "Eu tenho dois item que podem ser úteis a você.";
+        next;
+        menu "Bebida de Realgar",-, "Erva de Exorcismo",M_HERB;
   
-	mes "[Exorcist Master Fahae]";
-	mes "How many do you require?";
-	mes "You may only buy 5 at one time.";
-	mes "Each costs 20000z.";
-	mes "(Type in 0 to cancel)";
-	next;
-	input @input;
-	if(@input==0) close;
-	if(@input>5) goto L_SORRY;
-	if(Zeny< @input*20000) goto L_NOZENY;
-	set Zeny,Zeny-20000*@input;
-	getitem 682,@input;
-	mes "[Exorcist Master Fahae]";
-	mes "Here you go, I hope you may succeed in my quest.";
-	close;
+        mes "[Mestre Exorcista Fahae]";
+        mes "Quantas você precisa?";
+        mes "Você só pode comprar 5 de cada vez.";
+        mes "Cada uma custa 20000z.";
+        mes "(Digite 0 para cancelar)";
+        next;
+        input @input;
+        if(@input==0) close;
+        if(@input>5) goto L_SORRY;
+        if(Zeny< @input*20000) goto L_NOZENY;
+        set Zeny,Zeny-20000*@input;
+        getitem 682,@input;
+        mes "[Mestre Exorcista Fahae]";
+        mes "Aqui você vai, espero que você tenha sucesso em minha busca.";
+        close;
   
 L_SORRY:
-	mes "[Exorcist Master Fahae]";
-	mes "You must not be stingy, it is the path of God to be honest.";
-	close;
+        mes "[Mestre Exorcista Fahae]";
+        mes "Você não deve ser pão-duro, este é o caminho de Deus para ser honesto.";
+        close;
   
 M_FIN:
-	mes "[Exorcist Master Fahae]";
-	mes "The path of fully venquishing evil is far, help me in the way of God.";
-	close;
+        mes "[Mestre Exorcista Fahae]";
+        mes "O caminho da plena vitória do demônio está longe, me ajude no caminho de Deus.";
+        close;
   
 M_HERB:
-	mes "[Exorcist Master Fahae]";
-	mes "How many do you require?";
-	mes "You may only buy 5 at one time.";
-	mes "Each costs 10000z.";
-	mes "(Type in 0 to cancel)";
-	next;
-	input @input;
-	if(@input==0) close;
-	if(@input>5) goto L_SORRY;
-	if(Zeny< @input*10000) goto L_NOZENY;
-	set Zeny,Zeny-10000*@input;
-	getitem 683,@input;
-	mes "[Exorcist Master Fahae]";
-	mes "Here you go, I hope you may succeed in my quest.";
-	close;
+        mes "[Mestre Exorcista Fahae]";
+        mes "Quantas você precisa?";
+        mes "Você só pode comprar 5 de cada vez.";
+        mes "Cada uma custa 10000z.";
+        mes "(Digite 0 para cancelar)";
+        next;
+        input @input;
+        if(@input==0) close;
+        if(@input>5) goto L_SORRY;
+        if(Zeny< @input*10000) goto L_NOZENY;
+        set Zeny,Zeny-10000*@input;
+        getitem 683,@input;
+        mes "[Mestre Exorcista Fahae]";
+        mes "Aqui você vai, espero que você tenha sucesso em minha busca.";
+        close;
 
 L_NOZENY:
-	mes "[Exorcist Master Fahae]";
-	mes "Money doesn't bring joy to everyone, but we need it to support the temple and myself. Please, try to kill some monsters and take their drops.";
-	close;
+        mes "[Mestre Exorcista Fahae]";
+        mes "Dinheiro não traz alegra a todos, mas nós precisamos dele para sutentar o templo e eu. Por favor, tente matar alguns monstros e pegue seus drops.";
+        close;
 }
   
 //////////////////////////////////////////////
@@ -93,28 +93,28 @@ L_NOZENY:
 //////////////////////////////////////////////
   
 // ~Dumpling~
-gef_fild00,0,0,0,0	monster	Dumpling	1520,20,60000,66000
-gef_fild07,0,0,0,0	monster	Dumpling	1520,20,60000,66000
-gef_fild04,0,0,0,0	monster	Dumpling	1520,20,60000,66000
-gef_fild00,0,0,0,0	monster	Dumpling	1520,20,60000,66000
-prt_fild06,0,0,0,0	monster	Dumpling	1520,20,60000,66000
-prt_fild01,0,0,0,0	monster	Dumpling	1520,20,60000,66000
-prt_fild05,0,0,0,0	monster	Dumpling	1520,20,60000,66000
-prt_fild08,0,0,0,0	monster	Dumpling	1520,20,60000,66000
-pay_fild04,0,0,0,0	monster	Dumpling	1520,20,60000,66000
-moc_fild02,0,0,0,0	monster	Dumpling	1520,20,60000,66000
-pay_fild01,0,0,0,0	monster	Dumpling	1520,20,60000,66000
-pay_fild07,0,0,0,0	monster	Dumpling	1520,20,60000,66000
-moc_fild03,0,0,0,0	monster	Dumpling	1520,20,60000,66000
-pay_fild06,0,0,0,0	monster	Dumpling	1520,20,60000,66000
-pay_fild05,0,0,0,0	monster	Dumpling	1520,20,60000,66000
-pay_fild02,0,0,0,0	monster	Dumpling	1520,20,60000,66000
-pay_fild09,0,0,0,0	monster	Dumpling	1520,20,60000,66000
+gef_fild00,0,0,0,0      monster Bolinho de Massa        1520,20,60000,66000
+gef_fild07,0,0,0,0      monster Bolinho de Massa        1520,20,60000,66000
+gef_fild04,0,0,0,0      monster Bolinho de Massa        1520,20,60000,66000
+gef_fild00,0,0,0,0      monster Bolinho de Massa        1520,20,60000,66000
+prt_fild06,0,0,0,0      monster Bolinho de Massa        1520,20,60000,66000
+prt_fild01,0,0,0,0      monster Bolinho de Massa        1520,20,60000,66000
+prt_fild05,0,0,0,0      monster Bolinho de Massa        1520,20,60000,66000
+prt_fild08,0,0,0,0      monster Bolinho de Massa        1520,20,60000,66000
+pay_fild04,0,0,0,0      monster Bolinho de Massa        1520,20,60000,66000
+moc_fild02,0,0,0,0      monster Bolinho de Massa        1520,20,60000,66000
+pay_fild01,0,0,0,0      monster Bolinho de Massa        1520,20,60000,66000
+pay_fild07,0,0,0,0      monster Bolinho de Massa        1520,20,60000,66000
+moc_fild03,0,0,0,0      monster Bolinho de Massa        1520,20,60000,66000
+pay_fild06,0,0,0,0      monster Bolinho de Massa        1520,20,60000,66000
+pay_fild05,0,0,0,0      monster Bolinho de Massa        1520,20,60000,66000
+pay_fild02,0,0,0,0      monster Bolinho de Massa        1520,20,60000,66000
+pay_fild09,0,0,0,0      monster Bolinho de Massa        1520,20,60000,66000
   
 // ~Bacsojin~
-moc_fild03,0,0,0,0	monster	Bacsojin	1518,1,60000,66000
+moc_fild03,0,0,0,0      monster Lady Branca     1518,1,60000,66000
   
 // ~Chung E~
-moc_fild03,0,0,0,0	monster	Chung E	1519,1,60000,66000
-moc_fild13,0,0,0,0	monster	Chung E	1519,1,60000,66000
-pay_fild01,0,0,0,0	monster	Chung E	1519,1,60000,66000
+moc_fild03,0,0,0,0      monster Chung E 1519,1,60000,66000
+moc_fild13,0,0,0,0      monster Chung E 1519,1,60000,66000
+pay_fild01,0,0,0,0      monster Chung E 1519,1,60000,66000
