@@ -21,95 +21,88 @@
 // | - Anotações		   			    					| 
 // \________________________________________________________/
 
-louyang,213,213,3	script	Soldier#BA::LouGuide	825,{
-	mes "[Soldier]";
-	mes "Welcome to Louyang,";
-	mes "a city with a long";
-	mes "and colorful history.";
+louyang,213,213,3	script	Soldado#BA::LouGuide	825,{
+	mes "[Soldado]";
+	mes "Este é o castelo do Dragão.";
+	mes "Um lugar como esse possui uma longa história de orgulho e espírito de guerra.";
+	mes "Porém, de uns tempos para cá, ";
+	mes "temos focado nossos esforços em desenvolver mais nosso comércio";
+	mes "com terras distantes.";
+	mes "Por esse motivo, estrangeiros podem entrar e sair mais facilmente desta região.";
 	next;
-	mes "[Soldier]";
-	mes "Recently we've developed";
-	mes "an ocean lane to accomodate";
-	mes "positive exchange with";
-	mes "foreign nations.";
-	next;
-	mes "[Soldier]";
-	mes "Louyang is well-known for various specialties in addition to its rich history. Here you can find many things unique to our land.";
-	next;
-	mes "[Soldier]";
-	mes "Please take your time";
-	mes "and we invite you to enjoy";
-	mes "your trip here in Louyang.";
+	mes "[Soldado]";
+	mes "Com uma história tão antiga, há ";
+	mes "muitas coisas para se ver.";
+	mes "Como nós nunca tínhamos negociado antes";
+	mes "Deve haver algumas coisa agradáveis ";
+	mes "e valiosas que ";
+	mes "não poderei lhe mostrar.";
+	mes "Por favor, fique quanto tempo quiser.";
 	next;
 	switch(select("Ask Building Locations.:Remove all marks from mini-map.:Cancel.")) {
 	case 1:
 		mes "[Soldier]";
-		mes "Where would you like to go?";
+		mes "O que você gostaria de conhecer?";
 		next;
-		switch(select("Dragon Castle:Doctor's Office:City Hall:Weapon Shop:Tool Shop:Tavern:Cancel")) {
+		switch(select("O Castelo:O Hospital:A Sede do Governo:A Loja de Utilidades:A Loja de Armas:A Taverna:Cancelar")) {
 		case 1:
-			mes "[Soldier]";
-			mes "The Dragon Castle is located at ^FF3355+^000000. It is where all the nobles reside, including our lord.";
-			next;
-			mes "[Soldier]";
-			mes "Since you're an outsider, I guess it would be appropriate for you to visit our lord first.";
+			mes "[Soldado]";
+			mes "O castelo está localizado em ^FF3355+^000000.";
+			mes "O castelo é o lar do seu senhor e hospeda";
+			mes "muitas pessoas de alta classe. Se for um convidado aqui,";
+			mes "primeiro vá até lá e faça uma visita.";
+			mes "Isso é uma boa etiqueta, não acha?";
 			viewpoint 1,218,255,2,0xFF3355;
 			break;
 		case 2:
-			mes "[Soldier]";
-			mes "We have a very skillful doctor.";
-			mes "You can find her office at ^CE6300+^000000.";
+			mes "[Soldado]";
+			mes "Tem um famoso professor de medicina oriental no castelo.";
 			next;
 			mes "[Soldier]";
-			mes "It is said that there";
-			mes "is no disease she cannot cure. Well, I can't guarantee if that's true or not.";
+			mes "Dizem que não há nada que ele não cure,";
+			mes "mas não sei";
+			mes "se isso é verdade ou não.";
 			viewpoint 1,263,94,3,0xCE6300;
 			break;
 		case 3:
-			mes "[Soldier]";
-			mes "We have a City Hall where the federal government operates.";
-			mes "It is located at ^A5BAAD+^000000.";
-			next;
-			mes "[Soldier]";
-			mes "If you have any problems,";
-			mes "you should talk with the";
-			mes "employees in City Hall.";
+			mes "[Soldado]";
+			mes "Existe uma sede do governo";
+			mes "em Castelo do Dragão.";
+			mes "A sede se localiza em ^A5BAAD+^000000.";
+			mes "Se estiver em apuros, vá direto para a sede do governo.";
 			viewpoint 1,309,80,4,0xA5BAAD;
 			break;
 		case 4:
-			mes "[Soldier]";
-			mes "The Weapon Shop is located at ^55FF33+^000000.";
-			next;
-			mes "[Soldier]";
-			mes "You will see";
-			mes "marvelous weapons forged";
-			mes "by the well-experienced";
-			mes "blacksmiths of Louyang.";
+			mes "[Soldado]";
+			mes "A loja de utilidades está localizada em ^55FF33+^000000.";
+			mes "Lá você encontra as melhores armas";
+			mes "feitas por ferreiros experientes.";
 			viewpoint 1,145,174,5,0x55FF33;
 			break;
 		case 5:
-			mes "[Soldier]";
-			mes "The Tool Shop is located at ^3355FF+^000000.";
+			mes "[Soldado]";
+			mes "A loja de armas está localizada em ^3355FF+^000000.";
+			mes "Para vencer sempre, conheça o seu inimigo!";
 			next;
 			mes "[Soldier]";
-			mes "Knowing your enemy";
-			mes "is half the battle!";
-			mes "It's also safer to prepare yourself than to be sorry later. Why don't you go check their supplies?";
+			mes "Você precisa estar sempre preparado.";
+			mes "E não perca tempo filosofando... Haha.";
 			viewpoint 1,135,98,6,0x3355FF;
 			break;
 		case 6:
-			mes "[Soldier]";
-			mes "When you get tired during your trip, I suggest that you visit the Tavern. It's located at ^00FF00+^000000.";
+			mes "[Soldado]";
+			mes "Se ficar cansado das suas viagens, descanse na Taverna Oriental.";
 			next;
-			mes "[Soldier]";
-			mes "The Tavern is a good place";
-			mes "to meet other tourists, as well as to hear of any news that may be helpful to know.";
+			mes "[Soldado]";
+			mes "A Taverna Oriental está localizada em ^00FF00+^000000.";
+			mes "Lá se pode escutar muitas histórias de outros viajantes.";
 			viewpoint 1,280,167,7,0x00FF00;
 			break;
 		case 7:
-			mes "[Soldier]";
-			mes "If you wish to remove all marks";
-			mes "on your mini-map, please choose 'Remove all marks from mini-map.' from the menu.";
+			mes "[Soldado]";
+			mes "Se quiser apagar as indicações no minimapa,";
+			mes "selecione no menu";
+			mes "'Limpar todas as indicações'.";
 		}
 		break;
 	case 2:
@@ -119,98 +112,94 @@ louyang,213,213,3	script	Soldier#BA::LouGuide	825,{
 		viewpoint 2,145,174,5,0xFF00FF;
 		viewpoint 2,135,98,6,0xFF00FF;
 		viewpoint 2,280,167,7,0xFF00FF;
-		mes "[Soldier]";
-		mes "There, I've erased all the marks on your mini-map. Feel free to ask me about building locations whenever you need to.";
+		mes "[Soldado]";
+		mes "Eu apaguei todas as indicações do minimapa.";
+		mes "Se quiser marcá-las de novo, fale novamente comigo.";
 		break;
 	case 3:
 		mes "[Soldier]";
-		mes "I guess it's fun";
-		mes "sometimes to go exploring";
-		mes "on your own. Take care.";
+		mes "Você pode viajar sozinho, o que também é bastante emocionante. Mas, tome cuidado.";
 	}
 	close;
 }
 
-louyang,160,175,3	duplicate(LouGuide)	Soldier#BB	825
+louyang,160,175,3	duplicate(LouGuide)	Soldado#BB	825
 
-louyang,224,104,3	script	Representative#lou	818,{
+louyang,224,104,3	script	Soldado#lou	818,{
 	mes "[Representative]";
-	mes "Welcome to Louyang,";
-	mes "an ancient land with";
-	mes "a history full of tales";
-	mes "of bravery.";
+	mes "Bem-vindo à Castelo do Dragão, que tem";
+	mes "uma história longa e vigorosa.";
 	next;
-	mes "[Representative]";
-	mes "We now provide an ocean lane to accomodate foreign travelers and intercultural exchange from which all can benefit.";
+	mes "Nós desenvolvemos um modo novo";
+	mes "de negociar com estrangeiros.";
+	mes "Depois disso, os estrangeiros ";
+	mes "puderam ir e vir com mais facilidade.";
 	next;
-	mes "[Representative]";
-	mes "Louyang is famous for";
-	mes "its elaborate history, as well as specialties that are unique to this nation. Please take your time and enjoy your stay.";
+	mes "[Soldado]";
+	mes "Com uma história tão antiga, há ";
+	mes "muitas coisas para se ver.";
+	mes "Como nós nunca tínhamos negociado antes";
+	mes "deve haver algumas coisas agradáveis ";
+	mes "e valiosas que ";
+	mes "não poderei lhe mostrar.";
+	mes "Por favor, fique quanto tempo quiser.";
 	next;
-	switch(select("Ask Building Locations.:Remove all marks from mini-map.:Cancel.")) {
+	switch(select("Pergunte sobre o mapa.:Limpar todas as indicações.:Cancelar.")) {
 	case 1:
 		set .@compass_check,1;
-		mes "[Representative]";
-		mes "Where would you like to go?";
+		mes "[Soldado]";
+		mes "O que você gostaria de conhecer?";
 		next;
-		switch(select("Dragon Castle:Doctor's Office:City Hall:Weapon Shop:Tool Shop:Tavern:Cancel")) {
+		switch(select("O Castelo:O Hospital:A Sede do Governo:A Loja de Armas:A Loja de Utilidades:A Taverna:Cancelar")) {
 		case 1:
-			mes "[Representative]";
-			mes "The Dragon Castle is located at ^FF3355+^000000. It is where all the nobles reside, including our lord.";
-			next;
-			mes "[Representative]";
-			mes "Since you're an outsider, I guess it would be appropriate for you to visit our lord first.";
+			mes "[Soldado]";
+			mes "O castelo está localizado em ^FF3355+^000000.";
+			mes "O castelo é o lar do seu senhor e hospeda";
+			mes "muitas pessoas de alta classe. Se for um convidado aqui,";
+			mes "primeiro vá até lá e faça uma visita.";
+			mes "Isso é uma boa etiqueta, não acha?";
 			viewpoint 1,218,255,2,0xFFFF33;
 			break;
 		case 2:
-			mes "[Representative]";
-			mes "We have a very skillful doctor.";
-			mes "You can find her office at ^CE6300+^000000.";
-			next;
-			mes "[Representative]";
-			mes "It is said that there";
-			mes "is no disease she cannot cure. Well, I can't guarantee if that's true or not.";
+			mes "[Soldado]";
+			mes "Tem um famoso doutor de medicina oriental no castelo.";
+			mes "^CE6300+^000000";
+			mes "Dizem que não há nada que ele não cure";
+			mes "mas não sei";
+			mes "se isso é verdade ou não.";
 			viewpoint 1,263,94,3,0xFFCE63;
 			break;
 		case 3:
-			mes "[Representative]";
-			mes "We have a City Hall where the federal government operates.";
-			mes "It is located at ^A5BAAD+^000000.";
-			next;
-			mes "[Representative]";
-			mes "If you have any problems,";
-			mes "you should talk with the";
-			mes "employees in City Hall.";
+			mes "[Soldado]";
+			mes "Existe uma sede do governo";
+			mes "no Castelo do Dragão.";
+			mes "A sede se localiza em ^A5BAAD+^000000";
+			mes "Se estiver em apuros, vá direto para a sede do governo.";
 			viewpoint 1,309,80,4,0xFF00FF;
 			break;
 		case 4:
-			mes "[Representative]";
-			mes "The Weapon Shop is located at ^55FF33+^000000.";
-			next;
-			mes "[Representative]";
-			mes "You will see";
-			mes "marvelous weapons forged";
-			mes "by the well-experienced";
-			mes "blacksmiths of Louyang.";
+			mes "[Soldado]";
+			mes "A loja de armas está localizada em ^55FF33+^000000.";
+			mes "Lá você encontra as melhores armas";
+			mes "feitas por ferreiros experientes.";
 			viewpoint 1,145,174,5,0xFF55FF;
 			break;
 		case 5:
-			mes "[Representative]";
-			mes "The Tool Shop is located at ^3355FF+^000000.";
+			mes "[Soldado]";
+			mes "A loja de utilidades está localizada em ^3355FF+^000000.";
+			mes "Para vencer sempre, conheça o seu inimigo!";
 			next;
 			mes "[Representative]";
-			mes "Knowing your enemy";
-			mes "is half the battle!";
-			mes "It's also safer to prepare yourself than to be sorry later. Why don't you go check their supplies?";
+			mes "Você precisa estar sempre preparado.";
+			mes "E não perca tempo filosofando. Haha.";
 			viewpoint 1,135,98,6,0xFF3355;
 			break;
 		case 6:
 			mes "[Representative]";
-			mes "When you get tired during your trip, I suggest that you visit the Tavern. It's located at ^00FF00+^000000.";
+			mes "Se ficar cansado das suas viagens, descanse na Taverna Oriental.";
 			next;
-			mes "[Soldier]";
-			mes "The Tavern is a good place";
-			mes "to meet other tourists, as well as to hear of any news that may be helpful to know.";
+			mes "A Taverna Oriental está localizada em ^00FF00+^000000.";
+			mes "Lá se pode escutar muitas histórias de outros viajantes.";
 			viewpoint 1,280,167,7,0xFF00FF;
 			break;
 		case 7:
@@ -226,13 +215,13 @@ louyang,224,104,3	script	Representative#lou	818,{
 		viewpoint 2,145,174,5,0xFF00FF;
 		viewpoint 2,135,98,6,0xFF00FF;
 		viewpoint 2,280,167,7,0xFF00FF;
-		mes "[Representative]";
-		mes "Done! All the marks on your mini-map are erased. Feel free to ask me about building locations whenever you need to.";
+		mes "[Soldado]";
+		mes "Eu apaguei todas as indicações do minimapa.";
+		mes "Se quer marcá-las de novo, fale novamente comigo.";
 		break;
 	case 3:
 		mes "[Representative]";
-		mes "I understand that you want to explore Louyang and see the";
-		mes "sights for yourself. Alright then, take care!";
+		mes "Você pode viajar sozinho, o que também é bastante emocionante. Mas, tome cuidado.";
 		break;
 	}
 	close;

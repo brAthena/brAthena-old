@@ -9,6 +9,15 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0091 - 11/01/2011 [Protimus]
+	* Termino de traduções de npcs da pasta de guias.
+	- guias/guias_alde.txt
+	- guias/guias_brasilis.txt
+	- guias/guias_cmd.txt
+	- guias/guias_louyang.txt
+	- guias/guias_nif.txt
+	- guias/guias_um.txt
+
 	r0090 - 11/01/2011 [Protimus]
 	* Adicionadas traduções de npcs da pasta de guias.
 	- guias/guias_ama.txt

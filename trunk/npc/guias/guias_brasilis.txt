@@ -22,17 +22,17 @@
 // \________________________________________________________/
 
 
-brasilis,219,97,3	script	Brasilis Guide	478,{
+brasilis,219,97,3	script	Guia Brasileira	478,{
 	mes "[Brasilis Guide]";
-	mes "Welcome to everyone that has come to Brasilis, a wonderfull land with";
-	mes "a warm sun shining down on us.";
-	mes "If you have any question, just ask me.";
+	mes "Boas-vindas a todos que vieram a Brasilis, uma terra apaixonada e quente como o sol que nos banha.";
+	mes "Se tiver alguma pergunta, é só falar.";
 	next;
-	switch(select("Ask where you can go.:Delete marks on the mini-map.:Cancel.")) {
+	mes "Feita em granito pelo escultor Victor Brechó, ela foi erguida para comemorar o 399° aniversário da cidade. É bem grande não?";
+	switch(select("Perguntar sobre os locais da cidade.:Apagar todas as marcas do mapa.:Cancelar.")) {
 	case 1:
 		set .@compass_check,0;
 		mes "[Brasilis Guide]";
-		mes "Where would you like to go?";
+		mes "No que você quer que eu lhe guie?";
 		if (.@compass_check == 0) {
 			mes "Would you like me";
 			mes "to mark locations";
@@ -48,10 +48,10 @@ brasilis,219,97,3	script	Brasilis Guide	478,{
 			}
 		}
 		next;
-		switch(select("Toucan Happy Inn:Jungle Cable:Art Museum:Brasilis Market:Cancel")) {
+		switch(select("Pousada:Teleférico da Selva:Museu de Arte:Feirinha de Brasilis:Cancelar")) {
 		case 1:
 			mes "[Brasilis Guide]";
-			mes "The Toucan Happy Inn is near here, it's located here ^FF0000+^000000.";
+			mes "A pousada está logo aqui em frente, .";
 			if (.@compass_check == 1) {
 				viewpoint 1,273,149,2,0xFF0000;
 			}
@@ -61,8 +61,7 @@ brasilis,219,97,3	script	Brasilis Guide	478,{
 			break;
 		case 2:
 			mes "[Brasilis Guide]";
-			mes "Want to travel to the Jungle? You can";
-			mes "go to the Jungle Cable located here ^0xCC6600+^000000.";
+			mes "Quer passear pela selva? Você pode tomar o teleférico em +";
 			if (.@compass_check == 1) {
 				viewpoint 1,308,333,3,0xCC6600;
 			}
@@ -72,7 +71,7 @@ brasilis,219,97,3	script	Brasilis Guide	478,{
 			break;
 		case 3:
 			mes "[Brasilis Guide]";
-			mes "The Art Museum, is the pride of Brasilis, it is located here ^00FF00+^000000.";
+			mes "O Museu de Arte, o orgulho de Brasilis, está em +.";
 			if (.@compass_check == 1) {
 				viewpoint 1,133,167,4,0x00FF00;
 			}
@@ -82,7 +81,7 @@ brasilis,219,97,3	script	Brasilis Guide	478,{
 			break;
 		case 4:
 			mes "[Brasilis Guide]";
-			mes "You can buy many items in the Market located here ^00FF00+^000000.";
+			mes "Você pode comprar itens diversos em +.";
 			if (.@compass_check == 1) {
 				viewpoint 1,238,248,5,0x00FF00;
 			}
@@ -106,14 +105,14 @@ brasilis,219,97,3	script	Brasilis Guide	478,{
 		viewpoint 0,238,248,5,0x00FF00;
 		set .@compass_check,0;
 		mes "[Brasilis Guide]";
-		mes "I've deleted all marks on the mini-map.";
-		mes "Whenever you'd like to put marks";
+		mes "Apaguei todas as marcas do mapa.";
+		mes "Se quiser as marcas denovo, é só pedir.";
 		mes "there, you can ask me.";
 		close;
 	case 3:
 		mes "[Brasilis Guide]";
-		mes "Exploring things here on your own can also be fun.";
-		mes "Anyway, take care.";
+		mes "Saber das coisas daqui opr conta própria também pode ser divertivo..";
+		mes "De qualquer forma, se cuide.";
 		close;
 	}
 }

@@ -21,99 +21,53 @@
 // | - Anotações		   			   						| 
 // \________________________________________________________/
 
-niflheim,107,156,6	script	Roaming Man#nif	798,{
-	mes "[Ricael]";
-	mes "You must be lost...";
-	mes "Why would anyone come";
-	mes "to this horrid, dreadful";
-	mes "place on purpose...??";
+niflheim,107,156,6	script	Homem Nervoso#nif	798,{
+	mes "[Lee karl]";
+	mes "Por que você veio a um lugar tão horrível como este? Acho que você acabou se perdendo, isso sim.";
+	mes "Eu fui atraído pelas altas árvores deste lugar. Demorou um bom tempo até eu perceber que eu estava perdido. E que não havia mais volta.";
 	next;
-	mes "[Ricael]";
-	mes "Ever since I stumbled fell down into this giant tree, I've suffered endlessly here. I've wasted years in sadness, being unable to escape Niflheim.";
+	mes "[Lee karl]";
+	mes "Eu já procurei pela saída em todos os lugares. Por isso, estou bem acostumado com o lugar.";
+	mes "Lembrar das localidades por aqui pode significar a diferença entre a vida e a morte.";
 	next;
-	mes "[Ricael]";
-	mes "But in searching for an";
-	mes "escape route, I probably know";
-	mes "this town better than anyone";
-	mes "else. I guess knowing the";
-	mes "layout might help you escape";
-	mes "if it weren't so futile.";
-	next;
-	switch(select("Ask building locations.:Remove marks on the mini-map.:Cancel.")) {
+	switch(select("Perguntar sobre a cidade.:Apagar todas as marcações no mapa.:Cancelar.")) {
 	case 1:
-		mes "[Ricael]";
-		mes "So, um, which place do you want to know about?";
+		mes "[Lee karl]";
+		mes "Então, onde você quer ir?";
 		next;
-		switch(select("Witch's castle:Tool shop:Weapon shop:Pub:Cancel")) {
+		switch(select("Castelo da Feiticeira:Loja de utilidades:Loja de armas:Hotel:Cancelar")) {
 		case 1:
-			mes "[Ricael]";
-			mes "There. I made a ^FF3355+^000000 mark";
-			mes "on your mini-map so that you can";
-			mes "go to the castle where that";
-			mes "creepy witch lives.";
-			next;
-			mes "[Ricael]";
-			mes "I went there once, but then I";
-			mes "ran away and decided that I";
-			mes "should try to not die as much";
-			mes "as possible. That's pretty";
-			mes "much my life goal here in";
-			mes "Niflheim.";
+			mes "[Lee karl]";
+			mes "Uma feiticeira medonha vive em Nifflheim.";
+			mes "^FF3355+^000000O castelo dela é logo ali.";
+			mes "Se você sentir um calafrio na espinha, saia correndo!";
 			viewpoint 1,253,191,2,0xFF3355;
 			break;
 		case 2:
-			mes "[Ricael]";
-			mes "The Tool shop is located";
-			mes "at the ^CE6300+^000000 mark I made";
-			mes "on your mini-map.";
-			next;
-			mes "[Ricael]";
-			mes "They sell some unique items that";
-			mes "you cannot find outside of this";
-			mes "town. Of course, they weren't so";
-			mes "special once I realized no";
-			mes "Potion can ease the pain I feel.";
-			mes "...I wish I was in prison.";
+			mes "[Lee karl]";
+			mes "A loja de utilidades é bem ali ^CE6300+^000000.";
+			mes "Existem alguns itens que você não pode comprar no mundo dos vivos. Confira.";
 			Emotion e_wah;
 			viewpoint 1,217,196,3,0xCE6300;
 			break;
 		case 3:
-			mes "[Ricael]";
-			mes "The Weapon shop is located";
-			mes "at the ^55FF33+^000000 mark I made";
-			mes "on your mini-map.";
-			next;
-			mes "[Ricael]";
-			mes "They sell some unique items which";
-			mes "you cannot find outside of this";
-			mes "town... Of course, fighting";
-			mes "the monsters here will just";
-			mes "make them angrier. You may as";
-			mes "well let them eat you.";
+			mes "[Lee karl]";
+			mes "A loja de armas é por ali ^55FF33+^000000.";
+			mes "Existem algumas armas que você não pode comprar no mundo dos vivos. Confira.";
 			Emotion e_wah;
 			viewpoint 1,216,171,4,0x55FF33;
 			break;
 		case 4:
-			mes "[Ricael]";
-			mes "The Pub is located at";
-			mes "the ^3355FF+^000000 mark I've made";
-			mes "on your mini-map.";
-			next;
-			mes "[Ricael]";
-			mes "Sometimes I see dead people in the";
-			mes "Pub enjoying themselves, having a";
-			mes "good time. I used to be able to";
-			mes "have fun once, but now all I feel";
-			mes "is the cold tingle of loneliness";
-			mes "and despair...every waking moment.";
+			mes "[Lee karl]";
+			mes "O hotel fica ali ^3355FF+^000000,";
+			mes "As pessoas mortas costumam fazer festas por lá. Mexa o esqueleto!";
 			viewpoint 1,189,207,5,0x3355FF;
 			break;
 		case 5:
-			mes "[Ricael]";
-			mes "If you want to remove the location";
-			mes "marks from your mini-map, please";
-			mes "choose 'Remove marks on the";
-			mes "mini-map' from the menu.";
+			mes "[Lee karl]";
+			mes "Se você quiser apagar todas as marcações no seu mapa,";
+			mes "selecione a opção";
+			mes "'Apagar todas as marcações no mapa'";
 		}
 		break;
 	case 2:
@@ -121,19 +75,14 @@ niflheim,107,156,6	script	Roaming Man#nif	798,{
 		viewpoint 2,217,196,3,0xCE6300;
 		viewpoint 2,216,171,4,0x55FF33;
 		viewpoint 2,189,207,5,0x3355FF;
-		mes "[Ricael]";
-		mes "I removed the location marks from";
-		mes "your mini-map. Go ahead and ask";
-		mes "me if you want to mark the";
-		mes "building locations again. It";
-		mes "helps me ignore the depression";
-		mes "that gnaws at me constantly.";
+		mes "[Lee karl]";
+		mes "Apaguei todas as marcações do seu mapa.";
+		mes "Volte se quiser que eu indique as direções novamente.";
 		break;
 	case 3:
-		mes "[Ricael]";
-		mes "It's not a good idea to search";
-		mes "Niflheim by yourself...";
-		mes "At least try to be careful.";
+		mes "[Lee karl]";
+		mes "Tome cuidado. Algumas coisas parecem mortas mas estão bem vivas...";
+		mes "Boa sorte!";
 		break;
 	}
 	close;
