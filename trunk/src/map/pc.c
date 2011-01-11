@@ -956,7 +956,7 @@ bool pc_authok(struct map_session_data *sd, int login_id2, time_t expiration_tim
 
 	if (battle_config.display_version == 1){
 		char buf[256];
-		sprintf(buf, "brAthena SVN version: %s", get_svn_revision());
+		sprintf(buf, "brAthena Versão: %s", get_svn_revision());
 		clif_displaymessage(sd->fd, buf);
 	}
 
@@ -5706,6 +5706,11 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 			md->level++;
 			status_calc_mob(md, 0);
 			status_percent_heal(src,10,0);
+
+			if( battle_config.show_mob_info&4 )
+			{// update name with new level
+				clif_charnameack(0, &md->bl);
+			}
 		}
 		src = battle_get_master(src); // Maybe Player Summon
 	}

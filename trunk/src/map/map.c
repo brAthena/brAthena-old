@@ -3534,12 +3534,10 @@ void map_helpscreen(int flag)
  *------------------------------------------------------*/
 void map_versionscreen(int flag)
 {
-	ShowInfo(CL_WHITE "brAthena version %d.%02d.%02d, brAthena Mod version %d" CL_RESET"\n",
+	ShowInfo(CL_WHITE "brAthena Versão %d.%02d.%02d, brAthena Mod Versão %d" CL_RESET"\n",
 		ATHENA_MAJOR_VERSION, ATHENA_MINOR_VERSION, ATHENA_REVISION,
 		ATHENA_MOD_VERSION);
 	ShowInfo(CL_GREEN "Website/Forum:" CL_RESET "\thttp://brathena.org/\n");
-	//ShowInfo(CL_GREEN "IRC Channel:" CL_RESET "\tirc://irc.deltaanime.net/#athena\n");
-	//ShowInfo("\nOpen " CL_WHITE "readme.html" CL_RESET " for more information.");
 	if (ATHENA_RELEASE_FLAG) ShowNotice("This version is not for release.\n");
 	if (flag) exit(EXIT_FAILURE);
 }

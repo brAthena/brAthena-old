@@ -9,35 +9,44 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
-	r0087 - 10/10/2011 [Protimus]
+	r0089 - 11/01/2011 [Protimus]
+	* Revisadas traduções de npcs da pasta de eventos enviados em r87.
+	* Atualizado conforme eAthena r14663.
+	* Pequena correção no commit anterior.
+	
+	r0088 - 11/01/2011 [Floozie]
+	* Correção da mensagem de revisão do SVN do brAthena.
+	- Estava com o padrão do eAthena ainda.
+
+	r0087 - 10/01/2011 [Protimus]
 	* Adicionadas traduções de npcs da pasta de eventos.
 	- eventos/festival_do_bolinho.txt
 	- eventos/evento_resetar_habilidades.txt
 
-	r0086 - 10/10/2011 [Protimus]
+	r0086 - 10/01/2011 [Protimus]
 	* Modificado nome de refinador_avançado.txt para refinador_avancado.txt
 	- Procurem não usar acentos nos nomes de arquivos dos NPCs.
 	* Revisado npcs da pasta de monstros.
 	- O que estiver sem uma especificação é porque eu não soube o nome de cabeça e é necessário por depois.
 
-	r0085 - 10/10/2011 [Protimus]
+	r0085 - 10/01/2011 [Protimus]
 	* Adionadas traduções de npcs da pasta de classes.
 	- classes/2-2/alquimista.txt
 	- classes/2-2/bardo.txt
 
-	r0084 - 09/10/2011 [Protimus]
+	r0084 - 09/01/2011 [Protimus]
 	* Revisado npc da pasta de instancias:
 	- instancias/memorial_orc.txt
 	* Removida pasta "log" do emulador.
 	- Não adicione novamente por favor, não usamos logs em *txt.
 
-	r0083 - 09/10/2011 [Protimus]
+	r0083 - 09/01/2011 [Protimus]
 	* Adicionada tradução de npc da pasta instancias:
 	- instancias/santuario_selado.txt
 	* Revisões dos npcs da pasta repetíveis.
 	- Os nomes de alguns arquivos foram alterados.
 
-	r0082 - 09/10/2011 [Protimus]
+	r0082 - 09/01/2011 [Protimus]
 	* Corrigido pequeno erro de concordância nos NPCs da pasta GdE.
 	* Revisões dos npcs da pasta nguild.
 	- Os nomes de alguns arquivos foram alterados.

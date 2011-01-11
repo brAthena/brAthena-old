@@ -4796,7 +4796,7 @@ ACMD_FUNC(unloadnpc)
 
 	memset(NPCname, '\0', sizeof(NPCname));
 
-	if (!message || !*message || sscanf(message, "%24[^\n]", NPCname) < 1) {
+	if (!message || !*message || sscanf(message, "%28[^\n]", NPCname) < 1) {
 		clif_displaymessage(fd, "Please, enter a NPC name (usage: @npcoff <NPC_name>).");
 		return -1;
 	}
@@ -7582,7 +7582,7 @@ ACMD_FUNC(version)
 	const char * revision;
 
 	if ((revision = get_svn_revision()) != 0) {
-		sprintf(atcmd_output,"brAthena Version SVN r%s",revision);
+		sprintf(atcmd_output,"brAthena Versão r%s",revision);
 		clif_displaymessage(fd,atcmd_output);
 	} else 
 		clif_displaymessage(fd,"Cannot determine SVN revision");
