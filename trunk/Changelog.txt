@@ -9,6 +9,15 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0090 - 11/01/2011 [Protimus]
+	* Adicionadas traduções de npcs da pasta de guias.
+	- guias/guias_ama.txt
+	- guias/guias_ayo.txt
+	- guias/guias_einbe.txt
+	- guias/guias_einbr.txt
+	- guias/guias_gon.txt
+	- guias/guias_juno.txt
+
 	r0089 - 11/01/2011 [Protimus]
 	* Revisadas traduções de npcs da pasta de eventos enviados em r87.
 	* Atualizado conforme eAthena r14663.
