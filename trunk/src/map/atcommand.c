@@ -7582,7 +7582,7 @@ ACMD_FUNC(version)
 	const char * revision;
 
 	if ((revision = get_svn_revision()) != 0) {
-		sprintf(atcmd_output,"eAthena Version SVN r%s",revision);
+		sprintf(atcmd_output,"brAthena Version SVN r%s",revision);
 		clif_displaymessage(fd,atcmd_output);
 	} else 
 		clif_displaymessage(fd,"Cannot determine SVN revision");
