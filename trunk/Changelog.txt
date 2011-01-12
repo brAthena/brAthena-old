@@ -9,6 +9,21 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0094 - 12/01/2011 [Protimus]
+	* Adicionadas traduções de npcs da pasta campal.
+	- campal/bg_sistema.txt
+	- campal/flavius/flavius_entrada.txt
+	- campal/flavius/flavius01.txt
+	- campal/flavius/flavius02.txt
+	- campal/tierra/tierra_entrada.txt
+	- campal/tierra/tierra01.txt
+	- campal/tierra/tierra02.txt
+	- campal/kvm_entrada.txt
+	- campal/kvm_troca.txt
+	- campal/kvm01.txt
+	- campal/kvm02.txt
+	- campal/kvm03.txt
+
 	r0093 - 12/01/2011 [Protimus]
 	* Adicionado brathena-admin para gerenciamento de servidores Linux.
 	- Foi removido o brathena-upgrade por ser obsoleto.
