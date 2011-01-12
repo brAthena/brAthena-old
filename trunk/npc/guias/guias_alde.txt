@@ -12,24 +12,23 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.7/1.0                                |
+// | Versões eA/brA: 1.7/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: Guias da cidade de Aldebaran                |
+// | Descrição: Guias da Cidade de Aldebaran                |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    					| 
+// | 1.1 Script Revisado [Protimus]							| 
 // \________________________________________________________/
 
-aldebaran,139,63,4	script	Soldier#alde	105,{
+aldebaran,139,63,4	script	Soldado#alde	105,{
 	cutin "prt_soldier",2;
 	mes "[Guarda de Al de Baran]";
 	mes "Eu não sou um guarda comum que protege vilarejos.";
 	mes "Sou um membro da Guarda de Al de Baran. Eu sou o responsável por guiar os turitas.";
 	next;
-	mes "[Al De Baran Guard]";
-	mes "Eu faço parte da Guarda de Al de Baran!!";
-	mes "Então, deixe me mostrá-lo o mapa da cidade.";
+	mes "[Guarda de Al de Baran]";
+	mes "Eu faço parte da Guarda de Al de Baran! Então, deixe me mostrá-lo o mapa da cidade.";
 	next;
 	if (select("Ver o mapa.:Sair.") == 1) {
 		viewpoint 1,61,229,0,0xFF6633;
@@ -38,19 +37,19 @@ aldebaran,139,63,4	script	Soldier#alde	105,{
 		viewpoint 1,233,105,3,0x515151;
 		viewpoint 1,197,70,4,0x3355FF;
 		viewpoint 1,60,60,5,0xFF5555;
-		mes "^FF6633+^000000 -> Central das Kafras";
-		mes "^0000FF+^000000 -> Loja de Armas";
-		mes "^00FFFF+^000000 -> Guilda dos Magos (Fechada)";
-		mes "^515151+^000000 -> Bar";
-		mes "^3355FF+^000000 -> Loja de Utilidades";
-		mes "^FF5555+^000000 -> Guilda dos Alquimistas";
+		mes "^FF6633+^000000 -> Central das Kafras.";
+		mes "^0000FF+^000000 -> Loja de Armas.";
+		mes "^00FFFF+^000000 -> Guilda dos Magos (Fechada).";
+		mes "^515151+^000000 -> Bar.";
+		mes "^3355FF+^000000 -> Loja de Utilidades.";
+		mes "^FF5555+^000000 -> Guilda dos Alquimistas.";
 		close2;
 		cutin "prt_soldier",255;
 		end;
 	}
-	mes "[Al De Baran Guard]";
-	mes "We are sworn to protect Al De Baran! May the forces of evil always be crushed by the";
-	mes "righteous fist of good!";
+	mes "[Guarda de Al de Baran]";
+	mes "Pela Defesa de Al de Baran!!";
+	mes "Não somos forças civis convencionais... Somos as forças Armadas de Al de Baran!! Você pode confiar em mim!";
 	close2;
 	cutin "prt_soldier",255;
 	end;
@@ -62,22 +61,22 @@ aldebaran,133,108,4	script	Soldier#2alde	105,{
 	mes "Eu não sou um guarda comum que protege vilarejos.";
 	mes "Sou um membro da Guarda de Al de Baran. Eu sou o responsável por guiar os turitas.";
 	next;
-	mes "[Al De Baran Guard]";
+	mes "[Guarda de Al de Baran]";
 	mes "Eu faço parte da Guarda de Al de Baran!!";
 	mes "Então, deixe me mostrá-lo o mapa da cidade.";	
 	next;
-	switch(select("Central das Kafras:Loja de Armas:Guilda dos Magos:Bar:Loja de Utilidades:Guilda dos Alquimistas:Cancelar")) {
+	switch(select("Central das Kafras.:Loja de Armas.:Guilda dos Magos.:Bar.:Loja de Utilidades.:Guilda dos Alquimistas.:Cancelar.")) {
 	case 1:
 		viewpoint 1,61,229,0,0xFF6633;
 		mes "^FF6633+^000000 -> Central das Kafras";
 		break;
 	case 2:
 		viewpoint 1,72,197,1,0x0000FF;
-		mes "^0000FF+^000000 -> Loja de Armas";
+		mes "^0000FF+^000000 -> Loja de Armas.";
 		break;
 	case 3:
 		viewpoint 1,223,222,2,0x00FFFF;
-		mes "^00FFFF+^000000 -> Guilda dos Magos (Fechada)";
+		mes "^00FFFF+^000000 -> Guilda dos Magos (Fechada).";
 		break;
 	case 4:
 		viewpoint 1,233,105,3,0x515151;
@@ -85,18 +84,16 @@ aldebaran,133,108,4	script	Soldier#2alde	105,{
 		break;
 	case 5:
 		viewpoint 1,197,70,4,0x3355FF;
-		mes "^3355FF+^000000 -> Loja de Utilidades";
+		mes "^3355FF+^000000 -> Loja de Utilidades.";
 		break;
 	case 6:
 		viewpoint 1,60,60,5,0xFF5555;
-		mes "^FF5555+^000000 -> Guilda dos Alquimistas";
+		mes "^FF5555+^000000 -> Guilda dos Alquimistas.";
 		break;
 	case 7:
-		mes "[Al De Baran Guard]";
+		mes "[Guarda de Al de Baran]";
 		mes "Pela Defesa de Al de Baran!!";
-		mes "Não somos forças civis convencionais...";
-		mes "Somos as forças Armadas de Al de Baran!!";
-		mes "A guarda de Al de Baran! Você pode confiar em mim!";
+		mes "Não somos forças civis convencionais... Somos as forças Armadas de Al de Baran!! Você pode confiar em mim!";
 		break;
 	}
 	close2;

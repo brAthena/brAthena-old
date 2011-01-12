@@ -12,13 +12,13 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.3/1.0                                |
+// | Versões eA/brA: 1.3/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: Guias da cidade de Niflheim                 |
+// | Descrição: Guias da Cidade de Niflheim                 |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			   						| 
+// | 1.0 Script Traduzido [Protimus]                        |
+// | 1.1 Script Revisado [Protimus]							|
 // \________________________________________________________/
 
 niflheim,107,156,6	script	Homem Nervoso#nif	798,{
@@ -30,12 +30,12 @@ niflheim,107,156,6	script	Homem Nervoso#nif	798,{
 	mes "Eu já procurei pela saída em todos os lugares. Por isso, estou bem acostumado com o lugar.";
 	mes "Lembrar das localidades por aqui pode significar a diferença entre a vida e a morte.";
 	next;
-	switch(select("Perguntar sobre a cidade.:Apagar todas as marcações no mapa.:Cancelar.")) {
+	switch(select("Perguntar sobre a cidade.:Limpar indicações do minimapa.:Cancelar.")) {
 	case 1:
 		mes "[Lee karl]";
 		mes "Então, onde você quer ir?";
 		next;
-		switch(select("Castelo da Feiticeira:Loja de utilidades:Loja de armas:Hotel:Cancelar")) {
+		switch(select("Castelo da Feiticeira.:Loja de Útilidades.:Loja de Armas.:Hotel.:Cancelar.")) {
 		case 1:
 			mes "[Lee karl]";
 			mes "Uma feiticeira medonha vive em Nifflheim.";
@@ -65,9 +65,7 @@ niflheim,107,156,6	script	Homem Nervoso#nif	798,{
 			break;
 		case 5:
 			mes "[Lee karl]";
-			mes "Se você quiser apagar todas as marcações no seu mapa,";
-			mes "selecione a opção";
-			mes "'Apagar todas as marcações no mapa'";
+			mes "Se você quiser apagar todas as marcações no seu mapa, selecione a opção 'Limpar indicações do minimapa'";
 		}
 		break;
 	case 2:
@@ -81,7 +79,7 @@ niflheim,107,156,6	script	Homem Nervoso#nif	798,{
 		break;
 	case 3:
 		mes "[Lee karl]";
-		mes "Tome cuidado. Algumas coisas parecem mortas mas estão bem vivas...";
+		mes "Tome cuidado, algumas coisas parecem mortas mas estão bem vivas...";
 		mes "Boa sorte!";
 		break;
 	}

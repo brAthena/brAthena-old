@@ -12,12 +12,13 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.2/1.0                                |
+// | Versões eA/brA: 1.2/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: Guias da cidade de Hugel                    |
+// | Descrição: Guias da Cidade de Hugel                    |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Protimus]                        |
+// | 1.1 Script Revisado [Protimus]							|
 // \________________________________________________________/
 
 hugel,98,56,3	script	Vovó Guia de Hugel#huge	863,0,0,{
@@ -33,9 +34,7 @@ hugel,98,56,3	script	Vovó Guia de Hugel#huge	863,0,0,{
 			mes "Eu posso dizer a você onde fica cada edifício que procura, desde que ele fique em Hugel.";
 			mes "E então, onde você gostaria de ir?";
 			if (.@compass_check == 0) {
-				mes "Você gostaria que eu";
-                mes "indicasse os locais";
-				mes "em seu Minimapa?";
+				mes "Você gostaria que eu indicasse os locais em seu Minimapa?";
 				next;
 				if (select("Sim.:Não.") == 1) set .@compass_check,1;
 			}
@@ -53,8 +52,8 @@ hugel,98,56,3	script	Vovó Guia de Hugel#huge	863,0,0,{
 				case 2:
 					mes "[Vovó Guia de Hugel]";
   					mes "Mas o dever antes da diversão.";
-                    mes " É melhor desfazer suas malas antes de começar a passear pela vila.";
-                    mes " É o prédio bem ao meu lado.";
+                    mes "É melhor desfazer suas malas antes de começar a passear pela vila.";
+                    mes "É o prédio bem ao meu lado.";
 					if (.@compass_check)
 						viewpoint 1,104,79,3,0xFF00FF;
 					break;
@@ -123,8 +122,7 @@ hugel,98,56,3	script	Vovó Guia de Hugel#huge	863,0,0,{
 					break;
 				case 12:
   					mes "[Vovó Guia de Hugel]";
-  					mes "Se você quiser remover todas essas marcas de localização de seu mapa,";
-                    mes "é só vir falar comigo novamente e escolher 'Limpar indicações' no menu.";
+  					mes "Se você quiser remover todas essas marcas de localização de seu mapa, é só vir falar comigo novamente e escolher 'Limpar indicações' no menu.";
 					set .@loop,0;
 				}
 			}
@@ -147,14 +145,13 @@ hugel,98,56,3	script	Vovó Guia de Hugel#huge	863,0,0,{
 			break;
 		case 3:
 			mes "[Vovó Guia de Hugel]";
-			mes "Quando você usa o menu Guia da Vila,";
-            mes "lembre-se que a posição dos lugares que você procura será marcada em seu mapa, no canto superior direito da tela.";
+			mes "Quando você usa o menu Guia da Vila, lembre-se que a posição dos lugares que você procura será marcada em seu mapa, no canto superior direito da tela.";
 			mes "Se você não estiver vendo seu mapa, use a tecla de atalho 'ctrl+tab' ou pressione o botão 'Mapa' em sua janela de informações básicas, tudo bem?";
 			mes "E você também pode aproximar a visão de seu mapa usando o botão '-' caso você não consiga visualizar o mapa da vila inteiro.";
 			break;
 		case 4:
 			mes "[Vovó Guia de Hugel]";
-			mes "Esse trabalho de guia é realmente muito empolgante. Hohoho";
+			mes "Esse trabalho de guia é realmente muito empolgante!";
 			close;
 		}
 	}

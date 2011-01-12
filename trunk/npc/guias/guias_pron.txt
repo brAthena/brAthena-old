@@ -12,12 +12,13 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.6b/1.0                               |
+// | Versões eA/brA: 1.6b/1.1                               |
 // |--------------------------------------------------------|
-// | Descrição: Guias da cidade de Prontera                 |
+// | Descrição: Guias da Cidade de Prontera                 |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Protimus]                        |
+// | 1.1 Script Revisado [Protimus]							|
 // \________________________________________________________/
 
 
@@ -30,7 +31,7 @@ prontera,154,187,4	script	Guia#prt::PrtGuide	105,{
 	set .@loop1,1;
 	while (.@loop1) {
 		next;
-		switch(select("Indicações.:Limpar indicações.:Tutorial.:Cancelar.")) {
+		switch(select("Indicações.:Limpar indicações do minimapa.:Tutorial.:Cancelar.")) {
 		case 1:
 			mes "[Guia de Prontera]";
 			mes "Por favor, selecione uma das opções.";
@@ -44,7 +45,7 @@ prontera,154,187,4	script	Guia#prt::PrtGuide	105,{
 				if (.@wait_button_chk == 0) set .@wait_button_chk,1;
 				else next;
 
-				switch(select("Associação dos Espadachins:^0000FFCatedral^000000:Cavalaria de Prontera:Loja de Armas:Loja de Ferramentas:Estalagem:Posto de Trocas:Bar:Biblioteca:Agência de Empregos:Castelo de Prontera:Prefeitura:Cancelar")) {
+				switch(select("Associação dos Espadachins.:^0000FFCatedral^000000.:Cavalaria de Prontera.:Loja de Armas.:Loja de Ferramentas.:Estalagem.:Posto de Trocas.:Bar.:Biblioteca.:Agência de Empregos.:Castelo de Prontera.:Prefeitura.:Cancelar.")) {
 				case 1:
 					mes "[Guia de Prontera]";
 					mes "A Associação dos Espadachins, aonde pode-se tornar um deles, foi mudada para a nossa cidade satelite, Izlude. Agora temos apenas um prédio vazio";

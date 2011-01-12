@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0095 - 12/01/2011 [Protimus]
+	* Revisadas traduções de npcs da pasta de guias.
+	* Correções nos códigos dos npcs da pasta campa.
+
 	r0094 - 12/01/2011 [Protimus]
 	* Adicionadas traduções de npcs da pasta campal.
 	- campal/bg_sistema.txt

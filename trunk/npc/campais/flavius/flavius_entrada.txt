@@ -380,7 +380,7 @@ bat_room,148,121,1	script	Flavius Officer#02b	414,{
 		break;
 	case 2:
 		mes "[Oficial do Exército Croix]";
-		"Hoje nós sairemos vencedores!";
+		mes "Hoje nós sairemos vencedores!";
 		break;
 	}
 	close;

@@ -12,12 +12,13 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.2/1.0                                |
+// | Versões eA/brA: 1.2/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: Guias da cidade de Veins                    |
+// | Descrição: Guias da Cidade de Veins                    |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Script Traduzido [Protimus]                        | 
+// | 1.0 Script Traduzido [Protimus]                        |
+// | 1.1 Script Revisado [Protimus]							|
 // \________________________________________________________/
 
 veins,210,345,5	script	Guia#1::ve_guide	934,{
@@ -27,7 +28,7 @@ veins,210,345,5	script	Guia#1::ve_guide	934,{
 	set .@loop1,1;
 	while(.@loop1) {
 		next;
-		switch(select("Indicações:Limpar as indicações do Minimapa:Aviso:Cancelar")) {
+		switch(select("Indicações:Limpar as indicações do minimapa:Aviso:Cancelar")) {
 		case 1:
 			mes "[Guia de Veins]";
 			mes "Eu posso dizer a você onde fica cada edifício que procura, desde que ele fique em Veins.";
@@ -47,8 +48,7 @@ veins,210,345,5	script	Guia#1::ve_guide	934,{
 				switch(select("Templo.:Pousada.:Loja de Armas.:Loja de Utilidades.:Aeroplano.:Taverna.:Instituto de Pesquisas Geológicas.:Cancelar.")) {
 				case 1:
   					mes "[Guia de Veins]";
-  					mes "Nosso templo fica ao norte,";
-  					mes "e está sempre lotado com seguidores fiéis da Deusa Freya.";
+  					mes "Nosso templo fica ao norte, e está sempre lotado com seguidores fiéis da Deusa Freya.";
 					if (.@compass_check == 1) viewpoint 1,196,258,1,0xFF0000;
 					break;
 				case 2:
@@ -59,8 +59,7 @@ veins,210,345,5	script	Guia#1::ve_guide	934,{
 				case 3:
   					mes "[Guia de Veins]";
   					mes "Sim, você precisa se proteger do perigo, não é?";
-  					mes "Compre armas de alta qualidade a preços acessíveis";
-  					mes "na Loja de Armas de Veins, a oeste.";
+  					mes "Compre armas de alta qualidade a preços acessíveis na Loja de Armas de Veins, a oeste.";
 					if (.@compass_check == 1) viewpoint 1,150,175,3,0x99FFFF;
 					break;
 				case 4:
@@ -76,8 +75,7 @@ veins,210,345,5	script	Guia#1::ve_guide	934,{
 					break;
 				case 6:
   					mes "[Guia de Veins]";
-  					mes "Se quiser fazer amizade com o povo daqui, sugiro que você ";
-  					mes "vá tomar uma bebida na taverna a oeste.";
+  					mes "Se quiser fazer amizade com o povo daqui, sugiro que você vá tomar uma bebida na taverna a oeste.";
 					if (.@compass_check == 1) viewpoint 1,150,217,6,0x00FF00;
 					break;
 				case 7:
@@ -88,8 +86,7 @@ veins,210,345,5	script	Guia#1::ve_guide	934,{
 					break;
 				case 8:
 					mes "[Guia de Veins]";
-					mes "Se você quiser remover todas essas marcas de localização de seu mapa,";
-					mes "é só falar comigo de novo, e escolher 'Limpar as indicações do Minimapa'.";
+					mes "Se você quiser remover todas essas marcas de localização de seu mapa, é só falar comigo de novo, e escolher 'Limpar as indicações do Minimapa'.";
 					set .@loop2,0;
 					break;
 				}
@@ -110,8 +107,7 @@ veins,210,345,5	script	Guia#1::ve_guide	934,{
 			break;
 		case 3:
 			mes "[Guia de Veins]";
-			mes "Quando usar o menu 'Guia da Vila',";
-			mes "lembre-se que a posição dos lugares que você procura será marcada em seu mapa, no canto superior direito da tela.";
+			mes "Quando usar o menu 'Guia da Vila', lembre-se que a posição dos lugares que você procura será marcada em seu mapa, no canto superior direito da tela.";
 			mes "Se você não estiver vendo seu mapa, use a tecla de atalho ''ctrl+tab'' ou pressione o botão ''mapa'' em sua janela de informações básicas, tudo bem?";
 			mes "E você também pode aproximar a visão de seu mapa usando o botão '-' caso você não consiga visualizar o mapa da vila inteiro.";
 			break;

@@ -39,7 +39,7 @@ bat_room,85,204,0	script	Lieutenant Thelokus	414,{
 	end;
 OnInit:
 	waitingroom "Estação de Batalha",10,"start#bat_b01::OnReadyCheck",1;
-	end;O
+	end;
 OnEnterBG:
 	set $@FlaviusBG1_id2, waitingroom2bg("bat_b01",390,10,"start#bat_b01::OnCroixQuit","");
 	end;
@@ -491,7 +491,7 @@ bat_b01,389,14,3	script	Croix Vintenar#b01_b	934,{
 				mes "[Swandery]";
 				mes "Oh, "+strcharinfo(0)+". Não fique triste.";
 				mes "Mesmo que não tenhamos vencido, nós demos nosso melhor.";
-				mes "Este é o majestoso presente do nosso Croix, e por favor não esqueça esta batalha. Nós ganharemos com toda certeza a próxima batalha."
+				mes "Este é o majestoso presente do nosso Croix, e por favor não esqueça esta batalha. Nós ganharemos com toda certeza a próxima batalha.";
 				close2;
 				getitem 7829,.@medal_gap; //BF_Badge2
 			}
@@ -674,7 +674,7 @@ bat_b01,389,14,3	script	Vintenar#bat_b01_bover	415,{
 				mes "[Swandery]";
 				mes "Oh, "+strcharinfo(0)+". Não fique triste.";
 				mes "Mesmo que não tenhamos vencido, nós demos nosso melhor.";
-				mes "Este é o majestoso presente do nosso Croix e por favor, não esqueça esta batalha. Nós ganharemos com toda certeza a próxima batalha."
+				mes "Este é o majestoso presente do nosso Croix e por favor, não esqueça esta batalha. Nós ganharemos com toda certeza a próxima batalha.";
 				close2;
 				getitem 7829,3; //BF_Badge2
 			}
@@ -682,7 +682,7 @@ bat_b01,389,14,3	script	Vintenar#bat_b01_bover	415,{
 				mes "[Swandery]";
 				mes "Oh, "+strcharinfo(0)+". Não fique triste.";
 				mes "Mesmo que não tenhamos vencido, nós demos nosso melhor.";
-				mes "Este é o majestoso presente do nosso Croix e por favor, não esqueça esta batalha. Nós ganharemos com toda certeza a próxima batalha."
+				mes "Este é o majestoso presente do nosso Croix e por favor, não esqueça esta batalha. Nós ganharemos com toda certeza a próxima batalha.";
 				close2;
 				getitem 7829,.@medal_gap; //BF_Badge2
 			}
@@ -694,7 +694,7 @@ bat_b01,389,14,3	script	Vintenar#bat_b01_bover	415,{
 				mes "[Swandery]";
 				mes "Oh, "+strcharinfo(0)+". Não fique triste.";
 				mes "Mesmo que não tenhamos vencido, nós demos nosso melhor.";
-				mes "Este é o majestoso presente do nosso Croix, e por favor não esqueça esta batalha. Nós ganharemos com toda certeza a próxima batalha."
+				mes "Este é o majestoso presente do nosso Croix, e por favor não esqueça esta batalha. Nós ganharemos com toda certeza a próxima batalha.";
 				close2;
 				getitem 7829,3; //BF_Badge2
 			}
@@ -702,7 +702,7 @@ bat_b01,389,14,3	script	Vintenar#bat_b01_bover	415,{
 				mes "[Swandery]";
 				mes "Oh, "+strcharinfo(0)+". Não fique triste.";
 				mes "Mesmo que não tenhamos vencido, nós demos nosso melhor.";
-				mes "Este é o majestoso presente do nosso Croix, e por favor não esqueça esta batalha. Nós ganharemos com toda certeza a próxima batalha."
+				mes "Este é o majestoso presente do nosso Croix, e por favor não esqueça esta batalha. Nós ganharemos com toda certeza a próxima batalha.";
 				close2;
 				getitem 7829,.@medal_gap; //BF_Badge2
 			}

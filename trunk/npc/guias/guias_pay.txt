@@ -12,12 +12,13 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.6/1.0                                |
+// | Versões eA/brA: 1.6/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: Guias da cidade de Payon                    |
+// | Descrição: Guias da Cidade de Payon                    |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Script Traduzido [Protimus]                        | 
+// | 1.0 Script Traduzido [Protimus]                        |
+// | 1.1 Script Revisado [Protimus]							| 
 // \________________________________________________________/
 
 payon,162,67,4	script	Guia#pay	708,{
@@ -29,7 +30,7 @@ payon,162,67,4	script	Guia#pay	708,{
 	set .@loop1,1;
 	while (.@loop1) {
 		next;
-		switch(select("Indicações.:Limpar indicações.:Tutorial.:Cancelar.")) {
+		switch(select("Indicações.:Limpar indicações do minimapa.:Tutorial.:Cancelar.")) {
 		case 1:
 			mes "[Guia de Payon]";
 			mes "Por favor, selecione uma das opções.";
@@ -42,10 +43,11 @@ payon,162,67,4	script	Guia#pay	708,{
 			while(.@loop2) {
 				if (.@wait_button_chk == 0) set .@wait_button_chk,1;
 				else next;
-				switch(select("^FF0000Guilda dos Arqueiros.^000000:Loja de Armas.:Loja de Ferramentas:Estalagem:Palácio Central:Cancelar")) {
+				switch(select("^FF0000Guilda dos Arqueiros.^000000:Loja de Armas.:Loja de Ferramentas.:Estalagem.:Palácio Central.:Cancelar.")) {
 				case 1:
 					mes "[Guia de Payon]";
-					mes "A Guilda dos Arqueiros é o lugar onde Aprendizes podem tornar-se Arqueiros. Ela se encontra ao Norte da Vila dos Arqueiros. Para chegar na Vila dos Arqueiros, saia da cidade pela direção nordeste.";
+					mes "A Guilda dos Arqueiros é o lugar onde Aprendizes podem tornar-se Arqueiros. Ela se encontra ao Norte da Vila dos Arqueiros.";
+					mes "Para chegar na Vila dos Arqueiros, saia da cidade pela direção nordeste.";
 					if (.@compass_check)
 						viewpoint 1,227,328,2,0xFF0000;
 					break;
@@ -124,7 +126,7 @@ pay_arche,85,30,2	script	Guia#2pay	708,{
 	set .@loop1,1;
 	while (.@loop1) {
 		next;
-		switch(select("Indicações.:Limpar indicações.:Tutorial.:Cancelar.")) {
+		switch(select("Indicações.:Limpar indicações do minimapa.:Tutorial.:Cancelar.")) {
 		case 1:
 			mes "[Guia de Payon]";
 			mes "Por favor, selecione uma das opções.";
@@ -140,12 +142,8 @@ pay_arche,85,30,2	script	Guia#2pay	708,{
 				switch(select("^FF0000Guilda dos Arqueiros.^000000:Loja de Ferramentas.:Caverna de Payon:Cancelar")) {
 				case 1:
 					mes "[Guia de Payon]";
-					mes "A guilda dos Arqueiros é o lugar";
-					mes "onde Aprendizes podem tornar-se";
-					mes "Arqueiros. Ela se encontra ao Norte";
-					mes "da Vila dos Arqueiros. Para chegar";
-					mes "na Vila dos Arqueiros, saia da";
-					mes "cidade pela direção nordeste.";
+					mes "A guilda dos Arqueiros é o lugar onde Aprendizes podem tornar-se Arqueiros. Ela se encontra ao Norte da Vila dos Arqueiros.";
+					mes "Para chegar na Vila dos Arqueiros, saia da cidade pela direção nordeste.";
 					if (.@compass_check)
 						viewpoint 1,144,164,0,0xFFFF00;
 					break;
@@ -163,7 +161,7 @@ pay_arche,85,30,2	script	Guia#2pay	708,{
 					break;
 				case 4:
 					mes "[Guia de Payon]";
-					mes "Se você deseja apagar as indicações do seu mini-mapa, por favor selecione 'Limpar indicações'.";
+					mes "Se você deseja apagar as indicações do seu mini-mapa, por favor selecione 'Limpar indicações do minimapa'.";
 					set @loop2,0;
 					break;
 				}

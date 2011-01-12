@@ -12,12 +12,13 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.2b/1.0                               |
+// | Versões eA/brA: 1.2b/1.1                               |
 // |--------------------------------------------------------|
-// | Descrição: Guias da cidade de Rachel                   |
+// | Descrição: Guias da Cidade de Rachel                   |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Protimus]                        |
+// | 1.1 Script Revisado [Protimus]							|
 // \________________________________________________________/
 
 rachel,138,146,5	script	Rachel Guide	934,{
@@ -27,7 +28,7 @@ rachel,138,146,5	script	Rachel Guide	934,{
 	set .@loop1,1;
 	while(.@loop1) {
 		next;
-		switch(select("Indicações.:Limpar as indicações do Minimapa.:Aviso.:Cancelar.")) {
+		switch(select("Indicações.:Limpar as indicações do minimapa.:Aviso.:Cancelar.")) {
 		case 1:
 			mes "[Guia de Rachel]";
 			mes "Eu posso dizer a você onde fica cada edifício que procura, desde que ele fique em Rachel.";

@@ -12,19 +12,20 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.5/1.0                                |
+// | Versões eA/brA: 1.5/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: Guias da cidade de Einbech                  |
+// | Descrição: Guias da Cidade de Einbech                  |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Protimus]                        |
+// | 1.1 Script Revisado [Protimus]							|
 // \________________________________________________________/
 
-einbech,67,37,4	script	Guide#4ein::EinGuide2	852,{
+einbech,67,37,4	script	Guia#4ein::EinGuide2	852,{
 	cutin "ein_soldier",2;
 	mes "[Guia de Einbech]";
 	mes "Bem-vindo a Einbech,";
-	mes "Nós estamos aqui para ajudar os turistas, então por favor sintam-se a vontade para fazer as perguntas que quiserem.";
+	mes "Nós estamos aqui para ajudar os turistas, então por favor sinta-se a vontade para fazer as perguntas que quiser.";
 	set .@loop1,1;
 	while (.@loop1) {
 		next;
@@ -33,7 +34,7 @@ einbech,67,37,4	script	Guide#4ein::EinGuide2	852,{
 			mes "[Einbech Guide]";
 			mes "Basta escolher no menu a seguir:";
 			if (.@compass_check == 0) {
-				mes "Você gostaria de deixar as marcações de local do seu minimapa?";
+				mes "Você gostaria de deixar as marcações dos locais no seu minimapa?";
 				next;
 				if (select("Sim.:Não.") == 1) set .@compass_check,1;
 			}
@@ -41,7 +42,7 @@ einbech,67,37,4	script	Guide#4ein::EinGuide2	852,{
 			while (.@loop2) {
 				if (.@wait_button_chk == 0) set .@wait_button_chk,1;
 				else next;
-				switch(select("Estação de Trem:Taverna:Loja de Utilidades:Guilda dos Espadachins:Mina:Cancelar")) {
+				switch(select("Estação de Trem.:Taverna,:Loja de Utilidades.:Guilda dos Espadachins.:Mina.:Cancelar.")) {
 				case 1:
 					mes "[Guia de Einbech]";
   					mes "As Estações de Trem estão localizadas a nordeste e a noroeste. Nós temos linhas que operam de Einbech para Einbroch.";
@@ -62,7 +63,7 @@ einbech,67,37,4	script	Guide#4ein::EinGuide2	852,{
 					break;
 				case 4:
   					mes "[Guia de Einbech]";
-  					mes "A Guilda dos Espadachins está localizada na parte mais a leste de Einbech. Ela está em construção e eles ainda não estão aceitando inscrições.";
+  					mes "A Guilda dos Espadachins está localizada na parte leste de Einbech. Ela está em construção e eles ainda não estão aceitando inscrições.";
 					if (.@compass_check)
 						viewpoint 1,250,110,5,0xFF00FF;
 					break;
@@ -87,10 +88,8 @@ einbech,67,37,4	script	Guide#4ein::EinGuide2	852,{
 			viewpoint 2,138,251,6,0x00FF00;
 			set .@compass_check,0;
 			mes "[Guia de Einbroch]";
-			mes "As indicações em seu";
-			mes "minimapa foram";
-			mes "removidas. Por favor,";
-			mes "volte de novo.";
+			mes "Apaguei todas as marcações do mini-mapa.";
+			mes "Se quiser as marcas denovo, é só pedir.";
 			break;
 		case 3:
 			mes "[Guia de Einbech]";
@@ -103,12 +102,8 @@ einbech,67,37,4	script	Guide#4ein::EinGuide2	852,{
 			break;
 		case 4:
 			mes "[Guia de Einbech]";
-			mes "Esperamos que você";
-			mes "aproveite a sua viagem.";
-			mes "E, por favor, tome";
-			mes "cuidado se ficarmos sob";
-			mes "Estado de Emergência";
-			mes "pela Poluição do Ar";
+			mes "Esperamos que você aproveite a sua viagem.";
+			mes "E, por favor, tome cuidado se ficarmos sob Estado de Emergência pela Poluição do Ar";
 			close2;
 			set .@loop1,0;
 		}

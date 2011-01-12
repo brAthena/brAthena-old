@@ -12,16 +12,16 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.5/1.0                                |
+// | Versões eA/brA: 1.5/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: Guias da cidade de Comodo                   |
+// | Descrição: Guias da Cidade de Comodo                   |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    					| 
+// | 1.0 Script Traduzido [Protimus]                        |
+// | 1.1 Script Revisado [Protimus]							|
 // \________________________________________________________/
 
-comodo,322,178,4	script	Guia TUrístico#cmd::CmdGuide	700,{
+comodo,322,178,4	script	Guia Turístico#cmd::CmdGuide	700,{
 	callfunc "F_CmdGuide","Aborígene Kokomo";
 }
 
@@ -37,22 +37,21 @@ function	script	F_CmdGuide	{
 	mes "["+getarg(0)+"]";
 	mes "A Cidade da Alegria, Capital da Diversão...";
 	mes "Terra dos Sonhos e Fantasia!";
-	mes "Bem vindo a Comodo.!";
-	mes "Estou ao seu dispor para lhe mostrar a cidade...";
-	mes "ONde você quiser ir...";
-	mes "Basta me dizer...";
+	mes "Bem-vindo a Comodo!";
+	mes "Estou ao seu dispor para lhe mostrar a cidade.";
+	mes "Se quiser ir à algum lugar, basta me dizer...";
 	next;
-	switch(select("Cassino:Show de Hula Hula ^3355FF(Guilda as Odaliscas)^000000:Loja de Armas:Loja de Utilidades:Loja das Conchas:Filial Oeste das Kafras:Casa do Prefeito:Bar:Acampamento:Sair")) {
+	switch(select("Cassino.:Show de Hula Hula ^3355FF(Guilda as Odaliscas)^000000.:Loja de Armas.:Loja de Utilidades.:Loja das Conchas.:Filial Oeste das Kafras.:Casa do Prefeito.:Bar.:Acampamento.:Cancelar.")) {
 	case 1:
 		viewpoint 1,140,98,0,0xFF6633;
 		mes "^FF6633+^000000 -> O Cassino...";
 		mes "É o que faz Comodo ser Comodo!";
-		mes "A diversão não para... dia ou noite no Cassino de Comodo.";
+		mes "A diversão não para... dia ou noite é diversão no Cassino de Comodo.";
 		close;
 	case 2:
 		viewpoint 1,188,168,1,0x0000FF;
 		mes "^FF6633+^000000 -> Show de Hula Hula.";
-		mes "Quer conhecer as nossas odaliscas...";
+		mes "Quer conhecer as nossas odaliscas?";
 		mes "Elas são umas das grandes atrações de Comodo!";
 		mes "Você tem interesse em Hula Hula?";
 		close;
@@ -82,16 +81,13 @@ function	script	F_CmdGuide	{
 		mes "^FF6633+^000000 -> Filial Oeste das Kafras.";
 		mes "É responsável pela região Oeste de Midgard.";
 		mes "O maior centro de serviços do mundo!";
-		mes "A Filial Oeste da Central Kafra...";
-		mes "Fica em Comodo...";
+		mes "A Filial Oeste da Central Kafra, fica em Comodo!";
 		close;
 	case 7:
 		viewpoint 1,114,294,5,0xFF5555;
 		mes "^FF6633+^000000 -> Casa do Prefeito.";
 		mes "Onde mora o prefeito de Comodo...";
-		mes "Se vcê tem interesse... em Comodo...";
-		mes "Vá lá e visite o prefeito...";
-		mes "Seria muito simpático...";
+		mes "Se você tem interesse em Comodo visite o prefeito, ele é muito simpático.";
 		close;
 	case 8:
 		viewpoint 1,166,298,5,0xFF5555;
@@ -105,14 +101,13 @@ function	script	F_CmdGuide	{
 		mes "^FF6633+^000000 -> Acampamento.";
 		mes "Venha acampe com sua família ou namorada...";
 		mes "Viva momentos para guardar por toda a vida... e delicie-se com nosso Camping Churrasco!";
-		mes "Costelas de porco na brasa são um prato tradicional da culinária de Comodo, e só aqui você pode encontrá-la!";
+		mes "Costelas de porco na brasa são um prato tradicional da culinária de Comodo e só aqui você pode encontrá-la!";
 		close;
 	case 10:
 		mes "["+getarg(0)+"]";
 		mes "Comodo fica em uma caverna...";
 		mes "Então a luz do sol nunca brilha aqui...";
 		mes "O turismo de Comodo se baseia nisso... 24 horas de vida noturna!";
-		mes "A melhor de toda Midgard!";
 		mes "É o jeito que ganhamos a vida...";
 		close;
 	}

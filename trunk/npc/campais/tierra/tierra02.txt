@@ -808,7 +808,7 @@ bat_a02,45,19,3	script	Croix Vintenar#a02_b	415,{
 				mes "[Swandery]";
 				mes "Oh, "+strcharinfo(0)+". Não fique triste.";
 				mes "Mesmo que não tenhamos vencido, nós demos nosso melhor.";
-				mes "Este é o majestoso presente do nosso Croix e por favor, não esqueça esta batalha. Nós ganharemos com toda certeza a próxima batalha."
+				mes "Este é o majestoso presente do nosso Croix e por favor, não esqueça esta batalha. Nós ganharemos com toda certeza a próxima batalha.";
 				close2;
 				getitem 7828,1; //BF_Badge1
 			}
@@ -816,7 +816,7 @@ bat_a02,45,19,3	script	Croix Vintenar#a02_b	415,{
 				mes "[Swandery]";
 				mes "Oh, "+strcharinfo(0)+". Não fique triste.";
 				mes "Mesmo que não tenhamos vencido, nós demos nosso melhor.";
-				mes "Este é o majestoso presente do nosso Croix e por favor, não esqueça esta batalha. Nós ganharemos com toda certeza a próxima batalha."
+				mes "Este é o majestoso presente do nosso Croix e por favor, não esqueça esta batalha. Nós ganharemos com toda certeza a próxima batalha.";
 				close2;
 				getitem 7828,.@medal_gap; //BF_Badge1
 			}
@@ -830,7 +830,7 @@ bat_a02,45,19,3	script	Croix Vintenar#a02_b	415,{
 				mes "[Swandery]";
 				mes "Oh, "+strcharinfo(0)+". Não fique triste.";
 				mes "Mesmo que não tenhamos vencido, nós demos nosso melhor.";
-				mes "Este é o majestoso presente do nosso Croix e por favor, não esqueça esta batalha. Nós ganharemos com toda certeza a próxima batalha."
+				mes "Este é o majestoso presente do nosso Croix e por favor, não esqueça esta batalha. Nós ganharemos com toda certeza a próxima batalha.";
 				close2;
 				getitem 7828,1; //BF_Badge1
 			}
@@ -838,7 +838,7 @@ bat_a02,45,19,3	script	Croix Vintenar#a02_b	415,{
 				mes "[Swandery]";
 				mes "Oh, "+strcharinfo(0)+". Não fique triste.";
 				mes "Mesmo que não tenhamos vencido, nós demos nosso melhor.";
-				mes "Este é o majestoso presente do nosso Croix e por favor, não esqueça esta batalha. Nós ganharemos com toda certeza a próxima batalha."
+				mes "Este é o majestoso presente do nosso Croix e por favor, não esqueça esta batalha. Nós ganharemos com toda certeza a próxima batalha.";
 				close2;
 				getitem 7828,.@medal_gap; //BF_Badge1
 			}

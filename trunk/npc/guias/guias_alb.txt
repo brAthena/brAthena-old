@@ -12,15 +12,16 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.5a/1.0                               |
+// | Versões eA/brA: 1.5a/1.1                               |
 // |--------------------------------------------------------|
-// | Descrição: Guias da cidade de Alberta                  |
+// | Descrição: Guias da Cidade de Alberta                  |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Protimus]                        |
+// | 1.1 Script Revisado [Protimus]							|
 // \________________________________________________________/
 
-alberta,23,238,4	script	Guide#alb::AlbGuide	105,{
+alberta,23,238,4	script	Guia#alb::AlbGuide	105,{
 	cutin "prt_soldier",2;
 	mes "[Guia de Alberta]";
 	mes "Bem-vindo à Alberta, a cidade portuária.";
@@ -29,7 +30,7 @@ alberta,23,238,4	script	Guide#alb::AlbGuide	105,{
 	set .@loop1,1;
 	while (.@loop1) {
 		next;
-		switch(select("Indicações:Limpar indicações:Tutorial:Cancelar.")) {
+		switch(select("Indicações.:Limpar as indicações do minimapa..:Tutorial.:Cancelar.")) {
 		case 1:
 			mes "[Guia de Alberta]";
 			mes "Por favor, selecione uma das opções.";
@@ -70,7 +71,7 @@ alberta,23,238,4	script	Guide#alb::AlbGuide	105,{
 					break;
 				case 5:
 					mes "[Guia de Alberta]";
-					mes "Se você deseja apagar as indicações do seu mini-mapa, por favor selecione 'Limpar indicações'.";
+					mes "Se você deseja apagar as indicações do seu mini-mapa, por favor selecione 'Limpar as indicações do minimapa.'.";
 					set .@loop2,0;
 				}
 			}
@@ -85,8 +86,8 @@ alberta,23,238,4	script	Guide#alb::AlbGuide	105,{
 			break;
 		case 3:
 			mes "[Guia de Alberta]";
-			mes "Nós fomos exaustivamente treinados para servi-lo da melhor maneira possivel e sem falhas.";
-			mes "Assim você tem a garantia das melhores indicações possiveis.";
+			mes "Nós fomos exaustivamente treinados para serví-lo da melhor maneira possível e sem falhas.";
+			mes "Assim você tem a garantia das melhores indicações possíveis.";
 			next;					
 			mes "[Guia de Alberta]";
 			mes "As indicações que lhe daremos podem ser marcadas no seu mini-mapa.";

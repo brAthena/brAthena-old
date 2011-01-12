@@ -303,7 +303,7 @@ OnMyMobDead:
 
 bat_a01,185,270,1	script	Guillaume Blacksmith#a01	851,{
 	if (getcharid(4) == $@TierraBG1_id1) {
-		es "[Ferreiro Guillaume]";
+		mes "[Ferreiro Guillaume]";
 		mes "Nós estamos em uma emergência! A Barricada foi destruída!";
 		mes "Nós podemos reparar a Barricada com ^3131FF50 Pedras, 3 Nervos de Urso, 500 Pedaços de Metal, 30 Minérios de Elunium e 100 Ouro.^000000";
 		mes "E nós temos tudo isso, exceto as 50 Pedras!";
@@ -798,7 +798,7 @@ bat_a01,45,19,3	script	Croix Vintenar#a01_b	415,{
 				mes "[Swandery]";
 				mes "Oh, "+strcharinfo(0)+". Não fique triste.";
 				mes "Mesmo que não tenhamos vencido, nós demos nosso melhor.";
-				mes "Este é o majestoso presente do nosso Croix e por favor, não esqueça esta batalha. Nós ganharemos com toda certeza a próxima batalha."
+				mes "Este é o majestoso presente do nosso Croix e por favor, não esqueça esta batalha. Nós ganharemos com toda certeza a próxima batalha.";
 				close2;
 				getitem 7828,1; //BF_Badge1
 			}
@@ -806,7 +806,7 @@ bat_a01,45,19,3	script	Croix Vintenar#a01_b	415,{
 				mes "[Swandery]";
 				mes "Oh, "+strcharinfo(0)+". Não fique triste.";
 				mes "Mesmo que não tenhamos vencido, nós demos nosso melhor.";
-				mes "Este é o majestoso presente do nosso Croix e por favor, não esqueça esta batalha. Nós ganharemos com toda certeza a próxima batalha."
+				mes "Este é o majestoso presente do nosso Croix e por favor, não esqueça esta batalha. Nós ganharemos com toda certeza a próxima batalha.";
 				close2;
 				getitem 7828,.@medal_gap; //BF_Badge1
 			}
@@ -820,7 +820,7 @@ bat_a01,45,19,3	script	Croix Vintenar#a01_b	415,{
 				mes "[Swandery]";
 				mes "Oh, "+strcharinfo(0)+". Não fique triste.";
 				mes "Mesmo que não tenhamos vencido, nós demos nosso melhor.";
-				mes "Este é o majestoso presente do nosso Croix e por favor, não esqueça esta batalha. Nós ganharemos com toda certeza a próxima batalha."
+				mes "Este é o majestoso presente do nosso Croix e por favor, não esqueça esta batalha. Nós ganharemos com toda certeza a próxima batalha.";
 				close2;
 				getitem 7828,1; //BF_Badge1
 			}
@@ -828,7 +828,7 @@ bat_a01,45,19,3	script	Croix Vintenar#a01_b	415,{
 				mes "[Swandery]";
 				mes "Oh, "+strcharinfo(0)+". Não fique triste.";
 				mes "Mesmo que não tenhamos vencido, nós demos nosso melhor.";
-				mes "Este é o majestoso presente do nosso Croix e por favor, não esqueça esta batalha. Nós ganharemos com toda certeza a próxima batalha."
+				mes "Este é o majestoso presente do nosso Croix e por favor, não esqueça esta batalha. Nós ganharemos com toda certeza a próxima batalha.";
 				close2;
 				getitem 7828,.@medal_gap; //BF_Badge1
 			}

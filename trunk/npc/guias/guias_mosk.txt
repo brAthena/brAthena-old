@@ -12,25 +12,23 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0                                |
+// | Versões eA/brA: 1.0/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: Guias da cidade de Moscovia                 |
+// | Descrição: Guias da Cidade de Moscovia                 |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			   						| 
+// | 1.0 Script Traduzido [Protimus]                        |
+// | 1.1 Script Revisado [Protimus]							|
 // \________________________________________________________/
 
-moscovia,161,76,4	script	Moscovia Guide#mosk	959,{
+moscovia,161,76,4	script	Guia de Moscóvia#mosk	959,{
 	mes "[Guia de Moscóvia]";
 	mes "Bem-vindo à Moscóvia.";
 	mes "Este é o paraíso em meio ao mar sem fim.";
 	mes "Você vai adorar as belas paisagens e a luz do sol!";
 	next;
 	mes "[Guia de Moscóvia]";
-	mes "Eu fui mandada pelo Palácio de Moscóvia";
-	mes "para guiar os turistas ";
-	mes "e dar informações sobre esta cidade.";
+	mes "Eu fui mandada pelo Palácio de Moscóvia para guiar os turistas e dar informações sobre esta cidade.";
 	mes "Se tiver alguma pergunta, por favor me diga.";
 	next;
 	switch(select("Perguntar aonde posso ir.:Apagar todas as marcas do mapa.:Cancelar.")) {
@@ -42,36 +40,31 @@ moscovia,161,76,4	script	Moscovia Guide#mosk	959,{
 				case 1:
 					mes "[Guia de Moscóvia]";
 					mes "O palácio é ao fim do mar Norte de Rune-Midgard.";
-					mes " é onde ficam o nosso Senhor Czar de Moscóvia ";
-					mes "e seus vassalos.";
+					mes "É onde ficam o nosso Senhor Czar de Moscóvia e seus vassalos.";
 					close2;
 					viewpoint 1,257,138,1,0xFF0000;
 					end;
 				case 2:
 					mes "[Guia de Moscóvia]";
-					mes "A capela";
-					mes "é onde os monges rezam pela paz de Moscóvia.";
+					mes "A capela é onde os monges rezam pela paz de Moscóvia.";
 					close2;
 					viewpoint 1,266,161,2,0x00FF00;
 					end;
 				case 3:
 					mes "[Guia de Moscóvia]";
-					mes "A Loja de Armas é o lugar onde";
-					mes "Você pode comprar armas feitas pelos melhores fabricantes de Moscóvia.";
+					mes "A Loja de Armas é o lugar onde você pode comprar armas feitas pelos melhores fabricantes de Moscóvia.";
 					close2;
 					viewpoint 1,185,185,3,0x00FF00;
 					end;
 				case 4:
 					mes "[Guia de Moscóvia]";
-					mes "A Loja de Utilidades é o lugar onde";
-					mes "Você pode se preparar com o que precisa para as suas viagens.";
+					mes "A Loja de Utilidades é o lugar onde você pode se preparar com o que precisa para as suas viagens.";
 					close2;
 					viewpoint 1,223,174,3,0x00FF00;
 					end;
 				case 5:
 					mes "[Guia de Moscóvia]";
-					mes "A Loja de Utilidades é o lugar onde";
-					mes "Você pode se preparar com o que precisa para as suas viagens.";
+					mes "A Loja de Utilidades é o lugar onde você pode se preparar com o que precisa para as suas viagens.";
 					viewpoint 1,229,208,4,0x3355FF;
 					close2;
 					end;
@@ -82,7 +75,6 @@ moscovia,161,76,4	script	Moscovia Guide#mosk	959,{
 			mes "[Guia de Moscóvia]";
 			mes "Eu apaguei todas as marcas do mapa.";
 			mes "Quando quiser colocar as marcas no mapa, pode pedir para mim.";
-			mes "there, you can ask me.";
 			viewpoint 2,257,138,1,0xFF0000;
 			viewpoint 2,185,187,2,0x00FF00;
 			viewpoint 2,223,174,3,0x00FF00;

@@ -12,15 +12,16 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.4a/1.0                               |
+// | Versões eA/brA: 1.4a/1.1                               |
 // |--------------------------------------------------------|
-// | Descrição: Guias da cidade de Geffen                   |
+// | Descrição: Guias da Cidade de Geffen                   |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Protimus]                        |
+// | 1.1 Script Revisado [Protimus]							|
 // \________________________________________________________/
 
-geffen,203,116,0	script	Guide#gef::GefGuide	705,{
+geffen,203,116,0	script	Guia#gef::GefGuide	705,{
 	cutin "gef_soldier",2;
 	mes "[Guia de Geffen]";
 	mes "Bem-vindo à Geffen, a cidade da magia.";
@@ -43,7 +44,7 @@ geffen,203,116,0	script	Guide#gef::GefGuide	705,{
 				if (.@wait_button_chk == 0) set .@wait_button_chk,1;
 				else next;
 				
-				switch(select("^FF0000Academia de Magia.^000000:Refinaria:Loja de Armas:Loja de Ferramentas:Bar:Estalagem:Torre de Geffen:Cancelar")) {
+				switch(select("^FF0000Academia de Magia.^000000:Refinaria.:Loja de Armas.:Loja de Ferramentas.:Bar.:Estalagem.:Torre de Geffen.:Cancelar.")) {
 				case 1:
 					mes "[Guia de Geffen]";
 					mes "A Academia de Magia é o lugar aonde os Aprendizes vão para se tornar Magos.";
@@ -106,8 +107,8 @@ geffen,203,116,0	script	Guide#gef::GefGuide	705,{
 			break;
 		case 3:
 			mes "[Guia de Geffen]";
-			mes "Nós fomos exaustivamente treinados para servi-lo da melhor maneira possivel e sem falhas.";
-			mes "Assim você tem a garantia das melhores indicações possiveis.";
+			mes "Nós fomos exaustivamente treinados para serví-lo da melhor maneira possível e sem falhas.";
+			mes "Assim você tem a garantia das melhores indicações possíveis.";
 			next;					
 			mes "[Guia de Geffen]";
 			mes "As indicações que lhe daremos podem ser marcadas no seu mini-mapa.";

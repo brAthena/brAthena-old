@@ -12,33 +12,29 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0                                |
+// | Versões eA/brA: 1.0/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: Guias da cidade de Brasilis                 |
+// | Descrição: Guias da Cidade de Brasilis                 |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    					| 
+// | 1.0 Script Traduzido [Protimus]                        |
+// | 1.1 Script Revisado [Protimus]							|
 // \________________________________________________________/
 
 
-brasilis,219,97,3	script	Guia Brasileira	478,{
-	mes "[Brasilis Guide]";
+brasilis,219,97,3	script	Guia	478,{
+	mes "[Guia]";
 	mes "Boas-vindas a todos que vieram a Brasilis, uma terra apaixonada e quente como o sol que nos banha.";
 	mes "Se tiver alguma pergunta, é só falar.";
-	next;
-	mes "Feita em granito pelo escultor Victor Brechó, ela foi erguida para comemorar o 399° aniversário da cidade. É bem grande não?";
-	switch(select("Perguntar sobre os locais da cidade.:Apagar todas as marcas do mapa.:Cancelar.")) {
+	switch(select("Localizações.:Limpar as indicações do minimapa.:Cancelar.")) {
 	case 1:
 		set .@compass_check,0;
-		mes "[Brasilis Guide]";
+		mes "[Guia]";
 		mes "No que você quer que eu lhe guie?";
 		if (.@compass_check == 0) {
-			mes "Would you like me";
-			mes "to mark locations";
-			mes "on your Mini-Map?";
+			mes "Você gostaria de limpar suas indicações do minimapa?";
 			next;
-			switch(select("Yes:No")) {
+			switch(select("Sim.:Não.")) {
 			case 1:
 				set .@compass_check,1;
 				break;
@@ -48,10 +44,10 @@ brasilis,219,97,3	script	Guia Brasileira	478,{
 			}
 		}
 		next;
-		switch(select("Pousada:Teleférico da Selva:Museu de Arte:Feirinha de Brasilis:Cancelar")) {
+		switch(select("Pousada.:Teleférico da Selva.:Museu de Arte.:Feirinha de Brasilis.:Cancelar.")) {
 		case 1:
-			mes "[Brasilis Guide]";
-			mes "A pousada está logo aqui em frente, .";
+			mes "[Guia]";
+			mes "A pousada está logo aqui em frente, em ^00FF00+^000000.";
 			if (.@compass_check == 1) {
 				viewpoint 1,273,149,2,0xFF0000;
 			}
@@ -60,8 +56,8 @@ brasilis,219,97,3	script	Guia Brasileira	478,{
 			}
 			break;
 		case 2:
-			mes "[Brasilis Guide]";
-			mes "Quer passear pela selva? Você pode tomar o teleférico em +";
+			mes "[Guia]";
+			mes "Quer passear pela selva? Você pode pegar o teleférico em ^00FF00+^000000.";
 			if (.@compass_check == 1) {
 				viewpoint 1,308,333,3,0xCC6600;
 			}
@@ -70,8 +66,8 @@ brasilis,219,97,3	script	Guia Brasileira	478,{
 			}
 			break;
 		case 3:
-			mes "[Brasilis Guide]";
-			mes "O Museu de Arte, o orgulho de Brasilis, está em +.";
+			mes "[Guia]";
+			mes "O Museu de Arte, o orgulho de Brasilis, está em ^00FF00+^000000.";
 			if (.@compass_check == 1) {
 				viewpoint 1,133,167,4,0x00FF00;
 			}
@@ -80,8 +76,8 @@ brasilis,219,97,3	script	Guia Brasileira	478,{
 			}
 			break;
 		case 4:
-			mes "[Brasilis Guide]";
-			mes "Você pode comprar itens diversos em +.";
+			mes "[Guia]";
+			mes "Você pode comprar itens diversos em ^00FF00+^000000.";
 			if (.@compass_check == 1) {
 				viewpoint 1,238,248,5,0x00FF00;
 			}
@@ -90,11 +86,8 @@ brasilis,219,97,3	script	Guia Brasileira	478,{
 			}
 			break;
 		case 5:
-			mes "[Brasilis Guide]";
-			mes "If you want to delete the location";
-			mes "marks from your mini-map, please";
-			mes "choose 'Delete marks on the";
-			mes "mini-map' from the menu.";
+			mes "[Guia]";
+			mes "Se quiser remover as marcações de local do seu minimapa, selecione 'Limpar as indicações do minimapa'.";
 			close;
 		}
 		break;
@@ -104,14 +97,13 @@ brasilis,219,97,3	script	Guia Brasileira	478,{
 		viewpoint 0,133,167,4,0x00FF00;
 		viewpoint 0,238,248,5,0x00FF00;
 		set .@compass_check,0;
-		mes "[Brasilis Guide]";
-		mes "Apaguei todas as marcas do mapa.";
+		mes "[Guia]";
+		mes "Apaguei todas as marcações do mini-mapa.";
 		mes "Se quiser as marcas denovo, é só pedir.";
-		mes "there, you can ask me.";
 		close;
 	case 3:
-		mes "[Brasilis Guide]";
-		mes "Saber das coisas daqui opr conta própria também pode ser divertivo..";
+		mes "[Guia]";
+		mes "Saber sobre a cidade por conta própria também pode ser divertivo...";
 		mes "De qualquer forma, se cuide.";
 		close;
 	}

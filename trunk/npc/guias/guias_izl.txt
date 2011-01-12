@@ -12,12 +12,13 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.5a/1.0                               |
+// | Versões eA/brA: 1.5a/1.1                               |
 // |--------------------------------------------------------|
-// | Descrição: Guias da cidade de Izlude                   |
+// | Descrição: Guias da Cidade de Izlude                   |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Protimus]                        |
+// | 1.1 Script Revisado [Protimus]							|
 // \________________________________________________________/
 
 izlude,121,87,6	script	Guia#iz	105,{
@@ -28,7 +29,7 @@ izlude,121,87,6	script	Guia#iz	105,{
 	set .@loop1,1;
 	while(.@loop1) {
 		next;
-		switch(select("Indicações.:Limpar indicações.:Tutorial.:Cancelar.")) {
+		switch(select("Indicações.:Limpar indicações do minimapa.:Tutorial.:Cancelar.")) {
 		case 1:
 			mes "[Guia de Izlude]";
 			mes "Por favor, selecione uma das opções.";
@@ -42,7 +43,7 @@ izlude,121,87,6	script	Guia#iz	105,{
 				if (.@wait_button_chk == 0) set .@wait_button_chk,1;
 				else next;
 				
-				switch(select("^FF0000Associação dos Espadachins^000000:Sede dos Espadachins:Arena:Porto de Izlude:Loja de Armas:Loja de Ferramentas:Cancelar")) {
+				switch(select("^FF0000Associação dos Espadachins^000000.:Sede dos Espadachins.:Arena.:Porto de Izlude.:Loja de Armas.:Loja de Ferramentas.:Cancelar.")) {
 				case 1:
 					mes "[Guia de Izlude]";
 					mes "A Associação se encontra na ilha do extremo oeste.";
@@ -51,7 +52,7 @@ izlude,121,87,6	script	Guia#iz	105,{
 					break;
 				case 2:
 					mes "[Guia de Izlude]";
-					mes "A Sede se encontra na ilhinha do extremo leste.";
+					mes "A Sede se encontra na ilha do extremo leste.";
 					if (.@compass_check)
 						viewpoint 1,214,130,1,0x00FF00;
 					break;
@@ -83,7 +84,7 @@ izlude,121,87,6	script	Guia#iz	105,{
 					break;
 				case 7:
 					mes "[Guia de Izlude]";
-					mes "Se você deseja apagar as indicações do seu mini-mapa, por favor selecione 'Limpar indicações'.";
+					mes "Se você deseja apagar as indicações do seu mini-mapa, por favor selecione 'Limpar indicações do minimapa'.";
 					set .@loop2,0;
 					break;
 				}
@@ -100,8 +101,8 @@ izlude,121,87,6	script	Guia#iz	105,{
 			break;
 		case 3:
 			mes "[Guia de Izlude]";
-			mes "Nós fomos exaustivamente treinados para servi-lo da melhor maneira possivel e sem falhas.";
-			mes "Assim você tem a garantia das melhores indicações possiveis.";
+			mes "Nós fomos exaustivamente treinados para serví-lo da melhor maneira possível e sem falhas.";
+			mes "Assim você tem a garantia das melhores indicações possíveis.";
 			next;					
 			mes "[Guia de Izlude]";
 			mes "As indicações que lhe daremos podem ser marcadas no seu mini-mapa.";
