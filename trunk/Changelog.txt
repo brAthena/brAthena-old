@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0093 - 12/01/2011 [Protimus]
+	* Adicionado brathena-admin para gerenciamento de servidores Linux.
+	- Foi removido o brathena-upgrade por ser obsoleto.
+
 	r0092 - 11/01/2011 [Protimus]
 	* Adicionado @go para Cidade de Brasilis.
 	- Não existe no eAthena, não apenas de Brasilis mas de vários novos campos.
