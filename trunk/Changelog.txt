@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0092 - 11/01/2011 [Protimus]
+	* Adicionado @go para Cidade de Brasilis.
+	- Não existe no eAthena, não apenas de Brasilis mas de vários novos campos.
+	OBS: Quando as traduções terminarem será enviado massivamente NPCs que não tem no eA, de novos EPs.
+
 	r0091 - 11/01/2011 [Protimus]
 	* Termino de traduções de npcs da pasta de guias.
 	- guias/guias_alde.txt
