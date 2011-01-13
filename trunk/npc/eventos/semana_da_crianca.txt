@@ -8,88 +8,86 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Children Week Event 	         		|
+// | Nome do Script: Evento Semana da Criança               |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.1/1.0                                |
+// | Versões eA/brA: 1.1/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição:                                             |
-// |                                                        |
+// | Descrição: Evento da Semana da Criança.                |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   								    | 
+// | Changelog:                                             |
+// | 1.0 Script traduzido [Boomer]                          |
+// | 1.1 Script revisado [Protimus & Tyler]                 | 
 // \________________________________________________________/
 
-prontera,146,91,5	script	Pandit chacha#child07	61,{
-	if(BaseLevel > 50) {
-		mes "[Pandit chacha]";
-		mes "Hahaha.";
-		mes "It is special day, comes only one time in a year.";
-		mes "If you see little adventurers around you send to me~";
-		mes "I will give the special gift.";
-		close;
-	} else if(BaseLevel < 20) {
-		mes "[Pandit chacha]";
-		mes "Hahaha.";
-		mes "You are a baby adventurer not little adventurer.";
-		mes "When you more grow up, come back again. hahaha.";
-		close;
-	} else if(oversea_event9 < 1) {
-		mes "[Pandit chacha]";
-		mes "Hahaha.";
-		mes "Welcome, little adventurers!";
-		mes "Today is special day, isn't it~?";
-		mes "I would like to give the small gift to little adventurer...";
-		mes "What about you? Do you want to take it?";
-		next;
-		if(select("No. I will take it later.","Sure, i want.") == 1) {
-			mes "[Pandit chacha]";
-			mes "That's too bad.... hum...";
-			mes "I gathered some stuffs from far a way world to make it....";
-			mes "Whenever come back again if you want it...";
-			close;
-		}
-			set oversea_event9,1;
-			getitem 11705,10; //Children's Potion
-			mes "[Pandit chacha]";
-			mes "Look. This is a child Potion.";
-			mes "The weight is just 1 but recover much HP.";
-			mes "If you want to get more, bring the 1 Wedding Bouquet and 1 Witherless Rose.";
-			close;
-	} else if(oversea_event9 == 1) {
-		if(countitem(745) > 0 && countitem(748) > 0) {
-			mes "[Pandit chacha]";
-			mes "Ahha!!";
-			mes "You have remembered my beautiful composition.";
-			mes "You did good work.";
-			mes "Could you give me 1 Wedding Bouquet and 1 Witherless Rose? ";
-			next;
-			if(select("Not yet.","Sure, take it.") == 1) {
-				mes "[Pandit chacha]";
-				mes "If you are not prepared yet, call me when you ready.";
-				close;
-			}
-				mes "[Pandit chacha]";
-				mes "Hahaha.";
-				mes "Oh~ you get it.";
-				mes "Here, I will exchange to the 50 child potion.";
-				mes "Once you get this 50 child potion, I won't give any more.";
-				close2;
-				delitem 745,1; //Wedding Bouquet
-				delitem 748,1; //Witherless Rose
-				set oversea_event9,2;
-				getitem 11705,50; //Children's Potion
-				end;
-		}
-			mes "[Pandit chacha]";
-			mes "Little adventurers, you should bring the 1 Wedding Bouquet and 1 Witherless Rose.";
-			mes "If you bring these stuffs I will exchange them for child Potion. ";
-			close;
-	}
-                mes "[Pandit chacha]";
-		mes "Hahaha.";
-		mes "Are you enjoying children week~? ";
+prontera,146,91,5       script  Pândita Chacha#child07   61,{
+        if(BaseLe vel > 50) {
+                mes "[Pândita Chacha]";
+                mes "Hahaha!";
+                mes "Este é um dia especial, que só acontece uma vez no ano.";
+                mes "Se você ver encontrar alguns aventureiros, chame-os para cá!";
+                mes "Eu lhes darei um presente muito especial.";
+                close;
+        } else if(BaseLevel < 20) {
+                mes "[Pândita Chacha]";
+                mes "Hahaha!";
+                mes "Você é um bebê aventureiro e não um pequeno aventureiro!";
+                mes "Quando você crescer, volte aqui novamente!";
+                close;
+        } else if(oversea_event9 < 1) {
+                mes "[Pândita Chacha]";
+                mes "Bem-vindos, pequenos aventureiros!";
+                mes "Hoje é um dia especial não?";
+                mes "Eu gostaria de dar presentes para vocês, pequenos aventureiros...";
+                mes "Que tal você? Você quer ganhar um presente?";
+                next;
+                if(select("Não, pegarei meu presente depois.","Claro, eu quero!") == 1) {
+                        mes "[Pândita Chacha]";
+                        mes "Isso é muito ruim... Humm...";
+                        mes "Reuni muitas coisas de um mundo muito longe para fazer isso para vocês...";
+                        mes "Volte novamente quando você quiser...";
+                        close;
+                }
+                        set oversea_event9,1;
+                        getitem 11705,10; //Children's Potion
+                        mes "[Pândita Chacha]";
+                        mes "Veja, isto é uma Poção de Criança.";
+                        mes "O peso dela é só 1, mas recupera muito HP.";
+                        mes "Se você quiser mais, me traga  1 Buquê de Casamento e 1 Rosa Eterna.";
+                        close;
+        } else if(oversea_event9 == 1) {
+                if(countitem(745) > 0 && countitem(748) > 0) {
+                        mes "[Pândita Chacha]";
+                        mes "Ahha!!!";
+                        mes "Você se lembrou de minha linda composição.";
+                        mes "Você fez um bom trabalho!";
+                        mes "Você poderia me dar o Buquê de Casamento e essa Rosa Eterna?";
+                        next;
+                        if(select("Ainda não.","Claro, pode pegá-los.") == 1) {
+                                mes "[Pândita Chacha]";
+                                mes "Se você não está preparado, me chame quando estiver.";
+                                close;
+                        }
+                                mes "[Pândita Chacha]";
+                                mes "Hahaha.";
+                                mes "Oh! Você trouxe isso para mim!";
+                                mes "Vou trocar por 50 Poções de Criança.";
+                                mes "Uma vez que você ganhar as 50 Poções, eu não as darei novamente.";
+                                close2;
+                                delitem 745,1; //Buquê de Casamento
+                                delitem 748,1; //Rosa Eterna
+                                set oversea_event9,2;
+                                getitem 11705,50; //Poções de Criança
+                                end;
+                }
+                        mes "[Pândita Chacha]";
+                        mes "Pequenos aventureiros, vocês devem me trazer 1 Buquê de Casamento e 1 Rosa Eterna.";
+                        mes "Se vocês me trouxerem isso, eu trocarei por Poções de Criança.";
+                        close;
+        }
+                mes "[Pândita Chacha]";
+                mes "Hahaha.";
+                mes "Você está aproveitando a Semana das Crianças?";
                 close;
 }
