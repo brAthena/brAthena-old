@@ -256,15 +256,15 @@ int do_init(int argc, char *argv[])
 	// Process the command-line arguments
 	process_args(argc, argv);
 
-	ShowStatus("Initializing grfio with %s\n", grf_list_file);
+	ShowStatus("Inicializando grfio com %s\n", grf_list_file);
 	grfio_init(grf_list_file);
 
 	// Attempt to open the map cache file and force rebuild if not found
-	ShowStatus("Opening map cache: %s\n", map_cache_file);
+	ShowStatus("Abrindo cache de mapas: %s\n", map_cache_file);
 	if(!rebuild) {
 		map_cache_fp = fopen(map_cache_file, "rb");
 		if(map_cache_fp == NULL) {
-			ShowNotice("Existing map cache not found, forcing rebuild mode\n");
+			ShowNotice("Cache de mapas nao encontrado, forcando modo rebuild\n");
 			rebuild = 1;
 		} else
 			fclose(map_cache_fp);
@@ -274,15 +274,15 @@ int do_init(int argc, char *argv[])
 	else
 		map_cache_fp = fopen(map_cache_file, "r+b");
 	if(map_cache_fp == NULL) {
-		ShowError("Failure when opening map cache file %s\n", map_cache_file);
+		ShowError("Falha ao abrir arquivo de cache de mapas %s\n", map_cache_file);
 		exit(EXIT_FAILURE);
 	}
 
 	// Open the map list
-	ShowStatus("Opening map list: %s\n", map_list_file);
+	ShowStatus("Abrindo lista de mapas: %s\n", map_list_file);
 	list = fopen(map_list_file, "r");
 	if(list == NULL) {
-		ShowError("Failure when opening maps list file %s\n", map_list_file);
+		ShowError("Falha ao abrir arquivo da lista de mapas %s\n", map_list_file);
 		exit(EXIT_FAILURE);
 	}
 
@@ -305,34 +305,34 @@ int do_init(int argc, char *argv[])
 		if(sscanf(line, "%15s", name) < 1)
 			continue;
 
-		if(strcmp("map:", name) == 0 && sscanf(line, "%*s %15s", name) < 1)
+		if(strcmp("mapa:", name) == 0 && sscanf(line, "%*s %15s", name) < 1)
 			continue;
 
 		name[MAP_NAME_LENGTH_EXT-1] = '\0';
 		remove_extension(name);
 		if(find_map(name))
-			ShowInfo("Map '"CL_WHITE"%s"CL_RESET"' already in cache.\n", name);
+			ShowInfo("Mapa '"CL_WHITE"%s"CL_RESET"' ja existente no cache.\n", name);
 		else if(read_map(name, &map)) {
 			cache_map(name, &map);
-			ShowInfo("Map '"CL_WHITE"%s"CL_RESET"' successfully cached.\n", name);
+			ShowInfo("Mapa '"CL_WHITE"%s"CL_RESET"' salvo no cache.\n", name);
 		} else
-			ShowError("Map '"CL_WHITE"%s"CL_RESET"' not found!\n", name);
+			ShowError("Mapa '"CL_WHITE"%s"CL_RESET"' não encontrado!\n", name);
 
 	}
 
-	ShowStatus("Closing map list: %s\n", map_list_file);
+	ShowStatus("Fechando lista de mapas: %s\n", map_list_file);
 	fclose(list);
 
 	// Write the main header and close the map cache
-	ShowStatus("Closing map cache: %s\n", map_cache_file);
+	ShowStatus("Fechando cache de mapas: %s\n", map_cache_file);
 	fseek(map_cache_fp, 0, SEEK_SET);
 	fwrite(&header, sizeof(struct main_header), 1, map_cache_fp);
 	fclose(map_cache_fp);
 
-	ShowStatus("Finalizing grfio\n");
+	ShowStatus("Finalizando grfio\n");
 	grfio_final();
 
-	ShowInfo("%d maps now in cache\n", header.map_count);
+	ShowInfo("%d mapas agora no cache\n", header.map_count);
 
 	return 0;
 }

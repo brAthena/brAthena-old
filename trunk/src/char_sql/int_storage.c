@@ -68,7 +68,7 @@ int storage_fromsql(int account_id, struct storage_data* p)
 	p->storage_amount = i;
 	Sql_FreeResult(sql_handle);
 
-	ShowInfo("storage load complete from DB - id: %d (total: %d)\n", account_id, p->storage_amount);
+	ShowInfo("deposito carregado pelo BD - id: %d (total: %d)\n", account_id, p->storage_amount);
 	return 1;
 }
 #endif //TXT_SQL_CONVERT
@@ -77,7 +77,7 @@ int storage_fromsql(int account_id, struct storage_data* p)
 int guild_storage_tosql(int guild_id, struct guild_storage* p)
 {
 	memitemdata_to_sql(p->items, MAX_GUILD_STORAGE, guild_id, TABLE_GUILD_STORAGE);
-	ShowInfo ("guild storage save to DB - guild: %d\n", guild_id);
+	ShowInfo ("deposito da guilda salvo ao BD - guilda: %d\n", guild_id);
 	return 0;
 }
 
@@ -126,7 +126,7 @@ int guild_storage_fromsql(int guild_id, struct guild_storage* p)
 	p->storage_amount = i;
 	Sql_FreeResult(sql_handle);
 
-	ShowInfo("guild storage load complete from DB - id: %d (total: %d)\n", guild_id, p->storage_amount);
+	ShowInfo("deposito da guilda carregado pelo BD - id: %d (total: %d)\n", guild_id, p->storage_amount);
 	return 0;
 }
 
@@ -216,7 +216,7 @@ int mapif_parse_SaveGuildStorage(int fd)
 
 	if( sizeof(struct guild_storage) != len - 12 )
 	{
-		ShowError("inter storage: data size error %d != %d\n", sizeof(struct guild_storage), len - 12);
+		ShowError("inter storage: erro no tamanho dos dados %d != %d\n", sizeof(struct guild_storage), len - 12);
 	}
 	else
 	{

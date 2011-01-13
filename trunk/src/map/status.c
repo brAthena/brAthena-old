@@ -71,7 +71,7 @@ sc_type status_skill2sc(int skill)
 {
 	int sk = skill_get_index(skill);
 	if( sk == 0 ) {
-		ShowError("status_skill2sc: Unsupported skill id %d\n", skill);
+		ShowError("status_skill2sc: Id de habilidade %d nao suportado\n", skill);
 		return SC_NONE;
 	}
 	return SkillStatusChangeTable[sk];
@@ -80,7 +80,7 @@ sc_type status_skill2sc(int skill)
 int status_sc2skill(sc_type sc)
 {
 	if( sc < 0 || sc >= SC_MAX ) {
-		ShowError("status_skill2sc: Unsupported status change id %d\n", sc);
+		ShowError("status_skill2sc: Id de troca de estado %d nao suportado\n", sc);
 		return 0;
 	}
 
@@ -93,11 +93,11 @@ static void set_sc(int skill, sc_type sc, int icon, unsigned int flag)
 {
 	int sk = skill_get_index(skill);
 	if( sk == 0 ) {
-		ShowError("set_sc: Unsupported skill id %d\n", skill);
+		ShowError("set_sc: Id de habilidade %d nao suportado\n", skill);
 		return;
 	}
 	if( sc < 0 || sc >= SC_MAX ) {
-		ShowError("set_sc: Unsupported status change id %d\n", sc);
+		ShowError("set_sc: Id de troca de estado %d nao suportado\n", sc);
 		return;
 	}
 
@@ -1506,7 +1506,7 @@ int status_calc_mob_(struct mob_data* md, bool first)
 		struct guild_castle *gc;
 		gc=guild_mapname2gc(map[md->bl.m].name);
 		if (!gc)
-			ShowError("status_calc_mob: No castle set at map %s\n", map[md->bl.m].name);
+			ShowError("status_calc_mob: Nenhum castelo determinado no mapa %s\n", map[md->bl.m].name);
 		else {
 			if(gc->castle_id > 23) {
 				if(md->class_ == MOBID_EMPERIUM) {
@@ -4128,7 +4128,7 @@ const char* status_get_name(struct block_list *bl)
 	case BL_HOM: return ((TBL_HOM*)bl)->homunculus.name;
 	case BL_NPC: return ((TBL_NPC*)bl)->name;
 	}
-	return "Unknown";
+	return "Desconhecido";
 }
 
 /*==========================================
@@ -4452,7 +4452,7 @@ void status_set_viewdata(struct block_list *bl, int class_)
 			} else if (vd)
 				memcpy(&sd->vd, vd, sizeof(struct view_data));
 			else
-				ShowError("status_set_viewdata (PC): No view data for class %d\n", class_);
+				ShowError("status_set_viewdata (PC): Nao ha view data para classe %d\n", class_);
 		}
 	break;
 	case BL_MOB:
@@ -4461,7 +4461,7 @@ void status_set_viewdata(struct block_list *bl, int class_)
 			if (vd)
 				md->vd = vd;
 			else
-				ShowError("status_set_viewdata (MOB): No view data for class %d\n", class_);
+				ShowError("status_set_viewdata (MOB): Nao ha view data para classe %d\n", class_);
 		}
 	break;
 	case BL_PET:
@@ -4478,7 +4478,7 @@ void status_set_viewdata(struct block_list *bl, int class_)
 					}
 				}
 			} else
-				ShowError("status_set_viewdata (PET): No view data for class %d\n", class_);
+				ShowError("status_set_viewdata (PET): Nao ha view data para classe %d\n", class_);
 		}
 	break;
 	case BL_NPC:
@@ -4487,7 +4487,7 @@ void status_set_viewdata(struct block_list *bl, int class_)
 			if (vd)
 				nd->vd = vd;
 			else
-				ShowError("status_set_viewdata (NPC): No view data for class %d\n", class_);
+				ShowError("status_set_viewdata (NPC): Nao ha view data para classe %d\n", class_);
 		}
 	break;
 	case BL_HOM:		//[blackhole89]
@@ -4496,7 +4496,7 @@ void status_set_viewdata(struct block_list *bl, int class_)
 			if (vd)
 				hd->vd = vd;
 			else
-				ShowError("status_set_viewdata (HOMUNCULUS): No view data for class %d\n", class_);
+				ShowError("status_set_viewdata (HOMUNCULUS): Nao ha view data para classe %d\n", class_);
 		}
 		break;
 	case BL_MER:
@@ -4505,7 +4505,7 @@ void status_set_viewdata(struct block_list *bl, int class_)
 			if (vd)
 				md->vd = vd;
 			else
-				ShowError("status_set_viewdata (MERCENARY): No view data for class %d\n", class_);
+				ShowError("status_set_viewdata (MERCENARY): Nao ha view data para classe %d\n", class_);
 		}
 		break;
 	}
@@ -4734,7 +4734,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 
 	if( type <= SC_NONE || type >= SC_MAX )
 	{
-		ShowError("status_change_start: invalid status change (%d)!\n", type);
+		ShowError("status_change_start: troca de estado invalida (%d)!\n", type);
 		return 0;
 	}
 
@@ -6071,7 +6071,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		default:
 			if( calc_flag == SCB_NONE && StatusSkillChangeTable[type] == 0 && StatusIconChangeTable[type] == 0 )
 			{	//Status change with no calc, no icon, and no skill associated...? 
-				ShowError("UnknownStatusChange [%d]\n", type);
+				ShowError("Troca de estado desconhecida [%d]\n", type);
 				return 0;
 			}
 	}
@@ -6608,7 +6608,7 @@ int status_change_end(struct block_list* bl, enum sc_type type, int tid)
 
 					if( group == NULL )
 					{
-						ShowDebug("status_change_end: SC_DANCING is missing skill unit group (val1=%d, val2=%d, val3=%d, val4=%d, timer=%d, tid=%d, char_id=%d, map=%s, x=%d, y=%d). Please report this! (#3504)\n",
+						ShowDebug("status_change_end: Esta faltando unit group da habilidade SC_DANCING (val1=%d, val2=%d, val3=%d, val4=%d, timer=%d, tid=%d, char_id=%d, map=%s, x=%d, y=%d). Favor reportar isso! (#3504)\n",
 							sce->val1, sce->val2, sce->val3, sce->val4, sce->timer, tid,
 							sd ? sd->status.char_id : 0,
 							mapindex_id2name(map_id2index(bl->m)), bl->x, bl->y);
@@ -6955,7 +6955,7 @@ int kaahi_heal_timer(int tid, unsigned int tick, int id, intptr data)
 		return 0;
 
 	if(sce->val4 != tid) {
-		ShowError("kaahi_heal_timer: Timer mismatch: %d != %d\n", tid, sce->val4);
+		ShowError("kaahi_heal_timer: Timer incompativel: %d != %d\n", tid, sce->val4);
 		sce->val4=-1;
 		return 0;
 	}
@@ -6990,7 +6990,7 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr data)
 	bl = map_id2bl(id);
 	if(!bl)
 	{
-		ShowDebug("status_change_timer: Null pointer id: %d data: %d\n", id, data);
+		ShowDebug("status_change_timer: Ponteiro nulo id: %d dados: %d\n", id, data);
 		return 0;
 	}
 	sc = status_get_sc(bl);
@@ -6998,13 +6998,13 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr data)
 	
 	if(!(sc && (sce = sc->data[type])))
 	{
-		ShowDebug("status_change_timer: Null pointer id: %d data: %d bl-type: %d\n", id, data, bl->type);
+		ShowDebug("status_change_timer: Ponteiro nulo id: %d dados: %d bl-type: %d\n", id, data, bl->type);
 		return 0;
 	}
 
 	if( sce->timer != tid )
 	{
-		ShowError("status_change_timer: Mismatch for type %d: %d != %d (bl id %d)\n",type,tid,sce->timer, bl->id);
+		ShowError("status_change_timer: Incompatibilidade para tipo %d: %d != %d (bl id %d)\n",type,tid,sce->timer, bl->id);
 		return 0;
 	}
 
@@ -7015,7 +7015,7 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr data)
 	if( (sce=sc->data[type]) ) \
 		sce->timer = add_timer(t,f,i,d); \
 	else \
-		ShowError("status_change_timer: Unexpected NULL status change id: %d data: %d\n", id, data)
+		ShowError("status_change_timer: Troca de estado nula inesperada id: %d dados: %d\n", id, data)
 
 	switch(type)
 	{
@@ -7691,7 +7691,7 @@ static bool status_readdb_job1(char* fields[], int columns, int current)
 
 	if(!pcdb_checkid(class_))
 	{
-		ShowWarning("status_readdb_job1: Invalid job class %d specified.\n", class_);
+		ShowWarning("status_readdb_job1: Classe invalida %d especificada.\n", class_);
 		return false;
 	}
 	idx = pc_class2idx(class_);
@@ -7716,7 +7716,7 @@ static bool status_readdb_job2(char* fields[], int columns, int current)
 
 	if(!pcdb_checkid(class_))
 	{
-		ShowWarning("status_readdb_job2: Invalid job class %d specified.\n", class_);
+		ShowWarning("status_readdb_job2: Classe invalida %d especificada.\n", class_);
 		return false;
 	}
 	idx = pc_class2idx(class_);

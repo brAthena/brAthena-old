@@ -76,7 +76,7 @@ static TBL_PC* guild_sd_check(int guild_id, int account_id, int char_id)
 
 	if (sd->status.guild_id != guild_id)
 	{	//If player belongs to a different guild, kick him out.
- 		intif_guild_leave(guild_id,account_id,char_id,0,"** Guild Mismatch **");
+ 		intif_guild_leave(guild_id,account_id,char_id,0,"** Guilda Incompativel **");
 		return NULL;
 	}
 
@@ -112,7 +112,7 @@ static bool guild_read_guildskill_tree_db(char* split[], int columns, int curren
 
 	if( id < 0 || id >= MAX_GUILDSKILL )
 	{
-		ShowWarning("guild_read_guildskill_tree_db: Invalid skill id %d.\n", skillid);
+		ShowWarning("guild_read_guildskill_tree_db: ID de habilidade %d invalido.\n", skillid);
 		return false;
 	}
 
@@ -444,7 +444,7 @@ int guild_check_member(struct guild *g)
 		if (i < 0) {
 			sd->status.guild_id=0;
 			sd->guild_emblem_id=0;
-			ShowWarning("guild: check_member %d[%s] is not member\n",sd->status.account_id,sd->status.name);
+			ShowWarning("guild: check_member %d[%s] nao e um membro\n",sd->status.account_id,sd->status.name);
 		}
 	}
 	mapit_free(iter);
@@ -507,7 +507,7 @@ int guild_recv_info(struct guild *sg)
 
 	if(g->max_member > MAX_GUILD)
 	{
-		ShowError("guild_recv_info: Received guild with %d members, but MAX_GUILD is only %d. Extra guild-members have been lost!\n", g->max_member, MAX_GUILD);
+		ShowError("guild_recv_info: Guilda recebida com %d membros, mas MAX_GUILD e de apenas %d. Membros extra perdidos!\n", g->max_member, MAX_GUILD);
 		g->max_member = MAX_GUILD;
 	}
 	
@@ -708,8 +708,8 @@ int guild_member_added(int guild_id,int account_id,int char_id,int flag)
 	if(sd==NULL || sd->guild_invite==0){
 		// ƒLƒƒƒ‰‘¤‚É“o˜^‚Å‚«‚È‚©‚Á‚½‚½‚ß’E‘Þ—v‹‚ðo‚·
 		if (flag == 0) {
-			ShowError("guild: member added error %d is not online\n",account_id);
- 			intif_guild_leave(guild_id,account_id,char_id,0,"** Data Error **");
+			ShowError("guild: Erro ao adicionar membro %d nao esta online\n",account_id);
+ 			intif_guild_leave(guild_id,account_id,char_id,0,"** Erro de Dados **");
 		}
 		return 0;
 	}
@@ -860,7 +860,7 @@ int guild_send_memberinfoshort(struct map_session_data *sd,int online)
 		if(i>=0)
 			g->member[i].sd=NULL;
 		else
-			ShowError("guild_send_memberinfoshort: Failed to locate member %d:%d in guild %d!\n", sd->status.account_id, sd->status.char_id, g->guild_id);
+			ShowError("guild_send_memberinfoshort: Falha ao localizar membro %d:%d na guilda %d!\n", sd->status.account_id, sd->status.char_id, g->guild_id);
 		return 0;
 	}
 	
@@ -905,7 +905,7 @@ int guild_recv_memberinfoshort(int guild_id,int account_id,int char_id,int onlin
 			sd->status.guild_id=0;
 			sd->guild_emblem_id=0;
 		}
-		ShowWarning("guild: not found member %d,%d on %d[%s]\n",	account_id,char_id,guild_id,g->name);
+		ShowWarning("guild: Membro %d,%d nao encontrado em %d[%s]\n",	account_id,char_id,guild_id,g->name);
 		return 0;
 	}
 	
@@ -1259,7 +1259,7 @@ int guild_reqalliance(struct map_session_data *sd,struct map_session_data *tsd)
 	int i;
 
 	if(agit_flag || agit2_flag)	{	// Disable alliance creation during woe [Valaris]
-		clif_displaymessage(sd->fd,"Alliances cannot be made during Guild Wars!");
+		clif_displaymessage(sd->fd,"Alianças não podem ser feitas durante guerras de Guildas!");
 		return 0;
 	}	// end addition [Valaris]
 
@@ -1372,7 +1372,7 @@ int guild_delalliance(struct map_session_data *sd,int guild_id,int flag)
 	nullpo_ret(sd);
 
 	if(agit_flag || agit2_flag)	{	// Disable alliance breaking during woe [Valaris]
-		clif_displaymessage(sd->fd,"Alliances cannot be broken during Guild Wars!");
+		clif_displaymessage(sd->fd,"Alianças não podem ser quebradas durante guerras de Guildas!");
 		return 0;
 	}	// end addition [Valaris]
 
@@ -1626,13 +1626,13 @@ int guild_gm_changed(int guild_id, int account_id, int char_id)
 
 	if (g->member[pos].sd && g->member[pos].sd->fd)
 	{
-		clif_displaymessage(g->member[pos].sd->fd, "You no longer are the Guild Master.");
+		clif_displaymessage(g->member[pos].sd->fd, "Você não é mais o Mestre da Guilda.");
 		g->member[pos].sd->state.gmaster_flag = 0;
 	}
 	
 	if (g->member[0].sd && g->member[0].sd->fd)
 	{
-		clif_displaymessage(g->member[0].sd->fd, "You have become the Guild Master!");
+		clif_displaymessage(g->member[0].sd->fd, "Você agora é Mestre da Guilda!");
 		g->member[0].sd->state.gmaster_flag = g;
 		//Block his skills for 5 minutes to prevent abuse.
 		guild_block_skill(g->member[0].sd, 300000);
@@ -1724,7 +1724,7 @@ int guild_castledataloadack(int castle_id,int index,int value)
 	case 17:
 		gc->guardian[index-10].visible = value; break;
 	default:
-		ShowError("guild_castledataloadack ERROR!! (Not found castle_id=%d index=%d)\n", castle_id, index);
+		ShowError("guild_castledataloadack ERRO!! (Nao encontrado castle_id=%d index=%d)\n", castle_id, index);
 		return 0;
 	}
 
@@ -1794,7 +1794,7 @@ int guild_castledatasaveack(int castle_id,int index,int value)
 	case 17:
 		gc->guardian[index-10].visible = value; break;
 	default:
-		ShowError("guild_castledatasaveack ERROR!! (Not found index=%d)\n", index);
+		ShowError("guild_castledatasaveack ERRO!! (Nao encontrado index=%d)\n", index);
 		return 0;
 	}
 	return 1;
@@ -1822,7 +1822,7 @@ int guild_castlealldataload(int len,struct guild_castle *gc)
 	{
 		struct guild_castle *c = guild_castle_search(gc->castle_id);
 		if (!c) {
-			ShowError("guild_castlealldataload Castle id=%d not found.\n", gc->castle_id);
+			ShowError("guild_castlealldataload Castelo id=%d nao encontrado.\n", gc->castle_id);
 			continue;
 		}
 
@@ -1846,28 +1846,28 @@ int guild_castlealldataload(int len,struct guild_castle *gc)
 int guild_agit_start(void)
 {	// Run All NPC_Event[OnAgitStart]
 	int c = npc_event_doall("OnAgitStart");
-	ShowStatus("NPC_Event:[OnAgitStart] Run (%d) Events by @AgitStart.\n",c);
+	ShowStatus("NPC_Event:[OnAgitStart] Executados (%d) Eventos por @AgitStart.\n",c);
 	return 0;
 }
 
 int guild_agit_end(void)
 {	// Run All NPC_Event[OnAgitEnd]
 	int c = npc_event_doall("OnAgitEnd");
-	ShowStatus("NPC_Event:[OnAgitEnd] Run (%d) Events by @AgitEnd.\n",c);
+	ShowStatus("NPC_Event:[OnAgitEnd] Executados (%d) Eventos por @AgitEnd.\n",c);
 	return 0;
 }
 
 int guild_agit2_start(void)
 {	// Run All NPC_Event[OnAgitStart2]
 	int c = npc_event_doall("OnAgitStart2");
-	ShowStatus("NPC_Event:[OnAgitStart2] Run (%d) Events by @AgitStart2.\n",c);
+	ShowStatus("NPC_Event:[OnAgitStart2] Executados (%d) Eventos por @AgitStart2.\n",c);
 	return 0;
 }
 
 int guild_agit2_end(void)
 {	// Run All NPC_Event[OnAgitEnd2]
 	int c = npc_event_doall("OnAgitEnd2");
-	ShowStatus("NPC_Event:[OnAgitEnd2] Run (%d) Events by @AgitEnd2.\n",c);
+	ShowStatus("NPC_Event:[OnAgitEnd2] Executados (%d) Eventos por @AgitEnd2.\n",c);
 	return 0;
 }
 

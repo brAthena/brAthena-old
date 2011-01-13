@@ -3825,7 +3825,7 @@ static int mob_read_randommonster(void)
 			summon[i].qty = 1;
 		}
 		fclose(fp);
-		ShowStatus("Done reading '"CL_WHITE"%s"CL_RESET"'.\n",mobfile[i]);
+		ShowStatus("Leitura de '"CL_WHITE"%s"CL_RESET"' finalizada.\n",mobfile[i]);
 	}
 	return 0;
 }
@@ -3942,7 +3942,7 @@ static void mob_readchatdb(void)
 		count++;
 	}
 	fclose(fp);
-	ShowStatus("Done reading '"CL_WHITE"%s"CL_RESET"'.\n", arc);
+	ShowStatus("Leitura de '"CL_WHITE"%s"CL_RESET"' finalizada.\n", arc);
 }
 
 /*==========================================

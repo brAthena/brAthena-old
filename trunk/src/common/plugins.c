@@ -252,7 +252,7 @@ Plugin* plugin_open(const char* filename)
 				if (func)
 					register_plugin_event(func, events[i].event_name);
 				else
-					ShowError("Failed to locate function '%s' in '%s'.\n", events[i].func_name, filename);
+					ShowError("Falha ao localizar funcao '%s' em '%s'.\n", events[i].func_name, filename);
 			}
 			i++;
 		}
@@ -314,9 +314,9 @@ static int plugins_config_read(const char *cfgName)
 			continue;
 
 		if( strcmpi(w1,"auto_search") == 0 ){
-			if( strcmpi(w2,"yes") == 0 )
+			if( strcmpi(w2,"yes") == 0 || strcmpi(w2,"sim") == 0 )
 				auto_search = 1;
-			else if( strcmpi(w2,"no") == 0 )
+			else if( strcmpi(w2,"no") == 0 || strcmpi(w2,"nao") == 0 || strcmpi(w2,"não") == 0 )
 				auto_search = 0;
 			else
 				auto_search = atoi(w2);

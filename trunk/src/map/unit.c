@@ -125,7 +125,7 @@ static int unit_walktoxy_timer(int tid, unsigned int tick, int id, intptr data)
 	if(ud == NULL) return 0;
 
 	if(ud->walktimer != tid){
-		ShowError("unit_walk_timer mismatch %d != %d\n",ud->walktimer,tid);
+		ShowError("unit_walk_timer incompativel %d != %d\n",ud->walktimer,tid);
 		return 0;
 	}
 	ud->walktimer = INVALID_TIMER;
@@ -673,17 +673,17 @@ int unit_warp(struct block_list *bl,short m,short x,short y,clr_type type)
 	if (x<0 || y<0)
   	{	//Random map position.
 		if (!map_search_freecell(NULL, m, &x, &y, -1, -1, 1)) {
-			ShowWarning("unit_warp failed. Unit Id:%d/Type:%d, target position map %d (%s) at [%d,%d]\n", bl->id, bl->type, m, map[m].name, x, y);
+			ShowWarning("unit_warp falhou. ID Unit:%d/Tipo:%d, alvo posicionado no mapa %d (%s) em [%d,%d]\n", bl->id, bl->type, m, map[m].name, x, y);
 			return 2;
 			
 		}
 	} else if (map_getcell(m,x,y,CELL_CHKNOREACH))
 	{	//Invalid target cell
-		ShowWarning("unit_warp: Specified non-walkable target cell: %d (%s) at [%d,%d]\n", m, map[m].name, x,y);
+		ShowWarning("unit_warp: Celula alvo nao-andavel especificada: %d (%s) em [%d,%d]\n", m, map[m].name, x,y);
 		
 		if (!map_search_freecell(NULL, m, &x, &y, 4, 4, 1))
 	 	{	//Can't find a nearby cell
-			ShowWarning("unit_warp failed. Unit Id:%d/Type:%d, target position map %d (%s) at [%d,%d]\n", bl->id, bl->type, m, map[m].name, x, y);
+			ShowWarning("unit_warp falhou. ID Unit:%d/Tipo:%d, alvo posicionado no mapa %d (%s) em [%d,%d]\n", bl->id, bl->type, m, map[m].name, x, y);
 			return 2;
 		}
 	}
@@ -1702,7 +1702,7 @@ int unit_skillcastcancel(struct block_list *bl,int type)
 	else
 		ret=delete_timer( ud->skilltimer, skill_castend_id );
 	if(ret<0)
-		ShowError("delete timer error : skillid : %d\n",ret);
+		ShowError("erro ao remover timer : id da habilidade : %d\n",ret);
 
 	ud->skilltimer = INVALID_TIMER;
 
@@ -1915,11 +1915,11 @@ int unit_remove_map_(struct block_list *bl, clr_type clrtype, const char* file, 
 				sd->debug_line = 0;
 				sd->debug_func = "";
 			}
-			ShowDebug("unit_remove_map: unexpected state when removing player AID/CID:%d/%d"
+			ShowDebug("unit_remove_map: estado inesperado ao remover jogador AID/CID:%d/%d"
 				" (active=%d connect_new=%d rewarp=%d changemap=%d debug_remove_map=%d)"
-				" from map=%s (users=%d)."
-				" Previous call from %s:%d(%s), current call from %s:%d(%s)."
-				" Please report this!!!\n",
+				" do mapa=%s (usuarios=%d)."
+				" Chamado anterior de %s:%d(%s), chamado atual de %s:%d(%s)."
+				" Favor reportar isso!!!\n",
 				sd->status.account_id, sd->status.char_id,
 				sd->state.active, sd->state.connect_new, sd->state.rewarp, sd->state.changemap, sd->state.debug_remove_map,
 				map[bl->m].name, map[bl->m].users,

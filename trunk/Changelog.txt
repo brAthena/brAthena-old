@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0097 - 13/01/2011 [Wiskovisky]
+	* Adicionada toda a tradução atual da src ao Trunk
+	- Será revisada posteriormente novamente
+	* exemplo no grf-files.txt modificado para facilitar o entendimento
+
 	r0096 - 13/01/2011 [Protimus]
 	* Adicionada tradução de npc da pasta eventos.
 	- eventos/semana_da_crianca.txt

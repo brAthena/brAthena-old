@@ -454,7 +454,7 @@ struct s_skill_unit_layout* skill_get_unit_layout (int skillid, int skilllv, str
 	int dir;
 
 	if (pos < -1 || pos >= MAX_SKILL_UNIT_LAYOUT) {
-		ShowError("skill_get_unit_layout: unsupported layout type %d for skill %d (level %d)\n", pos, skillid, skilllv);
+		ShowError("skill_get_unit_layout: tipo de layout %d nao suportado para habilidade %d (nivel %d)\n", pos, skillid, skilllv);
 		pos = cap_value(pos, 0, MAX_SQUARE_LAYOUT); // cap to nearest square layout
 	}
 
@@ -468,7 +468,7 @@ struct s_skill_unit_layout* skill_get_unit_layout (int skillid, int skilllv, str
 	else if (skillid == WZ_ICEWALL)
 		return &skill_unit_layout [icewall_unit_pos + dir];
 
-	ShowError("skill_get_unit_layout: unknown unit layout for skill %d (level %d)\n", skillid, skilllv);
+	ShowError("skill_get_unit_layout: unidade de layout desconhecida para habilidade %d (nivel %d)\n", skillid, skilllv);
 	return &skill_unit_layout[0]; // default 1x1 layout
 }
 
@@ -2053,7 +2053,7 @@ static int skill_check_unit_range (struct block_list *bl, int x, int y, int skil
 	int range = bl->type==BL_PC?skill_get_unit_range(skillid, skilllv):0;
 	int layout_type = skill_get_unit_layout_type(skillid,skilllv);
 	if (layout_type==-1 || layout_type>MAX_SQUARE_LAYOUT) {
-		ShowError("skill_check_unit_range: unsupported layout type %d for skill %d\n",layout_type,skillid);
+		ShowError("skill_check_unit_range: tipo de layout %d nao suportado para habilidade %d\n",layout_type,skillid);
 		return 0;
 	}
 
@@ -2093,7 +2093,7 @@ static int skill_check_unit_range2 (struct block_list *bl, int x, int y, int ski
 		{
 			int layout_type = skill_get_unit_layout_type(skillid,skilllv);
 			if (layout_type==-1 || layout_type>MAX_SQUARE_LAYOUT) {
-				ShowError("skill_check_unit_range2: unsupported layout type %d for skill %d\n",layout_type,skillid);
+				ShowError("skill_check_unit_range2: tipo de layout %d nao suportado para habilidade %d\n",layout_type,skillid);
 				return 0;
 			}
 			range = skill_get_unit_range(skillid,skilllv) + layout_type;
@@ -3086,7 +3086,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 		break;
 
 	default:
-		ShowWarning("skill_castend_damage_id: Unknown skill used:%d\n",skillid);
+		ShowWarning("skill_castend_damage_id: Habilidade desconhecida usada:%d\n",skillid);
 		clif_skill_damage(src, bl, tick, status_get_amotion(src), tstatus->dmotion,
 			0, abs(skill_get_num(skillid, skilllv)),
 			skillid, skilllv, skill_get_hit(skillid));
@@ -3554,7 +3554,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			if (sd)
 				clif_skill_fail(sd,skillid,0,0);
 			if (skill_break_equip(bl, EQP_WEAPON, 10000, BCT_PARTY) && sd && sd != dstsd)
-				clif_displaymessage(sd->fd,"You broke target's weapon");
+				clif_displaymessage(sd->fd,"Você quebrou a arma do alvo");
 		}
 		break;
 
@@ -4412,7 +4412,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 				break;
 			}
 			if(!battle_config.duel_allow_teleport && sd->duel_group && skilllv <= 2) { // duel restriction [LuzZza]
-				clif_displaymessage(sd->fd, "Duel: Can't use teleport in duel.");
+				clif_displaymessage(sd->fd, "Duelo: Teleporte não pode ser usado em duelo.");
 				break;
 			}
 
@@ -5706,7 +5706,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
 		break;
 	default:
-		ShowWarning("skill_castend_nodamage_id: Unknown skill used:%d\n",skillid);
+		ShowWarning("skill_castend_nodamage_id: Habilidade desconhecida usada:%d\n",skillid);
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
 		map_freeblock_unlock();
 		return 1;
@@ -5766,7 +5766,7 @@ int skill_castend_id(int tid, unsigned int tick, int id, intptr data)
 	if(ud->skillid != SA_CASTCANCEL )
 	{// otherwise handled in unit_skillcastcancel()
 		if( ud->skilltimer != tid ) {
-			ShowError("skill_castend_id: Timer mismatch %d!=%d!\n", ud->skilltimer, tid);
+			ShowError("skill_castend_id: Timer incompativel %d!=%d!\n", ud->skilltimer, tid);
 			ud->skilltimer = INVALID_TIMER;
 			return 0;
 		}
@@ -5939,7 +5939,7 @@ int skill_castend_id(int tid, unsigned int tick, int id, intptr data)
 			unit_set_walkdelay(src, tick, battle_config.default_walk_delay+skill_get_walkdelay(ud->skillid, ud->skilllv), 1);
 
 		if(battle_config.skill_log && battle_config.skill_log&src->type)
-			ShowInfo("Type %d, ID %d skill castend id [id =%d, lv=%d, target ID %d]\n",
+			ShowInfo("Tipo %d, ID %d skill castend id [id =%d, nv=%d, ID do alvo %d]\n",
 				src->type, src->id, ud->skillid, ud->skilllv, target->id);
 
 		map_freeblock_lock();
@@ -6044,7 +6044,7 @@ int skill_castend_pos(int tid, unsigned int tick, int id, intptr data)
 
 	if( ud->skilltimer != tid )
 	{
-		ShowError("skill_castend_pos: Timer mismatch %d!=%d\n", ud->skilltimer, tid);
+		ShowError("skill_castend_pos: Timer incompativel %d!=%d\n", ud->skilltimer, tid);
 		ud->skilltimer = INVALID_TIMER;
 		return 0;
 	}
@@ -6121,7 +6121,7 @@ int skill_castend_pos(int tid, unsigned int tick, int id, intptr data)
 		}
 
 		if(battle_config.skill_log && battle_config.skill_log&src->type)
-			ShowInfo("Type %d, ID %d skill castend pos [id =%d, lv=%d, (%d,%d)]\n",
+			ShowInfo("Tipo %d, ID %d skill castend pos [id =%d, nv=%d, (%d,%d)]\n",
 				src->type, src->id, ud->skillid, ud->skilllv, ud->skillx, ud->skilly);
 
 		if (ud->walktimer != -1)
@@ -6574,7 +6574,7 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 		break;
 
 	default:
-		ShowWarning("skill_castend_pos2: Unknown skill used:%d\n",skillid);
+		ShowWarning("skill_castend_pos2: Habilidade desconhecida usada:%d\n",skillid);
 		return 1;
 	}
 
@@ -6631,7 +6631,7 @@ int skill_castend_map (struct map_session_data *sd, short skill_num, const char 
 	pc_stop_walking(sd,0);
 
 	if(battle_config.skill_log && battle_config.skill_log&BL_PC)
-		ShowInfo("PC %d skill castend skill =%d map=%s\n",sd->bl.id,skill_num,map);
+		ShowInfo("PC %d skill castend habilidade=%d mapa=%s\n",sd->bl.id,skill_num,map);
 
 	if(strcmp(map,"cancel")==0) {
 		skill_failed(sd);
@@ -7402,7 +7402,7 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 			case UNT_FIREPILLAR_ACTIVE:
 				return 0;
 			default:
-				ShowError("skill_unit_onplace_timer: interval error (unit id %x)\n", sg->unit_id);
+				ShowError("skill_unit_onplace_timer: erro de intervalo (unit id %x)\n", sg->unit_id);
 				return 0;
 		}
 	}
@@ -8259,7 +8259,7 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 		break;
 	case AL_WARP:
 		if(!battle_config.duel_allow_teleport && sd->duel_group) { // duel restriction [LuzZza]
-			clif_displaymessage(sd->fd, "Duel: Can't use warp in duel.");
+			clif_displaymessage(sd->fd, "Duelo: Não é possível usar portal em duelo.");
 			return 0;
 		}
 		break;
@@ -10095,7 +10095,7 @@ static int skill_get_new_group_id(void)
 				return skill_unit_group_newid++;// available
 		}
 		// full loop, nothing available
-		ShowFatalError("skill_get_new_group_id: All ids are taken. Exiting...");
+		ShowFatalError("skill_get_new_group_id: Todos os ids em uso. Saindo...");
 		exit(1);
 	}
 }
@@ -10169,14 +10169,14 @@ int skill_delunitgroup_(struct skill_unit_group *group, const char* file, int li
 
 	if( group == NULL )
 	{
-		ShowDebug("skill_delunitgroup: group is NULL (source=%s:%d, %s)! Please report this! (#3504)\n", file, line, func);
+		ShowDebug("skill_delunitgroup: grupo NULO (source=%s:%d, %s)! Favor reportar isso! (#3504)\n", file, line, func);
 		return 0;
 	}
 
 	src=map_id2bl(group->src_id);
 	ud = unit_bl2ud(src);
 	if(!src || !ud) {
-		ShowError("skill_delunitgroup: Group's source not found! (src_id: %d skill_id: %d)\n", group->src_id, group->skill_id);
+		ShowError("skill_delunitgroup: Fonte do grupo nao encontrada! (src_id: %d skill_id: %d)\n", group->src_id, group->skill_id);
 		return 0;
 	}
 	if (skill_get_unit_flag(group->skill_id)&(UF_DANCE|UF_SONG|UF_ENSEMBLE))
@@ -10242,7 +10242,7 @@ int skill_delunitgroup_(struct skill_unit_group *group, const char* file, int li
 		ers_free(skill_unit_ers, group);
 	}
 	else
-		ShowError("skill_delunitgroup: Group not found! (src_id: %d skill_id: %d)\n", group->src_id, group->skill_id);
+		ShowError("skill_delunitgroup: Grupo nao encontrado! (src_id: %d skill_id: %d)\n", group->src_id, group->skill_id);
 
 	return 1;
 }
@@ -10294,7 +10294,7 @@ struct skill_unit_group_tickset *skill_unitgrouptickset_search (struct block_lis
 	}
 
 	if (j == -1) {
-		ShowWarning ("skill_unitgrouptickset_search: tickset is full\n");
+		ShowWarning ("skill_unitgrouptickset_search: tickset lotado\n");
 		j = id % MAX_SKILLUNITGROUPTICKSET;
 	}
 
@@ -10556,7 +10556,7 @@ int skill_unit_move_sub (struct block_list* bl, va_list ap)
 					if( i < ARRAYLENGTH(skill_unit_temp) )
 						skill_unit_temp[i] = skill_id;
 					else
-						ShowError("skill_unit_move_sub: Reached limit of unit objects per cell!\n");
+						ShowError("skill_unit_move_sub: Limite de objetos unit por celula alcancado!\n");
 				}
 
 			}
@@ -10590,7 +10590,7 @@ int skill_unit_move_sub (struct block_list* bl, va_list ap)
 				if( i < ARRAYLENGTH(skill_unit_temp) )
 					skill_unit_temp[i] = skill_id;
 				else
-					ShowError("skill_unit_move_sub: Reached limit of unit objects per cell!\n");
+					ShowError("skill_unit_move_sub: Limite de objetos unit por celula alcancado!\n");
 			}
 		}
 
@@ -10850,7 +10850,7 @@ int skill_produce_mix (struct map_session_data *sd, int skill_id, int nameid, in
 				if(y>x)y=x;
 				pc_delitem(sd,j,y,0,0);
 			} else
-				ShowError("skill_produce_mix: material item error\n");
+				ShowError("skill_produce_mix: erro de item material\n");
 
 			x-=y;
 		}while( j>=0 && x>0 );
@@ -11490,7 +11490,7 @@ void skill_init_unit_layout (void)
 				break;
 			}
 			default:
-				ShowError("unknown unit layout at skill %d\n",i);
+				ShowError("unidade de layout desconhecida na habilidade %d\n",i);
 				break;
 		}
 		if (!skill_unit_layout[pos].count)
@@ -11585,7 +11585,7 @@ static bool skill_parse_row_skilldb(char* split[], int columns, int current)
 	||  (id >= HM_SKILLRANGEMIN && id <= HM_SKILLRANGEMAX)
 	||  (id >= MC_SKILLRANGEMIN && id <= MC_SKILLRANGEMAX) )
 	{
-		ShowWarning("skill_parse_row_skilldb: Skill id %d is forbidden (interferes with guild/homun/mercenary skill mapping)!\n", id);
+		ShowWarning("skill_parse_row_skilldb: Id de habilidade %d proibido (interfere no mapeamento de habilidades de guilda/homun/mercenario)!\n", id);
 		return false;
 	}
 
@@ -11831,12 +11831,12 @@ static bool skill_parse_row_abradb(char* split[], int columns, int current)
 	int i = atoi(split[0]);
 	if( !skill_get_index(i) || !skill_get_max(i) )
 	{
-		ShowError("abra_db: Invalid skill ID %d\n", i);
+		ShowError("abra_db: ID de habilidade %d invalido\n", i);
 		return false;
 	}
 	if ( !skill_get_inf(i) )
 	{
-		ShowError("abra_db: Passive skills cannot be casted (%d/%s)\n", i, skill_get_name(i));
+		ShowError("abra_db: Habilidades passivas nao podem ser conjuradas (%d/%s)\n", i, skill_get_name(i));
 		return false;
 	}
 

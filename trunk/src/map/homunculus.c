@@ -261,7 +261,7 @@ int merc_hom_levelup(struct homun_data *hd)
 	
 	if ( battle_config.homunculus_show_growth ) {
 		sprintf(output,
-			"Growth: hp:%d sp:%d str(%.2f) agi(%.2f) vit(%.2f) int(%.2f) dex(%.2f) luk(%.2f) ",
+			"Crescimento: hp:%d sp:%d for(%.2f) agi(%.2f) vit(%.2f) int(%.2f) des(%.2f) sor(%.2f) ",
 			growth_max_hp, growth_max_sp,
 			growth_str/10.0, growth_agi/10.0, growth_vit/10.0,
 			growth_int/10.0, growth_dex/10.0, growth_luk/10.0);
@@ -300,7 +300,7 @@ int merc_hom_evolution(struct homun_data *hd)
 		return 0;
 	
 	if (!merc_hom_change_class(hd, hd->homunculusDB->evo_class)) {
-		ShowError("merc_hom_evolution: Can't evolve homunc from %d to %d", hd->homunculus.class_, hd->homunculusDB->evo_class);
+		ShowError("merc_hom_evolution: Nao foi possivel evoluir homunculo de %d para %d", hd->homunculus.class_, hd->homunculusDB->evo_class);
 		return 0;
 	}
 
@@ -426,7 +426,7 @@ int merc_menu(struct map_session_data *sd,int menunum)
 			merc_hom_delete(sd->hd, -1);
 			break;
 		default:
-			ShowError("merc_menu : unknown menu choice : %d\n", menunum) ;
+			ShowError("merc_menu : escolha do menu desconhecida : %d\n", menunum) ;
 			break;
 	}
 	return 0;
@@ -602,7 +602,7 @@ int merc_hom_alloc(struct map_session_data *sd, struct s_homunculus *hom)
 
 	i = search_homunculusDB_index(hom->class_,HOMUNCULUS_CLASS);
 	if(i < 0) {
-		ShowError("merc_hom_alloc: unknown class [%d] for homunculus '%s', requesting deletion.\n", hom->class_, hom->name);
+		ShowError("merc_hom_alloc: classe desconhecida [%d] para homunculo '%s', requisitando remocao.\n", hom->class_, hom->name);
 		sd->status.hom_id = 0;
 		intif_homunculus_requestdelete(hom->hom_id);
 		return 1;
@@ -886,7 +886,7 @@ static bool read_homunculusdb_sub(char* str[], int columns, int current)
 	classid = atoi(str[0]);
 	if (classid < HM_CLASS_BASE || classid > HM_CLASS_MAX)
 	{
-		ShowError("read_homunculusdb : Invalid class %d\n", classid);
+		ShowError("read_homunculusdb : Classe invalida %d\n", classid);
 		return false;
 	}
 	db = &homunculus_db[current];
@@ -895,7 +895,7 @@ static bool read_homunculusdb_sub(char* str[], int columns, int current)
 	if (classid < HM_CLASS_BASE || classid > HM_CLASS_MAX)
 	{
 		db->base_class = 0;
-		ShowError("read_homunculusdb : Invalid class %d\n", classid);
+		ShowError("read_homunculusdb : Classe invalida %d\n", classid);
 		return false;
 	}
 	db->evo_class = classid;
@@ -1029,7 +1029,7 @@ static bool read_homunculus_skilldb_sub(char* split[], int columns, int current)
 	classid = atoi(split[0]) - HM_CLASS_BASE;
 	if ( classid >= MAX_HOMUNCULUS_CLASS )
 	{
-		ShowWarning("read_homunculus_skilldb: Invalud homunculus class %d.\n", atoi(split[0]));
+		ShowWarning("read_homunculus_skilldb: Classe de homunculo invalida %d.\n", atoi(split[0]));
 		return false;
 	}
 
@@ -1038,7 +1038,7 @@ static bool read_homunculus_skilldb_sub(char* split[], int columns, int current)
 	ARR_FIND( 0, MAX_SKILL_TREE, j, !hskill_tree[classid][j].id || hskill_tree[classid][j].id == k );
 	if (j == MAX_SKILL_TREE)
 	{
-		ShowWarning("Unable to load skill %d into homunculus %d's tree. Maximum number of skills per class has been reached.\n", k, classid);
+		ShowWarning("Nao e possivel adicionar habilidade %d na arvore de habilidades do homunculo %d. Numero maximo de habilidades por classe alcancado.\n", k, classid);
 		return false;
 	}
 
@@ -1078,7 +1078,7 @@ void read_homunculus_expdb(void)
 		if(fp == NULL){
 			if(i != 0)
 				continue;
-			ShowError("can't read %s\n",line);
+			ShowError("nao foi possivel ler %s\n",line);
 			return;
 		}
 		while(fgets(line, sizeof(line), fp) && j < MAX_LEVEL)
@@ -1092,11 +1092,11 @@ void read_homunculus_expdb(void)
 		}
 		if (hexptbl[MAX_LEVEL - 1]) // Last permitted level have to be 0!
 		{
-			ShowWarning("read_hexptbl: Reached max level in exp_homun [%d]. Remaining lines were not read.\n ", MAX_LEVEL);
+			ShowWarning("read_hexptbl: Nivel maximo alcancado em exp_homun [%d]. Linhas restantes nao foram lidas.\n ", MAX_LEVEL);
 			hexptbl[MAX_LEVEL - 1] = 0;
 		}
 		fclose(fp);
-		ShowStatus("Done reading '"CL_WHITE"%d"CL_RESET"' levels in '"CL_WHITE"%s"CL_RESET"'.\n", j, filename[i]);
+		ShowStatus("Leitura de '"CL_WHITE"%d"CL_RESET"' niveis em '"CL_WHITE"%s"CL_RESET"' finalizada.\n", j, filename[i]);
 	}
 }
 

@@ -33,5 +33,5 @@
 //----- Servidor -----
 
 // Diretório da pasta data (Pasta data do seu servidor)
-// Como exemplo "C:\caminho\da\pasta\RO\data\". Faça abaixo conforme apresentado.
+// Como exemplo "C:\caminho\da\pasta\RO\data\", ficaria:
 //data_dir: C:\caminho\da\pasta\RO\

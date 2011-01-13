@@ -194,7 +194,7 @@ int map_freeblock (struct block_list *bl)
 		aFree(bl);
 		bl = NULL;
 		if (block_free_count >= block_free_max)
-			ShowWarning("map_freeblock: too many free block! %d %d\n", block_free_count, block_free_lock);
+			ShowWarning("map_freeblock: muitos blocos livres! %d %d\n", block_free_count, block_free_lock);
 	} else
 		block_free[block_free_count++] = bl;
 
@@ -239,7 +239,7 @@ int map_freeblock_unlock (void)
 int map_freeblock_timer(int tid, unsigned int tick, int id, intptr data)
 {
 	if (block_free_lock > 0) {
-		ShowError("map_freeblock_timer: block_free_lock(%d) is invalid.\n", block_free_lock);
+		ShowError("map_freeblock_timer: block_free_lock(%d) invalido.\n", block_free_lock);
 		block_free_lock = 1;
 		map_freeblock_unlock();
 	}
@@ -297,12 +297,12 @@ int map_addblock(struct block_list* bl)
 	y = bl->y;
 	if( m < 0 || m >= map_num )
 	{
-		ShowError("map_addblock: invalid map id (%d), only %d are loaded.\n", m, map_num);
+		ShowError("map_addblock: map id (%d) invalido, apenas %d foram carregados.\n", m, map_num);
 		return 1;
 	}
 	if( x < 0 || x >= map[m].xs || y < 0 || y >= map[m].ys )
 	{
-		ShowError("map_addblock: out-of-bounds coordinates (\"%s\",%d,%d), map is %dx%d\n", map[m].name, x, y, map[m].xs, map[m].ys);
+		ShowError("map_addblock: coordenadas excedem os limites do mapa (\"%s\",%d,%d), mapa e %dx%d\n", map[m].name, x, y, map[m].xs, map[m].ys);
 		return 1;
 	}
 
@@ -541,7 +541,7 @@ int map_foreachinrange(int (*func)(struct block_list*,va_list), struct block_lis
 		}
 
 	if(bl_list_count>=BL_LIST_MAX)
-		ShowWarning("map_foreachinrange: block count too many!\n");
+		ShowWarning("map_foreachinrange: limite de blocos ultrapassado!\n");
 
 	map_freeblock_lock();	// ƒƒ‚ƒŠ‚©‚ç‚Ì‰ð•ú‚ð‹ÖŽ~‚·‚é
 
@@ -613,7 +613,7 @@ int map_foreachinshootrange(int (*func)(struct block_list*,va_list),struct block
 		}
 
 	if(bl_list_count>=BL_LIST_MAX)
-			ShowWarning("map_foreachinrange: block count too many!\n");
+			ShowWarning("map_foreachinrange: limite de blocos ultrapassado!\n");
 
 	map_freeblock_lock();	// ƒƒ‚ƒŠ‚©‚ç‚Ì‰ð•ú‚ð‹ÖŽ~‚·‚é
 
@@ -678,7 +678,7 @@ int map_foreachinarea(int (*func)(struct block_list*,va_list), int m, int x0, in
 						bl_list[bl_list_count++]=bl;
 
 	if(bl_list_count>=BL_LIST_MAX)
-		ShowWarning("map_foreachinarea: block count too many!\n");
+		ShowWarning("map_foreachinarea: limite de blocos ultrapassado!\n");
 
 	map_freeblock_lock();	// ƒƒ‚ƒŠ‚©‚ç‚Ì‰ð•ú‚ð‹ÖŽ~‚·‚é
 
@@ -738,7 +738,7 @@ int map_forcountinarea(int (*func)(struct block_list*,va_list), int m, int x0, i
 						bl_list[bl_list_count++]=bl;
 
 	if(bl_list_count>=BL_LIST_MAX)
-		ShowWarning("map_foreachinarea: block count too many!\n");
+		ShowWarning("map_foreachinarea: limite de blocos ultrapassado!\n");
 
 	map_freeblock_lock();	// ƒƒ‚ƒŠ‚©‚ç‚Ì‰ð•ú‚ð‹ÖŽ~‚·‚é
 
@@ -876,7 +876,7 @@ int map_foreachinmovearea(int (*func)(struct block_list*,va_list), struct block_
 	}
 
 	if(bl_list_count>=BL_LIST_MAX)
-		ShowWarning("map_foreachinmovearea: block count too many!\n");
+		ShowWarning("map_foreachinmovearea: limite de blocos ultrapassado!\n");
 
 	map_freeblock_lock();	// ƒƒ‚ƒŠ‚©‚ç‚Ì‰ð•ú‚ð‹ÖŽ~‚·‚é
 
@@ -922,7 +922,7 @@ int map_foreachincell(int (*func)(struct block_list*,va_list), int m, int x, int
 				bl_list[bl_list_count++]=bl;
 
 	if(bl_list_count>=BL_LIST_MAX)
-		ShowWarning("map_foreachincell: block count too many!\n");
+		ShowWarning("map_foreachincell: limite de blocos ultrapassado!\n");
 
 	map_freeblock_lock();	// ƒƒ‚ƒŠ‚©‚ç‚Ì‰ð•ú‚ð‹ÖŽ~‚·‚é
 
@@ -1116,7 +1116,7 @@ int map_foreachinpath(int (*func)(struct block_list*,va_list),int m,int x0,int y
 		}
 
 	if(bl_list_count>=BL_LIST_MAX)
-		ShowWarning("map_foreachinpath: block count too many!\n");
+		ShowWarning("map_foreachinpath: limite de blocos ultrapassado!\n");
 
 	map_freeblock_lock();
 
@@ -1159,7 +1159,7 @@ int map_foreachinmap(int (*func)(struct block_list*,va_list), int m, int type,..
 					bl_list[bl_list_count++]=bl;
 
 	if(bl_list_count>=BL_LIST_MAX)
-		ShowWarning("map_foreachinmap: block count too many!\n");
+		ShowWarning("map_foreachinmap: limite de blocos ultrapassado!\n");
 
 	map_freeblock_lock();	// ƒƒ‚ƒŠ‚©‚ç‚Ì‰ð•ú‚ð‹ÖŽ~‚·‚é
 
@@ -1202,7 +1202,7 @@ int map_get_new_object_id(void)
 
 	if( i == last_object_id )
 	{
-		ShowError("map_addobject: no free object id!\n");
+		ShowError("map_addobject: nao ha id de objetos livre!\n");
 		return 0;
 	}
 
@@ -1225,7 +1225,7 @@ int map_clearflooritem_timer(int tid, unsigned int tick, int id, intptr data)
 	struct flooritem_data* fitem = (struct flooritem_data*)idb_get(id_db, id);
 	if( fitem==NULL || fitem->bl.type!=BL_ITEM || (!data && fitem->cleartimer != tid) )
 	{
-		ShowError("map_clearflooritem_timer : error\n");
+		ShowError("map_clearflooritem_timer : erro\n");
 		return 1;
 	}
 
@@ -1303,7 +1303,7 @@ int map_search_freecell(struct block_list *src, int m, short *x,short *y, int rx
 
 	if( !src && (!(flag&1) || flag&2) )
 	{
-		ShowDebug("map_search_freecell: Incorrect usage! When src is NULL, flag has to be &1 and can't have &2\n");
+		ShowDebug("map_search_freecell: Uso incorreto! quando src e NULL, flag precisa ser &1 e nao pode ter &2\n");
 		return 0;
 	}
 
@@ -2075,7 +2075,7 @@ bool map_addnpc(int m,struct npc_data *nd)
 
 	if( map[m].npc_num == MAX_NPC_PER_MAP )
 	{
-		ShowWarning("too many NPCs in one map %s\n",map[m].name);
+		ShowWarning("Limite de NPCs no mapa %s atingido\n",map[m].name);
 		return false;
 	}
 
@@ -2120,7 +2120,7 @@ void map_spawnmobs(int m)
 
 	if (battle_config.etc_log && k > 0)
 	{
-		ShowStatus("Map %s: Spawned '"CL_WHITE"%d"CL_RESET"' mobs.\n",map[m].name, k);
+		ShowStatus("Map %s: Sumonados '"CL_WHITE"%d"CL_RESET"' mobs.\n",map[m].name, k);
 	}
 }
 
@@ -2158,12 +2158,12 @@ int map_removemobs_timer(int tid, unsigned int tick, int id, intptr data)
 
 	if (m < 0 || m >= MAX_MAP_PER_SERVER)
 	{	//Incorrect map id!
-		ShowError("map_removemobs_timer error: timer %d points to invalid map %d\n",tid, m);
+		ShowError("map_removemobs_timer erro: timer %d aponta para um mapa invalido %d\n",tid, m);
 		return 0;
 	}
 	if (map[m].mob_delete_timer != tid)
 	{	//Incorrect timer call!
-		ShowError("map_removemobs_timer mismatch: %d != %d (map %s)\n",map[m].mob_delete_timer, tid, map[m].name);
+		ShowError("map_removemobs_timer incompativel: %d != %d (map %s)\n",map[m].mob_delete_timer, tid, map[m].name);
 		return 0;
 	}
 	map[m].mob_delete_timer = INVALID_TIMER;
@@ -2173,7 +2173,7 @@ int map_removemobs_timer(int tid, unsigned int tick, int id, intptr data)
 	count = map_foreachinmap(map_removemobs_sub, m, BL_MOB);
 
 	if (battle_config.etc_log && count > 0)
-		ShowStatus("Map %s: Removed '"CL_WHITE"%d"CL_RESET"' mobs.\n",map[m].name, count);
+		ShowStatus("Mapa %s: '"CL_WHITE"%d"CL_RESET"' mob(s) removido(s).\n",map[m].name, count);
 	
 	return 1;
 }
@@ -2341,7 +2341,7 @@ inline static struct mapcell map_gat2cell(int gat)
 	case 5: cell.walkable = 0; cell.shootable = 1; cell.water = 0; break; // gap (snipable)
 	case 6: cell.walkable = 1; cell.shootable = 1; cell.water = 0; break; // ???
 	default:
-		ShowWarning("map_gat2cell: unrecognized gat type '%d'\n", gat);
+		ShowWarning("map_gat2cell: gat tipo '%d' nao reconhecido\n", gat);
 		break;
 	}
 
@@ -2355,7 +2355,7 @@ static int map_cell2gat(struct mapcell cell)
 	if( cell.walkable == 1 && cell.shootable == 1 && cell.water == 1 ) return 3;
 	if( cell.walkable == 0 && cell.shootable == 1 && cell.water == 0 ) return 5;
 
-	ShowWarning("map_cell2gat: cell has no matching gat type\n");
+	ShowWarning("map_cell2gat: celula nao possui tipo de gat compativel\n");
 	return 1; // default to 'wall'
 }
 
@@ -2460,7 +2460,7 @@ void map_setcell(int m, int x, int y, cell_t cell, bool flag)
 		case CELL_NOVENDING:     map[m].cell[j].novending = flag;     break;
 		case CELL_NOCHAT:        map[m].cell[j].nochat = flag;        break;
 		default:
-			ShowWarning("map_setcell: invalid cell type '%d'\n", (int)cell);
+			ShowWarning("map_setcell: tipo de celula '%d' invalido\n", (int)cell);
 			break;
 	}
 }
@@ -2618,7 +2618,7 @@ int map_setipport(unsigned short mapindex, uint32 ip, uint16 port)
 		return 0;
 	if(ip == clif_getip() && port == clif_getport()) {
 		//That's odd, we received info that we are the ones with this map, but... we don't have it.
-		ShowFatalError("map_setipport : received info that this map-server SHOULD have map '%s', but it is not loaded.\n",mapindex_id2name(mapindex));
+		ShowFatalError("map_setipport : recebida informacao de que esse map-server DEVERIA ter o mapa '%s', mas nao foi carregado.\n",mapindex_id2name(mapindex));
 		exit(EXIT_FAILURE);
 	}
 	mdos->ip   = ip;
@@ -2688,7 +2688,7 @@ static char *map_init_mapcache(FILE *fp)
 
 	// Read file into buffer..
 	if(fread(buffer, sizeof(char), size, fp) != size) {
-		ShowError("map_init_mapcache: Could not read entire mapcache file\n");
+		ShowError("map_init_mapcache: Nao foi possivel carregar todo o mapcache\n");
 		return NULL;
 	}
 
@@ -2727,7 +2727,7 @@ int map_readfromcache(struct map_data *m, char *buffer, char *decode_buffer)
 		size = (unsigned long)info->xs*(unsigned long)info->ys;
 
 		if(size > MAX_MAP_SIZE) {
-			ShowWarning("map_readfromcache: %s exceeded MAX_MAP_SIZE of %d\n", info->name, MAX_MAP_SIZE);
+			ShowWarning("map_readfromcache: %s excedeu o limite de tamanho (MAX_MAP_SIZE) de %d\n", info->name, MAX_MAP_SIZE);
 			return 0; // Say not found to remove it from list.. [Shinryo]
 		}
 
@@ -2757,7 +2757,7 @@ int map_addmap(char* mapname)
 
 	if( map_num >= MAX_MAP_PER_SERVER - 1 )
 	{
-		ShowError("Could not add map '"CL_WHITE"%s"CL_RESET"', the limit of maps has been reached.\n",mapname);
+		ShowError("Nao foi possivel adicionar o mapa '"CL_WHITE"%s"CL_RESET"', o limite de mapas foi atingido.\n",mapname);
 		return 1;
 	}
 
@@ -2768,7 +2768,7 @@ int map_addmap(char* mapname)
 
 static void map_delmapid(int id)
 {
-	ShowNotice("Removing map [ %s ] from maplist"CL_CLL"\n",map[id].name);
+	ShowNotice("Removendo mapa [ %s ] da lista de mapas"CL_CLL"\n",map[id].name);
 	memmove(map+id, map+id+1, sizeof(map[0])*(map_num-id-1));
 	map_num--;
 }
@@ -2834,7 +2834,7 @@ int map_waterheight(char* mapname)
 		aFree(rsw);
 		return wh;
 	}
-	ShowWarning("Failed to find water level for (%s)\n", mapname, fn);
+	ShowWarning("Falha ao encontrar nivel de agua em (%s)\n", mapname, fn);
 	return NO_WATER;
 }
 
@@ -2906,27 +2906,27 @@ int map_readallmaps (void)
 	unsigned char map_cache_decode_buffer[MAX_MAP_SIZE];
 
 	if( enable_grf )
-		ShowStatus("Loading maps (using GRF files)...\n");
+		ShowStatus("Carregando mapas (usando arquivos de GRF)...\n");
 	else
 	{
-		ShowStatus("Loading maps (using %s as map cache)...\n", map_cache_file);
+		ShowStatus("Carregando mapas (usando %s como map cache)...\n", map_cache_file);
 		if( (fp = fopen(map_cache_file, "rb")) == NULL )
 		{
-			ShowFatalError("Unable to open map cache file "CL_WHITE"%s"CL_RESET"\n", map_cache_file);
+			ShowFatalError("Nao foi possivel abrir o arquivo de map cache "CL_WHITE"%s"CL_RESET"\n", map_cache_file);
 			exit(EXIT_FAILURE); //No use launching server if maps can't be read.
 		}
 
 		// Init mapcache data.. [Shinryo]
 		map_cache_buffer = map_init_mapcache(fp);
 		if(!map_cache_buffer) {
-			ShowFatalError("Failed to initialize mapcache data (%s)..\n", map_cache_file);
+			ShowFatalError("Falha ao inicializar dados do mapcache (%s)..\n", map_cache_file);
 			exit(EXIT_FAILURE);
 		}
 	}
 
 	// Mapcache reading is now fast enough, the progress info will just slow it down so don't use it anymore [Shinryo]
 	if(!enable_grf)
-		ShowStatus("Loading maps (%d)..\n", map_num);
+		ShowStatus("Carregando mapas (%d)..\n", map_num);
 
 	for(i = 0; i < map_num; i++)
 	{
@@ -2934,7 +2934,7 @@ int map_readallmaps (void)
 
 		// show progress
 		if(enable_grf)
-			ShowStatus("Loading maps [%i/%i]: %s"CL_CLL"\r", i, map_num, map[i].name);
+			ShowStatus("Carregando mapas [%i/%i]: %s"CL_CLL"\r", i, map_num, map[i].name);
 
 		// try to load the map
 		if( !
@@ -2952,7 +2952,7 @@ int map_readallmaps (void)
 
 		if (uidb_get(map_db,(unsigned int)map[i].index) != NULL)
 		{
-			ShowWarning("Map %s already loaded!"CL_CLL"\n", map[i].name);
+			ShowWarning("Mapa %s ja foi carregado!"CL_CLL"\n", map[i].name);
 			if (map[i].cell) {
 				aFree(map[i].cell);
 				map[i].cell = NULL;	
@@ -2992,11 +2992,11 @@ int map_readallmaps (void)
 	}
 
 	// finished map loading
-	ShowInfo("Successfully loaded '"CL_WHITE"%d"CL_RESET"' maps."CL_CLL"\n",map_num);
+	ShowInfo("Carregados '"CL_WHITE"%d"CL_RESET"' mapas com suceeso."CL_CLL"\n",map_num);
 	instance_start = map_num; // Next Map Index will be instances
 
 	if (maps_removed)
-		ShowNotice("Maps removed: '"CL_WHITE"%d"CL_RESET"'\n",maps_removed);
+		ShowNotice("Mapas removidos: '"CL_WHITE"%d"CL_RESET"'\n",maps_removed);
 
 	return 0;
 }
@@ -3029,7 +3029,7 @@ int parse_console(char* buf)
 	if( n == 5 ) {
 		m = map_mapname2mapid(map);
 		if( m < 0 ){
-			ShowWarning("Console: Unknown map\n");
+			ShowWarning("Console: Mapa desconhecido\n");
 			return 0;
 		}
 		sd.bl.m = m;
@@ -3044,26 +3044,26 @@ int parse_console(char* buf)
 		if( n < 1 ) type[0] = '\0';
 	}
 
-	ShowInfo("Type of command: '%s' || Command: '%s' || Map: '%s' Coords: %d %d\n", type, command, map, x, y);
+	ShowInfo("Tipo de comando: '%s' || Comando: '%s' || Mapa: '%s' Coords: %d %d\n", type, command, map, x, y);
 
 	if( n == 5 && strcmpi("admin",type) == 0 ){
 		if( !is_atcommand(sd.fd,&sd,command,0) )
-			ShowInfo("Console: not atcommand\n");
+			ShowInfo("Console: nao e um atcommand\n");
 	} else if( n == 2 && strcmpi("server",type) == 0 ){
-		if( strcmpi("shutdown",command) == 0 ||
-		    strcmpi("exit",command) == 0 ||
-		    strcmpi("quit",command) == 0 ){
+		if( strcmpi("desligar",command) == 0 ||
+		    strcmpi("sair",command) == 0 ||
+		    strcmpi("fechar",command) == 0 ){
 			runflag = 0;
 		}
-	} else if( strcmpi("help",type) == 0 ){
-		ShowNotice("To use GM commands:\n");
-		ShowInfo("admin:<gm command>:<map of \"gm\"> <x> <y>\n");
-		ShowInfo("You can use any GM command that doesn't require the GM.\n");
-		ShowInfo("No using @item or @warp however you can use @charwarp\n");
-		ShowInfo("The <map of \"gm\"> <x> <y> is for commands that need coords of the GM\n");
-		ShowInfo("IE: @spawn\n");
-		ShowInfo("To shutdown the server:\n");
-		ShowInfo("server:shutdown\n");
+	} else if( strcmpi("ajuda",type) == 0 ){
+		ShowNotice("Para utilizar comandos GM:\n");
+		ShowInfo("admin:<comando gm>:<mapa do \"gm\"> <x> <y>\n");
+		ShowInfo("Voce pode usar qualquer comando GM que nao precise do GM.\n");
+		ShowInfo("Nao utilizar @item ou @warp mas voce pode usar @charwarp\n");
+		ShowInfo("O <mapa do \"gm\"> <x> <y> e para comandos que precisem das coordenadas do GM\n");
+		ShowInfo("Ex: @spawn\n");
+		ShowInfo("Para desligar o servidor:\n");
+		ShowInfo("server:desligar ou server:desativar\n");
 	}
 
 	return 0;
@@ -3080,7 +3080,7 @@ int map_config_read(char *cfgName)
 	fp = fopen(cfgName,"r");
 	if( fp == NULL )
 	{
-		ShowError("Map configuration file not found at: %s\n", cfgName);
+		ShowError("Arquivo de configuracao do map-server nao encontrado em: %s\n", cfgName);
 		return 1;
 	}
 
@@ -3108,7 +3108,7 @@ int map_config_read(char *cfgName)
 			stdout_with_ansisequence = config_switch(w2);
 		else
 		if(strcmpi(w1,"console_silent")==0) {
-			ShowInfo("Console Silent Setting: %d\n", atoi(w2));
+			ShowInfo("Configuracao Console Silent: %d\n", atoi(w2));
 			msg_silent = atoi(w2);
 		} else
 		if (strcmpi(w1, "userid")==0)
@@ -3180,7 +3180,7 @@ int map_config_read(char *cfgName)
 		if (strcmpi(w1, "console") == 0) {
 			console = config_switch(w2);
 			if (console)
-				ShowNotice("Console Commands are enabled.\n");
+				ShowNotice("Comandos de console habilitados.\n");
 		} else
 		if (strcmpi(w1, "enable_spy") == 0)
 			enable_spy = config_switch(w2);
@@ -3191,7 +3191,7 @@ int map_config_read(char *cfgName)
 		if (strcmpi(w1, "import") == 0)
 			map_config_read(w2);
 		else
-			ShowWarning("Unknown setting '%s' in file %s\n", w1, cfgName);
+			ShowWarning("Configuracao desconhecida '%s' no arquivo %s\n", w1, cfgName);
 	}
 
 	fclose(fp);
@@ -3205,7 +3205,7 @@ int inter_config_read(char *cfgName)
 
 	fp=fopen(cfgName,"r");
 	if(fp==NULL){
-		ShowError("File not found: '%s'.\n",cfgName);
+		ShowError("Arquivo nao encontrado: '%s'.\n",cfgName);
 		return 1;
 	}
 	while(fgets(line, sizeof(line), fp))
@@ -3251,7 +3251,7 @@ int inter_config_read(char *cfgName)
 		else
 		if(strcmpi(w1,"use_sql_db")==0) {
 			db_use_sqldbs = config_switch(w2);
-			ShowStatus ("Using SQL dbs: %s\n",w2);
+			ShowStatus ("Utilizando Banco de Dados SQL: %s\n",w2);
 		} else
 		if(strcmpi(w1,"log_db_ip")==0)
 			strcpy(log_db_ip, w2);
@@ -3288,10 +3288,10 @@ int map_sql_init(void)
 	// main db connection
 	mmysql_handle = Sql_Malloc();
 
-	ShowInfo("Connecting to the Map DB Server....\n");
+	ShowInfo("Conectando ao Banco de Dados do Map Server....\n");
 	if( SQL_ERROR == Sql_Connect(mmysql_handle, map_server_id, map_server_pw, map_server_ip, map_server_port, map_server_db) )
 		exit(EXIT_FAILURE);
-	ShowStatus("connect success! (Map Server Connection)\n");
+	ShowStatus("Conectado com sucesso! (Conexao do Map Server)\n");
 
 	if( strlen(default_codepage) > 0 )
 		if ( SQL_ERROR == Sql_SetEncoding(mmysql_handle, default_codepage) )
@@ -3302,13 +3302,13 @@ int map_sql_init(void)
 
 int map_sql_close(void)
 {
-	ShowStatus("Close Map DB Connection....\n");
+	ShowStatus("Fechando conexao do banco de dados do Map Server....\n");
 	Sql_Free(mmysql_handle);
 	mmysql_handle = NULL;
 
 	if (log_config.sql_logs)
 	{
-		ShowStatus("Close Log DB Connection....\n");
+		ShowStatus("Fechando conexao do banco de dados de Logs....\n");
 		Sql_Free(logmysql_handle);
 		logmysql_handle = NULL;
 	}
@@ -3321,10 +3321,10 @@ int log_sql_init(void)
 	// log db connection
 	logmysql_handle = Sql_Malloc();
 
-	ShowInfo(""CL_WHITE"[SQL]"CL_RESET": Connecting to the Log Database "CL_WHITE"%s"CL_RESET" At "CL_WHITE"%s"CL_RESET"...\n",log_db_db,log_db_ip);
+	ShowInfo(""CL_WHITE"[SQL]"CL_RESET": Conectando ao Banco de Dados de Logs "CL_WHITE"%s"CL_RESET" em "CL_WHITE"%s"CL_RESET"...\n",log_db_db,log_db_ip);
 	if ( SQL_ERROR == Sql_Connect(logmysql_handle, log_db_id, log_db_pw, log_db_ip, log_db_port, log_db_db) )
 		exit(EXIT_FAILURE);
-	ShowStatus(""CL_WHITE"[SQL]"CL_RESET": Successfully '"CL_GREEN"connected"CL_RESET"' to Database '"CL_WHITE"%s"CL_RESET"'.\n", log_db_db);
+	ShowStatus(""CL_WHITE"[SQL]"CL_RESET": '"CL_GREEN"conectado"CL_RESET"' com sucesso ao Banco de Dados '"CL_WHITE"%s"CL_RESET"'.\n", log_db_db);
 
 	if( strlen(default_codepage) > 0 )
 		if ( SQL_ERROR == Sql_SetEncoding(logmysql_handle, default_codepage) )
@@ -3401,16 +3401,16 @@ void do_final(void)
 	struct map_session_data* sd;
 	struct s_mapiterator* iter;
 
-	ShowStatus("Terminating...\n");
+	ShowStatus("Finalizando...\n");
 
 	// remove all objects on maps
 	for (i = 0; i < map_num; i++)
 	{
-		ShowStatus("Cleaning up maps [%d/%d]: %s..."CL_CLL"\r", i+1, map_num, map[i].name);
+		ShowStatus("Limpando mapas [%d/%d]: %s..."CL_CLL"\r", i+1, map_num, map[i].name);
 		if (map[i].m >= 0)
 			map_foreachinmap(cleanup_sub, i, BL_ALL);
 	}
-	ShowStatus("Cleaned up %d maps."CL_CLL"\n", map_num);
+	ShowStatus("%d mapas foram limpos."CL_CLL"\n", map_num);
 
 	//Scan any remaining players (between maps?) to kick them out. [Skotlex]
 	iter = mapit_getallusers();
@@ -3469,7 +3469,7 @@ void do_final(void)
 	regen_db->destroy(regen_db, NULL);
 
     map_sql_close();
-	ShowStatus("Successfully terminated.\n");
+	ShowStatus("Finalizado com sucesso.\n");
 }
 
 static int map_abort_sub(struct map_session_data* sd, va_list ap)
@@ -3495,10 +3495,10 @@ void do_abort(void)
 	if (!chrif_isconnected())
 	{
 		if (pc_db->size(pc_db))
-			ShowFatalError("Server has crashed without a connection to the char-server, %u characters can't be saved!\n", pc_db->size(pc_db));
+			ShowFatalError("Servidor quebrou sem conexao com o char-server, %u nao puderam ser salvos!\n", pc_db->size(pc_db));
 		return;
 	}
-	ShowError("Server received crash signal! Attempting to save all online characters!\n");
+	ShowError("Servidor recebeu sinal de quebra! Tentando salvar todos os personagens online!\n");
 	map_foreachpc(map_abort_sub);
 	chrif_flush_fifo();
 }
@@ -3508,23 +3508,23 @@ void do_abort(void)
  *------------------------------------------------------*/
 void map_helpscreen(int flag)
 {
-	puts("Usage: map-server [options]");
-	puts("Options:");
-	puts(CL_WHITE"  Commands\t\t\tDescription"CL_RESET);
+	puts("Uso: map-server [opcoes]");
+	puts("Opcoes:");
+	puts(CL_WHITE"  Comandos\t\t\tDescricao"CL_RESET);
 	puts("-----------------------------------------------------------------------------");
-	puts("  --help, --h, --?, /?		Displays this help screen");
-	puts("  --map-config <file>		Load map-server configuration from <file>");
-	puts("  --battle-config <file>	Load battle configuration from <file>");
-	puts("  --atcommand-config <file>	Load atcommand configuration from <file>");
-	puts("  --charcommand-config <file>	Load charcommand configuration from <file>");
-	puts("  --script-config <file>	Load script configuration from <file>");
-	puts("  --msg-config <file>		Load message configuration from <file>");
-	puts("  --grf-path-file <file>	Load grf path file configuration from <file>");
-	puts("  --sql-config <file>		Load inter-server configuration from <file>");
+	puts("  --help, --h, --?, /?		Mostra essa tela de ajuda");
+	puts("  --map-config <file>		Carrega as configuracoes do map-server do <file>");
+	puts("  --battle-config <file>	Carrega as configuracoes de batalha do <file>");
+	puts("  --atcommand-config <file>	Carrega as configuracoes de atcommand do <file>");
+	puts("  --charcommand-config <file>	Carrega as configuracoes de charcommand do <file>");
+	puts("  --script-config <file>	Carrega as configuracoes de script do <file>");
+	puts("  --msg-config <file>		Carrega as configuracoes de mensagem do <file>");
+	puts("  --grf-path-file <file>	Carrega as configuracoes de GRF e data do <file>");
+	puts("  --sql-config <file>		Carrega as configuracoes do inter-server do <file>");
 	puts("				(SQL Only)");
-	puts("  --log-config <file>		Load logging configuration from <file>");
+	puts("  --log-config <file>		Carrega as configuracoes de log do <file>");
 	puts("				(SQL Only)");
-	puts("  --version, --v, -v, /v	Displays the server's version");
+	puts("  --version, --v, -v, /v	Mostra a versao do servidor");
 	puts("\n");
 	if (flag) exit(EXIT_FAILURE);
 }
@@ -3534,11 +3534,11 @@ void map_helpscreen(int flag)
  *------------------------------------------------------*/
 void map_versionscreen(int flag)
 {
-	ShowInfo(CL_WHITE "brAthena Versão %d.%02d.%02d, brAthena Mod Versão %d" CL_RESET"\n",
+	ShowInfo(CL_WHITE "brAthena versao %d.%02d.%02d, brAthena Mod versao %d" CL_RESET"\n",
 		ATHENA_MAJOR_VERSION, ATHENA_MINOR_VERSION, ATHENA_REVISION,
 		ATHENA_MOD_VERSION);
 	ShowInfo(CL_GREEN "Website/Forum:" CL_RESET "\thttp://brathena.org/\n");
-	if (ATHENA_RELEASE_FLAG) ShowNotice("This version is not for release.\n");
+	if (ATHENA_RELEASE_FLAG) ShowNotice("Essa versao nao e uma versao liberada.\n");
 	if (flag) exit(EXIT_FAILURE);
 }
 
@@ -3602,14 +3602,14 @@ int do_init(int argc, char *argv[])
 		char ip_str[16];
 		ip2str(addr_[0], ip_str);
 
-		ShowError("\nNot all IP addresses in map_athena.conf configured, autodetecting...\n");
+		ShowError("\nNem todos os enderecos de IP no map_athena.conf estao configurados, detectando...\n");
 
 		if (naddr_ == 0)
-			ShowError("Unable to determine your IP address...\n");
+			ShowError("Nao foi possivel determinar seu endereco de IP...\n");
 		else if (naddr_ > 1)
-			ShowNotice("Multiple interfaces detected...\n");
+			ShowNotice("Multiplas interfaces detectadas...\n");
 
-		ShowInfo("Defaulting to %s as our IP address\n", ip_str);
+		ShowInfo("Utilizando %s como endereco de IP\n", ip_str);
 
 		if (!map_ip_set)
 			clif_setip(ip_str);
@@ -3680,9 +3680,9 @@ int do_init(int argc, char *argv[])
 	}
 
 	if (battle_config.pk_mode)
-		ShowNotice("Server is running on '"CL_WHITE"PK Mode"CL_RESET"'.\n");
+		ShowNotice("Servidor rodando em '"CL_WHITE"Modo PK"CL_RESET"'.\n");
 
-	ShowStatus("Server is '"CL_GREEN"ready"CL_RESET"' and listening on port '"CL_WHITE"%d"CL_RESET"'.\n\n", map_port);
+	ShowStatus("Servidor de mapas '"CL_GREEN"Ativado"CL_RESET"' (porta '"CL_WHITE"%d"CL_RESET"').\n\n", map_port);
 
 	return 0;
 }

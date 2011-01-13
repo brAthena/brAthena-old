@@ -356,7 +356,7 @@ int parse_fromchar(int fd)
 
 	if( session[fd]->flag.eof )
 	{
-		ShowStatus("Char-server '%s' desconectado.\n", server[id].name);
+		ShowStatus("Servidor de personagens '%s' desconectado.\n", server[id].name);
 		online_db->foreach(online_db, online_db_setoffline, id); //Set all chars from this char server to offline.
 		memset(&server[id], 0, sizeof(struct mmo_char_server));
 		server[id].fd = -1;
@@ -416,7 +416,7 @@ int parse_fromchar(int fd)
 			}
 			else
 			{// authentication not found
-				ShowStatus("Char-server '%s': autenticacao da conta %d RECUSADA (ip: %s).\n", server[id].name, account_id, ip);
+				ShowStatus("Servidor de personagens '%s': autenticacao da conta %d RECUSADA (ip: %s).\n", server[id].name, account_id, ip);
 				WFIFOHEAD(fd,25);
 				WFIFOW(fd,0) = 0x2713;
 				WFIFOL(fd,2) = account_id;
@@ -461,13 +461,13 @@ int parse_fromchar(int fd)
 			RFIFOSKIP(fd,46);
 
 			if( e_mail_check(email) == 0 )
-				ShowNotice("Char-server '%s': Tentativa de criar um e-mail em uma conta com e-mail padrao RECUSADA - e-mail invalido (conta: %d, ip: %s)\n", server[id].name, account_id, ip);
+				ShowNotice("Servidor de personagens '%s': Tentativa de criar um e-mail em uma conta com e-mail padrao RECUSADA - e-mail invalido (conta: %d, ip: %s)\n", server[id].name, account_id, ip);
 			else
 			if( !accounts->load_num(accounts, &acc, account_id) || strcmp(acc.email, "a@a.com") == 0 || acc.email[0] == '\0' )
-				ShowNotice("Char-server '%s': Tentativa de criar um e-mail em uma conta com e-mail padrao RECUSADA - conta inexistente ou e-mail da conta nao padrao (conta: %d, ip: %s).\n", server[id].name, account_id, ip);
+				ShowNotice("Servidor de personagens '%s': Tentativa de criar um e-mail em uma conta com e-mail padrao RECUSADA - conta inexistente ou e-mail da conta nao padrao (conta: %d, ip: %s).\n", server[id].name, account_id, ip);
 			else {
 				memcpy(acc.email, email, 40);
-				ShowNotice("Char-server '%s': Criado e-mail em uma conta com e-mail padrao (conta: %d, novo e-mail: %s, ip: %s).\n", server[id].name, account_id, email, ip);
+				ShowNotice("Servidor de personagens '%s': Criado e-mail em uma conta com e-mail padrao (conta: %d, novo e-mail: %s, ip: %s).\n", server[id].name, account_id, email, ip);
 				// Save
 				accounts->save(accounts, &acc);
 			}
@@ -487,7 +487,7 @@ int parse_fromchar(int fd)
 			RFIFOSKIP(fd,6);
 
 			if( !accounts->load_num(accounts, &acc, account_id) )
-				ShowNotice("Char-server '%s': conta %d NAO encontrada (ip: %s).\n", server[id].name, account_id, ip);
+				ShowNotice("Servidor de personagens '%s': conta %d NAO encontrada (ip: %s).\n", server[id].name, account_id, ip);
 			else
 			{
 				safestrncpy(email, acc.email, sizeof(email));
@@ -528,22 +528,22 @@ int parse_fromchar(int fd)
 			RFIFOSKIP(fd, 86);
 
 			if( e_mail_check(actual_email) == 0 )
-				ShowNotice("Char-server '%s': Tentativa de modificar o e-mail em uma conta (comando GM @email) falhou, e-mail atual invalido (conta: %d, ip: %s)\n", server[id].name, account_id, ip);
+				ShowNotice("Servidor de personagens '%s': Tentativa de modificar o e-mail em uma conta (comando GM @email) falhou, e-mail atual invalido (conta: %d, ip: %s)\n", server[id].name, account_id, ip);
 			else
 			if( e_mail_check(new_email) == 0 )
-				ShowNotice("Char-server '%s': Tentativa de modificar o e-mail em uma conta (comando GM @email) falhou, novo e-mail invalido (conta: %d, ip: %s)\n", server[id].name, account_id, ip);
+				ShowNotice("Servidor de personagens '%s': Tentativa de modificar o e-mail em uma conta (comando GM @email) falhou, novo e-mail invalido (conta: %d, ip: %s)\n", server[id].name, account_id, ip);
 			else
 			if( strcmpi(new_email, "a@a.com") == 0 )
-				ShowNotice("Char-server '%s': Tentativa de modificar o e-mail em uma conta (comando GM @email) falhou, com e-mail padrao (conta: %d, ip: %s)\n", server[id].name, account_id, ip);
+				ShowNotice("Servidor de personagens '%s': Tentativa de modificar o e-mail em uma conta (comando GM @email) falhou, com e-mail padrao (conta: %d, ip: %s)\n", server[id].name, account_id, ip);
 			else
 			if( !accounts->load_num(accounts, &acc, account_id) )
-				ShowNotice("Char-server '%s': Tentativa de modificar o e-mail em uma conta (comando GM @email) falhou, conta inexistente (conta: %d, ip: %s).\n", server[id].name, account_id, ip);
+				ShowNotice("Servidor de personagens '%s': Tentativa de modificar o e-mail em uma conta (comando GM @email) falhou, conta inexistente (conta: %d, ip: %s).\n", server[id].name, account_id, ip);
 			else
 			if( strcmpi(acc.email, actual_email) != 0 )
-				ShowNotice("Char-server '%s': Tentativa de modificar o e-mail em uma conta (comando GM @email) falhou, e-mail atual incorreto (conta: %d (%s), e-mail atual: %s, e-mail proposto: %s, ip: %s).\n", server[id].name, account_id, acc.userid, acc.email, actual_email, ip);
+				ShowNotice("Servidor de personagens '%s': Tentativa de modificar o e-mail em uma conta (comando GM @email) falhou, e-mail atual incorreto (conta: %d (%s), e-mail atual: %s, e-mail proposto: %s, ip: %s).\n", server[id].name, account_id, acc.userid, acc.email, actual_email, ip);
 			else {
 				safestrncpy(acc.email, new_email, 40);
-				ShowNotice("Char-server '%s': E-mail de uma conta modificado (@email GM command) (conta: %d (%s), novo e-mail: %s, ip: %s).\n", server[id].name, account_id, acc.userid, new_email, ip);
+				ShowNotice("Servidor de personagens '%s': E-mail de uma conta modificado (@email GM command) (conta: %d (%s), novo e-mail: %s, ip: %s).\n", server[id].name, account_id, acc.userid, new_email, ip);
 				// Save
 				accounts->save(accounts, &acc);
 			}
@@ -561,12 +561,12 @@ int parse_fromchar(int fd)
 			RFIFOSKIP(fd,10);
 
 			if( !accounts->load_num(accounts, &acc, account_id) )
-				ShowNotice("Char-server '%s': Erro de mudanca de estado (conta: %d nao encontrada, estado sugerido %d, ip: %s).\n", server[id].name, account_id, state, ip);
+				ShowNotice("Servidor de personagens '%s': Erro de mudanca de estado (conta: %d nao encontrada, estado sugerido %d, ip: %s).\n", server[id].name, account_id, state, ip);
 			else
 			if( acc.state == state )
-				ShowNotice("Char-server '%s':  Erro de mudanca de estado - estado ja esta correto (conta: %d, estado %d, ip: %s).\n", server[id].name, account_id, state, ip);
+				ShowNotice("Servidor de personagens '%s':  Erro de mudanca de estado - estado ja esta correto (conta: %d, estado %d, ip: %s).\n", server[id].name, account_id, state, ip);
 			else {
-				ShowNotice("Char-server '%s': Mudanca de estado (conta: %d, novo estado %d, ip: %s).\n", server[id].name, account_id, state, ip);
+				ShowNotice("Servidor de personagens '%s': Mudanca de estado (conta: %d, novo estado %d, ip: %s).\n", server[id].name, account_id, state, ip);
 
 				acc.state = state;
 				// Save
@@ -601,7 +601,7 @@ int parse_fromchar(int fd)
 			RFIFOSKIP(fd,18);
 
 			if( !accounts->load_num(accounts, &acc, account_id) )
-				ShowNotice("Char-server '%s': Erro em requisicao de banimento (conta: %d nao encontrada, ip: %s).\n", server[id].name, account_id, ip);
+				ShowNotice("Servidor de personagens '%s': Erro em requisicao de banimento (conta: %d nao encontrada, ip: %s).\n", server[id].name, account_id, ip);
 			else
 			{
 				time_t timestamp;
@@ -619,16 +619,16 @@ int parse_fromchar(int fd)
 				tmtime->tm_sec  = tmtime->tm_sec + sec;
 				timestamp = mktime(tmtime);
 				if (timestamp == -1)
-					ShowNotice("Char-server '%s': Erro em requisicao de banimento (conta: %d, data invalida, ip: %s).\n", server[id].name, account_id, ip);
+					ShowNotice("Servidor de personagens '%s': Erro em requisicao de banimento (conta: %d, data invalida, ip: %s).\n", server[id].name, account_id, ip);
 				else
 				if( timestamp <= time(NULL) || timestamp == 0 )
-					ShowNotice("Char-server '%s': Erro em requisicao de banimento (conta: %d, nova data 'desbaniria' a conta, ip: %s).\n", server[id].name, account_id, ip);
+					ShowNotice("Servidor de personagens '%s': Erro em requisicao de banimento (conta: %d, nova data 'desbaniria' a conta, ip: %s).\n", server[id].name, account_id, ip);
 				else
 				{
 					uint8 buf[11];
 					char tmpstr[24];
 					timestamp2string(tmpstr, sizeof(tmpstr), timestamp, login_config.date_format);
-					ShowNotice("Char-server '%s': Banimento requerido (conta: %d, nova data final de banimento: %d (%s), ip: %s).\n", server[id].name, account_id, timestamp, tmpstr, ip);
+					ShowNotice("Servidor de personagens '%s': Banimento requerido (conta: %d, nova data final de banimento: %d (%s), ip: %s).\n", server[id].name, account_id, timestamp, tmpstr, ip);
 
 					acc.unban_time = timestamp;
 
@@ -655,16 +655,16 @@ int parse_fromchar(int fd)
 			RFIFOSKIP(fd,6);
 
 			if( !accounts->load_num(accounts, &acc, account_id) )
-				ShowNotice("Char-server '%s': Erro na mudanca de sexo (conta: %d nao encontrada, ip: %s).\n", server[id].name, account_id, ip);
+				ShowNotice("Servidor de personagens '%s': Erro na mudanca de sexo (conta: %d nao encontrada, ip: %s).\n", server[id].name, account_id, ip);
 			else
 			if( acc.sex == 'S' )
-				ShowNotice("Char-server '%s': Erro na mudanca de sexo - conta a ser modificada e uma conta de Servidor (conta: %d, ip: %s).\n", server[id].name, account_id, ip);
+				ShowNotice("Servidor de personagens '%s': Erro na mudanca de sexo - conta a ser modificada e uma conta de Servidor (conta: %d, ip: %s).\n", server[id].name, account_id, ip);
 			else
 			{
 				unsigned char buf[7];
 				char sex = ( acc.sex == 'M' ) ? 'F' : 'M'; //Change gender
 
-				ShowNotice("Char-server '%s': Mudanca de sexo (conta: %d, novo sexo %c, ip: %s).\n", server[id].name, account_id, sex, ip);
+				ShowNotice("Servidor de personagens '%s': Mudanca de sexo (conta: %d, novo sexo %c, ip: %s).\n", server[id].name, account_id, sex, ip);
 
 				acc.sex = sex;
 				// Save
@@ -688,7 +688,7 @@ int parse_fromchar(int fd)
 			int account_id = RFIFOL(fd,4);
 
 			if( !accounts->load_num(accounts, &acc, account_id) )
-				ShowStatus("Char-server '%s': recebendo (do char-server) de account_reg2 (conta: %d nao encontrada, ip: %s).\n", server[id].name, account_id, ip);
+				ShowStatus("Servidor de personagens '%s': recebendo (do char-server) de account_reg2 (conta: %d nao encontrada, ip: %s).\n", server[id].name, account_id, ip);
 			else
 			{
 				int len;
@@ -728,13 +728,13 @@ int parse_fromchar(int fd)
 			RFIFOSKIP(fd,6);
 
 			if( !accounts->load_num(accounts, &acc, account_id) )
-				ShowNotice("Char-server '%s': Erro de requisicao de 'desbanimento' (conta: %d nao encontrada, ip: %s).\n", server[id].name, account_id, ip);
+				ShowNotice("Servidor de personagens '%s': Erro de requisicao de 'desbanimento' (conta: %d nao encontrada, ip: %s).\n", server[id].name, account_id, ip);
 			else
 			if( acc.unban_time == 0 )
-				ShowNotice("Char-server '%s': Erro de requisicao de 'desbanimento' (conta: %d, nao ha diferenca da data de 'desban', ip: %s).\n", server[id].name, account_id, ip);
+				ShowNotice("Servidor de personagens '%s': Erro de requisicao de 'desbanimento' (conta: %d, nao ha diferenca da data de 'desban', ip: %s).\n", server[id].name, account_id, ip);
 			else
 			{
-				ShowNotice("Char-server '%s': 'Desbanimento' requisitado (conta: %d, ip: %s).\n", server[id].name, account_id, ip);
+				ShowNotice("Servidor de personagens '%s': 'Desbanimento' requisitado (conta: %d, ip: %s).\n", server[id].name, account_id, ip);
 				acc.unban_time = 0;
 				accounts->save(accounts, &acc);
 			}
@@ -1719,7 +1719,7 @@ int do_init(int argc, char** argv)
 	// server port open & binding
 	login_fd = make_listen_bind(login_config.login_ip, login_config.login_port);
 
-	ShowStatus("Login-server "CL_GREEN"ativado"CL_RESET" (porta %u).\n\n", login_config.login_port);
+	ShowStatus("Servidor de login "CL_GREEN"ativado"CL_RESET" (porta %u).\n\n", login_config.login_port);
 	login_log(0, "login server", 100, "login server iniciado");
 
 	return 0;

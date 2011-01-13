@@ -93,10 +93,10 @@ int inter_accreg_tosql(int account_id, int char_id, struct accreg* reg, int type
 		char_id = 0;
 		break;
 	case 1: //Account2 Reg
-		ShowError("inter_accreg_tosql: Char server shouldn't handle type 1 registry values (##). That is the login server's work!\n");
+		ShowError("inter_accreg_tosql: Servidor de personagens nao deveria manusear valores de registro tipo 1 (##). Isso e trabalho do servidor de login!\n");
 		return 0;
 	default:
-		ShowError("inter_accreg_tosql: Invalid type %d\n", type);
+		ShowError("inter_accreg_tosql: Tipo invalido %d\n", type);
 		return 0;
 	}
 
@@ -152,10 +152,10 @@ int inter_accreg_fromsql(int account_id,int char_id, struct accreg *reg, int typ
 			Sql_ShowDebug(sql_handle);
 		break;
 	case 1: //account2 reg
-		ShowError("inter_accreg_fromsql: Char server shouldn't handle type 1 registry values (##). That is the login server's work!\n");
+		ShowError("inter_accreg_fromsql: Servidor de personagens nao deveria manusear valores de registro tipo 1 (##). Isso e trabalho do servidor de login!\n");
 		return 0;
 	default:
-		ShowError("inter_accreg_fromsql: Invalid type %d\n", type);
+		ShowError("inter_accreg_fromsql: Tipo invalido %d\n", type);
 		return 0;
 	}
 	for( i = 0; i < MAX_REG_NUM && SQL_SUCCESS == Sql_NextRow(sql_handle); ++i )
@@ -193,11 +193,11 @@ static int inter_config_read(const char* cfgName)
 
 	fp = fopen(cfgName, "r");
 	if(fp == NULL) {
-		ShowError("file not found: %s\n", cfgName);
+		ShowError("arquivo nao encontrado: %s\n", cfgName);
 		return 1;
 	}
 
-	ShowInfo("reading file %s...\n", cfgName);
+	ShowInfo("carregando arquivo %s...\n", cfgName);
 
 	while(fgets(line, sizeof(line), fp))
 	{
@@ -207,27 +207,27 @@ static int inter_config_read(const char* cfgName)
 
 		if(!strcmpi(w1,"char_server_ip")) {
 			strcpy(char_server_ip,w2);
-			ShowStatus ("set char_server_ip : %s\n", w2);
+			ShowStatus ("definindo char_server_ip : %s\n", w2);
 		} else
 		if(!strcmpi(w1,"char_server_port")) {
 			char_server_port = atoi(w2);
-			ShowStatus ("set char_server_port : %s\n", w2);
+			ShowStatus ("definindo char_server_port : %s\n", w2);
 		} else
 		if(!strcmpi(w1,"char_server_id")) {
 			strcpy(char_server_id,w2);
-			ShowStatus ("set char_server_id : %s\n", w2);
+			ShowStatus ("definindo char_server_id : %s\n", w2);
 		} else
 		if(!strcmpi(w1,"char_server_pw")) {
 			strcpy(char_server_pw,w2);
-			ShowStatus ("set char_server_pw : %s\n", w2);
+			ShowStatus ("definindo char_server_pw : %s\n", w2);
 		} else
 		if(!strcmpi(w1,"char_server_db")) {
 			strcpy(char_server_db,w2);
-			ShowStatus ("set char_server_db : %s\n", w2);
+			ShowStatus ("definindo char_server_db : %s\n", w2);
 		} else
 		if(!strcmpi(w1,"default_codepage")) {
 			strcpy(default_codepage,w2);
-			ShowStatus ("set default_codepage : %s\n", w2);
+			ShowStatus ("definindo default_codepage : %s\n", w2);
 		}
 #ifndef TXT_SQL_CONVERT
 		else if(!strcmpi(w1,"party_share_level"))
@@ -242,7 +242,7 @@ static int inter_config_read(const char* cfgName)
 	}
 	fclose(fp);
 
-	ShowInfo ("done reading %s.\n", cfgName);
+	ShowInfo ("carregamento de %s terminado.\n", cfgName);
 
 	return 0;
 }
@@ -273,12 +273,12 @@ int inter_init_sql(const char *file)
 {
 	//int i;
 
-	ShowInfo ("interserver initialize...\n");
+	ShowInfo ("inicializando interserver...\n");
 	inter_config_read(file);
 
 	//DB connection initialized
 	sql_handle = Sql_Malloc();
-	ShowInfo("Connect Character DB server.... (Character Server)\n");
+	ShowInfo("Conectando ao BD de personagens.... (Servidor de Personagens)\n");
 	if( SQL_ERROR == Sql_Connect(sql_handle, char_server_id, char_server_pw, char_server_ip, (uint16)char_server_port, char_server_db) )
 	{
 		Sql_ShowDebug(sql_handle);
@@ -413,7 +413,7 @@ int mapif_account_reg_reply(int fd,int account_id,int char_id, int type)
 		}
 		WFIFOW(fd,2)=p;
 		if (p>= 5000)
-			ShowWarning("Too many acc regs for %d:%d, not all values were loaded.\n", account_id, char_id);
+			ShowWarning("Muitos registros na conta %d:%d, nem todos os valores foram carregados.\n", account_id, char_id);
 	}
 	WFIFOSET(fd,WFIFOW(fd,2));
 	return 0;
@@ -459,7 +459,7 @@ int check_ttl_wisdata(void)
 		wis_db->foreach(wis_db, check_ttl_wisdata_sub, tick);
 		for(i = 0; i < wis_delnum; i++) {
 			struct WisData *wd = (struct WisData*)idb_get(wis_db, wis_dellist[i]);
-			ShowWarning("inter: wis data id=%d time out : from %s to %s\n", wd->id, wd->src, wd->dst);
+			ShowWarning("inter: wis data id=%d expirado : de %s para %s\n", wd->id, wd->src, wd->dst);
 			// removed. not send information after a timeout. Just no answer for the player
 			//mapif_wis_end(wd, 1); // flag: 0: success to send wisper, 1: target character is not loged in?, 2: ignored by target
 			idb_remove(wis_db, wd->id);
@@ -493,10 +493,10 @@ int mapif_parse_WisRequest(int fd)
 	if ( fd <= 0 ) {return 0;} // check if we have a valid fd
 
 	if (RFIFOW(fd,2)-52 >= sizeof(wd->msg)) {
-		ShowWarning("inter: Wis message size too long.\n");
+		ShowWarning("inter: Tamanho da mensagem Wis muito grande.\n");
 		return 0;
 	} else if (RFIFOW(fd,2)-52 <= 0) { // normaly, impossible, but who knows...
-		ShowError("inter: Wis message doesn't exist.\n");
+		ShowError("inter: Mensagem Wis inexistente.\n");
 		return 0;
 	}
 	
@@ -580,7 +580,7 @@ int mapif_parse_WisToGM(int fd)
 {
 	unsigned char buf[2048]; // 0x3003/0x3803 <packet_len>.w <wispname>.24B <min_gm_level>.w <message>.?B
 	
-	ShowDebug("Sent packet back!\n");
+	ShowDebug("Packet enviado de volta!\n");
 	memcpy(WBUFP(buf,0), RFIFOP(fd,0), RFIFOW(fd,2));
 	WBUFW(buf, 0) = 0x3803;
 	mapif_sendall(buf, RFIFOW(fd,2));

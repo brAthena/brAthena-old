@@ -477,7 +477,7 @@ void* grfio_reads(char* fname, int* size)
 			if (entry != NULL && entry->gentry < 0) {
 				entry->gentry = -entry->gentry;	// local file checked
 			} else {
-				ShowError("grfio_reads: %s not found (local file: %s)\n", fname, lfname);
+				ShowError("grfio_reads: %s nao encontrado (arquivo local: %s)\n", fname, lfname);
 				return NULL;
 			}
 		}
@@ -498,7 +498,7 @@ void* grfio_reads(char* fname, int* size)
 				len = entry->declen;
 				decode_zip(buf2, &len, buf, entry->srclen);
 				if (len != (uLong)entry->declen) {
-					ShowError("decode_zip size mismatch err: %d != %d\n", (int)len, entry->declen);
+					ShowError("decode_zip erro de tamanho incompativel: %d != %d\n", (int)len, entry->declen);
 					aFree(buf);
 					aFree(buf2);
 					return NULL;
@@ -512,7 +512,7 @@ void* grfio_reads(char* fname, int* size)
 			}
 			aFree(buf);
 		} else {
-			ShowError("grfio_reads: %s not found (GRF file: %s)\n", fname, grfname);
+			ShowError("grfio_reads: %s nao encontrado (arquivo GRF: %s)\n", fname, grfname);
 			return NULL;
 		}
 	}
@@ -548,10 +548,10 @@ static int grfio_entryread(char* grfname, int gentry)
 
 	fp = fopen(grfname, "rb");
 	if (fp == NULL) {
-		ShowWarning("GRF data file not found: '%s'\n",grfname);
+		ShowWarning("arquivo de dados nao encontrado no GRF: '%s'\n",grfname);
 		return 1;	// 1:not found error
 	} else
-		ShowInfo("GRF data file found: '%s'\n",grfname);
+		ShowInfo("arquivo de dados encontrado no GRF: '%s'\n",grfname);
 
 	fseek(fp,0,SEEK_END);
 	grf_size = ftell(fp);
@@ -561,7 +561,7 @@ static int grfio_entryread(char* grfname, int gentry)
 		fseek(fp,getlong(grf_header+0x1e),SEEK_CUR))
 	{
 		fclose(fp);
-		ShowError("GRF %s read error\n", grfname);
+		ShowError("Erro ao ler GRF %s\n", grfname);
 		return 2;	// 2:file format error
 	}
 
@@ -587,7 +587,7 @@ static int grfio_entryread(char* grfname, int gentry)
 			if (type != 0) {	// Directory Index ... skip
 				fname = decode_filename(grf_filelist+ofs+6, grf_filelist[ofs]-6);
 				if (strlen(fname) > sizeof(aentry.fn) - 1) {
-					ShowFatalError("GRF file name %s is too long\n", fname);
+					ShowFatalError("Nome do GRF %s muito longo\n", fname);
 					aFree(grf_filelist);
 					exit(EXIT_FAILURE);
 				}
@@ -637,7 +637,7 @@ static int grfio_entryread(char* grfname, int gentry)
 
 		if ((long)rSize > grf_size-ftell(fp)) {
 			fclose(fp);
-			ShowError("Illegal data format: GRF compress entry size\n");
+			ShowError("Formato de dados ilegal: tamanho da entrada comprimida na GRF\n");
 			return 4;
 		}
 
@@ -658,7 +658,7 @@ static int grfio_entryread(char* grfname, int gentry)
 
 			fname = (char*)(grf_filelist+ofs);
 			if (strlen(fname) > sizeof(aentry.fn)-1) {
-				ShowFatalError("GRF file name %s is too long\n", fname);
+				ShowFatalError("Nome do GRF %s muito longo\n", fname);
 				aFree(grf_filelist);
 				exit(EXIT_FAILURE);
 			}
@@ -695,7 +695,7 @@ static int grfio_entryread(char* grfname, int gentry)
 
 	} else {	//****** Grf Other version ******
 		fclose(fp);
-		ShowError("GRF version %04x not supported\n",getlong(grf_header+0x2a));
+		ShowError("Versão do GRF %04x nao suportada\n",getlong(grf_header+0x2a));
 		return 4;
 	}
 
@@ -882,7 +882,7 @@ void grfio_init(char* fname)
 	} // end of reading grf-files.txt
 
 	if (grf_num == 0) {
-		ShowInfo("No GRF loaded, using default data directory\n");
+		ShowInfo("Nenhum GRF carregado, utilizando diretorio data padrao\n");
 	}
 
 	// Unneccessary area release of filelist
