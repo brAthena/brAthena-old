@@ -27,59 +27,58 @@
 // | arg(4): Custo do serviço "Alugar Carrinho".            |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    					| 
+// | 1.0 Script Traduzido [cleyton]   	                    |
 // \________________________________________________________/
 
 
 // Main Town, South ----------------------------------------------------------
-payon,181,104,4	script	Kafra Employee::kaf_payon	113,{
+payon,181,104,4	script	Funcionária Kafra::kaf_payon	113,{
 	cutin "kafra_05",2;
 	callfunc "F_KafSetPay";
-	mes "[Kafra Employee]";
-	mes "The Kafra Corporation";
-	mes "is always working to provide";
-	mes "you with convenient services.";
-	mes "How may I be of assistance?";
+	mes "[Funcionária Kafra]";
+	mes "A corporação Kafra";
+	mes "e estamos trabalhando para providenciar";
+	mes "a você serviços convenientes.";
+	mes "Em que posso ajudar?";
 	callfunc "F_Kafra",5,0,1,60,930;
 
 	M_Save:
 		savepoint "payon",160,58;
-		callfunc "F_KafEnd",0,1,"in the city of Payon";
+		callfunc "F_KafEnd",0,1," na cidade de Payon";
 }
 
 // Main Town, Middle North --------------------------------------------------
-payon,175,226,4	script	Kafra Employee::kaf_payon2	116,{
+payon,175,226,4	script	Funcionária Kafra::kaf_payon2	116,{
 	cutin "kafra_02",2;
 	callfunc "F_KafSetPay";
-	mes "[Kafra Employee]";
-	mes "Welcome to the";
-	mes "Kafra Corporation.";
-	mes "The Kafra services are";
-	mes "always on your side.";
-	mes "How may I assist you?";
+	mes "[Funcionária Kafra]";
+	mes "Bem vindo à ";
+	mes "corporação Kafra.";
+	mes "Os serviços da corporação Kafra estão";
+	mes "sempre ao seu lado.";
+	mes "Como posso ajudar?";
 	callfunc "F_Kafra",5,0,1,60,930;
 
 	M_Save:
 		savepoint "payon",257,242;
-		callfunc "F_KafEnd",0,1,"in the city of Payon";
+		callfunc "F_KafEnd",0,1," na cidade de Payon";
 }
 
 // Archer Village ------------------------------------------------------------
-pay_arche,55,123,0	script	Kafra Employee::kaf_payon3	115,{
+pay_arche,55,123,0	script	Funcionária Kafra::kaf_payon3	115,{
 	cutin "kafra_03",2;
 	callfunc "F_KafSetPay";
-	mes "[Kafra Employee]";
-	mes "Welcome to the";
-	mes "Kafra Corporation.";
-	mes "The Kafra services";
-	mes "are always on your side.";
-	mes "How may I assist you?";
+	mes "[Funcionária Kafra]";
+	mes "Bem vindo à ";
+	mes "corporação Kafra.";
+	mes "Os serviços da corporação Kafra";
+	mes "estão sempre ao seu lado.";
+	mes "Como posso ajudar?";
 	callfunc "F_Kafra",5,5,1,90,1200;
 
 	M_Save:
 		savepoint "pay_arche",49,144;
-		callfunc "F_KafEnd",0,1,"at the Payon Dungeon";
+		callfunc "F_KafEnd",0,1," na caverna de Payon";
 }
 
 

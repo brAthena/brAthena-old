@@ -27,21 +27,20 @@
 // | arg(4): Custo do serviço "Alugar Carrinho".            |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    					| 
+// | 1.0 Script Traduzido [cleyton]   	                    |
 // \________________________________________________________/
 
-brasilis,197,221,4	script	Kafra Employee::kaf_bra	117,{
+brasilis,197,221,4	script	Funcionária Kafra::kaf_bra	117,{
 	cutin "kafra_01",2;
-	mes "[Kafra Employee]";
-	mes "Welcome to the";
-	mes "Kafra Corporation.";
-	mes "The Kafra services";
-	mes "are always on your side.";
-	mes "How may I assist you?";
+	mes "[Funcionária Kafra]";
+	mes "Bem vindo a";
+	mes "Corporação Kafra.";
+	mes "Os nossos serviços";
+	mes "sempre estarão ao seu lado.";
+	mes "Como posso ajudar você?";
 	callfunc "F_Kafra",5,3,0,80,700;
 
 	M_Save:
 		savepoint "brasilis",197,219;
-		callfunc "F_KafEnd",0,1,"in the city of Brasilis";
+		callfunc "F_KafEnd",0,1,"salvo na cidade de Brasilis";
 }

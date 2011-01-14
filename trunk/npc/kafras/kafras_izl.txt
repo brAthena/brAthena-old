@@ -27,11 +27,10 @@
 // | arg(4): Custo do serviço "Alugar Carrinho".            |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    					| 
+// | 1.0 Script Traduzido [cleyton]   	                    |
 // \________________________________________________________/
 
-izlude,134,87,3	script	Kafra Employee::kaf_izlude	117,{
+izlude,134,87,3	script	Funcionária Kafra::kaf_izlude	117,{
 	cutin "kafra_01",2;
 	cleararray @wrpC$[0],"",getarraysize(@wrpC$);
 	setarray @wrpD$[0], "Geffen", "Prontera", "Morroc", "Al De Baran";
@@ -41,15 +40,15 @@ izlude,134,87,3	script	Kafra Employee::kaf_izlude	117,{
 	set @wrpC$[2], @wrpD$[2]+" -> "+@wrpP[2];
 	set @wrpC$[3], @wrpD$[3]+" -> "+@wrpP[3];
 	set @wrpC$[4], "Cancel";
-	mes "[Kafra Employee]";
-	mes "Welcome to the";
-	mes "Kafra Corporation.";
-	mes "The Kafra services";
-	mes "are always on your side.";
-	mes "How may I assist you?";
+	mes "[Funcionária Kafra]";
+	mes "Bem vindo a ";
+	mes "corporação Kafra.";
+	mes "Os serviços da corporação Kafra";
+	mes "sempre estarão ao seu lado.";
+	mes "Como posso ajudar?";
 	callfunc "F_Kafra",5,0,1,40,820;
 
 	M_Save:
 		savepoint "izlude",94,103;
-		callfunc "F_KafEnd",0,1,"in the city of Izlude";
+		callfunc "F_KafEnd",0,1," na cidade de Izlude";
 }

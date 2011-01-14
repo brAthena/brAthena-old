@@ -27,50 +27,49 @@
 // | arg(4): Custo do serviço "Alugar Carrinho".            |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    					| 
+// | 1.0 Script Traduzido [cleyton]   	                    |
 // \________________________________________________________/
 
 
 // South =====================================
-geffen,120,62,0	script	Kafra Employee::kaf_geffen	115,{
+geffen,120,62,0	script	Funcionária Kafra::kaf_geffen	115,{
 	cutin "kafra_03",2;
 	callfunc "F_KafSetGef";
-	mes "[Kafra Employee]";
-	mes "Welcome~!";
-	mes "The Kafra Services";
-	mes "are always on your side.";
-	mes "So how can I help you?";
+	mes "[Funcionária Kafra]";
+	mes "Bem vindo~!";
+	mes "Os serviços da corporação Kafra";
+	mes "sempre estarão ao seu lado.";
+	mes "Como posso ajudar?";
 	callfunc "F_Kafra",5,0,0,30,750;
 
 	M_Save:
 		savepoint "geffen",119,40;
-		callfunc "F_KafEnd",0,1,"in the city of Geffen";
+		callfunc "F_KafEnd",0,1," na cidade de Geffen";
 }
 
 // East ==============================================
-geffen,203,123,2	script	Kafra Employee::geffen2	114,{
+geffen,203,123,2	script	Funcionária Kafra::geffen2	114,{
 	cutin "kafra_04",2;
 	callfunc "F_KafSetGef";
-	mes "[Kafra Employee]";
-	mes "Welcome!";
-	mes "The Kafra Corporation";
-	mes "will always support the";
-	mes "adventurers of Rune-Midgard";
-	mes "with its excellent service. So";
-	mes "what can I do for you today?";
+	mes "[Funcionária Kafra]";
+	mes "Bem vindo!";
+	mes "A corporação Kafra";
+	mes "sempre dará suporte para";
+	mes "os aventureiros de Rune-Midigard";
+	mes "com excelentes serviços.";
+	mes "O que posso fazer por você hoje?";
 	callfunc "F_Kafra",5,0,0,30,750;
 
 	M_Save:
 		savepoint "geffen",200,124;
-		callfunc "F_KafEnd",0,1,"in the city of Geffen";
+		callfunc "F_KafEnd",0,1," na cidade de Geffen";
 }
 
 
 // Function: Sets variables for Geffen Kafras -------------------
 function	script	F_KafSetGef	{
 	cleararray @wrpC$[0],"",getarraysize(@wrpC$);
-	setarray @wrpD$[0], "Prontera", "Al De Baran", "Orc Dungeon", "Mjolnir Dead Pit";
+	setarray @wrpD$[0], "Prontera", "Al De Baran", "Caverna Orc", "Mina de carvão de Mjolnir";
 	setarray @wrpP[0], 1200, 1200, 1200, 1700;
 	set @wrpC$[0], @wrpD$[0]+" -> "+@wrpP[0];
 	set @wrpC$[1], @wrpD$[1]+" -> "+@wrpP[1];

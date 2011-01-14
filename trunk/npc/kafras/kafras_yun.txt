@@ -27,57 +27,56 @@
 // | arg(4): Custo do serviço "Alugar Carrinho".            |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    					| 
+// | 1.0 Script Traduzido [cleyton]   	                    |
 // \________________________________________________________/
 
 
 // Center ------------------------------------------------------------------
-yuno,152,187,4	script	Kafra Employee::kaf_yuno	860,{
+yuno,152,187,4	script	Funcionária Kafra::kaf_yuno	860,{
 	cutin "kafra_08",2;
 	callfunc "F_KafSetYun";
-	mes "[Kafra Employee]";
-	mes "The Kafra Corporation";
-	mes "is always working to provide";
-	mes "you with convenient services.";
-	mes "How may I be of assistance?";
+	mes "[Funcionária Kafra]";
+	mes "A corporação Kafra";
+	mes "está sempre trabalhando para fornecer";
+	mes "a você serviços convenientes.";
+	mes "Como posso ser útil?";
 	callfunc "F_Kafra",5,0,0,40,800;
 
 	M_Save:
 		savepoint "yuno",158,125;
-		callfunc "F_KafEnd",0,1,"in the city of Juno";
+		callfunc "F_KafEnd",0,1," na cidade de Juno";
 }
 
 // South East --------------------------------------------------------------
-yuno,327,108,4	script	Kafra Employee::kaf_yuno2	860,{
+yuno,327,108,4	script	Funcionária Kafra::kaf_yuno2	860,{
 	cutin "kafra_08",2;
 	callfunc "F_KafSetYun";
-	mes "[Kafra Employee]";
-	mes "The Kafra Corporation";
-	mes "is always working to provide";
-	mes "you with convenient services.";
-	mes "How may I be of assistance?";
+	mes "[Funcionária Kafra]";
+	mes "A coporação Kafra";
+	mes "está sempre trabalhando para fornecer";
+	mes "a você serviços convenientes.";
+	mes "Como posso ser útil?";
 	callfunc "F_Kafra",5,0,0,40,800;
 
 	M_Save:
 		savepoint "yuno",328,101;
-		callfunc "F_KafEnd",0,1,"in the city of Juno";
+		callfunc "F_KafEnd",0,1," na cidade de Juno";
 }
 
 // East --------------------------------------------------------------------
-yuno,277,221,4	script	Kafra Employee::kaf_yuno3	861,{
+yuno,277,221,4	script	Funcionária Kafra::kaf_yuno3	861,{
 	cutin "kafra_09",2;
 	callfunc "F_KafSetYun";
-	mes "[Kafra Employee]";
-	mes "The Kafra Corporation";
-	mes "is always working to provide";
-	mes "you with convenient services.";
-	mes "How may I be of assistance?";
+	mes "[Funcionária Kafra]";
+	mes "A corporação Kafra";
+	mes "está sempre trabalhando apra fornecer";
+	mes "a você serviços convenientes.";
+	mes "Como posso ser útil?";
 	callfunc "F_Kafra",5,0,0,40,800;
 
 	M_Save:
 		savepoint "yuno",274,229;
-		callfunc "F_KafEnd",0,1,"in the city of Juno";
+		callfunc "F_KafEnd",0,1," na cidade de Juno";
 }
 
 

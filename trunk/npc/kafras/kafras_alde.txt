@@ -27,90 +27,87 @@
 // | arg(4): Custo do serviço "Alugar Carrinho".            |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    					| 
+// | 1.0 Script Traduzido [cleyton]   	                    |
 // \________________________________________________________/
-
 // Kafra Main Office (Kafra Leilah) ------------------------------------
-aldeba_in,96,181,4	script	Kafra Service	113,{
+aldeba_in,96,181,4	script	Kafra Serviços	113,{
 	cutin "kafra_05",2;
-	mes "[Kafra Leilah]";
+	mes "[Kafra Leila]";
 	mes "Hm...?";
-	mes "Oh, welcome to";
-	mes "the Kafra Corporation";
-	mes "Headquarters. Did you";
-	mes "need something?";
+	mes "Oh, bem vindo para";
+	mes "a sede da corporação Kafra";
+	mes "Precisa de";
+	mes "alguma coisa.";
 	next;
-	switch(select("Save:Use Storage:Rent a Pushcart:Cancel")) {
+	switch(select("Salvar:Usar armazém:Alugar carrinho de mão:Cancelar")) {
 	case 1:
-		mes "[Kafra Leilah]";
-		mes "Your Respawn Point has";
-		mes "been saved here, inside";
-		mes "of the Kafra Corporation";
-		mes "Headquarters. Thank you.";
+		mes "[Kafra Leila]";
+		mes "Seu ponto de renascimento";
+		mes "foi salvo aqui na";
+		mes "sede da corporação Kafra.";
+		mes "Muito obrigado.";
 		next;
 		savepoint "aldeba_in",96,179;
-		mes "[Kafra Leilah]";
-		mes "Please make use of";
-		mes "the Kafra Services that are";
-		mes "available throughout all of";
-		mes "Rune Midgard. Thank you for";
-		mes "visiting the Kafra Headquarters.";
+		mes "[Kafra Leila]";
+		mes "Por favor, faça";
+		mes "uso dos serviços da Kafra que estão";
+		mes "disponíveis em toda a";
+		mes "Rune Midgar. Muito obrigado por visitar";
+		mes "a cede da corporação Kafra.";
 		close2;
 		break;
 	case 2:
 		if (zeny < 20) {
-			mes "[Kafra Leilah]";
-			mes "Excuse me, but it";
-			mes "seems that you don't";
-			mes "have the 20 zeny to pay";
-			mes "the Storage access fee...";
-			close;
+			mes "[Kafra Leila]";
+			mes "Com licença, mas";
+			mes "parece que você não possui";
+			mes "20 zenys para pagar a taxa";
+			mes "de acesso...";
 		}
-		mes "[Kafra Leilah]";
-		mes "Although this facility is";
-		mes "exclusively intended for";
-		mes "the training of Kafra Employee";
-		mes "and administrative functions,";
-		mes "I'll access your Storage for you.";
+		mes "[Kafra Leila]";
+		mes "Embora esta facilidade seja";
+		mes "exclusivamente destinada";
+		mes "a formação das funcionárias Kafra";
+		mes "e também funções administrativas,";
+		mes "Eu vou acessar seu armazém para você.";
 		next;
 		set zeny,zeny-20;
 		set RESRVPTS, RESRVPTS + (20/5);
-		mes "[Kafra Leilah]";
-		mes "In the future, please";
-		mes "ask the Kafra Employee on";
-		mes "duty if you wish to use";
-		mes "any of the Kafra Services.";
-		mes "Thank you for your patronage.";
+		mes "[Kafra Leila]";
+		mes "Na próxima vez, favor";
+		mes "pergunte a qualquer funcinário";
+		mes "da corporação Kafra";
+		mes "sobre qualquer de nossos serviços.";
+		mes "Obrigado por usar nossos serviços.";
 		callfunc("F_CheckKafCode");    //check your storage password, if set
 		close2;
 		openstorage;
 		break;
 	case 3:
-		mes "[Kafra Leilah]";
-		mes "My apologies, but I'm";
-		mes "not on duty. I'd assist you";
-		mes "if I could, but actually don't";
-		mes "have any available Pushcarts.";
-		mes "Why don't you ask another Kafra";
-		mes "Employee for assistance?";
+		mes "[Kafra Leila]";
+		mes "Minhas desculpas, mas";
+		mes "mas eu estou de plantão, se eu pudesse";
+		mes "eu te ajudaria, mas infelizmente";
+		mes "não possuo carrinhos de mão disponíveis.";
+		mes "Porque não procura outro funcionário";
+		mes "da corporação Kafra?";
 		next;
-		mes "[Kafra Leilah]";
-		mes "Kafra Employees are";
-		mes "stationed all over the";
-		mes "Rune Midgard continent,";
-		mes "and you should be able to find";
-		mes "plenty outside in Al De Baran.";
+		mes "[Kafra Leila]";
+		mes "Os funcionários da corporação Kafra";
+		mes "estão por todo o";
+		mes "continente de Rune Midgard";
+		mes "e você pode entrar-los em ambudância";
+		mes "fora de Aldebaran.";
 		close2;
 		break;
 	case 4:
-		mes "[Kafra Leilah]";
-		mes "^666666*Whew...*^000000";
-		mes "Great, because I'm";
-		mes "actually on my break";
-		mes "right now. Choosing";
-		mes "''Cancel'' was a good";
-		mes "move on your part.";
+		mes "[Kafra Leila]";
+		mes "^666666*Ufa...*^000000";
+		mes "Ótimo, porque eu";
+		mes "atualmente, estou descançando.";
+		mes "Agora escolha";
+		mes "''Cancel'' foi um bom";
+		mes "movimento de sua parte.";
 		close2;
 		break;
 	}
@@ -123,20 +120,20 @@ aldebaran,143,119,4	script	Kafra Employee::kaf_aldebaran	113,{
 	cutin "kafra_05",2;
 	cleararray @wrpC$[0],"",getarraysize(@wrpC$);
 	setarray @wrpP[0], 1200, 1200, 1800, 1700;
-	setarray @wrpD$[0], "Geffen", "Juno" , "Izlude", "Mjolnir Dead Pit";
+	setarray @wrpD$[0], "Geffen", "Juno" , "Izlude", "Mina de carvão de Mjolnir";
 	set @wrpC$[0], @wrpD$[0]+" -> "+@wrpP[0];
 	set @wrpC$[1], @wrpD$[1]+" -> "+@wrpP[1];
 	set @wrpC$[2], @wrpD$[2]+" -> "+@wrpP[2];
 	set @wrpC$[3], @wrpD$[3]+" -> "+@wrpP[3];
 	set @wrpC$[4], "Cancel";
-	mes "[Kafra Employee]";
-	mes "The Kafra Corporation";
-	mes "is always working to provide";
-	mes "you with convenient services.";
-	mes "How may I be of assistance?";
+	mes "[Funcionária Kafra]";
+	mes "A corporação Kafra";
+	mes "está trabalhando para providenciar";
+	mes "serviços excelentes para você.";
+	mes "Em que posso ajudar você?";
 	callfunc "F_Kafra",5,0,1,20,600;
 
 	M_Save:
 		savepoint "aldebaran",143,109;
-		callfunc "F_KafEnd",0,1,"in the city of Al De Baran";
+		callfunc "F_KafEnd",0,1,"salvo na cidade de Al De Baran";
 }

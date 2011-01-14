@@ -9,6 +9,25 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0100 - 14/01/2011 [Protimus]
+	* Adicionadas traduções de npcs da pasta de Kafras.
+	- kafras/cool_event_corp.txt
+	- kafras/dts_warper.txt
+	- kafras/funcoes_kafras.txt
+	- kafras/kafras_alb.txt
+	- kafras/kafras_alde.txt
+	- kafras/kafras_brasilis.txt
+	- kafras/kafras_com.txt
+	- kafras/kafras_dungeons.txt
+	- kafras/kafras_gef.txt
+	- kafras/kafras_izl.txt
+	- kafras/kafras_mor.txt
+	- kafras/kafras_mosk.txt
+	- kafras/kafras_new.txt
+	- kafras/kafras_pay.txt
+	- kafras/kafras_pron.txt
+	- kafras/kafras_yun.txt
+
 	r0099 - 14/01/2011 [Protimus]
 	* Adicionada tradução de npc da pasta de quests.
 	- quests/quests_lutie.txt
