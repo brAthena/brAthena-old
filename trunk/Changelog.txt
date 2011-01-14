@@ -9,6 +9,13 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0099 - 14/01/2011 [Protimus]
+	* Adicionada tradução de npc da pasta de quests.
+	- quests/quests_lutie.txt
+	* Revisada tradução de npcs da pasta de instancias e quests.
+	- instancias/torre_infinita.txt
+	- quests/quests_lutie.txt
+
 	r0098 - 13/01/2011 [Protimus]
 	* Adicionada tradução de npc da pasta eventos.
 	- eventos/natal.txt
