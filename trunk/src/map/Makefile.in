@@ -1,4 +1,3 @@
-
 COMMON_OBJ = ../common/obj_all/core.o ../common/obj_all/socket.o ../common/obj_all/timer.o \
 	../common/obj_all/db.o ../common/obj_all/plugins.o ../common/obj_all/lock.o \
 	../common/obj_all/nullpo.o ../common/obj_all/malloc.o ../common/obj_all/showmsg.o \
@@ -18,8 +17,6 @@ MAP_OBJ = map.o chrif.o clif.o pc.o status.o npc.o \
 	storage.o skill.o atcommand.o battle.o battleground.o \
 	intif.o trade.o party.o vending.o guild.o pet.o \
 	log.o mail.o date.o unit.o homunculus.o mercenary.o quest.o instance.o
-MAP_TXT_OBJ = $(MAP_OBJ:%=obj_txt/%) \
-	obj_txt/mapreg_txt.o
 MAP_SQL_OBJ = $(MAP_OBJ:%=obj_sql/%) \
 	obj_sql/mapreg_sql.o
 MAP_H = map.h chrif.h clif.h pc.h status.h npc.h \
@@ -30,10 +27,10 @@ MAP_H = map.h chrif.h clif.h pc.h status.h npc.h \
 
 HAVE_MYSQL=@HAVE_MYSQL@
 ifeq ($(HAVE_MYSQL),yes)
-	ALL_DEPENDS=txt sql
+	ALL_DEPENDS=sql
 	SQL_DEPENDS=map-server_sql
 else
-	ALL_TARGET=txt
+	ALL_TARGET=sql
 	SQL_DEPENDS=needs_mysql
 endif
 
@@ -47,25 +44,22 @@ endif
 @SET_MAKE@
 
 #####################################################################
-.PHONY : all txt sql clean help
+.PHONY : all sql clean help
 
 all: $(ALL_DEPENDS)
-
-txt: map-server
 
 sql: $(SQL_DEPENDS)
 
 clean:
-	rm -rf *.o obj_txt obj_sql ../../map-server@EXEEXT@ ../../map-server_sql@EXEEXT@
+	rm -rf *.o obj_sql ../../map-server_sql@EXEEXT@
 
 help:
 ifeq ($(HAVE_MYSQL),yes)
-	@echo "possible targets are 'sql' 'txt' 'all' 'clean' 'help'"
+	@echo "possible targets are 'sql' 'all' 'clean' 'help'"
 	@echo "'sql'   - map server (SQL version)"
 else
-	@echo "possible targets are 'txt' 'all' 'clean' 'help'"
+	@echo "possible targets are 'all' 'clean' 'help'"
 endif
-	@echo "'txt'   - map server (TXT version)"
 	@echo "'all'   - builds all above targets"
 	@echo "'clean' - cleans builds and objects"
 	@echo "'help'  - outputs this message"
@@ -77,29 +71,15 @@ needs_mysql:
 	@exit 1
 
 # object directories
-obj_txt:
-	-mkdir obj_txt
-
 obj_sql:
 	-mkdir obj_sql
 
 # executables
-map-server: obj_txt $(MAP_TXT_OBJ) $(COMMON_OBJ)
-	@CC@ @LDFLAGS@ -o ../../map-server@EXEEXT@ $(MAP_TXT_OBJ) $(COMMON_OBJ) @LIBS@ @PCRE_LIBS@
-
 map-server_sql: obj_sql $(MAP_SQL_OBJ) $(COMMON_OBJ) $(COMMON_SQL_OBJ)
 	@CC@ @LDFLAGS@ -o ../../map-server_sql@EXEEXT@ $(MAP_SQL_OBJ) $(COMMON_OBJ) $(COMMON_SQL_OBJ) @LIBS@ @PCRE_LIBS@ @MYSQL_LIBS@
 
-# map object files
-obj_txt/%.o: %.c $(MAP_H) $(COMMON_H)
-	@CC@ @CFLAGS@ $(PCRE_CFLAGS) -DTXT_ONLY @CPPFLAGS@ -c $(OUTPUT_OPTION) $<
-
 obj_sql/%.o: %.c $(MAP_H) $(COMMON_H) $(COMMON_SQL_H)
 	@CC@ @CFLAGS@ $(PCRE_CFLAGS) @MYSQL_CFLAGS@ @CPPFLAGS@ -c $(OUTPUT_OPTION) $<
-
-# missing common object files
-../common/obj_all/%.o:
-	@$(MAKE) -C ../common txt
 
 ../common/obj_sql/%.o:
 	@$(MAKE) -C ../common sql

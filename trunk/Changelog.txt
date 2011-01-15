@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0101 - 15/01/2011 [Protimus]
+	* Realizadas algumas limpezas em arquivos de Make para Linux.
+
 	r0100 - 14/01/2011 [Protimus]
 	* Adicionadas traduções de npcs da pasta de Kafras.
 	- kafras/cool_event_corp.txt
