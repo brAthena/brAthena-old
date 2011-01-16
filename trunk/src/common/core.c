@@ -65,6 +65,7 @@ sigfunc *compat_signal(int signo, sigfunc *func)
 	return (oact.sa_handler);
 }
 #endif
+
 /*======================================
  *	CORE : Signal Sub Function
  *--------------------------------------*/

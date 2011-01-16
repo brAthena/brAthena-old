@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0102 - 16/01/2011 [Dani]
+	* Atualizado conforme eAthena 14670.
+
 	r0101 - 15/01/2011 [Protimus]
 	* Realizadas algumas limpezas em arquivos de Make para Linux.
 

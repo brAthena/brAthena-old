@@ -85,7 +85,6 @@ install:	conf/%.conf conf/%.txt
 	$(shell mv npc /opt/eathena/etc/eathena/npc)
 	$(shell mv log/* /opt/eathena/var/log/eathena/)
 	$(shell cp *-server* /opt/eathena/bin/)
-	$(shell cp ladmin /opt/eathena/bin/)
 	$(shell ln -s /opt/eathena/etc/eathena/save/ /opt/eathena/bin/)
 	$(shell ln -s /opt/eathena/etc/eathena/db/ /opt/eathena/bin/)
 	$(shell ln -s /opt/eathena/etc/eathena/conf/ /opt/eathena/bin/)
@@ -96,7 +95,6 @@ bin-clean:
 	$(shell rm /opt/eathena/bin/login-server*)
 	$(shell rm /opt/eathena/bin/char-server*)
 	$(shell rm /opt/eathena/bin/map-server*)
-	$(shell rm /opt/eathena/bin/ladmin)
 
 uninstall:
 	$(shell read -p "WARNING: This target does not work properly yet. Press Ctrl+C to cancel or Enter to continue.")

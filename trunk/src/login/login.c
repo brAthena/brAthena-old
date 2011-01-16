@@ -19,7 +19,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-bool ladmin_auth(struct login_session_data* sd, const char* ip);
 struct Login_Config login_config;
 
 int login_fd; // login server socket
@@ -52,6 +51,7 @@ struct s_subnet {
 
 int subnet_count = 0;
 
+int mmo_auth_new(const char* userid, const char* pass, const char sex, const char* last_ip);
 
 //-----------------------------------------------------
 // Auth database
@@ -91,7 +91,7 @@ static void* create_online_user(DBKey key, va_list args)
 	CREATE(p, struct online_login_data, 1);
 	p->account_id = key.i;
 	p->char_server = -1;
-	p->waiting_disconnect = -1;
+	p->waiting_disconnect = INVALID_TIMER;
 	return p;
 }
 
@@ -100,10 +100,10 @@ struct online_login_data* add_online_user(int char_server, int account_id)
 	struct online_login_data* p;
 	p = (struct online_login_data*)idb_ensure(online_db, account_id, create_online_user);
 	p->char_server = char_server;
-	if( p->waiting_disconnect != -1 )
+	if( p->waiting_disconnect != INVALID_TIMER )
 	{
 		delete_timer(p->waiting_disconnect, waiting_disconnect_timer);
-		p->waiting_disconnect = -1;
+		p->waiting_disconnect = INVALID_TIMER;
 	}
 	return p;
 }
@@ -114,7 +114,7 @@ void remove_online_user(int account_id)
 	p = (struct online_login_data*)idb_get(online_db, account_id);
 	if( p == NULL )
 		return;
-	if( p->waiting_disconnect != -1 )
+	if( p->waiting_disconnect != INVALID_TIMER )
 		delete_timer(p->waiting_disconnect, waiting_disconnect_timer);
 
 	idb_remove(online_db, account_id);
@@ -125,7 +125,7 @@ static int waiting_disconnect_timer(int tid, unsigned int tick, int id, intptr d
 	struct online_login_data* p = (struct online_login_data*)idb_get(online_db, id);
 	if( p != NULL && p->waiting_disconnect == tid && p->account_id == id )
 	{
-		p->waiting_disconnect = -1;
+		p->waiting_disconnect = INVALID_TIMER;
 		remove_online_user(id);
 		idb_remove(auth_db, id);
 	}
@@ -139,10 +139,10 @@ static int online_db_setoffline(DBKey key, void* data, va_list ap)
 	if( server == -1 )
 	{
 		p->char_server = -1;
-		if( p->waiting_disconnect != -1 )
+		if( p->waiting_disconnect != INVALID_TIMER )
 		{
 			delete_timer(p->waiting_disconnect, waiting_disconnect_timer);
-			p->waiting_disconnect = -1;
+			p->waiting_disconnect = INVALID_TIMER;
 		}
 	}
 	else if( p->char_server == server )
@@ -305,32 +305,49 @@ int login_lan_config_read(const char *lancfgName)
 //-----------------------
 // Console Command Parser [Wizputer]
 //-----------------------
-int parse_console(char* buf)
+int parse_console(const char* command)
 {
-	char command[256];
+	ShowNotice("Comando de console :%s\n", command);
 
-	memset(command, 0, sizeof(command));
-
-	sscanf(buf, "%[^\n]", command);
-
-	ShowInfo("Comando de console :%s\n", command);
-
-	if( strcmpi("desligar", command) == 0 ||
-	    strcmpi("sair", command) == 0 ||
-	    strcmpi("fechar", command) == 0 ||
-	    strcmpi("desativar", command) == 0 )
+	if( strcmpi("desligar", command) == 0 || strcmpi("sair", command) == 0 || strcmpi("fechar", command) == 0 || strcmpi("desativar", command) == 0 )
 		runflag = 0;
-	else
-	if( strcmpi("estado", command) == 0 ||
-	    strcmpi("status", command) == 0 )
+	else if( strcmpi("estado", command) == 0 || strcmpi("status", command) == 0 )
 		ShowInfo(CL_CYAN"Console: "CL_BOLD"Conectado e respondendo."CL_RESET"\n");
-	else
-	if( strcmpi("ajuda", command) == 0 ) {
-		ShowInfo(CL_BOLD"Ajuda dos comandos:"CL_RESET"\n");
-		ShowInfo("  Para desligar o servidor:\n");
+	else if( strcmpi("ajuda", command) == 0 )
+	{
+		ShowInfo("Para desligar o servidor:\n");
 		ShowInfo("  'desligar|sair|fechar|desativar'\n");
-		ShowInfo("  Para saber se o servidor esta respondendo:\n");
+		ShowInfo("Para saber se o servidor esta respondendo:\n");
 		ShowInfo("  'estado|status'\n");
+		ShowInfo("To create a new account:\n");
+		ShowInfo("  'create'\n");
+	}
+	else
+	{// commands with parameters
+		char cmd[128], params[256];
+
+		if( sscanf(command, "%127s %255[^\r\n]", cmd, params) < 2 )
+		{
+			return 0;
+		}
+
+		if( strcmpi(cmd, "create") == 0 )
+		{
+			char username[NAME_LENGTH], password[NAME_LENGTH], sex;
+
+			if( sscanf(params, "%23s %23s %c", username, password, &sex) < 3 || strnlen(username, sizeof(username)) < 4 || strnlen(password, sizeof(password)) < 1 )
+			{
+				ShowWarning("Console: Invalid parameters for '%s'. Usage: %s <username> <password> <sex:F/M>\n", cmd, cmd);
+				return 0;
+			}
+
+			if( mmo_auth_new(username, password, TOUPPER(sex), "0.0.0.0") != -1 )
+			{
+				ShowError("Console: Account creation failed.\n");
+				return 0;
+			}
+			ShowStatus("Console: Account '%s' created successfully.\n", username);
+		}
 	}
 
 	return 0;
@@ -768,10 +785,10 @@ int parse_fromchar(int fd)
 					aid = RFIFOL(fd,6+i*4);
 					p = (struct online_login_data*)idb_ensure(online_db, aid, create_online_user);
 					p->char_server = id;
-					if (p->waiting_disconnect != -1)
+					if (p->waiting_disconnect != INVALID_TIMER)
 					{
 						delete_timer(p->waiting_disconnect, waiting_disconnect_timer);
-						p->waiting_disconnect = -1;
+						p->waiting_disconnect = INVALID_TIMER;
 					}
 				}
 			}
@@ -1188,7 +1205,7 @@ void login_auth_failed(struct login_session_data* sd, int result)
 
 
 //----------------------------------------------------------------------------------------
-// Default packet parsing (normal players or administation/char-server connection requests)
+// Default packet parsing (normal players or char-server connection requests)
 //----------------------------------------------------------------------------------------
 int parse_login(int fd)
 {
@@ -1322,7 +1339,6 @@ int parse_login(int fd)
 		break;
 
 		case 0x01db:	// Sending request of the coding key
-		case 0x791a:	// Sending request of the coding key (administration packet)
 			RFIFOSKIP(fd,2);
 		{
 			memset(sd->md5key, '\0', sizeof(sd->md5key));
@@ -1397,44 +1413,6 @@ int parse_login(int fd)
 			}
 		}
 		return 0; // processing will continue elsewhere
-
-		case 0x7530:	// Server version information request
-			ShowStatus("Enviando informacoes sobre a versao do servidor ao ip: %s\n", ip);
-			RFIFOSKIP(fd,2);
-			WFIFOHEAD(fd,10);
-			WFIFOW(fd,0) = 0x7531;
-			WFIFOB(fd,2) = ATHENA_MAJOR_VERSION;
-			WFIFOB(fd,3) = ATHENA_MINOR_VERSION;
-			WFIFOB(fd,4) = ATHENA_REVISION;
-			WFIFOB(fd,5) = ATHENA_RELEASE_FLAG;
-			WFIFOB(fd,6) = ATHENA_OFFICIAL_FLAG;
-			WFIFOB(fd,7) = ATHENA_SERVER_LOGIN;
-			WFIFOW(fd,8) = ATHENA_MOD_VERSION;
-			WFIFOSET(fd,10);
-		break;
-
-		case 0x7918:	// Request for administation login
-			if ((int)RFIFOREST(fd) < 4 || (int)RFIFOREST(fd) < ((RFIFOW(fd,2) == 0) ? 28 : 20))
-				return 0;
-		{
-			int passwdenc = (int)RFIFOW(fd,2);
-			const char* passwd = (char*)RFIFOP(fd,4);
-
-			if( passwdenc == 0 ) { // non encrypted password
-				safestrncpy(sd->passwd, passwd, NAME_LENGTH);
-				sd->passwdenc = 0;
-			} else { // encrypted password
-				memcpy(sd->passwd, passwd, 16); sd->passwd[16] = '\0'; // raw binary data here!
-				sd->passwdenc = passwdenc;
-			}
-
-			RFIFOSKIP(fd, (passwdenc == 0) ? 28 : 20);
-
-			WFIFOHEAD(fd,3);
-			WFIFOW(fd,0) = 0x7919;
-			WFIFOSET(fd,3);
-		}
-		break;
 
 		default:
 			ShowNotice("Fim de conexao anormal (ip: %s): Packet desconhecido 0x%x\n", ip, command);
@@ -1541,14 +1519,6 @@ int login_config_read(const char* cfgName)
 			login_config.ipban_cleanup_interval = (unsigned int)atoi(w2);
 		else if(!strcmpi(w1, "ip_sync_interval"))
 			login_config.ip_sync_interval = (unsigned int)1000*60*atoi(w2); //w2 comes in minutes.
-
-		else if(!strcmpi(w1, "admin_state"))
-			login_config.admin_state = (bool)config_switch(w2);
-		else if(!strcmpi(w1, "admin_pass"))
-			safestrncpy(login_config.admin_pass, w2, sizeof(login_config.admin_pass));
-		else if(!strcmpi(w1, "admin_allowed_host"))
-			safestrncpy(login_config.admin_allowed_host, w2, sizeof(login_config.admin_pass));
-
 		else if(!strcmpi(w1, "import"))
 			login_config_read(w2);
 		else
