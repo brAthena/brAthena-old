@@ -1,5 +1,5 @@
 //  ________________________________________________________
-// /                                                        \
+// /                                                        \ 
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
@@ -8,55 +8,56 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Turbo Track - Solo Mode	            |
+// | Nome do Script: Turbo Track Modo Solo                  |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.4/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: Turbo Track Course: Solo Mode/Time Attack   |
-// |                                                        |
+// | Descrição:                                             |
+// | Percurso da Turbo Track: Modo Solo                     |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    					| 
+// | Changelog:               	                        |
+// | 1.0 Script Traduzido [Boomer]                          |
+// |                                   		            |
 // \________________________________________________________/
 
-turbo_room,72,132,3	script	Solo Mode#n1	124,{
+
+turbo_room,72,132,3	script	Modo Solo#n1	124,{
 	end;
 
 OnInit:
-	waitingroom "Solo Mode",60,"Solo Mode#n1::OnStartArena",1;
+	waitingroom "Modo Solo",60,"Modo Solo#n1::OnStartArena",1;
 	//SetFeeZeny 1000
-	enablewaitingroomevent "Solo Mode#n1";
+	enablewaitingroomevent "Modo Solo#n1";
 	end;
 
 OnEnable:
-	enablenpc "Solo Mode#n1";
-	enablewaitingroomevent "Solo Mode#n1";
+	enablenpc "Modo Solo#n1";
+	enablewaitingroomevent "Modo Solo#n1";
 	end;
 
 OnStartArena:
 	warpwaitingpc "turbo_n_1",298,161;
 	donpcevent "Broadcast#n1::OnEnable";
-	disablewaitingroomevent "Solo Mode#n1";
+	disablewaitingroomevent "Modo Solo#n1";
 	end;
 }
 	
-turbo_n_1,298,167,3	script	Helper#n1_F	124,{
-	mes "[Helper]";
-	mes "You are now in the";
-	mes "Waiting Room. You will";
-	mes "be guided to the Starting Line";
-	mes "after 30 seconds, so please use";
-	mes "this time to prepare your items";
-	mes "and equipment. Thank you.";
+turbo_n_1,298,167,3	script	Auxiliar#n1_F	124,{
+	mes "[Auxiliar]";
+	mes "Você está agora na sala";
+	mes "de espera. Você";
+	mes "será guiado para a linha de largada";
+	mes "depois de 30 segundos, então por favor";
+	mes "use esse tempo para preparar seus itens";
+	mes "e equipamentos. Obrigado.";
 	close;
 }
 
-turbo_n_1,298,167,0	script	Point Give-Away Guy#n1	-1,15,15,{
+turbo_n_1,298,167,0	script	Auxiliar de Pontuação#n1	-1,15,15,{
 OnInit:
-	disablenpc "Point Give-Away Guy#n1";
+	disablenpc "Auxiliar de Pontuação#n1";
 	end;
 
 OnTouch:
@@ -80,59 +81,59 @@ OnEnable:
 	end;
 
 OnTimer2000:
-	mapannounce "turbo_n_1","You are now in the Waiting Room where you can check your items and prepare for the race.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Você está agora na sala de espera onde você pode checar e praparar seus itens e equipamentos para a corrida.",bc_map,"0x33FF66";
 	end;
 
 OnTimer7000:
-	mapannounce "turbo_n_1","You will have 30 seconds before you are transported to the Starting Line.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Você terá 30 segundos antes de ser teletransportado para a Linha de Largada.",bc_map,"0x33FF66";
 	end;
 
 OnTimer10000:
-	mapannounce "turbo_n_1","Please make sure that you have suitable equipment and items with you.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Por favor tenha certeza que você está com equipamentos e itens adequados.",bc_map,"0x33FF66";
 	end;
 
 OnTimer15000:
-	mapannounce "turbo_n_1","The 30 second countdown will begin shortly.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","A contagem regressiva de 30 segundos deve começar logo.",bc_map,"0x33FF66";
 	end;
 
 OnTimer17000:
-	mapannounce "turbo_n_1","30 seconds remaining.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Faltam 30 segundos.",bc_map,"0x33FF66";
 	end;
 
 OnTimer27000:
-	mapannounce "turbo_n_1","20 seconds remaining.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Faltam 20 segundos.",bc_map,"0x33FF66";
 	end;
 
 OnTimer37000:
-	mapannounce "turbo_n_1","10 seconds remaining.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Faltam 10 segundos.",bc_map,"0x33FF66";
 	end;
 
 OnTimer42000:
-	mapannounce "turbo_n_1","5 seconds remaining.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Faltam 5 segundos.",bc_map,"0x33FF66";
 	end;
 
 OnTimer43000:
-	mapannounce "turbo_n_1","4 seconds remaining.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Faltam 4 segundos.",bc_map,"0x33FF66";
 	end;
 
 OnTimer44000:
-	mapannounce "turbo_n_1","3 seconds remaining.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Faltam 3 segundos.",bc_map,"0x33FF66";
 	end;
 
 OnTimer45000:
-	mapannounce "turbo_n_1","2 seconds remaining.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Faltam 2 segundos.",bc_map,"0x33FF66";
 	end;
 
 OnTimer46000:
-	mapannounce "turbo_n_1","1 second remaining.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Falta 1 segundo.",bc_map,"0x33FF66";
 	end;
 
 OnTimer47000:
-	mapannounce "turbo_n_1","You will be transported to the Starting Line shortly.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Você será teletransportado para a Linha de Largada.",bc_map,"0x33FF66";
 	end;
 
 OnTimer49000:
-	enablenpc "Point Give-Away Guy#n1";
+	enablenpc "Auxiliar de Pontuação#n1";
 	donpcevent "Master#n1::OnEnable";
 	end;
 
@@ -143,7 +144,7 @@ OnTimer50000:
 	end;
 
 OnTimer57000:
-	disablenpc "Point Give-Away Guy#n1";
+	disablenpc "Auxiliar de Pontuação#n1";
 	end;
 }
 
@@ -163,23 +164,23 @@ OnDisable:
 	end;
 
 OnTimer7000:
-	mapannounce "turbo_n_1","Welcome to the Turbo Track.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Bem vindo à Turbo Track.",bc_map,"0x33FF66";
 	end;
 
 OnTimer9000:
-	mapannounce "turbo_n_1","The game will be hosted for 15 minutes and at least one person must complete the entire course.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","O jogo será de 15 minutos e pelo menos uma pessoa tem que completar o curso inteiro.",bc_map,"0x33FF66";
 	end;
 
 OnTimer11000:
-	mapannounce "turbo_n_1","We hope you will do your best.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Nós esperamos que faça o seu melhor.",bc_map,"0x33FF66";
 	end;
 
 OnTimer13000:
-	mapannounce "turbo_n_1","The game will begin after a 5 second countdown. Everyone, please take your positions behind the Starting Line.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","O jogo começará após uma contagem de 5 segundos. Todos, por favor assumam suas posições atrás da Linha de Largada.",bc_map,"0x33FF66";
 	end;
 
 OnTimer15000:
-	mapannounce "turbo_n_1","The countdown will commence shortly.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","A contagem iniciará imediatamente.",bc_map,"0x33FF66";
 	end;
 
 OnTimer17000:
@@ -207,119 +208,119 @@ OnTimer22000:
 	end;
 
 OnTimer23000:
-	mapannounce "turbo_n_1","Now! The race has begun! Go Go Go!!",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Agora! A corrida começou! Vá Vá Vá!!",bc_map,"0x33FF66";
 	disablenpc "No_Unfair_Start#n1-1";
 	disablenpc "No_Unfair_Start#n1-2";
 	set $@start_time,gettimetick(0);
 	end;
 
 OnTimer30000:
-	mapannounce "turbo_n_1","Remember that this is a 15 minute race. After 15 minutes, everyone will be transported out of the race track.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Lembre-se que esta é uma corrida de 15 minutos. Após 15 minutos, todos serão teletransportados para fora da pista de corrida.",bc_map,"0x33FF66";
 	end;
 
 OnTimer83000:
-	mapannounce "turbo_n_1","You have 14 minutes left.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Você tem 14 minutos ainda.",bc_map,"0x33FF66";
 	end;
 
 OnTimer143000:
-	mapannounce "turbo_n_1","You have 13 minutes left.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Você tem 13 minutos ainda.",bc_map,"0x33FF66";
 	end;
 
 OnTimer203000:
-	mapannounce "turbo_n_1","You have 12 minutes left.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","você tem 12 minutos ainda.",bc_map,"0x33FF66";
 	end;
 
 OnTimer263000:
-	mapannounce "turbo_n_1","You have 11 minutes left.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Você tem 11 minutos ainda.",bc_map,"0x33FF66";
 	end;
 
 OnTimer323000:
-	mapannounce "turbo_n_1","You have 10 minutes left.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Você tem 10 minutos ainda.",bc_map,"0x33FF66";
 	end;
 
 OnTimer383000:
-	mapannounce "turbo_n_1","You have 9 minutes left.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Você tem 9 minutos ainda.",bc_map,"0x33FF66";
 	end;
 
 OnTimer443000:
-	mapannounce "turbo_n_1","You have 8 minutes left.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Você tem 8 minutos ainda.",bc_map,"0x33FF66";
 	end;
 
 OnTimer503000:
-	mapannounce "turbo_n_1","You have 7 minutes left.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Você tem 7 minutos ainda.",bc_map,"0x33FF66";
 	end;
 
 OnTimer563000:
-	mapannounce "turbo_n_1","You have 6 minutes left.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Você tem 6 minutos ainda.",bc_map,"0x33FF66";
 	end;
 
 OnTimer623000:
-	mapannounce "turbo_n_1","You have 5 minutes left.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Você tem 5 minutos ainda.",bc_map,"0x33FF66";
 	end;
 
 OnTimer683000:
-	mapannounce "turbo_n_1","You have 4 minutes left.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Você tem 4 minutos ainda.",bc_map,"0x33FF66";
 	end;
 
 OnTimer743000:
-	mapannounce "turbo_n_1","You have 3 minutes left.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Você tem 3 minutos ainda.",bc_map,"0x33FF66";
 	end;
 
 OnTimer803000:
-	mapannounce "turbo_n_1","You have 2 minutes left.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Você tem 2 minutos ainda.",bc_map,"0x33FF66";
 	end;
 
 OnTimer863000:
-	mapannounce "turbo_n_1","You have 1 minute left.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Você tem 1 minuto ainda.",bc_map,"0x33FF66";
 	end;
 
 OnTimer893000:
-	mapannounce "turbo_n_1","You have 30 seconds left.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Você tem 30 segundos ainda.",bc_map,"0x33FF66";
 	end;
 
 OnTimer903000:
-	mapannounce "turbo_n_1","You have 20 seconds left.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Você tem 20 segundos ainda.",bc_map,"0x33FF66";
 	end;
 
 OnTimer913000:
-	mapannounce "turbo_n_1","You have 10 seconds left.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Você tem 10 segundos ainda.",bc_map,"0x33FF66";
 	end;
 
 OnTimer918000:
-	mapannounce "turbo_n_1","You have 5 seconds left.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Você tem 5 segundos ainda.",bc_map,"0x33FF66";
 	end;
 
 OnTimer919000:
-	mapannounce "turbo_n_1","You have 4 seconds left.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Você tem 4 segundos ainda.",bc_map,"0x33FF66";
 	end;
 
 OnTimer920000:
-	mapannounce "turbo_n_1","You have 3 seconds left.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Você tem 3 segundos ainda.",bc_map,"0x33FF66";
 	end;
 
 OnTimer921000:
-	mapannounce "turbo_n_1","You have 2 seconds left.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Você tem 2 segundos ainda.",bc_map,"0x33FF66";
 	end;
 
 OnTimer922000:
-	mapannounce "turbo_n_1","You have 1 second left.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Você só tem 1 segundo.",bc_map,"0x33FF66";
 	end;
 
 OnTimer923000:
-	mapannounce "turbo_n_1","Time's up!",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Tempo esgotado!",bc_map,"0x33FF66";
 	end;
 
 OnTimer925000:
-	mapannounce "turbo_n_1","The race is over.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","A corrida acabou.",bc_map,"0x33FF66";
 	end;
 
 OnTimer927000:
-	mapannounce "turbo_n_1","[Everyone will be transported to a Waiting Room.]",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","[Todos serão teletransportados para uma Sala de Espera]",bc_map,"0x33FF66";
 	mapwarp "turbo_n_1","turbo_room",71,89;
 	// all NPC OFF
 	disablenpc "Broadcast#n1";
 	donpcevent "Master#n1::OnDisable";
-	donpcevent "Solo Mode#n1::OnEnable";
+	donpcevent "Modo Solo#n1::OnEnable";
 	// start line NPC ON
 	enablenpc "No_Unfair_Start#n1-1";
 	enablenpc "No_Unfair_Start#n1-2";
@@ -327,7 +328,7 @@ OnTimer927000:
 	donpcevent "snake#n1::Onreset";
 	donpcevent "hunting#n1::Onreset";
 	// NPC
-	disablenpc "Guide#TBT_n_1";
+	disablenpc "Auxiliar do Vencedor#TB1";
 	enablenpc "cos_n_1_end";
 	enablenpc "Notice_Maker1#TBT_n_1";
 	enablenpc "Notice_Maker3#TBT_n_1";
@@ -350,7 +351,7 @@ OnTouch:
 	end;
 }
 
-// Turbo Track: Expert Mode - 4 Players (Log Race)
+// Turbo Track: Modo Solo (Log Race)
 turbo_n_1,118,377,0	script	trap_a#n_1-1::TurboLogRace_n_1	-1,44,1,{
 OnTouch:
 	set .@dropuser,rand(1,3);
@@ -443,7 +444,7 @@ turbo_n_1,152,354,0	duplicate(TurboLogRace_n_1)	trap_d#n_1-13	-1,10,1
 turbo_n_1,145,357,0	duplicate(TurboLogRace_n_1)	trap_d#n_1-14	-1,1,2
 turbo_n_1,148,357,0	duplicate(TurboLogRace_n_1)	trap_d#n_1-15	-1,1,2
 
-// Turbo Track: Expert Mode - 4 Players (Sand Hill)
+// Turbo Track: Modo Solo (Sand Hill)
 turbo_n_1,322,354,0	script	#TBT_trap_n1-::TurboSandHill_n1	-1,3,3,{
 OnTouch:
 	switch(rand(1,10)) {
@@ -497,28 +498,28 @@ turbo_n_1,355,362,0	script	#TBT_trap_n1-24	-1,3,3,{
 OnTouch:
 	if (rand(1,3) == 1) {
 		cutin "kafra_03",2;
-		mes "^4d4dffAl De Baran";
-		mes "Turbo Track";
-		mes "is brought to you by";
-		mes "the ^800000Kafra Corporation^4d4dff.^000000";
+		mes "^4d4dffO Turbo Track foi";
+		mes "trazido para Al de Baran";
+		mes " e para você pela";
+		mes "^800000Corporação Kafra^4Dd4dff.^000000";
 		next;
-		mes "^4d4dffWe wish the best of luck to all";
-		mes "Turbo Track participants today";
-		mes "and thank everyone for using the Kafra Services with all our hearts.^000000";
+		mes "^4d4dffNós desejamos boa sorte para todos";
+		mes "os participantes da Turbo Track de hoje";
+		mes "e agradeço de todo coração a todos por usar os Serviços Kafra.^000000";
 		next;
-		mes "^800000Kafra Corporation^4d4dff has been providing Storage Services,";
-		mes "Save Point Services and Teleport Services^4d4dff to our valued customers for years. Just listen to these real customers...^000000";
+		mes "^800000A Corporação Kafra^4d4dff tem promovido os serviços de Armazém,";
+		mes "Ponto de Retorno e Teleportes^4d4dff para nossos clientes há anos. Apenas escute esses reais clientes...^000000";
 		next;
 		mes "^4d4dff[Karkatan]";
-		mes "My land suffered from poor customer service...until Kafra came along!";
+		mes "Minha terra sofria de serviços pobres para os clientes... até a Kafra chegar!";
 		mes " ";
-		mes "[Curator Guiss]";
-		mes "Oh, Kafra is simply the best!^000000";
+		mes "[Curador Guiss]";
+		mes "Oh, A Kafra é simplesmente a melhor!^000000";
 		next;
 		mes "^ff0000Turbo Track";
-		mes "^ff0000Traps in the Cursed Desert!";
-		mes "^4d4dffSponsored by ^800000Kafra Corporation^4d4dff";
-		mes "''We are always by your side.''^000000";
+		mes "^ff0000Armadilhas no Percurso do Deserto!";
+		mes "^4d4dffPatrocinado pela ^800000Corporação Kafra^4d4dff";
+		mes "''Nós estamos sempre do seu lado.''^000000";
 		close2;
 		cutin "kafra_03",255;
 		end;
@@ -529,7 +530,7 @@ OnTouch:
 	}
 }
 
-// Turbo Track: Expert Mode - 4 Players (Water Maze)
+// Turbo Track: Modo Solo (Water Maze)
 turbo_n_1,13,266,0	script	flasher#n_1-01#turbo::TurboWaterMaze_n_1	-1,0,2,{
 OnTouch:
 	sc_start SC_BLIND,60000,0;
@@ -586,7 +587,7 @@ turbo_n_1,33,192,0	duplicate(TurboWaterMaze_n_1)	flasher#n_1-47	-1,0,1
 turbo_n_1,90,241,0	duplicate(TurboWaterMaze_n_1)	flasher#n_1-48a	-1,1,0
 turbo_n_1,236,3,0	duplicate(TurboWaterMaze_n_1)	flasher#n_1-48b	-1,3,0
 
-// Turbo Track: Expert Mode - 4 Players (Snake Dice course)
+// Turbo Track: Modo Solo (Snake Dice course)
 turbo_n_1,324,279,0	script	snake01#n1	45,1,1,{
 OnTouch:
 	set .@turbo2,rand(1,7);
@@ -650,36 +651,36 @@ Onreset:
 	end;
 
 OnEnable:
-	monster "turbo_n_1",279,284,"Archer Skeleton",1420,1;
-	monster "turbo_n_1",279,268,"Archer Skeleton",1420,1;
-	monster "turbo_n_1",279,260,"Archer Skeleton",1420,1;
-	monster "turbo_n_1",287,288,"Archer Skeleton",1420,1;
-	monster "turbo_n_1",287,280,"Archer Skeleton",1420,1;
-	monster "turbo_n_1",287,264,"Archer Skeleton",1420,1;
-	monster "turbo_n_1",295,284,"Archer Skeleton",1420,1;
-	monster "turbo_n_1",295,268,"Archer Skeleton",1420,1;
-	monster "turbo_n_1",295,260,"Archer Skeleton",1420,1;
-	monster "turbo_n_1",303,288,"Archer Skeleton",1420,1;
-	monster "turbo_n_1",303,280,"Archer Skeleton",1420,1;
-	monster "turbo_n_1",303,264,"Archer Skeleton",1420,1;
-	monster "turbo_n_1",311,284,"Archer Skeleton",1420,1;
-	monster "turbo_n_1",311,268,"Archer Skeleton",1420,1;
-	monster "turbo_n_1",311,260,"Archer Skeleton",1420,1;
-	monster "turbo_n_1",347,288,"Archer Skeleton",1420,1;
-	monster "turbo_n_1",347,280,"Archer Skeleton",1420,1;
-	monster "turbo_n_1",347,264,"Archer Skeleton",1420,1;
-	monster "turbo_n_1",355,284,"Archer Skeleton",1420,1;
-	monster "turbo_n_1",355,268,"Archer Skeleton",1420,1;
-	monster "turbo_n_1",355,260,"Archer Skeleton",1420,1;
-	monster "turbo_n_1",363,288,"Archer Skeleton",1420,1;
-	monster "turbo_n_1",363,280,"Archer Skeleton",1420,1;
-	monster "turbo_n_1",363,264,"Archer Skeleton",1420,1;
-	monster "turbo_n_1",371,284,"Archer Skeleton",1420,1;
-	monster "turbo_n_1",371,268,"Archer Skeleton",1420,1;
-	monster "turbo_n_1",371,260,"Archer Skeleton",1420,1;
-	monster "turbo_n_1",379,288,"Archer Skeleton",1420,1;
-	monster "turbo_n_1",379,280,"Archer Skeleton",1420,1;
-	monster "turbo_n_1",379,264,"Archer Skeleton",1420,1;
+	monster "turbo_n_1",279,284,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_n_1",279,268,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_n_1",279,260,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_n_1",287,288,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_n_1",287,280,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_n_1",287,264,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_n_1",295,284,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_n_1",295,268,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_n_1",295,260,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_n_1",303,288,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_n_1",303,280,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_n_1",303,264,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_n_1",311,284,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_n_1",311,268,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_n_1",311,260,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_n_1",347,288,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_n_1",347,280,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_n_1",347,264,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_n_1",355,284,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_n_1",355,268,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_n_1",355,260,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_n_1",363,288,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_n_1",363,280,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_n_1",363,264,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_n_1",371,284,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_n_1",371,268,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_n_1",371,260,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_n_1",379,288,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_n_1",379,280,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_n_1",379,264,"Esqueleto Arqueiro",1420,1;
 	end;
 }
 
@@ -722,7 +723,7 @@ OnEnable:
 }
 
 
-// Turbo Track: Expert Mode - 16 Players (Water Maze)
+// Turbo Track: Modo Solo (Water Maze)
 turbo_n_1,179,55,0	script	#n1Intersectiona::TurboHint_n1_1	-1,1,1,{
 OnTouch:
 	emotion e_what,1;
@@ -774,10 +775,10 @@ turbo_n_1,222,61,0	duplicate(TurboHint_n1_3)	#n1NoWayOut6	-1,1,1
 turbo_n_1,222,65,0	duplicate(TurboHint_n1_3)	#n1NoWayOut7	-1,1,1
 
 
-// Turbo Track: Expert Mode - 4 Players (Course-clear broadcasters, and exits?)
+// Turbo Track: Modo Solo (Course-clear broadcasters, and exits?)
 turbo_n_1,168,363,0	script	cos_n_1_1	45,1,1,{
 OnTouch:
-	mapannounce "turbo_n_1","" + strcharinfo(0) +" has just passed the Log Bridge course!",bc_map,"0x70DBDB";
+	mapannounce "turbo_n_1","" + strcharinfo(0) +" acaba de passar o Percurso da Ponte de Madeira!",bc_map,"0x70DBDB";
 	set .@move1,rand(1,3);
 	if (.@move1 == 1)
 		warp "turbo_n_1",210,369;
@@ -790,7 +791,7 @@ OnTouch:
 
 turbo_n_1,258,364,0	script	cos_n_1_2	45,1,1,{
 OnTouch:
-	mapannounce "turbo_n_1","" + strcharinfo(0) +" has just passed the Cube Hills course!",bc_map,"0x70DBDB";
+	mapannounce "turbo_n_1","" + strcharinfo(0) +" acaba de passar o Percurso das Caixas Empilhadas!",bc_map,"0x70DBDB";
 	warp "turbo_n_1",316,365;
 	end;
 }
@@ -808,7 +809,7 @@ OnTouch:
 turbo_n_1,385,365,0	script	cos_n_1_3	45,1,1,{
 OnTouch:
 	set .@to_miro,rand(1,4);
-	mapannounce "turbo_n_1","" + strcharinfo(0) +" has just passed the Cursed Desert!",bc_map,"0x70DBDB";
+	mapannounce "turbo_n_1","" + strcharinfo(0) +" acaba de passar o Percurso do Deserto!",bc_map,"0x70DBDB";
 	if (.@to_miro == 1)
 		warp "turbo_n_1",46,254;
 	else if (.@to_miro == 2)
@@ -826,7 +827,7 @@ OnInit:
 	end;
 
 OnTouch:
-	mapannounce "turbo_n_1","" + strcharinfo(0) +" has just passed the Flasher Maze!",bc_map,"0x70DBDB";
+	mapannounce "turbo_n_1","" + strcharinfo(0) +" acaba de passar o Percurso Labirinto!",bc_map,"0x70DBDB";
 	warp "turbo_n_1",185,227;
 	end;
 }
@@ -837,35 +838,35 @@ OnInit:
 	end;
 
 OnTouch:
-	mapannounce "turbo_n_1","" + strcharinfo(0) +" has just passed the Flasher Maze!",bc_map,"0x70DBDB";
+	mapannounce "turbo_n_1","" + strcharinfo(0) +" acaba de passar o Percurso Labirinto!",bc_map,"0x70DBDB";
 	warp "turbo_n_1",185,227;
 	end;
 }
 
 turbo_n_1,250,200,0	script	cos_n_1_5	45,1,1,{
 OnTouch:
-	mapannounce "turbo_n_1","" + strcharinfo(0) +" has just passed the Single Snail course!",bc_map,"0x70DBDB";
+	mapannounce "turbo_n_1","" + strcharinfo(0) +" acaba de passar o Percurso Caracol!",bc_map,"0x70DBDB";
 	warp "turbo_n_1",268,275;
 	end;
 }
 
 turbo_n_1,389,275,0	script	cos_n_1_6	45,1,1,{
 OnTouch:
-	mapannounce "turbo_n_1","" + strcharinfo(0) +" has just passed the Snake Dice course!",bc_map,"0x70DBDB";
+	mapannounce "turbo_n_1","" + strcharinfo(0) +" acaba de passar o Percurso da Serpente!",bc_map,"0x70DBDB";
 	warp "turbo_n_1",5,91;
 	end;
 }
 
 turbo_n_1,93,19,0	script	cos_n_1_7	45,1,1,{
 OnTouch:
-	mapannounce "turbo_n_1","" + strcharinfo(0) +" has just passed the Small Cave course! Hurry, you're almost at the finish!",bc_map,"0x70DBDB";
+	mapannounce "turbo_n_1","" + strcharinfo(0) +" acaba de passar o Percurso da Caverna!",bc_map,"0x70DBDB";
 	warp "turbo_n_1",167,55;
 	end;
 }
 
 turbo_n_1,232,14,0	script	cos_n_1_8	45,1,1,{
 OnTouch:
-	mapannounce "turbo_n_1","" + strcharinfo(0) +" has just passed the Invisible Maze! Speed up, you're getting closer to the finish!",bc_map,"0x70DBDB";
+	mapannounce "turbo_n_1","" + strcharinfo(0) +" acaba de passar o Percurso do Labirinto Invisível! Rápido, você está quase na chegada!",bc_map,"0x70DBDB";
 	set .@move1,rand(1,3);
 	if (.@move1 == 1)
 		warp "turbo_n_1",307,52;
@@ -882,17 +883,17 @@ OnInit:
 
 OnTouch:
 	set $@end_time,gettimetick(0);
-	mapannounce "turbo_n_1","" + strcharinfo(0) +" has just arrived at the Finish Line! Congratulations!",bc_map,"0xFFFF00";
-	donpcevent "TBT_Guide#Broadcast::Onwin_n1";
+	mapannounce "turbo_n_1","" + strcharinfo(0) +" há pouco chegou à Linha de Chegada! Parabéns!",bc_map,"0xFFFF00";
+	donpcevent "Guia TBT#Broadcast::Onwin_n1";
 	warp "turbo_n_1",384,161;
-	donpcevent "Guide#TBT_n_1::OnEnable";
+	donpcevent "Auxiliar do Vencedor#TB1::OnEnable";
 	donpcevent "Master#n1::OnDisable";
 	disablenpc "Broadcast#n1";
 	disablenpc "cos_n_1_end";
 	end;
 }
 
-turbo_n_1,384,167,1	script	Guide#TBT_n_1	47,{
+turbo_n_1,384,167,1	script	Auxiliar do Vencedor#TB1	47,{
 	set .@hour_start,$@start_time / 10000;
 	set .@min_start,(($@start_time % 10000) / 100);
 	set .@sec_start,$@start_time % 100;
@@ -917,36 +918,36 @@ turbo_n_1,384,167,1	script	Guide#TBT_n_1	47,{
 	set .@record_sec,.@record_time % 60;
 
 	if (.@record_min < 0) {
-		mes "[Guide]";
-		mes "Good work! Maybe you didn't";
-		mes "set any new records, but you";
-		mes "went the distance. Now, let";
-		mes "me relieve you of your fatigue~";
+		mes "[Guia]";
+		mes "Bom trabalho! Talvéz você não tenha feito";
+		mes "nenhum recorde novo, mas você";
+		mes "foi bem longe. Agora, deixe-me";
+		mes "te aliviar.";
 		percentheal 100,100;
 		next;
-		mes "[Guide]";
+		mes "[Guia]";
 		if (tt_point < 28991) {
-			mes "You will be rewarded";
-			mes "with 10 Turbo Track points~!";
+			mes "Você será recompensado";
+			mes "com 10 Pontos da Turbo Track~!";
 			set tt_point,tt_point+10;
 			set my_point,tt_point;
-			mes "You now have a total of";
-			mes "" + tt_point + " Turbo Track points.";
+			mes "Você agora tem o total de";
+			mes "" + tt_point + " Pontos da Turbo Track.";
 		}
 		else {
-			mes "Unfortunately, I can't give";
-			mes "you any Turbo Track Points";
-			mes "since you would exceed the";
-			mes "maximum limit. Sorry,";
-			mes ""+ strcharinfo(0) +"...";
+			mes "Infelizmente, eu não posso dá a";
+			mes "você nenhum ponto na Turbo Track";
+			mes "já que você excedeu o";
+			mes "o limite máximo. Sinto muito,";
+			mes "" + strcharinfo(0) +"...";
 		}
 		next;
-		mes "[Guide]";
-		mes "Thank you for";
-		mes "participating in";
-		mes "in Turbo Track.";
-		mes "You will be guided";
-		mes "to a Waiting Room soon.";
+		mes "[Guia]";
+		mes "Obrigado por";
+		mes "participar do";
+		mes "Turbo Track.";
+		mes "você será teletransportado";
+		mes "para uma Sala de Espera imediatamente.";
 		close2;
 		warp "turbo_room",72,89;
 		end;
@@ -956,75 +957,75 @@ turbo_n_1,384,167,1	script	Guide#TBT_n_1	47,{
 		set .@topcho,$ttranks[0] % 60;
 		set .@gap,$ttranks[0] - .@record_time;
 		if (.@gap < 0) {
-			mes "[Guide]";
-			mes "Good work! Maybe you didn't";
-			mes "set any new records, but you";
-			mes "went the distance. Now, let";
-			mes "me relieve you of your fatigue~";
+			mes "[Guia]";
+			mes "Bom trabalho! Talvéz você não tenha feito";
+			mes "nenhum recorde novo, mas você";
+			mes "foi bem longe. Agora, deixe-me";
+			mes "te aliviar~";
 			percentheal 100,100;
 			next;
-			mes "[Guide]";
+			mes "[Guia]";
 			if (tt_point < 28991) {
-				mes "You will be rewarded";
-				mes "with 10 Turbo Track points~!";
+				mes "Você será recompensado";
+				mes "com 10 Pontos da Turbo Track~!";
 				set tt_point,tt_point+10;
 				set my_point,tt_point;
-				mes "You now have a total of";
-				mes "" + tt_point + " Turbo Track points.";
+				mes "Você agora tem o total de";
+				mes "" + tt_point + " Pontos da Turbo Track.";
 			}
 			else {
-				mes "Unfortunately, I can't give";
-				mes "you any Turbo Track Points";
-				mes "since you would exceed the";
-				mes "maximum limit. Sorry,";
-				mes ""+ strcharinfo(0) +"...";
+				mes "Infelizmente, eu não posso dá a";
+				mes "você nenhum ponto na Turbo Track";
+				mes "já que você excedeu o";
+				mes "o limite máximo. Sinto muito,";
+				mes "" + strcharinfo(0) +"...";
 			}
 			next;
-			mes "[Guide]";
-			mes "Thank you for";
-			mes "participating in";
-			mes "in Turbo Track.";
-			mes "You will be guided";
-			mes "to a Waiting Room soon.";
+			mes "[Guia]";
+			mes "Obrigado por";
+			mes "participar da";
+			mes "Turbo Track.";
+			mes "Você será teletransportado";
+			mes "para uma Sala de Espera imediatamente.";
 			close2;
 			warp "turbo_room",72,89;
 			end;
 		}
 		else {
-			mes "[Guide]";
-			mes "Congratulations!";
-			mes "You ranked as the";
-			mes "top player in Solo Mode!";
-			mes "Your name will be entered";
-			mes "into our records, "+ strcharinfo(0) +"~";
+			mes "[Guia]";
+			mes "Parabéns!";
+			mes "Você se classificou como o";
+			mes "Jogador Top no Modo Solo!";
+			mes "Seu nome será colocado";
+			mes "em nossos registros, "+ strcharinfo(0) +"~";
 			setarray $ttranks[0],.@record_time;
 			setarray $ttnames$[0],strcharinfo(0);
 			next;
 			if (tt_point < 28961) {
-				mes "[Guide]";
-				mes "Since you've set";
-				mes "a new record, you";
-				mes "will be rewarded with";
-				mes "40 Turbo Track Points!";
+				mes "[Guia]";
+				mes "Desde que você fixou";
+				mes "um novo recorde, você";
+				mes "será recompensado com";
+				mes "40 Pontos da Turbo Track!";
 				set tt_point,tt_point+40;
-				mes "You now have a total of";
-				mes "" + tt_point + " Turbo Track points.";
+				mes "Agora você tem um total de";
+				mes "" + tt_point + " Pontos da Turbo Track.";
 			}
 			else {
-				mes "[Guide]";
-				mes "Unfortunately, I can't give";
-				mes "you any Turbo Track Points";
-				mes "since you would exceed the";
-				mes "maximum limit. Sorry,";
-				mes ""+ strcharinfo(0) +"...";
+				mes "[Guia]";
+				mes "Infelizmente, eu não posso dá a";
+				mes "você nenhum ponto na Turbo Track";
+				mes "já que você excedeu o";
+				mes "o limite máximo. Sinto muito,";
+				mes "" + strcharinfo(0) +"...";
 			}
 			next;
-			mes "[Guide]";
-			mes "Thank you for";
-			mes "participating in";
-			mes "in Turbo Track.";
-			mes "You will be guided";
-			mes "to a Waiting Room soon.";
+			mes "[Guia]";
+			mes "Obrigado por";
+			mes "participar da";
+			mes "Turbo Track.";
+			mes "Você será teletransportado";
+			mes "para uma Sala de Espera imediatamente.";
 			close2;
 			warp "turbo_room",72,89;
 			end;
@@ -1032,64 +1033,64 @@ turbo_n_1,384,167,1	script	Guide#TBT_n_1	47,{
 	}
 
 OnInit:
-	disablenpc "Guide#TBT_n_1";
+	disablenpc "Auxiliar do Vencedor#TB1";
 	end;
 
 OnEnable:
-	enablenpc "Guide#TBT_n_1";
+	enablenpc "Auxiliar do Vencedor#TB1";
 	initnpctimer;
 	end;
 
 OnTimer4000:
-	mapannounce "turbo_n_1","This is the ending broadcast of Turbo Track Solo Mode.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Este é o fim da Turbo Track Modo Solo.",bc_map,"0x33FF66";
 	end;
 
 OnTimer8000:
-	mapannounce "turbo_n_1","For smooth game play, the game will end in approximately 1 minute from now.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","O jogo terminará em aproximadamente 1 minuto.",bc_map,"0x33FF66";
 	end;
 
 OnTimer12000:
-	mapannounce "turbo_n_1","At this time, the warp portal will open.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Nesse momento, um portal se abrirá.",bc_map,"0x33FF66";
 	end;
 
 OnTimer16000:
-	mapannounce "turbo_n_1","Players within the arena must be ready for this.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Jogadores na arena devem estar prontos para partir pelo Portal.",bc_map,"0x33FF66";
 	end;
 
 OnTimer20000:
-	mapannounce "turbo_n_1","In the meantime, the winner must procceed to receive rewards as soon as possible.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Enquanto isso, os vencedores têm que proceder para receber as suas recompensas o mais cedo possível.",bc_map,"0x33FF66";
 	end;
 
 OnTimer24000:
-	mapannounce "turbo_n_1","Thank you for visiting Al De Baran Turbo Track.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Obrigado por visitar a Turbo Track em Al De Baran.",bc_map,"0x33FF66";
 	end;
 
 OnTimer28000:
-	mapannounce "turbo_n_1","Al De Baran Turbo Track is brought to you by...",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Turbo Track de Al De Baran é trazido a você pela...",bc_map,"0x33FF66";
 	end;
 
 OnTimer32000:
-	mapannounce "turbo_n_1","[Al De Baran Kafra Corporation Headquarters]",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","[Sede da Corporação Kafra de Al De Baran]",bc_map,"0x33FF66";
 	end;
 
 OnTimer36000:
-	mapannounce "turbo_n_1","[Al De Baran Guild Castle Management Luina]",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","[A Administração dos Castelos de Luina em Al De Baran]",bc_map,"0x33FF66";
 	end;
 
 OnTimer40000:
-	mapannounce "turbo_n_1","[Blacksmith Union]",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","[Sindicato dos Ferreiros]",bc_map,"0x33FF66";
 	end;
 
 OnTimer44000:
-	mapannounce "turbo_n_1","And [Comodo Casino].",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","E [Cassino de Comodo].",bc_map,"0x33FF66";
 	end;
 
 OnTimer48000:
-	mapannounce "turbo_n_1","Once again, we'd like to thank our sponsors.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Mais uma vez, nós gostaríamos de agradecer aos nossos patrocinadores.",bc_map,"0x33FF66";
 	end;
 
 OnTimer52000:
-	mapannounce "turbo_n_1","Have a good day.",bc_map,"0x33FF66";
+	mapannounce "turbo_n_1","Tenha um bom dia.",bc_map,"0x33FF66";
 	end;
 
 OnTimer56000:
@@ -1097,8 +1098,8 @@ OnTimer56000:
 	end;
 
 OnTimer60000:
-	disablenpc "Guide#TBT_n_1";
-	enablenpc "cos_n_1_end";
+	disablenpc "Auxiliar do Vencedor#TB1";
+	donpcevent "cos_n_1_end::Onreset";
 	enablenpc "Notice_Maker1#TBT_n_1";
 	enablenpc "Notice_Maker3#TBT_n_1";
 	enablenpc "Notice_Maker4#TBT_n_1";
@@ -1120,8 +1121,8 @@ OnInit:
 	end;
 
 OnTouch:
-	mapannounce "turbo_n_1","" + strcharinfo(0) +" is now entering the Small Cave! " + strcharinfo(0) +" is now in the lead!",bc_map,"0xFFFF00";
-	donpcevent "TBT_Guide#Broadcast::Onend_n1";
+	mapannounce "turbo_n_1","" + strcharinfo(0) +" está entrando agora no Percurso da Caverna!" + strcharinfo(0) +" está agora na liderança",bc_map,"0xFFFF00";
+	donpcevent "Guia TBT#Broadcast::Onend_n1";
 	disablenpc "Notice_Maker1#TBT_n_1";
 	end;
 }
@@ -1132,7 +1133,7 @@ OnInit:
 	end;
 
 OnTouch:
-	mapannounce "turbo_n_1","" + strcharinfo(0) +" is now entering the Single Snail! " + strcharinfo(0) +" is now in the lead!",bc_map,"0xFFFF00";
+	mapannounce "turbo_n_1","" + strcharinfo(0) +" está entrando agora no Percurso Caracol! " + strcharinfo(0) +" está agora na liderança.",bc_map,"0xFFFF00";
 	disablenpc "Notice_Maker3#TBT_n_1";
 	end;
 }
@@ -1143,7 +1144,7 @@ OnInit:
 	end;
 
 OnTouch:
-	mapannounce "turbo_n_1","" + strcharinfo(0) +" is currently in First Place!",bc_map,"0xFFFF00";
+	mapannounce "turbo_n_1","" + strcharinfo(0) +" está atualmente em primeiro lugar!",bc_map,"0xFFFF00";
 	disablenpc "Notice_Maker4#TBT_n_1";
 	end;
 }

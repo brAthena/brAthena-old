@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r106 - 17/01/2011 [insidemybrain]
+	* Adicionadas as traduções de todos npcs da pasta outros/turbotrack.
+
 	r0105 - 17/01/2011 [Protimus]
 	* Removido comando skillcheck, faz a mesma coisa do getskillvl.
 

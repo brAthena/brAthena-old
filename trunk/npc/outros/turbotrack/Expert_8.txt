@@ -1,5 +1,5 @@
 //  ________________________________________________________
-// /                                                        \
+// /                                                        \ 
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
@@ -8,56 +8,56 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Turbo Track - Expert- 8 Person	   		|
+// | Nome do Script: Turbo Track Modo Avançado - 8 Pessoas  |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.3/1.0                                |
 // |--------------------------------------------------------|
 // | Descrição:                                             |
-// | Turbo Track Course: Expert (Non-PVP) - 8 Person        |
+// | Percurso da Turbo Track: Modo Avançado - 8 Pessoas     |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    					| 
+// | Changelog:               	                        |
+// | 1.0 Script Traduzido [Boomer]                          |
+// |                                   		            |
 // \________________________________________________________/
 
 
-turbo_room,117,135,3	script	Expert mode - 8 person	124,{
+turbo_room,117,135,3	script	Modo Avançado - 8 Pess	124,{
 	end;
 
 OnInit:
-	waitingroom "Expert mode - 8 person",60,"Expert mode - 8 person::OnStartArena",8;
+	waitingroom "Modo Avançado - 8 Pessoas",60,"Modo Avançado - 8 Pessoas::OnStartArena",8;
 	//SetFeeZeny 1000
-	enablewaitingroomevent "Expert mode - 8 person";
+	enablewaitingroomevent "Modo Avançado - 8 Pessoas";
 	end;
 
 OnEnable:
-	enablenpc "Expert mode - 8 person";
-	enablewaitingroomevent "Expert mode - 8 person";
+	enablenpc "Modo Avançado - 8 Pessoas";
+	enablewaitingroomevent "Modo Avançado - 8 Pessoas";
 	end;
 
 OnStartArena:
 	warpwaitingpc "turbo_e_8",298,161;
 	donpcevent "Broadcast#e8::OnEnable";
-	disablewaitingroomevent "Expert mode - 8 person";
+	disablewaitingroomevent "Modo Avançado - 8 Pessoas";
 	end;
 }
 	
-turbo_e_8,298,167,3	script	Helper#e8_F	124,{
-	mes "[Helper]";
-	mes "You are now in the";
-	mes "Waiting Room. You will";
-	mes "be guided to the Starting Line";
-	mes "after 30 seconds, so please use";
-	mes "this time to prepare your items";
-	mes "and equipment. Thank you.";
+turbo_e_8,298,167,3	script	Auxiliar#e8_F	124,{
+	mes "[Auxiliar]";
+	mes "Você está agora na sala";
+	mes "de espera. Você";
+	mes "será guiado para a linha de largada";
+	mes "depois de 30 segundos, então por favor";
+	mes "use esse tempo para preparar seus itens";
+	mes "e equipamentos. Obrigado.";
 	close;
 }
 
-turbo_e_8,298,167,0	script	Point Give-Away Guy#e8	-1,15,15,{
+turbo_e_8,298,167,0	script	Auxiliar de Pontuação#e8	-1,15,15,{
 OnInit:
-	disablenpc "Point Give-Away Guy#e8";
+	disablenpc "Auxiliar de Pontuação#e8";
 	end;
 
 OnTouch:
@@ -81,59 +81,59 @@ OnEnable:
 	end;
 
 OnTimer2000:
-	mapannounce "turbo_e_8","You are now in the Waiting Room where you can check your items and prepare for the race.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Você está agora na sala de espera onde você pode checar e preparar seus itens e equipamentos para a corrida.",bc_map,"0x33FF66";
 	end;
 
 OnTimer7000:
-	mapannounce "turbo_e_8","You will have 30 seconds before you are transported to the Starting Line.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Você terá 30 segundos antes de ser teletransportado para a Linha de Largada.",bc_map,"0x33FF66";
 	end;
 
 OnTimer10000:
-	mapannounce "turbo_e_8","Please make sure that you have suitable equipment and items with you.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Por favor tenha certeza que você está com equipamentos e itens adequados.",bc_map,"0x33FF66";
 	end;
 
 OnTimer15000:
-	mapannounce "turbo_e_8","The 30 second countdown will begin shortly.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","A contagem regressiva de 30 segundos deve começar logo.",bc_map,"0x33FF66";
 	end;
 
 OnTimer17000:
-	mapannounce "turbo_e_8","30 seconds remaining.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Faltam 30 segundos.",bc_map,"0x33FF66";
 	end;
 
 OnTimer27000:
-	mapannounce "turbo_e_8","20 seconds remaining.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Faltam 20 segundos.",bc_map,"0x33FF66";
 	end;
 
 OnTimer37000:
-	mapannounce "turbo_e_8","10 seconds remaining.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Faltam 10 segundos.",bc_map,"0x33FF66";
 	end;
 
 OnTimer42000:
-	mapannounce "turbo_e_8","5 seconds remaining.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Faltam 5 segundos.",bc_map,"0x33FF66";
 	end;
 
 OnTimer43000:
-	mapannounce "turbo_e_8","4 seconds remaining.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Faltam 4 segundos.",bc_map,"0x33FF66";
 	end;
 
 OnTimer44000:
-	mapannounce "turbo_e_8","3 seconds remaining.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Faltam 3 segundos.",bc_map,"0x33FF66";
 	end;
 
 OnTimer45000:
-	mapannounce "turbo_e_8","2 seconds remaining.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Faltam 2 segundos.",bc_map,"0x33FF66";
 	end;
 
 OnTimer46000:
-	mapannounce "turbo_e_8","1 second remaining.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Falta 1 segundo.",bc_map,"0x33FF66";
 	end;
 
 OnTimer47000:
-	mapannounce "turbo_e_8","You will be transported to the Starting Line shortly.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Você será teletransportado para a Linha de Largada.",bc_map,"0x33FF66";
 	end;
 
 OnTimer49000:
-	enablenpc "Point Give-Away Guy#e8";
+	enablenpc "Auxiliar de Pontuação#e8";
 	donpcevent "Master#e8::OnEnable";
 	end;
 
@@ -144,7 +144,7 @@ OnTimer50000:
 	end;
 
 OnTimer57000:
-	disablenpc "Point Give-Away Guy#e8";
+	disablenpc "Auxiliar de Pontuação#e8";
 	end;
 }
 
@@ -164,23 +164,23 @@ OnDisable:
 	end;
 
 OnTimer7000:
-	mapannounce "turbo_e_8","Welcome to the Turbo Track.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Bem vindo à Turbo Track.",bc_map,"0x33FF66";
 	end;
 
 OnTimer9000:
-	mapannounce "turbo_e_8","The game will be hosted for 15 minutes and at least one person must complete the entire course.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","O jogo será de 15 minutos e pelo menos uma pessoa tem que completar o curso inteiro.",bc_map,"0x33FF66";
 	end;
 
 OnTimer11000:
-	mapannounce "turbo_e_8","We hope you will do your best.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Nós esperamos que você faça o seu melhor.",bc_map,"0x33FF66";
 	end;
 
 OnTimer13000:
-	mapannounce "turbo_e_8","The game will begin after a 5 second countdown. Everyone, please take your positions behind the Starting Line.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","O jogo começará após uma contagem de 5 segundos. Todos, por favor assumam suas posições atrás da Linha de Largada.",bc_map,"0x33FF66";
 	end;
 
 OnTimer15000:
-	mapannounce "turbo_e_8","The countdown will commence shortly.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","A contagem iniciará imediatamente.",bc_map,"0x33FF66";
 	end;
 
 OnTimer17000:
@@ -208,119 +208,119 @@ OnTimer22000:
 	end;
 
 OnTimer23000:
-	mapannounce "turbo_e_8","Now! The race has begun! Go Go Go!!",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Agora! A corrida começou! Vão Vão Vão!!",bc_map,"0x33FF66";
 	disablenpc "No_Unfair_Start#e8-1";
 	disablenpc "No_Unfair_Start#e8-2";
 	end;
 
 OnTimer30000:
-	mapannounce "turbo_e_8","Remember that this is a 15 minute race. After 15 minutes, everyone will be transported out of the race track.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Lembre-se que esta é uma corrida de 15 minutos. Após 15 minutos, todos serão teletransportados para fora da pista de corrida.",bc_map,"0x33FF66";
 	end;
 
 OnTimer83000:
-	mapannounce "turbo_e_8","You have 14 minutes left.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Você tem 14 minutos restantes.",bc_map,"0x33FF66";
 	end;
 
 OnTimer143000:
-	mapannounce "turbo_e_8","You have 13 minutes left.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Você tem 13 minutos restantes.",bc_map,"0x33FF66";
 	end;
 
 OnTimer203000:
-	mapannounce "turbo_e_8","You have 12 minutes left.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","você tem 12 minutos restantes.",bc_map,"0x33FF66";
 	end;
 
 OnTimer263000:
-	mapannounce "turbo_e_8","You have 11 minutes left.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Você tem 11 minutos restantes.",bc_map,"0x33FF66";
 	end;
 
 OnTimer323000:
-	mapannounce "turbo_e_8","You have 10 minutes left.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Você tem 10 minutos restantes.",bc_map,"0x33FF66";
 	end;
 
 OnTimer383000:
-	mapannounce "turbo_e_8","You have 9 minutes left.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Você tem 9 minutos restantes.",bc_map,"0x33FF66";
 	end;
 
 OnTimer443000:
-	mapannounce "turbo_e_8","You have 8 minutes left.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Você tem 8 minutos restantes.",bc_map,"0x33FF66";
 	end;
 
 OnTimer503000:
-	mapannounce "turbo_e_8","You have 7 minutes left.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Você tem 7 minutos restantes.",bc_map,"0x33FF66";
 	end;
 
 OnTimer563000:
-	mapannounce "turbo_e_8","You have 6 minutes left.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Você tem 6 minutos restantes.",bc_map,"0x33FF66";
 	end;
 
 OnTimer623000:
-	mapannounce "turbo_e_8","You have 5 minutes left.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Você tem 5 minutos restantes.",bc_map,"0x33FF66";
 	end;
 
 OnTimer683000:
-	mapannounce "turbo_e_8","You have 4 minutes left.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Você tem 4 minutos restantes.",bc_map,"0x33FF66";
 	end;
 
 OnTimer743000:
-	mapannounce "turbo_e_8","You have 3 minutes left.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Você tem 3 minutos restantes.",bc_map,"0x33FF66";
 	end;
 
 OnTimer803000:
-	mapannounce "turbo_e_8","You have 2 minutes left.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Você tem 2 minutos restantes.",bc_map,"0x33FF66";
 	end;
 
 OnTimer863000:
-	mapannounce "turbo_e_8","You have 1 minute left.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Você tem 1 minuto restante.",bc_map,"0x33FF66";
 	end;
 
 OnTimer893000:
-	mapannounce "turbo_e_8","You have 30 seconds left.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Você tem 30 segundos restantes.",bc_map,"0x33FF66";
 	end;
 
 OnTimer903000:
-	mapannounce "turbo_e_8","You have 20 seconds left.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Você tem 20 segundos restantes.",bc_map,"0x33FF66";
 	end;
 
 OnTimer913000:
-	mapannounce "turbo_e_8","You have 10 seconds left.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Você tem 10 segundos restantes.",bc_map,"0x33FF66";
 	end;
 
 OnTimer918000:
-	mapannounce "turbo_e_8","You have 5 seconds left.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Você tem 5 segundos restantes.",bc_map,"0x33FF66";
 	end;
 
 OnTimer919000:
-	mapannounce "turbo_e_8","You have 4 seconds left.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Você tem 4 segundos restantes.",bc_map,"0x33FF66";
 	end;
 
 OnTimer920000:
-	mapannounce "turbo_e_8","You have 3 seconds left.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Você tem 3 segundos restantes.",bc_map,"0x33FF66";
 	end;
 
 OnTimer921000:
-	mapannounce "turbo_e_8","You have 2 seconds left.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Você tem 2 segundos restantes.",bc_map,"0x33FF66";
 	end;
 
 OnTimer922000:
-	mapannounce "turbo_e_8","You have 1 second left.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Você só tem 1 segundo.",bc_map,"0x33FF66";
 	end;
 
 OnTimer923000:
-	mapannounce "turbo_e_8","Time's up!",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Tempo esgotado!",bc_map,"0x33FF66";
 	end;
 
 OnTimer925000:
-	mapannounce "turbo_e_8","The race is over.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","A corrida acabou.",bc_map,"0x33FF66";
 	end;
 
 OnTimer927000:
-	mapannounce "turbo_e_8","[Everyone will be transported to a Waiting Room.]",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","[Todos serão teletransportados para uma Sala de Espera.]",bc_map,"0x33FF66";
 	mapwarp "turbo_e_8","turbo_room",71,89;
 	// all NPC OFF
 	disablenpc "Broadcast#e8";
 	donpcevent "Master#e8::OnDisable";
-	donpcevent "Expert mode - 8 person::OnEnable";
-	disablenpc "Point Give-Away Guy#e8";
+	donpcevent "Modo Avançado - 8 Pessoas::OnEnable";
+	disablenpc "Auxiliar de Pontuação#e8";
 	// start line NPC ON
 	enablenpc "No_Unfair_Start#e8-1";
 	enablenpc "No_Unfair_Start#e8-2";
@@ -329,7 +329,7 @@ OnTimer927000:
 	donpcevent "hunting#e8::Onreset";
 	disablenpc "bing2#e8";
 	// NPC
-	disablenpc "Winner Helper#TBT_e_8";
+	disablenpc "Auxiliar do Vencedor#T8";
 	enablenpc "cos_e_8_end";
 	enablenpc "cos_e_8_end2";
 	enablenpc "cos_e_8_end3";
@@ -354,7 +354,7 @@ OnTouch:
 	end;
 }
 
-// Turbo Track: Expert Mode - 8 Players (Log Race)
+// Turbo Track: Modo Avançado - 8 Pessoas (Log Race)
 turbo_e_8,118,377,0	script	trap_a#e8-1::TurboLogRace_e_8	-1,44,1,{
 OnTouch:
 	set .@dropuser,rand(1,3);
@@ -447,7 +447,7 @@ turbo_e_8,152,354,0	duplicate(TurboLogRace_e_8)	trap_d#e8-13	-1,10,1
 turbo_e_8,145,357,0	duplicate(TurboLogRace_e_8)	trap_d#e8-14	-1,1,2
 turbo_e_8,148,357,0	duplicate(TurboLogRace_e_8)	trap_d#e8-15	-1,1,2
 
-// Turbo Track: Expert Mode - 8 Players (Sand Hill)
+// Turbo Track: Modo Avançado - 8 Pessoas (Sand Hill)
 turbo_e_8,322,354,0	script	#TBT_trap_e8-1::TurboSandHill_e8	-1,3,3,{
 OnTouch:
 	switch(rand(1,10)) {
@@ -500,28 +500,29 @@ turbo_e_8,355,362,0	script	#TBT_trap_e8-24	-1,3,3,{
 OnTouch:
 	if (rand(1,3) == 1) {
 		cutin "kafra_03",2;
-		mes "^4d4dffAl De Baran";
-		mes "Turbo Track";
-		mes "is brought to you by";
-		mes "the ^800000Kafra Corporation^4d4dff.^000000";
+		mes "^4d4dffA Turbo Track foi";
+		mes "trazido para Al de Baran";
+		mes " e para você pela";
+		mes "^800000Corporação Kafra^4Dd4dff.^000000";
 		next;
-		mes "^4d4dffWe wish the best of luck to all";
-		mes "Turbo Track participants today";
-		mes "and thank everyone for using the Kafra Services with all our hearts.^000000";
+		mes "^4d4dffNós desejamos boa sorte para todos";
+		mes "os participantes da Turbo Track de hoje";
+		mes "e agradeço de todo coração a todos por usar os Serviços Kafra.^000000";
 		next;
-		mes "^800000Kafra Corporation^4d4dff has been providing Storage Services,";
-		mes "Save Point Services and Teleport Services^4d4dff to our valued customers for years. Just listen to these real customers...^000000";
+		mes "^800000A Corporação Kafra^4d4dff tem promovido os serviços de Armazém,";
+		mes "Ponto de Retorno e Teleportes^4d4dff para nossos clientes há anos. Apenas escute esses reais clientes...^000000";
 		next;
-		mes "^4d4dff[Errende]";
-		mes "Kafra Ladies? Exquisite! Oh, and their service is good too~!^000000";
+		mes "^4d4dff[Kachua]";
+		mes "Oh sim, elas promovem os melhores armazéns! Há muito";
+		mes "espaço para meus Diaaaaaaaaaamantes!";
 		mes " ";
-		mes "[Tristram III]";
-		mes "By my crown! Such low prices!";
+		mes "[Chefe Mahnsoo]";
+		mes "Eu amo você Kafra!^000000";
 		next;
 		mes "^ff0000Turbo Track";
-		mes "^ff0000Traps in the Cursed Desert!";
-		mes "^4d4dffSponsored by ^800000Kafra Corporation^4d4dff";
-		mes "''We are always by your side.''^000000";
+		mes "^ff0000Armadilhas no Percurso do Deserto!";
+		mes "^4d4dffPatrocinado pela ^800000Corporação Kafra^4d4dff";
+		mes "''Nós estamos sempre do seu lado.''^000000";
 		close2;
 		cutin "kafra_03",255;
 		end;
@@ -531,7 +532,7 @@ OnTouch:
 	end;
 }
 
-// Turbo Track: Expert Mode - 4 Players (Water Maze)
+// Turbo Track: Modo Avançado - 8 Pessoas (Water Maze)
 turbo_e_8,13,266,0	script	flasher#e_8-01#turbo::TurboWaterMaze_e_8	-1,0,2,{
 OnTouch:
 	sc_start SC_BLIND,60000,0;
@@ -588,7 +589,7 @@ turbo_e_8,33,192,0	duplicate(TurboWaterMaze_e_8)	flasher#e_8-47	-1,0,1
 turbo_e_8,90,241,0	duplicate(TurboWaterMaze_e_8)	flasher#e_8-48a	-1,1,0
 turbo_e_8,236,3,0	duplicate(TurboWaterMaze_e_8)	flasher#e_8-48b	-1,3,0
 
-// Turbo Track: Expert Mode - 8 Players (Snake Dice course)
+// Turbo Track: Modo Avançado - 8 Pessoas (Snake Dice course)
 turbo_e_8,324,279,0	script	snake01#e8	45,1,1,{
 OnTouch:
 	set .@turbo2,rand(1,7);
@@ -652,36 +653,36 @@ Onreset:
 	end;
 
 OnEnable:
-	monster "turbo_e_8",279,284,"Archer Skeleton",1420,1;
-	monster "turbo_e_8",279,268,"Archer Skeleton",1420,1;
-	monster "turbo_e_8",279,260,"Archer Skeleton",1420,1;
-	monster "turbo_e_8",287,288,"Archer Skeleton",1420,1;
-	monster "turbo_e_8",287,280,"Archer Skeleton",1420,1;
-	monster "turbo_e_8",287,264,"Archer Skeleton",1420,1;
-	monster "turbo_e_8",295,284,"Archer Skeleton",1420,1;
-	monster "turbo_e_8",295,268,"Archer Skeleton",1420,1;
-	monster "turbo_e_8",295,260,"Archer Skeleton",1420,1;
-	monster "turbo_e_8",303,288,"Archer Skeleton",1420,1;
-	monster "turbo_e_8",303,280,"Archer Skeleton",1420,1;
-	monster "turbo_e_8",303,264,"Archer Skeleton",1420,1;
-	monster "turbo_e_8",311,284,"Archer Skeleton",1420,1;
-	monster "turbo_e_8",311,268,"Archer Skeleton",1420,1;
-	monster "turbo_e_8",311,260,"Archer Skeleton",1420,1;
-	monster "turbo_e_8",347,288,"Archer Skeleton",1420,1;
-	monster "turbo_e_8",347,280,"Archer Skeleton",1420,1;
-	monster "turbo_e_8",347,264,"Archer Skeleton",1420,1;
-	monster "turbo_e_8",355,284,"Archer Skeleton",1420,1;
-	monster "turbo_e_8",355,268,"Archer Skeleton",1420,1;
-	monster "turbo_e_8",355,260,"Archer Skeleton",1420,1;
-	monster "turbo_e_8",363,288,"Archer Skeleton",1420,1;
-	monster "turbo_e_8",363,280,"Archer Skeleton",1420,1;
-	monster "turbo_e_8",363,264,"Archer Skeleton",1420,1;
-	monster "turbo_e_8",371,284,"Archer Skeleton",1420,1;
-	monster "turbo_e_8",371,268,"Archer Skeleton",1420,1;
-	monster "turbo_e_8",371,260,"Archer Skeleton",1420,1;
-	monster "turbo_e_8",379,288,"Archer Skeleton",1420,1;
-	monster "turbo_e_8",379,280,"Archer Skeleton",1420,1;
-	monster "turbo_e_8",379,264,"Archer Skeleton",1420,1;
+	monster "turbo_e_8",279,284,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_e_8",279,268,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_e_8",279,260,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_e_8",287,288,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_e_8",287,280,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_e_8",287,264,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_e_8",295,284,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_e_8",295,268,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_e_8",295,260,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_e_8",303,288,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_e_8",303,280,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_e_8",303,264,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_e_8",311,284,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_e_8",311,268,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_e_8",311,260,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_e_8",347,288,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_e_8",347,280,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_e_8",347,264,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_e_8",355,284,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_e_8",355,268,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_e_8",355,260,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_e_8",363,288,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_e_8",363,280,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_e_8",363,264,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_e_8",371,284,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_e_8",371,268,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_e_8",371,260,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_e_8",379,288,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_e_8",379,280,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_e_8",379,264,"Esqueleto Arqueiro",1420,1;
 	end;
 }
 
@@ -722,10 +723,10 @@ OnEnable:
 	end;
 }
 
-// Turbo Track: Expert Mode - 4 Players (Course-clear broadcasters, and exits?)
+// Turbo Track: Modo Avançado - 8 Pessoas (Course-clear broadcasters, and exits?)
 turbo_e_8,168,363,0	script	cos_e_8_1	45,1,1,{
 OnTouch:
-	mapannounce "turbo_e_8","" + strcharinfo(0) +" has just passed the Log Bridge course!",bc_map,"0x70DBDB";
+	mapannounce "turbo_e_8","" + strcharinfo(0) +" acaba de passa o Percurso da Ponte de Madeira!",bc_map,"0x70DBDB";
 	set .@move1,rand(1,3);
 	if (.@move1 == 1)
 		warp "turbo_e_8",210,369;
@@ -738,7 +739,7 @@ OnTouch:
 
 turbo_e_8,258,364,0	script	cos_e_8_2	45,1,1,{
 OnTouch:
-	mapannounce "turbo_e_8","" + strcharinfo(0) +" has just passed the Cube Hills course!",bc_map,"0x70DBDB";
+	mapannounce "turbo_e_8","" + strcharinfo(0) +" acaba de passar o Percurso das Caixas Empilhadas!",bc_map,"0x70DBDB";
 	warp "turbo_e_8",316,365;
 	end;
 }
@@ -760,7 +761,7 @@ OnTouch:
 turbo_e_8,385,365,0	script	cos_e_8_3	45,1,1,{
 OnTouch:
 	set .@to_miro,rand(1,4);
-	mapannounce "turbo_e_8","" + strcharinfo(0) +" has just passed the Cursed Desert!",bc_map,"0x70DBDB";
+	mapannounce "turbo_e_8","" + strcharinfo(0) +" acaba de passar o Percurso do Deserto!",bc_map,"0x70DBDB";
 	if (.@to_miro == 1)
 		warp "turbo_e_8",46,254;
 	else if (.@to_miro == 2)
@@ -778,7 +779,7 @@ OnInit:
 	end;
 
 OnTouch:
-	mapannounce "turbo_e_8","" + strcharinfo(0) +" has just passed the Flasher Maze!",bc_map,"0x70DBDB";
+	mapannounce "turbo_e_8","" + strcharinfo(0) +" acaba de passar o Percurso Labirinto!",bc_map,"0x70DBDB";
 	warp "turbo_e_8",185,227;
 	end;
 }
@@ -789,28 +790,28 @@ OnInit:
 	end;
 
 OnTouch:
-	mapannounce "turbo_e_8","" + strcharinfo(0) +" has just passed the Flasher Maze!",bc_map,"0x70DBDB";
+	mapannounce "turbo_e_8","" + strcharinfo(0) +" acaba de passar o Percurso Labirinto!",bc_map,"0x70DBDB";
 	warp "turbo_e_8",185,227;
 	end;
 }
 
 turbo_e_8,250,200,0	script	cos_e_8_5	45,1,1,{
 OnTouch:
-	mapannounce "turbo_e_8","" + strcharinfo(0) +" has just passed the Single Snail course!",bc_map,"0x70DBDB";
+	mapannounce "turbo_e_8","" + strcharinfo(0) +" acaba de passar o Percurso Caracol!",bc_map,"0x70DBDB";
 	warp "turbo_e_8",268,275;
 	end;
 }
 
 turbo_e_8,389,275,0	script	cos_e_8_6	45,1,1,{
 OnTouch:
-	mapannounce "turbo_e_8","" + strcharinfo(0) +" has just passed the Snake Dice course!",bc_map,"0x70DBDB";
+	mapannounce "turbo_e_8","" + strcharinfo(0) +" acaba de passar o Percurso da Serpente!",bc_map,"0x70DBDB";
 	warp "turbo_e_8",5,91;
 	end;
 }
 
 turbo_e_8,93,19,0	script	cos_e_8_7	45,1,1,{
 OnTouch:
-	mapannounce "turbo_e_8","" + strcharinfo(0) +" has just passed the Small Cave course! You're getting closer to the finish!",bc_map,"0x70DBDB";
+	mapannounce "turbo_e_8","" + strcharinfo(0) +" acaba de passar o Percurso da Caverna! Rápido, você está quase na chegada!",bc_map,"0x70DBDB";
 	set .@move1,rand(1,3);
 	if (.@move1 == 1)
 		warp "turbo_e_8",307,52;
@@ -827,13 +828,13 @@ OnInit:
 	end;
 
 OnTouch:
-	mapannounce "turbo_e_8","" + strcharinfo(0) +" has just arrived at the Finish Line! Congratulations!",bc_map,"0xFFFF00";
+	mapannounce "turbo_e_8","" + strcharinfo(0) +" há pouco chegou à Linha de Chegada! Parabéns!",bc_map,"0xFFFF00";
 	set $ttnames$[5],strcharinfo(0);
-	donpcevent "TBT_Guide#Broadcast::Onwin_e8";
+	donpcevent "Guia TBT#Broadcast::Onwin_e8";
 	if (tt_point < 28951)
 		set tt_point,tt_point+50;
 	warp "turbo_e_8",384,161;
-	enablenpc "Winner Helper#TBT_e_8";
+	enablenpc "Auxiliar do Vencedor#T8";
 	disablenpc "cos_e_8_end";
 	enablenpc "cos_e_8_end2";
 	end;
@@ -845,7 +846,7 @@ OnInit:
 	end;
 
 OnTouch:
-	mapannounce "turbo_e_8","" + strcharinfo(0) +" is second to reach the Finish Line! Congratulations!",bc_map,"0xFFFF00";
+	mapannounce "turbo_e_8","" + strcharinfo(0) +" é o segundo a cruzar Linha de Chegada! Parabéns!",bc_map,"0xFFFF00";
 	if (tt_point < 28961)
 		set tt_point,tt_point+40;
 	warp "turbo_room",72,89;
@@ -860,246 +861,246 @@ OnInit:
 	end;
 
 OnTouch:
-	mapannounce "turbo_e_8","" + strcharinfo(0) +" is third to reach the Finish Line! Congratulations!",bc_map,"0xFFFF00";
+	mapannounce "turbo_e_8","" + strcharinfo(0) +" é o terceiro a cruzar Linha de Chegada! Parabéns!",bc_map,"0xFFFF00";
 	if (tt_point < 28971)
 		set tt_point,tt_point+30;
 	warp "turbo_room",72,89;
-	donpcevent "Winner Helper#TBT_e_8::OnEnable";
+	donpcevent "Auxiliar do Vencedor#T8::OnEnable";
 	donpcevent "Master#e8::OnDisable";
 	disablenpc "Broadcast#e8";
 	disablenpc "cos_e_8_end3";
 	end;
 }
 
-turbo_e_8,384,167,1	script	Winner Helper#TBT_e_8	47,{
+turbo_e_8,384,167,1	script	Auxiliar do Vencedor#T8	47,{
 //---reward points & record player name
 	if (tt_rank < 29999) {
-		mes "[Guide]";
-		mes "Congratulations!";
-		mes "As the winner, your reward";
-		mes "is 50 Turbo Track Points,";
+		mes "[Guia]";
+		mes "Parabéns!";
+		mes "Como vencedor, sua recompensa";
+		mes "é 50 Pontos da Turbo Track,";
 		mes ""+ strcharinfo(0) +"~";
 		next;
-		mes "[Guide]";
-		mes "However, you cannot receive";
-		mes "any points if you exceed the";
-		mes "point limit. You now have a total of " + my_point + " Turbo Track points.";
+		mes "[Guia]";
+		mes "Porém, você não pode receber";
+		mes "nenhum ponto se você exceder o";
+		mes "limite de ponto. Você tem agora um total de " + my_point + " Pontos da Turbo Track.";
 		set tt_rank,tt_rank+1;
 		next;
 		if (tt_rank > $ttranks[1]) {
 			setarray $ttranks[0],$ttranks[0],tt_rank,$ttranks[1],$ttranks[2],$ttranks[3],$ttranks[4];
 			setarray $ttnames$[9],strcharinfo(0);
-			mes "[Guide]";
-			mes "Congratulations!";
-			mes "You are ranked as";
-			mes "the top player for";
-			mes "winning the most games!";
-			donpcevent "TBT_Guide#Broadcast::Onnew_top1";
+			mes "[Guia]";
+			mes "Parabéns!";
+			mes "Você está ranqueado como";
+			mes "Jogador Top por";
+			mes "vencer vários jogos!";
+			donpcevent "Guia TBT#Broadcast::Onnew_top1";
 			if (tt_rank == 29999) {
 				if ($ttnames$[7] == "Breezy Havana") {
 					set $ttnames$[7],strcharinfo(0);
-					mes "You've secured your place in";
-					mes "the Turbo Track Hall of Honor!";
-					announce "" + strcharinfo(0) + " has joined the Turbo Track Hall of Honor!",bc_all,"FF0000";
+					mes "Você manteve seu lugar dentro";
+					mes "do Hall da Fama da Turbo Track!";
+					announce "" + strcharinfo(0) + " se juntou ao Hall da Fama da Turbo Track!",bc_all,"FF0000";
 				}
 				else if ($ttnames$[8] == "RS125") {
 					set $ttnames$[8],strcharinfo(0);
-					mes "You've secured your place in";
-					mes "the Turbo Track Hall of Honor!";
-					//broadcastserver "FF0000" FW_NORMAL 10 0 0 " " + strcharinfo(0) + " has joined the Turbo Track Hall of Honor!"
+					mes "Você manteve seu lugar dentro";
+					mes "do Hall da Fama da Turbo Track!";
+					//broadcastserver "FF0000" FW_NORMAL 	10 0 0 " " + strcharinfo(0) + " se juntou a Sala de Honra do Turbo Track!"
 				}
 			}
 		}
 		else if (tt_rank > $ttranks[2]) {
 			setarray $ttranks[0],$ttranks[0],$ttranks[1],tt_rank,$ttranks[3],$ttranks[4],$ttranks[5];
 			setarray $ttnames$[10],strcharinfo(0);
-			mes "[Guide]";
-			mes "Congratulations!";
-			mes "You've ranked Second";
-			mes "among the Top Five Players";
-			mes "who've won the most games!";
-			donpcevent "TBT_Guide#Broadcast::Onnew_top2";
+			mes "[Guia]";
+			mes "Parabéns!";
+			mes "Você se classificou em Segundo";
+			mes "entre o Top 5 dos jogadores";
+			mes "que ganharam vários jogos!";
+			donpcevent "Guia TBT#Broadcast::Onnew_top2";
 			if (tt_rank == 29999) {
 				if ($ttnames$[7] == "Breezy Havana") {
 					set $ttnames$[7],strcharinfo(0);
-					mes "You've secured your place in";
-					mes "the Turbo Track Hall of Honor!";
-					announce "" + strcharinfo(0) + " has joined the Turbo Track Hall of Honor!",bc_all,"FF0000";
+					mes "Você manteve seu lugar dentro";
+					mes "do Hall da Fama da Turbo Track!";
+					announce "" + strcharinfo(0) + " se juntou ao Hall da Fama da Turbo Track!",bc_all,"FF0000";
 				}
 				else if ($ttnames$[8] == "RS125") {
 					set $ttnames$[8],strcharinfo(0);
-					mes "You've secured your place in";
-					mes "the Turbo Track Hall of Honor!";
-					announce "" + strcharinfo(0) + " has joined the Turbo Track Hall of Honor!",bc_all,"FF0000";
+					mes "Você manteve seu lugar dentro";
+					mes "do Hall da Fama da Turbo Track!";
+					announce "" + strcharinfo(0) + " se juntou ao Hall da Fama da Turbo Track!",bc_all,"FF0000";
 				}
 			}
 		}
 		else if (tt_rank > $ttranks[3]) {
 			setarray $ttranks[0],$ttranks[0],$ttranks[1],$ttranks[2],tt_rank,$ttranks[4],$ttranks[5];
 			setarray $ttnames$[11],strcharinfo(0);
-			mes "[Guide]";
-			mes "Congratulations!";
-			mes "You've ranked Third";
-			mes "among the Top Five Players";
-			mes "who've won the most games!";
-			donpcevent "TBT_Guide#Broadcast::Onnew_top3";
+			mes "[Guia]";
+			mes "Parabéns!";
+			mes "Você se classificou em Terceiro";
+			mes "entre o Top 5 dos jogadores";
+			mes "que ganharam vários jogos!";
+			donpcevent "Guia TBT#Broadcast::Onnew_top3";
 			if (tt_rank == 29999) {
 				if ($ttnames$[7] == "Breezy Havana") {
 					set $ttnames$[7],strcharinfo(0);
-					mes "You've secured your place in";
-					mes "the Turbo Track Hall of Honor!";
-					announce "" + strcharinfo(0) + " has joined the Turbo Track Hall of Honor!",bc_all,"FF0000";
+					mes "Você manteve seu lugar dentro";
+					mes "do Hall da Fama da Turbo Track!";
+					announce "" + strcharinfo(0) + " se juntou ao Hall da Fama da Turbo Track!",bc_all,"FF0000";
 				}
 				else if ($ttnames$[8] == "RS125") {
 					set $ttnames$[8],strcharinfo(0);
-					mes "You've secured your place in";
-					mes "the Turbo Track Hall of Honor!";
-					announce "" + strcharinfo(0) + " has joined the Turbo Track Hall of Honor!",bc_all,"FF0000";
+					mes "Você manteve seu lugar dentro";
+					mes "do Hall da Fama da Turbo Track!";
+					announce "" + strcharinfo(0) + " se juntou ao Hall da Fama da Turbo Track!",bc_all,"FF0000";
 				}
 			}
 		}
 		else if (tt_rank > $ttranks[4]) {
 			setarray $ttranks[0],$ttranks[0],$ttranks[1],$ttranks[2],$ttranks[3],tt_rank,$ttranks[5];
 			setarray $ttnames$[12],strcharinfo(0);
-			mes "[Guide]";
-			mes "Congratulations!";
-			mes "You've ranked Fourth";
-			mes "among the Top Five Players";
-			mes "who've won the most games!";
-			donpcevent "TBT_Guide#Broadcast::Onnew_top4";
+			mes "[Guia]";
+			mes "Parabéns!";
+			mes "Você se classificou em Quarto";
+			mes "entre o Top 5 dos jogadores";
+			mes "que ganharam vários jogos!";
+			donpcevent "Guia TBT#Broadcast::Onnew_top4";
 			if (tt_rank == 29999) {
 				if ($ttnames$[7] == "Breezy Havana") {
 					set $ttnames$[7],strcharinfo(0);
-					mes "You've secured your place in";
-					mes "the Turbo Track Hall of Honor!";
-					announce "" + strcharinfo(0) + " has joined the Turbo Track Hall of Honor!",bc_all,"FF0000";
+					mes "Você manteve seu lugar dentro";
+					mes "do Hall da Fama da Turbo Track!";
+					announce "" + strcharinfo(0) + " se juntou ao Hall da Fama da Turbo Track!",bc_all,"FF0000";
 				}
 				else if ($ttnames$[8] == "RS125") {
 					set $ttnames$[8],strcharinfo(0);
-					mes "You've secured your place in";
-					mes "the Turbo Track Hall of Honor!";
-					announce "" + strcharinfo(0) + " has joined the Turbo Track Hall of Honor!",bc_all,"FF0000";
+					mes "Você manteve seu lugar dentro";
+					mes "do Hall da Fama da Turbo Track!";
+					announce "" + strcharinfo(0) + " se juntou ao Hall da Fama da Turbo Track!",bc_all,"FF0000";
 				}
 			}
 		}
 		else if (tt_rank > $ttranks[5]) {
 			setarray $ttranks[0],$ttranks[0],$ttranks[1],$ttranks[2],$ttranks[3],$ttranks[4],tt_rank;
 			setarray $ttnames$[13],strcharinfo(0);
-			mes "[Guide]";
-			mes "Congratulations!";
-			mes "You've ranked Fifth";
-			mes "among the Top Five Players";
-			mes "who've won the most games!";
-			donpcevent "TBT_Guide#Broadcast::Onnew_top5";
+			mes "[Guia]";
+			mes "Parabéns!";
+			mes "Você se classificou em Quinto";
+			mes "entre o Top 5 dos jogadores";
+			mes "que ganharam vários jogos!";
+			donpcevent "Guia TBT#Broadcast::Onnew_top5";
 			if (tt_rank == 29999) {
 				if ($ttnames$[7] == "Breezy Havana") {
 					set $ttnames$[7],strcharinfo(0);
-					mes "You've secured your place in";
-					mes "the Turbo Track Hall of Honor!";
-					announce "" + strcharinfo(0) + " has joined the Turbo Track Hall of Honor!",bc_all,"FF0000";
+					mes "Você manteve seu lugar dentro";
+					mes "do Hall da Fama da Turbo Track!";
+					announce "" + strcharinfo(0) + " se juntou ao Hall da Fama da Turbo Track!",bc_all,"FF0000";
 				}
 				else if ($ttnames$[8] == "RS125") {
 					set $ttnames$[8],strcharinfo(0);
-					mes "You've secured your place in";
-					mes "the Turbo Track Hall of Honor!";
-					announce "" + strcharinfo(0) + " has joined the Turbo Track Hall of Honor!",bc_all,"FF0000";
+					mes "Você manteve seu lugar dentro";
+					mes "do Hall da Fama da Turbo Track!";
+					announce "" + strcharinfo(0) + " se juntou ao Hall da Fama da Turbo Track!",bc_all,"FF0000";
 				}
 			}
 		}
 		else {
-			mes "[Guide]";
-			mes "If you can win more games";
-			mes "than everybody else, your";
-			mes "name will be registered in";
-			mes "our Top Five Player Ranking.";
+			mes "[Guia]";
+			mes "Se você puder vencer mais jogos";
+			mes "do que todos, seu";
+			mes "nome será registrado em";
+			mes "nosso Rank Top 5 dos jogadores.";
 			next;
-			mes "[Guide]";
-			mes "What do you";
-			mes "think, " + strcharinfo(0) +"?";
-			mes "Glory can be yours if";
-			mes "you can achieve victory!";
+			mes "[Guia]";
+			mes "O que você";
+			mes "imagina, " + strcharinfo(0) +"?";
+			mes "A glória pode ser sua se";
+			mes "você puder acumula vitórias!";
 		}
 		next;
-		mes "[Guide]";
-		mes "Thank you for";
-		mes "participating in";
-		mes "the Turbo Track.";
-		mes "You will be transported";
-		mes "to a Waiting Room shortly.";
+		mes "[Guia]";
+		mes "Obrigado por";
+		mes "participar da";
+		mes "Turbo Track.";
+		mes "Você será teletransportado";
+		mes "para uma Sala de Espera imediatamente.";
 		close2;
 		warp "turbo_room",72,89;
 		end;
 	}
 	else {
 		if ($ttnames$[7] == strcharinfo(0)) {
-			mes "[Guide]";
+			mes "[Guia]";
 			mes "Oh wow!";
-			mes "You're a member";
-			mes "in our Hall of Honor,";
-			mes "aren't you? This is great!";
-			mes "I'm talking to a living legend!";
+			mes "Você é um membro";
+			mes "em nosso Hall da Fama,";
+			mes "não é? Isto é ótimo!";
+			mes "Eu estou falando com uma lenda viva!";
 			next;
-			mes "[Guide]";
-			mes "Oh, I'm sorry! You're";
-			mes "here so that I can tell you";
-			mes "how many Turbo Track Points";
+			mes "[Guia]";
+			mes "Oh, desculpe! Você está";
+			mes "aqui então eu posso te falar";
+			mes "quantos pontos da Turbo Track";
 			set my_point,tt_point;
-			mes "you have, right? You've got a total of " + my_point + " Turbo Track Points, "+ strcharinfo(0) +".";
+			mes "você tem, certo? Você tem um total de " + my_point + " Pontos da Turbo Track, "+ strcharinfo(0) +".";
 			next;
-			mes "[Guide]";
-			mes "Oh, and thanks for";
-			mes "participating in the";
-			mes "Turbo Track! You'll be sent";
-			mes "to the Waiting Room soon~";
+			mes "[Guia]";
+			mes "Oh, e obrigado por";
+			mes "participar da";
+			mes "Turbo Track! Você será mandado";
+			mes "para a Sala de Espera agora mesmo~";
 			close2;
 			warp "turbo_room",72,89;
 			end;
 		}
 		else if ($ttnames$[8] == strcharinfo(0)) {
-			mes "[Guide]";
-			mes "Hey, aren't you";
-			mes "in our Hall of Honor?";
-			mes "I've been watching your";
-			mes "races... You're pretty quick";
-			mes "on your feet, hotshot~";
+			mes "[Guia]";
+			mes "Ei, você não está";
+			mes "em nosso Hall da Fama?";
+			mes "Eu estive observando suas";
+			mes "corridas... Você é rápido";
+			mes "em seus passos, bem popular~";
 			next;
-			mes "[Guide]";
-			mes "Oh right, your current";
+			mes "[Guia]";
+			mes "Oh certo, seu total de";
 			set my_point,tt_point;
-			mes "Turbo Track Point total!";
-			mes "You've got a total of";
-			mes "" + my_point + " Turbo Track points,";
+			mes "pontos da Turbo Track!";
+			mes "Você tem um total de";
+			mes "" + my_point + " Pontos da Turbo Track,";
 			mes "" + strcharinfo(0) + ".";
 			next;
-			mes "[Guide]";
-			mes "Oh, and thanks for";
-			mes "participating in the";
-			mes "Turbo Track! You'll be sent";
-			mes "to the Waiting Room soon~";
+			mes "[Guia]";
+			mes "Oh, e obrigado por";
+			mes "participar da";
+			mes "Turbo Track! Você será mandado";
+			mes "para a Sala de Espera agora mesmo~";
 			close2;
 			warp "turbo_room",72,89;
 			end;
 		}
 		else {
-			mes "[Guide]";
+			mes "[Guia]";
 			mes "Awwww~";
-			mes "You were almost able";
-			mes "to join our Hall of Honor...!";
-			mes "But don't let that get you";
-			mes "down. Maybe next time!";
+			mes "Você não está apto";
+			mes "a se juntar em nosso Hall da Fama...!";
+			mes "Mas não deixe que isso te deixe";
+			mes "mal. Talvez na próxima vez!";
 			next;
-			mes "[Guide]";
-			mes "Oh, right.";
-			mes "Currently, you";
-			mes "have a total of";
-			mes "" + tt_point + " Turbo Track points.";
+			mes "[Guia]";
+			mes "Oh, certo.";
+			mes "Atualmente, você";
+			mes "tem um total de";
+			mes "" + tt_point + " Pontos da Turbo Track.";
 			next;
-			mes "[Guide]";
-			mes "Thank you for";
-			mes "participating in";
-			mes "the Turbo Track.";
-			mes "You will be transported";
-			mes "to a Waiting Room shortly.";
+			mes "[Guia]";
+			mes "Obrigado por";
+			mes "participar da";
+			mes "Turbo Track.";
+			mes "Você será teletransportado";
+			mes "para uma Sala de Espera imediatamente.";
 			close2;
 			warp "turbo_room",72,89;
 			end;
@@ -1107,64 +1108,64 @@ turbo_e_8,384,167,1	script	Winner Helper#TBT_e_8	47,{
 	}
 
 OnInit:
-	disablenpc "Winner Helper#TBT_e_8";
+	disablenpc "Auxiliar do Vencedor#T8";
 	end;
 
 OnEnable:
-	enablenpc "Winner Helper#TBT_e_8";
+	enablenpc "Auxiliar do Vencedor#T8";
 	initnpctimer;
 	end;
 
 OnTimer5000:
-	mapannounce "turbo_e_8","This is the ending broadcast for Turbo Track Expert Mode - 8 person.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Este é o fim da Turbo Track Modo Avançado - 8 Pessoas.",bc_map,"0x33FF66";
 	end;
 
 OnTimer10000:
-	mapannounce "turbo_e_8","For smooth game play, the game will be end in approximately 1 minute from now.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","O jogo terminará em aproximadamente 1 minuto.",bc_map,"0x33FF66";
 	end;
 
 OnTimer15000:
-	mapannounce "turbo_e_8","At that time, the warp portal will open.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Nesse momento, um portal se abrirá.",bc_map,"0x33FF66";
 	end;
 
 OnTimer20000:
-	mapannounce "turbo_e_8","Players within the arena must be in ready to enter the warp.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Jogadores na arena devem estar prontos para partir pelo Portal.",bc_map,"0x33FF66";
 	end;
 
 OnTimer25000:
-	mapannounce "turbo_e_8","In the meantime, winners must procceed to receive their rewards as soon as possible.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Enquanto isso, vencedores têm que proceder para receber as suas recompensas o mais cedo possível.",bc_map,"0x33FF66";
 	end;
 
 OnTimer30000:
-	mapannounce "turbo_e_8","Thank you for visiting Al De Baran Turbo Track.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Obrigado por visita a Turbo Track em Al De Baran.",bc_map,"0x33FF66";
 	end;
 
 OnTimer35000:
-	mapannounce "turbo_e_8","Al De Baran Turbo Track is brought to you by...",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Turbo Track de Al De Baran é trazido a você pela...",bc_map,"0x33FF66";
 	end;
 
 OnTimer40000:
-	mapannounce "turbo_e_8","[Al De Baran Kafra Corporation Headquarters]",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","[Sede da Corporação Kafra de Al De Baran]",bc_map,"0x33FF66";
 	end;
 
 OnTimer45000:
-	mapannounce "turbo_e_8","[Al De Baran Guild Castle Management Luina]",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","[A Administração dos Castelos de Luina em Al De Baran]",bc_map,"0x33FF66";
 	end;
 
 OnTimer50000:
-	mapannounce "turbo_e_8","[Blacksmith Union]",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","[Sindicato dos Ferreiros]",bc_map,"0x33FF66";
 	end;
 
 OnTimer55000:
-	mapannounce "turbo_e_8","And [Comodo Casino].",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","E [Cassino de Comodo].",bc_map,"0x33FF66";
 	end;
 
 OnTimer60000:
-	mapannounce "turbo_e_8","Once again, we'd like to thank our sponsors.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Mais uma vez, nós gostaríamos de agradecer aos nossos patrocinadores.",bc_map,"0x33FF66";
 	end;
 
 OnTimer65000:
-	mapannounce "turbo_e_8","Have a good day.",bc_map,"0x33FF66";
+	mapannounce "turbo_e_8","Tenha um bom dia.",bc_map,"0x33FF66";
 	end;
 
 //--- warp all players to turbo room
@@ -1174,7 +1175,7 @@ OnTimer70000:
 
 //----end game, reset all
 OnTimer71000:
-	disablenpc "Winner Helper#TBT_e_8";
+	disablenpc "Auxiliar do Vencedor#T8";
 	enablenpc "cos_e_8_end";
 	enablenpc "cos_e_8_end2";
 	enablenpc "cos_e_8_end3";
@@ -1188,7 +1189,7 @@ OnTimer71000:
 	enablenpc "No_Unfair_Start#e8-2";
 	donpcevent "snake#e8::Onreset";
 	donpcevent "hunting#e8::Onreset";
-	donpcevent "Expert mode - 8 person::OnEnable";
+	donpcevent "Modo Avançado - 8 Pessoas::OnEnable";
 	disablenpc "bing2#e8";
 	stopnpctimer;
 	end;
@@ -1200,8 +1201,8 @@ OnInit:
 	end;
 
 OnTouch:
-	mapannounce "turbo_e_8","" + strcharinfo(0) +" is now entering the Small Cave! "+ strcharinfo(0) +" is now in the lead!",bc_map,"0xFFFF00";
-	donpcevent "TBT_Guide#Broadcast::Onend_e8";
+	mapannounce "turbo_e_8","" + strcharinfo(0) +" está entrando agora no Percurso da Caverna! "+ strcharinfo(0) +" está agora na dianteira!",bc_map,"0xFFFF00";
+	donpcevent "Guia TBT#Broadcast::Onend_e8";
 	disablenpc "Notice_Maker1#TBT_e_8";
 	end;
 }
@@ -1212,7 +1213,7 @@ OnInit:
 	end;
 
 OnTouch:
-	mapannounce "turbo_e_8","" + strcharinfo(0) +" is now entering the Single Snail! "+ strcharinfo(0) +" is now in the lead!",bc_map,"0xFFFF00";
+	mapannounce "turbo_e_8","" + strcharinfo(0) +" está entrando agora no Percurso do Caracol! "+ strcharinfo(0) +" está agora na dianteira!",bc_map,"0xFFFF00";
 	disablenpc "Notice_Maker3#TBT_e_8";
 	end;
 }
@@ -1223,7 +1224,7 @@ OnInit:
 	end;
 
 OnTouch:
-	mapannounce "turbo_e_8","" + strcharinfo(0) +" is currently in First Place!",bc_map,"0xFFFF00";
+	mapannounce "turbo_e_8","" + strcharinfo(0) +" está atualmente em Primeiro Lugar!",bc_map,"0xFFFF00";
 	disablenpc "Notice_Maker4#TBT_e_8";
 	end;
 }
