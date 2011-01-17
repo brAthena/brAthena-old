@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0105 - 17/01/2011 [Protimus]
+	* Removido comando skillcheck, faz a mesma coisa do getskillvl.
+
 	r0104 - 17/01/2011 [Protimus]
 	* Correções de códigos do commit anterior para arquivos da pasta de NPC's.
 	* Alterado NPC_NAME_LENGTH para 37.
