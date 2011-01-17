@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Spawns dos Campos de Gonryun			|
+// | Nome do Script: Monstros dos Campos de Kunlun          |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
@@ -16,11 +16,12 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | 1.1 Script Revisado [Protimus]							|
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// | - Anotações                                            |  
 // \________________________________________________________/
 
 //==================================================
-// gon_fild01 - Campos de Gonryun
+// gon_fild01 - Campo de Kunlun
 //==================================================
 gon_fild01,0,0,0,0	monster	Filhote de Leopardo	1415,40,600000,300000,0
 gon_fild01,0,0,0,0	monster	Zipper	1417,20,0,0,0

@@ -8,38 +8,40 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Kafras de Yuno 			    		|
+// | Nome do Script: Kafras da Cidade de Juno               |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 2.4/1.0                                |
+// | Versões eA/brA: 2.4/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: Configurações callfunc "F_Kafra".           |
 // | arg(0):                                                |
-// |  Setando em 0 a mensagem padrão da Kafra é exibida.    |
-// |  Setando em 1 a mensagem da Kafra de Niflhiem é exibida|
-// |  Setando em 2 a mensagem da Kafra de Guild é exibida.  |
-// | arg(1): 1 para desabilitar o menu "Teleporte".         |
+// |  Setando em 0 a mensagem padrão da Kafra é exibida     |
+// |  Setando em 1 a mensagem da Kafra de Niflheim é exibida|
+// |  Setando em 2 a mensagem da Kafra de Clã é exibida     |
+// | arg(1): 1 para desabilitar o menu "Teleporte"          |
 // |  0 para exibi-lo.                                      |
-// | arg(2): 1 para desabilitar o menu "Informações".       |
+// | arg(2): 1 para desabilitar o menu "Informações"        |
 // |  0 para exibi-lo.                                      |
-// | arg(3): Custo do serviço de "Armazem".                 |
-// | arg(4): Custo do serviço "Alugar Carrinho".            |
+// | arg(3): Custo do serviço de "Armazém"                  |
+// | arg(4): Custo do serviço "Alugar Carrinho"             |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [cleyton]   	                    |
+// | 1.1 Script Revisado [Tyler]                            |
+// | - Anotações                                            |
 // \________________________________________________________/
 
-
-// Center ------------------------------------------------------------------
+// Centro
+//============================================================
 yuno,152,187,4	script	Funcionária Kafra::kaf_yuno	860,{
 	cutin "kafra_08",2;
 	callfunc "F_KafSetYun";
 	mes "[Funcionária Kafra]";
-	mes "A corporação Kafra";
+	mes "A Corporação Kafra";
 	mes "está sempre trabalhando para fornecer";
 	mes "a você serviços convenientes.";
-	mes "Como posso ser útil?";
+	mes "Como posso lhe ser útil?";
 	callfunc "F_Kafra",5,0,0,40,800;
 
 	M_Save:
@@ -47,12 +49,13 @@ yuno,152,187,4	script	Funcionária Kafra::kaf_yuno	860,{
 		callfunc "F_KafEnd",0,1," na cidade de Juno";
 }
 
-// South East --------------------------------------------------------------
+// Sudeste
+//============================================================
 yuno,327,108,4	script	Funcionária Kafra::kaf_yuno2	860,{
 	cutin "kafra_08",2;
 	callfunc "F_KafSetYun";
 	mes "[Funcionária Kafra]";
-	mes "A coporação Kafra";
+	mes "A Coporação Kafra";
 	mes "está sempre trabalhando para fornecer";
 	mes "a você serviços convenientes.";
 	mes "Como posso ser útil?";
@@ -63,12 +66,13 @@ yuno,327,108,4	script	Funcionária Kafra::kaf_yuno2	860,{
 		callfunc "F_KafEnd",0,1," na cidade de Juno";
 }
 
-// East --------------------------------------------------------------------
+// Leste
+//============================================================
 yuno,277,221,4	script	Funcionária Kafra::kaf_yuno3	861,{
 	cutin "kafra_09",2;
 	callfunc "F_KafSetYun";
 	mes "[Funcionária Kafra]";
-	mes "A corporação Kafra";
+	mes "A Corporação Kafra";
 	mes "está sempre trabalhando apra fornecer";
 	mes "a você serviços convenientes.";
 	mes "Como posso ser útil?";
@@ -79,14 +83,13 @@ yuno,277,221,4	script	Funcionária Kafra::kaf_yuno3	861,{
 		callfunc "F_KafEnd",0,1," na cidade de Juno";
 }
 
-
 // Function: Sets variables for Yuno Kafras ------------
 function	script	F_KafSetYun	{
 	cleararray @wrpC$[0],"",getarraysize(@wrpC$);
 	setarray @wrpD$[0], "Al De Baran";
 	setarray @wrpP[0], 1200;
 	set @wrpC$[0], @wrpD$[0]+" -> "+@wrpP[0];
-	set @wrpC$[1], "Cancel";
+	set @wrpC$[1], "Cancelar";
 	setarray @viewpX[0], 328, 278, 153, 0;
 	setarray @viewpY[0], 108, 221, 187, 0;
 	return;

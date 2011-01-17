@@ -21,9 +21,10 @@
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [Barsaglini]                      |
 // | 1.1 Script Revisado [Tyler]                            |
+// | - Anotações                                            |
 // \________________________________________________________/
 
-xmas,117,295,4  script  Vending Machine Man        704,{
+xmas,117,295,4  script	Titicupe	704,{
         mes "[Titicupe]";
         mes "Hmm...?";
         mes "Eu, Titicupe, estimado gerente da Fábrica de Brinquedos e genial inventor, fiz isso de novo!! Acabei de criar a mais sofisticada máquina de vendas do mundo!";
@@ -145,7 +146,7 @@ xmas,117,295,4  script  Vending Machine Man        704,{
         }
 }
 
-xmas,115,297,4  script  Vending Machine       111,{
+xmas,115,297,4  script  Boneco de Neve       111,{
         mes "[Audi]";
         mes "^555555Excitante item Máquina de Vendas. Inventado pelo grande Titicupe. Selecione os itens desejados e coloque os itens exigidos na boca do Boneco de Neve.^000000";
         next;

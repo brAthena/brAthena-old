@@ -14,10 +14,10 @@
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.1/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: NPCs de Entrada de Tierra.                  |
-// | Oficiais do Desfiladeiro de Tierra- Lado Guillaume     |
-// | Cavaleiros                                             |
-// | Oficiais do Desfiladeiro de Tierra- Lado Guillaume     |
+// | Descrição: NPC's de Entrada de Tierra.                 |
+// | - Oficiais do Desfiladeiro de Tierra- Lado Guillaume   |
+// | - Cavaleiros                                           |
+// | - Oficiais do Desfiladeiro de Tierra- Lado Guillaume   |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Tyler]                           |
@@ -26,7 +26,7 @@
 
 // Oficiais do Desfiladeiro de Tierra- Lado Guillaume
 //============================================================
-bat_room,124,178,5	script	Tierra Gorge Officer#01a	418,{
+bat_room,124,178,5	script	Oficial do Desfiladeiro de Tierra#01a	418,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Espere aí um minuto! -";
 		mes "- Atualmente você está -";
@@ -93,7 +93,7 @@ bat_room,124,178,5	script	Tierra Gorge Officer#01a	418,{
 	close;
 }
 
-bat_room,140,178,5	script	Tierra Gorge Officer#02a	418,{
+bat_room,140,178,5	script	Oficial do Desfiladeiro de Tierra#02a	418,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Espere aí um minuto! -";
 		mes "- Atualmente você está -";
@@ -162,7 +162,7 @@ bat_room,140,178,5	script	Tierra Gorge Officer#02a	418,{
 
 // Cavaleiros
 //============================================================
-bat_room,127,178,5	script	Guillaume Knight#1	417,{
+bat_room,127,178,5	script	Cavaleiro Guillaume#1	417,{
 	mes "[Cavaleiro Guillaume]";
 	mes "O Desfiladeiro de Tierra consiste em uma divisão de dois íngremes lados dispostos verticalmente e divididos horizontalmente e, em cada um dos lados há um depósito de suprimentos, tanto para os Guillaumes quanto para os Croixs nas direções Noroeste e Sudoeste respectivamente.";
 	next;
@@ -186,7 +186,7 @@ bat_room,127,178,5	script	Guillaume Knight#1	417,{
 	close;
 }
 
-bat_room,143,178,5	script	Guillaume Knight#2	417,{
+bat_room,143,178,5	script	Cavaleiro Guillaume#2	417,{
 	mes "[Cavaleiro Guillaume]";
 	mes "O Desfiladeiro de Tierra consiste em uma divisão de dois íngremes lados dispostos verticalmente e divididos horizontalmente e, em cada um dos lados há um depósito de suprimentos, tanto para os Guillaumes quanto para os Croixs nas direções Noroeste e Sudoeste respectivamente.";
 	next;
@@ -210,7 +210,7 @@ bat_room,143,178,5	script	Guillaume Knight#2	417,{
 	close;
 }
 
-bat_room,127,121,1	script	Croix Knight#1	413,{
+bat_room,127,121,1	script	Cavaleiro Croix#1	413,{
 	mes "[Cavaleiro Croix]";
 	mes "O Desfiladeiro de Tierra consiste em uma divisão de dois íngremes lados dispostos verticalmente e divididos horizontalmente e, em cada um dos lados há um depósito de suprimentos, tanto para os Guillaumes quanto para os Croixs nas direções Noroeste e Sudoeste respectivamente.";
 	next;
@@ -234,7 +234,7 @@ bat_room,127,121,1	script	Croix Knight#1	413,{
 	close;
 }
 
-bat_room,143,121,1	script	Croix Knight#2	413,{
+bat_room,143,121,1	script	Cavaleiro Croix#2	413,{
 	mes "[Cavaleiro Croix]";
 	mes "O Desfiladeiro de Tierra consiste em uma divisão de dois íngremes lados dispostos verticalmente e divididos horizontalmente e, em cada um dos lados há um depósito de suprimentos, tanto para os Guillaumes quanto para os Croixs nas direções Noroeste e Sudoeste respectivamente.";
 	next;
@@ -260,7 +260,7 @@ bat_room,143,121,1	script	Croix Knight#2	413,{
 
 // Oficiais do Desfiladeiro de Tierra- Lado Croix
 //============================================================
-bat_room,125,121,1	script	Tierra Gorge Officer#01b	414,{
+bat_room,125,121,1	script	Oficial do Desfiladeiro de Tierra#01b	414,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Espere aí um minuto! -";
 		mes "- Atualmente você está -";
@@ -270,7 +270,7 @@ bat_room,125,121,1	script	Tierra Gorge Officer#01b	414,{
 		close;
 	}
 	mes "[Oficial do Exército Croix]";
-	mes "Vamo mostrar aos Guillaumes todo o poder do querido Exército Croix!";
+	mes "Vamos mostrar aos fedorentos Guillaumes todo o poder do querido Exército Croix!";
 	next;
 	switch(select("Eu quero me juntar ao seu exército!:Terminar a conversa.")) {
 	case 1:
@@ -327,7 +327,7 @@ bat_room,125,121,1	script	Tierra Gorge Officer#01b	414,{
 	close;
 }
 
-bat_room,140,121,1	script	Tierra Gorge Officer#02b	414,{
+bat_room,140,121,1	script	Oficial do Desfiladeiro de Tierra#02b	414,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Espere aí um minuto! -";
 		mes "- Atualmente você está -";
@@ -337,7 +337,7 @@ bat_room,140,121,1	script	Tierra Gorge Officer#02b	414,{
 		close;
 	}
 	mes "[Oficial do Exército Croix]";
-	mes "Vamo mostrar aos Guillaumes todo o poder do querido Exército Croix!";
+	mes "Vamos mostrar aos fedorentos Guillaumes todo o poder do querido Exército Croix!";
 	next;
 	switch(select("Eu quero me juntar ao seu exército!:Terminar a conversa.")) {
 	case 1:

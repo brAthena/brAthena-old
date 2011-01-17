@@ -8,32 +8,34 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Kafras de Brasilis			    		|
+// | Nome do Script: Kafras da Cidade de Brasilis           |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0                                |
+// | Versões eA/brA: 1.0/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: Configurações callfunc "F_Kafra".           |
 // | arg(0):                                                |
-// |  Setando em 0 a mensagem padrão da Kafra é exibida.    |
-// |  Setando em 1 a mensagem da Kafra de Niflhiem é exibida|
-// |  Setando em 2 a mensagem da Kafra de Guild é exibida.  |
-// | arg(1): 1 para desabilitar o menu "Teleporte".         |
-// |  0 para exibi-lo.                                      |
-// | arg(2): 1 para desabilitar o menu "Informações".       |
-// |  0 para exibi-lo.                                      |
-// | arg(3): Custo do serviço de "Armazem".                 |
-// | arg(4): Custo do serviço "Alugar Carrinho".            |
+// |  Setando em 0 a mensagem padrão da Kafra é exibida     |
+// |  Setando em 1 a mensagem da Kafra de Niflheim é exibida|
+// |  Setando em 2 a mensagem da Kafra de Clã é exibida     |
+// | arg(1): 1 para desabilitar o menu "Teleporte"          |
+// |  0 para exibi-lo                                       |
+// | arg(2): 1 para desabilitar o menu "Informações"        |
+// |  0 para exibi-lo                                       |
+// | arg(3): Custo do serviço de "Armazém"                  |
+// | arg(4): Custo do serviço "Alugar Carrinho"             |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [cleyton]   	                    |
+// | 1.1 Script Revisado [Tyler]                            |
+// | - Anotações                                            |
 // \________________________________________________________/
 
 brasilis,197,221,4	script	Funcionária Kafra::kaf_bra	117,{
 	cutin "kafra_01",2;
 	mes "[Funcionária Kafra]";
-	mes "Bem vindo a";
+	mes "Bem-vindo à";
 	mes "Corporação Kafra.";
 	mes "Os nossos serviços";
 	mes "sempre estarão ao seu lado.";
@@ -42,5 +44,5 @@ brasilis,197,221,4	script	Funcionária Kafra::kaf_bra	117,{
 
 	M_Save:
 		savepoint "brasilis",197,219;
-		callfunc "F_KafEnd",0,1,"salvo na cidade de Brasilis";
+		callfunc "F_KafEnd",0,1," na cidade de Brasilis";
 }

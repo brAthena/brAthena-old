@@ -8,17 +8,19 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Spawn de Monstros em Cidades	        |
+// | Nome do Script: Monstros Limpadores das Cidades	    |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.1/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: Sumona monstros para limpar a cidade. 	    |
+// | Descrição: Invoca monstros para limpar a cidade. 	    |
+// | - Aparentemente invoca no kRO e no iRO                 |
+// | - Ative isso se desejar                                |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | 1.1 Script Revisado [Protimus]							|
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
 // \________________________________________________________/
 
 prontera,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
@@ -35,7 +37,7 @@ amatsu,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
 gonryun,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
 
 //==================================================
-// Einbech
+// einbech - Einbech, a Vila Mineiradora
 //==================================================
 einbech,0,0,0,0	monster	Rosa Selvagem	1261,1,3600000,3000000,0
 einbech,0,0,0,0	monster	Tarou	1175,5,1800000,1500000,0

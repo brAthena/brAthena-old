@@ -8,19 +8,19 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Guerra do Emperium (Payon)	            |
+// | Nome do Script: Guerra do Emperium (Payon)             |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.2/1.2                                |
 // |--------------------------------------------------------|
-// | Descrição: NPCs relacionados ao castelo Palácio do Sol |
+// | Descrição: NPCs relacionados ao castelo Palácio do Sol.|
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Script Traduzido [cleyton]     		            |
-// | 1.1 Script Revisado [Protimus]							|
-// | 1.2 Correção de Tradução [Protimus]					|
-// | - Corrigido erro de concordância nominal				| 
+// | 1.0 Script Traduzido [cleyton]                         |
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// | 1.2 Correção de Tradução [Protimus]                    |
+// | - Corrigido erro de concordância nominal               |
 // \________________________________________________________/
 
 // Bandeira do Castelo (Cidade)
@@ -42,7 +42,7 @@ pay_gld,125,236,4	script	Palácio do Sol#f1-3::Palácio do Sol2	722,{
 	if (.@GID == 0) {
 		mes " [ Decreto do Reino de Midgard ]";
 		mes " ";
-		mes "1. Conforme o Pacto do Reino de Midgard e o Feudo do Bosque Celestial, declaro que este Castelo não possui um Senhor.";
+		mes "1. Conforme o pacto do Reino de Midgard e o Feudo do Bosque Celestial, declaro que este Castelo não possui um Senhor.";
 		mes " ";
 		mes "2. Aquele que superar terríveis desafios e destruir o Emperium, receberá a posse do castelo com o apoio do nosso rei.";
 	}
@@ -62,11 +62,11 @@ pay_gld,125,236,4	script	Palácio do Sol#f1-3::Palácio do Sol2	722,{
 		}
 		mes "[ Decreto do Reino de Midgard ]";
 		mes " ";
-		mes "1. Seguindo o decredo do Reino de Midgard.";
+		mes "1. Seguindo o decreto do Reino de Midgard.";
 		mes "Nós declaramos que esse castelo pertence ao clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
 		mes " ";
 		mes "2. O líder do clã ^ff0000"+ GetGuildName(.@GID) + "^000000 se chama ^FF0000" + GetGuildMaster(.@GID) + "^000000.";
-		mes "Se alguem se opõe a esse decreto, prove sua força e honra com uma espada em suas mãos.";
+		mes "Se alguém se opõe a esse decreto, que prove sua força e honra com uma espada em suas mãos.";
 	}
 	close;
 

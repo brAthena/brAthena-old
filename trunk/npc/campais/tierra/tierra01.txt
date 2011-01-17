@@ -14,9 +14,9 @@
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.1/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: NPCs de Tierra.                             |
-// | NPCs da Sala de Espera                                 |
-// | Engine do Campo de Batalha do Desfiladeiro Tierra      |			         			
+// | Descrição: NPC's de Tierra.                            |
+// | - NPC's da Sala de Espera                              |
+// | - Engine do Campo de Batalha do Desfiladeiro Tierra    |			         			
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Tyler]                           |
@@ -25,7 +25,7 @@
 
 // NPCs da Sala de Espera
 //============================================================
-bat_room,57,227,5	script	Lieutenant Kalos	418,{
+bat_room,57,227,5	script	Tenente Kalos	418,{
 	end;
 
 OnInit:
@@ -37,7 +37,7 @@ OnEnterBG:
 	end;
 }
 
-bat_room,58,204,1	script	Lieutenant Eyor	414,{
+bat_room,58,204,1	script	Tenente Eyor	414,{
 	end;
 
 OnInit:
@@ -115,13 +115,13 @@ OnEnable:
 	donpcevent "OBJ#bat_a01_n::OnEnable";
 	donpcevent "NOBJ_mob#bat_a01_a::Onkill";
 	donpcevent "NOBJ_mob#bat_a01_b::Onkill";
-	donpcevent "Battle Therapist#a01_a::OnEnable";
-	donpcevent "Battle Therapist#a01_b::OnEnable";
+	donpcevent "Terapeuta de Batalha#a01_a::OnEnable";
+	donpcevent "Terapeuta de Batalha#a01_b::OnEnable";
 	donpcevent "countdown#bat_a01::OnEnable";
-	disablenpc "Guillaume Blacksmith#a01";
-	disablenpc "Croix Blacksmith#bat_a01";
-	disablenpc "Guillaume Vintenar#a01_a";
-	disablenpc "Croix Vintenar#a01_b";
+	disablenpc "Ferreiro Guillaume#a01";
+	disablenpc "Ferreiro Croix#bat_a01";
+	disablenpc "Vintenar Guillaume#a01_a";
+	disablenpc "Vintenar Croix#a01_b";
 	end;
 
 OnGuillaumeQuit:
@@ -141,8 +141,8 @@ OnReadyCheck:
 	else if( .@Guillaume < 10 || .@Croix < 10 )
 		end;
 	set $@TierraBG1,1;
-	donpcevent "Lieutenant Kalos::OnEnterBG";
-	donpcevent "Lieutenant Eyor::OnEnterBG";
+	donpcevent "Tenente Kalos::OnEnterBG";
+	donpcevent "Tenente Eyor::OnEnterBG";
 	donpcevent "start#bat_a01::onEnable";
 	bg_warp $@TierraBG1_id1,"bat_a01",352,342;
 	bg_warp $@TierraBG1_id2,"bat_a01",353,52;
@@ -166,11 +166,11 @@ Onkill:
 
 OnMyMobDead:
 	if (mobcount("bat_a01","OBJ#bat_a01_a::OnMyMobDead") < 1) {
-		donpcevent "Battle Therapist#a01_a::OnStop";
-		donpcevent "Battle Therapist#a01_b::OnStop";
+		donpcevent "Terapeuta de Batalha#a01_a::OnStop";
+		donpcevent "Terapeuta de Batalha#a01_b::OnStop";
 		set $@TierraBG1_Victory, 2;
-		enablenpc "Guillaume Vintenar#a01_a";
-		enablenpc "Croix Vintenar#a01_b";
+		enablenpc "Vintenar Guillaume#a01_a";
+		enablenpc "Vintenar Croix#a01_b";
 		mapannounce "bat_a01", "Vintenar Croix Swandery: Nós destruímos os Suprimentos dos Guillaumes. Nós vencemos esta! Wow!",bc_map,"0xFFCE00";
 		bg_warp $@TierraBG1_id1,"bat_a01",50,374;
 		bg_warp $@TierraBG1_id2,"bat_a01",42,16;
@@ -189,11 +189,11 @@ Onkill:
 
 OnMyMobDead:
 	if (mobcount("bat_a01","OBJ#bat_a01_b::OnMyMobDead") < 1) {
-		donpcevent "Battle Therapist#a01_a::OnStop";
-		donpcevent "Battle Therapist#a01_b::OnStop";
+		donpcevent "Terapeuta de Batalha#a01_a::OnStop";
+		donpcevent "Terapeuta de Batalha#a01_b::OnStop";
 		set $@TierraBG1_Victory, 1;
-		enablenpc "Guillaume Vintenar#a01_a";
-		enablenpc "Croix Vintenar#a01_b";
+		enablenpc "Vintenar Guillaume#a01_a";
+		enablenpc "Vintenar Croix#a01_b";
 		mapannounce "bat_a01", "Vintenar Guillaume Axl Rose : Nós destruímos os Suprimentos dos Croixs. Nós vencemos esta! Wow!",bc_map,"0xFFCE00";
 		bg_warp $@TierraBG1_id1,"bat_a01",50,374;
 		bg_warp $@TierraBG1_id2,"bat_a01",42,16;
@@ -217,7 +217,7 @@ OnMyMobDead:
 	if (mobcount("bat_a01","barricade#bat_a01_a::OnMyMobDead") < 17) {
 		killmonster "bat_a01","barricade#bat_a01_a::OnMyMobDead";
 		delwall "bat_a01_c1";
-		enablenpc "Guillaume Blacksmith#a01";
+		enablenpc "Ferreiro Guillaume#a01";
 		mapannounce "bat_a01", "Vintenar Guillaume Axl Rose : A Barricada do vale foi destruída! Onde está o nosso Ferreiro Guillaume? Nós precisamos reconstruir a Barricada!",bc_map,"0xFFCE00";
 	}
 	end;
@@ -239,7 +239,7 @@ OnMyMobDead:
 	if (mobcount("bat_a01","barricade#bat_a01_b::OnMyMobDead") < 17) {
 		killmonster "bat_a01","barricade#bat_a01_b::OnMyMobDead";
 		delwall "bat_a01_g1";
-		enablenpc "Croix Blacksmith#bat_a01";
+		enablenpc "Ferreiro Croix#bat_a01";
 		mapannounce "bat_a01", "Vintenar Croix Swandery : A Barricada do vale foi destruída! Onde está o nosso Ferreiro Croix? Nós precisamos reconstruir a Barricada!",bc_map,"0xFFCE00";
 	}
 	end;
@@ -301,7 +301,7 @@ OnMyMobDead:
 	end;
 }
 
-bat_a01,185,270,1	script	Guillaume Blacksmith#a01	851,{
+bat_a01,185,270,1	script	Ferreiro Guillaume#a01	851,{
 	if (getcharid(4) == $@TierraBG1_id1) {
 		mes "[Ferreiro Guillaume]";
 		mes "Nós estamos em uma emergência! A Barricada foi destruída!";
@@ -356,7 +356,7 @@ bat_a01,185,270,1	script	Guillaume Blacksmith#a01	851,{
 				delitem 7049,50; //Stone
 				donpcevent "barricade#bat_a01_a::OnEnable";
 				close2;
-				disablenpc "Guillaume Blacksmith#a01";
+				disablenpc "Ferreiro Guillaume#a01";
 				end;
 			}
 			else {
@@ -381,11 +381,11 @@ bat_a01,185,270,1	script	Guillaume Blacksmith#a01	851,{
 	}
 
 OnInit:
-	disablenpc "Guillaume Blacksmith#a01";
+	disablenpc "Ferreiro Guillaume#a01";
 	end;
 }
 
-bat_a01,170,121,5	script	Croix Blacksmith#bat_a01	851,{
+bat_a01,170,121,5	script	Ferreiro Croix#bat_a01	851,{
 	if (getcharid(4) == $@TierraBG1_id2) {
 		mes "[Ferreiro Croix]";
 		mes "Nós estamos em uma emergência! A Barricada foi destruída!";
@@ -435,6 +435,16 @@ bat_a01,170,121,5	script	Croix Blacksmith#bat_a01	851,{
 				next;
 				specialeffect EF_REPAIRWEAPON;
 				mes "[Ferreiro Croix]";
+				mes "Uau! Está feito.";
+				mes "Estamos mais aliviados agora.";
+				delitem 7049,50; //Stone
+				donpcevent "barricade#bat_a01_b::OnEnable";
+				close2;
+				disablenpc "Ferreiro Croix#bat_a01";
+				end;
+			}
+			else {
+				mes "[Ferreiro Croix]";
 				mes "Você não possui pedras o suficiente!";
 				next;
 				mes "[Ferreiro Croix]";
@@ -455,11 +465,11 @@ bat_a01,170,121,5	script	Croix Blacksmith#bat_a01	851,{
 	}
 
 OnInit:
-	disablenpc "Croix Blacksmith#bat_a01";
+	disablenpc "Ferreiro Croix#bat_a01";
 	end;
 }
 
-bat_a01,53,377,3	script	Battle Therapist#a01_a	95,{
+bat_a01,53,377,3	script	Terapeuta de Batalha#a01_a	95,{
 	specialeffect2 EF_HEAL;
 	mes "[Terapeuta de Batalha]";
 	mes "Agora feche o seus olhos";
@@ -475,12 +485,12 @@ OnInit:
 OnEnable:
 	stopnpctimer;
 	initnpctimer;
-	enablenpc "Battle Therapist#a01_a";
+	enablenpc "Terapeuta de Batalha#a01_a";
 	end;
 
 Onstop:
 	disablenpc "bat_a01_rp1_a_warp";
-	disablenpc "Battle Therapist#a01_a";
+	disablenpc "Terapeuta de Batalha#a01_a";
 	stopnpctimer;
 	end;
 
@@ -494,7 +504,7 @@ OnTimer26000:
 	end;
 
 OnTimer26500:
-	donpcevent "Battle Therapist#a01_a::OnEnable";
+	donpcevent "Terapeuta de Batalha#a01_a::OnEnable";
 	end;
 }
 
@@ -509,7 +519,7 @@ OnTouch_:
 	end;
 }
 
-bat_a01,45,19,3	script	Battle Therapist#a01_b	95,{
+bat_a01,45,19,3	script	Terapeuta de Batalha#a01_b	95,{
 	specialeffect2 EF_HEAL;
 	mes "[Terapeuta de Batalha]";
 	mes "Agora feche o seus olhos";
@@ -525,12 +535,12 @@ OnInit:
 OnEnable:
 	stopnpctimer;
 	initnpctimer;
-	enablenpc "Battle Therapist#a01_b";
+	enablenpc "Terapeuta de Batalha#a01_b";
 	end;
 
 Onstop:
 	disablenpc "bat_a01_rp1_b_warp";
-	disablenpc "Battle Therapist#a01_b";
+	disablenpc "Terapeuta de Batalha#a01_b";
 	stopnpctimer;
 	end;
 
@@ -544,7 +554,7 @@ OnTimer26000:
 	end;
 
 OnTimer26500:
-	donpcevent "Battle Therapist#a01_b::OnEnable";
+	donpcevent "Terapeuta de Batalha#a01_b::OnEnable";
 	end;
 }
 
@@ -559,7 +569,7 @@ OnTouch:
 	end;
 }
 
-bat_a01,60,216,3	script	Valley Ghost#bat_a01_n	950,{
+bat_a01,60,216,3	script	Fantasma do Vale#bat_a01_n	950,{
 	specialeffect2 EF_HEAL;
 	mes "[Fantasma do Vale]";
 	mes "Boo...Boo...";
@@ -675,7 +685,7 @@ bat_a01,168,16,3	script	Acampamento Croix#flag7	974,{ end; }
 bat_a01,357,74,3	script	Acampamento Croix#flag8	974,{ end; }
 bat_a01,348,74,3	script	Acampamento Croix#flag9	974,{ end; }
 
-bat_a01,53,377,3	script	Guillaume Vintenar#a01_a	419,{
+bat_a01,53,377,3	script	Vintenar Guillaume#a01_a	419,{
 	if (getcharid(4) == $@TierraBG1_id1) {
 		if ($@TierraBG1_Victory == 1) {
 			set .@your_medal,countitem(7828);
@@ -765,11 +775,11 @@ bat_a01,53,377,3	script	Guillaume Vintenar#a01_a	419,{
 	end;
 
 OnInit:
-	disablenpc "Guillaume Vintenar#a01_a";
+	disablenpc "Vintenar Guillaume#a01_a";
 	end;
 }
 
-bat_a01,45,19,3	script	Croix Vintenar#a01_b	415,{
+bat_a01,45,19,3	script	Vintenar Croix#a01_b	415,{
 	if (getcharid(4) == $@TierraBG1_id2) {
 		if ($@TierraBG1_Victory == 2) {
 			set .@your_medal,countitem(7828);
@@ -859,7 +869,7 @@ bat_a01,45,19,3	script	Croix Vintenar#a01_b	415,{
 	end;
 
 OnInit:
-	disablenpc "Croix Vintenar#a01_b";
+	disablenpc "Vintenar Croix#a01_b";
 	end;
 }
 
@@ -907,19 +917,19 @@ OnTimer1830000:
 }
 
 /*
-bat_a01,351,75,3	script	Croix Camp Soldier#bat_a01_guide	934,{
+bat_a01,351,75,3	script	Soldado do Campo Croix#bat_a01_guide	934,{
 	mes "Carregando...";
 	close;
 }
 
-bat_a01,356,326,3	script	Guillaume Camp Soldier#bat_a01_guide	934,{
+bat_a01,356,326,3	script	Soldado do Campo Guillaume#bat_a01_guide	934,{
 	mes "Carregando...";
 	close;
 }
 */
 
 /*
-bat_a01,1,1,3	script	Release all#a01	81,{
+bat_a01,1,1,3	script	Liberar Todos#a01	81,{
 	input .@input,0,2000;
 	if (.@input == 0) {
 		mes "Cancelado.";

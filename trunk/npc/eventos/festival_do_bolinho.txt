@@ -8,17 +8,18 @@
 // |                                                            |
 // |                    brAthena Script                         |
 // |------------------------------------------------------------|
-// | Nome do Script: Festival do Bolinho 				        |
+// | Nome do Script: Festival do Bolinho                        |
 // |------------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                               |
 // |------------------------------------------------------------|
-// | Versões eA/brA: 1.02/1.1                                   |
+// | Versões eA/brA: 1.01/1.1                                   |
 // |------------------------------------------------------------|
-// | Descrição: Festival do Bolinho           					|
+// | Descrição: Festival do Bolinho.                            |
 // |------------------------------------------------------------|
 // | Changelog:                                                 |
 // | 1.0 Script Traduzido [Heaven]                              |
-// | 1.1 Script Revisado [Protimus]                             | 
+// | 1.1 Script Revisado [Protimus & Tyler]                     | 
+// | - Anotações                                                |
 // \____________________________________________________________/
 
 payon,93,81,4	script	Mestre Exorcista Fahae	834,{
@@ -28,7 +29,7 @@ payon,93,81,4	script	Mestre Exorcista Fahae	834,{
         mes "Eu estive procurando a Lady Branca por algum tempo.";
         next;
         mes "[Mestre Exorcista Fahae]";
-        mes "Sinto que é hora de outro guerreiro tentar completar minha jornada.";
+		mes "Sinto que é hora de outro guerreiro tentar completar minha jornada.";
 		mes "Eu tenho alguns itens para ajudá-lo a completá-la, gostaria de comprá-los?";
         next;
         menu "Sim.",-, "Não, obrigado.",M_FIN;
@@ -37,11 +38,10 @@ payon,93,81,4	script	Mestre Exorcista Fahae	834,{
         mes "Eu tenho dois itens que podem ser úteis a você.";
         next;
         menu "Bebida de Realgar.",-, "Erva de Exorcismo.",M_HERB;
-  
         mes "[Mestre Exorcista Fahae]";
         mes "Quantas você precisa?";
         mes "Você só pode comprar 5 de cada vez.";
-        mes "Cada uma custa 20000z.";
+        mes "Cada uma custa 20.000z.";
         mes "(Digite 0 caso não queira nenhuma).";
         next;
         input @input;
@@ -68,8 +68,8 @@ M_HERB:
         mes "[Mestre Exorcista Fahae]";
         mes "Quantas você precisa?";
         mes "Você só pode comprar 5 de cada vez.";
-        mes "Cada uma custa 10000z.";
-        mes "(Digite 0 para cancelar)";
+        mes "Cada uma custa 10.000z.";
+        mes "(Digite 0 caso não queira nenhuma).";
         next;
         input @input;
         if(@input==0) close;
@@ -78,12 +78,12 @@ M_HERB:
         set Zeny,Zeny-10000*@input;
         getitem 683,@input;
         mes "[Mestre Exorcista Fahae]";
-        mes "Aqui você vai, espero que você tenha sucesso em minha busca.";
+        mes "Aqui vai você, espero que você tenha sucesso em minha busca.";
         close;
 
 L_NOZENY:
         mes "[Mestre Exorcista Fahae]";
-        mes "Dinheiro não traz alegria a todos, mas nós precisamos dele para sutentar o templo. Por favor, tente matar alguns monstros e pegue seus itens!";
+        mes "Dinheiro não traz alegria a todos, mas nós precisamos dele para sustentar o templo. Por favor, tente matar alguns monstros e pegue seus itens!";
         close;
 }
   

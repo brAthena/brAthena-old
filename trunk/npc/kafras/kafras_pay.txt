@@ -8,36 +8,39 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Kafras de Payon			    		|
+// | Nome do Script: Kafras da Cidade de Payon              |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 2.4b/1.0                               |
+// | Versões eA/brA: 2.4b/1.1                               |
 // |--------------------------------------------------------|
 // | Descrição: Configurações callfunc "F_Kafra".           |
 // | arg(0):                                                |
-// |  Setando em 0 a mensagem padrão da Kafra é exibida.    |
-// |  Setando em 1 a mensagem da Kafra de Niflhiem é exibida|
-// |  Setando em 2 a mensagem da Kafra de Guild é exibida.  |
-// | arg(1): 1 para desabilitar o menu "Teleporte".         |
-// |  0 para exibi-lo.                                      |
-// | arg(2): 1 para desabilitar o menu "Informações".       |
-// |  0 para exibi-lo.                                      |
-// | arg(3): Custo do serviço de "Armazem".                 |
-// | arg(4): Custo do serviço "Alugar Carrinho".            |
+// |  Setando em 0 a mensagem padrão da Kafra é exibida     |
+// |  Setando em 1 a mensagem da Kafra de Niflheim é exibida|
+// |  Setando em 2 a mensagem da Kafra de Clã é exibida     |
+// | arg(1): 1 para desabilitar o menu "Teleporte"          |
+// |  0 para exibi-lo                                       |
+// | arg(2): 1 para desabilitar o menu "Informações"        |
+// |  0 para exibi-lo                                       |
+// | arg(3): Custo do serviço de "Armazém"                  |
+// | arg(4): Custo do serviço "Alugar Carrinho"             |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [cleyton]   	                    |
+// | 1.1 Script Revisado [Tyler]                            |
+// | - Anotações                                            |
 // \________________________________________________________/
 
 
-// Main Town, South ----------------------------------------------------------
+// Cidade Principal, Sul
+//============================================================
 payon,181,104,4	script	Funcionária Kafra::kaf_payon	113,{
 	cutin "kafra_05",2;
 	callfunc "F_KafSetPay";
 	mes "[Funcionária Kafra]";
-	mes "A corporação Kafra";
-	mes "e estamos trabalhando para providenciar";
+	mes "A Corporação Kafra e";
+	mes "eu estamos trabalhando para providenciar";
 	mes "a você serviços convenientes.";
 	mes "Em que posso ajudar?";
 	callfunc "F_Kafra",5,0,1,60,930;
@@ -47,14 +50,15 @@ payon,181,104,4	script	Funcionária Kafra::kaf_payon	113,{
 		callfunc "F_KafEnd",0,1," na cidade de Payon";
 }
 
-// Main Town, Middle North --------------------------------------------------
+// Cidade Principal, Meio-Norte
+//============================================================
 payon,175,226,4	script	Funcionária Kafra::kaf_payon2	116,{
 	cutin "kafra_02",2;
 	callfunc "F_KafSetPay";
 	mes "[Funcionária Kafra]";
-	mes "Bem vindo à ";
-	mes "corporação Kafra.";
-	mes "Os serviços da corporação Kafra estão";
+	mes "Bem-vindo à ";
+	mes "Corporação Kafra.";
+	mes "Os serviços da Corporação Kafra estão";
 	mes "sempre ao seu lado.";
 	mes "Como posso ajudar?";
 	callfunc "F_Kafra",5,0,1,60,930;
@@ -64,14 +68,15 @@ payon,175,226,4	script	Funcionária Kafra::kaf_payon2	116,{
 		callfunc "F_KafEnd",0,1," na cidade de Payon";
 }
 
-// Archer Village ------------------------------------------------------------
+// Vila dos Arqueiros
+//============================================================
 pay_arche,55,123,0	script	Funcionária Kafra::kaf_payon3	115,{
 	cutin "kafra_03",2;
 	callfunc "F_KafSetPay";
 	mes "[Funcionária Kafra]";
 	mes "Bem vindo à ";
-	mes "corporação Kafra.";
-	mes "Os serviços da corporação Kafra";
+	mes "Corporação Kafra.";
+	mes "Os serviços da Corporação Kafra";
 	mes "estão sempre ao seu lado.";
 	mes "Como posso ajudar?";
 	callfunc "F_Kafra",5,5,1,90,1200;
@@ -81,8 +86,8 @@ pay_arche,55,123,0	script	Funcionária Kafra::kaf_payon3	115,{
 		callfunc "F_KafEnd",0,1," na caverna de Payon";
 }
 
-
-// Function: Sets variables for Payon Kafras ---------------------------------
+// Função: Seta as variáveis para as Kafras de Payon
+//============================================================ 
 function	script	F_KafSetPay	{
 	cleararray @wrpC$[0],"",getarraysize(@wrpC$);
 	setarray @wrpD$[0], "Alberta", "Prontera", "Morroc";

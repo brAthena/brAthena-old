@@ -14,11 +14,12 @@
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.1/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: Evento da Semana da Criança.                |
+// | Descrição: Evento da Semana da Criança do IndiaRO.     |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
-// | 1.0 Script traduzido [Boomer]                          |
-// | 1.1 Script revisado [Protimus & Tyler]                 | 
+// | 1.0 Script Traduzido [Boomer]                          |
+// | 1.1 Script Revisado [Protimus & Tyler]                 | 
+// | - Anotações                                            |
 // \________________________________________________________/
 
 prontera,146,91,5       script  Pândita Chacha#child07   61,{

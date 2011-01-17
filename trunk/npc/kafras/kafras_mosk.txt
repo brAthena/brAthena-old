@@ -8,31 +8,33 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Kafras de Moscovia			    		|
+// | Nome do Script: Kafras da Cidade de Moscóvia           |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0                                |
+// | Versões eA/brA: 1.0/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: Kafras da cidade de Moscovia                |
+// | Descrição: Kafras da Cidade de Moscóvia.               |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [cleyton]   	                    |
+// | 1.1 Script Revisado [Tyler]                            |
+// | - Anotações                                            |
 // \________________________________________________________/
 
-moscovia,223,191,4	script	Equipe Kafra#mosk	114,{
+moscovia,223,191,4	script	Assistente Kafra#mosk	114,{
 	cutin "kafra_04",2;
-	mes "[Equipe Kafra]";
-	mes "Bem vindo à";
-	mes "corporação Kafra.";
-	mes "Os serviços da corporação Kafra";
+	mes "[Assistente Kafra]";
+	mes "Bem-vindo à";
+	mes "Corporação Kafra.";
+	mes "Os serviços da Corporação Kafra";
 	mes "sempre estarão ao seu lado.";
-	mes "Como posso ajuda-lo?";
+	mes "Como posso ajudá-lo?";
 	next;
-	switch(select("Save:Usar armazem:Alugar um carrinho de mão:Checar outras informações:Cancelar")) {
+	switch(select("Salvar Ponto de Retorno.:Usar armazém.:Alugar Carrinho.:Checar outras informações.:Cancelar.")) {
 		case 1:
-			mes "[Equipe Kafra]";
-			mes "Seu ponto de renascimento";
+			mes "[Assistente Kafra]";
+			mes "Seu ponto de retorno";
 			mes "foi salvo na cidade de";
 			mes "Moscóvia. Obrigado por usar";
 			mes "os serviços da Kafra.";
@@ -42,10 +44,10 @@ moscovia,223,191,4	script	Equipe Kafra#mosk	114,{
 			end;
 		case 2:
 			if(basicskillcheck() && getskilllv("NV_BASIC") < 6){
-				mes "[Equipe Kafra]";
+				mes "[Assistente Kafra]";
 				mes "Eu lamento, mas você";
-				mes "precisa ser um Novice ";
-				mes "com o mínimo nível básico 6";
+				mes "precisa ser um Aprendiz";
+				mes "com no mínimo nível básico 6";
 				mes "para usar os serviços de armazém.";
 				close2;
 				cutin "", 255;
@@ -54,9 +56,9 @@ moscovia,223,191,4	script	Equipe Kafra#mosk	114,{
 			if(countitem(7059)) delitem 7059,1;
 			else {
 				if(Zeny<80){
-					mes "[Equipe Kafra]";
+					mes "[Assistente Kafra]";
 					mes "Me desculpe, mas você não tem";
-					mes "zeny para usar";
+					mes "zenys para usar";
 					mes "o serviço de armazém.";
 					mes "Esse serviço custa 80 zenys.";
 					close2;
@@ -66,7 +68,7 @@ moscovia,223,191,4	script	Equipe Kafra#mosk	114,{
 				set Zeny, Zeny-80;
 				set RESRVPTS, RESRVPTS + (80/5);
 			}
-			mes "[Equipe Kafra]";
+			mes "[Assistente Kafra]";
 			mes "Seu armazém";
 			mes "está sendo aberto agora.";
 			mes "Obrigado por usar";
@@ -80,24 +82,24 @@ moscovia,223,191,4	script	Equipe Kafra#mosk	114,{
 			end;
 		case 3:
 			if(baseClass != Job_Merchant){
-				mes "[Equipe Kafra]";
+				mes "[Assistente Kafra]";
 				mes "Me desculpe, mas";
-				mes "o serviço de o serviço de aluguel de carrinhos de mão";
+				mes "o serviço de aluguel de carrinhos de mão";
 				mes "está disponível apenas para Mercadores, ";
-				mes "Ferreiros, Mestres Ferreiros,";
-				mes "Alquimistas e Criadores.";
+				mes "Ferreiros, Mestre-Ferreiros,";
+				mes "Alquimistas, Criadores e suas evoluções.";
 				close2;
 				cutin "", 255;
 				end;
 			}
 
 			else if(checkcart() == 1){
-				mes "[Equipe Kafra]";
+				mes "[Assistente Kafra]";
 				mes "Você já possui";
 				mes "um carrinho de mão equipado.";
 				mes "Infelizmente, nós não podemos";
-				mes "alugar um carro de mão";
-				mes "para um único cliente.";
+				mes "alugar mais de um carrinho de";
+				mes "mão para um único cliente.";
 				close2;
 				cutin "", 255;
 				end;
@@ -105,18 +107,18 @@ moscovia,223,191,4	script	Equipe Kafra#mosk	114,{
 
 			if(countitem(7061) > 0) delitem 7061,1;
 			else {
-				mes "[Equipe Kafra]";
+				mes "[Assistente Kafra]";
 				mes "O aluguel de um carrinho de mão ";
-				mes "custa 700 zeny.";
+				mes "custa 700 zenys.";
 				mes "Você deseja alugar um carrinho?";
 				next;
 				if(select("Alugar um carrinho.:Cancelar.") == 1) {
 					if(Zeny<700){
-						mes "[Equipe Kafra]";
+						mes "[Assistente Kafra]";
 						mes "Eu sinto muito, mas você";
-						mes "não possui dinheiro";
+						mes "não possui dinheiro suficiente";
 						mes "para pagar o aluguel de um carrinho de mão.";
-						mes "O aluguel custa 700 zeny.";
+						mes "O aluguel custa 700 zenys.";
 						close2;
 						cutin "", 255;
 						end;
@@ -134,26 +136,26 @@ moscovia,223,191,4	script	Equipe Kafra#mosk	114,{
 			cutin "", 255;
 			end;
 		case 4:
-			if(select("Checar pontos especiais reservados.:Cancelar") == 2) {
+			if(select("Checar Pontos especiais reservados.:Cancelar.") == 2) {
 				cutin "", 255;
 				close;
 			}
-			mes "[Equipe Kafra]";
+			mes "[Assistente Kafra]";
 			mes strcharinfo(0) + ", você tem um total de";
-			mes RESRVPTS+ " POntos especiais reservados.";
+			mes RESRVPTS+ " Pontos especiais reservados.";
 			next;
-			mes "[Equipe Kafra]";
-			mes "Você pode trocar";
-			mes "suas reservas especiais de Pontos";
-			mes "por recompensas no escritório da corporação Kafra em Aldebaran.";
+			mes "[Assistente Kafra]";
+			mes "Você pode trocar suas reservas";
+			mes "especiais de Pontos por recompensas no";
+			mes "escritório da Corporação Kafra em Aldebaran.";
 			mes "Utilize os nossos serviços convenientes para utilizar os benefícios do nosso programa de recompensas.";
 			close2;
 			cutin "", 255;
 			end;
 		case 5:
-			mes "[Equipe Kafra]";
-			mes "Nós, da corporação Kafra";
-			mes "sempre estamos nos esforçando para lhe proporcionar os melhores serviços. Esperamos satisfazer as suas necessidades de aventureiros nos padrões de excelência.";
+			mes "[Assistente Kafra]";
+			mes "Nós, da Corporação Kafra";
+			mes "sempre estamos nos esforçando para lhe proporcionar os melhores serviços. Esperamos satisfazer as suas necessidades de aventureiro conforme os padrões de excelência.";
 			close2;
 			cutin "", 255;
 			end;

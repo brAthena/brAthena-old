@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Spawns dos Campos de Payon				|
+// | Nome do Script: Monstros dos Campos de Payon           |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
@@ -16,11 +16,12 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | 1.1 Script Revisado [Protimus]							| 
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// | - Anotações                                            |  
 // \________________________________________________________/
 
 //==================================================
-// pay_fild01 - Floresta de Payon
+// pay_fild01 - Floresta de Payon 
 //==================================================
 pay_fild01,0,0,0,0	monster	Salgueiro	1010,10,0,0,0
 pay_fild01,0,0,0,0	monster	Poporing	1031,10,0,0,0

@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Spawns dos Campos de Louyang			|
+// | Nome do Script: Monstros dos Campos de Louyang         |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
@@ -16,11 +16,12 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | 1.1 Script Revisado [Protimus]							| 
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// | - Anotações                                            |  
 // \________________________________________________________/
 
 //==================================================
-// lou_fild01 - Campos de Louyang
+// lou_fild01 - Campo de Louyang
 //==================================================
 lou_fild01,224,315,100,50	monster	Pé Grande	1060,7,0,0,0
 lou_fild01,203,225,110,35	monster	Pé Grande	1060,4,60000,30000,1

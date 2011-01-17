@@ -14,10 +14,10 @@
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.0/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: NPCs de Entrada do Flavius.                 |
-// | Oficiais de Flavius - Lado Guillaume                   |
-// | Cavaleiros                                             |
-// | Oficiais de Flavius - Lado Croix                       |
+// | Descrição: NPC's de Entrada do Flavius.                |
+// | - Oficiais de Flavius - Lado Guillaume                 |
+// | - Cavaleiros                                           |
+// | - Oficiais de Flavius - Lado Croix                     |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Tyler]                           |
@@ -26,7 +26,7 @@
 
 // Oficiais de Flavius - Lado Guillaume
 //============================================================
-bat_room,133,178,5	script	Flavius Officer#01a	418,{
+bat_room,133,178,5	script	Oficial de Flavius#01a	418,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Espere aí um minuto! -";
 		mes "- Atualmente você está -";
@@ -93,7 +93,7 @@ bat_room,133,178,5	script	Flavius Officer#01a	418,{
 	close;
 }
 
-bat_room,133,121,1	script	Flavius Officer#01b	414,{
+bat_room,133,121,1	script	Oficial de Flavius#01b	414,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Espere aí um minuto! -";
 		mes "- Atualmente você está -";
@@ -162,7 +162,7 @@ bat_room,133,121,1	script	Flavius Officer#01b	414,{
 
 // Cavaleiros
 //============================================================
-bat_room,135,178,5	script	Guillaume Knight#3	417,{
+bat_room,135,178,5	script	Cavaleiro Guillaume#3	417,{
 	mes "[Cavaleiro Guillaume]";
 	mes "O objetivo principal da Arena Flavius é fazer 2 pontos antes que o seu inimigo através da destruição de seus cristais.";
 	next;
@@ -184,7 +184,7 @@ bat_room,135,178,5	script	Guillaume Knight#3	417,{
 	close;
 }
 
-bat_room,151,178,5	script	Guillaume Knight#4	417,{
+bat_room,151,178,5	script	Cavaleiro Guillaume#4	417,{
 	mes "[Cavaleiro Guillaume]";
 	mes "O objetivo principal da Arena Flavius é fazer 2 pontos antes que o seu inimigo através da destruição de seus cristais.";
 	next;
@@ -206,7 +206,7 @@ bat_room,151,178,5	script	Guillaume Knight#4	417,{
 	close;
 }
 
-bat_room,135,121,1	script	Croix Knight#3	413,{
+bat_room,135,121,1	script	Cavaleiro Croix#3	413,{
 	mes "[Cavaleiro Croix]";
 	mes "O objetivo principal da Arena Flavius é fazer 2 pontos antes que o seu inimigo através da destruição de seus cristais.";
 	next;
@@ -228,7 +228,7 @@ bat_room,135,121,1	script	Croix Knight#3	413,{
 	close;
 }
 
-bat_room,151,121,1	script	Croix Knight#4	413,{
+bat_room,151,121,1	script	Cavaleiro Croix#4	413,{
 	mes "[Cavaleiro Croix]";
 	mes "O objetivo principal da Arena Flavius é fazer 2 pontos antes que o seu inimigo através da destruição de seus cristais.";
 	next;
@@ -252,7 +252,7 @@ bat_room,151,121,1	script	Croix Knight#4	413,{
 
 // Oficiais de Flavius - Lado Croix
 //============================================================
-bat_room,148,178,5	script	Flavius Officer#02a	418,{
+bat_room,148,178,5	script	Oficial de Flavius#02a	418,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Espere aí um minuto! -";
 		mes "- Atualmente você está -";
@@ -319,7 +319,7 @@ bat_room,148,178,5	script	Flavius Officer#02a	418,{
 	close;
 }
 
-bat_room,148,121,1	script	Flavius Officer#02b	414,{
+bat_room,148,121,1	script	Oficial de Flavius#02b	414,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Espere aí um minuto! -";
 		mes "- Atualmente você está -";

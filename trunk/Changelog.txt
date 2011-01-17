@@ -9,6 +9,62 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0103 - 17/01/2011 [Tyler]
+	* Adicionadas traduções de alguns npcs da pasta Aeroplanos.
+	- einbroch.txt
+	- lighthalzen.txt
+	- yuno.txt
+	* Adicionadas correções dos npcs da pasta Campais.
+	- bg_sistema.txt
+	- flavius01.txt
+	- flavius02.txt
+	- flavius_entrada.txt
+	- kvm01.txt
+	- kvm02.txt
+	- kvm03.txt
+	- kvm_troca.txt
+	- kvm_entrada.txt
+	- tierra01.txt
+	- tierra02.txt
+	- tierra_entrada.txt
+	* Adicionadas traduções e revisões da pasta Eventos.
+	- Revisão completa da pasta Eventos/nguild.
+	- dia_dos_namorados.txt
+	- festival_do_bolinho.txt
+	- idul_fitri.txt
+	- natal.txt
+	- resetar_habilidades.txt
+	- semana_da_criança.txt
+	- torres_gemeas.txt
+	* Revisão completa da pasta Gde.
+	* Correção do npc da pasta Instancias.
+	- torre_infinita.txt
+	* Revisão de alguns arquivos da pasta Kafras.
+	- cool_event_corp.txt
+	- kafras_alb.txt
+	- kafras_alde.txt
+	- kafras_brasilis.txt
+	- kafras_com.txt
+	- kafras_dungeons.txt
+	- kafras_gef.txt
+	- kafras_izl.txt
+	- kafras_mor.txt
+	- kafras_mosk.txt
+	- kafras_new.txt
+	- kafras_pay.txt
+	- kafras_pron.txt
+	- kafras_yun.txt
+	* Revisão de alguns arquivos da pasta Monstros.
+	- Revisão completa da pasta Monstros/campos.
+	- cidades.txt
+	- pvp.txt
+	* Adicionada a revisão do npc da pasta Portais/Outros.
+	- arena.txt
+	* Adicionadas algumas traduções e revisões da pasta Quests.
+	- bunnyband.txt
+	- mrsmile.txt
+	- quests_lutie.txt
+	
 	r0102 - 16/01/2011 [Dani]
 	* Atualizado conforme eAthena 14670.
 

@@ -8,7 +8,7 @@
 // |                                                        |
 // |                     brAthena Script                    |
 // |--------------------------------------------------------|
-// | Nome do Script: Batalhas Campais - KvM 80-99           |
+// | Nome do Script: Sistema de Batalha - KvM 80-99         |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
@@ -27,7 +27,7 @@
 
 // NPC's da Sala de Espera
 //============================================================
-bat_room,169,226,5	script	KVM Waiting Room#a::KvM01R_Guillaume	418,{
+bat_room,169,226,5	script	Sala de Espera do KVM#a::KvM01R_Guillaume	418,{
 	end;
 
 OnInit:
@@ -41,7 +41,7 @@ OnEnterBG:
 
 bat_room,169,220,0	warp	#kvm801	2,2,bat_room,154,150
 
-bat_room,169,205,3	script	KVM Waiting Room#b::KvM01R_Croix	414,{
+bat_room,169,205,3	script	Sala de Espera do KVM#b::KvM01R_Croix	414,{
 	end;
 
 OnInit:
@@ -137,8 +137,8 @@ OnInit:
 	setwall "bat_c01",55,122,5,7,0,"batc01wall_b";
 	setwall "bat_c01",140,56,6,7,0,"batc01wall_c";
 	setwall "bat_c01",140,57,5,7,0,"batc01wall_d";
-	disablenpc "KVM Officer#KVM01A";
-	disablenpc "KVM Officer#KVM01B";
+	disablenpc "Oficial do KVM#KVM01A";
+	disablenpc "Oficial do KVM#KVM01B";
 	end;
 
 OnGuillaumeJoin:
@@ -192,8 +192,8 @@ OnReadyCheck:
 	end;
 
 OnStart:
-	disablenpc "KVM Officer#KVM01A";
-	disablenpc "KVM Officer#KVM01B";
+	disablenpc "Oficial do KVM#KVM01A";
+	disablenpc "Oficial do KVM#KVM01B";
 	set $@KvM01BG_Victory, 0;
 	// Warp Teams
 	bg_warp $@KvM01BG_id1,"bat_c01",53,128;
@@ -320,8 +320,8 @@ OnCroixWin:
 
 OnStop:
 	stopnpctimer;
-	enablenpc "KVM Officer#KVM01A";
-	enablenpc "KVM Officer#KVM01B";
+	enablenpc "Oficial do KVM#KVM01A";
+	enablenpc "Oficial do KVM#KVM01B";
 	// Warp Teams
 	bg_warp $@KvM01BG_id1,"bat_c01",53,128;
 	bg_warp $@KvM01BG_id2,"bat_c01",146,55;
@@ -334,8 +334,8 @@ OnReset:
 	set $@KvM01BG_Victory, 0;
 	if( $@KvM01BG_id1 ) { bg_destroy $@KvM01BG_id1; set $@KvM01BG_id1, 0; }
 	if( $@KvM01BG_id2 ) { bg_destroy $@KvM01BG_id2; set $@KvM01BG_id2, 0; }
-	disablenpc "KVM Officer#KVM01A";
-	disablenpc "KVM Officer#KVM01B";
+	disablenpc "Oficial do KVM#KVM01A";
+	disablenpc "Oficial do KVM#KVM01B";
 	mapwarp "bat_c01","bat_room",154,150;
 	maprespawnguildid "bat_c01",0,3; // Just in case someone else
 	bg_updatescore "bat_c01",5,5;
@@ -377,13 +377,13 @@ OnTimer60000:
 
 // Recompensas do Campo de Batalha
 //============================================================
-bat_c01,51,130,5	script	KVM Officer#KVM01A	419,{
+bat_c01,51,130,5	script	Oficial do KVM#KVM01A	419,{
 	if( $@KvM01BG_Victory )
 	{
 		if( $@KvM01BG_Victory == Bat_Team )
 		{ // Victory
 			set kvm_point,kvm_point + 5;
-			mes "[Oficial de KvM]";
+			mes "[Oficial do KvM]";
 			mes "Ótima batalha!";
 			mes "Que a glória do KvM esteja com você.";
 			mes "Você adquiriu os pontos dos vencedores: 5";
@@ -392,7 +392,7 @@ bat_c01,51,130,5	script	KVM Officer#KVM01A	419,{
 		else
 		{ // Lose
 			set kvm_point,kvm_point + 1;
-			mes "[Oficial de KvM]";
+			mes "[Oficial do KvM]";
 			mes "Eu sinto muito.";
 			mes "Eu te desejo mais sorte na próxima vez.";
 			mes "Você adquiriu os pontos dos perdedores: 1";
@@ -406,13 +406,13 @@ bat_c01,51,130,5	script	KVM Officer#KVM01A	419,{
 	end;
 }
 
-bat_c01,148,53,1	script	KVM Officer#KVM01B	415,{
+bat_c01,148,53,1	script	Oficial do KVM#KVM01B	415,{
 	if( $@KvM01BG_Victory )
 	{
 		if( $@KvM01BG_Victory == Bat_Team )
 		{ // Victory
 			set kvm_point,kvm_point + 5;
-			mes "[Oficial de KvM]";
+			mes "[Oficial do KvM]";
 			mes "Ótima batalha!";
 			mes "Que a glória do KvM esteja com você.";
 			mes "Você adquiriu os pontos dos vencedores: 5";
@@ -421,7 +421,7 @@ bat_c01,148,53,1	script	KVM Officer#KVM01B	415,{
 		else
 		{ // Lose
 			set kvm_point,kvm_point + 1;
-			mes "[Oficial de KvM]";
+			mes "[Oficial do KvM]";
 			mes "Eu sinto muito.";
 			mes "Eu te desejo mais sorte na próxima vez.";
 			mes "Você adquiriu os pontos dos perdedores: 1";

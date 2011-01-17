@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Spawns dos Campos de Moscóvia		    |
+// | Nome do Script: Monstros dos Campos de Moscóvia        |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
@@ -16,11 +16,12 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | 1.1 Script Revisado [Protimus]							|  
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// | - Anotações                                            |  
 // \________________________________________________________/
 
 //==================================================
-// mosk_fild02 - Campos de Moscovia
+// mosk_fild02 - Campo de Moscovia
 //==================================================
 mosk_fild02,0,0,0,0	monster	Pé Grande	1060,40,0,0,0
 mosk_fild02,0,0,0,0	monster	Caramelo	1103,20,0,0,0

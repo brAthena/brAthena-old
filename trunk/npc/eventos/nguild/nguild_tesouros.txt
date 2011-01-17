@@ -8,19 +8,19 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: NGuild - Sala do Tesouro				|
+// | Nome do Script: NGuild - Sala do Tesouro               |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.3b/1.1                               |
 // |--------------------------------------------------------|
-// | Descrição: Sala do Tesouro da NGuild                   |
+// | Descrição: Sala do Tesouro da NGuild.                  |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [cleyton]          	            |
-// | 1.1 Script Revisado [Protimus]						 	|
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// | - Anotações                                            |
 // \________________________________________________________/
-
 
 //================================================
 // Função de Spawn dos Tesouros
@@ -50,9 +50,9 @@ function	script	F_GldTreas	{
 	return;
 }
 
-//==============================================================
+//================================================
 //  Mudança para Sala do Tesouro
-//===============================================================
+//================================================
 function	script	F_GldTreasSw	{
 	mes " ";
 	mes "Há uma pequena alavanca aqui.";
@@ -66,9 +66,11 @@ function	script	F_GldTreasSw	{
 	close;
 }
 
-//<=============================== 1° Castelo =================================>\\
+// 1° Castelo
+//================================================ 
 
-// Spawn de Tesouros -----------------------
+// Spawn de Tesouros
+//================================================
 nguild_alde,1,1,1	script	Treasure_N01	-1,{
 
 OnRecvCastleN01:
@@ -80,9 +82,9 @@ OnInit:
 	end;
 
 OnDied:
-	mapannounce "nguild_alde","O Baú do Tesouro foi aberto",17;
+	mapannounce "nguild_alde","O Baú do Tesouro foi aberto.",17;
 	set $boxNumN01, $boxNumN01 -1;
-	if($boxNumN01 == 0) mapannounce "nguild_alde", "Todos os tesouros foram abertos.  Você deve esperar até o próximo dia para abrir os tesouros novamente.",0;
+	if($boxNumN01 == 0) mapannounce "nguild_alde", "Todos os tesouros foram abertos. Você deve esperar até o próximo dia para abrir os tesouros novamente.",0;
 	end;
 }
 
@@ -92,9 +94,11 @@ nguild_alde,123,223,0	script	Switch#TresN01	111,{
 	end;
 }
 
-//<================================ 2° Castelo ================================>\\
+// 2° Castelo
+//================================================
 
-// Spawn de Tesouros ----------------------------
+// Spawn de Tesouros
+//================================================
 nguild_gef,1,1,1	script	Treasure_N02	-1,{
 
 OnRecvCastleN02:
@@ -106,21 +110,24 @@ OnInit:
 	end;
 
 OnDied:
-	mapannounce "nguild_gef","O Baú do Tesouro foi aberto",17;
+	mapannounce "nguild_gef","O Baú do Tesouro foi aberto.",17;
 	set $boxNumN02, $boxNumN02 -1;
-	if($boxNumN02 == 0) mapannounce "nguild_gef", "Todos os tesouros foram abertos.  Você deve esperar até o próximo dia para abrir os tesouros novamente.",0;
+	if($boxNumN02 == 0) mapannounce "nguild_gef", "Todos os tesouros foram abertos. Você deve esperar até o próximo dia para abrir os tesouros novamente.",0;
 	end;
 }
 
-// Mudança da Sala do Tesouro ---------------------------------------------------------
+// Mudança da Sala do Tesouro
+//================================================
 nguild_gef,152,117,0	script	Switch#TresN02	111,{
 	callfunc "F_GldTreasSw","nguild_gef",40,49;
 	end;
 }
 
-//<================================ 3° Castelo ================================>\\
+// 3° Castelo 
+//================================================
 
-// Spawn de Tesouros ---------------------------
+// Spawn de Tesouros 
+//================================================
 nguild_pay,1,1,0	script	Treasure_N03	-1,{
 OnRecvCastleN03:
 	end;
@@ -131,9 +138,9 @@ OnInit:
 	end;
 
 OnDied:
-	mapannounce "nguild_pay","O Baú do Tesouro foi aberto",17;
+	mapannounce "nguild_pay","O Baú do Tesouro foi aberto.",17;
 	set $boxNumN03, $boxNumN03 -1;
-	if($boxNumN03 == 0) mapannounce "nguild_pay", "Todos os tesouros foram abertos.  Você deve esperar até o próximo dia para abrir os tesouros novamente.",0;
+	if($boxNumN03 == 0) mapannounce "nguild_pay", "Todos os tesouros foram abertos. Você deve esperar até o próximo dia para abrir os tesouros novamente.",0;
 	end;
 }
 
@@ -143,9 +150,11 @@ nguild_pay,295,8,0	script	Switch#TresN03	111,{
 	end;
 }
 
-//<================================ 4° Castelo ================================>\\
+// 4° Castelo
+//================================================
 
-// Spawn de Tesouros -------------------------------
+// Spawn de Tesouros
+//================================================
 nguild_prt,1,1,0	script	Treasure_N04	-1,{
 OnRecvCastleN04:
 	end;
@@ -156,13 +165,14 @@ OnInit:
 	end;
 
 OnDied:
-	mapannounce "nguild_prt","O Baú do Tesouro foi aberto",17;
+	mapannounce "nguild_prt","O Baú do Tesouro foi aberto.",17;
 	set $boxNumN04, $boxNumN04 -1;
-	if($boxNumN04 == 0) mapannounce "nguild_prt", "Todos os tesouros foram abertos.  Você deve esperar até o próximo dia para abrir os tesouros novamente.",0;
+	if($boxNumN04 == 0) mapannounce "nguild_prt", "Todos os tesouros foram abertos. Você deve esperar até o próximo dia para abrir os tesouros novamente.",0;
 	end;
 }
 
-// Mudança da Sala do Tesouro ----------------------------------------------------
+// Mudança da Sala do Tesouro
+//================================================
 nguild_prt,15,209,0	script	Switch#TresN04	111,{
 	callfunc "F_GldTreasSw", "nguild_prt",109,179;
 	end;

@@ -8,68 +8,68 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Twin Towers NPCs                       |
+// | Nome do Script: Torres Gêmeas                          |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.6/1.0                                |
+// | Versões eA/brA: 1.6/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição:                                             |
-// |  mRO Event: Twin Towers NPCs	                        |
+// | Descrição: mRO Event: Torres Gêmeas - Irmãos Siameses. |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			   						| 
+// | 1.0 Script Traduzido [CaroLPunk]                       |
+// | 1.1 Script Revisado [Tyler]                            |
+// | - Anotações                                            |
 // \________________________________________________________/
 
-prontera,146,92,4	script	Twin Towers#tt1::Twin-Towers	812,{
-	mes "[Twin Towers]";
-	mes "How are you? We are the Twin Towers.";
-	mes "It is such a pleasure to be able to meet you here.";
-	mes "I suppose you know that this is Ragnarok Online, a land of dreams and fantasies.";
-	mes "Are you having a joyous adventure and exciting experience?";
+prontera,146,92,4	script	Torres Gêmeas#tt1::Torres Gêmeas	812,{
+	mes "[Torres Gêmeas]";
+	mes "Como você está? Nós somos os Irmãos Siameses.";
+	mes "É um prazer enorme encontrá-lo por aqui.";
+	mes "Eu suponho que você já saiba que este é o Ragnarok Online, uma terra de sonhos e fantasias.";
+	mes "Você está tendo uma aventura alegre e uma experiência excitante?";
 	next;
-	mes "[Twin Towers]";
-	mes "Although we can't move around and can't live the way you do,";
-	mes "we love the world as much as you do!";
+	mes "[Torres Gêmeas]";
+	mes "Apesar de não podermos nos movimentar por aí e não podermos viver do jeito que você faz,";
+	mes "nós amamos o mundo o tanto quanto você!";
 	next;
-	mes "[Twin Towers]";
-	mes "May you experience the sensation of this lovely world!";
-	mes "For this reason, we are here at your service with our special magic.";
-	mes "Kindly let us know.";
+	mes "[Torres Gêmeas]";
+	mes "Que você possa experimentar a sensação deste mundo lindo!";
+	mes "Por esta razão, estamos aqui ao seu serviço com a nossa magia especial.";
+	mes "Por favor, avise-nos se quiser utilizá-la.";
 	next;
-	menu "I shall accept your offer.",YES,"I'll ask for your service next time.",NO;
+	menu "Vou aceitar sua oferta.",YES,"Vou procurar pelos seus serviços uma outra hora.",NO;
 
 	NO:	
-	mes "[Twin Towers]"; 
-	mes "Er, what a pity. Traveling by yourself is still the best evidence of adventure.";
-	mes "Isn't this proving that you are still young?";
-	mes "We respect brave hearts like this";
+	mes "[Torres Gêmeas]"; 
+	mes "Er, que pena. Viajando sozinho é ainda a melhor prova de aventura.";
+	mes "Não é isso que demonstra que você ainda é jovem?";
+	mes "Nós respeitamos os corações corajosos como o seu!";
 	next;
-	mes "[Twin Towers]";
-	mes "There are good and bad times in life, moreover, adventure isn't an easy task in the first place.";
-	mes "Isn't this true?";
-	mes "Feel free to come to us when you have time, we will always be there to serve you.";
+	mes "[Torres Gêmeas]";
+	mes "Há bons e maus momentos na vida, aliás, a aventura não é uma tarefa fácil, em primeiro lugar.";
+	mes "Não é verdade?";
+	mes "Sinta-se livre para vir até nós quando tiver tempo, nós sempre estaremos aqui para atendê-lo.";
 	next;
-	mes "[Twin Towers]";
-	mes "Forget all your troubles, and create a splendid legend in this wonderful world.";
-	mes "This is such a wonderful world, and you'll always be a great adventurer!";
+	mes "[Torres Gêmeas]";
+	mes "Esqueça todos os seus problemas e crie uma lenda esplêndida neste mundo maravilhoso.";
+	mes "Este é um mundo tão maravilhoso, e você sempre será um grande aventureiro!";
 	close;
 	YES:	
-	mes "[Twin Towers]";
-	mes "The flaming passion of an adventurer,";
-	mes "The desire to explore the unknown realms,";
-	mes "The dedication and commitment to achieve the aspiration...";
-	mes "You are simply a true adventurer with what compassion.";
+	mes "[Torres Gêmeas]";
+	mes "A paixão ardente de um aventureiro, o desejo";
+	mes "de explorar os reinos desconhecidos, a dedicação";
+	mes "e o empenho para alcançar uma melhor aspiração...";
+	mes "Você é simplesmente um verdadeiro aventureiro com essa compaixão.";
 	next;
-	mes "[Twin Towers]";
-	mes "We wish to help passionate adventurers.";
-	mes "Although we are not able to move, luckily we have the special ability that can warp you to places of danger and excitement.";
+	mes "[Torres Gêmeas]";
+	mes "Queremos ajudar os aventureiros apaixonados.";
+	mes "Embora não sejamos capazes de nos movimentar, felizmente, nós temos a habilidade especial que pode transportá-lo para lugares de perigo e emoção.";
 	next;
-	mes "[Twin Towers]";
-	mes "Come on! Where do you wish to go?";
-	mes "Just let us know you desired destination and we will send your there!";
-	menu "Hidden Temple", HiddenTemple,"Orc Dungeon",OrcDungeon,"Ant Hell",AntHell,"Mjolnir Waste Pit",MjolnirWastePit,"Sphinx",Sphinx,"Glast Heim",GlastHeim,"Comodo",Comodo;
+	mes "[Torres Gêmeas]";
+	mes "Vamos lá! Onde você quer ir?";
+	mes "Só nos mostre o destino desejado e nós enviaremos você até lá!";
+	menu "Arredores de Prontera.", HiddenTemple,"Calabouço dos Orcs.",OrcDungeon,"Formigueiro Infernal.",AntHell,"Minas de Carvão no Mt. Mjolnir.",MjolnirWastePit,"Esfinges.",Sphinx,"Glast Heim.",GlastHeim,"Campos de Comodo.",Comodo;
 		HiddenTemple:
 			warp "prt_fild01",136,368;
 			close;
@@ -93,10 +93,10 @@ prontera,146,92,4	script	Twin Towers#tt1::Twin-Towers	812,{
 			close;
 }
 
-morocc,160,97,4	duplicate(Twin-Towers)	Twin Towers#tt2	812
-payon,176,226,4	duplicate(Twin-Towers)	Twin Towers#tt3	812
-izlude,134,92,4	duplicate(Twin-Towers)	Twin Towers#tt4	812
-alberta,25,238,4	duplicate(Twin-Towers)	Twin Towers#tt5	812
-geffen,120,60,4	duplicate(Twin-Towers)	Twin Towers#tt6	812
-aldebaran,143,116,4	duplicate(Twin-Towers)	Twin Towers#tt7	812
-comodo,194,158,4	duplicate(Twin-Towers)	Twin Towers#tt8	812
+morocc,160,97,4	duplicate(Twin-Towers)	Torres Gêmeas#tt2	812
+payon,176,226,4	duplicate(Twin-Towers)	Torres Gêmeas#tt3	812
+izlude,134,92,4	duplicate(Twin-Towers)	Torres Gêmeas#tt4	812
+alberta,25,238,4	duplicate(Twin-Towers)	Torres Gêmeas#tt5	812
+geffen,120,60,4	duplicate(Twin-Towers)	Torres Gêmeas#tt6	812
+aldebaran,143,116,4	duplicate(Twin-Towers)	Torres Gêmeas#tt7	812
+comodo,194,158,4	duplicate(Twin-Towers)	Torres Gêmeas#tt8	812

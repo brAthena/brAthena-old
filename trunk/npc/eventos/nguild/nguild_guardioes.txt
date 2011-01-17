@@ -8,19 +8,18 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: NGuild - Guardiões						|
+// | Nome do Script: NGuild - Guardiões                     |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.0/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: Spawn dos Guardiões da NGuild				|
+// | Descrição: Spawn dos Guardiões da NGuild.              |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Script Traduzido [cleyton]          	            |
-// | 1.1 Script Revisado [Protimus]						 	|
+// | 1.0 Script Traduzido [cleyton]                         |
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
 // \________________________________________________________/
-
 
 //------------------------------------------------------------------------------
 nguild_alde,216,24,0	script	Guardian_N01	-1,{
@@ -36,7 +35,7 @@ OnAgitInit:
 	end;
 
 OnGuardianDied:
-	MapAnnounce "nguild_alde","Um guardião foi derrotado",17;
+	MapAnnounce "nguild_alde","Um guardião foi derrotado.",17;
 	end;
 }
 
@@ -54,9 +53,10 @@ OnAgitInit:
 	end;
 
 OnGuardianDied:
-	MapAnnounce "nguild_gef","Um guardião foi derrotado",17;
+	MapAnnounce "nguild_gef","Um guardião foi derrotado.",17;
 	end;
 }
+
 //------------------------------------------------------------------------------
 nguild_pay,139,139,0	script	Guardian_N03	-1,{
 OnAgitInit:
@@ -71,9 +71,10 @@ OnAgitInit:
 	end;
 
 OnGuardianDied:
-	MapAnnounce "nguild_pay","Um guardião foi derrotado",17;
+	MapAnnounce "nguild_pay","Um guardião foi derrotado.",17;
 	end;
 }
+
 //------------------------------------------------------------------------------
 nguild_prt,197,197,0	script	Guardian_N04	-1,{
 OnAgitInit:
@@ -88,6 +89,6 @@ OnAgitInit:
 	end;
 
 OnGuardianDied:
-	MapAnnounce "nguild_prt","Um guardião foi derrotado",17;
+	MapAnnounce "nguild_prt","Um guardião foi derrotado.",17;
 	end;
 }

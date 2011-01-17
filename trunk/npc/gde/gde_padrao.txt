@@ -8,17 +8,18 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Guerra do Emperium - Padrões		    |
+// | Nome do Script: Guerra do Emperium - Padrões           |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.7/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: NPCs padrões de todos os castelos.        	|
+// | Descrição: NPCs padrões de todos os castelos.          |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Script Traduzido [cleyton]     		            |
-// | 1.1 Script Revisado [Protimus]							|
+// | 1.0 Script Traduzido [cleyton]                         |
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// | - Anotações                                            |
 // \________________________________________________________/
 
 // Gerenciador Automático
@@ -74,7 +75,7 @@ OnAgitBreak:
 	set .@GID,getcharid(2);
 	// Exibição do log de erro caso um personagem sem Clã quebra um Emperium (Isso nunca deve ocorrer em padrões oficiais - kRO/bRO).
 	if (.@GID <= 0) {
-		set .@notice$,"O personagem "+strcharinfo(0)+" ("+getcharid(0)+") Quebrou o Emperium do Castelo: "+strnpcinfo(2)+", sem uma Clã. Nenhum dado será salvo e o Emperium retornará.";
+		set .@notice$,"O personagem "+strcharinfo(0)+" ("+getcharid(0)+") quebrou o Emperium do Castelo: "+strnpcinfo(2)+", sem um Clã. Nenhum dado será salvo e o Emperium retornará.";
  		logmes .@notice$; debugmes .@notice$;
 		donpcevent "Agit#"+strnpcinfo(2)+"::OnStartArena";
 		end;
@@ -92,12 +93,12 @@ OnAgitBreak:
 	SetCastleData strnpcinfo(2),1, .@GID;
 
 	// Anúncio de Destruição do Emperium e sua nova Clã ocupante.
-	mapannounce strnpcinfo(2),"O emperium foi destruido.",bc_map|bc_woe,"0x00CCFF",FW_NORMAL,12;
+	mapannounce strnpcinfo(2),"O Emperium foi destruído.",bc_map|bc_woe,"0x00CCFF",FW_NORMAL,12;
 	MapRespawnGuildID strnpcinfo(2),.@GID,2;
 
 	// Repara os dados do Castelo, Desabilita a Kafra e Investimentos do Castelo.
 	GetCastleData strnpcinfo(2),0,strnpcinfo(0)+"::OnRecvCastle";
-	disablenpc "Kafra Staff#"+strnpcinfo(2);
+	disablenpc "Assistente Kafra#"+strnpcinfo(2);
 	for( set .@i, 4; .@i <= 9; set .@i, .@i+1 ) {
 		SetCastleData strnpcinfo(2), .@i, 0;
 	}
@@ -115,7 +116,7 @@ OnAgitBreak:
 	announce "O castelo [" + getcastlename(strnpcinfo(2)) + "] foi conquistado pelo Clã [" + getguildName(.@GID) + "].",bc_all|bc_woe;
 	end;
 
-// Termino da Guerra do Emperium.
+// Término da Guerra do Emperium.
 OnAgitEnd:
 	if (strnpcinfo(0) == "Gld_Agit_Manager") end;
 	GvgOff strnpcinfo(2);
@@ -130,7 +131,7 @@ OnGuildBreak:
 	if (strnpcinfo(0) == "Gld_Agit_Manager") end;
 	// Destroí os Guardiões, desabilita a Kafra e modifica o Guild Master (Dono do Castelo) para 0.
 	killmonster strnpcinfo(2),"Guardian#"+strnpcinfo(2)+"::OnGuardianDied";
-	disablenpc "Kafra Staff#"+strnpcinfo(2);
+	disablenpc "Assistente Kafra#"+strnpcinfo(2);
 	SetCastleData strnpcinfo(2),0,0;
 	sleep getbattleflag("gvg_eliminate_time");
 	Announce "O castelo [" + GetCastleName(strnpcinfo(2)) + "] foi abandonado.",0;
@@ -146,7 +147,7 @@ OnRecvCastle:
 		killmonsterall strnpcinfo(2);
 		// Spawns Normais (Fora da Sala do Emperium).
 		if (compare(strnpcinfo(2),"aldeg")) {
-			monster strnpcinfo(2),0,0,"Druida Malígno",1117,10;
+			monster strnpcinfo(2),0,0,"Druida Maligno",1117,10;
 			monster strnpcinfo(2),0,0,"Khalitzburg",1132,4;
 			monster strnpcinfo(2),0,0,"Cavaleiro do Abismo",1219,2;
 			monster strnpcinfo(2),0,0,"Executor",1205,1;
@@ -172,8 +173,8 @@ OnRecvCastle:
 		}
 		else if (compare(strnpcinfo(2),"gefg")) {
 			// Spawns Normais (Fora da Sala do Emperium).
-			monster strnpcinfo(2),0,0,"Druida Malígno",1117,10;
-			monster strnpcinfo(2),0,0,"Xamã do vento",1263,11;
+			monster strnpcinfo(2),0,0,"Druida Maligno",1117,10;
+			monster strnpcinfo(2),0,0,"Xamã do Vento",1263,11;
 			monster strnpcinfo(2),0,0,"Bathory",1102,10;
 			monster strnpcinfo(2),0,0,"Jakk",1130,10;
 			monster strnpcinfo(2),0,0,"Marduk",1140,20;
@@ -181,7 +182,7 @@ OnRecvCastle:
 			monster strnpcinfo(2),0,0,"Alice",1275,1;
 			monster strnpcinfo(2),0,0,"Cavaleiro do Abismo",1219,1;
 			monster strnpcinfo(2),0,0,"Flor do Luar",1150,1;
-			monster strnpcinfo(2),0,0,"Phreeoni",1159,1;
+			monster strnpcinfo(2),0,0,"Freeoni",1159,1;
 			// Spawns Dentro da Sala do Emperium.
 			if (strnpcinfo(2) == "gefg_cas01") { setarray .@emproom[0],197,181; }
 			else if (strnpcinfo(2) == "gefg_cas02") { setarray .@emproom[0],176,178; }
@@ -204,7 +205,7 @@ OnRecvCastle:
 			monster strnpcinfo(2),0,0,"Horong",1129,11;
 			monster strnpcinfo(2),0,0,"Raydric Arqueiro",1276,5;
 			monster strnpcinfo(2),0,0,"Kobold Arqueiro",1282,4;
-			monster strnpcinfo(2),0,0,"Gargoyle",1253,5;
+			monster strnpcinfo(2),0,0,"Gárgula",1253,5;
 			// Spawns Dentro da Sala do Emperium.
 			if (strnpcinfo(2) == "payg_cas01") { setarray .@emproom[0],139,139; }
 			else if (strnpcinfo(2) == "payg_cas02") { setarray .@emproom[0],38,25; }
@@ -221,7 +222,7 @@ OnRecvCastle:
 			monster strnpcinfo(2),0,0,"Raydric",1163,1;
 			monster strnpcinfo(2),0,0,"Khalitzburg",1132,10;
 			monster strnpcinfo(2),0,0,"Cavaleiro do Abismo",1219,5;
-			monster strnpcinfo(2),0,0,"Cavaleiro Sangrento",1268,5;
+			monster strnpcinfo(2),0,0,"Cavaleiro Sanguinário",1268,5;
 			monster strnpcinfo(2),0,0,"Cavaleiro da Tempestade",1251,1;
 			monster strnpcinfo(2),0,0,"Hatii",1252,1;
 			monster strnpcinfo(2),0,0,"Raydric Arqueiro",1276,5;
@@ -246,8 +247,8 @@ OnRecvCastle:
 			end;
 		}
 		donpcevent "Agit#"+strnpcinfo(2)+"::OnStartArena";
-		// Disable Kafra Staff...
-		disablenpc "Kafra Staff#"+strnpcinfo(2);
+		// Desativar a Assistente Kafra.
+		disablenpc "Assistente Kafra#"+strnpcinfo(2);
 		end;
 	}
 	else {
@@ -277,7 +278,7 @@ OnRecvCastle:
 			end;
 		}
 		donpcevent "Guardian#"+strnpcinfo(2)+"::OnSpawnGuardians";
-		if (GetCastleData(strnpcinfo(2),9) < 1) disablenpc "Kafra Staff#"+strnpcinfo(2);
+		if (GetCastleData(strnpcinfo(2),9) < 1) disablenpc "Assistente Kafra#"+strnpcinfo(2);
 	}
 	end;
 }
@@ -297,7 +298,7 @@ OnRecvCastle:
 	// Define a coordenada y para um Guardião.
 	// [0] = 1° Guardiões da coordenada y.
 	// Define as coordenadas da "Sala do Tesouro".
-	// Aldebaran (Luina).
+	// Aldebaran (Feudo de Luina)
 	if (strnpcinfo(2) == "aldeg_cas01") { 
 		setarray .@guardiantype[0],1,2,2,2,2,3,3,3;
 		setarray .@guardianposx[0],17,39,38,45,21,218,213,73;
@@ -328,7 +329,7 @@ OnRecvCastle:
 		setarray .@guardianposy[0],202,79,192,74,221,78,73,112;
 		setarray .@masterroom[0],64,8;
 	}
-	// Geffen (Britoniah)
+	// Geffen (Feudo de Britoniah)
 	else if (strnpcinfo(2) == "gefg_cas01") {
 		setarray .@guardiantype[0],1,1,1,2,2,3,3,3;
 		setarray .@guardianposx[0],67,184,62,36,50,50,189,200;
@@ -359,7 +360,7 @@ OnRecvCastle:
 		setarray .@guardianposy[0],149,163,142,47,50,17,35,166;
 		setarray .@masterroom[0],149,106;
 	}
-	// Payon (Baulder)
+	// Payon (Feudo do Bosque Celestial)
 	else if (strnpcinfo(2) == "payg_cas01") {
 		setarray .@guardiantype[0],2,2,2,2,2,2,2,3;
 		setarray .@guardianposx[0],229,225,222,99,65,36,51,138;
@@ -390,7 +391,7 @@ OnRecvCastle:
 		setarray .@guardianposy[0],279,260,234,279,37,21,22,36;
 		setarray .@masterroom[0],153,137;
 	}
-	// Prontera (Valkyrie Realms)
+	// Prontera (Feudo das Valquírias)
 	else if (strnpcinfo(2) == "prtg_cas01") {
 		setarray .@guardiantype[0],1,1,1,2,2,3,3,3;
 		setarray .@guardianposx[0],182,182,153,59,50,184,196,107;
@@ -428,17 +429,17 @@ OnRecvCastle:
 	mes "[ Mordomo " + .@name$ + " ]";
 	if (.@GID == 0) {
 		mes "Eu estou aguardando meu mestre retornar.";
-		mes "Se você deseja falar com ele, também terá que aguardar. ";
+		mes "Se você deseja falar com ele, também terá que aguardar.";
 		close;
 	}
 	if (getcharid(2) != .@GID || strcharinfo(0) != getguildmaster(.@GID)){
 		mes "Eu sou um leal seguidor do mestre ^ff0000" + getguildmaster(.@GID) + "^000000. Nós somos guardiões e defendemos nosso castelo até o fim!";
 		close;
 	}
-	mes "Bem vindo, meu honorável mestre, ^ff0000" + getguildmaster(.@GID) + "^000000...";
+	mes "Bem-vindo, meu honorável mestre, ^ff0000" + getguildmaster(.@GID) + "^000000...";
 	mes "Estou a seu serviço para o que precisar e serei fiel as minhas funções.";
 	next;
-	switch(select("Informações do castelo:Investir no crescimento comercial:Inverstir na defesa:Convocar Guardiões:Serviços da Kafra:Ir para sala do mestre")) {
+	switch(select("Informações do castelo.:Investir no crescimento comercial.:Inverstir na defesa.:Convocar Guardiões.:Serviços da Kafra.:Ir para sala do mestre.")) {
 	case 1:
 		mes "[ Mordomo " + .@name$ + " ]";
 		mes "Mestre, eu vou relatar as informações do castelo.";
@@ -493,27 +494,27 @@ OnRecvCastle:
 			close;
 		}
 		if (GetCastleData(strnpcinfo(2),4) == 0) {
-			mes "Agora será necessário investir a quantia de  ^ff0000" + .@eco_invest + "^000000 zeny. Você vai investir?";
+			mes "Agora será necessário investir a quantia de  ^ff0000" + .@eco_invest + "^000000 zenys. Você vai investir?";
 		}
 		else {
-			mes "Você já investiu hoje... mas se deseja investir novamente, será necessário investir mais ^ff0000" + .@eco_invest + "^000000 zeny.";
+			mes "Você já investiu hoje... mas se deseja investir novamente, será necessário investir mais ^ff0000" + .@eco_invest + "^000000 zenys.";
 		}
 		next;
-		switch(select("Investir no crescimento comercial:Cancelar")) {
+		switch(select("Investir no crescimento comercial.:Cancelar.")) {
 		case 1:
 			if (Zeny < .@eco_invest) {
 				mes "[ Mordomo " + .@name$ + " ]";
-				mes "Sinto muito, mas você não possui zeny para investir. Mestre, tente novamente quando tiver juntado mais fundos.";
+				mes "Sinto muito, mas você não possui zenys para investir. Mestre, tente novamente quando tiver juntado mais fundos.";
 				close;
 			}
 			set zeny,zeny-.@eco_invest;
 			SetCastleData strnpcinfo(2),4,GetCastleData(strnpcinfo(2),4)+1;
 			mes "[ Mordomo " + .@name$ + "]";
-			mes "Nós concluimos os investimentos em segurança. Espero que nosso nível de comércio tenha aumentado mais até amanhã.";
+			mes "Nós concluímos os investimentos em segurança. Espero que nosso nível de comércio tenha aumentado mais até amanhã.";
 			close;
 		case 2:
 			mes "[ Mordomo " + .@name$ + " ]";
-			mes "Como o senhor desejar Mestre... Sem pressa. Faremos o nosso melhor.";
+			mes "Como o senhor desejar Mestre... Sem pressa. Faremos o nosso melhor!";
 			close;
 		}
 	case 3:
@@ -555,27 +556,27 @@ OnRecvCastle:
 			close;
 		}
 		if (GetCastleData(strnpcinfo(2),5) == 0) {
-			mes "Agora será necessário investir a quantia de ^ff0000" + .@def_invest + "^000000 zeny. Você vai investir?";
+			mes "Agora será necessário investir a quantia de ^ff0000" + .@def_invest + "^000000 zenys. Você vai investir?";
 		}
 		else {
-			mes "Você já investiu hoje... mas se deseja investir novamente, será necessário investir mais ^ff0000" + .@def_invest + "^000000 zeny.";
+			mes "Você já investiu hoje... mas se deseja investir novamente, será necessário investir mais ^ff0000" + .@def_invest + "^000000 zenys.";
 		}
 		next;
-		switch(select("Investir na defesa.:Cancelar")) {
+		switch(select("Investir na defesa.:Cancelar.")) {
 		case 1:
 			if (Zeny < .@def_invest) {
 				mes "[ Mordomo " + .@name$ + " ]";
-				mes "Sinto muito, mas você não possui zeny para investir. Mestre, tente novamente quando tiver juntado mais fundos.";
+				mes "Sinto muito, mas você não possui zenys para investir. Mestre, tente novamente quando tiver juntado mais fundos.";
 				close;
 			}
 			set zeny,zeny-.@def_invest;
 			SetCastleData strnpcinfo(2),5,GetCastleData(strnpcinfo(2),5)+1;
 			mes "[ Mordomo " + .@name$ + "]";
-			mes "Nós concluimos os investimentos em segurança. Espero que nosso nível de defesa tenha aumentado mais até amanhã.";
+			mes "Nós concluímos os investimentos em segurança. Espero que nosso nível de defesa tenha aumentado mais até amanhã.";
 			close;
 		case 2:
 			mes "[ Mordomo " + .@name$ + " ]";
-			mes "Como o senhor desejar Mestre... Sem pressa. Faremos o nosso melhor.";
+			mes "Como o senhor desejar Mestre... Sem pressa. Faremos o nosso melhor!";
 			close;
 
 
@@ -599,13 +600,13 @@ OnRecvCastle:
 		set .@menu$,.@gname$[0]+":"+.@gname$[1]+":"+.@gname$[2]+":"+.@gname$[3]+":"+.@gname$[4]+":"+.@gname$[5]+":"+.@gname$[6]+":"+.@gname$[7];
 		set .@GDnum,select(.@menu$)+9;
 		mes "[ Mordomo " + .@name$ + " ]";
-		mes "Você deseja chamar Guardiões? 10000 zeny são requeridos para convocar cada um.";
+		mes "Você deseja chamar Guardiões? 10000 zenys são requeridos para convocar cada um.";
 		next;
-		switch(select("Chamar:Cancelar")) {
+		switch(select("Chamar.:Cancelar.")) {
 		case 1:
 			mes "[ Mordomo " + .@name$ + " ]";
 			if (getgdskilllv(.@GID,10002) == 0) {
-				mes "Mestre, nós não temos habilidade para convocar Guardiões. Se desejar convocar guardiões, será necessário aprender essa habilidade do Clã, Sem essa habilidade nós falharemos ao convocar guardiões.";
+				mes "Mestre, nós não temos habilidade para convocar Guardiões. Se desejar convocar guardiões, será necessário aprender essa habilidade do Clã, sem essa habilidade nós falharemos ao convocar guardiões.";
 				close;
 			}
 			if (GetCastleData(strnpcinfo(2),.@GDnum) == 1) {
@@ -636,21 +637,21 @@ OnRecvCastle:
 			mes "[ Mordomo " + .@name$ + " ]";
 			mes "Agora sobre os serviços da Kafra... Deseja dispensa-los?";
 			next;
-			switch(select("Dispensar:Cancelar")) {
+			switch(select("Dispensar.:Cancelar.")) {
 			case 1:
 				cutin "kafra_01",2;
-				mes "[ Kafra contratada ]";
+				mes "[Kafra Contratada]";
 				mes "Eu trabalhei tão duro... Mestre, é isso que deseja?... Se o senhor está insatisfeito, trabalhei mais ianda... Por favor, reconsidere mestre.";
 				next;
-				switch(select("Dispensar:Cancelar")) {
+				switch(select("Dispensar.:Cancelar.")) {
 				case 1:
-					mes "[ Kafra contratada ]";
+					mes "[Kafra Contratada]";
 					mes "Oh, meu Deus! Isso é um absurdo!";
 					next;
 					cutin "kafra_01",255;
 					break;
 				case 2:
-					mes "[ Kafra contratada ]";
+					mes "[Kafra Contratada]";
 					mes "Eu irei trabalhar arduamente... Muito obrigada!";
 					close2;
 					cutin "kafra_01",255;
@@ -662,23 +663,23 @@ OnRecvCastle:
 				mes "Aquela Kafra é muito trabalhadora. Penso que seria melhor manter ela.";
 				close;
 			}
-			disablenpc "Kafra Staff#"+strnpcinfo(2);
+			disablenpc "Assistente Kafra#"+strnpcinfo(2);
 			SetCastleData strnpcinfo(2),9,0;
 			mes "[ Mordomo " + .@name$ + " ]";
 			mes "....";
-			mes "Dispensar o serviço da Kafra... Mas... você está descontente com alguma coisa?";
+			mes "Dispensar o serviço da Kafra... mas... você está descontente com alguma coisa?";
 			close;
 		}
 		else {
 			mes "[ Mordomo " + .@name$ + " ]";
-			mes "Você deseja contratar os serviços da kafra para o nosso castelo através do escritório central das Kafras?";
-			mes "^ff0000 10000 zeny são necessários para a contratação. ";
+			mes "Você deseja contratar os serviços da Kafra para o nosso castelo através do Escritório Central das Kafras?";
+			mes "^ff0000 10000 zenys são necessários para a contratação. ";
 			next;
-			switch(select("Contratar.:Cancelar")) {
+			switch(select("Contratar.:Cancelar.")) {
 			case 1:
 				mes "[ Mordomo " + .@name$ + " ]";
 				if (getgdskilllv(.@GID,10001) == 0) {
-					mes "Mestre, não podemos contratar os serviços da Kafra, porque você não fez um contrato com o escritório central das Kafras. Se deseja contratar os serviços das kafras é necessário aprender essa habilidade no Clã.";
+					mes "Mestre, não podemos contratar os serviços da Kafra, porque você não fez um contrato com o Escritório Central das Kafras. Se deseja contratar os serviços das Kafras é necessário aprender essa habilidade no Clã.";
 					close;
 				}
 				if (Zeny < 10000) {
@@ -686,12 +687,12 @@ OnRecvCastle:
 					close;
 				}
 				set zeny,zeny-10000;
-				enablenpc "Kafra Staff#"+strnpcinfo(2);
+				enablenpc "Assistente Kafra#"+strnpcinfo(2);
 				SetCastleData strnpcinfo(2),9,1;
-				mes "Nós concluimos o nosso contrato com o escritório das Kafras com êxito. Nós contratamos os serviços das Kafras.";
+				mes "Nós concluímos o nosso contrato com o Escritório das Kafras com êxito. Nós contratamos os serviços das Kafras.";
 				next;
 				cutin "kafra_01",2;
-				mes "[ Kafra Contratada]";
+				mes "[Kafra Contratada]";
 				mes "Como você está? Eu sou a Kafra enviada pelo escritório.";
 				mes "Nós faremos o nosso melhor para manter a reputação das Kafras.";
 				next;
@@ -702,7 +703,7 @@ OnRecvCastle:
 				close;
 			case 2:
 				mes "[ Mordomo " + .@name$ + " ]";
-				mes "Fiz como foi ordenado, mas algum dos nossos membros não ficará feliz. Será melhor contratar outra Kafra rapidamente.";
+				mes "Fiz como foi ordenado, mas algum dos nossos membros não ficarão felizes. Será melhor contratar outra Kafra rapidamente.";
 				close;
 			}
 		}
@@ -711,7 +712,7 @@ OnRecvCastle:
 		mes "Você deseja visitar a sala onde nossos tesouros são guardados?";
 		mes "Essa sala é restrita a você... Você é o único que tem acesso a ela.";
 		next;
-		switch(select("Entrar na sala secreta.:Cancelar")) {
+		switch(select("Entrar na sala secreta.:Cancelar.")) {
 		case 1:
 			mes "[ Mordomo " + .@name$ + " ]";
 			mes "Por favor, me siga. Mostrarei a passagem secreta.";
@@ -740,7 +741,7 @@ OnSpawnGuardians:
 	// Define a coordenada y para um Guardião.
 	// [0] = 1° Guardiões da coordenada y.
 	// Define as coordenadas da "Sala do Tesouro".
-	// Aldebaran (Luina)
+	// Aldebaran (Feudo de Luina)
 	if (strnpcinfo(2) == "aldeg_cas01") { 
 		setarray .@guardiantype[0],1,2,2,2,2,3,3,3;
 		setarray .@guardianposx[0],17,39,38,45,21,218,213,73;
@@ -766,7 +767,7 @@ OnSpawnGuardians:
 		setarray .@guardianposx[0],51,188,157,157,27,145,156,41;
 		setarray .@guardianposy[0],202,79,192,74,221,78,73,112;
 	}
-	// Geffen (Britoniah) Castles
+	// Geffen (Feudo de Britoniah)
 	else if (strnpcinfo(2) == "gefg_cas01") {
 		setarray .@guardiantype[0],1,1,1,2,2,3,3,3;
 		setarray .@guardianposx[0],67,184,62,36,50,50,189,200;
@@ -792,7 +793,7 @@ OnSpawnGuardians:
 		setarray .@guardianposx[0],45,71,72,66,177,66,177,193;
 		setarray .@guardianposy[0],149,163,142,47,50,17,35,166;
 	}
-	// Payon (Baulder) Castles
+	// Payon (Feudo do Bosque Celestial)
 	else if (strnpcinfo(2) == "payg_cas01") {
 		setarray .@guardiantype[0],2,2,2,2,2,2,2,3;
 		setarray .@guardianposx[0],229,225,222,99,65,36,51,138;
@@ -818,7 +819,7 @@ OnSpawnGuardians:
 		setarray .@guardianposx[0],19,33,266,266,263,263,250,36;
 		setarray .@guardianposy[0],279,260,234,279,37,21,22,36;
 	}
-	// Prontera (Valkyrie Realms) Castles
+	// Prontera (Feudo das Valquírias)
 	else if (strnpcinfo(2) == "prtg_cas01") {
 		setarray .@guardiantype[0],1,1,1,2,2,3,3,3;
 		setarray .@guardianposx[0],182,182,153,59,50,184,196,107;
@@ -896,13 +897,13 @@ OnGuardianDied:
 	if (getcharid(2) == .@GID) {
 		mes "[Kafra]";
 		mes "Bem vindo, membro do clã ^ff0000" + getguildname(.@GID) + "^000000.";
-		mes "A corporação kafra estará com você onde quer que vá.";
+		mes "A Corporação Kafra estará com você onde quer que vá.";
 		next;
-		switch(select("Usar Armazém:Usar Armazém do Clã:Usar serviço de Teleporte:Alugar um carrinho:Cancelar")) {
+		switch(select("Usar Armazém.:Usar Armazém do Clã.:Usar serviço de Teleporte.:Alugar um carrinho.:Cancelar.")) {
 		case 1:
 			if (basicskillcheck() && getskilllv("NV_BASIC") < 6) {
 				mes "[Kafra]";
-				mes "Me desculpe, mas para poder usar o armazém, você precisa ser um noviço com no mínimo level 6 de profissão.";
+				mes "Me desculpe, mas para poder usar o armazém, você precisa ser um Aprendiz com no mínimo level 6 de profissão.";
 			}
 			else {
 				callfunc("F_CheckKafCode");
@@ -924,7 +925,7 @@ OnGuardianDied:
 			mes "[Kafra]";
 			mes "Por favor, deixe-me mostrar o seu destino.";
 			next;
-			switch(select(.@destination$ + " ^880000200 ^000000z:Cancelar")) {
+			switch(select(.@destination$ + " ^880000200 ^000000z.:Cancelar.")) {
 			case 1:
 				if (Zeny < 200) {
 					mes "[Kafra]";
@@ -945,7 +946,7 @@ OnGuardianDied:
 		case 4:
 			if(baseClass != Job_Merchant){
 				mes "[Kafra]";
-				mes "Lamento, mas o serviço de aluguel de carrinhos está disponível somente para a classe de mercadores e suas evoluções.";
+				mes "Lamento, mas o serviço de aluguel de carrinhos está disponível somente para a classe de Mercadores e suas evoluções.";
 			}
 			else if(checkcart() == 1){
 				mes "[Kafra]";
@@ -953,13 +954,13 @@ OnGuardianDied:
 			}
 			else {
 				mes "[Kafra]"		;
-				mes "O aluguel de carrinhos custa 800 zeny. Deseja alugar um carrinho?";
+				mes "O aluguel de carrinhos custa 800 zenys. Deseja alugar um carrinho?";
 				next;
 				switch(select("Sim.:Cancelar.")) {
 				case 1:
 					if (Zeny < 800) {
 						mes "[Kafra]";
-						mes "Você não possui zeny. Você precisa de 800 zeny para alugar um carrinho.";
+						mes "Você não possui zenys. Você precisa de 800 zenys para alugar um carrinho.";
 					}
 					else {
 						close2;
@@ -977,13 +978,13 @@ OnGuardianDied:
 			break;
 		case 5:
 			mes "[Kafra]";
-			mes "A corp. Kafra fará o possível para oferecer o melhor serviço.";
+			mes "A Corp. Kafra fará o possível para oferecer o melhor serviço.";
 			mes "Obrigada por usar a Corp. Kafra. Volte sempre.";
 		}
 	}
 	else {
 		mes "[Kafra]";
-		mes "Estou instruida para servir somente os membros do Clã ^ff0000" + getguildname(.@GID) + "^000000. Por favor, procure outra kafra da cidade mais próxima. Lamentamos pelo inconveniente.";
+		mes "Estou instruída para servir somente os membros do Clã ^ff0000" + getguildname(.@GID) + "^000000. Por favor, procure outra Kafra da cidade mais próxima. Lamentamos pelo inconveniente.";
 	}
 	close2;
 	cutin "kafra_01",255;
@@ -1226,7 +1227,7 @@ OnClock0001:
 		set .@boxid, .@treasurebox + (.@i+2) % 2;
 		set .@box,1 << .@i;
 		if ((getd("$@"+strnpcinfo(2)+"_treasure") & .@box) == 0) {
-			monster strnpcinfo(2),.@treasurex[.@i],.@treasurey[.@i],"Treasure Chest",.@boxid,1,"Treasure#"+strnpcinfo(2)+"::OnTreasureDied"+.@i;
+			monster strnpcinfo(2),.@treasurex[.@i],.@treasurey[.@i],"Báu do Tesouro",.@boxid,1,"Treasure#"+strnpcinfo(2)+"::OnTreasureDied"+.@i;
 			setd "$@"+strnpcinfo(2)+"_treasure",getd("$@"+strnpcinfo(2)+"_treasure") | .@box;
 		}
 	}

@@ -27,7 +27,7 @@
 
 // Oficial do KvM - Lado Guillaume
 //============================================================
-bat_room,164,178,5	script	KVM Mercenary Officer#1	418,{
+bat_room,164,178,5	script	Mercenário Oficial do KVM#1	418,{
 	/*
 	set .@kvm,checkquest(6026,PLAYTIME);
 	if ((.@kvm == 0) || (.@kvm == 1)) {
@@ -77,7 +77,7 @@ bat_room,164,178,5	script	KVM Mercenary Officer#1	418,{
 
 // Cavaleiro Guillaume - KvM
 //============================================================
-bat_room,167,178,5	script	Guillaume Knight#kvm	417,{
+bat_room,167,178,5	script	Cavaleiro Guillaume#kvm	417,{
 	mes "[Cavaleiro Guillaume]";
 	mes "Olá.";
 	mes "O que você deseja saber?";
@@ -137,7 +137,7 @@ bat_room,167,178,5	script	Guillaume Knight#kvm	417,{
 
 // Oficial do KvM - Lado Croix
 //============================================================
-bat_room,164,121,1	script	KVM Mercenary Officer#2	414,{
+bat_room,164,121,1	script	Mercenário Oficial do KVM#2	414,{
 	/*
 	set .@kvm,checkquest(6025,PLAYTIME);
 	if ((.@kvm == 0) || (.@kvm == 1)) {
@@ -187,7 +187,7 @@ bat_room,164,121,1	script	KVM Mercenary Officer#2	414,{
 
 // Cavaleiro Croix - KvM
 //============================================================
-bat_room,167,121,1	script	Croix Knight#kvm	413,{
+bat_room,167,121,1	script	Cavaleiro Croix#kvm	413,{
 	mes "[Cavaleiro Croix]";
 	mes "Olá.";
 	mes "O que você deseja saber?";

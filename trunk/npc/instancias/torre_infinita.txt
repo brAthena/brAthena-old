@@ -14,14 +14,17 @@
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.5/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: Uma torre de 101 andares				    |
+// | Descrição: Torre Sem Fim.                              |
+// | - Consiste em uma torre de 101 andares	            |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [SoulSyntax]                      |
+// | - Foram feitas adaptações nos nomes dos NPCs para pt_BR|
 // | 1.1 Script Revisado [Protimus & Tyler]                 |
+// | - Anotações                                            |
 // \________________________________________________________/
 
-alberta,214,77,6	script	Captain Janssen	709,{
+alberta,214,77,6	script	Capitão Jassen	709,{
 	if (checkweight(1201,1) == 0) {
 		mes "^008800Espere aí!";
 		mes "Você está carregando muitos equipamentos. Porque não joga alguns fora e depois retorna.^000000";
@@ -30,7 +33,7 @@ alberta,214,77,6	script	Captain Janssen	709,{
 	set .@name_102$,strcharinfo(0);
 	if (BaseLevel < 50) {
 		mes "[Capitão Janssen]";
-		mes "Eu não sei se posso voltar a velejar...";
+		mes "*Suspiro*... Eu não sei se posso sempre voltar a velejar no mar...";
 		close;
 	}
 	if (in_102tower == 1) {
@@ -190,7 +193,7 @@ alberta,214,77,6	script	Captain Janssen	709,{
 	}
 }
 
-e_tower,81,105,0	script	Tower Protection Stone	406,{
+e_tower,81,105,0	script	Pedra de Proteção da Torre	406,{
 
 	set .@party_id,getcharid(1);
 	set .@ins_mas,getpartyleader(.@party_id,2);
@@ -244,9 +247,9 @@ e_tower,81,105,0	script	Tower Protection Stone	406,{
 						instance_init(.@instance);
 						// Revive o primeiro andar de cada mapa, que irá gerar o resto quando terminada.
 						donpcevent instance_npcname("#1F Controller", instance_id())+"::OnInstanceInit";
-						donpcevent instance_npcname("Immortal Furnace#1", instance_id())+"::OnInstanceInit";
-						donpcevent instance_npcname("Immortal Furnace#2", instance_id())+"::OnInstanceInit";
-						donpcevent instance_npcname("Immortal Furnace#3", instance_id())+"::OnInstanceInit";
+						donpcevent instance_npcname("Fornalha Imortal#1", instance_id())+"::OnInstanceInit";
+						donpcevent instance_npcname("Fornalha Imortal#2", instance_id())+"::OnInstanceInit";
+						donpcevent instance_npcname("Fornalha Imortal#3", instance_id())+"::OnInstanceInit";
 						// Desabilita os teleportes em todos os mapas. (habilita como andares que estão limpos)
 						for( set .@i, 1; .@i <= 99; set .@i, .@i + 1 )
 							donpcevent instance_npcname(.@i+"FGate102tower", instance_id())+"::OnInstanceInit";
@@ -256,13 +259,13 @@ e_tower,81,105,0	script	Tower Protection Stone	406,{
 						donpcevent instance_npcname("75FGate102tower-2", instance_id())+"::OnInstanceInit";
 						donpcevent instance_npcname("99FGate102tower-2", instance_id())+"::OnInstanceInit";
 						// Desabilita e ativa NPCs para o 100° e 101° andares.
-						donpcevent instance_npcname("Lucid Crystal#102", instance_id())+"::OnInstanceInit";
+						donpcevent instance_npcname("Cristal Translúcido#102", instance_id())+"::OnInstanceInit";
 						donpcevent instance_npcname("#102Effect1", instance_id())+"::OnInstanceInit";
 						donpcevent instance_npcname("#102Effect2", instance_id())+"::OnInstanceInit";
 						donpcevent instance_npcname("#102FShadowDust1", instance_id())+"::OnInstanceInit";
 						donpcevent instance_npcname("#102FShadowDust", instance_id())+"::OnInstanceInit";
-						donpcevent instance_npcname("Spring of Life#1", instance_id())+"::OnInstanceInit";
-						donpcevent instance_npcname("Tyrant's Throne#", instance_id())+"::OnInstanceInit";
+						donpcevent instance_npcname("Fonte da Vida#1", instance_id())+"::OnInstanceInit";
+						donpcevent instance_npcname("Trono do Tirano#", instance_id())+"::OnInstanceInit";
 						donpcevent instance_npcname("Alma Perdida#102", instance_id())+"::OnInstanceInit";
 						donpcevent instance_npcname("#Effect30", instance_id())+"::OnInstanceInit";
 						donpcevent instance_npcname("#Effect31", instance_id())+"::OnInstanceInit";
@@ -372,7 +375,7 @@ e_tower,81,105,0	script	Tower Protection Stone	406,{
 	}
 }
 
-e_tower,30,30,2	script	Huge Vortex	844,2,2,{
+e_tower,30,30,2	script	Grande Vortex	844,2,2,{
 OnTouch:
 	mapannounce "e_tower","[ " + strcharinfo(0) + " ], parece ter sido engolido por um enorme vórtice",bc_map,"0x00ff99",FW_NORMAL,12;
 	warp "alberta",223,36;
@@ -388,11 +391,11 @@ e_tower,1,1,2	script	#102Administrator Mode104	844,{
 		switch(select("Gerar Pedra da Purificação.:Remover Pedra da Purificação.:Cancelar.")) {
 		case 1:
 			mes "Criar a pedra da Purificação que permanece por 30 minutos.";
-			donpcevent "Purification Stone#et1::Enable";
+			donpcevent "Pedra da Purificação#et1::Enable";
 			break;
 		case 2:
-			mes "Destruir a Pedra da Purificação imediatamente."; //Destroy the Purification Stone immediately";
-			donpcevent "Purification Stone#et1::OnDisable";
+			mes "Destruir a Pedra da Purificação imediatamente."; //Destrói a Pedra da Purificação imediatamente.
+			donpcevent "Pedra da Purificação#et1::OnDisable";
 			break;
 		case 3:
 			mes "Abortado.";
@@ -406,13 +409,13 @@ e_tower,1,1,2	script	#102Administrator Mode104	844,{
 	}
 }
 
-e_tower,69,117,4	script	Purification Stone#et1	406,{
+e_tower,69,117,4	script	Pedra da Purificação#et1	406,{
 	set etower_timer,0;
 	mes "^0000ffOs registros e efeitos relacionados com a Torre Sem Fim foram removidos. Você pode gerar e entrar no calabouço da Torre Sem Fim novamente.^000000";
 	close;
 
 OnInit:
-	disablenpc "Purification Stone#et1";
+	disablenpc "Pedra da Purificação#et1";
 	end;
 
 OnEnable:
@@ -421,11 +424,11 @@ OnEnable:
 
 OnDisable:
 	stopnpctimer;
-	disablenpc "Purification Stone#et1";
+	disablenpc "Pedra da Purificação#et1";
 	end;
 
 OnTimer1000:
-	enablenpc "Purification Stone#et1";
+	enablenpc "Pedra da Purificação#et1";
 	end;
 
 OnTimer1740000:
@@ -433,11 +436,11 @@ OnTimer1740000:
 	end;
 
 OnTimer1800000:
-	disablenpc "Purification Stone#et1";
+	disablenpc "Pedra da Purificação#et1";
 	end;
 }
 
-e_tower,151,185,4	script	Purification Stone#et2	844,{
+e_tower,151,185,4	script	Pedra da Purificação#et2	844,{
 	set etower_timer,0;
 	mes "^0000ffOs registros e efeitos relacionados com a Torre Sem Fim foram removidos. Você pode gerar e entrar no calabouço da Torre Sem Fim.^000000";
 	close;
@@ -447,8 +450,8 @@ e_tower,151,185,4	script	Purification Stone#et2	844,{
 */
 
 // Andares 1-25
-1@tower,50,360,0	script	Immortal Brazier#	844,{
-	mes "-A mensagem é gravada no Braseiro-";
+1@tower,50,360,0	script	Braseiro Imortal#	844,{
+	mes "-A mensagem é gravada no Braseiro Imortal -";
 	mes "Aquele que espalha as cinzas da escuridão neste lugar estará um passo mais perto de Naught Sieger, a Sombra dos Reis das Trevas...";
 	next;
 	set .@move_name$,strcharinfo(0);
@@ -1271,17 +1274,17 @@ OnTouch_:
 */
 
 // Andares 26-50
-2@tower,29,365,2	script	Immortal Furnace#1	844,{
+2@tower,29,365,2	script	Fornalha Imortal#1	844,{
 OnInstanceInit:
-	areamonster "2@tower",9,351,19,387,"Árvore Maldita",1503,10,instance_npcname("Immortal Furnace#1", instance_id())+"::OnMyMobDead";
-	areamonster "2@tower",9,351,19,387,"Pessegueira Encantada",1410,10,instance_npcname("Immortal Furnace#1", instance_id())+"::OnMyMobDead";
-	areamonster "2@tower",9,351,19,387,"Golem de Madeira",1497,10,instance_npcname("Immortal Furnace#1", instance_id())+"::OnMyMobDead";
-	areamonster "2@tower",9,351,19,387,"Atirador de Pedras",1495,10,instance_npcname("Immortal Furnace#1", instance_id())+"::OnMyMobDead";
-	areamonster "2@tower",9,351,19,387,"Salgueiro Ancião",1033,5,instance_npcname("Immortal Furnace#1", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",9,351,19,387,"Árvore Maldita",1503,10,instance_npcname("Fornalha Imortal#1", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",9,351,19,387,"Pessegueira Encantada",1410,10,instance_npcname("Fornalha Imortal#1", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",9,351,19,387,"Golem de Madeira",1497,10,instance_npcname("Fornalha Imortal#1", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",9,351,19,387,"Atirador de Pedras",1495,10,instance_npcname("Fornalha Imortal#1", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",9,351,19,387,"Salgueiro Ancião",1033,5,instance_npcname("Fornalha Imortal#1", instance_id())+"::OnMyMobDead";
 	end;
 
 OnMyMobDead:
-	set .@mob_dead_num,mobcount("2@tower",instance_npcname("Immortal Furnace#1", instance_id())+"::OnMyMobDead");
+	set .@mob_dead_num,mobcount("2@tower",instance_npcname("Fornalha Imortal#1", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
 		instance_announce 0, "Todos os monstros no 26° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("26FGate102tower", instance_id())+"::OnEnable";
@@ -2049,15 +2052,15 @@ OnTouch_:
 }
 
 // Andares 51-75
-3@tower,29,365,2	script	Immortal Furnace#2	844,{
+3@tower,29,365,2	script	Fornalha Imortal#2	844,{
 OnInstanceInit:
-	areamonster "3@tower",9,351,19,387,"Diabinho",1292,20,instance_npcname("Immortal Furnace#2", instance_id())+"::OnMyMobDead";
-	areamonster "3@tower",9,351,19,387,"Diabolik",1382,20,instance_npcname("Immortal Furnace#2", instance_id())+"::OnMyMobDead";
-	areamonster "3@tower",9,351,19,387,"Deviruchi",1109,10,instance_npcname("Immortal Furnace#2", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",9,351,19,387,"Diabinho",1292,20,instance_npcname("Fornalha Imortal#2", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",9,351,19,387,"Diabolik",1382,20,instance_npcname("Fornalha Imortal#2", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",9,351,19,387,"Deviruchi",1109,10,instance_npcname("Fornalha Imortal#2", instance_id())+"::OnMyMobDead";
 	end;
 
 OnMyMobDead:
-	set .@mob_dead_num,mobcount("3@tower",instance_npcname("Immortal Furnace#2", instance_id())+"::OnMyMobDead");
+	set .@mob_dead_num,mobcount("3@tower",instance_npcname("Fornalha Imortal#2", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
 		instance_announce 0, "Todos os monstros no 51° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("51FGate102tower", instance_id())+"::OnEnable";
@@ -2697,7 +2700,7 @@ OnEnable:
 	areamonster "3@tower",181,9,191,45,"Succubus",1370,10,instance_npcname("72FGate102tower", instance_id())+"::OnMyMobDead";
 	areamonster "3@tower",181,9,191,45,"Loli Ruri",1505,20,instance_npcname("72FGate102tower", instance_id())+"::OnMyMobDead";
 	areamonster "3@tower",181,9,191,45,"Aliza",1737,10,instance_npcname("72FGate102tower", instance_id())+"::OnMyMobDead";
-	areamonster "3@tower",181,9,191,45,"Zealotus",1200,5,instance_npcname("72FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "3@tower",181,9,191,45,"Jirtas",1200,5,instance_npcname("72FGate102tower", instance_id())+"::OnMyMobDead";
 	areamonster "3@tower",181,9,191,45,"Alice",1275,5,instance_npcname("72FGate102tower", instance_id())+"::OnMyMobDead";
 	areamonster "3@tower",181,9,191,45,"Donzela Verde",1519,10,instance_npcname("72FGate102tower", instance_id())+"::OnMyMobDead";
 	end;
@@ -2838,15 +2841,15 @@ OnTouch_:
 }
 
 // Andares 76-99
-4@tower,29,365,2	script	Immortal Furnace#3	844,{
+4@tower,29,365,2	script	Fornalha Imortal#3	844,{
 OnInstanceInit:
-	areamonster "4@tower",9,351,19,387,"Cavaleiro do Abismo",1219,30,instance_npcname("Immortal Furnace#3", instance_id())+"::OnMyMobDead";
-	areamonster "4@tower",9,351,19,387,"Pesadelo Sombrio",1379,20,instance_npcname("Immortal Furnace#3", instance_id())+"::OnMyMobDead";
-	areamonster "4@tower",9,351,19,387,"Pesadelo",1061,10,instance_npcname("Immortal Furnace#3", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",9,351,19,387,"Cavaleiro do Abismo",1219,30,instance_npcname("Fornalha Imortal#3", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",9,351,19,387,"Pesadelo Sombrio",1379,20,instance_npcname("Fornalha Imortal#3", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",9,351,19,387,"Pesadelo",1061,10,instance_npcname("Fornalha Imortal#3", instance_id())+"::OnMyMobDead";
 	end;
 
 OnMyMobDead:
-	set .@mob_dead_num,mobcount("4@tower",instance_npcname("Immortal Furnace#3", instance_id())+"::OnMyMobDead");
+	set .@mob_dead_num,mobcount("4@tower",instance_npcname("Fornalha Imortal#3", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
 		instance_announce 0,"Todos os monstros no 76° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("76FGate102tower", instance_id())+"::OnEnable";
@@ -3640,9 +3643,9 @@ OnTouch_:
 }
 
 // Andar 100
-5@tower,106,109,2	script	Lucid Crystal#102	844,{
+5@tower,106,109,2	script	Cristal Translúcido#102	844,{
 	if (in_102tower < 10) {
-		mes "^0000ff*Uma misteriosa voz ecoa pela sala dizendo para você tocar o cristal lúcido que está irradiando uma luz forte.*^000000";
+		mes "^0000ff*Uma misteriosa voz ecoa pela sala dizendo para você tocar o cristal translúcido que está irradiando uma luz forte.*^000000";
 		next;
 		mes "[Voz Misteriosa]";
 		mes "Bem-vindo ao meu lar, intrusos. Eu me diverti vendo vocês suportarem todas as dificuldades que eu tenho posto diante de vocês.";
@@ -3682,15 +3685,15 @@ OnTouch_:
 	end;
 
 OnInstanceInit:
-	disablenpc instance_npcname("Lucid Crystal#102", instance_id());
+	disablenpc instance_npcname("Cristal Translúcido#102", instance_id());
 	end;
 
 OnDisable:
-	disablenpc instance_npcname("Lucid Crystal#102", instance_id());
+	disablenpc instance_npcname("Cristal Translúcido#102", instance_id());
 	end;
 
 OnEnable:
-	enablenpc instance_npcname("Lucid Crystal#102", instance_id());
+	enablenpc instance_npcname("Cristal Translúcido#102", instance_id());
 	donpcevent instance_npcname("#102Effect1", instance_id())+"::OnEnable";
 	end;
 }
@@ -3748,7 +3751,7 @@ OnMyMobDead:
 	if (.@mob_dead_num < 1) {
 		instance_announce 0, "Voz misteriosa: Quem é você para ousar invadir o meu santuário?!",bc_map,"0xffff00";
 		donpcevent instance_npcname("#102FShadowDust", instance_id())+"::OnDisable";
-		donpcevent instance_npcname("Lucid Crystal#102", instance_id())+"::OnEnable";
+		donpcevent instance_npcname("Cristal Translúcido#102", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 100
 	}
 	end;
@@ -3811,7 +3814,7 @@ OnEnable:
 	input .@inputstr$;
 	next;
 	if (.@inputstr$ == "dmc2008") {
-		donpcevent instance_npcname("Lucid Crystal#102", instance_id())+"::OnEnable";
+		donpcevent instance_npcname("Cristal Translúcido#102", instance_id())+"::OnEnable";
 		mes "O cristal do 100° andar foi ativado.";
 	}
 	else
@@ -3820,7 +3823,7 @@ OnEnable:
 }
 
 // Andar 101
-6@tower,45,89,2	script	Spring of Life#1	844,{
+6@tower,45,89,2	script	Fonte da Vida#1	844,{
 	set .@pc_hp,MaxHp-Hp;
 	set .@pc_sp,MaxSp-Sp;
 	mes "^0066ff*Você tomou um gole de água límpida e sentiu-se revigorado.*^000000";
@@ -3828,12 +3831,12 @@ OnEnable:
 	close;
 
 OnInstanceInit:
-	donpcevent instance_npcname("Spring of Life#2", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("Fonte da Vida#2", instance_id())+"::OnEnable";
 	end;
 
 }
 
-6@tower,45,89,2	script	Spring of Life#2	844,{
+6@tower,45,89,2	script	Fonte da Vida#2	844,{
 	end;
 
 OnEnable:
@@ -3843,11 +3846,11 @@ OnEnable:
 
 OnTimer2000:
 	stopnpctimer;;
-	donpcevent instance_npcname("Spring of Life#3", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("Fonte da Vida#3", instance_id())+"::OnEnable";
 	end;
 }
 
-6@tower,45,89,2	script	Spring of Life#3	844,{
+6@tower,45,89,2	script	Fonte da Vida#3	844,{
 	end;
 
 OnEnable:
@@ -3857,24 +3860,24 @@ OnEnable:
 
 OnTimer2000:
 	stopnpctimer;
-	donpcevent instance_npcname("Spring of Life#2", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("Fonte da Vida#2", instance_id())+"::OnEnable";
 	end;
 }
 
 6@tower,32,100,0	warp	102FGate102tower	2,2,6@tower,155,64
 
-6@tower,156,151,2	script	Tyrant's Throne#	844,{
+6@tower,156,151,2	script	Trono do Tirano#	844,{
 	end;
 
 OnInstanceInit:
-	areamonster "6@tower",154,73,156,75,"Anopheles",1627,10,instance_npcname("Tyrant's Throne#", instance_id())+"::OnMyMobDead";
+	areamonster "6@tower",154,73,156,75,"Anopheles",1627,10,instance_npcname("Trono do Tirano#", instance_id())+"::OnMyMobDead";
 	end;
 
 OnMyMobDead:
-	set .@mob_dead_num,mobcount("6@tower",instance_npcname("Tyrant's Throne#", instance_id())+"::OnMyMobDead");
+	set .@mob_dead_num,mobcount("6@tower",instance_npcname("Trono do Tirano#", instance_id())+"::OnMyMobDead");
 	if (.@mob_dead_num < 1) {
 		donpcevent instance_npcname("#1st Beeper", instance_id())+"::OnEnable";
-		disablenpc instance_npcname("Tyrant's Throne#", instance_id());
+		disablenpc instance_npcname("Trono do Tirano#", instance_id());
 	}
 	end;
 }
@@ -4008,11 +4011,11 @@ OnTimer10500:
 	end;
 
 OnMyMobDead:
-	donpcevent instance_npcname("Lost Soul#102", instance_id())+"::OnEnable";
+	donpcevent instance_npcname("Alma Perdida#102", instance_id())+"::OnEnable";
 	end;
 }
 
-6@tower,169,127,2	script	Lost Soul#102	796,{
+6@tower,169,127,2	script	Alma Perdida#102	796,{
 	if (checkweight(1201,1) == 0) {
 		mes "Você está carregando muito equipamento. Porque não joga alguns fora e depois retorna.";
 		close;
@@ -4059,12 +4062,12 @@ OnMyMobDead:
 	end;
 
 OnInstanceInit:
-	disablenpc instance_npcname("Lost Soul#102", instance_id());
+	disablenpc instance_npcname("Alma Perdida#102", instance_id());
 	end;
 
 OnEnable:
 	initnpctimer;
-	enablenpc instance_npcname("Lost Soul#102", instance_id());
+	enablenpc instance_npcname("Alma Perdida#102", instance_id());
 	donpcevent instance_npcname("#Effect30", instance_id())+"::OnEnable";
 	//SetItemPartyInMap in_102floor 104
 	end;

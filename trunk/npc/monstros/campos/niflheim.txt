@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Spawns dos Campos de Niflheim     	    |
+// | Nome do Script: Monstros dos Campos de Niflheim        |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
@@ -16,11 +16,12 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | 1.1 Script Revisado [Protimus]							| 
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// | - Anotações                                            |  
 // \________________________________________________________/
 
 //==================================================
-// nif_fild01 - Skellington
+// nif_fild01 - Skellington, o solitário vilarejo em Niflheim
 //==================================================
 nif_fild01,0,0,0,0	monster	Mascarado	1506,20,0,0,0
 nif_fild01,0,0,0,0	monster	Mascarado	1506,30,300000,120000,0
@@ -50,7 +51,7 @@ nif_fild02,0,0,0,0	monster	Poltergeist	1510,6,0,0,0
 nif_fild02,0,0,0,0	monster	Árvore Maldita	1503,10,0,0,0
 
 //==================================================
-// niflheim - Niflheim, Reino dos Mortos
+// niflheim - Niflheim, o Reino dos Mortos
 //==================================================
 niflheim,0,0,0,0	monster	Dullahan	1504,5,1800000,1200000,0
 niflheim,0,0,0,0	monster	Árvore Maldita	1503,10,1200000,600000,0

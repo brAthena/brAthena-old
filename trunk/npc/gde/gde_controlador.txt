@@ -8,20 +8,21 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Guerra do Emperium - Gerência: On/Off	|
+// | Nome do Script: Guerra do Emperium - Gerência: On/Off  |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 2.0/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: Gerenciador Automático.						|
-// | gettime(3): Serve para um horário (formato 24h).		|
-// | gettime(4): Serve para um dia da semana. 				|
-// | 1=Segunda, 2=Terça, 3=Quarta, 4=Quinta, etc.			|
+// | Descrição: Gerenciador Automático.                     |
+// | gettime(3): Serve para um horário (formato 24h)        |
+// | gettime(4): Serve para um dia da semana                |
+// | 1=Segunda, 2=Terça, 3=Quarta, 4=Quinta, etc            |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
-// | 1.0 Script Traduzido [cleyton]     		            |
-// | 1.1 Script Revisado [Protimus]							|
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [cleyton]                         |
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// | - Anotações                                            | 
 // \________________________________________________________/
 
 -	script	Agit_Event	-1,{
@@ -30,7 +31,7 @@
 OnClock2100:	//Início para Terça(2), Quinta(4)
 OnClock2300:	//Termino para Terça(2), Quinta(4)
 OnClock1600:	//Início para Sábado(6)
-OnClock1800:	//Termino para Sábado(6)
+OnClock1800:	//Término para Sábado(6)
 
 OnAgitInit:
 	// Checagens de Início
@@ -44,7 +45,7 @@ OnAgitInit:
 		end;
 	}
 
-	// Checagens de Termino
+	// Checagens de Término
 	if ((gettime(4)==2) && (gettime(3)==23) ||
 	    (gettime(4)==4) && (gettime(3)==23) ||
 	    (gettime(4)==6) && (gettime(3)==18)) { 

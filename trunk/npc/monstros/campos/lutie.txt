@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Spawns dos Campos de Lutie				|
+// | Nome do Script: Monstros dos Campos de Lutie           |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
@@ -16,11 +16,12 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | 1.1 Script Revisado [Protimus]							| 
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// | - Anotações                                            |  
 // \________________________________________________________/
 
 //==================================================
-// xmas_fild01 - Campos de Lutie
+// xmas_fild01 - Campo de Lutie
 //==================================================
 xmas_fild01,0,0,0,0	monster	Marin	1242,35,0,0,0
 xmas_fild01,0,0,0,0	monster	Sasquatch	1243,20,0,0,0

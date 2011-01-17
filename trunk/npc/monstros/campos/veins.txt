@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Spawns dos Campos de Veins				|
+// | Nome do Script: Monstros dos Campos de Veins           |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
@@ -16,10 +16,13 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | 1.1 Script Revisado [Protimus]							|  
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// | - Anotações                                            |  
 // \________________________________________________________/
 
-//======== [Veins Field-01] ==================================
+//==================================================
+// ve_fild01 - Campo de Veins
+//==================================================
 ve_fild01,0,0,0,0	monster	Drops	1113,10,0,0,0
 ve_fild01,0,0,0,0	monster	Stapo	1784,20,0,0,0
 ve_fild01,0,0,0,0	monster	Muka	1055,70,0,0,0
@@ -30,7 +33,9 @@ ve_fild01,0,0,0,0	monster	Planta Amarela	1081,10,0,0,0
 ve_fild01,270,80,20,7	monster	Planta Azul	1079,4,840000,0,0
 ve_fild01,270,80,20,7	monster	Planta Brilhante	1083,1,960000,0,0
 
-//======== [Veins Field-02] ===================================
+//==================================================
+// ve_fild02 - Campo de Veins
+//==================================================
 ve_fild02,0,0,0,0	monster	Stapo	1784,20,0,0,0
 ve_fild02,0,0,0,0	monster	Selvagem	1166,30,0,0,0
 ve_fild02,220,215,135,180	monster	Selvagem	1166,30,0,0,0
@@ -42,7 +47,9 @@ ve_fild02,120,55,50,50	boss_monster	Atroce	1785,1,21600000,600000,0
 ve_fild02,0,0,0,0	monster	Planta Vermelha	1078,10,0,0,0
 ve_fild02,0,0,0,0	monster	Planta Amarela	1081,10,0,0,0
 
-//======== [Veins Field-03] ===================================
+//==================================================
+// ve_fild03 - Campo de Veins
+//==================================================
 ve_fild03,0,0,0,0	monster	Stapo	1784,10,0,0,0
 ve_fild03,200,212,114,60	monster	Magmaring	1836,10,0,0,0
 ve_fild03,0,0,0,0	monster	Arenoso	1165,20,0,0,0
@@ -51,7 +58,9 @@ ve_fild03,200,212,114,60	monster	Rochoso	1386,5,0,0,0
 ve_fild03,200,212,114,60	monster	Planta Vermelha	1078,10,0,0,0
 ve_fild03,0,0,0,0	monster	Planta Amarela	1081,10,0,0,0
 
-//======== [Veins Field-04] ===================================
+//==================================================
+// ve_fild04 - Campo de Veins
+//==================================================
 ve_fild04,0,0,0,0	monster	Stapo	1784,20,0,0,0
 ve_fild04,0,0,0,0	monster	Lobo do Deserto	1106,60,0,0,0
 ve_fild04,0,0,0,0	monster	Roween	1782,20,0,0,0
@@ -59,7 +68,9 @@ ve_fild04,0,0,0,0	monster	Muscipular	1780,10,0,0,0
 ve_fild04,0,0,0,0	monster	Planta Amarela	1081,10,0,0,0
 ve_fild04,288,273,4,4	monster	Planta Azul	1079,3,660000,0,0
 
-//======== [Veins Field-05] ===================================
+//==================================================
+// ve_fild05 - Campo de Veins
+//==================================================
 ve_fild05,0,0,0,0	monster	Roween	1782,15,0,0,0
 ve_fild05,0,0,0,0	monster	Galion	1783,5,0,0,0
 ve_fild05,0,0,0,0	monster	Drosera	1781,10,0,0,0
@@ -74,12 +85,16 @@ ve_fild05,123,65,50,21	monster	Rochoso	1386,5,120000,0,0
 ve_fild05,152,139,15,17	monster	Planta Branca	1082,5,1800000,0,0
 ve_fild05,152,139,5,5	monster	Planta Brilhante	1083,1,2400000,0,0
 
-//======== [Veins Field-06] ===================================	
+//==================================================
+// ve_fild06 - Campo de Veins
+//==================================================
 ve_fild06,0,0,0,0	monster	Stapo	1784,2,300000,0,0
 ve_fild06,0,0,0,0	monster	Stapo	1784,1,1800000,0,0
 ve_fild06,0,0,0,0	monster	Planta Brilhante	1083,1,1020000,0,0
 
-//======== [Veins Field-07] ===================================
+//==================================================
+// ve_fild07 - Campo de Veins
+//==================================================
 ve_fild07,0,0,0,0	monster	Stapo	1784,30,0,0,0
 ve_fild07,64,126,35,55	monster	Estrela do Mar	1266,3,0,0,0
 ve_fild07,256,76,75,37	monster	Estrela do Mar	1266,7,0,0,0

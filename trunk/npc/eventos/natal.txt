@@ -14,11 +14,16 @@
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.4/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: Mate os antonios e peguei suas meias. 		|
+// | Descrição: Derrote os Antonios e pegue as suas meias.  |
+// | - Pegue pelo menos 3 delas e entregue-as ao Papai Noel |
+// | em troca de um presente.                               |
+// | - Esse NPC DESATIVA o Papai Noel ativo atualmente em   |
+// | Lutie.                                                 |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [NewLom]                          |
-// | 1.1 Script Revisado [Protimus]							|
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// | - Anotações                                            |
 // \________________________________________________________/
 
 
@@ -57,10 +62,10 @@ L_Start:
                 mes "Eu estou muito ocupado com a criação de brinquedos para esse ano, portanto não posso ir acha-lô.";
                 next;
                 mes "[Papai Noel]";
-                mes "Você gostaria de procura-lô para mim e faze-lô parar com isso?";
+                mes "Você gostaria de procurá-lo para mim e faze-lô parar com isso?";
                 next;
                 mes "[Papai Noel]";
-                mes "Mas cuidado pois ele possuí uma das minhas sacolas mágicas e pode escapar de você cada vez que você for ataca-lô";
+                mes "Mas cuidado pois ele possuí uma das minhas sacolas mágicas e pode escapar de você cada vez que você for atacá-lo";
                 next;
                 mes "[Papai Noel]";
                 mes "Contudo, em sua fuga ele pode dropar itens.";
@@ -74,10 +79,10 @@ L_Start:
                 mes "[Papai Noel]";
                 if(countitem(7034) < 3) goto L_NotEnuf;
                 delitem 7034,3;
-                mes "Você fez um ótimo trabalho caçando os falsos noeis!!";
+                mes "Você fez um ótimo trabalho caçando os falsos noéis!!";
                 mes "Continue assim!!";
                 next;
-                getitem 644,1; //Gift Box Prototype
+                getitem 644,1; // Misteriosa Caixa de Presentes
                 set #event_xmas,#event_xmas+1;
                 mes "[Papai Noel]";
                 mes "Aqui está seu presente.";
@@ -91,7 +96,7 @@ L_Start:
                         close;
         M_End:
                 mes "[Papai Noel]";
-                mes "Nos vemos na noite de natal!!";
+                mes "Nos vemos na noite de natal!!!";
                 close;
 
 OnInit:
@@ -101,17 +106,17 @@ OnInit:
 
 
 //========================================================================================
-// - Goblins Natalinos
+// Goblins Natalinos
 //========================================================================================
-
+//
 prt_fild11,0,0,0,0      monster Goblin Natalinos        1245,5,0,0,0
 gef_fild11,0,0,0,0      monster Goblin Natalinos        1245,5,0,0,0
 yuno_fild09,0,0,0,0     monster Goblin Natalinos        1245,5,0,0,0
-
+//
 //========================================================================================
-// - Porings Noeis
+// Porings Noéis
 //========================================================================================
-
+//
 ein_fild03,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
 ein_fild04,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
 ein_fild06,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
@@ -224,11 +229,11 @@ hu_fild01,0,0,0,0       monster Poring Natalino 1062,15,0,0,0
 hu_fild04,0,0,0,0       monster Poring Natalino 1062,15,0,0,0
 hu_fild05,0,0,0,0       monster Poring Natalino 1062,15,0,0,0
 hu_fild07,0,0,0,0       monster Poring Natalino 1062,15,0,0,0
-
+//
 //========================================================================================
-// - Antonios
+// Antonios
 //========================================================================================
-
+//
 ein_fild03,0,0,0,0      monster Antonio 1247,1,0,0,0
 ein_fild04,0,0,0,0      monster Antonio 1247,1,0,0,0
 ein_fild06,0,0,0,0      monster Antonio 1247,1,0,0,0
@@ -341,20 +346,20 @@ hu_fild01,0,0,0,0       monster Antonio 1247,1,0,0,0
 hu_fild04,0,0,0,0       monster Antonio 1247,1,0,0,0
 hu_fild05,0,0,0,0       monster Antonio 1247,1,0,0,0
 hu_fild07,0,0,0,0       monster Antonio 1247,1,0,0,0
-
+//
 //========================================================================================
-// - Jakk Natalinos
+// Jakks Natalinos
 //========================================================================================
-
-gef_dun01,0,0,0,0       monster Jakk Natalinos  1244,5,0,0,0
-//gefenia02,0,0,0,0     monster Jakk Natalinos  1244,5,0,0,0
-
+//
+gef_dun01,0,0,0,0       monster Jakk Natalino  1244,5,0,0,0
+//gefenia02,0,0,0,0     monster Jakk Natalino  1244,5,0,0,0
+//
 //========================================================================================
-// - Orc Natalinos
+// Orcs Natalinos
 //========================================================================================
-
-gef_fild02,0,0,0,0      monster Orc Natalinos   1588,5,0,0,0
-gef_fild03,0,0,0,0      monster Orc Natalinos   1588,5,0,0,0
-gef_fild10,0,0,0,0      monster Orc Natalinos   1588,5,0,0,0
-gef_fild14,0,0,0,0      monster Orc Natalinos   1588,5,0,0,0
-alde_dun02,0,0,0,0      monster Orc Natalinos   1588,5,0,0,0
+//
+gef_fild02,0,0,0,0      monster Orc Natalino   1588,5,0,0,0
+gef_fild03,0,0,0,0      monster Orc Natalino   1588,5,0,0,0
+gef_fild10,0,0,0,0      monster Orc Natalino   1588,5,0,0,0
+gef_fild14,0,0,0,0      monster Orc Natalino   1588,5,0,0,0
+alde_dun02,0,0,0,0      monster Orc Natalino   1588,5,0,0,0

@@ -8,26 +8,28 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Kafras de Izlude			    		|
+// | Nome do Script: Kafras da Cidade de Izlude             |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 2.3/1.0                                |
+// | Versões eA/brA: 2.3/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: Configurações callfunc "F_Kafra".           |
 // | arg(0):                                                |
-// |  Setando em 0 a mensagem padrão da Kafra é exibida.    |
-// |  Setando em 1 a mensagem da Kafra de Niflhiem é exibida|
-// |  Setando em 2 a mensagem da Kafra de Guild é exibida.  |
-// | arg(1): 1 para desabilitar o menu "Teleporte".         |
-// |  0 para exibi-lo.                                      |
-// | arg(2): 1 para desabilitar o menu "Informações".       |
-// |  0 para exibi-lo.                                      |
-// | arg(3): Custo do serviço de "Armazem".                 |
-// | arg(4): Custo do serviço "Alugar Carrinho".            |
+// |  Setando em 0 a mensagem padrão da Kafra é exibida     |
+// |  Setando em 1 a mensagem da Kafra de Niflheim é exibida|
+// |  Setando em 2 a mensagem da Kafra de Clã é exibida     |
+// | arg(1): 1 para desabilitar o menu "Teleporte"          |
+// |  0 para exibi-lo                                       |
+// | arg(2): 1 para desabilitar o menu "Informações"        |
+// |  0 para exibi-lo                                       |
+// | arg(3): Custo do serviço de "Armazém"                  |
+// | arg(4): Custo do serviço "Alugar Carrinho"             |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [cleyton]   	                    |
+// | 1.1 Script Revisado [Tyler]                            |
+// | - Anotações                                            |
 // \________________________________________________________/
 
 izlude,134,87,3	script	Funcionária Kafra::kaf_izlude	117,{
@@ -41,9 +43,9 @@ izlude,134,87,3	script	Funcionária Kafra::kaf_izlude	117,{
 	set @wrpC$[3], @wrpD$[3]+" -> "+@wrpP[3];
 	set @wrpC$[4], "Cancel";
 	mes "[Funcionária Kafra]";
-	mes "Bem vindo a ";
-	mes "corporação Kafra.";
-	mes "Os serviços da corporação Kafra";
+	mes "Bem-vindo a ";
+	mes "Corporação Kafra.";
+	mes "Os serviços da Corporação Kafra";
 	mes "sempre estarão ao seu lado.";
 	mes "Como posso ajudar?";
 	callfunc "F_Kafra",5,0,1,40,820;

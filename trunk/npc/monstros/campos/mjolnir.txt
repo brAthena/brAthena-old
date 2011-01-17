@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Spawns do Campo de Mt. Mjolnir			|
+// | Nome do Script: Monstros dos Campos do Mt. Mjolnir     |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
@@ -16,7 +16,8 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | 1.1 Script Revisado [Protimus]							| 
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// | - Anotações                                            |  
 // \________________________________________________________/
 
 //==================================================
@@ -26,7 +27,7 @@ mjolnir_01,0,0,0,0	monster	Besouro-Chifre	1128,20,0,0,0
 mjolnir_01,0,0,0,0	monster	Creamy	1018,20,0,0,0
 mjolnir_01,0,0,0,0	monster	Koko	1104,70,0,0,0
 mjolnir_01,0,0,0,0	monster	Percevejo	1174,20,0,0,0
-mjolnir_01,0,0,0,0	monster	Caramel	1103,40,0,0,0
+mjolnir_01,0,0,0,0	monster	Caramelo	1103,40,0,0,0
 mjolnir_01,75,85,25,25	monster	Planta Brilhante	1083,1,1800000,900000,1
 mjolnir_01,78,219,25,25	monster	Planta Brilhante	1083,1,1800000,900000,1
 mjolnir_01,75,85,25,25	monster	Planta Verde	1080,5,180000,90000,1
@@ -81,7 +82,7 @@ mjolnir_02,188,192,10,10	monster	Planta Azul	1079,2,360000,180000,1
 //==================================================
 mjolnir_03,0,0,0,0	monster	Mantis	1139,30,0,0,0
 mjolnir_03,0,0,0,0	monster	Creamy	1018,10,0,0,0
-mjolnir_03,0,0,0,0	monster	Petite	1156,70,0,0,0
+mjolnir_03,0,0,0,0	monster	Petite Voador	1156,70,0,0,0
 mjolnir_03,0,0,0,0	monster	Poporing	1031,10,0,0,0
 mjolnir_03,0,0,0,0	monster	Flora	1118,10,0,0,0
 mjolnir_03,0,0,0,0	monster	Argos	1100,20,0,0,0
@@ -150,7 +151,7 @@ mjolnir_06,0,0,0,0	monster	Percevejo	1174,70,0,0,0
 mjolnir_06,0,0,0,0	monster	Besouro-Chifre	1128,20,0,0,0
 mjolnir_06,0,0,0,0	monster	Koko	1104,20,0,0,0
 mjolnir_06,0,0,0,0	monster	Poporing	1031,20,0,0,0
-mjolnir_06,0,0,0,0	monster	Caramel	1103,30,0,0,0
+mjolnir_06,0,0,0,0	monster	Caramelo	1103,30,0,0,0
 mjolnir_06,162,285,0,0	monster	Planta Azul	1079,1,360000,180000,1
 mjolnir_06,162,255,0,0	monster	Planta Azul	1079,1,360000,180000,1
 mjolnir_06,304,98,0,0	monster	Cogumelo Vermelho	1085,1,180000,90000,1

@@ -14,7 +14,7 @@
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.1/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: NPCs da Batalha Campal                      |
+// | Descrição: NPC's da Batalha Campal                     |
 // | - Gerais e Acessores                                   |
 // | - Teleportador da Batalha Campal                       |
 // | - Recrutadora da Batalha Campal                        |
@@ -32,7 +32,7 @@
 bat_room,161,158,3	script	Acessor do Gen. Guillaume#01	419,{ end; }
 bat_room,161,160,3	script	Acessor do Gen. Guillaume#03	419,{ end; }
 
-bat_room,160,141,3	script	Prince Croix	416,{
+bat_room,160,141,3	script	Princípe Croix	416,{
 	cutin "bat_crua1",2;
 	mes "[Príncipe Croix]";
 	mes "Sábio aventureiro, por que você não nos empresta seu poder e juntos vamos rumo à vitória?";
@@ -186,7 +186,7 @@ bat_room,160,159,3	script	General Guillaume	420,{
 
 // Teleportador da Batalha Campal
 //============================================================
-bat_room,148,150,5	script	Teleporter#Battlefield	124,{
+bat_room,148,150,5	script	Teleportador#Battlefield	124,{
 	mes "[Teleportador]";
 	mes "Você deseja sair do campo de batalha? Utilize meus serviçoes para retornar a uma cidade.";
 	next;
@@ -236,7 +236,7 @@ bat_room,148,150,5	script	Teleporter#Battlefield	124,{
 	end;
 }
 
--	script	Maroll Battle Recruiter::BatRecruit	728,{
+-	script	Emissária de Maroll::BatRecruit	728,{
 	mes "[Emissária de Maroll]";
 	mes "Olá caro aventureiro!";
 	mes "Eu sou uma cavaleira vinda de um lugar distante chamado Reino de Maroll.";
@@ -277,13 +277,13 @@ bat_room,148,150,5	script	Teleporter#Battlefield	124,{
 	end;
 }
 
-prontera,123,83,3	duplicate(BatRecruit)	Maroll Battle Recruiter::BatRecruit1	728
-moc_ruins,75,162,3	duplicate(BatRecruit)	Maroll Battle Recruiter::BatRecruit2	728
-aldebaran,146,109,3	duplicate(BatRecruit)	Maroll Battle Recruiter::BatRecruit3	728
-geffen,109,66,3	duplicate(BatRecruit)	Maroll Battle Recruiter::BatRecruit4	728
-payon,189,105,3	duplicate(BatRecruit)	Maroll Battle Recruiter::BatRecruit5	728
-lighthalzen,153,86,5	duplicate(BatRecruit)	Maroll Battle Recruiter::BatRecruit6	728
-rachel,149,138,3	duplicate(BatRecruit)	Maroll Battle Recruiter::BatRecruit7	728
+prontera,123,83,3	duplicate(BatRecruit)	Emissária de Maroll::BatRecruit1	728
+moc_ruins,75,162,3	duplicate(BatRecruit)	Emissária de Maroll::BatRecruit2	728
+aldebaran,146,109,3	duplicate(BatRecruit)	Emissária de Maroll::BatRecruit3	728
+geffen,109,66,3	duplicate(BatRecruit)	Emissária de Maroll::BatRecruit4	728
+payon,189,105,3	duplicate(BatRecruit)	Emissária de Maroll::BatRecruit5	728
+lighthalzen,153,86,5	duplicate(BatRecruit)	Emissária de Maroll::BatRecruit6	728
+rachel,149,138,3	duplicate(BatRecruit)	Emissária de Maroll::BatRecruit7	728
 
 // Pontos de teleporte adicionais
 // Empty
@@ -316,14 +316,14 @@ bat_room,253,211,0	warp	bat32	1,1,bat_room,154,149
 
 // Assistente Kafra
 //============================================================
-bat_room,148,147,4	script	Kafra Staff::kaf_bat	861,{
+bat_room,148,147,4	script	Assistente Kafra::kaf_bat	861,{
 	cutin "kafra_09",2;
 	callfunc "F_Kafra",0,2,1,150,0;
 }
 
 // Reparador
 //============================================================
-bat_room,138,144,5	script	Repairman#bg	86,{
+bat_room,138,144,5	script	Reparador#bg	86,{
 	callfunc "repairmain","Reparador";
 	end;
 }

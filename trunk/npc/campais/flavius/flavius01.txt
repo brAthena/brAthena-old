@@ -14,18 +14,18 @@
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.1/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: NPCs de Flavius.                            |
-// | NPCs da Sala de Espera                                 |	
-// | Engine do Campo de Batalha Flavius                     |
+// | Descrição: NPC's de Flavius.                           |
+// | - NPCs da Sala de Espera                               |	
+// | - Engine do Campo de Batalha Flavius                   |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Tyler]                           |
 // | - Anotações                                            | 			   		            
 // \________________________________________________________/
 
-// NPCs da Sala de Espera
+// NPC's da Sala de Espera
 //============================================================
-bat_room,86,227,4	script	Lieutenant Ator	418,{
+bat_room,86,227,4	script	Tenente Ator	418,{
 	end;
 OnInit:
 	waitingroom "Estação de Batalha",10,"start#bat_b01::OnReadyCheck",1;
@@ -35,7 +35,7 @@ OnEnterBG:
 	end;
 }
 
-bat_room,85,204,0	script	Lieutenant Thelokus	414,{
+bat_room,85,204,0	script	Tenente Thelokus	414,{
 	end;
 OnInit:
 	waitingroom "Estação de Batalha",10,"start#bat_b01::OnReadyCheck",1;
@@ -98,8 +98,8 @@ OnReadyCheck:
 	set $@Guill_ScoreBG1, 0;
 	bg_updatescore "bat_b01",$@Guill_ScoreBG1,$@Croix_ScoreBG1;
 
-	donpcevent "Lieutenant Ator::OnEnterBG";
-	donpcevent "Lieutenant Thelokus::OnEnterBG";
+	donpcevent "Tenente Ator::OnEnterBG";
+	donpcevent "Tenente Thelokus::OnEnterBG";
 	donpcevent "OBJ#bat_b01_a::Onkill";
 	donpcevent "OBJ#bat_b01_a::OnEnable";
 	donpcevent "OBJ#bat_b01_b::Onkill";
@@ -111,8 +111,8 @@ OnReadyCheck:
 	donpcevent "cell#bat_b01_a::Onred";
 	donpcevent "cell#bat_b01_b::Onred";
 	donpcevent "time#bat_b01::OnEnable";
-	disablenpc "Guillaume Vintenar#b01_a";
-	disablenpc "Croix Vintenar#b01_b";
+	disablenpc "Vintenar Guillaume#b01_a";
+	disablenpc "Vintenar Croix#b01_b";
 	disablenpc "Vintenar#bat_b01_aover";
 	disablenpc "Vintenar#bat_b01_bover";
 	bg_warp $@FlaviusBG1_id1,"bat_b01",87,75;
@@ -133,8 +133,8 @@ OnReset:
 	donpcevent "cell#bat_b01_a::Onred";
 	donpcevent "cell#bat_b01_b::Onred";
 	donpcevent "time#bat_b01::OnEnable";
-	disablenpc "Guillaume Vintenar#b01_a";
-	disablenpc "Croix Vintenar#b01_b";
+	disablenpc "Vintenar Guillaume#b01_a";
+	disablenpc "Vintenar Croix#b01_b";
 	disablenpc "Vintenar#bat_b01_aover";
 	disablenpc "Vintenar#bat_b01_bover";
 	bg_warp $@FlaviusBG1_id1,"bat_b01",87,75;
@@ -167,8 +167,8 @@ OnMyMobDead:
 		if ($@Croix_ScoreBG1 > 0) {
 			set $@FlaviusBG1_Victory,2;
 			set $@Croix_ScoreBG1,$@Croix_ScoreBG1+1;
-			enablenpc "Guillaume Vintenar#b01_a";
-			enablenpc "Croix Vintenar #b01_b";
+			enablenpc "Vintenar Guillaume#b01_a";
+			enablenpc "Vintenar Croix#b01_b";
 			donpcevent "time#bat_b01::Onstop";
 		}
 		else {
@@ -200,8 +200,8 @@ OnMyMobDead:
 		if ($@Guill_ScoreBG1 > 0) {
 			set $@FlaviusBG1_Victory,1;
 			set $@Guill_ScoreBG1,$@Guill_ScoreBG1+1;
-			enablenpc "Guillaume Vintenar #b01_a";
-			enablenpc "Croix Vintenar #b01_b";
+			enablenpc "Vintenar Guillaume#b01_a";
+			enablenpc "Vintenar Croix#b01_b";
 			donpcevent "time#bat_b01::Onstop";
 		}
 		else {
@@ -288,17 +288,17 @@ Ongreen:
 
 bat_b01,1,6,1	script	time#bat_b01	844,{
 OnEnable:
-	donpcevent "Battle Therapist#b01_a::OnEnable";
-	donpcevent "Battle Therapist#b01_b::OnEnable";
+	donpcevent "Terapeuta de Batalha#b01_a::OnEnable";
+	donpcevent "Terapeuta de Batalha#b01_b::OnEnable";
 	end;
 
 Onstop:
-	donpcevent "Battle Therapist#b01_a::OnStop";
-	donpcevent "Battle Therapist#b01_b::OnStop";
+	donpcevent "Terapeuta de Batalha#b01_a::OnStop";
+	donpcevent "Terapeuta de Batalha#b01_b::OnStop";
 	end;
 }
 
-bat_b01,10,294,3	script	Battle Therapist#b01_a	95,{
+bat_b01,10,294,3	script	Terapeuta de Batalha#b01_a	95,{
 	specialeffect2 EF_HEAL;
 	mes "[Terapeuta de Batalha]";
 	mes "Agora feche o seus olhos";
@@ -317,17 +317,17 @@ OnTimer26000:
 
 OnTimer26500:
 	stopnpctimer;
-	donpcevent "Battle Therapist#b01_a::onEnable";
+	donpcevent "Terapeuta de Batalha#b01_a::onEnable";
 	end;
 
 OnEnable:
 	initnpctimer;
-	enablenpc "Battle Therapist#b01_a";
+	enablenpc "Terapeuta de Batalha#b01_a";
 	end;
 
 Onstop:
 	disablenpc "bat_b01_rp1_a_warp";
-	disablenpc "Battle Therapist#b01_a";
+	disablenpc "Terapeuta de Batalha#b01_a";
 	stopnpctimer;
 	end;
 }
@@ -343,7 +343,7 @@ OnTouch:
 	end;
 }
 
-bat_b01,389,14,3	script	Battle Therapist#b01_b	95,{
+bat_b01,389,14,3	script	Terapeuta de Batalha#b01_b	95,{
 	specialeffect2 EF_HEAL;
 	mes "[Terapeuta de Batalha]";
 	mes "Agora feche o seus olhos";
@@ -362,17 +362,17 @@ OnTimer26000:
 
 OnTimer26500:
 	stopnpctimer;
-	donpcevent "Battle Therapist#b01_b::OnEnable";
+	donpcevent "Terapeuta de Batalha#b01_b::OnEnable";
 	end;
 
 OnEnable:
 	initnpctimer;
-	enablenpc "Battle Therapist#b01_b";
+	enablenpc "Terapeuta de Batalha#b01_b";
 	end;
 
 Onstop:
 	disablenpc "bat_b01_rp1_b_warp";
-	disablenpc "Battle Therapist#b01_b";
+	disablenpc "Terapeuta de Batalha#b01_b";
 	stopnpctimer;
 	end;
 }
@@ -402,7 +402,7 @@ OnTouch:
 	end;
 }
 
-bat_b01,10,294,3	script	Guillaume Vintenar#b01_a	934,{
+bat_b01,10,294,3	script	Vintenar Guillaume#b01_a	934,{
 	if ($@FlaviusBG1_id1 == getcharid(4)) {
 		if ($@FlaviusBG1_Victory == 1) {
 			set .@your_medal,countitem(7829);
@@ -450,11 +450,11 @@ bat_b01,10,294,3	script	Guillaume Vintenar#b01_a	934,{
 	end;
 
 OnInit:
-	disablenpc "Guillaume Vintenar#b01_a";
+	disablenpc "Vintenar Guillaume#b01_a";
 	end;
 }
 
-bat_b01,389,14,3	script	Croix Vintenar#b01_b	934,{
+bat_b01,389,14,3	script	Vintenar Croix#b01_b	934,{
 	if ($@FlaviusBG1_id2 == getcharid(4)) {
 		if ($@FlaviusBG1_Victory == 2) {
 			set .@your_medal,countitem(7829);
@@ -502,7 +502,7 @@ bat_b01,389,14,3	script	Croix Vintenar#b01_b	934,{
 	end;
 
 OnInit:
-	disablenpc "Croix Vintenar#b01_b";
+	disablenpc "Vintenar Croix#b01_b";
 	end;
 }
 

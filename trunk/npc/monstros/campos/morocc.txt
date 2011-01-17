@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Spawns dos Campos de Morocc			|
+// | Nome do Script: Monstros dos Campos de Morocc          |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
@@ -16,13 +16,14 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | 1.1 Script Revisado [Protimus]							|  
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// | - Anotações                                            |  
 // \________________________________________________________/
 
 //==================================================
 // moc_fild01 - Deserto de Sograt
 //==================================================
-moc_fild01,0,0,0,0	monster	Filhote de Lobo	1107,70,0,0,0
+moc_fild01,0,0,0,0	monster	Filhote de Lobo do Deserto	1107,70,0,0,0
 moc_fild01,0,0,0,0	monster	Ovo de Andre	1097,20,0,0,0
 moc_fild01,0,0,0,0	monster	Ovo de PecoPeco	1047,20,0,0,0
 moc_fild01,0,0,0,0	monster	Picky	1049,10,0,0,0
@@ -118,7 +119,7 @@ moc_fild07,162,333,12,12	monster	Planta Amarela	1081,5,360000,180000,1
 //moc_fild08,0,0,0,0	monster	Escorpião	1001,80,0,0,0
 //moc_fild08,0,0,0,0	monster	Lobo do Deserto	1106,30,0,0,0
 //moc_fild08,0,0,0,0	monster	Anacondaq	1030,30,0,0,0
-//moc_fild08,0,0,0,0	monster	Filhote de Lobo	1107,10,0,0,0
+//moc_fild08,0,0,0,0	monster	Filhote de Lobo do Deserto	1107,10,0,0,0
 //moc_fild08,0,0,0,0	monster	Drops	1113,10,0,0,0
 
 //==================================================
@@ -162,7 +163,7 @@ moc_fild11,0,0,0,0	monster	Piere	1160,10,0,0,0
 moc_fild11,0,0,0,0	monster	Ovo de Andre	1097,10,0,0,0
 moc_fild11,0,0,0,0	monster	Magnólia	1138,20,0,0,0
 moc_fild11,0,0,0,0	monster	Muka	1055,20,0,0,0
-moc_fild11,197,216,0,0	monster	Shining Plant	1083,1,1800000,900000,1
+moc_fild11,197,216,0,0	monster	Planta Brilhante	1083,1,1800000,900000,1
 
 //==================================================
 // moc_fild12 - Deserto de Sograt
@@ -177,24 +178,24 @@ moc_fild12,181,336,40,20	monster	Planta Amarela	1081,10,180000,90000,1
 // moc_fild13 - Deserto de Sograt
 //==================================================
 moc_fild13,0,0,0,0	monster	Lobo do Deserto	1106,30,0,0,0
-moc_fild13,0,0,0,0	monster	Anacondaq	1030,75,0,0,0
-moc_fild13,0,0,0,0	monster	Boa	1025,30,0,0,0
-moc_fild13,0,0,0,0	monster	Side Winder	1037,5,0,0,0
+moc_fild13,0,0,0,0	monster	Anaconda	1030,75,0,0,0
+moc_fild13,0,0,0,0	monster	Jibóia	1025,30,0,0,0
+moc_fild13,0,0,0,0	monster	Sorrateiro	1037,5,0,0,0
 moc_fild13,0,0,0,0	monster	Poporing	1031,20,0,0,0
 moc_fild13,0,0,0,0	monster	Drops	1113,10,0,0,0
-moc_fild13,280,99,0,0	monster	Red Mushroom	1085,1,180000,90000,1
-moc_fild13,264,64,0,0	monster	Red Mushroom	1085,1,180000,90000,1
-moc_fild13,305,91,0,0	monster	Red Mushroom	1085,1,180000,90000,1
-moc_fild13,264,136,0,0	monster	Red Mushroom	1085,1,180000,90000,1
-moc_fild13,282,155,0,0	monster	Red Mushroom	1085,1,180000,90000,1
-moc_fild13,265,197,0,0	monster	Red Mushroom	1085,1,180000,90000,1
-moc_fild13,284,227,0,0	monster	Red Mushroom	1085,1,180000,90000,1
-moc_fild13,304,244,0,0	monster	Red Mushroom	1085,1,180000,90000,1
-moc_fild13,266,289,0,0	monster	Red Mushroom	1085,1,180000,90000,1
-moc_fild13,307,307,0,0	monster	Red Mushroom	1085,1,180000,90000,1
-moc_fild13,281,333,0,0	monster	Red Mushroom	1085,1,180000,90000,1
-moc_fild13,304,333,0,0	monster	Red Mushroom	1085,1,180000,90000,1
-moc_fild13,295,358,0,0	monster	Red Mushroom	1085,1,180000,90000,1
+moc_fild13,280,99,0,0	monster	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,264,64,0,0	monster	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,305,91,0,0	monster	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,264,136,0,0	monster	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,282,155,0,0	monster	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,265,197,0,0	monster	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,284,227,0,0	monster	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,304,244,0,0	monster	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,266,289,0,0	monster	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,307,307,0,0	monster	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,281,333,0,0	monster	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,304,333,0,0	monster	Cogumelo Vermelho	1085,1,180000,90000,1
+moc_fild13,295,358,0,0	monster	Cogumelo Vermelho	1085,1,180000,90000,1
 moc_fild13,84,329,0,0	monster	Planta Amarela	1081,1,180000,90000,1
 moc_fild13,93,301,0,0	monster	Planta Amarela	1081,1,180000,90000,1
 moc_fild13,101,297,0,0	monster	Planta Amarela	1081,1,180000,90000,1
@@ -209,10 +210,10 @@ moc_fild13,161,273,5,5	monster	Planta Amarela	1081,3,180000,90000,1
 // moc_fild14 - Deserto de Sograt
 //==================================================
 //moc_fild14,0,0,0,0	monster	Lobo do Deserto	1106,80,0,0,0
-//moc_fild14,0,0,0,0	monster	Side Winder	1037,20,0,0,0
-//moc_fild14,0,0,0,0	monster	Filhote de Lobo	1107,40,0,0,0
+//moc_fild14,0,0,0,0	monster	Sorrateiro	1037,20,0,0,0
+//moc_fild14,0,0,0,0	monster	Filhote de Lobo do Deserto	1107,40,0,0,0
 //moc_fild14,0,0,0,0	monster	Magnólia	1138,25,0,0,0
-//moc_fild14,124,93,5,5	monster	Shining Plant	1083,1,1800000,900000,1
+//moc_fild14,124,93,5,5	monster	Planta Brilhante	1083,1,1800000,900000,1
 //moc_fild14,85,271,0,0	monster	Planta Amarela	1081,1,180000,90000,1
 //moc_fild14,165,282,0,0	monster	Planta Amarela	1081,1,180000,90000,1
 //moc_fild14,149,333,0,0	monster	Planta Amarela	1081,1,180000,90000,1
@@ -274,7 +275,7 @@ moc_fild17,359,258,0,0	monster	Planta Amarela	1081,1,180000,90000,1
 // moc_fild18 - Deserto de Sograt
 //==================================================
 moc_fild18,0,0,0,0	monster	ChonChon de Aço	1042,70,0,0,0
-moc_fild18,0,0,0,0	monster	Chonchon	1011,40,0,0,0
+moc_fild18,0,0,0,0	monster	ChonChon	1011,40,0,0,0
 moc_fild18,0,0,0,0	monster	Muka	1055,80,0,0,0
 moc_fild18,0,0,0,0	monster	Metaller	1058,10,0,0,0
 moc_fild18,0,0,0,0	monster	Ovo de Andre	1097,5,0,0,0
@@ -290,7 +291,7 @@ moc_fild18,325,207,0,0	monster	Planta Amarela	1081,1,180000,90000,1
 moc_fild18,325,272,0,0	monster	Planta Amarela	1081,1,180000,90000,1
 
 //==================================================
-// moc_fild20 - Desfiladeiro Dimensional
+// moc_fild20 - Fenda Dimensional 
 //==================================================
 moc_fild20,0,0,0,0	monster	Ovo de Andre	1097,10,0,0,0
 moc_fild20,0,0,0,0	monster	Andre	1095,20,0,0,0
@@ -307,18 +308,18 @@ moc_fild20,0,0,0,0	monster	Sombra da Vaidade	1920,1,30000,0,0
 moc_fild20,0,0,0,0	monster	Sombra da Ira	1921,1,30000,0,0
 
 //==================================================
-// moc_fild21 - Desfiladeiro Dimensional
+// moc_fild21 - Fenda Dimensional 
 //==================================================
 moc_fild21,0,0,0,0	monster	Golem	1040,61,0,0,0
 moc_fild21,0,0,0,0	monster	Golem Estalactítico	1278,46,0,0,0
-moc_fild21,0,0,0,0	monster	Lava Golem	1366,46,0,0,0
+moc_fild21,0,0,0,0	monster	Golem de Lava	1366,46,0,0,0
 moc_fild21,0,0,0,0	monster	Sombra da Inveja	1918,46,30000,0,0
 moc_fild21,0,0,0,0	monster	Sombra da Gula	1919,46,30000,0,0
 moc_fild21,0,0,0,0	monster	Sombra da Vaidade	1920,46,30000,0,0
 moc_fild21,0,0,0,0	monster	Sombra da Ira	1921,34,30000,0,0
 
 //==================================================
-// moc_fild22 - Desfiladeiro Dimensional
+// moc_fild22 - Fenda Dimensional 
 //==================================================
 moc_fild22,0,0,0,0	monster	Sombra da Inveja	1918,60,30000,0,0
 moc_fild22,0,0,0,0	monster	Sombra da Gula	1919,60,30000,0,0

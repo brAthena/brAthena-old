@@ -8,19 +8,19 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Guerra do Emperium (Prontera)	        |
+// | Nome do Script: Guerra do Emperium (Prontera)          |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.1/1.2                                |
 // |--------------------------------------------------------|
-// | Descrição: NPCs relacionados ao castelo Hrist	 	    |
+// | Descrição: NPCs relacionados ao castelo Hrist.         |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Script Traduzido [cleyton]     		            |
-// | 1.1 Script Revisado [Protimus]							|
-// | 1.2 Correção de Tradução [Protimus]					|
-// | - Corrigido erro de concordância nominal				| 
+// | 1.0 Script Traduzido [cleyton]                         |
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// | 1.2 Correção de Tradução [Protimus]                    |
+// | - Corrigido erro de concordância nominal               | 
 // \________________________________________________________/
 
 // Bandeira do Castelo (Cidade)
@@ -40,7 +40,7 @@ prt_gld,244,126,8	script	Hrist#p2-2::Hrist2	722,{
 	if (.@GID == 0) {
 		mes " [ Decreto do Reino de Midgard ]";
 		mes " ";
-		mes "1. Conforme o Pacto do Reino de Midgard e o Feudo das Valquírias, declaro que este Castelo não possui um Senhor.";
+		mes "1. Conforme o pacto do Reino de Midgard e o Feudo das Valquírias, declaro que este Castelo não possui um Senhor.";
 		mes " ";
 		mes "2. Aquele que superar terríveis desafios e destruir o Emperium, receberá a posse do castelo com o apoio do nosso rei.";
 	}
@@ -60,11 +60,11 @@ prt_gld,244,126,8	script	Hrist#p2-2::Hrist2	722,{
 		}
 		mes "[ Decreto do Reino de Midgard ]";
 		mes " ";
-		mes "1. Seguindo o decredo do Reino de Midgard.";
+		mes "1. Seguindo o decreto do Reino de Midgard.";
 		mes "Nós declaramos que esse castelo pertence ao clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
 		mes " ";
 		mes "2. O líder do clã ^ff0000"+ GetGuildName(.@GID) + "^000000 se chama ^FF0000" + GetGuildMaster(.@GID) + "^000000.";
-		mes "Se alguem se opõe a esse decreto, prove sua força e honra com uma espada em suas mãos.";
+		mes "Se alguém se opõe a esse decreto, que prove sua força e honra com uma espada em suas mãos.";
 	}
 	close;
 

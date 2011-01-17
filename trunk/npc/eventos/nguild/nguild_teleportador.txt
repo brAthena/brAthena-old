@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: NGuild - Teleportador 					|
+// | Nome do Script: NGuild - Teleportador                  |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
@@ -18,15 +18,15 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [cleyton]          	            |
-// | 1.1 Script Revisado [Protimus]						 	|
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// | - Anotações                                            |
 // \________________________________________________________/
-
 
 prontera,146,163,6	script	Castelos de Novatos	729,{
 	mes "[Cita]";
 	if(getcharid(2)!=0){
 		if(getgdskilllv(getcharid(2),10013)){
-			mes "Estou vendo que seu Clã tem a habilidade de Chamado Urgente dominada.";
+			mes "Estou vendo que seu Clã tem a habilidade de 'Chamado Urgente' dominada.";
 			mes "Você não pode entrar na área de castelo para Novatos.";
 			emotion e_hmm;
 			emotion e_wah,1;
@@ -49,7 +49,7 @@ prontera,146,163,6	script	Castelos de Novatos	729,{
 			getgdskilllv(getcharid(2),10013) +
 			getgdskilllv(getcharid(2),10014) > 9
 		){
-			mes "Estou vendo que seu Clã tem a habilidade de Chamado Urgente dominada.";
+			mes "Estou vendo que seu Clã tem a habilidade de 'Chamado Urgente' dominada.";
 			mes "Você não pode entrar na área de castelo para Novatos.";
 			emotion e_hmm;
 			emotion e_wah,1;
@@ -58,10 +58,10 @@ prontera,146,163,6	script	Castelos de Novatos	729,{
 	} else {
 		mes "^FF0000Você precisa entrar em um Clã que seja capaz de acertar o Emperium!^000000";
 	}
-	mes "Eu sou o recepcionista para o castelo dos Novatos;
+	mes "Eu sou o recepcionista para o castelo dos Novatos";
 	next;
 	if( !(eaclass()&(EAJL_2|EAJL_UPPER)) && BaseLevel<60 )
-		menu "Me teleporte para os castelos dos novatos",M_WARP,"Cancel",-;
+		menu "Me teleporte para os castelos dos novatos.",M_WARP,"Cancelar.",-;
 
 	mes "[Cita]";
 	mes "Eu lamento, mas você não pode entrar no local sagrado dos castelos dos novatos.";
@@ -88,13 +88,12 @@ M_WARP:
 	close;
 }
 
-
 n_castle,102,107,5	script	Cita	729,{
 	mes "[Cita]";
 	mes "Olá, "+ strcharinfo(0) +". 
 	mes "Como posso ajudar-lhe?";
 	next;
-	menu "Me teleporte para Prontera!",-,"Cancelar",LEnd;
+	menu "Me teleporte para Prontera!",-,"Cancelar.",LEnd;
 	
 		warp "prontera",155,177+rand(5);
 		close;

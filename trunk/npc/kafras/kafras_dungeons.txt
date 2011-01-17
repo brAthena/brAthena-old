@@ -12,32 +12,35 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 2.7a/1.0                               |
+// | Versões eA/brA: 2.7a/1.1                               |
 // |--------------------------------------------------------|
 // | Descrição: Configurações callfunc "F_Kafra".           |
 // | arg(0):                                                |
-// |  Setando em 0 a mensagem padrão da Kafra é exibida.    |
-// |  Setando em 1 a mensagem da Kafra de Niflhiem é exibida|
-// |  Setando em 2 a mensagem da Kafra de Guild é exibida.  |
-// | arg(1): 1 para desabilitar o menu "Teleporte".         |
-// |  0 para exibi-lo.                                      |
-// | arg(2): 1 para desabilitar o menu "Informações".       |
-// |  0 para exibi-lo.                                      |
-// | arg(3): Custo do serviço de "Armazem".                 |
-// | arg(4): Custo do serviço "Alugar Carrinho".            |
+// |  Setando em 0 a mensagem padrão da Kafra é exibida     |
+// |  Setando em 1 a mensagem da Kafra de Niflheim é exibida|
+// |  Setando em 2 a mensagem da Kafra de Clã é exibida     |
+// | arg(1): 1 para desabilitar o menu "Teleporte"          |
+// |  0 para exibi-lo                                       |
+// | arg(2): 1 para desabilitar o menu "Informações"        |
+// |  0 para exibi-lo                                       |
+// | arg(3): Custo do serviço de "Armazém"                  |
+// | arg(4): Custo do serviço "Alugar Carrinho"             |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [cleyton]   	                    |
+// | 1.1 Script Revisado [Tyler]                            |
+// | - Anotações                                            |
 // \________________________________________________________/
 
-//<============================= Byalan Island ============================>\\
+//Ilha de Byalan
+//============================================================
 izlu2dun,106,58,8	script	Funcionária Kafra::kaf_izlu2dun	115,{
 
 	cutin "kafra_03",2;
 	if(BaseJob==Job_Novice && job_merchant_q2>0) callfunc "F_MercKafra";  //F_MercKafra found in merchant.txt
 	mes "[Funcionária Kafra]";
-	mes "Bem vindo a";
-	mes "corporação Kafra.";
+	mes "Bem-vindo a";
+	mes "Corporação Kafra.";
 	mes "As funcionárias Kafras estão";
 	mes "sempre dispostas a ajudar você.";
 	mes "Como posso ajudar hoje?";
@@ -48,13 +51,13 @@ izlu2dun,106,58,8	script	Funcionária Kafra::kaf_izlu2dun	115,{
 		callfunc "F_KafEnd",0,1," na ilha de Byalan";
 }
 
-
-//<============================ Culvert Sewers ============================>\\
+// Esgoto de Prontera
+//============================================================
 prt_fild05,290,224,3	script	Funcionária Kafra::prt_fild05	114,{
 	cutin "kafra_04",2;
 	mes "[Funcionária Kafra]";
-	mes "Bem vindo!";
-	mes "A corporação Kafra";
+	mes "Bem-vindo!";
+	mes "A Corporação Kafra";
 	mes "sempre dará apoio";
 	mes "aos aventureiros de Rune-Midgard";
 	mes "com excelentes serviços.";
@@ -63,16 +66,16 @@ prt_fild05,290,224,3	script	Funcionária Kafra::prt_fild05	114,{
 
 	M_Save:
 		savepoint "prt_fild05",274,243;
-		callfunc "F_KafEnd",0,1, " nos bueiros de Prontera";
+		callfunc "F_KafEnd",0,1, " no Esgoto de Prontera";
 }
 
-
-//<=========================== Coal Mine (Dead Pitt) =======================>\\
+// Mina de Carvão do Mt. Mjolnir
+//============================================================
 mjolnir_02,83,362,4	script	Funcionária Kafra::kaf_mjolnir_02	116,{
 	cutin "kafra_02",2;
 	mes "[Funcionária Kafra]";
-	mes "Bem vindo a";
-	mes "corporação Kafra.";
+	mes "Bem-vindo a";
+	mes "Corporação Kafra.";
 	mes "As funcionárias Kafras estão";
 	mes "sempre dispostas a ajudar você.";
 	mes "Como posso ajudar hoje?";
@@ -80,16 +83,16 @@ mjolnir_02,83,362,4	script	Funcionária Kafra::kaf_mjolnir_02	116,{
 
 	M_Save:
 		savepoint "mjolnir_02",98,352;
-		callfunc "F_KafEnd",0,1," na mina de carvão de Mjolnir";
+		callfunc "F_KafEnd",0,1," na Mina de Carvão Abandonada do Mt. Mjolnir";
 }
 
-
-//<=============================== Morroc Ruins ============================>\\
+// Ruínas de Morroc
+//============================================================
 moc_ruins,59,157,5	script	Funcionária Kafra::moc_ruins	114,{
 	cutin "kafra_04",2;
 	mes "[Funcionária Kafra]";
-	mes "Bem vindo!";
-	mes "A corporação Kafra";
+	mes "Bem-vindo!";
+	mes "A Corporação Kafra";
 	mes "sempre dará apoio";
 	mes "aos aventureiros de Rune-Midgard";
 	mes "com exelentes serviços.";
@@ -98,16 +101,16 @@ moc_ruins,59,157,5	script	Funcionária Kafra::moc_ruins	114,{
 
 	M_Save:
 		savepoint "moc_ruins",41,141;
-		callfunc "F_KafEnd",0,1," nas Piramides";
+		callfunc "F_KafEnd",0,1," nas Pirâmides de Morroc";
 }
 
-
-//<================================ Orc Dungeon ============================>\\
+// Calabouço dos Orcs
+//============================================================
 gef_fild10,73,340,5	script	Funcionária Kafra::kaf_gef_fild10	116,{
 	cutin "kafra_02",2;
 	mes "[Funcionária Kafra]";
-	mes "Bem vindo a";
-	mes "corporação Kafra.";
+	mes "Bem-vindo a";
+	mes "Corporação Kafra.";
 	mes "As funcionárias Kafras estão";
 	mes "sempre dispotas a ajudar você.";
 	mes "Como posso ajudar hoje?";
@@ -115,21 +118,22 @@ gef_fild10,73,340,5	script	Funcionária Kafra::kaf_gef_fild10	116,{
 
 	M_Save:
 		savepoint "gef_fild10",54,326;
-		callfunc "F_KafEnd",0,1," na caverna dos Orcs";
+		callfunc "F_KafEnd",0,1," no Calabouço dos Orcs";
 }
 
-//<============================== Treasure Island ==========================>\\
+// Ilha do Tesouro
+//============================================================
 alb2trea,59,69,5	script	Funcionária Kafra::kaf_alb2trea	117,{
 	cutin "kafra_01",2;
 	mes "[Funcionária Kafra]";
-	mes "Bem vindo a";
-	mes "corporação Kafra.";
-	mes "Os serviços da corporação sempre";
+	mes "Bem-vindo a";
+	mes "Corporação Kafra.";
+	mes "Os serviços da Corporação sempre";
 	mes "estarão ao seu lado.";
 	mes "Em que posso ajudar?";
 	callfunc "F_Kafra",5,2,1,50,0;
 
 	M_Save:
 		savepoint "alb2trea",92,64;
-		callfunc "F_KafEnd",0,1,0," no navio afundado";
+		callfunc "F_KafEnd",0,1,0," na Ilha de Alberta";
 }
