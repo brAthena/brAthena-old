@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r108 - 17/01/2011 [Rafoka]
+	* Corrigido um pequeno bug com relação ao "killmonsterall". Report por: xMaickx
+	- classes/2-1/cacador.txt
+
 	r107 - 17/01/2011 [insidemybrain]
 	* Adicionados novos npc's traduzidos, cada um com sua respectiva pasta abaixo:
 	- classes/valquíria.txt (REVISADO/CONCLUÍDO)

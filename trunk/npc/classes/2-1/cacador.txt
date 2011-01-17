@@ -1059,6 +1059,7 @@ OnEnable:
 	end;
 
 OnMyMobDead:
+	if( !playerattached() ) end; // Sem jogador. A label foi chamada por outro npc e o teste foi encerrado.
 	set .MyMobs,.MyMobs-1;
 	if (.MyMobs < 3) {
 		mapannounce "job_hunte","Okay, good job... Now, find the switch in the center of the map!! Be careful of the traps!!",bc_map;
@@ -1072,6 +1073,7 @@ OnMyMobDead:
 	end;
 
 OnMyMobDead2:
+	if( !playerattached() ) end; // Sem jogador. A label foi chamada por outro npc e o teste foi encerrado.
 	mapannounce "job_hunte",strcharinfo(0)+ "!! You made a mistake...Please try again.",bc_map;
 	set HNTR_Q,13;
 	warp "job_hunte",176,22;
