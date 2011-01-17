@@ -8,33 +8,35 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Variable Management NPC for the god	|
-// | item quest    											|
+// | Nome do Script: Variable Management NPC for the god    |
+// | item quest                                             |
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    			|
+// | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.1/1.0				   				|
+// | Versões eA/brA: 1.1/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: Use this NPC if the seals quest variables 	|
-// | get messed up.											|
+// | Descrição: Use this NPC if the seals quest variables   |
+// | get messed up.                                         |
 // |--------------------------------------------------------|
-// | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
-// | - Anotações					    					|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [CaroLPunk]                       |
+// | 1.1 Script Revisado [Kooler]                           |
+// | - Anotações                                            |
 // \________________________________________________________/
 
+
 sec_in02,15,170,0	script	Golbal var	817,{
-	//mes "[Check]";
-	//mes "Please enter the password.";
+	//mes "[Checador]";
+	//mes "Por favor, digite a senha.";
 	//next;
 	//set .@check,68392411;
 	//dlgwrite 0 10000000
 	//if (check == input){
 	if (getgmlevel() > 98) {
-		mes "[Check]";
-		mes "Please choose a menu.";
+		mes "[Checador]";
+		mes "Escolha um menu.";
 		next;
-		switch(select("Now:No.1:No.2:No.3:No.4:Reset")) {
+		switch(select("Agora:No.1:No.2:No.3:No.4:Resetar")) {
 		case 1:
 			mes "^0000FF$God1^000000 = ^FF0000" + $God1 + "^000000.";
 			mes "^0000FF$God2^000000 = ^FF0000" + $God2 + "^000000.";
@@ -43,83 +45,83 @@ sec_in02,15,170,0	script	Golbal var	817,{
 			close;
 		case 2:
 			input .@input,0,100;
-			mes "[Check]";
-			mes "Would you like to change to "+.@input+"?";
+			mes "[Checador]";
+			mes "Você gostaria de mudar para "+.@input+"?";
 			next;
-			if (select("Yes:No") == 1) {
-				mes "[Check]";
-				mes "The command "+.@input+" has been confirmed.";
+			if (select("Sim:Não") == 1) {
+				mes "[Checador]";
+				mes "O comando "+.@input+" foi confirmado.";
 				next;
 				set $God1,.@input;
 				mes "$God1 "+.@input+"";
 				close;
 			}
 			else {
-				mes "[Check]";
-				mes "The command has been canceled.";
+				mes "[Checador]";
+				mes "O comando foi cancelado.";
 				close;
 			}
 		case 3:
 			input .@input,0,100;
-			mes "[Check]";
-			mes "Would you like to change to "+.@input+"?";
+			mes "[Checador]";
+			mes "Você gostaria de mudar para "+.@input+"?";
 			next;
-			if (select("Yes:No") == 1) {
-				mes "[Check]";
-				mes "The command "+.@input+" has been confirmed.";
+			if (select("Sim:Não") == 1) {
+				mes "[Checador]";
+				mes "O comando "+.@input+" foi confirmado.";
 				next;
 				set $God2,.@input;
 				mes "$God2 "+.@input+"";
 				close;
 			}
 			else {
-				mes "[Check]";
-				mes "The command has been canceled.";
+				mes "[Checador]";
+				mes "O comando foi cancelado.";
 				close;
 			}
 		case 4:
 			input .@input,0,100;
-			mes "[Check]";
-			mes "Would you like to change to "+.@input+"?";
+			mes "[Checador]";
+			mes "Você gostaria de mudar para "+.@input+"?";
 			next;
-			if (select("Yes:No") == 1) {
-				mes "[Check]";
-				mes "The command "+.@input+" has been confirmed.";
+			if (select("Sim:Não") == 1) {
+				mes "[Checador]";
+				mes "O comando "+.@input+" foi confirmado.";
 				next;
 				set $God3,.@input;
 				mes "$God3 "+.@input+"";
 				close;
 			}
 			else {
-				mes "[Check]";
-				mes "The command has been canceled.";
+				mes "[Checador]";
+				mes "O comando foi cancelado.";
 				close;
 			}
 		case 5:
 			input .@input,0,100;
-			mes "[Check]";
-			mes "Would you like to change to "+.@input+"?";
+			mes "[Checador]";
+			mes "Você gostaria de mudar para "+.@input+"?";
 			next;
-			if (select("Yes:No") == 1) {
-				mes "[Check]";
-				mes "The command "+.@input+" has been confirmed.";
+			if (select("Sim:Não") == 1) {
+				mes "[Checador]";
+				mes "O comando "+.@input+" foi confirmado.";
 				next;
 				set $God4,.@input;
 				mes "$God4 "+.@input+"";
 				close;
 			}
 			else {
-				mes "[Check]";
-				mes "The command has been canceled.";
+				mes "[Checador]";
+				mes "O comando foi cancelado.";
 				close;
 			}
 		case 6:
-			mes "[Check]";
-			mes "Are you really sure that you want to reset the entire list of God Globalvar?";
+			mes "[Checador]";
+			mes "Você tem certeza de que deseja resetar a lista do Deus Globalvar?";
 			next;
-			if (select("Yes:No") == 1) {
-				mes "[Check]";
-				mes "Now, the entire list of God Globalvar is being reset.";
+			if (select("Sim:Não") == 1) {
+				mes "[Checador]";
+				mes "Agora, a lista do Deus Globalvar está sendo resetada.";
 				next;
 				set $God1,0;
 				set $God2,0;
@@ -132,16 +134,16 @@ sec_in02,15,170,0	script	Golbal var	817,{
 				close;
 			}
 			else {
-				mes "[Check]";
-				mes "The command has been canceled.";
+				mes "[Checador]";
+				mes "O comando foi cancelado.";
 				close;
 			}
 		}
 	}
 	else {
-		mes "[Check]";
-		//mes "Incorrect password.";
-		mes "You cannot access this NPC.";
+		mes "[Checador]";
+		//mes "Senha incorreta.";
+		mes "Você não pode acessar este NPC.";
 		close;
 	}
 }

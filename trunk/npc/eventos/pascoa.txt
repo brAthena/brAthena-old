@@ -1,208 +1,217 @@
-//  ________________________________________________________
-// /                                                        \
+//  _______________________________________________________
+// /                                                       \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
 // |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
 // |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
 // |                                                        |
-// |                    brAthena Script                     |
+// |                 brAthena Script                        |
 // |--------------------------------------------------------|
-// | Nome do Script: Easter Egg Event    	   		        |
+// | Nome do Script: Evento Ovo de Páscoa                   |
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team                           |
+// | Criado por: eAthena Dev. Team                          |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0a/1.0                               |
+// | Versões eA/brA: 1.0a/1.2                               |
 // |--------------------------------------------------------|
 // | Descrição:                                             |
-// |                                                        |
+// |    	                                            |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			   						|
-// \________________________________________________________/
+// | 1.0 Script Traduzido [Power]		   	    |
+// | 1.1 Script Revisado [insidemybrain]		    |
+// | - Anotações		   			    |
+// \_______________________________________________________/
 
+geffen,95,201,3	script	Shilo#easter	50,{
 
-geffen,95,201,3	script	Shilo	50,{
+	if( easter_q )
+	{
+		if( countitem(558) < 10 )
+		{
+			mes "[Shilo]";
+			mes "Você não tem ^D2A200Chocolates^000000 suficiente para o prêmio.";
+		}
+		else
+		{
+			mes "[Shilo]";
+			mes "Já encontrou algum ^D2A200Chocolate^000000?";
+			next;
+			if( countitem(558) >= 150 )
+			{
+				delitem 558,150;
+				getitem 617,1;
+			}
+			else if( countitem(558) >= 50 )
+			{
+				delitem 558,50;
+				getitem 603,1;
+			}
+			else
+			{
+				delitem 558,10;
+				getitem 671,1;
+			}
+
+			mes "[Shilo]";
+			mes "Tenha uma Feliz Páscoa!";
+		}
+		// Ao receber o item finalizar a quest do evento completamente.
+		//set easter_q,0;
+		close;
+	}
+
 	mes "[Shilo]";
-	if(easter_Q == 1) goto L_Check;
-	mes "*Sigh*... Where is my sister!?";
+	mes "Onde está minha irmã?";
 	next;
 	mes "[Shilo]";
-	mes "Oh... Hi there! I'm extremely excited! You know why?";
+	mes "Oh... Ali está ela! Estou bastante animado, sabe porquê?";
 	next;
 	mes "[Shilo]";
-	mes "My favorite holiday is here... ^D2A200Easter^000000!!";
+	mes "Meu feriado favorito chegou... A ^D2A200Páscoa^000000!!";
 	next;
 	mes "[Shilo]";
-	mes "I can't wait to go find some easter eggs...";
+	mes "Eu mal posso esperar para ir procurar alguns Ovos de Páscoa...";
 	next;
-	if(@talked == 1) menu "I want to look for these eggs.",sM_0, "... Eggs? Why?",M_0, "You seriously bore me... *yawn*...",M_End;
-	menu "... Eggs? Why?",M_0, "You seriously bore me...*yawn*..",M_End;
 
-	M_0:
-		mes "[Shilo]";
-		mes "You mean you've never been on an ^5533FFEaster Egg Hunt^000000 before?";
-		next;
-		mes "[Shilo]";
-		mes "They're the best! See every year, people from all over hide ^5533FFEaster eggs^000000 through out Rune Midgard.";
-		mes "And it's our job to go find as many as possible and collect all of the goodies inside of them.";
-		next;
-		mes "[Shilo]";
-		mes "See, along time ago, the Peco Peco roamed the land free of any hostilities...";
-		mes "All over Rune Midgard, they did as the pleased, and they reproduced without any fears.";
-		next;
-		mes "[Shilo]";
-		mes "The Peco Peco population thrived and kept growing... Eventually their numbers got out of hand.";
-		mes "The people of Rune Midgard decided that they needed to do something about the overwhelming population of Peco Pecos.";
-		next;
-		mes "[Shilo]";
-		mes "So they set out to destroy as many of the Peco Peco eggs they could find!!";
-		next;
-		mes "[Shilo]";
-		mes "Many children found the destruction of helpless Peco Peco eggs to be unbearable.";
-		mes "They were very sad about this and pleaded with their parents to stop.";
-		next;
-		mes "[Shilo]";
-		mes "Unfortunately they could not stop.";
-		mes "If they did nothing the fertile lands of Rune Midard would be destoryed by the Peco Pecos.";
-		next;
-		mes "[Shilo]";
-		mes "So they decided to try to convince the children that destroying the eggs was a good thing.";
-		mes "The parents starting making fake peco peco eggs that had treats in them.";
-		next;
-		mes "[Shilo]";
-		mes "They hid them all over town and had the children search for them.";
-		mes "Once found, the children would break the eggs and find the treats. They would then feel happy about breaking Peco Peco eggs.";
-		next;
-		mes "[Shilo]";
-		mes "Now the Peco Peco has natural enemies, like desert wolves, which keep the Peco Peco population in check.";
-		mes "Therefore the people of Rune Midgard no longer have to destroy defenseless Peco Peco eggs.";
-		next;
-		mes "[Shilo]";
-		mes "But we still carry on the tradition of hiding fake eggs all over Rune Midgard every year.";
-		mes "And that is the story behind Easter in Rune Midgard.";
-		next;
-		mes "[Shilo]";
-		mes "You know... it looks like I'm going to be here for alonge while. I'll tell you what...";
-		next;
-		mes "[Shilo]";
-		mes "If you go out and find some ^5533FFEaster eggs^000000 and bring me back their special 'treats', I will give you something for them...";
-		mes "What do you say?";
-		set @talked, 1;
-		next;
-		menu "What do I have to do?",sM_0, "Nah, I'm to busy.",sM_End;
+	if( easter_t )
+		set .@Choose, select("Eu quero ver esses ovos.","... Ovos? Por quê?","Você me aborrece...");
+	else
+		set .@Choose, select("","... Ovos? Porque?","Você me aborrece...");
 
-		sM_0:
+	switch( .@Choose )
+	{
+		case 1:
+			break;
+		case 2:
 			mes "[Shilo]";
-			mes "All you have to do is go hunt for some Easter eggs which can be found in the towns and cities all over Rune Midgard.";
+			mes "Quer dizer que você nunca viu um ^5533FFOvo de Páscoa^000000 antes?";
 			next;
 			mes "[Shilo]";
-			mes "When you find them, break em. If you're lucky, there will be delicious ^D2A200'Chocolates'^000000 inside of them.";
-			mes "Find at least ^00950010^000000, and bring them to me and I will give you a ^FF5533prize^000000.";
+			mes "Eles são ótimos! Todos os anos, as pessoas escondem os ^5533FFOvos de Páscoa^000000 por toda Rune Midgard.";
+			mes "E é o nosso trabalho encontrar o maior número possível, e recolher todos os presentinhos dentro deles!";
 			next;
 			mes "[Shilo]";
-			mes "The more you bring to me, the better my gift to you will be.";
+			mes "Veja, alguns anos atrás, os Peco Pecos começaram a andar livres por Rune Midgard sem nenhuma hostilidade...";
+			mes "Todos de Rune Midgard, aceitaram com prazer, assim, eles se reproduziram rapidademente.";
 			next;
 			mes "[Shilo]";
-			mes "I'll will give you something for:";
-			mes "^00950010 ^D2A200Chocolates";	// 1 gold coin ?
-			mes "^5533FF50 ^D2A200Chocolates^000000";	// 1 old blue box
-			mes "and ^FF3355150 ^D2A200Chocolates^000000";	// 1 old purple box
+			mes "A população de Peco Pecos continuou crescendo... Eventualmente os numeros sairam do controle de nossas mãos.";
+			mes "As pessoas de Rune Midgard decidiram que precisavam fazer algo contra aquela crescente população de Peco Pecos.";
 			next;
 			mes "[Shilo]";
-			mes "So what do you say?";
+			mes "Então resolveram destruir o maior número de ovos de Peco Peco que podiam encontrar!!";
 			next;
-			menu "Sounds fun, I'll do it!",ssM_0, "I have better things to do",ssM_End;
-	
-			ssM_0:
+			mes "[Shilo]";
+			mes "Muitas crianças acharam os ovos de Peco Peco destruídos e perceberam a terrível situação.";
+			mes "Eles estavam muito tristes com essa situação, então pediram aos seus pais para pararem.";
+			next;
+			mes "[Shilo]";
+			mes "Infelizmente, eles não pararam.";
+			mes "Se eles não fizessem nada, as terras férteis de Rune Midgard iam ser destruídas pelos Peco Pecos";
+			next;
+			mes "[Shilo]";
+			mes "Então, eles tentaram convencer as crianças que destuir os ovos era uma coisa boa.";
+			mes "Os pais começaram a fazer ovos falsos de Peco Peco, para entreter as crianças.";
+			next;
+			mes "[Shilo]";
+			mes "Eles esconderam os ovos por toda a cidade, e as crianças tinham que encontrá-los.";
+			mes "Quando a criança encontrava, ela tinha que quebrar os ovos e econtrar um presentinho. Pois eles tinham que ficar felizes em quebrar os Ovos de Peco Peco.";
+			next;
+			mes "[Shilo]";
+			mes "Agora os Peco Pecos tinham inimigos naturais, os Lobos do Deserto, além da população em geral.";
+			mes "Assim, a população não precisava mais destruir os ovos de Peco Peco, pois os Lobos faziam este trabalho.";
+			next;
+			mes "[Shilo]";
+			mes "Mas a tradição de esconder os falsos ovos de Peco Peco continuou, a cada ano.";
+			mes "E essa é a história por trás de Rune Midgard.";
+			next;
+			mes "[Shilo]";
+			mes "Você sabe... eu estou aqui a algum tempo. Vou te contar uma coisa...";
+			next;
+			mes "[Shilo]";
+			mes "Se você sair e encontrar alguns ^5533FFOvos de Páscoa^000000 e me trazer o 'presentinho' especial de volta, Eu te darei alguma coisa em troca...";
+			mes "O que você me diz?";
+			set easter_t, 1;
+			next; 
+			if( select("O que tenho que fazer?","Nhá... Eu estou ocupado.") == 2 )
+			{
 				mes "[Shilo]";
-				mes "Great! But I must warn you...";
-				next;
-				mes "[Shilo]";
-				mes "During your hunt, you may come across the protectors of these eggs...";
-				next;
-				mes "[Shilo]";
-				mes "They have a bright, light blue color and are very 'fluffy'...";
-				mes "Though I have never seen one, I've heard many stories about them.";
-				next;
-				mes "[Shilo]";
-				mes "The have come to be know as... '^FF3355Easter Bunnies^000000'!!";
-				mes "Be safe and good luck. I'll be waiting here.";
-				set easter_Q, 1;
-				close;
-
-			ssM_End:
-				mes "[Shilo]";
-				mes "Well it's your loss...";
+				mes "Bem, perda sua...";
 				emotion 9;
 				close;
-		sM_End:
+			}
+			break;
+		case 3:
 			mes "[Shilo]";
-			mes "Ahh, I understand. Farewell.";
+			mes "... Bem, você não está emocionado para falar com todos!?...";
+			emotion 9;
 			close;
-	M_End:
-		mes "[Shilo]";
-		mes "... Well, you're not all that exciting to talk with either...";
-		emotion 9;
-		close;
+	}
 
-
-//---------------------
-L_Check:
-//----------
-	mes "Find any ^D2A200Chocolate^000000 yet?";
+	mes "[Shilo]";
+	mes "Tudo que você tem a fazer é ir atrás de alguns Ovos de Páscoa que podem ser encontrados nas vilas e por todas as cidade de Rune Midgard.";
 	next;
 	mes "[Shilo]";
-	if (countitem(558) < 10) goto L_NotEnuf;
-	mes "Great. You have " + countitem(558) + " ^D2A200Chocolates^000000. Here is your prize...";
-	if (countitem(558) >= 150) goto L_150;
-	if (countitem(558) >= 50) goto L_50;
-
-	delitem 558,10;
-	getitem 671,1;
-	goto L_Cont;
-
-	L_50:
-		delitem 558,50;
-		getitem 603,1;
-		goto L_Cont;
-
-	L_150:
-		delitem 558,150;
-		getitem 617,1;
-		goto L_Cont;
-
-	L_Cont:
-	mes "Have fun and happy Easter!";
-	close;
-
-	L_NotEnuf:
-		mes "You don't have enough ^D2A200Chocolate^000000 for a prize.";
+	mes "Quando você encontrar, quebre-o, se você tiver sorte encontrará deliciosos ^D2A200'Chocolates'^000000 lá dentro.";
+	mes "Encontre ^00950010^000000, e traga de volta para mim, que eu te darei um ^FF5533prêmio^000000.";
+	next;
+	mes "[Shilo]";
+	mes "Quanto mais me trouxer, melhor será o meu presente para você.";
+	next;
+	mes "[Shilo]";
+	mes "Eu te darei algumas coisas por:";
+	mes "^00950010 ^D2A200Chocolates,";		// 1 Moeda Dourada
+	mes "^5533FF50 ^D2A200Chocolates^000000,";	// 1 Velha caixa azul
+	mes "e ^FF3355150 ^D2A200Chocolates^000000.";	// 1 Velha caixa roxa
+	next;
+	mes "[Shilo]";
+	mes "O que você me diz?";
+	next;
+	if( select("Parece divertido, eu aceito!","Tenho coisas melhores para fazer") == 1 )
+	{
+		mes "[Shilo]";
+		mes "Ótimo! Más devo avisá-lo...";
+		next;
+		mes "[Shilo]";
+		mes "Durante a caçada, você pode encontrar os protetores desses ovos.";
+		next;
+		mes "[Shilo]";
+		mes "Eles são brilhantes, e possuem uma luz azul e são muito 'fofinhos'.";
+		mes "Eu nunca vi um, mas existem várias hitórias sobre eles.";
+		next;
+		mes "[Shilo]";
+		mes "Passaram a ser conhecidos como... '^FF3355Coelhos da Páscoa^000000'!!";
+		mes "Boa sorte! Estarei esperando aqui.";
+		set easter_q, 1;
 		close;
+	}
+	mes "[Shilo]";
+	mes "Bem, perda sua...";
+	emotion 9;
+	close;
 }
 
-
-// Easter Eggs
+// Ovo de Páscoas
 //=====================================================
-alberta,0,0,0,0	monster	Easter Egg	1920,100,0,0,0
-aldebaran,0,0,0,0	monster	Easter Egg	1920,150,0,0,0
-amatsu,0,0,0,0	monster	Easter Egg	1920,100,0,0,0
-comodo,0,0,0,0	monster	Easter Egg	1920,100,0,0,0
-geffen,0,0,0,0	monster	Easter Egg	1920,120,0,0,0
-gonryun,0,0,0,0	monster	Easter Egg	1920,100,0,0,0
-izlude,0,0,0,0	monster	Easter Egg	1920,80,0,0,0
-louyang,0,0,0,0	monster	Easter Egg	1920,200,0,0,0
-morocc,0,0,0,0	monster	Easter Egg	1920,250,0,0,0
-payon,0,0,0,0	monster	Easter Egg	1920,150,0,0,0
-prontera,0,0,0,0	monster	Easter Egg	1920,250,0,0,0
-umbala,0,0,0,0	monster	Easter Egg	1920,100,0,0,0
-yuno,0,0,0,0	monster	Easter Egg	1920,150,0,0,0
+alberta,0,0,0,0	monster	Ovo de Páscoa#01	1920,100,0,0,0
+aldebaran,0,0,0,0	monster	Ovo de Páscoa#02	1920,150,0,0,0
+amatsu,0,0,0,0	monster	Ovo de Páscoa#03	1920,100,0,0,0
+comodo,0,0,0,0	monster	Ovo de Páscoa#04	1920,100,0,0,0
+geffen,0,0,0,0	monster	Ovo de Páscoa#05	1920,120,0,0,0
+gonryun,0,0,0,0	monster	Ovo de Páscoa#06	1920,100,0,0,0
+izlude,0,0,0,0	monster	Ovo de Páscoa#07	1920,80,0,0,0
+louyang,0,0,0,0	monster	Ovo de Páscoa#08	1920,200,0,0,0
+morocc,0,0,0,0	monster	Ovo de Páscoa#09	1920,250,0,0,0
+payon,0,0,0,0	monster	Ovo de Páscoa#10	1920,150,0,0,0
+prontera,0,0,0,0	monster	Ovo de Páscoa#11	1920,250,0,0,0
+umbala,0,0,0,0	monster	Ovo de Páscoa#12	1920,100,0,0,0
+yuno,0,0,0,0	monster	Ovo de Páscoa#13	1920,150,0,0,0
 
-// Easter Bunny
+// Coelho da Páscoa
 //======================================================
-alberta,0,0,0,0	monster	Easter Bunny	1921,1,1200000,900000,0
-geffen,0,0,0,0	monster	Easter Bunny	1921,1,1200000,900000,0
-morocc,0,0,0,0	monster	Easter Bunny	1921,2,1200000,900000,0
-payon,0,0,0,0	monster	Easter Bunny	1921,1,1200000,900000,0
-prontera,0,0,0,0	monster	Easter Bunny	1921,2,840000,420000,0
+alberta,0,0,0,0	monster	Coelho da Páscoa#01	1921,1,1200000,900000,0
+geffen,0,0,0,0	monster	Coelho da Páscoa#02	1921,1,1200000,900000,0
+morocc,0,0,0,0	monster	Coelho da Páscoa#03	1921,2,1200000,900000,0
+payon,0,0,0,0	monster	Coelho da Páscoa#04	1921,1,1200000,900000,0
+prontera,0,0,0,0	monster	Coelho da Páscoa#05	1921,2,840000,420000,0

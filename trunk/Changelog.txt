@@ -9,6 +9,14 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r107 - 17/01/2011 [insidemybrain]
+	* Adicionados novos npc's traduzidos, cada um com sua respectiva pasta abaixo:
+	- classes/valquíria.txt (REVISADO/CONCLUÍDO)
+	- eventos/pascoa.txt (REVISADO/CONCLUÍDO)
+	- selos/god_global.txt (REVISADO/CONCLUíDO)
+	- quests/doomed_swords.txt (APENAS TRADUZIDO)
+	- quests/habilidades/habilidades_cavaleiro.txt (APENAS TRADUZIDO)
+
 	r106 - 17/01/2011 [insidemybrain]
 	* Adicionadas as traduções de todos npcs da pasta outros/turbotrack.
 
