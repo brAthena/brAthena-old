@@ -15,6 +15,7 @@
 // | Descrição: Database contendo os pontos de experiência  |
 // | do Nível 1 ao 1000.                                    |
 // \________________________________________________________/
+//
 48
 51
 54

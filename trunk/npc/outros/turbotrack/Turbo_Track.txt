@@ -18,11 +18,10 @@
 // | NPCs geral da Turbo Track, inclusos Kafra e mercador   |
 // | de utilidades.                                         |
 // |--------------------------------------------------------|
-// | Changelog:               	                        |
+// | Changelog:                                             |
 // | 1.0 Script Traduzido [Boomer]                          |
-// |                                   		            |
+// | - Anotações                                            |
 // \________________________________________________________/
-
 
 turbo_room,130,92,3	script	Funcionária Kafra#tt	115,{
 	cutin "kafra_03",2;

@@ -17,11 +17,10 @@
 // | Descrição:                                             |
 // | Percurso da Turbo Track: Modo Normal - 8 Pessoas       |
 // |--------------------------------------------------------|
-// | Changelog:               	                        |
+// | Changelog:                                             |
 // | 1.0 Script Traduzido [Boomer]                          |
-// |                                   		            |
+// | - Anotações                                            |
 // \________________________________________________________/
-
 
 turbo_room,84,135,3	script	Modo Normal - 8 Pessoas	124,{
 	end;

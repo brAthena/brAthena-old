@@ -18,8 +18,7 @@
 // | Linha: Defesa elemental do trajeto, Coluna:            |
 // | Ataque elemental com armas.                            |
 // \________________________________________________________/
-
-
+//
 1,10	// Tabela de Atributo lv1
 //Neut Água Terr Fogo Vent Vene Sagr Somb Fant  Mort
   100, 100, 100, 100, 100, 100, 100, 100,  25, 100,  // Neutro

@@ -17,11 +17,10 @@
 // | Descrição:                                             |
 // | Percurso da Turbo Track: Modo Solo                     |
 // |--------------------------------------------------------|
-// | Changelog:               	                        |
+// | Changelog:                                             |
 // | 1.0 Script Traduzido [Boomer]                          |
-// |                                   		            |
+// | - Anotações                                            |
 // \________________________________________________________/
-
 
 turbo_room,72,132,3	script	Modo Solo#n1	124,{
 	end;

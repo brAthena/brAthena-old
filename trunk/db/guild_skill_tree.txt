@@ -24,8 +24,7 @@
 // | PrereqSkill-ID-5-Lv                                    |                 
 // | //GUILD SKILLNAME#Skill Name#                          |
 // \________________________________________________________/
-
-
+//
 10000,1,0,0,0,0,0,0,0,0,0,0	//GD_APPROVAL#Autorização Oficial#
 10001,1,10000,1,0,0,0,0,0,0,0,0	//GD_KAFRACONTRACT#Contrato com Kafra#
 10002,1,10000,1,0,0,0,0,0,0,0,0	//GD_GUARDRESEARCH#Comandar Guardiões#

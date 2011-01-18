@@ -8,22 +8,21 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Variable Management NPC for the god    |
-// | item quest                                             |
+// | Nome do Script: Npc administrador de váriaveis para a  |
+// | quest dos itens divinos                                |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.1/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: Use this NPC if the seals quest variables   |
-// | get messed up.                                         |
+// | Descrição: Utilize este NPC se as variáveis busca      |
+// | pelos selos ficar confusa.                             |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [CaroLPunk]                       |
-// | 1.1 Script Revisado [Kooler]                           |
+// | 1.1 Script Revisado [Kooler & Tyler]                   |
 // | - Anotações                                            |
 // \________________________________________________________/
-
 
 sec_in02,15,170,0	script	Golbal var	817,{
 	//mes "[Checador]";
@@ -36,7 +35,7 @@ sec_in02,15,170,0	script	Golbal var	817,{
 		mes "[Checador]";
 		mes "Escolha um menu.";
 		next;
-		switch(select("Agora:No.1:No.2:No.3:No.4:Resetar")) {
+		switch(select("Agora.:No.1.:No.2.:No.3.:No.4.:Resetar.")) {
 		case 1:
 			mes "^0000FF$God1^000000 = ^FF0000" + $God1 + "^000000.";
 			mes "^0000FF$God2^000000 = ^FF0000" + $God2 + "^000000.";

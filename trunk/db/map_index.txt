@@ -22,7 +22,7 @@
 // | That map index 0 is special and reserved for           | 
 // | "error" status.                                        |
 // \________________________________________________________/
-
+//
 alb_ship 1
 alb2trea
 alberta
@@ -797,14 +797,20 @@ dic_dun02
 job3_gen01
 s_atelier
 job3_sha01
-
+//
+//============================================================
+// Mapas de Eventos
+//============================================================
 //evt_zombie
 //evt_coke
 //ac_sl_area
 //ac_cl_hall
 //ac_cl_room
 //jp_s_dun11
-
+//
+//============================================================
+// Em testes
+//============================================================
 mora
 bif_fild01
 bif_fild02
@@ -824,12 +830,11 @@ mal_dun01
 1@cash
 iz_dun05
 evt_mobroom
-
-// Only add maps under this line if they are not standard maps!
-
-
+//
+// Somente adicione mapas abaixo desta linha se eles não forem mapas PADRÃO!
+//
 //======================================================================================
-// - Other/Extra maps -
+// Outros / Mapas Extras
 //======================================================================================
 //rwc01	1000
 //rwc02
@@ -887,11 +892,10 @@ evt_mobroom
 //tank_test
 //tank_test2
 //test
-
 //======================================================================================
-//Place your custom maps with a starting ID here.
+// Coloque seus custom MAPAS aqui começando com um ID para eles.
 //======================================================================================
-//Example:
+//Exemplo:
 //
 //mymap	1250
 //mymap-2

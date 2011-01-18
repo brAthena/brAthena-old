@@ -9,6 +9,21 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r110 - 18/01/2001 [Tyler]
+	* Iniciada a tradução da pasta db para posterior revisão.
+	* Modificados os arquivos da pasta db para otimização e fácil localização.
+	* Corrigido alguns npc's:
+	- npc/classes/valquíria.txt
+	- npc/eventos/pascoa.txt
+	- npc/quests/selos/god_global.txt
+	* Adicionada a revisão dos npc's:
+	- npc/eventos/nguild/nguild_gerenciadores.txt
+	* Ajustado o cabeçalho dos npc's da pasta npc/outros/turbotrack
+	* Adicionado os npc's de Brasilis para o episódio no emulador (faltam quests):
+	- npc/monstros/campos/brasilis.txt
+	- npc/monstros/cavernas/bra_dun.txt
+	* Alterado o scripts_monstros.conf para dar suporte à Brasilis.
+
 	r109 - 18/01/2011 [Kooler]
 	* Adicionadas traduções de alguns npcs da pasta Quests.
 	- Todos Revisados;

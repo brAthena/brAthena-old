@@ -18,11 +18,11 @@
 // | Estrutura do Banco de Dados:                           |
 // | ID do Grupo de Itens , ID do Item , Taxa               |
 // \________________________________________________________/
-
-6,714,3	// Emperium
+//
+6,714,3		// Emperium
 6,756,20	// Minério de Oridecon
 6,757,20	// Minério de Elunium
-6,969,2	// Ouro
+6,969,2		// Ouro
 6,984,10	// Oridecon
 6,985,10	// Elunium
 6,990,30	// Sangue Escarlate

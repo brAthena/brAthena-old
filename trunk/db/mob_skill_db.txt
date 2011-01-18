@@ -3564,7 +3564,7 @@
 1691,Kraben@NPC_COMBOATTACK,attack,171,1,500,700,5000,no,target,always,0,,,,,,19,
 1691,Kraben@NPC_CRITICALSLASH,attack,170,1,500,500,5000,no,target,always,0,,,,,,19,
 1691,Kraben@NPC_STUNATTACK,attack,179,1,500,0,5000,no,target,always,0,,,,,,6,
-
+//
 1692,Breeze@NPC_DEFENDER,attack,205,1,1000,0,5000,yes,self,longrangeattacked,,,,,,,29,
 1692,Breeze@NPC_DEFENDER,chase,205,1,500,0,5000,yes,self,longrangeattacked,,,,,,,29,
 1692,Breeze@NPC_CRITICALSLASH,attack,170,1,1000,500,5000,no,target,always,0,,,,,,6,
@@ -3603,8 +3603,9 @@
 1697,Plasma@MG_COLDBOLT,attack,14,6,3000,1000,5000,no,target,always,0,,,,,,6,
 1697,Plasma@WZ_WATERBALL,attack,86,3,500,1500,5000,no,target,always,0,,,,,,,
 1697,Plasma@NPC_WATERATTACK,attack,184,3,1000,0,5000,yes,target,always,0,,,,,,21,
-
-// Thanatos Tower Mobs
+//=============================================================
+// Torre de Thanatos
+//=============================================================
 1698,Deathword@NPC_SPLASHATTACK,attack,174,1,1000,0,5000,yes,target,attackpcge,2,,,,,,,
 1698,Deathword@NPC_BLOODDRAIN,attack,199,1,500,0,5000,yes,target,always,0,,,,,,2,
 1698,Deathword@NPC_PIERCINGATT,attack,158,3,500,0,5000,yes,target,always,0,,,,,,36,
@@ -3755,8 +3756,9 @@
 1712,Thanatos Dolor@AL_HEAL,idle,28,9,1000,0,5000,yes,self,myhpltmaxrate,70,,,,,,3,
 1712,Thanatos Dolor@AL_HEAL,chase,28,9,1000,0,5000,yes,friend,friendhpltmaxrate,70,,,,,,3,
 1712,Thanatos Dolor@AL_HEAL,chase,28,9,1000,0,5000,yes,self,myhpltmaxrate,70,,,,,,3,
-
-// Abyss Lake
+//=============================================================
+// Lago do Abismo
+//=============================================================
 1713,Acidus@NPC_FIREATTACK,attack,186,6,500,500,5000,no,target,always,0,,,,,,,
 1713,Acidus@NPC_CRITICALSLASH,attack,170,1,1000,500,5000,no,target,always,0,,,,,,,
 1713,Acidus@NPC_STUNATTACK,attack,179,5,1000,1500,5000,no,target,always,0,,,,,,,
@@ -3844,8 +3846,9 @@
 1720,Hydro@NPC_CALLSLAVE,idle,352,1,10000,0,30000,yes,self,always,0,,,,,,,
 1720,Hydro@NPC_CALLSLAVE,chase,352,1,10000,0,30000,yes,self,always,0,,,,,,,
 1721,Dragon Egg@NPC_METAMORPHOSIS,idle,193,1,100,2000,5000,no,self,myhpltmaxrate,99,1715,1718,,,,,
-
-// Kiel dungeon
+//=============================================================
+// Calabouço de Kiel, Templo de Odin e Caverna de Gelo
+//=============================================================
 1733,Kiel@SM_MAGNUM,chase,7,5,2500,0,3000,yes,self,always,0,,,,,,,
 1733,Kiel@SM_MAGNUM,attack,7,5,2500,0,3000,yes,self,always,0,,,,,,,
 1733,Kiel@MG_SAFETYWALL,idle,12,10,1000,0,5000,yes,self,always,0,,,,,,,
@@ -4339,7 +4342,9 @@
 1795,Bloody Knight@WZ_STORMGUST,attack,89,10,10000,1000,20000,no,target,always,,,,,,,,
 1795,Bloody Knight@WZ_VERMILION,attack,85,20,10000,1000,20000,no,target,always,,,,,,,,
 1795,Bloody Knight@WZ_METEOR,attack,83,11,10000,1000,20000,no,target,always,,,,,,,,
-// Guild Dungeon SE (13.1) 
+//=============================================================
+// Calabouço da WoE SE (13.1) 
+//=============================================================
 1796,Aunoe@MG_THUNDERSTORM,attack,21,5,500,1500,10000,no,target,always,0,,,,,,,
 1796,Aunoe@MG_THUNDERSTORM,chase,21,5,500,1500,10000,no,target,always,0,,,,,,,
 1796,Aunoe@NPC_HOLYATTACK,attack,189,2,500,0,5000,yes,target,always,0,,,,,,,
@@ -4468,8 +4473,9 @@
 1827,Sasquatch@NPC_EMOTION,chase,197,1,200,0,5000,yes,self,always,0,19,0x81,,,,,
 1827,Sasquatch@NPC_EMOTION,idle,197,1,2000,0,5000,yes,self,always,0,6,0x3095,,,,,
 1827,Sasquatch@SM_ENDURE,chase,8,1,5000,0,10000,yes,self,longrangeattacked,,,,,,,6,
-
-// Thor Volcano (11.2)
+//=============================================================
+// Vulcão de Thor (11.2)
+//=============================================================
 1829,Sword Guardian@AL_TELEPORT,idle,26,1,10000,0,0,yes,self,rudeattacked,,,,,,,,
 1829,Sword Guardian@CR_REFLECTSHIELD,idle,252,10,10000,0,300000,yes,self,always,0,,,,,,,
 1829,Sword Guardian@KN_SPEARBOOMERANG,chase,59,5,10000,0,5000,yes,target,always,0,,,,,,,
@@ -4602,7 +4608,7 @@
 1839,Byorgue@NPC_CRITICALSLASH,attack,170,1,1000,0,5000,yes,target,always,0,,,,,,,
 1839,Byorgue@NPC_STUNATTACK,attack,179,5,1000,0,5000,yes,target,always,0,,,,,,,
 1839,Byorgue@NPC_CALLSLAVE,attack,352,1,10000,0,10000,yes,self,always,0,,,,,,,
-
+//
 1840,Golden Savage@AL_INCAGI,chase,29,1,500,700,60000,no,self,always,0,,,,,,6,
 1840,Golden Savage@NPC_EMOTION,walk,197,1,2000,0,5000,yes,self,always,0,2,,,,,,
 1840,Golden Savage@NPC_GROUNDATTACK,attack,185,2,500,500,5000,no,target,always,0,,,,,,6,
@@ -4616,8 +4622,9 @@
 1840,Golden Savage@WZ_QUAGMIRE,attack,92,2,500,0,5000,yes,target,always,0,,,,,,,
 1840,Golden Savage@WZ_QUAGMIRE,chase,92,2,2000,0,5000,yes,target,always,0,,,,,,,
 1840,Golden Savage@NPC_PULSESTRIKE,attack,661,1,500,0,10000,yes,self,always,0,,,,,,32,
-
-// Cursed Abbey (11.3)
+//=============================================================
+// Ilha Esquecida (11.3)
+//=============================================================
 1864,Zombie Slaughter@NPC_BLINDATTACK,attack,177,5,500,0,5000,yes,target,always,0,,,,,,,
 1864,Zombie Slaughter@NPC_POISON,attack,176,5,500,800,5000,no,target,always,0,,,,,,,
 1864,Zombie Slaughter@AS_SONICBLOW,attack,136,5,1000,800,5000,no,target,always,0,,,,,,,
@@ -4778,8 +4785,9 @@
 1874,Beelzebub@NPC_VAMPIRE_GIFT,attack,679,1,1000,500,5000,no,self,myhpltmaxrate,50,,,,,,47,
 1874,Beelzebub@NPC_WIDESOULDRAIN,attack,680,7,1000,500,5000,no,self,myhpltmaxrate,50,,,,,,42,
 //1875,Tristan@NPC_BLOODDRAIN,attack,199,1,2000,0,5000,yes,target,always,0,,,,,,,
-
-// Moscovia (12.1)
+//=============================================================
+// Moscóvia (12.1)
+//=============================================================
 1880,Wood Goblin@AL_HEAL,idle,28,9,10000,3000,5000,yes,friend,friendhpltmaxrate,50,,,,,,,
 1880,Wood Goblin@AL_HEAL,idle,28,9,5000,500,5000,yes,self,myhpltmaxrate,40,,,,,,19,
 1880,Wood Goblin@NPC_SPLASHATTACK,attack,174,1,3000,0,5000,yes,target,attackpcge,2,,,,,,0,
@@ -4857,7 +4865,7 @@
 1891,Valkyrie@KN_BRANDISHSPEAR,attack,57,20,1000,0,5000,yes,target,always,0,,,,,,,
 1891,Valkyrie@NPC_ARMORBRAKE,attack,344,10,500,0,5000,yes,target,always,0,,,,,,,
 1891,Valkyrie@WZ_JUPITEL,attack,84,28,100,2000,5000,yes,target,always,0,,,,,,,
-
+//
 1894,Pouring@AL_TELEPORT,idle,26,1,10000,0,0,yes,self,rudeattacked,,,,,,,,
 1894,Pouring@AL_TELEPORT,idle,26,1,5000,0,5000,yes,self,rudeattacked,,,,,,,,
 1894,Pouring@AL_TELEPORT,walk,26,1,5000,0,5000,yes,self,rudeattacked,,,,,,,,
@@ -4865,11 +4873,12 @@
 1894,Pouring@WZ_STORMGUST,attack,89,10,2000,0,5000,no,target,always,0,,,,,,,
 1894,Pouring@WZ_WATERBALL,attack,86,10,10000,500,5000,no,target,always,0,,,,,,,
 1894,Pouring@WZ_WATERBALL,chase,86,10,10000,500,5000,no,target,always,0,,,,,,,
-
+//
 1904,Bomb Poring@NPC_SELFDESTRUCTION,attack,173,2,10000,3000,0,no,self,always,0,,,,,,,
 1904,Bomb Poring@NPC_SELFDESTRUCTION,chase,173,2,10000,3000,0,no,self,always,0,,,,,,,
-
-// Satan Morroc (12.1)
+//=============================================================
+// Imperador Morroc (12.1)
+//=============================================================
 //5% HP - Dragon Fear
 1916,Satan Morroc@NPC_DRAGONFEAR,chase,659,10,10000,0,600000,no,self,myhpltmaxrate,5,,,,,,,17
 1916,Satan Morroc@NPC_DRAGONFEAR,attack,659,10,10000,0,600000,no,self,myhpltmaxrate,5,,,,,,,17
@@ -5077,8 +5086,9 @@
 1927,Whisper@AS_CLOAKING,idle,135,1,2000,200,5000,yes,self,always,0,,,,,,,
 1927,Whisper@AS_CLOAKING,chase,135,1,2000,200,5000,yes,self,always,0,,,,,,,
 1927,Whisper@MO_BODYRELOCATION,chase,264,1,2000,500,5000,no,target,always,0,,,,,,28,
-
-// Sealed Shrine (12.1)
+//=============================================================
+// Santuário Selado (12.1)
+//=============================================================
 1929,Great Demon Baphomet@NPC_TALK,chase,682,1,10000,0,6000000,yes,target,myhpltmaxrate,2,,,,,,,25
 1929,Great Demon Baphomet@NPC_TALK,attack,682,1,10000,0,6000000,yes,target,myhpltmaxrate,2,,,,,,,25
 1929,Great Demon Baphomet@NPC_TALK,chase,682,1,10000,0,6000000,yes,target,always,0,,,,,,,19
@@ -5110,8 +5120,9 @@
 1929,Great Demon Baphomet@WZ_VERMILION,chase,85,20,5000,500,10000,no,target,skillused,18,,,,,,29,
 1929,Great Demon Baphomet@WZ_VERMILION,chase,85,20,2000,500,10000,no,target,always,0,,,,,,29,
 1929,Great Demon Baphomet@NPC_ALLHEAL,idle,687,1,10000,30000,30000,yes,self,myhpltmaxrate,60,,,,,,,23
-
-// Fallacious Okolnir (12.1)
+//=============================================================
+// Fallacious Okolnir e os Itens Divinos (12.1)
+//=============================================================
 1930,Piamette@WZ_METEOR,idle,83,11,10000,300,0,yes,target,rudeattacked,,,,,,,,
 1930,Piamette@NPC_WIDECURSE,chase,677,5,10000,700,35000,no,self,myhpltmaxrate,20,,,,,,,
 1930,Piamette@NPC_WIDECURSE,attack,677,5,10000,700,35000,no,self,myhpltmaxrate,20,,,,,,,
@@ -5204,8 +5215,9 @@
 1947,Piamette@HP_ASSUMPTIO,attack,361,5,5000,1000,10000,no,friend,friendhpltmaxrate,90,,,,,,,
 1947,Piamette@NPC_WIDESILENCE,chase,663,5,3000,1000,20000,no,self,always,0,,,,,,36,
 1947,Piamette@NPC_WIDESILENCE,attack,663,5,3000,1000,20000,no,self,always,0,,,,,,36,
-
-// Endless Tower (13.1)
+//=============================================================
+// Torre Sem Fim (13.1)
+//=============================================================
 1956,Naght Sieger@KN_BRANDISHSPEAR,attack,57,3,2000,500,5000,no,target,always,0,,,,,,,
 1956,Naght Sieger@NPC_AGIUP,attack,350,5,10000,0,25000,yes,self,always,0,,,,,,9,
 1956,Naght Sieger@KN_TWOHANDQUICKEN,attack,60,20,10000,0,120000,no,self,myhpltmaxrate,50,,,,,,6,
@@ -5282,8 +5294,9 @@
 1961,Thorn of Purification@SA_DISPELL,attack,289,5,500,2000,30000,yes,target,always,0,,,,,,,
 1961,Thorn of Purification@NPC_DEFENDER,idle,205,5,10000,0,180000,no,self,always,0,,,,,,29,
 1961,Thorn of Purification@NPC_DEFENDER,attack,205,5,10000,0,180000,no,self,always,0,,,,,,29,
-
-// Guild Dungeon SE (13.1)
+//=============================================================
+// Calabouço da WoE SE (13.1)
+//=============================================================
 1974,Banshee Master@AL_TELEPORT,idle,26,1,10000,0,0,yes,self,rudeattacked,,,,,,,,
 1974,Banshee Master@NPC_CURSEATTACK,chase,181,1,1000,800,5000,yes,target,always,0,,,,,,6,
 1974,Banshee Master@NPC_WIDECURSE,attack,677,1,500,800,5000,no,self,always,0,,,,,,,
@@ -5334,8 +5347,9 @@
 1979,Zukadam@AL_TELEPORT,idle,26,1,10000,0,0,yes,self,rudeattacked,,,,,,,,
 1979,Zukadam@NPC_RANDOMATTACK,attack,183,5,1000,500,5000,no,target,always,0,,,,,,,
 1979,Zukadam@NPC_SUMMONSLAVE,idle,196,2,10000,2000,60000,no,self,slavele,0,1668,,,,,,
-
-// Memory of Orc Dungeon (13.1)
+//=============================================================
+// Memorial dos Orcs(13.1)
+//=============================================================
 1981,Safeguard Chief@SM_BASH,attack,5,10,500,1000,5000,no,target,always,0,,,,,,,
 1981,Safeguard Chief@SM_BASH,chase,5,10,500,1000,5000,no,target,always,0,,,,,,,
 1981,Safeguard Chief@NPC_DARKNESSATTACK,attack,190,3,500,500,5000,no,target,always,0,,,,,,6,
@@ -5353,8 +5367,9 @@
 1984,Shaman Cargalache@WZ_QUAGMIRE,chase,92,5,500,700,5000,yes,target,always,0,,,,,,12,
 1984,Shaman Cargalache@NPC_EMOTION,chase,197,1,2000,0,5000,yes,self,always,0,3,,,,,,
 1984,Shaman Cargalache@NPC_EVILLAND,attack,670,1,500,0,5000,yes,target,always,0,,,,,,,
-
-//The New World Mob Skill (13.1)
+//=============================================================
+// Novo Mundo (13.1)
+//=============================================================
 1985,Dandelion@NPC_CHANGEUNDEAD,attack,348,1,3000,500,600000,no,target,myhpltmaxrate,80,,,,,,,
 1985,Dandelion@NPC_CHANGEUNDEAD,chase,348,1,3000,500,600000,no,target,myhpltmaxrate,80,,,,,,,
 1985,Dandelion@NPC_COMBOATTACK,attack,171,1,3000,0,5000,yes,target,always,0,,,,,,,
@@ -5571,8 +5586,9 @@
 2010,Majoruros@NPC_SUMMONSLAVE,idle,196,1,10000,2000,60000,no,self,slavele,0,,,,,,,
 2010,Majoruros@WZ_HEAVENDRIVE,attack,91,5,500,1200,5000,yes,target,always,0,,,,,,2,
 2010,Majoruros@WZ_HEAVENDRIVE,chase,91,5,500,1200,5000,yes,target,always,0,,,,,,2,
-
-// Into the Unknown (13.2)
+//=============================================================
+// Encontro com o Desconhecido (13.2)
+//=============================================================
 2013,Draco@NPC_EMOTION,chase,197,1,2000,0,5000,yes,self,always,0,32,,,,,,
 2013,Draco@SM_PROVOKE,chase,6,10,2000,600,5000,no,target,always,0,,,,,,44,
 2013,Draco@TF_THROWSTONE,chase,152,1,2000,0,5000,no,target,always,0,,,,,,,
@@ -5637,7 +5653,7 @@
 2019,Ancient Tree@NPC_SPLASHATTACK,attack,174,1,2000,0,5000,yes,target,attackpcge,2,,,,,,9,
 2019,Ancient Tree@NPC_STUNATTACK,attack,179,2,500,1500,5000,no,target,always,0,,,,,,,
 2019,Ancient Tree@NPC_PIERCINGATT,attack,158,2,500,0,5000,yes,target,always,0,,,,,,6,
-
+//
 2024,Bradium Golem@NPC_STUNATTACK,attack,179,4,500,1500,5000,no,target,always,0,,,,,,6,
 2024,Bradium Golem@SM_ENDURE,chase,8,1,5000,0,10000,yes,self,longrangeattacked,0,,,,,,6,
 2024,Bradium Golem@NPC_EMOTION_ON,attack,474,1,10000,0,30000,yes,self,always,0,6,0x3885,,,,,
@@ -5698,7 +5714,7 @@
 2023,Dark Shadow@NPC_EMOTION,idle,197,1,2000,0,5000,yes,self,always,0,9,,,,,,
 2023,Dark Shadow@NPC_FIREATTACK,attack,186,3,500,500,5000,no,target,always,0,,,,,,,
 2023,Dark Shadow@NPC_DARKNESSBREATH,attack,658,1,500,1000,5000,no,target,always,0,,,,,,,
-
+//
 2026,Dandelion@NPC_BLINDATTACK,attack,177,2,1000,0,6000,yes,target,myhpltmaxrate,80,,,,,,,29
 2026,Dandelion@NPC_POISON,attack,176,3,1000,500,60000,no,target,myhpltmaxrate,30,,,,,,,
 2026,Dandelion@NPC_COMBOATTACK,attack,171,1,3000,0,5000,yes,target,always,0,,,,,,,27
@@ -5707,3 +5723,115 @@
 2027,Dark Shadow@NPC_EMOTION,idle,197,1,2000,0,5000,yes,self,always,0,9,,,,,,
 2027,Dark Shadow@NPC_FIREATTACK,attack,186,3,500,500,5000,no,target,always,0,,,,,,,
 2027,Dark Shadow@NPC_DARKNESSBREATH,attack,658,1,500,1000,5000,no,target,always,0,,,,,,,
+//=============================================================
+// Cavernas da WoE SE 2.0 (Customizado)
+//=============================================================
+1980,Kublin@NPC_SUMMONSLAVE,idle,196,3,10000,0,5000,no,self,slavele,2,1299,,,,,,
+1980,Kublin@NPC_SUMMONSLAVE,attack,196,3,10000,0,5000,no,self,slavele,2,1299,,,,,,
+1980,Kublin@NPC_CALLSLAVE,attack,352,1,10000,0,30000,yes,self,always,,,,,,,,
+1980,Kublin@NPC_CALLSLAVE,idle,352,1,10000,0,30000,yes,self,always,,,,,,,,
+1980,Kublin@AL_TELEPORT,idle,26,1,10000,0,0,yes,self,rudeattacked,,,,,,,,
+1980,Kublin@AL_HEAL,attack,28,11,10000,0,5000,no,self,myhpltmaxrate,50,,,,,,18,
+1980,Kublin@AL_HEAL,chase,28,11,10000,0,5000,no,self,myhpltmaxrate,50,,,,,,18,
+1980,Kublin@AL_HEAL,idle,28,11,10000,0,5000,no,self,myhpltmaxrate,50,,,,,,18,
+1980,Kublin@BS_MAXIMIZE,attack,114,10,10000,1000,30000,no,self,always,0,,,,,,27,
+1980,Kublin@BS_MAXIMIZE,chase,114,10,10000,1000,30000,no,self,always,0,,,,,,27,
+1980,Kublin@CR_SHIELDCHARGE,attack,250,5,10000,0,30000,no,target,always,0,,,,,,27,
+1980,Kublin@NPC_AGIUP,chase,350,5,10000,0,100000,yes,self,myhpltmaxrate,70,,,,,,,
+1980,Kublin@NPC_POWERUP,attack,349,5,10000,0,60000,yes,self,myhpltmaxrate,30,,,,,,6,
+//=============================================================
+// Brasilis (13.x)
+//=============================================================
+2068,Boitata@AL_TELEPORT,idle,26,1,10000,0,0,yes,self,rudeattacked,,,,,,,,
+2068,Boitata@NPC_POWERUP,attack,349,5,5000,0,30000,yes,self,myhpltmaxrate,30,,,,,,6,
+2068,Boitata@KN_TWOHANDQUICKEN,attack,60,20,10000,0,300000,no,self,myhpltmaxrate,50,,,,,,6,
+2068,Boitata@SM_MAGNUM,attack,7,20,2000,0,10000,no,self,always,0,,,,,,,
+2068,Boitata@MG_FIREBALL,idle,17,5,10000,0,10000,no,target,always,,,,,,,,
+2068,Boitata@MG_FIREBALL,chase,17,5,10000,0,10000,no,target,always,,,,,,,,
+2068,Boitata@AS_SONICBLOW,attack,136,10,1000,0,10000,yes,target,always,,,,,,,,
+2068,Boitata@NPC_CRITICALSLASH,attack,170,1,1000,0,5000,no,target,always,0,,,,,,6,
+2068,Boitata@NPC_FIREATTACK,attack,186,5,2000,1000,200000,no,target,always,0,,,,,,,
+2068,Boitata@CR_REFLECTSHIELD,idle,252,3,10000,0,200000,yes,self,always,0,,,,,,,
+2068,Boitata@CR_REFLECTSHIELD,attack,252,3,10000,0,200000,yes,self,always,0,,,,,,,
+2068,Boitata@NPC_BLEEDING,attack,660,3,1000,500,10000,no,target,always,0,,,,,,,
+2068,Boitata@NPC_WIDEBLEEDING,chase,665,2,10000,500,100000,no,self,always,0,,,,,,,
+2068,Boitata@NPC_WIDEBLEEDING,attack,665,2,10000,500,100000,no,self,always,0,,,,,,,
+2068,Boitata@NPC_CALLSLAVE,attack,352,1,10000,0,30000,yes,self,always,0,,,,,,,
+2068,Boitata@NPC_CALLSLAVE,idle,352,1,10000,0,30000,yes,self,always,0,,,,,,,
+2068,Boitata@NPC_SUMMONSLAVE,chase,196,5,10000,700,30000,no,self,slavele,1,2082,,,,,,
+2068,Boitata@NPC_SUMMONSLAVE,attack,196,5,10000,700,30000,no,self,slavele,1,2082,,,,,,
+2068,Boitata@NPC_SUMMONSLAVE,idle,196,5,10000,700,30000,no,self,slavele,1,2082,,,,,,
+2069,Iara@SM_BASH,attack,5,5,1000,800,5000,no,target,always,0,,,,,,,
+2069,Iara@MG_FROSTDIVER,chase,15,10,1000,1000,5000,yes,target,always,0,,,,,,,
+2069,Iara@MG_FROSTDIVER,attack,15,5,1000,1000,5000,yes,target,always,0,,,,,,,
+2069,Iara@PR_LEXDIVINA,chase,76,5,1000,1000,5000,yes,target,always,0,,,,,,2,
+2069,Iara@PR_LEXDIVINA,attack,76,5,1000,1000,5000,yes,target,always,0,,,,,,2,
+2069,Iara@WZ_WATERBALL,attack,86,3,2000,1000,5000,yes,target,always,0,,,,,,16,
+2069,Iara@NPC_WATERATTACK,attack,184,3,500,0,5000,yes,target,always,0,,,,,,6,
+2069,Iara@NPC_EMOTION,chase,197,1,2000,0,5000,yes,self,always,0,19,0x81,,,,,
+2069,Iara@NPC_EMOTION,idle,197,1,2000,0,5000,yes,self,always,0,2,0x3095,,,,,
+2069,Iara@NPC_STOP,attack,342,1,2000,0,30000,yes,target,always,0,,,,,,2,
+2070,Piranha@NPC_CRITICALSLASH,angry,170,1,500,500,5000,no,target,always,0,,,,,,6,
+2070,Piranha@NPC_WATERATTACK,angry,184,2,2000,0,5000,yes,target,always,0,,,,,,,
+2070,Piranha@NPC_BLEEDING,angry,660,3,500,0,5000,no,target,always,0,,,,,,,
+2070,Piranha@NPC_CRITICALWOUND,angry,673,1,500,0,10000,yes,target,always,0,,,,,,,
+2070,Piranha@MG_COLDBOLT,chase,14,3,1000,1000,5000,yes,target,always,0,,,,,,21,
+2070,Piranha@MG_COLDBOLT,attack,14,3,1000,1000,5000,yes,target,always,0,,,,,,21,
+2070,Piranha@WZ_WATERBALL,attack,86,3,500,1000,5000,yes,target,always,0,,,,,,,
+2070,Piranha@NPC_BLOODDRAIN,attack,199,1,2000,0,5000,yes,target,always,0,,,,,,3,
+2070,Piranha@NPC_CRITICALSLASH,attack,170,1,500,500,5000,no,target,always,0,,,,,,6,
+2070,Piranha@NPC_WATERATTACK,attack,184,2,2000,0,5000,yes,target,always,0,,,,,,,
+2070,Piranha@NPC_BLEEDING,attack,660,3,500,0,5000,no,target,always,0,,,,,,,
+2070,Piranha@NPC_CRITICALWOUND,attack,673,1,500,0,10000,yes,target,always,0,,,,,,,
+2071,Headless Mule@MG_FIREWALL,follow,18,5,1000,500,5000,yes,target,always,0,,,,,,,
+2071,Headless Mule@NPC_SILENCEATTACK,angry,178,3,500,700,5000,yes,target,always,0,,,,,,,
+2071,Headless Mule@NPC_CURSEATTACK,follow,181,1,500,800,5000,yes,target,always,0,,,,,,,
+2071,Headless Mule@NPC_CURSEATTACK,angry,181,1,500,800,5000,yes,target,always,0,,,,,,,
+2071,Headless Mule@NPC_FIREATTACK,angry,186,3,2000,500,5000,yes,target,always,0,,,,,,,
+2071,Headless Mule@NPC_BLEEDING,angry,660,3,500,0,10000,no,target,always,0,,,,,,,
+2071,Headless Mule@SM_BASH,attack,5,5,500,800,5000,no,target,always,0,,,,,,,
+2071,Headless Mule@MG_FIREWALL,chase,18,5,1000,500,5000,yes,target,always,0,,,,,,,
+2071,Headless Mule@MG_FIREBOLT,chase,19,5,2000,1500,10000,yes,target,always,0,,,,,,,
+2071,Headless Mule@MG_FIREBOLT,attack,19,5,2000,1500,10000,yes,target,always,0,,,,,,,
+2071,Headless Mule@NPC_SILENCEATTACK,attack,178,3,500,700,5000,yes,target,always,0,,,,,,,
+2071,Headless Mule@NPC_CURSEATTACK,chase,181,1,500,800,5000,yes,target,always,0,,,,,,,
+2071,Headless Mule@NPC_CURSEATTACK,attack,181,1,500,800,5000,yes,target,always,0,,,,,,,
+2071,Headless Mule@NPC_FIREATTACK,attack,186,3,2000,500,5000,yes,target,always,0,,,,,,,
+2071,Headless Mule@NPC_BLEEDING,attack,660,3,500,0,10000,no,target,always,0,,,,,,,
+2072,Jaguar@AL_TELEPORT,idle,26,1,10000,0,0,yes,self,rudeattacked,,,,,,,,
+2072,Jaguar@AS_SONICBLOW,angry,136,3,2000,800,5000,no,target,always,0,,,,,,0,
+2072,Jaguar@NPC_COMBOATTACK,angry,171,1,1000,500,5000,no,target,always,0,,,,,,6,
+2072,Jaguar@NPC_GROUNDATTACK,angry,185,3,500,500,5000,no,target,always,0,,,,,,6,
+2072,Jaguar@AS_SONICBLOW,attack,136,3,2000,800,5000,no,target,always,0,,,,,,0,
+2072,Jaguar@NPC_COMBOATTACK,attack,171,1,1000,500,5000,no,target,always,0,,,,,,6,
+2072,Jaguar@NPC_GROUNDATTACK,attack,185,3,500,500,5000,no,target,always,0,,,,,,6,
+2072,Jaguar@NPC_DARKNESSATTACK,attack,190,1,2000,0,5000,no,target,always,0,,,,,,6,
+2072,Jaguar@NPC_EMOTION,idle,197,1,2000,0,5000,yes,self,always,0,22,0x308D,,,,,
+2073,Toucan@NPC_WINDATTACK,angry,187,3,2000,500,5000,no,target,always,0,,,,,,6,
+2073,Toucan@NPC_SILENCEATTACK,angry,178,3,1000,700,5000,no,target,always,0,,,,,,,
+2073,Toucan@NPC_WINDATTACK,attack,187,3,2000,500,5000,no,target,always,0,,,,,,6,
+2073,Toucan@NPC_SILENCEATTACK,attack,178,3,1000,700,5000,no,target,always,0,,,,,,,
+2073,Toucan@NPC_TELEKINESISATTACK,chase,191,5,500,0,5000,yes,target,always,0,,,,,,28,
+2073,Toucan@NPC_EMOTION,idle,197,1,2000,0,5000,yes,self,always,0,5,,,,,,
+2073,Toucan@NPC_STOP,attack,342,1,1000,500,5000,no,target,always,0,,,,,,2,
+2074,Curupira@MG_STONECURSE,idle,16,5,10000,0,5000,yes,randomtarget,casttargeted,0,,,,,,11,
+2074,Curupira@MG_STONECURSE,walk,16,5,10000,0,5000,yes,randomtarget,casttargeted,0,,,,,,11,
+2074,Curupira@MG_STONECURSE,attack,16,5,2000,0,5000,yes,target,always,0,,,,,,,
+2074,Curupira@MG_STONECURSE,chase,16,5,2000,0,5000,yes,target,always,0,,,,,,,
+2074,Curupira@AL_INCAGI,chase,29,1,1000,700,60000,no,self,always,0,,,,,,6,
+2074,Curupira@NPC_BLINDATTACK,attack,177,3,500,0,5000,yes,target,always,0,,,,,,,
+2074,Curupira@NPC_GROUNDATTACK,attack,185,2,500,500,5000,no,target,always,0,,,,,,6,
+2074,Curupira@SA_REVERSEORCISH,chase,294,1,500,0,30000,yes,target,always,0,,,,,,29,
+2074,Curupira@SA_REVERSEORCISH,attack,294,1,500,0,30000,yes,target,always,0,,,,,,29,
+2082,Piranha@NPC_CRITICALSLASH,angry,170,1,500,500,5000,no,target,always,0,,,,,,6,
+2082,Piranha@NPC_WATERATTACK,angry,184,2,2000,0,5000,yes,target,always,0,,,,,,,
+2082,Piranha@NPC_BLEEDING,angry,660,3,500,0,5000,no,target,always,0,,,,,,,
+2082,Piranha@NPC_CRITICALWOUND,angry,673,1,500,0,10000,yes,target,always,0,,,,,,,
+2082,Piranha@MG_COLDBOLT,chase,14,3,1000,1000,5000,yes,target,always,0,,,,,,21,
+2082,Piranha@MG_COLDBOLT,attack,14,3,1000,1000,5000,yes,target,always,0,,,,,,21,
+2082,Piranha@WZ_WATERBALL,attack,86,3,500,1000,5000,yes,target,always,0,,,,,,,
+2082,Piranha@NPC_BLOODDRAIN,attack,199,1,2000,0,5000,yes,target,always,0,,,,,,3,
+2082,Piranha@NPC_CRITICALSLASH,attack,170,1,500,500,5000,no,target,always,0,,,,,,6,
+2082,Piranha@NPC_WATERATTACK,attack,184,2,2000,0,5000,yes,target,always,0,,,,,,,
+2082,Piranha@NPC_BLEEDING,attack,660,3,500,0,5000,no,target,always,0,,,,,,,
+2082,Piranha@NPC_CRITICALWOUND,attack,673,1,500,0,10000,yes,target,always,0,,,,,,,

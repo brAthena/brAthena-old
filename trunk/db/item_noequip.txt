@@ -35,20 +35,25 @@
 // | 501,4 (Poção vermelha não será usada em mapas com      |
 // | 'zona de restrição 1')                                 |
 // \________________________________________________________/
-
-//Zone 1 - Aldebaran Turbo Track
-601,4 //Fly Wing
-506,4 //Green Potion
-525,4 //Panacea
-
-//Zone 2 - Jail
-601,8 //Fly Wing - not really needed here but ...
-602,8 //Butterfly Wing - also not needed
-12212,8 //Giant Fly Wing
+//
+//============================================================
+//Zona 1 - Aldebaran Turbo Track
+//============================================================
+601,4 		//Asa de Mosca
+506,4 		//Poção Verde
+525,4 		//Panacea
+//============================================================
+//Zona 2 - Prisão
+//============================================================
+601,8 		//Asa de Mosca - Não necessariamente usual aqui mas...
+602,8 		//Asa de Borboleta - Também não necessita.
+12212,8 	//Asa de Borboleta Gigante
 14582,8
 14583,8
 14584,8
 14585,8
+//============================================================
+//Zona 3 - Arena de Izlude
+//============================================================
+601,16 		//Asa de Mosca
 
-//Zone 3 - Izlude Battle Arena
-601,16 //Fly Wing

@@ -14,19 +14,19 @@
 // |--------------------------------------------------------|
 // | Versões eA/brA: 3.0/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição:                                             |
-// | Mudança para transclasse                               |
+// | Descrição: Quest para mudança Transclasse.             |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Script Traduzido [Dynasty]   		            |
-// | 1.1 Script Revisado [insidemybrain]		    |
+// | 1.0 Script Traduzido [Dynasty]                         |
+// | 1.1 Script Revisado [insidemybrain & Tyler]            |
+// | - Anotações                                            |
 // \_______________________________________________________/
 
 valkyrie,48,86,4	script	Valquíria#	811,{
 	if (ADVJOB != 0 || Upper == 1) {
 		mes "[Valquíria]";
 		mes "Bem-vindo";
-		mes "à Valhalla,";
+		mes "ao Valhalla,";
 		mes "o Salão da Honra.";
 		next;
 		mes "[Valquíria]";
@@ -39,13 +39,13 @@ valkyrie,48,86,4	script	Valquíria#	811,{
 	else if (Baselevel > 98 && JobLevel > 49 && Class >= Job_Knight && Class <= Job_Crusader2) {
 		mes "[Valquíria]";
 		mes "Bem-vindo";
-		mes "á Valhalla,";
+		mes "ao Valhalla,";
 		mes "o Salão da Honra.";
 		next;
 		mes "[Valquíria]";
 		mes "Você está prestes";
 		mes "a presenciar uma mudança";
-		mes "para uma nova vida.";
+		mes "para uma nova vida!";
 		mes "Honra aos guerreiros!";
 		next;
 		if (Weight > 0 || Zeny > 0 || checkcart() != 0 || checkfalcon() != 0 || checkriding() != 0) {
@@ -97,7 +97,7 @@ valkyrie,48,86,4	script	Valquíria#	811,{
 			next;
 			mes "[Valquíria]";
 			mes "Primeiro,";
-			mes "Vou pedir à deusa Urd";			 
+			mes "vou pedir à deusa Urd";			 
 			mes "para remover todas as";
 			mes "suas memórias presentes.";
 			
@@ -126,7 +126,7 @@ valkyrie,48,86,4	script	Valquíria#	811,{
 			mes "[Valquíria]";
 			mes "Um...";
 			mes "Dois......";
-			mes "e Três.";
+			mes "e três.";
 			set ADVJOB, Class+Job_Novice_High; //memo the target 3rd Job ID
 			if(ADVJOB == Job_Lord_Knight2) set ADVJOB,Job_Lord_Knight;
 			if(ADVJOB == Job_Paladin2) set ADVJOB,Job_Paladin;
@@ -181,7 +181,7 @@ valkyrie,48,86,4	script	Valquíria#	811,{
 	else {
 		mes "[Valquíria]";
 		mes "Bem-Vindo";
-		mes "à Valhalla,";
+		mes "ao Valhalla,";
 		mes "o Salão da Honra.";
 		next;
 		mes "[Valquíria]";
@@ -201,7 +201,7 @@ yuno_in02,88,164,5	script	Metheus Sylphe#Library	742,{
 			mes "chegado aqui para ler o \"Livro de Ymir\".";
 			next;
 			mes "[Metheus Sylphe]";
-			mes "Infelizmente o exemplar do livro foi danificado ao logo do tempo. Atualmente, apenas permitimos ao público ver uma cópia do livro.";
+			mes "Infelizmente o exemplar do livro foi danificado ao longo do tempo. Atualmente, apenas permitimos ao público ver uma cópia do livro.";
 			next;
 			mes "[Metheus Sylphe]";
 			mes "Além disso, a fim de preservar o \"Livro de Ymir\" original, optamos por aceitar doações de pessoas que querem ler a cópia que nós fornecemos.";
@@ -209,14 +209,14 @@ yuno_in02,88,164,5	script	Metheus Sylphe#Library	742,{
 			mes "[Metheus Sylphe]";
 			mes "A sugestão de";
 			mes "uma doação é de";
-			mes "1,285,000 zeny.";
+			mes "1.285.000 zenys.";
 			next;
 			if (select("Doar.:Cancelar.") == 1) {
 				if (Zeny >= 1285000) {
 					set zeny,zeny-1285000;
 					set valkyrie_Q,1;
 					mes "[Metheus Sylphe]";
-					mes "Obrigado, a doação será utilizada para uma boa causa.";
+					mes "Obrigado, sua doação será utilizada para uma boa causa.";
 					mes "Agora você pode ler o livro.";
 					close;
 				}
@@ -291,7 +291,7 @@ yuno_in02,93,207,1	script	Livro de Ymir	111,{
 			mes "serão preenchidos com energia...";
 			next;
 			mes "[O Livro de Ymir]";
-			mes "E à suas almas serão dadas à habilidade com o coração de Ymir. No entanto, o coração de Ymir foi totalmente destruído e disperso por todo o mundo após a batalha de Rune-Midgard.";
+			mes "E as suas almas, será dada a habilidade com o coração de Ymir. No entanto, o coração de Ymir foi totalmente destruído e disperso por todo o mundo após a batalha de Rune-Midgard.";
 			next;
 			mes "[O Livro de Ymir]";
 			mes "Eu tenho encontrado uma";
@@ -341,8 +341,8 @@ valkyrie,44,33,5	script	Teleportador	124,{
 			close;
 		}
 		mes "[Teleportador]";
-		mes "Por favor, deixe";
-		mes "de tocar em qualquer";
+		mes "Por favor, não";
+		mes "toque em qualquer";
 		mes "uma das exposições.";
 		mes "..........";
 		close;

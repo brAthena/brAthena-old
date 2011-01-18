@@ -18,8 +18,7 @@
 // | Estrutura do Banco de Dados:                           |
 // | ID do Grupo de Itens , ID do Item , Taxa               |
 // \________________________________________________________/
-
-
+//
 1,501,12	// Poção Vermelha
 1,502,12	// Poção Laranja
 1,503,12	// Poção Amarela

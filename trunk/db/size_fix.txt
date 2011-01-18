@@ -15,11 +15,11 @@
 // | Descrição: Database de referência para fixar o dano    |
 // | desarmado e armado.                                    |
 // |--------------------------------------------------------|
-// | Estrutura da Database:									|
-// | Tipo de arma, Linhas: Tamanho do alvo.        			|
+// | Estrutura da Database:                                 |
+// | Tipo de arma, Linhas: Tamanho do alvo.                 |
 // \________________________________________________________/
-
+//
 // Desarmado, Faca, 1M Espada, 2M Espada, 1M Lança, 2M Lança, 1M Machado, 2M Machado, Maça, 2M Maça, Cetro, Arco, Soqueira, Instrumento Musical, Chicote, Livro, Katar, Revólver, Rifle, Pistola, Gatling Gun, Grenade Launcher, Fuuma Shuriken, 2M Centro
-100,100, 75, 75, 75, 75, 50, 50, 75,100,100,100,100, 75, 75,100, 75,100,100,100,100,100,100,100	// Size: Small
-100, 75,100, 75, 75, 75, 75, 75,100,100,100,100, 75,100,100,100,100,100,100,100,100,100,100,100	// Size: Medium
-100, 50, 75,100,100,100,100,100,100,100,100, 75, 50, 75, 50, 50, 75,100,100,100,100,100,100,100	// Size: Large
+100,100, 75, 75, 75, 75, 50, 50, 75,100,100,100,100, 75, 75,100, 75,100,100,100,100,100,100,100	// Tam: Pequeno
+100, 75,100, 75, 75, 75, 75, 75,100,100,100,100, 75,100,100,100,100,100,100,100,100,100,100,100	// Tam: Médio
+100, 50, 75,100,100,100,100,100,100,100,100, 75, 50, 75, 50, 50, 75,100,100,100,100,100,100,100	// Tam: Grande

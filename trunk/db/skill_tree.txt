@@ -23,14 +23,18 @@
 // | PrereqSkill-ID-4-Lv,PrereqSkill-ID-5,PrereqSkill-ID    |
 // | -5-Lv//CLASS_SKILLNAME#Nome da Habilidade#             |
 // \________________________________________________________/
-
-//Novice
+//
+//============================================================
+// Aprendiz
+//============================================================
 0,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 0,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 0,143,1,0,0,0,0,0,0,0,0,0,0	// NV_TRICKDEAD#Fingir de Morto#
 0,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 0,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Swordman
+//============================================================
+// Espadachim
+//============================================================
 1,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 1,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 1,2,10,0,0,0,0,0,0,0,0,0,0	// SM_SWORD#Perícia com Espada#
@@ -45,7 +49,9 @@
 1,146,1,0,0,0,0,0,0,0,0,0,0	// SM_AUTOBERSERK#Instinto de Sobrevivência#
 1,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 1,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Magician
+//============================================================
+// Mago
+//============================================================
 2,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 2,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 2,9,10,0,0,0,0,0,0,0,0,0,0	// MG_SRECOVERY#Aumentar Recuperação de SP#
@@ -64,7 +70,9 @@
 2,157,1,0,0,0,0,0,0,0,0,0,0	// MG_ENERGYCOAT#Proteção Arcana#
 2,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 2,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Archer
+//============================================================
+// Arqueiro
+//============================================================
 3,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 3,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 3,43,10,0,0,0,0,0,0,0,0,0,0	// AC_OWL#Precisão#
@@ -76,7 +84,9 @@
 3,148,1,0,0,0,0,0,0,0,0,0,0	// AC_CHARGEARROW#Disparo Violento#
 3,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 3,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Acolyte
+//============================================================
+// Noviço
+//============================================================
 4,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4,22,10,0,0,0,0,0,0,0,0,0,0	// AL_DP#Proteção Divina#
@@ -96,7 +106,9 @@
 4,156,1,0,0,0,0,0,0,0,0,0,0	// AL_HOLYLIGHT#Luz Divina#
 4,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 4,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Merchant
+//============================================================
+// Mercador
+//============================================================
 5,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 5,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 5,36,10,0,0,0,0,0,0,0,0,0,0	// MC_INCCARRY#Aumentar Capacidade de Carga#
@@ -111,7 +123,9 @@
 5,155,1,0,0,0,0,0,0,0,0,0,0	// MC_LOUD#Grito de Guerra#
 5,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 5,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Thief
+//============================================================
+// Gatuno
+//============================================================
 6,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 6,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 6,48,10,0,0,0,0,0,0,0,0,0,0	// TF_DOUBLE#Ataque Duplo#
@@ -126,7 +140,9 @@
 6,152,1,0,0,0,0,0,0,0,0,0,0	// TF_THROWSTONE#Arremessar Pedra#
 6,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 6,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Knight
+//============================================================
+// Cavaleiro
+//============================================================
 7,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 7,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 7,2,10,0,0,0,0,0,0,0,0,0,0	// SM_SWORD#Perícia com Espada#
@@ -153,7 +169,9 @@
 7,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 7,495,1,60,10,0,0,0,0,0,0,0,0	// KN_ONEHAND#Rapidez com Uma Mão#
 7,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Priest
+//============================================================
+// Sacerdote
+//============================================================
 8,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 8,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 8,22,10,0,0,0,0,0,0,0,0,0,0	// AL_DP#Proteção Divina#
@@ -192,7 +210,9 @@
 8,1014,1,0,0,0,0,0,0,0,0,0,0	// PR_REDEMPTIO#Martírio#
 8,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 8,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Wizard
+//============================================================
+// Bruxo
+//============================================================
 9,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 9,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 9,9,10,0,0,0,0,0,0,0,0,0,0	// MG_SRECOVERY#Aumentar Recuperação de SP#
@@ -226,7 +246,9 @@
 9,1006,1,0,0,0,0,0,0,0,0,0,0	// WZ_SIGHTBLASTER#Explosão Protetora#
 9,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 9,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Blacksmith
+//============================================================
+// Ferreiro
+//============================================================
 10,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 10,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 10,36,10,0,0,0,0,0,0,0,0,0,0	// MC_INCCARRY#Aumentar Capacidade de Carga#
@@ -265,7 +287,9 @@
 10,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 10,459,1,111,5,0,0,0,0,0,0,0,0	// BS_ADRENALINE2#Adrenalina Concentrada#
 10,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Hunter
+//============================================================
+// Caçador
+//============================================================
 11,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 11,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 11,43,10,0,0,0,0,0,0,0,0,0,0	// AC_OWL#Precisão#
@@ -296,7 +320,9 @@
 11,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 11,499,1,46,10,0,0,0,0,0,0,0,0	// HT_POWER#Ataque da Fera#
 11,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Assassin
+//============================================================
+// Mercenário
+//============================================================
 12,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 12,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 12,48,10,0,0,0,0,0,0,0,0,0,0	// TF_DOUBLE#Ataque Duplo#
@@ -323,7 +349,9 @@
 12,1004,1,0,0,0,0,0,0,0,0,0,0	// AS_VENOMKNIFE#Faca Envenenada#
 12,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 12,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Knight(Peco)
+//============================================================
+// Cavaleiro (Peco)
+//============================================================
 13,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 13,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 13,2,10,0,0,0,0,0,0,0,0,0,0	// SM_SWORD#Perícia com Espada#
@@ -350,7 +378,9 @@
 13,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 13,495,1,60,10,0,0,0,0,0,0,0,0	// KN_ONEHAND#Rapidez com Uma Mão#
 13,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Crusader
+//============================================================
+// Templário
+//============================================================
 14,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 14,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 14,2,10,0,0,0,0,0,0,0,0,0,0	// SM_SWORD#Perícia com Espada#
@@ -384,7 +414,9 @@
 14,1002,1,0,0,0,0,0,0,0,0,0,0	// CR_SHRINK#Submissão#
 14,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 14,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Monk
+//============================================================
+// Monge
+//============================================================
 15,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 15,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 15,22,10,0,0,0,0,0,0,0,0,0,0	// AL_DP#Proteção Divina#
@@ -421,7 +453,9 @@
 15,1016,1,0,0,0,0,0,0,0,0,0,0	// MO_BALKYOUNG#Punhos Intensos#
 15,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 15,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Sage
+//============================================================
+// Sábio
+//============================================================
 16,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 16,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 16,9,10,0,0,0,0,0,0,0,0,0,0	// MG_SRECOVERY#Aumentar Recuperação de SP#
@@ -465,7 +499,9 @@
 16,1019,1,0,0,0,0,0,0,0,0,0,0	// SA_ELEMENTWIND#Mudança Elemental - Vento#
 16,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 16,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Rogue
+//============================================================
+// Arruaceiro
+//============================================================
 17,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 17,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 17,48,10,0,0,0,0,0,0,0,0,0,0	// TF_DOUBLE#Ataque Duplo#
@@ -501,7 +537,9 @@
 17,1005,1,0,0,0,0,0,0,0,0,0,0	// RG_CLOSECONFINE#Confinamento#
 17,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 17,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Alchemist
+//============================================================
+//Alquimista
+//============================================================
 18,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 18,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 18,36,10,0,0,0,0,0,0,0,0,0,0	// MC_INCCARRY#Aumentar Capacidade de Carga#
@@ -536,7 +574,9 @@
 18,497,1,228,10,0,0,0,0,0,0,0,0	// AM_TWILIGHT2#Criação Espiritual de Poções#
 18,498,1,228,10,0,0,0,0,0,0,0,0	// AM_TWILIGHT3#Criação Espiritual de Poções#
 18,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Bard
+//============================================================
+// Bardo
+//============================================================
 19,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 19,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 19,43,10,0,0,0,0,0,0,0,0,0,0	// AC_OWL#Precisão#
@@ -567,7 +607,9 @@
 19,1010,1,0,0,0,0,0,0,0,0,0,0	// BA_PANGVOICE#Voz Dolorosa#
 19,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 19,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Dancer
+//============================================================
+// Odalisca
+//============================================================
 20,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 20,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 20,43,10,0,0,0,0,0,0,0,0,0,0	// AC_OWL#Precisão#
@@ -598,7 +640,9 @@
 20,1011,1,0,0,0,0,0,0,0,0,0,0	// DC_WINKCHARM#Piscadela#
 20,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 20,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Crusader(Peco)
+//============================================================
+// Templário(Peco)
+//============================================================
 21,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 21,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 21,2,10,0,0,0,0,0,0,0,0,0,0	// SM_SWORD#Perícia com Espada#
@@ -632,14 +676,18 @@
 21,1002,1,0,0,0,0,0,0,0,0,0,0	// CR_SHRINK#Submissão#
 21,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 21,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//WeddingClass
+//============================================================
+// Casamento
+//============================================================
 22,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 22,334,1,0,0,0,0,0,0,0,0,0,0	// WE_MALE#Amor Verdadeiro#
 22,335,5,0,0,0,0,0,0,0,0,0,0	// WE_FEMALE#Amor Eterno#
 22,336,5,0,0,0,0,0,0,0,0,0,0	// WE_CALLPARTNER#Saudades de Você#
 22,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 22,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//SuperNovice
+//============================================================
+// Super Aprendiz
+//============================================================
 23,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 23,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 23,2,10,0,0,0,0,0,0,0,0,0,0	// SM_SWORD#Perícia com Espada#
@@ -693,7 +741,9 @@
 23,53,1,52,3,0,0,0,0,0,0,0,0	// TF_DETOXIFY#Desintoxicar#
 23,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 23,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Gunslinger
+//============================================================
+// Justiceiro
+//============================================================
 24,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 24,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 24,500,5,0,0,0,0,0,0,0,0,0,0	// GS_GLITTERING#Cara ou Coroa#
@@ -720,7 +770,9 @@
 24,521,10,520,7,0,0,0,0,0,0,0,0	// GS_GROUNDDRIFT#Mina do Justiceiro#
 24,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 24,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Ninja
+//============================================================
+// Ninja
+//============================================================
 25,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 25,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 25,522,10,0,0,0,0,0,0,0,0,0,0	// NJ_TOBIDOUGU#Prática de Arremesso de Shuriken#
@@ -748,13 +800,17 @@
 25,544,10,522,7,530,5,543,1,0,0,0,0	// NJ_ISSEN#Ataque Mortal#
 25,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 25,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//NoviceHigh
+//============================================================
+// Aprendiz T.
+//============================================================
 4001,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4001,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4001,143,1,0,0,0,0,0,0,0,0,0,0	// NV_TRICKDEAD#Fingir de Morto#
 4001,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 4001,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//SwordmanHigh
+//============================================================
+// Espadachim T.
+//============================================================
 4002,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4002,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4002,2,10,0,0,0,0,0,0,0,0,0,0	// SM_SWORD#Perícia com Espada#
@@ -769,7 +825,9 @@
 4002,146,1,0,0,0,0,0,0,0,0,0,0	// SM_AUTOBERSERK#Instinto de Sobrevivência#
 4002,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 4002,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//MageHigh
+//============================================================
+// Mago T.
+//============================================================
 4003,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4003,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4003,9,10,0,0,0,0,0,0,0,0,0,0	// MG_SRECOVERY#Aumentar Recuperação de SP#
@@ -788,7 +846,9 @@
 4003,157,1,0,0,0,0,0,0,0,0,0,0	// MG_ENERGYCOAT#Proteção Arcana#
 4003,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 4003,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//ArcherHigh
+//============================================================
+// Arqueiro T.
+//============================================================
 4004,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4004,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4004,43,10,0,0,0,0,0,0,0,0,0,0	// AC_OWL#Precisão#
@@ -800,7 +860,9 @@
 4004,148,1,0,0,0,0,0,0,0,0,0,0	// AC_CHARGEARROW#Disparo Violento#
 4004,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 4004,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//AcolyteHigh
+//============================================================
+// Noviço T.
+//============================================================
 4005,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4005,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4005,22,10,0,0,0,0,0,0,0,0,0,0	// AL_DP#Proteção Divina#
@@ -820,7 +882,9 @@
 4005,156,1,0,0,0,0,0,0,0,0,0,0	// AL_HOLYLIGHT#Luz Divina#
 4005,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 4005,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//MerchantHigh
+//============================================================
+// Mercador T.
+//============================================================
 4006,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4006,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4006,36,10,0,0,0,0,0,0,0,0,0,0	// MC_INCCARRY#Aumentar Capacidade de Carga#
@@ -835,7 +899,9 @@
 4006,155,1,0,0,0,0,0,0,0,0,0,0	// MC_LOUD#Grito de Guerra#
 4006,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 4006,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//ThiefHigh
+//============================================================
+// Gatuno T.
+//============================================================
 4007,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4007,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4007,48,10,0,0,0,0,0,0,0,0,0,0	// TF_DOUBLE#Ataque Duplo#
@@ -850,7 +916,9 @@
 4007,152,1,0,0,0,0,0,0,0,0,0,0	// TF_THROWSTONE#Arremessar Pedra#
 4007,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 4007,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//LordKnight
+//============================================================
+// Lorde
+//============================================================
 4008,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4008,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4008,2,10,0,0,0,0,0,0,0,0,0,0	// SM_SWORD#Perícia com Espada#
@@ -885,7 +953,9 @@
 4008,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 4008,495,1,60,10,0,0,0,0,0,0,0,0	// KN_ONEHAND#Rapidez com Uma Mão#
 4008,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//HighPriest
+//============================================================
+// Sumo-Sacerdote
+//============================================================
 4009,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4009,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4009,22,10,0,0,0,0,0,0,0,0,0,0	// AL_DP#Proteção Divina#
@@ -928,7 +998,9 @@
 4009,481,5,65,10,23,10,0,0,0,0,0,0	// HP_MANARECHARGE#Riqueza Espírito#
 4009,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 4009,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//HighWizard
+//============================================================
+// Arquimago
+//============================================================
 4010,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4010,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4010,9,10,0,0,0,0,0,0,0,0,0,0	// MG_SRECOVERY#Aumentar Recuperação de SP#
@@ -967,7 +1039,9 @@
 4010,484,5,365,1,366,10,92,1,0,0,0,0	// HW_GRAVITATION#Campo Gravitacional#
 4010,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 4010,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Whitesmith
+//============================================================
+// Mestre-Ferreiro
+//============================================================
 4011,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4011,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4011,36,10,0,0,0,0,0,0,0,0,0,0	// MC_INCCARRY#Aumentar Capacidade de Carga#
@@ -1014,7 +1088,9 @@
 4011,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 4011,459,1,111,5,0,0,0,0,0,0,0,0	// BS_ADRENALINE2#Adrenalina Concentrada#
 4011,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Sniper
+//============================================================
+// Atirador de Elite
+//============================================================
 4012,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4012,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4012,43,10,0,0,0,0,0,0,0,0,0,0	// AC_OWL#Precisão#
@@ -1049,7 +1125,9 @@
 4012,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 4012,499,1,46,10,0,0,0,0,0,0,0,0	// HT_POWER#Ataque da Fera#
 4012,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//AssassinCross
+//============================================================
+// Algoz
+//============================================================
 4013,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4013,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4013,48,10,0,0,0,0,0,0,0,0,0,0	// TF_DOUBLE#Ataque Duplo#
@@ -1081,7 +1159,9 @@
 4013,407,1,52,10,53,1,138,5,0,0,0,0	// ASC_CDP#Criar Veneno Mortal#
 4013,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 4013,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//LordKnight(Peco)
+//============================================================
+// Lorde(Peco)
+//============================================================
 4014,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4014,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4014,2,10,0,0,0,0,0,0,0,0,0,0	// SM_SWORD#Perícia com Espada#
@@ -1116,7 +1196,9 @@
 4014,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 4014,495,1,60,10,0,0,0,0,0,0,0,0	// KN_ONEHAND#Rapidez com Uma Mão#
 4014,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Paladin
+//============================================================
+//Paladino
+//============================================================
 4015,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4015,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4015,2,10,0,0,0,0,0,0,0,0,0,0	// SM_SWORD#Perícia com Espada#
@@ -1154,7 +1236,9 @@
 4015,480,5,251,5,0,0,0,0,0,0,0,0	// PA_SHIELDCHAIN#Choque Rápido#
 4015,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 4015,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Champion
+//============================================================
+// Mestre
+//============================================================
 4016,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4016,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4016,22,10,0,0,0,0,0,0,0,0,0,0	// AL_DP#Proteção Divina#
@@ -1195,7 +1279,9 @@
 4016,401,1,261,5,262,1,270,5,0,0,0,0	// CH_SOULCOLLECT#Zen#
 4016,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 4016,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
+//============================================================
 //Professor
+//============================================================
 4017,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4017,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4017,9,10,0,0,0,0,0,0,0,0,0,0	// MG_SRECOVERY#Aumentar Recuperação de SP#
@@ -1247,7 +1333,9 @@
 4017,482,5,279,1,0,0,0,0,0,0,0,0	// PF_DOUBLECASTING#Lanças Duplas#
 4017,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 4017,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Stalker
+//============================================================
+// Desordeiro
+//============================================================
 4018,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4018,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4018,48,10,0,0,0,0,0,0,0,0,0,0	// TF_DOUBLE#Ataque Duplo#
@@ -1287,7 +1375,9 @@
 4018,476,5,215,5,216,5,217,5,218,5,0,0	// ST_FULLSTRIP#Remoção Total#
 4018,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 4018,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Creator
+//============================================================
+// Criador
+//============================================================
 4019,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4019,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4019,36,10,0,0,0,0,0,0,0,0,0,0	// MC_INCCARRY#Aumentar Capacidade de Carga#
@@ -1328,7 +1418,9 @@
 4019,497,1,228,10,0,0,0,0,0,0,0,0	// AM_TWILIGHT2#Criação Espiritual de Poções#
 4019,498,1,228,10,0,0,0,0,0,0,0,0	// AM_TWILIGHT3#Criação Espiritual de Poções#
 4019,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Clown
+//============================================================
+// Menestrel
+//============================================================
 4020,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4020,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4020,43,10,0,0,0,0,0,0,0,0,0,0	// AC_OWL#Precisão#
@@ -1365,7 +1457,9 @@
 4020,489,5,45,10,317,3,0,0,0,0,0,0	// CG_TAROTCARD#Destino nas Cartas#
 4020,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 4020,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Gypsy
+//============================================================
+// Cigana
+//============================================================
 4021,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4021,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4021,43,10,0,0,0,0,0,0,0,0,0,0	// AC_OWL#Precisão#
@@ -1402,7 +1496,9 @@
 4021,489,5,45,10,325,3,0,0,0,0,0,0	// CG_TAROTCARD#Destino nas Cartas#
 4021,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 4021,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Paladin(Peco)
+//============================================================
+// Paladino(Peco)
+//============================================================
 4022,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4022,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4022,2,10,0,0,0,0,0,0,0,0,0,0	// SM_SWORD#Perícia com Espada#
@@ -1440,14 +1536,18 @@
 4022,480,5,251,5,0,0,0,0,0,0,0,0	// PA_SHIELDCHAIN#Choque Rápido#
 4022,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 4022,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Baby (Novice)
+//============================================================
+// Aprendiz Bebê
+//============================================================
 4023,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4023,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4023,143,1,0,0,0,0,0,0,0,0,0,0	// NV_TRICKDEAD#Fingir de Morto#
 4023,408,1,0,0,0,0,0,0,0,0,0,0	// WE_BABY#Mãe Pai amo vocês!#
 4023,409,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLPARENT#Mãe Pai cadê vocês?#
 4023,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Baby Swordman
+//============================================================
+// Espadachim Bebê
+//============================================================
 4024,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4024,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4024,2,10,0,0,0,0,0,0,0,0,0,0	// SM_SWORD#Perícia com Espada#
@@ -1463,7 +1563,9 @@
 4024,408,1,0,0,0,0,0,0,0,0,0,0	// WE_BABY#Mãe Pai amo vocês!#
 4024,409,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLPARENT#Mãe Pai cadê vocês?#
 4024,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Baby Magician
+//============================================================
+// Mago Bebê
+//============================================================
 4025,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4025,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4025,9,10,0,0,0,0,0,0,0,0,0,0	// MG_SRECOVERY#Aumentar Recuperação de SP#
@@ -1483,7 +1585,9 @@
 4025,408,1,0,0,0,0,0,0,0,0,0,0	// WE_BABY#Mãe Pai amo vocês!#
 4025,409,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLPARENT#Mãe Pai cadê vocês?#
 4025,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Baby Archer
+//============================================================
+// Arqueiro Bebê
+//============================================================
 4026,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4026,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4026,43,10,0,0,0,0,0,0,0,0,0,0	// AC_OWL#Precisão#
@@ -1496,7 +1600,9 @@
 4026,408,1,0,0,0,0,0,0,0,0,0,0	// WE_BABY#Mãe Pai amo vocês!#
 4026,409,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLPARENT#Mãe Pai cadê vocês?#
 4026,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Baby Acolyte
+//============================================================
+// Noviço Bebê
+//============================================================
 4027,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4027,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4027,22,10,0,0,0,0,0,0,0,0,0,0	// AL_DP#Proteção Divina#
@@ -1517,7 +1623,9 @@
 4027,408,1,0,0,0,0,0,0,0,0,0,0	// WE_BABY#Mãe Pai amo vocês!#
 4027,409,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLPARENT#Mãe Pai cadê vocês?#
 4027,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Baby Merchant
+//============================================================
+// Bebê Mercador
+//============================================================
 4028,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4028,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4028,36,10,0,0,0,0,0,0,0,0,0,0	// MC_INCCARRY#Aumentar Capacidade de Carga#
@@ -1533,7 +1641,9 @@
 4028,408,1,0,0,0,0,0,0,0,0,0,0	// WE_BABY#Mãe Pai amo vocês!#
 4028,409,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLPARENT#Mãe Pai cadê vocês?#
 4028,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Baby Thief
+//============================================================
+// Gatuno Bebê
+//============================================================
 4029,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4029,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4029,48,10,0,0,0,0,0,0,0,0,0,0	// TF_DOUBLE#Ataque Duplo#
@@ -1549,7 +1659,9 @@
 4029,408,1,0,0,0,0,0,0,0,0,0,0	// WE_BABY#Mãe Pai amo vocês!#
 4029,409,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLPARENT#Mãe Pai cadê vocês?#
 4029,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Baby Knight
+//============================================================
+// Cavaleiro Bebê
+//============================================================
 4030,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4030,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4030,2,10,0,0,0,0,0,0,0,0,0,0	// SM_SWORD#Perícia com Espada#
@@ -1577,7 +1689,9 @@
 4030,1001,1,0,0,0,0,0,0,0,0,0,0	// KN_CHARGEATK#Avanço Ofensivo#
 4030,495,1,60,10,0,0,0,0,0,0,0,0	// KN_ONEHAND#Rapidez com Uma Mão#
 4030,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Baby Priest
+//============================================================
+// Sacerdote Bebê
+//============================================================
 4031,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4031,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4031,22,10,0,0,0,0,0,0,0,0,0,0	// AL_DP#Proteção Divina#
@@ -1617,7 +1731,9 @@
 4031,79,10,12,1,78,1,77,3,0,0,0,0	// PR_MAGNUS#Magnus Exorcismus#
 4031,1014,1,0,0,0,0,0,0,0,0,0,0	// PR_REDEMPTIO#Martírio#
 4031,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Baby Wizard
+//============================================================
+// Bruxo Bebê
+//============================================================
 4032,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4032,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4032,9,10,0,0,0,0,0,0,0,0,0,0	// MG_SRECOVERY#Aumentar Recuperação de SP#
@@ -1651,7 +1767,9 @@
 4032,93,1,0,0,0,0,0,0,0,0,0,0	// WZ_ESTIMATION#Sentido Sobrenatural#
 4032,1006,1,0,0,0,0,0,0,0,0,0,0	// WZ_SIGHTBLASTER#Explosão Protetora#
 4032,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Baby Blacksmith
+//============================================================
+// Ferreiro Bebê
+//============================================================
 4033,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4033,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4033,36,10,0,0,0,0,0,0,0,0,0,0	// MC_INCCARRY#Aumentar Capacidade de Carga#
@@ -1691,7 +1809,9 @@
 4033,1013,1,0,0,0,0,0,0,0,0,0,0	// BS_GREED#Ganância#
 4033,459,1,111,5,0,0,0,0,0,0,0,0	// BS_ADRENALINE2#Adrenalina Concentrada#
 4033,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Baby Hunter
+//============================================================
+// Caçador Bebê
+//============================================================
 4034,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4034,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4034,43,10,0,0,0,0,0,0,0,0,0,0	// AC_OWL#Precisão#
@@ -1723,7 +1843,9 @@
 4034,1009,1,0,0,0,0,0,0,0,0,0,0	// HT_PHANTASMIC#Flecha Fantasma#
 4034,499,1,46,10,0,0,0,0,0,0,0,0	// HT_POWER#Ataque da Fera#
 4034,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Baby Assassin
+//============================================================
+// Mercenário Bebê
+//============================================================
 4035,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4035,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4035,48,10,0,0,0,0,0,0,0,0,0,0	// TF_DOUBLE#Ataque Duplo#
@@ -1751,7 +1873,9 @@
 4035,1003,1,0,0,0,0,0,0,0,0,0,0	// AS_SONICACCEL#Lâminas Aceleradas#
 4035,1004,1,0,0,0,0,0,0,0,0,0,0	// AS_VENOMKNIFE#Faca Envenenada#
 4035,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Baby Knight(Peco)
+//============================================================
+// Cavaleiro Bebê(Peco)
+//============================================================
 4036,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4036,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4036,2,10,0,0,0,0,0,0,0,0,0,0	// SM_SWORD#Perícia com Espada#
@@ -1779,7 +1903,9 @@
 4036,1001,1,0,0,0,0,0,0,0,0,0,0	// KN_CHARGEATK#Avanço Ofensivo#
 4036,495,1,60,10,0,0,0,0,0,0,0,0	// KN_ONEHAND#Rapidez com Uma Mão#
 4036,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Baby Crusader
+//============================================================
+// Templário Bebê
+//============================================================
 4037,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4037,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4037,2,10,0,0,0,0,0,0,0,0,0,0	// SM_SWORD#Perícia com Espada#
@@ -1814,7 +1940,9 @@
 4037,258,10,55,10,0,0,0,0,0,0,0,0	// CR_SPEARQUICKEN#Rapidez com Lança#
 4037,1002,1,0,0,0,0,0,0,0,0,0,0	// CR_SHRINK#Submissão#
 4037,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Baby Monk
+//============================================================
+// Monge Bebê
+//============================================================
 4038,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4038,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4038,22,10,0,0,0,0,0,0,0,0,0,0	// AL_DP#Proteção Divina#
@@ -1852,7 +1980,9 @@
 4038,1015,1,0,0,0,0,0,0,0,0,0,0	// MO_KITRANSLATION#Concessão Espiritual#
 4038,1016,1,0,0,0,0,0,0,0,0,0,0	// MO_BALKYOUNG#Punhos Intensos#
 4038,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Baby Sage
+//============================================================
+// Sábio Bebê
+//============================================================
 4039,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4039,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4039,9,10,0,0,0,0,0,0,0,0,0,0	// MG_SRECOVERY#Aumentar Recuperação de SP#
@@ -1897,7 +2027,9 @@
 4039,1018,1,0,0,0,0,0,0,0,0,0,0	// SA_ELEMENTFIRE#Mudança Elemental - Fogo#
 4039,1019,1,0,0,0,0,0,0,0,0,0,0	// SA_ELEMENTWIND#Mudança Elemental - Vento#
 4039,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Baby Rogue
+//============================================================
+// Arruaceiro Bebê
+//============================================================
 4040,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4040,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4040,48,10,0,0,0,0,0,0,0,0,0,0	// TF_DOUBLE#Ataque Duplo#
@@ -1934,7 +2066,9 @@
 4040,225,10,219,5,0,0,0,0,0,0,0,0	// RG_PLAGIARISM#Plágio#
 4040,1005,1,0,0,0,0,0,0,0,0,0,0	// RG_CLOSECONFINE#Confinamento#
 4040,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Baby Alchemist
+//============================================================
+// Alquimista Bebê
+//============================================================
 4041,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4041,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4041,36,10,0,0,0,0,0,0,0,0,0,0	// MC_INCCARRY#Aumentar Capacidade de Carga#
@@ -1970,7 +2104,9 @@
 4041,497,1,228,10,0,0,0,0,0,0,0,0	// AM_TWILIGHT2#Criação Espiritual de Poções#
 4041,498,1,228,10,0,0,0,0,0,0,0,0	// AM_TWILIGHT3#Criação Espiritual de Poções#
 4041,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Baby Bard
+//============================================================
+// Bardo Bebê
+//============================================================
 4042,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4042,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4042,43,10,0,0,0,0,0,0,0,0,0,0	// AC_OWL#Precisão#
@@ -2002,7 +2138,9 @@
 4042,313,5,321,10,0,0,0,0,0,0,0,0	// BD_SIEGFRIED#Ode a Siegfried#
 4042,1010,1,0,0,0,0,0,0,0,0,0,0	// BA_PANGVOICE#Voz Dolorosa#
 4042,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Baby Dancer
+//============================================================
+// Odalisca Bebê
+//============================================================
 4043,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4043,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4043,43,10,0,0,0,0,0,0,0,0,0,0	// AC_OWL#Precisão#
@@ -2034,7 +2172,9 @@
 4043,313,5,329,10,0,0,0,0,0,0,0,0	// BD_SIEGFRIED#Ode a Siegfried#
 4043,1011,1,0,0,0,0,0,0,0,0,0,0	// DC_WINKCHARM#Piscadela#
 4043,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Baby Crusader(Peco)
+//============================================================
+// Templário Bebê(Peco)
+//============================================================
 4044,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4044,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4044,2,10,0,0,0,0,0,0,0,0,0,0	// SM_SWORD#Perícia com Espada#
@@ -2069,7 +2209,9 @@
 4044,258,10,55,10,0,0,0,0,0,0,0,0	// CR_SPEARQUICKEN#Rapidez com Lança#
 4044,1002,1,0,0,0,0,0,0,0,0,0,0	// CR_SHRINK#Submissão#
 4044,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Super Baby
+//============================================================
+// Super Aprendiz Bebê
+//============================================================
 4045,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4045,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4045,2,10,0,0,0,0,0,0,0,0,0,0	// SM_SWORD#Perícia com Espada#
@@ -2124,7 +2266,9 @@
 4045,408,1,0,0,0,0,0,0,0,0,0,0	// WE_BABY#Mãe Pai amo vocês!#
 4045,409,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLPARENT#Mãe Pai cadê vocês?#
 4045,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
+//============================================================
 //Taekwon
+//============================================================
 4046,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4046,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4046,411,10,0,0,0,0,0,0,0,0,0,0	// TK_RUN#Corrida#
@@ -2146,7 +2290,9 @@
 4046,493,1,424,5,0,0,0,0,0,0,0,0	// TK_MISSION#Missão Tae Kwon Dô#
 4046,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 4046,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Star Gladiator
+//============================================================
+// Mestre Taekwon
+//============================================================
 4047,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4047,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4047,411,10,0,0,0,0,0,0,0,0,0,0	// TK_RUN#Corrida#
@@ -2166,28 +2312,29 @@
 4047,425,7,422,5,423,5,424,5,0,0,0,0	// TK_SEVENWIND#Brisa Leve#
 4047,426,5,0,0,0,0,0,0,0,0,0,0	// TK_HIGHJUMP#Salto#
 4047,493,1,424,5,0,0,0,0,0,0,0,0	// TK_MISSION#Missão Tae Kwon Dô#
-4047,427,3,0,0,0,0,0,0,0,0,0,0	//SG_FEEL#Feeling the Sun, Moon and Stars#
+4047,427,3,0,0,0,0,0,0,0,0,0,0	//SG_FEEL#Percepção Solar, Lunar e Estelar#
 4047,428,3,427,1,0,0,0,0,0,0,0,0	// SG_SUN_WARM#Calor Solar#
 4047,429,3,427,2,0,0,0,0,0,0,0,0	// SG_MOON_WARM#Calor Lunar#
 4047,430,3,427,3,0,0,0,0,0,0,0,0	// SG_STAR_WARM#Calor Estelar#
 4047,431,4,427,1,0,0,0,0,0,0,0,0	// SG_SUN_COMFORT#Proteção Solar#
 4047,432,4,427,2,0,0,0,0,0,0,0,0	// SG_MOON_COMFORT#Proteção Lunar#
 4047,433,4,427,3,0,0,0,0,0,0,0,0	// SG_STAR_COMFORT#Proteção Estelar#
-4047,434,3,0,0,0,0,0,0,0,0,0,0	//SG_HATE#Hatred of the Sun, Moon and Stars#
+4047,434,3,0,0,0,0,0,0,0,0,0,0	//SG_HATE#Oposição Solar, Lunar e Estelar#
 4047,435,3,434,1,0,0,0,0,0,0,0,0	// SG_SUN_ANGER#Fúria Solar#
 4047,436,3,434,2,0,0,0,0,0,0,0,0	// SG_MOON_ANGER#Fúria Lunar#
 4047,437,3,434,3,0,0,0,0,0,0,0,0	// SG_STAR_ANGER#Fúria Estelar#
 4047,438,5,427,1,434,1,0,0,0,0,0,0	// SG_SUN_BLESS#Bênção Solar#
 4047,439,5,427,2,434,2,0,0,0,0,0,0	// SG_MOON_BLESS#Bênção Lunar#
 4047,440,5,427,3,434,3,0,0,0,0,0,0	// SG_STAR_BLESS#Bênção Estelar#
-4047,441,10,0,0,0,0,0,0,0,0,0,0	//SG_DEVIL#Demon of the Sun, Moon and Stars#
-4047,442,3,0,0,0,0,0,0,0,0,0,0	//SG_FRIEND#Friend of the Sun, Moon and Stars#
-4047,443,10,0,0,0,0,0,0,0,0,0,0	//SG_KNOWLEDGE#Knowledge of the Sun, Moon and Stars#
-4047,444,1,443,9,0,0,0,0,0,0,0,0	// ##
-//SG_FUSION#Union of the Sun, Moon and Stars#
+4047,441,10,0,0,0,0,0,0,0,0,0,0	//SG_DEVIL#Sombra Solar, Lunar e Estelar#
+4047,442,3,0,0,0,0,0,0,0,0,0,0	//SG_FRIEND#Auxílio Solar, Lunar e Estelar#
+4047,443,10,0,0,0,0,0,0,0,0,0,0	//SG_KNOWLEDGE#Transmissão Solar, Lunar e Estelar#
+4047,444,1,443,9,0,0,0,0,0,0,0,0	//SG_FUSION#União Solar, Lunar e Estelar#
 4047,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 4047,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Star Gladiator (Flying)
+//============================================================
+// Mestre Taekwon (Flying)
+//============================================================
 4048,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4048,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4048,411,10,0,0,0,0,0,0,0,0,0,0	// TK_RUN#Corrida#
@@ -2207,28 +2354,29 @@
 4048,425,7,422,5,423,5,424,5,0,0,0,0	// TK_SEVENWIND#Brisa Leve#
 4048,426,5,0,0,0,0,0,0,0,0,0,0	// TK_HIGHJUMP#Salto#
 4048,493,1,424,5,0,0,0,0,0,0,0,0	// TK_MISSION#Missão Tae Kwon Dô#
-4048,427,3,0,0,0,0,0,0,0,0,0,0	//SG_FEEL#Feeling the Sun, Moon and Stars#
+4048,427,3,0,0,0,0,0,0,0,0,0,0	//SG_FEEL#Percepção Solar, Lunar e Estelar#
 4048,428,3,427,1,0,0,0,0,0,0,0,0	// SG_SUN_WARM#Calor Solar#
 4048,429,3,427,2,0,0,0,0,0,0,0,0	// SG_MOON_WARM#Calor Lunar#
 4048,430,3,427,3,0,0,0,0,0,0,0,0	// SG_STAR_WARM#Calor Estelar#
 4048,431,4,427,1,0,0,0,0,0,0,0,0	// SG_SUN_COMFORT#Proteção Solar#
 4048,432,4,427,2,0,0,0,0,0,0,0,0	// SG_MOON_COMFORT#Proteção Lunar#
 4048,433,4,427,3,0,0,0,0,0,0,0,0	// SG_STAR_COMFORT#Proteção Estelar#
-4048,434,3,0,0,0,0,0,0,0,0,0,0	//SG_HATE#Hatred of the Sun, Moon and Stars#
+4048,434,3,0,0,0,0,0,0,0,0,0,0	//SG_HATE#Oposição Solar, Lunar e Estelar#
 4048,435,3,434,1,0,0,0,0,0,0,0,0	// SG_SUN_ANGER#Fúria Solar#
 4048,436,3,434,2,0,0,0,0,0,0,0,0	// SG_MOON_ANGER#Fúria Lunar#
 4048,437,3,434,3,0,0,0,0,0,0,0,0	// SG_STAR_ANGER#Fúria Estelar#
 4048,438,5,427,1,434,1,0,0,0,0,0,0	// SG_SUN_BLESS#Bênção Solar#
 4048,439,5,427,2,434,2,0,0,0,0,0,0	// SG_MOON_BLESS#Bênção Lunar#
 4048,440,5,427,3,434,3,0,0,0,0,0,0	// SG_STAR_BLESS#Bênção Estelar#
-4048,441,10,0,0,0,0,0,0,0,0,0,0	//SG_DEVIL#Demon of the Sun, Moon and Stars#
-4048,442,3,0,0,0,0,0,0,0,0,0,0	//SG_FRIEND#Friend of the Sun, Moon and Stars#
-4048,443,10,0,0,0,0,0,0,0,0,0,0	//SG_KNOWLEDGE#Knowledge of the Sun, Moon and Stars#
-4048,444,1,443,9,0,0,0,0,0,0,0,0	// ##
-//SG_FUSION#Union of the Sun, Moon and Stars#
+4048,441,10,0,0,0,0,0,0,0,0,0,0	//SG_DEVIL#Sombra Solar, Lunar e Estelar#
+4048,442,3,0,0,0,0,0,0,0,0,0,0	//SG_FRIEND#Auxílio Solar, Lunar e Estelar#
+4048,443,10,0,0,0,0,0,0,0,0,0,0	//SG_KNOWLEDGE#Transmissão Solar, Lunar e Estelar#
+4048,444,1,443,9,0,0,0,0,0,0,0,0	//SG_FUSION#União Solar, Lunar e Estelar#
 4048,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 4048,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-//Soul Linker
+//============================================================
+//Espiritualista
+//============================================================
 4049,1,9,0,0,0,0,0,0,0,0,0,0	// NV_BASIC#Habilidades Básicas#
 4049,142,1,0,0,0,0,0,0,0,0,0,0	// NV_FIRSTAID#Primeiros Socorros#
 4049,411,10,0,0,0,0,0,0,0,0,0,0	// TK_RUN#Corrida#
