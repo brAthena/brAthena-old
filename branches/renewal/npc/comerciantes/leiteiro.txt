@@ -1,0 +1,82 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Milk Trader							|
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.5/1.0                                |
+// |--------------------------------------------------------|
+// | Descrição:	Trades bottles for milk						|
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Modificação [Autor]		                        |
+// | - Anotações		   			    					| 
+// \________________________________________________________/
+
+prontera,73,140,0	script	Milk Vendor	86,{
+	if (checkweight(1201,1) == 0) {
+		mes "^3355FFJust a minute!";
+		mes "I can't offer any of my";
+		mes "services to you because";
+		mes "you're carrying too much";
+		mes "stuff. Put your extra items in";
+		mes "Kafra Storage and come again~";
+		close;
+	}
+	mes "[Milk Vendor]";
+	mes "Hey, hey...";
+	mes "If you bring me";
+	mes "1 Empty Bottle and";
+	mes "15 Zeny, I'll exchange";
+	mes "them for 1 Milk. How";
+	mes "does that sound?";
+	next;
+	if (select("Exchange all empty bottles.:Cancel") == 1) {
+		if (countitem(713) <= 0) {
+			mes "[Milk Vendor]";
+			mes "Hey...";
+			mes "You don't have";
+			mes "any Empty Bottles.";
+			mes "I can't really give you";
+			mes "this milk any other";
+			mes "way, you know...";
+			close;
+		}
+		set .@bottles,countitem(713);
+		set .@total_weight,.@bottles * 50;
+		set .@total_cost,.@bottles * 15;
+		if (zeny < .@Total_cost) {
+			mes "[Milk Vendor]";
+			mes "Oh, whoa~!";
+			mes "You don't have enough";
+			mes "zeny to exchange all";
+			mes "these Empty Bottles for";
+			mes "Milk. You need to have";
+			mes "at least " + .@total_cost + " zeny.";
+			close;
+		}
+		if ((maxweight-weight) < .@total_weight) {
+			mes "[Milk Vendor]";
+			mes "Hmm...";
+			mes "Would you make";
+			mes "a little more room";
+			mes "in your inventory";
+			mes "before I give you";
+			mes "all of this milk?";
+			close;
+		}
+		set zeny,zeny-.@total_cost;
+		delitem 713,.@bottles; //Empty Bottles
+		getitem 519,.@bottles; //Milk
+		close;
+	}
+	close;
+}

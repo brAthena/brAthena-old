@@ -1,0 +1,53 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: charhelp.conf                          |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Descrição: Ajuda aos comandos de personagens @help.    |
+// |--------------------------------------------------------|
+// | Changelog:                                             |
+// | 1.0 Modificação [brAthena]                             |
+// | 1.1 Traduções revisadas [Constantini]                  |
+// | - Anotações                                            |
+// | "Comentários" devem ser adicionados com // no início   |
+// | da frase, senão você causará problemas de conf, pois o |
+// | texto será inválido conforme a source.                 |
+// | Lembre-se que "NOTAS" dão recomendações importantes.   |
+// \________________________________________________________/
+
+ 40:--- COMANDOS DE PERSONAGENS ---
+ 40:#statsall <nome do personagem> - Dá todos os status para um personagem.
+ 40:#itemlist <nome do personagem> - Mostra todos os itens de um personagem.
+ 40:#storagelist <nome do personagem> - Mostra todos os itens do armazém do personagem.
+ 40:#stats <nome do personagem> - Mostra os status do personagem.
+ 60:#option <nome do personagem> <param1> <param2> <param3> - Mesmo que @option mas para outro personagem.
+ 50:#mountpeco <nome do personagem> - Dá/retira do personagem um peco (Classe requerida, mas habilidade não).
+ 50:#petrename <nome do personagem> - Permite que o personagem renomeie o pet.
+ 60:#save <nome do personagem> <map> <x> <y> - Muda o ponto de retorno do personagem.
+ 60:#baselvl/#blvl <Quantidade> <nome do personagem> - Muda o nível de base do personagem.
+ 60:#jlvl/#jlvl <#> <nome do personagem> - Muda o nível de classe do personagem.
+ 60:#job/#jobchange <nome do personagem> <id da classe> - Muda a classe do personagem.
+ 60:#zeny <nome do personagem> <quantidade> - Muda o Zeny do Personagem.
+ 60:#stpoint <nome do personagem> <quantidade> - Dá pontos de status ao personagem.
+ 60:#skpoint <nome do personagem> <quantidade> - Dá pontos de classe ao personagem.
+ 60:#skreset <nome do personagem> - Reseta os status do personagem.
+ 60:#streset <nome do personagem> - Reseta as habilidades do personagem.
+ 60:#reset <nome do personagem> - Reseta os status e as habilidades do personagem.
+ 60:#questskill <nome do personagem> <ID da Habilidade> - Ensina certa habilidade de quest ao personagem.
+ 60:#lostskill  <nome do personagem> <ID da Habilidade> - Tira certa habilidade de quest do personagem.
+ 60:#delitem <nome do personagem> <id do item/nome> <quantidade> - Deleta os itens do personagem.
+ 50:#model <nome do personagem> <estilo do cabelo> <cor do cabelo> <cor da roupa> - Muda a aparência do personagem.
+ 60:#disguise <nome do personagem> <nome/id do monstro> - Transforma o personagem em algum Monstro/NPC.
+ 60:#undisguise <nome do personagem> - Volta o personagem ao normal.
+ 60:#changesex <nome do personagem> - Troca o sexo de todos os personagens da conta.
+ 60:#warp/#rura+ <nome do personagem> <nome do mapa> <x> <y> - Teleporta o personagem para o lugar escolhido.
+ 60:#makemerc <nome do personagem> <id do assistente> <tempo de contrato> - Cria um Assistente para o Personagem.

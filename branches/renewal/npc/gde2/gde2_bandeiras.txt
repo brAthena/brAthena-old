@@ -1,0 +1,104 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: War of Emperium Second Edition         |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.0/1.0                                |
+// |--------------------------------------------------------|
+// | Descrição: WoE SE Guild Flags in Juno and Rachel	    |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Modificação [Autor]                                |
+// | - Anotações		   			    					| 
+// \________________________________________________________/
+
+// Juno
+yuno,109,167,5	script	Himinn	722,{
+	end;
+
+OnRecvCastlesc01:
+	FlagEmblem GetCastleData("schg_cas01",1);
+	end;
+}
+
+yuno,110,171,5	script	Andlangr	722,{
+	end;
+
+OnRecvCastlesc02:
+	FlagEmblem GetCastleData("schg_cas02",1);
+	end;
+}
+
+yuno,111,175,5	script	Viblainn	722,{
+	end;
+
+OnRecvCastlesc03:
+	FlagEmblem GetCastleData("schg_cas03",1);
+	end;
+}
+
+yuno,112,179,5	script	Hljod	722,{
+	end;
+
+OnRecvCastlesc04:
+	FlagEmblem GetCastleData("schg_cas04",1);
+	end;
+}
+
+yuno,114,183,5	script	Skidbladnir	722,{
+	end;
+
+OnRecvCastlesc05:
+	FlagEmblem GetCastleData("schg_cas05",1);
+	end;
+}
+
+// Arunafeltz
+rachel,124,120,3	script	Mardol	722,{
+	end;
+
+OnRecvCastlear01:
+	FlagEmblem GetCastleData("arug_cas01",1);
+	end;
+}
+
+rachel,136,120,5	script	Cyr	722,{
+	end;
+
+OnRecvCastlear02:
+	FlagEmblem GetCastleData("arug_cas02",1);
+	end;
+}
+
+rachel,138,126,6	script	Horn	722,{
+	end;
+
+OnRecvCastlear03:
+	FlagEmblem GetCastleData("arug_cas03",1);
+	end;
+}
+
+rachel,135,131,7	script	Gefn	722,{
+	end;
+
+OnRecvCastlear04:
+	FlagEmblem GetCastleData("arug_cas04",1);
+	end;
+}
+
+rachel,124,130,1	script	Banadis	722,{
+	end;
+
+OnRecvCastlear05:
+	FlagEmblem GetCastleData("arug_cas05",1);
+	end;
+}

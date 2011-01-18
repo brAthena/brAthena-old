@@ -1,0 +1,91 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                     brAthena Script                    |
+// |--------------------------------------------------------|
+// | Nome do Script: Equipe do Aeroporto de Lighthalzen	    |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.3/1.1                                |
+// |--------------------------------------------------------|
+// | Descrição: NPC's do Aeroplano de Lighthalzen.          |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [Tyler]                           |
+// | - Anotações                                            | 
+// \________________________________________________________/
+
+lhz_airport,126,43,4	script	Funcionário do Aeroporto#1::AirportL	90,{
+	mes "[Funcionário do Aeroporto]";
+	mes "Seja bem-vindo ao aeroporto.";
+	mes "Como eu posso te ajudar?";
+	next;
+	if (select("Embarcar no Aeroplano.:Cancelar.") == 1) {
+		mes "[Funcionário do Aeroporto]";
+		mes "O embarque no Aeroplano está";
+		mes "custando 1.200 zenys, mas se você";
+		mes "possuir um Bilhete para Aeroplano,"; 
+		mes "este pagamento será desconsiderado.";
+		mes "Você vai embarcar no Aeroplano?";
+		next;
+		if (select("Sim.:Não.") == 1) {
+			if(countitem(7311) > 0) {
+				delitem 7311,1;
+				warp "lhz_airport",148,51;
+				close;
+			}
+			if(zeny >= 1200) {
+				set Zeny,zeny-1200;
+				warp "lhz_airport",148,51;
+				close;
+			}
+			mes "[Funcionário do Aeroporto]";
+			mes "Você não possui zenys suficientes.";
+			close;
+		}
+	}
+	mes "[Funcionário do Aeroporto]";
+	mes "Muito obrigado e";
+	mes "tenha um ótimo dia.";
+	close;
+}
+
+lhz_airport,143,43,4	duplicate(AirportL)	Funcionário do Aeroporto#2	90
+lhz_airport,156,43,4	duplicate(AirportL)	Funcionário do Aeroporto#3	90
+
+lhz_airport,126,51,4	script	Funcionário do Aeroporto#4::AirportL2	90,{
+	mes "[Funcionário do Aeroporto]";
+	mes "Bem-vindo~";
+	mes "Por favor para embarcar no";
+	mes "Aeroplano siga em frente.";
+	next;
+	if (select("Deixar o Terminal Principal.:Cancelar.") == 1) {
+		mes "[Funcionário do Aeroporto]";
+		mes "Se você sair do Terminal";
+		mes "Principal agora, você terá";
+		mes "de pagar novamente a taxa de";
+		mes "embarque para poder entrar";
+		mes "novamente no Aeroplano. Você";
+		mes "tem certeza que deseja sair do Terminal?";
+		next;
+		if (select("Sim.:Não.") == 1) {
+			warp "lhz_airport",142,40;
+			close;
+		}
+	}
+	mes "[Funcionário do Aeroporto]";
+	mes "Certo, obrigado por contribuir";
+	mes "com o Aeroporto com seu pagamento,";
+	mes "eu espero que você faça";
+	mes "uma viagem muito agradável!~";
+	close;
+}
+
+lhz_airport,143,51,4	duplicate(AirportL2)	Funcionário do Aeroporto#5	90
+lhz_airport,156,51,4	duplicate(AirportL2)	Funcionário do Aeroporto#6	90

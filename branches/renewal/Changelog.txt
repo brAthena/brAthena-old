@@ -9,6 +9,15 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0112 - 18/01/2011 [Protimus]
+	* Iniciado projeto brAthena Renewal (Renovação).
+	- Branche adicionada de acordo com r0111 do brAthena Trunk.
+
+
+//================================================================================
+// Iniciando Changelog do brAthena Renewal (Renovação).
+//================================================================================	
+
 	r0111 - 18/01/2011 [Rafoka]
 	* Adicionado removedora de cartas custom na pasta personalizados
 	- personalizados/removedora_de_cartas.txt

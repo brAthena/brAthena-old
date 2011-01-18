@@ -1,0 +1,253 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nãome do Script: Quests Repetíveis - PecoPeco	   		|
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team			   				|
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.0/1.1				    			|
+// |--------------------------------------------------------|
+// | Descrição: Quests repetíveis para ganho de EXP 		|
+// |--------------------------------------------------------|
+// | Changelog:               	                        	|
+// | 1.0 Script Traduzido [insidemybrain]					|
+// | 1.1 Script Revisado [Protimus]							|
+// \_______________________________________________________/
+
+moc_fild02,74,329,3	script	Gregor#PecoPeco_Hunt	97,{
+	if (checkquest(60101) != -1) {
+		if (checkquest(60101,HUNTING) != 2 ) {
+			mes "[Gregor]";
+			mes "Você terminou de caçar os 50 Peco-Pecos?";
+			next;
+			switch(select("Sim.:Não.:Quero desistir.")) {
+			case 1:
+				mes "[Gregor]";
+				mes "Hm... Acho que você não terminou de caçar os 50 Peco-Pecos...";
+				close;
+			case 2:
+				mes "[Gregor]";
+				mes "Lembre-se, eu preciso de ajuda para caçar os 50 Peco-Pecos.";
+				close;
+			case 3:
+				mes "[Gregor]";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
+				next;
+				switch(select("Sim.:Não.")) {
+				case 1:
+					mes "[Gregor]";
+					mes "Tudo bem então, volte quando mudar de idéia.";
+					erasequest 60101;
+					close;
+				case 2:
+					mes "[Gregor]";
+					mes "Por favor mate os Peco-Pecos.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Gregor]";
+			mes "Ah muito obrigado!";
+			mes "A partir de agora as coisas ficarão mais fáceis.";
+			getexp 4000,2000;
+			erasequest 60101;
+			close;
+		}
+	}
+	if (checkquest(60102) != -1) {
+		if (checkquest(60102,HUNTING) != 2 ) {
+			mes "[Gregor]";
+			mes "Você terminou de caçar os 100 Peco-Pecos?";
+			next;
+			switch(select("Sim.:Não.:Quero desistir.")) {
+			case 1:
+				mes "[Gregor]";
+				mes "Hm... Acho que você não terminou de caçar os 100 Peco-Pecos...";
+				close;
+			case 2:
+				mes "[Gregor]";
+				mes "Lembre-se, eu preciso de ajuda para caçar os 100 Peco-Pecos.";
+				close;
+			case 3:
+				mes "[Gregor]";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
+				next;
+				switch(select("Sim.:Não.")) {
+				case 1:
+					mes "[Gregor]";
+					mes "Tudo bem então, volte quando mudar de idéia.";
+					erasequest 60102;
+					close;
+				case 2:
+					mes "[Gregor]";
+					mes "Lembre-se, eu preciso de ajuda para caçar os 100 Peco-Pecos.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Gregor]";
+			mes "Ah muito obrigado!";
+			mes "A partir de agora as coisas ficarão mais fáceis.";
+			getexp 4000,2000;
+			getexp 4000,2000;
+			erasequest 60102;
+			close;
+		}
+	}
+	if (checkquest(60103) != -1) {
+		if (checkquest(60103,HUNTING) != 2 ) {
+			mes "[Gregor]";
+			mes "Você terminou de caçar os 150 Peco-Pecos?";
+			next;
+			switch(select("Sim.:Não.:Quero desistir.")) {
+			case 1:
+				mes "[Gregor]";
+				mes "Hm... Acho que você não terminou de caçar os 150 Peco-Pecos...";
+				close;
+			case 2:
+				mes "[Gregor]";
+				mes "Lembre-se, eu preciso de ajuda para caçar os 150 Peco-Pecos.";
+				close;
+			case 3:
+				mes "[Gregor]";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
+				next;
+				switch(select("Sim.:Não.")) {
+				case 1:
+					mes "[Gregor]";
+					mes "Tudo bem então, volte quando mudar de idéia.";
+					erasequest 60103;
+					close;
+				case 2:
+					mes "[Gregor]";
+					mes "Lembre-se, eu preciso de ajuda para caçar os 150 Peco-Pecos.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Gregor]";
+			mes "Ah muito obrigado!";
+			mes "A partir de agora as coisas ficarão mais fáceis.";
+			getexp 4000,2000;
+			getexp 4000,2000;
+			getexp 4000,2000;
+			erasequest 60103;
+			close;
+		}
+	}
+	//Para level mínimo
+	if (BaseLevel > 9) {
+		//Para level máximo
+		if (BaseLevel < 31) {
+			mes "[Gregor]";
+			mes "Os PecoPecos são fascinantes.";
+			mes "Eu continuo pesquisando-os.";
+			next;
+			mes "[Gregor]";
+			mes "Veja bem, para completar a minha 'pesquisa' preciso coletar alguns Bicos de Ave...";
+			next;
+			mes "[Gregor]";
+			mes "Pode me fazer um favor?";
+			next;
+			switch(select("Que tipo de favor?:Não.")) {
+			case 1:
+				mes "[Gregor]";
+				mes "Estou com medo dos Pecos me atacarem e acabarem atrapalhando minha pesquisa.";
+				next;
+				mes "[Gregor]";
+				mes "Você poderia me ajudar matando eles?";
+				mes "Vou me sentir mais seguro...";
+				mes "Por favor...";
+				next;
+				switch(select("Pegar Itens.:Caçar Peco-Pecos.:Cancelar.")) {
+				case 1:
+					mes "[Gregor]";
+					mes "Eu preciso de ^FF000024 Bicos de Ave^000000 para a minha pesquisa.";
+					next;
+					switch(select("Eu tenho Bicos de Ave.:O que você precisava?")) {
+					case 1:
+						if (countitem(925) > 24) {
+							mes "[Gregor]";
+							mes "Muito, muito obrigado!";
+							delitem 925,25; //Bicos de Ave
+							getexp 4000,2000;
+							next;
+							mes "[Gregor]";
+							mes "Isso vai ficar delicioso!";
+							close;
+						}
+						else {
+							mes "[Gregor]";
+							mes "Não parece que você tem o suficiente.";
+							next;
+							mes "[Gregor]";
+							mes "Você pode me ajudar e trazer ^FF000025 Bicos de Ave^000000?";
+							close;
+						}
+					case 2:
+						mes "[Gregor]";
+						mes "Você pode me ajudar e trazer ^FF000025 Bicos de Ave^000000?";
+						close;
+					}
+				case 2:
+					// Matar Peco-Pecos
+					mes "[Gregor]";
+					mes "Então você quer caçar os Peco-Pecos.";
+					mes "Quantos gostaria de caçar?";
+					next;
+					switch(select("50 Peco-Pecos.:100 Peco-Pecos.:150 Peco-Pecos.")) {
+					case 1:
+						mes "[Gregor]";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
+						setquest 60101;
+						close;
+					case 2:
+						mes "[Gregor]";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
+						setquest 60102;
+						close;
+					case 3:
+						mes "[Gregor]";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
+						setquest 60103;
+						close;
+					}
+				case 3:
+					mes "[Gregor]";
+					mes "Caso mude de idéia, venha falar comigo novamente.";
+					close;
+				}
+			case 2:
+				mes "[Gregor]";
+				mes "Caso mude de idéia, venha falar comigo novamente.";
+				close;
+			}
+		}
+		else {
+			mes "[Gregor]";
+			mes "Hm... Acho que você é forte demais para estar aqui.";
+			close;
+		}
+	}
+	else {
+		mes "[Gregor]";
+		mes "Ei.";
+		next;
+		mes "[Gregor]";
+		mes "Aqueles Pickys ali parecem ser mais da sua velocidade.";
+		close;
+	}
+}

@@ -1,0 +1,248 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nãome do Script: Quests Repetíveis - Koko		   		|
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team			   				|
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.0/1.1				    			|
+// |--------------------------------------------------------|
+// | Descrição: Quests repetíveis para ganho de EXP 		|
+// |--------------------------------------------------------|
+// | Changelog:               	                        	|
+// | 1.0 Script Traduzido [insidemybrain]					|
+// | 1.1 Script Revisado [Protimus]							|
+// \_______________________________________________________/
+
+mjolnir_01,293,20,3	script	Nutters#Coco_Hunt	779,{
+	if (checkquest(60113) != -1) {
+		if (checkquest(60113,HUNTING) != 2 ) {
+			mes "[Nutters]";
+			mes "Você terminou de caçar os 50 Kokos?";
+			next;
+			switch(select("Sim.:Não.:Quero desistir.")) {
+			case 1:
+				mes "[Nutters]";
+				mes "Hm... Acho que você não terminou de caçar os 50 Kokos...";
+				close;
+			case 2:
+				mes "[Nutters]";
+				mes "Lembre-se, eu preciso de ajuda para caçar os 50 Kokos.";
+				close;
+			case 3:
+				mes "[Nutters]";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
+				next;
+				switch(select("Sim.:Não.")) {
+				case 1:
+					mes "[Nutters]";
+					mes "Tudo bem então, volte quando mudar de idéia.";
+					erasequest 60113;
+					close;
+				case 2:
+					mes "[Nutters]";
+					mes "Por favor mate 50 Kokos.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Nutters]";
+			mes "Impressionante! Você conseguiu completar a quest com facilidade.";
+			getexp 3600,3905;
+			erasequest 60113;
+			close;
+		}
+	}
+	if (checkquest(60114) != -1) {
+		if (checkquest(60114,HUNTING) != 2 ) {
+			mes "[Nutters]";
+			mes "Você terminou de caçar os 100 Kokos?";
+			next;
+			switch(select("Sim.:Não.:Quero desistir.")) {
+			case 1:
+				mes "[Nutters]";
+				mes "Hm... Acho que você não terminou de caçar os 100 Kokos...";
+				close;
+			case 2:
+				mes "[Nutters]";
+				mes "Lembre-se, eu preciso de ajuda para caçar os 100 Kokos.";
+				close;
+			case 3:
+				mes "[Nutters]";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
+				next;
+				switch(select("Sim.:Não.")) {
+				case 1:
+					mes "[Nutters]";
+					mes "Tudo bem então, volte quando mudar de idéia.";
+					erasequest 60114;
+					close;
+				case 2:
+					mes "[Nutters]";
+					mes "Por favor mate 100 Kokos.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Nutters]";
+			mes "Impressionante! Você conseguiu completar a quest com facilidade.";
+			getexp 3600,3905;
+			getexp 3600,3905;
+			erasequest 60114;
+			close;
+		}
+	}
+	if (checkquest(60115) != -1) {
+		if (checkquest(60115,HUNTING) != 2 ) {
+			mes "[Nutters]";
+			mes "Você terminou de caçar os 150 Kokos?";
+			next;
+			switch(select("Sim.:Não.:Quero desistir.")) {
+			case 1:
+				mes "[Nutters]";
+				mes "Hm... Acho que você não terminou de caçar os 150 Kokos...";
+				close;
+			case 2:
+				mes "[Nutters]";
+				mes "Lembre-se, eu preciso de ajuda para caçar os 150 Kokos.";
+				close;
+			case 3:
+				mes "[Nutters]";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
+				next;
+				switch(select("Sim.:Não.")) {
+				case 1:
+					mes "[Nutters]";
+					mes "Tudo bem então, volte quando mudar de idéia.";
+					erasequest 60115;
+					close;
+				case 2:
+					mes "[Nutters]";
+					mes "Por favor mate 150 Kokos.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Nutters]";
+			mes "Impressionante! Você conseguiu completar a quest com facilidade.";
+			getexp 3600,3905;
+			getexp 3600,3905;
+			getexp 3600,3905;
+			erasequest 60115;
+			close;
+		}
+	}
+	//Para level mínimo
+	if (BaseLevel > 17) {
+		//Para level máximo
+		if (BaseLevel < 60) {
+			mes "[Nutters]";
+			mes "Eu...Eu não consigo encontrar nenhuma.";
+			mes "As pestes dos Kokos esconderam todas as Avelãs.";
+			mes "Pode me ajudar?";
+			next;
+			switch(select("Claro.:Não.")) {
+			case 1:
+				mes "[Nutters]";
+				mes "Agora sim! Eu sabia que poderia contar com você! Como quer me ajudar?";
+				next;
+				switch(select("Pegar Avelãs.:Caçar Kokos.:Cancelar.")) {
+				case 1:
+					mes "[Nutters]";
+					mes "Poderia me ajudar a achar ^00cc0025 Avelãs^000000.";
+					mes "Eu darei a você a maior recompensa que puder.";
+					next;
+					switch(select("Eu tenho 25 Avelãs.:Pode voltar depois?")) {
+					case 1:
+						/*
+						if (checkweight(502,5) == 0) {
+							mes "[Nutters]";
+							mes "Ei, parece que você vai ser esmagado pelo peso nas suas costas.";
+							mes "Volte quando não estiver carregando tanta coisa.";
+							close;
+						}
+						*/
+						if (countitem(1026) > 24) {
+							mes "[Nutters]";
+							mes "Que ótimo, você encontrou o esconderijo deles.";
+							mes "Me dá, me dá!!!";
+							next;
+							mes "[Nutters]";
+							mes "Ah é, desculpe-me, mas eu adoro assar avelãs.";
+							mes "Aqui está o que prometi a você.";
+							delitem 1026,25; //Avelãs
+							getexp 3600,3905;
+							//getitem 502,5; //Poção Laranja
+							close;
+						}
+						else {
+							mes "[Nutters]";
+							mes "Onde estão minhas ^00CC00Avelãs^000000?";
+							mes "Ei, eu não estou brincando, é melhor não escondê-las de mim.";
+							close;
+						}
+					case 2:
+						mes "[Nutters]";
+						mes "Eu preciso de ^00CC0025 Avelãs^000000.";
+						close;
+					}
+				case 2:
+					// Matar Kokos
+					mes "[Nutters]";
+					mes "Então gostaria de caçar alguns Kokos.";
+					mes "Quantos gostaria de caçar?";
+					next;
+					switch(select("50 Kokos.:100 Kokos.:150 Kokos.")) {
+					case 1:
+						mes "[Nutters]";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
+						setquest 60113;
+						close;
+					case 2:
+						mes "[Nutters]";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
+						setquest 60114;
+						close;
+					case 3:
+						mes "[Nutters]";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
+						setquest 60115;
+						close;
+					}
+				case 3:
+					mes "[Nutters]";
+					mes "Caso mude de idéia, venha falar comigo novamente.";
+					close;
+				}
+			case 2:
+				mes "[Nutters]";
+				mes "Caso mude de idéia, venha falar comigo novamente.";
+				close;
+			}
+		}
+		else {
+			mes "[Nutters]";
+			mes "Você é forte demais para lutar contra esses monstros!";
+			close;
+		}
+	}
+	else {
+		mes "[Nutters]";
+		mes "Você é muito baixinho para lutar contra esses monstros por mim.";
+		mes "Dá pra crescer um pouco antes de voltar?";
+		close;
+	}
+}

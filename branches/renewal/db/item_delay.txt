@@ -1,0 +1,32 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Database: item_delay.txt                       |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Descrição: Database contendo Delay para Itens.         |
+// |--------------------------------------------------------|
+// | O número máx. de entradas é definido na source:        |
+// | itemdb.h, MAX_ITEMDELAYS.                              |
+// | Estrutura da Database:                                 |
+// | Item(ID),Delay(millisegundos)                          |
+// \________________________________________________________/
+//
+//12202,60000	//Língua no Vapor
+//12203,60000	//Escorpião no Vapor
+//12204,60000	//Coquetel Sopro do Dragão
+//12205,60000	//Tônico de Hwergelmir
+//12206,60000	//Nove Caudas Cozidas
+//12207,60000	//Sopa da Imortalidade
+12208,60000	//Manual de Combate
+12210,60000	//Goma de Mascar
+14538,300000	//Cálice da Ilusão
+14586,180000	//Doce Hiper Açucarado

@@ -1,0 +1,59 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Database: item_noequip.txt                     |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Descrição: Database de restrições dos itens            |
+// |--------------------------------------------------------|
+// | Estrutura da Database:                                 |
+// | itemID,Regra (ou área restrita)                        |
+// | Regras e Áreas restritas (que podem ser somadas):      |
+// | 1 - Restrito em PvP                                    |
+// | 2 - Restrito em GvG                                    |
+// | 3 - Restrito em PvP e GvG                              |
+// | 4 - Restrito na zona 1                                 |
+// | 8 - Restrito na zona 2                                 |
+// | 16 - Restrito na zona                                  |
+// | 32 - Restrito na zona 4                                |
+// | 64 - Restrito na zona 5                                |
+// | 128 - Restrito na zona 6                               |
+// | 256 - Restrito na zona 7                               |
+// | É possível somar regras.                               |
+// |(ex: 4+1 = 5 - Restrito em PvP e zona 1)                |
+// |--------------------------------------------------------|
+// | Exemplos:                                              |
+// | 1201,3 (Faca não será usada em PvPs ou GvGs)           |
+// | 501,4 (Poção vermelha não será usada em mapas com      |
+// | 'zona de restrição 1')                                 |
+// \________________________________________________________/
+//
+//============================================================
+//Zona 1 - Aldebaran Turbo Track
+//============================================================
+601,4 		//Asa de Mosca
+506,4 		//Poção Verde
+525,4 		//Panacea
+//============================================================
+//Zona 2 - Prisão
+//============================================================
+601,8 		//Asa de Mosca - Não necessariamente usual aqui mas...
+602,8 		//Asa de Borboleta - Também não necessita.
+12212,8 	//Asa de Borboleta Gigante
+14582,8
+14583,8
+14584,8
+14585,8
+//============================================================
+//Zona 3 - Arena de Izlude
+//============================================================
+601,16 		//Asa de Mosca
+
