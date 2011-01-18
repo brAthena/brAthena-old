@@ -9,6 +9,14 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r109 - 18/01/2011 [Kooler]
+	* Adicionadas traduções de alguns npcs da pasta Quests.
+	- Todos Revisados;
+	- quests_aldebaran.txt
+	- quests_izlude.txt 
+	- quests_geffen.txt
+	- qusts_payon.txt
+	
 	r108 - 17/01/2011 [Rafoka]
 	* Corrigido um pequeno bug com relação ao "killmonsterall". Report por: xMaickx
 	- classes/2-1/cacador.txt
