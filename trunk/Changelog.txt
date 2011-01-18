@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r111 - 18/01/2011 [Rafoka]
+	* Adicionado removedora de cartas custom na pasta personalizados
+	- personalizados/removedora_de_cartas.txt
+
 	r110 - 18/01/2001 [Tyler]
 	* Iniciada a tradução da pasta db para posterior revisão.
 	* Modificados os arquivos da pasta db para otimização e fácil localização.
