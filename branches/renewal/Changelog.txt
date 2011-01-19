@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0016 - 19/01/2011 [Protimus]
+	* Modificações para FLEE (Esquiva) &  HIT (Precisão).
+	- Agora o hit é calculado da seguinte maneira: level + destreza + sorte/3 + equipamentos + habilidades + 175.
+	- Agora a flee é calculada da seguinte maneira: level + agi + sorte/7 + equipamentos + habilidades + 100.
+	OBS: Os testes foram efetuados no Sakrat RE.
+
 	r0113 - 19/01/2011 [Protimus]
 	* Adicionas modificações conforme eAthena Renewal.
 	- Modificações em respawn de mobs e portais.

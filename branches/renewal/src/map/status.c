@@ -1331,8 +1331,8 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int lev
 	status->matk_min = status_base_matk_min(status);
 	status->matk_max = status_base_matk_max(status);
 
-	status->hit += level + status->dex;
-	status->flee += level + status->agi;
+	status->hit += level + status->dex + status->luk/3 + 175;
+	status->flee += level + status->agi + status->luk/7 + 100;
 	status->def2 += status->vit;
 	status->mdef2 += status->int_ + (status->vit>>1);
 
