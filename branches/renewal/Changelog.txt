@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0019 - 19/01/2011 [Protimus]
+	* Modificações para Redução de MDEF.
+	- Agora a mdef é calculada da seguinte maneira: inteligencia + level/4 + vitalidade/5 + destreza/5.
+	* Cálculos de reduções serão captos sozinhos através de novo código do MATK futuramente.
+
 	r0018 - 19/01/2011 [Protimus]
 	* Modificações para Redução de DEF.
 	- Agora a def é calculada da seguinte maneira: (vitalidade + level)/2 + (agilidade/5).

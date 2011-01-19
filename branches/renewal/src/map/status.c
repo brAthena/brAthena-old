@@ -1326,7 +1326,8 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int lev
 		status->batk = 
 		status->hit = status->flee =
 		status->def2 = status->mdef2 =
-		status->cri = status->flee2 = 0;
+		status->cri = status->flee2 =
+		status->mdef = 0;
 
 	status->matk_min = status_base_matk_min(status);
 	status->matk_max = status_base_matk_max(status);
@@ -1334,7 +1335,7 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int lev
 	status->hit += level + status->dex + status->luk/3 + 175;
 	status->flee += level + status->agi + status->luk/7 + 100;
 	status->def2 += (level + status->vit)/2 + (status->agi/5);
-	status->mdef2 += status->int_ + (status->vit>>1);
+	status->mdef2 += int_ + level/4 + status->vit/5 + status->dex/5;
 
 	if( bl->type&battle_config.enable_critical )
 		status->cri += status->luk*3 + 10;
