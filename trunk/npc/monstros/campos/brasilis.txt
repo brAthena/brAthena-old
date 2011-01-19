@@ -23,10 +23,10 @@
 //==================================================
 // bra_fild01 - Campo de Brasilis 
 //==================================================
-bra_fild01,0,0,0,0      monster Mula Sem-Cabeça 2071,40,0,0,0
-bra_fild01,0,0,0,0      monster Curupira        2074,80,0,0,0
-bra_fild01,0,0,0,0      monster Cogumelo Vermelho    1085,3,0,0,0
-bra_fild01,0,0,0,0      monster Dokebi  1110,20,0,0,0
-bra_fild01,0,0,0,0      monster Espírito da Terra   2072,10,0,0,0
-bra_fild01,0,0,0,0      monster Selvagem  1166,20,0,0,0
-bra_fild01,0,0,0,0      monster Espiríto do Vento  2073,10,0,0,0
+bra_fild01,0,0,0,0	monster	Mula Sem-Cabeça	2071,40,0,0,0
+bra_fild01,0,0,0,0	monster	Curupira	2074,80,0,0,0
+bra_fild01,0,0,0,0	monster	Cogumelo Vermelho	1085,3,0,0,0
+bra_fild01,0,0,0,0	monster	Dokebi	1110,20,0,0,0
+bra_fild01,0,0,0,0	monster	Espírito da Terra	2072,10,0,0,0
+bra_fild01,0,0,0,0	monster	Selvagem	1166,20,0,0,0
+bra_fild01,0,0,0,0	monster	Espiríto do Vento	2073,10,0,0,0

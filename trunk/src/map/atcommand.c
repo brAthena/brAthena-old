@@ -4364,13 +4364,13 @@ ACMD_FUNC(mapinfo)
 	if (map[m_id].flag.monster_noteleport)
 		strcat(atcmd_output, "Sem Teleporte de Mobs | ");
 	if (map[m_id].flag.nowarp)
-		strcat(atcmd_output, "Sem @Warp | ");
+		strcat(atcmd_output, "Sem @warp | ");
 	if (map[m_id].flag.nowarpto)
-		strcat(atcmd_output, "Sem @Warp para | ");
+		strcat(atcmd_output, "Sem @warp para | ");
 	if (map[m_id].flag.noreturn)
 		strcat(atcmd_output, "Sem Retorno | ");
 	if (map[m_id].flag.nogo)
-		strcat(atcmd_output, "Sem @Go | ");
+		strcat(atcmd_output, "Sem @go | ");
 	if (map[m_id].flag.nomemo)
 		strcat(atcmd_output, "Sem @memo | ");
 	clif_displaymessage(fd, atcmd_output);
@@ -7611,7 +7611,7 @@ static int atcommand_mutearea_sub(struct block_list *bl,va_list ap)
 		pl_sd->status.manner -= time;
 		if (pl_sd->status.manner < 0)
 			sc_start(&pl_sd->bl,SC_NOCHAT,100,0,0);
-		else if (pl_sd->sc.data[SC_NOCHAT])
+		else
 			status_change_end(&pl_sd->bl, SC_NOCHAT, INVALID_TIMER);
 	}
 	return 0;

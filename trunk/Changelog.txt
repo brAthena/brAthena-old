@@ -9,6 +9,17 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0115 - 18/01/2011 [Dani]
+	* Atualizado conforme eAthena 14676
+	* Adicionados todos os upgrades do eA
+	- Favor não remover
+	* Corrigidos erros primários apontados no map-server
+	- Comentário de várias linhas que não é suportado pelo mob_db modificado para //
+	- Habilidades de monstros custom (eles não existem por padrão,
+	e estão com as IDs reservadas para clones) desativadas
+	- Tabulações apontadas no report #14 no Tracker
+	- Pedido de atenção aos Devs (todos): favor TESTAR toda e qualquer modificação feita no emulador
+
 	r0113 - 18/01/2011 [brn0]
 	* Adicionado NPC de Enquetes Oficiais na pasta personalizados.
 	- npc/personalizados/Enquetes_oficiais.txt

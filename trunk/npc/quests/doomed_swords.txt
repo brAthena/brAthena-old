@@ -258,7 +258,7 @@ izlude_in,173,88,2	script	Nain#magum	102,{
         close; 
 } 
  
-pay_fild08,218,283,2    script  Homem Misterioso#magum  89,{ 
+pay_fild08,218,283,2	script	Homem Misterioso#magum	89,{ 
         if (checkweight(1201,1) == 0) { 
                 mes "[Homem Misterioso]"; 
                 mes "Espera aí."; 
