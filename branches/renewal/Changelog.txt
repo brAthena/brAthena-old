@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0127 - 19/01/2011 [Protimus]
+	* Correções de status gerais de acordo com Renewal.
+	- Tudo que foi feito, foi revisado e está funcional, necessário revisar apenas commit anterior.
+	- Lista com modificações do renewal foi atualizada: http://www.brathena.org/forum/index.php/topic/15-renovacao/
+
 	r0126 - 19/01/2011 [Protimus]
 	* Correção de HitRate baseado apenas no esquiva (FLEE).
 	* Efeitos de Equipamentos da esquiva (FLEE) passados apenas para FLEE2.
