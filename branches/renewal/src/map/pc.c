@@ -2127,9 +2127,6 @@ int pc_bonus(struct map_session_data *sd,int type,int val)
 			sd->flee2_rate += val;
 		break;
 	case SP_DEF_RATE:
-		if(sd->state.lr_flag != 2)
-			sd->def_rate += val;
-		break;
 	case SP_DEF2_RATE:
 		if(sd->state.lr_flag != 2)
 			sd->def2_rate += val;

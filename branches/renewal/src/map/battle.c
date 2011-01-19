@@ -1838,7 +1838,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 
 		if (!flag.idef || !flag.idef2)
 		{	//Defense reduction
-			short vit_def;
+			short vit_def, def_rate;
 			signed char def1 = status_get_def(target); //Don't use tstatus->def1 due to skill timer reductions.
 			short def2 = (short)tstatus->def2;
 
@@ -1891,15 +1891,21 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				vit_def += def1*battle_config.weapon_defense_type;
 				def1 = 0;
 			}
-			if (def1 > 100) def1 = 100;
-			ATK_RATE2(
-				flag.idef ?100:(flag.pdef ?(int)(flag.pdef *(def1+vit_def)):(100-def1)),
-			 	flag.idef2?100:(flag.pdef2?(int)(flag.pdef2*(def1+vit_def)):(100-def1))
-			);
-			ATK_ADD2(
-				flag.idef ||flag.pdef ?0:-vit_def,
-				flag.idef2||flag.pdef2?0:-vit_def
-			);
+			if (def1 > 200) def1 = 200;
+			def_rate = (1-(580/(def2 + 580)))*100;
+
+			if( !flag.idef || !flag.idef2 )
+			{
+				ATK_RATE2(
+					flag.pdef  ? flag.pdef  * (def1 + vit_def) : def_rate,
+					flag.pdef2 ? flag.pdef2 * (def1 + vit_def) : def_rate
+				);
+
+				ATK_ADD2(
+					flag.idef  || flag.pdef  ? 0 : -def1,
+					flag.idef2 || flag.pdef2 ? 0 : -def1
+				);
+			}
 		}
 
 		//Post skill/vit reduction damage increases

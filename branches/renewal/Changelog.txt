@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0018 - 19/01/2011 [Protimus]
+	* Modificações para Redução de DEF.
+	- Agora a def é calculada da seguinte maneira: (vitalidade + level)/2 + (agilidade/5).
+	* Armordef & Upgradedef reduzem o dano dependendo da porcentagem de DEF que você têm.
+	- Cálculo para redução do dano é (1-(580/(def2 + 580)))*100.
+
 	r0016 - 19/01/2011 [Protimus]
 	* Modificações para FLEE (Esquiva) &  HIT (Precisão).
 	- Agora o hit é calculado da seguinte maneira: level + destreza + sorte/3 + equipamentos + habilidades + 175.
