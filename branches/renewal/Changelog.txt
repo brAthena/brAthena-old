@@ -9,6 +9,13 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0113 - 19/01/2011 [Protimus]
+	* Adicionas modificações conforme eAthena Renewal.
+	- Modificações em respawn de mobs e portais.
+	- Modificações de itens e mobs.
+	- Mudança no número de party share level para 15.
+	OBS: Necessário retraduzir algumas coisas.
+	
 	r0112 - 18/01/2011 [Protimus]
 	* Iniciado projeto brAthena Renewal (Renovação).
 	- Branche adicionada de acordo com r0111 do brAthena Trunk.
