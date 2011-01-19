@@ -21,7 +21,6 @@
 // | Changelog:                                             | 
 // | 1.0 Script Traduzido [Barsaglini]                      |
 // | 1.1 Script Revisado [Tyler & Kooler]                   | 
-// | - Anotações                                            | 
 // \________________________________________________________/ 
 
 // Quests Espelho de Médico / Chapéu com Pluma / Máscara do Fantasma / Chapéu Chinês

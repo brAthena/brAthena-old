@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0128 - 19/01/2011 [Dani]
+	* Repassadas últimas alterações/correções da Trunk pra Renewal
+	* Monstros pertencentes pertencentes ao Renewal removidos da Trunk e adicionados na branch Renewal
+	- A trunk é somente para pre-RE, atualmente
+
 	r0127 - 19/01/2011 [Protimus]
 	* Correções de status gerais de acordo com Renewal.
 	- Tudo que foi feito, foi revisado e está funcional, necessário revisar apenas commit anterior.
