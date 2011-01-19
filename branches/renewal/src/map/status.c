@@ -1308,10 +1308,10 @@ static unsigned short status_base_atk(const struct block_list *bl, const struct 
 	//Normally only players have base-atk, but homunc have a different batk
 	// equation, hinting that perhaps non-players should use this for batk.
 	// [Skotlex]
-	atk = str/1;
+	atk = status->str/1;
 
 	if( bl->type == BL_PC ) {
-		atk += dex/5;
+		atk += status->dex/5;
 		atk += status->luk/3;
 	}
 	return cap_value(str, 0, USHRT_MAX);

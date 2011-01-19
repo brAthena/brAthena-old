@@ -2165,6 +2165,33 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 				merc_hom_gainexp(tmpsd[i]->hd, base_exp);
 			if(base_exp || job_exp)
 			{
+				if( base_exp )
+				{
+					int e_lv = status_get_lv(&md->bl), u_lv = status_get_lv(src), d_lv = 0;
+
+					if( u_lv > (e_lv + 3) || e_lv > (u_lv + 3) )
+						d_lv = cap_value( u_lv - e_lv, -10, 10 );
+
+					if( d_lv < 3 && d_lv > -3 )
+						d_lv = 0;
+
+					if( d_lv != 0 )
+					{
+						if( d_lv > 0 ) {
+							d_lv = 40 + (d_lv * 10);
+							d_lv -= d_lv*2;
+						}
+						else if( d_lv < 0 ) {
+							d_lv -= d_lv*2;
+							d_lv = (d_lv < 5 ? 0 : 9) + d_lv;
+						}
+
+						d_lv = cap_value(d_lv, -100, 20);
+
+						base_exp += base_exp / 100 * d_lv;
+						job_exp += job_exp / 100 * d_lv;
+					}
+				}
 				if( md->dmglog[i].flag != MDLF_PET || battle_config.pet_attack_exp_to_master )
 					pc_gainexp(tmpsd[i], &md->bl, base_exp, job_exp, false);
 			}

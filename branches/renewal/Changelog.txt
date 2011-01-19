@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0125 - 19/01/2011 [Protimus]
+	* Adicionado novo método para cálculo de experiência (EXP).
+	- Necessário revisar, limpar se for necessário também.
+	* Correções do commit da r122.
+
 	r0124 - 19/01/2011 [Protimus]
 	* Correção para danos com armas baseados em ATK1 para não críticos.
 	- Cálculado agora por dano * 0.4.
