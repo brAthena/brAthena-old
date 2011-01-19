@@ -9,18 +9,23 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
-	r0019 - 19/01/2011 [Protimus]
+	r0120 - 19/01/2011 [Protimus]
+	* Adição das taxas de refinamento de armas/armaduras de acordo com o Renewal.
+	* Adição das taxas de atributos elementais de acordo com o Renewal.
+	* Correção de pequeno erro no commit anterior.
+
+	r0119 - 19/01/2011 [Protimus]
 	* Modificações para Redução de MDEF.
 	- Agora a mdef é calculada da seguinte maneira: inteligencia + level/4 + vitalidade/5 + destreza/5.
 	* Cálculos de reduções serão captos sozinhos através de novo código do MATK futuramente.
 
-	r0018 - 19/01/2011 [Protimus]
+	r0118 - 19/01/2011 [Protimus]
 	* Modificações para Redução de DEF.
 	- Agora a def é calculada da seguinte maneira: (vitalidade + level)/2 + (agilidade/5).
 	* Armordef & Upgradedef reduzem o dano dependendo da porcentagem de DEF que você têm.
 	- Cálculo para redução do dano é (1-(580/(def2 + 580)))*100.
 
-	r0016 - 19/01/2011 [Protimus]
+	r0116 - 19/01/2011 [Protimus]
 	* Modificações para FLEE (Esquiva) &  HIT (Precisão).
 	- Agora o hit é calculado da seguinte maneira: level + destreza + sorte/3 + equipamentos + habilidades + 175.
 	- Agora a flee é calculada da seguinte maneira: level + agi + sorte/7 + equipamentos + habilidades + 100.
