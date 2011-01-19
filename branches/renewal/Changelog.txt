@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0122 - 19/01/2011 [Protimus]
+	* Modificações para Ataque Físico (ATK).
+	- Cada 1 ponto em STR aumenta seu status de Ataque Físico em 1 (ATQ).
+	- Cada 5 pontos em DEX aumentam seu status de Ataque Físico em 1 (ATQ).
+	- Cada 3 pontos em LUK aumentam seu status de Ataque Físico em 1 (ATQ).
+
 	r0120 - 19/01/2011 [Protimus]
 	* Adição das taxas de refinamento de armas/armaduras de acordo com o Renewal.
 	* Adição das taxas de atributos elementais de acordo com o Renewal.
