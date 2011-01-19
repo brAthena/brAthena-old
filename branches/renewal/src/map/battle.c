@@ -846,10 +846,16 @@ static int battle_calc_base_damage(struct status_data *status, struct weapon_atk
 		atkmin = atkmax;
 	
 	//Weapon Damage calculation
-	if (!(flag&1))
-		damage = (atkmax>atkmin? rand()%(atkmax-atkmin):0)+atkmin;
-	else 
-		damage = atkmax;
+	//BaseATK * 2 + RefineATK * Size * EquipmentATK = Nova fórmula do RE. [Protimus]
+	damage = (status->batk * 2) +
+		(
+			(wa->atk + wa->atk2) * 
+			(sd && !(sd->special_state.no_sizefix) && sd->equip_index[type] >= 0 ? ( type==EQI_HAND_L ? sd->left_weapon.atkmods[t_size] : sd->right_weapon.atkmods[t_size] ) : 100) / 100 + 
+		(	
+			(status->lhw.atk + wa->atk) *
+			(sd && !(sd->special_state.no_sizefix) && sd->equip_index[type] >= 0 ? ( type==EQI_HAND_L ? sd->left_weapon.atkmods[t_size] : sd->right_weapon.atkmods[t_size] ) : 100) / 100 *
+			(sd && sd->equip_index[type] >= 0 ? sd->inventory_data[sd->equip_index[type]]->wlv : 4) * 5 / 100)
+		);
 	
 	if (sd)
 	{

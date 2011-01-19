@@ -1281,7 +1281,7 @@ int status_base_amotion_pc(struct map_session_data* sd, struct status_data* stat
 
 static unsigned short status_base_atk(const struct block_list *bl, const struct status_data *status)
 {
-	int flag = 0, str, dex, dstr;
+	int flag = 0, str, dex, atk;
 
 	if(!(bl->type&battle_config.enable_baseatk))
 		return 0;
@@ -1308,7 +1308,7 @@ static unsigned short status_base_atk(const struct block_list *bl, const struct 
 	//Normally only players have base-atk, but homunc have a different batk
 	// equation, hinting that perhaps non-players should use this for batk.
 	// [Skotlex]
-	atk += str/1;
+	atk = str/1;
 
 	if( bl->type == BL_PC ) {
 		atk += dex/5;
@@ -1649,6 +1649,8 @@ static unsigned int status_base_pc_maxhp(struct map_session_data* sd, struct sta
 		val += 2000; //Supernovice lvl99 hp bonus.
 
 	val += val * status->vit/100; // +1% per each point of VIT
+	
+	sd->hprecov_rate += (status->vit * 2);
 
 	if (sd->class_&JOBL_UPPER)
 		val += val * 25/100; //Trans classes get a 25% hp bonus
@@ -1886,7 +1888,7 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 		if(!sd->inventory_data[index])
 			continue;
 
-		status->def += sd->inventory_data[index]->def;
+		status->def2 += sd->inventory_data[index]->def;
 
 		if(first && sd->inventory_data[index]->equip_script)
 	  	{	//Execute equip-script on login
@@ -1963,7 +1965,8 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 	memcpy(sd->param_equip,sd->param_bonus,sizeof(sd->param_equip));
 	memset(sd->param_bonus, 0, sizeof(sd->param_bonus));
 
-	status->def += (refinedef+50)/100;
+	if( refinedef > 0 )
+		status->def2 += refinedef/100;
 
 	//Parse Cards
 	for(i=0;i<EQI_MAX-1;i++) {

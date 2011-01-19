@@ -9,6 +9,15 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0123 - 19/01/2011 [Protimus]
+	* Modificações no cálculo de dano com armas.
+	- Calculado pela seguinte fórmula: BaseATK * 2 + RefineATK * Size * EquipmentATK.
+	* Modificações para taxa de recuperação do HP.
+	- Cada 1 ponto em VIT aumenta a sua taxa de Recuperação em 2% (HPREC).
+	* Modificação para ganho de DEF de acordo com nível de refinamento.
+	- A cada +1 de Refinamento = +1 de DEF.
+	- DEF passou para DEF2.
+
 	r0122 - 19/01/2011 [Protimus]
 	* Modificações para Ataque Físico (ATK).
 	- Cada 1 ponto em STR aumenta seu status de Ataque Físico em 1 (ATQ).

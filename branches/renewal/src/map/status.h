@@ -1090,7 +1090,7 @@ struct status_data {
 		max_hp, max_sp;
 	unsigned short
 		str, agi, vit, int_, dex, luk,
-		batk,
+		batk, watk,
 		matk_min, matk_max,
 		speed,
 		amotion, adelay, dmotion,

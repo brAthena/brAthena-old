@@ -1844,8 +1844,7 @@ int pc_bonus(struct map_session_data *sd,int type,int val)
 		break;
 	case SP_BASE_ATK:
 		if(sd->state.lr_flag != 2) {
-			bonus = status->batk + val;
-			status->batk = cap_value(bonus, 0, USHRT_MAX);
+			status->watk += val;
 		}
 		break;
 	case SP_DEF1:
