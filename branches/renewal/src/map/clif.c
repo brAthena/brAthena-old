@@ -2455,7 +2455,7 @@ int clif_updatestatus(struct map_session_data *sd,int type)
 		WFIFOL(fd,4)=sd->battle_status.amotion;
 		break;
 	case SP_ATK1:
-		WFIFOL(fd,4)=sd->battle_status.batk +sd->battle_status.rhw.atk +sd->battle_status.lhw.atk;
+		WFIFOL(fd,4)=sd->battle_status.batk;
 		break;
 	case SP_DEF1:
 		WFIFOL(fd,4)=sd->battle_status.def;
@@ -2464,7 +2464,7 @@ int clif_updatestatus(struct map_session_data *sd,int type)
 		WFIFOL(fd,4)=sd->battle_status.mdef;
 		break;
 	case SP_ATK2:
-		WFIFOL(fd,4)=sd->battle_status.rhw.atk2 + sd->battle_status.lhw.atk2;
+		WFIFOL(fd,4)=sd->battle_status.watk;
 		break;
 	case SP_DEF2:
 		WFIFOL(fd,4)=sd->battle_status.def2;

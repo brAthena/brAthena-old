@@ -857,18 +857,8 @@ static int battle_calc_base_damage(struct status_data *status, struct weapon_atk
 			(sd && sd->equip_index[type] >= 0 ? sd->inventory_data[sd->equip_index[type]]->wlv : 4) * 5 / 100)
 		);
 	
-	if (sd)
-	{
-		//rodatazone says the range is 0~arrow_atk-1 for non crit
-		if (flag&2 && sd->arrow_atk)
-			damage += ((flag&1)?sd->arrow_atk:rand()%sd->arrow_atk);
-
-		//SizeFix only for players
-		if (!(sd->special_state.no_sizefix || (flag&8)))
-			damage = damage*(type==EQI_HAND_L?
-				sd->left_weapon.atkmods[t_size]:
-				sd->right_weapon.atkmods[t_size])/100;
-	}
+	if(flag&1)
+		damage += damage * 40 / 100;
 	
 	//Finally, add baseatk
 	if(flag&4)
@@ -880,13 +870,9 @@ static int battle_calc_base_damage(struct status_data *status, struct weapon_atk
 	//Here we also apply the weapon_atk_rate bonus so it is correctly applied on left/right hands.
 	if(sd) {
 		if (type == EQI_HAND_L) {
-			if(sd->left_weapon.overrefine)
-				damage += rand()%sd->left_weapon.overrefine+1;
 			if (sd->weapon_atk_rate[sd->weapontype2])
 				damage += damage*sd->weapon_atk_rate[sd->weapontype2]/100;;
 		} else { //Right hand
-			if(sd->right_weapon.overrefine)
-				damage += rand()%sd->right_weapon.overrefine+1;
 			if (sd->weapon_atk_rate[sd->weapontype1])
 				damage += damage*sd->weapon_atk_rate[sd->weapontype1]/100;;
 		}

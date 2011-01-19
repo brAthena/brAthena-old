@@ -1334,6 +1334,8 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int lev
 	status->matk_min = status_base_matk_min(status);
 	status->matk_max = status_base_matk_max(status);
 
+	status->batk = status_base_atk(bl, status);
+	
 	status->hit += level + status->dex + status->luk/3 + 175;
 	status->flee += level + status->agi + status->luk/7 + 100;
 	status->def2 += (level + status->vit)/2 + (status->agi/5);
@@ -1349,11 +1351,6 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int lev
 	else
 		status->flee2 = 0;
 
-	if (status->batk) {
-		int temp = status->batk + status_base_atk(bl, status);
-		status->batk = cap_value(temp, 0, USHRT_MAX);
-	} else
-		status->batk = status_base_atk(bl, status);
 	if (status->cri)
 	switch (bl->type) {
 	case BL_MOB:
@@ -1912,7 +1909,8 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 				wa = &status->rhw;
 			}
 			wa->atk += sd->inventory_data[index]->atk;
-			wa->atk2 = (r=sd->status.inventory[index].refine)*refinebonus[wlv][0];
+			wa->atk2 += (r=sd->status.inventory[index].refine)*refinebonus[wlv][0];
+			status->watk += wa->atk + wa->atk2;
 			if((r-=refinebonus[wlv][2])>0) //Overrefine bonus.
 				wd->overrefine = r*refinebonus[wlv][1];
 
@@ -1953,6 +1951,7 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 		index = sd->equip_index[EQI_AMMO];
 		if(sd->inventory_data[index]){		// Arrows
 			sd->arrow_atk += sd->inventory_data[index]->atk;
+			status->watk += sd->arrow_atk;
 			sd->state.lr_flag = 2;
 			run_script(sd->inventory_data[index]->script,0,sd->bl.id,0);
 			sd->state.lr_flag = 0;
@@ -2118,8 +2117,8 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 
 	// Base batk value is set on status_calc_misc
 	// weapon-type bonus (FIXME: Why is the weapon_atk bonus applied to base attack?)
-	if (sd->status.weapon < MAX_WEAPON_TYPE && sd->weapon_atk[sd->status.weapon])
-		status->batk += sd->weapon_atk[sd->status.weapon];
+	status->watk = status->rhw.atk + status->rhw.atk2 + status->lhw.atk + status->lhw.atk2;
+	
 	// Absolute modifiers from passive skills
 	if((skill=pc_checkskill(sd,BS_HILTBINDING))>0)
 		status->batk += 4;
@@ -2818,6 +2817,8 @@ void status_calc_bl_main(struct block_list *bl, enum scb_flag flag)
 			}
 		}
 
+		status->watk = status->rhw.atk + status->rhw.atk2 + status->lhw.atk + status->lhw.atk2;
+		
 		if( bl->type&BL_HOM )
 		{
 			status->rhw.atk += (status->dex - b_status->dex);
@@ -3143,7 +3144,7 @@ void status_calc_bl_(struct block_list* bl, enum scb_flag flag, bool first)
 			clif_updatestatus(sd,SP_ATK1);
 		if(b_status.def != status->def)
 			clif_updatestatus(sd,SP_DEF1);
-		if(b_status.rhw.atk2 != status->rhw.atk2 || b_status.lhw.atk2 != status->lhw.atk2)
+		if(b_status.rhw.atk2 != status->rhw.atk2 || b_status.lhw.atk2 != status->lhw.atk2 || b_status.watk != status->watk)
 			clif_updatestatus(sd,SP_ATK2);
 		if(b_status.def2 != status->def2)
 			clif_updatestatus(sd,SP_DEF2);
