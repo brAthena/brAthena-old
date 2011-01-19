@@ -43,42 +43,42 @@
 //============================================================
 // Habilidades das Classes
 //============================================================
-136,0,2	//AS_SONICBLOW
-263,0,2	//MO_TRIPLEATTACK
-272,0,2	//MO_CHAINCOMBO
-273,0,2	//MO_COMBOFINISH
-336,1	//WE_CALLPARTNER
-366,1	//HW_MAGICPOWER
-370,1	//CH_PALMSTRIKE
-371,0,2	//CH_TIGERFIST
-372,0,2	//CH_CHAINCRUSH
-394,0,2	//CG_ARROWVULCAN
-403,3	//PF_MEMORIZE
-408,1	//WE_BABY
-409,1	//WE_CALLPARENT
-410,1	//WE_CALLBABY
-482,1	//PF_DOUBLECASTING
-462,1	//SL_KAIZEL
-496,1	//AM_TWILIGHT1
-497,1	//AM_TWILIGHT2
-498,1	//AM_TWILIGHT3
-512,3	//GS_TRACKING
-1014,1	//PR_REDEMPTIO
-10010,3	//GD_BATTLEORDER
-10011,3	//GD_REGENERATION
-10012,6	//GD_RESTORE
-10013,7	//GD_EMERGENCYCALL
+136,0,2	// AS_SONICBLOW#Lâminas Destruidoras#
+263,0,2	// MO_TRIPLEATTACK#Combo Triplo#
+272,0,2	// MO_CHAINCOMBO#Combo Quádruplo#
+273,0,2	// MO_COMBOFINISH#O Último Dragão#
+336,1	// WE_CALLPARTNER#Saudades de Você#
+366,1	// HW_MAGICPOWER#Amplificação Mística#
+370,1	// CH_PALMSTRIKE#Golpe da Palma em Fúria#
+371,0,2	// CH_TIGERFIST#Punho do Tigre#
+372,0,2	// CH_CHAINCRUSH#Combo Esmagador#
+394,0,2	// CG_ARROWVULCAN#Vulcão de Flechas#
+403,3	// PF_MEMORIZE#Presciência#
+408,1	// WE_BABY#Mãe Pai amo vocês!#
+409,1	// WE_CALLPARENT#Mãe Pai cadê vocês?#
+410,1	// WE_CALLBABY#Vem cá filhote!#
+482,1	// PF_DOUBLECASTING#Lanças Duplas#
+462,1	// SL_KAIZEL#Kaizel#
+496,1	// AM_TWILIGHT1#Criação Espiritual de Poções#
+497,1	// AM_TWILIGHT2#Criação Espiritual de Poções#
+498,1	// AM_TWILIGHT3#Criação Espiritual de Poções#
+512,3	// GS_TRACKING#Rastrear o Alvo#
+1014,1	// PR_REDEMPTIO#Martírio#
+10010,3	// GD_BATTLEORDER#Comando de Batalha#
+10011,3	// GD_REGENERATION#Regeneração#
+10012,6	// GD_RESTORE#Restauração#
+10013,7	// GD_DEVELOPMENT#Desenvolvimento Permanente#
 //============================================================
 // Habilidades dos Assistentes
 //============================================================
-8214,7	//MA_CHARGEARROW
-8215,7	//MA_SHARPSHOOTING
-8217,7	//ML_BRANDISHSPEAR
-8218,7	//ML_SPIRALPIERCE
-8221,7	//ML_DEVOTION
-8222,7	//MER_MAGNIFICAT
-8225,7	//MER_CRASH
-8234,7	//MER_DECAGI
-8235,7	//MER_SCAPEGOAT
-8238,7	//MER_KYRIE
-8240,7	//MER_INCAGI
+8214,7	// MA_CHARGEARROW#Carregar Flechas#
+8215,7	// MA_SHARPSHOOTING#Tiro Preciso#
+8217,7	// ML_BRANDISH#Brandir Lança#
+8218,7	// ML_SPIRALPIERCE#Perfurar em Espiral#
+8221,7	// ML_DEVOTION#Redenção#
+8222,7	// MER_MAGNIFICAT#Magnificat#
+8225,7	// MER_CRASH#Impacto#
+8234,7	// MER_DECAGI#Diminuir Agilidade#
+8235,7	// MER_SCAPEGOAT#Bode Expiatório#
+8238,7	// MER_KYRIE#Kyrie Eleison#
+8240,7	// MER_INCAGI#Aumentar Agilidade#

@@ -18,7 +18,7 @@
 // | NOTA: Tabela não-oficial até Nível 1.000.              |
 // | Se customizar a experiência, utilize exp.txt e         |
 // | edite max level de acordo.                             |
-// | Estrutura da Database:       				            |
+// | Estrutura da Database:                                 |
 // | Max Level,Class list,Tipo (0 - Base Exp / 1 - Job Exp),|
 // | Exp 1,2,3,...                                          |
 // \________________________________________________________/

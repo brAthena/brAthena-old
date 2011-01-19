@@ -8,19 +8,20 @@
 // |                                                        |
 // |                     brAthena Script                    |
 // |--------------------------------------------------------|
-// | Nome do Script: Enquetes Oficiais	 	       	  		|
+// | Nome do Script: Enquetes Oficiais                      |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões brA: 1.0                 	              		|
+// | Versões brA: 1.0                                       |
 // |--------------------------------------------------------|
 // | Descrição: NPC para realizar pesquisas oficiais com os |
-// | jogadores, que só podem votar uma ver por conta. As    |
+// | jogadores, que só podem votar uma vez por conta. As    |
 // | perguntas e Opções são configuradas dentro do jogo e   |
-// | o próprio script faz anuncios sobre a votação.			|
+// | o próprio script faz anúncios sobre a votação.         |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Criado [Equipe brAthena]                    |
+// | - Anotações                                            |
 // \________________________________________________________/
 
 prontera,156,183,4	script	Pesquisas Oficiais	831,{

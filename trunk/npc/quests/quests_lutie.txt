@@ -14,9 +14,10 @@
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.4/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: Quests: Chapéu de Fumacento,                |
-// | Chapéu de Esporo, Casca de Noz, Casca de Ovo Colorida, |
-// | Candura, Mestre-Cuca, Vela, Chapéu de Bolo.            |
+// | Descrição: Quests dos itens para cabeça 'Chapéu de     |
+// | Fumacento', 'Chapéu de Esporo', 'Casca de Noz',        |
+// | 'Casca de Ovo Colorida', 'Candura', 'Mestre-Cuca',     |
+// | 'Chapéu de Bolo' e 'Vela'.                             |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [Barsaglini]                      |
@@ -24,7 +25,7 @@
 // | - Anotações                                            |
 // \________________________________________________________/
 
-xmas,117,295,4	script	Titicupe	704,{
+xmas,117,295,4	script	Homem da Máquina de Vender	704,{
         mes "[Titicupe]";
         mes "Hmm...?";
         mes "Eu, Titicupe, estimado gerente da Fábrica de Brinquedos e genial inventor, fiz isso de novo!! Acabei de criar a mais sofisticada máquina de vendas do mundo!";
@@ -146,7 +147,9 @@ xmas,117,295,4	script	Titicupe	704,{
         }
 }
 
-xmas,115,297,4	script	Boneco de Neve	111,{
+// Quests Chapéu de Fumacento / Chapéu de Esporo / Casca de Noz / Casca de Ovo Colorida / Candura / Mestre-Cuca / Chapéu de Bolo / Vela
+//=============================================
+xmas,115,297,4	script	Máquina de Vender	111,{
         mes "[Audi]";
         mes "^555555Excitante item Máquina de Vendas. Inventado pelo grande Titicupe. Selecione os itens desejados e coloque os itens exigidos na boca do Boneco de Neve.^000000";
         next;
@@ -173,16 +176,16 @@ xmas,115,297,4	script	Boneco de Neve	111,{
                 if ((countitem(2213) > 0) && (countitem(1036) > 19) && (countitem(7012) > 199) && (countitem(7065) > 299)) {
                         mes "^3355FF*Você cautelosamente coloca os itens na boca do Boneco de Neve...*^000000";
                         next;
-                        delitem 2213,1;  //Cat_Hairband,Orelha de Gato
-                        delitem 1036,20;  //Dragon_Scale,Escama de Dragão
-                        delitem 7012,200;  //Tough_Scalelike_Stem,Pedaço de Escama Dura
-                        delitem 7065,300;  //Sea_Otter_Leather,Pele de Lontra
+                        delitem 2213,1;  // Orelha de Gato
+                        delitem 1036,20;  // Escama de Dragão
+                        delitem 7012,200;  // Pedaço de Escama Dura
+                        delitem 7065,300;  // Pele de Lontra
                         Emotion e_Oh;
                         mes "^3355FF*Vroooooom~~*";
                         mes "*Bzzzzzt*";
                         mes "*choogachooga*";
                         mes "*Kapang!*^000000";
-                        getitem 5033,1; // Smokie_Hat,Chapéu de Fumacento
+                        getitem 5033,1; // Chapéu de Fumacento
                         next;
                         mes "[Audi]";
                         mes "^555555Obrigado por vir.";
@@ -195,16 +198,16 @@ xmas,115,297,4	script	Boneco de Neve	111,{
                 if ((countitem(7033) > 849) && (countitem(7068) > 299) && (countitem(1015) > 0)) {
                         mes "^3355FF*Você cautelosamente coloca os itens na boca do Boneco de Neve...*^000000";
                         next;
-                        delitem 7033,850;  //Poison_Spore,Esporo Venenoso
-                        delitem 7068,300;  //Burn_Tree,Madeira Queimada
-                        delitem 1015,1;  //Thin_N'_Long_Tongue,Língua
+                        delitem 7033,850;  //Esporo Venenoso
+                        delitem 7068,300;  //Madeira Queimada
+                        delitem 1015,1;  //Língua
                         Emotion e_oh;
                         mes "^3355FF*Vroooooom~~*";
                         mes "*Bzzzzzt*";
                         mes "*choogachooga*";
                         mes "*Kapang!*";
                         mes "*Wek Wek*^000000";
-                        getitem 5029,1; // Spore_Hat,Chapéu de Esporo
+                        getitem 5029,1; // Chapéu de Esporo
                         next;
                         mes "^555555Obrigado por vir.";
                         mes "Por favor, volte novamente!";
@@ -216,8 +219,8 @@ xmas,115,297,4	script	Boneco de Neve	111,{
                 if ((countitem(5037) > 0) && (countitem(7064) > 499)) {
                         mes "^3355FF*Você cautelosamente coloca os itens na boca do Boneco de Neve...*^000000";
                         next;
-                        delitem 5037,1;  //Fruit_Shell,Casca de Maçã
-                        delitem 7064,500;  //Dragon_Fly_Wing,Asas de Libélula
+                        delitem 5037,1;  // Casca de Maçã
+                        delitem 7064,500;  // Asas de Libélula
                         mes "^3355FF*Vroooooom~~*";
                         mes "*Bzzzzzt*";
                         mes "*choogachooga*";
@@ -225,7 +228,7 @@ xmas,115,297,4	script	Boneco de Neve	111,{
                         mes "*BeepBoopBeepBoop*";
                         mes "*Beeeeeeoop*^000000";
                         Emotion e_oh;
-                        getitem 5050,1; // Mystery_Fruit_Shell,Casca de Noz
+                        getitem 5050,1; // Casca de Noz
                         next;
                         mes "[Audi]";
                         mes "^555555Obrigado por vir.";
@@ -238,15 +241,15 @@ xmas,115,297,4	script	Boneco de Neve	111,{
                 if ((countitem(5015) > 0) && (countitem(978) > 0) && (countitem(7030) > 49)){ 
                         mes "^3355FF*Você cautelosamente coloca os itens na boca do Boneco de Neve...*^000000";
                         next;
-                        delitem 5015,1;  //Egg_Shell,Casca de Ovo
-                        delitem 978,1;  //Cobaltblue_Dyestuffs,Tintura Azul
-                        delitem 7030,50;  //Claw_Of_Desert_Wolf,Garra de Lobo do Deserto
+                        delitem 5015,1;  // Casca de Ovo
+                        delitem 978,1;  // Tintura Azul
+                        delitem 7030,50;  // Garra de Lobo do Deserto
                         Emotion e_oh;
                         mes "^3355FF*Vroooooom~~*";
                         mes "*Bzzzzzt*";
                         mes "*choogachooga*";
                         mes "*OoooEeeeeeee~*^000000";
-                        getitem 5039,1; // Mottled_Egg_Shell,Casca de Ovo Colorida
+                        getitem 5039,1; // Casca de Ovo Colorida
                         next;
                         mes "[Audi]";
                         mes "^555555Obrigado por vir.";
@@ -259,7 +262,7 @@ xmas,115,297,4	script	Boneco de Neve	111,{
                 if (countitem(7047) > 99) {
                         mes "^3355FF*Você cautelosamente coloca os itens na boca do Boneco de Neve...*^000000";
                         next;
-                        delitem 7047,100;  //Alice's_Apron,Avental de Alice
+                        delitem 7047,100;  // Avental de Alice
                         Emotion e_oh;
                         mes "^3355FF*Vroooooom~~*";
                         mes "*Bzzzzzt*";
@@ -267,7 +270,7 @@ xmas,115,297,4	script	Boneco de Neve	111,{
                         mes "*Kapang!*";
                         mes "*ChoopChoop*";
                         mes "*Chaaawah!*^000000";
-                        getitem 5040,1; // Blush,Candura
+                        getitem 5040,1; // Candura
                         mes "[Audi]";
                         mes "^555555Obrigado por vir.";
                         mes "Por favor, volte novamente!";
@@ -282,17 +285,17 @@ xmas,115,297,4	script	Boneco de Neve	111,{
                 if ((countitem(539) > 119) && (countitem(982) > 0) && (countitem(949) > 329) && (countitem(1036) > 449)) {
                         mes "^3355FF*Você cautelosamente coloca os itens na boca do Boneco de Neve...*^000000";
                         next;
-                        delitem 539,120;  //Piece_Of_Cake,Pedaço de Bolo
-                        delitem 982,1;  //White_Dyestuffs,Tintura Branca
-                        delitem 949,330;  //Feather,Pluma
-                        delitem 1036,450;  //Dragon_Scale,Escama de Dragão
+                        delitem 539,120;  // Pedaço de Bolo
+                        delitem 982,1;  // Tintura Branca
+                        delitem 949,330;  // Pluma
+                        delitem 1036,450;  // Escama de Dragão
                         Emotion e_oh;
                         mes "^3355FF*Vroooooom~~*";
                         mes "*Bzzzzzt*";
                         mes "*choogachooga*";
                         mes "*Kapang!*";
                         mes "*Muuuuuuugeeee*^000000";
-                        getitem 5026,1; // Hat_Of_Cook,Mestre-Cuca
+                        getitem 5026,1; // Mestre-Cuca
                         next;
                         mes "[Audi]";
                         mes "^555555Obrigado por vir.";
@@ -305,15 +308,15 @@ xmas,115,297,4	script	Boneco de Neve	111,{
                 if ((countitem(2279) > 0) && (countitem(7035) > 49) && (countitem(526) > 99)) {
                         mes "^3355FF*Você cautelosamente coloca os itens na boca do Boneco de Neve...*^000000";
                         next;
-                        delitem 2279,1;  //Bomb_Wick,Pavio
-                        delitem 7035,50;  //Matchstick,Palito de Fósforo
-                        delitem 526,100;  //Royal_Jelly,Geléia Real
+                        delitem 2279,1;  // Pavio
+                        delitem 7035,50;  // Palito de Fósforo
+                        delitem 526,100;  // Geléia Real
                         Emotion e_oh;
                         mes "^3355FF*Vroooooom~~*";
                         mes "*Bzzzzzt*";
                         mes "*choogachooga*";
                         mes "*Kapang!*^000000";
-                        getitem 5028,1; // Candle,Vela
+                        getitem 5028,1; // Vela
                         next;
                         mes "[Audi]";
                         mes "^555555Obrigado por vir.";
@@ -326,17 +329,17 @@ xmas,115,297,4	script	Boneco de Neve	111,{
                 if ((countitem(529) > 9) && (countitem(530) > 4) && (countitem(538) > 14) && (countitem(539) > 19) && (countitem(999) > 9)) { 
                         mes "^3355FF*Você cautelosamente coloca os itens na boca do Boneco de Neve...*^000000";
                         next;
-                        delitem 529,10;  //Candy,Bala
-                        delitem 530,5;  //Candy_Striper,Bengala Doce
-                        delitem 538,15;  //Well_Baked_Cookie,Biscoito de Gengibre
-                        delitem 539,20;  //Piece_Of_Cake,Pedaço de Bolo
-                        delitem 999,10;  //Steel,Aço
+                        delitem 529,10;  // Bala
+                        delitem 530,5;  // Bengala Doce
+                        delitem 538,15;  // Biscoito de Gengibre
+                        delitem 539,20;  // Pedaço de Bolo
+                        delitem 999,10;  // Aço
                         Emotion e_oh;
                         mes "^3355FF*Vroooooom~~*";
                         mes "*Bzzzzzt*";
                         mes "*choogachooga*";
                         mes "*Kapang!*^000000";
-                        getitem 5024,1; // Hat_Of_Cake,Chapéu de Bolo
+                        getitem 5024,1; // Chapéu de Bolo
                         next;
                         mes "[Audi]";
                         mes "^555555Obrigado por vir.";

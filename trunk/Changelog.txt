@@ -8,6 +8,26 @@
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
+	r0117 - 19/01/2011 [Tyler]
+	* Ajustado o cabeçalho de alguns arquivos CONF na pasta npc:
+	- npc/personalizados/Enquetes_oficiais.txt
+	- npc/personalizados/removedora_de_cartas.txt
+	- scripts_brathena.conf
+	- scripts_classes.conf
+	- scripts_guild.conf
+	- scripts_main.conf
+	- scripts_monstros.conf
+	- scripts_portais.conf
+	- scripts_personalizados.conf
+	* Corrigido um erro de português no cabeçalho para reconhecimento do CT:
+	- npc/quest/bunnyband.txt	
+	* Corrigido alguns npcs na pasta npc para seguir o modelo de npcs originais e refeita a revisão dos mesmos:
+	- npc/quests/quests_aldebaran.txt
+	- npc/quests/quests_geffen.txt
+	- npc/quests/quests_izlude.txt
+	- npc/quests/quests_lutie.txt
+	- npc/quests/quests_payon.txt
+	* Continuada a organização da pasta db para facilitar futuras configurações e revisões.
 
 	r0115 - 18/01/2011 [Dani]
 	* Atualizado conforme eAthena 14676

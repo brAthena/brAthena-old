@@ -14,20 +14,20 @@
 // |--------------------------------------------------------| 
 // | Versões eA/brA: 1.4/1.0                                | 
 // |--------------------------------------------------------| 
-// | Descrição: Quests Máscara de Solda e Fone de Ouvido.   | 
+// | Descrição: Quests dos itens para cabeça 'Máscara de    | 
+// | Solda' e 'Fone de Ouvido'.                             | 
 // |--------------------------------------------------------| 
 // | Changelog:                                             | 
 // | 1.0 Script Traduzido [Barsaglini]                      |
-// | 1.1 Script Revisado [Kooler]                           | 
+// | 1.1 Script Revisado [Tyler & Kooler]                   | 
 // | - Anotações                                            | 
 // \________________________________________________________/ 
  
-//==============================================================================================// 
-//                                      Ferreiro: Quest 'Máscara de Solda' 
-//==============================================================================================// 
+// Quest Máscara de Solda
+//============================================================ 
 geffen_in,144,166,4	script	Ferreiro	63,{ 
         mes "[Ferreiro]"; 
-        mes "Você nunca ouviu falar de mim? Ora, eu sou o veterano Ferreiro desta terra. Eu passei 30 anos neste inferno quente e sangrento, dobrando aço para o meu ferro!"; 
+        mes "Você nunca ouviu falar de mim? Ora, eu sou o veterano Ferreiro desta terra. Eu passei 30 anos neste inferno quente e sangrento, dobrando ferro para o criar meu próprio aço!"; 
         next; 
         mes "[Ferreiro]"; 
         mes "Mas..."; 
@@ -36,19 +36,19 @@ geffen_in,144,166,4	script	Ferreiro	63,{
         switch(select("O que é isso?:...")) { 
         case 1: 
                 mes "[Ferreiro]"; 
-                mes "Nós Ferreiros, devemos sempre manipular o aço sob calor extremo, o ar quente e metais fundidos são mais do que a maioria das pessoas podem aguentar."; 
+                mes "Nós Ferreiros, devemos sempre manipular o aço sob calor extremo, ar quente e metais fundidos. Esaas condições são mais do que a maioria das pessoas podem aguentar."; 
                 next; 
                 mes "[Ferreiro]"; 
                 mes "Para o bem do nosso artesanato, os nossos belos rostos masculinos são colocados em risco..."; 
                 next; 
                 mes "[Ferreiro]"; 
-                mes "Mas, com esta maravilha da tecnologia, não há necessidade de se preocupar! Eis então, a ^3355FFMáscara de Solda^000000 !!"; 
+                mes "Mas, com esta maravilha da tecnologia, não há necessidade de se preocupar! Eis então, a ^3355FFMáscara de Solda^000000!"; 
                 next; 
                 mes "[Ferreiro]"; 
                 mes "Ela funciona cobrindo seu rosto com uma grossa placa de metal. Na verdade, é um item que todo mundo deveria querer! Se não for para você mesmo, seria uma boa idéia dar a um amigo que está estudando forja."; 
                 next; 
                 mes "[Ferreiro]"; 
-                mes "Então, o que dizer sobre isto? Se você me der ^2244FF50 Aços^000000 e ^4422FFAepnas 2000 Zenys^000000, Vou fazer isso para você imediatamente~!!"; 
+                mes "Então, o que dizer sobre isto? Se você me der ^2244FF50 Aços^000000 e ^4422FFapenas 2.000 zenys^000000, eu vou fazer isso para você imediatamente!~"; 
                 next; 
                 switch(select("Hm... Nada mau. Certo.:Como é que funciona mesmo?")) { 
                 case 1: 
@@ -80,65 +80,62 @@ geffen_in,144,166,4	script	Ferreiro	63,{
         case 2: 
                 mes "[Ferreiro]"; 
                 mes "Ah...!"; 
-                mes "Eu acho que essa é a primeira vez que você encontrou um ferreiro tão bom como eu, e você fica me reverênciando, mudo. Por Favor, volte quando estiver pronto para falar."; 
+                mes "Eu acho que essa é a primeira vez que você encontrou um ferreiro tão bom como eu, e você fica aí... me reverenciando, mudo. Por Favor, volte quando estiver pronto para falar comigo."; 
                 next; 
-                mes "^3355FFEsse cara parece"; 
+                mes "^3355FF*Esse cara parece"; 
                 mes "um pouco cheio"; 
-                mes "de si mesmo.^000000"; 
+                mes "de si mesmo.*^000000"; 
                 close; 
         } 
 } 
- 
- 
- 
-//=============================================================================================// 
-//                                      Eric: Quest Fone de Ouvido 
-//=============================================================================================// 
-geffen_in,30,71,4	script	Eric	83,{ 
-        mes "[Eric]"; 
+
+// Quest Fone de Ouvido 
+//============================================================ 
+geffen_in,30,71,4	script	Zenhizha	83,{ 
+        mes "[Zenhizha]"; 
         mes "Por favor, ouça"; 
-        mes "a minha história"; 
-        mes "do meu abençoado"; 
+        mes "a história do"; 
+        mes "meu abençoado"; 
         mes "avô."; 
         next; 
-        switch(select("Conversar:Pergunte sobre os itens necessários:Fabricar:Sair")) { 
+        switch(select("Conversar.:Pergunte sobre os itens necessários.:Fabricar.:Sair.")) { 
         case 1: 
-                mes "[Eric]"; 
-                mes "Meu avô, que faleceu há alguns anos atrás, foi especial para mim. Ele sempre esteve comigo, e cuidou de mim. Ele era muito melhor do que meu velho, que estava sempre ocupado trabalhando."; 
+                mes "[Zenhizha]"; 
+                mes "Meu avô, que faleceu há alguns anos atrás, fora muito especial para mim. Ele sempre esteve comigo, e cuidou de mim. Ele era muito melhor do que meu velho, que estava sempre ocupado trabalhando."; 
                 next; 
-                mes "[Eric]"; 
-                mes "Para mim, a biblioteca do avô sempre foi como uma terra de fantasia onde eu pudesse escapar. Passei a maior parte do meu tempo lá."; 
+                mes "[Zenhizha]"; 
+                mes "Para mim, a biblioteca do avô sempre foi como uma terra de fantasia onde eu pudesse escapar da realidade. Passei a maior parte do meu tempo lá."; 
                 next; 
-                mes "[Eric]"; 
+                mes "[Zenhizha]"; 
                 mes "Eu aprendi um monte de coisas de seus livros na Biblioteca. Meu avô estava interessado em Alquimia e música, e sua Biblioteca encheu com muitos misteriosos livros antigos."; 
                 next; 
-                mes "[Eric]"; 
+                mes "[Zenhizha]"; 
                 mes "Um dia..."; 
                 mes "Como de costume, fui à biblioteca e descobri um esquema interessante."; 
                 next; 
-                mes "[Eric]"; 
-                mes "Ele mostrou alguns instrumentos que pareciam com um Fone de Ouvido, quando usado na cabeça, podia transmitir música para os ouvidos ou sussurros através de um fio fino."; 
+                mes "[Zenhizha]"; 
+                mes "Ele mostrou alguns instrumentos que pareciam como Fones de Ouvido, quando usado na cabeça, podiam transmitir música para os ouvidos ou sussurros através de um fio fino."; 
                 next; 
-                mes "[Eric]"; 
+                mes "[Zenhizha]"; 
                 mes "Eu acho..."; 
-                mes "É a obra inacabada do meu avô. Eu conheci alguns alquimistas, pedi para eles produzirem, mas eles rejeitaram a minha oferta..."; 
+                mes "É a obra inacabada do meu avô. Eu conheci alguns Alquimistas, pedi para eles produzirem, mas eles rejeitaram a minha oferta..."; 
                 next; 
-                mes "[Eric]"; 
-                mes "No final, eu pensei, tenho que fazer isso sozinho. Então, eu pesquisei por alguns anos, e agora eu compreendo perfeitamente como fazer essa coisa. Mas, eu nunca poderia reunir o material para fazê-lo!"; 
+                mes "[Zenhizha]"; 
+                mes "No final, eu pensei, tenho que fazer isso sozinho. Então, eu pesquisei por alguns anos, e agora eu compreendo perfeitamente como fazer essa coisa. Mas, eu nunca pude reunir o material para fazê-lo!"; 
                 next; 
-                mes "[Eric]"; 
+                mes "[Zenhizha]"; 
                 mes "Se eu conseguir esses artigos, posso construí-lo imediatamente. Se você está interessado em minha idéia, você poderia trazê-los para mim?"; 
                 next; 
-                mes "[Eric]"; 
+                mes "[Zenhizha]"; 
                 mes "Tudo que eu quero fazer é construir essa coisa em homenagem ao meu avô, e terminar o trabalho que ele começou. Se você me pedir para continuar, eu não me importaria."; 
                 close; 
         case 2: 
-                mes "[Eric]"; 
-                mes "40 ^3355FFAços^000000"; 
-                mes "1 ^3355FFOridecon^000000"; 
-                mes "1 ^3355FFÁlcool^000000"; 
-                mes "1 ^3355FFCarvão^000000"; 
-                mes "Estas são as coisas que eu preciso para a obra do meu avô."; 
+                mes "[Zenhizha]"; 
+                mes "^3355FF40 Aços^000000",; 
+                mes "^3355FF1 Oridecon^000000",; 
+                mes "^3355FF1 Álcool^000000 e"; 
+                mes "^3355FF1 Carvão^000000."; 
+                mes "Estas são as coisas que eu preciso para concluir a obra do meu avô."; 
                 close; 
         case 3: 
                 if ((countitem(999) > 39) && (countitem(984) > 0) && (countitem(970) > 0) && (countitem(1003) > 0)) { 
@@ -149,21 +146,21 @@ geffen_in,30,71,4	script	Eric	83,{
                         getitem 5001,1; // Fone de Ouvido 
                         mes "*Tap! Tap! Tap!*"; 
                         next; 
-                        mes "[Eric]"; 
+                        mes "[Zenhizha]"; 
                         mes "Obrigado."; 
-                        mes "Por causa de você, eu pude realizar o desejo do meu avô. Se ele olhou para mim do Céu, ele deve estar feliz."; 
+                        mes "Por causa de você, eu pude realizar o desejo do meu avô. Se ele olhou para mim do céu agora, ele deve estar feliz."; 
                         next; 
-                        mes "[Eric]"; 
+                        mes "[Zenhizha]"; 
                         mes "Como eu disse, por favor, tome isto. Eu apenas estou orgulhoso de que eu posso fazer isso sozinho."; 
                         close; 
                 } 
                 else { 
-                        mes "[Eric]"; 
+                        mes "[Zenhizha]"; 
                         mes "Obrigado por tentar me ajudar, mas você não trouxe todos os itens que eu preciso. Acho que você vai encontrar todos eles em breve."; 
                         close; 
                 } 
         case 4: 
-                mes "[Eric]"; 
+                mes "[Zenhizha]"; 
                 mes "N-não?"; 
                 mes "Bem..."; 
                 mes "Você tem suas próprias"; 
@@ -172,4 +169,3 @@ geffen_in,30,71,4	script	Eric	83,{
                 close; 
         } 
 }
-
