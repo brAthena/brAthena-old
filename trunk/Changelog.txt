@@ -8,6 +8,13 @@
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
+
+	r0121 - 19/01/2011 [Dani]
+	* Pequenas alterações no arquivo quests_geffen.txt (seguindo r117)
+	- Corrigido erro apontado no map-server
+	- Corrigidas indentações
+	- Removido espaço em branco no fim de cada linha
+
 	r0117 - 19/01/2011 [Tyler]
 	* Ajustado o cabeçalho de alguns arquivos CONF na pasta npc:
 	- npc/personalizados/Enquetes_oficiais.txt
