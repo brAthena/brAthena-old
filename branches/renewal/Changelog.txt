@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0126 - 19/01/2011 [Protimus]
+	* Correção de HitRate baseado apenas no esquiva (FLEE).
+	* Efeitos de Equipamentos da esquiva (FLEE) passados apenas para FLEE2.
+	* Removido cálculo para Esquiva Perfeita, é cálculado pelo FLEE, já que FLEE2 passou pra FLEE.
+
 	r0125 - 19/01/2011 [Protimus]
 	* Adicionado novo método para cálculo de experiência (EXP).
 	- Necessário revisar, limpar se for necessário também.

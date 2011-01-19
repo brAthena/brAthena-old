@@ -1346,11 +1346,6 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int lev
 	else
 		status->cri = 0;
 
-	if (bl->type&battle_config.enable_perfect_flee)
-		status->flee2 += status->luk + 10;
-	else
-		status->flee2 = 0;
-
 	if (status->cri)
 	switch (bl->type) {
 	case BL_MOB:

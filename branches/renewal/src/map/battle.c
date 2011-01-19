@@ -2821,9 +2821,10 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		if(sc && sc->opt1 && sc->opt1 != OPT1_STONEWAIT)
 			i = 1;
 		else {
-			short
-				flee = tstatus->flee,
-				hitrate=80; //Default hitrate
+			short flee, hitrate;
+ 
+			flee = status_get_lv(target) + status_get_agi(target) + status_get_flee(target) + status_get_flee2(target);
+			hitrate = status_get_lv(src) + status_get_dex(src) + status_get_hit(src);
 
 			if(battle_config.agi_penalty_type && 
 				battle_config.agi_penalty_target&target->type)
