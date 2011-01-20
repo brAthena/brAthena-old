@@ -1263,18 +1263,58 @@ int status_check_visibility(struct block_list *src, struct block_list *target)
 // Basic ASPD value
 int status_base_amotion_pc(struct map_session_data* sd, struct status_data* status)
 {
-	int amotion;
+	int amotion, i, bonus;
+	struct status_change *sc = status_get_sc(&sd->bl);
+	float agi_mod, dex_mod, agi_mod1, agi_mod2, dex_mod1, dex_mod2;
 	
 	// base weapon delay
 	amotion = (sd->status.weapon < MAX_WEAPON_TYPE)
 	 ? (aspd_base[pc_class2idx(sd->status.class_)][sd->status.weapon]) // single weapon
 	 : (aspd_base[pc_class2idx(sd->status.class_)][sd->weapontype1] + aspd_base[pc_class2idx(sd->status.class_)][sd->weapontype2])*7/10; // dual-wield
 	
-	// percentual delay reduction from stats
-	amotion-= amotion * (4*status->agi + status->dex)/1000;
+	bonus = 0;
 	
-	// raw delay adjustment from bAspd bonus
-	amotion+= sd->aspd_add;
+	if( sc && sc->count )
+	{	
+		if( (sc->data[i=SC_ASPDPOTION0] ||
+			 sc->data[i=SC_ASPDPOTION1] ||
+			 sc->data[i=SC_ASPDPOTION2] ||
+			 sc->data[i=SC_ASPDPOTION3] ) )
+		{
+			bonus -= sc->data[i]->val2;
+		}
+
+		if( sc->data[SC_TWOHANDQUICKEN] )
+			bonus -= sc->data[SC_TWOHANDQUICKEN]->val2;
+
+		if( sc->data[SC_ADRENALINE] )
+			bonus -= sc->data[SC_ADRENALINE]->val3;
+
+		if( sc->data[SC_ONEHAND] )
+			bonus -= sc->data[SC_ONEHAND]->val2;
+	}
+
+	agi_mod1 = 0.505f - ((status->dex - status->agi) / status->dex);
+	agi_mod2 = (float) status->agi / 18000;
+	agi_mod = agi_mod1 + agi_mod2;
+
+	if( agi_mod < 0.1 )
+		agi_mod = 0.1f;
+	else if( agi_mod > 0.7 )
+		agi_mod = 0.7f + agi_mod2;
+
+	dex_mod1 = 0.805f - ((status->agi - status->dex) / status->agi);
+	dex_mod2 = (float) status->dex / 7500;
+	dex_mod = dex_mod1 + dex_mod2;
+
+	if( dex_mod < 0.15 )
+		dex_mod = 0.15f;
+	else if( dex_mod > 1.1 )
+		dex_mod = 1.1f + dex_mod2;
+ 	
+	amotion -= (int) ((status->agi / 4) * agi_mod) * 10;
+	amotion -=  (int) ((status->dex / 10) * dex_mod) * 10;
+	amotion += sd->aspd_add + bonus;
 	
  	return amotion;
 }
@@ -1308,7 +1348,7 @@ static unsigned short status_base_atk(const struct block_list *bl, const struct 
 	//Normally only players have base-atk, but homunc have a different batk
 	// equation, hinting that perhaps non-players should use this for batk.
 	// [Skotlex]
-	atk = status->str + level/4;
+	atk = status->str;
 
 	if( bl->type == BL_PC ) {
 		atk += status->dex/5;
@@ -1347,7 +1387,7 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int lev
 		status->cri = 0;
 		
 	if (bl->type&battle_config.enable_perfect_flee)
-		status->flee2 += status->luk + 10;
+		status->flee2 += status->luk/10;
 		status->flee2 = 0;
 
 	if (status->cri)
@@ -1846,6 +1886,7 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 		+ sizeof(sd->speed_rate)
 		+ sizeof(sd->speed_add_rate)
 		+ sizeof(sd->aspd_add)
+		+ sizeof(sd->aspd_add_rate)
 		+ sizeof(sd->setitem_hash)
 		+ sizeof(sd->setitem_hash2)
 		+ sizeof(sd->itemhealrate2)
@@ -1870,6 +1911,8 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 	pc_delautobonus(sd,sd->autobonus,ARRAYLENGTH(sd->autobonus),true);
 	pc_delautobonus(sd,sd->autobonus2,ARRAYLENGTH(sd->autobonus2),true);
 	pc_delautobonus(sd,sd->autobonus3,ARRAYLENGTH(sd->autobonus3),true);
+	
+	sd->aspd_add_rate = 1000;
 
 	// Parse equipment.
 	for(i=0;i<EQI_MAX-1;i++) {
@@ -3011,8 +3054,18 @@ void status_calc_bl_main(struct block_list *bl, enum scb_flag flag)
 			if(status->aspd_rate != 1000)
 				amotion = amotion*status->aspd_rate/1000;
 			
+			sd = (TBL_PC*)bl;
+
+			if(sd->aspd_add_rate != 1000)
+			{
+				int aspd_change = 0;
+				aspd_change = (amotion - battle_config.max_aspd);
+				aspd_change *= (1000 - sd->aspd_add_rate);
+				aspd_change /= 1000;
+				amotion -= aspd_change;
+			}
+ 			
 			status->amotion = cap_value(amotion,battle_config.max_aspd,2000);
-			
 			status->adelay = 2*status->amotion;
 		}
 		else
@@ -3894,7 +3947,6 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 /// Note that the scale of aspd_rate is 1000 = 100%.
 static short status_calc_aspd_rate(struct block_list *bl, struct status_change *sc, int aspd_rate)
 {
-	int i;
 	if(!sc || !sc->count)
 		return cap_value(aspd_rate,0,SHRT_MAX);
 
@@ -3964,11 +4016,6 @@ static short status_calc_aspd_rate(struct block_list *bl, struct status_change *
 			aspd_rate -= 200;
 	}
 
-	if(sc->data[i=SC_ASPDPOTION3] ||
-		sc->data[i=SC_ASPDPOTION2] ||
-		sc->data[i=SC_ASPDPOTION1] ||
-		sc->data[i=SC_ASPDPOTION0])
-		aspd_rate -= sc->data[i]->val2;
 	if(sc->data[SC_DONTFORGETME])
 		aspd_rate += 10 * sc->data[SC_DONTFORGETME]->val2;
 	if(sc->data[SC_LONGING])
@@ -5415,10 +5462,16 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			val2 = 75 + 25*val1; //Cri bonus
 			break;
 		case SC_ASPDPOTION0:
+			val2 = 60;
+			break;
 		case SC_ASPDPOTION1:
+			val2 = 70;
+			break;
 		case SC_ASPDPOTION2:
+			val2 = 90;
+			break;
 		case SC_ASPDPOTION3:
-			val2 = 50*(2+type-SC_ASPDPOTION0);
+			val2 = 110;
 			break;
 
 		case SC_WEDDING:
@@ -5857,7 +5910,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			break;
 		case SC_ADRENALINE2:
 		case SC_ADRENALINE:
-			val3 = (val2) ? 300 : 200; // aspd increase
+			val3 = (val2) ? 70 : 60; // aspd increase
 		case SC_WEAPONPERFECTION:
 			if(sd && pc_checkskill(sd,BS_HILTBINDING)>0)
 				tick += tick / 10;

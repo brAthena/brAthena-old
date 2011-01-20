@@ -9,17 +9,36 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0133 - 20/01/2011 [Protimus]
+	* Adicionadas modificações para a Esquiva (FLEE).
+	* Mudanças para velocidade de ataque (ASPD).
+	- Criado novo estado de aspd_add_rate.
+	- Valor básico de ASPD baseado em 3 modos de agilidade (AGI) e destreza (DEX).
+	* Novo cálculo para bônus de itens, bAspd bônus.
+	* Adicionados novos parâmetros fixos do ASPD para poções: ASPDPOTION0 ~ ASPDPOTION3.
+	- Valores de 60, 70, 90 e 110.
+	* Adicionados novos parâmetros de ASPD para habilidades: TWOHANDQUICKEN, ADRENALINE & ONEHAND.
+	* Modificado rate para status change de SC_BERSERK para 150 e não 300.
+	- O valor ficava absurdo, muita velocidade... No RE quem está com BERSERK agora fica correto.
+	* Modificado rate para status change de SC_ADRENALINE para 70 e 60.
+	- O mesmo caso que o BERSERK, agora corrigido.
+
+
+	r0132 - 20/01/2011 [Protimus]
+	* Adições & Correções de fórmulas.
+	- 4 leveis aumentam seu status de Ataque Físico em 1 (ATQ).
+	- Fórmula do MATK Máximo não divide mais a adição de novos pontos de int por 2 fora os normais, é fixo apenas o normal.
+	- Cada 10 pontos em LUK aumentam sua taxa de Esquiva Perfeita em 1 (PERFECT DODGE).
+
 	r0130 - 20/01/2011 [Protimus]
+	* Pequena correção de status para DEF e MDEF.
+	- Como passaram para valor fixo, foi necessário alterar o valor do DEF2 e MDEF2 que estavam errados.
+	* Correção para valor máximo de DEF com equipamentos para 200.
 	* Modificações para MATK & MATK2
 	- Agora os ataques mágicos mudaram, assim como suas fórmulas.
 	Fórmula do MATK: statusMATK = Int + [Int/2] + [Dex/5] + [Luk/3] + [BLvl/4]
 	DANO MAX: (weaponMatk+upgradeMATK) * 2 + 1.5 * statusMatk * %MATKbonus * 111.5/(111.5+equipMDEF) - statusMDEF
 	DANO MIN: weaponMatk+upgradeMATK+(wMatk*wLvl)/10] * 2 + 1.5 * statusMatk * %MATKbonus * 111.5/(111.5+equipMDEF) - statusMDEF
-
-	* Pequena correção de status para DEF e MDEF.
-	- Como passaram para valor fixo, foi necessário alterar o valor do DEF2 e MDEF2 que estavam errados.
-	* Correção para valor máximo de DEF com equipamentos para 200.
-	- Havia esquecido de por antes.
 
 	r0128 - 19/01/2011 [Dani]
 	* Repassadas últimas alterações/correções da Trunk pra Renewal

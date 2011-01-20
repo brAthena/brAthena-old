@@ -1869,14 +1869,9 @@ int pc_bonus(struct map_session_data *sd,int type,int val)
 			sd->arrow_hit+=val;
 		break;
 	case SP_FLEE1:
-		if(sd->state.lr_flag != 2) {
-			bonus = status->flee + val;
-			status->flee = cap_value(bonus, SHRT_MIN, SHRT_MAX);
-		}
-		break;
 	case SP_FLEE2:
 		if(sd->state.lr_flag != 2) {
-			bonus = status->flee2 + val*10;
+			bonus = status->flee2 + val;
 			status->flee2 = cap_value(bonus, SHRT_MIN, SHRT_MAX);
 		}
 		break;
@@ -1991,7 +1986,7 @@ int pc_bonus(struct map_session_data *sd,int type,int val)
 		break;
 	case SP_ASPD_RATE:	//Stackable increase - Made it linear as per rodatazone
 		if(sd->state.lr_flag != 2)
-			status->aspd_rate -= 10*val;
+			status->aspd_add_rate -= 10*val;
 		break;
 	case SP_HP_RECOV_RATE:
 		if(sd->state.lr_flag != 2)
