@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0131 - 20/01/2011 [Dani]
+	* Revisadas e feitas algumas traduções no atcommand.c
+
 	r0129 - 19/01/2011 [Dani]
 	* Remoção de monstros desnecessários da Trunk (seguindo r128)
 
