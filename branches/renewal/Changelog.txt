@@ -9,6 +9,18 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0130 - 20/01/2011 [Protimus]
+	* Modificações para MATK & MATK2
+	- Agora os ataques mágicos mudaram, assim como suas fórmulas.
+	Fórmula do MATK: statusMATK = Int + [Int/2] + [Dex/5] + [Luk/3] + [BLvl/4]
+	DANO MAX: (weaponMatk+upgradeMATK) * 2 + 1.5 * statusMatk * %MATKbonus * 111.5/(111.5+equipMDEF) - statusMDEF
+	DANO MIN: weaponMatk+upgradeMATK+(wMatk*wLvl)/10] * 2 + 1.5 * statusMatk * %MATKbonus * 111.5/(111.5+equipMDEF) - statusMDEF
+
+	* Pequena correção de status para DEF e MDEF.
+	- Como passaram para valor fixo, foi necessário alterar o valor do DEF2 e MDEF2 que estavam errados.
+	* Correção para valor máximo de DEF com equipamentos para 200.
+	- Havia esquecido de por antes.
+
 	r0128 - 19/01/2011 [Dani]
 	* Repassadas últimas alterações/correções da Trunk pra Renewal
 	* Monstros pertencentes pertencentes ao Renewal removidos da Trunk e adicionados na branch Renewal

@@ -1091,7 +1091,7 @@ struct status_data {
 	unsigned short
 		str, agi, vit, int_, dex, luk,
 		batk, watk,
-		matk_min, matk_max,
+		status_matk, matk_min, matk_max,
 		speed,
 		amotion, adelay, dmotion,
 		mode;

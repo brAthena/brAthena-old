@@ -1317,8 +1317,7 @@ static unsigned short status_base_atk(const struct block_list *bl, const struct 
 	return cap_value(str, 0, USHRT_MAX);
 }
 
-#define status_base_matk_max(status) (status->int_+(status->int_/5)*(status->int_/5))
-#define status_base_matk_min(status) (status->int_+(status->int_/7)*(status->int_/7))
+#define status_base_status_matk(status, level) (status->int_ + (status->int_/2) + (status->dex/5) + (status->luk/3) + (level/4))
 
 //Fills in the misc data that can be calculated from the other status info (except for level)
 void status_calc_misc(struct block_list *bl, struct status_data *status, int level)
@@ -1329,17 +1328,18 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int lev
 		status->hit = status->flee =
 		status->def2 = status->mdef2 =
 		status->cri = status->flee2 =
-		status->mdef = 0;
-
-	status->matk_min = status_base_matk_min(status);
-	status->matk_max = status_base_matk_max(status);
+		status->mdef = status->def = 0;
 
 	status->batk = status_base_atk(bl, status);
 	
 	status->hit += level + status->dex + status->luk/3 + 175;
 	status->flee += level + status->agi + status->luk/7 + 100;
-	status->def2 += (level + status->vit)/2 + (status->agi/5);
-	status->mdef2 += status->int_/2 + level/4 + status->vit/5 + status->dex/5;
+	status->def += (level + status->vit)/2 + (status->agi/5);
+	status->mdef += status->int_/2 + level/4 + status->dex/5 + status->vit/5;
+	
+	status->matk_min = status_base_status_matk(status, level);
+	if (bl->type == BL_PC )
+		status->matk_max = ((TBL_PC*)bl)->matk_add;
 
 	if( bl->type&battle_config.enable_critical )
 		status->cri += status->luk*3 + 10;
@@ -1837,6 +1837,7 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 		+ sizeof(sd->break_weapon_rate)
 		+ sizeof(sd->break_armor_rate)
 		+ sizeof(sd->crit_atk_rate)
+		+ sizeof(sd->matk_add)
 		+ sizeof(sd->classchange)
 		+ sizeof(sd->speed_rate)
 		+ sizeof(sd->speed_add_rate)
@@ -2200,7 +2201,6 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 		sd->matk_rate = 0;
 	if(sd->matk_rate != 100){
 		status->matk_max = status->matk_max * sd->matk_rate/100;
-		status->matk_min = status->matk_min * sd->matk_rate/100;
 	}
 
 	if(sd->hit_rate < 0)
@@ -2268,13 +2268,13 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 		sd->def_rate = 0;
 	if(sd->def_rate != 100) {
 		i =  status->def * sd->def_rate/100;
-		status->def = cap_value(i, CHAR_MIN, CHAR_MAX);
+		status->def = cap_value(i, CHAR_MIN, 200);
 	}
 
-	if (!battle_config.weapon_defense_type && status->def > battle_config.max_def)
+	if (!battle_config.weapon_defense_type && status->def > 200)
 	{
-		status->def2 += battle_config.over_def_bonus*(status->def -battle_config.max_def);
-		status->def = (unsigned char)battle_config.max_def;
+		status->def2 += battle_config.over_def_bonus*(status->def -200);
+		status->def = 200;
 	}
 
 // ----- EQUIPMENT-MDEF CALCULATION -----
@@ -2975,18 +2975,17 @@ void status_calc_bl_main(struct block_list *bl, enum scb_flag flag)
 
 	if(flag&SCB_MATK) {
 		//New matk
-		status->matk_min = status_base_matk_min(status);
-		status->matk_max = status_base_matk_max(status);
+		status->matk_min = status_base_status_matk(status, status_get_lv(bl));
+		status->matk_max = 0;
+ 
+		if( bl->type&BL_PC )
+			status->matk_max = ((TBL_PC*)bl)->matk_add;
 
 		if( bl->type&BL_PC && sd->matk_rate != 100 )
 		{
 			//Bonuses from previous matk
-			status->matk_max = status->matk_max * sd->matk_rate/100;
 			status->matk_min = status->matk_min * sd->matk_rate/100;
 		}
-			
-		status->matk_min = status_calc_matk(bl, sc, status->matk_min);
-		status->matk_max = status_calc_matk(bl, sc, status->matk_max);
 
 		if(sc->data[SC_MAGICPOWER]) { //Store current matk values
 			sc->mp_matk_min = status->matk_min;

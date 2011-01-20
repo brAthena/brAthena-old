@@ -556,7 +556,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 			if (flag & BF_LONG)
 				damage = damage * battle_config.pk_long_damage_rate/100;
 		}
-		if(!damage) damage  = 1;
+	if(!damage) damage  = 1;
 	}
 
 	if(battle_config.skill_min_damage && damage > 0 && damage < div_)
@@ -2417,11 +2417,26 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 				break;
 			default:
 			{
-				if (sstatus->matk_max > sstatus->matk_min) {
-					MATK_ADD(sstatus->matk_min+rand()%(1+sstatus->matk_max-sstatus->matk_min));
+				int min_damage, max_damage;
+
+				min_damage = 
+				max_damage = 0;
+
+				min_damage = (sstatus->matk_max * 2) + (sstatus->matk_min + sstatus->matk_min/2);
+				min_damage *= 223/(223 + 2 * sstatus->mdef2);
+				min_damage -= sstatus->mdef;
+
+				max_damage = (sstatus->matk_max + (sstatus->matk_max * 2) / 10) * 2;
+				max_damage += (sstatus->matk_min + sstatus->matk_min/2);
+				max_damage *= 223/(223 + 2 * sstatus->mdef2);
+				max_damage -= sstatus->mdef;
+
+				if (max_damage > min_damage) {
+					MATK_ADD(min_damage+rand()%(1+max_damage-min_damage));
 				} else {
-					MATK_ADD(sstatus->matk_min);
+					MATK_ADD(min_damage);
 				}
+
 
 				if(nk&NK_SPLASHSPLIT){ // Divide MATK in case of multiple targets skill
 					if(mflag>0)
