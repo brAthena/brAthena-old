@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0129 - 19/01/2011 [Dani]
+	* Remoção de monstros desnecessários da Trunk (seguindo r128)
+
 	r0121 - 19/01/2011 [Dani]
 	* Pequenas alterações no arquivo quests_geffen.txt (seguindo r117)
 	- Corrigido erro apontado no map-server
