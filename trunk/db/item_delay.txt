@@ -17,7 +17,7 @@
 // | O número máx. de entradas é definido na source:        |
 // | itemdb.h, MAX_ITEMDELAYS.                              |
 // | Estrutura da Database:                                 |
-// | Item(ID),Delay(millisegundos)                          |
+// | Item(ID),Delay(milisegundos)                           |
 // \________________________________________________________/
 //
 //12202,60000	//Língua no Vapor

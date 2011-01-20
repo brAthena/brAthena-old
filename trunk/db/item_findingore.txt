@@ -13,10 +13,10 @@
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Descrição: Banco de Dados da habilidade                |
-// |'Descobrir Minério' do Ferreiro.                        |
+// | 'Descobrir Minério' do Ferreiro.                       |
 // |--------------------------------------------------------|
 // | Estrutura do Banco de Dados:                           |
-// | ID do Grupo de Itens , ID do Item , Taxa               |
+// | ID do Grupo de Itens, ID do Item, Taxa                 |
 // \________________________________________________________/
 //
 6,714,3		// Emperium

@@ -13,13 +13,13 @@
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Descrição: Tabela de ajuste de dano das propriedades   |
-// | elementais, 4 Níveis.                                  |
+// | elementais, 4 níveis.                                  |
 // |--------------------------------------------------------|
-// | Linha: Defesa elemental do trajeto, Coluna:            |
-// | Ataque elemental com armas.                            |
+// | Linha: Defesa elemental do alvo                        |
+// | Coluna: Ataque elemental do atacante                   |
 // \________________________________________________________/
-//
-1,10	// Tabela de Atributo lv1
+
+1,10	// Tabela de Atributo Nv1
 //Neut Água Terr Fogo Vent Vene Sagr Somb Fant  Mort
   100, 100, 100, 100, 100, 100, 100, 100,  25, 100,  // Neutro
   100,  25, 100, 150,  50, 100,  75, 100, 100, 100,  // Água
@@ -32,7 +32,7 @@
    25, 100, 100, 100, 100, 100,  75,  75, 125, 100,  // Fantasma
   100, 100, 100, 100, 100,  50, 100,   0, 100,   0,  // Morto-Vivo
 
-2,10	// Tabela de Atributo lv2
+2,10	// Tabela de Atributo Nv2
 //Neut Água Terr Fogo Vent Vene Sagr Somb Fant  Mort
   100, 100, 100, 100, 100, 100, 100, 100,  25, 100,  // Neutro
   100,   0, 100, 175,  25, 100,  50,  75, 100, 100,  // Água
@@ -45,7 +45,7 @@
     0,  75,  75,  75,  75,  75,  50,  50, 150, 125,  // Fantasma
   100,  75,  75,  75,  75,  25, 125,   0, 100,   0,  // Morto-Vivo
 
-3,10	// Tabela de Atributo lv3
+3,10	// Tabela de Atributo Nv3
 //Neut Água Terr Fogo Vent Vene Sagr Somb Fant  Mort
   100, 100, 100, 100, 100, 100, 100, 100,   0, 100,  // Neutro
   100, -25, 100, 200,   0, 100,  25,  50, 100, 125,  // Água
@@ -58,7 +58,7 @@
     0,  50,  50,  50,  50,  50,  25,  25, 175, 150,  // Fantasma
   100,  50,  50,  50,  50,   0, 150,   0, 100,   0,  // Morto-Vivo
 
-4,10	// Tabela de Atributo lv4
+4,10	// Tabela de Atributo Nv4
 //Neut Água Terr Fogo Vent Vene Sagr Somb Fant  Mort
   100, 100, 100, 100, 100, 100, 100, 100,   0, 100,  // Neutro
   100, -50, 100, 200,   0,  75,   0,  25, 100, 150,  // Água

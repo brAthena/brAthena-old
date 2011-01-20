@@ -458,7 +458,7 @@
 3,4438,2	// Carta Banshee
 3,4439,1	// Carta Crânio Flamejante
 3,4440,1	// Carta Necromante
-3,4442,1	// Carta Tatacho 
+3,4442,1	// Carta Tatacho
 //3,4441,1	// Carta Bispo Decadente (MVP)
 3,4443,2	// Carta Elemental da Água
 3,4444,2	// Carta Draco

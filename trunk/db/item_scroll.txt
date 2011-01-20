@@ -16,7 +16,7 @@
 // | Pergaminho_Desgastado.                                 |
 // |--------------------------------------------------------|
 // | Estrutura do Banco de Dados:                           |
-// | ID do Grupo de Itens , ID do Item , Taxa               |
+// | ID do Grupo de Itens, ID do Item, Taxa                 |
 // \________________________________________________________/
 
 5,909,1	// Jellopy

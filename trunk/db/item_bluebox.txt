@@ -16,7 +16,7 @@
 // | 'Velha Caixa Azul'.                                    |
 // |--------------------------------------------------------|
 // | Estrutura do Banco de Dados:                           |
-// | ID do Grupo de Itens , ID do Item , Taxa               |
+// | ID do Grupo de Itens, ID do Item, Taxa                 |
 // \________________________________________________________/
 //
 1,501,12	// Poção Vermelha

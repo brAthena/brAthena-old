@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0135 - 20/01/2011 [Dani]
+	* Ajustes finos nos arquivos da pasta /db
+	- Somente pra consertar a organização dos cabeçalhos
+
 	r0131 - 20/01/2011 [Dani]
 	* Revisadas e feitas algumas traduções no atcommand.c
 

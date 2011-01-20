@@ -16,7 +16,7 @@
 // | Caixa de Presente.                                     |
 // |--------------------------------------------------------|
 // | Estrutura do Banco de Dados:                           |
-// | ID do Grupo de Itens , ID do Item , Taxa               |
+// | ID do Grupo de Itens, ID do Item, Taxa                 |
 // \________________________________________________________/
 //
 4,501,1 	// Poção Vermelha

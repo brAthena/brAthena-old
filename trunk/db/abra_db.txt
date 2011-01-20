@@ -12,11 +12,11 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Descrição: Banco de Dados da magia Abracadaba.         |
+// | Descrição: Banco de Dados da magia Abracadabra.        |
 // |--------------------------------------------------------|
 // | Estrutura do Database:                                 |
 // | ID da Habilidade, Nome da Habilidade,                  |
-// | Level do Abracadabra, Taxa                             |
+// | Nível do Abracadabra, Taxa                             |
 // \________________________________________________________/
 //
 //============================================================

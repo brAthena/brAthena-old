@@ -80,4 +80,4 @@
 30,arug_cas02,Syr,Agit_Ar02,1				// kRO : Cyr | iRO: Cyr
 31,arug_cas03,Horn,Agit_Ar03,1				// kRO : Horn | iRO: Horn
 32,arug_cas04,Gefn,Agit_Ar04,1				// kRO : Gefn | iRO: Gefn
-33,arug_cas05,Bandis,Agit_Ar05,1			// kRO : Bandis | iRO: Bandis
+33,arug_cas05,Vanadis,Agit_Ar05,1			// kRO : Bandis | iRO: Bandis
