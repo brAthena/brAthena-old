@@ -9,6 +9,13 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0134 - 20/01/2011 [Protimus]
+	* Adicionadas classes 3rd ao database.
+	* Adicionados pontos ganhos ao se tornar um 3rd classe (para todas as classes).
+	- Ambas modificações estão comentadas e desabilitadas, posteriormente quando as classes forem adicionadas
+	na source, irei descomentar.
+	* Removida checagem para flags da DEF no flag de crítico para HITs normais.
+	
 	r0133 - 20/01/2011 [Protimus]
 	* Adicionadas modificações para a Esquiva (FLEE).
 	* Mudanças para velocidade de ataque (ASPD).

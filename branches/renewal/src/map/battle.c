@@ -1183,7 +1183,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 	if (flag.cri)
 	{
 		wd.type = 0x0a;
-		flag.idef = flag.idef2 = flag.hit = 1;
+		flag.hit = 1;
 	} else {	//Check for Perfect Hit
 		if(sd && sd->perfect_hit > 0 && rand()%100 < sd->perfect_hit)
 			flag.hit = 1;
