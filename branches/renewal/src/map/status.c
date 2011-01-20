@@ -1308,7 +1308,7 @@ static unsigned short status_base_atk(const struct block_list *bl, const struct 
 	//Normally only players have base-atk, but homunc have a different batk
 	// equation, hinting that perhaps non-players should use this for batk.
 	// [Skotlex]
-	atk = status->str;
+	atk = status->str + level/4;
 
 	if( bl->type == BL_PC ) {
 		atk += status->dex/5;
@@ -1317,7 +1317,7 @@ static unsigned short status_base_atk(const struct block_list *bl, const struct 
 	return cap_value(str, 0, USHRT_MAX);
 }
 
-#define status_base_status_matk(status, level) (status->int_ + (status->int_/2) + (status->dex/5) + (status->luk/3) + (level/4))
+#define status_base_status_matk(status, level) (status->int_ + (level/4) + (status->dex/5) + (status->luk/3))
 
 //Fills in the misc data that can be calculated from the other status info (except for level)
 void status_calc_misc(struct block_list *bl, struct status_data *status, int level)
@@ -1345,6 +1345,10 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int lev
 		status->cri += status->luk*3 + 10;
 	else
 		status->cri = 0;
+		
+	if (bl->type&battle_config.enable_perfect_flee)
+		status->flee2 += status->luk + 10;
+		status->flee2 = 0;
 
 	if (status->cri)
 	switch (bl->type) {
