@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0135 - 23/01/2011 [Floozie]
+	* Adicionado novo calculo do party_exp_share de acordo com o renewal
+	
 	r0134 - 20/01/2011 [Protimus]
 	* Adicionadas classes 3rd ao database.
 	* Adicionados pontos ganhos ao se tornar um 3rd classe (para todas as classes).

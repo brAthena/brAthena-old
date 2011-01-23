@@ -883,7 +883,7 @@ int party_send_xy_clear(struct party_data *p)
 int party_exp_share(struct party_data* p, struct block_list* src, unsigned int base_exp, unsigned int job_exp, int zeny)
 {
 	struct map_session_data* sd[MAX_PARTY];
-	unsigned int i, c;
+	unsigned int i, c, xp;
 
 	nullpo_ret(p);
 
@@ -895,10 +895,19 @@ int party_exp_share(struct party_data* p, struct block_list* src, unsigned int b
 	}
 	if (c < 1)
 		return 0;
+	
+	if(c == 1)
+		xp = 100;
+	else if(c >= 2 && c <= 4)
+		xp = (10-c) * 10;
+	else if(c >= 5 && c <= 7)
+		xp = ((10-c) * 10)+5;
+	else if(c >= 8 && c <= MAX_PARTY)
+		xp = 40;
 
-	base_exp/=c;	
-	job_exp/=c;
-	zeny/=c;
+	base_exp *= xp/100;
+	job_exp *= xp/100;
+	zeny *= xp/100;
 
 	if (battle_config.party_even_share_bonus && c > 1)
 	{
