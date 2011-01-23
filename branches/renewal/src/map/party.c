@@ -905,9 +905,9 @@ int party_exp_share(struct party_data* p, struct block_list* src, unsigned int b
 	else if(c >= 8 && c <= MAX_PARTY)
 		xp = 40;
 
-	base_exp *= xp/100;
-	job_exp *= xp/100;
-	zeny *= xp/100;
+	base_exp = base_exp*xp/100;
+	job_exp = job_exp*xp/100;
+	zeny = zeny*xp/100;
 
 	if (battle_config.party_even_share_bonus && c > 1)
 	{

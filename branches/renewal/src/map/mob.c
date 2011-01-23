@@ -2165,33 +2165,28 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 				merc_hom_gainexp(tmpsd[i]->hd, base_exp);
 			if(base_exp || job_exp)
 			{
-				if( base_exp )
-				{
-					int e_lv = status_get_lv(&md->bl), u_lv = status_get_lv(src), d_lv = 0;
+				int diferenca = md->level - sd->status.base_level;
+				int diferenca_exp;
+				if(diferenca >= 16)
+					diferenca_exp = 40;
+				else if(diferenca <= 15 && diferenca >= 10)
+					diferenca_exp = 140-((diferenca-10)*5);
+				else if(diferenca <= 9 && diferenca >= 3)
+					diferenca_exp = 105+((diferenca-3)*5);
+				else if(diferenca <= 2 && diferenca >= -5)
+					diferenca_exp = 100;
+				else if(diferenca <= -6 && diferenca >= -20)
+					diferenca_exp = 100+((int)((diferenca+1)/5))*5;
+				else if(diferenca <= -21 && diferenca >= -25)
+					diferenca_exp = 60;
+				else if(diferenca <= -26 && diferenca >= -30)
+					diferenca_exp = 35;
+				else if(diferenca <= -30)
+					diferenca_exp = 10;
+				
+				if(base_exp) base_exp = base_exp*diferenca_exp/100;
+				if(job_exp) job_exp = job_exp*diferenca_exp/100;
 
-					if( u_lv > (e_lv + 3) || e_lv > (u_lv + 3) )
-						d_lv = cap_value( u_lv - e_lv, -10, 10 );
-
-					if( d_lv < 3 && d_lv > -3 )
-						d_lv = 0;
-
-					if( d_lv != 0 )
-					{
-						if( d_lv > 0 ) {
-							d_lv = 40 + (d_lv * 10);
-							d_lv -= d_lv*2;
-						}
-						else if( d_lv < 0 ) {
-							d_lv -= d_lv*2;
-							d_lv = (d_lv < 5 ? 0 : 9) + d_lv;
-						}
-
-						d_lv = cap_value(d_lv, -100, 20);
-
-						base_exp += base_exp / 100 * d_lv;
-						job_exp += job_exp / 100 * d_lv;
-					}
-				}
 				if( md->dmglog[i].flag != MDLF_PET || battle_config.pet_attack_exp_to_master )
 					pc_gainexp(tmpsd[i], &md->bl, base_exp, job_exp, false);
 			}
@@ -2214,6 +2209,7 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 		struct item_drop_list *dlist = ers_alloc(item_drop_list_ers, struct item_drop_list);
 		struct item_drop *ditem;
 		int drop_rate;
+		int diferenca = md->level - sd->status.base_level;
 		dlist->m = md->bl.m;
 		dlist->x = md->bl.x;
 		dlist->y = md->bl.y;
@@ -2255,6 +2251,16 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 			// Increase drop rate if user has SC_ITEMBOOST
 			if (sd && sd->sc.data[SC_ITEMBOOST]) // now rig the drop rate to never be over 90% unless it is originally >90%.
 				drop_rate = max(drop_rate,cap_value((int)(0.5+drop_rate*(sd->sc.data[SC_ITEMBOOST]->val1)/100.),0,9000));
+
+			if(diferenca <= 10 && diferenca >= -5)
+				drop_rate *=100;
+			if(diferenca <= -6 && diferenca >= -9)
+				drop_rate *=90;
+			if((diferenca <= -10 && diferenca >= -15) || (diferenca >= 11 && diferenca <= 14))
+				drop_rate *=75;
+			if(diferenca <= -16 || diferenca >= 15)
+				drop_rate *=50;
+			drop_rate /=100;
 
 			// attempt to drop the item
 			if (rand() % 10000 >= drop_rate)
