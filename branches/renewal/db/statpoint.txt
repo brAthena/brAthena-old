@@ -13,10 +13,9 @@
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Descrição: Database contendo os pontos de experiência  |
-// | do Nível 1 ao 1000.                                    |
+// | do Nível 1 ao 150.                                    |
 // \________________________________________________________/
 //
-
 48
 51
 54

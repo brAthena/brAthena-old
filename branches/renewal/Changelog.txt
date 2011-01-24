@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0141 - 24/01/2011 [Dani]
+	* Removida linha a mais dada no statpoint.txt
+	- Essa DB não deve conter linhas em branco, jamais.
+
 	r0139 - 24/01/2011 [Protimus]
 	* Adicionadas mudanças no db/statpoint.txt para level máximo 150, conforme renewal.
 
