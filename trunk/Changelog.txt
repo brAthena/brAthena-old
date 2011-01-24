@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0139 - 24/01/2011 [Protimus]
+	* Adicionadas mudanças no db/statpoint.txt para level máximo 99.
+
 	r0138 - 24/01/2011 [brn0]
 	* Adicionado NPC Estilista na pasta personalizados.
 	- npc/personalizados/Estilista.txt

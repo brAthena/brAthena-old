@@ -1382,7 +1382,7 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int lev
 		status->matk_max = ((TBL_PC*)bl)->matk_add;
 
 	if( bl->type&battle_config.enable_critical )
-		status->cri += status->luk*3 + 10;
+		status->cri += status->luk*3;
 	else
 		status->cri = 0;
 		
