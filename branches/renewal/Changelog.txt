@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0142 - 24/01/2011 [Protimus]
+	* Adicionado sistema de reuso para habilidades.
+	- Totalmente funcional, limpo e utilizando tabelas de SQL.
+	* Reorganizada pasta upgrades eA para upgrades contendo os do brA e do eA.
+
 	r0141 - 24/01/2011 [Dani]
 	* Removida linha a mais dada no statpoint.txt
 	- Essa DB não deve conter linhas em branco, jamais.

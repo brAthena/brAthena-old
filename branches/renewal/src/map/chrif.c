@@ -246,7 +246,10 @@ int chrif_save(struct map_session_data *sd, int flag)
 	if (flag && sd->state.active) //Store player data which is quitting.
 	{
 		//FIXME: SC are lost if there's no connection at save-time because of the way its related data is cleared immediately after this function. [Skotlex]
-		if (chrif_isconnected()) chrif_save_scdata(sd);
+		if (chrif_isconnected()){
+			chrif_save_scdata(sd);
+			chrif_save_skill_reuse(sd);
+		}
 		if (!chrif_auth_logout(sd, flag==1?ST_LOGOUT:ST_MAPCHANGE))
 			ShowError("chrif_save: Falha ao configurar jogador %d:%d para sair corretamente!\n", sd->status.account_id, sd->status.char_id);
 	}
@@ -508,6 +511,20 @@ int chrif_scdata_request(int account_id, int char_id)
 	WFIFOL(char_fd,6) = char_id;
 	WFIFOSET(char_fd,10);
 #endif
+	return 0;
+}
+
+/*===========================================
+ * Request para o sistema de reuso [Protimus]
+ *-----------------------------------------*/
+int chrif_sk_cb_data_request(int account_id, int char_id)
+{
+	chrif_check(-1);
+	WFIFOHEAD(char_fd,10);
+	WFIFOW(char_fd,0) = 0x2b29;
+	WFIFOL(char_fd,2) = account_id;
+	WFIFOL(char_fd,6) = char_id;
+	WFIFOSET(char_fd,10);
 	return 0;
 }
 
@@ -1197,6 +1214,75 @@ int chrif_load_scdata(int fd)
 	return 0;
 }
 
+int chrif_save_skill_reuse(struct map_session_data *sd)
+{	
+	int i, count=0;
+	int tick;
+	struct skill_reuse_data data;
+	const struct TimerData *timer;
+
+	chrif_check(-1);
+	tick = gettick();
+	
+	WFIFOHEAD(char_fd, 14 + MAX_SKILL*sizeof(struct skill_reuse_data));
+	WFIFOW(char_fd,0) = 0x2b28;
+	WFIFOL(char_fd,4) = sd->status.account_id;
+	WFIFOL(char_fd,8) = sd->status.char_id;
+	for (i = 0; i < MAX_SKILL; i++)
+	{
+		if (!sd->blockskill[i])
+			continue;
+
+		timer = get_timer(sd->blockskill[i]);
+		if (timer == NULL || DIFF_TICK(timer->tick,tick) < 0)
+			continue;
+
+		data.id = i;
+		data.tick = DIFF_TICK(timer->tick,tick);
+
+		memcpy(WFIFOP(char_fd,14 +count*sizeof(struct skill_reuse_data)),
+			&data, sizeof(struct skill_reuse_data));
+		count++;
+	}
+
+	if (count == 0)
+		return 0;
+	WFIFOW(char_fd,12) = count;
+	WFIFOW(char_fd,2) = 14 +count*sizeof(struct skill_reuse_data); 
+	WFIFOSET(char_fd,WFIFOW(char_fd,2));
+	return 0;
+}
+
+int chrif_load_skill_reuse(int fd)
+{	
+	struct map_session_data *sd;
+	struct skill_reuse_data *data;
+	int aid, cid, i, count;
+
+	aid = RFIFOL(fd,4); 
+	cid = RFIFOL(fd,8);
+	
+	sd = map_id2sd(aid);
+	if (!sd)
+	{
+		ShowError("chrif_load_skill_reuse_data: Personagem %d não encontrado!\n", aid);
+		return -1;
+	}
+	if (sd->status.char_id != cid)
+	{
+		ShowError("chrif_load_skill_reuse_data: Recebendo dados da conta %d, a ID do char não é a mesma (%d != %d)!\n", aid, sd->status.char_id, cid);
+		return -1;
+	}
+	count = RFIFOW(fd,12);
+	for (i = 0; i < count; i++)
+	{
+		data = (struct skill_reuse_data*)RFIFOP(fd,14 + i*sizeof(struct skill_reuse_data));
+		ShowError("Novo Instante: %d",data->tick);
+		skill_blockpc_start(sd, data->id, data->tick);
+	}
+	return 0;
+}
+
 /*==========================================
  * Send rates and motd to char server [Wizputer]
  * S 2b16 <base rate>.L <job rate>.L <drop rate>.L
@@ -1392,6 +1478,7 @@ int chrif_parse(int fd)
 		case 0x2b03: clif_charselectok(RFIFOL(fd,2)); break;
 		case 0x2b04: chrif_recvmap(fd); break;
 		case 0x2b06: chrif_changemapserverack(RFIFOL(fd,2), RFIFOL(fd,6), RFIFOL(fd,10), RFIFOL(fd,14), RFIFOW(fd,18), RFIFOW(fd,20), RFIFOW(fd,22), RFIFOL(fd,24), RFIFOW(fd,28)); break;
+		case 0x2b07: chrif_load_skill_reuse(fd); break;
 		case 0x2b09: map_addnickdb(RFIFOL(fd,2), (char*)RFIFOP(fd,6)); break;
 		case 0x2b0d: chrif_changedsex(fd); break;
 		case 0x2b0f: chrif_char_ask_name_answer(RFIFOL(fd,2), (char*)RFIFOP(fd,6), RFIFOW(fd,30), RFIFOW(fd,32)); break;

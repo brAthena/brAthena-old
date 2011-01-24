@@ -40,6 +40,7 @@ int chrif_scdata_request(int account_id, int char_id);
 int chrif_save(struct map_session_data* sd, int flag);
 int chrif_charselectreq(struct map_session_data* sd, uint32 s_ip);
 int chrif_changemapserver(struct map_session_data* sd, uint32 ip, uint16 port);
+int chrif_sk_cb_data_request(int account_id, int char_id);
 
 int chrif_searchcharid(int char_id);
 int chrif_changeemail(int id, const char *actual_email, const char *new_email);
@@ -57,6 +58,7 @@ int chrif_changesex(struct map_session_data *sd);
 int chrif_chardisconnect(struct map_session_data *sd);
 int check_connect_char_server(int tid, unsigned int tick, int id, intptr data);
 int chrif_divorce(int partner_id1, int partner_id2);
+int chrif_save_skill_reuse(struct map_session_data *sd);
 
 int do_final_chrif(void);
 int do_init_chrif(void);

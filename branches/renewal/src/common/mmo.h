@@ -295,6 +295,12 @@ struct s_friend {
 	char name[NAME_LENGTH];
 };
 
+struct skill_reuse_data {
+	int id;
+	long tick;
+};
+
+
 #ifdef HOTKEY_SAVING
 struct hotkey {
 	unsigned int id;

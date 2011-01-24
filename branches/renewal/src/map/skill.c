@@ -167,6 +167,7 @@ int	skill_get_unit_target( int id )       { skill_get (skill_db[id].unit_target&
 int	skill_get_unit_bl_target( int id )    { skill_get (skill_db[id].unit_target&BL_ALL, id, 1); }
 int	skill_get_unit_flag( int id )         { skill_get (skill_db[id].unit_flag, id, 1); }
 int	skill_get_unit_layout_type( int id ,int lv ){ skill_get (skill_db[id].unit_layout_type[lv-1], id, lv); }
+int	skill_get_reuse( int id ,int lv )      { skill_get (skill_db[id].reuse[lv-1], id, lv); }
 
 int skill_tree_get_max(int id, int b_class)
 {
@@ -11830,6 +11831,22 @@ static bool skill_parse_row_abradb(char* split[], int columns, int current)
 	return true;
 }
 
+static bool skill_parse_row_reusedb(char* split[], int columns, int current)
+{
+	int i = atoi(split[0]);
+	i = skill_get_index(i);
+
+	if( !skill_get_index(i) || !skill_get_max(i) )
+	{
+		ShowError("skill_reuse_db: ID da habilidade invalida %d\n", i);
+		return false;
+	}
+
+	skill_split_atoi(split[1],skill_db[i].reuse);
+
+	return true;
+}
+
 static void skill_readdb(void)
 {
 	// init skill db structures
@@ -11847,6 +11864,7 @@ static void skill_readdb(void)
 	sv_readdb(db_path, "skill_cast_db.txt"     , ',',   6,  6, MAX_SKILL_DB, skill_parse_row_castdb);
 	sv_readdb(db_path, "skill_castnodex_db.txt", ',',   2,  3, MAX_SKILL_DB, skill_parse_row_castnodexdb);
 	sv_readdb(db_path, "skill_nocast_db.txt"   , ',',   2,  2, MAX_SKILL_DB, skill_parse_row_nocastdb);
+	sv_readdb(db_path, "skill_reuse_db.txt"     , ',',   2,  2, MAX_SKILL_DB, skill_parse_row_reusedb);
 	sv_readdb(db_path, "skill_unit_db.txt"     , ',',   8,  8, MAX_SKILL_DB, skill_parse_row_unitdb);
 	skill_init_unit_layout();
 	sv_readdb(db_path, "produce_db.txt"        , ',',   4,  4+2*MAX_PRODUCE_RESOURCE, MAX_SKILL_PRODUCE_DB, skill_parse_row_producedb);
