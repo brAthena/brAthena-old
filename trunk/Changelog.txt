@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0140 - 23/01/2011 [Dani]
+	* Enviadas alterações do eAthena que foram perdidas no meio do caminho
+
 	r0139 - 24/01/2011 [Protimus]
 	* Adicionadas mudanças no db/statpoint.txt para level máximo 99.
 

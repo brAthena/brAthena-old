@@ -8724,11 +8724,13 @@ void clif_progressbar_abort(struct map_session_data * sd)
 
 void clif_parse_progressbar(int fd, struct map_session_data * sd)
 {
+	int npc_id = sd->progressbar.npc_id;
+
 	if( gettick() < sd->progressbar.timeout && sd->st )
 		sd->st->state = END;
 
-	npc_scriptcont(sd, sd->progressbar.npc_id);
 	sd->progressbar.npc_id = sd->progressbar.timeout = 0;
+	npc_scriptcont(sd, npc_id);
 }
 
 /*==========================================
@@ -9562,9 +9564,11 @@ void clif_parse_NpcBuyListSend(int fd, struct map_session_data* sd)
 	WFIFOSET(fd,packet_len(0xca));
 }
 
-/*==========================================
- *
- *------------------------------------------*/
+/// Request to sell chosen items to npc shop
+/// R 00c9 <packet len>.W {<index>.W <amount>.W}.4B*
+/// S 00cb <result>.B
+/// result = 00 -> "The deal has successfully completed."
+/// result = 01 -> "The deal has failed."
 void clif_parse_NpcSellListSend(int fd,struct map_session_data *sd)
 {
 	int fail=0,n;
@@ -10872,10 +10876,11 @@ void clif_parse_CloseVending(int fd, struct map_session_data* sd)
  *------------------------------------------*/
 void clif_parse_VendingListReq(int fd, struct map_session_data* sd)
 {
-	vending_vendinglistreq(sd,RFIFOL(fd,2));
-
 	if( sd->npc_id )
-		npc_event_dequeue(sd);
+	{// using an NPC
+		return;
+	}
+	vending_vendinglistreq(sd,RFIFOL(fd,2));
 }
 
 /*==========================================
@@ -11391,10 +11396,11 @@ void clif_parse_GMKickAll(int fd, struct map_session_data* sd)
 }
 
 /*==========================================
- * /shift <name>
+ * /remove <account name>
+ * /shift <char name>
  *------------------------------------------*/
 void clif_parse_GMShift(int fd, struct map_session_data *sd)
-{	
+{// FIXME: remove is supposed to receive account name for clients prior 20100803RE
 	char *player_name;
 	int lv;
 
@@ -11413,11 +11419,47 @@ void clif_parse_GMShift(int fd, struct map_session_data *sd)
 	}
 }
 
+
+/// Warps oneself to the location of the character given by account id ( /remove <account id> ).
+/// R 0843 <account id>.L
+void clif_parse_GMRemove2(int fd, struct map_session_data* sd)
+{
+	int account_id, lv;
+	struct map_session_data* pl_sd;
+
+	if( battle_config.atc_gmonly && !pc_isGM(sd) )
+	{
+		return;
+	}
+
+	if( pc_isGM(sd) < ( lv = get_atcommand_level(atcommand_jumpto) ) )
+	{
+		return;
+	}
+
+	account_id = RFIFOL(fd,packet_db[sd->packet_ver][RFIFOW(fd,0)].pos[0]);
+
+	if( ( pl_sd = map_id2sd(account_id) ) != NULL && pc_isGM(sd) >= pc_isGM(pl_sd) )
+	{
+		pc_warpto(sd, pl_sd);
+	}
+
+	if( log_config.gm && lv >= log_config.gm )
+	{
+		char message[32];
+
+		sprintf(message, "/remove %d", account_id);
+		log_atcommand(sd, message);
+	}
+}
+
+
 /*==========================================
- * /recall <name>
+ * /recall <account name>
+ * /summon <char name>
  *------------------------------------------*/
 void clif_parse_GMRecall(int fd, struct map_session_data *sd)
-{
+{// FIXME: recall is supposed to receive account name for clients prior 20100803RE
 	char *player_name;
 	int lv;
 
@@ -11436,6 +11478,41 @@ void clif_parse_GMRecall(int fd, struct map_session_data *sd)
 		log_atcommand(sd, message);
 	}
 }
+
+
+/// Summons a character given by account id to one's own position ( /recall <account id> )
+/// R 0842 <account id>.L
+void clif_parse_GMRecall2(int fd, struct map_session_data* sd)
+{
+	int account_id, lv;
+	struct map_session_data* pl_sd;
+
+	if( battle_config.atc_gmonly && !pc_isGM(sd) )
+	{
+		return;
+	}
+
+	if( pc_isGM(sd) < ( lv = get_atcommand_level(atcommand_recall) ) )
+	{
+		return;
+	}
+
+	account_id = RFIFOL(fd,packet_db[sd->packet_ver][RFIFOW(fd,0)].pos[0]);
+
+	if( ( pl_sd = map_id2sd(account_id) ) != NULL && pc_isGM(sd) >= pc_isGM(pl_sd) )
+	{
+		pc_recall(sd, pl_sd);
+	}
+
+	if( log_config.gm && lv >= log_config.gm )
+	{
+		char message[32];
+
+		sprintf(message, "/recall %d", account_id);
+		log_atcommand(sd, message);
+	}
+}
+
 
 /*==========================================
  * /monster /item 
@@ -11601,7 +11678,7 @@ void clif_parse_GMReqAccountName(int fd, struct map_session_data *sd)
  * S 0198 <x>.W <y>.W <gat>.W
  *------------------------------------------*/
 void clif_parse_GMChangeMapType(int fd, struct map_session_data *sd)
-{// FIXME: type sent by client is 0 or 1 (even if you enter 2+); that suggests, that it is walkable gat attribute
+{
 	int x,y,type;
 
 	if( battle_config.atc_gmonly && !pc_isGM(sd) )
@@ -12022,20 +12099,20 @@ void clif_parse_FriendsListRemove(int fd, struct map_session_data *sd)
 }
 
 /*==========================================
- * /pvpinfo
+ * /pvpinfo (CZ_REQ_PVPPOINT & ZC_ACK_PVPPOINT)
+ * R 020f <char id>.L <account id>.L
+ * S 0210 <char id>.L <account id>.L <win point>.L <lose point>.L <point>.L
  *------------------------------------------*/
 void clif_parse_PVPInfo(int fd,struct map_session_data *sd)
 {
 	WFIFOHEAD(fd,packet_len(0x210));
 	WFIFOW(fd,0) = 0x210;
-	//WFIFOL(fd,2) = 0;	// not sure what for yet
-	//WFIFOL(fd,6) = 0;
+	WFIFOL(fd,2) = sd->status.char_id;
+	WFIFOL(fd,6) = sd->status.account_id;
 	WFIFOL(fd,10) = sd->pvp_won;	// times won
 	WFIFOL(fd,14) = sd->pvp_lost;	// times lost
 	WFIFOL(fd,18) = sd->pvp_point;
 	WFIFOSET(fd, packet_len(0x210));
-
-	return;
 }
 
 /*==========================================
@@ -12510,7 +12587,7 @@ void clif_Mail_read(struct map_session_data *sd, int mail_id)
 		WFIFOL(fd,72) = 0;
 		WFIFOL(fd,76) = msg->zeny;
 
-		if( item->nameid && (data = itemdb_search(item->nameid)) != NULL )
+		if( item->nameid && (data = itemdb_exists(item->nameid)) != NULL )
 		{
 			WFIFOL(fd,80) = item->amount;
 			WFIFOW(fd,84) = (data->view_id)?data->view_id:item->nameid;
@@ -12576,7 +12653,7 @@ void clif_parse_Mail_getattach(int fd, struct map_session_data *sd)
 		struct item_data *data;
 		unsigned int weight;
 
-		if ((data = itemdb_search(sd->mail.inbox.msg[i].item.nameid)) == NULL)
+		if ((data = itemdb_exists(sd->mail.inbox.msg[i].item.nameid)) == NULL)
 			return;
 
 		switch( pc_checkadditem(sd, data->nameid, sd->mail.inbox.msg[i].item.amount) )
@@ -12789,7 +12866,7 @@ void clif_Auction_results(struct map_session_data *sd, short count, short pages,
 		WFIFOL(fd,k) = auction.auction_id;
 		safestrncpy((char*)WFIFOP(fd,4+k), auction.seller_name, NAME_LENGTH);
 
-		if( (item = itemdb_search(auction.item.nameid)) != NULL && item->view_id > 0 )
+		if( (item = itemdb_exists(auction.item.nameid)) != NULL && item->view_id > 0 )
 			WFIFOW(fd,28+k) = item->view_id;
 		else
 			WFIFOW(fd,28+k) = auction.item.nameid;
@@ -12850,7 +12927,7 @@ void clif_parse_Auction_setitem(int fd, struct map_session_data *sd)
 		return;
 	}
 
-	if( (item = itemdb_search(sd->status.inventory[idx].nameid)) != NULL && !(item->type == IT_ARMOR || item->type == IT_PETARMOR || item->type == IT_WEAPON || item->type == IT_CARD || item->type == IT_ETC) )
+	if( (item = itemdb_exists(sd->status.inventory[idx].nameid)) != NULL && !(item->type == IT_ARMOR || item->type == IT_PETARMOR || item->type == IT_WEAPON || item->type == IT_CARD || item->type == IT_ETC) )
 	{ // Consumible or pets are not allowed
 		clif_Auction_setitem(sd->fd, idx, true);
 		return;
@@ -12951,7 +13028,7 @@ void clif_parse_Auction_register(int fd, struct map_session_data *sd)
 		return;
 	}
 
-	if( (item = itemdb_search(sd->status.inventory[sd->auction.index].nameid)) == NULL )
+	if( (item = itemdb_exists(sd->status.inventory[sd->auction.index].nameid)) == NULL )
 	{ // Just in case
 		clif_Auction_message(fd, 2); // The auction has been canceled
 		return;
@@ -13065,6 +13142,31 @@ void clif_cashshop_show(struct map_session_data *sd, struct npc_data *nd)
 	WFIFOSET(fd,WFIFOW(fd,2));
 }
 
+/// Cashshop Buy Ack (ZC_PC_CASH_POINT_UPDATE)
+/// S 0289 <cash point>.L <kafra point>.L <error>.W
+///
+/// @param error
+/// 0: The deal has successfully completed. (ERROR_TYPE_NONE)
+/// 1: The Purchase has failed because the NPC does not exist. (ERROR_TYPE_NPC)
+/// 2: The Purchase has failed because the Kafra Shop System is not working correctly. (ERROR_TYPE_SYSTEM)
+/// 3: You are over your Weight Limit. (ERROR_TYPE_INVENTORY_WEIGHT)
+/// 4: You cannot purchase items while you are in a trade. (ERROR_TYPE_EXCHANGE)
+/// 5: The Purchase has failed because the Item Information was incorrect. (ERROR_TYPE_ITEM_ID)
+/// 6: You do not have enough Kafra Credit Points. (ERROR_TYPE_MONEY)
+/// 7: You can purchase up to 10 items.
+/// 8: Some items could not be purchased.
+void clif_cashshop_ack(struct map_session_data* sd, int error)
+{
+	int fd = sd->fd;
+
+	WFIFOHEAD(fd, packet_len(0x289));
+	WFIFOW(fd,0) = 0x289;
+	WFIFOL(fd,2) = sd->cashPoints;
+	WFIFOL(fd,6) = sd->kafraPoints;
+	WFIFOW(fd,10) = TOW(error);
+	WFIFOSET(fd, packet_len(0x289));
+}
+
 void clif_parse_cashshop_buy(int fd, struct map_session_data *sd)
 {
 	int fail = 0, amount, points;
@@ -13080,12 +13182,7 @@ void clif_parse_cashshop_buy(int fd, struct map_session_data *sd)
 	else
 		fail = npc_cashshop_buy(sd, nameid, amount, points);
 
-	WFIFOHEAD(fd,12);
-	WFIFOW(fd,0) = 0x289;
-	WFIFOL(fd,2) = sd->cashPoints;
-	WFIFOL(fd,6) = sd->kafraPoints;
-	WFIFOW(fd,10) = fail;
-	WFIFOSET(fd,12);
+	clif_cashshop_ack(sd, fail);
 }
 
 /*==========================================
@@ -14194,7 +14291,7 @@ static int packetdb_readdb(void)
 	    6,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 	    0,  0,  0,  0,  8,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 	//#0x0280
-	    0,  0,  0,  6,  0,  0,  0,  0,  0,  8, 18,  0,  0,  0,  0,  0,
+	    0,  0,  0,  6,  0,  0,  0,  0,  0, 12, 18,  0,  0,  0,  0,  0,
 	    0,  4,  0, 70,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 	    0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 	   85, -1, -1,107,  6, -1,  7,  7, 22,191,  0,  0,  0,  0,  0,  0,
@@ -14443,6 +14540,8 @@ static int packetdb_readdb(void)
 		{clif_parse_GMShift,"shift"},
 		{clif_parse_GMChangeMapType,"changemaptype"},
 		{clif_parse_GMRc,"rc"},
+		{clif_parse_GMRecall2,"recall2"},
+		{clif_parse_GMRemove2,"remove2"},
 
 		{clif_parse_NoviceDoriDori,"sndoridori"},
 		{clif_parse_NoviceExplosionSpirits,"snexplosionspirits"},
@@ -14503,6 +14602,7 @@ static int packetdb_readdb(void)
 		{clif_parse_PartyBookingUpdateReq,"bookingupdatereq"},
 		{clif_parse_PartyBookingDeleteReq,"bookingdelreq"},
 #endif
+		{clif_parse_PVPInfo,"pvpinfo"},
 		{NULL,NULL}
 	};
 
