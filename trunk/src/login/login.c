@@ -1487,7 +1487,7 @@ int login_config_read(const char* cfgName)
 		}
 		else if( !strcmpi(w1, "login_port") ) {
 			login_config.login_port = (uint16)atoi(w2);
-			ShowStatus("utilizar login_port : %s\n",w2);
+			ShowStatus("Utilizar login_port : %s\n",w2);
 		}
 		else if(!strcmpi(w1, "log_login"))
 			login_config.log_login = (bool)config_switch(w2);

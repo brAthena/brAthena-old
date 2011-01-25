@@ -4017,7 +4017,7 @@ int do_init(int argc, char **argv)
 	online_char_db = idb_alloc(DB_OPT_RELEASE_DATA);
 	mmo_char_sql_init();
 	char_read_fame_list(); //Read fame lists.
-	ShowInfo("servidor de personagens inicializado.\n");
+	ShowInfo("Servidor de personagens inicializado.\n");
 
 	set_defaultparse(parse_char);
 
@@ -4086,7 +4086,7 @@ int do_init(int argc, char **argv)
 
 	ShowInfo("Fim da funcao de inicializacao do servidor de personagens.\n");
 
-	ShowInfo("abrindo porta %d.....\n",char_port);
+	ShowInfo("Abrindo porta %d.....\n",char_port);
 	char_fd = make_listen_bind(bind_ip, char_port);
 	ShowStatus("Servidor de personagens "CL_GREEN"Ativado"CL_RESET" (Porta %d).\n\n", char_port);
 
