@@ -459,7 +459,7 @@ int log_config_read(char *cfgName)
 			} else if(strcmpi(w1, "log_gm_db") == 0) {
 				strcpy(log_config.log_gm_db, w2);
 				if(log_config.gm > 0)
-					ShowNotice("Armazenando relatorio de uso comandos GM nível %d na tabela `%s`\n", log_config.gm, w2);
+					ShowNotice("Armazenando relatorio de uso comandos GM nivel %d na tabela `%s`\n", log_config.gm, w2);
 			} else if(strcmpi(w1, "log_npc_db") == 0) {
 				strcpy(log_config.log_npc_db, w2);
 				if(log_config.npc > 0)
@@ -489,7 +489,7 @@ int log_config_read(char *cfgName)
 			} else if(strcmpi(w1, "log_gm_file") == 0) {
 				strcpy(log_config.log_gm, w2);
 				if(log_config.gm > 0 && !log_config.sql_logs)
-					ShowNotice("Armazenando relatorio de uso comandos GM nível %d no arquivo `%s`.txt\n", log_config.gm, w2);
+					ShowNotice("Armazenando relatorio de uso comandos GM nivel %d no arquivo `%s`.txt\n", log_config.gm, w2);
 			} else if(strcmpi(w1, "log_npc_file") == 0) {
 				strcpy(log_config.log_npc, w2);
 				if(log_config.npc > 0 && !log_config.sql_logs)

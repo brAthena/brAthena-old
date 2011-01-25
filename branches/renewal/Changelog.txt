@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0148 - 25/01/2011 [Dani]
+	* Enviadas últimas alterações da trunk pra renewal
+	* Comentado mob 1996
+	- Ele devia estar comentado por padrão
+	* Alterado packetver no mmo.h para 20100707
+
 	r0146 - 25/01/2011 [Protimus]
 	* Adição das informações e máscaras de classes 3rd e 3rd bebês no uso de @jobchange.
 

@@ -556,7 +556,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 			if (flag & BF_LONG)
 				damage = damage * battle_config.pk_long_damage_rate/100;
 		}
-	if(!damage) damage  = 1;
+		if(!damage) damage = 1;
 	}
 
 	if(battle_config.skill_min_damage && damage > 0 && damage < div_)

@@ -193,11 +193,11 @@ static int inter_config_read(const char* cfgName)
 
 	fp = fopen(cfgName, "r");
 	if(fp == NULL) {
-		ShowError("arquivo nao encontrado: %s\n", cfgName);
+		ShowError("Arquivo nao encontrado: %s\n", cfgName);
 		return 1;
 	}
 
-	ShowInfo("carregando arquivo %s...\n", cfgName);
+	ShowInfo("Carregando arquivo %s...\n", cfgName);
 
 	while(fgets(line, sizeof(line), fp))
 	{
@@ -207,27 +207,27 @@ static int inter_config_read(const char* cfgName)
 
 		if(!strcmpi(w1,"char_server_ip")) {
 			strcpy(char_server_ip,w2);
-			ShowStatus ("definindo char_server_ip : %s\n", w2);
+			ShowStatus ("Definindo char_server_ip : %s\n", w2);
 		} else
 		if(!strcmpi(w1,"char_server_port")) {
 			char_server_port = atoi(w2);
-			ShowStatus ("definindo char_server_port : %s\n", w2);
+			ShowStatus ("Definindo char_server_port : %s\n", w2);
 		} else
 		if(!strcmpi(w1,"char_server_id")) {
 			strcpy(char_server_id,w2);
-			ShowStatus ("definindo char_server_id : %s\n", w2);
+			ShowStatus ("Definindo char_server_id : %s\n", w2);
 		} else
 		if(!strcmpi(w1,"char_server_pw")) {
 			strcpy(char_server_pw,w2);
-			ShowStatus ("definindo char_server_pw : %s\n", w2);
+			ShowStatus ("Definindo char_server_pw : %s\n", w2);
 		} else
 		if(!strcmpi(w1,"char_server_db")) {
 			strcpy(char_server_db,w2);
-			ShowStatus ("definindo char_server_db : %s\n", w2);
+			ShowStatus ("Definindo char_server_db : %s\n", w2);
 		} else
 		if(!strcmpi(w1,"default_codepage")) {
 			strcpy(default_codepage,w2);
-			ShowStatus ("definindo default_codepage : %s\n", w2);
+			ShowStatus ("Definindo default_codepage : %s\n", w2);
 		}
 #ifndef TXT_SQL_CONVERT
 		else if(!strcmpi(w1,"party_share_level"))
@@ -242,7 +242,7 @@ static int inter_config_read(const char* cfgName)
 	}
 	fclose(fp);
 
-	ShowInfo ("carregamento de %s terminado.\n", cfgName);
+	ShowInfo ("Carregamento de %s terminado.\n", cfgName);
 
 	return 0;
 }
