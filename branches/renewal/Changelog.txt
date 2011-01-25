@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0143 - 25/01/2011 [Dani]
+	* Implementada alocação de atributos do Renewal
+	- Altera também o cálculo para servidores de níveis altos, seguindo a mesma lógica
+	- Não recomendamos o uso da branch Renewal para servidores com níveis acima de 150
+
 	r0142 - 24/01/2011 [Protimus]
 	* Adicionado sistema de reuso para habilidades.
 	- Totalmente funcional, limpo e utilizando tabelas de SQL.

@@ -5063,10 +5063,22 @@ static int pc_setstat(struct map_session_data* sd, int type, int val)
 	return val;
 }
 
-/// Returns the number of stat points needed to raise the specified stat by 1.
+// Alocação de atributos do Renewal
+// 100 -> 104: 16 pontos de atributo para cada 1 ponto
+// 105 -> 109: 20 pontos de atributo para cada 1 ponto
+// 110 -> 114: 24 pontos de atributo para cada 1 ponto
+// 115 -> 119: 28 pontos de atributo para cada 1 ponto
+// Idéia inicial por Dani, otimizado por MidNight
+// Altera também o cálculo para servidores de níveis altos, seguindo a mesma lógica
 int pc_need_status_point(struct map_session_data* sd, int type)
 {
-	return ( 1 + (pc_getstat(sd,type) + 9) / 10 );
+	if (pc_getstat(sd,type) <= 99)
+	{
+		return ( 1 + (pc_getstat(sd,type) + 9) / 10 );
+	}
+	else {
+		return ( 4*(((pc_getstat(sd,type) - 100)/5) + 4) );
+	}
 }
 
 /// Raises a stat by 1.
