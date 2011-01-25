@@ -4854,6 +4854,33 @@ char* job_name(int class_)
 	case JOB_MECHANIC_T2:
 		return msg_txt(629);
 
+	case JOB_BABY_RUNE:
+	case JOB_BABY_WARLOCK:
+	case JOB_BABY_RANGER:
+	case JOB_BABY_BISHOP:
+	case JOB_BABY_MECHANIC:
+	case JOB_BABY_CROSS:
+	case JOB_BABY_GUARD:
+	case JOB_BABY_SORCERER:
+	case JOB_BABY_MINSTREL:
+	case JOB_BABY_WANDERER:
+	case JOB_BABY_SURA:
+	case JOB_BABY_GENETIC:
+	case JOB_BABY_CHASER:
+		return msg_txt(638 - JOB_BABY_RUNE+class_);
+
+	case JOB_BABY_RUNE2:
+		return msg_txt(638);
+
+	case JOB_BABY_GUARD2:
+		return msg_txt(644);
+
+	case JOB_BABY_RANGER2:
+		return msg_txt(640);
+
+	case JOB_BABY_MECHANIC2:
+		return msg_txt(642);
+		
 	default:
 		return msg_txt(651);
 	}
