@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0144 - 25/01/2011 [Protimus]
+	* Adicionado sistema de jobs para novas classes.
+	- Adicionadas classes 3-1 & 3-2.
+	- Faltam classes bebê e adição das classes para uso de @job.
+	* Pequena correção no mob Bascojin que estava com // em algumas informações.
+
 	r0143 - 25/01/2011 [Dani]
 	* Implementada alocação de atributos do Renewal
 	- Altera também o cálculo para servidores de níveis altos, seguindo a mesma lógica

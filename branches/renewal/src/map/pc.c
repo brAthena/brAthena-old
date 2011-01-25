@@ -4413,10 +4413,35 @@ int pc_jobid2mapid(unsigned short b_class)
 		b_class -= JOB_NOVICE_HIGH;
 		class_|= JOBL_UPPER;
 	}
-	if (b_class >= JOB_KNIGHT && b_class <= JOB_KNIGHT2)
+
+	if ((b_class >= JOB_RUNE_KNIGHT && b_class <= JOB_GUILLOTINE_CROSS) || 
+		(b_class >= JOB_ROYAL_GUARD && b_class <= JOB_SHADOW_CHASER) || b_class == JOB_RUNE_KNIGHT2 || 
+		b_class == JOB_ROYAL_GUARD2 || b_class == JOB_RANGER2 || b_class == JOB_MECHANIC2)
+		class_|= JOBL_THIRD;
+
+	else if ((b_class >= JOB_RUNE_KNIGHT_T && b_class <= JOB_GUILLOTINE_CROSS_T) || 
+		(b_class >= JOB_ROYAL_GUARD_T && b_class <= JOB_SHADOW_CHASER_T) || b_class == JOB_RUNE_KNIGHT_T2 || 
+		b_class == JOB_ROYAL_GUARD_T2 || b_class == JOB_RANGER_T2 || b_class == JOB_MECHANIC_T2)
+		class_|= JOBL_THIRD|JOBL_UPPER;
+
+	else if (b_class >= JOB_BABY_RUNE && b_class <= JOB_BABY_MECHANIC2)
+		class_|= JOBL_THIRD|JOBL_BABY;
+
+	if ((b_class >= JOB_KNIGHT && b_class <= JOB_KNIGHT2) || 
+		(b_class >= JOB_RUNE_KNIGHT && b_class <= JOB_GUILLOTINE_CROSS_T) || 
+		(b_class >= JOB_RUNE_KNIGHT2 && b_class <= JOB_RUNE_KNIGHT_T2) || 
+		(b_class >= JOB_RANGER2 && b_class <= JOB_MECHANIC_T2) || 
+		(b_class >= JOB_BABY_RUNE && b_class <= JOB_BABY_CROSS) || 
+		b_class == JOB_BABY_RUNE2 || b_class == JOB_BABY_RANGER2 || b_class == JOB_BABY_MECHANIC2)
 		class_|= JOBL_2_1;
-	else if (b_class >= JOB_CRUSADER && b_class <= JOB_CRUSADER2)
+
+	else if ((b_class >= JOB_CRUSADER && b_class <= JOB_CRUSADER2) || 
+		(b_class >= JOB_ROYAL_GUARD && b_class <= JOB_SHADOW_CHASER_T) || 
+		(b_class >= JOB_ROYAL_GUARD2 && b_class <= JOB_ROYAL_GUARD_T2) || 
+		(b_class >= JOB_BABY_GUARD && b_class <= JOB_BABY_CHASER) || 
+		b_class == JOB_BABY_GUARD2)
 		class_|= JOBL_2_2;
+
 	switch (b_class)
 	{
 		case JOB_NOVICE:
@@ -4432,27 +4457,78 @@ int pc_jobid2mapid(unsigned short b_class)
 		case JOB_KNIGHT2:
 		case JOB_CRUSADER:
 		case JOB_CRUSADER2:
+		case JOB_RUNE_KNIGHT:
+		case JOB_RUNE_KNIGHT2:
+		case JOB_RUNE_KNIGHT_T:
+		case JOB_RUNE_KNIGHT_T2:
+		case JOB_ROYAL_GUARD:
+		case JOB_ROYAL_GUARD2:
+		case JOB_ROYAL_GUARD_T:
+		case JOB_ROYAL_GUARD_T2:
+		case JOB_BABY_RUNE:
+		case JOB_BABY_RUNE2:
+		case JOB_BABY_GUARD:
+		case JOB_BABY_GUARD2:
 			class_ |= MAPID_SWORDMAN;
 			break;
 		case JOB_PRIEST:
 		case JOB_MONK:
+		case JOB_ARCH_BISHOP:
+		case JOB_ARCH_BISHOP_T:
+		case JOB_SURA:
+		case JOB_SURA_T:
+		case JOB_BABY_BISHOP:
+		case JOB_BABY_SURA:
 			class_ |= MAPID_ACOLYTE;
 			break;
 		case JOB_WIZARD:
 		case JOB_SAGE:
+		case JOB_WARLOCK:
+		case JOB_WARLOCK_T:
+		case JOB_SORCERER:
+		case JOB_SORCERER_T:
+		case JOB_BABY_WARLOCK:
+		case JOB_BABY_SORCERER:
 			class_ |= MAPID_MAGE;
 			break;
 		case JOB_BLACKSMITH:
 		case JOB_ALCHEMIST:
+		case JOB_MECHANIC:
+		case JOB_MECHANIC2:
+		case JOB_MECHANIC_T:
+		case JOB_MECHANIC_T2:
+		case JOB_GENETIC:
+		case JOB_GENETIC_T:
+		case JOB_BABY_MECHANIC:
+		case JOB_BABY_MECHANIC2:
+		case JOB_BABY_GENETIC:
 			class_ |= MAPID_MERCHANT;
 			break;
 		case JOB_HUNTER:
 		case JOB_BARD:
 		case JOB_DANCER:
+		case JOB_RANGER:
+		case JOB_RANGER2:
+		case JOB_RANGER_T:
+		case JOB_RANGER_T2:
+		case JOB_MINSTREL:
+		case JOB_WANDERER:
+		case JOB_MINSTREL_T:
+		case JOB_WANDERER_T:
+		case JOB_BABY_RANGER:
+		case JOB_BABY_RANGER2:
+		case JOB_BABY_MINSTREL:
+		case JOB_BABY_WANDERER:
 			class_ |= MAPID_ARCHER;
 			break;
 		case JOB_ASSASSIN:
 		case JOB_ROGUE:
+		case JOB_GUILLOTINE_CROSS:
+		case JOB_GUILLOTINE_CROSS_T:
+		case JOB_SHADOW_CHASER:
+		case JOB_SHADOW_CHASER_T:
+		case JOB_BABY_CROSS:
+		case JOB_BABY_CHASER:
 			class_ |= MAPID_THIEF;
 			break;
 			
@@ -4569,6 +4645,34 @@ int pc_mapid2jobid(unsigned short class_, int sex)
 		case MAPID_BABY_MONK:       return JOB_BABY_MONK;
 		case MAPID_BABY_ALCHEMIST:  return JOB_BABY_ALCHEMIST;
 		case MAPID_BABY_ROGUE:      return JOB_BABY_ROGUE;
+	// 3-1 classes
+		case MAPID_RUNE_KNIGHT:        return JOB_RUNE_KNIGHT;
+		case MAPID_WARLOCK:            return JOB_WARLOCK;
+		case MAPID_RANGER:             return JOB_RANGER;
+		case MAPID_ARCH_BISHOP:        return JOB_ARCH_BISHOP;
+		case MAPID_MECHANIC:           return JOB_MECHANIC;
+		case MAPID_GUILLOTINE_CROSS:   return JOB_GUILLOTINE_CROSS;
+	// 3-2 classes
+		case MAPID_ROYAL_GUARD:        return JOB_ROYAL_GUARD;
+		case MAPID_SORCERER:           return JOB_SORCERER;
+		case MAPID_MINSTRELWANDERER:   return sex?JOB_MINSTREL:JOB_WANDERER;
+		case MAPID_SURA:               return JOB_SURA;
+		case MAPID_GENETIC:            return JOB_GENETIC;
+		case MAPID_SHADOW_CHASER:      return JOB_SHADOW_CHASER;
+	// 3-1 advanced
+		case MAPID_RUNE_KNIGHT_T:      return JOB_RUNE_KNIGHT_T;
+		case MAPID_WARLOCK_T:          return JOB_WARLOCK_T;
+		case MAPID_RANGER_T:           return JOB_RANGER_T;
+		case MAPID_ARCH_BISHOP_T:      return JOB_ARCH_BISHOP_T;
+		case MAPID_MECHANIC_T:         return JOB_MECHANIC_T;
+		case MAPID_GUILLOTINE_CROSS_T: return JOB_GUILLOTINE_CROSS_T;
+	// 3-2 advanced
+		case MAPID_ROYAL_GUARD_T:      return JOB_ROYAL_GUARD_T;
+		case MAPID_SORCERER_T:         return JOB_SORCERER_T;
+		case MAPID_MINSTRELWANDERER_T: return sex?JOB_MINSTREL_T:JOB_WANDERER_T;
+		case MAPID_SURA_T:             return JOB_SURA_T;
+		case MAPID_GENETIC_T:          return JOB_GENETIC_T;
+		case MAPID_SHADOW_CHASER_T:    return JOB_SHADOW_CHASER_T;
 		default:
 			return -1;
 	}
@@ -4700,9 +4804,58 @@ char* job_name(int class_)
 		return msg_txt(619);
 	case JOB_NINJA:
 		return msg_txt(620);
-	
+	case JOB_RUNE_KNIGHT:
+	case JOB_WARLOCK:
+	case JOB_RANGER:
+	case JOB_ARCH_BISHOP:
+	case JOB_MECHANIC:
+	case JOB_GUILLOTINE_CROSS:
+		return msg_txt(625 - JOB_RUNE_KNIGHT+class_);
+
+	case JOB_RUNE_KNIGHT_T:
+	case JOB_WARLOCK_T:
+	case JOB_RANGER_T:
+	case JOB_ARCH_BISHOP_T:
+	case JOB_MECHANIC_T:
+	case JOB_GUILLOTINE_CROSS_T:
+		return msg_txt(625 - JOB_RUNE_KNIGHT_T+class_);
+
+	case JOB_ROYAL_GUARD:
+	case JOB_SORCERER:
+	case JOB_MINSTREL:
+	case JOB_WANDERER:
+	case JOB_SURA:
+	case JOB_GENETIC:
+	case JOB_SHADOW_CHASER:
+		return msg_txt(631 - JOB_ROYAL_GUARD+class_);
+
+	case JOB_ROYAL_GUARD_T:
+	case JOB_SORCERER_T:
+	case JOB_MINSTREL_T:
+	case JOB_WANDERER_T:
+	case JOB_SURA_T:
+	case JOB_GENETIC_T:
+	case JOB_SHADOW_CHASER_T:
+		return msg_txt(631 - JOB_ROYAL_GUARD_T+class_);
+
+	case JOB_RUNE_KNIGHT2:
+	case JOB_RUNE_KNIGHT_T2:
+		return msg_txt(625);
+
+	case JOB_ROYAL_GUARD2:
+	case JOB_ROYAL_GUARD_T2:
+		return msg_txt(631);
+
+	case JOB_RANGER2:
+	case JOB_RANGER_T2:
+		return msg_txt(627);
+
+	case JOB_MECHANIC2:
+	case JOB_MECHANIC_T2:
+		return msg_txt(629);
+
 	default:
-		return msg_txt(650);
+		return msg_txt(651);
 	}
 }
 
