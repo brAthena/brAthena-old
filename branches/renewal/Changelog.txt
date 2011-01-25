@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0146 - 25/01/2011 [Protimus]
+	* Adição das informações e máscaras de classes 3rd e 3rd bebês no uso de @jobchange.
+
 	r0145 - 25/01/2011 [Protimus]
 	* Adição das máscaras que faltavam para classes 3-1 & 3-2 bebês.
 
