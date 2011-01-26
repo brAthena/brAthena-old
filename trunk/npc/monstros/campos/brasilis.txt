@@ -17,7 +17,6 @@
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Tyler]                           |
 // | 1.1 Script Revisado [Tyler]                            |
-// | - Anotações                                            |  
 // \________________________________________________________/
 
 //==================================================
@@ -29,4 +28,4 @@ bra_fild01,0,0,0,0	monster	Cogumelo Vermelho	1085,3,0,0,0
 bra_fild01,0,0,0,0	monster	Dokebi	1110,20,0,0,0
 bra_fild01,0,0,0,0	monster	Espírito da Terra	2072,10,0,0,0
 bra_fild01,0,0,0,0	monster	Selvagem	1166,20,0,0,0
-bra_fild01,0,0,0,0	monster	Espiríto do Vento	2073,10,0,0,0
+bra_fild01,0,0,0,0	monster	Espírito do Vento	2073,10,0,0,0

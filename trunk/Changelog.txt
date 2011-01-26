@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0152 - 26/01/2011 [Dani]
+	* Envio de Traduções
+	- npc/cidades/izlude.txt
+	- npc/comerciantes/lojas.txt
+	* Revisão final na pasta npc/monstros
+
 	r0149 - 25/01/2011 [Dani]
 	* Correção no cabeçalho dos NPCs que foram enviados na r147,
 	para leitura automática do Centro de Traduções

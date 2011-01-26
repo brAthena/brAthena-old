@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Spawns de Geffenia						|
+// | Nome do Script: Spawns de Geffenia                     |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
@@ -16,7 +16,7 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | 1.1 Script Revisado [Protimus]							| 
+// | 1.1 Script Revisado [Protimus]                         |
 // \________________________________________________________/
 
 //==================================================
@@ -25,7 +25,7 @@
 gefenia01,0,0,0,0	monster	Anjo Fajuto	1371,60,0,0,0
 gefenia01,0,0,0,0	monster	Succubus	1370,10,0,0,0
 gefenia01,0,0,0,0	monster	Incubus	1374,10,0,0,0
-gefenia01,0,0,0,0	monster	Violinista	1390,30,0,0,0
+gefenia01,0,0,0,0	monster	Violi	1390,30,0,0,0
 gefenia01,0,0,0,0	monster	Diabinho	1292,20,0,0,0
 gefenia01,0,0,0,0	monster	Cavaleiro do Abismo	1219,10,0,0,0
 gefenia01,0,0,0,0	monster	Cavaleiro Sanguinário	1268,1,3600000,3000000,0
@@ -39,7 +39,7 @@ gefenia01,0,0,0,0	monster	Tirfing	1204,1,18000000,14400000,0
 gefenia02,0,0,0,0	monster	Anjo Fajuto	1371,30,0,0,0
 gefenia02,0,0,0,0	monster	Succubus	1370,20,0,0,0
 gefenia02,0,0,0,0	monster	Incubus	1374,10,0,0,0
-gefenia02,0,0,0,0	monster	Violinista	1390,40,0,0,0
+gefenia02,0,0,0,0	monster	Violi	1390,40,0,0,0
 gefenia02,0,0,0,0	monster	Diabinho	1292,30,0,0,0
 gefenia02,0,0,0,0	monster	Cavaleiro do Abismo	1219,10,0,0,0
 gefenia02,0,0,0,0	monster	Cavaleiro Sanguinário	1268,1,3600000,3000000,0
@@ -53,7 +53,7 @@ gefenia02,0,0,0,0	monster	Tirfing	1204,1,10800000,7200000,0
 gefenia03,0,0,0,0	monster	Anjo Fajuto	1371,40,0,0,0
 gefenia03,0,0,0,0	monster	Succubus	1370,10,0,0,0
 gefenia03,0,0,0,0	monster	Incubus	1374,20,0,0,0
-gefenia03,0,0,0,0	monster	Violinista	1390,40,0,0,0
+gefenia03,0,0,0,0	monster	Violi	1390,40,0,0,0
 gefenia03,0,0,0,0	monster	Diabinho	1292,30,0,0,0
 gefenia03,0,0,0,0	monster	Cavaleiro do Abismo	1219,10,0,0,0
 gefenia03,0,0,0,0	monster	Cavaleiro Sanguinário	1268,1,3600000,3000000,0
@@ -67,7 +67,7 @@ gefenia03,0,0,0,0	monster	Tirfing	1204,1,18000000,14400000,0
 gefenia04,0,0,0,0	monster	Anjo Fajuto	1371,30,0,0,0
 gefenia04,0,0,0,0	monster	Succubus	1370,10,600000,300000,0
 gefenia04,0,0,0,0	monster	Incubus	1374,10,600000,300000,0
-gefenia04,0,0,0,0	monster	Violinista	1390,30,0,0,0
+gefenia04,0,0,0,0	monster	Violi	1390,30,0,0,0
 gefenia04,0,0,0,0	monster	Diabinho	1292,20,0,0,0
 gefenia04,0,0,0,0	monster	Cavaleiro do Abismo	1219,10,0,0,0
 gefenia04,0,0,0,0	monster	Cavaleiro Sanguinário	1268,1,3600000,3000000,0
@@ -82,7 +82,7 @@ gefenia04,0,0,0,0	monster	Tirfing	1204,1,18000000,14400000,0
 //==================================================
 //gefenia01,0,0,0,0	monster	Anjo Fajuto	1371,10,0,0,0
 //gefenia01,0,0,0,0	monster	Diabinho	1292,6,300000,0,0
-//gefenia01,0,0,0,0	monster	Apolcalipse	1365,4,300000,0,0
+//gefenia01,0,0,0,0	monster	Apocalipse	1365,4,300000,0,0
 //gefenia01,0,0,0,0	monster	Ancião	1377,10,300000,0,1
 //gefenia01,0,0,0,0	monster	Cavaleiro do Abismo	1219,3,1800000,900000,1
 //gefenia01,0,0,0,0	monster	Cavaleiro Sanguinário	1268,2,300000,0,0
@@ -97,7 +97,7 @@ gefenia04,0,0,0,0	monster	Tirfing	1204,1,18000000,14400000,0
 //gefenia02,0,0,0,0	monster	Succubus	1370,6,0,0,0
 //gefenia02,0,0,0,0	monster	Incubus	1374,6,0,0,0
 //gefenia02,0,0,0,0	monster	Diabinho	1292,10,300000,0,0
-//gefenia02,0,0,0,0	monster	Apolcalipse	1365,8,300000,0,0
+//gefenia02,0,0,0,0	monster	Apocalipse	1365,8,300000,0,0
 //gefenia02,0,0,0,0	monster	Cavaleiro do Abismo	1219,2,1800000,900000,1
 //gefenia02,0,0,0,0	monster	Cavaleiro Sanguinário	1268,5,300000,0,0
 //gefenia02,0,0,0,0	monster	Poring	1502,1,0,0,0
@@ -111,7 +111,7 @@ gefenia04,0,0,0,0	monster	Tirfing	1204,1,18000000,14400000,0
 //gefenia03,0,0,0,0	monster	Succubus	1370,5,0,0,0
 //gefenia03,0,0,0,0	monster	Incubus	1374,5,0,0,0
 //gefenia03,0,0,0,0	monster	Diabinho	1292,10,300000,0,0
-//gefenia03,0,0,0,0	monster	Apolcalipse	1365,6,300000,0,0
+//gefenia03,0,0,0,0	monster	Apocalipse	1365,6,300000,0,0
 //gefenia03,0,0,0,0	monster	Ancião	1377,10,300000,0,1
 //gefenia03,0,0,0,0	monster	Cavaleiro do Abismo	1219,3,1800000,900000,1
 //gefenia03,0,0,0,0	monster	Cavaleiro Sanguinário	1268,2,300000,0,0
@@ -125,7 +125,7 @@ gefenia04,0,0,0,0	monster	Tirfing	1204,1,18000000,14400000,0
 //gefenia04,0,0,0,0	monster	Anjo Fajuto	1371,10,0,0,0
 //gefenia04,0,0,0,0	monster	Succubus	1370,5,0,0,0
 //gefenia04,0,0,0,0	monster	Incubus	1374,3,0,0,0
-//gefenia04,0,0,0,0	monster	Apolcalipse	1365,4,300000,0,0
+//gefenia04,0,0,0,0	monster	Apocalipse	1365,4,300000,0,0
 //gefenia04,0,0,0,0	monster	Cavaleiro do Abismo	1219,5,1800000,900000,1
 //gefenia04,0,0,0,0	monster	Cavaleiro Sanguinário	1268,2,300000,0,0
 //gefenia04,0,0,0,0	monster	Poring	1502,1,0,0,0

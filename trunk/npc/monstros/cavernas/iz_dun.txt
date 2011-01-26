@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Spawns da Caverna de Byalan			|
+// | Nome do Script: Spawns da Caverna de Byalan            |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
@@ -16,13 +16,13 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | 1.1 Script Revisado [Protimus]							| 
+// | 1.1 Script Revisado [Protimus]                         |
 // \________________________________________________________/
 
 //==================================================
 // iz_dun00 - Túnel Submarino - 1° Andar
 //==================================================
-iz_dun00,0,0,0,0	monster	Plâncton	1161,65,0,0,0
+iz_dun00,0,0,0,0	monster	Plankton	1161,65,0,0,0
 iz_dun00,0,0,0,0	monster	Marina	1141,45,0,0,0
 iz_dun00,0,0,0,0	monster	Kukre	1070,15,0,0,0
 iz_dun00,0,0,0,0	monster	Hidra	1068,15,0,0,0
@@ -32,7 +32,7 @@ iz_dun00,0,0,0,0	monster	Cogumelo Negro	1084,5,180000,90000,1
 //==================================================
 // iz_dun01 - Túnel Submarino - 2° Andar
 //==================================================
-iz_dun01,0,0,0,0	monster	Plâncton	1161,10,0,0,0
+iz_dun01,0,0,0,0	monster	Plankton	1161,10,0,0,0
 iz_dun01,0,0,0,0	monster	Marina	1141,15,0,0,0
 iz_dun01,0,0,0,0	monster	Kukre	1070,50,0,0,0
 iz_dun01,0,0,0,0	monster	Hidra	1068,30,0,0,0

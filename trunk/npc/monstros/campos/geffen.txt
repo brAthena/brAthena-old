@@ -17,11 +17,10 @@
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
 // | 1.1 Script Revisado [Protimus & Tyler]                 |
-// | - Anotações                                            |  
 // \________________________________________________________/
 
 //==================================================
-// gef_fild00 - Campo de Geffen 
+// gef_fild00 - Campo de Geffen
 //==================================================
 gef_fild00,0,0,0,0	monster	Poring	1002,50,0,0,0
 gef_fild00,0,0,0,0	monster	Fabre	1007,50,0,0,0
@@ -61,7 +60,7 @@ gef_fild02,164,194,1,1	monster	Planta Brilhante	1083,1,1800000,900000,1
 //==================================================
 gef_fild03,0,0,0,0	monster	Guerreiro Orc	1023,60,0,0,0
 gef_fild03,0,0,0,0	monster	Grand Orc	1213,1,0,0,0
-gef_fild03,0,0,0,0	monster	Savage	1166,40,0,0,0
+gef_fild03,0,0,0,0	monster	Selvagem	1166,40,0,0,0
 gef_fild03,0,0,0,0	monster	Poporing	1031,20,0,0,0
 gef_fild03,45,350,3,3	monster	Planta Verde	1080,1,180000,90000,1
 gef_fild03,66,300,3,3	monster	Planta Verde	1080,1,180000,90000,1
@@ -89,7 +88,7 @@ gef_fild03,44,133,3,3	monster	Planta Verde	1080,1,180000,90000,1
 // gef_fild04 - Campo de Geffen
 //==================================================
 gef_fild04,0,0,0,0	monster	Poring	1002,30,0,0,0
-gef_fild04,0,0,0,0	monster	Chonchon	1011,30,0,0,0
+gef_fild04,0,0,0,0	monster	ChonChon	1011,30,0,0,0
 gef_fild04,0,0,0,0	monster	Pupa	1008,60,0,0,0
 gef_fild04,0,0,0,0	monster	Fabre	1007,20,0,0,0
 gef_fild04,0,0,0,0	monster	Sapo de Rodda	1012,20,0,0,0
@@ -100,7 +99,7 @@ gef_fild04,152,82,5,2	monster	Planta Verde	1080,3,360000,180000,1
 // gef_fild05 - Campo de Geffen
 //==================================================
 gef_fild05,0,0,0,0	monster	Poring	1002,30,0,0,0
-gef_fild05,0,0,0,0	monster	Kobold Arqueiro	1282,10,0,0,0
+gef_fild05,0,0,0,0	monster	Cobold Arqueiro	1282,10,0,0,0
 gef_fild05,0,0,0,0	monster	Rosa Selvagem	1261,50,0,0,0
 gef_fild05,0,0,0,0	monster	Poeira	1114,30,0,0,0
 gef_fild05,235,322,0,0	monster	Planta Vermelha	1078,1,180000,90000,1
@@ -122,12 +121,12 @@ gef_fild05,130,293,0,0	monster	Planta Vermelha	1078,1,180000,90000,1
 //==================================================
 // gef_fild06 - Campo de Geffen
 //==================================================
-gef_fild06,0,0,0,0	monster	Kobold	1133,20,0,0,0
-gef_fild06,0,0,0,0	monster	Kobold	1134,10,0,0,0
-gef_fild06,0,0,0,0	monster	Kobold	1135,10,0,0,0
+gef_fild06,0,0,0,0	monster	Cobold	1133,20,0,0,0
+gef_fild06,0,0,0,0	monster	Cobold	1134,10,0,0,0
+gef_fild06,0,0,0,0	monster	Cobold	1135,10,0,0,0
 gef_fild06,0,0,0,0	monster	Petite Voador	1156,50,0,0,0
 gef_fild06,0,0,0,0	monster	Poporing	1031,10,0,0,0
-gef_fild06,0,0,0,0	monster	Mantis	1139,20,0,0,0
+gef_fild06,0,0,0,0	monster	Louva-a-Deus	1139,20,0,0,0
 gef_fild06,0,0,0,0	monster	Planta Brilhante	1083,4,1800000,900000,1
 
 //==================================================
@@ -145,9 +144,9 @@ gef_fild07,269,289,3,3	monster	Planta Verde	1080,3,360000,180000,1
 //==================================================
 // gef_fild08 - Campo de Geffen
 //==================================================
-gef_fild08,0,0,0,0	monster	Kobold	1133,20,0,0,0
-gef_fild08,0,0,0,0	monster	Kobold	1134,40,0,0,0
-gef_fild08,0,0,0,0	monster	Kobold	1135,20,0,0,0
+gef_fild08,0,0,0,0	monster	Cobold	1133,20,0,0,0
+gef_fild08,0,0,0,0	monster	Cobold	1134,40,0,0,0
+gef_fild08,0,0,0,0	monster	Cobold	1135,20,0,0,0
 gef_fild08,0,0,0,0	monster	Golem	1040,40,0,0,0
 gef_fild08,0,0,0,0	monster	ChonChon de Aço	1042,20,0,0,0
 gef_fild08,0,0,0,0	monster	Esporo Venenoso	1077,20,0,0,0
@@ -213,12 +212,12 @@ gef_fild11,283,100,4,1	monster	Cogumelo Negro	1084,3,360000,180000,1
 //==================================================
 // gef_fild12 - Floresta Kordt
 //==================================================
-gef_fild12,0,0,0,0	monster	Kobold	1133,20,0,0,0
-gef_fild12,0,0,0,0	monster	Kobold	1134,30,0,0,0
-gef_fild12,0,0,0,0	monster	Kobold	1135,30,0,0,0
-gef_fild12,0,0,0,0	monster	Kobold Arqueiro	1282,40,0,0,0
+gef_fild12,0,0,0,0	monster	Cobold	1133,20,0,0,0
+gef_fild12,0,0,0,0	monster	Cobold	1134,30,0,0,0
+gef_fild12,0,0,0,0	monster	Cobold	1135,30,0,0,0
+gef_fild12,0,0,0,0	monster	Cobold Arqueiro	1282,40,0,0,0
 gef_fild12,0,0,0,0	monster	Poporing	1031,20,0,0,0
-gef_fild12,0,0,0,0	monster	Líder Kobold	1296,1,1800000,1200000,0
+gef_fild12,0,0,0,0	monster	Líder Cobold	1296,1,1800000,1200000,0
 
 //==================================================
 // gef_fild13 - Feudo de Britoniah

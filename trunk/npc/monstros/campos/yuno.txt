@@ -17,7 +17,6 @@
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
 // | 1.1 Script Revisado [Protimus & Tyler]                 |
-// | - Anotações                                            |  
 // \________________________________________________________/
 
 //==================================================
@@ -104,7 +103,7 @@ yuno_fild06,0,0,0,0	monster	Planta Amarela	1081,10,0,0,0
 yuno_fild06,0,0,0,0	monster	Planta Verde	1080,10,0,0,0
 
 //==================================================
-// yuno_fild07 - Desfiladeiro de El Mes Gorge (Vale do Abismo)
+// yuno_fild07 - Desfiladeiro de El Mes (Vale do Abismo)
 //==================================================
 yuno_fild07,0,0,0,0	monster	Bode	1372,10,0,0,0
 yuno_fild07,0,0,0,0	monster	Planta Carnívora	1368,20,0,0,0

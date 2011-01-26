@@ -17,11 +17,10 @@
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
 // | 1.1 Script Revisado [Protimus & Tyler]                 |
-// | - Anotações                                            |  
 // \________________________________________________________/
 
 //==================================================
-// pay_fild01 - Floresta de Payon 
+// pay_fild01 - Floresta de Payon
 //==================================================
 pay_fild01,0,0,0,0	monster	Salgueiro	1010,10,0,0,0
 pay_fild01,0,0,0,0	monster	Poporing	1031,10,0,0,0
@@ -65,7 +64,7 @@ pay_fild03,153,216,10,10	monster	Cogumelo Vermelho	1085,6,900000,450000,1
 pay_fild03,372,64,15,15	monster	Planta Verde	1080,4,180000,90000,1
 
 //==================================================
-// pay_fild04 - Deserto de Sograt
+// pay_fild04 - Deserto Sograt
 //==================================================
 pay_fild04,0,0,0,0	monster	Poring	1002,40,0,0,0
 pay_fild04,0,0,0,0	monster	Drops	1113,40,0,0,0

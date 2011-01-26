@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Spawns do Esgoto de Prontera			|
+// | Nome do Script: Spawns do Esgoto de Prontera           |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
@@ -16,7 +16,7 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | 1.1 Script Revisado [Protimus]							|   
+// | 1.1 Script Revisado [Protimus]                         |
 // \________________________________________________________/
 
 //==================================================
@@ -34,7 +34,7 @@ prt_sewb2,0,0,0,0	monster	Ovo de Besouro-Ladrão	1048,20,0,0,0
 prt_sewb2,0,0,0,0	monster	Besouro-Ladrão	1051,70,0,0,0
 prt_sewb2,0,0,0,0	monster	Familiar	1005,10,0,0,0
 prt_sewb2,0,0,0,0	monster	Esporo	1014,20,0,0,0
-prt_sewb2,0,0,0,0	monster	Plâncton	1161,30,0,0,0
+prt_sewb2,0,0,0,0	monster	Plankton	1161,30,0,0,0
 prt_sewb2,0,0,0,0	monster	Besouro-Ladrão Fêmea	1053,10,0,0,0
 prt_sewb2,0,0,0,0	monster	Tarou	1175,60,0,0,0
 

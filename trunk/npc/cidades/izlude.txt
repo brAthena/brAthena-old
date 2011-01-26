@@ -8,35 +8,35 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Cidade de Izlude		    		    |
+// | Nome do Script: Cidade de Izlude                       |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.9/1.0                                |
+// | Versões eA/brA: 1.9/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: NPCs da Cidade de Izlude		 			|
+// | Descrição: NPCs da Cidade de Izlude                    |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   	                  				|
+// | 1.0 Script Traduzido [Protimus & Dani]                 |
+// | 1.1 Script Revisado [Dani]                             |
 // \________________________________________________________/
 
 // Izlude
 //============================================================
-izlude,201,181,2	script	Sailor#izlude	100,{
-	mes "[Sailor]";
-	mes "Hey everybody!";
-	mes "Attention, attention!";
-	mes "Come and ride the wind";
-	mes "on a fascinating Ship!";
-	mes "Hurry, hurry!";
+izlude,201,181,2	script	Marinheiro#izlude	100,{
+	mes "[Marinheiro]";
+	mes "Ei todo mundo!";
+	mes "Atenção, atenção!"; 
+	mes "Venha e naveguem";
+	mes "sobre um navio fascinante!";
+	mes "Depressa, depressa!";
 	next;
-	switch(select("Byalan Island -> 150 Zeny.:Alberta Marina  -> 500 Zeny.:Cancel.")) {
+	switch(select("Ilha Byalan -> 150 Zeny.:Marina de Alberta -> 500 Zeny.:Cancelar.")) {
 	case 1:
 		if (zeny < 150) {
-			mes "[Sailor]";
+			mes "[Marinheiro]";
 			mes "150 Zeny!";
-			mes "Only 150 Zeny to ride!";
+			mes "Apenas 150 zeny o percurso!";
 			close;
 		}
 		set zeny,zeny-150;
@@ -44,9 +44,9 @@ izlude,201,181,2	script	Sailor#izlude	100,{
 		end;
 	case 2:
 		if (zeny < 500) {
-			mes "[Sailor]";
+			mes "[Marinheiro]";
 			mes "500 Zeny!";
-			mes "Only 500 Zeny to ride!";
+			mes "Apenas 500 zeny o percurso!";
 			close;
 		}
 		set zeny,zeny-500;
@@ -59,25 +59,24 @@ izlude,201,181,2	script	Sailor#izlude	100,{
 
 izlude,55,74,2	script	Bonne#izlude	90,{
 	mes "[Bonne]";
-	mes "Greetings!";
-	mes "Izlude welcomes you.";
+	mes "Saudações!";
+	mes "Os habitantes de Izlude lhe dão boas vindas.";
 	next;
 	mes "[Bonne]";
-	mes "Izlude is the satellite city of Prontera, capital of the Rune-Midgarts kingdom.";
+	mes "Izlude é a cidade satélite de Prontera, capital do reino Rune-Midgard.";
 	next;
 	mes "[Bonne]";
-	mes "Izlude is key to our kingdom because of the Swordsman Association located here, as well as the fact that Izlude is in charge of protecting the Rune-Midgard coastline.";
+	mes "Izlude é a chave para o nosso reino, devido à Associação dos Espadachins localizada aqui, bem como o fato de Izlude estar encarregada de proteger o litoral de Rune-Midgard.";
 	next;
 	mes "[Bonne]";
-	mes "I know, this bridge might look weak and fragile, but it is actually state of the art, built with the most sophisticated technology.";
+	mes "Eu sei, esta ponte pode parecer frágil, mas é realmente uma obra de arte, construída com a mais sofisticada tecnologia.";
 	next;
 	mes "[Bonne]";
-	mes "No matter how strong storms may be, or how many people may stand on it, this bridge will NEEEEVER collapse.";
+	mes "Não importa o quão fortes as tempestades podem ser, ou quantas pessoas podem ficar sobre ela, esta ponte NUNCA irá cair.";
 	next;
 	mes "[Bonne]";
-	mes "Please enjoy";
-	mes "your visit";
-	mes "here in Izlude.";
+	mes "Boa sorte e desfrute de sua";
+	mes "estadia aqui em Izlude.";
 	close;
 }
 
@@ -85,29 +84,29 @@ izlude,135,78,2	script	Charfri#izlude	91,{
 	mes "[Charfri]";
 	switch(rand(2)) {
 	case 1:
-		mes "Some people may think Izlude is just a satellite city of Prontera, and not really that important...";
+		mes "Algumas pessoas podem pensar Izlude é apenas a cidade satélite de Prontera, e não vêem sua verdadeira beleza...";
 		next;
 		mes "[Charfri]";
-		mes "But Izlude is a beautiful town right next to the ocean, as well as beautiful Bylan Island.";
+		mes "Izlude é uma bela cidade ao lado do oceano e com belos lugares, bem como a Ilha Byalan.";
 		next;
 		mes "[Charfri]";
-		mes "You'll have to board on a ship at the port to get to Byalan Island. There are dangerous dungeons on that island, so don't go snooping around just anywhere.";
+		mes "Você terá que ir até o navio no porto de nossa cidade para chegar à Ilha Byalan. Existem cavernas perigosas nessa ilha, por isso não vá bisbilhotando em qualquer lugar.";
 		close;
 	Default:
-		mes "Though it is very beautiful, Byalan Island has a mysterious dungeon that extends deep under the sea.";
+		mes "A Ilha Byalan além de ser linda tem uma misteriosa e profunda masmorra que se estende sob o mar.";
 		next;
 		mes "[Charfri]";
-		mes "People who've actually been there have said that if you go deep enough, the dungeon actually descends underwater.";
+		mes "Pessoas que realmente estiveram lá dizem que se você ir a uma determinada profundidade a caverna fica submersa.";
 		next;
 		mes "[Charfri]";
-		mes "Surprisingly, once you're underwater, you can breathe just like a fish. Maybe some kind of supernatural force is in effect.";
+		mes "Surpreendentemente, uma vez que você está submergido, você pode respirar como um peixe. Talvez algum tipo de força sobrenatural atue lá.";
 		next;
 		mes "[Charfri]";
 		mes "Ah...";
-		mes "The people who've seen the underwater view say it is so fantastic that they've kept dreaming of it ever since.";
+		mes "As pessoas que viram a paisagem debaixo d'água dizem que ela é tão fantástica que eles sonham com ela até hoje.";
 		next;
 		mes "[Charfri]";
-		mes "But unfortunately, the monsters are too strong for ordinary people to merely go sight seeing there. Still, just once, I'd like to go down there...";
+		mes "Mas, infelizmente, os monstros são muito fortes para um cidadão comum visitar o lugar. Ainda assim, apenas uma vez, gostaria de ir lá.";
 		close;
 	}
 }
@@ -116,22 +115,22 @@ izlude,119,121,2	script	Cuskoal#izlude	124,{
 	mes "[Cuskoal]";
 	switch(rand(2)) {
 	case 1:
-		mes "The Arena here is THE place for capable young people from all over the Rune-Midgarts Kingdom to challenge themselves and test their skills.";
+		mes "A Arena é o lugar perfeito para pessoas jovens de todas as partes do Reino de Rune-Midgard desafiarem e testarem suas habilidades.";
 		next;
 		mes "[Cuskoal]";
-		mes "You can battle with monsters of differing levels. So, the number of stages you survive will be a testiment to your battle prowess.";
+		mes "Você pode lutar com monstros de níveis diferentes. Então, por quantos estágios você irá sobreviver, a sua força que irá dizer.";
 		next;
 		mes "[Cuskoal]";
-		mes "So, whaddya say?";
+		mes "Então, o que me diz?";
 		close;
 	Default:
-		mes "The pubs in Prontera are always full of people from local areas and from out-of-town. It can get pretty busy.";
+		mes "Os bares de Prontera estão sempre cheios de nativos e visitantes.";
 		next;
 		mes "[Cuskoal]";
-		mes "It's a pretty good place to stop by for general information and to listen to rumors.";
+		mes "Há muitas informações e rumores, pois muitas pessoas entram e saem de lá.";
 		next;
 		mes "[Cuskoal]";
-		mes "So if you listen carefully, you just might get lucky and learn some very useful information for yourself.";
+		mes "Se você escutar cuidadosamente, você pode dar sorte e descobrir informações muito úteis.";
 		close;
 	}
 }
@@ -140,71 +139,71 @@ izlude,150,118,2	script	Dega#izlude	84,{
 	mes "[Dega]";
 	switch(rand(3)) {
 	case 1:
-		mes "Mt. Mjornir, located north of Prontera, is a tough";
-		mes "and steep climb.";
+		mes "O Monte Mjornir localiza-se ao";
+		mes "norte de Prontera. É alto e cheio de precipícios.";
 		next;
 		mes "[Dega]";
-		mes "Aside from the dangers of the mountain itself, insanely vicious insects live there too. I mean, they'll just attack you for no reason.";
+		mes "Sem falar nos perigos da própria montanha, lá vivem insetos muitos perigosos. Alguns atacam sem mesmo terem sido provocados...";
 		next;
 		mes "[Dega]";
-		mes "If you ever want to visit somewhere past Mt. Mjolnir, then you prepare yourself for the challenge.  Or you could walk around it.";
+		mes "Se você pretende visitar algum lugar além do Monte Mjolnir, então prepare-se para o desafio. Do contrário, contorne-o.";
 		close;
 	case 2:
-		mes "Some monsters in the world have the unique ability to sense mystical energy, and can detect Magic spells before they are cast.";
+		mes "Alguns monstros do mundo têm a capacidades únicas, e pode detectar magias e feitiços antes que eles sejam executados.";
 		next;
 		mes "[Dega]";
-		mes "Golem of the desert is one of them. Don't underestimate it due to its sluggishness...";
+		mes "Golem do Deserto é um deles. Não subestime ele devido à sua lentidão...";
 		next;
 		mes "[Dega]";
-		mes "If you try to cast magic near it, it will notice and saunter over to smash you. So you better watch out for Golem.";
+		mes "Se você tentar lançar uma magia perto, ele vai notar e passear ao longo e esmagá-lo. Então é melhor você tomar cuidado com ele.";
 		close;
 	Default:
-		mes "There's a very delightful place where you can find every";
-		mes "type of Poring.";
+		mes "Há um lugar muito aprazível, onde pode encontrar todos os";
+		mes "tipos de Porings.";
 		next;
 		mes "[Dega]";
-		mes "It's somewhere near the bridge connecting the forest and the desert, on the way to the city of Payon which is Southeast from here.";
+		mes "Trata-se de algum lugar perto da ponte ligando a floresta ao deserto, a caminho da cidade de Payon que é daqui para o Sudeste.";
 		next;
 		mes "[Dega]";
-		mes "There are not only pink Porings but also Drops, which can be found at the desert, and the green Poporing.";
+		mes "Não são apenas Porings rosas, mas também Drops, que podem ser encontrados no deserto, e também os Poporings verdes.";
 		next;
 		mes "[Dega]";
-		mes "But be careful, before you realize it, you may come face to face with Ghostring, a deadly Poring that floats around in the air like a ghost.";
+		mes "Mas cuidado, você pode ficar cara a cara com um Ghostring, um Poring mortal que flutua no ar como um fantasma.";
 		next;
 		mes "[Dega]";
-		mes "Well, of course, they are all very cute, but Ghostring is an EXCEPTION. It is very very dangerous.";
+		mes "Bem, obviamente, todos eles são muito bonitos, mas o Ghostring é uma excepção. É muito perigoso.";
 		next;
 		mes "[Dega]";
-		mes "If you are lucky enough, you might even bump into Angelring, the Poring with Angel wings.";
+		mes "Se tiveres a sorte, você pode até chocar-se com um Angelring, o Poring Anjo com asas.";
 		next;
 		while(1) {
-			switch(select("Ghostring?:Angelring?:End Conversation.")) {
+			switch(select("Ghostring?:Angelring?:Terminar Conversa.")) {
 			case 1:
 				mes "[Dega]";
-				mes "Ghostring is a grayish Poring that floats around in the air like a ghost. Just like other ghosts, physical attacks can't do any damage to it.";
+				mes "Ghostring é um Poring cinzento que flutua no ar como um fantasma. Tal como outros fantasmas, danos físicos não pode fazer qualquer dano a ele.";
 				next;
 				mes "[Dega]";
-				mes "Those whose main attack methods are physical like Swordman and Archer might have to run for their lives when facing Ghostrings.";
+				mes "Aqueles cujos principais métodos de ataque são físicos como Espadachim e Arqueiro terão de correr para salvar suas vidas ao enfrentar Ghostrings.";
 				next;
 				mes "[Dega]";
-				mes "But don't leave just yet~! There is great news for people with those jobs. Making a weapon of some elemental property is the key.";
+				mes "Mas isso não é tudo! Para essas pessoas que não podem infrigir danos devem utilizar armas com propriedades especiais, esta é a chave.";
 				next;
 				mes "[Dega]";
-				mes "This way, even a Swordman or an Archer can inflict damage, the way Magic does, on Ghostrings.";
+				mes "Desta forma, mesmo um Cavaleiro ou um Arqueiro pode provocar danos em Ghostrings.";
 				next;
 				break;
 			case 2:
 				mes "[Dega]";
-				mes "Angelrings are immune to Magic attacks. If people who can only attack with Magic face an Angelring, then it's time for";
-				mes "them to run.";
+				mes "Angelrings são imunes a ataques Magicos. Se você só pode enfrentar um Angelring com ataques mágicos,";
+				mes "então é hora de correr.";
 				next;
 				mes "[Dega]";
-				mes "If you've got an extra knife or sword, you could give it a shot. But it will be very difficult alone, don't you think?";
+				mes "Se você possuir uma faca ou espada, você pode provocar-lhe danos. Mas vai ser muito difícil sozinho, não acha?";
 				next;
 				break;
 			case 3:
 				mes "[Dega]";
-				mes "Good Luck~";
+				mes "Boa sorte~";
 				close2;
 				end;
 			}
@@ -216,288 +215,285 @@ izlude,150,143,2	script	Kylick#izlude	97,{
 	mes "[Kylick]";
 	switch(rand(2)) {
 	case 1:
-		mes "Don't you think Binoculars";
-		mes "are really COOL?! You can";
-		mes "see all sorts of places...!";
+		mes "Você não acha o Binóculos";
+		mes "algo muito útil?! Você pode";
+		mes "ver todos os tipos de lugares...!"; 
 		next;
 		mes "[Kylick]";
-		mes "Here in Izlude, we are responsible for maintaining peace not only on land but also at sea. That's why this city has a huge telescope.";
+		mes "Aqui em Izlude, somos responsáveis pela manutenção da paz não só em terra, mas também no mar. É por isso que esta cidade tem um enorme telescópio.";
 		next;
 		mes "[Kylick]";
-		mes "This telecope constantly watches over the sea, so that we can prevent any serious trouble from happening. You know...";
+		mes "Este telescópio é modificado sempre, para que possamos evitar problemas graves que possam ocorrer. Sabe...";
 		next;
 		mes "[Kylick]";
-		mes "An ounce of";
-		mes "prevention is worth";
-		mes "a pound of cure";
-		mes "after all, right?";
+		mes "Afinal é melhor prevenir";
+		mes "do que remediar!";
+		mes "Não concorda?";
 		close;
 	Default:
-		mes "I was thinking, even though the people of Izlude live so close to the ocean...";
+		mes "Eu estava pensando, apesar do povo de Izlude viver tão bem mesmo perto do oceano......";
 		next;
 		mes "[Kylick]";
-		mes "There are other cultures that have completely developed by living off of the sea. Of course, I'm talking about Amatsu.";
+		mes "Há outras culturas que desenvolveram uma vida totalmente longe do oceano. Claro que estou falando de Amatsu.";
 		next;
 		mes "[Kylick]";
-		mes "I hear the cuisine there is really good! Although the idea of eating raw fish is new to me, I would love to go there, and try it just once!";
+		mes "Eu ouvi dizer que a cozinha lá é muito boa! Embora a idéia de comer peixe cru é nova para mim, eu adoraria ir para lá, e experimentar só uma vez!";
 		close;
 	}
 }
 
 izlude,56,126,2	script	Red#izlude::RedCebalis	85,{
 	mes "[Red]";
-	mes "The only skill that's needed for a Swordman is ^FF2400Bash^000000! Bash, Bash and ONLY ^FF2400Bash^000000! No need to waste time and effort for smaller skills! Everything else is for cowards and wusses!";
+	mes "A única habilidade que um espadachim precisa é ^FF2400Golpe Fulminante^000000! Golpe Fulminante, Golpe Fulminante, SOMENTE ^FF2400Golpe Fulminante^000000! Não há necessidade de gastar tempo e esforço com habilidades menores... todo o resto é para covardes, frangotes!";
 	next;
 	mes "[Cebalis]";
-	mes "What are you talking about!? The ideal Swordman resolutely stands alone, surrounded by countless enemies and smashing them all with one awesome attack.";
+	mes "Do que você está falando!? Não preciso nem dizer o que, o melhor do espadachim é quando ele está cercado por todos aqueles inimigos e com um golpe só acaba com eles!";
 	next;
 	mes "[Cebalis]";
-	mes "^EE0000MAGNUM BREAK!^000000";
-	mes "That's right, Magnum Break";
-	mes "is the skill that does";
-	mes "the job right~!!";
+	mes "^EE0000IMPACTO EXPLOSIVO!^000000";
+	mes "Isso mesmo, Impacto Explosivo";
+	mes "é a habilidade que faz o";
+	mes "trabalho direito!";
 	next;
 	mes "[Cebalis]";
-	mes "Well... Sometimes the explosive damage might accidentally hit some wandering monsters, and those guys end up coming after you, but that's a risk a Swordman should be willing to take!!";
+	mes "Bem... ele causa dano a outros inimigos que estejam por perto... E todos eles acabam vindo atrás de você MAS este é um risco que todo espadachim deve correr, entende!?";
 	next;
 	mes "[Red]";
-	mes "That's exactly why you're dumb, you idiot! And what's this about the 'the ideal Swordman?' I still remember the last time you used Magnum Break...";
+	mes "É exatamente por isso que você é burro! O melhor do Espadachim?! Ainda me lembro da última vez que você usou Impacto Explosivo...";
 	next;
-	mes "[Red]";
-	mes "You ended up running away from all those monsters you hit with that stupid skill! Weakling! All those Porings around you got hit and they all tried to kill you. ";
-	next;
-	mes "[Cebalis]";
-	mes "Hmpf. As I recall, you were running away too, apparently too busy to use your precious Bash. In any case, Magnum Break is THE skill for a Swordman~!!";
+	mes "[Red]";	
+	mes "Você acabou tendo que correr de todos aqueles porings que você acertou com sua porcaria de habilidade! Seu fracote! Você acertou todos aqueles Porings ao seu redor e todos vieram te atacar.";
 	next;
 	mes "[Cebalis]";
-	mes "Something simplistic like Bash";
-	mes "is just one of the little steps towards Magnum Break.";
+	mes "Aham..Hm..Hm.. Vo-você sempre fica remoendo estes eventos em sua cabeça. E-eu estou te dizendo: Impacto Explosivo é a melhor habilidade de um espadachim!!";
+	next;
+	mes "[Cebalis]";
+	mes "Algo como Golpe Fulminante é só";
+	mes "um passo em direção de Impacto Explosivo.";
 	next;
 	mes "[Red]";
-	mes "Oh man~";
-	mes "Hey, I know you just";
-	mes "heard everything.";
-	mes "So what do you think?";
+	mes "Oh... meu...";
+	mes "Ei, eu sei que você escutou";
+	mes "tudo.";
+	mes "O que você acha?";
 	next;
 	mes "[Red]";
-	mes "Which one do you think is better? The critical damage skill, ^FF2400Bash^000000, or the Splash damage skill, ^EE0000Magnum Break^000000?";
+	mes "É... você mesmo... Qual você acha que é melhor? Uma habilidade de um único ataque poderoso, ^FF2400Golpe Fulminante^000000, ou dano por área, ^EE0000Impacto Explosivo^000000?";
 	next;
-	if (select("Bash:Magnum Break") == 1)  {
+	if (select("Golpe Fulminante:Impacto Explosivo") == 1)  {
 		if (BaseClass == Job_Swordman) {
 			mes "[Red]";
-			mes "Hahahaha!!! I knew you'd see things my way!! You ARE a great guy!! Undoubtedly, only ^FF2400Bash^000000 suits a Swordman. Please tell that to this BONEHEAD over here~ Hahaha!";
+			mes "Hahahaha!!! Eu sabia que você concordaria!! Você é um grande cara!! Sem dúvida, somente ^FF2400Golpe Fulminante^000000 combina com um espadachim. Diga isso àquele cabeça oca alí!! Hahaha!";
 			next;
 			mes "[Red]";
-			mes "Hmm, let me give you a bit of advice. After you achieve level 5 'Bash', the amount of SP consumed by the skill increases greatly, so watch out for your SP.";
+			mes "Hm, deixe-me lhe dar um conselho. Depois de alcançar o nível 5 de 'Golpe Fulminante', a quantidade de SP que a habilidade consome aumenta bastante, então tome cuidado para não ficar sem SP.";
 			close;
 		}
 		mes "[Red]";
-		mes "Hahahaha!! See!? Someone who pursues a different job agrees with me~! You really are a great guy! Hahaha!! Undoubtedly, only ^FF2400Bash^000000 suits a Swordman. Please tell that to this NIMROD over here~ Hahaha!";
+		mes "Hahahaha!! Viu só!? Alguém de outra classe concorda comigo! Você é um grande cara! Hahaha!! Sem dúvida ^FF2400Golpe Fulminante^000000 combina com um espadachim. Diga isso àquele cabeça oca ali!! Hahaha!";
 		close;
 	}
 	if (BaseClass == Job_Swordman) {
 		mes "[Cebalis]";
-		mes "Alright!! ^EE0000Magnum Break^000000 is the BEST!! Now you're talking~!! You know the stuff~ HaHaHa!";
+		mes "Isso aí!! ^EE0000Impacto Explosivo^000000 é a MELHOR!! É assim que se diz!! Você sabe das coisas... HaHaHa.";
 		next;
 		mes "[Cebalis]";
-		mes "You wanna know some useful information? Okay, okay lemme tell ya! Magnum Break has Fire Property.";
+		mes "Quer saber algo bem útil? Certo, certo. Deixa eu te dizer! 'Impacto Explosivo' é do elemento Fogo.";
 		next;
 		mes "[Cebalis]";
-		mes "So it won't be too effective against monsters with the Water property, but this is THE skill to use against Undead and Earth property monsters!";
+		mes "Então não fará muito efeito em monstros do elemento Água, mas é muito eficaz contra monstros de elemento Morto-vivo e Terra!";
 		next;
 		mes "[Cebalis]";
-		mes "And most importantly, look around before you use it. Otherwise you'll be in BIG trouble~ ";
+		mes "E mais importante, olhe ao redor antes de usar, senão você pode entrar numa GRANDE enrascada...";
 		close;
 	}
 	mes "[Cebalis]";
-	mes "Right?! ^EE0000Magnum Break^000000 is THE BEST!!! You know what you're talking about, eh? I don't know why this jerkface is being sooooo stubborn.";
+	mes "Não é?! ^EE0000Impacto Explosivo^000000 é A MELHOR!!! Você sabe o que fala! Não sei porque esse cabeça oca é tão teimoso.";
 	close;
 }
 	
 izlude,58,126,2	script	Cebalis#izlude	98,{
 	mes "[Red]";
-	mes "The only skill that's needed for a Swordman is ^FF2400Bash^000000! Bash, Bash and ONLY ^FF2400Bash^000000! No need to waste time and effort on smaller skills~~ Everything else is for cowards and wusses!";
+	mes "A única habilidade que um espadachim precisa é ^FF2400Golpe Fulminante^000000! Golpe Fulminante, Golpe Fulminante, SOMENTE ^FF2400Golpe Fulminante^000000! Não há necessidade de gastar tempo e esforço com habilidades menores... todo o resto é para covardes, frangotes!";
 	next;
 	mes "[Cebalis]";
-	mes "What are you talking about!? The ideal Swordman resolutely stands alone, surrounded by countless foes, smashing them all with one awesome attack...";
+	mes "Do que você está falando!? Não preciso nem dizer o que, o melhor do espadachim é quando ele está cercado por todos aqueles inimigos e com um golpe só acaba com eles!";
 	next;
 	mes "[Cebalis]";
-	mes "^EE0000MAGNUM BREAK!^000000";
-	mes "That's right, Magnum Break";
-	mes "is the perfect";
-	mes "Swordman skill.";
+	mes "^EE0000IMPACTO EXPLOSIVO!^000000";
+	mes "Isso mesmo, Impacto Explosivo";
+	mes "é a habilidade perfeita";
+	mes "do espadachim!";
 	next;
 	mes "[Cebalis]";
-	mes "Well...";
-	mes "Sometimes the explosion accidentally hits some monsters that are just wandering around.";
+	mes "Bem...";
+	mes "Ela causa dano a outros inimigos que estejam por perto...";
 	next;
 	mes "[Cebalis]";
-	mes "Then they all end up coming after you, but that's a risk a true Swordman should be willing to take.";
+	mes "E todos eles acabam vindo atrás de você MAS este é um risco que todo espadachim deve correr, entende!?";
 	next;
 	mes "[Red]";
-	mes "That's exactly why you're dumb, you idiot! And what was that about the 'ideal Swordman?' You remember the last time you used Magnum Break?!";
+	mes "É exatamente por isso que você é burro! O melhor do espadachim?! Você se lembra da última vez que você usou Impacto Explosivo!?";
 	next;
 	mes "[Red]";
-	mes "You had to run away from all those Porings hit by that stupid skill! You weakling! All those Porings that you hit tried to kill you! ";
+	mes "Você acabou tendo que correr de todos aqueles porings que você acertou com sua porcaria de habilidade! Seu fracote! Você acertou todos aqueles Porings ao seu redor e todos vieram te atacar.";
 	next;
 	mes "[Cebalis]";
-	mes "Oh shut up. And those were Poporings. As I recall, you were running away too, apparently too busy to use your precious Bash.";
+	mes "Ah cale a boca. Esses eram Poporings. E, pelo que me lembre, você também estava correndo, aparentemente, estava ocupado demais para usar seu Golpe Fulminante.";
 	next;
 	mes "[Cebalis]";
-	mes "In any case, Magnum Break is THE skill for a Swordman~!! Something simplistic like Bash is just one of those little steps towards Magnum Break.";
+	mes "Em todo caso, Impacto Explosivo é A habilidade de um espadachim!! Algo como Golpe Fulminante é só um passo em direção de Impacto Explosivo.";
 	next;
 	mes "[Red]";
-	mes "Oh man~";
-	mes "Hey, I know you";
-	mes "heard everything.";
-	mes "So what do you think?";
+	mes "Oh... meu...";
+	mes "Ei, eu sei que você escutou";
+	mes "tudo.";
+	mes "O que você acha?";
 	next;
 	mes "[Red]";
-	mes "Which one do you think is better? The critical damage skill, ^FF2400Bash^000000, or the Splash damage skill, ^EE0000Magnum Break^000000?";
+	mes "É... você mesmo... Qual você acha que é melhor? Uma habilidade de um único ataque poderoso, ^FF2400Golpe Fulminante^000000, ou dano por área, ^EE0000Impacto Explosivo^000000?";	
 	next;
-	if (select("Bash:Magnum Break") == 1) {
+	if (select("Golpe Fulminante:Impacto Explosivo") == 1)  {
 		if (BaseClass == Job_Swordman) {
 			mes "[Red]";
-			mes "Hahahaha!!! I knew you'd see things my way!! You ARE a great guy!! Without a doubt, only ^FF2400Bash^000000 suits a Swordman. Please tell that to FUNBOY over here!! Hahaha.";
+			mes "Hahahaha!!! Eu sabia que você concordaria!! Você é um grande cara!! Sem dúvida somente ^FF2400Golpe Fulminante^000000 combina com um espadachim. Diga isso àquele cabeça oca alí!! Hahaha!";
 			next;
 			mes "[Red]";
-			mes "Hmm, let me give you a bit of advice. After you achieve level 5 Bash, the amount of SP consumed by the skill increases greatly, so watch out for your SP.";
+			mes "Hm, deixe-me lhe dar um conselho. Depois de alcançar o nível 5 de 'Golpe Fulminante', a quantidade de SP que a habilidade consome aumenta bastante, então tome cuidado para não ficar sem SP.";
 			close;
 		}
 		mes "[Red]";
 		mes "Hahahaha!!";
-		mes "See!? Someone who pursues a different job agrees with me~! You really are a great guy! Hahaha!!";
+		mes "Viu só!? Alguém de outra classe concorda comigo! Você é um grande cara! Hahaha!!";
 		next;
 		mes "[Red]";
-		mes "Without a doubt, only ^FF2400Bash^000000 suits a Swordman. Please tell that to this MORON over here!! Hahaha~";
+		mes "Sem dúvida ^FF2400Golpe Fulminante^000000 combina com um espadachim. Diga isso àquele cabeça oca ali!! Hahaha!";
 		close;
 	}
 	if (BaseClass == Job_Swordman) {
 		mes "[Cebalis]";
-		mes " Alright!! ^EE0000Magnum Break^000000 is the BEST!! Now you're talking~!! You know your stuff, kid. HaHaHa~!";
+		mes "Isso aí!! ^EE0000Impacto Explosivo^000000 é a MELHOR!! É assim que se diz!! Você sabe das coisas... HaHaHa.";
 		next;
 		mes "[Cebalis]";
-		mes "You wanna know some useful information? Okay, okay lemme tell ya! The explosion from 'Magnum Break' has the Fire Property.";
+		mes "Quer saber algo bem útil? Certo, certo. Deixa eu te dizer! 'Impacto Explosivo' é do elemento Fogo.";
 		next;
 		mes "[Cebalis]";
-		mes "So it won't be very effective against Water property monsters, but this is THE skill to use against Undead and Earth property monsters.!";
+		mes "Então não fará muito efeito em monstros do elemento Água, mas é muito eficaz contra monstros de elemento Morto-vivo e Terra!";
 		next;
 		mes "[Cebalis]";
-		mes "And most importantly, look around before you use it. Otherwise you'll be in BIG trouble~ ";
+		mes "E mais importante, olhe ao redor antes de usar, senão você pode entrar numa GRANDE enrascada...";
 		close;
 	}
 	mes "[Cebalis]";
-	mes "I'm right, aren't I?! ^EE0000Magnum Break^000000 is THE BEST!!! You know what you're talking about, eh? I don't know why this LARDFACE is sooooo stubborn.";
+	mes "Não é?! ^EE0000Impacto Explosivo^000000 é A MELHOR!!! Você sabe o que fala! Não sei porque esse cabeça oca é tão teimoso.";
 	close;
 }
 
-izlude,124,178,2	script	Soldier#izlude	105,{
-	mes "[Soldier]";
-	mes "HeHeHeHe..HaHaHaHa ";
-	mes "Huh? Why am I so happy?";
-	mes "You wanna know?";
+izlude,124,178,2	script	Soldado#izlude	105,{
+	mes "[Soldado]";
+	mes "HeHeHeHe.. HaHaHaHa";
+	mes "Como? Por que estou tão feliz?";
+	mes "Quer saber?";
 	next;
-	if (select("Sure, why?:Not really, I don't care.") == 1) {
-		mes "[Soldier]";
-		mes "Ah~~ There's not much for us to do these days. You see, Merchants buy items dropped by monsters.  But you knew that, right? ";
+	if (select("Claro, porque?:Na verdade não, não me importo.") == 1) {
+		mes "[Soldado]";
+		mes "Ah... Há muito para fazermos nos dias de hoje. Mercadores compram os itens que os monstros deixam cair, você sabia disso, certo?";
 		next;
-		if (select("Of course:Eh? Really?") == 1) {
-			mes "[Soldier]";
-			mes "HaHa~ In fact, that was actually part of our job. But there were more and more hunters who came to us in order to get paid and it became too much to handle.";
+		if (select("É Claro.:É mesmo?") == 1) {
+			mes "[Soldado]";
+			mes "HaHa~ Na verdade, esta era nossa tarefa. Mas há muitos caçadores que vêm para serem pagos. Então era muito pra tomar conta.";
 			next;
-			mes "[Soldier]";
-			mes "We had to work overtime every day. Ah, it was a nightmare...! Anyway, the government eventually made a wise decision in creating the Registration System.";
+			mes "[Soldado]";
+			mes "Nós tinhamos que fazer hora extra todo dia. Ah... era um pesadelo... O governo fez bem em inventar o sistema de registro.";
 			next;
-			mes "[Soldier]";
-			mes "The Office of Prize Compensation only pays those who have the Registration. Of course, you'd have to be a merchant and stay in the same place all day long.";
+			mes "[Soldado]";
+			mes "O Escritório de Prêmio e Compensação só paga àqueles que estão registrados. As exigências para o registro são que o Mercador tenha fundos o suficiente e que fique em um só lugar o tempo todo.";
 			next;
-			mes "[Soldier]";
-			mes "The Office gives away the registration to any merchant who fulfills those requirements. So nowadays, the hunters sell their goods to the registered merchants.";
+			mes "[Soldado]";
+			mes "O Escritório libera o registro para qualquer Mercador que atenda a essas exigências.";
 			next;
-			mes "[Soldier]";
-			mes "So nowadays, the hunters sell their goods to the registered merchants.  Not too many people come to us for that anymore.";
+			mes "[Soldado]";
+			mes "Até os dias de hoje, os caçadores vendem os bens que adquirem para mercadores registrados. Então não há muita gente que nos procura mais.";
 			next;
-			mes "[Soldier]";
-			mes "I mean we are still busy, but that's nothing compared to how it was before. People who have felt suffering know how to appreciate even the slightest comfort.";
+			mes "[Soldado]";
+			mes "Digo, ainda estamos ocupados, mas não é nada parecido como era antes... Pessoas que já sofreram sabem apreciar o menor conforto.";
 			close;
 		}
-		mes "[Soldier]";
-		mes "What?! What do you mean you didn't know?! Well, you know you can get items by killing monsters. If you bring and sell those to a merchant, you can make some money. ";
+		mes "[Soldado]";
+		mes "O que? Como assim você não sabia?! Hm.. bem.. bem.. Você sabe, dá pra conseguir itens matando monstros. Você pode fazer dinheiro fazendo isso e vendendo para um Mercador.";
 		next;
-		mes "[Soldier]";
-		mes "HaHa, in fact, that used to be part of our job. But there were more and more hunters who come in order to get paid, so it became too much to handle.";
+		mes "[Soldado]";
+		mes "HaHa~ Na verdade, esta era nossa tarefa. Mas há muitos caçadores que vêm para serem pagos. Então era muito pra tomar conta.";
 		next;
-		mes "[Soldier]";
-		mes "We had to work overtime every day. Ah, it was a nightmare...! Anyway, the government eventually made a wise decision in creating the Registration System.";
+		mes "[Soldado]";
+		mes "Nós tinhamos que fazer hora extra todo dia. Ah... era um pesadelo... O governo fez bem em inventar o sistema de registro.";
 		next;
-		mes "[Soldier]";
-		mes "The Office of Prize Compensation only pays those who have the Registration. Of course, you'd have to be a merchant and stay in the same place all day long.";
+		mes "[Soldado]";
+		mes "O Escritório de Prêmio e Compensação só paga àqueles que estaõ registrados. As exigências para o registro são que o Mercador tenha fundos o suficiente e que fique em um só lugar o tempo todo.";
 		next;
-		mes "[Soldier]";
-		mes "The Office gives away the registration to any merchant who fulfills those requirements. So nowadays, the hunters sell their goods to the registered merchants.";
+		mes "[Soldado]";
+		mes "O Escritório libera o registro para qualquer Mercador que atenda a essas exigências.";
 		next;
-		mes "[Soldier]";
-		mes "So nowadays, the hunters sell their goods to the registered merchants.  Not too many people come to us for that anymore.";
+		mes "[Soldado]";
+		mes "Até os dias de hoje, os caçadores vendem os bens que adquirem para mercadores registrados. Então não há muita gente que nos procura mais.";
 		next;
-		mes "[Soldier]";
-		mes "I mean we are still busy, but that's nothing compared to how it was before. People who have felt suffering know how to appreciate even the slightest comfort.";
+		mes "[Soldado]";
+		mes "Digo, ainda estamos ocupados, mas não é nada parecido como era antes... Pessoas que já sofreram sabem apreciar o menor conforto.";
 		close;
 	}
-	mes "[Soldier]";
-	mes "Okay Good Bye~~";
+	mes "[Soldado]";
+	mes "OK, até logo...";
 	close;
 }
 
-// Inside Izlude	
+// Dentro de Izlude	
 //============================================================
 izlude_in,125,164,2	script	Aaron#izlude	65,{
 	mes "[Aaron]";
-	mes "Don't you think Strong VIT and training in a unique breathing method which enables quick HP recovery are the greatest advantages for a Swordman?";
+	mes "Hum? Um espadachim? Você não acha que VIT alta e um método de respiração bem treinado que permite uma recuperação de HP rápida, são as maiores vantagens de um espadachim?";
 	next;
 	mes "[Aaron]";
-	mes "If you train your skills very hard, you can even see your HP recovering. The amount";
-	mes "recovered depends";
-	mes "vitality, or VIT.";
+	mes "Se você treinar bastante suas habilidades, você pode até perceber seu HP se recuperar. A quantidade";
+	mes "recuperada depende da";
+	mes "vitalidade, ou VIT.";
 	next;
 	mes "[Aaron]";
-	mes "So if you invest more of your stats in VIT, you'll recover more HP overall when resting.";
+	mes "Então, se você investir mais seus atributos em VIT, você irá recuperar mais HP descansando.";
 	next;
 	mes "[Aaron]";
-	mes "But of course, it'd be good to have high Attack, wouldn't it? You can either acquire a good weapon or bring up your STR to support you Attack.";
+	mes "Mas é claro que seria ótimo ter um ataque forte, não é? Você pode ou comprar uma arma boa ou aumentar sua FOR para melhorar seu ataque.";
 	next;
 	mes "[Aaron]";
-	mes "You know you'll need some strength anyway to swing good weapons easily, anyway.";
+	mes "Você sabe que precisará de força de qualquer maneira para poder manejar boas armas facilmente.";
 	next;
 	mes "[Aaron]";
-	mes "Another important thing is how accurate you can hit your opponents. DEX is the key here. If you train DEX, then the gap between the MIN and MAX damage will also decrease.";
+	mes "Outra coisa importante é a precisão com que pode acertar seus oponentes. DES é a chave para isso. Se você treinar DES, o intervalo entre o dano mínimo e o dano máximo diminuirá.";
 	next;
 	mes "[Aaron]";
-	mes "Hm...";
-	mes "Are you bored by all this talk? Or do you want me to go on?";
+	mes "Hum...";
+	mes "Você está entediado? Quer que eu continue?";
 	next;
-	if (select("Tell me more please.:End conversation.") == 1) {
+	if (select("Diga-me mais, por favor.:Fim de conversa.") == 1) {
 		mes "[Aaron]";
-		mes "Hmm...";
-		mes "In that case, I'll explain about the other attributes to you briefly. In order to attack and evade quickly, you've gotta pay attention to AGI. ";
+		mes "Hum...";
+		mes "Nesse caso, te explicarei sobre outros atributos brevemente. Para atacar e desviar rapidamente, você tem que prestar atenção em AGI.";
 		next;
 		mes "[Aaron]";
-		mes "In case you want to make more critical hits, it's a good idea to invest in LUK. INT also increases Max SP, which is needed to use various skills... But it's really up to you.";
+		mes "Caso queira fazer mais ataques certeiros, é boa idéia investir em SOR. INT aumenta seu SP, necessário para usar habilidades... mas é você quem decide.";
 		close;
 	}
 	mes "[Aaron]";
-	mes "Okay then,";
-	mes "train hard~~";
+	mes "Ok, continue treinando...";
 	close;
 }
 
-// Izlude Dungeon
+// Ilha Byalan
 //============================================================
-izlu2dun,108,27,0	script	Sailor#2izlude	100,{
-	mes "[Sailor]";
-	mes "Wanna";
-	mes "head back?";
+izlu2dun,108,27,0	script	Marinheiro#2izlude	100,{
+	mes "[Marinheiro]";
+	mes "Quer voltar?";
 	next;
-	if (select("Yeah, I'm tired to death.:Nope, I love this place!") == 1) {
+	if (select("Sim, estou muito cansado.: Não, eu adoro esse lugar!") == 1) {
 		warp "izlude",176,182;
 		end;
 	}

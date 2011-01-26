@@ -17,7 +17,6 @@
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
 // | 1.1 Script Revisado [Protimus & Tyler]                 |
-// | - Anotações                                            |  
 // \________________________________________________________/
 
 //==================================================
@@ -37,7 +36,7 @@ mjolnir_01,311,271,25,25	monster	Planta Azul	1079,5,360000,180000,1
 //==================================================
 // mjolnir_02 - Mt.Mjolnir
 //==================================================
-mjolnir_02,0,0,0,0	monster	Besouro-Chifre	1004,30,0,0,0
+mjolnir_02,0,0,0,0	monster	Zangão	1004,30,0,0,0
 mjolnir_02,0,0,0,0	monster	Creamy	1018,20,0,0,0
 mjolnir_02,0,0,0,0	monster	Petite	1155,50,0,0,0
 mjolnir_02,0,0,0,0	monster	Poporing	1031,10,0,0,0
@@ -80,7 +79,7 @@ mjolnir_02,188,192,10,10	monster	Planta Azul	1079,2,360000,180000,1
 //==================================================
 // mjolnir_03 - Mt.Mjolnir
 //==================================================
-mjolnir_03,0,0,0,0	monster	Mantis	1139,30,0,0,0
+mjolnir_03,0,0,0,0	monster	Louva-a-Deus	1139,30,0,0,0
 mjolnir_03,0,0,0,0	monster	Creamy	1018,10,0,0,0
 mjolnir_03,0,0,0,0	monster	Petite Voador	1156,70,0,0,0
 mjolnir_03,0,0,0,0	monster	Poporing	1031,10,0,0,0
@@ -105,8 +104,8 @@ mjolnir_03,91,161,0,0	monster	Planta Verde	1080,1,180000,90000,1
 //==================================================
 // mjolnir_04 - Mt.Mjolnir
 //==================================================
-mjolnir_04,0,0,0,0	monster	Mantis	1139,20,0,0,0
-mjolnir_04,0,0,0,0	monster	Besouro-Chifre	1004,70,0,0,0
+mjolnir_04,0,0,0,0	monster	Louva-a-Deus	1139,20,0,0,0
+mjolnir_04,0,0,0,0	monster	Zangão	1004,70,0,0,0
 mjolnir_04,0,0,0,0	monster	Poporing	1031,10,0,0,0
 mjolnir_04,0,0,0,0	monster	Flora	1118,30,0,0,0
 mjolnir_04,0,0,0,0	monster	Argiope	1099,20,0,0,0
@@ -133,7 +132,7 @@ mjolnir_04,205,33,0,0	monster	Planta Verde	1080,1,180000,90000,1
 //==================================================
 // mjolnir_05 - Mt.Mjolnir
 //==================================================
-mjolnir_05,0,0,0,0	monster	Mantis	1139,40,0,0,0
+mjolnir_05,0,0,0,0	monster	Louva-a-Deus	1139,40,0,0,0
 mjolnir_05,0,0,0,0	monster	Poporing	1031,10,0,0,0
 mjolnir_05,0,0,0,0	monster	Flora	1118,20,0,0,0
 mjolnir_05,0,0,0,0	monster	Argiope	1099,70,0,0,0
@@ -171,7 +170,7 @@ mjolnir_07,0,0,0,0	monster	Ambernite	1094,30,0,0,0
 mjolnir_07,0,0,0,0	monster	Koko	1104,20,0,0,0
 mjolnir_07,0,0,0,0	monster	Besouro-Chifre	1128,20,0,0,0
 mjolnir_07,0,0,0,0	monster	Poporing	1031,20,0,0,0
-mjolnir_07,0,0,0,0	monster	Besouro-Chifre	1004,20,0,0,0
+mjolnir_07,0,0,0,0	monster	Zangão	1004,20,0,0,0
 mjolnir_07,314,133,0,0	monster	Planta Verde	1080,1,180000,90000,1
 mjolnir_07,299,145,0,0	monster	Planta Verde	1080,1,180000,90000,1
 mjolnir_07,272,152,0,0	monster	Planta Verde	1080,1,180000,90000,1
@@ -186,7 +185,7 @@ mjolnir_07,249,214,0,0	monster	Planta Azul	1079,2,360000,180000,1
 //==================================================
 // mjolnir_08 - Mt.Mjolnir
 //==================================================
-mjolnir_08,0,0,0,0	monster	Mantis	1139,60,0,0,0
+mjolnir_08,0,0,0,0	monster	Louva-a-Deus	1139,60,0,0,0
 mjolnir_08,0,0,0,0	monster	Argiope	1099,30,0,0,0
 mjolnir_08,0,0,0,0	monster	Argos	1100,20,0,0,0
 mjolnir_08,0,0,0,0	monster	Poporing	1031,20,0,0,0
@@ -222,7 +221,7 @@ mjolnir_09,125,82,0,0	monster	Cogumelo Vermelho	1085,1,180000,90000,1
 //==================================================
 // mjolnir_10 - Mt.Mjolnir
 //==================================================
-mjolnir_10,0,0,0,0	monster	Mantis	1139,20,0,0,0
+mjolnir_10,0,0,0,0	monster	Louva-a-Deus	1139,20,0,0,0
 mjolnir_10,0,0,0,0	monster	Flora	1118,30,0,0,0
 mjolnir_10,0,0,0,0	monster	Argos	1100,60,0,0,0
 mjolnir_10,0,0,0,0	monster	Poporing	1031,20,0,0,0

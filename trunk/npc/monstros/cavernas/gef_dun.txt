@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Spawns da Caverna de Geffen			|
+// | Nome do Script: Spawns da Caverna de Geffen            |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
@@ -16,7 +16,7 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | 1.1 Script Revisado [Protimus]							| 
+// | 1.1 Script Revisado [Protimus]                         |
 // \________________________________________________________/
 
 //==================================================
@@ -24,7 +24,7 @@
 //==================================================
 gef_dun00,0,0,0,0	monster	Mosca Caçadora	1035,30,60000,30000,0
 gef_dun00,0,0,0,0	monster	Poporing	1031,15,0,0,0
-gef_dun00,0,0,0,0	monster	Poison Spore	1077,25,0,0,0
+gef_dun00,0,0,0,0	monster	Esporo Venenoso	1077,25,0,0,0
 gef_dun00,91,106,0,0	monster	Planta Vermelha	1078,1,300000,150000,0
 gef_dun00,92,108,0,0	monster	Planta Amarela	1081,1,300000,150000,0
 gef_dun00,114,106,0,0	monster	Planta Verde	1080,1,300000,150000,0
@@ -82,25 +82,25 @@ gef_dun03,0,0,0,0	monster	Planta Branca	1082,10,180000,90000,1
 // Os Spawns abaixo são antigos, porém permanecem 
 // para uso de eventos.
 //==================================================
-//gef_dun03,0,0,0,0	monster	Baphomet	1039,1,7200000,7200000,1
+//gef_dun03,0,0,0,0	monster	Bafomé	1039,1,7200000,7200000,1
 //gef_dun03,0,0,0,0	monster	Doppelganger	1046,1,7200000,7200000,1
 //gef_dun03,0,0,0,0	monster	Deviruchi	1109,8,0,0,0
-//gef_dun03,0,0,0,0	monster	Joker	1131,5,300000,100000,0
+//gef_dun03,0,0,0,0	monster	Coringa	1131,5,300000,100000,0
 //gef_dun03,0,0,0,0	monster	Khalitzburg	1132,2,0,0,0
-//gef_dun03,0,0,0,0	monster	Knight of Abyss	1219,2,300000,0,0
-//gef_dun03,0,0,0,0	monster	Gryphon	1259,1,7200000,3600000,1
-//gef_dun03,0,0,0,0	monster	Blood Knight	1268,2,300000,0,0
-//gef_dun03,0,0,0,0	monster	Dark Lord	1272,1,7200000,7200000,1
+//gef_dun03,0,0,0,0	monster	Cavaleiro do Abismo	1219,2,300000,0,0
+//gef_dun03,0,0,0,0	monster	Grifo	1259,1,7200000,3600000,1
+//gef_dun03,0,0,0,0	monster	Cavaleiro Sanguinário	1268,2,300000,0,0
+//gef_dun03,0,0,0,0	monster	Senhor das Trevas	1272,1,7200000,7200000,1
 //gef_dun03,0,0,0,0	monster	Alice	1275,3,0,0,0
-//gef_dun03,0,0,0,0	monster	Chimera	1283,1,7200000,7200000,1
-//gef_dun03,0,0,0,0	monster	Mini Demon	1292,2,300000,0,0
-//gef_dun03,0,0,0,0	monster	Dark Illusion	1302,2,300000,0,0
-//gef_dun03,0,0,0,0	monster	Apocalypse	1365,2,300000,0,0
+//gef_dun03,0,0,0,0	monster	Quimera	1283,1,7200000,7200000,1
+//gef_dun03,0,0,0,0	monster	Diabinho	1292,2,300000,0,0
+//gef_dun03,0,0,0,0	monster	Ilusão das Trevas	1302,2,300000,0,0
+//gef_dun03,0,0,0,0	monster	Apocalipse	1365,2,300000,0,0
 //gef_dun03,0,0,0,0	monster	Succubus	1370,10,0,0,0
-//gef_dun03,0,0,0,0	monster	Fake Angel	1371,8,0,0,0
-//gef_dun03,0,0,0,0	monster	Lord of Death	1373,1,7200000,7200000,1
+//gef_dun03,0,0,0,0	monster	Anjo Fajuto	1371,8,0,0,0
+//gef_dun03,0,0,0,0	monster	Senhor dos Mortos	1373,1,7200000,7200000,1
 //gef_dun03,0,0,0,0	monster	Incubus	1374,10,0,0,0
-//gef_dun03,0,0,0,0	monster	Nightmare Terror	1379,3,0,0,0
-//gef_dun03,0,0,0,0	monster	Violy	1390,10,0,0,0
-//gef_dun03,0,0,0,0	monster	Shining Plant	1083,3,1800000,900000,1
-//gef_dun03,0,0,0,0	monster	White Plant	1082,10,180000,90000,1
+//gef_dun03,0,0,0,0	monster	Pesadelo Sombrio	1379,3,0,0,0
+//gef_dun03,0,0,0,0	monster	Violi	1390,10,0,0,0
+//gef_dun03,0,0,0,0	monster	Planta Brilhante	1083,3,1800000,900000,1
+//gef_dun03,0,0,0,0	monster	Planta Branca	1082,10,180000,90000,1

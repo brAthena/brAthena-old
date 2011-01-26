@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Spawns da Caverna de Moscóvia		    |
+// | Nome do Script: Spawns da Caverna de Moscóvia          |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
@@ -16,7 +16,7 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | 1.1 Script Revisado [Protimus]							|   
+// | 1.1 Script Revisado [Protimus]                         |
 // \________________________________________________________/
 
 //==================================================
@@ -33,7 +33,7 @@ mosk_dun01,241,177,10,10	monster	Les	1881,2,10000,0,1
 mosk_dun01,198,223,10,10	monster	Leshij	1880,3,10000,0,1
 mosk_dun01,198,223,10,10	monster	Les	1881,2,10000,0,1
 mosk_dun01,0,0,0,0	monster	Poporing	1031,20,10000,0,1
-mosk_dun01,0,0,0,0	monster	Mantis	1139,10,20000,0,0
+mosk_dun01,0,0,0,0	monster	Louva-a-Deus	1139,10,20000,0,0
 
 //==================================================
 // mosk_dun02 - Moscóvia - 2° Andar

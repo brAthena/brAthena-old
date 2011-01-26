@@ -17,7 +17,6 @@
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
 // | 1.1 Script Revisado [Protimus & Tyler]                 |
-// | - Anotações                                            |  
 // \________________________________________________________/
 
 //==================================================
@@ -25,7 +24,7 @@
 //==================================================
 mosk_fild02,0,0,0,0	monster	Pé Grande	1060,40,0,0,0
 mosk_fild02,0,0,0,0	monster	Caramelo	1103,20,0,0,0
-mosk_fild02,0,0,0,0	monster	Mantis	1139,30,0,0,0
+mosk_fild02,0,0,0,0	monster	Louva-a-Deus	1139,30,0,0,0
 mosk_fild02,0,0,0,0	monster	Poring	1002,10,0,0,0
 mosk_fild02,0,0,0,0	monster	Planta Amarela	1081,5,0,0,0
 mosk_fild02,0,0,0,0	monster	Planta Branca	1082,5,10000,0,0

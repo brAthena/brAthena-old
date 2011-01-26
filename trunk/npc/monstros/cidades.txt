@@ -37,7 +37,7 @@ amatsu,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
 gonryun,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
 
 //==================================================
-// einbech - Einbech, a Vila Mineiradora
+// einbech - Einbech, A Vila Mineradora
 //==================================================
 einbech,0,0,0,0	monster	Rosa Selvagem	1261,1,3600000,3000000,0
 einbech,0,0,0,0	monster	Tarou	1175,5,1800000,1500000,0

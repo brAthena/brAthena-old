@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Spawns da Caverna de Payon			    |
+// | Nome do Script: Spawns da Caverna de Payon             |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
@@ -16,7 +16,7 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
-// | 1.1 Script Revisado [Protimus]							|   
+// | 1.1 Script Revisado [Protimus]                         |
 // \________________________________________________________/
 
 //==================================================
@@ -160,7 +160,7 @@ pay_dun04,0,0,0,0	monster	Esqueleto Arqueiro	1016,15,0,0,0
 pay_dun04,0,0,0,0	monster	Nove Caudas	1180,30,60000,30000,0
 pay_dun04,0,0,0,0	monster	Esqueleto General	1290,1,0,0,0
 pay_dun04,0,0,0,0	monster	Am Mut	1301,1,0,0,0
-pay_dun04,120,115,0,0	monster	Gato de Nove Caudass	1307,1,3600000,7200000,1
+pay_dun04,120,115,0,0	monster	Gato de Nove Caudas	1307,1,3600000,7200000,1
 pay_dun04,120,120,10,10	monster	Planta Brilhante	1083,1,1800000,900000,1
 pay_dun04,28,110,5,5	monster	Planta Brilhante	1083,1,1800000,900000,1
 pay_dun04,0,0,0,0	monster	Planta Vermelha	1078,10,180000,90000,1
