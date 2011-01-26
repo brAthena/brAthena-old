@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0151 - 26/01/2011 [Dani]
+	* Traduzidos spawns oficiais do Renewal
+
 	r0150 - 26/01/2011 [Protimus]
 	* Liberadas 3rd classes na database.
 

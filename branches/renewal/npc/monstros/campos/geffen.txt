@@ -12,120 +12,120 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.5/1.1                                |
+// | Versões eA/brA: 1.5/1.2                                |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
 // | 1.1 Script Revisado [Protimus & Tyler]                 |
-// | - Anotações                                            |  
+// | 1.2 Spawns do Renewal Traduzidos [Dani]                |
 // \________________________________________________________/
 
 //==================================================
-// gef_fild00 - Geffen Field
+// gef_fild00 - Campo de Geffen
 //==================================================
-gef_fild00,0,0,0,0	monster	Chonchon	1011,140,0,0,0
+gef_fild00,0,0,0,0	monster	ChonChon	1011,140,0,0,0
 gef_fild00,0,0,0,0	monster	Poring	1002,30,0,0,0
 gef_fild00,0,0,0,0	monster	Fabre	1007,30,0,0,0
 
 //==================================================
-// gef_fild01 - Geffen Field
+// gef_fild01 - Campo de Geffen
 //==================================================
-gef_fild01,0,0,0,0	monster	Roda Frog	1012,80,0,0,0
+gef_fild01,0,0,0,0	monster	Sapo de Rodda	1012,80,0,0,0
 gef_fild01,0,0,0,0	monster	Ambernite	1094,20,0,0,0
-gef_fild01,0,0,0,0	monster	Toad	1089,1,3600000,1800000,1
+gef_fild01,0,0,0,0	monster	Sapo-Cururu	1089,1,3600000,1800000,1
 
 //==================================================
-// gef_fild02 - Geffen Field
+// gef_fild02 - Campo de Geffen
 //==================================================
-gef_fild02,0,0,0,0	monster	Coco	1104,140,0,0,0
+gef_fild02,0,0,0,0	monster	Koko	1104,140,0,0,0
 gef_fild02,0,0,0,0	monster	Poporing	1031,20,0,0,0
-gef_fild02,0,0,0,0	monster	Elder Willow	1033,20,0,0,0
-gef_fild02,0,0,0,0	monster	Horn	1128,20,0,0,0
-//gef_fild02,0,0,0,0	boss_monster	Orc Hero	1087,1,86400000,600000,1
-gef_fild02,87,48,6,6	monster	Red Mushroom	1085,5,360000,180000,1
+gef_fild02,0,0,0,0	monster	Salgueiro Ancião	1033,20,0,0,0
+gef_fild02,0,0,0,0	monster	Besouro-Chifre	1128,20,0,0,0
+//gef_fild02,0,0,0,0	boss_monster	Orc Herói	1087,1,86400000,600000,1
+gef_fild02,87,48,6,6	monster	Cogumelo Vermelho	1085,5,360000,180000,1
 
 //==================================================
-// gef_fild03 - Geffen Field
+// gef_fild03 - Campo de Geffen
 //==================================================
-gef_fild03,0,0,0,0	monster	Orc Lady	1273,130,0,0,0
-gef_fild03,0,0,0,0	monster	Orc Baby	1686,60,0,0,0
-gef_fild03,0,0,0,0	monster	Orc Warrior	1023,20,0,0,0
-gef_fild03,0,0,0,0	boss_monster	Orc Hero	1087,1,3600000,600000,1
+gef_fild03,0,0,0,0	monster	Senhora Orc	1273,130,0,0,0
+gef_fild03,0,0,0,0	monster	Filhote de Orc	1686,60,0,0,0
+gef_fild03,0,0,0,0	monster	Guerreiro Orc	1023,20,0,0,0
+gef_fild03,0,0,0,0	boss_monster	Orc Herói	1087,1,3600000,600000,1
 
 //==================================================
-// gef_fild04 - Geffen Field
+// gef_fild04 - Campo de Geffen
 //==================================================
-gef_fild04,0,0,0,0	monster	Mandragora	1020,124,0,0,0
+gef_fild04,0,0,0,0	monster	Mandrágora	1020,124,0,0,0
 gef_fild04,0,0,0,0	monster	Fabre	1007,25,0,0,0
-gef_fild04,0,0,0,0	monster	Chonchon	1011,25,0,0,0
-gef_fild04,0,0,0,0	monster	Lunatic	1063,25,0,0,0
+gef_fild04,0,0,0,0	monster	ChonChon	1011,25,0,0,0
+gef_fild04,0,0,0,0	monster	Lunático	1063,25,0,0,0
 
 //==================================================
-// gef_fild05 - Geffen Field
+// gef_fild05 - Campo de Geffen
 //==================================================
 gef_fild05,0,0,0,0	monster	Creamy	1018,140,0,0,0
-gef_fild05,0,0,0,0	monster	Smokie	1056,20,0,0,0
-gef_fild05,0,0,0,0	monster	Stainer	1174,20,0,0,0
-gef_fild05,0,0,0,0	monster	Thief Bug Egg	1048,10,0,0,0
-gef_fild05,0,0,0,0	monster	Thief Bug	1051,10,0,0,0
+gef_fild05,0,0,0,0	monster	Fumacento	1056,20,0,0,0
+gef_fild05,0,0,0,0	monster	Percevejo	1174,20,0,0,0
+gef_fild05,0,0,0,0	monster	Ovo de Besouro-Ladrão	1048,10,0,0,0
+gef_fild05,0,0,0,0	monster	Besouro-Ladrão	1051,10,0,0,0
 
 //==================================================
-// gef_fild06 - Geffen Field
+// gef_fild06 - Campo de Geffen
 //==================================================
 gef_fild06,0,0,0,0	monster	Petite	1155,130,0,0,0
-gef_fild06,0,0,0,0	monster	Side Winder	1037,30,0,0,0
-gef_fild06,0,0,0,0	monster	Mantis	1139,30,0,0,0
+gef_fild06,0,0,0,0	monster	Sorrateiro	1037,30,0,0,0
+gef_fild06,0,0,0,0	monster	Louva-a-Deus	1139,30,0,0,0
 
 //==================================================
-// gef_fild07 - Geffen Field
+// gef_fild07 - Campo de Geffen
 //==================================================
 gef_fild07,0,0,0,0	monster	Pupa	1008,130,0,0,0
 gef_fild07,0,0,0,0	monster	Poring	1002,20,0,0,0
 gef_fild07,0,0,0,0	monster	Fabre	1007,30,0,0,0
-gef_fild07,0,0,0,0	monster	Chonchon	1011,20,0,0,0
+gef_fild07,0,0,0,0	monster	ChonChon	1011,20,0,0,0
 
 //==================================================
-// gef_fild08 - Geffen Field
+// gef_fild08 - Campo de Geffen
 //==================================================
-gef_fild08,0,0,0,0	monster	Petite	1156,130,0,0,0
+gef_fild08,0,0,0,0	monster	Petite Voador	1156,130,0,0,0
 gef_fild08,0,0,0,0	monster	Flora	1118,30,0,0,0
-gef_fild08,0,0,0,0	monster	Mantis	1139,30,0,0,0
+gef_fild08,0,0,0,0	monster	Louva-a-Deus	1139,30,0,0,0
 
 //==================================================
-// gef_fild09 - Geffen Field
+// gef_fild09 - Campo de Geffen
 //==================================================
 gef_fild09,0,0,0,0	monster	Ambernite	1094,80,0,0,0
-gef_fild09,0,0,0,0	monster	Roda Frog	1012,20,0,0,0
-gef_fild09,51,43,0,0	monster	Red Mushroom	1085,1,180000,90000,1
+gef_fild09,0,0,0,0	monster	Sapo de Rodda	1012,20,0,0,0
+gef_fild09,51,43,0,0	monster	Cogumelo Vermelho	1085,1,180000,90000,1
 
 //==================================================
-// gef_fild10 - Geffen Field
+// gef_fild10 - Campo de Geffen
 //==================================================
-gef_fild10,0,0,0,0	monster	Orc Warrior	1023,130,0,0,0
-gef_fild10,0,0,0,0	monster	Orc Lady	1273,40,0,0,0
-gef_fild10,0,0,0,0	monster	Orc Baby	1686,20,0,0,0
-gef_fild10,0,0,0,0	boss_monster	Orc Lord	1190,1,7200000,600000,0
+gef_fild10,0,0,0,0	monster	Guerreiro Orc	1023,130,0,0,0
+gef_fild10,0,0,0,0	monster	Senhora Orc	1273,40,0,0,0
+gef_fild10,0,0,0,0	monster	Filhote de Orc	1686,20,0,0,0
+gef_fild10,0,0,0,0	boss_monster	Senhor dos Orcs	1190,1,7200000,600000,0
 
 //==================================================
-// gef_fild11 - Geffen Field
+// gef_fild11 - Campo de Geffen
 //==================================================
 gef_fild11,0,0,0,0	monster	Goblin	1122,50,0,0,0
 gef_fild11,0,0,0,0	monster	Goblin	1123,50,0,0,0
 gef_fild11,0,0,0,0	monster	Goblin	1124,50,0,0,0
 gef_fild11,0,0,0,0	monster	Goblin	1125,50,0,0,0
-gef_fild11,0,0,0,0	monster	Goblin Leader	1299,1,1800000,1200000,0
+gef_fild11,0,0,0,0	monster	Líder Goblin	1299,1,1800000,1200000,0
 
 //==================================================
-// gef_fild12 - Kordt Forest
+// gef_fild12 - Floresta Kordt
 //==================================================
 // No spawns/Disabled Map - 13.3
 
 //==================================================
-// gef_fild13 - Britoniah
+// gef_fild13 - Feudo de Britoniah
 //==================================================
 // No spawns - 13.3
 
 //==================================================
-// gef_fild14 - West Orc Village
+// gef_fild14 - Vila dos Orcs do Oeste
 //==================================================
 // No spawns/Disabled Map - 13.3

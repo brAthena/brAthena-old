@@ -12,55 +12,55 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.4/1.1                                |
+// | Versões eA/brA: 1.4/1.2                                |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
 // | 1.1 Script Revisado [Protimus & Tyler]                 |
-// | - Anotações                                            |  
+// | 1.2 Spawns do Renewal Traduzidos [Dani]                |
 // \________________________________________________________/
 
 //==================================================
-// um_fild01 - Luluka Forest
+// um_fild01 - Floresta de Luluka
 //==================================================
-um_fild01,0,0,0,0	monster	Dryad	1493,70,0,0,0
-um_fild02,0,0,0,0	monster	Stone Shooter	1495,10,0,0,0
-um_fild04,0,0,0,0	monster	Wootan Shooter	1498,10,0,0,0
-um_fild01,0,0,0,0	monster	Wootan Fighter	1499,10,0,0,0
-um_fild01,0,0,0,0	monster	Wooden Golem	1497,5,0,0,0
-um_fild01,0,0,0,0	monster	Green Plant	1080,10,180000,90000,1
-um_fild01,0,0,0,0	monster	Yellow Plant	1081,10,180000,90000,1
-um_fild01,0,0,0,0	monster	Shining Plant	1083,6,180000,90000,1
+um_fild01,0,0,0,0	monster	Dríade	1493,70,0,0,0
+um_fild02,0,0,0,0	monster	Atirador de Pedras	1495,10,0,0,0
+um_fild04,0,0,0,0	monster	Atirador Wootan	1498,10,0,0,0
+um_fild01,0,0,0,0	monster	Guerreiro Wootan	1499,10,0,0,0
+um_fild01,0,0,0,0	monster	Golem de Madeira	1497,5,0,0,0
+um_fild01,0,0,0,0	monster	Planta Verde	1080,10,180000,90000,1
+um_fild01,0,0,0,0	monster	Planta Amarela	1081,10,180000,90000,1
+um_fild01,0,0,0,0	monster	Planta Brilhante	1083,6,180000,90000,1
 
 //==================================================
-// um_fild02 - Hoomga Forest
+// um_fild02 - Floresta de Hoomga
 //==================================================
-um_fild02,0,0,0,0	monster	Wootan Fighter	1499,40,0,0,0
-um_fild02,0,0,0,0	monster	Stone Shooter	1495,10,0,0,0
-um_fild04,0,0,0,0	monster	Wootan Shooter	1498,10,0,0,0
+um_fild02,0,0,0,0	monster	Guerreiro Wootan	1499,40,0,0,0
+um_fild02,0,0,0,0	monster	Atirador de Pedras	1495,10,0,0,0
+um_fild04,0,0,0,0	monster	Atirador Wootan	1498,10,0,0,0
 um_fild02,0,0,0,0	monster	Choco	1214,5,0,0,0
-um_fild02,0,0,0,0	monster	Red Plant	1078,5,180000,90000,1
-um_fild02,0,0,0,0	monster	Yellow Plant	1081,5,180000,90000,1
+um_fild02,0,0,0,0	monster	Planta Vermelha	1078,5,180000,90000,1
+um_fild02,0,0,0,0	monster	Planta Amarela	1081,5,180000,90000,1
 
 //==================================================
-// um_fild03 - Kalala Swamp
+// um_fild03 - Pântano de Kalala
 //==================================================
-um_fild03,0,0,0,0	monster	Parasite	1500,60,0,0,0
-um_fild02,0,0,0,0	monster	Stone Shooter	1495,10,0,0,0
-um_fild04,0,0,0,0	monster	Wootan Shooter	1498,10,0,0,0
-um_fild02,0,0,0,0	monster	Wootan Fighter	1499,10,0,0,0
-um_fild03,0,0,0,0	monster	Blue Plant	1079,5,180000,90000,1
-um_fild03,0,0,0,0	monster	Green Plant	1080,10,180000,90000,1
-um_fild03,0,0,0,0	monster	Shining Plant	1083,2,180000,90000,1
+um_fild03,0,0,0,0	monster	Parasita	1500,60,0,0,0
+um_fild02,0,0,0,0	monster	Atirador de Pedras	1495,10,0,0,0
+um_fild04,0,0,0,0	monster	Atirador Wootan	1498,10,0,0,0
+um_fild02,0,0,0,0	monster	Guerreiro Wootan	1499,10,0,0,0
+um_fild03,0,0,0,0	monster	Planta Azul	1079,5,180000,90000,1
+um_fild03,0,0,0,0	monster	Planta Verde	1080,10,180000,90000,1
+um_fild03,0,0,0,0	monster	Planta Brilhante	1083,2,180000,90000,1
 
 //==================================================
-// um_fild04 - Hoomga Jungle
+// um_fild04 - Selva de Hoomga
 //==================================================
-um_fild04,0,0,0,0	monster	Wild Rose	1261,30,0,0,0
-um_fild04,0,0,0,0	monster	Stone Shooter	1495,5,0,0,0
-um_fild04,0,0,0,0	monster	Wooden Golem	1497,5,0,0,0
-um_fild04,0,0,0,0	monster	Wootan Shooter	1498,5,0,0,0
-um_fild04,0,0,0,0	monster	Wootan Fighter	1499,5,0,0,0
+um_fild04,0,0,0,0	monster	Rosa Selvagem	1261,30,0,0,0
+um_fild04,0,0,0,0	monster	Atirador de Pedras	1495,5,0,0,0
+um_fild04,0,0,0,0	monster	Golem de Madeira	1497,5,0,0,0
+um_fild04,0,0,0,0	monster	Atirador Wootan	1498,5,0,0,0
+um_fild04,0,0,0,0	monster	Guerreiro Wootan	1499,5,0,0,0
 um_fild04,0,0,0,0	monster	Choco	1214,2,0,0,0
-um_fild04,0,0,0,0	monster	Red Plant	1078,5,180000,90000,1
-um_fild04,0,0,0,0	monster	Yellow Plant	1081,5,180000,90000,1
+um_fild04,0,0,0,0	monster	Planta Vermelha	1078,5,180000,90000,1
+um_fild04,0,0,0,0	monster	Planta Amarela	1081,5,180000,90000,1
