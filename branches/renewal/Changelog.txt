@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0150 - 26/01/2011 [Protimus]
+	* Liberadas 3rd classes na database.
+
 	r0148 - 25/01/2011 [Dani]
 	* Enviadas últimas alterações da trunk pra renewal
 	* Comentado mob 1996
