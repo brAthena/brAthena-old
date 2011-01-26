@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0153 - 26/01/2011 [Protimus]
+	* Adicionadas todas as informações de reuso para habilidades já existentes.
+	- Baseados em vídeos e informações de outros fóruns, como do iRO.
+
 	r0151 - 26/01/2011 [Dani]
 	* Traduzidos spawns oficiais do Renewal
 
