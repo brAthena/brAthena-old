@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0149 - 25/01/2011 [Dani]
+	* Correção no cabeçalho dos NPCs que foram enviados na r147,
+	para leitura automática do Centro de Traduções
+	- http://www.brathena.org/projetos/ct/
+
 	r0147 - 25/01/2011 [Dani]
 	* Enviadas traduções
 	- cidades/alberta.txt
