@@ -1661,7 +1661,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio += 100 *(skill_lv+1);
 					break;
 				case GS_PIERCINGSHOT:
-					skillratio += 20*skill_lv;
+					skillratio += ((20+(sd->status.weapon == W_RIFLE ? 5 : 0))*skill_lv);
 					break;
 				case GS_RAPIDSHOWER:
 					skillratio += 10*skill_lv;
@@ -1676,7 +1676,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio += 100*(skill_lv+2);
 					break;
 				case GS_SPREADATTACK:
-					skillratio += 20*(skill_lv-1);
+					skillratio += 25*(skill_lv-1);
 					break;
 				case NJ_HUUMA:
 					skillratio += 50 + 150*skill_lv;
@@ -1965,7 +1965,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			if( skill_num == MC_CARTREVOLUTION ) //Cart Revolution applies the element fix once more with neutral element
 				wd.damage = battle_attr_fix(src,target,wd.damage,ELE_NEUTRAL,tstatus->def_ele, tstatus->ele_lv);
 			if( skill_num== GS_GROUNDDRIFT ) //Additional 50*lv Neutral damage.
-				wd.damage += battle_attr_fix(src,target,50*skill_lv,ELE_NEUTRAL,tstatus->def_ele, tstatus->ele_lv);
+				wd.damage += battle_attr_fix(src,target,60*skill_lv,ELE_NEUTRAL,tstatus->def_ele, tstatus->ele_lv);
 		}
 		if( flag.lh && wd.damage2 > 0 )
 			wd.damage2 = battle_attr_fix(src,target,wd.damage2,s_ele_,tstatus->def_ele, tstatus->ele_lv);

@@ -787,7 +787,7 @@
 518,2,6,1,-1,0,0,10,1,no,0,0,0,weapon,5,		GS_DUST,Controle de Multidão
 519,-9,6,1,-1,0,0,10,1,yes,0,0,0,weapon,0,		GS_FULLBUSTER,Ataque Total
 520,-9,6,1,-1,0x2,1:1:1:2:2:2:3:3:3:4,10,1,no,0,0,0,weapon,0,		GS_SPREADATTACK,Disparo Espalhado
-521,-9,6,2,-1,0x40,1,10,1,no,0,0,0,weapon,3,		GS_GROUNDDRIFT,Mina do Justiceiro
+521,-9,6,2,-1,0x40,2,10,1,no,0,0,0,weapon,3,		GS_GROUNDDRIFT,Mina do Justiceiro
 //============================================================
 // Ninja
 //============================================================

@@ -9,6 +9,13 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0160 - 27/01/2011 [Floozie]
+	* Modificação em Habilidades:
+	- Ferir Alvo: Aumentado o dano se usada com um Rifle.
+    - Controle da Multidão: Conjuração não pode ser mais interrompida.
+    - Tiro Espalhado: Aumentado o dano causado, pode ser usada com lança granadas.
+    - Mina do Justiceiro: Aumentado o dano e a área de ativação, formula de dano modificada.
+	
 	r0159 - 27/01/2011 [Protimus]
 	* Modificações em habilidades:
 	- Campo Gravitacional: Reduzido pela metade o intervalo entre os danos da habilidade e dano máximo causado ao usuário reduzido em aproximadamente 45%.
