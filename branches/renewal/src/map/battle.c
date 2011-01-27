@@ -1442,6 +1442,8 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio += 10*(skill_lv-1);
 					break;
 				case AC_SHOWER:
+					skillratio += 25*skill_lv;
+					break;
 				case MA_SHOWER:
 					skillratio += 5*skill_lv-25;
 					break;
@@ -2446,8 +2448,10 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 				}
 
 				switch(skill_num){
-					case MG_NAPALMBEAT:
 					case MG_FIREBALL:
+					skillratio += skill_lv*25;
+					break;
+					case MG_NAPALMBEAT:
 						skillratio += skill_lv*10-30;
 						break;
 					case MG_SOULSTRIKE:
@@ -2458,7 +2462,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						skillratio -= 50;
 						break;
 					case MG_THUNDERSTORM:
-						skillratio -= 20;
+						skillratio += skill_lv*25;
 						break;
 					case MG_FROSTDIVER:
 						skillratio += 10*skill_lv;
