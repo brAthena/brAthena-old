@@ -2453,7 +2453,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						skillratio -= 50;
 						break;
 					case MG_THUNDERSTORM:
-						skillratio += skill_lv*25;
+						skillratio += skill_lv*45;
 						break;
 					case MG_FROSTDIVER:
 						skillratio += 10*skill_lv;
@@ -2467,7 +2467,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						skillratio += 45;
 						break;
 					case WZ_FROSTNOVA:
-						skillratio += (100+skill_lv*10)*2/3-100;
+						skillratio += 10*skill_lv;
 						break;
 					case WZ_FIREPILLAR:
 						if (skill_lv > 10)
@@ -2485,8 +2485,10 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						skillratio += 30*skill_lv;
 						break;
 					case WZ_STORMGUST:
-						skillratio += 40*skill_lv;
+						skillratio += 55*skill_lv;
 						break;
+					case WZ_HEAVENDRIVE:
+						skillratio += 25*skill_lv;
 					case HW_NAPALMVULCAN:
 						skillratio += 10*skill_lv-30;
 						break;
@@ -2807,7 +2809,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		nk|=NK_IGNORE_FLEE|NK_NO_ELEFIX; //These two are not properties of the weapon based part.
 		break;
 	case HW_GRAVITATION:
-		md.damage = 200+200*skill_lv;
+		d.damage = 500+100*skill_lv;
 		md.dmotion = 0; //No flinch animation.
 		break;
 	case NPC_EVILLAND:

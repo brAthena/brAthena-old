@@ -9,6 +9,15 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0159 - 27/01/2011 [Protimus]
+	* Modificações em habilidades:
+	- Campo Gravitacional: Reduzido pela metade o intervalo entre os danos da habilidade e dano máximo causado ao usuário reduzido em aproximadamente 45%.
+	- Congelar: Aumentado o dano em 10%. (Dano total).
+	- Fúria da Terra: Aumentado o dano em 25% (Dano total).
+	- Nevasca: Dano aumentado em cerca de 15% (Dano total).
+	* Correções em dados de commits anteriores.
+	- Revisado conforme iRO Wiki - Youtube, etc...
+
 	r0158 - 27/01/2011 [Protimus]
 	* Modificações em habilidades:
 	- Provocar: Reduz apenas a defesa de atributos do adversário.
