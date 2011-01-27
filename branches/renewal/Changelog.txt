@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0161 - 27/01/2011 [Protimus]
+	* Modificações em habilidades:
+	- Instinto de Defesa: Removido os pre-requisitos da habilidade.
+	- Ira de Thor: Dano aumentado em cerca de 20% (Dano total).
+	- Chuva de Meteoros: Aumentado o dano em 25% (Dano total).
+
 	r0160 - 27/01/2011 [Floozie]
 	* Modificação em Habilidades:
 	- Ferir Alvo: Aumentado o dano se usada com um Rifle.
