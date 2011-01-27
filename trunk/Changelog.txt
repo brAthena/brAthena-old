@@ -9,6 +9,14 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0161 - 27/01/2011 [Dani]
+	* Revisões efetuadas
+	- npc/aeroplanos/einbroch.txt
+	- npc/aeroplanos/lighthalzen.txt
+	- npc/aeroplanos/yuno.txt
+	* Removido script refinador_avançado.txt
+	- Estava duplicado
+
 	r0154 - 27/01/2011 [Dani]
 	* Envio de Traduções
 	- npc/quests/habilidades/habilidades_novico.txt
