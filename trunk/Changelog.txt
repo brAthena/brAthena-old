@@ -9,6 +9,19 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0154 - 27/01/2011 [Dani]
+	* Envio de Traduções
+	- npc/quests/habilidades/habilidades_novico.txt
+	* Adicionados scripts personalizados no launcher
+	- Comentados, vistos que não são padrões do RO
+	- Descomentar caso deseje utilizar
+	* Pequenas revisões
+	- npc/quests/quests_aldebaran.txt
+	- npc/quests/quests_geffen.txt
+	- npc/quests/quests_izlude.txt
+	- npc/quests/quests_lutie.txt
+	- npc/quests/quests_payon.txt
+
 	r0152 - 26/01/2011 [Dani]
 	* Envio de Traduções
 	- npc/cidades/izlude.txt

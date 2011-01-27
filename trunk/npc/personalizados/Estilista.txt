@@ -10,7 +10,7 @@
 // |--------------------------------------------------------|
 // | Nome do Script: Estilista                              |
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team                           |
+// | Criado por: brAthena Dev. Team                         |
 // |--------------------------------------------------------|
 // | Versões brA: 1.0                                       |
 // |--------------------------------------------------------|
@@ -19,9 +19,8 @@
 // | o número da cor ou do penteado, conforme a opção       |
 // | selecionada pela pessoa.                               |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
+// | Changelog:                                             |
 // | 1.0 Script Criado [Equipe brAthena]                    |
-// | - Anotações                                            |
 // \________________________________________________________/
 
 prontera,170,180,1	script	Estilista	122,{
