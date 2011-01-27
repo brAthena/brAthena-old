@@ -149,7 +149,7 @@ void initChangeTables(void)
 	set_sc( AL_INCAGI            , SC_INCREASEAGI     , SI_INCREASEAGI     , SCB_AGI|SCB_SPEED );
 	set_sc( AL_DECAGI            , SC_DECREASEAGI     , SI_DECREASEAGI     , SCB_AGI|SCB_SPEED );
 	set_sc( AL_CRUCIS            , SC_SIGNUMCRUCIS    , SI_SIGNUMCRUCIS    , SCB_DEF );
-	set_sc( AL_ANGELUS           , SC_ANGELUS         , SI_ANGELUS         , SCB_DEF2 );
+	set_sc( AL_ANGELUS           , SC_ANGELUS         , SI_ANGELUS         , SCB_DEF );
 	set_sc( AL_BLESSING          , SC_BLESSING        , SI_BLESSING        , SCB_STR|SCB_INT|SCB_DEX );
 	set_sc( AC_CONCENTRATION     , SC_CONCENTRATE     , SI_CONCENTRATE     , SCB_AGI|SCB_DEX );
 	set_sc( TF_HIDING            , SC_HIDING          , SI_HIDING          , SCB_SPEED );
@@ -285,7 +285,7 @@ void initChangeTables(void)
 	set_sc( LK_CONCENTRATION     , SC_CONCENTRATION   , SI_CONCENTRATION   , SCB_BATK|SCB_WATK|SCB_HIT|SCB_DEF|SCB_DEF2|SCB_MDEF|SCB_DSPD );
 	set_sc( LK_TENSIONRELAX      , SC_TENSIONRELAX    , SI_TENSIONRELAX    , SCB_REGEN );
 	set_sc( LK_BERSERK           , SC_BERSERK         , SI_BERSERK         , SCB_DEF|SCB_DEF2|SCB_MDEF|SCB_MDEF2|SCB_FLEE|SCB_SPEED|SCB_ASPD|SCB_MAXHP|SCB_REGEN );
-	set_sc( HP_ASSUMPTIO         , SC_ASSUMPTIO       , SI_ASSUMPTIO       , SCB_NONE );
+	set_sc( HP_ASSUMPTIO         , SC_ASSUMPTIO       , SI_ASSUMPTIO       , SCB_DEF|SCB_DEF2 );
 	add_sc( HP_BASILICA          , SC_BASILICA        );
 	set_sc( HW_MAGICPOWER        , SC_MAGICPOWER      , SI_MAGICPOWER      , SCB_MATK );
 	add_sc( PA_SACRIFICE         , SC_SACRIFICE       );
@@ -3707,6 +3707,8 @@ static signed char status_calc_def(struct block_list *bl, struct status_change *
 		return 90;
 	if(sc->data[SC_STEELBODY])
 		return 90;
+	if(sc->data[SC_ANGELUS])
+		def += def * sc->data[SC_ANGELUS]->val2/100;
 	if(sc->data[SC_ARMORCHANGE])
 		def += sc->data[SC_ARMORCHANGE]->val2;
 	if(sc->data[SC_DRUMBATTLE])
@@ -3719,6 +3721,8 @@ static signed char status_calc_def(struct block_list *bl, struct status_change *
 		def >>=1;
 	if(sc->data[SC_FREEZE])
 		def >>=1;
+	if(sc->data[SC_ASSUMPTIO])
+		def *= 2;
 	if(sc->data[SC_SIGNUMCRUCIS])
 		def -= def * sc->data[SC_SIGNUMCRUCIS]->val2/100;
 	if(sc->data[SC_CONCENTRATION])
@@ -3746,8 +3750,6 @@ static signed short status_calc_def2(struct block_list *bl, struct status_change
 		return 0;
 	if(sc->data[SC_SUN_COMFORT])
 		def2 += sc->data[SC_SUN_COMFORT]->val2;
-	if(sc->data[SC_ANGELUS])
-		def2 += def2 * sc->data[SC_ANGELUS]->val2/100;
 	if(sc->data[SC_CONCENTRATION])
 		def2 -= def2 * sc->data[SC_CONCENTRATION]->val4/100;
 	if(sc->data[SC_POISON])
@@ -3756,6 +3758,8 @@ static signed short status_calc_def2(struct block_list *bl, struct status_change
 		def2 -= def2 * 25/100;
 	if(sc->data[SC_SKE])
 		def2 -= def2 * 50/100;
+	if(sc->data[SC_ASSUMPTIO])
+		def2 *= 2;
 	if(sc->data[SC_PROVOKE])
 		def2 -= def2 * sc->data[SC_PROVOKE]->val4/100;
 	if(sc->data[SC_JOINTBEAT])
@@ -3956,25 +3960,9 @@ static short status_calc_aspd_rate(struct block_list *bl, struct status_change *
 		if(sc->data[SC_STAR_COMFORT])
 			max = sc->data[SC_STAR_COMFORT]->val2;
 
-		if(sc->data[SC_TWOHANDQUICKEN] &&
-			max < sc->data[SC_TWOHANDQUICKEN]->val2)
-			max = sc->data[SC_TWOHANDQUICKEN]->val2;
-
-		if(sc->data[SC_ONEHAND] &&
-			max < sc->data[SC_ONEHAND]->val2)
-			max = sc->data[SC_ONEHAND]->val2;
-
 		if(sc->data[SC_MERC_QUICKEN] &&
 			max < sc->data[SC_MERC_QUICKEN]->val2)
 			max = sc->data[SC_MERC_QUICKEN]->val2;
-
-		if(sc->data[SC_ADRENALINE2] &&
-			max < sc->data[SC_ADRENALINE2]->val3)
-			max = sc->data[SC_ADRENALINE2]->val3;
-		
-		if(sc->data[SC_ADRENALINE] &&
-			max < sc->data[SC_ADRENALINE]->val3)
-			max = sc->data[SC_ADRENALINE]->val3;
 		
 		if(sc->data[SC_SPEARQUICKEN] &&
 			max < sc->data[SC_SPEARQUICKEN]->val2)
@@ -4011,7 +3999,7 @@ static short status_calc_aspd_rate(struct block_list *bl, struct status_change *
 
 	  	//These stack with the rest of bonuses.
 		if(sc->data[SC_BERSERK])
-			aspd_rate -= 300;
+			aspd_rate -= 150;
 		else if(sc->data[SC_MADNESSCANCEL])
 			aspd_rate -= 200;
 	}

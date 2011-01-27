@@ -9,14 +9,20 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
-	r156 - 27/01/2011 [Protimus]
+	r0157 - 27/01/2011 [Protimus]
+	* Modificações em habilidades:
+	- Angelus: Continua influenciando apenas a parte da Vitalidade na defesa -> Passou para DEF ao invés de DEF2.
+	- Frenezi, Rapidez com Duas Mãos, Rapidez com Uma Mão, Adrenalina Pura & Adrenalina Concentrada: Velocidade de ataque aumentada em valor fixo. -> Já havia sido modificado, só fazendo correções.
+	- Assumptio: Aumenta a defesa em 100%. Habilidades que ignoram a defesa, ignoram os efeitos da habilidade.
+	
+	r0156 - 27/01/2011 [Protimus]
 	* Modificações em habilidades:
 	- Arremessar Shuriken Huuma: Conjuração não pode ser interrompida, pode ser mirada no chão e não tem mais seus dano dividido entre os alvos.
 	- Chuva de Flechas: Dano aumentado em 25%.
 	- Bola de Fogo: Aumentado o dano em 25%. (Dano total)
 	- Tempestade de Raios: Aumentado o dano em 25%. (Dano total)
 	
-	r155 - 27/01/2011 [Protimus]
+	r0155 - 27/01/2011 [Protimus]
 	* Modificações em habilidades:
 	- Virar Tatami: Aumentado o dano e chance de empurrar para trás.
 	- Lanças de Fogo, Lanças de Gelo e Relâmpago: Reduzido o tempo de conjuração.

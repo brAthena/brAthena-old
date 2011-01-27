@@ -411,15 +411,6 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 				status_change_end(bl, SC_AETERNA, INVALID_TIMER); //Shouldn't end until Breaker's non-weapon part connects.
 		}
 
-		//Finally damage reductions....
-		if( sc->data[SC_ASSUMPTIO] )
-		{
-			if( map_flag_vs(bl->m) )
-				damage = damage*2/3; //Receive 66% damage
-			else
-				damage >>= 1; //Receive 50% damage
-		}
-
 		if(sc->data[SC_DEFENDER] &&
 			(flag&(BF_LONG|BF_WEAPON)) == (BF_LONG|BF_WEAPON))
 			damage=damage*(100-sc->data[SC_DEFENDER]->val2)/100;
