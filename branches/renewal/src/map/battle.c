@@ -1689,7 +1689,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio += 50 + 150*skill_lv;
 					break;
 				case NJ_TATAMIGAESHI:
-					skillratio += 10*skill_lv;
+					skillratio += 30*skill_lv;
 					break;
 				case NJ_KASUMIKIRI:
 					skillratio += 10*skill_lv;
