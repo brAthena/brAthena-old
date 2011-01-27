@@ -1294,7 +1294,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			case NJ_ISSEN:
 				wd.damage = 40*sstatus->str +skill_lv*(sstatus->hp/10 + 35);
 				wd.damage2 = 0;
-				status_set_hp(src, 1, 0);
+				status_set_hp(src, status_get_max_hp(src)/100, 0);
 				break;
 			case PA_SACRIFICE:
 				wd.damage = sstatus->max_hp* 9/100;

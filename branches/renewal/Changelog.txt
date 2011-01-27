@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0158 - 27/01/2011 [Protimus]
+	* Modificações em habilidades:
+	- Provocar: Reduz apenas a defesa de atributos do adversário.
+	- Ataque Mortal: Quando conjurado, o HP do usuário cai para 1% do total.
+
 	r0157 - 27/01/2011 [Protimus]
 	* Modificações em habilidades:
 	- Angelus: Continua influenciando apenas a parte da Vitalidade na defesa -> Passou para DEF ao invés de DEF2.
