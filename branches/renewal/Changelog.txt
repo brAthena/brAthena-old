@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0164 - 27/01/2011 [Floozie]
+	* Modificações em habilidades:
+	- Bomba Ácida: Dano reduzido pela defesa física e mágica do alvo.
+	- Destruidor de Almas: Dano da habilidade reduzido pela defesa física e mágica do alvo.
+	
 	r0163 - 27/01/2011 [Protimus]
 	* Modificações em habilidades:
 	- Exalar Alma: Modificada a quantidade de SP passada pelo Professor, agora o Professor passa no máximo 50% do SP do usuário.
