@@ -276,7 +276,7 @@ int skill_calc_heal(struct block_list *src, struct block_list *target, int skill
 	switch( skill_id )
 	{
 	case BA_APPLEIDUN:
-		hp = 30+5*skill_lv+5*(status_get_vit(src)/10); // HP recovery
+		hp = 30+15*skill_lv+5*(status_get_vit(src)/10); // HP recovery
 		if( sd )
 			hp += 5*pc_checkskill(sd,BA_MUSICALLESSON);
 		break;
@@ -6921,26 +6921,22 @@ struct skill_unit_group* skill_unitsetting (struct block_list *src, short skilli
 		val1 = 10;	//FIXME: This value is not used anywhere, what is it for? [Skotlex]
 		break;
 	case BA_WHISTLE:
-		val1 = skilllv +status->agi/10; // Flee increase
-		val2 = ((skilllv+1)/2)+status->luk/10; // Perfect dodge increase
+		val1 = (skilllv +status->agi/10)*3; // Flee increase
+		val2 = (((skilllv+1)/2)+status->luk/10)*3; // Perfect dodge increase
 		if(sd){
 			val1 += pc_checkskill(sd,BA_MUSICALLESSON);
 			val2 += pc_checkskill(sd,BA_MUSICALLESSON);
 		}
 		break;
 	case DC_HUMMING:
-        val1 = 2*skilllv+status->dex/10; // Hit increase
+        val1 = (2*skilllv+status->dex/10)*2; // Hit increase
 		if(sd)
 			val1 += pc_checkskill(sd,DC_DANCINGLESSON);
 		break;
 	case BA_POEMBRAGI:
-		val1 = 3*skilllv+status->dex/10; // Casting time reduction
-		//For some reason at level 10 the base delay reduction is 50%.
-		val2 = (skilllv<10?3*skilllv:50)+status->int_/5; // After-cast delay reduction
-		if(sd){
+		val1 = 2*skilllv+status->dex/10; // Casting time reduction
+		if(sd)
 			val1 += 2*pc_checkskill(sd,BA_MUSICALLESSON);
-			val2 += 2*pc_checkskill(sd,BA_MUSICALLESSON);
-		}
 		break;
 	case DC_DONTFORGETME:
 		val1 = status->dex/10 + 3*skilllv + 5; // ASPD decrease
@@ -6975,11 +6971,11 @@ struct skill_unit_group* skill_unitsetting (struct block_list *src, short skilli
 		val1*=10; //Because every 10 crit is an actual cri point.
 		break;
 	case BD_DRUMBATTLEFIELD:
-		val1 = (skilllv+1)*25;	//Watk increase
-		val2 = (skilllv+1)*2;	//Def increase
+		val1 = (skilllv+5)*25;	//Watk increase
+		val2 = (skilllv+5)*2;	//Def increase
 		break;
 	case BD_RINGNIBELUNGEN:
-		val1 = (skilllv+2)*25;	//Watk increase
+		val1 = (skilllv+5)*25;	//Watk increase
 		break;
 	case BD_RICHMANKIM:
 		val1 = 25 + 11*skilllv; //Exp increase bonus.
