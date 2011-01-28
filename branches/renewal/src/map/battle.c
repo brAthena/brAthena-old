@@ -3789,7 +3789,7 @@ static const struct _battle_data {
 	{ "arrow_decrement",                    &battle_config.arrow_decrement,                 1,      0,      2,              },
 	{ "max_aspd",                           &battle_config.max_aspd,                        199,    100,    199,            },
 	{ "max_walk_speed",                     &battle_config.max_walk_speed,                  300,    100,    100*DEFAULT_WALK_SPEED, },
-	{ "max_lv",                             &battle_config.max_lv,                          99,     0,      127,            },
+	{ "max_lv",                             &battle_config.max_lv,                          99,     0,      150,            },
 	{ "aura_lv",                            &battle_config.aura_lv,                         99,     0,      INT_MAX,        },
 	{ "max_hp",                             &battle_config.max_hp,                          32500,  100,    1000000000,     },
 	{ "max_sp",                             &battle_config.max_sp,                          32500,  100,    1000000000,     },
@@ -4040,7 +4040,9 @@ static const struct _battle_data {
 	{ "bg_misc_attack_damage_rate",         &battle_config.bg_misc_damage_rate,             60,     0,      INT_MAX,        },
 	{ "bg_flee_penalty",                    &battle_config.bg_flee_penalty,                 20,     0,      INT_MAX,        },
 	// brAthena Modificações
-    { "use_statpoint2_table",                &battle_config.use_statpoint2_table,             1,      0,      1,              },
+	{ "use_statpoint2_table",               &battle_config.use_statpoint2_table,             1,     0,      1,              },
+	{ "max_3rd_parameter",                  &battle_config.max_3rd_parameter,              120,     10,     10000,          },
+	{ "max_baby_3rd_parameter",             &battle_config.max_baby_3rd_parameter,         108,     10,     10000,          },
 };
 
 

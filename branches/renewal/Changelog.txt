@@ -9,17 +9,25 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0168 - 28/08/2011 [Dani]
+	* Aumentado nível máximo na src para 150, para dar suporte ao nível máximo das Terceiras Classes
+	* Adicionado suporte de stat máximo para Terceiras Classes e Terceiras Classes Bebês
+	- 120 e 108 respectivamente
+	* Desabilitados todos os scripts, exceto portais, mapflags e spawns que já são padrões do Renewal
+	- Por enquanto não se fazem necessários
+	- Serão readicionados aos poucos na 3ª Fase do desenvolvimento do Renewal
+
 	r0167 - 27/01/2011 [Floozie]
 	* Modificações em habilidades:
 	- Crepúsculo Sangrento: Aumenta a velocidade de ataque em um valor fixo.
-    - Poema de Bragi: Reduz apenas o tempo de conjuração variável.
-    - Assovio: Efeito da habilidade aumentado em 200%
-    - Maçãs de Idun: Aumentado a quantidade de HP recuperado e os intervalos entre os tiques de cura caiu para 5 segundos.
-    - Sibilo: Efeito da habilidade aumentado em 100%
-    - Cantiga de Ninar: Tique da habilidade caiu para 4 segundos.
-    - Rufar dos Tambores: Aumentada a quantidade de ataque e defesa aumentado.
-    - Anel dos Nibelungos: Todas as armas ganham bônus, independente do nível. Defesa concedida aumentada.
-	
+	- Poema de Bragi: Reduz apenas o tempo de conjuração variável.
+	- Assovio: Efeito da habilidade aumentado em 200%
+	- Maçãs de Idun: Aumentado a quantidade de HP recuperado e os intervalos entre os tiques de cura caiu para 5 segundos.
+	- Sibilo: Efeito da habilidade aumentado em 100%
+	- Cantiga de Ninar: Tique da habilidade caiu para 4 segundos.
+	- Rufar dos Tambores: Aumentada a quantidade de ataque e defesa aumentado.
+	- Anel dos Nibelungos: Todas as armas ganham bônus, independente do nível. Defesa concedida aumentada.
+
 	r0166 - 27/01/2011 [Protimus]
 	* Modificações em habilidades:
 	- Armadilha Atordoante, Instalar Mina e Armadilha Explosiva: Dano modificado pelo nível do usuário.

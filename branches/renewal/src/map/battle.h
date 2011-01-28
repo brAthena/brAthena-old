@@ -491,7 +491,10 @@ extern struct Battle_Config
 	int bg_flee_penalty;
 
 	// brAthena Modificações
-    int use_statpoint2_table; // [Protimus]
+	int use_statpoint2_table; // [Protimus]
+	int max_3rd_parameter;
+	int max_baby_3rd_parameter;
+
 } battle_config;
 
 void do_init_battle(void);
