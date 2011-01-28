@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0165 - 27/01/2011 [Protimus]
+	* Modificações em habilidades:
+	- Ataque Mortal: O dano aumenta em 50% para cada imagem falsa ativa.
+	- Escudo Mágico: A Barreia agora possui HP que é baseado no ataque mágico, nível de classe e HP do usuário. O dano que exceder esta quantia é ignorado e a habilidade cancelada.
+
 	r0164 - 27/01/2011 [Floozie]
 	* Modificações em habilidades:
 	- Bomba Ácida: Dano reduzido pela defesa física e mágica do alvo.

@@ -316,17 +316,18 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 			d->dmg_lv = ATK_BLOCK;
 			return 0;
 		}
-
+		
 		if( sc->data[SC_SAFETYWALL] && (flag&(BF_SHORT|BF_MAGIC))==BF_SHORT )
 		{
 			struct skill_unit_group* group = skill_id2group(sc->data[SC_SAFETYWALL]->val3);
 			if (group) {
-				if (--group->val2<=0)
-					skill_delunitgroup(group);
+				damage -= group->val3;
+				skill_delunitgroup(group);
+				group->val3 -= damage;
 				d->dmg_lv = ATK_BLOCK;
-				return 0;
-			}
-			status_change_end(bl, SC_SAFETYWALL, INVALID_TIMER);
+					return 0;
+				}			
+			status_change_end(bl,SC_SAFETYWALL,-1);
 		}
 
 		if( sc->data[SC_PNEUMA] && (flag&(BF_MAGIC|BF_LONG)) == BF_LONG )
@@ -1058,6 +1059,12 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			case LK_SPIRALPIERCE:
 				if (!sd) wd.flag=(wd.flag&~(BF_RANGEMASK|BF_WEAPONMASK))|BF_LONG|BF_MISC;
 				break;
+				
+			case NJ_ISSEN:
+				if(sc)
+					wd.div_ = (sc->data[SC_BUNSINJYUTSU] && sc->data[SC_BUNSINJYUTSU]->val2 > 0)?
+						(sc->data[SC_BUNSINJYUTSU]->val2 == 5)?-7:sc->data[SC_BUNSINJYUTSU]->val2:1;
+				break;
 		}
 	} else //Range for normal attacks.
 		wd.flag |= flag.arrow?BF_LONG:BF_SHORT;
@@ -1757,8 +1764,12 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				skill_num != AS_VENOMKNIFE)
 				ATK_ADDRATE(sc->data[SC_EDP]->val3);
 		}
-
+		
 		switch (skill_num) {
+			case NJ_ISSEN:
+				if(sc && sc->data[SC_BUNSINJYUTSU] && sc->data[SC_BUNSINJYUTSU]->val2 > 0)
+					ATK_ADDRATE(sc->data[SC_BUNSINJYUTSU]->val2*50);
+				break;
 			case AS_SONICBLOW:
 				if (sc && sc->data[SC_SPIRIT] &&
 					sc->data[SC_SPIRIT]->val2 == SL_ASSASIN)
@@ -2812,7 +2823,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		nk|=NK_IGNORE_FLEE|NK_NO_ELEFIX; //These two are not properties of the weapon based part.
 		break;
 	case HW_GRAVITATION:
-		d.damage = 500+100*skill_lv;
+		md.damage = 500+100*skill_lv;
 		md.dmotion = 0; //No flinch animation.
 		break;
 	case NPC_EVILLAND:
