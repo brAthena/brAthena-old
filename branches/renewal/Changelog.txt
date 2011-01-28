@@ -9,6 +9,13 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0163 - 27/01/2011 [Protimus]
+	* Modificações em habilidades:
+	- Exalar Alma: Modificada a quantidade de SP passada pelo Professor, agora o Professor passa no máximo 50% do SP do usuário.
+	- Corte da Névoa: Modificado o SP para 15 em todos os níveis.
+	- Corte das Sombras: Modificado o custo de SP para 10 em todos os níveis.
+	* Correção de pequeno erro de escrita do skill_lv que pus errado no outro commit.
+	
 	r0161 - 27/01/2011 [Protimus]
 	* Modificações em habilidades:
 	- Instinto de Defesa: Removido os pre-requisitos da habilidade.

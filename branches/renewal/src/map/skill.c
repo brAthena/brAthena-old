@@ -5236,13 +5236,13 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 					break;
 				}
 				dstmd->state.soul_change_flag = 1;
-				sp2 = sstatus->max_sp * 3 /100;
+				sp2 = sstatus->max_sp/2;
 				status_heal(src, 0, sp2, 2);
 				clif_skill_nodamage(src,bl,skillid,skilllv,1);
 				break;
 			}
-			sp1 = sstatus->sp;
-			sp2 = tstatus->sp;
+			sp1 = sstatus->sp/2;
+			sp2 = tstatus->sp/2;
 			status_set_sp(src, sp2, 3);
 			status_set_sp(bl, sp1, 3);
 			clif_skill_nodamage(src,bl,skillid,skilllv,1);
