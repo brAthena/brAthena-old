@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0166 - 27/01/2011 [Protimus]
+	* Modificações em habilidades:
+	- Armadilha Atordoante, Instalar Mina e Armadilha Explosiva: Dano modificado pelo nível do usuário.
+	* Correções do commit anterior para o Escudo Mágico.
+
 	r0165 - 27/01/2011 [Protimus]
 	* Modificações em habilidades:
 	- Ataque Mortal: O dano aumenta em 50% para cada imagem falsa ativa.

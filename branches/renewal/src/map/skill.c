@@ -6830,7 +6830,7 @@ struct skill_unit_group* skill_unitsetting (struct block_list *src, short skilli
 	switch( skillid )
 	{
 	case MG_SAFETYWALL:
-		val2=skilllv+1;
+		val3=(7000*(1+(status_get_lv(src))/50)+300*skilllv)+status->max_sp+65*status->int_;
 		break;
 	case MG_FIREWALL:
 		if(sc && sc->data[SC_VIOLENTGALE])

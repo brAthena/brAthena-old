@@ -327,7 +327,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 				d->dmg_lv = ATK_BLOCK;
 					return 0;
 				}			
-			status_change_end(bl,SC_SAFETYWALL,-1);
+			status_change_end(bl,SC_SAFETYWALL, INVALID_TIMER);
 		}
 
 		if( sc->data[SC_PNEUMA] && (flag&(BF_MAGIC|BF_LONG)) == BF_LONG )
@@ -2741,13 +2741,13 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 	{
 	case HT_LANDMINE:
 	case MA_LANDMINE:
-		md.damage=skill_lv*(sstatus->dex+75)*(100+sstatus->int_)/100;
+		md.damage=(int)((sstatus->dex * (3+status_get_lv(src)/100) * (1+0.0285*sstatus->int_)+50+25*skill_lv-1)*skill_lv);
 		break;
 	case HT_BLASTMINE:
-		md.damage=skill_lv*(sstatus->dex/2+50)*(100+sstatus->int_)/100;
+		md.damage=(int)((sstatus->dex * (3+status_get_lv(src)/100) * (1+0.0285*sstatus->int_))*skill_lv);
 		break;
 	case HT_CLAYMORETRAP:
-		md.damage=skill_lv*(sstatus->dex/2+75)*(100+sstatus->int_)/100;
+		md.damage=(int)((sstatus->dex * (3+status_get_lv(src)/100) * (1+0.0285*sstatus->int_))*skill_lv);
 		break;
 	case HT_BLITZBEAT:
 	case SN_FALCONASSAULT:
