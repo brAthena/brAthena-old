@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0168 - 28/01/2011 [Floozie]
+	* Correção no script npc/kafras/funcoes_kafras.txt
+	- Corrigido de acordo com o report: 18
+	
 	r0161 - 27/01/2011 [Dani]
 	* Revisões efetuadas
 	- npc/aeroplanos/einbroch.txt
