@@ -21,7 +21,6 @@
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [CaroLPunk]                       |
 // | 1.1 Script Revisado [Kooler & Tyler]                   |
-// | - Anotações                                            |
 // \________________________________________________________/
 
 sec_in02,15,170,0	script	Golbal var	817,{

@@ -1,4 +1,4 @@
-//  ________________________________________________________ 
+//  ________________________________________________________
 // /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
@@ -103,9 +103,9 @@ aldeba_in,152,166,4	script	Mercador#01	86,{
 			mes "[Mercador]";
 			mes "Se você tiver a oportunidade de visitar a Vila Uplander, em Payon, visite e conheça o artesão do Chapéu Chinês.";
 			next;
-			mes "[Mercador]"; 
+			mes "[Mercador]";
 			mes "O Chapéu Chinês nunca foi vendido para comerciantes além de mim, já que apenas eu posso reconhecer a sua qualidade. Devido à sua raridade, o Chapéu Chinês se tornou um produto muito especial e excepcional. Tudo bem! Pegue, é seu!";
-			getitem 2280,1; // Chapéu Chinês 
+			getitem 2280,1; // Chapéu Chinês
 			close;
 		}
 		mes "[Mercador]";
