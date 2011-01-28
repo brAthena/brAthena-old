@@ -24,7 +24,7 @@
 // | <- Utiliza sprite de um jogador para o mob             |
 // \________________________________________________________/
 //
-//1002,1039	//Poring,Bafomé (Faz Porings parecerem Bafomés)
+//1002,1039		//Poring,Bafomé (Faz Porings parecerem Bafomés)
 //1970,1002,10013	// Novo mob que parece um Poring com mochila
 //
 //=====================================================

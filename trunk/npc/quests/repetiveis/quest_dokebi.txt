@@ -8,17 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nãome do Script: Quests Repetíveis - Dokebi		    |
+// | Nãome do Script: Quests Repetíveis - Dokebi            |
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			   				|
+// | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.1				    			|
+// | Versões eA/brA: 1.0/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: Quests repetíveis para ganho de EXP 		|
+// | Descrição: Quests repetíveis para ganho de EXP.        |
 // |--------------------------------------------------------|
-// | Changelog:               	                        	|
-// | 1.0 Script Traduzido [insidemybrain]					|
-// | 1.1 Script Revisado [Protimus]							|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [insidemybrain]                   |
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
 // \_______________________________________________________/
 
 pay_fild10,108,357,5	script	Li#Dokebi_Hunt	90,{
@@ -145,9 +145,9 @@ pay_fild10,108,357,5	script	Li#Dokebi_Hunt	90,{
 			close;
 		}
 	}
-	//Para level mínimo
+	// Para level mínimo
 	if (BaseLevel > 34) {
-		//Para level máximo
+		// Para level máximo
 		if (BaseLevel < 71) {
 			mes "[Li]";
 			mes "Olá, você poderia me ajudar?";
@@ -155,12 +155,12 @@ pay_fild10,108,357,5	script	Li#Dokebi_Hunt	90,{
 			switch(select("Claro.:Não.")) {
 			case 1:
 				mes "[Li]";
-				mes "Existem muitos dokebis aqui... Não estou em sentido muito segura.";
+				mes "Existem muitos Dokebis aqui... Não estou me sentindo muito segura.";
 				next;
 				switch(select("Pegar Itens.:Caçar Dokebis.:Cancelar.")) {
 				case 1:
 					mes "[Li]";
-					mes "Como vidente profissional eu preciso de uma reserva de ^FF0000Chifres de Dokebi^000000 para dar boa sorte aos meus clientes.";
+					mes "Como vidente profissional eu preciso de uma reserva de ^00CC0050 Chifres de Dokebi^000000 para dar boa sorte aos meus clientes.";
 					next;
 					switch(select("Eu tenho alguns Chifres de Dokebi.:Do que você precisava?")) {
 					case 1:
@@ -182,7 +182,7 @@ pay_fild10,108,357,5	script	Li#Dokebi_Hunt	90,{
 						}
 					case 2:
 						mes "[Li]";
-						mes "Se você me trouxer ^FF000050 Chifres de Dokebi^000000, eu posso lhe dar um boa sorte.";
+						mes "Se você me trouxer ^FF000050 Chifres de Dokebi^000000, eu posso lhe dar boa sorte.";
 						close;
 					}
 				case 2:

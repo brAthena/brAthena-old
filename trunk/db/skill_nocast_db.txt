@@ -109,13 +109,13 @@
 264,32	// MO_BODYRELOCATION#Passo Etéreo#
 //
 //============================================================
-//Zona 2 - Prisão
+// Zona 2 - Prisão
 //============================================================
 421,64	// TK_JUMPKICK#Chute Aéreo#
 426,64	// TK_HIGHJUMP#Salto#
 //
 //============================================================
-//Zone 3 - Arena de Batalha de Izlude
+// Zone 3 - Arena de Batalha de Izlude
 //============================================================
 219,128 // RG_SNATCHER#Mãos Leves#
 26,128	// AL_TELEPORT#Teleporte#

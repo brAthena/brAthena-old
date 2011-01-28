@@ -8,17 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nãome do Script: Quests Repetíveis - Caramelo		   	|
+// | Nãome do Script: Quests Repetíveis - Caramelo          |
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			   				|
+// | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.1				    			|
+// | Versões eA/brA: 1.0/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: Quests repetíveis para ganho de EXP			|
+// | Descrição: Quests repetíveis para ganho de EXP.        |
 // |--------------------------------------------------------|
-// | Changelog:               	                        	|
-// | 1.0 Script Traduzido [insidemybrain]					|
-// | 1.1 Script Revisado [Protimus]							|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [insidemybrain]                   |
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
 // \_______________________________________________________/
 
 mjolnir_01,296,29,6	script	Yullo#Caramel_Hunt	95,{
@@ -81,7 +81,7 @@ mjolnir_01,296,29,6	script	Yullo#Caramel_Hunt	95,{
 				mes "Você tem certeza que deseja parar de caçar?";
 				mes "Tudo o que você já fez será inválidado.";
 				next;
-				switch(select("Sim:Não")) {
+				switch(select("Sim.:Não.")) {
 				case 1:
 					mes "[Yullo]";
 					mes "Tudo bem então, volte quando mudar de idéia.";
@@ -145,9 +145,9 @@ mjolnir_01,296,29,6	script	Yullo#Caramel_Hunt	95,{
 			close;
 		}
 	}
-	//Para level mínimo
+	// Para level mínimo
 	if (BaseLevel > 23) {
-		//Para level máximo
+		// Para level máximo
 		if (BaseLevel < 61) {
 			mes "[Yullo]";
 			mes "Não consigo mais... estou falando sério.";
@@ -162,10 +162,10 @@ mjolnir_01,296,29,6	script	Yullo#Caramel_Hunt	95,{
 				switch(select("Pegar itens.:Caçar Caramelos.:Cancelar.")) {
 				case 1:
 					mes "[Yullo]";
-					mes "Bem, então eu preciso de 25 Espinhos de Porco-Espinho.";
+					mes "Bem, então eu preciso de ^00CC0025 Espinhos de Porco-Espinho^000000.";
 					mes "Diga-me que você tem alguns ou que pode me ajudar!";
 					next;
-					switch(select("Eu tenho Espinhos de Porco-Espinho:Bem, não creio que possa ajudar você.")) {
+					switch(select("Eu tenho os Espinhos de Porco-Espinho.:Bem, não creio que possa ajudar você.")) {
 					case 1:
 						/*
 						if (checkweight(501,10) == 0) {
@@ -179,20 +179,20 @@ mjolnir_01,296,29,6	script	Yullo#Caramel_Hunt	95,{
 							mes "[Yullo]";
 							mes "Ótimo, você já tem o bastante!";
 							mes "Uma pequena recompensa, como prometido.";
-							delitem 1027,25; //Espinhos de Porco-Espinho
+							delitem 1027,25; // Espinhos de Porco-Espinho
 							getexp 10425,6272;
-							//getitem 501,10; //Poção Vermelha
+							//getitem 501,10; // Poção Vermelha
 							close;
 						}
 						else {
 							mes "[Yullo]";
 							mes "Onde estão os Espinhos de Porco-Espinho?";
-							mes "Você acha que não consigo perceber que não é isso que pedi?";
+							mes "Você acha que não consigo perceber que não é isso o que pedi?";
 							close;
 						}
 					case 2:
 						mes "[Yullo]";
-						mes "Eu preciso de ^00CC0025 Espinhos de Porco-Espinho^000000";
+						mes "Eu preciso de ^FF000025 Espinhos de Porco-Espinho^000000";
 						close;
 					}
 				case 2:

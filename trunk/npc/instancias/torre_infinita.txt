@@ -15,13 +15,12 @@
 // | Versões eA/brA: 1.5/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: Torre Sem Fim.                              |
-// | - Consiste em uma torre de 101 andares	            |
+// | - Consiste em uma torre de 101 andares                 |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [SoulSyntax]                      |
 // | - Foram feitas adaptações nos nomes dos NPCs para pt_BR|
 // | 1.1 Script Revisado [Protimus & Tyler]                 |
-// | - Anotações                                            |
 // \________________________________________________________/
 
 alberta,214,77,6	script	Capitão Jassen	709,{
@@ -3244,7 +3243,7 @@ OnInstanceInit:
 
 OnEnable:
 	enablenpc instance_npcname("89FGate102tower", instance_id());
-	areamonster "4@tower",352,180,362,216,"Valquíria Randgris",1751,1,instance_npcname("89FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",352,180,362,216,"Valkyrie Randgris",1751,1,instance_npcname("89FGate102tower", instance_id())+"::OnMyMobDead";
 	areamonster "4@tower",352,180,362,216,"Baronesa da Retribuição",1702,10,instance_npcname("89FGate102tower", instance_id())+"::OnMyMobDead";
 	areamonster "4@tower",352,180,362,216,"Lady Solace",1703,10,instance_npcname("89FGate102tower", instance_id())+"::OnMyMobDead";
 	areamonster "4@tower",352,180,362,216,"Anjo Fajuto",1371,10,instance_npcname("89FGate102tower", instance_id())+"::OnMyMobDead";
@@ -3417,7 +3416,7 @@ OnInstanceInit:
 
 OnEnable:
 	enablenpc instance_npcname("95FGate102tower", instance_id());
-	areamonster "4@tower",9,9,19,45,"Valquíria",1765,5,instance_npcname("95FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "4@tower",9,9,19,45,"Valkyrie",1765,5,instance_npcname("95FGate102tower", instance_id())+"::OnMyMobDead";
 	areamonster "4@tower",9,9,19,45,"Skeggiold",1755,10,instance_npcname("95FGate102tower", instance_id())+"::OnMyMobDead";
 	areamonster "4@tower",9,9,19,45,"Skeggiold",1754,10,instance_npcname("95FGate102tower", instance_id())+"::OnMyMobDead";
 	end;
@@ -3528,7 +3527,7 @@ OnEnable:
 		else if (.@mob_ran == 10) 
 			areamonster "4@tower",267,9,277,45,"Sombra da Ira",1921,5,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
 		else if (.@mob_ran == 11) 
-			areamonster "4@tower",267,9,277,45,"Valquíria",1765,5,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
+			areamonster "4@tower",267,9,277,45,"Valkyrie",1765,5,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
 		else if (.@mob_ran == 12) 
 			areamonster "4@tower",267,9,277,45,"Skeggiold",1755,10,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
 		else if (.@mob_ran == 13) 
@@ -3768,44 +3767,44 @@ OnDisable:
 
 OnEnable:
 	monster "5@tower",72,93,"Esqueleto Espinhoso",1958,1;
-	monster "5@tower",70,87,"Espinho Mágico",1960,1;
-	monster "5@tower",68,83,"Espinho da Pureza",1961,1;
+	monster "5@tower",70,87,"Esqueleto Espinhoso",1960,1;
+	monster "5@tower",68,83,"Esqueleto Espinhoso",1961,1;
 	monster "5@tower",70,80,"Esqueleto Espinhoso",1958,1;
-	monster "5@tower",74,81,"Espinho Mágico",1960,1;
-	monster "5@tower",78,72,"Espinho Mágico",1960,1;
+	monster "5@tower",74,81,"Esqueleto Espinhoso",1960,1;
+	monster "5@tower",78,72,"Esqueleto Espinhoso",1960,1;
 	monster "5@tower",81,70,"Esqueleto Espinhoso",1958,1;
-	monster "5@tower",78,84,"Espinho da Recuperação",1959,1;
-	monster "5@tower",85,72,"Espinho Mágico",1960,1;
+	monster "5@tower",78,84,"Esqueleto Espinhoso",1959,1;
+	monster "5@tower",85,72,"Esqueleto Espinhoso",1960,1;
 	monster "5@tower",91,74,"Esqueleto Espinhoso",1958,1;
-	monster "5@tower",79,77,"Espinho da Pureza",1961,1;
-	monster "5@tower",82,80,"Espinho da Recuperação",1959,1;
-	monster "5@tower",87,83,"Espinho da Recuperação",1959,1;
-	monster "5@tower",80,92,"Espinho da Pureza",1961,1;
+	monster "5@tower",79,77,"Esqueleto Espinhoso",1961,1;
+	monster "5@tower",82,80,"Esqueleto Espinhoso",1959,1;
+	monster "5@tower",87,83,"Esqueleto Espinhoso",1959,1;
+	monster "5@tower",80,92,"Esqueleto Espinhoso",1961,1;
 	monster "5@tower",81,89,"Esqueleto Espinhoso",1958,1;
-	monster "5@tower",85,93,"Espinho Mágico",1960,1;
-	monster "5@tower",86,90,"Espinho da Recuperação",1959,1;
+	monster "5@tower",85,93,"Esqueleto Espinhoso",1960,1;
+	monster "5@tower",86,90,"Esqueleto Espinhoso",1959,1;
 	monster "5@tower",88,88,"Esqueleto Espinhoso",1958,1;
-	monster "5@tower",91,87,"Espinho Mágico",1960,1;
-	monster "5@tower",95,94,"Espinho Mágico",1960,1;
+	monster "5@tower",91,87,"Esqueleto Espinhoso",1960,1;
+	monster "5@tower",95,94,"Esqueleto Espinhoso",1960,1;
 	monster "5@tower",91,96,"Esqueleto Espinhoso",1958,1;
-	monster "5@tower",90,82,"Espinho da Pureza",1961,1;
-	monster "5@tower",96,98,"Espinho Mágico",1960,1;
+	monster "5@tower",90,82,"Esqueleto Espinhoso",1961,1;
+	monster "5@tower",96,98,"Esqueleto Espinhoso",1960,1;
 	monster "5@tower",83,76,"Esqueleto Espinhoso",1958,1;
 	monster "5@tower",74,85,"Esqueleto Espinhoso",1958,1;
 	set .@mob_ran,rand(1,3);
 	if (.@mob_ran == 1)
 		monster "5@tower",82,85,"Esqueleto Espinhoso",1958,1;
 	else if (.@mob_ran == 2)
-		monster "5@tower",82,85,"Espinho Mágico",1960,1;
+		monster "5@tower",82,85,"Esqueleto Espinhoso",1960,1;
 	else
-		monster "5@tower",82,85,"Espinho da Pureza",1961,1;
+		monster "5@tower",82,85,"Esqueleto Espinhoso",1961,1;
 	set .@mob_ran2,rand(1,3);
 	if (.@mob_ran2 == 1)
 		monster "5@tower",84,85,"Esqueleto Espinhoso",1958,1;
 	else if (.@mob_ran2 == 2)
-		monster "5@tower",84,85,"Espinho Mágico",1960,1;
+		monster "5@tower",84,85,"Esqueleto Espinhoso",1960,1;
 	else
-		monster "5@tower",84,85,"Espinho da Pureza",1961,1;
+		monster "5@tower",84,85,"Esqueleto Espinhoso",1961,1;
 	end;
 }
 

@@ -9,6 +9,18 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0171 - 28/01/2011 [Tyler]
+	* Corrigido alguns cabeçalhos da pasta db.
+	* Adicionados novos itens (pré RENEWAL) ao db para posterior revisão
+	* Iniciada a tradução do db:
+	- db/quest_db.txt
+	- db/creat_arrow_db.txt
+	* Pequena correção no db/item_cardalbum.txt
+	* Pequena correção no db/mob_db.txt
+	* Adicionados mais mobs ao db/mob_race2_db.txt
+	* Corrigido (cabeçalhos) e revisados alguns npc's da pasta npc
+	* Corrigido o nome de alguns monstros da instancia Torre sem Fim
+
 	r0170 - 28/01/2011 [Dani]
 	* Revisão efetuada
 	- npc/quests/doomed_swords.txt

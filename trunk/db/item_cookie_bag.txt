@@ -13,7 +13,7 @@
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Descrição: Banco de Dados contendo itens da            | 
-// | Sacola de Doces.                                       |
+// | 'Sacola de Doces'.                                     |
 // |--------------------------------------------------------|
 // | Estrutura do Banco de Dados:                           |
 // | ID do Grupo de Itens , ID do Item , Taxa               |

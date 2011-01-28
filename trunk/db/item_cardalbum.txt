@@ -424,7 +424,7 @@
 3,4404,1	// Carta Skogul
 3,4405,1	// Carta Frus
 //3,4406,1	// Carta Skeggiold
-//3,4407,1	// Carta Valquíria Randgris (MVP)
+//3,4407,1	// Carta Valkyrie Randgris (MVP)
 //3,4408,1	// Carta Pesar Noturno (MVP)
 3,4409,1	// Carta Agav
 3,4410,1	// Carta Echio
@@ -460,6 +460,7 @@
 3,4440,1	// Carta Necromante
 3,4442,1	// Carta Tatacho
 //3,4441,1	// Carta Bispo Decadente (MVP)
+3,4442,2	// Carta Tatacho
 3,4443,2	// Carta Elemental da Água
 3,4444,2	// Carta Draco
 3,4445,1	// Carta Vespa Vagalume
@@ -467,6 +468,7 @@
 3,4447,1	// Carta Centopéia
 3,4448,1	// Carta Cornus
 3,4449,1	// Carta Sombra Obscura
+3,4450,1	// Carta Senhora das Bashees
 3,4451,1	// Carta Entweihen Crothen
 3,4452,2	// Carta Larva de Centopéia
 3,4453,1	// Carta Leão da Montanha
@@ -474,23 +476,23 @@
 //3,4455,1	// Fake Valkyrie Card (SEM INFORMAÇÃO)
 //3,4456,1	// Carta Sombra de Nidhogg (MVP)
 //3,4457,1	// Carta Naght Sieger (MVP)
-//3,4458,1	// Carta Duneyrr
-//3,4459,1	// Carta Ratatosk
-//3,4460,1	// Carta Ryncho
-//3,4461,1	// Carta Phylla
-//3,4462,1	// Carta Mamute Rochoso (MVP)
-//3,4463,1	// Carta Leão de Vinhas (MVP)
-//3,4464,1	// Carta Aunoe
-//3,4465,1	// Carta Fanat
-//3,4466,1	// Carta Mestre Beholder
-//3,4467,1	// Carta Metalling Pesado
-//3,4468,1	// Carta Pinguicula Sombria
-//3,4469,3	// Carta Naga
-//3,4470,3	// Carta Nepenthes
-//3,4471,3	// Carta Ovo de Draco 
-//3,4472,3	// Carta Golem de Bradium
-//3,4473,3	// Carta Árvore Anciã 
-//3,4474,3	// Carta Zakudam
-//3,4475,3	// Carta Cobalto
-//3,4476,3	// Carta Pinguicula
-//3,4477,3	// Carta Apocalipse Infernal
+3,4458,1	// Carta Duneyrr
+3,4459,1	// Carta Ratatosk
+3,4460,1	// Carta Ryncho
+3,4461,1	// Carta Phylla
+//3,4462,1	// Carta Mamute Rochoso (MVP - Mini Boss)
+//3,4463,1	// Carta Leão de Vinhas (MVP - Mini Boss)
+3,4464,1	// Carta Aunoe
+3,4465,1	// Carta Fanat
+3,4466,1	// Carta Mestre Beholder
+3,4467,1	// Carta Metalling Pesado
+3,4468,1	// Carta Pinguicula Sombria
+3,4469,3	// Carta Naga
+3,4470,3	// Carta Nepenthes
+3,4471,3	// Carta Ovo de Draco
+3,4472,3	// Carta Golem de Bradium
+3,4473,3	// Carta Árvore Anciã
+3,4474,3	// Carta Zakudam
+3,4475,3	// Carta Cobalto
+3,4476,3	// Carta Pinguicula
+3,4477,3	// Carta Apocalipse Infernal

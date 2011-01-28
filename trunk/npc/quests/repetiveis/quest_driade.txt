@@ -8,17 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nãome do Script: Quests Repetíveis - Driáde		   	|
+// | Nãome do Script: Quests Repetíveis - Driáde            |
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			   				|
+// | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.1				    			|
+// | Versões eA/brA: 1.0/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: Quests repetíveis para ganho de EXP 		|
+// | Descrição: Quests repetíveis para ganho de EXP.        |
 // |--------------------------------------------------------|
-// | Changelog:               	                        	|
-// | 1.0 Script Traduzido [insidemybrain]					|
-// | 1.1 Script Revisado [Protimus]							|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [insidemybrain]                   |
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
 // \_______________________________________________________/
 
 um_fild01,34,281,5	script	Lilla#Dryad_Hunt	724,{
@@ -145,9 +145,9 @@ um_fild01,34,281,5	script	Lilla#Dryad_Hunt	724,{
 			close;
 		}
 	}
-	//Para level mínimo
+	// Para level mínimo
 	if (BaseLevel > 59) {
-		//Para level máximo
+		// Para level máximo
 		if (BaseLevel < 86) {
 			mes "[Lilla]";
 			mes "Ora, ora, olá!";
@@ -165,7 +165,7 @@ um_fild01,34,281,5	script	Lilla#Dryad_Hunt	724,{
 					mes "Eu preciso muito de ^00CC0050 Folhas Afiadas^000000 para um chá no meu jardim.";
 					mes "Você tem algumas??";
 					next;
-					switch(select("Eu tenho 50 Folhas Afiadas.:O quê? Desculpe, estava pensando em outra coisa?")) {
+					switch(select("Eu tenho as Folhas Afiadas.:O quê? Desculpe, estava pensando em outra coisa.")) {
 					case 1:
 						/*
 						if (checkweight(504,10) == 0) {
@@ -195,7 +195,7 @@ um_fild01,34,281,5	script	Lilla#Dryad_Hunt	724,{
 						}
 					case 2:
 						mes "[Lilla]";
-						mes "Eu preciso de ^00CC0050 Folhas Afiadas^000000.";
+						mes "Eu preciso de ^FF000050 Folhas Afiadas^000000.";
 						close;
 					}
 				case 2:

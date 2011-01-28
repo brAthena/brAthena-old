@@ -8,17 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Simme do Script: Quests Repetíveis - Creamy		   	|
+// | Nãome do Script: Quests Repetíveis - Creamy            |
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			   				|
+// | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.1				    			|
+// | Versões eA/brA: 1.0/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: Quests repetíveis para ganho de EXP 		|
+// | Descrição: Quests repetíveis para ganho de EXP.        |
 // |--------------------------------------------------------|
-// | Changelog:               	                        	|
-// | 1.0 Script Traduzido [insidemybrain]					|
-// | 1.1 Script Revisado [Protimus]							|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [insidemybrain]                   |
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
 // \_______________________________________________________/
 
 prt_fild04,356,148,3	script	Laertes#Creamy_Hunt	798,{
@@ -145,9 +145,9 @@ prt_fild04,356,148,3	script	Laertes#Creamy_Hunt	798,{
 			close;
 		}
 	}
-	//Para level mínimo
+	// Para level mínimo
 	if (BaseLevel > 14) {
-		//Para level máximo
+		// Para level máximo
 		if (BaseLevel < 45) {
 			mes "[Laertes]";
 			mes "Bom Dia!";
@@ -162,9 +162,9 @@ prt_fild04,356,148,3	script	Laertes#Creamy_Hunt	798,{
 				switch(select("Pega Itens.:Caçar Creamys.:Cancelar.")) {
 				case 1:
 					mes "[Laertes]";
-					mes "Eu preciso de um bom suprimento de ^FF0000Pó de Borboleta^000000";
+					mes "Eu preciso de um bom suprimento! Preciso de ^00CC0025 Pós de Borboleta^000000.";
 					next;
-					switch(select("Eu tenho Pó de Borboleta.:Do que você precisava?")) {
+					switch(select("Eu tenho os Pós de Borboleta.:Do que você precisava?")) {
 					case 1:
 						/*
 						if (checkweight(502,5) == 0) {
@@ -178,9 +178,9 @@ prt_fild04,356,148,3	script	Laertes#Creamy_Hunt	798,{
 							mes "[Laertes]";
 							mes "Ei, obrigado de novo.";
 							mes "Aqui está, como prometi.";
-							delitem 924,25; //Pó de Borboleta
+							delitem 924,25; // Pó de Borboleta
 							getexp 2950,1125;
-							//getitem 502,5; //Poção Laranja
+							//getitem 502,5; // Poção Laranja
 							close;
 						}
 						else {
@@ -197,6 +197,7 @@ prt_fild04,356,148,3	script	Laertes#Creamy_Hunt	798,{
 						close;
 					}
 				case 2:
+					// Matar Creamys
 					mes "[Laertes]";
 					mes "Então gostaria de caçar Creamys.";
 					mes "Quantos gostaria de caçar?";
@@ -231,7 +232,7 @@ prt_fild04,356,148,3	script	Laertes#Creamy_Hunt	798,{
 		}
 		else {
 			mes "[Laertes]";
-			mes "Bom Dia!";
+			mes "Bom dia!";
 			next;
 			mes "[Laertes]";
 			mes "Eu trabalho para um farmacêutico em Prontera";
