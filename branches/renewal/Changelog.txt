@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0177 - 29/01/2011 [Protimus]
+	* Modificações em habilidades:
+	- Lâmina de Vento: Dano aumentado.
+	- Crux Divinum: Dobra o dano se usada com lanças de duas mãos.
+	- Vulcão de Napalm: Reduzido o custo de SP.
+
 	r0176 - 29/01/2011 [Protimus]
 	* Adicionados headers padrões para o SQLite.
 	- Necessário fazer ifdefs para funcionamento com outros arquivos e defines para erro e sucesso do uso.

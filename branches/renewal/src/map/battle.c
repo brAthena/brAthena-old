@@ -1545,6 +1545,8 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case NPC_DARKCROSS:
 				case CR_HOLYCROSS:
 					skillratio += 35*skill_lv;
+					if( sd && sd->status.weapon == W_2HSPEAR )
+						skillratio += 70*skill_lv;
 					break;
 				case AM_DEMONSTRATION:
 					skillratio += 20*skill_lv;
@@ -1696,6 +1698,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					break;
 				case NJ_KIRIKAGE:
 					skillratio += 100*(skill_lv-1);
+					break;
+				case NJ_HUUJIN:
+					skillratio += 10*skill_lv;
 					break;
 				case KN_CHARGEATK:
 					{
