@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0180 - 29/01/2011 [Protimus]
+	* Correção do commit anterior, havia esquecido de enviar o dano do Impacto Psíquico modificado.
+	* Modificações em habilidades:
+	- Fúria Interior: Invés de desligar a recuperação de SP agora a habilidade reduz em apenas 50% a mesma.
+
 	r0179 - 29/01/2011 [Protimus]
 	* Correções de habilidades de commits anteriores e posteriores do renewal.
 	- Necessário maiores informações.

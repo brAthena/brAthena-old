@@ -1557,7 +1557,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio+= 50 * skill_lv;
 					break;
 				case MO_INVESTIGATE:
-					skillratio += 75*skill_lv;
+					skillratio += 60*skill_lv;
 					flag.pdef = flag.pdef2 = 2;
 					break;
 				case MO_EXTREMITYFIST:
