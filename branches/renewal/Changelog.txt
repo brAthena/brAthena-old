@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0178 - 29/01/2011 [Protimus]
+	* Modificações em habiliades:
+	- Perfurar em Espiral: Não ignora defesa, pode ser utilizada com espadas de 1 e duas mãos e requer perícia de lança apenas nível 5.
+	- Explosão tóxica: Não é mais necessário usar em alvos com HP baixo, aumentado o dano causado.
+	- Encantar com Veneno Mortal: Não quadruplica o valor do dano para habilidades, apenas ataques normais.
+	
 	r0177 - 29/01/2011 [Protimus]
 	* Modificações em habilidades:
 	- Lâmina de Vento: Dano aumentado.

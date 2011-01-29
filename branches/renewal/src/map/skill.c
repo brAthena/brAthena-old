@@ -8969,6 +8969,12 @@ struct skill_condition skill_get_requirement(struct map_session_data* sd, short 
 				}
 			}
 			break;
+		default:
+			if( sc && sc->data[SC_EDP] )
+				switch(skill){
+					case AS_SONICBLOW:
+						req.sp += req.sp;
+			}
 	}
 	
 	return req;

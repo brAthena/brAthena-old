@@ -1315,20 +1315,19 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					if (index >= 0 &&
 						sd->inventory_data[index] &&
 						sd->inventory_data[index]->type == IT_WEAPON)
-						wd.damage = sd->inventory_data[index]->weight*8/100; //80% of weight
+						wd.damage = sd->inventory_data[index]->weight*8/100;
 				} else
-					wd.damage = sstatus->rhw.atk2*8/10; //Else use Atk2
+					wd.damage = sstatus->rhw.atk2*8/10;
 
-				ATK_ADDRATE(50*skill_lv); //Skill modifier applies to weight only.
+				ATK_ADDRATE(50*skill_lv);
 				i = sstatus->str/10;
 				i*=i;
-				ATK_ADD(i); //Add str bonus.
-				switch (tstatus->size) { //Size-fix. Is this modified by weapon perfection?
-					case 0: //Small: 125%
+				ATK_ADD(i); 
+				switch (tstatus->size) {
+					case 1: 
 						ATK_RATE(125);
 						break;
-					//case 1: //Medium: 100%
-					case 2: //Large: 75%
+					case 2:
 						ATK_RATE(75);
 						break;
 				}
@@ -1612,7 +1611,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio += 100+100*skill_lv;
 					break;
 				case AS_SPLASHER:
-					skillratio += 400+50*skill_lv;
+					skillratio += 400+75*skill_lv;
 					if(sd)
 						skillratio += 30 * pc_checkskill(sd,AS_POISONREACT);
 					break;
@@ -1910,10 +1909,15 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 		}
 
 		//Post skill/vit reduction damage increases
-		if( sc && skill_num != LK_SPIRALPIERCE && skill_num != ML_SPIRALPIERCE )
+		if( sc )
 		{	//SC skill damages
-			if(sc->data[SC_AURABLADE]) 
-				ATK_ADD(20*sc->data[SC_AURABLADE]->val1);
+			if(sc->data[SC_AURABLADE]) {
+				if(skill_num == LK_SPIRALPIERCE || skill_num == ML_SPIRALPIERCE){
+					ATK_ADD(20*sc->data[SC_AURABLADE]->val1*5);
+				}else{
+					ATK_ADD(20*sc->data[SC_AURABLADE]->val1);
+				}
+			}
 		}
 
 		//Refine bonus
