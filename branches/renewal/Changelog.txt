@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0179 - 29/01/2011 [Protimus]
+	* Correções de habilidades de commits anteriores e posteriores do renewal.
+	- Necessário maiores informações.
+	* Modificações em habilidades:
+	- Impacto Psíquico: Dano reduzido.
+
 	r0178 - 29/01/2011 [Protimus]
 	* Modificações em habiliades:
 	- Perfurar em Espiral: Não ignora defesa, pode ser utilizada com espadas de 1 e duas mãos e requer perícia de lança apenas nível 5.

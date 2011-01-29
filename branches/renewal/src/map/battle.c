@@ -1836,6 +1836,56 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			}
 		}
 
+		if (sd && flag.weapon &&
+			skill_num != MO_INVESTIGATE &&
+		  	skill_num != MO_EXTREMITYFIST &&
+		  	skill_num != CR_GRANDCROSS)
+		{
+			if(skill_num != ASC_BREAKER && sd->status.weapon == W_KATAR &&
+				(skill=pc_checkskill(sd,ASC_KATAR)) > 0)
+		  	{	
+				ATK_ADDRATE(10+ 2*skill);
+			}
+
+			wd.damage = battle_addmastery(sd,target,wd.damage,0);
+			if (flag.lh)
+				wd.damage2 = battle_addmastery(sd,target,wd.damage2,1);
+
+			if (sc && sc->data[SC_MIRACLE]) i = 2; 
+			else
+			ARR_FIND(0, 3, i, t_class == sd->hate_mob[i]);
+			if (i < 3 && (skill=pc_checkskill(sd,sg_info[i].anger_id))) 
+			{
+				skillratio = sd->status.base_level + sstatus->dex + sstatus->luk;
+				if (i == 2) skillratio += sstatus->str; 
+				if (skill<4)
+					skillratio /= 12-3*skill;
+				ATK_ADDRATE(skillratio);
+			}
+			if (skill_num == NJ_SYURIKEN && (skill = pc_checkskill(sd,NJ_TOBIDOUGU)) > 0)
+				ATK_ADD(3*skill);
+			if (skill_num == NJ_KUNAI)
+				ATK_ADD(60);
+		}
+
+		if (sc) {
+			if(sc->data[SC_TRUESIGHT])
+				ATK_ADDRATE(2*sc->data[SC_TRUESIGHT]->val1);
+			if(sc->data[SC_CONCENTRATION])
+				ATK_ADDRATE(sc->data[SC_CONCENTRATION]->val2);
+
+			if(sc->data[SC_EDP] &&
+				skill_num != ASC_METEORASSAULT &&
+				skill_num != AS_SPLASHER &&
+				skill_num != AS_VENOMKNIFE)
+				ATK_RATE(sc->data[SC_EDP]->val3*100);
+				switch(skill_num){
+					case AS_SONICBLOW:
+					case ASC_BREAKER:
+						ATK_RATE(50);
+				}	
+		}
+
 		if (!flag.idef || !flag.idef2)
 		{	//Defense reduction
 			short vit_def, def_rate;
