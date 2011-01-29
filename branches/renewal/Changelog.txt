@@ -9,7 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
-	r0168 - 28/08/2011 [Dani]
+	r0173 - 29/01/2011 [Protimus]
+	* Corrigido problema de dano ao usar corrida com o Mestre Taekwon.
+
+	r0168 - 28/01/2011 [Dani]
 	* Aumentado nível máximo na src para 150, para dar suporte ao nível máximo das Terceiras Classes
 	* Adicionado suporte de stat máximo para Terceiras Classes e Terceiras Classes Bebês
 	- 120 e 108 respectivamente

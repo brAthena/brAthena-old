@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0173 - 29/01/2011 [Protimus]
+	* Corrigido problema de dano ao usar corrida com o Mestre Taekwon.
+
 	r0172 - 28/01/2011 [Tyler]
 	* Pequena correção do commit anterior:
 	- db/item_cardalbum.txt
