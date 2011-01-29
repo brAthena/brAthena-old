@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0175 - 29/01/2011 [Protimus]
+	* Adicionados includes padrões para o SQLite.
+	- Necessário fazer as checagens em outros arquivos para o SQLite, além do MySQL.
+
 	r0174 - 29/01/2011 [Protimus]
 	* Adicionada estrutura padrão para início da criação do banco de dados em SQLite.
 	- Um banco de dados diferente para servidores maiores terem mais desempenho.

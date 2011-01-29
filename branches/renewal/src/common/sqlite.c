@@ -1,6 +1,18 @@
 // Copyright (c) Equipe brAthena - licenciado por GNU GPL
 // Para maiores informações ver o LICENSE na pasta root do emulador [Protimus]
 
+#include "../common/cbasetypes.h"
+#include "../common/malloc.h"
+#include "../common/showmsg.h"
+#include "../common/strlib.h"
+#include "../common/timer.h"
+
+#ifdef WIN32
+#include <winsock2.h>
+#endif
+#include <string.h>
+#include <stdlib.h>
+
 unsigned long sqlit_num_rows(void) {
 	return sqlite_num_rows;
 }
