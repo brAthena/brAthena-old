@@ -1189,6 +1189,8 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			flag.hit = 1; //SG_FUSION always hit [Komurka]
 			flag.idef = flag.idef2 = 1; //def ignore [Komurka]
 		}
+		if(sc && sc->data[SC_BENEDICTIO] && (battle_check_undead(tstatus->race, tstatus->def_ele) || tstatus->race == RC_DEMON))
+			flag.idef = flag.idef2 = 1; //SC_BENEDICTIO ignorar defesa de Morto-Vivo e Demônios [Floozie]
 		if( !flag.hit )
 			switch(skill_num)
 			{
@@ -2473,7 +2475,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 				if(rand()%1000 < i && !(tstatus->mode&MD_BOSS))
 					ad.damage = tstatus->hp;
 				else
-					ad.damage = status_get_lv(src) + sstatus->int_ + skill_lv * 10;
+					ad.damage = status_get_lv(src) + sstatus->int_ + skill_lv * 10 + sstatus->matk_max;
 				break;
 			case PF_SOULBURN:
 				ad.damage = tstatus->sp * 2;
