@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0176 - 29/01/2011 [Protimus]
+	* Adicionados headers padrões para o SQLite.
+	- Necessário fazer ifdefs para funcionamento com outros arquivos e defines para erro e sucesso do uso.
+
 	r0175 - 29/01/2011 [Protimus]
 	* Adicionados includes padrões para o SQLite.
 	- Necessário fazer as checagens em outros arquivos para o SQLite, além do MySQL.
