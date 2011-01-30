@@ -9,6 +9,15 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0182 - 30/01/2011 [Dani]
+	* Revisões efetuadas
+	- gde2/gde2_cavernas.txt
+	- quests/habilidades/habilidades_cavaleiro.txt
+	* Correções em instancias/torre_infinita.txt
+	- Conversão de final de linha para Windows
+	- Corrigido nome do Naght Sieger
+	- Alteradas letra "a" maiúsculas de "Andar" para "andar"
+
 	r0176 - 29/01/2011 [Protimus]
 	* Adicionados headers padrões para o SQLite.
 	- Necessário fazer ifdefs para funcionamento com outros arquivos e defines para erro e sucesso do uso.
