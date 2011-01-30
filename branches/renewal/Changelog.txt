@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0183 - 30/01/2011 [Protimus]
+	* Iniciado processo de revisões da engine:
+	- Fórmulas de DEF/DEF2 aplicadas corretamente e totalmente funcionais. (Testes realizados em Sakray R)
+
 	r0182 - 30/01/2011 [Protimus]
 	* Correções para fórmula de ATK_RATE da def.
 	* Modificados bônus para def de itens refinados.

@@ -1928,7 +1928,7 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 		if(!sd->inventory_data[index])
 			continue;
 
-		status->def += sd->inventory_data[index]->def;
+		status->def2 += sd->inventory_data[index]->def;
 
 		if(first && sd->inventory_data[index]->equip_script)
 	  	{	//Execute equip-script on login
@@ -2008,7 +2008,7 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 	memset(sd->param_bonus, 0, sizeof(sd->param_bonus));
 
 	if( refinedef > 0 )
-		status->def += (refinedef+50)/100;
+		status->def2 += (refinedef+50)/100;
 
 	//Parse Cards
 	for(i=0;i<EQI_MAX-1;i++) {
