@@ -1928,7 +1928,7 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 		if(!sd->inventory_data[index])
 			continue;
 
-		status->def2 += sd->inventory_data[index]->def;
+		status->def += sd->inventory_data[index]->def;
 
 		if(first && sd->inventory_data[index]->equip_script)
 	  	{	//Execute equip-script on login
@@ -2008,7 +2008,7 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 	memset(sd->param_bonus, 0, sizeof(sd->param_bonus));
 
 	if( refinedef > 0 )
-		status->def2 += refinedef/100;
+		status->def += (refinedef+50)/100;
 
 	//Parse Cards
 	for(i=0;i<EQI_MAX-1;i++) {
@@ -2315,13 +2315,13 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 		sd->def_rate = 0;
 	if(sd->def_rate != 100) {
 		i =  status->def * sd->def_rate/100;
-		status->def = cap_value(i, CHAR_MIN, 200);
+		status->def = cap_value(i, SHRT_MIN, SHRT_MAX);
 	}
 
-	if (!battle_config.weapon_defense_type && status->def > 200)
+	if (!battle_config.weapon_defense_type && status->def > battle_config.max_def)
 	{
-		status->def2 += battle_config.over_def_bonus*(status->def -200);
-		status->def = 200;
+		status->def2 += battle_config.over_def_bonus*(status->def -battle_config.max_def);
+		status->def = (unsigned short)battle_config.max_def;
 	}
 
 // ----- EQUIPMENT-MDEF CALCULATION -----
