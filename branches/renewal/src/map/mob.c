@@ -2196,7 +2196,7 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 	}
 	
 	for(i=0;i<pnum;i++) //Party share.
-		party_exp_share(pt[i].p, &md->bl, pt[i].base_exp,pt[i].job_exp,pt[i].zeny);
+		party_exp_share(pt[i].p, &md->bl, pt[i].base_exp,pt[i].job_exp,pt[i].zeny, md->level);
 
 	} //End EXP giving.
 	

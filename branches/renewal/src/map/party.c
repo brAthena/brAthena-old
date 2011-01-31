@@ -880,7 +880,7 @@ int party_send_xy_clear(struct party_data *p)
 }
 
 // exp share and added zeny share [Valaris]
-int party_exp_share(struct party_data* p, struct block_list* src, unsigned int base_exp, unsigned int job_exp, int zeny)
+int party_exp_share(struct party_data* p, struct block_list* src, unsigned int base_exp, unsigned int job_exp, int zeny, int monsterlevel)
 {
 	struct map_session_data* sd[MAX_PARTY];
 	unsigned int i, c, xp;
@@ -922,7 +922,29 @@ int party_exp_share(struct party_data* p, struct block_list* src, unsigned int b
 
 	for (i = 0; i < c; i++)
 	{
-		pc_gainexp(sd[i], src, base_exp, job_exp, false);
+		int diferenca = monsterlevel - sd[i]->status.base_level;
+		int diferenca_exp, base_exp2, job_exp2;
+		if(diferenca >= 16)
+			diferenca_exp = 40;
+		else if(diferenca <= 15 && diferenca >= 10)
+			diferenca_exp = 140-((diferenca-10)*5);
+		else if(diferenca <= 9 && diferenca >= 3)
+			diferenca_exp = 105+((diferenca-3)*5);
+		else if(diferenca <= 2 && diferenca >= -5)
+			diferenca_exp = 100;
+		else if(diferenca <= -6 && diferenca >= -20)
+			diferenca_exp = 100+((int)((diferenca+1)/5))*5;
+		else if(diferenca <= -21 && diferenca >= -25)
+			diferenca_exp = 60;
+		else if(diferenca <= -26 && diferenca >= -30)
+			diferenca_exp = 35;
+		else if(diferenca <= -30)
+			diferenca_exp = 10;
+				
+		if(base_exp) base_exp2 = base_exp*diferenca_exp/100;
+		if(job_exp) job_exp2 = job_exp*diferenca_exp/100;
+
+		pc_gainexp(sd[i], src, base_exp2, job_exp2, false);
 		if (zeny) // zeny from mobs [Valaris]
 			pc_getzeny(sd[i],zeny);
 	}

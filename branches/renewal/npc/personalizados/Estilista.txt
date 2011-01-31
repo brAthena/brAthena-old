@@ -23,10 +23,9 @@
 // | 1.0 Script Criado [Equipe brAthena]                    |
 // | - Anotações                                            |
 // \________________________________________________________/
-
-prontera,170,180,1	script	Estilista	122,{
+prontera,170,180,1	script	Estilista#Prontera	122,{
 	mes "[Estilista]";
-	mes "Olá, eu sou o estilista de Prontera.";
+	mes "Olá, eu sou o estilista de "+strnpcinfo(2)+".";
 	mes "Vejo que está usando um estilo bem interessante...";
 	mes "Número do penteado: ^0000ff"+getlook(1)+"^000000.";
 	mes "Número da cor de cabelo: ^0000ff"+getlook(6)+"^000000.";
@@ -49,3 +48,9 @@ prontera,170,180,1	script	Estilista	122,{
 		dispbottom "O número atual é: "+@num;
 	}
 }
+
+//Duplicatas
+geffen,127,64,3	duplicate(Estilista#Prontera)	Estilista#Geffen	122
+payon,180,111,1	duplicate(Estilista#Prontera)	Estilista#Payon	122
+morocc,167,87,1	duplicate(Estilista#Prontera)	Estilista#Morroc	122
+izlude,122,120,5	duplicate(Estilista#Prontera)	Estilista#Izlude	122
