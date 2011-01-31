@@ -8,18 +8,18 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Quest do Gatuno     	       	    	|
+// | Nome do Script: Quest do Gatuno                        |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.8/1.0                                |
+// | Versões eA/brA: 1.8/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: Mudança de Classe para Gatuno               |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
+// | Changelog:                                             |
 // | 1.0 Script Traduzido [Protimus]                        |
-// | 1.1 Script Revisado [Protimus]							|
-// | - Apenas erros do próprio script, não tradução.		|
+// | 1.1 Script Revisado [Protimus]                         |
+// | - Apenas erros do próprio script, não tradução.        |
 // \________________________________________________________/
 
 moc_prydb1,39,129,2	script	Gatuna Ajudante	69,{

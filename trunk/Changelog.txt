@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0185 - 31/01/2011 [Dani]
+	* Atualizado conforme eAthena 14690 (14676:14690)
+	* Corrigidos alguns cabeçalhos e versões
+
 	r0182 - 30/01/2011 [Dani]
 	* Revisões efetuadas
 	- gde2/gde2_cavernas.txt

@@ -543,18 +543,16 @@ static int create_session(int fd, RecvFunc func_recv, SendFunc func_send, ParseF
 	return 0;
 }
 
-static int delete_session(int fd)
+static void delete_session(int fd)
 {
-	if (fd <= 0 || fd >= FD_SETSIZE)
-		return -1;
-	if (session[fd]) {
+	if( session_isValid(fd) )
+	{
 		aFree(session[fd]->rdata);
 		aFree(session[fd]->wdata);
 		aFree(session[fd]->session_data);
 		aFree(session[fd]);
 		session[fd] = NULL;
 	}
-	return 0;
 }
 
 int realloc_fifo(int fd, unsigned int rfifo_size, unsigned int wfifo_size)
@@ -584,7 +582,7 @@ int realloc_writefifo(int fd, size_t addition)
 	if( session[fd]->wdata_size + addition  > session[fd]->max_wdata )
 	{	// grow rule; grow in multiples of WFIFO_SIZE
 		newsize = WFIFO_SIZE;
-		while( session[fd]->wdata_size + addition > newsize ) newsize += newsize;
+		while( session[fd]->wdata_size + addition > newsize ) newsize += WFIFO_SIZE;
 	}
 	else
 	if( session[fd]->max_wdata >= (size_t)2*(session[fd]->flag.server?FIFOSIZE_SERVERLINK:WFIFO_SIZE)
@@ -667,9 +665,9 @@ int WFIFOSET(int fd, size_t len)
 
 	// always keep a WFIFO_SIZE reserve in the buffer
 	// For inter-server connections, let the reserve be 1/4th of the link size.
-	newreserve = s->wdata_size + ( s->flag.server ? FIFOSIZE_SERVERLINK / 4 : WFIFO_SIZE);
+	newreserve = s->flag.server ? FIFOSIZE_SERVERLINK / 4 : WFIFO_SIZE;
 
-	// readjust the buffer to the newly chosen size
+	// readjust the buffer to include the chosen reserve
 	realloc_writefifo(fd, newreserve);
 
 #ifdef SEND_SHORTLIST
@@ -996,10 +994,10 @@ int access_ipmask(const char* str, AccessControl* acc)
 				(n == 5 && m[0] > 32) ){ // invalid bit mask
 			return 0;
 		}
-		ip = (uint32)(a[0] | (a[1] << 8) | (a[2] << 16) | (a[3] << 24));
+		ip = MAKEIP(a[0],a[1],a[2],a[3]);
 		if( n == 8 )
 		{// standard mask
-			mask = (uint32)(a[0] | (a[1] << 8) | (a[2] << 16) | (a[3] << 24));
+			mask = MAKEIP(m[0],m[1],m[2],m[3]);
 		} else if( n == 5 )
 		{// bit mask
 			mask = 0;
@@ -1007,7 +1005,6 @@ int access_ipmask(const char* str, AccessControl* acc)
 				mask = (mask >> 1) | 0x80000000;
 				--m[0];
 			}
-			mask = ntohl(mask);
 		} else
 		{// just this ip
 			mask = 0xFFFFFFFF;
@@ -1334,10 +1331,12 @@ void send_shortlist_add_fd(int fd)
 	int i;
 	int bit;
 
-	if( fd < 0 || fd >= FD_SETSIZE )
+	if( !session_isValid(fd) )
 		return;// out of range
+
 	i = fd/32;
 	bit = fd%32;
+
 	if( (send_shortlist_set[i]>>bit)&1 )
 		return;// already in the list
 

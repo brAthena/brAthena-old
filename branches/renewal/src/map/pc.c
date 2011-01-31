@@ -892,9 +892,8 @@ bool pc_authok(struct map_session_data *sd, int login_id2, time_t expiration_tim
 	if (!(battle_config.display_skill_fail&2))
 		sd->state.showdelay = 1;
 		
-	// アイテムチェック
 	pc_setinventorydata(sd);
-	pc_checkitem(sd);
+	pc_setequipindex(sd);
 
 	status_change_init(&sd->bl);
 	if ((battle_config.atc_gmonly == 0 || pc_isGM(sd)) && (pc_isGM(sd) >= get_atcommand_level(atcommand_hide)))
@@ -1539,7 +1538,7 @@ static int pc_bonus_addeff(struct s_addeffect* effect, int max, enum sc_type id,
 	if (!(flag&(ATF_TARGET|ATF_SELF)))
 		flag|=ATF_TARGET; //Default target: enemy.
 	if (!(flag&(ATF_WEAPON|ATF_MAGIC|ATF_MISC)))
-		flag|=ATF_WEAPON; //Defatul type: weapon.
+		flag|=ATF_WEAPON; //Default type: weapon.
 
 	for (i = 0; i < max && effect[i].flag; i++) {
 		if (effect[i].id == id && effect[i].flag == flag)
@@ -2924,7 +2923,7 @@ int pc_bonus3(struct map_session_data *sd,int type,int type2,int type3,int val)
 			break;
 		}
 		if( sd->state.lr_flag != 2 )
-			pc_bonus_addeff_onskill(sd->addeff3, ARRAYLENGTH(sd->addeff3), (sc_type)type3, val, type2, 2);
+			pc_bonus_addeff_onskill(sd->addeff3, ARRAYLENGTH(sd->addeff3), (sc_type)type3, val, type2, ATF_TARGET);
 		break;
 		
 	case SP_ADDELE:

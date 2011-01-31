@@ -7964,6 +7964,13 @@ ACMD_FUNC(accept)
 		return 0;
 	}
 
+	if( duel_list[sd->duel_invite].max_players_limit > 0 && duel_list[sd->duel_invite].members_count >= duel_list[sd->duel_invite].max_players_limit )
+	{
+		// "Duel: Limit of players is reached."
+		clif_displaymessage(fd, msg_txt(351));
+		return 0;
+	}
+
 	duel_accept(sd->duel_invite, sd);
 	// "Duel: Invitation has been accepted."
 	clif_displaymessage(fd, msg_txt(361));
@@ -8012,30 +8019,6 @@ ACMD_FUNC(cash)
 			pc_paycash(sd, -value, -value);
 	}
 
-	return 0;
-}
-
-/*===================================
- * Away message (@away, @aw) [LuzZza]
- *-----------------------------------*/
-ACMD_FUNC(away)
-{
-	if(strlen(message) > 0) {
-		if(strlen(message) > 128)
-			return -1;
-		strcpy(sd->away_message, message);
-		//"Away automessage has been activated."
-		clif_displaymessage(fd, msg_txt(546));
-	} else {
-		if(strlen(sd->away_message) > 0) {
-			sd->away_message[0] = 0;
-			//"Away automessage has been disabled."
-			clif_displaymessage(fd, msg_txt(547));
-			return 0;
-		}
-		//"Usage: @away,@aw <message>. Enter empty message for disable it."
-		clif_displaymessage(fd, msg_txt(548));
-	}
 	return 0;
 }
 
@@ -8930,8 +8913,6 @@ AtCommandInfo atcommand_info[] = {
 	{ "leave",              1,1,      atcommand_leave },
 	{ "accept",             1,1,      atcommand_accept },
 	{ "reject",             1,1,      atcommand_reject },
-	{ "away",               1,1,      atcommand_away },
-	{ "aw",                 1,1,      atcommand_away },
 	{ "main",               1,1,      atcommand_main },
 	{ "clone",             50,50,     atcommand_clone },
 	{ "slaveclone",        50,50,     atcommand_clone },
@@ -9179,8 +9160,8 @@ int atcommand_config_read(const char* cfgName)
 			}
 			else {
 				p->level2 = atoi(w3);
-				p->level2 = cap_value(p->level2, 0, 100);
 			}
+			p->level2 = cap_value(p->level2, 0, 100);
 		}
 		else
 		if( strcmpi(w1, "import") == 0 )

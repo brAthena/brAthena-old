@@ -5599,9 +5599,9 @@ void clif_closevendingboard(struct block_list* bl, int fd)
 }
 
 /*==========================================
- * Sends a list of items in a shop
+ * Sends a list of items in a shop (ZC_PC_PURCHASE_ITEMLIST_FROMMC/ZC_PC_PURCHASE_ITEMLIST_FROMMC2)
  * R 0133 <len>.w <ID>.l {<value>.l <amount>.w <index>.w <type>.B <item ID>.w <identify flag>.B <attribute?>.B <refine>.B <card>.4w}.22B
- * R 0800 <len>.w <ID>.l <ID?>.l {<value>.l  <amount>.w <index>.w <type>.B <item ID>.w <identify flag>.B <attribute?>.B <refine>.B <card>.4w}.22B
+ * R 0800 <len>.w <ID>.l <UniqueID>.l {<value>.l  <amount>.w <index>.w <type>.B <item ID>.w <identify flag>.B <attribute?>.B <refine>.B <card>.4w}.22B
  *------------------------------------------*/
 void clif_vendinglist(struct map_session_data* sd, int id, struct s_vending* vending)
 {
@@ -5628,7 +5628,7 @@ void clif_vendinglist(struct map_session_data* sd, int id, struct s_vending* ven
 	WFIFOW(fd,2) = offset+count*22;
 	WFIFOL(fd,4) = id;
 #if PACKETVER >= 20100105
-	WFIFOL(fd,8) = vsd->status.char_id;
+	WFIFOL(fd,8) = vsd->vender_id;
 #endif
 
 	for( i = 0; i < count; i++ )
@@ -5649,12 +5649,14 @@ void clif_vendinglist(struct map_session_data* sd, int id, struct s_vending* ven
 }
 
 /*==========================================
- * Shop purchase failure
+ * Shop purchase failure (ZC_PC_PURCHASE_RESULT_FROMMC)
  * R 0135 <index>.w <amount>.w <fail>.B
  * fail=1 - not enough zeny
  * fail=2 - overweight
  * fail=4 - out of stock
  * fail=5 - "cannot use an npc shop while in a trade"
+ * fail=6 - Because the store information was incorrect the item was not purchased.
+ * fail=7 - No sales information.
  *------------------------------------------*/
 void clif_buyvending(struct map_session_data* sd, int index, int amount, int fail)
 {
@@ -8398,8 +8400,8 @@ void clif_parse_LoadEndAck(int fd,struct map_session_data *sd)
 		clif_refreshlook(&sd->bl,sd->bl.id,LOOK_CLOTHES_COLOR,sd->vd.cloth_color,SELF);
 
 	// item
+	clif_inventorylist(sd);  // inventory list first, otherwise deleted items in pc_checkitem show up as 'unknown item'
 	pc_checkitem(sd);
-	clif_inventorylist(sd);
 	
 	// cart
 	if(pc_iscarton(sd)) {
@@ -9281,19 +9283,6 @@ void clif_parse_WisMessage(int fd, struct map_session_data* sd)
 	// notify sender of success
 	clif_wis_end(fd, 0); // 0: success to send wisper
 
-	// if player has an auto-away message
-	if(dstsd->away_message[0] != '\0')
-	{
-		char output[256];
-		sprintf(output, "%s %s", message, msg_txt(543)); // "(Automessage has been sent)"
-		clif_wis_message(dstsd->fd, sd->status.name, output, strlen(output) + 1);
-		if(dstsd->state.autotrade)
-			sprintf(output, msg_txt(544), dstsd->away_message); // "Away [AT] - "%s""
-		else
-			sprintf(output, msg_txt(545), dstsd->away_message); // "Away - "%s""
-		clif_wis_message(fd, dstsd->status.name, output, strlen(output) + 1);
-		return;
-	}
 	// Normal message
 	clif_wis_message(dstsd->fd, sd->status.name, message, messagelen);
 	return;
@@ -10884,7 +10873,7 @@ void clif_parse_VendingListReq(int fd, struct map_session_data* sd)
 }
 
 /*==========================================
- * Shop item(s) purchase request
+ * Shop item(s) purchase request (CZ_PC_PURCHASE_ITEMLIST_FROMMC)
  * S 0134 <len>.w <ID>.l {<amount>.w <index>.w}.4B*
  *------------------------------------------*/
 void clif_parse_PurchaseReq(int fd, struct map_session_data* sd)
@@ -10893,21 +10882,27 @@ void clif_parse_PurchaseReq(int fd, struct map_session_data* sd)
 	int id = (int)RFIFOL(fd,4);
 	const uint8* data = (uint8*)RFIFOP(fd,8);
 
-	vending_purchasereq(sd, id, -1, data, len/4);
+	vending_purchasereq(sd, id, sd->vended_id, data, len/4);
+
+	// whether it fails or not, the buy window is closed
+	sd->vended_id = 0;
 }
 
 /*==========================================
- * Shop item(s) purchase request
- * S 0134/0801 <len>.w <AID>.l <CID>.l {<amount>.w <index>.w}.4B*
+ * Shop item(s) purchase request (CZ_PC_PURCHASE_ITEMLIST_FROMMC2)
+ * S 0801 <len>.w <AID>.l <UniqueID>.l {<amount>.w <index>.w}.4B*
  *------------------------------------------*/
 void clif_parse_PurchaseReq2(int fd, struct map_session_data* sd)
 {
 	int len = (int)RFIFOW(fd,2) - 12;
 	int aid = (int)RFIFOL(fd,4);
-	int cid = (int)RFIFOL(fd,8);
+	int uid = (int)RFIFOL(fd,8);
 	const uint8* data = (uint8*)RFIFOP(fd,12);
 
-	vending_purchasereq(sd, aid, cid, data, len/4);
+	vending_purchasereq(sd, aid, uid, data, len/4);
+
+	// whether it fails or not, the buy window is closed
+	sd->vended_id = 0;
 }
 
 /*==========================================

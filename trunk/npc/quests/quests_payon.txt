@@ -12,7 +12,7 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.7/1.0                                |
+// | Versões eA/brA: 1.7/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: Quests dos itens para cabeça 'Faca Falsa',  |
 // | 'Aquecedor de Orelha', 'Máscara de Oxigênio', 'Chapéu  |
@@ -21,7 +21,6 @@
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [Barsaglini]                      |
 // | 1.1 Script Revisado [Tyler & Kooler]                   |
-// | - Anotações                                            |
 // \________________________________________________________/
 
 // Quest Faca Falsa
