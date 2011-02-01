@@ -84,7 +84,7 @@
 593#Panqueca_com_Mel#
 594#Panqueca_Azeda#
 595#Panqueca_de_Cogumelos#
-596#Chocolate_Com_Morangos_da_Saneva#
+596#Chocolate dos Apaixonados#
 597#Torta_de_Chocolate_Cremosa#
 601#Asa_de_Mosca#
 602#Asa_de_Borboleta#
@@ -158,7 +158,7 @@
 681#Álbum_de_Fotos_de_Casamento#
 682#Bebida_de_Realgar#
 683#Erva_de_Exorcismo#
-684#Durian#
+684#Jaca#
 685#Ramadan#
 686#Coluna_de_Pedra_Nível_3#
 687#Coluna_de_Pedra_Nível_5#
@@ -511,6 +511,8 @@
 1185#Terror Violeta#
 1186#Guia da Morte#
 1187#Claymore Gloriosa#
+1188#Espada Veterana#
+1189#Krasnaya#
 1201#Faca#
 1202#Faca#
 1203#Faca#
@@ -591,6 +593,8 @@
 1280#Katar da Carnificina B#
 1281#Rugido Sangrento Glorioso#
 1282#Jamadhar Glorioso#
+1284#Krishna#
+1285#Chakram#
 1301#Machado#
 1302#Machado#
 1303#Machado#
@@ -601,6 +605,7 @@
 1308#Machado Dourado#
 1309#Machado Orc#
 1310#Retalhador Glorioso#
+1311#Machado Vecer#
 1351#Machado_de_Batalha#
 1352#Machado_de_Batalha#
 1353#Machado_de_Batalha#
@@ -631,6 +636,9 @@
 1381#Machado de Batalha de Iniciante#
 1382#Machado de Duas Mãos Glorioso#
 1383#Machado Celestial#
+1384#Machado Veterano#
+1385#Martelo Quebra-Pedra de Bradium#
+1387#Machado Gigante#
 1401#Azagaia#
 1402#Azagaia#
 1403#Azagaia#
@@ -733,6 +741,7 @@
 1544#Frigideira Lunar#
 1545#Maça de Iniciante#
 1546#Maça de Guerra Gloriosa#
+1548#Martelo Veterano#
 1550#Livro#
 1551#Bíblia#
 1552#Tábula#
@@ -797,6 +806,10 @@
 1639#Cajado de Iniciante#
 1640#Cetro Glorioso#
 1641#Varinha Gloriosa de Cura#
+1643#Cajado da Árvore Morta#
+1646#Bastão de Lágrimas#
+1647#Cajado da Cruz#
+1648#Cajado do Maestro#
 1701#Arco#
 1702#Arco#
 1703#Arco#
@@ -837,6 +850,7 @@
 1741#Mentiroso Maldito#
 1742#Arco Composto de Iniciante#
 1743#Arco de Caça Glorioso#
+1745#Assalto do Falcão#
 1750#Flecha#
 1751#Flecha_de_Prata#
 1752#Flecha_de_Fogo#
@@ -947,6 +961,8 @@
 2000#Bastão_da_Destruição#
 2001#Cruz_Divina#
 2002#Cajado Glorioso da Destruição#
+2004#Kronos#
+2005#Cajado Dea#
 2101#Vembrassa#
 2102#Vembrassa#
 2103#Broquel#
@@ -980,6 +996,11 @@
 2133#Escudo de Torneio#
 2134#Escudo de Escamas de Naga#
 2135#Escudo das Sombras#
+2138#Escudo de Bradium#
+2149#Vembrassa Evoluída#
+2150#Broquel Evoluído#
+2151#Escudo Evoluído#
+2154#Escudo de Brinquedo#
 2199#Ahura_Mazda#
 2201#Óculos_Escuros#
 2202#Óculos_Escuros#
@@ -1170,6 +1191,7 @@
 2395#Túnica Gloriosa Industrializada#
 2396#Túnica Gloriosa Barata#
 2397#Capa da Corporação#
+2399#Colete do Dragão#
 2401#Sandálias#
 2402#Sandálias#
 2403#Sapatos#
@@ -1214,6 +1236,12 @@
 2446#Sapatos Gloriosos Baratos#
 2447#Botas Militares#
 2448#Sapatos Velozes#
+2450#Sapatos da Árvore da Vida#
+2459#Sapatos Aprimorados#
+2460#Botas Aprimoradas#
+2461#Grevas Aprimoradas#
+2466#Sapatos de Treino#
+2474#Sandálias de Iemanjá #
 2501#Capuz#
 2502#Capuz#
 2503#Sobrepeliz#
@@ -1258,6 +1286,10 @@
 2546#Capuz de Praia#
 2549#Sobrepeliz Gloriosa#
 2550#Sobrepeliz de Pescador#
+2553#Manteau do Dragão#
+2554#Pedaço de Pele do Guardião#
+2562#Sobrepeliz Aprimorado#
+2565#Toalha de Praia#
 2601#Anel#
 2602#Brinco#
 2603#Colar#
@@ -1385,7 +1417,7 @@
 2755#Anel do Ganhador [A]#
 2756#Anel do Devastador [A]#
 2757#Anel do Colecionador de Insetos [A]#
-2758#Anel de Pescador [A]#
+2758#Anel do Pescador [A]#
 2759#Anel do Exorcista [A]#
 2760#Anel do Açougueiro [A]#
 2761#Anel do Anjo Caído [A]#
@@ -1402,7 +1434,17 @@
 2773#Anel Glorioso Industrializado#
 2774#Anel Glorioso Barato#
 2775#Isca#
-2784#Caixinha "Noite Feliz"#
+2782#Anel do Rei Sábio#
+2783#Anel da Pedra do Olho#
+2784#Caixinha Noite Feliz#
+2787#Broche da Gota d'Água#
+2788#Brinco de Bradium#
+2789#Anel de Bradium#
+2790#Broche de Bradium#
+2828#Presilha Aprimorada#
+2829#Presilha da Ganância#
+2855#Rabo de Gato Preto#
+2871#Emblema Oficial Brasileiro#
 4001#Carta_Poring#
 4002#Carta_Fabre#
 4003#Carta_Pupa#
@@ -1844,6 +1886,66 @@
 4439#Carta_Crânio_Flamejante#
 4440#Carta_Necromante#
 4441#Carta_Bispo_Decadente#
+4700#FOR +1#
+4701#FOR +2#
+4702#FOR +3#
+4703#FOR +4#
+4704#FOR +5#
+4705#FOR +6#
+4706#FOR +7#
+4707#FOR +8#
+4708#FOR +9#
+4709#FOR +10#
+4710#INT +1#
+4711#INT +2#
+4712#INT +3#
+4713#INT +4#
+4714#INT +5#
+4715#INT +6#
+4716#INT +7#
+4717#INT +8#
+4718#INT +9#
+4719#INT +10#
+4720#DES +1#
+4721#DES +2#
+4722#DES +3#
+4723#DES +4#
+4724#DES +5#
+4725#DES +6#
+4726#DES +7#
+4727#DES +8#
+4728#DES +9#
+4729#DES +10#
+4730#AGI +1#
+4731#AGI +2#
+4732#AGI +3#
+4733#AGI +4#
+4734#AGI +5#
+4735#AGI +6#
+4736#AGI +7#
+4737#AGI +8#
+4738#AGI +9#
+4739#AGI +10#
+4740#VIT +1#
+4741#VIT +2#
+4742#VIT +3#
+4743#VIT +4#
+4744#VIT +5#
+4745#VIT +6#
+4746#VIT +7#
+4747#VIT +8#
+4748#VIT +9#
+4749#VIT +10#
+4750#SOR +1#
+4751#SOR +2#
+4752#SOR +3#
+4753#SOR +4#
+4754#SOR +5#
+4755#SOR +6#
+4756#SOR +7#
+4757#SOR +8#
+4758#SOR +9#
+4759#SOR +10#
 5001#Fone_de_Ouvido#
 5002#Coroa_Adornada#
 5003#Chapéu_de_Bufão#
@@ -1978,7 +2080,7 @@
 5133#Chapéu de Ovelha#
 5134#Cabeça de Abóbora#
 5135#Olho do Ciclope#
-5136#Gorro de Natal da Louise#
+5136#Gorro de Natal do Antonio#
 5137#Boneca_de_Alice#
 5138#Chapéu_do_Olho_Mágico#
 5139#Hibiscus#
@@ -2026,7 +2128,7 @@
 5186#Tiara_de_Planta_Carnívora#
 5187#Lacinhos_Floridos#
 5188#Chapéu_de_Menestrel#
-5189#Fallen_Leaf#
+5189#Espírito de Outono#
 5191#Lacinho_Preto#
 5192#Lacinho_Amarelo#
 5193#Lacinho_Verde#
@@ -2116,6 +2218,7 @@
 5294#Capuz_de_Sussurro#
 5299#Cocar#
 5300#Elmo_do_Povo_Dragão#
+5302#Chapéu de Vitória-Régia#
 5303#Coroa_de_Flores#
 5304#Capuz_da_Escuridão#
 5305#Adaga_de_Arremesso#
@@ -2130,7 +2233,7 @@
 5315#Rastreador_GZ#
 5316#Chapéu_de_Frevo#
 5317#Chapéu de Pescador#
-5318#Chapéu_de_Terceiro_Aniversário#
+5318#Chapéu_de_Aniversário bRO#
 5319#Chapéu de ArchAngeling#
 5322#Lencinho#
 5324#Boneca_da_Lady_Solace#
@@ -2166,6 +2269,7 @@
 5361#Máscara_de_Fugitivo#
 5362#Pergaminho_de_Ninpou#
 5363#Elmo do Abismo#
+5364#Chapéu da Serpente Suprema#
 5367#Chapéu de Yao Jun#
 5370#Tiara de Orquídea#
 5371#Chapéu do Milênio#
@@ -2186,6 +2290,7 @@
 5387#Tiara de Kafra Gatinha#
 5388#Chapéu de Jibóia#
 5389#Espírito_Olímpico#
+5390#Gorro Natalino de Gelo#
 5391#Crunch Toast#
 5392#Gorro_de_Louyang#
 5393#Tiara_de_Cupido#
@@ -2208,6 +2313,7 @@
 5413#Chapéu_de_Pipoca#
 5414#Fogueira_de_São_João#
 5415#Chapéu de Bolo de Poring#
+5416#Caneca de Guaraná#
 5420#Máscara do Ifrit#
 5421#Orelhas do Ifrit#
 5426#Chapéu de Outono do Menestrel#
@@ -2217,13 +2323,22 @@
 5433#Coroa_de_Louros_Dourada#
 5436#Coroa da Noiva#
 5437#Flor de Moscóvia#
+5438#Laço Meigo Verde#
+5439#Laço Meigo Vermelho#
+5440#Laço Meigo Azul#
+5441#Laço Meigo Branco#
 5442#Gravata Azul#
+5443#Estátua de Bebê Anjo#
 5444#Pente Vermelho#
+5445#Bengala Doce na Boca#
 5446#Presilha de Pegada#
 5447#Chapéu de Sapo#
+5448#Caixa para Brincar Só 1#
+5449#Caixa para Brincar Só 2#
 5451#Espírito do Dragão de Ouro#
 5452#Espírito do Dragão de Prata#
 5453#Espírito do Dragão de Bronze#
+5454#Boneco de Cachorrinho#
 5462#Máscara do Exterminador#
 5463#Máscara Colorida#
 5464#Boneca da Lady Branca#
@@ -2235,6 +2350,7 @@
 5470#Olho de Mimir#
 5471#Asas de Reginleif#
 5473#Tiara de Vadon#
+5474#Placa de AFK#
 5476#Cocar de Grand Peco#
 5477#Chapéu da Bandeira Brasileira#
 5478#Chapéu de Veneza#
@@ -2269,12 +2385,21 @@
 5519#Chapéu de Pavão#
 5526#Boneca da Lady Tanee#
 5527#Chapéu de Lunático#
+5528#Chapéu do Rei Sapo#
 5529#Elmo do Rei Youkai#
+5530#Chapéu de Corvo#
+5531#Chapéu de Bebê Dragão#
+5532#Adaga de Pirata#
+5533#Louros do Imperador#
+5534#Máscara Kitsune 2.0#
+5535#Boina Militar de Louyang#
 5537#Chapéu de Quati#
 5538#Chapéu de Tucano#
 5539#Máscara de Onça-Pintada#
 5545#Diadema de Áries#
 5546#Coroa de Áries#
+5547#Tiara da Primavera#
+5548#Rosa Escarlate#
 5549#Diadema de Touro#
 5550#Coroa de Touro#
 5554#Chapéu de Polvo#
@@ -2282,14 +2407,61 @@
 5556#Capuz de Foca#
 5557#Boneco de Rosa Selvagem#
 5558#Carapuça do Saci#
+5563#Chapéu do Pesar de Thanatos#
 5564#Máscara da Morte#
+5567#Fúria Brilhante#
+5568#Boina de Coelho#
 5569#Diadema de Gêmeos#
 5570#Coroa de Gêmeos#
 5572#Chapéu de Bebe Selvagem#
+5574#Lápis Mordido#
+5575#Chapéu de Onigiri#
 5581#Diadema de Câncer#
 5582#Coroa de Câncer#
+5584#Chifres Majestosos Malignos#
+5586#Chapéu Repelente#
+5587#Chapéu Repelente Descartável#
+5588#Coroa de Leão#
+5589#Diadema de Leão#
+5591#Turbante Real#
+5592#Asas de Sigrún#
+5595#Olho de Juno#
+5598#Coroa de Virgem#
+5599#Diadema de Virgem#
 5600#Lacinhos Brasileiros#
 5601#Boina Brasileira#
+5609#Tiara de Donzela#
+5610#Asas de Gelo#
+5611#Chapéu de Tartaruga#
+5655#Chapéu da Serpente Suprema#
+5658#Chapéu de Imp#
+5659#Chapéu de Rochoso#
+5660#Chapéu de Grifo#
+5662#Coroa de Libra#
+5663#Diadema de Libra#
+5667#Capuz do Vazio#
+5668#Estranho Chapéu de Abóbora#
+5676#Coroa de Escorpião#
+5677#Diadema de Escorpião#
+5678#Tiara de Nota Musical#
+5679#Chapéu de Engenheiro#
+5680#Bandagem para Olho#
+5690#Chapéu Alado Vermelho#
+5738#Chapéu de Boneco de Neve#
+5739#Coroa de Sagitário#
+5740#Diadema de Sagitário#
+5761#Chapéu do Bicho Preguiça#
+5762#Elmo de Duneyrr#
+5765#Laço Gótico#
+5766#Chapéu de Amistr#
+5767#Máscara de Samurai#
+5768#Coroa de Cerejeira#
+5770#Chapéu de Pouring#
+5776#Sol Radiante#
+5778#Chapéu de Arara Azul#
+5779#Boto Cor de Rosa#
+5780#Chapéu de Tendrillion#
+5783#Orelhas de Coelho Amarelas#
 5800#Rubor de Batalha#
 5801#Laço de Noiva#
 5808#Elmo de Diabolus#
@@ -2297,8 +2469,31 @@
 5817#Anel do Dia dos Namorados#
 5818#Chapéu do Mestre Sala#
 5819#Tiara da Porta Bandeira#
+5822#Chapéu de Pintinho Avermelhado#
 5824#Chapéu do Mentiroso#
 5827#Pilha de Livros#
+5830#Chapéu Chinês da Eq. Alfa#
+5831#Laço Grande da Eq. Alfa#
+5832#Cata-Vento da Corp. Sombrinha#
+5833#Chapéu de Verão da Eq. Bravo#
+5834#Coroa da Corp. Sombrinha#
+5835#Diadema da Espiã#
+5836#Quepe da Eq. Bravo#
+5837#Óculos Escuros de Vesquer#
+5838#Barbatanas da Praga#
+5839#Candura de Shiva#
+5840#Orelhas de Ourobolos#
+5841#Chapéu Alado Chinês#
+5845#Placa Buzzy Bol#
+5846#Chapéu Goma de Mascar#
+5848#Disfarce de Bandido#
+5849#Disfarce de Médico#
+5850#Chapéu de Selvagem Dourado#
+5852#Casca de Ovo de Páscoa#
+5856#Chapéu da Copa: Paixão#
+5857#Chapéu da Copa: Coragem#
+5858#Chapéu da Copa: Vitória#
+5859#Chapéu da Copa: Honra#
 6000#Cinzas da Escuridão#
 6001#Essência de Fogo#
 6002#Medalhão do Apóstolo#
@@ -2335,8 +2530,70 @@
 6049#Marlin#
 6051#Mineral Cinza#
 6052#Presilha Ornamental#
+6060#Ticket de Kafra#
+6073#Crina de Dragão#
+6074#Caderno de Bazett#
+6075#Lágrima Cristalizada#
+6076#Caixa de Ferramentas Portátil#
+6077#Mineral Bruto#
+6078#Fragmento de Pedra#
+6079#Flor de Alfheim#
+6080#Moeda Manuk#
+6081#Moeda Esplendor#
+6082#Espírito de Alfheim#
+6084#Fragmentos de Bradium#
+6085#Sobrepeliz Amarrotado#
+6086#Flor Murcha#
+6087#Crista Espiritual Azul#
+6088#Crista Espiritual Vermelha#
+6089#Fragmento Sombrio#
+6090#Bradium Purificado#
+6091#Escama Vermelha-Escura#
 6092#Fragmento de Cristal Cantante#
+6093#Ovo de Dragão#
+6095#Líquido Aromatizado#
+6096#Peixe Azulado#
+6097#Torta Assustadora#
+6098#Cristal de Neve#
+6100#Fumaça Negra#
+6101#Cartão de Presença#
+6102#Relatório do Esplendor#
+6103#Relatório de Manuk#
+6104#Cristal Gigante#
+6105#Orvalho da Manhã#
+6106#Morango Maduro#
+6107#Coquetel de Verão#
+6108#Gelatina de Maçã#
+6110#Flor Vívida#
+6113#Flor Vital#
+6114#Gema em Chamas#
+6115#Bolinho Quente#
+6125#Caixa de Surpresas#
+6130#Ticket de Loli Ruri#
+6131#Ticket de Líder Goblin#
+6133#Ticket de Miyabi Ningyo#
+6135#Ticket de Ninfa Perversa#
+6136#Ticket de Medusa#
+6139#Ticket de Gato de Folha#
+6140#Ticket de Dullahan#
+6143#Ticket de Mao Guai#
+6188#Cupom de Slot#
+6221#Esfera Mística#
+6222#Conta Brilhante#
 6237#Guaraná#
+6240#Oridecon Perfeito#
+6241#Elunium Perfeito#
+6298#Abóbora Esmagada#
+6299#Tecido Velho#
+6320#Pedra das Valquírias#
+6396#Perfurador Descartável#
+6424#Cristal Espiritual#
+6425#Certificado Espiritual#
+6446#Papel de Presente Verde#
+6447#Papel de Presente Vermelho#
+6448#Papel de Presente Branco#
+6449#Diário Casual#
+6450#Diário Sincero#
 7001#Pó_de_Bolor#
 7002#Dente_de_Ogro#
 7003#Pele_de_Anolian#
@@ -2804,11 +3061,12 @@
 7537# Álbum_de_Fotos_de_Ayothaya#
 7539#Moeda Poring#
 7547#Bola_de_Futebol#
-7548#Calçados_de_Treino#
+7548#Chuteiras#
 7549#Bandeira_Nacional#
-7550#Ticket de Promoção#
+7550#Ticket Especial#
 7551#Ticket de Segunda Profissão#
 7552#Nota_com_Horários_dos_Jogos#
+7553#Flor de Vitória-Régia#
 7558#Ticket de Promoção#
 7561#Coração_Glacial#
 7562#Escama_de_Gelo#
@@ -2842,6 +3100,10 @@
 7621#Amuleto de Ziegfried#
 7622#Cupom_de_Corte_de_Cabelo#
 7623#Cupom_de_Mudança_de_Nome#
+7624#Cartão Chinês 23#
+7626#Buzzy Point#
+7630#Vassoura de Praia#
+7631#Restos de Lixo#
 7701#Espírito de Dragão#
 7703#Pedaço de Engrenagem#
 7704#Termômetro_Quebrado#
@@ -2916,6 +3178,7 @@
 7822#Churrasco_Selvagem#
 7823#Espetinho_Vegetariano#
 7824#Refresco#
+7825#Pedra do Herói#
 7826#Papel da Guarda Continental#
 7828#Emblema de Bravura#
 7829#Emblema de Valor#
@@ -2964,6 +3227,31 @@
 7947#Anel de Prata do Dia dos Namorados#
 7948#Caixa#
 7949#Seda de Felpa#
+7974#Pedaço de Ilusão#
+7975#Chocolate do Cupido#
+7977#Medalha E.S.T.R.E.L.A#
+7978#Cartão Chinês 1#
+7979#Cartão Chinês 2#
+7980#Cartão Chinês 3#
+7981#Cartão Chinês 4#
+7982#Cartão Chinês 5#
+7983#Cartão Chinês 6#
+7984#Cartão Chinês 7#
+7985#Cartão Chinês 8#
+7986#Cartão Chinês 9#
+7987#Cartão Chinês 10#
+7988#Cartão Chinês 11#
+7989#Cartão Chinês 12#
+7990#Cartão Chinês 13#
+7991#Cartão Chinês 14#
+7992#Cartão Chinês 15#
+7993#Cartão Chinês 16#
+7994#Cartão Chinês 17#
+7995#Cartão Chinês 18#
+7996#Cartão Chinês 19#
+7997#Cartão Chinês 20#
+7998#Cartão Chinês 21#
+7999#Cartão Chinês 22#
 9001#Ovo_de_Poring#
 9002#Ovo_de_Drops#
 9003#Ovo_de_Poporing#
@@ -2991,6 +3279,7 @@
 9025#Ovo_de_Bongun#
 9026#Ovo_de_Jirtas#
 9027#Ovo_de_Alice#
+9028#Ovo de Mascote Buzzy Brother#
 9029#Ovo de Goblin Natalino#
 9030#Ovo_de_Donzela_Verde#
 9031#Ovo_de_Coelho#
@@ -3000,6 +3289,20 @@
 9035#Ovo_de_Deletério#
 9036#Ovo_de_Diabolik#
 9037#Ovo_de_Andarilho#
+9040#Ovo de Mao Guai#
+9041#Ovo de Gato de Folha#
+9042#Ovo de Loli Ruri#
+9043#Ovo de Marionette#
+9045#Ovo de Sussurro#
+9046#Ovo de Líder Goblin#
+9047#Ovo de Ninfa Perversa#
+9048#Ovo de Miyabi Ningyo#
+9049#Ovo de Dullahan#
+9050#Ovo de Medusa#
+9052#Ovo de Incubus#
+9055#Ovo de Succubus#
+9056#Ovo de Imp#
+9058#Ovo de Lebre da Neve#
 10001#Elmo_de_Crânio#
 10002#Máscara_de_Oxigênio_para_Bichinhos#
 10003#Capacete_Espacial#
@@ -3020,6 +3323,18 @@
 10018#Coroa_de_Macaco#
 10019#Pano_Vermelho#
 10020#Espada_chinesa#
+10022#Brinco de Ouro#
+10023#Bolsa Verde de Jóias#
+10024#Óculos Engraçados#
+10025#Tiara de Cabelo#
+10027#Auréola Brilhante#
+10028#Medalha de Flor#
+10029#Ornamento de Jade#
+10030#Leque de Verão#
+10031#Símbolo da Morte#
+10032#Coroa Real#
+10034#Máscara de Baile#
+10038#Protetor de Chifre#
 11000#Livro da história de Prontera#
 11001#Histórias_de_Aventura_Vol.1#
 11002#Mestre-Cuca_Orleans_Vol.1#
@@ -3036,7 +3351,10 @@
 11014#Relatório da Expedição Vol. 2#
 11015#Relatório da Expedição Vol. 3#
 11016#Relatório da Expedição Vol. 4#
+11018#Itens de Esplendor à Venda#
+11019#Itens de Esplendor à Venda#
 11501#Poção_Branca_Leve#
+11502#Poção Refrescante Azul#
 11503#Poção Branca de Guerra#
 11504#Poção Azul de Guerra#
 11515#Coco#
@@ -3238,11 +3556,12 @@
 12215#Bênção#
 12216#Aumentar Agilidade#
 12217#Aspersio#
-12218#Assumptio#
+12218#Pergaminho de Assumptio#
 12219#Pergaminho do Vento#
 12220#Pergaminho de Adrenalina#
 12221#Megafone#
 12225#Bengala Ultra-Doce#
+12232#Biscoito de Gengibre#
 12234#Cacau_Extra_Forte_99#
 12235#Chocolate_com_Morangos#
 12236#Torta_de_Chocolate#
@@ -3254,6 +3573,8 @@
 12243#Poção_da_Fúria_Selvagem_para_Assistentes#
 12244#Velha Caixa de Presentes#
 12245#Líquido Verde#
+12246#Álbum Mágico de Cartas#
+12247#Salada de Frutas Tropicais#
 12250#Língua no Vapor#
 12251#Escorpião no Vapor#
 12252#Coquetel Sopro do Dragão#
@@ -3263,6 +3584,7 @@
 12257#Anti-Térmico#
 12259#Medicina Milagrosa#
 12260#Roupas_de_Praia#
+12261#Medicina Secreta#
 12264#Chicle Buzzy#
 12266#Doces Freegells#
 12269#Ração Rosa Gostosa#
@@ -3270,25 +3592,62 @@
 12271#Ração Militar A#
 12272#Ração Militar B#
 12273#Ração Militar C#
+12274#Pílula Mágica#
+12276#Assistente Mímico#
+12277#Assistente Mascarado#
+12278#Assistente Alice#
 12300#Pergaminho de Rosa Selvagem#
 12301#Pergaminho de Doppelganger#
 12302#Pergaminho de Egnigem Cenia#
 12310#Ramo de Cerejeira#
 12311#Enorme Galho de Cerejeira#
+12312#Manual de Combate 60#
+12317#Punhado de Neve#
 12319#Bolo de Morango de Rune-Midgard#
 12320#Jubileu de Abacaxi de Schwartzwald#
 12321#Sanduíche do Deserto de Arunafeltz#
-12322#Torta de Chocolate#
+12322#Chocolate Puro#
 12323#Asa de Mosca de Iniciante#
 12324#Asa de Borboleta de Iniciante#
 12325#Lupa de Iniciante#
 12326#Fogos de Artifício Juninos#
+12328#Amuleto Milagroso#
+12342#Oportunidade de Manuk#
+12343#Coragem de Manuk#
+12344#Geleia de Fruta de Pinguicula#
+12345#Geleia de Mel de Vagalume#
+12346#Avelã Verde#
+12347#Geleia de Avelã #
+12348#Fé de Manuk#
+12349#Lágrimas de Cornus#
 12350#Poção de Angeling#
+12353#Garrafa Pequena#
 12354#Sobremesa de Noel#
 12355#Presente de Natal#
 12356#Caixa de Fantasia da Louise#
+12358#Leque dos Ventos#
+12359#Folha Macia#
+12360#Suco Vermelho-Sangue#
+12361#Taça Nevada#
+12363#Caixão Tenebroso#
+12364#Cajado do Líder#
+12365#Flor de Lótus#
+12366#Bonequinha Oriental#
+12367#Garrafa de Bebida#
+12368#Espelho de Mão#
+12370#Carta de Amor#
+12373#Coração Puro#
+12374#Chama Azulada#
 12375#Acarajé#
+12395#Guloseima Recheada#
+12396#Caixa Surpresa#
+12397#Caixa Surpresa#
+12404#Poção Energizante#
+12408#Esfera de Captura#
+12411#Enciclopédia de Combate#
+12412#Chicle de Bola#
 12414#Bala de Guaraná#
+12596#Doce Mágico#
 12702#Nova_Velha_Caixa_Azul#
 12706#Biscoito da Sorte: Glória#
 12707#Biscoito da Sorte: Magnificat#
@@ -3298,6 +3657,22 @@
 12742#Caixa de Presente do Dia dos Namorados#
 12743#Caixa de Presente do Dia dos Namorados#
 12744#Caixa de Chocolates#
+12745#Anotação Vívida#
+12746#Bola de Neve Misteriosa#
+12754#Pastel Chinês#
+12755#Fogos de Artifício Chineses#
+12756#Envelope do Ano Novo Chinês#
+12760#Buzzy Bol Hortelã#
+12761#Buzzy Bol Limão#
+12762#Buzzy Bol Laranja#
+12763#Buzzy Bol Morango#
+12767#Chapéu da Copa: Paixão#
+12768#Chapéu da Copa: Coragem#
+12769#Chapéu da Copa: Vitória#
+12770#Chapéu da Copa: Honra#
+12771#Chapéu da Copa: Paixão Total#
+12772#Chapéu da Copa: Coragem Definitiva#
+12773#Chapéu da Copa: Vitória Triunfal#
 12900#Caixa de Manual de Combate#
 12901#Caixa de Seguros#
 12902#Goma de Mascar#
@@ -3361,6 +3736,8 @@
 12962#Caixa_de_Núcleo_Vesper_02#
 12963#Caixa_de_Núcleo_Vesper_03#
 12964#Caixa_de_Núcleo_Vesper_04#
+12965#Caixa de Chamado Urgente#
+12968#Pergaminho de Chamado Urgente#
 12971#Caixa_de_Teleporte_1#
 12972#Caixa_de_Teleporte_2#
 12973#Caixa_de_Teleporte_3#
@@ -3373,6 +3750,8 @@
 12980#Pergaminho_de_Teleporte_4#
 12981#Pergaminho_de_Teleporte_5#
 12982#Pergaminho_de_Teleporte_6#
+12991#Pacote de Batalha#
+12992#Pacote de Aventuras#
 12996#Blue_Herb_Box#
 12999#Caixa de Galhos Secos#
 13000#Adaga de Jujube#
@@ -3413,6 +3792,8 @@
 13040#Punhal de Iniciante#
 13041#Main Gauche de Iniciante#
 13042#Gladius Glorioso#
+13046#Krieg#
+13047#Weihna#
 13100#Pistola de Seis Tiros#
 13101#Pistola de Seis Tiros#
 13102#Raio Vermelho#
@@ -3495,14 +3876,18 @@
 13417#Florete Glorioso#
 13418#Vingadora Sagrada Gloriosa#
 13420#Espada de Honglyun#
+13421#Roubel#
 13514#Spaner_Box#
 13516#Caixa de Geléia Real#
+13517#Fruto de Yggdrasil [3]#
+13525#Caixa de Ovo da Fortuna#
 13534#Poções_Brancas_Leves#
 13535#Poções_de_Concentração_Leves#
 13537#Poções_da_Fúria_Selvagem_Leves#
 13538#Caixa_de_Chuva_de_Meteoros#
 13539#Caixa_de_Nevasca#
 13540#Caixa_de_Ira_de_Thor#
+13541#Caixa de Lex Aeterna#
 13543#Pergaminho_de_Revestir_Capacete#
 13544#Pergaminho_de_Revestir_Escudo#
 13545#Pergaminho_de_Revestir_Armadura#
@@ -3510,8 +3895,12 @@
 13547#Pergaminho_de_Reparar_Arma#
 13548#Bolinhos_de_Carne#
 13549#Balas_Amargas#
+13550#Caixa de Sashimi#
 13552#Bolos_de_Coco#
 13553#Teleporte_para_Calabouço[5]#
+13588#Caixa de Assumptio [30]#
+13621#Caixa de Ganância#
+13624#Caixa de Esquiva#
 13634#1 Hour_Package_Vol_1#
 13635#1 Hour_Package_Vol_2#
 13636#Pacote do Deus Bragi#
@@ -3527,6 +3916,9 @@
 13689#Caixa_de_Alface#
 13690#Caixa_de_Bolo#
 13694#Caixa de Coroa de Freya#
+13696#Caixa de Grimório de Combate#
+13704#Esfera do Dragão Negro#
+13705#Esfera do Dragão Vermelho#
 13708#Pergaminho Misterioso#
 13709#Caixa_Especial_de_Pergaminhos#
 13710#Passe_Anti-Gravitacional#
@@ -3594,22 +3986,29 @@
 13859#Envelope de Ordem Oficial A#
 13860#Envelope de Ordem Oficial B#
 13870#Caixa_de_Corte_de_Cabelo#
-13871#Combo_de_Cartas_[Mago]#
-13872#Combo_de_Cartas_[Noviço]#
-13873#Combo_de_Cartas_[Arqueiro]#
-13874#Combo_de_Cartas_[Espadachim]#
-13875#Combo_de_Cartas_[Gatuno]#
-13876#Combo_de_Cartas_[Mercador]#
-13877#Combo_de_Cartas_[Torre]#
-13878#Combo_de_Cartas_[Geffenia]#
-13879#Combo_de_Cartas_[Glast Heim]#
-13880#Combo_de_Cartas_[Nifflheim]#
-13881#Combo_de_Cartas_[Pesadelo]#
+13871#Cartas_[Mago]#
+13872#Cartas_[Noviço]#
+13873#Cartas_[Arqueiro]#
+13874#Cartas_[Espadachim]#
+13875#Cartas_[Gatuno]#
+13876#Cartas_[Mercador]#
+13877#Cartas_[Torre]#
+13878#Cartas_[Geffenia]#
+13879#Cartas_[Glast Heim]#
+13880#Cartas_[Nifflheim]#
+13881#Cartas_[Pesadelo]#
+13896#Assistente Mímico [5]#
+13897#Assistente Mascarado [5]#
+13898#Assistente Alice [5]#
+13899#Assistente Mímico [10]#
+13900#Assistente Mascarado [10]#
+13901#Assistente Alice [10]#
 13902#Caixa_de_Disfarce_de_Peixe#
 13903#Caixa_de_Chapéu_de_Poring_Noel#
 13904#Caixa de_Lacinho_Natalino#
 13911#Pacote Surpresa de Natal#
 13925#Ovo Dimensional#
+13937#Caixa de Olhos Biônicos#
 13940#Caixa_para_Feudos[100]#
 13941#Ovo dos Namorados#
 13945#Caixa_de_Espadachim#
@@ -3631,15 +4030,25 @@
 13970#Caixa_de_Ferro#
 13971#Caixa_de_Aço#
 13972#Caixa_de_Carvão#
+13973#Caixa de Veneno Mortal [30]#
 13974#Pergaminho Surpresa#
+13989#Caixa de Bomba Ácida [10]#
 13995#Caixa de Poção do Vento#
+13996#Bolinhos de Carne [100]#
 14001#Caixa de Guerra Recruta#
 14002#Caixa de Guerra Veterano#
 14003#Caixa de Guerra Elite#
-14004#Caixa de Garrafas de Veneno#
+14004#Caixa de Veneno Mortal [10]#
 14229#Ovo de Amatsu#
 14232#Caixa de Fruto de Yggdrasil#
 14233#Caixa de Galhos Secos#
+14244#Caixa de Anel do Ganhador [A]#
+14245#Caixa de Anel do Devastador [A]#
+14246#Caixa de Anel do Colecionador de Insetos [A]#
+14247#Caixa de Anel do Pescador [A]#
+14248#Caixa de Anel do Exorcista [A]#
+14250#Caixa de Anel do Anjo Caído [A]#
+14251#Caixa de Anel do Caçador de Dragões [A]#
 14252#Caixa de Anel do Caçador Veterano [A]#
 14253#Caixa de Anel do Caçador de Morto-Vivo [A]#
 14254#Caixa de Anel do Ganhador [A]#
@@ -3648,8 +4057,9 @@
 14257#Caixa de Anel de Pescador [A]#
 14258#Caixa de Anel do Exorcista [A]#
 14259#Caixa de Anel do Açougueiro [A]#
-14260#Caixa de Anel do Anjo Corrupto [A]#
+14260#Caixa de Anel do Anjo Caído [A]#
 14261#Caixa de Anel do Caçador de Dragões [A]#
+14274#Amplificação Mística [10]#
 14287#Kit de Reparação de Barricada#
 14288#Kit de Reparação de Runa Guardiã#
 14289#Caixa_de_Cupom_de_Tintura#
@@ -3662,6 +4072,7 @@
 14306#Ovo Especial do RBC#
 14307#Ovo Comemorativo do RWC#
 14308#Ovo de Dragão#
+14316#Ovo dos Apaixonados#
 14317#Ovo da Fada-Serpente#
 14345#Pergaminho da Fauna#
 14346#Caixa da Bandeira Brasileira#
@@ -3682,6 +4093,7 @@
 14512#Pergaminho_de_Chuva_de_Meteoros#
 14513#Pergaminho_de_Nevasca#
 14514#Pergaminho_de_Ira_de_Thor#
+14515#Pergaminho de Lex Aeterna#
 14517#Pergaminho_de_Revestir_Capacete#
 14518#Pergaminho_de_Revestir_Escudo#
 14519#Pergaminho_de_Revestir_Armadura#
@@ -3689,9 +4101,13 @@
 14521#Pergaminho_de_Reparar_Arma#
 14522#Bolinho_de_Carne#
 14523#Bala_Amarga#
+14524#Sashimi Saboroso#
 14526#Bolo_de_Coco#
 14527#Pergaminho_de_Teleporte_para_Calabouço#
 14528#Teleporte para PvP#
+14529#Pergaminho de Ganância#
+14530#Pergaminho de Esquiva 30#
+14532#Basic_Field_Manual#
 14533#Grimório de Combate#
 14534#Poção_Menor_de_Vida#
 14535#Poção_Média_de_Vida#
@@ -3717,15 +4133,66 @@
 14574#Crânio_do_Andarilho#
 14586#Doce Hiper Açucarado#
 14587#Pergaminho de Reparar Arma#
+14588#Pergaminho Bênção em Grupo#
+14589#Pergaminho Agilidade em Grupo#
+14590#Pergaminho Assumptio em Grupo#
 14591#Pergaminho_Para_Feudos#
+14592#Manual de Combate de Classe#
+14593#Pergaminho de Amplificação Mística#
 14595#Pergaminho Mágico Aberto#
 14596#Caixa do Tesouro de Pierre#
+14598#Pergaminho de Ghostring#
 14600#Poção Mental#
 14601#Bênção de Tyr#
 14602#Pergaminho Tao Gunka#
 14603#Pergaminho de Abelha Rainha#
 14604#Pergaminho de Orc Herói#
+14605#Pergaminho de Senhor dos Orcs#
+15000#Armadura de Placas de Ossos#
+15015#Túnica Evoluída#
+15016#Casaco Evoluído#
+15017#Manto Sagrado Evoluído#
+15018#Malha Evoluída#
+15019#Traje de Gatuno Evoluído#
+15020#Cota de Malha Evoluída#
+15021#Paletó Evoluído#
+15022#Roupa de Mergulho#
+16000#Erde#
+16001#Bolsa Quadrada Vermelha#
 16192#Caixa de Chapéu de Quati#
 16193#Caixa de Chapéu de Tucano#
 16194#Caixa de Máscara de Onça-Pintada#
+16195#Ovo das Tartarugas#
 16239#Caixa de Carapuça do Saci#
+16253#Ovo de Coelho#
+16257#Ovo do Amanhecer#
+16304#Ovo do Mal Encarnado#
+16323#Caixa de Presilha Aprimorada#
+16341#Caixa de Presilha da Ganância#
+16371#Ovo do Desconhecido#
+16393#Oridecon Perfeito [5]#
+16394#Oridecon Perfeito [10]#
+16395#Elunium Perfeito [5]#
+16396#Elunium Perfeito [10]#
+16409#Ovo de Britônia#
+16410#Caixa de Tiara de Donzela#
+16412#Caixa de Asinhas de Gelo#
+16446#Ovo de Pégaso#
+16555#Caixa de Pedra das Valquírias#
+16556#Caixa de Pedra das Valquírias#
+16562#Ovo do Mal Majestoso#
+16569#Ovo de Brasilis#
+16576#Ovo de Oboro#
+16577#Ovo de Nidhogg#
+16578#Ovo Cibernético#
+16579#Ovo de Fênix#
+16591#Ovo de Kotakahuana#
+16666#Caixa de Doces Mágicos#
+16681#Ovo da Independência do Brasil#
+16757#Ovo de Halloween#
+16774#Ovo de Asgard#
+16994#Ovo do Ano Novo#
+18507#Orelhas de Elfo#
+18527#Cabeça de Abóbora 2010#
+18543#Chapéu de Bruxa#
+18550#Bênção de Asgard#

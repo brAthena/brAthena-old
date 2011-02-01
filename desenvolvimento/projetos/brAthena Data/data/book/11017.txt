@@ -153,6 +153,7 @@ Ignora 20% da Defesa Física de monstros Humanóides. Indestrutível.
 * Opção Adicional por Nível de Refinamento da Arma
 Aprimoramento +6: 5% de bônus para ignorar Defesa de monstros Humanóides, ^ff0000[Carniceiro]^000000 Nv 1
 Aprimoramento +9: Ao usar Disparo de Esferas Espirituais, lança automaticamente Zen.
+Reduz o tempo de conjuração de Punho Supremo de Asura em 100%.
 Tipo: ^777777Garra^000000  Ataque: ^77777730^000000    Peso: ^7777770^000000   Nv. da Arma: ^7777774^000000    Nv. Necessário: ^77777780^000000
 Classe: ^777777Sacerdote / Monge^000000
 
@@ -346,7 +347,7 @@ Classe: ^777777Todas exceto Aprendiz^000000
 Tipo: ^777777Acessório^000000    Defesa: ^7777770^000000     Peso: ^7777770^000000    Nv. Necessário: ^77777761^000000
 Classe: ^777777Todas exceto Aprendiz^000000
 
-^008040Anel de Suprimento Glorioso^000000
+^008040Anel Glorioso Barato^000000
 + 1 em todos os status
 Tipo: ^777777Acessório^000000   Defesa: ^7777770^000000      Peso: ^7777770^000000
 Classe: ^777777Todas exceto Aprendiz^000000

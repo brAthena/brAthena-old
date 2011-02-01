@@ -1,24 +1,24 @@
-%f5f5dc
-^000088¸¶´©Å© ÆÇ¸Å ¾ÆÀÌÅÛ^000000
+^000088Itens de Manuk à Venda^000000
 
-´ÙÀ½ÀÇ ¾ÆÀÌÅÛµéÀº ¸¶´©Å©ÁÖÈ­¸¦ ÅëÇØ ±¸ÀÔÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.
+Você pode comprar os itens abaixo com Moedas de Manuk.
 
-^008040[¸¶´©Å©ÀÇ È£±â]^000000
-¸¶´©Å© ¿¬±¸¼Ò¿¡¼­ Á¦ÀÛµÇ¾î °ø½ÄÀûÀ¸·Î ±¤»ê ³ëµ¿ÀÚµé¿¡°Ô ±ÇÀåµÇ°í ÀÖ´Â º¸Á¶Á¦.
-¸¶´©Å© ÇÊµåÁö¿ª ¸ó½ºÅÍµé¿¡ ´ëÇÑ ¹°¸®°ø°İ µ¥¹ÌÁö°¡ 10ºĞ°£ 10% »ó½ÂÇÑ´Ù.
-^000088(³×Ææµ¥½º, Èú½º¸®¿Â, ¼¾Æ¼Æäµ¥, ¼¾Æ¼Æäµ¥_À¯Ãæ, Èú½º¸®¿Â, µûµûÃÊ, ÇÏµå¶ô ¸¾¸ğ½º)^000000
-¹«°Ô : ^7777775^000000
-
-
-^008040[¸¶´©Å©ÀÇ ÀÇÁö]^000000
-¸¶´©Å© ¿¬±¸¼Ò¿¡¼­ Á¦ÀÛµÇ¾î °ø½ÄÀûÀ¸·Î ±¤»ê ³ëµ¿ÀÚµé¿¡°Ô ±ÇÀåµÇ°í ÀÖ´Â ¿µ¾çÁ¦.
-¸¶´©Å© ÇÊµåÁö¿ª ¸ó½ºÅÍµé·ÎºÎÅÍ ¹Ş´Â ¹°¸®, ¸¶¹ıµ¥¹ÌÁö°¡ 10ºĞ°£ 10% °¨¼ÒÇÑ´Ù.
-^000088(³×Ææµ¥½º, Èú½º¸®¿Â, ¼¾Æ¼Æäµ¥, ¼¾Æ¼Æäµ¥_À¯Ãæ, Èú½º¸®¿Â, µûµûÃÊ, ÇÏµå¶ô ¸¾¸ğ½º)^000000
-¹«°Ô : ^7777775^000000
+^008040[Oportunidade de Manuk]^000000
+Um auxílio preparado pelo Laboratório de Manuk, oficialmente recomendado para mineiros. Quando usado, aumenta em 10% por 10 minutos o dano causado por ataque corporal contra monstros nos campos de Manuk.
+^000088(Nepenthes, Centopeia, Larva de Centopeia, Leão da Montanha, Tatacho, Mamute Rochoso)^000000
+^ffffff_^000000
+Peso: ^7777775^000000
 
 
-^008040[¸¶´©Å©ÀÇ ½Å³ä]^000000
-¸¶´©Å© ¿¬±¸¼Ò¿¡¼­ Á¦ÀÛµÇ¾î °ø½ÄÀûÀ¸·Î ±¤»ê ³ëµ¿ÀÚµé¿¡°Ô ±ÇÀåµÇ°í ÀÖ´Â º¸Á¶Á¦.
-¸¶´©Å© ÇÊµåÁö¿ª ¸ó½ºÅÍµé¿¡ ´ëÇÑ ¸¶¹ı°ø°İ µ¥¹ÌÁö°¡ 10ºĞ°£ 10% »ó½ÂÇÑ´Ù.
-^000088(³×Ææµ¥½º, ¼¾Æ¼Æäµ¥, ¼¾Æ¼Æäµ¥_À¯Ãæ, Èú½º¸®¿Â, µûµûÃÊ, ÇÏµå¶ô ¸¾¸ğ½º)^000000
-¹«°Ô : ^7777775^000000
+^008040[Coragem de Manuk]^000000
+Um nutriente preparado pelo Laboratório de Manuk, oficialmente recomendado para mineiros.
+Quando usado, reduz em 10% por 10 minutos o dano físico e mágico causado contra usuários pelos monstros nos campos de Manuk.
+^000088(Nepenthes, Centopeia, Larva de Centopeia, Leão da Montanha, Tatacho, Mamute Rochoso)^000000
+^ffffff_^000000
+Peso: ^7777775^000000
+
+
+^008040[Fé de Manuk]^000000
+Um auxílio preparado pelo Laboratório de Manuk, oficialmente recomendado para mineiros. Quando usado, aumenta em 10% por 10 minutos o dano mágico contra monstros nos campos de Manuk.
+^000088(Nepenthes, Centopeia, Larva de Centopeia, Leão da Montanha, Tatacho, Mamute Rochoso)^000000
+^ffffff_^000000
+Peso: ^7777775^000000

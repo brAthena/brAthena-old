@@ -1,23 +1,25 @@
-%f5f5dc
-^000088½ºÇÃ¶ûµğµå ÆÇ¸Å ¾ÆÀÌÅÛ^000000
+^000088Itens de Esplendor à Venda^000000
 
-´ÙÀ½ÀÇ ¾ÆÀÌÅÛµéÀº ½ºÇÃ¶ûµğµåÁÖÈ­¸¦ ÅëÇØ ±¸ÀÔÇÏ½Ç ¼ö ÀÖ½À´Ï´Ù.
+Você pode comprar os itens abaixo com Moedas de Esplendor.
 
 
-^008040[ÇÉ±ÍÅ§¶óÀÇ ¿­¸ÅÀıÀÓ]^000000
-ÇÉ±ÍÅ§¶óÀÇ ¿­¸Å¸¦ ´ŞÄŞÇÏ°Ô Á¹¿©¸¸µç Â´.
-½ºÇÃ¶ûµğµå ÇÊµåÁö¿ª ¸ó½ºÅÍµé¿¡ ´ëÇÑ ¹°¸®°ø°İ µ¥¹ÌÁö°¡ 10ºĞ°£ 10% »ó½ÂÇÑ´Ù.
-^000088(ÇÉ±ÍÅ§¶ó, ·ç½Ã¿Ã¶ó º£½ºÆÄ, ÄÚ¸£´©½º, ³ª°¡, ÅÙµå¸±¸®¿Â)^000000
-¹«°Ô : ^7777775^000000
+^008040[Geleia de Frutas de Pinguicula]^000000
+Geleia doce, feita com os frutos da Pinguicula.
+Quando usada, aumenta em 10% por 10 minutos o dano causado por ataque corporal contra monstros nos campos de Esplendor.
+^000088(Pinguicula, Vespa Vagalume, Cornus, Naga, Tendrillion)^000000
+^ffffff_^000000
+Peso: ^7777775^000000
 
-^008040[·ç½Ã¿Ã¶óÀÇ ²ÜÂ´]^000000
-·ç½Ã¿Ã¶óÀÇ ²Ü°ú Çãºê¸¦ ¼¯¾î¸¸µç Â´.
-½ºÇÃ¶ûµğµå ÇÊµåÁö¿ª ¸ó½ºÅÍµé·ÎºÎÅÍ ¹Ş´Â ¹°¸®, ¸¶¹ıµ¥¹ÌÁö°¡ 10ºĞ°£ 10% °¨¼ÒÇÑ´Ù.
-^000088(ÇÉ±ÍÅ§¶ó, ·ç½Ã¿Ã¶ó º£½ºÆÄ, ÄÚ¸£´©½º, ³ª°¡, ÅÙµå¸±¸®¿Â)^000000
-¹«°Ô : ^7777775^000000
+^008040[Geleia de Mel de Vagalume]^000000
+Geleia doce, feita com mel de Lucíola e ervas.
+Quando usada, reduz em 10% por 10 minutos o dano físico e mágico causado contra usuários pelos monstros nos campos de Esplendor.
+^000088(Pinguicula, Vespa Vagalume, Cornus, Naga, Tendrillion)^000000
+^ffffff_^000000
+Peso: ^7777775^000000
 
-^008040[ÄÚ¸£´©½ºÀÇ ´«¹°]^000000
-ÄÚ¸£´©½ºÀÇ ´«¹°À» Á¤Á¦ÇØ¼­ ¸¸µç Æ÷¼Ç. ´«¹°À» ¾î¶² ¹æ¹ıÀ¸·Î ¾ò¾úÀ»Áö´Â ¾Ë ¼ö ¾ø´Ù.
-½ºÇÃ¶ûµğµå ÇÊµåÁö¿ª ¸ó½ºÅÍµé¿¡ ´ëÇÑ ¸¶¹ı°ø°İ µ¥¹ÌÁö°¡ 10ºĞ°£ 10% »ó½ÂÇÑ´Ù.
-^000088(ÇÉ±ÍÅ§¶ó, ·ç½Ã¿Ã¶ó º£½ºÆÄ, ÄÚ¸£´©½º, ³ª°¡, ÅÙµå¸±¸®¿Â)^000000
-¹«°Ô : ^7777775^000000
+^008040[Lágrimas de Cornus]^000000
+Uma poção refinada a partir das lágrimas de Cornus. Ninguém sabe como conseguir essas lágrimas.
+Quando usada, aumenta em 10% por 10 minutos o dano mágico contra monstros nos campos de Esplendor.
+^000088(Pinguicula, Vespa Vagalume, Cornus, Naga, Tendrillion)^000000
+^ffffff_^000000
+Peso: ^7777775^000000

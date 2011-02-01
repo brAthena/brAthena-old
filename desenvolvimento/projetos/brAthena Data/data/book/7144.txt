@@ -58,15 +58,15 @@ solução resultante em uma Garrafa de Poção.
 
 ^008040Aloe Vera^000000: Temporariamente otimiza o seu ataque, ao custo
 de reduzir sua defesa. 
-Materiais necessários: ^4b00821 Álcool, 1 Garrafa de Poção, 1 Mel^000000
-Procedimento: Despeje o Mel e o Álcool em uma Vasilha de Mistura e misture
+Materiais necessários: ^4b00821 Alóes, 1 Garrafa Vazia, 1 Mel^000000
+Procedimento: Despeje o Mel e o Alóes em uma Vasilha de Mistura e misture
 a composição. Adicione vagarosamente uma pequena quantidade de água pura
-enquanto continua a misturar. Se você achar que está faltando Aloe neste
+enquanto continua a misturar. Se você achar que está faltando Alóe neste
 procedimento, então pense cuidadosamente o porquê de você ser um alquimista,
 e o que você pode fazer com a alquimia (a resposta correta seria pular
 ingredientes). Você precisa manter este livro com você como referência
 enquanto usar a habilidade Preparar Poção. Depois, desepeje a solução
-resultante em uma Garrafa de Poção.
+resultante em uma Garrafa Vazia.
 
 ^ff0000Embrião^000000: A base da vida alquímica, e o item necessário para
 criar um Homunculus.

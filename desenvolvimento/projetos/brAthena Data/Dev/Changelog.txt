@@ -9,7 +9,26 @@
 //	acessando o seguinte link: http://svn.brathena.org/trac/timeline
 // ==================================================
 
-	r0187 (r001) - 01/02/2011 [Dani]
+	r0189 (r0002) - 01/02/2011 [Dani]
+	* Primeiro pack de atualizações na brAthena Data
+	- book/11017.txt
+	- book/11018.txt
+	- book/11019.txt
+	- book/7144.txt
+	- cardpostfixnametable.txt
+	- cardprefixnametable.txt
+	- fogparametertable.txt
+	- idnum2itemdesctable.txt
+	- idnum2itemdisplaynametable.txt
+	- idnum2itemresnametable.txt
+	- indoorrswtable.txt
+	- manner.txt
+	- mapnametable.txt
+	- mp3nametable.txt
+	- msgstringtable.txt
+	- num2itemresnametable.txt
+
+	r0187 (r0001) - 01/02/2011 [Dani]
 	* (re)iniciado projeto brAthena Data
 	- baseado no English Translation, créditos aos mantenedores
 

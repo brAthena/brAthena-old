@@ -178,7 +178,7 @@
 4178#do Mestre Arqueiro#
 4179#da Luz Intensa#
 4180#Draconiano#
-4181#do Silêncio#
+4181#do Silêncio Mortal#
 4182#Demoníaco#
 4183#do Lobisomem#
 4184#da Parada#
@@ -213,7 +213,7 @@
 4213#do Silêncio#
 4214#Canibal#
 4215#do Alimento#
-4216#do Congelamento#
+4216#do Sopro Gelado#
 4217#Auto Cura#
 4218#do Pesadelo#
 4219#da Pedra Mágica#
@@ -321,7 +321,7 @@
 4321#do Polimorfo#
 4322#do Contra-Ataque#
 4323#Congelante#
-4324#Congelado#
+4324#do Ártico#
 4325#da Dureza#
 4326#do Cheiro de Peixe#
 4327#do Fluxo Mágico#
@@ -405,7 +405,6 @@
 4405#do Reflexo#
 4406#Cintilante#
 4407#de Freya#
-
 4408#do Abissal#
 4409#da Histeria#
 4410#da Demência#
@@ -440,15 +439,14 @@
 4439#do Maldito#
 4440#da Indiferença#
 4441#do Arrogante#
-
-4442#¿Àºê º£ÀÌ½Ã½º#
-4443#¿Àºê »çÇÏ¸¯#
-4444#¿Àºê ¾ð´õ´Ï½º#
-4445#¿Àºê À©µð#
-4447#¿Àºê ÀÎº£³Ñ#
-4448#¿Àºê ´ïµå#
-4449#¿Àºê ÇÛ·Î¿ìµå#
-4450#¼­ÇÃ·¯½º#
-4451#¿Àºê ¿¢¼¼½º#
-4452#¸ÅÁöÄÃ#
-4453#°Ý·ÄÇÔÀÇ#
+4442#da Terra Furiosa#
+4443#do Gelo Perfurante#
+4444#do Fogo Eterno#
+4445#do Vento Uivante#
+4447#do Evenenamento#
+4448#do Amaldiçoado#
+4449#do Abençoado#
+4450#do Mestre Feiticeiro#
+4451#do Axis#
+4452#do Feiticeiro#
+4453#da Violência#
