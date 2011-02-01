@@ -16,7 +16,7 @@
 // |--------------------------------------------------------|
 // | Descrição: Quest para mudança Transclasse.             |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
+// | Changelog:               	                        |
 // | 1.0 Script Traduzido [Dynasty]                         |
 // | 1.1 Script Revisado [Tyler & insidemybrain]            |
 // \_______________________________________________________/

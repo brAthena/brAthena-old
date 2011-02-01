@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Quest do Arqueiro	       	            |
+// | Nome do Script: Quest do Arqueiro	                  |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
@@ -16,8 +16,12 @@
 // |--------------------------------------------------------|
 // | Descrição: Mudança de Classe para Arqueiro             |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
-// | 1.0  Script Traduzido [Protimus]   	                |
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [Protimus]   	                  |
+// | 1.1 Script Revisado [insidemybrain]                    |
+// |                                                        |
+// | Anotações:                                             |
+// | - Ajeitadas as tabulações do cabeçalho [insidemybrain] |
 // \________________________________________________________/
 
 payon_in02,64,71,4	script	Arqueiro#archer	85,{
@@ -25,7 +29,7 @@ payon_in02,64,71,4	script	Arqueiro#archer	85,{
 		if (Class == Job_Novice_High && (ADVJOB == Job_Sniper || ADVJOB == Job_Clown || ADVJOB == Job_Gypsy)) {
 			mes "[Membro da Guilda dos Arqueiros]";
 			mes "Você não me é estranho...";
-			mes "Você voltou a ser um arqueiro?";
+			mes "Você quer não que ser um arqueiro?";
 			next;
 			if (getskilllv("NV_BASIC") < 9) {
 				mes "[Membro da Guilda dos Arqueiros]";
@@ -33,7 +37,7 @@ payon_in02,64,71,4	script	Arqueiro#archer	85,{
 				mes "todas as habilidades básicas.";
 				next;
 				mes "[Membro da Guilda dos Arqueiros]";
-				mes "Certo? cuide-se.";
+				mes "Certo? Cuide-se.";
 				close;
 			}
 			mes "[Membro da Guilda dos Arqueiros]";
@@ -87,7 +91,7 @@ payon_in02,64,71,4	script	Arqueiro#archer	85,{
 				set job_archer_q,1;
 				setquest 1004;
 				mes "[Membro da Guilda dos Arqueiros]";
-				mes "Ok, assine aqui... Certo... hmmm. Você será promovido assim que cumprir os pré-requisitos necessários.";
+				mes "Ok, assine aqui... Certo... Hmm. Você será promovido assim que cumprir os pré-requisitos necessários.";
 				mes "Se você acha que está pronto, podemos começar agora.";
 				mes "Você está pronto?";
 				next;
@@ -99,7 +103,7 @@ payon_in02,64,71,4	script	Arqueiro#archer	85,{
 				else {
 					mes "[Membro da Guilda dos Arqueiros]";
 					mes "Compreendo...";
-					mes "Se você quiser saber os pré-requisitos para ser um Arqueiro, é só falar comigo.";
+					mes "Se você quiser saber os pré-requisitos para se tornar um Arqueiro, apenas fale comigo.";
 					close;
 				}
 			}
@@ -113,7 +117,7 @@ payon_in02,64,71,4	script	Arqueiro#archer	85,{
 		if (getskilllv("NV_BASIC") < 9) {
 			mes "[Membro da Guilda dos Arqueiros]";
 			mes "O seu nível como Aprendiz está abaixo do necessário...";
-			mes "Você deve chegar ao nível de classe 10 para se tornar um Arqueiro.";
+			mes "Você deve chegar ao nível 10 de classe para se tornar um Arqueiro.";
 			close;
 		}
 		if (job_archer_q == 1) {
@@ -130,8 +134,8 @@ payon_in02,64,71,4	script	Arqueiro#archer	85,{
 			next;
 			if (countitem(1066) == 0 && countitem(1067) == 0 && countitem(1068) == 0 && countitem(1019) == 0) {
 				mes "[Membro da Guilda dos Arqueiros]";
-				mes "...hmm...";
-				mes "Mas você não trouxe nada!";
+				mes "...Hmm...";
+				mes "Você não me trouxe nada!";
 				close;
 			}
 			mes "[Membro da Guilda dos Arqueiros]";
@@ -151,13 +155,13 @@ payon_in02,64,71,4	script	Arqueiro#archer	85,{
 				next;
 				mes "[Membro da Guilda dos Arqueiros]";
 				if (.@total_archer > 40) {
-					mes "Uau! Mais de 40! Fantástico! Meus parabéns!";
+					mes "Nossa! Mais de 40! Fantástico! Meus parabéns!";
 				}
 				else if (.@total_archer > 30) {
 					mes "Mais de 30! Ótimo! Parabéns.";
 				}
 				else {
-					mes "Passou raspando... mas tudo bem!";
+					mes "Passou raspando... Mas tudo bem!";
 				}
 			}
 			next;
@@ -173,7 +177,7 @@ payon_in02,64,71,4	script	Arqueiro#archer	85,{
 		callfunc "F_ClearJobVar";
 		completequest 1004;
 		mes "[Membro da Guilda dos Arqueiros]";
-		mes "Parabéns, você passou no teste! Vou nomeá-lo Arqueiro!";
+		mes "Parabéns, você passou no teste! Vou nomeá-lo um Arqueiro!";
 		next;
 		mes "[Membro da Guilda dos Arqueiros]";
 		mes "Parabéns! Nós esperamos que você contribua para a grandiosidade de nossa Guilda!";
@@ -185,7 +189,7 @@ payon_in02,64,71,4	script	Arqueiro#archer	85,{
 		next;
 		mes "[Membro da Guilda dos Arqueiros]";
 		mes "Agora você é um Arqueiro legítimo, com arco, flecha e tudo mais!";
-		mes "Boa Sorte na sua jornada pelo mundo, espero que você se torne o melhor de todos os Arqueiros!";
+		mes "Boa Sorte em sua jornada pelo mundo, espero que você se torne o melhor de todos os Arqueiros!";
 		close;
 	case 2:
 		mes "[Membro da Guilda dos Arqueiros]";
@@ -205,16 +209,16 @@ payon_in02,64,71,4	script	Arqueiro#archer	85,{
 		}
 		next;
 		mes "[Membro da Guilda dos Arqueiros]";
-		mes "Antes de tudo você deve alcançar nível de classe 10 como Aprendiz.";
+		mes "Antes de tudo você deve alcançar nível 10 de classe como Aprendiz.";
 		mes "Arqueiros precisam ter muita concentração, devido a dificuldade de se mirar.. Não podemos aceitar pessoas que não se concentram bem.";
 		next;
 		mes "[Membro da Guilda dos Arqueiros]";
 		mes "Você vai precisar juntar quantos ^FF0000Troncos^000000 conseguir.";
-		mes "Há 4 tipos de Troncos, de diferentes qualidades de madeira, logo cada um tem uma pontuação diferente.";
+		mes "Existem 4 tipos de Troncos, de diferentes qualidades de madeira, logo cada um tem uma pontuação diferente.";
 		mes "Você se tornará um Arqueiro se obtiver pelo menos ^0000FF25 ^000000 pontos num total de 40.";
 		next;
 		mes "[Membro da Guilda dos Arqueiros]";
-		mes "Você pode conseguir Troncos dos 'Salgueiros'. Embora não sejam monstros perigosos, tenha cuidado.";
+		mes "Você pode conseguir Troncos dos 'Salgueiros'. Mesmo que não sejam monstros perigosos, tenha cuidado.";
 		close;
 	case 3:
 		close;
