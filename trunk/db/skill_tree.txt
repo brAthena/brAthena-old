@@ -946,7 +946,7 @@
 4008,356,10,3,10,6,5,60,3,0,0,0,0		// LK_PARRYING#Aparar Golpe#
 4008,357,5,4,1,55,5,63,1,0,0,0,0		// LK_CONCENTRATION#Dedicação#
 4008,358,1,4,10,6,5,8,3,0,0,0,0			// LK_TENSIONRELAX#Relaxar#
-4008,359,1,50,0,0,0,0,0,0,0,0,0,0 		// LK_BERSERK#Frenzy# //Há uma coluna extra p/ "MaxLevel" Job Level 50 
+4008,359,1,50,0,0,0,0,0,0,0,0,0,0 		// LK_BERSERK#Frenzy# //Há uma coluna extra p/ "MaxLevel" Job Level 50
 4008,397,5,55,10,56,5,58,5,63,1,0,0		// LK_SPIRALPIERCE#Perfurar em Espiral#
 4008,398,5,55,9,63,1,0,0,0,0,0,0		// LK_HEADCRUSH#Golpe Traumático#
 4008,399,10,55,9,64,3,398,3,0,0,0,0		// LK_JOINTBEAT#Ataque Vital#
@@ -1189,7 +1189,7 @@
 4014,356,10,3,10,6,5,60,3,0,0,0,0		// LK_PARRYING#Aparar Golpe#
 4014,357,5,4,1,55,5,63,1,0,0,0,0		// LK_CONCENTRATION#Dedicação#
 4014,358,1,4,10,6,5,8,3,0,0,0,0			// LK_TENSIONRELAX#Relaxar#
-4014,359,1,50,0,0,0,0,0,0,0,0,0,0 		// LK_BERSERK#Frenzy# //Há uma coluna extra p/ "MaxLevel" Job Level 50 
+4014,359,1,50,0,0,0,0,0,0,0,0,0,0 		// LK_BERSERK#Frenzy# //Há uma coluna extra p/ "MaxLevel" Job Level 50
 4014,397,5,55,10,56,5,58,5,63,1,0,0		// LK_SPIRALPIERCE#Perfurar em Espiral#
 4014,398,5,55,9,63,1,0,0,0,0,0,0		// LK_HEADCRUSH#Golpe Traumático#
 4014,399,10,55,9,64,3,398,3,0,0,0,0		// LK_JOINTBEAT#Ataque Vital#

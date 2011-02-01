@@ -15,7 +15,7 @@
 // | Descrição: Database de referência para fixar o dano    |
 // | desarmado e armado.                                    |
 // |--------------------------------------------------------|
-// | Estrutura da Database:                                 |
+// | Estrutura do Banco de Dados:                           |
 // | Colunas: Tipo de arma                                  |
 // | Linhas: Tamanho do alvo                                |
 // \________________________________________________________/

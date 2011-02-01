@@ -14,7 +14,7 @@
 // |--------------------------------------------------------|
 // | Descrição: Database das Guildas dos Castelos.          |
 // |--------------------------------------------------------|
-// | Estrutura da Database:                                 |
+// | Estrutura do Banco de Dados:                           |
 // | CastleID,MapName,CastleName,OnGuildBreakEventName(1),  |
 // | Flag(2), (1) Expulsão do Castelo conquistado,          |
 // | (2) Reservado.                                         |
@@ -31,7 +31,7 @@
 //
 //============================================================
 // Feudo de Britoniah (Geffen)
-//============================================================ 
+//============================================================
 5,gefg_cas01,Arsulf,Agit#gefg_cas01,1				// kRO : Reprion | iRO: Repherion
 6,gefg_cas02,Trapesac,Agit#gefg_cas02,1				// kRO : Yolbriger | iRO: Eeyolbriggar
 7,gefg_cas03,Ruaden,Agit#gefg_cas03,1				// kRO : Isinlife | iRO: Yesnelph
@@ -65,9 +65,9 @@
 23,nguild_prt,Fogo,Agit_N04,2					// Novices : Prontera | iRO: Fire
 //
 //============================================================
-// Feudo de Nithafjoll 
+// Feudo de Nithafjoll
 //============================================================
-24,schg_cas01,Himinn,Agit_Sc01,1				// kRO : Himinn | iRO: Himinn  
+24,schg_cas01,Himinn,Agit_Sc01,1				// kRO : Himinn | iRO: Himinn
 25,schg_cas02,Andlangr,Agit_Sc02,1				// kRO : Andlangr | iRO: Andlangr
 26,schg_cas03,Viblainn,Agit_Sc03,1				// kRO : Viblainn | iRO: Viblainn
 27,schg_cas04,Hljod,Agit_Sc04,1					// kRO : Hljod | iRo: Hljod

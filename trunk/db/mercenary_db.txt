@@ -10,11 +10,11 @@
 // |--------------------------------------------------------|
 // | Nome do Database: mercenary_db.txt                     |
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team                           | 
+// | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Descrição: Database contendo os Mercenários.           |
 // |--------------------------------------------------------|
-// | Estrutura da Database:                                 |
+// | Estrutura do Banco de Dados:                           |
 // | ID,Sprite_Name,Name,LV,HP,SP,Range1,ATK1,ATK2,DEF,MDEF,|
 // | STR,AGI,VIT,INT,DEX, LUK,Range2,Range3,Scale,Race,     |
 // | Element,Speed,aDelay,aMotion,dMotion                   |

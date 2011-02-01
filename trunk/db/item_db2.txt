@@ -8,14 +8,14 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Database: item_db.txt                          |
+// | Nome do Database: item_db2.txt                         |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Descrição: Banco de Dados dos itens customizados.      |
 // \________________________________________________________/
 
-// ID,Nome no Aegis,Nome em Português,Tipo,Compra,Vende,peso,ATK,DEF,Range,Slots,Classe,Upper,Sexo,Loc,wLV,eLV,Refinavel,View,{ Script },{ Script quando Equipado },{ Script quando Desequipado }
+// ID,Nome no Aegis,Nome em Português,Tipo,Preço de Compra,Preço de Venda,Peso,ATQ,DEF,Alcance,Slots,Classe,Upper,Sexo,Loc,Nível da Arma,Nível Requerido,Refinável,View,{ Script },{ Script quando equipar },{ Script quando desequipar }
 
 // Itens da quest THQ
 //=============================================================

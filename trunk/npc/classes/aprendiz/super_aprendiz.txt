@@ -16,10 +16,10 @@
 // |--------------------------------------------------------|
 // | Descrição: Mudança de Classe para Super Aprendiz       |
 // |--------------------------------------------------------|
-// | Changelog:               	                        |
+// | Changelog:                                             |
 // | 1.0 Script Traduzido [Protimus]                        |
 // | 1.1 Script Revisado [insidemybrain]                    |
-// \________________________________________________________/ 
+// \________________________________________________________/
 
 aldeba_in,223,167,3	script	Tzerero#sn	709,{
 	if (BaseJob == Job_SuperNovice) {

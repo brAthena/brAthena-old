@@ -18,7 +18,7 @@
 // | The packet database allows you to add support for      |
 // | new clients, because packets change every release.     |
 // | Note: Every packet version needs a wanttoconnection    |
-// | specification, since that is the packet used to        | 
+// | specification, since that is the packet used to        |
 // | identify a client's version.                           |
 // | If multiple versions have the same connection packet,  |
 // | the higher version will be used (unless the lower one  |
@@ -30,7 +30,6 @@
 // Version 23 is the latest Sakexe (above versions are for Renewal clients)
 packet_db_ver: 23
 //packet_db_ver: default
-
 
 packet_ver: 5
 0x0064,55

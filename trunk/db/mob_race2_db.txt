@@ -14,7 +14,7 @@
 // |--------------------------------------------------------|
 // | Descrição: Database das Raças dos monstros.            |
 // |--------------------------------------------------------|
-// | Estrutura da Database:                                 |
+// | Estrutura do Banco de Dados:                           |
 // | Race2ID,MobID1,MobID2,MobID3,...,MobID9                |
 // \________________________________________________________/
 

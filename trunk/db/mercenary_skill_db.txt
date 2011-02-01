@@ -15,8 +15,8 @@
 // | Descrição: Database contendo as habilidades dos        |
 // | Mercenários.                                           |
 // |--------------------------------------------------------|
-// | Estrutura da Database:                                 |
-// | MercenryID,SkillID,SkillLevel                          |
+// | Estrutura do Banco de Dados:                           |
+// | MercenryID, SkillID, SkillLevel                        |
 // \________________________________________________________/
 //
 //============================================================

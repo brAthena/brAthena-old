@@ -12,9 +12,9 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Descrição: Database das habilidades em áreas controlada|                  
+// | Descrição: Database das habilidades em áreas controlada|
 // |--------------------------------------------------------|
-// | Estrutura da Database:                                 |
+// | Estrutura do Banco de Dados:                           |
 // | SkillID,Flag                                           |
 // |                                                        |
 // | Legend for 'Flag' field (bitmask):                     |

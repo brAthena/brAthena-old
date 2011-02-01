@@ -8,17 +8,16 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: 2005 Headgear Quests		    		|
+// | Nome do Script: Chapéis 2005                           |
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    			|
+// | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.2/1.0				    			|
+// | Versões eA/brA: 1.2/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: Quests dos Chapéis de 2005.		    		|
+// | Descrição: Quests dos Chapéis de 2005                  |
 // |--------------------------------------------------------|
-// | Changelog:						  						|
-// | 1.0 Modificação [Autor]				    			|
-// | - Anotações					    					|
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [Avassalador]                     |
 // \_______________________________________________________/
 
 yuno,222,116,3	script	Kasis#LhzHat	851,{
@@ -26,39 +25,39 @@ yuno,222,116,3	script	Kasis#LhzHat	851,{
 	if(countitem(519) > 49 && countitem(7031) > 49 && countitem(548) > 49 && countitem(539) > 49)
 	{
 		mes "[Kasis]";
-		mes "Milk, Cheese,";
-		mes "Old Frying Pans,";
-		mes "Pieces of Cake...";
-		mes "Th-that's everything";
-		mes "I need to make lunch for";
-		mes "my friends in the Factory!";
+		mes "Leite, Queijo,";
+		mes "Frigideiras Velhas,";
+		mes "Pedaços de Bolo...";
+		mes "Isso é tudo";
+		mes "que preciso para fazer almoço";
+		mes "para os meus amigos na fábrica!";
 		next;
-		switch( select( "Well, I did promise to help you.", "What are you talking about?" ) )
+		switch( select( "Bem, prometi te ajudar.", "Do que você está falando?" ) )
 		{
 		case 1:
 			mes "[Kasis]";
-			mes "Finally, I can treat my";
-			mes "buddies to a wonderful";
-			mes "feast! They'll be so pleased!";
-			mes "Oh, I'd really like to repay you";
-			mes "somehow, but I'm not sure";
-			mes "what I could possibly give...";
+			mes "Finalmente, eu posso oferecer";
+			mes "aos meus companheiros um";
+			mes "maravilhoso banquete! Eles ficarão tão agradecidos!";
+			mes "Oh, eu gostaria mesmo de poder lhe ";
+			mes "pagar de alguma forma, mas não tenho certeza";
+			mes "do que eu poderia lhe dar...";
 			next;
 			mes "[Kasis]";
-			mes "Of course! Why don't";
-			mes "you treat yourself to";
-			mes "my specialty, Kasis's";
-			mes "Crunch Toast? It looks";
-			mes "simple, but it actually";
-			mes "requires great skill to make.";
+			mes "É claro! Por que você não";
+			mes "aproveita";
+			mes "de minha especialidade, Torrada";
+			mes "Crocante de Kasis? Parece";
+			mes "simples, mas na verdade,";
+			mes "requer uma grande habilidade para fazer.";
 			next;
 			mes "[Kasis]";
-			mes "Here you are!";
-			mes "Please enjoy this and always";
-			mes "remember that breakfast is the";
-			mes "most important meal of the day!";
-			mes "Now, I better prepare those";
-			mes "lunches. Goodbye, my friend~";
+			mes "Aqui está!";
+			mes "Por favor, delicie-se e lembre";
+			mes "sempre que o café da manhã é ";
+			mes "a refeição mais importante do dia!";
+			mes "Agora, é melhor eu preparar aqueles";
+			mes "lanches. Adeus, meu amigo...";
 			delitem 519,50;
 			delitem 7031,50;
 			delitem 548,50;
@@ -70,64 +69,64 @@ yuno,222,116,3	script	Kasis#LhzHat	851,{
 		case 2:
 			mes "[Kasis]";
 			mes "Oh...";
-			mes "Oh, I'm so sorry.";
-			mes "I must have confused";
-			mes "you with someone else.";
+			mes "Oh, mil perdões.";
+			mes "Eu devo ter confundido";
+			mes "você com outra pessoa.";
 			next;
 			mes "[Kasis]";
-			mes "You see, I've been asking";
-			mes "adventurers that have been";
-			mes "passing through to provide";
-			mes "me with food supplies so that";
-			mes "I can make lunch for my friends";
-			mes "that are working in Einbroch.";
+			mes "Veja, eu tenho pedido aos";
+			mes "aventureiros que estejam";
+			mes "passando por aqui para me";
+			mes "dar suprimentos de comida, para que";
+			mes "eu possa fazer almoço para meus amigos";
+			mes "que estão trabalhando em Einbroch.";
 			next;
 			mes "[Kasis]";
-			mes "Yes...";
-			mes "So...";
-			mes "Sorry...";
-			mes "To... Bother you.";
+			mes "Sim...";
+			mes "Então...";
+			mes "Desculpe...";
+			mes "Por...incomodar você.";
 			next;
-			mes "^3355FFAs if entranced,";
-			mes "Kasis continues to";
-			mes "stare at the Milk, Cheese";
-			mes "Old Frying Pans and Pieces";
-			mes "of Cake that you are carrying.^000000";
+			mes "^3355FFComo se estivesse em transe,";
+			mes "Kasis continua a ";
+			mes "olhar o Leite, Queijo,";
+			mes "e Frigideiras Velhas e Pedaços do";
+			mes "Bolo que você está carregando.^000000";
 			next;
-			switch( select( "You can have these if you want.", "Um, why are you staring?" ) )
+			switch( select( "Você pode ficar com essas coisas se quiser.", "Hmmm, o que você está olhando?" ) )
 			{
-			case 1:		
+			case 1:
 				mes "[Kasis]";
-				mes "Really? Is it alright";
-				mes "with you for me to have";
-				mes "all of this Milk, Cheese,";
-				mes "Pieces of Cake and these";
-				mes "Old Frying Pans? Oh, bless";
-				mes "your kind heart, adventurer~";
+				mes "Mesmo? Tudo bem";
+				mes "pra você se eu ficar";
+				mes "com todo esse Leite, Queijo, ";
+				mes "Pedaços de Bolo e essas";
+				mes "Frigideiras Velhas? Oh, deus abençoe";
+				mes "o seu bondoso coração, aventureiro!";
 				next;
 				mes "[Kasis]";
-				mes "Finally, I can treat my";
-				mes "buddies to a wonderful";
-				mes "feast! They'll be so pleased!";
-				mes "Oh, I'd really like to repay you";
-				mes "somehow, but I'm not sure";
-				mes "what I could possibly give...";
+				mes "Finalmente, eu posso oferecer";
+				mes "aos meus companheiros um";
+				mes "maravilhoso banquete! Eles ficarão tão agradecidos!";
+				mes "Oh, Eu gostaria mesmo de poder lhe ";
+				mes "pagar de alguma forma, mas não tenho certeza";
+				mes "do que eu poderia lhe dar...";
 				next;
 				mes "[Kasis]";
-				mes "Of course! Why don't";
-				mes "you treat yourself to";
-				mes "my specialty, Kasis's";
-				mes "Crunch Toast? It looks";
-				mes "simple, but it actually";
-				mes "requires great skill to make.";
+				mes "É claro! Por que você não";
+				mes "aproveita";
+				mes "de minha especialidade, Torrada";
+				mes "Crocante de Kasis? Parece";
+				mes "simples, mas na verdade,";
+				mes "requer uma grande habilidade para fazer.";
 				next;
 				mes "[Kasis]";
-				mes "Here you are!";
-				mes "Please enjoy this and always";
-				mes "remember that breakfast is the";
-				mes "most important meal of the day!";
-				mes "Now, I better prepare those";
-				mes "lunches. Goodbye, my friend~";
+				mes "Aqui está!";
+				mes "Por favor, delicie-se e lembre";
+				mes "sempre que o café da manhã é ";
+				mes "a refeição mais importante do dia!";
+				mes "Agora, é melhor eu preparar aqueles";
+				mes "lanches. Adeus, meu amigo...";
 				delitem 519,50;
 				delitem 7031,50;
 				delitem 548,50;
@@ -138,12 +137,12 @@ yuno,222,116,3	script	Kasis#LhzHat	851,{
 
 			case 2:
 				mes "[Kasis]";
-				mes "Oh, let me apologize";
-				mes "again. But I can't help";
-				mes "but admire the quality of";
-				mes "your goods. Er, you know,";
-				mes "the food you're carrying. I'm";
-				mes "a chef by trade, after all.";
+				mes "Oh, deixa eu me desculpar";
+				mes "novamente. Mas não posso deixar";
+				mes "de admirar a qualidade de";
+				mes "suas coisas. Er, você sabe,";
+				mes "dessa comida que você está carregando. Eu sou";
+				mes "um cozinheiro, no final das contas.";
 				close;
 			break;
 			}
@@ -151,82 +150,82 @@ yuno,222,116,3	script	Kasis#LhzHat	851,{
 		}
 	}
 	mes "[Kasis]";
-	mes "I'm sorry, but we're closed";
-	mes "right now. Unfortunately, we";
-	mes "don't have any more bread";
-	mes "in stock. ^333333*Siiiiiiiiigh...*^000000";
+	mes "Sinto muito, mas estamos fechados";
+	mes "no momento. Infelizmente, nós";
+	mes "não temos mais pão";
+	mes "sobrando. ^333333*Suspiiiiiiiiro*^000000";
 	next;
-	switch( select( "Is something wrong?", "End Conversation." ) )
+	switch( select( "Tem algo errado?", "Terminar Conversa." ) )
 	{
 	case 1:
 		mes "[Kasis]";
-		mes "Well, my current contract";
-		mes "with the company that's been";
-		mes "providing me with ingredients";
-		mes "has expired. Of course, it's";
-		mes "bad enough that I don't have";
-		mes "the food to run this business.";
+		mes "Bem, meu contrato atual";
+		mes "com a companhia que me";
+		mes "fornece os ingredientes";
+		mes "acabou. Claro que já é ruim";
+		mes "o suficiente eu não ter";
+		mes "a comida necessária para tocar esse negócio.";
 		next;
 		mes "[Kasis]";
-		mes "But I also feel like I'm";
-		mes "letting my friends down.";
-		mes "You see, I've been sending";
-		mes "them lunch every day since";
-		mes "they've been working in the";
-		mes "Factory over in Einbroch.";
+		mes "Mas, eu também me sinto como se";
+		mes "estivesse decepcionando meus amigos.";
+		mes "Veja, eu envio almoço para eles";
+		mes "todos os dias desde que";
+		mes "eles começaram a trabalhar na";
+		mes "Fábrica em Einbroch.";
 		next;
 		mes "[Kasis]";
-		mes "I'm unable to make";
-		mes "lunch for them at the";
-		mes "moment, but I really want to";
-		mes "help my buddies, especially";
-		mes "since their financial situation";
-		mes "seems pretty bad right now.";
+		mes "Eu não posso preparar";
+		mes "o almoço para eles no";
+		mes "momento, mas eu realmente quero";
+		mes "ajudar meus companheiros, especialmente";
+		mes "porque a situação financeira deles";
+		mes "não é das melhores no momento.";
 		next;
-		switch( select( "Do you want me to help you?", "I'm so sorry to hear that." ) )
+		switch( select( "Você quer que eu te ajude?", "É uma pena ouvir isso." ) )
 		{
 		case 1:
 			mes "[Kasis]";
-			mes "Sure, I'm willing to accept";
-			mes "help from wherever I can find";
-			mes "it. If you would, I'd like you to bring me some food supplies";
-			mes "that I can use to make lunches";
-			mes "for my friends at the Factory.";
+			mes "Mas claro que eu aceitaria";
+			mes "ajuda de qualquer lugar";
+			mes "que viesse. Se você pudesse, eu gostaria que você me trouxesse alguns suprimentos de comida,";
+			mes "que eu pudesse usar para preparar o almoço";
+			mes "para os meus amigos na Fábrica.";
 			next;
 			mes "[Kasis]";
-			mes "Would you";
-			mes "please get me";
-			mes "^4D4DFF50 Milk^000000,";
-			mes "^4D4DFF50 Cheese^000000,";
-			mes "^4D4DFF50 Pieces of Cake^000000 and";
-			mes "^4D4DFF50 Old Frying Pans^000000?";
+			mes "Você poderia";
+			mes "por favor, me conseguir";
+			mes "^4D4DFF50 Leites^000000,";
+			mes "^4D4DFF50 Queijos^000000,";
+			mes "^4D4DFF50 Pedaços de Bolo^000000 e";
+			mes "^4D4DFF50 Frigideiras Velhas^000000?";
 			next;
 			mes "[Kasis]";
-			mes "I'd really appreciate";
-			mes "your help. My friends seem";
-			mes "so depressed to be working";
-			mes "in the Factory and I want to";
-			mes "do all I can to cheer them up.";
-			mes "Thanks for your kind offer~";
+			mes "Eu ficaria muito feliz por";
+			mes "sua ajuda. Meus amigos parecem ";
+			mes "tão deprimidos em estarem trabalhando";
+			mes "na Fábrica, e eu quero";
+			mes "fazer tudo o que puder para animá-los.";
+			mes "Obrigado por sua generosa oferta!";
 			close;
 		break;
 
 		case 2:
 			mes "[Kasis]";
-			mes "I'm trying to renew";
-			mes "my contract with the";
-			mes "company that's been";
-			mes "providing me with food";
-			mes "supplies, but it hasn't";
-			mes "been working out so far...";
+			mes "Estou tentando renovar";
+			mes "meu contrato com a";
+			mes "companhia que me";
+			mes "fornece os suprimentos";
+			mes "de comida, mas até agora";
+			mes "não tem funcionado...";
 			next;
 			mes "[Kasis]";
-			mes "I don't know what's";
-			mes "happening, but hopefully";
-			mes "I can find a new supplier";
-			mes "soon. There are my friends";
-			mes "to worry about, as well as";
-			mes "the sake of my business.";
+			mes "Eu não sei o que";
+			mes "está acontecendo, mas com um pouco de sorte,";
+			mes "eu poderei encontrar um novo fornecedor";
+			mes "logo. Ainda tenho meus";
+			mes "amigos para me preocupar, assim como";
+			mes "o meu negócio.";
 			close;
 		break;
 		}
@@ -234,65 +233,65 @@ yuno,222,116,3	script	Kasis#LhzHat	851,{
 
 	case 2:
 		mes "[Kasis]";
-		mes "Anyway, please come";
-		mes "again. Hopefully, we'll";
-		mes "have some good bread";
-		mes "in stock next time, okay?";
+		mes "Bem, por favor, volte";
+		mes "novamente. Espero que tenhamos";
+		mes "um pouco de pão";
+		mes "da próxima vez, certo?";
 		close;
 	break;
 	}
 
 }
 
-lighthalzen,143,68,0	script	Strange Guy#LhzHat	47,{
+lighthalzen,143,68,0	script	Cara Estranho#LhzHat	47,{
 
 	if(DTHATQ == 0)
 	{
-		mes "[Strange Guy]";
-		mes "Wait! Don't say";
-		mes "anything! You must be";
-		mes "an adventurer from the";
-		mes "Rune-Midgarts Kingdom!";
-		mes "So... I'm right, aren't I?";
+		mes "[Cara Estranho]";
+		mes "Espera! Não diga";
+		mes "nada! Você deve ser";
+		mes "um" + ((Sex)?"o":"a") + " aventureir" + ((Sex)?"o":"a") + " do";
+		mes "Reino de Rune-Midgard!";
+		mes "Então... Eu estou certo, não estou?";
 		next;
-		switch( select( "Who are you?", "How did you know?", "Ignore him." ) )
+		switch( select( "Quem é você?", "Como você sabia disso?", "Ignore-o." ) )
 		{
 		case 1:
-			mes "[Morris]";
-			mes "Allow me to";
-			mes "introduce myself.";
-			mes "My name is Morris Poe,";
-			mes "detective of great acclaim";
-			mes "and world wide fame.";
+			mes "[Maurice]";
+			mes "Permita que eu ";
+			mes "me apresente.";
+			mes "Meu nome é Maurice Poe,";
+			mes "detetive de grande aclamação";
+			mes "e de fama mundial.";
 			next;
-			switch( select( "I've never heard of you.", "You're kidding me.", "I'm outta here." ) )
+			switch( select( "Nunca ouvi falar de você.", "Você tá brincando.", "Deixa eu cair fora." ) )
 			{
 			case 1:
-				mes "[Morris]";
-				mes "Morris Poe?";
-				mes "Renown detective?";
-				mes "Advocate for justice in";
-				mes "the Schwarzwald Republic?";
-				mes "Surely you recognize one";
-				mes "of my esteemed titles.";
+				mes "[Maurice]";
+				mes "Maurice Poe?";
+				mes "Detetive renomado?";
+				mes "Advogado da justiça na";
+				mes "República de Schwaltzvalt?";
+				mes "Com certeza você reconhece algum";
+				mes "dos meus títulos.";
 				next;
-				switch( select( "Nope, I don't know you.", "You're Morris Poe?!" ) )
+				switch( select( "Não, eu não te conheço.", "Você é Maurice Poe!?!" ) )
 				{
 				case 1:
-					mes "[Morris]";
-					mes "You don't...?";
-					mes "But I'm a famous hero.";
-					mes "Children look up to me";
-					mes "and wish they'd grow";
-					mes "up to be as smart as me.";
+					mes "[Maurice]";
+					mes "Você não...?";
+					mes "Mas eu sou um herói famoso.";
+					mes "As crianças querem ser como eu";
+					mes "quando crescerem...";
+					mes "quero dizer... inteligentes como eu.";
 					next;
-					mes "[Morris]";
-					mes "I don't get it.";
-					mes "I'm famouser than";
-					mes "that. A household name";
-					mes "even. I've got a sterling";
-					mes "public image, how could";
-					mes "you never have heard of me...?";
+					mes "[Maurice]";
+					mes "Eu não tô entendendo.";
+					mes "Eu sou muito mais famoso";
+					mes "do que isso. Sou muito";
+					mes "conhecido. Eu tenho uma imagem pública";
+					mes "excelente, como pode ";
+					mes "você nunca ter ouvido falar de mim...?";
 					close;
 				break;
 
@@ -302,42 +301,42 @@ lighthalzen,143,68,0	script	Strange Guy#LhzHat	47,{
 			break;
 
 			case 2:
-				mes "[Morris]";
-				mes "Kidding? Ha ha!";
-				mes "Look at these keen,";
-				mes "deductive and deeply";
-				mes "analytical eyes and";
-				mes "tell me I'm joking.";
+				mes "[Maurice]";
+				mes "Brincando? Hah-hah!";
+				mes "Olhe estes olhos";
+				mes "vivos, espertos, e profundamente";
+				mes "analíticos e me";
+				mes "diga se estou brincando.";
 				next;
-				switch( select( "Whoa, those ARE keen eyes.", "Okay. You're joking." ) )
+				switch( select( "Uau, são MESMO olhos vivos.", "OK. Você ESTÁ brincando." ) )
 				{
 				case 1:
-					mes "[Morris]";
-					mes "Yes, this sharp,";
-					mes "penetrating, yet";
-					mes "highly intelligent gaze";
-					mes "belongs to the world";
-					mes "detective and crime";
-					mes "fighter, Morris Poe!";
+					mes "[Maurice]";
+					mes "Sim, esse olhar";
+					mes "penetrante, charmoso";
+					mes "e super inteligente";
+					mes "pertence ao maior detetive,";
+					mes "e combatente do crime";
+					mes "no mundo, Maurice Poe!";
 					next;
-					switch( select( "I've never heard of you.", "Golly, Morris Poe?!" ) )
+					switch( select( "Nunca ouvi falar de você.", "Fala sério! Maurice Poe!??" ) )
 					{
 					case 1:
-						mes "[Morris]";
-						mes "Never heard of...?";
-						mes "Impossible! If there are";
-						mes "two things I hate more";
-						mes "than crime, they would be";
-						mes "dishonesty... And rejection";
-						mes "from beautiful women.";
+						mes "[Maurice]";
+						mes "Nunca ouviu falar de...??";
+						mes "Impossível! Se há duas";
+						mes "coisas que eu odeio de";
+						mes "verdade mais do que crimes";
+						mes "são a desonestidade e... a rejeição";
+						mes "por parte de belas mulheres.";
 						next;
-						mes "[Morris]";
-						mes "When you get over your";
-						mes "sense of pride and gain";
-						mes "a little maturity, then we";
-						mes "might share an actual";
-						mes "conversation. Until then,";
-						mes "you'll just have to grow up.";
+						mes "[Maurice]";
+						mes "Quando você recuperar o seu";
+						mes "senso de orgulho novamente";
+						mes "e um pouco de maturidade, então";
+						mes "poderemos compartilhar uma";
+						mes "conversa de verdade. Até lá,";
+						mes "cresça e apareça.";
 						close;
 					break;
 
@@ -347,55 +346,55 @@ lighthalzen,143,68,0	script	Strange Guy#LhzHat	47,{
 				break;
 
 				case 2:
-					mes "[Morris]";
-					mes "Hahahahahaah--Huh.";
-					mes "If there are two things";
-					mes "I hate more than criminals,";
-					mes "they would be sarcasm...";
-					mes "And receiving fake phone";
-					mes "numbers from really cute girls.";
+					mes "[Maurice]";
+					mes "Hahahahahaah...Huh.";
+					mes "Se há duas coisas que";
+					mes "eu odeio mais que criminosos,";
+					mes "elas seriam sarcasmo...";
+					mes "E receber números de telefones";
+					mes "falsos de garotas bonitas.";
 					next;
-					switch( select( "Yeah, you're no Don Juan.", "I'm... I'm sorry." ) )
+					switch( select( "É, você não é nenhum Don Juan.", "Eu... Desculpe." ) )
 					{
 					case 1:
-						mes "[Morris]";
+						mes "[Maurice]";
 						mes "Wah...!";
-						mes "Did you just--?!";
-						mes "Ugh, you're the worst";
-						mes "type of person, you know that?";
+						mes "Você acabou de...?!?";
+						mes "Ugh! Você é o pior";
+						mes "tipo de pessoa que existe, sabia?";
 						emotion e_omg;
 						close;
 					break;
 
 					case 2:
-						mes "[Morris]";
-						mes "I think it's too late to";
-						mes "apologize. Why would you";
-						mes "treat someone of my stature";
-						mes "with such caustic sarcasm?!";
-						mes "What excuse could possibly";
-						mes "exonerate your behavior?!";
+						mes "[Maurice]";
+						mes "Eu acho que é tarde para";
+						mes "desculpas. Por que você ";
+						mes "trataria alguém da minha estatura";
+						mes "com tamanho sarcasmo ácido?!";
+						mes "Que desculpa poderia";
+						mes "perdoar o seu comportamento?!";
 						next;
-						switch( select( "I... I was intimidated...", "It's how I treat all losers." ) )
+						switch( select( "Eu... Eu me intimidei...", "É assim que trato idiotas." ) )
 						{
 						case 1:
-							mes "[Morris]";
-							mes "Of course: intense feelings";
-							mes "of awe and fear of my vast";
-							mes "intellect would result in that";
-							mes "kind of deviant behavior. I'll";
-							mes "have to forgive you, I suppose.";
+							mes "[Maurice]";
+							mes "É claro: sentimentos intensos";
+							mes "de admiração e medo do meu amplo";
+							mes "intelecto só poderiam resultar nesse";
+							mes "tipo de comportamento deturpado. Eu acho que";
+							mes "serei obrigado a perdoar você.";
 							next;
 						break;
 
 						case 2:
-							mes "[Morris]";
-							mes "What...?!";
-							mes "Morris Poe, a loser?";
-							mes "Such defamatory remarks";
-							mes "cannot be forgiven, no";
-							mes "matter how unfounded";
-							mes "and groundless they are!";
+							mes "[Maurice]";
+							mes "Quê...?";
+							mes "Maurice Poe, um idiota?";
+							mes "Tais observações difamatórias";
+							mes "não poderão ser esquecidas, não";
+							mes "importa o quanto elas sejam infundadas";
+							mes "e sem cabimento!";
 							emotion e_omg;
 							close;
 						break;
@@ -403,212 +402,211 @@ lighthalzen,143,68,0	script	Strange Guy#LhzHat	47,{
 					break;
 					}
 				break;
-				}	
+				}
 			break;
 
 			case 3:
-				mes "[Morris]";
-				mes "Hahaha, oh, that's";
-				mes "funny. Wait. You're...";
-				mes "You're really leaving.";
-				mes "N-no, come baaaack!";
+				mes "[Maurice]";
+				mes "Hahaha, oh, que";
+				mes "engraçado. Espere. Você está...";
+				mes "Você está indo embora mesmo.";
+				mes "N-não, vooooolte!";
 				close;
 			break;
 			}
 		break;
 
 		case 2:
-			mes "[Strange Guy]";
-			mes "How did I know?";
-			mes "Elementary, my friend.";
-			mes "There was an abundance";
-			mes "of clues for me to make";
-			mes "that sort of simple deduction.";
+			mes "[Cara Estranho]";
+			mes "Como eu sabia?";
+			mes "Elementar, m" + ((Sex)?"eu":"inha") + " car" + ((Sex)?"o":"a") + ".";
+			mes "Havia uma abundância ";
+			mes "de pistas para que eu ";
+			mes "chegasse nessa dedução tão simples.";
 			close;
 		break;
 
 		case 3:
-			mes "[Strange Guy]";
-			mes "Hello...?";
+			mes "[Cara Estranho]";
+			mes "Olá...?";
 			mes "...............";
-			mes "Oh, this is embarassing.";
-			mes "I can't believe I'm getting";
-			mes "the silent treatment...";
+			mes "Ah, isso é constrangedor.";
+			mes "Não posso acreditar que estou recebendo";
+			mes "um tratamento de silêncio...";
 			close;
 		break;
 		}
 
-		mes "[Morris]";
-		mes "Yes, I know it's";
-		mes "difficult to believe that";
-		mes "you would be fortunate";
-		mes "enough to stand in the";
-		mes "presence of genius. Now,";
-		mes "you must be wondering...";
+		mes "[Maurice]";
+		mes "Sim, eu sei que é ";
+		mes "difícil de acreditar, que";
+		mes "você teria tanta sorte assim";
+		mes "para ficar perto da";
+		mes "presença de um gênio. Agora,";
+		mes "você deve estar se perguntando...";
 		next;
-		menu "Um, wondering what?",-;
-			mes "[Morris]";
-			mes "You're wondering,";
-			mes "\"How in the world";
-			mes "can I be as brilliant";
-			mes "as Morris Poe, the";
-			mes "genius detective?\"";
+		menu "Hmmm, imaginando o que?",-;
+			mes "[Maurice]";
+			mes "Você tá imaginando,";
+			mes "“como, meu deus, eu";
+			mes "posso ser tão brilhante";
+			mes "quanto Maurice Poe, o";
+			mes "genial detetive”?";
 			next;
-			mes "[Morris]";
-			mes "First, I think it's fair";
-			mes "to let you know that it's";
-			mes "an impossible dream. Men like";
-			mes "myself only arise in this world";
-			mes "perhaps once every generation.";
-			mes "I'm sorry, but don't give up!";
+			mes "[Maurice]";
+			mes "Primeiro, acho que seria justo";
+			mes "avisar-lhe que é um";
+			mes "sonho impossível. Homens como";
+			mes "eu só aparecem nesse mundo,";
+			mes "talvez uma vez a cada geração.";
+			mes "Desculpe, mas não desista!";
 			next;
-			mes "[Morris]";
-			mes "Now, you can try to reach";
-			mes "a level of intelligence that";
-			mes "is comparable to my own by";
-			mes "joining the Young Detective's";
-			mes "Club. To become a member, you just need one essential article.";
+			mes "[Maurice]";
+			mes "Veja, você pode tentar alcançar";
+			mes "um nível de inteligência que";
+			mes "se compare à minha, fazendo parte";
+			mes "do Clube do Jovem";
+			mes "Detetive. Para se tornar um membro, você só precisa de uma coisa fundamental.";
 			next;
-			mes "[Morris]";
-			mes "Yes, you will need the";
-			mes "^0000FFRenown Detective's Cap^000000!";
-			mes "Luckily, I'm giving them";
-			mes "away for a relatively small";
-			mes "material cost, but you must";
-			mes "hurry while supplies last.";
+			mes "[Maurice]";
+			mes "Sim, você irá precisar do";
+			mes "^0000FFRenomado Boné de Detetive^000000!";
+			mes "Felizmente, eu o estou";
+			mes "concedendo por um custo de Metelleiais";
+			mes "relativamente pequeno, mas você deve";
+			mes "se apressar enquanto ainda há surprimentos.";
 			next;
-			mes "[Morris]";
-			mes "Simply bring me";
-			mes "^0000FF10 Magnifiers^000000,";
-			mes "^0000FF1887 Tassels^000000,";
-			mes "^0000FF1 Slotted Bucket Hat^000000";
-			mes "and ^0000FF1,887 zeny^000000. That's all!";
+			mes "[Maurice]";
+			mes "^0000FF10 Lentes de Aumento^000000,";
+			mes "^0000FF1887 Fitilhos^000000,";
+			mes "^0000FF1 Chapéu Balde com Slot^000000";
+			mes "e ^0000FF1.887 zenys^000000. Isso é tudo!";
 			next;
-			mes "[Morris]";
-			mes "But first, let me warn you";
-			mes "not to bring a ^FF0000slotted Bucket";
-			mes "Hat with a card compounded to";
-			mes "it, or any upgraded Bucket Hats. I'm not responsible for any";
-			mes "loss resulting from that.";
+			mes "[Maurice]";
+			mes "Mas antes, deixe-me lhe avisar";
+			mes "para não trazer um ^FF0000Chapéu Balde";
+			mes "com Slot com uma carta equipada";
+			mes "nele, e nem Chapéus Balde aprimorados. Eu não serei responsável por";
+			mes "nenhum prejuízo resultante disso.";
 			next;
-			mes "[Morris]";
-			mes "Hurry and bring me";
-			mes "those items! There are";
-			mes "only 20,000,000 Renown";
-			mes "Detective Caps left!";
-			mes "Once they're gone,";
-			mes "they'll be extinct!";
+			mes "[Maurice]";
+			mes "Vá logo e me traga";
+			mes "esses itens! Existem";
+			mes "apenas 20.000.000 Bonés";
+			mes "de Detetive Renomados sobrando!";
+			mes "Após eles se acabarem,";
+			mes "estarão extintos!";
 			set DTHATQ,1;
 			close;
 	}
 	else if(DTHATQ == 1)
 	{
-		mes "[Morris]";
-		mes "So, did you want to";
-		mes "buy, er, receive this";
-		mes "Renown Detective's Cap";
-		mes "and become an honored";
-		mes "member of the Young";
-		mes "Detective's Club?";
+		mes "[Maurice]";
+		mes "Então, você quer";
+		mes "comprar, er, receber esse";
+		mes "Boné de Detetive Renomado";
+		mes "e se tornar um honrado";
+		mes "membro do Clube";
+		mes "do Jovem Detetive?";
 		next;
-		mes "[Morris]";
-		mes "Remember, make sure";
-		mes "that you don't bring any";
-		mes "^FF0000slotted Bucket Hats that";
-		mes "have been upgraded or have";
-		mes "cards compounded to them, or";
-		mes "you'll lose those enhancements^000000.";
+		mes "[Maurice]";
+		mes "Lembre-se de se certificar";
+		mes "de não trazer nenhum";
+		mes "^FF0000Chapeú Balde com Slot que";
+		mes "tenha sido aprimorado ou com";
+		mes "cartas equipadas nele, ou";
+		mes "você irá perder esses aperfeiçoamentos^000000.";
 		next;
-		mes "[Morris]";
-		mes "Now, if you have only";
-		mes "1 Bucket Hat, we can begin.";
-		mes "Young Detective's Club... Salute! ";
+		mes "[Maurice]";
+		mes "Agora, se você tiver";
+		mes "1 Chapéu Balde, nós poderemos começar.";
+		mes "Clube do Jovem Detetive... Saúde! ";
 		next;
-		switch( select( "Salute.", "Whatever..." ) )
+		switch( select( "Saúde.", "Tanto faz..." ) )
 		{
 		case 1:
-			mes "[Morris]";
-			mes "Great, done like a pro!";
-			mes "Now, I need to check your";
-			mes "fee--I mean qualifications.";
-			mes "Let's see now, I need to";
-			mes "look through your Inventory...";
+			mes "[Maurice]";
+			mes "Ótimo, como um profissional!";
+			mes "Agora, eu preciso verificar sua";
+			mes "tax... quer dizer... qualificações.";
+			mes "Vamos ver, agora eu preciso";
+			mes "dar uma olhada em seu inventário...";
 			next;
 			set @lhzhatfailed,0;
 			if(countitem(611) < 10)
 			{
-				mes "[Morris]";
-				mes "Wait. You don't have";
-				mes "enough Magnifiers. You";
-				mes "do want to join this club,";
-				mes "don't you? Did you need to";
-				mes "hear the requirements again?";
+				mes "[Maurice]";
+				mes "Espere. Você não tem";
+				mes "Lentes de Aumento suficientes. Você ";
+				mes "não quer se unir ao clube,";
+				mes "quer? Você precisa";
+				mes "ouvir de novo o que precisa trazer?";
 				set @lhzhatfailed,1;
 				next;
 			}
 			if(countitem(7301) < 1887 && @lhzhatfailed == 0)
 			{
-				mes "[Morris]";
-				mes "Magnifiers. Check.";
-				mes "Not enough Tassels? Check.";
+				mes "[Maurice]";
+				mes "Lentes de Aumento. Aqui.";
+				mes "Não tem Fitilhos suficientes? Aqui.";
 				set @lhzhatfailed,1;
 				next;
 			}
 			if(countitem(5120) < 1 && @lhzhatfailed == 0)
 			{
-				mes "[Morris]";
-				mes "Magnifiers. Check.";
-				mes "Tassels... Check.";
-				mes "Hm. You're missing";
-				mes "the slotted Bucket Hat.";
-				mes "You were so close...";
+				mes "[Maurice]";
+				mes "Lentes de Aumento. Aqui.";
+				mes "Fitilhos... Aqui.";
+				mes "Hm. Você está esquecendo";
+				mes "do Chapéu Balde com Slot.";
+				mes "Você estava quase conseguindo...";
 				set @lhzhatfailed,1;
 				next;
 			}
 			if(Zeny < 1887 && failed == 0)
 			{
-				mes "[Morris]";
-				mes "Magnifiers. Check.";
-				mes "Tassels... Check.";
-				mes "Slotted Bucket Hat. Got it.";
-				mes "Hey. Where's the zeny?!";
-				mes "That's the most important,";
-				mes "er, qualification of all!";
+				mes "[Maurice]";
+				mes "Lentes de Aumento. Aqui.";
+				mes "Fitilhos... Aqui.";
+				mes "Chapéu Balde com Slot. Aqui.";
+				mes "Ei. Onde estão os zenys?";
+				mes "Essa é a, eerrrr, qualificação,";
+				mes "mais importante de todas!";
 				set @lhzhatfailed,1;
 				next;
 			}
-			
+
 			if(@lhzhatfailed == 1)
 			{
-				mes "[Morris]";
-				mes "^333333*Sigh*^000000 You need";
-				mes "^0000FF10 Magnifiers^000000,";
-				mes "^0000FF1887 Tassels^000000,";
-				mes "^0000FF1 Slotted Bucket Hat^000000";
-				mes "and ^0000FF1,887 zeny^000000. That's all!";
+				mes "[Maurice]";
+				mes "Lembre-se...";
+				mes "^0000FF10 Lentes de Aumento^000000,";
+				mes "^0000FF1887 Fitilhos^000000,";
+				mes "^0000FF1 Chapéu Balde com Slot^000000";
+				mes "e ^0000FF1.887 zenys^000000. Certo?";
 				emotion e_an;
 				next;
-				mes "[Morris]";
-				mes "Now, remember everything";
-				mes "that you need this time, okay?";
-				mes "I'll be waiting to welcome";
-				mes "you into the elite ranks of ";
-				mes "the Young Detective's Club.";
+				mes "[Maurice]";
+				mes "Agora, lembre-se de tudo";
+				mes "que precisa trazer, certo?";
+				mes "Estarei esperando para recebê-lo";
+				mes "nas fileiras de elite do ";
+				mes "Clube do Jovem Detetive.";
 				close;
 			}
-			mes "[Morris]";
-			mes "Magnifiers. Check.";
-			mes "Tassels... Check.";
-			mes "Slotted Bucket Hat. Got it.";
-			mes "Aaaand zeny. Heh heh. Perfect.";
+			mes "[Maurice]";
+			mes "Lentes de Aumento. Aqui.";
+			mes "Fitilhos... Aqui.";
+			mes "Chapéu Balde com Slot. Aqui.";
+			mes "E....... zenys. Hehehehe. Perfeito.";
 			next;
-			mes "[Morris]";
-			mes "Great, that's everything!";
-			mes "Welcome to the club! Here's";
-			mes "your Renown Detective's Cap,";
-			mes "so wear it with pride as you";
-			mes "take an active part in our club's";
-			mes "activities and promotion!";
+			mes "[Maurice]";
+			mes "Ótimo, isso é tudo!";
+				mes "Bem-vindo ao clube! Aqui está ";
+				mes "seu Boné de Detetive Renomado,";
+				mes "então use-o com orgulho, enquanto";
+				mes "toma parte ativa nas atividades e";
+				mes "promoções de nosso clube!";
 			delitem 7301,1887;
 			delitem 5120,1;
 			delitem 611,10;
@@ -616,220 +614,220 @@ lighthalzen,143,68,0	script	Strange Guy#LhzHat	47,{
 			set DTHATQ,2;
 			getitem 5108,1;
 			next;
-			switch( select( "Wait, promotion?", "Hooray!" ) )
+			switch( select( "Espera, promoção?", "Vivaaa!" ) )
 			{
 			case 1:
-				mes "[Morris]";
-				mes "Of course, isn't it obvious?";
-				mes "As a member, one of your duties";
-				mes "will be to sing accolades of this club so that more members";
-				mes "will join and earn their own";
-				mes "Renown Detective's Caps.";
+				mes "[Maurice]";
+				mes "Claro, não está claro?";
+				mes "Como membro, um de seus deveres";
+				mes "será cantar hinos de louvor para esse clube, para que mais membros";
+				mes "unam-se e recebam seus próprios";
+				mes "Bonés de Detetive Renomado.";
 				next;
-				mes "[Morris]";
-				mes "Alright, scurry off";
-				mes "now and proudly display";
-				mes "your new, rakishly stylish";
-				mes "Renown Detective's Cap";
-				mes "to all of your friends!";
+				mes "[Maurice]";
+				mes "Certo, dê o fora";
+				mes "agora e exiba com orgulho";
+				mes "seu novo, e estiloso";
+				mes "Boné de Detetive Renomado";
+				mes "para todos os seus amigos!";
 				close;
 			break;
 
 			case 2:
-				mes "[Morris]";
-				mes "Alright, scurry off";
-				mes "now and proudly display";
-				mes "your new, rakishly stylish";
-				mes "Renown Detective's Cap";
-				mes "to all of your friends!";
+				mes "[Maurice]";
+				mes "Certo, dê o fora";
+				mes "agora e exiba com orgulho";
+				mes "seu novo, e estiloso";
+				mes "Boné de Detetive Renomado";
+				mes "para todos os seus amigos!";
 				close;
 			break;
 			}
 		break;
 
 		case 2:
-			mes "[Morris]";
-			mes "Huh. You just failed";
-			mes "the \"Test of Respect.\"";
-			mes "You don't deserve the";
-			mes "honor of wearing the";
-			mes "Renowned Detective's Cap!";
+			mes "[Maurice]";
+			mes "Hmm. Você fracassou";
+			mes "no “Teste de Respeito”.";
+			mes "Você não merece a";
+			mes "honra de usar o";
+			mes "Boné de Detetive Renomado!";
 			close;
 		break;
 		}
 	}
 	else if(DTHATQ == 2)
 	{
-		mes "[Morris]";
-		mes "Have you come to me";
-		mes "in order to obtain another";
-		mes "Renown Detective's Cap?";
-		mes "I realize that such a stylish";
-		mes "headgear is in high demand.";
+		mes "[Maurice]";
+		mes "Você veio até mim";
+		mes "para obter outro";
+		mes "Boné de Detetive Renomado?";
+		mes "Eu entendo que tal chapéu";
+		mes "estiloso seja bastante procurado.";
 		next;
-		mes "[Morris]";
-		mes "Remember, make sure";
-		mes "that you don't bring any";
-		mes "^FF0000slotted Bucket Hats that";
-		mes "have been upgraded or have";
-		mes "cards compounded to them, or";
-		mes "you'll lose those enhancements^000000.";
+		mes "[Maurice]";
+		mes "Lembre-se de se certificar";
+		mes "de não trazer nenhum";
+		mes "^FF0000Chapeú Balde com Slot que";
+		mes "tenha sido aprimorado ou com";
+		mes "cartas equipadas nele, ou";
+		mes "você irá perder esses aperfeiçoamentos^000000.";
 		next;
-		mes "[Morris]";
-		mes "As a proud member of";
-		mes "the Young Detective's Club,";
-		mes "did you bring everything";
-		mes "you need in order to earn";
-		mes "a Renown Detective's Cap?";
+		mes "[Maurice]";
+		mes "Como um orgulhoso membro do";
+		mes "Clube do Jovem Detetive,";
+		mes "você me trouxe tudo que ";
+		mes "você precisa para ganhar";
+		mes "um Boné de Detetive Renomado?";
 		next;
-		switch( select( "I'm not sure~", "Sure!" ) )
+		switch( select( "Não tenho certeza...", "Claro!" ) )
 		{
 		case 1:
-			mes "[Morris]";
-			mes "What...?! Every good";
-			mes "detective must have a";
-			mes "photographic memory";
-			mes "and be able to recall";
-			mes "minute details in order";
-			mes "to crack the case.";
+			mes "[Maurice]";
+			mes "Quê...? Todo bom";
+			mes "detetive deve ter uma";
+			mes "memória fotográfica";
+			mes "e estar apto a relembrar";
+			mes "detalhes pequenos, para poder";
+			mes "desvendar o caso.";
 			emotion e_sob;
 			next;
-			mes "[Morris]";
-			mes "Remember...";
-			mes "^0000FF10 Magnifiers^000000,";
-			mes "^0000FF1887 Tassels^000000,";
-			mes "^0000FF1 Slotted Bucket Hat^000000";
-			mes "and ^0000FF1,887 zeny^000000. Okay?";
+			mes "[Maurice]";
+			mes "Lembre-se...";
+			mes "^0000FF10 Lentes de Aumento^000000,";
+			mes "^0000FF1887 Fitilhos^000000,";
+			mes "^0000FF1 Chapéu Balde com Slot^000000";
+			mes "e ^0000FF1.887 zenys^000000. Certo?";
 			close;
 		break;
 
-		case 2:	
-			mes "[Morris]";
-			mes "Great!";
-			mes "Now let me just";
-			mes "check to see if you";
-			mes "brought everything...";
+		case 2:
+			mes "[Maurice]";
+			mes "Ótimo!";
+			mes "Agora, deixe-me";
+			mes "verificar se você ";
+			mes "trouxe tudo...";
 			next;
 			set @lhzhatfailed,0;
 			if(countitem(611) < 10)
 			{
-				mes "[Morris]";
-				mes "Hmm, you don't have";
-				mes "enough Magnifiers? But";
-				mes "those are essential tools";
-				mes "for sleuthing. Come now,";
-				mes "hurry back with them!";
+				mes "[Maurice]";
+				mes "Hmm, você não tem";
+				mes "Lentes de Aumento suficientes? Mas";
+				mes "elas são ferramentas fundamentais";
+				mes "para os detetives. Vamos!";
+				mes "Vá rápido buscá-las!";
 				set @lhzhatfailed,1;
 				next;
 			}
 			if(countitem(7301) < 1887 && @lhzhatfailed == 0)
 			{
-				mes "[Morris]";
-				mes "Magnifiers. Check.";
-				mes "Not enough Tassels? Check.";
+				mes "[Maurice]";
+				mes "Lentes de Aumento. Aqui.";
+				mes "Não tem Fitilhos suficientes? Aqui.";
 				set @lhzhatfailed,1;
 				next;
 			}
 			if(countitem(5120) < 1 && @lhzhatfailed == 0)
 			{
-				mes "[Morris]";
-				mes "Magnifiers. Check.";
-				mes "Tassels... Check.";
-				mes "Hm. You're missing";
-				mes "the slotted Bucket Hat.";
-				mes "You were so close...";
+				mes "[Maurice]";
+				mes "Lentes de Aumento. Aqui.";
+				mes "Fitilhos... Aqui.";
+				mes "Hm. Você está esquecendo";
+				mes "do Chapéu Balde com Slot.";
+				mes "Você estava quase conseguindo...";
 				set @lhzhatfailed,1;
 				next;
 			}
 			if(Zeny < 1887 && failed == 0)
 			{
-				mes "[Morris]";
-				mes "Magnifiers. Check.";
-				mes "Tassels... Check.";
-				mes "Slotted Bucket Hat. Got it.";
-				mes "Hey. Where's the zeny?!";
-				mes "That's the most important,";
-				mes "er, qualification of all!";
+				mes "[Maurice]";
+				mes "Lentes de Aumento. Aqui.";
+				mes "Fitilhos... Aqui.";
+				mes "Chapéu Balde com Slot. Aqui.";
+				mes "Ei. Onde estão os zenys?";
+				mes "Essa é a, eerrrr, qualificação,";
+				mes "mais importante de todas!";
 				set @lhzhatfailed,1;
 				next;
 			}
 
 			if(@lhzhatfailed == 1)
 			{
-				mes "[Morris]";
-				mes "Remember...";
-				mes "^0000FF10 Magnifiers^000000,";
-				mes "^0000FF1887 Tassels^000000,";
-				mes "^0000FF1 Slotted Bucket Hat^000000";
-				mes "and ^0000FF1,887 zeny^000000. Okay?";
+				mes "[Maurice]";
+				mes "Lembre-se...";
+				mes "^0000FF10 Lentes de Aumento^000000,";
+				mes "^0000FF1887 Fitilhos^000000,";
+				mes "^0000FF1 Chapéu Balde com Slot^000000";
+				mes "e ^0000FF1.887 zenys^000000. Certo?";
 				emotion e_an;
 				close;
 			}			set @lhzhatfailed,0;
 			if(countitem(611) < 10)
 			{
-				mes "[Morris]";
-				mes "Hmm, you don't have";
-				mes "enough Magnifiers? But";
-				mes "those are essential tools";
-				mes "for sleuthing. Come now,";
-				mes "hurry back with them!";
+				mes "[Maurice]";
+				mes "Hmm, você não tem";
+				mes "Lentes de Aumento suficientes? Mas";
+				mes "elas são ferramentas fundamentais";
+				mes "para os detetives. Vamos!";
+				mes "Vá rápido buscá-las!";
 				set @lhzhatfailed,1;
 				next;
 			}
 			if(countitem(7301) < 1887 && @lhzhatfailed == 0)
 			{
-				mes "[Morris]";
-				mes "Magnifiers. Check.";
-				mes "Not enough Tassels? Check.";
+				mes "[Maurice]";
+				mes "Lentes de Aumento. Aqui.";
+				mes "Não tem Fitilhos suficientes? Aqui.";
 				set @lhzhatfailed,1;
 				next;
 			}
 			if(countitem(5120) < 1 && @lhzhatfailed == 0)
 			{
-				mes "[Morris]";
-				mes "Magnifiers. Check.";
-				mes "Tassels... Check.";
-				mes "Hm. You're missing";
-				mes "the slotted Bucket Hat.";
-				mes "You were so close...";
+				mes "[Maurice]";
+				mes "Lentes de Aumento. Aqui.";
+				mes "Fitilhos... Aqui.";
+				mes "Hm. Você está esquecendo";
+				mes "do Chapéu Balde com Slot.";
+				mes "Você estava quase conseguindo...";
 				set @lhzhatfailed,1;
 				next;
 			}
 			if(Zeny < 1887 && failed == 0)
 			{
-				mes "[Morris]";
-				mes "Magnifiers. Check.";
-				mes "Tassels... Check.";
-				mes "Slotted Bucket Hat. Got it.";
-				mes "Hey. Where's the zeny?!";
-				mes "That's the most important,";
-				mes "er, qualification of all!";
+				mes "[Maurice]";
+				mes "Lentes de Aumento. Aqui.";
+				mes "Fitilhos... Aqui.";
+				mes "Chapéu Balde com Slot. Aqui.";
+				mes "Ei. Onde estão os zenys?";
+				mes "Essa é a, eerrrr, qualificação,";
+				mes "mais importante de todas!";
 				set @lhzhatfailed,1;
 				next;
 			}
 
 			if(@lhzhatfailed == 1)
 			{
-				mes "[Morris]";
-				mes "Remember...";
-				mes "^0000FF10 Magnifiers^000000,";
-				mes "^0000FF1887 Tassels^000000,";
-				mes "^0000FF1 Slotted Bucket Hat^000000";
-				mes "and ^0000FF1,887 zeny^000000. Okay?";
+				mes "[Maurice]";
+				mes "Lembre-se...";
+				mes "^0000FF10 Lentes de Aumento^000000,";
+				mes "^0000FF1887 Fitilhos^000000,";
+				mes "^0000FF1 Chapéu Balde com Slot^000000";
+				mes "e ^0000FF1.887 zenys^000000. Certo?";
 				emotion e_an;
 				close;
 			}
-			mes "[Morris]";
+			mes "[Maurice]";
 			mes "Magnifiers. Check.";
 			mes "Tassels... Check.";
 			mes "Slotted Bucket Hat. Got it.";
 			mes "Aaaand zeny. Heh heh. Perfect.";
 			next;
-			mes "[Morris]";
-			mes "Great! You've just qualified";
-			mes "to own yet another Renowned";
-			mes "Detective's Cap. Congratulations! Now, let me collect all of these";
-			mes "goods and zeny from you...";
+			mes "[Maurice]";
+			mes "Ótimo! Você acabou de se qualificar";
+			mes "para receber seu próprio Boné ";
+			mes "de Detetive Renomado. Meus parabéns! Agora, me deixe pegar todos";
+			mes "esses objetos e zenys de você...";
 			delitem 7301,1887;
 			delitem 5120,1;
 			delitem 611,10;
@@ -837,13 +835,13 @@ lighthalzen,143,68,0	script	Strange Guy#LhzHat	47,{
 			set DTHATQ,2;
 			getitem 5108,1;
 			next;
-			mes "[Morris]";
-			mes "Hahaha! It's what";
-			mes "I expect from one of";
-			mes "our Junior Gold Members!";
-			mes "How does it feel like to be";
-			mes "the cream of the cream of";
-			mes "the crop? Great, isn't it?";
+			mes "[Maurice]";
+			mes "Ooh, e estou feliz em";
+			mes "anunciar que você acabou de";
+			mes "ser promovido à Membro Junior";
+			mes "Ouro em nosso querido clube.";
+			mes "Palavras não podem expressar";
+			mes "a minha imensa felicidade.";
 			close;
 		break;
 		}
@@ -851,115 +849,114 @@ lighthalzen,143,68,0	script	Strange Guy#LhzHat	47,{
 
 }
 
-lighthalzen,360,313,3	script	Boy#LhzHat	706,{
+lighthalzen,360,313,3	script	Garoto#LhzHat	706,{
 
-	mes "[Boy]";
-	mes "Hello, mister!";
-	mes "Um, would you do";
-	mes "me a favor, please?";
+	mes "[Garoto]";
+	mes "Olá, " + ((Sex)?"senhor":"madame") + "!";
+	mes "Hm, por acaso você ";
+	mes "me faria algo, por favor?";
 	next;
 	if(countitem(526) && countitem(7270) && countitem(941) && countitem(10004))
 	{
-		mes "[Boy]";
-		mes "Oh! You brought me";
-		mes "some Royal Jelly to";
-		mes "eat, as well as everything";
-		mes "I need to make a Baby Pacifier.";
-		mes "Okay, let me get started on that right away. Just a moment...";
+		mes "[Garoto]";
+		mes "Oh! Você me trouxe";
+		mes "um pouco de Geléia Real para";
+		mes "comer, assim como tudo o mais";
+		mes "de que preciso para fazer uma Chupeta de Bebê.";
+		mes "Certo, deixe-me começar isso agora mesmo. Só um momento...";
 		next;
 		mes "...";
 		mes "......";
 		next;
-		mes "[Boy]";
-		mes "Damn.";
-		mes "That Royal Jelly";
-		mes "was frickin' delicious!";
-		mes "Now I can make your";
-		mes "Baby Pacifier. Let's see";
-		mes "here. Ah, here we go...";
-		delitem 526,1;
+		mes "[Garoto]";
+		mes "Droga.";
+		mes "Aquela Geléia Real";
+		mes "estava deliciosa!";
+		mes "Agora eu posso fazer a sua";
+		mes "Chupeta de Bebê. Vamos ver";
+		mes "aqui. Ah, pronto, vamos lá...";
 		next;
-		mes "[Boy]";
-		mes "It's done!";
-		mes "Now, you're the";
-		mes "proud owner of your";
-		mes "very own Baby Pacifier!";
-		mes "I hope you're happy with";
-		mes "yourself. Travel safe, okay?";
+		mes "[Garoto]";
+		mes "Está pronto!";
+		mes "Ah, você é o";
+		mes "orgulhoso dono de";
+		mes "uma Chupeta de Bebê!";
+		mes "Espero que você esteja feliz";
+		mes "consigo mesmo. Vá com segurança, certo?";
 		delitem 7270,1;
 		delitem 941,1;
 		delitem 10004,1;
 		getitem 5110,1;
 		close;
 	}
-	switch( select( "What do you need?", "Sorry, kid..." ) )
+	switch( select( "O que você quer?", "Desculpe garoto..." ) )
 	{
 	case 1:
-		mes "[Boy]";
-		mes "Well, my mom has been";
-		mes "sick recently, so both of";
-		mes "us haven't been able to eat";
-		mes "for the past few days. But";
-		mes "if she doesn't eat, how does";
-		mes "she expect to get better?";
+		mes "[Garoto]";
+		mes "Bem, minha mãe tem estado";
+		mes "doente recentemente, então nós";
+		mes "dois não temos como comer";
+		mes "nos últimos dias. Mas";
+		mes "se ela não come, como ela";
+		mes "espera melhorar?";
 		emotion e_sob;
 		next;
-		mes "[Boy]";
-		mes "So I guess what I'm";
-		mes "asking is, would you be";
-		mes "able to spare some food?";
+		mes "[Garoto]";
+		mes "Então, acho que o que estou";
+		mes "pedindo é: será que você ";
+		mes "poderia me dar alguma comida?";
 		next;
-		switch( select( "Help him.", "Refuse to help." ) )
+		switch( select( "Ajudá-lo.", "Recusar-se a ajudá-lo." ) )
 		{
 		case 1:
 			if(!countitem(526))
 			{
-				mes "[Boy]";
-				mes "If you would, do you think";
-				mes "you can get some Royal Jelly";
-				mes "that I can give to my mom? The old lady next door says that it's";
-				mes "really nutritious and helps you get better faster if you're sick.";
+				mes "[Garoto]";
+				mes "Se quiser, acha que pode";
+				mes "conseguir uma Geléia Real";
+				mes "para eu dar para a minha mãe? A velha senhora nossa vizinha diz que";
+				mes "é muito nutritivo e ajuda você a melhorar mais rápido quando você está doente.";
 				next;
-				mes "[Boy]";
-				mes "My mom would be mad";
-				mes "at me if she found out";
-				mes "I was begging for it, but";
-				mes "Royal Jelly is too expensive";
-				mes "for me to get without any help!";
+				mes "[Garoto]";
+				mes "Minha mãe ficaria nervosa";
+				mes "comigo se descobrisse";
+				mes "que eu estou mendigando, mas";
+				mes "Geléia Real é muito cara";
+				mes "para eu conseguir sem ajuda externa!";
 				close;
 			}
-			mes "[Boy]";
-			mes "Oh, would it be alright";
-			mes "if I have this Royal Jelly?";
-			mes "It would really help my mom";
-			mes "feel better. Thanks so much~";
+			mes "[Garoto]";
+			mes "Oh, será que poderia";
+			mes "ficar com essa Geléia Real?";
+			mes "Ajudaria muito minha mãe";
+			mes "a melhorar. Muito obrigado!";
 			delitem 526,1;
 			next;
-			mes "[Boy]";
-			mes "Hey, to pay you back, why";
-			mes "don't I make a Baby Pacifier";
-			mes "for you? I learned how to make";
-			mes "one when my baby brother was";
-			mes "born. But first, I'll need some";
-			mes "materials to put it together...";
+			mes "[Garoto]";
+			mes "Ei, para recompensar você, por que";
+			mes "não faço uma Chupeta de Bebê ";
+			mes "para você? Eu aprendi a fazer";
+			mes "quando meu irmão mais novo";
+			mes "nasceu. Mas primeiro, eu vou precisar";
+			mes "de alguns Metelleiais para poder montá-lo...";
 			next;
-			mes "[Boy]";
-			mes "Would you";
-			mes "please bring";
-			mes "^3131FF1 Nursing Bottle^000000,";
-			mes "^3131FF1 Nose Ring^000000 and";
-			mes "^3131FF1 Pacifier^000000? Oh, and one";
-			mes "more ^3131FFRoyal Jelly^000000 for me~";
+			mes "[Garoto]";
+			mes "Você poderia,";
+			mes "por favor, trazer";
+			mes "^3131FF1 Mamadeira^000000,";
+			mes "^3131FF1 Argola^000000 e";
+			mes "^3131FF1 Chupeta^000000? Oh, e mais";
+			mes "uma ^3131FFGeléia Real^000000 para mim?";
 			close;
 		break;
 
 		case 2:
-			mes "[Boy]";
-			mes "Oh... Um, that's";
-			mes "alright. Maybe I was";
-			mes "asking too much from";
-			mes "you. I mean, it's true";
-			mes "that you barely know me...";
+			mes "[Garoto]";
+			mes "Oh... Hmm, está ";
+			mes "bem. Talvez eu esteja";
+			mes "pedindo muito de";
+			mes "você. Quero dizer, é bem verdade";
+			mes "que você mal me conhece...";
 			emotion e_sob;
 			close;
 		break;
@@ -967,13 +964,13 @@ lighthalzen,360,313,3	script	Boy#LhzHat	706,{
 	break;
 
 	case 2:
-		mes "[Boy]";
-		mes "Th-that's okay.";
-		mes "I guess you must";
-		mes "be so busy that you";
-		mes "don't even have the";
-		mes "time to listen to some";
-		mes "little boy's problems...";
+		mes "[Garoto]";
+		mes "Tudo bem.";
+		mes "Acho que você está ";
+		mes "tão ocupado que";
+		mes "nem mesmo tem tempo";
+		mes "para escutar os problemas";
+		mes "de um garotinho...";
 		emotion e_sob;
 		close;
 	break;
@@ -981,50 +978,50 @@ lighthalzen,360,313,3	script	Boy#LhzHat	706,{
 
 }
 
-einbech,70,222,5	script	Mater#LhzHat	91,{
+einbech,70,222,5	script	Metelle#LhzHat	91,{
 
 	if(countitem(983) && countitem(7267) > 998 && countitem(749) && Zeny > 49999)
 	{
-		mes "[Mater]";
-		mes "Oh, hello, what's this?";
-		mes "You're carrying 1 Black";
-		mes "Dyestuffs, 1 Frozen Rose,";
-		mes "999 Tiger Panties and even";
-		mes "50,000 zeny with you. That's";
-		mes "enough to make a Winter Hat...";
+		mes "[Metelle]";
+		mes "Oh, olá, o que é isso?";
+		mes "Você está carregando 1 Tintura";
+		mes "Preta, 1 Rosa de Gelo,";
+		mes "999 Tangas de Tigre e";
+		mes "50.000 zenys com você. Isso é suficiente";
+		mes "para fazer um Chapéu de Inverno...";
 		next;
-		mes "[Mater]";
-		mes "Um, would you mind letting";
-		mes "me have those items so that";
-		mes "I can make a Winter Hat?";
-		mes "I'd never be able to gather";
-		mes "those things on my own...";
+		mes "[Metelle]";
+		mes "Hmmm, será que você se importaria de me";
+		mes "dar esses itens para que eu";
+		mes "possa fazer um Chapéu de Inverno?";
+		mes "Eu nunca conseguiria coletar";
+		mes "essas coisas sozinho...";
 		next;
-		switch( select( "Let her have the items.", "Don't give her the items." ) )
+		switch( select( "Dar os objetos para ela.", "Não dar os objetos para ela." ) )
 		{
 		case 1:
-			mes "[Mater]";
-			mes "Oh, thank you so much!";
-			mes "I've always wanted to make";
-			mes "this hat and try it on, even";
-			mes "if it's just once. But don't";
-			mes "worry, I'll give it to you~";
-			mes "Now please next; a moment...";
+			mes "[Metelle]";
+			mes "Oh, muito obrigado mesmo!";
+			mes "Eu sempre quis fazer";
+			mes "esse chapéu e usá-lo, mesmo";
+			mes "que só por uma vez. Mas não";
+			mes "se preocupe, eu vou lhe dar...";
+			mes "Agora, por favor, espere um momento...";
+ 			next;
+			mes "[Metelle]";
+			mes "Vamos ver...";
+			mes "Eu preciso dobrar";
+			mes "a rosa dessa maneira...";
+			mes "Ter cuidado com a tinta...";
+			mes "Onde eu coloquei todas aquelas";
+			mes "oh, aqui está.";
 			next;
-			mes "[Mater]";
-			mes "Let's see...";
-			mes "I've got to fold";
-			mes "the rose like this...";
-			mes "Be careful with the dye...";
-			mes "Where did I put all those";
-			mes "pan--Oh, here we are.";
-			next;
-			mes "[Mater]";
-			mes "^333333*Whew!*^000000";
-			mes "Finally, it's done!";
-			mes "Now, if you don't mind,";
-			mes "let me try this hat on";
-			mes "for just a little while.";
+			mes "[Metelle]";
+			mes "^333333*Ufa!*^000000";
+			mes "Finalmente, terminei!";
+			mes "Agora, se não se importa,";
+			mes "deixe-me experimentar esse chapéu";
+			mes "só um pouquinho.";
 			delitem 983,1;
 			delitem 7267,999;
 			delitem 749,1;
@@ -1034,103 +1031,103 @@ einbech,70,222,5	script	Mater#LhzHat	91,{
 			mes "...";
 			mes "......";
 			next;
-			mes "[Mater]";
-			mes "Ahhhhhh~";
-			mes "It just feels...";
-			mes "I felt so free~";
-			mes "It was everything";
-			mes "I imagined it to be.";
+			mes "[Metelle]";
+			mes "Ahhhhhh!";
+			mes "Eu me sinto...";
+			mes "Me sinto tão livre!";
+			mes "Era tudo o que eu ";
+			mes "imaginava que fosse.";
 			next;
-			mes "[Mater]";
-			mes "Here, please take";
-			mes "this Winter Hat. I really";
-			mes "hope that you'll enjoy it";
-			mes "as much as I do. Well then,";
-			mes "be safe in your travels, okay?";
+			mes "[Metelle]";
+			mes "Aqui, por favor, tome";
+			mes "esse Chapéu de Inverno. Eu realmente";
+			mes "espero que você goste dele";
+			mes "tanto quanto eu. Bem, então,";
+			mes "tenha cuidado em suas jornadas, certo?";
 			close;
 		break;
 
 		case 2:
-			mes "[Mater]";
-			mes "I'm sorry, I know that";
-			mes "I was asking a pretty big";
-			mes "favor from someone I just";
-			mes "met. I hope you understand";
-			mes "how much I really want to";
-			mes "make that Winter Hat...";
+			mes "[Metelle]";
+			mes "Me desculpe, eu sei que";
+			mes "estou pedindo um grande favor";
+			mes "de alguém que acabei de";
+			mes "conhecer. Eu espero que você entenda ";
+			mes "o quanto eu realmente quero";
+			mes "fazer aquele Chapéu de Inverno...";
 			close;
 		break;
 		}
 	}
-	mes "[Mater]";
-	mes "Look at that blue";
-	mes "sky. Don't you wish";
-	mes "you could just soar";
-	mes "through the heavens";
-	mes "with your own wings?";
+	mes "[Metelle]";
+	mes "Olhe aquele";
+	mes "céu azul. Você não queria";
+	mes "poder voar pelo";
+	mes "céu com suas próprias";
+	mes "asas?";
 	next;
-	mes "[Mater]";
-	mes "Of course, it's an";
-	mes "impossible dream,";
-	mes "but with this Winter Hat,";
-	mes "you can at least enjoy the";
-	mes "sensation of freedom that";
-	mes "a bird in flight must feel.";
+	mes "[Metelle]";
+	mes "É claro que é apenas";
+	mes "um sonho impossível,";
+	mes "mas com o Chapéu de Inverno,";
+	mes "você pode ao menos curtir a";
+	mes "sensação de liberdade que";
+	mes "um pássaro voando deve ter.";
 	next;
-	mes "[Mater]";
-	mes "If you would like";
-	mes "a hat like this, I would";
-	mes "need to have some items";
-	mes "that I don't think I can ever";
-	mes "obtain on my very own.";
+	mes "[Metelle]";
+	mes "Se você quisesse";
+	mes "um chapéu como esse, eu iria";
+	mes "precisar de alguns itens,";
+	mes "que não acho que posso obter";
+	mes "por conta própria.";
 	next;
-	mes "[Mater]";
-	mes "^FF00001 Black Dyestuffs^000000,";
-	mes "^FF0000999 Tiger Panties^000000,";
-	mes "^FF00001 Frozen Rose^000000 and";
-	mes "^FF000050,000 zeny^000000. If you can";
-	mes "bring those to me, I shall";
-	mes "make you a Winter Hat.";
+	mes "[Metelle]";
+	mes "^FF00001 Tintura Preta^000000,";
+	mes "^FF0000999 Tangas de Tigre^000000,";
+	mes "^FF00001 Rosa de Gelo^000000 e";
+	mes "^FF000050.000 zenys^000000. Se você puder";
+	mes "me trazer esses itens, eu poderei";
+	mes "lhe fazer um Chapéu de Inverno.";
 	close;
 
 }
 
-lhz_in02,91,38,5	script	Margaret Mary#LhzHat	90,{
+lhz_in02,91,38,5	script	Margaret Merry#LhzHat	90,{
 
-	mes "[Margaret Mary]";
-	mes "The white rose, in its";
-	mes "purity and simplicity, is";
-	mes "like a woman who doesn't";
-	mes "need jewels or fancy dresses";
-	mes "to look noble and beautiful. It's the perfect gift for a lady.";
+	mes "[Margaret Merry]";
+	mes "A rosa branca, em sua";
+	mes "pureza e simplicidade, é ";
+	mes "como uma mulher que não";
+	mes "precisa de jóias ou vestidos bonitos";
+	mes "para aparentar nobreza e beleza. É o presente perfeito para uma dama.";
 	next;
-	switch( select( "Make a Mystic Rose.", "End Conversation." ) )
+	switch( select( "Fazer uma Rosa Mística.", "Terminar Conversa." ) )
 	{
 	case 1:
 		if(countitem(731) > 9 && countitem(748) > 1 && countitem(982) && Zeny > 49999)
 		{
-			mes "[Margaret Mary]";
-			mes "Ah, I see that you've brought";
-			mes "what I need to bleach the blood";
-			mes "red hue from these Witherless";
-			mes "Roses and adorn these flowers";
-			mes "with eternal elegance. May I use these items to make a Mystic Rose?";
+			mes "[Margaret Merry]";
+			mes "Ah, vejo que você me trouxe";
+			mes "o que eu preciso para tirar essa tonalidade";
+			mes "de vermelho sangue dessas Rosas";
+			mes "Eternas e adornar essas flores";
+			mes "com elegância eterna. Posso utilizar esses itens para fazer uma Rosa Mística?";
 			next;
-			switch( select( "Yes", "No" ) )
+			switch( select( "Sim", "Não" ) )
 			{
 			case 1:
-				mes "[Margaret Mary]";
-				mes "Thank you. Please";
-				mes "next; a moment while";
-				mes "I concentrate in order to";
-				mes "preserve the natural beauty";
-				mes "of these gorgeous flowers...";
+				mes "[Margaret Merry]";
+				mes "Obrigado. Por favor,";
+				mes "espere um minuto, enquanto";
+				mes "eu me concentro para poder";
+				mes "preservar a beleza natural";
+				mes "dessas flores maravilhosas...";
 				next;
-				mes "[Margaret Mary]";
-				mes "The rose truly is the";
-				mes "undisputed queen of all";
-				mes "flowers. All other flora must";
-				mes "humbly bow to its regal beauty.";
+				mes "[Margaret Merry]";
+				mes "A rosa, sem sombra de dúvida, é a";
+				mes "rainha de todas as outras";
+				mes "flores. Todas as outras devem";
+				mes "se curvar humildemente diante de sua beleza pura.";
 				next;
 				mes "...";
 				mes "......";
@@ -1139,12 +1136,12 @@ lhz_in02,91,38,5	script	Margaret Mary#LhzHat	90,{
 				mes "......";
 				mes ".........";
 				next;
-				mes "[Margaret Mary]";
-				mes "There, it is finished.";
-				mes "Please remember to wear";
-				mes "your hair in an elegant and";
-				mes "refined manner when wearing";
-				mes "the Mystic Rose so as not to disgrace these beautiful flowers.";
+				mes "[Margaret Merry]";
+				mes "Pronto, acabou.";
+				mes "Por favor, lembre-se de usar";
+				mes "seu penteado de forma elegante e";
+				mes "refinada quando estiver usando";
+				mes "a Rosa Mística, para assim não envergonhar essas lindas flores.";
 				delitem 731,10;
 				delitem 748,2;
 				delitem 982,1;
@@ -1154,160 +1151,160 @@ lhz_in02,91,38,5	script	Margaret Mary#LhzHat	90,{
 			break;
 
 			case 2:
-				mes "[Margaret Mary]";
-				mes "White roses with thorns";
-				mes "makes my heart beat with";
-				mes "unceasing trepidation. What";
-				mes "if I prick my finger and shed";
-				mes "blood on its snow white petals?";
+				mes "[Margaret Merry]";
+				mes "Rosas brancas com espinhos";
+				mes "fazem meu coração bater com";
+				mes "uma trepidação incessante. E se eu";
+				mes "furasse meu dedo e deixasse meu";
+				mes "sangue escorrer sobre suas pétalas brancas?";
 				close;
 			break;
 			}
 		}
-		mes "[Margaret Mary]";
-		mes "I love roses, but it makes";
-		mes "me sad that their beauty";
-		mes "fades far too soon. And so,";
-		mes "I've found a way to preserve";
-		mes "the beauty of the roses, so";
-		mes "that it lasts for all eternity.";
+		mes "[Margaret Merry]";
+		mes "Eu amo rosas, mas fico triste";
+		mes "por sua beleza";
+		mes "desaparecer tão rápido. E por isso,";
+		mes "eu descobri uma maneira de preservar";
+		mes "a beleza das rosas, para que";
+		mes "ela dure para toda a eternidade.";
 		next;
-		mes "[Margaret Mary]";
-		mes "Do you love roses as well?";
-		mes "If you like, I can make a";
-		mes "^3131FFMystic Rose^000000 that you can wear";
-		mes "upon your crown. It's not easy";
-		mes "for me to create, but I believe that you would enjoy it greatly.";
+		mes "[Margaret Merry]";
+		mes "Você também ama as rosas?";
+		mes "Se quiser, eu posso fazer";
+		mes "^3131FFuma Rosa Mística ^000000 que você poderá usar";
+		mes "em sua coroa. Não é fácil";
+		mes "de se fazer, mas eu acredito que você gostará muito.";
 		next;
-		mes "[Margaret Mary]";
-		mes "Please bring me";
-		mes "^3131FF10 2 Carat Diamonds^000000,";
-		mes "^3131FF3 Witherless Roses^000000,";
-		mes "^3131FF1 White Dyestuffs^000000 and";
-		mes "^3131FF50,000 zeny^000000 if you would";
-		mes "like to have a Mystic Rose.";
+		mes "[Margaret Merry]";
+		mes "Por favor, me traga";
+		mes "^3131FF10 Diamantes de 2 Quilates^000000,";
+		mes "^3131FF3 Rosas Eternas^000000,";
+		mes "^3131FF1 Tintura Branca^000000 e";
+		mes "^3131FF50.000 zenys^000000 se deseja";
+		mes "possuir uma Rosa Mística.";
 		close;
 	break;
 
 	case 2:
-		mes "[Margaret Mary]";
-		mes "White roses with thorns";
-		mes "makes my heart beat with";
-		mes "unceasing trepidation. What";
-		mes "if I prick my finger and shed";
-		mes "blood on its snow white petals?";
+		mes "[Margaret Merry]";
+		mes "Rosas brancas com espinhos";
+		mes "fazem meu coração bater com";
+		mes "uma trepidação incessante. E se eu";
+		mes "furasse meu dedo e deixasse meu";
+		mes "sangue escorrer sobre suas pétalas brancas?";
 		close;
 	break;
 	}
 
 }
 
-lighthalzen,182,89,0	script	Rich Girl#LhzHat	91,{
+lighthalzen,182,89,0	script	Senhora com Aparência Descansada#Hat	91,{
 
 	if(LHZBTQ == 0)
 	{
-		mes "[Rich Girl]";
+		mes "[Senhora com Aparência Descansada]";
 		mes "Hmmm...?";
-		mes "What? Did you";
-		mes "need something?";
+		mes "Quê? Você ";
+		mes "precisa de alguma coisa?";
 		next;
-		switch( select( "N-Nothing.", "Um, you look so relaxed." ) )
+		switch( select( "N-nada.", "Hmm, você parece tão relaxada." ) )
 		{
 		case 1:
-			mes "[Rich Girl]";
-			mes "Huh.";
-			mes "Alright then.";
-			mes "Well, try not to stare";
-			mes "at people so much.";
+			mes "[Senhora com Aparência Descansada]";
+			mes "Hmm.";
+			mes "Muito bem, então.";
+			mes "Bem, tente evitar ficar";
+			mes "olhando as pessoas.";
 			close;
 		break;
 
 		case 2:
-			mes "[Rich Girl]";
-			mes "Really? You are probably";
-			mes "the twentieth person to";
-			mes "tell me that today. Mmm.";
-			mes "That's strange, isn't it?";
+			mes "[Senhora com Aparência Descansada]";
+			mes "Mesmo? Você deve ser provavelmente";
+			mes "a vigésima pessoa a";
+			mes "me dizer isso hoje. Mmm.";
+			mes "Isso é estranho, não é?";
 			next;
-			menu "I guess.",-,"It's not strange at all.",-;
-			mes "[Rich Girl]";
-			mes "Oh yeah.";
-			mes "What's your name?";
-			mes "That is, if you don't";
-			mes "mind me asking you.";
+			menu "Eu acho.",-,"Não acho nem um pouco estranho.",-;
+			mes "[Senhora com Aparência Descansada]";
+			mes "Ah, sim.";
+			mes "Qual seu nome?";
+			mes "Quer dizer, se você ";
+			mes "não se importar que eu pergunte.";
 			next;
 			mes "[" + strcharinfo(0) + "]";
-			mes "My name is " + strcharinfo(0) + "";
-			mes "and I'm an adventurer~";
+			mes "Meu nome é " + strcharinfo(0) + "";
+			mes "E eu sou u" + ((Sex)?"m":"ma") + " aventureir" + ((Sex)?"o":"a") + "!";
 			next;
 			mes "[Achiha]";
-			mes "Oh, one of those?";
-			mes "My name is Achiha, nice";
-			mes "to meet you. I don't really";
-			mes "do much of anything.";
-			mes "Just sit. Relax.";
+			mes "Oh, uma dessas?";
+			mes "Meu nome é Achina, prazer";
+			mes "em conhecê-lo. Eu na verdade";
+			mes "não faço muita coisa.";
+			mes "Sente-se. Relaxe.";
 			set LHZBTQ,1;
 			emotion e_heh;
 			next;
 			mes "[Achiha]";
-			mes "I do have a hobby,";
-			mes "though. Once in a while,";
-			mes "I'll sew a hat. Do you think";
-			mes "an adventurer like you would";
-			mes "want to have a hat I made?";
+			mes "Eu tenho um passatempo.";
+			mes "De vez em quando,";
+			mes "eu costuro chapéus. Você acha";
+			mes "que u" + ((Sex)?"m":"ma") + " aventureir" + ((Sex)?"o":"a") + " como você ";
+			mes "poderia querer um chapéu que eu tenha feito?";
 			next;
-			switch( select( "Er, I dunno.", "Sure." ) )
+			switch( select( "Er, não sei.", "Claro." ) )
 			{
 			case 1:
 				mes "[Achiha]";
-				mes "Mm. I mean, the";
-				mes "Red Bonnets I make";
-				mes "might not be sturdy";
-				mes "enough for battles.";
-				mes "But what about those";
-				mes "fish and cake hats?";
+				mes "Hmmm. Quero dizer, os";
+				mes "Bonés Vermelhos que eu faço";
+				mes "podem não ser resistentes";
+				mes "o bastante para lutar.";
+				mes "Mas que tal aqueles";
+				mes "chapéus peixe e chapéu bolo?";
 				next;
 				mes "[Achiha]";
-				mes "Hats...?";
-				mes "That look like";
-				mes "fish or cake? Mm.";
-				mes "Haha. I just got it.";
-				mes "That's, that's funny.";
+				mes "Chapéus...?";
+				mes "Que parecem com";
+				mes "peixe ou bolo? Mm.";
+				mes "Haha. Entendi.";
+				mes "Que engraçado.";
 				close;
 			break;
 
 			case 2:
 				mes "[Achiha]";
-				mes "Really? Well, I can sew";
-				mes "together a ^0000FFRed Bonnet^000000.";
-				mes "It reminds most people";
-				mes "of a baby's bonnet, but";
-				mes "it does look good on";
-				mes "most people I know.";
+				mes "Mesmo? Bem, eu posso costurar";
+				mes "também um ^0000FFBoné Vermelho^000000.";
+				mes "Para a maioria das pessoas ele parece";
+				mes "com um boné de bebê, mas";
+				mes "ele fica bem em";
+				mes "quase todas as pessoas que eu conheço.";
 				next;
 				mes "[Achiha]";
-				mes "Um, did you want me";
-				mes "to make you one? I can";
-				mes "go ahead and do it if you";
-				mes "bring me some materials.";
-				mes "Since it's just for fun,";
-				mes "I won't ask for too much.";
+				mes "Hmm, você queria";
+				mes "que eu fizesse um? Posso";
+				mes "fazer um se você ";
+				mes "me trouxer alguns materiais.";
+				mes "Já que é só por diversão,";
+				mes "eu não vou pedir muito.";
 				next;
 				mes "[Achiha]";
-				mes "Just bring";
-				mes "^0000FF1 Green Lace^000000,";
-				mes "^0000FF1 Silk Ribbon^000000,";
-				mes "^0000FF1 Scarlet Dyestuffs^000000,";
-				mes "^0000FF1 Sunday Hat^000000 and";
-				mes "^0000FF50,000 zeny^000000.";
+				mes "Apenas me traga";
+				mes "^0000FF1 Laço Verde^000000,";
+				mes "^0000FF1 Laço de Seda^000000,";
+				mes "^0000FF1 Tintura Vermelha^000000,";
+				mes "^0000FF1 Chapéu Domingueiro^000000 e";
+				mes "^0000FF50.000 zenys^000000.";
 				next;
 				mes "[Achiha]";
-				mes "I think I'm going";
-				mes "to just sit and relax";
-				mes "a little bit longer. But";
-				mes "if you want me to make";
-				mes "a hat for you, come back";
-				mes "with those materials, okay?";
+				mes "Acho que vou";
+				mes "sentar e descansar";
+				mes "mais um pouquinho. Mas";
+				mes "se você quiser que eu faça";
+				mes "um chapéu para você, volte";
+				mes "com esses materiais, certo?";
 				set LHZBTQ,2;
 				close;
 			break;
@@ -1318,45 +1315,45 @@ lighthalzen,182,89,0	script	Rich Girl#LhzHat	91,{
 	else if(LHZBTQ == 1)
 	{
 		mes "[Achiha]";
-		mes "Oh, hello.";
-		mes "Isn't it such a nice,";
-		mes "quiet, pleasant day?";
+		mes "Oh, olá.";
+		mes "Não está um dia";
+		mes "agradável e lindo?";
 		next;
-		switch( select( "Indeed.", "Would you please make a hat for me?" ) )
+		switch( select( "É verdade.", "Você faria um chapéu para mim?" ) )
 		{
 		case 1:
 			mes "[Achiha]";
-			mes "Yeah. Today would";
-			mes "be a nice day for a";
-			mes "picnic or a long stroll.";
-			mes "But all I want to do is";
-			mes "just sit and relax...";
+			mes "Sim. Hoje seria um";
+			mes "bom dia para um";
+			mes "piquenique ou uma longa caminhada.";
+			mes "Mas tudo o que eu quero fazer é ";
+			mes "só sentar e descansar...";
 			close;
 		break;
 
 		case 2:
 			mes "[Achiha]";
-			mes "What are you talking";
-			mes "about? Oh, you mean the";
-			mes "Red Bonnet? Well, I guess";
-			mes "I can make one. But I think";
-			mes "I need some materials first.";
+			mes "Do que você tá ";
+			mes "falando? Ah, você quer dizer";
+			mes "o Boné Vermelho? Bem, eu acho";
+			mes "que posso fazer um. Mas penso que";
+			mes "vou precisar de uns materiais.";
 			next;
 			mes "[Achiha]";
-			mes "^0000FF1 Green Lace^000000,";
-			mes "^0000FF1 Silk Ribbon^000000,";
-			mes "^0000FF1 Scarlet Dyestuffs^000000,";
-			mes "^0000FF1 Sunday Hat^000000 and";
-			mes "^0000FF50,000 zeny^000000.";
-			mes "That's what I need.";
+			mes "^0000FF1 Laço Verde^000000,";
+			mes "^0000FF1 Laço de Seda^000000,";
+			mes "^0000FF1 Tintura Vermelha^000000,";
+			mes "^0000FF1 Chapéu Domingueiro^000000 e";
+			mes "^0000FF50.000 zenys^000000.";
+			mes "É disso que preciso.";
 			next;
 			mes "[Achiha]";
-			mes "Oh, but I don't";
-			mes "feel like making it";
-			mes "right now. I'm soooo";
-			mes "tired. Let me just sit,";
-			mes "relax, even if it's just";
-			mes "a little while longer...";
+			mes "Oh, mas eu não estou";
+			mes "com vontade de fazê-lo";
+			mes "nesse momento. Estou tããão";
+			mes "cansada. Deixa eu sentar,";
+			mes "relaxar, mesmo que seja";
+			mes "só mais um pouquinho...";
 			set LHZBTQ,2;
 			close;
 		break;
@@ -1365,46 +1362,46 @@ lighthalzen,182,89,0	script	Rich Girl#LhzHat	91,{
 	else if(LHZBTQ == 2)
 	{
 		mes "[Achiha]";
-		mes "Oh, good, you're here.";
-		mes "I've been waiting for you.";
-		mes "Did you bring everything that";
-		mes "you need to make a ^0000FFRed Bonnet^000000?";
+		mes "Ah bom, você está aqui.";
+		mes "Eu estava esperando você.";
+		mes "Você me trouxe tudo que eu";
+		mes "preciso para fazer um ^0000FFBoné Vermelho^000000?";
 		next;
-		switch( select( "Yes.", "I forgot what I need." ) )
+		switch( select( "Sim.", "Eu esqueci do que precisava." ) )
 		{
 		case 1:
 			if(countitem(10015) < 1 || countitem(10007) < 1 || countitem(975) < 1 || countitem(5032) < 1 || Zeny < 50000)
 			{
 				mes "[Achiha]";
-				mes "Uh oh.";
-				mes "You forgot";
-				mes "a couple things.";
-				mes "Would you like me";
-				mes "to remind you what";
-				mes "you need to bring?";
+				mes "Oh-oh...";
+				mes "Você esqueceu";
+				mes "algumas coisinhas.";
+				mes "Você gostaria que eu";
+				mes "te lembrasse do que";
+				mes "você precisa trazer?";
 				next;
 				mes "[Achiha]";
-				mes "^0000FF1 Green Lace^000000,";
-				mes "^0000FF1 Silk Ribbon^000000,";
-				mes "^0000FF1 Scarlet Dyestuffs^000000,";
-				mes "^0000FF1 Sunday Hat^000000 and";
-				mes "^0000FF50,000 zeny^000000. Come back";
-				mes "when you're ready, okay?";
+				mes "^0000FF1 Laço Verde^000000,";
+				mes "^0000FF1 Laço de Seda^000000,";
+				mes "^0000FF1 Tintura Vermelha^000000,";
+				mes "^0000FF1 Chapéu Domingueiro^000000 e";
+				mes "^0000FF50.000 zenys^000000. Retorne ";
+				mes "quando você tiver tudo, certo?";
 				close;
 			}
 			mes "[Achiha]";
-			mes "Oh, you brought";
-			mes "everything. That's";
-			mes "good. Okay, just give";
-			mes "it to me. Um, let's see.";
+			mes "Oh, você me trouxe";
+			mes "tudo. Isso é ";
+			mes "suficiente. Certo, me dê ";
+			mes "tudo. Hmmm, vamos ver.";
 			next;
 			mes "[Achiha]";
-			mes "Well, I'm finished.";
-			mes "^333333*Yawn*^000000 And now I'm";
-			mes "even more tired. Here,";
-			mes "take this Red Bonnet.";
-			mes "I hope you like it~";
-			mes "I think I'll relax now...";
+			mes "Bem, eu terminei.";
+			mes "^333333*Boceja*^000000 E agora, estou";
+			mes "mais cansada. Tome,";
+			mes "pode pegar o seu Boné Vermelho.";
+			mes "Espero que você goste!";
+			mes "Eu acho que vou dar uma descansada agora...";
 			delitem 10015,1;
 			delitem 10007,1;
 			delitem 975,1;
@@ -1414,25 +1411,26 @@ lighthalzen,182,89,0	script	Rich Girl#LhzHat	91,{
 			set LHZBTQ,3;
 			next;
 			mes "[Achiha]";
-			mes "I hope you will enjoy the hat~";
+			mes "Espero que goste do chapéu!";
 			close;
 		break;
 
 		case 2:
 			mes "[Achiha]";
-			mes "Oh, you really";
-			mes "forgot? Oh dear,";
-			mes "let me try to remember.";
-			mes "I didn't forget too, did I?";
-			mes "Oh next;, I remember now...";
+			mes "Oh-oh...";
+			mes "Você esqueceu";
+			mes "algumas coisinhas.";
+			mes "Você gostaria que eu";
+			mes "te lembrasse do que";
+			mes "você precisa trazer?";
 			next;
 			mes "[Achiha]";
-			mes "^0000FF1 Green Lace^000000,";
-			mes "^0000FF1 Silk Ribbon^000000,";
-			mes "^0000FF1 Scarlet Dyestuffs^000000,";
-			mes "^0000FF1 Sunday Hat^000000 and";
-			mes "^0000FF50,000 zeny^000000. Come back";
-			mes "when you're ready, okay?";
+			mes "^0000FF1 Laço Verde^000000,";
+			mes "^0000FF1 Laço de Seda^000000,";
+			mes "^0000FF1 Tintura Vermelha^000000,";
+			mes "^0000FF1 Chapéu Domingueiro^000000 e";
+			mes "^0000FF50.000 zenys^000000. Retorne ";
+			mes "quando você tiver tudo, certo?";
 			close;
 		break;
 		}
@@ -1440,47 +1438,47 @@ lighthalzen,182,89,0	script	Rich Girl#LhzHat	91,{
 	else if(LHZBTQ == 3)
 	{
 		mes "[Achiha]";
-		mes "Oh, I remember you.";
-		mes "You're the adventurer";
-		mes "who likes my Red Bonnets";
-		mes "so much. Did you want me";
-		mes "to make another one for you?";
+		mes "Ah, eu me lembro de você.";
+		mes "Você é o aventureiro";
+		mes "que gosta dos meus Bonés Vermelhos.";
+		mes "Você queria que";
+		mes "eu lhe fizesse outro?";
 		next;
-		switch( select( "Yes.", "I forgot what I need." ) )
+		switch( select( "Sim.", "Eu esqueci do que precisava." ) )
 		{
 		case 1:
 			if(countitem(10015) < 1 || countitem(10007) < 1 || countitem(975) < 1 || countitem(5032) < 1 || Zeny < 50000)
 			{
 				mes "[Achiha]";
-				mes "Uh oh.";
-				mes "You forgot";
-				mes "a couple things.";
-				mes "Would you like me";
-				mes "to remind you what";
-				mes "you need to bring?";
+				mes "Oh-oh...";
+				mes "Você esqueceu";
+				mes "algumas coisinhas.";
+				mes "Você gostaria que eu";
+				mes "te lembrasse do que";
+				mes "você precisa trazer?";
 				next;
 				mes "[Achiha]";
-				mes "^0000FF1 Green Lace^000000,";
-				mes "^0000FF1 Silk Ribbon^000000,";
-				mes "^0000FF1 Scarlet Dyestuffs^000000,";
-				mes "^0000FF1 Sunday Hat^000000 and";
-				mes "^0000FF50,000 zeny^000000. Come back";
-				mes "when you're ready, okay?";
+				mes "^0000FF1 Laço Verde^000000,";
+				mes "^0000FF1 Laço de Seda^000000,";
+				mes "^0000FF1 Tintura Vermelha^000000,";
+				mes "^0000FF1 Chapéu Domingueiro^000000 e";
+				mes "^0000FF50.000 zenys^000000. Retorne ";
+				mes "quando você tiver tudo, certo?";
 				close;
 			}
 			mes "[Achiha]";
-			mes "Oh, you brought";
-			mes "everything. That's";
-			mes "good. Okay, just give";
-			mes "it to me. Um, let's see.";
+			mes "Oh, você me trouxe";
+			mes "tudo. Isso é ";
+			mes "suficiente. Certo, me dê ";
+			mes "tudo. Hmmm, vamos ver.";
 			next;
 			mes "[Achiha]";
-			mes "Well, I'm finished.";
-			mes "^333333*Yawn*^000000 And now I'm";
-			mes "even more tired. Here,";
-			mes "take this Red Bonnet.";
-			mes "I hope you like it~";
-			mes "I think I'll relax now...";
+			mes "Bem, eu terminei.";
+			mes "^333333*Boceja*^000000 E agora, estou";
+			mes "mais cansada. Tome,";
+			mes "pode pegar o seu Boné Vermelho.";
+			mes "Espero que você goste!";
+			mes "Eu acho que vou dar uma descansada agora...";
 			delitem 10015,1;
 			delitem 10007,1;
 			delitem 975,1;
@@ -1489,25 +1487,25 @@ lighthalzen,182,89,0	script	Rich Girl#LhzHat	91,{
 			getitem 5109,1;
 			next;
 			mes "[Achiha]";
-			mes "I hope you will enjoy the hat~";
+			mes "Espero que goste do chapéu!";
 			close;
 		break;
 
 		case 2:
 			mes "[Achiha]";
-			mes "Oh, you really";
-			mes "forgot? Oh dear,";
-			mes "let me try to remember.";
-			mes "I didn't forget too, did I?";
-			mes "Oh next;, I remember now...";
+			mes "Oh, você esqueceu";
+			mes "mesmo? Oh, minha nossa,";
+			mes "deixe-me tentar lembrar.";
+			mes "Eu não esqueci também, esqueci?";
+			mes "Oh espera, eu me lembro agora...";
 			next;
 			mes "[Achiha]";
-			mes "^0000FF1 Green Lace^000000,";
-			mes "^0000FF1 Silk Ribbon^000000,";
-			mes "^0000FF1 Scarlet Dyestuffs^000000,";
-			mes "^0000FF1 Sunday Hat^000000 and";
-			mes "^0000FF50,000 zeny^000000. Come back";
-			mes "when you're ready, okay?";
+			mes "^0000FF1 Laço Verde^000000,";
+			mes "^0000FF1 Laço de Seda^000000,";
+			mes "^0000FF1 Tintura Vermelha^000000,";
+			mes "^0000FF1 Chapéu Domingueiro^000000 e";
+			mes "^0000FF50.000 zenys^000000. Retorne ";
+			mes "quando você tiver tudo, certo?";
 			close;
 		break;
 		}
@@ -1520,51 +1518,51 @@ gl_prison1,137,138,5	script	Zealotus#LhzHat	1200,{
 	if(ZLMASKQ == 0)
 	{
 		mes "[Zealotus]";
-		mes "Kneel, worm!";
-		mes "As ruler of this";
-		mes "Underground Prison,";
-		mes "I command all who step";
-		mes "into my private realm!";
+		mes "Ajoelhe-se, verme!";
+		mes "Como governante dessa";
+		mes "Prisão Subterrânea,";
+		mes "eu comando todos aqueles que pisam";
+		mes "dentro dos meus domínios particulares!";
 		next;
 		mes "[Zealotus]";
-		mes "Resist, and you shall be";
-		mes "punished! Grovel and kiss";
-		mes "my feet, and perhaps you";
-		mes "might be spared. Hohohohoho!";
+		mes "Resista e será ";
+		mes "punido! Ajoelhe-se e beije";
+		mes "meus pés, e talvez você ";
+		mes "possa ser poupado. Hohohohoho!";
 		next;
-		switch( select(  "Oh, your highness!", "Whatever." ) )
+		switch( select(  "Oh, vossa majestade!", "Vai esperando." ) )
 		{
 		case 1:
 			mes "[Zealotus]";
-			mes "The submissive woman is";
-			mes "nothing but an ideal dream";
-			mes "for the arrogant male! A true";
-			mes "woman revels in her power to";
-			mes "have her man do her bidding!";
+			mes "A mulher submissa não é ";
+			mes "nada a não ser um sonho idealizado";
+			mes "pelo homem arrogante! Uma verdadeira";
+			mes "mulher se revela em seu poder";
+			mes "de fazer com que o homem faça sua vontade!";
 			next;
-			switch( select( "Yes, it's so true!", "Boooo!" ) )
+			switch( select( "Sim, é verdade!", "Boooo!" ) )
 			{
 			case 1:
 				mes "[Zealotus]";
-				mes "However, in my lust for power, I may have inadventently crushed";
-				mes "the spirits of my beloved a little too harshly. His pride crumbled,";
-				mes "my man even cowers in front of the humans! It pains me to see it.";
+				mes "Entretanto, em meu anseio por poder, eu posso ter inadvertidamente esmagado";
+				mes "o espírito do meu amado, um pouquinho além da conta. Com seu orgulho em frangalhos,";
+				mes "meu homem chega a se amedrontar perante humanos! Me dói ver isso.";
 				next;
 				mes "[Zealotus]";
-				mes "It is beneath me to ask";
-				mes "this of you, but it will take";
-				mes "a human like you to make";
-				mes "him remember who he truly is,";
-				mes "a proud creature of darkness";
-				mes "who should fear only me!";
+				mes "Está abaixo de mim, pedir";
+				mes "isso de você, mas será necessário";
+				mes "um humano como você para";
+				mes "fazê-lo lembrar-se quem ele é realmente,";
+				mes "uma orgulhosa criatura das trevas,";
+				mes "que deve temer somente a mim!";
 				next;
 				mes "[Zealotus]";
-				mes "Human. I offer you a small";
-				mes "share of my power if you can";
-				mes "take the pathetic, weeping lump";
-				mes "of monster crying in the corner";
-				mes "of this prison and make him";
-				mes "realize his true nature.";
+				mes "Humano! Eu lhe ofereço uma";
+				mes "pequena parte do meu poder, se você puder";
+				mes "levar esse arremedo patético e choroso";
+				mes "de monstro, com medo ali no canto";
+				mes "dessa prisão, e fazer com que ele";
+				mes "perceba sua verdadeira natureza.";
 				set ZLMASKQ,1;
 				close;
 			break;
@@ -1584,12 +1582,12 @@ gl_prison1,137,138,5	script	Zealotus#LhzHat	1200,{
 
 		case 2:
 			mes "[Zealotus]";
-			mes "Mortal simpleton!";
-			mes "Bah! The mocking of";
-			mes "a boorish cur is worthless";
-			mes "to me. I have all the time in";
-			mes "the world to grind your pride";
-			mes "to dust beneath my heels.";
+			mes "Tolo mortal!";
+			mes "Bah! A zombaria";
+			mes "de um mísero tolo não vale nada";
+			mes "para mim. Eu tenho todo o tempo";
+			mes "do mundo para dobrar o seu orgulho";
+			mes "e fazer com que você beije meus pés.";
 			close;
 		break;
 		}
@@ -1597,38 +1595,38 @@ gl_prison1,137,138,5	script	Zealotus#LhzHat	1200,{
 	else if(ZLMASKQ > 0 && ZLMASKQ < 6)
 	{
 		mes "[Zealotus]";
-		mes "Hm. If my beloved is";
-		mes "acting stubborn or refuses";
-		mes "to listen, feel free to take";
-		mes "drastic measures. Just think";
-		mes "of what I would do in your";
-		mes "place. Ohohohohoho~!";
+		mes "Hm. Se meu amado";
+		mes "agir com teimosia ou se recusar";
+		mes "a lhe dar ouvidos, sinta-se à vontade para";
+		mes "tomar medidas drásticas. Apenas imagine";
+		mes "o que eu faria se estivesse";
+		mes "em seu lugar. Ohohohohoho...!";
 		close;
 	}
 	else if(ZLMASKQ == 6)
 	{
 		mes "[Zealotus]";
-		mes "Ooh, you're back.";
-		mes "Phendark is certainly";
-		mes "back to his old self again,";
-		mes "thanks to your efforts, human.";
-		mes "Yes, his anger, his courage";
-		mes "and passion are all restored~";
+		mes "Ooh, você voltou.";
+		mes "Phendark me parece que";
+		mes "voltou a agir como antigamente,";
+		mes "graças aos seus esforços, humano.";
+		mes "Sim, sua fúria, sua coragem";
+		mes "e paixão estão todas restauradas...";
 		next;
 		mes "[Zealotus]";
-		mes "As I promised, I shall";
-		mes "grant you a share of my";
-		mes "power. However, I will need";
-		mes "some items to form this minor";
-		mes "contract between you and me.";
+		mes "Como eu prometi, eu vou lhe";
+		mes "conceder uma parte de meu";
+		mes "poder. Entretanto, eu vou precisar de";
+		mes "alguns itens para formar esse pequeno";
+		mes "contrato entre eu e você.";
 		next;
 		mes "[Zealotus]";
-		mes "I will need";
-		mes "^3131FF1 Cat's Eye^000000,";
-		mes "^3131FF1 Forbidden Red Candle^000000 and";
-		mes "^3131FF30 Worn-Out Magic Scrolls^000000.";
-		mes "Then, I can grant you a measure";
-		mes "of my power as I've promised.";
+		mes "Eu vou precisar de";
+		mes "^3131FF1 Olho de Gato^000000,";
+		mes "^3131FF1 Vela Vermelha Proibida^000000 e";
+		mes "^3131FF30 Pergaminhos Mágicos Gastos^000000.";
+		mes "Então, eu poderei lhe conceder uma";
+		mes "porção de meu poder, como lhe prometi.";
 		set ZLMASKQ,7;
 		close;
 	}
@@ -1637,60 +1635,60 @@ gl_prison1,137,138,5	script	Zealotus#LhzHat	1200,{
 		if(countitem(7263) && countitem(660) && countitem(7099) > 29)
 		{
 			mes "[Zealotus]";
-			mes "I see that you have";
-			mes "brought what I need to";
-			mes "complete the contract";
-			mes "between you and me,";
-			mes "human. Let's begin...";
+			mes "Vejo que você trouxe";
+			mes "o que eu lhe pedi";
+			mes "para completar o contrato";
+			mes "entre nós dois,";
+			mes "humano. Vamos começar...";
 			next;
-			mes "^3355FFZealotus takes the red";
-			mes "candle you've given her and";
-			mes "drips the wax into her open";
-			mes "palm. The Cat's Eye begins";
-			mes "to glow with an eerie light.^000000";
+			mes "^3355FFZealotus pega a vela";
+			mes "vermelha que você lhe deu e";
+			mes "deixa a cera pingar na palma";
+			mes "aberta de sua mão. O Olho de Gato começa";
+			mes "a brilhar com uma luz estranha.^000000";
 			next;
 			mes "[Zealotus]";
-			mes "Now, place your index";
-			mes "finger into my palm so";
-			mes "that we may complete the";
-			mes "final step of this contract...";
+			mes "Agora, coloque seu dedo";
+			mes "indicador na palma da minha mão";
+			mes "para que possamos completar a";
+			mes "etapa final deste contrato...";
 			next;
-			switch( select( "Don't complete the contract.", "Complete the contract." ) )
+			switch( select( "Não complete o contrato.", "Complete o contrato." ) )
 			{
 			case 1:
 				mes "[Zealotus]";
-				mes "Hm? What are you";
-				mes "afraid of? This is a";
-				mes "minor contract, so";
-				mes "you are not selling me";
-				mes "your soul, or anything";
-				mes "else for that matter.";
+				mes "Hm? Do que você ";
+				mes "está com medo? Esse é um pequeno";
+				mes "contrato, você não está ";
+				mes "me vendendo a sua alma,";
+				mes "ou nada desse";
+				mes "gênero.";
 				close;
 			break;
 
 			case 2:
 				mes "[Zealotus]";
-				mes "I, Zealotus, as ruler";
-				mes "of this realm, seal this";
-				mes "eternal contract with this";
-				mes "Forbidden Red Candle.";
+				mes "Eu, Zealotus, como governante";
+				mes "desse reino, selo esse contrato";
+				mes "eterno com essa";
+				mes "Vela Vermelha Proibida.";
 				next;
 				mes "[Zealotus]";
-				mes "" + strcharinfo(0) + " will";
-				mes "forever have a share";
-				mes "in my power. Those that";
-				mes "bow to me must also bow";
-				mes "to " + strcharinfo(0) + ". It shall be done.";
+				mes "" + strcharinfo(0) + " terá";
+				mes "para sempre uma porção";
+				mes "de meu poder. Aqueles que se";
+				mes "curvam a mim, deverão curvar-se também";
+				mes "a " + strcharinfo(0) + ". Que assim seja.";
 				specialeffect EF_DEVIL;
 				specialeffect EF_POISONHIT;
 				next;
 				mes "[Zealotus]";
-				mes "Human, take this";
-				mes "mask with you as an";
-				mes "everlasting token of our";
-				mes "contract. So long as you";
-				mes "carry this, I will be at your";
-				mes "side. So says Zealotus!";
+				mes "Humano, leve essa";
+				mes "máscara com você, como símbolo";
+				mes "eterno de nosso";
+				mes "contrato. Enquanto você ";
+				mes "portar esse contrato, eu estarei ao";
+				mes "seu lado. Assim diz Zealotus!";
 				delitem 7263,1;
 				delitem 660,1;
 				delitem 7099,30;
@@ -1701,31 +1699,31 @@ gl_prison1,137,138,5	script	Zealotus#LhzHat	1200,{
 			}
 		}
 		mes "[Zealotus]";
-		mes "I will need";
-		mes "^3131FF1 Cat's Eye^000000,";
-		mes "^3131FF1 Forbidden Red Candle^000000 and";
-		mes "^3131FF30 Worn-Out Magic Scrolls^000000.";
-		mes "Then, I can grant you a measure";
-		mes "of my power as I've promised.";
+		mes "Eu vou precisar de";
+		mes "^3131FF1 Olho de Gato^000000,";
+		mes "^3131FF1 Vela Vermelha Proibida^000000 e";
+		mes "^3131FF30 Pergaminhos Mágicos Gastos^000000.";
+		mes "Então, eu poderei lhe conceder uma";
+		mes "porção de meu poder, como lhe prometi.";
 		close;
 	}
 	else if(ZLMASKQ == 8)
 	{
 		mes "[Zealotus]";
-		mes "Ah, I greet you in";
-		mes "peace, human. Behold,";
-		mes "the splendor of our realm!";
-		mes "Though, I do not blame you";
-		mes "if you have no interest in";
-		mes "commanding these Injustices...";
+		mes "Ah, eu lhe cumprimento em";
+		mes "paz, humano. Contemple,";
+		mes "o esplendor de nosso reino!";
+		mes "Ainda assim, eu não culpo você ";
+		mes "por não ter interesse em";
+		mes "comandar essas injustiças...";
 		next;
 		mes "[Zealotus]";
-		mes "Thanks to your help,";
-		mes "my Phendark has returned";
-		mes "to his old, monstrously";
-		mes "passionate ways. Now I can";
-		mes "show him the stinging love";
-		mes "of my whip! Hohohohohoho!";
+		mes "Graças à sua ajuda,";
+		mes "meu Phendark voltou a";
+		mes "agir em sua antiga forma";
+		mes "monstruosa. Agora posso";
+		mes "demonstrar a ele o amor venenoso";
+		mes "de meu chicote! Hohohohohoho!";
 		emotion e_kis;
 		close;
 	}
@@ -1746,119 +1744,119 @@ gl_prison1,97,104,1	script	Phendark#LhzHat	1202,{
 	else if(ZLMASKQ == 1)
 	{
 		mes "[Phendark]";
-		mes "Huh? Oh no!";
-		mes "Another h-human?!";
-		mes "P-please! S-stay away,";
-		mes "don't come near me!";
+		mes "Hã? Oh, não!";
+		mes "Outr" + ((Sex)?"o":"a") + " Human" + ((Sex)?"o":"a") + "?!";
+		mes "P-por favor! Fique longe,";
+		mes "não se aproxime de mim!";
 		next;
 		mes "[Phendark]";
-		mes "I... I swear!";
-		mes "I'm not carrying any";
-		mes "rare items or stuff you";
-		mes "can wear, so please don't";
-		mes "beat me! I... Oh my god, you";
-		mes "don't believe me, don't you?";
+		mes "Eu... Eu juro!";
+		mes "Eu não estou carregando";
+		mes "nenhum objeto raro ou coisas";
+		mes "que você possa usar, então, por favor,";
+		mes "não me bata! Eu... Oh, minha nossa, você ";
+		mes "não acredita em mim, acredita?";
 		next;
 		mes "[Phendark]";
-		mes "You humans never leave";
-		mes "me alone! Why do you have";
-		mes "to bully me like this?! I'm";
-		mes "honestly not carrying anything";
-		mes "of value! Z-Zealotus, please!";
-		mes "Zealotus, heeeeeelp me~!";
+		mes "Vocês humanos nunca me";
+		mes "deixam em paz! Porque vocês têm que";
+		mes "me punir dessa forma?! Eu não";
+		mes "estou carregando nada de valor,";
+		mes "é sério! Z-Zealotus, por favor!";
+		mes "Zealotus, ajude-me...!";
 		emotion e_sob;
 
 
 		if(!(
-			countitem(1950) || countitem(1951) || countitem(1952) || 
-			countitem(1953) || countitem(1954) || countitem(1955) || 
-			countitem(1956) || countitem(1957) || countitem(1958) || 
-			countitem(1959) || countitem(1960) || countitem(1961) || 
-			countitem(1962) || countitem(1963) || countitem(1964) || 
-			countitem(1965) || countitem(1966) || countitem(1967) || 
-			countitem(1968) || countitem(1969) || countitem(1970) || 
+			countitem(1950) || countitem(1951) || countitem(1952) ||
+			countitem(1953) || countitem(1954) || countitem(1955) ||
+			countitem(1956) || countitem(1957) || countitem(1958) ||
+			countitem(1959) || countitem(1960) || countitem(1961) ||
+			countitem(1962) || countitem(1963) || countitem(1964) ||
+			countitem(1965) || countitem(1966) || countitem(1967) ||
+			countitem(1968) || countitem(1969) || countitem(1970) ||
 			countitem(1971)
 		))
 			close; // no whip equipped or in inventory
 
 		next;
 		mes "[" + strcharinfo(0) + "]";
-		mes "You're pathetic!";
-		mes "Aren't you supposed";
-		mes "to be a monster? You know";
-		mes "what Zealotus would do if";
-		mes "she were actually here?";
+		mes "Você é patético!";
+		mes "Você não deveria";
+		mes "agir como um monstro? Você sabe";
+		mes "o que Zealotus faria se ";
+		mes "ela estivesse aqui agora?";
 		next;
 		mes "[Phendark]";
-		mes "^333333*Sniff...*^000000";
-		mes "P-probably...";
-		mes "Probably whip me.";
+		mes "^333333*Snif...*^000000";
+		mes "Provavelmente...";
+		mes "Provavelmente me daria uma surra de chicote.";
 		next;
-		mes "^3355FFYou nonchalantly^000000";
-		mes "^3355FFbrandish your Whip.^000000";
+		mes "^3355FFVocê indiferentemente^000000";
+		mes "^3355FFbrande seu Chicote.^000000";
 		next;
 		mes "[" + strcharinfo(0) + "]";
-		mes "That's right.";
+		mes "É isso ai.";
 		next;
-		mes "^3355FF*Snap!*";
-		mes "*Snap!*";
-		mes "*Crack crack crack!*";
-		mes "*Snap snap snap crack!*^000000";
+		mes "^3355FFF*Chicoteia!*";
+		mes "*Chicoteia!*";
+		mes "*Crack Crack Crack*";
+		mes "*Chicoteia chicoteia chicoteia crack!*^000000";
 		next;
 		mes "[Phendark]";
-		mes "Oh! That stinging pain";
-		mes "that burns with bloodlust!";
-		mes "It's almost as good as";
-		mes "Zealtos's whip of love!";
+		mes "Oh! Essa dor lancinante";
+		mes "que queima como o fogo!";
+		mes "É quase tão boa quanto";
+		mes "o chicote do amor de Zealotus!";
 		next;
 		mes "[Phendark]";
 		mes "Zealotus...";
-		mes "She must be pissed";
-		mes "at me, but I just can't";
-		mes "stop being afraid of all";
-		mes "you humans! Damn it all!";
+		mes "Ela deve estar muito nervosa";
+		mes "comigo, mas eu não consigo";
+		mes "evitar de sentir medo";
+		mes "de todos os humanos! Danem-se todos eles!";
 		set ZLMASKQ,2;
 		close;
 	}
 	else if(ZLMASKQ == 2 || ZLMASKQ == 3)
 	{
 		if(countitem(7315) > 368 && ZLMASKQ == 3)
-		{	
+		{
 			mes "[Phendark]";
-			mes "Y-you again!";
-			mes "Why do you hound me?!";
-			mes "Th-there's nothing I can";
-			mes "give you, so please don't";
-			mes "hurt me! Oh, oh p-please...!";
+			mes "V-você de novo!";
+			mes "Porque você me atormenta!?";
+			mes "N-não há nada que eu possa";
+			mes "lhe dar, então por favor,";
+			mes "não me machuque! Oh, Oh por favor...!";
 			emotion e_swt2;
 			next;
-			switch( select( "Feed him Dark Crystal Fragment.", "Threaten him." ) )
+			switch( select( "Dar Fragmento de Cristal Negro para ele comer.", "Ameaçá-lo!" ) )
 			{
 			case 1:
 				mes "[Phendark]";
-				mes "What...? You want";
-				mes "me to eat these?";
-				mes "It doesn't seem natural,";
-				mes "but if Rybio says I should,";
-				mes "it might not be that bad.";
+				mes "Quê...? Você quer";
+				mes "que eu coma isso?";
+				mes "Não parece natural,";
+				mes "mas se Rybio diz que eu devo,";
+				mes "não pode ser tão ruim.";
 				next;
 				mes "...";
 				mes "......";
 				next;
 				mes "[Phendark]";
-				mes "What's supposed to";
-				mes "happen now? My inner";
-				mes "demon is supposed to";
-				mes "awaken by eating these?";
-				mes "That sounds ridiculous!";
-				mes "Though, I did just eat crystal.";
+				mes "O que deve";
+				mes "acontecer agora? Meu demônio";
+				mes "interior deve despertar";
+				mes "se eu comer essa coisa?";
+				mes "Isso é ridículo!";
+				mes "Além do que, eu já comi cristais.";
 				next;
 				mes "[Phendark]";
-				mes "Wh-whoa. Ugh!";
-				mes "My chest! Something's";
-				mes "burning inside! I c-can't--!";
-				mes "Can't think straight... I'm...";
-				mes "Slowly... Losing my humanity!";
+				mes "U-uou... Ugh!";
+				mes "Meu peito! Algo está ";
+				mes "me queimando por dentro! Não posso...!";
+				mes "Não consigo pensar direito... Eu...";
+				mes "estou lentamente... Perdendo minha humanidade!";
 				next;
 				mes "[Phendark]";
 				mes "Huh... Huuurg--!";
@@ -1870,9 +1868,9 @@ gl_prison1,97,104,1	script	Phendark#LhzHat	1202,{
 				mes "Grrrrr...!";
 				next;
 				mes "[Phendark]";
-				mes "^333333*Pant pant*^000000";
-				mes "What... just...";
-				mes "What happened?";
+				mes "^333333*Ofega Ofega*^000000";
+				mes "O que... acabou...";
+				mes "De acontecer?";
 				set ZLMASKQ,4;
 				delitem 7315,369;
 				close;
@@ -1880,50 +1878,50 @@ gl_prison1,97,104,1	script	Phendark#LhzHat	1202,{
 
 			case 2:
 				mes "[" + strcharinfo(0) + "]";
-				mes "So what happens";
-				mes "if I don't decide not";
-				mes "to hurt you? Whatcha";
-				mes "gonna do then, huh?";
+				mes "Então, que tal se";
+				mes "eu decidir não";
+				mes "machucá-lo? O que você ";
+				mes "vai fazer, hein?";
 				next;
 				mes "...";
 				mes "......";
 				next;
 				mes "[Phendark]";
-				mes "S-stop it!";
-				mes "Just--Just stop it!";
+				mes "P-pare!";
+				mes "P-pare com isso!";
 				close;
 			break;
 			}
 		}
 		mes "[Phendark]";
-		mes "Humans...";
-		mes "They're everywhere!";
-		mes "You guys--I can't...";
-		mes "You're torturing me!";
+		mes "Humanos...";
+		mes "Eles estão em todos os lugares!";
+		mes "Vocês... Eu não posso...";
+		mes "Você está me torturando!";
 		emotion e_sob;
 		close;
 	}
 	else if(ZLMASKQ == 4)
 	{
 		mes "[Phendark]";
-		mes "My chest was on fire,";
-		mes "like I was, I dunno,";
-		mes "burning with anger or";
-		mes "something. It's gone";
-		mes "now, but what were";
-		mes "those crystals?";
+		mes "Meu peito estava queimando,";
+		mes "como se eu estivesse, tipo...";
+		mes "queimando de raiva ou";
+		mes "algo assim. Já passou";
+		mes "agora, mas o que eram";
+		mes "aqueles cristais?";
 		close;
 	}
 	else if(ZLMASKQ == 5)
 	{
 		mes "[Phendark]";
-		mes "You again? Oh no,";
-		mes "you're not going to hurt";
-		mes "me or make me eat those";
-		mes "weird crystals again, are you?";
+		mes "Você de novo? Oh, não!";
+		mes "Você não vai me machucar";
+		mes "ou me fazer comer aqueles";
+		mes "cristais estranhos de novo, vai?";
 		next;
 		mes "^3131FF[" + strcharinfo(0) + "]^000000";
-		switch( select( "Rybio", "Injustice", "Zealotus" ) )
+		switch( select( "Rybio", "Injustiça", "Zealotus" ) )
 		{
 		case 1:
 			mes "Rybio";
@@ -1931,7 +1929,7 @@ gl_prison1,97,104,1	script	Phendark#LhzHat	1202,{
 		break;
 
 		case 2:
-			mes "Injustice";
+			mes "Injustiça";
 			set @temp1,2;
 		break;
 
@@ -1940,38 +1938,38 @@ gl_prison1,97,104,1	script	Phendark#LhzHat	1202,{
 			set @temp1,3;
 		break;
 		}
-		switch( select( "hates", "likes" ) )
+		switch( select( "Odeia", "Gosta" ) )
 		{
 		case 1:
-			mes "hates";
+			mes "Odeia";
 			set @temp2,1;
 		break;
 
 		case 2:
-			mes "likes";
+			mes "Gosta";
 			set @temp2,2;
 		break;
 		}
-		switch( select( "Rybio.", "Injustice.", "Phendark.", "Zealotus." ) )
+		switch( select( "Rybio.", "Injustiça.", "Phendark.", "Zealotus." ) )
 		{
 		case 1:
 			mes "Rybio.";
 		break;
 
 		case 2:
-			mes "Injustice.";
+			mes "Injustiça.";
 		break;
 
 		case 3:
 			if((@temp1 == 1 || @temp1  == 2) && @temp2 == 1)
 			{
 				mes "[Phendark]";
-				mes "I can't believe";
-				mes "something like that!";
-				mes "Oh, that doesn't matter.";
-				mes "Zealotus is too good for me.";
-				mes "I'm not even worthy of tasting";
-				mes "the sting of her Love Whip.";
+				mes "Não acredito numa";
+				mes "coisa dessas!";
+				mes "Bem, isso não importa.";
+				mes "Zealotus é boa demais pra mim.";
+				mes "Eu não sou nem um pouco merecedor de provar";
+				mes "o calor de seu Chicote do Amor.";
 				emotion e_sob;
 				close;
 			}
@@ -1980,25 +1978,25 @@ gl_prison1,97,104,1	script	Phendark#LhzHat	1202,{
 				mes "[Phendark]";
 				mes "...";
 				mes "......";
-				mes "Hates me?";
-				mes "N-no, that can't--";
-				mes "I didn't, that doesn't--";
+				mes "Me odeia?";
+				mes "N-não, isso não pode ser...";
+				mes "Eu não, isso não...";
 				next;
 				mes "[Phendark]";
-				mes "Huh...?";
-				mes "What is that";
-				mes "supposed to mean?";
+				mes "Hã...?";
+				mes "O que isso";
+				mes "significa?";
 				close;
 			}
 			else if(@temp1 == 3 && @temp2 == 2)
 			{
 				mes "[Phendark]";
-				mes "I can't believe";
-				mes "something like that!";
-				mes "Oh, that doesn't matter.";
-				mes "Zealotus is too good for me.";
-				mes "I'm not even worthy of tasting";
-				mes "the sting of her Love Whip.";
+				mes "Não acredito numa";
+				mes "coisa dessas!";
+				mes "Bem, isso não importa.";
+				mes "Zealotus é boa demais pra mim.";
+				mes "Eu não sou nem um pouco merecedor de provar";
+				mes "o calor de seu Chicote do Amor.";
 				emotion e_sob;
 				close;
 			}
@@ -2008,47 +2006,47 @@ gl_prison1,97,104,1	script	Phendark#LhzHat	1202,{
 			mes "Zealotus.";
 		break;
 		}
-		switch( select( "Insult him.", "Apologize." ) )
+		switch( select( "Insultá-lo.", "Se desculpar." ) )
 		{
 		case 1:
 			mes "[" + strcharinfo(0) + "]";
-			mes "First of all,";
-			mes "what exactly sets";
-			mes "you apart from all the";
-			mes "other eligible monsters";
-			mes "that she can choose from?";
-			mes "Not like you're much better...";
+			mes "Primeiro de tudo,";
+			mes "o que exatamente separa";
+			mes "você de todos os";
+			mes "outros monstros que";
+			mes "ela poderia escolher?";
+			mes "Não que você seja muito melhor...";
 			next;
 			mes "[Phendark]";
 			mes "...";
 			mes "......";
 			next;
-			switch( select( "Break his pride.", "Tell him you were joking." ) )
+			switch( select( "Dobrar o orgulho dele.", "Dizer que você estava brincando." ) )
 			{
 			case 1:
 				mes "^3131FF[" + strcharinfo(0) + "]^000000";
-				mes "I mean, there are guys";
-				mes "like Bloody Murderer out";
-				mes "there who are more evil";
-				mes "than you, and best of all,";
-				mes "not afraid of humans!";
+				mes "Quero dizer, há caras como";
+				mes "o Serial Killer soltos por";
+				mes "aí que são mais malvados";
+				mes "que você, e acima de tudo,";
+				mes "eles não têm medo de humanos!";
 				next;
-				switch( select( "Go for the low blow.", "Try to salvage his confidence." ) )
+				switch( select( "Mandar um golpe baixo.", "Tentar recuperar a confiança dele." ) )
 				{
 				case 1:
 					mes "[" + strcharinfo(0) + "]";
-					mes "You know, me and Zealotus";
-					mes "were actually talking about";
-					mes "you recently. She told me that";
-					mes "the sight of you makes her";
-					mes "feel sick! I mean, what kind";
-					mes "of monster is afraid of humans?";
+					mes "Sabe, eu e Zealotus";
+					mes "estávamos falando sobre";
+					mes "você recentemente. Ela me disse que";
+					mes "só de ver você a";
+					mes "deixa enojada! Quero dizer, que tipo de";
+					mes "monstro tem medo de humanos?";
 					next;
 					mes "[" + strcharinfo(0) + "]";
-					mes "Now you've reached the";
-					mes "point where even Injustice";
-					mes "is manlier than you now,";
-					mes "if you know what I mean!";
+					mes "Agora que você chegou";
+					mes "ao ponto de até mesmo o Injustiçado";
+					mes "ser mais corajoso que você,";
+					mes "se entende o que quero dizer!";
 					mes "Hahahahahahahahaha!";
 					next;
 					mes "[Phendark]";
@@ -2068,15 +2066,15 @@ gl_prison1,97,104,1	script	Phendark#LhzHat	1202,{
 					next;
 					mes "[Phendark]";
 					mes "GRRRRRR!";
-					mes "THAT'S ENOUGH!";
+					mes "CHEGA!!!";
 					emotion e_ag;
 					next;
 					mes "[Phendark]";
-					mes "I don't care who the";
-					mes "hell she is, I'm going";
-					mes "to see Zealotus and give";
-					mes "that tramp a piece of my";
-					mes "mind! Grrrr! She'll be sorry!";
+					mes "Eu não dou a mínima para ";
+					mes "quem ela seja, eu vou";
+					mes "procurar Zealotus e dizer-lhe";
+					mes "tudo o que penso... aquela";
+					mes "idiota! Grrrr! Ela vai se arrepender!";
 					set ZLMASKQ,6;
 					emotion e_an;
 					close;
@@ -2084,20 +2082,20 @@ gl_prison1,97,104,1	script	Phendark#LhzHat	1202,{
 
 				case 2:
 					mes "^3131FF[" + strcharinfo(0) + "]^000000";
-					mes "But know that I think";
-					mes "about it, maybe you look";
-					mes "much tougher than that";
-					mes "Bloody Murderer guy.";
+					mes "Mas, pensando";
+					mes "bem, talvez você pareça";
+					mes "bem mais durão do que";
+					mes "aquele Serial Killer.";
 					next;
 					mes "[Phendark]";
 					mes "*Sniff sniff*";
-					mes "You really think so?";
+					mes "Você acha mesmo?";
 					next;
 					mes "...";
 					mes "......";
 					next;
 					mes "[" + strcharinfo(0) + "]";
-					mes "...Yeeeeeah.";
+					mes "...Siiiiiiiiiiiiiim.";
 					close;
 				break;
 				}
@@ -2105,17 +2103,17 @@ gl_prison1,97,104,1	script	Phendark#LhzHat	1202,{
 
 			case 2:
 				mes "[" + strcharinfo(0) + "]";
-				mes "But now that I think";
-				mes "about it, you actually";
-				mes "are much better than all";
-				mes "those other monsters.";
-				mes "That stuff I said before?";
-				mes "I was just kidding you.";
+				mes "Mas, pensando";
+				mes "bem, você é muito";
+				mes "melhor do que todos";
+				mes "os outros monstros.";
+				mes "As coisas que eu disse antes?";
+				mes "Eu só estava brincando com você.";
 				next;
 				mes "[Phendark]";
 				mes "^333333*Sniff!*^000000";
-				mes "You're...";
-				mes "Not helping!";
+				mes "Você não...";
+				mes "está ajudando!";
 				close;
 			break;
 			}
@@ -2123,17 +2121,17 @@ gl_prison1,97,104,1	script	Phendark#LhzHat	1202,{
 
 		case 2:
 			mes "[" + strcharinfo(0) + "]";
-			mes "I...";
-			mes "I was just kidding!";
-			mes "How could she hate";
-			mes "somebody like you?";
+			mes "Eu...";
+			mes "Eu só estava brincando!";
+			mes "Como ela poderia odiar";
+			mes "alguém como você?";
 			next;
 			mes "[Phendark]";
-			mes "No... No.";
-			mes "You're right.";
-			mes "I don't deserve love.";
-			mes "Not from Zealotus or";
-			mes "from anybody else...";
+			mes "Não... Não.";
+			mes "Você tem razão.";
+			mes "Eu não mereço amor.";
+			mes "Não de Zealotus ou";
+			mes "de ninguém mais...";
 			close;
 		break;
 		}
@@ -2141,12 +2139,12 @@ gl_prison1,97,104,1	script	Phendark#LhzHat	1202,{
 	else if(ZLMASKQ > 5)
 	{
 		mes "[Phendark]";
-		mes "Zealotus! How dare";
-		mes "she say those things";
-		mes "against me! Less manly";
-		mes "than Injustice?! I'll just";
-		mes "have to prove her wrong!";
-		mes "Out the way, pithy human!";
+		mes "Zealotus! Como ela ousa";
+		mes "falar essas coisas";
+		mes "sobre mim! Menos corajoso";
+		mes "do que o Injustiçado?! Eu vou mostrar";
+		mes "para ela como ela está errada!";
+		mes "Saia do caminho, humano nojento!";
 		close;
 	}
 
@@ -2157,61 +2155,61 @@ gl_prison1,100,48,5	script	Rybio#LhzHat	1201,{
 	if(ZLMASKQ == 2)
 	{
 		mes "[Rybio]";
-		mes "You know, I usually just";
-		mes "run up and slash like crazy";
-		mes "once I see you humans, but";
-		mes "my heart's not in it today, so";
-		mes "I'm gonna give you just one";
-		mes "chance to run for your life.";
+		mes "Sabe, quando eu vejo humanos";
+		mes "eu costumo simplesmente atacar";
+		mes "e dilacerar, mas";
+		mes "meu coração está em paz hoje, então";
+		mes "eu vou te dar só uma chance";
+		mes "de correr por sua vida.";
 		next;
-		switch( select( "Talk about Phendark.", "Run for your life." ) )
+		switch( select( "Falar sobre Phendark.", "Correr por sua vida." ) )
 		{
 		case 1:
 			mes "[Rybio]";
-			mes "What th--? You know the";
-			mes "same Phendark I know?";
-			mes "Dayam, that's weird. But";
-			mes "yeah, him and Zealotus have";
-			mes "some kind of... I dunno what";
-			mes "it is, actually. Um, love?";
+			mes "O que dia...? Você conhece o";
+			mes "mesmo Phendark que eu?";
+			mes "Droga, isso é estranho. Mas";
+			mes "sim, ele e Zealotus têm um";
+			mes "tipo de... eu sei lá o que.";
+			mes "Acho que é.. na verdade... Hmmm, amor?";
 			next;
 			mes "[Rybio]";
-			mes "Anyway, Phendark has";
-			mes "been acting really weird";
-			mes "lately. I guess Zealotus";
-			mes "loved him to the point that";
-			mes "she abused him to the point";
-			mes "that he's scared of humans now.";
+			mes "De qualquer jeito, Phendark vem";
+			mes "agindo bem estranho";
+			mes "recentemente. Eu acho que Zealotus";
+			mes "o amava ao ponto de abusar";
+			mes "dele ao máximo, e agora ele";
+			mes "tem medo de qualquer humano.";
 			next;
 			mes "[Rybio]";
-			mes "Huh. You know what'd help?";
-			mes "Dark Crystal Fragments. It's";
-			mes "worthless to humans, but if";
-			mes "creatures of darkness eat it,";
-			mes "it brings out more of their";
-			mes "inner demon. Scary, huh?";
+			mes "Hmm. Você quer saber o que ajudaria?";
+			mes "Fragmentos de Cristal Negro. É inútil";
+			mes "para os humanos, mas se";
+			mes "as criaturas das trevas os comerem,";
+			mes "eles trazem à tona mais de seus";
+			mes "demônios interiores. Sinistro né?";
 			next;
 			mes "[Rybio]";
-			mes "Since Phendark's pretty big, and he's acting like a total wuss, you";
-			mes "you should probably get him to eat ^3131FF369 Dark Crystal Fragments^000000. Don't";
-			mes "worry, you should be able to find those all over Rune-Midgard.";
+			mes "Já que Phendark é tão grande e está agindo como um covarde completo, você ";
+			mes "terá que fazê-lo comer ^3131FF369 Fragmentos de Cristal Negro^000000. Não";
+			mes "se preocupe, você poderá encontrá-los facilmente por toda Rune-Midgard.";
 			next;
 			mes "[Rybio]";
-			mes "I dunno why a human";
-			mes "like you would want to";
-			mes "help one of us out, though.";
-			mes "What's in it for you, exactly?";
+			mes "Eu não entendo porque um humano";
+			mes "como você quer ajudar";
+			mes "um de nós.";
+			mes "O que você leva nessa, exatamente?";
 			set ZLMASKQ,3;
 			close;
 		break;
 
 		case 2:
 			mes "[Rybio]";
-			mes "That's right!";
-			mes "Run, get outta here!";
-			mes "If you're not fast enough,";
-			mes "I might eat you, human!";
-			mes "...Well... Probably not.";
+			mes "Isso mesmo!";
+			mes "Corre! Cai fora daqui!";
+			mes "Se você não for rápido,";
+			mes "Eu vou te comer, humano!";
+			mes "...Bem.... Provavelmente não.";
 			close;
 		break;
 		}
@@ -2219,49 +2217,49 @@ gl_prison1,100,48,5	script	Rybio#LhzHat	1201,{
 	else if(ZLMASKQ == 3)
 	{
 		mes "[Rybio]";
-		mes "I don't get why someone";
-		mes "like you, a seemingly heroic";
-		mes "adventurer, would want to help";
-		mes "out Phendark? Did Zealotus";
-		mes "blackmail you or something?";
+		mes "Eu não entendo por que alguém";
+		mes "como você, um provável destemido";
+		mes "aventureiro, iria querer ajudar";
+		mes "Phendark? A Zealotus";
+		mes "te chantageou ou algo parecido?";
 		next;
 		mes "[Rybio]";
-		mes "Well, you could";
-		mes "probably help him";
-		mes "by getting him to eat";
-		mes "^3131FF369 Dark Crystal Fragments^000000";
-		mes "to sort of stir up the demon";
-		mes "that sleeping within, you know?";
+		mes "Bem, você poderá ";
+		mes "ajudá-lo se";
+		mes "fizer com que ele coma";
+		mes "^3131FF369 Fragmentos de Cristal Negro^000000";
+		mes "para mais ou menos, despertar o demônio";
+		mes "que está adormecido dentro dele, sacou?";
 		close;
 	}
 	else if(ZLMASKQ == 4)
 	{
 		mes "[Rybio]";
-		mes "Feeding him all of those";
-		mes "Dark Crystal Fragments didn't";
-		mes "work? But that was supposed";
-		mes "to be foolproof! Dayam, what";
-		mes "the hell happened to Phendark's";
-		mes "inner demon?! Man oh man...";
+		mes "Alimentá-lo com todos aqueles";
+		mes "Fragmentos de Cristal Negro, não";
+		mes "funcionou? Mas isso deveria ser";
+		mes "à prova de falhas! Droga! O que";
+		mes "aconteceu com o demônio interior";
+		mes "de Phendark? Mas que coisa...";
 		next;
 		mes "[Rybio]";
-		mes "Well, I don't know what";
-		mes "else you could try. I mean,";
-		mes "maybe you could try motivating";
-		mes "him. Reverse psychology?";
-		mes "It's weird talking about this";
-		mes "with a human. Hahahaha~";
+		mes "Bem, eu não sei o que mais";
+		mes "você pode tentar. Quero dizer,";
+		mes "talvez você pudesse tentar motivá-lo.";
+		mes "Psicologia reversa?";
+		mes "É muito estranho falar sobre isso";
+		mes "com um humano. Hahahaha!";
 		set ZLMASKQ,5;
 		close;
 	}
 	else if(ZLMASKQ == 5)
 	{
 		mes "[Rybio]";
-		mes "Phendark sure looks";
-		mes "tough, but I guess even";
-		mes "he isn't totally evil. Yeah.";
-		mes "We monsters aren't all";
-		mes "bad... Just mostly bad.";
+		mes "Phendark com certeza";
+		mes "parece durão, mas acho que até mesmo";
+		mes "ele não é totalmente mal. Sim.";
+		mes "Nós monstros não somos totalmente";
+		mes "maus... Só um pouco.";
 		close;
 	}
 

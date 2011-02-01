@@ -14,7 +14,7 @@
 // |--------------------------------------------------------|
 // | Descrição: Database de restrições dos itens            |
 // |--------------------------------------------------------|
-// | Estrutura da Database:                                 |
+// | Estrutura do Banco de Dados:                           |
 // | itemID,Regra (ou área restrita)                        |
 // | Regras e Áreas restritas (que podem ser somadas):      |
 // | 1 - Restrito em PvP                                    |

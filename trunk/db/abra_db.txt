@@ -14,7 +14,7 @@
 // |--------------------------------------------------------|
 // | Descrição: Banco de Dados da magia Abracadabra.        |
 // |--------------------------------------------------------|
-// | Estrutura do Database:                                 |
+// | Estrutura do Banco de Dados:                           |
 // | ID da Habilidade, Nome da Habilidade,                  |
 // | Nível do Abracadabra, Taxa                             |
 // \________________________________________________________/

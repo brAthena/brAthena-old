@@ -15,7 +15,7 @@
 // | Descrição: Database das habilidades que dispensam      |
 // | tempo de conjuração.                                   |
 // |--------------------------------------------------------|
-// | Estrutura da Database:                                 |
+// | Estrutura do Banco de Dados:                           |
 // | <Skill id>,<Cast>,<Delay (optional)>                   |
 // |                                                        |
 // | Cast: 0 - everything affects the skill's cast time     |

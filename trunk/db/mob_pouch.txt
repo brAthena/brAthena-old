@@ -15,7 +15,7 @@
 // | Descrição: Database dos monstros invocáveis por        |
 // | 'Galha Sangrento'.                                     |
 // |--------------------------------------------------------|
-// | Estrutura da Database:                                 |
+// | Estrutura do Banco de Dados:                           |
 // | ID do Mob, Nome, Taxa                                  |
 // \________________________________________________________/
 

@@ -14,7 +14,7 @@
 // |--------------------------------------------------------|
 // | Descrição: Database de Quests.                         |
 // |--------------------------------------------------------|
-// | Estrutura da Database:                                 |
+// | Estrutura do Banco de Dados:                           |
 // | Quest ID,Time Limit,Target1,Val1,Target2,Val2,Target3, |
 // | Val3,Quest Title.                                      |
 // \________________________________________________________/
@@ -210,7 +210,7 @@
 3027,0,0,0,0,0,0,0,"Mudança de Classe: Monge"
 3028,0,0,0,0,0,0,0,"Mudança de Classe: Monge"
 3029,0,0,0,0,0,0,0,"Mudança de Classe: Monge"
-//3030,0,0,0,0,0,0,0,"Mudança de Classe: Monge" 
+//3030,0,0,0,0,0,0,0,"Mudança de Classe: Monge"
 3031,0,0,0,0,0,0,0,"Mudança de Classe: Monge"
 3032,0,0,0,0,0,0,0,"Mudança de Classe: Monge"
 3040,43200,0,0,0,0,0,0,"A Maldição do Bafomé"

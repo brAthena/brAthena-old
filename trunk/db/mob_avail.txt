@@ -14,7 +14,7 @@
 // |--------------------------------------------------------|
 // | Descrição: Database de uso compartilhado de sprites.   |
 // |--------------------------------------------------------|
-// | Estrutura da Database:                                 |
+// | Estrutura do Banco de Dados:                           |
 // | mob_id,sprite_id,equip <- Utiliza como sprite a mesma  |
 // | de outro mob                                           |
 // | sprite_id = 0 <- desativa o mob                        |

@@ -16,10 +16,10 @@
 // |--------------------------------------------------------|
 // | Legend: b: base, gn: growth min, gx: growth max,       |
 // | en: evolution min, ex: evolution max                   |
-// | Note: Only the growth values are in a 1/10 scale,      | 
+// | Note: Only the growth values are in a 1/10 scale,      |
 // | the other stats are 1/1                                |
 // | (eg: 5 gmAGI means 0.5 agi)                            |
-// | Estrutura da Database:                                 |
+// | Estrutura do Banco de Dados:                           |
 // | class,evo_class,name,foodID,hungryDelay,base_size,     |
 // | evo_size,race,element,bASPD,bHP,bSP,bSTR,bAGI,bVIT,    |
 // | bINT,bDEX,bLUK,gnHP,gxHP,gnSP,gxSP,gnSTR,gxSTR,gnAGI,  |

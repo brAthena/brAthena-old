@@ -15,11 +15,11 @@
 // | Descrição: Database contendo a lista de mapas do       |
 // | emulador                                               |
 // |--------------------------------------------------------|
-// | Estrutura da Database:                                 |
+// | Estrutura do Banco de Dados:                           |
 // | mapname<tab>index <- specifies index for this map      |
 // | mapname <- map will use index of previous map +1       |
 // | IDs para uso do inter-server.                          |
-// | That map index 0 is special and reserved for           | 
+// | That map index 0 is special and reserved for           |
 // | "error" status.                                        |
 // \________________________________________________________/
 //

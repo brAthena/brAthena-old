@@ -15,7 +15,7 @@
 // | Descrição: Database dos monstros invocáveis por        |
 // | 'Galho Seco'.                                          |
 // |--------------------------------------------------------|
-// | Estrutura da Database:                                 |
+// | Estrutura do Banco de Dados:                           |
 // | MobID,DummyName,Rate                                   |
 // \________________________________________________________/
 

@@ -15,6 +15,7 @@
 // | Descrição: Tabela de ajuste de dano das propriedades   |
 // | elementais, 4 níveis.                                  |
 // |--------------------------------------------------------|
+// | Estrutura do Banco de Dados:                           |
 // | Linha: Defesa elemental do alvo                        |
 // | Coluna: Ataque elemental do atacante                   |
 // \________________________________________________________/
