@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0192 - 02/02/2011 [Protimus]
+	* Adicionadas IDs dos status changes e classes no const.txt
+	* Traduzida & Revisada exp.txt
+	- Necessário ver um problema com classes que não estão nela.
+	* Adicionada exp2.txt que não estava na database.
+
 	r0186 - 31/01/2011 [brn0]
 	* Corrigida a fórmula de experiência, quando está em grupo, com a opção de dividir experiência.
 	* Adicionadas algumas duplicatas para o NPC estilista.
