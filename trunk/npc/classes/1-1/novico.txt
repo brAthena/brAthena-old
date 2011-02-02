@@ -8,7 +8,7 @@
 // |                                                        |
 // |                 brAthena Script                        |
 // |--------------------------------------------------------|
-// | Nome do Script: Quest do Noviço    	       	   		|
+// | Nome do Script: Quest do Noviço    	       	      |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
@@ -16,8 +16,9 @@
 // |--------------------------------------------------------|
 // | Descrição: Mudança de Classe para Noviço               |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
+// | Changelog:                                             |
 // | 1.0 Script Traduzido [Protimus]                        |
+// | 1.1 Script Revisado [insidemybrain]                    |
 // \________________________________________________________/
 
 prt_church,184,41,4	script	Necrus#aco	60,{
@@ -26,14 +27,14 @@ prt_church,184,41,4	script	Necrus#aco	60,{
 			if (Class == Job_Novice_High) {
 				mes "[Necrus]";
 				mes "Depois de muito tempo, você voltou a este lugar.";
-				mes "Você tem ouvido, visto e experimentado muitas coisas.";
+				mes "Você deve ter ouvido, visto e experimentado muitas coisas.";
 				next;
 				if (getskilllv(1) < 9) {
 					mes "[Necrus]";
 					mes "Posso torná-lo um Noviço, mas será necessário reaprender os fundamentos.";
 					next;
 					mes "[Necrus]";
-					mes "OK... Esperarei aqui por você.";
+					mes "Ok... Esperarei aqui por você.";
 					mes "Cuide-se.";
 					close;
 				}
@@ -59,7 +60,7 @@ prt_church,184,41,4	script	Necrus#aco	60,{
 		else {
 			mes "[Necrus]";
 			mes "Você renasceu depois de muito tempo.";
-			mes "Você tem ouvido, visto e experimentado muitas coisas.";
+			mes "Você deve ter ouvido, visto e experimentado muitas coisas.";
 			next;
 			mes "[Necrus]";
 			mes "Entretanto, suas experiências de vida não condizem com o caminho de um Noviço.";
@@ -70,7 +71,7 @@ prt_church,184,41,4	script	Necrus#aco	60,{
 	mes "[Necrus]";
 	mes "O que você procura na casa do Senhor?";
 	next;
-	switch(select("Eu desejo me tornar um Noviço.:Como me torno um noviço?:Eu vim olhar os vitrais.")) {
+	switch(select("Eu desejo me tornar um Noviço:Como me torno um noviço?:Eu vim olhar os vitrais")) {
 	case 1:
 		mes "[Necrus]";
 		if (BaseJob == Job_Acolyte) {
@@ -78,7 +79,7 @@ prt_church,184,41,4	script	Necrus#aco	60,{
 			close;
 		}
 		else if (BaseJob != Job_Novice) {
-			mes "Vejo que você já tem uma classe, desejo sucesso a você!";
+			mes "Vejo que você já tem uma classe definida, desejo sucesso a você!";
 			close;
 		}
 		if (job_acolyte_q == 0) {
@@ -162,18 +163,18 @@ prt_church,184,41,4	script	Necrus#aco	60,{
 			completequest 1003;
 		}
 		mes "[Necrus]";
-		mes "Tenha sempre Deus em seu coração, e seja nas horas de tranquilidade ou no calor da batalha, nunca se esqueça Dele, que nos ama tanto apesar de sermos imperfeitos.";
+		mes "Tenha sempre Deus em seu coração, seja nas horas de tranquilidade ou no calor da batalha, nunca se esqueça Dele, que nos ama tanto apesar de sermos imperfeitos.";
 		next;
 		mes "[Necrus]";
 		mes "Do mesmo modo que você não hesitou em sua penitência, eu espero que você nunca hesite frente às tentações do pecado.";
 		close;
 	case 2:
 		mes "[Necrus]";
-		mes "Os pré-requisitos para se tornar um Noviço são dois,";
-		mes "Por favor, ouça com atenção.";
+		mes "Os pré-requisitos para se tornar um Noviço são dois.";
+		mes "Por favor, ouça-os com atenção.";
 		next;
 		mes "[Necrus]";
-		mes "Antes de tudo, você deve alcançar Nível de Classe 9 como Aprendiz.";
+		mes "Antes de tudo, você deve alcançar Nível 9 de Classe como Aprendiz.";
 		mes "Com esse nível, será possível que você realize uma peregrinação em nome do Senhor.";
 		next;
 		mes "[Necrus]";
@@ -230,7 +231,7 @@ prt_fild03,365,255,2	script	Irmão Simão#aco	89,{
 				mes "Eu espero que a sua Fé nunca falhe nos anos de provação que estão por vir.";
 				next;
 				mes "[Irmão Simão]";
-				mes "Entretando, as lições que você veio aprender aqui era as que você já esperava.";
+				mes "Entretanto, as lições que você veio aprender aqui eram as que você já esperava.";
 				next;
 				mes "[Irmão Simão]";
 				mes "Eu mandarei a notícia de que você chegou até aqui para o Necrus.";
@@ -265,7 +266,7 @@ prt_fild03,365,255,2	script	Irmão Simão#aco	89,{
 			mes "Saudações.";
 			next;
 			mes "[Irmão Simão]";
-			mes "Seja bem vindo, sinta-se avontade para sentar e contemplar a palavra do Senhor comigo."; 
+			mes "Seja bem vindo, sinta-se a vontade para sentar e contemplar a palavra do Senhor comigo."; 
 			mes "Este lugar é lindo, mesmo quando o perigo nos acompanha, podemos sentir a serenidade dele...";
 			close;
 		}
@@ -338,7 +339,7 @@ prt_fild00,208,218,6	script	Irmão Bartolomeu#3aco	98,{
 	if (BaseJob == Job_Novice) {
 		if (job_acolyte_q == 8) {
 			mes "Eu acho melhor você começar o seu caminho de volta...";
-			mes "Ou você quer ficar aqui comigo vendo a grama crescer?!?";
+			mes "Ou você quer ficar aqui comigo vendo a grama crescer!?";
 			close;
 		}
 		if (job_acolyte_q != 0) {
@@ -388,7 +389,7 @@ prt_fild00,208,218,6	script	Irmão Bartolomeu#3aco	98,{
 		}
 		else {
 			mes "Você tem algo para me dizer? Por que infelizmente para você,";
-			mes "Eu não tenho nada.";
+			mes "eu não tenho nada.";
 			close;
 		}
 	}

@@ -16,15 +16,16 @@
 // |--------------------------------------------------------|
 // | Descrição: Mudança de Classe para Espadachim           |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
+// | Changelog:               	                        |
 // | 1.0 Script Traduzido [Protimus]                        | 
+// | 1.1 Script Revisado [insidemybrain]                    |
 // \________________________________________________________/
 
 izlude_in,74,172,4	script	Espadachim#swd_1	119,{
 	if (Upper == 1) {
 		if (Class == Job_Novice_High && (ADVJOB == Job_Lord_Knight || ADVJOB == Job_Paladin)) {
 			mes "[Espadachim]";
-			mes "Haha, Eu sabia!";
+			mes "Haha, eu sabia!";
 			mes "Você quer voltar a ser um espadachim.";
 			next;
 			mes "[Espadachim]";
@@ -33,10 +34,10 @@ izlude_in,74,172,4	script	Espadachim#swd_1	119,{
 			if (getskilllv("NV_BASIC") < 9) {
 				mes "[Espadachim]";
 				mes "Agora estou meio ocupado, vá lá fora";
-				mes "mes e pratique com a sua espada!! Quer dizer, treine mais.";
+				mes "e pratique com a sua espada!! Quero dizer... Treine mais.";
 				next;
 				mes "[Espadachim]";
-				mes "Volte quando tiver Nível 9 de Classe e aprender as Habilidades Básicas!";
+				mes "Volte quando tiver Nível 9 de Classe e aprenda as Habilidades Básicas!";
 				close;
 			}
 			mes "[Espadachim]";
@@ -58,7 +59,7 @@ izlude_in,74,172,4	script	Espadachim#swd_1	119,{
 			mes "Sou um membro da Guilda dos Espadachins.";
 			next;
 			mes "[Espadachim]";
-			mes "Maldição, que sono...hmm? O que é isso?";
+			mes "Maldição, que sono...Hmm? O que é isso?";
 			mes "Se você não tem nada para tratar aqui, siga o seu caminho.";
 			close;
 		}
@@ -66,7 +67,7 @@ izlude_in,74,172,4	script	Espadachim#swd_1	119,{
 	mes "[Espadachim]";
 	mes "Bem-vindo à Associação dos Espadachins! Em que posso ajudá-lo?";
 	next;
-	switch(select("Mudança de Classe:Sobre os Espadachins.:Sobre os requisitos da Classe.:Cancelar.")) {
+	switch(select("Mudança de Classe:Sobre os Espadachins:Sobre os requisitos da Classe:Cancelar")) {
 	case 1:
 		if (BaseJob == Job_Swordman) {
 			mes "[Espadachim]";
@@ -108,7 +109,7 @@ izlude_in,74,172,4	script	Espadachim#swd_1	119,{
 			}
 			else {
 				mes "[Espadachim]";
-				mes "Ah é? Tudo bem, volte quando tiver mudado de idéia.";
+				mes "Ah é? Tudo bem, volte quando mudar de idéia.";
 				close;
 			}
 		}
@@ -149,9 +150,9 @@ izlude_in,74,172,4	script	Espadachim#swd_1	119,{
 		mes "O Espadachim é o melhor para uma luta por 3 motivos!";
 		next;
 		mes "[Espadachim]";
-		mes "Primeiro, Espadachins têm um HP maior.";
-		mes "Segundo,eles podem usar mais tipos de armas que os outros.";
-		mes "Terceiro, a maioria das habilidades dos Espadachins são de ataques físicos.";
+		mes "Primeiro: Espadachins têm um HP maior.";
+		mes "Segundo: eles podem usar mais tipos de armas que os outros.";
+		mes "Terceiro: a maioria das habilidades dos Espadachins são de ataques físicos.";
 		next;
 		mes "[Espadachim]";
 		mes "Uma explicação simples, mas é tudo que um calouro como você precisa saber.";
@@ -162,9 +163,9 @@ izlude_in,74,172,4	script	Espadachim#swd_1	119,{
 		mes "Deseja se tornar um Espadachim!?";
 		if (BaseJob != Job_Novice) {
 			if (BaseJob == Job_Swordman)
-				mes "....mas você já é um Espadachim...";
+				mes ".... mas você já é um Espadachim ...";
 			else
-				mes "Mas você já é de outra classe... É tarde demais para se tornar um Espadachim.";
+				mes "Você já é de outra classe... É tarde demais para se tornar um Espadachim.";
 		}
 		next;
 		mes "[Espadachim]";
@@ -210,7 +211,7 @@ izlude_in,62,170,6	script	Espadachim#swd_2	85,{
 		mes "Pare! Você quer fazer o Teste de Espadachim?";
 		next;
 		mes "[Espadachim]";
-		mes "Se quiser, inscreva-se no formulário antes!";
+		mes "Se quiser, inscreva-se nesse formulário antes!";
 		close;
 	}
 	else {
@@ -226,7 +227,7 @@ izlude_in,30,175,4	script	Swordman#swd_3	92,{
 	next;
 	mes "[Espadachim]";
 	mes "O objetivo deste teste é confirmar sua qualificação para ser um Espadachim. Como você sabe, Espadachins precisam de força física e de espírito!";
-	mes "Óbviamente, você pode ser rejeitado se não tiver talento.";
+	mes "Obviamente, você pode ser rejeitado se não tiver talento.";
 	next;
 	mes "[Espadachim]";
 	mes "A ^0083CFCondição de Sucesso^000000 é bem simples!";
@@ -264,7 +265,7 @@ izlude_in,30,163,0	script	Equipe do Hall do Teste#swd_1	105,{
 	}
 	else if (job_sword_q == 2) {
 		mes "Testando novamente....? Como quiser, eu gosto de pessoas que não temem um desafio! Tome isto e anime-se!";
-		getitem 512,5; //Apple
+		getitem 512,5; //Maçã
 		set job_sword_q,3;
 	}
 	else if (job_sword_q == 3)
