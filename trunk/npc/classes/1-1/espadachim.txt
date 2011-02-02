@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Quest do Espadachim	       	    	|
+// | Nome do Script: Quest do Espadachim                    |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
@@ -16,8 +16,8 @@
 // |--------------------------------------------------------|
 // | Descrição: Mudança de Classe para Espadachim           |
 // |--------------------------------------------------------|
-// | Changelog:               	                        |
-// | 1.0 Script Traduzido [Protimus]                        | 
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [Protimus]                        |
 // | 1.1 Script Revisado [insidemybrain]                    |
 // \________________________________________________________/
 
