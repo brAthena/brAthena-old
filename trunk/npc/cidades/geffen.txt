@@ -8,17 +8,16 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Cidade de Geffen		     	      |
+// | Nome do Script: Cidade de Geffen                       |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.9/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: NPCs da Cidade de Geffen	     		      |
+// | Descrição: NPCs da Cidade de Geffen                    |
 // |--------------------------------------------------------|
-// | Changelog:               	                        |
+// | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
-// | - Anotações		   			                  |
 // \________________________________________________________/
 
 geffen,59,143,0	script	Meera	91,{
@@ -75,7 +74,7 @@ geffen_in,164,109,0	script	Mago Stanza	64,{
 	}
 	else if (Class == Job_Novice)
 		mes "Apesar de você não poder usar magia nem nenhuma outra habilidade poderosa por enquanto, essa sabedoria poderá ajudá-lo no futuro, jovem Aprendiz...";
-	else 
+	else
 		mes "Apesar de você não ser formalmente treinado no uso da magia, você tem habilidades que usam energias místicas...";
 	next;
 	mes "[Stanza]";
@@ -179,7 +178,7 @@ geffen,111,48,0	script	Stacey	101,{
 		close;
 	}
 }
-	
+
 geffen_in,34,170,0	script	Theodoro	47,{
 	mes "[Theodoro]";
 	mes "Olá!";
@@ -343,8 +342,8 @@ OnTouch:
 				break;
 		}
 		set .@Main_gauche_hap,.@input * 9400;
-		if (Zeny < .@Main_gauche_hap) {	
-			mes "[Cara Suspeito]";	
+		if (Zeny < .@Main_gauche_hap) {
+			mes "[Cara Suspeito]";
 			mes "Sem dinheiro?";
 			mes "Quando o melhor negócio da sua vida seria fechado? Trágico, realmente trágico...";
 			close;
@@ -870,7 +869,7 @@ geffen_in,79,76,2	script	Mercador Daven	120,{
 	}
 	close;
 }
-	
+
 geffen_in,114,73,5	script	Hadenheim	709,{
 	mes "[Hans Hadenheim]";
 	mes "Nossa, o continente de Rune-Midgard é enorme! Ah, olá, jovem. Como vai?";
@@ -1331,7 +1330,7 @@ geffen_in,39,127,2	script	Vidente	704,{
 		close;
 	}
 }
-	
+
 geffen_in,109,72,2	script	Professor de Monstros	90,{
 	mes "[Estheres]";
 	mes "Olá, sou o especialista em Monstros daqui de Geffen. Você gostaria de saber alguma coisa?";
@@ -1344,10 +1343,10 @@ geffen_in,109,72,2	script	Professor de Monstros	90,{
 		mes "[Estheres]";
 		mes "Mas se você quiser caçar monstros fortes, pode cruzar a ponte a oeste e lutar com Kobolds.";
 		next;
-		mes "[Estheres]";		
+		mes "[Estheres]";
 		if (BaseLevel > 40)
 			mes "Você parece forte o suficiente para ir até lá. Mas se vir alguém com menos experiência atravessando a ponte, poderia avisá-lo do perigo.";
-		else 
+		else
 			mes "Mas se você está planejando ir lá, melhor não ir sozinho. Recomendo que você vá preparado se quiser lutar com esse tipo de monstros.";
 		break;
 	case 2:

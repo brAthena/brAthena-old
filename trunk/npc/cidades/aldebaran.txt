@@ -1139,7 +1139,7 @@ M_Menu:
 			"1700- 35 Poção Vermelha",M_2d, "1900- 50 Poção Vermelha",M_2e, "2100- 60 Poção Vermelha",M_2f,
 			"2300- 75 Poção Vermelha",M_2g, "2500- 85 Poção Vermelha",M_2h, "2800- 100 Poção Vermelha",M_2i,
 			"3000- 2ª Chance da Loteria!",M_2j, "Próxima lista",M_Menu, "Cancelar",M_End;
-		
+
 		M_2a:
 			if(RESRVPTS < 1100) goto sL_LowPts2;
 			mes "[Kafra]";
@@ -1242,7 +1242,7 @@ aldeba_in,88,161,3	script	Kafra#05	115,{
 		mes "Você tem a seguinte quantidade de pontos reservas especiais: ^5544FF"+RESRVPTS+"^000000.";
 		mes "Faça uma escolha e tenha sorte!!";
 		next;
-		menu "5000pts = 1ª Chance da loteria!",sM_1st, "7000pts = 2ª Chance da loteria!",sM_2nd, "10000pts = 3ª Chance da loteria!",sM_3rd, "Cancelar",M_End; 
+		menu "5000pts = 1ª Chance da loteria!",sM_1st, "7000pts = 2ª Chance da loteria!",sM_2nd, "10000pts = 3ª Chance da loteria!",sM_3rd, "Cancelar",M_End;
 
 		sM_1st:
 			if(RESRVPTS < 5000) goto sL_NotEnuf;
@@ -1371,12 +1371,12 @@ sF_Spin:
 //============================================================
 c_tower3,10,249,4	script	Guardião do Portal#ct	84,{
 	//Key_Of_Clock_Tower
-	callfunc "F_ClockTowerGate","4th",7026,"c_tower4",185,44; 
+	callfunc "F_ClockTowerGate","4th",7026,"c_tower4",185,44;
 }
 
 alde_dun03,264,16,4	script	Guardião do Portal#ct1	101,{
 	//Underground_Key
-	callfunc "F_ClockTowerGate","B4th",7027,"alde_dun04",79,267; 
+	callfunc "F_ClockTowerGate","B4th",7027,"alde_dun04",79,267;
 }
 
 function	script	F_ClockTowerGate	{
@@ -1455,7 +1455,7 @@ function	script	F_ClockTowerGate	{
 			mes "Por favor, você pode entrar.";
 			mes "Que Deus o abençoe ..";
 			close2;
-			delitem getarg(1),1; 
+			delitem getarg(1),1;
 			warp getarg(2),getarg(3),getarg(4);
 			end;
 		}

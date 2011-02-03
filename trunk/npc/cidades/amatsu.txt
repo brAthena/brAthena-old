@@ -8,17 +8,16 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Cidade de Amatsu	 	            |
+// | Nome do Script: Cidade de Amatsu                       |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.3/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: NPCs da Cidade de Amatsu                    |	
+// | Descrição: NPCs da Cidade de Amatsu                    |
 // |--------------------------------------------------------|
-// | Changelog:               	                        |
+// | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
-// | - Anotações		   			                  |
 // \________________________________________________________/
 
 // Amatsu Transportation
@@ -170,7 +169,7 @@ amatsu,230,160,3	script	Bela Donzela#ama	757,{
 	mes "Me dá arrepios.";
 	close;
 }
-	
+
 amatsu,179,107,4	script	John#ama	86,{
 	mes "[John]";
 	mes "Oi~";
@@ -227,7 +226,7 @@ amatsu,179,107,4	script	John#ama	86,{
 	mes "Acho que acabou...";
 	close;
 }
-	
+
 amatsu,205,163,3	script	Mimi#ama	759,{
 	mes "[Mimi]";
 	mes "Puhuhu~!";
@@ -245,7 +244,7 @@ amatsu,205,163,3	script	Mimi#ama	759,{
 	mes "Uma mulher sempre pode usar um pouco mais de maquiagem!";
 	close;
 }
-	
+
 amatsu,185,115,3	script	Homem Bêbado#ama	765,{
 	mes "[Kosake]";
 	mes "*Hiccup*...Minha esposa parece,";
@@ -285,7 +284,7 @@ amatsu,185,115,3	script	Homem Bêbado#ama	765,{
 	mes "Se você me pagar um drinque, eu penso no assunto...Hehehe...*Hiccup*..";
 	close;
 }
-	
+
 amatsu,217,179,1	script	Grandma#ama	760,{
 	mes "[Hatsue]";
 	mes "Estou preocupada com meu marido.";
@@ -297,7 +296,7 @@ amatsu,217,179,1	script	Grandma#ama	760,{
 	mes "para o bar e começou a beber de novo? Ele não tem o mínimo caráter... *Suspiro*";
 	close;
 }
-	
+
 amatsu,287,266,3	script	Jyaburo#ama	766,{
 	mes "[Jyaburo]";
 	mes "Esse lugar é especial para mim.";
@@ -377,7 +376,7 @@ amatsu,269,221,1	script	Hutari Shioko#ama	758,{
 	mes "Sei que coisas boas acontecerão se você fizer isso.";
 	close;
 }
-	
+
 amatsu,243,202,3	script	Professora de Drama#ama	760,{
 	set jap_tree,2;
 	mes "[Garakame sensei]";
@@ -422,7 +421,7 @@ amatsu,243,202,3	script	Professora de Drama#ama	760,{
 	mes "dia, quando você estiver pronta.";
 	close;
 }
-	
+
 amatsu,283,203,1	script	Bonubonu#ama1	1323,{
 	end;
 }
@@ -456,7 +455,7 @@ amatsu,283,203,1	script	Bonubonu#ama2	111,{
 	mes "Ela é graciosa e miraculosa...";
 	close;
 }
-	
+
 amatsu,274,178,7	script	Veterinária#ama	735,{
 	set jap_tree,4;
 	mes "[Sakura Seiichi]";
@@ -509,7 +508,7 @@ amatsu,274,178,7	script	Veterinária#ama	735,{
 	mes "Finalmente, não pude mais ouvir sua voz. Não consigo saber o que ele estava tentando me dizer...^000000";
 	close;
 }
-	
+
 amatsu,262,197,1	script	Lendária Árvore	111,{
 	if (jap_tree == 1) {
 		mes "^3355FFComo disseram, essa árvore";

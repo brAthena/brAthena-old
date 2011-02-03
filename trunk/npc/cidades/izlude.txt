@@ -16,7 +16,7 @@
 // |--------------------------------------------------------|
 // | Descrição: NPCs da Cidade de Izlude                    |
 // |--------------------------------------------------------|
-// | Changelog:               	                        |
+// | Changelog:                                             |
 // | 1.0 Script Traduzido [Protimus & Dani]                 |
 // | 1.1 Script Revisado [Dani]                             |
 // \________________________________________________________/
@@ -26,7 +26,7 @@
 izlude,201,181,2	script	Marinheiro#izlude	100,{
 	mes "[Marinheiro]";
 	mes "Ei todo mundo!";
-	mes "Atenção, atenção!"; 
+	mes "Atenção, atenção!";
 	mes "Venha e naveguem";
 	mes "sobre um navio fascinante!";
 	mes "Depressa, depressa!";
@@ -217,7 +217,7 @@ izlude,150,143,2	script	Kylick#izlude	97,{
 	case 1:
 		mes "Você não acha o Binóculos";
 		mes "algo muito útil?! Você pode";
-		mes "ver todos os tipos de lugares...!"; 
+		mes "ver todos os tipos de lugares...!";
 		next;
 		mes "[Kylick]";
 		mes "Aqui em Izlude, somos responsáveis pela manutenção da paz não só em terra, mas também no mar. É por isso que esta cidade tem um enorme telescópio.";
@@ -261,7 +261,7 @@ izlude,56,126,2	script	Red#izlude::RedCebalis	85,{
 	mes "[Red]";
 	mes "É exatamente por isso que você é burro! O melhor do Espadachim?! Ainda me lembro da última vez que você usou Impacto Explosivo...";
 	next;
-	mes "[Red]";	
+	mes "[Red]";
 	mes "Você acabou tendo que correr de todos aqueles porings que você acertou com sua porcaria de habilidade! Seu fracote! Você acertou todos aqueles Porings ao seu redor e todos vieram te atacar.";
 	next;
 	mes "[Cebalis]";
@@ -311,7 +311,7 @@ izlude,56,126,2	script	Red#izlude::RedCebalis	85,{
 	mes "Não é?! ^EE0000Impacto Explosivo^000000 é A MELHOR!!! Você sabe o que fala! Não sei porque esse cabeça oca é tão teimoso.";
 	close;
 }
-	
+
 izlude,58,126,2	script	Cebalis#izlude	98,{
 	mes "[Red]";
 	mes "A única habilidade que um espadachim precisa é ^FF2400Golpe Fulminante^000000! Golpe Fulminante, Golpe Fulminante, SOMENTE ^FF2400Golpe Fulminante^000000! Não há necessidade de gastar tempo e esforço com habilidades menores... todo o resto é para covardes, frangotes!";
@@ -351,7 +351,7 @@ izlude,58,126,2	script	Cebalis#izlude	98,{
 	mes "O que você acha?";
 	next;
 	mes "[Red]";
-	mes "É... você mesmo... Qual você acha que é melhor? Uma habilidade de um único ataque poderoso, ^FF2400Golpe Fulminante^000000, ou dano por área, ^EE0000Impacto Explosivo^000000?";	
+	mes "É... você mesmo... Qual você acha que é melhor? Uma habilidade de um único ataque poderoso, ^FF2400Golpe Fulminante^000000, ou dano por área, ^EE0000Impacto Explosivo^000000?";
 	next;
 	if (select("Golpe Fulminante:Impacto Explosivo") == 1)  {
 		if (BaseClass == Job_Swordman) {
@@ -446,7 +446,7 @@ izlude,124,178,2	script	Soldado#izlude	105,{
 	close;
 }
 
-// Dentro de Izlude	
+// Dentro de Izlude
 //============================================================
 izlude_in,125,164,2	script	Aaron#izlude	65,{
 	mes "[Aaron]";

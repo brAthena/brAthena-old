@@ -18,11 +18,10 @@
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
-// | - Anotações		   			                  |
 // \________________________________________________________/
 
 // Payon
-//============================================================ 
+//============================================================
 payon,246,154,0	script	Lady#payon	90,{
 	mes "[Lady]";
 	mes "A long time ago,";
@@ -365,7 +364,7 @@ payon,132,235,3	script	Monster Scholar#02	98,{
 }
 
 // Inside Payon
-//============================================================ 
+//============================================================
 payon_in01,180,7,2	script	Waitress#payon	90,{
 	mes "[Pub Lady]";
 	mes "This place is always bustling with busy people. Little Novices come and go to become Archers, and everyone else is buying arrows while I have to stay here in this small shop.";
@@ -981,7 +980,7 @@ payon_in03,102,185,5	script	Guard#payon	708,{
 }
 
 // Payon Archer Village
-//============================================================ 
+//============================================================
 pay_arche,77,131,2	script	Archer Joe#payon	88,{
 	mes "[Archer Joe]";
 	mes "Payon!";

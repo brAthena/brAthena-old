@@ -8,17 +8,16 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Cidade de Hugel			      |
+// | Nome do Script: Cidade de Hugel                        |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.7/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: NPCs da Cidade de Hugel 		  	      |
+// | Descrição: NPCs da Cidade de Hugel                     |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
-// | - Anotações		   			                  |
 // \________________________________________________________/
 
 // Hugel
@@ -49,7 +48,7 @@ hugel,126,151,3	script	Emily	90,{
 	mes "estranho, não acha?";
 	close;
 }
- 
+
 hugel,86,165,5	script	Kayplas	896,{
 	mes "[Kayplas]";
 	mes "Ooh, eu realmente quero";
@@ -161,7 +160,7 @@ hu_in01,23,311,4	script	Loja de Suprimentos	898,{
 	next;
 	switch (select("Comprar:Cancelar")) {
 		case 1:
-			if (Zeny < 500) { 
+			if (Zeny < 500) {
 				mes "[Vendedor]";
 				mes "Sinto muito, você não tem";
 				mes "dinheiro suficiente.";
@@ -177,7 +176,7 @@ hu_in01,23,311,4	script	Loja de Suprimentos	898,{
 			mes "[Vendedor]";
 			mes "Obrigado e volte novamente!";
 			close;
-	}	
+	}
 }
 
 hu_in01,18,94,0	script	Meio expediente#1	49,{

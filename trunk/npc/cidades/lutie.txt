@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Cidade de Lutie			      |
+// | Nome do Script: Cidade de Lutie                        |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
@@ -16,9 +16,8 @@
 // |--------------------------------------------------------|
 // | Descrição: NPCs da Cidade de Lutie                     |
 // |--------------------------------------------------------|
-// | Changelog:               	                        |
+// | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
-// | - Anotações		   			                  |
 // \________________________________________________________/
 
 // Teleport to Lutie
@@ -189,7 +188,7 @@ switch (xmas_npc) {
 		mes "menino e se apresse.";
 		mes "Volte rápido~";
 		set xmas_npc,6;
-		close;	
+		close;
 	case 6:
 		mes "[Thachentze]";
 		mes "Hohohoho~";
@@ -388,7 +387,7 @@ xmas,176,236,4	script	Tio Peludo	712,{
 			mes "[Cantata]";
 			mes "^3355FFThachentze^000000, a mulher dos vegetais, sabe mais sobre isso. Você devia ir falar com ela. Feliz Natal!";
 			set xmas_npc,5;
-			close;		
+			close;
 		}else{
 			mes "[Cantata]";
 			mes "Humm... Foi Poze quem falou sobre mim? He he he! Sei sim sobre Snowysnow. Pode me considerar com o ponto fraco dele, já que...";

@@ -14,11 +14,10 @@
 // |--------------------------------------------------------|
 // | Versões eA/brA: 3.6/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: NPCs da Cidade de Jawaii	            	|   
+// | Descrição: NPCs da Cidade de Jawaii                    |
 // |--------------------------------------------------------|
-// | Changelog:               	                        |
+// | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
-// | - Anotações		   			                  |
 // \________________________________________________________/
 
 // Jawaii
@@ -394,7 +393,7 @@ jawaii,214,168,5	script	Auxiliar Lua de Mel#Jawaii	71,{
 		mes "[Auxiliar]";
 		if (zeny > 49999) {
 			set zeny,zeny-50000;
-			getitem 681,1; //Memory_Of_Wedding 
+			getitem 681,1; //Memory_Of_Wedding
 			mes "Muito obrigada~!";
 			mes "Por favor, lembre-se, você";
 			mes "deve usar isso com a";
@@ -604,7 +603,7 @@ jawaii_in,30,96,4	script	Funcionaria#jaw6	724,{
 	}
 	mes "Espero que você se divirta.";
 	close;
-	
+
 OnWelcome:
 	Emotion e_kis;
 	end;
@@ -694,7 +693,7 @@ OnTouch:
 	donpcevent "Funcionaria#jaw1::OnSolo";
 	end;
 }
-	
+
 jawaii_in,15,104,0	script	Garçonete#jawaii	80,{
 	if (checkweight(1201,1) == 0) {
 		mes "^3355FF * Espere um momento! *";
@@ -1093,7 +1092,7 @@ S_KillChar:
 	mes "[Garçom]";
 	return;
 }
-	
+
 jawaii_in,43,115,0	script	Cliente#jaw_1	97,{
 	if (!getpartnerid()) {
 		if (zeny > 99) {
@@ -1368,7 +1367,7 @@ prt_in,173,13,4	script	Cliente#SoloHan	86,{
 	mes "É a terceira vez essa semana que fico bêbado? Bachewcca, me ajude a contar!";
 	close;
 }
-	
+
 prt_in,170,14,0	script	Cliente#Bachewcca	89,{
 	mes "[Bachewcca]";
 	mes "..............";

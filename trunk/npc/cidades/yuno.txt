@@ -18,10 +18,10 @@
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
-// | - Anotações		   			                  |
 // \________________________________________________________/
+
 // Juno
-//============================================================ 
+//============================================================
 yuno,184,173,4	script	Freidrich#juno	729,{
 	if (rand(1,5) == 1) {
 		mes "[Freidrich]";
@@ -54,7 +54,7 @@ yuno,184,173,4	script	Freidrich#juno	729,{
 		close;
 	}
 }
-	
+
 yuno,337,227,4	script	Avó de Juno#juno	103,{
 	mes "[Avó]";
 	if (rand(1,50) == 1) {
@@ -193,7 +193,7 @@ yuno,165,111,4	script	Sábio de Juno#juno	123,,{
 		close;
 	}
 }
-	
+
 yuno,157,205,4	script	Artesão de Juno#juno	54,{
 	mes "[Artesão]";
 	mes "*Resmungos...*";
@@ -253,7 +253,7 @@ yuno,150,283,4	script	Soldado de Juno#juno	105,{
 	mes "É melhor você tomar cuidado quando encontrar este monstro. Destruirá seus equipamentos em um piscar de olhos.";
 	close;
 }
-	
+
 yuno,165,283,4	script	Soldado de Juno#2juno	105,{
 	mes "[Soldado de Juno]";
 	mes "Bem-Vindo a Juno, a cidade da elevação de espírito.";
@@ -269,7 +269,7 @@ yuno,165,283,4	script	Soldado de Juno#2juno	105,{
 	mes "O nome deste monstro, originou-se da história de um pobre geógrafo, que infelizmente, foi devorado por este monstro enquanto ele estava concentrado nos estudos.";
 	close;
 }
-	
+
 yuno,227,292,4	script	Soldado de Juno#3juno	105,{
 	mes "[Soldado de Juno]";
 	mes "Bem-Vindo a Juno, a cidade da elevação de espírito.";
@@ -281,7 +281,7 @@ yuno,227,292,4	script	Soldado de Juno#3juno	105,{
 	mes "Não se engane pelas aparências ou você vai ter sérios problemas.";
 	close;
 }
-	
+
 yuno,165,228,4	script	Soldado de Juno#4juno	105,{
 	mes "[Soldado de Juno]";
 	mes "Bem-Vindo a Juno, a cidade da elevação de espírito.";
@@ -296,7 +296,7 @@ yuno,165,228,4	script	Soldado de Juno#4juno	105,{
 	mes "As pernas do Bode são muito fortes, porque está sempre escalando penhascos quando não está matando inocentes.";
 	close;
 }
-	
+
 yuno,150,228,4	script	Soldado de Juno#5juno	105,{
 	mes "[Soldado de Juno]";
 	mes "Bem-Vindo a Juno, a cidade da elevação de espírito.";
@@ -312,7 +312,7 @@ yuno,150,228,4	script	Soldado de Juno#5juno	105,{
 	mes "brilhante jellopy que existe!";
 	close;
 }
-	
+
 yuno,334,182,4	script	Soldado de Juno#6juno	105,{
 	mes "[Soldado de Juno]";
 	mes "Bem vindo à Juno, a cidade da elevação de espírito.";
@@ -323,8 +323,8 @@ yuno,334,182,4	script	Soldado de Juno#6juno	105,{
 	mes "[Soldado de Juno]";
 	mes "Seu uso é restrito a Sábios, e aumenta a chance de inflingir ataques críticos. Assim, para os Sábios, esta adaga pode ser muito útil, bem como dar mais estilo a eles em batalhas.";
 	close;
-}	
-	
+}
+
 yuno,263,320,4	script	Soldado de Juno#7juno	105,{
 	mes "[Soldado de Juno]";
 	mes "Bem vindo à Juno, a cidade da elevação de espírito.";

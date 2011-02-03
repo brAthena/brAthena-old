@@ -69,7 +69,7 @@ alberta,131,139,2	script	Velho Bêbado	54,{
 	mes "^666666*Hiccup*^000000";
 	mes "O que... O que está";
 	mes "olhando? Desaparece!!";
-	next;	
+	next;
 	switch(select("Nada.","Irei lhe deixar em paz.")) {
 		case 1:
 			mes "[Deagle]";

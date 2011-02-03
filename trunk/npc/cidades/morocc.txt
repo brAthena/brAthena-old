@@ -16,9 +16,8 @@
 // |--------------------------------------------------------|
 // | Descrição: NPCs da Cidade de Morroc                    |
 // |--------------------------------------------------------|
-// | Changelog:               	                        |
+// | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
-// | - Anotações		   			                  |
 // \________________________________________________________/
 
 // Morroc
@@ -621,7 +620,7 @@ moc_fild16,199,212,4	script	 Tio assassinoo#moc	55,{
 	}
 }
 
-moc_fild16,211,254,4	script	assassino#07rhea_30	118,{	
+moc_fild16,211,254,4	script	assassino#07rhea_30	118,{
 	mes "[La Conte]";
 	mes "Quando gatunos são promovidos";
 	mes "para assassinoo, que são muito mais avançados,";

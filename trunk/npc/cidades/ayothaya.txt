@@ -22,7 +22,7 @@
 // \_______________________________________________________/
 
 // NPC de Transporte de Ayothaya
-//============================================================ 
+//============================================================
 alberta,247,42,3	script	Aibakthing#ayo	843,{
 	mes "[Aibakthing]";
 	mes "Hoo! Hah! Hoo! Hah!";
@@ -108,7 +108,7 @@ ayothaya,152,68,1	script	Aibakthing#ayo2	843,{
 }
 
 // NPCs Genéricos de Ayothaya
-//============================================================ 
+//============================================================
 ayothaya,189,120,3	script	Jovem#Thang	843,{
 	mes "[Thang]";
 	mes "Há uma antiga,";
@@ -124,7 +124,7 @@ ayothaya,189,120,3	script	Jovem#Thang	843,{
 	mes "Eu acho.";
 	close;
 }
-	
+
 ayothaya,171,152,5	script	Menina#Lalitha	838,{
 	set .@sit,rand(1,5);
 	if (.@sit > 0 && .@sit < 3) {
@@ -194,7 +194,7 @@ ayothaya,171,152,5	script	Menina#Lalitha	838,{
 	mes "E aí, novidades?";
 	close;
 }
-	
+
 ayothaya,143,102,5	script	Velho#ayothaya	842,{
 	mes "[Habitante]";
 	mes "Hmmm.";
@@ -239,7 +239,7 @@ ayothaya,143,102,5	script	Velho#ayothaya	842,{
 	mes "mariscos pelo menos uma vez.";
 	close;
 }
-	
+
 ayothaya,197,189,5	script	Jovem#1ayothaya	841,{
 	mes "[Kwan]";
 	mes "Uff~ Não está";
@@ -265,7 +265,7 @@ ayothaya,197,189,5	script	Jovem#1ayothaya	841,{
 	mes "De qualquer maneira, é realmente uma boa idéia que você fique longe dali. Espero que goste de Ayothaya, e que esteja sempre seguro~";
 	close;
 }
-	
+
 ayothaya,214,142,5	script	Jovem#5ayothaya	843,{
 	mes "[Detzi]";
 	mes "Em Ayothaya, temos nossas próprias artes marciais tradicionais. Nós, os homens jovens da aldeia, praticamos essa arte marcial afim de nos tornarmos fortes.";
@@ -274,7 +274,7 @@ ayothaya,214,142,5	script	Jovem#5ayothaya	843,{
 	mes "Porque você não aprende nossas artes marciais? Eu garanto que serão muito úteis em suas viagens.";
 	close;
 }
-	
+
 ayothaya,241,264,5	script	Jovem#5ayothaya2	843,{
 	mes "[Eik]";
 	mes "Ei...";

@@ -14,15 +14,14 @@
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.5/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: NPCs da Cidade de Kunlun		            |
+// | Descrição: NPCs da Cidade de Kunlun                    |
 // |--------------------------------------------------------|
-// | Changelog:               	                        |
+// | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
-// | - Anotações		   			                  |
 // \________________________________________________________/
 
 // Kunlun Transportation
-//============================================================ 
+//============================================================
 alberta,245,69,3	script	Apreciador de Kunlun#gon	776,{
 	mes "[Wa Bai Hu]";
 	mes "Bom dia~";
@@ -192,7 +191,7 @@ Kunlun,153,64,7	script	Kunlun Envoy#gon4	776,{
 }
 
 // Generic Kunlun NPCs
-//============================================================ 
+//============================================================
 Kunlun,200,82,3	script	Jian Chung Xun#gon	774,{
 	mes "[Jian Chung Xun]";
 	mes "Eu simplesmente adoro festivais!";

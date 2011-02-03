@@ -8,17 +8,16 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Cidade de Einbroch		            |
+// | Nome do Script: Cidade de Einbroch                     |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.8/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: NPCs da Cidade de Einbroch		      |
+// | Descrição: NPCs da Cidade de Einbroch                  |
 // |--------------------------------------------------------|
-// | Changelog:               	                        |
+// | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
-// | - Anotações		   			                  |
 // \________________________________________________________/
 
 einbroch,218,198,5	script	Mark#ein	855,{
@@ -228,7 +227,7 @@ einbroch,232,272,3	script	Funcionário Ferroviário#ein1::EinbrochTrain	852,{
 		close;
 	}
 }
-	
+
 einbroch,252,301,3	duplicate(EinbrochTrain)	Funcionário Ferroviário#ein2	852
 
 einbroch,259,326,3	script	Leslie#ein_1	846,{
@@ -276,7 +275,7 @@ einbroch,236,191,3	script	Tan#ein	855,{
 	mes "tempo, devia levar uma também.";
 	close;
 }
-	
+
 einbroch,228,121,5	script	Pequeno Toby#ein-1	855,{
 	mes "[Toby]";
 	mes "Com licença...";

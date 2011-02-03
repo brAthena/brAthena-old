@@ -8,17 +8,16 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Cidade de Einbech		            |
+// | Nome do Script: Cidade de Einbech                      |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.6/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: NPCs da Cidade de Einbech		   	      |
+// | Descrição: NPCs da Cidade de Einbech                   |
 // |--------------------------------------------------------|
-// | Changelog:               	                        |
+// | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
-// | - Anotações		   			                  |
 // \________________________________________________________/
 
 einbech,172,113,4	script	Nemuk#ein	855,{
@@ -426,7 +425,7 @@ ein_in01,279,92,3	script	Moça da Taberna#ein	854,{
 	mes "com bolinhos fresquinhos?";
 	close;
 }
-	
+
 ein_in01,277,95,7	script	Ryan Danger#air#einbech	855,{
 	mes "[R.D. Kim]";
 	mes "Oooh...";
@@ -478,7 +477,7 @@ ein_in01,277,95,7	script	Ryan Danger#air#einbech	855,{
 	mes "completamente bêbado!)";
 	close;
 }
-	
+
 ein_in01,281,85,3	script	Bêbado#einbech	849,{
 	mes "[Bêbado]";
 	mes "...^333333*Ich!*^000000...";
@@ -737,7 +736,7 @@ einbech,46,107,6	script	Shena#ein::EinMonsters	846,{
 		close;
 	}
 }
-	
+
 einbech,48,107,4	duplicate(EinMonsters)	Luda#ein	850,{
 
 einbech,148,242,5	script	Jung#ein	855,{
