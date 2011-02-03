@@ -8,17 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Cidade de Hugel			   			|
+// | Nome do Script: Cidade de Hugel			      |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.7/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: NPCs da Cidade de Hugel 		  			|
+// | Descrição: NPCs da Cidade de Hugel 		  	      |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
-// | 1.0 Tradução de Script [cleyton]                       |
-// | - Anotações		   			    |
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [cleyton]                         |
+// | - Anotações		   			                  |
 // \________________________________________________________/
 
 // Hugel

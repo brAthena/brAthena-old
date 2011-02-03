@@ -8,17 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Cidade de Brasilis		        	    |
+// | Nome do Script: Cidade de Brasilis		            |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.1/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: NPCs da Cidade de Brasilis		   			|
+// | Descrição: NPCs da Cidade de Brasilis		      |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
-// | 1.0 Tradução de Script [cleyton]                       |
-// | - Anotações		   			    |
+// | Changelog:               	                        |
+// | 1.0 Script Traduzido [cleyton]                         |
+// | - Anotações		   			                  |
 // \________________________________________________________/
 
 alberta,247,115,3	script	Brute Sailor#bra2	100,{

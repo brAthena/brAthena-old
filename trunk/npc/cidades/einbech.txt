@@ -8,17 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Cidade de Einbech		          		|
+// | Nome do Script: Cidade de Einbech		            |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.6/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: NPCs da Cidade de Einbech		   			|
+// | Descrição: NPCs da Cidade de Einbech		   	      |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
-// | 1.0 Tradução de Script [cleyton]                       |
-// | - Anotações		   			    |
+// | Changelog:               	                        |
+// | 1.0 Script Traduzido [cleyton]                         |
+// | - Anotações		   			                  |
 // \________________________________________________________/
 
 einbech,172,113,4	script	Nemuk#ein	855,{

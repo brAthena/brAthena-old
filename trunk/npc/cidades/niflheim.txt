@@ -16,9 +16,9 @@
 // |--------------------------------------------------------|
 // | Descrição: NPCs da Cidade de Niflheim                  |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
-// | 1.0 Tradução de Script [cleyton]                       |
-// | - Anotações		   			    |
+// | Changelog:               	                        |
+// | 1.0 Script Traduzido [cleyton]                         |
+// | - Anotações		   			                  |
 // \________________________________________________________/
 
 niflheim,52,147,3	script	Keedz#nif	796,{

@@ -16,9 +16,9 @@
 // |--------------------------------------------------------|
 // | Descrição: NPCs da Cidade de Prontera                  |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
-// | 1.0 Tradução de Script [cleyton]                       |
-// | - Anotações		   			    |
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [cleyton]                         |
+// | - Anotações		   			                  |
 // \________________________________________________________/
 
 // Prontera

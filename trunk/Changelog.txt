@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0197 - 03/02/2011 [insidemybrain]
+	* Corrigido o cabeçalho dos scripts da pasta Cidades
+	* Corrigidas as tabulações dos scripts da pasta Cidades
+
 	r0196 - 03/02/2011 [insidemybrain]
 	* Envio de traduções
 	- cidades/amatsu.txt
