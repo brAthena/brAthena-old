@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0200 - 03/02/2011 [Dani]
+	* Correção de erros apontados no map-server (seguindo r196)
+
 	r0199 - 03/02/2011 [Dani]
 	* Correção dos cabeçalhos da pasta npc/kafras completa
 	- Seguindo r196

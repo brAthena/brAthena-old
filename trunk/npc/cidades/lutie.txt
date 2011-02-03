@@ -819,7 +819,7 @@ xmas,146,136,4	script	Hashokii	715,{
 	}
 }
 
-xmas,206,168,4	script	Garoto	706,{
+xmas,206,168,4	script	Garoto#xmas	706,{
 	if (xmas_npc == 9) {
 		mes "[Charu Charu]";
 		mes "Errrm?";

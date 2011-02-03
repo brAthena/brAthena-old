@@ -167,7 +167,7 @@ gon_fild01,187,239,7	script	Apreciador de Kunlun#gon3	776,{
 	close;
 }
 
-Kunlun,153,64,7	script	Kunlun Envoy#gon4	776,{
+gonryun,153,64,7	script	Kunlun Envoy#gon4	776,{
 	mes "[Zhang Quing Long]";
 	mes "Por favor sinta-se a vontade.";
 	mes "Se você quiser voltar, ficarei";
@@ -192,7 +192,7 @@ Kunlun,153,64,7	script	Kunlun Envoy#gon4	776,{
 
 // Generic Kunlun NPCs
 //============================================================
-Kunlun,200,82,3	script	Jian Chung Xun#gon	774,{
+gonryun,200,82,3	script	Jian Chung Xun#gon	774,{
 	mes "[Jian Chung Xun]";
 	mes "Eu simplesmente adoro festivais!";
 	mes "Por isso amo essa cidade!";
@@ -201,7 +201,7 @@ Kunlun,200,82,3	script	Jian Chung Xun#gon	774,{
 	close;
 }
 
-Kunlun,268,88,3	script	Liang Zhun Bu#gon	776,{
+gonryun,268,88,3	script	Liang Zhun Bu#gon	776,{
 	mes "[Liang Zhun Bu]";
 	mes "Temos orgulho de ser uma";
 	mes "nação independente, e lutamos";
@@ -217,7 +217,7 @@ Kunlun,268,88,3	script	Liang Zhun Bu#gon	776,{
 	close;
 }
 
-Kunlun,118,111,5	script	Qian Yuen Shuang#gon	89,{
+gonryun,118,111,5	script	Qian Yuen Shuang#gon	89,{
 	mes "[Qian Yuen Shuang]";
 	mes "O prefeito da cidade é um";
 	mes "homem de coração aberto a todos.";
@@ -232,7 +232,7 @@ Kunlun,118,111,5	script	Qian Yuen Shuang#gon	89,{
 	close;
 }
 
-Kunlun,181,161,3	script	Jing Wen Zhen#gon	773,{
+gonryun,181,161,3	script	Jing Wen Zhen#gon	773,{
 	mes "[Jing Wen Zhen]";
 	mes "Os homens de nossa cidade";
 	mes "são bravos e corajosos.";
@@ -248,7 +248,7 @@ Kunlun,181,161,3	script	Jing Wen Zhen#gon	773,{
 	close;
 }
 
-Kunlun,113,135,6	script	Gatekeeper#gon	780,{
+gonryun,113,135,6	script	Gatekeeper#gon	780,{
 	mes "[Kunlun Guard]";
 	mes "Bem-vindo.";
 	mes "Aqui é a residência de Shi Yan Wen, prefeito de Kunlun.";
@@ -265,7 +265,7 @@ Kunlun,113,135,6	script	Gatekeeper#gon	780,{
 	close;
 }
 
-Kunlun,113,127,6	script	Gatekeeper#gon2	780,{
+gonryun,113,127,6	script	Gatekeeper#gon2	780,{
 	mes "[Kunlun Guard]";
 	mes "Bem-vindo.";
 	mes "Aqui é a residência de Shi Yan Wen, prefeito de Kunlun.";
@@ -331,7 +331,7 @@ gon_in,173,27,3	script	Yu Jiu Xia#gon	774,{
 	close;
 }
 
-Kunlun,166,196,3	script	Soldado#gon	780,{
+gonryun,166,196,3	script	Soldado#gon	780,{
 	if (b_sword < 7) {
 		mes "[Wa Qiu Wu]";
 		mes "Deixe-me dizer algo interessante";
@@ -392,7 +392,7 @@ Kunlun,166,196,3	script	Soldado#gon	780,{
 	close;
 }
 
-Kunlun,169,71,3	script	Guia#gon	770,{
+gonryun,169,71,3	script	Guia#gon01	770,{
 	mes "[Li Xi Jiao]";
 	mes "Bem-vindo a Kunlun!";
 	mes "Você gostou do lindo cenário";
