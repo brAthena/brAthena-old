@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0195 - 03/02/2011 [Heaven]
+	* Retiradas linhas sem necessidade
+	
 	r0194 - 03/02/2011 [Heaven]
 	* Modificado @mapinfo
 	- O tamanho do array era pequeno para a palavra "Desconhecido"

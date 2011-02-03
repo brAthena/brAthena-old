@@ -567,8 +567,6 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 			mobskill_event((TBL_MOB*)bl,src,gettick(),MSC_SKILLUSED|(skill_num<<16));
 	}
 
-	//
-
 	//Reduzindo 90% de dano do corpo fechado
 	if( sc->data[SC_STEELBODY] )
 		damage -= (90*damage)/100;
@@ -3021,10 +3019,6 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 struct Damage battle_calc_attack(int attack_type,struct block_list *bl,struct block_list *target,int skill_num,int skill_lv,int count)
 {
 	struct Damage d;
-	struct status_change *tsc=NULL;
-		
-	if (target) tsc = status_get_sc(target);
-
 	switch(attack_type) {
 	case BF_WEAPON: d = battle_calc_weapon_attack(bl,target,skill_num,skill_lv,count); break;
 	case BF_MAGIC:  d = battle_calc_magic_attack(bl,target,skill_num,skill_lv,count);  break;
@@ -3043,7 +3037,6 @@ struct Damage battle_calc_attack(int attack_type,struct block_list *bl,struct bl
 	}
 	else // Some skills like Weaponry Research will cause damage even if attack is dodged
 		d.dmg_lv = ATK_DEF;
-
 	return d;
 }
 
