@@ -4343,7 +4343,7 @@ ACMD_FUNC(mapinfo)
 	struct s_mapiterator* iter;
 	struct npc_data *nd = NULL;
 	struct chat_data *cd = NULL;
-	char direction[12];
+	char direction[13];
 	int i, m_id, chat_num, list = 0;
 	unsigned short m_index;
 	char mapname[24];

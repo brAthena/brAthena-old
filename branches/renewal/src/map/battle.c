@@ -250,11 +250,11 @@ int battle_attr_fix(struct block_list *src, struct block_list *target, int damag
 	ratio = attr_fix_table[def_lv-1][atk_elem][def_type];
 	if (sc && sc->count)
 	{
-		if(sc->data[SC_VOLCANO] && atk_elem == ELE_FIRE)
+		if(sc->data[SC_VOLCANO])
 			ratio += enchant_eff[sc->data[SC_VOLCANO]->val1-1];
-		if(sc->data[SC_VIOLENTGALE] && atk_elem == ELE_WIND)
+		if(sc->data[SC_VIOLENTGALE])
 			ratio += enchant_eff[sc->data[SC_VIOLENTGALE]->val1-1];
-		if(sc->data[SC_DELUGE] && atk_elem == ELE_WATER)
+		if(sc->data[SC_DELUGE])
 			ratio += enchant_eff[sc->data[SC_DELUGE]->val1-1];
 	}
 	if( atk_elem == ELE_FIRE && tsc && tsc->count && tsc->data[SC_SPIDERWEB] )
@@ -448,8 +448,8 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 			sce->val3&flag && sce->val4&flag)
 			damage -= damage*sc->data[SC_ARMOR]->val2/100;
 
-		if(sc->data[SC_ENERGYCOAT] && flag&BF_WEAPON
-			&& skill_num != WS_CARTTERMINATION)
+		//Todos os danos reduzidos, não importando a natureza
+		if(sc->data[SC_ENERGYCOAT])
 		{
 			struct status_data *status = status_get_status_data(bl);
 			int per = 100*status->sp / status->max_sp -1; //100% should be counted as the 80~99% interval
@@ -566,6 +566,12 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 	  if (skill_num)
 			mobskill_event((TBL_MOB*)bl,src,gettick(),MSC_SKILLUSED|(skill_num<<16));
 	}
+
+	//
+
+	//Reduzindo 90% de dano do corpo fechado
+	if( sc->data[SC_STEELBODY] )
+		damage -= (90*damage)/100;
 
 	return damage;
 }
@@ -1353,11 +1359,13 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					wd.damage = ((TBL_HOM*)src)->homunculus.intimacy ;
 					break;
 				}
+			case HW_MAGICCRASHER:
+				wd.damage += sstatus->matk_max + sstatus->batk;;
+				break;
 			default:
 			{
 				i = (flag.cri?1:0)|
 					(flag.arrow?2:0)|
-					(skill_num == HW_MAGICCRASHER?4:0)|
 					(!skill_num && sc && sc->data[SC_CHANGE]?4:0)|
 					(skill_num == MO_EXTREMITYFIST?8:0)|
 					(sc && sc->data[SC_WEAPONPERFECTION]?8:0);
@@ -2369,6 +2377,10 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 		status_zap(src, hp, 0);
 	}
 
+	//Aumentando em 20% o dano se afetado por Ataque Surpresa(Não acumula com Lex Aeterna)
+	if (sc->data[SC_RAID] && !sc->data[SC_AETERNA])
+		wd.damage += (20*wd.damage)/100;
+
 	return wd;
 }
 
@@ -2667,6 +2679,9 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 					ad.damage = 0;
 			}
 		}
+
+		if( skill_num == CR_GRANDCROSS )
+			ad.damage -= tstatus->def + tstatus->mdef;
 
 		if (sd && !(nk&NK_NO_CARDFIX_ATK)) {
 			short t_class = status_get_class(target);
@@ -3006,6 +3021,10 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 struct Damage battle_calc_attack(int attack_type,struct block_list *bl,struct block_list *target,int skill_num,int skill_lv,int count)
 {
 	struct Damage d;
+	struct status_change *tsc=NULL;
+		
+	if (target) tsc = status_get_sc(target);
+
 	switch(attack_type) {
 	case BF_WEAPON: d = battle_calc_weapon_attack(bl,target,skill_num,skill_lv,count); break;
 	case BF_MAGIC:  d = battle_calc_magic_attack(bl,target,skill_num,skill_lv,count);  break;
@@ -3024,6 +3043,7 @@ struct Damage battle_calc_attack(int attack_type,struct block_list *bl,struct bl
 	}
 	else // Some skills like Weaponry Research will cause damage even if attack is dodged
 		d.dmg_lv = ATK_DEF;
+
 	return d;
 }
 

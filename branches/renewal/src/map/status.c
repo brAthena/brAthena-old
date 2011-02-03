@@ -218,6 +218,7 @@ void initChangeTables(void)
 	add_sc( NPC_LICK             , SC_STUN            );
 	set_sc( NPC_HALLUCINATION    , SC_HALLUCINATION   , SI_HALLUCINATION   , SCB_NONE );
 	add_sc( NPC_REBIRTH          , SC_REBIRTH         );
+	set_sc( RG_RAID              , SC_RAID            , SI_RAID            , SCB_NONE );
 	add_sc( RG_RAID              , SC_STUN            );
 	set_sc( RG_STRIPWEAPON       , SC_STRIPWEAPON     , SI_STRIPWEAPON     , SCB_WATK );
 	set_sc( RG_STRIPSHIELD       , SC_STRIPSHIELD     , SI_STRIPSHIELD     , SCB_DEF );
@@ -236,7 +237,7 @@ void initChangeTables(void)
 	add_sc( CR_DEVOTION          , SC_DEVOTION        );
 	set_sc( CR_PROVIDENCE        , SC_PROVIDENCE      , SI_PROVIDENCE      , SCB_ALL );
 	set_sc( CR_DEFENDER          , SC_DEFENDER        , SI_DEFENDER        , SCB_SPEED|SCB_ASPD );
-	set_sc( CR_SPEARQUICKEN      , SC_SPEARQUICKEN    , SI_SPEARQUICKEN    , SCB_ASPD );
+	set_sc( CR_SPEARQUICKEN      , SC_SPEARQUICKEN    , SI_SPEARQUICKEN    , SCB_ASPD|SCB_CRI|SCB_FLEE );
 	set_sc( MO_STEELBODY         , SC_STEELBODY       , SI_STEELBODY       , SCB_DEF|SCB_MDEF|SCB_ASPD|SCB_SPEED );
 	add_sc( MO_BLADESTOP         , SC_BLADESTOP_WAIT  );
 	add_sc( MO_BLADESTOP         , SC_BLADESTOP       );
@@ -2321,7 +2322,7 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 	if (!battle_config.weapon_defense_type && status->def > battle_config.max_def)
 	{
 		status->def2 += battle_config.over_def_bonus*(status->def -battle_config.max_def);
-		status->def = (unsigned short)battle_config.max_def;
+		status->def = (signed char)battle_config.max_def;
 	}
 
 // ----- EQUIPMENT-MDEF CALCULATION -----
@@ -3597,6 +3598,8 @@ static signed short status_calc_critical(struct block_list *bl, struct status_ch
 		critical += sc->data[SC_TRUESIGHT]->val2;
 	if(sc->data[SC_CLOAKING])
 		critical += critical;
+	if (sc->data[SC_SPEARQUICKEN])
+		critical += sc->data[SC_SPEARQUICKEN]->val3;
 
 	return (short)cap_value(critical,10,SHRT_MAX);
 }
@@ -3674,6 +3677,8 @@ static signed short status_calc_flee(struct block_list *bl, struct status_change
 		flee += 10 + sc->data[SC_SPEED]->val1 * 10;
 	if(sc->data[SC_MERC_FLEEUP])
 		flee += sc->data[SC_MERC_FLEEUP]->val2;
+	if (sc->data[SC_SPEARQUICKEN])
+		flee += sc->data[SC_SPEARQUICKEN]->val4;
 
 	return (short)cap_value(flee,1,SHRT_MAX);
 }
@@ -3703,8 +3708,6 @@ static signed char status_calc_def(struct block_list *bl, struct status_change *
 	if(sc->data[SC_BARRIER])
 		return 100;
 	if(sc->data[SC_KEEPING])
-		return 90;
-	if(sc->data[SC_STEELBODY])
 		return 90;
 	if(sc->data[SC_ANGELUS])
 		def += def * sc->data[SC_ANGELUS]->val2/100;
@@ -3779,8 +3782,6 @@ static signed char status_calc_mdef(struct block_list *bl, struct status_change 
 		return 0;
 	if(sc->data[SC_BARRIER])
 		return 100;
-	if(sc->data[SC_STEELBODY])
-		return 90;
 	if(sc->data[SC_SKA])
 		return 90;
 	if(sc->data[SC_ARMORCHANGE])
@@ -4616,6 +4617,7 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 	case SC_STONE:
 	case SC_QUAGMIRE:
 	case SC_SUITON:
+	case SC_RAID:
 		return 0;
 	}
 	
@@ -5011,6 +5013,10 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		if (sc->data[SC_LUKFOOD] && sc->data[SC_LUKFOOD]->val1 > val1)
 			return 0;
 	break;
+	case SC_RAID:
+		if (sc->data[SC_AETERNA])
+			return 0;
+	break;
 	}
 
 	//Check for BOSS resistances
@@ -5390,22 +5396,13 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			val4 = 5 + val1*2; //Chance of casting
 			break;
 		case SC_VOLCANO:
-			if (status->def_ele == ELE_FIRE)
-				val2 = val1*10; //Watk increase
-			else
-				val2 = 0;
+			val2 = val1*10; //Watk increase
 			break;
 		case SC_VIOLENTGALE:
-			if (status->def_ele == ELE_WIND)
-				val2 = val1*3; //Flee increase
-			else
-				val2 = 0;
+			val2 = val1*3; //Flee increase
 			break;
 		case SC_DELUGE:
-			if(status->def_ele == ELE_WATER)
-				val2 = deluge_eff[val1-1]; //HP increase
-			else
-				val2 = 0;
+			val2 = deluge_eff[val1-1]; //HP increase
 			break;
 		case SC_SUITON:
 			if (!val2 || (sd && (sd->class_&MAPID_UPPERMASK) == MAPID_NINJA)) {
@@ -5429,7 +5426,13 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			break;
 
 		case SC_SPEARQUICKEN:
-			val2 = 200+10*val1;
+			//val1 : Skill Lv.
+			//val2 : ASPD
+			//val3 : Critical Increment
+			//val4 : Flee Increment
+			val2 = 7;
+			val3 = 3*val1;
+			val4 = 2*val1;
 			break;
 		case SC_DANCING:
 			//val1 : Skill ID + LV

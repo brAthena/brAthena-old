@@ -329,6 +329,7 @@ typedef enum sc_type {
 	SC_FOOD_DEX_CASH,
 	SC_FOOD_INT_CASH,
 	SC_FOOD_LUK_CASH,
+	SC_RAID,
 
 	SC_MAX, //Automatically updated max, used in for's to check we are within bounds.
 } sc_type;
@@ -911,6 +912,7 @@ enum si_type {
 	SI_WIND_INSIGNIA = 569,
 	SI_EARTH_INSIGNIA = 570,
 */
+	SI_RAID = 571,
 };
 
 // JOINTBEAT stackable ailments

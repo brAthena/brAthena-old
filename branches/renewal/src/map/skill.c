@@ -286,6 +286,13 @@ int skill_calc_heal(struct block_list *src, struct block_list *target, int skill
 	case NPC_EVILLAND:
 		hp = (skill_lv>6)?666:skill_lv*100;
 		break;
+	case AL_HEAL:
+		//Somente válido para personagens
+		if (sd)
+		{
+			hp = sd->base_status.matk_max;
+			break;
+		}
 	default:
 		if (skill_lv >= battle_config.max_heal_lv)
 			return battle_config.max_heal;
@@ -671,9 +678,8 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 		break;
 
 	case WZ_STORMGUST:
-		 //Tharis pointed out that this is normal freeze chance with a base of 300%
 		if(tsc->sg_counter >= 3 &&
-			sc_start(bl,SC_FREEZE,300,skilllv,skill_get_time2(skillid,skilllv)))
+			sc_start(bl,SC_FREEZE,(10+skilllv*5),skilllv,skill_get_time2(skillid,skilllv)))
 			tsc->sg_counter = 0;
 		break;
 
@@ -751,6 +757,7 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 	case RG_RAID:
 		sc_start(bl,SC_STUN,(10+3*skilllv),skilllv,skill_get_time(skillid,skilllv));
 		sc_start(bl,SC_BLIND,(10+3*skilllv),skilllv,skill_get_time2(skillid,skilllv));
+		sc_start(bl,SC_RAID,(10+3*skilllv),skilllv,skill_get_time2(skillid,skilllv));
 		break;
 
 	case BA_FROSTJOKER:

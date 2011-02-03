@@ -9,6 +9,22 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0194 - 03/02/2011 [Heaven]
+	* Modificado @mapinfo
+	- O tamanho do array era pequeno para a palavra "Desconhecido"
+	* Alterado cast no cálculo da defesa
+	* Modificações em habilidades conforme tópico da Renovação:
+	- Ataque Surpresa(Adicionado efeito SC_RAID)
+	- Crux Magnun
+	- Descarga Elétrica
+	- Proteção Arcana(Falta conjuração fixa)
+	- Vulcão/Dilúvio/Furacão
+	- Esmagamento Mágico
+	- Corpo Fechado
+	- Cura
+	- Nevasca(Taxa de congelamento)
+	- Rapidez com Lança
+	
 	r0192 - 02/02/2011 [Protimus]
 	* Adicionadas IDs dos status changes e classes no const.txt
 	* Traduzida & Revisada exp.txt
