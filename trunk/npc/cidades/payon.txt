@@ -17,8 +17,8 @@
 // | Descrição: NPCs da Cidade de Payon                     |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		                        			|
+// | 1.0 Tradução de Script [cleyton]                       |
+// | - Anotações		   			    |
 // \________________________________________________________/
 
 // Payon

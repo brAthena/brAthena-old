@@ -9,6 +9,36 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0196 - 03/02/2011 [insidemybrain]
+	* Envio de traduções
+	- cidades/amatsu.txt
+	- cidades/brasilis.txt
+	- cidades/comodo.txt
+	- cidades/einbech.txt
+	- cidades/einbroch.txt
+	- cidades/geffen.txt
+	- cidades/gonryun.txt
+	- cidades/hugel.txt
+	- cidades/jawaii.txt
+	- cidades/lighthalzen.txt
+	- cidades/louyang.txt
+	- cidades/lutie.txt
+	- cidades/manuk.txt
+	- cidades/morocc.txt
+	- cidades/moscovia.txt
+	- cidades/niflheim.txt
+	- cidades/payon.txt
+	- cidades/prontera.txt
+	- cidades/rachel.txt
+	- cidades/splendide.txt
+	- cidades/umbala.txt
+	- cidades/veins.txt
+	- cidades/yuno.txt
+	* Corrigidos erros de tabulações
+	- kafras/*
+	- instâncias/memorial_orc.txt
+	- instancias/torre_infinita.txt
+
 	r0193 - 02/02/2011 [Dani]
 	* Envio de traduções
 	- npc/gde2/arug_cas01.txt

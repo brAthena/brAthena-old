@@ -23,8 +23,10 @@
 // | slightly differing Welcome message.                    |
 // |                                                        |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
-// | 1.0 Script Traduzido [cleyton]   	                    |
+// | Changelog:               	                        |
+// | 1.0 Script Traduzido [cleyton]   	                  |
+// | Anotações:                                             |
+// | - Corrigidas as tabulações no cabeçalho.               |
 // \________________________________________________________/
 
 

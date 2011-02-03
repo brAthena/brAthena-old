@@ -17,10 +17,12 @@
 // | Descrição: Torre Sem Fim.                              |
 // | - Consiste em uma torre de 101 andares                 |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
+// | Changelog:                                             |
 // | 1.0 Script Traduzido [SoulSyntax]                      |
 // | - Foram feitas adaptações nos nomes dos NPCs para pt_BR|
 // | 1.1 Script Revisado [Protimus & Tyler]                 |
+// | Anotações:                                             |
+// | - Corrigidas as tabulações no cabeçalho                |
 // \________________________________________________________/
 
 alberta,214,77,6	script	Capitão Jassen	709,{

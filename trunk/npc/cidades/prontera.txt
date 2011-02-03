@@ -17,103 +17,103 @@
 // | Descrição: NPCs da Cidade de Prontera                  |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			   						|
+// | 1.0 Tradução de Script [cleyton]                       |
+// | - Anotações		   			    |
 // \________________________________________________________/
 
 // Prontera
 //============================================================
-prontera,160,330,0	script	Guard#pront::prtguard	105,{
+prontera,160,330,0	script	Guarda#pront::prtguard	105,{
 	mes "[Prontera Guard]";
-	mes "Welcome to Prontera.";
+	mes "Bem vindo á  Prontera.";
 	close;
 }
 
-prontera,223,99,1	duplicate(prtguard)	Guard#2pront	105
+prontera,223,99,1	duplicate(prtguard)	Guarda#2pront	105
 
-prontera,229,104,5	duplicate(prtguard)	Guard#3pront	105
+prontera,229,104,5	duplicate(prtguard)	Guarda#3pront	105
 
-prontera,47,339,5	duplicate(prtguard)	Guard#4pront	105
+prontera,47,339,5	duplicate(prtguard)	Guarda#4pront	105
 
 
 prontera,101,288,3	script	Shuger#pront	98,{
 	mes "[Shuger]";
-	mes "Outside the safety of the city, there is a pink beast known as ^000077Poring^000000.";
+	mes "Fora da segurança da cidade,tem um monstro rosa  conhecido como ^000077Poring^000000";
 	next;
 	mes "[Shuger]";
-	mes "Though it's cute in appearance and does not actively harm people, Poring is known to absorb items that are on the ground into its own body.";
+	mes "Embora seja bonito na aparência e aparentemente não prejudique as pessoas, o Poring é conhecido por absorver os itens que estão no terreno em seu próprio corpo. Contudo ... Porings são muito fracos ...";
 	next;
 	mes "[Shuger]";
-	mes "So if there's something on the ground that you want to pick up, be careful lest it be consumed by a Poring. Then again... Porings are pretty weak...";
+	mes "Portanto, se há algo no chão que você quiser pegar, tome cuidado para que não seja consumido por um Poring. Então repito novamente... Porings são muito fracos ...";
 	next;
 	mes "[Shuger]";
-	mes "The green colored ^000077Poporing^000000 is tougher than Poring. Newbies generally make the mistake of attacking it without being aware of its power... So be careful!";
+	mes "O que possui a cor verde ^000077Poporing^000000 é mais resistente que o Poring. Iniciantes geralmente cometem o erro de atacá-lo sem estar consciente do seu poder ... Então, cuidado!";
 	close;
 }
 
 prontera,54,240,6	script	Tono#pront	97,{
 	mes "[Tono]";
-	mes "Did you know?";
+	mes "Você sabia?";
 	next;
 	mes "[Tono]";
-	mes "The larva of Creamy is Fabre. So, those green little wormy things are actually the babies of those pinkish, purply butterfly things you see around.";
+	mes "A larva cremosa é Fabre. Então, essas coisinhas verdes na verdade são filhotes daquelas borboletas roxas que você vê ao redor.";
 	next;
 	mes "[Tono]";
-	mes "But before Fabres can become Creamys, they go into a pupa stage. When that happens, they turn into these dark purple cocoons we call Pupa. Simple, huh?";
+	mes "Mas antes Fabres podem tornar-se Creamys, eles entram em uma fase de pupa. Quando isso acontece, eles se transformam em casulos esses roxo escuro que chamamos de Pupa. Simples, né?";
 	next;
 	mes "[Tono]";
-	mes "There's another monster that goes through a really big change... Pickys.";
+	mes "Há um outro monstro que passa por uma mudança muito grande ... Os  Pickys.";
 	next;
 	mes "[Tono]";
-	mes "Pickys are so cute when they're young, but when they grow up, they turn into those big, gawky looking Peco Pecos. Talk about awkward puberty.";
+	mes "Os Pickys são tão fofinhos quando jovens, mas  quando crescem transformam-se nesses grandes e desengonçados bichos chamados de Peco Pecos. Entretanto essa conversa sobre a puberdade é inadequada.";
 	close;
 }
 
 prontera,106,116,6	script	Merideth#pront	91,{
 	mes "[Merideth]";
-	mes "The weather was nice on my day off so my family and I went for a picnic. We chose to go to a slightly secluded area where I saw something really interesting...";
+	mes "O tempo estava agradável no meu dia de folga. A minha família e eu fomos para um piquenique. Optamos por ir para uma área um pouco isolada onde eu vi algo muito interessante ...";
 	next;
 	mes "[Merideth]";
-	mes "It was a large group of Giant Hornets! What was even weirder was that they were all controlled by this one Queen Bee, following her every command.";
+	mes "Foi um grande grupo de Giant Hornets! O que foi mais estranho ainda era que todos eram controlados por uma Abelha Rainha, e eles seguiam todos  os seus comandos.";
 	next;
 	mes "[Merideth]";
-	mes "They might just be bugs, but I think they've got the right idea. Men really ought to take commands from us women... We do things right!";
+	mes "Eles podem apenas ser insetos, mas eu acho que eles possuem uma idéia certa. Os homens realmente deveriam ser comandos por nós, mulheres ... Nós fazemos as coisas direito!";
 	close;
 }
 
 prontera,160,133,2	script	YuPi#pront	102,{
 	mes "[YuPi]";
-	mes "Although many monsters may look the same, be careful! There are variations among monsters that have the same basic form.";
+	mes "Embora muitos monstros possam ter a mesma aparência, cuidado! Há variações entre os monstros que têm a mesma forma básica.";
 	next;
 	mes "[YuPi]";
-	mes "One monster, that looks just like a peaceful and weak one that you've already encountered, may actually be wild and ferocious!";
+	mes "Um monstro, que você já tenha encontrado e que se parece ser da  paz e fraco, pode ser realmente selvagem e feroz!";
 	next;
 	mes "[YuPi]";
-	mes "You can tell these kinds of monsters apart by their body color. Wilder and more powerful monsters have more dangerous looking colors.";
+	mes "Você pode observar que alguns tipos de monstros são separados pela cor do corpo. Wilder é um dos monstros mais poderosos e ele possui variados tipos de cores sendo que os mais  perigosos são aqueles que possuem cores  chamativas.";
 	close;
 }
 
 prontera,149,202,2	script	YuNa#pront	700,{
 	mes "[YuNa]";
 	mes "Behold...";
-	mes "Mighty Odin!";
-	mes "God of wisdom!";
-	mes "God of war!";
+	mes "Poderoso Odin!";
+	mes "Deus da sabedoria!";
+	mes "Deus da  Guerra.";
 	next;
 	mes "[YuNa]";
-	mes "Here, in Rune-Midgard, we serve Odin, the fearsome god who sacrificed one of his eyes in order to acquire wisdom.";
+	mes "Aqui, em Rune-Midgard, nós servimos a Odin, o deus terrível que sacrificou um dos seus olhos, a fim de adquirir sabedoria.";
 	next;
 	mes "[YuNa]";
-	mes "The statue you see behind of me is a sculpture of mighty Odin. But, it's a shame because it's such a bad likeness.";
+	mes "A estátua que você vê por trás de mim é uma escultura de Odin poderoso. Mas, é uma pena que a escultura está  um pouco  ruim.";
 	next;
 	mes "[YuNa]";
-	mes "I mean, this statue is totally different from our image of Odin. I guess the sculptor took too many artistic liberties.";
+	mes "Quer dizer, esta estátua é totalmente diferente da imagem de Odin. Acho que o escultor teve muitas liberdades artísticas.";
 	next;
 	mes "[YuNa]";
-	mes "I bet the first time you saw this statue, you thought, '^3355FFOh, what a nice muscle man on a horse^000000.'";
+	mes "Aposto que a primeira vez que você viu esta estátua, você pensou, '^3355FFOh, Este homem musculoso está mais para um cavalo! ^000000";
 	next;
 	mes "[YuNA]";
-	mes "But this statue is obviously not muscular enough, not godly enough to fairly represent a god! Maybe if he had a halo?";
+	mes "Mas essa estatua obviamente não está musculosa o bastante, nem bonita o bastante para representar um deus! Talvez se ele tivesse uma aureola?";
 	close;
 }
 
@@ -121,117 +121,117 @@ prontera,216,70,2	script	Strife#pront	48,{
 	if (Class == Job_Novice) {
 		if (event_prt_nov_dreamtalk == 0) {
 			mes "[Strife]";
-			mes "Whew!";
-			mes "Man oh man...";
-			mes "I'm gonna be such";
-			mes "an awesome Knight!";
+			mes "Ufa!";
+			mes "Homem oh homem...";
+			mes "Eu vou ser como";
+			mes "Um cavaleiro impressionante!";
 			next;
 			mes "[Strife]";
-			mes "I know, I know...";
-			mes "First, I gotta be a Swordie. But if I keep practicing, I can become an awesome Swordie. And then after that...";
+			mes "Eu sei, eu sei ...";
+			mes "Primeiro, eu tenho que ser um Swordie. Mas se eu continuar praticando, posso me tornar um Swordie impressionante. E, depois que ...";
 			next;
 			mes "[Strife]";
-			mes "I'll be the most";
-			mes "awesomest Knight around!";
-			mes "It's... It's my most precious dream.";
+			mes "Eu vou ser o mais";
+			mes "Impressionante  cavaleiro dos arredores!";
+			mes "É...  É o meu sonho mais precioso.";
 			next;
 			mes "[Strife]";
 			mes "MAGNUM BREAK!";
 			next;
-			if (select("I wanna be strong too!:Um... Do you best.") == 1) {
+			if (select("Eu quero ser forte demais!: Um ... Faça o melhor que você.") == 1) {
 				set event_prt_nov_dreamtalk,1;
 				mes "[Strife]";
-				mes "Wow...!";
-				mes "That's so awesome!";
-				mes "We both share the";
-				mes "same dream!";
+				mes "Uau...";
+				mes "Isso é tão impressionante!";
+				mes "Nós  compartilhamos";
+				mes "do mesmo sonho!";
 				next;
 				mes "[Strife]";
-				mes "Hey, if you wanna become a Swordie, you gotta go to Izlude. There, you can go ahead and take the Swordman job test. The first time, I, um, failed miserably. But I won't fail again!";
+				mes "Ei, se você quiser se tornar um Swordie, você tem que ir para Izlude. Lá, você pode ir em frente e fazer o teste para  o  emprego de Swordman. A primeira vez, eu, falhei miseravelmente. Mas eu não vou deixar isso acontecer  de novo!";
 				next;
 				mes "[Strife]";
-				mes "Training! Training! Gotta keep training! You need to be strong too! Once we both get stronger, we'll meet again!";
+				mes "Treinamento! Treinamento! Tenho que continuar o treinamento! Você precisa ser forte demais! Uma vez que nós ficamos mais forte, vamos nos encontrar de novo!";
 				close;
 			}
 			mes "[Strife]";
-			mes "Heh heh! I will for sure! 'Strife, the courageous Knight.' It sounds cool, doesn't it?";
+			mes "Heh! Eu vou com certeza! 'Strife, o cavaleiro corajoso. Soa legal, não é?";
 			close;
 		}
 		else {
 			mes "[Strife]";
-			mes "Fight...!";
-			mes "Fight Fight FIGHT!";
+			mes "Lute...!";
+			mes "lute, lute...LUTE!!";
 			close;
 		}
 	}
 	else if (Class != Job_Novice) {
 		if (event_prt_nov_dreamtalk == 1) {
 			mes "[Strife]";
-			mes "Hey...!";
-			mes "You look different now. *Gasp* You've gotten... ^993333stronger^000000. Wow, that's so coooool!";
+			mes "Ei...!";
+			mes "é assim *Gasp* Como você ficou ^993333forte^000000! Uau, isso é tão legaaal!";
 			next;
 			mes "[Strife]";
-			mes "I'm so jealous!";
-			mes "I guess that means";
-			mes "that now, I gotta";
-			mes "train even harder!";
+			mes "Estou com tanta inveja";
+			mes "Acho que  isso significa,";
+			mes "que, agora, ";
+			mes "tenho que treinar ainda mais duro!";
 			next;
 			set event_prt_nov_dreamtalk,2;
 			getitem 2501,1; //Hood
 			mes "[Strife]";
-			mes "This is, well, for you to help you get even stronger. I guess I want to thank you for being such a good example.";
+			mes "Bom, isto é pra você para te ajudar a ficar ainda mais forte. Acho que devo lhe agradecer por ser um bom exemplo";
 			close;
 		}
 		else if (event_prt_nov_dreamtalk == 2) {
 			mes "[Strife]";
-			mes "Fight! Fight!";
+			mes "Lute! Lute!";
 			close;
 		}
 		mes "[Strife]";
-		mes "Whew!";
-		mes "Man oh man...";
-		mes "I'm gonna be such";
-		mes "an awesome Knight!";
+		mes "Ufa!";
+		mes "Homem  oh homem...";
+		mes "Eu vou ser como";
+		mes "um Cavaleiro incrível !";
 		next;
 		mes "[Strife]";
-		mes "I know, I know...";
-		mes "First, I gotta be a Swordie. But if I keep practicing, I can become an awesome Swordie. And then after that...";
+		mes "Eu sei, eu sei ...";
+		mes "Primeiro, eu tenho que ser um Swordie. Mas se eu continuar praticando, posso me tornar um Swordie incrível.E depois disso...";
 		next;
 		mes "[Strife]";
-		mes "I'll be the most";
-		mes "awesomest Knight around!";
-		mes "It's... It's my most precious dream.";
+		mes "eu vou ser o mais";
+		mes "Incrível dos cavaleiros dos arredores.";
+		mes "É... É o meu sonho mais precioso.";
 		next;
-		if (select("Do your best.:Quit it, kid.") == 1) {
+		if (select("Faça o seu melhor.:Para com isso, garoto.") == 1) {
 			mes "[Strife]";
-			mes "Yes, yes of course! Someday, I'll even be as strong as you! When that day comes, I hope that we can train together!";
+			mes "Sim, sim, claro! Algum dia, eu vou mesmo ser tão forte como você! Quando esse dia chegar, espero que possamos treinar juntos!";
 			close;
 		}
 		mes "[Strife]";
-		mes "Wha--?";
-		mes "Fine! But I'm gonna keep on training, and we'll see who gets the last laugh!";
+		mes "Como?";
+		mes "Agradável! Mas eu vou continuar a formação, e vamos ver quem rir  por  último rir  melhor!";
 		close;
 	}
 }
 
 prontera,78,150,3	script	Dairenne#pront	90,{
-	mes "[Towngirl Dairenne]";
+	mes "[Moradora Dairenne]";
 	mes "Ahh...";
-	mes "The streets are too crowded these days. *Cough Cough* Look at all this dust, not everything about living in the capital city is good. Anyway, may I help you?";
+	mes "As ruas estão muito lotados nestes dias. * Cough Cough * Olhe para toda a poeira presente, nem tudo sobre a vida na capital é bom. De qualquer forma, posso ajudá-lo?";
 	next;
-	if (select("Talk:Cancel") == 1) {
-		mes "[Towngirl Dairenne]";
-		mes "I wonder if you are interested in parties or dresses. Hehehe. These days, the hot topic is definitely the colorful, extravagent, magnificent dresses you can wear.";
+	if (select("Discussão: Cancel") == 1) {
+		mes "[Moradora Dairenne]";
+		mes "Gostaria de saber se você está interessado em calças ou vestidos. Hehehe. Estes dias, o tema quente é definitivamente o colorido, extravagante, vestidos magníficos que  você poderá vestir.";
 		next;
-		mes "[Towngirl Dairenne]";
-		mes "To get such dazzling colors, I heard you have to use a dye that you can only get in Morroc. But I also heard that the price is beyond imagination.";
+		mes "[Moradora Dairenne]";
+		mes "Para obter essas cores deslumbrantes, ieu  ouvi que você tem que usar uma tinta que você só pode conseguir em Morroc. Mas eu também ouvi dizer que o preço está além da imaginação.";
 		next;
-		mes "[Towngirl Dairenne]";
-		mes "Aahhhh~ I wish I could wear such a dress. Even if it's just once...";
+		mes "[Moradora Dairenne]";
+		mes "Aahhhh ~ Eu gostaria de poder usar tal vestido. Mesmo que seja apenas uma vez ...";
 		close;
 	}
-	mes "[Towngirl Dairenne]";
-	mes "Eh~? Why talk to me in the first place? What a strange person.";
+	mes "[Moradora Dairenne]";
+	mes "Eh ~? Por que falar de mim em primeiro lugar? Porque eu sou  uma  pessoa estranha.";
 	close;
 }
 
@@ -239,100 +239,102 @@ prontera,78,150,3	script	Dairenne#pront	90,{
 //============================================================
 /*
 //This NPC has been disabled officiall.
-prt_in,178,92,0	script	Curator of Library#pront	57,{
-	mes "[Curator Guiss]";
-	mes "Here, in the Western branch of the Prontera Library, ";
-	mes "we keep records of monsters found in various dungeons scattered around the Rune-Midgarts Kingdom.";
+prt_in,178,92,0	script	Curador da Biblioteca#pront	57,{
+	mes "[Curador Guiss]";
+	mes "Aqui, no ramo ocidental da Biblioteca Prontera,";
+	mes "mantemos registros de monstros encontrados em vários locais espalhados por todo o Reino de Rune-Midgard.";
 	next;
-	mes "[Curator Guiss]";
-	mes "You'll find that these Monster Encyclopedias are of great convenience,";
-	mes "as creatures are organized by the dungeon in which they reside.";
+	mes "[Curador Guiss]";
+	mes "Você verá que esses Enciclopedias de  monstros,são de  grande  conveniência.";
+	mes "como criaturas são organizados pela masmorra em que residem.";
 	next;
-	mes "[Curator Guiss]";
-	mes "I must say, this is a most useful reference for you adventurers. When dealing with beasts, it's good to be informed and understand what you're up against.";
-	mes "If you would like to peruse monster records organized by their properties, please visit the Eastern branch of our library.";
+	mes "[Curador Guiss]";
+	mes "Devo dizer que esta é uma referência mais útil para você aventureiros. Ao lidar com animais, é bom estar informado e compreenda o que você está enfrentando.";
+	mes "Se você gostaria de examinar os registros dos  monstros organizado por suas propriedades, por favor visite o ramo oriental da nossa biblioteca.";
 	close;
 }
 */
 
-prt_in,175,50,0	script	Library Girl#pront	71,{
+
+
+prt_in,175,50,0	script	Garota da Biblioteca#pront	71,{
 	mes "[Library Girl Ellen]";
-	mes "Here in the Eastern branch of the Prontera Library, we provide Monster Encyclopedias in which creatures are organized by their properties. We also have books on Merchant and Blacksmith skills.";
-	mes "Ooh~! The other branch of our library also has many interesting things to read! So if you get a chance, you just might want to visit.";
+	mes "Aqui no ramo oriental da Biblioteca de Prontera, nós fornecemos Enciclopedias de  monstros, no qual as criaturas são organizados por suas propriedades. Temos também livros sobre Mercante e habilidades do ferreiro.";
+	mes "Ooh ~! O outro ramo da nossa biblioteca também tem muitas coisas interessantes para ler! Portanto, se você receber uma chance, você tem que  visitar.";
 	close;
 }
 
-prt_in,47,141,0	script	An Old Man#pront	56,{
-	mes "[Old Man]";
-	mes "The Prontera Culvert sewers have been left unattended for a long time. Now that place is infested with ^000077Thief Bugs^000000!";
+prt_in,47,141,0	script	Um Velho Homem#pront	56,{
+	mes "[Velho Homem]";
+	mes "Os esgotos de Prontera Culvert foram abandonados por muito tempo. Agora aquele lugar é infestado de insetos  ^000077Besouro Ladrão^000000!";
 	next;
-	mes "[Old Man]";
-	mes "These Thief Bugs seem to quickly grab items dropped on the ground, and then run away with them... They're even more annoying than cockroaches!!";
+	mes "[Velho Homem]";
+	mes "Estes Besouro Ladrão parecem pegar rapidamente os itens caem no chão, e depois fugir com eles ... Eles estão ainda mais irritante do que as baratas!";
 	close;
 }
 
-prt_in,26,31,0	script	An Old Man#2pront	54,{
-	mes "[Old Man]";
-	mes "I dunno if you'll believe me, but I saw the weirdest thing down in the ^000077Culvert Sewers^000000...";
+prt_in,26,31,0	script	Um Velho Homem#2pront	54,{
+	mes "[Velho Homem]";
+	mes "Não sei se você vai acreditar em mim, mas eu vi a coisa mais estranha no ^000077Esgotos de Culvert^000000 ...";
 	next;
-	mes "[Old Man]";
-	mes "I've been training in the 3rd level for so long that there isn't anything that I don't know about in that area. But when I finally went to the 4th level...";
+	mes "[Velho Homem]";
+	mes "Eu tenho treinado no nível 3 por tanto tempo que não há nada que eu não saiba daquela área. Mas quando eu finalmente fui para o nível 4 ...";
 	next;
-	mes "[Old Man]";
-	mes "There, I saw a shimmering light. I was completely captivated and went to approach it. It must have been some sort of beautiful fairy...";
+	mes "[Velho Homem]";
+	mes "Lá, eu vi uma luz trêmula. Eu estava completamente cativado e fui abordá-la. Deve ter sido algum tipo de fada bela ...";
 	next;
-	mes "[Old Man]";
-	mes "But when I got";
-	mes "close enough,";
-	mes "I saw it was";
-	mes "a ^000077Thief Bug^000000!";
+	mes "[Velho Homem]";
+	mes "Mas quando eu cheguei";
+	mes "perto o suficiente";
+	mes "eu vi que era";
+	mes "um ^000077Besouro Ladrão^000000!";
 	next;
-	mes "[Old Man]";
-	mes "I've never seen a Thief Bug shining with light before! Man, just when you think you've seen it all...";
+	mes "[Velho Homem]";
+	mes "Eu nunca vi um Besouro Ladrão brilhando com uma luz antes! As vezes o você pensa que já viu de tudo... ";
 	close;
 }
 
-prt_in,180,20,2	script	Bartender#pront	61,{
-	mes "[Bartender]";
-	mes "Sigh...as more and more people coming into Prontera,";
-	mes "better and better my business has become nowadays. But...";
-	mes "Well, I am having a hard time to keep a good stock of food ingredients.";
+prt_in,180,20,2	script	Garçon#pront	61,{
+	mes "[Garçon]";
+	mes "Suspiro ... as pessoas que moram  próximos de Prontera";
+	mes "tornou-se  o meu melhor  negócio atualmente...Mas...";
+	mes "Bem, eu estou tendo um momento difícil e não estou consiguindo manter um bom estoque de ingredientes alimentares.";
 	next;
-	mes "[Bartender]";
-	mes "As you see, the numbers of the monsters outside of town has been greatly increased and they have caused trouble to my suppliers to deliver the goods at a right time.";
-	mes "I cannot make my ultra nice menus with common ingredients because they are super special!";
+	mes "[Garçon]";
+	mes "Como você vê, os números dos monstros fora da cidade tem sido muito maior, e eles têm causado problemas aos meus fornecedores para me oferecerem os produtos em um momento certo.";
+	mes "Eu não posso fazer o meu ultra menu agradável, com ingredientes comuns porque ele é  super especial!";
 	next;
-	mes "[Bartender]";
-	mes "So I have been contacting super heavy champion hunters for fresh and special ingredients.";
-	mes "But the demand has exceeded the supply in these days.";
+	mes "[Garçon]";
+	mes "Então, eu tenho contato com caçadores campeões que trazem bastante ingredientes frescos e especiais";
+	mes "Mas a demanda tem excedido a oferta nestes dias.";
 	next;
-	mes "[Bartender]";
-	mes "I can't keep my business busy without my special menu 'Crunch Crunch Sour' and 'Savory Yum Yum'...*Sigh*";
+	mes "[Garçon]";
+	mes "Eu não posso manter o meu negócio equilibrado  sem o meu menu especial 'Crunch Crunch Savory Sour 'e' Yum Yum'...* Sigh *";
 	next;
 	set .@drink,1;
 	while(.@drink) {
-		switch(select("'Cunch Crunch Sour'?:'Savory Yum Yum'?:Cancel.")) {
+		switch(select("'Cunch Crunch Sour'?:'Savory Yum Yum'?:Cancelar.")) {
 		case 1:
-			mes "[Bartender]";
-			mes "The basic ingredients of my Crunch Crunch Sour are the ants roadming inside the Ant Hell in the desert.";
-			mes "Rumor has it that the numbers of the ants have been greatly increased and they have become more violent, so that no one wants to get in the place.";
+			mes "[Garçon]";
+			mes "Os ingredientes básicos do meu Crunch Crunch Sour são as formigas que  ficam dentro do inferno das  formigas lá  no deserto.";
+			mes "Há rumores de que os números das formigas têm sido muito maior, e elas se tornaram mais violentas, de modo que ninguém quer ficar no lugar.";
 			next;
-			mes "[Bartender]";
-			mes "*Sigh*...I am afraid that my business days are numbered now.";
+			mes "[Garçon]";
+			mes "* Sigh *... Tenho medo de que meus dias estejam contados no ramo do negócio agora.";
 			next;
 			break;
 		case 2:
-			mes "[Bartender]";
-			mes "Savory Yum Yum's basic ingredients are the grasshoppers romping in a place over the west forest. Yeah, it is the best selling menu ever.";
-			mes "Rumor has it that they have become very violent and Bees have built their habitat in the place, so that no one wants to get in there.";
+			mes "[Garçon]";
+			mes "Ingredientes básicos para  fazer  o  Savory Yum Yum são os gafanhotos que brincam em um lugar sobre a floresta situada a oeste. Sim, é o menu mais vendido de sempre.";
+			mes "Dizem que eles se tornaram muito violentos e abelhas construíram seu habitat, naquele  lugar, de modo que ninguém quer entrar ali.";
 			next;
-			mes "[Bartender]";
-			mes "*Sigh*...I am afraid that my business days are numbered now.";
+			mes "[Garçon]";
+			mes "* Sigh *... Tenho medo de que meus dias estão contados no ramo do negócio agora.";
 			next;
 			break;
 		case 3:
-			mes "[Bartender]";
-			mes "Take care of yourself~.";
+			mes "[Garçon]";
+			mes "Tome cuidado!";
 			close2;
 			set .@drink,0;
 			break;
@@ -345,73 +347,73 @@ prt_in,180,20,2	script	Bartender#pront	61,{
 
 prt_in,173,24,2	script	Shevild#pront	85,{
 	mes "[Shevild]";
-	mes "Hey, come on over and let's drink! I have lots of interesting stories to tell!";
-	mes "I know lots of things about Prontera. I have seen many fine views and I also have explored some monster lairs around this city.";
+	mes "Ei, venham aqui vamos beber! Tenho muitas histórias interessantes para contar! ";
+	mes "Sei muitas coisas sobre Prontera. Tenho visto muitas belas vistas e também tenho explorado alguns esconderijo de monstros em torno desta cidade.";
 	next;
-	if (select("How could you enter monster lairs?:Cancel") == 1) {
+	if (select("Pode me contar mais?:Cancelar") == 1) {
 		mes "[Shevild]";
-		mes "I may appear to be a drunken man but I am more than meets the eye.";
-		mes "Well, I happened to enter the places for carrying weapons for hunters or for delivering stuffs and whatsoever.";
-		mes "You might think of me as a mere delivery guy,";
+		mes "Eu posso parecer um homem embriagado, mas eu sou mais do que possam ver.";
+		mes "Bem, aconteceu que quando eu entrei em alguns  lugares para transportar armas para caçadores ou para a entrega de animais ";
+		mes "Você pode me encarar  como um simples entregador,";
 		next;
 		mes "[Shevild]";
-		mes "But I am very proud of my job. You know how tough the world has become?";
-		mes "No matter how hard a work is, I am not afraid of doing that.";
+		mes "Mas estou muito orgulhoso do meu trabalho. Você sabe o quão duro o mundo se tornou? ";
+		mes "Não importa o quanto uma obra é, eu não tenho medo de fazer isso.";
 		next;
 		mes "[Shevild]";
-		mes "Anyways, that is how I have explored some strange places like monster lairs...";
-		mes "That is also a reason why I keep my job.";
-		mes "Ah, I just recall being inside the maze and the spooky forest!";
+		mes "De qualquer forma, é assim que eu ter explorado alguns lugares estranhos como tocas monstro ... ";
+		mes "Essa é também uma razão para eu manter o meu trabalho.";
+		mes "Ah, eu só lembro de ter ido para  dentro do labirinto de  uma floresta asustadora!";
 		next;
-		switch(select("The Maze?:The Spooky Forest?:Cancel")) {
+		switch(select("Labirinto?:Floresta assutadora?:Cancelar")) {
 		case 1:
 			mes "[Shevild]";
-			mes "Yes. Few days ago, I have entered a mysterious maze following a group of hunters at the north of Prontera.";
+			mes "Sim. Poucos dias atrás, eu entrei num labirinto misterioso seguindo a sequência de um grupo de caçadores no norte de Prontera.";
 			next;
 			mes "[Shevild]";
-			mes "They said that they could get lots and lots of rare items from the maze even if the maze was filled with awfully strong mosters.";
-			mes "So we went there but as soon as we entered, we were just stuck inside the maze, you know.";
+			mes "Eles disseram que eles poderiam obter lotes e lotes de itens raros do labirinto, mesmo que o labirinto fosse preenchido por  monstros  terrivelmente fortes.";
+			mes "Então fomos lá, mas assim que entramos, estávamos apenas preso dentro do labirinto ainda, você sabe.";
 			next;
 			mes "[Shevild]";
-			mes "We were just circling around and then we decided to leave the place. That was one hell of the maze.";
-			mes "But I made up my mind that I would successfully explore the maze one day.";
+			mes "Nós estávamos apenas andando em circulos  e então decidimos deixar o lugar. Aquilo  era um inferno em forma  de  labirinto.";
+			mes "Mas eu pus minha cabeça que eu iria explorar com sucesso aquele  labirinto um dia.";
 			next;
-			if (select("How can I get there?:Cancel") == 1) {
+			if (select("Agora eu posso entrar aqui?:Cancelar") == 1) {
 				mes "[Shevild]";
-				mes "Err? Haven't you still toured the outside of Prontera?";
-				mes "The maze can be found inside a forest at the north of Prontera. Go check the north west side of the forest.";
+				mes "Err?Você  ainda não passeou fora de Prontera? ";
+				mes "O labirinto pode ser encontrado dentro de uma floresta ao norte de Prontera. No  lado noroeste da floresta.";
 				close;
 			}
 			mes "[Shevild]";
-			mes "Yeap, be careful when you adventure alone~";
+			mes "Yeah, seja cuidadoso quando for se aventurar sozinho ~";
 			close;
 
 		case 2:
 			mes "[Shevild]";
-			mes "When you go outside of Prontrea heading to north east, you will arrive at the peaceful ruins. I have been there a while ago, to deliver something to a priest.";
-			mes "I had to pass a forest on the way to the ruins, and the forest was filled with monkeys and raccoons.";
+			mes "Quando você vai para fora do Prontrea mais ou menos  na  direção nordeste, chega-se as ruínas pacíficas. Eu estive lá há um tempo atrás, para entregar algo a um padre.";
+			mes "Eu tive que passar por uma floresta no caminho para as ruínas, ea floresta estava cheia de macacos e guaxinins.";
 			next;
 			mes "[Shevild]";
-			mes "Be forewarned that the forest is not a place to go on a picnic. If you drop something on the ground, the monkeys come out from nowhere and take away all of your possessions.";
+			mes "Esteja avisado que a floresta não é um lugar para ir a um piquenique. Se algo cair no chão, os macacos saem do nada e tirarão  todas as suas posses.";
 			next;
-			if (select("How can I get there?:Cancel") == 1) {
+			if (select("Agora eu posso ir?:Cancelar") == 1) {
 				mes "[Shevild]";
-				mes "There is no road directly leads to the ruins. But if you go north and keep heading to east, you will get there.";
-				mes "Oh, be careful on your way to the ruins because there are some weird plant things that assault passersby for no reason.";
+				mes "Não existe um caminho que conduz diretamente ao ruínas. Mas se você vai para o norte e manter a posição para o leste, você vai chegar lá.";
+				mes "Oh, tenha cuidado no seu caminho para as ruínas porque há algumas plantas estranhas s que atacam sem motivo.";
 				close;
 			}
 			mes "[Shevild]";
-			mes "Yeap, be careful when you adventure alone~";
+			mes "Yeah, seja cuidadoso quando for se aventurar sozinho ~";
 			close;
 
 		case 3:
 			mes "[Shevild]";
-			mes "Yeap, be careful when you adventure alone~";
+			mes "Yeap, seja cuidadoso quando for se aventurar sozinho ~";
 			close;
 		}
 	}
 	mes "[Shevild]";
-	mes "Come back any time~";
+	mes "Volte qualquer hora ~";
 	close;
 }
 
@@ -419,125 +421,125 @@ prt_in,177,20,2	script	TenSue#pront	97,{
 	switch(rand(3)) {
 	case 1:
 		mes "[TenSue]";
-		mes "What...?";
-		mes "Sick and tired of killing monsters on fields and in dungeons already? Come on...";
+		mes "O que...?";
+		mes "Você já está doente e cansado de matar monstros nos campos e nas masmorras? Vamos lá ...";
 		next;
 		mes "[TenSue]";
-		mes "Hahaha, it seems you're pretty confident of your strength, huh? Hmm... Why don't you go join a guild? I mean, all the tough guys are going it.";
+		mes "Hahaha, parece que você está muito confiante da sua força, hein? Hmm ... Por que você não vai juntar-se a um clã? Quer dizer, todos os caras durões  estão indo.";
 		next;
 		mes "[TenSue]";
-		mes "Personally though, I don't know any guilds, so you'll have to ask around. Make some contacts, connections, you know, networking.";
+		mes "Pessoalmente, porém, eu não conheço nenhum clã, assim você terá que pedir ao redor. Faça alguns contatos, conexões, você sabe, trabalho em rede.";
 		next;
 		mes "[TenSue]";
-		mes "I don't even know if you don't like taking orders, but if that's the case, why don't you make your own guild?";
+		mes "Eu não sei mesmo se você não gosta de receber ordens, mas se esse for o caso, por que você não faz seu próprio clã?";
 		close;
 
 	case 2:
 		mes "[TenSue]";
-		mes "One time I walked all the way to Al de Baran, instead of taking a warp. It was pretty dangerous with all those monsters!";
+		mes "Uma vez  eu andei todo o caminho para Al de Baran, em vez de tomar um portal . Foi muito perigoso com todos aqueles monstros!";
 		next;
 		mes "[TenSue]";
-		mes "I almost died! Some of those monsters just kept following me and trying to kill me, even though I did nothing to them! It was pretty crazy.";
+		mes "Eu quase morri! Alguns desses monstros não paravam de me seguir e tentar me matar, mesmo que eu não tivesse feito  nada para eles! Foi muito louco!";
 		next;
 		mes "[TenSue]";
-		mes "Well, still, I feel that taking the scenic route was worth it. There were some pretty magnificent sights on the way.";
+		mes "Bem, ainda assim, sinto que tomar a rota cênica valeu a pena. Havia alguns pontos turísticos  magníficos pelo o caminho.";
 		next;
 		mes "[TenSue]";
-		mes "Even the city of Al de Baran is a splendid vision to the eyes, with its elegant architecture and romantic canal.";
+		mes "Até Mesmo a cidade de Al de Baran é uma visão esplêndida para os olhos, com sua arquitetura elegante e romântico canal.";
 		next;
 		mes "[TenSue]";
-		mes "The headquarters of Kafra Corporation is also located in Al de Baran. You should really stop by and check it out for yourself.";
+		mes "A sede Corporação  da Kafra  também está localizada em Al de Baran. Você realmente deve parar para checar tudo.";
 		close;
 	Default:
 		mes "[TenSue]";
-		mes "The kingdom of";
-		mes "Rune-Midgarts is ruled";
-		mes "by kind and benevolent";
-		mes "King Tristram III.";
+		mes "O reino de";
+		mes "Rune-Midgarts é governado ";
+		mes "pelo benevolente ";
+		mes "Rei Tristram III.";
 		next;
 		mes "[TenSue]";
-		mes "We really owe the prosperity of Rune-Midgarts to him. He was able to convince the people to welcome outsiders into Prontera, as well as establish trade to foreign lands, like Amatsu and Kunlun.";
+		mes "Nós realmente devemos a prosperidade de Rune-Midgard para ele. Ele foi capaz de convencer o povo a acolher estrangeiros em Prontera, bem como estabelecer o comércio em terras estrangeiras, como Amatsu e Kunlun.";
 		next;
 		mes "[TenSue]";
-		mes "But sometimes...";
-		mes "It can be hard to believe he's such a brilliant and capable leader.";
+		mes "Mas às vezes ... ";
+		mes "Pode ser difícil acreditar que ele é um líder brilhante e capaz.";
 		next;
 		mes "[TenSue]";
-		mes "After all, the only time I see him is when he's conducting weddings. Even if a wedding isn't going on, he's still kind of loitering around the Prontera church!";
+		mes "Afinal, a única vez que eu o vejo é quando ele está conduzindo casamentos. Mesmo que um casamento não esteja acontecendo, ele ainda é o tipo de pessoa que fica  andando em torno da igreja Prontera! ";
 		next;
 		mes "[TenSue]";
-		mes "But...";
-		mes "I guess you can get away with a lot of things when you happen to be lord and ruler of an entire nation.";
+		mes "Mas...";
+		mes "Eu acho que você pode sair com um monte de coisas quando tiver que ser senhor e governante de uma nação inteira.";
 		close;
 	}
 }
 
 prt_in,177,18,2	script	Marvin#pront	80,{
 	mes "[Marvin]";
-	mes "Whether it's schmoozing with a member of the opposite sex, or battling monsters, I gotta say, it's all about ^333399skills^000000.";
+	mes "Seja  um membro do sexo oposto, ou lutador contra monstros, o que  eu tenho que dizer, é tudo sobre ^333399habilidades^000000.";
 	next;
 	mes "[Marvin]";
 	if (sex)
-		mes "I can't help you much when it comes to the subject of talking to attractive women such as myself, but I can tell you a little more about skills that help in battle.";
+		mes "Eu não posso te ajudar muito quando se trata  de falar com mulheres atraentes, como eu, mas Posso dizer-lhe competências um pouco mais sobre o que pode te  ajudar na batalha.";
 	else
-		mes "I don't really have any advice for skills when it comes to talking to a cute guy, but I can let you in on what I know about skills that help in battle.";
+		mes "Eu realmente não tenho nenhum conselho para as competências quando se trata de falar com um rapaz bonito, mas eu posso deixá-lo em relação ao que eu sei sobre as habilidades que ajudam em uma batalha.";
 	next;
 	mes "[Marvin]";
-	mes "For most skills, the maximum level is level 10. It's easy to stress yourself out, since it takes so many points to completely master a skill. What skills should you choose?!";
+	mes "Para a maioria das habilidades, o nível máximo é o nível 10. É fácil de compreender , pois tem tantos pontos para dominar completamente uma habilidade. Que habilidades você deve escolher?!";
 	next;
 	mes "[Marvin]";
-	mes "After all, if you spend too many skill points on one skill, you might not be able to learn another. That's right, there's a limit to the number of total skill points you can earn.";
+	mes "Afinal, se você gasta pontos de perícia demais em uma habilidade, você pode não ser capaz de aprender outra. Então, há um limite para o número total de pontos de habilidade que você pode ganhar. ";
 	next;
 	mes "[Marvin]";
-	mes "But you know what? Not every skill is mastered at level 10. You can master some skills at only level 5. And even better, some skills are already mastered at level 1 or 2.";
+	mes "Mas você sabe o quê? Não é dominada cada habilidade no nível 10. Você pode dominar algumas competências a nível de apenas 5. E melhor ainda, algumas habilidades já são dominados no nível 1 ou 2.";
 	next;
 	mes "[Marvin]";
-	mes "So relax and plan ahead, so you can master all the skills that you really want to master the most. Also, don't just put skill points into anything. Remember to use your skill points wisely.";
+	mes "Portanto, relaxe e planeje com antecedência, para que possa dominar todas as habilidades que você realmente quer dominar mais. Além disso, não basta colocar pontos de habilidade em qualquer coisa. Lembre-se de utilizar os seus pontos de habilidade com sabedoria.";
 	close;
 }
 
 prt_in,284,168,3	script	Ginedin Rephere#pront	55,{
-	mes "[Tailor Ginedin Rephere]";
+	mes "[Alfaiate Ginedin Rephere]";
 	mes "11...";
 	mes "12...";
-	mes "Mmm, good. I think I'll be able to finish before tonight's party.";
+	mes "Hum, que bom. Acho que vou ser capaz de terminar antes da festa desta noite.";
 	next;
-	mes "[Tailor Ginedin Rephere]";
-	mes "Oh! I didn't realize I had a guest. How may I help you?";
+	mes "[Alfaiate Ginedin Rephere]";
+	mes "Oh! Eu não sabia que eu tinha um convidado. Como posso ajudá-lo?";
 	next;
-	switch(select("Talk:Dye Clothing:Cancel")) {
+	switch(select("Conversar:Tingir roupas:Cancelar")) {
 	case 1:
-		mes "[Tailor Ginedin Rephere]";
-		mes "Life may have gotten a little better, but receiving all these orders? *Whew!* Young ladies these days must be very well off, so my services may no longer be a luxury.";
+		mes "[Alfaiate Ginedin Rephere]";
+		mes "A vida pode ter começado um pouco melhor, mas você recebe todas essas ordens? * Ufa! Senhoras *  Estes dias devem ser muito puxados, por isso os meus serviços não são um luxo.";
 		next;
-		mes "[Tailor Ginedin Rephere]";
-		mes "Well, people like them probably further the pursuit of beauty and fashion. But, of course, that's only my opinion.";
+		mes "[Alfaiate Ginedin Rephere]";
+		mes "Bem, pessoas como eles, provavelmente,buscam  ainda mais a beleza e a moda. Mas, é claro, isso é apenas a minha opinião.";
 		next;
-		mes "[Tailor Ginedin Rephere]";
-		mes "I believe for us humans, clothes are one of the few ways to show our personality, style, and beauty.";
+		mes "[Alfaiate Ginedin Rephere]";
+		mes "Creio que para nós seres humanos, as roupas são uma das poucas maneiras de mostrar a nossa personalidade, estilo e beleza.";
 		next;
-		mes "[Tailor Ginedin Rephere]";
-		mes "Considering this, I personally think my job is very helpful and rather fancy. This in itself makes it all worthwhile. Coarse fabric and rough leather burst with energy and life when colored...";
+		mes "[Alfaiate Ginedin Rephere]";
+		mes "Considerando isso,  pessoalmente eu acho que meu trabalho é muito útil e bastante extravagante. Isso por si só já faz tudo valer a pena. Tecido grosseiro e estouro de couro bruto de energia e vida em cor ...";
 		next;
-		mes "[Tailor Ginedin Rephere]";
-		mes "It is a very hard and tedious process, but the happiness and delight you feel when your clothes are done makes up for all the hard work.";
+		mes "[Alfaiate Ginedin Rephere]";
+		mes "É um processo muito difícil e tedioso, mas a felicidade é o prazer que você sente quando suas roupas são feitas. Isso  compensa todo o trabalho duro.";
 		close;
 	case 2:
-		mes "[Tailor Ginedin Rephere]";
+		mes "[Alfaiate Ginedin Rephere]";
 		mes "Ah...!";
-		mes "You came to dye";
-		mes "your clothes as well.";
+		mes "Você veio para tingir ";
+		mes "suas roupas também.";
 		next;
-		mes "[Tailor Ginedin Rephere]";
-		mes "But... I'm so sorry.";
-		mes "I don't have enough time to dye your clothes right now. I have so many orders that are still waiting to be done.";
+		mes "[Alfaiate Ginedin Rephere]";
+		mes "Mas... Me desculpe.";
+		mes "Eu não tenho tempo suficiente para tingir suas roupas agora. Eu tenho tantas encomendas que ainda estão esperando para serem feitas.";
 		next;
-		mes "[Tailor Ginedin Rephere]";
-		mes "I'm sorry for the inconvenience, but could you come back again next time?";
+		mes "[Alfaiate Ginedin Rephere]";
+		mes "Desculpe pelo transtorno, mas você poderia voltar na próxima vez?";
 		close;
 	case 3:
-		mes "[Tailor Ginedin Rephere]";
-		mes "Feel free to take your time and relax here. I apologize that I have nothing to serve you, though.";
+		mes "[Alfaiate Ginedin Rephere]";
+		mes "Sinta-se livre para tomar o seu tempo e relaxar aqui. Peço desculpas que não tenho nada para servir-lhe, neste momento.";
 		close;
 	}
 }
@@ -546,96 +548,96 @@ prt_in,284,168,3	script	Ginedin Rephere#pront	55,{
 //============================================================
 prt_church,103,76,0	script	Garnet#pront	67,{
 	mes "[Garnet]";
-	mes "Hello there~";
-	mes "Are you interested in learning more about helping and supporting other people?";
+	mes "Olá  olá ~";
+	mes "Você está interessado em aprender mais sobre como ajudar e apoiar outras pessoas?";
 	next;
 	mes "[Garnet]";
-	mes "The Acolytes and Priests trained in this church can heal people, cure them of certain conditions, and even awaken the battle potential of other adventurers.";
+	mes "Os noviços  e Sacerdotes formados nesta igreja podem curar as pessoas, curá-los de certas condições, e ainda despertar o potencial de batalha de outros aventureiros.";
 	next;
 	mes "[Garnet]";
-	mes "Go and ahead and ask if you have any questions about skills for Acolytes and Priests.";
+	mes "Vá e frente e pergunte se você tem alguma dúvida sobre as habilidades para Noviços e Sacerdotes.";
 	next;
-	set .@SkillChat,1;
-	while(.@SkillChat) {
-		switch(select("About Heal:About Cure:About Increase AGI:About Angelus:About Blessing:About Warp Portal:End Conversation")) {
+	set .@habilidadeChat,1;
+	while(.@habilidadeChat) {
+		switch(select("Sobre Curar:Sobre Medicar:Sobre Aumentar Agiidade:Sobre Angelus:Sobre Benção:Sobre Portal:Fim da conversa")) {
 		case 1:
 			mes "[Garnet]";
-			mes "You can recover your own HP with the ^6666CCHeal^000000 skill. Healing is one of the most important ways you can help your friends in battle.";
+			mes "Você pode recuperar seu próprio HP com o ^6666CCCurar^000000 . A cura é uma das formas mais importantes que você pode ajudar seus amigos em uma batalha.";
 			next;
 			mes "[Garnet]";
-			mes "Even though our powers are usually used to heal others, you can actually use the ^6666CCHeal^000000 skill to hurt Undead monsters.";
+			mes "Mesmo que os  nossos poderes sejam normalmente utilizados para curar os outros, você pode realmente usar o ^6666CCCurar^000000  para machucar monstros mortos-vivos";
 			next;
 			mes "[Garnet]";
-			mes "Just remember to hold down the ^6666CCShift^000000 key when you use Cure or Heal on Undead monsters. Just be sure to hurt the monsters though, and don't use it to help monsters.";
+			mes "Basta lembrar que mantenha a ^6666CCShift^000000  quando você usar Curar ou Medicar em monstros mortos-vivos. Só não se esqueça de ferir os monstros e não usá-lo para ajudar os monstros. ";
 			next;
 			mes "[Garnet]";
-			mes "Later, if you've learned ^6666CCHeal^000000 as an Acolyte, you can learn ^6666CCSanctuary^000000 if you become a Priest.";
+			mes "Mais tarde, se você aprendeu ^6666CCCurar^000000 como um Noviço, você pode aprendera  usar ^6666CCSanctuario^000000 se você se tornar um Sacerdote.";
 			next;
 			mes "[Garnet]";
-			mes "Priests use ^6666CCSantuary^000000 to create an area which will restore the HP of you and your friends if you rest within the Sanctuary's area.";
+			mes "Sacerdotes usam  ^6666CCSantuário^000000 para criar uma área que vai recuperar o seu HP  e dos seus amigos se você descansar na área do Santuário. ";
 			next;
 			break;
 		case 2:
 			mes "[Garnet]";
-			mes "Once you reach ^6666CCLevel 2 Heal^000000 as an Acolyte, you can learn ^6666CCCure^000000, which can be used to treat abnormal statuses.";
+			mes "Quando chegar ^6666CCCurar Level 2^000000 como um noviço, você pode aprender a  utilizar a  habilidade ^6666CCMedicar^000000, que pode ser usado para tratar os status anormais.";
 			next;
 			mes "[Garnet]";
-			mes "This skill can be such a life saver, since almost every abnormal status can be cured with the Cure skill. Just remember that you need ^6666CCLevel 2 Heal^000000 before you can learn Cure.";
+			mes "Esta habilidade pode ser uma proteção de uma vida, uma vez que quase todos os status anormais podem ser curadas com a habilidade de cura. Basta lembrar que você precisa de  ^6666CCCurar Level 2^000000 antes de você pode aprender a  utilizar a  habilidade Medicar. ";
 			next;
 			break;
 		case 3:
 			mes "[Garnet]";
-			mes "Now, the ^6666CCIncrease AGI^000000 skill can be used on you or your friends. For a while your AGI stat is increased, making you attack faster and dodge monster attacks more easily.";
+			mes "Agora, a habilidade ^6666CCAumentar AGI^000000 pode ser usada em você ou em  seus amigos. Durante algum tempo o seu estado  AGI é aumentado, fazendo com que você ataque mais rápido e evitar ataques dos  monstros com mais facilidade.";
 			next;
 			mes "[Garnet]";
-			mes "If you're an Acolyte that wants to learn ^6666CCIncrease AGI^000000, you need to learn ^6666CCLevel 3 Heal^000000 first.";
+			mes "Se você é um Alcolyte  que queira aprender a  usar  ^6666CCAumentar AGI ^000000, você precisa aprender ^6666CCCurar Level 3^000000 primeiro.";
 			next;
 			break;
 		case 4:
 			mes "[Garnet]";
-			mes "You can use ^6666CCAngelus^000000 to increase your Defense, as well as the Defense of other party members. Remember though, you can only use ^6666CCAngelus^000000 on other people if they are in your party.";
+			mes "Você pode usar ^6666CCAngelus^000000 para aumentar sua defesa, bem como a Defesa dos outros membros do grupo. Lembre-se, porém, você só pode usar ^6666CCAngelus^000000 em outras pessoas se elas estiverem  em seu grupo.";
 			next;
 			mes "[Garnet]";
-			mes "Before you can learn Angelus, you will need to have ^6666CCLevel 3 Divine Protection^000000.";
+			mes "Antes que você possa aprender Angelus, você precisa ter ^6666CCDivina proteção Level 3^000000.";
 			next;
 			mes "[Garnet]";
-			mes "Also, if you keep learning Angelus, you'll eventually be able to learn ^6666CCKyrie Eleison^000000. That skill helps you evade initial attacks automatically.";
+			mes "Além disso, se você continuar aprendendo Angelus, irá eventualmente ser capaz de aprender ^6666CCKyrie Eleison ^000000. Essa habilidade o ajuda a escapar dos ataques iniciais automaticamente.";
 			next;
 			break;
 		case 5:
 			mes "[Garnet]";
-			mes "^6666CCBlessing^000000 temporarily increases STR, DEX and INT. This skill will give you and your friends a great advantage in battle!";
+			mes "A habilidade ^6666CCBenção^000000, aumenta temporariamente STR, DEX e INT. Esta habilidade vai dar a você e a seus amigos uma grande vantagem na batalha! ";
 			next;
 			mes "[Garnet]";
-			mes "Before you can learn Blessing, you must first learn ^6666CCLevel 5 Divine Protection^000000.";
+			mes "Antes que você possa aprender Bênção, você deve primeiramente aprender ^6666CCLevel 5 Proteção Divina ^000000.";
 			next;
 			break;
 		case 6:
 			mes "[Garnet]";
-			mes "^6666CCWarp Portal^000000 is a pretty complex skill, and you need to know some other skills before you can learn it.";
+			mes " ^6666CCPortal ^000000 é uma habilidade muito complexa, e que você precisa saber algumas outras habilidades antes de aprendê-la. ";
 			next;
 			mes "[Garnet]";
-			mes "First, you need to learn ^6666CCRuwach^000000 which lets you see invisible monsters. After Ruwach, you will need to learn the ^6666CCTeleport^000000 skill.";
+			mes "Primeiro, você precisa aprender ^6666CCRevelação^000000 que lhe permite ver monstros invisíveis. Após Ruwach, você precisa aprender a habilidade  ^6666CCTeleportar^000000 .";
 			next;
 			mes "[Garnet]";
-			mes "Once you learn ^6666CCWarp Portal^000000, the level of the Warp Portal skill will determine how many warp destinations, or Warp Points, you can memorize.";
+			mes "Depois que você aprender  ^6666CCPortal^000000, o nível da habilidade Portal irá determinar como muitos destinos de  portais , ou Pontos de Portal, você pode memorizar.";
 			next;
 			mes "[Garnet]";
-			mes "If you master the Warp Portal skill, you can have a maximum of 4 different Warp Points. But at least one Warp Point is designated as the Save Point that you've made with a Kafra Employee.";
+			mes "Se você dominar a habilidade Portal, você pode ter um máximo de 4 diferentes Warp Points. Mas pelo menos um Pontos de Portal é designado como um Portal Salvo que você fez com um Empregado Kafra.";
 			next;
 			mes "[Garnet]";
-			mes "Well, it's a bit of hassle, but if you want to make a certain place one of your Warp Points, you need to be physically there first. Then, type in ^6666CC/memo^000000 into the command prompt.";
+			mes "Bem, é um pouco incômodo, mas se você quiser salvar um determinado local  você precisa estar fisicamente lá primeiro. Em seguida, digite ^6666CC/memo^000000 para o prompt de comando.";
 			next;
 			mes "[Garnet]";
-			mes "Just so you know, you can't save a Warp Point inside of a dungeon. Oh, and don't forget, each time you make a Warp Portal, you must use 1 ^6666CCBlue Gemstone^000000 as a Catalyst.";
+			mes "Só para você saber, você não pode salvar um ponto de  portal  dentro de uma masmorra. Ah, e não se esqueça, cada vez que você fizer um portal, você deve usar ^6666CC1 Gema azul^000000 como um catalisador.";
 			next;
 			break;
 		case 7:
 			mes "["+ strcharinfo(0) +"]";
-			mes "Alright, I've";
-			mes "heard enough.";
+			mes "Tudo bem, ";
+			mes "Eu já  ouvi  o suficiente.";
 			close2;
-			set .@SkilLChat,0;
+			set .@habilidadeChat,0;
 			break;
 		}
 	}
@@ -644,96 +646,93 @@ prt_church,103,76,0	script	Garnet#pront	67,{
 
 prt_church,103,71,0	script	Henson#pront	120,{
 	mes "[Henson]";
-	mes "We Priests and Acolytes are not only limited to easing the suffering of our fellow man...";
+	mes "Nós, Sacerdotes e Noviços não somos limitados apenas para aliviar o sofrimento de nossos semelhantes ... ";
 	next;
 	mes "[Henson]";
-	mes "We also mete swift and merciless punishment to the forces of evil. Well, purifying any poor souls that may have been turned into the Undead is also another duty.";
+	mes "Nós também metemos rápida e impiedosa punição para as forças do mal. Bem, purificar as pobres almas que podem ter sido transformada em mortos-vivos também é um outro dever.";
 	next;
 	mes "[Henson]";
-	mes "Did you have any questions about Acolyte and Priest skills?";
+	mes "Você tem alguma dúvida sobre Noviço e habilidades Sacerdote?";
 	next;
-	set .@SkillChat,1;
-	while(.@Skillchat) {
-		switch(select("About Divine Protection:About Demon Bane:About Decrease AGI:About Signum Crusis :About Pneuma:About Ruwach:About Teleport:End conversation.")) {
+	set .@habilidadeChat,1;
+	while(.@habilidadechat) {
+		switch(select("Sobre Divina Proteção:Sobre Flagelo do Mal:Sobre Diminuir AGI:Sobre Signum Crusis :Sobre Escudo Sagrado:Sobre Revelação:Sobre Teleportar:Fim da conversa.")) {
 		case 1:
 			mes "[Henson]";
-			mes "If you want to permanently improve your Defense against the Undead, learn ^6666CCDivine Protection^000000.";
+			mes "Se você quer melhorar permanentemente a sua defesa contra a mortos vivos você terá que aprender sobre ^6666CCDivina Proteção^000000.";
 			next;
 			mes "[Henson]";
-			mes "Learning Divine Protection to certain levels will also allow you to learn other skills, like ^6666CCAngelus^000000 and ^6666CCBlessing^000000, which Garnet can explain.";
+			mes "Aprendizagem sobre Proteção Divina para determinados níveis também permitirá que você para aprender outras habilidades, como ^6666CCAngelus^000000 e ^6666CCBenção^000000, que Garnet pode explicar.";
 			next;
 			mes "[Henson]";
-			mes "When you learn ^6666CCLevel 3 Divine Protection^000000, you will then be able to learn the ^6666CCDemon Bane^000000 skill.";
-			next;
-			mes "[Henson]";
-			mes "With ^6666CCDemon Bane^000000, the damage of your attacks against the Undead will be increased. Permanently.";
+			mes "Quando você aprende ^6666CCDivina Proteção level 3^000000, então você vai ser capaz de aprender a ^6666CCFlagelo do Mal^000000 .";
 			next;
 			break;
 		case 2:
 			mes "[Henson]";
-			mes "^6666CCDemon Bane^000000 increases the damage you will inflict upon the Undead. Permanently.";
+			mes "^6666CCFlagelo do Mal^000000, o dano de seus ataques contra os mortos vivos será aumentada permanentemente.";
 			next;
 			mes "[Henson]";
-			mes "First, you'll need to learn ^6666CCLevel 3 Divine Protection^000000 to be able to learn Demon Bane, so keep that in mind.";
+			mes "Primeiro, você precisa aprender ^6666CCProteção Divina Level 3^000000 para ser capaz de aprender Demon Bane, de modo manter isso em mente.";
 			next;
 			mes "[Henson]";
-			mes "When you learn ^6666CCLevel 3 Demon Bane^000000, you will be able to learn ^6666CCSignum Crusis^000000, which lowers the Defense of Undead monsters, as well as monsters with the Dark property.";
+			mes "Quando você aprende ^6666CCFlagelo do Mal Level 3^000000, você será capaz de aprender  ^6666CCSignum Crusis ^000000, o que reduz a Defesa dos monstros, assim como os monstros com a propriedade das Trevas. ";
 			next;
 			break;
 		case 3:
 			mes "[Henson]";
-			mes "Using ^6666CCDecrease AGI^000000 on monsters will slow their movement, attack speed, and the rate at which they can evade your own attacks. That way, you can maim them properly.";
+			mes "Usando ^6666CCDiminuir AGI^000000 em monstros vai abrandar seu movimento, velocidade de ataque, e a taxa na qual eles podem escapar seus ataques próprios.";
 			next;
 			mes "[Henson]";
-			mes "Remember, you must first learn ^6666CCLevel 2 Increase AGI^000000 if you want to be able to learn the Decrease AGI skill.";
+			mes "Dessa forma, você pode mutilar-los adequadamente. Lembre-se, primeiro você deve aprender ^6666CCAgi Level 2^000000 Se você quiser ser capaz de aprender a habilidade Diminuir AGI.";
 			next;
 			break;
 		case 4:
 			mes "[Henson]";
-			mes "The ^6666CCSignum Crusis^000000 skill lowers the Defense of monsters with the Undead or Dark properties. It has a wide range and can be quite powerful.";
+			mes "O ^6666CCSignum Crusis^000000 é uma habilidade que reduz a Defesa de monstros mortos-vivos ou propriedades das Trevas. Tem um amploe poder e é  bastante poderoso.";
 			next;
 			mes "[Henson]";
-			mes "However, it's a very difficult skill to use, and it has a relatively low success rate. But, do not despair if this skill is not successful all the time.";
+			mes "Entanto, é uma habilidade muito difícil de usar, e tem uma taxa de sucesso relativamente baixo. Mas, não se desespere se esta habilidade não for  é bem sucedida o tempo todo.";
 			next;
 			mes "[Henson]";
-			mes "When it does work, it will give you a great battle advantage. Remember, you will ^6666CCLevel 3 Demon Bane^000000 to acquire this skill.";
+			mes " Quando ela não funciona, ele lhe dará uma vantagem grande batalha.Lembre-se, você vai usar ^6666CCFlagelo do Mal Level 3^000000 para adquirir esta habilidade ..";
 			next;
 			break;
 		case 5:
 			mes "[Henson]";
-			mes "The ^6666CCPneuma^000000 allows you to generate a barrier that will block all long-range attacks in a certain range, creating a zone that will protect you from monsters that attack from a distance.";
+			mes "A  ^6666CCEscudo Sagrado^000000 permite-lhe gerar uma barreira que irá bloquear todos os ataques de longo alcance em um certo intervalo, a criação de uma zona que irá protegê-lo dos monstros que atacam à distância. ";
 			next;
 			mes "[Henson]";
-			mes "In order to become ready to learn Pneuma, you must first completely master the ^6666CCWarp Portal^000000 skill.";
+			mes "Para tornar-se pronto para aprender Pneuma, você deve primeiro dominar completamente o  ^6666CCPortal^000000 .";
 			next;
 			break;
 		case 6:
 			mes "[Henson]";
-			mes "Nothing can escape the eyes of the Holy! ^6666CCRuwach^000000 allows you to see monsters, as well as other adventurers, that are hidden or invisible.";
+			mes "Nada escapa aos olhos do Santo! ^6666CCRevelação^000000 permite-lhe ver monstros, assim como outros aventureiros, que estão escondidos ou invisíveis.";
 			next;
 			mes "[Henson]";
-			mes "Once you learn Ruwach, you will be able to learn the ^6666CCTeleport^000000 skill.";
+			mes "Uma vez que você aprende a usar Revelação , você será capaz de aprender o ^6666CCTeleporte^000000 .";
 			next;
 			break;
 		case 7:
 			mes "[Henson]";
-			mes "First, you must learn the ^6666CCRuwach^000000 skill in order to learn how to Teleport.";
+			mes "Primeiro, você deve aprender ^6666CCRevelação^000000  para aprender o Teleporte. ";
 			next;
 			mes "[Henson]";
-			mes "The ^6666CCTeleport^000000 skill teleports you to a random location in the field or city which you are currently in. Teleport will prove useful for quick escapes, but where you may end up is... unpredictable.";
+			mes "O ^6666CCTeleporte^000000 é uma habilidade que serve para teleporta-lo para um local aleatório no campo ou na cidade que você está atualmente. O Teleporte será útil para o escape rápido, mas onde você pode acabar caindo ... é imprevisíveis. ";
 			next;
 			mes "[Henson]";
-			mes "Once the Teleport skill is mastered, you can Teleport to the latest Save Point that you have made with a Kafra Employee. I do not know why it is that way, but the Lord works in mysterious ways.";
+			mes "Quando a habilidade Teleporte é dominada, você pode usar teleport como último portal salvo que você fez com uma Funcionária Kafra. Eu não sei porque é dessa maneira, mas o Senhor trabalha de maneiras misteriosas.";
 			next;
 			mes "[Henson]";
-			mes "When Teleport is mastered, you can also learn the ^6666CCWarp Portal^000000 skill. Ask Garnet if you wish to know more about Warp Portal.";
+			mes "Quando Teleporte é dominado, você também pode aprender a usar o ^6666CCPortal^000000 . ";
 			next;
 			break;
 		case 8:
 			mes "[Henson]";
-			mes "If you wish to understand more about an Acolyte or Priest skill, you are welcome to visit me at any time.";
+			mes "Se você quiser entender mais sobre as habilidades de um Noviço ou Sacerdote, você está convidado a visitar-me a qualquer momento.";
 			close2;
-			set .@SkilLChat,0;
+			set .@habilidadeChat,0;
 			break;
 		}
 	}
@@ -742,23 +741,23 @@ prt_church,103,71,0	script	Henson#pront	120,{
 
 // Hidden Temple
 //============================================================
-prt_maze02,100,69,0	script	Soldier#pront	105,{
-	mes "[Soldier]";
-	mes "H-hey!";
-	mes "What are";
-	mes "you doing here?!";
+prt_maze02,100,69,0	script	Soldado#pront	105,{
+	mes "[Soldado]";
+	mes "Ei..";
+	mes "O que você está fazendo aqui?! ";
+	mes "Você não sabe que há um demônio que vivem na floresta?! ";
 	next;
-	mes "[Soldier]";
-	mes "Don't you know there's a Demon living in this forest?! I can't guarantee your safety";
-	mes "if you go in!";
+	mes "[Soldador]";
+	mes "Eu não posso garantir sua segurança";
+	mes " se você for  para dentro!";
 	close;
 }
 
-prt_maze02,110,69,0	script	Soldier#2pront	105,{
-	mes "[Soldier]";
-	mes "*Sigh...* The last guy that entered this place haven't come back at all. He didn't listen to me and went in to gather Herbs or something dumb like that...";
+prt_maze02,110,69,0	script	Soldado#2pront	105,{
+	mes "[Soldado]";
+	mes "* Sigh ...* O último cara que entrou neste lugar não voltou mais. Ele não me deu ouvidos e foi pegar ervas ou algo burro do tipo...";
 	next;
-	mes "[Soldier]";
-	mes "Whaaaat a stupid guy. Why would anyone want to throw his life away just to collect some silly Herbs?";
+	mes "[Soldado]";
+	mes "Que cara estúpido! Por que alguém iria querer jogar sua vida fora apenas para recolher algumas Ervas bobas?";
 	close;
 }

@@ -9,7 +9,7 @@
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
 // | Nome do Script: Serviço de Teleporte para Calabouços   |
-// | (Dungeons)                     			    		|
+// | (Dungeons)                     			      |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
@@ -26,12 +26,12 @@
 // | Checagem do tempo de votação: $DTS_Time                |
 // | Cool Event Corp. - Número de votos:$DTS_JondaVotes     |
 // | Kafra - Número de votos:		$DTS_KafraVotes     	|
-// | Vencedor:				$DTS_Result         			|
+// | Vencedor:				$DTS_Result             |
 // | Checagem do periodo do serviço de teleport:            |
 // |                                      $DTS_PeriodCheck  |
-// | Kafra - Pontos:			$DTS_KafraWins      		|
-// | Cool Event Corp. - Points:	$DTS_JondaWins              |
-// | Checagem Setitem:			$DTS_VoteCount      		|
+// | Kafra - Pontos:			$DTS_KafraWins          |
+// | Cool Event Corp. - Points:	$DTS_JondaWins          |
+// | Checagem Setitem:			$DTS_VoteCount          |
 // |                                                        |
 // | Para obter informações detalhadas sobre o que cada um  |
 // | faz varibale, consulte o "Vote Globalvar Girl # yuno"  |
@@ -40,8 +40,10 @@
 // | lhz_vote (não deixa votar novamente, caso tente votar  |
 // | vezes seguidas)                                        |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
-// | 1.0 Script Traduzido [cleyton]   	                    |
+// | Changelog:               	                        |
+// | 1.0 Script Traduzido [cleyton]   	                  |
+// | Anotações:                                             |
+// | - Corrigidas as tabulações no cabeçalho.               |
 // \________________________________________________________/
 
 einbroch,246,70,0	script	Vote Timer#ein	-1,{
