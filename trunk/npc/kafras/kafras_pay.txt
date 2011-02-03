@@ -26,8 +26,8 @@
 // | arg(3): Custo do serviço de "Armazém"                  |
 // | arg(4): Custo do serviço "Alugar Carrinho"             |
 // |--------------------------------------------------------|
-// | Changelog:               	                        |
-// | 1.0 Script Traduzido [cleyton]   	                  |
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [cleyton]                         |
 // | 1.1 Script Revisado [Tyler]                            |
 // | Anotações:                                             |
 // | - Corrigidas as tabulações no cabeçalho.               |
@@ -88,7 +88,7 @@ pay_arche,55,123,0	script	Funcionária Kafra::kaf_payon3	115,{
 }
 
 // Função: Seta as variáveis para as Kafras de Payon
-//============================================================ 
+//============================================================
 function	script	F_KafSetPay	{
 	cleararray @wrpC$[0],"",getarraysize(@wrpC$);
 	setarray @wrpD$[0], "Alberta", "Prontera", "Morroc";

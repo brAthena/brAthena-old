@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Funções da Kafra (Functions)	    	|
+// | Nome do Script: Funções da Kafra (Functions)           |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
@@ -23,8 +23,8 @@
 // | slightly differing Welcome message.                    |
 // |                                                        |
 // |--------------------------------------------------------|
-// | Changelog:               	                        |
-// | 1.0 Script Traduzido [cleyton]   	                  |
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [cleyton]                         |
 // | Anotações:                                             |
 // | - Corrigidas as tabulações no cabeçalho.               |
 // \________________________________________________________/
@@ -106,7 +106,7 @@ function	script	F_Kafra	{
 			break;
 
 		// No Teleport (Common)
-		case 3: 
+		case 3:
 			setarray @K_Menu0$[0],"Salvar","Usar armazém","Adquirir carrinho de mão","Guia","Checar outra informação","Cancelar";
 			break;
 
@@ -324,7 +324,7 @@ function	script	F_KafTele	{
 	mes "seu destino.";
 	next;
 
-	menu 	@wrpC$[0],M_Wrp0, @wrpC$[1],M_Wrp1, @wrpC$[2],M_Wrp2, @wrpC$[3],M_Wrp3, 
+	menu 	@wrpC$[0],M_Wrp0, @wrpC$[1],M_Wrp1, @wrpC$[2],M_Wrp2, @wrpC$[3],M_Wrp3,
 		@wrpC$[4],M_Wrp4, @wrpC$[5],M_Wrp5, @wrpC$[6],M_Wrp6;
 
 	M_Wrp0:
@@ -588,7 +588,7 @@ M_SET:
 	mes "Seu armazém está protegido com uma senha secreta.";
 	mes "Obrigado por usar"+getarg(1)+".";
 	emotion e_thx;
-	goto M_END;	
+	goto M_END;
 
 M_CLEAR:
 	mes getarg(0);
@@ -614,7 +614,7 @@ M_CLEAR:
 		mes "Por favor, na próxima entre com a senha correta.";
 		emotion e_sry;
 	}
-	goto M_END;	
+	goto M_END;
 
 L_ZENY:
 	mes "Você não possui zenys.";

@@ -16,8 +16,8 @@
 // |--------------------------------------------------------|
 // | Descrição: Kafras da Cidade de Moscóvia.               |
 // |--------------------------------------------------------|
-// | Changelog:               	                        |
-// | 1.0 Script Traduzido [cleyton]   	                  |
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [cleyton]                         |
 // | 1.1 Script Revisado [Tyler]                            |
 // | Anotações:                                             |
 // | - Corrigidas as tabulações no cabeçalho.               |
@@ -74,9 +74,9 @@ moscovia,223,191,4	script	Assistente Kafra#mosk	114,{
 			mes "está sendo aberto agora.";
 			mes "Obrigado por usar";
 			mes "o serviço da Kafra.";
-			
+
 			callfunc("F_CheckKafCode");	//check your storage password, if set
-			
+
 			close2;
 			openstorage;
 			cutin "", 255;

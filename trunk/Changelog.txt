@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0199 - 03/02/2011 [Dani]
+	* Correção dos cabeçalhos da pasta npc/kafras completa
+	- Seguindo r196
+	* Limpeza de espaços desnecessários em todos os scripts da pasta npc/kafras
+
 	r0198 - 03/02/2011 [Dani]
 	* Correção dos cabeçalhos da pasta npc/cidades completa
 	- Seguindo r196 e r197
