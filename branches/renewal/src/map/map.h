@@ -68,6 +68,8 @@ struct item_data;
 //for filtering and quick checking.
 #define MAPID_UPPERMASK 0x0fff
 #define MAPID_BASEMASK 0x00ff
+#define MAPID_UPPERMASK_THIRD (JOBL_THIRD|MAPID_UPPERMASK)
+#define MAPID_JOBMASK 0xf000
 //First Jobs
 //Note the oddity of the novice:
 //Super Novices are considered the 2-1 version of the novice! Novices are considered a first class type, too...

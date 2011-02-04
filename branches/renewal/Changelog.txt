@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0201 - 04/02/2011 [Protimus]
+	* Correções para o sistema de classes.
+	* Quantias máximas alteradas na source.
+	- MAX_SKILL_TREE para 100
+	- MAX_SKILL para 3000
+
 	r0195 - 03/02/2011 [Heaven]
 	* Retiradas linhas sem necessidade
 	
