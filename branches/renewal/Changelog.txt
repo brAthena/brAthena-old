@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0202 - 04/02/2011 [Protimus]
+	* Adicionados status change e status icons para todas habilidades das 3° classes.
+	* Adicionadas leituras dos nomes de todas as habilidades das 3° classes.
+	* Quantia máxima de MAX_SKILL_PRODUCE_DB alterada para 200.
+
 	r0201 - 04/02/2011 [Protimus]
 	* Correções para o sistema de classes.
 	* Quantias máximas alteradas na source.
