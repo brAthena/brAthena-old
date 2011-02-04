@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0203 - 04/02/2011 [Protimus]
+	* Adicionadas habilidades das 3° classes em skill_db.txt e skill_unit_db.txt.
+	- Falta adicionar em skill_cast_db.txt, skill_require_db.txt e skill_tree.txt.
+
 	r0202 - 04/02/2011 [Protimus]
 	* Adicionados status change e status icons para todas habilidades das 3° classes.
 	* Adicionadas leituras dos nomes de todas as habilidades das 3° classes.
