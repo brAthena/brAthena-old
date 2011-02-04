@@ -9,6 +9,14 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0204 - 04/02/2011 [Protimus]
+	* Atualizado const.txt com as devidas IDs do Renewal.
+	* Removido meu sistema de reuso de habilidades.
+	* Adicionado sistema de cooldown de acordo com nova opção em skill_cast_db.txt
+	- Créditos ao projeto 3CeAM.
+	* Desabilitado código de modificação de habilidade da r194.
+	- SC utilizado de maneira incorreta, necessário reavaliar o código.
+
 	r0203 - 04/02/2011 [Protimus]
 	* Adicionadas habilidades das 3° classes em skill_db.txt e skill_unit_db.txt.
 	- Falta adicionar em skill_cast_db.txt, skill_require_db.txt e skill_tree.txt.

@@ -41,7 +41,7 @@
 
 #ifndef PACKETVER
 	//#define PACKETVER	20081126
-	#define PACKETVER 20100707
+	#define PACKETVER 20091013
 #endif
 // backward compatible PACKETVER 8 and 9
 #if PACKETVER == 8
@@ -131,6 +131,7 @@
 
 #define MAX_FRIENDS 40
 #define MAX_MEMOPOINTS 3
+#define MAX_SKILLCOOLDOWN 20
 
 //Size of the fame list arrays.
 #define MAX_FAME_LIST 10
@@ -228,6 +229,11 @@ struct status_change_data {
 	long val1, val2, val3, val4, tick; //Remaining duration.
 };
 
+struct skill_cooldown_data {
+	unsigned short skill_id;
+	long tick;
+};
+
 struct storage_data {
 	int storage_amount;
 	struct item items[MAX_STORAGE];
@@ -291,11 +297,6 @@ struct s_friend {
 	int account_id;
 	int char_id;
 	char name[NAME_LENGTH];
-};
-
-struct skill_reuse_data {
-	int id;
-	long tick;
 };
 
 

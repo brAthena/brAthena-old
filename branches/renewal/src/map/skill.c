@@ -144,6 +144,7 @@ int	skill_get_zeny( int id ,int lv )      { skill_get (skill_db[id].zeny[lv-1], 
 int	skill_get_num( int id ,int lv )       { skill_get (skill_db[id].num[lv-1], id, lv); }
 int	skill_get_cast( int id ,int lv )      { skill_get (skill_db[id].cast[lv-1], id, lv); }
 int	skill_get_delay( int id ,int lv )     { skill_get (skill_db[id].delay[lv-1], id, lv); }
+int	skill_get_cooldown( int id ,int lv )  { skill_get (skill_db[id].cooldown[lv-1], id, lv); }
 int	skill_get_walkdelay( int id ,int lv ) { skill_get (skill_db[id].walkdelay[lv-1], id, lv); }
 int	skill_get_time( int id ,int lv )      { skill_get (skill_db[id].upkeep_time[lv-1], id, lv); }
 int	skill_get_time2( int id ,int lv )     { skill_get (skill_db[id].upkeep_time2[lv-1], id, lv); }
@@ -167,7 +168,6 @@ int	skill_get_unit_target( int id )       { skill_get (skill_db[id].unit_target&
 int	skill_get_unit_bl_target( int id )    { skill_get (skill_db[id].unit_target&BL_ALL, id, 1); }
 int	skill_get_unit_flag( int id )         { skill_get (skill_db[id].unit_flag, id, 1); }
 int	skill_get_unit_layout_type( int id ,int lv ){ skill_get (skill_db[id].unit_layout_type[lv-1], id, lv); }
-int	skill_get_reuse( int id ,int lv )      { skill_get (skill_db[id].reuse[lv-1], id, lv); }
 
 int skill_tree_get_max(int id, int b_class)
 {
@@ -192,6 +192,7 @@ struct skill_unit_group_tickset *skill_unitgrouptickset_search(struct block_list
 static int skill_unit_onplace(struct skill_unit *src,struct block_list *bl,unsigned int tick);
 static int skill_unit_onleft(int skill_id, struct block_list *bl,unsigned int tick);
 static int skill_unit_effect(struct block_list *bl,va_list ap);
+int skill_blockpc_get(struct map_session_data *sd, int skillid);
 
 int enchant_eff[5] = { 10, 14, 17, 19, 20 };
 int deluge_eff[5] = { 5, 9, 12, 14, 15 };
@@ -368,7 +369,7 @@ int skillnotok (int skillid, struct map_session_data *sd)
 	if( skillid == AL_TELEPORT && sd->skillitem == skillid && sd->skillitemlv > 2 )
 		return 0; // Teleport lv 3 bypasses this check.[Inkfish]
 
-	if (sd->blockskill[i] > 0)
+	if( skill_blockpc_get(sd,skillid) != -1 )
 		return 1;
 
 	// Check skill restrictions [Celest]
@@ -11188,35 +11189,81 @@ int skill_arrow_create (struct map_session_data *sd, int nameid)
 /*==========================================
  *
  *------------------------------------------*/
+int skill_blockpc_get(struct map_session_data *sd, int skillid)
+{
+	int i;
+	nullpo_retr(-1,sd);
+
+	ARR_FIND(0, MAX_SKILLCOOLDOWN, i, sd->scd[i] && sd->scd[i]->skill_id == skillid);
+	return (i >= MAX_SKILLCOOLDOWN) ? -1 : i;
+}
+
 int skill_blockpc_end(int tid, unsigned int tick, int id, intptr data)
 {
 	struct map_session_data *sd = map_id2sd(id);
-	if (data <= 0 || data >= MAX_SKILL)
+	int i = (int)data;
+
+	if( !sd || data < 0 || data >= MAX_SKILLCOOLDOWN )
 		return 0;
-	if (!sd) return 0;
-	if (sd->blockskill[data] != (0x1|(tid&0xFE))) return 0;
-	sd->blockskill[data] = 0;
+
+	if( !sd->scd[i] || sd->scd[i]->timer != tid )
+	{
+		ShowWarning("skill_blockpc_end: Invalid Timer or not Skill Cooldown.\n");
+		return 0;
+	}
+
+	aFree(sd->scd[i]);
+	sd->scd[i] = NULL;
 	return 1;
 }
 
 int skill_blockpc_start(struct map_session_data *sd, int skillid, int tick)
 {
-	nullpo_retr (-1, sd);
-
-	skillid = skill_get_index(skillid);
-	if (skillid == 0)
+	int i;
+	nullpo_retr(-1,sd);
+	if( skillid == 0 || tick < 1 )
 		return -1;
 
-	if (tick < 1) {
-		sd->blockskill[skillid] = 0;
-		return -1;
+	ARR_FIND(0,MAX_SKILLCOOLDOWN,i,sd->scd[i] && sd->scd[i]->skill_id == skillid);
+	if( i < MAX_SKILLCOOLDOWN )
+	{ // Skill already with cooldown
+		delete_timer(sd->scd[i]->timer,skill_blockpc_end);
+		aFree(sd->scd[i]);
+		sd->scd[i] = NULL;
 	}
 
-	if( battle_config.display_status_timers )
-		clif_skill_cooldown(sd, skillid, tick);
+	ARR_FIND(0,MAX_SKILLCOOLDOWN,i,!sd->scd[i]);
+	if( i < MAX_SKILLCOOLDOWN )
+	{ // Free Slot found
+		CREATE(sd->scd[i],struct skill_cooldown_entry, 1);
+		sd->scd[i]->skill_id = skillid;
+		sd->scd[i]->timer = add_timer(gettick() + tick, skill_blockpc_end, sd->bl.id, i);
 
-	sd->blockskill[skillid] = 0x1|(0xFE&add_timer(gettick()+tick,skill_blockpc_end,sd->bl.id,skillid));
-	return 0;
+		if( battle_config.display_status_timers && tick > 0 )
+			clif_skill_cooldown(sd,skillid,tick);
+
+		return 1;
+	}
+	else
+	{
+		ShowWarning("skill_blockpc_start: Too many skillcooldowns, increase MAX_SKILLCOOLDOWN.\n");
+		return 0;
+	}
+}
+
+int skill_blockpc_clear(struct map_session_data *sd)
+{
+	int i;
+	nullpo_ret(sd);
+	for( i = 0; i < MAX_SKILLCOOLDOWN; i++ )
+	{
+		if( !sd->scd[i] )
+			continue;
+		delete_timer(sd->scd[i]->timer,skill_blockpc_end);
+		aFree(sd->scd[i]);
+		sd->scd[i] = NULL;
+	}
+	return 1;
 }
 
 int skill_blockhomun_end(int tid, unsigned int tick, int id, intptr data)	//[orn]
@@ -11709,7 +11756,7 @@ static bool skill_parse_row_requiredb(char* split[], int columns, int current)
 }
 
 static bool skill_parse_row_castdb(char* split[], int columns, int current)
-{// SkillID,CastingTime,AfterCastActDelay,AfterCastWalkDelay,Duration1,Duration2
+{// SkillID,CastingTime,AfterCastActDelay,Cooldown,AfterCastWalkDelay,Duration1,Duration2
 	int i = atoi(split[0]);
 	i = skill_get_index(i);
 	if( !i ) // invalid skill id
@@ -11717,9 +11764,12 @@ static bool skill_parse_row_castdb(char* split[], int columns, int current)
 
 	skill_split_atoi(split[1],skill_db[i].cast);
 	skill_split_atoi(split[2],skill_db[i].delay);
-	skill_split_atoi(split[3],skill_db[i].walkdelay);
-	skill_split_atoi(split[4],skill_db[i].upkeep_time);
-	skill_split_atoi(split[5],skill_db[i].upkeep_time2);
+	skill_split_atoi(split[3],skill_db[i].cooldown);
+	skill_split_atoi(split[4],skill_db[i].walkdelay);
+	skill_split_atoi(split[5],skill_db[i].upkeep_time);
+	skill_split_atoi(split[6],skill_db[i].upkeep_time2);
+	if( split[7] )
+		skill_split_atoi(split[7],skill_db[i].fixed_cast);
 
 	return true;
 }
@@ -11852,22 +11902,6 @@ static bool skill_parse_row_abradb(char* split[], int columns, int current)
 	return true;
 }
 
-static bool skill_parse_row_reusedb(char* split[], int columns, int current)
-{
-	int i = atoi(split[0]);
-	i = skill_get_index(i);
-
-	if( !skill_get_index(i) || !skill_get_max(i) )
-	{
-		ShowError("skill_reuse_db: ID da habilidade invalida %d\n", i);
-		return false;
-	}
-
-	skill_split_atoi(split[1],skill_db[i].reuse);
-
-	return true;
-}
-
 static void skill_readdb(void)
 {
 	// init skill db structures
@@ -11882,10 +11916,9 @@ static void skill_readdb(void)
 	safestrncpy(skill_db[0].desc, "Unknown Skill", sizeof(skill_db[0].desc));
 	sv_readdb(db_path, "skill_db.txt"          , ',',  17, 17, MAX_SKILL_DB, skill_parse_row_skilldb);
 	sv_readdb(db_path, "skill_require_db.txt"  , ',',  32, 32, MAX_SKILL_DB, skill_parse_row_requiredb);
-	sv_readdb(db_path, "skill_cast_db.txt"     , ',',   6,  6, MAX_SKILL_DB, skill_parse_row_castdb);
+	sv_readdb(db_path, "skill_cast_db.txt"     , ',',   7,  8, MAX_SKILL_DB, skill_parse_row_castdb);
 	sv_readdb(db_path, "skill_castnodex_db.txt", ',',   2,  3, MAX_SKILL_DB, skill_parse_row_castnodexdb);
 	sv_readdb(db_path, "skill_nocast_db.txt"   , ',',   2,  2, MAX_SKILL_DB, skill_parse_row_nocastdb);
-	sv_readdb(db_path, "skill_reuse_db.txt"     , ',',   2,  2, MAX_SKILL_DB, skill_parse_row_reusedb);
 	sv_readdb(db_path, "skill_unit_db.txt"     , ',',   8,  8, MAX_SKILL_DB, skill_parse_row_unitdb);
 	skill_init_unit_layout();
 	sv_readdb(db_path, "produce_db.txt"        , ',',   4,  4+2*MAX_PRODUCE_RESOURCE, MAX_SKILL_PRODUCE_DB, skill_parse_row_producedb);
