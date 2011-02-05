@@ -5083,7 +5083,12 @@ int pc_gainexp(struct map_session_data *sd, struct block_list *src, unsigned int
 {
 	float nextbp=0, nextjp=0;
 	unsigned int nextb=0, nextj=0;
+	int diferenca=(src ? status_get_lv(src) - sd->status.base_level:0), diferenca_exp = 0;
 	nullpo_ret(sd);
+
+	if(src)
+		if(status_get_mexp(src))
+			diferenca=0;
 
 	if(sd->bl.prev == NULL || pc_isdead(sd))
 		return 0;
@@ -5120,7 +5125,26 @@ int pc_gainexp(struct map_session_data *sd, struct block_list *src, unsigned int
 			}
 		}
 	}
-	
+	if(diferenca >= 16)
+		diferenca_exp = 40;
+	else if(diferenca <= 15 && diferenca >= 10)
+		diferenca_exp = 140-((diferenca-10)*5);
+	else if(diferenca <= 9 && diferenca >= 3)
+		diferenca_exp = 105+((diferenca-3)*5);
+	else if(diferenca <= 2 && diferenca >= -5)
+		diferenca_exp = 100;
+	else if(diferenca <= -6 && diferenca >= -20)
+		diferenca_exp = 100+((int)((diferenca+1)/5))*5;
+	else if(diferenca <= -21 && diferenca >= -25)
+		diferenca_exp = 60;
+	else if(diferenca <= -26 && diferenca >= -30)
+		diferenca_exp = 35;
+	else if(diferenca <= -30)
+		diferenca_exp = 10;
+		
+	if(base_exp) base_exp = base_exp*diferenca_exp/100;
+	if(job_exp) job_exp = job_exp*diferenca_exp/100;
+
 	//Cap exp to the level up requirement of the previous level when you are at max level, otherwise cap at UINT_MAX (this is required for some S. Novice bonuses). [Skotlex]
 	if (base_exp) {
 		nextb = nextb?UINT_MAX:pc_thisbaseexp(sd);

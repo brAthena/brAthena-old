@@ -2165,28 +2165,6 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 				merc_hom_gainexp(tmpsd[i]->hd, base_exp);
 			if(base_exp || job_exp)
 			{
-				int diferenca = md->level - sd->status.base_level;
-				int diferenca_exp;
-				if(diferenca >= 16)
-					diferenca_exp = 40;
-				else if(diferenca <= 15 && diferenca >= 10)
-					diferenca_exp = 140-((diferenca-10)*5);
-				else if(diferenca <= 9 && diferenca >= 3)
-					diferenca_exp = 105+((diferenca-3)*5);
-				else if(diferenca <= 2 && diferenca >= -5)
-					diferenca_exp = 100;
-				else if(diferenca <= -6 && diferenca >= -20)
-					diferenca_exp = 100+((int)((diferenca+1)/5))*5;
-				else if(diferenca <= -21 && diferenca >= -25)
-					diferenca_exp = 60;
-				else if(diferenca <= -26 && diferenca >= -30)
-					diferenca_exp = 35;
-				else if(diferenca <= -30)
-					diferenca_exp = 10;
-				
-				if(base_exp) base_exp = base_exp*diferenca_exp/100;
-				if(job_exp) job_exp = job_exp*diferenca_exp/100;
-
 				if( md->dmglog[i].flag != MDLF_PET || battle_config.pet_attack_exp_to_master )
 					pc_gainexp(tmpsd[i], &md->bl, base_exp, job_exp, false);
 			}
@@ -2196,7 +2174,7 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 	}
 	
 	for(i=0;i<pnum;i++) //Party share.
-		party_exp_share(pt[i].p, &md->bl, pt[i].base_exp,pt[i].job_exp,pt[i].zeny, md->level);
+		party_exp_share(pt[i].p, &md->bl, pt[i].base_exp,pt[i].job_exp,pt[i].zeny);
 
 	} //End EXP giving.
 	
@@ -2251,6 +2229,9 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 			// Increase drop rate if user has SC_ITEMBOOST
 			if (sd && sd->sc.data[SC_ITEMBOOST]) // now rig the drop rate to never be over 90% unless it is originally >90%.
 				drop_rate = max(drop_rate,cap_value((int)(0.5+drop_rate*(sd->sc.data[SC_ITEMBOOST]->val1)/100.),0,9000));
+
+			if(md->db->mexp > 0)
+				diferenca = 0;
 
 			if(diferenca <= 10 && diferenca >= -5)
 				drop_rate *=100;
