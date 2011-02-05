@@ -494,6 +494,8 @@ extern struct Battle_Config
 	int use_statpoint2_table; // [Protimus]
 	int max_3rd_parameter;
 	int max_baby_3rd_parameter;
+	int max_level_base;
+	int max_level_classe;
 
 } battle_config;
 

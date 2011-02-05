@@ -940,7 +940,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 	unsigned int skillratio = 100;	//Skill dmg modifiers.
 	short skill=0;
 	short s_ele, s_ele_, t_class;
-	int i, nk;
+	int i, nk, s_base_level;
 	bool n_ele = false; // non-elemental
 
 	struct map_session_data *sd, *tsd;
@@ -971,6 +971,12 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 		nullpo_info(NLP_MARK);
 		return wd;
 	}
+	
+	s_base_level = status_get_lv(src);
+	if( skill_num >= RK_ENCHANTBLADE &&
+		battle_config.max_level_base && s_base_level > battle_config.max_level_base )
+		s_base_level = battle_config.max_level_base;	
+	
 	//Initial flag
 	flag.rh=1;
 	flag.weapon=1;
@@ -2387,27 +2393,43 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
  *------------------------------------------*/
 struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list *target,int skill_num,int skill_lv,int mflag)
 {
-	int i, nk;
-	short s_ele;
+	int i, nk, s_base_level, s_job_level = 50;
+	short s_ele = skill_get_ele(skill_num, skill_lv);
 	unsigned int skillratio = 100;	//Skill dmg modifiers.
 
 	struct map_session_data *sd, *tsd;
 	struct Damage ad;
 	struct status_data *sstatus = status_get_status_data(src);
 	struct status_data *tstatus = status_get_status_data(target);
-	struct {
+	struct status_change *sc = status_get_sc(src);
+
+	struct
+	{
 		unsigned imdef : 1;
 		unsigned infdef : 1;
-	}	flag;
+	}flag;
 
 	memset(&ad,0,sizeof(ad));
 	memset(&flag,0,sizeof(flag));
 
-	if(src==NULL || target==NULL)
+	if( src == NULL || target == NULL )
 	{
 		nullpo_info(NLP_MARK);
 		return ad;
 	}
+	sd = BL_CAST(BL_PC, src);
+	tsd = BL_CAST(BL_PC, target);
+
+	s_base_level = status_get_lv(src);
+	if( skill_num >= RK_ENCHANTBLADE &&
+		battle_config.max_level_base && s_base_level > battle_config.max_level_base )
+		s_base_level = battle_config.max_level_base;
+		
+	if( sd && battle_config.max_level_classe)
+		s_job_level = min(sd->status.job_level,battle_config.max_level_classe);
+	else if ( sd )
+		s_job_level = sd->status.job_level;
+		
 	//Initial Values
 	ad.damage = 1;
 	ad.div_=skill_get_num(skill_num,skill_lv);
@@ -2431,6 +2453,9 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 		s_ele = status_get_attack_sc_element(src,status_get_sc(src));
 	else if( s_ele == -3 ) //Use random element
 		s_ele = rand()%ELE_MAX;
+		
+	ad.div_=skill_get_num(skill_num,skill_lv);
+	ad.blewcount = skill_get_blewcount(skill_num,skill_lv);
 	
 	//Set miscellaneous data that needs be filled
 	if(sd) {
@@ -2767,7 +2792,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
  *------------------------------------------*/
 struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *target,int skill_num,int skill_lv,int mflag)
 {
-	int skill;
+	int skill, s_base_level;
 	short i, nk;
 	short s_ele;
 
@@ -2809,6 +2834,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 
 	//Skill Range Criteria
 	md.flag |= battle_range_type(src, target, skill_num, skill_lv);
+	s_base_level = status_get_lv(src);
 
 	switch( skill_num )
 	{
@@ -4113,9 +4139,11 @@ static const struct _battle_data {
 	{ "bg_misc_attack_damage_rate",         &battle_config.bg_misc_damage_rate,             60,     0,      INT_MAX,        },
 	{ "bg_flee_penalty",                    &battle_config.bg_flee_penalty,                 20,     0,      INT_MAX,        },
 	// brAthena Modificações
-	{ "use_statpoint2_table",               &battle_config.use_statpoint2_table,             1,     0,      1,              },
-	{ "max_3rd_parameter",                  &battle_config.max_3rd_parameter,              120,     10,     10000,          },
-	{ "max_baby_3rd_parameter",             &battle_config.max_baby_3rd_parameter,         108,     10,     10000,          },
+	{ "use_statpoint2_table",               &battle_config.use_statpoint2_table,              1,    0,      1,              },
+	{ "max_3rd_parameter",                  &battle_config.max_3rd_parameter,               120,   10,      10000,          },
+	{ "max_baby_3rd_parameter",             &battle_config.max_baby_3rd_parameter,          108,   10,      10000,          },
+	{ "max_level_base",                     &battle_config.max_level_base,               	100,    0,      INT_MAX,        },
+	{ "max_level_classe",                   &battle_config.max_level_classe,                100,    0,      INT_MAX,        },
 };
 
 

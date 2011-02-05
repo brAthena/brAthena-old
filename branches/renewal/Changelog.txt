@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0208 - 05/02/2011 [Protimus]
+	* Adicionada novas battle config para level máximo de base e classe.
+	- Necessário para configurações das habilidades das 3° classes.
+	- Adicionada informações da habilidade RK_ENCHANTBLADE (Encantar Lâmina) ao código.
+
 	r0207 - 05/02/2011 [Heaven]
 	* Fixado o erro causado pelo SC_RAID
 	
