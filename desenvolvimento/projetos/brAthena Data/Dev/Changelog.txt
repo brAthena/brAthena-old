@@ -9,6 +9,14 @@
 //	acessando o seguinte link: http://svn.brathena.org/trac/timeline
 // ==================================================
 
+	r0208 (r0003) - 05/02/2011 [Dani]
+	* Segundo pack de atualizações na brAthena Data
+	- idnum2itemresnametable.txt
+	- itemslotcounttable.txt
+	- num2cardillustnametable.txt
+	- num2itemresnametable.txt
+	- skillnametable.txt (Faltando concluir a tradução das skills das 3-x)
+
 	r0189 (r0002) - 01/02/2011 [Dani]
 	* Primeiro pack de atualizações na brAthena Data
 	- book/11017.txt
