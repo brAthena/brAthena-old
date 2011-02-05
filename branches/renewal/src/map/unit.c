@@ -1115,6 +1115,10 @@ int unit_skilluse_id2(struct block_list *src, int target_id, short skill_num, sh
 		casttime += casttime * k; 
 		}
 	break;	
+	case RK_ENCHANTBLADE:
+		if( battle_check_target(src,target,BCT_ENEMY)>0 )
+			return 0;
+	break;
 	case GD_EMERGENCYCALL: //Emergency Call double cast when the user has learned Leap [Daegaladh]
 		if( sd && pc_checkskill(sd,TK_HIGHJUMP) )
 			casttime *= 2;

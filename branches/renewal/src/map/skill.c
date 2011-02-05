@@ -5701,6 +5701,10 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case ALL_WEWISH:
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
 		break;
+	case RK_ENCHANTBLADE:
+		clif_skill_nodamage(src,bl,skillid,skilllv,
+			sc_start2(bl,type,100,skilllv,100+20*skilllv+status_get_status_data(src)->matk_min/2,skill_get_time(skillid,skilllv)));
+		break;
 	default:
 		ShowWarning("skill_castend_nodamage_id: Habilidade desconhecida usada:%d\n",skillid);
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
@@ -6617,6 +6621,7 @@ int skill_castend_map (struct map_session_data *sd, short skill_num, const char 
 		sd->sc.data[SC_DANCING] ||
 		sd->sc.data[SC_BERSERK] ||
 		sd->sc.data[SC_BASILICA] ||
+		sd->sc.data[SC_DANCING] && skill_num < RK_ENCHANTBLADE && !pc_checkskill(sd, WM_LESSON) ||
 		sd->sc.data[SC_MARIONETTE]
 	 )) {
 		skill_failed(sd);

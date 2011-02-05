@@ -4923,7 +4923,8 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 	struct status_change_entry* sce;
 	struct status_data *status;
 	struct view_data *vd;
-	int opt_flag, calc_flag, undead_flag;
+	int opt_flag, calc_flag, undead_flag, val_flag = 0;
+	int duration = tick;
 
 	nullpo_ret(bl);
 	sc = status_get_sc(bl);
@@ -6269,6 +6270,9 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_SPL_MATK:
 			val2 = 2; // Splendide group
 			break;
+		case SC_ENCHANTBLADE:
+			val_flag |= 2;
+			break;
 
 		default:
 			if( calc_flag == SCB_NONE && StatusSkillChangeTable[type] == 0 && StatusIconChangeTable[type] == 0 )
@@ -6488,7 +6492,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 	}
 
 	if( vd && (pcdb_checkid(vd->class_) || bl->type == BL_MER ) ) //Only for players sprites, client crashes if they receive this for a mob o.O [Skotlex]
-		clif_status_change(bl,StatusIconChangeTable[type],1,tick);
+		clif_status_change(bl,StatusIconChangeTable[type],1,duration,(val_flag&1)?val1:1,(val_flag&2)?val2:0,(val_flag&4)?val3:0);
 	else if( sd ) //Send packet to self otherwise (disguised player?)
 		clif_status_load(bl,StatusIconChangeTable[type],1);
 

@@ -2384,6 +2384,13 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 	//Aumentando em 20% o dano se afetado por Ataque Surpresa(Não acumula com Lex Aeterna)
 	if (sc && sc->data[SC_RAID] && !sc->data[SC_AETERNA])
 		wd.damage += (20*wd.damage)/100; 
+		
+	if( sc && sc->data[SC_ENCHANTBLADE] && !skill_num && sd && ((flag.rh && sd->weapontype1) || (flag.lh && sd->weapontype2)) )
+	{
+		struct Damage md = battle_calc_magic_attack(src, target, RK_ENCHANTBLADE, ((TBL_PC*)src)->status.skill[RK_ENCHANTBLADE].lv, wflag);
+		wd.damage += md.damage;
+		wd.flag |= md.flag;
+	}
 
 	return wd;
 }
@@ -2514,8 +2521,15 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 			case PF_SOULBURN:
 				ad.damage = tstatus->sp * 2;
 				break;
+			case RK_ENCHANTBLADE:
+				{
+					if( sc && sc->data[SC_ENCHANTBLADE] )
+						ad.damage += sc->data[SC_ENCHANTBLADE]->val2;
+					else
+						return ad;
+				}
 			default:
-			{
+			{	
 				int min_damage, max_damage;
 
 				min_damage = 
