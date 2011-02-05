@@ -9,6 +9,18 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0210 - 05/02/2011 [Dani]
+	* Envio de traduções
+	- npc/outros/arena/arena_grupo.txt [Thor]
+	- npc/outros/arena/arena_lvl50.txt [Thor]
+	- npc/outros/arena/arena_lvl60.txt [Thor]
+	- npc/outros/arena/arena_lvl70.txt [Thor]
+	- npc/outros/arena/arena_lvl80.txt [Thor]
+	- npc/outros/arena/arena_pontos.txt [Thor]
+	- npc/outros/arena/arena_sala.txt [Thor]
+	* Revertido nome de mob Verme Sábio para Verme Ancião
+	- Pequeno erro cometido na r183
+
 	r0200 - 03/02/2011 [Dani]
 	* Correção de erros apontados no map-server (seguindo r196)
 

@@ -1915,7 +1915,7 @@ OnInstanceInit:
 
 OnEnable:
 	enablenpc instance_npcname("47FGate102tower", instance_id());
-	areamonster "2@tower",181,9,191,45,"Verme Ancião",1305,10,instance_npcname("47FGate102tower", instance_id())+"::OnMyMobDead";
+	areamonster "2@tower",181,9,191,45,"Verme Sábio",1305,10,instance_npcname("47FGate102tower", instance_id())+"::OnMyMobDead";
 	areamonster "2@tower",181,9,191,45,"Múmia Anciã",1297,10,instance_npcname("47FGate102tower", instance_id())+"::OnMyMobDead";
 	areamonster "2@tower",181,9,191,45,"Mímico Antigo",1699,10,instance_npcname("47FGate102tower", instance_id())+"::OnMyMobDead";
 	end;
