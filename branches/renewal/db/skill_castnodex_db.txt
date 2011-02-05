@@ -64,6 +64,7 @@
 498,1	// AM_TWILIGHT3#Criação Espiritual de Poções#
 512,3	// GS_TRACKING#Rastrear o Alvo#
 1014,1	// PR_REDEMPTIO#Martírio#
+2316,1	// LG_EXCEEDBREAK#Exceder Limite#
 10010,3	// GD_BATTLEORDER#Comando de Batalha#
 10011,3	// GD_REGENERATION#Regeneração#
 10012,6	// GD_RESTORE#Restauração#
