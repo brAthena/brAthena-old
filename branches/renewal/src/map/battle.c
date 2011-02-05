@@ -2375,9 +2375,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 		status_zap(src, hp, 0);
 	}
 
-/*	//Aumentando em 20% o dano se afetado por Ataque Surpresa(Não acumula com Lex Aeterna)
-	if (sc->data[SC_RAID] && !sc->data[SC_AETERNA])
-		wd.damage += (20*wd.damage)/100; */
+	//Aumentando em 20% o dano se afetado por Ataque Surpresa(Não acumula com Lex Aeterna)
+	if (sc && sc->data[SC_RAID] && !sc->data[SC_AETERNA])
+		wd.damage += (20*wd.damage)/100; 
 
 	return wd;
 }

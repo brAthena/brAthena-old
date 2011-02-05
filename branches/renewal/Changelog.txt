@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0207 - 05/02/2011 [Heaven]
+	* Fixado o erro causado pelo SC_RAID
+	
 	r0206 - 05/02/2011 [Protimus]
 	* Adições de informações para produção de itens através de habilidades (produce_db.txt)
 	* Adicionados todos os cast's e fix cast normais e sem dex no skill_cast_db.txt e skill_castnodex.txt
