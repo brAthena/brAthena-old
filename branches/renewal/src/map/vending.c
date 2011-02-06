@@ -20,6 +20,7 @@
 #include <string.h>
 
 static int vending_nextid = 1;
+static int buying_nextid = 1;
 
 /// Returns an unique vending shop id.
 static int vending_getuid(void)
@@ -30,6 +31,16 @@ static int vending_getuid(void)
 	}
 
 	return vending_nextid++;
+}
+
+static int buying_getuid(void)
+{
+	if(!buying_nextid)
+	{
+		buying_nextid = 1;
+	}
+
+	return buying_nextid++;
 }
 
 /*==========================================
@@ -313,4 +324,227 @@ void vending_openvending(struct map_session_data* sd, const char* message, bool 
 	pc_stop_walking(sd,1);
 	clif_openvending(sd,sd->bl.id,sd->vending);
 	clif_showvendingboard(&sd->bl,message,0);
+}
+
+void vending_openbuying(struct map_session_data* sd, int limitzeny, char flag, const char* message, const uint8* data, int count)
+{
+	int i, j, w, index;
+	int max_count;
+	nullpo_retv(sd);
+
+	if( !flag )
+		return;
+
+	if (pc_istrading(sd))
+		return;
+
+	max_count = pc_checkskill(sd, ALL_BUYING_STORE)>1?5:2;
+
+	if( count < 1 || count > MAX_BUYING || count > max_count )
+		return;
+
+	i = 0;
+	w = 0;
+	for( j = 0; j < count; j++ )
+	{
+		short id = *(uint16*)(data + 8*j + 0);
+		short amount = *(uint16*)(data + 8*j + 2);
+		unsigned int price = *(uint32*)(data + 8*j + 4);
+
+		index = pc_search_inventory(sd,id);
+		if( index == -1 ||
+		    (itemdb_type(id) != IT_HEALING && itemdb_type(id) != IT_USABLE && itemdb_type(id) != IT_ETC) ||
+		    sd->status.inventory[index].card[0] == CARD0_CREATE ||
+		    !itemdb_cantrade(&sd->status.inventory[index], pc_isGM(sd), pc_isGM(sd)))
+			continue;
+
+		w = itemdb_weight(id) * amount;
+		if( w + sd->weight > sd->max_weight )
+		{
+			clif_openbuyingfail(sd,2,w);
+			return;
+		}
+
+		sd->buying[i].id = id;
+		sd->buying[i].amount = amount;
+		sd->buying[i].price = cap_value(price, 0, (unsigned int)battle_config.vending_max_value);
+
+		i++;
+	}
+
+	if( i != j )
+		clif_displaymessage (sd->fd, msg_txt(266));
+
+	if( i == 0 )
+	{
+		clif_openbuyingfail(sd,1,0);
+		return;
+	}
+
+	if( limitzeny < 0 || limitzeny > sd->status.zeny )
+	{
+		clif_openbuyingfail(sd,1,0);
+		return;
+	}
+
+	sd->buyer_id = buying_getuid();
+	sd->buy_num = i;
+	sd->limitzeny = limitzeny;
+	safestrncpy(sd->buymessage, message, MESSAGE_SIZE);
+
+	pc_stop_walking(sd,1);
+	clif_openbuying(sd,sd->bl.id,sd->limitzeny,sd->buying);
+	clif_showbuyingboard(&sd->bl,message,0);
+}
+
+void vending_closebuying(struct map_session_data* sd)
+{
+	nullpo_retv(sd);
+
+	sd->buyer_id = 0;
+	clif_closebuyingboard(&sd->bl,0);
+}
+
+void vending_buyinglistreq(struct map_session_data* sd, int id)
+{
+	struct map_session_data* bsd;
+	nullpo_retv(sd);
+
+	if( (bsd = map_id2sd(id)) == NULL )
+		return;
+
+	if( bsd->buyer_id == 0 )
+		return;
+
+	if ( !pc_can_give_items(pc_isGM(sd)) || !pc_can_give_items(pc_isGM(bsd)) )
+	{
+		clif_displaymessage(sd->fd, msg_txt(246));
+		return;
+	} 
+
+	sd->buying_id = bsd->buyer_id;
+
+	clif_buyinglist(sd, id, bsd->buying);
+}
+
+void vending_buyingsellreq(struct map_session_data* sd, int aid, int uid, const uint8* data, int count)
+{
+	int i, j, w, z, cursor, buy_list[MAX_BUYING];
+	struct s_buying buying[MAX_BUYING];
+	struct map_session_data* bsd = map_id2sd(aid);
+	struct item item;
+
+	nullpo_retv(sd);
+
+	if( bsd == NULL || bsd->buyer_id == 0 || bsd->bl.id == sd->bl.id || bsd->buyer_id != uid ) {
+		clif_buyingsellfail(sd,5,0);
+		return;
+	}
+
+	if( sd->bl.m != bsd->bl.m || !check_distance_bl(&sd->bl, &bsd->bl, AREA_SIZE) )
+		return;
+
+	if( count < 1 || count > MAX_BUYING || count > bsd->buy_num )
+		return;
+
+	memcpy(&buying, &bsd->buying, sizeof(bsd->buying));
+
+	w = 0;
+	z = 0;
+	for( i = 0; i < count; i++ )
+	{
+		short index = *(uint16*)(data + 6*i + 0);
+		short id = *(uint16*)(data + 6*i + 2);
+		short amount = *(uint16*)(data + 6*i + 4);
+
+		index -= 2;
+
+		if( amount <= 0 )
+			return;
+
+		if( index < 0 || index >= MAX_INVENTORY )
+			return;
+
+		ARR_FIND( 0, bsd->buy_num, j, bsd->buying[j].id == id );
+		if( j == bsd->buy_num )
+			return;
+		else
+			buy_list[i] = j;
+
+		if( amount > buying[j].amount ) {
+			clif_buyingsellfail(sd,6,id);
+			return;
+		}
+
+		w += itemdb_weight(id) * amount;
+		z += (bsd->buying[j].price * amount);
+		if( w + bsd->weight > bsd->max_weight ||
+		    z < 0 || z > MAX_ZENY || (z + sd->status.zeny > MAX_ZENY && !battle_config.vending_over_max) ||
+		    sd->status.inventory[index].amount < amount || pc_checkadditem(bsd, id, amount) == ADDITEM_OVERAMOUNT ) {
+			clif_buyingsellfail(sd,5,0);
+			return;
+		}
+
+		if (z > bsd->limitzeny) {
+			clif_buyingsellfail(sd,7,0);
+			return;
+		}
+
+		if(log_config.enable_logs&0x4)
+		{
+			log_pick_pc(bsd, "V", id,  amount, &sd->status.inventory[index]);
+			log_pick_pc( sd, "V", id, -amount, &sd->status.inventory[index]);
+		}
+
+		memset(&item, 0, sizeof(item));
+		item.nameid = id;
+
+		pc_additem(bsd,&item,amount);
+		clif_buyingupdateitem(bsd, id, amount, bsd->limitzeny - z);
+		pc_delitem(sd, index, amount, 1, 0);
+		clif_buyingdeleteitem(sd, index, amount, bsd->buying[i].price);
+		bsd->buying[buy_list[i]].amount -= amount;
+	}
+
+	if(log_config.zeny)
+		log_zeny(sd, "V", bsd, z);
+	pc_payzeny(bsd, z);
+	bsd->limitzeny -= z;
+	if (!bsd->limitzeny && !bsd->state.autotrade)
+		clif_closebuyingmes(bsd,3);
+	if( battle_config.vending_tax )
+		z -= z * (battle_config.vending_tax/10000);
+	pc_getzeny(sd,z);
+
+	for( i = 0, cursor = 0; i < bsd->buy_num; i++ )
+	{
+		if( bsd->buying[i].amount == 0 )
+			continue;
+		
+		if( cursor != i )
+		{
+			bsd->buying[cursor].id = bsd->buying[i].id;
+			bsd->buying[cursor].amount = bsd->buying[i].amount;
+			bsd->buying[cursor].price = bsd->buying[i].price;
+		}
+
+		cursor++;
+	}
+	bsd->buy_num = cursor;
+
+	if( save_settings&2 )
+	{
+		chrif_save(sd,0);
+		chrif_save(bsd,0);
+	}
+
+	ARR_FIND( 0, bsd->buy_num, i, bsd->buying[i].amount > 0 );
+	if( i == bsd->buy_num )
+	{
+		vending_closebuying(bsd);
+		if (bsd->state.autotrade)
+			map_quit(bsd);
+		else
+			clif_closebuyingmes(bsd,4);
+	}
 }

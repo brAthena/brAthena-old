@@ -4402,6 +4402,16 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 				clif_openvendingreq(sd,2+skilllv);
 		}
 		break;
+		
+	case ALL_BUYING_STORE:
+		if(sd)
+		{
+			if ( !pc_can_give_items(pc_isGM(sd)) )
+				clif_skill_fail(sd,skillid,0,0);
+			else
+				clif_openbuyingreq(sd,skilllv>1?5:2);
+		}
+		break;
 
 	case AL_TELEPORT:
 		if(sd)

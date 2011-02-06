@@ -49,6 +49,12 @@ void trade_traderequest(struct map_session_data *sd, struct map_session_data *ta
 		return;
 	}
 
+	if (target_sd->buyer_id)
+	{
+		clif_tradestart(sd, 2);
+		return;
+	}
+
 	if (!battle_config.invite_request_check) {
 		if (target_sd->guild_invite > 0 || target_sd->party_invite > 0 || target_sd->adopt_invite) {
 			clif_tradestart(sd, 2);
@@ -138,8 +144,8 @@ void trade_tradeack(struct map_session_data *sd, int type)
 	}
 
 	//Check if you can start trade.
-	if (sd->npc_id || sd->vender_id || sd->state.storage_flag ||
-		tsd->npc_id || tsd->vender_id || tsd->state.storage_flag)
+	if (sd->npc_id || sd->vender_id || sd->buyer_id || sd->state.storage_flag ||
+		tsd->npc_id || tsd->vender_id || tsd->buyer_id || tsd->state.storage_flag)
 	{	//Fail
 		clif_tradestart(sd, 2);
 		clif_tradestart(tsd, 2);

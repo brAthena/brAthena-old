@@ -123,6 +123,7 @@
 5,155,1,0,0,0,0,0,0,0,0,0,0	// MC_LOUD#Grito de Guerra#
 5,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 5,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
+5,2535,1,0,0,0,0,0,0,0,0,0,0 //ALL_BUYING_STORE#Buying Store#
 //============================================================
 // Gatuno
 //============================================================
@@ -287,6 +288,7 @@
 10,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 10,459,1,111,5,0,0,0,0,0,0,0,0	// BS_ADRENALINE2#Adrenalina Concentrada#
 10,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
+10,2535,1,0,0,0,0,0,0,0,0,0,0 //ALL_BUYING_STORE#Buying Store#
 //============================================================
 // Caçador
 //============================================================
@@ -574,6 +576,7 @@
 18,497,1,228,10,0,0,0,0,0,0,0,0	// AM_TWILIGHT2#Criação Espiritual de Poções#
 18,498,1,228,10,0,0,0,0,0,0,0,0	// AM_TWILIGHT3#Criação Espiritual de Poções#
 18,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
+18,2535,1,0,0,0,0,0,0,0,0,0,0 //ALL_BUYING_STORE#Buying Store#
 //============================================================
 // Bardo
 //============================================================
@@ -899,6 +902,7 @@
 4006,155,1,0,0,0,0,0,0,0,0,0,0	// MC_LOUD#Grito de Guerra#
 4006,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 4006,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
+4006,2535,1,0,0,0,0,0,0,0,0,0,0 //ALL_BUYING_STORE#Buying Store#
 //============================================================
 // Gatuno T.
 //============================================================
@@ -1088,6 +1092,7 @@
 4011,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 4011,459,1,111,5,0,0,0,0,0,0,0,0	// BS_ADRENALINE2#Adrenalina Concentrada#
 4011,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
+4011,2535,1,0,0,0,0,0,0,0,0,0,0 //ALL_BUYING_STORE#Buying Store#
 //============================================================
 // Atirador de Elite
 //============================================================
@@ -1418,6 +1423,7 @@
 4019,497,1,228,10,0,0,0,0,0,0,0,0	// AM_TWILIGHT2#Criação Espiritual de Poções#
 4019,498,1,228,10,0,0,0,0,0,0,0,0	// AM_TWILIGHT3#Criação Espiritual de Poções#
 4019,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
+4019,2535,1,0,0,0,0,0,0,0,0,0,0 //ALL_BUYING_STORE#Buying Store#
 //============================================================
 // Menestrel
 //============================================================
@@ -1641,6 +1647,7 @@
 4028,408,1,0,0,0,0,0,0,0,0,0,0	// WE_BABY#Mãe Pai amo vocês!#
 4028,409,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLPARENT#Mãe Pai cadê vocês?#
 4028,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
+4028,2535,1,0,0,0,0,0,0,0,0,0,0 //ALL_BUYING_STORE#Buying Store#
 //============================================================
 // Gatuno Bebê
 //============================================================
@@ -1809,6 +1816,7 @@
 4033,1013,1,0,0,0,0,0,0,0,0,0,0	// BS_GREED#Ganância#
 4033,459,1,111,5,0,0,0,0,0,0,0,0	// BS_ADRENALINE2#Adrenalina Concentrada#
 4033,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
+4033,2535,1,0,0,0,0,0,0,0,0,0,0 //ALL_BUYING_STORE#Buying Store#
 //============================================================
 // Caçador Bebê
 //============================================================
@@ -2104,6 +2112,7 @@
 4041,497,1,228,10,0,0,0,0,0,0,0,0	// AM_TWILIGHT2#Criação Espiritual de Poções#
 4041,498,1,228,10,0,0,0,0,0,0,0,0	// AM_TWILIGHT3#Criação Espiritual de Poções#
 4041,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
+4041,2535,1,0,0,0,0,0,0,0,0,0,0 //ALL_BUYING_STORE#Buying Store#
 //============================================================
 // Bardo Bebê
 //============================================================

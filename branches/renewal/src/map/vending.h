@@ -14,9 +14,20 @@ struct s_vending {
 	unsigned int value;
 };
 
+struct s_buying {
+	short id;
+	short amount;
+	unsigned int price;
+};
+
 void vending_closevending(struct map_session_data* sd);
 void vending_openvending(struct map_session_data* sd, const char* message, bool flag, const uint8* data, int count);
 void vending_vendinglistreq(struct map_session_data* sd, int id);
 void vending_purchasereq(struct map_session_data* sd, int aid, int uid, const uint8* data, int count);
+
+void vending_openbuying(struct map_session_data* sd, int limitzeny, char flag, const char* message, const uint8* data, int count);
+void vending_closebuying(struct map_session_data* sd);
+void vending_buyinglistreq(struct map_session_data* sd, int id);
+void vending_buyingsellreq(struct map_session_data* sd, int aid, int uid, const uint8* data, int count);
 
 #endif /* _VENDING_H_ */

@@ -9,6 +9,16 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0212 - 06/02/2011 [Protimus]
+	* Adicionado sistema de Buying Store: http://irowiki.org/wiki/Buying_Store
+	- Necessário revisar packets para possíveis updates do renewal de 2010/08 até hoje.
+
+	r0209 - 05/02/2011 [Protimus]
+	* Adicionada habilidade RK_ENCHANTBLADE (Encantar Lâmina).
+	- Foi adicionado junto ao SC_ENCHANTBLADE o SC_DANCING da habilidade Ritmo Contagiante em parte do código que serviu pra RK_ENCHANTBLADE para facilitar o trabalho futuramente.
+	* Modificado código de clif_status_change.
+	- Agora faz a leitura de outros valores, como val_flag.
+
 	r0208 - 05/02/2011 [Protimus]
 	* Adicionada novas battle config para level máximo de base e classe.
 	- Necessário para configurações das habilidades das 3° classes.

@@ -362,6 +362,18 @@ void clif_buyvending(struct map_session_data* sd, int index, int amount, int fai
 void clif_openvending(struct map_session_data* sd, int id, struct s_vending* vending);
 void clif_vendingreport(struct map_session_data* sd, int index, int amount);
 
+// Purchase Shop
+void clif_openbuyingreq(struct map_session_data* sd, char num);
+void clif_openbuyingfail(struct map_session_data* sd, short flag, int total_weight);
+void clif_showbuyingboard(struct block_list* bl, const char* message, int fd);
+void clif_openbuying(struct map_session_data* sd, int id, int limitzeny, struct s_buying* buying);
+void clif_closebuyingboard(struct block_list* bl,int fd);
+void clif_buyinglist(struct map_session_data* sd, int id, struct s_buying* buying);
+void clif_closebuyingmes(struct map_session_data* sd, short flag);
+void clif_buyingsellfail(struct map_session_data* sd, short flag, short id);
+void clif_buyingupdateitem(struct map_session_data* sd, short id, short amount, int limitzeny);
+void clif_buyingdeleteitem(struct map_session_data* sd, short index, short amount, int zeny);
+
 int clif_movetoattack(struct map_session_data *sd,struct block_list *bl);
 
 // party

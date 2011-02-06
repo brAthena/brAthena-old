@@ -3643,6 +3643,8 @@ static void clif_getareachar_pc(struct map_session_data* sd,struct map_session_d
 
 	if(dstsd->vender_id)
 		clif_showvendingboard(&dstsd->bl,dstsd->message,sd->fd);
+	if(dstsd->buyer_id)
+		clif_showbuyingboard(&dstsd->bl,dstsd->buymessage,sd->fd);
 
 	if(dstsd->spiritball > 0)
 		clif_spiritball_single(sd->fd, dstsd);
@@ -4072,6 +4074,8 @@ int clif_outsight(struct block_list *bl,va_list ap)
 			}
 			if(sd->vender_id)
 				clif_closevendingboard(bl,tsd->fd);
+			if(sd->buyer_id)
+				clif_closebuyingboard(bl,tsd->fd);
 			break;
 		case BL_ITEM:
 			clif_clearflooritem((struct flooritem_data*)bl,tsd->fd);
@@ -5724,6 +5728,184 @@ void clif_vendingreport(struct map_session_data* sd, int index, int amount)
 	WFIFOW(fd,2) = index+2;
 	WFIFOW(fd,4) = amount;
 	WFIFOSET(fd,packet_len(0x137));
+}
+
+// Purchase Shop
+void clif_openbuyingreq(struct map_session_data* sd, char num)
+{
+	int fd;
+
+	nullpo_retv(sd);
+
+	fd = sd->fd;
+	WFIFOHEAD(fd,packet_len(0x810));
+	WFIFOW(fd,0) = 0x810;
+	WFIFOB(fd,2) = num;
+	WFIFOSET(fd,packet_len(0x810));
+}
+
+void clif_openbuyingfail(struct map_session_data* sd, short flag, int total_weight)
+{
+	int fd;
+
+	nullpo_retv(sd);
+
+	fd = sd->fd;
+	WFIFOHEAD(fd,packet_len(0x812));
+	WFIFOW(fd,0) = 0x812;
+	WFIFOW(fd,2) = flag;
+	WFIFOL(fd,4) = total_weight;
+	WFIFOSET(fd,packet_len(0x812));
+}
+
+void clif_showbuyingboard(struct block_list* bl, const char* message, int fd)
+{
+	unsigned char buf[128];
+
+	nullpo_retv(bl);
+
+	WBUFW(buf,0) = 0x814;
+	WBUFL(buf,2) = bl->id;
+	safestrncpy((char*)WBUFP(buf,6), message, 80);
+
+	if( fd ) {
+		WFIFOHEAD(fd,packet_len(0x814));
+		memcpy(WFIFOP(fd,0),buf,packet_len(0x814));
+		WFIFOSET(fd,packet_len(0x814));
+	} else {
+		clif_send(buf,packet_len(0x814),bl,AREA_WOS);
+	}
+}
+
+void clif_openbuying(struct map_session_data* sd, int id, int limitzeny, struct s_buying* buying)
+{
+	int i,fd;
+	int count;
+
+	nullpo_retv(sd);
+
+	fd = sd->fd;
+	count = sd->buy_num;
+
+	WFIFOHEAD(fd, 12+count*9);
+	WFIFOW(fd,0) = 0x813;
+	WFIFOW(fd,2) = 12+count*9;
+	WFIFOL(fd,4) = id;
+	WFIFOL(fd,8) = limitzeny;
+	for( i = 0; i < count; i++ )
+	{
+		struct item_data* data = itemdb_search(buying[i].id);
+		WFIFOL(fd,12+i*9) = buying[i].price;
+		WFIFOW(fd,16+i*9) = buying[i].amount;
+		WFIFOB(fd,18+i*9) = itemtype(data->type);
+		WFIFOW(fd,19+i*9) = buying[i].id;
+	}
+	WFIFOSET(fd,WFIFOW(fd,2));
+}
+
+void clif_closebuyingboard(struct block_list* bl, int fd)
+{
+	unsigned char buf[16];
+
+	nullpo_retv(bl);
+
+	WBUFW(buf,0) = 0x816;
+	WBUFL(buf,2) = bl->id;
+	if( fd ) {
+		WFIFOHEAD(fd,packet_len(0x816));
+		memcpy(WFIFOP(fd,0),buf,packet_len(0x816));
+		WFIFOSET(fd,packet_len(0x816));
+	} else {
+		clif_send(buf,packet_len(0x816),bl,AREA_WOS);
+	}
+}
+
+void clif_buyinglist(struct map_session_data* sd, int id, struct s_buying* buying)
+{
+	int i,fd;
+	int count;
+	struct map_session_data* bsd;
+
+	nullpo_retv(sd);
+	nullpo_retv(buying);
+	nullpo_retv(bsd=map_id2sd(id));
+
+	fd = sd->fd;
+	count = bsd->buy_num;
+
+	WFIFOHEAD(fd, 16+count*9);
+	WFIFOW(fd,0) = 0x818;
+	WFIFOW(fd,2) = 16+count*9;
+	WFIFOL(fd,4) = id;
+	WFIFOL(fd,8) = bsd->buyer_id;
+	WFIFOL(fd,12) = bsd->limitzeny;
+
+	for( i = 0; i < count; i++ )
+	{
+		struct item_data* data = itemdb_search(buying[i].id);
+		WFIFOL(fd,16+i*9) = buying[i].price;
+		WFIFOW(fd,20+i*9) = buying[i].amount;
+		WFIFOB(fd,22+i*9) = itemtype(data->type);
+		WFIFOW(fd,23+i*9) = buying[i].id;
+	}
+	WFIFOSET(fd,WFIFOW(fd,2));
+}
+
+void clif_closebuyingmes(struct map_session_data* sd, short flag)
+{
+	int fd;
+
+	nullpo_retv(sd);
+
+	fd = sd->fd;
+	WFIFOHEAD(fd,packet_len(0x81a));
+	WFIFOW(fd,0) = 0x81a;
+	WFIFOW(fd,2) = flag;
+	WFIFOSET(fd,packet_len(0x81a));
+}
+
+void clif_buyingsellfail(struct map_session_data* sd, short flag, short id)
+{
+	int fd;
+
+	nullpo_retv(sd);
+
+	fd = sd->fd;
+	WFIFOHEAD(fd,packet_len(0x824));
+	WFIFOW(fd,0) = 0x824;
+	WFIFOW(fd,2) = flag;
+	WFIFOW(fd,4) = id;
+	WFIFOSET(fd,packet_len(0x824));
+}
+
+void clif_buyingupdateitem(struct map_session_data* sd, short id, short amount, int limitzeny)
+{
+	int fd;
+
+	nullpo_retv(sd);
+
+	fd = sd->fd;
+	WFIFOHEAD(fd,packet_len(0x81b));
+	WFIFOW(fd,0) = 0x81b;
+	WFIFOW(fd,2) = id;
+	WFIFOW(fd,4) = amount;
+	WFIFOL(fd,6) = limitzeny;
+	WFIFOSET(fd,packet_len(0x81b));
+}
+
+void clif_buyingdeleteitem(struct map_session_data* sd, short index, short amount, int zeny)
+{
+	int fd;
+
+	nullpo_retv(sd);
+
+	fd = sd->fd;
+	WFIFOHEAD(fd,packet_len(0x81c));
+	WFIFOW(fd,0) = 0x81c;
+	WFIFOW(fd,2) = index+2;
+	WFIFOW(fd,4) = amount;
+	WFIFOL(fd,6) = zeny;
+	WFIFOSET(fd,packet_len(0x81c));
 }
 
 /// Result of organizing a party.
@@ -10929,6 +11111,53 @@ void clif_parse_OpenVending(int fd, struct map_session_data* sd)
 	vending_openvending(sd, message, flag, data, len/8);
 }
 
+// Purchase Shop
+void clif_parse_OpenBuying(int fd, struct map_session_data* sd)
+{
+	short len = (short)RFIFOW(fd,2) - 89;
+	int limitzeny = (int)RFIFOL(fd,4);
+	char flag = (char)RFIFOB(fd,8);
+	const char* message = (char*)RFIFOP(fd,9);
+	const uint8* data = (uint8*)RFIFOP(fd,89);
+
+	if( sd->sc.data[SC_NOCHAT] && sd->sc.data[SC_NOCHAT]->val1&MANNER_NOROOM )
+		return;
+	if( map[sd->bl.m].flag.novending || map_getcell(sd->bl.m,sd->bl.x,sd->bl.y,CELL_CHKNOVENDING) ) {
+		clif_displaymessage (sd->fd, msg_txt(276));
+		return;
+	}
+	if( message[0] == '\0' )
+		return;
+
+	vending_openbuying(sd, limitzeny, flag, message, data, len/8);
+}
+
+void clif_parse_CloseBuying(int fd, struct map_session_data* sd)
+{
+	vending_closebuying(sd);
+}
+
+void clif_parse_BuyingListReq(int fd, struct map_session_data* sd)
+{
+	if( sd->npc_id )
+	{
+		return;
+	}
+	vending_buyinglistreq(sd,RFIFOL(fd,2));
+}
+
+void clif_parse_BuyingSellReq(int fd, struct map_session_data* sd)
+{
+	int len = (int)RFIFOW(fd,2) - 12;
+	int aid = (int)RFIFOL(fd,4);
+	int uid = (int)RFIFOL(fd,8);
+	const uint8* data = (uint8*)RFIFOP(fd,12);
+
+	vending_buyingsellreq(sd, aid, uid, data, len/6);
+
+	sd->buying_id = 0;
+}
+
 /*==========================================
  * Guild creation request
  * S 0165 <account id>.L <guild name>.24S
@@ -12826,7 +13055,7 @@ void clif_Auction_openwindow(struct map_session_data *sd)
 {
 	int fd = sd->fd;
 
-	if( sd->state.storage_flag || sd->vender_id || sd->state.trading )
+	if( sd->state.storage_flag || sd->vender_id || sd->buyer_id || sd->state.trading )
 		return;
 
 	WFIFOHEAD(fd,12);
@@ -14405,8 +14634,13 @@ static int packetdb_readdb(void)
 #else // for Party booking ( PACKETVER >= 20091229 )
 	   -1, -1, 18,  4,  8,  6,  2,  4, 14, 50, 18,  6,  2,  3, 14, 20,
 #endif
+#if PACKETVER < 20100420
 	    0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 	    0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+#else // Purchase Shop
+	    3, -1,  8, -1, 86,  2,  6,  6, -1, -1,  4, 10, 10,  0,  0,  0,
+	    0,  0,  0,  0,  6,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+#endif
 	    0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 	};
 	struct {
@@ -14598,6 +14832,12 @@ static int packetdb_readdb(void)
 		{clif_parse_PartyBookingDeleteReq,"bookingdelreq"},
 #endif
 		{clif_parse_PVPInfo,"pvpinfo"},
+#if PACKETVER >= 20100420
+		{clif_parse_OpenBuying,"openbuying"},
+		{clif_parse_CloseBuying,"closebuying"},
+		{clif_parse_BuyingListReq,"buyinglistreq"},
+		{clif_parse_BuyingSellReq,"buyingsellreq"},
+#endif
 		{NULL,NULL}
 	};
 

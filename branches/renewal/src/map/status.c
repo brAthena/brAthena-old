@@ -6954,6 +6954,7 @@ int status_change_end(struct block_list* bl, enum sc_type type, int tid)
 			if (tid == INVALID_TIMER)
 				break;
 			vending_closevending(sd);
+			vending_closebuying(sd);
 			map_quit(sd);
 			// Because map_quit calls status_change_end with tid -1
 			// from here it's not neccesary to continue
