@@ -9,6 +9,17 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	* Implementados spawns do Renewal nos seguintes arquivos:
+	- npc/monstros/campos/manuk.txt
+	- npc/monstros/campos/moscovia.txt
+	- npc/monstros/campos/niflheim.txt
+	- npc/monstros/campos/rachel.txt
+	- npc/monstros/campos/splendide.txt
+	- npc/monstros/campos/veins.txt
+	- Obs.: necessitam de posterior revisão
+	* Habilitados spawns atualizados em npc/scripts_monstros.conf
+	* Removido npc/monstros/cidades.txt
+
 	r0214 - 07/02/2011 [Dani]
 	* Implementados spawns do Renewal nos seguintes arquivos:
 	- npc/monstros/campos/louyang.txt

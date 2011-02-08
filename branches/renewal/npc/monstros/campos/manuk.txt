@@ -12,20 +12,21 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.1a/1.1                               |
+// | Versões eA/brA: 1.1a/1.2                               |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
+// | Changelog:                                             |
 // | 1.0 Script Traduzido [K2X]                             |
 // | 1.1 Script Revisado [Protimus & Tyler]                 |
-// | - Anotações                                            |  
+// | 1.2 Spawns do Renewal [Dani]                           |
+// | --- Necessita de revisão                               |
 // \________________________________________________________/
 
 //============================================================
 // man_fild01 - Campo de Manuk
 //============================================================
 man_fild01,0,0,0,0	monster	Nepenthes	1988,105,0,0,0
-man_fild01,0,0,0,0	monster	Leão da Montanha	1989,10,0,0,0
 man_fild01,0,0,0,0	monster	Larva de Centopéia	1999,30,0,0,0
+man_fild01,0,0,0,0	monster	Leão da Montanha	1989,10,0,0,0
 man_fild01,0,0,0,0	monster	Centopéia	1987,2,0,0,0
 
 //============================================================
@@ -38,7 +39,7 @@ man_fild02,0,0,0,0	monster	Tatacho	1986,25,0,0,0
 //============================================================
 // man_fild03 - Campo de Manuk
 //============================================================
-man_fild03,0,0,0,0	monster	Leão da Montanha	1989,25,0,0,0
 man_fild03,0,0,0,0	monster	Tatacho	1986,25,0,0,0
 man_fild03,0,0,0,0	monster	Centopéia	1987,25,0,0,0
+man_fild03,0,0,0,0	monster	Leão da Montanha	1989,25,0,0,0
 man_fild03,0,0,0,0	monster	Mamute Rochoso	1990,1,14400000,0,0

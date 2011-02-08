@@ -68,7 +68,7 @@ cmd_fild04,221,120,120,40	monster	Estrela do Mar	1266,10,0,0,0
 //==================================================
 // cmd_fild05 - Fronteira da Floresta Papuchica
 //==================================================
-// No Spawns/Disabled Map - 13.3
+// Sem Spawns/Mapa Desabilitado - 13.3
 
 //==================================================
 // cmd_fild06 - Fortaleza de Saint Darmain (Oeste)

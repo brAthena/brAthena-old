@@ -24,12 +24,12 @@
 //==================================================
 // ein_fild01 - Campo de Einbroch
 //==================================================
-// Sem spawns
+// Sem Spawns/Mapa Desabilitado - 13.3
 
 //==================================================
 // ein_fild02 - Campo de Einbroch
 //==================================================
-// Mapa removido
+// Sem Spawns/Mapa Desabilitado - 13.3
 
 //==================================================
 // ein_fild03 - Campo de Einbroch
@@ -89,4 +89,4 @@ ein_fild09,0,0,0,0	monster	Cogumelo Vermelho	1085,10,120000,60000,0
 //==================================================
 // ein_fild10 - Campo de Einbroch
 //==================================================
-// Mapa removido
+// Sem Spawns/Mapa Desabilitado - 13.3

@@ -74,7 +74,7 @@ yuno_fild04,0,0,0,0	monster	Planta Verde	1080,10,1800000,900000,1
 //==================================================
 // yuno_fild05 - Desfiladeiro de El Mes
 //==================================================
-// No Spawns/Disabled Map = 13.3
+// Sem Spawns/Mapa Desabilitado - 13.3
 
 //==================================================
 // yuno_fild06 - Campo de Juno
@@ -122,7 +122,7 @@ yuno_fild09,0,0,0,0	monster	Planta Amarela	1081,10,180000,90000,1
 //==================================================
 // yuno_fild10 - Campo de Juno
 //==================================================
-// No Spawns/Disabled Map - 13.3
+// Sem Spawns/Mapa Desabilitado - 13.3
 
 //==================================================
 // yuno_fild11 - Yuno Field

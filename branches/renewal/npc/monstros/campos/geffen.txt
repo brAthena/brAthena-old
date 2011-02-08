@@ -118,14 +118,14 @@ gef_fild11,0,0,0,0	monster	Líder Goblin	1299,1,1800000,1200000,0
 //==================================================
 // gef_fild12 - Floresta Kordt
 //==================================================
-// No spawns/Disabled Map - 13.3
+// Sem Spawns/Mapa Desabilitado - 13.3
 
 //==================================================
 // gef_fild13 - Feudo de Britoniah
 //==================================================
-// No spawns - 13.3
+// Sem Spawns/Mapa Desabilitado - 13.3
 
 //==================================================
 // gef_fild14 - Vila dos Orcs do Oeste
 //==================================================
-// No spawns/Disabled Map - 13.3
+// Sem Spawns/Mapa Desabilitado - 13.3

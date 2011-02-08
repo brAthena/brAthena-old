@@ -79,7 +79,7 @@ pay_fild04,254,193,10,10	monster	Planta Verde	1080,5,360000,180000,1
 //==================================================
 // pay_fild05 - Floresta de Payon
 //==================================================
-// No spawns/Disabled Map - 13.3
+// Sem Spawns/Mapa Desabilitado - 13.3
 
 //==================================================
 // pay_fild06 - Floresta de Payon
@@ -136,4 +136,4 @@ pay_fild10,66,332,10,10	monster	Planta Azul	1079,1,360000,180000,1
 //==================================================
 // pay_fild11 - Floresta de Payon
 //==================================================
-// No spawns/Disabled Map - 13.3
+// Sem Spawns/Mapa Desabilitado - 13.3

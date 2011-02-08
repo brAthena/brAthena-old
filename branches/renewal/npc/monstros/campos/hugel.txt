@@ -41,7 +41,7 @@ hu_fild02,0,0,0,0	monster	Grifo	1259,3,3600000,0,0
 //==================================================
 // hu_fild03 - Campo de Hugel
 //==================================================
-// Mapa removido
+// Sem Spawns/Mapa Desabilitado - 13.3
 
 //==================================================
 // hu_fild04 - Campo de Hugel
@@ -68,4 +68,4 @@ hu_fild06,0,0,0,0	monster	Estrela do Mar	1266,20,0,0,0
 //==================================================
 // hu_fild07 - Campo de Hugel
 //==================================================
-// Mapa removido
+// Sem Spawns/Mapa Desabilitado - 13.3
