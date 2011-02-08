@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0216 - 08/02/2011 [Protimus]
+	* Correções para o skill_db.
+	* Adições das habilidades das 3° classes no skill_tree e skill_require_db.
+	- Concluídas adições de database das habilidades, agora novas adições apenas para MODs de habilidades.
+
+	r0215 - 08/02/2011 [Dani]
 	* Implementados spawns do Renewal nos seguintes arquivos:
 	- npc/monstros/campos/manuk.txt
 	- npc/monstros/campos/moscovia.txt
