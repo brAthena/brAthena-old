@@ -93,7 +93,7 @@
 4,23,10,22,3,0,0,0,0,0,0,0,0	// AL_DEMONBANE#Flagelo do Mal#
 4,24,1,0,0,0,0,0,0,0,0,0,0	// AL_RUWACH#Revelação#
 4,25,1,27,4,0,0,0,0,0,0,0,0	// AL_PNEUMA#Escudo Sagrado#
-4,26,2,24,1,0,0,0,0,0,0,0,0	// AL_TELEPORT#Teleportee#
+4,26,2,24,1,0,0,0,0,0,0,0,0	// AL_TELEPORT#Teleporte#
 4,27,4,26,2,0,0,0,0,0,0,0,0	// AL_WARP#Portal#
 4,28,10,0,0,0,0,0,0,0,0,0,0	// AL_HEAL#Curar#
 4,29,10,28,3,0,0,0,0,0,0,0,0	// AL_INCAGI#Aumentar Agilidade#
@@ -123,6 +123,7 @@
 5,155,1,0,0,0,0,0,0,0,0,0,0	// MC_LOUD#Grito de Guerra#
 5,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 5,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
+5,2535,1,0,0,0,0,0,0,0,0,0,0 //ALL_BUYING_STORE#Buying Store#
 //============================================================
 // Gatuno
 //============================================================
@@ -178,7 +179,7 @@
 8,23,10,22,3,0,0,0,0,0,0,0,0	// AL_DEMONBANE#Flagelo do Mal#
 8,24,1,0,0,0,0,0,0,0,0,0,0	// AL_RUWACH#Revelação#
 8,25,1,27,4,0,0,0,0,0,0,0,0	// AL_PNEUMA#Escudo Sagrado#
-8,26,2,24,1,0,0,0,0,0,0,0,0	// AL_TELEPORT#Teleportee#
+8,26,2,24,1,0,0,0,0,0,0,0,0	// AL_TELEPORT#Teleporte#
 8,27,4,26,2,0,0,0,0,0,0,0,0	// AL_WARP#Portal#
 8,28,10,0,0,0,0,0,0,0,0,0,0	// AL_HEAL#Curar#
 8,29,10,28,3,0,0,0,0,0,0,0,0	// AL_INCAGI#Aumentar Agilidade#
@@ -287,6 +288,7 @@
 10,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 10,459,1,111,5,0,0,0,0,0,0,0,0	// BS_ADRENALINE2#Adrenalina Concentrada#
 10,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
+10,2535,1,0,0,0,0,0,0,0,0,0,0 //ALL_BUYING_STORE#Buying Store# 
 //============================================================
 // Caçador
 //============================================================
@@ -423,7 +425,7 @@
 15,23,10,22,3,0,0,0,0,0,0,0,0	// AL_DEMONBANE#Flagelo do Mal#
 15,24,1,0,0,0,0,0,0,0,0,0,0	// AL_RUWACH#Revelação#
 15,25,1,27,4,0,0,0,0,0,0,0,0	// AL_PNEUMA#Escudo Sagrado#
-15,26,2,24,1,0,0,0,0,0,0,0,0	// AL_TELEPORT#Teleportee#
+15,26,2,24,1,0,0,0,0,0,0,0,0    // AL_TELEPORT#Teleporte# 
 15,27,4,26,2,0,0,0,0,0,0,0,0	// AL_WARP#Portal#
 15,28,10,0,0,0,0,0,0,0,0,0,0	// AL_HEAL#Curar#
 15,29,10,28,3,0,0,0,0,0,0,0,0	// AL_INCAGI#Aumentar Agilidade#
@@ -574,6 +576,7 @@
 18,497,1,228,10,0,0,0,0,0,0,0,0	// AM_TWILIGHT2#Criação Espiritual de Poções#
 18,498,1,228,10,0,0,0,0,0,0,0,0	// AM_TWILIGHT3#Criação Espiritual de Poções#
 18,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
+18,2535,1,0,0,0,0,0,0,0,0,0,0 //ALL_BUYING_STORE#Buying Store# 
 //============================================================
 // Bardo
 //============================================================
@@ -713,7 +716,7 @@
 23,23,10,22,3,0,0,0,0,0,0,0,0	// AL_DEMONBANE#Flagelo do Mal#
 23,24,1,0,0,0,0,0,0,0,0,0,0	// AL_RUWACH#Revelação#
 23,25,1,27,4,0,0,0,0,0,0,0,0	// AL_PNEUMA#Escudo Sagrado#
-23,26,2,24,1,0,0,0,0,0,0,0,0	// AL_TELEPORT#Teleportee#
+23,26,2,24,1,0,0,0,0,0,0,0,0    // AL_TELEPORT#Teleporte# 
 23,27,4,26,2,0,0,0,0,0,0,0,0	// AL_WARP#Portal#
 23,28,10,0,0,0,0,0,0,0,0,0,0	// AL_HEAL#Curar#
 23,29,10,28,3,0,0,0,0,0,0,0,0	// AL_INCAGI#Aumentar Agilidade#
@@ -869,7 +872,7 @@
 4005,23,10,22,3,0,0,0,0,0,0,0,0	// AL_DEMONBANE#Flagelo do Mal#
 4005,24,1,0,0,0,0,0,0,0,0,0,0	// AL_RUWACH#Revelação#
 4005,25,1,27,4,0,0,0,0,0,0,0,0	// AL_PNEUMA#Escudo Sagrado#
-4005,26,2,24,1,0,0,0,0,0,0,0,0	// AL_TELEPORT#Teleportee#
+4005,26,2,24,1,0,0,0,0,0,0,0,0  // AL_TELEPORT#Teleporte#
 4005,27,4,26,2,0,0,0,0,0,0,0,0	// AL_WARP#Portal#
 4005,28,10,0,0,0,0,0,0,0,0,0,0	// AL_HEAL#Curar#
 4005,29,10,28,3,0,0,0,0,0,0,0,0	// AL_INCAGI#Aumentar Agilidade#
@@ -899,6 +902,7 @@
 4006,155,1,0,0,0,0,0,0,0,0,0,0	// MC_LOUD#Grito de Guerra#
 4006,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 4006,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
+4006,2535,1,0,0,0,0,0,0,0,0,0,0 //ALL_BUYING_STORE#Buying Store# 
 //============================================================
 // Gatuno T.
 //============================================================
@@ -945,7 +949,7 @@
 4008,355,5,5,5,7,5,3,5,0,0,0,0	// LK_AURABLADE#Lâmina de Aura#
 4008,356,10,3,10,6,5,60,3,0,0,0,0	// LK_PARRYING#Aparar Golpe#
 4008,357,5,4,1,55,5,63,1,0,0,0,0	// LK_CONCENTRATION#Dedicação#
-4008,358,1,4,10,6,5,8,3,0,0,0,0	// LK_TENSIONRELAX#Relaxarar#
+4008,358,1,4,10,6,5,8,3,0,0,0,0	// LK_TENSIONRELAX#Relaxar#
 4008,359,1,50,0,0,0,0,0,0,0,0,0,0 //LK_BERSERK#Frenzy# //It has an extra column after "MaxLevel" for Job Level 50 requirement
 4008,397,5,55,10,56,5,58,5,63,1,0,0	// LK_SPIRALPIERCE#Perfurar em Espiral#
 4008,398,5,55,9,63,1,0,0,0,0,0,0	// LK_HEADCRUSH#Golpe Traumático#
@@ -962,7 +966,7 @@
 4009,23,10,22,3,0,0,0,0,0,0,0,0	// AL_DEMONBANE#Flagelo do Mal#
 4009,24,1,0,0,0,0,0,0,0,0,0,0	// AL_RUWACH#Revelação#
 4009,25,1,27,4,0,0,0,0,0,0,0,0	// AL_PNEUMA#Escudo Sagrado#
-4009,26,2,24,1,0,0,0,0,0,0,0,0	// AL_TELEPORT#Teleportee#
+4009,26,2,24,1,0,0,0,0,0,0,0,0	// AL_TELEPORT#Teleporte#
 4009,27,4,26,2,0,0,0,0,0,0,0,0	// AL_WARP#Portal#
 4009,28,10,0,0,0,0,0,0,0,0,0,0	// AL_HEAL#Curar#
 4009,29,10,28,3,0,0,0,0,0,0,0,0	// AL_INCAGI#Aumentar Agilidade#
@@ -1088,6 +1092,7 @@
 4011,410,1,0,0,0,0,0,0,0,0,0,0	// WE_CALLBABY#Vem cá filhote!#
 4011,459,1,111,5,0,0,0,0,0,0,0,0	// BS_ADRENALINE2#Adrenalina Concentrada#
 4011,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
+4011,2535,1,0,0,0,0,0,0,0,0,0,0 //ALL_BUYING_STORE#Buying Store# 
 //============================================================
 // Atirador de Elite
 //============================================================
@@ -1188,7 +1193,7 @@
 4014,355,5,5,5,7,5,3,5,0,0,0,0	// LK_AURABLADE#Lâmina de Aura#
 4014,356,10,3,10,6,5,60,3,0,0,0,0	// LK_PARRYING#Aparar Golpe#
 4014,357,5,4,1,55,5,63,1,0,0,0,0	// LK_CONCENTRATION#Dedicação#
-4014,358,1,4,10,6,5,8,3,0,0,0,0	// LK_TENSIONRELAX#Relaxarar#
+4014,358,1,4,10,6,5,8,3,0,0,0,0	// LK_TENSIONRELAX#Relaxar#
 4014,359,1,50,0,0,0,0,0,0,0,0,0,0 //LK_BERSERK#Frenzy# //It has an extra column after "MaxLevel" for Job Level 50 requirement
 4014,397,5,55,10,56,5,58,5,63,1,0,0	// LK_SPIRALPIERCE#Perfurar em Espiral#
 4014,398,5,55,9,63,1,0,0,0,0,0,0	// LK_HEADCRUSH#Golpe Traumático#
@@ -1245,7 +1250,7 @@
 4016,23,10,22,3,0,0,0,0,0,0,0,0	// AL_DEMONBANE#Flagelo do Mal#
 4016,24,1,0,0,0,0,0,0,0,0,0,0	// AL_RUWACH#Revelação#
 4016,25,1,27,4,0,0,0,0,0,0,0,0	// AL_PNEUMA#Escudo Sagrado#
-4016,26,2,24,1,0,0,0,0,0,0,0,0	// AL_TELEPORT#Teleportee#
+4016,26,2,24,1,0,0,0,0,0,0,0,0	// AL_TELEPORT#Teleporte#
 4016,27,4,26,2,0,0,0,0,0,0,0,0	// AL_WARP#Portal#
 4016,28,10,0,0,0,0,0,0,0,0,0,0	// AL_HEAL#Curar#
 4016,29,10,28,3,0,0,0,0,0,0,0,0	// AL_INCAGI#Aumentar Agilidade#
@@ -1418,6 +1423,7 @@
 4019,497,1,228,10,0,0,0,0,0,0,0,0	// AM_TWILIGHT2#Criação Espiritual de Poções#
 4019,498,1,228,10,0,0,0,0,0,0,0,0	// AM_TWILIGHT3#Criação Espiritual de Poções#
 4019,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
+4019,2535,1,0,0,0,0,0,0,0,0,0,0 //ALL_BUYING_STORE#Buying Store# 
 //============================================================
 // Menestrel
 //============================================================
@@ -1609,7 +1615,7 @@
 4027,23,10,22,3,0,0,0,0,0,0,0,0	// AL_DEMONBANE#Flagelo do Mal#
 4027,24,1,0,0,0,0,0,0,0,0,0,0	// AL_RUWACH#Revelação#
 4027,25,1,27,4,0,0,0,0,0,0,0,0	// AL_PNEUMA#Escudo Sagrado#
-4027,26,2,24,1,0,0,0,0,0,0,0,0	// AL_TELEPORT#Teleportee#
+4027,26,2,24,1,0,0,0,0,0,0,0,0	// AL_TELEPORT#Teleporte#
 4027,27,4,26,2,0,0,0,0,0,0,0,0	// AL_WARP#Portal#
 4027,28,10,0,0,0,0,0,0,0,0,0,0	// AL_HEAL#Curar#
 4027,29,10,28,3,0,0,0,0,0,0,0,0	// AL_INCAGI#Aumentar Agilidade#
@@ -1698,7 +1704,7 @@
 4031,23,10,22,3,0,0,0,0,0,0,0,0	// AL_DEMONBANE#Flagelo do Mal#
 4031,24,1,0,0,0,0,0,0,0,0,0,0	// AL_RUWACH#Revelação#
 4031,25,1,27,4,0,0,0,0,0,0,0,0	// AL_PNEUMA#Escudo Sagrado#
-4031,26,2,24,1,0,0,0,0,0,0,0,0	// AL_TELEPORT#Teleportee#
+4031,26,2,24,1,0,0,0,0,0,0,0,0	// AL_TELEPORT#Teleporte#
 4031,27,4,26,2,0,0,0,0,0,0,0,0	// AL_WARP#Portal#
 4031,28,10,0,0,0,0,0,0,0,0,0,0	// AL_HEAL#Curar#
 4031,29,10,28,3,0,0,0,0,0,0,0,0	// AL_INCAGI#Aumentar Agilidade#
@@ -1949,7 +1955,7 @@
 4038,23,10,22,3,0,0,0,0,0,0,0,0	// AL_DEMONBANE#Flagelo do Mal#
 4038,24,1,0,0,0,0,0,0,0,0,0,0	// AL_RUWACH#Revelação#
 4038,25,1,27,4,0,0,0,0,0,0,0,0	// AL_PNEUMA#Escudo Sagrado#
-4038,26,2,24,1,0,0,0,0,0,0,0,0	// AL_TELEPORT#Teleportee#
+4038,26,2,24,1,0,0,0,0,0,0,0,0	// AL_TELEPORT#Teleporte#
 4038,27,4,26,2,0,0,0,0,0,0,0,0	// AL_WARP#Portal#
 4038,28,10,0,0,0,0,0,0,0,0,0,0	// AL_HEAL#Curar#
 4038,29,10,28,3,0,0,0,0,0,0,0,0	// AL_INCAGI#Aumentar Agilidade#
@@ -2104,6 +2110,7 @@
 4041,497,1,228,10,0,0,0,0,0,0,0,0	// AM_TWILIGHT2#Criação Espiritual de Poções#
 4041,498,1,228,10,0,0,0,0,0,0,0,0	// AM_TWILIGHT3#Criação Espiritual de Poções#
 4041,681,1,0,0,0,0,0,0,0,0,0,0	// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
+4041,2535,1,0,0,0,0,0,0,0,0,0,0 //ALL_BUYING_STORE#Buying Store# 
 //============================================================
 // Bardo Bebê
 //============================================================
@@ -2237,7 +2244,7 @@
 4045,23,10,22,3,0,0,0,0,0,0,0,0	// AL_DEMONBANE#Flagelo do Mal#
 4045,24,1,0,0,0,0,0,0,0,0,0,0	// AL_RUWACH#Revelação#
 4045,25,1,27,4,0,0,0,0,0,0,0,0	// AL_PNEUMA#Escudo Sagrado#
-4045,26,2,24,1,0,0,0,0,0,0,0,0	// AL_TELEPORT#Teleportee#
+4045,26,2,24,1,0,0,0,0,0,0,0,0	// AL_TELEPORT#Teleporte#
 4045,27,4,26,2,0,0,0,0,0,0,0,0	// AL_WARP#Portal#
 4045,28,10,0,0,0,0,0,0,0,0,0,0	// AL_HEAL#Curar#
 4045,29,10,28,3,0,0,0,0,0,0,0,0	// AL_INCAGI#Aumentar Agilidade#
@@ -2587,7 +2594,7 @@
 4057,23,10,22,3,0,0,0,0,0,0,0,0 //AL_DEMONBANE#Flagelo do Mal#
 4057,24,1,0,0,0,0,0,0,0,0,0,0 //AL_RUWACH#Revelação#
 4057,25,1,27,4,0,0,0,0,0,0,0,0 //AL_PNEUMA#Escudo Sagrado#
-4057,26,2,24,1,0,0,0,0,0,0,0,0 //AL_TELEPORT#Teleportee#
+4057,26,2,24,1,0,0,0,0,0,0,0,0 //AL_TELEPORT#Teleporte#
 4057,27,4,26,2,0,0,0,0,0,0,0,0 //AL_WARP#Portal#
 4057,28,10,0,0,0,0,0,0,0,0,0,0 //AL_HEAL#Curar#
 4057,29,10,28,3,0,0,0,0,0,0,0,0 //AL_INCAGI#Aumentar Agilidade#

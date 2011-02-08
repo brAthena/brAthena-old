@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0217 - 08/02/2011 [Protimus]
+	* Correções do commit anterior.
+	- Erro do "Destino", hahaha.
+
 	r0216 - 08/02/2011 [Protimus]
 	* Correções para o skill_db.
 	* Adições das habilidades das 3° classes no skill_tree e skill_require_db.
