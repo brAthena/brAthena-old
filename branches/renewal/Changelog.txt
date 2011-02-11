@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0222 - 11/02/2011 [Protimus]
+	* Adicionada habilidade RK_INGNITIONBREAK (Impacto Flamejante).
+	- Fórmula de dano baseadas no iROWiki, área e outras modificações 100% oficiais.
+
 	r0221 - 11/02/2011 [Protimus]
 	* Adicionada habilidade RK_HUNDREDSPEAR (Lança de Mil Pontas).
 	- Totalmente funcional e com fórmulas baseadas no iROWiki, necessário testar danos.

@@ -2784,6 +2784,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case NPC_PULSESTRIKE:
 	case NPC_HELLJUDGEMENT:
 	case NPC_VAMPIRE_GIFT:
+	case RK_IGNITIONBREAK:
 		if( flag&1 )
 		{	//Recursive invocation
 			// skill_area_temp[0] holds number of targets in area
@@ -5732,6 +5733,11 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case RK_ENCHANTBLADE:
 		clif_skill_nodamage(src,bl,skillid,skilllv,
 			sc_start2(bl,type,100,skilllv,100+20*skilllv+status_get_status_data(src)->matk_min/2,skill_get_time(skillid,skilllv)));
+		break;
+	case RK_IGNITIONBREAK:
+		clif_skill_damage(src,bl,tick, status_get_amotion(src), 0, -30000, 1, skillid, skilllv, 6);
+		map_foreachinrange(skill_area_sub, bl,skill_get_splash(skillid,skilllv),BL_CHAR,
+			src,skillid,skilllv,tick,flag|BCT_ENEMY|1,skill_castend_damage_id);
 		break;
 	default:
 		ShowWarning("skill_castend_nodamage_id: Habilidade desconhecida usada:%d\n",skillid);
