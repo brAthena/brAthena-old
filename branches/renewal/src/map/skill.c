@@ -2587,6 +2587,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case NPC_CRITICALWOUND:
 	case NPC_HELLPOWER:
 	case RK_HUNDREDSPEAR:
+	case RK_SONICWAVE:
 		skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 

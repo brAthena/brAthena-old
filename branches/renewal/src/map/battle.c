@@ -1759,6 +1759,10 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;	
 					if( sstatus->rhw.ele == ELE_FIRE )	skillratio +=  skillratio / 2;
 					break;
+				case RK_SONICWAVE:
+					skillratio += 400 + 100 * skill_lv; 
+					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
+					break;
 			}
 
 			ATK_RATE(skillratio);

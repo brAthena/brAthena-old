@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0224 - 11/02/2011 [Protimus]
+	* Adicionada habilidade RK_SONICWAVE (Onda de Choque).
+	- Fórmula baseada no iROWiki.
+
 	r0223 - 11/02/2011 [Floozie]
 	* Modificações em habiliades:
 	- Perícia com Machado: Modificada para “Perícia com Machado e Espada” e funciona com espadas de uma mão.
