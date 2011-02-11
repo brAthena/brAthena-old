@@ -1742,6 +1742,10 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
 					if( sd ) skillratio += pc_checkskill(sd, KN_SPEARMASTERY) * 10;
 					break;
+				case RK_HUNDREDSPEAR:
+					skillratio += 500 + 40 * skill_lv; 
+					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
+					break;
 			}
 
 			ATK_RATE(skillratio);

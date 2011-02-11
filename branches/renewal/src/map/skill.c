@@ -934,6 +934,13 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 	case NPC_CRITICALWOUND:
 		sc_start(bl,SC_CRITICALWOUND,100,skilllv,skill_get_time2(skillid,skilllv));
 		break;
+	case RK_HUNDREDSPEAR:
+		if( !sd || pc_checkskill(sd,KN_SPEARBOOMERANG) == 0 )
+			break;
+		rate = 10 + 3 * skilllv;
+		if( rand()%100 < rate )
+			skill_castend_damage_id(src,bl,KN_SPEARBOOMERANG,1,tick,0);
+		break;
 	}
 
 	if (md && battle_config.summons_trigger_autospells && md->master_id && md->special_state.ai)
@@ -2579,6 +2586,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case NPC_BLEEDING:
 	case NPC_CRITICALWOUND:
 	case NPC_HELLPOWER:
+	case RK_HUNDREDSPEAR:
 		skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 
