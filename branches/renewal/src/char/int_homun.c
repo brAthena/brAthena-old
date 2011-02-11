@@ -294,7 +294,7 @@ int mapif_save_homun(int fd,int account_id,struct s_homunculus *data)
 {
 	struct s_homunculus *p;
 	int hom_id;
-	
+
 	if (data->hom_id == 0)
 		data->hom_id = homun_newid++;
 	hom_id = data->hom_id;

@@ -116,7 +116,7 @@ int inter_guild_tosql(struct guild *g,int flag)
 	// GS_POSITION `guild_position` (`guild_id`,`position`,`name`,`mode`,`exp_mode`)
 	// GS_ALLIANCE `guild_alliance` (`guild_id`,`opposition`,`alliance_id`,`name`)
 	// GS_EXPULSION `guild_expulsion` (`guild_id`,`account_id`,`name`,`mes`)
-	// GS_SKILL `guild_skill` (`guild_id`,`id`,`lv`) 
+	// GS_SKILL `guild_skill` (`guild_id`,`id`,`lv`)
 
 	// temporary storage for str convertion. They must be twice the size of the
 	// original string to ensure no overflows will occur. [Skotlex]
@@ -127,7 +127,7 @@ int inter_guild_tosql(struct guild *g,int flag)
 	int i=0;
 
 	if (g->guild_id<=0 && g->guild_id != -1) return 0;
-	
+
 #ifdef NOISY
 	ShowInfo("Salvamento de guilda requisitado ("CL_BOLD"%d"CL_RESET" - flag 0x%x).",g->guild_id, flag);
 #endif
@@ -202,7 +202,7 @@ int inter_guild_tosql(struct guild *g,int flag)
 			StringBuf_Printf(&buf, "`emblem_len`=%d, `emblem_id`=%d, `emblem_data`='%s'", g->emblem_len, g->emblem_id, emblem_data);
 			add_comma = true;
 		}
-		if (flag & GS_BASIC) 
+		if (flag & GS_BASIC)
 		{
 			strcat(t_info, " basic");
 			if( add_comma )
@@ -300,8 +300,8 @@ int inter_guild_tosql(struct guild *g,int flag)
 
 	if (flag&GS_ALLIANCE)
 	{
-		// Delete current alliances 
-		// NOTE: no need to do it on both sides since both guilds in memory had 
+		// Delete current alliances
+		// NOTE: no need to do it on both sides since both guilds in memory had
 		// their info changed, not to mention this would also mess up oppositions!
 		// [Skotlex]
 		//if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `guild_id`='%d' OR `alliance_id`='%d'", guild_alliance_db, g->guild_id, g->guild_id) )
@@ -544,7 +544,7 @@ struct guild * inter_guild_fromsql(int guild_id)
 
 	idb_put(guild_db_, guild_id, g); //Add to cache
 	g->save_flag |= GS_REMOVE; //But set it to be removed, in case it is not needed for long.
-	
+
 	if (save_log)
 		ShowInfo("Guilda carregada (%d - %s)\n", guild_id, g->name);
 
@@ -676,7 +676,7 @@ int inter_guild_CharOnline(int char_id, int guild_id)
 {
    struct guild *g;
    int i;
-   
+
 	if (guild_id == -1) {
 		//Get guild_id from the database
 		if( SQL_ERROR == Sql_Query(sql_handle, "SELECT guild_id FROM `%s` WHERE char_id='%d'", char_db, char_id) )
@@ -700,7 +700,7 @@ int inter_guild_CharOnline(int char_id, int guild_id)
 	}
 	if (guild_id == 0)
 		return 0; //No guild...
-	
+
 	g = inter_guild_fromsql(guild_id);
 	if(!g) {
 		ShowError("Guilda %d do personagem %d nao encontrada!\n", guild_id, char_id);
@@ -751,7 +751,7 @@ int inter_guild_CharOffline(int char_id, int guild_id)
 	}
 	if (guild_id == 0)
 		return 0; //No guild...
-	
+
 	//Character has a guild, set character offline and check if they were the only member online
 	g = inter_guild_fromsql(guild_id);
 	if (g == NULL) //Guild not found?
@@ -785,7 +785,7 @@ int inter_guild_sql_init(void)
 
    //Read exp file
 	inter_guild_ReadEXP();
-   
+
 	add_timer_func_list(guild_save_timer, "guild_save_timer");
 	add_timer(gettick() + 10000, guild_save_timer, 0, 0);
 	return 0;
@@ -812,7 +812,7 @@ int search_guildname(char *str)
 {
 	int guild_id;
 	char esc_name[NAME_LENGTH*2+1];
-	
+
 	Sql_EscapeStringLen(sql_handle, esc_name, str, safestrnlen(str, NAME_LENGTH));
 	//Lookup guilds with the same name
 	if( SQL_ERROR == Sql_Query(sql_handle, "SELECT guild_id FROM `%s` WHERE name='%s'", guild_db, esc_name) )
@@ -891,13 +891,13 @@ int guild_calcinfo(struct guild *g)
 	g->next_exp = nextexp;
 
 	// Set the max number of members, Guild Extention skill - currently adds 6 to max per skill lv.
-	g->max_member = 16 + guild_checkskill(g, GD_EXTENSION) * 6; 
+	g->max_member = 16 + guild_checkskill(g, GD_EXTENSION) * 6;
 	if(g->max_member > MAX_GUILD)
-	{	
+	{
 		ShowError("Guilda %d:%s tem capacidade para muitos membros (%d), o maximo suportado e %d\n", g->guild_id, g->name, g->max_member, MAX_GUILD);
 		g->max_member = MAX_GUILD;
 	}
-	
+
 	// Compute the guild average level level
 	g->average_lv=0;
 	g->connect_member=0;
@@ -1227,7 +1227,7 @@ int mapif_guild_castle_alldataload(int fd)
 	Sql_FreeResult(sql_handle);
 	WFIFOW(fd, 2) = len;
 	WFIFOSET(fd, len);
-	
+
 	return 0;
 }
 
@@ -1300,7 +1300,7 @@ int mapif_parse_CreateGuild(int fd,int account_id,char *name,struct guild_member
 		return 0;
 	}
 	ShowInfo("Guilda criada %d - %s (Mestre da Guilda: %s)\n", g->guild_id, g->name, g->master);
-	
+
 	//Add to cache
 	idb_put(guild_db_, g->guild_id, g);
 
@@ -1433,7 +1433,7 @@ int mapif_parse_GuildChangeMemberInfoShort(int fd,int guild_id,int account_id,in
 	g = inter_guild_fromsql(guild_id);
 	if(g==NULL)
 		return 0;
-	
+
 	ARR_FIND( 0, g->max_member, i, g->member[i].account_id == account_id && g->member[i].char_id == char_id );
 	if( i < g->max_member )
 	{
@@ -1479,7 +1479,7 @@ int mapif_parse_GuildChangeMemberInfoShort(int fd,int guild_id,int account_id,in
 int mapif_parse_BreakGuild(int fd,int guild_id)
 {
 	struct guild * g;
-	
+
 	g = inter_guild_fromsql(guild_id);
 	if(g==NULL)
 		return 0;
@@ -1530,7 +1530,7 @@ int mapif_parse_GuildMessage(int fd,int guild_id,int account_id,char *mes,int le
 	return mapif_guild_message(guild_id,account_id,mes,len, fd);
 }
 
-// Modification of the guild 
+// Modification of the guild
 int mapif_parse_GuildBasicInfoChange(int fd,int guild_id,int type,const char *data,int len)
 {
 	struct guild * g;
@@ -1560,7 +1560,7 @@ int mapif_parse_GuildBasicInfoChange(int fd,int guild_id,int type,const char *da
 	return 0;
 }
 
-// Modification of the guild 
+// Modification of the guild
 int mapif_parse_GuildMemberInfoChange(int fd,int guild_id,int account_id,int char_id,int type,const char *data,int len)
 {
 	// Could make some improvement in speed, because only change guild_member
@@ -1702,10 +1702,10 @@ int inter_guild_charname_changed(int guild_id,int account_id, int char_id, char 
 	flag |= GS_MEMBER;
 
 	if( !inter_guild_tosql(g, flag) )
-		return 0;			
+		return 0;
 
 	mapif_guild_info(-1,g);
-	
+
 	return 0;
 }
 
@@ -1760,7 +1760,7 @@ static int mapif_parse_GuildDeleteAlliance(struct guild *g, int guild_id, int ac
 
 	strcpy(name, g->alliance[i].name);
 	g->alliance[i].guild_id=0;
-	
+
 	mapif_guild_alliance(g->guild_id,guild_id,account_id1,account_id2,flag,g->name,name);
 	g->save_flag |= GS_ALLIANCE;
 	return 0;
@@ -1777,7 +1777,7 @@ int mapif_parse_GuildAlliance(int fd,int guild_id1,int guild_id2,int account_id1
 
 	if(g[0] && g[1]==NULL && (flag & GUILD_ALLIANCE_REMOVE)) //Requested to remove an alliance with a not found guild.
 		return mapif_parse_GuildDeleteAlliance(g[0], guild_id2,	account_id1, account_id2, flag); //Try to do a manual removal of said guild.
-		
+
 	if(g[0]==NULL || g[1]==NULL)
 		return 0;
 
@@ -1935,16 +1935,16 @@ int mapif_parse_GuildMasterChange(int fd, int guild_id, const char* name, int le
 	int pos;
 
 	g = inter_guild_fromsql(guild_id);
-	
+
 	if(g==NULL || len > NAME_LENGTH)
 		return 0;
-	
+
 	// Find member (name)
 	for (pos = 0; pos < g->max_member && strncmp(g->member[pos].name, name, len); pos++);
 
 	if (pos == g->max_member)
 		return 0; //Character not found??
-	
+
 	// Switch current and old GM
 	memcpy(&gm, &g->member[pos], sizeof (struct guild_member));
 	memcpy(&g->member[pos], &g->member[0], sizeof(struct guild_member));

@@ -45,14 +45,14 @@ int sqlite_release_mem(int bytes) {
 		ShowInfo("Liberados '%d bytes'\n", sqlite3_release_memory(bytes));
 	#endif
 
-	return bytes; 
+	return bytes;
 }
 
 void sqlite_do_final(void) {
 
 	ShowStatus("Finalizando SQLite...\n");
-	sqlite_release_mem(0); 
-	sqlite3_close(sqlite_data); 
+	sqlite_release_mem(0);
+	sqlite3_close(sqlite_data);
 
 	ShowInfo("Finalizado.\n");
 }

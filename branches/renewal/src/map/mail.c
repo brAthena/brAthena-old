@@ -94,7 +94,7 @@ unsigned char mail_setitem(struct map_session_data *sd, int idx, int amount)
 		sd->mail.index = idx;
 		sd->mail.nameid = sd->status.inventory[idx].nameid;
 		sd->mail.amount = amount;
-		
+
 		return 0;
 	}
 }
@@ -102,7 +102,7 @@ unsigned char mail_setitem(struct map_session_data *sd, int idx, int amount)
 bool mail_setattachment(struct map_session_data *sd, struct mail_message *msg)
 {
 	int n;
-	
+
 	nullpo_retr(false,sd);
 	nullpo_retr(false,msg);
 
@@ -191,7 +191,7 @@ void mail_deliveryfail(struct map_session_data *sd, struct mail_message *msg)
 		sd->status.zeny += msg->zeny;
 		clif_updatestatus(sd, SP_ZENY);
 	}
-	
+
 	clif_Mail_send(sd->fd, true);
 }
 

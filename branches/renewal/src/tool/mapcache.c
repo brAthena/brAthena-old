@@ -123,7 +123,7 @@ int read_map(char *name, struct map_data *m)
 	rsw = (unsigned char *)grfio_read(filename);
 
 	// Read water height
-	if (rsw) { 
+	if (rsw) {
 		water_height = (int)GetFloat(rsw+166);
 		aFree(rsw);
 	} else

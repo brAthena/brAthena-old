@@ -217,7 +217,7 @@ void quest_update_objective(TBL_PC * sd, int mob)
 			continue;
 
 		for( j = 0; j < MAX_QUEST_OBJECTIVES; j++ )
-			if( quest_db[sd->quest_index[i]].mob[j] == mob && sd->quest_log[i].count[j] < quest_db[sd->quest_index[i]].count[j] ) 
+			if( quest_db[sd->quest_index[i]].mob[j] == mob && sd->quest_log[i].count[j] < quest_db[sd->quest_index[i]].count[j] )
 			{
 				sd->quest_log[i].count[j]++;
 				sd->save_quest = true;
@@ -273,7 +273,7 @@ int quest_check(TBL_PC * sd, int quest_id, quest_check_type type)
 
 	switch( type )
 	{
-	case HAVEQUEST:		
+	case HAVEQUEST:
 		return sd->quest_log[i].state;
 	case PLAYTIME:
 		return (sd->quest_log[i].time < (unsigned int)time(NULL) ? 2 : sd->quest_log[i].state == Q_COMPLETE ? 1 : 0);
@@ -288,7 +288,7 @@ int quest_check(TBL_PC * sd, int quest_id, quest_check_type type)
 
 				return 0;
 			}
-			
+
 			return 2;
 		}
 	default:
@@ -311,7 +311,7 @@ int quest_read_db(void)
 		ShowError("can't read %s\n", line);
 		return -1;
 	}
-	
+
 	while(fgets(line, sizeof(line), fp))
 	{
 		if (k == MAX_QUEST_DB) {

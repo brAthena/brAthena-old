@@ -64,8 +64,8 @@
 /**
  * Define this to enable the functions that cast to unions.
  * Required when the compiler doesn't support casting to unions.
- * NOTE: It is recommened that the conditional tests to determine if this 
- * should be defined be located in the configure script or a header file 
+ * NOTE: It is recommened that the conditional tests to determine if this
+ * should be defined be located in the configure script or a header file
  * specific for compatibility and portability issues.
  * @public
  * @see #db_i2key(int)
@@ -90,7 +90,7 @@ typedef enum DBRelease {
 
 /**
  * Supported types of database.
- * See {@link #db_fix_options(DBType,DBOptions)} for restrictions of the 
+ * See {@link #db_fix_options(DBType,DBOptions)} for restrictions of the
  * types of databases.
  * @param DB_INT Uses int's for keys
  * @param DB_UINT Uses unsigned int's for keys
@@ -114,14 +114,14 @@ typedef enum DBType {
 
 /**
  * Bitfield of options that define the behaviour of the database.
- * See {@link #db_fix_options(DBType,DBOptions)} for restrictions of the 
+ * See {@link #db_fix_options(DBType,DBOptions)} for restrictions of the
  * types of databases.
  * @param DB_OPT_BASE Base options: does not duplicate keys, releases nothing
  *          and does not allow NULL keys or NULL data.
- * @param DB_OPT_DUP_KEY Duplicates the keys internally. If DB_OPT_RELEASE_KEY 
+ * @param DB_OPT_DUP_KEY Duplicates the keys internally. If DB_OPT_RELEASE_KEY
  *          is defined, the real key is freed as soon as the entry is added.
  * @param DB_OPT_RELEASE_KEY Releases the key.
- * @param DB_OPT_RELEASE_DATA Releases the data whenever an entry is removed 
+ * @param DB_OPT_RELEASE_DATA Releases the data whenever an entry is removed
  *          from the database.
  *          WARNING: for funtions that return the data (like DBMap::remove),
  *          a dangling pointer will be returned.
@@ -161,7 +161,7 @@ typedef union DBKey {
 } DBKey;
 
 /**
- * Format of funtions that create the data for the key when the entry doesn't 
+ * Format of funtions that create the data for the key when the entry doesn't
  * exist in the database yet.
  * @param key Key of the database entry
  * @param args Extra arguments of the funtion
@@ -173,9 +173,9 @@ typedef union DBKey {
 typedef void* (*DBCreateData)(DBKey key, va_list args);
 
 /**
- * Format of functions to be applyed to an unspecified quantity of entries of 
+ * Format of functions to be applyed to an unspecified quantity of entries of
  * a database.
- * Any function that applies this function to the database will return the sum 
+ * Any function that applies this function to the database will return the sum
  * of values returned by this function.
  * @param key Key of the database entry
  * @param data Data of the database entry
@@ -205,7 +205,7 @@ typedef int (*DBMatcher)(DBKey key, void* data, va_list args);
 /**
  * Format of the comparators used internally by the database system.
  * Compares key1 to key2.
- * <code>maxlen</code> is the maximum number of character used in DB_STRING and 
+ * <code>maxlen</code> is the maximum number of character used in DB_STRING and
  * DB_ISTRING databases. If 0, the maximum number of maxlen is used (64K).
  * Returns 0 is equal, negative if lower and positive is higher.
  * @param key1 Key being compared
@@ -221,7 +221,7 @@ typedef int (*DBComparator)(DBKey key1, DBKey key2, unsigned short maxlen);
 /**
  * Format of the hashers used internally by the database system.
  * Creates the hash of the key.
- * <code>maxlen</code> is the maximum number of character used in DB_STRING and 
+ * <code>maxlen</code> is the maximum number of character used in DB_STRING and
  * DB_ISTRING databases. If 0, the maximum number of maxlen is used (64K).
  * @param key Key being hashed
  * @param maxlen Maximum number of characters used in DB_STRING and DB_ISTRING
@@ -257,7 +257,7 @@ typedef struct DBMap DBMap;
  * Database iterator.
  * Supports forward iteration, backward iteration and removing entries from the database.
  * The iterator is initially positioned before the first entry of the database.
- * While the iterator exists the database is locked internally, so invoke 
+ * While the iterator exists the database is locked internally, so invoke
  * {@link DBIterator#destroy} as soon as possible.
  * @public
  * @see #DBMap
@@ -311,7 +311,7 @@ struct DBIterator
 
 	/**
 	 * Returns true if the fetched entry exists.
-	 * The databases entries might have NULL data, so use this to to test if 
+	 * The databases entries might have NULL data, so use this to to test if
 	 * the iterator is done.
 	 * @param self Iterator
 	 * @return true is the entry exists
@@ -321,7 +321,7 @@ struct DBIterator
 
 	/**
 	 * Removes the current entry from the database.
-	 * NOTE: {@link DBIterator#exists} will return false until another entry 
+	 * NOTE: {@link DBIterator#exists} will return false until another entry
 	 *       is fethed
 	 * Returns the data of the entry.
 	 * @param self Iterator
@@ -351,7 +351,7 @@ struct DBMap {
 	/**
 	 * Returns a new iterator for this database.
 	 * The iterator keeps the database locked until it is destroyed.
-	 * The database will keep functioning normally but will only free internal 
+	 * The database will keep functioning normally but will only free internal
 	 * memory when unlocked, so destroy the iterator as soon as possible.
 	 * @param self Database
 	 * @return New iterator
@@ -374,7 +374,7 @@ struct DBMap {
 	 * It puts a maximum of <code>max</code> entries into <code>buf</code>.
 	 * If <code>buf</code> is NULL, it only counts the matches.
 	 * Returns the number of entries that matched.
-	 * NOTE: if the value returned is greater than <code>max</code>, only the 
+	 * NOTE: if the value returned is greater than <code>max</code>, only the
 	 * first <code>max</code> entries found are put into the buffer.
 	 * @param self Database
 	 * @param buf Buffer to put the data of the matched entries
@@ -392,7 +392,7 @@ struct DBMap {
 	 * It puts a maximum of <code>max</code> entries into <code>buf</code>.
 	 * If <code>buf</code> is NULL, it only counts the matches.
 	 * Returns the number of entries that matched.
-	 * NOTE: if the value returned is greater than <code>max</code>, only the 
+	 * NOTE: if the value returned is greater than <code>max</code>, only the
 	 * first <code>max</code> entries found are put into the buffer.
 	 * @param self Database
 	 * @param buf Buffer to put the data of the matched entries
@@ -408,7 +408,7 @@ struct DBMap {
 	/**
 	 * Just calls {@link DBMap#vensure}.
 	 * Get the data of the entry identified by the key.
-	 * If the entry does not exist, an entry is added with the data returned by 
+	 * If the entry does not exist, an entry is added with the data returned by
 	 * <code>create</code>.
 	 * @param self Database
 	 * @param key Key that identifies the entry
@@ -422,7 +422,7 @@ struct DBMap {
 
 	/**
 	 * Get the data of the entry identified by the key.
-	 * If the entry does not exist, an entry is added with the data returned by 
+	 * If the entry does not exist, an entry is added with the data returned by
 	 * <code>create</code>.
 	 * @param self Database
 	 * @param key Key that identifies the entry
@@ -517,7 +517,7 @@ struct DBMap {
 	 * Before deleting an entry, func is applyed to it.
 	 * Releases the key and the data.
 	 * Returns the sum of values returned by func, if it exists.
-	 * NOTE: This locks the database globally. Any attempt to insert or remove 
+	 * NOTE: This locks the database globally. Any attempt to insert or remove
 	 * a database entry will give an error and be aborted (except for clearing).
 	 * @param self Database
 	 * @param func Function to be applyed to every entry before deleting
@@ -532,7 +532,7 @@ struct DBMap {
 	 * Finalize the database, feeing all the memory it uses.
 	 * Before deleting an entry, func is applyed to it.
 	 * Returns the sum of values returned by func, if it exists.
-	 * NOTE: This locks the database globally. Any attempt to insert or remove 
+	 * NOTE: This locks the database globally. Any attempt to insert or remove
 	 * a database entry will give an error and be aborted (except for clearing).
 	 * @param self Database
 	 * @param func Function to be applyed to every entry before deleting
@@ -669,7 +669,7 @@ DBComparator db_default_cmp(DBType type);
 DBHasher db_default_hash(DBType type);
 
 /**
- * Returns the default releaser for the specified type of database with the 
+ * Returns the default releaser for the specified type of database with the
  * specified options.
  * NOTE: the options are fixed by {@link #db_fix_options(DBType,DBOptions)}
  * before choosing the releaser
@@ -698,7 +698,7 @@ DBReleaser db_custom_release(DBRelease which);
 
 /**
  * Allocate a new database of the specified type.
- * It uses the default comparator, hasher and releaser of the specified 
+ * It uses the default comparator, hasher and releaser of the specified
  * database type and fixed options.
  * NOTE: the options are fixed by {@link #db_fix_options(DBType,DBOptions)}
  * before creating the database.
@@ -706,7 +706,7 @@ DBReleaser db_custom_release(DBRelease which);
  * @param line Line of the file where the database is being allocated
  * @param type Type of database
  * @param options Options of the database
- * @param maxlen Maximum length of the string to be used as key in string 
+ * @param maxlen Maximum length of the string to be used as key in string
  *          databases
  * @return The interface of the database
  * @public

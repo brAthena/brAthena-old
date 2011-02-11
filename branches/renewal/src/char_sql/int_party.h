@@ -5,7 +5,7 @@
 #define _INT_PARTY_SQL_H_
 
 //Party Flags on what to save/delete.
-//Create a new party entry (index holds leader's info) 
+//Create a new party entry (index holds leader's info)
 #define PS_CREATE 0x01
 //Update basic party info.
 #define PS_BASIC 0x02

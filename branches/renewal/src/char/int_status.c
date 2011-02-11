@@ -63,13 +63,13 @@ static void inter_status_tostr(char* line, struct scdata *sc_data)
 static int inter_scdata_fromstr(char *line, struct scdata *sc_data)
 {
 	int i, len, next;
-	
+
 	if (sscanf(line,"%d,%d,%d\t%n",&sc_data->account_id, &sc_data->char_id, &sc_data->count, &next) < 3)
 		return 0;
 
 	if (sc_data->count < 1)
 		return 0;
-	
+
 	sc_data->data = (struct status_change_data*)aCalloc(sc_data->count, sizeof (struct status_change_data));
 
 	for (i = 0; i < sc_data->count; i++)
@@ -128,7 +128,7 @@ static int inter_status_save_sub(DBKey key, void *data, va_list ap) {
 	sc_data = (struct scdata *)data;
 	if (sc_data->count < 1)
 		return 0;
-	
+
 	fp = va_arg(ap, FILE *);
 	inter_status_tostr(line, sc_data);
 	fprintf(fp, "%s\n", line);

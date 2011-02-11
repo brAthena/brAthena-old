@@ -88,7 +88,7 @@ int instance_add_map(const char *name, int instance_id, bool usebasename)
 
 	if( m < 0 )
 		return -1; // source map not found
-		
+
 	if( instance[instance_id].state == INSTANCE_FREE )
 	{
 		ShowError("instance_add_map: trying to attach '%s' map to non-existing instance %d.\n", name, instance_id);
@@ -123,7 +123,7 @@ int instance_add_map(const char *name, int instance_id, bool usebasename)
 		map[im].name[0] = '\0';
 		ShowError("instance_add_map: no more free map indexes.\n");
 		return -3; // No free map index
-	}	
+	}
 
 	// Reallocate cells
 	num_cell = map[im].xs * map[im].ys;
@@ -392,7 +392,7 @@ void instance_set_timeout(int instance_id, unsigned int progress_timeout, unsign
 
 	if( !instance_id )
 		return;
-		
+
 	if( instance[instance_id].progress_timer != INVALID_TIMER )
 		delete_timer( instance[instance_id].progress_timer, instance_destroy_timer);
 	if( instance[instance_id].idle_timer != INVALID_TIMER )
@@ -410,7 +410,7 @@ void instance_set_timeout(int instance_id, unsigned int progress_timeout, unsign
 		instance[instance_id].progress_timeout = 0;
 		instance[instance_id].progress_timer = INVALID_TIMER;
 	}
-		
+
 	if( idle_timeout )
 	{
 		instance[instance_id].idle_timeoutval = idle_timeout;

@@ -72,7 +72,7 @@ bool mapreg_setregstr(int uid, const char* str)
 	int num = (uid & 0x00ffffff);
 	int i   = (uid & 0xff000000) >> 24;
 	const char* name = get_str(num);
-	
+
 	if( str == NULL || *str == 0 )
 	{
 		if(name[1] != '@') {
@@ -125,7 +125,7 @@ static void script_load_mapreg(void)
 	SqlStmt_BindColumn(stmt, 0, SQLDT_STRING, &varname[0], sizeof(varname), &length, NULL);
 	SqlStmt_BindColumn(stmt, 1, SQLDT_INT, &index, 0, NULL, NULL);
 	SqlStmt_BindColumn(stmt, 2, SQLDT_STRING, &value[0], sizeof(value), NULL, NULL);
-	
+
 	while ( SQL_SUCCESS == SqlStmt_NextRow(stmt) )
 	{
 		int s = add_str(varname);
@@ -136,7 +136,7 @@ static void script_load_mapreg(void)
 		else
 			idb_put(mapreg_db, (i<<24)|s, (void *)atoi(value));
 	}
-	
+
 	SqlStmt_Free(stmt);
 
 	mapreg_dirty = false;

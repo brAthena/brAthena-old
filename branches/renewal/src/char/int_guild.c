@@ -621,7 +621,7 @@ int guild_calcinfo(struct guild *g)
 	// メンバ上限（ギルド拡張適用）
 	g->max_member = 16 + guild_checkskill(g, GD_EXTENSION) * 6; //Guild Extention skill - currently adds 6 to max per skill lv.
 	if(g->max_member > MAX_GUILD)
-	{	
+	{
 		ShowError("Guild %d:%s has capacity for too many guild members (%d), max supported is %d\n", g->guild_id, g->name, g->max_member, MAX_GUILD);
 		g->max_member = MAX_GUILD;
 	}
@@ -1144,7 +1144,7 @@ int mapif_parse_GuildChangeMemberInfoShort(int fd, int guild_id, int account_id,
 	if( c ) // this check should always succeed...
 		g->average_lv = sum / c;
 
-	//FIXME: how about sending a mapif_guild_info() update to the mapserver? [ultramage] 
+	//FIXME: how about sending a mapif_guild_info() update to the mapserver? [ultramage]
 
 	return 0;
 }
@@ -1351,7 +1351,7 @@ static int mapif_parse_GuildDeleteAlliance(struct guild *g, int guild_id, int ac
 		}
 	if (i == MAX_GUILDALLIANCE)
 		return -1;
-	
+
 	mapif_guild_alliance(g->guild_id,guild_id,account_id1,account_id2,flag,g->name,name);
 	return 0;
 }
@@ -1514,12 +1514,12 @@ int mapif_parse_GuildMasterChange(int fd, int guild_id, const char* name, int le
 
 	if(g==NULL || g->guild_id<=0 || len > NAME_LENGTH)
 		return 0;
-	
+
 	for (pos = 0; pos < g->max_member && strncmp(g->member[pos].name, name, len); pos++);
 
 	if (pos == g->max_member)
 		return 0; //Character not found??
-	
+
 	memcpy(&gm, &g->member[pos], sizeof (struct guild_member));
 	memcpy(&g->member[pos], &g->member[0], sizeof(struct guild_member));
 	memcpy(&g->member[0], &gm, sizeof(struct guild_member));

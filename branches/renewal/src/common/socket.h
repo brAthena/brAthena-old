@@ -147,7 +147,7 @@ extern int naddr_;   // # of ip addresses
 
 void set_eof(int fd);
 
-/// Use a shortlist of sockets instead of iterating all sessions for sockets 
+/// Use a shortlist of sockets instead of iterating all sessions for sockets
 /// that have data to send or need eof handling.
 /// Adapted to use a static array instead of a linked list.
 ///

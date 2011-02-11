@@ -11,10 +11,10 @@
 ////// Plugin functions ///////////////
 
 // Plugin version <major version>.<minor version>
-// * <major version> is increased and <minor version> reset when at least one 
+// * <major version> is increased and <minor version> reset when at least one
 //   export of the previous version becomes incompatible
 // * <minor version> is increased if the previous version remains compatible
-// 
+//
 // Compatible plugins have:
 // - equal major version
 // - lower or equal minor version

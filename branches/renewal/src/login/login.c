@@ -162,7 +162,7 @@ static int online_data_cleanup(int tid, unsigned int tick, int id, intptr data)
 {
 	online_db->foreach(online_db, online_data_cleanup_sub);
 	return 0;
-} 
+}
 
 
 //--------------------------------------------------------------------
@@ -215,7 +215,7 @@ bool check_encrypted(const char* str1, const char* str2, const char* passwd)
 }
 
 bool check_password(const char* md5key, int passwdenc, const char* passwd, const char* refpass)
-{	
+{
 	if(passwdenc == 0)
 	{
 		return (0==strcmp(passwd, refpass));
@@ -224,7 +224,7 @@ bool check_password(const char* md5key, int passwdenc, const char* passwd, const
 	{
 		// password mode set to 1 -> md5(md5key, refpass) enable with <passwordencrypt></passwordencrypt>
 		// password mode set to 2 -> md5(refpass, md5key) enable with <passwordencrypt2></passwordencrypt2>
-		
+
 		return ((passwdenc&0x01) && check_encrypted(md5key, refpass, passwd)) ||
 		       ((passwdenc&0x02) && check_encrypted(refpass, md5key, passwd));
 	}
@@ -971,7 +971,7 @@ int mmo_auth(struct login_session_data* sd)
 				return result;// Failed to make account. [Skotlex].
 		}
 	}
-	
+
 	if( !accounts->load_str(accounts, &acc, sd->userid) )
 	{
 		ShowNotice("Conta desconhecida (conta: %s, senha recebida: %s, ip: %s)\n", sd->userid, sd->passwd, ip);

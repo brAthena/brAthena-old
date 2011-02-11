@@ -54,7 +54,7 @@
 #endif
 
 //Remove/Comment this line to disable sc_data saving. [Skotlex]
-#define ENABLE_SC_SAVING 
+#define ENABLE_SC_SAVING
 //Remove/Comment this line to disable server-side hot-key saving support [Skotlex]
 //Note that newer clients no longer save hotkeys in the registry!
 #define HOTKEY_SAVING
@@ -176,7 +176,7 @@ enum item_types {
 	IT_AMMO,    //10
 	IT_DELAYCONSUME,//11
 	IT_CASH = 18,
-	IT_MAX 
+	IT_MAX
 };
 
 
@@ -394,7 +394,7 @@ struct auction_data {
 	char seller_name[NAME_LENGTH];
 	int buyer_id;
 	char buyer_name[NAME_LENGTH];
-	
+
 	struct item item;
 	// This data is required for searching, as itemdb is not read by char server
 	char item_name[ITEM_NAME_LENGTH];
@@ -643,7 +643,7 @@ enum {
 	JOB_STAR_GLADIATOR,
 	JOB_STAR_GLADIATOR2,
 	JOB_SOUL_LINKER,
-	
+
 	JOB_RUNE_KNIGHT = 4054,
 	JOB_WARLOCK,
 	JOB_RANGER,

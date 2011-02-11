@@ -314,7 +314,7 @@ static void mapif_parse_Mail_delete(int fd)
 void mapif_Mail_new(struct mail_message *msg)
 {
 	unsigned char buf[74];
-	
+
 	if( !msg || !msg->id )
 		return;
 
@@ -381,7 +381,7 @@ static void mapif_parse_Mail_return(int fd)
 static void mapif_Mail_send(int fd, struct mail_message* msg)
 {
 	int len = sizeof(struct mail_message) + 4;
-	
+
 	WFIFOHEAD(fd,len);
 	WFIFOW(fd,0) = 0x384d;
 	WFIFOW(fd,2) = len;

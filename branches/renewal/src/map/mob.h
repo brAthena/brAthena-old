@@ -85,7 +85,7 @@ struct spawn_info {
 	unsigned short mapindex;
 	unsigned short qty;
 };
- 
+
 struct mob_db {
 	char sprite[NAME_LENGTH],name[NAME_LENGTH],jname[NAME_LENGTH];
 	unsigned int base_exp,job_exp;
@@ -134,7 +134,7 @@ struct mob_data {
 		unsigned rebirth: 1; // NPC_Rebirth used
 		unsigned int bg_id; // BattleGround System
 	} state;
-	struct guardian_data* guardian_data; 
+	struct guardian_data* guardian_data;
 	struct {
 		int id;
 		unsigned int dmg;
@@ -154,7 +154,7 @@ struct mob_data {
 	short move_fail_count;
 	short lootitem_count;
 	short min_chase;
-	
+
 	int deletetimer;
 	int master_id,master_dist;
 

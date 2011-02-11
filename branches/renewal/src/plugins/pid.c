@@ -32,7 +32,7 @@ void pid_create ()
 {
 	FILE *fp;
 	int len;
-	
+
 	IMPORT_SYMBOL(server_name, 1);
 	len = strlen(server_name);
 	strcpy(pid_file, server_name);

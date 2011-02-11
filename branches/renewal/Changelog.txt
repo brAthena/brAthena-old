@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0220 - 11/02/2011 [Dani]
+	* Limpeza de espaços desnecessários na pasta /src
+
 	r0219 - 11/02/2011 [Dani]
 	* Revisão dos spawns dos seguintes arquivos
 	- npc/monstros/campos/ayothaya.txt

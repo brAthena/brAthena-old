@@ -145,7 +145,7 @@ int itemdb_searchrandomid(int group)
 	}
 	if (itemgroup_db[group].qty)
 		return itemgroup_db[group].nameid[rand()%itemgroup_db[group].qty];
-	
+
 	ShowError("itemdb_searchrandomid: No item entries for group id %d\n", group);
 	return UNKNOWN_ITEM_ID;
 }
@@ -202,7 +202,7 @@ const char* itemdb_typename(int type)
 }
 
 /*==========================================
- * Converts the jobid from the format in itemdb 
+ * Converts the jobid from the format in itemdb
  * to the format used by the map server. [Skotlex]
  *------------------------------------------*/
 static void itemdb_jobid2mapid(unsigned int *bclass, unsigned int jobmask)
@@ -348,7 +348,7 @@ int itemdb_isequip(int nameid)
  * Alternate version of itemdb_isequip
  *------------------------------------------*/
 int itemdb_isequip2(struct item_data *data)
-{ 
+{
 	nullpo_ret(data);
 	switch(data->type) {
 		case IT_WEAPON:
@@ -419,17 +419,17 @@ int itemdb_cansell_sub(struct item_data* item, int gmlv, int unused)
 }
 
 int itemdb_cancartstore_sub(struct item_data* item, int gmlv, int unused)
-{	
+{
 	return (item && (!(item->flag.trade_restriction&16) || gmlv >= item->gm_lv_trade_override));
 }
 
 int itemdb_canstore_sub(struct item_data* item, int gmlv, int unused)
-{	
+{
 	return (item && (!(item->flag.trade_restriction&32) || gmlv >= item->gm_lv_trade_override));
 }
 
 int itemdb_canguildstore_sub(struct item_data* item, int gmlv, int unused)
-{	
+{
 	return (item && (!(item->flag.trade_restriction&64) || gmlv >= item->gm_lv_trade_override));
 }
 
@@ -440,10 +440,10 @@ int itemdb_isrestricted(struct item* item, int gmlv, int gmlv2, int (*func)(stru
 
 	if (!func(item_data, gmlv, gmlv2))
 		return 0;
-	
+
 	if(item_data->slot == 0 || itemdb_isspecial(item->card[0]))
 		return 1;
-	
+
 	for(i = 0; i < item_data->slot; i++) {
 		if (!item->card[i]) continue;
 		if (!func(itemdb_search(item->card[i]), gmlv, gmlv2))
@@ -510,7 +510,7 @@ static void itemdb_read_itemgroup_sub(const char* filename)
 	int groupid,j,k,nameid;
 	char *str[3],*p;
 	char w1[1024], w2[1024];
-	
+
 	if( (fp=fopen(filename,"r"))==NULL ){
 		ShowError("can't read %s\n", filename);
 		return;
@@ -694,7 +694,7 @@ static bool itemdb_parse_dbrow(char** str, const char* source, int line, int scr
 	*/
 	int nameid;
 	struct item_data* id;
-	
+
 	nameid = atoi(str[0]);
 	if( nameid <= 0 )
 	{
@@ -733,9 +733,9 @@ static bool itemdb_parse_dbrow(char** str, const char* source, int line, int scr
 		id->value_sell = atoi(str[5]);
 	else
 		id->value_sell = id->value_buy / 2;
-	/* 
+	/*
 	if ( !str[4][0] && !str[5][0])
-	{  
+	{
 		ShowWarning("itemdb_parse_dbrow: No buying/selling price defined for item %d (%s), using 20/10z\n",       nameid, id->jname);
 		id->value_buy = 20;
 		id->value_sell = 10;
@@ -921,7 +921,7 @@ static int itemdb_read_sqldb(void)
 {
 	const char* item_db_name[] = { item_db_db, item_db2_db };
 	int fi;
-	
+
 	for( fi = 0; fi < ARRAYLENGTH(item_db_name); ++fi )
 	{
 		uint32 lines = 0, count = 0;
@@ -1056,7 +1056,7 @@ void do_final_itemdb(void)
 int do_init_itemdb(void)
 {
 	memset(itemdb_array, 0, sizeof(itemdb_array));
-	itemdb_other = idb_alloc(DB_OPT_BASE); 
+	itemdb_other = idb_alloc(DB_OPT_BASE);
 	create_dummy_data(); //Dummy data item.
 	itemdb_read();
 

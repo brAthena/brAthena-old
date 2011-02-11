@@ -219,7 +219,7 @@ void set_char_charselect(int account_id)
 void set_char_online(int map_id, int char_id, int account_id)
 {
 	struct online_char_data* character;
-	
+
 	//Check to see for online conflicts
 	character = (struct online_char_data*)idb_ensure(online_char_db, account_id, create_online_char_data);
 	if( character->char_id != -1 && character->server > -1 && character->server != map_id )
@@ -244,7 +244,7 @@ void set_char_online(int map_id, int char_id, int account_id)
 
 	//Notify login server
 	if (login_fd > 0 && !session[login_fd]->flag.eof)
-	{	
+	{
 		WFIFOHEAD(login_fd,6);
 		WFIFOW(login_fd,0) = 0x272b;
 		WFIFOL(login_fd,2) = account_id;
@@ -378,7 +378,7 @@ struct mmo_charstatus* search_character(int aid, int cid)
 	}
 	return NULL;
 }
-	
+
 struct mmo_charstatus* search_character_byname(char* character_name)
 {
 	int i = search_character_index(character_name);
@@ -395,7 +395,7 @@ int search_character_online(int aid, int cid)
 	character = idb_get(online_char_db, aid);
 	if(character &&
 		character->char_id == cid &&
-		character->server > -1) 
+		character->server > -1)
 		return server[character->server].fd;
 	return -1;
 }
@@ -552,7 +552,7 @@ int mmo_char_fromstr(char *str, struct mmo_charstatus *p, struct global_reg *reg
 
 	// initilialise character
 	memset(p, '\0', sizeof(struct mmo_charstatus));
-	
+
 // Char structure of version 1500 (homun + mapindex maps)
 	if (sscanf(str, "%d\t%d,%d\t%127[^\t]\t%d,%d,%d\t%u,%u,%d\t%d,%d,%d,%d\t%d,%d,%d,%d,%d,%d\t%d,%d"
 		"\t%d,%d,%d\t%d,%d,%d,%d\t%d,%d,%d\t%d,%d,%d,%d,%d"
@@ -568,7 +568,7 @@ int mmo_char_fromstr(char *str, struct mmo_charstatus *p, struct global_reg *reg
 		&tmp_int[27], &tmp_int[28], &tmp_int[29],
 		&tmp_int[30], &tmp_int[31], &tmp_int[32], &tmp_int[33], &tmp_int[34],
 		&tmp_int[45], &tmp_int[35], &tmp_int[36],
-		&tmp_int[46], &tmp_int[37], &tmp_int[38], &tmp_int[39], 
+		&tmp_int[46], &tmp_int[37], &tmp_int[38], &tmp_int[39],
 		&tmp_int[40], &tmp_int[41], &tmp_int[42], &tmp_int[43], &next) != 48)
 	{
 	tmp_int[44] = 0; //Hom ID.
@@ -587,7 +587,7 @@ int mmo_char_fromstr(char *str, struct mmo_charstatus *p, struct global_reg *reg
 		&tmp_int[27], &tmp_int[28], &tmp_int[29],
 		&tmp_int[30], &tmp_int[31], &tmp_int[32], &tmp_int[33], &tmp_int[34],
 		tmp_str[1], &tmp_int[35], &tmp_int[36],
-		tmp_str[2], &tmp_int[37], &tmp_int[38], &tmp_int[39], 
+		tmp_str[2], &tmp_int[37], &tmp_int[38], &tmp_int[39],
 		&tmp_int[40], &tmp_int[41], &tmp_int[42], &tmp_int[43], &next) != 47)
 	{
 	tmp_int[43] = 0; //Fame
@@ -606,7 +606,7 @@ int mmo_char_fromstr(char *str, struct mmo_charstatus *p, struct global_reg *reg
 		&tmp_int[27], &tmp_int[28], &tmp_int[29],
 		&tmp_int[30], &tmp_int[31], &tmp_int[32], &tmp_int[33], &tmp_int[34],
 		tmp_str[1], &tmp_int[35], &tmp_int[36], //
-		tmp_str[2], &tmp_int[37], &tmp_int[38], &tmp_int[39], 
+		tmp_str[2], &tmp_int[37], &tmp_int[38], &tmp_int[39],
 		&tmp_int[40], &tmp_int[41], &tmp_int[42], &next) != 46)
 	{
 	tmp_int[40] = 0; // father
@@ -813,10 +813,10 @@ int mmo_char_fromstr(char *str, struct mmo_charstatus *p, struct global_reg *reg
 			p->cart[i].identify = tmp_int[4];
 			p->cart[i].refine = tmp_int[5];
 			p->cart[i].attribute = tmp_int[6];
-			
+
 			for(j = 0; j < MAX_SLOTS && tmp_str[0][0] && sscanf(tmp_str[0], ",%d%[0-9,-]",&tmp_int[0], tmp_str[0]) > 0; j++)
 				p->cart[i].card[j] = tmp_int[0];
-			
+
 			next += len;
 			if (str[next] == ' ')
 				next++;
@@ -839,11 +839,11 @@ int mmo_char_fromstr(char *str, struct mmo_charstatus *p, struct global_reg *reg
 	next++;
 
 	for(i = 0; str[next] && str[next] != '\t' && str[next] != '\n' && str[next] != '\r'; i++) { // global_reg実装以前のathena.txt互換のため一応'\n'チェック
-		if (sscanf(str + next, "%[^,],%[^ ] %n", reg[i].str, reg[i].value, &len) != 2) { 
+		if (sscanf(str + next, "%[^,],%[^ ] %n", reg[i].str, reg[i].value, &len) != 2) {
 			// because some scripts are not correct, the str can be "". So, we must check that.
 			// If it's, we must not refuse the character, but just this REG value.
 			// Character line will have something like: nov_2nd_cos,9 ,9 nov_1_2_cos_c,1 (here, ,9 is not good)
-			if (str[next] == ',' && sscanf(str + next, ",%[^ ] %n", reg[i].value, &len) == 1) 
+			if (str[next] == ',' && sscanf(str + next, ",%[^ ] %n", reg[i].value, &len) == 1)
 				i--;
 			else
 				return -7;
@@ -872,7 +872,7 @@ int parse_friend_txt(struct mmo_charstatus *p)
 
 	if(fp == NULL)
 		return -1;
-	
+
 	while(fgets(line, sizeof(line), fp))
 	{
 		if(line[0] == '/' && line[1] == '/')
@@ -890,7 +890,7 @@ int parse_friend_txt(struct mmo_charstatus *p)
 				break;
 			}
 			next+=pos;
-			//What IF the name contains a comma? while the next field is not a 
+			//What IF the name contains a comma? while the next field is not a
 			//number, we assume it belongs to the current name. [Skotlex]
 			//NOTE: Of course, this will fail if someone sets their name to something like
 			//Bob,2005 but... meh, it's the problem of parsing a text file (encasing it in "
@@ -931,14 +931,14 @@ int parse_hotkey_txt(struct mmo_charstatus *p)
 	fp = fopen(hotkeys_txt, "r");
 	if(fp == NULL)
 		return -1;
-	
+
 	while(fgets(line, sizeof(line), fp))
 	{
 		if(line[0] == '/' && line[1] == '/')
 			continue;
 		if (sscanf(line, "%d%n",&i, &pos) < 1 || i != p->char_id)
 			continue; //Not this line...
-		//Read hotkeys 
+		//Read hotkeys
 		len = strlen(line);
 		next = pos;
 		for (count = 0; next < len && count < MAX_HOTKEYS; count++)
@@ -1017,7 +1017,7 @@ int mmo_char_init(void)
 		parse_friend_txt(&char_dat[char_num].status);  // Grab friends for the character
 		// Initialize hotkey list
 		parse_hotkey_txt(&char_dat[char_num].status);  // Grab hotkeys for the character
-		
+
 		if (ret > 0) { // negative value or zero for errors
 			if (char_dat[char_num].status.char_id >= char_id_count)
 				char_id_count = char_dat[char_num].status.char_id + 1;
@@ -1202,7 +1202,7 @@ int make_new_char(struct char_session_data* sd, char* name_, int str, int agi, i
 {
 	char name[NAME_LENGTH];
 	int i, flag;
-	
+
 	safestrncpy(name, name_, NAME_LENGTH);
 	normalize_name(name,TRIM_CHARS);
 
@@ -1392,12 +1392,12 @@ static int create_online_files_sub(DBKey key, void* data, va_list va)
 	character = (struct online_char_data*) data;
 	players = va_arg(va, int*);
 	id = va_arg(va, int*);
-	
+
 	// check if map-server is online
 	if (character->server == -1 || character->char_id == -1) { //Character not currently online.
 		return -1;
 	}
-	
+
 	j = character->server;
 	if (server[j].fd < 0) {
 		server[j].users = 0;
@@ -1466,7 +1466,7 @@ static int create_online_files_sub(DBKey key, void* data, va_list va)
 		{
 			const char *map1, *map2;
 			map1 = mapindex_id2name(char_dat[j].status.last_point.map);
-			
+
 			for(k = 0; k < *players; k++) {
 				map2 = mapindex_id2name(char_dat[id[k]].status.last_point.map);
 				if (!map1 || !map2 || //Avoid sorting if either one failed to resolve.
@@ -1839,9 +1839,9 @@ int char_married(int pl1, int pl2)
 
 int char_child(int parent_id, int child_id)
 {
-	return (char_dat[parent_id].status.child == char_dat[child_id].status.char_id && 
-		((char_dat[parent_id].status.char_id == char_dat[child_id].status.father) || 
-		(char_dat[parent_id].status.char_id == char_dat[child_id].status.mother)));		
+	return (char_dat[parent_id].status.child == char_dat[child_id].status.char_id &&
+		((char_dat[parent_id].status.char_id == char_dat[child_id].status.father) ||
+		(char_dat[parent_id].status.char_id == char_dat[child_id].status.mother)));
 }
 
 int char_family(int cid1, int cid2, int cid3)
@@ -1859,7 +1859,7 @@ int char_family(int cid1, int cid2, int cid3)
 	if (idx1 == -1 || idx2 == -1/* || idx3 == -1*/)
   		return 0; //Some character not found??
 
-	//Unless the dbs are corrupted, these 3 checks should suffice, even though 
+	//Unless the dbs are corrupted, these 3 checks should suffice, even though
 	//we could do a lot more checks and force cross-reference integrity.
 	if(char_dat[idx1].status.partner_id == cid2 &&
 		char_dat[idx1].status.child == cid3)
@@ -2014,7 +2014,7 @@ int parse_fromlogin(int fd)
 				ShowError("The communication passwords are set in map_athena.conf and char_athena.conf\n");
 			} else {
 				ShowStatus("Connected to login-server (connection #%d).\n", fd);
-				
+
 				//Send online accounts to login server.
 				send_accounts_tologin(INVALID_TIMER, gettick(), 0, 0);
 
@@ -2438,7 +2438,7 @@ int char_send_fame_list(int fd)
 {
 	int i, len = 8;
 	unsigned char buf[32000];
-	
+
 	WBUFW(buf,0) = 0x2b1b;
 
 	for(i = 0; i < fame_list_size_smith && smith_fame_list[i].id; i++) {
@@ -2747,7 +2747,7 @@ int parse_frommap(int fd)
 
 			char_data = search_character(RFIFOL(fd,2), RFIFOL(fd,14));
 
-			if (map_fd >= 0 && session[map_fd] && char_data) 
+			if (map_fd >= 0 && session[map_fd] && char_data)
 			{	//Send the map server the auth of this player.
 				struct auth_node* node;
 
@@ -2978,7 +2978,7 @@ int parse_frommap(int fd)
 			set_all_offline(id);
 			RFIFOSKIP(fd,2);
 		break;
-		
+
 		case 0x2b19: // Character set online [Wizputer]
 			if (RFIFOREST(fd) < 10)
 				return 0;
@@ -3108,7 +3108,7 @@ int parse_frommap(int fd)
 		}
 		} // switch
 	} // while
-	
+
 	return 0;
 }
 
@@ -3117,7 +3117,7 @@ int parse_frommap(int fd)
 int search_mapserver(unsigned short map, uint32 ip, uint16 port)
 {
 	int i, j;
-	
+
 	for(i = 0; i < MAX_MAP_SERVERS; i++)
 	{
 		if (server[i].fd > 0
@@ -3215,7 +3215,7 @@ int parse_char(int fd)
 				//TODO: and perhaps send back a reply?
 				break;
 			}
-			
+
 			CREATE(session[fd]->session_data, struct char_session_data, 1);
 			sd = (struct char_session_data*)session[fd]->session_data;
 			sd->account_id = account_id;
@@ -3466,7 +3466,7 @@ int parse_char(int fd)
 					WFIFOSET(login_fd,46);
 
 					// change value to put new packet (char selection)
-					RFIFOSKIP(fd,-3); //FIXME: Will this work? Messing with the received buffer is ugly anyway... 
+					RFIFOSKIP(fd,-3); //FIXME: Will this work? Messing with the received buffer is ugly anyway...
 					RFIFOW(fd,0) = 0x66;
 					RFIFOB(fd,2) = char_dat[sd->found_char[i]].status.slot;
 					// not send packet, it's modify of actual packet
@@ -3800,7 +3800,7 @@ int check_connect_login_server(int tid, unsigned int tick, int id, intptr data)
 	session[login_fd]->func_parse = parse_fromlogin;
 	session[login_fd]->flag.server = 1;
 	realloc_fifo(login_fd, FIFOSIZE_SERVERLINK, FIFOSIZE_SERVERLINK);
-	
+
 	WFIFOHEAD(login_fd,86);
 	WFIFOW(login_fd,0) = 0x2710;
 	memcpy(WFIFOP(login_fd,2), userid, 24);
@@ -3813,7 +3813,7 @@ int check_connect_login_server(int tid, unsigned int tick, int id, intptr data)
 	WFIFOW(login_fd,82) = char_maintenance;
 	WFIFOW(login_fd,84) = char_new_display; //only display (New) if they want to [Kevin]
 	WFIFOSET(login_fd,86);
-	
+
 	return 1;
 }
 
@@ -3872,7 +3872,7 @@ int char_lan_config_read(const char *lancfgName)
 	FILE *fp;
 	int line_num = 0;
 	char line[1024], w1[64], w2[64], w3[64], w4[64];
-	
+
 	if((fp = fopen(lancfgName, "r")) == NULL) {
 		ShowWarning("LAN Support configuration file is not found: %s\n", lancfgName);
 		return 1;
@@ -3882,13 +3882,13 @@ int char_lan_config_read(const char *lancfgName)
 
 	while(fgets(line, sizeof(line), fp))
 	{
-		line_num++;		
+		line_num++;
 		if ((line[0] == '/' && line[1] == '/') || line[0] == '\n' || line[1] == '\n')
 			continue;
 
 		if(sscanf(line,"%[^:]: %[^:]:%[^:]:%[^\r\n]", w1, w2, w3, w4) != 4) {
-	
-			ShowWarning("Error syntax of configuration file %s in line %d.\n", lancfgName, line_num);	
+
+			ShowWarning("Error syntax of configuration file %s in line %d.\n", lancfgName, line_num);
 			continue;
 		}
 
@@ -3908,7 +3908,7 @@ int char_lan_config_read(const char *lancfgName)
 				ShowError("%s: Configuration Error: The char server (%s) and map server (%s) belong to different subnetworks!\n", lancfgName, w3, w4);
 				continue;
 			}
-				
+
 			subnet_count++;
 		}
 	}
@@ -4123,7 +4123,7 @@ void do_final(void)
 
 	online_char_db->destroy(online_char_db, NULL);
 	auth_db->destroy(auth_db, NULL);
-	
+
 	if(char_dat) aFree(char_dat);
 
 	if (login_fd > 0)

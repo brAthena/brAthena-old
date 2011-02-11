@@ -242,7 +242,7 @@ int chrif_save(struct map_session_data *sd, int flag)
 
 	if (!flag) //The flag check is needed to prevent 'nosave' taking effect when a jailed player logs out.
 		pc_makesavestatus(sd);
-	
+
 	if (flag && sd->state.active) //Store player data which is quitting.
 	{
 		//FIXME: SC are lost if there's no connection at save-time because of the way its related data is cleared immediately after this function. [Skotlex]
@@ -261,7 +261,7 @@ int chrif_save(struct map_session_data *sd, int flag)
 	if (flag)
 		sd->state.storage_flag = 0; //Force close it.
 
-	//Saving of registry values. 
+	//Saving of registry values.
 	if (sd->state.reg_dirty&4)
 		intif_saveregistry(sd, 3); //Save char regs
 	if (sd->state.reg_dirty&2)
@@ -584,7 +584,7 @@ void chrif_authok(int fd)
 	//Causes problems if the currently connected player tries to quit or this data belongs to an already connected player which is trying to re-auth.
 	if ((sd = map_id2sd(account_id)) != NULL)
 		return;
-	
+
 	if ((node = chrif_search(account_id)) == NULL)
 		return; // should not happen
 
@@ -799,7 +799,7 @@ static void chrif_char_ask_name_answer(int acc, const char* player_name, uint16 
 	struct map_session_data* sd;
 	const char* action;
 	char output[256];
-	
+
 	sd = map_id2sd(acc);
 	if( acc < 0 || sd == NULL ) {
 		ShowError("chrif_char_ask_name_answer falhou - jogador nao esta online.\n");
@@ -814,7 +814,7 @@ static void chrif_char_ask_name_answer(int acc, const char* player_name, uint16 
 	case 5 : action = "mudar o sexo do"; break;
 	default: action = "???"; break;
 	}
-	
+
 	switch( answer ) {
 	case 0 : sprintf(output, "Servidor de login foi requisitado para %s jogador '%.*s'.", action, NAME_LENGTH, player_name); break;
 	case 1 : sprintf(output, "O jogador '%.*s' nao existe.", NAME_LENGTH, player_name); break;
@@ -822,7 +822,7 @@ static void chrif_char_ask_name_answer(int acc, const char* player_name, uint16 
 	case 3 : sprintf(output, "Servidor de login esta offline. Impossivel %s jogador '%.*s'.", action, NAME_LENGTH, player_name); break;
 	default: output[0] = '\0'; break;
 	}
-	
+
 	clif_displaymessage(sd->fd, output);
 }
 
@@ -840,13 +840,13 @@ int chrif_changedsex(int fd)
 		ShowNotice("chrif_changedsex %d.\n", acc);
 	sd = map_id2sd(acc);
 	if (sd) { //Normally there should not be a char logged on right now!
-		if (sd->status.sex == sex) 
+		if (sd->status.sex == sex)
 			return 0; //Do nothing? Likely safe.
 		sd->status.sex = !sd->status.sex;
 
 		// reset skill of some job
 		if ((sd->class_&MAPID_UPPERMASK) == MAPID_BARDDANCER) {
-			// remove specifical skills of Bard classes 
+			// remove specifical skills of Bard classes
 			for(i = 315; i <= 322; i++) {
 				if (sd->status.skill[i].id > 0 && !sd->status.skill[i].flag) {
 					sd->status.skill_point += sd->status.skill[i].lv;
@@ -854,7 +854,7 @@ int chrif_changedsex(int fd)
 					sd->status.skill[i].lv = 0;
 				}
 			}
-			// remove specifical skills of Dancer classes 
+			// remove specifical skills of Dancer classes
 			for(i = 323; i <= 330; i++) {
 				if (sd->status.skill[i].id > 0 && !sd->status.skill[i].flag) {
 					sd->status.skill_point += sd->status.skill[i].lv;
@@ -922,7 +922,7 @@ int chrif_divorceack(int char_id, int partner_id)
 			if (sd->status.inventory[i].nameid == WEDDING_RING_M || sd->status.inventory[i].nameid == WEDDING_RING_F)
 				pc_delitem(sd, i, 1, 0, 0);
 	}
-	
+
 	return 0;
 }
 /*==========================================
@@ -973,7 +973,7 @@ int chrif_accountban(int fd)
 
 	sd->login_id1++; // change identify, because if player come back in char within the 5 seconds, he can change its characters
 	if (RFIFOB(fd,6) == 0) // 0: change of statut, 1: ban
-	{ 
+	{
 		switch (RFIFOL(fd,7)) { // status or final date of a banishment
 		case 1: clif_displaymessage(sd->fd, "Sua conta não está 'registrada'."); break;
 		case 2: clif_displaymessage(sd->fd, "Sua conta possui 'Senha incorreta'..."); break;
@@ -989,7 +989,7 @@ int chrif_accountban(int fd)
 		}
 	}
 	else if (RFIFOB(fd,6) == 1) // 0: change of statut, 1: ban
-	{ 
+	{
 		time_t timestamp;
 		char tmpstr[2048];
 		timestamp = (time_t)RFIFOL(fd,7); // status or final date of a banishment
@@ -1144,7 +1144,7 @@ int chrif_save_scdata(struct map_session_data *sd)
 
 	chrif_check(-1);
 	tick = gettick();
-	
+
 	WFIFOHEAD(char_fd, 14 + SC_MAX*sizeof(struct status_change_data));
 	WFIFOW(char_fd,0) = 0x2b1c;
 	WFIFOL(char_fd,4) = sd->status.account_id;
@@ -1204,7 +1204,7 @@ int chrif_skillcooldown_save(struct map_session_data *sd)
 		timer = get_timer(sd->scd[i]->timer);
 		if( timer == NULL || timer->func != skill_blockpc_end || DIFF_TICK(timer->tick,tick) < 0 )
 			continue;
-		
+
 		data.tick = DIFF_TICK(timer->tick,tick);
 		data.skill_id = sd->scd[i]->skill_id;
 		memcpy(WFIFOP(char_fd,14+count*sizeof(struct skill_cooldown_data)),	&data, sizeof(struct skill_cooldown_data));
@@ -1222,7 +1222,7 @@ int chrif_skillcooldown_save(struct map_session_data *sd)
 
 //Retrieve and load sc_data for a player. [Skotlex]
 int chrif_load_scdata(int fd)
-{	
+{
 #ifdef ENABLE_SC_SAVING
 	struct map_session_data *sd;
 	struct status_change_data *data;
@@ -1230,7 +1230,7 @@ int chrif_load_scdata(int fd)
 
 	aid = RFIFOL(fd,4); //Player Account ID
 	cid = RFIFOL(fd,8); //Player Char ID
-	
+
 	sd = map_id2sd(aid);
 	if (!sd)
 	{
@@ -1266,7 +1266,7 @@ int chrif_skillcooldown_load(int fd)
 	if( !sd )
 	{
 		ShowError("chrif_skillcooldown_load: Player of AID %d not found!\n", aid);
-		return -1;	
+		return -1;
 	}
 	if( sd->status.char_id != cid )
 	{
@@ -1379,7 +1379,7 @@ int chrif_disconnect(int fd)
 		char_fd = 0;
 		ShowWarning("Map Server desconectou do Char Server.\n\n");
 		chrif_connected = 0;
-		
+
 	 	other_mapserver_count=0; //Reset counter. We receive ALL maps from all map-servers on reconnect.
 		map_eraseallipport();
 

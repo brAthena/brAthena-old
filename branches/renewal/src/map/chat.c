@@ -131,7 +131,7 @@ int chat_joinchat(struct map_session_data* sd, int chatid, const char* pass)
 	clif_dispchat(cd,0);	// 周囲の人には人数変化報告
 
 	chat_triggerevent(cd); // イベント
-	
+
 	return 0;
 }
 
@@ -278,7 +278,7 @@ int chat_kickchat(struct map_session_data* sd, const char* kickusername)
 	nullpo_retr(1, sd);
 
 	cd = (struct chat_data *)map_id2bl(sd->chatID);
-	
+
 	if( cd==NULL || (struct block_list *)sd != cd->owner )
 		return -1;
 
@@ -324,14 +324,14 @@ int chat_deletenpcchat(struct npc_data* nd)
 	cd = (struct chat_data*)map_id2bl(nd->chat_id);
 	if( cd == NULL )
 		return 0;
-	
+
 	chat_npckickall(cd);
 	clif_clearchat(cd, 0);
 	map_deliddb(&cd->bl);
 	map_delblock(&cd->bl);
 	map_freeblock(&cd->bl);
 	nd->chat_id = 0;
-	
+
 	return 0;
 }
 

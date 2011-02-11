@@ -124,7 +124,7 @@ int inter_party_fromstr(char *str, struct party *p) {
 #ifndef TXT_SQL_CONVERT
 	struct mmo_charstatus* status;
 #endif
-	
+
 	memset(p, 0, sizeof(struct party));
 
 	if (sscanf(str, "%d\t%255[^\t]\t%d,%d\t", &tmp_int[0], tmp_str, &tmp_int[1], &tmp_int[2]) != 4)
@@ -147,7 +147,7 @@ int inter_party_fromstr(char *str, struct party *p) {
 			return 1;
 
 		m->account_id = tmp_int[0];
-		m->char_id = tmp_int[1]; 
+		m->char_id = tmp_int[1];
 		m->leader = tmp_int[2]?1:0;
 
 		str = strchr(str + 1, '\t');
@@ -156,7 +156,7 @@ int inter_party_fromstr(char *str, struct party *p) {
 		//Lookup player for rest of data.
 		status = search_character(m->account_id, m->char_id);
 		if (!status) continue;
-		
+
 		memcpy(m->name, status->name, NAME_LENGTH);
 		m->class_ = status->class_;
 		m->map = status->last_point.map;
@@ -493,7 +493,7 @@ int mapif_parse_PartyInfo(int fd, int party_id)
 	return 0;
 }
 
-// パーティ追加要求	
+// パーティ追加要求
 int mapif_parse_PartyAddMember(int fd, int party_id, struct party_member *member)
 {
 	struct party_data *p;
@@ -590,7 +590,7 @@ int mapif_parse_PartyChangeMap(int fd, int party_id, int account_id, int char_id
 	if (p == NULL)
 		return 0;
 
-	for(i = 0; i < MAX_PARTY && 
+	for(i = 0; i < MAX_PARTY &&
 		(p->party.member[i].account_id != account_id ||
 		p->party.member[i].char_id != char_id); i++);
 
@@ -604,7 +604,7 @@ int mapif_parse_PartyChangeMap(int fd, int party_id, int account_id, int char_id
 		else
 			p->party.count--;
 		// Even share check situations: Family state (always breaks)
-		// character logging on/off is max/min level (update level range) 
+		// character logging on/off is max/min level (update level range)
 		// or character logging on/off has a different level (update level range using new level)
 		if (p->family ||
 			(p->party.member[i].lv <= p->min_lv || p->party.member[i].lv >= p->max_lv) ||
@@ -661,7 +661,7 @@ int mapif_parse_PartyLeaderChange(int fd,int party_id,int account_id,int char_id
 
 	for (i = 0; i < MAX_PARTY; i++)
 	{
-		if(p->party.member[i].leader) 
+		if(p->party.member[i].leader)
 			p->party.member[i].leader = 0;
 		if(p->party.member[i].account_id == account_id &&
 			p->party.member[i].char_id == char_id)

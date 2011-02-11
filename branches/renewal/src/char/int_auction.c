@@ -91,7 +91,7 @@ unsigned int auction_create(struct auction_data *auction)
 	for( j = 0; j < MAX_SLOTS; j++ )
 		StringBuf_Printf(&buf, ",'%d'", auction->item.card[j]);
 	StringBuf_AppendStr(&buf, ")");
-	
+
 	stmt = SqlStmt_Malloc(sql_handle);
 	if( SQL_SUCCESS != SqlStmt_PrepareStr(stmt, StringBuf_Value(&buf))
 	||  SQL_SUCCESS != SqlStmt_BindParam(stmt, 0, SQLDT_STRING, auction->seller_name, strnlen(auction->seller_name, NAME_LENGTH))
@@ -129,7 +129,7 @@ unsigned int auction_create(struct auction_data *auction)
 static void mapif_Auction_message(int char_id, unsigned char result)
 {
 	unsigned char buf[74];
-	
+
 	WBUFW(buf,0) = 0x3854;
 	WBUFL(buf,2) = char_id;
 	WBUFL(buf,6) = result;
@@ -149,7 +149,7 @@ static int auction_end_timer(int tid, unsigned int tick, int id, intptr data)
 		}
 		else
 			mail_sendmail(0, "Gerente de Leilão", auction->seller_id, auction->seller_name, "Leilão", "Nenhum comprador encontrado para seu leilão.", 0, &auction->item);
-		
+
 		ShowInfo("Fim do Leilao: id %u.\n", auction->auction_id);
 
 		auction->auction_end_timer = INVALID_TIMER;
@@ -268,7 +268,7 @@ static void mapif_parse_Auction_requestlist(int fd)
 	iter = auction_db_->iterator(auction_db_);
 	for( auction = (struct auction_data*)iter->first(iter,&key); iter->exists(iter); auction = (struct auction_data*)iter->next(iter,&key) )
 	{
-		if( (type == 0 && auction->type != IT_ARMOR && auction->type != IT_PETARMOR) || 
+		if( (type == 0 && auction->type != IT_ARMOR && auction->type != IT_PETARMOR) ||
 			(type == 1 && auction->type != IT_WEAPON) ||
 			(type == 2 && auction->type != IT_CARD) ||
 			(type == 3 && auction->type != IT_ETC) ||

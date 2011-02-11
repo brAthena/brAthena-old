@@ -41,7 +41,7 @@
 /////////////////////////////////////////////////////////////////////
 #if defined(WIN32)
 /////////////////////////////////////////////////////////////////////
-// windows portability layer 
+// windows portability layer
 
 typedef int socklen_t;
 
@@ -87,7 +87,7 @@ int sock2fd(SOCKET s)
 
 /// Inserts the socket into the global array of sockets.
 /// Returns a new fd associated with the socket.
-/// If there are too many sockets it closes the socket, sets an error and 
+/// If there are too many sockets it closes the socket, sets an error and
 //  returns -1 instead.
 /// Since fd 0 is reserved, it returns values in the range [1,FD_SETSIZE[.
 ///
@@ -249,8 +249,8 @@ void set_defaultparse(ParseFunc defaultparse)
  *--------------------------------------*/
 void set_nonblocking(int fd, unsigned long yes)
 {
-	// FIONBIO Use with a nonzero argp parameter to enable the nonblocking mode of socket s. 
-	// The argp parameter is zero if nonblocking is to be disabled. 
+	// FIONBIO Use with a nonzero argp parameter to enable the nonblocking mode of socket s.
+	// The argp parameter is zero if nonblocking is to be disabled.
 	if( sIoctl(fd, FIONBIO, &yes) != 0 )
 		ShowError("set_nonblocking: Falha ao definir socket #%d em modo nao bloqueado (codigo %d) - Favor reportar isso!!!\n", fd, sErrno);
 }
