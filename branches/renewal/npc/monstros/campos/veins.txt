@@ -12,13 +12,13 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.7/1.2                                |
+// | Versões eA/brA: 1.7/1.2a                               |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [K2X]                             |
 // | 1.1 Script Revisado [Protimus & Tyler]                 |
-// | 1.2 Spawns do Renewal [Dani]                           |
-// | --- Necessita de revisão                               |
+// | 1.2a Spawns do Renewal [Dani]                          |
+// | --- Revisado                                           |
 // \________________________________________________________/
 
 //==================================================
@@ -33,6 +33,8 @@ ve_fild02,0,0,0,0	monster	Drosera	1781,130,0,0,0
 ve_fild02,0,0,0,0	monster	Muscipular	1780,20,0,0,0
 ve_fild02,0,0,0,0	monster	Galion	1783,10,0,0,0
 ve_fild02,120,55,50,50	boss_monster	Atroce	1785,1,21600000,600000,0
+ve_fild02,0,0,0,0	monster	Planta Vermelha	1078,10,0,0,0
+ve_fild02,0,0,0,0	monster	Planta Amarela	1081,10,0,0,0
 
 //==================================================
 // ve_fild03 - Campo de Veins
@@ -40,6 +42,8 @@ ve_fild02,120,55,50,50	boss_monster	Atroce	1785,1,21600000,600000,0
 ve_fild03,0,0,0,0	monster	Magmaring	1836,130,0,0,0
 ve_fild03,0,0,0,0	monster	Muscipular	1780,35,0,0,0
 ve_fild03,0,0,0,0	monster	Drosera	1781,35,0,0,0
+ve_fild03,200,212,114,60	monster	Planta Vermelha	1078,10,0,0,0
+ve_fild03,0,0,0,0 10	monster	Planta Amarela	1081,10,0,0,0
 
 //==================================================
 // ve_fild04 - Campo de Veins
@@ -47,6 +51,7 @@ ve_fild03,0,0,0,0	monster	Drosera	1781,35,0,0,0
 ve_fild04,0,0,0,0	monster	Muscipular	1780,100,0,0,0
 ve_fild04,0,0,0,0	monster	Drosera	1781,50,0,0,0
 ve_fild04,0,0,0,0	monster	Galion	1783,20,0,0,0
+ve_fild04,288,273,4,4	monster	Planta Azul	1079,3,660000,0,0
 
 //==================================================
 // ve_fild05 - Campo de Veins
@@ -64,3 +69,4 @@ ve_fild04,0,0,0,0	monster	Galion	1783,20,0,0,0
 ve_fild07,0,0,0,0	monster	Stapo	1784,100,0,0,0
 ve_fild07,0,0,0,0	monster	Drosera	1781,50,0,0,0
 ve_fild07,0,0,0,0	monster	Muscipular	1780,30,0,0,0
+ve_fild07,0,0,0,0	monster	Planta Branca	1082,10,600000,0,0

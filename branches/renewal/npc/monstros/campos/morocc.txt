@@ -12,12 +12,13 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.7/1.2                                |
+// | Versões eA/brA: 1.7/1.2a                               |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [K2X]                             |
 // | 1.1 Script Revisado [Protimus & Tyler]                 |
-// | 1.2 Spawns do Renewal Traduzidos [Dani]                |
+// | 1.2a Spawns do Renewal Traduzidos [Dani]               |
+// | - Revisado                                             |
 // \________________________________________________________/
 
 //==================================================
@@ -108,8 +109,7 @@ moc_fild07,162,333,12,12	monster	Planta Amarela	1081,5,360000,180000,1
 //==================================================
 moc_fild11,0,0,0,0	monster	Filhote de Lobo do Deserto	1107,140,0,0,0
 moc_fild11,0,0,0,0	monster	Condor	1009,30,0,0,0
-moc_fild11,0,0,0,0	monster	Scorpion	1001,30,0,0,0
-moc_fild11,197,216,0,0	monster	Shining Plant	1083,1,1800000,900000,1
+moc_fild11,0,0,0,0	monster	Escorpião	1001,30,0,0,0
 
 //==================================================
 // moc_fild12 - Deserto Sograt
@@ -126,8 +126,8 @@ moc_fild12,181,336,40,20	monster	Planta Amarela	1081,10,180000,90000,1
 //==================================================
 moc_fild13,0,0,0,0	monster	ChonChon de Aço	1042,140,0,0,0
 moc_fild13,0,0,0,0	monster	Lobo	1013,15,0,0,0
-moc_fild13,0,0,0,0	monster	Metaller	1058,15,0,0,0
 moc_fild13,0,0,0,0	monster	Argos	1100,15,0,0,0
+moc_fild13,0,0,0,0	monster	Metaller	1058,15,0,0,0
 moc_fild13,0,0,0,0	monster	Magnólia	1138,15,0,0,0
 moc_fild13,280,99,0,0	monster	Cogumelo Vermelho	1085,1,180000,90000,1
 moc_fild13,264,64,0,0	monster	Cogumelo Vermelho	1085,1,180000,90000,1
@@ -223,4 +223,4 @@ moc_fild22,0,0,0,0	monster	Sombra da Inveja	1918,60,30000,0,0
 moc_fild22,0,0,0,0	monster	Sombra da Gula	1919,60,30000,0,0
 moc_fild22,0,0,0,0	monster	Sombra da Vaidade	1920,60,30000,0,0
 moc_fild22,0,0,0,0	monster	Sombra da Ira	1921,25,30000,0,0
-moc_fild22,0,0,0,0	monster	Morroc Ferido	1917,1,43200000,3600000,1
+moc_fild22,0,0,0,0	boss_monster	Morroc Ferido	1917,1,43200000,3600000,0

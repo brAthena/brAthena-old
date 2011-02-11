@@ -4,10 +4,28 @@
 //	* Notação
 //	- Comentário (opcional)
 // *Dica: Para encontrar atualizações de uma revisão específica pressione Ctrl+F
-//	e digite rxxxx onde "xxxx" refere-se a revisão desejada. 
+//	e digite rxxxx onde "xxxx" refere-se a revisão desejada.
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
+
+	r0228 - 11/02/2011 [Dani]
+	* Revisão dos spawns dos seguintes arquivos:
+	- npc/monstros/campos/amatsu.txt
+	- npc/monstros/campos/comodo.txt
+	- npc/monstros/campos/geffen.txt
+	- npc/monstros/campos/gonryun.txt
+	- npc/monstros/campos/hugel.txt
+	- npc/monstros/campos/louyang.txt
+	- npc/monstros/campos/lutie.txt
+	- npc/monstros/campos/manuk.txt
+	- npc/monstros/campos/mjolnir.txt
+	- npc/monstros/campos/morocc.txt
+	- npc/monstros/campos/moscovia.txt
+	- npc/monstros/campos/payon.txt
+	- npc/monstros/campos/rachel.txt
+	- npc/monstros/campos/splendide.txt
+	- npc/monstros/campos/veins.txt
 
 	r0227 - 11/02/2011 [brn0]
 	* Alteração no cálculo de DEF1 e MDEF1, para evitar que retorne valores negativos.
@@ -34,7 +52,7 @@
 	- Perícia com Machado: Modificada para “Perícia com Machado e Espada” e funciona com espadas de uma mão.
 	- Terror Ácido: Dano aumentado em 100% (dano total), Influenciado pelo ataque físico é mágico e pela defesa do inimigo.
 	- Fogo Grego: Reduzido pela metade o intervalo entre os danos e agora leva tanto o ataque físico quanto o mágico no calculo do dano.
-	
+
 	r0222 - 11/02/2011 [Protimus]
 	* Adicionada habilidade RK_INGNITIONBREAK (Impacto Flamejante).
 	- Fórmula de dano baseadas no iROWiki, área e outras modificações 100% oficiais.
@@ -47,7 +65,7 @@
 	* Limpeza de espaços desnecessários na pasta /src
 
 	r0219 - 11/02/2011 [Dani]
-	* Revisão dos spawns dos seguintes arquivos
+	* Revisão dos spawns dos seguintes arquivos:
 	- npc/monstros/campos/ayothaya.txt
 	- npc/monstros/campos/brasilis.txt
 	- npc/monstros/campos/einbroch.txt
@@ -121,7 +139,7 @@
 
 	r0207 - 05/02/2011 [Heaven]
 	* Fixado o erro causado pelo SC_RAID
-	
+
 	r0206 - 05/02/2011 [Protimus]
 	* Adições de informações para produção de itens através de habilidades (produce_db.txt)
 	* Adicionados todos os cast's e fix cast normais e sem dex no skill_cast_db.txt e skill_castnodex.txt
@@ -156,7 +174,7 @@
 
 	r0195 - 03/02/2011 [Heaven]
 	* Retiradas linhas sem necessidade
-	
+
 	r0194 - 03/02/2011 [Heaven]
 	* Modificado @mapinfo
 	- O tamanho do array era pequeno para a palavra "Desconhecido"
@@ -172,7 +190,7 @@
 	- Cura
 	- Nevasca(Taxa de congelamento)
 	- Rapidez com Lança
-	
+
 	r0192 - 02/02/2011 [Protimus]
 	* Adicionadas IDs dos status changes e classes no const.txt
 	* Traduzida & Revisada exp.txt
@@ -198,7 +216,7 @@
 	* Modificações em habilidades:
 	- Benedictio Sanctissimi Sacramenti (B.S. Sacramenti): Faz com que os ataques fisicos dos usuários ignorem a defesa de monstros da raça Morto-Vivo e Demônio.
 	- Esconjurar: Dano de falha influenciado pelo ataque mágico do usuário.
-	
+
 	r0180 - 29/01/2011 [Protimus]
 	* Correção do commit anterior, havia esquecido de enviar o dano do Impacto Psíquico modificado.
 	* Modificações em habilidades:
@@ -215,7 +233,7 @@
 	- Perfurar em Espiral: Não ignora defesa, pode ser utilizada com espadas de 1 e duas mãos e requer perícia de lança apenas nível 5.
 	- Explosão tóxica: Não é mais necessário usar em alvos com HP baixo, aumentado o dano causado.
 	- Encantar com Veneno Mortal: Não quadruplica o valor do dano para habilidades, apenas ataques normais.
-	
+
 	r0177 - 29/01/2011 [Protimus]
 	* Modificações em habilidades:
 	- Lâmina de Vento: Dano aumentado.
@@ -270,14 +288,14 @@
 	* Modificações em habilidades:
 	- Bomba Ácida: Dano reduzido pela defesa física e mágica do alvo.
 	- Destruidor de Almas: Dano da habilidade reduzido pela defesa física e mágica do alvo.
-	
+
 	r0163 - 27/01/2011 [Protimus]
 	* Modificações em habilidades:
 	- Exalar Alma: Modificada a quantidade de SP passada pelo Professor, agora o Professor passa no máximo 50% do SP do usuário.
 	- Corte da Névoa: Modificado o SP para 15 em todos os níveis.
 	- Corte das Sombras: Modificado o custo de SP para 10 em todos os níveis.
 	* Correção de pequeno erro de escrita do skill_lv que pus errado no outro commit.
-	
+
 	r0161 - 27/01/2011 [Protimus]
 	* Modificações em habilidades:
 	- Instinto de Defesa: Removido os pre-requisitos da habilidade.
@@ -287,10 +305,10 @@
 	r0160 - 27/01/2011 [Floozie]
 	* Modificação em Habilidades:
 	- Ferir Alvo: Aumentado o dano se usada com um Rifle.
-    - Controle da Multidão: Conjuração não pode ser mais interrompida.
-    - Tiro Espalhado: Aumentado o dano causado, pode ser usada com lança granadas.
-    - Mina do Justiceiro: Aumentado o dano e a área de ativação, formula de dano modificada.
-	
+	- Controle da Multidão: Conjuração não pode ser mais interrompida.
+	- Tiro Espalhado: Aumentado o dano causado, pode ser usada com lança granadas.
+	- Mina do Justiceiro: Aumentado o dano e a área de ativação, formula de dano modificada.
+
 	r0159 - 27/01/2011 [Protimus]
 	* Modificações em habilidades:
 	- Campo Gravitacional: Reduzido pela metade o intervalo entre os danos da habilidade e dano máximo causado ao usuário reduzido em aproximadamente 45%.
@@ -310,19 +328,19 @@
 	- Angelus: Continua influenciando apenas a parte da Vitalidade na defesa -> Passou para DEF ao invés de DEF2.
 	- Frenezi, Rapidez com Duas Mãos, Rapidez com Uma Mão, Adrenalina Pura & Adrenalina Concentrada: Velocidade de ataque aumentada em valor fixo. -> Já havia sido modificado, só fazendo correções.
 	- Assumptio: Aumenta a defesa em 100%. Habilidades que ignoram a defesa, ignoram os efeitos da habilidade.
-	
+
 	r0156 - 27/01/2011 [Protimus]
 	* Modificações em habilidades:
 	- Arremessar Shuriken Huuma: Conjuração não pode ser interrompida, pode ser mirada no chão e não tem mais seus dano dividido entre os alvos.
 	- Chuva de Flechas: Dano aumentado em 25%.
 	- Bola de Fogo: Aumentado o dano em 25%. (Dano total)
 	- Tempestade de Raios: Aumentado o dano em 25%. (Dano total)
-	
+
 	r0155 - 27/01/2011 [Protimus]
 	* Modificações em habilidades:
 	- Virar Tatami: Aumentado o dano e chance de empurrar para trás.
 	- Lanças de Fogo, Lanças de Gelo e Relâmpago: Reduzido o tempo de conjuração.
-	
+
 	r0153 - 26/01/2011 [Protimus]
 	* Adicionadas todas as informações de reuso para habilidades já existentes.
 	- Baseados em vídeos e informações de outros fóruns, como do iRO.
@@ -377,14 +395,14 @@
 
 	r0136 - 23/01/2011 [Floozie]
 	* Adicionado novo cálculo do party_exp_share de acordo com o renewal
-	
+
 	r0134 - 20/01/2011 [Protimus]
 	* Adicionadas classes 3rd ao database.
 	* Adicionados pontos ganhos ao se tornar um 3rd classe (para todas as classes).
 	- Ambas modificações estão comentadas e desabilitadas, posteriormente quando as classes forem adicionadas
 	na source, irei descomentar.
 	* Removida checagem para flags da DEF no flag de crítico para HITs normais.
-	
+
 	r0133 - 20/01/2011 [Protimus]
 	* Adicionadas modificações para a Esquiva (FLEE).
 	* Mudanças para velocidade de ataque (ASPD).
@@ -485,7 +503,7 @@
 	- Modificações de itens e mobs.
 	- Mudança no número de party share level para 15.
 	OBS: Necessário retraduzir algumas coisas.
-	
+
 	r0112 - 18/01/2011 [Protimus]
 	* Iniciado projeto brAthena Renewal (Renovação).
 	- Branche adicionada de acordo com r0111 do brAthena Trunk.
@@ -493,7 +511,7 @@
 
 //================================================================================
 // Iniciando Changelog do brAthena Renewal (Renovação).
-//================================================================================	
+//================================================================================
 
 	r0111 - 18/01/2011 [Rafoka]
 	* Adicionado removedora de cartas custom na pasta personalizados
@@ -518,10 +536,10 @@
 	* Adicionadas traduções de alguns npcs da pasta Quests.
 	- Todos Revisados;
 	- quests_aldebaran.txt
-	- quests_izlude.txt 
+	- quests_izlude.txt
 	- quests_geffen.txt
 	- qusts_payon.txt
-	
+
 	r0108 - 17/01/2011 [Rafoka]
 	* Corrigido um pequeno bug com relação ao "killmonsterall". Report por: xMaickx
 	- classes/2-1/cacador.txt
@@ -600,7 +618,7 @@
 	- bunnyband.txt
 	- mrsmile.txt
 	- quests_lutie.txt
-	
+
 	r0102 - 16/01/2011 [Dani]
 	* Atualizado conforme eAthena 14670.
 
@@ -698,7 +716,7 @@
 	* Revisadas traduções de npcs da pasta de eventos enviados em r87.
 	* Atualizado conforme eAthena r14663.
 	* Pequena correção no commit anterior.
-	
+
 	r0088 - 11/01/2011 [Floozie]
 	* Correção da mensagem de revisão do SVN do brAthena.
 	- Estava com o padrão do eAthena ainda.
@@ -770,7 +788,7 @@
 	* Atualizada data do projeto no core banner: 2008 ~ 2011.
 	* Corrigido pequeno erro no script_main, havia esquecido de trocar o nome da pasta customizados para personalizados.
 	* Removido arquivo desnecessário:
-	- conf/ladmin_athena.conf 
+	- conf/ladmin_athena.conf
 	* Códigos de funções para TXT removidas de arquivos da pasta conf.
 	- Importante: Configuração de logs agora são apenas por meio de database.
 
@@ -819,7 +837,7 @@
 	- quests/repetitiveis/quest_leafcat.txt
 	- quests/repetitiveis/quest_pecopeco.txt
 	- quests/repetitiveis/quest_pupa.txt
-	
+
 	r0071 - 05/01/2011 [Dani]
 	* Atualizado conforme eAthena r14651
 
@@ -853,7 +871,7 @@
 	- gde/prtg_cas04.txt
 	- gde/prtg_cas05.txt
 	NOTA: Farei a revisão ainda hoje.
-	
+
 	r0068 - 28/12/2010 [Protimus]
 	* Atualizado conforme eAthena r14635.
 	* Corrigidos problemas com linux na hora de compilar.
@@ -950,7 +968,7 @@
 
 	r0053 - 20/12/2010 [Floozie]
 	* Adicionado novo comando de script 'sc_check'.
-	
+
 	r0049 - 20/12/2010 [Protimus]
 	* Atualizado conforme eAthena r14609.
 
@@ -961,7 +979,7 @@
 
 	r0047 - 19/12/2010 [SoulSyntax]
 	* Traduções revisadas da pasta battle
-	
+
 	r0046 - 18/12/2010 [Wiskovisky]
 	* Enviada mais uma parte da tradução do emulador
 	- Principalmente do Map-server
@@ -1000,21 +1018,21 @@
 	* Remoção de códigos inutilizáveis para uso do configure na hora de compilar o emulador.
 	* Revisão de estrutura e traduções dos arquivos da pasta das configurações de batalhas (BATLLE).
 	- Arquivos revisados: battle.conf, battleground.conf e client.conf
-	OBS: Favor não mexerem nos arquivos da pasta de configurações (CONF) até que eu termine as revisões. 
+	OBS: Favor não mexerem nos arquivos da pasta de configurações (CONF) até que eu termine as revisões.
 
 	r0035 - 13/12/2010 [Lord]
 	* Corrigido pequeno erro de escrita na pasta conf.
 	* Iniciada tradução e organização da pasta /db
-	* Atualizado conforme eAthena r14590. 
+	* Atualizado conforme eAthena r14590.
 
 	r0033 - 13/12/2010 [Floozie]
 	* Alterado nome da pasta npc/classes/novice para 'aprendiz'
-	
+
 	r0032 - 10/12/2010 [Protimus]
-	* Atualizado conforme eAthena r14589. 
+	* Atualizado conforme eAthena r14589.
 
 	r0031 - 10/12/2010 [RawArkanis]
-    * Adicionada o carregamento e utilização do statpoint2.txt de acordo com a ativação nos arquivos de configuração.
+	* Adicionada o carregamento e utilização do statpoint2.txt de acordo com a ativação nos arquivos de configuração.
 
 	r0030 - 10/12/2010 [Lord]
 	* Iniciado organização e tradução da pasta /sql-files
@@ -1022,7 +1040,7 @@
 	* Corrigido pequeno erro no castle_db.
 	* Readcionada a pata /log
 	- A mesma pode ser utilizada para a versão SQL do emulador.
-	
+
 	r0029 - 10/12/2010 [Protimus]
 	* Realizado primeiro merge de remoções do TXT da source.
 	- Merge de acordo com r28 da branch txt-remove.
@@ -1090,7 +1108,7 @@
 
 	r0010 - 06/12/2010 [Protimus]
 	* Corrigido todos os warnings do Visual Studio C++ 2010, agora o compilador não acusa erros inválidos
-	* Removida as opção de compilação para versões TXT do Visual C++ 2010. 
+	* Removida as opção de compilação para versões TXT do Visual C++ 2010.
 	- Pelo motivo que essa opção será removida futuramente do emulador por completo.
 	OBS: Deixei a opção para compilação em TXT no VC++ 2009 por enquanto, quem quiser use até iniciarmos o trabalho de remoção dos códigos TXT na source.
 	* Removidos Visual Studio 6, 7 e 8.
@@ -1101,20 +1119,20 @@
 	- Visando maior upgrades e respostas de possíveis erros do emulador com um projeto atualizado.
 	OBS: Podem ocorrer alguns erros de compatibilidade que ainda não foram corrigidos.
 	* Pequena falha no envio de tabela do statpoint2.txt do commit r0008 resolvida.
-	
+
 	r0008 - 06/12/2010 [Protimus]
 	* Adicionado sistema de distribuição de status para servidores de rate alta. (statpoint2.txt)
 	- Adicionada tabela com os cálculos de status ganhos para cada level ganho.
 	- Adiciona opção para uso de tabela do database, statpoint2.txt
 	OBS: Lembrando que caso você use esse sistema, desabilite o sistema padrão, statpoint.txt
 	OBS2: Creio que ainda faltam modificações na source para os status lerem a database custom quando ativada, se alguém tiver um tempo favor verificar depois.
-	
+
 	r0007 - 06/12/2010 [Floozie]
 	* Revisado os cabeçalhos da pasta npc/merchants.
 
 	r0006 - 06/12/2010 [Protimus]
 	* Adicionado novo comando de script na source, checkmap.
-	- Modo de usar: checkmap através do if ou else. 
+	- Modo de usar: checkmap através do if ou else.
 	Ex: if (mapcheck("nomedomapa")).
 
 	r0005 - 05/12/2010 [Damascus]
@@ -1139,10 +1157,10 @@
 
 	r0001 - 04/12/2010 [Protimus]
 	* brAthena reiniciado.
-    - A tradução de algumas pastas e arquivos não será modificada do inglês para português devido não existir uma tradução coesa, sendo preferível deixar como está.
-    - Os arquivos serão adicionados aos poucos e enviado os merges de traduções, iniciaremos do zero dando merge em tudo.
+	- A tradução de algumas pastas e arquivos não será modificada do inglês para português devido não existir uma tradução coesa, sendo preferível deixar como está.
+	- Os arquivos serão adicionados aos poucos e enviado os merges de traduções, iniciaremos do zero dando merge em tudo.
 	OBS: O antigo changelog foi apago e não há importância e restituí-lo devido ao trabalho ter sido totalmente recomeçado e apenas enviados os merges.
-	* Adição dos ramos de controle. 
+	* Adição dos ramos de controle.
 	- Apenas versão trunk no momento que corresponde a mesma versão trunk do eAthena sem o renewal.
 	* Adicionado core banner do brAthena.
 	* Adicionadas traduções da pasta CONF, BATTLE & MAPFLAG.

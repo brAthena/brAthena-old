@@ -12,13 +12,13 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.1/1.2                                |
+// | Versões eA/brA: 1.1/1.2a                               |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [K2X]                             |
 // | 1.1 Script Revisado [Protimus & Tyler]                 |
-// | 1.2 Spawns do Renewal [Dani]                           |
-// | --- Necessita de revisão                               |
+// | 1.2a Spawns do Renewal [Dani]                          |
+// | --- Revisado                                           |
 // \________________________________________________________/
 
 //==================================================
@@ -32,6 +32,8 @@ spl_fild01,0,0,0,0	monster	Cornus	1992,25,0,0,0
 // spl_fild02 - Campo do Esplendor
 //==================================================
 spl_fild02,0,0,0,0	monster	Pinguicula	1995,75,0,0,0
+//spl_fild02,0,0,0,0	monster	Golem de Bradium	2049,20,0,0,0
+//spl_fild02,0,0,0,0	monster	Naga	2047,20,0,0,0
 spl_fild02,0,0,0,0	monster	Vespa Vagalume	1994,15,0,0,0
 
 //==================================================

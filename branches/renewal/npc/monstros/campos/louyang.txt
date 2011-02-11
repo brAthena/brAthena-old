@@ -12,13 +12,13 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.2/1.2                                |
+// | Versões eA/brA: 1.2/1.2a                               |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [K2X]                             |
 // | 1.1 Script Revisado [Protimus & Tyler]                 |
-// | 1.2 Spawns do Renewal [Dani]                           |
-// | --- Necessita de revisão                               |
+// | 1.2a Spawns do Renewal [Dani]                          |
+// | --- Revisado                                           |
 // \________________________________________________________/
 
 //==================================================
@@ -27,3 +27,5 @@
 lou_fild01,0,0,0,0	monster	Mi Gao	1516,40,0,0,1
 lou_fild01,0,0,0,0	monster	Louva-a-Deus	1139,19,0,0,0
 lou_fild01,0,0,0,0	monster	Planta Carnívora	1368,19,0,0,0
+lou_fild01,0,0,0,0	monster	Cogumelo Negro	1084,5,0,0,0
+lou_fild01,0,0,0,0	monster	Planta Amarela	1081,10,0,0,0
