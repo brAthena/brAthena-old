@@ -1985,7 +1985,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				vit_def += def1*battle_config.weapon_defense_type;
 				def1 = 0;
 			}
-			if (def1 > 100) def1 = 100;
+			if (def1 > 200) def1 = 200;
 			def_rate = (1-(580/(def2 + 580)))*100;
 
 			if( !flag.idef || !flag.idef2 )
@@ -4234,8 +4234,8 @@ void battle_adjust_conf()
 	battle_config.max_walk_speed = 100*DEFAULT_WALK_SPEED/battle_config.max_walk_speed;
 	battle_config.max_cart_weight *= 10;
 
-	if(battle_config.max_def > 100 && !battle_config.weapon_defense_type)	 // added by [Skotlex]
-		battle_config.max_def = 100;
+	if(battle_config.max_def > 200 && !battle_config.weapon_defense_type)	 // added by [Skotlex]
+		battle_config.max_def = 200;
 
 	if(battle_config.min_hitrate > battle_config.max_hitrate)
 		battle_config.min_hitrate = battle_config.max_hitrate;

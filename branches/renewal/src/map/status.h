@@ -1354,12 +1354,11 @@ struct status_data {
 	short
 		hit, flee, cri, flee2,
 		def2, mdef2,
+		def, mdef,
 		aspd_rate, aspd_add_rate;
 	unsigned char
 		def_ele, ele_lv,
 		size, race;
-	signed char
-		def, mdef;
 	struct weapon_atk rhw, lhw; //Right Hand/Left Hand Weapon.
 };
 

@@ -2478,7 +2478,7 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 	if (!battle_config.weapon_defense_type && status->def > battle_config.max_def)
 	{
 		status->def2 += battle_config.over_def_bonus*(status->def -battle_config.max_def);
-		status->def = (signed char)battle_config.max_def;
+		status->def = (signed short)battle_config.max_def;
 	}
 
 // ----- EQUIPMENT-MDEF CALCULATION -----
@@ -2488,13 +2488,13 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 		sd->mdef_rate = 0;
 	if(sd->mdef_rate != 100) {
 		i =  status->mdef * sd->mdef_rate/100;
-		status->mdef = cap_value(i, CHAR_MIN, CHAR_MAX);
+		status->mdef = cap_value(i, SHRT_MIN, SHRT_MAX);
 	}
 
 	if (!battle_config.magic_defense_type && status->mdef > battle_config.max_def)
 	{
 		status->mdef2 += battle_config.over_def_bonus*(status->mdef -battle_config.max_def);
-		status->mdef = (signed char)battle_config.max_def;
+		status->mdef = (signed short)battle_config.max_def;
 	}
 
 // ----- ASPD CALCULATION -----
@@ -2743,9 +2743,9 @@ static signed short status_calc_hit(struct block_list *,struct status_change *,i
 static signed short status_calc_critical(struct block_list *,struct status_change *,int);
 static signed short status_calc_flee(struct block_list *,struct status_change *,int);
 static signed short status_calc_flee2(struct block_list *,struct status_change *,int);
-static signed char status_calc_def(struct block_list *,struct status_change *,int);
+static signed short status_calc_def(struct block_list *,struct status_change *,int);
 static signed short status_calc_def2(struct block_list *,struct status_change *,int);
-static signed char status_calc_mdef(struct block_list *,struct status_change *,int);
+static signed short status_calc_mdef(struct block_list *,struct status_change *,int);
 static signed short status_calc_mdef2(struct block_list *,struct status_change *,int);
 static unsigned short status_calc_speed(struct block_list *,struct status_change *,int);
 static short status_calc_aspd_rate(struct block_list *,struct status_change *,int);
@@ -3852,10 +3852,10 @@ static signed short status_calc_flee2(struct block_list *bl, struct status_chang
 	return (short)cap_value(flee2,10,SHRT_MAX);
 }
 
-static signed char status_calc_def(struct block_list *bl, struct status_change *sc, int def)
+static signed short status_calc_def(struct block_list *bl, struct status_change *sc, int def)
 {
 	if(!sc || !sc->count)
-		return (signed char)cap_value(def,CHAR_MIN,CHAR_MAX);
+		return (short)cap_value(def,SHRT_MIN,SHRT_MAX);
 
 	if(sc->data[SC_BERSERK])
 		return 0;
@@ -3894,7 +3894,7 @@ static signed char status_calc_def(struct block_list *bl, struct status_change *
 	if (sc->data[SC_FLING])
 		def -= def * (sc->data[SC_FLING]->val2)/100;
 
-	return (signed char)cap_value(def,CHAR_MIN,CHAR_MAX);
+	return (short)cap_value(def,SHRT_MIN,SHRT_MAX);
 }
 
 static signed short status_calc_def2(struct block_list *bl, struct status_change *sc, int def2)
@@ -3929,10 +3929,10 @@ static signed short status_calc_def2(struct block_list *bl, struct status_change
 	return (short)cap_value(def2,1,SHRT_MAX);
 }
 
-static signed char status_calc_mdef(struct block_list *bl, struct status_change *sc, int mdef)
+static signed short status_calc_mdef(struct block_list *bl, struct status_change *sc, int mdef)
 {
 	if(!sc || !sc->count)
-		return (signed char)cap_value(mdef,CHAR_MIN,CHAR_MAX);
+		return (short)cap_value(mdef,SHRT_MIN,SHRT_MAX);
 
 	if(sc->data[SC_BERSERK])
 		return 0;
@@ -3951,7 +3951,7 @@ static signed char status_calc_mdef(struct block_list *bl, struct status_change 
 	if(sc->data[SC_CONCENTRATION])
 		mdef += 1; //Skill info says it adds a fixed 1 Mdef point.
 
-	return (signed char)cap_value(mdef,CHAR_MIN,CHAR_MAX);
+	return (short)cap_value(mdef,SHRT_MIN,SHRT_MAX);
 }
 
 static signed short status_calc_mdef2(struct block_list *bl, struct status_change *sc, int mdef2)
