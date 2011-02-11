@@ -1737,6 +1737,11 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case NPC_VAMPIRE_GIFT:
 					skillratio += ((skill_lv-1)%5+1)*100;
 					break;
+				case RK_PHANTOMTHRUST:
+					skillratio += 20 * (skill_lv - 1);
+					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
+					if( sd ) skillratio += pc_checkskill(sd, KN_SPEARMASTERY) * 10;
+					break;
 			}
 
 			ATK_RATE(skillratio);

@@ -2453,9 +2453,10 @@ static int skill_reveal_trap (struct block_list *bl, va_list ap)
  *------------------------------------------*/
 int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int skillid, int skilllv, unsigned int tick, int flag)
 {
-	struct map_session_data *sd = NULL;
+	struct map_session_data *sd = NULL, *tsd = NULL;
 	struct status_data *tstatus;
 	struct status_change *sc;
+	int s_job_level = 50;
 
 	if (skillid > 0 && skilllv <= 0) return 0;
 
@@ -3070,6 +3071,15 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 		}
 		status_change_end(src, SC_HIDING, INVALID_TIMER);
 		skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
+		break;
+	case RK_PHANTOMTHRUST:
+		unit_setdir(src,map_calc_dir(src, bl->x, bl->y));
+		clif_skill_nodamage(src,bl,skillid,skilllv,1);
+
+		skill_blown(src,bl,distance_bl(src,bl)-1,unit_getdir(src),0);
+		if( sd && tsd && sd->status.party_id && sd->status.party_id && sd->status.party_id == tsd->status.party_id );
+		else
+			skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 	case 0:
 		if(sd) {
@@ -5874,6 +5884,12 @@ int skill_castend_id(int tid, unsigned int tick, int id, intptr data)
 			else
 			if (inf && battle_check_target(src, target, inf) <= 0)
 				break;
+				
+			else if( ud->skillid == RK_PHANTOMTHRUST && target->type != BL_MOB )
+			{
+				if( !map_flag_vs(src->m) && battle_check_target(src,target,BCT_PARTY) <= 0 )
+					break;
+			}
 
 			if(inf&BCT_ENEMY && (sc = status_get_sc(target)) &&
 				sc->data[SC_FOGWALL] &&

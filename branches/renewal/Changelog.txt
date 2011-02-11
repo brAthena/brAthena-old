@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0218 - 11/02/2011 [Protimus]
+	* Adicionada habilidade RK_PHANTOMTHRUST (Arpão).
+	- Necessário revisar valores de damage conforme Sakray R.
+
 	r0217 - 08/02/2011 [Protimus]
 	* Correções do commit anterior.
 	- Erro do "Destino", hahaha.
