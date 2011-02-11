@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0223 - 11/02/2011 [Floozie]
+	* Modificações em habiliades:
+	- Perícia com Machado: Modificada para “Perícia com Machado e Espada” e funciona com espadas de uma mão.
+	- Terror Ácido: Dano aumentado em 100% (dano total), Influenciado pelo ataque físico é mágico e pela defesa do inimigo.
+	- Fogo Grego: Reduzido pela metade o intervalo entre os danos e agora leva tanto o ataque físico quanto o mágico no calculo do dano.
+	
 	r0222 - 11/02/2011 [Protimus]
 	* Adicionada habilidade RK_INGNITIONBREAK (Impacto Flamejante).
 	- Fórmula de dano baseadas no iROWiki, área e outras modificações 100% oficiais.

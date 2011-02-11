@@ -729,8 +729,13 @@ int battle_addmastery(struct map_session_data *sd,struct block_list *target,int 
 		weapon = sd->weapontype2;
 	switch(weapon)
 	{
-		case W_DAGGER:
 		case W_1HSWORD:
+			if((skill = pc_checkskill(sd,AM_AXEMASTERY)) > 0 && weapon == W_1HSWORD)
+				damage += (skill * 3);
+			if((skill = pc_checkskill(sd,SM_SWORD)) > 0)
+				damage += (skill * 4);
+			break;
+		case W_DAGGER:
 			if((skill = pc_checkskill(sd,SM_SWORD)) > 0)
 				damage += (skill * 4);
 			break;
@@ -1562,10 +1567,10 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 						skillratio += 70*skill_lv;
 					break;
 				case AM_DEMONSTRATION:
-					skillratio += 20*skill_lv;
+					skillratio += 20*skill_lv+(tstatus->matk_max + tstatus->batk);
 					break;
 				case AM_ACIDTERROR:
-					skillratio += 40*skill_lv;
+					skillratio += 40*skill_lv+(tstatus->matk_max + tstatus->def + tstatus->batk);
 					break;
 				case MO_FINGEROFFENSIVE:
 					skillratio+= 50 * skill_lv;

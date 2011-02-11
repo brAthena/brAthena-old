@@ -360,7 +360,7 @@
 //============================================================
 // Alquimista
 //============================================================
-226,0,0,0,0,0,0,10,0,no,0,0,0,weapon,0,		AM_AXEMASTERY,Perícia com Machado
+226,0,0,0,0,0,0,10,0,no,0,0,0,weapon,0,		AM_AXEMASTERY,Perícia com Machado e Espada
 227,0,0,0,0,0,0,10,0,no,0,0,0,none,0,		AM_LEARNINGPOTION,Pesquisa de Poções
 228,0,6,4,0,0x1,0,10,0,no,0,0,0,none,0,		AM_PHARMACY,Preparar Poção
 229,9,6,2,3,0x9,0,5,1,yes,0,0,0,weapon,0,		AM_DEMONSTRATION,Fogo Grego
