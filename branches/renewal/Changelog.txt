@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0226 - 11/02/2011 [Protimus]
+	* Adicionada habilidade RK_WINDCUTTER (Vento Cortante).
+	* Adicionadas novas estruturas de layout do UNIT para windcutter, earthstrain e overbrand.
+	- Aproveitei e já declarei algumas habilidades nas estruturas, créditos ao 3CeAM.
+	
 	r0225 - 11/02/2011 [brn0]
 	* Adicionado NPC Banqueiro na pasta personalizados.
 	- npc/personalizados/Banqueiro.txt
