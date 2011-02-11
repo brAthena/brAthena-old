@@ -8,26 +8,29 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Monstros das Cavernas de Brasilis      |
+// | Nome do Script: Monstros dos Campos de Dicastes        |
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team                           |
+// | Criado por: brAthena Dev. Team                         |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.2                                |
+// | Versão brA: 1.0                                        |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
-// | 1.0 Script Traduzido [Tyler]                           |
-// | 1.1 Script Revisado [Tyler]                            |
-// | 1.2 Spawns do Renewal [Dani]                           |
-// | - Revisado                                             |
+// | 1.0 Script Criado [Dani]                               |
 // \________________________________________________________/
 
 //==================================================
-// bra_fild01 - Campo de Brasilis
+// dic_fild01 - Base da Montanha Kamidal
 //==================================================
-bra_fild01,0,0,0,0	monster	Mula Sem-Cabeça	2071,40,0,0,0
-bra_fild01,0,0,0,0	monster	Curupira	2074,80,0,0,0
-bra_fild01,0,0,0,0	monster	Dokebi	1110,20,0,0,0
-bra_fild01,0,0,0,0	monster	Espírito da Terra	2072,10,0,0,0
-bra_fild01,0,0,0,0	monster	Selvagem	1166,20,0,0,0
-bra_fild01,0,0,0,0	monster	Espiríto do Vento	2073,10,0,0,0
-bra_fild01,0,0,0,0	monster	Cogumelo Vermelho	1085,3,0,0,0
+dic_fild01,0,0,0,0	monster	Centopéia	1987,60,0,0,0
+dic_fild01,0,0,0,0	monster	Larva de Centopéia	1999,30,0,0,0
+dic_fild01,0,0,0,0	monster	Tatacho	1986,25,0,0,0
+dic_fild01,0,0,0,0	monster	Dolomedes	2092,20,0,0,0
+
+//==================================================
+// dic_fild02 - Base da Montanha Kamidal
+//==================================================
+dic_fild02,0,0,0,0	monster	Golem de Bradium	2024,3,0,0,0
+dic_fild02,0,0,0,0	monster	Centopéia	1987,35,0,0,0
+dic_fild02,0,0,0,0	monster	Larva de Centopéia	1999,10,0,0,0
+dic_fild02,0,0,0,0	monster	Tatacho	1986,25,0,0,0
+dic_fild02,0,0,0,0	monster	Dolomedes	2092,80,0,0,0

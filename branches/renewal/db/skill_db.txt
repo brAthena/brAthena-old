@@ -467,7 +467,7 @@
 315,0,0,0,0,0,0,10,0,no,0,0,0,weapon,0,		BA_MUSICALLESSON,Lições de Música
 316,9,6,1,-1,0,0,5,1,no,0,0,0,weapon,0,		BA_MUSICALSTRIKE,Flecha Melódica
 317,0,8,4,0,0x41,0,5,1,no,0,0x20,0,misc,0,		BA_DISSONANCE,Dissonância
-318,0,6,4,0,0x3,-1,5,1,no,0,0,0,misc,0,		BA_FROSTJOKER,Unbarring Octave //Problema encontrado
+318,0,6,4,0,0x3,-1,5,1,no,0,0,0,misc,0,		BA_FROSTJOKER,Piada Infame //Problema encontrado
 319,0,6,4,0,0x1,0,10,1,no,0,0x20,0,misc,0,		BA_WHISTLE,Assovio
 320,0,6,4,0,0x1,0,10,1,no,0,0x20,0,misc,0,		BA_ASSASSINCROSS,Crepúsculo Sangrento
 321,0,6,4,0,0x1,0,10,1,no,0,0x20,0,misc,0,		BA_POEMBRAGI,Poema de Bragi

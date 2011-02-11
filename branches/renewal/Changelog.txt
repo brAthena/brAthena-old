@@ -9,6 +9,20 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0219 - 11/02/2011 [Dani]
+	* Revisão dos spawns dos seguintes arquivos
+	- npc/monstros/campos/ayothaya.txt
+	- npc/monstros/campos/brasilis.txt
+	- npc/monstros/campos/einbroch.txt
+	- npc/monstros/campos/lighthalzen.txt
+	* Implementados spawns do Renewal no npc/monstros/campos/jawaii.txt
+	- Obs.: necessitam de posterior revisão
+	* Habilitados spawns atualizados em npc/scripts_monstros.conf
+	* Adicionado npc/monstros/campos/dicastes.txt
+	- Comentado no scripts_monstros.conf
+	- Só será habilitado quando o desenvolvimento dos monstros dos
+	episódios posteriores ao Renewal se iniciar
+
 	r0218 - 11/02/2011 [Protimus]
 	* Adicionada habilidade RK_PHANTOMTHRUST (Arpão).
 	- Necessário revisar valores de damage conforme Sakray R.
