@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0237 - 12/02/2011 [Dani]
+	* Padrão de postagem dos sql-files revisto
+	- A partir de hoje, estarão no root da /sql-files, os upgrades do eA
+	antigos foram adicionados como upgrade_svnxxxx.sql, e os que foram
+	feitos a partir do início do brA foram colocados como brA_svnxxx.sql
+
 	r0236 - 12/02/2011 [Dani]
 	* Enviadas últimas alterações da trunk pra renewal (r149:r234)
 
