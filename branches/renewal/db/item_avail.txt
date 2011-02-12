@@ -12,11 +12,11 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Descrição: Database para modificar a                   |
-// | aparência de itens.                                    |
+// | Descrição: Database para modificar a aparência         |
+// | de itens.                                              |
 // |--------------------------------------------------------|
-// | Estrutura da Database:                                 |
-// | item id,sprite id                                      |
+// | Estrutura do Banco de Dados:                           |
+// | ID do item, ID da sprite                               |
 // | Replaces an item client-side while keeping them        |
 // | separate server-side.                                  |
 // | Think of it as a way to disguise items.                |

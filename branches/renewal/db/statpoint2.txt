@@ -11,11 +11,11 @@
 // | Nome do Database: statpoint2.txt                       |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
-// |------------------------------=-------------------------|
+// |--------------------------------------------------------|
 // | Descrição: Database de pontos de experiência para '3   |
 // | Atributos 99'.                                         |
-// | Especial para servidores Base 99, mas de alta pontuação| 
-// | customizada.                                           |
+// | Especial para servidores Base 99, mas de alta          |
+// | pontuação customizada.                                 |
 // \________________________________________________________/
 //
 48

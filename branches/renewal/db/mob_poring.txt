@@ -15,11 +15,8 @@
 // | Descrição: Database da Raça Poring, invocável pela     |
 // | 'Caixa Poring'.                                        |
 // |--------------------------------------------------------|
-// | Changelog:                                             |
-// | 1.0 Modificação [brAthena]                             |
-// | - Anotações                                            |
-// | Estrutura do Database:                                 |
-// | MobID,DummyName,Rate                                   |
+// | Estrutura do Banco de Dados:                           |
+// | ID do Mob, Nome, Taxa                                  |
 // \________________________________________________________/
 //
 0,Poring,1002

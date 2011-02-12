@@ -14,16 +14,14 @@
 // |--------------------------------------------------------|
 // | Descrição: Banco de Dados dos itens oficiais.          |
 // \________________________________________________________/
-
-// ID,Nome no Aegis,Nome em Português,Tipo,Compra,Vende,peso,ATK,DEF,Range,Slots,Classe,Upper,Sexo,Loc,wLV,eLV,Refinavel,View,{ Script },{ Script quando Equipado },{ Script quando Desequipado }
-
-// Items Database
 //
-// Structure of Database:
-// ID,AegisName,Name,Type,Buy,Sell,Weight,ATK,DEF,Range,Slots,Job,Upper,Gender,Loc,wLV,eLV,Refineable,View,{ Script },{ OnEquip_Script },{ OnUnequip_Script }
+//============================================================
+// ID,Nome no Aegis,Nome em Português,Tipo,Preço de Compra,Preço de Venda,Peso,ATQ,DEF,Alcance,Slots,Classe,Upper,Sexo,Loc,Nível da Arma,Nível Requerido,Refinável,View,{ Script },{ Script quando equipar },{ Script quando desequipar }
+//============================================================
 //
-// Healing Items
-//=============================================================
+//============================================================
+// Itens de Cura
+//============================================================
 501,Red_Potion,Red Potion,0,50,,70,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal rand(45,65),0; },{},{}
 502,Orange_Potion,Orange Potion,0,200,,100,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal rand(105,145),0; },{},{}
 503,Yellow_Potion,Yellow Potion,0,550,,130,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal rand(175,235),0; },{},{}
@@ -121,8 +119,10 @@
 597,Lovely_Choco_Tart,Lovely Choco-Tart,0,20,,100,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal rand(10,400),0; },{},{}
 598,Light_Red_Pot,Light Red Potion,0,50,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal rand(45,65),0; },{},{}
 599,Light_Orange_Pot,Light Orange Potion,0,200,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal rand(105,145),0; },{},{}
-// Usable Items
-//===================================================================
+//
+//============================================================
+// Itens Usáveis
+//============================================================
 601,Wing_Of_Fly,Fly Wing,11,60,,50,,,,,0xFFFFFFFF,7,2,,,,,,{ itemskill "AL_TELEPORT",1; },{},{}
 602,Wing_Of_Butterfly,Butterfly Wing,11,300,,50,,,,,0xFFFFFFFF,7,2,,,,,,{ itemskill "AL_TELEPORT",3; },{},{}
 603,Old_Blue_Box,Old Blue Box,2,10000,,200,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem groupranditem(IG_BlueBox),1; },{},{}
@@ -213,8 +213,10 @@
 698,Fire_Scroll_3_1,Level 1 Fire Wall,11,1000,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ itemskill "MG_FIREWALL",1; },{},{}
 699,Fire_Scroll_3_5,Level 5 Fire Wall,11,2000,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ itemskill "MG_FIREWALL",5; },{},{}
 700,Cold_Scroll_2_1,Level 1 Frost Diver,11,1000,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ itemskill "MG_FROSTDIVER",1; },{},{}
-// Etc Items
-//===================================================================
+//
+//============================================================
+// Itens Etc
+//============================================================
 701,Ora_Ora,Ora Ora,3,55000,,200,,,,,,,,,,,,,{},{},{}
 702,Animal_Blood,Animal Gore,3,450,,100,,,,,,,,,,,,,{},{},{}
 703,Hinalle,Hinalle,3,500,,10,,,,,,,,,,,,,{},{},{}
@@ -467,9 +469,14 @@
 1097,Worn_Out_Page,Worn Out Page,3,948,,10,,,,,,,,,,,,,{},{},{}
 1098,Manacles,Manacles,3,658,,10,,,,,,,,,,,,,{},{},{}
 1099,Worn_Out_Prison_Uniform,Worn-out Prison Uniform,3,680,,10,,,,,,,,,,,,,{},{},{}
-// Weapons
-//===================================================================
-// 1-Handed Swords
+//
+//============================================================
+// Armas
+//============================================================
+//
+//=========================
+// Espadas de Uma Mão
+//=========================
 1101,Sword,Sword,4,100,,500,25,,1,3,0x000654E3,7,2,2,1,2,1,2,{},{},{}
 1102,Sword_,Sword,4,100,,500,25,,1,4,0x000654E3,7,2,2,1,2,1,2,{},{},{}
 1103,Sword__,Sword,4,100,,500,25,,1,0,0x000654E3,7,2,2,1,2,1,2,{},{},{}
@@ -519,7 +526,10 @@
 1147,Town_Sword_,Town Sword,4,42000,,800,100,,1,2,0x00000001,7,2,2,3,30,1,2,{},{},{}
 1148,Star_Dust_Blade,Star Dust Blade,4,20,,1000,140,,1,1,0x00000001,7,2,2,4,45,1,2,{ bonus2 bAddEff,Eff_Stun,500; bonus bUnbreakableWeapon,0; },{},{}
 1149,Flamberge_,Flamberge,4,60000,,1500,150,,1,2,0x00004080,7,2,2,3,27,1,2,{},{},{}
-// 2-Handed Swords
+//
+//=========================
+// Espadas de Duas Mãos
+//=========================
 1151,Slayer,Slayer,4,15000,,1300,90,,1,2,0x00004082,7,2,34,2,18,1,3,{},{},{}
 1152,Slayer_,Slayer,4,15000,,1300,90,,1,3,0x00004082,7,2,34,2,18,1,3,{},{},{}
 1153,Slayer__,Slayer,4,15000,,1300,90,,1,0,0x00004082,7,2,34,2,18,1,3,{},{},{}
@@ -564,7 +574,10 @@
 1192,P_Slayer1,Eden Slayer I,4,0,,0,162,,1,0,0x00004082,7,2,34,2,26,0,3,{},{},{}
 1193,P_Slayer2,Eden Slayer II,4,0,,0,185,,1,0,0x00004082,7,2,34,2,40,0,3,{},{},{}
 //1194,Executioner,
-// Daggers
+//
+//=========================
+// Adagas
+//=========================
 1201,Knife,Knife,4,50,,400,17,,1,3,0xFE9F7EEF,7,2,2,1,1,1,1,{},{},{}
 1202,Knife_,Knife,4,50,,400,17,,1,4,0xFE9F7EEF,7,2,2,1,1,1,1,{},{},{}
 1203,Knife__,Knife,4,50,,400,17,,1,0,0xFE9F7EEF,7,2,2,1,1,1,1,{},{},{}
@@ -614,7 +627,9 @@
 1247,Kindling_Dagger,Kindle Dagger,4,10000,,600,39,,1,0,0x008F5EEF,7,2,2,1,1,1,1,{ bonus bAtkEle,Ele_Fire; },{},{}
 1248,Obsidian_Dagger,Obsidian Dagger,4,10000,,600,39,,1,0,0x008F5EEF,7,2,2,1,1,1,1,{ bonus bAtkEle,Ele_Earth; },{},{}
 1249,Fisherman's_Dagger,Fisherman's Dagger,4,10000,,600,39,,1,0,0x008F5EEF,7,2,2,1,1,1,1,{ bonus bAtkEle,Ele_Water; },{},{}
+//=========================
 // Katars
+//=========================
 1250,Jur,Jur,4,19500,,800,125,,1,2,0x00001000,7,2,34,2,18,1,16,{},{},{}
 1251,Jur_,Jur,4,19500,,800,125,,1,3,0x00001000,7,2,34,2,18,1,16,{},{},{}
 1252,Katar,Katar,4,41000,,1200,148,,1,1,0x00001000,7,2,34,3,33,1,16,{ bonus bDex,1; },{},{}
@@ -653,7 +668,10 @@
 1285,Cakram,Chakram,4,0,,1000,130,,1,2,0x00001000,2,2,34,3,50,1,16,{ if(getskilllv("AS_KATAR")==10) { bonus bHit,10; } bonus2 bSkillAtk,"ASC_METEORASSAULT",20; },{},{}
 1286,Jamadhar_C,Jamadhar,4,1,,0,200,,1,0,0x00001000,7,2,34,3,1,0,16,{ bonus2 bAddSize,0,40; bonus2 bAddSize,1,40; bonus2 bAddSize,2,40; },{},{}
 //1287,Durga,
-// 1-Handed Axes
+//
+//=========================
+// Machados de Uma Mão
+//=========================
 1301,Axe,Axe,4,500,,800,38,,1,3,0x000654E3,7,2,2,1,3,1,6,{},{},{}
 1302,Axe_,Axe,4,500,,800,38,,1,4,0x000654E3,7,2,2,1,3,1,6,{},{},{}
 1303,Axe__,Axe,4,500,,800,38,,1,0,0x000654E3,7,2,2,1,3,1,6,{},{},{}
@@ -668,7 +686,10 @@
 1312,Orcish_Axe_C,Orcish Axe,4,0,,0,110,,1,0,0x000454A3,7,2,2,3,1,0,6,{ bonus2 bAddSize,0,70; bonus2 bAddSize,1,70; bonus2 bAddSize,2,70; },{},{}
 //1314,Tomahawk,
 //1315,Right_Epsilon,
-// 2-Handed Axes
+//
+//=========================
+// Machados de Duas Mãos
+//=========================
 1351,Battle_Axe,Battle Axe,4,5400,,1500,80,,1,3,0x000444A2,7,2,34,1,3,1,7,{},{},{}
 1352,Battle_Axe_,Battle Axe,4,5400,,1500,80,,1,4,0x000444A2,7,2,34,1,3,1,7,{},{},{}
 1353,Battle_Axe__,Battle Axe,4,5400,,1500,80,,1,0,0x000444A2,7,2,34,1,3,1,7,{},{},{}
@@ -707,7 +728,9 @@
 1386,Doom_Slayer_I,Doom Slayer,4,20,,0,20,,1,0,0x000444A2,7,2,34,4,0,0,7,{ if(readparam(bStr)>=95){ bonus bBaseAtk,400; bonus2 bAddEff,Eff_Stun,3000; bonus bAspdRate,-25; bonus bUseSPrate,100; bonus bBreakArmorRate,500; } },{},{}
 1387,Giant_Axe,Giant Axe,4,0,,4000,330,,1,1,0x000444A2,2,2,34,3,50,1,6,{ bonus2 bSkillAtk,"WS_CARTTERMINATION",15; if(readparam(bStr)>=95) { bonus bHit,10; bonus bAspdRate,3; } },{},{}
 1388,Two_Handed_Axe_C,Two-Handed Axe,4,0,,0,220,,1,0,0x000444A2,7,2,34,3,1,0,7,{ bonus2 bAddSize,0,40; bonus2 bAddSize,1,40; bonus2 bAddSize,2,40; },{},{}
-// 1-Handed Spears
+//=========================
+// Lanças de Uma Mão
+//=========================
 1401,Javelin,Javelin,4,150,,700,28,,3,3,0x00004082,7,2,2,1,4,1,4,{},{},{}
 1402,Javelin_,Javelin,4,150,,700,28,,3,4,0x00004082,7,2,2,1,4,1,4,{},{},{}
 1403,Javelin__,Javelin,4,150,,700,28,,3,0,0x00004082,7,2,2,1,4,1,4,{},{},{}

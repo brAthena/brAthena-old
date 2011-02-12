@@ -8,17 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nãome do Script: Quests Repetíveis - Bodes		   		|
+// | Nãome do Script: Quests Repetíveis - Bodes             |
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			   				|
+// | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.1				    			|
+// | Versões eA/brA: 1.0/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: Quests repetíveis para ganho de EXP 		|
+// | Descrição: Quests repetíveis para ganho de EXP.        |
 // |--------------------------------------------------------|
-// | Changelog:               	                        	|
-// | 1.0 Script Traduzido [insidemybrain]					|
-// | 1.1 Script Revisado [Protimus]							|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [insidemybrain]                   |
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
 // \_______________________________________________________/
 
 ein_fild06,82,171,0	script	Fazendeiro#Bodes	919,{
@@ -145,9 +145,9 @@ ein_fild06,82,171,0	script	Fazendeiro#Bodes	919,{
 			close;
 		}
 	}
-	//Para level mínimo.
+	// Para level mínimo
 	if (BaseLevel > 69) {
-		//for maximum level
+		// Para level máximo
 		if (BaseLevel < 85) {
 			mes "[Fazendeiro]";
 			mes "Ah ótimo!";
@@ -163,9 +163,9 @@ ein_fild06,82,171,0	script	Fazendeiro#Bodes	919,{
 				switch(select("Pegar Itens.:Caçar Bodes.:Cancelar.")) {
 				case 1:
 					mes "[Fazendeiro]";
-					mes "Eu preciso de ^FF0000Chifres de Bode^000000, como prova do seu trabalho duro, para depois recompensá-lo.";
+					mes "Eu preciso de ^00CC0050 Chifres de Bode^000000, como prova do seu trabalho duro, para depois recompensá-lo.";
 					next;
-					switch(select("Eu tenho Chifres de Bode.:O que precisava?")) {
+					switch(select("Eu tenho os Chifres de Bode.:O que precisava mesmo?")) {
 					case 1:
 						/*
 						if (checkweight(504,10) == 0) {
@@ -179,7 +179,7 @@ ein_fild06,82,171,0	script	Fazendeiro#Bodes	919,{
 							mes "[Fazendeiro]";
 							mes "Impressionante, e com incrível rapidez.";
 							mes "Eu agradeço muito mesmo.";
-							delitem 7106,50; //Chifres de Bode
+							delitem 7106,50; // Chifres de Bode
 							getexp 258489,155155;
 							//getitem 504,10; // Poção Branca
 							close;
@@ -192,7 +192,7 @@ ein_fild06,82,171,0	script	Fazendeiro#Bodes	919,{
 						}
 					case 2:
 						mes "[Fazendeiro]";
-						mes "Eu preciso saber quantos ^FF000050 Chifres de Bode^000000 você juntou, antes de dar sua recompensa.";
+						mes "Eu preciso de ^FF000050 Chifres de Bode^000000, antes de dar a sua recompensa.";
 						close;
 					}
 				case 2:
@@ -241,7 +241,7 @@ ein_fild06,82,171,0	script	Fazendeiro#Bodes	919,{
 	else {
 		mes "[Fazendeiro]";
 		mes "Meus legumes... AONDE ELES FORAM!?";
-		mes "Ah, não..não!!!";
+		mes "Ah, não... não!!!";
 		close;
 	}
 }

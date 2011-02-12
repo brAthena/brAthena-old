@@ -10,7 +10,9 @@
 // |----------------------------------------------------------------------------|
 // | Nome do Script: removedor_de_cartas.txt                                    |
 // |----------------------------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team                                               |
+// | Criado por: brAthena Dev. Team                                             |
+// |----------------------------------------------------------------------------|
+// | Versão brA: 1.0                                                            |
 // |----------------------------------------------------------------------------|
 // | Descrição: NPC que remove cartas com variáveis que podem ser alteradas     |
 // | para mudar o preço, os ítens necessários ou as chances de se remover uma   |
@@ -19,6 +21,7 @@
 // | Changelog:                                                                 |
 // | 1.0 Script Criado [Equipe brAthena]                                        |
 // \___________________________________________________________________________/
+
 prt_in,28,73,4	script	Velha Sábia#brA	78,{
 
 	if( !.loaded)

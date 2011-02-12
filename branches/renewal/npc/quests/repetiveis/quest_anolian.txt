@@ -8,17 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nãome do Script: Quests Repetíveis - Anolian			|
+// | Nãome do Script: Quests Repetíveis - Anolian           |
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			   				|
+// | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.1				    			|
+// | Versões eA/brA: 1.0/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: Quests repetíveis para ganho de EXP 		|
+// | Descrição: Quests repetíveis para ganho de EXP.        |
 // |--------------------------------------------------------|
-// | Changelog:               	                        	|
-// | 1.0 Script Traduzido [insidemybrain]					|
-// | 1.1 Script Revisado [Protimus]							|
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [insidemybrain]                   |
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
 // \_______________________________________________________/
 
 cmd_fild01,362,256,3	script	Cuir#Gator_Hunt	106,{
@@ -145,15 +145,15 @@ cmd_fild01,362,256,3	script	Cuir#Gator_Hunt	106,{
 			close;
 		}
 	}
-	//Para level mínimo
+	// Para level mínimo
 	if (BaseLevel > 44) {
-		//for maximum level
+		// Para level máximo
 		if (BaseLevel < 81) {
 			mes "[Cuir]";
 			mes "Você parece um aventureiro resistente!";
 			next;
 			mes "[Cuir]";
-			mes "Vim para cá por que existem muitos Anolians para minha pesquisa, mas essa tarefa é difícil de realizar sozinho.";
+			mes "Vim para cá porque existem muitos Anolians para minha pesquisa, mas essa tarefa é difícil de se realizar sozinho.";
 			mes "Você gostaria de me ajudar?";
 			next;
 			switch(select("Claro.:Não.")) {
@@ -179,28 +179,28 @@ cmd_fild01,362,256,3	script	Cuir#Gator_Hunt	106,{
 						*/
 						if (countitem(7003) > 19) {
 							mes "[Cuir]";
-							mes "Agradeço pelas ^00CC0020 Peles de Anolian^000000!";
+							mes "Agradeço pelas ^FF000020 Peles de Anolian^000000!";
 							mes "Espero que continue me ajudando a juntar essas peles.";
 							mes "Os fabricantes de armaduras do mundo inteiro estão atrás delas.";
-							delitem 7003,20; //Pele de Anolian
+							delitem 7003,20; // Pele de Anolian
 							getexp 68950,43300;
-							//getitem 503,10; //(Outra recompensa.: Poção Amarela.)
+							//getitem 503,10; // Poção Amarela
 							close;
 						}
 						else {
 							mes "[Cuir]";
-							mes "Eu reconheço uma pele de jacaré quando a vejo e isso não são ^00CC0020 Peles de Anolian^000000.";
+							mes "Eu reconheço uma pele de jacaré quando a vejo e isso não são ^FF000020 Peles de Anolian^000000.";
 							close;
 						}
 					case 2:
 						mes "[Cuir]";
-						mes "Eu preciso de ^00CC0020 Peles de Anolian^000000.";
+						mes "Eu preciso de ^FF000020 Peles de Anolian^000000.";
 						close;
 					}
 				case 2:
 					// Matar Anolians
 					mes "[Cuir]";
-					mes "Então gostaria de caçar Anolians, não é?.";
+					mes "Então gostaria de caçar Anolians, não é?";
 					mes "Quantos gostaria de caçar?";
 					next;
 					switch(select("50 Anolians.:100 Anolians.:150 Anolians.")) {
@@ -240,7 +240,7 @@ cmd_fild01,362,256,3	script	Cuir#Gator_Hunt	106,{
 	}
 	else {
 		mes "[Cuir]";
-		mes "Você certamente é corajoso, mas a coragem se torna loucura se continuar a ir para o Leste.";
+		mes "Você certamente é corajoso, mas a coragem se torna loucura se você continuar a ir para o Leste.";
 		mes "Talvez quando ficar mais forte você e eu possamos fazer negócios.";
 		close;
 	}

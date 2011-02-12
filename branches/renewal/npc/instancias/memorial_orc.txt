@@ -16,9 +16,11 @@
 // |--------------------------------------------------------|
 // | Descrição: Reviva a memória de um orc.                 |
 // |--------------------------------------------------------|
-// | Changelog:               	                        	|
-// | 1.0 Script Traduzido [insidemybrain]					|
-// | 1.1 Script Revisado [Protimus]							|
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [insidemybrain]		            |
+// | 1.1 Script Revisado [Protimus]			            |
+// | Anotações:                                             |
+// | - Corrigidas as tabulações do cabeçalho                |
 // \________________________________________________________/
 
 // Entrada

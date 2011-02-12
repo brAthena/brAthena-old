@@ -15,7 +15,7 @@
 // | Descrição: Database do tempo de conjuração das         |
 // | habilidades.                                           |
 // |--------------------------------------------------------|
-// | Estrutura da Database:                                 |
+// | Estrutura do Banco de Dados:                           |
 // | SkillID,CastingTime,AfterCastActDelay,                 |
 // | AfterCastWalkDelay,Duration,Duration2                  |
 // |                                                        |
@@ -37,8 +37,8 @@
 // | 15.  Mercenary Skills                                  |
 // | 16.  Guild Skills                                      |
 // |                                                        |
-// | This is just a rough overview to help giving an        | 
-// | overview on the document                               | 
+// | This is just a rough overview to help giving an        |
+// | overview on the document                               |
 // | and help navigating through it. (Vedurin).             |
 // \________________________________________________________/
 //

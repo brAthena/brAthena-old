@@ -16,8 +16,8 @@
 // |--------------------------------------------------------|
 // | O número máx. de entradas é definido na source:        |
 // | itemdb.h, MAX_ITEMDELAYS.                              |
-// | Estrutura da Database:                                 |
-// | Item(ID),Delay(millisegundos)                          |
+// | Estrutura do Banco de Dados:                           |
+// | Item(ID),Delay(milisegundos)                           |
 // \________________________________________________________/
 //
 //12202,60000	//Língua no Vapor
@@ -30,3 +30,10 @@
 12210,60000	//Goma de Mascar
 14538,300000	//Cálice da Ilusão
 14586,180000	//Doce Hiper Açucarado
+//
+//==============
+// Items de Bifrost
+//==============
+//11522,1000	//Red_Laphine_Sap
+//11523,2000	//Yellow_Laphine_Sap
+//11524,3000	//White_Laphine_Sap

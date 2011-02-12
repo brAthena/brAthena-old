@@ -16,21 +16,21 @@
 // | de itens                                               |
 // |--------------------------------------------------------|
 // | Estrutura do Banco de Dados:                           |
-// | Item ID, TradeMask, GM-Level mínimo para não aplicação |
-// | da regra                                               |
+// | Item ID, TradeMask, Nível de GM mínimo para que a      |
+// | regra não seja aplicada                                |
 // | Valores para a regra TradeMask:                        |
-// | 1:Item não pode ser dropado                            |
-// | 2:Item não pode ser trocado ou vendido à outro jogador |
-// | 4:A regra '2' não se aplica ao cônjuge do personagens  |
-// | 8:Item não pode ser vendido à NPCs                     |
-// | 16:Item não pode ser colocado no carrinho              |
-// | 32:Item não pode ser colocado no depósito              |
-// | 64:Item não pode ser colocado no depósito da Guild     |
+// | 1: Item não pode ser dropado                           |
+// | 2: Item não pode ser trocado ou vendido à outro jogador|
+// | 4: A regra '2' não se aplica ao cônjuge do personagens |
+// | 8: Item não pode ser vendido em NPCs                   |
+// | 16: Item não pode ser colocado no carrinho             |
+// | 32: Item não pode ser colocado no armazém              |
+// | 64: Item não pode ser colocado no armazém da guilda    |
 // | Exemplo:                                               |
-// | 1161,67,50 (Balmung: Sem drop, Sem troca, Sem guardar  |
-// | no depósito da Guild                                   |
-// | (1+2+64 =67), regra não aplicada à GMs com GM-level 50 |
-// | ou mais                                                |
+// | 1161,67,50 (Balmung: Sem drop, sem troca, sem guardar  |
+// | no armazém da guilda                                   |
+// | (1+2+64 = 67), regra não aplicada à GMs com Nível 50   |
+// | ou maior                                               |
 // \________________________________________________________/
 
 // Wedding Related items
@@ -225,7 +225,7 @@
 7603,115,100	// RO_Party_Ticket
 5201,115,100	// Party_Hat_B
 
-// 2006 Indonesia Honor Ring item 
+// 2006 Indonesia Honor Ring item
 2674,123,100	// Honor_Ring
 
 // 2006 Korean Harvest Moon Day Event item
@@ -529,7 +529,7 @@
 2731,83,100	// Morroc_Charm_Stone
 2732,83,100	// Morroc_Ring
 
-// Misc. items. 
+// Misc. items.
 13870,80,100	// New_Style_Box
 7622,91,100	// New_Style_Coupon
 5412,65,100	// Sweet_Candy
@@ -726,7 +726,7 @@
 7839,115,100	// Crystal_Key
 7840,123,100	// Valkyrie_Gift
 
-// Misc. items. 
+// Misc. items.
 7841,115,100	// Spotted_Paper
 7842,115,100	// Torn_Paper
 7843,115,100	// Old_Paper
@@ -772,7 +772,7 @@
 // "St. Patrick's Day (2008)" Quest related items
 12715,123,100	// Black_Treasure_Chest
 
-// Misc. items. 
+// Misc. items.
 13863,91,100	// Repair_Scroll_Box10
 13866,91,100	// Flying_Angel_Box
 13867,91,100	// Neko_Mimi_Box

@@ -13,15 +13,14 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.1/1.0                                |
+// | Versões eA/brA: 1.1/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: Utilize este NPC se as variáveis busca      |
 // | pelos selos ficar confusa.                             |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [CaroLPunk]                       |
-// | 1.1 Script Revisado [Kooler & Tyler]                   |
-// | - Anotações                                            |
+// | 1.1 Script Revisado [Tyler & Kooler]                   |
 // \________________________________________________________/
 
 sec_in02,15,170,0	script	Golbal var	817,{

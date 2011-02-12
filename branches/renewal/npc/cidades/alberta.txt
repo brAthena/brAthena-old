@@ -12,12 +12,13 @@
 // |-------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                          |
 // |-------------------------------------------------------|
-// | Versões eA/brA: 1.5/1.0                               |
+// | Versões eA/brA: 1.5/1.1                               |
 // |-------------------------------------------------------|
 // | Descrição: NPCs da Cidade de Alberta                  |
 // |-------------------------------------------------------|
-// | Changelog:               	                           |
-// | 1.0 Tradução para pt-br [Dani]                        |
+// | Changelog:                                            |
+// | 1.0 Script Traduzido [Dani]                           |
+// | 1.1 Script Revisado [Dani]                            |
 // \_______________________________________________________/
 
 alberta,97,51,0	script	Fabian	84,{
@@ -68,7 +69,7 @@ alberta,131,139,2	script	Velho Bêbado	54,{
 	mes "^666666*Hiccup*^000000";
 	mes "O que... O que está";
 	mes "olhando? Desaparece!!";
-	next;	
+	next;
 	switch(select("Nada.","Irei lhe deixar em paz.")) {
 		case 1:
 			mes "[Deagle]";

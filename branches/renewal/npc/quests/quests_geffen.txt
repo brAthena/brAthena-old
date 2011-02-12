@@ -54,9 +54,9 @@ geffen_in,144,166,4	script	Ferreiro	63,{
 		next;
 		switch(select("Hm... Nada mau. Certo.:Como é que funciona mesmo?")) {
 		case 1:
-			if ((countitem(999) > 49) && (Zeny > 1999)){
+			if ((countitem(999) > 49) && (Zeny > 1999)) {
 				mes "[Ferreiro]";
-				mes "Ah, Vejo que você aprecia o trabalho de um ferreiro! Tudo bem, eu vou fazê-lo imediatamente!!";
+				mes "Ah, vejo que você aprecia o trabalho de um ferreiro! Tudo bem, eu vou fazê-lo imediatamente!!";
 				next;
 				delitem 999,50;  // Aço
 				set Zeny,Zeny-2000;
@@ -65,20 +65,20 @@ geffen_in,144,166,4	script	Ferreiro	63,{
 				mes "Hahaha! Faça bom uso dela!";
 				close;
 			}
-			else {
-				mes "[Ferreiro]";
-				mes "Hmmm...";
-				mes "Você não tem os itens requeridos.";
-				next;
-				mes "[Ferreiro]";
-				mes "Um ferreiro comum iria interpretar isso como um sinal de desrespeito, mas eu vou te perdoar. Só não se esqueça o que eu preciso se você quiser mesmo fazer esta máscara.";
-				close;
-			}
+			mes "[Ferreiro]";
+			mes "Hmmm...";
+			mes "Você não tem os itens requeridos.";
+			next;
+			mes "[Ferreiro]";
+			mes "Um ferreiro comum iria interpretar isso como um sinal de desrespeito, mas eu vou te perdoar. Só não se esqueça o que eu preciso se você quiser mesmo fazer esta máscara.";
+			close;
+
 		case 2:
 			mes "[Ferreiro]";
 			mes "A ^3355FFMáscara de Solda^000000 protege seu rosto, cobrindo-o com uma placa grossa de metal. Esta invenção é o resultado de 30 anos de infindável trabalho no martelo e bigorna.";
 			close;
 		}
+
 	case 2:
 		mes "[Ferreiro]";
 		mes "Ah...!";
@@ -131,6 +131,7 @@ geffen_in,30,71,4	script	Zenhizha	83,{
 		mes "[Zenhizha]";
 		mes "Tudo que eu quero fazer é construir essa coisa em homenagem ao meu avô, e terminar o trabalho que ele começou. Se você me pedir para continuar, eu não me importaria.";
 		close;
+
 	case 2:
 		mes "[Zenhizha]";
 		mes "^3355FF40 Aços^000000,";
@@ -139,6 +140,7 @@ geffen_in,30,71,4	script	Zenhizha	83,{
 		mes "^3355FF1 Carvão^000000.";
 		mes "Estas são as coisas que eu preciso para concluir a obra do meu avô.";
 		close;
+
 	case 3:
 		if ((countitem(999) > 39) && (countitem(984) > 0) && (countitem(970) > 0) && (countitem(1003) > 0)) {
 			delitem 999,40;  // Aço
@@ -156,11 +158,10 @@ geffen_in,30,71,4	script	Zenhizha	83,{
 			mes "Como eu disse, por favor, tome isto. Eu apenas estou orgulhoso de que eu posso fazer isso sozinho.";
 			close;
 		}
-		else {
-			mes "[Zenhizha]";
-			mes "Obrigado por tentar me ajudar, mas você não trouxe todos os itens que eu preciso. Acho que você vai encontrar todos eles em breve.";
-			close;
-		}
+		mes "[Zenhizha]";
+		mes "Obrigado por tentar me ajudar, mas você não trouxe todos os itens que eu preciso. Acho que você vai encontrar todos eles em breve.";
+		close;
+
 	case 4:
 		mes "[Zenhizha]";
 		mes "N-não?";

@@ -14,7 +14,7 @@
 // |--------------------------------------------------------|
 // | Descrição: Database de uso compartilhado de sprites.   |
 // |--------------------------------------------------------|
-// | Estrutura da Database:                                 |
+// | Estrutura do Banco de Dados:                           |
 // | mob_id,sprite_id,equip <- Utiliza como sprite a mesma  |
 // | de outro mob                                           |
 // | sprite_id = 0 <- desativa o mob                        |
@@ -24,7 +24,7 @@
 // | <- Utiliza sprite de um jogador para o mob             |
 // \________________________________________________________/
 //
-//1002,1039	//Poring,Bafomé (Faz Porings parecerem Bafomés)
+//1002,1039		//Poring,Bafomé (Faz Porings parecerem Bafomés)
 //1970,1002,10013	// Novo mob que parece um Poring com mochila
 //
 //=====================================================

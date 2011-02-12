@@ -15,7 +15,6 @@
 // | Descrição: Banco de Dados de carregamento das box's    |
 // | para itens misc.                                       |
 // \________________________________________________________/
-
 import: db/item_bluebox.txt
 import: db/item_violetbox.txt
 import: db/item_cardalbum.txt

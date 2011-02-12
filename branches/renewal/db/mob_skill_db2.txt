@@ -13,14 +13,14 @@
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Descrição: Database adicional contendo as habilidades  |
-// |  dos custom mobs.                                      |
+// | dos monstros personalizados.                           |
 // |--------------------------------------------------------|
-// | Estrutura da Database:                                 |
+// | Estrutura do Banco de Dados:                           |
 // | MOB_ID, mob@SKILL (apenas para referência), estado,    |
 // | skill_id, skill_lv,rate (10000 = 100%), casttime,      |
 // | delay, cancelável, alvo, tipo de condição,             |
 // | valor da condição, valor1, valor2, valor3, valor4,     |
-// | valor5, emotion, chat                                  |                                           
+// | valor5, emotion, chat                                  |
 // | Exemplo:                                               |
 // | 1001,Poring@TF_POISON,attack,52,3,100,1500,10000,no,   |
 // | target,always,0,,,,,7                                  |
@@ -34,7 +34,7 @@
 // | dead (ao morrer), loot, attack (ao atacar),            |
 // | angry (ao atacar antes de ser atacado),                |
 // | chase (perseguindo alvo após ser atacado),             |
-// | follow (perseguindo alvo antes de ser atacado)         | 
+// | follow (perseguindo alvo antes de ser atacado)         |
 // |--------------------------------------------------------|
 // | Alvos:                                                 |
 // | target (um jogador), self (próprio mob),               |
@@ -42,7 +42,7 @@
 // | utilizados em habilidades de terreno, onde um tile     |
 // | aleatório é selecionado na área específicada ao redor  |
 // | de si: around (11x11),around1 (3x3), around2 (5x5),    |
-// | around3 (7x7), around4 (9x9) ou do alvo: around5 (3x3),| 
+// | around3 (7x7), around4 (9x9) ou do alvo: around5 (3x3),|
 // | around6 (5x5), around7 (7x7), around8 (9x9)            |
 // |--------------------------------------------------------|
 // | Condições: (tipo) - (valor)                            |
@@ -70,7 +70,7 @@
 // \________________________________________________________/
 //
 //=====================================================
-// Monstros do eAthena Dev Team 
+// Monstros do eAthena Dev Team
 //=====================================================
 //3001,Valaris@AL_TELEPORT,idle,26,1,10000,0,0,yes,self,rudeattacked,,,,,,,,
 //3001,Valaris@AL_TELEPORT,walk,26,1,500,0,5000,yes,self,rudeattacked,,,,,,,,
@@ -130,7 +130,7 @@
 //3005,Sentry (APENAS P/ REFERÊNCIA)
 //
 //=====================================================
-// Evento da Páscoa 
+// Evento da Páscoa
 //=====================================================
 //3006,Ovo de Páscoa (APENAS P/ REFERÊNCIA)
 //3007,Coelhinho da Páscoa@NPC_SUMMONSLAVE,attack,196,5,10000,3000,10000,no,self,slavele,2,1063,,,,,,

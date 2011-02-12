@@ -14,7 +14,7 @@
 // |--------------------------------------------------------|
 // | Descrição: Database de restrições dos itens            |
 // |--------------------------------------------------------|
-// | Estrutura da Database:                                 |
+// | Estrutura do Banco de Dados:                           |
 // | itemID,Regra (ou área restrita)                        |
 // | Regras e Áreas restritas (que podem ser somadas):      |
 // | 1 - Restrito em PvP                                    |
@@ -37,23 +37,23 @@
 // \________________________________________________________/
 //
 //============================================================
-//Zona 1 - Aldebaran Turbo Track
+// Zona 1 - Aldebaran Turbo Track
 //============================================================
 601,4 		//Asa de Mosca
 506,4 		//Poção Verde
 525,4 		//Panacea
 //============================================================
-//Zona 2 - Prisão
+// Zona 2 - Prisão
 //============================================================
-601,8 		//Asa de Mosca - Não necessariamente usual aqui mas...
-602,8 		//Asa de Borboleta - Também não necessita.
+601,8		//Asa de Mosca - Não necessariamente usual aqui
+602,8 		//Asa de Borboleta - Também não necessita
 12212,8 	//Asa de Borboleta Gigante
-14582,8
-14583,8
-14584,8
-14585,8
+14582,8		//Yellow Butterfly Wing
+14583,8		//Green Butterfly Wing
+14584,8		//Red Butterfly Wing
+14585,8		//Blue Butterfly Wing
 //============================================================
-//Zona 3 - Arena de Izlude
+// Zona 3 - Arena de Izlude
 //============================================================
 601,16 		//Asa de Mosca
 

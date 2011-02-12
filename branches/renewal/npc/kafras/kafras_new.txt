@@ -26,10 +26,11 @@
 // | arg(3): Custo do serviço de "Armazém"                  |
 // | arg(4): Custo do serviço "Alugar Carrinho"             |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
-// | 1.0 Script Traduzido [cleyton]   	                    |
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [cleyton]                         |
 // | 1.1 Script Revisado [Tyler]                            |
-// | - Anotações                                            |
+// | Anotações:                                             |
+// | - Corrigidas as tabulações no cabeçalho.               |
 // \________________________________________________________/
 
 // Amatsu

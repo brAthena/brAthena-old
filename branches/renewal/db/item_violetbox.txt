@@ -13,10 +13,10 @@
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Descrição: Banco de Dados dos itens obtidos pela       |
-// | Velha Caixa Roxa.                                      |
+// | 'Velha Caixa Roxa'.                                    |
 // |--------------------------------------------------------|
 // | Estrutura do Banco de Dados:                           |
-// | ID do Grupo de Itens , ID do Item , Taxa               |
+// | ID do Grupo de Itens, ID do Item, Taxa                 |
 // \________________________________________________________/
 
 2,501,14	// Poção Vermelha

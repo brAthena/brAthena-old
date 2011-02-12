@@ -8,90 +8,89 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Cidade de Brasilis		        	    |
+// | Nome do Script: Cidade de Brasilis                     |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.1/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: NPCs da Cidade de Brasilis		   			|
+// | Descrição: NPCs da Cidade de Brasilis                  |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			   						|
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [cleyton]                         |
 // \________________________________________________________/
 
 alberta,247,115,3	script	Brute Sailor#bra2	100,{
-	mes "[Brute Sailor]";
-	mes "Hey, have you heard of the place called Brasilis?";
-	mes "It's a place that's as hot as the Morroc desert, and as dense as the forests of Payon.";
+	mes "[Marinheiro Bruto]";
+	mes "Ei! Você já ouviu falar de Brasilis?";
+	mes "É um lugar tão quente quanto os desertos de Morroc e tão denso quanto as florestas de Payon.";
 	next;
-	mes "[Brute Sailor]";
-	mes "I have a map to get there, if you want I can take you to Brasilis.";
-	mes "It will only cost you 10,000 zeny. What do you say?";
+	mes "[Marinheiro Bruto]";
+	mes "Eu tenho um mapa para chegar até lá, se você quiser eu posso levar você até Brasilis.";
+	mes "Isso vai custar 10.000 zeny. O que você acha?";
 	next;
-	switch(select("Let's go to Brasilis!:Cancel.")) {
+	switch(select("Vamos para Brasilis!:Cancelar.")) {
 	case 1:
 		if (Zeny > 9999	) {
-			mes "[Brute Sailor]";
-			mes "Great! Let's Go!";
+			mes "[Marinheiro Bruto]";
+			mes "Ótimo! Vamos lá!";
 			close2;
 			set Zeny,Zeny-10000;
 			warp "brasilis",314,60;
 			end;
 		}
 		else {
-			mes "[Brute Sailor]";
-			mes "I'm sorry but you don't have";
-			mes "enough zeny now";
-			mes "You need 10,000 zeny";
-			mes "to go to Brasilis";
-			mes "Thank you.";
+			mes "[Marinheiro Bruto]";
+			mes "Eu lamentos, mas você";
+			mes "não tem dinheiro suficiente agora.";
+			mes "Você precisa de 10.000 zeny";
+			mes "para ir até Brasilis.";
+			mes "Muito obrigado!";
 			close;
 		}
 	case 2:
-		mes "[Brute Sailor]";
-		mes "Let me know if you change your mind.";
+		mes "[Marinheiro Bruto]";
+		mes "Me avise se você mudar de idéia.";
 		close;
 	}
 }
 
 brasilis,316,57,3	script	Brute Sailor#bra1	100,{
-	mes "[Brute Sailor]";
-	mes "My ship will be heading back to Alberta soon, would you like to go back?";
+	mes "[Marinheiro Bruto]";
+	mes "Meu navio vai voltar para Alberta em breve. Gostaria de voltar também?";
 	next;
-	switch(select("Return to Alberta.:Cancel.")) {
+	switch(select("Voltar para Alberta.:Cancelar.")) {
 	case 1:
-		mes "[Brute Sailor]";
-		mes "Alright, lets get going!";
+		mes "[Marinheiro Bruto]";
+		mes "Tudo certo, vamos indo!";
 		close2;
 		warp "alberta",244,115;
 		end;
 	case 2:
-		mes "[Brute Sailor]";
-		mes "Let me know if you change your mind.";
+		mes "[Marinheiro Bruto]";
+		mes "Me avise se você mudar de idéia.";
 		close;
 	}
 }
 
-brasilis,278,137,3	script	Bulletin Board#bra1	858,{
-	mes ":: Happy Toucan Inn ::";
+brasilis,278,137,3	script	Quadro de Aviso#bra1	858,{
+	mes ":: Pousada Tucano Feliz ::";
 	close;
 }
 
-brasilis,244,248,1	script	Bulletin Board#bra2	858,{
-	mes ":: Brasilis Market ::";
+brasilis,244,248,1	script	Quadro de Aviso#bra2	858,{
+	mes ":: Mercado Brasilis ::";
 	close;
 }
 
-brasilis,155,165,3	script	Bulletin Board#bra3	858,{
-	mes ":: Brasilis Art Museum ::";
+brasilis,155,165,3	script	Quadro de Aviso#bra3	858,{
+	mes ":: Museu de Arte Brasilis ::";
 	close;
 }
 
-brasilis,303,309,3	script	Bulletin Board#bra4	858,{
-	mes ":: Jungle Cable ::";
+brasilis,303,309,3	script	Quadro de Aviso#bra4	858,{
+	mes ":: Teleférico da Floresta ::";
 	mes " ";
-	mes "- Not recommended for the faint hearted! -";
+	mes "- Não recomendado para quem tem problemas cardíacos! -";
 	close;
 }

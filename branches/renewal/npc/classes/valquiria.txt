@@ -16,10 +16,9 @@
 // |--------------------------------------------------------|
 // | Descrição: Quest para mudança Transclasse.             |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
+// | Changelog:                                             |
 // | 1.0 Script Traduzido [Dynasty]                         |
-// | 1.1 Script Revisado [insidemybrain & Tyler]            |
-// | - Anotações                                            |
+// | 1.1 Script Revisado [Tyler & insidemybrain]            |
 // \_______________________________________________________/
 
 valkyrie,48,86,4	script	Valquíria#	811,{

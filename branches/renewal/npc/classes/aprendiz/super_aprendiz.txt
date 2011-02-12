@@ -16,9 +16,10 @@
 // |--------------------------------------------------------|
 // | Descrição: Mudança de Classe para Super Aprendiz       |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
+// | Changelog:                                             |
 // | 1.0 Script Traduzido [Protimus]                        |
-// \________________________________________________________/ 
+// | 1.1 Script Revisado [insidemybrain]                    |
+// \________________________________________________________/
 
 aldeba_in,223,167,3	script	Tzerero#sn	709,{
 	if (BaseJob == Job_SuperNovice) {
@@ -46,13 +47,13 @@ aldeba_in,223,167,3	script	Tzerero#sn	709,{
 		next;
 		mes "[Tzerero]";
 		mes "Ok, então agora eu farei o que foi combinado";
-		mes "e transformarei você em um Super Aprendiz... Hã? ";
-		mes "O que é isso atrás de você?";
+		mes "e transformarei você em um Super Aprendiz... Hã!? ";
+		mes "O que é isso atrás de você!?";
 		next;
 		select("Hã?:O quê?");
-		mes "-Você se vira e olha-";
-		mes "-mas não há nada-";
-		mes "-Que coisa estranha!";
+		mes "- Você se vira e olha -";
+		mes "- mas não há nada -";
+		mes "- Que coisa estranha!";
 		next;
 		completequest 6010;
 		callfunc "F_ClearJobVar";
@@ -60,7 +61,7 @@ aldeba_in,223,167,3	script	Tzerero#sn	709,{
 		if (Upper==0) jobchange Job_SuperNovice;
 		if (Upper==2) jobchange Job_Super_Baby;
 		mes "[Tzerero]";
-		mes "Hahhahaha! Você caiu nessa!";
+		mes "Hahahahaha! Você caiu nessa!";
 		mes "Fazer pegadinhas desse tipo é uma das";
 		mes "diversões favoritas do Clube do Aprendiz.";
 		mes "O que achou da";
@@ -86,8 +87,8 @@ aldeba_in,223,167,3	script	Tzerero#sn	709,{
 	}
 	if (SUPNOV_Q == 1) {
 		mes "[Tzerero]";
-		mes "Hmm, eu acho que você se esqueceu ";
-		mes "de trazer alguma coisa? ";
+		mes "Hmm, eu acho que você se esqueceu";
+		mes "de trazer alguma coisa...";
 		mes "Vou repetir.";
 		mes "Não se esqueça!";
 		next;
@@ -99,7 +100,7 @@ aldeba_in,223,167,3	script	Tzerero#sn	709,{
 	if (BaseJob == Job_Novice && upper != 1) {
 		mes "[Tzerero]";
 		mes "...Hmm? Eu percebo em você ";
-		mes "um grande desejo de aprender.";
+		mes "um grande desejo de aprender...";
 		mes "Sim! Olhando de perto, eu vejo";
 		mes "que você tem a ânsia do Super Aprendiz!";
 		next;
@@ -136,7 +137,7 @@ aldeba_in,223,167,3	script	Tzerero#sn	709,{
 			}
 			mes "[Tzerero]";
 			mes "Oh! Que ótimo! Você tem mesmo a alma do Aprendiz!";
-			mes "Não se acha muitos como você ";
+			mes "Não se acham muitos como você";
 			mes "hoje em dia!";
 			mes "Parabéns! Você fez uma excelente escolha!";
 			next;
@@ -159,7 +160,7 @@ aldeba_in,223,167,3	script	Tzerero#sn	709,{
 			next;
 			mes "[Tzerero]";
 			mes "Junte 30 de cada um";
-			mes "e traga pra mim.";
+			mes "e traga-os para mim.";
 			mes "Simples, não? Hahaha!";
 			next;
 			set SUPNOV_Q,1;
@@ -187,7 +188,7 @@ aldeba_in,223,167,3	script	Tzerero#sn	709,{
 			close;
 		case 3:
 			mes "[Tzerero]";
-			mes "Hum-rum, deixe-me contar algo sobre o clube.";
+			mes "Hum-hum, deixe-me contar algo sobre o clube.";
 			mes "O fundador do Clube do Aprendiz e";
 			mes "presidente de honra do clube,";
 			mes "Sr. Kimu-shon";
@@ -273,7 +274,7 @@ aldeba_in,216,169,5	script	Esere#sn	86,{
 		mes "Agora é tarde demais,";
 		mes "não adianta se arrepender...";
 		mes "Bom, então você deve continuar com a vida que escolheu";
-		mes "cheia de regras e limitações. Bom, foi sua escolha.";
+		mes "cheia de regras e limitações. Bom... Foi escolha sua.";
 		close;
 	}
 }
@@ -282,7 +283,7 @@ aldebaran,54,238,5	script	Recepcionista Kafra#sn	117,{
 	if (BaseJob == Job_SuperNovice) {
 		mes "[Recepcionista Kafra]";
 		mes "Hmm? Então você é um Super Aprendiz?";
-		mes "Como? Você está triste ";
+		mes "Como? Você está triste";
 		mes "porque as outras Kafras não deixam";
 		mes "que você alugue um carrinho?";
 		mes "Nah, não se preocupe mais com isso!";
@@ -305,7 +306,7 @@ aldebaran,54,238,5	script	Recepcionista Kafra#sn	117,{
 			mes "Ah, você precisa verificar algo!";
 			mes "Você já aprendou a habilidade";
 			mes "Empurrar Carrinho?";
-			mes "Eu posso alugar o carrinho a você a qualquer momento,";
+			mes "Eu posso alugar o carrinho para você a qualquer momento,";
 			mes "mas se você não tiver aprendido essa habilidade,";
 			mes "você só vai desperdiçar seus preciosos zeny.";
 			next;

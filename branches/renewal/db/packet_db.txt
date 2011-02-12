@@ -18,7 +18,7 @@
 // | The packet database allows you to add support for      |
 // | new clients, because packets change every release.     |
 // | Note: Every packet version needs a wanttoconnection    |
-// | specification, since that is the packet used to        | 
+// | specification, since that is the packet used to        |
 // | identify a client's version.                           |
 // | If multiple versions have the same connection packet,  |
 // | the higher version will be used (unless the lower one  |
@@ -1600,6 +1600,10 @@ packet_ver: 25
 
 //2010-07-14aRagexeRE
 //0x841,4
+
+//2010-08-03aRagexeRE
+0x0842,6,recall2,2
+0x0843,6,remove2,2
 
 //Add new packets here
 //packet_ver: 26
