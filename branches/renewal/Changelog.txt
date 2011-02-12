@@ -9,6 +9,15 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0240 - 12/02/2011 [Dani]
+	* Revisão dos spawns dos seguintes arquivos:
+	- npc/monstros/campos/payon.txt
+	- npc/monstros/campos/prontera.txt
+	- npc/monstros/campos/umbala.txt
+	- npc/monstros/campos/yuno.txt
+	- Atualização dos spawns da pasta npc/monstros/campos/ concluída
+	* Alterado "mountpeco" no atcommand_athena.conf para "mount" (seguindo r235)
+
 	r0239 - 12/02/2011 [Dani]
 	* Revisão do item_db comparando com o item_db da Trunk
 

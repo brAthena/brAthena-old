@@ -12,12 +12,13 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.9/1.2                                |
+// | Versões eA/brA: 1.9/1.2a                               |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
+// | Changelog:                                             |
 // | 1.0 Script Traduzido [K2X]                             |
 // | 1.1 Script Revisado [Protimus & Tyler]                 |
-// | 1.2 Spawns do Renewal Traduzidos [Dani]                |
+// | 1.2a Spawns do Renewal Traduzidos [Dani]               |
+// | - Revisado                                             |
 // \________________________________________________________/
 
 //==================================================
@@ -98,13 +99,9 @@ yuno_fild07,0,0,0,0	monster	Planta Amarela	1081,10,180000,90000,1
 //==================================================
 // yuno_fild08 - Academia de Kiel Khayr
 //==================================================
-yuno_fild08,200,300,290,100	monster	Grand Peco	1369,50,0,0,0
-yuno_fild08,272,205,100,120	monster	Grand Peco	1369,30,0,0,0
-yuno_fild08,230,110,250,90	monster	Grand Peco	1369,50,0,0,0
-yuno_fild08,200,300,290,100	monster	Planta Carnívora	1368,12,0,0,0
-yuno_fild08,272,205,100,120	monster	Planta Carnívora	1368,6,0,0,0
-yuno_fild08,230,110,250,90	monster	Planta Carnívora	1368,12,0,0,0
+yuno_fild08,0,0,0,0	monster	Grand Peco	1369,130,0,0,0
 yuno_fild08,0,0,0,0	monster	Bode	1372,30,0,0,0
+yuno_fild08,0,0,0,0	monster	Planta Carnívora	1368,30,0,0,0
 yuno_fild08,0,0,0,0	monster	Planta Vermelha	1078,10,180000,90000,1
 yuno_fild08,0,0,0,0	monster	Planta Verde	1080,10,180000,90000,1
 yuno_fild08,0,0,0,0	monster	Planta Amarela	1081,10,180000,90000,1
@@ -127,10 +124,8 @@ yuno_fild09,0,0,0,0	monster	Planta Amarela	1081,10,180000,90000,1
 //==================================================
 // yuno_fild11 - Yuno Field
 //==================================================
-yuno_fild10,0,0,0,0	monster	Bode	1372,100,0,0,0
-yuno_fild11,0,0,0,0	monster	Planta Carnívora	1368,23,0,0,0
-yuno_fild11,65,294,70,160	monster	Planta Carnívora	1368,2,0,0,0
-yuno_fild11,225,220,125,135	monster	Planta Carnívora	1368,15,0,0,0
+yuno_fild11,0,0,0,0	monster	Bode	1372,100,0,0,0
+yuno_fild11,0,0,0,0	monster	Planta Carnívora	1368,40,0,0,0
 yuno_fild11,0,0,0,0	monster	Planta Vermelha	1078,10,180000,90000,1
 yuno_fild11,0,0,0,0	monster	Planta Verde	1080,10,180000,90000,1
 yuno_fild11,0,0,0,0	monster	Planta Amarela	1081,10,180000,90000,1
@@ -139,4 +134,4 @@ yuno_fild11,0,0,0,0	monster	Planta Amarela	1081,10,180000,90000,1
 // yuno_fild12 - Border Checkpoint
 //==================================================
 yuno_fild12,0,0,0,0	monster	Planta Carnívora	1368,60,0,0,0
-yuno_fild01,0,0,0,0	monster	Louva-a-Deus	1139,30,0,0,0
+yuno_fild12,0,0,0,0	monster	Louva-a-Deus	1139,30,0,0,0
