@@ -7997,7 +7997,6 @@ ACMD_FUNC(reject)
 ACMD_FUNC(cash)
 {
 	int value;
-	char output[CHAT_SIZE_MAX];
 	nullpo_retr(-1, sd);
 
 	if( !message || !*message || (value = atoi(message)) == 0 ) {
@@ -8019,10 +8018,6 @@ ACMD_FUNC(cash)
 		else
 			pc_paycash(sd, -value, -value);
 	}
-	//sprintf(output, "Personagem %d recebeu %d %d.", sd, value, ((!strcmpi(command+1),"cash") ? "ROPs" : "Pontos Kafra"));
-	sprintf(output, "Personagem %s recebeu %d %s.",sd , value, (!strcmpi(command+1,"cash") ? "ROPs" : "Pontos Kafra"));
-	//clif_disp_onlyself(sd, output, strlen(output));
-	clif_displaymessage(fd, output);
 
 	return 0;
 }
