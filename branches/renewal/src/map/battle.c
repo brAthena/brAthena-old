@@ -1767,6 +1767,10 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio += 50 * skill_lv; 
 					if( s_base_level > 50 ) skillratio += skillratio * (s_base_level - 50) / 200;	
 					break;
+				case RK_DRAGONBREATH:
+					skillratio += 50 * skill_lv;
+					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
+					break;
 			}
 
 			ATK_RATE(skillratio);
@@ -2971,6 +2975,10 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		break;
 	case NPC_EVILLAND:
 		md.damage = skill_calc_heal(src,target,skill_num,skill_lv,false);
+		break;
+	case RK_DRAGONBREATH:
+		md.damage = ((status_get_hp(src) * 16 / 1000) + (status_get_sp(src) * 192 / 1000)) * skill_lv;
+		if (sd) md.damage += md.damage * 5 * (pc_checkskill(sd,RK_DRAGONTRAINING) -1) / 100;
 		break;
 	}
 

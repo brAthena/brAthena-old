@@ -965,6 +965,9 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 	case RK_WINDCUTTER:
 		sc_start(bl,SC_FEAR,3+2*skilllv,skilllv,skill_get_time(skillid,skilllv));
 		break;
+	case RK_DRAGONBREATH:
+		sc_start4(bl,SC_BURNING,5+5*skilllv,skilllv,1000,src->id,0,skill_get_time(skillid,skilllv));
+		break;
 	}
 
 	if (md && battle_config.summons_trigger_autospells && md->master_id && md->special_state.ai)
@@ -3051,6 +3054,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case NPC_SMOKING:
 	case GS_FLING:
 	case NJ_ZENYNAGE:
+	case RK_DRAGONBREATH:
 		skill_attack(BF_MISC,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 
@@ -6649,6 +6653,12 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 				map_foreachincell(skill_area_sub, src->m, x+layout->dx[i], y+layout->dy[i], BL_CHAR, src, skillid, skilllv, tick, flag|BCT_ENEMY,skill_castend_damage_id);
 		}
 		break;
+		
+	case RK_DRAGONBREATH:
+		i = skill_get_splash(skillid,skilllv);
+		map_foreachinarea(skill_area_sub,src->m,x-i,y-i,x+i,y+i,BL_CHAR,
+			src,skillid,skilllv,tick,flag|BCT_ENEMY|1,skill_castend_damage_id);
+		break;	
 
 	default:
 		ShowWarning("skill_castend_pos2: Habilidade desconhecida usada:%d\n",skillid);
