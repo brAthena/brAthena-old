@@ -29,7 +29,7 @@ struct TimerData {
 	int heap_pos;
 
 	// general-purpose storage
-	int id; 
+	int id;
 	intptr data;
 };
 

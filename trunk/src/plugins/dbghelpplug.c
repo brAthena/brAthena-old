@@ -26,7 +26,7 @@
  *   - local function variables
  * + Variables/parameters:
  *   - variable name
- *   - variable type (char/wchar, integers, floats, enums, arrays, 
+ *   - variable type (char/wchar, integers, floats, enums, arrays,
  *     pointers, structs, unions, ...)
  *   - readability of memory
  *   - value of char/wchar
@@ -58,7 +58,7 @@
 
 
 /////////////////////////////////////////////////////////////////////
-// Include files 
+// Include files
 //
 
 #include <assert.h>
@@ -75,13 +75,13 @@
 
 
 /////////////////////////////////////////////////////////////////////
-// Types from Cvconst.h (DIA SDK) 
+// Types from Cvconst.h (DIA SDK)
 //
 
 #ifdef _NO_CVCONST_H
 
 typedef enum _BasicType
-{ 
+{
    btNoType   = 0,
    btVoid     = 1,
    btChar     = 2,
@@ -109,7 +109,7 @@ typedef enum _UdtKind
     UdtUnion
 } UdtKind;
 /*
-typedef enum _SymTag { 
+typedef enum _SymTag {
    SymTagNull             = 0,
    SymTagExe              = 1,
    SymTagCompiland        = 2,
@@ -283,7 +283,7 @@ SYMGETMODULEBASE SymGetModuleBase_ = NULL;
 // Code
 
 
-/// Writes the minidump to file. The callback function will at the 
+/// Writes the minidump to file. The callback function will at the
 /// same time write the list of modules to the log file.
 ///
 /// @param file Filename of the minidump
@@ -374,7 +374,7 @@ Dhp__PrintModuleInfoCallback(
 }
 
 
-/// Prints details about the current process, platform and exception 
+/// Prints details about the current process, platform and exception
 /// information to the log file.
 ///
 /// @param exception Exception info
@@ -468,7 +468,7 @@ Dhp__PrintProcessInfo(
 		{
 			fprintf(log_file,
 				"eip=%08x esp=%08x ebp=%08x iopl=%1x %s %s %s %s %s %s %s %s %s %s\n",
-				context->Eip, context->Esp, context->Ebp, 
+				context->Eip, context->Esp, context->Ebp,
 				(context->EFlags >> 12) & 3,	//  IOPL level value
 				context->EFlags & 0x00100000 ? "vip" : "   ",	//  VIP (virtual interrupt pending)
 				context->EFlags & 0x00080000 ? "vif" : "   ",	//  VIF (virtual interrupt flag)
@@ -538,7 +538,7 @@ Dhp__PrintTypeName(
 	switch( symtag )
 	{
 	case SymTagEnum:
-		{			
+		{
 			WCHAR* pwszTypeName;
 
 			if( SymGetTypeInfo_(hProcess, modBase, typeIndex, TI_GET_SYMNAME, &pwszTypeName) )
@@ -1069,7 +1069,7 @@ Dhp__PrintDataValue(
 
 			fprintf(log_file, "0x%p", *(void**)pVariable);
 			if( SymGetTypeInfo_(hProcess, modBase, typeIndex, TI_GET_TYPE, &childTypeIndex) &&
-				SymGetTypeInfo_(hProcess, modBase, childTypeIndex, TI_GET_SYMTAG, &childSymtag) && 
+				SymGetTypeInfo_(hProcess, modBase, childTypeIndex, TI_GET_SYMTAG, &childSymtag) &&
 				childSymtag != SymTagPointerType )
 			{
 				DWORD childBasetype;
@@ -1342,9 +1342,9 @@ Dhp__PrintSymbolInfo(
 	assert( pSymInfo != NULL );
 	assert( pInterData != NULL );
 
-	switch( pSymInfo->Tag ) 
+	switch( pSymInfo->Tag )
 	{
-	case SymTagData: Dhp__PrintDataInfo( pSymInfo, pInterData ); break; 
+	case SymTagData: Dhp__PrintDataInfo( pSymInfo, pInterData ); break;
 	default: /*fprintf(pInterData->log_file, "<unsupported symtag %d>", pSymInfo->Tag);*/ break;
 	}
 }
@@ -1752,7 +1752,7 @@ Dhp__CreateFiles(
 	strftime(timestamp, sizeof(timestamp), "%Y%m%d%H%M%S", localtime(&now));
 #endif
 	timestamp[LEN_TIMESTAMP] = '\0';
-	
+
 	sprintf(out_logFileName, "%s%s.rpt", baseFileName, timestamp);
 	fp = fopen(out_logFileName, "w");
 	if( fp == NULL )

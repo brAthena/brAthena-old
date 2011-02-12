@@ -100,7 +100,7 @@ void ipban_final(void)
 	if( login_config.ipban_cleanup_interval > 0 )
 		// release data
 		delete_timer(cleanup_timer_id, ipban_cleanup);
-	
+
 	ipban_cleanup(0,0,0,0); // always clean up on login-server stop
 
 	// close connections

@@ -135,7 +135,7 @@ int log_pick_pc(struct map_session_data *sd, const char *type, int nameid, int a
 		}
 		fclose(logfp);
 	}
-	
+
 	return 1; //Logged
 }
 
@@ -188,7 +188,7 @@ int log_pick_mob(struct mob_data *md, const char *type, int nameid, int amount, 
 		}
 		fclose(logfp);
 	}
-	
+
 	return 1; //Logged
 }
 
@@ -286,7 +286,7 @@ int log_atcommand(struct map_session_data* sd, const char* message)
 		fprintf(logfp, "%s - %s[%d]: %s\n", timestring, sd->status.name, sd->status.account_id, message);
 		fclose(logfp);
 	}
-	
+
 	return 1;
 }
 
@@ -348,7 +348,7 @@ int log_chat(const char* type, int type_id, int src_charid, int src_accid, const
 	if( log_config.sql_logs )
 	{
 		SqlStmt* stmt;
-		
+
 		stmt = SqlStmt_Malloc(logmysql_handle);
 		if( SQL_SUCCESS != SqlStmt_Prepare(stmt, "INSERT DELAYED INTO `%s` (`time`, `type`, `type_id`, `src_charid`, `src_accountid`, `src_map`, `src_map_x`, `src_map_y`, `dst_charname`, `message`) VALUES (NOW(), '%s', '%d', '%d', '%d', '%s', '%d', '%d', ?, ?)", log_config.log_chat_db, type, type_id, src_charid, src_accid, map, x, y)
 		||  SQL_SUCCESS != SqlStmt_BindParam(stmt, 0, SQLDT_STRING, (char*)dst_charname, safestrnlen(dst_charname, NAME_LENGTH))
@@ -384,7 +384,7 @@ void log_set_defaults(void)
 	log_config.refine_items_log = 5; //log refined items, with refine >= +7
 	log_config.rare_items_log = 100; //log rare items. drop chance <= 1%
 	log_config.price_items_log = 1000; //1000z
-	log_config.amount_items_log = 100;	
+	log_config.amount_items_log = 100;
 }
 
 int log_config_read(char *cfgName)
@@ -394,13 +394,13 @@ int log_config_read(char *cfgName)
 	FILE *fp;
 
 	if ((count++) == 0)
-		log_set_defaults();		
+		log_set_defaults();
 
 	if((fp = fopen(cfgName, "r")) == NULL)
 	{
 		ShowError("Arquivo de configuracao de Log nao encontrado: %s\n", cfgName);
 		return 1;
-	}	
+	}
 
 	while(fgets(line, sizeof(line), fp))
 	{
@@ -496,7 +496,7 @@ int log_config_read(char *cfgName)
 					ShowNotice("Armazenando relatorio de 'logmes' dos NPCs no arquivo `%s`.txt\n", w2);
 			} else if(strcmpi(w1, "log_chat_file") == 0) {
 				strcpy(log_config.log_chat, w2);
-				if(log_config.chat > 0 && !log_config.sql_logs)					
+				if(log_config.chat > 0 && !log_config.sql_logs)
 					ShowNotice("Armazenando relatorio de Mensagens no arquivo `%s`.txt\n", w2);
 			//support the import command, just like any other config
 			} else if(strcmpi(w1,"import") == 0) {

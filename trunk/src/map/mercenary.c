@@ -480,7 +480,7 @@ static bool read_mercenary_skilldb_sub(char* str[], int columns, int current)
 		ShowError("read_mercenary_skilldb : Classe %d nao encontrada em mercenary_db para entrada da habilidade.\n", class_);
 		return false;
 	}
-	
+
 	skillid = atoi(str[1]);
 	if( skillid < MC_SKILLBASE || skillid >= MC_SKILLBASE + MAX_MERCSKILL )
 	{
@@ -509,7 +509,7 @@ int do_init_mercenary(void)
 {
 	read_mercenarydb();
 	read_mercenary_skilldb();
-	
+
 	//add_timer_func_list(mercenary_contract, "mercenary_contract");
 	return 0;
 }

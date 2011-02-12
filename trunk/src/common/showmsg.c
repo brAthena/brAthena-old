@@ -100,7 +100,7 @@ int msg_silent = 0; //Specifies how silent the console is.
 //  ansi compatible printf with control sequence parser for windows
 //  fast hack, handle with care, not everything implemented
 //
-// \033[#;...;#m - Set Graphics Rendition (SGR) 
+// \033[#;...;#m - Set Graphics Rendition (SGR)
 //
 //  printf("\x1b[1;31;40m");	// Bright red on black
 //  printf("\x1b[3;33;45m");	// Blinking yellow on magenta (blink not implemented)
@@ -119,19 +119,19 @@ int msg_silent = 0; //Specifies how silent the console is.
 //  8 - Concealed (invisible)
 //
 // \033[#A - Cursor Up (CUU)
-//    Moves the cursor up by the specified number of lines without changing columns. 
+//    Moves the cursor up by the specified number of lines without changing columns.
 //    If the cursor is already on the top line, this sequence is ignored. \e[A is equivalent to \e[1A.
 //
 // \033[#B - Cursor Down (CUD)
-//    Moves the cursor down by the specified number of lines without changing columns. 
+//    Moves the cursor down by the specified number of lines without changing columns.
 //    If the cursor is already on the bottom line, this sequence is ignored. \e[B is equivalent to \e[1B.
 //
 // \033[#C - Cursor Forward (CUF)
-//    Moves the cursor forward by the specified number of columns without changing lines. 
+//    Moves the cursor forward by the specified number of columns without changing lines.
 //    If the cursor is already in the rightmost column, this sequence is ignored. \e[C is equivalent to \e[1C.
 //
 // \033[#D - Cursor Backward (CUB)
-//    Moves the cursor back by the specified number of columns without changing lines. 
+//    Moves the cursor back by the specified number of columns without changing lines.
 //    If the cursor is already in the leftmost column, this sequence is ignored. \e[D is equivalent to \e[1D.
 //
 // \033[#E - Cursor Next Line (CNL)
@@ -144,15 +144,15 @@ int msg_silent = 0; //Specifies how silent the console is.
 //    Moves the cursor to indicated column in current row. \e[G is equivalent to \e[1G.
 //
 // \033[#;#H - Cursor Position (CUP)
-//    Moves the cursor to the specified position. The first # specifies the line number, 
-//    the second # specifies the column. If you do not specify a position, the cursor moves to the home position: 
+//    Moves the cursor to the specified position. The first # specifies the line number,
+//    the second # specifies the column. If you do not specify a position, the cursor moves to the home position:
 //    the upper-left corner of the screen (line 1, column 1).
 //
 // \033[#;#f - Horizontal & Vertical Position
 //    (same as \033[#;#H)
 //
 // \033[s - Save Cursor Position (SCP)
-//    The current cursor position is saved. 
+//    The current cursor position is saved.
 //
 // \033[u - Restore cursor position (RCP)
 //    Restores the cursor position saved with the (SCP) sequence \033[s.
@@ -193,7 +193,7 @@ Escape sequences for Select Character Set
 int	VFPRINTF(HANDLE handle, const char *fmt, va_list argptr)
 {
 	/////////////////////////////////////////////////////////////////
-	/* XXX Two streams are being used. Disabled to avoid inconsistency [flaviojs]		
+	/* XXX Two streams are being used. Disabled to avoid inconsistency [flaviojs]
 	static COORD saveposition = {0,0};
 	*/
 
@@ -222,7 +222,7 @@ int	VFPRINTF(HANDLE handle, const char *fmt, va_list argptr)
 			WriteFile(handle, p, (DWORD)(q-p), &written, 0);
 
 		if( q[1]!='[' )
-		{	// write the escape char (whatever purpose it has) 
+		{	// write the escape char (whatever purpose it has)
 			if(0==WriteConsole(handle, q, 1, &written, 0) )
 				WriteFile(handle,q, 1, &written, 0);
 			p=q+1;	//and start searching again
@@ -239,10 +239,10 @@ int	VFPRINTF(HANDLE handle, const char *fmt, va_list argptr)
 			memset(numbers,0,sizeof(numbers));
 
 			// skip escape and bracket
-			q=q+2;	
+			q=q+2;
 			for(;;)
 			{
-				if( ISDIGIT(*q) ) 
+				if( ISDIGIT(*q) )
 				{	// add number to number array, only accept 2digits, shift out the rest
 					// so // \033[123456789m will become \033[89m
 					numbers[numpoint] = (numbers[numpoint]<<4) | (*q-'0');
@@ -354,18 +354,18 @@ int	VFPRINTF(HANDLE handle, const char *fmt, va_list argptr)
 					COORD origin = {0,0};
 					if(num==1)
 					{	// chars from start up to and including cursor
-						cnt = info.dwSize.X * info.dwCursorPosition.Y + info.dwCursorPosition.X + 1;	
+						cnt = info.dwSize.X * info.dwCursorPosition.Y + info.dwCursorPosition.X + 1;
 					}
 					else if(num==2)
 					{	// Number of chars on screen.
-						cnt = info.dwSize.X * info.dwSize.Y;	
-						SetConsoleCursorPosition(handle, origin); 
+						cnt = info.dwSize.X * info.dwSize.Y;
+						SetConsoleCursorPosition(handle, origin);
 					}
 					else// 0 and default
 					{	// number of chars from cursor to end
 						origin = info.dwCursorPosition;
-						cnt = info.dwSize.X * (info.dwSize.Y - info.dwCursorPosition.Y) - info.dwCursorPosition.X; 
-					}				
+						cnt = info.dwSize.X * (info.dwSize.Y - info.dwCursorPosition.Y) - info.dwCursorPosition.X;
+					}
 					FillConsoleOutputAttribute(handle, info.wAttributes, cnt, origin, &tmp);
 					FillConsoleOutputCharacter(handle, ' ',              cnt, origin, &tmp);
 				}
@@ -380,11 +380,11 @@ int	VFPRINTF(HANDLE handle, const char *fmt, va_list argptr)
 					SHORT cnt;
 					DWORD tmp;
 					if(num==1)
-					{	
+					{
 						cnt = info.dwCursorPosition.X + 1;
 					}
 					else if(num==2)
-					{	
+					{
 						cnt = info.dwSize.X;
 					}
 					else// 0 and default
@@ -398,7 +398,7 @@ int	VFPRINTF(HANDLE handle, const char *fmt, va_list argptr)
 				else if( *q == 'H' || *q == 'f' )
 				{	// \033[#;#H - Cursor Position (CUP)
 					// \033[#;#f - Horizontal & Vertical Position
-					// The first # specifies the line number, the second # specifies the column. 
+					// The first # specifies the line number, the second # specifies the column.
 					// The default for both is 1
 					info.dwCursorPosition.X = (numbers[numpoint])?(numbers[numpoint]>>4)*10+((numbers[numpoint]&0x0F)-1):0;
 					info.dwCursorPosition.Y = (numpoint && numbers[numpoint-1])?(numbers[numpoint-1]>>4)*10+((numbers[numpoint-1]&0x0F)-1):0;
@@ -495,7 +495,7 @@ int	VFPRINTF(HANDLE handle, const char *fmt, va_list argptr)
 					--q;
 				}
 				// skip the sequencer and search again
-				p = q+1; 
+				p = q+1;
 				break;
 			}// end while
 		}
@@ -508,7 +508,7 @@ int	VFPRINTF(HANDLE handle, const char *fmt, va_list argptr)
 }
 
 int	FPRINTF(HANDLE handle, const char *fmt, ...)
-{	
+{
 	int ret;
 	va_list argptr;
 	va_start(argptr, fmt);
@@ -551,7 +551,7 @@ int	VFPRINTF(FILE *file, const char *fmt, va_list argptr)
 	{	// find the escape character
 		fprintf(file, "%.*s", (int)(q-p), p); // write up to the escape
 		if( q[1]!='[' )
-		{	// write the escape char (whatever purpose it has) 
+		{	// write the escape char (whatever purpose it has)
 			fprintf(file, "%.*s", 1, q);
 			p=q+1;	//and start searching again
 		}
@@ -561,11 +561,11 @@ int	VFPRINTF(FILE *file, const char *fmt, va_list argptr)
 			// assuming regular text is starting there
 
 			// skip escape and bracket
-			q=q+2;	
+			q=q+2;
 			while(1)
 			{
-				if( ISDIGIT(*q) ) 
-				{					
+				if( ISDIGIT(*q) )
+				{
 					++q;
 					// and next character
 					continue;
@@ -633,7 +633,7 @@ int	VFPRINTF(FILE *file, const char *fmt, va_list argptr)
 					--q;
 				}
 				// skip the sequencer and search again
-				p = q+1; 
+				p = q+1;
 				break;
 			}// end while
 		}
@@ -644,7 +644,7 @@ int	VFPRINTF(FILE *file, const char *fmt, va_list argptr)
 	return 0;
 }
 int	FPRINTF(FILE *file, const char *fmt, ...)
-{	
+{
 	int ret;
 	va_list argptr;
 	va_start(argptr, fmt);
@@ -678,7 +678,7 @@ int _vShowMessage(enum msg_type flag, const char *string, va_list ap)
 #if defined(DEBUGLOGMAP) || defined(DEBUGLOGCHAR) || defined(DEBUGLOGLOGIN)
 	FILE *fp;
 #endif
-	
+
 	if (!string || *string == '\0') {
 		ShowError("Texto vazio passado ao _vShowMessage().\n");
 		return 1;

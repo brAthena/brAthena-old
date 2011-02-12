@@ -158,15 +158,15 @@ WORKER_FUNC_DECLARE(getinput); // worker for the input buffer
 //
 // On windows a thread is used (both threads have access to the same data).
 // The worker threads starts suspended and is resumed when data is required.
-// After getting the data, the worker thread updates the state variable and 
+// After getting the data, the worker thread updates the state variable and
 // suspends itself.
 //
-// A mutex is used to synchronize access to the state variable between the 
-// threads. Access and updates to state are probably already atomic so the 
+// A mutex is used to synchronize access to the state variable between the
+// threads. Access and updates to state are probably already atomic so the
 // mutex shouldn't be needed, but using it is more correct so it stays.
 //
-// Note: The Worker thread only starts to get input data when further data is 
-//    requested. This is a design choise and brings no real advantage or 
+// Note: The Worker thread only starts to get input data when further data is
+//    requested. This is a design choise and brings no real advantage or
 //    disadvantage I can think of.
 //
 
@@ -261,13 +261,13 @@ int input_final(void)
 // --=== Asynchronous console input ===--
 //
 // On the other systems a process is used and pipes are used to comunicate.
-// The worker process receives status updates through one of the pipes either 
+// The worker process receives status updates through one of the pipes either
 // requesting data or ending the worker.
-// The other pipe is used by the worker to send the input data and is checked 
+// The other pipe is used by the worker to send the input data and is checked
 // for data by the main thread in the timer function.
 //
-// Note: The Worker thread only starts to get input data when further data is 
-//    requested. This is a design choise and brings no real advantage or 
+// Note: The Worker thread only starts to get input data when further data is
+//    requested. This is a design choise and brings no real advantage or
 //    disadvantage I can think of.
 //
 
@@ -279,7 +279,7 @@ void input_setstate(char state)
 {
 	if( state == INPUT_READY && input_getstate() == INPUT_READING )
 	{// send data from the worker to the main process
-		write(buf.data_pipe[PIPE_WRITE], &buf.len, sizeof(buf.len));		
+		write(buf.data_pipe[PIPE_WRITE], &buf.len, sizeof(buf.len));
 		write(buf.data_pipe[PIPE_WRITE], &buf.arr, buf.len);
 	} else if( state == INPUT_WAITING ){
 		if( buf.close_unused_flag == 0 )

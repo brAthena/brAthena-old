@@ -79,10 +79,10 @@ bool storage_fromstr(char* str, int* account_id, struct storage_data* p)
 		p->items[i].identify = tmp_int[4];
 		p->items[i].refine = tmp_int[5];
 		p->items[i].attribute = tmp_int[6];
-			
+
 		for(j = 0; j < MAX_SLOTS && tmp_str[0] && sscanf(tmp_str, ",%d%[0-9,-]",&tmp_int[0], tmp_str) > 0; j++)
 			p->items[i].card[j] = tmp_int[0];
-			
+
 		next += len;
 		if (str[next] == ' ')
 			next++;

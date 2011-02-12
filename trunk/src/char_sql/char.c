@@ -240,7 +240,7 @@ void set_char_online(int map_id, int char_id, int account_id)
 {
 	struct online_char_data* character;
 	struct mmo_charstatus *cp;
-	
+
 	//Update DB
 	if( SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `online`='1' WHERE `char_id`='%d'", char_db, char_id) )
 		Sql_ShowDebug(sql_handle);
@@ -273,7 +273,7 @@ void set_char_online(int map_id, int char_id, int account_id)
 
 	//Notify login server
 	if (login_fd > 0 && !session[login_fd]->flag.eof)
-	{	
+	{
 		WFIFOHEAD(login_fd,6);
 		WFIFOW(login_fd,0) = 0x272b;
 		WFIFOL(login_fd,2) = account_id;
@@ -566,7 +566,7 @@ int mmo_char_tosql(int char_id, struct mmo_charstatus* p)
 			if( SQL_ERROR == Sql_QueryStr(sql_handle, StringBuf_Value(&buf)) )
 				Sql_ShowDebug(sql_handle);
 		}
-		
+
 		strcat(save_status, " memo");
 	}
 
@@ -766,7 +766,7 @@ int memitemdata_to_sql(const struct item items[], int max, int id, int tableswit
 					for( j = 0; j < MAX_SLOTS; ++j )
 						StringBuf_Printf(&buf, ", `card%d`=%d", j, items[i].card[j]);
 					StringBuf_Printf(&buf, " WHERE `id`='%d' LIMIT 1", item.id);
-					
+
 					if( SQL_ERROR == Sql_QueryStr(sql_handle, StringBuf_Value(&buf)) )
 						Sql_ShowDebug(sql_handle);
 				}
@@ -923,7 +923,7 @@ int mmo_char_fromsql(int char_id, struct mmo_charstatus* p, bool load_everything
 #endif
 
 	memset(p, 0, sizeof(struct mmo_charstatus));
-	
+
 	if (save_log) ShowInfo("Carregamento de personagem requerido (%d)\n", char_id);
 
 	stmt = SqlStmt_Malloc(sql_handle);
@@ -1003,7 +1003,7 @@ int mmo_char_fromsql(int char_id, struct mmo_charstatus* p, bool load_everything
 	{
 		ShowError("Id de personagem inexistente requerido: %d!\n", char_id);
 		SqlStmt_Free(stmt);
-		return 0;	
+		return 0;
 	}
 	p->last_point.map = mapindex_name2id(last_map);
 	p->save_point.map = mapindex_name2id(save_map);
@@ -1199,7 +1199,7 @@ int rename_char_sql(struct char_session_data *sd, int char_id)
 
 	if( sd->new_name[0] == 0 ) // Not ready for rename
 		return 2;
-	
+
 	if( !mmo_char_fromsql(char_id, &char_dat, false) ) // Only the short data is needed.
 		return 2;
 
@@ -1457,11 +1457,11 @@ int delete_char_sql(int char_id)
 	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` USING `%s` JOIN `%s` ON `pet_id` = `card1`|`card2`<<16 WHERE `%s`.char_id = '%d' AND card0 = -256", pet_db, pet_db, cart_db, cart_db, char_id) )
 		Sql_ShowDebug(sql_handle);
 
-	/* remove homunculus */ 
+	/* remove homunculus */
 	if( hom_id )
 		mapif_homunculus_delete(hom_id);
 
-	/* remove mercenary data */ 
+	/* remove mercenary data */
 	mercenary_owner_delete(char_id);
 
 	/* delete char's friends list */
@@ -1494,11 +1494,11 @@ int delete_char_sql(int char_id)
 	/* delete character registry */
 	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `type`=3 AND `char_id`='%d'", reg_db, char_id) )
 		Sql_ShowDebug(sql_handle);
-	
+
 	/* delete skills */
 	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `char_id`='%d'", skill_db, char_id) )
 		Sql_ShowDebug(sql_handle);
-	
+
 #ifdef ENABLE_SC_SAVING
 	/* status changes */
 	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `account_id` = '%d' AND `char_id`='%d'", scdata_db, account_id, char_id) )
@@ -1810,7 +1810,7 @@ int parse_fromlogin(int fd)
 				ShowError("As senhas de comunicacao sao definidas em map_athena.conf e char_athena.conf\n");
 			} else {
 				ShowStatus("Conectado ao servidor de login (conexao #%d).\n", fd);
-				
+
 				//Send online accounts to login server.
 				send_accounts_tologin(INVALID_TIMER, gettick(), 0, 0);
 
@@ -2174,7 +2174,7 @@ int char_send_fame_list(int fd)
 {
 	int i, len = 8;
 	unsigned char buf[32000];
-	
+
 	WBUFW(buf,0) = 0x2b1b;
 
 	for(i = 0; i < fame_list_size_smith && smith_fame_list[i].id; i++) {
@@ -2293,7 +2293,7 @@ int parse_frommap(int fd)
 			ShowStatus("Servidor de mapas %d conectado: %d mapas, do IP %d.%d.%d.%d porta %d.\n",
 						id, j, CONVIP(server[id].ip), server[id].port);
 			ShowStatus("Servidor de mapas %d carregado completamente.\n", id);
-			
+
 			// send name for wisp to player
 			WFIFOHEAD(fd, 3 + NAME_LENGTH);
 			WFIFOW(fd,0) = 0x2afb;
@@ -2517,13 +2517,13 @@ int parse_frommap(int fd)
 				map_fd = server[map_id].fd;
 			//Char should just had been saved before this packet, so this should be safe. [Skotlex]
 			char_data = (struct mmo_charstatus*)uidb_get(char_db_,RFIFOL(fd,14));
-			if (char_data == NULL) 
+			if (char_data == NULL)
 			{	//Really shouldn't happen.
 				mmo_char_fromsql(RFIFOL(fd,14), &char_dat, true);
 				char_data = (struct mmo_charstatus*)uidb_get(char_db_,RFIFOL(fd,14));
 			}
 
-			if (map_fd >= 0 && session[map_fd] && char_data) 
+			if (map_fd >= 0 && session[map_fd] && char_data)
 			{	//Send the map server the auth of this player.
 				struct auth_node* node;
 
@@ -2780,7 +2780,7 @@ int parse_frommap(int fd)
 			set_all_offline(id);
 			RFIFOSKIP(fd,2);
 		break;
-		
+
 		case 0x2b19: // Character set online [Wizputer]
 			if (RFIFOREST(fd) < 10)
 				return 0;
@@ -2926,7 +2926,7 @@ int parse_frommap(int fd)
 		}
 		} // switch
 	} // while
-	
+
 	return 0;
 }
 
@@ -2935,7 +2935,7 @@ int parse_frommap(int fd)
 int search_mapserver(unsigned short map, uint32 ip, uint16 port)
 {
 	int i, j;
-	
+
 	for(i = 0; i < MAX_MAP_SERVERS; i++)
 	{
 		if (server[i].fd > 0
@@ -3250,7 +3250,7 @@ int parse_char(int fd)
 				//TODO: and perhaps send back a reply?
 				break;
 			}
-			
+
 			CREATE(session[fd]->session_data, struct char_session_data, 1);
 			sd = (struct char_session_data*)session[fd]->session_data;
 			sd->account_id = account_id;
@@ -3486,9 +3486,9 @@ int parse_char(int fd)
 			ShowInfo(CL_RED"Remocao de personagem requisitada: "CL_GREEN"%d (%d)"CL_RESET"\n", sd->account_id, cid);
 			memcpy(email, RFIFOP(fd,6), 40);
 			RFIFOSKIP(fd,( cmd == 0x68) ? 46 : 56);
-			
-			// Check if e-mail is correct 
-			if(strcmpi(email, sd->email) && //email does not matches and 
+
+			// Check if e-mail is correct
+			if(strcmpi(email, sd->email) && //email does not matches and
 			(
 				strcmp("a@a.com", sd->email) || //it is not default email, or
 				(strcmp("a@a.com", email) && strcmp("", email)) //email sent does not matches default
@@ -3515,7 +3515,7 @@ int parse_char(int fd)
 			for(ch = i; ch < MAX_CHARS-1; ch++)
 				sd->found_char[ch] = sd->found_char[ch+1];
 			sd->found_char[MAX_CHARS-1] = -1;
-			
+
 			/* Delete character */
 			if(delete_char_sql(cid)<0){
 				//can't delete the char
@@ -3565,7 +3565,7 @@ int parse_char(int fd)
 					i = 1;
 					safestrncpy(sd->new_name, name, NAME_LENGTH);
 				}
-				else 
+				else
 					i = 0;
 
 				WFIFOHEAD(fd, 4);
@@ -3840,7 +3840,7 @@ int check_connect_login_server(int tid, unsigned int tick, int id, intptr data)
 	session[login_fd]->func_parse = parse_fromlogin;
 	session[login_fd]->flag.server = 1;
 	realloc_fifo(login_fd, FIFOSIZE_SERVERLINK, FIFOSIZE_SERVERLINK);
-	
+
 	WFIFOHEAD(login_fd,86);
 	WFIFOW(login_fd,0) = 0x2710;
 	memcpy(WFIFOP(login_fd,2), userid, 24);
@@ -3853,7 +3853,7 @@ int check_connect_login_server(int tid, unsigned int tick, int id, intptr data)
 	WFIFOW(login_fd,82) = char_maintenance;
 	WFIFOW(login_fd,84) = char_new_display; //only display (New) if they want to [Kevin]
 	WFIFOSET(login_fd,86);
-	
+
 	return 1;
 }
 
@@ -3912,7 +3912,7 @@ int char_lan_config_read(const char *lancfgName)
 	FILE *fp;
 	int line_num = 0;
 	char line[1024], w1[64], w2[64], w3[64], w4[64];
-	
+
 	if((fp = fopen(lancfgName, "r")) == NULL) {
 		ShowWarning("Arquivo de configuracao do LAN Support nao encontrado: %s\n", lancfgName);
 		return 1;
@@ -3922,13 +3922,13 @@ int char_lan_config_read(const char *lancfgName)
 
 	while(fgets(line, sizeof(line), fp))
 	{
-		line_num++;		
+		line_num++;
 		if ((line[0] == '/' && line[1] == '/') || line[0] == '\n' || line[1] == '\n')
 			continue;
 
 		if(sscanf(line,"%[^:]: %[^:]:%[^:]:%[^\r\n]", w1, w2, w3, w4) != 4) {
-	
-			ShowWarning("Erro de sintaxe no arquivo de configuracao %s na linha %d.\n", lancfgName, line_num);	
+
+			ShowWarning("Erro de sintaxe no arquivo de configuracao %s na linha %d.\n", lancfgName, line_num);
 			continue;
 		}
 
@@ -3948,7 +3948,7 @@ int char_lan_config_read(const char *lancfgName)
 				ShowError("%s: Erro de configuracao: O servidor de personagens (%s) e servidor de mapas (%s) pertencem a sub-redes diferentes!\n", lancfgName, w3, w4);
 				continue;
 			}
-				
+
 			subnet_count++;
 		}
 	}
@@ -4263,7 +4263,7 @@ int do_init(int argc, char **argv)
 
 	inter_init_sql((argc > 2) ? argv[2] : inter_cfgName); // inter server √ ±‚»≠
 	ShowInfo("Carregamento das configuracoes do inter-server terminado.\n");
-	
+
 	ShowInfo("Inicializando servidor de personagens.\n");
 	auth_db = idb_alloc(DB_OPT_RELEASE_DATA);
 	online_char_db = idb_alloc(DB_OPT_RELEASE_DATA);
@@ -4319,7 +4319,7 @@ int do_init(int argc, char **argv)
 	{
 		//##TODO invoke a CONSOLE_START plugin event
 	}
-	
+
 	//Cleaning the tables for NULL entrys @ startup [Sirius]
 	//Chardb clean
 	ShowInfo("Limpando a tabela '%s'...\n", char_db);

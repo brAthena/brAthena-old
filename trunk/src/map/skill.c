@@ -302,7 +302,7 @@ int skill_calc_heal(struct block_list *src, struct block_list *target, int skill
 
 	if( sd && (skill = pc_skillheal_bonus(sd, skill_id)) )
 		hp += hp*skill/100;
-	
+
 	if( tsd && (skill = pc_skillheal2_bonus(tsd, skill_id)) )
 		hp += hp*skill/100;
 
@@ -335,8 +335,8 @@ int can_copy (struct map_session_data *sd, int skillid, struct block_list* bl)
 	}
 
 	//Added so plagarize can't copy agi/bless if you're undead since it damages you
-	if ((skillid == AL_INCAGI || skillid == AL_BLESSING || 
-		skillid == CASH_BLESSING || skillid == CASH_INCAGI || 
+	if ((skillid == AL_INCAGI || skillid == AL_BLESSING ||
+		skillid == CASH_BLESSING || skillid == CASH_INCAGI ||
 		skillid == MER_INCAGI || skillid == MER_BLESSING))
 		return 0;
 
@@ -521,13 +521,13 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 					rate += sd->addeff[i].arrow_rate;
 				if( !rate ) continue;
 
-				if( (sd->addeff[i].flag&(ATF_WEAPON|ATF_MAGIC|ATF_MISC)) != (ATF_WEAPON|ATF_MAGIC|ATF_MISC) ) 
-				{ // Trigger has attack type consideration. 
+				if( (sd->addeff[i].flag&(ATF_WEAPON|ATF_MAGIC|ATF_MISC)) != (ATF_WEAPON|ATF_MAGIC|ATF_MISC) )
+				{ // Trigger has attack type consideration.
 					if( (sd->addeff[i].flag&ATF_WEAPON && attack_type&BF_WEAPON) ||
 						(sd->addeff[i].flag&ATF_MAGIC && attack_type&BF_MAGIC) ||
 						(sd->addeff[i].flag&ATF_MISC && attack_type&BF_MISC) ) ;
 					else
-						continue; 
+						continue;
 				}
 
 				if( (sd->addeff[i].flag&(ATF_LONG|ATF_SHORT)) != (ATF_LONG|ATF_SHORT) )
@@ -955,7 +955,7 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 			}
 			if( rate )
 				skill_break_equip(src, EQP_WEAPON, rate, BCT_SELF);
-		}	
+		}
 		if( battle_config.equip_skill_break_rate && skillid != WS_CARTTERMINATION && skillid != ITM_TOMAHAWK )
 		{	// Cart Termination/Tomahawk won't trigger breaking data. Why? No idea, go ask Gravity.
 			// Target weapon breaking
@@ -1668,7 +1668,7 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 
 	damage = dmg.damage + dmg.damage2;
 
-	if( (skillid == AL_INCAGI || skillid == AL_BLESSING || 
+	if( (skillid == AL_INCAGI || skillid == AL_BLESSING ||
 		skillid == CASH_BLESSING || skillid == CASH_INCAGI ||
 		skillid == MER_INCAGI || skillid == MER_BLESSING) && tsd->sc.data[SC_CHANGEUNDEAD] )
 		damage = 1;
@@ -3584,7 +3584,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		break;
 
 	case PR_KYRIE:
-	case MER_KYRIE:	
+	case MER_KYRIE:
 		clif_skill_nodamage(bl,bl,skillid,skilllv,
 			sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv)));
 		break;
@@ -3944,7 +3944,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case GS_SPREADATTACK:
 		skill_area_temp[1] = 0;
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
-		map_foreachinrange(skill_area_sub, bl, skill_get_splash(skillid, skilllv), splash_target(src), 
+		map_foreachinrange(skill_area_sub, bl, skill_get_splash(skillid, skilllv), splash_target(src),
 			src, skillid, skilllv, tick, flag|BCT_ENEMY|SD_SPLASH|1, skill_castend_damage_id);
 		break;
 
@@ -4136,7 +4136,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			map_freeblock_unlock();
 			return 0;
 		}
-		clif_skill_nodamage(src,bl,skillid,-1,sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv)));		
+		clif_skill_nodamage(src,bl,skillid,-1,sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv)));
 		break;
 	case TK_RUN:
 		if (tsce)
@@ -4227,7 +4227,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 				mob_target(dstmd, src, skill_get_range2(src,skillid,skilllv));
 				clif_skill_nodamage(src,bl,skillid,skilllv,1);
 
-			} 
+			}
 			else
 				clif_skill_fail(sd,skillid,0,0);
 		}
@@ -4472,7 +4472,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	{
 		unsigned short location = 0;
 		int d = 0;
-		
+
 		//Rate in percent
 		if ( skillid == ST_FULLSTRIP ) {
 			i = 5 + 2*skilllv + (sstatus->dex - tstatus->dex)/5;
@@ -4512,7 +4512,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 
 		//Attempts to strip at rate i and duration d
 		if( (i = skill_strip_equip(bl, location, i, skilllv, d)) || skillid != ST_FULLSTRIP )
-			clif_skill_nodamage(src,bl,skillid,skilllv,i); 
+			clif_skill_nodamage(src,bl,skillid,skilllv,i);
 
 		//Nothing stripped.
 		if( sd && !i )
@@ -5899,7 +5899,7 @@ int skill_castend_id(int tid, unsigned int tick, int id, intptr data)
 			status_change_end(src, SC_RUN, -1);
 			flag = 1;
 		}
-		
+
 		if (ud->walktimer != INVALID_TIMER && ud->skillid != TK_RUN)
 			unit_stop_walking(src,1);
 
@@ -7218,7 +7218,7 @@ static int skill_unit_onplace (struct skill_unit *src, struct block_list *bl, un
 			int sec = skill_get_time2(sg->skill_id,sg->skill_lv);
 			if( status_change_start(bl,type,10000,sg->skill_lv,1,sg->group_id,0,sec,8) )
 			{
-				const struct TimerData* td = sc->data[type]?get_timer(sc->data[type]->timer):NULL; 
+				const struct TimerData* td = sc->data[type]?get_timer(sc->data[type]->timer):NULL;
 				if( td )
 					sec = DIFF_TICK(td->tick, tick);
 				map_moveblock(bl, src->bl.x, src->bl.y, tick);
@@ -7518,7 +7518,7 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 				}
 				break;
 				case WZ_STORMGUST: //SG counter does not reset per stormgust. IE: One hit from a SG and two hits from another will freeze you.
-					if (tsc) 
+					if (tsc)
 						tsc->sg_counter++; //SG hit counter.
 					if (skill_attack(skill_get_type(sg->skill_id),ss,&src->bl,bl,sg->skill_id,sg->skill_lv,tick,0) <= 0 && tsc)
 						tsc->sg_counter=0; //Attack absorbed.
@@ -7554,7 +7554,7 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 				int sec = skill_get_time2(sg->skill_id,sg->skill_lv);
 				if( status_change_start(bl,type,10000,sg->skill_lv,sg->group_id,0,0,sec, 8) )
 				{
-					const struct TimerData* td = tsc->data[type]?get_timer(tsc->data[type]->timer):NULL; 
+					const struct TimerData* td = tsc->data[type]?get_timer(tsc->data[type]->timer):NULL;
 					if( td )
 						sec = DIFF_TICK(td->tick, tick);
 					unit_movepos(bl, src->bl.x, src->bl.y, 0, 0);
@@ -8168,7 +8168,7 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 	if (lv <= 0 || sd->chatID) return 0;
 
 	if( battle_config.gm_skilluncond && pc_isGM(sd)>= battle_config.gm_skilluncond && sd->skillitem != skill )
-	{	//GMs don't override the skillItem check, otherwise they can use items without them being consumed! [Skotlex]	
+	{	//GMs don't override the skillItem check, otherwise they can use items without them being consumed! [Skotlex]
 		sd->state.arrow_atk = skill_get_ammotype(skill)?1:0; //Need to do arrow state check.
 		sd->spiritball_old = sd->spiritball; //Need to do Spiritball check.
 		return 1;
@@ -8655,7 +8655,7 @@ int skill_check_condition_castend(struct map_session_data* sd, short skill, shor
 		return 0;
 
 	if( battle_config.gm_skilluncond && pc_isGM(sd) >= battle_config.gm_skilluncond && sd->skillitem != skill )
-	{	//GMs don't override the skillItem check, otherwise they can use items without them being consumed! [Skotlex]	
+	{	//GMs don't override the skillItem check, otherwise they can use items without them being consumed! [Skotlex]
 		sd->state.arrow_atk = skill_get_ammotype(skill)?1:0; //Need to do arrow state check.
 		sd->spiritball_old = sd->spiritball; //Need to do Spiritball check.
 		return 1;
@@ -8674,7 +8674,7 @@ int skill_check_condition_castend(struct map_session_data* sd, short skill, shor
 			return 0;
 		}
 	}
-	
+
 	if( sd->skillitem == skill ) // Casting finished (Item skill or Hocus-Pocus)
 		return 1;
 
@@ -8981,7 +8981,7 @@ struct skill_condition skill_get_requirement(struct map_session_data* sd, short 
 			}
 			break;
 	}
-	
+
 	return req;
 }
 

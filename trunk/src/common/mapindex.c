@@ -27,7 +27,7 @@ const char* mapindex_getmapname(const char* string, char* output)
 {
 	static char buf[MAP_NAME_LENGTH];
 	char* dest = (output != NULL) ? output : buf;
-	
+
 	size_t len = strnlen(string, MAP_NAME_LENGTH_EXT);
 	if (len == MAP_NAME_LENGTH_EXT) {
 		ShowWarning("(mapindex_normalize_name) Map name '%*s' is too long!\n", 2*MAP_NAME_LENGTH_EXT, string);
@@ -35,11 +35,11 @@ const char* mapindex_getmapname(const char* string, char* output)
 	}
 	if (len >= 4 && stricmp(&string[len-4], ".gat") == 0)
 		len -= 4; // strip .gat extension
-	
+
 	len = min(len, MAP_NAME_LENGTH-1);
 	strncpy(dest, string, len+1);
 	memset(&dest[len], '\0', MAP_NAME_LENGTH-len);
-	
+
 	return dest;
 }
 
@@ -69,7 +69,7 @@ const char* mapindex_getmapname_ext(const char* string, char* output)
 	}
 
 	memset(&dest[len], '\0', MAP_NAME_LENGTH_EXT-len);
-	
+
 	return dest;
 }
 
@@ -158,7 +158,7 @@ void mapindex_init(void)
 	int last_index = -1;
 	int index;
 	char map_name[1024];
-	
+
 	memset (&indexes, 0, sizeof (indexes));
 	fp=fopen(mapindex_cfgfile,"r");
 	if(fp==NULL){

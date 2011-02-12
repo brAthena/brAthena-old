@@ -376,7 +376,7 @@ static void filelist_adjust(void)
 {
 	if (filelist == NULL)
 		return;
-	
+
 	if (filelist_entrys < filelist_maxentry) {
 		filelist = (FILELIST *)aRealloc(filelist, filelist_entrys * sizeof(FILELIST));
 		filelist_maxentry = filelist_entrys;
@@ -760,7 +760,7 @@ static void grfio_resourcecheck(void)
 		ShowStatus("Leitura de '"CL_WHITE"%d"CL_RESET"' entradas finalizada em '"CL_WHITE"%s"CL_RESET"'.\n", i, "resnametable.txt");
 		return;	// we're done here!
 	}
-	
+
 	// read resnametable from loaded GRF's, only if it cannot be loaded from the data directory
 	buf = (char *)grfio_reads("data\\resnametable.txt", &size);
 	if (buf) {

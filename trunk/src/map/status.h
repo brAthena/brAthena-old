@@ -17,7 +17,7 @@ struct status_change;
 extern unsigned long StatusChangeFlagTable[];
 
 
-// Status changes listing. These code are for use by the server. 
+// Status changes listing. These code are for use by the server.
 typedef enum sc_type {
 	SC_NONE = -1,
 
@@ -35,7 +35,7 @@ typedef enum sc_type {
 	SC_BLEEDING,
 	SC_DPOISON, //10
 	SC_COMMON_MAX = 10, // end
-	
+
 	//Next up, we continue on 20, to leave enough room for additional "common" ailments in the future.
 	SC_PROVOKE = 20,
 	SC_ENDURE,
@@ -276,7 +276,7 @@ typedef enum sc_type {
 	SC_SUMMER,
 	SC_EXPBOOST,
 	SC_ITEMBOOST,
-	SC_BOSSMAPINFO, 
+	SC_BOSSMAPINFO,
 	SC_LIFEINSURANCE, //260
 	SC_INCCRI,
 	//SC_INCDEF,
@@ -501,13 +501,13 @@ enum si_type {
 //	SI_FRIEND = 162,
 //	SI_FRIENDUP = 163,
 //	SI_SG_WARM = 164,
-	SI_WARM			= 165,	
-//	166 | The three show the exact same display: ultra red character (165, 166, 167)	
+	SI_WARM			= 165,
+//	166 | The three show the exact same display: ultra red character (165, 166, 167)
 //	167 | Their names would be SI_SG_SUN_WARM, SI_SG_MOON_WARM, SI_SG_STAR_WARM
 //	SI_EMOTION = 168,
 	SI_SUN_COMFORT		= 169,
-	SI_MOON_COMFORT		= 170,	
-	SI_STAR_COMFORT		= 171,	
+	SI_MOON_COMFORT		= 170,
+	SI_STAR_COMFORT		= 171,
 //	SI_EXPUP = 172,
 //	SI_GDSKILL_BATTLEORDER = 173,
 //	SI_GDSKILL_REGENERATION = 174,
@@ -719,10 +719,10 @@ enum si_type {
 	SI_STEALTHFIELD = 379,
 	SI_STEALTHFIELD_MASTER = 380,
 */
-	SI_MANU_ATK = 381, 
-	SI_MANU_DEF = 382, 
-	SI_SPL_ATK = 383, 
-	SI_SPL_DEF = 384, 
+	SI_MANU_ATK = 381,
+	SI_MANU_DEF = 382,
+	SI_SPL_ATK = 383,
+	SI_SPL_DEF = 384,
 //	SI_REPRODUCE = 385,
 	SI_MANU_MATK = 386,
 	SI_SPL_MATK = 387,
@@ -1095,7 +1095,7 @@ struct status_data {
 		speed,
 		amotion, adelay, dmotion,
 		mode;
-	short 
+	short
 		hit, flee, cri, flee2,
 		def2, mdef2,
 		aspd_rate;
@@ -1116,7 +1116,7 @@ struct regen_data_sub {
 	struct {
 		unsigned int hp,sp;
 	} tick;
-	
+
 	//Regen rates (where every 1 means +100% regen)
 	struct {
 		unsigned char hp,sp;
@@ -1133,13 +1133,13 @@ struct regen_data {
 	struct {
 		unsigned int hp,sp,shp,ssp;
 	} tick;
-	
+
 	//Regen rates (where every 1 means +100% regen)
 	struct {
 		unsigned char
 		hp,sp,shp,ssp;
 	} rate;
-	
+
 	struct {
 		unsigned walk:1; //Can you regen even when walking?
 		unsigned gc:1;	//Tags when you should have double regen due to GVG castle

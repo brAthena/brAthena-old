@@ -321,7 +321,7 @@ void inter_final(void)
 	inter_mercenary_sql_final();
 	inter_mail_sql_final();
 	inter_auction_sql_final();
-	
+
 	if (accreg_pt) aFree(accreg_pt);
 	return;
 }
@@ -398,7 +398,7 @@ int mapif_account_reg_reply(int fd,int account_id,int char_id, int type)
 	struct accreg *reg=accreg_pt;
 	WFIFOHEAD(fd, 13 + 5000);
 	inter_accreg_fromsql(account_id,char_id,reg,type);
-	
+
 	WFIFOW(fd,0)=0x3804;
 	WFIFOL(fd,4)=account_id;
 	WFIFOL(fd,8)=char_id;
@@ -499,7 +499,7 @@ int mapif_parse_WisRequest(int fd)
 		ShowError("inter: Mensagem Wis inexistente.\n");
 		return 0;
 	}
-	
+
 	safestrncpy(name, (char*)RFIFOP(fd,28), NAME_LENGTH); //Received name may be too large and not contain \0! [Skotlex]
 
 	Sql_EscapeStringLen(sql_handle, esc_name, name, strnlen(name, NAME_LENGTH));
@@ -579,7 +579,7 @@ int mapif_parse_WisReply(int fd)
 int mapif_parse_WisToGM(int fd)
 {
 	unsigned char buf[2048]; // 0x3003/0x3803 <packet_len>.w <wispname>.24B <min_gm_level>.w <message>.?B
-	
+
 	ShowDebug("Packet enviado de volta!\n");
 	memcpy(WBUFP(buf,0), RFIFOP(fd,0), RFIFOW(fd,2));
 	WBUFW(buf, 0) = 0x3803;
@@ -593,7 +593,7 @@ int mapif_parse_Registry(int fd)
 {
 	int j,p,len, max;
 	struct accreg *reg=accreg_pt;
-	
+
 	memset(accreg_pt,0,sizeof(struct accreg));
 	switch (RFIFOB(fd, 12)) {
 	case 3: //Character registry

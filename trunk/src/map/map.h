@@ -171,9 +171,9 @@ enum {
 // No Kill Steal Protection
 #define map_flag_ks(m) (map[m].flag.town || map[m].flag.pvp || map[m].flag.gvg || map[m].flag.battleground)
 
-//This stackable implementation does not means a BL can be more than one type at a time, but it's 
+//This stackable implementation does not means a BL can be more than one type at a time, but it's
 //meant to make it easier to check for multiple types at a time on invocations such as map_foreach* calls [Skotlex]
-enum bl_type { 
+enum bl_type {
 	BL_NUL   = 0x000,
 	BL_PC    = 0x001,
 	BL_MOB   = 0x002,
@@ -301,7 +301,7 @@ enum _sp {
 
 	// Mercenaries
 	SP_MERCFLEE=165, SP_MERCKILLS=189, SP_MERCFAITH=190,
-	
+
 	// original 1000-
 	SP_ATTACKRANGE=1000,	SP_ATKELE,SP_DEFELE,	// 1000-1002
 	SP_CASTRATE, SP_MAXHPRATE, SP_MAXSPRATE, SP_SPRATE, // 1003-1006
@@ -382,7 +382,7 @@ typedef enum {
 	CELL_CHKREACH,		// Same as PASS, but ignores the cell-stacking mod.
 	CELL_CHKNOPASS,		// non-passable cell (gat types 1 and 5)
 	CELL_CHKNOREACH,	// Same as NOPASS, but ignores the cell-stacking mod.
-	CELL_CHKSTACK,		// whether cell is full (reached cell stacking limit) 
+	CELL_CHKSTACK,		// whether cell is full (reached cell stacking limit)
 
 	CELL_CHKNPC,
 	CELL_CHKBASILICA,

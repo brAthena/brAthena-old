@@ -41,7 +41,7 @@ struct mercenary_data {
 
 	struct map_session_data *master;
 	int contract_timer;
-	
+
 	unsigned devotion_flag : 1;
 };
 

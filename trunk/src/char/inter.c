@@ -95,7 +95,7 @@ int inter_accreg_fromstr(const char *str, struct accreg *reg) {
 		return 1;
 
 	for(j = 0, p += n; j < ACCOUNT_REG_NUM; j++, p += n) {
-		if (sscanf(p, "%[^,],%[^ ] %n", reg->reg[j].str, reg->reg[j].value, &n) != 2) 
+		if (sscanf(p, "%[^,],%[^ ] %n", reg->reg[j].str, reg->reg[j].value, &n) != 2)
 			break;
 	}
 	reg->reg_num = j;
@@ -405,13 +405,13 @@ int mapif_disconnectplayer(int fd, int account_id, int char_id, int reason)
 {
 	if (fd < 0)
 		return -1;
-	
+
 	WFIFOHEAD(fd, 7);
 	WFIFOW(fd,0) = 0x2b1f;
 	WFIFOL(fd,2) = account_id;
 	WFIFOB(fd,6) = reason;
 	WFIFOSET(fd,7);
-	
+
 	return 0;
 }
 
@@ -574,7 +574,7 @@ int mapif_parse_Registry(int fd) {
 		case 1: //Acc Reg2, forward to login
 			return save_accreg2(RFIFOP(fd,4), RFIFOW(fd,2)-4);
 		default: //Error?
-			return 1; 
+			return 1;
 	}
 	reg = (struct accreg*)idb_ensure(accreg_db, RFIFOL(fd,4), create_accreg);
 
@@ -594,7 +594,7 @@ int mapif_parse_Registry(int fd) {
 
 // Request the value of all registries.
 int mapif_parse_RegistryRequest(int fd)
-{	
+{
 	RFIFOHEAD(fd);
 	//Load Char Registry
 	if (RFIFOB(fd,12))
@@ -687,7 +687,7 @@ int inter_parse_frommap(int fd) {
 	// interŽIŠÇŠ‚©‚ð’²‚×‚é
 	if (cmd < 0x3000 || cmd >= 0x3000 + ARRAYLENGTH(inter_recv_packet_length))
 		return 0;
-	
+
 	if (inter_recv_packet_length[cmd-0x3000] == 0) //This is necessary, because otherwise we return 2 and the char server will just hang waiting for packets! [Skotlex]
 		return 0;
 

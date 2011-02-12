@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0234 - 12/02/2011 [Dani]
+	* Limpeza de espaços desnecessários na pasta /src
+
 	r0229 - 12/02/2011 [Dani]
 	* Atualizado conforme eAthena 14702 (14691:14702)
 

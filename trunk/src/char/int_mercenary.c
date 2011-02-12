@@ -121,7 +121,7 @@ bool mapif_mercenary_load(int merc_id, int char_id, struct s_mercenary *merc)
 	Sql_FreeResult(sql_handle);
 	if( save_log )
 		ShowInfo("Mercenario carregado (%d - %d).\n", merc->mercenary_id, merc->char_id);
-	
+
 	return true;
 }
 

@@ -54,6 +54,6 @@ int lock_fclose (FILE *fp, const char* filename, int *info) {
 #endif
 		}
 	}
-	
+
 	return ret;
 }

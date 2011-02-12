@@ -260,7 +260,7 @@ static size_t ers_obj_entry_size(ERS self)
 /**
  * Destroy this instance of the manager.
  * The manager is actually only destroyed when all the instances are destroyed.
- * When destroying the manager a warning is shown if the manager has 
+ * When destroying the manager a warning is shown if the manager has
  * missing/extra entries.
  * @param self Interface of the entry manager
  * @see #ERLinkedList
@@ -340,9 +340,9 @@ static void ers_obj_destroy(ERS self)
 /**
  * Get a new instance of the manager that handles the specified entry size.
  * Size has to greater than 0.
- * If the specified size is smaller than a pointer, the size of a pointer is 
+ * If the specified size is smaller than a pointer, the size of a pointer is
  * used instead.
- * It's also aligned to ERS_ALIGNED bytes, so the smallest multiple of 
+ * It's also aligned to ERS_ALIGNED bytes, so the smallest multiple of
  * ERS_ALIGNED that is greater or equal to size is what's actually used.
  * @param The requested size of the entry in bytes
  * @return Interface of the object
@@ -402,7 +402,7 @@ ERS ers_new(uint32 size)
 /**
  * Print a report about the current state of the Entry Reusage System.
  * Shows information about the global system and each entry manager.
- * The number of entries are checked and a warning is shown if extra reusable 
+ * The number of entries are checked and a warning is shown if extra reusable
  * entries are found.
  * The extra entries are included in the count of reusable entries.
  * @see #ERLinkedList
@@ -479,7 +479,7 @@ void ers_report(void)
  * The system is left as if no instances or entries had ever been allocated.
  * All previous entries and instances of the managers become invalid.
  * The use of this is NOT recommended.
- * It should only be used in extreme situations to make shure all the memory 
+ * It should only be used in extreme situations to make shure all the memory
  * allocated by this system is released.
  * @see #ERS_impl
  * @see #ers_root

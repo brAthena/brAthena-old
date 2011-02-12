@@ -7,7 +7,7 @@
 #include "../common/cbasetypes.h"
 
 // Q: What are the 'a'-variant allocation functions?
-// A: They allocate memory from the stack, which is automatically 
+// A: They allocate memory from the stack, which is automatically
 //    freed when the invoking function returns.
 //    But it's not portable (http://c-faq.com/malloc/alloca.html)
 //    and I have doubts our implementation works.

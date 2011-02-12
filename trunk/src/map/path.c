@@ -146,7 +146,7 @@ static int add_path(int *heap,struct tmp_path *tp,int x,int y,int dist,int befor
 
 /*==========================================
  * Find the closest reachable cell, 'count' cells away from (x0,y0) in direction (dx,dy).
- * 
+ *
  * ‚«”ò‚Î‚µ‚½‚ ‚Æ‚ÌÀ•W‚ðŠ“¾
  *------------------------------------------*/
 int path_blownpos(int m,int x0,int y0,int dx,int dy,int count)
@@ -166,7 +166,7 @@ int path_blownpos(int m,int x0,int y0,int dx,int dy,int count)
 		dx=(dx>0)?1:((dx<0)?-1:0);
 		dy=(dy>0)?1:((dy<0)?-1:0);
 	}
-	
+
 	while( count > 0 && (dx != 0 || dy != 0) )
 	{
 		if( !map_getcellp(md,x0+dx,y0+dy,CELL_CHKPASS) )
@@ -327,7 +327,7 @@ bool path_search(struct walkpath_data *wpd,int m,int x0,int y0,int x1,int y1,int
 		wpd->path_pos = 0;
 		return true;
 	}
-	
+
 	if( flag&1 )
 		return false;
 
@@ -396,7 +396,7 @@ bool path_search(struct walkpath_data *wpd,int m,int x0,int y0,int x1,int y1,int
 
 	if( !(x==x1 && y==y1) ) // will never happen...
 		return false;
-	
+
 	for(len=0,i=rp;len<100 && i!=calc_index(x0,y0);i=tp[i].before,len++);
 	if(len==100 || len>=sizeof(wpd->path))
 		return false;
@@ -444,7 +444,7 @@ unsigned int distance(int dx, int dy)
 	//There appears to be something wrong with the aproximation below when either dx/dy is 0! [Skotlex]
 	if ( dx == 0 ) return dy;
 	if ( dy == 0 ) return dx;
-	
+
 	if ( dx < dy )
 	{
 		min = dx;

@@ -131,7 +131,7 @@ int export_symbol(void* var, size_t offset)
 		offset = call_table_size;
 
 	if( offset >= max_call_table )
-	{// realloc if not large enough  
+	{// realloc if not large enough
 		max_call_table = 1 + offset;
 		RECREATE(plugin_call_table, void*, max_call_table);
 
@@ -173,7 +173,7 @@ Plugin* plugin_open(const char* filename)
 	int init_flag = 1;
 
 	//ShowDebug("plugin_open(%s)\n", filename);
-	
+
 	// Check if the plugin has been loaded before
 	plugin = plugin_head;
 	while (plugin) {
