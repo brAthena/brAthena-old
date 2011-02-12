@@ -439,7 +439,7 @@ int pc_makesavestatus(struct map_session_data *sd)
 
   	//Only copy the Cart/Peco/Falcon options, the rest are handled via
 	//status change load/saving. [Skotlex]
-	sd->status.option = sd->sc.option&(OPTION_CART|OPTION_FALCON|OPTION_RIDING);
+	sd->status.option = sd->sc.option&(OPTION_CART|OPTION_FALCON|OPTION_RIDING|OPTION_RIDING_DRAGON|OPTION_WUG|OPTION_RIDING_WUG|OPTION_MADO);
 
 	if (sd->sc.data[SC_JAILED])
 	{	//When Jailed, do not move last point.
@@ -5637,6 +5637,14 @@ int pc_resetskill(struct map_session_data* sd, int flag)
 			i &= ~OPTION_CART;
 		if( i&OPTION_FALCON && pc_checkskill(sd, HT_FALCON) )
 			i &= ~OPTION_FALCON;
+		if( i&(OPTION_RIDING_DRAGON) && pc_checkskill(sd, RK_DRAGONTRAINING) )
+			i &= ~(OPTION_RIDING_DRAGON);
+		if( i&OPTION_WUG && pc_checkskill(sd, RA_WUGMASTERY) )
+			i &= ~OPTION_WUG;
+		if( i&OPTION_RIDING_WUG && pc_checkskill(sd, RA_WUGRIDER) )
+			i &= ~OPTION_RIDING_WUG;
+		if( i&OPTION_MADO && (sd->class_ == MAPID_MECHANIC || sd->class_ == MAPID_MECHANIC_T) )
+			i &= ~OPTION_MADO;
 
 		if( i != sd->sc.option )
 			pc_setoption(sd, i);
@@ -6532,6 +6540,8 @@ int pc_jobchange(struct map_session_data *sd,int job, int upper)
 		i&=~OPTION_CART;
 	if(i&OPTION_FALCON && !pc_checkskill(sd, HT_FALCON))
 		i&=~OPTION_FALCON;
+	if(i&(OPTION_RIDING_DRAGON) && !pc_checkskill(sd, RK_DRAGONTRAINING))
+		i&=~(OPTION_RIDING_DRAGON);
 
 	if(i != sd->sc.option)
 		pc_setoption(sd, i);
@@ -6656,15 +6666,18 @@ int pc_setoption(struct map_session_data *sd,int type)
 	sd->sc.option=type;
 	clif_changeoption(&sd->bl);
 
-	if (type&OPTION_RIDING && !(p_type&OPTION_RIDING) && (sd->class_&MAPID_BASEMASK) == MAPID_SWORDMAN)
-	{	//We are going to mount. [Skotlex]
-		clif_status_load(&sd->bl,SI_RIDING,1);
-		status_calc_pc(sd,0); //Mounting/Umounting affects walk and attack speeds.
-	}
-	else if (!(type&OPTION_RIDING) && p_type&OPTION_RIDING && (sd->class_&MAPID_BASEMASK) == MAPID_SWORDMAN)
-	{	//We are going to dismount.
-		clif_status_load(&sd->bl,SI_RIDING,0);
-		status_calc_pc(sd,0); //Mounting/Umounting affects walk and attack speeds.
+	if( (sd->class_&MAPID_UPPERMASK) == MAPID_KNIGHT || (sd->class_&MAPID_UPPERMASK) == MAPID_CRUSADER )
+	{
+		if( (type&OPTION_RIDING && !(p_type&OPTION_RIDING)) || (type&OPTION_RIDING_DRAGON && !(p_type&OPTION_RIDING_DRAGON) && (sd->class_&MAPID_UPPERMASK_THIRD) == MAPID_RUNE_KNIGHT) )
+		{ // Mounting
+			clif_status_load(&sd->bl,SI_RIDING,1);
+			status_calc_pc(sd,0);
+		}
+		else if( (!(type&OPTION_RIDING) && p_type&OPTION_RIDING) || (!(type&OPTION_RIDING_DRAGON) && p_type&OPTION_RIDING_DRAGON && (sd->class_&MAPID_UPPERMASK_THIRD) == MAPID_RUNE_KNIGHT) )
+		{ // Dismount
+			clif_status_load(&sd->bl,SI_RIDING,0);
+			status_calc_pc(sd,0);
+		}
 	}
 
 	if(type&OPTION_CART && !(p_type&OPTION_CART))
@@ -6768,14 +6781,70 @@ int pc_setfalcon(TBL_PC* sd, int flag)
  *------------------------------------------*/
 int pc_setriding(TBL_PC* sd, int flag)
 {
-	if( flag ){
-		if( pc_checkskill(sd,KN_RIDING) > 0 ) // ライディングスキル所持
-			pc_setoption(sd, sd->sc.option|OPTION_RIDING);
-	} else if( pc_isriding(sd) ){
-		pc_setoption(sd, sd->sc.option&~OPTION_RIDING);
+	int option = 0, skillnum = 0;
+
+	if( sd->sc.data[SC__GROOMY] )
+		return 0;
+	
+	if( (sd->class_&MAPID_UPPERMASK) == MAPID_KNIGHT || (sd->class_&MAPID_UPPERMASK) == MAPID_CRUSADER )
+	{
+		if( (sd->class_&MAPID_UPPERMASK_THIRD) == MAPID_RUNE_KNIGHT )
+		{
+			option = (pc_isriding(sd,OPTION_RIDING_DRAGON)) ? OPTION_RIDING_DRAGON :
+				(flag == 2) ? OPTION_BLACK_DRAGON :
+				(flag == 3) ? OPTION_WHITE_DRAGON :
+				(flag == 4) ? OPTION_BLUE_DRAGON :
+				(flag == 5) ? OPTION_RED_DRAGON : OPTION_GREEN_DRAGON;
+			skillnum = RK_DRAGONTRAINING;
+		}
+		else
+		{
+			option = OPTION_RIDING;
+			skillnum = KN_RIDING;
+		}
+ 	}
+	else if( sd->class_&JOBL_THIRD )
+	{
+		if( (sd->class_&MAPID_UPPERMASK) == MAPID_HUNTER )
+		{
+			option = OPTION_RIDING_WUG;
+			skillnum = RA_WUGRIDER;
+		}
+		else if( (sd->class_&MAPID_UPPERMASK) == MAPID_BLACKSMITH )
+			option = OPTION_MADO;
 	}
 
-	return 0;
+	if( !option )
+		return -1;
+
+	if( flag )
+	{		
+		if( option&OPTION_MADO || (pc_checkskill(sd,skillnum) > 0) )
+			pc_setoption(sd, sd->sc.option|option);
+	}
+	else if( pc_isriding(sd,OPTION_RIDING|(OPTION_RIDING_DRAGON)|OPTION_RIDING_WUG|OPTION_MADO) )
+		pc_setoption(sd, sd->sc.option&~option);
+
+ 	return 0;
+}
+bool pc_isriding( struct map_session_data *sd, int flag )
+{
+	bool isriding = false;
+
+	if( (sd->class_&MAPID_UPPERMASK) == MAPID_KNIGHT || (sd->class_&MAPID_UPPERMASK) == MAPID_CRUSADER )
+	{
+		if( (sd->class_&MAPID_UPPERMASK_THIRD) == MAPID_RUNE_KNIGHT )
+			isriding = (bool)( sd->sc.option&OPTION_RIDING_DRAGON && flag&OPTION_RIDING_DRAGON );
+		else
+			isriding = (bool)( sd->sc.option&OPTION_RIDING && flag&OPTION_RIDING );
+	}
+
+	if( (sd->class_&MAPID_UPPERMASK_THIRD) == MAPID_RANGER )
+		isriding = (bool)( sd->sc.option&OPTION_RIDING_WUG && flag&OPTION_RIDING_WUG );
+	if( (sd->class_&MAPID_UPPERMASK_THIRD) == MAPID_MECHANIC )
+		isriding = (bool)( sd->sc.option&OPTION_MADO && flag&OPTION_MADO );
+
+	return isriding;
 }
 
 /*==========================================

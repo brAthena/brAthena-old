@@ -539,7 +539,7 @@ extern int duel_count;
 #define pc_ischasewalk(sd)    ( (sd)->sc.option&OPTION_CHASEWALK )
 #define pc_iscarton(sd)       ( (sd)->sc.option&OPTION_CART )
 #define pc_isfalcon(sd)       ( (sd)->sc.option&OPTION_FALCON )
-#define pc_isriding(sd)       ( (sd)->sc.option&OPTION_RIDING )
+#define pc_iswarg(sd)         ( (sd)->sc.option&OPTION_WUG )
 #define pc_isinvisible(sd)    ( (sd)->sc.option&OPTION_INVISIBLE )
 #define pc_is50overweight(sd) ( (sd)->weight*100 >= (sd)->max_weight*battle_config.natural_heal_weight_rate )
 #define pc_is90overweight(sd) ( (sd)->weight*10 >= (sd)->max_weight*9 )
@@ -596,6 +596,8 @@ int pc_payzeny(struct map_session_data*,int);
 int pc_additem(struct map_session_data*,struct item*,int);
 int pc_getzeny(struct map_session_data*,int);
 int pc_delitem(struct map_session_data*,int,int,int,short);
+
+bool pc_isriding( struct map_session_data *sd, int flag );
 
 // Special Shop System
 void pc_paycash(struct map_session_data *sd, int price, int points);

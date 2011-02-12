@@ -8668,7 +8668,7 @@ void clif_parse_LoadEndAck(int fd,struct map_session_data *sd)
 		if (sd->sc.option&OPTION_FALCON)
 			clif_status_load(&sd->bl, SI_FALCON, 1);
 
-		if (sd->sc.option&OPTION_RIDING)
+		if( sd->sc.option&OPTION_RIDING || sd->sc.option&(OPTION_RIDING_DRAGON) )
 			clif_status_load(&sd->bl, SI_RIDING, 1);
 
 		if(sd->status.manner < 0)
@@ -9926,7 +9926,7 @@ void clif_parse_GetItemFromCart(int fd,struct map_session_data *sd)
 void clif_parse_RemoveOption(int fd,struct map_session_data *sd)
 {
 	//Can only remove Cart/Riding/Falcon.
-	pc_setoption(sd,sd->sc.option&~(OPTION_CART|OPTION_RIDING|OPTION_FALCON));
+	pc_setoption(sd,sd->sc.option&~(OPTION_CART|OPTION_RIDING|OPTION_FALCON|(OPTION_RIDING_DRAGON)|OPTION_MADO));
 }
 
 /*==========================================

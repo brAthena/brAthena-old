@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0234 - 12/02/2011 [Protimus]
+	* Adicionada parte do código de montarias das 3° classes.
+	- Necessário revisar e revisar ou criar habilidades de requerimento da montaria de classes.
+
 	r0233 - 12/02/2011 [Dani]
 	* Correção de erro de compilação originado na r230
 	- Desculpem, erro meu.

@@ -746,10 +746,10 @@ int battle_addmastery(struct map_session_data *sd,struct block_list *target,int 
 		case W_1HSPEAR:
 		case W_2HSPEAR:
 			if((skill = pc_checkskill(sd,KN_SPEARMASTERY)) > 0) {
-				if(!pc_isriding(sd))
-					damage += (skill * 4);
+				if(!pc_isriding(sd, OPTION_RIDING|OPTION_RIDING_DRAGON))
+					damage += (skill * (4 + pc_checkskill(sd,RK_DRAGONTRAINING)));
 				else
-					damage += (skill * 5);
+					damage += (skill * (5 + pc_checkskill(sd,RK_DRAGONTRAINING)));
 			}
 			break;
 		case W_1HAXE:
@@ -2701,7 +2701,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 		}
 
 		if(!flag.imdef){
-			char mdef = tstatus->mdef;
+			short mdef = tstatus->mdef;
 			int mdef2= tstatus->mdef2;
 			if(sd) {
 				i = sd->ignore_mdef[is_boss(target)?RC_BOSS:RC_NONBOSS];

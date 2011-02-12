@@ -4576,30 +4576,99 @@ ACMD_FUNC(mapinfo)
 }
 
 /*==========================================
- *
+ * Montarias para todas as classes.
  *------------------------------------------*/
-ACMD_FUNC(mount_peco)
+ACMD_FUNC(mount)
 {
+	int msg[4] = { 0, 0, 0, 0 }, option = 0, skillnum = 0, val, riding_flag = 0;
 	nullpo_retr(-1, sd);
 
-	if (!pc_isriding(sd)) { // if actually no peco
-		if (!pc_checkskill(sd, KN_RIDING))
-		{
-			clif_displaymessage(fd, msg_txt(213)); // You can not mount a Peco Peco with your current job.
-			return -1;
-		}
+	if( !message || !*message || sscanf(message, "%d", &val) < 1 || val < 1 || val > 5 )
+		val = 0; 
 
-		if (sd->disguise)
+	if( (sd->class_&MAPID_UPPERMASK) == MAPID_KNIGHT || (sd->class_&MAPID_UPPERMASK) == MAPID_CRUSADER )
+	{
+		if( sd->class_&JOBL_THIRD )
 		{
-			clif_displaymessage(fd, msg_txt(212)); // Cannot mount a Peco Peco while in disguise.
-			return -1;
+			if( (sd->class_&MAPID_UPPERMASK) == MAPID_KNIGHT )
+			{ 
+				if( pc_isriding(sd,OPTION_RIDING_DRAGON) )
+					riding_flag = 1;
+				msg[0] = 700; msg[1] = 702; msg[2] = 701; msg[3] = 703;
+				option = pc_isriding(sd,OPTION_RIDING_DRAGON) ? OPTION_RIDING_DRAGON :
+					(val == 2) ? OPTION_BLACK_DRAGON :
+					(val == 3) ? OPTION_WHITE_DRAGON :
+					(val == 4) ? OPTION_BLUE_DRAGON :
+					(val == 5) ? OPTION_RED_DRAGON :
+					OPTION_GREEN_DRAGON;
+				skillnum = RK_DRAGONTRAINING;
+			}
+			else
+			{ 
+				if( pc_isriding(sd,OPTION_RIDING) )
+					riding_flag = 1;
+				msg[0] = 714; msg[1] = 716; msg[2] = 715; msg[3] = 717;
+				option = OPTION_RIDING;
+				skillnum = KN_RIDING;
+			}
 		}
+		else
+		{ 
+			if( pc_isriding(sd,OPTION_RIDING) )
+				riding_flag = 1;
+			msg[0] = 102; msg[1] = 214; msg[2] = 213; msg[3] = 212;
+			option = OPTION_RIDING;
+			skillnum = KN_RIDING;
+		}
+	}
+	else if( sd->class_&JOBL_THIRD )
+	{
+		if( (sd->class_&MAPID_UPPERMASK) == MAPID_HUNTER )
+		{ 
+			if( pc_iswarg(sd) )
+				pc_setoption(sd,sd->sc.option&~OPTION_WUG);
+			if( pc_isriding(sd,OPTION_RIDING_WUG) )
+				riding_flag = 1;
+			msg[0] = 704; msg[1] = 706; msg[2] = 705; msg[3] = 707;
+			option = OPTION_RIDING_WUG;
+			skillnum = RA_WUGRIDER;
+		}
+		else if( (sd->class_&MAPID_UPPERMASK) == MAPID_BLACKSMITH )
+		{
+			if( pc_isriding(sd, OPTION_MADO) )
+				riding_flag = 1;
+			msg[0] = 710; msg[1] = 712; msg[2] = 711; msg[3] = 713;
+			option = OPTION_MADO;
+		}
+	}
 
-		pc_setoption(sd, sd->sc.option | OPTION_RIDING);
-		clif_displaymessage(fd, msg_txt(102)); // You have mounted a Peco Peco.
-	} else {	//Dismount
-		pc_setoption(sd, sd->sc.option & ~OPTION_RIDING);
-		clif_displaymessage(fd, msg_txt(214)); // You have released your Peco Peco.
+	if( !option )
+	{
+		clif_displaymessage(fd, "Sua classe não permite montarias.");
+		return -1;
+	}
+
+	if( skillnum && !pc_checkskill(sd,skillnum) )
+	{ 
+		clif_displaymessage(fd, msg_txt(msg[2])); 
+		return -1;
+	}
+	if( sd->disguise )
+	{ 
+		clif_displaymessage(fd, msg_txt(msg[3])); 
+		return -1;
+	}
+	if( riding_flag )
+	{ 
+		pc_setoption(sd, sd->sc.option & ~option);
+		if( option == OPTION_RIDING_WUG )
+			pc_setoption(sd, sd->sc.option&OPTION_WUG);
+		clif_displaymessage(fd, msg_txt(msg[1])); 
+	}
+	else
+	{ 
+		pc_setoption(sd, sd->sc.option | option);
+		clif_displaymessage(fd, msg_txt(msg[0])); 
 	}
 
 	return 0;
@@ -5289,7 +5358,7 @@ ACMD_FUNC(disguise)
 		return -1;
 	}
 
-	if(pc_isriding(sd))
+	if( pc_isriding(sd, OPTION_RIDING|OPTION_RIDING_DRAGON|OPTION_RIDING_WUG|OPTION_MADO) )
 	{
 		//FIXME: wrong message [ultramage]
 		//clif_displaymessage(fd, msg_txt(227)); // Character cannot wear disguise while riding a PecoPeco.
@@ -8865,8 +8934,6 @@ AtCommandInfo atcommand_info[] = {
 	{ "unbanish",          60,60,     atcommand_char_unban },
 	{ "charunban",         60,60,     atcommand_char_unban },
 	{ "charunbanish",      60,60,     atcommand_char_unban },
-	{ "mount",             20,20,     atcommand_mount_peco },
-	{ "mountpeco",         20,20,     atcommand_mount_peco },
 	{ "guildspy",          60,60,     atcommand_guildspy },
 	{ "partyspy",          60,60,     atcommand_partyspy },
 	{ "repairall",         60,60,     atcommand_repairall },
@@ -9015,6 +9082,7 @@ AtCommandInfo atcommand_info[] = {
 	{ "font",               1,1,      atcommand_font },
 // brAthena Modificações
     { "whosell",            1,1,      atcommand_whosell },
+	{ "mount",             20,20,     atcommand_mount },
 
 };
 
