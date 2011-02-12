@@ -489,9 +489,9 @@
 //2024,Bradium Golem,71428
 //2069,Iara,71428
 //2070,Piranha,71428
-//2071,Headless Mule,71428
-//2072,Jaguar,71428
-//2073,Toucan,71428
+//2071,Mula Sem-Cabeça,71428
+//2072,Onça Pintada,71428
+//2073,Tucano,71428
 //2074,Curupira,71428
 //2083,One-Horn Scaraba,71428
 //2084,Two-Horn Scaraba,71428

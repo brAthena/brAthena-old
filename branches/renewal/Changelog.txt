@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0239 - 12/02/2011 [Dani]
+	* Revisão do item_db comparando com o item_db da Trunk
+
 	r0238 - 12/02/2011 [Protimus]
 	* Adicionada habilidade RK_DRAGONBREATH (Sopro do Dragão).
 	- Fórmula baseada no iROWiki e testes realizados no iRO.

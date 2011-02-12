@@ -12,7 +12,7 @@
 // |----------------------------------------------------------------------------|
 // | Criado por: brAthena Dev. Team                                             |
 // |----------------------------------------------------------------------------|
-// | Versões brA: 1.0                                                           |
+// | Versão brA: 1.0                                                            |
 // |----------------------------------------------------------------------------|
 // | Descrição: NPC que remove cartas com variáveis que podem ser alteradas     |
 // | para mudar o preço, os ítens necessários ou as chances de se remover uma   |

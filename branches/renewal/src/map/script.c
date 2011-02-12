@@ -5414,7 +5414,7 @@ BUILDIN_FUNC(countitem2)
 	int i;
 	struct item_data* id = NULL;
 	struct script_data* data;
-	
+
 	TBL_PC* sd = script_rid2sd(st);
 	if (!sd) {
 		script_pushint(st,0);
@@ -12398,6 +12398,7 @@ BUILDIN_FUNC(autoequip)
 	struct item_data *item_data;
 	nameid=script_getnum(st,2);
 	flag=script_getnum(st,3);
+
 	if( ( item_data = itemdb_exists(nameid) ) == NULL )
 	{
 		ShowError("buildin_autoequip: Invalid item '%d'.\n", nameid);

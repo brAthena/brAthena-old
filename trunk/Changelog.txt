@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0239 - 12/02/2011 [Dani]
+	* Remoção de features posteriores ao Renewal
+	* Revisão do item_db comparando com o item_db do Renewal
+	* Adição dos novos scripts personalizados no launcher
+
 	r0237 - 12/02/2011 [Dani]
 	* Padrão de postagem dos sql-files revisto
 	- A partir de hoje, estarão no root da /sql-files, os upgrades do eA
