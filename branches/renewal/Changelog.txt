@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0233 - 12/02/2011 [Dani]
+	* Correção de erro de compilação originado na r230
+	- Desculpem, erro meu.
+
 	r0230 - 12/02/2011 [Dani]
 	* Atualizado conforme eAthena 14702 (14691:14702)
 

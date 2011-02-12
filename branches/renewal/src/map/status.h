@@ -1166,7 +1166,7 @@ enum si_type {
 	SI_MACRO_POSTDELAY = 616,
 	SI_BEER_BOTTLE_CAP = 617,
 	SI_OVERLAPEXPUP = 618,
-	SI_PC_IZ_DUN05 = 619,*/
+	SI_PC_IZ_DUN05 = 619,
 };
 
 // JOINTBEAT stackable ailments
