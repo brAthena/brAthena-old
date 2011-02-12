@@ -12,7 +12,7 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.6/1.0				    			|
+// | Versões eA/brA: 1.7/1.0				    			|
 // |--------------------------------------------------------|
 // | Descrição: Contains Quests:							|
 // | Onward to the Other World								|
@@ -8957,8 +8957,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 2:
 					break;
 				}
@@ -8973,8 +8973,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 2:
 					if (Zeny >= 5500) {
 						set zeny,zeny-5500;
@@ -8983,8 +8983,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 3:
 					break;
 				}
@@ -8999,8 +8999,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 2:
 					if (Zeny >= 5025) {
 						set zeny,zeny-5025;
@@ -9009,8 +9009,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 3:
 					if (Zeny >= 5025) {
 						set zeny,zeny-5025;
@@ -9019,8 +9019,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 4:
 					break;
 				}
@@ -9035,8 +9035,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 2:
 					if (Zeny >= 5025) {
 						set zeny,zeny-5025;
@@ -9045,8 +9045,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 3:
 					if (Zeny >= 5025) {
 						set zeny,zeny-5025;
@@ -9055,8 +9055,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 4:
 					if (Zeny >= 5025) {
 						set zeny,zeny-5025;
@@ -9065,8 +9065,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 5:
 					break;
 				}
@@ -9081,8 +9081,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 2:
 					if (Zeny >= 4765) {
 						set zeny,zeny-4765;
@@ -9091,8 +9091,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 3:
 					if (Zeny >= 4765) {
 						set zeny,zeny-4765;
@@ -9101,8 +9101,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 4:
 					if (Zeny >= 4765) {
 						set zeny,zeny-4765;
@@ -9111,8 +9111,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 5:
 					if (Zeny >= 4765) {
 						set zeny,zeny-4765;
@@ -9121,8 +9121,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 6:
 					break;
 				}
@@ -9137,8 +9137,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 2:
 					if (Zeny >= 4765) {
 						set zeny,zeny-4765;
@@ -9147,8 +9147,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 3:
 					if (Zeny >= 4765) {
 						set zeny,zeny-4765;
@@ -9157,8 +9157,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 4:
 					if (Zeny >= 4765) {
 						set zeny,zeny-4765;
@@ -9167,8 +9167,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 5:
 					if (Zeny >= 4765) {
 						set zeny,zeny-4765;
@@ -9177,8 +9177,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 6:
 					if (Zeny >= 4765) {
 						set zeny,zeny-4765;
@@ -9187,8 +9187,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 7:
 					break;
 				}
@@ -9203,8 +9203,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 2:
 					if (Zeny >= 4590) {
 						set zeny,zeny-4590;
@@ -9213,8 +9213,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 3:
 					if (Zeny >= 4590) {
 						set zeny,zeny-4590;
@@ -9223,8 +9223,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 4:
 					if (Zeny >= 4590) {
 						set zeny,zeny-4590;
@@ -9233,8 +9233,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 5:
 					if (Zeny >= 4590) {
 						set zeny,zeny-4590;
@@ -9243,8 +9243,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 6:
 					if (Zeny >= 4590) {
 						set zeny,zeny-4590;
@@ -9253,8 +9253,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 7:
 					if (Zeny >= 4590) {
 						set zeny,zeny-4590;
@@ -9263,8 +9263,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 8:
 					break;
 				}
@@ -9339,8 +9339,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 2:
 					if (Zeny >= 4590) {
 						set zeny,zeny-4590;
@@ -9349,8 +9349,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 3:
 					if (Zeny >= 4590) {
 						set zeny,zeny-4590;
@@ -9359,8 +9359,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 4:
 					if (Zeny >= 4590) {
 						set zeny,zeny-4590;
@@ -9369,8 +9369,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 5:
 					if (Zeny >= 4590) {
 						set zeny,zeny-4590;
@@ -9379,8 +9379,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 6:
 					if (Zeny >= 4590) {
 						set zeny,zeny-4590;
@@ -9389,8 +9389,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 7:
 					if (Zeny >= 4590) {
 						set zeny,zeny-4590;
@@ -9399,8 +9399,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 8:
 					break;
 				}
@@ -9415,8 +9415,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 2:
 					if (Zeny >= 4170) {
 						set zeny,zeny-4170;
@@ -9425,8 +9425,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 3:
 					if (Zeny >= 4170) {
 						set zeny,zeny-4170;
@@ -9435,8 +9435,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 4:
 					if (Zeny >= 4170) {
 						set zeny,zeny-4170;
@@ -9445,8 +9445,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 5:
 					if (Zeny >= 4170) {
 						set zeny,zeny-4170;
@@ -9455,8 +9455,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 6:
 					if (Zeny >= 4170) {
 						set zeny,zeny-4170;
@@ -9465,8 +9465,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 7:
 					if (Zeny >= 4170) {
 						set zeny,zeny-4170;
@@ -9475,8 +9475,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 8:
 					if (Zeny >= 4170) {
 						set zeny,zeny-4170;
@@ -9485,8 +9485,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 9:
 					break;
 				}
@@ -9501,8 +9501,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 2:
 					if (Zeny >= 4025) {
 						set zeny,zeny-4025;
@@ -9511,8 +9511,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 3:
 					if (Zeny >= 4025) {
 						set zeny,zeny-4025;
@@ -9521,8 +9521,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 4:
 					if (Zeny >= 4025) {
 						set zeny,zeny-4025;
@@ -9531,8 +9531,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 5:
 					if (Zeny >= 4025) {
 						set zeny,zeny-4025;
@@ -9541,8 +9541,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 6:
 					if (Zeny >= 4025) {
 						set zeny,zeny-4025;
@@ -9551,8 +9551,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 7:
 					if (Zeny >= 4025) {
 						set zeny,zeny-4025;
@@ -9561,8 +9561,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 8:
 					if (Zeny >= 4025) {
 						set zeny,zeny-4025;
@@ -9571,8 +9571,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 9:
 					if (Zeny >= 4025) {
 						set zeny,zeny-4025;
@@ -9581,8 +9581,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 10:
 					break;
 				}
@@ -9597,8 +9597,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 2:
 					if (Zeny >= 3970) {
 						set zeny,zeny-3970;
@@ -9607,8 +9607,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 3:
 					if (Zeny >= 3970) {
 						set zeny,zeny-3970;
@@ -9617,8 +9617,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 4:
 					if (Zeny >= 3970) {
 						set zeny,zeny-3970;
@@ -9627,8 +9627,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 5:
 					if (Zeny >= 3970) {
 						set zeny,zeny-3970;
@@ -9637,8 +9637,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 6:
 					if (Zeny >= 3970) {
 						set zeny,zeny-3970;
@@ -9647,8 +9647,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 7:
 					if (Zeny >= 3970) {
 						set zeny,zeny-3970;
@@ -9657,8 +9657,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 8:
 					if (Zeny >= 3970) {
 						set zeny,zeny-3970;
@@ -9667,8 +9667,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 9:
 					if (Zeny >= 3970) {
 						set zeny,zeny-3970;
@@ -9677,8 +9677,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 10:
 					if (Zeny >= 3970) {
 						set zeny,zeny-3970;
@@ -9687,8 +9687,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 					else {
 						mes "[Cat Hand Agent]";
 						mes "Don't play with money.";
-						close;
 					}
+					close;
 				case 11:
 					break;
 				}
@@ -9709,8 +9709,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 				else {
 					mes "[Cat Hand Agent]";
 					mes "Don't play with money.";
-					close;
 				}
+				close;
 			case 2:
 				if (Zeny >= 5500) {
 					set zeny,zeny-5500;
@@ -9719,8 +9719,8 @@ mid_camp,62,125,4	script	Cat Hand Agent	421,{
 				else {
 					mes "[Cat Hand Agent]";
 					mes "Don't play with money.";
-					close;
 				}
+				close;
 			case 3:
 				mes "[Cat Hand Agent]";
 				mes "Thank you for using our service.";

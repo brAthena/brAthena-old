@@ -8,21 +8,20 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Ice Cream Maker						|
+// | Nome do Script: Ice Cream Maker                        |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.3/1.0                                |
+// | Versões eA/brA: 1.4/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição:	A man makes you ice-cream					|
+// | Descrição: A man makes you ice-cream                   |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
-// | 1.0 Modificação [Autor]		                        |
-// | - Anotações		   			    					| 
+// | Changelog:                                             |
+// | 1.0 Modificação [Autor]                                |
+// | - Anotações                                            |
 // \________________________________________________________/
 
-// Alberta
-alberta,120,45,2	script	Ice Cream Maker::IceCreamer	85,{
+-	script	Ice Cream Maker::IceCreamer	-1,{
 	mes "[Ice Cream Maker]";
 	mes "Fresh Ice Cream made with snow from Lutie!";
 	mes "Enjoy it now, it won't be on sale for long!";
@@ -60,14 +59,14 @@ alberta,120,45,2	script	Ice Cream Maker::IceCreamer	85,{
 			mes "If you eat more than 5 Ice creams,";
 			mes "If you might haveto make a lot of trips";
 			mes "to the bathroom tonight.";
-			next;		
+			next;
 		}
 	}
 	if(Zeny<.@input*100) {
 		mes "[Ice Cream Maker]";
 		mes "Dear customer, your wallet seems to be light.";
 		mes "Price is ^3355FF100 Zeny^000000 per ice cream.";
-		close;	
+		close;
 	}
 	if(checkweight(536,.@amount) == 0) {
 		mes "[Ice Cream Maker]";
@@ -81,6 +80,9 @@ alberta,120,45,2	script	Ice Cream Maker::IceCreamer	85,{
 	getitem 536,.@input;	// Ice_Cream
 	close;
 }
+
+// Alberta
+alberta,120,45,2	duplicate(IceCreamer)	Ice Cream Maker#1	85
 
 // Morroc Field
 moc_fild16,88,304,4	duplicate(IceCreamer)	Ice Cream Maker#2	85

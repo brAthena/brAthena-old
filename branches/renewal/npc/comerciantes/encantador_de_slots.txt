@@ -8,20 +8,20 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Episode 11.1 Socket Enchant NPC		|
+// | Nome do Script: Episode 11.1 Socket Enchant NPC        |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.9/1.0                                |
+// | Versões eA/brA: 2.0/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição:	Adds slots to selected weapons and armor.	|
+// | Descrição: Adds slots to selected weapons and armor.   |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
-// | 1.0 Modificação [Autor]		                        |
-// | - Anotações		   			    					| 
+// | Changelog:                                             |
+// | 1.0 Modificação [Autor]                                |
+// | - Anotações                                            |
 // \________________________________________________________/
 
-payon,140,151,5	script	Seiyablem#pay	84,{
+-	script	Seiyablem#dummy::SocketEnchant	-1,{
 	if (checkweight(1201,1) == 0)
 	{
 		mes "- Wait a minute !! -";
@@ -326,11 +326,12 @@ function	script	Func_Socket	{
 	}
 }
 
-lhz_in02,281,35,5	duplicate(Seiyablem#pay)	Seiyablem#lhz	84
-prt_in,33,70,5	duplicate(Seiyablem#pay)	Seiyablem#prt	84
-morocc,51,41,4	duplicate(Seiyablem#pay)	Seiyablem#moc	84
+payon,140,151,5	duplicate(SocketEnchant)	Seiyablem#pay	84
+lhz_in02,281,35,5	duplicate(SocketEnchant)	Seiyablem#lhz	84
+prt_in,33,70,5	duplicate(SocketEnchant)	Seiyablem#prt	84
+morocc,51,41,4	duplicate(SocketEnchant)	Seiyablem#moc	84
 
-prt_in,31,57,1	script	Young Man#prt	97,{
+-	script	Young Man#dummy::SocketMan	-1,{
 	mes "[Young Man]";
 	mes "I'm considering becoming a Slotting Engineer.";
 	mes "It's a new field where you can add Slots to equipment, and it'd be cool if I can work in such a lucrative career.";
@@ -347,6 +348,7 @@ prt_in,31,57,1	script	Young Man#prt	97,{
 	close;
 }
 
-payon,143,143,7	duplicate(Young Man#prt)	Young Man#pay	97
-morocc,60,42,3	duplicate(Young Man#prt)	Young Man#moc	97
-lhz_in02,269,33,5	duplicate(Young Man#prt)	Young Man#lhz	97
+prt_in,31,57,1	duplicate(SocketMan)	Young Man#prt	97
+payon,143,143,7	duplicate(SocketMan)	Young Man#pay	97
+morocc,60,42,3	duplicate(SocketMan)	Young Man#moc	97
+lhz_in02,269,33,5	duplicate(SocketMan)	Young Man#lhz	97

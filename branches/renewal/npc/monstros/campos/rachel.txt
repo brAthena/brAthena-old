@@ -109,6 +109,6 @@ ra_fild12,0,0,0,0	monster	Planta Amarela	1081,15,0,0,1
 ra_fild12,0,0,0,0	monster	Planta Vermelha	1078,5,0,0,1
 
 //==================================================
-// ra_fild13 - Campo de Rachel 
+// ra_fild13 - Campo de Rachel
 //==================================================
 // Sem Spawns/Mapa Desabilitado - 13.3

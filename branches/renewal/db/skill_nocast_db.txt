@@ -12,9 +12,9 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Descrição: Database das habilidades em áreas controlada|                  
-// |----------------=---------------------------------------|
-// | Estrutura da Database:                                 |
+// | Descrição: Database das habilidades em áreas controlada|
+// |--------------------------------------------------------|
+// | Estrutura do Banco de Dados:                           |
 // | SkillID,Flag                                           |
 // |                                                        |
 // | Legend for 'Flag' field (bitmask):                     |
@@ -37,7 +37,7 @@
 // \________________________________________________________/
 //
 //============================================================
-// GVG
+// GvG
 //============================================================
 26,4	// AL_TELEPORT#Teleporte#
 27,4	// AL_WARP#Portal#
@@ -58,9 +58,11 @@
 27,8	// AL_WARP#Portal#
 87,8	// WZ_ICEWALL#Barreira de Gelo#
 150,8	// TF_BACKSLIDING#Recuar#
+264,8	// MO_BODYRELOCATION
 361,8	// HP_ASSUMPTIO#Assumptio#
 362,8	// HP_BASILICA#Basílica#
 395,8	// CG_MOONLIT#Bênção Protetora#
+396,8	// CG_MARIONETTE
 491,8	// CR_CULTIVATION#Cultivar Planta#
 411,8	// TK_RUN#Corrida#
 426,8	// TK_HIGHJUMP#Salto#
@@ -73,11 +75,12 @@
 433,8	// SG_STAR_COMFORT#Proteção Estelar#
 434,8	// SG_HATE#Oposição Solar, Lunar e Estelar#
 435,8	// SG_SUN_ANGER#Fúria Solar#
-436,8	// SG_SUN_ANGER#Fúria Lunar#
-437,8	// SG_SUN_ANGER#Fúria Estelar#
+436,8	// SG_MOON_ANGER#Fúria Lunar#
+437,8	// SG_STAR_ANGER#Fúria Estelar#
 438,8	// SG_SUN_BLESS#Bênção Solar#
-439,8	// SG_SUN_BLESS#Bênção Lunar#
-440,8	// SG_SUN_BLESS#Bênção Estelar#
+439,8	// SG_MOON_BLESS#Bênção Lunar#
+440,8	// SG_STAR_BLESS#Bênção Estelar#
+530,8	// NJ_KIRIKAGE
 691,8	// CASH_ASSUMPTIO#Assumptio em Grupo#
 //
 //============================================================
@@ -109,15 +112,15 @@
 264,32	// MO_BODYRELOCATION#Passo Etéreo#
 //
 //============================================================
-//Zona 2 - Prisão
+// Zona 2 - Prisão
 //============================================================
 421,64	// TK_JUMPKICK#Chute Aéreo#
 426,64	// TK_HIGHJUMP#Salto#
 //
 //============================================================
-//Zone 3 - Arena de Batalha de Izlude
+// Zona 3 - Arena de Batalha de Izlude
 //============================================================
-219,128 // RG_SNATCHER#Mãos Leves#
+219,128 // RG_INTIMIDATE#Rapto#
 26,128	// AL_TELEPORT#Teleporte#
 //
 //============================================================
@@ -133,3 +136,12 @@
 219,512	// RG_INTIMIDATE#Rapto#
 361,512	// HP_ASSUMPTIO#Assumptio#
 691,512	// CASH_ASSUMPTIO#Assumptio em Grupo#
+
+//============================================================
+// Zona 6 - Torre sem Fim
+//============================================================
+26,1024	// AL_TELEPORT
+87,1024	// WZ_ICEWALL
+219,1024	// RG_INTIMIDATE
+405,1024	// PF_SPIDERWEB
+674,1024	// NPC_EXPULSION

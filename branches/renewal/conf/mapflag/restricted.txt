@@ -59,3 +59,11 @@ arug_cas05	mapflag	restricted	4
 // Santuário Selado
 1@cata	mapflag	restricted	5
 2@cata	mapflag	restricted	5
+
+// Torre sem Fim
+1@tower	mapflag	restricted	6
+2@tower	mapflag	restricted	6
+3@tower	mapflag	restricted	6
+4@tower	mapflag	restricted	6
+5@tower	mapflag	restricted	6
+6@tower	mapflag	restricted	6
