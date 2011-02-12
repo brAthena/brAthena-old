@@ -8,17 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Auction system     		    		|
+// | Nome do Script: Auction system                         |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.2/1.0                                |
+// | Versões eA/brA: 1.3/1.0                                |
 // |--------------------------------------------------------|
 // | Descrição: Auction house releated NPCs, and warps.     |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
+// | Changelog:                                             |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações                                            | 
+// | - Anotações                                            |
 // \________________________________________________________/
 
 // Auction House warpers
@@ -78,12 +78,13 @@ function	script	F_AuctionWarper	{
 
 // Sign posts
 //============================================================
-moc_ruins,76,176,6	script	Information Post#moc::AuctionSign	837,{
+-	script	Information Post#dum::AuctionSign	-1,{
 	mes "[Information]";
 	mes "Auction Warp Guide";
 	close;
 }
 
+moc_ruins,76,176,6	duplicate(AuctionSign)	Information Post#moc	837
 prontera,216,120,4	duplicate(AuctionSign)	Information Post#prt	837,{
 yuno,131,116,0	duplicate(AuctionSign)	Information Post#yuno	837,{
 lighthalzen,207,169,6	duplicate(AuctionSign)	Information Post#lhz	837
@@ -97,7 +98,7 @@ auction_02,43,17,0	warp	auction_enterance_lhz	1,1,lighthalzen,209,169
 
 // Auction House NPCs
 //============================================================
-auction_01,182,68,6	script	Auction Broker#moc1::AuctionBroker	98,{
+-	script	Auction Broker#dum::AuctionBroker	-1,{
 	mes "[Auction Broker]";
 	mes "Welcome to the Auction Hall.";
 	mes "Would you like to view the goods?";
@@ -120,6 +121,7 @@ auction_01,182,68,6	script	Auction Broker#moc1::AuctionBroker	98,{
 	close;
 }
 
+auction_01,182,68,6	duplicate(AuctionBroker)	Auction Broker#moc1	98
 auction_01,182,75,0	duplicate(AuctionBroker)	Auction Broker#moc2	99
 auction_01,177,75,2	duplicate(AuctionBroker)	Auction Broker#moc3	98
 auction_01,177,68,4	duplicate(AuctionBroker)	Auction Broker#moc4	99

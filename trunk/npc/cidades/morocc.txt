@@ -121,7 +121,7 @@ morocc,223,102,0	script	Voluntário - Morroc#06::MocVolunteer	741,{
 	next;
 	mes "[Voz Estridente]";
 	mes "Cale a boca! Você não vê o que está acontecendo?!";
-	donpcevent "Volunteer - Morroc#06::OnHit";
+	specialeffect EF_HIT2,AREA,"Volunteer - Morroc#06";
 	next;
 	mes "[Voluntário]";
 	mes "Eeei, não seja tão dura, senhorita. Você pode ser frágil, mas ainda assim pode machucar alguém!";
@@ -132,10 +132,6 @@ morocc,223,102,0	script	Voluntário - Morroc#06::MocVolunteer	741,{
 	mes "[Voluntário]";
 	mes "Não, não mesmo! Claro que não é!";
 	close;
-
-OnHit:
-	specialeffect EF_HIT2;
-	end;
 }
 
 morocc,226,102,4	duplicate(MocVolunteer)	Voluntário - Morroc#07	726
@@ -393,54 +389,54 @@ moc_ruins,155,107,4	script	Homem Formiga#moc	47,{
 	}
 }
 
-moc_ruins,143,43,4	script	Criança estranha#moc	118,{
-	mes "[Criança estranha]";
-	mes "assassinoos são invencíveis em combates corpo-a-corpo, eles sempre derrotam seus inimigos sem deixar rastro!";
+moc_ruins,143,43,4	script	Criança Estranha#moc	118,{
+	mes "[Criança Estranha]";
+	mes "Assassinos são invencíveis em combates corpo-a-corpo, eles sempre derrotam seus inimigos sem deixar rastro!";
 	next;
-	mes "[Criança estranha]";
+	mes "[Criança Estranha]";
 	mes "Mas o que será que eles fizeram quando aconteceu isso em Morroc!";
 	next;
 	switch(select("?????:Onde posso encontrar o clan dos assassinos?:Parar de conversar")) {
 	case 1:
-		mes "[Criança estranha]";
-		mes "Ouvi dizer que os assassinoos praticam matar pessoas rápida e silenciosamente.";
+		mes "[Criança Estranha]";
+		mes "Ouvi dizer que os assassinos praticam matar pessoas rápida e silenciosamente.";
 		next;
-		mes "[Criança estranha]";
-		mes "Fugi de casa três anos atrás, e desde então procuro pela guild dos assassinoo...";
+		mes "[Criança Estranha]";
+		mes "Fugi de casa três anos atrás, e desde então procuro pela guilda dos assassino...";
 		mes "Eles são tão invisíveis assim?";
 		next;
-		mes "[Criança estranha]";
+		mes "[Criança Estranha]";
 		mes "Bem... Acho que agora é tarde demais...";
 		mes "Agora que a cidade está destruída... Não me importo com o que vai acontecer depois...";
 		close;
 	case 2:
-		mes "[Criança estranha]";
+		mes "[Criança Estranha]";
 		mes "Sabe...";
 		mes "Parece impossível de achar.";
 		next;
-		mes "[Criança estranha]";
+		mes "[Criança Estranha]";
 		mes "Mas ouvi dizer que se você deixar a cidade e ir dois mapas Leste e dois mapas Sul, talvez encontre-a.";
 		next;
-		mes "[Criança estranha]";
+		mes "[Criança Estranha]";
 		mes "A 'Torre da Miragem', o principal prédio do deserto de Sograt, supostamente aparece em grandes tempestades de areia. Mas eu ainda não encontrei-a.";
 		next;
-		mes "[Criança estranha]";
+		mes "[Criança Estranha]";
 		mes "Se você encontrá-los, e o líder do clã achar que você está qualificado, você pode virar um assassino! Bem, pelo menos eu acho que é assim...";
 		next;
-		mes "[Criança estranha]";
+		mes "[Criança Estranha]";
 		mes "E ouvi dizer que o melhor assassino é o assassino Cross! Mas esse é um mistério ainda maior~ Você não irá encontrá-los a menos que seja um gatuno de primeira!";
 		next;
-		mes "[Criança estranha]";
+		mes "[Criança Estranha]";
 		mes "Mas... O que diabos eles estavam fazendo quando Morroc foi destruída?!!";
 		close;
 	case 3:
-		mes "[Criança estranha]";
+		mes "[Criança Estranha]";
 		mes "assassino é uma das profissões que vem depois do Gatuno, especializado em lutas de propriedade Neutra ou Poison.";
 		next;
-		mes "[Criança estranha]";
+		mes "[Criança Estranha]";
 		mes "Eles também são muito furtivos! Ouvi dizer que se escondem e ninguém consegue vê-los!";
 		next;
-		mes "[Criança estranha]";
+		mes "[Criança Estranha]";
 		mes "Mas... O que diabos eles estavam fazendo quando Morroc foi destruída?!!";
 		close;
 	}
@@ -560,9 +556,9 @@ moc_ruins,173,70,4	script	Tio Morroc#moc	48,{
 	}
 }
 
-moc_fild16,199,212,4	script	 Tio assassinoo#moc	55,{
+moc_fild16,199,212,4	script	 Tio Assassino#moc	55,{
 	mes "[Hashisid]";
-	mes "...assassinoos são treinados";
+	mes "...Assassinos são treinados";
 	mes "para se aproximar dos inimigos";
 	mes "furtivamente e esconder";
 	mes "seus propósitos.";
@@ -570,20 +566,20 @@ moc_fild16,199,212,4	script	 Tio assassinoo#moc	55,{
 	mes "nunca olhamos";
 	mes "nossos alvos nos olhos.";
 	next;
-	switch(select("Sobre assassinoos:Parar de conversar")) {
+	switch(select("Sobre Assassinos:Parar de conversar")) {
 	case 1:
 		mes "[Hashisid]";
 		mes "Bem, então...";
 		mes "Vou te contar sobre eles!";
-		mes "assassinoo ..";
+		mes "Assassino...";
 		mes "são comumente conhecidos";
 		mes "como matadores";
 		mes "sem remorsos.";
 		next;
 		mes "[Hashisid]";
 		mes "Mas na verdade os membros";
-		mes "da guild dos assassinoo";
-		mes "estão proibidos de machucar ";
+		mes "da guilda dos Assassinos";
+		mes "estão proibidos de machucar";
 		mes "pessoas inocentes sem";
 		mes "uma boa razão.";
 		next;
@@ -620,10 +616,10 @@ moc_fild16,199,212,4	script	 Tio assassinoo#moc	55,{
 	}
 }
 
-moc_fild16,211,254,4	script	assassino#07rhea_30	118,{
+moc_fild16,211,254,4	script	Assassino#07rhea_30	118,{
 	mes "[La Conte]";
 	mes "Quando gatunos são promovidos";
-	mes "para assassinoo, que são muito mais avançados,";
+	mes "a assassinos, que são muito mais avançados,";
 	mes "poderão variar seu estilo de batalha.";
 	mes "Existem dois tipos principais";
 	mes "de estilos de batalha para um assassino.";
@@ -635,11 +631,11 @@ moc_fild16,211,254,4	script	assassino#07rhea_30	118,{
 		mes "[La Conte]";
 		mes "Um set de Katars só é";
 		mes "utilizado com as duas mãos,";
-		mes "e permite que os assassinoo";
+		mes "e permite que os assassinos";
 		mes "acabem com seus inimigos rapidamente.";
 		mes "Qualquer um pode comprar um set básico";
 		mes "em Morroc, mas claro que";
-		mes "somente assassinoo podem utilizá-lo.";
+		mes "somente assassinos podem utilizá-lo.";
 		next;
 		mes "[La Conte]";
 		mes "A Katar da mão direita";
@@ -751,13 +747,13 @@ morocc_in,166,76,3	script	Garçom#02	46,{
 	mes "Nem pense em beber se você não tem 1 000 zenys.";
 	close;
 }
-/*
+*/
 
-// assassino Guild Guards
+// Guardas da Guilda dos Assassinos
 //===================================================
-moc_fild16,195,281,4	script	Guardião assassinoo#1::SinGuard	707,{
-	mes "[Guardião assassinoo]";
-	if(BaseJob == Job_assassino) {
+moc_fild16,195,281,4	script	Guardião Assassino#1::SinGuard	707,{
+	mes "[Guardião Assassino]";
+	if(BaseJob == Job_Assassin) {
 		mes "Bem-vindo.";
 		close;
 	}
@@ -769,11 +765,11 @@ moc_fild16,195,281,4	script	Guardião assassinoo#1::SinGuard	707,{
 	close;
 }
 
-moc_fild16,204,281,4	duplicate(SinGuard)	Guardião assassinoo#2	707
-moc_fild16,207,281,4	duplicate(SinGuard)	Guardião assassinoo#3	707
-moc_fild16,216,281,4	duplicate(SinGuard)	Guardião assassinoo#4	707
-moc_fild16,200,231,4	duplicate(SinGuard)	Guardião assassinoo#5	707
-moc_fild16,211,231,4	duplicate(SinGuard)	Guardião assassinoo#6	707
-moc_fild16,200,257,4	duplicate(SinGuard)	Guardião assassinoo#7	707
-moc_fild16,211,257,4	duplicate(SinGuard)	Guardião assassinoo#8	707
+moc_fild16,204,281,4	duplicate(SinGuard)	Guardião Assassino#2	707
+moc_fild16,207,281,4	duplicate(SinGuard)	Guardião Assassino#3	707
+moc_fild16,216,281,4	duplicate(SinGuard)	Guardião Assassino#4	707
+moc_fild16,200,231,4	duplicate(SinGuard)	Guardião Assassino#5	707
+moc_fild16,211,231,4	duplicate(SinGuard)	Guardião Assassino#6	707
+moc_fild16,200,257,4	duplicate(SinGuard)	Guardião Assassino#7	707
+moc_fild16,211,257,4	duplicate(SinGuard)	Guardião Assassino#8	707
 

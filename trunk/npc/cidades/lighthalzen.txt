@@ -778,7 +778,7 @@ lhz_in02,247,275,1	script	Funcionário do Hotel#zen4	868,{
 	close;
 }
 
-lhz_in02,271,281,2	script	Citizen#amano09	47,{
+lhz_in02,271,281,2	script	Cidadão#amano09	47,{
 	mes "[Hachi]";
 	mes "Ah sim! Eu amo-amo-amo";
 	mes "bares. Não venho pelos";
@@ -1681,7 +1681,7 @@ lhz_in03,183,82,7	script	Homem Bêbado#amano02	870,{
 	close;
 }
 
-lhz_in03,180,83,6	script	Citizen#amano03	86,{
+lhz_in03,180,83,6	script	Cidadão#amano03	86,{
 	mes "[Mitchell]";
 	mes "Sabe, somos todos";
 	mes "diferentes, mas acho que";
@@ -1705,7 +1705,7 @@ lhz_in03,180,83,6	script	Citizen#amano03	86,{
 	close;
 }
 
-lhz_in03,176,85,5	script	Citizen#amano04	869,{
+lhz_in03,176,85,5	script	Cidadão#amano04	869,{
 	mes "[Dique]";
 	mes "Uma das coisas que espero";
 	mes "o dia inteiro é a bebida";

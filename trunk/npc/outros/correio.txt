@@ -8,26 +8,24 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Mail Boxes     			    		|
+// | Nome do Script: Mail Boxes                             |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.5/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição:						    					|
-// | Pickup and write mail from/to players in game.	    	|
+// | Descrição:                                             |
+// | Pickup and write mail from/to players in game.         |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
+// | Changelog:                                             |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações                                            | 
+// | - Anotações                                            |
 // \________________________________________________________/
 
-// Allow Mail Inbox reading from
+// Floating mailbox npc that all NPCs duplicate from.
 //============================================================
 
-// Prontera
-//============================================================
-prontera,146,86,0	script	Mailbox#prt::MailBox	888,{
+-	script	Mailbox#dummy::MailBox	-1,{
 	mes "[Mailbox]";
 	mes "If you'd like to use";
 	mes "the Mailbox Service,";
@@ -60,6 +58,9 @@ prontera,146,86,0	script	Mailbox#prt::MailBox	888,{
 	close;
 }
 
+// Prontera
+//============================================================
+prontera,146,86,0	duplicate(MailBox)	Mailbox#prt	888
 prontera,275,213,0	duplicate(MailBox)	Mailbox#2prt	888
 prontera,34,212,0	duplicate(MailBox)	Mailbox#3prt	888
 

@@ -1146,7 +1146,7 @@ arena_room,49,87,0	script	LevelCheck#60	139,5,5,{
 OnTouch:
 	if(BaseLevel < 60 || BaseLevel > 79)
 	{
-		mes "[Helper Ben]";
+		mes "[Ajudante Ben]";
 		mes "Sinto muito, mas esse lugar é";
 		mes "disponível apenas para pessoas a partir de";
 		mes "nível ^FF000060^000000 a ^FF000079^000000. Tenho medo que você";
@@ -1158,7 +1158,7 @@ OnTouch:
 	}
 	else if(Zeny < 1000)
 	{
-		mes "[Helper Ben]";
+		mes "[Ajudante Ben]";
 		mes "Oh! Isso é muito ruim!";
 		mes "Você tem o nível exigido";
 		mes "para tentar esta arena mas";
@@ -1176,7 +1176,7 @@ arena_room,63,53,0	script	LevelCheck#70	139,5,5,{
 OnTouch:
 	if(BaseLevel < 70 || BaseLevel > 89)
 	{
-		mes "[Helper Vicious]";
+		mes "[Ajudante Vicious]";
 		mes "Sinto muito, mas esse lugar é";
 		mes "disponível apenas para pessoas a partir de";
 		mes "nível ^FF000070^000000 a ^FF000089^000000. Tenho medo que você";
@@ -1188,7 +1188,7 @@ OnTouch:
 	}
 	else if(Zeny < 1000)
 	{
-		mes "[Helper Vicious]";
+		mes "[Ajudante Vicious]";
 		mes "Oh! Isso é muito ruim!";
 		mes "Você tem o nível exigido";
 		mes "para tentar esta arena mas";
@@ -1206,7 +1206,7 @@ arena_room,136,53,0	script	LevelCheck#80	139,5,5,{
 OnTouch:
 	if(BaseLevel < 80)
 	{
-		mes "[Helper Epin]";
+		mes "[Ajudante Epin]";
 		mes "Sinto muito, mas esse lugar é";
 		mes "disponível apenas para pessoas a partir de";
 		mes "nível ^FF000080^000000 a ^FF000099^000000. Tenho medo que você";
@@ -1218,7 +1218,7 @@ OnTouch:
 	}
 	else if(Zeny < 1000)
 	{
-		mes "[Helper Epin]";
+		mes "[Ajudante Epin]";
 		mes "Oh! Isso é muito ruim!";
 		mes "Você tem o nível exigido";
 		mes "para tentar esta arena mas";

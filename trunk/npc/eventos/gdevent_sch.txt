@@ -8,18 +8,18 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: x				    			        |
+// | Nome do Script: Guild dungeon event, Schwaltzvalt.     |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: ?.?/1.0                                |
+// | Versões eA/brA: 1.1/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição:                                             |
-// |                                                        |
+// | Descrição: Guild dungeon event, Schwaltzvalt.          |
+// | Retrieve Morestone's pickaxe from Kublin.              |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
+// | Changelog:                                             |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			  						|
+// | - Anotações                                            |
 // \________________________________________________________/
 
 schg_dun01,1,1,1	script	Monster Controler#sch_gd	81,{
@@ -28,7 +28,7 @@ OnInit:
 	initnpctimer;
 	end;
 
-OnTimer10000:
+OnTimer3600000:
 	donpcevent "Monster Controler1#sch::OnEnable";
 	mapannounce "schg_dun01", "Kublin: Aargh!",bc_map,"0x99CC00";
 	mapannounce "schg_dun01", "Morestone: Stop righ there! You thief!",bc_map,"0x99CC00";

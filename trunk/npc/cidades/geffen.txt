@@ -1399,22 +1399,22 @@ geffen_in,109,72,2	script	Professor de Monstros	90,{
 
 // Lvl 4 weapon quest related NPC ------------------------------------------------------
 
-geffen,203,146,5	script	Citizen	97,{
-	mes "[Citizen]";
+geffen,203,146,5	script	Cidadão	97,{
+	mes "[Cidadão]";
 	mes "Havia um hábil criador de armas";
 	mes "em Al De Baran, e ele tinha 4 filhos.";
 	mes "Infelizmente, ele perdeu todos";
 	mes "enquanto desenvolvia uma arma poderosa.";
 	mes "Somente ele sobreviveu à tragédia.";
 	next;
-	mes "[Citizen]";
+	mes "[Cidadão]";
 	mes "Como deve ter sido triste para ele...";
 	mes "Graças ao incidente, o criador de armas";
 	mes "se aposentou e foi embora, viver em";
 	mes "outro lugar. Depois disso, ninguém nunca";
 	mes "pôde ver a arma que eles estavam desenvolvendo.";
 	next;
-	mes "[Citizen]";
+	mes "[Cidadão]";
 	mes "Não acho que os filhos dele foram";
 	mes "para o céu com a ansiedade.";
 	close;
