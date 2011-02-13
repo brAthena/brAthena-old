@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0241 - 12/02/2011 [Protimus]
+	* Adicionadas estruturas para do novo status change, SC_FEAR.
+
 	r0240 - 12/02/2011 [Dani]
 	* Revisão dos spawns dos seguintes arquivos:
 	- npc/monstros/campos/payon.txt

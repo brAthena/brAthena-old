@@ -3787,6 +3787,8 @@ static signed short status_calc_hit(struct block_list *bl, struct status_change 
 		hit += 20; // RockmanEXE; changed based on updated [Reddozen]
 	if(sc->data[SC_MERC_HITUP])
 		hit += sc->data[SC_MERC_HITUP]->val2;
+	if(sc->data[SC_FEAR])
+		hit -= hit * 20 / 100;
 
 	return (short)cap_value(hit,1,SHRT_MAX);
 }
@@ -3836,6 +3838,8 @@ static signed short status_calc_flee(struct block_list *bl, struct status_change
 		flee += sc->data[SC_MERC_FLEEUP]->val2;
 	if (sc->data[SC_SPEARQUICKEN])
 		flee += sc->data[SC_SPEARQUICKEN]->val4;
+	if(sc->data[SC_FEAR])
+		flee -= flee * 20 / 100;
 
 	return (short)cap_value(flee,1,SHRT_MAX);
 }
@@ -5370,6 +5374,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			case SC_MARIONETTE2:
 			case SC_NOCHAT:
 			case SC_CHANGE: //Otherwise your Hp/Sp would get refilled while still within effect of the last invocation.
+			case SC_FEAR:
 				return 0;
 			case SC_COMBO:
 			case SC_DANCING:
@@ -6274,6 +6279,11 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_ENCHANTBLADE:
 			val_flag |= 2;
 			break;
+		case SC_FEAR:
+			val2 = 2;
+			val4 = tick / 1000;
+			tick = 1000;
+			break;
 
 		default:
 			if( calc_flag == SCB_NONE && StatusSkillChangeTable[type] == 0 && StatusIconChangeTable[type] == 0 )
@@ -6319,6 +6329,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_CLOSECONFINE2:
 		case SC_ANKLE:
 		case SC_SPIDERWEB:
+		case SC_FEAR:
 			unit_stop_walking(bl,1);
 		break;
 		case SC_HIDING:
@@ -7530,6 +7541,16 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr data)
 			return 0;
 		}
 		break;
+
+	case SC_FEAR:
+		if( --(sce->val4) >= 0 )
+		{
+			if( sce->val2 > 0 )
+				sce->val2--;
+			sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
+			return 0;
+		}
+		break;
 	}
 
 	// default for all non-handled control paths is to end the status
@@ -7662,6 +7683,7 @@ int status_change_clear_buffs (struct block_list* bl, int type)
 			case SC_STRIPSHIELD:
 			case SC_STRIPARMOR:
 			case SC_STRIPHELM:
+			case SC_FEAR:
 				if (!(type&2))
 					continue;
 				break;
