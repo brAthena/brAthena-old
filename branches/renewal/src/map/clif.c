@@ -5747,7 +5747,7 @@ void clif_openbuying(struct map_session_data* sd, int id, int limitzeny, struct 
 	WFIFOL(fd,4) = id;
 	WFIFOL(fd,8) = limitzeny;
 	for( i = 0; i < count; i++ )
-	{
+{
 		struct item_data* data = itemdb_search(buying[i].id);
 		WFIFOL(fd,12+i*9) = buying[i].price;
 		WFIFOW(fd,16+i*9) = buying[i].amount;

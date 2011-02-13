@@ -478,12 +478,12 @@ void vending_buyingsellreq(struct map_session_data* sd, int aid, int uid, const 
 
 		w += itemdb_weight(id) * amount;
 		z += (bsd->buying[j].price * amount);
-		if( w + bsd->weight > bsd->max_weight ||
-		    z < 0 || z > MAX_ZENY || (z + sd->status.zeny > MAX_ZENY && !battle_config.vending_over_max) ||
-		    sd->status.inventory[index].amount < amount || pc_checkadditem(bsd, id, amount) == ADDITEM_OVERAMOUNT ) {
-			clif_buyingsellfail(sd,5,0);
-			return;
-		}
+        if( w + bsd->weight > bsd->max_weight ||
+            z < 0  || z > bsd->status.zeny || z > MAX_ZENY || (z + sd->status.zeny > MAX_ZENY && !battle_config.vending_over_max) ||
+            sd->status.inventory[index].amount < amount || pc_checkadditem(bsd, id, amount) == ADDITEM_OVERAMOUNT ) {
+            clif_buyingsellfail(sd,5,0);
+            return;
+        }
 
 		if (z > bsd->limitzeny) {
 			clif_buyingsellfail(sd,7,0);

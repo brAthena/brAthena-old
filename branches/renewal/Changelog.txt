@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0243 - 13/02/2011 [Protimus]
+	* Correções para o sistema de Buying Shop ou Purchase Shop aka iRO Wiki.
+	- Corrigido problema com zeny exploit nas lojas.
+	- Corrigido problema com algumas estruturas ao compilar no Linux.
+
 	r0242 - 13/02/2011 [Protimus]
 	* Adicionadas estruturas para do novo status change, SC_BURNING.
 	* Adicionado nova macro para status change, status_change_spread.
