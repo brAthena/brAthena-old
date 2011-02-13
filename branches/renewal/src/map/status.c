@@ -1223,7 +1223,7 @@ int status_check_skilluse(struct block_list *src, struct block_list *target, int
 
 	if(sc && sc->count)
 	{
-		if(sc->opt1 >0)
+		if (sc->opt1 >0 && sc->opt1 != OPT1_BURNING)
 		{	//Stuned/Frozen/etc
 			if (flag != 1) //Can't cast, casted stuff can't damage.
 				return 0;
@@ -4826,6 +4826,10 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 		if (sd) //Duration greatly reduced for players.
 			tick /= 15;
 		//No defense against it (buff).
+	case SC_BURNING:
+		tick -= 50*status->luk + 60*status->int_ + 170*status->vit;
+		tick = max(tick,10000); 
+		break;
 	default:
 		//Effect that cannot be reduced? Likely a buff.
 		if (!(rand()%10000 < rate))
@@ -7684,6 +7688,7 @@ int status_change_clear_buffs (struct block_list* bl, int type)
 			case SC_STRIPARMOR:
 			case SC_STRIPHELM:
 			case SC_FEAR:
+			case SC_BURNING:
 				if (!(type&2))
 					continue;
 				break;
@@ -7701,6 +7706,83 @@ int status_change_clear_buffs (struct block_list* bl, int type)
 		status_change_end(bl, (sc_type)i, INVALID_TIMER);
 	}
 	return 0;
+}
+
+int status_change_spread( struct block_list *src, struct block_list *bl )
+{
+	int i, flag = 0;
+	struct status_change *sc = status_get_sc(src);
+	const struct TimerData *timer;
+	unsigned int tick;
+	struct status_change_data data;
+
+	if( !sc || !sc->count )
+		return 0;
+	
+	tick = gettick();
+
+	for( i = SC_COMMON_MIN; i < SC_MAX; i++ )
+	{
+		if( !sc->data[i] || i == SC_COMMON_MAX )
+			continue;
+		
+		switch( i )
+		{		
+			case SC_POISON:
+			case SC_CURSE:
+			case SC_SILENCE:
+			case SC_CONFUSION:
+			case SC_BLIND:
+			case SC_BLEEDING:
+			case SC_DPOISON:
+			case SC_NOCHAT:
+			case SC_HALLUCINATION:
+			case SC_SIGNUMCRUCIS:
+			case SC_DECREASEAGI:
+			case SC_SLOWDOWN:
+			case SC_MINDBREAKER:
+			case SC_WINKCHARM:
+			case SC_STOP:
+			case SC_ORCISH:
+			case SC_STRIPWEAPON:
+			case SC_STRIPSHIELD:
+			case SC_STRIPARMOR:
+			case SC_STRIPHELM:
+			case SC__STRIPACCESSORY:
+			case SC_BITE:
+			case SC_FREEZING:
+			case SC_BURNING:
+			case SC_FEAR:
+			case SC_PYREXIA:
+			case SC_PARALYSE:
+			case SC_DEATHHURT:
+			case SC_MAGICMUSHROOM:
+			case SC_VENOMBLEED:
+			case SC_TOXIN:
+			case SC_OBLIVIONCURSE:
+			case SC_LEECHESEND:
+				if( sc->data[i]->timer != -1 )
+				{
+					timer = get_timer(sc->data[i]->timer);
+					if (timer == NULL || timer->func != status_change_timer || DIFF_TICK(timer->tick,tick) < 0)
+						continue;
+					data.tick = DIFF_TICK(timer->tick,tick);
+				} else
+					data.tick = -1;
+				data.val1 = sc->data[i]->val1;
+				data.val2 = sc->data[i]->val2;
+				data.val3 = sc->data[i]->val3;
+				data.val4 = sc->data[i]->val4;
+				status_change_start(bl,i,10000,data.val1,data.val2,data.val3,data.val4,data.tick,1|2|8);
+				flag = 1;
+				break;
+			default:
+					continue;
+				break;
+		}
+	}
+	
+	return flag;
 }
 
 //Natural regen related stuff.
