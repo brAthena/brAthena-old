@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0246 - 14/02/2011 [insidemybrain]
+	* Corrigido erro no npc nguild_teleportador.txt
+	- Faltavam as aspas(") e o ponto e vírgula(;) na linha 92 [Reportado pelo Destino]
+
 	r0245 - 13/12/2011 [Dani]
 	* Tradução não-feita da palavra "guild", para "guilda" nos arquivos das Kafras
 	- issue: 24
