@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0245 - 13/12/2011 [Dani]
+	* Tradução não-feita da palavra "guild", para "guilda" nos arquivos das Kafras
+	- issue: 24
+
 	r0244 - 13/12/2011 [Dani]
 	* Correção nas duplicatas do Aluguel de Mercenários
 	- issue: 23
@@ -247,6 +251,7 @@
 
 
 	r0117 - 19/01/2011 [Tyler]
+
 	* Ajustado o cabeçalho de alguns arquivos CONF na pasta npc:
 	- npc/personalizados/Enquetes_oficiais.txt
 	- npc/personalizados/removedora_de_cartas.txt
