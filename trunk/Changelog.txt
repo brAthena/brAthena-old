@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0244 - 13/12/2011 [Dani]
+	* Correção nas duplicatas do Aluguel de Mercenários
+	- issue: 23
+
 	r0239 - 12/02/2011 [Dani]
 	* Remoção de features posteriores ao Renewal
 	* Revisão do item_db comparando com o item_db do Renewal
@@ -241,6 +245,7 @@
 	- Corrigidas indentações
 	- Removido espaço em branco no fim de cada linha
 
+
 	r0117 - 19/01/2011 [Tyler]
 	* Ajustado o cabeçalho de alguns arquivos CONF na pasta npc:
 	- npc/personalizados/Enquetes_oficiais.txt
@@ -300,10 +305,10 @@
 	* Adicionadas traduções de alguns npcs da pasta Quests.
 	- Todos Revisados;
 	- quests_aldebaran.txt
-	- quests_izlude.txt 
+	- quests_izlude.txt
 	- quests_geffen.txt
 	- qusts_payon.txt
-	
+
 	r0108 - 17/01/2011 [Rafoka]
 	* Corrigido um pequeno bug com relação ao "killmonsterall". Report por: xMaickx
 	- classes/2-1/cacador.txt
@@ -382,7 +387,7 @@
 	- bunnyband.txt
 	- mrsmile.txt
 	- quests_lutie.txt
-	
+
 	r0102 - 16/01/2011 [Dani]
 	* Atualizado conforme eAthena 14670.
 
@@ -480,7 +485,7 @@
 	* Revisadas traduções de npcs da pasta de eventos enviados em r87.
 	* Atualizado conforme eAthena r14663.
 	* Pequena correção no commit anterior.
-	
+
 	r0088 - 11/01/2011 [Floozie]
 	* Correção da mensagem de revisão do SVN do brAthena.
 	- Estava com o padrão do eAthena ainda.
@@ -552,7 +557,7 @@
 	* Atualizada data do projeto no core banner: 2008 ~ 2011.
 	* Corrigido pequeno erro no script_main, havia esquecido de trocar o nome da pasta customizados para personalizados.
 	* Removido arquivo desnecessário:
-	- conf/ladmin_athena.conf 
+	- conf/ladmin_athena.conf
 	* Códigos de funções para TXT removidas de arquivos da pasta conf.
 	- Importante: Configuração de logs agora são apenas por meio de database.
 
@@ -601,7 +606,7 @@
 	- quests/repetitiveis/quest_leafcat.txt
 	- quests/repetitiveis/quest_pecopeco.txt
 	- quests/repetitiveis/quest_pupa.txt
-	
+
 	r0071 - 05/01/2011 [Dani]
 	* Atualizado conforme eAthena r14651
 
@@ -635,7 +640,7 @@
 	- gde/prtg_cas04.txt
 	- gde/prtg_cas05.txt
 	NOTA: Farei a revisão ainda hoje.
-	
+
 	r0068 - 28/12/2010 [Protimus]
 	* Atualizado conforme eAthena r14635.
 	* Corrigidos problemas com linux na hora de compilar.
@@ -732,7 +737,7 @@
 
 	r0053 - 20/12/2010 [Floozie]
 	* Adicionado novo comando de script 'sc_check'.
-	
+
 	r0049 - 20/12/2010 [Protimus]
 	* Atualizado conforme eAthena r14609.
 
@@ -743,7 +748,7 @@
 
 	r0047 - 19/12/2010 [SoulSyntax]
 	* Traduções revisadas da pasta battle
-	
+
 	r0046 - 18/12/2010 [Wiskovisky]
 	* Enviada mais uma parte da tradução do emulador
 	- Principalmente do Map-server
@@ -782,21 +787,21 @@
 	* Remoção de códigos inutilizáveis para uso do configure na hora de compilar o emulador.
 	* Revisão de estrutura e traduções dos arquivos da pasta das configurações de batalhas (BATLLE).
 	- Arquivos revisados: battle.conf, battleground.conf e client.conf
-	OBS: Favor não mexerem nos arquivos da pasta de configurações (CONF) até que eu termine as revisões. 
+	OBS: Favor não mexerem nos arquivos da pasta de configurações (CONF) até que eu termine as revisões.
 
 	r0035 - 13/12/2010 [Lord]
 	* Corrigido pequeno erro de escrita na pasta conf.
 	* Iniciada tradução e organização da pasta /db
-	* Atualizado conforme eAthena r14590. 
+	* Atualizado conforme eAthena r14590.
 
 	r0033 - 13/12/2010 [Floozie]
 	* Alterado nome da pasta npc/classes/novice para 'aprendiz'
-	
+
 	r0032 - 10/12/2010 [Protimus]
-	* Atualizado conforme eAthena r14589. 
+	* Atualizado conforme eAthena r14589.
 
 	r0031 - 10/12/2010 [RawArkanis]
-    * Adicionada o carregamento e utilização do statpoint2.txt de acordo com a ativação nos arquivos de configuração.
+	* Adicionada o carregamento e utilização do statpoint2.txt de acordo com a ativação nos arquivos de configuração.
 
 	r0030 - 10/12/2010 [Lord]
 	* Iniciado organização e tradução da pasta /sql-files
@@ -804,7 +809,7 @@
 	* Corrigido pequeno erro no castle_db.
 	* Readcionada a pata /log
 	- A mesma pode ser utilizada para a versão SQL do emulador.
-	
+
 	r0029 - 10/12/2010 [Protimus]
 	* Realizado primeiro merge de remoções do TXT da source.
 	- Merge de acordo com r28 da branch txt-remove.
@@ -872,7 +877,7 @@
 
 	r0010 - 06/12/2010 [Protimus]
 	* Corrigido todos os warnings do Visual Studio C++ 2010, agora o compilador não acusa erros inválidos
-	* Removida as opção de compilação para versões TXT do Visual C++ 2010. 
+	* Removida as opção de compilação para versões TXT do Visual C++ 2010.
 	- Pelo motivo que essa opção será removida futuramente do emulador por completo.
 	OBS: Deixei a opção para compilação em TXT no VC++ 2009 por enquanto, quem quiser use até iniciarmos o trabalho de remoção dos códigos TXT na source.
 	* Removidos Visual Studio 6, 7 e 8.
@@ -883,20 +888,20 @@
 	- Visando maior upgrades e respostas de possíveis erros do emulador com um projeto atualizado.
 	OBS: Podem ocorrer alguns erros de compatibilidade que ainda não foram corrigidos.
 	* Pequena falha no envio de tabela do statpoint2.txt do commit r0008 resolvida.
-	
+
 	r0008 - 06/12/2010 [Protimus]
 	* Adicionado sistema de distribuição de status para servidores de rate alta. (statpoint2.txt)
 	- Adicionada tabela com os cálculos de status ganhos para cada level ganho.
 	- Adiciona opção para uso de tabela do database, statpoint2.txt
 	OBS: Lembrando que caso você use esse sistema, desabilite o sistema padrão, statpoint.txt
 	OBS2: Creio que ainda faltam modificações na source para os status lerem a database custom quando ativada, se alguém tiver um tempo favor verificar depois.
-	
+
 	r0007 - 06/12/2010 [Floozie]
 	* Revisado os cabeçalhos da pasta npc/merchants.
 
 	r0006 - 06/12/2010 [Protimus]
 	* Adicionado novo comando de script na source, checkmap.
-	- Modo de usar: checkmap através do if ou else. 
+	- Modo de usar: checkmap através do if ou else.
 	Ex: if (mapcheck("nomedomapa")).
 
 	r0005 - 05/12/2010 [Damascus]
@@ -921,10 +926,10 @@
 
 	r0001 - 04/12/2010 [Protimus]
 	* brAthena reiniciado.
-    - A tradução de algumas pastas e arquivos não será modificada do inglês para português devido não existir uma tradução coesa, sendo preferível deixar como está.
-    - Os arquivos serão adicionados aos poucos e enviado os merges de traduções, iniciaremos do zero dando merge em tudo.
+	- A tradução de algumas pastas e arquivos não será modificada do inglês para português devido não existir uma tradução coesa, sendo preferível deixar como está.
+	- Os arquivos serão adicionados aos poucos e enviado os merges de traduções, iniciaremos do zero dando merge em tudo.
 	OBS: O antigo changelog foi apago e não há importância e restituí-lo devido ao trabalho ter sido totalmente recomeçado e apenas enviados os merges.
-	* Adição dos ramos de controle. 
+	* Adição dos ramos de controle.
 	- Apenas versão trunk no momento que corresponde a mesma versão trunk do eAthena sem o renewal.
 	* Adicionado core banner do brAthena.
 	* Adicionadas traduções da pasta CONF, BATTLE & MAPFLAG.

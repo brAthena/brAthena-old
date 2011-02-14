@@ -660,7 +660,7 @@ pay_arche,99,167,4	script	Mercenary Manager#Bow	732,{
 
 // Mercenary Merchant NPCs
 //============================================================
--	script	Mercenary Merchant#dummy:MercMerchant	-1,{
+-	script	Mercenary Merchant#dummy::MercMerchant	-1,{
 	mes "[Mercenary Goods Merchant]";
 	mes "Hello, I sell goods";
 	mes "that Mercenaries can";
@@ -708,7 +708,7 @@ pay_arche,99,167,4	script	Mercenary Manager#Bow	732,{
 	close;
 }
 
-prontera,30,337,4	duplicate(MercMerchant	Mercenary Merchant#Spear	700
+prontera,30,337,4	duplicate(MercMerchant)	Mercenary Merchant#Spear	700
 izlude,56,139,4	duplicate(MercMerchant)	Mercenary Merchant#Sword	892
 pay_arche,102,167,5	duplicate(MercMerchant)	Mercenary Merchant#Bow	879
 
