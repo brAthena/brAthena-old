@@ -14,186 +14,187 @@
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.5/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: 					    					|
-// | Official Divorce script.				   				|
+// | Descrição:                                             |
+// | Official Divorce script.                               |
 // | Added isloggedin() check, even though Aegis doesn't    |
-// | do it;						    						|
+// | do it;                                                 |
 // | should be able to divorce even when the spouse is not  |
 // | online.                                                |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações                                            | 
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [cleyton]                         |
+// | 1.1 Script Revisado [cleyton]                          |
+// |                                                        | 
 // \________________________________________________________/
 
 nif_in,190,112,5	script	Deviruchi#divorce	738,{
 	mes "[Deviruchi]";
 //	if (wedding_sign == 0) {
 //		mes "Heh heh...";
-//		mes "Look at that depressed face.";
-//		mes "You must be feeling very lonely.";
-//		mes "But that's something everyone";
-//		mes "has to deal with.";
+//		mes "Olhe para essa face pálida.";
+//		mes "Você deve se sentir muito solitário.";
+//		mes "Mas isso é uma coisa que";
+//		mes "todo mundo tem que lidar.";
 //		next;
 //		mes "[Deviruchi]";
-//		mes "If you feel that lonely,";
-//		mes "how about raising a Pet?";
-//		mes "I hear that my kind is very";
-//		mes "popular nowadays, heh heh~";
+//		mes "Se você se sente só,";
+//		mes "porque não adota um bixo de estimação?";
+//		mes "Eu ouvi dizer que o meu tipo";
+//		mes "é muito popular, heh heh~";
 //		close;
 //	}
 //	else 
   	if (!getpartnerid()) {
 		mes "Bwah hah hah~!";
-		mes "That look in your eyes~!";
+		mes "Aquele olhar em seus olhos ~!";
 		if (sex) {
-			mes "Those are definitely the eyes";
-			mes "of a lonely male bachelor.";
-			mes "I'm almost 100 percent sure";
-			mes "you got ditched at the altar.";
+			mes "Este é definitivamente o olhar";
+			mes "de um solitário solteirão do sexo masculino.";
+			mes "Tenho quase 100 por cento de certeza";
+			mes "que você quer distância de um altar de casamento.";
 		}
 		else {
-			mes "They're just filled with the";
-			mes "pain of an old maid--!";
-			mes "Couldn't rope some poor guy";
-			mes "into marriage, huh?";
+			mes "eles são apenas preenchidos com  a ";
+			mes "dor de  uma solteirona--!";
+			mes "não foi possível suportar  um cara pobre";
+			mes "em um casamento, hein?";
 		}
 		next;
 		mes "[Deviruchi]";
 		mes "HHAHAHAHA~!";
 		mes "Oooooh...Hee hee~";
-		mes "I'd be more sympathetic if,";
-		mes "you know, I weren't a creature";
-		mes "of darkness.";
+		mes "Eu ficaria mais feliz se";
+		mes "você soubesse que eu não era uma criatura";
+		mes "das trevas.";
 		close;
 	}
-	mes "You look awfully depressed...";
-	mes "Lucky for you, I could care";
-	mes "less about happy people...";
-	mes "It's the humans in despair";
-	mes "that I take an interest in.";
+	mes "Você parece muito deprimido...";
+	mes "Sorte a sua que eu cuido";
+	mes "menos de pessoas felizes...";
+	mes "É em homens desesperados";
+	mes "que eu tenho mais interesse";
 	mes "Hahahahahahah~!";
 	next;
 	mes "[Deviruchi]";
-	mes "I sense that you carry a";
-	mes "tiresome burden...";
-	mes "If I'm not wrong, you're";
+	mes "Sinto que você carrega um";
+	mes "fardo pesado";
+	mes "se eu não estiver errado, você é";
 	if (sex)
-		mes "a married man, aren't you?";
+		mes "um homem casado, certo?";
 	else
-		mes "a married woman, aren't you?";
+		mes "uma mulher casada, certo?";
 	next;
 	mes "[Deviruchi]";
-	mes "Let me ask you one thing.";
-	mes "Are you happy to be married?";
-	mes "Forget about responsibilities,";
-	mes "romance and all that other junk";
-	mes "for now.";
+	mes "Deixa eu te perguntar uma coisa.";
+	mes "você está feliz por estar casado?";
+	mes "Esqueça as responsabilidades,";
+	mes "romances e todo o lixo do casamento";
+	mes "nesse momento.";
 	next;
 	mes "[Deviruchi]";
-	mes "I mean, can just one single";
-	mes "person really bring you all that";
-	mes "happiness? I know all about how";
-	mes "special weddings and the magic";
-	mes "of love is supposed to be, but...";
+	mes "Quero dizer, pode apenas uma única ";
+	mes "pessoa realmente lhe trazer tudo como";
+	mes "a felicidade? Eu sei tudo sobre os ";
+	mes "casamentos especiais, e a magia";
+	mes "que dizem que o amor supostamente proporciona, mas...";
 	next;
 	mes "[Deviruchi]";
-	mes "At the end of the day, you and";
-	mes "your partner fight, and you feel";
-	mes "totally totally miserable.";
+	mes "No final do dia você e";
+	mes "sua luta acabam, e você se sentirá";
+	mes "totalmente totalmente infeliz.";
 	if (sex)
-		mes "...all because of HER.";
+		mes "... tudo por causa DELE.";
 	else
-		mes "...all because of HIM.";
+		mes "...tudo por causa DELA.";
 	next;
 	mes "[Deviruchi]";
-	mes "Yes, it's your destiny to find me";
-	mes "here. We all make mistakes...";
-	mes "Even if you promised everlasting";
-	mes "love, even if you made a vow...";
-	mes "I can free you from that prison";
-	mes "of matrimony.";
+	mes "Sim, é o seu destino me encontrar";
+	mes "aqui.Todos nós cometemos erros...";
+	mes "Mesmo você prometendo o eterno";
+	mes "amor, mesmo se você que fez  promessa...";
+	mes "Eu posso libertá-lo dessa prisão";
+	mes "que é o matrimônio.";
 	next;
 	mes "[Deviruchi]";
-	mes "It's simple if you look at";
-	mes "marriage as a contract...a";
-	mes "contract that ends with 'till";
-	mes "death do we part.' Here in";
-	mes "Nifleheim, it's easy to use";
-	mes "that little loophole...";
+	mes "É simples se você olhar";
+	mes "o casamento é como um contrato...um";
+	mes "contrato que termina com' até";
+	mes "que a morte nos separe.'.Aqui em";
+	mes "Nifleheim, é fácil de desfazer";
+	mes "só espere  um pouco...";
 	next;
 	mes "[Deviruchi]";
-	mes "*whispers*";
-	mes "^555555It's not like you're breaking^000000";
+	mes "*Sussurros*";
+	mes "^555555Eu vejo que você não está gostando^000000";
 	if (sex) {
-		mes "^555555any promises, and it's not";
-		mes "like your wife will care if she";
-		mes "doesn't know... Don't you";
-		mes "want to be freed from her?^000000";
+		mes "^555555de  suas promessas, e não é";
+		mes "como sua esposa e se importando com ela,";
+		mes "não sei...Você não";
+		mes "quer se ver livre dela?^000000";
 	}
 	else {
-		mes "^555555any promises. Hell, your husband";
-		mes "doesn't even have to know";
-		mes "about it... you deserve";
-		mes "real happiness, right?^000000";
+		mes "^555555Suas promessas, seu marido";
+		mes "nem sequer tem que saber";
+		mes "sobre isso... você merece";
+		mes "a verdadeira felicidade, certo?^000000";
 	}
 	next;
 	mes "[Deviruchi]";
-	mes "You can have a brand new love";
-	mes "with a better person...";
-	mes "Wouldn't that be great...?";
-	mes "I can help you if you want...";
-	mes "I can make all of this happen!";
+	mes "você pode ter um novo amor";
+	mes "com uma  pessoa melhor";
+	mes "isso não seria maravilhoso?";
+	mes "Eu posso te ajudar se você quiser...";
+	mes "Eu posso fazer tudo isso acontecer!";
 	next;
-	if (select("No thanks, I am happy.:Yes, please do.") == 1) {
+	if (select("Não obrigado, eu sou feliz:. Sim, por favor.") == 1) {
 		mes "[Deviruchi]";
-		mes "Hmpf~! You must still be";
-		mes "fascinated with the silly";
-		mes "notion of eternal love. Well,";
-		mes "if you think you're happy,";
-		mes "then I'll have nothing";
-		mes "to do with you--!";
+		mes "Hmpf~! você ainda deve ser";
+		mes "fascinado com a bobagem";
+		mes "de amor eterno. Bem,";
+		mes "se você pensa que está feliz,";
+		mes "então eu não tenho nada";
+		mes "a falar com você--!";
 		close2;
 		warp "niflheim",169,162;
 		end;
 	}
 	mes "[Deviruchi]";
-	mes "Good, good...";
-	mes "Now all you have to do is give";
-	mes "me what I want in exchange...";
-	mes "Just 2,500,000 zeny and...*cough!*";
-	mes "^666666An eensy piece of your soul.^000000";
+	mes "Bom, bom...";
+	mes "Agora tudo que você tem a fazer é dar";
+	mes "o que eu quero em troca...";
+	mes "apensas 2.500.000 zenys e...*tosse!*";
+	mes "^666666 um pedaço da sua alma.^000000";
 	next;
 	mes "[Deviruchi]";
-	mes "After that, it's the carefree";
-	mes "single's life. All you have to";
-	mes "do is say the word...";
+	mes "depois disso, é a despreocupação";
+	mes "de cuidar de uma única vida.Tudo que você precisa";
+	mes "fazer é dizer  a  palavra...";
 	next;
-	if (select("...Give me some time to think.:Any price will do, give me a divorce right now!") == 1) {
+	if (select("... Me dê algum tempo para pensar:. Qualquer preço eu aceito, me dê o divórcio agora mesmo!") == 1) {
 		mes "[Deviruchi]";
-		mes "I understand. But if you think";
-		mes "about anything, think about";
+		mes "Eu entendo.Mas se você quer pensar";
+		mes "sobre qualquer coisa, pense...";
 		if (sex) {
-			mes "your wife's nagging, and";
-			mes "how great it would be to";
-			mes "finally free yourself of the";
-			mes "old ball and chain~";
+			mes "Fascinante seria se";
+			mes "você se livrasse ";
+			mes "finalmente da sua esposa";
+			mes "e se libertasse de vez dessa coisa velha";
 		}
 		else {
-			mes "how horrible your husband is,";
-			mes "and what a relief it would";
-			mes "be to be rid of that crumbum~";
+			mes "Como seu marido é  horrível.";
+			mes "e  isso seria um alívio";
+			mes "pra você se livrar deste bixo feio~";
 		}
 		close;
 	}
 	mes "[Deviruchi]";
 	if (Zeny > 2499999) {
-		mes "Excellent choice~";
-		mes "Let's get started right";
-		mes "away! This may take some";
-		mes "time, but it's better than";
-		mes "being hopelessly married";
-		mes "^FF0000for the rest of your life.^000000";
+		mes "Excelente escolha~!";
+		mes "vamos começar agora";
+		mes "o processo! isso pode levar algum";
+		mes "tempo, mas é melhor do que";
+		mes "ser irremediavelmente casado";
+		mes "^FF0000para  o resto da sua vida.^000000";
 		next;
 		specialeffect EF_MAGICROD;
 		specialeffect2 EF_DEVIL;
@@ -203,17 +204,18 @@ nif_in,190,112,5	script	Deviruchi#divorce	738,{
 		divorce;
 		mes "[Deviruchi]";
 		mes "Bwahhahahaha~!";
-		mes "Now you're free~!";
-		mes "Don't you feel so much";
-		mes "better now as a single?";
-		mes "Ah, bachelorhood...";
+		mes "agora você está livre~!";
+		mes "você não sente tanto";
+		mes "melhor agora sendo único?";
+		mes "Hahhh celibato...";
 		close;
 	}
-	mes "Hmmm...I did tell you to bring";
-	mes "2,500,000 zeny, right?";
-	mes "No one else in this world can";
-	mes "offer this kind of freedom...";
-	mes "You can't put a price on";
-	mes "peace of mind, can you?";
+	mes "Hummm...eu lhe disse para trazer";
+	mes "2,500,000 zenys, correto?";
+	mes "Ninguém neste mundo pode";
+	mes "oferecer este tipo de liberdade...";
+	mes "você não pode colocar um preço";
+	mes "na paz de espirito, pode?";
 	close;
 }
+

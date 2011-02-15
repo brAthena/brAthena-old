@@ -8,147 +8,148 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Hypnotist				    			|
+// | Nome do Script: Hypnotist                              |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.0/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição:						    					|
+// | Descrição:                                             |
 // | Permenent first class, base level 40 and under skill   |
-// | resetter.						    					|
-// | First Class characters and expanded classes only.	    |
-// | Baby Classes and First Class trans can't use this	    |
-// | service.						    					|
+// | resetter.                                              |
+// | First Class characters and expanded classes only.      |
+// | Baby Classes and First Class trans can't use this      |
+// | service.                                               |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações                                            | 
+// | Changelog:                                             |
+// | 1.0 Script Traduzido[cleyton]                          |
+// | 1.1 Script Revisado[cleyton]                           |
+// |                                                        | 
 // \________________________________________________________/
 
-prontera,146,232,4	script	Hypnotist#2	124,{
-	mes "[Hypnotist]";
-	mes "Greetings, adventurer.";
-	mes "I'm a member of the Hypnotist";
-	mes "Academy sent here to Prontera";
-	mes "to provide Skill Reset services";
-	mes "to certain First Class characters for a really good price: free!";
+prontera,146,232,4	script	Hipinotizador#2	124,{
+	mes "[Hipinotizador]";
+	mes "Saudações aventureiro!";
+	mes "Eu sou um membro da academia";
+	mes "de Hipinotizadores e fui enviado à Prontera";
+	mes "para prestar serviços de redefinição de pontos de habilidade";
+	mes "para alguns personagens de Primeira Classe, por um preço muito bom...  De graça!";
 	next;
-	mes "[Hypnotist]";
-	mes "Although I offer unlimited";
-	mes "skill resets for now, I have";
-	mes "two conditions that must be";
-	mes "fulfilled. First, you must be";
-	mes "lower than ^FF0000Base Level 40^000000.";
+	mes "[Hipinotizador]";
+	mes "Embora meu serviço seja ilimitado";
+	mes "para redefinir suas habilidades, é ncessário seguir";
+	mes "duas condições que devem ser cumpridas.";
+	mes "Primeiro, você não pode ser";
+	mes "superior a ^FF0000Nível de base 40^000000.";
 	next;
-	mes "[Hypnotist]";
-	mes "Second, you must be a";
-	mes "^FF0000Swordman, Acolyte, Mage,";
-	mes "Thief, Archer, Merchant,";
-	mes "Taekwon Boy, Taekwon Girl, Gunslinger and Ninja^000000";
-	mes "Job character to qualify.";
-	mes "Now, do you have any questions?";
+	mes "[Hipinotizador]";
+	mes "Segundo, você deve ser as seguintes profissões:";
+	mes "^FF0000Espadachim, Noviço, Mago,";
+	mes "Gatuno, Arqueiro, Mercador,";
+	mes "Taekwon, Justiceiro e Ninja^000000";
+	mes "para estar qualificado.";
+	mes "Agora você tem mais alguma dúvida?";
 	next;
-	switch(select("Skill Reset?:I want a Skill Reset:Nothing")) {
+	switch(select("Redefinir Habilidades?:Eu quero Redefinir minhas habilidades:Nada")) {
 
 	case 1:
-		mes "[Hypnotist]";
-		mes "Skill Resets allow adventuers";
-		mes "to redistribute their Skill";
-		mes "Points if they are unhappy";
-		mes "with their current skills.";
+		mes "[Hipinotizador]";
+		mes "Redefinição de pontos de habilidade, são para aventureiros";
+		mes "que usaram seus pontos";
+		mes "de forma inadequada";
+		mes "e estão infelizes com suas habilidades atuais.";
 		next;
-		mes "[Hypnotist]";
-		mes "Before proceeding with";
-		mes "a Skill Reset, you must";
-		mes "reduce all of the weight";
-		mes "of all carried items on your";
-		mes "character to 0. You can put";
-		mes "extra items in Kafra Storage.";
+		mes "[Hipinotizador]";
+		mes "Antes de prosseguir com o processo";
+		mes "para redefinir seus pontos, você precisa";
+		mes "reduzir todo seu peso";
+		mes "e remover todos seus itens até";
+		mes "seu personagem chegar ao peso 0. Você pode guardar";
+		mes "seus itens no armazém da Kafra.";
 		next;
-		mes "[Hypnotist]";
-		mes "Ah, it's also important";
-		mes "to remove your ^FF0000Pushcart^000000";
-		mes "if you have one equipped.";
-		mes "Otherwise, hypnosis won't";
-		mes "work, or will backfire...";
+		mes "[Hipinotizador]";
+		mes "Ah, o mais importante,";
+		mes "remova seu  ^FF0000Carrinho de mão^000000";
+		mes "se possui um equipado.";
+		mes "Caso contrário, meus poderes hipinóticos não";
+		mes "funcionarão e o tiro sairá pela culatra...";
 		close;
 
 	case 2:
-		mes "[Hypnotist]";
-		mes "Are you sure that you";
-		mes "want to proceed with";
-		mes "my ^FF0000Skill Reset^000000 service?";
+		mes "[Hipinotizador]";
+		mes "Você tem certeza que ";
+		mes "deseja prosseguir com o";
+		mes "meu serviço de ^FF0000Redefinição de habilidades^000000 ?";
 		next;
-		if (select("Yes:Cancel") == 1) {
+		if (select("Sim:Cancelar") == 1) {
 			if (BaseLevel > 40) {
-				mes "[Hypnotist]";
-				mes "I'm sorry, but characters";
-				mes "with Base Levels higher";
-				mes "than 40 are ineligible for the";
-				mes "Skill Reset service I provide.";
+				mes "[Hipinotizador]";
+				mes "Eu sinto muito, mas personagens";
+				mes "com Nível superior";
+				mes "ao 40, não estão aptos para receberem";
+				mes "serviço de redefinição de habilidades.";
 				close;
 			}
 			if ((Class > 0 && Class < 7 && Upper == 0) || (Class == Job_Gunslinger) || (Class == Job_Ninja) || (Class == Job_Taekwon)) {
 				if (checkcart()) {
-					mes "[Hypnotist]";
-					mes "Oh! Please remove your";
-					mes "Pushcart before proceeding";
-					mes "with the Skill Reset service.";
-					mes "Thanks for cooperating~";
+					mes "[Hipinotizador]";
+					mes "Opa! Por favor, remova seu";
+					mes "carrinho de mão para continuar";
+					mes "com o serviço de redefinição de habilidade.";
+					mes "Obribado por sua cooperação.";
 					close;
 				}
 				if (Weight) {
-					mes "[Hypnotist]";
-					mes "If you're here for my Skill";
-					mes "Reset service, please";
-					mes "remember that you can't";
-					mes "reset your skills until the";
-					mes "^FF0000weight of your carried items in";
-					mes "your Inventory is reduced to 0^000000.";
+					mes "[Hipinotizador]";
+					mes "Se você usar meus serviços";
+					mes "de redefinção de habilidades, por favor";
+					mes "lembre-se, que para poder usar ";
+					mes "o serviço, você deverá";
+					mes "^FF0000remover todos os itens do seu inventário";
+					mes "até seu peso chegar a  0^000000.";
 					next;
-					mes "[Hypnotist]";
-					mes "Why don't you place your";
-					mes "things into the Kafra Storage";
-					mes "for now? That way, you can";
-					mes "safely keep all of your goods.";
+					mes "[Hipinotizador]";
+					mes "Porque você não esvazia";
+					mes "seu inventário usando o Armazém da Kafra";
+					mes "agora? Fazendo isso você pode";
+					mes "guardar todos seus itens valiosos.";
 					close;
 				}
-				mes "[Hypnotist]";
-				mes "Thank you for using";
-				mes "my Skill Redistribution";
-				mes "services. Oh, and best";
-				mes "of luck to you on your";
-				mes "travels, adventurer.";
+				mes "[Hipinotizador]";
+				mes "Muito obrigado por usar o";
+				mes "meu serviço de redefinição de";
+				mes "habilidades. Ah,  e boa sorte";
+				mes "em suas viagens";
+				mes "aventureiro.";
 				ResetSkill;
 				close;
 			}
-			mes "[Hypnotist]";
-			mes "I'm sorry, but your";
-			mes "Job Class doesn't qualify";
-			mes "for the Skill Reset service";
-			mes "that I provide. I can only";
-			mes "offer Skill Resets to the";
-			mes "following Jobs...";
+			mes "[Hipinotizador]";
+			mes "Eu lamento, mas sua";
+			mes "profissão não está qualificada";
+			mes "para usar o serviço de Redefinição de habilidades";
+			mes "que estou oferecendo. Eu só posso";
+			mes "oferecer esse serviço para";
+			mes "as seguintes profissões...";
 			next;
-			mes "[Hypnotist]";
-			mes "^FF0000Swordman, Acolyte,";
-			mes "Mage, Thief, Archer,";
-			mes "Merchant, Taekwon";
-			mes "Boy, Taekwon Girl, Gunslinger and Ninja^000000.";
+			mes "[Hipinotizador]";
+			mes "^FF0000Espadachim, Noviço,";
+			mes "Mago, Gatuno, Arqueiro,";
+			mes "Mercador, Taekwon,";
+			mes "Justiceiro e Ninja^000000.";
 			close;
 		}
-		mes "[Hypnotist]";
-		mes "Thank you, and good";
-		mes "luck on your adventures.";
-		mes "Please travel in safety~";
+		mes "[Hipinotizador]";
+		mes "Muito obrigado e tenha";
+		mes "boa sorte em suas aventuras.";
+		mes "Por favor, viagem em segurança!";
 		close;
 
 	case 3:
-		mes "[Hypnotist]";
-		mes "Thank you, and good";
-		mes "luck on your adventures.";
-		mes "Please travel in safety~";
+		mes "[Hipinotizador]";
+		mes "Muito obrigado e tenha";
+		mes "boa sorte em suas aventuras.";
+		mes "Por favor, viagem em segurança!";
 		close;
 	}
 
