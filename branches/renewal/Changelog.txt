@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0248 - 19/02/2011 [Protimus]
+	* Removido npc duplicado da pasta de comerciantes.
+	- Estava causando erro de codificação na leitura.
+
 	r0243 - 13/02/2011 [Protimus]
 	* Correções para o sistema de Buying Shop ou Purchase Shop aka iRO Wiki.
 	- Corrigido problema com zeny exploit nas lojas.
