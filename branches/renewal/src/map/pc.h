@@ -363,13 +363,6 @@ struct map_session_data {
 	char message[MESSAGE_SIZE];
 	struct s_vending vending[MAX_VENDING];
 
-	int buying_id;
-	int buyer_id;
-	int buy_num;
-	int limitzeny;
-	char buymessage[MESSAGE_SIZE];
-	struct s_buying buying[MAX_BUYING];
-
 	struct pet_data *pd;
 	struct homun_data *hd;	// [blackhole89]
 	struct mercenary_data *md;
@@ -529,9 +522,9 @@ extern int duel_count;
 #define pc_setsit(sd)         ( (sd)->state.dead_sit = (sd)->vd.dead_sit = 2 )
 #define pc_isdead(sd)         ( (sd)->state.dead_sit == 1 )
 #define pc_issit(sd)          ( (sd)->vd.dead_sit == 2 )
-#define pc_isidle(sd)         ( (sd)->chatID || (sd)->vender_id || (sd)->buyer_id || DIFF_TICK(last_tick, (sd)->idletime) >= battle_config.idle_no_share )
-#define pc_istrading(sd)      ( (sd)->npc_id || (sd)->vender_id || (sd)->buyer_id || (sd)->state.trading )
-#define pc_cant_act(sd)       ( (sd)->npc_id || (sd)->vender_id || (sd)->buyer_id || (sd)->chatID || (sd)->sc.opt1 || (sd)->state.trading || (sd)->state.storage_flag )
+#define pc_isidle(sd)         ( (sd)->chatID || (sd)->vender_id || DIFF_TICK(last_tick, (sd)->idletime) >= battle_config.idle_no_share )
+#define pc_istrading(sd)      ( (sd)->npc_id || (sd)->vender_id || (sd)->state.trading )
+#define pc_cant_act(sd)       ( (sd)->npc_id || (sd)->vender_id || (sd)->chatID || (sd)->sc.opt1 || (sd)->state.trading || (sd)->state.storage_flag )
 #define pc_setdir(sd,b,h)     ( (sd)->ud.dir = (b) ,(sd)->head_dir = (h) )
 #define pc_setchatid(sd,n)    ( (sd)->chatID = n )
 #define pc_ishiding(sd)       ( (sd)->sc.option&(OPTION_HIDE|OPTION_CLOAK|OPTION_CHASEWALK) )

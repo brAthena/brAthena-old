@@ -1077,7 +1077,7 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 				if (DIFF_TICK(ud->canact_tick, tick + rate) < 0){
 					ud->canact_tick = tick+rate;
 					if ( battle_config.display_status_timers && sd )
-						clif_status_change(src, SI_ACTIONDELAY, 1, rate);
+						clif_status_change(src, SI_ACTIONDELAY, 1, rate, 0, 0, 1);
 				}
 			}
 		}
@@ -1352,7 +1352,7 @@ int skill_counter_additional_effect (struct block_list* src, struct block_list *
 				if (DIFF_TICK(ud->canact_tick, tick + rate) < 0){
 					ud->canact_tick = tick+rate;
 					if ( battle_config.display_status_timers && dstsd )
-						clif_status_change(bl, SI_ACTIONDELAY, 1, rate);
+						clif_status_change(bl, SI_ACTIONDELAY, 1, rate, 0, 0, 1);
 				}
 			}
 		}
@@ -4452,16 +4452,6 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		}
 		break;
 
-	case ALL_BUYING_STORE:
-		if(sd)
-		{
-			if ( !pc_can_give_items(pc_isGM(sd)) )
-				clif_skill_fail(sd,skillid,0,0);
-			else
-				clif_openbuyingreq(sd,skilllv>1?5:2);
-		}
-		break;
-
 	case AL_TELEPORT:
 		if(sd)
 		{
@@ -5989,7 +5979,7 @@ int skill_castend_id(int tid, unsigned int tick, int id, intptr data)
 		if( !sd || sd->skillitem != ud->skillid || skill_get_delay(ud->skillid,ud->skilllv) )
 			ud->canact_tick = tick + skill_delayfix(src, ud->skillid, ud->skilllv); //Tests show wings don't overwrite the delay but skill scrolls do. [Inkfish]
 		if( battle_config.display_status_timers && sd )
-			clif_status_change(src, SI_ACTIONDELAY, 1, skill_delayfix(src, ud->skillid, ud->skilllv));
+			clif_status_change(src, SI_ACTIONDELAY, 1, 0, 0, 0, 1);
 		if( sd )
 		{
 			switch( ud->skillid )
@@ -6199,10 +6189,12 @@ int skill_castend_pos(int tid, unsigned int tick, int id, intptr data)
 		if (ud->walktimer != INVALID_TIMER)
 			unit_stop_walking(src,1);
 
+		if( sd && skill_get_cooldown(ud->skillid,ud->skilllv) > 0 )
+			skill_blockpc_start(sd, ud->skillid, skill_get_cooldown(ud->skillid, ud->skilllv));
 		if( !sd || sd->skillitem != ud->skillid || skill_get_delay(ud->skillid,ud->skilllv) )
 			ud->canact_tick = tick + skill_delayfix(src, ud->skillid, ud->skilllv);
-		if( battle_config.display_status_timers && sd )
-			clif_status_change(src, SI_ACTIONDELAY, 1, skill_delayfix(src, ud->skillid, ud->skilllv));
+		if( battle_config.display_status_timers && sd && skill_get_delay(ud->skillid, ud->skilllv))
+			clif_status_change(src, SI_ACTIONDELAY, 1, skill_delayfix(src, ud->skillid, ud->skilllv), 0, 0, 1);
 //		if( sd )
 //		{
 //			switch( ud->skillid )

@@ -5607,7 +5607,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			//val3 : Brings the skilllv (merged into val1 here)
 			//val4 : Partner
 			if (val1 == CG_MOONLIT)
-				clif_status_change(bl,SI_MOONLIT,1,tick);
+				clif_status_change(bl,SI_MOONLIT,1,0,0,0,tick);
 			val1|= (val3<<16);
 			val3 = tick/1000; //Tick duration
 			tick = 1000;
@@ -6841,7 +6841,7 @@ int status_change_end(struct block_list* bl, enum sc_type type, int tid)
 				}
 
 				if((sce->val1&0xFFFF) == CG_MOONLIT)
-					clif_status_change(bl,SI_MOONLIT,0,0);
+					clif_status_change(bl,SI_MOONLIT,0,0,0,0,0);
 
 				status_change_end(bl, SC_LONGING, INVALID_TIMER);
 			}
@@ -6970,7 +6970,6 @@ int status_change_end(struct block_list* bl, enum sc_type type, int tid)
 			if (tid == INVALID_TIMER)
 				break;
 			vending_closevending(sd);
-			vending_closebuying(sd);
 			map_quit(sd);
 			// Because map_quit calls status_change_end with tid -1
 			// from here it's not neccesary to continue
@@ -7144,7 +7143,7 @@ int status_change_end(struct block_list* bl, enum sc_type type, int tid)
 
 	//On Aegis, when turning off a status change, first goes the sc packet, then the option packet.
 	if( vd && (pcdb_checkid(vd->class_) || bl->type == BL_MER ) )
-		clif_status_change(bl,StatusIconChangeTable[type],0,0);
+		clif_status_change(bl,StatusIconChangeTable[type],0,0,0,0,0);
 	else if (sd)
 		clif_status_load(bl,StatusIconChangeTable[type],0);
 

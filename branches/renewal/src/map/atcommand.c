@@ -1147,7 +1147,7 @@ ACMD_FUNC(storage)
 {
 	nullpo_retr(-1, sd);
 
-	if (sd->npc_id || sd->vender_id || sd->buyer_id || sd->state.trading || sd->state.storage_flag)
+	if (sd->npc_id || sd->vender_id || sd->state.trading || sd->state.storage_flag)
 		return -1;
 
 	if (storage_storageopen(sd) == 1)
@@ -1174,7 +1174,7 @@ ACMD_FUNC(guildstorage)
 		return -1;
 	}
 
-	if (sd->npc_id || sd->vender_id || sd->buyer_id || sd->state.trading)
+	if (sd->npc_id || sd->vender_id || sd->state.trading)
 		return -1;
 
 	if (sd->state.storage_flag == 1) {
@@ -2893,17 +2893,17 @@ ACMD_FUNC(gat)
  *------------------------------------------*/
 ACMD_FUNC(displaystatus)
 {
-	int i, type, flag, tick;
+	int i, type, flag, tick, val1, val2, val3;
 	nullpo_retr(-1, sd);
-
-	if (!message || !*message || (i = sscanf(message, "%d %d %d", &type, &flag, &tick)) < 1) {
-		clif_displaymessage(fd, "Favor digitar um tipo/flag (uso: @displaystatus <tipo de status> <flag> <tick>).");
+	
+	if (!message || !*message || (i = sscanf(message, "%d %d %d %d %d %d", &type, &flag, &tick, &val1, &val2, &val3)) < 1) {
+		clif_displaymessage(fd, "Favor digitar um tipo/flag (uso: @displaystatus <tipo de status> <flag> <tick> <val1> <val2> <val3>).");
 		return -1;
 	}
 	if (i < 2) flag = 1;
 	if (i < 3) tick = 0;
 
-	clif_status_change(&sd->bl, type, flag, tick);
+	clif_status_change(&sd->bl, type, flag, tick, val1, val2, val3);
 
 	return 0;
 }
@@ -6076,7 +6076,7 @@ ACMD_FUNC(autotrade)
 		return -1;
 	}
 
-	if( !sd->vender_id && !sd->buyer_id ) { //check if player is vending
+	if( !sd->vender_id ) { //check if player is vending
 		clif_displaymessage(fd, msg_txt(549)); // You should be vending to use @Autotrade.
 		return -1;
 	}

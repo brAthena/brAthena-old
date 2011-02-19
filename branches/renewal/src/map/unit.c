@@ -439,7 +439,7 @@ int unit_run(struct block_list *bl)
 
 	if(to_x == bl->x && to_y == bl->y || (to_x == (bl->x+1) || to_y == (bl->y+1)) || (to_x == (bl->x-1) || to_y == (bl->y-1))) {
 		//If you can't run forward, you must be next to a wall, so bounce back. [Skotlex]
-		clif_status_change(bl, SI_BUMP, 1, 0);
+		clif_status_change(bl, SI_BUMP, 1, 0, 0, 0, 0);
 
 		//Set running to 0 beforehand so status_change_end knows not to enable spurt [Kevin]
 		unit_bl2ud(bl)->state.running = 0;
@@ -447,7 +447,7 @@ int unit_run(struct block_list *bl)
 
 		skill_blown(bl,bl,skill_get_blewcount(TK_RUN,lv),unit_getdir(bl),0);
 		clif_fixpos(bl); //Why is a clif_slide (skill_blown) AND a fixpos needed? Ask Aegis.
-		clif_status_change(bl, SI_BUMP, 0, 0);
+		clif_status_change(bl, SI_BUMP, 0, 0, 0, 0, 0);
 		return 0;
 	}
 	if (unit_walktoxy(bl, to_x, to_y, 1))
@@ -459,7 +459,7 @@ int unit_run(struct block_list *bl)
 	} while (--i > 0 && !unit_walktoxy(bl, to_x, to_y, 1));
 	if (i==0) {
 		// copy-paste from above
-		clif_status_change(bl, SI_BUMP, 1, 0);
+		clif_status_change(bl, SI_BUMP, 1, 0, 0, 0, 0);
 
 		//Set running to 0 beforehand so status_change_end knows not to enable spurt [Kevin]
 		unit_bl2ud(bl)->state.running = 0;
@@ -467,7 +467,7 @@ int unit_run(struct block_list *bl)
 
 		skill_blown(bl,bl,skill_get_blewcount(TK_RUN,lv),unit_getdir(bl),0);
 		clif_fixpos(bl);
-		clif_status_change(bl, SI_BUMP, 0, 0);
+		clif_status_change(bl, SI_BUMP, 0, 0, 0, 0, 0);
 		return 0;
 	}
 	return 1;
@@ -803,7 +803,6 @@ int unit_can_move(struct block_list *bl)
 	if (sd && (
 		pc_issit(sd) ||
 		sd->vender_id ||
-		sd->buyer_id ||
 		sd->state.blockedmove
 	))
 		return 0; //Can't move
@@ -1877,8 +1876,6 @@ int unit_remove_map_(struct block_list *bl, clr_type clrtype, const char* file, 
 			trade_tradecancel(sd);
 		if(sd->vender_id)
 			vending_closevending(sd);
-		if(sd->buyer_id)
-			vending_closebuying(sd);
 		if(sd->state.storage_flag == 1)
 			storage_storage_quit(sd,0);
 		else if (sd->state.storage_flag == 2)
