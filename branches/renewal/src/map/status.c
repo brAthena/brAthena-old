@@ -1476,9 +1476,9 @@ int status_base_amotion_pc(struct map_session_data* sd, struct status_data* stat
  	return amotion;
 }
 
-static unsigned short status_base_atk(const struct block_list *bl, const struct status_data *status)
+static unsigned short status_base_atk(const struct block_list *bl, const struct status_data *status, int level)
 {
-	int flag = 0, str, dex, atk;
+	int flag = 0, str, dex;
 
 	if(!(bl->type&battle_config.enable_baseatk))
 		return 0;
@@ -1505,16 +1505,14 @@ static unsigned short status_base_atk(const struct block_list *bl, const struct 
 	//Normally only players have base-atk, but homunc have a different batk
 	// equation, hinting that perhaps non-players should use this for batk.
 	// [Skotlex]
-	atk = status->str;
 
 	if( bl->type == BL_PC ) {
-		atk += status->dex/5;
-		atk += status->luk/3;
+		str += (int)(((float)status->dex/5) + ((float)status->luk/3) + ((float)level/4));
 	}
 	return cap_value(str, 0, USHRT_MAX);
 }
 
-#define status_base_status_matk(status, level) (status->int_ + (level/4) + (status->dex/5) + (status->luk/3))
+#define status_base_status_matk(status, level) (status->int_ + status->int_/2 + (level/4) + (status->dex/5) + (status->luk/3))
 
 //Fills in the misc data that can be calculated from the other status info (except for level)
 void status_calc_misc(struct block_list *bl, struct status_data *status, int level)
@@ -1527,12 +1525,12 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int lev
 		status->cri = status->flee2 =
 		status->mdef = status->def = 0;
 
-	status->batk = status_base_atk(bl, status);
+	status->batk = status_base_atk(bl, status, level);
 
 	status->hit += level + status->dex + status->luk/3 + 175;
-	status->flee += level + status->agi + status->luk/7 + 100;
+	status->flee += level + status->agi + status->luk/5 + 100;
 	status->def += (level + status->vit)/2 + (status->agi/5);
-	status->mdef += status->int_/2 + level/4 + status->dex/5 + status->vit/5;
+	status->mdef += (int)(status->int_ + ((float)level/4) + ((float)status->dex/5) + ((float)status->vit/5));
 
 	status->matk_min = status_base_status_matk(status, level);
 	if (bl->type == BL_PC )
@@ -1544,8 +1542,7 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int lev
 		status->cri = 0;
 
 	if (bl->type&battle_config.enable_perfect_flee)
-		status->flee2 += status->luk/10;
-		status->flee2 = 0;
+		status->flee2 += status->luk + 10;
 
 	if (status->cri)
 	switch (bl->type) {
@@ -2993,8 +2990,8 @@ void status_calc_bl_main(struct block_list *bl, enum scb_flag flag)
 	}
 
 	if(flag&SCB_BATK && b_status->batk) {
-		status->batk = status_base_atk(bl,status);
-		temp = b_status->batk - status_base_atk(bl,b_status);
+		status->batk = status_base_atk(bl,status, status_get_lv(bl));
+		temp = b_status->batk - status_base_atk(bl,b_status, status_get_lv(bl));
 		if (temp)
 		{
 			temp += status->batk;
@@ -3804,7 +3801,7 @@ static signed short status_calc_flee(struct block_list *bl, struct status_change
 	}
 
 	if(!sc || !sc->count)
-		return cap_value(flee,1,SHRT_MAX);
+		return cap_value(flee,0,SHRT_MAX);
 
 	if(sc->data[SC_INCFLEE])
 		flee += sc->data[SC_INCFLEE]->val1;
@@ -3841,7 +3838,7 @@ static signed short status_calc_flee(struct block_list *bl, struct status_change
 	if(sc->data[SC_FEAR])
 		flee -= flee * 20 / 100;
 
-	return (short)cap_value(flee,1,SHRT_MAX);
+	return (short)cap_value(flee,0,SHRT_MAX);
 }
 
 static signed short status_calc_flee2(struct block_list *bl, struct status_change *sc, int flee2)
@@ -3905,7 +3902,7 @@ static signed short status_calc_def(struct block_list *bl, struct status_change 
 static signed short status_calc_def2(struct block_list *bl, struct status_change *sc, int def2)
 {
 	if(!sc || !sc->count)
-		return cap_value(def2,1,SHRT_MAX);
+		return cap_value(def2,0,SHRT_MAX);
 
 	if(sc->data[SC_BERSERK])
 		return 0;
@@ -3931,7 +3928,7 @@ static signed short status_calc_def2(struct block_list *bl, struct status_change
 	if(sc->data[SC_FLING])
 		def2 -= def2 * (sc->data[SC_FLING]->val3)/100;
 
-	return (short)cap_value(def2,1,SHRT_MAX);
+	return (short)cap_value(def2,0,SHRT_MAX);
 }
 
 static signed short status_calc_mdef(struct block_list *bl, struct status_change *sc, int mdef)
@@ -3962,14 +3959,14 @@ static signed short status_calc_mdef(struct block_list *bl, struct status_change
 static signed short status_calc_mdef2(struct block_list *bl, struct status_change *sc, int mdef2)
 {
 	if(!sc || !sc->count)
-		return cap_value(mdef2,1,SHRT_MAX);
+		return cap_value(mdef2,0,SHRT_MAX);
 
 	if(sc->data[SC_BERSERK])
 		return 0;
 	if(sc->data[SC_MINDBREAKER])
 		mdef2 -= mdef2 * sc->data[SC_MINDBREAKER]->val3/100;
 
-	return (short)cap_value(mdef2,1,SHRT_MAX);
+	return (short)cap_value(mdef2,0,SHRT_MAX);
 }
 
 static unsigned short status_calc_speed(struct block_list *bl, struct status_change *sc, int speed)

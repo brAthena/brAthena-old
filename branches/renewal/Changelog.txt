@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0250 - 19/02/2011 [brn0]
+	* Correção nos cáculos dos atributos.
+
 	r0249 - 19/02/2011 [Protimus]
 	* Correções para clif_status_change.
 	- Agora está lendo da maneira correta.
