@@ -168,6 +168,7 @@ comodo,219,160,3	script	Kachua	91,{
 				else if (.@gamble2 == 81) set .@item,1560; // Sage's Diary[2]
 				else if (.@gamble2 == 82) set .@item,1618; // Survivor's Rod[1]
 				else if (.@gamble2 == 83) set .@item,1620; // Survivor's Rod[1]
+				else if (.@gamble2 > 83 && .@gamble2 < 86) set .@item,1971; 
 			}
 			else if ((.@gamble1 >   0) && (.@gamble1 <  201)) set .@item,1201; // Knife[3]
 			else if ((.@gamble1 > 200) && (.@gamble1 <  301)) set .@item,1101; // Sword[3]

@@ -11,6 +11,14 @@ ifeq ($(HAVE_MYSQL),yes)
 	CONVERTERS_DEPENDS=common_sql
 endif
 
+WITH_PLUGINS=@WITH_PLUGINS@
+ifeq ($(WITH_PLUGINS),yes)
+	ALL_DEPENDS+=plugins
+	PLUGIN_DEPENDS=common
+else
+	PLUGIN_DEPENDS=no_plugins
+endif
+
 #####################################################################
 .PHONY: sql conf \
 	common_sql \
@@ -39,7 +47,7 @@ map_sql: $(MAP_SQL_DEPENDS)
 tools:
 	@$(MAKE) -C src/tool
 
-plugins addons: common
+plugins addons: $(PLUGIN_DEPENDS)
 	@$(MAKE) -C src/plugins
 
 clean:
@@ -69,6 +77,10 @@ help:
 
 needs_mysql:
 	@echo "MySQL not found or disabled by the configure script"
+	@exit 1
+	
+no_plugins:
+	@echo "Plugins disabled by the configure script"
 	@exit 1
 
 #####################################################################

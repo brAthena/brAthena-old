@@ -1758,12 +1758,12 @@
 //2816,Radar_Ring1,Radar Ring,
 //2817,Radar_Ring2,Radar Ring,
 //2818,Radar_Ring3,Radar Ring,
-//2819,Swordsman_Manual,Swordsman Manual,
-//2820,Thief_Manual,Thief Manual,
-//2821,Acolyte_Manual,Acolyte Manual,
-//2822,Archer_Manual,Archer Manual,
-//2823,Merchant_Manual,Merchant Manual,
-//2824,Mage_Manual,Mage Manual,
+2819,Swordsman_Manual,Swordsman Manual,5,,,100,,0,,0,0x00000001,7,2,136,,1,0,0,{ bonus bMaxSP,100; skill "SM_BASH",1; skill "SM_PROVOKE",1; skill "SM_MAGNUM",1; },{},{}
+2820,Thief_Manual,Thief Manual,5,,,100,,0,,0,0x00000001,7,2,136,,1,0,0,{ bonus bMaxSP,100; skill "TF_DOUBLE",3; skill "TF_STEAL",1; skill "TF_HIDING",1; skill "TF_POISON",1; },{},{}
+2821,Acolyte_Manual,Acolyte Manual,5,,,100,,0,,0,0x00000001,7,2,136,,1,0,0,{ bonus bMaxSP,100; skill "AL_HEAL",1; skill "AL_INCAGI",1; skill "AL_BLESSING",1; },{},{}
+2822,Archer_Manual,Archer Manual,5,,,100,,0,,0,0x00000001,7,2,136,,1,0,0,{ bonus bMaxSP,100; skill "AC_OWL",1; skill "AC_CONCENTRATION",1; },{},{}
+2823,Merchant_Manual,Merchant Manual,5,,,100,,0,,0,0x00000001,7,2,136,,1,0,0,{ bonus bMaxSP,100; skill "MC_DISCOUNT",1; skill "MC_OVERCHARGE",10; skill "MC_IDENTIFY",1; skill "MC_MAMMONITE",1; },{},{}
+2824,Mage_Manual,Mage Manual,5,,,100,,0,,0,0x00000001,7,2,136,,1,0,0,{ bonus bMaxSP,100; skill "MG_SRECOVERY",1; skill "MG_COLDBOLT",1; skill "MG_FIREWALL",1; skill "MG_FIREBOLT",1; },{},{}
 2825,Shaman_Earrings_,Shaman Earrings,5,0,,100,,0,,0,0xFFFFFFFF,7,2,136,,1,0,0,{ bonus bInt,2; },{},{}
 2826,Dark_Knight_Belt_,Dark Knight Belt,5,0,,500,,1,,0,0xFFFFFFFF,7,2,136,,80,0,0,{ bonus bDex,2; bonus bAgi,1; },{},{}
 2827,Dark_Knight_Glove_,Dark Knight Glove,5,0,,500,,1,,0,0xFFFFFFFF,7,2,136,,80,0,0,{ autobonus "{ bonus bMaxHPRate,10; }",10,10000,0,"{ specialeffect2 EF_POTION_BERSERK; }"; },{},{}
@@ -3470,7 +3470,7 @@
 //6362,Yellow_Wish_Point,Yellow Wish Point,3,100,,5,,,,,,,,,,,,,{},{},{}
 //6363,Lime_Green_Point,Lime Green Point,3,100,,5,,,,,,,,,,,,,{},{},{}
 //6376,KVM_Badge
-//6377,Buy_Stall_Permit,Purchase Street Stall License,3,200,,10,,,,,,,,,,,,,{},{},{}
+6377,Buy_Stall_Permit,Purchase Street Stall License,3,200,,10,,,,,,,,,,,,,{},{},{}
 //6378
 //6379
 //6380
@@ -5017,7 +5017,7 @@
 //12472,Convex_Mirror,
 //12473,RWC_Event_Receipt_Memorial_Box
 //12475,Cure_Free,
-//12548,Buy_Shabby_Stall_Permit,Buy Shabby Stall Permit,11,500,,10,,,,,0xFFFFFFFF,8,2,,,,,,{ itemskill "ALL_BUYING_STORE",1; },{},{}
+12548,Buy_Shabby_Stall_Permit,Buy Shabby Stall Permit,11,500,,10,,,,,0xFFFFFFFF,8,2,,,,,,{ itemskill "ALL_BUYING_STORE",1; },{},{}
 //12553,Brysingamen_Piece_Box,
 //12554,Asprika_Piece_Box,
 //12555,Brynhild_Piece_Box,
