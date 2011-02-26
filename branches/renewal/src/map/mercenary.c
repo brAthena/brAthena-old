@@ -423,7 +423,7 @@ static bool read_mercenarydb_sub(char* str[], int columns, int current)
 	status->rhw.range = atoi(str[6]);
 	status->rhw.atk = atoi(str[7]);
 	status->rhw.atk2 = status->rhw.atk + atoi(str[8]);
-	status->def = atoi(str[9]);
+	status->def2 = atoi(str[9]);
 	status->mdef = atoi(str[10]);
 	status->str = atoi(str[11]);
 	status->agi = atoi(str[12]);

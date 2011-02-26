@@ -1518,7 +1518,7 @@ static unsigned short status_base_atk(const struct block_list *bl, const struct 
 void status_calc_misc(struct block_list *bl, struct status_data *status, int level)
 {
 	//Non players get the value set, players need to stack with previous bonuses.
-	if( bl->type != BL_PC )
+	if( bl->type != BL_PC && 0)
 		status->batk =
 		status->hit = status->flee =
 		status->def2 = status->mdef2 =
@@ -1537,7 +1537,7 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int lev
 		status->matk_max = ((TBL_PC*)bl)->matk_add;
 
 	if( bl->type&battle_config.enable_critical )
-		status->cri += status->luk*3;
+		status->cri += 10 + (status->luk*10/3);
 	else
 		status->cri = 0;
 
@@ -4405,15 +4405,15 @@ struct status_data *status_get_base_status(struct block_list *bl)
 	}
 }
 
-signed char status_get_def(struct block_list *bl)
+signed short status_get_def2(struct block_list *bl)
 {
 	struct unit_data *ud;
 	struct status_data *status = status_get_status_data(bl);
-	int def = status?status->def:0;
+	int def2 = status?status->def2:0;
 	ud = unit_bl2ud(bl);
 	if (ud && ud->skilltimer != INVALID_TIMER)
-		def -= def * skill_get_castdef(ud->skillid)/100;
-	return cap_value(def, CHAR_MIN, CHAR_MAX);
+		def2 -= def2 * skill_get_castdef(ud->skillid)/100;
+	return cap_value(def2, SHRT_MIN, SHRT_MAX);
 }
 
 unsigned short status_get_speed(struct block_list *bl)

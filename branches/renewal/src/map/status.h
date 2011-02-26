@@ -1483,10 +1483,10 @@ int status_get_lv(struct block_list *bl);
 #define status_get_luk(bl) status_get_status_data(bl)->luk
 #define status_get_hit(bl) status_get_status_data(bl)->hit
 #define status_get_flee(bl) status_get_status_data(bl)->flee
-signed char status_get_def(struct block_list *bl);
+signed short status_get_def2(struct block_list *bl);
 #define status_get_mdef(bl) status_get_status_data(bl)->mdef
 #define status_get_flee2(bl) status_get_status_data(bl)->flee2
-#define status_get_def2(bl) status_get_status_data(bl)->def2
+#define status_get_def(bl) status_get_status_data(bl)->def
 #define status_get_mdef2(bl) status_get_status_data(bl)->mdef2
 #define status_get_critical(bl)  status_get_status_data(bl)->cri
 #define status_get_batk(bl) status_get_status_data(bl)->batk

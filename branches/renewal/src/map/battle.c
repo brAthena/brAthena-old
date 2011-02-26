@@ -1937,8 +1937,8 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 		if (!flag.idef || !flag.idef2)
 		{	//Defense reduction
 			short vit_def, def_rate;
-			signed short def1 = status_get_def(target); //Don't use tstatus->def1 due to skill timer reductions.
-			short def2 = (short)tstatus->def2;
+			signed short def2 = status_get_def2(target); //Don't use tstatus->def2 due to skill timer reductions.
+			short def1 = (short)tstatus->def;
 
 			if( sd )
 			{
@@ -1959,44 +1959,41 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				if(target_count >= battle_config.vit_penalty_count) {
 					if(battle_config.vit_penalty_type == 1) {
 						if( !tsc || !tsc->data[SC_STEELBODY] )
-							def1 = (def1 * (100 - (target_count - (battle_config.vit_penalty_count - 1))*battle_config.vit_penalty_num))/100;
-						def2 = (def2 * (100 - (target_count - (battle_config.vit_penalty_count - 1))*battle_config.vit_penalty_num))/100;
+							def2 = (def2 * (100 - (target_count - (battle_config.vit_penalty_count - 1))*battle_config.vit_penalty_num))/100;
+						def1 = (def1 * (100 - (target_count - (battle_config.vit_penalty_count - 1))*battle_config.vit_penalty_num))/100;
 					} else { //Assume type 2
 						if( !tsc || !tsc->data[SC_STEELBODY] )
-							def1 -= (target_count - (battle_config.vit_penalty_count - 1))*battle_config.vit_penalty_num;
-						def2 -= (target_count - (battle_config.vit_penalty_count - 1))*battle_config.vit_penalty_num;
+							def2 -= (target_count - (battle_config.vit_penalty_count - 1))*battle_config.vit_penalty_num;
+						def1 -= (target_count - (battle_config.vit_penalty_count - 1))*battle_config.vit_penalty_num;
 					}
 				}
-				if(skill_num == AM_ACIDTERROR) def1 = 0; //Acid Terror ignores only armor defense. [Skotlex]
-				if(def2 < 1) def2 = 1;
+				if(skill_num == AM_ACIDTERROR) def2 = 0; //Acid Terror ignores only armor defense. [Skotlex]
+				if(def1 < 1) def1 = 1;
 			}
 			//Vitality reduction from rodatazone: http://rodatazone.simgaming.net/mechanics/substats.php#def
 			if (tsd)	//Sd vit-eq
-			{	//[VIT*0.5] + rnd([VIT*0.3], max([VIT*0.3],[VIT^2/150]-1))
-				vit_def = def2*(def2-15)/150;
-				vit_def = def2/2 + (vit_def>0?rand()%vit_def:0);
-
+			{	//Stat def reduz o dano em 1
+				vit_def = def1;
+				
 				if((battle_check_undead(sstatus->race,sstatus->def_ele) || sstatus->race==RC_DEMON) && //This bonus already doesnt work vs players
 					src->type == BL_MOB && (skill=pc_checkskill(tsd,AL_DP)) > 0)
 					vit_def += skill*(int)(3 +(tsd->status.base_level+1)*0.04);   // submitted by orn
 			} else { //Mob-Pet vit-eq
 				//VIT + rnd(0,[VIT/20]^2-1)
-				vit_def = (def2/20)*(def2/20);
-				vit_def = def2 + (vit_def>0?rand()%vit_def:0);
+				vit_def = def1;
 			}
-
 			if (battle_config.weapon_defense_type) {
-				vit_def += def1*battle_config.weapon_defense_type;
-				def1 = 0;
+				vit_def += def2*battle_config.weapon_defense_type;
+				def2 = 0;
 			}
-			if (def1 > 200) def1 = 200;
-			def_rate = (1-(580/(def2 + 580)))*100;
-
+			if (def2 > 300) def2 = 300;
+			def_rate = (short)(((float)1-((float)580/(def2 + 580)))*100);
+			
 			if( !flag.idef || !flag.idef2 )
 			{
 				ATK_RATE2(
-						flag.idef ?100:(flag.pdef ?(int)(flag.pdef *(def1+vit_def)):(100-def1)),
-						flag.idef2?100:(flag.pdef2?(int)(flag.pdef2*(def1+vit_def)):(100-def1))
+						flag.idef ?100:(flag.pdef ?(int)(flag.pdef *(def2+vit_def)):(100-def_rate)),
+						flag.idef2?100:(flag.pdef2?(int)(flag.pdef2*(def2+vit_def)):(100-def_rate))
 				);
 				ATK_ADD2(
 						flag.idef ||flag.pdef ?0:-vit_def,
@@ -4242,8 +4239,8 @@ void battle_adjust_conf()
 	battle_config.max_walk_speed = 100*DEFAULT_WALK_SPEED/battle_config.max_walk_speed;
 	battle_config.max_cart_weight *= 10;
 
-	if(battle_config.max_def > 200 && !battle_config.weapon_defense_type)	 // added by [Skotlex]
-		battle_config.max_def = 200;
+	if(battle_config.max_def > 300 && !battle_config.weapon_defense_type)	 // added by [Skotlex]
+		battle_config.max_def = 300;
 
 	if(battle_config.min_hitrate > battle_config.max_hitrate)
 		battle_config.min_hitrate = battle_config.max_hitrate;
