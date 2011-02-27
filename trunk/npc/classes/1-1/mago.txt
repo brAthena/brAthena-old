@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Quest do Mago      	       	    	|
+// | Nome do Script: Quest do Mago                          |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
@@ -16,8 +16,11 @@
 // |--------------------------------------------------------|
 // | Descrição: Mudança de Classe para Mago                 |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
-// | 1.0 Script Traduzido [Protimus]                        | 
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [Protimus]                        |
+// | 1.1 Script Revisado [insidemybrain]                    |
+// | Anotações:                                             |
+// | -                                                      |
 // \________________________________________________________/
 
 geffen_in,164,124,4	script	Instrutora	123,{
@@ -34,18 +37,18 @@ geffen_in,164,124,4	script	Instrutora	123,{
 					mes "Você precisa aprender o básico e voltar.";
 					next;
 					mes "Venha depois que a sua memória voltar...";
-					mes "então você poderá aprender magia novamente.";
+					mes "aí então poderá aprender magia novamente.";
 					close;
 				}
 				mes "[Instrutora de Magia]";
 				mes "Eu não faço outra vez o teste para quem já passou por ele.";
-				mes "Você apenas quer a sua magia de volta o mais rápido possível?";
+				mes "Você só quer a sua magia de volta o mais rápido possível?";
 				next;
 				skill 143,0,0;
 				jobchange Job_Mage_High;
 				skill 157,1,0;
 				mes "[Instrutora de Magia]";
-				mes "Bom. Agora você parece familiar.";
+				mes "Bom. Agora você me parece familiar.";
 				mes "Boa sorte e que sua vida seja melhor!";
 				close;
 			}
@@ -98,7 +101,7 @@ geffen_in,164,124,4	script	Instrutora	123,{
 			next;
 			if (select("Se inscrever para o teste.:Desistir.") == 1) {
 				mes "[Instrutora de Magia]";
-				mes "Okay.Assine aqui mesmo. Oh, você é muito bom para escrever. Certo. seu nome é... " + strcharinfo(0) + ".";
+				mes "Okay. Assine aqui mesmo. Oh, você é muito bom para escrever. Certo. seu nome é... " + strcharinfo(0) + ".";
 				next;
 				mes "[Instrutora de Magia]";
 				mes "Agora é a hora que";
@@ -125,12 +128,12 @@ geffen_in,164,124,4	script	Instrutora	123,{
 					set job_magician_q,4;
 				}
 				next;
-				getitem 1092,1; //Empty_Cylinder
+				getitem 1092,1; // Tubo de Ensaio
 				mes "[Instrutora de Magia]";
 				mes "Você pode achar os ingredientes nos livros da guilda. Então acho melhor dar uma olhada antes de ir embora.";
 				next;
 				mes "[Instrutora de Magia]";
-				mes "Assim que coletar todos os itens, use na maquina do centro para misturar eles e fazer a solução. Boa sorte!";
+				mes "Assim que coletar todos os itens, use na máquina do centro para misturar eles e fazer a solução. Boa sorte!";
 				close;
 			}
 			mes "[Instrutora de Magia]";
@@ -142,7 +145,7 @@ geffen_in,164,124,4	script	Instrutora	123,{
 			mes "Oh, mas que bobalhão. Você não tem os requerimentos para fazer o teste.";
 			next;
 			mes "[Instrutora de Magia]";
-			mes "Volte e alcançe Job level 9 primeiro. Não esqueça de que você também precisa aprender todas as Skills Básicas antes de voltar.";
+			mes "Volte e alcançe level 9 de Job primeiro. Não esqueça de que você também precisa aprender todas as Habilidades Básicas antes de voltar.";
 			close;
 		}
 		mes "" + strcharinfo(0) + " o que eu posso fazer por você?";
@@ -169,28 +172,28 @@ geffen_in,164,124,4	script	Instrutora	123,{
 				next;
 				mes "[Instrutora de Magia]";
 				if (job_magician_q == 1)
-					mes "Você deve fazer a Mixed Solution No. 1 e traze-la de volta para mim.Agora vá e tente de novo.";
+					mes "Você deve fazer a Mixed Solution No. 1 e traze-la de volta para mim. Agora vá e tente novamente.";
 				else if (job_magician_q == 2)
-					mes "Você deve fazer a Mixed Solution No. 2 e traze-la de volta para mim.Agora vá e tente de novo.";
+					mes "Você deve fazer a Mixed Solution No. 2 e traze-la de volta para mim. Agora vá e tente novamente.";
 				else if (job_magician_q == 3)
-					mes "Você deve fazer a Mixed Solution No. 3 e traze-la de volta para mim.Agora vá e tente de novo.";
+					mes "Você deve fazer a Mixed Solution No. 3 e traze-la de volta para mim. Agora vá e tente novamente.";
 				else
-					mes "Você deve fazer a Mixed Solution No. 4 e traze-la de volta para mim.Agora vá e tente de novo.";
+					mes "Você deve fazer a Mixed Solution No. 4 e traze-la de volta para mim. Agora vá e tente novamente.";
 
-				if (countitem(1071) != 0) delitem 1071,1; //Mage_Test_1
-				else if (countitem(1085) != 0) delitem 1085,1; //Mage_Test_2
-				else if (countitem(1086) != 0) delitem 1086,1; //Mage_Test_3
-				else if (countitem(1087) != 0) delitem 1087,1; //Mage_Test_4
-				else delitem 1090,1; //Mage_Test_Etc
+				if (countitem(1071) != 0) delitem 1071,1; //Mage_Test_1 (Tubo de Ensaio com Líquido Desconhecido)
+				else if (countitem(1085) != 0) delitem 1085,1; //Mage_Test_2 (Tubo de Ensaio com Líquido Desconhecido)
+				else if (countitem(1086) != 0) delitem 1086,1; //Mage_Test_3 (Tubo de Ensaio com Líquido Desconhecido)
+				else if (countitem(1087) != 0) delitem 1087,1; //Mage_Test_4 (Tubo de Ensaio com Líquido Desconhecido)
+				else delitem 1090,1; //Mage_Test_Etc (Tubo de Ensaio com Líquido Desconhecido)
 				close;
 			}
 		}
-		if (countitem(1071) != 0) delitem 1071,1; //Mage_Test_1
-		else if (countitem(1085) != 0) delitem 1085,1; //Mage_Test_2
-		else if (countitem(1086) != 0) delitem 1086,1; //Mage_Test_3
-		else if (countitem(1087) != 0) delitem 1087,1; //Mage_Test_4
-		else delitem 1090,1; //Mage_Test_Etc
-		mes "Hmm. Eu vejo que você tentou dificilmente. Para uma tentativa de principiante, esta muito bom.";
+		if (countitem(1071) != 0) delitem 1071,1; //Mage_Test_1 (Tubo de Ensaio com Líquido Desconhecido)
+		else if (countitem(1085) != 0) delitem 1085,1; //Mage_Test_2 (Tubo de Ensaio com Líquido Desconhecido)
+		else if (countitem(1086) != 0) delitem 1086,1; //Mage_Test_3 (Tubo de Ensaio com Líquido Desconhecido)
+		else if (countitem(1087) != 0) delitem 1087,1; //Mage_Test_4 (Tubo de Ensaio com Líquido Desconhecido)
+		else delitem 1090,1; //Mage_Test_Etc (Tubo de Ensaio com Líquido Desconhecido)
+		mes "Hmm... Eu vejo que você tentou bastante. Para um iniciante, está muito bom.";
 		mes "Grande trabalho!";
 		next;
 		mes "[Instrutora de Magia]";
@@ -198,7 +201,7 @@ geffen_in,164,124,4	script	Instrutora	123,{
 		next;
 		mes "[Instrutora de Magia]";
 		mes "*Ahem*";
-		mes "Parabens!";
+		mes "Parabéns!";
 		mes "Você é um mago agora!";
 		next;
 		callfunc "Job_Change",Job_Mage;
@@ -226,13 +229,13 @@ geffen_in,164,124,4	script	Instrutora	123,{
 		end;
 	case 2:
 		mes "[Instrutora de Magia]";
-		mes "Quer ser um mago, eh?";
+		mes "Quer ser um mago, huh?";
 		if (sex)
 			mes "Para uma gracinha como você ficaria feliz em explicar!";
 		else
 			mes "Eu ficaria feliz de explicar para uma garotinha tão bonita como você!";
 		next;
-		mes "[Mage Guildsman]";
+		mes "[Instrutora de Magia]";
 		mes "Primeiro de tudo, você deve ter pelo menos o nivel maximo de job e todas habilidades aprendidas. E então passar pelo teste de mago.";
 		next;
 		if (job_magician_q != 0) {
@@ -240,36 +243,36 @@ geffen_in,164,124,4	script	Instrutora	123,{
 			mes "O seu teste é";
 			switch(job_magician_q) {
 			case 1:
-				mes "Me fazer uma";
+				mes "Fazer uma";
 				mes "^3355FFMixed Solution No. 1^000000";
 				mes "e trazer para mim.";
 				setquest 1005;
 				break;
 			case 2:
-				mes "Me fazer uma";
+				mes "Fazer uma";
 				mes "^3355FFMixed Solution No. 2^000000";
 				mes "e trazer para mim.";
 				setquest 1006;
 				break;
 			case 3:
-				mes "Me fazer uma";
+				mes "Fazer uma";
 				mes "^3355FFMixed Solution No. 3^000000";
 				mes "e trazer para mim.";
 				setquest 1007;
 				break;
 			default:
-				mes "Me fazer uma";
+				mes "Fazer uma";
 				mes "^3355FFMixed Solution No. 4^000000";
 				mes "e trazer para mim.";
 				setquest 1008;
 			}
 			next;
 			mes "[Instrutora de Magia]";
-			mes "Você pode olhar os ingredientes para a solução nos livros de guia aqui dentro da Guilda.";
+			mes "Você pode olhar os ingredientes para a solução nos livros de magia aqui dentro da Guilda.";
 		}
 		else {
 			mes "[Instrutora de Magia]";
-			mes "Você será informado sobre que solução você deve fazer antes de ler nos livros sobre elas.";
+			mes "Você será informado sobre que solução deve fazer antes de ler os livros sobre elas.";
 		}
 		next;
 		mes "[Instrutora de Magia]";
@@ -284,12 +287,12 @@ geffen_in,164,124,4	script	Instrutora	123,{
 	}
 }
 
-geffen_in,164,112,4	script	Mixing Machine	111,{
-	mes "[Mixing Machine]";
-	mes "Esta maquina é propriedade da Guilda dos Magos de Geffen, só pode ser utilizada para soluções e propositos mágicos.";
+geffen_in,164,112,4	script	Máquina de Mistura	111,{
+	mes "[Máquina de Mistura]";
+	mes "Esta máquina é propriedade da Guilda dos Magos de Geffen e só pode ser utilizada para soluções e propósitos mágicos.";
 	next;
-	if (select("Usar a maquina.:Cancel.") == 1) {
-		mes "[Mixing Machine]";
+	if (select("Usar a máquina.:Cancelar.") == 1) {
+		mes "[Máquina de Mistura]";
 		mes "Escolha o";
 		mes "Solvente para";
 		mes "a Solução.";
@@ -297,7 +300,7 @@ geffen_in,164,112,4	script	Mixing Machine	111,{
 		switch(select("Solução de Payon.:Solução de Morroc.:Nenhum Solvente.")) {
 		case 1:
 			if (countitem(1089) == 0) {
-				mes "[Mixing Machine]";
+				mes "[Máquina de Mistura]";
 				mes "Erro.";
 				mes "Item não encontrado.";
 				mes "Por favor verifique novamente.";
@@ -308,7 +311,7 @@ geffen_in,164,112,4	script	Mixing Machine	111,{
 			break;
 		case 2:
 			if (countitem(1088) == 0) {
-				mes "[Mixing Machine]";
+				mes "[Máquina de Mistura]";
 				mes "Erro.";
 				mes "Item não encontado.";
 				mes "Por favor verificar novamente.";
@@ -323,7 +326,7 @@ geffen_in,164,112,4	script	Mixing Machine	111,{
 		}
 		while (1) {
 			if (.@progress == 2) {
-				mes "[Mixing Machine]";
+				mes "[Máquina de Mistura]";
 				if (.@mixitem1_1 != 0) mes "+getitemname(909)+: " + .@mixitem1_1 + " ea.";
 				if (.@mixitem1_2 != 0) mes "+getitemname(914)+: " + .@mixitem1_2 + " ea.";
 				if (.@mixitem1_3 != 0) mes "+getitemname(519)+: " + .@mixitem1_3 + " ea.";
@@ -331,25 +334,25 @@ geffen_in,164,112,4	script	Mixing Machine	111,{
 				if (.@mixitem2 == 1) mes "Solvente: "+getitemname(1089)+".";
 				if (.@mixitem2 == 2) mes "Solvente: "+getitemname(1088)+".";
 				next;
-				mes "[Mixing Machine]";
+				mes "[Máquina de Mistura]";
 				mes "Por favor escolha o que você deseja começar a misturar, ou reponha os itens que deseja usar.";
 				next;
 				switch(select("Começar a misturar.:Repor o numero de itens.:Resetar.")) {
 				case 1:
-					mes "[Mixing Machine]";
+					mes "[Máquina de Mistura]";
 					mes "Por favor coloque os itens no recipiente. Tenha certeza que eles estão colocados na quantidade correta.";
 					next;
-					mes "[Mixing Machine]";
-					mes "Vocêe não pode adicionar ou restaurar os itens que forem colocados no recipiente.";
+					mes "[Máquina de Mistura]";
+					mes "Você não pode adicionar ou restaurar os itens que forem colocados no recipiente.";
 					next;
-					mes "[Mixing Machine]";
-					mes "Se esta tudo correto,aperte o botão de 'misturar'. caso contrário, aperte 'cancelar'.";
+					mes "[Máquina de Mistura]";
+					mes "Se está tudo correto, aperte o botão 'misturar'. Caso contrário, aperte 'cancelar'.";
 					next;
 					if (select("Misturar.:Cancelar.") == 1) {
-						mes "[Mixing Machine]";
+						mes "[Máquina de Mistura]";
 						mes "Colocando os itens no recipiente. Por favor aguarde.";
 						next;
-						mes "[Mixing Machine]";
+						mes "[Máquina de Mistura]";
 						if (countitem(909) < .@mixitem1_1) {
 							mes ""+getitemname(909)+" insuficiente.";
 							mes "Por favor verifique novamente.";
@@ -376,11 +379,11 @@ geffen_in,164,112,4	script	Mixing Machine	111,{
 								close;
 							}
 						}
-						if (.@mixitem1_1 != 0) delitem 909,.@mixitem1_1; //Jellopy
-						if (.@mixitem1_2 != 0) delitem 914,.@mixitem1_2; //Fluff
-						if (.@mixitem1_3 != 0) delitem 519,.@mixitem1_3; //Milk
-						if (.@mixitem2 == 1) delitem 1089,1; //Payon_Potion
-						if (.@mixitem2 == 2) delitem 1088,1; //Morocc_Potion
+						if (.@mixitem1_1 != 0) delitem 909,.@mixitem1_1;  //Jellopy
+						if (.@mixitem1_2 != 0) delitem 914,.@mixitem1_2; //Felpa
+						if (.@mixitem1_3 != 0) delitem 519,.@mixitem1_3; // Leite
+						if (.@mixitem2 == 1) delitem 1089,1; //Solução de Payon
+						if (.@mixitem2 == 2) delitem 1088,1; //Solução de Morroc
 						mes "Itens estão prontos.";
 						mes "Fechando a porta.";
 						set .@progress,3;
@@ -397,13 +400,13 @@ geffen_in,164,112,4	script	Mixing Machine	111,{
 					set .@mixitem1_3,0;
 					set .@progress,0;
 					set .@continue,0;
-					mes "[Mixing Machine]";
-					mes "Resete completo.";
+					mes "[Máquina de Mistura]";
+					mes "Processo resetado.";
 					mes "Começar novamente?";
 					next;
 					if (select("Sim.:Não.") == 1)
 						break;
-					mes "[Mixing Machine]";
+					mes "[Máquina de Mistura]";
 					mes "Processo interrompido.";
 					mes "Obrigado.";
 					close;
@@ -411,12 +414,12 @@ geffen_in,164,112,4	script	Mixing Machine	111,{
 				if (.@progress == 3) break;
 			}
 			else if (.@progress == 1) {
-				mes "[Mixing Machine]";
+				mes "[Máquina de Mistura]";
 				mes "Nada encontrado.";
 				next;
 			}
-			mes "[Mixing Machine]";
-			mes "Select items to mix.";
+			mes "[Máquina de Mistura]";
+			mes "Selecione os itens para a mistura.";
 			while(1) {
 				switch(select(""+getitemname(909)+".:"+getitemname(914)+".:"+getitemname(519)+".:Pronto para misturar.")) {
 				case 1:
@@ -424,8 +427,8 @@ geffen_in,164,112,4	script	Mixing Machine	111,{
 						input .@input;
 						if (.@input > 10000) {
 							next;
-							mes "[Mixing Machine]";
-							mes "Erro: limite de itens ultrapassou. Por favor colocar valores menores que 10,000, Tente de novo.";
+							mes "[Máquina de Mistura]";
+							mes "Erro: O limite de itens ultrapassou. Por favor coloque valores menores que 10,000 e tente novamente.";
 							next;
 						}
 						else {
@@ -440,8 +443,8 @@ geffen_in,164,112,4	script	Mixing Machine	111,{
 						input .@input;
 						if (.@input > 10000) {
 							next;
-							mes "[Mixing Machine]";
-							mes "Erro: limite de itens ultrapassou. Por favor colocar valores menores que 10,000, Tente de novo.";
+							mes "[Máquina de Mistura]";
+							mes "Erro: O limite de itens ultrapassou. Por favor coloque valores menores que 10,000 e tente novamente.";
 							next;
 						}
 						else {
@@ -456,8 +459,8 @@ geffen_in,164,112,4	script	Mixing Machine	111,{
 						input .@input;
 						if (.@input > 10000) {
 							next;
-							mes "[Mixing Machine]";
-							mes "Erro: limite de itens ultrapassou. Por favor colocar valores menores que 10,000, Tente de novo.";
+							mes "[Máquina de Mistura]";
+							mes "Erro: O limite de itens ultrapassou. Por favor coloque valores menores que 10,000 e tente novamente.";
 							next;
 						}
 						else {
@@ -477,15 +480,15 @@ geffen_in,164,112,4	script	Mixing Machine	111,{
 				if (.@continue) break;
 			}
 		}
-		mes "[Mixing Machine]";
+		mes "[Máquina de Mistura]";
 		mes "Por favor digite o  ";
-		mes "numero de série do";
+		mes "número de série do";
 		mes "Pó mágico.";
 		next;
 		while(1) {
 			input .@input;
 			if (.@input < 1000 || .@input > 9999) {
-				mes "[Mixing Machine]";
+				mes "[Máquina de Mistura]";
 				if (.@input == 0) {
 					mes "Deseja pular este menu?";
 					next;
@@ -494,16 +497,16 @@ geffen_in,164,112,4	script	Mixing Machine	111,{
 					}
 				}
 				else {
-					mes "Numero inválido.";
-					mes "Por favor tente de novo.";
+					mes "Número inválido.";
+					mes "Por favor tente novamente.";
 					next;
 				}
 			}
 			else {
-				mes "[Mixing Machine]";
+				mes "[Máquina de Mistura]";
 				mes "O numero de série está  #" + .@input + ", correto?";
 				next;
-				if (select("Confirm.:Cancel.") == 1) {
+				if (select("Confirmar.:Cancelar.") == 1) {
 					if (.@input == 8472)
 						set .@magic_powder,1;
 					else if (.@input == 3735)
@@ -518,24 +521,24 @@ geffen_in,164,112,4	script	Mixing Machine	111,{
 				break;
 			}
 		}
-		mes "[Mixing Machine]";
+		mes "[Máquina de Mistura]";
 		mes "Escolha uma pedra";
 		mes "Catalisadora.";
 		next;
-		switch(select(""+getitemname(715)+".:"+getitemname(716)+".:"+getitemname(717)+".:"+getitemname(730)+".:Skip.")) {
+		switch(select(""+getitemname(715)+".:"+getitemname(716)+".:"+getitemname(717)+".:"+getitemname(730)+".:Pular a etapa.")) {
 		case 1: set .@mixitem3,1; break;
 		case 2: set .@mixitem3,2; break;
 		case 3: set .@mixitem3,3; break;
 		case 4: set .@mixitem3,4; break;
 		case 5: break;
 		}
-		mes "[Mixing Machine]";
+		mes "[Máquina de Mistura]";
 		mes "Tudo pronto.";
 		mes "Iniciando";
 		mes "Processo de Mistura.";
 		mes "Por favor aguarde.";
 		next;
-		mes "[Mixing Machine]";
+		mes "[Máquina de Mistura]";
 		mes "- Provérbio do dia -";
 		switch(rand(1,5)) {
 		case 1:
@@ -546,47 +549,47 @@ geffen_in,164,112,4	script	Mixing Machine	111,{
 			break;
 		case 3:
 			mes "Não tratar os outros da maneira que você não gostaria que te tratariam";
-			mes "Ou seja, quando você machuca alguem você será ferido mais ainda'.";
+			mes "Ou seja, quando você machuca alguém você será ferido mais ainda'.";
 			break;
 		case 4:
 			mes "Um bom vizinho é melhor do que um irmão distante: quando precisar de ajuda, conte sempre com quem esta perto de você.";
 			break;
 		default:
-			mes "Água mole em pedra dura tanto bate ate que fura.";
+			mes "Água mole em pedra dura tanto bate até que fura.";
 		}
 		next;
 		if (.@mixitem1_1 == 2 && .@mixitem1_2 == 3 && .@mixitem1_3 == 1 && .@mixitem2 == 1 && .@mixitem3 == 1 && .@magic_powder == 1) {
-			mes "[Mixing Machine]";
+			mes "[Máquina de Mistura]";
 			mes "+getitemname(1071)+";
 			getitem 1071,1; //Mage_Test_1
 			next;
 		}
 		else if (.@mixitem1_1 == 3 && .@mixitem1_2 == 1 && .@mixitem1_3 == 1 && .@mixitem2 == 0 && .@mixitem3 == 2 && .@magic_powder == 2) {
-			mes "[Mixing Machine]";
+			mes "[Máquina de Mistura]";
 			mes "+getitemname(1085)+";
 			getitem 1085,1; //Mage_Test_2
 			next;
 		}
 		else if (.@mixitem1_1 == 6 && .@mixitem1_2 == 1 && .@mixitem1_3 == 0 && .@mixitem2 == 1 && .@mixitem3 == 3 && .@magic_powder == 3) {
-			mes "[Mixing Machine]";
+			mes "[Máquina de Mistura]";
 			mes "+getitemname(1086)+";
 			getitem 1086,1; //Mage_Test_3
 			next;
 		}
 		else if (.@mixitem1_1 == 2 && .@mixitem1_2 == 3 && .@mixitem1_3 == 0 && .@mixitem2 == 2 && .@mixitem3 == 4 && .@magic_powder == 4) {
-			mes "[Mixing Machine]";
+			mes "[Máquina de Mistura]";
 			mes "+getitemname(1087)+";
 			getitem 1087,1; //Mage_Test_4
 			next;
 		}
 		else {
-			mes "[Mixing Machine]";
+			mes "[Máquina de Mistura]";
 			mes "Erro Inesperado";
 			mes "Erro ocorrido.";
 			getitem 1090,1; //Mage_Test_Etc
 			next;
 		}
-		mes "[Mixing Machine]";
+		mes "[Máquina de Mistura]";
 		mes "Mistura completa.";
 		mes "Obrigado.";
 		close;
@@ -598,7 +601,7 @@ pay_arche,122,100,0	script	Dollshoi	88,{
 	mes "[Dollshoi]";
 	mes "Você quer uma solução? Hmm, me de 50z e um "+getitemname(1092)+".";
 	next;
-	if (select("Negocio Fechado.:Nah, esquece.") == 1) {
+	if (select("Negócio Fechado.:Nah, esquece.") == 1) {
 		mes "[Dollshoi]";
 		if (Zeny < 50) {
 			mes "Hey! Você não tem 50z.";
@@ -616,11 +619,11 @@ pay_arche,122,100,0	script	Dollshoi	88,{
 }
 
 moc_ruins,91,150,0	script	Ponka-Hontas	93,{
-	mes "[Poka-Hontas]";
+	mes "[Ponka-Hontas]";
 	mes "Você quer uma solução? Hmm, me de 50z e um "+getitemname(1092)+".";
 	next;
 	if (select("Negocio fechado.:Nah, forget it.") == 1) {
-		mes "[Mage Guildsman]";
+		mes "[Ponka-Hontas]";
 		if (zeny < 50) {
 			mes "Eu sinto muito mas você não tem 50z.";
 			close;
@@ -636,22 +639,22 @@ moc_ruins,91,150,0	script	Ponka-Hontas	93,{
 	close;
 }
 
-geffen_in,177,112,4	script	Bookshelf	111,{
-	mes "[Guide Book]";
-	mes "Este guia ´propriedade da Guilda dos Magos de Geffen.";
+geffen_in,177,112,4	script	Estante de Livros	111,{
+	mes "[Livro Guia]";
+	mes "Este guia é propriedade da Guilda dos Magos de Geffen.";
 	next;
 	switch(select("Solution No. 1.:Solution No. 2.:Solution No. 3.:Solution No. 4.:Close.")) {
 	case 1:
 		mes "[+getitemname(1071)+]";
 		mes "* Lista de ingredientes *";
 		mes "2 Jellopy";
-		mes "3 Fluff";
-		mes "1 Milk";
+		mes "3 Felpa";
+		mes "1 Leite";
 		next;
 		mes "[+getitemname(1071)+]";
 		mes "*Solvente *";
-		mes "Payon Solution";
-		mes "Onde encontra-la:";
+		mes "Solução de Payon";
+		mes "Onde encontrá-la:";
 		mes "Perto de uma lagoa na vila dos arqueiros ou fonte.";
 		next;
 		mes "[+getitemname(1071)+]";
@@ -662,14 +665,14 @@ geffen_in,177,112,4	script	Bookshelf	111,{
 		mes "* Catalisador *";
 		mes "+getitemname(715)+";
 		mes "(Provida pela";
-		mes "Maquina de mistura)";
+		mes "Máquina de mistura)";
 		close;
 	case 2:
 		mes "[+getitemname(1085)+]";
 		mes "* Lista de ingredientes *";
 		mes "3 Jellopy";
-		mes "1 Fluff";
-		mes "1 Milk";
+		mes "1 Felpa";
+		mes "1 Leite";
 		next;
 		mes "[+getitemname(1085)+]";
 		mes "*Solvente *";
@@ -683,18 +686,18 @@ geffen_in,177,112,4	script	Bookshelf	111,{
 		mes "* Catalisador *";
 		mes "+getitemname(716)+";
 		mes "(Provida pela";
-		mes "Maquina de mistura)";
+		mes "Máquina de mistura)";
 		close;
 	case 3:
 		mes "[+getitemname(1086)+]";
 		mes "* Lista de ingredientes *";
 		mes "6 Jellopy";
-		mes "1 Fluff";
+		mes "1 Felpa";
 		next;
 		mes "[+getitemname(1086)+]";
 		mes "*Solvente *";
-		mes "Payon Solution";
-		mes "Onde encontra-la:";
+		mes "Solução de Payon";
+		mes "Onde encontrá-la:";
 		mes "Perto de uma lagoa na vila dos arqueiros ou fonte.";
 		next;
 		mes "[+getitemname(1086)+]";
@@ -705,17 +708,17 @@ geffen_in,177,112,4	script	Bookshelf	111,{
 		mes "* Catalisador *";
 		mes "+getitemname(717)+";
 		mes "(Provida pela";
-		mes "Maquina de mistura)";
+		mes "Máquina de mistura)";
 		close;
 	case 4:
 		mes "[+getitemname(1087)+]";
 		mes "* Lista de ingredientes *";
 		mes "2 Jellopy";
-		mes "3 Fluff";
+		mes "3 Felpa";
 		next;
 		mes "[+getitemname(1087)+]";
 		mes "*Solvente *";
-		mes "Solução de morroc";
+		mes "Solução de Morroc";
 		mes "Aonde encontrar:";
 		mes "Perto de uma lagoa perto da piramide de morroc.";
 		next;
@@ -727,7 +730,7 @@ geffen_in,177,112,4	script	Bookshelf	111,{
 		mes "* Catalisador *";
 		mes "+getitemname(730)+";
 		mes "(Provida pela";
-		mes "Maquina de mistura)";
+		mes "Máquina de mistura)";
 		close;
 	}
 	close;

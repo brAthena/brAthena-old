@@ -9,6 +9,13 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0253 - 27/02/2011 [insidemybrain]
+	* Enviada a revisão do arquivo:
+	- classes/1-1/mago.txt
+	* Enviadas traduções e revisões dos arquivos:
+	- comerciantes/leiteiro.txt
+	- comerciantes/lojas_cash.txt
+
 	r0252 - 23/02/2011 [insidemybrain]
 	* Enviada a tradução do arquivo, necessitando revisão:
 	- quests_morocc.txt
