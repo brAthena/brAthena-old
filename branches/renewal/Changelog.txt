@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0257 - 28/02/2011 [Protimus]
+	* Adicionada habilidade RK_DRAGONTRAINING (Adestrar Dragão).
+	- Na verdade já estava adicionada, só foi ajustado algumas coisas e precisam ser ajustadas outras.
+	* Correções para cálculos de peso com montarias: Dragão e Robô.
+	* Correções para cálculos de ASPD para montarias do Dragão.
+
 	r0256 - 28/02/2011 [Protimus]
 	* Adicionada habilidade RK_DRAGONHOWLING (Rugido do Dragão).
 	- Fórmula baseada no iROWiki, faltam testes.

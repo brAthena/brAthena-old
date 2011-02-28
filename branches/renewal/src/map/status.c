@@ -2510,8 +2510,10 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 	if((skill=pc_checkskill(sd,GS_SINGLEACTION))>0 &&
 		(sd->status.weapon >= W_REVOLVER && sd->status.weapon <= W_GRENADE))
 		status->aspd_rate -= ((skill+1)/2) * 10;
-	if(pc_isriding(sd,OPTION_RIDING))
-		status->aspd_rate += 500-100*pc_checkskill(sd,KN_CAVALIERMASTERY);
+	if( pc_isriding(sd,OPTION_RIDING) )
+		status->aspd_rate += 500 - 100 * pc_checkskill(sd,KN_CAVALIERMASTERY);
+	if( pc_isriding(sd,OPTION_RIDING_DRAGON) && (sd->class_&JOBL_THIRD) && (skill = pc_checkskill(sd,RK_DRAGONTRAINING)) > 0 )
+		status->aspd_rate += 500 - 100 * skill;
 
 	status->adelay = 2*status->amotion;
 
@@ -2526,13 +2528,17 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 // ----- MISC CALCULATIONS -----
 
 	// Weight
-	if((skill=pc_checkskill(sd,MC_INCCARRY))>0)
+	if( (skill=pc_checkskill(sd,MC_INCCARRY)) > 0 )
 		sd->max_weight += 2000*skill;
-	if(pc_isriding(sd,OPTION_RIDING) && pc_checkskill(sd,KN_RIDING)>0)
+	if( pc_isriding(sd,OPTION_RIDING) && pc_checkskill(sd,KN_RIDING) > 0 )
 		sd->max_weight += 10000;
-	if(sc->data[SC_KNOWLEDGE])
-		sd->max_weight += sd->max_weight*sc->data[SC_KNOWLEDGE]->val1/10;
-	if((skill=pc_checkskill(sd,ALL_INCCARRY))>0)
+	if( pc_isriding(sd,OPTION_RIDING_DRAGON) && (skill = pc_checkskill(sd,RK_DRAGONTRAINING)) > 0 )
+		sd->max_weight += 5000  + 2000*skill; 
+	if( sd->sc.option&OPTION_MADO )
+		sd->max_weight += 20000;
+	if( sc->data[SC_KNOWLEDGE] )
+		sd->max_weight += sd->max_weight * sc->data[SC_KNOWLEDGE]->val1 / 10;
+	if( (skill=pc_checkskill(sd,ALL_INCCARRY)) > 0 )
 		sd->max_weight += 2000*skill;
 
 	if (pc_checkskill(sd,SM_MOVINGRECOVERY)>0)
