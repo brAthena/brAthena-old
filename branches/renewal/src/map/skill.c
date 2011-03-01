@@ -1718,7 +1718,7 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 
 	if( damage > 0 && dmg.flag&BF_WEAPON && src != bl && ( src == dsrc || ( dsrc->type == BL_SKILL && ( skillid == SG_SUN_WARM || skillid == SG_MOON_WARM || skillid == SG_STAR_WARM ) ) )
 		&& skillid != WS_CARTTERMINATION )
-		rdamage = battle_calc_return_damage(bl, damage, dmg.flag);
+		rdamage = battle_calc_return_damage(src, bl, &damage, dmg.flag);
 
 	//Skill hit type
 	type=(skillid==0)?5:skill_get_hit(skillid);
@@ -3715,6 +3715,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case ST_PRESERVE:
 	case NPC_INVINCIBLE:
 	case NPC_INVINCIBLEOFF:
+	case RK_DEATHBOUND:
 		clif_skill_nodamage(src,bl,skillid,skilllv,
 			sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv)));
 		break;
@@ -6712,6 +6713,7 @@ int skill_castend_map (struct map_session_data *sd, short skill_num, const char 
 		sd->sc.data[SC_DANCING] ||
 		sd->sc.data[SC_BERSERK] ||
 		sd->sc.data[SC_BASILICA] ||
+		sd->sc.data[SC_DEATHBOUND] ||
 		sd->sc.data[SC_DANCING] && skill_num < RK_ENCHANTBLADE && !pc_checkskill(sd, WM_LESSON) ||
 		sd->sc.data[SC_MARIONETTE]
 	 )) {

@@ -3116,31 +3116,45 @@ struct Damage battle_calc_attack(int attack_type,struct block_list *bl,struct bl
 }
 
 //Calculates BF_WEAPON returned damage.
-int battle_calc_return_damage(struct block_list* bl, int damage, int flag)
+int battle_calc_return_damage(struct block_list *src, struct block_list *bl, int *damage, int flag)
 {
 	struct map_session_data* sd = NULL;
-	int rdamage = 0;
+	int rdamage = 0, max_damage = status_get_max_hp(bl);
+	struct status_change *sc = status_get_sc(bl);
+	struct status_change *ssc = status_get_sc(src);
 
 	sd = BL_CAST(BL_PC, bl);
 
-	//Bounces back part of the damage.
-	if (flag & BF_SHORT) {
-		struct status_change* sc;
+	if( (flag&(BF_SHORT|BF_MAGIC)) == BF_SHORT )
+	{
 		if (sd && sd->short_weapon_damage_return)
 		{
-			rdamage += damage * sd->short_weapon_damage_return / 100;
+			rdamage += (*damage) * sd->short_weapon_damage_return / 100;
 			if(rdamage < 1) rdamage = 1;
 		}
-		sc = status_get_sc(bl);
+		if( sc && sc->data[SC_DEATHBOUND] )
+		{
+			int dir = map_calc_dir(bl,src->x,src->y),
+				t_dir = unit_getdir(bl), rd1 = 0;
+
+			if( distance_bl(src,bl) <= 0 || !map_check_dir(dir,t_dir) )
+			{
+				rd1 = min((*damage),max_damage) * sc->data[SC_DEATHBOUND]->val2 / 100;
+				(*damage) = rd1 / 2;
+				clif_skill_damage(src,bl,gettick(), status_get_amotion(src), 0, -30000, 1, RK_DEATHBOUND, sc->data[SC_DEATHBOUND]->val1,6);
+				status_change_end(bl,SC_DEATHBOUND,-1);
+				rdamage += rd1;
+			}
+		}
 		if (sc && sc->data[SC_REFLECTSHIELD])
 		{
-			rdamage += damage * sc->data[SC_REFLECTSHIELD]->val2 / 100;
-			if (rdamage < 1) rdamage = 1;
+			rdamage += (*damage) * sc->data[SC_REFLECTSHIELD]->val2 / 100;
+			rdamage = cap_value(rdamage,1,max_damage);
 		}
 	} else {
 		if (sd && sd->long_weapon_damage_return)
 		{
-			rdamage += damage * sd->long_weapon_damage_return / 100;
+			rdamage += (*damage) * sd->long_weapon_damage_return / 100;
 			if (rdamage < 1) rdamage = 1;
 		}
 	}
@@ -3338,7 +3352,11 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 	damage = wd.damage + wd.damage2;
 	if( damage > 0 && src != target )
 	{
-		rdamage = battle_calc_return_damage(target, damage, wd.flag);
+		
+		if( tsc && tsc->data[SC_DEATHBOUND] && (sstatus->mode&MD_BOSS)  )
+			rdamage = 0;
+		else
+			rdamage = battle_calc_return_damage(src, target, &damage, wd.flag);
 		if( rdamage > 0 )
 		{
 			rdelay = clif_damage(src, src, tick, wd.amotion, sstatus->dmotion, rdamage, 1, 4, 0);
