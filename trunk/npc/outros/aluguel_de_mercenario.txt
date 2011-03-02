@@ -43,7 +43,7 @@ prontera,41,337,5	script	Mercenary Manager#Spear	105,{
 		set .@BaseLevel, 5 + (.@Grade * 10);
 		if( .@BaseLevel > 90 )
 			set .@BaseLevel, 90;
-
+		
 		set .@ZenyCost, 7 * .@Grade;
 
 		if( .@Grade == 7 )
@@ -330,7 +330,7 @@ izlude,47,139,5	script	Mercenary Manager#Sword	734,{
 			set Zeny, Zeny - (.@ZenyCost * 1000);
 			getitem 12162 + .@Grade, 1;
 		}
-		close;
+		close;		
 	case 2:
 		mes "[Mercenary Manager]";
 		mes "Mercenaries are soldiers";
@@ -441,7 +441,7 @@ izlude,47,139,5	script	Mercenary Manager#Sword	734,{
 			mercenary_set_faith SWORD_MERC_GUILD,-400;
 			getitem 12172,1;
 		}
-		close;
+		close;		
 	}
 }
 
@@ -660,7 +660,7 @@ pay_arche,99,167,4	script	Mercenary Manager#Bow	732,{
 
 // Mercenary Merchant NPCs
 //============================================================
--	script	Mercenary Merchant#dummy::MercMerchant	-1,{
+prontera,30,337,4	script	Mercenary Merchant#Spear::MercMerchant	700,{
 	mes "[Mercenary Goods Merchant]";
 	mes "Hello, I sell goods";
 	mes "that Mercenaries can";
@@ -669,7 +669,7 @@ pay_arche,99,167,4	script	Mercenary Manager#Bow	732,{
 	mes "you're looking for?";
 	next;
 	switch(select("Mercenary Red Potion:Mercenary Blue Potion:Mercenary Concentration Potion:Mercenary Awakening Potion:Mercenary Berserk Potion")) {
-	case 1:
+	case 1: 
 		mes "[Mercenary Goods Merchant]";
 		mes "Mercenary Red Potions";
 		mes "each cost 1,750 zeny.";
@@ -705,10 +705,8 @@ pay_arche,99,167,4	script	Mercenary Manager#Bow	732,{
 		next;
 		callfunc "F_PurchaseMercItem",12243,2100;
 	}
-	close;
 }
 
-prontera,30,337,4	duplicate(MercMerchant)	Mercenary Merchant#Spear	700
 izlude,56,139,4	duplicate(MercMerchant)	Mercenary Merchant#Sword	892
 pay_arche,102,167,5	duplicate(MercMerchant)	Mercenary Merchant#Bow	879
 

@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0260 - 01/02/2011 [Protimus]
+	* Correções para o npc aluguel_de_mercenarios.txt
+
 	r0255 - 27/02/2011 [Floozie]
 	* Atualizado conforme eAthena r14725.
 	
