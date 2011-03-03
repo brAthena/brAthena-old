@@ -18,6 +18,7 @@
 // |--------------------------------------------------------|
 // | Changelog:						    					|
 // | 1.0 Script Traduzido [Lord]                            |
+// | 1.1 Script Revisado [insidemybrain]                    |
 // | - Anotações					    					|
 // \________________________________________________________/
 
@@ -37,8 +38,8 @@ hu_fild05,168,304,0	script	Coluna#abyss1	111,{
 			case 1:
 				mes "^3355FFVocê cuidadosamente colocou";
 				mes "o Canino de Dragão em uma das";
-				mes "rachaduras, e entam você";
-				mes "ouviu um barulho estrondoso";
+				mes "rachaduras, e então você";
+				mes "ouve um barulho estrondoso";
 				mes "vindo da coluna.^000000";
 				specialeffect EF_WINDHIT;
 				next;
@@ -71,7 +72,7 @@ hu_fild05,168,304,0	script	Coluna#abyss1	111,{
 
 			case 2:
 				mes "^3355FFVocê cautelosamente coloca";
-				mes "o Canido de Dragão, a Escama de";
+				mes "o Canino de Dragão, a Escama de";
 				mes "Dragão, e a Cauda de Dragão";
 				mes "na sua boca e lentamente começa";
 				mes "a mastigar. Nada aconteceu";
@@ -93,7 +94,7 @@ hu_fild05,171,211,0	script	Coluna#abyss2	111,1,1,{
 
 	mes "^3355FFEssas colunas são";
 	mes "muito parecidas com";
-	mes "a que você viu";
+	mes "as que você viu";
 	mes "no lago. Há um";
 	mes "visível encaixe azul";
 	mes "na superficie.^000000";

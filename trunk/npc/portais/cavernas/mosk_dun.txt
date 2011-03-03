@@ -18,6 +18,7 @@
 // |--------------------------------------------------------|
 // | Changelog:						    					|
 // | 1.0 Script Traduzido [Lord]                            |
+// | 1.1 Script Revisado [insidemybrain]                    |
 // | - Anotações					    					|
 // \________________________________________________________/
 
@@ -39,7 +40,7 @@ OnTouch:
 		mes "Temos informações";
 		mes "de que você está se comunicando";
 		mes "secretamenta com a";
-		mes "Baba Yaga, a Horrivel.";
+		mes "Baba Yaga, a Horrível.";
 		next;
 		mes "[Soldado]";
 		mes "Se você tem algo a dizer,";
@@ -60,7 +61,7 @@ OnTouch:
 		mes "[Soldado]";
 		mes "Esperávamos que";
 		mes "você poderia aparecer denovo.";
-		mes "Qual é o seu negocio com Csar?";
+		mes "Qual é o seu negócio com Csar?";
 		next;
 		if(select("Sair correndo.:Explicar a situação.") == 1) {
 			mes "["+strcharinfo(0)+"]";
@@ -92,7 +93,7 @@ OnTouch:
 		mes "[Soldado]";
 		mes "Esperávamos que";
 		mes "você poderia aparecer denovo.";
-		mes "Qual é o seu negocio com Csar?";
+		mes "Qual é o seu negócio com Csar?";
 		next;
 		if(select("Sair correndo.:Explicar a situação.") == 1) {
 			mes "["+strcharinfo(0)+"]";
@@ -172,17 +173,17 @@ OnEnable:
 	end;
 }
 
-mosk_dun01,170,164,3	script	Milestone#1	111,{
+mosk_dun01,170,164,3	script	Rocha#1	111,{
 	mes "- Há escrito sobre uma grande rocha. -";
 	next;
 	mes "^3131FF- Aqueles que servem ao sol irão morrer, Vá para o Norte. -^000000";
 	close;
 }
 
-mosk_dun01,207,276,3	script	Milestone#1-2	111,{
+mosk_dun01,207,276,3	script	Rocha#1-2	111,{
 	mes "- Há escrito sobre uma grande rocha. -";
 	next;
-	mes "^3131FF- Aqueles que avançarem podem se machucar mas serão corajosos de coração e aqueles que ficarem permaneceram seguros.";
+	mes "^3131FF- Aqueles que avançarem podem se machucar mas serão corajosos de coração e aqueles que ficarem permanecerão seguros.";
 	mes "Se você tem coragem , vá em frente. Caso contrário, volte. -^000000";
 	next;
 	if(select("Ir em frente.:Ficar.") == 1) {
@@ -195,11 +196,11 @@ mosk_dun01,207,276,3	script	Milestone#1-2	111,{
 	close;
 }
 
-mosk_dun01,264,191,3	script	Milestone#1-3	111,{
+mosk_dun01,264,191,3	script	Rocha#1-3	111,{
 	mes "- Há escrito sobre uma grande rocha. -";
 	next;
-	mes "^3131FF- Aqueles que avançarem podem se machucar mas serão corajosos de coração e aqueles que voltarem permaneceram seguros.";
-	mes "Se você for corajoso , entam siga em frente. Caso contrário, volte. -^000000";
+	mes "^3131FF- Aqueles que avançarem podem se machucar mas serão corajosos de coração e aqueles que voltarem permanecerão seguros.";
+	mes "Se você for corajoso , então siga em frente. Caso contrário, volte. -^000000";
 	next;
 	if(select("Ir em frente.:Ficar.") == 1) {
 		mes "- Você segue o caminho diante de você. -";
@@ -211,11 +212,11 @@ mosk_dun01,264,191,3	script	Milestone#1-3	111,{
 	close;
 }
 
-mosk_dun02,168,28,3	script	Milestone#2-1	111,{
+mosk_dun02,168,28,3	script	Rocha#2-1	111,{
 	mes "- Há escrito sobre uma grande rocha. -";
 	next;
-	mes "^3131FF- Aqueles que avançarem podem se machucar mas serão valentes de coração e aqueles que voltarem permaneceram seguros.";
-	mes "Se você for valente , entam siga em frente. Caso contrário, volte. -^000000";
+	mes "^3131FF- Aqueles que avançarem podem se machucar mas serão valentes de coração e aqueles que voltarem permanecerão seguros.";
+	mes "Se você for valente , então siga em frente. Caso contrário, volte. -^000000";
 	next;
 	if(select("Voltar.:Stay.") == 1) {
 		mes "- Você sentiu medo e decidiu voltar -";
@@ -227,10 +228,10 @@ mosk_dun02,168,28,3	script	Milestone#2-1	111,{
 	close;
 }
 
-mosk_dun02,268,117,3	script	Milestone#2-3	111,{
+mosk_dun02,268,117,3	script	Rocha#2-3	111,{
 	mes "- Há escrito sobre uma grande rocha. -";
 	next;
-	mes "^3131FF- Aqueles que avançarem irão ganhar honra mas porderam morrer, e aqueles que voltarem ganharão coragem mas ainda podem se machucar.";
+	mes "^3131FF- Aqueles que avançarem irão ganhar honra mas porderão morrer, e aqueles que voltarem ganharão coragem mas ainda podem se machucar.";
 	mes "Se você é realmente corajoso , siga em frente. Caso contrário, volte. -^000000";
 	next;
 	if(select("Ir em frente.:Ficar.") == 1) {
@@ -243,10 +244,10 @@ mosk_dun02,268,117,3	script	Milestone#2-3	111,{
 	close;
 }
 
-mosk_dun03,27,131,3	script	Milestone#3-2	111,{
+mosk_dun03,27,131,3	script	Rocha#3-2	111,{
 	mes "- Há escrito sobre uma grande rocha. -";
 	next;
-	mes "^3131FF- Aqueles que ficarem poderam morrer mas irão ganhar honra. e aqueles que voltarem poderam se machucar mas ganharão coragem.";
+	mes "^3131FF- Aqueles que ficarem poderão morrer mas irão ganhar honra. e aqueles que voltarem poderam se machucar mas ganharão coragem.";
 	mes "Aqueles que têm coragem irão voltar, caso contrário vá em frente e fique. -^000000";
 	next;
 	if(select("Voltar.:Ficar.") == 1) {
@@ -259,10 +260,10 @@ mosk_dun03,27,131,3	script	Milestone#3-2	111,{
 	close;
 }
 
-mosk_dun03,119,46,3	script	Milestone#3-1	111,{
+mosk_dun03,119,46,3	script	Rocha#3-1	111,{
 	mes "- Há escrito sobre uma grande rocha. -";
 	next;
-	mes "^3131FF- Aqueles que ficarem poderam morrer mas irão ganhar honra. e aqueles que voltarem poderam se machucar mas ganharão coragem.";
+	mes "^3131FF- Aqueles que ficarem poderão morrer mas irão ganhar honra. e aqueles que voltarem poderam se machucar mas ganharão coragem.";
 	mes "Aqueles que têm medo da morte irão voltar, caso contrário vá em frente e fique. -^000000";
 	next;
 	if(select("Voltar.:Ficar.") == 1) {
@@ -275,14 +276,14 @@ mosk_dun03,119,46,3	script	Milestone#3-1	111,{
 	close;
 }
 
-mosk_dun01,194,43,3	script	Milestone#1-1	111,{
+mosk_dun01,194,43,3	script	Rocha#1-1	111,{
 	mes "- Há escrito sobre uma grande rocha. -";
 	next;
 	mes "- Se você quer proteger sua vida, volte. -";
 	close;
 }
 
-mosk_fild02,198,53,3	script	Ship#mos_dun	111,{
+mosk_fild02,198,53,3	script	Navio#mos_dun	111,{
 	mes "- Você encontra um navio ancorado. -";
 	next;
 	if(select("Pegue o navio e volte para a aldeia.:Explorar mais.") == 1) {
@@ -291,6 +292,6 @@ mosk_fild02,198,53,3	script	Ship#mos_dun	111,{
 		warp "moscovia",140,54;
 		end;
 	}
-	mes "- Esta area desconhecida desperta seu interese. -";
+	mes "- Esta área desconhecida desperta seu interese. -";
 	close;
 }
