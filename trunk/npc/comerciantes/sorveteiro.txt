@@ -8,84 +8,85 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Ice Cream Maker                        |
+// | Nome do Script: Sorveteiro                             |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.4/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: A man makes you ice-cream                   |
+// | Descrição: Um senhor que vende seus sorvetes           |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
-// | 1.0 Modificação [Autor]                                |
+// | 1.0 Script Traduzido [insidemybrain]                   |
+// | 1.1 Script Revisado [insidemybrain]                    |
 // | - Anotações                                            |
 // \________________________________________________________/
 
--	script	Ice Cream Maker::IceCreamer	-1,{
-	mes "[Ice Cream Maker]";
-	mes "Fresh Ice Cream made with snow from Lutie!";
-	mes "Enjoy it now, it won't be on sale for long!";
-	mes "^3355FF100 Zeny^000000 Ice Cream,";
-	mes "Ice Cream!";
+-	script	Sorveteiro::IceCreamer	-1,{
+	mes "[Sorveteiro]";
+	mes "Um sorvete fresco feito com a neve de Lutie!";
+	mes "Aproveite, ele não esterá à venda por muito tempo!";
+	mes "^3355FF100 Zeny^000000 por Sorvete,";
+	mes "Sorvete!";
 	next;
-	if(select("Gimme Ice Cream!:Cancel Trade") == 2) {
-		mes "Are you sure you don't want any?";
-		mes "I won't be selling it for long,";
-		mes "and once I run out,";
-		mes "there won't be any more!!!";
+	if(select("Me dê sorvete!:Cancelar") == 2) {
+		mes "Você tem certeza que não quer nada?";
+		mes "Não estarei vendendo por muito tempo,";
+		mes "e quando acabar de vender,";
+		mes "não voltarei mais!!!";
 		close;
 	}
-	mes "[Ice Cream Maker]";
-	mes "Fresh Ice Cream made with snow from Lutie!";
-	mes "Everyone wants our delicious ice cream, ";
-	mes "but we have a limited amount,";
-	mes "so you can only purchase 5 at a time!!";
+	mes "[Sorveteiro]";
+	mes "Um sorvete fresco feito com a neve de Lutie!";
+	mes "Todos querem meus deliciosos sorvetes, ";
+	mes "mas nós temos uma certa quantia,";
+	mes "então você só poderá comprar 5 por vez!!";
 	next;
 	while(1) {
 		input .@input;
 		if(.@input < 1) {
-			mes "[Ice Cream Maker]";
-			mes "If you don't want to buy any,";
-			mes "could you please let the next customer";
-			mes "make a purchase?";
-			mes "Thank you.";
+			mes "[Sorveteiro]";
+			mes "Já que você não quer comprar nada,";
+			mes "por favor deixe eu atender o próximo";
+			mes "cliente e deixá-lo fazer as compras?";
+			mes "Obrigado.";
 			close;
 		}
 		if(.@input > 5) {
-			mes "[Ice Cream Maker]";
-			mes "Ouch";
-			mes "You expect too much.";
-			mes "Dear customer,";
-			mes "If you eat more than 5 Ice creams,";
-			mes "If you might haveto make a lot of trips";
-			mes "to the bathroom tonight.";
+			mes "[Sorveteiro]";
+			mes "Eita!";
+			mes "Você quer muito.";
+			mes "Querido cliente,";
+			mes "se você comer mais do que 5 Sorvetes,";
+			mes "terá de ir ao banheiro";
+			mes "várias vezes de noite....";
 			next;
 		}
 	}
 	if(Zeny<.@input*100) {
-		mes "[Ice Cream Maker]";
-		mes "Dear customer, your wallet seems to be light.";
-		mes "Price is ^3355FF100 Zeny^000000 per ice cream.";
+		mes "[Sorveteiro]";
+		mes "Querido cliente, sua carteira é a luz.";
+		mes "O preço é ^3355FF100 Zeny^000000 por Sorvete.";
 		close;
 	}
 	if(checkweight(536,.@input) == 0) {
-		mes "[Ice Cream Maker]";
-		mes "Dear customer,you look like you're carrying a lot.";
-		mes "Ice Cream is fine,";
-		mes "but you must consider your weight";
-		mes "before making a purchase.";
+		mes "[Sorveteiro]";
+		mes "Querido cliente, você está carregando coisas demais.";
+		mes "Sorvete é ótimo,";
+		mes "mas primeiro verifique o que está carregando";
+		mes "para depois comprá-lo.";
 		close;
 	}
 	set Zeny,Zeny-100*.@input;
-	getitem 536,.@input;	// Ice_Cream
+	getitem 536,.@input;	// Sorvete
 	close;
 }
 
 // Alberta
-alberta,120,45,2	duplicate(IceCreamer)	Ice Cream Maker#1	85
+alberta,120,45,2	duplicate(IceCreamer)	Sorveteiro#1	85
 
 // Morroc Field
-moc_fild16,88,304,4	duplicate(IceCreamer)	Ice Cream Maker#2	85
+moc_fild16,88,304,4	duplicate(IceCreamer)	Sorveteiro#2	85
 
 // Morroc
-//morocc,160,144,4	duplicate(IceCreamer)	Ice Cream Maker#3	85
+//morocc,160,144,4	duplicate(IceCreamer)	Sorveteiro#3	85

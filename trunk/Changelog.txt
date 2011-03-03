@@ -9,6 +9,13 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0266 - 03/03/2011 [insidemybrain]
+	* Enviada tradução do script:
+	- quests/selos/sleipnir_seal.txt
+	* Enviadas traduções e revisões dos scripts:
+	- comerciantes/sorveteiro.txt
+	- comerciantes/manuk.txt
+
 	r0265 - 03/03/2011 [insidemybrain]
 	* Enviadas revisões da pasta /portais
 	* Enviada tradução e revisão do script:
