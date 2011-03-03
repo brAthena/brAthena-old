@@ -3973,14 +3973,14 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 
 	case AM_PHARMACY:
 		if(sd) {
-			clif_skill_produce_mix_list(sd,22);
+			clif_skill_produce_mix_list(sd,skillid,22);
 			clif_skill_nodamage(src,bl,skillid,skilllv,1);
 		}
 		break;
 
 	case SA_CREATECON:
 		if(sd) {
-			clif_skill_produce_mix_list(sd,23);
+			clif_skill_produce_mix_list(sd,skillid,23);
 			clif_skill_nodamage(src,bl,skillid,skilllv,1);
 		}
 		break;

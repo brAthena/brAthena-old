@@ -4754,12 +4754,12 @@ int clif_skill_estimation(struct map_session_data *sd,struct block_list *dst)
 /*==========================================
  * アイテム合成可能リスト
  *------------------------------------------*/
-int clif_skill_produce_mix_list(struct map_session_data *sd, int trigger)
+int clif_skill_produce_mix_list(struct map_session_data *sd, int skill_num, int trigger)
 {
 	int i,c,view,fd;
 	nullpo_ret(sd);
 
-	if(sd->menuskill_id == AM_PHARMACY)
+	if(sd->menuskill_id == skill_num)
 		return 0; //Avoid resending the menu twice or more times...
 	fd=sd->fd;
 	WFIFOHEAD(fd, MAX_SKILL_PRODUCE_DB * 8 + 8);
@@ -4779,7 +4779,7 @@ int clif_skill_produce_mix_list(struct map_session_data *sd, int trigger)
 	WFIFOW(fd, 2)=c*8+8;
 	WFIFOSET(fd,WFIFOW(fd,2));
 	if(c > 0) {
-		sd->menuskill_id = AM_PHARMACY;
+		sd->menuskill_id = skill_num;
 		sd->menuskill_val = trigger;
 		return 1;
 	}

@@ -7741,7 +7741,7 @@ BUILDIN_FUNC(produce)
 		return 0;
 
 	trigger=script_getnum(st,2);
-	clif_skill_produce_mix_list(sd, trigger);
+	clif_skill_produce_mix_list(sd, -1, trigger);
 	return 0;
 }
 /*==========================================
@@ -14799,6 +14799,26 @@ BUILDIN_FUNC(sc_check)
     return 0;
 }
 
+/*==========================================
+ * Cria Runas para o Cavaleiro Rúnico
+ *------------------------------------------*/
+BUILDIN_FUNC(makerune)
+{
+	int rune_ore;
+	TBL_PC* sd;
+
+	sd = script_rid2sd(st);
+
+	if( sd == NULL )
+		return 0;
+
+	rune_ore=script_getnum(st,2);
+	sd->menuskill_itemused = rune_ore;
+	clif_skill_produce_mix_list(sd,RK_RUNEMASTERY,24);
+	return 0;
+
+}
+
 // declarations that were supposed to be exported from npc_chat.c
 #ifdef PCRE_SUPPORT
 BUILDIN_FUNC(defpattern);
@@ -15202,5 +15222,6 @@ struct script_function buildin_func[] = {
 
     //brAthena Modificações
 	BUILDIN_DEF(sc_check,"i"),
+	BUILDIN_DEF(makerune,"i"),
 	{NULL,NULL,NULL},
 };
