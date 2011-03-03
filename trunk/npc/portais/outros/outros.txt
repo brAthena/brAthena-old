@@ -8,16 +8,16 @@
 // |							    						|
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Other Warp Script			   			|
+// | Nome do Script: Outros Portais                         |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.0/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Portais para outros mapas.		    		|
+// | Descrição: Portais para mapas variados                 |
 // |--------------------------------------------------------|
 // | Changelog:						    					|
-// | 1.0 Modificação [Autor]				   				|
+// | 1.0 Script Traduzido [Lord]                            |
 // | - Anotações					    					|
 // \________________________________________________________/
 

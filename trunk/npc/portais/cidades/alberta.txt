@@ -8,7 +8,7 @@
 // |							    						|
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Alberta Town Warp Script		    	|
+// | Nome do Script: Portais da Cidade de Alberta           |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
@@ -17,11 +17,10 @@
 // | Descrição: Portais da Cidade de Alberta.		    	|
 // |--------------------------------------------------------|
 // | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
+// | 1.0 Script Traduzido [Lord]                            |
 // | - Anotações					    					|
 // \________________________________________________________/
 
-//Alberta City
 alberta,15,234,0	warp	alb001	2,5,pay_fild03,388,63
 alberta,117,38,0	warp	alb01	2,2,alberta_in,180,30
 alberta,134,38,0	warp	alb02	1,1,alberta_in,70,141

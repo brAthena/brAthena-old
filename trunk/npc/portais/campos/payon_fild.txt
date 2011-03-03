@@ -8,7 +8,7 @@
 // |							    						|
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Payon Field Warp Script		   		|
+// | Nome do Script: Portais dos Campos de Payon            |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
@@ -17,11 +17,10 @@
 // | Descrição: Portais dos Campos de Payon.		    	|
 // |--------------------------------------------------------|
 // | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
+// | 1.0 Script Traduzido [Lord]                            |
 // | - Anotações					    					|
 // \________________________________________________________/
 
-//= Payon Field's ============================================
 pay_fild01,13,152,0	warp	payf001	2,7,moc_fild03,299,170	
 pay_fild01,278,14,0	warp	payf01	13,2,pay_fild02,83,382	
 pay_fild01,353,14,0	warp	payf02	20,3,pay_fild02,160,381	

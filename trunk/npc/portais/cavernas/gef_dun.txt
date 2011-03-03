@@ -8,7 +8,7 @@
 // |							    						|
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Geffen Dungeon Warp Script		    	|
+// | Nome do Script: Portais da Torre de Geffen             |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
@@ -17,11 +17,11 @@
 // | Descrição: Portais da Torre de Geffen.		    		|
 // |--------------------------------------------------------|
 // | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
+// | 1.0 Script Traduzido [Lord]                            |
 // | - Anotações					    					|
 // \________________________________________________________/
 
-//= Geffen Tower =============================================
+//= Torre de Geffen
 gef_tower,106,115,0	warp	geft01	1,1,gef_tower,106,72
 gef_tower,106,69,0	warp	geft01-1	1,1,gef_tower,106,112
 gef_tower,44,36,0	warp	geft02	1,1,gef_tower,106,162
@@ -44,7 +44,7 @@ gef_tower,52,181,0	warp	gef006	4,1,geffen,120,110
 gef_tower,60,32,0	warp	geft09	1,1,gef_tower,62,90
 gef_tower,62,87,0	warp	geft09-1	1,1,gef_tower,60,30
 
-//= Geffen Dungeon =============================================
+//= Caverna de Geffen
 gef_dun00,104,103,0	warp	gef024	3,3,gef_tower,153,31
 gef_dun00,107,169,0	warp	gefd01	2,1,gef_dun01,115,236
 gef_dun01,115,240,0	warp	gefd01-1	2,2,gef_dun00,107,165

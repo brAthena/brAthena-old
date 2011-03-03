@@ -8,58 +8,57 @@
 // |							    						|
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Abyss Lake Field Warp Script	    	|
+// | Nome do Script: Portais do Lago do Abismo              |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.4/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Portais do Abismo do Lago e Teleportes.	    |
+// | Descrição: Portais do Lago do Abismo.                  |
 // |--------------------------------------------------------|
 // | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
+// | 1.0 Script Traduzido [Lord]                            |
 // | - Anotações					    					|
 // \________________________________________________________/
 
-hu_fild05,168,304,0	script	Column#abyss1	111,{
+hu_fild05,168,304,0	script	Coluna#abyss1	111,{
 
-	mes "^3355FFThere are 3 oddly";
-	mes "shaped grooves on";
-	mes "the surface of this";
-	mes "column. It seems that";
-	mes "certain dragon body parts";
-	mes "would fit perfectly into";
-	mes "the column grooves.^000000";
+	mes "^3355FFHá 3 rachaduras na";
+	mes "superficie dessa";
+	mes "coluna. Parece que certas";
+	mes "partes do corpo de um dragão";
+	mes "se encaixariam perfeitamente";
+	mes "nas rachaduras da coluna.^000000";
 	if((countitem(1035)) && (countitem(1036)) && (countitem(1037)))
 	{
 		next;
-		switch( select( "Insert Dragon Body Parts","Eat Dragon Body Parts" ) )
+		switch( select( "Encaixar partes do Dragão","Comer partes do Dragão" ) )
 		{
 			case 1:
-				mes "^3355FFYou carefully place a";
-				mes "Dragon Canine into one of";
-				mes "the grooves, and then you";
-				mes "hear a powerful rumbling";
-				mes "from within the column.^000000";
+				mes "^3355FFVocê cuidadosamente colocou";
+				mes "o Canino de Dragão em uma das";
+				mes "rachaduras, e entam você";
+				mes "ouviu um barulho estrondoso";
+				mes "vindo da coluna.^000000";
 				specialeffect EF_WINDHIT;
 				next;
-				mes "^3355FFYou slowly insert a";
-				mes "Dragon Scale into another";
-				mes "of the column's grooves,";
-				mes "trigerring another small";
-				mes "tremor from the column.^000000";
+				mes "^3355FFVocê lentamente colocou";
+				mes "a Escama de Dragão em";
+				mes "outra rachadura da coluna,";
+				mes "desencadeando um outro pequeno";
+				mes "tremor vindo da coluna.^000000";
 				specialeffect EF_WINDHIT;
 				next;
-				mes "^3355FFYou cautiously insert";
-				mes "a Dragon Tail into the";
-				mes "final groove. Lights shine";
-				mes "forth from cracks in the";
-				mes "column's surface...^000000";
+				mes "^3355FFVocê cautelosamente colocou";
+				mes "a Cauda de Dragão na";
+				mes "última rachadura. Luzes brilham";
+				mes "a partir de frestas";
+				mes "na superficie da coluna...^000000";
 				specialeffect EF_WINDHIT;
 				next;
-				mes "^3355FFThe ground beneath";
-				mes "your feet begins to";
-				mes "violently shake.^000000";
+				mes "^3355FFO chão sob";
+				mes "seus pés começa a";
+				mes "tremer violentamente.^000000";
 				specialeffect EF_BOWLINGBASH;
 				donpcevent "AbyssWarp::OnWarp";
 				specialeffect2 EF_PORTAL;
@@ -71,13 +70,13 @@ hu_fild05,168,304,0	script	Column#abyss1	111,{
 				end;
 
 			case 2:
-				mes "^3355FFYou gingerly place a";
-				mes "Dragon's Canine, a Dragon";
-				mes "Scale, and a Dragon Tail into";
-				mes "your mouth and slowly begin";
-				mes "to chew. Nothing happens";
-				mes "and the taste of these items";
-				mes "is surprisingly putrid.^000000";
+				mes "^3355FFVocê cautelosamente coloca";
+				mes "o Canido de Dragão, a Escama de";
+				mes "Dragão, e a Cauda de Dragão";
+				mes "na sua boca e lentamente começa";
+				mes "a mastigar. Nada aconteceu";
+				mes "e o gosto destes itens";
+				mes "é surpreendentemente podre.^000000";
 				next;
 				emotion e_rice,1;
 				delitem 1035,1;
@@ -90,35 +89,35 @@ hu_fild05,168,304,0	script	Column#abyss1	111,{
 	close;
 }
 
-hu_fild05,171,211,0	script	Column#abyss2	111,1,1,{
+hu_fild05,171,211,0	script	Coluna#abyss2	111,1,1,{
 
-	mes "^3355FFThis column looks";
-	mes "very similar to the";
-	mes "one you've seen in";
-	mes "the lake. There is";
-	mes "a conspicious blue";
-	mes "groove on its surface.^000000";
+	mes "^3355FFEssas colunas são";
+	mes "muito parecidas com";
+	mes "a que você viu";
+	mes "no lago. Há um";
+	mes "visível encaixe azul";
+	mes "na superficie.^000000";
 	next;
-	switch( select( "Touch the Groove","Remove Item from Groove" ) )
+	switch( select( "Tocar o Encaixe","Tirar item do Encaixe" ) )
 	{
 		case 1:
 			mes "^3355FF*Clatter Clatter*^000000";
 			next;
-			mes "^3355FFThe light emanating from";
-			mes "the groove distorts and";
-			mes "the column starts to shake.";
-			mes "You hear a faint rumbling";
-			mes "from inside the column.^000000";
+			mes "^3355FFA luz emitida pelo";
+			mes "encaixe se distorce e";
+			mes "a coluna começa a tremer.";
+			mes "Você ouve um pequeno barulho";
+			mes "vindo de dentro da coluna.^000000";
 			specialeffect EF_WINDHIT;
 			next;
 			mes "*Ggghhhhhzzzz!*";
 			mes "*BAM!*";
 			next;
-			mes "^3355FFThe light shining from";
-			mes "the column's groove grows";
-			mes "brighter as you feel the";
-			mes "ground beneath your feet";
-			mes "begin to slowly sink away...^000000";
+			mes "^3355FFA luz vinda do encaixe";
+			mes "da coluna começa a brilhar mais";
+			mes "e você sente que o";
+			mes "chão sob seus pés";
+			mes "começa lentamente a afundar...^000000";
 			next;
 			specialeffect EF_BOWLINGBASH;
 			specialeffect2 EF_PORTAL;
@@ -128,19 +127,19 @@ hu_fild05,171,211,0	script	Column#abyss2	111,1,1,{
 
 		case 2:
 			mes "^3355FF*Ppppsssh!*";
-			mes "You accidentally";
-			mes "broke the item.^000000";
+			mes "Você acidentalmente";
+			mes "quebrou o item.^000000";
 			specialeffect EF_WINDHIT;
 			next;
 			mes "^3355FF*Gggggggghhhhhhhhzzzzzzjjjjhh!*^000000";
 			next;
-			mes "^3355FFThe light emanating from";
-			mes "the groove distorts and";
-			mes "the column starts to shake.";
-			mes "The tremors in the ground";
-			mes "make it difficult to stand";
-			mes "steadily, but suddently you";
-			mes "are warped somewhere else...^000000";
+			mes "^3355FFA luz emitida pelo";
+			mes "encaixe se distorce e";
+			mes "a coluna começa a tremer.";
+			mes "Os tremores no chão";
+			mes "torna dificil ficar em pé";
+			mes "firmemente, mas de repente você é";
+			mes "teleportado para algum lugar...^000000";
 			next;
 			specialeffect EF_BOWLINGBASH;
 			specialeffect2 EF_PORTAL;

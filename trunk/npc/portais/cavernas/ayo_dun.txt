@@ -8,7 +8,7 @@
 // |							    						|
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Ayothaya Dungeon Warp Script	    	|
+// | Nome do Script: Portais da Caverna de Ayothaya	    	|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
@@ -17,7 +17,7 @@
 // | Descrição: Portais da Caverna de Ayothaya.		    	|
 // |--------------------------------------------------------|
 // | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
+// | 1.0 Script Traduzido [Lord]                            |
 // | - Anotações					    					|
 // \________________________________________________________/
 

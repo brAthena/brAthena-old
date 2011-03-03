@@ -8,7 +8,7 @@
 // |							    						|
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Rachel Town Warp Script		    	|
+// | Nome do Script: Portais da Cidade de Rachel            |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
@@ -17,7 +17,7 @@
 // | Descrição: Portais da Cidade de Rachel.	    		|
 // |--------------------------------------------------------|
 // | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
+// | 1.0 Script Traduzido [Lord]                            |
 // | - Anotações					   	 					|
 // \________________________________________________________/
 
@@ -123,5 +123,5 @@ rachel,105,171,0	warp	rachel84	1,1,ra_in01,309,65
 ra_in01,375,109,0	warp	rachel85	1,1,rachel,116,154
 rachel,116,158,0	warp	rachel86	1,1,ra_in01,375,114
 
-//Additional Temple warp
+//= Portal Adicional do Templo
 ra_temin,275,243,0	warp	rachel87	1,1,ra_temin,131,131

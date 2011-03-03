@@ -8,7 +8,7 @@
 // |							    						|
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Aldebaran Town Warp Script		    	|
+// | Nome do Script: Portais da Cidade de Aldebaran         |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
@@ -17,11 +17,11 @@
 // | Descrição: Portais da Cidade de Aldebaran.    			|
 // |--------------------------------------------------------|
 // | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
+// | 1.0 Script Traduzido [Lord]                            |
 // | - Anotações					    					|
 // \________________________________________________________/
 
-//===== Al De Baran Warps =====================================
+//= Portais de Al De Baran Warps
 aldebaran,118,63,0	warp	ald01	1,1,aldeba_in,211,117
 aldebaran,139,34,0	warp	ald001	3,2,mjolnir_12,199,375
 aldebaran,197,70,0	warp	ald02	1,1,aldeba_in,94,41

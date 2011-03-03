@@ -8,7 +8,7 @@
 // |							    						|
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Payon Cave Warp Srcipt		    		|
+// | Nome do Script: Portais da Caverna de Payon            |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
@@ -17,11 +17,10 @@
 // | Descrição: Portais da Caverna de Payon.		    	|
 // |--------------------------------------------------------|
 // | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
+// | 1.0 Script Traduzido [Lord]                            |
 // | - Anotações					    					|
 // \________________________________________________________/
 
-//= Payon Cave ===============================================
 pay_dun00,184,33,0	warp	payd01	2,7,pay_dun01,19,33
 pay_dun00,21,186,0	warp	pay005	2,2,pay_arche,39,131
 pay_dun01,15,33,0	warp	payd01-1	2,6,pay_dun00,181,33

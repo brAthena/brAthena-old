@@ -8,7 +8,7 @@
 // |							    						|
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Hugel Field Warp Script		    	|
+// | Nome do Script: Portais dos Campos de Hugel            |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
@@ -17,11 +17,10 @@
 // | Descrição: Portais dos Campos de Hugel.		    	|
 // |--------------------------------------------------------|
 // | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
+// | 1.0 Script Traduzido [Lord]                            |
 // | - Anotações					    					|
 // \________________________________________________________/
 
-//= Hugel Field ==============================================
 ein_fild04,343,293,0	warp	hugel001	1,1,ein_fild05,80,294
 ein_fild05,76,294,0	warp	hugel001a	1,1,ein_fild04,336,292
 ein_fild05,376,183,0	warp	hugel002	1,1,ein_fild06,47,166

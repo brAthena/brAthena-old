@@ -8,23 +8,23 @@
 // |							    						|
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Izlude Dungeon Warp Script		    	|
+// | Nome do Script: Portais da Caverna de Izlude	    	|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.1/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Portais do Túnel Submarino de Byalan.	    |
+// | Descrição: Portais da Caverna de Izlude.               |
 // |--------------------------------------------------------|
 // | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
+// | 1.0 Script Traduzido [Lord]                            |
 // | - Anotações					    					|
 // \________________________________________________________/
 
-//= Bibilyn Island ===========================================
+//= Ilha Byalan
 izlu2dun,108,83,0	warp	izd01	3,2,iz_dun00,168,168
 
-//= Undersea Cave ============================================
+//= Túnel Submarino
 iz_dun00,168,173,0	warp	izd01-1	3,3,izlu2dun,108,88
 iz_dun00,352,342,0	warp	izd02	5,2,iz_dun01,253,252
 iz_dun00,39,41,0	warp	izd03	5,2,iz_dun01,41,37

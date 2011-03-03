@@ -8,49 +8,48 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Disabled Warps                 	    |
+// | Nome do Script: Portais Desativados                    |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.2/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição:  Disabled Warp's for entire Athena          |
+// | Descrição: Portais desativados.                        |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
+// | 1.0 Script Traduzido [Lord]                            |
 // | - Anotações                                            | 
 // \________________________________________________________/
 
-//= Beach Dungeon ============================================
+//= Caverna de Camodo
 //beach_dun,89,28,0	warp	cmd00a	3,3,beach_dun2,15,182
 //beach_dun2,13,182,0	warp	cmd00b	3,3,beach_dun,89,30
 
-//= Comodo Field
+//= Campo de Comodo
 //moc_fild12,35,303,0	warp	cmd011	3,3,cmd_fild08,331,319
 //cmd_fild09,14,120,0	warp	cmdf14-3	3,3,cmd_fild07,386,96
 
-
-//= Morroc Field =============================================
+//= Campo de Morroc
 //moc_fild04,219,327,0	warp	mocf016	3,4,anthell01,35,262
 //moc_fild15,258,253,0	warp	mocf017	3,3,anthell01,35,262
 
-//= Ant Hell =================================================
+//= Formigueiro Infernal
 //anthell01,35,267,0	warp	ant001	1,1,moc_fild04,213,327
 //anthell02,171,169,0	warp	ant002	1,2,moc_fild04,213,327
 
-//= Morroc Ruins =============================================
+//= Ruinas de Morroc
 //morocc_in,108,179,0	warp	w280	3,2,morocc,284,175
 
-//= Morroc Town ==============================================
+//= Cidade Morroc
 //morocc_in,72,67,0	warp	w341	2,2,morocc_in,44,162
 
-//= Izlude Town ==============================================
-//= Due to Job Quest
+//= Cidade Izlude
+//= Devido a quest de Classe
 //izlude_in,62,170,0	warp	w1039	1,1,izlude_in,68,165
 
-//= Payon Cave
+//= Caverna de Payon
 //pay_dun03,127,62,0	warp	payd04	1,2,pay_dun04,201,204
 
-// Airplane (no direct access there)
+// Aeroplano (Não há acesso direto)
 //airplane,255,55,0	warp	ein044	1,1,airplane,90,68
 //airplane,88,68,0	warp	ein044a	1,1,airplane,253,55

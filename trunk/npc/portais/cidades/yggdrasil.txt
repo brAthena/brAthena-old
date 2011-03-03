@@ -8,7 +8,7 @@
 // |							    						|
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Yggdrasil Tree Warp Script		    	|
+// | Nome do Script: Portais da Árvore de Yggdrasil         |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
@@ -17,16 +17,16 @@
 // | Descrição: Portais da Árvore de Yggdrasil.   			|
 // |--------------------------------------------------------|
 // | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
+// | 1.0 Script Traduzido [Lord]                            |
 // | - Anotações					    					|
 // \________________________________________________________/
 
-//Umbala Entrance
+//= Entrada Umbala
 um_dun02,125,163,0	warp	nwarp1	1,1,yggdrasil01,40,63
 
-//Niflheim Exit
+//= Saída Niflheim
 yggdrasil01,249,262,0	warp	nwarp5	1,1,nif_fild01,315,66
 
-//Yggdrasil Tree
+//= Árvore Yggdrasil
 yggdrasil01,271,51,0	warp	nwarp3	1,1,yggdrasil01,26,196
 yggdrasil01,26,193,0	warp	nwarp4	1,1,yggdrasil01,269,53

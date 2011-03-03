@@ -8,17 +8,16 @@
 // |							    						|
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Sign Quest Warps			    		|
+// | Nome do Script: Portais da Quest do Sinal              |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.2/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Warp Points related to the Sign Quest 		|
-// | will be put here.				    					|
+// | Descrição: Portais da Quest do Sinal                   |
 // |--------------------------------------------------------|
 // | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
+// | 1.0 Script Traduzido [Lord]                            |
 // | - Anotações					    					|
 // \________________________________________________________/
 

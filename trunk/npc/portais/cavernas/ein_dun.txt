@@ -8,7 +8,7 @@
 // |							    						|
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Einbroch Dungeon Warp Script	    	|
+// | Nome do Script: Portais da Caverna de Einbroch	    	|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
@@ -17,11 +17,10 @@
 // | Descrição: Portais da Caverna de Einbroch.		    	|	
 // |--------------------------------------------------------|
 // | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
+// | 1.0 Script Traduzido [Lord]                            |
 // | - Anotações					    					|
 // \________________________________________________________/
 
-//Dungeon Warps
 einbech,138,252,0	warp	eib_d01	1,1,ein_dun01,22,14
 ein_dun01,22,11,0	warp	eib_d01a	1,1,einbech,138,249
 ein_dun01,261,255,0	warp	ein012	1,1,ein_dun02,291,292

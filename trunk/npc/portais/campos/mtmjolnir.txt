@@ -8,20 +8,20 @@
 // |							    						|
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Mt. Mjolnir Warp Script		    	|
+// | Nome do Script: Portais do Monte Mjolnir               |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.2a/1.0				   				|
 // |--------------------------------------------------------|
-// | Descrição: Portais do Monte Mjolnir .					|
+// | Descrição: Portais do Monte Mjolnir.					|
 // |--------------------------------------------------------|
 // | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
+// | 1.0 Script Traduzido [Lord]                            |
 // | - Anotações					    					|
 // \________________________________________________________/
 
-//= Mt. Mjolnir ==============================================
+//= Monte Mjolnir
 mjolnir_01,284,18,0	warp	mjol001	4,2,gef_fild04,261,359
 mjolnir_01,378,256,0	warp	mjol01	2,2,mjolnir_02,31,258
 mjolnir_02,28,258,0	warp	mjol01-1	2,2,mjolnir_01,374,256

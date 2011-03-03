@@ -9,7 +9,13 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
-	r0260 - 01/02/2011 [Protimus]
+	r0264 - 03/03/2011 [Lord]
+	* Enviada tradução da pasta /portais
+	- Necessita de revisão.
+	* Enviado npc buying_shops.txt
+	- Era para ter sido enviado na rev0255.
+	
+	r0260 - 01/03/2011 [Protimus]
 	* Correções para o npc aluguel_de_mercenarios.txt
 
 	r0255 - 27/02/2011 [Floozie]

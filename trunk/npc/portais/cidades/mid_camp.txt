@@ -8,17 +8,17 @@
 // |							    						|
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Another World Warp Script		    	|
+// | Nome do Script: Portais do Novo Mundo                  |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.4/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Portais para o Novo Mundo (EP.12).	    	|
-// | Portais para fild22b e mid_camp são temporarios.	    |
+// | Descrição: Portais do Novo Mundo (EP.12).	    	    |
+// | Portais para fild22b e mid_camp são temporários.	    |
 // |--------------------------------------------------------|
 // | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
+// | 1.0 Script Traduzido [Lord]                            |
 // | - Anotações					   						|
 // \________________________________________________________/
 

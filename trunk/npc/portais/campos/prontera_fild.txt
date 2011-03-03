@@ -8,20 +8,20 @@
 // |							    						|
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Prontera Field Warp Script		    	|
+// | Nome do Script: Portais dos Campos de Prontera         |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			   				|
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.2/1.0				    			|
 // |--------------------------------------------------------|
-// | Descrição: Portais dos Campos de Prontera			    |
+// | Descrição: Portais dos Campos de Prontera.             |
 // |--------------------------------------------------------|
 // | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
+// | 1.0 Script Traduzido [Lord]                            |
 // | - Anotações					    					|
 // \________________________________________________________/
 
-//= Prontera Fields ==========================================
+//= Campos de Prontera
 prt_fild00,159,383,0	warp	prtf007	4,2,mjolnir_07,156,19
 prt_fild00,165,18,0	warp	prtf01	9,3,prt_fild04,158,384
 prt_fild00,18,129,0	warp	prtf015	2,6,gef_fild00,376,140
@@ -95,7 +95,7 @@ prt_fild11,302,301,0	warp	prtf022	5,2,gef_fild03,312,19
 prt_fild11,361,184,0	warp	prtf20-1	2,5,prt_fild10,23,196
 prt_fild11,362,111,0	warp	prtf19-1	2,6,prt_fild10,23,122
 
-//= St. Capitolina Abbey =====================================
+//= St. Abbey
 monk_in,128,46,0	warp	monk03	1,3,monk_in,161,38
 monk_in,128,84,0	warp	monk04	1,3,monk_in,161,90
 monk_in,159,38,0	warp	monk03-1	1,3,monk_in,126,46

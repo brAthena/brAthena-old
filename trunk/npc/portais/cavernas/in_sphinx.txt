@@ -8,7 +8,7 @@
 // |							    						|
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Morroc Sphinx Warp Script		    	|
+// | Nome do Script: Portais da Esfinge de Morroc           |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
@@ -17,11 +17,10 @@
 // | Descrição: Portais da Esfinge de Morroc.		    	|
 // |--------------------------------------------------------|
 // | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
+// | 1.0 Script Traduzido [Lord]                            |
 // | - Anotações					    					|
 // \________________________________________________________/
 
-//= Morroc Sphinx ============================================
 in_sphinx1,288,6,0	warp	sphx001	5,1,moc_fild19,100,99
 in_sphinx1,80,191,0	warp	sphx01	2,1,in_sphinx2,149,81
 in_sphinx2,149,77,0	warp	sphx01-1	3,2,in_sphinx1,80,189
