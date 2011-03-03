@@ -13947,6 +13947,19 @@ void clif_party_show_picker(struct map_session_data * sd, struct item * item_dat
 #endif
 }
 
+void clif_millenniumshield(struct map_session_data *sd, short shields )
+{
+#if PACKETVER >= 20081217
+	unsigned char buf[10];
+
+	WBUFW(buf,0) = 0x440;
+	WBUFL(buf,2) = sd->bl.id;
+	WBUFW(buf,6) = shields;
+	WBUFW(buf,8) = 0;
+	clif_send(buf,packet_len(0x440),&sd->bl,AREA);
+#endif
+}
+
 // Display gain exp
 // type = 1 -> base_exp
 // type = 2 -> job_exp

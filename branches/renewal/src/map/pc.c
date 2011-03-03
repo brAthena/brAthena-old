@@ -3677,6 +3677,25 @@ int pc_useitem(struct map_session_data *sd,int n)
 
 	if( sd->status.inventory[n].nameid <= 0 || sd->status.inventory[n].amount <= 0 )
 		return 0;
+		
+	if( itemdb_is_rune(sd->status.inventory[n].nameid) )
+	{
+		switch(sd->status.inventory[n].nameid)
+		{
+			case ITEMID_NAUTHIZ:
+				if( skill_blockpc_get(sd,RK_REFRESH) != -1 )
+					return 0;
+				break;
+			case ITEMID_RAIDO:
+				if( skill_blockpc_get(sd,RK_CRUSHSTRIKE) != -1 )
+					return 0;
+				break;
+			case ITEMID_BERKANA:
+				if( skill_blockpc_get(sd,RK_MILLENNIUMSHIELD) != -1 )
+					return 0;
+				break;
+		}
+	}
 
 	if( !pc_isUseitem(sd,n) )
 		return 0;

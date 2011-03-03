@@ -4775,7 +4775,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 				case SC_HUMMING:		case SC_DONTFORGETME:	case SC_FORTUNE:
 				case SC_SERVICE4U:		case SC_FOOD_STR_CASH:	case SC_FOOD_AGI_CASH:
 				case SC_FOOD_VIT_CASH:	case SC_FOOD_DEX_CASH:	case SC_FOOD_INT_CASH:
-				case SC_FOOD_LUK_CASH:
+				case SC_FOOD_LUK_CASH:	case SC_BERKANA: 
 					continue;
 				case SC_ASSUMPTIO:
 					if( bl->type == BL_MOB )
@@ -5771,6 +5771,15 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 				skill_get_splash(skillid,skilllv),BL_CHAR,
 				src,skillid,skilllv,tick,flag|BCT_ENEMY|SD_PREAMBLE|1,
 				skill_castend_nodamage_id);
+		}
+		break;
+	case RK_MILLENNIUMSHIELD:
+		if( sd && pc_checkskill(sd,RK_RUNEMASTERY) >= 9 )
+		{
+			short shields = 2 + rand()%3;
+			sc_start4(bl,type,100,skilllv,shields,1000,0,skill_get_time(skillid,skilllv));
+			clif_millenniumshield(sd,shields);
+			clif_skill_nodamage(src,bl,skillid,1,1);
 		}
 		break;
 	default:

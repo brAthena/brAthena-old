@@ -6990,6 +6990,9 @@ int status_change_end(struct block_list* bl, enum sc_type type, int tid)
 					status_change_end(tbl, SC_STOP, INVALID_TIMER);
 			}
 			break;
+		case SC_BERKANA:
+			clif_millenniumshield(sd,0);
+			break;
 		}
 
 	opt_flag = 1;
@@ -7676,6 +7679,7 @@ int status_change_clear_buffs (struct block_list* bl, int type)
 			case SC_FOOD_DEX_CASH:
 			case SC_FOOD_INT_CASH:
 			case SC_FOOD_LUK_CASH:
+			case SC_BERKANA:
 				continue;
 
 			//Debuffs that can be removed.

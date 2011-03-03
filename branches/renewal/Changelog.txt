@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0262 - 02/03/2011 [Protimus]
+	* Adicionada habilidade RK_MILLENNIUMSHIELD (Escudos Milenares).
+	- Necessário mais testes.
+
 	r0261 - 02/03/2011 [Protimus]
 	* Adicionada habilidade RK_RUNEMASTERY (Perícia com Runas).
 	* Readicionadas opções de clif_msg e mais algumas modificações alteradas para suportar a habilidade.

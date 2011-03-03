@@ -607,4 +607,6 @@ void clif_PartyBookingInsertNotify(struct map_session_data* sd, struct party_boo
 
 void clif_showdigit(struct map_session_data* sd, unsigned char type, int value);
 
+void clif_millenniumshield(struct map_session_data *sd, short shields );
+
 #endif /* _CLIF_H_ */
