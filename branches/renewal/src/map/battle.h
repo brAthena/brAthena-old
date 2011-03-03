@@ -496,6 +496,7 @@ extern struct Battle_Config
 	int max_baby_3rd_parameter;
 	int max_level_base;
 	int max_level_classe;
+	int rune_produce_rate;
 
 } battle_config;
 

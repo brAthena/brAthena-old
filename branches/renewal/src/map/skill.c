@@ -10897,45 +10897,68 @@ int skill_can_produce_mix (struct map_session_data *sd, int nameid, int trigger,
 /*==========================================
  *
  *------------------------------------------*/
-int skill_produce_mix (struct map_session_data *sd, int skill_id, int nameid, int slot1, int slot2, int slot3, int qty)
+int skill_produce_mix(struct map_session_data *sd, int skill_id, int nameid, int slot1, int slot2, int slot3, int qty)
 {
 	int slot[3];
-	int i,sc,ele,idx,equip,wlv,make_per,flag;
+	int i,sc,ele,idx,equip,wlv,make_per,flag,skill_lv,temp_qty;
 	int num = -1; // exclude the recipe
 	struct status_data *status;
 
-	nullpo_ret(sd);
+	nullpo_retr(0, sd);
 	status = status_get_status_data(&sd->bl);
 
 	if( !(idx=skill_can_produce_mix(sd,nameid,-1, qty)) )
 		return 0;
 	idx--;
 
-	if (qty < 1)
+	if( qty < 1 )
 		qty = 1;
+	temp_qty = qty;
 
-	if (!skill_id) //A skill can be specified for some override cases.
+	if( !skill_id ) //A skill can be specified for some override cases.
 		skill_id = skill_produce_db[idx].req_skill;
 
 	slot[0]=slot1;
 	slot[1]=slot2;
 	slot[2]=slot3;
 
-	for(i=0,sc=0,ele=0;i<3;i++){ //Note that qty should always be one if you are using these!
+	for( i = 0, sc = 0, ele = 0; i < 3; i++ )
+	{ //Note that qty should always be one if you are using these!
 		int j;
 		if( slot[i]<=0 )
 			continue;
 		j = pc_search_inventory(sd,slot[i]);
-		if(j < 0)
+		if( j < 0 )
 			continue;
-		if(slot[i]==1000){	/* Star Crumb */
+		if( slot[i] == 1000 )
+		{	/* Star Crumb */
 			pc_delitem(sd,j,1,1,0);
 			sc++;
 		}
-		if(slot[i]>=994 && slot[i]<=997 && ele==0){	/* Flame Heart . . . Great Nature */
+		if( slot[i] >= 994 && slot[i] <= 997 && ele == 0 )
+		{	/* Flame Heart . . . Great Nature */
 			static const int ele_table[4]={3,1,4,2};
 			pc_delitem(sd,j,1,1,0);
 			ele=ele_table[slot[i]-994];
+		}
+	}
+	
+	if( skill_id == RK_RUNEMASTERY )
+	{
+		skill_lv = pc_checkskill(sd,skill_id);
+		if( skill_lv == 10 ) temp_qty = 1 + rand()%3;
+		else if( skill_lv > 5 ) temp_qty = 1 + rand()%2;
+		else temp_qty = 1;
+		for( i = 0; i < MAX_INVENTORY; i++ )
+		{
+			if( sd->status.inventory[i].nameid == nameid )
+			{
+				if( temp_qty > MAX_RUNE - sd->status.inventory[i].amount )
+				{
+					clif_msgtable(sd->fd,1563);
+					return 0;
+				}
+			}
 		}
 	}
 
@@ -10954,7 +10977,7 @@ int skill_produce_mix (struct map_session_data *sd, int skill_id, int nameid, in
 				if(y>x)y=x;
 				pc_delitem(sd,j,y,0,0);
 			} else
-				ShowError("skill_produce_mix: erro de item material\n");
+				ShowError("skill_produce_mix: erro na producao de item\n");
 
 			x-=y;
 		}while( j>=0 && x>0 );
@@ -11038,6 +11061,14 @@ int skill_produce_mix (struct map_session_data *sd, int skill_id, int nameid, in
 				break;
 			case SA_CREATECON: // Elemental Converter Creation
 				make_per = 100000; // should be 100% success rate
+				break;
+			case RK_RUNEMASTERY:
+				skill_lv = pc_checkskill(sd,skill_id);
+				make_per = 5 * (sd->menuskill_itemused + skill_lv) * 100;
+				if( battle_config.rune_produce_rate != 100 )
+					make_per = make_per * battle_config.rune_produce_rate / 100;
+				qty = temp_qty;
+				sd->menuskill_itemused = sd->menuskill_id = 0;
 				break;
 			default:
 				if (sd->menuskill_id ==	AM_PHARMACY &&
@@ -11186,6 +11217,10 @@ int skill_produce_mix (struct map_session_data *sd, int skill_id, int nameid, in
 					clif_produceeffect(sd,0,nameid);
 					clif_misceffect(&sd->bl,3);
 					break;
+				case RK_RUNEMASTERY:
+					clif_produceeffect(sd,2,nameid);
+					clif_misceffect(&sd->bl,5);
+					break;
 				default: //Those that don't require a skill?
 					if( skill_produce_db[idx].itemlv > 10 && skill_produce_db[idx].itemlv <= 20)
 					{ //Cooking items.
@@ -11229,6 +11264,10 @@ int skill_produce_mix (struct map_session_data *sd, int skill_id, int nameid, in
 			case BS_ENCHANTEDSTONE:
 				clif_produceeffect(sd,1,nameid);
 				clif_misceffect(&sd->bl,2);
+				break;
+			case RK_RUNEMASTERY:
+				clif_produceeffect(sd,3,nameid);
+				clif_misceffect(&sd->bl,6);
 				break;
 			default:
 				if( skill_produce_db[idx].itemlv > 10 && skill_produce_db[idx].itemlv <= 20 )

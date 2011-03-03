@@ -16,6 +16,7 @@
 #include "vending.h" // struct s_vending
 #include "mob.h"
 
+#define MAX_RUNE 20
 #define MAX_PC_BONUS 10
 #define MAX_PC_SKILL_REQUIRE 5
 #define MAX_PC_FEELHATE 3
@@ -202,7 +203,7 @@ struct map_session_data {
 	struct skill_cooldown_entry *scd[MAX_SKILLCOOLDOWN]; // Skill Cooldown
 	unsigned char blockskill[MAX_SKILL];
 	int cloneskill_id;
-	int menuskill_id, menuskill_val;
+	int menuskill_id, menuskill_val, menuskill_itemused;
 
 	int invincible_timer;
 	unsigned int canlog_tick;

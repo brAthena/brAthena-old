@@ -85,6 +85,18 @@ struct item_group {
 	int qty; //Counts amount of items in the group.
 };
 
+enum {
+	ITEMID_NAUTHIZ = 12725,
+	ITEMID_RAIDO,
+	ITEMID_BERKANA,
+	ITEMID_ISA,
+	ITEMID_OTHILA,
+	ITEMID_URUZ,
+	ITEMID_THURISAZ,
+	ITEMID_WYRD,
+	ITEMID_HAGALAZ,
+} rune_list;
+
 struct item_data* itemdb_searchname(const char *name);
 int itemdb_searchname_array(struct item_data** data, int size, const char *str);
 struct item_data* itemdb_load(int nameid);
@@ -107,6 +119,7 @@ struct item_data* itemdb_exists(int nameid);
 #define itemdb_viewid(n) (itemdb_search(n)->view_id)
 #define itemdb_autoequip(n) (itemdb_search(n)->flag.autoequip)
 const char* itemdb_typename(int type);
+#define itemdb_is_rune(n) (n >= ITEMID_NAUTHIZ && n <= ITEMID_HAGALAZ)
 
 int itemdb_group_bonus(struct map_session_data* sd, int itemid);
 int itemdb_searchrandomid(int flags);

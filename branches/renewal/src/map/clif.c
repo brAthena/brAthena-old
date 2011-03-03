@@ -179,6 +179,29 @@ static inline unsigned char clif_bl_type(struct block_list *bl) {
 }
 #endif
 
+// msgstringtable.txt
+// 0x291 <line>.W
+void clif_msgtable(int fd, int line)
+{
+	WFIFOHEAD(fd, packet_len(0x291));
+	WFIFOW(fd, 0) = 0x291;
+	WFIFOW(fd, 2) = line;
+	WFIFOSET(fd, packet_len(0x291));
+}
+
+// msgstringtable.txt
+// 0x7e2 <line>.W <value>.L
+void clif_msgtable_num(int fd, int line, int num)
+{
+#if PACKETVER >= 20090805
+	WFIFOHEAD(fd, packet_len(0x7e2));
+	WFIFOW(fd, 0) = 0x7e2;
+	WFIFOW(fd, 2) = line;
+	WFIFOL(fd, 4) = num;
+	WFIFOSET(fd, packet_len(0x7e2));
+#endif
+}
+
 /*==========================================
  * clif_send‚ÅAREA*Žw’èŽž—p
  *------------------------------------------*/
@@ -10110,17 +10133,18 @@ void clif_parse_RequestMemo(int fd,struct map_session_data *sd)
  *------------------------------------------*/
 void clif_parse_ProduceMix(int fd,struct map_session_data *sd)
 {
-	if (sd->menuskill_id !=	AM_PHARMACY)
+	if (sd->menuskill_id != -1 && sd->menuskill_id != AM_PHARMACY && sd->menuskill_id != SA_CREATECON &&
+		sd->menuskill_id != RK_RUNEMASTERY && sd->menuskill_id != GC_CREATENEWPOISON)
 		return;
-
+	
 	if (pc_istrading(sd)) {
 		//Make it fail to avoid shop exploits where you sell something different than you see.
 		clif_skill_fail(sd,sd->ud.skillid,0,0);
-		sd->menuskill_val = sd->menuskill_id = 0;
+		sd->menuskill_val = sd->menuskill_id = sd->menuskill_itemused = 0;
 		return;
 	}
 	skill_produce_mix(sd,0,RFIFOW(fd,2),RFIFOW(fd,4),RFIFOW(fd,6),RFIFOW(fd,8), 1);
-	sd->menuskill_val = sd->menuskill_id = 0;
+	sd->menuskill_val = sd->menuskill_id = sd->menuskill_itemused = 0;
 }
 /*==========================================
  *
