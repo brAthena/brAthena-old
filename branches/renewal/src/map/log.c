@@ -473,31 +473,31 @@ int log_config_read(char *cfgName)
 			else if(strcmpi(w1, "log_branch_file") == 0) {
 				strcpy(log_config.log_branch, w2);
 				if(log_config.branch > 0 && !log_config.sql_logs)
-					ShowNotice("Armazenando relatorio de uso de Galho Seco no arquivo `%s`.txt\n", w2);
+					ShowNotice("Armazenando relatorio de uso de Galho Seco no arquivo `%s`\n", w2);
 			} else if(strcmpi(w1, "log_pick_file") == 0) {
 				strcpy(log_config.log_pick, w2);
 				if(log_config.filter > 0 && !log_config.sql_logs)
-					ShowNotice("Armazenando relatorio de itens pegos no arquivo `%s`.txt\n", w2);
+					ShowNotice("Armazenando relatorio de itens pegos no arquivo `%s`\n", w2);
 			} else if(strcmpi(w1, "log_zeny_file") == 0) {
 				strcpy(log_config.log_zeny, w2);
 				if(log_config.zeny > 0 && !log_config.sql_logs)
-					ShowNotice("Armazenando relatorio de Zeny no arquivo `%s`.txt\n", w2);
+					ShowNotice("Armazenando relatorio de Zeny no arquivo `%s`\n", w2);
 			} else if(strcmpi(w1, "log_mvpdrop_file") == 0) {
 				strcpy(log_config.log_mvpdrop, w2);
 				if(log_config.mvpdrop > 0 && !log_config.sql_logs)
-					ShowNotice("Armazenando relatorio de drops de MVPs no arquivo `%s`.txt\n", w2);
+					ShowNotice("Armazenando relatorio de drops de MVPs no arquivo `%s`\n", w2);
 			} else if(strcmpi(w1, "log_gm_file") == 0) {
 				strcpy(log_config.log_gm, w2);
 				if(log_config.gm > 0 && !log_config.sql_logs)
-					ShowNotice("Armazenando relatorio de uso comandos GM nivel %d no arquivo `%s`.txt\n", log_config.gm, w2);
+					ShowNotice("Armazenando relatorio de uso comandos GM nivel %d no arquivo `%s`\n", log_config.gm, w2);
 			} else if(strcmpi(w1, "log_npc_file") == 0) {
 				strcpy(log_config.log_npc, w2);
 				if(log_config.npc > 0 && !log_config.sql_logs)
-					ShowNotice("Armazenando relatorio de 'logmes' dos NPCs no arquivo `%s`.txt\n", w2);
+					ShowNotice("Armazenando relatorio de 'logmes' dos NPCs no arquivo `%s`\n", w2);
 			} else if(strcmpi(w1, "log_chat_file") == 0) {
 				strcpy(log_config.log_chat, w2);
 				if(log_config.chat > 0 && !log_config.sql_logs)
-					ShowNotice("Armazenando relatorio de Mensagens no arquivo `%s`.txt\n", w2);
+					ShowNotice("Armazenando relatorio de Mensagens no arquivo `%s`\n", w2);
 			//support the import command, just like any other config
 			} else if(strcmpi(w1,"import") == 0) {
 				log_config_read(w2);

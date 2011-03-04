@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0264 - 04/03/2011 [Protimus]
+	* Atualizada source conforme eAthena r14730.
+
 	r0263 - 02/03/2011 [Protimus]
 	* Adicionadas modificações de itens para runas fazerem a leitura das habilidades na source.
 	* Adicionado comando makerune para criação das runas.

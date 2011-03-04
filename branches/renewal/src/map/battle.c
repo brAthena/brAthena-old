@@ -4217,7 +4217,9 @@ static const struct _battle_data {
 	{ "autospell_check_range",              &battle_config.autospell_check_range,           0,      0,      1,              },
 	{ "client_reshuffle_dice",              &battle_config.client_reshuffle_dice,           0,      0,      1,              },
 	{ "client_sort_storage",                &battle_config.client_sort_storage,             0,      0,      1,              },
-// BattleGround Settings
+	{ "gm_check_minlevel",                  &battle_config.gm_check_minlevel,               60,     0,      100,            },
+	{ "feature.buying_store",               &battle_config.feature_buying_store,            1,      0,      1,              },
+	// BattleGround Settings
 	{ "bg_update_interval",                 &battle_config.bg_update_interval,              1000,   100,    INT_MAX,        },
 	{ "bg_short_attack_damage_rate",        &battle_config.bg_short_damage_rate,            80,     0,      INT_MAX,        },
 	{ "bg_long_attack_damage_rate",         &battle_config.bg_long_damage_rate,             80,     0,      INT_MAX,        },
