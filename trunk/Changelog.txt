@@ -9,6 +9,22 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0269 - 03/03/2011 [insidemybrain]
+	* Corrigido erro de changelog equecidos na r0267 e na r0268
+
+	r0268 - 03/03/2011 [insidemybrain]
+	* Corrigidos erros de sintaxe de algusn scripts que não foram feitos na r0267
+
+	r0267 - 03/03/2011 [insidemybrain]
+	* Enviadas traduções dos scripts (Necessitam revisão):
+	- comerciantes/refinador_avancado.txt
+	- eventos/dia_dos_namorados_2009.txt
+	- eventos/lunar_2008.txt
+	- eventos/MemorialDay_2008.txt
+	- eventos/StPatrick_2008.txt
+	- quests/doomed_swords_quest.txt
+	- quests/quests_lighthalzen.txt
+
 	r0266 - 03/03/2011 [insidemybrain]
 	* Enviada tradução do script:
 	- quests/selos/sleipnir_seal.txt
