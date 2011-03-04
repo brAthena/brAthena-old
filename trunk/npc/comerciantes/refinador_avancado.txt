@@ -106,7 +106,7 @@ payon,174,138,0	script	Suhnbi#cash	85,{
 		//mes "Here you are! It's done.";
 		mes "Aqui está! Prontinho."; // Não conhecia essa expressão.. optei por colocar 'prontinho'.
 		//mes "It's been a while since I've made such a fine weapon. You must be happy because it has become stronger!";
-		mes "Faz um tempo que eu não faço uma arma tão bem. Você deve estar feliz porque se tornou mais forte.
+		mes "Faz um tempo que eu não faço uma arma tão bem. Você deve estar feliz porque se tornou mais forte.";
 		close;
 	}
 	else
@@ -148,7 +148,7 @@ S_RefineValidate:
 			mes "[Suhnbi]";
 			mes "Wow!!";
 			//mes "This weapon, probably";
-			mes "Esta arma, provavelmente,"
+			mes "Esta arma, provavelmente,";
 			//mes "looks like it's been refined...";
 			mes "parece que está sendo refinada...";
 			//mes "many times...";
@@ -171,7 +171,7 @@ S_RefineValidate:
 			mes "^ff0000 Além, o equipamento irá quebrar!^000000";
 			mes " ";
 			//mes "Are you sure you still want to continue?";
-			mes "mes "Tem certeza que você ainda quer continuar?";
+			mes "Tem certeza que você ainda quer continuar?";
 			next;
 			//if( select("Yes:No") == 2 )
 			if( select("Sim:Não") == 2 )

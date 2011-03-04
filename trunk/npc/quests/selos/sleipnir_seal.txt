@@ -955,7 +955,7 @@ que_god01,11,136,6	script	Researcher#G2	742,{
 		mes "Às vezes, diferentes versões do mesmo mito ou surgimento de lenda.";
 		next;
 		mes "[Aadin]";
-		mes "mes "Embora os mitos, como eles mudam com o tempo, podem entrar em conflito uns com os outros, a base fundamental dessas histórias é o que os torna intemporais.";
+		mes "Embora os mitos, como eles mudam com o tempo, podem entrar em conflito uns com os outros, a base fundamental dessas histórias é o que os torna intemporais.";
 		close;
 	}
 }
@@ -991,7 +991,7 @@ que_god01,55,47,3	script	Researcher#G3	803,{
 				mes "Eu não tenho certeza se posso produzi-lo ou não, mas podemos pelo menos fazer uma tentativa nestá experiência.";
 				next;
 				mes "[Kurdt]";
-				mes "Basicamente, você deve coletar coisas como 'escamas de peixe' ou 'caudas de peixe", basicamente qualquer coisa que você pode obter a partir da vida marinha.";
+				mes "Basicamente, você deve coletar coisas como 'escamas de peixe' ou 'caudas de peixe', basicamente qualquer coisa que você pode obter a partir da vida marinha.";
 				next;
 				mes "[Kurdt]";
 				mes "Eu não preciso de uma";
