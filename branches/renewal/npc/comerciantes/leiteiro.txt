@@ -8,74 +8,75 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Milk Trader							|
+// | Nome do Script: Vendedor de Leite                      |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.5/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição:	Trades bottles for milk						|
+// | Descrição:    Trades bottles for milk                  |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
-// | 1.0 Modificação [Autor]		                        |
-// | - Anotações		   			    					| 
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [insidemybrain]                   |
+// | 1.1 Script Revisado [insidemybrain]                    |
+// | - Anotações                                            | 
 // \________________________________________________________/
 
-prontera,73,140,0	script	Milk Vendor	86,{
+prontera,73,140,0	script	Vendedor de Leite	86,{
 	if (checkweight(1201,1) == 0) {
-		mes "^3355FFJust a minute!";
-		mes "I can't offer any of my";
-		mes "services to you because";
-		mes "you're carrying too much";
-		mes "stuff. Put your extra items in";
-		mes "Kafra Storage and come again~";
+		mes "^3355FFSó um minuto!";
+		mes "Eu não posso lhe oferecer meus";
+		mes "serviços, pois você";
+		mes "está carregando muitos itens";
+		mes "Coloque seus itens extras no";
+		mes "Armazém da Kafra e volte~";
 		close;
 	}
-	mes "[Milk Vendor]";
+	mes "[Vendedor de Leite]";
 	mes "Hey, hey...";
-	mes "If you bring me";
-	mes "1 Empty Bottle and";
-	mes "15 Zeny, I'll exchange";
-	mes "them for 1 Milk. How";
-	mes "does that sound?";
+	mes "Se você me trouxer";
+	mes "1 Garrafa Vazia e";
+	mes "15 Zenys, poderei trocá-los";
+	mes "por 1 Leite. Isso";
+	mes "parece ser bom para você?";
 	next;
-	if (select("Exchange all empty bottles.:Cancel") == 1) {
+	if (select("Trocar todas minhas Garrafas Vazias.:Cancelar") == 1) {
 		if (countitem(713) <= 0) {
-			mes "[Milk Vendor]";
+			mes "[Vendedor de Leite]";
 			mes "Hey...";
-			mes "You don't have";
-			mes "any Empty Bottles.";
-			mes "I can't really give you";
-			mes "this milk any other";
-			mes "way, you know...";
+			mes "Você não tem";
+			mes "nenhuma Garrafa Vazia.";
+			mes "Eu realmente não posso te dar";
+			mes "o leite de outra";
+			mes "forma, você sabe...";
 			close;
 		}
 		set .@bottles,countitem(713);
 		set .@total_weight,.@bottles * 50;
 		set .@total_cost,.@bottles * 15;
 		if (zeny < .@Total_cost) {
-			mes "[Milk Vendor]";
+			mes "[Vendedor de Leite]";
 			mes "Oh, whoa~!";
-			mes "You don't have enough";
-			mes "zeny to exchange all";
-			mes "these Empty Bottles for";
-			mes "Milk. You need to have";
-			mes "at least " + .@total_cost + " zeny.";
+			mes "Você não tem os";
+			mes "zenys necessários";
+			mes "para esse número de Garrafas Vazias.";
+			mes "Você precisa me trazer";
+			mes "um total de " + .@total_cost + " zenys.";
 			close;
 		}
 		if ((maxweight-weight) < .@total_weight) {
-			mes "[Milk Vendor]";
+			mes "[Vendedor de Leite]";
 			mes "Hmm...";
-			mes "Would you make";
-			mes "a little more room";
-			mes "in your inventory";
-			mes "before I give you";
-			mes "all of this milk?";
+			mes "Acho que você";
+			mes "deveria abrir mais";
+			mes "espaço em seu inventário";
+			mes "antes que eu lhe dê";
+			mes "todo esse leite...";
 			close;
 		}
 		set zeny,zeny-.@total_cost;
-		delitem 713,.@bottles; //Empty Bottles
-		getitem 519,.@bottles; //Milk
+		delitem 713,.@bottles; //Garrafas Vazias
+		getitem 519,.@bottles; //Leite
 		close;
 	}
 	close;

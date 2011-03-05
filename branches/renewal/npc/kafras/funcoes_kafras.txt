@@ -65,7 +65,7 @@ function	script	F_Kafra	{
 		case 2:
 			set @GID,getcharid(2);
 			mes "[Funcionária Kafra]";
-	 		mes "Bem vindo membro da guild ^ff0000" + GetGuildName(@GID) + "^000000 .";
+	 		mes "Bem vindo membro da guilda ^ff0000" + GetGuildName(@GID) + "^000000 .";
 			mes "A corporação Kafra, está aqui para atender você.";
 			break;
 
@@ -141,7 +141,7 @@ function	script	F_Kafra	{
 	// Guild Kafra Menu override (free Teleport, free Storage, Free Cart)
 	if(getarg(0)==2) {
 		cleararray @K_Menu0$[0],"",7;
-		setarray @K_Menu0$[0],"Usar armazém","Usar armazém da guild","Adquirir carrinho de mão","Usar teleporte","Cancelar";
+		setarray @K_Menu0$[0],"Usar armazém","Usar armazém da guilda","Adquirir carrinho de mão","Usar teleporte","Cancelar";
 	}
 	menu 	@K_Menu0$[0],K_Menu0,@K_Menu0$[1],K_Menu1,@K_Menu0$[2],K_Menu2,
 		@K_Menu0$[3],K_Menu3,@K_Menu0$[4],K_Menu4,@K_Menu0$[5],K_Menu5,
@@ -216,7 +216,7 @@ function	script	F_Kafra	{
 			callfunc "F_KafEnd",getarg(0),0;
 			end;
 		}
-		if (@K_Menu0$[@num] == "Usar armazém da guild"){
+		if (@K_Menu0$[@num] == "Usar armazém da guilda"){
 			callfunc "F_KafStor",1,0;
 			next;
 			goto M_Menu;
@@ -231,8 +231,8 @@ function	script	F_KafStor	{
 	if(getarg(0) == 1){
 		if(guildopenstorage() == 1){
 			mes "[Funcionária Kafra]";
-			mes "Sinto muito, mas somente membros da guild podem nossos serviços.";
-			mes "Por favor, aguarde um membro para unir-se a guild.";
+			mes "Sinto muito, mas somente membros da guilda podem nossos serviços.";
+			mes "Por favor, aguarde um membro para unir-se a guilda.";
 			close2;
 			cutin "", 255;
 			end;

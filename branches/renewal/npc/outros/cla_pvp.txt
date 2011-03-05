@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Guild Battle NPC                 	    |
+// | Nome do Script: Guild Battle NPC                       |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
@@ -16,65 +16,66 @@
 // |--------------------------------------------------------|
 // | Descrição:  Guild Battle with PVP mechanics.           |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações                                            | 
+// | Changelog:                                             |
+// | 1.0 Script Traduzido[cleyton]                          |
+// | 1.1 Script Revisado[cleyton]                           |
+// |                                                        | 
 // \________________________________________________________/
 
-pvp_y_room,77,85,4	script	Guild Battle Guide	105,{
-	mes "[Guild Battle Guide]";
-	mes "How are you doing?";
-	mes "I'm the Guild Battle Guide";
-	mes "for the new PvP maps.";
-	mes "Let me know to which map";
-	mes "you want me to move you.";
+pvp_y_room,77,85,4	script	Guia de Batalha dos Clãs	105,{
+	mes "[Guia de Batalha dos Clãs]";
+	mes "Como você está?";
+	mes "Eu sou o Guia de Batalha dos Clãs";
+	mes "para os novos mapas de PvP.";
+	mes "Deixe-me mostrar as opções";
+	mes "de mapas que você pode escolher.";
 	next;
-	switch(select("Map 1:Map 2:Map 3:Map 4:Map 5")) {
+	switch(select("Mapa 1:Mapa 2:Mapa 3:Mapa 4:Mapa 5")) {
 	case 1:
-		mes "[Guild Battle Guide]";
-		mes "You've chosen Map 1.";
-		mes "Now, which team are";
-		mes "you on? You can choose";
-		mes "either Team 1 or Team 2.";
+		mes "[Guia de Batalha dos Clãs]";
+		mes "Você escolheu o mapa 1.";
+		mes "Agora, em time você";
+		mes "está? Você pode escolher";
+		mes "entre o Time 1 ou Time 2.";
 		next;
-		switch(select("Team 1:Team 2")) {
+		switch(select("Time 1:Time 2")) {
 		case 1:
-			mes "[Guild Battle Guide]";
-			mes "Alright, I'll move you";
-			mes "to Map 1 as a member";
-			mes "of Team 1. Are you ready";
-			mes "to be transported there now?";
+			mes "[Guia de Batalha dos Clãs]";
+			mes "Está certo, eu levarei você";
+			mes "para o Mapa 1, como membro";
+			mes "do Time 1, você está pronto";
+			mes "para ser teleportado para o mapa agora?";
 			next;
-			switch(select("Yes:No")) {
+			switch(select("Sim:Não")) {
 			case 1:
-				mes "[Guild Battle Guide]";
-				mes "Great! Have a good time~";
+				mes "[Guia de Batalha dos Clãs]";
+				mes "Excelente! Tenha uma boa batalha!";
 				close2;
 				warp "guild_vs1",7,49;
 				end;
 			case 2:
-				mes "[Guild Battle Guide]";
-				mes "Alright, I hope to";
-				mes "see you again on";
-				mes "the PvP fields!";
+				mes "[Guia de Batalha dos Clãs]";
+				mes "Certo, eu espero";
+				mes "ver você novamente";
+				mes "nos mapas de PvP!";
 				close;
 			}
 		case 2:
-			mes "[Guild Battle Guide]";
-			mes "Alright, I'll move you";
-			mes "to Map 1 as a member";
-			mes "of Team 2. Are you ready";
-			mes "to be transported there now?";
+			mes "[Guia de Batalha dos Clãs]";
+			mes "Está certo, eu levarei você";
+			mes "para o Mapa 1, como membro";
+			mes "do Time 2, você está pronto";
+			mes "para ser teleportado para o mapa agora?";
 			next;
-			switch(select("Yes:No")) {
+			switch(select("Sim:Não")) {
 			case 1:
-				mes "[Guild Battle Guide]";
-				mes "Great! Have a good time~";
+				mes "[Guia de Batalha dos Clãs]";
+				mes "Excelente! Tenha uma boa batalha!";
 				close2;
 				warp "guild_vs1",91,49;
 				end;
 			case 2:
-				mes "[Guild Battle Guide]";
+				mes "[Guia de Batalha dos Clãs]";
 				mes "Alright, I hope to";
 				mes "see you again on";
 				mes "the PvP fields!";
@@ -82,206 +83,206 @@ pvp_y_room,77,85,4	script	Guild Battle Guide	105,{
 			}
 		}
 	case 2:
-		mes "[Guild Battle Guide]";
-		mes "You've chosen Map 2.";
-		mes "Now, which team are";
-		mes "you on? You can choose";
-		mes "either Team 1 or Team 2.";
+		mes "[Guia de Batalha dos Clãs]";
+		mes "Você escolheu o mapa 2.";
+		mes "Agora, em time você";
+		mes "está? Você pode escolher";
+		mes "entre o Time 1 ou Time 2.";
 		next;
-		switch(select("Team 1:Team 2")) {
+		switch(select("Time 1:Time 2")) {
 		case 1:
-			mes "[Guild Battle Guide]";
-			mes "Alright, I'll move you";
-			mes "to Map 2 as a member";
-			mes "of Team 1. Are you ready";
-			mes "to be transported there now?";
+			mes "[Guia de Batalha dos Clãs]";
+			mes "Está certo, eu levarei você";
+			mes "para o Mapa 2, como membro";
+			mes "do Time 1, você está pronto";
+			mes "para ser teleportado para o mapa agora?";
 			next;
-			switch(select("Yes:No")) {
+			switch(select("Sim:Não")) {
 			case 1:
-				mes "[Guild Battle Guide]";
-				mes "Great! Have a good time~";
+				mes "[Guia de Batalha dos Clãs]";
+				mes "Excelente! Tenha uma boa batalha!";
 				close2;
 				warp "guild_vs2",9,49;
 				end;
 			case 2:
-				mes "[Guild Battle Guide]";
-				mes "Alright, I hope to";
-				mes "see you again on";
-				mes "the PvP fields!";
+				mes "[Guia de Batalha dos Clãs]";
+				mes "Certo, eu espero";
+				mes "ver você novamente";
+				mes "nos mapas de PvP!";
 				close;
 			}
 		case 2:
-			mes "[Guild Battle Guide]";
-			mes "Alright, I'll move you";
-			mes "to Map 2 as a member";
-			mes "of Team 2. Are you ready";
-			mes "to be transported there now?";
+			mes "[Guia de Batalha dos Clãs]";
+			mes "Está certo, eu levarei você";
+			mes "para o Mapa 2, como membro";
+			mes "do Time 2, você está pronto";
+			mes "para ser teleportado para o mapa agora?";
 			next;
-			switch(select("Yes:No")) {
+			switch(select("Sim:Não")) {
 			case 1:
-				mes "[Guild Battle Guide]";
-				mes "Great! Have a good time~";
+				mes "[Guia de Batalha dos Clãs]";
+				mes "Excelente! Tenha uma boa batalha!";
 				close2;
 				warp "guild_vs2",90,49;
 				end;
 			case 2:
-				mes "[Guild Battle Guide]";
-				mes "Alright, I hope to";
-				mes "see you again on";
-				mes "the PvP fields!";
+				mes "[Guia de Batalha dos Clãs]";
+				mes "Certo, eu espero";
+				mes "ver você novamente";
+				mes "nos mapas de PvP!";
 				close;
 			}
 		}
 	case 3:
-		mes "[Guild Battle Guide]";
-		mes "You've chosen Map 3.";
-		mes "Now, which team are";
-		mes "you on? You can choose";
-		mes "either Team 1 or Team 2.";
+		mes "[Guia de Batalha dos Clãs]";
+		mes "Você escolheu o mapa 3.";
+		mes "Agora, em time você";
+		mes "está? Você pode escolher";
+		mes "entre o Time 1 ou Time 2.";
 		next;
-		switch(select("Team 1:Team 2")) {
+		switch(select("Time 1:Time 2")) {
 		case 1:
-			mes "[Guild Battle Guide]";
-			mes "Alright, I'll move you";
-			mes "to Map 3 as a member";
-			mes "of Team 1. Are you ready";
-			mes "to be transported there now?";
+			mes "[Guia de Batalha dos Clãs]";
+			mes "Está certo, eu levarei você";
+			mes "para o Mapa 3, como membro";
+			mes "do Time 1, você está pronto";
+			mes "para ser teleportado para o mapa agora?";
 			next;
-			switch(select("Yes:No")) {
+			switch(select("Sim:Não")) {
 			case 1:
-				mes "[Guild Battle Guide]";
-				mes "Great! Have a good time~";
+				mes "[Guia de Batalha dos Clãs]";
+				mes "Excelente! Tenha uma boa batalha!";
 				close2;
 				warp "guild_vs3",16,50;
 				end;
 			case 2:
-				mes "[Guild Battle Guide]";
-				mes "Alright, I hope to";
-				mes "see you again on";
-				mes "the PvP fields!";
+				mes "[Guia de Batalha dos Clãs]";
+				mes "Certo, eu espero";
+				mes "ver você novamente";
+				mes "nos mapas de PvP!";
 				close;
 			}
 		case 2:
-			mes "[Guild Battle Guide]";
-			mes "Alright, I'll move you";
-			mes "to Map 3 as a member";
-			mes "of Team 2. Are you ready";
-			mes "to be transported there now?";
+			mes "[Guia de Batalha dos Clãs]";
+			mes "Está certo, eu levarei você";
+			mes "para o Mapa 3, como membro";
+			mes "do Time 2, você está pronto";
+			mes "para ser teleportado para o mapa agora?";
 			next;
-			switch(select("Yes:No")) {
+			switch(select("Sim:Não")) {
 			case 1:
-				mes "[Guild Battle Guide]";
-				mes "Great! Have a good time~";
+				mes "[Guia de Batalha dos Clãs]";
+				mes "Excelente! Tenha uma boa batalha!";
 				close2;
 				warp "guild_vs3",83,50;
 				end;
 			case 2:
-				mes "[Guild Battle Guide]";
-				mes "Alright, I hope to";
-				mes "see you again on";
-				mes "the PvP fields!";
+				mes "[Guia de Batalha dos Clãs]";
+				mes "Certo, eu espero";
+				mes "ver você novamente";
+				mes "nos mapas de PvP!";
 				close;
 			}
 		}
 	case 4:
-		mes "[Guild Battle Guide]";
-		mes "You've chosen Map 4.";
-		mes "Now, which team are";
-		mes "you on? You can choose";
-		mes "either Team 1 or Team 2.";
+		mes "[Guia de Batalha dos Clãs]";
+		mes "Você escolheu o mapa 4.";
+		mes "Agora, em time você";
+		mes "está? Você pode escolher";
+		mes "entre o Time 1 ou Time 2.";
 		next;
-		switch(select("Team 1:Team 2")) {
+		switch(select("Time 1:Time 2")) {
 		case 1:
-			mes "[Guild Battle Guide]";
-			mes "Alright, I'll move you";
-			mes "to Map 4 as a member";
-			mes "of Team 1. Are you ready";
-			mes "to be transported there now?";
+			mes "[Guia de Batalha dos Clãs]";
+			mes "Está certo, eu levarei você";
+			mes "para o Mapa 4, como membro";
+			mes "do Time 1, você está pronto";
+			mes "para ser teleportado para o mapa agora?";
 			next;
-			switch(select("Yes:No")) {
+			switch(select("Sim:Não")) {
 			case 1:
-				mes "[Guild Battle Guide]";
-				mes "Great! Have a good time~";
+				mes "[Guia de Batalha dos Clãs]";
+				mes "Excelente! Tenha uma boa batalha!";
 				close2;
 				warp "guild_vs4",8,49;
 				end;
 			case 2:
-				mes "[Guild Battle Guide]";
-				mes "Alright, I hope to";
-				mes "see you again on";
-				mes "the PvP fields!";
+				mes "[Guia de Batalha dos Clãs]";
+				mes "Certo, eu espero";
+				mes "ver você novamente";
+				mes "nos mapas de PvP!";
 				close;
 			}
 		case 2:
-			mes "[Guild Battle Guide]";
-			mes "Alright, I'll move you";
-			mes "to Map 4 as a member";
-			mes "of Team 2. Are you ready";
-			mes "to be transported there now?";
+			mes "[Guia de Batalha dos Clãs]";
+			mes "Está certo, eu levarei você";
+			mes "para o Mapa 4, como membro";
+			mes "do Time 2, você está pronto";
+			mes "para ser teleportado para o mapa agora?";
 			next;
-			switch(select("Yes:No")) {
+			switch(select("Sim:Não")) {
 			case 1:
-				mes "[Guild Battle Guide]";
-				mes "Great! Have a good time~";
+				mes "[Guia de Batalha dos Clãs]";
+				mes "Excelente! Tenha uma boa batalha!";
 				close2;
 				warp "guild_vs4",91,49;
 				end;
 			case 2:
-				mes "[Guild Battle Guide]";
-				mes "Alright, I hope to";
-				mes "see you again on";
-				mes "the PvP fields!";
+				mes "[Guia de Batalha dos Clãs]";
+				mes "Certo, eu espero";
+				mes "ver você novamente";
+				mes "nos mapas de PvP!";
 				close;
 			}
 		}
 	case 5:
-		mes "[Guild Battle Guide]";
-		mes "You've chosen Map 5.";
-		mes "Now, which team are";
-		mes "you on? You can choose";
-		mes "either Team 1 or Team 2.";
+		mes "[Guia de Batalha dos Clãs]";
+		mes "Você escolheu o mapa 5.";
+		mes "Agora, em time você";
+		mes "está? Você pode escolher";
+		mes "entre o Time 1 ou Time 2.";
 		next;
-		switch(select("Team 1:Team 2")) {
+		switch(select("Time 1:Time 2")) {
 		case 1:
-			mes "[Guild Battle Guide]";
-			mes "Alright, I'll move you";
-			mes "to Map 5 as a member";
-			mes "of Team 1. Are you ready";
-			mes "to be transported there now?";
+			mes "[Guia de Batalha dos Clãs]";
+			mes "Está certo, eu levarei você";
+			mes "para o Mapa 5, como membro";
+			mes "do Time 1, você está pronto";
+			mes "para ser teleportado para o mapa agora?";
 			next;
-			switch(select("Yes:No")) {
+			switch(select("Sim:Não")) {
 			case 1:
-				mes "[Guild Battle Guide]";
-				mes "Great! Have a good time~";
+				mes "[Guia de Batalha dos Clãs]";
+				mes "Excelente! Tenha uma boa batalha!";
 				close2;
 				warp "guild_vs5",20,50;
 				end;
 			case 2:
-				mes "[Guild Battle Guide]";
-				mes "Alright, I hope to";
-				mes "see you again on";
-				mes "the PvP fields!";
+				mes "[Guia de Batalha dos Clãs]";
+				mes "Certo, eu espero";
+				mes "ver você novamente";
+				mes "nos mapas de PvP!";
 				close;
 			}
 		case 2:
-			mes "[Guild Battle Guide]";
-			mes "Alright, I'll move you";
-			mes "to Map 4 as a member";
-			mes "of Team 2. Are you ready";
-			mes "to be transported there now?";
+			mes "[Guia de Batalha dos Clãs]";
+			mes "Está certo, eu levarei você";
+			mes "para o Mapa 5, como membro";
+			mes "do Time 2, você está pronto";
+			mes "para ser teleportado para o mapa agora?";
 			next;
-			switch(select("Yes:No")) {
+			switch(select("Sim:Não")) {
 			case 1:
-				mes "[Guild Battle Guide]";
-				mes "Great! Have a good time~";
+				mes "[Guia de Batalha dos Clãs]";
+				mes "Excelente! Tenha uma boa batalha!";
 				close2;
 				warp "guild_vs5",79,50;
 				end;
 			case 2:
-				mes "[Guild Battle Guide]";
-				mes "Alright, I hope to";
-				mes "see you again on";
-				mes "the PvP fields!";
+				mes "[Guia de Batalha dos Clãs]";
+				mes "Certo, eu espero";
+				mes "ver você novamente";
+				mes "nos mapas de PvP!";
 				close;
 			}
 		}

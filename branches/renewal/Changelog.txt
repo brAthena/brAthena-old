@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0272 - 04/03/2011 [Protimus]
+	* Merge de atualizações e traduções conforme trunk.
+	- Falta a pasta portais, devido ter respawns atualizados do renewal é necessário verificar com mais cuidado.
+
 	r0271 - 04/03/2011 [Protimus]
 	* Atualizada npc e database conforme eAthena r14730.
 	* Atualizações para configure e make conforme eAthena r14730.

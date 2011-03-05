@@ -8,107 +8,26 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: PvP NPCs				    			|
+// | Nome do Script: PvP NPCs                               |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.5/1.0                                |
+// | Versões eA/brA: 1.4/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição:						    					|
+// | Descrição:                                             |
 // | PvP NPCs that are found in the Inns in major cities.   |
-// | Includes Yoyo Mode, Nightmare Mode, and Event Mode	    |
-// |							    						|
-// | Breakdown of function "F_PVPNarrator"		    		|
-// | arg(0): Map to save player on			    			|
-// | arg(1): X position on getarg(0) map to save player	    |
+// | Includes Yoyo Mode, Nightmare Mode, and Event Mode     |
+// |                                                        |
+// | Breakdown of function "F_PVPNarrator"                  |
+// | arg(0): Map to save player on                          |
+// | arg(1): X position on getarg(0) map to save player     |
 // | arg(2): Y position on getarg(0) map to save player     |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações                                            | 
+// | Changelog:                                             |
+// | 1.0 Script Traduzido[cleyton]                          |
+// | 1.1 Script Revisado[cleyton]                           |
+// |                                                        |
 // \________________________________________________________/
-
-// Floating NPC
-//============================================================ 
--	script	Gate Keeper#dummy::PVPGateKeeper	-1,{
-	mes "[Gate Keeper]";
-	mes "Glad to be of service.";
-	mes "I will open the PVP fight";
-	mes "square for you! If you have";
-	mes "any questions about the PVP";
-	mes "modes or rules, Please ask";
-	mes "the Narrator...";
-	next;
-	switch(select("^FF5533' PvP Nightmare Mode'^000000:^3355FF' PvP Yoyo Mode'^000000:^3355FF' PvP Event Mode'^000000:Quit")) {
-	case 1:
-		mes "[Gate Keeper]";
-		mes "I am sorry, but currently the Nightmare mode service is not available.";
-		mes "Please use the Yoyo mode instead. We apologize for the inconvenience.";
-		close;
-	case 2:
-		mes "[Gate Keeper]";
-		mes "The admission fee is 500 Zeny.";
-		mes "Do you want to move";
-		mes "to the Yoyo Mode";
-		mes "fight square?";
-		next;
-		switch(select("Move:Cancel")) {
-		case 1:
-			if (Zeny > 499 && BaseLevel > 30) {
-				set zeny,zeny-500;
-				warp "pvp_y_room",51,23;
-				end;
-			}
-			else {
-				mes "[Gate Keeper]";
-				mes "Excuse me, but";
-				mes "did you not come prepared?";
-				mes "Double check that you have the";
-				mes "500 Zeny entrance fee, and";
-				mes "that you are at least level 31!";
-				close;
-			}
-		case 2:
-			mes "[Gate Keeper]";
-			mes "In this war between Monsters";
-			mes "and Humans. This competition";
-			mes "between people, The PVP Mode!";
-			mes "Encourages us all to become";
-			mes "stronger. Come again.";
-			mes "We welcome your challenge!";
-			close;
-		}
-	case 3:
-		mes "[Gate Keeper]";
-		mes "Welcome";
-		mes "Please double check";
-		mes "That you have the admission or viewing ticket!";
-		next;
-		if (countitem(7028) == 0 && countitem(7029) == 0) {
-			mes "[Gate Keeper]";
-			mes "Eh? You don't have it? Then I";
-			mes "am sorry, this fight square is";
-			mes "only for people who have";
-			mes "admission or viewing tickets.";
-			mes "You cannot come in without it.";
-			close;
-		}
-		mes "[Gate Keeper]";
-		mes "Yes, thank you for participating. Have fun!";
-		close2;
-		warp "pvp_room",51,23;
-		end;
-	case 4:
-		mes "[Gate Keeper]";
-		mes "In this war between Monsters";
-		mes "and Humans. This competition";
-		mes "between people, The PVP Mode!";
-		mes "Encourages us all to become";
-		mes "stronger. Come again.";
-		mes "We welcome your challenge!";
-		close;
-	}
-}
 
 // Morroc
 //============================================================ 
@@ -116,8 +35,85 @@ morocc_in,144,138,4	script	PVPNarrator#moc	84,{
 	callfunc "F_PVPNarrator","morocc_in",141,139;
 }
 
-morocc_in,144,142,4	duplicate(PVPGateKeeper)	Gate Keeper#moc	83,{
-
+morocc_in,144,142,4	script	Gate Keeper#moc::PVPGateKeeper	83,{
+	mes "[Porteiro]";
+	mes "Fico feliz em ser útil.";
+	mes "Eu vou abrir o modo de";
+	mes "PVP para você. Se você tem alguma";
+	mes "dúvida sobre o PVP,";
+	mes "modos e regras, por favor,";
+	mes "pergunte ao narrador...";
+	next;
+	switch(select("^FF5533' Modo Pesadelo de PVP'^000000:^3355FF' Modo Yoyo de PVP'^000000:^3355FF'Modo de Evento PVP'^000000:Sair")) {
+	case 1:
+		mes "[Porteiro]";
+		mes "Lamento, mas atualmente o modo Pesadelo não está disponível.";
+		mes "Por favor, use o modo Yoyo agora. Nós pedimos desculpas pelo inconveniente.";
+		close;
+	case 2:
+		mes "[Porteiro]";
+		mes "A taxa de para entrar é 500 zeny.";
+		mes "Você deseja ir para";
+		mes "para a arena de luta";
+		mes "do modo Yoyo?";
+		next;
+		switch(select("Entrar:Cancelar")) {
+		case 1:
+			if (Zeny > 499 && BaseLevel > 30) {
+				set zeny,zeny-500;
+				warp "pvp_y_room",51,23;
+				end;
+			}
+			else {
+				mes "[Porteiro]";
+				mes "Desculpe-me, mas";
+				mes "você ainda não está preparado?";
+				mes "Verifique novamente se você possui os";
+				mes "500 zenys solicitados para entrar e";
+				mes "você também precisa ter no mínimo level 31!";
+				close;
+			}
+		case 2:
+			mes "[Porteiro]";
+			mes "Nesse mundo de guerra entre monstros";
+			mes "e humanos, essa é uma competição";
+			mes "entre humanos. O modo PVP!";
+			mes "Isso nos incentiva a nos tornar mais";
+			mes "fortes para voltar.";
+			mes "Nós damos os parabéns ao seu espírito de competição!";
+			close;
+		}
+	case 3:
+		mes "[Porteiro]";
+		mes "Bem vindo.";
+		mes "Chegue novamente";
+		mes "se você possui o bilhete de permissão.";
+		next;
+		if (countitem(7028) == 0 && countitem(7029) == 0) {
+			mes "[Porteiro]";
+			mes "O que? Você não tem?";
+			mes "Então eu lamento, mas essa arena de batalha é";
+			mes "somente para pessoas que tem ";
+			mes "os requisitos mínimos ou o cartão de permissão.";
+			mes "Você não pode entrar sem ele.";
+			close;
+		}
+		mes "[Porteiro]";
+		mes "Certo, muito obrigado por sua participação. Divirta-se!";
+		close2;
+		warp "pvp_room",51,23;
+		end;
+	case 4:
+		mes "[Porteiro]";
+		mes "Nesse mundo de guerra entre monstros";
+		mes "e humanos, essa é uma competição";
+		mes "entre humanos. O modo PVP!";
+		mes "Isso nos incentiva a nos tornar mais";
+		mes "fortes para voltar.";
+		mes "Nós damos os parabéns ao seu espírito de competição!";
+		close;
+	}
+}
 
 // Alberta
 //============================================================ 
@@ -183,13 +179,13 @@ pvp_y_room,86,85,4	script	Fight Square Reception#1	105,{
 	}
 
 OnInit:
-	waitingroom "Free For All",0;
+	waitingroom "Livre para todos",0;
 	end;
 
 S_CheckPVPRoom:
 	if (getarg(0) >= 128) {
-		mes "[PVP Fight Square Reception Staff]";
-		mes "This map is currently full.";
+		mes "[Equipe de Recepção da Arena de Luta PVP]";
+		mes "Atualmente esse mapa está lotado.";
 		next;
 		return;
 	}
@@ -230,13 +226,13 @@ pvp_n_room,30,85,4	script	Fight Square Reception#2	105,{
 	}
 
 OnInit:
-	waitingroom "Free For All",0;
+	waitingroom "Livre para todos",0;
 	end;
 
 S_CheckPVPRoom:
 	if (getarg(0) >= getarg(2)) {
-		mes "[PVP Fight Square Reception Staff]";
-		mes "This map is currently full.";
+		mes "[Equipe de Recepção da Arena de Luta PVP]";
+		mes "Atualmente esse mapa está lotado.";
 		next;
 		return;
 	}
@@ -249,160 +245,160 @@ S_CheckPVPRoom:
 // Function 
 //============================================================ 
 function	script	F_PVPNarrator	{
-	mes "[PVP Narrator]";
-	mes "Hello and welcome!";
-	mes "I am in charge of";
-	mes "explaining the PVP Mode.";
-	mes "I am the PVP Narrator!";
+	mes "[Guia do PVP]";
+	mes "Olá e bem vindo!";
+	mes "Eu sou ";
+	mes "o responsável pelo modo PVP.";
+	mes "Eu sou o narrador do PVP!";
 	next;
-	switch(select("What is PVP?:What are the PVP Modes?:What are the rules for PVP?:Save Position.:End Dialog.")) {
+	switch(select("O que é PVP?:Quais os modos de PVP?:Quais as regras do PVP?:Salvar Posição.:Fim da conversa.")) {
 	case 1:
-		mes "[PVP Narrator]";
-		mes "In short form";
-		mes "PVP means,";
-		mes "' Player VS Player Mode '";
-		mes "It's a unique place for people";
-		mes "To duel with each other.";
+		mes "[Guia do PVP]";
+		mes "De uma forma direta";
+		mes "o PVP significa";
+		mes "'Modo de Jogador contra Jogador '";
+		mes "Esse é o único lugar onde as pessoas";
+		mes "podem duelar contra os outros.";
 		next;
-		mes "[PVP Narrator]";
-		mes "Just tell the";
-		mes "^3355FFGate Keeper^000000";
-		mes "That you want to try. He will";
-		mes "let you into the PVP square.";
+		mes "[Guia do PVP]";
+		mes "Diga ao ";
+		mes "^3355FFPorteiro^000000";
+		mes "que você deseja entrar e ele";
+		mes "levará você para a arena de batalha PVP.";
 		next;
-		mes "[PVP Narrator]";
-		mes "But, You need to be at";
-		mes "least level 31. And you";
-		mes "must pay the 500 zeny";
-		mes "entrance fee in order to";
-		mes "To enter a PVP Fight Square.";
+		mes "[Guia do PVP]";
+		mes "Mas, você precisa ter no mínimo";
+		mes "o nível 31 e também";
+		mes "pagar 500 zeny";
+		mes "para poder entrar";
+		mes "na arena de PVP.";
 		close;
 	case 2:
-		mes "[PVP Narrator]";
-		mes "When you are qualified, You";
-		mes "can choose one of two Modes.";
-		mes "Yoyo Mode, Or";
-		mes "Nightmare Mode.";
+		mes "[Guia do PVP]";
+		mes "Você está qualificado.";
+		mes "Você pode escolher dois modos.";
+		mes "Modo Yoyo, ou ";
+		mes "modo Pesadelo.";
 		next;
-		mes "[PVP Narrator]";
-		mes "Yoyo Mode is risk free.";
-		mes "You can experience PVP";
-		mes "without any restriction or";
-		mes "punishment. It is recommended";
-		mes "that you practice your skills";
-		mes "here before you move on.";
+		mes "[Guia do PVP]";
+		mes "O modo Yoyo, isenta você de riscos.";
+		mes "Você pode ganhar experiência em PVP";
+		mes "sem nennhuma restrição ou";
+		mes "punição. Esse modo é";
+		mes "recomendado para você praticar suas habildades";
+		mes "aqui para seguir em frente.";
 		next;
-		mes "[PVP Narrator]";
-		mes "Nightmare Mode is very";
-		mes "dangerous! Please use caution.";
-		mes "You will lose some of your real";
-		mes "EXP when you are defeated. And";
-		mes "There is a small chance that";
-		mes "you will drop some equipment.";
+		mes "[Guia do PVP]";
+		mes "O modo Pesadelo é muito";
+		mes "perigoso! Use ele com cuidado.";
+		mes "Você vai perder um pouco de";
+		mes "sua experiencia real ao ser derrotado.";
+		mes "E existe uma pequena chance do";
+		mes "seu equipamento cair.";
 		next;
-		mes "[PVP Narrator]";
-		mes "However, if you win, the";
-		mes "rewards can be great!";
-		mes "To avoid misunderstanding.";
-		mes "You should think it over";
-		mes "twice before you go there...";
-		mes "Good Luck!";
+		mes "[Guia do PVP]";
+		mes "Porém, se você ganhar, as";
+		mes "recompensas serão incríveis!";
+		mes "Para evitar qualquer mal entendido,";
+		mes "você deve pensar";
+		mes "duas vezes antes de ir para lá...";
+		mes "Boa sorte!";
 		close;
 	case 3:
-		mes "[PVP Narrator]";
-		mes "Each of the Fight squares";
-		mes "have a row of Narrators to";
-		mes "choose from based on your";
-		mes "qualifications.";
+		mes "[Guia do PVP]";
+		mes "Cada arena de luta";
+		mes "tem seu narrador para";
+		mes "escolher a sua base";
+		mes "de qualificação.";
 		next;
-		mes "[PVP Narrator]";
-		mes "Each Narrator will ask";
-		mes "which of the five PVP maps";
-		mes "you wish to go to.";
-		mes "Choose, and go in!";
+		mes "[Guia do PVP]";
+		mes "Cada narrador vai pedir";
+		mes "para você escolher um dos";
+		mes "cinco mapas de PVP para você ir.";
+		mes "Escoolha, e entre!";
 		next;
-		mes "[PVP Narrator]";
-		mes "Each map has a limitation on";
-		mes "the number of people who can";
-		mes "participate. So you will see";
-		mes "figures in the corner showing";
-		mes "'Attendee/total'.";
+		mes "[Guia do PVP]";
+		mes "Cada mapa possui uma limitação";
+		mes "no número de pessoas que podem";
+		mes "participar. Ao participar, você vai ver";
+		mes "uma figura no canto que mostra o";
+		mes "total de participantes.";
 		next;
-		mes "[PVP Narrator]";
-		mes "Also, there is a hidden EXP";
-		mes "value in PVP mode. This EXP";
-		mes "score will only apply inside";
-		mes "of the PVP zone, so do not";
-		mes "worry.";
+		mes "[Guia do PVP]";
+		mes "Além disso existe o ganho de uma pontuação";
+		mes "oculta no modo de PVP. Essa ";
+		mes "pontuação será aplicada dentro";
+		mes "da zona de PVP, por isso";
+		mes "não se preocupe.";
 		next;
-		mes "[PVP Narrator]";
-		mes "Every player's EXP at the";
-		mes "beginning is usually 5 points.";
-		mes "If you win, you will";
-		mes "increse your EXP by 1 point";
+		mes "[Guia do PVP]";
+		mes "Cada jogador começa";
+		mes "com 5 pontos de experiência. ";
+		mes "Se você vencer, seu";
+		mes "ponto vai aumentar em 1 de experiência.";
 		next;
-		mes "[PVP Narrator]";
-		mes "In the same way, when you";
-		mes "lose... Your EXP will";
-		mes "drop by 5 points.";
-		mes "So be careful!";
+		mes "[Guia do PVP]";
+		mes "Da mesma forma de que";
+		mes "se você for derrotado... Vai perder";
+		mes "5 pontos de experiência.";
+		mes "Por isso tome cuidado!";
 		next;
-		mes "[PVP Narrator]";
-		mes "When you are defeated";
-		mes "And your EXP is equal";
-		mes "to or less than 0,";
-		mes "You will be removed from PVP";
-		mes "And your duel is finished!";
+		mes "[Guia do PVP]";
+		mes "Quando você é derrotado";
+		mes "e sua experiência é igual";
+		mes "ou inferior a 0,";
+		mes "você será removido do PVP";
+		mes "e seu duelo estará finalizado.";
 		next;
-		mes "[PVP Narrator]";
-		mes "However, If your EXP is more";
-		mes "than 0. You can still get help";
-		mes "Through other players healing...";
-		mes "Do you get it?";
+		mes "[Guia do PVP]";
+		mes "Porém, se sua experência for";
+		mes "superior a 0, você ainda pode pedir ajuda";
+		mes "para outros jogadores que curem...";
+		mes "Você entendeu?";
 		next;
-		mes "[PVP Narrator]";
-		mes "The fighting commands inside of";
-		mes "PVP Are the same as the normal.";
-		mes "All the basic controls are the";
-		mes "same.";
+		mes "[Guia do PVP]";
+		mes "Os comandos de luta dentro";
+		mes "da arena de PVP são iguais aos normais.";
+		mes "Todos os controles básicos são";
+		mes "os mesmos.";
 		next;
-		mes "[PVP Narrator]";
-		mes "However, there is one thing...";
-		mes "Within the PVP fight square,";
-		mes "And in the PVP fighting zones";
-		mes "You cannot save your position.";
-		mes "Remember well... These rules";
-		mes "can help to ensure your victory.";
+		mes "[Guia do PVP]";
+		mes "Porém, existe mais uma coisa...";
+		mes "Entro das arenas de PVP,";
+		mes "e nas zonas de luta PVP,";
+		mes "você não pode salvar sua posição.";
+		mes "Lembre-se bem... Essas regras";
+		mes "podem ajudar você garantir sua vitória.";
 		close;
 	case 4:
-		mes "[PVP Narrator]";
-		mes "Position saved...";
-		mes "Successfully.";
-		mes "Thank you very much, We";
-		mes "will see you again soon.";
+		mes "[Guia do PVP]";
+		mes "Posição salva...";
+		mes "com sucesso.";
+		mes "Muito obrigado, Nós";
+		mes "esperamos ver você novamente.";
 		close2;
 		savepoint getarg(0),getarg(1),getarg(2);
 		end;
 	case 5:
-		mes "[PVP Narrator]";
-		mes "In this war between Monsters";
-		mes "and Humans. This competition";
-		mes "between people, The PVP Mode!";
-		mes "Encourages us all to become";
-		mes "stronger. Come again.";
-		mes "We welcome your challenge!";
+		mes "[Guia do PVP]";
+		mes "Nesse mundo de guerra entre monstros";
+		mes "e humanos, essa é uma competição";
+		mes "entre humanos. O modo PVP!";
+		mes "Isso nos incentiva a nos tornar mais";
+		mes "fortes para voltar.";
+		mes "Nós damos os parabéns ao seu espírito de competição!";
 		close;
 	}
 }
 
 // Event Contestant Entrance
 //============================================================ 
-pvp_room,54,85,4	script	Registration Staff#1	105,{
+pvp_room,54,85,4	script	Equipe de Registro#1	105,{
 	if (countitem(7028) == 0) {
-		mes "[PVP Combat Square Register Staff]";
-		mes "Eh? How did you get in here?";
-		mes "This is the entrance for players only.";
-		mes "For details about viewers please proceed to the Register Staff on your right.";
+		mes "[Equipe de Registro PVP]";
+		mes "O que? Como você chegou aqui?";
+		mes "Essa é uma entrada para jogadores apenas.";
+		mes "Para maiores detalhes sobre os telespectadores, por favor, inicie o seu registro com a equipe.";
 		close;
 	}
 
@@ -413,15 +409,15 @@ pvp_room,54,85,4	script	Registration Staff#1	105,{
 		Set .pvp_close_e_room,0;
 	}
 
-	if (select("Combat Square one :Cancel") == 1) {
-		mes "[PVP Combat Square Register Staff]";
+	if (select("Arena de combate :Cancelar") == 1) {
+		mes "[Equipe de Registro PVP]";
 		mes "'"+ strcharinfo(0) +"'";
 		mes "Are you ready?!";
 		next;
-		if (select("Yes!:No!") == 1) {
-			mes "[PVP Combat Square Register Staff]";
-			mes "OK! I will send you inside";
-			mes "Good luck!";
+		if (select("Sim!:Não!") == 1) {
+			mes "[Equipe de Registro PVP]";
+			mes "Ok! Eu enviarei você para arena";
+			mes "Boa sorte!";
 			close2;
 			delitem 7028,1; //Invite_For_Duel
 			while(1) {
@@ -453,8 +449,8 @@ pvp_room,54,85,4	script	Registration Staff#1	105,{
 				}
 			}
 		}
-		mes "[PVP Combat Square Register Staff]";
-		mes "Come back anytime you are ready.";
+		mes "[Equipe de Registro PVP]";
+		mes "Volte quando você estiver pronto.";
 		close;
 	}
 	close;
@@ -464,23 +460,23 @@ OnInit:
 	Set .pvp_close_s_room,0;
 	Set .pvp_close_w_room,0;
 	Set .pvp_close_e_room,0;
-	waitingroom "Combat Square players entrance only",0;
+	waitingroom "Arena de combate apenas para jogadores",0;
 	end;
 }
 
 // Spectator Entrance
 //============================================================ 
--	script	Spectator's Entrance#dum::PVPSpectator	-1,{
+pvp_room,62,85,4	script	Spectator's Entrance#1::PVPSpectator	105,{
 	if (countitem(7029) == 0) {
-		mes "[PVP Compete Square Register Staff]";
-		mes "This is the entrance for viewers.";
-		mes "For details about players entrance please proceed to the Register Staff on your left.";
+		mes "[Equipe de Registro para arena PVP]";
+		mes "Essa é a entrada para os telespectadores.";
+		mes "Para obter mais detalhes sobre a entrada, por favor, registre-se com a equipe ao lado esquerdo.";
 		close;
 	}
 
-	if (select("Compete Square one:Cancel") == 1) {
-		mes "[PVP Combat Square Register Staff]";
-		mes "You got it, thanks for participating. Have fun!";
+	if (select("Arena de competição:Cancelar") == 1) {
+		mes "[Equipe de Registro PVP]";
+		mes "Muito bem, obrigado por participar. Divirta-se!";
 		close2;
 		delitem 7029,1; //Admission_For_Duel
 		switch(rand(1,4)) {
@@ -493,11 +489,9 @@ OnInit:
 	close;
 
 OnInit:
-	waitingroom "Compete Square viewer's entrance",0;
+	waitingroom "Entrada para os Telespectadores",0;
 	end;
 }
-
-pvp_room,62,85,4	duplicate(PVPSpectator)	Spectator's Entrance#1	105
 
 pvp_room,70,85,4	duplicate(PVPSpectator)	Spectator's Entrance#2	105
 
@@ -507,11 +501,11 @@ pvp_room,86,85,4	duplicate(PVPSpectator)	Spectator's Entrance#4	105
 
 // Spectator Warps
 //============================================================ 
--	script	Combat Square Staff#dum::PVPSpecWarp	-1,{
+pvp_2vs2,5,4,0	script	Equipe Arena de Combate#1::PVPSpecWarp	45,1,1,{
 OnTouch:
-	mes "[Combat Square Staff]";
-	mes "May I help you?";
-	if (select("To the center viewer seat.:Leave Combat Square.") == 1) {
+	mes "[Equipe Arena de batalha]";
+	mes "Como posso ajudar?";
+	if (select("Banco central para telespectadores.:Deixar a arena de batalha.") == 1) {
 		warp "pvp_2vs2",38,38;
 		end;
 	}
@@ -519,19 +513,17 @@ OnTouch:
 	end;
 }
 
-pvp_2vs2,5,4,0	duplicate(PVPSpecWarp)	Combat Square Staff#1	45,1,1,{
+pvp_2vs2,5,74,0	duplicate(PVPSpecWarp)	Equipe Arena de Combate#2	45,1,1
 
-pvp_2vs2,5,74,0	duplicate(PVPSpecWarp)	Combat Square Staff#2	45,1,1
+pvp_2vs2,74,74,0	duplicate(PVPSpecWarp)	Equipe Arena de Combate#3	45,1,1
 
-pvp_2vs2,74,74,0	duplicate(PVPSpecWarp)	Combat Square Staff#3	45,1,1
+pvp_2vs2,74,5,0	duplicate(PVPSpecWarp)	Equipe Arena de Combate#4	45,1,1
 
-pvp_2vs2,74,5,0	duplicate(PVPSpecWarp)	Combat Square Staff#4	45,1,1
-
-pvp_2vs2,40,40,0	script	Combat Square Staff#5	45,1,1,{
+pvp_2vs2,40,40,0	script	Equipe Arena de Combate#5	45,1,1,{
 	set mapmove,0;
-	mes "[Combat Square Staff]";
-	mes "May I help you?";
-	if (select("To the side viewer seat.:Leave Combat Square.") == 1) {
+	mes "[Equipe Arena de batalha]";
+	mes "Como posso ajduar?";
+	if (select("Banco lateral para telespectadores.:Deixar a arena de batalha.") == 1) {
 		switch(rand(1,4)) {
 		case 1: warp "pvp_2vs2",39,7; end;
 		case 2: warp "pvp_2vs2",39,73; end;
@@ -547,11 +539,11 @@ pvp_2vs2,40,40,0	script	Combat Square Staff#5	45,1,1,{
 //============================================================ 
 pvp_room,51,19,0	script	out#eventpvp	45,4,2,{
 OnTouch:
-	mes "[Combat Square Staff]";
-	mes "Did you have fun in Combat Square?";
-	mes "May I ask where you want to go?";
+	mes "[Equipe Arena de batalha]";
+	mes "Você se divertiu na arena de batalha?";
+	mes "Agora para onde você deseja ir?";
 	next;
-	switch(select("prontera.:morocc.:geffen.:payon.:alberta.:Cancel.")) {
+	switch(select("prontera.:morocc.:geffen.:payon.:alberta.:Cancelar.")) {
 	case 1: warp "prontera",107,60; end;
 	case 2: warp "morocc",157,96; end;
 	case 3: warp "geffen",120,36; end;

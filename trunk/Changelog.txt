@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r9272 0 04/03/2011 [Protimus]
+	* Pequena correção para leitura de opção na pasta CONF.
+
 	r0269 - 03/03/2011 [insidemybrain]
 	* Corrigido erro de changelog equecidos na r0267 e na r0268
 
