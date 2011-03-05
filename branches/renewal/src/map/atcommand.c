@@ -8724,7 +8724,7 @@ ACMD_FUNC(font)
 *-----------------------------------------------------------
 */
 
-int atcommand_whosell(const int fd, struct map_session_data* sd, const char* command, const char* message)
+ACMD_FUNC(whosell)
 {
         char item_name[100], output[255];
         struct s_mapiterator* iter;
