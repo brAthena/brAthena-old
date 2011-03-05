@@ -450,10 +450,12 @@ AC_COMPILE_IFELSE(
 #
 AC_CHECK_FUNC([setrlimit],[CFLAGS="$CFLAGS -DHAVE_SETRLIMIT"])
 
+
 #
 # strnlen - string length with upper scan bound
 #
 AC_CHECK_FUNC([strnlen],[CFLAGS="$CFLAGS -DHAVE_STRNLEN"])
+
 
 
 #
