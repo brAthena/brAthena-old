@@ -48,7 +48,7 @@ static int hp_coefficient[CLASS_COUNT];
 static int hp_coefficient2[CLASS_COUNT];
 static int hp_sigma_val[CLASS_COUNT][MAX_LEVEL+1];
 static int sp_coefficient[CLASS_COUNT];
-static int aspd_base[CLASS_COUNT][MAX_WEAPON_TYPE];	//[blackhole89]
+static int aspd_base[CLASS_COUNT][MAX_WEAPON_TYPE+1];	//[blackhole89]
 static int refinebonus[MAX_REFINE_BONUS][3];	// 精錬ボーナステーブル(refine_db.txt)
 int percentrefinery[5][MAX_REFINE+1];	// 精錬成功率(refine_db.txt)
 static int atkmods[3][MAX_WEAPON_TYPE];	// 武器ATKサイズ修正(size_fix.txt)
@@ -1472,6 +1472,9 @@ int status_base_amotion_pc(struct map_session_data* sd, struct status_data* stat
 	amotion -= (int) ((status->agi / 4) * agi_mod) * 10;
 	amotion -=  (int) ((status->dex / 10) * dex_mod) * 10;
 	amotion += sd->aspd_add + bonus;
+	
+	if(sd->status.shield > 0)
+		amotion += ((aspd_base[pc_class2idx(sd->status.class_)][MAX_WEAPON_TYPE])/10);
 
  	return amotion;
 }
@@ -8023,7 +8026,7 @@ static bool status_readdb_job1(char* fields[], int columns, int current)
 	hp_coefficient2[idx] = atoi(fields[3]);
 	sp_coefficient[idx]  = atoi(fields[4]);
 
-	for(i = 0; i < MAX_WEAPON_TYPE; i++)
+	for(i = 0; i < MAX_WEAPON_TYPE+1; i++)
 	{
 		aspd_base[idx][i] = atoi(fields[i+5]);
 	}
@@ -8111,7 +8114,7 @@ int status_readdb(void)
 	// read databases
 	//
 
-	sv_readdb(db_path, "job_db1.txt",   ',', 5+MAX_WEAPON_TYPE, 5+MAX_WEAPON_TYPE, -1,                            &status_readdb_job1);
+	sv_readdb(db_path, "job_db1.txt",   ',', 6+MAX_WEAPON_TYPE, 6+MAX_WEAPON_TYPE, -1,                            &status_readdb_job1);
 	sv_readdb(db_path, "job_db2.txt",   ',', 1,                 1+MAX_LEVEL,       -1,                            &status_readdb_job2);
 	sv_readdb(db_path, "size_fix.txt",  ',', MAX_WEAPON_TYPE,   MAX_WEAPON_TYPE,    ARRAYLENGTH(atkmods),         &status_readdb_sizefix);
 	sv_readdb(db_path, "refine_db.txt", ',', 3+MAX_REFINE+1,    3+MAX_REFINE+1,     ARRAYLENGTH(percentrefinery), &status_readdb_refine);
