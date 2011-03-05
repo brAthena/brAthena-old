@@ -3468,6 +3468,8 @@ static unsigned short status_calc_str(struct block_list *bl, struct status_chang
 		str += ((sc->data[SC_MARIONETTE2]->val3)>>16)&0xFF;
 	if(sc->data[SC_SPIRIT] && sc->data[SC_SPIRIT]->val2 == SL_HIGH && str < 50)
 		str = 50;
+	if(sc->data[SC_THURISAZ])
+		str += 30;
 
 	return (unsigned short)cap_value(str,0,USHRT_MAX);
 }

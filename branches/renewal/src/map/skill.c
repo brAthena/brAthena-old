@@ -995,6 +995,8 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 					rate += 10;
 				if(sc->data[SC_MAXOVERTHRUST])
 					rate += 10;
+				if(sc->data[SC_THURISAZ])
+					rate += 10;
 			}
 			if( rate )
 				skill_break_equip(src, EQP_WEAPON, rate, BCT_SELF);
