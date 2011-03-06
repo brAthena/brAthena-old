@@ -2111,7 +2111,6 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 			}
 			wa->atk += sd->inventory_data[index]->atk;
 			wa->atk2 += (r=sd->status.inventory[index].refine)*refinebonus[wlv][0];
-			status->watk += wa->atk + wa->atk2;
 			if((r-=refinebonus[wlv][2])>0) //Overrefine bonus.
 				wd->overrefine = r*refinebonus[wlv][1];
 

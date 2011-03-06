@@ -824,12 +824,9 @@ int battle_addmastery(struct map_session_data *sd,struct block_list *target,int 
  */
 static int battle_calc_base_damage(struct status_data *status, struct weapon_atk *wa, struct status_change *sc, unsigned short t_size, struct map_session_data *sd, int flag)
 {
-	unsigned short atkmin=0, atkmax=0;
-	short type = 0;
-	int damage = 0;
-
-	if (!sd)
-	{	//Mobs/Pets
+	short type;
+	int randatk=0, damage=1, modf=100, str=status->str, atkmin, atkmax, r;
+	if (!sd){
 		if(flag&4)
 		{
 			atkmin = status->matk_min;
@@ -840,64 +837,45 @@ static int battle_calc_base_damage(struct status_data *status, struct weapon_atk
 		}
 		if (atkmin > atkmax)
 			atkmin = atkmax;
-	} else {	//PCs
-		atkmax = wa->atk;
+		damage += atkmin + (rand()%(atkmax-atkmin));
+	}else{
 		type = (wa == &status->lhw)?EQI_HAND_L:EQI_HAND_R;
-
-		if (!(flag&1) || (flag&2))
-		{	//Normal attacks
-			atkmin = status->dex;
-
-			if (sd->equip_index[type] >= 0 && sd->inventory_data[sd->equip_index[type]])
-				atkmin = atkmin*(80 + sd->inventory_data[sd->equip_index[type]]->wlv*20)/100;
-
-			if (atkmin > atkmax)
-				atkmin = atkmax;
-
-			if(flag&2 && !(flag&16))
-			{	//Bows
-				atkmin = atkmin*atkmax/100;
-				if (atkmin > atkmax)
-					atkmax = atkmin;
-			}
+		modf = (!(sd->special_state.no_sizefix) ? (type==EQI_HAND_L ? sd->left_weapon.atkmods[t_size]:sd->right_weapon.atkmods[t_size]):100);
+		switch(sd->status.weapon){
+			case W_BOW:
+			case W_MUSICAL:
+			case W_WHIP:
+			case W_REVOLVER:
+			case W_RIFLE:
+			case W_GATLING:
+			case W_SHOTGUN:
+			case W_GRENADE:
+				str = status->dex;
 		}
+		if(sd->equip_index[type]>=0)
+			randatk = rand()%(wa->atk*(sd->inventory_data[sd->equip_index[type]]->wlv)*5/100) * (rand()%2 ? 1:-1);
+		damage +=(int)((status->batk * 2) +
+			((wa->atk * ((float)(str + 200)/200) +	wa->atk2) +
+			(sd->status.inventory[sd->equip_index[type]].refine + (sd->status.inventory[sd->equip_index[type]].refine+sd->inventory_data[sd->equip_index[type]]->wlv)*
+			((r=sd->status.inventory[sd->equip_index[type]].refine - status_getrefinebonus(sd->inventory_data[sd->equip_index[type]]->wlv,2))>0 ? r:0) )+
+			randatk)* modf / 100);
+
+		//rodatazone says that Overrefine bonuses are part of baseatk
+		//Here we also apply the weapon_atk_rate bonus so it is correctly applied on left/right hands.
+		if (type == EQI_HAND_L) {
+			if (sd->weapon_atk_rate[sd->weapontype2])
+				damage += damage*sd->weapon_atk_rate[sd->weapontype2]/100;
+		} else //Right hand
+			if (sd->weapon_atk_rate[sd->weapontype1])
+				damage += damage*sd->weapon_atk_rate[sd->weapontype1]/100;
 	}
-
-	if (sc && sc->data[SC_MAXIMIZEPOWER])
-		atkmin = atkmax;
-
-	//Weapon Damage calculation
-	//BaseATK * 2 + RefineATK * Size * EquipmentATK = Nova fórmula do RE. [Protimus]
-	damage = (status->batk * 2) +
-		(
-			(wa->atk + wa->atk2) *
-			(sd && !(sd->special_state.no_sizefix) && sd->equip_index[type] >= 0 ? ( type==EQI_HAND_L ? sd->left_weapon.atkmods[t_size] : sd->right_weapon.atkmods[t_size] ) : 100) / 100 +
-		(
-			(status->lhw.atk + wa->atk) *
-			(sd && !(sd->special_state.no_sizefix) && sd->equip_index[type] >= 0 ? ( type==EQI_HAND_L ? sd->left_weapon.atkmods[t_size] : sd->right_weapon.atkmods[t_size] ) : 100) / 100 *
-			(sd && sd->equip_index[type] >= 0 ? sd->inventory_data[sd->equip_index[type]]->wlv : 4) * 5 / 100)
-		);
-
 	if(flag&1)
 		damage += damage * 40 / 100;
 
 	//Finally, add baseatk
 	if(flag&4)
 		damage += status->matk_min;
-	else
-		damage += status->batk;
 
-	//rodatazone says that Overrefine bonuses are part of baseatk
-	//Here we also apply the weapon_atk_rate bonus so it is correctly applied on left/right hands.
-	if(sd) {
-		if (type == EQI_HAND_L) {
-			if (sd->weapon_atk_rate[sd->weapontype2])
-				damage += damage*sd->weapon_atk_rate[sd->weapontype2]/100;
-		} else { //Right hand
-			if (sd->weapon_atk_rate[sd->weapontype1])
-				damage += damage*sd->weapon_atk_rate[sd->weapontype1]/100;
-		}
-	}
 	return damage;
 }
 
@@ -1264,7 +1242,6 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 		}
 
 		hitrate+= sstatus->hit - flee;
-
 		if(wd.flag&BF_LONG && !skill_num && //Fogwall's hit penalty is only for normal ranged attacks.
 			tsc && tsc->data[SC_FOGWALL])
 			hitrate -= 50;
@@ -1325,7 +1302,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 //Assuming that 99% of the cases we will not need to check for the flag.rh... we don't.
 //ATK_RATE scales the damage. 100 = no change. 50 is halved, 200 is doubled, etc
 #define ATK_RATE( a ) { wd.damage= wd.damage*(a)/100; if(flag.lh) wd.damage2= wd.damage2*(a)/100; }
-#define ATK_RATE2( a , b ) { wd.damage= wd.damage*(a)/100; if(flag.lh) wd.damage2= wd.damage2*(b)/100; }
+#define ATK_RATE2( a , b ) { wd.damage= wd.damage*(a)/1000; if(flag.lh) wd.damage2= wd.damage2*(b)/1000; }
 //Adds dmg%. 100 = +100% (double) damage. 10 = +10% damage
 #define ATK_ADDRATE( a ) { wd.damage+= wd.damage*(a)/100; if(flag.lh) wd.damage2+= wd.damage2*(a)/100; }
 #define ATK_ADDRATE2( a , b ) { wd.damage+= wd.damage*(a)/100; if(flag.lh) wd.damage2+= wd.damage2*(b)/100; }
@@ -1412,7 +1389,6 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				wd.damage = battle_calc_base_damage(sstatus, &sstatus->rhw, sc, tstatus->size, sd, i);
 				if (flag.lh)
 					wd.damage2 = battle_calc_base_damage(sstatus, &sstatus->lhw, sc, tstatus->size, sd, i);
-
 				if (nk&NK_SPLASHSPLIT){ // Divide ATK among targets
 					if(wflag>0)
 						wd.damage/= wflag;
@@ -1915,10 +1891,6 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				ATK_ADDRATE(10+ 2*skill);
 			}
 
-			wd.damage = battle_addmastery(sd,target,wd.damage,0);
-			if (flag.lh)
-				wd.damage2 = battle_addmastery(sd,target,wd.damage2,1);
-
 			if (sc && sc->data[SC_MIRACLE]) i = 2;
 			else
 			ARR_FIND(0, 3, i, t_class == sd->hate_mob[i]);
@@ -1991,29 +1963,24 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				if(def1 < 1) def1 = 1;
 			}
 			//Vitality reduction from rodatazone: http://rodatazone.simgaming.net/mechanics/substats.php#def
-			if (tsd)	//Sd vit-eq
-			{	//Stat def reduz o dano em 1
-				vit_def = def1;
+			vit_def = def1;
+			if(tsd){
 				
 				if((battle_check_undead(sstatus->race,sstatus->def_ele) || sstatus->race==RC_DEMON) && //This bonus already doesnt work vs players
 					src->type == BL_MOB && (skill=pc_checkskill(tsd,AL_DP)) > 0)
 					vit_def += skill*(int)(3 +(tsd->status.base_level+1)*0.04);   // submitted by orn
-			} else { //Mob-Pet vit-eq
-				//VIT + rnd(0,[VIT/20]^2-1)
-				vit_def = def1;
 			}
 			if (battle_config.weapon_defense_type) {
 				vit_def += def2*battle_config.weapon_defense_type;
 				def2 = 0;
 			}
 			if (def2 > 300) def2 = 300;
-			def_rate = (short)(((float)1-((float)580/(def2 + 580)))*100);
-			
+			def_rate = (short)(((float)1-((float)580/(def2 + 580)))*1000);
 			if( !flag.idef || !flag.idef2 )
 			{
 				ATK_RATE2(
-						flag.idef ?100:(flag.pdef ?(int)(flag.pdef *(def2+vit_def)):(100-def_rate)),
-						flag.idef2?100:(flag.pdef2?(int)(flag.pdef2*(def2+vit_def)):(100-def_rate))
+						flag.idef ?1000:(flag.pdef ?(int)(flag.pdef *(def2+vit_def)*10):(1000-def_rate)),
+						flag.idef2?1000:(flag.pdef2?(int)(flag.pdef2*(def2+vit_def)*10):(1000-def_rate))
 				);
 				ATK_ADD2(
 						flag.idef ||flag.pdef ?0:-vit_def,
@@ -2060,7 +2027,6 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				// but other masteries DO apply >_>
 				ATK_ADDRATE(10+ 2*skill);
 			}
-
 			wd.damage = battle_addmastery(sd,target,wd.damage,0);
 			if (flag.lh)
 				wd.damage2 = battle_addmastery(sd,target,wd.damage2,1);
@@ -2256,7 +2222,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				cardfix=cardfix*(100+sd->long_attack_atk_rate)/100;
 
 			if( cardfix != 1000 || cardfix_ != 1000 )
-				ATK_RATE2(cardfix/10, cardfix_/10);	//What happens if you use right-to-left and there's no right weapon, only left?
+				ATK_RATE2(cardfix, cardfix_);	//What happens if you use right-to-left and there's no right weapon, only left?
 		}
 
 		if( skill_num == CR_SHIELDBOOMERANG || skill_num == PA_SHIELDCHAIN )

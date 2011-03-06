@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0278 - 06/03/2011 [brn0]
+	* Corrigida a fórmula do ataque.
+	* Corrigido o erro de relogar com arma equipada.
+	- O ataque da arma estava retornando à fórmula antiga (ao atk1).
+
 	r0277 - 06/03/2011 [Protimus]
 	* Alterado nível de refinamento até +20.
 	* Adicionados parâmetros de overrefine de acordo com leveis posteriores ao padrão (+10).
@@ -67,7 +72,7 @@
 
 	r0258 - 01/03/2011 [brn0]
 	* Corrigida fórmula da divisão de experiência em grupo.
-    * Corrigida a quantidade do bônus de expêriencia por membros no grupo. 
+	* Corrigida a quantidade do bônus de expêriencia por membros no grupo. 
 
 	r0257 - 28/02/2011 [Protimus]
 	* Adicionada habilidade RK_DRAGONTRAINING (Adestrar Dragão).

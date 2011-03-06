@@ -2825,9 +2825,8 @@ int clif_initialstatus(struct map_session_data *sd)
 	WBUFB(buf,13)=pc_need_status_point(sd,SP_DEX);
 	WBUFB(buf,14)=min(sd->status.luk, UCHAR_MAX);
 	WBUFB(buf,15)=pc_need_status_point(sd,SP_LUK);
-
-	WBUFW(buf,16) = sd->battle_status.batk + sd->battle_status.rhw.atk + sd->battle_status.lhw.atk;
-	WBUFW(buf,18) = sd->battle_status.rhw.atk2 + sd->battle_status.lhw.atk2; //atk bonus
+	WBUFW(buf,16) = sd->battle_status.batk; // stat atk
+	WBUFW(buf,18) = sd->battle_status.watk; // weapon atk
 	WBUFW(buf,20) = sd->battle_status.matk_max;
 	WBUFW(buf,22) = sd->battle_status.matk_min;
 	WBUFW(buf,24) = sd->battle_status.def; // def
@@ -12391,8 +12390,8 @@ void clif_check(int fd, struct map_session_data* pl_sd)
 	WFIFOB(fd,11) = pc_need_status_point(pl_sd, SP_DEX);
 	WFIFOB(fd,12) = min(pl_sd->status.luk, UCHAR_MAX);
 	WFIFOB(fd,13) = pc_need_status_point(pl_sd, SP_LUK);
-	WFIFOW(fd,14) = pl_sd->battle_status.batk+pl_sd->battle_status.rhw.atk+pl_sd->battle_status.lhw.atk;
-	WFIFOW(fd,16) = pl_sd->battle_status.rhw.atk2+pl_sd->battle_status.lhw.atk2;
+	WFIFOW(fd,14) = pl_sd->battle_status.batk;
+	WFIFOW(fd,16) = pl_sd->battle_status.watk;
 	WFIFOW(fd,18) = pl_sd->battle_status.matk_max;
 	WFIFOW(fd,20) = pl_sd->battle_status.matk_min;
 	WFIFOW(fd,22) = pl_sd->battle_status.def;
