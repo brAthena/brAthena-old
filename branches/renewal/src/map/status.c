@@ -35,6 +35,7 @@
 #include <stdlib.h>
 #include <memory.h>
 #include <string.h>
+#include <math.h>
 
 
 //Regen related flags.
@@ -1420,58 +1421,38 @@ int status_check_visibility(struct block_list *src, struct block_list *target)
 // Basic ASPD value
 int status_base_amotion_pc(struct map_session_data* sd, struct status_data* status)
 {
-	int amotion, i, bonus;
+	int bonus=0, amotion, i;
 	struct status_change *sc = status_get_sc(&sd->bl);
-	float agi_mod, dex_mod, agi_mod1, agi_mod2, dex_mod1, dex_mod2;
 
 	// base weapon delay
 	amotion = (sd->status.weapon < MAX_WEAPON_TYPE)
 	 ? (aspd_base[pc_class2idx(sd->status.class_)][sd->status.weapon]) // single weapon
 	 : (aspd_base[pc_class2idx(sd->status.class_)][sd->weapontype1] + aspd_base[pc_class2idx(sd->status.class_)][sd->weapontype2])*7/10; // dual-wield
 
-	bonus = 0;
 
-	if( sc && sc->count )
-	{
-		if( (sc->data[i=SC_ASPDPOTION0] ||
-			 sc->data[i=SC_ASPDPOTION1] ||
-			 sc->data[i=SC_ASPDPOTION2] ||
-			 sc->data[i=SC_ASPDPOTION3] ) )
-		{
-			bonus -= sc->data[i]->val2;
-		}
+	if( sc && sc->count ){
+		if(sc->data[i=SC_ASPDPOTION3])
+			bonus += sc->data[i]->val2;
+		else if(sc->data[i=SC_ASPDPOTION2])
+			bonus += sc->data[i]->val2;
+		else if(sc->data[i=SC_ASPDPOTION1])
+			bonus += sc->data[i]->val2;
+		else if(sc->data[i=SC_ASPDPOTION0])
+			bonus += sc->data[i]->val2;
 
-		if( sc->data[SC_TWOHANDQUICKEN] )
-			bonus -= sc->data[SC_TWOHANDQUICKEN]->val2;
-
-		if( sc->data[SC_ADRENALINE] )
-			bonus -= sc->data[SC_ADRENALINE]->val3;
-
-		if( sc->data[SC_ONEHAND] )
-			bonus -= sc->data[SC_ONEHAND]->val2;
+		if(sc->data[i=SC_TWOHANDQUICKEN])
+			bonus += sc->data[i]->val2;
+		if(sc->data[i=SC_ONEHAND])
+			bonus += sc->data[i]->val2;
+		if(sc->data[i=SC_ADRENALINE] )
+			bonus += sc->data[i]->val3;
+		if(sc->data[SC_BERSERK])
+			bonus += 150;
+		else if(sc->data[SC_MADNESSCANCEL])
+			bonus += 200;
 	}
-
-	agi_mod1 = 0.505f - ((status->dex - status->agi) / status->dex);
-	agi_mod2 = (float) status->agi / 18000;
-	agi_mod = agi_mod1 + agi_mod2;
-
-	if( agi_mod < 0.1 )
-		agi_mod = 0.1f;
-	else if( agi_mod > 0.7 )
-		agi_mod = 0.7f + agi_mod2;
-
-	dex_mod1 = 0.805f - ((status->agi - status->dex) / status->agi);
-	dex_mod2 = (float) status->dex / 7500;
-	dex_mod = dex_mod1 + dex_mod2;
-
-	if( dex_mod < 0.15 )
-		dex_mod = 0.15f;
-	else if( dex_mod > 1.1 )
-		dex_mod = 1.1f + dex_mod2;
-
-	amotion -= (int) ((status->agi / 4) * agi_mod) * 10;
-	amotion -=  (int) ((status->dex / 10) * dex_mod) * 10;
-	amotion += sd->aspd_add + bonus;
+	amotion -= (int)(((float)sqrt((float)((float)pow((float)status->agi,2)/2) + ((float)pow((float)status->dex,2)/5) )/4)*10 + (bonus*status->agi/200));
+	amotion += sd->aspd_add;
 	
 	if(sd->status.shield > 0)
 		amotion += ((aspd_base[pc_class2idx(sd->status.class_)][MAX_WEAPON_TYPE])/10);
@@ -5592,7 +5573,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			break;
 		case SC_ONEHAND:
 		case SC_TWOHANDQUICKEN:
-			val2 = 300;
+			val2 = 70;
 			if (val1 > 10) //For boss casted skills [Skotlex]
 				val2 += 20*(val1-10);
 			break;
@@ -5627,10 +5608,10 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			val2 = 75 + 25*val1; //Cri bonus
 			break;
 		case SC_ASPDPOTION0:
-			val2 = 60;
+			val2 = 40;
 			break;
 		case SC_ASPDPOTION1:
-			val2 = 70;
+			val2 = 60;
 			break;
 		case SC_ASPDPOTION2:
 			val2 = 90;
