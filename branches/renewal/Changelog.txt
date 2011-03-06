@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0277 - 06/03/2011 [Protimus]
+	* Alterado nível de refinamento até +20.
+	* Adicionados parâmetros de overrefine de acordo com leveis posteriores ao padrão (+10).
+
 	r0276 - 05/03/2011 [Protimus]
 	* Adicionada habilidade RK_GIANTGROWTH (Força Titânica).
 	* Alterado packet_db_ver para default.
