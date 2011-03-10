@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0280 - 10/03/2011 [insidemybrain]
+	* Enviadas traduções de alguns scripts da pasta /comerciantes.
+
 	r0274 - 05/03/2011 [Protimus]
 	* Atualizações para o comando @whosell.
 	- Funcionando conforme novos parâmetros de ACMD_FUNC.

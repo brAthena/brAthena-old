@@ -18,30 +18,31 @@
 // | specified armor.										|
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]		                        |
+// | 1.0 Script Traduzido [YuMs]                            |
 // | - Anotações		   			    					| 
 // \________________________________________________________/
 
-prontera,165,60,2	script	Apprentice Craftsman	73,{
+prontera,165,60,2	script	Aprendiz de Artesão	73,{
 	if (Zeny > 399999) {
-		mes "[Apprentice Craftsman]";
-		mes "I've been studying ways to enhance an armor to maximize it's capability.";
+		mes "[Aprendiz de Artesão]";
+		mes "Venho estudando maneiras de melhorar uma armadura para aumentar a sua real capacidade.";
 		next;
-		mes "[Apprentice Craftsman]";
-		mes "Enchanting is an awesome skill that infuses a mysterious status power into the armor's hidden socket.";
+		mes "[Aprendiz de Artesão]";
+		mes "Encantar é uma habilidade incrível que funde um poder misterioso em um espaço escondido da armadura.";
 		next;
-		mes "[Apprentice Craftsman]";
-		mes "However, you have to keep in mind that if there are two armors of the same kind in your possession, the Enchantment will be applied in the order they are placed in your inventory.";
+		mes "[Aprendiz de Artesão]";
+		mes "No entanto, você tem que ter em mente que, se houver duas armaduras do mesmo tipo em seu inventário, o encantamento será aplicado na ordem em que estão colocados no seu inventário.";
 		next;
-		mes "[Apprentice Craftsman]";
-		mes "In that case, the Enchantment may be applied to an item which you didn't mean to Enchant. So just bring ^5555ffONE Armor^000000 you want enchanted to be safe..";
+		mes "[Aprendiz de Artesão]";
+		mes "Nesse caso, o encantamento pode ser aplicado a um item que você não queira encantar. Então basta trazer ^5555ffUMA Armadura^000000 que você deseja, podendo então encantar com segurança.";
 		next;
-		mes "[Apprentice Craftsman]";
-		mes "I'm not responsible for what would happen if you have more than one of the same kind in your inventory.";
+		mes "[Aprendiz de Artesão]";
+		mes "Eu não sou responsável por aquilo que pode acontecer se você tiver mais de um equipamento do mesmo tipo em seu inventário.";
 		next;
-		switch(select("Non Slotted Armor.:Slotted Armor.:High Grade Armor.:Maybe next time.")) {
+		switch(select("Armadura sem Slotada.:Armadura com Slot.:Armadura de Auto Nível.:Talvez na próxima.")) {
 		case 1:
-			switch(select("Mantle:Coat:Chain Mail:Full Plate:Silk Robe:Saint's Robe:Holy Robe:Wooden Mail:Tights:Silver Robe:Mage Coat:Thief Clothes:Legion Plate Armor:Lucius's Fierce Armor of Volcano:Saphien's Armor of Ocean:Aebeccee's Raging Typhoon Armor:Claytos Cracking Earth Armor:Ninja Suit:Chameleon Armor:Glorious Suit:Glorious Popularized Suit:Glorious Mass-Production Suit")) {
+		
+			switch(select("Capote:Casaco:Cota de Malha:Armadura Metálica:Manto de Seda:Manto Sagrado:Batina:Armadura de Madeira:Malha:Manto Prateado:Vestimenta Arcana:Traje de Gatuno:Armadura Legionária:Couraça da Fúria Flamejante:Couraça da Submissão Oceânica:Couraça da Liberdade Celestial:Couraça da Perseverança Continental:Indumentária Ninja:Armadura Camaleão:Túnica Gloriosa:Túnica Gloriosa Industrializada:Túnica Gloriosa Barata")) {
 			case 1:
 				callsub S_EnchantArmor,2307,50;
 			case 2:
@@ -88,7 +89,7 @@ prontera,165,60,2	script	Apprentice Craftsman	73,{
 				callsub S_EnchantArmor,2396,50;
 			}
 		case 2:
-			switch(select("Mink Coat:Lord's Clothes:Glittering Jacket:Formal Suit:Mantle(1):Coat(1):Chain Mail(1):Full Plate(1):Silk Robe(1):Scapulare(1):Saint's Robe(1):Tights(1):Silver Robe(1):Thief Clothes(1):Legion Plate Armor(1):Lucius's Fierce Armor of Volcano(1):Saphien's Armor of Ocean(1):Aebeccee's Raging Typhoon Armor(1):Claytos Cracking Earth Armor(1)")) {
+			switch(select("Casaco de Pele:Vestimental Nobre:Jaqueta Brilhante:Paletó:Capote(1):Casaco(1):Cota de Malha(1):Armadura metálica(1):Manto de Seda(1):Escapulário(1):Manto Sagrado(1):Malha(1):Manto Prateado(1):Traje de Gatuno(1):Armadura Legionária(1):Couraça da Fúria Flamejante(1):Couraça da Submissão Oceânica(1):Couraça da Liberdade Celestial(1):Couraça da Perserverança Continental(1)")) {
 			case 1:
 				callsub S_EnchantArmor,2311,55;
 			case 2:
@@ -129,7 +130,7 @@ prontera,165,60,2	script	Apprentice Craftsman	73,{
 				callsub S_EnchantArmor,2351,55;
 			}
 		case 3:
-			switch(select("Meteo Plate Armor:Orlean's Gown:Life Link:Diablos Robe:Diablos Armor:Assaulter Plate:Elite Engineer Armor:Assassin Robe:Warlock's Battle Robe:Medic's Robe:Elite Archer Suit:Elite Shooter Suit:Sprint Mail:Kandura:Armor of Naga:Improved Tights")) {
+			switch(select("Armadura de Meteo:Bata de Orleans:Armadura Vital:Manto de Diabolus:Armadura de Diabolus:Armadura de Assalto:Armadura de Elite:Manto do Mercenário:Manto de Batalha do Feiticeiro:Manto do Médico:Túnica do Arqueiro de Elite:Túnica do Artilheiro de Elite:Armadura de Corrida:Kandura:Cota de Escamas de Naga:Malha Aprimorada")) {
 			case 1:
 				callsub S_EnchantArmor,2364,60;
 			case 2:
@@ -164,17 +165,17 @@ prontera,165,60,2	script	Apprentice Craftsman	73,{
 				callsub S_EnchantArmor,2390,60;
 			}
 		case 4:
-			mes "[Apprentice Craftsman]";
-			mes "Please come back when you have any interest in enchanting your armor.";
+			mes "[Aprendiz de Artesão]";
+			mes "Por favor, volte quando você tiver algum interesse em encantar sua armadura.";
 			close;
 		}
 	}
 	else {
-		mes "[Apprentice Craftsman]";
-		mes "I am in charge of Enchanting Armors. Simply put, I've been studying ways to power-up armor.";
+		mes "[Aprendiz de Artesão]";
+		mes "Estou encarregado de encantar armaduras. Basta pôr, estive estudando formas de aumentar o poder das armaduras.";
 		next;
-		mes "[Apprentice Craftsman]";
-		mes "If by any chance, you would want to enchant your armor, bring me 400,000 zeny and the armor you want to enchant and you are all set to go.";
+		mes "[Aprendiz de Artesão]";
+		mes "Se por acaso, você quiser encantar a sua armadura, traga-me 400,000 zeny e a armadura que pretende encantar e então tudo estará pronto.";
 		close;
 	}
 
@@ -182,29 +183,29 @@ S_EnchantArmor:
 	set .@itemid,getarg(0);
 	set .@failrate,getarg(1);
 	if ((countitem(.@itemid) > 0) && (countitem(.@itemid) < 2)) {
-		mes "[Apprentice Craftsman]";
-		mes "Socket enchant wil cost you 400,000 zeny. And there will be a random option enchanted. Of course, there is a chance of breaking your armor.";
+		mes "[Aprendiz de Artesão]";
+		mes "Adicionar um slot irá lhe custar 400,000 zeny. E haverá uma opção aleatória encantamento. Naturalmente, há uma chance de quebrar sua armadura.";
 		next;
-		mes "[Apprentice Craftsman]";
-		mes "First and most importantly.";
-		mes "^ff5555Existing Refine Level of the Armor";
-		mes "and Cards will be GONE.^000000";
-		mes "Do you still want to try an Enchant?";
+		mes "[Aprendiz de Artesão]";
+		mes "Primeiro e mais importante.";
+		mes "^ff5555Refinamento existente e/ou";
+		mes "carta na armadura serão perdidos.^000000";
+		mes "Você ainda quer tentar encantar?";
 		next;
-		switch(select("Hmm... Let me think it over.:Go ahead.")) {
+		switch(select("Hmm... Deixe-me pensar sobre isso.:Vá em frente.")) {
 		case 1:
-			mes "[Apprentice Craftsman]";
-			mes "Well, I can't blame you. Safety first, Ey?";
-			mes "Now you have a nice day.";
+			mes "[Aprendiz de Artesão]";
+			mes "Bem, eu não posso culpá-lo. Segurança em primeiro lugar, certo?";
+			mes "Agora tenha um bom dia.";
 			close;
 		case 2:
-			mes "[Apprentice Craftsman]";
-			mes "Quite of an adventurer huh? Well, shall we?";
+			mes "[Aprendiz de Artesão]";
+			mes "Então, um aventureiro hein? Bom, vamos.";
 			close2;
 			specialeffect2 EF_MAPPILLAR;
 			if (Zeny < 400000) {
-				mes "[Apprentice Craftsman]";
-				mes "Sorry, but you don't have enough zeny.";
+				mes "[Aprendiz de Artesão]";
+				mes "Desculpe, mas você não tem zeny suficiente.";
 				close;
 			}
 			progressbar "ffff00",7;
@@ -267,18 +268,18 @@ S_EnchantArmor:
 			}
 			else {
 				specialeffect2 EF_PHARMACY_FAIL;
-				mes "[Apprentice Craftsman]";
-				mes "Well that's too bad.";
-				mes "The requested equipment has failed to enchant.";
+				mes "[Aprendiz de Artesão]";
+				mes "Bem, isso é muito ruim.";
+				mes "Não consegui encantar seu equipamento.";
 				close;
 			}
 			getitem2 .@itemid, 1, 1, 0, 0, 0, 0, 0, .@addpart;
 		}
 	}
 	else {
-		mes "[Apprentice Craftsman]";
-		mes "Hmm? There's nothing to be enchanted!";
-		mes "Please come back with just ONE equipment to be enchanted.";
+		mes "[Aprendiz de Artesão]";
+		mes "Hmm? Não há nada para se encantar!";
+		mes "Por favor, volte com apenas UM equipamento para encantar.";
 		close;
 	}
 }
