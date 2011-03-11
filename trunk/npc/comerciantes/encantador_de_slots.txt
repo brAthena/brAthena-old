@@ -52,7 +52,7 @@
 				case 1:
 					mes "[Seiyablem]";
 					mes "Classe C, certo?";
-					mes "Agora, eu só posso encantar alguns equipamentos dessa classe, por isso, escolha um dos itens a seguir, para que possamos tentar adicionar um slot para ele."
+					mes "Agora, eu só posso encantar alguns equipamentos dessa classe, por isso, escolha um dos itens a seguir, para que possamos tentar adicionar um slot para ele.";
 					next;
 					switch(select("Tridente:Cordel:Violino"))
 					{
