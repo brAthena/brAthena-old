@@ -9,7 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
-	r0281 0 11/03/2011 [Protimus]
+	r0282 - 11/03/2011 [insidemybrain]
+	* Enviadas traduções necessitando revisão
+	* Enviadas algumas traduções/revisões minhas pendentes.
+
+	r0281 - 11/03/2011 [Protimus]
 	* Atualizada source conforme eAthena 14741.
 
 	r0280 - 10/03/2011 [insidemybrain]
