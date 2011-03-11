@@ -34,6 +34,7 @@ enum e_buyingstore_failure
 
 
 static unsigned int buyingstore_nextid = 0;
+static const short buyingstore_blankslots[MAX_SLOTS] = { 0 };  // used when checking whether or not an item's card slots are blank
 
 
 /// Returns unique buying store id
@@ -49,6 +50,7 @@ bool buyingstore_setup(struct map_session_data* sd, unsigned char slots)
 	{
 		return false;
 	}
+
 	if( sd->sc.data[SC_NOCHAT] && (sd->sc.data[SC_NOCHAT]->val1&MANNER_NOROOM) )
 	{// custom: mute limitation
 		return false;
@@ -192,13 +194,6 @@ void buyingstore_close(struct map_session_data* sd)
 
 		// notify other players
 		clif_buyingstore_disappear_entry(sd);
-
-		// remove auto-trader 
-	if( sd->state.autotrade ) 
-	{ 
-		map_quit(sd); 
-	}
-
 	}
 }
 
@@ -223,7 +218,7 @@ void buyingstore_open(struct map_session_data* sd, int account_id)
 		return;
 	}
 
-	if( sd->bl.m != pl_sd->bl.m || !check_distance_bl(&sd->bl, &pl_sd->bl, AREA_SIZE) )
+	if( !searchstore_queryremote(sd, account_id) && ( sd->bl.m != pl_sd->bl.m || !check_distance_bl(&sd->bl, &pl_sd->bl, AREA_SIZE) ) )
 	{// out of view range
 		return;
 	}
@@ -235,7 +230,6 @@ void buyingstore_open(struct map_session_data* sd, int account_id)
 
 void buyingstore_trade(struct map_session_data* sd, int account_id, unsigned int buyer_id, const uint8* itemlist, unsigned int count)
 {
-	short blankslots[MAX_SLOTS];  // used when checking whether or not an item's card slots are blank
 	int zeny = 0;
 	unsigned int i, weight, listidx, k;
 	struct map_session_data* pl_sd;
@@ -264,18 +258,19 @@ void buyingstore_trade(struct map_session_data* sd, int account_id, unsigned int
 		return;
 	}
 
-	if( sd->bl.m != pl_sd->bl.m || !check_distance_bl(&sd->bl, &pl_sd->bl, AREA_SIZE) )
+	if( !searchstore_queryremote(sd, account_id) && ( sd->bl.m != pl_sd->bl.m || !check_distance_bl(&sd->bl, &pl_sd->bl, AREA_SIZE) ) )
 	{// out of view range
 		clif_buyingstore_trade_failed_seller(sd, BUYINGSTORE_TRADE_SELLER_FAILED, 0);
 		return;
 	}
+
+	searchstore_clearremote(sd);
 
 	if( pl_sd->status.zeny < pl_sd->buyingstore.zenylimit )
 	{// buyer lost zeny in the mean time? fix the limit
 		pl_sd->buyingstore.zenylimit = pl_sd->status.zeny;
 	}
 	weight = pl_sd->weight;
-	memset(blankslots, 0, sizeof(blankslots));
 
 	// check item list
 	for( i = 0; i < count; i++ )
@@ -305,7 +300,7 @@ void buyingstore_trade(struct map_session_data* sd, int account_id, unsigned int
 			return;
 		}
 
-		if( sd->status.inventory[index].expire_time || !itemdb_cantrade(&sd->status.inventory[index], pc_isGM(sd), pc_isGM(pl_sd)) || memcmp(sd->status.inventory[index].card, blankslots, sizeof(blankslots)) )
+		if( sd->status.inventory[index].expire_time || !itemdb_cantrade(&sd->status.inventory[index], pc_isGM(sd), pc_isGM(pl_sd)) || memcmp(sd->status.inventory[index].card, buyingstore_blankslots, sizeof(buyingstore_blankslots)) )
 		{// non-tradable item
 			clif_buyingstore_trade_failed_seller(sd, BUYINGSTORE_TRADE_SELLER_FAILED, nameid);
 			return;
@@ -388,11 +383,88 @@ void buyingstore_trade(struct map_session_data* sd, int account_id, unsigned int
 	if( i == pl_sd->buyingstore.slots )
 	{// everything was bought
 		clif_buyingstore_trade_failed_buyer(pl_sd, BUYINGSTORE_TRADE_BUYER_NO_ITEMS);
-		buyingstore_close(pl_sd);
 	}
 	else if( pl_sd->buyingstore.zenylimit == 0 )
 	{// zeny limit reached
 		clif_buyingstore_trade_failed_buyer(pl_sd, BUYINGSTORE_TRADE_BUYER_ZENY);
-		buyingstore_close(pl_sd);
 	}
+	else
+	{// continue buying
+		return;
+	}
+
+	// cannot continue buying
+	buyingstore_close(pl_sd);
+
+	// remove auto-trader
+	if( pl_sd->state.autotrade )
+	{
+		map_quit(pl_sd);
+	}
+}
+
+
+/// Checks if an item is being bought in given player's buying store.
+bool buyingstore_search(struct map_session_data* sd, unsigned short nameid)
+{
+	unsigned int i;
+
+	if( !sd->state.buyingstore )
+	{// not buying
+		return false;
+	}
+
+	ARR_FIND( 0, sd->buyingstore.slots, i, sd->buyingstore.items[i].nameid == nameid && sd->buyingstore.items[i].amount );
+	if( i == sd->buyingstore.slots )
+	{// not found
+		return false;
+	}
+
+	return true;
+}
+
+
+/// Searches for all items in a buyingstore, that match given ids, price and possible cards.
+/// @return Whether or not the search should be continued.
+bool buyingstore_searchall(struct map_session_data* sd, const struct s_search_store_search* s)
+{
+	unsigned int i, idx;
+	struct s_buyingstore_item* it;
+
+	if( !sd->state.buyingstore )
+	{// not buying
+		return true;
+	}
+
+	for( idx = 0; idx < s->item_count; idx++ )
+	{
+		ARR_FIND( 0, sd->buyingstore.slots, i, sd->buyingstore.items[i].nameid == s->itemlist[idx] && sd->buyingstore.items[i].amount );
+		if( i == sd->buyingstore.slots )
+		{// not found
+			continue;
+		}
+		it = &sd->buyingstore.items[i];
+
+		if( s->min_price && s->min_price > (unsigned int)it->price )
+		{// too low price
+			continue;
+		}
+
+		if( s->max_price && s->max_price < (unsigned int)it->price )
+		{// too high price
+			continue;
+		}
+
+		if( s->card_count )
+		{// ignore cards, as there cannot be any
+			;
+		}
+
+		if( !searchstore_result(s->search_sd, sd->buyer_id, sd->status.account_id, sd->message, it->nameid, it->amount, it->price, buyingstore_blankslots, 0) )
+		{// result set full
+			return false;
+		}
+	}
+
+	return true;
 }
