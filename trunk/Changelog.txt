@@ -9,8 +9,8 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
-	r0283 - 11/03/2011 [insidemybrain
-	* Corrigidos erros dos npcs enviados na r0282, por falaha minha
+	r0283 - 11/03/2011 [insidemybrain]
+	* Corrigidos erros dos npcs enviados na r0282, por falha minha
 	- Reportado pelo YuMs
 
 	r0282 - 11/03/2011 [insidemybrain]
