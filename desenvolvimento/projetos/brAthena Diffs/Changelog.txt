@@ -9,6 +9,10 @@
 //	acessando o seguinte link: http://svn.brathena.org/trac/timeline
 // ==================================================
 
+	r290 - 13/03/2011 [Protimus]
+	* Adicionados diffs e hex para RagexeRE.
+	- Apenas versões de 2010 em diante, créditos ao Diff Team.
+	
 	r288 - 13/03/2011 [Protimus]
 	* Adicionada ferramenta para junção de diffs e hex: K3dtDiffpatcher.
 	- Créditos: k3dt.
