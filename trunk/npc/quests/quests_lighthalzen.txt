@@ -3180,6 +3180,7 @@ yuno_in04,96,106,5	script	Estudante Entusiasmado	754,{
 		mes "fazer com que eles lembrem";
 		mes "dos bons tempos que tivemos juntos.";
 		next;
+		set friendship,12
 		mes "[Benkaistein]";
 		mes "Em todo caso, ao menos";
 		mes "deve ajudá-los a perceber";
