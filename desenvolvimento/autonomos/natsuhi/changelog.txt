@@ -1,7 +1,0 @@
-	*002 - Iniciada tradução da The_Sign_Quest [Natsuhi]
-	-Inicio da tradução,com a ajuda da Psique.	
-
-
-	*001 - Criado Changelog [Natsuhi]
-	-Apenas para controle de traduções.
-

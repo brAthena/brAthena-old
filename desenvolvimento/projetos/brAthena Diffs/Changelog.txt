@@ -1,0 +1,14 @@
+// Estrutura para o Changelog.
+//  
+//	r0000 - Dia/Mês/Ano [Autor(es)]
+//	* Notação
+//	- Comentário (opcional)
+// *Dica: Para encontrar atualizações de uma revisão específica pressione Ctrl+F
+//	e digite rxxxx onde "xxxx" refere-se a revisão desejada. 
+// *Dica2: Consulte o Timeline para mais detalhes das modificações
+//	acessando o seguinte link: http://svn.brathena.org/trac/timeline
+// ==================================================
+
+	r287 - 22/07/2009 [Protimus]
+	* Iniciado projeto brAthena Diffs
+	- Diffs para kRO & bRO com ragexeRE & sakexe.
