@@ -2496,11 +2496,7 @@ int clif_updatestatus(struct map_session_data *sd,int type)
 		WFIFOL(fd,4)=sd->battle_status.def2;
 		break;
 	case SP_MDEF2:
-		//negative check (in case you have something like Berserk active)
-		len = sd->battle_status.mdef2 - (sd->battle_status.vit>>1);
-		if (len < 0) len = 0;
-		WFIFOL(fd,4)= len;
-		len = 8;
+		WFIFOL(fd,4)=sd->battle_status.mdef2;
 		break;
 	case SP_CRITICAL:
 		WFIFOL(fd,4)=sd->battle_status.cri/10;
@@ -2832,10 +2828,7 @@ int clif_initialstatus(struct map_session_data *sd)
 	WBUFW(buf,24) = sd->battle_status.def; // def
 	WBUFW(buf,26) = sd->battle_status.def2;
 	WBUFW(buf,28) = sd->battle_status.mdef; // mdef
-	fd = sd->battle_status.mdef2 - (sd->battle_status.vit>>1);
-	if (fd < 0) fd = 0; //Negative check for Frenzy'ed characters.
-	WBUFW(buf,30) = fd;
-	fd = sd->fd;
+	WBUFW(buf,30) = sd->battle_status.mdef2; // mdef2
 	WBUFW(buf,32) = sd->battle_status.hit;
 	WBUFW(buf,34) = sd->battle_status.flee;
 	WBUFW(buf,36) = sd->battle_status.flee2/10;

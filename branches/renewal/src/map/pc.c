@@ -1847,22 +1847,22 @@ int pc_bonus(struct map_session_data *sd,int type,int val)
 		}
 		break;
 	case SP_DEF1:
-        if(sd->state.lr_flag != 2) {
-            bonus = status->def + val;
-            status->def = cap_value(bonus, CHAR_MIN, CHAR_MAX);
+		if(sd->state.lr_flag != 2) {
+			bonus = status->def + val;
+			status->def = cap_value(bonus, SHRT_MIN, SHRT_MAX);
 		}
-        break;
+		break;
 	case SP_DEF2:
 		if(sd->state.lr_flag != 2) {
 			bonus = status->def2 + val;
-			status->def2 = cap_value(bonus, CHAR_MIN, CHAR_MAX);
+			status->def2 = cap_value(bonus, SHRT_MIN, SHRT_MAX);
 		}
 		break;
 	case SP_MDEF1:
 	case SP_MDEF2:
 		if(sd->state.lr_flag != 2) {
 			bonus = status->mdef2 + val;
-			status->mdef2 = cap_value(bonus, CHAR_MIN, CHAR_MAX);
+			status->mdef2 = cap_value(bonus, SHRT_MIN, SHRT_MAX);
 		}
 		break;
 	case SP_HIT:
@@ -2022,12 +2022,9 @@ int pc_bonus(struct map_session_data *sd,int type,int val)
 		break;
 	case SP_MATK1:
 	case SP_MATK2:
-		if(sd->state.lr_flag != 2)
-			sd->matk_add += val;
-		break;
 	case SP_MATK_RATE:
 		if(sd->state.lr_flag != 2)
-			sd->matk_rate += val;
+			sd->matk_add += val;
 		break;
 	case SP_IGNORE_DEF_ELE:
 		if(val >= ELE_MAX) {

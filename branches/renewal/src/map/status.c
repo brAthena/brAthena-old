@@ -1502,10 +1502,9 @@ static unsigned short status_base_atk(const struct block_list *bl, const struct 
 void status_calc_misc(struct block_list *bl, struct status_data *status, int level)
 {
 	//Non players get the value set, players need to stack with previous bonuses.
-	if( bl->type != BL_PC && 0)
+	if( bl->type != BL_PC)
 		status->batk =
 		status->hit = status->flee =
-		status->def2 = status->mdef2 =
 		status->cri = status->flee2 =
 		status->mdef = status->def = 0;
 
@@ -1518,7 +1517,7 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int lev
 
 	status->matk_min = status_base_status_matk(status, level);
 	if (bl->type == BL_PC )
-		status->matk_max = ((TBL_PC*)bl)->matk_add;
+		status->matk_max += ((TBL_PC*)bl)->matk_add;
 
 	if( bl->type&battle_config.enable_critical )
 		status->cri += 10 + (status->luk*10/3);
@@ -1691,16 +1690,16 @@ int status_calc_mob_(struct mob_data* md, bool first)
 					status->max_sp += 200 * gc->defense;
 					status->hp = status->max_hp;
 					status->sp = status->max_sp;
-					status->def += (gc->defense+2)/3;
-					status->mdef += (gc->defense+2)/3;
+					status->def2 += (gc->defense+2)/3;
+					status->mdef2 += (gc->defense+2)/3;
 				}
 			}else{
 				status->max_hp += 1000 * gc->defense;
 				status->max_sp += 200 * gc->defense;
 				status->hp = status->max_hp;
 				status->sp = status->max_sp;
-				status->def += (gc->defense+2)/3;
-				status->mdef += (gc->defense+2)/3;
+				status->def2 += (gc->defense+2)/3;
+				status->mdef2 += (gc->defense+2)/3;
 			}
 		}
 		if(md->class_ != MOBID_EMPERIUM) {
@@ -2127,7 +2126,6 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 			}
 		}
 	}
-
 	if(sd->equip_index[EQI_AMMO] >= 0){
 		index = sd->equip_index[EQI_AMMO];
 		if(sd->inventory_data[index]){		// Arrows
@@ -2398,15 +2396,15 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 	if(sd->flee_rate != 100)
 		status->flee = status->flee * sd->flee_rate/100;
 
-	if(sd->def2_rate < 0)
-		sd->def2_rate = 0;
-	if(sd->def2_rate != 100)
-		status->def2 = status->def2 * sd->def2_rate/100;
+	if(sd->def_rate < 0)
+		sd->def_rate = 0;
+	if(sd->def_rate != 100)
+		status->def = status->def * sd->def_rate/100;
 
-	if(sd->mdef2_rate < 0)
-		sd->mdef2_rate = 0;
-	if(sd->mdef2_rate != 100)
-		status->mdef2 = status->mdef2 * sd->mdef2_rate/100;
+	if(sd->mdef_rate < 0)
+		sd->mdef_rate = 0;
+	if(sd->mdef_rate != 100)
+		status->mdef = status->mdef * sd->mdef_rate/100;
 
 	if(sd->critical_rate < 0)
 		sd->critical_rate = 0;
@@ -2449,33 +2447,33 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 // ----- EQUIPMENT-DEF CALCULATION -----
 
 	// Apply relative modifiers from equipment
-	if(sd->def_rate < 0)
-		sd->def_rate = 0;
-	if(sd->def_rate != 100) {
-		i =  status->def * sd->def_rate/100;
-		status->def = cap_value(i, SHRT_MIN, SHRT_MAX);
+	if(sd->def2_rate < 0)
+		sd->def2_rate = 0;
+	if(sd->def2_rate != 100) {
+		i =  status->def2 * sd->def2_rate/100;
+		status->def2 = cap_value(i, SHRT_MIN, SHRT_MAX);
 	}
 
-	if (!battle_config.weapon_defense_type && status->def > battle_config.max_def)
+	if (!battle_config.weapon_defense_type && status->def2 > battle_config.max_def)
 	{
-		status->def2 += battle_config.over_def_bonus*(status->def -battle_config.max_def);
-		status->def = (signed short)battle_config.max_def;
+		status->def += battle_config.over_def_bonus*(status->def2 -battle_config.max_def);
+		status->def2 = (signed short)battle_config.max_def;
 	}
 
 // ----- EQUIPMENT-MDEF CALCULATION -----
 
 	// Apply relative modifiers from equipment
-	if(sd->mdef_rate < 0)
-		sd->mdef_rate = 0;
-	if(sd->mdef_rate != 100) {
-		i =  status->mdef * sd->mdef_rate/100;
-		status->mdef = cap_value(i, SHRT_MIN, SHRT_MAX);
+	if(sd->mdef2_rate < 0)
+		sd->mdef2_rate = 0;
+	if(sd->mdef2_rate != 100) {
+		i =  status->mdef2 * sd->mdef2_rate/100;
+		status->mdef2 = cap_value(i, SHRT_MIN, SHRT_MAX);
 	}
 
-	if (!battle_config.magic_defense_type && status->mdef > battle_config.max_def)
+	if (!battle_config.magic_defense_type && status->mdef2 > battle_config.max_def)
 	{
-		status->mdef2 += battle_config.over_def_bonus*(status->mdef -battle_config.max_def);
-		status->mdef = (signed short)battle_config.max_def;
+		status->mdef += battle_config.over_def_bonus*(status->mdef2 -battle_config.max_def);
+		status->mdef2 = (signed short)battle_config.max_def;
 	}
 
 // ----- ASPD CALCULATION -----
@@ -2672,10 +2670,10 @@ int status_calc_homunculus_(struct homun_data *hd, bool first)
 		status->sp = 1;
 	}
 	skill = hom->level/10 + status->vit/5;
-	status->def = cap_value(skill, 0, 99);
+	status->def2 = cap_value(skill, 0, 300);
 
 	skill = hom->level/10 + status->int_/5;
-	status->mdef = cap_value(skill, 0, 99);
+	status->mdef2 = cap_value(skill, 0, 200);
 
 	status->max_hp = hom->max_hp ;
 	status->max_sp = hom->max_sp ;
@@ -3034,32 +3032,33 @@ void status_calc_bl_main(struct block_list *bl, enum scb_flag flag)
 
 	if(flag&SCB_DEF)
 	{
-		status->def = status_calc_def(bl, sc, b_status->def);
-
-		if( bl->type&BL_HOM )
-			status->def += (status->vit/5 - b_status->vit/5);
+		if (status->vit == b_status->vit)
+			status->def = status_calc_def(bl, sc, b_status->def);
+		else
+			status->def = status_calc_def(bl, sc, b_status->def + (status->vit - b_status->vit));
 	}
 
-	if(flag&SCB_DEF2) {
-		if (status->vit == b_status->vit)
-			status->def2 = status_calc_def2(bl, sc, b_status->def2);
-		else
-			status->def2 = status_calc_def2(bl, sc, b_status->def2 + (status->vit - b_status->vit));
+	if(flag&SCB_DEF2)
+	{
+		status->def2 = status_calc_def2(bl, sc, b_status->def2);
+
+		if( bl->type&BL_HOM )
+			status->def2 += (status->vit/5 - b_status->vit/5);
 	}
 
 	if(flag&SCB_MDEF)
 	{
-		status->mdef = status_calc_mdef(bl, sc, b_status->mdef);
-
-		if( bl->type&BL_HOM )
-			status->mdef += (status->int_/5 - b_status->int_/5);
+		if (status->int_ == b_status->int_ && status->vit == b_status->vit)
+			status->mdef = status_calc_mdef(bl, sc, b_status->mdef);
+		else
+			status->mdef = status_calc_mdef(bl, sc, b_status->mdef +(status->int_ - b_status->int_) +((status->vit - b_status->vit)>>1));
 	}
 
 	if(flag&SCB_MDEF2) {
-		if (status->int_ == b_status->int_ && status->vit == b_status->vit)
-			status->mdef2 = status_calc_mdef2(bl, sc, b_status->mdef2);
-		else
-			status->mdef2 = status_calc_mdef2(bl, sc, b_status->mdef2 +(status->int_ - b_status->int_) +((status->vit - b_status->vit)>>1));
+		status->mdef2 = status_calc_mdef2(bl, sc, b_status->mdef2);
+
+		if( bl->type&BL_HOM )
+			status->mdef2 += (status->int_/5 - b_status->int_/5);
 	}
 
 	if(flag&SCB_SPEED) {
@@ -3174,7 +3173,7 @@ void status_calc_bl_main(struct block_list *bl, enum scb_flag flag)
 		status->matk_max = 0;
 
 		if( bl->type&BL_PC )
-			status->matk_max = ((TBL_PC*)bl)->matk_add;
+			status->matk_max = ((TBL_PC*)bl)->matk_add + status->rhw.atk2 + status->lhw.atk2;
 
 		if( bl->type&BL_PC && sd->matk_rate != 100 )
 		{

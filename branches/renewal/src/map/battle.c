@@ -827,39 +827,34 @@ static int battle_calc_base_damage(struct status_data *status, struct weapon_atk
 	short type;
 	int randatk=0, damage=1, modf=100, str=status->str, atkmin, atkmax, r;
 	if (!sd){
-		if(flag&4)
-		{
+		if(flag&4){
 			atkmin = status->matk_min;
 			atkmax = status->matk_max;
-		} else {
+		}else{
 			atkmin = wa->atk;
 			atkmax = wa->atk2;
 		}
-		if (atkmin > atkmax)
-			atkmin = atkmax;
-		damage += atkmin + (rand()%(atkmax-atkmin));
+		if(atkmin > atkmax)
+			damage += atkmax;
+		else
+			damage += atkmin + rand()%(atkmax-atkmin);
 	}else{
-		type = (wa == &status->lhw)?EQI_HAND_L:EQI_HAND_R;
+		type = (wa == &status->rhw) ? EQI_HAND_R:EQI_HAND_L;
 		modf = (!(sd->special_state.no_sizefix) ? (type==EQI_HAND_L ? sd->left_weapon.atkmods[t_size]:sd->right_weapon.atkmods[t_size]):100);
-		switch(sd->status.weapon){
-			case W_BOW:
-			case W_MUSICAL:
-			case W_WHIP:
-			case W_REVOLVER:
-			case W_RIFLE:
-			case W_GATLING:
-			case W_SHOTGUN:
-			case W_GRENADE:
-				str = status->dex;
+		if(flag&2){
+			str = status->dex;
+			if(sd->arrow_atk) 
+				damage += ((flag&1)?sd->arrow_atk:rand()%sd->arrow_atk); 
 		}
-		if(sd->equip_index[type]>=0)
-			randatk = rand()%(wa->atk*(sd->inventory_data[sd->equip_index[type]]->wlv)*5/100) * (rand()%2 ? 1:-1);
+		if(sd->status.weapon)
+			randatk = wa->atk*sd->inventory_data[sd->equip_index[type]]->wlv*5/100;
+		if(randatk)
+			randatk = rand()%randatk * (rand()%2 ? 1:-1);
 		damage +=(int)((status->batk * 2) +
-			((wa->atk * ((float)(str + 200)/200) +	wa->atk2) +
+			((wa->atk * ((float)(str + 200)/200) +	wa->atk2) + (!sd->status.weapon ? 0:
 			(sd->status.inventory[sd->equip_index[type]].refine + (sd->status.inventory[sd->equip_index[type]].refine+sd->inventory_data[sd->equip_index[type]]->wlv)*
 			((r=sd->status.inventory[sd->equip_index[type]].refine - status_getrefinebonus(sd->inventory_data[sd->equip_index[type]]->wlv,2))>0 ? r:0) )+
-			randatk)* modf / 100);
-
+			(randatk*(rand()%2 ? 1:-1)))* modf / 100));
 		//rodatazone says that Overrefine bonuses are part of baseatk
 		//Here we also apply the weapon_atk_rate bonus so it is correctly applied on left/right hands.
 		if (type == EQI_HAND_L) {
@@ -871,11 +866,6 @@ static int battle_calc_base_damage(struct status_data *status, struct weapon_atk
 	}
 	if(flag&1)
 		damage += damage * 40 / 100;
-
-	//Finally, add baseatk
-	if(flag&4)
-		damage += status->matk_min;
-
 	return damage;
 }
 
@@ -2548,23 +2538,12 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 			default:
 			{
 				int min_damage, max_damage;
-
-				min_damage =
-				max_damage = 0;
-
-				min_damage = (sstatus->matk_max * 2) + (sstatus->matk_min + sstatus->matk_min/2);
-				min_damage *= 223/(223 + 2 * sstatus->mdef2);
-				min_damage -= sstatus->mdef;
-
-				max_damage = (sstatus->matk_max + (sstatus->matk_max * 2) / 10) * 2;
-				max_damage += (sstatus->matk_min + sstatus->matk_min/2);
-				max_damage *= 223/(223 + 2 * sstatus->mdef2);
-				max_damage -= sstatus->mdef;
-
-				if (max_damage > min_damage) {
+				min_damage = sstatus->matk_max*2 + 3*sstatus->matk_min/2;
+				max_damage = ( sstatus->matk_max+(sd->matk_add*(sd->status.weapon ? sd->inventory_data[sd->equip_index[EQI_HAND_R]]->wlv:0))/10 )*2 + 3*sstatus->matk_min/2;
+				if(min_damage >= max_damage){
+					MATK_ADD(max_damage);
+				}else{
 					MATK_ADD(min_damage+rand()%(1+max_damage-min_damage));
-				} else {
-					MATK_ADD(min_damage);
 				}
 
 
@@ -2686,26 +2665,26 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 			))
 				flag.imdef = 1;
 		}
-
 		if(!flag.imdef){
+			int mdef_rate;
 			short mdef = tstatus->mdef;
-			int mdef2= tstatus->mdef2;
+			short mdef2 = tstatus->mdef2;
+
 			if(sd) {
 				i = sd->ignore_mdef[is_boss(target)?RC_BOSS:RC_NONBOSS];
 				i+= sd->ignore_mdef[tstatus->race];
 				if (i)
 				{
 					if (i > 100) i = 100;
-					mdef -= mdef * i/100;
-					//mdef2-= mdef2* i/100;
+					mdef2 -= mdef2 * i/100;
 				}
 			}
+			mdef_rate = (int)( ((float)111.5/ (111.5+mdef2) )*100);
 			if(battle_config.magic_defense_type)
-				ad.damage = ad.damage - mdef*battle_config.magic_defense_type - mdef2;
+				ad.damage = ad.damage - mdef_rate*battle_config.magic_defense_type - mdef;
 			else
-				ad.damage = ad.damage * (100-mdef)/100 - mdef2;
+				ad.damage = ad.damage * mdef_rate / 100 - mdef;
 		}
-
 		if (skill_num == NPC_EARTHQUAKE)
 		{	//Adds atk2 to the damage, should be influenced by number of hits and skill-ratio, but not mdef reductions. [Skotlex]
 			//Also divide the extra bonuses from atk2 based on the number in range [Kevin]

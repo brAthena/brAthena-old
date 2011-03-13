@@ -3470,7 +3470,7 @@ static bool mob_parse_dbrow(char** str)
 	status->rhw.atk = atoi(str[10]);
 	status->rhw.atk2 = atoi(str[11]);
 	status->def2 = atoi(str[12]);
-	status->mdef = atoi(str[13]);
+	status->mdef2 = atoi(str[13]);
 	status->str = atoi(str[14]);
 	status->agi = atoi(str[15]);
 	status->vit = atoi(str[16]);
