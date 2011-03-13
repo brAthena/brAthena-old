@@ -8,9 +8,24 @@
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
+	r0289 - 13/03/2011 [cleyton]
+	*Corrigidas as mensagens do arquivo msg_athena.txt
+	-Linhas 541 e 542.
+	*Corrigido NPC flavius_entrada
+	-Localizações nos npcs estavam trocadas.
+	*Modificação de nomes de NPCs Campais
+	-Modificados nomes dos npcs conforme sugestão no Track 26.
+	-Organização interna dos scripts Batalhas campais
+	*Warps desabilitados
+	-Referente aos mapas de ve_fild05 pay_fild05 e pay_fild11 que não existem mais.
+	*Mapa habilitado
+	-Conforme informações do renewal o mapa ve_fild01 ainda existe. 
+	-Somente ve_fild05 está desabilitado nas proximidades de Veins.
+
+	
 	r0285 - 12/03/2011 [cleyton]
 	*Corrigidas falas do npc funcoes_kafra
-	-Erro no apontado no report #27 no Tracker	
+	-Erro apontado no report #27 do Tracker	
 
 
 	r0283 - 11/03/2011 [insidemybrain]

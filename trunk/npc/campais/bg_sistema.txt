@@ -29,10 +29,7 @@
 
 // Gerais e Acessores
 //============================================================
-bat_room,161,158,3	script	Acessor do Gen. Guillaume#01	419,{ end; }
-bat_room,161,160,3	script	Acessor do Gen. Guillaume#03	419,{ end; }
-
-bat_room,160,141,3	script	Princípe Croix	416,{
+bat_room,160,141,3	script	Príncipe Croix	416,{
 	cutin "bat_crua1",2;
 	mes "[Príncipe Croix]";
 	mes "Sábio aventureiro, por que você não nos empresta seu poder e juntos vamos rumo à vitória?";
@@ -96,9 +93,11 @@ bat_room,160,141,3	script	Princípe Croix	416,{
 	end;
 }
 
-bat_room,161,140,3	script	Acessor do Príncipe Croix#01	415,{ end; }
-bat_room,161,142,3	script	Acessor do Príncipe Croix#02	415,{ end; }
+bat_room,161,140,3	script	Assistente do Principe#01	415,{ end; }
+bat_room,161,142,3	script	Assistente do principe#02	415,{ end; }
 
+
+//==========================================================================================================
 bat_room,160,159,3	script	General Guillaume	420,{
 	cutin "bat_kiyom2",2;
 	mes "[General Guillaume]";
@@ -176,6 +175,11 @@ bat_room,160,159,3	script	General Guillaume	420,{
 	cutin "bat_kiyom2",255;
 	end;
 }
+
+bat_room,161,158,3	script	Assistente do General#01	419,{ end; }
+bat_room,161,160,3	script	Assistente do General#03	419,{ end; }
+
+
 
 // Bandeiras
 //============================================================
