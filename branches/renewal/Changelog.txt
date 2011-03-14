@@ -8,6 +8,11 @@
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
+	r0298 - 14/03/2011 [cleyton]
+	*Ativados monstros do arquivos scripts_monstros.txt.
+	-Falta traduzir os monstros e ativar alguns no arquivo mob_db.txt.
+	-Monstros do mob_db.txt necessitam de revisão para ver se estão de acordo com o renewal.
+	
 	r0297 - 14/03/2011 [cleyton]
 	*Correção da mensagem do mtod.txt para versão Renewal brAthena. 
 	
