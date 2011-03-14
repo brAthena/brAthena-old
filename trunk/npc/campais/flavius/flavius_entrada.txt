@@ -94,7 +94,7 @@ bat_room,133,178,5	script	Oficial de Flavius#01a	418,{
 	close;
 }
 
-bat_room,133,121,1	script	Oficial de Flavius#01b	414,{
+bat_room,148,178,5	script	Oficial de Flavius#01b	418,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Espere aí um minuto! -";
 		mes "- Atualmente você está -";
@@ -253,7 +253,7 @@ bat_room,151,121,1	script	Cavaleiro Croix#4	413,{
 
 // Oficiais de Flavius - Lado Croix
 //============================================================
-bat_room,148,178,5	script	Oficial de Flavius#02a	418,{
+bat_room,133,121,1	script	Oficial Croix#02a	414,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Espere aí um minuto! -";
 		mes "- Atualmente você está -";
@@ -320,7 +320,7 @@ bat_room,148,178,5	script	Oficial de Flavius#02a	418,{
 	close;
 }
 
-bat_room,148,121,1	script	Oficial de Flavius#02b	414,{
+bat_room,148,121,1	script	Oficial de Croix#02b	414,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Espere aí um minuto! -";
 		mes "- Atualmente você está -";
