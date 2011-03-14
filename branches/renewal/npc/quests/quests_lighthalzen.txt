@@ -18,7 +18,7 @@
 // |--------------------------------------------------------|
 // | Changelog:						    |
 // | 1.0 Script Traduzido [Avassalador]			    |
-/  | 1.1 Correção adicionado comando na linha 3183	    |
+// | 1.1 Correção adicionado comando na linha 3183	    |
 // | - Faltava o comando set friendship,12 conforme script  |
 // | original.					    	    |
 // \________________________________________________________/
