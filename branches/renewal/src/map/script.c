@@ -484,6 +484,14 @@ static void script_reportdata(struct script_data* data)
 	case C_STR:
 	case C_CONSTSTR:// string
 		ShowDebug("Dado: texto valor=\"%s\"\n", data->u.str);
+		if( data->u.str )
+		{
+			ShowDebug("Dado: texto valor=\"%s\"\n", data->u.str);
+		}
+		else
+		{
+			ShowDebug("Dado: texto valor=NULL\n");
+		}
 		break;
 	case C_NAME:// reference
 		if( reference_tovariable(data) )
@@ -5688,7 +5696,7 @@ BUILDIN_FUNC(getitem2)
 		if (item_data == NULL)
 			return -1;
 		if(item_data->type==IT_WEAPON || item_data->type==IT_ARMOR){
-			if(ref > 10) ref = 10;
+			if(ref > MAX_REFINE) ref = MAX_REFINE;
 		}
 		else if(item_data->type==IT_PETEGG) {
 			iden = 1;
@@ -14834,6 +14842,38 @@ BUILDIN_FUNC(buyingstore)
 	return 0;
 }
 
+/// Invokes search store info window
+/// searchstores <uses>,<effect>;
+BUILDIN_FUNC(searchstores)
+{
+	unsigned short effect;
+	unsigned int uses;
+	struct map_session_data* sd;
+
+	if( ( sd = script_rid2sd(st) ) == NULL )
+	{
+		return 0;
+	}
+
+	uses   = script_getnum(st,2);
+	effect = script_getnum(st,3);
+
+	if( !uses )
+	{
+		ShowError("buildin_searchstores: Amount of uses cannot be zero.\n");
+		return 1;
+	}
+
+	if( effect > 1 )
+	{
+		ShowError("buildin_searchstores: Invalid effect id %hu, specified.\n", effect);
+		return 1;
+	}
+
+	searchstore_open(sd, uses, effect);
+	return 0;
+}
+
 // declarations that were supposed to be exported from npc_chat.c
 #ifdef PCRE_SUPPORT
 BUILDIN_FUNC(defpattern);
@@ -15196,6 +15236,7 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(progressbar,"si"),
 	BUILDIN_DEF(pushpc,"ii"),
 	BUILDIN_DEF(buyingstore,"i"),
+	BUILDIN_DEF(searchstores,"ii"),
 	// WoE SE
 	BUILDIN_DEF(agitstart2,""),
 	BUILDIN_DEF(agitend2,""),

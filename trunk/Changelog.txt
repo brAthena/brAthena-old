@@ -8,46 +8,47 @@
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
+
 	r0303 - 14/03/2011 [cleyton]
-	*Correções efetuadas nos diálogos
-	-npc/cidades/payon.txt
+	* Correções efetuadas nos diálogos
+	- npc/cidades/payon.txt
 	
 	r0301 - 14/03/2011 [cleyton]
-	*Envidada tradução
-	-npc/cidades/payon.txt
-	*Correção do comando set friendship,12;
-	-npc/quests/quests_lighthalzen.txt
+	* Envidada tradução
+	- npc/cidades/payon.txt
+	* Correção do comando set friendship,12;
+	- npc/quests/quests_lighthalzen.txt
 
 	r0299 - 14/03/2011 [cleyton]
-	*Correção do cabeçalho da quest_lighthouzen.txt
+	* Correção do cabeçalho da quest_lighthouzen.txt
 	
 	r0294 - 13/03/2011 [cleyton]
-	*Correção dos cabeçalhos de NPC de revisões passadas
-	-Revisões r0291, r0289 e 0285.
+	* Correção dos cabeçalhos de NPC de revisões passadas
+	- Revisões r0291, r0289 e 0285.
 
 	r0291 - 13/03/2011 [cleyton]
-	*Correção do script quests_lighthouzen.txt 
-	-Faltava o comando set friendship,12 na linha 3183.
-	-Isso impossibilitava o término da quest da Amizade (friendship).
+	* Correção do script quests_lighthouzen.txt 
+	- Faltava o comando set friendship,12 na linha 3183.
+	- Isso impossibilitava o término da quest da Amizade (friendship).
 
 	r0289 - 13/03/2011 [cleyton]
-	*Corrigidas as mensagens do arquivo msg_athena.txt
-	-Linhas 541 e 542.
-	*Corrigido NPC flavius_entrada 
-	-Localizações nos npcs estavam trocadas conforme Track #25.
-	*Modificação de nomes de NPCs Campais
-	-Modificados nomes dos npcs conforme sugestão no Track #26.
-	-Organização interna dos scripts Batalhas campais
-	*Warps desabilitados
-	-Referente aos mapas de ve_fild05 pay_fild05 e pay_fild11 que não existem mais.
-	*Mapa habilitado
-	-Conforme informações do renewal o mapa ve_fild01 ainda existe. 
-	-Somente ve_fild05 está desabilitado nas proximidades de Veins.
+	* Corrigidas as mensagens do arquivo msg_athena.txt
+	- Linhas 541 e 542.
+	* Corrigido NPC flavius_entrada 
+	- Localizações nos npcs estavam trocadas conforme Track #25.
+	* Modificação de nomes de NPCs Campais
+	- Modificados nomes dos npcs conforme sugestão no Track #26.
+	- Organização interna dos scripts Batalhas campais
+	* Warps desabilitados
+	- Referente aos mapas de ve_fild05 pay_fild05 e pay_fild11 que não existem mais.
+	* Mapa habilitado
+	- Conforme informações do renewal o mapa ve_fild01 ainda existe. 
+	- Somente ve_fild05 está desabilitado nas proximidades de Veins.
 
 	
 	r0285 - 12/03/2011 [cleyton]
-	*Corrigidas falas do npc funcoes_kafra
-	-Erro apontado no report #27 do Tracker	
+	* Corrigidas falas do npc funcoes_kafra
+	- Erro apontado no report #27 do Tracker	
 
 
 	r0283 - 11/03/2011 [insidemybrain]

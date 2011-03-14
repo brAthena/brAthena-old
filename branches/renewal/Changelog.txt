@@ -8,30 +8,35 @@
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
+
+	
+	r0305 - 14/03/2011 [Protimus]
+	* Atualizada source conforme eAthena 14741.
+	
 	r0304 - 14/03/2011 [cleyton]
-	*Correções efetuadas nos diálogos
-	-npc/cidades/payon.txt
+	* Correções efetuadas nos diálogos
+	- npc/cidades/payon.txt
 	
 	r0302 - 14/03/2011 [cleyton]
-	*Envidada tradução
-	-npc/cidade/cidades/payon.txt
-	*Correção do comando set friendship,12;
-	-npc/quests/quests_lighthalzen.txt	
+	* Envidada tradução
+	- npc/cidade/cidades/payon.txt
+	* Correção do comando set friendship,12;
+	- npc/quests/quests_lighthalzen.txt	
 
 	r0300 - 14/03/2011 [cleyton]
-	Correção do cabeçalho da quest_lighthouzen.txt	
+	* Correção do cabeçalho da quest_lighthouzen.txt	
 
 	r0298 - 14/03/2011 [cleyton]
-	*Ativados monstros do arquivos scripts_monstros.txt.
-	-Falta traduzir os monstros e ativar alguns no arquivo mob_db.txt.
-	-Monstros do mob_db.txt necessitam de revisão para ver se estão de acordo com o renewal.
+	* Ativados monstros do arquivos scripts_monstros.txt.
+	- Falta traduzir os monstros e ativar alguns no arquivo mob_db.txt.
+	- Monstros do mob_db.txt necessitam de revisão para ver se estão de acordo com o renewal.
 	
 	r0297 - 14/03/2011 [cleyton]
-	*Correção da mensagem do mtod.txt para versão Renewal brAthena. 
+	* Correção da mensagem do mtod.txt para versão Renewal brAthena. 
 	
 	r0296 - 14/03/2011 [cleyton]
-	*Correção de erros conforme revisões da versão Trunk do brAthena.
-	-Revisões r0294 r0291, r0289 e 0285.
+	* Correção de erros conforme revisões da versão Trunk do brAthena.
+	- Revisões r0294 r0291, r0289 e 0285.
 
 	r0293 - 13/03/2011 [Protimus]
 	* Correção do sistema de classes (jobs).

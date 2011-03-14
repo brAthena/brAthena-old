@@ -621,6 +621,12 @@ void clif_buyingstore_update_item(struct map_session_data* sd, unsigned short na
 void clif_buyingstore_delete_item(struct map_session_data* sd, short index, unsigned short amount, int price);
 void clif_buyingstore_trade_failed_seller(struct map_session_data* sd, short result, unsigned short nameid);
 
+/// Search Store System
+void clif_search_store_info_ack(struct map_session_data* sd);
+void clif_search_store_info_failed(struct map_session_data* sd, unsigned char reason);
+void clif_open_search_store_info(struct map_session_data* sd);
+void clif_search_store_info_click_ack(struct map_session_data* sd, short x, short y);
+
 void clif_millenniumshield(struct map_session_data *sd, short shields );
 
 #endif /* _CLIF_H_ */

@@ -482,6 +482,10 @@ extern struct Battle_Config
 	int client_sort_storage;
 	int gm_check_minlevel;  // min GM level for /check
 	int feature_buying_store;
+	int feature_search_stores;
+	int searchstore_querydelay;
+	int searchstore_maxresults;
+	int display_party_name;
 
 	// [BattleGround Settings]
 	int bg_update_interval;

@@ -1742,8 +1742,8 @@ ACMD_FUNC(item2)
 			}
 			if (item_data->type == IT_PETARMOR)
 				refine = 0;
-			if (refine > 10)
-				refine = 10;
+			if (refine > MAX_REFINE)
+				refine = MAX_REFINE;
 		} else {
 			identify = 1;
 			refine = attr = 0;
@@ -3081,7 +3081,7 @@ ACMD_FUNC(param)
 	status[4] = &sd->status.dex;
 	status[5] = &sd->status.luk;
 
-	if(value < 0 && *status[i] < -value)
+	if(value < 0 && *status[i] <= -value)
 	{
 		new_value = 1;
 	}
