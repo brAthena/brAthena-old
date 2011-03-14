@@ -8,8 +8,14 @@
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
+	r0301 - 14/03/2011 [cleyton]
+	*Envidada tradução
+	-npc/cidade/cidades/payon.txt
+	*Correção do comando set friendship,12;
+	-npc/quests/quests_lighthalzen.txt
+
 	r0299 - 14/03/2011 [cleyton]
-	Correção do cabeçalho da quest_lighthouzen.txt
+	*Correção do cabeçalho da quest_lighthouzen.txt
 	
 	r0294 - 13/03/2011 [cleyton]
 	*Correção dos cabeçalhos de NPC de revisões passadas
