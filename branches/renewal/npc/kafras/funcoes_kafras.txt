@@ -24,7 +24,8 @@
 // |                                                        |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
-// | 1.0 Script Traduzido [cleyton]                         |
+// | 1.0 Script Traduzido [cleyton]			    |
+// | 1.1 Correções conforme Track #27 [cleyton]             |
 // | Anotações:                                             |
 // | - Corrigidas as tabulações no cabeçalho.               |
 // \________________________________________________________/
@@ -248,12 +249,12 @@ function	script	F_KafStor	{
 		if (getarg(2) == 1) {
 			mes "^666666S-D-ddeessssculllpppe,";
 			mes "v-vo-voooccêe éee umm";
-			mes "Nooviiice... P-Prreeecisa teerrr";
+			mes "Appreenddizz... P-Prreeecisa teerrr";
 			mes "nívveelll d-de hh-habibilidaddeee level 6...^000000";
 			return;
 		}
 		mes "Lamento, mas você";
-		mes "precisa ser um Novice com ";
+		mes "precisa ser um Aprendiz com ";
 		mes "nível mínimo de habilidade";
 		mes "level 6 para usar o armazém.";
 		return;
@@ -369,7 +370,6 @@ function	script	F_KafTele	{
 		}
 		if (@wrpD$[@num] == "Alberta") warp "alberta", 117, 56;
 		if (@wrpD$[@num] == "Al De Baran") warp "aldebaran",168,112;
-		if (@wrpD$[@num] == "Aldebaran") warp "aldebaran",168,112;
 		if (@wrpD$[@num] == "Comodo") warp "comodo", 209, 143;
 		if (@wrpD$[@num] == "Izlude") warp "izlude", 91, 105;
 		if (@wrpD$[@num] == "Geffen") warp "geffen", 120, 39;
@@ -393,9 +393,9 @@ function	script	F_KafCart	{
 		mes "[Funcionária Kafra]";
 		mes "Eu lamento, mas";
 		mes "o serviço de aluguel de carrinho de mão";
-		mes "está disponível somente para Merchants,";
-		mes "Blacksmiths, MasterSmiths,";
-		mes "Alchemists e Creators.";
+		mes "está disponível somente para Mercadores,";
+		mes "Ferreiros, Mestre Ferreiros,";
+		mes "Alquimistas e Criadores.";
 		return 1;
 	}
 	// Make sure the invoking character does not have a cart already
@@ -415,7 +415,7 @@ function	script	F_KafCart	{
 	else {
 		mes "[Funcionária Kafra]";
 		mes "O aluguel do carrinho de mão";
-		mes "custará"+getarg(1)+"zenys.";
+		mes "custará "+getarg(1)+" zenys.";
 		mes "Você deseja alugar um carrinho de mão?";
 		next;
 		menu "Alugar um carrinho de mão",-, "Cancelar",M_End;
@@ -424,7 +424,7 @@ function	script	F_KafCart	{
 				mes "Lamento, mas você";
 				mes "não possui ";
 				mes "zenys suficientes para alugar um carrinho de mão.";
-				mes "O aluguel custa"+getarg(1)+"zenys.";
+				mes "O aluguel custa "+getarg(1)+" zenys.";
 				return 1;
 			}
 			set Zeny,Zeny-getarg(1);
@@ -607,7 +607,7 @@ M_CLEAR:
 	if(@code == #kafra_code) {
 		set #kafra_code,0;
 		mes "Você teve êxito ao colocar senha em seu armazém.";
-		mes "Muito obrigado por usar."+getarg(1)+".";
+		mes "Muito obrigado por usar os "+getarg(1)+".";
 		emotion e_thx;
 	} else {
 		mes "Senha errada! Não devolverei seus 1000 zenys.";
