@@ -28,4 +28,4 @@
 // adicione abaixo suas notícias ou saudações.
 // O limite de linhas é de 128, se você precisar de mais linhas precisará modificar
 // o MOTD_LINE_SIZE na pasta: source/map no arquivo pc.c e recompilar o emulador.
-Bem-vindo à versão SVN Renewal do brAthena Emulador! Favor reportar bugs no fórum: www.brathena.org!
+Bem-vindo à versão SVN Renewal brAthena Emulador! Favor reportar bugs no fórum: http://www.brathena.org/forum!
