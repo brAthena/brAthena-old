@@ -84,7 +84,7 @@ int pc_class2idx(int class_) {
 
 int pc_isGM(struct map_session_data* sd)
 {
-	return sd->gmlevel;
+	return (sd) ? sd->gmlevel : 0;
 }
 
 static int pc_invincible_timer(int tid, unsigned int tick, int id, intptr data)
@@ -4593,6 +4593,17 @@ int pc_jobid2mapid(unsigned short b_class)
 		case JOB_SUMMER:
 			class_ = MAPID_SUMMER;
 			break;
+		case JOB_GANGSI:
+			class_ |= MAPID_GANGSI;
+			break;
+		case JOB_DEATH_KNIGHT:
+			class_ |= JOBL_2_1;
+			class_ |= MAPID_GANGSI;
+			break;
+		case JOB_DARK_COLLECTOR:
+			class_ |= JOBL_2_2;
+			class_ |= MAPID_GANGSI;
+			break;
 		default:
 			return -1;
 	}
@@ -4625,6 +4636,7 @@ int pc_mapid2jobid(unsigned short class_, int sex)
 		case MAPID_BLACKSMITH:      return JOB_BLACKSMITH;
 		case MAPID_ASSASSIN:        return JOB_ASSASSIN;
 		case MAPID_STAR_GLADIATOR:  return JOB_STAR_GLADIATOR;
+		case MAPID_DEATH_KNIGHT:    return JOB_DEATH_KNIGHT;
 	//2_2 classes
 		case MAPID_CRUSADER:        return JOB_CRUSADER;
 		case MAPID_SAGE:            return JOB_SAGE;
@@ -4633,6 +4645,7 @@ int pc_mapid2jobid(unsigned short class_, int sex)
 		case MAPID_ALCHEMIST:       return JOB_ALCHEMIST;
 		case MAPID_ROGUE:           return JOB_ROGUE;
 		case MAPID_SOUL_LINKER:     return JOB_SOUL_LINKER;
+		case MAPID_DARK_COLLECTOR:  return JOB_DARK_COLLECTOR;
 	//1-1: advanced
 		case MAPID_NOVICE_HIGH:     return JOB_NOVICE_HIGH;
 		case MAPID_SWORDMAN_HIGH:   return JOB_SWORDMAN_HIGH;
@@ -4837,6 +4850,12 @@ char* job_name(int class_)
 		return msg_txt(619);
 	case JOB_NINJA:
 		return msg_txt(620);
+		
+	case JOB_GANGSI:
+	case JOB_DEATH_KNIGHT:
+	case JOB_DARK_COLLECTOR:
+		return msg_txt(622 - JOB_GANGSI+class_);
+		
 	case JOB_RUNE_KNIGHT:
 	case JOB_WARLOCK:
 	case JOB_RANGER:

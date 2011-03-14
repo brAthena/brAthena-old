@@ -1321,6 +1321,11 @@ ACMD_FUNC(jobchange)
 			{ "taekwon",			4046 },
 			{ "mestre taekwon",		4047 },
 			{ "espiritualista",		4049 },
+			{ "gangsi",				4050 },
+			{ "bongun",				4050 },
+			{ "munak",				4050 },
+			{ "death knight",		4051 },
+			{ "dark collector",		4052 },
 			{ "cavaleiro rúnico",	4054 },
 			{ "arcano",				4055 },
 			{ "sentinela",			4056 },
@@ -1378,6 +1383,8 @@ ACMD_FUNC(jobchange)
 			clif_displaymessage(fd, "----- Classes Expandidas -----");
 			clif_displaymessage(fd, "23 Super Aprendiz            24 Justiceiro                 25 Ninja           4046 Taekwon");
 			clif_displaymessage(fd, "4047 Mestre Taekwon          4049 Espiritualista");
+			clif_displaymessage(fd, "4047 Mestre Taekwon		  4049 Espiritualista    		4050 Gangsi         4051 Death Knight");
+			clif_displaymessage(fd, "4052 Dark Collector 		  4090 Enhanced Super Novice  	4191 Super Aprendiz Expandido");
 			clif_displaymessage(fd, "---- Classes Bebê ----");
 			clif_displaymessage(fd, "4023 Bebê Aprendiz           4024 Bebê Espadachim          4025 Bebê Mago      4026 Bebê Arqueiro");
 			clif_displaymessage(fd, "4027 Bebê Noviço             4028 Bebê Mercador            4029 Bebê Gatuno    4030 Bebê Cavaleiro");
@@ -1405,13 +1412,14 @@ ACMD_FUNC(jobchange)
 		}
 	}
 
-	if (job == 13 || job == 21 || job == 22 || job == 26 || job == 27
-		|| job == 4014 || job == 4022 || job == 4036 || job == 4044 || job == 4048
-		|| job == 4080 || job == 4081 || job == 4082 || job == 4083 || job == 4084
-		|| job == 4085 || job == 4086 || job == 4087
-		|| job == 4109 || job == 4110 || job == 4111 || job == 4112
-	) // Deny direct transformation into dummy jobs
-		return 0;
+	switch( job )
+	{
+ 		case   13: case   21: case 4014: case 4022: case 4036:
+		case 4044: case 4080: case 4081: case 4082: case 4083:
+		case 4084: case 4085: case 4086: case 4087: case 4109:
+		case 4110: case 4111: case 4112:
+			return 0; // Deny direct transformation into dummy jobs
+	}
 
 	if (pcdb_checkid(job))
 	{

@@ -9,6 +9,13 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0293 - 13/03/2011 [Protimus]
+	* Correção do sistema de classes (jobs).
+	- Corrigido erros na leitura das IDs de classes fantasmas que estavam sendo lidas, como: 4053 e outras.
+	- Pequena mudanças nos ifs para cases em checagens de jobs através do comando @job.
+	- Mudanças para checagem de jobs e leveis de GM na utilização.
+	OBS: Todos os erros que eram apontados no servidor de mapas (map-server) foram solucionados.
+
 	r0292 - 13/03/2011 [Protimus]
 	* Correções para o skill_unit.
 	- Alguns campos foram desabilitados temporáriamente por ainda não terem sido criados parâmetros.
