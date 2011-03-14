@@ -18,8 +18,9 @@
 // |--------------------------------------------------------|
 // | Changelog:						    |
 // | 1.0 Script Traduzido [Lord]                            |
-// | 1.1 Script Revisado [insidemybrain]                    |
-// | - Anotações					    |
+// | 1.1 Script Revisado [insidemybrain]		    |
+// | 1.2 Portais desabilitados ve_fild05 [cleyton]	    |
+// | - ve_fild05 não existe mais conforme Renovação	    |
 // \________________________________________________________/
 
 ve_fild01,366,267,0	warp	ve_fild1-1	1,1,ve_fild02,36,263

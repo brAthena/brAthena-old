@@ -19,7 +19,8 @@
 // | Changelog:						    |
 // | 1.0 Script Traduzido [Lord]                            |
 // | 1.1 Script Revisado [insidemybrain]                    |
-// | - Anotações					    |
+// | 1.2 Portais desabilitados  [cleyton]	    	    |
+// | -pay_fild05 e pay_fild11 não existem conforme Renovação|
 // \________________________________________________________/
 
 pay_fild01,13,152,0	warp	payf001	2,7,moc_fild03,299,170	
