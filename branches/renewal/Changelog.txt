@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0306 - 15/03/2011 [Protimus]
+	* Atualizados npcs, conf e db conforme eAthena r14741.
+	- Os spawns de mobs não foram atualizados, não se sabe se os do eAthena estão oficiais e os do brAthena estão
+	conforme o aegis. Comuniquei ao Kisuka e iremos ver e fazer os spawns juntos se necessário.
+	- As revisão do eAthena que os spawns não foram atualizados é a r14738.
+	- Os npcs das classes 1-1 foram reformulados com os novos parâmetros do renewal, portanto é necessário retraduzí-los nessa branche.
 	
 	r0305 - 14/03/2011 [Protimus]
 	* Atualizada source conforme eAthena 14741.
