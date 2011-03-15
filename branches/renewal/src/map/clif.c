@@ -10286,6 +10286,7 @@ void clif_parse_ItemIdentify(int fd,struct map_session_data *sd)
 		return;
 	if( idx == -1 )
 	{// cancel pressed
+		sd->menuskill_val = sd->menuskill_id = 0;
 		return;
 	}
 	skill_identify(sd,idx-2);

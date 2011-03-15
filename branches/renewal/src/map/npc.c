@@ -813,7 +813,7 @@ int npc_touchnext_areanpc(struct map_session_data* sd, bool leavemap)
 
 		nd->touching_id = sd->touching_id = 0;
 		snprintf(name, ARRAYLENGTH(name), "%s::%s", nd->exname, script_config.ontouch_name);
-		map_forcountinarea(npc_touch_areanpc_sub,nd->bl.m,nd->bl.m - xs,nd->bl.y - ys,nd->bl.x + xs,nd->bl.y + ys,1,BL_PC,sd->bl.id,nd->bl.id,name);
+		map_forcountinarea(npc_touch_areanpc_sub,nd->bl.m,nd->bl.x - xs,nd->bl.y - ys,nd->bl.x + xs,nd->bl.y + ys,1,BL_PC,sd->bl.id,nd->bl.id,name);
 	}
 	return 0;
 }
@@ -902,7 +902,7 @@ int npc_touch_areanpc2(struct mob_data *md)
 		switch( map[m].npc[i]->subtype )
 		{
 			case WARP:
-				if( !battle_config.mob_warp&1 )
+				if( !( battle_config.mob_warp&1 ) )
 					continue;
 				xs = map[m].npc[i]->u.warp.xs;
 				ys = map[m].npc[i]->u.warp.ys;
