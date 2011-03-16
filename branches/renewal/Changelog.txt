@@ -8,7 +8,10 @@
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
-
+	r0309 - 16/03/2011 [cleyton]
+	* Deletadas linhas duplicadas conforme track #35.
+	- Arquivo conf/battle/gm.txt
+	
 	r0307 - 15/03/2011 [Protimus]
 	* Atualizado totalmente conforme eAthena r14746.
 
