@@ -17,23 +17,29 @@
 // |--------------------------------------------------------|
 // | Estrutura do Banco de Dados:                           |
 // | ID do item, ID da sprite                               |
-// | Replaces an item client-side while keeping them        |
-// | separate server-side.                                  |
-// | Think of it as a way to disguise items.                |
-// | If 0 is used then item will be disabled.               |
+// |--------------------------------------------------------|
+// | Explicação:                                            |
+// | Substitui um item do client-side mantendo ele          |
+// | separado no server-side.                               |
+// | Utilizado para troca a aparencia de um item.           |
+// | Se for usado 0 o item será desativado.                 |
 // \________________________________________________________/
-
-2240,2241 //Beard - Grampa Beard
-
-//Treasure Hunters Quest Items
-//use these aliases if your game client doesn't support them normally
+//==========================================================
+// Barba - Bigode Grisalho
+//==========================================================
+2240,2241
+//==========================================================
+// Treasure Hunters Quest Items
+// Use esses ID's se o client-side não dá suporte para eles normalmente.
+//==========================================================
 //7950,7021
 //7951,7042
 //1998,1250
 //1999,1472
-
-//St. Patric's Day Quest (2008) Items
-//Enable if you plan to use the quest.
+//==========================================================
+// St. Patric's Day Quest (2008) Items
+// Habilite se você planeja usar a quest.
+//==========================================================
 //12715,7721
 //7915,673
 //7916,675
