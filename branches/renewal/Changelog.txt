@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0311 - 16/03/2011 [Protimus]
+	* Adicionadas habilidades RK_ABUNDANCE (Regeneração Espiritual) & RK_VITALITYACTIVATION (Vitalidade Rúnica).
+	- Necessárias revisões.
+
 	r0310 - 16/03/2011 [brn0]
 	* Corrigido o problema na experiência de classe.
 	* Corrigido o erro na fórmula de queda de itens.

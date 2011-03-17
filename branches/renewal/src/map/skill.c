@@ -5790,6 +5790,19 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			clif_skill_nodamage(src,bl,skillid,1,1);
 		}
 		break;
+	case RK_VITALITYACTIVATION:
+	case RK_ABUNDANCE:
+		if( sd )
+		{
+			int lv = 1; 
+			if( skillid == RK_VITALITYACTIVATION )
+				lv = 2;
+			if( skillid == RK_ABUNDANCE )
+				lv = 6;
+			if( pc_checkskill(sd,RK_RUNEMASTERY) >= lv )
+				clif_skill_nodamage(src,bl,skillid,skilllv,sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv)));
+		}
+		break;
 	default:
 		ShowWarning("skill_castend_nodamage_id: Habilidade desconhecida usada:%d\n",skillid);
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);

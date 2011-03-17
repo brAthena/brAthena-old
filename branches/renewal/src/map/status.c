@@ -2911,6 +2911,8 @@ void status_calc_regen_rate(struct block_list *bl, struct regen_data *regen, str
 		} else
 			regen->flag&=~sce->val4; //Remove regen as specified by val4
 	}
+	if( sc->data[SC_ISA] )
+		regen->flag &=~RGN_SP;
 }
 
 /// Recalculates parts of an object's battle status according to the specified flags.
@@ -5367,6 +5369,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			case SC_NOCHAT:
 			case SC_CHANGE: //Otherwise your Hp/Sp would get refilled while still within effect of the last invocation.
 			case SC_FEAR:
+			case SC_URUZ:
 				return 0;
 			case SC_COMBO:
 			case SC_DANCING:
@@ -6278,6 +6281,10 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			break;
 		case SC_DEATHBOUND:
 			val2 = 500 + 100 * val1;
+			break;
+		case SC_URUZ:
+			val4 = tick / 10000;
+			tick = 10000;
 			break;
 
 		default:
@@ -7549,6 +7556,14 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr data)
 			return 0;
 		}
 		break;
+	case SC_URUZ:
+		if( --(sce->val4) > 0)
+		{
+			if( !sc->data[SC_BERSERK] )
+				status_heal(bl,0,60,0);
+			sc_timer_next(10000+tick, status_change_timer, bl->id, data);
+		}
+		break;
 	}
 
 	// default for all non-handled control paths is to end the status
@@ -7666,6 +7681,7 @@ int status_change_clear_buffs (struct block_list* bl, int type)
 			case SC_FOOD_INT_CASH:
 			case SC_FOOD_LUK_CASH:
 			case SC_BERKANA:
+			case SC_URUZ:
 				continue;
 
 			//Debuffs that can be removed.
