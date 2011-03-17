@@ -9,14 +9,19 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
-
+	
+	r0314 - 17/03/2011 [Protimus]
+	* Modificações em habilidades:
+	- Bomba Ácida: É influênciada pelo seu ataque físico, mágico e a vitalidade do alvo. 
+	- Choque Rápido: O dano passa a ser influênciado pela: arma, força, destresa e sorte, além do peso do escudo e nível de refinamento.
+	
 	r0313 - 17/03/2011 [Protimus]
 	* Modificações em habilidades:
-	- Perfurar em espiral agora é calculado pelo: peso da arma/20*level da habilidade e seu dano é fixo para alvos grandes ou pequenos.
+	- Perfurar em espiral: Agora é calculado pelo peso da arma/20*level da habilidade e seu dano é fixo para alvos grandes ou pequenos.
 
 	r0312 - 16/03/2011 [Protimus]
 	* Modificações em habilidades:
-	- Perfurar em espiral não calcula o valor de rate para ATK de acordo com 10 pontos de sstatus.
+	- Perfurar em espiral: Não calcula o valor de rate para ATK de acordo com 10 pontos de sstatus.
 
 	r0311 - 16/03/2011 [Protimus]
 	* Adicionadas habilidades RK_ABUNDANCE (Regeneração Espiritual) & RK_VITALITYACTIVATION (Vitalidade Rúnica).

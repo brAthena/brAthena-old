@@ -1327,7 +1327,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				break;
 			case CR_SHIELDBOOMERANG:
 			case PA_SHIELDCHAIN:
-				wd.damage = sstatus->batk;
+				wd.damage = sstatus->batk + sstatus->dex + sstatus->luk;
 				if (sd) {
 					short index = sd->equip_index[EQI_HAND_L];
 
@@ -2892,7 +2892,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		break;
 	case CR_ACIDDEMONSTRATION: // updated the formula based on a Japanese formula found to be exact [Reddozen]
 		if(tstatus->vit+sstatus->int_) //crash fix
-			md.damage = (int)((int64)7*tstatus->vit*sstatus->int_*sstatus->int_ / (10*(tstatus->vit+sstatus->int_)) - (tstatus->def + tstatus->mdef));
+			md.damage = (int)((int64)7*tstatus->vit*sstatus->batk*sstatus->matk_max / (10*(tstatus->vit+sstatus->int_)) - (tstatus->def + tstatus->mdef));
 		else
 			md.damage = 0;
 		if (tsd) md.damage>>=1;
