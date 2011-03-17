@@ -1324,9 +1324,6 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					wd.damage = sstatus->rhw.atk2*8/10;
 
 				ATK_ADDRATE(50*skill_lv);
-				i = sstatus->str/10;
-				i*=i;
-				ATK_ADD(i);
 				switch (tstatus->size) {
 					case 1:
 						ATK_RATE(125);
