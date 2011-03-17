@@ -1319,19 +1319,11 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					if (index >= 0 &&
 						sd->inventory_data[index] &&
 						sd->inventory_data[index]->type == IT_WEAPON)
-						wd.damage = sd->inventory_data[index]->weight*8/100;
+						wd.damage += sd->inventory_data[index]->weight/20*skill_lv;
 				} else
-					wd.damage = sstatus->rhw.atk2*8/10;
+					wd.damage += sstatus->rhw.atk2/20*skill_lv;
 
 				ATK_ADDRATE(50*skill_lv);
-				switch (tstatus->size) {
-					case 1:
-						ATK_RATE(125);
-						break;
-					case 2:
-						ATK_RATE(75);
-						break;
-				}
 				break;
 			case CR_SHIELDBOOMERANG:
 			case PA_SHIELDCHAIN:

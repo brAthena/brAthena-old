@@ -10,6 +10,10 @@
 // ==============================================================================
 
 
+	r0313 - 17/03/2011 [Protimus]
+	* Modificações em habilidades:
+	- Perfurar em espiral agora é calculado pelo: peso da arma/20*level da habilidade e seu dano é fixo para alvos grandes ou pequenos.
+
 	r0312 - 16/03/2011 [Protimus]
 	* Modificações em habilidades:
 	- Perfurar em espiral não calcula o valor de rate para ATK de acordo com 10 pontos de sstatus.
