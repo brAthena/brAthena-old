@@ -2776,6 +2776,7 @@ void map_flags_init(void)
 		map[i].zone      = 0;  // restricted mapflag zone
 		map[i].nocommand = 0;  // nocommand mapflag level
 		map[i].bexp      = 100;  // per map base exp multiplicator
+		map[i].jexp      = 100;  // per map job exp multiplicator
 		memset(map[i].drop_list, 0, sizeof(map[i].drop_list));  // pvp nightmare drop list
 
 		// adjustments

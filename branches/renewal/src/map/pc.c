@@ -5129,12 +5129,10 @@ int pc_gainexp(struct map_session_data *sd, struct block_list *src, unsigned int
 {
 	float nextbp=0, nextjp=0;
 	unsigned int nextb=0, nextj=0;
-	int diferenca=(src ? status_get_lv(src) - sd->status.base_level:0), diferenca_exp = 0;
+	int diferenca=0, diferenca_exp = 0;
 	nullpo_ret(sd);
-
-	if(src)
-		if(status_get_mexp(src))
-			diferenca=0;
+	if(src && !status_get_mexp(src))
+			diferenca = status_get_lv(src) - sd->status.base_level;
 
 	if(sd->bl.prev == NULL || pc_isdead(sd))
 		return 0;

@@ -2186,8 +2186,7 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 	{ // Item Drop
 		struct item_drop_list *dlist = ers_alloc(item_drop_list_ers, struct item_drop_list);
 		struct item_drop *ditem;
-		int drop_rate;
-		int diferenca = md->level - sd->status.base_level;
+		int drop_rate, diferenca;
 		dlist->m = md->bl.m;
 		dlist->x = md->bl.x;
 		dlist->y = md->bl.y;
@@ -2230,16 +2229,18 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 			if (sd && sd->sc.data[SC_ITEMBOOST]) // now rig the drop rate to never be over 90% unless it is originally >90%.
 				drop_rate = max(drop_rate,cap_value((int)(0.5+drop_rate*(sd->sc.data[SC_ITEMBOOST]->val1)/100.),0,9000));
 
-			if(md->db->mexp > 0)
+			if(md->db->mexp > 0 || !sd)
 				diferenca = 0;
+			else
+				diferenca = md->level - sd->status.base_level;
 
 			if(diferenca <= 10 && diferenca >= -5)
 				drop_rate *=100;
-			if(diferenca <= -6 && diferenca >= -9)
+			else if(diferenca <= -6 && diferenca >= -9)
 				drop_rate *=90;
-			if((diferenca <= -10 && diferenca >= -15) || (diferenca >= 11 && diferenca <= 14))
+			else if((diferenca <= -10 && diferenca >= -15) || (diferenca >= 11 && diferenca <= 14))
 				drop_rate *=75;
-			if(diferenca <= -16 || diferenca >= 15)
+			else if(diferenca <= -16 || diferenca >= 15)
 				drop_rate *=50;
 			drop_rate /=100;
 
