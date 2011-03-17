@@ -9,7 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
-	
+	r0315 - 17/03/2011 [Protimus]
+	* Modificações em habilidades: 
+	- Tocaia: Encantar com Veneno Mortal não tem mais efeito sobre ela.
+
 	r0314 - 17/03/2011 [Protimus]
 	* Modificações em habilidades:
 	- Bomba Ácida: É influênciada pelo seu ataque físico, mágico e a vitalidade do alvo. 

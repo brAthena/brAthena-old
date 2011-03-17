@@ -1896,7 +1896,8 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			if(sc->data[SC_EDP] &&
 				skill_num != ASC_METEORASSAULT &&
 				skill_num != AS_SPLASHER &&
-				skill_num != AS_VENOMKNIFE)
+				skill_num != AS_VENOMKNIFE &&
+				skill_num != AS_GRIMTOOTH)
 				ATK_RATE(sc->data[SC_EDP]->val3*100);
 				switch(skill_num){
 					case AS_SONICBLOW:
