@@ -3707,6 +3707,8 @@ static unsigned short status_calc_watk(struct block_list *bl, struct status_chan
 		watk -= watk * sc->data[SC_STRIPWEAPON]->val2/100;
 	if(sc->data[SC_MERC_ATKUP])
 		watk += sc->data[SC_MERC_ATKUP]->val2;
+	if(sc->data[SC_OTHILA])
+		watk += sc->data[SC_OTHILA]->val1;
 
 	return (unsigned short)cap_value(watk,0,USHRT_MAX);
 }
@@ -4174,6 +4176,8 @@ static short status_calc_aspd_rate(struct block_list *bl, struct status_change *
 			aspd_rate += 250;
 		if( sc->data[SC_JOINTBEAT]->val2&BREAK_KNEE )
 			aspd_rate += 100;
+	if( sc->data[SC_OTHILA] && sc->data[SC_OTHILA]->val2 )
+		aspd_rate -= sc->data[SC_OTHILA]->val2;
 	}
 
 	return (short)cap_value(aspd_rate,0,SHRT_MAX);
@@ -5329,6 +5333,9 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 	case SC_FOOD_LUK_CASH:
 		status_change_end(bl, SC_LUKFOOD, INVALID_TIMER);
 		break;
+	case SC_OTHILA:
+		status_change_end(bl,type,-1); 
+		break;
 	}
 
 	//Check for overlapping fails
@@ -6285,6 +6292,12 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_URUZ:
 			val4 = tick / 10000;
 			tick = 10000;
+			break;
+		case SC_OTHILA:
+			val_flag |= 1|2;
+			break;
+		case SC_THURISAZ:
+			val2 = 10;
 			break;
 
 		default:
@@ -7682,6 +7695,8 @@ int status_change_clear_buffs (struct block_list* bl, int type)
 			case SC_FOOD_LUK_CASH:
 			case SC_BERKANA:
 			case SC_URUZ:
+			case SC_ISA:
+			case SC_OTHILA:
 				continue;
 
 			//Debuffs that can be removed.

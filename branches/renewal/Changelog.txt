@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0317 - 18/03/2011 [Protimus]
+	* Adicionada habilidade RK_FIGHTINGSPIRIT (Aura de Combate).
+
 	r0316 - 17/03/2011 [novekovas]
 	* Reorganizações e adiçoes de padrões para melhor organização do database.
 	* Adicionadas traduções para o database.
