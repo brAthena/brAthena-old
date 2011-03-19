@@ -4941,6 +4941,63 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 
 	if( !sc )
 		return 0; //Unable to receive status changes
+		
+	if( sc->data[SC_NAUTHIZ] )
+	{
+		if( type >= SC_COMMON_MIN && type <= SC_COMMON_MAX && type != SC_STUN ) 
+			return 0; 
+		switch( type )
+		{
+		case SC_DEEPSLEEP:
+		case SC_CHAOS:
+		case SC_BURNING:
+		case SC_FEAR:
+		case SC_WHITEIMPRISON:
+		case SC_HALLUCINATION:
+		case SC_QUAGMIRE:
+		case SC_SIGNUMCRUCIS:
+		case SC_DECREASEAGI:
+		case SC_SLOWDOWN:
+		case SC_MINDBREAKER:
+		case SC_WINKCHARM:
+		case SC_ORCISH:
+		case SC_STRIPWEAPON:
+		case SC_STRIPSHIELD:
+		case SC_STRIPARMOR:
+		case SC_STRIPHELM:
+		case SC_BITE:
+		case SC_MAGNETICFIELD:
+		case SC_ADORAMUS:
+		case SC_VACUUM_EXTREME:
+			return 0;
+		}
+	}
+
+	if( sc->data[SC_INSPIRATION] )
+	{
+		if( type >= SC_COMMON_MIN && type <= SC_COMMON_MAX )
+			return 0; 
+		switch( type )
+		{
+			case SC_DEEPSLEEP:
+			case SC_SATURDAYNIGHTFEVER:
+			case SC_PYREXIA:
+			case SC_DEATHHURT:
+			case SC_MAGICMUSHROOM:
+			case SC_VENOMBLEED:
+			case SC_TOXIN:
+			case SC_OBLIVIONCURSE:
+			case SC_LEECHESEND:
+			case SC__ENERVATION:
+			case SC__GROOMY:
+			case SC__LAZINESS:
+			case SC__UNLUCKY:
+			case SC__WEAKNESS:
+			case SC__BODYPAINT:
+			case SC__IGNORANCE:
+				return 0;
+		}
+	}
 
 	if( status_isdead(bl) )
 		return 0;
@@ -7697,6 +7754,9 @@ int status_change_clear_buffs (struct block_list* bl, int type)
 			case SC_URUZ:
 			case SC_ISA:
 			case SC_OTHILA:
+			case SC_THURISAZ:
+			case SC_HAGALAZ:
+			case SC_NAUTHIZ:
 				continue;
 
 			//Debuffs that can be removed.

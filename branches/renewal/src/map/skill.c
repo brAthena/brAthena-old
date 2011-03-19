@@ -5792,6 +5792,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		break;
 	case RK_VITALITYACTIVATION:
 	case RK_ABUNDANCE:
+	case RK_GIANTGROWTH:
 		if( sd )
 		{
 			int lv = 1; 
@@ -5823,6 +5824,26 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 				sc_start2(bl,type,100,7,5,skill_get_time(skillid,skilllv));
 		}
 		clif_skill_nodamage(src,bl,skillid,1,1);
+		break;
+	case RK_REFRESH:
+		if( sd && pc_checkskill(sd,RK_RUNEMASTERY) >= 8 )
+		{
+			int heal = status_get_max_hp(bl) * 25 / 100;
+			clif_skill_nodamage(src,bl,skillid,skilllv,
+				sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv)));
+			status_heal(bl,heal,0,1);
+			status_change_clear_buffs(bl,2);
+		}
+		break;
+	case RK_STONEHARDSKIN:
+		if( sd && pc_checkskill(sd,RK_RUNEMASTERY) >= 4 )
+		{
+			int heal = sstatus->hp / 4; // 25% HP
+			if( status_charge(bl,heal,0) )
+				clif_skill_nodamage(src,bl,skillid,skilllv,sc_start2(bl,type,100,skilllv,heal,skill_get_time(skillid,skilllv)));
+			else
+				clif_skill_fail(sd,skillid,0,0);
+		}
 		break;
 	default:
 		ShowWarning("skill_castend_nodamage_id: Habilidade desconhecida usada:%d\n",skillid);
