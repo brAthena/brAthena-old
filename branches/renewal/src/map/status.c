@@ -2024,6 +2024,7 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 		+ sizeof(sd->speed_rate)
 		+ sizeof(sd->speed_add_rate)
 		+ sizeof(sd->aspd_add)
+		+ sizeof(sd->matk_bonus)
 		+ sizeof(sd->aspd_add_rate)
 		+ sizeof(sd->setitem_hash)
 		+ sizeof(sd->setitem_hash2)
@@ -2385,6 +2386,9 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 	if(sd->matk_rate != 100){
 		status->matk_max = status->matk_max * sd->matk_rate/100;
 	}
+	status->matk_max += sd->matk_bonus;
+	status->matk_min += sd->matk_bonus;
+
 
 	if(sd->hit_rate < 0)
 		sd->hit_rate = 0;
@@ -3182,6 +3186,10 @@ void status_calc_bl_main(struct block_list *bl, enum scb_flag flag)
 			//Bonuses from previous matk
 			status->matk_min = status->matk_min * sd->matk_rate/100;
 		}
+		
+		status->matk_max += sd->matk_bonus;
+		status->matk_min += sd->matk_bonus;
+
 
 		if(sc->data[SC_MAGICPOWER]) { //Store current matk values
 			sc->mp_matk_min = status->matk_min;

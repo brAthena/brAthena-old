@@ -299,6 +299,7 @@ struct map_session_data {
 	int random_attack_increase_add,random_attack_increase_per; // [Valaris]
 	int break_weapon_rate,break_armor_rate;
 	int matk_add;
+	int matk_bonus;
 	int crit_atk_rate;
 	int classchange; // [Valaris]
 	int speed_rate, speed_add_rate, aspd_add, aspd_add_rate;
