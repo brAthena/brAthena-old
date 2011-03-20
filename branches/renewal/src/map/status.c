@@ -1517,7 +1517,7 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int lev
 
 	status->matk_min = status_base_status_matk(status, level);
 	if (bl->type == BL_PC )
-		status->matk_max += ((TBL_PC*)bl)->matk_add;
+		status->matk_max += ((TBL_PC*)bl)->matk_bonus;
 
 	if( bl->type&battle_config.enable_critical )
 		status->cri += 10 + (status->luk*10/3);
@@ -2019,7 +2019,6 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 		+ sizeof(sd->break_weapon_rate)
 		+ sizeof(sd->break_armor_rate)
 		+ sizeof(sd->crit_atk_rate)
-		+ sizeof(sd->matk_add)
 		+ sizeof(sd->classchange)
 		+ sizeof(sd->speed_rate)
 		+ sizeof(sd->speed_add_rate)
@@ -2386,8 +2385,6 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 	if(sd->matk_rate != 100){
 		status->matk_max = status->matk_max * sd->matk_rate/100;
 	}
-	status->matk_max += sd->matk_bonus;
-	status->matk_min += sd->matk_bonus;
 
 
 	if(sd->hit_rate < 0)
@@ -3179,17 +3176,13 @@ void status_calc_bl_main(struct block_list *bl, enum scb_flag flag)
 		status->matk_max = 0;
 
 		if( bl->type&BL_PC )
-			status->matk_max = ((TBL_PC*)bl)->matk_add + status->rhw.atk2 + status->lhw.atk2;
+			status->matk_max = ((TBL_PC*)bl)->matk_bonus + status->rhw.atk2 + status->lhw.atk2;
 
 		if( bl->type&BL_PC && sd->matk_rate != 100 )
 		{
 			//Bonuses from previous matk
 			status->matk_min = status->matk_min * sd->matk_rate/100;
 		}
-		
-		status->matk_max += sd->matk_bonus;
-		status->matk_min += sd->matk_bonus;
-
 
 		if(sc->data[SC_MAGICPOWER]) { //Store current matk values
 			sc->mp_matk_min = status->matk_min;

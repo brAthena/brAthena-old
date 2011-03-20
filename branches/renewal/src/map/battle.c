@@ -2529,7 +2529,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 			{
 				int min_damage, max_damage;
 				min_damage = sstatus->matk_max*2 + 3*sstatus->matk_min/2;
-				max_damage = ( sstatus->matk_max+(sd->matk_add*(sd->status.weapon ? sd->inventory_data[sd->equip_index[EQI_HAND_R]]->wlv:0))/10 )*2 + 3*sstatus->matk_min/2;
+				max_damage = ( sstatus->matk_max+(sd->matk_bonus*(sd->status.weapon ? sd->inventory_data[sd->equip_index[EQI_HAND_R]]->wlv:0))/10 )*2 + 3*sstatus->matk_min/2;
 				if(min_damage >= max_damage){
 					MATK_ADD(max_damage);
 				}else{

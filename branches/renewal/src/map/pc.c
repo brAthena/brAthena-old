@@ -2026,7 +2026,7 @@ int pc_bonus(struct map_session_data *sd,int type,int val)
 		break;
 	case SP_MATK_RATE:
 		if(sd->state.lr_flag != 2)
-			sd->matk_add += val;
+			sd->matk_rate += val;
 		break;
 	case SP_IGNORE_DEF_ELE:
 		if(val >= ELE_MAX) {
