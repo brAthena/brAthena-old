@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0319 - 19/03/2011 [Protimus]
+	* Alterações para a experiência recebida em 3° classes.
+	- Level máximo de 3° classes normais, transcedentais e bebês aumentado até 150.
+
 	r0318 - 18/03/2011 [Protimus]
 	* Adicionadas habilidades RK_REFRESH (Purificação) & RK_STONEHARDSKIN (Escamas Rochosas).
 	* Correções para habilidades com runas que foram enviadas anteriormente.
