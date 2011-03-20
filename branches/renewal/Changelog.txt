@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0333 - 20/03/2011 [Protimus]
+	* Adicionados bônus de matk aos itens conforme o renewal.
+	- Todos são valores oficiais.
+	
 	r0322 - 20/03/2011 [Protimus]
 	* Adicionado bônus bMatk.
 	- Necessário para novos itens do renewal.
