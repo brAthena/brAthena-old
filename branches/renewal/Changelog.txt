@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0326 - 20/03/2011 [Protimus]
+	* Adicionadas habilidades RK_CRUSHSTRIKE (Golpe Titânico) & RK_STORMBLAST (Explosão Rúnica).
+
 	r0325 - 20/03/2011 [Protimus]
 	* Correções para a habilidade RK_WINDCUTTER (Vento Cortante).
 

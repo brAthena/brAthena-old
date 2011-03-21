@@ -1746,6 +1746,21 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio += 50 * skill_lv;
 					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
 					break;
+				case RK_CRUSHSTRIKE:
+					skillratio += 550;
+					if( sd )
+					{
+						short index = sd->equip_index[EQI_HAND_R];
+						if( index >= 0 && sd->inventory_data[index] && sd->inventory_data[index]->type == IT_WEAPON )
+						{
+							skillratio += 100 * sd->status.inventory[index].refine;	
+							skillratio *= sd->inventory_data[index]->wlv; 
+						}
+					}
+					break;
+				case RK_STORMBLAST:
+					skillratio += -100 + 100 * (sd ? pc_checkskill(sd,RK_RUNEMASTERY) : 1) +  100 * (sstatus->int_ / 4);
+					break;
 			}
 
 			ATK_RATE(skillratio);

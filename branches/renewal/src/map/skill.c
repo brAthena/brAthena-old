@@ -1970,6 +1970,9 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 			battle_drain(tsd, src, rdamage, rdamage, sstatus->race, is_boss(src));
 		skill_additional_effect(bl, src, CR_REFLECTSHIELD, 1, BF_WEAPON|BF_SHORT|BF_NORMAL,ATK_DEF,tick);
 	}
+	
+	if( damage > 0 && skillid == RK_CRUSHSTRIKE ) 
+			skill_break_equip(src,EQP_WEAPON,10000,BCT_SELF);
 
 	if (!(flag&2) &&
 		(
@@ -3110,6 +3113,17 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 		else
 			skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
 		break;
+	case RK_STORMBLAST:
+	case RK_CRUSHSTRIKE:
+		if( sd )
+		{
+			int lv = 3; 
+			if( skillid == RK_CRUSHSTRIKE )
+				lv = 7;
+			if( pc_checkskill(sd,RK_RUNEMASTERY) >= lv )
+				skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
+		}
+		break;
 	case 0:
 		if(sd) {
 			if (flag & 3){
@@ -3991,9 +4005,10 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 
 	case ASC_METEORASSAULT:
 	case GS_SPREADATTACK:
+	case RK_STORMBLAST:
 		skill_area_temp[1] = 0;
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
-		map_foreachinrange(skill_area_sub, bl, skill_get_splash(skillid, skilllv), splash_target(src),
+		map_foreachinrange(skill_area_sub, bl, skill_get_splash(skillid, skilllv), splash_target(src), 
 			src, skillid, skilllv, tick, flag|BCT_ENEMY|SD_SPLASH|1, skill_castend_damage_id);
 		break;
 
@@ -8832,7 +8847,20 @@ int skill_check_condition_castend(struct map_session_data* sd, short skill, shor
 	}
 
 	if( sd->skillitem == skill ) // Casting finished (Item skill or Hocus-Pocus)
-		return 1;
+	{
+		if( skill == RK_CRUSHSTRIKE )
+		{	
+			short index = sd->equip_index[EQI_HAND_R];
+			if( index < 0 || !sd->inventory_data[index] || sd->inventory_data[index]->type != IT_WEAPON )
+			{
+				clif_skill_fail(sd,skill,0,0);
+				return 0;
+			}
+			return 1;
+		}
+		else
+			return 1;
+	}
 
 	if( pc_is90overweight(sd) )
 	{
