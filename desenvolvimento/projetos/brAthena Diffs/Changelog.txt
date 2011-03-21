@@ -9,20 +9,25 @@
 //	acessando o seguinte link: http://svn.brathena.org/trac/timeline
 // ==================================================
 
-	r308 - 15/03/2011 [Protimus]
+	r0328 - 21/03/2011 [Protimus]
+	* Adicionadas todas as versões de novos hex de RagexeRE até hoje.
+	- Serão trabalhadas versões de 2011 para cima, as de 2010 que não foram adicionadas são obsoletas.
+	- Quando tiver mais um tempinho eu começo a fazer os diffs de todas as versões.
+
+	r0308 - 15/03/2011 [Protimus]
 	* Removidas temporáriamente versões de 2010-08-03 e 2010-08-04.
 	- Motivo: Continham spyware, não sei quem fez essas alterações no grupo do DiffTeam mas aconselho a ninguém usar
 	essas duas versões.
 
-	r290 - 13/03/2011 [Protimus]
+	r0290 - 13/03/2011 [Protimus]
 	* Adicionados diffs e hex para RagexeRE.
 	- Apenas versões de 2010 em diante, créditos ao Diff Team.
 	
-	r288 - 13/03/2011 [Protimus]
+	r0288 - 13/03/2011 [Protimus]
 	* Adicionada ferramenta para junção de diffs e hex: K3dtDiffpatcher.
 	- Créditos: k3dt.
 	- Em breve teremos uma ferramenta em C# para junção de diffs e hex, estarei providênciando.
 
-	r287 - 13/03/2011 [Protimus]
+	r0287 - 13/03/2011 [Protimus]
 	* Iniciado projeto brAthena Diffs
 	- Diffs para kRO & bRO com ragexeRE & sakexe.
