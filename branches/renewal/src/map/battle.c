@@ -2543,8 +2543,13 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 			default:
 			{
 				int min_damage, max_damage;
-				min_damage = sstatus->matk_max*2 + 3*sstatus->matk_min/2;
-				max_damage = ( sstatus->matk_max+(sd->matk_bonus*(sd->status.weapon ? sd->inventory_data[sd->equip_index[EQI_HAND_R]]->wlv:0))/10 )*2 + 3*sstatus->matk_min/2;
+				if(sd){
+					min_damage = sstatus->matk_max*2 + 3*sstatus->matk_min/2;
+					max_damage = ( sstatus->matk_max+(sd->matk_bonus*(sd->status.weapon ? sd->inventory_data[sd->equip_index[EQI_HAND_R]]->wlv:0))/10 )*2 + 3*sstatus->matk_min/2;
+				}else{
+					min_damage = sstatus->int_ + (sstatus->int_/7)*(sstatus->int_/7);
+					max_damage = sstatus->int_ + (sstatus->int_/5)*(sstatus->int_/5);
+				}
 				if(min_damage >= max_damage){
 					MATK_ADD(max_damage);
 				}else{
@@ -2688,7 +2693,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 			if(battle_config.magic_defense_type)
 				ad.damage = ad.damage - mdef_rate*battle_config.magic_defense_type - mdef;
 			else
-				ad.damage = ad.damage * mdef_rate / 100 - mdef;
+				ad.damage = ad.damage * mdef_rate / 100 - (3*mdef/2);
 		}
 		if (skill_num == NPC_EARTHQUAKE)
 		{	//Adds atk2 to the damage, should be influenced by number of hits and skill-ratio, but not mdef reductions. [Skotlex]

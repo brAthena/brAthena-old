@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0330 - 21/03/2011 [brn0]
+	* Alterada a fórmula do ataque mágico para monstros.
+
 	r0327 - 20/03/2011 [Protimus]
 	* Adicionadas revisões de valores para danos de todas as habilidades do Rune Knight (Cavaleiro Rúnico).
 	- Cavaleiro Rúnico finalizado, sem bugs e totalmente funcional conforme o renewal.
