@@ -8,6 +8,10 @@
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
+
+	r0332 - 22/03/2011 [Protimus]
+	* Adicionadas organizações e traduções para o database.
+
 	r0321 - 20/03/2011 [cleyton]
 	* Script Torre Infinita atualizado
 	- Atualizado conforme eAthena r14747		
