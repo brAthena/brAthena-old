@@ -1964,6 +1964,14 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				if((battle_check_undead(sstatus->race,sstatus->def_ele) || sstatus->race==RC_DEMON) && //This bonus already doesnt work vs players
 					src->type == BL_MOB && (skill=pc_checkskill(tsd,AL_DP)) > 0)
 					vit_def += skill*(int)(3 +(tsd->status.base_level+1)*0.04);   // submitted by orn
+
+				if((sstatus->race==RC_BRUTE || sstatus->race==RC_PLANT || sstatus->race==RC_FISH) && 
+					src->type == BL_MOB && (skill=pc_checkskill(tsd,RA_RANGERMAIN)) > 0)
+					vit_def += skill*5; 
+
+				if((battle_check_undead(sstatus->race,sstatus->def_ele) || sstatus->race==RC_DEMON) && 
+					src->type == BL_MOB && (skill=pc_checkskill(tsd,AB_EUCHARISTICA)) > 0)
+					vit_def += def2 * (skill/100);
 			}
 			if (battle_config.weapon_defense_type) {
 				vit_def += def2*battle_config.weapon_defense_type;
