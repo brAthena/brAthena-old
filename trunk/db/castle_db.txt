@@ -12,12 +12,12 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Descrição: Database das Guildas dos Castelos.          |
+// | Descrição: Database dos Castelos.                      |
 // |--------------------------------------------------------|
 // | Estrutura do Banco de Dados:                           |
-// | CastleID,MapName,CastleName,OnGuildBreakEventName(1),  |
-// | Flag(2), (1) Expulsão do Castelo conquistado,          |
-// | (2) Reservado.                                         |
+// | Id do Castelo,Nome do Mapa,Nome do Castelo,            |
+// | OnGuildBreakEventName(1),Bandeira(2),                  |
+// | (1) Expulsão do Castelo Conquistado,(2) Reservas.	    |
 // \________________________________________________________/
 //
 //=====================================================================================================
@@ -65,7 +65,7 @@
 23,nguild_prt,Fogo,Agit_N04,2								// kRO : Prontera | iRO: Fire
 
 //=====================================================================================================
-// Feudo de Nithafjoll
+// Feudo de Nithafjoll (Schwartzwald)
 //=====================================================================================================
 24,schg_cas01,Himinn,Agit_Sc01,1							// kRO : Himinn | iRO: Himinn
 25,schg_cas02,Andlangr,Agit_Sc02,1							// kRO : Andlangr | iRO: Andlangr
@@ -74,7 +74,7 @@
 28,schg_cas05,Skatyrnir,Agit_Sc05,1							// kRO : Skidbladnir | iRo: Skidbladnir
 
 //=====================================================================================================
-// Feudo de Valfreyja (Veins)
+// Feudo de Valfreyja (Arunafeltz)
 //=====================================================================================================
 29,arug_cas01,Mardol,Agit_Ar01,1							// kRO : Mardol | iRO: Mardol
 30,arug_cas02,Syr,Agit_Ar02,1								// kRO : Cyr | iRO: Cyr

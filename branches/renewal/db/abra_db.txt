@@ -15,8 +15,7 @@
 // | Descrição: Banco de Dados da Habilidade Abracadaba.    |
 // |--------------------------------------------------------|
 // | Estrutura do Database:                                 |
-// | ID da Habilidade, Nome da Habilidade,                  |
-// | Level do Abracadabra, Taxa                             |
+// | ID da Hab., Nome da Hab.,Level do Abracadabra, Taxa    |
 // \________________________________________________________/
 //
 //============================================================

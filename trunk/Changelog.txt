@@ -8,6 +8,10 @@
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
+
+	r0335 - 23/03/2011 [Protimus]
+	* Adicionadas mais organizações e traduções do database.
+
 	r0333 - 23/03/2011 [cleyton]
 	* Scripts kvm02.txt e kvm03.txt da pasta campais foram atualizados.
 	- Atualizações conforme eAthena r14750.
