@@ -12,7 +12,7 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.2/1.0                                |
+// | Versões eA/brA: 1.3/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: NPCs do KvM 1-59.                           |
 // | - NPC's da Sala de Espera                              |
@@ -22,7 +22,8 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // |  1.0 Script Traduzido [Tyler]                          |
-// |  - Anotações                                           |
+// |  1.1 Script Atualizado [cleyton] 		            |
+// |  - Atualizado conforme eAthena r14750		    |
 // \________________________________________________________/
 
 // NPC's da Sala de Espera   
@@ -137,8 +138,8 @@ OnInit:
 	setwall "bat_c02",55,122,5,7,0,"batc02wall_b";
 	setwall "bat_c02",140,56,6,7,0,"batc02wall_c";
 	setwall "bat_c02",140,57,5,7,0,"batc02wall_d";
-	disablenpc "VintenarKvM02a";
-	disablenpc "VintenarKvM02b";
+	disablenpc "KVM Officer#KVM02A";
+	disablenpc "KVM Officer#KVM02B";
 	end;
 
 OnGuillaumeJoin:
@@ -192,8 +193,8 @@ OnReadyCheck:
 	end;
 
 OnStart:
-	disablenpc "VintenarKvM02a";
-	disablenpc "VintenarKvM02b";
+	disablenpc "KVM Officer#KVM02A";
+	disablenpc "KVM Officer#KVM02B";
 	set $@KvM02BG_Victory, 0;
 	// Warp Teams
 	bg_warp $@KvM02BG_id1,"bat_c02",53,128;
@@ -320,8 +321,8 @@ OnCroixWin:
 
 OnStop:
 	stopnpctimer;
-	enablenpc "VintenarKvM02a";
-	enablenpc "VintenarKvM02b";
+	enablenpc "KVM Officer#KVM02A";
+	enablenpc "KVM Officer#KVM02B";
 	// Warp Teams
 	bg_warp $@KvM02BG_id1,"bat_c02",53,128;
 	bg_warp $@KvM02BG_id2,"bat_c02",146,55;

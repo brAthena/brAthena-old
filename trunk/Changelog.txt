@@ -8,6 +8,15 @@
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
+	r0333 - 23/03/2011 [cleyton]
+	* Scripts kvm02.txt e kvm03.txt da pasta campais foram atualizados.
+	- Atualizações conforme eAthena r14750.
+	* Scripts quests_morroc.txt e anthell.txt(localizado na pasta portais) atualizados.
+	- Atualizações conforme eAthena r14753.
+	* Script The_sign atualizado.
+	- Atualizações conforme eAthena r14757.
+	- Nota: Embora a atualização do script The_sign seja atribuída ao Renewal, ele também foi atualizado na versão trunk para não ficar desatualizado.
+	* Corrigido atributo do item Seal_scroll - ID 6028 no arquivo item_db.
 
 	r0332 - 22/03/2011 [Protimus]
 	* Adicionadas organizações e traduções para o database.

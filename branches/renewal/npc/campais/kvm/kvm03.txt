@@ -12,7 +12,7 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.2/1.0                                |
+// | Versões eA/brA: 1.3/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: NPCs do KvM 60-80.                          |
 // | - NPC's da Sala de Espera                              |
@@ -22,7 +22,8 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // |  1.0 Script Traduzido [Tyler]                          |
-// |  - Anotações                                           |
+// |  1.1 Script Atualizado [cleyton] 		            |
+// |  - Atualizado conforme eAthena r14750		    |
 // \________________________________________________________/
 
 // NPC's da Sala de Espera  
@@ -137,8 +138,8 @@ OnInit:
 	setwall "bat_c03",55,122,5,7,0,"batc03wall_b";
 	setwall "bat_c03",140,56,6,7,0,"batc03wall_c";
 	setwall "bat_c03",140,57,5,7,0,"batc03wall_d";
-	disablenpc "VintenarKvM03a";
-	disablenpc "VintenarKvM03b";
+	disablenpc "KVM Officer#KVM03A";
+	disablenpc "KVM Officer#KVM03B";
 	end;
 
 OnGuillaumeJoin:
@@ -334,8 +335,8 @@ OnReset:
 	set $@KvM03BG_Victory, 0;
 	if( $@KvM03BG_id1 ) { bg_destroy $@KvM03BG_id1; set $@KvM03BG_id1, 0; }
 	if( $@KvM03BG_id2 ) { bg_destroy $@KvM03BG_id2; set $@KvM03BG_id2, 0; }
-	disablenpc "VintenarKvM03a";
-	disablenpc "VintenarKvM03b";
+	disablenpc "KVM Officer#KVM03A";
+	disablenpc "KVM Officer#KVM03B";
 	mapwarp "bat_c03","bat_room",154,150;
 	maprespawnguildid "bat_c03",0,3; // Just in case someone else
 	bg_updatescore "bat_c03",5,5;

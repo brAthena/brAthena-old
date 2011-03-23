@@ -4,169 +4,89 @@
 //	* Notação
 //	- Comentário (opcional)
 // *Dica: Para encontrar atualizações de uma revisão específica pressione Ctrl+F
-//	e digite rxxxx onde "xxxx" refere-se a revisão desejada.
+//	e digite rxxxx onde "xxxx" refere-se a revisão desejada. 
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
+	r0333 - 23/03/2011 [cleyton]
+	* Scripts kvm02.txt e kvm03.txt da pasta campais foram atualizados.
+	- Atualizações conforme eAthena r14750.
+	* Scripts quests_morroc.txt e anthell.txt(localizado na pasta portais) atualizados.
+	- Atualizações conforme eAthena r14753.
+	* Script The_sign atualizado.
+	- Atualizações conforme eAthena r14757.
+	- Nota: Embora a atualização do script The_sign seja atribuída ao Renewal, ele também foi atualizado na versão trunk para não ficar desatualizado.
+	* Corrigido atributo do item Seal_scroll - ID 6028 no arquivo item_db.
 
 	r0332 - 22/03/2011 [Protimus]
 	* Adicionadas organizações e traduções para o database.
 
-	r0331 - 21/03/2011 [Protimus]
-	* Adicionadas condições de bônus em raças e elementos diferentes para redução de vitalidade, vit_def.
-
-	r0330 - 21/03/2011 [brn0]
-	* Alterada a fórmula do ataque mágico para monstros.
-
-	r0327 - 20/03/2011 [Protimus]
-	* Adicionadas revisões de valores para danos de todas as habilidades do Rune Knight (Cavaleiro Rúnico).
-	- Cavaleiro Rúnico finalizado, sem bugs e totalmente funcional conforme o renewal.
-	OBS: Agora as montarias dos dragões serão feitas.
-
-	r0326 - 20/03/2011 [Protimus]
-	* Adicionadas habilidades RK_CRUSHSTRIKE (Golpe Titânico) & RK_STORMBLAST (Explosão Rúnica).
-
-	r0325 - 20/03/2011 [Protimus]
-	* Correções para a habilidade RK_WINDCUTTER (Vento Cortante).
-
-	r0324 - 20/03/2011 [brn0]
-	* Pequena correção no bMatk e no bMatkRate.
-
-	r0323 - 20/03/2011 [Protimus]
-	* Adicionados bônus de matk aos itens conforme o renewal.
-	- Todos são valores oficiais.
-	
-	r0322 - 20/03/2011 [Protimus]
-	* Adicionado bônus bMatk.
-	- Necessário para novos itens do renewal.
-	
 	r0321 - 20/03/2011 [cleyton]
 	* Script Torre Infinita atualizado
-	- Atualizado conforme eAthena r14747	
-
-	r0320 - 20/03/2011 [brn0]
-	* Alterada a fórmula do cast de habilidades.
-	- Adicionado cast fixo e variável.
-
-	r0319 - 19/03/2011 [Protimus]
-	* Alterações para a experiência recebida em 3° classes.
-	- Level máximo de 3° classes normais, transcedentais e bebês aumentado até 150.
-
-	r0318 - 18/03/2011 [Protimus]
-	* Adicionadas habilidades RK_REFRESH (Purificação) & RK_STONEHARDSKIN (Escamas Rochosas).
-	* Correções para habilidades com runas que foram enviadas anteriormente.
-
-	r0317 - 18/03/2011 [Protimus]
-	* Adicionada habilidade RK_FIGHTINGSPIRIT (Aura de Combate).
+	- Atualizado conforme eAthena r14747		
 
 	r0316 - 17/03/2011 [novekovas]
 	* Reorganizações e adiçoes de padrões para melhor organização do database.
 	* Adicionadas traduções para o database.
 
-	r0315 - 17/03/2011 [Protimus]
-	* Modificações em habilidades: 
-	- Tocaia: Encantar com Veneno Mortal não tem mais efeito sobre ela.
-
-	r0314 - 17/03/2011 [Protimus]
-	* Modificações em habilidades:
-	- Bomba Ácida: É influênciada pelo seu ataque físico, mágico e a vitalidade do alvo. 
-	- Choque Rápido: O dano passa a ser influênciado pela: arma, força, destresa e sorte, além do peso do escudo e nível de refinamento.
-	
-	r0313 - 17/03/2011 [Protimus]
-	* Modificações em habilidades:
-	- Perfurar em espiral: Agora é calculado pelo peso da arma/20*level da habilidade e seu dano é fixo para alvos grandes ou pequenos.
-
-	r0312 - 16/03/2011 [Protimus]
-	* Modificações em habilidades:
-	- Perfurar em espiral: Não calcula o valor de rate para ATK de acordo com 10 pontos de sstatus.
-
-	r0311 - 16/03/2011 [Protimus]
-	* Adicionadas habilidades RK_ABUNDANCE (Regeneração Espiritual) & RK_VITALITYACTIVATION (Vitalidade Rúnica).
-	- Necessárias revisões.
-
-	r0310 - 16/03/2011 [brn0]
-	* Corrigido o problema na experiência de classe.
-	* Corrigido o erro na fórmula de queda de itens.
-	- Estava causando queda do map-server quando se usava o comando "@killmonster".
-
-	r0309 - 16/03/2011 [cleyton]
-	* Deletadas linhas duplicadas conforme track #35.
-	- Arquivo conf/battle/gm.txt
-	
 	r0307 - 15/03/2011 [Protimus]
 	* Atualizado totalmente conforme eAthena r14746.
 
-	r0306 - 15/03/2011 [Protimus]
-	* Atualizados npcs, conf e db conforme eAthena r14741.
-	- Os spawns de mobs não foram atualizados, não se sabe se os do eAthena estão oficiais e os do brAthena estão
-	conforme o aegis. Comuniquei ao Kisuka e iremos ver e fazer os spawns juntos se necessário.
-	- As revisão do eAthena que os spawns não foram atualizados é a r14738.
-	- Os npcs das classes 1-1 foram reformulados com os novos parâmetros do renewal, portanto é necessário retraduzí-los nessa branche.
-	
-	r0305 - 14/03/2011 [Protimus]
-	* Atualizada source conforme eAthena r14741.
-	
-	r0304 - 14/03/2011 [cleyton]
+	r0303 - 14/03/2011 [cleyton]
 	* Correções efetuadas nos diálogos
 	- npc/cidades/payon.txt
 	
-	r0302 - 14/03/2011 [cleyton]
+	r0301 - 14/03/2011 [cleyton]
 	* Envidada tradução
-	- npc/cidade/cidades/payon.txt
+	- npc/cidades/payon.txt
 	* Correção do comando set friendship,12;
-	- npc/quests/quests_lighthalzen.txt	
+	- npc/quests/quests_lighthalzen.txt
 
-	r0300 - 14/03/2011 [cleyton]
-	* Correção do cabeçalho da quest_lighthouzen.txt	
-
-	r0298 - 14/03/2011 [cleyton]
-	* Ativados monstros do arquivos scripts_monstros.txt.
-	- Falta traduzir os monstros e ativar alguns no arquivo mob_db.txt.
-	- Monstros do mob_db.txt necessitam de revisão para ver se estão de acordo com o renewal.
+	r0299 - 14/03/2011 [cleyton]
+	* Correção do cabeçalho da quest_lighthouzen.txt
 	
-	r0297 - 14/03/2011 [cleyton]
-	* Correção da mensagem do mtod.txt para versão Renewal brAthena. 
+	r0294 - 13/03/2011 [cleyton]
+	* Correção dos cabeçalhos de NPC de revisões passadas
+	- Revisões r0291, r0289 e 0285.
+
+	r0291 - 13/03/2011 [cleyton]
+	* Correção do script quests_lighthouzen.txt 
+	- Faltava o comando set friendship,12 na linha 3183.
+	- Isso impossibilitava o término da quest da Amizade (friendship).
+
+	r0289 - 13/03/2011 [cleyton]
+	* Corrigidas as mensagens do arquivo msg_athena.txt
+	- Linhas 541 e 542.
+	* Corrigido NPC flavius_entrada 
+	- Localizações nos npcs estavam trocadas conforme Track #25.
+	* Modificação de nomes de NPCs Campais
+	- Modificados nomes dos npcs conforme sugestão no Track #26.
+	- Organização interna dos scripts Batalhas campais
+	* Warps desabilitados
+	- Referente aos mapas de ve_fild05 pay_fild05 e pay_fild11 que não existem mais.
+	* Mapa habilitado
+	- Conforme informações do renewal o mapa ve_fild01 ainda existe. 
+	- Somente ve_fild05 está desabilitado nas proximidades de Veins.
+
 	
-	r0296 - 14/03/2011 [cleyton]
-	* Correção de erros conforme revisões da versão Trunk do brAthena.
-	- Revisões r0294 r0291, r0289 e 0285.
+	r0285 - 12/03/2011 [cleyton]
+	* Corrigidas falas do npc funcoes_kafra
+	- Erro apontado no report #27 do Tracker	
 
-	r0293 - 13/03/2011 [Protimus]
-	* Correção do sistema de classes (jobs).
-	- Corrigido erros na leitura das IDs de classes fantasmas que estavam sendo lidas, como: 4053 e outras.
-	- Pequena mudanças nos ifs para cases em checagens de jobs através do comando @job.
-	- Mudanças para checagem de jobs e leveis de GM na utilização.
-	OBS: Todos os erros que eram apontados no servidor de mapas (map-server) foram solucionados.
 
-	r0292 - 13/03/2011 [Protimus]
-	* Correções para o skill_unit.
-	- Alguns campos foram desabilitados temporáriamente por ainda não terem sido criados parâmetros.
+	r0283 - 11/03/2011 [insidemybrain]
+	* Corrigidos erros dos npcs enviados na r0282, por falha minha
+	- Reportado pelo YuMs
 
-	r0286 - 12/03/2011 [brn0]
-	* Corrigida a fórmula da defesa mágica.
-	* Corrigida a fórmula do ataque mágico.
-	* Corrigido erro com armas de ataque baixo.
+	r0282 - 11/03/2011 [insidemybrain]
+	* Enviadas traduções necessitando revisão
+	* Enviadas algumas traduções/revisões minhas pendentes.
 
-	r0279 - 06/03/2011 [brn0]
-	* Corrigida a fórmula da ASPD.
+	r0281 - 11/03/2011 [Protimus]
+	* Atualizada source conforme eAthena 14741.
 
-	r0278 - 06/03/2011 [brn0]
-	* Corrigida a fórmula do ataque.
-	* Corrigido o erro de relogar com arma equipada.
-	- O ataque da arma estava retornando à fórmula antiga (ao atk1).
-
-	r0277 - 06/03/2011 [Protimus]
-	* Alterado nível de refinamento até +20.
-	* Adicionados parâmetros de overrefine de acordo com leveis posteriores ao padrão (+10).
-
-	r0276 - 05/03/2011 [Protimus]
-	* Adicionada habilidade RK_GIANTGROWTH (Força Titânica).
-	* Alterado packet_db_ver para default.
-
-	r0275 - 05/03/2011 [Protimus]
-	* Adicionadas modificações de penalidades para classes.
-	* Adicionada nova coluna de penalidades para escudos.
-	- Necessário revisar as penalidades de escudos para 3° classes bêbes.
+	r0280 - 10/03/2011 [insidemybrain]
+	* Enviadas traduções de alguns scripts da pasta /comerciantes.
 
 	r0274 - 05/03/2011 [Protimus]
 	* Atualizações para o comando @whosell.
@@ -178,100 +98,92 @@
 	* Removidos arquivos desnecessários de upgrade para o SQL.
 
 	r0272 - 04/03/2011 [Protimus]
-	* Merge de atualizações e traduções conforme trunk.
-	- Falta a pasta portais, devido ter respawns atualizados do renewal é necessário verificar com mais cuidado.
+	* Pequena correção para leitura de opção na pasta CONF.
 
-	r0271 - 04/03/2011 [Protimus]
-	* Atualizada npc e database conforme eAthena r14730.
-	* Atualizações para configure e make conforme eAthena r14730.
+	r0269 - 03/03/2011 [insidemybrain]
+	* Corrigido erro de changelog equecidos na r0267 e na r0268
 
-	r0264 - 04/03/2011 [Protimus]
-	* Atualizada source conforme eAthena r14730.
+	r0268 - 03/03/2011 [insidemybrain]
+	* Corrigidos erros de sintaxe de algusn scripts que não foram feitos na r0267
 
-	r0263 - 02/03/2011 [Protimus]
-	* Adicionadas modificações de itens para runas fazerem a leitura das habilidades na source.
-	* Adicionado comando makerune para criação das runas.
-	* Modificações para clif_skill_produce_mix_list.
-	- Agora têm um novo campo: skill_num.
+	r0267 - 03/03/2011 [insidemybrain]
+	* Enviadas traduções dos scripts (Necessitam revisão):
+	- comerciantes/refinador_avancado.txt
+	- eventos/dia_dos_namorados_2009.txt
+	- eventos/lunar_2008.txt
+	- eventos/MemorialDay_2008.txt
+	- eventos/StPatrick_2008.txt
+	- quests/doomed_swords_quest.txt
+	- quests/quests_lighthalzen.txt
 
-	r0262 - 02/03/2011 [Protimus]
-	* Adicionada habilidade RK_MILLENNIUMSHIELD (Escudos Milenares).
-	- Necessário mais testes.
+	r0266 - 03/03/2011 [insidemybrain]
+	* Enviada tradução do script:
+	- quests/selos/sleipnir_seal.txt
+	* Enviadas traduções e revisões dos scripts:
+	- comerciantes/sorveteiro.txt
+	- comerciantes/manuk.txt
 
-	r0261 - 02/03/2011 [Protimus]
-	* Adicionada habilidade RK_RUNEMASTERY (Perícia com Runas).
-	* Readicionadas opções de clif_msg e mais algumas modificações alteradas para suportar a habilidade.
+	r0265 - 03/03/2011 [insidemybrain]
+	* Enviadas revisões da pasta /portais
+	* Enviada tradução e revisão do script:
+	- comerciantes/gemas.txt
 
+	r0264 - 03/03/2011 [Lord]
+	* Enviada tradução da pasta /portais
+	- Necessita de revisão.
+	* Enviado npc buying_shops.txt
+	- Era para ter sido enviado na rev0255.
+	
 	r0260 - 01/03/2011 [Protimus]
-	* Reabilitado todos os npcs do emulador.
-	- A fase de testes acabou, agora faltam só as habilidades e pequenas correções para o renewal.
-	* Correções para o npc aluguel_de_mercenarios.txt.
+	* Correções para o npc aluguel_de_mercenarios.txt
 
-	r0259 - 01/03/2011 [Protimus]
-	* Adicionada habilidade RK_DEATHBOUND (Revidar Dano).
-	- Fórmula baseada no iROWiki.
+	r0255 - 27/02/2011 [Floozie]
+	* Atualizado conforme eAthena r14725.
+	
+	r0253 - 27/02/2011 [insidemybrain]
+	* Enviada a revisão do arquivo:
+	- classes/1-1/mago.txt
+	* Enviadas traduções e revisões dos arquivos:
+	- comerciantes/leiteiro.txt
+	- comerciantes/lojas_cash.txt
 
-	r0258 - 01/03/2011 [brn0]
-	* Corrigida fórmula da divisão de experiência em grupo.
-	* Corrigida a quantidade do bônus de expêriencia por membros no grupo. 
+	r0252 - 23/02/2011 [insidemybrain]
+	* Enviada a tradução do arquivo, necessitando revisão:
+	- quests_morocc.txt
 
-	r0257 - 28/02/2011 [Protimus]
-	* Adicionada habilidade RK_DRAGONTRAINING (Adestrar Dragão).
-	- Na verdade já estava adicionada, só foi ajustado algumas coisas e precisam ser ajustadas outras.
-	* Correções para cálculos de peso com montarias: Dragão e Robô.
-	* Correções para cálculos de ASPD para montarias do Dragão.
+	r0251 - 20/02/2011 [Protimus]
+	* Atualizado conforme eAthena r14717.
 
-	r0256 - 28/02/2011 [Protimus]
-	* Adicionada habilidade RK_DRAGONHOWLING (Rugido do Dragão).
-	- Fórmula baseada no iROWiki, faltam testes.
+	r0247 - 15/02/2011 [insidemybrain]
+	* Enviadas algumas traduções e revisões da pasta npc/outros:
+	- correio.txt
+	- divorcio.txt
+	- funcoes_globais.txt
+	- ginasio.txt
+	- leilao.txt
+	- powernpc.txt
+	- pvp.txt
+	- quadro_de_mensagens.txt
+	- resetar_habilidades.txt
+	- status_do_selo.txt
+	- cla_pvp.txt
 
-	r0253 - 21/02/2011 [brn0]
-	* Alteração na fórmula da porcentagem de ataques criticos.
-	* Correção na fórmula da defesa.
+	r0246 - 14/02/2011 [insidemybrain]
+	* Corrigido erro no npc nguild_teleportador.txt
+	- Faltavam as aspas(") e o ponto e vírgula(;) na linha 92 [Reportado pelo Destino]
 
-	r0250 - 19/02/2011 [brn0]
-	* Correção nos cáculos dos atributos.
+	r0245 - 13/12/2011 [Dani]
+	* Tradução não-feita da palavra "guild", para "guilda" nos arquivos das Kafras
+	- issue: 24
 
-	r0249 - 19/02/2011 [Protimus]
-	* Correções para clif_status_change.
-	- Agora está lendo da maneira correta.
-	- Habilidades que fazem uso do clif_status_change foram modificadas conforme novos padrões.
-	* Removido sistema de buying (purchase shop) temporáriamente.
-	- Alguns problemas no código, sujeiras e exploits.
-
-	r0248 - 19/02/2011 [Protimus]
-	* Removido npc duplicado da pasta de comerciantes.
-	- Estava causando erro de codificação na leitura.
-
-	r0243 - 13/02/2011 [Protimus]
-	* Correções para o sistema de Buying Shop ou Purchase Shop aka iRO Wiki.
-	- Corrigido problema com zeny exploit nas lojas.
-	- Corrigido problema com algumas estruturas ao compilar no Linux.
-
-	r0242 - 13/02/2011 [Protimus]
-	* Adicionadas estruturas para do novo status change, SC_BURNING.
-	* Adicionado nova macro para status change, status_change_spread.
-	- Foram adicionados SC's de todas habilidades que precisam no spread para agilizar o processo.
-
-	r0241 - 13/02/2011 [Protimus]
-	* Adicionadas estruturas para do novo status change, SC_FEAR.
-
-	r0240 - 12/02/2011 [Dani]
-	* Revisão dos spawns dos seguintes arquivos:
-	- npc/monstros/campos/payon.txt
-	- npc/monstros/campos/prontera.txt
-	- npc/monstros/campos/umbala.txt
-	- npc/monstros/campos/yuno.txt
-	- Atualização dos spawns da pasta npc/monstros/campos/ concluída
-	* Alterado "mountpeco" no atcommand_athena.conf para "mount" (seguindo r235)
+	r0244 - 13/12/2011 [Dani]
+	* Correção nas duplicatas do Aluguel de Mercenários
+	- issue: 23
 
 	r0239 - 12/02/2011 [Dani]
-	* Revisão do item_db comparando com o item_db da Trunk
-
-	r0238 - 12/02/2011 [Protimus]
-	* Adicionada habilidade RK_DRAGONBREATH (Sopro do Dragão).
-	- Fórmula baseada no iROWiki e testes realizados no iRO.
-	- Necessário fazer os status de SC_FEAR e SC_BURNING para funcionamento correto.
+	* Remoção de features posteriores ao Renewal
+	* Revisão do item_db comparando com o item_db do Renewal
+	* Adição dos novos scripts personalizados no launcher
 
 	r0237 - 12/02/2011 [Dani]
 	* Padrão de postagem dos sql-files revisto
@@ -279,46 +191,12 @@
 	antigos foram adicionados como upgrade_svnxxxx.sql, e os que foram
 	feitos a partir do início do brA foram colocados como brA_svnxxx.sql
 
-	r0236 - 12/02/2011 [Dani]
-	* Enviadas últimas alterações da trunk pra renewal (r149:r234)
+	r0234 - 12/02/2011 [Dani]
+	* Limpeza de espaços desnecessários na pasta /src
 
-	r0235 - 12/02/2011 [Protimus]
-	* Adicionada parte do código de montarias das 3° classes.
-	- Necessário revisar e revisar ou criar habilidades de requerimento da montaria de classes.
-
-	r0233 - 12/02/2011 [Dani]
-	* Correção de erro de compilação originado na r230
-	- Desculpem, erro meu.
-
-	r0230 - 12/02/2011 [Dani]
+	r0229 - 12/02/2011 [Dani]
 	* Atualizado conforme eAthena 14702 (14691:14702)
 
-	r0228 - 11/02/2011 [Dani]
-	* Revisão dos spawns dos seguintes arquivos:
-	- npc/monstros/campos/amatsu.txt
-	- npc/monstros/campos/comodo.txt
-	- npc/monstros/campos/geffen.txt
-	- npc/monstros/campos/gonryun.txt
-	- npc/monstros/campos/hugel.txt
-	- npc/monstros/campos/louyang.txt
-	- npc/monstros/campos/lutie.txt
-	- npc/monstros/campos/manuk.txt
-	- npc/monstros/campos/mjolnir.txt
-	- npc/monstros/campos/morocc.txt
-	- npc/monstros/campos/moscovia.txt
-	- npc/monstros/campos/payon.txt
-	- npc/monstros/campos/rachel.txt
-	- npc/monstros/campos/splendide.txt
-	- npc/monstros/campos/veins.txt
-
-	r0227 - 11/02/2011 [brn0]
-	* Alteração no cálculo de DEF1 e MDEF1, para evitar que retorne valores negativos.
-
-	r0226 - 11/02/2011 [Protimus]
-	* Adicionada habilidade RK_WINDCUTTER (Vento Cortante).
-	* Adicionadas novas estruturas de layout do UNIT para windcutter, earthstrain e overbrand.
-	- Aproveitei e já declarei algumas habilidades nas estruturas, créditos ao 3CeAM.
-	
 	r0225 - 11/02/2011 [brn0]
 	* Adicionado NPC Banqueiro na pasta personalizados.
 	- npc/personalizados/Banqueiro.txt
@@ -327,202 +205,107 @@
 	* Adicionado NPC Garota Negociante na pasta personalizados.
 	- npc/personalizados/Garota Negociante.txt
 
-	r0224 - 11/02/2011 [Protimus]
-	* Adicionada habilidade RK_SONICWAVE (Onda de Choque).
-	- Fórmula baseada no iROWiki.
+	r0210 - 05/02/2011 [Dani]
+	* Envio de traduções
+	- npc/outros/arena/arena_grupo.txt [Thor]
+	- npc/outros/arena/arena_lvl50.txt [Thor]
+	- npc/outros/arena/arena_lvl60.txt [Thor]
+	- npc/outros/arena/arena_lvl70.txt [Thor]
+	- npc/outros/arena/arena_lvl80.txt [Thor]
+	- npc/outros/arena/arena_pontos.txt [Thor]
+	- npc/outros/arena/arena_sala.txt [Thor]
+	* Revertido nome de mob Verme Sábio para Verme Ancião
+	- Pequeno erro cometido na r183
 
-	r0223 - 11/02/2011 [Floozie]
-	* Modificações em habiliades:
-	- Perícia com Machado: Modificada para “Perícia com Machado e Espada” e funciona com espadas de uma mão.
-	- Terror Ácido: Dano aumentado em 100% (dano total), Influenciado pelo ataque físico é mágico e pela defesa do inimigo.
-	- Fogo Grego: Reduzido pela metade o intervalo entre os danos e agora leva tanto o ataque físico quanto o mágico no calculo do dano.
+	r0200 - 03/02/2011 [Dani]
+	* Correção de erros apontados no map-server (seguindo r196)
 
-	r0222 - 11/02/2011 [Protimus]
-	* Adicionada habilidade RK_INGNITIONBREAK (Impacto Flamejante).
-	- Fórmula de dano baseadas no iROWiki, área e outras modificações 100% oficiais.
+	r0199 - 03/02/2011 [Dani]
+	* Correção dos cabeçalhos da pasta npc/kafras completa
+	- Seguindo r196
+	* Limpeza de espaços desnecessários em todos os scripts da pasta npc/kafras
 
-	r0221 - 11/02/2011 [Protimus]
-	* Adicionada habilidade RK_HUNDREDSPEAR (Lança de Mil Pontas).
-	- Totalmente funcional e com fórmulas baseadas no iROWiki, necessário testar danos.
+	r0198 - 03/02/2011 [Dani]
+	* Correção dos cabeçalhos da pasta npc/cidades completa
+	- Seguindo r196 e r197
+	* Limpeza de espaços desnecessários em todos os scripts da pasta npc/cidades
 
-	r0220 - 11/02/2011 [Dani]
-	* Limpeza de espaços desnecessários na pasta /src
+	r0197 - 03/02/2011 [insidemybrain]
+	* Corrigido o cabeçalho dos scripts da pasta Cidades
+	* Corrigidas as tabulações dos scripts da pasta Cidades
 
-	r0219 - 11/02/2011 [Dani]
-	* Revisão dos spawns dos seguintes arquivos:
-	- npc/monstros/campos/ayothaya.txt
-	- npc/monstros/campos/brasilis.txt
-	- npc/monstros/campos/einbroch.txt
-	- npc/monstros/campos/lighthalzen.txt
-	* Implementados spawns do Renewal no npc/monstros/campos/jawaii.txt
-	- Obs.: necessitam de posterior revisão
-	* Habilitados spawns atualizados em npc/scripts_monstros.conf
-	* Adicionado npc/monstros/campos/dicastes.txt
-	- Comentado no scripts_monstros.conf
-	- Só será habilitado quando o desenvolvimento dos monstros dos
-	episódios posteriores ao Renewal se iniciar
+	r0196 - 03/02/2011 [insidemybrain]
+	* Envio de traduções
+	- cidades/amatsu.txt
+	- cidades/brasilis.txt
+	- cidades/comodo.txt
+	- cidades/einbech.txt
+	- cidades/einbroch.txt
+	- cidades/geffen.txt
+	- cidades/gonryun.txt
+	- cidades/hugel.txt
+	- cidades/jawaii.txt
+	- cidades/lighthalzen.txt
+	- cidades/louyang.txt
+	- cidades/lutie.txt
+	- cidades/manuk.txt
+	- cidades/morocc.txt
+	- cidades/moscovia.txt
+	- cidades/niflheim.txt
+	- cidades/payon.txt
+	- cidades/prontera.txt
+	- cidades/rachel.txt
+	- cidades/splendide.txt
+	- cidades/umbala.txt
+	- cidades/veins.txt
+	- cidades/yuno.txt
+	* Corrigidos erros de tabulações
+	- kafras/*
+	- instâncias/memorial_orc.txt
+	- instancias/torre_infinita.txt
 
-	r0218 - 11/02/2011 [Protimus]
-	* Adicionada habilidade RK_PHANTOMTHRUST (Arpão).
-	- Necessário revisar valores de damage conforme Sakray R.
+	r0193 - 02/02/2011 [Dani]
+	* Envio de traduções
+	- npc/gde2/arug_cas01.txt
+	- npc/gde2/arug_cas02.txt
+	- npc/gde2/arug_cas03.txt
+	- npc/gde2/arug_cas04.txt
+	- npc/gde2/arug_cas05.txt
 
-	r0217 - 08/02/2011 [Protimus]
-	* Correções do commit anterior.
-	- Erro do "Destino", hahaha.
+	r0191 - 01/02/2011 [insidemybrain]
+	* Revisões efetuadas
+	- classes/1-1/espadachim.txt
+	- classes/1-1/novico.txt
 
-	r0216 - 08/02/2011 [Protimus]
-	* Correções para o skill_db.
-	* Adições das habilidades das 3° classes no skill_tree e skill_require_db.
-	- Concluídas adições de database das habilidades, agora novas adições apenas para MODs de habilidades.
+	r0190 - 01/02/2011 [Dani]
+	* Envio de traduções
+	- npc/quests/Bard_Quest.txt [Boomer]
+	- npc/quests/ninja_quests.txt [Boomer]
+	- npc/quests/thana_quest.txt [Avassalador]
+	- npc/quests/capacetes/2005_headgears.txt [Avassalador]
+	* Correção de vários cabeçalhos na DB
 
-	r0215 - 08/02/2011 [Dani]
-	* Implementados spawns do Renewal nos seguintes arquivos:
-	- npc/monstros/campos/manuk.txt
-	- npc/monstros/campos/moscovia.txt
-	- npc/monstros/campos/niflheim.txt
-	- npc/monstros/campos/rachel.txt
-	- npc/monstros/campos/splendide.txt
-	- npc/monstros/campos/veins.txt
-	- Obs.: necessitam de posterior revisão
-	* Habilitados spawns atualizados em npc/scripts_monstros.conf
-	* Removido npc/monstros/cidades.txt
-
-	r0214 - 07/02/2011 [Dani]
-	* Implementados spawns do Renewal nos seguintes arquivos:
-	- npc/monstros/campos/louyang.txt
-	- npc/monstros/campos/lutie.txt
-	- Obs.: necessitam de posterior revisão
-	* Habilitados spawns atualizados em npc/scripts_monstros.conf
-	* Atualizados atributos dos monstros contidos nos arquivos acima
-
-	r0213 - 06/02/2011 [Dani]
-	* Implementados spawns do Renewal nos seguintes arquivos:
-	- npc/monstros/campos/amatsu.txt
-	- npc/monstros/campos/ayothaya.txt
-	- npc/monstros/campos/einbroch.txt
-	- npc/monstros/campos/gonryun.txt
-	- npc/monstros/campos/hugel.txt
-	- Obs.: necessitam de posterior revisão
-	* Habilitados spawns atualizados em npc/scripts_monstros.conf
-	* Atualizados atributos dos monstros contidos nos arquivos acima
-
-	r0212 - 06/02/2011 [Protimus]
-	* Adicionado sistema de Buying Store: http://irowiki.org/wiki/Buying_Store
-	- Necessário revisar packets para possíveis updates do renewal de 2010/08 até hoje.
-
-	r0209 - 05/02/2011 [Protimus]
-	* Adicionada habilidade RK_ENCHANTBLADE (Encantar Lâmina).
-	- Foi adicionado junto ao SC_ENCHANTBLADE o SC_DANCING da habilidade Ritmo Contagiante em parte do código que serviu pra RK_ENCHANTBLADE para facilitar o trabalho futuramente.
-	* Modificado código de clif_status_change.
-	- Agora faz a leitura de outros valores, como val_flag.
-
-	r0208 - 05/02/2011 [Protimus]
-	* Adicionada novas battle config para level máximo de base e classe.
-	- Necessário para configurações das habilidades das 3° classes.
-	- Adicionada informações da habilidade RK_ENCHANTBLADE (Encantar Lâmina) ao código.
-
-	r0207 - 05/02/2011 [Heaven]
-	* Fixado o erro causado pelo SC_RAID
-
-	r0206 - 05/02/2011 [Protimus]
-	* Adições de informações para produção de itens através de habilidades (produce_db.txt)
-	* Adicionados todos os cast's e fix cast normais e sem dex no skill_cast_db.txt e skill_castnodex.txt
-	* Corrigido pequeno erro do commit 204 com miss click na alteração do packetver.
-
-	r0205 - 04/02/2011 [brn0]
-	* Correção para o calculo de diferença de nível não considerar MVPs.
-	- Independente do nível do MVP, o usuário receberá os itens e a experiência sem nenhuma penalidade ou bônus.
-
-	r0204 - 04/02/2011 [Protimus]
-	* Atualizado const.txt com as devidas IDs do Renewal.
-	* Removido meu sistema de reuso de habilidades.
-	* Adicionado sistema de cooldown de acordo com nova opção em skill_cast_db.txt
-	- Créditos ao projeto 3CeAM.
-	* Desabilitado código de modificação de habilidade da r194.
-	- SC utilizado de maneira incorreta, necessário reavaliar o código.
-
-	r0203 - 04/02/2011 [Protimus]
-	* Adicionadas habilidades das 3° classes em skill_db.txt e skill_unit_db.txt.
-	- Falta adicionar em skill_cast_db.txt, skill_require_db.txt e skill_tree.txt.
-
-	r0202 - 04/02/2011 [Protimus]
-	* Adicionados status change e status icons para todas habilidades das 3° classes.
-	* Adicionadas leituras dos nomes de todas as habilidades das 3° classes.
-	* Quantia máxima de MAX_SKILL_PRODUCE_DB alterada para 200.
-
-	r0201 - 04/02/2011 [Protimus]
-	* Correções para o sistema de classes.
-	* Quantias máximas alteradas na source.
-	- MAX_SKILL_TREE para 100
-	- MAX_SKILL para 3000
-
-	r0195 - 03/02/2011 [Heaven]
-	* Retiradas linhas sem necessidade
-
-	r0194 - 03/02/2011 [Heaven]
-	* Modificado @mapinfo
-	- O tamanho do array era pequeno para a palavra "Desconhecido"
-	* Alterado cast no cálculo da defesa
-	* Modificações em habilidades conforme tópico da Renovação:
-	- Ataque Surpresa(Adicionado efeito SC_RAID)
-	- Crux Magnun
-	- Descarga Elétrica
-	- Proteção Arcana(Falta conjuração fixa)
-	- Vulcão/Dilúvio/Furacão
-	- Esmagamento Mágico
-	- Corpo Fechado
-	- Cura
-	- Nevasca(Taxa de congelamento)
-	- Rapidez com Lança
-
-	r0192 - 02/02/2011 [Protimus]
-	* Adicionadas IDs dos status changes e classes no const.txt
-	* Traduzida & Revisada exp.txt
-	- Necessário ver um problema com classes que não estão nela.
-	* Adicionada exp2.txt que não estava na database.
+	r0188 - 01/02/2011 [insidemybrain]
+	* Adicionadas revisões de alguns scripts e edições do cabeçalho:
+	- classes/aprendiz/super-aprendiz.txt
+	- classes/1-1/arqueiro.txt
+	- classes/valquiria.txt
 
 	r0186 - 31/01/2011 [brn0]
-	* Corrigida a fórmula de experiência, quando está em grupo, com a opção de dividir experiência.
 	* Adicionadas algumas duplicatas para o NPC estilista.
 
 	r0185 - 31/01/2011 [Dani]
 	* Atualizado conforme eAthena 14690 (14676:14690)
+	* Corrigidos alguns cabeçalhos e versões
 
-	r0183 - 30/01/2011 [Protimus]
-	* Iniciado processo de revisões da engine:
-	- Fórmulas de DEF/DEF2 aplicadas corretamente e totalmente funcionais. (Testes realizados em Sakray R)
-
-	r0182 - 30/01/2011 [Protimus]
-	* Correções para fórmula de ATK_RATE da def.
-	* Modificados bônus para def de itens refinados.
-
-	r0181 - 29/01/2011 [Floozie]
-	* Modificações em habilidades:
-	- Benedictio Sanctissimi Sacramenti (B.S. Sacramenti): Faz com que os ataques fisicos dos usuários ignorem a defesa de monstros da raça Morto-Vivo e Demônio.
-	- Esconjurar: Dano de falha influenciado pelo ataque mágico do usuário.
-
-	r0180 - 29/01/2011 [Protimus]
-	* Correção do commit anterior, havia esquecido de enviar o dano do Impacto Psíquico modificado.
-	* Modificações em habilidades:
-	- Fúria Interior: Invés de desligar a recuperação de SP agora a habilidade reduz em apenas 50% a mesma.
-
-	r0179 - 29/01/2011 [Protimus]
-	* Correções de habilidades de commits anteriores e posteriores do renewal.
-	- Necessário maiores informações.
-	* Modificações em habilidades:
-	- Impacto Psíquico: Dano reduzido.
-
-	r0178 - 29/01/2011 [Protimus]
-	* Modificações em habiliades:
-	- Perfurar em Espiral: Não ignora defesa, pode ser utilizada com espadas de 1 e duas mãos e requer perícia de lança apenas nível 5.
-	- Explosão tóxica: Não é mais necessário usar em alvos com HP baixo, aumentado o dano causado.
-	- Encantar com Veneno Mortal: Não quadruplica o valor do dano para habilidades, apenas ataques normais.
-
-	r0177 - 29/01/2011 [Protimus]
-	* Modificações em habilidades:
-	- Lâmina de Vento: Dano aumentado.
-	- Crux Divinum: Dobra o dano se usada com lanças de duas mãos.
-	- Vulcão de Napalm: Reduzido o custo de SP.
+	r0182 - 30/01/2011 [Dani]
+	* Revisões efetuadas
+	- gde2/gde2_cavernas.txt
+	- quests/habilidades/habilidades_cavaleiro.txt
+	* Correções em instancias/torre_infinita.txt
+	- Conversão de final de linha para Windows
+	- Corrigido nome do Naght Sieger
+	- Alteradas letra "a" maiúsculas de "Andar" para "andar"
 
 	r0176 - 29/01/2011 [Protimus]
 	* Adicionados headers padrões para o SQLite.
@@ -539,263 +322,133 @@
 	r0173 - 29/01/2011 [Protimus]
 	* Corrigido problema de dano ao usar corrida com o Mestre Taekwon.
 
-	r0169 - 28/01/2011 [Dani]
-	* Aumentado nível máximo na src para 150, para dar suporte ao nível máximo das Terceiras Classes
-	* Adicionado suporte de stat máximo para Terceiras Classes e Terceiras Classes Bebês
-	- 120 e 108 respectivamente
-	* Desabilitados todos os scripts, exceto portais, mapflags e spawns que já são padrões do Renewal
-	- Por enquanto não se fazem necessários
-	- Serão readicionados aos poucos na 3ª Fase do desenvolvimento do Renewal
+	r0172 - 28/01/2011 [Tyler]
+	* Pequena correção do commit anterior:
+	- db/item_cardalbum.txt
 
-	r0167 - 27/01/2011 [Floozie]
-	* Modificações em habilidades:
-	- Crepúsculo Sangrento: Aumenta a velocidade de ataque em um valor fixo.
-	- Poema de Bragi: Reduz apenas o tempo de conjuração variável.
-	- Assovio: Efeito da habilidade aumentado em 200%
-	- Maçãs de Idun: Aumentado a quantidade de HP recuperado e os intervalos entre os tiques de cura caiu para 5 segundos.
-	- Sibilo: Efeito da habilidade aumentado em 100%
-	- Cantiga de Ninar: Tique da habilidade caiu para 4 segundos.
-	- Rufar dos Tambores: Aumentada a quantidade de ataque e defesa aumentado.
-	- Anel dos Nibelungos: Todas as armas ganham bônus, independente do nível. Defesa concedida aumentada.
+	r0171 - 28/01/2011 [Tyler]
+	* Corrigido alguns cabeçalhos da pasta db.
+	* Adicionados novos itens (pré RENEWAL) ao db para posterior revisão
+	* Iniciada a tradução do db:
+	- db/quest_db.txt
+	- db/creat_arrow_db.txt
+	* Pequena correção no db/item_cardalbum.txt
+	* Pequena correção no db/mob_db.txt
+	* Adicionados mais mobs ao db/mob_race2_db.txt
+	* Corrigido (cabeçalhos) e revisados alguns npc's da pasta npc
+	* Corrigido o nome de alguns monstros da instancia Torre sem Fim
 
-	r0166 - 27/01/2011 [Protimus]
-	* Modificações em habilidades:
-	- Armadilha Atordoante, Instalar Mina e Armadilha Explosiva: Dano modificado pelo nível do usuário.
-	* Correções do commit anterior para o Escudo Mágico.
+	r0170 - 28/01/2011 [Dani]
+	* Revisão efetuada
+	- npc/quests/doomed_swords.txt
 
-	r0165 - 27/01/2011 [Protimus]
-	* Modificações em habilidades:
-	- Ataque Mortal: O dano aumenta em 50% para cada imagem falsa ativa.
-	- Escudo Mágico: A Barreia agora possui HP que é baseado no ataque mágico, nível de classe e HP do usuário. O dano que exceder esta quantia é ignorado e a habilidade cancelada.
+	r0168 - 28/01/2011 [Floozie]
+	* Correção no script npc/kafras/funcoes_kafras.txt
+	- Corrigido de acordo com o report: 18
+	
+	r0162 - 27/01/2011 [Dani]
+	* Revisões efetuadas
+	- npc/aeroplanos/einbroch.txt
+	- npc/aeroplanos/lighthalzen.txt
+	- npc/aeroplanos/yuno.txt
+	* Removido script refinador_avançado.txt
+	- Estava duplicado
 
-	r0164 - 27/01/2011 [Floozie]
-	* Modificações em habilidades:
-	- Bomba Ácida: Dano reduzido pela defesa física e mágica do alvo.
-	- Destruidor de Almas: Dano da habilidade reduzido pela defesa física e mágica do alvo.
+	r0154 - 27/01/2011 [Dani]
+	* Envio de Traduções
+	- npc/quests/habilidades/habilidades_novico.txt
+	* Adicionados scripts personalizados no launcher
+	- Comentados, vistos que não são padrões do RO
+	- Descomentar caso deseje utilizar
+	* Pequenas revisões
+	- npc/quests/quests_aldebaran.txt
+	- npc/quests/quests_geffen.txt
+	- npc/quests/quests_izlude.txt
+	- npc/quests/quests_lutie.txt
+	- npc/quests/quests_payon.txt
 
-	r0163 - 27/01/2011 [Protimus]
-	* Modificações em habilidades:
-	- Exalar Alma: Modificada a quantidade de SP passada pelo Professor, agora o Professor passa no máximo 50% do SP do usuário.
-	- Corte da Névoa: Modificado o SP para 15 em todos os níveis.
-	- Corte das Sombras: Modificado o custo de SP para 10 em todos os níveis.
-	* Correção de pequeno erro de escrita do skill_lv que pus errado no outro commit.
+	r0152 - 26/01/2011 [Dani]
+	* Envio de Traduções
+	- npc/cidades/izlude.txt
+	- npc/comerciantes/lojas.txt
+	* Revisão final na pasta npc/monstros
 
-	r0161 - 27/01/2011 [Protimus]
-	* Modificações em habilidades:
-	- Instinto de Defesa: Removido os pre-requisitos da habilidade.
-	- Ira de Thor: Dano aumentado em cerca de 20% (Dano total).
-	- Chuva de Meteoros: Aumentado o dano em 25% (Dano total).
+	r0149 - 25/01/2011 [Dani]
+	* Correção no cabeçalho dos NPCs que foram enviados na r147,
+	para leitura automática do Centro de Traduções
+	- http://www.brathena.org/projetos/ct/
 
-	r0160 - 27/01/2011 [Floozie]
-	* Modificação em Habilidades:
-	- Ferir Alvo: Aumentado o dano se usada com um Rifle.
-	- Controle da Multidão: Conjuração não pode ser mais interrompida.
-	- Tiro Espalhado: Aumentado o dano causado, pode ser usada com lança granadas.
-	- Mina do Justiceiro: Aumentado o dano e a área de ativação, formula de dano modificada.
+	r0147 - 25/01/2011 [Dani]
+	* Enviadas traduções
+	- cidades/alberta.txt
+	- cidades/aldebaran.txt
+	- cidades/ayothaya.txt
+	* Pequenas alterações em alguns diálogos de inter-server
+	- Capitulares e acentos que não são aceitos
 
-	r0159 - 27/01/2011 [Protimus]
-	* Modificações em habilidades:
-	- Campo Gravitacional: Reduzido pela metade o intervalo entre os danos da habilidade e dano máximo causado ao usuário reduzido em aproximadamente 45%.
-	- Congelar: Aumentado o dano em 10%. (Dano total).
-	- Fúria da Terra: Aumentado o dano em 25% (Dano total).
-	- Nevasca: Dano aumentado em cerca de 15% (Dano total).
-	* Correções em dados de commits anteriores.
-	- Revisado conforme iRO Wiki - Youtube, etc...
-
-	r0158 - 27/01/2011 [Protimus]
-	* Modificações em habilidades:
-	- Provocar: Reduz apenas a defesa de atributos do adversário.
-	- Ataque Mortal: Quando conjurado, o HP do usuário cai para 1% do total.
-
-	r0157 - 27/01/2011 [Protimus]
-	* Modificações em habilidades:
-	- Angelus: Continua influenciando apenas a parte da Vitalidade na defesa -> Passou para DEF ao invés de DEF2.
-	- Frenezi, Rapidez com Duas Mãos, Rapidez com Uma Mão, Adrenalina Pura & Adrenalina Concentrada: Velocidade de ataque aumentada em valor fixo. -> Já havia sido modificado, só fazendo correções.
-	- Assumptio: Aumenta a defesa em 100%. Habilidades que ignoram a defesa, ignoram os efeitos da habilidade.
-
-	r0156 - 27/01/2011 [Protimus]
-	* Modificações em habilidades:
-	- Arremessar Shuriken Huuma: Conjuração não pode ser interrompida, pode ser mirada no chão e não tem mais seus dano dividido entre os alvos.
-	- Chuva de Flechas: Dano aumentado em 25%.
-	- Bola de Fogo: Aumentado o dano em 25%. (Dano total)
-	- Tempestade de Raios: Aumentado o dano em 25%. (Dano total)
-
-	r0155 - 27/01/2011 [Protimus]
-	* Modificações em habilidades:
-	- Virar Tatami: Aumentado o dano e chance de empurrar para trás.
-	- Lanças de Fogo, Lanças de Gelo e Relâmpago: Reduzido o tempo de conjuração.
-
-	r0153 - 26/01/2011 [Protimus]
-	* Adicionadas todas as informações de reuso para habilidades já existentes.
-	- Baseados em vídeos e informações de outros fóruns, como do iRO.
-
-	r0151 - 26/01/2011 [Dani]
-	* Traduzidos spawns oficiais do Renewal
-
-	r0150 - 26/01/2011 [Protimus]
-	* Liberadas 3rd classes na database.
-
-	r0148 - 25/01/2011 [Dani]
-	* Enviadas últimas alterações da trunk pra renewal
-	* Comentado mob 1996
-	- Ele devia estar comentado por padrão
-	* Alterado packetver no mmo.h para 20100707
-
-	r0146 - 25/01/2011 [Protimus]
-	* Adição das informações e máscaras de classes 3rd e 3rd bebês no uso de @jobchange.
-
-	r0145 - 25/01/2011 [Protimus]
-	* Adição das máscaras que faltavam para classes 3-1 & 3-2 bebês.
-
-	r0144 - 25/01/2011 [Protimus]
-	* Adicionado sistema de jobs para novas classes.
-	- Adicionadas classes 3-1 & 3-2.
-	- Faltam classes bebê e adição das classes para uso de @job.
-	* Pequena correção no mob Bascojin que estava com // em algumas informações.
-
-	r0143 - 25/01/2011 [Dani]
-	* Implementada alocação de atributos do Renewal
-	- Altera também o cálculo para servidores de níveis altos, seguindo a mesma lógica
-	- Não recomendamos o uso da branch Renewal para servidores com níveis acima de 150
-
-	r0142 - 24/01/2011 [Protimus]
-	* Adicionado sistema de reuso para habilidades.
-	- Totalmente funcional, limpo e utilizando tabelas de SQL.
-	* Reorganizada pasta upgrades eA para upgrades contendo os do brA e do eA.
-
-	r0141 - 24/01/2011 [Dani]
-	* Removida linha a mais dada no statpoint.txt
-	- Essa DB não deve conter linhas em branco, jamais.
+	r0140 - 24/01/2011 [Dani]
+	* Enviadas alterações do eAthena que foram perdidas no meio do caminho
 
 	r0139 - 24/01/2011 [Protimus]
-	* Adicionadas mudanças no db/statpoint.txt para level máximo 150, conforme renewal.
+	* Adicionadas mudanças no db/statpoint.txt para level máximo 99.
 
 	r0138 - 24/01/2011 [brn0]
 	* Adicionado NPC Estilista na pasta personalizados.
 	- npc/personalizados/Estilista.txt
 
-	r0137 - 23/01/2011 [brn0]
-	* Adicionado novo cálculo de experiência e de queda de itens de acordo com o Renewal.
+	r0135 - 20/01/2011 [Dani]
+	* Ajustes finos nos arquivos da pasta /db
+	- Somente pra consertar a organização dos cabeçalhos
 
-	r0136 - 23/01/2011 [Floozie]
-	* Adicionado novo cálculo do party_exp_share de acordo com o renewal
+	r0131 - 20/01/2011 [Dani]
+	* Revisadas e feitas algumas traduções no atcommand.c
 
-	r0134 - 20/01/2011 [Protimus]
-	* Adicionadas classes 3rd ao database.
-	* Adicionados pontos ganhos ao se tornar um 3rd classe (para todas as classes).
-	- Ambas modificações estão comentadas e desabilitadas, posteriormente quando as classes forem adicionadas
-	na source, irei descomentar.
-	* Removida checagem para flags da DEF no flag de crítico para HITs normais.
+	r0129 - 19/01/2011 [Dani]
+	* Remoção de monstros desnecessários da Trunk (seguindo r128)
 
-	r0133 - 20/01/2011 [Protimus]
-	* Adicionadas modificações para a Esquiva (FLEE).
-	* Mudanças para velocidade de ataque (ASPD).
-	- Criado novo estado de aspd_add_rate.
-	- Valor básico de ASPD baseado em 3 modos de agilidade (AGI) e destreza (DEX).
-	* Novo cálculo para bônus de itens, bAspd bônus.
-	* Adicionados novos parâmetros fixos do ASPD para poções: ASPDPOTION0 ~ ASPDPOTION3.
-	- Valores de 60, 70, 90 e 110.
-	* Adicionados novos parâmetros de ASPD para habilidades: TWOHANDQUICKEN, ADRENALINE & ONEHAND.
-	* Modificado rate para status change de SC_BERSERK para 150 e não 300.
-	- O valor ficava absurdo, muita velocidade... No RE quem está com BERSERK agora fica correto.
-	* Modificado rate para status change de SC_ADRENALINE para 70 e 60.
-	- O mesmo caso que o BERSERK, agora corrigido.
-
-	r0132 - 20/01/2011 [Protimus]
-	* Adições & Correções de fórmulas.
-	- 4 leveis aumentam seu status de Ataque Físico em 1 (ATQ).
-	- Fórmula do MATK Máximo não divide mais a adição de novos pontos de int por 2 fora os normais, é fixo apenas o normal.
-	- Cada 10 pontos em LUK aumentam sua taxa de Esquiva Perfeita em 1 (PERFECT DODGE).
-
-	r0130 - 20/01/2011 [Protimus]
-	* Pequena correção de status para DEF e MDEF.
-	- Como passaram para valor fixo, foi necessário alterar o valor do DEF2 e MDEF2 que estavam errados.
-	* Correção para valor máximo de DEF com equipamentos para 200.
-	* Modificações para MATK & MATK2
-	- Agora os ataques mágicos mudaram, assim como suas fórmulas.
-	Fórmula do MATK: statusMATK = Int + [Int/2] + [Dex/5] + [Luk/3] + [BLvl/4]
-	DANO MAX: (weaponMatk+upgradeMATK) * 2 + 1.5 * statusMatk * %MATKbonus * 111.5/(111.5+equipMDEF) - statusMDEF
-	DANO MIN: weaponMatk+upgradeMATK+(wMatk*wLvl)/10] * 2 + 1.5 * statusMatk * %MATKbonus * 111.5/(111.5+equipMDEF) - statusMDEF
-
-	r0128 - 19/01/2011 [Dani]
-	* Repassadas últimas alterações/correções da Trunk pra Renewal
-	* Monstros pertencentes pertencentes ao Renewal removidos da Trunk e adicionados na branch Renewal
-	- A trunk é somente para pre-RE, atualmente
-
-	r0127 - 19/01/2011 [Protimus]
-	* Correções de status gerais de acordo com Renewal.
-	- Tudo que foi feito, foi revisado e está funcional, necessário revisar apenas commit anterior.
-	- Lista com modificações do renewal foi atualizada: http://www.brathena.org/forum/index.php/topic/15-renovacao/
-
-	r0126 - 19/01/2011 [Protimus]
-	* Correção de HitRate baseado apenas no esquiva (FLEE).
-	* Efeitos de Equipamentos da esquiva (FLEE) passados apenas para FLEE2.
-	* Removido cálculo para Esquiva Perfeita, é cálculado pelo FLEE, já que FLEE2 passou pra FLEE.
-
-	r0125 - 19/01/2011 [Protimus]
-	* Adicionado novo método para cálculo de experiência (EXP).
-	- Necessário revisar, limpar se for necessário também.
-	* Correções do commit da r122.
-
-	r0124 - 19/01/2011 [Protimus]
-	* Correção para danos com armas baseados em ATK1 para não críticos.
-	- Cálculado agora por dano * 0.4.
-	* Correções para bônus de refinamento não fazerem mais parte do Ataque Físico.
-	* Correções para danos com armas quando usadas flechas.
-	* Novo parâmetro do cálculo de DEF agora trabalha com novos danos de armas.
-
-	r0123 - 19/01/2011 [Protimus]
-	* Modificações no cálculo de dano com armas.
-	- Calculado pela seguinte fórmula: BaseATK * 2 + RefineATK * Size * EquipmentATK.
-	* Modificações para taxa de recuperação do HP.
-	- Cada 1 ponto em VIT aumenta a sua taxa de Recuperação em 2% (HPREC).
-	* Modificação para ganho de DEF de acordo com nível de refinamento.
-	- A cada +1 de Refinamento = +1 de DEF.
-	- DEF passou para DEF2.
-
-	r0122 - 19/01/2011 [Protimus]
-	* Modificações para Ataque Físico (ATK).
-	- Cada 1 ponto em STR aumenta seu status de Ataque Físico em 1 (ATQ).
-	- Cada 5 pontos em DEX aumentam seu status de Ataque Físico em 1 (ATQ).
-	- Cada 3 pontos em LUK aumentam seu status de Ataque Físico em 1 (ATQ).
-
-	r0120 - 19/01/2011 [Protimus]
-	* Adição das taxas de refinamento de armas/armaduras de acordo com o Renewal.
-	* Adição das taxas de atributos elementais de acordo com o Renewal.
-	* Correção de pequeno erro no commit anterior.
-
-	r0119 - 19/01/2011 [Protimus]
-	* Modificações para Redução de MDEF.
-	- Agora a mdef é calculada da seguinte maneira: inteligencia + level/4 + vitalidade/5 + destreza/5.
-	* Cálculos de reduções serão captos sozinhos através de novo código do MATK futuramente.
-
-	r0118 - 19/01/2011 [Protimus]
-	* Modificações para Redução de DEF.
-	- Agora a def é calculada da seguinte maneira: (vitalidade + level)/2 + (agilidade/5).
-	* Armordef & Upgradedef reduzem o dano dependendo da porcentagem de DEF que você têm.
-	- Cálculo para redução do dano é (1-(580/(def2 + 580)))*100.
-
-	r0116 - 19/01/2011 [Protimus]
-	* Modificações para FLEE (Esquiva) &  HIT (Precisão).
-	- Agora o hit é calculado da seguinte maneira: level + destreza + sorte/3 + equipamentos + habilidades + 175.
-	- Agora a flee é calculada da seguinte maneira: level + agi + sorte/7 + equipamentos + habilidades + 100.
-	OBS: Os testes foram efetuados no Sakrat RE.
-
-	r0113 - 19/01/2011 [Protimus]
-	* Adicionas modificações conforme eAthena Renewal.
-	- Modificações em respawn de mobs e portais.
-	- Modificações de itens e mobs.
-	- Mudança no número de party share level para 15.
-	OBS: Necessário retraduzir algumas coisas.
-
-	r0112 - 18/01/2011 [Protimus]
-	* Iniciado projeto brAthena Renewal (Renovação).
-	- Branche adicionada de acordo com r0111 do brAthena Trunk.
+	r0121 - 19/01/2011 [Dani]
+	* Pequenas alterações no arquivo quests_geffen.txt (seguindo r117)
+	- Corrigido erro apontado no map-server
+	- Corrigidas indentações
+	- Removido espaço em branco no fim de cada linha
 
 
-//================================================================================
-// Iniciando Changelog do brAthena Renewal (Renovação).
-//================================================================================
+	r0117 - 19/01/2011 [Tyler]
+
+	* Ajustado o cabeçalho de alguns arquivos CONF na pasta npc:
+	- npc/personalizados/Enquetes_oficiais.txt
+	- npc/personalizados/removedora_de_cartas.txt
+	- scripts_brathena.conf
+	- scripts_classes.conf
+	- scripts_guild.conf
+	- scripts_main.conf
+	- scripts_monstros.conf
+	- scripts_portais.conf
+	- scripts_personalizados.conf
+	* Corrigido um erro de português no cabeçalho para reconhecimento do CT:
+	- npc/quest/bunnyband.txt	
+	* Corrigido alguns npcs na pasta npc para seguir o modelo de npcs originais e refeita a revisão dos mesmos:
+	- npc/quests/quests_aldebaran.txt
+	- npc/quests/quests_geffen.txt
+	- npc/quests/quests_izlude.txt
+	- npc/quests/quests_lutie.txt
+	- npc/quests/quests_payon.txt
+	* Continuada a organização da pasta db para facilitar futuras configurações e revisões.
+
+	r0115 - 18/01/2011 [Dani]
+	* Atualizado conforme eAthena 14676
+	* Adicionados todos os upgrades do eA
+	- Favor não remover
+	* Corrigidos erros primários apontados no map-server
+	- Comentário de várias linhas que não é suportado pelo mob_db modificado para //
+	- Habilidades de monstros custom (eles não existem por padrão,
+	e estão com as IDs reservadas para clones) desativadas
+	- Tabulações apontadas no report #14 no Tracker
+	- Pedido de atenção aos Devs (todos): favor TESTAR toda e qualquer modificação feita no emulador
+
+	r0113 - 18/01/2011 [brn0]
+	* Adicionado NPC de Enquetes Oficiais na pasta personalizados.
+	- npc/personalizados/Enquetes_oficiais.txt
 
 	r0111 - 18/01/2011 [Rafoka]
 	* Adicionado removedora de cartas custom na pasta personalizados
