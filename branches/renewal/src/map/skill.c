@@ -2807,6 +2807,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case NPC_HELLJUDGEMENT:
 	case NPC_VAMPIRE_GIFT:
 	case RK_IGNITIONBREAK:
+	case AB_JUDEX:
 		if( flag&1 )
 		{	//Recursive invocation
 			// skill_area_temp[0] holds number of targets in area

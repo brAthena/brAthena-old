@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0336 - 23/03/2011 [Protimus]
+	* Adicionada habilidade AB_JUDEX (Judex).
+
 	r0336 - 23/03/2011 [Lord]
 	* Revertida rev 0333.
 	- Continha vários erros.
