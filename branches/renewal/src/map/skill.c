@@ -956,6 +956,10 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 	case RK_DRAGONBREATH:
 		sc_start4(bl,SC_BURNING,5+5*skilllv,skilllv,1000,src->id,0,skill_get_time(skillid,skilllv));
 		break;
+	case AB_ADORAMUS:
+		if( tsc && !tsc->data[SC_DECREASEAGI] ) 
+			sc_start(bl, SC_ADORAMUS, 100, skilllv, skill_get_time(skillid, skilllv));
+		break;
 	}
 
 	if (md && battle_config.summons_trigger_autospells && md->master_id && md->special_state.ai)
@@ -2962,6 +2966,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case NJ_KOUENKA:
 	case NJ_HYOUSENSOU:
 	case NJ_HUUJIN:
+	case AB_ADORAMUS:
 		skill_attack(BF_MAGIC,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 
@@ -8179,7 +8184,7 @@ int skill_unit_ondamaged (struct skill_unit *src, struct block_list *bl, int dam
  *------------------------------------------*/
 static int skill_check_condition_char_sub (struct block_list *bl, va_list ap)
 {
-	int *c, skillid;
+	int *c, skillid, lv;
 	struct block_list *src;
 	struct map_session_data *sd;
 	struct map_session_data *tsd;
@@ -8193,6 +8198,7 @@ static int skill_check_condition_char_sub (struct block_list *bl, va_list ap)
 	c=va_arg(ap,int *);
 	p_sd = va_arg(ap, int *);
 	skillid = va_arg(ap,int);
+	lv = va_arg(ap,int);
 
 	if ((skillid != PR_BENEDICTIO && *c >=1) || *c >=2)
 		return 0; //Partner found for ensembles, or the two companions for Benedictio. [Skotlex]
@@ -8215,6 +8221,12 @@ static int skill_check_condition_char_sub (struct block_list *bl, va_list ap)
 			if ((tsd->class_&MAPID_BASEMASK) == MAPID_ACOLYTE && (dir == 2 || dir == 6) //Must be standing to the left/right of Priest.
 				&& sd->status.sp >= 10)
 				p_sd[(*c)++]=tsd->bl.id;
+			return 1;
+		}
+		case AB_ADORAMUS:
+		{ 
+			if( tsd->status.sp >= 2*lv && (tsd->class_&MAPID_UPPERMASK) == MAPID_PRIEST )
+				p_sd[(*c)++] = tsd->bl.id;
 			return 1;
 		}
 		default: //Warning: Assuming Ensemble Dance/Songs for code speed. [Skotlex]
@@ -8266,6 +8278,13 @@ int skill_check_pc_partner (struct map_session_data *sd, short skill_id, short* 
 						status_charge(&tsd->bl, 0, 10);
 				}
 				return c;
+			case AB_ADORAMUS:
+				if( c > 0 && (tsd = map_id2sd(p_sd[0])) != NULL )
+				{
+					i = 2 * (*skill_lv);
+					status_charge(&tsd->bl, 0, i);
+				}
+				return c;
 			default: //Warning: Assuming Ensemble skills here (for speed)
 				if (c > 0 && sd->sc.data[SC_DANCING] && (tsd = map_id2sd(p_sd[0])) != NULL)
 				{
@@ -8284,7 +8303,7 @@ int skill_check_pc_partner (struct map_session_data *sd, short skill_id, short* 
 	memset (p_sd, 0, sizeof(p_sd));
 	i = map_foreachinrange(skill_check_condition_char_sub, &sd->bl, range, BL_PC, &sd->bl, &c, &p_sd, skill_id);
 
-	if (skill_id != PR_BENEDICTIO) //Apply the average lv to encore skills.
+	if (skill_id != PR_BENEDICTIO && skill_id != AB_ADORAMUS) //Apply the average lv to encore skills.
 		*skill_lv = (i+(*skill_lv))/(c+1); //I know c should be one, but this shows how it could be used for the average of n partners.
 	return c;
 }
@@ -8698,6 +8717,13 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 			return 0;
 		}
 		break;
+	case AB_ADORAMUS:
+		if( skill_check_pc_partner(sd,skill,&lv,1,0) <= 0 && ((i = pc_search_inventory(sd,require.itemid[0])) < 0 || sd->status.inventory[i].amount < require.amount[0]) )
+		{
+			clif_skill_fail(sd,skill,0x47,2);
+			return 0;
+		}
+		break;
 	}
 
 	switch(require.state) {
@@ -8874,6 +8900,10 @@ int skill_check_condition_castend(struct map_session_data* sd, short skill, shor
 	{
 	case PR_BENEDICTIO:
 		skill_check_pc_partner(sd, skill, &lv, 1, 1);
+		break;
+	case AB_ADORAMUS:
+		if( skill_check_pc_partner(sd,skill,&lv, 1, 2) )
+			sd->state.no_gemstone = 1; 
 		break;
 	case AM_CANNIBALIZE:
 	case AM_SPHEREMINE:

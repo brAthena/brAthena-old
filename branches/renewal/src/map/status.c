@@ -3491,6 +3491,8 @@ static unsigned short status_calc_agi(struct block_list *bl, struct status_chang
 		agi += ((sc->data[SC_MARIONETTE2]->val3)>>8)&0xFF;
 	if(sc->data[SC_SPIRIT] && sc->data[SC_SPIRIT]->val2 == SL_HIGH && agi < 50)
 		agi = 50;
+	if(sc->data[SC_ADORAMUS])
+		agi -= sc->data[SC_ADORAMUS]->val2;
 
 	return (unsigned short)cap_value(agi,0,USHRT_MAX);
 }
@@ -4012,7 +4014,7 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 				if( sd && sc->data[SC_DANCING] )
 					val = max( val, 500 - (40 + 10 * (sc->data[SC_SPIRIT] && sc->data[SC_SPIRIT]->val2 == SL_BARDDANCER)) * pc_checkskill(sd,(sd->status.sex?BA_MUSICALLESSON:DC_DANCINGLESSON)) );
 
-				if( sc->data[SC_DECREASEAGI] )
+				if( sc->data[SC_DECREASEAGI] || sc->data[SC_ADORAMUS] )
 					val = max( val, 25 );
 				if( sc->data[SC_QUAGMIRE] )
 					val = max( val, 50 );
@@ -4774,6 +4776,7 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 	case SC_QUAGMIRE:
 	case SC_SUITON:
 	case SC_RAID:
+	case SC_ADORAMUS:
 		return 0;
 	}
 
@@ -4792,6 +4795,7 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 		sc_def = 3 +status->int_;
 		break;
 	case SC_DECREASEAGI:
+	case SC_ADORAMUS:
 		if (sd) tick>>=1; //Half duration for players.
 	case SC_STONE:
 	case SC_FREEZE:
@@ -5054,7 +5058,8 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		if(sd && !pc_check_weapontype(sd,skill_get_weapontype(BS_ADRENALINE)))
 			return 0;
 		if (sc->data[SC_QUAGMIRE] ||
-			sc->data[SC_DECREASEAGI]
+			sc->data[SC_DECREASEAGI] ||
+			sc->data[SC_ADORAMUS]
 		)
 			return 0;
 	break;
@@ -5062,14 +5067,15 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		if(sd && !pc_check_weapontype(sd,skill_get_weapontype(BS_ADRENALINE2)))
 			return 0;
 		if (sc->data[SC_QUAGMIRE] ||
-			sc->data[SC_DECREASEAGI]
+			sc->data[SC_DECREASEAGI] ||
+			sc->data[SC_ADORAMUS]
 		)
 			return 0;
 	break;
 	case SC_ONEHAND:
 	case SC_MERC_QUICKEN:
 	case SC_TWOHANDQUICKEN:
-		if(sc->data[SC_DECREASEAGI])
+		if(sc->data[SC_DECREASEAGI] || sc->data[SC_ADORAMUS])
 			return 0;
 	case SC_CONCENTRATE:
 	case SC_INCREASEAGI:
@@ -5253,6 +5259,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			case SC_RICHMANKIM:
 			case SC_ROKISWEIL:
 			case SC_FOGWALL:
+			case SC_ADORAMUS:
 				return 0;
 		}
 	}
@@ -5271,6 +5278,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		break;
 	case SC_INCREASEAGI:
 		status_change_end(bl, SC_DECREASEAGI, INVALID_TIMER);
+		status_change_end(bl,SC_ADORAMUS,-1);
 		break;
 	case SC_QUAGMIRE:
 		status_change_end(bl, SC_CONCENTRATE, INVALID_TIMER);
@@ -5278,6 +5286,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		status_change_end(bl, SC_WINDWALK, INVALID_TIMER);
 		//Also blocks the ones below...
 	case SC_DECREASEAGI:
+	case SC_ADORAMUS:
 		status_change_end(bl, SC_CARTBOOST, INVALID_TIMER);
 		//Also blocks the ones below...
 	case SC_DONTFORGETME:
@@ -5335,9 +5344,10 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		status_change_end(bl, SC_ASSUMPTIO, INVALID_TIMER);
 		break;
 	case SC_CARTBOOST:
-		if(sc->data[SC_DECREASEAGI])
+		if(sc->data[SC_DECREASEAGI] || sc->data[SC_ADORAMUS])
 		{	//Cancel Decrease Agi, but take no further effect [Skotlex]
 			status_change_end(bl, SC_DECREASEAGI, INVALID_TIMER);
+			status_change_end(bl,SC_ADORAMUS,-1);
 			return 0;
 		}
 		break;
@@ -5491,7 +5501,10 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 	{
 		case SC_DECREASEAGI:
 		case SC_INCREASEAGI:
+		case SC_ADORAMUS:
 			val2 = 2 + val1; //Agi change
+			if( type == SC_ADORAMUS )
+				sc_start(bl,SC_BLIND,100,val1,skill_get_time(status_sc2skill(type),val1));
 			break;
 		case SC_ENDURE:
 			val2 = 7; // Hit-count [Celest]
@@ -7057,6 +7070,9 @@ int status_change_end(struct block_list* bl, enum sc_type type, int tid)
 		case SC_BERKANA:
 			clif_millenniumshield(sd,0);
 			break;
+		case SC_ADORAMUS:
+			status_change_end(bl, SC_BLIND, -1);
+			break;
 		}
 
 	opt_flag = 1;
@@ -7776,6 +7792,7 @@ int status_change_clear_buffs (struct block_list* bl, int type)
 			case SC_STRIPHELM:
 			case SC_FEAR:
 			case SC_BURNING:
+			case SC_ADORAMUS:
 				if (!(type&2))
 					continue;
 				break;
