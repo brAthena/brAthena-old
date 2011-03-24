@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0336 - 23/03/2011 [Lord]
+	* Revertida rev 0333.
+	- Continha vários erros.
+
 	r0335 - 23/03/2011 [Protimus]
 	* Adicionadas mais organizações e traduções do database.
 

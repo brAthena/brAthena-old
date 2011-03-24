@@ -3150,7 +3150,7 @@
 6025,Towel_Of_Memory,Towel of Memory,3,0,,10,,,,,,,,,,,,,{},{},{}
 6026,Marriage_Covenant,Written Oath Of Marriage,3,0,,10,,,,,,,,,,,,,{},{},{}
 6027,Crystal_Of_Feardoom,Cristal Sangrento da Escuridão,3,0,,10,,,,,,,,,,,,,{},{},{}
-6028,Seal_Scroll,Pergaminho Selado,3,0,,0,,,,,,,,,,,,,{},{},{}
+6028,Seal_Scroll,Pergaminho Selado,3,0,,10,,,,,,,,,,,,,{},{},{}
 6029,Morocc_Tracing_Log,Registro da Perseguição,3,0,,10,,,,,,,,,,,,,{},{},{}
 6030,Glitering_PaperA,Papel Brilhante,3,0,,10,,,,,,,,,,,,,{},{},{}
 6031,Glitering_PaperB,Papel Brilhante,3,0,,10,,,,,,,,,,,,,{},{},{}

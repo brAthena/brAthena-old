@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0336 - 23/03/2011 [Lord]
+	* Revertida rev 0333.
+	- Continha vários erros.
+	* Revertida algumas alterações indevidas na pasta /portais.
+	* Corrigido alguns cabeçalhos na pasta /portais.
+
 	r0335 - 23/03/2011 [Protimus]
 	* Adicionadas mais organizações e traduções do database.
 

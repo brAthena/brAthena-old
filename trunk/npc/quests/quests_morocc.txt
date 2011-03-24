@@ -12,7 +12,7 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 2.9/1.1                                |
+// | Versões eA/brA: 2.8/1.0                                |
 // |--------------------------------------------------------|
 // | Descrição: - Stop Post                                 |
 // | - Binoculars Quest                                     |
@@ -23,8 +23,7 @@
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [Avassalador]                     |
-// | 1.1 Script Atualizado [cleyton] 		            |
-// | - Atualizado conforme eAthena r14753		    |
+// | - Anotações                                            |
 // \________________________________________________________/
 
 // Stop Post Quest
@@ -1876,7 +1875,7 @@ OnDisable:
 
 moc_fild21,178,239,0	script	Aglomeração Maligna#edq	844,1,1,{
 	if (((rebirth_moc_edq == 4) || (rebirth_moc_edq == 7)) && ($@re_moc == 1)) {
-		
+		set $@re_moc,2;
 		mes "Impressionado com o furo espaço-temporal no qual a escuridão ganha vida, você recua alguns passos, por instinto.";
 		next;
 		mes "Você sente o poder sombrio sair do buraco onde luz e escuridão se misturam.";
@@ -1884,10 +1883,7 @@ moc_fild21,178,239,0	script	Aglomeração Maligna#edq	844,1,1,{
 		mes "[" + strcharinfo(0) + "]";
 		mes "Wah...!";
 		close2;
-		if($@re_moc == 1) {
-			set $@re_moc,2;
-			donpcevent "Satan Summon#edq::OnEnable";
-		}
+		donpcevent "Satan Summon#edq::OnEnable";
 		end;
 	}
 	else {
