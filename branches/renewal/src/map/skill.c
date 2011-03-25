@@ -5854,6 +5854,18 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 				clif_skill_fail(sd,skillid,0,0,0);
 		}
 		break;
+	case AB_CLEMENTIA:
+	case AB_CANTO:
+		{
+			int bless_lv = pc_checkskill(sd,AL_BLESSING);
+			int agi_lv = pc_checkskill(sd,AL_INCAGI);
+			if( sd == NULL || sd->status.party_id == 0 || flag&1 )
+				clif_skill_nodamage(bl, bl, skillid, skilllv, sc_start(bl,type,100,
+					(skillid == AB_CLEMENTIA)? bless_lv : (skillid == AB_CANTO)? agi_lv : skilllv, skill_get_time(skillid,skilllv)));
+			else if( sd )
+				party_foreachsamemap(skill_area_sub, sd, skill_get_splash(skillid, skilllv), src, skillid, skilllv, tick, flag|BCT_PARTY|1, skill_castend_nodamage_id);
+		}
+		break;
 	default:
 		ShowWarning("skill_castend_nodamage_id: Habilidade desconhecida usada:%d\n",skillid);
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);

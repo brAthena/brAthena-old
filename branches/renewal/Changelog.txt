@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0340 - 25/03/2011 [Protimus]
+	* Adicionadas habilidades AB_CLEMENTIA (Crementia) & AB_CANTOCANDIDUS (Canto Candidus).
+
 	r0339 - 25/03/2011 [Protimus]
 	* Modificações para clif_skill_fail.
 	- Agora realiza a leitura de val (valores).
