@@ -265,6 +265,11 @@ int battle_attr_fix(struct block_list *src, struct block_list *target, int damag
 		if( tsc->data[SC_SPIDERWEB]->val2 == 0 )
 			status_change_end(target, SC_SPIDERWEB, INVALID_TIMER);
 	}
+	if( tsc && tsc->count )
+	{
+		if( tsc->data[SC_ORATIO] && atk_elem == ELE_HOLY )
+			ratio += tsc->data[SC_ORATIO]->val1 * 2;
+	}
 	return damage*ratio/100;
 }
 
