@@ -5876,6 +5876,13 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			clif_skill_nodamage(src, bl, skillid, skilllv, 1);
 		}
 		break;
+	case AB_ANCILLA:
+	 	if( sd )
+		{
+			clif_skill_nodamage(src,bl,skillid,skilllv,1);
+			skill_produce_mix(sd, skillid, ITEMID_ANCILLA, 0, 0, 0, 1);
+		}
+		break;
 	default:
 		ShowWarning("skill_castend_nodamage_id: Habilidade desconhecida usada:%d\n",skillid);
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
@@ -8746,6 +8753,19 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 			return 0;
 		}
 		break;
+	case AB_ANCILLA:
+		{
+			int count = 0;
+			for( i = 0; i < MAX_INVENTORY; i ++ )
+				if( sd->status.inventory[i].nameid == ITEMID_ANCILLA )
+					count += sd->status.inventory[i].amount;
+			if( count >= 3 )
+			{
+				clif_skill_fail(sd, skill, 0x0c, 0, 0);
+				return 0;
+			}
+		}
+		break;
 	}
 
 	switch(require.state) {
@@ -8985,12 +9005,15 @@ int skill_check_condition_castend(struct map_session_data* sd, short skill, shor
 			int btype = 0, val = 0;
 			switch( require.itemid[i] )
 			{
-				case ITEMID_RED_GEMSTONE: 
+				case ITEMID_RED_GEMSTONE:	// Gema Vermelha
 				type = 0x07; 
-				break;	//Gema vermelha
-				case ITEMID_BLUE_GEMSTONE:  
+				break;	
+				case ITEMID_BLUE_GEMSTONE:	//Gema Azul
 				type = 0x08; 
-				break;	//Gema Azul
+				break;
+				case ITEMID_ANCILLA:	//Ancilla
+				type = 0x0f; 
+				break;	
 			}
 			clif_skill_fail(sd, skill, type, btype, val);
 			return 0;
@@ -11145,6 +11168,7 @@ int skill_produce_mix(struct map_session_data *sd, int skill_id, int nameid, int
 				make_per = (2000 + 40*status->dex + 20*status->luk);
 				break;
 			case AL_HOLYWATER:
+			case AB_ANCILLA:
 				make_per = 100000; //100% success
 				break;
 			case AM_PHARMACY: // Potion Preparation - reviewed with the help of various Ragnainfo sources [DracoRPG]
@@ -11272,6 +11296,7 @@ int skill_produce_mix(struct map_session_data *sd, int skill_id, int nameid, int
 					flag = battle_config.produce_item_name_input&0x2;
 					break;
 				case AL_HOLYWATER:
+				case AB_ANCILLA:
 					flag = battle_config.produce_item_name_input&0x8;
 					break;
 				case ASC_CDP:

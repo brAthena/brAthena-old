@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0343 - 26/03/2011 [Protimus]
+	* Adicionada habilidade AB_ANCILLA (Ancilla).
+	- Necessário adição de checagem caso não tenha gemas, não usar habilidade.
+	- Necessário revisar algumas porcentagens.
+
 	r0342 - 26/03/2011 [Protimus]
 	* Correções para a habilidade  AB_ADORAMUS (Adoramus).
 	- Agora consome apenas 1 gema azul e está funcionando corretamente com o padrão do pc_search_inventory.
