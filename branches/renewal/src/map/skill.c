@@ -8740,9 +8740,9 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 		}
 		break;
 	case AB_ADORAMUS:
-		if( skill_check_pc_partner(sd,skill,&lv,1,0) <= 0 && ((i = pc_search_inventory(sd,require.itemid[0])) < 0 || sd->status.inventory[i].amount < require.amount[0]) )
+		if( skill_check_pc_partner(sd,skill,&lv,1,0) <= 0 && pc_search_inventory(sd,ITEMID_BLUE_GEMSTONE) <= require.amount[0] )
 		{
-			clif_skill_fail(sd,skill,0x47,2,0x2cc);
+			clif_skill_fail(sd,skill,0x04,0,0);
 			return 0;
 		}
 		break;
