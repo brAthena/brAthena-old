@@ -4783,6 +4783,7 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 	case SC_SUITON:
 	case SC_RAID:
 	case SC_ADORAMUS:
+	case SC_SECRAMENT:
 		return 0;
 	}
 
@@ -6375,6 +6376,9 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			break;
 		case SC_THURISAZ:
 			val2 = 10;
+			break;
+		case SC_SECRAMENT:
+			val2 = 10 * val1;
 			break;
 
 		default:
