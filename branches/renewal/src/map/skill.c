@@ -6797,6 +6797,15 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 
 	case RK_WINDCUTTER:
 		clif_skill_damage(src,src,tick, status_get_amotion(src), 0, -30000, 1, skillid, skilllv, 6);
+		break;
+		
+	case AB_EPICLESIS:
+		if( sg = skill_unitsetting(src, skillid, skilllv, x, y, 0) )
+		{
+			i = sg->unit->range;
+			map_foreachinarea(skill_area_sub, src->m, x - i, y - i, x + i, y + i, BL_CHAR, src, ALL_RESURRECTION, 1, tick, flag|BCT_NOENEMY|1,skill_castend_nodamage_id);
+		}
+		break;
 		
 	case RK_DRAGONBREATH:
 		i = skill_get_splash(skillid,skilllv);
@@ -8005,6 +8014,38 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 			//clif_changetraplook(&src->bl, UNT_FIREPILLAR_ACTIVE);
 			sg->limit=DIFF_TICK(tick,sg->tick)+1500;
 			break;
+
+		case UNT_EPICLESIS:
+			if( bl->type == BL_PC && !battle_check_undead(tstatus->race, tstatus->def_ele) && tstatus->race != RC_DEMON )
+			{
+				int hp, sp;
+				switch( sg->skill_lv )
+				{
+					case 1: case 2: hp = 3; sp = 2; break;
+					case 3: case 4: hp = 4; sp = 3; break;
+					case 5: default: hp = 5; sp = 4; break;
+				}
+				hp = tstatus->max_hp * hp / 100;
+				sp = tstatus->max_sp * sp / 100;
+				status_heal(bl, hp, sp, 0);
+				if( tstatus->hp < tstatus->max_hp )
+					clif_skill_nodamage(&src->bl, bl, AL_HEAL, hp, 1);
+				if( tstatus->sp < tstatus->max_sp )
+					clif_skill_nodamage(&src->bl, bl, MG_SRECOVERY, sp, 1);
+				sc_start(bl, type, 100, sg->skill_lv, sg->interval + 100);
+				sg->val2++;
+				if( sg->val2 >= 5 )
+				{
+					sg->val2 = 0;
+					status_change_end(bl,SC_HIDING,-1);
+					status_change_end(bl,SC_CLOAKING,-1);
+				}
+			}
+
+			else if( battle_check_target(ss, bl, BCT_ENEMY) > 0 && battle_check_undead(tstatus->race, tstatus->def_ele) )
+				skill_castend_damage_id(&src->bl, bl, sg->skill_id, sg->skill_lv, 0, 0);
+				
+			break;
 	}
 
 	if (sg->state.magic_power && sc && !sc->data[SC_MAGICPOWER])
@@ -8054,6 +8095,10 @@ int skill_unit_onout (struct skill_unit *src, struct block_list *bl, unsigned in
 	case UNT_HERMODE:	//Clear Hermode if the owner moved.
 		if (sce && sce->val3 == BCT_SELF && sce->val4 == sg->group_id)
 			status_change_end(bl, type, INVALID_TIMER);
+		break;
+		
+	case UNT_EPICLESIS:
+		if( sce ) status_change_end(bl,type,-1);
 		break;
 
 	case UNT_SPIDERWEB:

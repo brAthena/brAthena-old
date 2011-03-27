@@ -4223,6 +4223,8 @@ static unsigned int status_calc_maxhp(struct block_list *bl, struct status_chang
 
 	if(sc->data[SC_MERC_HPUP])
 		maxhp += maxhp * sc->data[SC_MERC_HPUP]->val2/100;
+	if(sc->data[SC_EPICLESIS])
+		maxhp += maxhp / 100 * 5 * sc->data[SC_EPICLESIS]->val1;
 
 	return cap_value(maxhp,1,UINT_MAX);
 }
