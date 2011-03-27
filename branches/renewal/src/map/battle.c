@@ -1318,7 +1318,6 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				break;
             case LK_SPIRALPIERCE:
             case ML_SPIRALPIERCE:
-                wd.damage = sstatus->batk;
                 if (sd) {
                     short index = sd->equip_index[EQI_HAND_R];
 
@@ -1330,7 +1329,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
                 } else
                 wd.damage = sstatus->rhw.atk2*8/10;
                 ATK_ADD((sstatus->rhw.atk2*5/10)*skill_lv);
-                skillratio += (150+(40*skill_lv));
+                skillratio += (sstatus->batk + 150 + (40*skill_lv)) ;
                 if( sc && sc->data[SC_GLOOMYDAY_SK] && skill_num == LK_SPIRALPIERCE )
                 ATK_ADD(50 + 5 * sc->data[SC_GLOOMYDAY_SK]->val1);
                 break;
