@@ -1316,20 +1316,24 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				wd.damage = sstatus->max_hp* 9/100;
 				wd.damage2 = 0;
 				break;
-			case LK_SPIRALPIERCE:
-			case ML_SPIRALPIERCE:
-				if (sd) {
-					short index = sd->equip_index[EQI_HAND_R];
+            case LK_SPIRALPIERCE:
+            case ML_SPIRALPIERCE:
+                wd.damage = sstatus->batk;
+                if (sd) {
+                    short index = sd->equip_index[EQI_HAND_R];
 
-					if (index >= 0 &&
-						sd->inventory_data[index] &&
-						sd->inventory_data[index]->type == IT_WEAPON)
-						wd.damage += sd->inventory_data[index]->weight/20*skill_lv;
-				} else
-					wd.damage += sstatus->rhw.atk2/20*skill_lv;
-
-				ATK_ADDRATE(50*skill_lv);
-				break;
+                    if (index >= 0 &&
+                        sd->inventory_data[index] &&
+                        sd->inventory_data[index]->type == IT_WEAPON)
+                        ATK_ADD(sd->inventory_data[index]->weight*5/100*skill_lv);
+                        wd.damage = sd->inventory_data[index]->weight*8/100; 
+                } else
+                wd.damage = sstatus->rhw.atk2*8/10;
+                ATK_ADD((sstatus->rhw.atk2*5/10)*skill_lv);
+                skillratio += (150+(40*skill_lv));
+                if( sc && sc->data[SC_GLOOMYDAY_SK] && skill_num == LK_SPIRALPIERCE )
+                ATK_ADD(50 + 5 * sc->data[SC_GLOOMYDAY_SK]->val1);
+                break;
 			case CR_SHIELDBOOMERANG:
 			case PA_SHIELDCHAIN:
 				wd.damage = sstatus->batk + sstatus->dex + sstatus->luk;

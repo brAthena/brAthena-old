@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0347 - 27/03/2011 [Protimus]
+	* Modificações em habilidades:
+	- Perfurar em Espiral: Não tem mais penalidades no ATK_RATE para diversos tamanhos.
+	 Ganha bonificação da habilidade WM_GLOOMYDAY (Ode a Hela) e tem uma nova fórmula para cálculo do dano geral.
+
 	r0346 - 26/03/2011 [brn0]
 	* Alterada a fórmula da habilidade 'Cura'.
 
