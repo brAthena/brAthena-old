@@ -5883,6 +5883,41 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			skill_produce_mix(sd, skillid, ITEMID_ANCILLA, 0, 0, 0, 1);
 		}
 		break;
+	case AB_LAUDAAGNUS:
+		if( flag&1 || sd == NULL )
+		{
+			if( (tsc && (tsc->data[SC_FREEZE] || tsc->data[SC_STONE] ||
+				tsc->data[SC_BLIND]))&& (rand()%100 < 30+5*skilllv) )
+			{
+				status_change_end(bl, SC_FREEZE, -1);
+				status_change_end(bl, SC_STONE, -1);
+				status_change_end(bl, SC_BLIND, -1);
+			}
+			clif_skill_nodamage(bl, bl, skillid, skilllv,
+				sc_start(bl, type, 100, skilllv, skill_get_time(skillid, skilllv)));
+		}
+		else if( sd )
+			party_foreachsamemap(skill_area_sub, sd, skill_get_splash(skillid, skilllv),
+				src, skillid, skilllv, tick, flag|BCT_PARTY|1, skill_castend_nodamage_id);
+		break;
+
+	case AB_LAUDARAMUS:
+		if( flag&1 || sd == NULL )
+		{
+			if( (tsc && (tsc->data[SC_SLEEP] || tsc->data[SC_STUN] ||
+				tsc->data[SC_SILENCE]))&& (rand()%100 < 30+5*skilllv) )
+			{
+				status_change_end(bl, SC_SLEEP, -1);
+				status_change_end(bl, SC_STUN, -1);
+				status_change_end(bl, SC_SILENCE, -1);
+			}
+			clif_skill_nodamage(bl, bl, skillid, skilllv,
+				sc_start(bl, type, 100, skilllv, skill_get_time(skillid, skilllv)));
+		}
+		else if( sd )
+			party_foreachsamemap(skill_area_sub, sd, skill_get_splash(skillid, skilllv),
+				src, skillid, skilllv, tick, flag|BCT_PARTY|1, skill_castend_nodamage_id);
+		break;
 	default:
 		ShowWarning("skill_castend_nodamage_id: Habilidade desconhecida usada:%d\n",skillid);
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
@@ -8764,6 +8799,14 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 				clif_skill_fail(sd, skill, 0x0c, 0, 0);
 				return 0;
 			}
+		}
+		break;
+	case AB_LAUDAAGNUS:
+	case AB_LAUDARAMUS:
+		if( !sd->status.party_id )
+		{
+			clif_skill_fail(sd,skill,0,0,0);
+			return 0;
 		}
 		break;
 	}
