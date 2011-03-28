@@ -5924,6 +5924,59 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		clif_skill_nodamage(src, bl, skillid, skilllv, 1);
 		break;
 		
+	case AB_CLEARANCE:
+		if( flag&1 || (i = skill_get_splash(skillid, skilllv)) < 1 )
+		{
+			clif_skill_nodamage(src,bl,skillid,skilllv,1);
+			if((dstsd && (dstsd->class_&MAPID_UPPERMASK) == MAPID_SOUL_LINKER)
+				|| (tsc && tsc->data[SC_SPIRIT]) || rand()%100 >= 30 + 10 * skilllv)
+			{
+				if (sd)
+					clif_skill_fail(sd,skillid,0,0,0);
+				break;
+			}
+			if(status_isimmune(bl) || !tsc || !tsc->count)
+				break;
+			for(i=0;i<SC_MAX;i++)
+			{
+				if (!tsc->data[i])
+					continue;
+				switch (i) {
+				case SC_WEIGHT50:    case SC_WEIGHT90:    case SC_HALLUCINATION:
+				case SC_STRIPWEAPON: case SC_STRIPSHIELD: case SC_STRIPARMOR:
+				case SC_STRIPHELM:   case SC_CP_WEAPON:   case SC_CP_SHIELD:
+				case SC_CP_ARMOR:    case SC_CP_HELM:     case SC_COMBO:
+				case SC_STRFOOD:     case SC_AGIFOOD:     case SC_VITFOOD:
+				case SC_INTFOOD:     case SC_DEXFOOD:     case SC_LUKFOOD:
+				case SC_HITFOOD:     case SC_FLEEFOOD:    case SC_BATKFOOD:
+				case SC_WATKFOOD:    case SC_MATKFOOD:    case SC_DANCING:
+				case SC_GUILDAURA:   case SC_AUTOBERSERK: case SC_CARTBOOST:
+				case SC_MELTDOWN:    case SC_SAFETYWALL:  case SC_SMA:
+				case SC_SPEEDUP0:    case SC_NOCHAT:      case SC_ANKLE:
+				case SC_SPIDERWEB:   case SC_JAILED:      case SC_ITEMBOOST:
+				case SC_EXPBOOST:    case SC_LIFEINSURANCE: case SC_BOSSMAPINFO:
+				case SC_PNEUMA:      case SC_AUTOSPELL:   case SC_INCHITRATE:
+				case SC_INCATKRATE:  case SC_NEN:         case SC_READYSTORM:
+				case SC_READYDOWN:   case SC_READYTURN:   case SC_READYCOUNTER:
+				case SC_DODGE:       case SC_WARM:        case SC_SPEEDUP1:
+				case SC_AUTOTRADE:   case SC_CRITICALWOUND: case SC_JEXPBOOST:
+				case SC_ELECTRICSHOCKER: case SC_BITE:    case SC__STRIPACCESSORY:
+				case SC__ENERVATION: case SC__GROOMY:     case SC__IGNORANCE:
+				case SC__LAZINESS:   case SC__UNLUCKY:    case SC__WEAKNESS:
+					continue;
+				case SC_ASSUMPTIO:
+					if( bl->type == BL_MOB )
+						continue;
+					break;
+				}
+				if(i==SC_BERSERK || i==SC_SATURDAYNIGHTFEVER) tsc->data[i]->val2=0; 
+				status_change_end(bl,(sc_type)i,-1);
+			}
+			break;
+		}
+		map_foreachinrange(skill_area_sub, bl, i, BL_CHAR, src, skillid, skilllv, tick, flag|1, skill_castend_damage_id);
+		break;
+		
 	default:
 		ShowWarning("skill_castend_nodamage_id: Habilidade desconhecida usada:%d\n",skillid);
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);

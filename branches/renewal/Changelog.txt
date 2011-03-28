@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0350 - 27/03/2011 [Protimus]
+	* Adicionadas habilidades AB_EUCHARISTICA (Eucaristia) & AB_CLEARANCE (Gênese).
+	- Necessário revisar depois, podem conter erros.
+	* Revisão da fórmula do Perfurar em Espiral dos commits anteriores.
+
 	r0349 - 27/03/2011 [Protimus]
 	* Adicionadas habilidades AB_SECRAMENT (Sacramentum) & AB_SILENTIUM (Silentium).
 
