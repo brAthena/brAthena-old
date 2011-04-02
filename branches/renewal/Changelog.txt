@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0351 - 01/03/2011 [Protimus]
+	* Adicionadas correções para Montarias.
+	- Ainda não estão funcionando corretamente.
+	* Correções de commits anteriores como efeitos dos SI de status burning e outros...
+
 	r0350 - 27/03/2011 [Protimus]
 	* Adicionadas habilidades AB_EUCHARISTICA (Eucaristia) & AB_CLEARANCE (Gênese).
 	- Necessário revisar depois, podem conter erros.

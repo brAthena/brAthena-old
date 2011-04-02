@@ -2492,10 +2492,12 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 	if((skill=pc_checkskill(sd,GS_SINGLEACTION))>0 &&
 		(sd->status.weapon >= W_REVOLVER && sd->status.weapon <= W_GRENADE))
 		status->aspd_rate -= ((skill+1)/2) * 10;
-	if( pc_isriding(sd,OPTION_RIDING) )
+	if(pc_isriding(sd,OPTION_RIDING) && !(sd->class_&JOBL_THIRD))
 		status->aspd_rate += 500 - 100 * pc_checkskill(sd,KN_CAVALIERMASTERY);
-	if( pc_isriding(sd,OPTION_RIDING_DRAGON) && (sd->class_&JOBL_THIRD) && (skill = pc_checkskill(sd,RK_DRAGONTRAINING)) > 0 )
-		status->aspd_rate += 500 - 100 * skill;
+	if(pc_isriding(sd,OPTION_RIDING_DRAGON) && (sd->class_&JOBL_THIRD))
+		if ((skill=pc_checkskill(sd,RK_DRAGONTRAINING))>0) {
+			status->aspd_rate += 500-100*pc_checkskill(sd,RK_DRAGONTRAINING);
+		}
 
 	status->adelay = 2*status->amotion;
 
@@ -2512,11 +2514,11 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 	// Weight
 	if( (skill=pc_checkskill(sd,MC_INCCARRY)) > 0 )
 		sd->max_weight += 2000*skill;
-	if( pc_isriding(sd,OPTION_RIDING) && pc_checkskill(sd,KN_RIDING) > 0 )
-		sd->max_weight += 10000;
-	if( pc_isriding(sd,OPTION_RIDING_DRAGON) && (skill = pc_checkskill(sd,RK_DRAGONTRAINING)) > 0 )
-		sd->max_weight += 5000  + 2000*skill; 
-	if( sd->sc.option&OPTION_MADO )
+	if(pc_isriding(sd,OPTION_RIDING) && pc_checkskill(sd,KN_RIDING)>0)
+		sd->max_weight += 10000; 
+	if(pc_isriding(sd,OPTION_RIDING_DRAGON) && (skill=pc_checkskill(sd,RK_DRAGONTRAINING))>0)
+		sd->max_weight += sd->max_weight * (30 + skill) / 100;
+	if(sd->sc.option&OPTION_MADO)
 		sd->max_weight += 20000;
 	if( sc->data[SC_KNOWLEDGE] )
 		sd->max_weight += sd->max_weight * sc->data[SC_KNOWLEDGE]->val1 / 10;
@@ -4005,7 +4007,19 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 			if( sc->data[SC_FUSION] )
 				val = 25;
 			else
+			if( sd && pc_isriding(sd, OPTION_RIDING) )
+			{
+				if( sd->class_&JOBL_THIRD ) val = 25;
+				else val = 25;
+			}
+			else
 			if( sd && pc_isriding(sd, OPTION_RIDING_DRAGON) )
+ 				val = 25;
+			else
+			if( sd && pc_isriding(sd,OPTION_RIDING_WUG) )
+				val = 10 * pc_checkskill(sd, RA_WUGRIDER);
+			else
+			if( sc->data[SC_ACCELERATION] )
 				val = 25;
 
 			speed_rate -= val;
@@ -4113,6 +4127,13 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 			speed = max(speed, 200);
 		if( sc->data[SC_WALKSPEED] && sc->data[SC_WALKSPEED]->val1 > 0 ) // ChangeSpeed
 			speed = speed * 100 / sc->data[SC_WALKSPEED]->val1;
+		if( sd && pc_isriding(sd, OPTION_MADO) )
+		{
+			if( pc_checkskill(sd, NC_MADOLICENCE)>0 )
+				speed += speed * (50 - 10 * pc_checkskill(sd, NC_MADOLICENCE)) / 100;
+			else 
+				speed += speed * 50 / 100;
+		}
 	}
 
 	return (short)cap_value(speed,10,USHRT_MAX);
@@ -4633,7 +4654,7 @@ void status_set_viewdata(struct block_list *bl, int class_)
 				if (sd->sc.option&OPTION_XMAS)
 					class_ = JOB_XMAS;
 				else
-				if (sd->sc.option&OPTION_RIDING)
+				if (sd->sc.option&OPTION_RIDING || sd->sc.option&(OPTION_RIDING_DRAGON))
 				switch (class_)
 				{	//Adapt class to a Mounted one.
 				case JOB_KNIGHT:
@@ -4653,6 +4674,42 @@ void status_set_viewdata(struct block_list *bl, int class_)
 					break;
 				case JOB_BABY_CRUSADER:
 					class_ = JOB_BABY_CRUSADER2;
+					break;
+				case JOB_RUNE_KNIGHT:
+					class_ = JOB_RUNE_KNIGHT2;
+					break;
+				case JOB_RUNE_KNIGHT_T:
+					class_ = JOB_RUNE_KNIGHT_T2;
+					break;
+				case JOB_ROYAL_GUARD:
+					class_ = JOB_ROYAL_GUARD2;
+					break;
+				case JOB_ROYAL_GUARD_T:
+					class_ = JOB_ROYAL_GUARD_T2;
+					break;
+				case JOB_RANGER:
+					class_ = JOB_RANGER2;
+					break;
+				case JOB_RANGER_T:
+					class_ = JOB_RANGER_T2;
+					break;
+				case JOB_MECHANIC:
+					class_ = JOB_MECHANIC2;
+					break;
+				case JOB_MECHANIC_T:
+					class_ = JOB_MECHANIC_T2;
+					break;
+				case JOB_BABY_RUNE:
+					class_ = JOB_BABY_RUNE2;
+					break;
+				case JOB_BABY_RANGER:
+					class_ = JOB_BABY_RANGER2;
+					break;
+				case JOB_BABY_MECHANIC:
+					class_ = JOB_BABY_MECHANIC2;
+					break;
+				case JOB_BABY_GUARD:
+					class_ = JOB_BABY_GUARD2;
 					break;
 				}
 				sd->vd.class_ = class_;
