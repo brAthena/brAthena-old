@@ -60,7 +60,7 @@ struct item_data;
 #define JOBL_2_2 0x200 //512
 #define JOBL_2 0x300
 
-#define JOBL_THIRD 0x400 //1024
+#define JOBL_THIRD 0x4000 //16384
 
 #define JOBL_UPPER 0x1000 //4096
 #define JOBL_BABY 0x2000  //8192

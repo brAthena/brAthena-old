@@ -1332,17 +1332,15 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
                 break;
 			case CR_SHIELDBOOMERANG:
 			case PA_SHIELDCHAIN:
-				wd.damage = sstatus->batk + sstatus->dex + sstatus->luk;
 				if (sd) {
 					short index = sd->equip_index[EQI_HAND_L];
-
 					if (index >= 0 &&
 						sd->inventory_data[index] &&
 						sd->inventory_data[index]->type == IT_ARMOR)
-						ATK_ADD(sd->inventory_data[index]->weight/10);
+						wd.damage = sd->inventory_data[index]->weight/10*skill_lv + sstatus->batk + sstatus->watk;
 					break;
 				} else
-					ATK_ADD(sstatus->rhw.atk2); //Else use Atk2
+					wd.damage = sstatus->rhw.atk2;
 				break;
 			case HFLI_SBR44:	//[orn]
 				if(src->type == BL_HOM) {
