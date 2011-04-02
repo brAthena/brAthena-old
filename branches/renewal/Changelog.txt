@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0353 - 02/03/2011 [Protimus]
+	* Modificações em habilidades:
+	- Bomba Ácida: Nova fórmula é skillvl *(7 *((MATK-MDEF)+(ATK-DEF))* VIT) / ((MATK-MDEF)+(ATK-DEF)+VIT)
+
 	r0352 - 02/03/2011 [Protimus]
 	* Modificações em habilidades:
 	- Choque Rapido: O dano agora tem o bônus de ataque físico do usuário, arma e refinamento.
