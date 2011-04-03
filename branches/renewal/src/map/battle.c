@@ -1429,7 +1429,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio += 50*skill_lv;
 					break;
 				case HT_POWER: //FIXME: How exactly is the STR based damage supposed to be done? [Skotlex]
-					skillratio += 5*sstatus->str;
+					skillratio += -50+8*sstatus->str;
 					break;
 				case AC_DOUBLE:
 				case MA_DOUBLE:
