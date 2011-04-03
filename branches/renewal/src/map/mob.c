@@ -3461,10 +3461,10 @@ static bool mob_parse_dbrow(char** str)
 	status->max_hp = atoi(str[5]);
 	status->max_sp = atoi(str[6]);
 
-	exp = (double)atoi(str[7]) * (double)battle_config.base_exp_rate / 100.;
+	exp = (double)atoi(str[7]) * battle_config.base_exp_rate / 100. + 0.5;
 	db->base_exp = (unsigned int)cap_value(exp, 0, UINT_MAX);
 
-	exp = (double)atoi(str[8]) * (double)battle_config.job_exp_rate / 100.;
+	exp = (double)atoi(str[8]) * battle_config.job_exp_rate / 100. + 0.5;
 	db->job_exp = (unsigned int)cap_value(exp, 0, UINT_MAX);
 
 	status->rhw.range = atoi(str[9]);
