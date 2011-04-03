@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0354 - 02/03/2011 [Protimus]
+	* Corrigido pequeno erro do commit anterior.
+	- Alterações do matk para a bomba ácida.
+	* Removidas funções dos itens de runas no item_db.
+	- Será recodificado algumas coisas se necessário, para sanar outros problemas com runas.
+
 	r0353 - 02/03/2011 [Protimus]
 	* Modificações em habilidades:
 	- Bomba Ácida: Nova fórmula é skillvl *(7 *((MATK-MDEF)+(ATK-DEF))* VIT) / ((MATK-MDEF)+(ATK-DEF)+VIT)

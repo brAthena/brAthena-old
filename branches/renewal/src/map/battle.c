@@ -2932,7 +2932,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		break;
 	case CR_ACIDDEMONSTRATION: // updated the formula based on a Japanese formula found to be exact [Reddozen]
 		if(tstatus->vit+sstatus->int_) //crash fix
-			md.damage = (int)((int64) skill_lv*(7*((sstatus->int_ + sstatus->vit - tstatus->mdef) + (sstatus->batk - tstatus->def)) * tstatus->vit) / ((sstatus->int_ + sstatus->vit - tstatus->mdef) + (sstatus->batk - tstatus->def) + tstatus->vit));
+			md.damage = (int)((int64) skill_lv*(7*((sstatus->matk_min - tstatus->mdef) + (sstatus->batk - tstatus->def)) * tstatus->vit) / ((sstatus->matk_min - tstatus->mdef) + (sstatus->batk - tstatus->def) + tstatus->vit));
 		else
 			md.damage = 0;
 		if (tsd) md.damage>>=1;
