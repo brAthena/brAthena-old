@@ -44,11 +44,13 @@
     <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">..\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectName)\$(Configuration)\</IntDir>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">map-server_sql</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">map-server_sql</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\3rdparty\mysql\include;..\3rdparty\zlib\include;..\3rdparty\pcre\include;..\3rdparty\msinttypes\include%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\3rdparty\mysql\include;..\3rdparty\zlib\include;..\3rdparty\pcre\include;..\3rdparty\msinttypes\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WIN32;__WIN32;_DEBUG;PCRE_SUPPORT;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;FD_SETSIZE=4096;DB_MANUAL_CAST_TO_UNION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
@@ -91,7 +93,7 @@
       <OmitFramePointers>true</OmitFramePointers>
       <EnableFiberSafeOptimizations>true</EnableFiberSafeOptimizations>
       <WholeProgramOptimization>true</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>..\3rdparty\mysql\include;..\3rdparty\zlib\include;..\3rdparty\pcre\include;..\3rdparty\msinttypes\include%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\3rdparty\mysql\include;..\3rdparty\zlib\include;..\3rdparty\pcre\include;..\3rdparty\msinttypes\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WIN32;__WIN32;NDEBUG;PCRE_SUPPORT;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;FD_SETSIZE=4096;DB_MANUAL_CAST_TO_UNION;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -146,8 +148,7 @@
     <ClInclude Include="..\src\map\atcommand.h" />
     <ClInclude Include="..\src\map\battle.h" />
     <ClInclude Include="..\src\map\battleground.h" />
-	<ClInclude Include="..\src\map\buyingstore.h" />
-	<ClInclude Include="..\src\map\searchstore.h" />
+    <ClInclude Include="..\src\map\buyingstore.h" />
     <ClInclude Include="..\src\map\chat.h" />
     <ClInclude Include="..\src\map\chrif.h" />
     <ClInclude Include="..\src\map\clif.h" />
@@ -170,6 +171,7 @@
     <ClInclude Include="..\src\map\pet.h" />
     <ClInclude Include="..\src\map\quest.h" />
     <ClInclude Include="..\src\map\script.h" />
+    <ClInclude Include="..\src\map\searchstore.h" />
     <ClInclude Include="..\src\map\skill.h" />
     <ClInclude Include="..\src\map\status.h" />
     <ClInclude Include="..\src\map\storage.h" />
@@ -197,8 +199,7 @@
     <ClCompile Include="..\src\map\atcommand.c" />
     <ClCompile Include="..\src\map\battle.c" />
     <ClCompile Include="..\src\map\battleground.c" />
-	<ClCompile Include="..\src\map\buyingstore.c" />
-	<ClCompile Include="..\src\map\searchstore.c" />
+    <ClCompile Include="..\src\map\buyingstore.c" />
     <ClCompile Include="..\src\map\chat.c" />
     <ClCompile Include="..\src\map\chrif.c" />
     <ClCompile Include="..\src\map\clif.c" />
@@ -222,6 +223,7 @@
     <ClCompile Include="..\src\map\pet.c" />
     <ClCompile Include="..\src\map\quest.c" />
     <ClCompile Include="..\src\map\script.c" />
+    <ClCompile Include="..\src\map\searchstore.c" />
     <ClCompile Include="..\src\map\skill.c" />
     <ClCompile Include="..\src\map\status.c" />
     <ClCompile Include="..\src\map\storage.c" />

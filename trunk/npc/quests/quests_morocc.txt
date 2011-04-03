@@ -1875,7 +1875,6 @@ OnDisable:
 
 moc_fild21,178,239,0	script	Aglomeração Maligna#edq	844,1,1,{
 	if (((rebirth_moc_edq == 4) || (rebirth_moc_edq == 7)) && ($@re_moc == 1)) {
-		set $@re_moc,2;
 		mes "Impressionado com o furo espaço-temporal no qual a escuridão ganha vida, você recua alguns passos, por instinto.";
 		next;
 		mes "Você sente o poder sombrio sair do buraco onde luz e escuridão se misturam.";
@@ -1883,7 +1882,10 @@ moc_fild21,178,239,0	script	Aglomeração Maligna#edq	844,1,1,{
 		mes "[" + strcharinfo(0) + "]";
 		mes "Wah...!";
 		close2;
-		donpcevent "Satan Summon#edq::OnEnable";
+		if($@re_moc == 1) {
+			set $@re_moc,2;
+			donpcevent "Satan Summon#edq::OnEnable";
+		}
 		end;
 	}
 	else {

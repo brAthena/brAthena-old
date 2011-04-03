@@ -85,7 +85,6 @@ char *LOG_CONF_NAME;
 char *MAP_CONF_NAME;
 char *BATTLE_CONF_FILENAME;
 char *ATCOMMAND_CONF_FILENAME;
-char *CHARCOMMAND_CONF_FILENAME;
 char *SCRIPT_CONF_NAME;
 char *MSG_CONF_NAME;
 char *GRF_PATH_FILENAME;
@@ -3504,7 +3503,6 @@ void map_helpscreen(int flag)
 	puts("  --map-config <file>		Carrega as configuracoes do map-server do <file>");
 	puts("  --battle-config <file>	Carrega as configuracoes de batalha do <file>");
 	puts("  --atcommand-config <file>	Carrega as configuracoes de atcommand do <file>");
-	puts("  --charcommand-config <file>	Carrega as configuracoes de charcommand do <file>");
 	puts("  --script-config <file>	Carrega as configuracoes de script do <file>");
 	puts("  --msg-config <file>		Carrega as configuracoes de mensagem do <file>");
 	puts("  --grf-path-file <file>	Carrega as configuracoes de GRF e data do <file>");
@@ -3551,7 +3549,6 @@ int do_init(int argc, char *argv[])
 	MAP_CONF_NAME = "conf/map_athena.conf";
 	BATTLE_CONF_FILENAME = "conf/battle_athena.conf";
 	ATCOMMAND_CONF_FILENAME = "conf/atcommand_athena.conf";
-	CHARCOMMAND_CONF_FILENAME = "conf/charcommand_athena.conf";
 	SCRIPT_CONF_NAME = "conf/script_athena.conf";
 	MSG_CONF_NAME = "conf/msg_athena.conf";
 	GRF_PATH_FILENAME = "conf/grf-files.txt";

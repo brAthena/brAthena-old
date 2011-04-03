@@ -3645,7 +3645,7 @@ static void clif_getareachar_pc(struct map_session_data* sd,struct map_session_d
 			clif_dispchat(cd,sd->fd);
 	}
 
-	if(dstsd->vender_id)
+	if( dstsd->state.vending )
 		clif_showvendingboard(&dstsd->bl,dstsd->message,sd->fd);
 
 	if( dstsd->state.buyingstore )
@@ -4077,7 +4077,7 @@ int clif_outsight(struct block_list *bl,va_list ap)
 				if(cd->usersd[0]==sd)
 					clif_dispchat(cd,tsd->fd);
 			}
-			if(sd->vender_id)
+			if( sd->state.vending )
 				clif_closevendingboard(bl,tsd->fd);
 			if( sd->state.buyingstore )
 				clif_buyingstore_disappear_entry_single(tsd, sd);
@@ -7647,24 +7647,31 @@ int clif_charnameack (int fd, struct block_list *bl)
 			if (ssd->fd == fd && ssd->disguise)
 				WBUFL(buf,2) = -bl->id;
 
-			if (strlen(ssd->fakename)>1) {
+			if( ssd->fakename[0] )
+			{
+				WBUFW(buf, 0) = cmd = 0x195;
 				memcpy(WBUFP(buf,6), ssd->fakename, NAME_LENGTH);
 				break;
 			}
 			memcpy(WBUFP(buf,6), ssd->status.name, NAME_LENGTH);
 
-			if (!battle_config.display_party_name) {
-				if (ssd->status.party_id > 0 && ssd->status.guild_id > 0 && (g = guild_search(ssd->status.guild_id)) != NULL)
-					p = party_search(ssd->status.party_id);
-			}else{
-				if (ssd->status.party_id > 0)
-					p = party_search(ssd->status.party_id);
+			if( ssd->status.party_id )
+			{
+				p = party_search(ssd->status.party_id);
 			}
 
-			if( ssd->status.guild_id > 0 && (g = guild_search(ssd->status.guild_id)) != NULL )
+			if( ssd->status.guild_id )
 			{
-				ARR_FIND(0, g->max_member, i, g->member[i].account_id == ssd->status.account_id && g->member[i].char_id == ssd->status.char_id);
-				if( i < g->max_member ) ps = g->member[i].position;
+				if( ( g = guild_search(ssd->status.guild_id) ) != NULL )
+				{
+					ARR_FIND(0, g->max_member, i, g->member[i].account_id == ssd->status.account_id && g->member[i].char_id == ssd->status.char_id);
+					if( i < g->max_member ) ps = g->member[i].position;
+				}
+			}
+ 
+			if( !battle_config.display_party_name && g == NULL )
+			{// do not display party unless the player is also in a guild
+				p = NULL;
 			}
 
 			if (p == NULL && g == NULL)
@@ -7766,7 +7773,7 @@ int clif_charnameupdate (struct map_session_data *ssd)
 
 	nullpo_ret(ssd);
 
-	if (strlen(ssd->fakename)>1)
+	if( ssd->fakename[0] )
 		return 0; //No need to update as the party/guild was not displayed anyway.
 
 	WBUFW(buf,0) = cmd;
@@ -10454,7 +10461,7 @@ void clif_parse_MoveFromKafra(int fd,struct map_session_data *sd)
  *------------------------------------------*/
 void clif_parse_MoveToKafraFromCart(int fd, struct map_session_data *sd)
 {
-	if(sd->vender_id)
+	if( sd->state.vending )
 		return;
 	if (!pc_iscarton(sd))
 		return;
@@ -10471,7 +10478,7 @@ void clif_parse_MoveToKafraFromCart(int fd, struct map_session_data *sd)
  *------------------------------------------*/
 void clif_parse_MoveFromKafraToCart(int fd, struct map_session_data *sd)
 {
-	if (sd->vender_id)
+	if( sd->state.vending )
 		return;
 	if (!pc_iscarton(sd))
 		return;
@@ -12878,7 +12885,7 @@ void clif_Auction_openwindow(struct map_session_data *sd)
 {
 	int fd = sd->fd;
 
-	if( sd->state.storage_flag || sd->vender_id || sd->state.buyingstore || sd->state.trading )
+	if( sd->state.storage_flag || sd->state.vending || sd->state.buyingstore || sd->state.trading )
 		return;
 
 	WFIFOHEAD(fd,12);
@@ -13777,7 +13784,9 @@ int clif_bg_xy_remove(struct map_session_data *sd)
 	return 0;
 }
 
-int clif_bg_message(struct battleground_data *bg, const char *name, const char *mes, int len)
+/// Notifies clients of a battleground message (ZC_BATTLEFIELD_CHAT)
+/// 02dc <packet len>.W <account id>.L <name>.24B <message>.?B
+int clif_bg_message(struct battleground_data *bg, int src_id, const char *name, const char *mes, int len)
 {
 	struct map_session_data *sd;
 	unsigned char *buf;
@@ -13788,7 +13797,7 @@ int clif_bg_message(struct battleground_data *bg, const char *name, const char *
 
 	WBUFW(buf,0) = 0x2dc;
 	WBUFW(buf,2) = len + NAME_LENGTH + 8;
-	WBUFL(buf,4) = sd->state.bg_id;
+	WBUFL(buf,4) = src_id;
 	memcpy(WBUFP(buf,8), name, NAME_LENGTH);
 	memcpy(WBUFP(buf,32), mes, len);
 	clif_send(buf,WBUFW(buf,2), &sd->bl, BG);
@@ -14060,6 +14069,24 @@ void clif_showdigit(struct map_session_data* sd, unsigned char type, int value)
 	WFIFOSET(sd->fd, packet_len(0x1b1));
 }
 
+/// Notification of the state of client command /effect (CZ_LESSEFFECT)
+/// 021d <state>.L
+/// state:
+///     0 = Full effects
+///     1 = Reduced effects
+///
+/// @note   The state is used on Aegis for sending skill unit packet
+///         0x11f (ZC_SKILL_ENTRY) instead of 0x1c9 (ZC_SKILL_ENTRY2)
+///         whenever possible. Due to the way the decision check is
+///         constructed, this state tracking was rendered useless,
+///         as the only skill unit, that is sent with 0x1c9 is
+///         Graffiti.
+void clif_parse_LessEffect(int fd, struct map_session_data* sd)
+{
+	int isLess = RFIFOL(fd,packet_db[sd->packet_ver][RFIFOW(fd,0)].pos[0]);
+
+	sd->state.lesseffect = ( isLess != 0 );
+}
 
 /// Buying Store System
 ///
@@ -15155,6 +15182,7 @@ static int packetdb_readdb(void)
 		{clif_parse_PartyBookingDeleteReq,"bookingdelreq"},
 #endif
 		{clif_parse_PVPInfo,"pvpinfo"},
+		{clif_parse_LessEffect,"lesseffect"},
 		// Buying Store
 		{clif_parse_ReqOpenBuyingStore,"reqopenbuyingstore"},
 		{clif_parse_ReqCloseBuyingStore,"reqclosebuyingstore"},
