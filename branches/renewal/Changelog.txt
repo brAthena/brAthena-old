@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0362 - 04/04/2011 [Protimus]
+	* Adicionadas correções para brathena-admin.
+	- Estava faltando opções pra baixar o subversion.
+
 	r0361 - 04/04/2011 [Protimus]
 	* Reorganizados arquivos de configure e make principais.
 	* Removida pasta char da source.

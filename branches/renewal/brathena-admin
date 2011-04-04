@@ -58,11 +58,13 @@ compilar(){
 rhel(){	
 	sudo yum update -y
 	sudo yum groupinstall 'Development Tools' -y
+	sudo yum install subversion -y
 }
 
 debian(){
 	sudo apt-get update -y
 	sudo apt-get install build-essential -y
+	sudo apt-get install subversion -y
 }
 
 instalar() {
