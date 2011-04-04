@@ -2,12 +2,11 @@
 # Process this file with autoconf to produce a configure script.
 
 AC_INIT(eAthena)
-AC_REVISION($Revision: 14667 $)
+AC_REVISION($Revision: 14749 $)
 AC_PREREQ([2.59])
 AC_CONFIG_SRCDIR([src/common/cbasetypes.h])
 AC_CONFIG_FILES([Makefile src/common/Makefile])
-AC_CONFIG_FILES([src/char/Makefile src/login/Makefile])
-AC_CONFIG_FILES([src/char_sql/Makefile])
+AC_CONFIG_FILES([src/char_sql/Makefile src/login/Makefile])
 AC_CONFIG_FILES([src/map/Makefile src/plugins/Makefile src/tool/Makefile])
 
 
@@ -318,7 +317,24 @@ OLD_CFLAGS="$CFLAGS"
 CFLAGS="$CFLAGS -Wno-pointer-sign"
 AC_COMPILE_IFELSE(
 	[int foo;],
-	[AC_MSG_RESULT([yes])],
+	[
+		AC_MSG_RESULT([yes])
+		AC_MSG_CHECKING([whether $CC can actually use -Wno-pointer-sign])
+		# This option causes warnings in C++ mode
+		# Note: -Werror must be before -Wno-pointer-sign, otherwise it does not do anything
+		CFLAGS="$OLD_CFLAGS -Werror -Wno-pointer-sign"
+		AC_COMPILE_IFELSE(
+			[int foo;],
+			[
+				AC_MSG_RESULT([yes])
+				CFLAGS="$OLD_CFLAGS -Wno-pointer-sign"
+			],
+			[
+				AC_MSG_RESULT([no])
+				CFLAGS="$OLD_CFLAGS"
+			]
+		)
+	],
 	[
 		AC_MSG_RESULT([no])
 		CFLAGS="$OLD_CFLAGS"
@@ -337,6 +353,7 @@ AC_COMPILE_IFELSE(
 		CFLAGS="$OLD_CFLAGS"
 	]
 )
+
 
 AC_MSG_CHECKING([whether $CC supports -fPIC])
 OLD_CFLAGS="$CFLAGS"
@@ -440,6 +457,7 @@ AC_COMPILE_IFELSE(
 	]
 )
 
+
 ###############################################################################
 # Check for libraries and header files.
 #
@@ -455,7 +473,6 @@ AC_CHECK_FUNC([setrlimit],[CFLAGS="$CFLAGS -DHAVE_SETRLIMIT"])
 # strnlen - string length with upper scan bound
 #
 AC_CHECK_FUNC([strnlen],[CFLAGS="$CFLAGS -DHAVE_STRNLEN"])
-
 
 
 #
@@ -554,7 +571,7 @@ AC_CHECK_HEADER([zlib.h], [], [AC_MSG_ERROR([zlib header not found, please speci
 #
 # math library (required)
 #
-AC_CHECK_LIB([m], [sqrt], [], [AC_MSG_ERROR([math library not found... stopping])])
+AC_SEARCH_LIBS([sqrt], [m], [], [AC_MSG_ERROR([math library not found... stopping])])
 
 
 #

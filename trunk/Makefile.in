@@ -2,7 +2,7 @@
 
 HAVE_MYSQL=@HAVE_MYSQL@
 ifeq ($(HAVE_MYSQL),yes)
-	ALL_DEPENDS=common_sql login_sql char_sql map_sql
+	ALL_DEPENDS=common_sql login_sql char_sql map_sql tools
 	SQL_DEPENDS=common_sql login_sql char_sql map_sql
 	COMMON_SQL_DEPENDS=
 	LOGIN_SQL_DEPENDS=common_sql
@@ -20,12 +20,12 @@ else
 endif
 
 #####################################################################
-.PHONY: sql conf \
+.PHONY: sql \
 	common_sql \
 	login_sql \
 	char_sql \
 	map_sql \
-	tools plugins addons import save \
+	tools plugins addons \
 	clean help
 
 all: $(ALL_DEPENDS)
@@ -50,16 +50,34 @@ tools:
 plugins addons: $(PLUGIN_DEPENDS)
 	@$(MAKE) -C src/plugins
 
+import:
+# 1) create conf/import folder
+# 2) add missing files
+# 3) remove remaining .svn folder
+	@echo "building conf/import folder..."
+	@if test ! -d conf/import ; then mkdir conf/import ; fi
+	@for f in $$(ls conf/import-tmpl) ; do if test ! -e conf/import/$$f ; then cp conf/import-tmpl/$$f conf/import ; fi ; done
+	@rm -rf conf/import/.svn
+
+save:
+# 1) create save folder
+# 2) add missing files
+# 3) remove remaining .svn folder
+	@echo "building save folder..."
+	@if test ! -d save ; then mkdir save ; fi
+	@for f in $$(ls save-tmpl) ; do if test ! -e save/$$f ; then cp save-tmpl/$$f save ; fi ; done
+	@rm -rf save/.svn
+
 clean:
 	@$(MAKE) -C src/common $@
 	@$(MAKE) -C src/login $@
-	@$(MAKE) -C src/char $@
+	@$(MAKE) -C src/char_sql $@
 	@$(MAKE) -C src/map $@
 	@$(MAKE) -C src/plugins $@
 	@$(MAKE) -C src/tool $@
 
 help:
-	@echo "most common targets are 'all' 'sql' 'conf' 'clean' 'help'"
+	@echo "most common targets are 'all' 'txt' 'sql' 'conf' 'clean' 'help'"
 	@echo "possible targets are:"
 	@echo "'common_sql'  - builds object files used in SQL servers"
 	@echo "'login_sql'   - builds login server (SQL version)"
@@ -67,6 +85,7 @@ help:
 	@echo "'map_sql'     - builds map server (SQL version)"
 	@echo "'tools'       - builds all the tools in src/tools"
 	@echo "'plugins'     - builds all the plugins in src/plugins"
+	@echo "'addons'"
 	@echo "'all'         - builds all the above targets"
 	@echo "'sql'         - builds sql servers (targets 'common_sql' 'login_sql' 'char_sql'"
 	@echo "                'map_sql')"
@@ -78,7 +97,7 @@ help:
 needs_mysql:
 	@echo "MySQL not found or disabled by the configure script"
 	@exit 1
-	
+
 no_plugins:
 	@echo "Plugins disabled by the configure script"
 	@exit 1

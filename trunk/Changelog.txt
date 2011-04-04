@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0361 - 04/04/2011 [Protimus]
+	* Reorganizados arquivos de configure e make principais.
+	* Removida pasta char da source.
+
 	r0360 - 04/04/2011 [Protimus]
 	* Adicionado novo campo na tabela de login do SQL.
 	- reg_account para datar registro de conta.
