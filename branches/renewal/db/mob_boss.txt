@@ -18,6 +18,7 @@
 // | MobID,DummyName,Rate                                   |
 // \________________________________________________________/
 //
+
 0,Bafomé,1039
 1038,Osíris,1000000
 1039,Bafomé,1000000
@@ -25,8 +26,10 @@
 1059,Abelha-Rainha,1000000
 1086,Besouro Ladrão-Dourado,1000000
 1087,Orc Herói,1000000
+1096,Angeling,1000000
 1112,Drake,1000000
 1115,Eddga,1000000
+1120,Ghostring,1000000
 1147,Maya,1000000
 1150,Flor do Luar,1000000
 1157,Faraó,1000000
@@ -37,10 +40,12 @@
 1272,Senhor das Trevas,1000000
 1312,General Tartaruga,1000000
 1373,Senhor dos Mortos,1000000
+1388,Arc Angeling,1000000
 1389,Drácula,1000000
 1418,Serpente Suprema,1000000
 1492,Samurai Encarnado,1000000
 1511,Amon Ra,1000000
+1582,Deviling,1000000
 1583,Tao Gunka,1000000
 1623,RSX-0806,1000000
 1630,Lady Branca,1000000
