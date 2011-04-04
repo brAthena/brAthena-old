@@ -11387,7 +11387,7 @@ gef_fild08,182,185,0	script	Andarilho#nam	739,{
 		mes "Saia daqui agora!";
 		mes "Está tentando me enganar!";
 		set jewel_nd,29;
-		hideonnpc "Andarilho";
+		hideonnpc "Andarilho#nam";
 		stopnpctimer;
 		close;
 	}
@@ -11469,7 +11469,7 @@ gef_fild08,182,185,0	script	Andarilho#nam	739,{
 		mes "Saia daqui agora!";
 		mes "Está tentando me enganar!";
 		set jewel_nd,29;
-		hideonnpc "Andarilho";
+		hideonnpc "Andarilho#nam";
 		stopnpctimer;
 		close;
 	}
@@ -11506,7 +11506,7 @@ gef_fild08,182,185,0	script	Andarilho#nam	739,{
 		mes "Saia daqui agora!";
 		mes "Está tentando me enganar!";
 		set jewel_nd,29;
-		hideonnpc "Andarilho";
+		hideonnpc "Andarilho#nam";
 		stopnpctimer;
 		close;
 	}
@@ -11528,7 +11528,7 @@ gef_fild08,182,185,0	script	Andarilho#nam	739,{
 	}
 
 OnInit:
-	hideonnpc "Andarilho";
+	hideonnpc "Andarilho#nam";
 	end;
 
 OnEnable:
@@ -11537,7 +11537,7 @@ OnEnable:
 	end;
 
 OnTimer60000:
-	hideonnpc "Andarilho";
+	hideonnpc "Andarilho#nam";
 	stopnpctimer;
 	end;
 }

@@ -108,7 +108,7 @@ gefg_cas05,70,52,3	duplicate(Gld_Guard_Template)	Guardian#gefg_cas05	-1
 
 // Kafras
 //============================================================
-gefg_cas05,61,52,3	duplicate(Gld_Kafra_Template)	Kafra Staff#gefg_cas05	117
+gefg_cas05,61,52,3	duplicate(Gld_Kafra_Template)	Assistente Kafra#gefg_cas05	117
 
 // Saída da Sala do Mestre
 //============================================================

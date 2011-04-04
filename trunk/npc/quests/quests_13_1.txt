@@ -8,32 +8,32 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Quest NPCs related to Ash-Vacuum  		|
+// | Nome do Script: Quest NPCs related to Ash-Vacuum       |
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    			|
+// | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.7/1.0				    			|
+// | Versões eA/brA: 1.7/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: Contains Quests:							|
-// | Onward to the Other World								|
+// | Descrição: Contains Quests:                            |
+// | Onward to the Other World                              |
 // | - Will differ from iRO wiki's version as iRO changed it|
-// |  I may mimic the change later for those who want it.	|
-// | New Surroundings										|
-// | Attitude to the New									|
-// | Finding a Fairy & Finding a Giant Tree					|
-// | The Tripartite Union's Feud							|
-// | Cat Hand Agent											|
-// | - Contains untranslated dialog.						|
-// | Part Time Work											|
-// | - Contains Custom translated dialog.					|
-// | Report from the New World								|
-// | - Contains Custom translated dialog.					|
-// | Persuing Rayan Moore									|
-// | - Contains Custom translated dialog.					|
+// |  I may mimic the change later for those who want it.   |
+// | New Surroundings                                       |
+// | Attitude to the New                                    |
+// | Finding a Fairy & Finding a Giant Tree                 |
+// | The Tripartite Union's Feud                            |
+// | Cat Hand Agent                                         |
+// | - Contains untranslated dialog.                        |
+// | Part Time Work                                         |
+// | - Contains Custom translated dialog.                   |
+// | Report from the New World                              |
+// | - Contains Custom translated dialog.                   |
+// | Persuing Rayan Moore                                   |
+// | - Contains Custom translated dialog.                   |
 // |--------------------------------------------------------|
-// | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
-// | - Anotações					    					|
+// | Changelog:                                             |
+// | 1.0 Modificação [Autor]                                |
+// | - Anotações                                            |
 // \________________________________________________________/
 
 // Onward to the New World

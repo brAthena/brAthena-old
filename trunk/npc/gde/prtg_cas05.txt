@@ -108,7 +108,7 @@ prtg_cas05,36,37,4	duplicate(Gld_Guard_Template)	Guardian#prtg_cas05	-1
 
 // Kafras
 //============================================================
-prtg_cas05,52,41,4	duplicate(Gld_Kafra_Template)	Kafra Staff#prtg_cas05	117
+prtg_cas05,52,41,4	duplicate(Gld_Kafra_Template)	Assistente Kafra#prtg_cas05	117
 
 // Saída da Sala do Mestre
 //============================================================

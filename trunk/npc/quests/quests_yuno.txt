@@ -8,27 +8,27 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Quest NPCs related to Juno	    		|
+// | Nome do Script: Quest NPCs related to Juno             |
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    			|
+// | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 2.0a/1.0				    			|
+// | Versões eA/brA: 2.0a/1.0                               |
 // |--------------------------------------------------------|
-// | Descrição: Metto Quest:								|
-// | - Not really sure exaclty what it's for. :P			|
-// | - Variable in use: metto_q (max 9)						|
-// | Alchemist Brothers:									|
-// | - Used in part of the Alchemist job quest.				|
-// | - Variable in use: bros_q (max 1)						|
-// | Doomed Swords Part 2:									|
-// | - Continuation of the Comodo Quest						|
-// | - Part 1: Found in Quests_Comodo.txt					|
-// | - Part 3: Found in Doomed_Swords.txt					|
-// | - Variable in use dmdswrd_Q (Max 45)					|
+// | Descrição: Metto Quest:                                |
+// | - Not really sure exaclty what it's for. :P            |
+// | - Variable in use: metto_q (max 9)                     |
+// | Alchemist Brothers:                                    |
+// | - Used in part of the Alchemist job quest.             |
+// | - Variable in use: bros_q (max 1)                      |
+// | Doomed Swords Part 2:                                  |
+// | - Continuation of the Comodo Quest                     |
+// | - Part 1: Found in Quests_Comodo.txt                   |
+// | - Part 3: Found in Doomed_Swords.txt                   |
+// | - Variable in use dmdswrd_Q (Max 45)                   |
 // |--------------------------------------------------------|
-// | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
-// | - Anotações					    					|
+// | Changelog:                                             |
+// | 1.0 Modificação [Autor]                                |
+// | - Anotações                                            |
 // \________________________________________________________/
 
 // Metto Quest

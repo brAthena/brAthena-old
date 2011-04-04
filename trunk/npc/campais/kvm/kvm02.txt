@@ -137,8 +137,8 @@ OnInit:
 	setwall "bat_c02",55,122,5,7,0,"batc02wall_b";
 	setwall "bat_c02",140,56,6,7,0,"batc02wall_c";
 	setwall "bat_c02",140,57,5,7,0,"batc02wall_d";
-	disablenpc "KVM Officer#KVM02A";
-	disablenpc "KVM Officer#KVM02B";
+	disablenpc "Oficial do KVM#KVM02A";
+	disablenpc "Oficial do KVM#KVM02B";
 	end;
 
 OnGuillaumeJoin:
@@ -192,8 +192,8 @@ OnReadyCheck:
 	end;
 
 OnStart:
-	disablenpc "KVM Officer#KVM02A";
-	disablenpc "KVM Officer#KVM02B";
+	disablenpc "Oficial do KVM#KVM02A";
+	disablenpc "Oficial do KVM#KVM02B";
 	set $@KvM02BG_Victory, 0;
 	// Warp Teams
 	bg_warp $@KvM02BG_id1,"bat_c02",53,128;
@@ -320,8 +320,8 @@ OnCroixWin:
 
 OnStop:
 	stopnpctimer;
-	enablenpc "KVM Officer#KVM02A";
-	enablenpc "KVM Officer#KVM02B";
+	disablenpc "Oficial do KVM#KVM02A";
+	disablenpc "Oficial do KVM#KVM02B";
 	// Warp Teams
 	bg_warp $@KvM02BG_id1,"bat_c02",53,128;
 	bg_warp $@KvM02BG_id2,"bat_c02",146,55;

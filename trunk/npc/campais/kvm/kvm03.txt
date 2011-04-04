@@ -137,8 +137,8 @@ OnInit:
 	setwall "bat_c03",55,122,5,7,0,"batc03wall_b";
 	setwall "bat_c03",140,56,6,7,0,"batc03wall_c";
 	setwall "bat_c03",140,57,5,7,0,"batc03wall_d";
-	disablenpc "KVM Officer#KVM03A";
-	disablenpc "KVM Officer#KVM03B";
+	disablenpc "Oficial do KVM#KVM03A";
+	disablenpc "Oficial do KVM#KVM03B";
 	end;
 
 OnGuillaumeJoin:
@@ -334,8 +334,8 @@ OnReset:
 	set $@KvM03BG_Victory, 0;
 	if( $@KvM03BG_id1 ) { bg_destroy $@KvM03BG_id1; set $@KvM03BG_id1, 0; }
 	if( $@KvM03BG_id2 ) { bg_destroy $@KvM03BG_id2; set $@KvM03BG_id2, 0; }
-	disablenpc "KVM Officer#KVM03A";
-	disablenpc "KVM Officer#KVM03B";
+	disablenpc "Oficial do KVM#KVM03A";
+	disablenpc "Oficial do KVM#KVM03B";
 	mapwarp "bat_c03","bat_room",154,150;
 	maprespawnguildid "bat_c03",0,3; // Just in case someone else
 	bg_updatescore "bat_c03",5,5;

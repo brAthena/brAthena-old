@@ -110,7 +110,7 @@ payg_cas05,277,249,3	duplicate(Gld_Guard_Template)	Guardian#payg_cas05	-1
 
 // Kafras
 //============================================================
-payg_cas05,276,227,1	duplicate(Gld_Kafra_Template)	Kafra Staff#payg_cas05	117
+payg_cas05,276,227,1	duplicate(Gld_Kafra_Template)	Assistente Kafra#payg_cas05	117
 
 // Saída da Sala do Mestre
 //============================================================

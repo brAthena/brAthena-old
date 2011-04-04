@@ -6489,7 +6489,7 @@ prt_castle,314,373,4	script	Príncipe#eisen	983,{
 			mes "Agora, vou voltar ao meu quarto.";
 			mes "Mantenha o bom trabalho,";
 			mes "avaliador.";
-			donpcevent "Prince#another_ern::OnDisable";
+			donpcevent "Príncipe#another_ern::OnDisable";
 			set nkprince_eisen,6;
 			close;
 		}
@@ -6657,8 +6657,8 @@ prt_castle,314,373,4	script	Príncipe#eisen	983,{
 			mes "(som de golpe de adaga)";
 			specialeffect EF_HIT2;
 			set nkprince_eisen,14;
-			donpcevent "Prince#another_ern::OnDisable";
-			donpcevent "Prince#another_ern1::OnEnable";
+			donpcevent "Príncipe#another_ern::OnDisable";
+			donpcevent "Príncipe#another_ern1::OnEnable";
 			close;
 		}
 		else if (nkprince_eisen == 14) {
@@ -6786,7 +6786,7 @@ prt_castle,314,373,4	script	Príncipe#eisen	983,{
 			next;
 			set nkprince_eisen,15;
 			set nk_prince,7;
-			donpcevent "Prince#another_ern1::OnDisable";
+			donpcevent "Príncipe#another_ern1::OnDisable";
 			changequest 10024,10025;
 			close2;
 			warp "prt_castle",318,273;
@@ -7444,8 +7444,8 @@ prt_castle,314,371,0	script	Príncipe#another_ern	985,{
 		mes "(dagger thrusting sound)";
 		specialeffect EF_HIT2;
 		set nkprince_eisen,14;
-		donpcevent "Prince#another_ern::OnDisable";
-		donpcevent "Prince#another_ern1::OnEnable";
+		donpcevent "Príncipe#another_ern::OnDisable";
+		donpcevent "Príncipe#another_ern1::OnEnable";
 		close;
 	}
 	if (nkprince_eisen == 5) {
@@ -7539,21 +7539,21 @@ prt_castle,314,371,0	script	Príncipe#another_ern	985,{
 		mes "Então, vou voltar ao meu quarto.";
 		mes "Continue com o bom trabalho,";
 		mes "avaliador.";
-		donpcevent "Prince#another_ern::OnDisable";
+		donpcevent "Príncipe#another_ern::OnDisable";
 		set nkprince_eisen,6;
 		close;
 	}
 
 OnInit:
-	disablenpc "Prince#another_ern";
+	disablenpc "Príncipe#another_ern";
 	end;
 
 OnEnable:
-	enablenpc "Prince#another_ern";
+	enablenpc "Príncipe#another_ern";
 	end;
 
 OnDisable:
-	disablenpc "Prince#another_ern";
+	disablenpc "Príncipe#another_ern";
 	end;
 }
 
@@ -7683,7 +7683,7 @@ prt_castle,314,372,0	script	Príncipe#another_ern1	985,{
 		next;
 		set nkprince_eisen,15;
 		set nk_prince,7;
-		donpcevent "Prince#another_ern1::OnDisable";
+		donpcevent "Príncipe#another_ern1::OnDisable";
 		changequest 10024,10025;
 		close2;
 		warp "prt_castle",318,273;
@@ -7691,15 +7691,15 @@ prt_castle,314,372,0	script	Príncipe#another_ern1	985,{
 	}
 
 OnInit:
-	disablenpc "Prince#another_ern1";
+	disablenpc "Príncipe#another_ern1";
 	end;
 
 OnEnable:
-	enablenpc "Prince#another_ern1";
+	enablenpc "Príncipe#another_ern1";
 	end;
 
 OnDisable:
-	disablenpc "Prince#another_ern1";
+	disablenpc "Príncipe#another_ern1";
 	end;
 }
 
@@ -7769,19 +7769,19 @@ prt_castle,272,372,1	script	Príncipe#eisen1	983,{
 		setquest 10023;
 		set nkprince_eisen,11;
 	}
-	donpcevent "Prince#eisen1::OnDisable";
+	donpcevent "Príncipe#eisen1::OnDisable";
 	close;
 
 OnInit:
-	disablenpc "Prince#eisen1";
+	disablenpc "Príncipe#eisen1";
 	end;
 
 OnEnable:
-	enablenpc "Prince#eisen1";
+	enablenpc "Príncipe#eisen1";
 	end;
 
 OnDisable:
-	disablenpc "Prince#eisen1";
+	disablenpc "Príncipe#eisen1";
 	end;
 }
 
@@ -7853,19 +7853,19 @@ prt_castle,336,202,7	script	Príncipe#eisen2	983,{
 		setquest 10023;
 		set nkprince_eisen,11;
 	}
-	donpcevent "Prince#eisen2::OnDisable";
+	donpcevent "Príncipe#eisen2::OnDisable";
 	close;
 
 OnInit:
-	disablenpc "Prince#eisen2";
+	disablenpc "Príncipe#eisen2";
 	end;
 
 OnEnable:
-	enablenpc "Prince#eisen2";
+	enablenpc "Príncipe#eisen2";
 	end;
 
 OnDisable:
-	disablenpc "Prince#eisen2";
+	disablenpc "Príncipe#eisen2";
 	end;
 }
 
@@ -7928,19 +7928,19 @@ prt_castle,286,201,7	script	Príncipe#eisen3	983,{
 		setquest 10023;
 		set nkprince_eisen,11;
 	}
-	donpcevent "Prince#eisen3::OnDisable";
+	donpcevent "Príncipe#eisen3::OnDisable";
 	close;
 
 OnInit:
-	disablenpc "Prince#eisen3";
+	disablenpc "Príncipe#eisen3";
 	end;
 
 OnEnable:
-	enablenpc "Prince#eisen3";
+	enablenpc "Príncipe#eisen3";
 	end;
 
 OnDisable:
-	disablenpc "Prince#eisen3";
+	disablenpc "Príncipe#eisen3";
 	end;
 }
 
@@ -8023,19 +8023,19 @@ prt_castle,388,205,6	script	Príncipe#eisen4	983,{
 		setquest 10023;
 		set nkprince_eisen,11;
 	}
-	donpcevent "Prince#eisen4::OnDisable";
+	donpcevent "Príncipe#eisen4::OnDisable";
 	close;
 
 OnInit:
-	disablenpc "Prince#eisen4";
+	disablenpc "Príncipe#eisen4";
 	end;
 
 OnEnable:
-	enablenpc "Prince#eisen4";
+	enablenpc "Príncipe#eisen4";
 	end;
 
 OnDisable:
-	disablenpc "Prince#eisen4";
+	disablenpc "Príncipe#eisen4";
 	end;
 }
 
@@ -8116,19 +8116,19 @@ prt_castle,364,372,1	script	Príncipe#eisen5	983,{
 		setquest 10023;
 		set nkprince_eisen,11;
 	}
-	donpcevent "Prince#eisen5::OnDisable";
+	donpcevent "Príncipe#eisen5::OnDisable";
 	close;
 
 OnInit:
-	disablenpc "Prince#eisen5";
+	disablenpc "Príncipe#eisen5";
 	end;
 
 OnEnable:
-	enablenpc "Prince#eisen5";
+	enablenpc "Príncipe#eisen5";
 	end;
 
 OnDisable:
-	disablenpc "Prince#eisen5";
+	disablenpc "Príncipe#eisen5";
 	end;
 }
 
@@ -8241,26 +8241,26 @@ prt_castle,368,310,1	script	Príncipe#eisen6	983,{
 	mes "Ahrum... Ahrum.";
 	changequest 10023,10024;
 	set nkprince_eisen,13;
-	donpcevent "Prince#eisen6::OnDisable";
+	donpcevent "Príncipe#eisen6::OnDisable";
 	close;
 
 OnInit:
-	disablenpc "Prince#eisen6";
+	disablenpc "Príncipe#eisen6";
 	end;
 
 OnEnable:
-	enablenpc "Prince#eisen6";
+	enablenpc "Príncipe#eisen6";
 	end;
 
 OnDisable:
-	disablenpc "Prince#eisen6";
+	disablenpc "Príncipe#eisen6";
 	end;
 }
 
 prt_castle,318,276,0	script	#eisen	45,1,1,{
 OnTouch:
 	if ((nkprince_eisen == 4) || (nkprince_eisen == 5)) {
-		donpcevent "Prince#another_ern::OnEnable";
+		donpcevent "Príncipe#another_ern::OnEnable";
 		set nkprince_eisen,5;
 		warp "prt_castle",318,368;
 	}
@@ -8357,7 +8357,7 @@ OnTouch:
 		warp "prt_castle",318,368;
 	}
 	else if (nkprince_eisen == 13) {
-		donpcevent "Prince#another_ern::OnEnable";
+		donpcevent "Príncipe#another_ern::OnEnable";
 		warp "prt_castle",318,368;
 	}
 	else if (nkprince_eisen == 15) {
@@ -8372,7 +8372,7 @@ OnTouch:
 prt_castle,336,276,0	script	#ern	45,1,1,{
 OnTouch:
 	if (checkquest(10023) == 1) {
-		donpcevent "Prince#eisen6::OnEnable";
+		donpcevent "Príncipe#eisen6::OnEnable";
 	}
 	warp "prt_castle",368,308;
 	end;
@@ -8381,7 +8381,7 @@ OnTouch:
 prt_castle,300,276,0	script	#erich	45,1,1,{
 OnTouch:
 	if (checkquest(10020) == 1) {
-		donpcevent "Prince#eisen1::OnEnable";
+		donpcevent "Príncipe#eisen1::OnEnable";
 	}
 	warp "prt_castle",274,368;
 	end;
@@ -8390,7 +8390,7 @@ OnTouch:
 prt_castle,330,271,0	script	#helmut	45,1,1,{
 OnTouch:
 	if (checkquest(10022) == 1) {
-		donpcevent "Prince#eisen3::OnEnable";
+		donpcevent "Príncipe#eisen3::OnEnable";
 	}
 	warp "prt_castle",290,208;
 	end;
@@ -8399,7 +8399,7 @@ OnTouch:
 prt_castle,348,271,0	script	#poe	45,1,1,{
 OnTouch:
 	if (checkquest(10018) == 1) {
-		donpcevent "Prince#eisen4::OnEnable";
+		donpcevent "Príncipe#eisen4::OnEnable";
 	}
 	warp "prt_castle",390,208;
 	end;
@@ -8408,7 +8408,7 @@ OnTouch:
 prt_castle,354,276,0	script	#peter	45,1,1,{
 OnTouch:;
 	if (checkquest(10019) == 1) {
-		donpcevent "Prince#eisen5::OnEnable";
+		donpcevent "Príncipe#eisen5::OnEnable";
 	}
 	warp "prt_castle",366,368;
 	end;
@@ -8417,7 +8417,7 @@ OnTouch:;
 prt_castle,310,271,0	script	#urgen	45,1,1,{
 OnTouch:
 	if (checkquest(10021) == 1) {
-		donpcevent "Prince#eisen2::OnEnable";
+		donpcevent "Príncipe#eisen2::OnEnable";
 	}
 	warp "prt_castle",340,208;
 	end;

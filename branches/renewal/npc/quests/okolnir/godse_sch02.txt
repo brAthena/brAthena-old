@@ -8,17 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Falicious Okolnir - Nidhoggr 2	        |
+// | Nome do Script: Falicious Okolnir - Nidhoggr 2         |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.3/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: God Item SE Creation scipt (Brynhild)	   	|
+// | Descrição: God Item SE Creation scipt (Brynhild)       |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    					| 
+// | - Anotações                                            | 
 // \________________________________________________________/
 
 schg_cas02,181,335,3	script	Guide#gq_sch02	899,{

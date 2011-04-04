@@ -8,20 +8,20 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Quest NPCs related to Prontera    		|
+// | Nome do Script: Quest NPCs related to Prontera         |
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    			|
+// | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 2.7/1.0				    			|
+// | Versões eA/brA: 2.7/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: ollection of Prontera-based quests.			|
-// | * Culvert Access										|
-// | * Ph.D Hat Quest										|
-// | * Gaebolg Family Curse									|
+// | Descrição: ollection of Prontera-based quests.         |
+// | * Culvert Access                                       |
+// | * Ph.D Hat Quest                                       |
+// | * Gaebolg Family Curse                                 |
 // |--------------------------------------------------------|
-// | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
-// | - Anotações					    					|
+// | Changelog:                                             |
+// | 1.0 Modificação [Autor]                                |
+// | - Anotações                                            |
 // \________________________________________________________/
 
 // Prontera Culvert

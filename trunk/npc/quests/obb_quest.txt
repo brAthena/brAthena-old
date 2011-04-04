@@ -8,23 +8,23 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Old Blue Box Quest			    		|
+// | Nome do Script: Old Blue Box Quest                     |
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    			|
+// | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 2.0/1.0				    			|
+// | Versões eA/brA: 2.0/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: Old Blue Box quest (?)						|
-// | Officially this quest gave an OBB in exhange for a the	|
+// | Descrição: Old Blue Box quest (?)                      |
+// | Officially this quest gave an OBB in exhange for a the |
 // | required items unlimitedly, however this was changed by|
-// | Gravity, who claimed this behavior as a bug. 			|
-// | The exact purpose of this quest is undetermined, but	|
-// | Gravity claimed that another quest would eventually	|
-// | branch from this one.									|
+// | Gravity, who claimed this behavior as a bug.           |
+// | The exact purpose of this quest is undetermined, but   |
+// | Gravity claimed that another quest would eventually    |
+// | branch from this one.                                  |
 // |--------------------------------------------------------|
-// | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
-// | - Anotações					    					|
+// | Changelog:                                             |
+// | 1.0 Modificação [Autor]                                |
+// | - Anotações                                            |
 // \________________________________________________________/
 
 alberta,43,244,0	script	Tourist#thai	99,{

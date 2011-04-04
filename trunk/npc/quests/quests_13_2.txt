@@ -8,28 +8,28 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Collection of episode 13.2 quests.		|
+// | Nome do Script: Collection of episode 13.2 quests.     |
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    			|
+// | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 2.2/1.0				    			|
+// | Versões eA/brA: 2.2/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: Cat Hand Addition. (Leads to 13.2 areas)	|
-// | Two Tribes												|
-// | Monster Suppression									|
-// | Daily Quests:											|
-// | - Bradium Collection									|
-// | - Laphine Craftsman									|
-// | - Drago Egg Collection (npc includes 'Wanted' quest)	|
-// | Otherworld language									|
-// | Daily Quests:											|
-// | - Midgard Ore											|
-// | - Alfheim Perfume										|
-// | Yggdrasil Dungeon Floor 2 puzzle.						|
+// | Descrição: Cat Hand Addition. (Leads to 13.2 areas)    |
+// | Two Tribes                                             |
+// | Monster Suppression                                    |
+// | Daily Quests:                                          |
+// | - Bradium Collection                                   |
+// | - Laphine Craftsman                                    |
+// | - Drago Egg Collection (npc includes 'Wanted' quest)   |
+// | Otherworld language                                    |
+// | Daily Quests:                                          |
+// | - Midgard Ore                                          |
+// | - Alfheim Perfume                                      |
+// | Yggdrasil Dungeon Floor 2 puzzle.                      |
 // |--------------------------------------------------------|
-// | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
-// | - Anotações					    					|
+// | Changelog:                                             |
+// | 1.0 Modificação [Autor]                                |
+// | - Anotações                                            |
 // \________________________________________________________/
 
 // Cat Hand Addition.

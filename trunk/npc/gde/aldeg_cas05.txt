@@ -114,7 +114,7 @@ aldeg_cas05,52,179,0	duplicate(Gld_Guard_Template)	Guardian#aldeg_cas05	-1
 
 // Kafras
 //============================================================
-aldeg_cas05,31,190,0	duplicate(Gld_Kafra_Template)	Kafra Staff#aldeg_cas05	117
+aldeg_cas05,31,190,0	duplicate(Gld_Kafra_Template)	Assistente Kafra#aldeg_cas05	117
 
 // Saída da Sala do Mestre
 //============================================================
