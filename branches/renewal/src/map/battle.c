@@ -1764,6 +1764,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case RK_STORMBLAST:
 					skillratio += -100 + 100 * (sd ? pc_checkskill(sd,RK_RUNEMASTERY) : 1) +  100 * (sstatus->int_ / 4);
 					break;
+				case AB_DUPLELIGHT_MELEE:
+					skillratio += 10 * skill_lv;
+					break;
 			}
 
 			ATK_RATE(skillratio);
@@ -2671,6 +2674,9 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						skillratio = (skillratio + 100 + 100 * skill_lv);
 					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100)/200;
 						break;
+					case AB_DUPLELIGHT_MAGIC:
+						skillratio += 100 + 20 * skill_lv;
+						break;
 				}
 
 				MATK_RATE(skillratio);
@@ -3349,6 +3355,16 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 	damage = wd.damage + wd.damage2;
 	if( damage > 0 && src != target )
 	{
+	
+		if( sc && sc->data[SC_DUPLELIGHT] && (wd.flag&BF_SHORT) && rand()%100 <= 25 )
+		{	
+			int skillid;
+			if( rand()%2 == 1 )
+				skillid = AB_DUPLELIGHT_MELEE;
+			else
+				skillid = AB_DUPLELIGHT_MAGIC;
+			skill_attack(skill_get_type(skillid), src, src, target, skillid, sc->data[SC_DUPLELIGHT]->val1, tick, SD_LEVEL);
+		}
 		
 		if( tsc && tsc->data[SC_DEATHBOUND] && (sstatus->mode&MD_BOSS)  )
 			rdamage = 0;

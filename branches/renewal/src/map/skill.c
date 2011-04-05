@@ -1849,35 +1849,79 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 
 	map_freeblock_lock();
 
-	if(damage > 0 && dmg.flag&BF_SKILL && tsd
-		&& pc_checkskill(tsd,RG_PLAGIARISM)
-	  	&& (!sc || !sc->data[SC_PRESERVE])
-		&& damage < tsd->battle_status.hp)
-	{	//Updated to not be able to copy skills if the blow will kill you. [Skotlex]
-		if ((!tsd->status.skill[skillid].id || tsd->status.skill[skillid].flag >= 13) &&
-			can_copy(tsd,skillid,bl))	// Split all the check into their own function [Aru]
+	if( damage > 0 && dmg.flag&BF_SKILL && tsd && damage < tsd->battle_status.hp )
+	{
+		int copy_skill = skillid, copy_level = skilllv, skill;
+		switch( skillid )
+		{ 
+		case AB_DUPLELIGHT_MELEE:
+		case AB_DUPLELIGHT_MAGIC:
+			copy_skill = AB_DUPLELIGHT;
+			break;
+		case WL_CHAINLIGHTNING_ATK:
+			copy_skill = WL_CHAINLIGHTNING;
+			break;
+		case WM_REVERBERATION_MELEE:
+		case WM_REVERBERATION_MAGIC:
+			copy_skill = WM_REVERBERATION;
+			break;
+		case GN_CRAZYWEED_ATK:
+			copy_skill = GN_CRAZYWEED;
+			break;
+		case GN_HELLS_PLANT_ATK:
+			copy_skill = GN_HELLS_PLANT;
+			break;
+		case WM_SEVERE_RAINSTORM_MELEE:
+			copy_skill = WM_SEVERE_RAINSTORM;
+			break;
+		}
+
+		if( can_copy(tsd,copy_skill,bl) && (!tsd->status.skill[copy_skill].id || tsd->status.skill[copy_skill].flag >= 13) )
 		{
-			int lv = skilllv;
-			if (tsd->cloneskill_id && tsd->status.skill[tsd->cloneskill_id].flag == 13){
-				tsd->status.skill[tsd->cloneskill_id].id = 0;
-				tsd->status.skill[tsd->cloneskill_id].lv = 0;
-				tsd->status.skill[tsd->cloneskill_id].flag = 0;
-				clif_deleteskill(tsd,tsd->cloneskill_id);
+			copy_level = cap_value(copy_level,1,10);
+			if( sc && sc->data[SC__REPRODUCE] && (skill = sc->data[SC__REPRODUCE]->val1) )
+			{
+				copy_level = min(skill,skill_get_max(copy_skill));
+				if( tsd->reproduceskill_id && tsd->status.skill[tsd->reproduceskill_id].flag == 13 )
+				{
+					tsd->status.skill[tsd->reproduceskill_id].id = 0;
+					tsd->status.skill[tsd->reproduceskill_id].lv = 0;
+					tsd->status.skill[tsd->reproduceskill_id].flag = 0;
+					clif_deleteskill(tsd,tsd->reproduceskill_id);
+				}
+
+				tsd->reproduceskill_id = copy_skill;
+				pc_setglobalreg(tsd, "REPRODUCE_SKILL", copy_skill);
+				pc_setglobalreg(tsd, "REPRODUCE_SKILL_LV", copy_level);
+
+				tsd->status.skill[copy_skill].id = copy_skill;
+				tsd->status.skill[copy_skill].lv = copy_level;
+				tsd->status.skill[copy_skill].flag = 13;
+				clif_addskill(tsd,copy_skill);
 			}
+			else if( (skill = pc_checkskill(tsd,RG_PLAGIARISM)) > 0 && (!sc || !sc->data[SC_PRESERVE]) )
+			{
+				copy_level = min(copy_level,skill);
+				if( tsd->cloneskill_id && tsd->status.skill[tsd->cloneskill_id].flag == 13 )
+				{
+					tsd->status.skill[tsd->cloneskill_id].id = 0;
+					tsd->status.skill[tsd->cloneskill_id].lv = 0;
+					tsd->status.skill[tsd->cloneskill_id].flag = 0;
+					clif_deleteskill(tsd,tsd->cloneskill_id);
+				}
 
-			if ((type = pc_checkskill(tsd,RG_PLAGIARISM)) < lv)
-				lv = type;
+				tsd->cloneskill_id = copy_skill;
+				pc_setglobalreg(tsd, "CLONE_SKILL", copy_skill);
+				pc_setglobalreg(tsd, "CLONE_SKILL_LV", copy_level);
 
-			tsd->cloneskill_id = skillid;
-			pc_setglobalreg(tsd, "CLONE_SKILL", skillid);
-			pc_setglobalreg(tsd, "CLONE_SKILL_LV", lv);
-
-			tsd->status.skill[skillid].id = skillid;
-			tsd->status.skill[skillid].lv = lv;
-			tsd->status.skill[skillid].flag = 13;//cloneskill flag
-			clif_addskill(tsd,skillid);
+				tsd->status.skill[copy_skill].id = copy_skill;
+				tsd->status.skill[copy_skill].lv = copy_level;
+				tsd->status.skill[copy_skill].flag = 13;
+				clif_addskill(tsd,copy_skill);
+			}
 		}
 	}
+
 	if( skillid != WZ_SIGHTRASHER &&
 		skillid != WZ_SIGHTBLASTER &&
 		skillid != AC_SHOWER && skillid != MA_SHOWER &&
@@ -2611,6 +2655,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case RK_HUNDREDSPEAR:
 	case RK_SONICWAVE:
 	case RK_WINDCUTTER:
+	case AB_DUPLELIGHT_MELEE:
 		skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 
@@ -2965,6 +3010,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case NJ_HYOUSENSOU:
 	case NJ_HUUJIN:
 	case AB_ADORAMUS:
+	case AB_DUPLELIGHT_MAGIC:
 		skill_attack(BF_MAGIC,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 
@@ -3725,6 +3771,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case NPC_INVINCIBLEOFF:
 	case RK_DEATHBOUND:
 	case AB_SECRAMENT:
+	case AB_DUPLELIGHT:
 		clif_skill_nodamage(src,bl,skillid,skilllv,
 			sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv)));
 		break;
