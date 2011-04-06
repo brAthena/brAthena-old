@@ -849,14 +849,14 @@ static int battle_calc_base_damage(struct status_data *status, struct weapon_atk
 		if(flag&2){
 			str = status->dex;
 			if(sd->arrow_atk) 
-				damage += ((flag&1)?sd->arrow_atk:rand()%sd->arrow_atk); 
+				damage += ((flag&1)?sd->arrow_atk:rand()%sd->arrow_atk);
 		}
-		if(sd->status.weapon)
+		if(type==EQI_HAND_R ? sd->weapontype1:sd->weapontype2)
 			randatk = wa->atk*sd->inventory_data[sd->equip_index[type]]->wlv*5/100;
 		if(randatk)
 			randatk = rand()%randatk * (rand()%2 ? 1:-1);
 		damage +=(int)((status->batk * 2) +
-			((wa->atk * ((float)(str + 200)/200) +	wa->atk2) + (!sd->status.weapon ? 0:
+			((wa->atk * ((float)(str + 200)/200) +	wa->atk2) + (!(type==EQI_HAND_R ? sd->weapontype1:sd->weapontype2) ? 0:
 			(sd->status.inventory[sd->equip_index[type]].refine + (sd->status.inventory[sd->equip_index[type]].refine+sd->inventory_data[sd->equip_index[type]]->wlv)*
 			((r=sd->status.inventory[sd->equip_index[type]].refine - status_getrefinebonus(sd->inventory_data[sd->equip_index[type]]->wlv,2))>0 ? r:0) )+
 			(randatk*(rand()%2 ? 1:-1)))* modf / 100));
@@ -870,7 +870,7 @@ static int battle_calc_base_damage(struct status_data *status, struct weapon_atk
 				damage += damage*sd->weapon_atk_rate[sd->weapontype1]/100;
 	}
 	if(flag&1)
-		damage += damage * 40 / 100;
+		damage += damage * 4 / 10;
 	return damage;
 }
 
