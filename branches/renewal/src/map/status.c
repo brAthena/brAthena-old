@@ -3202,8 +3202,8 @@ void status_calc_bl_main(struct block_list *bl, enum scb_flag flag)
 			sc->mp_matk_max = status->matk_max;
 		}
 
-		if( bl->type&BL_HOM && battle_config.hom_setting&0x20 ) //Hom Min Matk is always the same as Max Matk
-			status->matk_min = status->matk_max;
+		if( bl->type&BL_HOM && battle_config.hom_setting&0x20 )
+			status->matk_max = status->matk_min;
 
 	}
 
