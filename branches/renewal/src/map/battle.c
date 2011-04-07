@@ -2668,11 +2668,11 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						break;
 					case AB_JUDEX:
 						skillratio = (skillratio + (skill_lv == 5) ? 300 : 180 + 20 * skill_lv);
-					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100)/200;
+					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level / 100);
 						break;
 					case AB_ADORAMUS:
 						skillratio = (skillratio + 100 + 100 * skill_lv);
-					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100)/200;
+					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level / 100);
 						break;
 					case AB_DUPLELIGHT_MAGIC:
 						skillratio += 100 + 20 * skill_lv;
