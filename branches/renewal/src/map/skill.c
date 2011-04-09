@@ -1341,9 +1341,12 @@ int skill_counter_additional_effect (struct block_list* src, struct block_list *
 			ud = unit_bl2ud(bl);
 			if (ud) {
 				rate = skill_delayfix(bl, skillid, skilllv);
-				if (DIFF_TICK(ud->canact_tick, tick + rate) < 0){
+				if( DIFF_TICK(ud->canact_tick, tick + rate) < 0 )
+				{
 					ud->canact_tick = tick+rate;
-					if ( battle_config.display_status_timers && dstsd )
+					if( sd && skill_get_cooldown(skillid,skilllv) > 0 )
+						skill_blockpc_start(sd, skillid, skill_get_cooldown(skillid, skilllv));
+					if ( battle_config.display_status_timers && dstsd && skill_get_delay(skillid, skilllv))
 						clif_status_change(bl, SI_ACTIONDELAY, 1, rate, 0, 0, 1);
 				}
 			}
@@ -6241,10 +6244,13 @@ int skill_castend_id(int tid, unsigned int tick, int id, intptr data)
 		if (ud->walktimer != INVALID_TIMER && ud->skillid != TK_RUN)
 			unit_stop_walking(src,1);
 
+		if( sd && skill_get_cooldown(ud->skillid,ud->skilllv) > 0 ) 
+			skill_blockpc_start(sd, ud->skillid, skill_get_cooldown(ud->skillid, ud->skilllv));
 		if( !sd || sd->skillitem != ud->skillid || skill_get_delay(ud->skillid,ud->skilllv) )
-			ud->canact_tick = tick + skill_delayfix(src, ud->skillid, ud->skilllv); //Tests show wings don't overwrite the delay but skill scrolls do. [Inkfish]
-		if( battle_config.display_status_timers && sd )
-			clif_status_change(src, SI_ACTIONDELAY, 1, 0, 0, 0, 1);
+			ud->canact_tick = tick + skill_delayfix(src, ud->skillid, ud->skilllv); 
+		if( battle_config.display_status_timers && sd && skill_get_delay(ud->skillid, ud->skilllv))
+			clif_status_change(src, SI_ACTIONDELAY, 1, skill_delayfix(src, ud->skillid, ud->skilllv), 0, 0, 1);
+			
 		if( sd )
 		{
 			switch( ud->skillid )
@@ -6454,21 +6460,13 @@ int skill_castend_pos(int tid, unsigned int tick, int id, intptr data)
 		if (ud->walktimer != INVALID_TIMER)
 			unit_stop_walking(src,1);
 
-		if( sd && skill_get_cooldown(ud->skillid,ud->skilllv) > 0 )
+		if( sd && skill_get_cooldown(ud->skillid,ud->skilllv) > 0 ) 
 			skill_blockpc_start(sd, ud->skillid, skill_get_cooldown(ud->skillid, ud->skilllv));
 		if( !sd || sd->skillitem != ud->skillid || skill_get_delay(ud->skillid,ud->skilllv) )
 			ud->canact_tick = tick + skill_delayfix(src, ud->skillid, ud->skilllv);
 		if( battle_config.display_status_timers && sd && skill_get_delay(ud->skillid, ud->skilllv))
 			clif_status_change(src, SI_ACTIONDELAY, 1, skill_delayfix(src, ud->skillid, ud->skilllv), 0, 0, 1);
-//		if( sd )
-//		{
-//			switch( ud->skillid )
-//			{
-//			case ????:
-//				sd->canequip_tick = tick + ????;
-//				break;
-//			}
-//		}
+
 		unit_set_walkdelay(src, tick, battle_config.default_walk_delay+skill_get_walkdelay(ud->skillid, ud->skilllv), 1);
 
 		map_freeblock_lock();

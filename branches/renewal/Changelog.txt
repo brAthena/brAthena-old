@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0371 - 09/04/2011 [Protimus]
+	* Correções para cooldown.
+	- Faltava a leitura de um if pra captar o cooldown.
+	- Feita nova leitura para o battle_config dos status de tempo conforme cooldown.
+
 	r0370 - 09/04/2011 [Protimus]
 	* Correções para MATK de Mercenários (sistema de aluguel).
 
