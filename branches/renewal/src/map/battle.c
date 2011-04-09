@@ -830,7 +830,7 @@ int battle_addmastery(struct map_session_data *sd,struct block_list *target,int 
 static int battle_calc_base_damage(struct status_data *status, struct weapon_atk *wa, struct status_change *sc, unsigned short t_size, struct map_session_data *sd, int flag)
 {
 	short type;
-	int randatk=0, damage=1, modf=100, str=status->str, atkmin, atkmax, r;
+	int randatk=0, damage=0, modf=100, str=status->str, atkmin, atkmax, r;
 	if (!sd){
 		if(flag&4){
 			atkmin = status->matk_min;
@@ -852,14 +852,14 @@ static int battle_calc_base_damage(struct status_data *status, struct weapon_atk
 				damage += ((flag&1)?sd->arrow_atk:rand()%sd->arrow_atk);
 		}
 		if(type==EQI_HAND_R ? sd->weapontype1:sd->weapontype2)
-			randatk = wa->atk*sd->inventory_data[sd->equip_index[type]]->wlv*5/100;
+			randatk = wa->atk*sd->inventory_data[sd->equip_index[type]]->wlv/20;
 		if(randatk)
 			randatk = rand()%randatk * (rand()%2 ? 1:-1);
 		damage +=(int)((status->batk * 2) +
-			((wa->atk * ((float)(str + 200)/200) +	wa->atk2) + (!(type==EQI_HAND_R ? sd->weapontype1:sd->weapontype2) ? 0:
+			((float)wa->atk*(str + 200)/200+ 0.5 + wa->atk2 + (!(type==EQI_HAND_R ? sd->weapontype1:sd->weapontype2) ? 0:
 			(sd->status.inventory[sd->equip_index[type]].refine + (sd->status.inventory[sd->equip_index[type]].refine+sd->inventory_data[sd->equip_index[type]]->wlv)*
 			((r=sd->status.inventory[sd->equip_index[type]].refine - status_getrefinebonus(sd->inventory_data[sd->equip_index[type]]->wlv,2))>0 ? r:0) )+
-			(randatk*(rand()%2 ? 1:-1)))* modf / 100));
+			randatk)* modf / 100));	
 		//rodatazone says that Overrefine bonuses are part of baseatk
 		//Here we also apply the weapon_atk_rate bonus so it is correctly applied on left/right hands.
 		if (type == EQI_HAND_L) {
@@ -2320,26 +2320,17 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 
 	if (sd)
 	{
-		if (!flag.rh && flag.lh)
-		{	//Move lh damage to the rh
-			wd.damage = wd.damage2;
-			wd.damage2 = 0;
-			flag.rh=1;
-			flag.lh=0;
-		} else if(flag.rh && flag.lh)
-		{	//Dual-wield
-			if (wd.damage)
-			{
-				skill = pc_checkskill(sd,AS_RIGHT);
-				wd.damage = wd.damage * (50 + (skill * 10))/100;
-				if(wd.damage < 1) wd.damage = 1;
-			}
-			if (wd.damage2)
-			{
-				skill = pc_checkskill(sd,AS_LEFT);
-				wd.damage2 = wd.damage2 * (30 + (skill * 10))/100;
-				if(wd.damage2 < 1) wd.damage2 = 1;
-			}
+		if (wd.damage2)
+		{
+			skill = pc_checkskill(sd,AS_LEFT);
+			wd.damage2 = wd.damage2 * (3 + skill)/10;
+			if(wd.damage2 < 1) wd.damage2 = 1;
+		}
+		if(flag.rh && flag.lh && wd.damage)
+		{
+			skill = pc_checkskill(sd,AS_RIGHT);
+			wd.damage = wd.damage * (5 + skill)/10;
+			if(wd.damage < 1) wd.damage = 1;
 		} else if(sd->status.weapon == W_KATAR && !skill_num)
 		{ //Katars (offhand damage only applies to normal attacks, tested on Aegis 10.2)
 			skill = pc_checkskill(sd,TF_DOUBLE);
@@ -2349,12 +2340,6 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			flag.lh = 1;
 		}
 	}
-
-	if(!flag.rh && wd.damage)
-		wd.damage=0;
-
-	if(!flag.lh && wd.damage2)
-		wd.damage2=0;
 
 	if( wd.damage + wd.damage2 )
 	{	//There is a total damage value
