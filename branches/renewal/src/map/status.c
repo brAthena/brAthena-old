@@ -2296,7 +2296,7 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 
 	// Base batk value is set on status_calc_misc
 	// weapon-type bonus (FIXME: Why is the weapon_atk bonus applied to base attack?)
-	status->watk = status->rhw.atk + status->rhw.atk2 + status->lhw.atk + status->lhw.atk2;
+	status->watk += status->rhw.atk + status->rhw.atk2 + status->lhw.atk + status->lhw.atk2;
 
 	// Absolute modifiers from passive skills
 	if((skill=pc_checkskill(sd,BS_HILTBINDING))>0)
@@ -3021,7 +3021,7 @@ void status_calc_bl_main(struct block_list *bl, enum scb_flag flag)
 			}
 		}
 
-		status->watk = status->rhw.atk + status->rhw.atk2 + status->lhw.atk + status->lhw.atk2;
+		status->watk += status->rhw.atk + status->rhw.atk2 + status->lhw.atk + status->lhw.atk2;
 
 		if( bl->type&BL_HOM )
 		{

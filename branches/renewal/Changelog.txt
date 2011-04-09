@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0374 - 09/04/2011 [Protimus]
+	* Correções para bônus bBaseAtk.
+	- Não estava fazendo a leitura corretamente.
+	- Os bônus de watk não estavam sendo adicionados a fórmula geral.
+
 	r0373 - 09/04/2011 [Protimus]
 	* Correções para RK_DRAGONBREATH (Sopro do Dragão).
 	- Mudança nos cálculos de dano.
