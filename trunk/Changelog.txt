@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0372 - 09/04/2011 [Lord]
+	* Enviado um arquivo de 'upgrade sql' faltante.
+	* Realizado algumas modificações na pasta /sql-files.
+	* Removido item_db.sql e mob_db.sql
+	- Eles agora seram gerados online(em breve mais informações).
+
 	r0369 - 09/04/2011 [Protimus]
 	* Correções para o layout dos arquivos de experiência.
 

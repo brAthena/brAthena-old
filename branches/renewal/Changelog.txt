@@ -9,6 +9,14 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0372 - 09/04/2011 [Lord]
+	* Enviado um arquivo de 'upgrade sql' faltante.
+	* Atualizado main.sql.
+	- Era para ter sido atualizada na rev0357.
+	* Realizado algumas modificações na pasta /sql-files.
+	* Removido item_db.sql e mob_db.sql
+	- Eles agora seram gerados online(em breve mais informações).
+
 	r0371 - 09/04/2011 [Protimus]
 	* Correções para cooldown.
 	- Faltava a leitura de um if pra captar o cooldown.
