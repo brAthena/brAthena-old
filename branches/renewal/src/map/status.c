@@ -3398,8 +3398,8 @@ void status_calc_bl_(struct block_list* bl, enum scb_flag flag, bool first)
 		TBL_MER* md = BL_CAST(BL_MER, bl);
 		if( b_status.rhw.atk != status->rhw.atk || b_status.rhw.atk2 != status->rhw.atk2 )
 			clif_mercenary_updatestatus(md->master, SP_ATK1);
-		if( b_status.matk_max != status->matk_max )
-			clif_mercenary_updatestatus(md->master, SP_MATK1);
+		if( b_status.matk_min != status->matk_min )
+			clif_mercenary_updatestatus(md->master, SP_MATK2);
 		if( b_status.hit != status->hit )
 			clif_mercenary_updatestatus(md->master, SP_HIT);
 		if( b_status.cri != status->cri )

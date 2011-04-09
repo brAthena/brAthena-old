@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0370 - 09/04/2011 [Protimus]
+	* Correções para MATK de Mercenários (sistema de aluguel).
+
 	r0369 - 09/04/2011 [Protimus]
 	* Modificações para experiência de clãs e homunculos conforme renewal.
 	* Correções para o layout dos arquivos de experiência.
