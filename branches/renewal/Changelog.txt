@@ -9,6 +9,15 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0373 - 09/04/2011 [Protimus]
+	* Correções para RK_DRAGONBREATH (Sopro do Dragão).
+	- Mudança nos cálculos de dano.
+	- Adições de checagens para uso nas batalhas campais.
+	* Correções para msg_athena.conf.
+	- Mudanças ortográficas.
+	* Corrigido warning no vending.c
+	- Causado em compiladores gcc devido a necessidade de linhas em branco no final do arquivo.
+
 	r0372 - 09/04/2011 [Lord]
 	* Enviado um arquivo de 'upgrade sql' faltante.
 	* Atualizado main.sql.

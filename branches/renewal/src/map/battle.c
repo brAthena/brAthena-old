@@ -619,6 +619,7 @@ int battle_calc_bg_damage(struct block_list *src, struct block_list *bl, int dam
 		case PA_PRESSURE:
 		case HW_GRAVITATION:
 		case NJ_ZENYNAGE:
+		case RK_DRAGONBREATH:
 			break;
 		default:
 			if( flag&BF_SKILL )
@@ -680,6 +681,7 @@ int battle_calc_gvg_damage(struct block_list *src,struct block_list *bl,int dama
 	case PA_PRESSURE:
 	case HW_GRAVITATION:
 	case NJ_ZENYNAGE:
+	case RK_DRAGONBREATH:
 		break;
 	default:
 		/* Uncomment if you want god-mode Emperiums at 100 defense. [Kisuka]
@@ -1744,10 +1746,6 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case RK_WINDCUTTER: 
 					skillratio += 50 * skill_lv; 
 					if( s_base_level > 50 ) skillratio += skillratio * (s_base_level - 50) / 200;	
-					break;
-				case RK_DRAGONBREATH:
-					skillratio += 50 * skill_lv;
-					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
 					break;
 				case RK_CRUSHSTRIKE:
 					skillratio += 550;
@@ -2961,6 +2959,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 	case RK_DRAGONBREATH:
 		md.damage = ((status_get_hp(src) * 16 / 1000) + (status_get_sp(src) * 192 / 1000)) * skill_lv;
 		if (sd) md.damage += md.damage * 5 * (pc_checkskill(sd,RK_DRAGONTRAINING) -1) / 100;
+		if (status_get_lv(src) > 100) md.damage += md.damage * (s_base_level - 100) / 200;
 		break;
 	}
 
