@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0376 - 10/04/2011 [Destino]
+	* Enviada tradução dos monstros versão renewal (mob_db.txt)
+	- Correções foram efetuadas e a tradução agora está padrão em relação a antiga.
+
 	r0375 - 10/04/2011 [Protimus]
 	* Correções para habilidades RK_DRAGONBREATH (Sopro do Dragão) e RK_DRAGONHOWLING (Rugido do Dragão)
 	- Usável apenas quando montado em dragões.
