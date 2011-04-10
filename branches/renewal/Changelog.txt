@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0375 - 10/04/2011 [Protimus]
+	* Correções para habilidades RK_DRAGONBREATH (Sopro do Dragão) e RK_DRAGONHOWLING (Rugido do Dragão)
+	- Usável apenas quando montado em dragões.
+	* Adicionados cooldowns oficiais da maioria das habilidades de 3° classes e homunculos.
+	- Necessário encontrar valores oficiais de algumas outras habilidades.
+
 	r0374 - 09/04/2011 [Protimus]
 	* Correções para bônus bBaseAtk.
 	- Não estava fazendo a leitura corretamente.
