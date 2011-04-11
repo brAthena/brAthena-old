@@ -39,10 +39,7 @@ arena_room,136,138,3	script	Acolyte Waiting Room	124,{
 	end;
 
 OnInit:
-	//setarenaeventsize 1
-	waitingroom "Personal Force, Acolyte Class",50,"Acolyte Waiting Room::OnStartArena",1;
-	//SetReqLevel 10 99
-	//SetFeeZeny 1000
+	waitingroom "Personal Force, Acolyte Class",50,"Acolyte Waiting Room::OnStartArena",1,1000,10,99;
 	enablewaitingroomevent;
 	end;
 

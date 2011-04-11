@@ -25,7 +25,7 @@
 // | seu servidor.                                          |
 // \________________________________________________________/
 
-// Cidades
+// Towns ====================>\\
 ayo_in01	mapflag	nopenalty
 ayo_in02	mapflag	nopenalty
 alb_ship	mapflag	nopenalty
@@ -141,19 +141,18 @@ veins	mapflag	nopenalty
 ve_in	mapflag	nopenalty
 ve_in02	mapflag	nopenalty
 thor_camp	mapflag	nopenalty
+moc_para01	mapflag	nopenalty
 
-// Quests de Classe
+// Job Quests ========================
 job_sword1	mapflag	nopenalty
 job_thief1	mapflag	nopenalty
-
-// Classes 2-1
+// 2-1 -----------------------
 job_prist	mapflag	nopenalty
 job_wiz	mapflag	nopenalty
 job_hunte	mapflag	nopenalty
 in_hunter	mapflag	nopenalty
 in_moc_16	mapflag	nopenalty
-
-// Classes 2-2
+// 2-2 --------------------
 alde_alche	mapflag	nopenalty
 job_cru	mapflag	nopenalty
 job_duncer	mapflag	nopenalty
@@ -163,22 +162,22 @@ monk_in	mapflag	nopenalty
 in_rogue	mapflag	nopenalty
 job_sage	mapflag	nopenalty
 
-// Quests Mistas
+// Misc Quests =======================
 que_sign01	mapflag	nopenalty
 que_sign02	mapflag	nopenalty
 
-// Arenas GvG
+// GvG Arenas ===================
 guild_vs1	mapflag	nopenalty
 guild_vs2	mapflag	nopenalty
 guild_vs3	mapflag	nopenalty
 guild_vs4	mapflag	nopenalty
 guild_vs5	mapflag	nopenalty
 
-// Arenas
+// Arenas=======================>\\
 sec_in01	mapflag	nopenalty
 sec_in02	mapflag	nopenalty
 
-// Arena de Izlude
+// Izlude Arena ========================
 force_1-1	mapflag	nopenalty
 force_1-2	mapflag	nopenalty
 force_1-3	mapflag	nopenalty
@@ -189,7 +188,7 @@ force_3-1	mapflag	nopenalty
 force_3-2	mapflag	nopenalty
 force_3-3	mapflag	nopenalty
 
-// Arenas PvP
+// PvP Arenas =========================
 pvp_y_1-1	mapflag	nopenalty
 pvp_y_1-2	mapflag	nopenalty
 pvp_y_1-3	mapflag	nopenalty
@@ -232,7 +231,7 @@ pvp_y_8-4	mapflag	nopenalty
 pvp_y_8-5	mapflag	nopenalty
 pvp_2vs2	mapflag	nopenalty
 
-// Aldebaran Turbo Track
+//Aldebaran Turbo Track
 turbo_room	mapflag	nopenalty
 turbo_n_1	mapflag	nopenalty
 turbo_n_4	mapflag	nopenalty
@@ -242,18 +241,11 @@ turbo_e_4	mapflag	nopenalty
 turbo_e_8	mapflag	nopenalty
 turbo_e_16	mapflag	nopenalty
 
-// Corridas de Monstros
+//Monster Races ================
 p_track01	mapflag	nopenalty
 p_track02	mapflag	nopenalty
 
-// Batalhas Campais
-bat_room	mapflag	nopenalty
-bat_a01	mapflag	nopenalty
-bat_a02	mapflag	nopenalty
-bat_b01	mapflag	nopenalty
-bat_b02	mapflag	nopenalty
-
-// Visões de Okolnir
+//Vision of Okolnir =============
 que_qsch01	mapflag	nopenalty
 que_qsch02	mapflag	nopenalty
 que_qsch03	mapflag	nopenalty
@@ -264,3 +256,18 @@ que_qaru02	mapflag	nopenalty
 que_qaru03	mapflag	nopenalty
 que_qaru04	mapflag	nopenalty
 que_qaru05	mapflag	nopenalty
+
+// Battle Grounds ==============
+bat_c01	mapflag	nopenalty
+bat_c02	mapflag	nopenalty
+bat_c03	mapflag	nopenalty
+bat_room	mapflag	nopenalty
+bat_b01	mapflag	nopenalty
+bat_b02	mapflag	nopenalty
+bat_a01	mapflag	nopenalty
+bat_a02	mapflag	nopenalty
+
+//evt_zombie	mapflag	nopenalty
+
+// Poring War ==================
+poring_w02	mapflag	nopenalty

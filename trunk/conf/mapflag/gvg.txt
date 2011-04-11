@@ -94,10 +94,12 @@ arug_cas05	mapflag	gvg_castle
 
 // Castelo da WoE dos Aprendizes
 //n_castle	mapflag	gvg_castle
+//n_castle	mapflag	gvg_castle
 nguild_alde	mapflag	gvg_castle
 nguild_gef	mapflag	gvg_castle
 nguild_pay	mapflag	gvg_castle
 nguild_prt	mapflag	gvg_castle
+
 
 //Descomente "//" para desabilitar teleporte de monstros (cancela o teleporte quando é atacado)
 //nguild_alde	mapflag	monster_noteleport

@@ -26,7 +26,7 @@ turbo_room,117,135,3	script	Modo Avançado - 8 Pess	124,{
 	end;
 
 OnInit:
-	waitingroom "Modo Avançado - 8 Pessoas",60,"Modo Avançado - 8 Pessoas::OnStartArena",8;
+	waitingroom "Modo Avançado - 8 Pessoas",60,"Modo Avançado - 8 Pessoas::OnStartArena",8,1000,10,99;
 	//SetFeeZeny 1000
 	enablewaitingroomevent "Modo Avançado - 8 Pessoas";
 	end;

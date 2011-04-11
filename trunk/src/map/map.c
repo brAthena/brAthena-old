@@ -17,6 +17,7 @@
 #include "path.h"
 #include "chrif.h"
 #include "clif.h"
+#include "duel.h"
 #include "intif.h"
 #include "npc.h"
 #include "pc.h"
@@ -3429,6 +3430,7 @@ void do_final(void)
 	do_final_status();
 	do_final_unit();
 	do_final_battleground();
+	do_final_duel();
 
 	map_db->destroy(map_db, map_db_final);
 
@@ -3656,6 +3658,7 @@ int do_init(int argc, char *argv[])
 	do_init_npc();
 	do_init_unit();
 	do_init_battleground();
+	do_init_duel();
 
 	npc_event_do_oninit();	// npcのOnInitイベント?行
 

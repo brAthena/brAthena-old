@@ -20,7 +20,7 @@
 // | - Anotações                                            |
 // \________________________________________________________/
 
-// Arenas PvP
+// PvP Arenas =================
 pvp_y_1-1	mapflag	pvp_noguild
 pvp_y_1-2	mapflag	pvp_noguild
 pvp_y_1-3	mapflag	pvp_noguild

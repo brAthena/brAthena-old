@@ -28,7 +28,7 @@
 bat_room,86,227,4	script	Tenente Ator	418,{
 	end;
 OnInit:
-	waitingroom "Estação de Batalha",10,"start#bat_b01::OnReadyCheck",1;
+	waitingroom "Estação de Batalha",10,"start#bat_b01::OnReadyCheck",1,0,80,99;
 	end;
 OnEnterBG:
 	set $@FlaviusBG1_id1, waitingroom2bg("bat_b01",10,290,"start#bat_b01::OnGuillaumeQuit","");
@@ -38,7 +38,7 @@ OnEnterBG:
 bat_room,85,204,0	script	Tenente Thelokus	414,{
 	end;
 OnInit:
-	waitingroom "Estação de Batalha",10,"start#bat_b01::OnReadyCheck",1;
+	waitingroom "Estação de Batalha",10,"start#bat_b01::OnReadyCheck",1,0,80,99;
 	end;
 OnEnterBG:
 	set $@FlaviusBG1_id2, waitingroom2bg("bat_b01",390,10,"start#bat_b01::OnCroixQuit","");

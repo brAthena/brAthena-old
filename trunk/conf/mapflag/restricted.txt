@@ -21,7 +21,7 @@
 // | - Anotações                                            |
 // \________________________________________________________/
 
-// Aldebaran Turbo Track
+//Aldebaran Turbo Track
 alde_tt02	mapflag	restricted	1
 turbo_n_1	mapflag	restricted	1
 turbo_n_4	mapflag	restricted	1
@@ -31,10 +31,10 @@ turbo_e_4	mapflag	restricted	1
 turbo_e_8	mapflag	restricted	1
 turbo_e_16	mapflag	restricted	1
 
-// Prisão
+//Jail
 sec_pri	mapflag	restricted	2
 
-// Arena de Batalha de Izlude
+//Izlude Battle Arena
 force_1-1	mapflag	restricted	3
 force_2-1	mapflag	restricted	3
 force_3-1	mapflag	restricted	3
@@ -44,7 +44,7 @@ force_1-2	mapflag	restricted	3
 force_1-3	mapflag	restricted	3
 prt_are_in	mapflag	restricted	3
 
-// WoE 2.0
+//WoE:SE Maps
 schg_cas01	mapflag	restricted	4
 schg_cas02	mapflag	restricted	4
 schg_cas03	mapflag	restricted	4
@@ -56,11 +56,11 @@ arug_cas03	mapflag	restricted	4
 arug_cas04	mapflag	restricted	4
 arug_cas05	mapflag	restricted	4
 
-// Santuário Selado
+//Sealed Shrine ==================
 1@cata	mapflag	restricted	5
 2@cata	mapflag	restricted	5
 
-// Torre sem Fim
+//Endless Tower ==================
 1@tower	mapflag	restricted	6
 2@tower	mapflag	restricted	6
 3@tower	mapflag	restricted	6

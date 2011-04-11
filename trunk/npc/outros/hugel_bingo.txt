@@ -28,7 +28,7 @@ que_bingo,48,84,5	script	Bingo Waiting Room	124,{
 OnInit:
 	set $hu_bingoa,0;
 	set $hu_bingob,0;
-	waitingroom "Bingo Waiting Room - 5 People",50,"Bingo Waiting Room::OnWarp",5;
+	waitingroom "Bingo Waiting Room - 5 People",50,"Bingo Waiting Room::OnWarp",5,1000; 
 	end;
 	
 OnWarp:

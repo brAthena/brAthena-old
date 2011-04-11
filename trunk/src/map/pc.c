@@ -18,6 +18,7 @@
 #include "chrif.h"
 #include "clif.h"
 #include "date.h" // is_day_of_*()
+#include "duel.h"
 #include "intif.h"
 #include "itemdb.h"
 #include "log.h"
@@ -62,9 +63,6 @@ static unsigned short equip_pos[EQI_MAX]={EQP_ACC_L,EQP_ACC_R,EQP_SHOES,EQP_GARM
 
 #define MOTD_LINE_SIZE 128
 static char motd_text[MOTD_LINE_SIZE][CHAT_SIZE_MAX]; // Message of the day buffer [Valaris]
-
-struct duel duel_list[MAX_DUEL];
-int duel_count = 0;
 
 //Links related info to the sd->hate_mob[]/sd->feel_map[] entries
 const struct sg_data sg_info[MAX_PC_FEELHATE] = {
@@ -3241,7 +3239,10 @@ int pc_payzeny(struct map_session_data *sd,int zeny)
 	nullpo_ret(sd);
 
 	if( zeny < 0 )
-	  	return pc_getzeny(sd, -zeny);
+	{
+		ShowError("pc_payzeny: Paying negative Zeny (zeny=%d, account_id=%d, char_id=%d).\n", zeny, sd->status.account_id, sd->status.char_id);
+		return 1;
+	}
 
 	if( sd->status.zeny < zeny )
 		return 1; //Not enough.
@@ -3297,7 +3298,10 @@ int pc_getzeny(struct map_session_data *sd,int zeny)
 	nullpo_ret(sd);
 
 	if( zeny < 0 )
-		return pc_payzeny(sd, -zeny);
+	{
+		ShowError("pc_getzeny: Obtaining negative Zeny (zeny=%d, account_id=%d, char_id=%d).\n", zeny, sd->status.account_id, sd->status.char_id);
+		return 1;
+	}
 
 	if( zeny > MAX_ZENY - sd->status.zeny )
 		zeny = MAX_ZENY - sd->status.zeny;
@@ -4359,6 +4363,7 @@ int pc_checkallowskill(struct map_session_data *sd)
 		SC_SPEARQUICKEN,
 		SC_ADRENALINE,
 		SC_ADRENALINE2,
+		SC_DANCING,
 		SC_GATLINGFEVER
 	};
 	const enum sc_type scs_list[] = {
@@ -4414,101 +4419,98 @@ int pc_checkequip(struct map_session_data *sd,int pos)
  *------------------------------------------*/
 int pc_jobid2mapid(unsigned short b_class)
 {
-	int class_ = 0;
-	if (b_class >= JOB_BABY && b_class <= JOB_SUPER_BABY)
-	{
-		if (b_class == JOB_SUPER_BABY)
-			b_class = JOB_SUPER_NOVICE;
-		else
-			b_class -= JOB_BABY;
-		class_|= JOBL_BABY;
-	}
-	else if (b_class >= JOB_NOVICE_HIGH && b_class <= JOB_PALADIN2)
-	{
-		b_class -= JOB_NOVICE_HIGH;
-		class_|= JOBL_UPPER;
-	}
-	if (b_class >= JOB_KNIGHT && b_class <= JOB_KNIGHT2)
-		class_|= JOBL_2_1;
-	else if (b_class >= JOB_CRUSADER && b_class <= JOB_CRUSADER2)
-		class_|= JOBL_2_2;
-	switch (b_class)
-	{
-		case JOB_NOVICE:
-		case JOB_SWORDMAN:
-		case JOB_MAGE:
-		case JOB_ARCHER:
-		case JOB_ACOLYTE:
-		case JOB_MERCHANT:
-		case JOB_THIEF:
-			class_ |= b_class;
-			break;
-		case JOB_KNIGHT:
-		case JOB_KNIGHT2:
-		case JOB_CRUSADER:
-		case JOB_CRUSADER2:
-			class_ |= MAPID_SWORDMAN;
-			break;
-		case JOB_PRIEST:
-		case JOB_MONK:
-			class_ |= MAPID_ACOLYTE;
-			break;
-		case JOB_WIZARD:
-		case JOB_SAGE:
-			class_ |= MAPID_MAGE;
-			break;
-		case JOB_BLACKSMITH:
-		case JOB_ALCHEMIST:
-			class_ |= MAPID_MERCHANT;
-			break;
-		case JOB_HUNTER:
+	switch(b_class)
+ 	{
+		case JOB_NOVICE:            return MAPID_NOVICE;
+	//1st classes
+		case JOB_SWORDMAN:          return MAPID_SWORDMAN;
+		case JOB_MAGE:              return MAPID_MAGE;
+		case JOB_ARCHER:            return MAPID_ARCHER;
+		case JOB_ACOLYTE:           return MAPID_ACOLYTE;
+		case JOB_MERCHANT:          return MAPID_MERCHANT;
+		case JOB_THIEF:             return MAPID_THIEF;
+		case JOB_TAEKWON:           return MAPID_TAEKWON;
+		case JOB_WEDDING:           return MAPID_WEDDING;
+		case JOB_GUNSLINGER:        return MAPID_GUNSLINGER;
+		case JOB_NINJA:             return MAPID_NINJA;
+		case JOB_XMAS:              return MAPID_XMAS;
+		case JOB_SUMMER:            return MAPID_SUMMER;
+	//2_1 classes
+		case JOB_SUPER_NOVICE:      return MAPID_SUPER_NOVICE;
+		case JOB_KNIGHT:            return MAPID_KNIGHT;
+		case JOB_WIZARD:            return MAPID_WIZARD;
+		case JOB_HUNTER:            return MAPID_HUNTER;
+		case JOB_PRIEST:            return MAPID_PRIEST;
+		case JOB_BLACKSMITH:        return MAPID_BLACKSMITH;
+		case JOB_ASSASSIN:          return MAPID_ASSASSIN;
+		case JOB_STAR_GLADIATOR:    return MAPID_STAR_GLADIATOR;
+	//2_2 classes
+		case JOB_CRUSADER:          return MAPID_CRUSADER;
+		case JOB_SAGE:              return MAPID_SAGE;
 		case JOB_BARD:
-		case JOB_DANCER:
-			class_ |= MAPID_ARCHER;
-			break;
-		case JOB_ASSASSIN:
-		case JOB_ROGUE:
-			class_ |= MAPID_THIEF;
-			break;
-
-		case JOB_STAR_GLADIATOR:
-		case JOB_STAR_GLADIATOR2:
-			class_ |= JOBL_2_1;
-			class_ |= MAPID_TAEKWON;
-			break;
-		case JOB_SOUL_LINKER:
-			class_ |= JOBL_2_2;
-		case JOB_TAEKWON:
-			class_ |= MAPID_TAEKWON;
-			break;
-		case JOB_WEDDING:
-			class_ = MAPID_WEDDING;
-			break;
-		case JOB_SUPER_NOVICE: //Super Novices are considered 2-1 novices. [Skotlex]
-			class_ |= JOBL_2_1;
-			break;
-		case JOB_GUNSLINGER:
-			class_ |= MAPID_GUNSLINGER;
-			break;
-		case JOB_NINJA:
-			class_ |= MAPID_NINJA;
-			break;
-		case JOB_XMAS:
-			class_ = MAPID_XMAS;
-			break;
-		case JOB_SUMMER:
-			class_ = MAPID_SUMMER;
-			break;
+		case JOB_DANCER:            return MAPID_BARDDANCER;
+		case JOB_MONK:              return MAPID_MONK;
+		case JOB_ALCHEMIST:         return MAPID_ALCHEMIST;
+		case JOB_ROGUE:             return MAPID_ROGUE;
+		case JOB_SOUL_LINKER:       return MAPID_SOUL_LINKER;
+	//1st: advanced
+		case JOB_NOVICE_HIGH:       return MAPID_NOVICE_HIGH;
+		case JOB_SWORDMAN_HIGH:     return MAPID_SWORDMAN_HIGH;
+		case JOB_MAGE_HIGH:         return MAPID_MAGE_HIGH;
+		case JOB_ARCHER_HIGH:       return MAPID_ARCHER_HIGH;
+		case JOB_ACOLYTE_HIGH:      return MAPID_ACOLYTE_HIGH;
+		case JOB_MERCHANT_HIGH:     return MAPID_MERCHANT_HIGH;
+		case JOB_THIEF_HIGH:        return MAPID_THIEF_HIGH;
+	//2_1 advanced
+		case JOB_LORD_KNIGHT:       return MAPID_LORD_KNIGHT;
+		case JOB_HIGH_WIZARD:       return MAPID_HIGH_WIZARD;
+		case JOB_SNIPER:            return MAPID_SNIPER;
+		case JOB_HIGH_PRIEST:       return MAPID_HIGH_PRIEST;
+		case JOB_WHITESMITH:        return MAPID_WHITESMITH;
+		case JOB_ASSASSIN_CROSS:    return MAPID_ASSASSIN_CROSS;
+	//2_2 advanced
+		case JOB_PALADIN:           return MAPID_PALADIN;
+		case JOB_PROFESSOR:         return MAPID_PROFESSOR;
+		case JOB_CLOWN:
+		case JOB_GYPSY:             return MAPID_CLOWNGYPSY;
+		case JOB_CHAMPION:          return MAPID_CHAMPION;
+		case JOB_CREATOR:           return MAPID_CREATOR;
+		case JOB_STALKER:           return MAPID_STALKER;
+	//1-1 baby
+		case JOB_BABY:              return MAPID_BABY;
+		case JOB_BABY_SWORDMAN:     return MAPID_BABY_SWORDMAN;
+		case JOB_BABY_MAGE:         return MAPID_BABY_MAGE;
+		case JOB_BABY_ARCHER:       return MAPID_BABY_ARCHER;
+		case JOB_BABY_ACOLYTE:      return MAPID_BABY_ACOLYTE;
+		case JOB_BABY_MERCHANT:     return MAPID_BABY_MERCHANT;
+		case JOB_BABY_THIEF:        return MAPID_BABY_THIEF;
+	//2_1 baby
+		case JOB_SUPER_BABY:        return MAPID_SUPER_BABY;
+		case JOB_BABY_KNIGHT:       return MAPID_BABY_KNIGHT;
+		case JOB_BABY_WIZARD:       return MAPID_BABY_WIZARD;
+		case JOB_BABY_HUNTER:       return MAPID_BABY_HUNTER;
+		case JOB_BABY_PRIEST:       return MAPID_BABY_PRIEST;
+		case JOB_BABY_BLACKSMITH:   return MAPID_BABY_BLACKSMITH;
+		case JOB_BABY_ASSASSIN:     return MAPID_BABY_ASSASSIN;
+	//2_2 baby
+		case JOB_BABY_CRUSADER:     return MAPID_BABY_CRUSADER;
+		case JOB_BABY_SAGE:         return MAPID_BABY_SAGE;
+		case JOB_BABY_BARD:
+		case JOB_BABY_DANCER:       return MAPID_BABY_BARDDANCER;
+		case JOB_BABY_MONK:         return MAPID_BABY_MONK;
+		case JOB_BABY_ALCHEMIST:    return MAPID_BABY_ALCHEMIST;
+		case JOB_BABY_ROGUE:        return MAPID_BABY_ROGUE;
 		default:
 			return -1;
 	}
-	return class_;
 }
 
 //Reverts the map-style class id to the client-style one.
 int pc_mapid2jobid(unsigned short class_, int sex)
 {
-	switch(class_) {
+	switch(class_)
+	{
+	//1st classes
 		case MAPID_NOVICE:          return JOB_NOVICE;
 		case MAPID_SWORDMAN:        return JOB_SWORDMAN;
 		case MAPID_MAGE:            return JOB_MAGE;
@@ -4539,7 +4541,7 @@ int pc_mapid2jobid(unsigned short class_, int sex)
 		case MAPID_ALCHEMIST:       return JOB_ALCHEMIST;
 		case MAPID_ROGUE:           return JOB_ROGUE;
 		case MAPID_SOUL_LINKER:     return JOB_SOUL_LINKER;
-	//1-1: advanced
+	//1st: advanced
 		case MAPID_NOVICE_HIGH:     return JOB_NOVICE_HIGH;
 		case MAPID_SWORDMAN_HIGH:   return JOB_SWORDMAN_HIGH;
 		case MAPID_MAGE_HIGH:       return JOB_MAGE_HIGH;
@@ -5991,7 +5993,7 @@ int pc_readparam(struct map_session_data* sd,int type)
  *------------------------------------------*/
 int pc_setparam(struct map_session_data *sd,int type,int val)
 {
-	int i = 0;
+	int i = 0, statlimit;
 
 	nullpo_ret(sd);
 
@@ -6054,7 +6056,7 @@ int pc_setparam(struct map_session_data *sd,int type,int val)
 		}
 		break;
 	case SP_SEX:
-		sd->status.sex = val;
+		sd->status.sex = val ? SEX_MALE : SEX_FEMALE;
 		break;
 	case SP_WEIGHT:
 		sd->weight = val;
@@ -6063,34 +6065,52 @@ int pc_setparam(struct map_session_data *sd,int type,int val)
 		sd->max_weight = val;
 		break;
 	case SP_HP:
-		sd->battle_status.hp = val;
+		sd->battle_status.hp = cap_value(val, 1, (int)sd->battle_status.max_hp);
 		break;
 	case SP_MAXHP:
-		sd->battle_status.max_hp = val;
+		sd->battle_status.max_hp = cap_value(val, 1, battle_config.max_hp);
+
+		if( sd->battle_status.max_hp < sd->battle_status.hp )
+		{
+			sd->battle_status.hp = sd->battle_status.max_hp;
+			clif_updatestatus(sd, SP_HP);
+		}
 		break;
 	case SP_SP:
-		sd->battle_status.sp = val;
+		sd->battle_status.sp = cap_value(val, 0, (int)sd->battle_status.max_sp);
 		break;
 	case SP_MAXSP:
-		sd->battle_status.max_sp = val;
+		sd->battle_status.max_sp = cap_value(val, 1, battle_config.max_sp);
+
+		if( sd->battle_status.max_sp < sd->battle_status.sp )
+		{
+			sd->battle_status.sp = sd->battle_status.max_sp;
+			clif_updatestatus(sd, SP_SP);
+		}
 		break;
 	case SP_STR:
-		sd->status.str = val;
+		statlimit = pc_maxparameter(sd);
+		sd->status.str = cap_value(val, 1, statlimit);
 		break;
 	case SP_AGI:
-		sd->status.agi = val;
+		statlimit = pc_maxparameter(sd);
+		sd->status.agi = cap_value(val, 1, statlimit);
 		break;
 	case SP_VIT:
-		sd->status.vit = val;
+		statlimit = pc_maxparameter(sd);
+		sd->status.vit = cap_value(val, 1, statlimit);
 		break;
 	case SP_INT:
-		sd->status.int_ = val;
+		statlimit = pc_maxparameter(sd);
+		sd->status.int_ = cap_value(val, 1, statlimit);
 		break;
 	case SP_DEX:
-		sd->status.dex = val;
+		statlimit = pc_maxparameter(sd);
+		sd->status.dex = cap_value(val, 1, statlimit);
 		break;
 	case SP_LUK:
-		sd->status.luk = val;
+		statlimit = pc_maxparameter(sd);
+		sd->status.luk = cap_value(val, 1, statlimit);
 		break;
 	case SP_KARMA:
 		sd->status.karma = val;
@@ -7230,7 +7250,6 @@ int pc_unequipitem(struct map_session_data *sd,int n,int flag)
 		sd->status.weapon = sd->weapontype2;
 		pc_calcweapontype(sd);
 		clif_changelook(&sd->bl,LOOK_WEAPON,sd->status.weapon);
-		status_change_end(&sd->bl, SC_DANCING, INVALID_TIMER); //When unequipping, stop dancing. [Skotlex]
 	}
 	if(sd->status.inventory[n].equip & EQP_HAND_L) {
 		sd->status.shield = sd->weapontype2 = 0;
@@ -7705,168 +7724,6 @@ void pc_setstand(struct map_session_data *sd){
 	sd->state.dead_sit = sd->vd.dead_sit = 0;
 }
 
-/*==========================================
- * Duel organizing functions [LuzZza]
- *------------------------------------------*/
-void duel_savetime(struct map_session_data* sd)
-{
-	time_t timer;
-	struct tm *t;
-
-	time(&timer);
-	t = localtime(&timer);
-
-	pc_setglobalreg(sd, "PC_LAST_DUEL_TIME", t->tm_mday*24*60 + t->tm_hour*60 + t->tm_min);
-	return;
-}
-
-int duel_checktime(struct map_session_data* sd)
-{
-	int diff;
-	time_t timer;
-	struct tm *t;
-
-	time(&timer);
-    t = localtime(&timer);
-
-	diff = t->tm_mday*24*60 + t->tm_hour*60 + t->tm_min - pc_readglobalreg(sd, "PC_LAST_DUEL_TIME");
-
-	return !(diff >= 0 && diff < battle_config.duel_time_interval);
-}
-static int duel_showinfo_sub(struct map_session_data* sd, va_list va)
-{
-	struct map_session_data *ssd = va_arg(va, struct map_session_data*);
-	int *p = va_arg(va, int*);
-	char output[256];
-
-	if (sd->duel_group != ssd->duel_group) return 0;
-
-	sprintf(output, "      %d. %s", ++(*p), sd->status.name);
-	clif_disp_onlyself(ssd, output, strlen(output));
-	return 1;
-}
-
-int duel_showinfo(const unsigned int did, struct map_session_data* sd)
-{
-	int p=0;
-	char output[256];
-
-	if(duel_list[did].max_players_limit > 0)
-		sprintf(output, msg_txt(370), //" -- Duels: %d/%d, Members: %d/%d, Max players: %d --"
-			did, duel_count,
-			duel_list[did].members_count,
-			duel_list[did].members_count + duel_list[did].invites_count,
-			duel_list[did].max_players_limit);
-	else
-		sprintf(output, msg_txt(371), //" -- Duels: %d/%d, Members: %d/%d --"
-			did, duel_count,
-			duel_list[did].members_count,
-			duel_list[did].members_count + duel_list[did].invites_count);
-
-	clif_disp_onlyself(sd, output, strlen(output));
-	map_foreachpc(duel_showinfo_sub, sd, &p);
-	return 0;
-}
-
-int duel_create(struct map_session_data* sd, const unsigned int maxpl)
-{
-	int i=1;
-	char output[256];
-
-	while(duel_list[i].members_count > 0 && i < MAX_DUEL) i++;
-	if(i == MAX_DUEL) return 0;
-
-	duel_count++;
-	sd->duel_group = i;
-	duel_list[i].members_count++;
-	duel_list[i].invites_count = 0;
-	duel_list[i].max_players_limit = maxpl;
-
-	strcpy(output, msg_txt(372)); // " -- Duel has been created (@invite/@leave) --"
-	clif_disp_onlyself(sd, output, strlen(output));
-
-	clif_map_property(sd, MAPPROPERTY_FREEPVPZONE);
-	//clif_misceffect2(&sd->bl, 159);
-	return i;
-}
-
-int duel_invite(const unsigned int did, struct map_session_data* sd, struct map_session_data* target_sd)
-{
-	char output[256];
-
-	// " -- Player %s invites %s to duel --"
-	sprintf(output, msg_txt(373), sd->status.name, target_sd->status.name);
-	clif_disp_message(&sd->bl, output, strlen(output), DUEL_WOS);
-
-	target_sd->duel_invite = did;
-	duel_list[did].invites_count++;
-
-	// "Blue -- Player %s invites you to PVP duel (@accept/@reject) --"
-	sprintf(output, msg_txt(374), sd->status.name);
-	clif_broadcast((struct block_list *)target_sd, output, strlen(output)+1, 0x10, SELF);
-	return 0;
-}
-
-static int duel_leave_sub(struct map_session_data* sd, va_list va)
-{
-	int did = va_arg(va, int);
-	if (sd->duel_invite == did)
-		sd->duel_invite = 0;
-	return 0;
-}
-
-int duel_leave(const unsigned int did, struct map_session_data* sd)
-{
-	char output[256];
-
-	// " <- Player %s has left duel --"
-	sprintf(output, msg_txt(375), sd->status.name);
-	clif_disp_message(&sd->bl, output, strlen(output), DUEL_WOS);
-
-	duel_list[did].members_count--;
-
-	if(duel_list[did].members_count == 0) {
-		map_foreachpc(duel_leave_sub, did);
-		duel_count--;
-	}
-
-	sd->duel_group = 0;
-	duel_savetime(sd);
-	clif_map_property(sd, MAPPROPERTY_NOTHING);
-	return 0;
-}
-
-int duel_accept(const unsigned int did, struct map_session_data* sd)
-{
-	char output[256];
-
-	duel_list[did].members_count++;
-	sd->duel_group = sd->duel_invite;
-	duel_list[did].invites_count--;
-	sd->duel_invite = 0;
-
-	// " -> Player %s has accepted duel --"
-	sprintf(output, msg_txt(376), sd->status.name);
-	clif_disp_message(&sd->bl, output, strlen(output), DUEL_WOS);
-
-	clif_map_property(sd, MAPPROPERTY_FREEPVPZONE);
-	//clif_misceffect2(&sd->bl, 159);
-	return 0;
-}
-
-int duel_reject(const unsigned int did, struct map_session_data* sd)
-{
-	char output[256];
-
-	// " -- Player %s has rejected duel --"
-	sprintf(output, msg_txt(377), sd->status.name);
-	clif_disp_message(&sd->bl, output, strlen(output), DUEL_WOS);
-
-	duel_list[did].invites_count--;
-	sd->duel_invite = 0;
-	return 0;
-}
-
 int pc_split_str(char *str,char **val,int num)
 {
 	int i;
@@ -8233,8 +8090,6 @@ int do_init_pc(void)
 {
 	pc_readdb();
 	pc_read_motd(); // Read MOTD [Valaris]
-
-	memset(&duel_list[0], 0, sizeof(duel_list));
 
 	add_timer_func_list(pc_invincible_timer, "pc_invincible_timer");
 	add_timer_func_list(pc_eventtimer, "pc_eventtimer");

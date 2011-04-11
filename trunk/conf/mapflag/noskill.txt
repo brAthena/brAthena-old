@@ -20,19 +20,25 @@
 // | - Anotações                                            |
 // \________________________________________________________/
 
-// Arena de Prontera
+//Prontera Arena ===============
 prt_are_in	mapflag	noskill
 
-// Quest "O Sinal" (The Sign)
+//The Sign Quest ===============
 himinn	mapflag	noskill
 
-// Mapas do Quiz
-quiz_00	mapflag	noskill
-quiz_01	mapflag	noskill
-quiz_02	mapflag	noskill
-quiz_test	mapflag	noskill
+// Quiz Maps ===================
+quiz_00	mapflag	noskill
 
-// Mini-games de Hugel (Bingo e Turbo)
+quiz_01	mapflag	noskill
+
+quiz_02	mapflag	noskill
+
+quiz_test	mapflag	noskill
+
+
+//Hugel Minigames ==============
 que_bingo	mapflag	noskill
 p_track01	mapflag	noskill
 p_track02	mapflag	noskill
+
+//evt_zombie	mapflag	noskill

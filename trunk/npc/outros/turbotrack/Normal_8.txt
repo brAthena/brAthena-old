@@ -26,7 +26,7 @@ turbo_room,84,135,3	script	Modo Normal - 8 Pessoas	124,{
 	end;
 
 OnInit:
-	waitingroom "Modo Normal - 8 Pessoas",60,"Modo Normal - 8 Pessoas::OnStartArena",8;
+	waitingroom "Modo Normal - 8 Pessoas",60,"Modo Normal - 8 Pessoas::OnStartArena",8,1000,10,99; 
 	//SetFeeZeny 1000
 	enablewaitingroomevent "Modo Normal - 8 Pessoas";
 	end;

@@ -383,14 +383,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\src\map\searchstore.h"
-				>
-			</File>
-			<File
-				RelativePath="..\src\map\searchstore.c"
-				>
-			</File>
-			<File
 				RelativePath="..\src\map\chat.c"
 				>
 			</File>
@@ -420,6 +412,14 @@
 			</File>
 			<File
 				RelativePath="..\src\map\date.h"
+				>
+			</File>
+			<File
+				RelativePath="..\src\map\duel.c"
+				>
+			</File>
+			<File
+				RelativePath="..\src\map\duel.h"
 				>
 			</File>
 			<File
@@ -568,6 +568,14 @@
 			</File>
 			<File
 				RelativePath="..\src\map\script.h"
+				>
+			</File>
+			<File
+				RelativePath="..\src\map\searchstore.c"
+				>
+			</File>
+			<File
+				RelativePath="..\src\map\searchstore.h"
 				>
 			</File>
 			<File
