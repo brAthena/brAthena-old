@@ -115,6 +115,7 @@ ra_temsky	mapflag	nomemo
 ve_in	mapflag	nomemo
 ve_in02	mapflag	nomemo
 thor_camp	mapflag	nomemo
+moc_para01	mapflag	nomemo
 
 // Campos
 alb2trea	mapflag	nomemo
@@ -155,10 +156,10 @@ moc_fild03	mapflag	nomemo
 //moc_fild04	mapflag	nomemo
 //moc_fild05	mapflag	nomemo
 //moc_fild08	mapflag	nomemo
-//moc_fild09	mapflag	nomemo
+moc_fild09	mapflag	nomemo
 //moc_fild13	mapflag	nomemo
 //moc_fild14	mapflag	nomemo
-//moc_fild15	mapflag	nomemo
+moc_fild15	mapflag	nomemo
 moc_fild16	mapflag	nomemo
 moc_fild17	mapflag	nomemo
 moc_fild18	mapflag	nomemo
@@ -203,6 +204,7 @@ ve_fild02	mapflag	nomemo
 ve_fild03	mapflag	nomemo
 ve_fild04	mapflag	nomemo
 ve_fild06	mapflag	nomemo
+cave	mapflag	nomemo
 
 // Quests de clases
 // Classe 1
@@ -661,11 +663,14 @@ p_track01	mapflag	nomemo
 p_track02	mapflag	nomemo
 
 // Batalhas Campais
+bat_c01	mapflag	nomemo
+bat_c02	mapflag	nomemo
+bat_c03	mapflag	nomemo
 bat_room	mapflag	nomemo
-bat_a01	mapflag	nomemo
-bat_a02	mapflag	nomemo
 bat_b01	mapflag	nomemo
 bat_b02	mapflag	nomemo
+bat_a01	mapflag	nomemo
+bat_a02	mapflag	nomemo
 
 // Visões de Okolnir
 que_qsch01	mapflag	nomemo
@@ -683,7 +688,8 @@ que_qaru05	mapflag	nomemo
 1@cata	mapflag	nomemo
 2@cata	mapflag	nomemo
 
-// Torre Sem Fim
+// Torre Infinita
+e_tower	mapflag	nomemo
 1@tower	mapflag	nomemo
 2@tower	mapflag	nomemo
 3@tower	mapflag	nomemo
@@ -721,5 +727,8 @@ spl_in01	mapflag	nomemo
 1@nyd	mapflag	nomemo
 2@nyd	mapflag	nomemo
 
-arug_dun01	mapflag	nomemo
-schg_dun01	mapflag	nomemo
+//evt_zombie	mapflag	nomemo
+
+// Poring War ====================
+poring_w01	mapflag	nomemo
+poring_w02	mapflag	nomemo

@@ -28,7 +28,7 @@
 bat_room,142,227,4	script	Tenente Huvas	418,{
 	end;
 OnInit:
-	waitingroom "Estação de Batalha",10,"start#bat_b02::OnReadyCheck",1;
+	waitingroom "Estação de Batalha",10,"start#bat_b02::OnReadyCheck",1,0,80,99; 
 	end;
 OnEnterBG:
 	set $@FlaviusBG2_id1, waitingroom2bg("bat_b02",10,290,"start#bat_b02::OnGuillaumeQuit","");
@@ -38,7 +38,7 @@ OnEnterBG:
 bat_room,142,204,0	script	Tenente Yukon	414,{
 	end;
 OnInit:
-	waitingroom "Estação de Batalha",10,"start#bat_b02::OnReadyCheck",1;
+	waitingroom "Estação de Batalha",10,"start#bat_b02::OnReadyCheck",1,0,80,99;
 	end;
 OnEnterBG:
 	set $@FlaviusBG2_id2, waitingroom2bg("bat_b02",390,10,"start#bat_b02::OnCroixQuit","");

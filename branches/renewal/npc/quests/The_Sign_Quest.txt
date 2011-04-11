@@ -5217,7 +5217,7 @@ cmd_in01,33,33,1	script	Standby Room#sign	66,{
 	end;
 
 OnInit:
-	waitingroom "DANCE~ DANCE~",20,"Standby Room#sign::OnStartArena",1;
+	waitingroom "DANCE~ DANCE~",20,"Standby Room#sign::OnStartArena",1,0,44,99;
 	//SetReqLevel 44 99
 	enablewaitingroomevent;
 	end;

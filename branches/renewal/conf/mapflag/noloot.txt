@@ -23,9 +23,7 @@
 // \________________________________________________________/
 
 // Locais de quests de classes
-//job_sword1	mapflag	noloot
-//in_moc_16	mapflag	noloot
-//job_hunte	mapflag	noloot
+//hunte	mapflag	noloot
 //job_knt	mapflag	noloot
 //job_prist	mapflag	noloot
 //job_wiz	mapflag	noloot
