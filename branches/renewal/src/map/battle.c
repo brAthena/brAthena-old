@@ -3815,6 +3815,7 @@ static const struct _battle_data {
 	int min;
 	int max;
 } battle_data[] = {
+	{ "warp_ress",							&battle_config.warp_ress,						1,      0,      1,              },
 	{ "warp_point_debug",                   &battle_config.warp_point_debug,                0,      0,      1,              },
 	{ "enable_critical",                    &battle_config.enable_critical,                 BL_PC,  BL_NUL, BL_ALL,         },
 	{ "mob_critical_rate",                  &battle_config.mob_critical_rate,               100,    0,      INT_MAX,        },

@@ -105,6 +105,7 @@ void battle_consume_ammo(struct map_session_data* sd, int skill, int lv);
 
 extern struct Battle_Config
 {
+	int warp_ress; // brA [Lord]
 	int warp_point_debug;
 	int enable_critical;
 	int mob_critical_rate;

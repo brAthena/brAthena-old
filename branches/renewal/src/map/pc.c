@@ -4118,7 +4118,7 @@ int pc_setpos(struct map_session_data* sd, unsigned short mapindex, int x, int y
 		return 1;
 	}
 
-	if( pc_isdead(sd) )
+	if( pc_isdead(sd) && battle_config.warp_ress )
 	{ //Revive dead people before warping them
 		pc_setstand(sd);
 		pc_setrestartvalue(sd,1);
