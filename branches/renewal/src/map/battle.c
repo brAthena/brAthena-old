@@ -846,22 +846,21 @@ static int battle_calc_base_damage(struct status_data *status, struct weapon_atk
 		else
 			damage += atkmin + rand()%(atkmax-atkmin);
 	}else{
+		if(flag&2)
+			str = status->dex;
+
 		type = (wa == &status->rhw) ? EQI_HAND_R:EQI_HAND_L;
 		modf = (!(sd->special_state.no_sizefix) ? (type==EQI_HAND_L ? sd->left_weapon.atkmods[t_size]:sd->right_weapon.atkmods[t_size]):100);
-		if(flag&2){
-			str = status->dex;
-			if(sd->arrow_atk) 
-				damage += ((flag&1)?sd->arrow_atk:rand()%sd->arrow_atk);
-		}
 		if(type==EQI_HAND_R ? sd->weapontype1:sd->weapontype2)
 			randatk = wa->atk*sd->inventory_data[sd->equip_index[type]]->wlv/20;
 		if(randatk)
 			randatk = rand()%randatk * (rand()%2 ? 1:-1);
-		damage +=(int)((status->batk * 2) +
-			((float)wa->atk*(str + 200)/200+ 0.5 + wa->atk2 + (!(type==EQI_HAND_R ? sd->weapontype1:sd->weapontype2) ? 0:
-			(sd->status.inventory[sd->equip_index[type]].refine + (sd->status.inventory[sd->equip_index[type]].refine+sd->inventory_data[sd->equip_index[type]]->wlv)*
-			((r=sd->status.inventory[sd->equip_index[type]].refine - status_getrefinebonus(sd->inventory_data[sd->equip_index[type]]->wlv,2))>0 ? r:0) )+
-			randatk)* modf / 100));	
+		damage = (int)(((float)wa->atk*(str + 200)/200 + wa->atk2 + (!(type==EQI_HAND_R ? sd->weapontype1:sd->weapontype2) ? 0:
+			sd->status.inventory[sd->equip_index[type]].refine + (sd->status.inventory[sd->equip_index[type]].refine+sd->inventory_data[sd->equip_index[type]]->wlv)*
+			((r=sd->status.inventory[sd->equip_index[type]].refine - status_getrefinebonus(sd->inventory_data[sd->equip_index[type]]->wlv,2))>0 ? r:0) ))*modf/100);
+		damage = (damage + randatk) * modf/100;
+		damage += status->batk * 2 + status->atk_bonus + (flag&2 && sd->arrow_atk ? (flag&1 ?sd->arrow_atk:rand()%sd->arrow_atk):0);
+
 		//rodatazone says that Overrefine bonuses are part of baseatk
 		//Here we also apply the weapon_atk_rate bonus so it is correctly applied on left/right hands.
 		if (type == EQI_HAND_L) {

@@ -2130,7 +2130,6 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 		index = sd->equip_index[EQI_AMMO];
 		if(sd->inventory_data[index]){		// Arrows
 			sd->arrow_atk += sd->inventory_data[index]->atk;
-			status->watk += sd->arrow_atk;
 			sd->state.lr_flag = 2;
 			run_script(sd->inventory_data[index]->script,0,sd->bl.id,0);
 			sd->state.lr_flag = 0;
@@ -2296,7 +2295,7 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 
 	// Base batk value is set on status_calc_misc
 	// weapon-type bonus (FIXME: Why is the weapon_atk bonus applied to base attack?)
-	status->watk += status->rhw.atk + status->rhw.atk2 + status->lhw.atk + status->lhw.atk2;
+	status->watk = status->rhw.atk + status->rhw.atk2 + status->lhw.atk + status->lhw.atk2 + status->atk_bonus;
 
 	// Absolute modifiers from passive skills
 	if((skill=pc_checkskill(sd,BS_HILTBINDING))>0)
@@ -3021,7 +3020,7 @@ void status_calc_bl_main(struct block_list *bl, enum scb_flag flag)
 			}
 		}
 
-		status->watk += status->rhw.atk + status->rhw.atk2 + status->lhw.atk + status->lhw.atk2;
+		status->watk = status->rhw.atk + status->rhw.atk2 + status->lhw.atk + status->lhw.atk2 + status->atk_bonus;
 
 		if( bl->type&BL_HOM )
 		{
