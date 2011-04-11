@@ -4508,8 +4508,8 @@ int pc_jobid2mapid(unsigned short b_class)
 	//3-2 classes
 		case JOB_ROYAL_GUARD:		return MAPID_ROYAL_GUARD;
 		case JOB_SORCERER:			return MAPID_SORCERER;
-		case JOB_MINSTREL:			return MAPID_MINSTRELWANDERER;
-		case JOB_WANDERER:			return MAPID_MINSTRELWANDERER;
+		case JOB_MINSTREL:
+		case JOB_WANDERER:          return MAPID_MINSTRELWANDERER;
 		case JOB_SURA:				return MAPID_SURA;
 		case JOB_GENETIC:			return MAPID_GENETIC;
 		case JOB_SHADOW_CHASER:		return MAPID_SHADOW_CHASER;
@@ -4523,8 +4523,8 @@ int pc_jobid2mapid(unsigned short b_class)
 	// 3-2 advanced
 		case JOB_ROYAL_GUARD_T:     return MAPID_ROYAL_GUARD_T;
 		case JOB_SORCERER_T:        return MAPID_SORCERER_T;
-		case JOB_MINSTREL_T: 		return MAPID_MINSTRELWANDERER;
-		case JOB_WANDERER_T:		return MAPID_MINSTRELWANDERER;
+		case JOB_MINSTREL_T:
+		case JOB_WANDERER_T:        return MAPID_MINSTRELWANDERER_T;
 		case JOB_SURA_T:            return MAPID_SURA_T;
 		case JOB_GENETIC_T:         return MAPID_GENETIC_T;
 		case JOB_SHADOW_CHASER_T:   return MAPID_SHADOW_CHASER_T;
@@ -4575,6 +4575,21 @@ int pc_jobid2mapid(unsigned short b_class)
 		case JOB_BABY_MONK:         return MAPID_BABY_MONK;
 		case JOB_BABY_ALCHEMIST:    return MAPID_BABY_ALCHEMIST;
 		case JOB_BABY_ROGUE:        return MAPID_BABY_ROGUE;
+	//3_1 baby classes
+		case JOB_BABY_RUNE:			return MAPID_BABY_RUNE;
+		case JOB_BABY_WARLOCK:		return MAPID_BABY_WARLOCK;
+		case JOB_BABY_RANGER:		return MAPID_BABY_RANGER;
+		case JOB_BABY_BISHOP:		return MAPID_BABY_BISHOP;
+		case JOB_BABY_MECHANIC:		return MAPID_BABY_MECHANIC;
+		case JOB_BABY_CROSS:		return MAPID_BABY_CROSS;
+	//3_2 baby classes
+		case JOB_BABY_GUARD:		return MAPID_BABY_GUARD;
+		case JOB_BABY_SORCERER:		return MAPID_BABY_SORCERER;
+		case JOB_BABY_WANDERER:
+		case JOB_BABY_MINSTREL:		return MAPID_BABY_MINSTRELWANDERER;
+		case JOB_BABY_SURA:			return MAPID_BABY_SURA;
+		case JOB_BABY_GENETIC:		return MAPID_BABY_GENETIC;
+		case JOB_BABY_CHASER:		return MAPID_BABY_CHASER;
 		default:
 			return -1;
 	}
@@ -4618,6 +4633,20 @@ int pc_mapid2jobid(unsigned short class_, int sex)
 		case MAPID_ROGUE:           return JOB_ROGUE;
 		case MAPID_SOUL_LINKER:     return JOB_SOUL_LINKER;
 		case MAPID_DARK_COLLECTOR:  return JOB_DARK_COLLECTOR;
+	// 3-1 classes
+		case MAPID_RUNE_KNIGHT:        return JOB_RUNE_KNIGHT;
+		case MAPID_WARLOCK:            return JOB_WARLOCK;
+		case MAPID_RANGER:             return JOB_RANGER;
+		case MAPID_ARCH_BISHOP:        return JOB_ARCH_BISHOP;
+		case MAPID_MECHANIC:           return JOB_MECHANIC;
+		case MAPID_GUILLOTINE_CROSS:   return JOB_GUILLOTINE_CROSS;
+	// 3-2 classes
+		case MAPID_ROYAL_GUARD:        return JOB_ROYAL_GUARD;
+		case MAPID_SORCERER:           return JOB_SORCERER;
+		case MAPID_MINSTRELWANDERER:return sex?JOB_MINSTREL:JOB_WANDERER;
+		case MAPID_SURA:               return JOB_SURA;
+		case MAPID_GENETIC:            return JOB_GENETIC;
+		case MAPID_SHADOW_CHASER:      return JOB_SHADOW_CHASER;
 	//1st: advanced
 		case MAPID_NOVICE_HIGH:     return JOB_NOVICE_HIGH;
 		case MAPID_SWORDMAN_HIGH:   return JOB_SWORDMAN_HIGH;
@@ -4640,6 +4669,20 @@ int pc_mapid2jobid(unsigned short class_, int sex)
 		case MAPID_CHAMPION:        return JOB_CHAMPION;
 		case MAPID_CREATOR:         return JOB_CREATOR;
 		case MAPID_STALKER:         return JOB_STALKER;
+	// 3-1 advanced
+		case MAPID_RUNE_KNIGHT_T:      return JOB_RUNE_KNIGHT_T;
+		case MAPID_WARLOCK_T:          return JOB_WARLOCK_T;
+		case MAPID_RANGER_T:           return JOB_RANGER_T;
+		case MAPID_ARCH_BISHOP_T:      return JOB_ARCH_BISHOP_T;
+		case MAPID_MECHANIC_T:         return JOB_MECHANIC_T;
+		case MAPID_GUILLOTINE_CROSS_T: return JOB_GUILLOTINE_CROSS_T;
+	// 3-2 advanced
+		case MAPID_ROYAL_GUARD_T:      return JOB_ROYAL_GUARD_T;
+		case MAPID_SORCERER_T:         return JOB_SORCERER_T;
+		case MAPID_MINSTRELWANDERER_T:  return sex?JOB_MINSTREL_T:JOB_WANDERER_T;
+		case MAPID_SURA_T:             return JOB_SURA_T;
+		case MAPID_GENETIC_T:          return JOB_GENETIC_T;
+		case MAPID_SHADOW_CHASER_T:    return JOB_SHADOW_CHASER_T;
 	//1-1 baby
 		case MAPID_BABY:            return JOB_BABY;
 		case MAPID_BABY_SWORDMAN:   return JOB_BABY_SWORDMAN;
@@ -4663,34 +4706,20 @@ int pc_mapid2jobid(unsigned short class_, int sex)
 		case MAPID_BABY_MONK:       return JOB_BABY_MONK;
 		case MAPID_BABY_ALCHEMIST:  return JOB_BABY_ALCHEMIST;
 		case MAPID_BABY_ROGUE:      return JOB_BABY_ROGUE;
-	// 3-1 classes
-		case MAPID_RUNE_KNIGHT:        return JOB_RUNE_KNIGHT;
-		case MAPID_WARLOCK:            return JOB_WARLOCK;
-		case MAPID_RANGER:             return JOB_RANGER;
-		case MAPID_ARCH_BISHOP:        return JOB_ARCH_BISHOP;
-		case MAPID_MECHANIC:           return JOB_MECHANIC;
-		case MAPID_GUILLOTINE_CROSS:   return JOB_GUILLOTINE_CROSS;
-	// 3-2 classes
-		case MAPID_ROYAL_GUARD:        return JOB_ROYAL_GUARD;
-		case MAPID_SORCERER:           return JOB_SORCERER;
-		case MAPID_MINSTRELWANDERER:   return sex?JOB_MINSTREL:JOB_WANDERER;
-		case MAPID_SURA:               return JOB_SURA;
-		case MAPID_GENETIC:            return JOB_GENETIC;
-		case MAPID_SHADOW_CHASER:      return JOB_SHADOW_CHASER;
-	// 3-1 advanced
-		case MAPID_RUNE_KNIGHT_T:      return JOB_RUNE_KNIGHT_T;
-		case MAPID_WARLOCK_T:          return JOB_WARLOCK_T;
-		case MAPID_RANGER_T:           return JOB_RANGER_T;
-		case MAPID_ARCH_BISHOP_T:      return JOB_ARCH_BISHOP_T;
-		case MAPID_MECHANIC_T:         return JOB_MECHANIC_T;
-		case MAPID_GUILLOTINE_CROSS_T: return JOB_GUILLOTINE_CROSS_T;
-	// 3-2 advanced
-		case MAPID_ROYAL_GUARD_T:      return JOB_ROYAL_GUARD_T;
-		case MAPID_SORCERER_T:         return JOB_SORCERER_T;
-		case MAPID_MINSTRELWANDERER_T: return sex?JOB_MINSTREL_T:JOB_WANDERER_T;
-		case MAPID_SURA_T:             return JOB_SURA_T;
-		case MAPID_GENETIC_T:          return JOB_GENETIC_T;
-		case MAPID_SHADOW_CHASER_T:    return JOB_SHADOW_CHASER_T;
+	//3_1 baby classes
+		case MAPID_BABY_RUNE:             return JOB_BABY_RUNE;
+		case MAPID_BABY_WARLOCK:          return JOB_BABY_WARLOCK;
+		case MAPID_BABY_RANGER:           return JOB_BABY_RANGER;
+		case MAPID_BABY_BISHOP:           return JOB_BABY_BISHOP;
+		case MAPID_BABY_MECHANIC:         return JOB_BABY_MECHANIC;
+		case MAPID_BABY_CROSS:            return JOB_BABY_CROSS;
+	//3_2 baby classes
+		case MAPID_BABY_GUARD:            return JOB_BABY_GUARD;
+		case MAPID_BABY_SORCERER:         return JOB_BABY_SORCERER;
+		case MAPID_BABY_MINSTRELWANDERER: return sex?JOB_BABY_MINSTREL:JOB_BABY_WANDERER;
+		case MAPID_BABY_SURA:             return JOB_BABY_SURA;
+		case MAPID_BABY_GENETIC:          return JOB_BABY_GENETIC;
+		case MAPID_BABY_CHASER:           return JOB_BABY_CHASER;
 		default:
 			return -1;
 	}
