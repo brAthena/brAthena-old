@@ -2,7 +2,7 @@
 
 HAVE_MYSQL=@HAVE_MYSQL@
 ifeq ($(HAVE_MYSQL),yes)
-	ALL_DEPENDS=common common_sql login login_sql char char_sql map map_sql tools converters import save
+	ALL_DEPENDS=common common_sql login_sql char_sql map_sql tools import save
 	SQL_DEPENDS=common_sql login_sql char_sql map_sql import save
 	COMMON_SQL_DEPENDS=
 	LOGIN_SQL_DEPENDS=common_sql
@@ -10,7 +10,7 @@ ifeq ($(HAVE_MYSQL),yes)
 	MAP_SQL_DEPENDS=common_sql
 	CONVERTERS_DEPENDS=common_sql
 else
-	ALL_DEPENDS=common login char map tools import save
+	ALL_DEPENDS=common tools import save
 	SQL_DEPENDS=needs_mysql
 	COMMON_SQL_DEPENDS=needs_mysql
 	LOGIN_SQL_DEPENDS=needs_mysql
@@ -22,57 +22,40 @@ endif
 WITH_PLUGINS=@WITH_PLUGINS@
 ifeq ($(WITH_PLUGINS),yes)
 	ALL_DEPENDS+=plugins
-	PLUGIN_DEPENDS=common
+	PLUGIN_DEPENDS=common_sql
 else
 	PLUGIN_DEPENDS=no_plugins
 endif
 
 #####################################################################
-.PHONY: txt sql conf \
-	common common_sql \
-	login login_sql \
-	char char_sql \
-	map map_sql \
-	tools converters plugins addons import save \
+.PHONY: sql conf \
+	common_sql \
+	login_sql \
+	char_sql \
+	map_sql \
+	tools plugins addons import save \
 	clean help
 
 all: $(ALL_DEPENDS)
-
-txt: common login char map import save
 
 sql: $(SQL_DEPENDS)
 
 conf: import save
 
-common:
-	@$(MAKE) -C src/common txt
-
 common_sql: $(COMMON_SQL_DEPENDS)
 	@$(MAKE) -C src/common sql
-
-login: common
-	@$(MAKE) -C src/login txt
 
 login_sql: $(LOGIN_SQL_DEPENDS)
 	@$(MAKE) -C src/login sql
 
-char: common
-	@$(MAKE) -C src/char
-
 char_sql: $(CHAR_SQL_DEPENDS)
 	@$(MAKE) -C src/char_sql
-
-map: common
-	@$(MAKE) -C src/map txt
 
 map_sql: $(MAP_SQL_DEPENDS)
 	@$(MAKE) -C src/map sql
 
 tools:
 	@$(MAKE) -C src/tool
-
-converters: $(CONVERTERS_DEPENDS)
-	@$(MAKE) -C src/txt-converter
 
 plugins addons: $(PLUGIN_DEPENDS)
 	@$(MAKE) -C src/plugins
@@ -98,26 +81,20 @@ save:
 clean:
 	@$(MAKE) -C src/common $@
 	@$(MAKE) -C src/login $@
-	@$(MAKE) -C src/char $@
 	@$(MAKE) -C src/char_sql $@
 	@$(MAKE) -C src/map $@
 	@$(MAKE) -C src/plugins $@
 	@$(MAKE) -C src/tool $@
-	@$(MAKE) -C src/txt-converter $@
 
 help:
 	@echo "most common targets are 'all' 'txt' 'sql' 'conf' 'clean' 'help'"
 	@echo "possible targets are:"
 	@echo "'common'      - builds object files used in TXT servers"
 	@echo "'common_sql'  - builds object files used in SQL servers"
-	@echo "'login'       - builds login server (TXT version)"
 	@echo "'login_sql'   - builds login server (SQL version)"
-	@echo "'char'        - builds char server (TXT version)"
 	@echo "'char_sql'    - builds char server (SQL version)"
-	@echo "'map'         - builds map server (TXT version)"
 	@echo "'map_sql'     - builds map server (SQL version)"
 	@echo "'tools'       - builds all the tools in src/tools"
-	@echo "'converters'  - builds the login/char converters"
 	@echo "'plugins'     - builds all the plugins in src/plugins"
 	@echo "'addons'"
 	@echo "'import'      - builds conf/import folder from the template conf/import-tmpl"
