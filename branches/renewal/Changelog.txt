@@ -9,7 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
-	r0384 - 11/04/2011 [Protimus]
+
+	r0385 - 12/04/2011 [Protimus]
+	* Modificações para a leitura da pasta char nos arquivos de vcproj.
+
+	r0384 - 12/04/2011 [Protimus]
 	* Adicionadas traduções do arquivo makefile.in
 	* Renomeada pasta char_sql para char.
 	OBS: É necessário traduzir o arquivo de configure.in e gerar um novo configure atualizado, pois esse é antigo.

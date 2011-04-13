@@ -1938,7 +1938,10 @@ int parse_fromlogin(int fd)
 				{
 					if( class_[i] == JOB_BARD || class_[i] == JOB_DANCER ||
 						class_[i] == JOB_CLOWN || class_[i] == JOB_GYPSY ||
-						class_[i] == JOB_BABY_BARD || class_[i] == JOB_BABY_DANCER )
+						class_[i] == JOB_BABY_BARD || class_[i] == JOB_BABY_DANCER ||
+						class_[i] == JOB_MINSTREL || class_[i] == JOB_WANDERER ||
+						class_[i] == JOB_MINSTREL_T || class_[i] == JOB_WANDERER_T ||
+						class_[i] == JOB_BABY_MINSTREL || class_[i] == JOB_BABY_WANDERER )
 					{
 						// job modification
 						if( class_[i] == JOB_BARD || class_[i] == JOB_DANCER )
@@ -1947,6 +1950,12 @@ int parse_fromlogin(int fd)
 							class_[i] = (sex ? JOB_CLOWN : JOB_GYPSY);
 						else if( class_[i] == JOB_BABY_BARD || class_[i] == JOB_BABY_DANCER )
 							class_[i] = (sex ? JOB_BABY_BARD : JOB_BABY_DANCER);
+						else if( class_[i] == JOB_MINSTREL || class_[i] == JOB_WANDERER )
+							class_[i] = (sex ? JOB_MINSTREL : JOB_WANDERER);
+						else if( class_[i] == JOB_MINSTREL_T || class_[i] == JOB_WANDERER_T )
+							class_[i] = (sex ? JOB_MINSTREL_T : JOB_WANDERER_T);
+						else if( class_[i] == JOB_BABY_MINSTREL || class_[i] == JOB_BABY_WANDERER )
+							class_[i] = (sex ? JOB_BABY_MINSTREL : JOB_BABY_WANDERER);
 						// remove specifical skills of classes 19,20 4020,4021 and 4042,4043
 						if( SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `skill_point` = `skill_point` +"
 							" (SELECT SUM(lv) FROM `%s` WHERE `char_id` = '%d' AND `id` >= '315' AND `id` <= '330' AND `lv` > '0')"

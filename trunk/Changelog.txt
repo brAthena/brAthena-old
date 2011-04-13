@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0385 - 12/04/2011 [Protimus]
+	* Adicionadas modificações de r383 ~ 385.
+
 	r0383 - 11/04/2011 [Protimus]
 	* Correções para arquivos de compiladores.
 	- Processando apenas SQL e não TXT.
