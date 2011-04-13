@@ -2,21 +2,20 @@
 
 HAVE_MYSQL=@HAVE_MYSQL@
 ifeq ($(HAVE_MYSQL),yes)
-	ALL_DEPENDS=common common_sql login_sql char_sql map_sql tools import save
-	SQL_DEPENDS=common_sql login_sql char_sql map_sql import save
+	ALL_DEPENDS=common_sql login_sql char_sql map_sql tools 
+	SQL_DEPENDS=common_sql login_sql char_sql map_sql 
 	COMMON_SQL_DEPENDS=
 	LOGIN_SQL_DEPENDS=common_sql
 	CHAR_SQL_DEPENDS=common_sql
 	MAP_SQL_DEPENDS=common_sql
 	CONVERTERS_DEPENDS=common_sql
 else
-	ALL_DEPENDS=common tools import save
+	ALL_DEPENDS=needs_mysql
 	SQL_DEPENDS=needs_mysql
 	COMMON_SQL_DEPENDS=needs_mysql
 	LOGIN_SQL_DEPENDS=needs_mysql
 	CHAR_SQL_DEPENDS=needs_mysql
 	MAP_SQL_DEPENDS=needs_mysql
-	CONVERTERS_DEPENDS=needs_mysql
 endif
 
 WITH_PLUGINS=@WITH_PLUGINS@
@@ -28,19 +27,17 @@ else
 endif
 
 #####################################################################
-.PHONY: sql conf \
+.PHONY: sql  \
 	common_sql \
 	login_sql \
 	char_sql \
 	map_sql \
-	tools plugins addons import save \
+	tools plugins addons \
 	clean help
 
 all: $(ALL_DEPENDS)
 
 sql: $(SQL_DEPENDS)
-
-conf: import save
 
 common_sql: $(COMMON_SQL_DEPENDS)
 	@$(MAKE) -C src/common sql
@@ -49,7 +46,7 @@ login_sql: $(LOGIN_SQL_DEPENDS)
 	@$(MAKE) -C src/login sql
 
 char_sql: $(CHAR_SQL_DEPENDS)
-	@$(MAKE) -C src/char_sql
+	@$(MAKE) -C src/char 
 
 map_sql: $(MAP_SQL_DEPENDS)
 	@$(MAKE) -C src/map sql
@@ -60,96 +57,34 @@ tools:
 plugins addons: $(PLUGIN_DEPENDS)
 	@$(MAKE) -C src/plugins
 
-import:
-# 1) create conf/import folder
-# 2) add missing files
-# 3) remove remaining .svn folder
-	@echo "building conf/import folder..."
-	@if test ! -d conf/import ; then mkdir conf/import ; fi
-	@for f in $$(ls conf/import-tmpl) ; do if test ! -e conf/import/$$f ; then cp conf/import-tmpl/$$f conf/import ; fi ; done
-	@rm -rf conf/import/.svn
-
-save:
-# 1) create save folder
-# 2) add missing files
-# 3) remove remaining .svn folder
-	@echo "building save folder..."
-	@if test ! -d save ; then mkdir save ; fi
-	@for f in $$(ls save-tmpl) ; do if test ! -e save/$$f ; then cp save-tmpl/$$f save ; fi ; done
-	@rm -rf save/.svn
-
 clean:
 	@$(MAKE) -C src/common $@
 	@$(MAKE) -C src/login $@
-	@$(MAKE) -C src/char_sql $@
+	@$(MAKE) -C src/char $@
 	@$(MAKE) -C src/map $@
 	@$(MAKE) -C src/plugins $@
 	@$(MAKE) -C src/tool $@
 
 help:
-	@echo "most common targets are 'all' 'txt' 'sql' 'conf' 'clean' 'help'"
-	@echo "possible targets are:"
-	@echo "'common'      - builds object files used in TXT servers"
-	@echo "'common_sql'  - builds object files used in SQL servers"
-	@echo "'login_sql'   - builds login server (SQL version)"
-	@echo "'char_sql'    - builds char server (SQL version)"
-	@echo "'map_sql'     - builds map server (SQL version)"
-	@echo "'tools'       - builds all the tools in src/tools"
-	@echo "'plugins'     - builds all the plugins in src/plugins"
-	@echo "'addons'"
-	@echo "'import'      - builds conf/import folder from the template conf/import-tmpl"
-	@echo "'save'        - builds save folder from the template save-tmpl"
-	@echo "'all'         - builds all the above targets"
-	@echo "'txt'         - builds txt servers (targets 'common' 'login' 'char' 'map'"
-	@echo "                'import' and 'save')"
-	@echo "'sql'         - builds sql servers (targets 'common_sql' 'login_sql' 'char_sql'"
-	@echo "                'map_sql' 'import' and 'save')"
-	@echo "'conf'        - builds templated folders/files (targets 'import' and 'save')"
-	@echo "'clean'       - cleans builds and objects"
-	@echo "'help'        - outputs this message"
+	@echo "Os alvos comuns são: 'all' 'sql' 'clean' 'help'"
+	@echo "Os possíveis trajetos únicos são:"
+	@echo "'common_sql'  - compila os arquivos de objeto usados em outros arquivos (SQL)"
+	@echo "'login_sql'   - compila o servidor de login (SQL)"
+	@echo "'char_sql'    - compila o servidor de personagens (SQL)"
+	@echo "'map_sql'     - compila o servidor de mapas (SQL)"
+	@echo "'tools'       - compila todas as ferramentas em src/tools"
+	@echo "'plugins'     - compila todos os plugins em src/plugins"
+	@echo "'all'         - compila todos os trajetos possíveis"
+	@echo "'sql'         - compila os trajetos de SQL"
+	@echo "'clean'       - limpa os objetos compilados"
+	@echo "'help'        - mensagens de ajuda"
 
 #####################################################################
 
 needs_mysql:
-	@echo "MySQL not found or disabled by the configure script"
+	@echo "MySQL não instalado ou desabilitado"
 	@exit 1
 
 no_plugins:
-	@echo "Plugins disabled by the configure script"
+	@echo "Plugins desabilidatos"
 	@exit 1
-
-#####################################################################
-# TODO
-
-install:	conf/%.conf conf/%.txt
-	$(shell read -p "WARNING: This target does not work properly yet. Press Ctrl+C to cancel or Enter to continue.")
-	$(shell mkdir -p /opt/eathena/bin/)
-	$(shell mkdir -p /opt/eathena/etc/eathena/)
-	$(shell mkdir -p /opt/eathena/var/log/eathena/)
-	$(shell mv save /opt/eathena/etc/eathena/save)
-	$(shell mv db /opt/eathena/etc/eathena/db)
-	$(shell mv conf /opt/eathena/etc/eathena/conf)
-	$(shell mv npc /opt/eathena/etc/eathena/npc)
-	$(shell mv log/* /opt/eathena/var/log/eathena/)
-	$(shell cp *-server* /opt/eathena/bin/)
-	$(shell ln -s /opt/eathena/etc/eathena/save/ /opt/eathena/bin/)
-	$(shell ln -s /opt/eathena/etc/eathena/db/ /opt/eathena/bin/)
-	$(shell ln -s /opt/eathena/etc/eathena/conf/ /opt/eathena/bin/)
-	$(shell ln -s /opt/eathena/etc/eathena/npc/ /opt/eathena/bin/)
-	$(shell ln -s /opt/eathena/var/log/eathena/ /opt/eathena/bin/log)
-
-bin-clean:
-	$(shell rm /opt/eathena/bin/login-server*)
-	$(shell rm /opt/eathena/bin/char-server*)
-	$(shell rm /opt/eathena/bin/map-server*)
-
-uninstall:
-	$(shell read -p "WARNING: This target does not work properly yet. Press Ctrl+C to cancel or Enter to continue.")
-	bin-clean
-	$(shell rm /opt/eathena/bin/save)
-	$(shell rm /opt/eathena/bin/db)
-	$(shell rm /opt/eathena/bin/conf)
-	$(shell rm /opt/eathena/bin/npc)
-	$(shell rm /opt/eathena/bin/log)
-	$(shell rm -rf /opt/eathena/etc/eathena)
-	$(shell rm -rf /opt/eathena/var/log/eathena)
