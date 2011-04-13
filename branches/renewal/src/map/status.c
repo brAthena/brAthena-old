@@ -3881,8 +3881,6 @@ static signed short status_calc_def(struct block_list *bl, struct status_change 
 		return 100;
 	if(sc->data[SC_KEEPING])
 		return 90;
-	if(sc->data[SC_ANGELUS])
-		def += def * sc->data[SC_ANGELUS]->val2/100;
 	if(sc->data[SC_ARMORCHANGE])
 		def += sc->data[SC_ARMORCHANGE]->val2;
 	if(sc->data[SC_DRUMBATTLE])
@@ -3922,6 +3920,8 @@ static signed short status_calc_def2(struct block_list *bl, struct status_change
 		return 0;
 	if(sc->data[SC_ETERNALCHAOS])
 		return 0;
+	if(sc->data[SC_ANGELUS])
+		def2 += status_get_vit(bl) * sc->data[SC_ANGELUS]->val2/200;
 	if(sc->data[SC_SUN_COMFORT])
 		def2 += sc->data[SC_SUN_COMFORT]->val2;
 	if(sc->data[SC_CONCENTRATION])
@@ -5617,7 +5617,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			break;
 		case SC_EDP:	// [Celest]
 			val2 = val1 + 2; //Chance to Poison enemies.
-			val3 = 5;
+			val3 = 50*(val1+3);
 			break;
 		case SC_POISONREACT:
 			val2=(val1+1)/2 + val1/10; // Number of counters [Skotlex]

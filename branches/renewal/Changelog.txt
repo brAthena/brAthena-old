@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0386 - 12/04/2011 [Protimus]
+	* Modificações em habilidades:
+	- Angelus: Def é afetado por uma taxa de sua vit.
+	- Encantar com veneno mortal: O acréscrimo de dano é calculado por uma nova fórmula.
 
 	r0385 - 12/04/2011 [Protimus]
 	* Modificações para a leitura da pasta char nos arquivos de vcproj.
