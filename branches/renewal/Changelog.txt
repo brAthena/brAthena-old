@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0392 - 13/04/2011 [Protimus]
+	* Adicionadas habilidades AB_EPICLESIS (Epiclesis) & AB_HIGHNESSHEAL (Curatio).
+	- Falta adicionar o battle damage de epiclesis e ajustes no curatio devido ao matk.
+
 	r0391 - 13/04/2011 [Protimus]
 	* Adicionadas habilidades AB_RENOVATIO (Renovatio) & AB_CHEAL (Sopro Divino).
 	- Sopro Divino precisa de ajustes devido a mudanças na fórmula de matk.

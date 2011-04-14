@@ -3031,6 +3031,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case AB_ADORAMUS:
 	case AB_DUPLELIGHT_MAGIC:
 	case AB_RENOVATIO:
+	case AB_HIGHNESSHEAL:
 		skill_attack(BF_MAGIC,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 
@@ -3286,6 +3287,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		case ALL_RESURRECTION:
 		case PR_ASPERSIO:
 		case AB_RENOVATIO:
+		case AB_HIGHNESSHEAL:
 			//Apparently only player casted skills can be offensive like this.
 			if (sd && battle_check_undead(tstatus->race,tstatus->def_ele)) {
 				if (battle_check_target(src, bl, BCT_ENEMY) < 1) {
@@ -3319,6 +3321,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	{
 	case HLIF_HEAL:	//[orn]
 	case AL_HEAL:
+	case AB_HIGHNESSHEAL:
 		{
 			int heal = skill_calc_heal(src, bl, skillid, skilllv, true);
 			int heal_get_jobexp;
@@ -9002,6 +9005,13 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 		{
 			clif_skill_fail(sd,skill,0,0,0);
 			return 0;
+		}
+		break;
+	case AB_HIGHNESSHEAL:
+		if( sd && pc_checkskill(sd,AL_HEAL) == 0 )
+		{
+				clif_skill_fail(sd,skill,0,0,0);
+				return 0;
 		}
 		break;
 	}
