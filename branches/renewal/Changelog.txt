@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0390 - 13/04/2011 [Protimus]
+	* Adicionada habilidade AB_PRAEFATIO (Praefatio).
+
 	r0389 - 13/04/2011 [Protimus]
 	* Adicionada habilidade AB_EXPIATIO (Expiatio).
 

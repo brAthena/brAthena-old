@@ -5627,8 +5627,12 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			val2 = val1*20; //SP gained
 			break;
 		case SC_KYRIE:
-			val2 = status->max_hp * (val1 * 2 + 10) / 100; //%Max HP to absorb
-			val3 = (val1 / 2 + 5); //Hits
+			if( !val4 )	
+				val3 = (val1 / 2 + 5); 
+			else
+				val3 = 6 + val1;
+			if( sd ) val1 = min(val1,pc_checkskill(sd,PR_KYRIE));
+			val2 = status->max_hp * (val1 * 2 + 10) / 100;
 			break;
 		case SC_MAGICPOWER:
 			//val1: Skill lv
