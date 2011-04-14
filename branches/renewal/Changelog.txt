@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0389 - 13/04/2011 [Protimus]
+	* Adicionada habilidade AB_EXPIATIO (Expiatio).
+
 	r0388 - 13/04/2011 [Protimus]
 	* Revertido commit da RK_WINDCUTTER que foi removido as opções de layout em revisões anteriores.
 	- Ainda faltam mudanças para que a skill funcione corretamente.

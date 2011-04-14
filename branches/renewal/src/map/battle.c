@@ -1930,6 +1930,12 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			signed short def2 = status_get_def2(target); //Don't use tstatus->def2 due to skill timer reductions.
 			short def1 = (short)tstatus->def;
 
+			if( sc && sc->data[SC_EXPIATIO] )
+			{
+				def1 -= def1 * 5 * sc->data[SC_EXPIATIO]->val1 / 100;
+				def2 -= def2 * 5 * sc->data[SC_EXPIATIO]->val1 / 100;
+			}
+			
 			if( sd )
 			{
 				i = sd->ignore_def[is_boss(target)?RC_BOSS:RC_NONBOSS];

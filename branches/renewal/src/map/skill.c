@@ -3791,6 +3791,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case RK_DEATHBOUND:
 	case AB_SECRAMENT:
 	case AB_DUPLELIGHT:
+	case AB_EXPIATIO:
 		clif_skill_nodamage(src,bl,skillid,skilllv,
 			sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv)));
 		break;
@@ -10380,7 +10381,7 @@ static int skill_trap_splash (struct block_list *bl, va_list ap)
 int skill_enchant_elemental_end (struct block_list *bl, int type)
 {
 	struct status_change *sc;
-	const enum sc_type scs[] = { SC_ENCPOISON, SC_ASPERSIO, SC_FIREWEAPON, SC_WATERWEAPON, SC_WINDWEAPON, SC_EARTHWEAPON, SC_SHADOWWEAPON, SC_GHOSTWEAPON, SC_ENCHANTARMS };
+	const enum sc_type scs[] = { SC_ENCPOISON, SC_ASPERSIO, SC_FIREWEAPON, SC_WATERWEAPON, SC_WINDWEAPON, SC_EARTHWEAPON, SC_SHADOWWEAPON, SC_GHOSTWEAPON, SC_ENCHANTARMS, SC_EXPIATIO };
 	int i;
 	nullpo_ret(bl);
 	nullpo_ret(sc= status_get_sc(bl));
