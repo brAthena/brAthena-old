@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0387 - 13/04/2011 [Destino]
+	* Retraduzido mob_db.
+	
 	r0386 - 12/04/2011 [Protimus]
 	* Modificações em habilidades:
 	- Angelus: Def é afetado por uma taxa de sua vit.

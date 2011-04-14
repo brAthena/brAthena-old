@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0387 - 13/04/2011 [Destino]
+	* Retraduzido mob_db.
+
 	r0385 - 12/04/2011 [Protimus]
 	* Adicionadas modificações de r383 ~ 385.
 
