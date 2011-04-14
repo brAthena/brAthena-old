@@ -2535,6 +2535,9 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 			case PF_SOULBURN:
 				ad.damage = tstatus->sp * 2;
 				break;
+			case AB_RENOVATIO:
+				ad.damage = (int)((15 * s_base_level) + (1.5 * sstatus->int_));
+				break;
 			case RK_ENCHANTBLADE:
 				{
 					if( sc && sc->data[SC_ENCHANTBLADE] )

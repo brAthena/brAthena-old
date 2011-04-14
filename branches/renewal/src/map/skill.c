@@ -3030,6 +3030,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case NJ_HUUJIN:
 	case AB_ADORAMUS:
 	case AB_DUPLELIGHT_MAGIC:
+	case AB_RENOVATIO:
 		skill_attack(BF_MAGIC,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 
@@ -3284,6 +3285,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
  		case AL_HEAL:
 		case ALL_RESURRECTION:
 		case PR_ASPERSIO:
+		case AB_RENOVATIO:
 			//Apparently only player casted skills can be offensive like this.
 			if (sd && battle_check_undead(tstatus->race,tstatus->def_ele)) {
 				if (battle_check_target(src, bl, BCT_ENEMY) < 1) {
@@ -3792,6 +3794,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case AB_SECRAMENT:
 	case AB_DUPLELIGHT:
 	case AB_EXPIATIO:
+	case AB_RENOVATIO:
 		clif_skill_nodamage(src,bl,skillid,skilllv,
 			sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv)));
 		break;
@@ -6047,6 +6050,19 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case AB_PRAEFATIO:
 		if( sd == NULL || sd->status.party_id == 0 || flag&1 )
 			clif_skill_nodamage(bl, bl, skillid, skilllv, sc_start4(bl, type, 100, skilllv, 0, 0, 1, skill_get_time(skillid, skilllv)));
+		else if( sd )
+			party_foreachsamemap(skill_area_sub, sd, skill_get_splash(skillid, skilllv), src, skillid, skilllv, tick, flag|BCT_PARTY|1, skill_castend_nodamage_id);
+		break;
+		
+	case AB_CHEAL:
+		if( sd == NULL || sd->status.party_id == 0 || flag&1 )
+		{
+			if( sd && tstatus && !battle_check_undead(tstatus->race, tstatus->def_ele) )
+			{
+				i = skill_calc_heal(src, bl, AL_HEAL, pc_checkskill(sd, AL_HEAL), true);
+				clif_skill_nodamage(bl, bl, skillid, status_heal(bl, i, 0, 1), 1);
+			}
+		}
 		else if( sd )
 			party_foreachsamemap(skill_area_sub, sd, skill_get_splash(skillid, skilllv), src, skillid, skilllv, tick, flag|BCT_PARTY|1, skill_castend_nodamage_id);
 		break;

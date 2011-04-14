@@ -6451,6 +6451,10 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_SECRAMENT:
 			val2 = 10 * val1;
 			break;
+		case SC_RENOVATIO:
+			val4 = tick / 5000;
+			tick = 5000;
+			break;
 
 		default:
 			if( calc_flag == SCB_NONE && StatusSkillChangeTable[type] == 0 && StatusIconChangeTable[type] == 0 )
@@ -7724,12 +7728,37 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr data)
 			return 0;
 		}
 		break;
+	case SC_BURNING:
+		if( --(sce->val4) >= 0 )
+		{
+			struct block_list *src = map_id2bl(sce->val3);
+			int flag, damage = 3 * status_get_max_hp(bl) / 100; 
+			if( status )
+				damage += battle_attr_fix(NULL, bl, sce->val2, ELE_FIRE, status->def_ele, status->ele_lv);
+
+			map_freeblock_lock();
+			status_fix_damage(src,bl,damage,clif_damage(bl,bl,tick,0,0,damage,0,0,0));
+			flag = !sc->data[type];
+			map_freeblock_unlock();
+			if( !flag )
+				sc_timer_next(2000 + tick, status_change_timer, bl->id, data);
+			return 0;
+		}
+		break;
 	case SC_URUZ:
 		if( --(sce->val4) > 0)
 		{
 			if( !sc->data[SC_BERSERK] )
 				status_heal(bl,0,60,0);
 			sc_timer_next(10000+tick, status_change_timer, bl->id, data);
+		}
+		break;
+	case SC_RENOVATIO:
+		if( --(sce->val4) >= 0 )
+		{
+			status_heal(bl, status->max_hp * 3 / 100, 0, 2);
+			sc_timer_next(5000 + tick, status_change_timer, bl->id, data);
+			return 0;
 		}
 		break;
 	}
