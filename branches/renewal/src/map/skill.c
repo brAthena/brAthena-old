@@ -324,9 +324,12 @@ int skill_calc_heal(struct block_list *src, struct block_list *target, int skill
 	default:
 		if (skill_lv >= battle_config.max_heal_lv)
 			return battle_config.max_heal;
-		hp = ( status_get_lv(src)+status_get_int(src) )/8 *(4+ skill_lv*8);
+		hp = ( status_get_lv(src)+status_get_int(src) )/5 *(4+ skill_lv*8); 
 		if( src->type == BL_HOM && (skill = merc_hom_checkskill(((TBL_HOM*)src), HLIF_BRAIN)) > 0 )
 			hp += hp * skill * 2 / 100;
+			
+		if( skill_id == AB_HIGHNESSHEAL )
+		hp = (hp * (20 + 3 * (skill_lv - 1))) / 10;
 	}
 
 	hp = hp*(100+skill)/100;
