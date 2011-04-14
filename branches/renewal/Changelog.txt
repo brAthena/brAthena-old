@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0395 - 14/04/2011 [Architect]
+	* Otimizações para os npcs da pasta de aeroplanos.
+
 	r0394 - 14/04/2011 [Protimus]
 	* Correções para a fórmula de AL_HEAL (Curar) & AB_HIGHNESSHEAL (Curatio).
 	- Agora o valor de cura está correto.

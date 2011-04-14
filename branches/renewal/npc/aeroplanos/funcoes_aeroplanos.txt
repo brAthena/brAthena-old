@@ -8,41 +8,39 @@
 // |                                                        |
 // |                     brAthena Script                    |
 // |--------------------------------------------------------|
-// | Nome do Script: Equipe do Aeroporto de Lighthalzen	    |
+// | Nome do Script: Função da 'Equipe do Aeroporto'	    |
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team                           |
+// | Criado por: Architect                                  |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.3/1.1                                |
+// | Versão: 1.0                                            |
 // |--------------------------------------------------------|
 // | Descrição: NPC's do Aeroplano de Lighthalzen.          |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Script Traduzido [Tyler]                           |
-// | 1.1 Script Revisado [Dani]                             |
+// | 1.0 Script Criado [Architect]                          |
 // \________________________________________________________/
 
-lhz_airport,126,43,4	script	Equipe do Aeroporto#1::AirportL	90,{
+function	script	F_Airport	{
 	mes "[Funcionária do Aeroporto]";
 	mes "Seja bem-vindo ao aeroporto.";
 	mes "Como eu posso te ajudar?";
 	next;
 	if (select("Embarcar no Aeroplano.:Cancelar.") == 1) {
 		mes "[Funcionária do Aeroporto]";
-		mes "O embarque no Aeroplano está";
-		mes "custando 1.200 zenys, mas se você";
-		mes "possuir um Bilhete para Aeroplano,"; 
-		mes "este pagamento será desconsiderado.";
+		mes "O embarque no Aeroplano está custando 1.200 zenys, mas se você possuir um "+getitemname(7311)+", este pagamento será desconsiderado.";
+		next;
+		mes "[Funcionária do Aeroporto]";
 		mes "Você deseja embarcar no Aeroplano?";
 		next;
 		if (select("Sim.:Não.") == 1) {
 			if(countitem(7311) > 0) {
 				delitem 7311,1;
-				warp "lhz_airport",148,51;
+				warp strcharinfo(3),148,51;
 				close;
 			}
-			if(zeny >= 1200) {
-				set Zeny,zeny-1200;
-				warp "lhz_airport",148,51;
+			if(Zeny >= 1200) {
+				set Zeny, Zeny - 1200;
+				warp strcharinfo(3),148,51;
 				close;
 			}
 			mes "[Funcionária do Aeroporto]";
@@ -51,41 +49,30 @@ lhz_airport,126,43,4	script	Equipe do Aeroporto#1::AirportL	90,{
 		}
 	}
 	mes "[Funcionária do Aeroporto]";
-	mes "Muito obrigada";
-	mes "e tenha um ótimo dia!";
+	mes "Muito obrigada!";
+	mes "Tenha um ótimo dia!";
 	close;
 }
 
-lhz_airport,143,43,4	duplicate(AirportL)	Equipe do Aeroporto#2	90
-lhz_airport,156,43,4	duplicate(AirportL)	Equipe do Aeroporto#3	90
-
-lhz_airport,126,51,4	script	Equipe do Aeroporto#4::AirportL2	90,{
+function	script	F_Airport2	{
 	mes "[Funcionária do Aeroporto]";
 	mes "Bem-vindo!";
-	mes "Por favor, siga em frente";
-	mes "para embarcar no Aeroplano.";
+	mes "Por favor, siga em frente para embarcar no Aeroplano.";
 	next;
 	if (select("Deixar o Terminal Principal.:Cancelar.") == 1) {
 		mes "[Funcionária do Aeroporto]";
-		mes "Se você sair do Terminal";
-		mes "Principal agora, você terá";
-		mes "de pagar novamente a taxa de";
-		mes "embarque para poder entrar";
-		mes "novamente no Aeroplano. Você";
-		mes "tem certeza que deseja sair do Terminal?";
+		mes "Se você sair agora, do Terminal Principal, você terá de pagar novamente a taxa de embarque para poder entrar novamente no Aeroplano.";
+		next;
+		mes "[Funcionária do Aeroporto]";
+		mes "Você tem certeza que deseja sair do Terminal?";
 		next;
 		if (select("Sim.:Não.") == 1) {
-			warp "lhz_airport",142,40;
+			warp strcharinfo(3),142,40;
 			close;
 		}
 	}
 	mes "[Funcionária do Aeroporto]";
-	mes "Certo, obrigado por contribuir";
-	mes "com o Aeroporto com seu pagamento.";
-	mes "Eu espero que você faça";
-	mes "uma viagem muito agradável!";
+	mes "Certo, obrigado por contribuir com o Aeroporto com seu pagamento.";
+	mes "Eu desejo que você faça uma viagem muito agradável!";
 	close;
 }
-
-lhz_airport,143,51,4	duplicate(AirportL2)	Equipe do Aeroporto#5	90
-lhz_airport,156,51,4	duplicate(AirportL2)	Equipe do Aeroporto#6	90
