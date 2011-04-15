@@ -93,7 +93,7 @@ alberta,245,69,3	script	Apreciador de Kunlun#gon	776,{
 		mes "é requerida para embarcar.";
 		next;
 		mes "[Wa Bai Hu]";
-		mes "Pedimos que paque 10 000 zenys";
+		mes "Pedimos que paque 10.000 zenys";
 		mes "antes de viajar. Essa taxa já";
 		mes "inclui seu retorno a Alberta.";
 		mes "Estou pronto para levá-lo a";

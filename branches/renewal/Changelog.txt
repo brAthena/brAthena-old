@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0396 - 15/04/2011 [Architect]
+	* Otimizações e correções para os npcs da pasta de cidades e aeroplanos.
+
 	r0395 - 14/04/2011 [Architect]
 	* Otimizações para os npcs da pasta de aeroplanos.
 

@@ -678,7 +678,6 @@ geffen_in,27,134,5	script	Garçonete#elen	91,{
 			}
 		}
 	}
-
 	close;
 }
 

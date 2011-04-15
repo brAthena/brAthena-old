@@ -12,12 +12,13 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 2.1/1.0                                |
+// | Versões eA/brA: 2.1/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: NPCs da Cidade de Lighthalzen               |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
+// | 1.1 Correção do Cogumelo Vermelho [Architect]          |
 // \________________________________________________________/
 
 lighthalzen,198,285,5	script	Jiwon#zen5	862,{
@@ -3139,5 +3140,5 @@ lhz_in02,19,274,2	script	Kudiuu#lhz	851,{
 
 // Lighthalzen Mushroom.
 // Don't really understand why it's there, but it's funny regardless.
-lhz_in01,157,54,0,0	monster	Mushroom vermelho	1085,1,120000,100000,0
+lhz_in01,157,54,0,0	monster	Cogumelo Vermelho	1085,1,120000,100000,0
 

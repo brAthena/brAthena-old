@@ -107,7 +107,7 @@ nif_in,156,93,5	script	Criança#nifflheim	793,{
 	mes "Eu lembro que eu estava dormindo";
 	mes "e quando eu acordei, eu estava aqui ...";
 	mes "Mamãe, você viu minha mãe?";
-	mes "Eu quero ir para casa ...* Sob * ";
+	mes "Eu quero ir para casa ...* choro * ";
 	next;
 	switch(select("Sobre a bruxa:Sobre a maldição:Cancelar.")) {
 	case 1:

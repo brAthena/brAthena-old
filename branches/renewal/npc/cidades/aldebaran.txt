@@ -12,13 +12,15 @@
 // |-------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                          |
 // |-------------------------------------------------------|
-// | Versões eA/brA: 2.3/1.1                               |
+// | Versões eA/brA: 2.3/1.2                               |
 // |-------------------------------------------------------|
 // | Descrição: NPCs da Cidade de Aldebaran                |
 // |-------------------------------------------------------|
 // | Changelog:                                            |
 // | 1.0 Script Traduzido [Dani]                           |
 // | 1.1 Script Revisado [Dani]                            |
+// | 1.2 Substituição de 'switch' descenessários (2 cases) |
+// |     por 'if'[Architect]                               |
 // \_______________________________________________________/
 
 // Al De Baran
@@ -116,8 +118,7 @@ aldebaran,46,129,4	script	Panama#alde	97,{
 	mes "[Panama]";
 	mes "Aldebaran é conhecida no mundo inteiro como a cidade dos canais. As vias são realmente sofisticadas, toque romântico à nossa cidade justa.";
 	next;
-	switch(select("Sobre os canais:Encerrar conversa")) {
-	case 1:
+	if (select("Sobre os canais:Encerrar conversa") == 1) {
 		mes "[Panama]";
 		mes "Bem, um canal é uma via fluvial artificial utilizada para a viagem,";
 		mes "com transporte marítimo, ou irrigação.";
@@ -125,13 +126,10 @@ aldebaran,46,129,4	script	Panama#alde	97,{
 		mes "[Panama]";
 		mes "No entanto, os canais por aqui são apenas artificiais. Se necessário para o transporte de qualquer coisa, só usar o serviço de teleporte da Corporação Kafra!";
 		close;
-		break;
-	case 2:
-		mes "[Panama]";
-		mes "Sei que vai aproveitar a sua estadia em Aldebaran.";
-		close;
-		break;
 	}
+	mes "[Panama]";
+	mes "Sei que vai aproveitar a sua estadia em Aldebaran.";
+	close;
 }
 
 aldebaran,67,154,4	script	Isenberg#alde	98,{
@@ -576,7 +574,7 @@ aldeba_in,223,121,4	script	Homem Louco	63,{
 	mes "[Homem Louco]";
 	mes "Ei, você não pode entrar na casa de alguém sem permissão.";
 	mes "Isso é ridículo!";
-	mes "como você se atreve a entrar dentro da minha casa e falar comigo como se isso fosse normal?";
+	mes "Como você se atreve a entrar dentro da minha casa e falar comigo como se isso fosse normal?";
 	next;
 	mes "[Homem Louco]";
 	mes "Hahahaha...fica calmo, eu estava só brincando.";

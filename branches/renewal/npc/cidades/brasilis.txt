@@ -12,12 +12,14 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.1/1.0                                |
+// | Versões eA/brA: 1.1/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: NPCs da Cidade de Brasilis                  |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
+// | 1.1 Substituição de 'switch' descenessários (2 cases)  |
+// |     por 'if'[Architect]                                |
 // \________________________________________________________/
 
 alberta,247,115,3	script	Brute Sailor#bra2	100,{
@@ -29,8 +31,7 @@ alberta,247,115,3	script	Brute Sailor#bra2	100,{
 	mes "Eu tenho um mapa para chegar até lá, se você quiser eu posso levar você até Brasilis.";
 	mes "Isso vai custar 10.000 zeny. O que você acha?";
 	next;
-	switch(select("Vamos para Brasilis!:Cancelar.")) {
-	case 1:
+	if (select("Vamos para Brasilis!:Cancelar.") == 1) {
 		if (Zeny > 9999	) {
 			mes "[Marinheiro Bruto]";
 			mes "Ótimo! Vamos lá!";
@@ -48,29 +49,26 @@ alberta,247,115,3	script	Brute Sailor#bra2	100,{
 			mes "Muito obrigado!";
 			close;
 		}
-	case 2:
-		mes "[Marinheiro Bruto]";
-		mes "Me avise se você mudar de idéia.";
-		close;
 	}
+	mes "[Marinheiro Bruto]";
+	mes "Me avise se você mudar de idéia.";
+	close;
 }
 
 brasilis,316,57,3	script	Brute Sailor#bra1	100,{
 	mes "[Marinheiro Bruto]";
 	mes "Meu navio vai voltar para Alberta em breve. Gostaria de voltar também?";
 	next;
-	switch(select("Voltar para Alberta.:Cancelar.")) {
-	case 1:
+	if (select("Voltar para Alberta.:Cancelar.") == 1) {
 		mes "[Marinheiro Bruto]";
 		mes "Tudo certo, vamos indo!";
 		close2;
 		warp "alberta",244,115;
 		end;
-	case 2:
-		mes "[Marinheiro Bruto]";
-		mes "Me avise se você mudar de idéia.";
-		close;
 	}
+	mes "[Marinheiro Bruto]";
+	mes "Me avise se você mudar de idéia.";
+	close;
 }
 
 brasilis,278,137,3	script	Quadro de Aviso#bra1	858,{

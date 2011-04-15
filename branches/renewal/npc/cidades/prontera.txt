@@ -29,11 +29,8 @@ prontera,160,330,0	script	Guarda#pront::prtguard	105,{
 }
 
 prontera,223,99,1	duplicate(prtguard)	Guarda#2pront	105
-
 prontera,229,104,5	duplicate(prtguard)	Guarda#3pront	105
-
 prontera,47,339,5	duplicate(prtguard)	Guarda#4pront	105
-
 
 prontera,101,288,3	script	Shuger#pront	98,{
 	mes "[Shuger]";
@@ -253,8 +250,6 @@ prt_in,178,92,0	script	Curador da Biblioteca#pront	57,{
 	close;
 }
 */
-
-
 
 prt_in,175,50,0	script	Garota da Biblioteca#pront	71,{
 	mes "[Library Girl Ellen]";

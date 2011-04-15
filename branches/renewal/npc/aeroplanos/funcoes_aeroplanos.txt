@@ -27,7 +27,7 @@ function	script	F_Airport	{
 	next;
 	if (select("Embarcar no Aeroplano.:Cancelar.") == 1) {
 		mes "[Funcionária do Aeroporto]";
-		mes "O embarque no Aeroplano está custando 1.200 zenys, mas se você possuir um "+getitemname(7311)+", este pagamento será desconsiderado.";
+		mes "O embarque no Aeroplano está custando 1.200 zenys, mas se você possuir um Bilhete para Aeroplano, este pagamento será desconsiderado.";
 		next;
 		mes "[Funcionária do Aeroporto]";
 		mes "Você deseja embarcar no Aeroplano?";

@@ -12,12 +12,14 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 2.1/1.0                                |
+// | Versões eA/brA: 2.1/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: NPCs da Cidade de Umbala                    |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
+// | 1.1 Remoção de um 'close' desnecessário e correção dos |
+// |     nomes das classes no NPC 'Bertan#um' [Architect]   |
 // \________________________________________________________/
 
 comodo,170,137,7	script	La Ed#um	84,{
@@ -364,7 +366,6 @@ umbala,70,106,3	script	Pequeno Utan#um	781,{
 		emotion e_heh;
 		close;
 	}
-	close;
 }
 
 umbala,59,243,5	script	Pequeno Utan#1	787,{
@@ -724,7 +725,7 @@ umbala,92,159,4	script	Bertan#um	785,{
 			close;
 		case 6:
 			mes "[Bertan]";
-			mes "Uma Crusader, uma Alchemist e uma Novice entram em um bar.";
+			mes "Uma Templária, uma Alquimista e uma Aprendiz entram em um bar.";
 			next;
 			mes "[Bertan]";
 			mes "Dentro de lá, eles olham uma";
@@ -732,11 +733,11 @@ umbala,92,159,4	script	Bertan#um	785,{
 			mes "SOMENTE MULHERES.^000000'";
 			next;
 			mes "[Bertan]";
-			mes "'^000099Oh!^000000' diz a Crusader.";
+			mes "'^000099Oh!^000000' diz a Templária.";
 			mes "'^000099Que sorte que somos todas";
 			mes "mulheres.^000000' Ela levanta";
 			mes "e diz '^000099Me dê uma carona.^000000'";
-			mes "Meio rude para uma Crusader,";
+			mes "Meio rude para uma Templária,";
 			mes "mas que seja.";
 			next;
 			mes "[Bertan]";
@@ -748,7 +749,7 @@ umbala,92,159,4	script	Bertan#um	785,{
 			mes "E eles vão embora.";
 			next;
 			mes "[Bertan]";
-			mes "Depois vem a Alchemist";
+			mes "Depois vem a Alquimista";
 			mes "e fala algo tipo '^330099Preciso de ajuda";
 			mes "para matar Zombies^000000' e aí";
 			mes "uma Marine Sphere aparece";
@@ -764,7 +765,7 @@ umbala,92,159,4	script	Bertan#um	785,{
 			mes "alegremente também.";
 			next;
 			mes "[Bertan]";
-			mes "Finalmente, a Novice";
+			mes "Finalmente, a Aprendiz";
 			mes "levanta e diz:";
 			mes "'^006633Preciso de alguém";
 			mes "para fazer uma party comigo.^000000'";

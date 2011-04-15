@@ -240,8 +240,6 @@ yuno,157,205,4	script	Artesão de Juno#juno	54,{
 yuno,150,283,4	script	Soldado de Juno#juno	105,{
 	mes "[Soldado de Juno]";
 	mes "Bem-Vindo a Juno, a cidade da elevação de espírito.";
-
-
 	next;
 	mes "[Soldado de Juno]";
 	mes "Existe aqui perto um monstro chamado de Golem de Lava. Este Golem é feito de um coração de pedra cuja potência foi amplificada por magia.";

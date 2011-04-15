@@ -12,12 +12,14 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.6/1.0                                |
+// | Versões eA/brA: 1.6/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: NPCs da Cidade de Einbech                   |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
+// | 1.1 Substituição de 'switch' descenessários (2 cases)  |
+// |     por 'if'[Architect]                                |
 // \________________________________________________________/
 
 einbech,172,113,4	script	Nemuk#ein	855,{
@@ -28,8 +30,7 @@ einbech,172,113,4	script	Nemuk#ein	855,{
 	mes "O que voê acha";
 	mes "de Einbech?";
 	next;
-	switch(select("É legal.:Parece difícil morar aqui.")) {
-	case 1:
+	if (select("É legal.:Parece difícil morar aqui.") == 1) {
 		mes "[Nemuk]";
 		mes "Hum...?";
 		mes "Não sei o que você";
@@ -50,29 +51,28 @@ einbech,172,113,4	script	Nemuk#ein	855,{
 		mes "mais jovem, eu não teria";
 		mes "esses problemas agora...";
 		close;
-	case 2:
-		mes "[Nemuk]";
-		mes "Imaginei.";
-		mes "Peço desculpas";
-		mes "se te incomodei.";
-		next;
-		mes "[Nemuk]";
-		mes "Todos aqui têm muita";
-		mes "dificuldade para viver cada";
-		mes "dia desde que posso me";
-		mes "lembrar. É como se nada nunca";
-		mes "melhorasse nem um pouco,";
-		mes "não importa o que fazemos.";
-		next;
-		mes "[Nemuk]";
-		mes "Eu realmente gostaria de ir";
-		mes "embora, mas não tenho mais";
-		mes "esperanças. Meu corpo está";
-		mes "preso aqui enquanto meu coração";
-		mes "anseia por uma vida melhor. ^333333*Suspiro*^000000";
-		mes "Não posso ter esperanças? O que devo fazer?";
-		close;
 	}
+	mes "[Nemuk]";
+	mes "Imaginei.";
+	mes "Peço desculpas";
+	mes "se te incomodei.";
+	next;
+	mes "[Nemuk]";
+	mes "Todos aqui têm muita";
+	mes "dificuldade para viver cada";
+	mes "dia desde que posso me";
+	mes "lembrar. É como se nada nunca";
+	mes "melhorasse nem um pouco,";
+	mes "não importa o que fazemos.";
+	next;
+	mes "[Nemuk]";
+	mes "Eu realmente gostaria de ir";
+	mes "embora, mas não tenho mais";
+	mes "esperanças. Meu corpo está";
+	mes "preso aqui enquanto meu coração";
+	mes "anseia por uma vida melhor. ^333333*Suspiro*^000000";
+	mes "Não posso ter esperanças? O que devo fazer?";
+	close;
 }
 
 einbech,197,139,4	script	Jovem#air2	855,{
@@ -502,8 +502,7 @@ einbech,46,107,6	script	Shena#ein::EinMonsters	846,{
 	mes "mas estou surpreso que as";
 	mes "pessoas mais velhas saibam tanto~";
 	next;
-	switch(select("Do que vocês estão falando?:Passar reto")) {
-	case 1:
+	if (select("Do que vocês estão falando?:Passar reto") == 1) {
 		mes "[Shena]";
 		mes "Ahn? Bem, bem!";
 		mes "Você não é a garotinha";
@@ -725,16 +724,15 @@ einbech,46,107,6	script	Shena#ein::EinMonsters	846,{
 				close;
 			}
 		}
-	case 2:
-		mes "[Shena]";
-		mes "Luda...";
-		mes "Você não pode";
-		mes "ficar tão velha quanto eu";
-		mes "e não aprender alguma";
-		mes "coisa sobre esse";
-		mes "nosso mundo.";
-		close;
 	}
+	mes "[Shena]";
+	mes "Luda...";
+	mes "Você não pode";
+	mes "ficar tão velha quanto eu";
+	mes "e não aprender alguma";
+	mes "coisa sobre esse";
+	mes "nosso mundo.";
+	close;
 }
 
 einbech,48,107,4	duplicate(EinMonsters)	Luda#ein	850,{
@@ -755,8 +753,7 @@ einbech,148,242,5	script	Jung#ein	855,{
 	mes "sobre os monstros que têm lá";
 	mes "para que você se prepare melhor.";
 	next;
-	switch(select("Claro, por que não?:Não, obrigado.")) {
-	case 1:
+	if (select("Claro, por que não?:Não, obrigado.") == 1) {
 		mes "[Jung]";
 		mes "Vejamos. Ah, os monstros que só existem na Mina";
 		mes "são Noxious, Venomous, Pollcellio e Obsidian. Sobre";
@@ -857,21 +854,20 @@ einbech,148,242,5	script	Jung#ein	855,{
 			mes "para mim.";
 			close;
 		}
-	case 2:
-		mes "[Jung]";
-		mes "Eu entendo que você está";
-		mes "com pressa. Ainda assim, se";
-		mes "você for novo por aqui,";
-		mes "você deveria aprender tudo";
-		mes "o que puder antes de entrar";
-		mes "em alguma dungeon.";
-		next;
-		mes "[Jung]";
-		mes "Certo então,";
-		mes "tenha cuidado em";
-		mes "suas aventuras!";
-		close;
 	}
+	mes "[Jung]";
+	mes "Eu entendo que você está";
+	mes "com pressa. Ainda assim, se";
+	mes "você for novo por aqui,";
+	mes "você deveria aprender tudo";
+	mes "o que puder antes de entrar";
+	mes "em alguma dungeon.";
+	next;
+	mes "[Jung]";
+	mes "Certo então,";
+	mes "tenha cuidado em";
+	mes "suas aventuras!";
+	close;
 }
 
 einbech,148,246,5	script	Franz#ein	851,{
@@ -887,8 +883,7 @@ einbech,148,246,5	script	Franz#ein	851,{
 	mes "a Mina ou os campos de fora";
 	mes "da cidade? Vamos conversar e talvez você aprenda algo.";
 	next;
-	switch(select("Está bem..:Não, obrigado.")) {
-	case 1:
+	if (select("Está bem..:Não, obrigado.")) {
 		mes "[Franz]";
 		mes "Aah, você já ouviu sobre";
 		mes "a criatura que vive na";
@@ -1000,21 +995,20 @@ einbech,148,246,5	script	Franz#ein	851,{
 			mes "mas são extremamente perigosos!";
 			close;
 		}
-	case 2:
-		mes "[Franz]";
-		mes "Ah, certo.";
-		mes "Você está ocupado e tem";
-		mes "coisas para fazer. Eu entendo.";
-		mes "Você provavelmente precisa ir";
-		mes "a algum lugar agora mesmo.";
-		mes "Certo. Entendi.";
-		next;
-		mes "[Franz]";
-		mes "Eu...";
-		mes "Eu também tenho";
-		mes "coisas para fazer agora!";
-		mes "Sim. Estou muito ocupado.";
-		close;
 	}
+	mes "[Franz]";
+	mes "Ah, certo.";
+	mes "Você está ocupado e tem";
+	mes "coisas para fazer. Eu entendo.";
+	mes "Você provavelmente precisa ir";
+	mes "a algum lugar agora mesmo.";
+	mes "Certo. Entendi.";
+	next;
+	mes "[Franz]";
+	mes "Eu...";
+	mes "Eu também tenho";
+	mes "coisas para fazer agora!";
+	mes "Sim. Estou muito ocupado.";
+	close;
 }
 
