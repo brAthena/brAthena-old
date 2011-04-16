@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0399 - 16/04/2011 [Protimus]
+	* Modificação em habilidade:
+	- Ataque Gatling: Velocidade de ataque aumentada em valor fixo.
+
 	r0398 - 16/04/2011 [Protimus]
 	* Adição para checagem de arma esquerda e direita na computação do matk.
 	* Adição para checagem de matk_min e matk_max no status_calc_matk.

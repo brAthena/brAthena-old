@@ -4023,6 +4023,9 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 			else
 			if( sc->data[SC_ACCELERATION] )
 				val = 25;
+			else
+			if( sc->data[SC_GATLINGFEVER] )
+				val = 25;
 
 			speed_rate -= val;
 		}
@@ -4064,8 +4067,6 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 				if( sc->data[SC_GOSPEL] && sc->data[SC_GOSPEL]->val4 == BCT_ENEMY )
 					val = max( val, 75 );
 				if( sc->data[SC_SLOWDOWN] ) // Slow Potion
-					val = max( val, 100 );
-				if( sc->data[SC_GATLINGFEVER] )
 					val = max( val, 100 );
 				if( sc->data[SC_SUITON] )
 					val = max( val, sc->data[SC_SUITON]->val3 );
@@ -4161,10 +4162,6 @@ static short status_calc_aspd_rate(struct block_list *bl, struct status_change *
 		if(sc->data[SC_SPEARQUICKEN] &&
 			max < sc->data[SC_SPEARQUICKEN]->val2)
 			max = sc->data[SC_SPEARQUICKEN]->val2;
-
-		if(sc->data[SC_GATLINGFEVER] &&
-			max < sc->data[SC_GATLINGFEVER]->val2)
-			max = sc->data[SC_GATLINGFEVER]->val2;
 
 		if(sc->data[SC_FLEET] &&
 			max < sc->data[SC_FLEET]->val2)
@@ -6259,7 +6256,6 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 
 		// gs_something1 [Vicious]
 		case SC_GATLINGFEVER:
-			val2 = 20*val1; //Aspd increase
 			val3 = 20+10*val1; //Batk increase
 			val4 = 5*val1; //Flee decrease
 			break;
