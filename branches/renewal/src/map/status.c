@@ -3188,7 +3188,7 @@ void status_calc_bl_main(struct block_list *bl, enum scb_flag flag)
 		status->matk_max = 0;
 
 		if( bl->type&BL_PC )
-			status->matk_max = ((TBL_PC*)bl)->matk_bonus + status->rhw.atk2 + status->lhw.atk2;
+			status->matk_max += ((TBL_PC*)bl)->matk_bonus + status->rhw.atk2 + status->lhw.atk2;
 
 		if( bl->type&BL_PC && sd->matk_rate != 100 )
 		{
@@ -3200,6 +3200,9 @@ void status_calc_bl_main(struct block_list *bl, enum scb_flag flag)
 			sc->mp_matk_min = status->matk_min;
 			sc->mp_matk_max = status->matk_max;
 		}
+		
+		status->matk_max = status_calc_matk(bl, sc, b_status->matk_max);
+		status->matk_min = status_calc_matk(bl, sc, b_status->matk_min);
 
 		if( bl->type&BL_HOM && battle_config.hom_setting&0x20 )
 			status->matk_max = status->matk_min;
