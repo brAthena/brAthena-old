@@ -1988,17 +1988,18 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			}
 			if (def2 > 300) def2 = 300;
 			def_rate = (short)(((float)1-((float)580/(def2 + 580)))*1000);
-			if( !flag.idef || !flag.idef2 )
-			{
-				ATK_RATE2(
-						flag.idef ?1000:(flag.pdef ?(int)(flag.pdef *(def2+vit_def)*10):(1000-def_rate)),
-						flag.idef2?1000:(flag.pdef2?(int)(flag.pdef2*(def2+vit_def)*10):(1000-def_rate))
-				);
-				ATK_ADD2(
-						flag.idef ||flag.pdef ?0:-vit_def,
-						flag.idef2||flag.pdef2?0:-vit_def
-				);
-			}
+
+			ATK_ADD2(flag.pdef ? def2/2:0, flag.pdef2 ? def2/2:0);
+
+			ATK_RATE2(
+				1000-(flag.idef ? 0:def_rate),
+				1000-(flag.idef2 ? 0:def_rate)
+			);
+
+			ATK_ADD2(
+				(flag.idef ? 0:-vit_def),
+				(flag.pdef2 ? 0:-vit_def)
+			);
 		}
 
 		//Post skill/vit reduction damage increases
