@@ -50,6 +50,7 @@ struct view_data {
 	  	class_,
 		weapon,
 		shield, //Or left-hand weapon.
+		robe,
 		head_top,
 		head_mid,
 		head_bottom,

@@ -8704,9 +8704,9 @@ ACMD_FUNC(font)
 	font_id = atoi(message);
 	if( font_id == 0 )
 	{
-		if( sd->state.user_font )
+		if( sd->user_font )
 		{
-			sd->state.user_font = 0;
+			sd->user_font = 0;
 			clif_displaymessage(fd, "Retornando a fonte normal.");
 			clif_font(sd);
 		}
@@ -8718,9 +8718,9 @@ ACMD_FUNC(font)
 	}
 	else if( font_id < 0 || font_id > 9 )
 		clif_displaymessage(fd, "Fonte inválida, use um valor de 1 a 9.");
-	else if( font_id != sd->state.user_font )
+	else if( font_id != sd->user_font )
 	{
-		sd->state.user_font = font_id;
+		sd->user_font = font_id;
 		clif_font(sd);
 		clif_displaymessage(fd, "Fonte modificada.");
 	}
