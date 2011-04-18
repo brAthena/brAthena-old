@@ -1614,7 +1614,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 						skillratio += 30 * pc_checkskill(sd,AS_POISONREACT);
 					break;
 				case ASC_BREAKER:
-					skillratio += 100*skill_lv-100;
+					skillratio += 200+50*skill_lv;
 					break;
 				case PA_SACRIFICE:
 					skillratio += 10*skill_lv-10;
@@ -1877,53 +1877,6 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			}
 		}
 
-		if (sd && flag.weapon &&
-			skill_num != MO_INVESTIGATE &&
-		  	skill_num != MO_EXTREMITYFIST &&
-		  	skill_num != CR_GRANDCROSS)
-		{
-			if(skill_num != ASC_BREAKER && sd->status.weapon == W_KATAR &&
-				(skill=pc_checkskill(sd,ASC_KATAR)) > 0)
-		  	{
-				ATK_ADDRATE(10+ 2*skill);
-			}
-
-			if (sc && sc->data[SC_MIRACLE]) i = 2;
-			else
-			ARR_FIND(0, 3, i, t_class == sd->hate_mob[i]);
-			if (i < 3 && (skill=pc_checkskill(sd,sg_info[i].anger_id)))
-			{
-				skillratio = sd->status.base_level + sstatus->dex + sstatus->luk;
-				if (i == 2) skillratio += sstatus->str;
-				if (skill<4)
-					skillratio /= 12-3*skill;
-				ATK_ADDRATE(skillratio);
-			}
-			if (skill_num == NJ_SYURIKEN && (skill = pc_checkskill(sd,NJ_TOBIDOUGU)) > 0)
-				ATK_ADD(3*skill);
-			if (skill_num == NJ_KUNAI)
-				ATK_ADD(60);
-		}
-
-		if (sc) {
-			if(sc->data[SC_TRUESIGHT])
-				ATK_ADDRATE(2*sc->data[SC_TRUESIGHT]->val1);
-			if(sc->data[SC_CONCENTRATION])
-				ATK_ADDRATE(sc->data[SC_CONCENTRATION]->val2);
-
-			if(sc->data[SC_EDP] &&
-				skill_num != ASC_METEORASSAULT &&
-				skill_num != AS_SPLASHER &&
-				skill_num != AS_VENOMKNIFE &&
-				skill_num != AS_GRIMTOOTH)
-				ATK_RATE(sc->data[SC_EDP]->val3*100);
-				switch(skill_num){
-					case AS_SONICBLOW:
-					case ASC_BREAKER:
-						ATK_RATE(50);
-				}
-		}
-
 		if (!flag.idef || !flag.idef2)
 		{	//Defense reduction
 			short vit_def, def_rate;
@@ -2059,6 +2012,13 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				ATK_ADD(3*skill);
 			if (skill_num == NJ_KUNAI)
 				ATK_ADD(60);
+				
+			if (sc) {
+				if(sc->data[SC_TRUESIGHT])
+				ATK_ADDRATE(2*sc->data[SC_TRUESIGHT]->val1);
+				if(sc->data[SC_CONCENTRATION])
+				ATK_ADDRATE(sc->data[SC_CONCENTRATION]->val2);
+			}
 		}
 	} //Here ends flag.hit section, the rest of the function applies to both hitting and missing attacks
   	else if(wd.div_ < 0) //Since the attack missed...
@@ -2398,7 +2358,16 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 
 	//Aumentando em 20% o dano se afetado por Ataque Surpresa(Não acumula com Lex Aeterna)
 	if (sc && sc->data[SC_RAID] && !sc->data[SC_AETERNA])
+	{
 		wd.damage += (20*wd.damage)/100;
+	}
+		
+	if( sc && sc->data[SC_EDP] && skill_num != AS_SPLASHER && skill_num != AS_VENOMKNIFE && skill_num != AS_GRIMTOOTH )
+		{
+			wd.damage += wd.damage * sc->data[SC_EDP]->val3 / 100; 
+			if( flag.lh )
+				wd.damage2 += wd.damage2 * sc->data[SC_EDP]->val3 / 100; 
+		}
 
 	if( sc && sc->data[SC_ENCHANTBLADE] && !skill_num && sd && ((flag.rh && sd->weapontype1) || (flag.lh && sd->weapontype2)) )
 	{
@@ -2956,7 +2925,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		md.damage = sstatus->max_hp * (50 + 50 * skill_lv) / 100;
 		break;
 	case ASC_BREAKER:
-		md.damage = 500+rand()%500 + 5*skill_lv * sstatus->int_-(tstatus->def+tstatus->mdef);
+		md.damage = 500+rand()%500 + 5*skill_lv * sstatus->int_ - (tstatus->def+tstatus->mdef);
 		nk|=NK_IGNORE_FLEE|NK_NO_ELEFIX; //These two are not properties of the weapon based part.
 		break;
 	case HW_GRAVITATION:

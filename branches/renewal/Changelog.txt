@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0406 - 18/04/2011 [Protimus]
+	* Modificações em habilidades:
+	- Destruidor de Almas: Fórmula do dano aumentada.
+	- Encantar com Veneno Mortal: Fórmula agora é baseada no weapon damage e não no ATK_RATE.
+
 	r0405 - 18/04/2011 [Protimus]
 	* Atualizado conforme eAthena r14799.
 
