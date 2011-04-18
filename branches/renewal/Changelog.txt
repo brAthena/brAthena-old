@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0407 - 18/04/2011 [Protimus]
+	* Modificados arquivos com tags: arquivo_sql, para apenas o nome do arquivo.
+	- Não existe necessidade em usar com tags, pois removemos o TXT.
+
 	r0406 - 18/04/2011 [Protimus]
 	* Modificações em habilidades:
 	- Destruidor de Almas: Fórmula do dano aumentada.

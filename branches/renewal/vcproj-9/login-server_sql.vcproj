@@ -210,7 +210,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\src\login\account_sql.c"
+				RelativePath="..\src\login\account.c"
 				>
 			</File>
 			<File
@@ -218,7 +218,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\src\login\ipban_sql.c"
+				RelativePath="..\src\login\ipban.c"
 				>
 			</File>
 			<File
@@ -234,7 +234,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\src\login\loginlog_sql.c"
+				RelativePath="..\src\login\loginlog.c"
 				>
 			</File>
 		</Filter>

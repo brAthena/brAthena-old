@@ -154,10 +154,10 @@
     <ClInclude Include="..\src\common\version.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\login\account_sql.c" />
-    <ClCompile Include="..\src\login\ipban_sql.c" />
+    <ClCompile Include="..\src\login\account.c" />
+    <ClCompile Include="..\src\login\ipban.c" />
     <ClCompile Include="..\src\login\login.c" />
-    <ClCompile Include="..\src\login\loginlog_sql.c" />
+    <ClCompile Include="..\src\login\loginlog.c" />
     <ClCompile Include="..\src\common\core.c" />
     <ClCompile Include="..\src\common\db.c" />
     <ClCompile Include="..\src\common\ers.c" />

@@ -475,7 +475,7 @@
 				>
 			</File>
 			<File
-				RelativePath="..\src\map\mapreg_sql.c"
+				RelativePath="..\src\map\mapreg.c"
 				>
 			</File>
 			<File

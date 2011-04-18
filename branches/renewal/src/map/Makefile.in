@@ -22,7 +22,7 @@ MAP_OBJ = map.o chrif.o clif.o pc.o status.o npc.o \
 MAP_TXT_OBJ = $(MAP_OBJ:%=obj_txt/%) \
 	obj_txt/mapreg_txt.o
 MAP_SQL_OBJ = $(MAP_OBJ:%=obj_sql/%) \
-	obj_sql/mapreg_sql.o
+	obj_sql/mapreg.o
 MAP_H = map.h chrif.h clif.h pc.h status.h npc.h \
 	chat.h itemdb.h mob.h script.h path.h \
 	storage.h skill.h atcommand.h battle.h battleground.h \
