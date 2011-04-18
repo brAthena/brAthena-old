@@ -886,7 +886,7 @@ static int clif_set_unit_idle(struct block_list* bl, unsigned char* buffer, bool
 #if PACKETVER >= 20110111
 	WBUFW(buf,34) = vd->robe;
 	offset+= 2;
-	buf = WBUFP(buf,offset);
+	buf = WBUFP(buffer,offset);
 #endif
 	WBUFL(buf,34) = status_get_guild_id(bl);
 	WBUFW(buf,38) = status_get_emblem_id(bl);
@@ -1009,7 +1009,7 @@ static int clif_set_unit_walking(struct block_list* bl, struct unit_data* ud, un
 #if PACKETVER >= 20110111
 	WBUFW(buf,38) = vd->robe;
 	offset+= 2;
-	buf = WBUFP(buf,offset);
+	buf = WBUFP(buffer,offset);
 #endif
 	WBUFL(buf,38) = status_get_guild_id(bl);
 	WBUFW(buf,42) = status_get_emblem_id(bl);
@@ -8054,15 +8054,15 @@ void clif_equipcheckbox(struct map_session_data* sd)
 	WFIFOSET(fd, packet_len(0x2da));
 }
 
-/*==========================================
- * Sends info about a player's equipped items
- * R 002d7 <length>.W <name>.24B <class>.w <hairstyle>.w <up-viewid>.w <mid-viewid>.w <low-viewid>.w <haircolor>.w <cloth-dye>.w <gender>.1B {equip item}.26B*
- * for PACKETVER >= 20100629
- * R 002d7 <length>.W <name>.24B <class>.w <hairstyle>.w <bottom-viewid>.w <mid-viewid>.w <up-viewid>.w <haircolor>.w <cloth-dye>.w <gender>.1B {equip item}.28B*
- *------------------------------------------*/
+/// Sends info about a player's equipped items (ZC_EQUIPWIN_MICROSCOPE)
+/// 02d7 <packet len>.W <name>.24B <class>.W <hairstyle>.W <up-viewid>.W <mid-viewid>.W <low-viewid>.W <haircolor>.W <cloth-dye>.W <gender>.B {equip item}.26B*
+/// 02d7 <packet len>.W <name>.24B <class>.W <hairstyle>.W <bottom-viewid>.W <mid-viewid>.W <up-viewid>.W <haircolor>.W <cloth-dye>.W <gender>.B {equip item}.28B* (PACKETVER >= 20100629)
+/// 0859 <packet len>.W <name>.24B <class>.W <hairstyle>.W <bottom-viewid>.W <mid-viewid>.W <up-viewid>.W <haircolor>.W <cloth-dye>.W <gender>.B {equip item}.28B* (PACKETVER >= 20101124)
+/// 0859 <packet len>.W <name>.24B <class>.W <hairstyle>.W <bottom-viewid>.W <mid-viewid>.W <up-viewid>.W <robe>.W <haircolor>.W <cloth-dye>.W <gender>.B {equip item}.28B* (PACKETVER >= 20110111)
 void clif_viewequip_ack(struct map_session_data* sd, struct map_session_data* tsd)
 {
-	int i, n, fd;
+	uint8* buf;
+	int i, n, fd, offset = 0;
 #if PACKETVER < 20100629
 	const int s = 26;
 #else
@@ -8073,17 +8073,27 @@ void clif_viewequip_ack(struct map_session_data* sd, struct map_session_data* ts
 	fd = sd->fd;
 
 	WFIFOHEAD(fd, MAX_INVENTORY * s + 43);
+	buf = WFIFOP(fd,0);
 
-	WFIFOW(fd, 0) = 0x2d7;
-	safestrncpy((char*)WFIFOP(fd, 4), tsd->status.name, NAME_LENGTH);
-	WFIFOW(fd,28) = tsd->status.class_;
-	WFIFOW(fd,30) = tsd->vd.hair_style;
-	WFIFOW(fd,32) = tsd->vd.head_bottom;
-	WFIFOW(fd,34) = tsd->vd.head_mid;
-	WFIFOW(fd,36) = tsd->vd.head_top;
-	WFIFOW(fd,38) = tsd->vd.hair_color;
-	WFIFOW(fd,40) = tsd->vd.cloth_color;
-	WFIFOB(fd,42) = tsd->vd.sex;
+#if PACKETVER < 20101124
+	WBUFW(buf, 0) = 0x2d7;
+#else
+	WBUFW(buf, 0) = 0x859;
+#endif
+	safestrncpy((char*)WBUFP(buf, 4), tsd->status.name, NAME_LENGTH);
+	WBUFW(buf,28) = tsd->status.class_;
+	WBUFW(buf,30) = tsd->vd.hair_style;	
+	WBUFW(buf,32) = tsd->vd.head_bottom;
+	WBUFW(buf,34) = tsd->vd.head_mid;
+	WBUFW(buf,36) = tsd->vd.head_top;
+#if PACKETVER >= 20110111
+	WBUFW(buf,38) = tsd->vd.robe;
+	offset+= 2;
+	buf = WBUFP(buf,2);
+#endif
+	WBUFW(buf,38) = tsd->vd.hair_color;
+	WBUFW(buf,40) = tsd->vd.cloth_color;
+	WBUFB(buf,42) = tsd->vd.sex;
 
 	for(i=0,n=0; i < MAX_INVENTORY; i++)
 	{
@@ -8093,24 +8103,24 @@ void clif_viewequip_ack(struct map_session_data* sd, struct map_session_data* ts
 			continue;
 
 		// Inventory position
-		WFIFOW(fd, n*s+43) = i + 2;
+		WBUFW(buf, n*s+43) = i + 2;
 		// Add refine, identify flag, element, etc.
-		clif_item_sub(WFIFOP(fd,0), n*s+45, &tsd->status.inventory[i], tsd->inventory_data[i], pc_equippoint(tsd, i));
+		clif_item_sub(WBUFP(buf,0), n*s+45, &tsd->status.inventory[i], tsd->inventory_data[i], pc_equippoint(tsd, i));
 		// Add cards
-		clif_addcards(WFIFOP(fd, n*s+55), &tsd->status.inventory[i]);
+		clif_addcards(WBUFP(buf, n*s+55), &tsd->status.inventory[i]);
 		// Expiration date stuff, if all of those are set to 0 then the client doesn't show anything related (6 bytes)
-		WFIFOL(fd, n*s+63) = tsd->status.inventory[i].expire_time;
-		WFIFOW(fd, n*s+67) = 0;
+		WBUFL(buf, n*s+63) = tsd->status.inventory[i].expire_time;
+		WBUFW(buf, n*s+67) = 0;
 #if PACKETVER >= 20100629
 		if (tsd->inventory_data[i]->equip&EQP_VISIBLE)
-			WFIFOW(fd, n*s+69) = tsd->inventory_data[i]->look;
+			WBUFW(buf, n*s+69) = tsd->inventory_data[i]->look;
 		else
-			WFIFOW(fd, n*s+69) = 0;
+			WBUFW(buf, n*s+69) = 0;
 #endif
 		n++;
 	}
 
-	WFIFOW(fd, 2) = 43 + n*s;	// Set length
+	WFIFOW(fd, 2) = 43+offset+n*s;	// Set length
 	WFIFOSET(fd, WFIFOW(fd, 2));
 }
 
@@ -8905,41 +8915,6 @@ void clif_parse_GlobalMessage(int fd, struct map_session_data* sd)
 	// trigger listening npcs
 	map_foreachinrange(npc_chat_sub, &sd->bl, AREA_SIZE, BL_NPC, text, textlen, &sd->bl);
 #endif
-
-	// check for special supernovice phrase
-	if( (sd->class_&MAPID_UPPERMASK) == MAPID_SUPER_NOVICE )
-	{
-		unsigned int next = pc_nextbaseexp(sd);
-		if( next == 0 ) next = pc_thisbaseexp(sd);
-		if( get_percentage(sd->status.base_exp, next)% 10 == 0 ) // 0%, 10%, 20%, ...
-		{
-			switch (sd->state.snovice_call_flag) {
-			case 0:
-				if( strstr(message, msg_txt(504)) ) // "Guardian Angel, can you hear my voice? ^^;"
-					sd->state.snovice_call_flag++;
-				break;
-			case 1: {
-				char buf[256];
-				sprintf(buf, msg_txt(505), sd->status.name);
-				if( strstr(message, buf) ) // "My name is %s, and I'm a Super Novice~"
-					sd->state.snovice_call_flag++;
-				}
-				break;
-			case 2:
-				if( strstr(message, msg_txt(506)) ) // "Please help me~ T.T"
-					sd->state.snovice_call_flag++;
-				break;
-			case 3:
-				if( skillnotok(MO_EXPLOSIONSPIRITS,sd) )
-					break; //Do not override the noskill mapflag. [Skotlex]
-				clif_skill_nodamage(&sd->bl,&sd->bl,MO_EXPLOSIONSPIRITS,-1,
-					sc_start(&sd->bl,status_skill2sc(MO_EXPLOSIONSPIRITS),100,
-					17,skill_get_time(MO_EXPLOSIONSPIRITS,1))); //Lv17-> +50 critical (noted by Poki) [Skotlex]
-				sd->state.snovice_call_flag = 0;
-				break;
-			}
-		}
-	}
 
 	// Chat logging type 'O' / Global Chat
 	if( log_config.chat&1 || (log_config.chat&2 && !((agit_flag || agit2_flag) && log_config.chat&64)) )
