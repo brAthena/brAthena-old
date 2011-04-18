@@ -5576,7 +5576,7 @@ void pc_respawn(struct map_session_data* sd, clr_type clrtype)
 {
 	if( !pc_isdead(sd) )
 		return; // not applicable
-	if( sd->state.bg_id && bg_member_respawn(sd) )
+	if( sd->bg_id && bg_member_respawn(sd) )
 		return; // member revived by battleground
 
 	pc_setstand(sd);
@@ -5667,10 +5667,10 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 
 	pc_setglobalreg(sd,"PC_DIE_COUNTER",sd->die_counter+1);
 	pc_setparam(sd, SP_KILLERRID, src?src->id:0);
-	if( sd->state.bg_id )
+	if( sd->bg_id )
 	{
 		struct battleground_data *bg;
-		if( (bg = bg_team_search(sd->state.bg_id)) != NULL && bg->die_event[0] )
+		if( (bg = bg_team_search(sd->bg_id)) != NULL && bg->die_event[0] )
 			npc_event(sd, bg->die_event, 0);
 	}
 	npc_script_event(sd,NPCE_DIE);
@@ -5914,9 +5914,9 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 		add_timer(tick+1000, pc_respawn_timer, sd->bl.id, 0);
 		return 1|8;
 	}
-	else if( sd->state.bg_id )
+	else if( sd->bg_id )
 	{
-		struct battleground_data *bg = bg_team_search(sd->state.bg_id);
+		struct battleground_data *bg = bg_team_search(sd->bg_id);
 		if( bg && bg->mapindex > 0 )
 		{ // Respawn by BG
 			add_timer(tick+1000, pc_respawn_timer, sd->bl.id, 0);
@@ -6394,6 +6394,7 @@ int pc_equiplookall(struct map_session_data *sd)
 	clif_changelook(&sd->bl,LOOK_HEAD_BOTTOM,sd->status.head_bottom);
 	clif_changelook(&sd->bl,LOOK_HEAD_TOP,sd->status.head_top);
 	clif_changelook(&sd->bl,LOOK_HEAD_MID,sd->status.head_mid);
+	clif_changelook(&sd->bl, LOOK_ROBE, sd->status.robe);
 
 	return 0;
 }
@@ -6449,6 +6450,9 @@ int pc_changelook(struct map_session_data *sd,int type,int val)
 		sd->status.shield=val;
 		break;
 	case LOOK_SHOES:
+		break;
+	case LOOK_ROBE:
+		sd->status.robe = val;
 		break;
 	}
 	clif_changelook(&sd->bl,type,val);
@@ -7180,6 +7184,11 @@ int pc_equipitem(struct map_session_data *sd,int n,int req_pos)
 	}
 	if(pos & EQP_SHOES)
 		clif_changelook(&sd->bl,LOOK_SHOES,0);
+	if( pos&EQP_GARMENT )
+	{
+		sd->status.robe = id ? id->look : 0;
+		clif_changelook(&sd->bl, LOOK_ROBE, sd->status.robe);
+	}
 
 	pc_checkallowskill(sd); //Check if status changes should be halted.
 
@@ -7270,6 +7279,11 @@ int pc_unequipitem(struct map_session_data *sd,int n,int flag)
 	}
 	if(sd->status.inventory[n].equip & EQP_SHOES)
 		clif_changelook(&sd->bl,LOOK_SHOES,0);
+	if( sd->status.inventory[n].equip&EQP_GARMENT )
+	{
+		sd->status.robe = 0;
+		clif_changelook(&sd->bl, LOOK_ROBE, 0);
+	}
 
 	clif_unequipitemack(sd,n,sd->status.inventory[n].equip,1);
 
