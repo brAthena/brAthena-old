@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0409 - 18/04/2011 [Protimus]
+	* Modificações em habilidades:
+	- Fúria Interior: A regeneração de SP é dividida pela metade e não é mais 100% quando ativo os espíritos.
+
 	r0408 - 18/04/2011 [Destino]
 	* Realizada a tradução dos últimos arquivos dos mobs na pasta db.
 	- Agora todos os mobs estão traduzidos, revisados e atualizados.

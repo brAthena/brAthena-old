@@ -2897,7 +2897,7 @@ void status_calc_regen_rate(struct block_list *bl, struct regen_data *regen, str
 			)
 		|| sc->data[SC_MAXIMIZEPOWER]
 	)
-		if(sc->data[SC_EXTREMITYFIST] && !sc->data[SC_DANCING])
+		if(sc->data[SC_EXTREMITYFIST] && !sc->data[SC_DANCING] && ![SC_EXPLOSIONSPIRITS])
 			regen->rate.sp *= 50/100;
 	else //No natural SP regen
 		regen->flag &=~RGN_SP;
