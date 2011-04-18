@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0410 - 18/04/2011 [brn0]
+	* Corrigida a tabela de experiência de clãs.
+	* Pequenas otimizações e correções no diálogo do npc de batalha de clãs.
+	- npc/outros/cla_pvp.txt
+
 	r0409 - 18/04/2011 [Protimus]
 	* Modificações em habilidades:
 	- Fúria Interior: A regeneração de SP é dividida pela metade e não é mais 100% quando ativo os espíritos.
