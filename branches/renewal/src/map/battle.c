@@ -326,13 +326,17 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 		{
 			struct skill_unit_group* group = skill_id2group(sc->data[SC_SAFETYWALL]->val3);
 			if (group) {
-				damage -= group->val3;
-				skill_delunitgroup(group);
-				group->val3 -= damage;
-				d->dmg_lv = ATK_BLOCK;
+				if (damage > group->val3) 
+				{
+					damage -= group->val3; 
+					skill_delunitgroup(group);
+				}else{	
+					group->val3 -= damage;
+					d->dmg_lv = ATK_BLOCK;
 					return 0;
-				}
-			status_change_end(bl,SC_SAFETYWALL, INVALID_TIMER);
+				}			
+			}
+			status_change_end(bl,SC_SAFETYWALL,-1);
 		}
 
 		if( sc->data[SC_PNEUMA] && (flag&(BF_MAGIC|BF_LONG)) == BF_LONG )
