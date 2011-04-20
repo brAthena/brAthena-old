@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0414 - 20/04/2011 [Protimus]
+	* Modificações em habilidades:
+	- Encantar com veneno mortal: Corrigido dano de habilidades usáveis com a EDP.
+
 	r0413 - 20/04/2011 [Protimus]
 	* Modificações em habilidades:
 	- Escudo Mágico: Correções para recebimento de dano.

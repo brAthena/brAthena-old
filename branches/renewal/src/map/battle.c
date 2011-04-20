@@ -1810,7 +1810,8 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			  	skill_num != ASC_BREAKER &&
 				skill_num != ASC_METEORASSAULT &&
 				skill_num != AS_SPLASHER &&
-				skill_num != AS_VENOMKNIFE)
+				skill_num != AS_VENOMKNIFE &&
+				skill_num != AS_SONICBLOW)
 				ATK_ADDRATE(sc->data[SC_EDP]->val3);
 		}
 
@@ -2353,7 +2354,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 		wd.damage += (20*wd.damage)/100;
 	}
 		
-	if( sc && sc->data[SC_EDP] && skill_num != AS_SPLASHER && skill_num != AS_VENOMKNIFE && skill_num != AS_GRIMTOOTH )
+	if( sc && sc->data[SC_EDP] && skill_num != AS_SPLASHER && skill_num != AS_VENOMKNIFE && skill_num != AS_GRIMTOOTH != AS_SONICBLOW)
 		{
 			wd.damage += wd.damage * sc->data[SC_EDP]->val3 / 100; 
 			if( flag.lh )
