@@ -527,6 +527,10 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 
 	}
 
+	//Reduzindo 90% de dano do corpo fechado
+	if( sc->data[SC_STEELBODY] )
+		damage /= 10;
+
 	//SC effects from caster side.
 	sc = status_get_sc(src);
 
@@ -591,10 +595,6 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 	  if (skill_num)
 			mobskill_event((TBL_MOB*)bl,src,gettick(),MSC_SKILLUSED|(skill_num<<16));
 	}
-
-	//Reduzindo 90% de dano do corpo fechado
-	if( sc->data[SC_STEELBODY] )
-		damage -= (90*damage)/100;
 
 	return damage;
 }
@@ -1903,19 +1903,6 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 
 			if( battle_config.vit_penalty_type && battle_config.vit_penalty_target&target->type )
 			{
-				unsigned char target_count; //256 max targets should be a sane max
-				target_count = unit_counttargeted(target,battle_config.vit_penalty_count_lv);
-				if(target_count >= battle_config.vit_penalty_count) {
-					if(battle_config.vit_penalty_type == 1) {
-						if( !tsc || !tsc->data[SC_STEELBODY] )
-							def2 = (def2 * (100 - (target_count - (battle_config.vit_penalty_count - 1))*battle_config.vit_penalty_num))/100;
-						def1 = (def1 * (100 - (target_count - (battle_config.vit_penalty_count - 1))*battle_config.vit_penalty_num))/100;
-					} else { //Assume type 2
-						if( !tsc || !tsc->data[SC_STEELBODY] )
-							def2 -= (target_count - (battle_config.vit_penalty_count - 1))*battle_config.vit_penalty_num;
-						def1 -= (target_count - (battle_config.vit_penalty_count - 1))*battle_config.vit_penalty_num;
-					}
-				}
 				if(skill_num == AM_ACIDTERROR) def2 = 0; //Acid Terror ignores only armor defense. [Skotlex]
 				if(def1 < 1) def1 = 1;
 			}

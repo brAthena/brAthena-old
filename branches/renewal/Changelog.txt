@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0412 - 19/04/2011 [Protimus]
+	* Modificações em habilidades:
+	- Corpo Fechado: Não há mais alterações na defesa do usuário e sim no ataque do oponente, reduzindo o dano.
+	- Fúria Interior: Corrigido pequeno erro de leitura do SC em r409.
+
 	r0411 - 19/04/2011 [Protimus]
 	* Adicionadas modificações na defesa de equipamentos.
 	- Falta revisar, porém maior parte está pronta conforme valores oficiais.
