@@ -1517,7 +1517,7 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int lev
 
 	status->matk_min = status_base_status_matk(status, level);
 	if (bl->type == BL_PC )
-		status->matk_max += ((TBL_PC*)bl)->matk_bonus;
+		status->matk_max += ((TBL_PC*)bl)->matk_bonus + status->rhw.atk2 + status->lhw.atk2;
 
 	if( bl->type&battle_config.enable_critical )
 		status->cri += 10 + (status->luk*10/3);
@@ -2076,10 +2076,10 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 		}
 
 		if(sd->inventory_data[index]->type == IT_WEAPON) {
-			int r,wlv = sd->inventory_data[index]->wlv;
+			int r, wlv = sd->inventory_data[index]->wlv;
 			struct weapon_data *wd;
 			struct weapon_atk *wa;
-
+			
 			if (wlv >= MAX_REFINE_BONUS)
 				wlv = MAX_REFINE_BONUS - 1;
 			if(i == EQI_HAND_L && sd->status.inventory[index].equip == EQP_HAND_L) {
@@ -2090,9 +2090,12 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 				wa = &status->rhw;
 			}
 			wa->atk += sd->inventory_data[index]->atk;
-			wa->atk2 += (r=sd->status.inventory[index].refine)*refinebonus[wlv][0];
-			if((r-=refinebonus[wlv][2])>0) //Overrefine bonus.
-				wd->overrefine = r*refinebonus[wlv][1];
+			wa->atk2 = (r=sd->status.inventory[index].refine)*refinebonus[wlv][0];
+
+			if( (r -= refinebonus[wlv][2]) > 0 )
+			{ 
+				wd->overrefine = sd->status.inventory[index].refine + (sd->status.inventory[index].refine + wlv) * r;
+			}
 
 			wa->range += sd->inventory_data[index]->range;
 			if(sd->inventory_data[index]->script) {
@@ -2107,25 +2110,33 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 			}
 
 			if(sd->status.inventory[index].card[0]==CARD0_FORGE)
-			{	// Forged weapon
+			{	
 				wd->star += (sd->status.inventory[index].card[1]>>8);
-				if(wd->star >= 15) wd->star = 40; // 3 Star Crumbs now give +40 dmg
+				if(wd->star >= 15) wd->star = 40;
 				if(pc_famerank(MakeDWord(sd->status.inventory[index].card[2],sd->status.inventory[index].card[3]) ,MAPID_BLACKSMITH))
 					wd->star += 10;
-
-				if (!wa->ele) //Do not overwrite element from previous bonuses.
+				
+				if (!wa->ele) 
 					wa->ele = (sd->status.inventory[index].card[1]&0x0f);
 			}
 		}
 		else if(sd->inventory_data[index]->type == IT_ARMOR) {
-			refinedef += sd->status.inventory[index].refine*refinebonus[0][0];
+				int r = sd->status.inventory[index].refine;
+				do
+				{
+					status->def += r;
+					r -= 4;
+				}
+				while( r > 0 );
+			}
+
 			if(sd->inventory_data[index]->script) {
 				run_script(sd->inventory_data[index]->script,0,sd->bl.id,0);
 				if (!calculating) //Abort, run_script retriggered this. [Skotlex]
 					return 1;
 			}
 		}
-	}
+		
 	if(sd->equip_index[EQI_AMMO] >= 0){
 		index = sd->equip_index[EQI_AMMO];
 		if(sd->inventory_data[index]){		// Arrows

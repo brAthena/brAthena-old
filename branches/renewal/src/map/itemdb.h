@@ -59,6 +59,7 @@ struct item_data {
 	int wlv;
 	int view_id;
 	int delay;
+	int matk;
 //Lupus: I rearranged order of these fields due to compatibility with ITEMINFO script command
 //		some script commands should be revised as well...
 	unsigned int class_base[3];	//Specifies if the base can wear this item (split in 3 indexes per type: 1-1, 2-1, 2-2)

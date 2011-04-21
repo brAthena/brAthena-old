@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0422 - 21/04/2011 [Protimus]
+	* Modificações para refinamentos.
+	- Itens dão bônus defesa para equipamentos conforme nível de refinamento.
+	- Refinamento é dependente de matk.
+
 	r0421 - 21/04/2011 [brn0]
 	* Corrigido erro no ataque de clones.
 	* Corrigido erro no ataque de homunculos.
