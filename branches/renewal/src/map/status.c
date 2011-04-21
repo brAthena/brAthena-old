@@ -4861,56 +4861,44 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 	status = status_get_status_data(bl);
 	switch (type)
 	{
-	case SC_STUN:
-	case SC_POISON:
-	case SC_DPOISON:
-	case SC_SILENCE:
-	case SC_BLEEDING:
-		sc_def = 3 +status->vit;
-		break;
-	case SC_SLEEP:
-		sc_def = 3 +status->int_;
-		break;
-	case SC_DECREASEAGI:
-	case SC_ADORAMUS:
-		if (sd) tick>>=1; //Half duration for players.
-	case SC_STONE:
-	case SC_FREEZE:
-		sc_def = 3 +status->mdef;
-		break;
-	case SC_CURSE:
-		//Special property: inmunity when luk is greater than level or zero
-		if (status->luk > status_get_lv(bl) || status->luk == 0)
-			return 0;
-		else
-			sc_def = 3 +status->luk;
-		tick_def = status->vit;
-		break;
-	case SC_BLIND:
-		sc_def = 3 +(status->vit + status->int_)/2;
-		break;
-	case SC_CONFUSION:
-		sc_def = 3 +(status->str + status->int_)/2;
-		break;
-	case SC_ANKLE:
-		if(status->mode&MD_BOSS) // Lasts 5 times less on bosses
-			tick /= 5;
-		sc_def = status->agi / 2;
-		break;
-	case SC_MAGICMIRROR:
-	case SC_ARMORCHANGE:
-		if (sd) //Duration greatly reduced for players.
-			tick /= 15;
-		//No defense against it (buff).
-	case SC_BURNING:
-		tick -= 50*status->luk + 60*status->int_ + 170*status->vit;
-		tick = max(tick,10000); 
-		break;
-	default:
-		//Effect that cannot be reduced? Likely a buff.
-		if (!(rand()%10000 < rate))
-			return 0;
-		return tick?tick:1;
+		case SC_SLEEP:
+			tick_def = status->int_;
+		case SC_BLEEDING:
+			sc_def = status->agi;
+			break;
+		case SC_STUN:
+		case SC_POISON:
+		case SC_DPOISON:
+			sc_def = status->vit;
+			break;
+		case SC_BLIND:
+		case SC_FREEZE:
+		case SC_SILENCE:
+			sc_def = status->int_;
+			break;
+		case SC_DECREASEAGI:
+			if (sd) tick>>=1;
+			sc_def = 3 + status->mdef;
+			break;
+		case SC_CONFUSION:
+		case SC_CURSE:
+		case SC_STONE:
+			sc_def = tick_def = status->luk;
+			break;
+		case SC_ANKLE:
+			if(status->mode&MD_BOSS)
+				tick /= 5;
+			tick -= status->agi / 10;		
+			break;
+		case SC_MAGICMIRROR:
+		case SC_ARMORCHANGE:
+			if (sd)
+				tick /= 15;
+		default:
+			//Effect that cannot be reduced? Likely a buff.
+			if (!(rand()%10000 < rate))
+				return 0;
+			return tick?tick:1;
 	}
 
 	if (sd) {

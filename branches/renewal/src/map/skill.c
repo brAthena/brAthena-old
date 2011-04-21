@@ -705,9 +705,7 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 		break;
 
 	case WZ_STORMGUST:
-		if(tsc->sg_counter >= 3 &&
-			sc_start(bl,SC_FREEZE,(10+skilllv*5),skilllv,skill_get_time2(skillid,skilllv)))
-			tsc->sg_counter = 0;
+		sc_start(bl,SC_FREEZE,65-skilllv*5,skilllv,skill_get_time2(skillid,skilllv));
 		break;
 
 	case WZ_METEOR:
