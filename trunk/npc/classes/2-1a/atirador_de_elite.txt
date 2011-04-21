@@ -17,7 +17,7 @@
 // | Descrição: Mudança de Classes para Atirador de Elite   |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
+// | 1.0 Script Traduzido [Wolf]                            |
 // | - Anotações		   			    					| 
 // \________________________________________________________/
 
@@ -25,65 +25,65 @@ valkyrie,44,55,5	script	Sniper#Valkyrie	727,{
 	if (ADVJOB == 0 || Upper != 1) {
 		set .@karma_d,rand(1,10);
 		if (.@karma_d > 4) {
-			mes "[Sniper]";
-			mes "Congratulations.";
-			mes "Honor to the warriors!";
+			mes "[Atirador de Elite]";
+			mes "Parabéns.";
+			mes "Honra aos guerreiros!";
 			close;
 		}
-		mes "[Sniper]";
-		mes "One shot.";
-		mes "One kill.";
-		mes "It's not so hard";
-		mes "once you develop the";
-		mes "vision for that style";
-		mes "of battling.";
+		mes "[Atirador de Elite]";
+		mes "Um tiro.";
+		mes "Uma matada.";
+		mes "Não é tão difícil";
+		mes "uma vez que você desenvolve";
+		mes "uma visão de estilo de";
+		mes "luta.";
 		close;
 	}
 	else if (ADVJOB == Job_Sniper && Class == Job_Archer_High && JobLevel > 39) {
-		mes "[Sniper]";
-		mes "The world is in";
-		mes "need of mighty Bowmen";
-		mes "like you. Are you ready for";
-		mes "the awesome responsibility?";
+		mes "[Atirador de Elite]";
+		mes "O mundo está";
+		mes "precisando de Arqueiros poderosos";
+		mes "como você. Você está pronto";
+		mes "para essa tremenda responsabilidade?";
 		next;
-		mes "[Sniper]";
-		mes "Are you willing to";
-		mes "take the next step and";
-		mes "become a Sniper?";
+		mes "[Atirador de Elite]";
+		mes "Você está pronto a dar";
+		mes "o passo seguinte e se";
+		mes "tornar um Atirador de Elite?";
 		next;
-		if (select("No.:Yes.") == 1) {
-			mes "[Sniper]";
-			mes "When you're ready,";
-			mes "feel free to come back.";
-			mes "Honor to the warriors!";
+		if (select("Não.:Sim.") == 1) {
+			mes "[Atirador de Elite]";
+			mes "Quando estiver pronto,";
+			mes "fique à vontade para voltar.";
+			mes "Honra aos guerreiros!";
 			close;
 		}
 		if (SkillPoint) {
-			mes "[Sniper]";
-			mes "It is still possible for you to learn more skills. Please use";
-			mes "all of your remaining Skill Points before returning to me.";
+			mes "[Atirador de Elite]";
+			mes "Você tem pontos de habilidade sobrando. Por favor,";
+			mes "use todos os seus pontos de habilidade e depois retorne.";
 			close;
 		}
 		jobchange Job_Sniper;
 		set ADVJOB,0;
-		mes "[Sniper]";
-		mes "Congratulations!";
-		mes "As a Sniper, I hope";
-		mes "that the minions of evil";
-		mes "will never be safe so";
-		mes "long as they are in";
-		mes "your sight!";
+		mes "[Atirador de Elite]";
+		mes "Parabéns!";
+		mes "Como um Atirador de Elite, Eu espero";
+		mes "que os servos do mal nunca";
+		mes "nunca sintam-se";
+		mes "à vontade em sua";
+		mes "frente!";
 		close;
 	}
-	mes "[Sniper]";
-	mes "Welcome";
-	mes "to Valhalla,";
-	mes "the Hall of Honor.";
+	mes "[Atirador de Elite]";
+	mes "Bem vindo";
+	mes "a Valhalla,";
+	mes "o Salão de Honra.";
 	next;
-	mes "[Sniper]";
-	mes "Please make";
-	mes "yourself comfortable";
-	mes "while you are here.";
-	mes "Honor to the warriors!";
+	mes "[Atirador de Elite]";
+	mes "Por favor, sinta-se";
+	mes "avontade enquanto";
+	mes "estiver aqui.";
+	mes "Honra aos guerreiros!";
 	close;
 }

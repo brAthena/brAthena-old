@@ -23,7 +23,7 @@
 // | @cost - cost of renting a room							|
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]		                        |
+// | 1.0 Script Traduzido [Wolf]                            |
 // | - Anotações		   			    					| 
 // \________________________________________________________/
 
@@ -31,34 +31,34 @@
 // West Side Inn -------------------
 prt_in,244,135,2	script	Inn Employee#Sammy	53,{
 
-	callfunc "F_InnMaid","[Employee Sammy]","Nenkaras","prt_in",238,130;
+	callfunc "F_InnMaid","[Funcionária Sammy]","Nenkaras","prt_in",238,130;
 	warp "prt_in",247,104; end;
 }
 // East Side Inn ------------------
 prt_in,61,141,2	script	Inn Employee#Ahlma	53,{
 
-	callfunc "F_InnMaid","[Employee Ahlma]","Nenkaras","prt_in",64,136;
+	callfunc "F_InnMaid","[Funcionária Ahlma]","Nenkaras","prt_in",64,136;
 	warp "prt_in",60,166; end;
 }
 
 //======================== Alberta ====================================
 alberta_in,32,142,3	script	Inn Employee#Jennie	53,{
 
-	callfunc "F_InnMaid","[Employee Jennie]","'Fisherman Inn'!","alberta_in",26,142;
+	callfunc "F_InnMaid","[Funcionária Jennie]","'Fisherman Inn'!","alberta_in",26,142;
 	warp "alberta_in",18,188; end;
 }
 
 //====================== Geffen ======================================
 geffen_in,70,64,5	script	Inn Employee#Cena	53,{
 
-	callfunc "F_InnMaid","[Employee Cena]","'Ifrit,' the only Inn in the city of Geffen.","geffen_in",70,59;
+	callfunc "F_InnMaid","[Funcionária Cena]","'Ifrit,' the only Inn in the city of Geffen.","geffen_in",70,59;
 	warp "geffen_in",31,31; end;
 }
 
 //======================= Payon ======================================
 payon_in01,132,62,5	script	Inn Employee#Ahee	53,{
 
-	callfunc "F_InnMaid","[Employee Ahee]","Payon Inn","payon_in01",136,61;
+	callfunc "F_InnMaid","[Funcionária Ahee]","Payon Inn","payon_in01",136,61;
 	warp "payon_in01",132,11; end;
 }
 
@@ -67,13 +67,13 @@ payon_in01,132,62,5	script	Inn Employee#Ahee	53,{
 /*
 morocc_in,147,141,3	script	Inn Employee#Hasna	53,{
 
-	callfunc "F_InnMaid","[Employee Hasna]","Morroc Inn","morocc_in",142,140;
+	callfunc "F_InnMaid","[Funcionária Hasna]","Morroc Inn","morocc_in",142,140;
 	warp "morocc_in",173,135; end;
 }
 // South --------------------------------
 morocc_in,80,100,5	script	Inn Employee#Manar	53,{
 
-	callfunc "F_InnMaid","[Employee Manar]","Morroc Inn","morocc_in",78,95;
+	callfunc "F_InnMaid","[Funcionária Manar]","Morroc Inn","morocc_in",78,95;
 	warp "morocc_in",79,123; end;
 }
 */
@@ -94,35 +94,35 @@ ra_in01,376,69,4	script	Inn Keeper#Annie	931,{
 
 //====================== Lighthalzen =================================
 lhz_in02,230,284,4	script	Hotel Employee#01	86,{
-	mes "[Hotel Employee]";
-	mes "Welcome to";
-	mes "the Royal Dragon,";
-	mes "where you can find the";
-	mes "finest accomodations";
-	mes "and the best service.";
+	mes "[Funcionário do Hotel]";
+	mes "Bem vindo a";
+	mes "o Royal Dragon,";
+	mes "Onde você pode encontrar";
+	mes "melhores acomodações";
+	mes "e melhores serviços.";
 	next;
-	switch(select("Save Point:Rest - 5,000 zeny:Cancel")) {
+	switch(select("Salvar Ponto:Descansar - 5000 zeny:Sair")) {
 	case 1:
 		savepoint "lhz_in02",209,275;
-		mes "[Hotel Employee]";
-		mes "Thank you, your";
-		mes "Respawn Point has";
-		mes "been saved here in";
-		mes "the Royal Dragon.";
+		mes "[Funcionário do Hotel]";
+		mes "Obrigado, seu";
+		mes "Ponto de Retorno";
+		mes "está salvo aqui no";
+		mes "Royal Dragon.";
 		close;
 	case 2:
 		if(Zeny < 5000) {
 			mes "[Hotel Employee]";
-			mes "I'm sorry, but";
-			mes "you need 5,000 zeny";
-			mes "in order to check in.";
+			mes "Me desculpe, mas";
+			mes "você precisa de 5,000 zeny";
+			mes "para descansar.";
 			close;
 		}
 		set Zeny,Zeny - 5000;
-		mes "[Hotel Employee]";
-		mes "Thank you~";
-		mes "I hope you enjoy";
-		mes "your stay in the";
+		mes "[Funcionário do Hotel]";
+		mes "Obrigado~";
+		mes "Eu espero que você";
+		mes "aproveite sua estadia aqui no";
 		mes "Royal Dragon.";
 		close2;
 		warp "lhz_in02",219,150;
@@ -131,9 +131,9 @@ lhz_in02,230,284,4	script	Hotel Employee#01	86,{
 		skilleffect AL_BLESSING,0;
 		end;
 	case 3:
-		mes "[Hotel Employee]";
-		mes "Thank you and";
-		mes "have a nice day.";
+		mes "[Funcionário do Hotel]";
+		mes "Obrigado e";
+		mes "tenha um bom dia.";
 		close;
 	}
 }
@@ -141,36 +141,35 @@ lhz_in02,230,284,4	script	Hotel Employee#01	86,{
 //======================== Hugel ====================================
 hu_in01,246,107,3	script	Inn Maid#Receptionist	53,{
 
-	callfunc "F_InnMaid","[Receptionist]","Hugel Inn","hu_in01",263,95;
+	callfunc "F_InnMaid","[Recepcionista]","Hugel Inn","hu_in01",263,95;
 	warp "hu_in01",267,5; end;
 }
 
 //======================== Veins ====================================
 ve_in,157,219,5	script	Inn Master#Receptionist	709,{
 	mes "[Inn Master]";
-	mes "Good day~";
-	mes "Welcome to the";
-	mes "most comfortable";
-	mes "inn here in Veins~";
+	mes "Bom dia~";
+	mes "Bem vindo a o";
+	mes "hotel mais confortavel";
+	mes "de Veins~";
 	next;
-	switch(select("Save:Take a Rest -> 5000 zeny:Quit")) {
+	switch(select("Salvar:Dar uma descansada -> 5000 zeny:Sair")) {
 	case 1:
 		mes "[Inn Master]";
-		mes "Your Respawn Point";
-		mes "has been saved in Veins.";
-		mes "Enjoy your stay in town~";
+		mes "Seu ponto de retorno";
+		mes "foi salvo aqui em Veins.";
+		mes "Aproveite a sua estadia na cidade ~";
 		savepoint "ve_in",157,209;
 		close;
 	case 2:
 		mes "[Inn Master]";
 		if(Zeny < 5000){
-			mes "I'm sorry, but I don't";
-			mes "think you have enough";
-			mes "money to check in. The";
-			mes "service charge is 5,000 zeny.";
+			mes "Me desculpe, mas";
+			mes "você precisa de 5,000 zeny";
+			mes "para descansar.";
 			close;
 		}
-		mes "Enjoy your stay~";
+		mes "Desfrute da sua estadia ~";
 		close2;
 		set Zeny,Zeny - 5000;
 		percentheal 100,100;
@@ -178,44 +177,44 @@ ve_in,157,219,5	script	Inn Master#Receptionist	709,{
 		end;
 	case 3:
 		mes "[Inn Master]";
-		mes "Please come again.";
+		mes "Por favor, volte.";
 		close;
 	}
 }
 
 //======================== Brasilis =================================
 bra_in01,27,24,3	script	Receptionist#bra	478,{
-	mes "[Receptionist]";
-	mes "Welcome to the 'Happy Toucan' Inn,";
-	mes "we have everything to make you feel at home.";
+	mes "[Recepcionista]";
+	mes "Bem vindo a o 'Happy Toucan' Inn,";
+	mes "temos tudo para fazer você se sentir em casa.";
 	next;
-	switch(select("Save:Take Rest - 5,000 zeny:Cancel")) {
+	switch(select("Salvar:Descansar - 5,000 zeny:Sair")) {
 	case 1:
-		mes "[Receptionist]";
-		mes "Would you like me to save your respawn point here?";
+		mes "[Recepcionista]";
+		mes "Você gostaria que eu salvasse seu ponto de retorno aqui?";
 		next;
-		switch(select("No, thanks.:Sure!")) {
+		switch(select("Não, obrigado.:Tudo bem!")) {
 		case 1:
-			mes "[Receptionist]";
-			mes "Alright, please come back if you change your mind.";
+			mes "[Recepcionista]";
+			mes "Tudo bem, por favor, volte, se você mudar de idéia.";
 			close;
 		case 2:
 			savepoint "bra_in01",143,68;
-			mes "[Receptionist]";
-			mes "Your respawn point has been saved.";
-			mes "Enjoy your stay in Brasilius and don't forget to check our natural beauties.";
+			mes "[Recepcionista]";
+			mes "Seu ponto de retorno foi salvo.";
+			mes "Desfrute da sua estadia em Brasilius e não se esqueça de verificar nossas belezas naturais.";
 			close;
 		}
 	case 2:
 		if (Zeny < 5000) {
-			mes "[Receptionist]";
-			mes "I'm sorry, but the service charge is 5,000 zeny.";
-			mes "Please make sure that you have enough money to check in next time, okay?";
+			mes "[Recepcionista]";
+			mes "Sinto muito, mas o preço do serviço é de 5.000 zeny.";
+			mes "Por favor, dá próxima vez verifique se você tem o zeny para o serviço, ok?";
 			close;
 		}
 		else {
-			mes "[Receptionist]";
-			mes "I'll take you to your room.";
+			mes "[Recepcionista]";
+			mes "Vou levá-lo ao seu quarto.";
 			close2;
 			set zeny,zeny-5000;
 			percentheal 100,100;
@@ -230,28 +229,28 @@ bra_in01,27,24,3	script	Receptionist#bra	478,{
 //======================= Inn Function ==============================
 function	script	F_InnMaid	{
 	mes getarg(0);
-	mes "Welcome to";
+	mes "Bem vindo a o";
 	mes getarg(1) + ".";
-	mes "How may I help you?";
+	mes "Como posso ajudá-lo?";
 	next;
-	switch(select("Save:Take a Rest -> 5000 zeny:Cancel")) {
+	switch(select("Salvar:Descansar - 5,000 zeny:Sair")) {
 	case 1:
 		mes getarg(0);
-		mes "Your respawn point";
-		mes "has been saved.";
-		mes "Thank you,";
-		mes "please come again.";
+		mes "Seu ponho de retorno";
+		mes "foi salvo com êxito.";
+		mes "Obrigado,";
+		mes "Por favor, volte.";
 		savepoint getarg(2),getarg(3),getarg(4);
 		close;
 	case 2:
 		mes getarg(0);
 		if(Zeny < 5000){
-			mes "I'm sorry, but the service charge is 5,000 zeny. Please make sure that you have enough money to check in next time, okay?";
+			mes "Me desculpe, mas o preço do serviço é de 5.000 zeny. Por favor, dá próxima vez verifique se você tem o zeny para o serviço, ok?";
 			close;
 		}
-		mes "Thank you.";
-		mes "I hope you";
-		mes "enjoy your rest~";
+		mes "Obrigado.";
+		mes "Espero que você";
+		mes "goste do seu descanso~";
 		close2;
 		set Zeny,Zeny - 5000;
 		percentheal 100,100;
