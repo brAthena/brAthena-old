@@ -123,7 +123,6 @@
 5,155,1,0,0,0,0,0,0,0,0,0,0			// MC_LOUD#Grito de Guerra#
 5,410,1,0,0,0,0,0,0,0,0,0,0			// WE_CALLBABY#Vem cá filhote!#
 5,681,1,0,0,0,0,0,0,0,0,0,0			// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-5,2535,1,0,0,0,0,0,0,0,0,0,0 //ALL_BUYING_STORE#Buying Store#
 5,2535,1,41,1,0,0,0,0,0,0,0,0 //ALL_BUYING_STORE#Open Buying Store#
 //============================================================
 // Gatuno
