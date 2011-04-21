@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+
+	r0417 - 21/04/2011 [Protimus]
+	* Corrigido pequeno problema na leitura de alguns arquivos pelo make.
+	- Problema com compilar o login solucionado.
+
 	r0416 - 21/04/2011 [Protimus]
 	* Atualizado conforme eAthena r14800.
 	* Corrigido erro de duplicações de skills no skill_tree.

@@ -15,7 +15,7 @@ COMMON_SQL_H = ../common/sql.h
 
 LOGIN_OBJ = login.o
 LOGIN_SQL_OBJ = $(LOGIN_OBJ:%=obj_sql/%) \
-	obj_sql/account_sql.o obj_sql/ipban_sql.o obj_sql/loginlog_sql.o
+	obj_sql/account.o obj_sql/ipban.o obj_sql/loginlog.o
 LOGIN_H = login.h account.h ipban.h loginlog.h
 
 HAVE_MYSQL=@HAVE_MYSQL@
