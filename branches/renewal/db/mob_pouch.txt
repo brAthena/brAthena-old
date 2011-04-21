@@ -231,7 +231,7 @@
 1273,Senhora Orc,214285
 1274,Megalith,71428
 1275,Alice,71428
-1276,aydric Arqueiro,71428
+1276,Raydric Arqueiro,71428
 1277,Guardião da Floresta,214285
 1278,Golem Estalactítico,71428
 1279,Trilobita,214285

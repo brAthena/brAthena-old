@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0419 - 21/04/2011 [Destino]
+	* Enviando mob's
+	- Todos Revisados e traduzidos
+
 	r0418 - 21/04/2011 [Lord]
 	* Corrigido cabeçalho de alberta.txt .
 
