@@ -2525,7 +2525,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 
 				switch(skill_num){
 					case MG_FIREBALL:
-					skillratio += skill_lv*25;
+					skillratio += 40 + 20*skill_lv;
 					break;
 					case MG_NAPALMBEAT:
 						skillratio += skill_lv*10-30;
@@ -2538,7 +2538,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						skillratio -= 50;
 						break;
 					case MG_THUNDERSTORM:
-						skillratio += skill_lv*45;
+						skillratio -= 20;
 						break;
 					case MG_FROSTDIVER:
 						skillratio += 10*skill_lv;

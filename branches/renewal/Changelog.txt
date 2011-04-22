@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0425 - 22/04/2011 [Protimus]
+	* Modificações em habilidades:
+	- Tempestade de Raios: Modificado o dano para reduzir o skillratio ou igualar e não somar.
+	- Bola de Fogo: Modificada a fórmula de dano, reduzido.
+
 	r0424 - 22/04/2011 [Protimus]
 	* Modificações em habilidades:
 	- Encantar com veneno mortal: A adição do dano da EDP ao atacar monstros MvP é nulo.
