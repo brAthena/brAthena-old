@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0423 - 21/04/2011 [Protimus]
+	* Bônus para refinamento de itens é adicionado em def2 e não def1.
+	- Correção do commit anterior.
+	* Defesa (DEF2) e Defesa Mágia (MDEF2) de bônus vão até 835 e não 200.
+	- Valores baseados em informações que: +20 = 442 def = 53% de redução, logo 100% arredondando = 835.
+
 	r0422 - 21/04/2011 [Protimus]
 	* Modificações para refinamentos.
 	- Itens dão bônus defesa para equipamentos conforme nível de refinamento.

@@ -2124,7 +2124,7 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 				int r = sd->status.inventory[index].refine;
 				do
 				{
-					status->def += r;
+					status->def2 += r;
 					r -= 4;
 				}
 				while( r > 0 );

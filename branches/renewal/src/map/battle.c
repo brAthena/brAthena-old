@@ -1929,7 +1929,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				vit_def += def2*battle_config.weapon_defense_type;
 				def2 = 0;
 			}
-			if (def2 > 300) def2 = 300;
+			if (def2 > 835) def2 = 835;
 			def_rate = (short)(((float)1-((float)580/(def2 + 580)))*1000);
 
 			ATK_ADD2(flag.pdef ? def2/2:0, flag.pdef2 ? def2/2:0);
@@ -4223,8 +4223,8 @@ void battle_adjust_conf()
 	battle_config.max_walk_speed = 100*DEFAULT_WALK_SPEED/battle_config.max_walk_speed;
 	battle_config.max_cart_weight *= 10;
 
-	if(battle_config.max_def > 300 && !battle_config.weapon_defense_type)	 // added by [Skotlex]
-		battle_config.max_def = 300;
+	if(battle_config.max_def > 835 && !battle_config.weapon_defense_type)	 // added by [Skotlex]
+		battle_config.max_def = 835;
 
 	if(battle_config.min_hitrate > battle_config.max_hitrate)
 		battle_config.min_hitrate = battle_config.max_hitrate;
