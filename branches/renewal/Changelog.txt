@@ -9,7 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
-	r0423 - 21/04/2011 [Protimus]
+	r0424 - 22/04/2011 [Protimus]
+	* Modificações em habilidades:
+	- Encantar com veneno mortal: A adição do dano da EDP ao atacar monstros MvP é nulo.
+
+	r0423 - 22/04/2011 [Protimus]
 	* Bônus para refinamento de itens é adicionado em def2 e não def1.
 	- Correção do commit anterior.
 	* Defesa (DEF2) e Defesa Mágia (MDEF2) de bônus vão até 835 e não 200.
