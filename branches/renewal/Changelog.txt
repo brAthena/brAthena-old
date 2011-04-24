@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0426 - 23/04/2011 [brn0]
+	* Correção na habilidade Corpo Fechado, que estava causando erro no servidor.
+
 	r0425 - 22/04/2011 [Protimus]
 	* Modificações em habilidades:
 	- Tempestade de Raios: Modificado o dano para reduzir o skillratio ou igualar e não somar.

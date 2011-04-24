@@ -529,11 +529,11 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 			rand()%100 < sce->val3)
 			status_heal(src, damage*sce->val4/100, 0, 3);
 
-	}
+		//Reduzindo 90% de dano do corpo fechado
+		if( sc->data[SC_STEELBODY] )
+			damage /= 10;
 
-	//Reduzindo 90% de dano do corpo fechado
-	if( sc->data[SC_STEELBODY] )
-		damage /= 10;
+	}
 
 	//SC effects from caster side.
 	sc = status_get_sc(src);
