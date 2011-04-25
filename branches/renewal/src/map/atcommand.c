@@ -1250,7 +1250,7 @@ ACMD_FUNC(jobchange)
 	if (!message || !*message || sscanf(message, "%d %d", &job, &upper) < 1)
 	{
 		int i, found = 0;
-		const struct { char name[20]; int id; } jobs[] = {
+		const struct { char name[21]; int id; } jobs[] = {
 			{ "aprendiz",			0 },
 			{ "espadachim",			1 },
 			{ "mago",				2 },
@@ -1353,6 +1353,8 @@ ACMD_FUNC(jobchange)
 			{ "shura t",			4077 },
 			{ "bioquímico t",		4078 },
 			{ "renegado t",			4079 },
+			{ "super aprendiz t",		4190 },
+			{ "super aprendiz bebê t",		4191 },
 		};
 
 		for (i=0; i < ARRAYLENGTH(jobs); i++) {
@@ -1385,7 +1387,7 @@ ACMD_FUNC(jobchange)
 			clif_displaymessage(fd, "23 Super Aprendiz            24 Justiceiro                 25 Ninja           4046 Taekwon");
 			clif_displaymessage(fd, "4047 Mestre Taekwon          4049 Espiritualista");
 			clif_displaymessage(fd, "4047 Mestre Taekwon		  4049 Espiritualista    		4050 Gangsi         4051 Death Knight");
-			clif_displaymessage(fd, "4052 Dark Collector 		  4090 Enhanced Super Novice  	4191 Super Aprendiz Expandido");
+			clif_displaymessage(fd, "4052 Dark Collector 		  4090 Super Aprendiz T.  	    4191 Bebê Super Aprendiz T.");
 			clif_displaymessage(fd, "---- Classes Bebê ----");
 			clif_displaymessage(fd, "4023 Bebê Aprendiz           4024 Bebê Espadachim          4025 Bebê Mago      4026 Bebê Arqueiro");
 			clif_displaymessage(fd, "4027 Bebê Noviço             4028 Bebê Mercador            4029 Bebê Gatuno    4030 Bebê Cavaleiro");
@@ -1450,7 +1452,8 @@ ACMD_FUNC(jobchange)
 		clif_displaymessage(fd, "4021 Cigana");
 		clif_displaymessage(fd, "----- Classes Expandidas -----");
 		clif_displaymessage(fd, "23 Super Aprendiz            24 Justiceiro                 25 Ninja           4046 Taekwon");
-		clif_displaymessage(fd, "4047 Mestre Taekwon          4049 Espiritualista");
+		clif_displaymessage(fd, "4047 Mestre Taekwon		  4049 Espiritualista    		4050 Gangsi         4051 Death Knight");
+		clif_displaymessage(fd, "4052 Dark Collector 		  4090 Super Aprendiz T.  	    4191 Bebê Super Aprendiz T.");
 		clif_displaymessage(fd, "---- Classes Bebê ----");
 		clif_displaymessage(fd, "4023 Bebê Aprendiz           4024 Bebê Espadachim          4025 Bebê Mago      4026 Bebê Arqueiro");
 		clif_displaymessage(fd, "4027 Bebê Noviço             4028 Bebê Mercador            4029 Bebê Gatuno    4030 Bebê Cavaleiro");
