@@ -6791,12 +6791,12 @@ int pc_setoption(struct map_session_data *sd,int type)
 		{
 			if( type&OPTION_RIDING_WUG && !(p_type&OPTION_RIDING_WUG) )
 			{
-				clif_status_load(&sd->bl,SI_WUGRIDER,1);
+				clif_status_load(&sd->bl,SI_WUGMOUNT,1);
 				status_calc_pc(sd,0);
 			}
 			else if( !(type&OPTION_RIDING_WUG) && p_type&OPTION_RIDING_WUG )
 			{ 
-				clif_status_load(&sd->bl,SI_WUGRIDER,0);
+				clif_status_load(&sd->bl,SI_WUGMOUNT,0);
 				status_calc_pc(sd,0);
 			}
 		}

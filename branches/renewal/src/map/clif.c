@@ -8592,7 +8592,7 @@ void clif_parse_LoadEndAck(int fd,struct map_session_data *sd)
 			clif_status_load(&sd->bl, SI_RIDING, 1);
 
 		if (sd->sc.option&OPTION_RIDING_WUG)
-			clif_status_load(&sd->bl, SI_WUGRIDER, 1);
+			clif_status_load(&sd->bl, SI_WUGMOUNT, 1);
 
 		if(sd->status.manner < 0)
 			sc_start(&sd->bl,SC_NOCHAT,100,0,0);
