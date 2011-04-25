@@ -330,11 +330,13 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 				{
 					damage -= group->val3; 
 					skill_delunitgroup(group);
-				}else{	
+				}else{
+					if (--group->val2 <= 0)
+						skill_delunitgroup(group);
 					group->val3 -= damage;
 					d->dmg_lv = ATK_BLOCK;
 					return 0;
-				}			
+				}
 			}
 			status_change_end(bl,SC_SAFETYWALL,-1);
 		}
@@ -2504,7 +2506,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 				int min_damage, max_damage;
 				if(sd){
 					min_damage = sstatus->matk_max*2 + 3*sstatus->matk_min/2;
-					max_damage = ( sstatus->matk_max+(sd->matk_bonus*(sd->status.weapon ? sd->inventory_data[sd->equip_index[EQI_HAND_R]]->wlv:0))/10 )*2 + 3*sstatus->matk_min/2;
+					max_damage = ( sstatus->matk_max+(sd->matk_bonus*(sd->weapontype1 ? sd->inventory_data[sd->equip_index[EQI_HAND_R]]->wlv:0))/10 )*2 + 3*sstatus->matk_min/2;
 				}else{
 					min_damage = sstatus->int_ + (sstatus->int_/7)*(sstatus->int_/7);
 					max_damage = sstatus->int_ + (sstatus->int_/5)*(sstatus->int_/5);
@@ -2514,7 +2516,6 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 				}else{
 					MATK_ADD(min_damage+rand()%(1+max_damage-min_damage));
 				}
-
 
 				if(nk&NK_SPLASHSPLIT){ // Divide MATK in case of multiple targets skill
 					if(mflag>0)
