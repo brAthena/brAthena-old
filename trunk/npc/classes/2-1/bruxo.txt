@@ -17,7 +17,8 @@
 // | Descrição: Mudança de Classe para Bruxo                |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Script Otimizado [Wolf]                                |
+// | 1.0 Script Otimizado [Wolf]                            |
+// | 1.1 Remoção de alguns espaços [Wolf]                   |
 // | - Anotações		   			    					| 
 // \________________________________________________________/
 
@@ -107,7 +108,7 @@ gef_tower,111,37,4	script	Wizard Guildsman	70,{
 				}
 				mes "[Catherine]";
 				mes "Very well then, I accept your application.";
-				mes "Your name is..." + strcharinfo(0) + ", isn't it? I am not sure if I pronounced it correctly?";
+				mes "Your name is..."+strcharinfo(0)+", isn't it? I am not sure if I pronounced it correctly?";
 				next;
 				mes "[Catherine]";
 				mes "The Wizard job change quest is divided into 3 parts.";
@@ -1533,7 +1534,7 @@ OnDisable:
 OnMyMobDead:
 	set .MyMobs,.MyMobs-1;
 	if (.MyMobs < 1) {
-		mapannounce "job_wiz","Congratulations, " + strcharinfo(0) + ". You have passed the job change test.",bc_map;
+		mapannounce "job_wiz","Congratulations, "+strcharinfo(0)+". You have passed the job change test.",bc_map;
 		set WIZ_Q,7;
 		changequest 9017,9018;
 		donpcevent "Room of Fire#Door::OnDisable";

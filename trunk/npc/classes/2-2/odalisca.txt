@@ -17,8 +17,7 @@
 // | Descrição: Mudança de Classe para Odalisca             |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    					| 
+// | 1.0 Remoção de espaços [Wolf]                          |
 // \________________________________________________________/
 
 comodo,180,153,4	script	Sonotora#1	90,{
@@ -172,7 +171,7 @@ job_duncer,43,93,4	script	Aile#da	724,{
 				cutin "job_dancer_eir01",2;
 				mes "[Aile]";
 				mes "Your name is";
-				mes "" + strcharinfo(0) + "?";
+				mes ""+strcharinfo(0)+"?";
 				mes "Wow! What a pretty name! Just a moment, I have to show this to the director, so come back in a little bit, okay?";
 				close2;
 				cutin "",255;
@@ -539,7 +538,7 @@ job_duncer,95,93,4	script	Bijou#da	101,{
 			mes "6. Who is the most";
 			mes "beautiful dancer?";
 			next;
-			switch(select("" + strcharinfo(0) + ":Bijou:Aile:Bonjour")) {
+			switch(select(""+strcharinfo(0)+":Bijou:Aile:Bonjour")) {
 			case 1:
 				mes "[Bijou]";
 				mes "...";
@@ -632,7 +631,7 @@ job_duncer,95,93,4	script	Bijou#da	101,{
 			mes "7. Who is the most";
 			mes "graceful dancer?";
 			next;
-			switch(select("" + strcharinfo(0) + ":Bijou:Isis:Mercy Bokou")) {
+			switch(select(""+strcharinfo(0)+":Bijou:Isis:Mercy Bokou")) {
 			case 1:
 				mes "[Bijou]";
 				mes "...";
@@ -707,7 +706,7 @@ job_duncer,95,93,4	script	Bijou#da	101,{
 			mes "5. Of the following,";
 			mes "who dances most beautifully?";
 			next;
-			switch(select("" + strcharinfo(0) + ":Bijou:Isis:Guton Tak")) {
+			switch(select(""+strcharinfo(0)+":Bijou:Isis:Guton Tak")) {
 			case 1:
 				mes "[Bijou]";
 				mes "...";
@@ -1289,7 +1288,7 @@ OnEnable:
 -	script	dancestep::StepTrigger	-1,1,1,{
 OnTouch:
 	donpcevent "Backdancer#1::OnOmg";
-	mapannounce "job_duncer"," " + strcharinfo(0) + ", you lack rhythm... Your timing was too late!",bc_map;
+	mapannounce "job_duncer"," "+strcharinfo(0)+", you lack rhythm... Your timing was too late!",bc_map;
 	set DANC_Q,8;
 	donpcevent "Bijou#dance_timer::OnDisable";
 	donpcevent "Waiting Room#dance::OnEnable";

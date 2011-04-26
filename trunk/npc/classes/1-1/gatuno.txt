@@ -19,7 +19,7 @@
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [Protimus]                        |
 // | 1.1 Script Revisado [Protimus]                         |
-// | 1.2 Script Otimizado [Wolf]                |
+// | 1.2 Script Otimizado [Wolf]                            |
 // | - Apenas erros do próprio script, não tradução.        |
 // \________________________________________________________/
 

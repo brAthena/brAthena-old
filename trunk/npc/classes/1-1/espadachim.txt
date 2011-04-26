@@ -19,6 +19,7 @@
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [Protimus]                        |
 // | 1.1 Script Revisado [insidemybrain]                    |
+// | 1.2 Correção em algumas frases [Wolf]                  |
 // \________________________________________________________/
 
 izlude_in,74,172,4	script	Espadachim#swd_1	119,{
@@ -37,7 +38,7 @@ izlude_in,74,172,4	script	Espadachim#swd_1	119,{
 				mes "e pratique com a sua espada!! Quero dizer... Treine mais.";
 				next;
 				mes "[Espadachim]";
-				mes "Volte quando tiver Nível 9 de Classe e aprenda as Habilidades Básicas!";
+				mes "Volte aqui quando o nível de Habilidades Básicas estiver em 10.";
 				close;
 			}
 			mes "[Espadachim]";
@@ -199,8 +200,8 @@ izlude_in,62,170,6	script	Espadachim#swd_2	85,{
 		close;
 	}
 	else if (getskilllv("NV_BASIC") < 9) {
-		mes "Pare! Este não é um lugar onde pessoas sem habilidades Básicas até o nível 9 podem entrar";
-		mes "Permitirei que você entre depois que aprender todas as habilidades.";
+		mes "Pare! Este é um lugar onde pessoas sem o nível 10 de Habilidades Básicas não podem entrar.";
+		mes "Assim que você pegar o nível 10 de Habilidades Básicas eu permitirei a sua entrada.";
 		close;
 	}
 	else if (job_sword_q == 4) {

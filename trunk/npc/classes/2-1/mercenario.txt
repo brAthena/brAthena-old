@@ -17,7 +17,8 @@
 // | Descrição: Mudança de Classe para Mercenário           |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Script Otimizado [Wolf]                                |
+// | 1.0 Script Otimizado [Wolf]                            |
+// | 1.1 Remoção de espaços [Wolf]                          |
 // | - Anotações		   			    					| 
 // \________________________________________________________/
 
@@ -196,7 +197,7 @@ in_moc_16,19,33,1	script	Guildsman#asn	55,{
 			mes "Wasn't your name, umm, I remember 'cause it sounded funny to me...";
 			next;
 			mes "[Assassin Expert 'Huey']";
-			mes ":+:" + strcharinfo(0) + ":+:, right? No wait, just "+ strcharinfo(0) +". Yeah, how's it goin'?";
+			mes ":+:"+strcharinfo(0)+":+:, right? No wait, just "+ strcharinfo(0) +". Yeah, how's it goin'?";
 			next;
 			mes "[Assassin Expert 'Huey']";
 			mes "Unfortunately, I don't have any requests for you at this time from the guild. Just keep focusing on your training. Till then, see ya.";
@@ -507,7 +508,7 @@ OnTouch:
 			mes "[Assassin 'Khai']";
 			mes "Let's see.";
 			mes "Your name is";
-			mes "" + strcharinfo(0) + "...";
+			mes ""+strcharinfo(0)+"...";
 			mes "Job level " + JobLevel + "...";
 			next;
 			if (JobLevel > 48) {
@@ -586,7 +587,7 @@ OnTouch:
 			mes "Fill out the application form with your name and job level.";
 			next;
 			mes "[Assassin 'Khai']";
-			mes "" + strcharinfo(0) + "?";
+			mes ""+strcharinfo(0)+"?";
 			mes "That's your name?";
 			mes "It sounds funny.";
 			mes "Let's see... Job Level " + JobLevel + "...";
@@ -1101,7 +1102,7 @@ OnTouch:
 	}
 	if (ASSIN_Q == 1 && ASSIN_Q2 == 5) {
 		mes "[Barcardi]";
-		mes "" + strcharinfo(0) + "...";
+		mes ""+strcharinfo(0)+"...";
 		mes "You passed the test..?";
 		next;
 		mes "[Barcardi]";
@@ -1899,9 +1900,9 @@ OnTouch:
 		mes "Please give me";
 		mes "one second...";
 		next;
-		mapannounce "in_moc_16","Those involved with the testing of " + strcharinfo(0) + ", please gather before me.",bc_map;
+		mapannounce "in_moc_16","Those involved with the testing of "+strcharinfo(0)+", please gather before me.",bc_map;
 		mes "[Guildmaster]";
-		mes "Those involved with the testing of " + strcharinfo(0) + ", please gather before me.";
+		mes "Those involved with the testing of "+strcharinfo(0)+", please gather before me.";
 		next;
 		mes "[Guildmaster]";
 		mes "They will";
@@ -1918,7 +1919,7 @@ OnTouch:
 		mes "I am here.";
 		next;
 		mes "[Guildmaster]";
-		mes "I would like to listen to your opinion of " + strcharinfo(0) + " for the job change test.";
+		mes "I would like to listen to your opinion of "+strcharinfo(0)+" for the job change test.";
 		next;
 		mes "[The Anonymous One]";
 		mes "Ah yeah...";
@@ -2085,7 +2086,7 @@ OnTouch:
 		mes "Upon receiving this token, Huey will promote you to an Assassin.";
 		next;
 		mes "[Guildmaster]";
-		mes "You, " + strcharinfo(0) + ", have chosen to live as an Assassin. May you learn our ways and be an honorable example to others.";
+		mes "You, "+strcharinfo(0)+", have chosen to live as an Assassin. May you learn our ways and be an honorable example to others.";
 		savepoint "morocc",100,100;
 		getitem 1008,1; //Frozen_Heart
 		changequest 8006,8007;

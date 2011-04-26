@@ -18,6 +18,7 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Molini]                          |
+// | 1.1 Remoção de espaço [Wolf]                           |
 // \________________________________________________________/
 
 alde_alche,27,185,5	script	Alchemist Guildsman#am	744,{
@@ -39,7 +40,7 @@ alde_alche,27,185,5	script	Alchemist Guildsman#am	744,{
 	}
 	if (BaseJob != Job_Merchant) {
 		if (BaseJob == Job_Alchemist) {
-			mes "Bem vindo a, " + strcharinfo(0) + ".";
+			mes "Bem vindo a, "+strcharinfo(0)+".";
 			mes "Guilda dos Alquimistas";
 			mes "estamos ocupados hoje, como sempre.";
 			next;

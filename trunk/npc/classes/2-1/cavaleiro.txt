@@ -17,7 +17,8 @@
 // | Descrição: Mudança de Classe para Cavaleiro            |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Script Otimizado [Wolf]                                |
+// | 1.0 Script Otimizado [Wolf]                            |
+// | 1.1 Remoção de espaços [Wolf]                          |
 // | - Anotações		   			    					| 
 // \________________________________________________________/
 
@@ -124,7 +125,7 @@ prt_in,88,101,4	script	Chivalry Captain#knt	56,{
 				mes "[Captain Herman]";
 				mes "Let me see...";
 				mes "Your name is";
-				mes "" + strcharinfo(0) + "...";
+				mes ""+strcharinfo(0)+"...";
 				mes "Is that right?";
 				next;
 				mes "[Captain Herman]";
@@ -183,7 +184,7 @@ prt_in,88,101,4	script	Chivalry Captain#knt	56,{
 	else if (KNIGHT_Q == 2) {
 		mes "[Captain Herman]";
 		mes "Mmm?";
-		mes "Swordman " + strcharinfo(0) + ".";
+		mes "Swordman "+strcharinfo(0)+".";
 		mes "How are the tests?";
 		mes "It may be difficult,";
 		mes "but do your best.";
@@ -192,7 +193,7 @@ prt_in,88,101,4	script	Chivalry Captain#knt	56,{
 	else if (KNIGHT_Q == 3) {
 		mes "[Captain Herman]";
 		mes "Mmm?";
-		mes "Swordman " + strcharinfo(0) + ".";
+		mes "Swordman "+strcharinfo(0)+".";
 		mes "How are the tests?";
 		mes "It may be difficult,";
 		mes "but do your best.";
@@ -201,7 +202,7 @@ prt_in,88,101,4	script	Chivalry Captain#knt	56,{
 	else if (KNIGHT_Q == 4) {
 		mes "[Captain Herman]";
 		mes "Mmm?";
-		mes "Swordman " + strcharinfo(0) + ".";
+		mes "Swordman "+strcharinfo(0)+".";
 		mes "How are the tests?";
 		mes "Ah~ You do not know";
 		mes "who to visit next?";
@@ -223,7 +224,7 @@ prt_in,88,101,4	script	Chivalry Captain#knt	56,{
 	else if (KNIGHT_Q == 5) {
 		mes "[Captain Herman]";
 		mes "Mmm?";
-		mes "Swordman " + strcharinfo(0) + ".";
+		mes "Swordman "+strcharinfo(0)+".";
 		mes "How are the tests?";
 		mes "It may be difficult,";
 		mes "but do your best.";
@@ -232,7 +233,7 @@ prt_in,88,101,4	script	Chivalry Captain#knt	56,{
 	else if (KNIGHT_Q == 6) {
 		mes "[Captain Herman]";
 		mes "Mmm?";
-		mes "Swordman " + strcharinfo(0) + ".";
+		mes "Swordman "+strcharinfo(0)+".";
 		mes "How are the tests?";
 		mes "Ah~ You do not know";
 		mes "who to visit next?";
@@ -255,7 +256,7 @@ prt_in,88,101,4	script	Chivalry Captain#knt	56,{
 	else if (KNIGHT_Q == 7) {
 		mes "[Captain Herman]";
 		mes "Mmm?";
-		mes "Swordman " + strcharinfo(0) + ".";
+		mes "Swordman "+strcharinfo(0)+".";
 		mes "How are the tests?";
 		mes "It may be difficult,";
 		mes "but do your best.";
@@ -264,7 +265,7 @@ prt_in,88,101,4	script	Chivalry Captain#knt	56,{
 	else if (KNIGHT_Q == 8) {
 		mes "[Captain Herman]";
 		mes "Mmm?";
-		mes "Swordman " + strcharinfo(0) + ".";
+		mes "Swordman "+strcharinfo(0)+".";
 		mes "How are the tests?";
 		mes "Ah~ You do not know";
 		mes "who to visit next?";
@@ -293,7 +294,7 @@ prt_in,88,101,4	script	Chivalry Captain#knt	56,{
 	else if (KNIGHT_Q == 9) {
 		mes "[Captain Herman]";
 		mes "Mmm?";
-		mes "Swordman " + strcharinfo(0) + ".";
+		mes "Swordman "+strcharinfo(0)+".";
 		mes "How are the tests?";
 		mes "It may be difficult,";
 		mes "but do your best.";
@@ -302,7 +303,7 @@ prt_in,88,101,4	script	Chivalry Captain#knt	56,{
 	else if (KNIGHT_Q == 10) {
 		mes "[Captain Herman]";
 		mes "Mmm?";
-		mes "Swordman " + strcharinfo(0) + ".";
+		mes "Swordman "+strcharinfo(0)+".";
 		mes "How are the tests?";
 		mes "Ah~ You do not know";
 		mes "who to visit next?";
@@ -329,7 +330,7 @@ prt_in,88,101,4	script	Chivalry Captain#knt	56,{
 	else if (KNIGHT_Q == 11) {
 		mes "[Captain Herman]";
 		mes "Mmm?";
-		mes "Swordman " + strcharinfo(0) + ".";
+		mes "Swordman "+strcharinfo(0)+".";
 		mes "How are the tests?";
 		mes "It may be difficult,";
 		mes "but do your best.";
@@ -338,7 +339,7 @@ prt_in,88,101,4	script	Chivalry Captain#knt	56,{
 	else if (KNIGHT_Q == 12) {
 		mes "[Captain Herman]";
 		mes "Mmm?";
-		mes "Swordman " + strcharinfo(0) + ".";
+		mes "Swordman "+strcharinfo(0)+".";
 		mes "How are the tests?";
 		mes "Ah~ You do not know";
 		mes "who to visit next?";
@@ -592,7 +593,7 @@ prt_in,75,107,4	script	Sir Andrew#knt	65,{
 			mes "You wish";
 			mes "to become a Knight.";
 			mes "Your name is";
-			mes "" + strcharinfo(0) + ",";
+			mes ""+strcharinfo(0)+",";
 			mes "correct?";
 			next;
 			mes "[Sir Andrew]";
@@ -832,7 +833,7 @@ prt_in,71,91,0	script	Sir Siracuse#knt	65,{
 			mes "[Sir Siracuse]";
 			mes "Let's see...";
 			mes "Your name was";
-			mes "" + strcharinfo(0) + ".";
+			mes ""+strcharinfo(0)+".";
 			next;
 			mes "[Sir Siracuse]";
 			mes "But, before you come to me, you must visit the others. The way";

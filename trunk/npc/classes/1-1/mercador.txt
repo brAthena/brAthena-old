@@ -17,8 +17,7 @@
 // | Descrição: Mudança de Classe para Mercador             |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    					| 
+// | 1.0 Remoção de espaços [Wolf]                          |
 // \________________________________________________________/
 
 alberta_in,53,43,6	script	Merchant#mer	86,{
@@ -319,7 +318,7 @@ alberta_in,53,43,6	script	Merchant#mer	86,{
 				next;
 				mes "[Chief Mahnsoo]";
 				mes "Hmm... ";
-				mes "" + strcharinfo(0) + "...";
+				mes ""+strcharinfo(0)+"...";
 				mes "That's a nice name.";
 				next;
 				mes "[Chief Mahnsoo]";
@@ -527,7 +526,7 @@ alberta_in,28,29,2	script	Merchant Guildsman#mer	83,{
 	}
 	else if (job_merchant_q == 6 || job_merchant_q == 5) {
 		mes " [Union Staff Kay] ";
-		mes "Oh, yeah? Okay, lemme check. Your name is " + strcharinfo(0) + "? Alright, your destination was...";
+		mes "Oh, yeah? Okay, lemme check. Your name is "+strcharinfo(0)+"? Alright, your destination was...";
 		next;
 		mes "[Union Staff Kay]";
 		if (job_merchant_q2 == 1 || job_merchant_q2 == 2)
@@ -664,7 +663,7 @@ alberta_in,28,29,2	script	Merchant Guildsman#mer	83,{
 			mes "Alright.";
 			mes "So what's";
 			mes "your name?";
-			mes "" + strcharinfo(0) + "...?";
+			mes ""+strcharinfo(0)+"...?";
 			next;
 			if (job_merchant_q == 0) {
 				mes "[Union Staff Kay]";

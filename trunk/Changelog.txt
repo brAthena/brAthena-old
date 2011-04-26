@@ -9,6 +9,30 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0434 - 26/04/2011 [Wolf]
+	* Otimizações, correções, remoção de espaços, dos seguintes arquivos:
+	- npc/classes/1-1/arqueiro
+	- npc/classes/1-1/espadachim.txt
+	- npc/classes/1-1/gatuno.txt
+	- npc/classes/1-1/mago.txt
+	- npc/classes/1-1/mercador.txt
+	- npc/classes/1-1/novico.txt
+	- npc/classes/2-1/bruxo.txt
+	- npc/classes/2-1/cacador.txt
+	- npc/classes/2-1/cavaleiro.txt
+	- npc/classes/2-1/ferreiro.txt
+	- npc/classes/2-1/mercenario.txt
+	- npc/classes/2-1/sacerdote.txt
+	- npc/classes/2-1e/mestre_taekwon.txt
+	- npc/classes/2-2/alquimista.txt
+	- npc/classes/2-2/arruaceiro.txt
+	- npc/classes/2-2/bardo.txt
+	- npc/classes/2-2/monge.txt
+	- npc/classes/2-2/odalisca.txt
+	- npc/classes/2-2/sabio.txt
+	- npc/classes/2-2/templario.txt
+	- npc/classes/2-2e/espiritualista.txt
+
 	r0433 - 26/04/2011 [Wolf]
 	* Algumas correções do commit anterior:
 	- Acabei removendo algumas coisas sem querer.

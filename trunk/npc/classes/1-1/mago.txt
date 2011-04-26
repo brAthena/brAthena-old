@@ -19,7 +19,8 @@
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [Protimus]                        |
 // | 1.1 Script Revisado [insidemybrain]                    |
-// | 1.2 Script Otimizado [Wolf]                |
+// | 1.2 Script Otimizado [Wolf]                            |
+// | 1.3 Remoção de espaços e correção no cabeçalho [Wolf]  |
 // | Anotações:                                             |
 // | -                                                      |
 // \________________________________________________________/
@@ -321,9 +322,9 @@ geffen_in,164,112,4	script	Máquina de Mistura	111,{
 		while (1) {
 			if (.@progress == 2) {
 				mes "[Máquina de Mistura]";
-				if (.@mixitem1_1 != 0) mes "+getitemname(909)+: " + .@mixitem1_1 + " ea.";
-				if (.@mixitem1_2 != 0) mes "+getitemname(914)+: " + .@mixitem1_2 + " ea.";
-				if (.@mixitem1_3 != 0) mes "+getitemname(519)+: " + .@mixitem1_3 + " ea.";
+				if (.@mixitem1_1 != 0) mes "+getitemname(909)+: "+.@mixitem1_1+" ea.";
+				if (.@mixitem1_2 != 0) mes "+getitemname(914)+: "+.@mixitem1_2+" ea.";
+				if (.@mixitem1_3 != 0) mes "+getitemname(519)+: "+.@mixitem1_3+" ea.";
 				if (.@mixitem2 == 0) mes "Solvente: None.";
 				if (.@mixitem2 == 1) mes "Solvente: "+getitemname(1089)+".";
 				if (.@mixitem2 == 2) mes "Solvente: "+getitemname(1088)+".";

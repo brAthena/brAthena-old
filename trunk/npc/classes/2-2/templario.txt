@@ -17,8 +17,7 @@
 // | Descrição: Mudança de Classe para Templário            |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    					| 
+// | 1.0 Otimização e Remoção de espaços [Wolf]             |
 // \________________________________________________________/
 
 
@@ -125,7 +124,7 @@ prt_castle,45,169,5	script	Senior Crusader	752,{
 				next;
 				mes "[Michael Halig]";
 				mes "Your name is";
-				mes "" + strcharinfo(0) + "...?";
+				mes ""+strcharinfo(0)+"...?";
 				mes "Let's see...";
 				next;
 				if (countitem(1004) && countitem(1009)) {
@@ -194,8 +193,7 @@ prt_castle,45,169,5	script	Senior Crusader	752,{
 			close;
 		}
 		mes "[Michael Halig]";
-		if (sex) mes "If you, too, are a man of the sword, constantly train and prepare yourself. No one knows when the Holy War may begin.";
-		else mes "As a woman of the sword, you must train diligently and constantly. Prepare yourself, for no one knows when the Holy War may be coming.";
+		mes ""+(Sex)?"If you, too, are a man of the sword, constantly train and prepare yourself. No one knows when the Holy War may begin.":"As a woman of the sword, you must train diligently and constantly. Prepare yourself, for no one knows when the Holy War may be coming."+""; 
 		close;
 	}
 	else if(CRUS_Q >= 1 && CRUS_Q <= 3) {
@@ -282,8 +280,7 @@ prt_castle,45,169,5	script	Senior Crusader	752,{
 		mes "[Michael Halig]";
 		mes "Now you are";
 		mes "one of us!";
-		if (sex) mes "...Brother.";
-		else mes "...Comrade.";
+		mes "..."+(Sex)?"Brother.":"Comrade."+""; 
 		next;
 		if(.@JobLevel != 50) getitem 504, 6;
 		else getitem 504, 12;
@@ -333,8 +330,7 @@ prt_castle,164,32,1	script	Man in Anguish	733,{
 	else if(CRUS_Q == 4) {
 		mes "What is it...?";
 		mes "Do you have business";
-		if (sex) mes "with me, man of the sword?";
-		else mes "with me, woman of the sword?";
+		mes "with me,"+(Sex)?"man of the sword?":"woman of the sword?"+""; 
 		next;
 		if (select("I'd like to take the Crusader test.:Nothing.") == 1) {
 			mes "[Murnak Mijoul]";
@@ -342,7 +338,7 @@ prt_castle,164,32,1	script	Man in Anguish	733,{
 			next;
 			mes "[Murnak Mijoul]";
 			mes "Your name is";
-			mes "" + strcharinfo(0) + "...?";
+			mes ""+strcharinfo(0)+"...?";
 			mes "Let me take";
 			mes "a look at your face.";
 			next;
@@ -706,7 +702,7 @@ prt_church,95,127,3	script	Crusader	745,{
 		mes "look at your results.";
 		next;
 		mes "[Gabriel Valentine]";
-		mes " " + strcharinfo(0) + "'s score";
+		mes " "+strcharinfo(0)+"'s score";
 		mes "is " + .@cru_t + " points...";
 		if(.@cru_t == 100) {
 			set CRUS_Q, 8;

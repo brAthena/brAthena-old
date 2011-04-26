@@ -17,8 +17,7 @@
 // | Descrição: Mudança de Classe para Monge                |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    					| 
+// | 1.0 Remoção de espaços [Wolf]                          |
 // \________________________________________________________/
 
 prt_monk,59,247,1	script	Guarding Monk#mk	120,6,2,{
@@ -57,13 +56,13 @@ prt_monk,59,247,1	script	Guarding Monk#mk	120,6,2,{
 			end;
 		}
 		mes "[Tohobu]";
-		mes "Hmm... " + strcharinfo(0) + " is your name?";
+		mes "Hmm... "+strcharinfo(0)+" is your name?";
 		mes "...did I say it right?";
 		mes "Okay, and your job level is " + JobLevel + " correct?";
 		next;
 		mes "[Tohobu]";
 		mes "Very well... why have you come here";
-		mes "" + strcharinfo(0) + "?";
+		mes ""+strcharinfo(0)+"?";
 		next;
 		switch(select("To visit and learn about monks.:I wish to become a monk...:I'm tired and need to rest...")) {
 		case 1:
@@ -203,13 +202,13 @@ prt_monk,59,247,1	script	Guarding Monk#mk	120,6,2,{
 				end;
 			}
 			mes "[Tohobu]";
-			mes "Hmm... " + strcharinfo(0) + " is your name?";
+			mes "Hmm... "+strcharinfo(0)+" is your name?";
 			mes "...did I say it right?";
 			mes "Okay, and your job level is " + JobLevel + " correct?";
 			next;
 			mes "[Tohobu]";
 			mes "Okay, Now, why have you come here";
-			mes "" + strcharinfo(0) + "?";
+			mes ""+strcharinfo(0)+"?";
 			next;
 			switch(select("To visit and learn about monks.:I wish to become a monk...:I'm tired and need to rest...")) {
 			case 1:
@@ -350,10 +349,7 @@ monk_in,99,58,1	script	Sensei Moohae#mk	60,{
 		}
 		mes "[Sensei Moohae]";
 		mes "There are still those who wish to follow the old ways.";
-		if (Sex)
-			mes "A strong young man. I am pleased of your will to join us.";
-		else
-			mes "Such a delicate flower. I am pleased to see your will to join us.";
+		mes ""+(Sex)?"A strong young man. I am pleased of your will to join us.":"Such a delicate flower. I am pleased to see your will to join us."+""; 
 		next;
 		mes "[Sensei Moohae]";
 		mes "Oh, you are the new pupil that wishes to join us...";
@@ -776,10 +772,7 @@ monk_in,99,58,1	script	Sensei Moohae#mk	60,{
 				next;
 				mes "[Sensei Moohae]";
 				mes "Then your training isn't completed.";
-				if (Sex)
-					mes "You will not be accepted as a monk my boy.";
-				else
-					mes "You will not be accepted as a monk little girl.";
+				mes ""+(Sex)?"mes "You will not be accepted as a monk my boy.":"You will not be accepted as a monk little girl."+""; 
 				next;
 				mes "[Sensei Moohae]";
 				mes "In light of this, your training will start again from the beginning....";
@@ -788,25 +781,16 @@ monk_in,99,58,1	script	Sensei Moohae#mk	60,{
 				mes "Come back later when you're ready...";
 				next;
 				mes "[Sensei Moohae]";
-				if (Sex)
-					mes "I hope that you are able to realize what you are to become soon my boy...";
-				else
-					mes "I hope that you are able to realize what you are to become soon my girl...";
+				mes ""+(Sex)?"mes "I hope that you are able to realize what you are to become soon my boy...":"I hope that you are able to realize what you are to become soon my girl..."+""; 
 				close;
 			}
 			mes "[Sensei Moohae]";
 			mes "Then your training is complete...";
 			mes "Please come closer.";
-			if (Sex)
-				mes "We welcome you brother, in our holy battle against evil!";
-			else
-				mes "We welcome you sister, in our holy battle against evil!";
+			mes ""+(Sex)?"mes "We welcome you brother, in our holy battle against evil!":"We welcome you sister, in our holy battle against evil!"+""; 
 			next;
 			mes "[Sensei Moohae]";
-			if (Sex)
-				mes "My brother, your oath has been heard by all around us.";
-			else
-				mes "My sister, your oath has been heard by all around us.";
+			mes ""+(Sex)?"mes "My brother, your oath has been heard by all around us.":"My sister, your oath has been heard by all around us."+""; 
 			next;
 			mes "[Sensei Moohae]";
 			mes "I will now perform the ultimate techniques upon your body...";
@@ -1046,50 +1030,50 @@ prt_monk,251,255,1	script	Touha#mk	79,{
 		if (MONK_Q == 10) {
 			mes "[Touha]";
 			mes "Ok, that is all. Now repeat what I have spoken.";
-			mes "" + strcharinfo(0) + ", your turn.";
+			mes ""+strcharinfo(0)+", your turn.";
 			next;
 		}
 		if (MONK_Q == 11) {
 			switch(select("shall hold true:We monks:and will help protect others:through the teachings:In nomine Patris, et Filii:to what we believe:I seek the path:we learn through our lives.:et Spiritus Sancti.:of enlightenment.")) {
 			case 1:
-				mes "[" + strcharinfo(0) + "]";
+				mes "["+strcharinfo(0)+"]";
 				mes "shall hold true";
 				break;
 			case 2:
-				mes "[" + strcharinfo(0) + "]";
+				mes "["+strcharinfo(0)+"]";
 				mes "We monks";
 				break;
 			case 3:
-				mes "[" + strcharinfo(0) + "]";
+				mes "["+strcharinfo(0)+"]";
 				mes "and will help protect others";
 				break;
 			case 4:
-				mes "[" + strcharinfo(0) + "]";
+				mes "["+strcharinfo(0)+"]";
 				mes "through the teachings";
 				break;
 			case 5:
-				mes "[" + strcharinfo(0) + "]";
+				mes "["+strcharinfo(0)+"]";
 				mes "In nomine Patris, et Filii";
 				break;
 			case 6:
-				mes "[" + strcharinfo(0) + "]";
+				mes "["+strcharinfo(0)+"]";
 				mes "to what we believe";
 				break;
 			case 7:
 				set .@monk_t,.@monk_t+10;
-				mes "[" + strcharinfo(0) + "]";
+				mes "["+strcharinfo(0)+"]";
 				mes "I seek the path";
 				break;
 			case 8:
-				mes "[" + strcharinfo(0) + "]";
+				mes "["+strcharinfo(0)+"]";
 				mes "we learn through our lives.";
 				break;
 			case 9:
-				mes "[" + strcharinfo(0) + "]";
+				mes "["+strcharinfo(0)+"]";
 				mes "et Spiritus Sancti.";
 				break;
 			case 10:
-				mes "[" + strcharinfo(0) + "]";
+				mes "["+strcharinfo(0)+"]";
 				mes "of enlightenment.";
 				break;
 			}
@@ -1233,44 +1217,44 @@ prt_monk,251,255,1	script	Touha#mk	79,{
 		else if (MONK_Q == 12) {
 			switch(select("I will follow my path:veritas and aequitas.:to enlightenment and purity.:I commit myself to:I will protect my:victorious while I breathe.:brothers with my life.:Evil shall never be:In nomine Patris, et Filii:et Spiritus Sancti.")) {
 			case 1:
-				mes "[" + strcharinfo(0) + "]";
+				mes "["+strcharinfo(0)+"]";
 				mes "I will follow my path";
 				break;
 			case 2:
-				mes "[" + strcharinfo(0) + "]";
+				mes "["+strcharinfo(0)+"]";
 				mes "veritas and aequitas.";
 				break;
 			case 3:
-				mes "[" + strcharinfo(0) + "]";
+				mes "["+strcharinfo(0)+"]";
 				mes "to enlightenment and purity.";
 				break;
 			case 4:
-				mes "[" + strcharinfo(0) + "]";
+				mes "["+strcharinfo(0)+"]";
 				set .@monk_t,.@monk_t+10;
 				mes "I commit myself to";
 				break;
 			case 5:
-				mes "[" + strcharinfo(0) + "]";
+				mes "["+strcharinfo(0)+"]";
 				mes "I will protect my";
 				break;
 			case 6:
-				mes "[" + strcharinfo(0) + "]";
+				mes "["+strcharinfo(0)+"]";
 				mes "victorious while I breathe.";
 				break;
 			case 7:
-				mes "[" + strcharinfo(0) + "]";
+				mes "["+strcharinfo(0)+"]";
 				mes "brothers with my life.";
 				break;
 			case 8:
-				mes "[" + strcharinfo(0) + "]";
+				mes "["+strcharinfo(0)+"]";
 				mes "Evil shall never be";
 				break;
 			case 9:
-				mes "[" + strcharinfo(0) + "]";
+				mes "["+strcharinfo(0)+"]";
 				mes "In nomine Patris, et Filii";
 				break;
 			case 10:
-				mes "[" + strcharinfo(0) + "]";
+				mes "["+strcharinfo(0)+"]";
 				mes "et Spiritus Sancti.";
 				break;
 			}
@@ -1413,44 +1397,44 @@ prt_monk,251,255,1	script	Touha#mk	79,{
 		else if (MONK_Q == 13) {
 			switch(select("for thee my lord for thee.:And shepherds we shall be,:Power hath descended forth:out thy command. And we shall:from the hand:flow a river forth to thee and:so our feet may swiftly carry:teeming with souls shall it ever be:et Spiritus Sancti.:In nomine Patris, et Filii")) {
 			case 1:
-				mes "[" + strcharinfo(0) + "]";
+				mes "["+strcharinfo(0)+"]";
 				mes "for thee my lord for thee.";
 				break;
 			case 2:
-				mes "[" + strcharinfo(0) + "]";
+				mes "["+strcharinfo(0)+"]";
 				set .@monk_t,.@monk_t+10;
 				mes "And shepherds we shall be,";
 				break;
 			case 3:
-				mes "[" + strcharinfo(0) + "]";
+				mes "["+strcharinfo(0)+"]";
 				mes "Power hath descended forth";
 				break;
 			case 4:
-				mes "[" + strcharinfo(0) + "]";
+				mes "["+strcharinfo(0)+"]";
 				mes "out thy command. And we shall";
 				break;
 			case 5:
-				mes "[" + strcharinfo(0) + "]";
+				mes "["+strcharinfo(0)+"]";
 				mes "from the hand";
 				break;
 			case 6:
-				mes "[" + strcharinfo(0) + "]";
+				mes "["+strcharinfo(0)+"]";
 				mes "flow a river forth to thee and";
 				break;
 			case 7:
-				mes "[" + strcharinfo(0) + "]";
+				mes "["+strcharinfo(0)+"]";
 				mes "so our feet may swiftly carry";
 				break;
 			case 8:
-				mes "[" + strcharinfo(0) + "]";
+				mes "["+strcharinfo(0)+"]";
 				mes "teeming with souls shall it ever be";
 				break;
 			case 9:
-				mes "[" + strcharinfo(0) + "]";
+				mes "["+strcharinfo(0)+"]";
 				mes "et Spiritus Sancti.";
 				break;
 			case 10:
-				mes "[" + strcharinfo(0) + "]";
+				mes "["+strcharinfo(0)+"]";
 				mes "In nomine Patris, et Filii";
 				break;
 			}
@@ -1866,7 +1850,7 @@ prt_monk,199,169,3	script	Door Keeper#mk	746,{
 	}
 	else if (MONK_Q > 14 && MONK_Q < 25) {
 		mes "[Keeper Chorip]";
-		mes "Is your name " + strcharinfo(0) + "?";
+		mes "Is your name "+strcharinfo(0)+"?";
 		next;
 		if (select("Yes.:No.") == 1) {
 			mes "[Keeper Chorip]";
@@ -1956,8 +1940,8 @@ monk_test,386,388,4	script	Apprentice Monk#mk	110,{
 	next;
 	if (select("Quit.:Keep running.") == 1) {
 		mes "[Monk Apprentice]";
-		mes "" + strcharinfo(0) + "...q.q..q. .quit! ...the marathon!! Y...you do not have what it takes to be a m... monk!";
-		mapannounce "monk_test","" + strcharinfo(0) + "...q.q..q. .quit! ...the marathon!! Y...you do not have what it takes to be a m... monk!",bc_map;
+		mes ""+strcharinfo(0)+"...q.q..q. .quit! ...the marathon!! Y...you do not have what it takes to be a m... monk!";
+		mapannounce "monk_test",""+strcharinfo(0)+"...q.q..q. .quit! ...the marathon!! Y...you do not have what it takes to be a m... monk!",bc_map;
 		close2;
 		set MONK_Q,15;
 		changequest 3028,3027;
@@ -2043,7 +2027,7 @@ job_monk,225,180,1	script	Hyunmoo#mk	89,{
 		}
 		mes "[Hyunmoo]";
 		mes ".....I figured as much....you don't have a spirit.";
-		mapannounce "job_monk","" + strcharinfo(0) + ", has quit his testing to become a monk.",bc_map;
+		mapannounce "job_monk",""+strcharinfo(0)+", has quit his testing to become a monk.",bc_map;
 		close2;
 		set MONK_Q,16;
 		changequest 3027,3028;
@@ -2086,11 +2070,11 @@ job_monk,225,180,1	script	Hyunmoo#mk	89,{
 		}
 		mes "[Hyunmoo]";
 		mes ".....yeah I thought as much....you don't have the spirit needed to become a monk.";
-		mapannounce "job_monk","" + strcharinfo(0) + ", has quit his testing to become a monk.",bc_map;
+		mapannounce "job_monk",""+strcharinfo(0)+", has quit his testing to become a monk.",bc_map;
 		delitem 1069,countitem(1069); //Mushroom_Of_Thief_1
 		delitem 1070,countitem(1070); //Mushroom_Of_Thief_2
 		close2;
-		mapannounce "job_monk","" + strcharinfo(0) + ", has quit his training to become a monk.",bc_map;
+		mapannounce "job_monk",""+strcharinfo(0)+", has quit his training to become a monk.",bc_map;
 		warp "prt_monk",194,168;
 		set MONK_Q,16;
 		changequest 3027,3028;

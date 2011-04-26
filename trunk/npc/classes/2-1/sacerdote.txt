@@ -17,7 +17,8 @@
 // | Descrição: Mudança de Classe para Sacerdote            |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Script Otimizado [Wolf]                                |
+// | 1.0 Script Otimizado [Wolf]                            |
+// | 1.1 Remoção de espaços [Wolf]                          |
 // | - Anotações		   			    					| 
 // \________________________________________________________/
 
@@ -222,9 +223,9 @@ prt_church,16,41,4	script	High Bishop#prst	60,{
 				setquest 8009;
 					mes "[Bishop Paul]";
 				if (sex)
-					mes "Now I will explain the Three Trials of Priesthood. These tribulations will bring you much suffering, but I hope you can complete them, Brother " + strcharinfo(0) + ".";
+					mes "Now I will explain the Three Trials of Priesthood. These tribulations will bring you much suffering, but I hope you can complete them, Brother "+strcharinfo(0)+".";
 				else
-					mes "Now I will explain the Three Trials of Priesthood. These tribulations will bring you much suffering, but I hope you can complete them, Sister " + strcharinfo(0) + ".";
+					mes "Now I will explain the Three Trials of Priesthood. These tribulations will bring you much suffering, but I hope you can complete them, Sister "+strcharinfo(0)+".";
 				next;
 				mes "[Bishop Paul]";
 				mes "For the First Trial, you will make a pilgrimage, and visit three acscetic Priests in a specific order.";

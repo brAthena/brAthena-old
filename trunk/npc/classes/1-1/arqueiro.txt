@@ -19,6 +19,7 @@
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [Protimus]                        |
 // | 1.1 Script Revisado [insidemybrain]                    |
+// | 1.2 Corrigido alguns erros [Wolf]                      |
 // \________________________________________________________/
 
 payon_in02,64,71,4	script	Arqueiro#archer	85,{
@@ -88,7 +89,7 @@ payon_in02,64,71,4	script	Arqueiro#archer	85,{
 				set job_archer_q,1;
 				setquest 1004;
 				mes "[Membro da Guilda dos Arqueiros]";
-				mes "Ok, assine aqui... Certo... Hmm. Você será promovido assim que cumprir os pré-requisitos necessários.";
+				mes "Ok, assine aqui... Certo... Hmm, você será promovido de classe assim que cumprir os pré-requisitos necessários.";
 				mes "Se você acha que está pronto, podemos começar agora.";
 				mes "Você está pronto?";
 				next;
@@ -109,7 +110,7 @@ payon_in02,64,71,4	script	Arqueiro#archer	85,{
 			close;
 		}
 		mes "[Membro da Guilda dos Arqueiros]";
-		mes "Você se chama " + strcharinfo(0) + "?";
+		mes "Você se chama "+strcharinfo(0)+"?";
 		next;
 		if (getskilllv("NV_BASIC") < 9) {
 			mes "[Membro da Guilda dos Arqueiros]";

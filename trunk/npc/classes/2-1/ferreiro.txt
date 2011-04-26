@@ -17,7 +17,8 @@
 // | Descrição: Mudança de Classe para Ferreiro             |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Script Otimizado [Wolf]                                |
+// | 1.0 Script Otimizado [Wolf]                            |
+// | 1.1 Remoção de espaços [Wolf]                          |
 // | - Anotações		   			    					| 
 // \________________________________________________________/
 
@@ -1044,7 +1045,7 @@ morocc,27,112,4	script	Wickebine#BLS	725,{
 		mes "Here's the receipt.";
 		mes "I think you did";
 		mes "a good job.";
-		mapannounce "morocc","Thanks for delivering, " + strcharinfo(0) + "~!",bc_map;
+		mapannounce "morocc","Thanks for delivering, "+strcharinfo(0)+"~!",bc_map;
 		close2;
 		cutin "Job_Black_hucke02",255;
 		end;

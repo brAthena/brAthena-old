@@ -19,6 +19,7 @@
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [Protimus]                        |
 // | 1.1 Script Revisado [insidemybrain]                    |
+// | 1.2 Remoção de alguns espaços [Wolf]                   |
 // \________________________________________________________/
 
 prt_church,184,41,4	script	Necrus#aco	60,{
@@ -87,7 +88,7 @@ prt_church,184,41,4	script	Necrus#aco	60,{
 			next;
 			if (select("Sim.:Não, eu menti.") == 1) {
 				mes "[Necrus]";
-				mes "Muito bom. Eu aceito a vontade de " + strcharinfo(0) + " em se tornar um Noviço.";
+				mes "Muito bom. Eu aceito a vontade de "+strcharinfo(0)+" em se tornar um Noviço.";
 				next;
 				mes "[Necrus]";
 				mes "Espero que você entenda que para se tornar um servo do Senhor, deverás realizar uma penitência.";
@@ -224,7 +225,7 @@ prt_fild03,365,255,2	script	Irmão Simão#aco	89,{
 			if (job_acolyte_q == 2) {
 	   			mes "Oh... Você é o jovem que deseja se tornar um Noviço, não é?";
 				next;
-	   			mes "Você se chama " + strcharinfo(0) + ", certo? Bem, muito obrigado por ter vindo me visitar!";
+	   			mes "Você se chama "+strcharinfo(0)+", certo? Bem, muito obrigado por ter vindo me visitar!";
 				mes "Eu acredito que Necrus já lhe contou sobre os noviços.";
 				next;
 				mes "[Irmão Simão]";
@@ -248,7 +249,7 @@ prt_fild03,365,255,2	script	Irmão Simão#aco	89,{
 				mes "Oh... Você é o jovem que deseja se tornar um Noviço, não é?";
 				next;
 				mes "[Irmão Simão]";
-				mes "Você se chama " + strcharinfo(0) + ", certo? Hmm.. Sinto informa-lhe que seu nome não se encontra em minha lista.";
+				mes "Você se chama "+strcharinfo(0)+", certo? Hmm.. Sinto informa-lhe que seu nome não se encontra em minha lista.";
 				next;
 				mes "[Irmão Simão]";
 				mes "Recomendo que você verifique corretamente qual é a sua peregrinação.";
@@ -293,7 +294,7 @@ moc_fild07,41,355,4	script	Irmã Matilda#2aco	95,{
 				mes "Oh... Você é o jovem que deseja se tornar um Noviço, não é?";
 				next;
 				mes "[Irmã Matilda]";
-				mes "Você se chama " + strcharinfo(0) + ", certo? Bem, muito obrigada por ter vindo me visitar!";
+				mes "Você se chama "+strcharinfo(0)+", certo? Bem, muito obrigada por ter vindo me visitar!";
 				mes "Eu mandarei a notícia de que você chegou até aqui para o Necrus.";
 				mes "Desejo-lhe uma jornada segura de volta à Prontera.";
 				close2;
@@ -304,7 +305,7 @@ moc_fild07,41,355,4	script	Irmã Matilda#2aco	95,{
 			else {
 				mes "[Irmã Matilda]";
 				mes "Oh... Você é o jovem que deseja se tornar um Noviço, não é?";
-				mes "Você se chama " + strcharinfo(0) + ", certo? Hmm...";
+				mes "Você se chama "+strcharinfo(0)+", certo? Hmm...";
 				mes "Sinto informa-lhe que seu nome não se encontra em minha lista.";
 				next;
 				mes "[Irmã Matilda]";
@@ -349,7 +350,7 @@ prt_fild00,208,218,6	script	Irmão Bartolomeu#3aco	98,{
 				next;
 				mes "[Irmão Bartolomeu]";
 	   			mes "Nada mal hein, chegou até aqui inteiro...";
-	  			mes "O seu nome é " + strcharinfo(0) + ", não é?";
+	  			mes "O seu nome é "+strcharinfo(0)+", não é?";
 	   			next;
 	   			mes "[Irmão Bartolomeu]";				
 	   			mes "Então está tudo certinho, vou avisar o Necrus de que você chegou até aqui.";
@@ -365,7 +366,7 @@ prt_fild00,208,218,6	script	Irmão Bartolomeu#3aco	98,{
 				next;
 				mes "[Irmão Bartolomeu]";
 				mes "Nada mal hein, chegou até aqui inteiro...";
-				mes "Qual o seu nome? " + strcharinfo(0) + "? Hmmm... O seu nome não está na minha lista...";
+				mes "Qual o seu nome? "+strcharinfo(0)+"? Hmmm... O seu nome não está na minha lista...";
 				next;
 				mes "[Irmão Bartolomeu]";
 				mes "Acho que você se confundiu, você deve visitar outra pessoa, não eu.";

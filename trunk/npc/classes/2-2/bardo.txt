@@ -18,6 +18,7 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Molini]                          |
+// | 1.1 Otimização [Wolf]                                  |
 // \________________________________________________________/
 
 //=============== Ayealo ============================
@@ -89,8 +90,7 @@ comodo,226,123,5	script	Wandering Bard	741,{
 	else if(BARD_Q == 0) {
 		cutin "job_bard_aiolo01",2;
 		mes "[Lalo]";
-		if (sex) mes "Oi! Arqueiro.";
-		else mes "Olá! Linda Arqueira.";
+		mes "Olá! "+(Sex)?"Arqueiro.":"Linda Arqueira."+""; 
 		mes "Como pode um vagabundo como eu ajudá-lo?";
 		next;
 		switch(select("Você tem uma voz linda.:Poderia cantar para mim, por favor?:Nada.")) {

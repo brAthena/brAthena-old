@@ -1,4 +1,4 @@
-//  ________________________________________________________
+ //  ________________________________________________________
 // /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
@@ -19,8 +19,7 @@
 // | SOUL_Q = Job Change Phase. (Max 4)						|
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    					| 
+// | 1.0 Otimização [Wolf]                                  |
 // \________________________________________________________/
 
 morocc_in,174,30,6	script	Kid#link1	716,{
@@ -36,14 +35,7 @@ morocc_in,174,30,6	script	Kid#link1	716,{
 	}
 	if (Class == Job_Star_Gladiator) {
 		mes "[Kid]";
-		if (Sex == 1) {
-			mes "Aren't you a warrior";
-			mes "of the sun? I'm familiar";
-		}
-		else {
-			mes "Aren't you a warrior of";
-			mes "the moon? I'm familiar";
-		}
+		mes "Aren't you a warrior of "+(Sex)?"the sun? I'm familiar":"the moon? I'm familiar"+""; 
 		mes "with your ways. After all,";
 		mes "the basis of both of our";
 		mes "skills is grounded in the";

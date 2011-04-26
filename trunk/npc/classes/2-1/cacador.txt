@@ -17,7 +17,8 @@
 // | Descrição: Mudança de Classe para Caçador              |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Script Otimizado [Wolf]                                |
+// | 1.0 Script Otimizado [Wolf]                            |
+// | 1.1 Remoção de alguns espaços [Wolf]                   |
 // | - Anotações		   			    					| 
 // \________________________________________________________/
 
@@ -111,7 +112,7 @@ hu_in01,386,373,4	script	Hunter Guildsman#hnt	727,{
 	}
 	else if (BaseJob == Job_Hunter) {
 		mes "[Hunter Sherin]";
-		mes "Oh~ " + strcharinfo(0) + "!!";
+		mes "Oh~ "+strcharinfo(0)+"!!";
 		mes "Long time no see~ What brings you here? Did your Falcon run away or something?";
 		next;
 		mes "[Hunter Sherin]";
@@ -436,13 +437,13 @@ hu_in01,386,373,4	script	Hunter Guildsman#hnt	727,{
 hu_in01,382,382,4	script	Guild Receptionist#hnt	732,{
 	if (HNTR_Q == 2) {
 		mes "[Guild Receptionist]";
-		mes "Greetings. They call me... ^660000The Demon Hunter^000000. I am the one in charge of processing applications. Your name is ... " + strcharinfo(0) + ", correct?";
+		mes "Greetings. They call me... ^660000The Demon Hunter^000000. I am the one in charge of processing applications. Your name is ... "+strcharinfo(0)+", correct?";
 		next;
 		set .@selection,select("Yes, that is correct.:Nope~~(heeheehee)");
 		if (.@selection == 2) {
 			mes "[Demon Hunter]";
 			mes "Hey, stop messing around.";
-			mes "Your name is " + strcharinfo(0) + ", right?";
+			mes "Your name is "+strcharinfo(0)+", right?";
 			next;
 			if (select("Yes...:Hehehe. I keep telling you, it's not~~") == 1) {
 				mes "[Demon Hunter]";
@@ -1245,57 +1246,57 @@ OnTouch:
 	case 10: mapannounce "job_hunte",strcharinfo(0) + "... aww~ Try again! You can do it!",bc_map; break;
 	case 11: mapannounce "job_hunte",strcharinfo(0) + ", @#$%#^!@ and you wanna be a what? Hunter? Get back there!",bc_map; break;
 	case 12: mapannounce "job_hunte",strcharinfo(0) + " was defeated by the forces of evil. Don't give up, hero!",bc_map; break;
-	case 13: mapannounce "job_hunte","I put a spell on you " + strcharinfo(0) + " and now you're mine! Go start over now.",bc_map; break;
+	case 13: mapannounce "job_hunte","I put a spell on you "+strcharinfo(0)+" and now you're mine! Go start over now.",bc_map; break;
 	case 14: mapannounce "job_hunte",strcharinfo(0) + ". G'day mate, welcome to the land down under. As a present, I'll send you to the starting point...",bc_map; break;
-	case 15: mapannounce "job_hunte","That's my nest " + strcharinfo(0) + "! dont step there, squawk~ Start over.",bc_map; break;
+	case 15: mapannounce "job_hunte","That's my nest "+strcharinfo(0)+"! dont step there, squawk~ Start over.",bc_map; break;
 	case 16: mapannounce "job_hunte",strcharinfo(0) + ", another archer down. 3 more to go!",bc_map; break;
 	case 17: mapannounce "job_hunte",strcharinfo(0) + ", have you got what it takes? Then try again.",bc_map; break;
-	case 18: mapannounce "job_hunte","Alas, " + strcharinfo(0) + ", you have fallen prey to the most feared of traps. The dreaded stink bomb! Run run run awaaaaaay!",bc_map; break;
+	case 18: mapannounce "job_hunte","Alas, "+strcharinfo(0)+", you have fallen prey to the most feared of traps. The dreaded stink bomb! Run run run awaaaaaay!",bc_map; break;
 	case 19: mapannounce "job_hunte",strcharinfo(0) + " had too much prune juice to drink today. Back to the starting point~",bc_map; break;
-	case 20: mapannounce "job_hunte","No.... " + strcharinfo(0) + ", you have fallen into a trap. You will be returned to the starting point.",bc_map; break;
-	case 21: mapannounce "job_hunte","Meow *pounce* look my kitties we'll have some" + strcharinfo(0) + "stew. Back to the starting point if you don't want to become stew!",bc_map; break;
-	case 22: mapannounce "job_hunte","Sorry " + strcharinfo(0) + ", but you've actually found a BAD secret. You will be returned to the starting point.",bc_map; break;
+	case 20: mapannounce "job_hunte","No.... "+strcharinfo(0)+", you have fallen into a trap. You will be returned to the starting point.",bc_map; break;
+	case 21: mapannounce "job_hunte","Meow *pounce* look my kitties we'll have some"+strcharinfo(0)+"stew. Back to the starting point if you don't want to become stew!",bc_map; break;
+	case 22: mapannounce "job_hunte","Sorry "+strcharinfo(0)+", but you've actually found a BAD secret. You will be returned to the starting point.",bc_map; break;
 	case 23: mapannounce "job_hunte",strcharinfo(0) + ", silly Archer...your tenacity is touching. But it's back to the start for you...",bc_map; break;
 	case 24: mapannounce "job_hunte",strcharinfo(0) + ", you've fallen and you can't get up. You'll be carried back to the starting point.",bc_map; break;
-	case 25: mapannounce "job_hunte","Skip a turn " + strcharinfo(0) + ", go back to start.",bc_map; break;
+	case 25: mapannounce "job_hunte","Skip a turn "+strcharinfo(0)+", go back to start.",bc_map; break;
 	case 26: mapannounce "job_hunte",strcharinfo(0) + ", nya nya, heh heh heh. You will be returned to the starting point.",bc_map; break;
-	case 27: mapannounce "job_hunte","Practice is over " + strcharinfo(0) + ". This time show me for real.",bc_map; break;
+	case 27: mapannounce "job_hunte","Practice is over "+strcharinfo(0)+". This time show me for real.",bc_map; break;
 	case 28: mapannounce "job_hunte",strcharinfo(0) + ", this is a Poring jellopy raid...Get out! Start from the beginning if you wish to continue.",bc_map; break;
-	case 29: mapannounce "job_hunte","Disconnected from server. " + strcharinfo(0) + ", you have to start over.",bc_map; break;
+	case 29: mapannounce "job_hunte","Disconnected from server. "+strcharinfo(0)+", you have to start over.",bc_map; break;
 	case 30: mapannounce "job_hunte",strcharinfo(0) + ", what does this button do...oops! I'm afraid you have to start over.",bc_map; break;
 	case 31: mapannounce "job_hunte",strcharinfo(0) + ", you have entered the bonus round! Aaaand, you lost. You will be returned to the starting point.",bc_map; break;
-	case 32: mapannounce "job_hunte","Oh, no " + strcharinfo(0) + ", you've stepped on a hive of bees. You narrowly escaped, all the way back to the beginning.",bc_map; break;
+	case 32: mapannounce "job_hunte","Oh, no "+strcharinfo(0)+", you've stepped on a hive of bees. You narrowly escaped, all the way back to the beginning.",bc_map; break;
 	case 33: mapannounce "job_hunte",strcharinfo(0) + ", wait wait. That's a trap! Oh wait, that's dog. . . .",bc_map; break;
-	case 34: mapannounce "job_hunte","Stop " + strcharinfo(0) + "! For stepping on that trap, I shall punish you!",bc_map; break;
+	case 34: mapannounce "job_hunte","Stop "+strcharinfo(0)+"! For stepping on that trap, I shall punish you!",bc_map; break;
 	case 35: mapannounce "job_hunte",strcharinfo(0) + ", I'll be back. . . I hope you will too.",bc_map; break;
 	case 36: mapannounce "job_hunte",strcharinfo(0) + ", Come with me if you want to live. . to the starting point.",bc_map; break;
 	case 37: mapannounce "job_hunte",strcharinfo(0) + ", my... precious! Go back to the starting point.",bc_map; break;
-	case 38: mapannounce "job_hunte","Follow the yellow brick road... No wait, " + strcharinfo(0) + "!! Not that way...Back to the starting point it is.",bc_map; break;
+	case 38: mapannounce "job_hunte","Follow the yellow brick road... No wait, "+strcharinfo(0)+"!! Not that way...Back to the starting point it is.",bc_map; break;
 	case 39: mapannounce "job_hunte",strcharinfo(0) + ", you've really go to get the hang of this 'in tune with nature' thing. Now, you're lost!",bc_map; break;
 	case 40: mapannounce "job_hunte",strcharinfo(0) + ", it's only a story...not real. But you will be returned to the starting point.",bc_map; break;
 	case 41: mapannounce "job_hunte",strcharinfo(0) + ", you have fallen into a trap. And the trap...has fallen into you. Returning you to the starting point.",bc_map; break;
-	case 42: mapannounce "job_hunte","Fear not " + strcharinfo(0) + ", for you too, shall learn the powers of the dark side. You will now be returned to the starting point.",bc_map; break;
+	case 42: mapannounce "job_hunte","Fear not "+strcharinfo(0)+", for you too, shall learn the powers of the dark side. You will now be returned to the starting point.",bc_map; break;
 	case 43: mapannounce "job_hunte",strcharinfo(0) + ", fell into a trap. Quite easily too, I'm afraid. But this hero won't be beaten that easily!",bc_map; break;
 	case 44: mapannounce "job_hunte"," Tip of the day: Do not step on the traps. You will be returned to the starting point.",bc_map; break;
-	case 45: mapannounce "job_hunte",strcharinfo(0) + " fell into a trap. Once again, for clarity's sake, the name is " + strcharinfo(0) + ".",bc_map; break;
-	case 46: mapannounce "job_hunte","Oy oy, " + strcharinfo(0) + ".. I've seen blind Porings get further! Go back to the starting point.",bc_map; break;
-	case 47: mapannounce "job_hunte","MY EYES!! " + strcharinfo(0) + ", you... you.. stepped on them. Go try again...I'd cry for you if I could even shed tears...",bc_map; break;
+	case 45: mapannounce "job_hunte",strcharinfo(0) + " fell into a trap. Once again, for clarity's sake, the name is "+strcharinfo(0)+".",bc_map; break;
+	case 46: mapannounce "job_hunte","Oy oy, "+strcharinfo(0)+".. I've seen blind Porings get further! Go back to the starting point.",bc_map; break;
+	case 47: mapannounce "job_hunte","MY EYES!! "+strcharinfo(0)+", you... you.. stepped on them. Go try again...I'd cry for you if I could even shed tears...",bc_map; break;
 	case 48: mapannounce "job_hunte",strcharinfo(0) + ", where are you? Right...NOT at the place where'd you be if you passed the test.",bc_map; break;
-	case 49: mapannounce "job_hunte"," Wow, they actually paid a guy to think of these comments. " + strcharinfo(0) + ", you can go back to the starting point.",bc_map; break;
-	case 50: mapannounce "job_hunte"," My word, " + strcharinfo(0) + "! You've precariously fallen into a trap! You will be returned back to the start. Cheerio~!",bc_map; break;
+	case 49: mapannounce "job_hunte"," Wow, they actually paid a guy to think of these comments. "+strcharinfo(0)+", you can go back to the starting point.",bc_map; break;
+	case 50: mapannounce "job_hunte"," My word, "+strcharinfo(0)+"! You've precariously fallen into a trap! You will be returned back to the start. Cheerio~!",bc_map; break;
 	case 51: mapannounce "job_hunte",strcharinfo(0) + ", do you have any idea where you're going? Start over *sigh*.",bc_map; break;
 	case 52: mapannounce "job_hunte",strcharinfo(0) + ", do you like green tea ice cream? No? Go back to the starting point...*hmph*",bc_map; break;
-	case 53: mapannounce "job_hunte","Oh, no.. " + strcharinfo(0) + ", are you hurt? Come now, let's go back to the starting point.",bc_map; break;
-	case 54: mapannounce "job_hunte","Hi " + strcharinfo(0) + ", how are you? Here's a present~ a free warp! Back to the starting point.",bc_map; break;
+	case 53: mapannounce "job_hunte","Oh, no.. "+strcharinfo(0)+", are you hurt? Come now, let's go back to the starting point.",bc_map; break;
+	case 54: mapannounce "job_hunte","Hi "+strcharinfo(0)+", how are you? Here's a present~ a free warp! Back to the starting point.",bc_map; break;
 	case 55: mapannounce "job_hunte",strcharinfo(0) + ".......... did you know that that was a trap? I hope so, otherwise, I guess you'd be pretty embarassed.",bc_map; break;
 	case 56: mapannounce "job_hunte",strcharinfo(0) + ", what do you think of the interior design? I worked very hard on it... and this lovely feature that sends you back to the starting point.",bc_map; break;
-	case 57: mapannounce "job_hunte","BOOM BAM BOOM! " + strcharinfo(0) + ", you have fallen into my trap! But I won't kill you...just...humiliate you...",bc_map; break;
-	case 58: mapannounce "job_hunte","Oh, " + strcharinfo(0) + ".. You can do better. Try again!",bc_map; break;
-	case 59: mapannounce "job_hunte","Hello, this is your local Kafra worker... " + strcharinfo(0) + ", your mommy is waiting for you at the checkout line.",bc_map; break;
+	case 57: mapannounce "job_hunte","BOOM BAM BOOM! "+strcharinfo(0)+", you have fallen into my trap! But I won't kill you...just...humiliate you...",bc_map; break;
+	case 58: mapannounce "job_hunte","Oh, "+strcharinfo(0)+".. You can do better. Try again!",bc_map; break;
+	case 59: mapannounce "job_hunte","Hello, this is your local Kafra worker... "+strcharinfo(0)+", your mommy is waiting for you at the checkout line.",bc_map; break;
 	case 60: mapannounce "job_hunte",strcharinfo(0) + ", if you do well. I'll have a nice present waiting for you... What is it? You'll see if you pass~ Go try again now!",bc_map; break;
 	case 61: mapannounce "job_hunte",strcharinfo(0) + " faaaaaaaaaaaaaaaaailed.. Hehe, just kidding. You will be returned to the starting point so try again!",bc_map; break;
 	case 62: mapannounce "job_hunte",strcharinfo(0) + ", you fell into a trap. You should watch your feet more. What? Invisible? That's baby talk! Now go try again!",bc_map; break;
-	case 63: mapannounce "job_hunte"," Sorry, " + strcharinfo(0) + ", you have fallen into a trap. But I'll be nice and send you to the starting point.",bc_map; break;
+	case 63: mapannounce "job_hunte"," Sorry, "+strcharinfo(0)+", you have fallen into a trap. But I'll be nice and send you to the starting point.",bc_map; break;
 	case 64: mapannounce "job_hunte",strcharinfo(0) + ", HAHAHAHAHAHA!!!! I can't believe you fell for that one!",bc_map; break;
 	case 65: mapannounce "job_hunte",strcharinfo(0) + ", I was just about to tell you about that one...but, I didn't? Back to start.",bc_map; break;
 	case 66: mapannounce "job_hunte",strcharinfo(0) + "...I'm sorry my friend, but you lose. But don't worry, its not like this message is broadcast or anything.",bc_map; break;
