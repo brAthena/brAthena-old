@@ -17,7 +17,7 @@
 // | Descrição: Mudança de Classe para Taekwon              |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
+// | 1.0 Script Otimizado [Wolf]                                |
 // | - Anotações		   			    					| 
 // \________________________________________________________/
 
@@ -387,11 +387,7 @@ payon,157,141,5	script	Phoenix#TKJobChange	753,{
 			mes "You are still young, so";
 			mes "I assume you'll want a job";
 			mes "title. Mm. In that case, you";
-			if(Sex == 0) {
-				mes "are now a ^FF0000Taekwon Girl^000000.";
-			} else {
-				mes "are now a ^FF0000Taekwon Boy^000000.";
-			}
+			mes ""+(Sex)?"are now a ^FF0000Taekwon Girl^000000.":"are now a ^FF0000Taekwon Boy^000000."+"";
 			mes "Yes, that sounds good. ";
 			next;
 			mes "[Phoenix]";

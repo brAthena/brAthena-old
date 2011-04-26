@@ -17,7 +17,7 @@
 // | Descrição: Mudança de Classe para Cavaleiro            |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
+// | 1.0 Script Otimizado [Wolf]                                |
 // | - Anotações		   			    					| 
 // \________________________________________________________/
 
@@ -49,10 +49,7 @@ prt_in,88,101,4	script	Chivalry Captain#knt	56,{
 				mes "[Captain Herman]";
 				mes "A-ha~";
 				mes "A Swordman, you say?";
-				if (sex)
-					mes "I'm sorry, lad, but you've";
-				else
-					mes "I'm sorry, lass, but you've";
+				mes ""+(Sex)?"I'm sorry, lad, but you've":"I'm sorry, lass, but you've"+"";
 				mes "come to the wrong place!";
 				next;
 				mes "[Captain Herman]";
@@ -88,10 +85,7 @@ prt_in,88,101,4	script	Chivalry Captain#knt	56,{
 		if (select("I want to change my job to a Knight.:Just visiting.") == 1) {
 			mes "[Captain Herman]";
 			mes "Ohh...";
-			if (sex)
-				mes "A young man who wishes";
-			else
-				mes "A young lady who wishes";
+			mes ""+(Sex)?"A young man who wishes":"A young lady who wishes"+"";
 			mes "to become a Knight!";
 			mes "Our Prontera Chivalry";
 			mes "will assist you.";
@@ -415,10 +409,7 @@ prt_in,88,101,4	script	Chivalry Captain#knt	56,{
 			mes "gathered items";
 			mes "that are troublesome";
 			mes "to obtain. I approve!";
-			if (sex)
-				mes "I believe he will continue to be loyal after becoming a Knight.";
-			else
-				mes "I believe she will continue to be loyal after becoming a Knight.";
+			mes ""+(Sex)?"I believe he will continue to be loyal after becoming a Knight.":"I believe she will continue to be loyal after becoming a Knight."+"";
 		}
 		next;
 		mes "[Captain Herman]";
@@ -489,10 +480,7 @@ prt_in,88,101,4	script	Chivalry Captain#knt	56,{
 		mes "to hear your thoughts.";
 		next;
 		mes "[Gray]";
-		if (sex)
-			mes "A young gentleman coming here with the determination to become a Knight is enough...";
-		else
-			mes "A young lady coming here with the determination to become a Knight is enough...";
+		mes ""+(Sex)?"A young gentleman coming here with the determination to become a Knight is enough...":"A young lady coming here with the determination to become a Knight is enough..."+"";
 		next;
 		mes "[Captain Herman]";
 		mes "Everyone";
@@ -838,10 +826,7 @@ prt_in,71,91,0	script	Sir Siracuse#knt	65,{
 			mes "Oh, to become";
 			mes "a Knight? Come to";
 			mes "think of it, aren't";
-			if (sex)
-				mes "you the guy that";
-			else
-				mes "you the girl that";
+			mes ""+(Sex)?"you the guy that":"you the girl that"+"";
 			mes "just applied?";
 			next;
 			mes "[Sir Siracuse]";
@@ -2512,10 +2497,7 @@ prt_in,87,92,4	script	Sir Gray#knt	119,{
 				mes "Oh, youth!";
 				mes "Becoming a Knight";
 				mes "for your beloved!";
-				if (sex)
-					mes "Always protect her...";
-				else
-					mes "Always protect him...";
+				mes ""+(Sex)?"Always protect her...":"Always protect him..."+"";
 				mes "Even at the sacrifice";
 				mes "of your own life!";
 				next;

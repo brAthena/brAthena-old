@@ -19,6 +19,7 @@
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [Protimus]                        |
 // | 1.1 Script Revisado [insidemybrain]                    |
+// | 1.2 Script Otimizado [Wolf]                |
 // | Anotações:                                             |
 // | -                                                      |
 // \________________________________________________________/
@@ -89,11 +90,7 @@ geffen_in,164,124,4	script	Instrutora	123,{
 		mes "Você quer ser Mago?";
 		next;	
 		if (job_magician_q == 0) {
-			if (sex)
-				mes "Você é mesmo uma gracinha. Definitivamente, meu tipo...";
-			else {
-				mes "Até que você é bonitinha. Deve fazer um grande sucesso...";
-			}
+			mes ""+(Sex)?"Você é mesmo uma gracinha. Definitivamente, meu tipo...":"Até que você é bonitinha, deve fazer um grande sucesso..."+"";
 			next;
 			mes "[Instrutora de Magia]";
 			mes "Aham... Como eu ia dizendo, você quer ser Mago?";
@@ -230,10 +227,7 @@ geffen_in,164,124,4	script	Instrutora	123,{
 	case 2:
 		mes "[Instrutora de Magia]";
 		mes "Quer ser um mago, huh?";
-		if (sex)
-			mes "Para uma gracinha como você ficaria feliz em explicar!";
-		else
-			mes "Eu ficaria feliz de explicar para uma garotinha tão bonita como você!";
+		mes ""+(Sex)?"Para uma gracinha como você ficaria feliz em explicar!":"Eu ficaria feliz de explicar para uma garotinha tão bonita como você!"+"";
 		next;
 		mes "[Instrutora de Magia]";
 		mes "Primeiro de tudo, você deve ter pelo menos o nivel maximo de job e todas habilidades aprendidas. E então passar pelo teste de mago.";

@@ -19,6 +19,7 @@
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [Protimus]                        |
 // | 1.1 Script Revisado [Protimus]                         |
+// | 1.2 Script Otimizado [Wolf]                |
 // | - Apenas erros do próprio script, não tradução.        |
 // \________________________________________________________/
 
@@ -57,19 +58,13 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante	69,{
 			}
 			else {
 				mes "[Gatuna Ajudante]";
-				if (sex)
-					mes "Sim, cara.";
-				else
-					mes "Sim, senhora.";
+				mes "Sim, "+(Sex)?"cara.":"senhora."+"";
 				close;
 			}
 		}
 		else {
 			mes "[Gatuna Ajudante]";
-			if (sex)
-				mes "Sim, cara.";
-			else
-				mes "Sim, senhora.";
+			mes "Sim, "+(Sex)?"cara.":"senhora."+"";
 			mes "Por que você veio até aqui? Vá embora, volte para casa...";
 			mes "Não me faça falar mais.";
 			close;

@@ -17,7 +17,7 @@
 // | Descrição: Mudança de Classe para Mercenário           |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
+// | 1.0 Script Otimizado [Wolf]                                |
 // | - Anotações		   			    					| 
 // \________________________________________________________/
 
@@ -359,8 +359,7 @@ OnTouch:
 				mes "[Assassin 'Khai']";
 				mes "Yeah yeah, I understand. Everyone messes up from time to time. Sorry for laughing at your mistakes.";
 			}
-			else
-				mes "Hmm. I like your attitude. You should keep your pride as a Thief. Sorry for laughing at your mistakes. I think you'll do better next time.";
+			mes "Hmm. I like your attitude. You should keep your pride as a Thief. Sorry for laughing at your mistakes. I think you'll do better next time.";
 			next;
 			mes "[Assassin 'Khai']";
 			mes "I'm not allowed to give you hints, I can tell you more about being an Assassin...";
@@ -1848,10 +1847,7 @@ OnTouch:
 				mes "Haha, the needs of the body are sometimes hard to ignore. It's best to accept that part of human nature.";
 				next;
 				mes "[Guildmaster]";
-				if (sex )
-					mes "But you must never reveal to her the Assassin side of your life. No matter what it takes.";
-				else
-					mes "But you must never reveal to him the Assassin side of your life, no matter what it takes.";
+				mes ""+(Sex)?"But you must never reveal to her the Assassin side of your life. No matter what it takes.":"But you must never reveal to him the Assassin side of your life, no matter what it takes."+"";
 				next;
 				mes "[Guildmaster]";
 				mes "Love your beloved forever, even if you can't openly express it. Sometimes, life doesn't allow you to find true love more than once.";

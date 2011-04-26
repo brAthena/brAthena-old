@@ -9,6 +9,19 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0432 - 26/04/2011 [Wolf]
+	* Enviado otimizações dos seguintes arquivos:
+	- npc/classes/1-1/gatuno.txt
+	- npc/classes/1-1/mago.txt
+	- npc/classes/1-1/mago.txt
+	- npc/classes/1-1e/taekwon.txt
+	- npc/classes/2-1/bruxo.txt
+	- npc/classes/2-1/cacador.txt
+	- npc/classes/2-1/cavaleiro.txt
+	- npc/classes/2-1/ferreiro.txt
+	- npc/classes/2-1/mercenario.txt
+	- npc/classes/2-1/sacerdote.txt
+
 	r0431 - 25/04/2011 [insidemybrain]
 	* Enviadas traduções da seguinte pasta:
 	- npc/classes/2-1a/

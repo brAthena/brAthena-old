@@ -17,7 +17,7 @@
 // | Descrição: Mudança de Classe para Sacerdote            |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
+// | 1.0 Script Otimizado [Wolf]                                |
 // | - Anotações		   			    					| 
 // \________________________________________________________/
 
@@ -38,10 +38,7 @@ prt_church,16,41,4	script	High Bishop#prst	60,{
 		if (BaseJob == Job_Priest) {
 			mes "[Bishop Paul]";
 			mes "Ah...";
-			if (sex)
-				mes "It is good to see you again, Brother " + strcharinfo(0) + ". Once again, God's grace has caused our paths to cross.";
-			else
-				mes "It is good to see you once again, Sister " + strcharinfo(0) + ". The grace of God has brought you once more before me.";
+			mes ""+(Sex)?"It is good to see you again, Brother "+strcharinfo(0)+". Once again, God's grace has caused our paths to cross.":"It is good to see you once again, Sister "+strcharinfo(0)+". The grace of God has brought you once more before me."+"";
 			next;
 			mes "[Bishop Paul]";
 			mes "I'm pleased to see that you are continuing to lead the children of God on the right path. Is there anything I can help you with today?";
@@ -105,10 +102,7 @@ prt_church,16,41,4	script	High Bishop#prst	60,{
 		else if (BaseClass == Job_Novice) {
 			mes "[Bishop Paul]";
 			mes "May God be";
-			if (sex)
-				mes "with you, brother.";
-			else
-				mes "with you, sister.";
+			mes ""+(Sex)?"with you, brother.":"with you, sister."+"";
 			next;
 			mes "[Bishop Paul]";
 			mes "You are in";
@@ -138,10 +132,7 @@ prt_church,16,41,4	script	High Bishop#prst	60,{
 		else {
 			mes "[Bishop Paul]";
 			mes "May God be";
-			if (sex)
-				mes "with you, brother.";
-			else
-				mes "with you, sister.";
+			mes ""+(Sex)?"with you, brother.":"with you, sister."+"";
 			next;
 			mes "[Bishop Paul]";
 			mes "What brings you here";
@@ -193,10 +184,7 @@ prt_church,16,41,4	script	High Bishop#prst	60,{
 	if (PRIEST_Q == 0) {
 		mes "[Bishop Paul]";
 		mes "May God bless";
-		if (sex)
-			mes "you, Brother.";
-		else
-			mes "you, Sister.";
+		mes ""+(Sex)?"you, Brother.":"you, Sister."+"";
 		mes "What brings";
 		mes "you to me?";
 		next;
