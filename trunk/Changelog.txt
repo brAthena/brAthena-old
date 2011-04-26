@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0433 - 26/04/2011 [Wolf]
+	* Algumas correções do commit anterior:
+	- Acabei removendo algumas coisas sem querer.
+
 	r0432 - 26/04/2011 [Wolf]
 	* Enviado otimizações dos seguintes arquivos:
 	- npc/classes/1-1/gatuno.txt

@@ -358,8 +358,9 @@ OnTouch:
 				next;
 				mes "[Assassin 'Khai']";
 				mes "Yeah yeah, I understand. Everyone messes up from time to time. Sorry for laughing at your mistakes.";
-			}
-			mes "Hmm. I like your attitude. You should keep your pride as a Thief. Sorry for laughing at your mistakes. I think you'll do better next time.";
+			} 
+			else 
+				mes "Hmm. I like your attitude. You should keep your pride as a Thief. Sorry for laughing at your mistakes. I think you'll do better next time.";
 			next;
 			mes "[Assassin 'Khai']";
 			mes "I'm not allowed to give you hints, I can tell you more about being an Assassin...";

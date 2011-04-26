@@ -53,17 +53,18 @@ ein_in01,18,28,4	script	Guildsman#BLS	731,{
 	mes "and tools is truly a form of art!";
 	next;
 	if (BaseClass == Job_Novice) {
-		if (sex =! 0) close;
-		mes "[Altiregen]";
-		mes "Oh~";
-		mes "what a very";
-		mes "pretty lady!";
-		mes "Are you interested in";
-		mes "becoming a Blacksmith?";
-		next;
-		mes "[Altiregen]";
-		mes "First, you must become a Merchant before you can become a Blacksmith. Go to the city of Alberta to learn the Merchant trade.";
-		close;
+		if (sex == 0) { 
+			mes "[Altiregen]"; 
+			mes "Oh~"; 
+			mes "what a very"; 
+			mes "pretty lady!"; 
+			mes "Are you interested in"; 
+			mes "becoming a Blacksmith?"; 
+			next; 
+			mes "[Altiregen]"; 
+			mes "First, you must become a Merchant before you can become a Blacksmith. Go to the city of Alberta to learn the Merchant trade."; 
+			close; 
+		} 
 	}
 	else if (BaseClass == Job_Swordman) {
 		mes "[Altiregen]";
