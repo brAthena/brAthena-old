@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Quest do Sumo Sacerdote     	    	|
+// | Nome do Script: Quest do Sumo Sacerdote                |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
@@ -16,73 +16,73 @@
 // |--------------------------------------------------------|
 // | Descrição: Mudança de Classe para Sumo Sacerdote       |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    					| 
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [Wolf]                            |
+// | - Anotações                                            | 
 // \________________________________________________________/
 
-valkyrie,44,42,5	script	High Priest#Valkyrie	60,{
+valkyrie,44,42,5	script	Sumo Sacerdote#Valkyrie	60,{
 	if (ADVJOB == 0 || Upper != 1) {
 		set .@karma_d,rand(1,10);
 		if (.@karma_d > 4) {
-			mes "[High Priest]";
-			mes "Congratulations.";
-			mes "Honor to the warriors!";
+			mes "[Sumo Sacerdote]";
+			mes "Parabéns.";
+			mes "Honre os guerreiros!";
 			close;
 		}
-		mes "[High Priest]";
-		mes "Through the power";
-		mes "of holiness, may we";
-		mes "find peace, strength";
-		mes "and protection. Deliver";
-		mes "us from the forces of evil...";
+		mes "[Sumo Sacerdote]";
+		mes "Através do poder da";
+		mes "santidade, podemos";
+		mes "encontrar força, paz";
+		mes "e proteção. Livrai-nos";
+		mes "das forças do mal...";
 		close;
 	}
 	else if (ADVJOB == Job_High_Priest && Class == Job_Acolyte_High && JobLevel > 39) {
-		mes "[High Priest]";
-		mes "Our world is in";
-		mes "need of people of";
-		mes "talent and conviction.";
-		mes "Please continue your";
-		mes "good works as an even";
-		mes "greater hero of holiness...";
+		mes "[Sumo Sacerdote]";
+		mes "Nosso mundo está";
+		mes "carente de pessoas";
+		mes "com talento e convicção.";
+		mes "Por favor continue nossas";
+		mes "obras como um herói e";
+		mes "ainda com maior santidade...";
 		next;
-		mes "[High Priest]";
-		mes "Would you like";
-		mes "to become a High Priest?";
+		mes "[Sumo Sacerdote]";
+		mes "Você gostaria de se tornar";
+		mes "um Sumo Sacerdote?";
 		next;
-		if (select("No.:Yes.") == 1) {
-			mes "[High Priest]";
-			mes "When you're ready,";
-			mes "feel free to come back.";
-			mes "Honor to the warriors!";
+		if (select("Não.:Sim.") == 1) {
+			mes "[Sumo Sacerdote]";
+			mes "Quando você estiver pronto,";
+			mes "fique à vontade para voltar.";
+			mes "Honre os guerreiros!";
 			close;
 		}
 		if (SkillPoint) {
-			mes "[High Priest]";
-			mes "It is still possible for you to learn more skills. Please use";
-			mes "all of your remaining Skill Points before returning to me.";
+			mes "[Sumo Sacerdote]";
+			mes "Você ainda tem Pontos de Habilidade. Por favor,";
+			mes "use todos os seus Pontos de Habilidade e depois volte.";
 			close;
 		}
 		jobchange Job_High_Priest;
 		set ADVJOB,0;
-		mes "[High Priest]";
-		mes "Congratulations.";
-		mes "As a High Priest,";
-		mes "I hope you will guide";
-		mes "others upon the path";
-		mes "to holiness...";
+		mes "[Sumo Sacerdote]";
+		mes "Parabéns.";
+		mes "Como um Sumo Sacerdote,";
+		mes "Eu espero que você guie";
+		mes "outros no caminho da";
+		mes "santidade...";
 		close;
 	}
-	mes "[High Priest]";
-	mes "Welcome";
-	mes "to Valhalla,";
-	mes "the Hall of Honor.";
+	mes "[Sumo Sacerdote]";
+	mes "Bem-vindo à";
+	mes "Valhalla,";
+	mes "o Salão de Honra.";
 	next;
-	mes "[High Priest]";
-	mes "Please make";
-	mes "yourself comfortable";
-	mes "while you are here.";
-	mes "Honor to the warriors!";
+	mes "[Sumo Sacerdote]";
+	mes "Por favor";
+	mes "sinta-se à vontade";
+	mes "enquanto estiver aqui.";
+	mes "Honre os guerreiros.";
 	close;
 }

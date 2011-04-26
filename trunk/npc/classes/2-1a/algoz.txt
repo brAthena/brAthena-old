@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Quest do Algoz                  	    |
+// | Nome do Script: Quest do Algoz                         |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
@@ -16,91 +16,91 @@
 // |--------------------------------------------------------|
 // | Descrição: Mudança de Classe para Algoz                |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    					| 
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [Wolf]                            |
+// | - Anotações                                            | 
 // \________________________________________________________/
 
-valkyrie,44,58,5	script	Assassin Cross#Valkyrie	725,{
+valkyrie,44,58,5	script	Algoz#Valkyrie	725,{
 	if (ADVJOB == 0 || Upper != 1) {
 		set .@karma_d,rand(1,10);
 		if (.@karma_d > 4) {
-			mes "[Assassin Cross]";
-			mes "Congratulations...";
+			mes "[Algoz]";
+			mes "Parabéns...";
 			next;
-			mes "[Assassin Cross]";
+			mes "[Algoz]";
 			mes "...";
 			next;
-			mes "[Assassin Cross]";
-			mes "...";
-			mes "......";
-			next;
-			mes "[Assassin Cross]";
+			mes "[Algoz]";
 			mes "...";
 			mes "......";
-			mes "Honor to";
-			mes "the warriors.";
+			next;
+			mes "[Algoz]";
+			mes "...";
+			mes "......";
+			mes "Honre os";
+			mes "guerreiros.";
 			close;
 		}
-		mes "[Assassin Cross]";
-		mes "We are the warriors";
-		mes "of the desert. Nobody";
-		mes "looks down upon us.";
-		mes "Nobody...";
+		mes "[Algoz]";
+		mes "Nós somos os guerreiros";
+		mes "do deserto. Ninguém";
+		mes "pode olhar para baixo.";
+		mes "Ninguém...";
 		close;
 	}
 	else if (ADVJOB == Job_Assassin_Cross && Class == Job_Thief_High && JobLevel > 39) {
-		mes "[Assassin Cross]";
-		mes "The time has come.";
-		mes "The world needs you...";
-		mes "More than ever.";
+		mes "[Algoz]";
+		mes "Chegou a hora.";
+		mes "O mundo precisa de você...";
+		mes "Mais do que nunca.";
 		next;
-		mes "[Assassin Cross]";
-		mes "I ask that you continue to live in the shadows, but as an even greater Assassin with a new appearance.";
+		mes "[Algoz]";
+		mes "Eu peço que você continue vivendo nas sombras, mas como um bom Assassino e com uma nova aparência.";
 		next;
-		mes "[Assassin Cross]";
-		mes "Will you become";
-		mes "an Assassin Cross?";
+		mes "[Algoz]";
+		mes "Você quer se tornar";
+		mes "um Algoz?";
 		next;
-		if (select("No.:Yes.") == 1) {
-			mes "[Assassin Cross]";
-			mes "When you are";
-			mes "ready, come back.";
+		if (select("Não.:Sim.") == 1) {
+			mes "[Algoz]";
+			mes "Quando estiver";
+			mes "pronto, volte.";
 			next;
-			mes "[Assassin Cross]";
-			mes "Honor to";
-			mes "the warriors.";
+			mes "[Algoz]";
+			mes "Honre os";
+			mes "guerreiros.";
 			close;
 		}
 		if (SkillPoint) {
-			mes "[Assassin Cross]";
-			mes "You still haven't";
-			mes "learned everything";
-			mes "that you can.";
+			mes "[Algoz]";
+			mes "Você ainda não";
+			mes "aprendeu tudo";
+			mes "pode.";
 			next;
-			mes "[Assassin Cross]";
-			mes "Use all your";
-			mes "Skill Points";
-			mes "and then come back.";
+			mes "[Algoz]";
+			mes "Use todos os seus";
+			mes "Pontos de Habilidade";
+			mes "e depois volte.";
 			close;
 		}
 		jobchange Job_Assassin_Cross;
 		set ADVJOB,0;
-		mes "[Assassin Cross]";
-		mes "Congratulations.";
-		mes "As an Assassin Cross,";
-		mes "I hope that you fight for a brighter future within the darkness.";
+		mes "[Algoz]";
+		mes "Parabéns.";
+		mes "Como um Algoz,";
+		mes "eu espero que você lute por um futuro melhor dentro da escuridão.";
 		close;
 	}
-	mes "[Assassin Cross]";
-	mes "Welcome";
-	mes "to Valhalla,";
-	mes "the Hall of Honor.";
+	mes "[Algoz]";
+	mes "Bem-vindo à";
+	mes "Valhalla,";
+	mes "o Salão de Honra.";
 	next;
-	mes "[Assassin Cross]";
-	mes "Please make";
-	mes "yourself comfortable";
-	mes "while you are here.";
-	mes "Honor to the warriors.";
+	mes "[Algoz]";
+	mes "Por favor";
+	mes "sinta-se à vontade";
+	mes "enquanto estiver aqui.";
+	mes "Honre os guerreiros.";
 	close;
 }

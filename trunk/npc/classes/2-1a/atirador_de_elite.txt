@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Quest do Atirador de Elite     	    |
+// | Nome do Script: Quest do Atirador de Elite             |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
@@ -16,12 +16,12 @@
 // |--------------------------------------------------------|
 // | Descrição: Mudança de Classes para Atirador de Elite   |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
+// | Changelog:                                             |
 // | 1.0 Script Traduzido [Wolf]                            |
-// | - Anotações		   			    					| 
+// | - Anotações                                            | 
 // \________________________________________________________/
 
-valkyrie,44,55,5	script	Sniper#Valkyrie	727,{
+valkyrie,44,55,5	script	Atirador de Elite#Valkyrie	727,{
 	if (ADVJOB == 0 || Upper != 1) {
 		set .@karma_d,rand(1,10);
 		if (.@karma_d > 4) {
