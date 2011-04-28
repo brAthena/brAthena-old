@@ -371,7 +371,7 @@ comodo,172,230,3	script	Wandering Master#job_sta	730,{
 					mes "Hm? You still have Skill";
 					mes "Points that you haven't yet";
 					mes "allocated. Use them, learn";
-					mes ""+(Sex)?"mes "and improve your Taekwon Girl":"and improve your Taekwon Boy"+""; 
+					mes "and improve your, "+(Sex?"Taekwon Boy":"Taekwon Girl");
 					mes "skills. When you are finished,^FFFFFF ^000000 come back here for your training.";
 					close;
 				}

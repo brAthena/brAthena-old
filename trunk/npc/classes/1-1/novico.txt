@@ -26,7 +26,7 @@
 prt_church,184,41,4	script	Necrus#aco	60,{
 	if (Upper == 1) {
 		if (ADVJOB == Job_High_Priest || ADVJOB == Job_Champion) {
-			mes "[Necrus]"
+			mes "[Necrus]";
 			if (Class == Job_Novice_High) {
 				mes "Depois de muito tempo, você voltou a este lugar.";
 				mes "Você deve ter ouvido, visto e experimentado muitas coisas.";

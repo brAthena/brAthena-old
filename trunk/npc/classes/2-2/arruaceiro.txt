@@ -1511,7 +1511,7 @@ OnTouch:
 		monster "in_rogue",15,276,"Mummy",1041,1,"mob_rogue#2::OnMyMobDead";
 		monster "in_rogue",13,276,"Mummy",1041,1,"mob_rogue#2::OnMyMobDead";
 		monster "in_rogue",11,276,"Mummy",1041,1,"mob_rogue#2::OnMyMobDead";
-	} else arp "mag_dun02",181,176;
+	} else warp "mag_dun02",181,176;
 	end;
 
 OnDisable:
