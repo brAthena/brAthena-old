@@ -18,19 +18,18 @@
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [Wolf]                            |
-// | - Anotações                                            | 
+// | 1.1 Otimizações no npc [Wolf]                          |
 // \________________________________________________________/
 
 valkyrie,44,50,5	script	Mestre Ferreiro#Valkyrie	731,{
 	if (ADVJOB == 0 || Upper != 1) {
+		mes "[Mestre Ferreiro]";
 		set .@karma_d,rand(1,10);
 		if (.@karma_d > 4) {
-			mes "[Mestre Ferreiro]";
 			mes "Parabéns.";
 			mes "Honre os guerreiros!";
 			close;
 		}
-		mes "[Mestre Ferreiro]";
 		mes "Ah...";
 		mes "O auge";
 		mes "do artesanato.";
@@ -45,8 +44,7 @@ valkyrie,44,50,5	script	Mestre Ferreiro#Valkyrie	731,{
 		mes "de descobrir novas e melhores";
 		mes "maneiras de elaborar coisas...";
 		close;
-	}
-	else if (ADVJOB == Job_WhiteSmith && Class == Job_Merchant_High && JobLevel > 39) {
+	} else if (ADVJOB == Job_WhiteSmith && Class == Job_Merchant_High && JobLevel > 39) {
 		mes "[Mestre Ferreiro]";
 		mes "Chegou a hora!";
 		mes "Nosso mundo precisa de corajosos,";
@@ -64,15 +62,14 @@ valkyrie,44,50,5	script	Mestre Ferreiro#Valkyrie	731,{
 			mes "Honre os guerreiros!";
 			close;
 		}
+		mes "[Mestre Ferreiro]";
 		if (SkillPoint) {
-			mes "[Mestre Ferreiro]";
 			mes "Você ainda tem Pontos de Habilidade. Por favor,";
 			mes "use todos os seus Pontos de Habilidade e depois volte.";
 			close;
 		}
 		jobchange Job_Whitesmith;
 		set ADVJOB,0;
-		mes "[Mestre Ferreiro]";
 		mes "Parabéns!";
 		mes "Como um Mestre Ferreiro,";
 		mes "Eu espero que você forje";

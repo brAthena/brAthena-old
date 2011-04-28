@@ -17,15 +17,14 @@
 // | Descrição: Mudança de Classe para Desordeiro           |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    					| 
+// | 1.0 Otimizações no npc [Wolf]                          |
 // \________________________________________________________/ 
 
 valkyrie,53,58,3	script	Stalker#Valkyrie	747,{
 	if (ADVJOB == 0 || Upper != 1) {
+		mes "[Stalker]";
 		set .@karma_d,rand(1,10);
 		if (.@karma_d > 4) {
-			mes "[Stalker]";
 			mes "Congratulations.";
 			mes "Honor to the warriors!";
 			close;
@@ -46,8 +45,7 @@ valkyrie,53,58,3	script	Stalker#Valkyrie	747,{
 		mes "I need them and";
 		mes "they need me.";
 		close;
-	}
-	else if (ADVJOB == Job_Stalker && Class == Job_Thief_High && JobLevel > 39) {
+	} else if (ADVJOB == Job_Stalker && Class == Job_Thief_High && JobLevel > 39) {
 		mes "[Stalker]";
 		mes "This world needs";
 		mes "more heroes who are";
@@ -62,21 +60,19 @@ valkyrie,53,58,3	script	Stalker#Valkyrie	747,{
 		mes "to become a Stalker?";
 		next;
 		if (select("No.:Yes.") == 1) {
-			mes "[Stalker]";
 			mes "When you're ready,";
 			mes "feel free to come back.";
 			mes "Honor to the warriors!";
 			close;
 		}
+		mes "[Stalker]";
 		if (SkillPoint) {
-			mes "[Stalker]";
 			mes "It is still possible for you to learn more skills. Please use";
 			mes "all of your remaining Skill Points before returning to me.";
 			close;
 		}
 		jobchange Job_Stalker;
 		set ADVJOB,0;
-		mes "[Stalker]";
 		mes "Congratulations!";
 		mes "As a Stalker, I hope";
 		mes "you stab the right people";

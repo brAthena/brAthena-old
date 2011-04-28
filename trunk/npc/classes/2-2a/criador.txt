@@ -17,20 +17,18 @@
 // | Descrição: Mudança de Classe para Criador              |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    					| 
+// | 1.0 Otimizações no npc [Wolf]                          |
 // \________________________________________________________/
 
 valkyrie,53,50,3	script	Biochemist#Valkyrie	122,{
 	if (ADVJOB == 0 || Upper != 1) {
+		mes "[Biochemist]";
 		set .@karma_d,rand(1,10);
 		if (.@karma_d > 4) {
-			mes "[Biochemist]";
 			mes "Congratulations.";
 			mes "Honor to the warriors!";
 			close;
 		}
-		mes "[Biochemist]";
 		mes "It's strange that";
 		mes "someone like me is here.";
 		mes "But even someone skilled";
@@ -45,8 +43,7 @@ valkyrie,53,50,3	script	Biochemist#Valkyrie	122,{
 		mes "fought that earned me";
 		mes "a place in Valhalla...";
 		close;
-	}
-	else if (ADVJOB == Job_Creator && Class == Job_Merchant_High && JobLevel > 39) {
+	} else if (ADVJOB == Job_Creator && Class == Job_Merchant_High && JobLevel > 39) {
 		mes "[Biochemist]";
 		mes "Yes...";
 		mes "It's about time.";
@@ -58,29 +55,26 @@ valkyrie,53,50,3	script	Biochemist#Valkyrie	122,{
 		mes "become a Biochemist?";
 		next;
 		if (select("No.:Yes.") == 1) {
-			mes "[Biochemist]";
 			mes "When you're ready,";
 			mes "feel free to come back.";
 			mes "Honor to the warriors!";
 			close;
 		}
+		mes "[Biochemist]";
 		if (SkillPoint) {
-			mes "[Biochemist]";
 			mes "It is still possible for you to learn more skills. Please use";
 			mes "all of your remaining Skill Points before returning to me.";
 			close;
 		}
 		jobchange Job_Creator;
 		set ADVJOB,0;
-		mes "[Biochemist]";
 		mes "Congratulations!";
 		mes "As a Biochemist,";
 		mes "I hope you use your";
 		mes "vast knowledge for the";
 		mes "right purposes.";
 		close;
-	}
-	else {
+	} else {
 		if (Class == Job_Creator && MISC_QUEST & 64 && getskilllv("AM_BIOETHICS") == 0) {
 			mes "[Biochemist]";
 			mes "Ah, have you come to";

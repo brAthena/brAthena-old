@@ -17,18 +17,17 @@
 // | Descrição: Mudança de Classe para Taekwon              |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Script Otimizado [Wolf]                                |
-// | - Anotações		   			    					| 
+// | 1.0 Remoção de espaços & otimizações [Wolf]            |
+// | 1.1 Otimizações no npc [Wolf]                          |
 // \________________________________________________________/
 
 
 payon,157,141,5	script	Phoenix#TKJobChange	753,{
+	mes "[Phoenix]";
 	if(Upper == 2) {
-		mes "[Phoenix]";
 		mes "Hello, child.";
 		close;
 	} else if(Class == Job_Taekwon) {
-		mes "[Phoenix]";
 		mes "How is your training";
 		mes "coming along? As your";
 		mes "techniques become more";
@@ -37,7 +36,6 @@ payon,157,141,5	script	Phoenix#TKJobChange	753,{
 		mes "always rely on the basics.";
 		close;
 	} else if(Class > Job_Novice) || (Class == Job_Novice && TK_Q == 0) {
-		mes "[Phoenix]";
 		mes "This land. Our once";
 		mes "beautiful world has been";
 		mes "stained by evil: there are";
@@ -68,8 +66,8 @@ payon,157,141,5	script	Phoenix#TKJobChange	753,{
 		mes "I know that the answer";
 		mes "will come in time...";
 		next;
+		mes "[Phoenix]";
 		if (Class != Job_Novice && TK_Q != 0) {
-			mes "[Phoenix]";
 			mes "Noble adventurer:";
 			mes "if you know anyone who";
 			mes "has not chosen his path";
@@ -78,7 +76,6 @@ payon,157,141,5	script	Phoenix#TKJobChange	753,{
 			mes "I may teach him my art...";
 			close;
 		}
-		mes "[Phoenix]";
 		mes "If you have not decided on";
 		mes "the path you wish to take in";
 		mes "life, I'd like you to consider";
@@ -86,8 +83,8 @@ payon,157,141,5	script	Phoenix#TKJobChange	753,{
 		mes "art. It won't be easy, but it will lead you to great strength...";
 		next;
 		if(select("Okay, I will join you.","No, thank you.") == 1) {
+			mes "[Phoenix]";
 			if(getskilllv("NV_BASIC") < 9) {
-				mes "[Phoenix]";
 				mes "How unfortunate!";
 				mes "You're not yet ready to";
 				mes "begin training under my";
@@ -95,7 +92,6 @@ payon,157,141,5	script	Phoenix#TKJobChange	753,{
 				mes "Job Level. Please return when you reach Job Level 9 or higher.";
 				close;
 			}
-			mes "[Phoenix]";
 			mes "Very well... I accept you";
 			mes "as my student. In beginning";
 			mes "training, your physical body";
@@ -103,8 +99,8 @@ payon,157,141,5	script	Phoenix#TKJobChange	753,{
 			mes "order to perform the skills";
 			mes "that you will be learning.";
 			next;
+			mes "[Phoenix]";
 			if(BaseLevel > 19) {
-				mes "[Phoenix]";
 				mes "Hm. I see that you have";
 				mes "undergone sufficient physical";
 				mes "training as a Novice. Very good. Then let us prepare for your";
@@ -114,7 +110,6 @@ payon,157,141,5	script	Phoenix#TKJobChange	753,{
 				setquest 6001;
 				close;
 			}
-			mes "[Phoenix]";
 			mes "The mind is not necessarily";
 			mes "bound to the limits of the body, but you will never fulfill your";
 			mes "true potential without integrating mind and body. Go, gain ^FF00001 more";
@@ -143,10 +138,10 @@ payon,157,141,5	script	Phoenix#TKJobChange	753,{
 	}
 	switch(TK_Q) {
 	case 1:
+		mes "[Phoenix]";
 		if(BaseLevel > TAEK_Q) {
 			set TK_Q, 2;
 			changequest 6000,6001;
-			mes "[Phoenix]";
 			mes "Good. I sense that you";
 			mes "are more in tune with your";
 			mes "inner strength. That is the";
@@ -155,7 +150,6 @@ payon,157,141,5	script	Phoenix#TKJobChange	753,{
 			mes "the next portion of training.";
 			close;
 		}
-		mes "[Phoenix]";
 		mes "You must gain ^FF00001 more";
 		mes "Base Level^000000 to prove that";
 		mes "you can endure the hardship";
@@ -387,7 +381,7 @@ payon,157,141,5	script	Phoenix#TKJobChange	753,{
 			mes "You are still young, so";
 			mes "I assume you'll want a job";
 			mes "title. Mm. In that case, you";
-			mes ""+(Sex)?"are now a ^FF0000Taekwon Girl^000000.":"are now a ^FF0000Taekwon Boy^000000."+"";
+			mes ""+((Sex)?"are now a ^FF0000Taekwon Girl^000000.":"are now a ^FF0000Taekwon Boy^000000.")+"";
 			mes "Yes, that sounds good. ";
 			next;
 			mes "[Phoenix]";

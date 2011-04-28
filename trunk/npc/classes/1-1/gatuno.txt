@@ -21,18 +21,19 @@
 // | 1.1 Script Revisado [Protimus]                         |
 // | 1.2 Script Otimizado [Wolf]                            |
 // | - Apenas erros do próprio script, não tradução.        |
+// | 1.3 Script Otimizado & Remoções [Wolf]                 |
 // \________________________________________________________/
 
 moc_prydb1,39,129,2	script	Gatuna Ajudante	69,{
 	if (Upper == 1) {
 		if (ADVJOB == Job_Assassin_Cross || ADVJOB == Job_Stalker) {
+			mes "[Gatuna Ajudante]";
 			if (Class == Job_Novice_High) {
-				mes "[Gatuna Ajudante]";
 				mes "Hmm? Já não vi você antes?";
 				mes "Ou você tem um irmão gêmeo?";
 				next;
+				mes "[Gatuna Ajudante]";
 				if (getskilllv("NV_BASIC") < 9) {
-					mes "[Gatuna Ajudante]";
 					mes "Bem, parece que você quer ser um gatuno...";
 					mes "Vejo que faltam habilidades para você.";
 					next;
@@ -41,7 +42,6 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante	69,{
 					mes "Bem, isso não importa. Vá e pratique mais!";
 					close;
 				}
-				mes "[Gatuna Ajudante]";
 				mes "Ou, eu revivi a pessoa errada...";
 				mes "Hmm, não me importo. Eu reviverei você!";
 				next;
@@ -55,16 +55,13 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante	69,{
 				mes "Você é um gatuno, então viva como um.";
 				mes "Isso é tudo o que posso dizer.";
 				close;
-			}
-			else {
-				mes "[Gatuna Ajudante]";
-				mes "Sim, "+(Sex)?"cara.":"senhora."+"";
+			} else {
+				mes "Sim, "+((Sex)?"cara.":"senhora.")+"";
 				close;
 			}
-		}
-		else {
+		} else {
 			mes "[Gatuna Ajudante]";
-			mes "Sim, "+(Sex)?"cara.":"senhora."+"";
+			mes "Sim, "+((Sex)?"cara.":"senhora.")+"";
 			mes "Por que você veio até aqui? Vá embora, volte para casa...";
 			mes "Não me faça falar mais.";
 			close;
@@ -74,8 +71,7 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante	69,{
 		mes "[Gatuna Ajudante]";
 		mes "Ei! Se você tiver qualquer problema, é só falar comigo, ouviu? Eu posso te ajudar.";
 		close;
-	}
-	else if (BaseJob != Job_Novice && BaseJob != Job_Thief) {
+	} else if (BaseJob != Job_Novice && BaseJob != Job_Thief) {
 		mes "[Gatuna Ajudante]";
 		mes "Que diabos você quer comigo?!";
 		switch(Class) {
@@ -109,8 +105,7 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante	69,{
 		mes "Pare de ficar enrolando!";
 		mes "Esse aqui é o lugar pros bebezinhos que querem ser Gatunos... Se você é um desses bebezinhos, vai falar com outro cara.";
 		close;
-	}
-	else if (job_thief_q == 3) {
+	} else if (job_thief_q == 3) {
 		mes "[Gatuna Ajudante]";
 		mes "Então, como foi na fazenda de cogumelos? Se divertiu bastante?";
 		next;
@@ -160,8 +155,7 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante	69,{
 	mes "[Gatuna Ajudante]";
 	if (job_thief_q == 0) {
 		mes "Heheheheh... você parece ser um menino limpinho, o que te trouxe para um lugar fedido e sujo como esse?";
-	}
-	else {
+	} else {
 		mes "Ah...";
 		mes "Então você voltou... Dessa vez é pra valer?";
 	}
@@ -194,44 +188,40 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante	69,{
 			mes "[Gatuna Ajudante]";
 			mes "Afinal, você quer mesmo ser um Gatuno?";
 			next;
-			switch(select("Sim!:Não, meus pais não deixaram.")) {
-			case 1:
-				mes "[Gatuna Ajudante]";
-				mes "Qual é o seu nome";
-				next;
-				mes "[Gatuna Ajudante]";
-				mes "" + strcharinfo(0) + ", é isso mesmo ?";
-				set job_thief_q,1;
-				next;
-				mes "[Gatuna Ajudante]";
-				mes "Ok, sua inscrição está pronta.";
-				mes "Nós já podemos fazer o teste se você se sentir preparado...";
-				mes "Tentar não custa nada! Quer fazer agora?";
-				next;
-				switch(select("Quero tentar.:Ainda não estou pronto.")) {
-				case 1:
-					break;
-				case 2:
-					mes "[Gatuna Ajudante]";
-					mes "Você que sabe... Volte quando estiver mais seguro de si!";
-					close;
-				}
-				break;
-			case 2:
+			mes "[Gatuna Ajudante]";
+			mes "Afinal, você quer mesmo ser um Gatuno?";
+			next;
+			if (select("Sim!:Não, meus pais não deixaram.")==2) {
 				mes "[Gatuna Ajudante]";
 				mes "Eles não deixam, é? Bem, é melhor mesmo obedecer seus pais...";
 				mes "Então eu acho que você devia ser Noviço... Não é tão mal, mas com certeza não é tão legal quanto Gatuno, hehehehehe.";
 				close;
 			}
-		}
-		else {
+			mes "[Gatuna Ajudante]";
+			mes "Qual é o seu nome";
+			next;
+			mes "[Gatuna Ajudante]";
+			mes ""+strcharinfo(0)+", é isso mesmo?";
+			set job_thief_q,1;
+			next;
+			mes "[Gatuna Ajudante]";
+			mes "Ok, sua inscrição está pronta.";
+			mes "Nós já podemos fazer o teste se você se sentir preparado...";
+			mes "Tentar não custa nada! Quer fazer agora?";
+			next;
+			if (select("Quero tentar.:Ainda não estou pronto.")==2) { 
+				mes "[Gatuna Ajudante]";
+				mes "Você que sabe... Volte quando estiver mais seguro de si!";
+				close;
+			}
+		} else {
 			mes "[Gatuna Ajudante]";
 			mes "Vamos ver como você se saiu...";
 			next;
 		}
 		mes "[Gatuna Ajudante]";
-		mes "O seu nome é " + strcharinfo(0) + "? Certo, vamos ver onde está a sua inscrição...";
-		mes "Ah! Aqui está! Nome " + strcharinfo(0) + "";
+		mes "O seu nome é "+strcharinfo(0)+"? Certo, vamos ver onde está a sua inscrição...";
+		mes "Ah! Aqui está! Nome "+strcharinfo(0)+"";
 		mes "Vaaaaaaaaamos ver....";
 		next;
 		mes "[Gatuna Ajudante]";
@@ -300,8 +290,7 @@ moc_prydb1,42,133,2	script	Camarada	118,{
 		mes "[Bernardo]";
 		mes "Você não tem por que estar aqui. Quando a guilda precisar de você, você saberá. Agora dá o fora daqui.";
 		close;
-	}
-	else if (BaseJob != Job_Novice && BaseJob != Job_Thief) {
+	} else if (BaseJob != Job_Novice && BaseJob != Job_Thief) {
 		mes "[Gatuna Ajudante]";
 		mes "??? Você não é um Gatuno...";
 		mes "O que diabos você tá fazendo aqui?! Saia daqui antes que eu enfie uma faca em você!";
@@ -312,14 +301,12 @@ moc_prydb1,42,133,2	script	Camarada	118,{
 		mes "Algum problema, novato?";
 		mes "Se você quer ser um Gatuno, fale com a garota aqui do meu lado.";
 		close;
-	}
-	else if (job_thief_q == 2) {
+	} else if (job_thief_q == 2) {
 		mes "[Gatuna Ajudante]";
 		mes "Você foi aprovado na entrevista?";
 		mes "Então agora é a hora de pegar cogumelos. Boa sorte.";
 		close;
-	}
-	else if (job_thief_q == 3) {
+	} else if (job_thief_q == 3) {
 		mes "[Gatuna Ajudante]";
 		mes "Uhh..? ";
 		mes "Ah, você voltou vivo e inteiro! Que bom! Vamos dar uma olhada nesses cogumelos?";
@@ -336,32 +323,21 @@ moc_prydb1,42,133,2	script	Camarada	118,{
 		set .@total_thief,.@thief_item1 + .@thief_item2;
 		set .@money_thief,((.@thief_item1 * 5) + (.@thief_item2 * 2)) + 200;
 		mes "[Gatuna Ajudante]";
-		if (countitem(1069) != 0) {
-			mes "Você trouxe Cogumelo Venenoso " + countitem(1069) + " unidades.";
-		}
-		if (countitem(1070) != 0)
-			mes "Você trouxe Cogumelo Borrachento " + countitem(1070) + " unidades.";
+		if (countitem(1069)) mes "Você trouxe "+countitem(1069)+" unidades de Cogumelo Venenoso.";
+		if (countitem(1070)) mes "Você trouxe "+countitem(1070)+" unidades de Cogumelo Borrachento.";
 		next;
 		mes "[Gatuna Ajudante]";
-		mes "O total de pontos é... hã.. " + .@total_thief + " pontos";
+		mes "O total de pontos é... hã.. "+.@total_thief+" pontos";
 		next;
 		mes "[Gatuna Ajudante]";
-		if (.@total_thief > 25) {
-			mes "Uau, mais que 25! Parabéns, você passou no teste!";
-		}
-		else if (.@total_thief == 25) {
-			mes "Ok, você passou no teste.";
-		}
-		else {
-			mes "Eu sei que você consegue fazer melhor do que isso...";
-			close;
-		}
+		if (.@total_thief > 25) mes "Uau, mais que 25! Parabéns, você passou no teste!";
+		else mes ( .@total_thief == 25 ) ? "Ok, você passou no teste.":"Eu sei que você consegue fazer melhor do que isso...";
 		next;
 		mes "[Gatuna Ajudante]";
-		mes strcharinfo(0) + "...";
+		mes strcharinfo(0)+"...";
 		mes "Você passou no Teste Oficial Para Gatuno, vou permitir que se torne um de nós.";
-		if (countitem(1069) != 0) delitem 1069,countitem(1069); //Mushroom_Of_Thief_1
-		if (countitem(1070) != 0) delitem 1070,countitem(1070); //Mushroom_Of_Thief_2
+		if (countitem(1069)) delitem 1069,countitem(1069); //Mushroom_Of_Thief_1
+		if (countitem(1070)) delitem 1070,countitem(1070); //Mushroom_Of_Thief_2
 		callfunc "Job_Change",Job_Thief;
 		callfunc "F_ClearJobVar";
 		completequest 1013;
@@ -435,7 +411,7 @@ moc_ruins,141,125,3	script	Bogus	83,{
 	else if (job_thief_q == 2) {
 		mes "[Gatuna Ajudante]";
 		mes "Hmmm... Você veio aqui fazer o teste, não é?";
-		mes "Qual o seu nome? " + strcharinfo(0) + "? ... é... é o que está escrito aqui na lista...";
+		mes "Qual o seu nome? "+strcharinfo(0)+"? ... é... é o que está escrito aqui na lista...";
 		mes "Então pode entrar! Desejo boa sorte, mas não tenho como garantir sua segurança!";
 		close2;
 		set job_thief_q,3;

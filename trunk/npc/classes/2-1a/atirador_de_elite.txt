@@ -18,19 +18,18 @@
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [Wolf]                            |
-// | - Anotações                                            | 
+// | 1.1 Otimizações no npc [Wolf]                          |
 // \________________________________________________________/
 
 valkyrie,44,55,5	script	Atirador de Elite#Valkyrie	727,{
 	if (ADVJOB == 0 || Upper != 1) {
+		mes "[Atirador de Elite]";
 		set .@karma_d,rand(1,10);
 		if (.@karma_d > 4) {
-			mes "[Atirador de Elite]";
 			mes "Parabéns.";
 			mes "Honra aos guerreiros!";
 			close;
 		}
-		mes "[Atirador de Elite]";
 		mes "Um tiro.";
 		mes "Uma matada.";
 		mes "Não é tão difícil";
@@ -38,8 +37,7 @@ valkyrie,44,55,5	script	Atirador de Elite#Valkyrie	727,{
 		mes "uma visão de estilo de";
 		mes "luta.";
 		close;
-	}
-	else if (ADVJOB == Job_Sniper && Class == Job_Archer_High && JobLevel > 39) {
+	} else if (ADVJOB == Job_Sniper && Class == Job_Archer_High && JobLevel > 39) {
 		mes "[Atirador de Elite]";
 		mes "O mundo está";
 		mes "precisando de Arqueiros poderosos";
@@ -58,15 +56,14 @@ valkyrie,44,55,5	script	Atirador de Elite#Valkyrie	727,{
 			mes "Honra aos guerreiros!";
 			close;
 		}
+		mes "[Atirador de Elite]";
 		if (SkillPoint) {
-			mes "[Atirador de Elite]";
 			mes "Você tem pontos de habilidade sobrando. Por favor,";
 			mes "use todos os seus pontos de habilidade e depois retorne.";
 			close;
 		}
 		jobchange Job_Sniper;
 		set ADVJOB,0;
-		mes "[Atirador de Elite]";
 		mes "Parabéns!";
 		mes "Como um Atirador de Elite, Eu espero";
 		mes "que os servos do mal nunca";

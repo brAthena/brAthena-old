@@ -17,20 +17,18 @@
 // | Descrição: Mudança de Classe para Paladino             |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    					| 
+// | 1.0 Otimizações no npc [Wolf]                          |
 // \________________________________________________________/
 
 valkyrie,53,39,3	script	Paladin#Valkyrie	752,{
 	if (ADVJOB == 0 || Upper != 1) {
+		mes "[Paladin]";
 		set .@karma_d,rand(1,10);
 		if (.@karma_d > 4) {
-			mes "[Paladin]";
 			mes "Congratulations.";
 			mes "Honor to the warriors!";
 			close;
 		}
-		mes "[Paladin]";
 		mes "Do not forget";
 		mes "that the Holy War";
 		mes "is fast approaching!";
@@ -38,8 +36,7 @@ valkyrie,53,39,3	script	Paladin#Valkyrie	752,{
 		mes "May the light of justice";
 		mes "always brighten our path!";
 		close;
-	}
-	else if (ADVJOB == Job_Paladin && Class == Job_Swordman_High && JobLevel > 39) {
+	} else if (ADVJOB == Job_Paladin && Class == Job_Swordman_High && JobLevel > 39) {
 		mes "[Paladin]";
 		mes "The Holy War will";
 		mes "be upon us before we";
@@ -60,15 +57,14 @@ valkyrie,53,39,3	script	Paladin#Valkyrie	752,{
 			mes "Honor to the warriors!";
 			close;
 		}
+		mes "[Paladin]";
 		if (SkillPoint) {
-			mes "[Paladin]";
 			mes "It is still possible for you to learn more skills. Please use";
 			mes "all of your remaining Skill Points before returning to me.";
 			close;
 		}
 		jobchange Job_Paladin;
 		set ADVJOB,0;
-		mes "[Paladin]";
 		mes "Congratulations.";
 		mes "As a Paladin, I hope";
 		mes "you will protect those";

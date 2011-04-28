@@ -19,11 +19,12 @@
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [Protimus]                        |
 // | 1.1 Script Revisado [insidemybrain]                    |
+// | 1.2 Otimizações no npc [Wolf]                          |
 // \________________________________________________________/
 
 aldeba_in,223,167,3	script	Tzerero#sn	709,{
+	mes "[Tzerero]";
 	if (BaseJob == Job_SuperNovice) {
-		mes "[Tzerero]";
 		mes "Você é um membro do Clube do Aprendiz.";
 		mes "Você recebeu seu treinamento";
 		mes "e chegou próximo à perfeição.";
@@ -38,7 +39,6 @@ aldeba_in,223,167,3	script	Tzerero#sn	709,{
 	if (countitem(938) > 29 && countitem(907) > 29 && SUPNOV_Q == 1) {
 		delitem 938,30; //Sticky_Mucus
 		delitem 907,30; //Resin
-		mes "[Tzerero]";
 		mes "Eu pressinto que o que você quer";
 		mes "é ser alguém humilde, que vive para aprender";
 		mes "o maior número de coisas possível. ";
@@ -86,7 +86,6 @@ aldeba_in,223,167,3	script	Tzerero#sn	709,{
 		close;
 	}
 	if (SUPNOV_Q == 1) {
-		mes "[Tzerero]";
 		mes "Hmm, eu acho que você se esqueceu";
 		mes "de trazer alguma coisa...";
 		mes "Vou repetir.";
@@ -98,7 +97,6 @@ aldeba_in,223,167,3	script	Tzerero#sn	709,{
 		close;
 	}
 	if (BaseJob == Job_Novice && upper != 1) {
-		mes "[Tzerero]";
 		mes "...Hmm? Eu percebo em você ";
 		mes "um grande desejo de aprender...";
 		mes "Sim! Olhando de perto, eu vejo";
@@ -119,8 +117,8 @@ aldeba_in,223,167,3	script	Tzerero#sn	709,{
 		next;
 		switch(select("Sim! Quero me juntar a vocês!:Não, obrigado...:Pode me dar mais detalhes?")) {
 		case 1:
+			mes "[Tzerero]";
 			if (getskilllv("NV_BASIC") < 9) {
-				mes "[Tzerero]";
 				mes "Ops... Que pena!";
 				mes "Você ainda não está pronto para isso.";
 				mes "Seu nível de classe deve ser 10 para poder";
@@ -128,14 +126,12 @@ aldeba_in,223,167,3	script	Tzerero#sn	709,{
 				close;
 			}
 			if (BaseLevel < 45) {
-				mes "[Tzerero]";
 				mes "Ops... Que pena!";
 				mes "Você ainda não está pronto para isso.";
 				mes "Seu nível de base deve ser ao menos 45 para poder";
 				mes "se juntar a nós. Volte depois, ok?";
 				close;
 			}
-			mes "[Tzerero]";
 			mes "Oh! Que ótimo! Você tem mesmo a alma do Aprendiz!";
 			mes "Não se acham muitos como você";
 			mes "hoje em dia!";
@@ -207,8 +203,7 @@ aldeba_in,223,167,3	script	Tzerero#sn	709,{
 			mes "vão virar perguntas de um teste de admissão.";
 			close;
 		}
-	}
-	else {
+	} else {
 		if (BaseJob == Job_SuperNovice) {
 			mes "[Tzerero]";
 			mes "Você é um membro do Clube do Aprendiz.";
@@ -244,8 +239,8 @@ aldeba_in,223,167,3	script	Tzerero#sn	709,{
 }
 
 aldeba_in,216,169,5	script	Esere#sn	86,{
+	mes "[Esere]";
 	if (BaseJob == Job_SuperNovice) {
-		mes "[Esere]";
 		mes "Ei, você é um membro do Clube do Aprendiz!";
 		mes "E como está se sentindo com isso?";
 		mes "é muito bom ser um Super Aprendiz, não é?";
@@ -258,7 +253,6 @@ aldeba_in,216,169,5	script	Esere#sn	86,{
 		close;
 	}
 	if (BaseJob == Job_Novice && upper != 1) {
-		mes "[Esere]";
 		mes "Você ainda não viu a beleza";
 		mes "de viver uma vida humilde para sempre?";
 		mes "Poxa, veja! A vida pode ser pura diversão,";
@@ -267,9 +261,7 @@ aldeba_in,216,169,5	script	Esere#sn	86,{
 		mes "[Esere]";
 		mes "Aprendizes são o máximo! Hahaha!";
 		close;
-	}
-	else {
-		mes "[Esere]";
+	} else {
 		mes "Que pena, você se afastou da vida simples.";
 		mes "Agora é tarde demais,";
 		mes "não adianta se arrepender...";
@@ -280,8 +272,8 @@ aldeba_in,216,169,5	script	Esere#sn	86,{
 }
 
 aldebaran,54,238,5	script	Recepcionista Kafra#sn	117,{
+	mes "[Recepcionista Kafra]";
 	if (BaseJob == Job_SuperNovice) {
-		mes "[Recepcionista Kafra]";
 		mes "Hmm? Então você é um Super Aprendiz?";
 		mes "Como? Você está triste";
 		mes "porque as outras Kafras não deixam";
@@ -332,8 +324,7 @@ aldebaran,54,238,5	script	Recepcionista Kafra#sn	117,{
 					mes "Eu sou uma Kafra e";
 					mes "é um prazer serví-lo!";
 					close;
-				}
-				else {
+				} else {
 					mes "[Recepcionista Kafra]";
 					mes "Você não tem dinheiro suficiente.";
 					mes "O preço pelo aluguel do carrinho é 1900 zeny.";
@@ -348,7 +339,6 @@ aldebaran,54,238,5	script	Recepcionista Kafra#sn	117,{
 		mes "Volte se mudar de idéia!";
 		close;
 	}
-	mes "[Recepcionista Kafra]";
 	mes "Bem vindo! Err, me desculpe...";
 	mes "Acho que não posso fazer nada por você.";
 	mes "Por favor, procure";

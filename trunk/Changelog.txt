@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0437 - 28/04/2011 [Wolf]
+	* Enviada correções, remoções de espaços, e otimizações da pasta npc/classes.
+	* Enviado e corrigido os erros/bugs da r0434. 
+	- Agradecimento a insidemybrain por reportá-los.		
+
 	r0435 - 27/04/2011 [insidemybrain]
 	* Enviada única tradução para a pasta comerciantes:
 	- npc/comerciantes/cabelereiro.txt

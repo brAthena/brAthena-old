@@ -17,20 +17,18 @@
 // | Descrição: Mudança de Classe para Professor            |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    					| 
+// | 1.0 Otimizações no npc [Wolf]                          |
 // \_______________________________________________________/
 
 valkyrie,53,47,3	script	Scholar#Valkyrie	743,{
 	if (ADVJOB == 0 || Upper != 1) {
+		mes "[Scholar]";
 		set .@karma_d,rand(1,10);
 		if (.@karma_d > 4) {
-			mes "[Scholar]";
 			mes "Congratulations.";
 			mes "Honor to the warriors!";
 			close;
 		}
-		mes "[Scholar]";
 		mes "It takes a lifetime...";
 		mes "Literally a lifetime";
 		mes "to amass the knowledge";
@@ -45,8 +43,7 @@ valkyrie,53,47,3	script	Scholar#Valkyrie	743,{
 		mes "There's no end to the";
 		mes "process of learning...";
 		close;
-	}
-	else if (ADVJOB == Job_Professor && Class == Job_Mage_High && JobLevel > 39) {
+	} else if (ADVJOB == Job_Professor && Class == Job_Mage_High && JobLevel > 39) {
 		mes "[Scholar]";
 		mes "Rune-Midgard doesn't";
 		mes "have enough Scholars to";
@@ -67,15 +64,14 @@ valkyrie,53,47,3	script	Scholar#Valkyrie	743,{
 			mes "Honor to the warriors!";
 			close;
 		}
+		mes "[Scholar]";
 		if (SkillPoint) {
-			mes "[Scholar]";
 			mes "It is still possible for you to learn more skills. Please use";
 			mes "all of your remaining Skill Points before returning to me.";
 			close;
 		}
 		jobchange Job_Professor;
 		set ADVJOB,0;
-		mes "[Scholar]";
 		mes "Congratulations!";
 		mes "As a Professor, I hope";
 		mes "that you will take an";

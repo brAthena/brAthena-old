@@ -17,26 +17,23 @@
 // | Descrição: Mudança de Classe para Menestrel            |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    					| 
+// | 1.0 Otimizações no npc [Wolf]                          |
 // \________________________________________________________/
 
 valkyrie,53,54,3	script	Minstrel#Valkyrie	741,{
 	if (ADVJOB == 0 || Upper != 1) {
+		mes "[Minstrel]";
 		set .@karma_d,rand(1,10);
 		if (.@karma_d > 4) {
-			mes "[Minstrel]";
 			mes "Congratulations.";
 			mes "Honor to the warriors!";
 			close;
 		}
-		mes "[Minstrel]";
 		mes "Do you want to";
 		mes "sing a song with me?";
 		mes "Sha la la la la~";
 		close;
-	}
-	else if (ADVJOB == Job_Clown && Class == Job_Archer_High && JobLevel > 39) {
+	} else if (ADVJOB == Job_Clown && Class == Job_Archer_High && JobLevel > 39) {
 		mes "[Minstrel]";
 		mes "The dreary world";
 		mes "of mortals is in need";
@@ -51,21 +48,19 @@ valkyrie,53,54,3	script	Minstrel#Valkyrie	741,{
 		mes "As a Minstrel?";
 		next;
 		if (select("No.:Yes.") == 1) {
-			mes "[Minstrel]";
 			mes "When you're ready,";
 			mes "feel free to come back.";
 			mes "Honor to the warriors!";
 			close;
 		}
+		mes "[Minstrel]";
 		if (SkillPoint) {
-			mes "[Minstrel]";
 			mes "It is still possible for you to learn more skills. Please use";
 			mes "all of your remaining Skill Points before returning to me.";
 			close;
 		}
 		jobchange Job_Clown;
 		set ADVJOB,0;
-		mes "[Minstrel]";
 		mes "Congratulations!";
 		mes "As a Minstrel, your";
 		mes "your songs will bring";

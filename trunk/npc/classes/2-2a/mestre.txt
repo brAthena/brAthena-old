@@ -17,20 +17,18 @@
 // | Descrição: Mudança de Classe para Mestre               |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    					| 
+// | 1.0 Otimizações no npc [Wolf]                          |
 // \________________________________________________________/
 
 valkyrie,53,42,3	script	Champion#Valkyrie	52,{
 	if (ADVJOB == 0 || Upper != 1) {
+		mes "[Champion]";
 		set .@karma_d,rand(1,10);
 		if (.@karma_d > 4) {
-			mes "[Champion]";
 			mes "Congratulations.";
 			mes "Honor to the warriors!";
 			close;
 		}
-		mes "[Champion]";
 		mes "Skill.";
 		mes "Speed.";
 		mes "Strength.";
@@ -43,8 +41,7 @@ valkyrie,53,42,3	script	Champion#Valkyrie	52,{
 		mes "one can only master";
 		mes "so much in life...";
 		close;
-	}
-	else if (ADVJOB == Job_Champion && Class == Job_Acolyte_High && JobLevel > 39) {
+	} else if (ADVJOB == Job_Champion && Class == Job_Acolyte_High && JobLevel > 39) {
 		mes "[Champion]";
 		mes "It's time.";
 		mes "Time for great heroes";
@@ -63,15 +60,14 @@ valkyrie,53,42,3	script	Champion#Valkyrie	52,{
 			mes "Honor to the warriors!";
 			close;
 		}
+		mes "[Champion]";
 		if (SkillPoint) {
-			mes "[Champion]";
 			mes "It is still possible for you to learn more skills. Please use";
 			mes "all of your remaining Skill Points before returning to me.";
 			close;
 		}
 		jobchange Job_Champion;
 		set ADVJOB,0;
-		mes "[Champion]";
 		mes "Congratulations!";
 		mes "Live as a Champion,";
 		mes "and bring light into";

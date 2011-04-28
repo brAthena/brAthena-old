@@ -19,7 +19,7 @@
 // | Changelog:               	                            |
 // | 1.0 Script Otimizado [Wolf]                            |
 // | 1.1 Remoção de espaços [Wolf]                          |
-// | - Anotações		   			    					| 
+// | 1.2 Otimizações no npc [Wolf]                          |
 // \________________________________________________________/
 
 prt_church,16,41,4	script	High Bishop#prst	60,{
@@ -39,7 +39,7 @@ prt_church,16,41,4	script	High Bishop#prst	60,{
 		if (BaseJob == Job_Priest) {
 			mes "[Bishop Paul]";
 			mes "Ah...";
-			mes ""+(Sex)?"It is good to see you again, Brother "+strcharinfo(0)+". Once again, God's grace has caused our paths to cross.":"It is good to see you once again, Sister "+strcharinfo(0)+". The grace of God has brought you once more before me."+"";
+			mes ""+((Sex)?"It is good to see you again, Brother "+strcharinfo(0)+". Once again, God's grace has caused our paths to cross.":"It is good to see you once again, Sister "+strcharinfo(0)+". The grace of God has brought you once more before me.")+"";
 			next;
 			mes "[Bishop Paul]";
 			mes "I'm pleased to see that you are continuing to lead the children of God on the right path. Is there anything I can help you with today?";
@@ -99,11 +99,10 @@ prt_church,16,41,4	script	High Bishop#prst	60,{
 				mes "I hope my invocation has eased your pain. Now please go forth and spread God's message. May God be with you...";
 				close;
 			}
-		}
-		else if (BaseClass == Job_Novice) {
+		} else if (BaseClass == Job_Novice) {
 			mes "[Bishop Paul]";
 			mes "May God be";
-			mes ""+(Sex)?"with you, brother.":"with you, sister."+"";
+			mes ""+((Sex)?"with you, brother.":"with you, sister.")+"";
 			next;
 			mes "[Bishop Paul]";
 			mes "You are in";
@@ -129,11 +128,10 @@ prt_church,16,41,4	script	High Bishop#prst	60,{
 			mes "[Bishop Paul]";
 			mes "May God bless you.";
 			close;
-		}
-		else {
+		} else {
 			mes "[Bishop Paul]";
 			mes "May God be";
-			mes ""+(Sex)?"with you, brother.":"with you, sister."+"";
+			mes ""+((Sex)?"with you, brother.":"with you, sister.")+"";
 			next;
 			mes "[Bishop Paul]";
 			mes "What brings you here";
@@ -185,7 +183,7 @@ prt_church,16,41,4	script	High Bishop#prst	60,{
 	if (PRIEST_Q == 0) {
 		mes "[Bishop Paul]";
 		mes "May God bless";
-		mes ""+(Sex)?"you, Brother.":"you, Sister."+"";
+		mes ""+((Sex)?"you, Brother.":"you, Sister.")+"";
 		mes "What brings";
 		mes "you to me?";
 		next;
@@ -318,8 +316,7 @@ prt_church,16,41,4	script	High Bishop#prst	60,{
 			mes "May God bless you...";
 			close;
 		}
-	}
-	else if (PRIEST_Q == 1) {
+	} else if (PRIEST_Q == 1) {
 		mes "[Bishop Paul]";
 		mes "May I ask you the reason you're still here? You didn't forget your pilgrimage, did you?";
 		next;
@@ -352,24 +349,21 @@ prt_church,16,41,4	script	High Bishop#prst	60,{
 		mes "[Bishop Paul]";
 		mes "Well then, I shall pray for your safe journey. May God bless you...";
 		close;
-	}
-	else if (PRIEST_Q == 2) {
+	} else if (PRIEST_Q == 2) {
 		mes "[Bishop Paul]";
 		mes "I see you have returned from your meeting with Father Rubalkabara. How is he doing? I am worried about his health, since he's been there all alone... ";
 		next;
 		mes "[Bishop Paul]";
 		mes "For your next quest, you should meet Sister Mathilda. I shall be awaiting your safe return.";
 		close;
-	}
-	else if (PRIEST_Q == 3) {
+	} else if (PRIEST_Q == 3) {
 		mes "[Bishop Paul]";
 		mes "I see that you have returned from your journey to meet Sister Mathilda. She has been meditating in the hot, dry desert for a long time.";
 		next;
 		mes "[Bishop Paul]";
 		mes "Finally, it is now time for you to meet Father Yosuke. He is doing penance somewhere around a field Northwest of Prontera. Please seek him out, and then return here to me.";
 		close;
-	}
-	else if (PRIEST_Q == 4) {
+	} else if (PRIEST_Q == 4) {
 		set PRIEST_Q,5;
 		changequest 8010,8011;
 		mes "[Bishop Paul]";
@@ -401,8 +395,7 @@ prt_church,16,41,4	script	High Bishop#prst	60,{
 		mes "the strength to";
 		mes "overcome your fears...";
 		close;
-	}
-	else if (PRIEST_Q == 5) {
+	} else if (PRIEST_Q == 5) {
 		mes "[Bishop Paul]";
 		mes "You seem confident about the spiritual training. Shall we begin?";
 		next;
@@ -420,8 +413,7 @@ prt_church,16,41,4	script	High Bishop#prst	60,{
 		mes "the strength to";
 		mes "overcome your fears...";
 		close;
-	}
-	else if (PRIEST_Q == 6) {
+	} else if (PRIEST_Q == 6) {
 		mes "[Bishop Paul]";
 		mes "You look tired and exhausted. However, you must endure even more suffering once you become a Priest.";
 		next;
@@ -442,8 +434,7 @@ prt_church,16,41,4	script	High Bishop#prst	60,{
 		mes "the strength to";
 		mes "overcome your fears...";
 		close;
-	}
-	else if (PRIEST_Q == 7) {
+	} else if (PRIEST_Q == 7) {
 		mes "[Bishop Paul]";
 		mes "I am glad that you've done well with the spiritual training. Congratulations. You are now qualified to be called a Priest.";
 		next;

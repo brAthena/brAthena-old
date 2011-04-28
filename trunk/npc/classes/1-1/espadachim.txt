@@ -20,42 +20,40 @@
 // | 1.0 Script Traduzido [Protimus]                        |
 // | 1.1 Script Revisado [insidemybrain]                    |
 // | 1.2 Correção em algumas frases [Wolf]                  |
+// | 1.3 Otimizações no npc [Wolf]                          |
 // \________________________________________________________/
 
 izlude_in,74,172,4	script	Espadachim#swd_1	119,{
 	if (Upper == 1) {
+		mes "[Espadachim]";
 		if (Class == Job_Novice_High && (ADVJOB == Job_Lord_Knight || ADVJOB == Job_Paladin)) {
-			mes "[Espadachim]";
 			mes "Haha, eu sabia!";
 			mes "Você quer voltar a ser um espadachim.";
 			next;
 			mes "[Espadachim]";
 			mes "Você é muito habilidoso com uma espada e não consegue viver sem ela.";
 			next;
+			mes "[Espadachim]";
 			if (getskilllv("NV_BASIC") < 9) {
-				mes "[Espadachim]";
 				mes "Agora estou meio ocupado, vá lá fora";
 				mes "e pratique com a sua espada!! Quero dizer... Treine mais.";
 				next;
 				mes "[Espadachim]";
 				mes "Volte aqui quando o nível de Habilidades Básicas estiver em 10.";
-				close;
+			} else {
+				mes "Bem, não vejo nenhum problema aqui, vou transformar você.";
+				next;
+				skill 143,0,0;
+				jobchange Job_Swordman_High;
+				skill 144,1,0;
+				skill 145,1,0;
+				skill 146,1,0;
+				mes "[Espadachim]";
+				mes "Agora, você parece um espadachim de verdade!";
+				mes "Não se esqueça de praticar todos os dias...!";
 			}
-			mes "[Espadachim]";
-			mes "Bem, não vejo nenhum problema aqui, vou transformar você.";
-			next;
-			skill 143,0,0;
-			jobchange Job_Swordman_High;
-			skill 144,1,0;
-			skill 145,1,0;
-			skill 146,1,0;
-			mes "[Espadachim]";
-			mes "Agora, você parece um espadachim de verdade!";
-			mes "Não se esqueça de praticar todos os dias...!";
 			close;
-		}
-		else {
-			mes "[Espadachim]";
+		} else {
 			mes "Hmm, que sono. Estou com muito sono.";
 			mes "Sou um membro da Guilda dos Espadachins.";
 			next;
@@ -70,19 +68,15 @@ izlude_in,74,172,4	script	Espadachim#swd_1	119,{
 	next;
 	switch(select("Mudança de Classe:Sobre os Espadachins:Sobre os requisitos da Classe:Cancelar")) {
 	case 1:
+		mes "[Espadachim]";
 		if (BaseJob == Job_Swordman) {
-			mes "[Espadachim]";
 			mes "Hahahaha! Você deve estar de brincadeira! Você já é um Espadachim!";
-			close;
-		}
-		else if (BaseJob != Job_Novice) {
-			mes "[Espadachim]";
+		} else if (BaseJob != Job_Novice) {
 			mes "Hahaha! Vejamos... eu recuso sua oferta em nome da Associação dos Espadachins.";
 			mes "Você já pertence a outra classe, não é?";
-			close;
 		}
+		close;
 		if (job_sword_q == 0) {
-			mes "[Espadachim]";
 			mes "Você quer mudar de classe? Certo, inscreva-se primeiro.";
 			next;
 			if (select("Inscrever-se.:Cancelar.") == 1) {
@@ -100,19 +94,16 @@ izlude_in,74,172,4	script	Espadachim#swd_1	119,{
 					mes "[Espadachim]";
 					mes "Ah é? Deixe-me ver.";
 					next;
-				}
-				else {
+				} else {
 					mes "[Espadachim]";
 					mes "Fique à vontade para me procurar quando quiser.";
 					mes "Tudo o que resta para você fazer é cumprir com as exigências que estabelecemos. Boa sorte, meu jovem.";
 					close;
 				}
 			}
-			else {
-				mes "[Espadachim]";
-				mes "Ah é? Tudo bem, volte quando mudar de idéia.";
-				close;
-			}
+			mes "[Espadachim]";
+			mes "Ah é? Tudo bem, volte quando mudar de idéia.";
+			close;
 		}
 		mes "[Espadachim]";
 		if (getskilllv("NV_BASIC") < 9) {
@@ -121,8 +112,7 @@ izlude_in,74,172,4	script	Espadachim#swd_1	119,{
 			mes "[Espadachim]";
 			mes "Verifique os requisitos novamente e aprenda as habilidades.";
 			close;
-		}
-		else if (job_sword_q <= 3) {
+		} else if (job_sword_q <= 3) {
 			mes "Você aprendeu habilidades o suficiente mas ainda não fez o teste.";
 			mes "Se você não passar no teste, seu desejo de se tornar um Espadachim ficará fora de seu alcance.";
 			next;
@@ -130,8 +120,7 @@ izlude_in,74,172,4	script	Espadachim#swd_1	119,{
 			mes "Você pode fazer o teste na sala ao lado";
 			mes "Mesmo que a porta pareça bloqueada por aquele homem, você pode entrar. Peça-lhe licença.";
 			close;
-		}
-		else if (job_sword_q == 4) {
+		} else if (job_sword_q == 4) {
 			mes "Parabéns! Agora você está qualificado para ser um verdadeiro Espadachim!";
 			mes "Executarei a mudança imediatamente!";
 			next;
@@ -162,12 +151,7 @@ izlude_in,74,172,4	script	Espadachim#swd_1	119,{
 	case 3:
 		mes "[Espadachim]";
 		mes "Deseja se tornar um Espadachim!?";
-		if (BaseJob != Job_Novice) {
-			if (BaseJob == Job_Swordman)
-				mes ".... mas você já é um Espadachim ...";
-			else
-				mes "Você já é de outra classe... É tarde demais para se tornar um Espadachim.";
-		}
+		if (BaseJob != Job_Novice) mes ( BaseJob == Job_Swordman ) ? ".... mas você já é um Espadachim ...":"Você já é de outra classe... É tarde demais para se tornar um Espadachim.";
 		next;
 		mes "[Espadachim]";
 		mes "Mesmo assim quer saber sobre os Espadachins? Certo, tudo bem...";
@@ -194,28 +178,23 @@ izlude_in,62,170,6	script	Espadachim#swd_2	85,{
 		mes "Pare! Este é o Hall de Testes para Aprendizes.";
 		mes "Outros Espadachins não são permitidos aqui dentro! Volte!";
 		close;
-	}
-	else if (BaseJob != Job_Novice) {
+	} else if (BaseJob != Job_Novice) {
 		mes "Mas quem é você?! Somente aprendizes podem entrar aqui! Volte!";
 		close;
-	}
-	else if (getskilllv("NV_BASIC") < 9) {
+	} else if (getskilllv("NV_BASIC") < 9) {
 		mes "Pare! Este é um lugar onde pessoas sem o nível 10 de Habilidades Básicas não podem entrar.";
 		mes "Assim que você pegar o nível 10 de Habilidades Básicas eu permitirei a sua entrada.";
 		close;
-	}
-	else if (job_sword_q == 4) {
+	} else if (job_sword_q == 4) {
 		mes "Não se aproxime! Converse com o homem no centro antes!";
 		close;
-	}
-	else if (job_sword_q == 0) {
+	} else if (job_sword_q == 0) {
 		mes "Pare! Você quer fazer o Teste de Espadachim?";
 		next;
 		mes "[Espadachim]";
 		mes "Se quiser, inscreva-se nesse formulário antes!";
 		close;
-	}
-	else {
+	} else {
 		savepoint "izlude_in",65,165;
 		warp "izlude_in",39,170;
 		end;
@@ -250,8 +229,7 @@ izlude_in,30,163,0	script	Equipe do Hall do Teste#swd_1	105,{
 		close2;
 		warp "izlude_in",66,170;
 		end;
-	}
-	else if (BaseJob != Job_Novice) {
+	} else if (BaseJob != Job_Novice) {
 		mes "Quem é você?! Este é o local do Teste de Espadachim, você não devia estar aqui! Saia agora!";
 		close2;
 		warp "izlude_in",66,170;
@@ -263,13 +241,11 @@ izlude_in,30,163,0	script	Equipe do Hall do Teste#swd_1	105,{
 		mes "[Equipe do Hall do Teste]";
 		mes "Relaxe e continue com o bom trabalho. Este curso não é difícil..";
 		set job_sword_q,2;
-	}
-	else if (job_sword_q == 2) {
+	} else if (job_sword_q == 2) {
 		mes "Testando novamente....? Como quiser, eu gosto de pessoas que não temem um desafio! Tome isto e anime-se!";
 		getitem 512,5; //Maçã
 		set job_sword_q,3;
-	}
-	else if (job_sword_q == 3)
+	} else if (job_sword_q == 3)
 		mes "Não desista jamais! Testando novamente!";
 	close2;
 	warp "job_sword1",10,245;

@@ -18,19 +18,18 @@
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [Wolf]                            |
-// | - Anotações                                            | 
+// | 1.1 Otimizações no npc [Wolf]                          |
 // \________________________________________________________/
 
 valkyrie,44,47,5	script	Arquimago#Valkyrie	735,{
 	if (ADVJOB == 0 ||  Upper != 1) {
+		mes "[Arquimago]";
 		set .@karma_d,rand(1,10);
 		if (.@karma_d > 4) {
-			mes "[Arquimago]";
 			mes "Parabéns.";
 			mes "Honre os guerreiros!";
 			close;
 		}
-		mes "[Arquimago]";
 		mes "Nós Arquimagos temos a";
 		mes "responsabilidade de";
 		mes "usar as nossas magias";
@@ -43,8 +42,7 @@ valkyrie,44,47,5	script	Arquimago#Valkyrie	735,{
 		mes "o que aconteceria se nosso poder fosse";
 		mes "colocado em mãos erradas?!";
 		close;
-	}
-	else if (ADVJOB == Job_High_Wizard && Class == Job_Mage_High && JobLevel > 39) {
+	} else if (ADVJOB == Job_High_Wizard && Class == Job_Mage_High && JobLevel > 39) {
 		mes "[Arquimago]";
 		mes "Essa é a hora.";
 		mes "E Rune-Midgard precisa";
@@ -56,21 +54,20 @@ valkyrie,44,47,5	script	Arquimago#Valkyrie	735,{
 		mes "um Arquimago?";
 		next;
 		if (select("Não.:Sim.") == 1) {
-			mes "[Arquimago]";
+			mes "[Arquimago]";			
 			mes "Quando você estiver pronto,";
 			mes "fique à vontade para voltar.";
 			mes "Honre os guerreiros!";
 			close;
 		}
+		mes "[Arquimago]";
 		if (SkillPoint) {
-			mes "[Arquimago]";
 			mes "Você ainda tem Pontos de Habilidade. Por favor,";
 			mes "use todos os seus Pontos de Habilidade e depois volte.";
 			close;
 		}
 		jobchange Job_high_Wizard;
 		set ADVJOB,0;
-		mes "[Arquimago]";
 		mes "Parabéns.";
 		mes "Como um Arquimago,";
 		mes "Eu espero que você use";

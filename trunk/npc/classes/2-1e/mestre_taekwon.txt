@@ -18,14 +18,14 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Remoção de espaços [Wolf]                          |
-// | - Anotações		   			    					| 
+// | 1.1 Otimizações no npc [Wolf]                          |
 // \________________________________________________________/
 
 payon,215,102,3	script	Moohyun#job_star	828,3,3,{
 	if (Class == Job_Taekwon) {
 		if (STGL_Q == 0) {
 			mes "[Moohyun]";
-			mes ""+(Sex)?"Hey, Taekwon Boy!":"Hey, Taekwon Girl!"+""; 
+			mes ""+((Sex)?"Hey, Taekwon Boy!":"Hey, Taekwon Girl!")+"";
 			mes "Come here for a minute.";
 			mes "I've got a proposition";
 			mes "for you if you'll listen!";
@@ -151,8 +151,7 @@ payon,215,102,3	script	Moohyun#job_star	828,3,3,{
 			mes "to listen to my spiel. Come";
 			mes "on, just hear me out...";
 			close;
-		}
-		else if (STGL_Q == 1) {
+		} else if (STGL_Q == 1) {
 			mes "[Moohyun]";
 			mes "I've already sent him my";
 			mes "letter of recommendation";
@@ -161,8 +160,7 @@ payon,215,102,3	script	Moohyun#job_star	828,3,3,{
 			mes "He'll start training you to";
 			mes "become a Taekwon Master.";
 			close;
-		}
-		else if (STGL_Q == 7) {
+		} else if (STGL_Q == 7) {
 			mes "[Moohyun]";
 			mes "So how's the testing";
 			mes "coming along? Oh hey, you";
@@ -242,8 +240,7 @@ payon,215,102,3	script	Moohyun#job_star	828,3,3,{
 			mes "a little while? Yes, that";
 			mes "might be useful for now.";
 			close;
-		}
-		else if (STGL_Q == 8) {
+		} else if (STGL_Q == 8) {
 			mes "[Moohyun]";
 			mes "Great, I think you're";
 			mes "ready now. Please go";
@@ -260,8 +257,7 @@ payon,215,102,3	script	Moohyun#job_star	828,3,3,{
 		mes "a great Taekwon Master, so";
 		mes "I'm expecting great things.";
 		close;
-	}
-	else if (BaseJob == Job_Star_Gladiator) {
+	} else if (BaseJob == Job_Star_Gladiator) {
 		mes "[Moohyun]";
 		mes "Hey, how have you";
 		mes "been doing? Attuned";
@@ -270,8 +266,7 @@ payon,215,102,3	script	Moohyun#job_star	828,3,3,{
 		mes "isn't the cosmos such";
 		mes "a wonderful thing?";
 		close;
-	}
-	else if (Class== Job_Novice) {
+	} else if (Class== Job_Novice) {
 		mes "[Moohyun]";
 		mes "Hey, kid. Do you want";
 		mes "to learn Taekwon Do?";
@@ -302,8 +297,7 @@ payon,215,102,3	script	Moohyun#job_star	828,3,3,{
 		mes "with my martial arts";
 		mes "school? It's too late";
 		mes "for you, sorry pal~";
-	}
-	else {
+	} else {
 		mes "Oh, I didn't realize tha--";
 		mes "Y-you're such a beautiful";
 		mes "lady! I guess I oughta, you";
@@ -337,8 +331,7 @@ OnTouch:
 			mes "you're willing to listen...";
 			close;
 		}
-	}
-	else if (BaseJob == Job_Star_Gladiator) {
+	} else if (BaseJob == Job_Star_Gladiator) {
 		mes "[Moohyun]";
 		mes "How's it going, warrior?";
 		mes "Please continue to use";
@@ -373,8 +366,8 @@ comodo,172,230,3	script	Wandering Master#job_sta	730,{
 			mes "service of the grand cosmos?";
 			next;
 			if (select("Yes, let me take the test!:Wait, I need to think about this!") == 1) {
+				mes "[Moogang]";
 				if (SkillPoint) {
-					mes "[Moogang]";
 					mes "Hm? You still have Skill";
 					mes "Points that you haven't yet";
 					mes "allocated. Use them, learn";
@@ -382,7 +375,6 @@ comodo,172,230,3	script	Wandering Master#job_sta	730,{
 					mes "skills. When you are finished,^FFFFFF ^000000 come back here for your training.";
 					close;
 				}
-				mes "[Moogang]";
 				mes "Taekwon Do sets the basics.";
 				mes "Mind, body, soul. These are not";
 				mes "separate parts, but a functioning whole. Your self is in touch";
@@ -430,8 +422,7 @@ comodo,172,230,3	script	Wandering Master#job_sta	730,{
 			mes "changes must occur according";
 			mes "to the grand scheme of things.";
 			close;
-		}
-		else if (STGL_Q == 2) {
+		} else if (STGL_Q == 2) {
 			if (countitem(996) > 0 && countitem(997) > 0 && countitem(995) > 0 && countitem(994) > 0) {
 				mes "[Moogang]";
 				mes "Ah, you've completed the";
@@ -502,8 +493,7 @@ comodo,172,230,3	script	Wandering Master#job_sta	730,{
 			mes "^4D4DFFFlame Heart^000000.";
 			mes "Now go...";
 			close;
-		}
-		else if (STGL_Q == 3) {
+		} else if (STGL_Q == 3) {
 			mes "[Moogang]";
 			mes "Are you ready for";
 			mes "the next test to become";
@@ -526,8 +516,7 @@ comodo,172,230,3	script	Wandering Master#job_sta	730,{
 			close2;
 			warp "job_star",34,12;
 			end;
-		}
-		else if (STGL_Q > 3 && STGL_Q < 7) {
+		} else if (STGL_Q > 3 && STGL_Q < 7) {
 			mes "[Moogang]";
 			mes "How very strange...";
 			mes "You cannot have completed";
@@ -538,8 +527,7 @@ comodo,172,230,3	script	Wandering Master#job_sta	730,{
 			close2;
 			warp "job_star",34,12;
 			end;
-		}
-		else if (STGL_Q == 7) {
+		} else if (STGL_Q == 7) {
 			mes "[Moogang]";
 			mes "Hmm...";
 			mes "You seem troubled.";
@@ -564,8 +552,7 @@ comodo,172,230,3	script	Wandering Master#job_sta	730,{
 			mes "I can send you back to the";
 			mes "Moon Room for testing.";
 			close;
-		}
-		else if (STGL_Q == 8) {
+		} else if (STGL_Q == 8) {
 			mes "[Moogang]";
 			mes "Ah, I see that Moohyun";
 			mes "has helped you achieve a";
@@ -576,8 +563,7 @@ comodo,172,230,3	script	Wandering Master#job_sta	730,{
 			close2;
 			warp "job_star",100,13;
 			end;
-		}
-		else if (STGL_Q == 9 || STGL_Q == 11) {
+		} else if (STGL_Q == 9 || STGL_Q == 11) {
 			mes "[Moogang]";
 			mes "Would you like to";
 			mes "return to the Star Room";
@@ -601,8 +587,7 @@ comodo,172,230,3	script	Wandering Master#job_sta	730,{
 			mes "spirit are prepared, please";
 			mes "come and talk to me again.";
 			close;
-		}
-		else if (STGL_Q == 10) {
+		} else if (STGL_Q == 10) {
 			mes "[Moogang]";
 			mes "Ah, you have come here in";
 			mes "order to speak to Cheehee.";
@@ -626,8 +611,7 @@ comodo,172,230,3	script	Wandering Master#job_sta	730,{
 			mes "spirit are prepared, please";
 			mes "come and talk to me again.";
 			close;
-		}
-		else if (STGL_Q == 12) {
+		} else if (STGL_Q == 12) {
 			mes "[Moogang]";
 			mes "Ah, you've returned";
 			mes "wiser and more attuned";
@@ -730,8 +714,7 @@ comodo,172,230,3	script	Wandering Master#job_sta	730,{
 		mes "that you might possibly";
 		mes "be the warrior I'm seeking!";
 		close;
-	}
-	else if (BaseJob == Job_Star_Gladiator) {
+	} else if (BaseJob == Job_Star_Gladiator) {
 		mes "[Moogang]";
 		mes "Oh, it's very nice to";
 		mes "see you again. So where";
@@ -928,8 +911,7 @@ job_star,29,33,0	script	Daru#job_star	59,{
 			mes "shines brightest among ";
 			mes "them all? Think carefully...";
 			next;
-			if (select("2nd, Marsh, Knights:4th, Desert, Sand:10th, Desert, Knights:5th, Deep Cave, Wolves") == 2)
-				set .@sun_point,.@sun_point+10;
+			if (select("2nd, Marsh, Knights:4th, Desert, Sand:10th, Desert, Knights:5th, Deep Cave, Wolves") == 2) set .@sun_point,.@sun_point+10;
 			mes "[Daru]";
 			mes "Well, that will be all.";
 			mes "I cannot possibly know all";
@@ -950,8 +932,7 @@ job_star,29,33,0	script	Daru#job_star	59,{
 				close2;
 				warp "job_star",100,13;
 				end;
-			}
-			else if (.@sun_point == 25) {
+			} else if (.@sun_point == 25) {
 				mes "[Daru]";
 				mes "Although your understanding";
 				mes "of the Sun is not perfect, you";
@@ -987,8 +968,7 @@ job_star,29,33,0	script	Daru#job_star	59,{
 			mes "power of the sun...";
 			set STGL_Q,5;
 			close;
-		}
-		else if (STGL_Q == 4) {
+		} else if (STGL_Q == 4) {
 			mes "[Daru]";
 			mes "There is no longer any";
 			mes "need for us to remain";
@@ -997,8 +977,7 @@ job_star,29,33,0	script	Daru#job_star	59,{
 			close2;
 			warp "job_star",100,13;
 			end;
-		}
-		else if (STGL_Q == 5) {
+		} else if (STGL_Q == 5) {
 			if (rand(1,5) == 3) {
 				mes "[Daru]";
 				mes "Hmmm. I believe you've";
@@ -1019,8 +998,7 @@ job_star,29,33,0	script	Daru#job_star	59,{
 			mes "against your eyelids as you";
 			mes "meditate on its role in the world and your place in the cosmos.";
 			close;
-		}
-		else if (STGL_Q == 6) {
+		} else if (STGL_Q == 6) {
 			mes "[Daru]";
 			mes "Hm? The time for you";
 			mes "to be in the Room of the";
@@ -1029,8 +1007,7 @@ job_star,29,33,0	script	Daru#job_star	59,{
 			close2;
 			warp "job_star",166,29;
 			end;
-		}
-		else if (STGL_Q == 7) {
+		} else if (STGL_Q == 7) {
 			mes "[Daru]";
 			mes "Ah, Beeryu must have";
 			mes "given you his riddle to";
@@ -1041,8 +1018,7 @@ job_star,29,33,0	script	Daru#job_star	59,{
 			close2;
 			warp "payon",164,58;
 			end;
-		}
-		else if (STGL_Q == 8) {
+		} else if (STGL_Q == 8) {
 			mes "[Daru]";
 			mes "Hm? Beeryu is expecting";
 			mes "you in the Moon Room. Let";
@@ -1050,8 +1026,7 @@ job_star,29,33,0	script	Daru#job_star	59,{
 			close2;
 			warp "job_star",100,13;
 			end;
-		}
-		else if (STGL_Q > 8 && STGL_Q < 12) {
+		} else if (STGL_Q > 8 && STGL_Q < 12) {
 			mes "[Daru]";
 			mes "Hm. I cannot blame";
 			mes "you if you enjoy the";
@@ -1237,8 +1212,7 @@ job_star,95,33,0	script	Beeryu#job_star	106,{
 			mes "strongly evokes the";
 			mes "light of the moon?";
 			next;
-			if (select("2nd, Marsh, Dark Knights:4th, the Desert, the Sand:10th, Deep Cave, Dark Knight:5th, Marsh, Wolves") == 4)
-				set .@moon_point,.@moon_point+10;
+			if (select("2nd, Marsh, Dark Knights:4th, the Desert, the Sand:10th, Deep Cave, Dark Knight:5th, Marsh, Wolves") == 4) set .@moon_point,.@moon_point+10;
 			mes "[Beeryu]";
 			mes "Well, I've asked the";
 			mes "questions I wanted to set";
@@ -1297,8 +1271,7 @@ job_star,95,33,0	script	Beeryu#job_star	106,{
 			close2;
 			warp "payon",164,58;
 			end;
-		}
-		else if (STGL_Q == 5) {
+		} else if (STGL_Q == 5) {
 			mes "[Beeryu]";
 			mes "Hm. You must first pass";
 			mes "testing the Room of the Sun";
@@ -1308,8 +1281,7 @@ job_star,95,33,0	script	Beeryu#job_star	106,{
 			close2;
 			warp "job_star",34,12;
 			end;
-		}
-		else if (STGL_Q == 6) {
+		} else if (STGL_Q == 6) {
 			mes "[Beeryu]";
 			mes "How are you still here?";
 			mes "The light of the full moon";
@@ -1320,8 +1292,7 @@ job_star,95,33,0	script	Beeryu#job_star	106,{
 			close2;
 			warp "job_star",166,29;
 			end;
-		}
-		else if (STGL_Q == 7) {
+		} else if (STGL_Q == 7) {
 			mes "[Beeryu]";
 			mes "I want you to bring me";
 			mes "proof that you understand";
@@ -1339,8 +1310,7 @@ job_star,95,33,0	script	Beeryu#job_star	106,{
 			close2;
 			warp "payon",164,58;
 			end;
-		}
-		else if (STGL_Q == 8) {
+		} else if (STGL_Q == 8) {
 			mes "[Beeryu]";
 			mes "Ah, you've finally";
 			mes "returned. I can see in";
@@ -1368,8 +1338,7 @@ job_star,95,33,0	script	Beeryu#job_star	106,{
 			close2;
 			warp "job_star",166,29;
 			end;
-		}
-		else if (STGL_Q > 8 && STGL_Q < 12) {
+		} else if (STGL_Q > 8 && STGL_Q < 12) {
 			mes "[Beeryu]";
 			mes "You should be";
 			mes "receiving Cheehee's";
@@ -1422,8 +1391,7 @@ job_star,161,33,0	script	Cheehee#job_star	77,{
 			mes "pitch black night sky...";
 			set STGL_Q,9;
 			close;
-		}
-		else if (STGL_Q == 9) {
+		} else if (STGL_Q == 9) {
 			if (rand(1,5) == 3) {
 				mes "[Cheehee]";
 				mes "The test I have for";
@@ -1443,8 +1411,7 @@ job_star,161,33,0	script	Cheehee#job_star	77,{
 			mes "staring at the sky as if she were counting each and every single";
 			mes "shining star in the heavens.^000000";
 			close;
-		}
-		else if (STGL_Q == 10) {
+		} else if (STGL_Q == 10) {
 			if (countitem(1000) > 0 && countitem(1001) > 0) {
 				mes "[Cheehee]";
 				mes "Oh? You've brought exactly";
@@ -1474,8 +1441,7 @@ job_star,161,33,0	script	Cheehee#job_star	77,{
 			close2;
 			warp "payon",164,58;
 			end;
-		}
-		else if (STGL_Q == 11) {
+		} else if (STGL_Q == 11) {
 			mes "[Cheehee]";
 			mes "Have you given any thought";
 			mes "to the idea of feeling sadness";
@@ -1568,8 +1534,7 @@ job_star,161,33,0	script	Cheehee#job_star	77,{
 			set STGL_Q,12;
 			changequest 7010,7011;
 			close;
-		}
-		else if (STGL_Q == 12) {
+		} else if (STGL_Q == 12) {
 			mes "[Cheehee]";
 			mes "Do you wish to";
 			mes "leave the Star Room?";

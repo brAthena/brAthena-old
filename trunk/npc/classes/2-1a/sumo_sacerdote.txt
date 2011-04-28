@@ -18,27 +18,25 @@
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [Wolf]                            |
-// | - Anotações                                            | 
+// | 1.1 Otimizações no npc [Wolf]                          |
 // \________________________________________________________/
 
 valkyrie,44,42,5	script	Sumo Sacerdote#Valkyrie	60,{
 	if (ADVJOB == 0 || Upper != 1) {
+		mes "[Sumo Sacerdote]";
 		set .@karma_d,rand(1,10);
 		if (.@karma_d > 4) {
-			mes "[Sumo Sacerdote]";
 			mes "Parabéns.";
 			mes "Honre os guerreiros!";
 			close;
 		}
-		mes "[Sumo Sacerdote]";
 		mes "Através do poder da";
 		mes "santidade, podemos";
 		mes "encontrar força, paz";
 		mes "e proteção. Livrai-nos";
 		mes "das forças do mal...";
 		close;
-	}
-	else if (ADVJOB == Job_High_Priest && Class == Job_Acolyte_High && JobLevel > 39) {
+	} else if (ADVJOB == Job_High_Priest && Class == Job_Acolyte_High && JobLevel > 39) {
 		mes "[Sumo Sacerdote]";
 		mes "Nosso mundo está";
 		mes "carente de pessoas";
@@ -52,21 +50,19 @@ valkyrie,44,42,5	script	Sumo Sacerdote#Valkyrie	60,{
 		mes "um Sumo Sacerdote?";
 		next;
 		if (select("Não.:Sim.") == 1) {
-			mes "[Sumo Sacerdote]";
 			mes "Quando você estiver pronto,";
 			mes "fique à vontade para voltar.";
 			mes "Honre os guerreiros!";
 			close;
 		}
+		mes "[Sumo Sacerdote]";
 		if (SkillPoint) {
-			mes "[Sumo Sacerdote]";
 			mes "Você ainda tem Pontos de Habilidade. Por favor,";
 			mes "use todos os seus Pontos de Habilidade e depois volte.";
 			close;
 		}
 		jobchange Job_High_Priest;
 		set ADVJOB,0;
-		mes "[Sumo Sacerdote]";
 		mes "Parabéns.";
 		mes "Como um Sumo Sacerdote,";
 		mes "Eu espero que você guie";
