@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0435 - 27/04/2011 [insidemybrain]
+	* Enviada única tradução para a pasta comerciantes:
+	- npc/comerciantes/cabelereiro.txt
+	* Tentados corrigidos bugs da r0434 e corrigidos alguns bugs da tradução enviada
+	* PEÇO QUE REVISEM OS ERROS QUE AINDA CONTINUAM!
+
 	r0434 - 26/04/2011 [Wolf]
 	* Otimizações, correções, remoção de espaços, dos seguintes arquivos:
 	- npc/classes/1-1/arqueiro

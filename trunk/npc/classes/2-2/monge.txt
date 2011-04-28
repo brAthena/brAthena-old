@@ -349,7 +349,8 @@ monk_in,99,58,1	script	Sensei Moohae#mk	60,{
 		}
 		mes "[Sensei Moohae]";
 		mes "There are still those who wish to follow the old ways.";
-		mes ""+(Sex)?"A strong young man. I am pleased of your will to join us.":"Such a delicate flower. I am pleased to see your will to join us."+""; 
+		mes ""+(Sex)?"";
+		mes "A strong young man. I am pleased of your will to join us.":"Such a delicate flower. I am pleased to see your will to join us."+""; 
 		next;
 		mes "[Sensei Moohae]";
 		mes "Oh, you are the new pupil that wishes to join us...";
@@ -772,7 +773,8 @@ monk_in,99,58,1	script	Sensei Moohae#mk	60,{
 				next;
 				mes "[Sensei Moohae]";
 				mes "Then your training isn't completed.";
-				mes ""+(Sex)?"mes "You will not be accepted as a monk my boy.":"You will not be accepted as a monk little girl."+""; 
+				mes ""+(Sex)?"";
+				mes "You will not be accepted as a monk my boy.":"You will not be accepted as a monk little girl."+""; 
 				next;
 				mes "[Sensei Moohae]";
 				mes "In light of this, your training will start again from the beginning....";
@@ -781,16 +783,19 @@ monk_in,99,58,1	script	Sensei Moohae#mk	60,{
 				mes "Come back later when you're ready...";
 				next;
 				mes "[Sensei Moohae]";
-				mes ""+(Sex)?"mes "I hope that you are able to realize what you are to become soon my boy...":"I hope that you are able to realize what you are to become soon my girl..."+""; 
+				mes ""+(Sex)?"";
+				mes "I hope that you are able to realize what you are to become soon my boy...":"I hope that you are able to realize what you are to become soon my girl..."+""; 
 				close;
 			}
 			mes "[Sensei Moohae]";
 			mes "Then your training is complete...";
 			mes "Please come closer.";
-			mes ""+(Sex)?"mes "We welcome you brother, in our holy battle against evil!":"We welcome you sister, in our holy battle against evil!"+""; 
+			mes ""+(Sex)?"";
+			mes "We welcome you brother, in our holy battle against evil!":"We welcome you sister, in our holy battle against evil!"+""; 
 			next;
 			mes "[Sensei Moohae]";
-			mes ""+(Sex)?"mes "My brother, your oath has been heard by all around us.":"My sister, your oath has been heard by all around us."+""; 
+			mes ""+(Sex)?"";
+			mes "My brother, your oath has been heard by all around us.":"My sister, your oath has been heard by all around us."+""; 
 			next;
 			mes "[Sensei Moohae]";
 			mes "I will now perform the ultimate techniques upon your body...";
