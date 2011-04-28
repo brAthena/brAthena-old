@@ -12,7 +12,7 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.5/1.0                                |
+// | Versões eA/brA: 1.5/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: Mudança de Classe para Espiritualista       |
 // | [Vars Used]											|
@@ -36,7 +36,7 @@ morocc_in,174,30,6	script	Kid#link1	716,{
 	}
 	if (Class == Job_Star_Gladiator) {
 		mes "[Kid]";
-		mes "Aren't you a warrior of "+((Sex)?"the sun? I'm familiar":"the moon? I'm familiar")+"";
+		mes "Aren't you a warrior of the "+((Sex)?"sun?":"moon?")+" I'm familiar";
 		mes "with your ways. After all,";
 		mes "the basis of both of our";
 		mes "skills is grounded in the";

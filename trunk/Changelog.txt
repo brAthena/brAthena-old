@@ -9,6 +9,13 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0439 - 28/04/2011 [Wolf]
+	* Corrigido erros em npcs.
+	* Correção na sintaxe dos scripts.
+	* Correção na versão dos scripts.
+	* Enviada traduções de alguns scripts.
+	- npc/classes/2-2a/
+
 	r0438 - 28/04/2011 [Lord]
 	* Corrigido erros em npcs.
 	* Revertida modificações em monge.txt e aprendiz.txt

@@ -12,7 +12,7 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 3.3/1.0                                |
+// | Versões eA/brA: 3.3/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: Mudança de Classe para Templário            |
 // |--------------------------------------------------------|
@@ -298,7 +298,7 @@ prt_castle,164,32,1	script	Man in Anguish	733,{
 	} else if(CRUS_Q == 4) {
 		mes "What is it...?";
 		mes "Do you have business";
-		mes "with me, "+((Sex)?"man of the sword?":"woman of the sword?")+"";
+		mes "with me, "+((Sex)?"man":"woman")+" of the sword?";
 		next;
 		if (select("I'd like to take the Crusader test.:Nothing.") == 1) {
 			mes "[Murnak Mijoul]";

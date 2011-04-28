@@ -12,7 +12,7 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 3.4/1.0                                |
+// | Versões eA/brA: 3.4/1.2                                |
 // |--------------------------------------------------------|
 // | Descrição: Mudança de Classe para Mercenário           |
 // |--------------------------------------------------------|
@@ -1775,7 +1775,7 @@ OnTouch:
 				mes "Haha, the needs of the body are sometimes hard to ignore. It's best to accept that part of human nature.";
 				next;
 				mes "[Guildmaster]";
-				mes ""+((Sex)?"But you must never reveal to her the Assassin side of your life. No matter what it takes.":"But you must never reveal to him the Assassin side of your life, no matter what it takes.")+"";
+				mes "But you must never reveal to "+((Sex)?"him":"her")+" the Assassin side of your life. No matter what it takes.";
 				next;
 				mes "[Guildmaster]";
 				mes "Love your beloved forever, even if you can't openly express it. Sometimes, life doesn't allow you to find true love more than once.";
