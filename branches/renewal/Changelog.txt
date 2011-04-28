@@ -8,6 +8,10 @@
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
+	r0436 - 27/04/2011 [CarlosHenrq]
+	* Corrigida habilidades: Sopro do Dragão e Silentium.
+	- Sopro do Dragão: Acertando em área, corrigido para somente inimigo.
+	- Silentium: Alterado o tipo none para magic.
 
 	r0430 - 25/04/2011 [Protimus]
 	* Adicionadas classes expandidas para super aprendiz e super bebê.
