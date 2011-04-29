@@ -5004,17 +5004,12 @@ void clif_MainChatMessage(const char* message)
 /*==========================================
  * Send broadcast message with font formatting.
  * S 01C3 <len>.W <fontColor>.L <fontType>.W <fontSize>.W <fontAlign>.W <fontY>.W <message>.?B
- * S 040C <len>.W <fontColor>.L <fontType>.W <fontSize>.W <fontAlign>.W <fontY>.W <message>.?B
  *------------------------------------------*/
 int clif_broadcast2(struct block_list* bl, const char* mes, int len, unsigned long fontColor, short fontType, short fontSize, short fontAlign, short fontY, enum send_target target)
 {
 	unsigned char *buf = (unsigned char*)aMallocA((16 + len)*sizeof(unsigned char));
 
-#if PACKETVER < 20080820
 	WBUFW(buf,0)  = 0x1c3;
-#else
-	WBUFW(buf,0)  = 0x40c;
-#endif
 	WBUFW(buf,2)  = len + 16;
 	WBUFL(buf,4)  = fontColor;
 	WBUFW(buf,8)  = fontType;
@@ -7018,7 +7013,7 @@ int clif_guild_leave(struct map_session_data *sd,const char *name,const char *me
 /*==========================================
  * ギルドメンバ追放通知
  *------------------------------------------*/
-int clif_guild_expulsion(struct map_session_data *sd,const char *name,const char *mes,int account_id)
+void clif_guild_expulsion(struct map_session_data* sd, const char* name, const char* mes, int account_id)
 {
 	unsigned char buf[128];
 #if PACKETVER < 20100608
@@ -7027,46 +7022,57 @@ int clif_guild_expulsion(struct map_session_data *sd,const char *name,const char
         const unsigned short cmd = 0x839;
 #endif
 
-	nullpo_ret(sd);
+	nullpo_retv(sd);
 
 	WBUFW(buf,0) = cmd;
-	safestrncpy((char*)WBUFP(buf, 2),name,NAME_LENGTH);
-	safestrncpy((char*)WBUFP(buf,26),mes,40);
+	safestrncpy((char*)WBUFP(buf,2), name, NAME_LENGTH);
+	safestrncpy((char*)WBUFP(buf,26), mes, 40);
 #if PACKETVER < 20100608
-	safestrncpy((char*)WBUFP(buf,66),"",NAME_LENGTH); // account name (not used for security reasons)
+	memset(WBUFP(buf,66), 0, NAME_LENGTH); // account name (not used for security reasons)
 #endif
-    clif_send(buf,packet_len(cmd),&sd->bl,GUILD_NOBG);
-	return 0;
+	clif_send(buf, packet_len(cmd), &sd->bl, GUILD_NOBG);
 }
 
 /*==========================================
  * ギルド追放メンバリスト
  *------------------------------------------*/
-int clif_guild_expulsionlist(struct map_session_data *sd)
+void clif_guild_expulsionlist(struct map_session_data* sd)
 {
-	int fd;
-	int i,c;
-	struct guild *g;
 
-	nullpo_ret(sd);
+#if PACKETVER < 20100803
+	const int offset = NAME_LENGTH*2+40;
+#else
+	const int offset = NAME_LENGTH+40;
+#endif
+	int fd, i, c = 0;
+	struct guild* g;
+
+	nullpo_retv(sd);
 	if( (g = guild_search(sd->status.guild_id)) == NULL )
-		return 0;
+		return;
 
 	fd = sd->fd;
-	WFIFOHEAD(fd,4 + MAX_GUILDEXPULSION * 88);
-	WFIFOW(fd,0)=0x163;
-	for(i=c=0;i<MAX_GUILDEXPULSION;i++){
-		struct guild_expulsion *e=&g->expulsion[i];
-		if(e->account_id>0){
-			safestrncpy((char*)WFIFOP(fd,4 + c*88),e->name,NAME_LENGTH);
-			safestrncpy((char*)WFIFOP(fd,4 + c*88+24),"",24); // account name (not used for security reasons)
-			safestrncpy((char*)WFIFOP(fd,4 + c*88+48),e->mes,40);
+	WFIFOHEAD(fd,4 + MAX_GUILDEXPULSION * offset);
+	WFIFOW(fd,0) = 0x163;
+
+	for( i = 0; i < MAX_GUILDEXPULSION; i++ )
+	{
+		struct guild_expulsion* e = &g->expulsion[i];
+
+		if( e->account_id > 0 )
+		{
+			memcpy(WFIFOP(fd,4 + c*offset), e->name, NAME_LENGTH);
+#if PACKETVER < 20100803
+			memset(WFIFOP(fd,4 + c*offset+24), 0, NAME_LENGTH); // account name (not used for security reasons)
+			memcpy(WFIFOP(fd,4 + c*offset+48), e->mes, 40);
+#else
+			memcpy(WFIFOP(fd,4 + c*offset+24), e->mes, 40);
+#endif
 			c++;
 		}
 	}
-	WFIFOW(fd,2) = 4 + c*88;
+	WFIFOW(fd,2) = 4 + c*offset;
 	WFIFOSET(fd,WFIFOW(fd,2));
-	return 0;
 }
 
 /*==========================================
