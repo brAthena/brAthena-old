@@ -9,7 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
-	
+	r0445 - 30/04/2011 [Devil]
+	* Otimizada pasta Campais
+	- Pastas tierra e flavius	
+
 	r0444 - 30/04/2011 [Protimus]
 	* Revertida modificação de Sopro do Dragão realizada em r436.
 	- O dano é no chão em área, ground, quem passar pela área leva o dano.
