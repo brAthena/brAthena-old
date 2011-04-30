@@ -10,6 +10,10 @@
 // ==============================================================================
 
 	
+	r0444 - 30/04/2011 [Protimus]
+	* Revertida modificação de Sopro do Dragão realizada em r436.
+	- O dano é no chão em área, ground, quem passar pela área leva o dano.
+
 	r0443 - 30/04/2011 [Protimus]
 	* Modificações em habilidades:
 	- Ataque Mortal: Não estava funcionando corretamente, imagens falsas e dano.
