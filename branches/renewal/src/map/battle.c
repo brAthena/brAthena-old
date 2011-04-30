@@ -1317,7 +1317,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			case NJ_ISSEN:
 				wd.damage = 40*sstatus->str +skill_lv*(sstatus->hp/10 + 35);
 				wd.damage2 = 0;
-				status_set_hp(src, status_get_max_hp(src)/100, 0);
+				status_set_hp(src, 1, 0);
 				break;
 			case PA_SACRIFICE:
 				wd.damage = sstatus->max_hp* 9/100;
@@ -1798,6 +1798,12 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case NJ_SYURIKEN:
 					ATK_ADD(4*skill_lv);
 					break;
+				case NJ_ISSEN:
+					ATK_RATE(4000); 
+					ATK_ADD(sstatus->hp*80/100);
+					if(sc && sc->data[SC_BUNSINJYUTSU] && sc->data[SC_BUNSINJYUTSU]->val2 > 0)
+						ATK_ADDRATE(sc->data[SC_BUNSINJYUTSU]->val2*25);
+					break;
 			}
 		}
 		//Div fix.
@@ -1816,10 +1822,6 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 		}
 
 		switch (skill_num) {
-			case NJ_ISSEN:
-				if(sc && sc->data[SC_BUNSINJYUTSU] && sc->data[SC_BUNSINJYUTSU]->val2 > 0)
-					ATK_ADDRATE(sc->data[SC_BUNSINJYUTSU]->val2*50);
-				break;
 			case AS_SONICBLOW:
 				if (sc && sc->data[SC_SPIRIT] &&
 					sc->data[SC_SPIRIT]->val2 == SL_ASSASIN)
