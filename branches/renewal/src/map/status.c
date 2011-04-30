@@ -3921,6 +3921,8 @@ static signed short status_calc_def(struct block_list *bl, struct status_change 
 		def -= def * sc->data[SC_STRIPSHIELD]->val2/100;
 	if (sc->data[SC_FLING])
 		def -= def * (sc->data[SC_FLING]->val2)/100;
+	if(sc->data[SC_ANGELUS])
+		def += def * sc->data[SC_ANGELUS]->val2/100;
 
 	return (short)cap_value(def,SHRT_MIN,SHRT_MAX);
 }
@@ -3934,8 +3936,6 @@ static signed short status_calc_def2(struct block_list *bl, struct status_change
 		return 0;
 	if(sc->data[SC_ETERNALCHAOS])
 		return 0;
-	if(sc->data[SC_ANGELUS])
-		def2 += status_get_vit(bl) * sc->data[SC_ANGELUS]->val2/200;
 	if(sc->data[SC_SUN_COMFORT])
 		def2 += sc->data[SC_SUN_COMFORT]->val2;
 	if(sc->data[SC_CONCENTRATION])

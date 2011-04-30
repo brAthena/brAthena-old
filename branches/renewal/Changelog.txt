@@ -10,6 +10,10 @@
 // ==============================================================================
 
 	
+	r0442 - 30/04/2011 [Protimus]
+	* Modificações em habilidades:
+	- Angelus: Baseada em DEF de status (DEF1) e não de equipamentos (DEF2).
+	
 	r0441 - 29/04/2011 [Protimus]
 	* Adicionado arquivo para uso de proxy nos servidores.
 	- Modo de compilar: cc -o proxy -O proxy.c
