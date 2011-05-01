@@ -9,6 +9,13 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0457 - 01/05/2011 [Mark]
+	* Otimizada pasta npc/gde2
+	- Criação de gde2_padrao.txt (Funções de toda GDE2).
+	- Alteração de todos scripts relacionados a cada castelo.
+	- Traduzida gde2_controlador.txt
+	- Removido gde2_bandeiras.txt e gde2_cavernas.txt (Funções em gde2_padrao.txt e scripts dos próprios castelos).
+
 	r0456 - 1/05/2011 [Wolf]
 	* Enviada tradução de script.
 	- npc/classes/1-1/mercador.txt

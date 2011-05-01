@@ -1,0 +1,2318 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Guerra do Emperium Segunda Edição      |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 2.2/1.1                                |
+// |--------------------------------------------------------|
+// | Descrição: Castelo 2 - GdE SE                          |
+// |--------------------------------------------------------|
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [Dani]                            |
+// | 1.1 Script Otimizado [Mark]                            |
+// | - Criação de 1 script para funcionamento de toda Gde2  |
+// \________________________________________________________/
+
+-	script	Gde2_Gerente::Gde2_Gerente	-1,{
+	end;
+
+OnInterIfInitOnce:
+	if (strnpcinfo(1) == "Gde2_Gerente") end;
+	GetCastleData strnpcinfo(2),0,"::OnRecvCastle2";
+	if(strnpcinfo(2) == "arug_cas01") { donpcevent "::OnRecvCastleAr01"; }
+	else if(strnpcinfo(2) == "arug_cas02") { donpcevent "::OnRecvCastleAr02"; }
+	else if(strnpcinfo(2) == "arug_cas03") { donpcevent "::OnRecvCastleAr03"; }
+	else if(strnpcinfo(2) == "arug_cas04") { donpcevent "::OnRecvCastleAr04"; }
+	else if(strnpcinfo(2) == "arug_cas05") { donpcevent "::OnRecvCastleAr05"; }
+	else if(strnpcinfo(2) == "schg_cas01") { donpcevent "::OnRecvCastleSc01"; }
+	else if(strnpcinfo(2) == "schg_cas02") { donpcevent "::OnRecvCastleSc02"; }
+	else if(strnpcinfo(2) == "schg_cas03") { donpcevent "::OnRecvCastleSc03"; }
+	else if(strnpcinfo(2) == "schg_cas04") { donpcevent "::OnRecvCastleSc04"; }
+	else if(strnpcinfo(2) == "schg_cas05") { donpcevent "::OnRecvCastleSc05"; }
+	end;
+
+OnRecvCastle2:
+	if (strnpcinfo(1) == "Gde2_Gerente") end;
+	RequestGuildInfo GetCastleData(strnpcinfo(2),1);
+	if (GetCastleData(strnpcinfo(2),1) == 0) {
+		donpcevent strnpcinfo(0) + "::Onstart";
+	}
+	end;
+
+OnAgitStart2:
+	if (strnpcinfo(1) == "Gde2_Gerente") end;
+	if (agitcheck2()) {
+		MapRespawnGuildID strnpcinfo(2),GetCastleData(strnpcinfo(2),1),2;
+		GvgOn strnpcinfo(2);
+		donpcevent strnpcinfo(0) + "::Onstart";
+	}
+	else {
+		donpcevent "Gde2_RL00#" + strnpcinfo(2) + "::OnDisable";
+		donpcevent "Gde2_RL01#" + strnpcinfo(2) + "::OnDisable";
+		donpcevent "Gde2_RL02#" + strnpcinfo(2) + "::OnDisable";
+		donpcevent "Gde2_RL03#" + strnpcinfo(2) + "::OnDisable";
+	}
+	end;
+
+OnAgitEnd2:
+	if (strnpcinfo(1) == "Gde2_Gerente") end;
+	GvgOff strnpcinfo(2);
+	if (GetCastleData(strnpcinfo(2),1)) {
+		KillMonster strnpcinfo(2),"Steward#"+ strnpcinfo(2) +"::OnStartArena";
+		donpcevent strnpcinfo(0) + "::Onreset";
+		donpcevent "Steward#"+ strnpcinfo(2) +"::Onstop";
+	}
+	end;
+
+Onstart:
+	// 1st Guardian stone, 2nd Guardian stone, Barrier 1, Barrier 2, Barrier 3, Summon Guardians
+	// Settings for all but Summon Guardians
+	// 0 = Okay; 1 = Destroyed; 2 = Repairing
+	// Summon Guardians
+	// 0 = Do not Summon; 1 = Summon
+	if (GetCastleData(strnpcinfo(2),1)) {
+
+		if(strnpcinfo(2) == "arug_cas01") { setarray $agit_ar01[0],0,0,0,0,0,0; }
+		else if(strnpcinfo(2) == "arug_cas02") { setarray $agit_ar02[0],0,0,0,0,0,0; }
+		else if(strnpcinfo(2) == "arug_cas03") { setarray $agit_ar03[0],0,0,0,0,0,0; }
+		else if(strnpcinfo(2) == "arug_cas04") { setarray $agit_ar04[0],0,0,0,0,0,0; }
+		else if(strnpcinfo(2) == "arug_cas05") { setarray $agit_ar05[0],0,0,0,0,0,0; }
+		else if(strnpcinfo(2) == "schg_cas01") { setarray $agit_sc01[0],0,0,0,0,0,0; }
+		else if(strnpcinfo(2) == "schg_cas02") { setarray $agit_sc02[0],0,0,0,0,0,0; }
+		else if(strnpcinfo(2) == "schg_cas03") { setarray $agit_sc03[0],0,0,0,0,0,0; }
+		else if(strnpcinfo(2) == "schg_cas04") { setarray $agit_sc04[0],0,0,0,0,0,0; }
+		else if(strnpcinfo(2) == "schg_cas05") { setarray $agit_sc05[0],0,0,0,0,0,0; }
+
+		donpcevent "Gde2_df01#" + strnpcinfo(2) + "::OnEnable";
+		donpcevent "Gde2_df02#" + strnpcinfo(2) + "::OnEnable";
+		donpcevent "Gde2_RL00#" + strnpcinfo(2) + "::OnEnable";
+		donpcevent "Gde2_RL01#" + strnpcinfo(2) + "::OnEnable";
+		donpcevent "Gde2_RL02#" + strnpcinfo(2) + "::OnEnable";
+		donpcevent "Gde2_RL03#" + strnpcinfo(2) + "::OnEnable";
+	}
+
+	if(strnpcinfo(2) == "arug_cas01") { setarray .@empxy[0],87,219; }
+	else if(strnpcinfo(2) == "arug_cas02") { setarray .@empxy[0],89,256; }
+	else if(strnpcinfo(2) == "arug_cas03") { setarray .@empxy[0],141,293; }
+	else if(strnpcinfo(2) == "arug_cas04") { setarray .@empxy[0],141,293; }
+	else if(strnpcinfo(2) == "arug_cas05") { setarray .@empxy[0],141,293; }
+	else if(strnpcinfo(2) == "schg_cas01") { setarray .@empxy[0],120,272; }
+	else if(strnpcinfo(2) == "schg_cas02") { setarray .@empxy[0],162,193; }
+	else if(strnpcinfo(2) == "schg_cas03") { setarray .@empxy[0],338,202; }
+	else if(strnpcinfo(2) == "schg_cas04") { setarray .@empxy[0],120,272; }
+	else if(strnpcinfo(2) == "schg_cas05") { setarray .@empxy[0],120,272; }
+
+	monster strnpcinfo(2),.@empxy[0],.@empxy[1],"Emperium",1288,1,"Steward#"+ strnpcinfo(2) +"::OnStartArena";
+	end;
+
+Onreset:
+	if (strnpcinfo(1) == "Gde2_Gerente") end;
+	donpcevent "Gde2_df01#" + strnpcinfo(2) + "::OnDisable";
+	donpcevent "Gde2_df02#" + strnpcinfo(2) + "::OnDisable";
+	donpcevent "Gde2_gard01#" + strnpcinfo(2) + "::Onreset";
+	donpcevent "Gde2_gard02#" + strnpcinfo(2) + "::Onreset";
+	donpcevent "Gde2_RL00#" + strnpcinfo(2) + "::OnDisable";
+	donpcevent "Gde2_RL01#" + strnpcinfo(2) + "::OnDisable";
+	donpcevent "Gde2_RL02#" + strnpcinfo(2) + "::OnDisable";
+	donpcevent "Gde2_RL03#" + strnpcinfo(2) + "::OnDisable";
+	donpcevent "1ª Runa Guardiã#" + strnpcinfo(2) + "::OnDisable";
+	donpcevent "2ª Runa Guardiã#" + strnpcinfo(2) + "::OnDisable";
+	donpcevent "Controle01#" + strnpcinfo(2) + "::OnDisable";
+	donpcevent "Controle02#" + strnpcinfo(2) + "::OnDisable";
+	donpcevent "Controle03#" + strnpcinfo(2) + "::OnDisable";
+	if (agitcheck2()) {
+		if(strnpcinfo(2) == "arug_cas01") { setarray $agit_ar01[0],0,0,1,1,1,0; }
+		else if(strnpcinfo(2) == "arug_cas02") { setarray $agit_ar02[0],0,0,1,1,1,0; }
+		else if(strnpcinfo(2) == "arug_cas03") { setarray $agit_ar03[0],0,0,1,1,1,0; }
+		else if(strnpcinfo(2) == "arug_cas04") { setarray $agit_ar04[0],0,0,1,1,1,0; }
+		else if(strnpcinfo(2) == "arug_cas05") { setarray $agit_ar05[0],0,0,1,1,1,0; }
+		else if(strnpcinfo(2) == "schg_cas01") { setarray $agit_sc01[0],0,0,1,1,1,0; }
+		else if(strnpcinfo(2) == "schg_cas02") { setarray $agit_sc02[0],0,0,1,1,1,0; }
+		else if(strnpcinfo(2) == "schg_cas03") { setarray $agit_sc03[0],0,0,1,1,1,0; }
+		else if(strnpcinfo(2) == "schg_cas04") { setarray $agit_sc04[0],0,0,1,1,1,0; }
+		else if(strnpcinfo(2) == "schg_cas05") { setarray $agit_sc05[0],0,0,1,1,1,0; }
+	}
+	end;
+
+Onchange:
+	if(strnpcinfo(2) == "arug_cas01") { setarray $agit_ar01[0],2,2,1,1,2,0; setarray .@empxy[0],87,219; }
+	else if(strnpcinfo(2) == "arug_cas02") { setarray $agit_ar02[0],2,2,1,1,2,0; setarray .@empxy[0],89,256;}
+	else if(strnpcinfo(2) == "arug_cas03") { setarray $agit_ar03[0],2,2,1,1,2,0; setarray .@empxy[0],141,293;}
+	else if(strnpcinfo(2) == "arug_cas04") { setarray $agit_ar04[0],2,2,1,1,2,0; setarray .@empxy[0],141,293;}
+	else if(strnpcinfo(2) == "arug_cas05") { setarray $agit_ar05[0],2,2,1,1,2,0; setarray .@empxy[0],141,293;}
+	else if(strnpcinfo(2) == "schg_cas01") { setarray $agit_sc01[0],2,2,1,1,2,0; setarray .@empxy[0],120,272;}
+	else if(strnpcinfo(2) == "schg_cas02") { setarray $agit_sc02[0],2,2,1,1,2,0; setarray .@empxy[0],162,193;}
+	else if(strnpcinfo(2) == "schg_cas03") { setarray $agit_sc03[0],2,2,1,1,2,0; setarray .@empxy[0],338,202;}
+	else if(strnpcinfo(2) == "schg_cas04") { setarray $agit_sc04[0],2,2,1,1,2,0; setarray .@empxy[0],120,272;}
+	else if(strnpcinfo(2) == "schg_cas05") { setarray $agit_sc05[0],2,2,1,1,2,0; setarray .@empxy[0],120,272;}
+	
+	monster strnpcinfo(2),.@empxy[0],.@empxy[1],"Emperium",1288,1,"Steward#"+ strnpcinfo(2) +"::OnStartArena";
+	donpcevent "Controle03#" + strnpcinfo(2) + "::OnEnable";
+	donpcevent "1ª Runa Guardiã#" + strnpcinfo(2) + "::OnEnable";
+	donpcevent "2ª Runa Guardiã#" + strnpcinfo(2) + "::OnEnable";
+	end;
+
+OnClock0001:
+	if (strnpcinfo(1) == "Gde2_Gerente") end;
+	if (!GetCastleData(strnpcinfo(2),1)) end;
+	killmonster strnpcinfo(2),"Gerente#" + strnpcinfo(2) + "::OnTreasureDied";
+
+	if (GetCastleData(strnpcinfo(2),4)) {
+		set .@Economy,GetCastleData(strnpcinfo(2),2);
+		SetCastleData strnpcinfo(2),2,.@Economy + GetCastleData(strnpcinfo(2),4) + (rand(2) && getgdskilllv(.@GID,10014));
+		if (GetCastleData(strnpcinfo(2),2) > 100) SetCastleData strnpcinfo(2),2,100;
+		setcastledata strnpcinfo(2),4,0;
+	}
+	if (GetCastleData(strnpcinfo(2),5)) {
+		set .@Defence,GetCastleData(strnpcinfo(2),3);
+		SetCastleData strnpcinfo(2),3,.@Defence + GetCastleData(strnpcinfo(2),5);
+		if (GetCastleData(strnpcinfo(2),3) > 100) SetCastleData strnpcinfo(2),3,100;
+		setcastledata strnpcinfo(2),5,0;
+	}
+
+	set .@Treasure,GetCastleData(strnpcinfo(2),2)/5+4;
+	if (.@Treasure) {
+
+		if(strnpcinfo(2) == "arug_cas01"){ 
+			setarray .@baux[0],251,251,253,254,255,256,257,258,251,252,253,254,255,256,257,258,251,252,253,254,255,256,257,258;
+			setarray .@bauy[0],369,369,369,369,368,368,368,368,367,367,367,367,366,366,366,366,365,365,365,365,364,364,364,364;
+			setarray .@bau[0],1943,1324,1943,1324,1943,1324,1943,1324,1943,1324,1943,1324,1943,1324,1943,1324,1943,1324,1943,1324,1943,1324,1943,1324;
+		} else if(strnpcinfo(2) == "arug_cas02"){
+			setarray .@baux[0],382,383,384,385,386,387,384,385,386,387,388,389,382,383,384,385,386,387,384,385,386,387,388,389;
+			setarray .@bauy[0],231,231,231,231,231,231,230,230,230,230,230,230,225,225,225,225,225,225,224,224,224,224,224,224;
+			setarray .@bau[0],1944,1324,1944,1324,1944,1324,1944,1324,1944,1324,1944,1324,1944,1324,1944,1324,1944,1324,1944,1324,1944,1324,1944,1324;
+		} else if(strnpcinfo(2) == "arug_cas03"){
+			setarray .@baux[0],291,292,293,294,295,296,293,294,295,296,297,298,291,292,293,294,295,296,293,294,295,296,297,298;
+			setarray .@bauy[0],276,276,276,276,276,276,274,274,274,274,274,274,272,272,272,272,272,272,269,269,269,269,269,269;
+			setarray .@bau[0],1945,1324,1945,1324,1945,1324,1945,1324,1945,1324,1945,1324,1945,1324,1945,1324,1945,1324,1945,1324,1945,1324,1945,1324;
+		} else if(strnpcinfo(2) == "arug_cas04"){
+			setarray .@baux[0],291,292,293,294,295,296,293,294,295,296,297,298,291,292,293,294,295,296,293,294,295,296,297,298;
+			setarray .@bauy[0],276,276,276,276,276,276,274,274,274,274,274,274,272,272,272,272,272,272,269,269,269,269,269,269;
+			setarray .@bau[0],1946,1324,1946,1324,1946,1324,1946,1324,1946,1324,1946,1324,1946,1324,1946,1324,1946,1324,1946,1324,1946,1324,1946,1324;
+		} else if(strnpcinfo(2) == "arug_cas05"){
+			setarray .@baux[0],291,292,293,294,295,296,293,294,295,296,297,298,291,292,293,294,295,296,293,294,295,296,297,298;
+			setarray .@bauy[0],276,276,276,276,276,276,274,274,274,274,274,274,272,272,272,272,272,272,269,269,269,269,269,269;
+			setarray .@bau[0],1945,1324,1945,1324,1945,1324,1945,1324,1945,1324,1945,1324,1945,1324,1945,1324,1945,1324,1945,1324,1945,1324,1945,1324;
+		} else if(strnpcinfo(2) == "schg_cas01"){
+			setarray .@baux[0],388,388,388,387,386,385,384,384,384,384,384,384,385,386,387,388,389,390,390,390,389,388,387,386;
+			setarray .@bauy[0],388,389,390,390,390,390,389,388,387,386,385,384,384,384,384,384,384,384,385,386,386,386,386,386;
+			setarray .@bau[0],1938,1324,1938,1324,1938,1324,1938,1324,1938,1324,1938,1324,1938,1324,1938,1324,1938,1324,1938,1324,1938,1324,1938,1324;
+		} else if(strnpcinfo(2) == "schg_cas02"){
+			setarray .@baux[0],249,250,251,252,253,246,247,248,249,250,250,251,252,253,246,247,248,249,250,249,250,251,252,253;
+			setarray .@bauy[0],378,378,378,378,378,376,376,376,376,376,374,374,374,374,372,372,372,372,372,370,370,370,370,370;
+			setarray .@bau[0],1939,1324,1939,1324,1939,1324,1939,1324,1939,1324,1939,1324,1939,1324,1939,1324,1939,1324,1939,1324,1939,1324,1939,1324;
+		} else if(strnpcinfo(2) == "schg_cas03"){
+			setarray .@baux[0],189,190,191,192,193,194,189,190,191,192,193,194,189,190,191,192,193,194,189,190,191,192,193,194;
+			setarray .@bauy[0],21,21,21,21,21,21,19,19,19,19,19,19,17,17,17,17,17,17,15,15,15,15,15,15;
+			setarray .@bau[0],1940,1324,1940,1324,1940,1324,1940,1324,1940,1324,1940,1324,1940,1324,1940,1324,1940,1324,1940,1324,1940,1324,1940,1324;
+		} else if(strnpcinfo(2) == "schg_cas04"){
+			setarray .@baux[0],388,388,388,387,386,385,384,384,384,384,384,384,385,386,387,388,389,390,390,390,389,388,387,386;
+			setarray .@bauy[0],388,389,390,390,390,390,389,388,387,386,385,384,384,384,384,384,384,384,385,386,386,386,386,386;
+			setarray .@bau[0],1941,1324,1941,1324,1941,1324,1941,1324,1941,1324,1941,1324,1941,1324,1941,1324,1941,1324,1941,1324,1941,1324,1941,1324;
+		} else if(strnpcinfo(2) == "schg_cas05"){
+			setarray .@baux[0],388,388,388,387,386,385,384,384,384,384,384,384,385,386,387,388,389,390,390,390,389,388,387,386;
+			setarray .@bauy[0],388,389,390,390,390,390,389,388,387,386,385,384,384,384,384,384,384,384,385,386,386,386,386,386;
+			setarray .@bau[0],1942,1324,1942,1324,1942,1324,1942,1324,1942,1324,1942,1324,1942,1324,1942,1324,1942,1324,1942,1324,1942,1324,1942,1324;
+		}
+
+		monster strnpcinfo(2),.@baux[0],.@bauy[0],"Baú do Tesouro",.@bau[0],1,"Gerente#" + strnpcinfo(2) + "::OnTreasureDied";
+		monster strnpcinfo(2),.@baux[1],.@bauy[1],"Baú do Tesouro",.@bau[1],1,"Gerente#" + strnpcinfo(2) + "::OnTreasureDied";
+		monster strnpcinfo(2),.@baux[2],.@bauy[2],"Baú do Tesouro",.@bau[2],1,"Gerente#" + strnpcinfo(2) + "::OnTreasureDied";
+		monster strnpcinfo(2),.@baux[3],.@bauy[3],"Baú do Tesouro",.@bau[3],1,"Gerente#" + strnpcinfo(2) + "::OnTreasureDied";
+		if (.@Treasure < 5) end;
+		monster strnpcinfo(2),.@baux[4],.@bauy[4],"Baú do Tesouro",.@bau[4],1,"Gerente#" + strnpcinfo(2) + "::OnTreasureDied";
+		if (.@Treasure < 6) end;
+		monster strnpcinfo(2),.@baux[5],.@bauy[5],"Baú do Tesouro",.@bau[5],1,"Gerente#" + strnpcinfo(2) + "::OnTreasureDied";
+		if (.@Treasure < 7) end;
+		monster strnpcinfo(2),.@baux[6],.@bauy[6],"Baú do Tesouro",.@bau[6],1,"Gerente#" + strnpcinfo(2) + "::OnTreasureDied";
+		if (.@Treasure < 8) end;
+		monster strnpcinfo(2),.@baux[7],.@bauy[7],"Baú do Tesouro",.@bau[7],1,"Gerente#" + strnpcinfo(2) + "::OnTreasureDied";
+		if (.@Treasure < 9) end;
+		monster strnpcinfo(2),.@baux[8],.@bauy[8],"Baú do Tesouro",.@bau[8],1,"Gerente#" + strnpcinfo(2) + "::OnTreasureDied";
+		if (.@Treasure < 10) end;
+		monster strnpcinfo(2),.@baux[9],.@bauy[9],"Baú do Tesouro",.@bau[9],1,"Gerente#" + strnpcinfo(2) + "::OnTreasureDied";
+		if (.@Treasure < 11) end;
+		monster strnpcinfo(2),.@baux[10],.@bauy[10],"Baú do Tesouro",.@bau[10],1,"Gerente#" + strnpcinfo(2) + "::OnTreasureDied";
+		if (.@Treasure < 12) end;
+		monster strnpcinfo(2),.@baux[11],.@bauy[11],"Baú do Tesouro",.@bau[11],1,"Gerente#" + strnpcinfo(2) + "::OnTreasureDied";
+		if (.@Treasure < 13) end;
+		monster strnpcinfo(2),.@baux[12],.@bauy[12],"Baú do Tesouro",.@bau[12],1,"Gerente#" + strnpcinfo(2) + "::OnTreasureDied";
+		if (.@Treasure < 14) end;
+		monster strnpcinfo(2),.@baux[13],.@bauy[13],"Baú do Tesouro",.@bau[13],1,"Gerente#" + strnpcinfo(2) + "::OnTreasureDied";
+		if (.@Treasure < 15) end;
+		monster strnpcinfo(2),.@baux[14],.@bauy[14],"Baú do Tesouro",.@bau[14],1,"Gerente#" + strnpcinfo(2) + "::OnTreasureDied";
+		if (.@Treasure < 16) end;
+		monster strnpcinfo(2),.@baux[15],.@bauy[15],"Baú do Tesouro",.@bau[15],1,"Gerente#" + strnpcinfo(2) + "::OnTreasureDied";
+		if (.@Treasure < 17) end;
+		monster strnpcinfo(2),.@baux[16],.@bauy[16],"Baú do Tesouro",.@bau[16],1,"Gerente#" + strnpcinfo(2) + "::OnTreasureDied";
+		if (.@Treasure < 18) end;
+		monster strnpcinfo(2),.@baux[17],.@bauy[17],"Baú do Tesouro",.@bau[17],1,"Gerente#" + strnpcinfo(2) + "::OnTreasureDied";
+		if (.@Treasure < 19) end;
+		monster strnpcinfo(2),.@baux[18],.@bauy[18],"Baú do Tesouro",.@bau[18],1,"Gerente#" + strnpcinfo(2) + "::OnTreasureDied";
+		if (.@Treasure < 20) end;
+		monster strnpcinfo(2),.@baux[19],.@bauy[19],"Baú do Tesouro",.@bau[19],1,"Gerente#" + strnpcinfo(2) + "::OnTreasureDied";
+		if (.@Treasure < 21) end;
+		monster strnpcinfo(2),.@baux[20],.@bauy[20],"Baú do Tesouro",.@bau[20],1,"Gerente#" + strnpcinfo(2) + "::OnTreasureDied";
+		if (.@Treasure < 22) end;
+		monster strnpcinfo(2),.@baux[21],.@bauy[21],"Baú do Tesouro",.@bau[21],1,"Gerente#" + strnpcinfo(2) + "::OnTreasureDied";
+		if (.@Treasure < 23) end;
+		monster strnpcinfo(2),.@baux[22],.@bauy[22],"Baú do Tesouro",.@bau[22],1,"Gerente#" + strnpcinfo(2) + "::OnTreasureDied";
+		if (.@Treasure < 24) end;
+		monster strnpcinfo(2),.@baux[23],.@bauy[23],"Baú do Tesouro",.@bau[23],1,"Gerente#" + strnpcinfo(2) + "::OnTreasureDied";
+	}
+	end;
+
+OnTreasureDied:
+	end;
+}
+
+-	script	Gde2_guardiao::Gde2_guardiao	-1,{
+	set .@GID, GetCastleData(strnpcinfo(2),1);
+	if (.@GID == 0) {
+		mes "["+strnpcinfo(1)+"]";
+		mes "Bom trabalho. Agora, tudo que";
+		mes "você precisa fazer é destruir esta";
+		mes "Emperium para ganhar a propriedade";
+		mes "desta fortaleza.";
+		close;
+	}
+	if (getcharid(2) == .@GID) {
+		if (strcharinfo(0) != getguildmaster(.@GID)) {
+			mes "["+strnpcinfo(1)+"]";
+			mes "Como guardião desta fortaleza,";
+			mes "eu apenas respondo ao mestre";
+			mes "do clã que controla este";
+			mes "lugar.";
+			close;
+		}
+		else {
+			if (agitcheck2() == 0) {
+				mes "["+strnpcinfo(1)+"]";
+				mes "Eu sou Brace, guardião desta";
+				mes "fortaleza. Por enquanto,";
+				mes "tudo está quieto por aqui.";
+				next;
+				if(select("Conversar:Cancelar") == 1) {
+					mes "["+strnpcinfo(1)+"]";
+					mes "Você tem alguma pergunta";
+					mes "para fazer sobre esta fortaleza?";
+					next;
+					switch(select("Runas Guardiãs:Portões da Fortaleza:Bandeiras:Estratégia de Batalha:Cancelar")) {
+					case 1:
+						mes "["+strnpcinfo(1)+"]";
+						mes "Existe um Emperium e";
+						mes "duas Runas Guardiãs em";
+						mes "cada Fortaleza. Estas runas";
+						mes "são a primeira linha de defesa,";
+						mes "e devem ser destruídas primeiro";
+						mes "para que os inimigos possam entrar.";
+						next;
+						mes "["+strnpcinfo(1)+"]";
+						mes "As runas estão localizadas nos";
+						mes "^4D4DFFPortões Principais^000000 que devem ser";
+						mes "protegidos para evitar que os inimigos";
+						mes "cheguem até o Emperium.";
+						mes "Runas Guardiões podem ^4D4DFFchamar";
+						mes "seus Guardiões^000000 para protegê-las.";
+						next;
+						mes "["+strnpcinfo(1)+"]";
+						mes "Fortalezas com níves mais elevados";
+						mes "de defesa podem chamar mais";
+						mes "Guardiões: por isso é";
+						mes "tão importante para as guildas";
+						mes "investirem no Crescimento da Defesa.";
+						next;
+						mes "["+strnpcinfo(1)+"]";
+						mes "Runas Guardiãs que foram";
+						mes "destruídas podem ser reconstruídas";
+						mes "depois de um certo tempo, mas um dos membros da guilda deve";
+						mes "me dar a ordem. Eu também posso reportar o estado das Runas Guardiãs.";
+						close;
+					case 2:
+						mes "["+strnpcinfo(1)+"]";
+						mes "Os ^4D4DFFPortões da Fortaleza^000000 são a segunda linha de defesa do domínio da guilda,";
+						mes "e são protegidos por barricadas extras ativadas pelas Runas Guardiãs.";
+						mes "Esses portões estão localizados em três diferentes partes da fortaleza.";
+						next;
+						mes "["+strnpcinfo(1)+"]";
+						mes "As Barricadas são protegidas pelas";
+						mes "Runas Guardiãs, e são";
+						mes "restauradas quando as Runas";
+						mes "Guardiãs são recuperadas. No entanto,";
+						mes "não é tão fácil restaurar os";
+						mes "Portões da Fortaleza destruídos.";
+						next;
+						mes "["+strnpcinfo(1)+"]";
+						mes "Os Portões da Fortaleza só podem";
+						mes "ser restaurados quando o ^4D4DFFlíder";
+						mes "da guilda do domínio muda^000000,";
+						mes "ou se ^4D4DFFrestauração";
+						mes "for solicitada pelo líder";
+						mes "da guilda do domínio^000000.";
+						close;
+					case 3:
+						mes "["+strnpcinfo(1)+"]";
+						mes "As Fortalezas possuem várias";
+						mes "bandeiras que permitem que";
+						mes "você acesse várias áreas vitais";
+						mes "dentro das restrições impostas pelas";
+						mes "Barricadas. Normalmente, a ^4D4DFFBandeira 1";
+						mes "envia para o Portão Principal^000000.";
+						next;
+						mes "["+strnpcinfo(1)+"]";
+						mes "Muitas bandeiras ligam direto para";
+						mes "o pavilhão perto do Emperium.";
+						mes "A última bandeira numerada";
+						mes "está ligado ao Centro de";
+						mes "Comando do dono da Fortaleza.";
+						mes "Lembre-se sempre disso.";
+						close;
+					case 4:
+						mes "["+strnpcinfo(1)+"]";
+						mes "Estratégia? Seria melhor";
+						mes "para desenvolver o seu plano de batalha para";
+						mes "explorar as vantagens da sua guilda";
+						mes "e os pontos-fracos dos inimigos.";
+						mes "Use os Portões Principais e Barricadas, e reconstrua o mais rápido que puder!";
+						close;
+					case 5:
+						mes "["+strnpcinfo(1)+"]";
+						mes "Você não tem perguntas";
+						mes "para fazer a mim? Bem, estou";
+						mes "aqui para atender suas necessidades.";
+						close;
+					}
+				}
+				else {
+					mes "["+strnpcinfo(1)+"]";
+					mes "Estou sempre aqui. Sinta-se";
+					mes "à vontade para pedir";
+					mes "meu apoio sempre";
+					mes "que necessário.";
+					close;
+				}
+			}
+			else {
+				mes "["+strnpcinfo(1)+"]";
+				mes "Saudações, "+strcharinfo(0)+".";
+				mes "Quais são suas ordens?";
+				next;
+				switch(select("Aumentar Defesa da Fortaleza:Perspectiva Situacional:Cancelar")) {
+				case 1:
+					if (strnpcinfo(2) == "arug_cas01" && $agit_ar01[5] == 0 ||
+					strnpcinfo(2) == "arug_cas02" && $agit_ar02[5] == 0 ||
+					strnpcinfo(2) == "arug_cas03" && $agit_ar03[5] == 0 ||
+					strnpcinfo(2) == "arug_cas04" && $agit_ar04[5] == 0 ||
+					strnpcinfo(2) == "arug_cas05" && $agit_ar05[5] == 0 ||
+					strnpcinfo(2) == "schg_cas01" && $agit_sc01[5] == 0 ||
+					strnpcinfo(2) == "schg_cas02" && $agit_sc02[5] == 0 ||
+					strnpcinfo(2) == "schg_cas03" && $agit_sc03[5] == 0 ||
+					strnpcinfo(2) == "schg_cas04" && $agit_sc04[5] == 0 ||
+					strnpcinfo(2) == "schg_cas05" && $agit_sc05[5] == 0 ) {
+						if (getgdskilllv(.@GID,10002) == 0) {
+							mes "["+strnpcinfo(1)+"]";
+							mes "Sinto muito, mas as Runas";
+							mes "Guardiãs não são suficientemente fortes";
+							mes "para chamar os Guardiões ainda.";
+							mes "Precisamos acumular mais";
+							mes "conhecimento antes delas poderem";
+							mes "chamar qualquer Guardião.";
+							close;
+						}
+						else {
+							mes "["+strnpcinfo(1)+"]";
+							mes "Vou tentar convocar um Guardião";
+							mes "através de uma Runa Guardiã.";
+							mes "No entanto, lembre-se que isso";
+							mes "não irá funcionar se a Runa";
+							mes "Guardiã estiver destruída.";
+							if (strnpcinfo(2) == "arug_cas01"){
+								setarray $agit_ar01[5],1;
+								if ($agit_ar01[0] == 0) {
+									donpcevent "Gde2_gard01#" + strnpcinfo(2) + "::OnEnable";
+								}
+								if ($agit_ar01[1] == 0) {
+									donpcevent "Gde2_gard02#" + strnpcinfo(2) + "::OnEnable";
+								}
+								close;
+							} else if(strnpcinfo(2) == "arug_cas02"){
+								setarray $agit_ar02[5],1;
+								if ($agit_ar02[0] == 0) {
+									donpcevent "Gde2_gard01#" + strnpcinfo(2) + "::OnEnable";
+								}
+								if ($agit_ar02[1] == 0) {
+									donpcevent "Gde2_gard02#" + strnpcinfo(2) + "::OnEnable";
+								}
+								close;
+							} else if(strnpcinfo(2) == "arug_cas03"){
+								setarray $agit_ar03[5],1;
+								if ($agit_ar03[0] == 0) {
+									donpcevent "Gde2_gard01#" + strnpcinfo(2) + "::OnEnable";
+								}
+								if ($agit_ar03[1] == 0) {
+									donpcevent "Gde2_gard02#" + strnpcinfo(2) + "::OnEnable";
+								}
+								close;
+							} else if(strnpcinfo(2) == "arug_cas04"){
+								setarray $agit_ar04[5],1;
+								if ($agit_ar04[0] == 0) {
+									donpcevent "Gde2_gard01#" + strnpcinfo(2) + "::OnEnable";
+								}
+								if ($agit_ar04[1] == 0) {
+									donpcevent "Gde2_gard02#" + strnpcinfo(2) + "::OnEnable";
+								}
+								close;
+							} else if(strnpcinfo(2) == "arug_cas05"){
+								setarray $agit_ar05[5],1;
+								if ($agit_ar05[0] == 0) {
+									donpcevent "Gde2_gard01#" + strnpcinfo(2) + "::OnEnable";
+								}
+								if ($agit_ar05[1] == 0) {
+									donpcevent "Gde2_gard02#" + strnpcinfo(2) + "::OnEnable";
+								}
+								close;
+							} else if(strnpcinfo(2) == "schg_cas01"){
+								setarray $agit_sc01[5],1;
+								if ($agit_sc01[0] == 0) {
+									donpcevent "Gde2_gard01#" + strnpcinfo(2) + "::OnEnable";
+								}
+								if ($agit_sc01[1] == 0) {
+									donpcevent "Gde2_gard02#" + strnpcinfo(2) + "::OnEnable";
+								}
+								close;
+							} else if(strnpcinfo(2) == "schg_cas02"){
+								setarray $agit_sc02[5],1;
+								if ($agit_sc02[0] == 0) {
+									donpcevent "Gde2_gard01#" + strnpcinfo(2) + "::OnEnable";
+								}
+								if ($agit_sc02[1] == 0) {
+									donpcevent "Gde2_gard02#" + strnpcinfo(2) + "::OnEnable";
+								}
+								close;
+							} else if(strnpcinfo(2) == "schg_cas03"){
+								setarray $agit_sc03[5],1;
+								if ($agit_sc03[0] == 0) {
+									donpcevent "Gde2_gard01#" + strnpcinfo(2) + "::OnEnable";
+								}
+								if ($agit_sc03[1] == 0) {
+									donpcevent "Gde2_gard02#" + strnpcinfo(2) + "::OnEnable";
+								}
+								close;
+							} else if(strnpcinfo(2) == "schg_cas04"){
+								setarray $agit_sc04[5],1;
+								if ($agit_sc04[0] == 0) {
+									donpcevent "Gde2_gard01#" + strnpcinfo(2) + "::OnEnable";
+								}
+								if ($agit_sc04[1] == 0) {
+									donpcevent "Gde2_gard02#" + strnpcinfo(2) + "::OnEnable";
+								}
+								close;
+							} else if(strnpcinfo(2) == "schg_cas05"){
+								setarray $agit_sc05[5],1;
+								if ($agit_sc05[0] == 0) {
+									donpcevent "Gde2_gard01#" + strnpcinfo(2) + "::OnEnable";
+								}
+								if ($agit_sc05[1] == 0) {
+									donpcevent "Gde2_gard02#" + strnpcinfo(2) + "::OnEnable";
+								}
+								close;
+							}
+						}
+					}
+					else {
+						mes "["+strnpcinfo(1)+"]";
+						mes "Você já me deu ordens";
+						mes "para chamar um Guardião";
+						mes "para defender a Fortaleza.";
+						close;
+					}
+				case 2:
+					if(strnpcinfo(2) == "arug_cas01"){ set .@var$,"$agit_ar01"; }
+					else if(strnpcinfo(2) == "arug_cas02"){ set .@var$,"$agit_ar02"; }
+					else if(strnpcinfo(2) == "arug_cas03"){ set .@var$,"$agit_ar03"; }
+					else if(strnpcinfo(2) == "arug_cas04"){ set .@var$,"$agit_ar04"; }
+					else if(strnpcinfo(2) == "arug_cas05"){ set .@var$,"$agit_ar05"; }
+					else if(strnpcinfo(2) == "schg_cas01"){ set .@var$,"$agit_sc01"; }
+					else if(strnpcinfo(2) == "schg_cas02"){ set .@var$,"$agit_sc02"; }
+					else if(strnpcinfo(2) == "schg_cas03"){ set .@var$,"$agit_sc03"; }
+					else if(strnpcinfo(2) == "schg_cas04"){ set .@var$,"$agit_sc04"; }
+					else if(strnpcinfo(2) == "schg_cas05"){ set .@var$,"$agit_sc05"; }
+					callfunc ("Estado_Runa",.@var$);
+				case 3:
+					mes "["+strnpcinfo(1)+"]";
+					mes "Eu estarei aguardando";
+					mes "por suas ordens.";
+					close;
+				}
+			}
+		}
+	}
+	else {
+		mes "["+strnpcinfo(1)+"]";
+		mes "Quem é você? Canalha!";
+		mes "Saia dessa fortaleza agora!";
+		close;
+	}
+
+OnInit:
+	if (strnpcinfo(1) == "Gde2_guardiao") end;
+	if(strnpcinfo(2) == "arug_cas01"){ setarray $agit_ar01[0],0,0,0,0,0,0; }
+	if(strnpcinfo(2) == "arug_cas02"){ setarray $agit_ar02[0],0,0,0,0,0,0; }
+	if(strnpcinfo(2) == "arug_cas03"){ setarray $agit_ar03[0],0,0,0,0,0,0; }
+	if(strnpcinfo(2) == "arug_cas04"){ setarray $agit_ar04[0],0,0,0,0,0,0; }
+	if(strnpcinfo(2) == "arug_cas05"){ setarray $agit_ar05[0],0,0,0,0,0,0; }
+	if(strnpcinfo(2) == "schg_cas01"){ setarray $agit_sc01[0],0,0,0,0,0,0; }
+	if(strnpcinfo(2) == "schg_cas02"){ setarray $agit_sc02[0],0,0,0,0,0,0; }
+	if(strnpcinfo(2) == "schg_cas03"){ setarray $agit_sc03[0],0,0,0,0,0,0; }
+	if(strnpcinfo(2) == "schg_cas04"){ setarray $agit_sc04[0],0,0,0,0,0,0; }
+	if(strnpcinfo(2) == "schg_cas05"){ setarray $agit_sc05[0],0,0,0,0,0,0; }
+	end;
+}
+
+-	script	Gde2_gard01::Gde2_gard01	-1,{
+OnEnable:
+
+	if(strnpcinfo(2) == "arug_cas01"){ 
+		setarray .@guardx[0],233,252,252,232,252,232,201,252,232,201,224,195,196,269,252,201,224,222;
+		setarray .@guardy[0],83,81,81,108,81,108,130,81,108,130,168,250,137,89,81,130,168,129;
+	}else if(strnpcinfo(2) == "arug_cas02"){ 
+		setarray .@guardx[0],104,67,67,67,67,67,113,67,67,113,122,20,67,90,91,122,20,67;
+		setarray .@guardy[0],32,36,36,85,36,85,87,36,85,87,112,169,60,167,119,112,169,85;
+	}else if(strnpcinfo(2) == "arug_cas03"){ 
+		setarray .@guardx[0],130,128,128,128,128,128,128,128,128,128,110,66,92,65,65,110,128,128;
+		setarray .@guardy[0],60,77,77,90,77,90,100,77,90,100,96,157,53,71,103,96,100,77;
+	}else if(strnpcinfo(2) == "arug_cas04"){ 
+		setarray .@guardx[0],130,128,128,128,128,128,128,128,128,128,110,66,92,65,65,110,128,128;
+		setarray .@guardy[0],60,77,77,90,77,90,100,77,90,100,96,157,53,71,103,96,100,77;
+	}else if(strnpcinfo(2) == "arug_cas05"){ 
+		setarray .@guardx[0],130,128,128,128,128,128,128,128,128,128,110,66,92,65,65,110,128,128;
+		setarray .@guardy[0],60,77,77,90,77,90,100,77,90,100,96,157,53,71,103,96,100,77;
+	}else if(strnpcinfo(2) == "schg_cas01"){ 
+		setarray .@guardx[0],111,109,109,65,109,65,110,109,65,110,88,108,64,47,109,111,112,120;
+		setarray .@guardy[0],18,44,44,22,44,22,40,44,22,40,20,32,40,43,48,18,32,37;
+	}else if(strnpcinfo(2) == "schg_cas02"){ 
+		setarray .@guardx[0],326,337,337,334,337,334,296,337,334,296,285,337,236,285,296,334,337,334;
+		setarray .@guardy[0],83,95,95,119,95,119,82,95,119,82,40,95,41,40,82,119,95,119;
+	}else if(strnpcinfo(2) == "schg_cas03"){ 
+		setarray .@guardx[0],323,273,273,288,273,288,306,273,288,306,323,306,323,273,288,306,273,273;
+		setarray .@guardy[0],308,309,309,306,309,306,326,309,306,326,308,325,308,309,306,325,309,309;
+	}else if(strnpcinfo(2) == "schg_cas04"){ 
+		setarray .@guardx[0],111,109,109,65,109,65,110,109,65,110,88,108,64,47,109,111,112,120;
+		setarray .@guardy[0],18,44,44,22,44,22,40,44,22,40,20,32,40,43,48,18,32,37;
+	}else if(strnpcinfo(2) == "schg_cas05"){ 
+		setarray .@guardx[0],111,109,109,65,109,65,110,109,65,110,88,108,64,47,109,111,112,120;
+		setarray .@guardy[0],18,44,44,22,44,22,40,44,22,40,20,32,40,43,48,18,32,37;
+	}
+
+	set .@defence,GetCastleData(strnpcinfo(2),3);
+	guardian strnpcinfo(2),.@guardx[0],.@guardy[0],"Guerreiro Guardião",1899,"Gde2_gard01#" + strnpcinfo(2) + "::OnGuardianDied"; //0;
+	if ((.@defence > 10) && (.@defence < 31)) {
+		set .MyMobCount,2;
+		guardian strnpcinfo(2),.@guardx[1],.@guardy[1],"Guerreiro Guardião",1899,"Gde2_gard01#" + strnpcinfo(2) + "::OnGuardianDied"; //1;
+	}
+	else if ((.@defence > 30) && (.@defence < 51)) {
+		set .MyMobCount,3;
+		guardian strnpcinfo(2),.@guardx[2],.@guardy[2],"Guerreiro Guardião",1899,"Gde2_gard01#" + strnpcinfo(2) + "::OnGuardianDied"; //1;
+		guardian strnpcinfo(2),.@guardx[3],.@guardy[3],"Guerreiro Guardião",1899,"Gde2_gard01#" + strnpcinfo(2) + "::OnGuardianDied"; //2;
+	}
+	else if ((.@defence > 50) && (.@defence < 71)) {
+		set .MyMobCount,4;
+		guardian strnpcinfo(2),.@guardx[4],.@guardy[4],"Guerreiro Guardião",1899,"Gde2_gard01#" + strnpcinfo(2) + "::OnGuardianDied"; //1;
+		guardian strnpcinfo(2),.@guardx[5],.@guardy[5],"Guerreiro Guardião",1899,"Gde2_gard01#" + strnpcinfo(2) + "::OnGuardianDied"; //2;
+		guardian strnpcinfo(2),.@guardx[6],.@guardy[6],"Guerreiro Guardião",1899,"Gde2_gard01#" + strnpcinfo(2) + "::OnGuardianDied"; //3;
+	}
+	else if (.@defence > 70) {
+		set .MyMobCount,5;
+		guardian strnpcinfo(2),.@guardx[7],.@guardy[7],"Guerreiro Guardião",1899,"Gde2_gard01#" + strnpcinfo(2) + "::OnGuardianDied"; //1;
+		guardian strnpcinfo(2),.@guardx[8],.@guardy[8],"Guerreiro Guardião",1899,"Gde2_gard01#" + strnpcinfo(2) + "::OnGuardianDied"; //2;
+		guardian strnpcinfo(2),.@guardx[9],.@guardy[9],"Guerreiro Guardião",1899,"Gde2_gard01#" + strnpcinfo(2) + "::OnGuardianDied"; //3;
+		guardian strnpcinfo(2),.@guardx[10],.@guardy[10],"Guerreiro Guardião",1899,"Gde2_gard01#" + strnpcinfo(2) + "::OnGuardianDied"; //4;
+	}
+	else {
+		set .MyMobCount,2;
+		guardian strnpcinfo(2),.@guardx[11],.@guardy[11],"Guerreiro Guardião",1899,"Gde2_gard01#" + strnpcinfo(2) + "::OnGuardianDied"; //1;
+	}
+	initnpctimer;
+	end;
+
+OnTimer300000:
+	set .MyMobCount,.MyMobCount+1;
+	guardian strnpcinfo(2),.@guardx[12],.@guardy[12],"Guerreiro Guardião",1899,"Gde2_gard01#" + strnpcinfo(2) + "::OnGuardianDied"; //5;
+	mapannounce strnpcinfo(2),"O 1º Guardião foi convocado para o Portão.",bc_map,"0xff4500";
+	end;
+
+OnTimer900000:
+	set .MyMobCount,.MyMobCount+1;
+	guardian strnpcinfo(2),.@guardx[13],.@guardy[13],"Guerreiro Guardião",1899,"Gde2_gard01#" + strnpcinfo(2) + "::OnGuardianDied"; //6;
+	mapannounce strnpcinfo(2),"O 2º Guardião foi convocado para o Portão.",bc_map,"0xff4500";
+	end;
+
+OnTimer1800000:
+	set .MyMobCount,.MyMobCount+1;
+	guardian strnpcinfo(2),.@guardx[14],.@guardy[14],"Guerreiro Guardião",1899,"Gde2_gard01#" + strnpcinfo(2) + "::OnGuardianDied"; //7;
+	mapannounce strnpcinfo(2),"O 3º Guardião foi convocado para o Portão.",bc_map,"0xff4500";
+	end;
+
+OnTimer2700000:
+	set .MyMobCount,.MyMobCount+1;
+	guardian strnpcinfo(2),.@guardx[15],.@guardy[15],"Guerreiro Guardião",1899,"Gde2_gard01#" + strnpcinfo(2) + "::OnGuardianDied"; //8;
+	mapannounce strnpcinfo(2),"O 4º Guardião foi convocado para o Portão.",bc_map,"0xff4500";
+	end;
+
+OnTimer3600000:
+	set .MyMobCount,.MyMobCount+1;
+	guardian strnpcinfo(2),.@guardx[16],.@guardy[16],"Guerreiro Guardião",1899,"Gde2_gard01#" + strnpcinfo(2) + "::OnGuardianDied"; //9;
+	mapannounce strnpcinfo(2),"O 5º Guardião foi convocado para o Portão.",bc_map,"0xff4500";
+	stopnpctimer;
+	end;
+
+OnGuardianDied:
+	set .MyMobCount,.MyMobCount-1;
+	if (.MyMobCount < 2) {
+		set .MyMobCount,.MyMobCount+1;
+		guardian strnpcinfo(2),.@guardx[17],.@guardy[17],"Guerreiro Guardião",1899,"Gde2_gard01#" + strnpcinfo(2) + "::OnGuardianDied"; //10;
+	}
+	end;
+
+Onreset:
+	stopnpctimer;
+	killmonster strnpcinfo(2),"Gde2_gard01#" + strnpcinfo(2) + "::OnGuardianDied";
+	end;
+}
+
+-	script	Gde2_gard02::Gde2_gard02	-1,{
+OnEnable:
+
+	if(strnpcinfo(2) == "arug_cas01"){ 
+		setarray .@guard2x[0],294,256,256,240,256,240,246,256,240,246,235,292,235,246,240,256,254,242;
+		setarray .@guard2y[0],210,203,203,133,203,133,92,203,133,92,132,188,132,92,133,203,95,151;
+	} else if(strnpcinfo(2) == "arug_cas02"){ 
+		setarray .@guard2x[0],175,204,204,211,204,211,209,204,211,209,161,268,186,183,150,161,209,211;
+		setarray .@guard2y[0],31,32,32,63,32,63,88,32,63,88,91,169,170,121,110,91,88,63;
+	} else if(strnpcinfo(2) == "arug_cas03"){ 
+		setarray .@guard2x[0],156,172,172,154,172,154,156,172,154,156,155,211,187,212,211,155,156,172;
+		setarray .@guard2y[0],101,95,95,90,95,90,77,95,90,77,60,159,54,67,105,60,77,95;
+	} else if(strnpcinfo(2) == "arug_cas04"){ 
+		setarray .@guard2x[0],156,172,172,154,172,154,156,172,154,156,155,211,187,212,211,155,156,172;
+		setarray .@guard2y[0],101,95,95,90,95,90,77,95,90,77,60,159,54,67,105,60,77,95;
+	} else if(strnpcinfo(2) == "arug_cas05"){ 
+		setarray .@guard2x[0],156,172,172,154,172,154,156,172,154,156,155,211,187,212,211,155,156,172;
+		setarray .@guard2y[0],101,95,95,90,95,90,77,95,90,77,60,159,54,67,105,60,77,95;
+	} else if(strnpcinfo(2) == "schg_cas01"){
+		setarray .@guard2x[0],130,187,129,151,129,151,187,129,151,187,128,128,152,187,128,130,130,151;
+		setarray .@guard2y[0],22,15,47,18,47,18,15,47,18,15,42,42,43,15,42,22,28,18;
+	} else if(strnpcinfo(2) == "schg_cas02"){
+		setarray .@guard2x[0],359,300,300,337,300,337,317,300,337,317,307,307,300,337,317,307,359,236;
+		setarray .@guard2y[0],85,119,119,154,119,154,183,119,154,183,222,222,119,154,183,222,85,41;
+	} else if(strnpcinfo(2) == "schg_cas03"){
+		setarray .@guard2x[0],338,364,364,365,364,365,317,364,365,317,338,364,338,364,365,317,364,329;
+		setarray .@guard2y[0],309,305,305,261,305,261,318,305,261,318,310,305,309,305,261,318,305,314;
+	} else if(strnpcinfo(2) == "schg_cas04"){
+		setarray .@guard2x[0],130,187,129,151,129,151,187,129,151,187,128,128,152,187,128,130,130,151;
+		setarray .@guard2y[0],22,15,47,18,47,18,15,47,18,15,42,42,43,15,42,22,28,18;
+	} else if(strnpcinfo(2) == "schg_cas05"){
+		setarray .@guard2x[0],130,187,129,151,129,151,187,129,151,187,128,128,152,187,128,130,130,151;
+		setarray .@guard2y[0],22,15,47,18,47,18,15,47,18,15,42,42,43,15,42,22,28,18;
+	}
+
+	set .@defence,GetCastleData(strnpcinfo(2),3);
+	guardian strnpcinfo(2),.@guard2x[0],.@guard2y[0],"Guerreiro Guardião",1899,"Gde2_gard02#" + strnpcinfo(2) + "::OnGuardianDied"; //11;
+	if ((.@defence > 10) && (.@defence < 31)) {
+		set .MyMobCount,2;
+		guardian strnpcinfo(2),.@guard2x[1],.@guard2y[1],"Guerreiro Guardião",1899,"Gde2_gard02#" + strnpcinfo(2) + "::OnGuardianDied"; //12;
+	}
+	else if ((.@defence > 30) && (.@defence < 51)) {
+		set .MyMobCount,3;
+		guardian strnpcinfo(2),.@guard2x[2],.@guard2y[2],"Guerreiro Guardião",1899,"Gde2_gard02#" + strnpcinfo(2) + "::OnGuardianDied"; //12;
+		guardian strnpcinfo(2),.@guard2x[3],.@guard2y[3],"Guerreiro Guardião",1899,"Gde2_gard02#" + strnpcinfo(2) + "::OnGuardianDied"; //13;
+	}
+	else if ((.@defence > 50) && (.@defence < 71)) {
+		set .MyMobCount,4;
+		guardian strnpcinfo(2),.@guard2x[4],.@guard2y[4],"Guerreiro Guardião",1899,"Gde2_gard02#" + strnpcinfo(2) + "::OnGuardianDied"; //12;
+		guardian strnpcinfo(2),.@guard2x[5],.@guard2y[5],"Guerreiro Guardião",1899,"Gde2_gard02#" + strnpcinfo(2) + "::OnGuardianDied"; //13;
+		guardian strnpcinfo(2),.@guard2x[6],.@guard2y[6],"Guerreiro Guardião",1899,"Gde2_gard02#" + strnpcinfo(2) + "::OnGuardianDied"; //14;
+	}
+	else if (.@defence > 70) {
+		set .MyMobCount,5;
+		guardian strnpcinfo(2),.@guard2x[7],.@guard2y[7],"Guerreiro Guardião",1899,"Gde2_gard02#" + strnpcinfo(2) + "::OnGuardianDied"; //12;
+		guardian strnpcinfo(2),.@guard2x[8],.@guard2y[8],"Guerreiro Guardião",1899,"Gde2_gard02#" + strnpcinfo(2) + "::OnGuardianDied"; //13;
+		guardian strnpcinfo(2),.@guard2x[9],.@guard2y[9],"Guerreiro Guardião",1899,"Gde2_gard02#" + strnpcinfo(2) + "::OnGuardianDied"; //14;
+		guardian strnpcinfo(2),.@guard2x[10],.@guard2y[10],"Guerreiro Guardião",1899,"Gde2_gard02#" + strnpcinfo(2) + "::OnGuardianDied"; //15;
+	}
+	else {
+		set .MyMobCount,2;
+		guardian strnpcinfo(2),.@guard2x[11],.@guard2y[11],"Guerreiro Guardião",1899,"Gde2_gard02#" + strnpcinfo(2) + "::OnGuardianDied"; //12;
+	}
+	initnpctimer;
+	end;
+
+OnTimer600000:
+	set .MyMobCount,.MyMobCount+1;
+	guardian strnpcinfo(2),.@guard2x[12],.@guard2y[12],"Guerreiro Guardião",1899,"Gde2_gard02#" + strnpcinfo(2) + "::OnGuardianDied"; //16;
+	end;
+
+OnTimer1200000:
+	set .MyMobCount,.MyMobCount+1;
+	guardian strnpcinfo(2),.@guard2x[13],.@guard2y[13],"Guerreiro Guardião",1899,"Gde2_gard02#" + strnpcinfo(2) + "::OnGuardianDied"; //17;
+	end;
+
+OnTimer2100000:
+	set .MyMobCount,.MyMobCount+1;
+	guardian strnpcinfo(2),.@guard2x[14],.@guard2y[14],"Guerreiro Guardião",1899,"Gde2_gard02#" + strnpcinfo(2) + "::OnGuardianDied"; //18;
+	end;
+
+OnTimer3000000:
+	set .MyMobCount,.MyMobCount+1;
+	guardian strnpcinfo(2),.@guard2x[15],.@guard2y[15],"Guerreiro Guardião",1899,"Gde2_gard02#" + strnpcinfo(2) + "::OnGuardianDied"; //19;
+	end;
+
+OnTimer3900000:
+	set .MyMobCount,.MyMobCount+1;
+	guardian strnpcinfo(2),.@guard2x[16],.@guard2y[16],"Guerreiro Guardião",1899,"Gde2_gard02#" + strnpcinfo(2) + "::OnGuardianDied"; //20;
+	stopnpctimer;
+	end;
+
+OnGuardianDied:
+	set .MyMobCount,.MyMobCount-1;
+	if (.MyMobCount < 2) {
+		set .MyMobCount,.MyMobCount+1;
+		guardian strnpcinfo(2),.@guard2x[17],.@guard2y[17],"Guerreiro Guardião",1899,"Gde2_gard02#" + strnpcinfo(2) + "::OnGuardianDied"; //21;
+	}
+	end;
+
+Onreset:
+	stopnpctimer;
+	killmonster strnpcinfo(2),"Gde2_gard02#" + strnpcinfo(2) + "::OnGuardianDied";
+	end;
+}
+
+-	script	Gde2_df01F::Gde2_df01	-1,{
+OnEnable:
+	if(strnpcinfo(2) == "arug_cas01"){ setarray .@runa1[0],210,234; setarray .@runa2[0],308,189; }
+	else if(strnpcinfo(2) == "arug_cas02"){ setarray .@runa1[0],33,168; setarray .@runa2[0],245,168; }
+	else if(strnpcinfo(2) == "arug_cas03"){ setarray .@runa1[0],65,171; setarray .@runa2[0],212,149; }
+	else if(strnpcinfo(2) == "arug_cas04"){ setarray .@runa1[0],65,171; setarray .@runa2[0],212,149; }
+	else if(strnpcinfo(2) == "arug_cas05"){ setarray .@runa1[0],65,171; setarray .@runa2[0],212,149; }
+	else if(strnpcinfo(2) == "schg_cas01"){ setarray .@runa1[0],27,35; setarray .@runa2[0],207,75; }
+	else if(strnpcinfo(2) == "schg_cas02"){ setarray .@runa1[0],231,58; setarray .@runa2[0],335,230; }
+	else if(strnpcinfo(2) == "schg_cas03"){ setarray .@runa1[0],242,309; setarray .@runa2[0],376,251; }
+	else if(strnpcinfo(2) == "schg_cas04"){ setarray .@runa1[0],27,35; setarray .@runa2[0],207,75; }
+	else if(strnpcinfo(2) == "schg_cas05"){ setarray .@runa1[0],27,35; setarray .@runa2[0],207,75; }
+
+	if(compare(strnpcinfo(0),"df01")){
+		guardian strnpcinfo(2),.@runa1[0],.@runa1[1],"1ª Runa Guardiã",1907,"Gde2_df01#" + strnpcinfo(2) + "::OnGuardianStoneDied"; //22;
+	} else { 
+		guardian strnpcinfo(2),.@runa2[0],.@runa2[1],"2ª Runa Guardiã",1908,"Gde2_df02#" + strnpcinfo(2) + "::OnGuardianStoneDied"; //23;
+	}
+	end;
+
+OnDisable:
+	if (strnpcinfo(1) == "Gde2_df01F") end;
+	if(compare(strnpcinfo(0),"df01")){
+		killmonster strnpcinfo(2),"Gde2_df01#" + strnpcinfo(2) + "::OnGuardianStoneDied";
+		set .@n,0;
+	} else { 
+		killmonster strnpcinfo(2),"Gde2_df02#" + strnpcinfo(2) + "::OnGuardianStoneDied";
+		set .@n,1;
+	}
+
+	if(strnpcinfo(2) == "arug_cas01"){ setarray $agit_ar01[.@n],1; } //Global Variable
+	else if(strnpcinfo(2) == "arug_cas02"){ setarray $agit_ar02[.@n],1; }
+	else if(strnpcinfo(2) == "arug_cas03"){ setarray $agit_ar03[.@n],1; }
+	else if(strnpcinfo(2) == "arug_cas04"){ setarray $agit_ar04[.@n],1; }
+	else if(strnpcinfo(2) == "arug_cas05"){ setarray $agit_ar05[.@n],1; }
+	else if(strnpcinfo(2) == "schg_cas01"){ setarray $agit_sc01[.@n],1; }
+	else if(strnpcinfo(2) == "schg_cas02"){ setarray $agit_sc02[.@n],1; }
+	else if(strnpcinfo(2) == "schg_cas03"){ setarray $agit_sc03[.@n],1; }
+	else if(strnpcinfo(2) == "schg_cas04"){ setarray $agit_sc04[.@n],1; }
+	else if(strnpcinfo(2) == "schg_cas05"){ setarray $agit_sc05[.@n],1; }
+	
+	stopnpctimer;
+	end;
+
+OnGuardianStoneDied:
+	if (strnpcinfo(1) == "Gde2_df01F") end;
+	// 1st and/or 2nd Guardian Stone is Destroyed
+	if(compare(strnpcinfo(0),"df01")){
+		set .@n,0;
+	} else { 
+		set .@n,1;
+	}
+	if(strnpcinfo(2) == "arug_cas01"){
+		setarray $agit_ar01[.@n],1;
+		if (($agit_ar01[0] == 1) || ($agit_ar01[0] == 2)) {
+			set .@destroyed,.@destroyed + 1;
+		}
+		if (($agit_ar01[1] == 1) || ($agit_ar01[1] == 2)) {
+			set .@destroyed,.@destroyed + 1;
+		}
+	} else if(strnpcinfo(2) == "arug_cas02"){
+		setarray $agit_ar02[.@n],1;
+		if (($agit_ar02[0] == 1) || ($agit_ar02[0] == 2)) {
+			set .@destroyed,.@destroyed + 1;
+		}
+		if (($agit_ar02[1] == 1) || ($agit_ar02[1] == 2)) {
+			set .@destroyed,.@destroyed + 1;
+		}
+	} else if(strnpcinfo(2) == "arug_cas03"){
+		setarray $agit_ar03[.@n],1;
+		if (($agit_ar03[0] == 1) || ($agit_ar03[0] == 2)) {
+			set .@destroyed,.@destroyed + 1;
+		}
+		if (($agit_ar03[1] == 1) || ($agit_ar03[1] == 2)) {
+			set .@destroyed,.@destroyed + 1;
+		}
+	} else if(strnpcinfo(2) == "arug_cas04"){
+		setarray $agit_ar04[.@n],1;
+		if (($agit_ar04[0] == 1) || ($agit_ar04[0] == 2)) {
+			set .@destroyed,.@destroyed + 1;
+		}
+		if (($agit_ar04[1] == 1) || ($agit_ar04[1] == 2)) {
+			set .@destroyed,.@destroyed + 1;
+		}
+	} else if(strnpcinfo(2) == "arug_cas05"){
+		setarray $agit_ar05[.@n],1;
+		if (($agit_ar05[0] == 1) || ($agit_ar05[0] == 2)) {
+			set .@destroyed,.@destroyed + 1;
+		}
+		if (($agit_ar05[1] == 1) || ($agit_ar05[1] == 2)) {
+			set .@destroyed,.@destroyed + 1;
+		}
+	} else if(strnpcinfo(2) == "schg_cas01"){
+		setarray $agit_sc01[.@n],1;
+		if (($agit_sc01[0] == 1) || ($agit_sc01[0] == 2)) {
+			set .@destroyed,.@destroyed + 1;
+		}
+		if (($agit_sc01[1] == 1) || ($agit_sc01[1] == 2)) {
+			set .@destroyed,.@destroyed + 1;
+		}
+	} else if(strnpcinfo(2) == "schg_cas02"){
+		setarray $agit_sc02[.@n],1;
+		if (($agit_sc02[0] == 1) || ($agit_sc02[0] == 2)) {
+			set .@destroyed,.@destroyed + 1;
+		}
+		if (($agit_sc02[1] == 1) || ($agit_sc02[1] == 2)) {
+			set .@destroyed,.@destroyed + 1;
+		}
+	} else if(strnpcinfo(2) == "schg_cas03"){
+		setarray $agit_sc03[.@n],1;
+		if (($agit_sc03[0] == 1) || ($agit_sc03[0] == 2)) {
+			set .@destroyed,.@destroyed + 1;
+		}
+		if (($agit_sc03[1] == 1) || ($agit_sc03[1] == 2)) {
+			set .@destroyed,.@destroyed + 1;
+		}
+	} else if(strnpcinfo(2) == "schg_cas04"){
+		setarray $agit_sc04[.@n],1;
+		if (($agit_sc04[0] == 1) || ($agit_sc04[0] == 2)) {
+			set .@destroyed,.@destroyed + 1;
+		}
+		if (($agit_sc04[1] == 1) || ($agit_sc04[1] == 2)) {
+			set .@destroyed,.@destroyed + 1;
+		}
+	} else if(strnpcinfo(2) == "schg_cas05"){
+		setarray $agit_sc05[.@n],1;
+		if (($agit_sc05[0] == 1) || ($agit_sc05[0] == 2)) {
+			set .@destroyed,.@destroyed + 1;
+		}
+		if (($agit_sc05[1] == 1) || ($agit_sc05[1] == 2)) {
+			set .@destroyed,.@destroyed + 1;
+		}
+	}
+
+	if (.@destroyed == 2) {
+		mapannounce strnpcinfo(2),"Todas as Runas Guardiãs foram destruídas!",bc_map,"0x00ff00";
+		donpcevent "Gde2_RL00#" + strnpcinfo(2) + "::OnDisable";
+		if(compare(strnpcinfo(0),"df01")){
+			donpcevent "Gde2_gard01#" + strnpcinfo(2) + "::Onreset";
+		} else { 
+			donpcevent "Gde2_gard02#" + strnpcinfo(2) + "::Onreset";
+		}
+		
+	}
+	else {
+		if(compare(strnpcinfo(0),"df01")){
+			mapannounce strnpcinfo(2),"A 1ª Runa Guardiã foi destruída!",bc_map,"0x00ff00";
+			donpcevent "Gde2_gard01#" + strnpcinfo(2) + "::Onreset";
+		} else { 
+			mapannounce strnpcinfo(2),"A 2ª Runa Guardiã foi destruída!",bc_map,"0x00ff00";
+			donpcevent "Gde2_gard02#" + strnpcinfo(2) + "::Onreset";
+		}	
+	}
+	initnpctimer;
+	end;
+
+OnTimer300000:
+	if (strnpcinfo(1) == "Gde2_df01F") end;
+	if(compare(strnpcinfo(0),"df01")){
+		donpcevent "1ª Runa Guardiã#" + strnpcinfo(2) + "::OnEnable";
+		set .@n,0;
+	} else { 
+		donpcevent "2ª Runa Guardiã#" + strnpcinfo(2) + "::OnEnable";
+		set .@n,1;
+	}
+	if(strnpcinfo(2) == "arug_cas01"){ setarray $agit_ar01[.@n],2; } //Global Variable
+	else if(strnpcinfo(2) == "arug_cas02"){ setarray $agit_ar02[.@n],2; }
+	else if(strnpcinfo(2) == "arug_cas03"){ setarray $agit_ar03[.@n],2; }
+	else if(strnpcinfo(2) == "arug_cas04"){ setarray $agit_ar04[.@n],2; }
+	else if(strnpcinfo(2) == "arug_cas05"){ setarray $agit_ar05[.@n],2; }
+	else if(strnpcinfo(2) == "schg_cas01"){ setarray $agit_sc01[.@n],2; }
+	else if(strnpcinfo(2) == "schg_cas02"){ setarray $agit_sc02[.@n],2; }
+	else if(strnpcinfo(2) == "schg_cas03"){ setarray $agit_sc03[.@n],2; }
+	else if(strnpcinfo(2) == "schg_cas04"){ setarray $agit_sc04[.@n],2; }
+	else if(strnpcinfo(2) == "schg_cas05"){ setarray $agit_sc05[.@n],2; }
+
+	stopnpctimer;
+	end;
+}
+
+-	script	Runa Guardiã::Gde2_runa1	-1,{
+	set .@GID, GetCastleData(strnpcinfo(2),1);
+	if (getcharid(2) == .@GID) {
+		mes "^3355FFVocê precisará";
+		mes "dos seguintes materiais";
+		mes "para reconstruir";
+		mes "a Runa guardiã.^000000";
+		next;
+		mes "1 Oridecon";
+		mes "1 Elunium";
+		mes "30 Pedra";
+		mes "5 Gema Azul";
+		mes "5 Gema Amarela";
+		mes "5 Gema Vermelha";
+		next;
+		mes "^3355FFVocê deseja continuar?^000000";
+		if(select("Não:Continuar") == 1) {
+			mes "^3355FFTrabalho cancelado.^000000";
+			close;
+		} else {
+			if ((countitem(984) > 0) && (countitem(985) > 0) && (countitem(7049) > 29) && (countitem(717) > 4) && (countitem(715) > 4) && (countitem(716) > 4)) {
+				mes "^3355FFOrganize Pedra, Elunium e";
+				mes "Oridecon, nessa ordem, no";
+				mes "centro. Então você deve organizar";
+				mes "as gemas encantadas para";
+				mes "reconstituir a Runa Guardiã.^000000";
+				next;
+				switch(select("Elunium:Oridecon:Pedra")) {
+				case 1:
+					mes "^3355FFElunium foi";
+					mes "colocado no centro.^000000";
+					next;
+					break;
+				case 2:
+					mes "^3355FFOridecon foi";
+					mes "colocado no centro.^000000";
+					next;
+					break;
+				case 3:
+					mes "^3355FFPedra foi";
+					mes "colocado no centro.^000000";
+					set .@nice,.@nice+10;
+					next;
+					break;
+				}
+				switch(select("Elunium:Oridecon:Pedra")) {
+				case 1:
+					mes "^3355FFVocê revestiu a parte";
+					mes "de fora do centro";
+					mes "com Elunium.^000000";
+					set .@nice,.@nice+10;
+					next;
+					break;
+				case 2:
+					mes "^3355FFVocê revestiu a parte";
+					mes "de fora do centro";
+					mes "com Oridecon.^000000";
+					next;
+					break;
+				case 3:
+					mes "^3355FFVocê revestiu a parte";
+					mes "de fora do centro";
+					mes "com Pedra.^000000";
+					next;
+					break;
+				}
+				switch(select("Elunium:Oridecon:Pedra")) {
+				case 1:
+					mes "^3355FFVocê cobriu o";
+					mes "resto dos materiais";
+					mes "Com Elunium.^000000";
+					next;
+					break;
+				case 2:
+					mes "^3355FFVocê cobriu o";
+					mes "resto dos materiais";
+					mes "com Oridecon.^000000";
+					set .@nice,.@nice+10;
+					next;
+					break;
+				case 3:
+					mes "^3355FFVocê cobriu o";
+					mes "resto dos materiais";
+					mes "com pedra.^000000";
+					next;
+					break;
+				}
+				mes "^3355FFAgora você precisa organizar";
+				mes "as gemas encantadas de";
+				mes "acordo. Você precisa identificar";
+				mes "as suas propriedades mágicas";
+				mes "por seus efeitos.^000000";
+				next;
+				while(1) {
+					if (.@roof0 > 7) {
+						break;
+					}
+					else {
+						switch(rand(1,3)) {
+						case 1:
+							specialeffect EF_BEGINSPELL2;
+							mes "^3355FFAs gemas";
+							mes "devem ser colocadas na";
+							mes "ordem correta, de acordo";
+							mes "com as suas propriedades mágicas e poder.^000000";
+							next;
+							switch(select("Gema Vermelha:Gema Amarela:Gema Azul")) {
+							case 1:
+								mes "^3355FFVocê colocou a gema vermelha.";
+								mes "No entanto, o reparo da Runa";
+								mes "Guardiã falhou porque";
+								mes "o poder mágico deu conflito.^000000";
+								close;
+							case 2:
+								mes "^3355FFVocê colocou a gema amarela.";
+								mes "No entanto, o reparo da Runa";
+								mes "Guardiã falhou porque";
+								mes "o poder mágico deu conflito.^000000";
+								close;
+							case 3:
+								mes "^3355FFVocê colocou a gema azul.^000000";
+								set .@nice,.@nice+10;
+								set .@roof0,.@roof0 + 1;
+								specialeffect EF_STEAL;
+								next;
+								break;
+							}
+							break;
+						case 2:
+							specialeffect EF_VOLCANO;
+							mes "^3355FFAs gemas";
+							mes "devem ser colocadas na";
+							mes "ordem correta, de acordo";
+							mes "com as suas propriedades mágicas e poder.^000000";
+							next;
+							switch(select("Gema Vermelha:Gema Amarela:Gema Azul")) {
+							case 1:
+								mes "^3355FFVocê colocou a gema vermelha.^000000";
+								set .@nice,.@nice+10;
+								set .@roof0,.@roof0 + 1;
+								specialeffect EF_STEAL;
+								next;
+								break;
+							case 2:
+								mes "^3355FFVocê colocou a  gema amarela.";
+								mes "No entanto, o reparo da Runa";
+								mes "Guardiã falhou por que";
+								mes "o poder mágico deu conflito.^000000";
+								close;
+							case 3:
+								mes "^3355FFVocê colocou a gema azul.";
+								mes "No entanto, o reparo da runa";
+								mes "Guardiã falhou por que";
+								mes "o poder mágico deu conflito.^000000";
+								close;
+							}
+							break;
+						case 3:
+							specialeffect EF_BEGINSPELL4;
+							mes "^3355FFAs gemas";
+							mes "devem ser colocadas na";
+							mes "ordem correta, de acordo";
+							mes "com as suas propriedades mágicas e poder.^000000";
+							next;
+							switch(select("Gema Vermelha:Gema Amarela:Gema Azul")) {
+							case 1:
+								mes "^3355FFVocê colocou a  gema vermelha.";
+								mes "No entanto, o reparo da Runa";
+								mes "Guardiã falhou porque";
+								mes "o poder mágico deu conflito.^000000";
+								close;
+							case 2:
+								mes "^3355FFVocê colocou a gema amarela.^000000";
+								set .@nice,.@nice+10;
+								set .@roof0,.@roof0 + 1;
+								specialeffect EF_STEAL;
+								next;
+								break;
+							case 3:
+								mes "^3355FFVocê colocou a gema azul.";
+								mes "No entanto, o reparo da runa";
+								mes "Guardiã falhou porque";
+								mes "o poder mágico deu conflito.^000000";
+								close;
+							}
+						}
+					}
+				}
+				if (.@nice > 90) {
+					if(compare(strnpcinfo(1),"1")){
+						set .@n,0;
+					} else {
+						set .@n,1;
+					}
+
+					if(strnpcinfo(2) == "arug_cas01" && $agit_ar01[.@n] == 0 || 
+					strnpcinfo(2) == "arug_cas02" && $agit_ar02[.@n] == 0 || 
+					strnpcinfo(2) == "arug_cas03" && $agit_ar03[.@n] == 0 ||
+					strnpcinfo(2) == "arug_cas04" && $agit_ar04[.@n] == 0 ||
+					strnpcinfo(2) == "arug_cas05" && $agit_ar05[.@n] == 0 ||
+					strnpcinfo(2) == "schg_cas01" && $agit_sc01[.@n] == 0 ||
+					strnpcinfo(2) == "schg_cas02" && $agit_sc02[.@n] == 0 ||
+					strnpcinfo(2) == "schg_cas03" && $agit_sc03[.@n] == 0 ||
+					strnpcinfo(2) == "schg_cas04" && $agit_sc04[.@n] == 0 ||
+					strnpcinfo(2) == "schg_cas05" && $agit_sc05[.@n] == 0 ){
+						mes "^3355FFO sistema de reparo";
+						mes "da Runa Guardiã";
+						mes "terminou.^000000";
+						close;
+					}
+
+
+					else {
+						if (agitcheck2() == 0) {
+							mes "^3355FFNão é possivel";
+							mes "reconstruir a";
+							mes "Runa Guardiã";
+							mes "por que o Emperium não está presente.^000000";
+							close;
+						}
+						else {
+							mes "^3355FFAs gemas foram";
+							mes "organizadas, e a Runa";
+							mes "Guardiã foi reparada com êxito.^000000";
+							delitem 984,1; //Oridecon
+							delitem 985,1; //Elunium
+							delitem 7049,30; //Stone
+							delitem 717,5; //Blue_Gemstone
+							delitem 715,5; //Yellow_Gemstone
+							delitem 716,5; //Red_Gemstone
+							close2;
+							if(compare(strnpcinfo(1),"1")){
+								donpcevent "Gde2_df01#" + strnpcinfo(2) + "::OnEnable";
+								specialeffect EF_ICECRASH;
+								disablenpc "1ª Runa Guardiã#" + strnpcinfo(2);
+								set .@n,0;
+							} else {
+								donpcevent "Gde2_df02#" + strnpcinfo(2) + "::OnEnable";
+								specialeffect EF_ICECRASH;
+								disablenpc "2ª Runa Guardiã#" + strnpcinfo(2);
+								set .@n,1;
+							}
+
+							if(strnpcinfo(2) == "arug_cas01") { setarray $agit_ar01[.@n],0; set .@df_all,$agit_ar01[0]+$agit_ar01[1];}
+							else if(strnpcinfo(2) == "arug_cas02") { setarray $agit_ar02[.@n],0; set .@df_all,$agit_ar02[0]+$agit_ar02[1];}
+							else if(strnpcinfo(2) == "arug_cas03") { setarray $agit_ar03[.@n],0; set .@df_all,$agit_ar03[0]+$agit_ar03[1];}
+							else if(strnpcinfo(2) == "arug_cas04") { setarray $agit_ar04[.@n],0; set .@df_all,$agit_ar04[0]+$agit_ar04[1];}
+							else if(strnpcinfo(2) == "arug_cas05") { setarray $agit_ar05[.@n],0; set .@df_all,$agit_ar05[0]+$agit_ar05[1];}
+							else if(strnpcinfo(2) == "schg_cas01") { setarray $agit_sc01[.@n],0; set .@df_all,$agit_sc01[0]+$agit_sc01[1];}
+							else if(strnpcinfo(2) == "schg_cas02") { setarray $agit_sc02[.@n],0; set .@df_all,$agit_sc02[0]+$agit_sc02[1];}
+							else if(strnpcinfo(2) == "schg_cas03") { setarray $agit_sc03[.@n],0; set .@df_all,$agit_sc03[0]+$agit_sc03[1];}
+							else if(strnpcinfo(2) == "schg_cas04") { setarray $agit_sc04[.@n],0; set .@df_all,$agit_sc04[0]+$agit_sc04[1];}
+							else if(strnpcinfo(2) == "schg_cas05") { setarray $agit_sc05[.@n],0; set .@df_all,$agit_sc05[0]+$agit_sc05[1];}
+
+							if (.@df_all == 0) {
+								mapannounce strnpcinfo(2),"As Runas Guardiãs foram reerguidas, reforçando a defesa da fortaleza!",bc_map,"0x00ff00";
+								donpcevent "Gde2_RL00#" + strnpcinfo(2) + "::OnEnable";
+							}
+							else {
+								if(compare(strnpcinfo(1),"1")){
+									mapannounce strnpcinfo(2),"A 1ª Runa Guardiã foi reparada com êxito.",bc_map,"0x00ff00";
+								} else {
+									mapannounce strnpcinfo(2),"A 2ª Runa Guardiã foi reparada com êxito.",bc_map,"0x00ff00";
+								}
+							}
+							if(strnpcinfo(2) == "arug_cas01" && $agit_ar01[5] == 1) { donpcevent "Gde2_gard0"+(.@n + 1)+"#" + strnpcinfo(2) + "::OnEnable"; }
+							else if(strnpcinfo(2) == "arug_cas02" && $agit_ar02[5] == 1) { donpcevent "Gde2_gard0"+(.@n + 1)+"#" + strnpcinfo(2) + "::OnEnable"; }
+							else if(strnpcinfo(2) == "arug_cas03" && $agit_ar03[5] == 1) { donpcevent "Gde2_gard0"+(.@n + 1)+"#" + strnpcinfo(2) + "::OnEnable"; }
+							else if(strnpcinfo(2) == "arug_cas04" && $agit_ar04[5] == 1) { donpcevent "Gde2_gard0"+(.@n + 1)+"#" + strnpcinfo(2) + "::OnEnable"; }
+							else if(strnpcinfo(2) == "arug_cas05" && $agit_ar05[5] == 1) { donpcevent "Gde2_gard0"+(.@n + 1)+"#" + strnpcinfo(2) + "::OnEnable"; }
+							else if(strnpcinfo(2) == "schg_cas01" && $agit_sc01[5] == 1) { donpcevent "Gde2_gard0"+(.@n + 1)+"#" + strnpcinfo(2) + "::OnEnable"; }
+							else if(strnpcinfo(2) == "schg_cas02" && $agit_sc02[5] == 1) { donpcevent "Gde2_gard0"+(.@n + 1)+"#" + strnpcinfo(2) + "::OnEnable"; }
+							else if(strnpcinfo(2) == "schg_cas03" && $agit_sc03[5] == 1) { donpcevent "Gde2_gard0"+(.@n + 1)+"#" + strnpcinfo(2) + "::OnEnable"; }
+							else if(strnpcinfo(2) == "schg_cas04" && $agit_sc04[5] == 1) { donpcevent "Gde2_gard0"+(.@n + 1)+"#" + strnpcinfo(2) + "::OnEnable"; }
+							else if(strnpcinfo(2) == "schg_cas05" && $agit_sc05[5] == 1) { donpcevent "Gde2_gard0"+(.@n + 1)+"#" + strnpcinfo(2) + "::OnEnable"; }
+
+							end;
+						}
+					}
+				}
+				else {
+					mes "^3355FFDepois de todo esse trabalho...";
+					mes "veja que você não conseguiu";
+					mes "reparar a Runa Guardiã,";
+					mes "e perdeu alguns materiais.^000000";
+					delitem 7049,10; //Stone
+					delitem 717,2; //Blue_Gemstone
+					delitem 715,2; //Yellow_Gemstone
+					delitem 716,2; //Red_Gemstone
+					close;
+				}
+			}
+			else {
+				mes "^3355FFVocê não tem material";
+				mes "suficiente para reparar";
+				mes "a Runa Guardiã.^000000";
+				close;
+			}
+		}
+	}
+	end;
+
+OnInit:
+	if (strnpcinfo(1) == "Runa Guardiã") end;
+	if(compare(strnpcinfo(0),"cas")){
+		if(compare(strnpcinfo(1),"1")){
+			disablenpc "1ª Runa Guardiã#" + strnpcinfo(2);
+		} else {
+			disablenpc "2ª Runa Guardiã#" + strnpcinfo(2);
+		}
+	}
+	end;
+
+OnEnable:
+	if(compare(strnpcinfo(1),"1")){
+		enablenpc "1ª Runa Guardiã#" + strnpcinfo(2);
+	} else {
+		enablenpc "2ª Runa Guardiã#" + strnpcinfo(2);
+	}
+	specialeffect EF_MAPPILLAR2;
+	end;
+
+OnDisable:
+	if (strnpcinfo(1) == "Runa Guardiã") end;
+	if(compare(strnpcinfo(1),"1")){
+		disablenpc "1ª Runa Guardiã#" + strnpcinfo(2);
+	} else {
+		disablenpc "2ª Runa Guardiã#" + strnpcinfo(2);
+	}
+	end;
+}
+
+-	script	Controle::Gde2_Control	-1,{
+	set .@GID, GetCastleData(strnpcinfo(2),1);
+	if (getcharid(2) == .@GID) {
+		if (strcharinfo(0) == getguildmaster(.@GID)) {
+			if(compare(strnpcinfo(1),"01")){ set .@n,2; }
+			else if(compare(strnpcinfo(1),"02")){ set .@n,3; }
+			else if(compare(strnpcinfo(1),"03")){ set .@n,4; }
+
+
+			if(strnpcinfo(2) == "arug_cas01" && $agit_ar01[.@n] == 2 ||
+			strnpcinfo(2) == "arug_cas02" && $agit_ar02[.@n] == 2 ||
+			strnpcinfo(2) == "arug_cas03" && $agit_ar03[.@n] == 2 ||
+			strnpcinfo(2) == "arug_cas04" && $agit_ar04[.@n] == 2 ||
+			strnpcinfo(2) == "arug_cas05" && $agit_ar05[.@n] == 2 ||
+			strnpcinfo(2) == "schg_cas01" && $agit_sc01[.@n] == 2 ||
+			strnpcinfo(2) == "schg_cas02" && $agit_sc02[.@n] == 2 ||
+			strnpcinfo(2) == "schg_cas03" && $agit_sc03[.@n] == 2 ||
+			strnpcinfo(2) == "schg_cas04" && $agit_sc04[.@n] == 2 ||
+			strnpcinfo(2) == "schg_cas05" && $agit_sc05[.@n] == 2 ) {
+				mes "^3355FFOs portões da fortaleza";
+				mes "demolidos podem ser reparados,";
+				mes "mas você precisará recolher";
+				mes "os seguintes materiais.^000000";
+				next;
+				mes "^4D4DFF10 Aço^000000,";
+				mes "^4D4DFF30 Troncos^000000,";
+				mes "^4D4DFF5 Oridecon^000000, e";
+				mes "^4D4DFF10 Emveretarcon^000000.";
+				next;
+				select("Continuar");
+				if ((countitem(1019) > 29) && (countitem(999) > 9) && (countitem(1011) > 9) && (countitem(984) > 4)) {
+					mes "^3355FFVocê vai precisar dos Troncos";
+					mes "para reparar a moldura,";
+					mes "Oridecon para apoiar e reforçar a";
+					mes "resistência do portão, e";
+					mes "Emveretarcon basicamente para";
+					mes "segurar tudo junto.^000000";
+					next;
+					set .@ro_of01,rand(10,15);
+					while(1) {
+						if (.@ro_of02 == .@ro_of01) {
+							break;
+						}
+						else {
+							switch(rand(1,4)) {
+							case 1:
+								mes "^3355FFO apoio é a moldura";
+								mes "que está danificada:";
+								mes "Atenção nesta parte.";
+								mes "É uma prioridade.^000000";
+								next;
+								switch(select("Tronco:Aço:Emveretarcon:Oridecon")) {
+								case 1:
+									mes "^3355FFA moldura foi";
+									mes "reforçada com Madeira.^000000";
+									set .@rp_temp,.@rp_temp + 1;
+									set .@ro_of02,.@ro_of02 + 1;
+									specialeffect2 EF_REPAIRWEAPON;
+									next;
+									break;
+								case 2:
+									mes "^3355FFVocê tentou usar Aço,";
+									mes "mas não funcionou corretamente";
+									mes "tente usar algo";
+									mes "diferente.^000000";
+									close;
+								case 3:
+									mes "^3355FFVocê tentou usar Emveretarcon";
+									mes "para reforçar o Portão";
+									mes "mas não funcionou corretamente.";
+									mes "Você terá que começar novamente.^000000";
+									close;
+								case 4:
+									mes "^3355FFVocê tentou usar Oridecon,";
+									mes "mas não funcionou corretamente";
+									mes "tente usar";
+									mes "algo diferente.^000000";
+									close;
+								}
+								break;
+							case 2:
+								mes "^3355FFParece que o portão";
+								mes "de resistência total precisa";
+								mes "ser reforçado com algo.^000000";
+								next;
+								switch(select("Tronco:Aço:Emveretarcon:Oridecon")) {
+								case 1:
+									mes "^3355FFVocê tentou usar Madeira";
+									mes "para reforçar o Portão.^000000";
+									set .@ro_of02,.@ro_of02 + 1;
+									next;
+									break;
+								case 2:
+									mes "^3355FFVocê tentou usar Aço";
+									mes "para reforçar o Portão, mas";
+									mes "não funcionou corretamente.";
+									mes "Você terá que começar novamente.^000000";
+									close;
+								case 3:
+									mes "^3355FFVocê tentou usar Emveretarcon";
+									mes "para reforçar o Portão, mas";
+									mes "não funcionou corretamente.";
+									mes "Você terá que começar novamente.^000000";
+									close;
+								case 4:
+									mes "^3355FFVocê deu uma martelada";
+									mes "no oridecon: parece";
+									mes "que vai funcionar.^000000";
+									set .@rp_temp,.@rp_temp + 1;
+									set .@ro_of02,.@ro_of02 + 1;
+									specialeffect2 EF_REPAIRWEAPON;
+									next;
+									break;
+								}
+								break;
+							case 3:
+								mes "^3355FFOs danos causados ao portão";
+								mes "causaram todas essas";
+								mes "fissuras. Você terá";
+								mes "que soldar o Portão com algo sólido.^000000";
+								next;
+								switch(select("Tronco:Aço:Emveretarcon:Oridecon")) {
+								case 1:
+									mes "^3355FFVocê tentou usar Madeira para corrigir";
+									mes "problema, mas parece que";
+									mes "tornou o problema ainda pior.";
+									mes "Você vai ter que começar novamente.^000000";
+									close;
+								case 2:
+									mes "^3355FFVocê usou Aço para soldar";
+									mes "todas as rachaduras: o Portão está";
+									mes "começando a ficar mais sólido.^000000";
+									set .@rp_temp,.@rp_temp + 1;
+									set .@ro_of02,.@ro_of02 + 1;
+									specialeffect2 EF_REPAIRWEAPON;
+									next;
+									break;
+								case 3:
+									mes "^3355FFVocê tentou usar Emveretarcon";
+									mes "para reforçar o Portão, mas";
+									mes "não funcionou corretamente.";
+									mes "Você terá que começar novamente.^000000";
+									close;
+								case 4:
+									mes "^3355FFVocê tentou usar oridecon,";
+									mes "mas não funcionou muito";
+									mes "bem. Tente usar";
+									mes "algo diferente.^000000";
+									close;
+								}
+								break;
+							case 4:
+								mes "^3355FFAgora você precisa certificar";
+								mes "de que o Portão está juntamente";
+								mes "bonito e sólido.^000000";
+								next;
+								switch(select("Tronco:Aço:Emveretarcon:Oridecon")) {
+								case 1:
+									mes "^3355FFVocê tentou usar Madeira para corrigir";
+									mes "problema, mas parece que";
+									mes "tornou o problema ainda pior.";
+									mes "Você vai ter que começar novamente.^000000";
+									close;
+								case 2:
+									mes "^3355FFVocê tentou usar Aço,";
+									mes "mas não funcionou muito";
+									mes "bem. Tente usar";
+									mes "algo diferente.^000000";
+									close;
+								case 3:
+									mes "^3355FFEmveretarcon utilizado";
+									mes "com sucesso na reparação do dano";
+									mes "causado ao Portão.^000000";
+									set .@rp_temp,.@rp_temp + 1;
+									set .@ro_of02,.@ro_of02 + 1;
+									specialeffect2 EF_REPAIRWEAPON;
+									next;
+									break;
+								case 4:
+									mes "^3355FFVocê tentou usar Oridecon,";
+									mes "mas não funcionou muito";
+									mes "bem. tente usar";
+									mes "algo diferente.^000000";
+									close;
+								}
+							}
+						}
+					}
+					mes "^3355FFBem, parece que";
+					mes "você está a fazer";
+					mes "o reparo do portão.^000000";
+					next;
+					if (agitcheck2() == 0) {
+						mes "^3355FFInfelizmente, o Portão da Fortaleza";
+						mes "não pode ser reconstruído:";
+						mes "O Emperium não está mais aqui.^000000";
+						close;
+					}
+					else {
+						if (.@rp_temp == .@ro_of01) {
+							mes "^3355FFO Portão da Fortaleza";
+							mes "foi reparado com êxito!^000000";
+							delitem 1019,30; //Wooden_Block
+							delitem 999,10; //Steel
+							delitem 1011,10; //Emveretarcon
+							delitem 984,5; //Oridecon
+							close2;
+							if(compare(strnpcinfo(1),"01")){ set .@n,1; }
+							else if(compare(strnpcinfo(1),"02")){ set .@n,2; }
+							else if(compare(strnpcinfo(1),"03")){ set .@n,3; }
+							donpcevent "Gde2_RL0"+.@n+"#" + strnpcinfo(2) + "::OnEnable";
+							disablenpc "Controle0"+.@n+"#"+strnpcinfo(2);
+							mapannounce strnpcinfo(2),"O "+.@n+"º Portão da Fortaleza foi reconstruído!",bc_map,"0x00ff00";
+
+							if(compare(strnpcinfo(1),"01")){ 
+								if(strnpcinfo(2) == "arug_cas01"){ setarray $agit_ar01[2],0; }
+								else if(strnpcinfo(2) == "arug_cas02"){ setarray $agit_ar02[2],0; }
+								else if(strnpcinfo(2) == "arug_cas03"){ setarray $agit_ar03[2],0; }
+								else if(strnpcinfo(2) == "arug_cas04"){ setarray $agit_ar04[2],0; }
+								else if(strnpcinfo(2) == "arug_cas05"){ setarray $agit_ar05[2],0; }
+								else if(strnpcinfo(2) == "schg_cas01"){ setarray $agit_sc01[2],0; }
+								else if(strnpcinfo(2) == "schg_cas02"){ setarray $agit_sc02[2],0; }
+								else if(strnpcinfo(2) == "schg_cas03"){ setarray $agit_sc03[2],0; }
+								else if(strnpcinfo(2) == "schg_cas04"){ setarray $agit_sc04[2],0; }
+								else if(strnpcinfo(2) == "schg_cas05"){ setarray $agit_sc05[2],0; }
+							} else if(compare(strnpcinfo(1),"02")){
+								if(strnpcinfo(2) == "arug_cas01"){ setarray $agit_ar01[3],0; setarray $agit_ar01[2],2; donpcevent "Controle01#"+strnpcinfo(2)+"::OnEnable";}
+								else if(strnpcinfo(2) == "arug_cas02"){ setarray $agit_ar02[3],0; setarray $agit_ar02[2],2; donpcevent "Controle01#"+strnpcinfo(2)+"::OnEnable"; }
+								else if(strnpcinfo(2) == "arug_cas03"){ setarray $agit_ar03[3],0; setarray $agit_ar03[2],2; donpcevent "Controle01#"+strnpcinfo(2)+"::OnEnable"; }
+								else if(strnpcinfo(2) == "arug_cas04"){ setarray $agit_ar04[3],0; setarray $agit_ar04[2],2; donpcevent "Controle01#"+strnpcinfo(2)+"::OnEnable"; }
+								else if(strnpcinfo(2) == "arug_cas05"){ setarray $agit_ar05[3],0; setarray $agit_ar05[2],2; donpcevent "Controle01#"+strnpcinfo(2)+"::OnEnable"; }
+								else if(strnpcinfo(2) == "schg_cas01"){ setarray $agit_sc01[3],0; setarray $agit_sc01[2],2; donpcevent "Controle01#"+strnpcinfo(2)+"::OnEnable"; }
+								else if(strnpcinfo(2) == "schg_cas02"){ setarray $agit_sc02[3],0; setarray $agit_sc02[2],2; donpcevent "Controle01#"+strnpcinfo(2)+"::OnEnable"; }
+								else if(strnpcinfo(2) == "schg_cas03"){ setarray $agit_sc03[3],0; setarray $agit_sc03[2],2; donpcevent "Controle01#"+strnpcinfo(2)+"::OnEnable"; }
+								else if(strnpcinfo(2) == "schg_cas04"){ setarray $agit_sc04[3],0; setarray $agit_sc04[2],2; donpcevent "Controle01#"+strnpcinfo(2)+"::OnEnable"; }
+								else if(strnpcinfo(2) == "schg_cas05"){ setarray $agit_sc05[3],0; setarray $agit_sc05[2],2; donpcevent "Controle01#"+strnpcinfo(2)+"::OnEnable"; }
+							} else if(compare(strnpcinfo(1),"03")){
+								if(strnpcinfo(2) == "arug_cas01"){ setarray $agit_ar01[4],0; setarray $agit_ar01[3],2; donpcevent "Controle02#"+strnpcinfo(2)+"::OnEnable";}
+								else if(strnpcinfo(2) == "arug_cas02"){ setarray $agit_ar02[4],0; setarray $agit_ar02[3],2; donpcevent "Controle02#"+strnpcinfo(2)+"::OnEnable"; }
+								else if(strnpcinfo(2) == "arug_cas03"){ setarray $agit_ar03[4],0; setarray $agit_ar03[3],2; donpcevent "Controle02#"+strnpcinfo(2)+"::OnEnable"; }
+								else if(strnpcinfo(2) == "arug_cas04"){ setarray $agit_ar04[4],0; setarray $agit_ar04[3],2; donpcevent "Controle02#"+strnpcinfo(2)+"::OnEnable"; }
+								else if(strnpcinfo(2) == "arug_cas05"){ setarray $agit_ar05[4],0; setarray $agit_ar05[3],2; donpcevent "Controle02#"+strnpcinfo(2)+"::OnEnable"; }
+								else if(strnpcinfo(2) == "schg_cas01"){ setarray $agit_sc01[4],0; setarray $agit_sc01[3],2; donpcevent "Controle02#"+strnpcinfo(2)+"::OnEnable"; }
+								else if(strnpcinfo(2) == "schg_cas02"){ setarray $agit_sc02[4],0; setarray $agit_sc02[3],2; donpcevent "Controle02#"+strnpcinfo(2)+"::OnEnable"; }
+								else if(strnpcinfo(2) == "schg_cas03"){ setarray $agit_sc03[4],0; setarray $agit_sc03[3],2; donpcevent "Controle02#"+strnpcinfo(2)+"::OnEnable"; }
+								else if(strnpcinfo(2) == "schg_cas04"){ setarray $agit_sc04[4],0; setarray $agit_sc04[3],2; donpcevent "Controle02#"+strnpcinfo(2)+"::OnEnable"; }
+								else if(strnpcinfo(2) == "schg_cas05"){ setarray $agit_sc05[4],0; setarray $agit_sc05[3],2; donpcevent "Controle02#"+strnpcinfo(2)+"::OnEnable"; }
+							}
+							end;
+						}
+						else {
+							mes "^3355FFO muro foi quebrado,";
+							mes "e a tentativa de reparo";
+							mes "do Portão da Fortaleza falhou.";
+							mes "Você perdeu alguns";
+							mes "recursos na reparação...^000000";
+							delitem 984,2; //Oridecon
+							delitem 999,4; //Steel
+							delitem 1019,14; //Wooden_Block
+							delitem 1011,3; //Emveretarcon
+							close;
+						}
+					}
+				}
+				else {
+					mes "^3355FFVocê não pode reparar";
+					mes "o Portão da Fortaleza se não tiver";
+					mes "todos os materiais necessários.^000000";
+					close;
+				}
+			}
+		}
+	}
+	end;
+
+OnInit:
+	if(compare(strnpcinfo(0),"cas")){
+		if(compare(strnpcinfo(1),"01")){ disablenpc "Controle01#"+strnpcinfo(2); }
+		else if(compare(strnpcinfo(1),"02")){ disablenpc "Controle02#"+strnpcinfo(2); }
+		else if(compare(strnpcinfo(1),"03")){ disablenpc "Controle03#"+strnpcinfo(2); }
+	}
+	end;
+
+OnEnable:
+	if(compare(strnpcinfo(1),"01")){ enablenpc "Controle01#"+strnpcinfo(2); }
+	else if(compare(strnpcinfo(1),"02")){ enablenpc "Controle02#"+strnpcinfo(2); }
+	else if(compare(strnpcinfo(1),"03")){ enablenpc "Controle03#"+strnpcinfo(2); }
+	end;
+
+OnDisable:
+	if (strnpcinfo(1) == "Controle") end;
+	if(compare(strnpcinfo(1),"01")){ disablenpc "Controle01#"+strnpcinfo(2); }
+	else if(compare(strnpcinfo(1),"02")){ disablenpc "Controle02#"+strnpcinfo(2); }
+	else if(compare(strnpcinfo(1),"03")){ disablenpc "Controle03#"+strnpcinfo(2); }
+	end;
+}
+
+// Guild Manager
+-	script	StewardF::Gde2_Manager	-1,{
+	set .@GID, GetCastleData(strnpcinfo(2),1);
+	if (.@GID == 0) {
+		mes "[ Steward ]";
+		mes "Estou esperando o destino que";
+		mes "o mestre escolherá";
+		mes "para mim. Você acha que";
+		mes "tem força e coragem para";
+		mes "conquistar esta fortaleza?";
+		close;
+	}
+	if (getcharid(2) != .@GID || strcharinfo(0) != getguildmaster(.@GID)) {
+		mes "[ Steward ]";
+		mes "Hmpf. Suas ameaças";
+		mes "não me assustam! Guardiões,";
+		mes "retirem esse infiel daqui!";
+		mes "Eu vou sempre ser leal ao mestre";
+		mes "desta fortaleza,";
+		mes "somente ao ^FF0000" + getguildmaster(.@GID) + "^000000.";
+		close;
+	}
+	mes "[ Steward ]";
+	mes "Ah, Mestre ^FF0000" + getguildmaster(.@GID) + "^000000...";
+	mes "como devo atendê-lo hoje?";
+	mes "Há algum aspecto da manutenção";
+	mes "desta fortaleza que";
+	mes "queira discutir?";
+	next;
+	switch(select("Informações da Fortaleza:Investir no crescimento comercial:Investir no crescimento da defesa:Alugar/Demitir Funcionárias Kafra:Ir para sala Mestre")) {
+	case 1:
+		mes "[ Steward ]";
+		mes "^FF0000Crescimento do comércio^000000";
+		mes "O nível da fortaleza é ^0000ff" + GetCastleData(strnpcinfo(2),2) + ".";
+		if (GetCastleData(strnpcinfo(2),4) > 0) {
+			mes "Na última vez, você investiu";
+			mes "no crescimento comercial " + GetCastleData(strnpcinfo(2),4) + " vezes.";
+		}
+		next;
+		mes "[ Steward ]";
+		mes "O nível de defesa";
+		mes "da fortaleza é " + GetCastleData(strnpcinfo(2),3) + ".";
+		if (GetCastleData(strnpcinfo(2),5) > 0) {
+			mes "Na última vez, você";
+			mes "investiu em defesa " + GetCastleData(strnpcinfo(2),5) + " vezes.";
+		}
+		mes " ";
+		mes "Isso é tudo, Mestre.";
+		close;
+	case 2:
+		set .@Economy,GetCastleData(strnpcinfo(2),2);
+		if (.@Economy < 6) { set .@eco_invest,5000; }
+		else if ((.@Economy >= 6) && (.@Economy <= 10)) { set .@eco_invest,10000; }
+		else if ((.@Economy >= 11) && (.@Economy <= 15)) { set .@eco_invest,20000; }
+		else if ((.@Economy >= 16) && (.@Economy <= 20)) { set .@eco_invest,35000; }
+		else if ((.@Economy >= 21) && (.@Economy <= 25)) { set .@eco_invest,55000; }
+		else if ((.@Economy >= 26) && (.@Economy <= 30)) { set .@eco_invest,80000; }
+		else if ((.@Economy >= 31) && (.@Economy <= 35)) { set .@eco_invest,110000; }
+		else if ((.@Economy >= 36) && (.@Economy <= 40)) { set .@eco_invest,145000; }
+		else if ((.@Economy >= 41) && (.@Economy <= 45)) { set .@eco_invest,185000; }
+		else if ((.@Economy >= 46) && (.@Economy <= 50)) { set .@eco_invest,230000; }
+		else if ((.@Economy >= 51) && (.@Economy <= 55)) { set .@eco_invest,280000; }
+		else if ((.@Economy >= 56) && (.@Economy <= 60)) { set .@eco_invest,335000; }
+		else if ((.@Economy >= 61) && (.@Economy <= 65)) { set .@eco_invest,395000; }
+		else if ((.@Economy >= 66) && (.@Economy <= 70)) { set .@eco_invest,460000; }
+		else if ((.@Economy >= 71) && (.@Economy <= 75)) { set .@eco_invest,530000; }
+		else if ((.@Economy >= 76) && (.@Economy <= 80)) { set .@eco_invest,605000; }
+		else if ((.@Economy >= 81) && (.@Economy <= 85)) { set .@eco_invest,685000; }
+		else if ((.@Economy >= 86) && (.@Economy <= 90)) { set .@eco_invest,770000; }
+		else if ((.@Economy >= 91) && (.@Economy <= 95)) { set .@eco_invest,860000; }
+		else if ((.@Economy >= 96) && (.@Economy <= 100)) { set .@eco_invest,955000; }
+		//Quadruple the cost of investing if you've already invested once.
+		if (GetCastleData(strnpcinfo(2),4)) {
+			set .@eco_invest,.@eco_invest*4;
+		}
+		mes "[ Steward ]";
+		mes "Aumentar o crescimento";
+		mes "comercial da fortaleza";
+		mes "irá aumentar a quantidade de bens";
+		mes "produzidos para o clã.";
+		mes "Investir no crescimento comercial";
+		mes "irá ajudar o clã no futuro.";
+		next;
+		mes "[ Steward ]";
+		mes "Você pode fazer um investimento";
+		mes "por dia, mas se quiser pode fazer";
+		mes "dois investimentos se você puder pagar";
+		mes "mais zenys. Isto irá acelerar";
+		mes "o desenvolvimento comercial,";
+		mes "mas pode ser caro.";
+		next;
+		if (.@Economy == 100) {
+			mes "[ Steward ]";
+			mes "No entanto, quando o nível";
+			mes "de crescimento comercial da fortaleza";
+			mes "chegar em 100%, não é possível";
+			mes "desenvolver qualquer crescimento";
+			mes "comercial depois disso.";
+			close;
+		}
+		if (GetCastleData(strnpcinfo(2),4) == 2) {
+			mes "[ Steward ]";
+			mes "Você já fez dois";
+			mes "investimentos hoje, então você";
+			mes "tem que esperar até amanhã";
+			mes "para fazer outro investimento.";
+			close;
+		}
+		if (GetCastleData(strnpcinfo(2),4) == 0) {
+			mes "[ Steward ]";
+			mes "Você deve pagar ^FF0000" + .@eco_invest + "^000000 zeny";
+			mes "para fazer um investimento.";
+			mes "Você vai investir";
+			mes "no desenvolvimento comercial";
+			mes "da fortaleza agora?";
+		}
+		else {
+			mes "[ Steward ]";
+			mes "Você tem que pagar ^FF0000" + .@eco_invest + "^000000";
+			mes "mais zenys para fazer um segundo";
+			mes "investimento hoje. Você vai";
+			mes "investir mais uma vez??";
+		}
+		next;
+		switch(select("Investir no comércio:Cancelar")) {
+		case 1:
+			if (Zeny < .@eco_invest) {
+				mes "[ Steward ]";
+				mes "Desculpe, Mestre.";
+				mes "Você não tem";
+				mes "zeny suficiente para um investimento";
+				mes "para a guilda hoje.";
+				close;
+			}
+			set zeny,zeny-.@eco_invest;
+			SetCastleData strnpcinfo(2),4,GetCastleData(strnpcinfo(2),4)+1;
+			mes "[ Steward ]";
+			mes "Uma sábia utilização dos";
+			mes "fundos da guilda, Mestre. Podemos esperar";
+			mes "para ver o resultado deste";
+			mes "investimento até amanhã.";
+			close;
+		case 2:
+			mes "[ Steward ]";
+			mes "Você quem manda Mestre.";
+			close;
+		}
+	case 3:
+		set .@Defence,GetCastleData(strnpcinfo(2),3);
+		if (.@Defence < 6) { set .@def_invest,10000; }
+		else if ((.@Defence >= 6) && (.@Defence <= 10)) { set .@def_invest,20000; }
+		else if ((.@Defence >= 11) && (.@Defence <= 15)) { set .@def_invest,40000; }
+		else if ((.@Defence >= 16) && (.@Defence <= 20)) { set .@def_invest,70000; }
+		else if ((.@Defence >= 21) && (.@Defence <= 25)) { set .@def_invest,110000; }
+		else if ((.@Defence >= 26) && (.@Defence <= 30)) { set .@def_invest,160000; }
+		else if ((.@Defence >= 31) && (.@Defence <= 35)) { set .@def_invest,220000; }
+		else if ((.@Defence >= 36) && (.@Defence <= 40)) { set .@def_invest,290000; }
+		else if ((.@Defence >= 41) && (.@Defence <= 45)) { set .@def_invest,370000; }
+		else if ((.@Defence >= 46) && (.@Defence <= 50)) { set .@def_invest,460000; }
+		else if ((.@Defence >= 51) && (.@Defence <= 55)) { set .@def_invest,560000; }
+		else if ((.@Defence >= 56) && (.@Defence <= 60)) { set .@def_invest,670000; }
+		else if ((.@Defence >= 61) && (.@Defence <= 65)) { set .@def_invest,790000; }
+		else if ((.@Defence >= 66) && (.@Defence <= 70)) { set .@def_invest,920000; }
+		else if ((.@Defence >= 71) && (.@Defence <= 75)) { set .@def_invest,1060000; }
+		else if ((.@Defence >= 76) && (.@Defence <= 80)) { set .@def_invest,1210000; }
+		else if ((.@Defence >= 81) && (.@Defence <= 85)) { set .@def_invest,1370000; }
+		else if ((.@Defence >= 86) && (.@Defence <= 90)) { set .@def_invest,1540000; }
+		else if ((.@Defence >= 91) && (.@Defence <= 95)) { set .@def_invest,1720000; }
+		else if ((.@Defence >= 96) && (.@Defence <= 100)) { set .@def_invest,1910000; }
+		//Quadruple the cost of investing if you've already invested once.
+		if (GetCastleData(strnpcinfo(2),5)) {
+			set .@def_invest,.@def_invest*4;
+		}
+		mes "[ Steward ]";
+		mes "Investir na defesa da nossa fortaleza";
+		mes "irá aumentar a durabilidade";
+		mes "dos nosso guardiões";
+		mes "e do Emperium. Precisaremos";
+		mes "de todas as vantagens para proteger-nos";
+		mes "dos nossos inimigos.";
+		next;
+		mes "[ Steward ]";
+		mes "Você pode investir";
+		mes "uma vez por dia, mas se você pagar";
+		mes "mais zenys, você pode no máximo";
+		mes "investir duas vezes por dia.";
+		next;
+		mes "[ Steward ]";
+		if (GetCastleData(strnpcinfo(2),3) == 100) {
+			mes "O nível de defesa";
+			mes "desta fortaleza está 100%, e";
+			mes "não pode ser aumentada.";
+			close;
+		}
+		if (GetCastleData(strnpcinfo(2),5) == 2) {
+			mes "Mestre, você já";
+			mes "investiu duas vezes";
+			mes "hoje. Você terá que esperar";
+			mes "até amanhã se realmente";
+			mes "deseja aumentar nossas defesas.";
+			close;
+		}
+		if (GetCastleData(strnpcinfo(2),5) == 0) {
+			mes "Precisamos de ^FF0000" + .@def_invest + "^000000";
+			mes "zeny para investir";
+			mes "na defesa da fortaleza.";
+			mes "Vai investir agora?";
+		}
+		else {
+			mes "Precisamos ^FF0000" + .@def_invest + "^000000";
+			mes "zeny para investir";
+			mes "na defesa da fortaleza";
+			mes "pela segunda vez hoje.";
+			mes "Vai investir agora?";
+		}
+		next;
+		switch(select("Investir em defesa:Cancelar")) {
+		case 1:
+			if (Zeny < .@def_invest) {
+				mes "[ Steward ]";
+				mes "Desculpa, Mestre.";
+				mes "Você não tem";
+				mes "zeny suficiente para um investimento";
+				mes "para a guilda hoje.";
+				close;
+			}
+			set zeny,zeny-.@def_invest;
+			SetCastleData strnpcinfo(2),5,GetCastleData(strnpcinfo(2),5)+1;
+			mes "[ Steward ]";
+			mes "Uma sábia utilização dos fundos";
+			mes "fundos, Mestre. O aumento";
+			mes "da frequência de tesouros colhidos";
+			mes "pela guilda vai ajudar";
+			mes "a todos.";
+			close;
+		case 2:
+			mes "[ Steward ]";
+			mes "Você quem manda, Mestre.";
+			close;
+		}
+	case 4:
+		if (GetCastleData(strnpcinfo(2),9) == 1) {
+			mes "[ Steward ]";
+			mes "Você gostaria de despedir";
+			mes "a Funcionária Kafra que foi";
+			mes "contratada para nossa guilda?";
+			next;
+			switch(select("Despedir:Cancelar")) {
+			case 1:
+				cutin "kafra_01",2;
+				mes "[ Funcionária Kafra Contratada ]";
+				mes "Mestre, por favor, reconsidere!";
+				mes "Tenho trabalhado arduamente";
+				mes "para o sucesso da guilda!";
+				mes "Vou esforçar mais para servir";
+				mes "os membros da guilda esta fortaleza";
+				mes "eu prometo!";
+				next;
+				switch(select("Despedir:Cancelar")) {
+				case 1:
+					mes "[ Funcionária Kafra Contratada ]";
+					mes "Por que!? O que eu fiz";
+					mes "para merecer isso? Waaah~!";
+					next;
+					cutin "kafra_01",255;
+					break;
+				case 2:
+					mes "[ Funcionária Kafra Contratada ]";
+					mes "Obrigada, Mestre!";
+					mes "Eu vou obedecer";
+					mes "todos os comandos com o melhor";
+					mes "que posso! Você não vai se arrepender disso!";
+					close;
+				}
+				break;
+			case 2:
+				mes "[ Steward ]";
+				mes "Ela trabalha duro,";
+				mes "na minha opinião. Foi";
+				mes "nossos melhores interesses";
+				mes "para permitir que ela continue conosco.";
+				close;
+			}
+			disablenpc "Funcionária Kafra#" + strnpcinfo(2);
+			SetCastleData strnpcinfo(2),9,0;
+			mes "[ Steward ]";
+			mes "A Funcionária Kafra";
+			mes "que foi demitida";
+			mes "deixou você realmente insatisfeito";
+			mes "com a qualidade do seu serviço?";
+			close;
+		}
+		else {
+			mes "[ Steward ]";
+			mes "Você vai contratar";
+			mes "uma Funcionária Kafra";
+			mes "para servir em nossa fortaleza? Você deve";
+			mes "pagar ^FF000010,000 zeny^000000 para contratar uma.";
+			next;
+			switch(select("Contratar:Cancelar")) {
+			case 1:
+				if (getgdskilllv(.@GID,10001) == 0) {
+					mes "[ Steward ]";
+					mes "Mestre, não podemos contratar";
+					mes "uma Funcionária Kafra";
+					mes "por que você ainda não tem";
+					mes "a habilidade ^FF0000Contrato com a Kafra^000000";
+					mes "na guilda.";
+					close;
+				}
+				if (Zeny < 10000) {
+					mes "[ Steward ]";
+					mes "Mestre, não podemos contratar";
+					mes "uma Funcionária Kafra porque";
+					mes "Não temos fundos para";
+					mes "pagar a taxa de contrato.";
+					close;
+				}
+				set zeny,zeny-10000;
+				enablenpc "Funcionária Kafra#"+strnpcinfo(2);
+				SetCastleData strnpcinfo(2),9,1;
+				mes "[ Steward ]";
+				mes "Muito bem. Nos demos uma forma";
+				mes "de contrato com a Matriz da Kafra";
+				mes "e uma Funcionária kafra está a caminho";
+				mes "da nossa fortaleza.";
+				mes "Aí está ela.";
+				next;
+				cutin "kafra_01",2;
+				mes "[ Funcionária Kafra Contratada ]";
+				mes "O que preciso fazer? Fui";
+				mes "mandada pela Matriz das Kafras";
+				mes "para servir as necessidades";
+				mes "da sua corporação.";
+				mes "Farei o meu melhor para seguir";
+				mes "cada comando seu, Mestre.";
+				next;
+				cutin "kafra_01",255;
+				mes "[ Steward ]";
+				mes "Nosso contrato vai expirar";
+				mes "após um mês, por isso";
+				mes "temos que pagar taxas adicionais";
+				mes "para manter essa Funcionária Kafra";
+				mes "nos serviços do nosso clã.";
+				close;
+			case 2:
+				mes "[ Steward ]";
+				mes "Você quem manda, Mestre.";
+				mes "No entanto, sugiro contratar";
+				mes "uma Funcionária Kafra logo que possivel";
+				mes "para que a nossa corporação";
+				mes "possa se beneficiar grandemente";
+				mes "dos convenientes serviços da Kafra.";
+				close;
+			}
+		}
+	case 5:
+		mes "[ Steward ]";
+		mes "Você gostaria de entrar";
+		mes "na sala do tesouro?";
+		mes "Apenas você, o Mestre da guild é,";
+		mes "autorizado para entrar.";
+		next;
+		mes "[ Steward ]";
+		mes "Lembre-se de abrir em um tempo";
+		mes "apropriado as caixas de tesouro,";
+		mes "senão o tesouro pode desaparecer";
+		mes "se algo inesperado";
+		mes "acontecer.";
+		next;
+		switch(select("Ir para sala do tesouro:Cancelar")) {
+		case 1:
+			mes "[ Steward ]";
+			mes "Permita-me guiá-lo para";
+			mes "o caminho secreto da";
+			mes "sala do tesouro.";
+			mes "Pressione o interruptor secreto";
+			mes "para retornar até aqui.";
+			close2;
+			if(strnpcinfo(2) == "arug_cas01"){ setarray .@troom[0],250,363; }
+			else if(strnpcinfo(2) == "arug_cas02"){ setarray .@troom[0],382,227; }
+			else if(strnpcinfo(2) == "arug_cas03"){ setarray .@troom[0],292,266; }
+			else if(strnpcinfo(2) == "arug_cas04"){ setarray .@troom[0],292,266; }
+			else if(strnpcinfo(2) == "arug_cas05"){ setarray .@troom[0],292,266; }
+			else if(strnpcinfo(2) == "schg_cas01"){ setarray .@troom[0],381,381; }
+			else if(strnpcinfo(2) == "schg_cas02"){ setarray .@troom[0],249,373; }
+			else if(strnpcinfo(2) == "schg_cas03"){ setarray .@troom[0],190,16; }
+			else if(strnpcinfo(2) == "schg_cas04"){ setarray .@troom[0],381,381; }
+			else if(strnpcinfo(2) == "schg_cas05"){ setarray .@troom[0],381,381; }
+			warp strnpcinfo(2),.@troom[0],.@troom[1];
+			end;
+		case 2:
+			mes "[ Steward ]";
+			mes "Os itens da sala do tesouro";
+			mes "são produzidas uma vez por dia.";
+			mes "Portanto, você deve obter";
+			mes "os itens do tesouro por dia.";
+			mes "Para o bem da guilda,";
+			mes "priorize a colheita de tesouros!";
+			close;
+		}
+	}
+
+Onstop:
+	stopnpctimer;
+	end;
+
+OnStartArena:
+	if(compare(strnpcinfo(1),"StewardF")) end;
+	set .@GID,getcharid(2);
+	// Lower castle Economy
+	set .@Economy,GetCastleData(strnpcinfo(2),2) - 5;
+	if (.@Economy < 0) set .@Economy, 0;
+	SetCastleData strnpcinfo(2), 2, .@Economy;
+	// Lower Castle Defence
+	set .@Defence,GetCastleData(strnpcinfo(2),3) - 5;
+	if (.@Defence < 0) set .@Defence, 0;
+	SetCastleData strnpcinfo(2), 3, .@Defence;
+	// Set new owner
+	SetCastleData strnpcinfo(2),1, .@GID;
+	// Clear castle's data.
+	for( set .@i, 4; .@i <= 9; set .@i, .@i+1 )
+		SetCastleData strnpcinfo(2), .@i, 0;
+	// Disable Kafra
+	disablenpc "Funcionária Kafra#"+strnpcinfo(2);
+
+	set .msg,2;
+	if (.msg == 1) {
+		announce "Fortaleza [" + GetCastleName(strnpcinfo(2)) + "] de "+(compare(strnpcinfo(2),"arug") ? "'Valfreyja'" : "'Nithafjoll'" )+" foi capturada pelo clã [" + getguildname(.@gid) + "].",bc_all|bc_woe;
+		donpcevent "Gerente#"+ strnpcinfo(2) +"::Onstart";
+	}
+	else if (.msg == 2) {
+		if(compare(strnpcinfo(2),"01")){ set .@n,1; }
+		else if(compare(strnpcinfo(2),"02")){ set .@n,2; }
+		else if(compare(strnpcinfo(2),"03")){ set .@n,3; }
+		else if(compare(strnpcinfo(2),"04")){ set .@n,4; }
+		else if(compare(strnpcinfo(2),"05")){ set .@n,5; }
+
+		announce "O clã [" + getguildname(.@gid) + "] conquistou ["+(compare(strnpcinfo(2),"arug") ? "Valfreyja "+.@n : "Nithafjoll "+.@n )+"], Fortaleza de " + GetCastleName(strnpcinfo(2)),bc_all|bc_woe;
+		mapannounce strnpcinfo(2),"A Emperium foi destruída!",bc_map,"0x00FF00",FW_NORMAL,20,0,40;
+		if (agitcheck2()) {
+			donpcevent "Gerente#"+ strnpcinfo(2) +"::Onreset";
+			initnpctimer;
+		}
+		else {
+			donpcevent "Gerente#"+ strnpcinfo(2) +"::Onreset";
+			stopnpctimer;
+		}
+	}
+	else if (.msg == 0) {
+		announce "Fortaleza [" + GetCastleName(strnpcinfo(2)) + "] de "+(compare(strnpcinfo(2),"arug") ? "'Valfreyja'" : "'Nithafjoll'" )+" foi capturada pelo clã [" + getguildname(.@gid) + "].",bc_all|bc_woe;
+		donpcevent "Gerente#"+ strnpcinfo(2) +"::Onreset";
+		stopnpctimer;
+		end;
+	}
+	MapRespawnGuildID strnpcinfo(2),GetCastleData(strnpcinfo(2),1),2;
+	GetCastleData strnpcinfo(2),0,"::OnRecvCastle2";
+	if(strnpcinfo(2) == "arug_cas01") { donpcevent "::OnRecvCastleAr01"; }
+	else if(strnpcinfo(2) == "arug_cas02") { donpcevent "::OnRecvCastleAr02"; }
+	else if(strnpcinfo(2) == "arug_cas03") { donpcevent "::OnRecvCastleAr03"; }
+	else if(strnpcinfo(2) == "arug_cas04") { donpcevent "::OnRecvCastleAr04"; }
+	else if(strnpcinfo(2) == "arug_cas05") { donpcevent "::OnRecvCastleAr05"; }
+	else if(strnpcinfo(2) == "schg_cas01") { donpcevent "::OnRecvCastleSc01"; }
+	else if(strnpcinfo(2) == "schg_cas02") { donpcevent "::OnRecvCastleSc02"; }
+	else if(strnpcinfo(2) == "schg_cas03") { donpcevent "::OnRecvCastleSc03"; }
+	else if(strnpcinfo(2) == "schg_cas04") { donpcevent "::OnRecvCastleSc04"; }
+	else if(strnpcinfo(2) == "schg_cas05") { donpcevent "::OnRecvCastleSc05"; }
+	end;
+
+OnTimer10000:
+	if (strnpcinfo(1) == "StewardF") end;
+	donpcevent "Gerente#"+ strnpcinfo(2) +"::Onchange";
+	mapannounce strnpcinfo(2),"Reconstrua as Runas Guardiãs e Portões da Fortaleza para garantir segurança à aquisição de sua guilda!",bc_map,"0x00FF00",FW_NORMAL,20,0,40;
+	end;
+}
+
+// Guild Kafra
+-	script	Kafra_Gde2::Gde2_Kafra	-1,{
+	cutin "kafra_01",2;
+	set .@GID, GetCastleData(strnpcinfo(2),1);
+	if (getcharid(2) == .@GID && getgdskilllv(.@GID,10001)) {
+		mes "[Funcionária Kafra]";
+		mes "Bem vindo, membro de honra";
+		mes "do clã ^FF0000" + GetGuildName(.@GID) + "^000000 !";
+		mes "a Corporação Kafra está pronta";
+		mes "para ajuda-lo onde quer que você vá!";
+		next;
+		switch(select("Abrir Armazém:Usar teleporte:Alugar Carrinho:Cancelar")) {
+		case 1:
+			if (basicskillcheck() && getskilllv("NV_BASIC") < 6) {
+				mes "[Funcionária Kafra]";
+				mes "Me desculpe, mas você deve ter";
+				mes "pelo menos nível 6 de habilidades básicas";
+				mes "para usar o armazém.";
+			}
+			else {
+				openstorage;
+			}
+			break;
+		case 2:
+			mes "[Funcionária Kafra]";
+			mes "por favor, diga-me";
+			mes "o seu destino.";
+			next;
+			switch(select((compare(strnpcinfo(2),"arug") ? "Rachel" : "Juno" )+" -> 200z:Cancelar")) {
+			case 1:
+				if (Zeny < 200) {
+					mes "[Funcionária Kafra]";
+					mes "Me desculpe, mas";
+					mes "você não tem zeny suficiente";
+					mes "para pagar o teleporte. Por favor,";
+					mes "poderia verificar seu dinheiro novamente?";
+					close2;
+					cutin "kafra_01",255;
+					end;
+				}
+				set zeny,zeny-200;
+				warp (compare(strnpcinfo(2),"arug") ? "rachel" : "juno" ),115,125;
+				end;
+			case 2:
+				cutin "kafra_01",255;
+			}
+			break;
+		case 3:
+			if (BaseClass != Job_Merchant) {
+				mes "[Funcionária Kafra]";
+				mes "Me desculpe, mas o carrinho";
+				mes "só pode ser utilizado pelas classes";
+				mes "Mercadores, Ferreiros";
+				mes "e Alquimistas.";
+			}
+			else if (checkcart() == 1) {
+				mes "[Funcionária Kafra]";
+				mes "Hm? Você já alugou";
+				mes "um carrinho de mão.";
+			}
+			else {
+				mes "[Funcionária Kafra]";
+				mes "O aluguel do carrinho de mão";
+				mes "é de 800 zeny. Você";
+				mes "deseja alugar um carrinho de mão?";
+				next;
+				switch(select("Alugar Carrinho de mão:Cancelar")) {
+				case 1:
+					if (Zeny < 800) {
+						mes "[Funcionária Kafra]";
+						mes "Me desculpe, mas você";
+						mes "não tem zeny suficiente";
+						mes "para alugar um dos nossos carrinhos.";
+						close2;
+						cutin "kafra_01",255;
+						end;
+					}
+					set zeny,zeny-800;
+					setcart;
+					break;
+				case 2:
+					break;
+				}
+			}
+			break;
+		case 4:
+			mes "[Funcionária Kafra]";
+			mes "Obrigada por usar";
+			mes "o serviço das Kafras.";
+			mes "As Kafras irão apoiá-lo";
+			mes "onde quer que você vá!";
+			close2;
+			cutin "kafra_01",255;
+			end;
+		}
+		close2;
+		cutin "kafra_01",255;
+		end;
+	}
+	else {
+		mes "[Funcionária Kafra]";
+		mes "Sinto muito mas eu fui contratada";
+		mes "para servir exclusivamente";
+		mes "ao membros do clã";
+		mes "^FF0000" + GetGuildName(.@GID) + "^000000.";
+		mes "você terá que pedir ajuda";
+		mes "para outra Funcionária Kafra...";
+		close2;
+		cutin "kafra_01",255;
+		end;
+	}
+
+OnRecvCastle2:
+	if (strnpcinfo(1) == "Kafra_Gde2") end;
+	if (GetCastleData(strnpcinfo(2),1) == 0) {
+		monster strnpcinfo(2),0,0,"Druida Maligno",1117,10;
+		monster strnpcinfo(2),0,0,"Khalitzburg",1132,4;
+		monster strnpcinfo(2),0,0,"Cavaleiro do Abismo",1219,3;
+		monster strnpcinfo(2),0,0,"Executor",1205,1;
+		monster strnpcinfo(2),0,0,"Penomena",1216,10;
+		monster strnpcinfo(2),0,0,"Alarme",1193,18;
+		monster strnpcinfo(2),0,0,"Relógio",1269,9;
+		monster strnpcinfo(2),0,0,"Raydric Arqueiro",1276,12;
+		monster strnpcinfo(2),0,0,"Andarilho",1208,3;
+		monster strnpcinfo(2),0,0,"Alice",1275,1;
+		monster strnpcinfo(2),0,0,"Cavaleiro Sanguinário",1268,2;
+		monster strnpcinfo(2),0,0,"Senhor das Trevas",1272,2;
+		monster strnpcinfo(2),0,0,"Gerente",1270,4;
+	}
+	if (GetCastleData(strnpcinfo(2),9) < 1) {
+		disablenpc "Funcionária Kafra#"+ strnpcinfo(2);
+	}
+	end;
+}
+
+-	script	switch::Gde2_Switch	-1,{
+	mes " ";
+	mes "^3355FFDeseja puxar";
+	mes "a pequena alavanca?^000000";
+	next;
+	if(select("Puxar alavanca:Cancelar") == 2) close;
+		if(strnpcinfo(2) == "arug_cas01"){ setarray .@room[0],121,357; }
+		else if(strnpcinfo(2) == "arug_cas02"){ setarray .@room[0],387,323; }
+		else if(strnpcinfo(2) == "arug_cas03"){ setarray .@room[0],321,57; }
+		else if(strnpcinfo(2) == "arug_cas04"){ setarray .@room[0],321,57; }
+		else if(strnpcinfo(2) == "arug_cas05"){ setarray .@room[0],321,57; }
+		else if(strnpcinfo(2) == "schg_cas01"){ setarray .@room[0],275,244; }
+		else if(strnpcinfo(2) == "schg_cas02"){ setarray .@room[0],339,79; }
+		else if(strnpcinfo(2) == "schg_cas03"){ setarray .@room[0],57,13; }
+		else if(strnpcinfo(2) == "schg_cas04"){ setarray .@room[0],275,244; }
+		else if(strnpcinfo(2) == "schg_cas05"){ setarray .@room[0],275,244; }
+		warp strnpcinfo(2),.@room[0],.@room[1];
+		end;
+}
+
+-	script	Gde2_dungeon::Gde2_Dungeon	-1,{
+	set .@GID, GetCastleData(strnpcinfo(2),1);
+	if (getcharid(2) == .@GID) {
+		mes "- É um girassol fantasticamente grande; tão grande quanto um humano! Você sente algo misterioso emanando da planta. -";
+		next;
+		if(select("Segurar o caule.:Não fazer nada.") == 1) {
+			close2;
+			if(strnpcinfo(2) == "arug_cas01"){ setarray .@gdedun[0],350,350; }
+			else if(strnpcinfo(2) == "arug_cas02"){ setarray .@gdedun[0],350,50; }
+			else if(strnpcinfo(2) == "arug_cas03"){ setarray .@gdedun[0],50,50; }
+			else if(strnpcinfo(2) == "arug_cas04"){ setarray .@gdedun[0],50,350; }
+			else if(strnpcinfo(2) == "arug_cas05"){ setarray .@gdedun[0],200,386; }
+			else if(strnpcinfo(2) == "schg_cas01"){ setarray .@gdedun[0],262,314; }
+			else if(strnpcinfo(2) == "schg_cas02"){ setarray .@gdedun[0],94,284; }
+			else if(strnpcinfo(2) == "schg_cas03"){ setarray .@gdedun[0],79,140; }
+			else if(strnpcinfo(2) == "schg_cas04"){ setarray .@gdedun[0],212,70; }
+			else if(strnpcinfo(2) == "schg_cas05"){ setarray .@gdedun[0],322,166; }
+			if(compare(strnpcinfo(2),"arug")){ set .@gdedun$,"arug_dun01"; }
+			else { set .@gdedun$,"schg_dun01"; }
+
+			warp .@gdedun$,.@gdedun[0],.@gdedun[1];
+			end;
+		}
+		else {
+			mes "É muito amedrontante tocar coisas desconhecidas.";
+			close;
+		}
+	}
+}
+
+function	script	Estado_Runa	{
+
+mes "[ "+strnpcinfo(1)+" ]";
+mes "O estado da nossa defesa é...";
+if (getarg(0)+"[0]" == 1) {
+mes "1ª Runa Guardiã: ^FF0000Destruída^000000";
+}
+else if (getarg(0)+"[0]" == 2) {
+	mes "1ª Runa Guardiã: ^008000Reparando^000000";
+}
+else {
+	mes "1ª Runa Guardiã: ^4D4DFFOperacional^000000";
+}
+if (getarg(0)+"[1]" == 1) {
+	mes "2ª Runa Guardiã: ^FF0000Destruída^000000";
+}
+else if (getarg(0)+"[1]" == 2) {
+	mes "2ª Runa Guardiã: ^008000Reparando^000000";
+}
+else {
+	mes "2ª Runa Guardiã: ^4D4DFFOperacional^000000";
+}
+if (getarg(0)+"[2]" == 1) {
+	mes "1º Portão da Fortaleza: ^FF0000Destruído^000000";
+}
+else if (getarg(0)+"[2]" == 2) {
+	mes "1º Portão da Fortaleza: ^008000Reparando^000000";
+}
+else {
+	mes "1º Portão da Fortaleza: ^4D4DFFOperacional^000000";
+}
+if (getarg(0)+"[3]" == 1) {
+	mes "2º Portão da Fortaleza: ^FF0000Destruído^000000";
+}
+else if (getarg(0)+"[3]" == 2) {
+	mes "2º Portão da Fortaleza: ^008000Reparando^000000";
+}
+else {
+	mes "2º Portão da Fortaleza: ^4D4DFFOperacional^000000";
+}
+if (getarg(0)+"[4]" == 1) {
+	mes "3º Portão da Fortaleza: ^FF0000Destruído^000000";
+}
+else if (getarg(0)+"[4]" == 2) {
+	mes "3º Portão da Fortaleza: ^008000Reparando^000000";
+}
+else {
+	mes "3º Portão da Fortaleza: ^4D4DFFOperacional^000000";
+}
+close;
+}
