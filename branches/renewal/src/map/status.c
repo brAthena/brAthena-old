@@ -1417,7 +1417,21 @@ int status_check_visibility(struct block_list *src, struct block_list *target)
 
 	return 1;
 }
-
+// Calculo do asdp das armas.
+int status_amotion_pc(struct map_session_data* sd){
+	int i;
+	if( sd->status.weapon < MAX_WEAPON_TYPE )
+		i = aspd_base[pc_class2idx(sd->status.class_)][sd->status.weapon];
+	else{
+		i = aspd_base[pc_class2idx(sd->status.class_)][sd->weapontype1];
+		switch( sd->weapontype2 ){
+			case W_DAGGER: i += 100; break;
+			case W_1HSWORD: i += ((sd->status.class_ == 4065) ? 160:120); break;
+			case W_1HAXE: i += ((sd->status.class_ == 4065) ? 200:120); break;
+		}
+	}
+	return i;
+}
 // Basic ASPD value
 int status_base_amotion_pc(struct map_session_data* sd, struct status_data* status)
 {
@@ -1425,9 +1439,7 @@ int status_base_amotion_pc(struct map_session_data* sd, struct status_data* stat
 	struct status_change *sc = status_get_sc(&sd->bl);
 
 	// base weapon delay
-	amotion = (sd->status.weapon < MAX_WEAPON_TYPE)
-	 ? (aspd_base[pc_class2idx(sd->status.class_)][sd->status.weapon]) // single weapon
-	 : (aspd_base[pc_class2idx(sd->status.class_)][sd->weapontype1] + aspd_base[pc_class2idx(sd->status.class_)][sd->weapontype2])*7/10; // dual-wield
+	amotion = status_amotion_pc(sd);
 
 
 	if( sc && sc->count ){

@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0446 - 30/04/2011 [CarlosHenrq]
+	* "Corrigida" a formula de calculo da aspd com e escudo em Sicário.
+	- A parte do escudo foi feita pelo database.
+
 	r0445 - 30/04/2011 [Devil]
 	* Otimizada pasta Campais
 	- Pastas tierra e flavius	
