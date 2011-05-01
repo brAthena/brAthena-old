@@ -2062,7 +2062,7 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 	pc_delautobonus(sd,sd->autobonus2,ARRAYLENGTH(sd->autobonus2),true);
 	pc_delautobonus(sd,sd->autobonus3,ARRAYLENGTH(sd->autobonus3),true);
 
-	sd->aspd_add_rate = 1000;
+	sd->aspd_add_rate += 1000;
 
 	// Parse equipment.
 	for(i=0;i<EQI_MAX-1;i++) {
@@ -2140,12 +2140,11 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 					r -= 4;
 				}
 				while( r > 0 );
-			}
-
-			if(sd->inventory_data[index]->script) {
-				run_script(sd->inventory_data[index]->script,0,sd->bl.id,0);
-				if (!calculating) //Abort, run_script retriggered this. [Skotlex]
-					return 1;
+				if(sd->inventory_data[index]->script) {
+					run_script(sd->inventory_data[index]->script,0,sd->bl.id,0);
+					if (!calculating) //Abort, run_script retriggered this. [Skotlex]
+						return 1;
+				}
 			}
 		}
 		
@@ -3243,14 +3242,13 @@ void status_calc_bl_main(struct block_list *bl, enum scb_flag flag)
 				amotion = amotion*status->aspd_rate/1000;
 
 			sd = (TBL_PC*)bl;
-
 			if(sd->aspd_add_rate != 1000)
 			{
 				int aspd_change = 0;
 				aspd_change = (amotion - battle_config.max_aspd);
 				aspd_change *= (1000 - sd->aspd_add_rate);
 				aspd_change /= 1000;
-				amotion -= aspd_change;
+				amotion += aspd_change;
 			}
 
 			status->amotion = cap_value(amotion,battle_config.max_aspd,2000);
