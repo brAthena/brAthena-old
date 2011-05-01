@@ -8,7 +8,10 @@
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
-
+	
+	r0454 - 1/05/2011 [cleyton]
+	* Enviada tradução de script.
+	- npc/outros/corrida_de_monstros.txt
 
 	r0451 - 1/05/2011 [Protimus]
 	* Atualizado conforme eAthena r14808.
