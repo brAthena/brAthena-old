@@ -10,6 +10,9 @@
 // ==============================================================================
 
 
+	r0451 - 1/05/2011 [Protimus]
+	* Atualizado conforme eAthena r14808.
+
 	r0441 - 29/04/2011 [Protimus]
 	* Adicionado arquivo para uso de proxy nos servidores.
 	- Modo de compilar: cc -o proxy -O proxy.c
