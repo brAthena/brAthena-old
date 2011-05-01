@@ -8,6 +8,10 @@
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
+
+	r0456 - 1/05/2011 [Wolf]
+	* Enviada tradução de script.
+	- npc/classes/1-1/mercador.txt
 	
 	r0454 - 1/05/2011 [cleyton]
 	* Enviada tradução de script.
