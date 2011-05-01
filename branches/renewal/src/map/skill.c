@@ -9513,8 +9513,8 @@ struct skill_condition skill_get_requirement(struct map_session_data* sd, short 
  *------------------------------------------*/
 int skill_castfix (struct block_list *bl, int skill_id, int skill_lv)
 {
-	int time = 0, cast_reduct=0, cast_fixo_reduct=0, base_cast = skill_get_cast(skill_id, skill_lv);
-	float stat_reduct;
+	int time = 0, cast_fixo_reduct=0, base_cast = skill_get_cast(skill_id, skill_lv);
+	float stat_reduct=0;
 	struct map_session_data *sd;
 	struct status_change *sc;
 
@@ -9524,9 +9524,24 @@ int skill_castfix (struct block_list *bl, int skill_id, int skill_lv)
 
 	if( !(skill_get_castnodex(skill_id, skill_lv)&1) && sd )
 		stat_reduct = (float)sqrt((float)(status_get_dex(bl)*2 + status_get_int(bl)) /530);
-	if((time=(int)((float)(1 - (stat_reduct>0 ? stat_reduct:0)) * 
-		(((skill_get_castnodex(skill_id, skill_lv)&1) || !sd) ? 100:sd->castrate) * base_cast / 125)) < 0)
+	if((time=(int)((float)(1 - (stat_reduct>0 ? stat_reduct:0)) * base_cast * 4/5)) < 0)
 		time = 0;
+
+	// calculate cast time reduced by item/card bonuses
+	if( !(skill_get_castnodex(skill_id, skill_lv)&4) && sd )
+	{
+		int i;
+		if( sd->castrate != 100 )
+			time = time*sd->castrate / 100;
+		for( i = 0; i < ARRAYLENGTH(sd->skillcast) && sd->skillcast[i].id; i++ )
+		{
+			if( sd->skillcast[i].id == skill_id )
+			{
+				time += time*sd->skillcast[i].val/100;
+				break;
+			}
+		}
+	}
 
 	if( !(skill_get_castnodex(skill_id, skill_lv)&2) && sd )
 		if(sc && sc->data[SC_SECRAMENT])
