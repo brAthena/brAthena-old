@@ -3626,13 +3626,13 @@
 //6306,Hard_Bloodstain,Hard Bloodstain,3,10,,10,,,,,,,,,,,,,{},{},{}
 //6307,Cursed_Magical_Stone,Cursed Magical Stone,3,10,,10,,,,,,,,,,,,,{},{},{}
 //6308,Unidentified_Relic,Unidentified Relic,3,10,,10,,,,,,,,,,,,,{},{},{}
-//6319,Tiny_Bradium,Tiny Bradium,3,324,,10,,,,,,,,,,,,,{},{},{}
+6319,Tiny_Bradium,Tiny Bradium,3,324,,10,,,,,,,,,,,,,{},{},{}
 //6320,Premium_Reset_Stone,Premium Reset Stone,3,20,,10,,,,,,,,,,,,,{},{},{}
 //6321,Rake_Helmet,Rake Helmet,3,822,,10,,,,,,,,,,,,,{},{},{}
 //6322,Antler_Helmet,Antler Helmet,3,800,,10,,,,,,,,,,,,,{},{},{}
 //6323,Two-Horn_Helmet,Two-Horn Helmet,3,728,,10,,,,,,,,,,,,,{},{},{}
 //6324,One-Horn_Helmet,One-Horn Helmet,3,702,,10,,,,,,,,,,,,,{},{},{}
-//6325,White_Spider_Legs,White Spider Legs,3,1004,,10,,,,,,,,,,,,,{},{},{}
+6325,White_Spider_Legs,White Spider Legs,3,1004,,10,,,,,,,,,,,,,{},{},{}
 //6326,Queen_Scraba_Shell,Queen Scraba Shell,3,2000,,10,,,,,,,,,,,,,{},{},{}
 //6328,January_Calendar,January Calendar,3,10,,10,,,,,,,,,,,,,{},{},{}
 //6329,February_Calendar,February Calendar,3,10,,10,,,,,,,,,,,,,{},{},{}

@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0453 - 1/05/2011 [Destino]
+	* Enviado novos mob's Renewal, liberado 2 itens no item db conforme Renewal.
+	- Os mob's foram revisados e atualizados conforme informações do Renewal.
+
 	r0452 - 1/05/2011 [CarlosHenrq]
 	* Adicionado restrição na src para as runas
 	- Atualizado item_db.txt com os scripts das runas.
