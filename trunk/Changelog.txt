@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0458 - 1/05/2011 [Wolf]
+	* Corrigido alguns erros de sintaxe.
+	- npc/classes/
+
 	r0457 - 01/05/2011 [Mark]
 	* Otimizada pasta npc/gde2
 	- Criação de gde2_padrao.txt (Funções de toda GDE2).

@@ -87,7 +87,7 @@ alberta_in,53,43,6	script	Merchant#mer	86,{
 	} else if (job_merchant_q == 9) {
 		mes "[Chefe Mahnsoo]";
 		mes "Olá,";
-		mes ""+ strcharinfo(0) +".";
+		mes ""+strcharinfo(0)+".";
 		set job_merchant_q,0;
 		set job_merchant_q2,0;
 		set quest_alb_01,0;
@@ -625,7 +625,7 @@ alberta_in,28,29,2	script	Merchant Guildsman#mer	83,{
 				case 4: set .@where_village,4; break;
 			}
 			mes "[Guarda Kay]";
-			mes "Ok, agora você precisa me dar o número de série do pacote. Se você quiser cancelar, basta digitar "0", ok?";
+			mes "Ok, agora você precisa me dar o número de série do pacote. Se você quiser cancelar, basta digitar \"0\", ok?";
 			next;
 			while(1) {
 				while(1) {
