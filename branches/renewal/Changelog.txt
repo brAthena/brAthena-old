@@ -9,15 +9,21 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
-	r0453 - 1/05/2011 [Destino]
+
+	r0458 - 01/05/2011 [Protimus]
+	* Modificações em habilidades:
+	- Perfurar em Espiral: Realizado nerf da habilidade de acordo com kRO 19/04/2011.
+	OBS: Ainda falta o fator de redução do dano por tamanho.
+
+	r0453 - 01/05/2011 [Destino]
 	* Enviado novos mob's Renewal, liberado 2 itens no item db conforme Renewal.
 	- Os mob's foram revisados e atualizados conforme informações do Renewal.
 
-	r0452 - 1/05/2011 [CarlosHenrq]
+	r0452 - 01/05/2011 [CarlosHenrq]
 	* Adicionado restrição na src para as runas
 	- Atualizado item_db.txt com os scripts das runas.
 
-	r0451 - 1/05/2011 [Protimus]
+	r0451 - 01/05/2011 [Protimus]
 	* Atualizado conforme eAthena r14808.
 
 	*0450 - 01/05/2011 [brn0]
