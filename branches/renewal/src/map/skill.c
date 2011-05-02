@@ -6070,6 +6070,13 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		else if( sd )
 			party_foreachsamemap(skill_area_sub, sd, skill_get_splash(skillid, skilllv), src, skillid, skilllv, tick, flag|BCT_PARTY|1, skill_castend_nodamage_id);
 		break;
+
+	case RA_CAMOUFLAGE:
+		i = sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv));
+		if( i ) clif_skill_nodamage(src,bl,skillid,skilllv,i);
+		else if( sd )
+			clif_skill_fail(sd,skillid,0,0,0);
+		break;
 		
 	default:
 		ShowWarning("skill_castend_nodamage_id: Habilidade desconhecida usada:%d\n",skillid);
@@ -6322,12 +6329,16 @@ int skill_castend_id(int tid, unsigned int tick, int id, intptr data)
 				src->type, src->id, ud->skillid, ud->skilllv, target->id);
 
 		map_freeblock_lock();
+		
+		sc = status_get_sc(src);
+		if( sc && sc->data[SC_CAMOUFLAGE] )
+			status_change_end(src,SC_CAMOUFLAGE,-1);
+			
 		if (skill_get_casttype(ud->skillid) == CAST_NODAMAGE)
 			skill_castend_nodamage_id(src,target,ud->skillid,ud->skilllv,tick,flag);
 		else
 			skill_castend_damage_id(src,target,ud->skillid,ud->skilllv,tick,flag);
 
-		sc = status_get_sc(src);
 		if(sc && sc->count) {
 		  	if(sc->data[SC_MAGICPOWER] &&
 				ud->skillid != HW_MAGICPOWER && ud->skillid != WZ_WATERBALL)
@@ -6565,6 +6576,9 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 	sc = status_get_sc(src);
 	type = status_skill2sc(skillid);
 	sce = (sc && type != -1)?sc->data[type]:NULL;
+	
+	if( sc && sc->data[SC_CAMOUFLAGE] )
+		status_change_end(src,SC_CAMOUFLAGE,-1);
 
 	switch (skillid) { //Skill effect.
 		case WZ_METEOR:
@@ -10475,6 +10489,38 @@ bool skill_check_cloaking(struct block_list *bl, struct status_change_entry *sce
 			if( !(sce->val4&1) )
 			{	//Add wall speed bonus
 				sce->val4|=1;
+				status_calc_bl(bl,SCB_SPEED);
+			}
+		}
+	}
+
+	return wall;
+}
+
+bool skill_check_camouflage(struct block_list *bl, struct status_change_entry *sce)
+{
+	static int dx[] = { 0, 1, 0, -1, -1,  1, 1, -1};
+	static int dy[] = {-1, 0, 1,  0, -1, -1, 1,  1};
+	bool wall = true;
+	int i;
+
+	if( bl->type == BL_PC && battle_config.pc_camouflage_check_type&1 )
+	{	
+		ARR_FIND( 0, 8, i, map_getcell(bl->m, bl->x+dx[i], bl->y+dy[i], CELL_CHKNOPASS) != 0 );
+		if( i == 8 )
+			wall = false;
+	}
+		
+	if( sce )
+	{
+		if( !wall )
+		{
+			if( sce->val1 < 3 )
+				status_change_end(bl, SC_CAMOUFLAGE, -1);
+			else
+			if( sce->val3&1 )
+			{	
+				sce->val3&=~1;
 				status_calc_bl(bl,SCB_SPEED);
 			}
 		}

@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	
+	r0459 - 02/05/2011 [Protimus]
+	* Adicionadas habilidades RA_CAMOUFLAGE (Camuflagem) & RA_RANGERMAIN (Táticas de Sobrevivência).
+	- Necessário revisar o tempo de camuflagem.
+	* Correções para SC_FEAR.
+	- Faltavam códigos para a checagem no UNIT.
 
 	r0458 - 01/05/2011 [Protimus]
 	* Modificações em habilidades:

@@ -755,6 +755,9 @@ int battle_addmastery(struct map_session_data *sd,struct block_list *target,int 
 		if (sd->sc.data[SC_SPIRIT] && sd->sc.data[SC_SPIRIT]->val2 == SL_HUNTER)
 			damage += sd->status.str;
 	}
+	
+	if( (skill = pc_checkskill(sd, RA_RANGERMAIN)) > 0 && (status->race == RC_BRUTE || status->race == RC_PLANT || status->race == RC_FISH) )
+		damage += (skill * 5);
 
 	if(type == 0)
 		weapon = sd->weapontype1;
@@ -3228,6 +3231,9 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 
 	if (sc && sc->data[SC_CLOAKING] && !(sc->data[SC_CLOAKING]->val4&2))
 		status_change_end(src, SC_CLOAKING, INVALID_TIMER);
+		
+	if (sc && sc->data[SC_CAMOUFLAGE] && !(sc->data[SC_CAMOUFLAGE]->val3&2))
+		status_change_end(src,SC_CAMOUFLAGE,-1);
 
 	if( tsc && tsc->data[SC_AUTOCOUNTER] && status_check_skilluse(target, src, KN_AUTOCOUNTER, 1) )
 	{
@@ -3953,6 +3959,7 @@ static const struct _battle_data {
 	{ "skill_nofootset",                    &battle_config.skill_nofootset,                 BL_PC,  BL_NUL, BL_ALL,         },
 	{ "player_cloak_check_type",            &battle_config.pc_cloak_check_type,             1,      0,      1|2|4,          },
 	{ "monster_cloak_check_type",           &battle_config.monster_cloak_check_type,        4,      0,      1|2|4,          },
+	{ "player_camouflage_check_type",       &battle_config.pc_camouflage_check_type,        1,      0,      1|2|4,          },
 	{ "sense_type",                         &battle_config.estimation_type,                 1|2,    0,      1|2,            },
 	{ "gvg_eliminate_time",                 &battle_config.gvg_eliminate_time,              7000,   0,      INT_MAX,        },
 	{ "gvg_short_attack_damage_rate",       &battle_config.gvg_short_damage_rate,           80,     0,      INT_MAX,        },

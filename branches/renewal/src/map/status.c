@@ -865,6 +865,7 @@ int status_damage(struct block_list *src,struct block_list *target,int hp, int s
 			status_change_end(target, SC_HIDING, INVALID_TIMER);
 			status_change_end(target, SC_CLOAKING, INVALID_TIMER);
 			status_change_end(target, SC_CHASEWALK, INVALID_TIMER);
+			status_change_end(target,SC_CAMOUFLAGE, INVALID_TIMER);
 			if ((sce=sc->data[SC_ENDURE]) && !sce->val4) {
 				//Endure count is only reduced by non-players on non-gvg maps.
 				//val4 signals infinite endure. [Skotlex]
@@ -1355,6 +1356,8 @@ int status_check_skilluse(struct block_list *src, struct block_list *target, int
 			if (tsc->option&hide_flag && !(status->mode&MD_BOSS) &&
 				(sd->special_state.perfect_hiding || !(status->mode&MD_DETECTOR)))
 				return 0;
+			if ( tsc->data[SC_CAMOUFLAGE] && !skill_num && !(status->mode&MD_BOSS) && !(status->mode&MD_DETECTOR) )
+				return 0;
 		}
 		break;
 	case BL_ITEM:	//Allow targetting of items to pick'em up (or in the case of mobs, to loot them).
@@ -1405,12 +1408,12 @@ int status_check_visibility(struct block_list *src, struct block_list *target)
 			!(status->mode&MD_BOSS) &&
 			(
 				((TBL_PC*)target)->special_state.perfect_hiding ||
-				!(status->mode&MD_DETECTOR)
+				!(status->mode&MD_DETECTOR) || (tsc->data[SC_CAMOUFLAGE])
 			))
 			return 0;
 		break;
 	default:
-		if (tsc && tsc->option&(OPTION_HIDE|OPTION_CLOAK|OPTION_CHASEWALK) &&
+		if (tsc && (tsc->option&(OPTION_HIDE|OPTION_CLOAK|OPTION_CHASEWALK) || (tsc->data[SC_CAMOUFLAGE])) &&
 			!(status->mode&(MD_BOSS|MD_DETECTOR)))
 				return 0;
 	}
@@ -4093,6 +4096,8 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 					val = max( val, sc->data[SC_SUITON]->val3 );
 				if( sc->data[SC_SWOO] )
 					val = max( val, 300 );
+				if( sc->data[SC_CAMOUFLAGE] && (sc->data[SC_CAMOUFLAGE]->val3&1) == 0 )
+					val = max( val, sc->data[SC_CAMOUFLAGE]->val1 < 3 ? 300 : 25 * (6 - sc->data[SC_CAMOUFLAGE]->val1) );
 
 				if( sd && sd->speed_rate + sd->speed_add_rate > 0 ) // permanent item-based speedup
 					val = max( val, sd->speed_rate + sd->speed_add_rate );
@@ -5274,6 +5279,10 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 	case SC_MERC_HITUP:
 		if( bl->type != BL_MER )
 			return 0; // Stats only for Mercenaries
+	break;
+	case SC_CAMOUFLAGE:
+		if( sd && pc_checkskill(sd, RA_CAMOUFLAGE) < 3 && !skill_check_camouflage(bl,NULL) )
+			return 0;
 	break;
 	case SC_STRFOOD:
 		if (sc->data[SC_FOOD_STR_CASH] && sc->data[SC_FOOD_STR_CASH]->val1 > val1)
@@ -6466,6 +6475,11 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			val4 = tick / 5000;
 			tick = 5000;
 			break;
+		case SC_CAMOUFLAGE:
+			val2 = tick/1000;
+			val3 |= battle_config.pc_camouflage_check_type&7;
+			tick = 1000;
+			break;
 
 		default:
 			if( calc_flag == SCB_NONE && StatusSkillChangeTable[type] == 0 && StatusIconChangeTable[type] == 0 )
@@ -6518,6 +6532,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_CLOAKING:
 		case SC_CHASEWALK:
 		case SC_WEIGHT90:
+		case SC_CAMOUFLAGE:
 			unit_stop_attack(bl);
 		break;
 		case SC_SILENCE:
@@ -7791,6 +7806,15 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr data)
 			return 0;
 		}
 		break;
+	case SC_CAMOUFLAGE:
+		if( --(sce->val2)>0 )
+		{
+			if( !status_charge(bl, 0, 7 - sce->val1) )
+			if( status->sp < 0 ) break;
+			sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
+			return 0;
+		}
+		break;
 	}
 
 	// default for all non-handled control paths is to end the status
@@ -7821,11 +7845,13 @@ int status_change_timer_sub(struct block_list* bl, va_list ap)
 	case SC_CONCENTRATE:
 		status_change_end(bl, SC_HIDING, INVALID_TIMER);
 		status_change_end(bl, SC_CLOAKING, INVALID_TIMER);
+		status_change_end(bl, SC_CAMOUFLAGE, INVALID_TIMER);
 		break;
 	case SC_RUWACH:	/* ƒ‹ƒAƒt */
-		if (tsc && (tsc->data[SC_HIDING] || tsc->data[SC_CLOAKING])) {
+		if (tsc && (tsc->data[SC_HIDING] || tsc->data[SC_CLOAKING] || tsc->data[SC_CAMOUFLAGE])) {
 			status_change_end(bl, SC_HIDING, INVALID_TIMER);
 			status_change_end(bl, SC_CLOAKING, INVALID_TIMER);
+			status_change_end(bl, SC_CAMOUFLAGE, INVALID_TIMER);
 			if(battle_check_target( src, bl, BCT_ENEMY ) > 0)
 				skill_attack(BF_MAGIC,src,src,bl,AL_RUWACH,1,tick,0);
 		}
