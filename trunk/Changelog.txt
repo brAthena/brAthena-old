@@ -9,7 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
-	r0458 - 1/05/2011 [Wolf]
+	r0460 - 01/05/2011 [Mark]
+	* Corrigido alguns erros.
+	- npc/gde2/gde2_padrao.txt
+
+	r0459 - 01/05/2011 [Wolf]
 	* Corrigido alguns erros de sintaxe.
 	- npc/classes/
 
@@ -20,15 +24,15 @@
 	- Traduzida gde2_controlador.txt
 	- Removido gde2_bandeiras.txt e gde2_cavernas.txt (Funções em gde2_padrao.txt e scripts dos próprios castelos).
 
-	r0456 - 1/05/2011 [Wolf]
+	r0456 - 01/05/2011 [Wolf]
 	* Enviada tradução de script.
 	- npc/classes/1-1/mercador.txt
 	
-	r0454 - 1/05/2011 [cleyton]
+	r0454 - 01/05/2011 [cleyton]
 	* Enviada tradução de script.
 	- npc/outros/corrida_de_monstros.txt
 
-	r0451 - 1/05/2011 [Protimus]
+	r0451 - 01/05/2011 [Protimus]
 	* Atualizado conforme eAthena r14808.
 
 	r0441 - 29/04/2011 [Protimus]

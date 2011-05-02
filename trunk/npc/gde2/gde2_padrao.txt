@@ -12,7 +12,7 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 2.2/1.1                                |
+// | Versões eA/brA: 2.2/1.2                                |
 // |--------------------------------------------------------|
 // | Descrição: Castelo 2 - GdE SE                          |
 // |--------------------------------------------------------|
@@ -20,6 +20,7 @@
 // | 1.0 Script Traduzido [Dani]                            |
 // | 1.1 Script Otimizado [Mark]                            |
 // | - Criação de 1 script para funcionamento de toda Gde2  |
+// | 1.2 Corrigida função Estado_Runa [Mark]                |
 // \________________________________________________________/
 
 -	script	Gde2_Gerente::Gde2_Gerente	-1,{
@@ -2267,52 +2268,17 @@ OnRecvCastle2:
 
 function	script	Estado_Runa	{
 
-mes "[ "+strnpcinfo(1)+" ]";
-mes "O estado da nossa defesa é...";
-if (getarg(0)+"[0]" == 1) {
-mes "1ª Runa Guardiã: ^FF0000Destruída^000000";
-}
-else if (getarg(0)+"[0]" == 2) {
-	mes "1ª Runa Guardiã: ^008000Reparando^000000";
-}
-else {
-	mes "1ª Runa Guardiã: ^4D4DFFOperacional^000000";
-}
-if (getarg(0)+"[1]" == 1) {
-	mes "2ª Runa Guardiã: ^FF0000Destruída^000000";
-}
-else if (getarg(0)+"[1]" == 2) {
-	mes "2ª Runa Guardiã: ^008000Reparando^000000";
-}
-else {
-	mes "2ª Runa Guardiã: ^4D4DFFOperacional^000000";
-}
-if (getarg(0)+"[2]" == 1) {
-	mes "1º Portão da Fortaleza: ^FF0000Destruído^000000";
-}
-else if (getarg(0)+"[2]" == 2) {
-	mes "1º Portão da Fortaleza: ^008000Reparando^000000";
-}
-else {
-	mes "1º Portão da Fortaleza: ^4D4DFFOperacional^000000";
-}
-if (getarg(0)+"[3]" == 1) {
-	mes "2º Portão da Fortaleza: ^FF0000Destruído^000000";
-}
-else if (getarg(0)+"[3]" == 2) {
-	mes "2º Portão da Fortaleza: ^008000Reparando^000000";
-}
-else {
-	mes "2º Portão da Fortaleza: ^4D4DFFOperacional^000000";
-}
-if (getarg(0)+"[4]" == 1) {
-	mes "3º Portão da Fortaleza: ^FF0000Destruído^000000";
-}
-else if (getarg(0)+"[4]" == 2) {
-	mes "3º Portão da Fortaleza: ^008000Reparando^000000";
-}
-else {
-	mes "3º Portão da Fortaleza: ^4D4DFFOperacional^000000";
-}
-close;
+	mes "[ "+strnpcinfo(1)+" ]";
+	mes "O estado da nossa defesa é...";
+	for(set .@n,0; .@n <= 4; set .@n,.@n + 1) {
+		if (getd(getarg(0)+"["+.@n+"]") == 1){ set .@estado$,"^FF0000Destruída^000000"; }
+		else if (getd(getarg(0)+"["+.@n+"]") == 2){ set .@estado$,"^008000Reparando^000000"; }
+		else { set .@estado$,"^4D4DFFOperacional^000000"; }
+		if(.@n < 2) {
+			mes (.@n+1)+"ª Runa Guardiã: "+.@estado$;
+		} else {
+			mes (.@n-1)+"º Portão da Fortaleza: "+.@estado$;
+		}
+	}
+	close;
 }
