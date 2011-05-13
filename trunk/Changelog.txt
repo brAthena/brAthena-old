@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+
+	r464 - 14/05/2011 [Protimus]
+	* Atualizado conforme eAthena 14811.
+
 	r0460 - 01/05/2011 [Mark]
 	* Corrigido alguns erros.
 	- npc/gde2/gde2_padrao.txt

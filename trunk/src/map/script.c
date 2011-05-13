@@ -12723,6 +12723,12 @@ int buildin_query_sql_sub(struct script_state* st, Sql* handle)
 
 BUILDIN_FUNC(query_sql)
 {
+	if( !log_config.sql_logs )
+	{
+		ShowWarning("buildin_query_logsql: SQL logs are disabled, query '%s' will not be executed.\n", script_getstr(st,2));
+		script_pushint(st,-1);
+		return 1;
+	}
 	return buildin_query_sql_sub(st, mmysql_handle);
 }
 
@@ -14337,11 +14343,11 @@ BUILDIN_FUNC(instance_create)
 	}
 	else if( res < 0 )
 	{
-		char *err;
+		const char *err;
 		switch(res)
 		{
 		case -3: err = "No free instances"; break;
-		case -2: err = "Missing parameter"; break;
+		case -2: err = "Invalid party ID"; break;
 		case -1: err = "Invalid type"; break;
 		default: err = "Unknown"; break;
 		}
