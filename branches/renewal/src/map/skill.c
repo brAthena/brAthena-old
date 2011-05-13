@@ -2676,6 +2676,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case RK_SONICWAVE:
 	case RK_WINDCUTTER:
 	case AB_DUPLELIGHT_MELEE:
+	case GC_CROSSIMPACT:
 		skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 
@@ -3194,6 +3195,29 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 				lv = 7;
 			if( pc_checkskill(sd,RK_RUNEMASTERY) >= lv )
 				skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
+		}
+		break;
+	case GC_DARKILLUSION:
+		{
+			short x, y;
+			short dir = map_calc_dir(src,bl->x,bl->y);
+
+			if( dir > 4 ) x = -1;
+			else if( dir > 0 && dir < 4 ) x = 1;
+			else x = 0;
+			if( dir < 3 || dir > 5 ) y = -1;
+			else if( dir > 3 && dir < 5 ) y = 1;
+			else y = 0;
+
+			if( unit_movepos(src, bl->x+x, bl->y+y, 1, 1) )
+			{
+				clif_slide(src,bl->x+x,bl->y+y);
+				clif_fixpos(src); 
+				skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
+				if( rand()%100 < 4 * skilllv )
+					skill_castend_damage_id(src,bl,GC_CROSSIMPACT,skilllv,tick,flag);
+			}
+
 		}
 		break;
 	case 0:
@@ -6076,6 +6100,20 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		if( i ) clif_skill_nodamage(src,bl,skillid,skilllv,i);
 		else if( sd )
 			clif_skill_fail(sd,skillid,0,0,0);
+		break;
+		
+	case GC_WEAPONBLOCKING:
+		if( tsc && tsc->data[SC_WEAPONBLOCKING] )
+		{
+			status_change_end(bl,SC_WEAPONBLOCKING,-1);
+			clif_skill_nodamage(src,bl,skillid,skilllv,1);
+		}
+		else
+		{
+			sc_start(bl,SC_WEAPONBLOCKING,100,skilllv,skill_get_time(skillid,skilllv));
+			clif_skill_nodamage(src,bl,skillid,skilllv,1);
+		}
+
 		break;
 		
 	default:

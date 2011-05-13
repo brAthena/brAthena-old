@@ -6480,6 +6480,12 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			val3 |= battle_config.pc_camouflage_check_type&7;
 			tick = 1000;
 			break;
+		case SC_WEAPONBLOCKING:
+			val2 = 10 + 2 * val1;
+			val4 = tick / 1000;
+			tick = 1000;
+			val_flag |= 1|2;
+			break;
 
 		default:
 			if( calc_flag == SCB_NONE && StatusSkillChangeTable[type] == 0 && StatusIconChangeTable[type] == 0 )
@@ -7811,6 +7817,15 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr data)
 		{
 			if( !status_charge(bl, 0, 7 - sce->val1) )
 			if( status->sp < 0 ) break;
+			sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
+			return 0;
+		}
+		break;
+	case SC_WEAPONBLOCKING:
+		if( --(sce->val4) >= 0 )
+		{
+			if(!status_charge(bl,0,3))
+				break;
 			sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
 			return 0;
 		}

@@ -9,6 +9,16 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+
+	r0461 - 14/05/2011 [Protimus]
+	* Readicionadas modificações de revisões posteriores:
+	* Adicionadas habilidades GC_DARKILLUSION (Passo Sombrio) & GC_WEAPONBLOCKING (Reflexo de Combate).
+	* Adicionada habilidade GC_CROSSIMPACT (Lâminas Retalhadoras).
+	- Necessário testar danos com EDP para ver se está OK.
+	* Adicionadas correções para Camuflagem.
+	- Ainda falta verificar o tempo de camuflagem.
+	* Corrigido pequenos erros de cabeçalho em alguns npcs.
+
 	r0462 - 02/05/2011 [Mark]
 	* Adicionado CoolDown nas habilidades.
 	

@@ -346,6 +346,17 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 			d->dmg_lv = ATK_BLOCK;
 			return 0;
 		}
+		
+		if( sc->data[SC_WEAPONBLOCKING] && (flag&(BF_WEAPON|BF_SHORT)) )
+		{
+			if( rand()%100 < sc->data[SC_WEAPONBLOCKING]->val2 )
+			{
+				clif_skill_nodamage(bl,src,GC_WEAPONBLOCKING,1,1);
+				d->dmg_lv = ATK_NONE;
+				sc_start2(bl,SC_COMBO,100,GC_WEAPONBLOCKING,src->id,2000);
+				return 0;
+			}
+		}
 
 		if( (sce=sc->data[SC_AUTOGUARD]) && flag&BF_WEAPON && !(skill_get_nk(skill_num)&NK_NO_CARDFIX_ATK) && rand()%100 < sce->val2 )
 		{
@@ -1773,6 +1784,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					break;
 				case AB_DUPLELIGHT_MELEE:
 					skillratio += 10 * skill_lv;
+					break;
+				case GC_CROSSIMPACT:
+					skillratio += 1050 + 50 * skill_lv;
 					break;
 			}
 
@@ -3233,7 +3247,7 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 		status_change_end(src, SC_CLOAKING, INVALID_TIMER);
 		
 	if (sc && sc->data[SC_CAMOUFLAGE] && !(sc->data[SC_CAMOUFLAGE]->val3&2))
-		status_change_end(src,SC_CAMOUFLAGE,-1);
+		status_change_end(src,SC_CAMOUFLAGE, INVALID_TIMER);
 
 	if( tsc && tsc->data[SC_AUTOCOUNTER] && status_check_skilluse(target, src, KN_AUTOCOUNTER, 1) )
 	{
