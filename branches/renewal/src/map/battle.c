@@ -802,6 +802,8 @@ int battle_addmastery(struct map_session_data *sd,struct block_list *target,int 
 		case W_2HAXE:
 			if((skill = pc_checkskill(sd,AM_AXEMASTERY)) > 0)
 				damage += (skill * 3);
+			if((skill = pc_checkskill(sd,NC_TRAININGAXE)) > 0)
+				damage += (skill * 5);
 			break;
 		case W_MACE:
 		case W_2HMACE:

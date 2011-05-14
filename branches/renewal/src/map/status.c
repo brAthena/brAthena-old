@@ -2466,6 +2466,9 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 			status->rhw.range += skill;
 		}
 	}
+	if((sd->status.weapon == W_1HAXE || sd->status.weapon == W_2HAXE)
+		&& (skill=pc_checkskill(sd,NC_TRAININGAXE) > 0))
+		status->hit += (skill * 3);
 
 // ----- FLEE CALCULATION -----
 
