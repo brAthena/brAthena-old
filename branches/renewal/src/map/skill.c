@@ -2562,7 +2562,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 {
 	struct map_session_data *sd = NULL, *tsd = NULL;
 	struct status_data *tstatus;
-	struct status_change *sc;
+	struct status_change *sc, *tsc;
 	int s_job_level = 50;
 
 	if (skillid > 0 && skilllv <= 0) return 0;
@@ -3246,6 +3246,22 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 			}
 			else if( sd )
 				clif_skill_fail(sd,skillid,0x1f,0,0);
+		}
+		break;
+	case GC_PHANTOMMENACE:
+		if( flag&1 )
+		{
+			if(tsc && (tsc->option&(OPTION_HIDE|OPTION_CLOAK|OPTION_CHASEWALK) || tsc->data[SC__INVISIBILITY]) )
+				skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
+		}
+		break;
+	case GC_CROSSRIPPERSLASHER:
+		if( sd && !(sc && sc->data[SC_ROLLINGCUTTER]) )
+			clif_skill_fail(sd,skillid,0x17,0,0);
+		else
+		{
+			skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
+			status_change_end(src,SC_ROLLINGCUTTER,-1);
 		}
 		break;
 	case 0:
@@ -6190,6 +6206,13 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			sc_start(bl,SC_ROLLINGCUTTER,100,count,skill_get_time(skillid,skilllv));
 			clif_skill_nodamage(src,src,skillid,skilllv,1);
 		}
+		break;
+		
+	case GC_PHANTOMMENACE:
+		clif_skill_damage(src,bl,tick, status_get_amotion(src), 0, -30000, 1, skillid, skilllv, 6);
+		clif_skill_nodamage(src,bl,skillid,skilllv,1);
+		map_foreachinrange(skill_area_sub,src,skill_get_splash(skillid,skilllv),BL_CHAR,
+			src,skillid,skilllv,tick,flag|BCT_ENEMY|1,skill_castend_damage_id);
 		break;
 		
 	default:
@@ -9188,6 +9211,13 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 		if( !(sc && sc->data[SC_POISONINGWEAPON]) )
 		{
 			clif_skill_fail(sd, skill, 0x20, 0, 0);
+			return 0;
+		}
+		break;
+	case GC_CROSSRIPPERSLASHER:
+		if( !(sc && sc->data[SC_ROLLINGCUTTER]) )
+		{
+			clif_skill_fail(sd, skill, 0x17, 0, 0);
 			return 0;
 		}
 		break;

@@ -9,7 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
-	r0472 - 04/05/2011 [Protimus]
+	r0468 - 15/05/2011 [Protimus]
+	* Adicionadas habilidades:
+	- GC_PHANTOMMENACE (Ameaça Fantasma).
+	- GC_CROSSRIPPERSLASHER (Castigo de Loki).
+
+	r0467 - 15/05/2011 [Protimus]
 	* Adicionadas habilidades:
 	- GC_ANTIDOTE (Aplicar Antídoto) 
 	- GC_ROLLINGCUTTER (Lâminas de Loki).

@@ -1799,6 +1799,14 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case GC_ROLLINGCUTTER:
 					skillratio += 20 * skill_lv;
 					break;
+				case GC_PHANTOMMENACE:
+					skillratio += 200;
+					break;
+				case GC_CROSSRIPPERSLASHER:
+					skillratio += 60 + 40 * skill_lv;
+					if( sc && sc->data[SC_ROLLINGCUTTER] )
+						skillratio += 25 * sc->data[SC_ROLLINGCUTTER]->val1;
+					break;
 			}
 
 			ATK_RATE(skillratio);
