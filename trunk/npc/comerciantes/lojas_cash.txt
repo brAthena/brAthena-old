@@ -12,13 +12,13 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.1/1.0                                |
+// | Versões eA/brA: 1.1/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição:    Sell Cash shop items.                    |
 // | Based on iRO's Cash shop. Headgears omitted.           |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
-// | 1.0 Script Traduzidor [insidemybrain]                  |
+// | 1.0 Script Traduzido [insidemybrain]                   |
 // | 1.1 Script Revisado [insidemybrain]                    |
 // | - Anotações                                            | 
 // \________________________________________________________/

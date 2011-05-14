@@ -8,13 +8,13 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Advanced Refiner			            |
+// | Nome do Script: Refiner Avançado			            |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.4/1.0                                |
+// | Versões eA/brA: 1.4/1.1                                |
 // |--------------------------------------------------------|
-// | Descri??o:                                             |
+// | Descrição:                                             |
 // | Refiner that uses Enriched ores to increase upgrade    |
 // | success.						                        |
 // | After a conversation with Doddler, it's been	        |
@@ -28,89 +28,59 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Kooler]                          |
+// | 1.1 Script Otimizado [Mark]	                        |
 // | - Anotações		   			    					| 
 // \________________________________________________________/
 
-
 payon,174,138,0	script	Suhnbi#cash	85,{
 	mes "[Suhnbi]";
-	//mes "I am the Armsmith";
 	mes "Eu sou o Refinador!";
-	//mes "I can refine all kinds of weapons,";
-	//mes "armor and equipment, so let me";
-	mes "Eu posso refinar todos seus equipamentos e armas"; // 2 mes simplificados em 1 só.
-	//mes "know what you want to refine.";
-	mes "me diga o que deseja refinar?"; // adicionei ponto de interrogação, ficaria incoerente.. ja que é uma pergunta.
-	
-	
+	mes "Eu posso refinar todos seus equipamentos e armas me diga o que deseja refinar?";
 	next;
-	
-	//setarray .@position$[1], "Head","Body","Left hand","Right hand","Robe","Shoes","Accessory 1","Accessory 2","Head 2","Head 3";
-	setarray .@position$[1], "Cabeça","Tronco","Mão Esquerda","Mão Direita","Manto","Sapatos","Acessório 1","Acessório 2","Cabeça 2","Cabeça 3";
+	setarray .@position$[1], "Cabeça","Armadura","Mão Esquerda","Mão Direita","Manto","Sapatos","Acessório 1","Acessório 2","Cabeça (Meio)","Cabeça (Baixo)";
 	set .@menu$,"";
-	for( set .@i,1; .@i <= 10; set .@i,.@i+1 )
-	{
+	for( set .@i,1; .@i <= 10; set .@i,.@i+1 ){
 		if( getequipisequiped(.@i) )
 			set .@menu$, .@menu$ + .@position$[.@i] + "-" + "[" + getequipname(.@i) + "]";
-
 		set .@menu$, .@menu$ + ":";
 	}
 	set .@part,select(.@menu$);
-
-	if( !getequipisequiped(.@part) )
-		close;
-
-	if( !getequipisenableref(.@part) )
-	{
+	if( !getequipisequiped(.@part) ) close;
+	if( !getequipisenableref(.@part) ) {
 		mes "[Suhnbi]";
-		//mes "I don't think I can refine this item at all.";
-		mes "Eu não posso aperfeiçoar este item"; // Acredito que a tradução correta seja, "Eu não posso aperfeiçoar este item em tudo", mas achei que ficou BEM incoerente.
+		mes "Eu não posso aperfeiçoar este item";
 		close;
 	}
-	if( !getequipisidentify(.@part) )
-	{
+	if( !getequipisidentify(.@part) ) {
 		mes "[Suhnbi]";
-		//mes "This has not been identified. So, it can't be refined...";
-		mes "Este item não foi identificado. logo, não pode ser aperfeiçoado.";
+		mes "Este item não foi identificado. Logo, não pode ser aperfeiçoado.";
 		close;
 	}
-	if( getequiprefinerycnt(.@part) >= 10 )
-	{
+	if( getequiprefinerycnt(.@part) >= 10 ) {
 		mes "[Suhnbi]";
-		//mes "This item cannot be refined because it has already reached its maximum level...";
 		mes "Este item não pode ser aperfeiçoado pois já atingiu seu nível máximo.";
 		close;
 	}
-
-	// Make sure you have the neccessary items and Zeny to refine your items
 	// Verifica se você tem os itens nescessários e zeny para aperfeiçoar os itens
-	// Determines chance of failure and verifies that you want to continue.
 	// Determina a chance de fracasso e verifica se você deseja continuar.
-	switch( getequipweaponlv(.@part) )
-	{
+	switch( getequipweaponlv(.@part) ) {
 		case 1: callsub S_RefineValidate,1,7620,50,.@part; break;
 		case 2: callsub S_RefineValidate,2,7620,200,.@part; break;
 		case 3: callsub S_RefineValidate,3,7620,5000,.@part; break;
 		case 4: callsub S_RefineValidate,4,7620,20000,.@part; break;
 		default: callsub S_RefineValidate,0,7619,2000,.@part; break;
 	}
-
-	if( getequippercentrefinery(.@part) > rand(100) || getequippercentrefinery(.@part) > rand(100) )
-	{
+	if( getequippercentrefinery(.@part) > rand(100) || getequippercentrefinery(.@part) > rand(100) ) {
 		mes "[Suhnbi]";
 		mes "Clink! Clank! Clunk!";
 		SuccessRefItem .@part;
 		next;
 		Emotion e_no1;
 		mes "[Suhnbi]";
-		//mes "Here you are! It's done.";
-		mes "Aqui está! Prontinho."; // Não conhecia essa expressão.. optei por colocar 'prontinho'.
-		//mes "It's been a while since I've made such a fine weapon. You must be happy because it has become stronger!";
+		mes "Aqui está! Prontinho.";
 		mes "Faz um tempo que eu não faço uma arma tão bem. Você deve estar feliz porque se tornou mais forte.";
 		close;
-	}
-	else
-	{
+	} else {
 		mes "[Suhnbi]";
 		mes "Clink! Clank! Clunk!";
 		FailedRefItem .@part;
@@ -124,9 +94,7 @@ payon,174,138,0	script	Suhnbi#cash	85,{
 		next;
 		mes "[Suhnbi]";
 		mes "Cough...Cough..";
-		//mes "What a shame...";
 		mes "Que vergonha...";
-		//mes "Your equipment broke during the refining process. I had told you earlier this might happen!";
 		mes "Seu equipamento quebrou durante o processo de refino. Eu tinha dito mais cedo que isso poderia acontecer!";
 		close;
 	}
@@ -135,67 +103,40 @@ S_RefineValidate:
 	mes "[Suhnbi]";
 	if (getarg(0))
 		mes "A level " + getarg(0) + " weapon...";
-	//mes "To refine this I need one ^ff9999" + getitemname(getarg(1)) + "^000000 and a service fee of " + getarg(2) + " Zeny.";
 	mes "Para refinar isto eu preciso de ^ff9999" + getitemname(getarg(1)) + "^000000 e uma taxa pelo serviço de " + getarg(2) + " Zeny.";
-	//mes "Do you wish to continue?";
 	mes "Deseja continuar?";
 	next;
-	//if( select("Yes:No") == 1 )
 	if( select("Sim:Não") == 1 )
 	{
 		if( getequippercentrefinery(getarg(3)) < 100 )
 		{
 			mes "[Suhnbi]";
 			mes "Wow!!";
-			//mes "This weapon, probably";
-			mes "Esta arma, provavelmente,";
-			//mes "looks like it's been refined...";
-			mes "parece que está sendo refinada...";
-			//mes "many times...";
+			mes "Esta arma, provavelmente, parece que foi refinada...";
 			mes "Muitas vezes...";
-			//mes "It may break if";
-			mes "Ela pode quebrar se";
-			//mes "you refine it again.";
-			mes "você refiná-la novamente.";
+			mes "Ela pode quebrar se você refiná-la novamente.";
 			next;
-			//mes "And if it breaks,";
-			mes "E se ela quebrar,";
-			//mes "you can't use it anymore!";
-			mes "você não poderá usar mais!";
-			//mes "All the cards in it and the";
-			//mes "properties";
-			mes "Todas as cartas e suas propriedades"; // Juntei os 2 mes.
-			//mes "^ff0000will be lost^000000!!";
+			mes "E se ela quebrar, você não poderá usar mais!";
+			mes "Todas as cartas e suas propriedades";
 			mes "^ff0000Serão Perdidas^000000!!";
-			//mes "^ff0000 besides, the equipment will break!^000000";
 			mes "^ff0000 Além, o equipamento irá quebrar!^000000";
 			mes " ";
-			//mes "Are you sure you still want to continue?";
 			mes "Tem certeza que você ainda quer continuar?";
 			next;
-			//if( select("Yes:No") == 2 )
-			if( select("Sim:Não") == 2 )
-			{
+			if( select("Sim:Não") == 2 ) {
 				mes "[Suhnbi]";
-				//mes "I completely agree...";
 				mes "Eu concordo totalmente...";
-				//mes "I might be a great refiner, but sometimes even I make mistakes.";
 				mes "Eu sou um grande refinador, mas às vezes eu posso cometer erros.";
 				close;
 			}
 		}
-		if( countitem(getarg(1)) > 0 && Zeny > getarg(2) )
-		{
+		if( countitem(getarg(1)) > 0 && Zeny > getarg(2) ) {
 			delitem getarg(1), 1;
 			set Zeny, Zeny - getarg(2);
 			return;
-		}
-		else
-		{
+		} else {
 			mes "[Suhnbi]";
-			//mes "You don't seem to have enough Zeny or " + getitemname(getarg(1)) + "...";
 			mes "Você parece não ter o zeny suficiente ou " + getitemname(getarg(1)) + "...";
-			//mes "Go get some more. I'll be here all day if you need me.";
 			mes "Vá pegar um pouco mais. Estarei aqui o dia inteiro se precisar de mim.";
 			close;
 		}
@@ -203,9 +144,7 @@ S_RefineValidate:
 	else
 	{
 		mes "[Suhnbi]";
-		//mes "Yeah... There's no need to rush.";
 		mes "Pois é... Não tenha pressa.";
-		//mes "Take your time.";
 		mes "Aproveite seu tempo.";
 		close;
 	}

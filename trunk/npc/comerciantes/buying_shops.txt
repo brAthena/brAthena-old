@@ -12,12 +12,13 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0                                |
+// | Versões eA/brA: 1.0/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição:	Buying Shop Licenses.                       |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [YuMs]		                    |
+// | 1.1 Script Revisado [Mark]			                    |
 // | - Anotações		   			    					| 
 // \________________________________________________________/
 
@@ -191,9 +192,7 @@ alberta_in,58,52,4	script	Purchasing Team#Buying	59,{
 			mes "Esse é o ponto da minha proposta!";
 			mes "Nosso presidente ficou muito feliz em saber que nós vamos fazer muito dinheiro!";
 			next;
-			mes "["+strcharinfo(0)+"]";
-			mes "Por favor, vá direto ao ponto!";
-			next;
+			select("Por favor, vá direto ao ponto!");
 			mes "[Sr. Hugh]";
 			mes "Não seja tão impaciente, certo?";
 			mes "Concluíndo, podemos deixá-lo abrir uma Loja de Compra em Massa, isso se você já aprendeu a vender.";

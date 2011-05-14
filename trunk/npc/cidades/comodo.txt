@@ -128,7 +128,7 @@ cmd_in02,172,105,4	script	G . J#cmd	86,{
 	mes "mas é mais inteligente";
 	mes "ganhar dinheiro de outros";
 	mes "jeitos. Trabalhar não é divertido,";
-	mes "mas existem jeitos de fazer seu^FFFFFF ^000000 dinheiro render, certo?";
+	mes "mas existem jeitos de fazer seu dinheiro render, certo?";
 	next;
 	mes "[G . J]";
 	mes "Também tem a questão de";
@@ -196,8 +196,7 @@ cmd_in02,174,126,4	script	Loyar#cmd	83,{
 }
 
 cmd_in02,57,62,4	script	Moo#cmd	109,{
-	set mooz,rand(1,10);
-	if (mooz == 1) {
+	if (!rand(9)) {
 		mes "[Moo]";
 		mes "Esses trapaceiros!";
 		mes "Eles nunca mais vão mostrar";
@@ -206,14 +205,13 @@ cmd_in02,57,62,4	script	Moo#cmd	109,{
 		mes "novas! Ah--Desculpe, não vi";
 		mes "você parado aí~ Hahahaha~";
 		close;
-	}
-	else {
+	} else {
 		mes "[Moo]";
 		mes "Saudações, sou Moo,";
 		mes "gerente do Cassino de Comodo.";
 		mes "Temos orgulho de satisfazer";
 		mes "todas as necessidades de nossos";
-		mes "clientes, fazendo tudo que podemos para que^FFFFFF ^000000 sua visita seja inesquecível.";
+		mes "clientes, fazendo tudo que podemos para que sua visita seja inesquecível.";
 		next;
 		mes "[Moo]";
 		mes "Todos os nossos convidados podem";
@@ -247,7 +245,7 @@ cmd_fild04,188,74,4	script	Zyosegirl#cmd	93,{
 	mes "É bom poder trabalhar ao ar";
 	mes "livre, mas algum dia eu quero";
 	mes "juntar bastante dinheiro e me mudar";
-	mes "para a cidade. Eu ainda sou jovem,^FFFFFF ^000000 sabe, e tenho";
+	mes "para a cidade. Eu ainda sou jovem, sabe, e tenho";
 	mes "sonhos que gostaria de realizar.";
 	close;
 }
@@ -449,7 +447,7 @@ moc_fild12,35,303,4	script	Serutero#cmd	59,{
 	mes "guardião das estradas";
 	mes "que levam ao Forte Sandaruman.";
 	mes "Se você quiser ir lá, eu permitirei";
-	mes "que siga em frente, mas^FFFFFF ^000000 você precisa saber dos perigos que te esperam...";
+	mes "que siga em frente, mas você precisa saber dos perigos que te esperam...";
 	next;
 	switch(select("Eu vou lá!:Forte Sandaruman?:Cancelar")) {
 	case 1:

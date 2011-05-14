@@ -12,7 +12,7 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.7/1.2                                |
+// | Versões eA/brA: 1.7/1.3                                |
 // |--------------------------------------------------------|
 // | Descrição: Torre Sem Fim.                              |
 // | - Consiste em uma torre de 101 andares                 |
@@ -23,8 +23,10 @@
 // | 1.1 Script Revisado [Protimus & Tyler]                 |
 // | Anotações:                                             |
 // | - Corrigidas as tabulações no cabeçalho                |
-// | 1.2 Script Atualizado [cleyton] 		            |
-// | - Atualizado conforme eAthena r14747		    |
+// | 1.2 Script Atualizado [cleyton] 		            	|
+// | - Atualizado conforme eAthena r14747      		    	|
+// | 1.3 Script Otimizado [Mark]	 		            	|
+// | - Alterados switch por if.								|
 // \________________________________________________________/
 
 alberta,214,77,6	script	Capitão Jassen	709,{
@@ -111,15 +113,14 @@ alberta,214,77,6	script	Capitão Jassen	709,{
 		mes "[Capitão Janssen]";
 		mes "Vamos partir agora?";
 		next;
-		switch(select("Sim, vamos!:Não, ainda não estou pronto...")) {
-		case 1:
+		if(select("Sim, vamos!:Não, ainda não estou pronto...") == 1) {
 			mes "[Capitão Janssen]";
 			mes "Em seguida puxe a âncora, primeiro marujo!";
 			close2;
 			set in_102tower,4;
 			warp "e_tower",70,114;
 			end;
-		case 2:
+		} else {
 			mes "[Capitão Janssen]";
 			mes "Claro, sem problemas. Volte quando estiver pronto.";
 			close;
@@ -129,15 +130,14 @@ alberta,214,77,6	script	Capitão Jassen	709,{
 		mes "[Capitão Janssen]";
 		mes "Bem, para viajar pelo oceano novamente, precisamos repor os suprimentos. Se você me der 10.000 zenys, eu cuido do resto.";
 		next;
-		switch(select("Voltarei depois.:Vamos, agora!")) {
-		case 1:
+		if(select("Voltarei depois.:Vamos, agora!") == 1) {
 			mes "["+.@name_102$+"]";
 			mes "Me desculpe, mas eu não tenho muito dinheiro. Eu vou voltar quando eu economizar o suficiente.";
 			next;
 			mes "[Capitão Janssen]";
 			mes "Claro, sem problemas. Eu estarei esperando pelo seu retorno.";
 			close;
-		case 2:
+		} else {
 			if (zeny < 10000) {
 				mes "[Capitão Janssen]";
 				mes "Me desculpe, mas você não tem dinheiro suficiente. Eu preciso de pelo menos 10.000 zenys para reabastecer os nossos suprimentos...";
@@ -163,15 +163,14 @@ alberta,214,77,6	script	Capitão Jassen	709,{
 		mes "[Capitão Janssen]";
 		mes "Você pode doar ^0000ff10.000^000000 zenys para mim? É por uma causa importante para mim ...";
 		next;
-		switch(select("Não!:Claro.")) {
-		case 1:
+		if(select("Não!:Claro.") == 1) {
 			mes "["+.@name_102$+"]";
 			mes "Me desculpe, mas você perguntou isso a pessoa errada.";
 			next;
 			mes "[Capitão Janssen]";
 			mes "Entendo... Desculpe incomodá-lo. Eu entendo que seria muito rude perguntar algo assim.";
 			close;
-		case 2:
+		} else {
 			mes "[Capitão Janssen]";
 			mes "Hã? Tem certeza que você não se importa em me dar tanto dinheiro? Uau, muito obrigado!";
 			next;
@@ -3852,7 +3851,7 @@ OnTouch_:
 		input .@input,76,99;
 		next;
 		if (.@input < 76 || .@input > 99)
-			mes "Você deve digitar apenas números entre 51 e 75.";
+			mes "Você deve digitar apenas números entre 76 e 99.";
 		else {
 			donpcevent instance_npcname(.@input+"FGate102tower", instance_id())+"::OnEnable";
 			mes "*** "+.@input+"° andar está sendo aberto. ***";

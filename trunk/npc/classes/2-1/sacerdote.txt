@@ -39,7 +39,7 @@ prt_church,16,41,4	script	High Bishop#prst	60,{
 		if (BaseJob == Job_Priest) {
 			mes "[Bishop Paul]";
 			mes "Ah...";
-			mes "It is good to see you again, "+((Sex)?"Brother":"Sister")+" "+strcharinfo(0)+" "+((Sex)?"Once again, God's grace has caused our paths to cross.":"The grace of God has brought you once more before me.)+"";
+			mes "It is good to see you again, "+(Sex?"Brother":"Sister")+" "+strcharinfo(0)+" "+(Sex?"Once again, God's grace has caused our paths to cross.":"The grace of God has brought you once more before me.");
 			next;
 			mes "[Bishop Paul]";
 			mes "I'm pleased to see that you are continuing to lead the children of God on the right path. Is there anything I can help you with today?";
@@ -1809,4 +1809,3 @@ function	script	F_FatherYos	{
 	mes "...Acolyte, you don't have any business with me here.";
 	close;
 }
-

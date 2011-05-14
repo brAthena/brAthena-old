@@ -12,12 +12,13 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.9/1.0                                |
+// | Versões eA/brA: 1.9/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: NPCs da Cidade de Geffen                    |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
+// | 1.1 Script Otimizado [Architect]                       |
 // \________________________________________________________/
 
 geffen,59,143,0	script	Meera	91,{
@@ -221,10 +222,7 @@ OnTouch:
 	mes "Quer fazer um ótimo negócio? Venha aqui!^000000";
 	next;
 	mes "[Cara Suspeito]";
-	if (sex)
-		mes "Você aí. Você parece esperto o bastante para reconhecer uma barganha quando ela está na sua frente.";
-	else
-		mes "Bem, bem, bem. Você é uma garotinha bonita. E hoje é seu dia de sorte!";
+	mes (Sex ? "Você aí. Você parece esperto o bastante para reconhecer uma barganha quando ela está na sua frente.":"Bem, bem, bem. Você é uma garotinha bonita. E hoje é seu dia de sorte!");
 	next;
 	mes "[Cara Suspeito]";
 	mes "Então me diga o que quer, e te arranjarei um de meus produtos valiosos, porém acessíveis.";
@@ -607,14 +605,10 @@ geffen_in,27,134,5	script	Garçonete#elen	91,{
 		mes "Ouvi dizer que tem uma pessoa em Rune-Midgard...";
 		next;
 		mes "[Elenore]";
-		if (sex)
-			mes "Você ouviu falar de "+strcharinfo(0)+"? Ele é supostamente o herói mais lindo da região!";
-		else
-			mes "Você ouviu falar de"+strcharinfo(0)+"? Dizem que ela é uma das meninas mais bonitas de Rune-Midgard!";
+		mes (Sex ? "Você ouviu falar de "+strcharinfo(0)+"? Ele é supostamente o herói mais lindo da região!":"Você ouviu falar de"+strcharinfo(0)+"? Dizem que ela é uma das meninas mais bonitas de Rune-Midgard!");
 		break;
 	case 4:
-		switch(rand(1,2)) {
-		case 1:
+		if (rand(2)) {
 			mes "[Elenore]";
 			mes "Novidades?";
 			mes "E-espere...";
@@ -641,44 +635,41 @@ geffen_in,27,134,5	script	Garçonete#elen	91,{
 			mes "A voz dela estava";
 			mes "muito estranha";
 			mes "por um minuto...";
-			break;
-		case 2:
-			mes "[Espírito do William]";
-			mes "^990000Ei, seu tarado! Pare de olhar minha filha assim antes que eu arranque seus olhos!^000000";
+			close;
+		}
+		mes "[Espírito do William]";
+		mes "^990000Ei, seu tarado! Pare de olhar minha filha assim antes que eu arranque seus olhos!^000000";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		if (sex) {
+			mes "Huh...?";
+			mes "C-como";
+			next;
+			mes "[Elenore]";
+			mes "Huh...?";
+			mes "Ah, o papai deve ter me possuído de novo. Acontece direto comigo e com minha irmã.";
 			next;
 			mes "["+strcharinfo(0)+"]";
-			if (sex) {
-				mes "Huh...?";
-				mes "C-como";
-				next;
-				mes "[Elenore]";
-				mes "Huh...?";
-				mes "Ah, o papai deve ter me possuído de novo. Acontece direto comigo e com minha irmã.";
-				next;
-				mes "["+strcharinfo(0)+"]";
-				mes "Jura?";
-				mes "Hum. Que chato.";
-				next;
-				mes "[Elenore]";
-				mes "É...";
-				mes "Nem me fale.";
-				break;
-			}
-			else {
-				mes "Esperaaaa~";
-				mes "Eu sou uma garota também!";
-				next;
-				mes "[Espírito do William]";
-				mes "^990000Que parte de ^FF0000I vou acabar com você^000000 ^990000você não entendeu?! Vá embora, seu pervertido!^000000";
-				next;
-				mes "^3355FFAaaah~!";
-				mes "Como ela ficou";
-				mes "desse jeito?!^000000";
-				break;
-			}
+			mes "Jura?";
+			mes "Hum. Que chato.";
+			next;
+			mes "[Elenore]";
+			mes "É...";
+			mes "Nem me fale.";
+			close;
+		} else {
+			mes "Esperaaaa~";
+			mes "Eu sou uma garota também!";
+			next;
+			mes "[Espírito do William]";
+			mes "^990000Que parte de ^FF0000I vou acabar com você^000000 ^990000você não entendeu?! Vá embora, seu pervertido!^000000";
+			next;
+			mes "^3355FFAaaah~!";
+			mes "Como ela ficou";
+			mes "desse jeito?!^000000";
+			close;
 		}
 	}
-
 	close;
 }
 
@@ -744,8 +735,7 @@ geffen_in,70,67,3	script	Garçonete#elise	90,{
 		mes "Foi uma decisão sábia, já que muitas pessoas confundiam o contiente com o reino. Esquisito, não?";
 		break;
 	case 4:
-		switch(rand(1,2)) {
-		case 1:
+		if (rand(2)) {
 			mes "[Elisa]";
 			mes "Rumores?";
 			mes "Hmmmm, bem...";
@@ -780,27 +770,25 @@ geffen_in,70,67,3	script	Garçonete#elise	90,{
 				mes "^3355FFIsso foi assustador...!";
 				mes "Parece que o amor de pai é eterno, mesmo no além.^000000";
 			}
-			break;
-		case 2:
-			mes "[Espírito do William]";
-			mes "^990000Como você se atreve a dar em cima da minha filha! Você quer provar o gosto da minha fúria?!^000000";
-			next;
-			mes "[Elisa]";
-			mes "A-ah!";
-			mes "Me desculpe!";
-			next;
-			mes "[Elisa]";
-			mes "É que...";
-			mes "O espírito do meu pai,";
-			mes "que Deus tenha sua alma,";
-			mes "é meio superprotetor!";
-			next;
-			mes "^3355FFVocê se afasta.";
-			mes "Cuidadosamente.^000000";
-			break;
+			close;
 		}
+		mes "[Espírito do William]";
+		mes "^990000Como você se atreve a dar em cima da minha filha! Você quer provar o gosto da minha fúria?!^000000";
+		next;
+		mes "[Elisa]";
+		mes "A-ah!";
+		mes "Me desculpe!";
+		next;
+		mes "[Elisa]";
+		mes "É que...";
+		mes "O espírito do meu pai,";
+		mes "que Deus tenha sua alma,";
+		mes "é meio superprotetor!";
+		next;
+		mes "^3355FFVocê se afasta.";
+		mes "Cuidadosamente.^000000";
+		close;
 	}
-	close;
 }
 
 geffen_in,79,76,2	script	Mercador Daven	120,{
@@ -1344,10 +1332,7 @@ geffen_in,109,72,2	script	Professor de Monstros	90,{
 		mes "Mas se você quiser caçar monstros fortes, pode cruzar a ponte a oeste e lutar com Kobolds.";
 		next;
 		mes "[Estheres]";
-		if (BaseLevel > 40)
-			mes "Você parece forte o suficiente para ir até lá. Mas se vir alguém com menos experiência atravessando a ponte, poderia avisá-lo do perigo.";
-		else
-			mes "Mas se você está planejando ir lá, melhor não ir sozinho. Recomendo que você vá preparado se quiser lutar com esse tipo de monstros.";
+		mes ((BaseLevel > 40) ? "Você parece forte o suficiente para ir até lá. Mas se vir alguém com menos experiência atravessando a ponte, poderia avisá-lo do perigo.":"Mas se você está planejando ir lá, melhor não ir sozinho. Recomendo que você vá preparado se quiser lutar com esse tipo de monstros.");
 		break;
 	case 2:
 		mes "[Estheres]";

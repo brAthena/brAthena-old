@@ -12,24 +12,18 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 2.2/1.0                                |
+// | Versões eA/brA: 2.2/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: NPCs da Cidade de Morroc                    |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
+// | 1.1 Script Otimizado [Architect]                       |
 // \________________________________________________________/
 
 // Morroc
 //============================================================
 morocc,150,120,5	script	Soldado - Morroc#01::MocSoldier	707,3,3,{
-	mes "[Soldado de Morroc]";
-	mes "Ei, você! Pare aí.";
-	next;
-	mes "[Soldado de Morroc]";
-	mes "Essa é uma área restrita. Você não pode passar!";
-	close;
-
 OnTouch:
 	mes "[Soldado de Morroc]";
 	mes "Ei, você! Pare aí.";
@@ -117,7 +111,7 @@ morocc,223,102,0	script	Voluntário - Morroc#06::MocVolunteer	741,{
 	mes "Contra esses aventureiros,";
 	mes "Dessa vez eu preciso renascer";
 	mes "Embaralhando o espaço e o tempo,";
-	mes "E eu finalmente estarei salvo~~~";
+	mes "E eu finalmente estarei salvo~~";
 	next;
 	mes "[Voz Estridente]";
 	mes "Cale a boca! Você não vê o que está acontecendo?!";
@@ -256,7 +250,7 @@ moc_ruins,94,117,0	script	Jovem Pálido	48,{
 
 moc_ruins,115,82,0	script	Menininha#moc	703,{
 	mes "[Menininha]";
-	mes "-Chorando-";
+	mes "*chorando*";
 	next;
 	mes "[Menininha]";
 	mes "Estou com medo! Cadê meus pais...! hhooooo... Cadê minha casa...";
@@ -494,26 +488,24 @@ moc_ruins,174,120,4	script	Homem Mosca#moc	54,{
 	mes "[Armani]";
 	mes "O que está acontecendo? É possível sobrevivermos?";
 	next;
-	switch(select("Mosca Dragão?!")) {
-	case 1:
-		mes "[Armani]";
-		mes "Sim, sim! A mosca dragão, mestre dos monstros insetos!";
-		mes "O Dragon Fly é um especial, que fica no Nordeste da cidade.";
-		next;
-		mes "[Armani]";
-		mes "É muito mais forte que os outros insetos.";
-		next;
-		mes "[Armani]";
-		mes "E se você vencê-lo, pode até ganhar um ^880000Clip^000000 !";
-		next;
-		mes "[Armani]";
-		mes "Enfim, você não acha o Satan Morroc muito cruel?";
-		mes "Eles podem não ser parecidos, mas não é cruel tirar a alma de um monstro com um único sopro?";
-		next;
-		mes "[Armani]";
-		mes "O que devemos fazer agora que esse demônio voltou a vida?!";
-		close;
-	}
+	select("Mosca Dragão?!");
+	mes "[Armani]";
+	mes "Sim, sim! A mosca dragão, mestre dos monstros insetos!";
+	mes "O Dragon Fly é um especial, que fica no Nordeste da cidade.";
+	next;
+	mes "[Armani]";
+	mes "É muito mais forte que os outros insetos.";
+	next;
+	mes "[Armani]";
+	mes "E se você vencê-lo, pode até ganhar um ^880000Clip^000000 !";
+	next;
+	mes "[Armani]";
+	mes "Enfim, você não acha o Satan Morroc muito cruel?";
+	mes "Eles podem não ser parecidos, mas não é cruel tirar a alma de um monstro com um único sopro?";
+	next;
+	mes "[Armani]";
+	mes "O que devemos fazer agora que esse demônio voltou a vida?!";
+	close;
 }
 
 moc_ruins,173,70,4	script	Tio Morroc#moc	48,{
@@ -524,8 +516,7 @@ moc_ruins,173,70,4	script	Tio Morroc#moc	48,{
 	mes "[Phlanette]";
 	mes "Imagino que esse clima quente e seco de Morroc aconteça porque o Satan Morroc esteve enterrado no subterrâneo por tanto tempo.";
 	next;
-	switch(select("Me conte sobre o deserto.:Parar de conversar")) {
-	case 1:
+	if (select("Me conte sobre o deserto.:Parar de conversar") == 1) {
 		mes "[Phlanette]";
 		mes "Hum... Contarei a você sobre o deserto rapidamente.";
 		mes "Quase não há vegetação no deserto, devido ao baixo índice de chuvas e à baixa umidade do ar.";
@@ -540,20 +531,19 @@ moc_ruins,173,70,4	script	Tio Morroc#moc	48,{
 		mes "[Phlanette]";
 		mes "Mas agora que Satan renasceu, ninguém sabe que mudanças ocorrerão no ciclo de vida dos animais de Morroc.";
 		close;
-	case 2:
-		mes "[Phlanette]";
-		mes "Aqui e ali!";
-		mes "Areia por todos os lados!";
-		mes "Ah, eu vou amaldiçoar o deserto de Morroc!";
-		mes "Droga!";
-		next;
-		mes "[Phlanette]";
-		mes "Mas mesmo odiando-o, não queria que tivesse sido completamente destruído...";
-		next;
-		mes "[Phlanette]";
-		mes "Por que só percebemos o valor das coisas quando as perdemos?";
-		close;
 	}
+	mes "[Phlanette]";
+	mes "Aqui e ali!";
+	mes "Areia por todos os lados!";
+	mes "Ah, eu vou amaldiçoar o deserto de Morroc!";
+	mes "Droga!";
+	next;
+	mes "[Phlanette]";
+	mes "Mas mesmo odiando-o, não queria que tivesse sido completamente destruído...";
+	next;
+	mes "[Phlanette]";
+	mes "Por que só percebemos o valor das coisas quando as perdemos?";
+	close;
 }
 
 moc_fild16,199,212,4	script	 Tio Assassino#moc	55,{
@@ -566,8 +556,7 @@ moc_fild16,199,212,4	script	 Tio Assassino#moc	55,{
 	mes "nunca olhamos";
 	mes "nossos alvos nos olhos.";
 	next;
-	switch(select("Sobre Assassinos:Parar de conversar")) {
-	case 1:
+	if (select("Sobre Assassinos:Parar de conversar") == 1) {
 		mes "[Hashisid]";
 		mes "Bem, então...";
 		mes "Vou te contar sobre eles!";
@@ -588,32 +577,31 @@ moc_fild16,199,212,4	script	 Tio Assassino#moc	55,{
 		mes "e usamos nossa astúcia para adquirir conhecimento";
 		mes "pelo bem de Rune-Midgard.";
 		close;
-	case 2:
-		mes "[Hashisid]";
-		mes "Muito tempo atrás";
-		mes "nossos ancestrais fumavam";
-		mes "um tipo de tabaco chamado 'Hashish'";
-		mes "antes de irem cumprir suas missões.";
-		mes "Entretanto, não fazemos mais isso,";
-		mes "já que insetos e monstros são";
-		mes "muito sensíveis ao cheiro.";
-		next;
-		mes "[Hashisid]";
-		mes "É estritamente proibido";
-		mes "fumar ou comer";
-		mes "algo que tenha";
-		mes "cheiro forte...";
-		mes "Se alguma vez";
-		mes "você tentar comer esses";
-		mes "pedacinhos de alho com cebola,";
-		next;
-		mes "[Hashisid]";
-		mes "e tentar se esconder";
-		mes "para caçar lobos,";
-		mes "acredite, você";
-		mes "será cortado em pedaços.";
-		close;
 	}
+	mes "[Hashisid]";
+	mes "Muito tempo atrás";
+	mes "nossos ancestrais fumavam";
+	mes "um tipo de tabaco chamado 'Hashish'";
+	mes "antes de irem cumprir suas missões.";
+	mes "Entretanto, não fazemos mais isso,";
+	mes "já que insetos e monstros são";
+	mes "muito sensíveis ao cheiro.";
+	next;
+	mes "[Hashisid]";
+	mes "É estritamente proibido";
+	mes "fumar ou comer";
+	mes "algo que tenha";
+	mes "cheiro forte...";
+	mes "Se alguma vez";
+	mes "você tentar comer esses";
+	mes "pedacinhos de alho com cebola,";
+	next;
+	mes "[Hashisid]";
+	mes "e tentar se esconder";
+	mes "para caçar lobos,";
+	mes "acredite, você";
+	mes "será cortado em pedaços.";
+	close;
 }
 
 moc_fild16,211,254,4	script	Assassino#07rhea_30	118,{
@@ -757,12 +745,12 @@ moc_fild16,195,281,4	script	Guardião Assassino#1::SinGuard	707,{
 		mes "Bem-vindo.";
 		close;
 	}
-	set .@temp, rand(1,4);
-	if(.@temp == 1) mes "........";
-	if(.@temp == 2) mes "Hmmm..........";
-	if(.@temp == 3) mes "Hmmm... você não devia estar aqui.....";
-	if(.@temp == 4) mes "Você está entrando em terras proibidas.......";
-	close;
+	switch(rand(3)) {
+	case 0: mes "........"; close;
+	case 1: mes "Hmmm.........."; close;
+	case 2: mes "Hmmm... você não devia estar aqui....."; close;
+	case 3: mes "Você está entrando em terras proibidas......."; close;
+	}
 }
 
 moc_fild16,204,281,4	duplicate(SinGuard)	Guardião Assassino#2	707
@@ -772,4 +760,3 @@ moc_fild16,200,231,4	duplicate(SinGuard)	Guardião Assassino#5	707
 moc_fild16,211,231,4	duplicate(SinGuard)	Guardião Assassino#6	707
 moc_fild16,200,257,4	duplicate(SinGuard)	Guardião Assassino#7	707
 moc_fild16,211,257,4	duplicate(SinGuard)	Guardião Assassino#8	707
-

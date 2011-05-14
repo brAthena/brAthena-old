@@ -12,12 +12,13 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 0.9/1.0                                |
+// | Versões eA/brA: 0.9/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: NPCs da Cidade de Rachel                    |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
+// | 1.1 Script Otimizado [Architect]						|
 // \________________________________________________________/
 
 //===== Set 1 ================================================
@@ -148,7 +149,6 @@ rachel,144,243,5	script	Guarda de Cheshrumnir::ChesGuard	934,{
 
 rachel,155,243,3	duplicate(ChesGuard)	Guarda de Cheshrumnir	934
 
-
 rachel,209,198,3	script	Kinos#aru	921,{
 	mes "[Criança]";
 	mes "Se você abrir esta porta, você";
@@ -204,7 +204,6 @@ rachel,268,120,1	script	Guarda de Rachel#1aru::RaGuard	934,{
 }
 
 rachel,125,33,5	duplicate(RaGuard)	Guarda de Rachel#2aru	934
-
 rachel,31,130,3	duplicate(RaGuard)	Guarda de Rachel#3aru	934
 
 rachel,76,77,3	script	Sacerdote de Rachel	927,{
@@ -290,9 +289,9 @@ rachel,206,30,3	script	Sacerdote de Freya#play	920,{
 	mes "fazer para me entreter?";
 	next;
 	if (select("Aqui está uma história engraçada...:Eu vou fazer o que você quer que eu faça.") == 1) {
-		mes "^3355FFVocê contou a ela a primeira";
+		mes "^3355FF*Você contou a ela a primeira";
 		mes "história engraçada que você";
-		mes "pôde lembrar.^000000";
+		mes "pôde lembrar.*^000000";
 		specialeffect2 EF_TALK_FROSTJOKE;
 		next;
 		mes "[Sacerdote de Freya]";
@@ -308,13 +307,17 @@ rachel,206,30,3	script	Sacerdote de Freya#play	920,{
 	mes "seus itens podem fazer...";
 	mes "Oh?! Isto é maravilhoso!";
 	close2;
-	set .@play,rand(1,10);
-	if (.@play == 1) warp "Random",0,0;
-	else if (.@play == 2) warp "Random",0,0;
-	else if (.@play == 3) sc_start SC_SpeedUp1,5000,0;
-	else if (.@play == 4) sc_start SC_SpeedUp1,5000,0;
-	else sc_start SC_SlowDown,5000,0;
-	end;
+	switch (rand(4)) {
+	default:
+		sc_start SC_SlowDown,5000,0;
+		end;
+	case 1:
+		warp "Random",0,0;
+		end;
+	case 2:
+		sc_start SC_SpeedUp1,5000,0;
+		end;
+	}
 }
 
 rachel,197,137,3	script	Bardo#aru	51,{
@@ -682,5 +685,3 @@ airplane,238,54,7	script	Aventureiro	59,{
 	mes "e oferecer a minha ajuda. Hummm, melhor não.";
 	close;
 }
-
-

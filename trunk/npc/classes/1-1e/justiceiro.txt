@@ -12,17 +12,18 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 2.2/1.0                                |
+// | Versões eA/brA: 2.2/1.0a                               |
 // |--------------------------------------------------------|
 // | Descrição: Mudança de Classe para Justiceiro           |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Otimizações no npc [Wolf]                          |
+// | 1.0a Pequenas otimizações [Lord]                       |
 // \________________________________________________________/
 
 que_ng,152,167,3	script	Master Miller	901,{
+	mes "[Master Miller]";
 	if (Upper == 2) {
-		mes "[Master Miller]";
 		mes "Well, aren't you an";
 		mes "adorable little child~";
 		mes "Where's your mommy?";
@@ -31,7 +32,6 @@ que_ng,152,167,3	script	Master Miller	901,{
 		close;
 	}
 	if (Class == Job_Novice) {
-		mes "[Master Miller]";
 		if (JobLevel < 10 || getskilllv("NV_BASIC") < 9) {
 			mes "Interested in becoming";
 			mes "a Gunslinger, eh? You've";
@@ -41,7 +41,6 @@ que_ng,152,167,3	script	Master Miller	901,{
 			mes "and then come back, you hear?";
 			close;
 		}
-		mes "[Master Miller]";
 		if (GUNS_Q == 0) {
 			mes "I'm Miller, a full time";
 			mes "Gunslinger drillmaster, and";
@@ -113,14 +112,12 @@ que_ng,152,167,3	script	Master Miller	901,{
 			close;
 		} else if(GUNS_Q == 5) {
 			if (Skillpoint) {
-				mes "[Master Miller]";
 				mes "Hey, you have leftover";
 				mes "Skill Points. You better";
 				mes "use them all up before you";
 				mes "come and talk to me again.";
 				close;
 			}
-			mes "[Master Miller]";
 			mes "Oh, you've brought a";
 			mes "voucher from Wise Bull Horn?";
 			mes "It's been a while since he's";
@@ -171,7 +168,6 @@ que_ng,152,167,3	script	Master Miller	901,{
 			close;
 		}
 	}else{
-		mes "[Master Miller]";
 		if (Class == Job_Gunslinger) {
 			mes "Oh! Long time, no see,";
 			mes "friend. How have you been?";
@@ -190,8 +186,8 @@ que_ng,152,167,3	script	Master Miller	901,{
 }
 
 payon,184,65,3	script	Wise Bull Horn	866,{
+	mes "[Wise Bull Horn]";
 	if (GUNS_Q == 1) {
-		mes "[Wise Bull Horn]";
 		mes "Hello, young wolf.";
 		mes "What business has";
 		mes "brought you before me?";
@@ -245,7 +241,6 @@ payon,184,65,3	script	Wise Bull Horn	866,{
 		changequest 6020,6021;
 		close;
 	} else if(GUNS_Q == 2) {
-		mes "[Wise Bull Horn]";
 		if (countitem(912) < 3 || countitem(914) < 3 || countitem(1019) < 1 || countitem(935) < 10 || countitem(511) < 3 || countitem(1013) < 3) {
 			mes "I can make a voucher that";
 			mes "will demonstrate your desire";
@@ -287,7 +282,6 @@ payon,184,65,3	script	Wise Bull Horn	866,{
 		mes "I should be finished with it.";
 		close;
 	} else if(GUNS_Q == 3) {
-		mes "[Wise Bull Horn]";
 		mes "Oh, you've arrived just";
 		mes "in time. It's been a while";
 		mes "since I've made one of these vouchers, so I might be a little";
@@ -327,7 +321,6 @@ payon,184,65,3	script	Wise Bull Horn	866,{
 		close;
 	} else if(GUNS_Q == 4) {
 		if (countitem(519) < 1) {
-			mes "[Wise Bull Horn]";
 			mes "I'm an old man that will";
 			mes "soon be reunited with mother";
 			mes "earth. Would you do this old";
@@ -338,7 +331,6 @@ payon,184,65,3	script	Wise Bull Horn	866,{
 		delitem 519,1;	// Milk
 		set GUNS_Q,5;
 		changequest 6023,6024;
-		mes "[Wise Bull Horn]";
 		mes "Oh, thank you for your!";
 		mes "generosity--I see that";
 		mes "you've brought me some";
@@ -365,7 +357,6 @@ payon,184,65,3	script	Wise Bull Horn	866,{
 		mes "Yippee Yippee Yai Yocaiyay~";
 		close;
 	} else if(GUNS_Q == 5) {
-		mes "[Wise Bull Horn]";
 		mes "Please take this voucher";
 		mes "to Miller, the Black Fox, with";
 		mes "my whole hearted approval.";
@@ -380,14 +371,12 @@ payon,184,65,3	script	Wise Bull Horn	866,{
 		mes "Yippee Yippee Yai Yocaiyay~";
 		close;
 	} else if(GUNS_Q == 6) {
-		mes "[Wise Bull Horn]";
 		mes "AAh, long time no see.";
 		mes "I hope that you become";
 		mes "a smart beast, and use";
 		mes "your powers as a Gunslinger to protect what is good and just.";
 		close;
 	} else {
-		mes "[Wise Bull Horn]";
 		mes "Zzzzzz~";
 		mes "^333333*Phew*^000000";
 		close;

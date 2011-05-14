@@ -8,16 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Dye Maker								|
+// | Nome do Script: Criador de Tinturas					|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.4/1.0                                |
+// | Versões eA/brA: 1.4/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição:												|
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Wolf]                            |
+// | 1.1 Script Otimizado [Mark]                            |
 // | - Anotações		   			    					| 
 // \________________________________________________________/
 
@@ -34,7 +35,7 @@ morocc_in,146,99,3	script	Java Dullihan	58,{
 	mes "Uau...";
 	mes "Está um belo dia. Dias como este são perfeitos para fazer as tinturas.";
 	next;
-	switch(select("Conversar:Fazer as tinturas:Cancel")) {
+	switch(select("Conversar:Fazer as tinturas:Cancelar")) {
 	case 1:
 		mes "[Criador de Tintura Java Dullihan]";
 		mes "Er, não tenho muita coisa pra conversar. Mas, Se você quiser que eu conte um pouco da minha vida, eu conto. É um pouco chato e longa, mas gostaria de ouvir?";
@@ -164,12 +165,7 @@ S_MakeDye:
 	}
 	next;
 	mes "[Criador de Tintura Java Dullihan]";
-	switch(getarg(1)) {
-	case 1: mes "Ah! Eu acho que você está com tudo pronto. Gostaria de iniciar o processo?"; break;
-	case 2: mes "Ok! Eu acho que você está com tudo pronto. Gostaria de iniciar o processo?"; break;
-	case 3: mes "Ok! Eu acredito que esteja com tudo pronto. Gostaria de iniciar o processo?"; break;
-	case 4: mes "Ok! Eu acredito que esteja com tudo preparado. Gostaria de iniciar o processo?"; break;
-	}
+	mes "Ok! Eu acredito que esteja com tudo preparado. Gostaria de iniciar o processo?";
 	next;
 	if (select("Criar Tintura:Sair") == 1) {
 		set .@size, getarraysize(.@item);

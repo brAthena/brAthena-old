@@ -83,7 +83,7 @@ veins,166,91,5	script	Morador#ve4	946,{
 
 veins,138,71,5	script	Criança#ve1	941,{
 	mes "[Criança]";
-	mes "EI! Saia daqui!";
+	mes "Ei! Saia daqui!";
 	mes "Você não vê que estou brincando de esconde-esconde?!";
 	mes "Saia antes que eles me achem!";
 	close;

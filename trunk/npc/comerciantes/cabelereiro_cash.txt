@@ -12,87 +12,70 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0                                |
+// | Versões eA/brA: 1.0/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição:	Exchange cash item, New_Style_Coupon, 		|
 // | for new hair styles.									|
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [YuMs]            		        |
+// | 1.1 Script Revisado e Otimizado [Mark]    		        |
 // | - Anotações		   			    					| 
 // \________________________________________________________/
 
 itemmall,19,74,5	script	Cabeleireiro#cash	91,{
 	mes "[Cabeleireiro]";
 	mes "Oi, eu sou Kaniki.";
-	mes "Estou aqui para iniciar uma nova";
-	mes "moda, utilizando os meus"; // uma nova tendência / moda / onda / era | um novo estilo? ( Decidam-se :] )
-	mes "penteados especiais!";
-	mes "Dê-me um ^FF0000Cupom de Corte de Cabelo^000000,"; //de acordo com item_db
+	mes "Estou aqui para iniciar uma nova moda, utilizando os meus penteados especiais!";
+	mes "Dê-me um ^FF0000Cupom de Corte de Cabelo^000000,";
 	mes "que eu mudarei seu cabelo~";
 	next;
 	if (Sex == 1) {
 		mes "[Kaniki]";
-		mes "Eu tenho dois penteados";
-		mes "especiais para os homens, a";
-		mes "Cura de Emergência Permanente"
-		mes "e o Aura de Corte da Lâmina.";
-		mes "'e aura de corte da lâmina.'";
+		mes "Eu tenho dois penteados especiais para os homens, a Cura Emergencial Permanente e o Corte Lâmina de Aura.";
 		next;
 		cutin "hair_m_24.bmp",4;
 		mes "[Kaniki]";
-		mes "Este é o Cura de";
-		mes "Emergência Permanente. É um estilo";
-		mes "novo que eu inventei recentemente.";
+		mes "Este é o Cura Emergêncial Permanente.";
+		mes "É um estilo novo que eu inventei recentemente.";
 		mes "O que você acha? Legal, não?";
 		next;
 		cutin "",255;
 		cutin "hair_m_25.bmp",4;
 		mes "[Kaniki]";
-		mes "Agora este é o Aura";
-		mes "de Corte da Lâmina. Você não";
-		mes "viu nada como isso";
-		mes "antes, não é mesmo?";
+		mes "Agora este é o Corte da Lâmina de Aura.";
+		mes "Você não viu nada como isso antes, não é mesmo?";
 		next;
 		cutin "",255;
 	}else{
 		mes "[Kaniki]";
-		mes "Eu tenho dois novos penteados para";
-		mes "as mulheres, o Assumptio Permanente";
-		mes "e o Trocador de Alma Cortada.";
-		mes "Você quer ver como";
-		mes "esses estilos são?";
+		mes "Eu tenho dois novos penteados para as mulheres, o Assumptio Permanente e o Corte Trocador de Alma.";
+		mes "Você quer ver como esses estilos são?";
 		next;
 		cutin "hair_f_24.bmp",4;
 		mes "[Kaniki]";
-		mes "Este é o Assumptio";
-		mes "Permanente. Ficaria muito bom";
-		mes "em você, não acha?";
+		mes "Este é o Assumptio Permanente.";
+		mes "Ficaria muito bom em você, não acha?";
 		next;
 		cutin "",255;
 		cutin "hair_f_25.bmp",4;
 		mes "[Kaniki]";
-		mes "Em seguida está o Trocador";
-		mes "de Alma Cortada. O que";
-		mes "você acha? Não é legal?";
+		mes "Em seguida está o Corte Trocador de Alma.";
+		mes "O que você acha? Não é legal?";
 		next;
 		cutin "",255;
 	}
 	mes "[Kaniki]";
-	mes "Já decidiu se";
-	mes "vai querer que eu";
-	mes "mude o seu penteado?";
+	mes "Já decidiu se vai querer que eu mude o seu penteado?";
 	next;
 	if(select("Mudar Penteado:Não mude") == 1) {
 		if (countitem(7622) > 0) {
 			mes "[Kaniki]";
-			mes "Excelente, você trouxe";
-			mes "um Cupom de Corte de Cabelo!";
-			mes "Tudo certo, qual";
-			mes "penteado você quer?";
+			mes "Excelente, você trouxe um Cupom de Corte de Cabelo!";
+			mes "Tudo certo, qual penteado você quer?";
 			next;
 			if (Sex == 1) {
-				if(select("Cura de Emergência Permanente:Aura de Corte da Lâmina") == 1) {
+				if(select("Cura Emergêncial Permanente:Corte da Lâmina de Aura") == 1) {
 					delitem 7622,1;	// New_Style_Coupon
 					setlook 1,24;
 				}else{
@@ -100,7 +83,7 @@ itemmall,19,74,5	script	Cabeleireiro#cash	91,{
 					setlook 1,25;
 				}
 			}else{
-				if(select("Assumptio Permanente:Trocador de Alma Cortada") == 1) {
+				if(select("Assumptio Permanente:Corte Trocador de Alma") == 1) {
 					delitem 7622,1;	// New_Style_Coupon
 					setlook 1,24;
 				}else{
@@ -110,25 +93,18 @@ itemmall,19,74,5	script	Cabeleireiro#cash	91,{
 			}
 			mes "[Kaniki]";
 			mes "Pronto! Está pronto!";
-			mes "O que achou do seu";
-			mes "novo corte? Bem, Eu";
-			mes "espero revê-lo. Cuide-se!";
+			mes "O que achou do seu novo corte?";
+			mes "Bem, Eu espero revê-lo. Cuide-se!";
 			close;
 		}else{
 			mes "[Kaniki]";
-			mes "Me desculpe, mas só posso";
-			mes "fornecer meus serviços";
-			mes "se você trouxer um";
-			mes "Cupom de Corte de Cabelo. Por favor, volte";
-			mes "aqui depois que conseguir";
-			mes "um desses cupons, ok?";
+			mes "Me desculpe, mas só posso fornecer meus serviços se você trouxer um Cupom de Corte de Cabelo.";
+			mes "Por favor, volte aqui depois que conseguir um desses cupons, ok?";
 			close;
 		}
 	}
 	mes "[Kaniki]";
 	mes "Sério? Ah, isso é muito ruim.";
-	mes "Bem, se você mudar de idéia";
-	mes "sobre a inovação no seu";
-	mes "cabelo, volte e me avise, ok?";
+	mes "Bem, se você mudar de idéia sobre a inovação no seu cabelo, volte e me avise, ok?";
 	close;
 }

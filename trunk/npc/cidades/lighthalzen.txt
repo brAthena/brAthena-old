@@ -12,12 +12,13 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 2.1/1.0                                |
+// | Versões eA/brA: 2.1/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: NPCs da Cidade de Lighthalzen               |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
+// | 1.1 Script Otimizado e Correção do Cogumelo [Architect]|
 // \________________________________________________________/
 
 lighthalzen,198,285,5	script	Jiwon#zen5	862,{
@@ -438,7 +439,7 @@ lighthalzen,132,103,5	script	Sefith#li_01	734,{
 	mes "Bonito. Inteligente.";
 	mes "Educado. Forte.";
 	mes "Olhar arrebatador.";
-	mes "Níveis de^FFFFFF ^000000 paixão e carisma perfeitamente balanceados.";
+	mes "Níveis de paixão e carisma perfeitamente balanceados.";
 	mes "Tudo o que as garotas querem.";
 	next;
 	mes "[Sefith]";
@@ -868,7 +869,7 @@ lhz_in02,283,276,4	script	Cliente#amano12	815,{
 	mes "quer me chamar para sair ou algo assim?";
 	next;
 	mes "[Sei]";
-	if (Sex == 1) {
+	if (Sex) {	//Testar (Architest)
 		mes "Bem, se ele quiser,";
 		mes "ele não deveria ser mais";
 		mes "corajoso? Ou vocês,";
@@ -1061,8 +1062,8 @@ OnTouch:
 			mes "[Pedinte]";
 			mes "O que você pode ver";
 			mes "e entender talvez não";
-			mes "seja a realidade. Como estrelas, que^FFFFFF ^000000 estão no céu de dia, mas invisíveis.";
-			mes "Devemos ter esperança,^FFFFFF ^000000 mesmo se não tivermos motivo aparente.";
+			mes "seja a realidade. Como estrelas, que estão no céu de dia, mas invisíveis.";
+			mes "Devemos ter esperança, mesmo se não tivermos motivo aparente.";
 			next;
 			mes "[" + strcharinfo(0) + "]";
 			emotion e_dots,1;
@@ -1090,7 +1091,7 @@ OnTouch:
 			mes "em destino. Deixe-me explicar";
 			mes "assim. Eu vivo cada dia,";
 			mes "cada um completando seu";
-			mes "ciclo com milagres de^FFFFFF ^000000 um lado e tragédias do outro.";
+			mes "ciclo com milagres de um lado e tragédias do outro.";
 			next;
 			mes "[Pedinte]";
 			mes "Então cada dia pode ter";
@@ -1110,7 +1111,7 @@ OnTouch:
 			next;
 			mes "[Pedinte]";
 			mes "Levante-se quando cair";
-			mes "e viva com paixão.^FFFFFF ^000000 A capacidade de ocorrerem milagres sempre";
+			mes "e viva com paixão. A capacidade de ocorrerem milagres sempre";
 			mes "estará lá e saiba";
 			mes "que você pode ser um milagre para";
 			mes "alguém. Isso não é lindo?";
@@ -1151,14 +1152,14 @@ OnTouch:
 			mes "é muito produtivo. Como uma";
 			mes "frustração que você pode mandar";
 			mes "embora. Alguém foi grosso com";
-			mes "você ou seu amigo^FFFFFF ^000000 esqueceu seu aniversário? Sem estresse.";
+			mes "você ou seu amigo esqueceu seu aniversário? Sem estresse.";
 			next;
 			mes "[Pedinte]";
 			mes "Não se deixe dominar por";
 			mes "esse tipo de raiva, ou vai";
 			mes "parecer um fracassado. Pense";
 			mes "no quando completo, e se continuar";
-			mes "chateado, reaja apropriadamente.^FFFFFF ^000000 Seja honesto sem machucar ninguém.";
+			mes "chateado, reaja apropriadamente. Seja honesto sem machucar ninguém.";
 			next;
 			mes "[Pedinte]";
 			mes "O segundo tipo de raiva";
@@ -1360,7 +1361,7 @@ lhz_in01,139,40,7	script	Enoz#oz	53,{
 	mes "[Enoz]";
 	mes "Então o livro que eu encomendei";
 	mes "do Reino de Rune-Midgarts";
-	mes "acabou de chegar. É muito^FFFFFF ^000000 bom, é do cara que escreveu";
+	mes "acabou de chegar. É muito bom, é do cara que escreveu";
 	mes "'A Aventura Roda Frog'";
 	mes "anos atrás. Lembra-se?";
 	next;
@@ -1544,12 +1545,7 @@ lhz_in03,192,19,3	script	Haggar#zen1	855,{
 
 lhz_in03,193,25,2	script	Bartender#12	61,{
 	mes "[Tony]";
-	if (Sex) {
-		mes "Ei cara, eu sei que";
-	}
-	else {
-		mes "Ei moça, eu sei que";
-	}
+	mes "Ei  "+(Sex ? "cara":"moça")+", eu sei que";
 	mes "esse lugar é ruim,";
 	mes "praticamente um";
 	mes "gueto, mas nos orgulhamos";
@@ -2392,7 +2388,7 @@ lhz_in01,135,57,3	script	Placa Negra#li	111,{
 }
 
 lhz_in03,100,18,3	script	Rocky#li_house	81,{
-	if (rand(1,2) == 1) {
+	if (rand(2)) {
 		mes "[Rocky]";
 		mes "Woof woof!";
 		close;
@@ -2569,7 +2565,7 @@ lighthalzen,107,107,3	script	Kosit#zen1	869,{
 	mes "regras é a presença de";
 	mes "gangsters que as vezes";
 	mes "entram na cidade. Normalmente";
-	mes "é até tranquilo^FFFFFF ^000000 e tudo. Mas essas regras...";
+	mes "é até tranquilo e tudo. Mas essas regras...";
 	next;
 	mes "[Kosit]";
 	mes "É bom estar seguro,";
@@ -2646,7 +2642,7 @@ lighthalzen,364,282,3	script	Bodger#zen5	870,{
 	mes "Ouvi dizer que as pessoas";
 	mes "da cidade comem refeições";
 	mes "deliciosas oito vezes por";
-	mes "dia! Espero que seja só^FFFFFF ^000000 um exagero. Porque eu";
+	mes "dia! Espero que seja só um exagero. Porque eu";
 	mes "ficaria louco se não fosse...";
 	close;
 }
@@ -2944,7 +2940,6 @@ OnTouch:
 		mes "Juntar... Mais... Dinheiro!";
 		close;
 	}
-	end;
 }
 
 lhz_in01,139,48,7	script	Leimi#mimir	73,{
@@ -2963,7 +2958,7 @@ lhz_in01,139,48,7	script	Leimi#mimir	73,{
 			mes "[Leimi]";
 			mes "Ah, você é um Assassino!";
 			mes "Vocês são tããão fofos!";
-			mes "E tão legais e misteriosos^FFFFFF ^000000 ao mesmo tempo! Eu amo vocês!";
+			mes "E tão legais e misteriosos ao mesmo tempo! Eu amo vocês!";
 		}
 		else {
 			next;
@@ -3137,7 +3132,6 @@ lhz_in02,19,274,2	script	Kudiuu#lhz	851,{
 }
 */
 
-// Lighthalzen Mushroom.
+// Cogumelo de Lighthalzen
 // Don't really understand why it's there, but it's funny regardless.
-lhz_in01,157,54,0,0	monster	Mushroom vermelho	1085,1,120000,100000,0
-
+lhz_in01,157,54,0,0	monster	Cogumelo Vermelho	1085,1,120000,100000,0

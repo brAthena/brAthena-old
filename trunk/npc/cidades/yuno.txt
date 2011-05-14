@@ -240,8 +240,6 @@ yuno,157,205,4	script	Artesão de Juno#juno	54,{
 yuno,150,283,4	script	Soldado de Juno#juno	105,{
 	mes "[Soldado de Juno]";
 	mes "Bem-Vindo a Juno, a cidade da elevação de espírito.";
-
-
 	next;
 	mes "[Soldado de Juno]";
 	mes "Existe aqui perto um monstro chamado de Golem de Lava. Este Golem é feito de um coração de pedra cuja potência foi amplificada por magia.";
@@ -337,11 +335,7 @@ yuno,263,320,4	script	Soldado de Juno#7juno	105,{
 	close;
 }
 
-//===================================OBSERVAÇÃO brAthena================================================================================
-//PROTIMUS - favor verificar se esse npc ainda está ativo no servidor oficial, pois ele só serviria se os dirigíveis não estivessem funcionando.
-//=====CLEYTON===================================================================================================================
-
-
+/* Script removido.
 yuno,142,183,5	script	Representante do Dirigível	100,{
 	mes "[Representante do Dirigível]";
 	mes "Olá, estou aqui para informá-lo";
@@ -394,5 +388,4 @@ S_Warp:
 		close;
 	}
 }
-
-
+*/

@@ -12,7 +12,7 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.1/1.0                                |
+// | Versões eA/brA: 1.1/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: NPC's de Tierra.                            |
 // | - NPC's da Sala de Espera                              |
@@ -20,6 +20,7 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Tyler]                           |
+// | 1.1 Script Otimizado [Devil]                           |
 // | - Anotações                                            | 		   		            
 // \________________________________________________________/
 
@@ -694,7 +695,7 @@ bat_a01,53,377,3	script	Vintenar Guillaume#a01_a	419,{
 				mes "[Axl Rose]";
 				mes "Abençoado Guillaume!";
 				mes "Vamos comemorar o nosso glorioso triunfo!";
-				mes ""+strcharinfo(0)+", isto é um sinal que reflete a nossa vitória.";
+				mes strcharinfo(0)+", isto é um sinal que reflete a nossa vitória.";
 				close2;
 				getitem 7828,3; //BF_Badge1
 			}
@@ -702,7 +703,7 @@ bat_a01,53,377,3	script	Vintenar Guillaume#a01_a	419,{
 				mes "[Axl Rose]";
 				mes "Abençoado Guillaume!";
 				mes "Vamos comemorar o nosso glorioso triunfo!";
-				mes ""+strcharinfo(0)+", isto é um sinal que reflete a nossa vitória.";
+				mes strcharinfo(0)+", isto é um sinal que reflete a nossa vitória.";
 				close2;
 				getitem 7828,.@medal_gap; //BF_Badge1
 			}
@@ -756,7 +757,7 @@ bat_a01,53,377,3	script	Vintenar Guillaume#a01_a	419,{
 				mes "[Axl Rose]";
 				mes "Abençoado Guillaume!";
 				mes "Vamos comemorar o nosso glorioso triunfo!";
-				mes ""+strcharinfo(0)+", isto é um sinal que reflete a nossa vitória.";
+				mes strcharinfo(0)+", isto é um sinal que reflete a nossa vitória.";
 				close2;
 				getitem 7828,3; //BF_Badge1
 			}
@@ -764,7 +765,7 @@ bat_a01,53,377,3	script	Vintenar Guillaume#a01_a	419,{
 				mes "[Axl Rose]";
 				mes "Abençoado Guillaume!";
 				mes "Vamos comemorar o nosso glorioso triunfo!";
-				mes ""+strcharinfo(0)+", isto é um sinal que reflete a nossa vitória.";
+				mes strcharinfo(0)+", isto é um sinal que reflete a nossa vitória.";
 				close2;
 				getitem 7828,.@medal_gap; //BF_Badge1
 			}
@@ -796,7 +797,7 @@ bat_a01,45,19,3	script	Vintenar Croix#a01_b	415,{
 				mes "[Swandery]";
 				mes "Abençoado Croix!";
 				mes "Vamos comemorar a nossa gloriosa vitória!";
-				mes ""+strcharinfo(0)+", isto é um sinal que reflete a nossa vitória.";
+				mes strcharinfo(0)+", isto é um sinal que reflete a nossa vitória.";
 				close2;
 				getitem 7828,.@medal_gap; //BF_Badge1
 			}
@@ -850,7 +851,7 @@ bat_a01,45,19,3	script	Vintenar Croix#a01_b	415,{
 				mes "[Swandery]";
 				mes "Abençoado Croix!";
 				mes "Vamos comemorar a nossa gloriosa vitória!";
-				mes ""+strcharinfo(0)+", isto é um sinal que reflete a nossa vitória.";
+				mes strcharinfo(0)+", isto é um sinal que reflete a nossa vitória.";
 				close2;
 				getitem 7828,3; //BF_Badge1
 			}
@@ -858,7 +859,7 @@ bat_a01,45,19,3	script	Vintenar Croix#a01_b	415,{
 				mes "[Swandery]";
 				mes "Abençoado Croix!";
 				mes "Vamos comemorar a nossa gloriosa vitória!";
-				mes ""+strcharinfo(0)+", isto é um sinal que reflete a nossa vitória.";
+				mes strcharinfo(0)+", isto é um sinal que reflete a nossa vitória.";
 				close2;
 				getitem 7828,.@medal_gap; //BF_Badge1
 			}

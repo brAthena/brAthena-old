@@ -8,11 +8,14 @@
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
+
+	r0466 - 13/05/2011 [Lord]
+	* Corrigido erros em alguns cabeçalhos de npcs.
 	
-	r464 - 14/05/2011 [Protimus]
+	r0465 - 13/05/2011 [Protimus]
 	* Atualizado conforme eAthena 14811.
 
-	r0463 - 14/05/2011 [Protimus]
+	r0463 - 13/05/2011 [Protimus]
 	* Readicionadas modificações de revisões posteriores:
 	* Adicionadas habilidades GC_DARKILLUSION (Passo Sombrio) & GC_WEAPONBLOCKING (Reflexo de Combate).
 	* Adicionada habilidade GC_CROSSIMPACT (Lâminas Retalhadoras).
