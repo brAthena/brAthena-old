@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0470 - 15/05/2011 [Protimus]
+	* Corrigido problema com make ocasionado pela mudança de nome de arquivos na pasta map.
+	- Problemas com compilações resolvido.
+
 	r0466 - 13/05/2011 [Lord]
 	* Enviada algumas traduções.
 	* Corrigido erros em alguns cabeçalhos de npcs.
