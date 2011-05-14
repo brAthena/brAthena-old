@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0469 - 15/05/2011 [Protimus]
+	* Otimização do código de GC_WEAPONBLOCKING (Reflexo de Combate).
+	- Havia um if desnecessário, sendo que pode-se usar operadores lógicos.
+
 	r0468 - 15/05/2011 [Protimus]
 	* Adicionadas habilidades:
 	- GC_PHANTOMMENACE (Ameaça Fantasma).
