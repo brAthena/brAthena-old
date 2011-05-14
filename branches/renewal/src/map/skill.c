@@ -975,6 +975,9 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 		if( tsc && !tsc->data[SC_DECREASEAGI] ) 
 			sc_start(bl, SC_ADORAMUS, 100, skilllv, skill_get_time(skillid, skilllv));
 		break;
+	case GC_WEAPONCRUSH:
+		skill_castend_nodamage_id(src,bl,skillid,skilllv,tick,BCT_ENEMY);
+		break;
 	}
 
 	if (md && battle_config.summons_trigger_autospells && md->master_id && md->special_state.ai)
@@ -2039,6 +2042,17 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 	
 	if( damage > 0 && skillid == RK_CRUSHSTRIKE ) 
 			skill_break_equip(src,EQP_WEAPON,10000,BCT_SELF);
+		
+	if( damage > 0 && skillid == GC_VENOMPRESSURE && (sc = status_get_sc(src)) && sc->data[SC_POISONINGWEAPON] )
+	{
+		if( rand()%100 < 70 + 5 * skilllv )
+		{
+			sc_start(bl,sc->data[SC_POISONINGWEAPON]->val2,100,sc->data[SC_POISONINGWEAPON]->val1,
+				skill_get_time(GC_POISONINGWEAPON,sc->data[SC_POISONINGWEAPON]->val1));
+			status_change_end(src,SC_POISONINGWEAPON,-1);
+			clif_skill_nodamage(src,bl,skillid,skilllv,1);				
+		}
+	}
 
 	if (!(flag&2) &&
 		(
@@ -2677,6 +2691,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case RK_WINDCUTTER:
 	case AB_DUPLELIGHT_MELEE:
 	case GC_CROSSIMPACT:
+	case GC_VENOMPRESSURE:
 		skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 
@@ -2876,6 +2891,8 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case NPC_VAMPIRE_GIFT:
 	case RK_IGNITIONBREAK:
 	case AB_JUDEX:
+	case GC_COUNTERSLASH:
+	case GC_ROLLINGCUTTER:
 		if( flag&1 )
 		{	//Recursive invocation
 			// skill_area_temp[0] holds number of targets in area
@@ -3218,6 +3235,17 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 					skill_castend_damage_id(src,bl,GC_CROSSIMPACT,skilllv,tick,flag);
 			}
 
+		}
+		break;
+	case GC_WEAPONCRUSH:
+		{
+			if( sc && sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == GC_WEAPONBLOCKING )
+			{
+				skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
+				status_change_end(src,SC_COMBO,-1);
+			}
+			else if( sd )
+				clif_skill_fail(sd,skillid,0x1f,0,0);
 		}
 		break;
 	case 0:
@@ -3823,6 +3851,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case AB_DUPLELIGHT:
 	case AB_EXPIATIO:
 	case AB_RENOVATIO:
+	case GC_VENOMIMPRESS:
 		clif_skill_nodamage(src,bl,skillid,skilllv,
 			sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv)));
 		break;
@@ -4114,6 +4143,9 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		map_foreachinrange(skill_area_sub, bl, skill_get_splash(skillid, skilllv), splash_target(src), 
 			src, skillid, skilllv, tick, flag|BCT_ENEMY|SD_SPLASH|1, skill_castend_damage_id);
 		break;
+		
+	case GC_COUNTERSLASH:
+		clif_skill_nodamage(src,bl,skillid,skilllv,1);
 
 	case NPC_EARTHQUAKE:
 	case NPC_VAMPIRE_GIFT:
@@ -4317,6 +4349,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			clif_walkok(sd); // So aegis has to resend the walk ok.
 		break;
 	case AS_CLOAKING:
+	case GC_CLOAKINGEXCEED:
 		if (tsce)
 		{
 			i = status_change_end(bl, type, INVALID_TIMER);
@@ -4636,6 +4669,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case RG_STRIPARMOR:
 	case RG_STRIPHELM:
 	case ST_FULLSTRIP:
+	case GC_WEAPONCRUSH:
 	{
 		unsigned short location = 0;
 		int d = 0;
@@ -4668,6 +4702,9 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		case ST_FULLSTRIP:
 			location = EQP_WEAPON|EQP_SHIELD|EQP_ARMOR|EQP_HELM;
 			break;
+		case GC_WEAPONCRUSH:
+			location = EQP_WEAPON;
+			break;
 		}
 
 		//Special message when trying to use strip on FCP [Jobbie]
@@ -4678,7 +4715,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		}
 
 		//Attempts to strip at rate i and duration d
-		if( (i = skill_strip_equip(bl, location, i, skilllv, d)) || skillid != ST_FULLSTRIP )
+		if( (i = skill_strip_equip(bl, location, i, skilllv, d)) || skillid != ST_FULLSTRIP || skillid != GC_WEAPONCRUSH )
 			clif_skill_nodamage(src,bl,skillid,skilllv,i);
 
 		//Nothing stripped.
@@ -6116,6 +6153,45 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 
 		break;
 		
+	case GC_ANTIDOTE:
+		clif_skill_nodamage(src,bl,skillid,skilllv,1);
+		if( !tsc ) 
+			break;
+		if( tsc->data[SC_PARALYSE] )
+			status_change_end(bl,SC_PARALYSE,-1);
+		if( tsc->data[SC_PYREXIA] )
+			status_change_end(bl,SC_PYREXIA,-1);
+		if( tsc->data[SC_DEATHHURT] )
+			status_change_end(bl,SC_DEATHHURT,-1);
+		if( tsc->data[SC_LEECHESEND] )
+			status_change_end(bl,SC_LEECHESEND,-1);
+		if( tsc->data[SC_VENOMBLEED] )
+			status_change_end(bl,SC_VENOMBLEED,-1);
+		if( tsc->data[SC_MAGICMUSHROOM] )
+			status_change_end(bl,SC_MAGICMUSHROOM,-1);
+		if( tsc->data[SC_TOXIN] )
+			status_change_end(bl,SC_TOXIN,-1);
+		if( tsc->data[SC_OBLIVIONCURSE] )
+			status_change_end(bl,SC_OBLIVIONCURSE,-1);
+		break;
+		
+	case GC_ROLLINGCUTTER:
+		{
+			short count = 1;
+			skill_area_temp[2] = 0;
+			map_foreachinrange(skill_area_sub,src,skill_get_splash(skillid,skilllv),BL_CHAR,src,skillid,skilllv,tick,flag|BCT_ENEMY|SD_PREAMBLE|SD_SPLASH|1,skill_castend_damage_id);
+			if( tsc && tsc->data[SC_ROLLINGCUTTER] )
+			{ 
+				count += (short)tsc->data[SC_ROLLINGCUTTER]->val1;
+				if( count > 10 )
+					count = 10; 
+				status_change_end(bl,SC_ROLLINGCUTTER,-1);
+			}
+			sc_start(bl,SC_ROLLINGCUTTER,100,count,skill_get_time(skillid,skilllv));
+			clif_skill_nodamage(src,src,skillid,skilllv,1);
+		}
+		break;
+		
 	default:
 		ShowWarning("skill_castend_nodamage_id: Habilidade desconhecida usada:%d\n",skillid);
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
@@ -7005,6 +7081,12 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 		}
 		break;
 		
+	case RK_DRAGONBREATH:
+		i = skill_get_splash(skillid,skilllv);
+		map_foreachinarea(skill_area_sub,src->m,x-i,y-i,x+i,y+i,BL_CHAR,
+			src,skillid,skilllv,tick,flag|BCT_ENEMY|1,skill_castend_damage_id);
+		break;	
+		
 	case AB_EPICLESIS:
 		if( sg = skill_unitsetting(src, skillid, skilllv, x, y, 0) )
 		{
@@ -7013,11 +7095,18 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 		}
 		break;
 		
-	case RK_DRAGONBREATH:
-		i = skill_get_splash(skillid,skilllv);
-		map_foreachinarea(skill_area_sub,src->m,x-i,y-i,x+i,y+i,BL_CHAR,
-			src,skillid,skilllv,tick,flag|BCT_ENEMY|1,skill_castend_damage_id);
-		break;	
+	case GC_POISONSMOKE:
+	case GC_VENOMPRESSURE:
+		if( !(sc && sc->data[SC_POISONINGWEAPON]) )
+		{
+			if( sd )
+				clif_skill_fail(sd,skillid,0x20,0,0);
+			return 0;
+		}
+		clif_skill_damage(src,src,tick,status_get_amotion(src),0,-30000,1,skillid,skilllv,6);
+		skill_unitsetting(src, skillid, skilllv, x, y, flag);
+		status_change_end(src,SC_POISONINGWEAPON,-1);
+		break;
 
 	default:
 		ShowWarning("skill_castend_pos2: Habilidade desconhecida usada:%d\n",skillid);
@@ -7503,7 +7592,15 @@ struct skill_unit_group* skill_unitsetting (struct block_list *src, short skilli
 
 		break;
 		}
+
+	case GC_POISONSMOKE:
+		if( !(sc && sc->data[SC_POISONINGWEAPON]) )
+			return NULL;
+		val1 = sc->data[SC_POISONINGWEAPON]->val2;
+		limit = 4000 + 2000 * skilllv;
+		break;
 	}
+
 
 	nullpo_retr(NULL, group=skill_initunitgroup(src,layout->count,skillid,skilllv,skill_get_unit_id(skillid,flag&1)+subunt, limit, interval));
 	group->val1=val1;
@@ -8252,6 +8349,17 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 			else if( battle_check_target(ss, bl, BCT_ENEMY) > 0 && battle_check_undead(tstatus->race, tstatus->def_ele) )
 				skill_castend_damage_id(&src->bl, bl, sg->skill_id, sg->skill_lv, 0, 0);
 				
+			break;
+			
+		case UNT_POISONSMOKE:
+			if( battle_check_target(ss,bl,BCT_ENEMY) > 0 )
+			{
+				if( !(tsc && tsc->data[sg->val1]) )
+				{
+					if( rand()%100 < 20 )
+						sc_start(bl,sg->val1,100,sg->skill_lv,skill_get_time(GC_POISONINGWEAPON,sg->skill_lv));
+				}
+			}
 			break;
 	}
 
@@ -9066,6 +9174,21 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 		{
 				clif_skill_fail(sd,skill,0,0,0);
 				return 0;
+		}
+		break;
+	case GC_COUNTERSLASH:
+	case GC_WEAPONCRUSH:
+		if(!(sc && sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == GC_WEAPONBLOCKING) )
+		{
+			clif_skill_fail(sd, skill, 0x1f, 0, 0);
+			return 0;
+		}
+		break;
+	case GC_POISONSMOKE:
+		if( !(sc && sc->data[SC_POISONINGWEAPON]) )
+		{
+			clif_skill_fail(sd, skill, 0x20, 0, 0);
+			return 0;
 		}
 		break;
 	}

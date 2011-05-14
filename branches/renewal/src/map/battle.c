@@ -269,6 +269,8 @@ int battle_attr_fix(struct block_list *src, struct block_list *target, int damag
 	{
 		if( tsc->data[SC_ORATIO] && atk_elem == ELE_HOLY )
 			ratio += tsc->data[SC_ORATIO]->val1 * 2;
+		if( tsc->data[SC_VENOMIMPRESS] && atk_elem == ELE_POISON)
+			ratio += tsc->data[SC_VENOMIMPRESS]->val2;
 	}
 	return damage*ratio/100;
 }
@@ -1298,6 +1300,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				if(sd && pc_checkskill(sd,AS_SONICACCEL)>0)
 					hitrate += hitrate * 50 / 100;
 				break;
+			case GC_VENOMPRESSURE:
+				hitrate += 10 + 4 * skill_lv;
+				break;
 		}
 
 		// Weaponry Research hidden bonus
@@ -1787,6 +1792,12 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					break;
 				case GC_CROSSIMPACT:
 					skillratio += 1050 + 50 * skill_lv;
+					break;
+				case GC_COUNTERSLASH:
+					skillratio += 300 + (100 * skill_lv) + status_get_agi(src);
+					break;
+				case GC_ROLLINGCUTTER:
+					skillratio += 20 * skill_lv;
 					break;
 			}
 
@@ -3248,6 +3259,9 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 		
 	if (sc && sc->data[SC_CAMOUFLAGE] && !(sc->data[SC_CAMOUFLAGE]->val3&2))
 		status_change_end(src,SC_CAMOUFLAGE, INVALID_TIMER);
+		
+	if (sc && sc->data[SC_CLOAKINGEXCEED] && !(sc->data[SC_CLOAKINGEXCEED]->val4&2))
+		status_change_end(src,SC_CLOAKINGEXCEED,-1);
 
 	if( tsc && tsc->data[SC_AUTOCOUNTER] && status_check_skilluse(target, src, KN_AUTOCOUNTER, 1) )
 	{
