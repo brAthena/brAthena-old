@@ -506,6 +506,7 @@ extern struct Battle_Config
 	int rune_produce_rate;
 	int warg_can_falcon;
 	int pc_camouflage_check_type;
+	int metallicsound_spburn_rate;
 
 } battle_config;
 

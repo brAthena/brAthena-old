@@ -2064,6 +2064,9 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 			clif_skill_nodamage(src,bl,skillid,skilllv,1);				
 		}
 	}
+	
+	if ( skillid == WM_METALICSOUND )
+		status_zap(bl, 0, damage*battle_config.metallicsound_spburn_rate/(100*(110-pc_checkskill(sd,WM_LESSON)*10)));
 
 	if (!(flag&2) &&
 		(
@@ -3067,6 +3070,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case AB_DUPLELIGHT_MAGIC:
 	case AB_RENOVATIO:
 	case AB_HIGHNESSHEAL:
+	case WM_METALICSOUND:
 		skill_attack(BF_MAGIC,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 
@@ -7258,7 +7262,6 @@ int skill_castend_map (struct map_session_data *sd, short skill_num, const char 
 		sd->sc.data[SC_ROKISWEIL] ||
 		sd->sc.data[SC_AUTOCOUNTER] ||
 		sd->sc.data[SC_STEELBODY] ||
-		sd->sc.data[SC_DANCING] ||
 		sd->sc.data[SC_BERSERK] ||
 		sd->sc.data[SC_BASILICA] ||
 		sd->sc.data[SC_DEATHBOUND] ||

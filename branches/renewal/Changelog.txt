@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0482 - 15/05/2011 [Protimus]
+	* Adicionadas habilidades:
+	- WM_LESSON (Domínio Musical).
+	- WM_METALICSOUND (Ruído Estridente).
+
 	r0481 - 15/05/2011 [Protimus]
 	* Adicionadas habilidades:
 	- WA_SYMPHONY_OF_LOVER (Balada Sinfônica).

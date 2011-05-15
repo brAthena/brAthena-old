@@ -2687,6 +2687,9 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 					case AB_DUPLELIGHT_MAGIC:
 						skillratio += 100 + 20 * skill_lv;
 						break;
+					case WM_METALICSOUND:
+						skillratio += 120 * skill_lv + 60 * pc_checkskill(sd, WM_LESSON) - 100;
+						break;
 				}
 
 				MATK_RATE(skillratio);

@@ -2326,6 +2326,8 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 		status->int_ += (skill+1)/2; // +1 INT / 2 lv
 	if((skill=pc_checkskill(sd,AC_OWL))>0)
 		status->dex += skill;
+	if( (skill = pc_checkskill(sd,WM_LESSON)) > 0 )
+		status->max_sp += 30 * skill;
 
 	// Bonuses from cards and equipment as well as base stat, remember to avoid overflows.
 	i = status->str + sd->status.str + sd->param_bonus[0] + sd->param_equip[0];
@@ -2864,6 +2866,8 @@ void status_calc_regen(struct block_list *bl, struct status_data *status, struct
 		if( (skill=pc_checkskill(sd,NJ_NINPOU)) > 0 )
 			val += skill*3 + skill*status->max_sp/500;
 		sregen->sp = cap_value(val, 0, SHRT_MAX);
+		if( (skill=pc_checkskill(sd,WM_LESSON)) > 0 )
+			val += 3 + 3 * skill;
 
 		// Skill-related recovery (only when sit)
 		sregen = regen->ssregen;
