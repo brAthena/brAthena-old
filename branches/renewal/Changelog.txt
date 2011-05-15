@@ -9,6 +9,13 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0476 - 15/05/2011 [Protimus]
+	* Adicionada correção de segurança para o uso do clif_parse_SelectArrow com algumas habilidades.
+	* Adicionada habilidade: 
+	- GC_POISONINGWEAPON (Aplicar Toxina).
+	* Correções para GC_VENOMPRESSURE (Intoxicar).
+	- Puxando com skill_get_time2 ao invés de skill_get_time.
+
 	r0475 - 15/05/2011 [Protimus]
 	* Adicionadas habilidades:
 	- GC_RESEARCHNEWPOISON (Pesquisa de Toxinas).

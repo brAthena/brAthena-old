@@ -261,6 +261,7 @@ void clif_refreshlook(struct block_list *bl,int id,int type,int val,enum send_ta
 int clif_arrowequip(struct map_session_data *sd,int val); //self
 int clif_arrow_fail(struct map_session_data *sd,int type); //self
 int clif_arrow_create_list(struct map_session_data *sd);	//self
+int clif_poison_list(struct map_session_data *sd, int skill_lv);
 int clif_statusupack(struct map_session_data *,int,int,int);	// self
 int clif_equipitemack(struct map_session_data *,int,int,int);	// self
 int clif_unequipitemack(struct map_session_data *,int,int,int);	// self

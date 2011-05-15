@@ -2983,6 +2983,45 @@ int clif_statusupack(struct map_session_data *sd,int type,int ok,int val)
 }
 
 /*==========================================
+ * Lista de poções do Sicário
+ *------------------------------------------*/
+int clif_poison_list(struct map_session_data *sd, int skill_lv)
+{
+	int i, c;
+	int fd;
+
+	nullpo_ret(sd);
+
+	fd = sd->fd;
+	WFIFOHEAD(fd, 8 * 8 + 8);
+	WFIFOW(fd,0) = 0x1ad; 
+
+	for( i = 0, c = 0; i < MAX_INVENTORY; i ++ )
+	{
+		if( itemdb_is_poison(sd->status.inventory[i].nameid) )
+		{ 
+			WFIFOW(fd, c * 2 + 4) = sd->status.inventory[i].nameid;
+			c ++;
+		}
+	}
+	if( c > 0 )
+	{
+		sd->menuskill_id = GC_POISONINGWEAPON;
+		sd->menuskill_val = c;
+		sd->menuskill_itemused = skill_lv;
+		WFIFOW(fd,2) = c * 2 + 4;
+		WFIFOSET(fd, WFIFOW(fd, 2));
+	}
+	else
+	{
+		clif_skill_fail(sd,GC_POISONINGWEAPON,0x2b,0,0);
+		return 0;
+	}
+
+	return 1;
+}
+
+/*==========================================
  *
  *------------------------------------------*/
 int clif_equipitemack(struct map_session_data *sd,int n,int pos,int ok)
@@ -10360,7 +10399,7 @@ void clif_parse_ItemIdentify(int fd,struct map_session_data *sd)
  *------------------------------------------*/
 void clif_parse_SelectArrow(int fd,struct map_session_data *sd)
 {
-	if (sd->menuskill_id != AC_MAKINGARROW)
+	if (sd->menuskill_id != AC_MAKINGARROW && sd->menuskill_id != GC_POISONINGWEAPON && sd->menuskill_id != WL_READING_SB && sd->menuskill_id != NC_MAGICDECOY)
 		return;
 	if (pc_istrading(sd)) {
 	//Make it fail to avoid shop exploits where you sell something different than you see.

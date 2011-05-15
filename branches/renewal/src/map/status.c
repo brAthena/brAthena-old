@@ -6534,6 +6534,9 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_ROLLINGCUTTER:
 			val_flag |= 1;
 			break;
+		case SC_POISONINGWEAPON:
+			val_flag |= 1|2|4;
+			break;
 		case SC_ELECTRICSHOCKER:
 		case SC_CRYSTALIZE:
 			val4 = tick / 1000;

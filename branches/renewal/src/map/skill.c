@@ -2048,12 +2048,12 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 	if( damage > 0 && skillid == RK_CRUSHSTRIKE ) 
 			skill_break_equip(src,EQP_WEAPON,10000,BCT_SELF);
 		
-	if( damage > 0 && skillid == GC_VENOMPRESSURE && (sc = status_get_sc(src)) && sc->data[SC_POISONINGWEAPON] )
+	if( damage > 0 && skillid == GC_VENOMPRESSURE )
 	{
-		if( rand()%100 < 70 + 5 * skilllv )
+		struct status_change *ssc = status_get_sc(src);
+		if( ssc && ssc->data[SC_POISONINGWEAPON] && rand()%100 < 70 + 5*skilllv )
 		{
-			sc_start(bl,sc->data[SC_POISONINGWEAPON]->val2,100,sc->data[SC_POISONINGWEAPON]->val1,
-				skill_get_time(GC_POISONINGWEAPON,sc->data[SC_POISONINGWEAPON]->val1));
+			sc_start(bl,ssc->data[SC_POISONINGWEAPON]->val2,100,ssc->data[SC_POISONINGWEAPON]->val1,skill_get_time2(GC_POISONINGWEAPON,ssc->data[SC_POISONINGWEAPON]->val1));
 			status_change_end(src,SC_POISONINGWEAPON,-1);
 			clif_skill_nodamage(src,bl,skillid,skilllv,1);				
 		}
@@ -6237,6 +6237,14 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			clif_skill_nodamage(src, bl, skillid, skilllv, 1);
 		}
 		break;
+
+	case GC_POISONINGWEAPON:
+		if( sd )
+		{
+			clif_poison_list(sd,skilllv);
+			clif_skill_nodamage(src,bl,skillid,skilllv,1);
+		}
+		break;
 		
 	default:
 		ShowWarning("skill_castend_nodamage_id: Habilidade desconhecida usada:%d\n",skillid);
@@ -7650,7 +7658,8 @@ struct skill_unit_group* skill_unitsetting (struct block_list *src, short skilli
 	case GC_POISONSMOKE:
 		if( !(sc && sc->data[SC_POISONINGWEAPON]) )
 			return NULL;
-		val1 = sc->data[SC_POISONINGWEAPON]->val2;
+		val1 = sc->data[SC_POISONINGWEAPON]->val1; 
+		val2 = sc->data[SC_POISONINGWEAPON]->val2;
 		limit = 4000 + 2000 * skilllv;
 		break;
 	}

@@ -281,7 +281,7 @@ int battle_attr_fix(struct block_list *src, struct block_list *target, int damag
 int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damage *d,int damage,int skill_num,int skill_lv)
 {
 	struct map_session_data *sd = NULL;
-	struct status_change *sc;
+	struct status_change *sc, *tsc;
 	struct status_change_entry *sce;
 	int div_ = d->div_, flag = d->flag;
 
@@ -577,7 +577,15 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 					}
 		}
 	}
-
+	
+	if( tsc && tsc->count )
+		{
+		if( tsc->data[SC_POISONINGWEAPON] && skill_num != GC_VENOMPRESSURE && (flag&BF_WEAPON) && damage > 0 && rand()%100 < tsc->data[SC_POISONINGWEAPON]->val3 )
+			sc_start(bl,tsc->data[SC_POISONINGWEAPON]->val2,100,tsc->data[SC_POISONINGWEAPON]->val1,skill_get_time2(GC_POISONINGWEAPON,tsc->data[SC_POISONINGWEAPON]->val1));
+		if( tsc->data[SC__DEADLYINFECT] && damage > 0 && rand()%100 < 20 )
+			status_change_spread(src, bl);
+		}
+		
 	if (battle_config.pk_mode && sd && bl->type == BL_PC && damage)
   	{
 		if (flag & BF_SKILL) { //Skills get a different reduction than non-skills. [Skotlex]
