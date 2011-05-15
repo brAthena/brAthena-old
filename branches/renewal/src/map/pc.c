@@ -5700,7 +5700,7 @@ int pc_resetskill(struct map_session_data* sd, int flag)
 			i &= ~OPTION_WUG;
 		if( i&OPTION_RIDING_WUG && pc_checkskill(sd, RA_WUGRIDER) )
 			i &= ~OPTION_RIDING_WUG;
-		if( i&OPTION_MADO && (sd->class_ == MAPID_MECHANIC || sd->class_ == MAPID_MECHANIC_T) ) 
+		if( i&OPTION_MADO && pc_checkskill(sd, NC_MADOLICENCE) ) 
 			i &= ~OPTION_MADO;
 
 		if( i != sd->sc.option )
@@ -6632,6 +6632,8 @@ int pc_jobchange(struct map_session_data *sd,int job, int upper)
 		i&=~OPTION_FALCON;
 	if(i&(OPTION_RIDING_DRAGON) && !pc_checkskill(sd, RK_DRAGONTRAINING))
 		i&=~(OPTION_RIDING_DRAGON);
+	if(i&(OPTION_MADO) && !pc_checkskill(sd, NC_MADOLICENCE))
+		i&=~(OPTION_MADO);
 
 	if(i != sd->sc.option)
 		pc_setoption(sd, i);

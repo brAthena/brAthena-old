@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r472 - 14/05/2011 [MiTh]
+	* Adicionada habilidades de Mecanico:
+	- NC_MADOLICENCE (Licença de Pilotagem)
+	- NC_RESEARCHFE (Sabedoria de Efesto)
+
 	r471 - 14/05/2011 [MiTh]
 	* Adicionada habilidade:
 	- NC_TRAININGAXE (Maestria com Machados)

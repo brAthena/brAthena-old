@@ -2525,12 +2525,17 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 	if((skill=pc_checkskill(sd,GS_SINGLEACTION))>0 &&
 		(sd->status.weapon >= W_REVOLVER && sd->status.weapon <= W_GRENADE))
 		status->aspd_rate -= ((skill+1)/2) * 10;
+
 	if(pc_isriding(sd,OPTION_RIDING) && !(sd->class_&JOBL_THIRD))
 		status->aspd_rate += 500 - 100 * pc_checkskill(sd,KN_CAVALIERMASTERY);
+
 	if(pc_isriding(sd,OPTION_RIDING_DRAGON) && (sd->class_&JOBL_THIRD))
-		if ((skill=pc_checkskill(sd,RK_DRAGONTRAINING))>0) {
-			status->aspd_rate += 500-100*pc_checkskill(sd,RK_DRAGONTRAINING);
-		}
+		if ((skill=pc_checkskill(sd,RK_DRAGONTRAINING))>0) 
+			status->aspd_rate += (500-100 * skill);
+
+	if(pc_isriding(sd,OPTION_MADO) && (sd->class_&JOBL_THIRD)
+		&& (skill = pc_checkskill(sd,NC_MADOLICENCE) > 0))
+		status->aspd_rate += (500-100 * skill);
 
 	status->adelay = 2*status->amotion;
 
@@ -2610,7 +2615,11 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 		sd->subrace[RC_DEMON] += skill;
 		sd->subele[ELE_DARK] += skill;
 	}
-
+	if((skill = pc_checkskill(sd,NC_RESEARCHFE)) > 0)
+	{
+		sd->subele[ELE_FIRE] += (skill * 10);
+		sd->subele[ELE_EARTH] += (skill * 10);
+	}
 	if(sc->count){
      	if(sc->data[SC_CONCENTRATE])
 		{	//Update the card-bonus data
