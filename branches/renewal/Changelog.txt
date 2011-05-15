@@ -8,7 +8,10 @@
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
-
+	r474 - 14/05/2011 [MiTh]
+	* Corrigido dano da skill NC_MADOLICENCE
+	- Ajustado para o dano ser igual do iRO;
+	
 	r473 - 14/05/2011 [brn0]
 	* Adicionadas as habilidades:
 	- RA_FIRINGTRAP (Armadilha Incendiária).

@@ -772,6 +772,9 @@ int battle_addmastery(struct map_session_data *sd,struct block_list *target,int 
 	if( (skill = pc_checkskill(sd,NC_RESEARCHFE) > 0 ) && (status->def_ele == ELE_FIRE || status->def_ele == ELE_EARTH) )
 		damage += (skill * 10);
 
+	if( skill = pc_checkskill(sd,NC_MADOLICENCE) > 0)
+		damage += (skill * 15);
+
 	if(type == 0)
 		weapon = sd->weapontype1;
 	else
