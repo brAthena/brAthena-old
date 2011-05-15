@@ -9,6 +9,15 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0481 - 15/05/2011 [Protimus]
+	* Adicionadas habilidades:
+	- WA_SYMPHONY_OF_LOVER (Balada Sinfônica).
+	- MI_RUSH_WINDMILL (Sinfonia dos Ventos).
+	- MI_ECHOSONG (Canção de Balder).
+	- MI_HARMONIZE (Harmonizar).
+	* Correções em WA_SWING_DANCE & WA_MOONLIT_SERENADE.
+	- Agora concede status para o usuário como velocidade no andar, redução de aspd e bônus por level de classe.
+
 	r0480 - 15/05/2011 [Protimus]
 	* Adicionadas habilidades:
 	- WA_SWING_DANCE (Ritmo Contagiante).

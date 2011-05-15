@@ -3528,6 +3528,8 @@ static unsigned short status_calc_str(struct block_list *bl, struct status_chang
 		str = 50;
 	if(sc->data[SC_THURISAZ])
 		str += 30;
+	if(sc->data[SC_HARMONIZE])
+		str += sc->data[SC_HARMONIZE]->val2;
 
 	return (unsigned short)cap_value(str,0,USHRT_MAX);
 }
@@ -3569,6 +3571,8 @@ static unsigned short status_calc_agi(struct block_list *bl, struct status_chang
 		agi = 50;
 	if(sc->data[SC_ADORAMUS])
 		agi -= sc->data[SC_ADORAMUS]->val2;
+	if(sc->data[SC_HARMONIZE])
+		agi += sc->data[SC_HARMONIZE]->val2;
 
 	return (unsigned short)cap_value(agi,0,USHRT_MAX);
 }
@@ -3602,6 +3606,8 @@ static unsigned short status_calc_vit(struct block_list *bl, struct status_chang
 		vit = 50;
 	if(sc->data[SC_LAUDAAGNUS])
 		vit += 4 + sc->data[SC_LAUDAAGNUS]->val1;
+	if(sc->data[SC_HARMONIZE])
+		vit += sc->data[SC_HARMONIZE]->val2;
 
 	return (unsigned short)cap_value(vit,0,USHRT_MAX);
 }
@@ -3641,6 +3647,8 @@ static unsigned short status_calc_int(struct block_list *bl, struct status_chang
 		int_ += ((sc->data[SC_MARIONETTE2]->val4)>>16)&0xFF;
 	if(sc->data[SC_SPIRIT] && sc->data[SC_SPIRIT]->val2 == SL_HIGH && int_ < 50)
 		int_ = 50;
+	if(sc->data[SC_HARMONIZE])
+		int_ += sc->data[SC_HARMONIZE]->val2;
 
 	return (unsigned short)cap_value(int_,0,USHRT_MAX);
 }
@@ -3683,6 +3691,8 @@ static unsigned short status_calc_dex(struct block_list *bl, struct status_chang
 		dex += ((sc->data[SC_MARIONETTE2]->val4)>>8)&0xFF;
 	if(sc->data[SC_SPIRIT] && sc->data[SC_SPIRIT]->val2 == SL_HIGH && dex < 50)
 		dex  = 50;
+	if(sc->data[SC_HARMONIZE])
+		dex += sc->data[SC_HARMONIZE]->val2;
 
 	return (unsigned short)cap_value(dex,0,USHRT_MAX);
 }
@@ -3714,6 +3724,8 @@ static unsigned short status_calc_luk(struct block_list *bl, struct status_chang
 		luk = 50;
 	if(sc->data[SC_LAUDARAMUS])
 		luk += 4 + sc->data[SC_LAUDARAMUS]->val1;
+	if(sc->data[SC_HARMONIZE])
+		luk += sc->data[SC_HARMONIZE]->val2;
 
 	return (unsigned short)cap_value(luk,0,USHRT_MAX);
 }
@@ -4009,6 +4021,8 @@ static signed short status_calc_def2(struct block_list *bl, struct status_change
 			  + def2 * ( sc->data[SC_JOINTBEAT]->val2&BREAK_WAIST ? 25 : 0 ) / 100;
 	if(sc->data[SC_FLING])
 		def2 -= def2 * (sc->data[SC_FLING]->val3)/100;
+	if( sc->data[SC_ECHOSONG] )
+		def2 += def2 * sc->data[SC_ECHOSONG]->val2/100;
 
 	return (short)cap_value(def2,0,SHRT_MAX);
 }
@@ -5561,6 +5575,20 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 	case SC_OTHILA:
 		status_change_end(bl,type,-1); 
 		break;
+	case SC_SWINGDANCE:
+	case SC_SYMPHONYOFLOVER:
+	case SC_MOONLITSERENADE:
+	case SC_RUSHWINDMILL:
+	case SC_ECHOSONG:
+	case SC_HARMONIZE:
+		if( sc->data[type] ) 
+			break;
+		status_change_end(bl,SC_SWINGDANCE,-1);
+		status_change_end(bl,SC_SYMPHONYOFLOVER,-1);
+		status_change_end(bl,SC_MOONLITSERENADE,-1);
+		status_change_end(bl,SC_RUSHWINDMILL,-1);
+		status_change_end(bl,SC_ECHOSONG,-1);
+		status_change_end(bl,SC_HARMONIZE,-1);
 	}
 
 	//Check for overlapping fails
@@ -6600,6 +6628,19 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 				val4 = 1;
 			tick = 1000;
 			break;
+		case SC_SWINGDANCE:
+			val2 = 4 * val1;
+			break;
+		case SC_SYMPHONYOFLOVER:
+		case SC_RUSHWINDMILL:
+		case SC_ECHOSONG:
+			val2 = 6 * val1;
+			val2 += val3; 
+			val2 += (int)(floor(val4*0.2)); 
+			break;
+		case SC_HARMONIZE:
+			val2 = 3 + 2 * val1;
+			break;			
 		default:
 			if( calc_flag == SCB_NONE && StatusSkillChangeTable[type] == 0 && StatusIconChangeTable[type] == 0 )
 			{	//Status change with no calc, no icon, and no skill associated...?
