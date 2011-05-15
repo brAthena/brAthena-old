@@ -308,6 +308,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 	}
 
 	sc = status_get_sc(bl);
+	tsc = status_get_sc(src);
 
 	if( sc && sc->data[SC_INVINCIBLE] && !sc->data[SC_INVINCIBLEOFF] )
 		return 1;

@@ -672,7 +672,17 @@ void initChangeTables(void)
 	StatusIconChangeTable[SC_MERC_SPUP] = SI_MERC_SPUP;
 	StatusIconChangeTable[SC_MERC_HITUP] = SI_MERC_HITUP;
 	
+	
+	// Sicário - Passos de Ilusão & Venenos.
 	StatusIconChangeTable[SC_HALLUCINATIONWALK_POSTDELAY] = SI_HALLUCINATIONWALK_POSTDELAY;
+	StatusIconChangeTable[SC_TOXIN] = SI_TOXIN;
+	StatusIconChangeTable[SC_PARALYSE] = SI_PARALYSE;
+	StatusIconChangeTable[SC_VENOMBLEED] = SI_VENOMBLEED;
+	StatusIconChangeTable[SC_MAGICMUSHROOM] = SI_MAGICMUSHROOM;
+	StatusIconChangeTable[SC_DEATHHURT] = SI_DEATHHURT;
+	StatusIconChangeTable[SC_PYREXIA] = SI_PYREXIA;
+	StatusIconChangeTable[SC_OBLIVIONCURSE] = SI_OBLIVIONCURSE;
+	StatusIconChangeTable[SC_LEECHESEND] = SI_LEECHESEND;
 
 	//Other SC which are not necessarily associated to skills.
 	StatusChangeFlagTable[SC_ASPDPOTION0] = SCB_ASPD;
@@ -5394,6 +5404,14 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			case SC_ROKISWEIL:
 			case SC_FOGWALL:
 			case SC_ADORAMUS:
+			case SC_PYREXIA:
+			case SC_DEATHHURT:
+			case SC_TOXIN:
+			case SC_PARALYSE:
+			case SC_VENOMBLEED:
+			case SC_MAGICMUSHROOM:
+			case SC_OBLIVIONCURSE:
+			case SC_LEECHESEND:
 				return 0;
 		}
 	}
@@ -6549,6 +6567,26 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			val2 = 50 * val1; 
 			val3 = 10 * val1; 
 			val_flag |= 1|2|4;
+			break;
+		case SC_TOXIN:
+			val4 = tick / 10000;
+			tick = 10000;
+			break;
+		case SC_MAGICMUSHROOM:
+			val4 = tick / 4000;
+     		tick = 4000;
+			break;
+		case SC_PYREXIA:
+			val4 = tick / 3000;
+			tick = 3000;
+			break;
+		case SC_LEECHESEND:
+			val4 = tick / 1000;
+			tick = 1000;
+			break;
+		case SC_OBLIVIONCURSE:
+			val4 = tick / 3000;
+			tick = 3000;
 			break;
 		case SC_ELECTRICSHOCKER:
 		case SC_CRYSTALIZE:
@@ -7916,8 +7954,118 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr data)
 			break;
 		sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
 		return 0;
-	}
+	case SC_PYREXIA:
+		if( --(sce->val4) >= 0 )
+		{
+			bool flag;
+			map_freeblock_lock();
+			clif_damage(bl,bl,tick,status_get_amotion(bl),0,100,0,0,0);
+			status_fix_damage(NULL,bl,100,0);
+			flag = !sc->data[type];
+			map_freeblock_unlock();
+			if( !flag )
+			{
+				if( sce->val4 == 10 )
+					sc_start(bl,SC_BLIND,100,sce->val1,30000); 
+				sc_timer_next(3000+tick,status_change_timer,bl->id,data);
+			}
+			return 0;
+		}
+		break;
+	case SC_LEECHESEND:
+		if( --(sce->val4) >= 0 )
+		{
+			bool flag;
+			int damage = status->max_hp/100;
+			if( sd && (sd->status.class_ == JOB_GUILLOTINE_CROSS || sd->status.class_ == JOB_GUILLOTINE_CROSS_T || sd->status.class_ == JOB_BABY_CROSS) )
+				damage += 3 * status->vit;
+			else
+				damage += 7 * status->vit;
+			
+			unit_skillcastcancel(bl,0);
+			
+			map_freeblock_lock();
+			status_zap(bl,damage,0);
+			flag = !sc->data[type];
+			map_freeblock_unlock();
+			if( !flag )
+				sc_timer_next(1000 + tick, status_change_timer, bl->id, data );
+			return 0;
+		}
+		break;
+	case SC_MAGICMUSHROOM:
+		if( --(sce->val4) >= 0 )
+		{
+			bool flag = 0;
+			int damage = status->max_hp * 3 / 100;
+			if( status->hp <= damage )
+				damage = status->hp - 1; 
 
+			if( damage > 0 )
+			{ 
+				map_freeblock_lock();
+				status_zap(bl,damage,0);
+				flag = !sc->data[type]; 
+				map_freeblock_unlock();
+			}
+
+			if( !flag )
+			{ 
+				if( sd )
+				{
+					int mushroom_skillid = 0, i;
+	    			unit_stop_attack(bl);
+					unit_skillcastcancel(bl,1);
+					do
+					{
+						i = rand() % MAX_SKILL_MAGICMUSHROOM_DB;
+						mushroom_skillid = skill_magicmushroom_db[i].skillid;
+					}
+					while( mushroom_skillid == 0 );
+
+					switch( skill_get_casttype(mushroom_skillid) )
+					{ 
+						case CAST_GROUND:
+							skill_castend_pos2(bl,bl->x,bl->y,mushroom_skillid,1,tick,0);
+							break;
+						case CAST_NODAMAGE:
+							skill_castend_nodamage_id(bl,bl,mushroom_skillid,1,tick,0);
+							break;
+						case CAST_DAMAGE:
+							skill_castend_damage_id(bl,bl,mushroom_skillid,1,tick,0);
+							break;
+					}
+				}
+
+				clif_emotion(bl,18);
+				sc_timer_next(4000+tick,status_change_timer,bl->id,data);
+			}
+			return 0;
+		}
+		break;
+	case SC_TOXIN:
+		if( --(sce->val4) >= 0 )
+		{ 
+			bool flag;
+			map_freeblock_lock();
+			clif_damage(bl,bl,tick,status_get_amotion(bl),1,1,0,0,0);
+			status_damage(NULL,bl,1,status->max_sp*3/100,0,16);
+			flag = !sc->data[type];
+			map_freeblock_unlock();
+			if( !flag )
+				sc_timer_next(10000 + tick, status_change_timer, bl->id, data );
+			return 0;
+		}
+		break;
+	case SC_OBLIVIONCURSE:
+		if( --(sce->val4) >= 0 )
+		{
+			clif_emotion(bl,1);	
+			sc_timer_next(3000 + tick, status_change_timer, bl->id, data );
+			return 0;
+		}
+		break;
+	}
 	// default for all non-handled control paths is to end the status
 	return status_change_end( bl,type,tid );
 #undef sc_timer_next

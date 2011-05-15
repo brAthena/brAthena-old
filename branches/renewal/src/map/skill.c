@@ -60,6 +60,7 @@ struct s_skill_db skill_db[MAX_SKILL_DB];
 struct s_skill_produce_db skill_produce_db[MAX_SKILL_PRODUCE_DB];
 struct s_skill_arrow_db skill_arrow_db[MAX_SKILL_ARROW_DB];
 struct s_skill_abra_db skill_abra_db[MAX_SKILL_ABRA_DB];
+struct s_skill_magicmushroom_db skill_magicmushroom_db[MAX_SKILL_MAGICMUSHROOM_DB];
 
 struct s_skill_unit_layout skill_unit_layout[MAX_SKILL_UNIT_LAYOUT];
 int firewall_unit_pos;
@@ -12110,6 +12111,39 @@ int skill_arrow_create (struct map_session_data *sd, int nameid)
 	return 0;
 }
 
+int skill_poisoningweapon( struct map_session_data *sd, int nameid)
+{
+	sc_type type;
+	int t_lv = 0, chance, i;
+	nullpo_ret(sd);
+	if( nameid <= 0 || (i = pc_search_inventory(sd,nameid)) < 0 )
+	{
+		clif_skill_fail(sd,GC_POISONINGWEAPON,0,0,0);
+		return 0;
+	}
+	pc_delitem(sd,i,1,0,0);
+	switch( nameid )
+	{ 
+		case PO_PARALYSE:      type = SC_PARALYSE;      t_lv = 1; break;
+		case PO_PYREXIA:       type = SC_PYREXIA;       t_lv = 2; break;
+		case PO_DEATHHURT:     type = SC_DEATHHURT;     t_lv = 3; break;
+		case PO_LEECHESEND:    type = SC_LEECHESEND;    t_lv = 4; break;
+		case PO_VENOMBLEED:    type = SC_VENOMBLEED;    t_lv = 6; break;
+		case PO_TOXIN:         type = SC_TOXIN;         t_lv = 7; break;
+		case PO_MAGICMUSHROOM: type = SC_MAGICMUSHROOM; t_lv = 8; break;
+		case PO_OBLIVIONCURSE: type = SC_OBLIVIONCURSE; t_lv = 9; break;
+		default:
+			clif_skill_fail(sd,GC_POISONINGWEAPON,0,0,0);
+			return 0;
+	}
+
+	chance = 2 + 2 * sd->menuskill_itemused;
+	sc_start4(&sd->bl,SC_POISONINGWEAPON,100,t_lv,type,chance,0,skill_get_time(GC_POISONINGWEAPON,sd->menuskill_itemused));
+	sd->menuskill_itemused = 0;
+
+	return 0;
+}
+
 /*==========================================
  *
  *------------------------------------------*/
@@ -13087,6 +13121,26 @@ static bool skill_parse_row_abradb(char* split[], int columns, int current)
 	return true;
 }
 
+static bool skill_parse_row_magicmushroomdb(char* split[], int column, int current)
+{
+	int i = atoi(split[0]);
+
+	if( !skill_get_index(i) || !skill_get_max(i) )
+	{
+		ShowError("magicmushroom_db: ID de habilidade %d invalido", i);
+		return false;
+	}
+	if ( !skill_get_inf(i) )
+	{
+		ShowError("magicmushroom_db: Habilidades passivas nao podem ser conjuradas (%d/%s)\n", i, skill_get_name(i));
+		return false;
+	}
+
+	skill_magicmushroom_db[current].skillid = i;
+
+	return true;
+}
+
 static void skill_readdb(void)
 {
 	// init skill db structures
@@ -13109,6 +13163,7 @@ static void skill_readdb(void)
 	sv_readdb(db_path, "produce_db.txt"        , ',',   4,  4+2*MAX_PRODUCE_RESOURCE, MAX_SKILL_PRODUCE_DB, skill_parse_row_producedb);
 	sv_readdb(db_path, "create_arrow_db.txt"   , ',', 1+2,  1+2*MAX_ARROW_RESOURCE, MAX_SKILL_ARROW_DB, skill_parse_row_createarrowdb);
 	sv_readdb(db_path, "abra_db.txt"           , ',',   4,  4, MAX_SKILL_ABRA_DB, skill_parse_row_abradb);
+	sv_readdb(db_path, "magicmushroom_db.txt"  , ',',   1,  1, MAX_SKILL_MAGICMUSHROOM_DB, skill_parse_row_magicmushroomdb);
 }
 
 void skill_reload (void)

@@ -8,6 +8,20 @@
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
+
+	r0479 - 15/05/2011 [Protimus]
+	* Adicionados venenos para o Sicário:
+	- Paralize
+	- Pyrexia
+	- Disheart
+	- Leech Send
+	- Antidote
+	- Venom Bleed
+	- Magic Mushroom
+	- Toxin
+	- Oblivion Curse
+	* Correções para GC_POISONINGWEAPON (Aplicar Toxina).
+	- Adicionado novos códigos para selecionar o tipo de veneno que será aplicado.
 	
 	r0478 - 15/05/2011 [MiTh]
 	* Adicionada habilidades:

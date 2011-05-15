@@ -18,6 +18,7 @@ struct status_change_entry;
 #define MAX_SKILL_ARROW_DB		150
 #define MAX_ARROW_RESOURCE		5
 #define MAX_SKILL_ABRA_DB		350
+#define MAX_SKILL_MAGICMUSHROOM_DB 22
 
 #define MAX_SKILL_LEVEL 100
 
@@ -206,6 +207,17 @@ struct s_skill_abra_db {
 	int per;
 };
 extern struct s_skill_abra_db skill_abra_db[MAX_SKILL_ABRA_DB];
+
+struct s_skill_magicmushroom_db {
+	int skillid;
+};
+
+extern struct s_skill_magicmushroom_db skill_magicmushroom_db[MAX_SKILL_MAGICMUSHROOM_DB];
+
+struct s_skill_reproduce_db {
+	int skillid;
+	int reproduce;
+};
 
 extern int enchant_eff[5];
 extern int deluge_eff[5];
@@ -1549,6 +1561,25 @@ enum {
 	UNT_EARTH_INSIGNIA, //TODO
 
 	UNT_MAX = 0x190
+};
+	
+enum gx_poison {
+	PO_PARALYSE = 12717,
+	PO_LEECHESEND,
+	PO_OBLIVIONCURSE,
+	PO_DEATHHURT,
+	PO_TOXIN,
+	PO_PYREXIA,
+	PO_MAGICMUSHROOM,
+	PO_VENOMBLEED
+};
+
+enum skill_msg {
+  SKMSG_RUNESTONE_OVERCOUNT		=  0x61b,
+  SKMSG_MATERIAL_FAIL			=  0x625,
+  SKMSG_MATERIAL_NO_EXIST		=  0x626,
+  SKMSG_SUCCESS					=  0x627,
+  SKMSG_FAIL_MATERIAL_DESTROY	=  0x628
 };
 
 #endif /* _SKILL_H_ */
