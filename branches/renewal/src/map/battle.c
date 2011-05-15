@@ -2908,13 +2908,11 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 	{
 	case HT_LANDMINE:
 	case MA_LANDMINE:
-		md.damage=(int)((sstatus->dex * (3+status_get_lv(src)/100) * (1+0.0285*sstatus->int_)+50+25*skill_lv-1)*skill_lv);
+		md.damage=(int)((sstatus->dex * (3+status_get_lv(src)/100) * (1+0.0285*sstatus->int_)+50+25*skill_lv-1)*skill_lv + pc_checkskill(sd,RA_RESEARCHTRAP)*40);
 		break;
 	case HT_BLASTMINE:
-		md.damage=(int)((sstatus->dex * (3+status_get_lv(src)/100) * (1+0.0285*sstatus->int_))*skill_lv);
-		break;
 	case HT_CLAYMORETRAP:
-		md.damage=(int)((sstatus->dex * (3+status_get_lv(src)/100) * (1+0.0285*sstatus->int_))*skill_lv);
+		md.damage=(int)((sstatus->dex * (3+status_get_lv(src)/100) * (1+0.0285*sstatus->int_))*skill_lv + pc_checkskill(sd,RA_RESEARCHTRAP)*40);
 		break;
 	case HT_BLITZBEAT:
 	case SN_FALCONASSAULT:
@@ -3617,6 +3615,8 @@ int battle_check_target( struct block_list *src, struct block_list *target,int f
 					case WZ_SIGHTBLASTER:
 					case SM_MAGNUM:
 					case MS_MAGNUM:
+					case RA_DETONATOR:
+					case RA_SENSITIVEKEEN:
 						state |= BCT_ENEMY;
 						strip_enemy = 0;
 						break;

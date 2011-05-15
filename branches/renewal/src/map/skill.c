@@ -203,6 +203,7 @@ static int skill_unit_onplace(struct skill_unit *src,struct block_list *bl,unsig
 static int skill_unit_onleft(int skill_id, struct block_list *bl,unsigned int tick);
 static int skill_unit_effect(struct block_list *bl,va_list ap);
 int skill_blockpc_get(struct map_session_data *sd, int skillid);
+int skill_detonator(struct block_list *bl, va_list ap);
 
 int enchant_eff[5] = { 10, 14, 17, 19, 20 };
 int deluge_eff[5] = { 5, 9, 12, 14, 15 };
@@ -270,6 +271,14 @@ int skill_get_range2 (struct block_list *bl, int id, int lv)
 		if (bl->type == BL_PC)
 			range = skill_get_range(NJ_SHADOWJUMP,pc_checkskill((TBL_PC*)bl,NJ_SHADOWJUMP));
 		break;
+
+		case HT_LANDMINE:		case HT_FREEZINGTRAP:
+		case HT_BLASTMINE:		case HT_CLAYMORETRAP:
+		case RA_CLUSTERBOMB:	case RA_FIRINGTRAP:
+		case RA_ICEBOUNDTRAP:
+			if( bl->type == BL_PC )
+				range += (1 + pc_checkskill((TBL_PC*)bl, RA_RESEARCHTRAP))/2;
+			break;
 	}
 
 	if( !range && bl->type != BL_PC )
@@ -7252,6 +7261,12 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 		status_change_end(src,SC_POISONINGWEAPON,-1);
 		break;
 
+	case RA_DETONATOR:
+		i = skill_get_splash(skillid, skilllv);
+		map_foreachinarea(skill_detonator, src->m, x-i, y-i, x+i, y+i, BL_SKILL, src);
+		clif_skill_damage(src, src, tick, status_get_amotion(src), 0, -30000, 1, skillid, skilllv, 6);
+		break;
+
 	default:
 		ShowWarning("skill_castend_pos2: Habilidade desconhecida usada:%d\n",skillid);
 		return 1;
@@ -10631,6 +10646,47 @@ int skill_greed (struct block_list *bl, va_list ap)
 	if(src->type == BL_PC && (sd=(struct map_session_data *)src) && bl->type==BL_ITEM && (fitem=(struct flooritem_data *)bl))
 		pc_takeitem(sd, fitem);
 
+	return 0;
+}
+
+int skill_detonator(struct block_list *bl, va_list ap)
+{
+	struct skill_unit *unit=NULL;
+	struct block_list *src;
+	int unit_id;
+
+	nullpo_ret(bl);
+	nullpo_ret(ap);
+	src = va_arg(ap,struct block_list *);
+
+	if( bl->type != BL_SKILL || (unit = (struct skill_unit *)bl) == NULL || !unit->group )
+		return 0;
+	if( unit->group->src_id != src->id )
+		return 0;
+
+	unit_id = unit->group->unit_id;
+	switch( unit_id )
+	{
+		case UNT_BLASTMINE:
+		case UNT_SANDMAN:
+		case UNT_CLAYMORETRAP:
+		case UNT_TALKIEBOX:
+		case UNT_CLUSTERBOMB:
+		case UNT_FIRINGTRAP:
+		case UNT_ICEBOUNDTRAP:
+			if( unit_id == UNT_TALKIEBOX ){
+				clif_talkiebox(bl,unit->group->valstr);
+				unit->group->val2 = -1;
+			}
+			else
+				map_foreachinrange(skill_trap_splash,bl,skill_get_splash(unit->group->skill_id,unit->group->skill_lv),unit->group->bl_flag,bl,unit->group->tick);
+
+			clif_changetraplook(bl,unit_id == UNT_FIRINGTRAP ? UNT_DUMMYSKILL : UNT_USED_TRAPS);
+			unit->group->unit_id = UNT_USED_TRAPS;
+			unit->range = -1;
+			unit->group->limit = DIFF_TICK(gettick(),unit->group->tick) + (unit_id==UNT_TALKIEBOX ? 5000:1500);
+			break;
+	}
 	return 0;
 }
 
