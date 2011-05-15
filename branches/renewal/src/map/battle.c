@@ -780,7 +780,7 @@ int battle_addmastery(struct map_session_data *sd,struct block_list *target,int 
 	if( (skill = pc_checkskill(sd,NC_RESEARCHFE) > 0 ) && (status->def_ele == ELE_FIRE || status->def_ele == ELE_EARTH) )
 		damage += (skill * 10);
 
-	if( skill = pc_checkskill(sd,NC_MADOLICENCE) > 0)
+	if( (skill = pc_checkskill(sd,NC_MADOLICENCE) > 0) && (pc_isriding(sd,OPTION_MADO)))
 		damage += (skill * 15);
 
 	if(type == 0)
@@ -1822,6 +1822,14 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio += 60 + 40 * skill_lv;
 					if( sc && sc->data[SC_ROLLINGCUTTER] )
 						skillratio += 25 * sc->data[SC_ROLLINGCUTTER]->val1;
+					break;
+				case NC_AXETORNADO:
+					skillratio += ((200 + (skill_lv * 100) + sstatus->vit ) );
+					skillratio = s_base_level > 99 ? (skillratio * (1/2)) : skillratio;
+					skillratio = sstatus->rhw.ele == ELE_WIND ? ( skillratio * (3/2) ) : skillratio;
+					break;
+				case NC_AXEBOOMERANG:
+					skillratio += (160 + (skill_lv * 40) + sd->inventory_data[EQI_HAND_R]->weight );
 					break;
 			}
 
