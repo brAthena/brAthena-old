@@ -6265,6 +6265,17 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		}
 		break;
 		
+	case WA_SWING_DANCE:
+	case WA_MOONLIT_SERENADE:
+		if( sd == NULL || sd->status.party_id == 0 || (flag & 1) )
+			sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv));
+		else if( sd )
+		{	
+			clif_skill_nodamage(src,bl,skillid,skilllv,1);
+			party_foreachsamemap(skill_area_sub, sd, skill_get_splash(skillid, skilllv), src, skillid, skilllv, tick, flag|BCT_PARTY|1, skill_castend_nodamage_id);
+		}
+		break;
+		
 	default:
 		ShowWarning("skill_castend_nodamage_id: Habilidade desconhecida usada:%d\n",skillid);
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);

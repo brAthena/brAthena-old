@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0480 - 15/05/2011 [Protimus]
+	* Adicionadas habilidades:
+	- WA_SWING_DANCE (Ritmo Contagiante).
+	- WA_MOONLIT_SERENADE (Serenata ao Luar).
+
 	r0479 - 15/05/2011 [Protimus]
 	* Adicionados venenos para o Sicário:
 	- Paralize

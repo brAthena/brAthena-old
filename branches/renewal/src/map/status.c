@@ -1276,7 +1276,12 @@ int status_check_skilluse(struct block_list *src, struct block_list *target, int
 
 		if (sc->data[SC_DANCING] && flag!=2)
 		{
-			if(sc->data[SC_LONGING])
+			if( src->type == BL_PC && skill_num >= WA_SWING_DANCE && skill_num <= WM_UNLIMITED_HUMMING_VOICE )
+			{ 
+				if( pc_checkskill((TBL_PC*)src,WM_LESSON) < 5 )
+					return 0;
+			}
+			else if(sc->data[SC_LONGING])
 			{	//Allow everything except dancing/re-dancing. [Skotlex]
 				if (skill_num == BD_ENCORE ||
 					skill_get_inf2(skill_num)&(INF2_SONG_DANCE|INF2_ENSEMBLE_SKILL)
