@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0483 - 15/05/2011 [Protimus]
+	* Adicionada habilidade:
+	- WM_REVERBERATION (Ressonância).
+
 	r0482 - 15/05/2011 [Protimus]
 	* Adicionadas habilidades:
 	- WM_LESSON (Domínio Musical).

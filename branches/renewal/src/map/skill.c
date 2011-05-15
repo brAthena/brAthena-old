@@ -1873,6 +1873,10 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 		else // the central target doesn't display an animation
 			dmg.dmotion = clif_skill_damage(dsrc,bl,tick, dmg.amotion, dmg.dmotion, damage, dmg.div_, skillid, -2, 5); // needs -2(!) as skill level
 		break;
+	case WM_REVERBERATION_MELEE:
+	case WM_REVERBERATION_MAGIC:
+		dmg.dmotion = clif_skill_damage(src,bl,tick,dmg.amotion,dmg.dmotion,damage,dmg.div_,WM_REVERBERATION,-2,6);
+		break;
 
 	default:
 		if( flag&SD_ANIMATION && dmg.div_ < 2 ) //Disabling skill animation doesn't works on multi-hit.
@@ -2479,6 +2483,20 @@ static int skill_timerskill(int tid, unsigned int tick, int id, intptr data)
 						}
 					}
 					break;
+				case WM_REVERBERATION_MELEE:
+				case WM_REVERBERATION_MAGIC:
+					skill_attack(skill_get_type(skl->skill_id),src, src, target, skl->skill_id, skl->skill_lv, 0, SD_LEVEL);
+					break;
+				case SC_FATALMENACE:
+					if( src == target ) 
+						unit_warp(src, -1, skl->x, skl->y, 3);
+					else
+					{ 
+						short x = skl->x, y = skl->y;
+						map_search_freecell(NULL, target->m, &x, &y, 2, 2, 1);
+						unit_warp(target,-1,x,y,3);
+					}
+					break;
 				default:
 					skill_attack(skl->type,src,src,target,skl->skill_id,skl->skill_lv,tick,skl->flag);
 					break;
@@ -2567,6 +2585,20 @@ static int skill_reveal_trap (struct block_list *bl, va_list ap)
 		//clif_changetraplook(bl, su->group->unit_id);
 		clif_skill_setunit(su);
 		return 1;
+	}
+	return 0;
+}
+
+static int skill_ative_reverberation( struct block_list *bl, va_list ap)
+{
+	struct skill_unit *su = (TBL_SKILL*)bl;
+	if( bl->type != BL_SKILL )
+		return 0;
+	if( su->alive && su->group && su->group->skill_id == WM_REVERBERATION )
+	{
+		clif_changetraplook(bl, UNT_USED_TRAPS);
+		su->limit=DIFF_TICK(gettick(),su->group->tick)+1500;
+		su->group->unit_id = UNT_USED_TRAPS;
 	}
 	return 0;
 }
@@ -2912,6 +2944,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case AB_JUDEX:
 	case GC_COUNTERSLASH:
 	case GC_ROLLINGCUTTER:
+	case WM_REVERBERATION:
 		if( flag&1 )
 		{	//Recursive invocation
 			// skill_area_temp[0] holds number of targets in area
@@ -6933,6 +6966,7 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 	case RA_VERDURETRAP:
 	case RA_FIRINGTRAP:
 	case RA_ICEBOUNDTRAP:
+	case WM_REVERBERATION:
 		flag|=1;//Set flag to 1 to prevent deleting ammo (it will be deleted on group-delete).
 	case GS_GROUNDDRIFT: //Ammo should be deleted right away.
 		skill_unitsetting(src,skillid,skilllv,x,y,0);
@@ -7711,6 +7745,14 @@ struct skill_unit_group* skill_unitsetting (struct block_list *src, short skilli
 		val2 = sc->data[SC_POISONINGWEAPON]->val2;
 		limit = 4000 + 2000 * skilllv;
 		break;
+		
+	case WM_REVERBERATION:
+		interval = limit;
+		val2 = 1;
+	case WM_POEMOFNETHERWORLD:
+		if( map_getcell(src->m, x, y, CELL_CHKLANDPROTECTOR) )
+			return NULL;
+		break;
 	}
 
 
@@ -7801,6 +7843,9 @@ struct skill_unit_group* skill_unitsetting (struct block_list *src, short skilli
 				val1 = 28 -4*val1 -4*val2;
 			if (val1 < 1) val1 = 1;
 			val2 = 0;
+			break;
+		case WM_REVERBERATION:
+			val1 = 1;
 			break;
 		default:
 			if (group->state.song_dance&0x1)
@@ -8504,6 +8549,12 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 				}
 			}
 			break;
+			
+		case UNT_REVERBERATION:
+			clif_changetraplook(&src->bl,UNT_USED_TRAPS);
+			map_foreachinrange(skill_trap_splash,&src->bl, skill_get_splash(sg->skill_id, sg->skill_lv), sg->bl_flag, &src->bl,tick);
+			sg->limit = DIFF_TICK(tick,sg->tick) + 1500;
+			break;
 	}
 
 	if (sg->state.magic_power && sc && !sc->data[SC_MAGICPOWER])
@@ -8733,6 +8784,7 @@ int skill_unit_ondamaged (struct skill_unit *src, struct block_list *bl, int dam
 	case UNT_TALKIEBOX:
 	case UNT_ANKLESNARE:
 	case UNT_ICEWALL:
+	case UNT_REVERBERATION:
 		src->val1-=damage;
 		break;
 	case UNT_BLASTMINE:
@@ -10760,6 +10812,10 @@ static int skill_trap_splash (struct block_list *bl, va_list ap)
 		case UNT_ELECTRICSHOCKER:
 			clif_skill_damage(src,bl,tick,0,0,-30000,1,sg->skill_id,sg->skill_lv,5);
 			break;
+		case UNT_REVERBERATION:
+			skill_attack(BF_WEAPON,ss,src,bl,WM_REVERBERATION_MELEE,sg->skill_lv,tick,0);
+			skill_addtimerskill(ss,tick+200,bl->id,0,0,WM_REVERBERATION_MAGIC,sg->skill_lv,BF_MAGIC,SD_LEVEL);
+			break;
 		default:
 			skill_attack(skill_get_type(sg->skill_id),ss,src,bl,sg->skill_id,sg->skill_lv,tick,0);
 			break;
@@ -11326,6 +11382,19 @@ static int skill_unit_timer_sub (DBKey key, void* data, va_list ap)
 				skill_delunit(unit);
 			}
 			break;
+			
+			case UNT_REVERBERATION:
+				if( unit->val1 <= 0 ) 
+				{
+					skill_delunit(unit);
+					break;
+				}
+				clif_changetraplook(bl,UNT_USED_TRAPS);
+				map_foreachinrange(skill_trap_splash, bl, skill_get_splash(group->skill_id, group->skill_lv), group->bl_flag, bl, tick);
+				group->limit = DIFF_TICK(tick,group->tick) + 1500;
+				unit->limit = DIFF_TICK(tick,group->tick) + 1500;
+				group->unit_id = UNT_USED_TRAPS;
+			break;
 
 			default:
 				skill_delunit(unit);
@@ -11359,6 +11428,10 @@ static int skill_unit_timer_sub (DBKey key, void* data, va_list ap)
 						group->limit = DIFF_TICK(tick, group->tick) + 1500;
 					}
 				}
+				break;
+			case UNT_REVERBERATION:
+				if( unit->val1 <= 0 )
+					unit->limit = DIFF_TICK(tick + 700,group->tick);
 				break;
 		}
 	}

@@ -1016,6 +1016,8 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 	flag.rh=1;
 	flag.weapon=1;
 	flag.infdef=(tstatus->mode&MD_PLANT?1:0);
+	if( !flag.infdef && (target->type == BL_SKILL && ((TBL_SKILL*)target)->group->unit_id == UNT_REVERBERATION) )
+		flag.infdef = 1; 
 
 	//Initial Values
 	wd.type=0; //Normal attack
@@ -1832,6 +1834,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case NC_AXEBOOMERANG:
 					skillratio += (160 + (skill_lv * 40) + sd->inventory_data[EQI_HAND_R]->weight );
 					break;
+				case WM_REVERBERATION_MELEE:
+					skillratio += 200 + 100 * pc_checkskill(sd, WM_REVERBERATION);
+					break;
 			}
 
 			ATK_RATE(skillratio);
@@ -2506,6 +2511,8 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 	//Skill Range Criteria
 	ad.flag |= battle_range_type(src, target, skill_num, skill_lv);
 	flag.infdef=(tstatus->mode&MD_PLANT?1:0);
+	if( !flag.infdef && (target->type == BL_SKILL && ((TBL_SKILL*)target)->group->unit_id == UNT_REVERBERATION) )
+		flag.infdef = 1; 
 
 	switch(skill_num)
 	{
@@ -2689,6 +2696,9 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						break;
 					case WM_METALICSOUND:
 						skillratio += 120 * skill_lv + 60 * pc_checkskill(sd, WM_LESSON) - 100;
+						break;
+					case WM_REVERBERATION_MAGIC:
+						skillratio += 100 * (sd ? pc_checkskill(sd, WM_REVERBERATION) : 1);
 						break;
 				}
 
@@ -3613,7 +3623,7 @@ int battle_check_target( struct block_list *src, struct block_list *target,int f
 					default:
 						return 0;
 				}
-			} else if (su->group->skill_id==WZ_ICEWALL)
+			} else if (su->group->skill_id==WZ_ICEWALL || su->group->skill_id == WM_REVERBERATION)
 			{
 				state |= BCT_ENEMY;
 				strip_enemy = 0;
