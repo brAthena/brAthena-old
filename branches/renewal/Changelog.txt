@@ -8,11 +8,19 @@
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
-	r474 - 14/05/2011 [MiTh]
+
+	r0475 - 15/05/2011 [Protimus]
+	* Adicionadas habilidades:
+	- GC_RESEARCHNEWPOISON (Pesquisa de Toxinas).
+	- GC_CREATENEWPOISON (Criar Toxina).
+	* Modificação em habilidade:
+	- Encantar com Veneno Mortal: Agora está pegando o tempo da habilidade corretamente.
+
+	r0474 - 14/05/2011 [MiTh]
 	* Corrigido dano da skill NC_MADOLICENCE
 	- Ajustado para o dano ser igual do iRO;
 	
-	r473 - 14/05/2011 [brn0]
+	r0473 - 14/05/2011 [brn0]
 	* Adicionadas as habilidades:
 	- RA_FIRINGTRAP (Armadilha Incendiária).
 	- RA_ICEBOUNDTRAP (Armadilha Glacial).
@@ -21,12 +29,12 @@
 	* Corrigida a habilidade:
 	- RA_CAMOUFLAGE (Camuflagem).
 
-	r472 - 14/05/2011 [MiTh]
+	r0472 - 14/05/2011 [MiTh]
 	* Adicionada habilidades de Mecanico:
 	- NC_MADOLICENCE (Licença de Pilotagem)
 	- NC_RESEARCHFE (Sabedoria de Efesto)
 
-	r471 - 14/05/2011 [MiTh]
+	r0471 - 14/05/2011 [MiTh]
 	* Adicionada habilidade:
 	- NC_TRAININGAXE (Maestria com Machados)
 	

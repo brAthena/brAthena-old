@@ -3856,7 +3856,6 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case HW_MAGICPOWER:
 	case PF_MEMORIZE:
 	case PA_SACRIFICE:
-	case ASC_EDP:
 	case PF_DOUBLECASTING:
 	case SG_SUN_COMFORT:
 	case SG_MOON_COMFORT:
@@ -4160,6 +4159,16 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			src,skillid,skilllv,tick, flag|BCT_ENEMY|1,
 			skill_castend_damage_id);
 		status_change_end(src, SC_HIDING, INVALID_TIMER);
+		break;
+		
+	case ASC_EDP:
+		{
+			int time = skill_get_time(skillid,skilllv);
+			if( sd )
+				time += 3000 * pc_checkskill(sd,GC_RESEARCHNEWPOISON);
+			clif_skill_nodamage(src,bl,skillid,skilllv,
+				sc_start(bl,type,100,skilllv,time));
+		}
 		break;
 
 	case ASC_METEORASSAULT:
@@ -6219,6 +6228,14 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
 		map_foreachinrange(skill_area_sub,src,skill_get_splash(skillid,skilllv),BL_CHAR,
 			src,skillid,skilllv,tick,flag|BCT_ENEMY|1,skill_castend_damage_id);
+		break;
+		
+	case GC_CREATENEWPOISON:
+		if( sd )
+		{
+			clif_skill_produce_mix_list(sd,skillid,25);
+			clif_skill_nodamage(src, bl, skillid, skilllv, 1);
+		}
 		break;
 		
 	default:
@@ -11641,6 +11658,9 @@ int skill_produce_mix(struct map_session_data *sd, int skill_id, int nameid, int
 
 	if( !skill_id ) //A skill can be specified for some override cases.
 		skill_id = skill_produce_db[idx].req_skill;
+		
+	if( skill_id == GC_RESEARCHNEWPOISON )
+		skill_id = GC_CREATENEWPOISON;
 
 	slot[0]=slot1;
 	slot[1]=slot2;
@@ -11795,6 +11815,11 @@ int skill_produce_mix(struct map_session_data *sd, int skill_id, int nameid, int
 				qty = temp_qty;
 				sd->menuskill_itemused = sd->menuskill_id = 0;
 				break;
+			case GC_CREATENEWPOISON:
+				skill_lv = pc_checkskill(sd,GC_RESEARCHNEWPOISON);
+				make_per = 3000 + 500 * skill_lv;
+				qty = rand()%(skill_lv+1);
+				break;
 			default:
 				if (sd->menuskill_id ==	AM_PHARMACY &&
 					sd->menuskill_val > 10 && sd->menuskill_val <= 20)
@@ -11944,6 +11969,7 @@ int skill_produce_mix(struct map_session_data *sd, int skill_id, int nameid, int
 					clif_misceffect(&sd->bl,3);
 					break;
 				case RK_RUNEMASTERY:
+				case GC_CREATENEWPOISON:
 					clif_produceeffect(sd,2,nameid);
 					clif_misceffect(&sd->bl,5);
 					break;
@@ -11992,6 +12018,7 @@ int skill_produce_mix(struct map_session_data *sd, int skill_id, int nameid, int
 				clif_misceffect(&sd->bl,2);
 				break;
 			case RK_RUNEMASTERY:
+			case GC_CREATENEWPOISON:
 				clif_produceeffect(sd,3,nameid);
 				clif_misceffect(&sd->bl,6);
 				break;
