@@ -838,6 +838,7 @@ int unit_can_move(struct block_list *bl)
 			|| (sc->data[SC_CAMOUFLAGE] &&
 				sc->data[SC_CAMOUFLAGE]->val1 < 3 && !(sc->data[SC_CAMOUFLAGE]->val3&1))
 			|| sc->data[SC_MADNESSCANCEL]
+			|| sc->data[SC_ELECTRICSHOCKER]
 			|| (sc->data[SC_GRAVITATION] && sc->data[SC_GRAVITATION]->val3 == BCT_SELF)
 			|| (sc->data[SC_FEAR] && sc->data[SC_FEAR]->val2 > 0)
 		))
@@ -1884,6 +1885,7 @@ int unit_remove_map_(struct block_list *bl, clr_type clrtype, const char* file, 
 		status_change_end(bl, SC_STOP, INVALID_TIMER);
 		status_change_end(bl,SC_CAMOUFLAGE, INVALID_TIMER);
 		status_change_end(bl,SC_CLOAKINGEXCEED, INVALID_TIMER);
+		status_change_end(bl, SC_ELECTRICSHOCKER, INVALID_TIMER);
 	}
 
 	if (bl->type&BL_CHAR) {

@@ -1789,6 +1789,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case RK_STORMBLAST:
 					skillratio += -100 + 100 * (sd ? pc_checkskill(sd,RK_RUNEMASTERY) : 1) +  100 * (sstatus->int_ / 4);
 					break;
+				case RA_CLUSTERBOMB:
+					skillratio += 100 + 100*skill_lv;
+					break;
 				case AB_DUPLELIGHT_MELEE:
 					skillratio += 10 * skill_lv;
 					break;
@@ -2965,6 +2968,11 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		if (sd) md.damage += md.damage * 5 * (pc_checkskill(sd,RK_DRAGONTRAINING) -1) / 100;
 		if (status_get_lv(src) > 100) md.damage += md.damage * (s_base_level - 100) / 200;
 		break;
+	case RA_CLUSTERBOMB:
+	case RA_FIRINGTRAP:
+ 	case RA_ICEBOUNDTRAP:
+		md.damage = (s_base_level*2 + (s_base_level/50 + 3)*sstatus->dex + 300)*skill_lv + sstatus->int_*5 + pc_checkskill(sd,RA_RESEARCHTRAP)*40;
+		break;
 	}
 
 	if (nk&NK_SPLASHSPLIT){ // Divide ATK among targets
@@ -3055,7 +3063,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 
 	if(md.damage < 0)
 		md.damage = 0;
-	else if(md.damage && tstatus->mode&MD_PLANT)
+	else if(md.damage && tstatus->mode&MD_PLANT && skill_num != RA_CLUSTERBOMB)
 		md.damage = 1;
 
 	if(!(nk&NK_NO_ELEFIX))
@@ -3067,7 +3075,12 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 	else if( map[target->m].flag.battleground )
 		md.damage=battle_calc_bg_damage(src,target,md.damage,md.div_,skill_num,skill_lv,md.flag);
 
-	if (skill_num == NJ_ZENYNAGE && sd)
+	if (skill_num == RA_CLUSTERBOMB || skill_num == RA_FIRINGTRAP || skill_num == RA_ICEBOUNDTRAP) {
+		struct Damage wd;
+		wd = battle_calc_weapon_attack(src,target,skill_num,skill_lv,mflag);
+		md.damage += wd.damage;
+	}
+	else if (skill_num == NJ_ZENYNAGE && sd)
 	{	//Time to Pay Up.
 		if ( md.damage > sd->status.zeny )
 			md.damage=sd->status.zeny;

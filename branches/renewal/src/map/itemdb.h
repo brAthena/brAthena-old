@@ -19,6 +19,7 @@
 #define ITEMID_ANCILLA 12333
 #define itemid_isgemstone(id) ( (id) >= ITEMID_YELLOW_GEMSTONE && (id) <= ITEMID_BLUE_GEMSTONE )
 #define ITEMID_TRAP 1065
+#define ITEMID_TRAP_ALLOY 7940
 #define ITEMID_STONE 7049
 #define ITEMID_SKULL_ 7420
 #define itemdb_iscashfood(id) ( (id) >= 12202 && (id) <= 12207 )

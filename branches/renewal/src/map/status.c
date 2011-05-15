@@ -3809,10 +3809,12 @@ static signed short status_calc_critical(struct block_list *bl, struct status_ch
 		critical += sc->data[SC_FORTUNE]->val2;
 	if (sc->data[SC_TRUESIGHT])
 		critical += sc->data[SC_TRUESIGHT]->val2;
-	if(sc->data[SC_CLOAKING])
+	if (sc->data[SC_CLOAKING])
 		critical += critical;
 	if (sc->data[SC_SPEARQUICKEN])
 		critical += sc->data[SC_SPEARQUICKEN]->val3;
+	if (sc->data[SC_CAMOUFLAGE])
+		critical += 100;
 
 	return (short)cap_value(critical,10,SHRT_MAX);
 }
@@ -4114,8 +4116,8 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 					val = max( val, sc->data[SC_SUITON]->val3 );
 				if( sc->data[SC_SWOO] )
 					val = max( val, 300 );
-				if( sc->data[SC_CAMOUFLAGE] && (sc->data[SC_CAMOUFLAGE]->val3&1) == 0 )
-					val = max( val, sc->data[SC_CAMOUFLAGE]->val1 < 3 ? 300 : 25 * (6 - sc->data[SC_CAMOUFLAGE]->val1) );
+				if( sc->data[SC_CAMOUFLAGE] && !(sc->data[SC_CAMOUFLAGE]->val3&1) )
+					val = max( val, sc->data[SC_CAMOUFLAGE]->val1<3 ? 300:25*(6 - sc->data[SC_CAMOUFLAGE]->val1) );
 
 				if( sd && sd->speed_rate + sd->speed_add_rate > 0 ) // permanent item-based speedup
 					val = max( val, sd->speed_rate + sd->speed_add_rate );
@@ -4940,6 +4942,15 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 		case SC_ARMORCHANGE:
 			if (sd)
 				tick /= 15;
+		case SC_ELECTRICSHOCKER:
+		case SC_BITE:
+		{
+			if( bl->type == BL_MOB )
+				tick -= 100 * status->agi;
+			if( sd && type != SC_ELECTRICSHOCKER )
+				tick >>= 1;
+		}
+		break;
 		default:
 			//Effect that cannot be reduced? Likely a buff.
 			if (!(rand()%10000 < rate))
@@ -6523,7 +6534,13 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_ROLLINGCUTTER:
 			val_flag |= 1;
 			break;
-
+		case SC_ELECTRICSHOCKER:
+		case SC_CRYSTALIZE:
+			val4 = tick / 1000;
+			if( val4 < 1 )
+				val4 = 1;
+			tick = 1000;
+			break;
 		default:
 			if( calc_flag == SCB_NONE && StatusSkillChangeTable[type] == 0 && StatusIconChangeTable[type] == 0 )
 			{	//Status change with no calc, no icon, and no skill associated...?
@@ -6569,6 +6586,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_ANKLE:
 		case SC_SPIDERWEB:
 		case SC_FEAR:
+		case SC_ELECTRICSHOCKER:
 			unit_stop_walking(bl,1);
 		break;
 		case SC_HIDING:
@@ -7852,15 +7870,19 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr data)
 			return 0;
 		}
 		break;
-	case SC_CAMOUFLAGE:
-		if( --(sce->val2)>0 )
+	case SC_ELECTRICSHOCKER:
+		if( --(sce->val4) >= 0 )
 		{
-			if( !status_charge(bl, 0, 7 - sce->val1) )
-			if( status->sp < 0 ) break;
+			status_charge(bl, 0, status->max_sp/100 * sce->val1 );
 			sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
 			return 0;
 		}
 		break;
+	case SC_CAMOUFLAGE:
+		if( --(sce->val2)<=0 || !status_charge(bl, 0, 7 - sce->val1) )
+			break;
+		sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
+		return 0;
 	case SC_WEAPONBLOCKING:
 		if( --(sce->val4) >= 0 )
 		{
@@ -8005,6 +8027,7 @@ int status_change_clear_buffs (struct block_list* bl, int type)
 			case SC_THURISAZ:
 			case SC_HAGALAZ:
 			case SC_NAUTHIZ:
+			case SC_ELECTRICSHOCKER:
 				continue;
 
 			//Debuffs that can be removed.
