@@ -1727,6 +1727,11 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 			status_heal(bl, 0, sp, 2);
 			clif_skill_nodamage(bl,bl,SA_MAGICROD,sc->data[SC_MAGICROD]->val1,1);
 		}
+			if( (dmg.damage || dmg.damage2) && sc->data[SC_HALLUCINATIONWALK] && rand()%100 < sc->data[SC_HALLUCINATIONWALK]->val3 )
+			{
+				dmg.damage = dmg.damage2 = 0;
+				dmg.dmg_lv = ATK_MISS;
+			}
 	}
 
 	damage = dmg.damage + dmg.damage2;
@@ -2608,7 +2613,6 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	tstatus = status_get_status_data(bl);
 
 	map_freeblock_lock();
-
 	switch(skillid)
 	{
 	case MER_CRASH:
@@ -3328,7 +3332,6 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 
 	int i;
 	enum sc_type type;
-
 	if(skillid > 0 && skilllv <= 0) return 0;	// celest
 
 	nullpo_retr(1, src);
@@ -6222,7 +6225,22 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			clif_skill_nodamage(src,src,skillid,skilllv,1);
 		}
 		break;
-		
+	case GC_HALLUCINATIONWALK:
+		{
+			int heal = status_get_max_hp(bl) / 10;
+			if( status_get_hp(bl) < heal )
+			{ 
+				if( sd ) clif_skill_fail(sd,skillid,0x02,0,0);
+				break;
+			}
+			if( !status_charge(bl,heal,0) )
+			{
+				if( sd ) clif_skill_fail(sd,skillid,0x02,0,0);
+				break;
+			}
+			clif_skill_nodamage(src,bl,skillid,skilllv,sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv)));
+		}
+		break;
 	case GC_PHANTOMMENACE:
 		clif_skill_damage(src,bl,tick, status_get_amotion(src), 0, -30000, 1, skillid, skilllv, 6);
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
@@ -9289,6 +9307,13 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 		if( !(sc && sc->data[SC_ROLLINGCUTTER]) )
 		{
 			clif_skill_fail(sd, skill, 0x17, 0, 0);
+			return 0;
+		}
+		break;
+	case GC_HALLUCINATIONWALK:
+		if( sc && (sc->data[SC_HALLUCINATIONWALK] || sc->data[SC_HALLUCINATIONWALK_POSTDELAY]) )
+		{
+			clif_skill_fail(sd,skill,0x0,0,0);
 			return 0;
 		}
 		break;

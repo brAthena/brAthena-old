@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0477 - 15/05/2011 [Protimus]
+	* Adicionada habilidade:
+	- GC_HALLUCINATIONWALK (Passos da Ilusão).
+
 	r0476 - 15/05/2011 [Protimus]
 	* Adicionada correção de segurança para o uso do clif_parse_SelectArrow com algumas habilidades.
 	* Adicionada habilidade: 

@@ -671,6 +671,8 @@ void initChangeTables(void)
 	StatusIconChangeTable[SC_MERC_HPUP] = SI_MERC_HPUP;
 	StatusIconChangeTable[SC_MERC_SPUP] = SI_MERC_SPUP;
 	StatusIconChangeTable[SC_MERC_HITUP] = SI_MERC_HITUP;
+	
+	StatusIconChangeTable[SC_HALLUCINATIONWALK_POSTDELAY] = SI_HALLUCINATIONWALK_POSTDELAY;
 
 	//Other SC which are not necessarily associated to skills.
 	StatusChangeFlagTable[SC_ASPDPOTION0] = SCB_ASPD;
@@ -728,6 +730,8 @@ void initChangeTables(void)
 	StatusChangeFlagTable[SC_MERC_HPUP] |= SCB_MAXHP;
 	StatusChangeFlagTable[SC_MERC_SPUP] |= SCB_MAXSP;
 	StatusChangeFlagTable[SC_MERC_HITUP] |= SCB_HIT;
+	
+	StatusChangeFlagTable[SC_HALLUCINATIONWALK_POSTDELAY] |= SCB_ASPD|SCB_SPEED;
 
 	if( !battle_config.display_hallucination ) //Disable Hallucination.
 		StatusIconChangeTable[SC_HALLUCINATION] = SI_BLANK;
@@ -3898,6 +3902,8 @@ static signed short status_calc_flee(struct block_list *bl, struct status_change
 		flee += sc->data[SC_SPEARQUICKEN]->val4;
 	if(sc->data[SC_FEAR])
 		flee -= flee * 20 / 100;
+	if( sc->data[SC_HALLUCINATIONWALK] )
+		flee += sc->data[SC_HALLUCINATIONWALK]->val2;
 
 	return (short)cap_value(flee,0,SHRT_MAX);
 }
@@ -4094,7 +4100,7 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 
 				if( sc->data[SC_DECREASEAGI] || sc->data[SC_ADORAMUS] )
 					val = max( val, 25 );
-				if( sc->data[SC_QUAGMIRE] )
+				if( sc->data[SC_QUAGMIRE] || sc->data[SC_HALLUCINATIONWALK_POSTDELAY] )
 					val = max( val, 50 );
 				if( sc->data[SC_DONTFORGETME] )
 					val = max( val, sc->data[SC_DONTFORGETME]->val3 );
@@ -4264,6 +4270,8 @@ static short status_calc_aspd_rate(struct block_list *bl, struct status_change *
 			aspd_rate += 100;
 	if( sc->data[SC_OTHILA] && sc->data[SC_OTHILA]->val2 )
 		aspd_rate -= sc->data[SC_OTHILA]->val2;
+	if( sc->data[SC_HALLUCINATIONWALK_POSTDELAY] )
+		aspd_rate += 500;
 	}
 
 	return (short)cap_value(aspd_rate,0,SHRT_MAX);
@@ -6537,6 +6545,11 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_POISONINGWEAPON:
 			val_flag |= 1|2|4;
 			break;
+		case SC_HALLUCINATIONWALK:
+			val2 = 50 * val1; 
+			val3 = 10 * val1; 
+			val_flag |= 1|2|4;
+			break;
 		case SC_ELECTRICSHOCKER:
 		case SC_CRYSTALIZE:
 			val4 = tick / 1000;
@@ -7268,6 +7281,9 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 			break;
 		case SC_ADORAMUS:
 			status_change_end(bl, SC_BLIND, -1);
+			break;
+		case SC_HALLUCINATIONWALK:
+			sc_start(bl,SC_HALLUCINATIONWALK_POSTDELAY,100,sce->val1,skill_get_time2(GC_HALLUCINATIONWALK,sce->val1));
 			break;
 		}
 
