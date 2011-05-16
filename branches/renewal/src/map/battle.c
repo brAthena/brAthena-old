@@ -1844,9 +1844,8 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 						skillratio += 25 * sc->data[SC_ROLLINGCUTTER]->val1;
 					break;
 				case NC_AXETORNADO:
-					skillratio += ((200 + (skill_lv * 100) + sstatus->vit ) );
-					skillratio = s_base_level > 99 ? (skillratio * (1/2)) : skillratio;
-					skillratio = sstatus->rhw.ele == ELE_WIND ? ( skillratio * (3/2) ) : skillratio;
+					skillratio += 100 + 100 * skill_lv + sstatus->vit;
+					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
 					break;
 				case NC_AXEBOOMERANG:
 					skillratio += (160 + (skill_lv * 40) + sd->inventory_data[EQI_HAND_R]->weight );
@@ -1939,6 +1938,10 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				if(sc && sc->data[SC_SPIRIT] &&
 					sc->data[SC_SPIRIT]->val2 == SL_CRUSADER)
 					ATK_ADDRATE(100);
+				break;
+			case NC_AXETORNADO:
+				if( (sstatus->rhw.ele) == ELE_WIND || (sstatus->lhw.ele) == ELE_WIND )
+					ATK_ADDRATE(50);
 				break;
 		}
 
