@@ -5612,6 +5612,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 	case SC_HARMONIZE:
 	case SC_VOICEOFSIREN:
 	case SC_DEEPSLEEP:
+	case SC_SIRCLEOFNATURE:
 		if( sc->data[type] ) 
 			break;
 		status_change_end(bl,SC_SWINGDANCE,-1);
@@ -5622,6 +5623,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		status_change_end(bl,SC_HARMONIZE,-1);
 		status_change_end(bl,SC_VOICEOFSIREN,-1);
 		status_change_end(bl,SC_DEEPSLEEP,-1);
+		status_change_end(bl,SC_SIRCLEOFNATURE,-1);
 	}
 
 	//Check for overlapping fails
@@ -6681,6 +6683,12 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_DEEPSLEEP:
 			val4 = tick / 2000;
 			tick = 2000;
+			break;		
+		case SC_SIRCLEOFNATURE:
+			val2 = 1 + val1; 
+			val3 = 40 * val1;	
+			val4 = tick / 1000;
+			tick = 1000;
 			break;			
 		default:
 			if( calc_flag == SCB_NONE && StatusSkillChangeTable[type] == 0 && StatusIconChangeTable[type] == 0 )
@@ -8171,6 +8179,18 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr data)
 			return 0;
 		}
 		break;
+		
+	case SC_SIRCLEOFNATURE:
+		if( --(sce->val4) >= 0 )
+		{
+			if( !status_charge(bl,0,sce->val2) )
+				break;
+			status_heal(bl, sce->val3, 0, 1);
+			sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
+			return 0;
+		}
+		break;
+		
 	}
 	// default for all non-handled control paths is to end the status
 	return status_change_end( bl,type,tid );

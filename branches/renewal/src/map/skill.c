@@ -443,6 +443,7 @@ int skillnotok (int skillid, struct map_session_data *sd)
 			}
 			break;
 		case WM_LULLABY_DEEPSLEEP:
+		case WM_SIRCLEOFNATURE:
 			if( !map_flag_vs(m) )
 			{
 				clif_skill_teleportmessage(sd,2); 
@@ -6374,6 +6375,8 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			clif_skill_nodamage(src, bl, skillid, skilllv,sc_start(bl, type, 100, skilllv, skill_get_time(skillid,skilllv)));
 		break;
 		
+	case WM_SIRCLEOFNATURE:
+		flag |= BCT_PARTY|BCT_SELF;
 	case WM_VOICEOFSIREN:
 		if( flag&1 )
 		{
@@ -6383,6 +6386,26 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		{
 			map_foreachinrange(skill_area_sub, src, skill_get_splash(skillid,skilllv),(skillid==WM_VOICEOFSIREN)?BL_CHAR:BL_PC, src, skillid, skilllv, tick, flag|BCT_ENEMY|1, skill_castend_nodamage_id);
 			clif_skill_nodamage(src,bl,skillid,skilllv,1);
+		}
+		break;
+		
+	case WM_DEADHILLHERE:
+		if( bl->type == BL_PC )
+		{
+			if( !status_isdead(bl) )
+				break;
+
+			if( rand()%100 < 88 + 2 * skilllv )
+			{
+				int heal = tstatus->sp;
+				if( heal <= 0 )
+					heal = 1;
+				tstatus->hp = heal;
+				tstatus->sp -= tstatus->sp * ( 120 - 20 * skilllv ) / 100;
+				clif_skill_nodamage(src,bl,skillid,skilllv,1);
+				pc_revive((TBL_PC*)bl,heal,0);
+				clif_resurrection(bl,1);
+			}
 		}
 		break;
 

@@ -8,6 +8,12 @@
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
+
+	r0489 - 16/05/2011 [Protimus]
+	* Adicionadas as habilidades:
+	- WM_DEADHILLHERE (Réquiem de Orfeu).
+	- WM_SIRCLEOFNATURE (Sibilo de Eir).
+	
 	r0488 - 16/05/2011 [MiTh]
 	* Corrigidas habilidades:
 	- NC_AXETORNOADO
