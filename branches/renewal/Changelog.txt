@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0493 - 16/05/2011 [MiTh]
+	* Corrigidas Fórmulas das skills NC_POWERSWING e NC_AXETORNADO
+
 	r0492 - 16/05/2011 [Protimus]
 	* Correções para a habilidade NC_AXETORNADO (Fúria do Furacão).
 	- Adição de bônus quando elemento é WIND deve ser dada através de ATK_ADDRATE.
