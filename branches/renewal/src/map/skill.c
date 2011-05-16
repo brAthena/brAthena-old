@@ -435,6 +435,20 @@ int skillnotok (int skillid, struct map_session_data *sd)
 				return 1;
 			}
 			break;
+		case GC_DARKILLUSION:
+			if( map_flag_gvg(m) )
+			{
+				clif_skill_fail(sd,skillid,0,0,0);
+				return 1;
+			}
+			break;
+		case WM_LULLABY_DEEPSLEEP:
+			if( !map_flag_vs(m) )
+			{
+				clif_skill_teleportmessage(sd,2); 
+				return 1;
+			}
+			break;
 		case GD_EMERGENCYCALL:
 			if (
 				!(battle_config.emergency_call&((agit_flag || agit2_flag)?2:1)) ||
@@ -3339,6 +3353,10 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 					clif_slide(src, bl->x, bl->y);
 			skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
 		}
+		break;
+	case WM_LULLABY_DEEPSLEEP:
+		if( rand()%100 < 88 + 2 * skilllv )
+			sc_start(bl,status_skill2sc(skillid),100,skilllv,skill_get_time(skillid,skilllv));
 		break;
 
 	case 0:
@@ -6352,6 +6370,18 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case MI_HARMONIZE:
 			clif_skill_nodamage(src, bl, skillid, skilllv,sc_start(bl, type, 100, skilllv, skill_get_time(skillid,skilllv)));
 		break;
+		
+	case WM_VOICEOFSIREN:
+		if( flag&1 )
+		{
+			sc_start2(bl,type,(skillid==WM_VOICEOFSIREN)?20+10*skilllv:100,skilllv,(skillid==WM_VOICEOFSIREN)?src->id:0,skill_get_time(skillid,skilllv));
+		}
+		else
+		{
+			map_foreachinrange(skill_area_sub, src, skill_get_splash(skillid,skilllv),(skillid==WM_VOICEOFSIREN)?BL_CHAR:BL_PC, src, skillid, skilllv, tick, flag|BCT_ENEMY|1, skill_castend_nodamage_id);
+			clif_skill_nodamage(src,bl,skillid,skilllv,1);
+		}
+		break;
 
 	case RA_WUGMASTERY:
 		if(sd) {
@@ -7016,6 +7046,7 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 	case RA_ICEBOUNDTRAP:
 	case WM_REVERBERATION:
 	case WM_SEVERE_RAINSTORM:
+	case WM_POEMOFNETHERWORLD:
 		flag|=1;//Set flag to 1 to prevent deleting ammo (it will be deleted on group-delete).
 	case GS_GROUNDDRIFT: //Ammo should be deleted right away.
 		skill_unitsetting(src,skillid,skilllv,x,y,0);
@@ -7275,6 +7306,7 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 		break;
 		
 	case RK_DRAGONBREATH:
+	case WM_LULLABY_DEEPSLEEP:
 		i = skill_get_splash(skillid,skilllv);
 		map_foreachinarea(skill_area_sub,src->m,x-i,y-i,x+i,y+i,BL_CHAR,
 			src,skillid,skilllv,tick,flag|BCT_ENEMY|1,skill_castend_damage_id);
@@ -7810,6 +7842,7 @@ struct skill_unit_group* skill_unitsetting (struct block_list *src, short skilli
 	case WM_REVERBERATION:
 		interval = limit;
 		val2 = 1;
+		
 	case WM_POEMOFNETHERWORLD:
 		if( map_getcell(src->m, x, y, CELL_CHKLANDPROTECTOR) )
 			return NULL;

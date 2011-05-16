@@ -1309,7 +1309,8 @@ int status_check_skilluse(struct block_list *src, struct block_list *target, int
 				(sc->data[SC_MARIONETTE] && skill_num != CG_MARIONETTE) || //Only skill you can use is marionette again to cancel it
 				(sc->data[SC_MARIONETTE2] && skill_num == CG_MARIONETTE) || //Cannot use marionette if you are being buffed by another
 				sc->data[SC_STEELBODY] ||
-				sc->data[SC_BERSERK]
+				sc->data[SC_BERSERK] ||
+				sc->data[SC_DEEPSLEEP]
 			))
 				return 0;
 
@@ -4972,6 +4973,10 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 	{
 		case SC_SLEEP:
 			tick_def = status->int_;
+	case SC_DEEPSLEEP:
+		tick_def = status->int_ / 10 + status_get_lv(bl) * 65 / 1000; 
+		sc_def = 5 * status->int_ /10;
+		break;
 		case SC_BLEEDING:
 			sc_def = status->agi;
 			break;
@@ -5605,6 +5610,8 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 	case SC_RUSHWINDMILL:
 	case SC_ECHOSONG:
 	case SC_HARMONIZE:
+	case SC_VOICEOFSIREN:
+	case SC_DEEPSLEEP:
 		if( sc->data[type] ) 
 			break;
 		status_change_end(bl,SC_SWINGDANCE,-1);
@@ -5613,6 +5620,8 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		status_change_end(bl,SC_RUSHWINDMILL,-1);
 		status_change_end(bl,SC_ECHOSONG,-1);
 		status_change_end(bl,SC_HARMONIZE,-1);
+		status_change_end(bl,SC_VOICEOFSIREN,-1);
+		status_change_end(bl,SC_DEEPSLEEP,-1);
 	}
 
 	//Check for overlapping fails
@@ -6664,6 +6673,14 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			break;
 		case SC_HARMONIZE:
 			val2 = 3 + 2 * val1;
+			break;
+		case SC_VOICEOFSIREN:
+			val4 = tick / 2000;
+			tick = 2000;
+			break;
+		case SC_DEEPSLEEP:
+			val4 = tick / 2000;
+			tick = 2000;
 			break;			
 		default:
 			if( calc_flag == SCB_NONE && StatusSkillChangeTable[type] == 0 && StatusIconChangeTable[type] == 0 )
@@ -6695,6 +6712,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_STUN:
 		case SC_SLEEP:
 		case SC_STONE:
+		case SC_DEEPSLEEP:
 			if (sd && pc_issit(sd)) //Avoid sprite sync problems.
 				pc_setstand(sd);
 		case SC_TRICKDEAD:
@@ -6719,6 +6737,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_WEIGHT90:
 		case SC_CAMOUFLAGE:
 		case SC_CLOAKINGEXCEED:
+		case SC_VOICEOFSIREN:
 			unit_stop_attack(bl);
 		break;
 		case SC_SILENCE:
@@ -8132,6 +8151,23 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr data)
 		{
 			clif_emotion(bl,1);	
 			sc_timer_next(3000 + tick, status_change_timer, bl->id, data );
+			return 0;
+		}
+		break;
+	case SC_VOICEOFSIREN:
+		if( --(sce->val4) >= 0 )
+		{
+			clif_emotion(bl,3);
+			sc_timer_next(2000 + tick, status_change_timer, bl->id, data);
+			return 0;
+		}
+		break;
+
+	case SC_DEEPSLEEP:
+		if( --(sce->val4) >= 0 )
+		{ 
+			status_heal(bl, status->max_hp / 100, status->max_sp / 100, 2);
+			sc_timer_next(2000 + tick, status_change_timer, bl->id, data);
 			return 0;
 		}
 		break;

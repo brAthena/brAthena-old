@@ -986,6 +986,8 @@ static int mob_ai_sub_hard_activesearch(struct block_list *bl,va_list ap)
 		if (((TBL_PC*)bl)->state.gangsterparadise &&
 			!(status_get_mode(&md->bl)&MD_BOSS))
 			return 0; //Gangster paradise protection.
+		if( md->sc.count && md->sc.data[SC_VOICEOFSIREN] && md->sc.data[SC_VOICEOFSIREN]->val2 == bl->id )
+			return 0;
 	default:
 		if (battle_config.hom_setting&0x4 &&
 			(*target) && (*target)->type == BL_HOM && bl->type != BL_HOM)
@@ -1024,6 +1026,9 @@ static int mob_ai_sub_hard_changechase(struct block_list *bl,va_list ap)
 	if ((*target) == bl ||
 		battle_check_target(&md->bl,bl,BCT_ENEMY)<=0 ||
 	  	!status_check_skilluse(&md->bl, bl, 0, 0))
+		return 0;
+		
+	if( md->sc.count && md->sc.data[SC_VOICEOFSIREN] && md->sc.data[SC_VOICEOFSIREN]->val2 == (*target)->id )
 		return 0;
 
 	if(battle_check_range (&md->bl, bl, md->status.rhw.range))
@@ -1313,7 +1318,7 @@ static bool mob_ai_sub_hard(struct mob_data *md, unsigned int tick)
 		return false;
 
 	// Abnormalities
-	if((md->sc.opt1 > 0 && md->sc.opt1 != OPT1_STONEWAIT) || md->sc.data[SC_BLADESTOP])
+	if( (md->sc.opt1 > 0 && md->sc.opt1 != OPT1_STONEWAIT && md->sc.opt1 != OPT1_BURNING) || md->sc.data[SC_BLADESTOP] || md->sc.data[SC_DEEPSLEEP])
   	{	//Should reset targets.
 		md->target_id = md->attacked_id = 0;
 		return false;
@@ -1343,6 +1348,12 @@ static bool mob_ai_sub_hard(struct mob_data *md, unsigned int tick)
 			mob_unlocktarget(md, tick-(battle_config.mob_ai&0x8?3000:0)); //Imediately do random walk.
 			tbl = NULL;
 		}
+	}
+
+	if( tbl && md->sc.count && md->sc.data[SC_VOICEOFSIREN] && md->sc.data[SC_VOICEOFSIREN]->val2 == tbl->id )
+	{
+		mob_unlocktarget(md, tick-(battle_config.mob_ai&0x8?3000:0));
+		tbl = NULL;
 	}
 
 	// Check for target change.

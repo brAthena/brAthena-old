@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0487 - 16/05/2011 [Protimus]
+	* Adicionadas as habilidades:
+	- WM_POEMOFNETHERWORLD (Poema de Nifflheim).
+	- WM_VOICEOFSIREN (Canto da Sereia).
+	- WM_LULLABY_DEEPSLEEP (Melodia de Morfeu).
+
 	r0486 - 16/05/2011 [Protimus]
 	* Adicionadas as habilidades:
 	- WM_DOMINION_IMPULSE (Ativar Ressonância).
