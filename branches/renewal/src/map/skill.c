@@ -2771,6 +2771,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case GC_CROSSIMPACT:
 	case GC_VENOMPRESSURE:
 	case WM_SEVERE_RAINSTORM_MELEE:
+	case NC_AXEBOOMERANG:
 		skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 
@@ -2973,6 +2974,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case GC_COUNTERSLASH:
 	case GC_ROLLINGCUTTER:
 	case WM_REVERBERATION:
+	case NC_AXETORNADO:
 		if( flag&1 )
 		{	//Recursive invocation
 			// skill_area_temp[0] holds number of targets in area
@@ -4257,6 +4259,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case ASC_METEORASSAULT:
 	case GS_SPREADATTACK:
 	case RK_STORMBLAST:
+	case NC_AXETORNADO:
 		skill_area_temp[1] = 0;
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
 		map_foreachinrange(skill_area_sub, bl, skill_get_splash(skillid, skilllv), splash_target(src), 

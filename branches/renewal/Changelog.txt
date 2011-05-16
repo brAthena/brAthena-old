@@ -8,6 +8,11 @@
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
+	r0488 - 16/05/2011 [MiTh]
+	* Corrigidas habilidades:
+	- NC_AXETORNOADO
+	- NC_AXEBOOMERANG
+	- Adicionado suas referencias na skill.c
 
 	r0487 - 16/05/2011 [Protimus]
 	* Adicionadas as habilidades:
