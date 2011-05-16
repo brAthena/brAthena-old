@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0485 - 15/05/2011 [brn0]
+	* Adicionadas as habilidades:
+	RA_WUGSTRIKE (Investida de Lobo).
+	RA_WUGRIDER (Montaria em Lobo).
+	RA_WUGMASTERY(Adestrar Lobo).
+
 	r0484 - 15/05/2011 [brn0]
 	* Adicionadas as habilidades:
 	- RA_DETONATOR (Detonador).

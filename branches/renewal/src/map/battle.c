@@ -1806,6 +1806,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case RA_CLUSTERBOMB:
 					skillratio += 100 + 100*skill_lv;
 					break;
+				case RA_WUGSTRIKE:
+					skillratio = 120*skill_lv;
+					break;
 				case AB_DUPLELIGHT_MELEE:
 					skillratio += 10 * skill_lv;
 					break;
@@ -1870,6 +1873,12 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					ATK_ADD(sstatus->hp*80/100);
 					if(sc && sc->data[SC_BUNSINJYUTSU] && sc->data[SC_BUNSINJYUTSU]->val2 > 0)
 						ATK_ADDRATE(sc->data[SC_BUNSINJYUTSU]->val2*25);
+					break;
+				case RA_WUGDASH:
+				case RA_WUGSTRIKE:
+				case RA_WUGBITE:
+					if(sd)
+						ATK_ADD(30*pc_checkskill(sd, RA_TOOTHOFWUG));
 					break;
 			}
 		}

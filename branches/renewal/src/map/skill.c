@@ -623,11 +623,12 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 			break; // If a normal attack is a skill, it's splash damage. [Inkfish]
 		if(sd) {
 			// Automatic trigger of Blitz Beat
-			if (pc_isfalcon(sd) && sd->status.weapon == W_BOW && (skill=pc_checkskill(sd,HT_BLITZBEAT))>0 &&
-				rand()%1000 <= sstatus->luk*10/3+1 ) {
+			if (pc_isfalcon(sd) && sd->status.weapon == W_BOW && (skill=pc_checkskill(sd,HT_BLITZBEAT))>0 && rand()%1000 <= sstatus->luk*10/3 +1) {
 				rate=(sd->status.job_level+9)/10;
 				skill_castend_damage_id(src,bl,HT_BLITZBEAT,(skill<rate)?skill:rate,tick,SD_LEVEL);
 			}
+			if(pc_iswarg(sd) && (sd->status.weapon==W_BOW || sd->status.weapon==W_FIST) && (skill=pc_checkskill(sd,RA_WUGSTRIKE))>0 && rand()%1000 <= sstatus->luk*10/3+1 )
+				skill_castend_damage_id(src,bl,RA_WUGSTRIKE,skill,tick,0);
 			// Gank
 			if(dstmd && sd->status.weapon != W_BOW &&
 				(skill=pc_checkskill(sd,RG_SNATCHER)) > 0 &&
@@ -3326,6 +3327,16 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 			status_change_end(src,SC_ROLLINGCUTTER,-1);
 		}
 		break;
+	case RA_WUGSTRIKE:
+	case RA_WUGBITE:
+		if(path_search(NULL,src->m,src->x,src->y,bl->x,bl->y,1,CELL_CHKNOREACH)) {
+			if(skillid == RA_WUGSTRIKE)
+				if(sd && pc_isriding(sd,OPTION_RIDING_WUG) && !map_flag_gvg(src->m) && !map[src->m].flag.battleground && unit_movepos(src,bl->x,bl->y,1,1))
+					clif_slide(src, bl->x, bl->y);
+			skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
+		}
+		break;
+
 	case 0:
 		if(sd) {
 			if (flag & 3){
@@ -6336,6 +6347,30 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		
 	case MI_HARMONIZE:
 			clif_skill_nodamage(src, bl, skillid, skilllv,sc_start(bl, type, 100, skilllv, skill_get_time(skillid,skilllv)));
+		break;
+
+	case RA_WUGMASTERY:
+		if(sd) {
+			if(!pc_iswarg(sd))
+				pc_setoption(sd,sd->sc.option|OPTION_WUG);
+			else
+				pc_setoption(sd,sd->sc.option&~OPTION_WUG);
+			clif_skill_nodamage(src,bl,skillid,skilllv,1);
+		}
+		break;
+
+	case RA_WUGRIDER:
+		if(sd) {
+			if(pc_isriding(sd, OPTION_RIDING_WUG)) {
+				pc_setriding(sd,0);
+				pc_setoption(sd,sd->sc.option|OPTION_WUG);
+			}
+			else if(pc_iswarg(sd)) {
+				pc_setriding(sd,1);
+				pc_setoption(sd,sd->sc.option&~OPTION_WUG);
+			}
+			clif_skill_nodamage(src,bl,skillid,skilllv,1);
+		}
 		break;
 
 	default:
@@ -9414,6 +9449,23 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 			clif_skill_fail(sd,skill,0x0,0,0);
 			return 0;
 		}
+	case RA_WUGMASTERY:
+		if((pc_isfalcon(sd) && !battle_config.warg_can_falcon) || sd->sc.data[SC__GROOMY]) {
+			clif_skill_fail(sd,skill,0x17,0,0);
+			return 0;
+		}
+		break;
+	case RA_WUGDASH:
+		if(!pc_isriding(sd, OPTION_RIDING_WUG)) {
+			clif_skill_fail(sd,skill,0,0,0);
+			return 0;
+		}
+		break;
+	case RA_WUGRIDER:
+		if(!pc_isriding(sd,OPTION_RIDING_WUG) && !pc_iswarg(sd)) {
+			clif_skill_fail(sd,skill,0x17,0,0);
+			return 0;
+		}
 		break;
 	}
 
@@ -9499,6 +9551,18 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 			break;
 		clif_skill_fail(sd,skill,0,0,0);
 		return 0;
+	case ST_WUG:
+		if(!pc_iswarg(sd)) {
+			clif_skill_fail(sd,skill,0,0,0);
+			return 0;
+		}
+		break;
+	case ST_RIDINGWUG:
+		if(!pc_isriding(sd,OPTION_RIDING_WUG) && !pc_iswarg(sd)){
+			clif_skill_fail(sd,skill,0,0,0);
+			return 0;
+		}
+		break;
 	}
 
 	if(require.mhp > 0 && get_percentage(status->hp, status->max_hp) > require.mhp) {
@@ -13122,6 +13186,8 @@ static bool skill_parse_row_requiredb(char* split[], int columns, int current)
 	else if( strcmpi(split[10],"recover_weight_rate")==0 ) skill_db[i].state = ST_RECOV_WEIGHT_RATE;
 	else if( strcmpi(split[10],"move_enable")==0 ) skill_db[i].state = ST_MOVE_ENABLE;
 	else if( strcmpi(split[10],"water")==0 ) skill_db[i].state = ST_WATER;
+	else if( strcmpi(split[10],"warg")==0 ) skill_db[i].state = ST_WUG;
+	else if( strcmpi(split[10],"ridingwarg")==0 ) skill_db[i].state = ST_RIDINGWUG;
 	else skill_db[i].state = ST_NONE;
 
 	skill_split_atoi(split[11],skill_db[i].spiritball);

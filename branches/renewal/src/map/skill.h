@@ -383,6 +383,8 @@ enum {
 	ST_RECOV_WEIGHT_RATE,
 	ST_MOVE_ENABLE,
 	ST_WATER,
+	ST_WUG = 16,
+	ST_RIDINGWUG,
 };
 
 enum e_skill {
