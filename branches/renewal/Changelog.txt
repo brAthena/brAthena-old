@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0486 - 16/05/2011 [Protimus]
+	* Adicionadas as habilidades:
+	- WM_DOMINION_IMPULSE (Ativar Ressonância).
+	- WM_SEVERE_RAINSTORM (Temporal de Mil Flechas).
+	
 	r0485 - 15/05/2011 [brn0]
 	* Adicionadas as habilidades:
 	RA_WUGSTRIKE (Investida de Lobo).

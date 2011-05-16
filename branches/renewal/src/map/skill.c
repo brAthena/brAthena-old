@@ -1887,6 +1887,9 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 	case WM_REVERBERATION_MAGIC:
 		dmg.dmotion = clif_skill_damage(src,bl,tick,dmg.amotion,dmg.dmotion,damage,dmg.div_,WM_REVERBERATION,-2,6);
 		break;
+	case WM_SEVERE_RAINSTORM_MELEE:
+		dmg.dmotion = clif_skill_damage(src,bl,tick,dmg.amotion,dmg.dmotion,damage,dmg.div_,WM_SEVERE_RAINSTORM,skilllv,5);
+		break;
 
 	default:
 		if( flag&SD_ANIMATION && dmg.div_ < 2 ) //Disabling skill animation doesn't works on multi-hit.
@@ -1913,14 +1916,14 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 		case WM_REVERBERATION_MAGIC:
 			copy_skill = WM_REVERBERATION;
 			break;
+		case WM_SEVERE_RAINSTORM_MELEE:
+			copy_skill = WM_SEVERE_RAINSTORM;
+			break;
 		case GN_CRAZYWEED_ATK:
 			copy_skill = GN_CRAZYWEED;
 			break;
 		case GN_HELLS_PLANT_ATK:
 			copy_skill = GN_HELLS_PLANT;
-			break;
-		case WM_SEVERE_RAINSTORM_MELEE:
-			copy_skill = WM_SEVERE_RAINSTORM;
 			break;
 		}
 
@@ -2753,6 +2756,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case AB_DUPLELIGHT_MELEE:
 	case GC_CROSSIMPACT:
 	case GC_VENOMPRESSURE:
+	case WM_SEVERE_RAINSTORM_MELEE:
 		skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 
@@ -7011,6 +7015,7 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 	case RA_FIRINGTRAP:
 	case RA_ICEBOUNDTRAP:
 	case WM_REVERBERATION:
+	case WM_SEVERE_RAINSTORM:
 		flag|=1;//Set flag to 1 to prevent deleting ammo (it will be deleted on group-delete).
 	case GS_GROUNDDRIFT: //Ammo should be deleted right away.
 		skill_unitsetting(src,skillid,skilllv,x,y,0);
@@ -7300,6 +7305,12 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 		i = skill_get_splash(skillid, skilllv);
 		map_foreachinarea(skill_detonator, src->m, x-i, y-i, x+i, y+i, BL_SKILL, src);
 		clif_skill_damage(src, src, tick, status_get_amotion(src), 0, -30000, 1, skillid, skilllv, 6);
+		break;
+		
+	case WM_DOMINION_IMPULSE:
+		i = skill_get_splash(skillid, skilllv);
+		map_foreachinarea( skill_ative_reverberation,
+			src->m, x-i, y-i, x+i,y+i,BL_SKILL);
 		break;
 
 	default:
@@ -8604,6 +8615,11 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 			clif_changetraplook(&src->bl,UNT_USED_TRAPS);
 			map_foreachinrange(skill_trap_splash,&src->bl, skill_get_splash(sg->skill_id, sg->skill_lv), sg->bl_flag, &src->bl,tick);
 			sg->limit = DIFF_TICK(tick,sg->tick) + 1500;
+			break;
+			
+		case UNT_SEVERE_RAINSTORM:
+			if( battle_check_target(&src->bl, bl, BCT_ENEMY) )
+				skill_attack(BF_WEAPON,ss,&src->bl,bl,WM_SEVERE_RAINSTORM_MELEE,sg->skill_lv,tick,0);
 			break;
 	}
 
@@ -10935,6 +10951,9 @@ static int skill_trap_splash (struct block_list *bl, va_list ap)
 		case UNT_REVERBERATION:
 			skill_attack(BF_WEAPON,ss,src,bl,WM_REVERBERATION_MELEE,sg->skill_lv,tick,0);
 			skill_addtimerskill(ss,tick+200,bl->id,0,0,WM_REVERBERATION_MAGIC,sg->skill_lv,BF_MAGIC,SD_LEVEL);
+			break;
+		case UNT_SEVERE_RAINSTORM:
+			skill_attack(BF_WEAPON,ss,ss,bl,WM_SEVERE_RAINSTORM_MELEE,sg->skill_lv,tick,0);
 			break;
 		default:
 			skill_attack(skill_get_type(sg->skill_id),ss,src,bl,sg->skill_id,sg->skill_lv,tick,0);
