@@ -8,6 +8,9 @@
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
+	r0490 - 16/05/2011 [MiTh]
+	* Adicionadas as habilidades:
+	- NC_POWERSWING (Brandir Machado)
 
 	r0489 - 16/05/2011 [Protimus]
 	* Adicionadas as habilidades:

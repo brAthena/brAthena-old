@@ -1008,6 +1008,12 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 	case RA_ICEBOUNDTRAP:
 		sc_start(bl, (skillid==RA_FIRINGTRAP ? SC_BURNING:SC_FREEZING), 10*skilllv + 40, skilllv, skill_get_time2(skillid, skilllv));
 		break;
+
+	case NC_POWERSWING:
+		sc_start(bl, SC_STUN, 5*skilllv, skilllv, skill_get_time(skillid, skilllv));
+		if( rand()%100 < 5*skilllv )
+			skill_castend_damage_id(src, bl, NC_AXEBOOMERANG, pc_checkskill(sd, NC_AXEBOOMERANG), tick, 1);
+		break;
 	}
 
 	if (md && battle_config.summons_trigger_autospells && md->master_id && md->special_state.ai)
@@ -2773,6 +2779,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case GC_VENOMPRESSURE:
 	case WM_SEVERE_RAINSTORM_MELEE:
 	case NC_AXEBOOMERANG:
+	case NC_POWERSWING:
 		skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 

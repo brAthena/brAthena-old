@@ -1845,6 +1845,10 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case NC_AXEBOOMERANG:
 					skillratio += (160 + (skill_lv * 40) + sd->inventory_data[EQI_HAND_R]->weight );
 					break;
+				case NC_POWERSWING:
+					skillratio += (180 + (skill_lv * 20) + sstatus->dex + sstatus->str );
+					skillratio = s_base_level > 99 ? (skillratio * (1/2)) : skillratio;
+					break;
 				case WM_REVERBERATION_MELEE:
 					skillratio += 200 + 100 * pc_checkskill(sd, WM_REVERBERATION);
 					break;
