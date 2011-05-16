@@ -61,6 +61,7 @@ struct s_skill_produce_db skill_produce_db[MAX_SKILL_PRODUCE_DB];
 struct s_skill_arrow_db skill_arrow_db[MAX_SKILL_ARROW_DB];
 struct s_skill_abra_db skill_abra_db[MAX_SKILL_ABRA_DB];
 struct s_skill_magicmushroom_db skill_magicmushroom_db[MAX_SKILL_MAGICMUSHROOM_DB];
+struct s_skill_improvise_db skill_improvise_db[MAX_SKILL_IMPROVISE_DB];
 
 struct s_skill_unit_layout skill_unit_layout[MAX_SKILL_UNIT_LAYOUT];
 int firewall_unit_pos;
@@ -2778,6 +2779,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case GC_CROSSIMPACT:
 	case GC_VENOMPRESSURE:
 	case WM_SEVERE_RAINSTORM_MELEE:
+	case WM_GREAT_ECHO:
 	case NC_AXEBOOMERANG:
 	case NC_POWERSWING:
 		skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
@@ -6381,6 +6383,73 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case MI_HARMONIZE:
 			clif_skill_nodamage(src, bl, skillid, skilllv,sc_start(bl, type, 100, skilllv, skill_get_time(skillid,skilllv)));
 		break;
+
+	case WM_RANDOMIZESPELL:
+		{
+			int improv_skillid = 0, improv_skilllv;
+			do
+			{
+				i = rand() % MAX_SKILL_IMPROVISE_DB;
+				improv_skillid = skill_improvise_db[i].skillid;
+			}
+			while( improv_skillid == 0 || rand()%10000 >= skill_improvise_db[i].per );
+			improv_skilllv = 4 + skilllv;
+			clif_skill_nodamage (src, bl, skillid, skilllv, 1);
+
+			if( sd )
+			{
+				sd->state.improv_flag = 1;
+				sd->skillitem = improv_skillid;
+				sd->skillitemlv = improv_skilllv;
+				clif_item_skill(sd, improv_skillid, improv_skilllv);
+			}
+			else
+			{
+				struct unit_data *ud = unit_bl2ud(src);
+				int inf = skill_get_inf(improv_skillid);
+				int target_id = 0;
+				if (!ud) break;
+				if (inf&INF_SELF_SKILL || inf&INF_SUPPORT_SKILL) {
+					if (src->type == BL_PET)
+						bl = (struct block_list*)((TBL_PET*)src)->msd;
+					if (!bl) bl = src;
+					unit_skilluse_id(src, bl->id, improv_skillid, improv_skilllv);
+				} else {
+					if (ud->target)
+						target_id = ud->target;
+					else switch (src->type) {
+						case BL_MOB: target_id = ((TBL_MOB*)src)->target_id; break;
+						case BL_PET: target_id = ((TBL_PET*)src)->target_id; break;
+					}
+					if (!target_id)
+						break;
+					if (skill_get_casttype(improv_skillid) == CAST_GROUND) {
+						bl = map_id2bl(target_id);
+						if (!bl) bl = src;
+						unit_skilluse_pos(src, bl->x, bl->y, improv_skillid, improv_skilllv);
+					} else
+						unit_skilluse_id(src, target_id, improv_skillid, improv_skilllv);
+				}
+			}
+		}
+		break;
+		
+	case WM_GLOOMYDAY:
+		if( dstsd )
+		{
+			if( pc_checkskill(dstsd,KN_BRANDISHSPEAR) || pc_checkskill(dstsd,LK_SPIRALPIERCE) ||
+				pc_checkskill(dstsd,CR_SHIELDCHARGE) || pc_checkskill(dstsd,CR_SHIELDBOOMERANG) ||
+				pc_checkskill(dstsd,PA_SHIELDCHAIN) || pc_checkskill(dstsd,LG_SHIELDPRESS) )
+			{
+				sc_start(bl,SC_GLOOMYDAY_SK,100,skilllv,skill_get_time(skillid,skilllv));
+			}
+			else
+				sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv));
+			clif_skill_nodamage(src,bl,skillid,skilllv,1);
+		}
+		else
+			sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv));
+		break;
 		
 	case WM_SIRCLEOFNATURE:
 		flag |= BCT_PARTY|BCT_SELF;
@@ -6713,7 +6782,7 @@ int skill_castend_id(int tid, unsigned int tick, int id, intptr data)
 				skill_blockpc_start(sd,BD_ADAPTATION,3000);
 		}
 
-		if( sd && ud->skillid != SA_ABRACADABRA ) // Hocus-Pocus has just set the data so leave it as it is.[Inkfish]
+		if( sd && ud->skillid != SA_ABRACADABRA && ud->skillid != WM_RANDOMIZESPELL ) // Hocus-Pocus has just set the data so leave it as it is.[Inkfish]
 			sd->skillitem = sd->skillitemlv = 0;
 
 		if (ud->skilltimer == INVALID_TIMER) {
@@ -7376,6 +7445,11 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 		i = skill_get_splash(skillid, skilllv);
 		map_foreachinarea( skill_ative_reverberation,
 			src->m, x-i, y-i, x+i,y+i,BL_SKILL);
+		break;
+		
+	case WM_GREAT_ECHO:
+		flag|=1; 
+		map_foreachinrange(skill_area_sub, src, skill_get_splash(skillid,skilllv),BL_CHAR, src, skillid, skilllv, tick, flag|BCT_ENEMY, skill_castend_damage_id);
 		break;
 
 	default:
@@ -9020,8 +9094,18 @@ int skill_check_pc_partner (struct map_session_data *sd, short skill_id, short* 
 	if (cast_flag)
 	{	//Execute the skill on the partners.
 		struct map_session_data* tsd;
-		switch (skill_id)
+		if( skill_id == WM_GREAT_ECHO )
 		{
+			for( i = 0; i < c; i++ )
+			{
+				if( (tsd = map_id2sd(p_sd[i])) != NULL )
+					status_zap(&tsd->bl,0,skill_get_sp(skill_id,*skill_lv)/c);
+			}
+		}
+		else
+		{
+			switch( skill_id )
+			{
 			case PR_BENEDICTIO:
 				for (i = 0; i < c; i++)
 				{
@@ -9046,9 +9130,9 @@ int skill_check_pc_partner (struct map_session_data *sd, short skill_id, short* 
 					tsd->skilllv_dance = *skill_lv;
 				}
 				return c;
+			}
 		}
 	}
-
 	//Else: new search for partners.
 	c = 0;
 	memset (p_sd, 0, sizeof(p_sd));
@@ -9530,6 +9614,19 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 		{
 			clif_skill_fail(sd,skill,0x0,0,0);
 			return 0;
+		}
+	case WM_GREAT_ECHO:
+		{
+			int count;
+			count = skill_check_pc_partner(sd, skill, &lv, skill_get_splash(skill,lv), 0);
+			if( count < 1 )
+			{
+				clif_skill_fail(sd,skill,0x11,0,0);
+				return 0;
+			}
+			else
+				require.sp -= require.sp * 20 * count / 100; //  -20% each W/M in the party.
+			break;
 		}
 	case RA_WUGMASTERY:
 		if((pc_isfalcon(sd) && !battle_config.warg_can_falcon) || sd->sc.data[SC__GROOMY]) {
@@ -10139,7 +10236,7 @@ int skill_delayfix (struct block_list *bl, int skill_id, int skill_lv)
 	nullpo_ret(bl);
 	sd = BL_CAST(BL_PC, bl);
 
-	if (skill_id == SA_ABRACADABRA)
+	if (skill_id == SA_ABRACADABRA || skill_id == WM_RANDOMIZESPELL)
 		return 0; //Will use picked skill's delay.
 
 	if (bl->type&battle_config.no_skill_delay)
@@ -13451,6 +13548,33 @@ static bool skill_parse_row_magicmushroomdb(char* split[], int column, int curre
 	return true;
 }
 
+static bool skill_parse_row_improvisedb(char* split[], int columns, int current)
+{
+	int i = atoi(split[0]);
+	int j = atoi(split[1]);
+
+	if( !skill_get_index(i) || !skill_get_max(i) )
+	{
+		ShowError("improvise_db: ID de habilidade %d invalido", i);
+		return false;
+	}
+	if ( !skill_get_inf(i) )
+	{
+		ShowError("improvise_db: Habilidades passivas nao podem ser conjuradas (%d/%s)\n", i, skill_get_name(i));
+		return false;
+	}
+	if( j < 1 )
+	{
+		ShowError("improvise_db: As possibilidades devem ser de 1 ou mais (%d/%s)\n", i, skill_get_name(i));
+		return false;
+	}
+	
+	skill_improvise_db[current].skillid = i;
+	skill_improvise_db[current].per = j; 
+
+	return true;
+}
+
 static void skill_readdb(void)
 {
 	// init skill db structures
@@ -13459,6 +13583,8 @@ static void skill_readdb(void)
 	memset(skill_produce_db,0,sizeof(skill_produce_db));
 	memset(skill_arrow_db,0,sizeof(skill_arrow_db));
 	memset(skill_abra_db,0,sizeof(skill_abra_db));
+	memset(skill_magicmushroom_db,0,sizeof(skill_magicmushroom_db));
+	memset(skill_improvise_db,0,sizeof(skill_improvise_db));
 
 	// load skill databases
 	safestrncpy(skill_db[0].name, "UNKNOWN_SKILL", sizeof(skill_db[0].name));
@@ -13474,6 +13600,7 @@ static void skill_readdb(void)
 	sv_readdb(db_path, "create_arrow_db.txt"   , ',', 1+2,  1+2*MAX_ARROW_RESOURCE, MAX_SKILL_ARROW_DB, skill_parse_row_createarrowdb);
 	sv_readdb(db_path, "abra_db.txt"           , ',',   4,  4, MAX_SKILL_ABRA_DB, skill_parse_row_abradb);
 	sv_readdb(db_path, "magicmushroom_db.txt"  , ',',   1,  1, MAX_SKILL_MAGICMUSHROOM_DB, skill_parse_row_magicmushroomdb);
+	sv_readdb(db_path, "improvise_db.txt"      , ',',   2,  2, MAX_SKILL_IMPROVISE_DB, skill_parse_row_improvisedb);
 }
 
 void skill_reload (void)

@@ -19,6 +19,7 @@ struct status_change_entry;
 #define MAX_ARROW_RESOURCE		5
 #define MAX_SKILL_ABRA_DB		350
 #define MAX_SKILL_MAGICMUSHROOM_DB 22
+#define MAX_SKILL_IMPROVISE_DB 50
 
 #define MAX_SKILL_LEVEL 100
 
@@ -218,6 +219,12 @@ struct s_skill_reproduce_db {
 	int skillid;
 	int reproduce;
 };
+
+struct s_skill_improvise_db {
+	int skillid;
+	int per; 
+};
+extern struct s_skill_improvise_db skill_improvise_db[MAX_SKILL_IMPROVISE_DB];
 
 extern int enchant_eff[5];
 extern int deluge_eff[5];

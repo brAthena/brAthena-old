@@ -1392,6 +1392,8 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					break;
 				} else
 					wd.damage = sstatus->rhw.atk2;
+				if( sc && sc->data[SC_GLOOMYDAY_SK] )
+					ATK_ADD(50 + 5 * sc->data[SC_GLOOMYDAY_SK]->val1);
 				break;
 			case HFLI_SBR44:	//[orn]
 				if(src->type == BL_HOM) {
@@ -1514,6 +1516,8 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio += 50*skill_lv;
 					break;
 				case KN_BRANDISHSPEAR:
+					if( sc && sc->data[SC_GLOOMYDAY_SK] )
+						skillratio += 190 + 10 * sc->data[SC_GLOOMYDAY_SK]->val1;
 				case ML_BRANDISH:
 				{
 					int ratio = 100+20*skill_lv;
@@ -1585,6 +1589,8 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					break;
 				case CR_SHIELDCHARGE:
 					skillratio += 20*skill_lv;
+					if( sc && sc->data[SC_GLOOMYDAY_SK] )
+						skillratio += 190 + 10 * sc->data[SC_GLOOMYDAY_SK]->val1;
 					break;
 				case CR_SHIELDBOOMERANG:
 					skillratio += 30*skill_lv;
@@ -1854,6 +1860,14 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					break;
 				case WM_SEVERE_RAINSTORM_MELEE:
 					skillratio = 50 + 50 * skill_lv;
+					break;
+				case WM_GREAT_ECHO:
+					skillratio += 800 + 100 * skill_lv;
+					if( sd )
+					{
+						short lv = (short)skill_lv;
+						skillratio += 100 * skill_check_pc_partner(sd,skill_num,&lv,skill_get_splash(skill_num,skill_lv),0);
+					}
 					break;
 			}
 

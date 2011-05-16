@@ -684,6 +684,8 @@ void initChangeTables(void)
 	StatusIconChangeTable[SC_OBLIVIONCURSE] = SI_OBLIVIONCURSE;
 	StatusIconChangeTable[SC_LEECHESEND] = SI_LEECHESEND;
 
+	StatusIconChangeTable[SC_GLOOMYDAY_SK] = SI_GLOOMYDAY;
+	
 	//Other SC which are not necessarily associated to skills.
 	StatusChangeFlagTable[SC_ASPDPOTION0] = SCB_ASPD;
 	StatusChangeFlagTable[SC_ASPDPOTION1] = SCB_ASPD;
@@ -3956,6 +3958,8 @@ static signed short status_calc_flee(struct block_list *bl, struct status_change
 		flee -= flee * 20 / 100;
 	if( sc->data[SC_HALLUCINATIONWALK] )
 		flee += sc->data[SC_HALLUCINATIONWALK]->val2;
+	if( sc->data[SC_GLOOMYDAY] )
+		flee -= flee * sc->data[SC_GLOOMYDAY]->val2 / 100;
 
 	return (short)cap_value(flee,0,SHRT_MAX);
 }
@@ -4326,6 +4330,8 @@ static short status_calc_aspd_rate(struct block_list *bl, struct status_change *
 		aspd_rate -= sc->data[SC_OTHILA]->val2;
 	if( sc->data[SC_HALLUCINATIONWALK_POSTDELAY] )
 		aspd_rate += 500;
+	if( sc->data[SC_GLOOMYDAY] )
+		aspd_rate += aspd_rate * sc->data[SC_GLOOMYDAY]->val3 / 100;
 	}
 
 	return (short)cap_value(aspd_rate,0,SHRT_MAX);
@@ -6689,6 +6695,10 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			val3 = 40 * val1;	
 			val4 = tick / 1000;
 			tick = 1000;
+			break;	
+		case SC_GLOOMYDAY:
+			val2 = 3 + 2 * val1;
+			val3 = 3 * val1; 
 			break;			
 		default:
 			if( calc_flag == SCB_NONE && StatusSkillChangeTable[type] == 0 && StatusIconChangeTable[type] == 0 )

@@ -146,6 +146,7 @@ struct map_session_data {
 		unsigned short autobonus; //flag to indicate if an autobonus is activated. [Inkfish]
 		struct guild *gmaster_flag;
 		unsigned no_gemstone : 1;
+		unsigned improv_flag : 1;
 	} state;
 	struct {
 		unsigned char no_weapon_damage, no_magic_damage, no_misc_damage;
