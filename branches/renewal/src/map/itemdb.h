@@ -40,6 +40,9 @@
 //Use apple for unknown items.
 #define UNKNOWN_ITEM_ID 512
 
+//Combustível
+#define ITEMID_MAGIC_GEAR_FUEL 6146
+
 struct item_data {
 	int nameid;
 	char name[ITEM_NAME_LENGTH],jname[ITEM_NAME_LENGTH];
@@ -100,6 +103,20 @@ enum {
 	ITEMID_WYRD,
 	ITEMID_HAGALAZ,
 } rune_list;
+
+enum {
+	ITEMID_ACCELERATOR = 2800,
+	ITEMID_HOVERING_BOOSTER,
+	ITEMID_SUICIDAL_DEVICE,
+	ITEMID_SHAPE_SHIFTER,
+	ITEMID_COOLING_DEVICE,
+	ITEMID_MAGNETIC_FIELD_GENERATOR,
+	ITEMID_BARRIER_BUILDER,
+	ITEMID_REPAIR_KIT,
+	ITEMID_CAMOUFLAGE_GENERATOR,
+	ITEMID_HIGH_QUALITY_COOLER,
+	ITEMID_SPECIAL_COOLER
+	} mecha_item_list;
 
 struct item_data* itemdb_searchname(const char *name);
 int itemdb_searchname_array(struct item_data** data, int size, const char *str);

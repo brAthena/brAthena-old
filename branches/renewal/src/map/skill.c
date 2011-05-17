@@ -332,6 +332,9 @@ int skill_calc_heal(struct block_list *src, struct block_list *target, int skill
 			sd->base_status.matk_max+sd->base_status.matk_min + 
 			(rand()%2 ? 1:-1)*
 			(sd && sd->matk_bonus ? rand()%(sd->matk_bonus*sd->inventory_data[sd->equip_index[EQI_HAND_R]]->wlv/10):0);
+	case NC_REPAIR:
+		return hp = (status_get_hp(target) * ( (3 + 3 * skill_lv) / 100 ) );
+		break;
 	default:
 		if (skill_lv >= battle_config.max_heal_lv)
 			return battle_config.max_heal;
@@ -3497,6 +3500,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case HLIF_HEAL:	//[orn]
 	case AL_HEAL:
 	case AB_HIGHNESSHEAL:
+	case NC_REPAIR:
 		{
 			int heal = skill_calc_heal(src, bl, skillid, skilllv, true);
 			int heal_get_jobexp;
@@ -3532,6 +3536,8 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 					heal_get_jobexp = 1;
 				pc_gainexp (sd, bl, 0, heal_get_jobexp, false);
 			}
+			if(skillid == NC_REPAIR)
+				pc_delitem(sd,ITEMID_MAGIC_GEAR_FUEL,1,1,0);
 		}
 		break;
 
@@ -3973,8 +3979,13 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case AB_EXPIATIO:
 	case AB_RENOVATIO:
 	case GC_VENOMIMPRESS:
+	case NC_ACCELERATION:
 		clif_skill_nodamage(src,bl,skillid,skilllv,
 			sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv)));
+
+		if(skillid == NC_ACCELERATION)
+			pc_delitem(sd,ITEMID_MAGIC_GEAR_FUEL,1,1,0);
+
 		break;
 	case NPC_STOP:
 		if( clif_skill_nodamage(src,bl,skillid,skilllv,
@@ -9645,6 +9656,20 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 			clif_skill_fail(sd,skill,0x17,0,0);
 			return 0;
 		}
+		break;
+	case NC_REPAIR:
+		if( !pc_search_inventory(sd,ITEMID_REPAIR_KIT) && pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_MAGIC_GEAR_FUEL) )
+			{
+			clif_skill_fail(sd,skill,0,0,0);
+			return 0;
+			}	
+		break;
+	case NC_ACCELERATION:
+		if( !pc_search_inventory(sd,ITEMID_ACCELERATOR) && pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_MAGIC_GEAR_FUEL) )
+			{
+			clif_skill_fail(sd,skill,0,0,0);
+			return 0;
+			}
 		break;
 	}
 
