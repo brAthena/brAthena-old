@@ -6531,7 +6531,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		}
 		break;
 		
-´	case WM_SONG_OF_MANA:
+	case WM_SONG_OF_MANA:
 	case WM_DANCE_WITH_WUG:
 	case WM_LERADS_DEW:
 		if( flag&1 )
@@ -6550,6 +6550,37 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 				party_foreachsamemap(skill_area_sub,sd,skill_get_splash(skillid,skilllv),src,skillid,skilllv,tick,flag|BCT_PARTY|1,skill_castend_nodamage_id);
 			clif_skill_nodamage(src,bl,skillid,skilllv,1);
 
+		}
+		break;
+		
+	case WM_SATURDAY_NIGHT_FEVER:
+		if( flag&1 )
+		{	
+			if( !(tsc && tsc->data[type]) )
+				sc_start(bl, type, 100, skilllv,skill_get_time(skillid, skilllv));
+		}
+		else if( flag&2 )
+		{
+			if( src->id != bl->id && battle_check_target(src,bl,BCT_ENEMY) > 0 )
+				status_fix_damage(src,bl,9999,clif_damage(src,bl,tick,0,0,9999,0,0,0));
+		}
+		else if( sd )
+		{
+			if( !sd->status.party_id )
+			{
+				clif_skill_fail(sd,skillid,0x11,0,0);
+				break;
+			}
+			if( map_foreachinrange(skill_area_sub, bl, skill_get_splash(skillid,skilllv),
+					BL_PC, src, skillid, skilllv, tick, BCT_ENEMY, skill_area_sub_count) > 7 )
+				flag |= 2;
+			else
+				flag |= 1;
+			map_foreachinrange(skill_area_sub, src, skill_get_splash(skillid,skilllv),BL_PC, src, skillid, skilllv, tick, flag|BCT_ENEMY|BCT_SELF, skill_castend_nodamage_id);
+			clif_skill_nodamage(src, bl, skillid, skilllv,
+				sc_start(src,SC_STOP,100,skilllv,skill_get_time2(skillid,skilllv)));
+			if( flag&2 ) 
+				status_fix_damage(src,bl,9999,clif_damage(src,bl,tick,0,0,9999,0,0,0));
 		}
 		break;
 

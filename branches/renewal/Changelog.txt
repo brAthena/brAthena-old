@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0497 - 17/05/2011 [Protimus]
+	* Adicionadas a habilidade:
+	- WM_SATURDAY_NIGHT_FEVER (Embalos de Sábado a Noite).
+	* Corrigido pequeno erro de caractere na hora de digitar do envio anterior.
+
 	r0496 - 17/05/2011 [Protimus]
 	* Adicionadas as habilidades:
 	- WM_SONG_OF_MANA (Canção de Alfheim).
