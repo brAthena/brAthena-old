@@ -12,9 +12,10 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Descrição: IDs de leitura de classes, bônus e outros   |
+// | Descrição: Nome de constantes com suas respectivas IDs |
+// | para leitura de classes, bônus e outros.               |
 // \________________________________________________________/
-
+//
 Job_Novice	0
 Job_Swordman	1
 Job_Mage	2

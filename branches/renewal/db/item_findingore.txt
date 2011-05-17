@@ -19,23 +19,23 @@
 // | ID do Grupo de Itens, ID do Item, Taxa                 |
 // \________________________________________________________/
 //
-6,714,3		// Emperium
-6,756,20	// Minério de Oridecon
-6,757,20	// Minério de Elunium
-6,969,2		// Ouro
-6,984,10	// Oridecon
-6,985,10	// Elunium
-6,990,30	// Sangue Escarlate
-6,991,30	// Cristal Azul
-6,992,30	// Frescor do Vento
-6,993,30	// Vida Verdejante
-6,994,15	// Coração Flamejante
-6,995,15	// Gelo Místico
-6,996,15	// Vento Bruto
-6,997,15	// Natureza Grandiosa
-6,998,80	// Ferro
-6,999,50	// Aço
-6,1002,100	// Minério de Ferro
-6,1003,60	// Carvão
-6,1010,95	// Fracon
-6,1011,55	// Emveretarcon
+6,714,3		// Emperium -> 0,03%
+6,756,20	// Minério de Oridecon -> 0,20%
+6,757,20	// Minério de Elunium -> 0,20%
+6,969,2		// Ouro -> 0,02%
+6,984,10	// Oridecon -> 0,10%
+6,985,10	// Elunium -> 0,10%
+6,990,30	// Sangue Escarlate -> 0,30%
+6,991,30	// Cristal Azul -> 0,30%
+6,992,30	// Frescor do Vento -> 0,30%
+6,993,30	// Vida Verdejante -> 0,30%
+6,994,15	// Coração Flamejante -> 0,15%
+6,995,15	// Gelo Místico -> 0,15%
+6,996,15	// Vento Bruto -> 0,15%
+6,997,15	// Natureza Grandiosa -> 0,15%
+6,998,80	// Ferro -> 0,80%
+6,999,50	// Aço -> 0,50%
+6,1002,100	// Minério de Ferro -> 1,00%
+6,1003,60	// Carvão -> 0,60%
+6,1010,95	// Fracon -> 0,95%
+6,1011,55	// Emveretarcon -> 0,55%

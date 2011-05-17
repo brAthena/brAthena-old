@@ -15,20 +15,27 @@
 // | Descrição: Database de restrições dos itens            |
 // |--------------------------------------------------------|
 // | Estrutura do Banco de Dados:                           |
-// | itemID,Regra (ou área restrita)                        |
+// | ID do item,Regra (ou área restrita)                    |
+// |--------------------------------------------------------|
 // | Regras e Áreas restritas (que podem ser somadas):      |
 // | 1 - Restrito em PvP                                    |
 // | 2 - Restrito em GvG                                    |
 // | 3 - Restrito em PvP e GvG                              |
 // | 4 - Restrito na zona 1                                 |
 // | 8 - Restrito na zona 2                                 |
-// | 16 - Restrito na zona                                  |
+// | 16 - Restrito na zona 3                                |
 // | 32 - Restrito na zona 4                                |
 // | 64 - Restrito na zona 5                                |
 // | 128 - Restrito na zona 6                               |
 // | 256 - Restrito na zona 7                               |
+// |                                                        |
 // | É possível somar regras.                               |
-// |(ex: 4+1 = 5 - Restrito em PvP e zona 1)                |
+// | (ex: 4+1 = 5 - Restrito em PvP e zona 1)               |
+// |--------------------------------------------------------|
+// | Zona de Restrição:                                     |
+// | Para retirar ou colocar um mapa na zona de restrição   |
+// | acesse o arquivo "conf\mapflag\restricted.txt" e siga  |
+// | a mesma estrutura do arquivo                           |
 // |--------------------------------------------------------|
 // | Exemplos:                                              |
 // | 1201,3 (Faca não será usada em PvPs ou GvGs)           |
@@ -41,12 +48,12 @@
 //============================================================
 601,4 		//Asa de Mosca
 506,4 		//Poção Verde
-525,4 		//Panacea
+525,4 		//Panacéia
 //============================================================
 // Zona 2 - Prisão
 //============================================================
-601,8		//Asa de Mosca - Não necessariamente usual aqui
-602,8 		//Asa de Borboleta - Também não necessita
+601,8		//Asa de Mosca - "Sem necessidade de usar"
+602,8 		//Asa de Borboleta - "Também não é necessário"
 12212,8 	//Asa de Borboleta Gigante
 14582,8		//Yellow Butterfly Wing
 14583,8		//Green Butterfly Wing
@@ -56,4 +63,3 @@
 // Zona 3 - Arena de Izlude
 //============================================================
 601,16 		//Asa de Mosca
-
