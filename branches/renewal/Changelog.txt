@@ -9,7 +9,14 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
-	r0495 - 16/05/2011 [MiTh]
+	r0496 - 17/05/2011 [Protimus]
+	* Adicionadas as habilidades:
+	- WM_SONG_OF_MANA (Canção de Alfheim).
+	- WM_DANCE_WITH_WUG (Dança com Lobos).
+	- WM_LERADS_DEW (Orvalho de Idun).
+	- M_SOUND_OF_DESTRUCTION (Prelúdio do Ragnarök).
+
+	r0495 - 17/05/2011 [MiTh]
 	* Adicionadas as habilidades:
 	- NC_REPAIR (Reparar)
 	- NC_ACCELERATION (Aceleração)

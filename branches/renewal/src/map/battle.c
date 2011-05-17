@@ -1868,6 +1868,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 						skillratio += 100 * skill_check_pc_partner(sd,skill_num,&lv,skill_get_splash(skill_num,skill_lv),0);
 					}
 					break;
+				case WM_SOUND_OF_DESTRUCTION:
+					skillratio += 150;
+					break;
 			}
 
 			ATK_RATE(skillratio);

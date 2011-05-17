@@ -1012,6 +1012,40 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 	case RA_ICEBOUNDTRAP:
 		sc_start(bl, (skillid==RA_FIRINGTRAP ? SC_BURNING:SC_FREEZING), 10*skilllv + 40, skilllv, skill_get_time2(skillid, skilllv));
 		break;
+		
+	case WM_SOUND_OF_DESTRUCTION:
+		if( rand()%100 < 5 + 5 * skilllv ) 
+		{
+		status_change_end(bl, SC_DANCING, INVALID_TIMER);
+		status_change_end(bl, SC_RICHMANKIM, INVALID_TIMER);
+		status_change_end(bl, SC_ETERNALCHAOS, INVALID_TIMER);
+		status_change_end(bl, SC_DRUMBATTLE, INVALID_TIMER);
+		status_change_end(bl, SC_NIBELUNGEN, INVALID_TIMER);
+		status_change_end(bl, SC_INTOABYSS, INVALID_TIMER);
+		status_change_end(bl, SC_SIEGFRIED, INVALID_TIMER);
+		status_change_end(bl, SC_WHISTLE, INVALID_TIMER);
+		status_change_end(bl, SC_ASSNCROS, INVALID_TIMER);
+		status_change_end(bl, SC_POEMBRAGI, INVALID_TIMER);
+		status_change_end(bl, SC_APPLEIDUN, INVALID_TIMER);
+		status_change_end(bl, SC_HUMMING, INVALID_TIMER);
+		status_change_end(bl, SC_FORTUNE, INVALID_TIMER);
+		status_change_end(bl, SC_SERVICE4U, INVALID_TIMER);
+		status_change_end(bl, SC_LONGING, INVALID_TIMER);
+		status_change_end(bl, SC_SWINGDANCE, INVALID_TIMER);
+		status_change_end(bl, SC_SYMPHONYOFLOVER, INVALID_TIMER);
+		status_change_end(bl, SC_MOONLITSERENADE, INVALID_TIMER);
+		status_change_end(bl, SC_RUSHWINDMILL, INVALID_TIMER);
+		status_change_end(bl, SC_ECHOSONG, INVALID_TIMER);
+		status_change_end(bl, SC_HARMONIZE, INVALID_TIMER);
+		status_change_end(bl, SC_WINKCHARM, INVALID_TIMER);
+		status_change_end(bl, SC_SONGOFMANA, INVALID_TIMER);
+		status_change_end(bl, SC_DANCEWITHWUG, INVALID_TIMER);
+		status_change_end(bl, SC_LERADSDEW, INVALID_TIMER);
+		status_change_end(bl, SC_MELODYOFSINK, INVALID_TIMER);
+		status_change_end(bl, SC_BEYONDOFWARCRY, INVALID_TIMER);
+		status_change_end(bl, SC_UNLIMITEDHUMMINGVOICE, INVALID_TIMER);
+		}
+		break;
 
 	case NC_POWERSWING:
 		sc_start(bl, SC_STUN, 5*skilllv, skilllv, skill_get_time(skillid, skilllv));
@@ -2987,6 +3021,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case GC_COUNTERSLASH:
 	case GC_ROLLINGCUTTER:
 	case WM_REVERBERATION:
+	case WM_SOUND_OF_DESTRUCTION:
 	case NC_AXETORNADO:
 		if( flag&1 )
 		{	//Recursive invocation
@@ -6493,6 +6528,28 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 				pc_revive((TBL_PC*)bl,heal,0);
 				clif_resurrection(bl,1);
 			}
+		}
+		break;
+		
+´	case WM_SONG_OF_MANA:
+	case WM_DANCE_WITH_WUG:
+	case WM_LERADS_DEW:
+		if( flag&1 )
+		{	
+			struct status_change *sc = status_get_sc(src);
+			if( sc && sc->data[type] )
+			{
+				sc_start2(bl,type,100,skilllv,sc->data[type]->val2,skill_get_time(skillid,skilllv));
+			}
+		}
+		else if( sd )
+		{
+			short lv = (short)skilllv;
+			int count = skill_check_pc_partner(sd,skillid,&lv,skill_get_splash(skillid,skilllv),1);
+			if( sc_start2(bl,type,100,skilllv,count,skill_get_time(skillid,skilllv)) )
+				party_foreachsamemap(skill_area_sub,sd,skill_get_splash(skillid,skilllv),src,skillid,skilllv,tick,flag|BCT_PARTY|1,skill_castend_nodamage_id);
+			clif_skill_nodamage(src,bl,skillid,skilllv,1);
+
 		}
 		break;
 
