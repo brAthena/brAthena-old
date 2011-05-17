@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0498 - 17/05/2011 [Protimus]
+	* Adicionas as habilidades:
+	- WM_MELODYOFSINK (Cântico da Iluminação).
+	- WM_BEYOND_OF_WARCRY (Clamor de Batalha).
+	- WM_UNLIMITED_HUMMING_VOICE (Murmúrio Perene).
+
 	r0497 - 17/05/2011 [Protimus]
 	* Adicionadas a habilidade:
 	- WM_SATURDAY_NIGHT_FEVER (Embalos de Sábado a Noite).

@@ -6583,6 +6583,22 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 				status_fix_damage(src,bl,9999,clif_damage(src,bl,tick,0,0,9999,0,0,0));
 		}
 		break;
+		
+	case WM_MELODYOFSINK:
+	case WM_BEYOND_OF_WARCRY:
+	case WM_UNLIMITED_HUMMING_VOICE:
+		if( flag&1 )
+		{
+			sc_start2(bl,type,100,skilllv,skill_area_temp[0],skill_get_time(skillid,skilllv));
+		}
+		else
+		{	
+			short lv = (short)skilllv;
+			skill_area_temp[0] = (sd) ? skill_check_pc_partner(sd,skillid,&lv,skill_get_splash(skillid,skilllv),1) : 50;
+			map_foreachinrange(skill_area_sub, src, skill_get_splash(skillid,skilllv),BL_PC, src, skillid, skilllv, tick, flag|BCT_ENEMY|1, skill_castend_nodamage_id);
+			clif_skill_nodamage(src,bl,skillid,skilllv,1);
+		}
+		break;
 
 	case RA_WUGMASTERY:
 		if(sd) {
