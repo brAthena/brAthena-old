@@ -415,6 +415,7 @@ int skillnotok (int skillid, struct map_session_data *sd)
 			}
 			return 0;
 		case AL_TELEPORT:
+		case SC_FATALMENACE:
 			if(map[m].flag.noteleport) {
 				clif_skill_teleportmessage(sd,0);
 				return 1;
@@ -2096,12 +2097,13 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 			status_change_end(bl, SC_DEVOTION, INVALID_TIMER);
 	}
 
-	if(skillid == RG_INTIMIDATE && damage > 0 && !(tstatus->mode&MD_BOSS)) {
-		int rate = 50 + skilllv * 5;
-		rate = rate + (status_get_lv(src) - status_get_lv(bl));
-		if(rand()%100 < rate)
-			skill_addtimerskill(src,tick + 800,bl->id,0,0,skillid,skilllv,0,flag);
-	}
+	if( damage > 0 && !(tstatus->mode&MD_BOSS) )
+	{
+		if( skillid == RG_INTIMIDATE && rand()%100 < (50 + skilllv * 5 + status_get_lv(src) - status_get_lv(bl)) )
+ 			skill_addtimerskill(src,tick + 800,bl->id,0,0,skillid,skilllv,0,flag);
+		else if( skillid == SC_FATALMENACE )
+			skill_addtimerskill(src,tick + 800,bl->id,skill_area_temp[4],skill_area_temp[5],skillid,skilllv,0,flag);
+ 	}
 
 	if(skillid == CR_GRANDCROSS || skillid == NPC_GRANDDARKNESS)
 		dmg.flag |= BF_WEAPON;
@@ -2491,6 +2493,7 @@ static int skill_timerskill(int tid, unsigned int tick, int id, intptr data)
 	struct unit_data *ud = unit_bl2ud(src);
 	struct skill_timerskill *skl = NULL;
 	int range;
+	bool flag = true;
 
 	nullpo_ret(src);
 	nullpo_ret(ud);
@@ -2503,18 +2506,19 @@ static int skill_timerskill(int tid, unsigned int tick, int id, intptr data)
 			break;
 		if(skl->target_id) {
 			target = map_id2bl(skl->target_id);
-			if( skl->skill_id == RG_INTIMIDATE && (!target || target->prev == NULL || !check_distance_bl(src,target,AREA_SIZE)) )
+			if( (skl->skill_id == RG_INTIMIDATE || skl->skill_id == SC_FATALMENACE) && (!target || target->prev == NULL || !check_distance_bl(src,target,AREA_SIZE)) )
 				target = src; //Required since it has to warp.
-			if(target == NULL)
+			if( target == NULL )
+				break; 
+			if( target->prev == NULL )
+				break; 
+			if( src->m != target->m )
+				break; 
+			if( status_isdead(src) )
+				break; 
+			if( status_isdead(target) && skl->skill_id != RG_INTIMIDATE && skl->skill_id != WZ_WATERBALL )
 				break;
-			if(target->prev == NULL)
-				break;
-			if(src->m != target->m)
-				break;
-			if(status_isdead(src))
-				break;
-			if(status_isdead(target) && skl->skill_id != RG_INTIMIDATE && skl->skill_id != WZ_WATERBALL)
-				break;
+			flag = false;
 
 			switch(skl->skill_id) {
 				case RG_INTIMIDATE:
@@ -3407,6 +3411,20 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case WM_LULLABY_DEEPSLEEP:
 		if( rand()%100 < 88 + 2 * skilllv )
 			sc_start(bl,status_skill2sc(skillid),100,skilllv,skill_get_time(skillid,skilllv));
+		break;
+	case SC_FATALMENACE:
+		if( flag&1 )
+			skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
+		else
+		{
+			short x, y;
+			map_search_freecell(src, 0, &x, &y, -1, -1, 0);
+			skill_area_temp[4] = x;
+			skill_area_temp[5] = y;
+			map_foreachinrange(skill_area_sub, bl, skill_get_splash(skillid, skilllv), splash_target(src), src, skillid, skilllv, tick, flag|BCT_ENEMY|1, skill_castend_damage_id);
+			skill_addtimerskill(src,tick + 800,src->id,x,y,skillid,skilllv,0,flag); 
+			clif_skill_damage(src,src,tick,status_get_amotion(src),0,-30000,1,skillid,skilllv,6);
+		}
 		break;
 
 	case 0:
@@ -4849,6 +4867,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case RG_STRIPHELM:
 	case ST_FULLSTRIP:
 	case GC_WEAPONCRUSH:
+	case SC_STRIPACCESSARY:
 	{
 		unsigned short location = 0;
 		int d = 0;
@@ -4884,6 +4903,9 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		case GC_WEAPONCRUSH:
 			location = EQP_WEAPON;
 			break;
+		case SC_STRIPACCESSARY:
+			location = EQP_ACC;
+			break;
 		}
 
 		//Special message when trying to use strip on FCP [Jobbie]
@@ -4900,6 +4922,9 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		//Nothing stripped.
 		if( sd && !i )
 			clif_skill_fail(sd,skillid,0,0,0);
+
+		if( skillid == SC_STRIPACCESSARY && i )
+			clif_status_change(src, SI_ACTIONDELAY, 1, 1000, 0, 0, 1);
 	}
 		break;
 

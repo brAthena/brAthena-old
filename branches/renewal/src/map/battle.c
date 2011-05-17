@@ -1327,6 +1327,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			case GC_VENOMPRESSURE:
 				hitrate += 10 + 4 * skill_lv;
 				break;
+			case SC_FATALMENACE:
+				hitrate -= (35 - skill_lv * 5);
+				break;
 		}
 
 		// Weaponry Research hidden bonus
@@ -1870,6 +1873,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					break;
 				case WM_SOUND_OF_DESTRUCTION:
 					skillratio += 150;
+					break;
+				case SC_FATALMENACE:
+					skillratio += 100 * skill_lv;
 					break;
 			}
 
