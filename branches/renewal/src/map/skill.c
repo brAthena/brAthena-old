@@ -1788,21 +1788,25 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 			}
 		}
 
-		if(sc && sc->data[SC_MAGICROD] && src == dsrc) {
-			int sp = skill_get_sp(skillid,skilllv);
-			dmg.damage = dmg.damage2 = 0;
-			dmg.dmg_lv = ATK_MISS; //This will prevent skill additional effect from taking effect. [Skotlex]
-			sp = sp * sc->data[SC_MAGICROD]->val2 / 100;
-			if(skillid == WZ_WATERBALL && skilllv > 1)
-				sp = sp/((skilllv|1)*(skilllv|1)); //Estimate SP cost of a single water-ball
-			status_heal(bl, 0, sp, 2);
-			clif_skill_nodamage(bl,bl,SA_MAGICROD,sc->data[SC_MAGICROD]->val1,1);
-		}
+		if(sc)
+		{
+			if(sc->data[SC_MAGICROD] && src == dsrc)
+			{
+				int sp = skill_get_sp(skillid,skilllv);
+				dmg.damage = dmg.damage2 = 0;
+				dmg.dmg_lv = ATK_MISS; //This will prevent skill additional effect from taking effect. [Skotlex]
+				sp = sp * sc->data[SC_MAGICROD]->val2 / 100;
+				if(skillid == WZ_WATERBALL && skilllv > 1)
+					sp = sp/((skilllv|1)*(skilllv|1)); //Estimate SP cost of a single water-ball
+				status_heal(bl, 0, sp, 2);
+				clif_skill_nodamage(bl,bl,SA_MAGICROD,sc->data[SC_MAGICROD]->val1,1);
+			}
 			if( (dmg.damage || dmg.damage2) && sc->data[SC_HALLUCINATIONWALK] && rand()%100 < sc->data[SC_HALLUCINATIONWALK]->val3 )
 			{
 				dmg.damage = dmg.damage2 = 0;
 				dmg.dmg_lv = ATK_MISS;
 			}
+		}
 	}
 
 	damage = dmg.damage + dmg.damage2;
@@ -2551,17 +2555,15 @@ static int skill_timerskill(int tid, unsigned int tick, int id, intptr data)
 						skill_addtimerskill(src,tick+250,src->id,0,0,skl->skill_id,skl->skill_lv,skl->type-1,skl->flag);
 					break;
 				case WZ_WATERBALL:
-					if (!status_isdead(target))
+					if(!status_isdead(target))
 						skill_attack(BF_MAGIC,src,src,target,skl->skill_id,skl->skill_lv,tick,skl->flag);
-					if (skl->type>1 && !status_isdead(target)) {
+					if(skl->type > 1 && !status_isdead(target))
 						skill_addtimerskill(src,tick+125,target->id,0,0,skl->skill_id,skl->skill_lv,skl->type-1,skl->flag);
-					} else {
+					else {
 						struct status_change *sc = status_get_sc(src);
 						if(sc) {
 							status_change_end(src, SC_MAGICPOWER, INVALID_TIMER);
-							if(sc->data[SC_SPIRIT] &&
-								sc->data[SC_SPIRIT]->val2 == SL_WIZARD &&
-								sc->data[SC_SPIRIT]->val3 == skl->skill_id)
+							if(sc->data[SC_SPIRIT] && sc->data[SC_SPIRIT]->val2 == SL_WIZARD && sc->data[SC_SPIRIT]->val3 == skl->skill_id)
 								sc->data[SC_SPIRIT]->val3 = 0; //Clear bounced spell check.
 						}
 					}

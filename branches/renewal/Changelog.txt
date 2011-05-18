@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0501 - 18/05/2011 [Protimus]
+	* Melhoria de código e correções para:
+	- WZ_WATERBALL
+	- SC_MAGICROD
+	- Problema antigo e com a adição do Passos da Ilusão estava causando possíveis quebras.
+
 	r0500 - 17/05/2011 [Protimus]
 	* Adicionadas as habilidades:
 	- SC_TRIANGLESHOT (Disparo Triplo).
