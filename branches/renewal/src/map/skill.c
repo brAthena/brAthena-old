@@ -2061,6 +2061,9 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 		if( damage > 0 ) //Counter status effects [Skotlex]
 			skill_counter_additional_effect(src,bl,skillid,skilllv,dmg.flag,tick);
 	}
+	
+	if( skillid == SC_TRIANGLESHOT && rand()%100 > (1 + skilllv) )
+		dmg.blewcount = 0;
 
 	//Only knockback if it's still alive, otherwise a "ghost" is left behind. [Skotlex]
 	//Reflected spells do not bounce back (bl == dsrc since it only happens for direct skills)
@@ -2069,9 +2072,13 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 		int direction = -1; // default
 		switch(skillid)
 		{
-			case MG_FIREWALL:  direction = unit_getdir(bl); break; // backwards
+			  direction = unit_getdir(bl); break; // backwards
 			case WZ_STORMGUST: direction = rand()%8;        break; // randomly
-			case PR_SANCTUARY: direction = unit_getdir(bl); break; // backwards
+			case PR_SANCTUARY: direction = unit_getdir(bl); break; // backwards 
+			case MG_FIREWALL:
+			case SC_TRIANGLESHOT:
+			direction = unit_getdir(bl);
+			break;
 		}
 		skill_blown(dsrc,bl,dmg.blewcount,direction,0);
 	}
@@ -2823,6 +2830,8 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case WM_GREAT_ECHO:
 	case NC_AXEBOOMERANG:
 	case NC_POWERSWING:
+	case SC_TRIANGLESHOT:
+	case SC_FEINTBOMB:
 		skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 
@@ -7592,6 +7601,12 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 		map_foreachinrange(skill_area_sub, src, skill_get_splash(skillid,skilllv),BL_CHAR, src, skillid, skilllv, tick, flag|BCT_ENEMY, skill_castend_damage_id);
 		break;
 
+	case SC_FEINTBOMB:
+		clif_skill_nodamage(src,src,skillid,skilllv,1);
+		skill_unitsetting(src,skillid,skilllv,x,y,0); 
+		skill_blown(src,src,6,unit_getdir(src),0);
+		break;
+
 	default:
 		ShowWarning("skill_castend_pos2: Habilidade desconhecida usada:%d\n",skillid);
 		return 1;
@@ -11852,6 +11867,14 @@ static int skill_unit_timer_sub (DBKey key, void* data, va_list ap)
 				group->unit_id = UNT_USED_TRAPS;
 			break;
 
+			case UNT_FEINTBOMB:
+			{
+				struct block_list *src =  map_id2bl(group->src_id);
+				if( src )
+					map_foreachinrange(skill_area_sub, &group->unit->bl, unit->range, splash_target(src), src, SC_FEINTBOMB, group->skill_lv, tick, BCT_ENEMY|1, skill_castend_damage_id);
+				skill_delunit(unit);
+			}
+			break;
 			default:
 				skill_delunit(unit);
 		}

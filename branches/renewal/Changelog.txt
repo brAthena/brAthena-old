@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0500 - 17/05/2011 [Protimus]
+	* Adicionadas as habilidades:
+	- SC_TRIANGLESHOT (Disparo Triplo).
+	- SC_FEINTBOMB (Cópia Explosiva).
+
 	r0499 - 17/05/2011 [Protimus]
 	* Adicionadas as habilidades:
 	- SC_FATALMENACE (Acerto de Contas).
