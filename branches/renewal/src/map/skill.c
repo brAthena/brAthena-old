@@ -247,9 +247,9 @@ int skill_get_range2 (struct block_list *bl, int id, int lv)
 	{
 	case AC_SHOWER:			case MA_SHOWER:
 	case AC_DOUBLE:			case MA_DOUBLE:
-	case HT_BLITZBEAT:
-	case AC_CHARGEARROW:
-	case MA_CHARGEARROW:
+	case HT_BLITZBEAT:		case RA_WUGBITE:
+	case AC_CHARGEARROW:	case RA_AIMEDBOLT:
+	case MA_CHARGEARROW:	case RA_ARROWSTORM:
 	case SN_FALCONASSAULT:
 	case HT_POWER:
 		if( bl->type == BL_PC )
@@ -1013,7 +1013,9 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 	case RA_ICEBOUNDTRAP:
 		sc_start(bl, (skillid==RA_FIRINGTRAP ? SC_BURNING:SC_FREEZING), 10*skilllv + 40, skilllv, skill_get_time2(skillid, skilllv));
 		break;
-		
+	case RA_WUGBITE:
+		sc_start(bl, SC_BITE, 70, skilllv, skill_get_time(skillid, skilllv) + (sd ? pc_checkskill(sd,RA_TOOTHOFWUG)*1000:0));
+		break;
 	case WM_SOUND_OF_DESTRUCTION:
 		if( rand()%100 < 5 + 5 * skilllv ) 
 		{
@@ -2828,6 +2830,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case AB_DUPLELIGHT_MELEE:
 	case GC_CROSSIMPACT:
 	case GC_VENOMPRESSURE:
+	case RA_AIMEDBOLT:
 	case WM_SEVERE_RAINSTORM_MELEE:
 	case WM_GREAT_ECHO:
 	case NC_AXEBOOMERANG:
@@ -3038,6 +3041,8 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case WM_REVERBERATION:
 	case WM_SOUND_OF_DESTRUCTION:
 	case NC_AXETORNADO:
+	case RA_ARROWSTORM:
+	case RA_WUGDASH:
 		if( flag&1 )
 		{	//Recursive invocation
 			// skill_area_temp[0] holds number of targets in area
@@ -8270,7 +8275,7 @@ static int skill_unit_onplace (struct skill_unit *src, struct block_list *bl, un
 
 	sc = status_get_sc(bl);
 
-	if (sc && sc->option&OPTION_HIDE && sg->skill_id != WZ_HEAVENDRIVE)
+	if (sc && sc->option&OPTION_HIDE && sg->skill_id != WZ_HEAVENDRIVE && sg->skill_id != RA_ARROWSTORM)
 		return 0; //Hidden characters are immune to AoE skills except Heaven's Drive. [Skotlex]
 
 	type = status_skill2sc(sg->skill_id);

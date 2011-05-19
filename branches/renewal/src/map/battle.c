@@ -529,6 +529,12 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 				status_change_end(bl, SC_REJECTSWORD, INVALID_TIMER);
 		}
 
+		if(skill_num==RA_AIMEDBOLT && (sc->data[SC_BITE] || sc->data[SC_ANKLE] || sc->data[SC_ELECTRICSHOCKER])) {
+			status_change_end(bl, SC_BITE, -1);
+			status_change_end(bl, SC_ANKLE, -1);
+			status_change_end(bl, SC_ELECTRICSHOCKER, -1);
+		}
+
 		//Finally Kyrie because it may, or not, reduce damage to 0.
 		if((sce = sc->data[SC_KYRIE]) && damage > 0){
 			sce->val2-=damage;
@@ -1826,6 +1832,19 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case RA_WUGSTRIKE:
 					skillratio = 120*skill_lv;
 					break;
+				case RA_WUGBITE:
+					skillratio += 50*skill_lv;
+					break;
+				case RA_ARROWSTORM:
+					skillratio += 100 + 50*skill_lv;
+					if(s_base_level > 100) skillratio += skillratio*(s_base_level - 100)/ 200;
+					break;
+				case RA_AIMEDBOLT:
+					skillratio += 100 + 20*skill_lv;
+					if(s_base_level > 100) skillratio += skillratio * (s_base_level - 100) / 200;
+					if(tsc && (tsc->data[SC_BITE] || tsc->data[SC_ANKLE] || tsc->data[SC_ELECTRICSHOCKER]) )
+						wd.div_ = tstatus->size+2;
+					break;
 				case AB_DUPLELIGHT_MELEE:
 					skillratio += 10 * skill_lv;
 					break;
@@ -2065,11 +2084,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				1000-(flag.idef ? 0:def_rate),
 				1000-(flag.idef2 ? 0:def_rate)
 			);
-
-			ATK_ADD2(
-				(flag.idef ? 0:-vit_def),
-				(flag.pdef2 ? 0:-vit_def)
-			);
+			wd.damage = max(wd.damage-(flag.idef ? 0:vit_def),1);
+			if(flag.lh)
+				wd.damage2 = max(wd.damage-(flag.idef2 ? 0:vit_def),1);
 		}
 
 		//Post skill/vit reduction damage increases
