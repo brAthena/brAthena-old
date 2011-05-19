@@ -9,6 +9,16 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0504 - 19/05/2011 [Protimus]
+	* Adicionada a habilidade:
+	- SC_BLOODYLUST (Sede de Sangue).
+	* Corrigido leitura dos valores (val) para SC_STRIPACCESSARY (Remover Acessório).
+	* Corrigidas bônificações das habilidades:
+	- MI_RUSH_WINDMILL (Sinfonia dos Ventos).
+	- WM_SATURDAY_NIGHT_FEVER (Embalos de Sábado a Noite).
+	- WM_MELODYOFSINK (Cântico da Iluminação).
+	- WM_BEYOND_OF_WARCRY (Clamor de Batalha).
+
 	r0503 - 18/05/2011 [Protimus]
 	* Adicionadas as habilidades:
 	- SC_BODYPAINT (Borrifar Tinta).

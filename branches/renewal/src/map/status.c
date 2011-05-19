@@ -3787,6 +3787,16 @@ static unsigned short status_calc_batk(struct block_list *bl, struct status_chan
 		batk += sc->data[SC_GATLINGFEVER]->val3;
 	if(sc->data[SC_MADNESSCANCEL])
 		batk += 100;
+	if(sc->data[SC_RUSHWINDMILL])
+		batk += batk * sc->data[SC_RUSHWINDMILL]->val2/100;
+	if(sc->data[SC_SATURDAYNIGHTFEVER])
+		batk += 100 * sc->data[SC_SATURDAYNIGHTFEVER]->val1;
+	if(sc->data[SC_MELODYOFSINK])
+		batk -= batk * sc->data[SC_MELODYOFSINK]->val3/100;
+	if(sc->data[SC_BEYONDOFWARCRY])
+		batk += batk * sc->data[SC_BEYONDOFWARCRY]->val3/100;
+	if(sc->data[SC__BLOODYLUST])
+		batk += batk * 32 / 100;
 	return (unsigned short)cap_value(batk,0,USHRT_MAX);
 }
 
@@ -3831,6 +3841,8 @@ static unsigned short status_calc_watk(struct block_list *bl, struct status_chan
 		watk += sc->data[SC_MERC_ATKUP]->val2;
 	if(sc->data[SC_OTHILA])
 		watk += sc->data[SC_OTHILA]->val1;
+	if(sc->data[SC__BLOODYLUST])
+		watk += watk * 32 / 100;
 
 	return (unsigned short)cap_value(watk,0,USHRT_MAX);
 }
@@ -4018,6 +4030,10 @@ static signed short status_calc_def(struct block_list *bl, struct status_change 
 		def -= def * (sc->data[SC_FLING]->val2)/100;
 	if(sc->data[SC_ANGELUS])
 		def += def * sc->data[SC_ANGELUS]->val2/100;
+	if( sc->data[SC__BLOODYLUST] )
+		def -= def * 55 / 100;
+	if(sc->data[SC_SATURDAYNIGHTFEVER])
+		def -= def * (10 + 10 * sc->data[SC_SATURDAYNIGHTFEVER]->val1) / 100;
 
 	return (short)cap_value(def,SHRT_MIN,SHRT_MAX);
 }
@@ -6701,6 +6717,13 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_GLOOMYDAY:
 			val2 = 3 + 2 * val1;
 			val3 = 3 * val1; 
+			break;
+		case SC__STRIPACCESSORY:
+			if (!sd)
+				val2 = 20;
+			break;	
+		case SC__BLOODYLUST:
+			val_flag |= 1|2;
 			break;			
 		default:
 			if( calc_flag == SCB_NONE && StatusSkillChangeTable[type] == 0 && StatusIconChangeTable[type] == 0 )
