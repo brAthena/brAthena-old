@@ -416,6 +416,7 @@ int skillnotok (int skillid, struct map_session_data *sd)
 			return 0;
 		case AL_TELEPORT:
 		case SC_FATALMENACE:
+		case SC_DIMENSIONDOOR:
 			if(map[m].flag.noteleport) {
 				clif_skill_teleportmessage(sd,0);
 				return 1;
@@ -6665,6 +6666,29 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		}
 		break;
 
+	case SC_BODYPAINT:
+		if( flag&1 )
+		{
+			if( tsc && (tsc->data[SC_HIDING] || tsc->data[SC_CLOAKING] || tsc->data[SC_CHASEWALK] || tsc->data[SC_CLOAKINGEXCEED] || tsc->data[SC__INVISIBILITY]) )
+			{
+				status_change_end(bl, SC_HIDING, -1);
+				status_change_end(bl, SC_CLOAKING, -1);
+				status_change_end(bl, SC_CHASEWALK, -1);
+				status_change_end(bl, SC_CLOAKINGEXCEED, -1);
+				status_change_end(bl, SC__INVISIBILITY, -1);
+
+				sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv));
+				sc_start(bl,SC_BLIND,53 + 2 * skilllv,skilllv,skill_get_time(skillid,skilllv));
+			}
+		}
+		else
+		{
+			clif_skill_nodamage(src, bl, skillid, 0, 1);
+			map_foreachinrange(skill_area_sub, bl, skill_get_splash(skillid, skilllv), BL_CHAR,
+				src, skillid, skilllv, tick, flag|BCT_ENEMY|1, skill_castend_nodamage_id);
+		}
+		break;
+
 	default:
 		ShowWarning("skill_castend_nodamage_id: Habilidade desconhecida usada:%d\n",skillid);
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
@@ -7305,6 +7329,7 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 	case WM_REVERBERATION:
 	case WM_SEVERE_RAINSTORM:
 	case WM_POEMOFNETHERWORLD:
+	case SC_DIMENSIONDOOR:
 		flag|=1;//Set flag to 1 to prevent deleting ammo (it will be deleted on group-delete).
 	case GS_GROUNDDRIFT: //Ammo should be deleted right away.
 		skill_unitsetting(src,skillid,skilllv,x,y,0);
@@ -8923,6 +8948,13 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 			if( battle_check_target(&src->bl, bl, BCT_ENEMY) )
 				skill_attack(BF_WEAPON,ss,&src->bl,bl,WM_SEVERE_RAINSTORM_MELEE,sg->skill_lv,tick,0);
 			break;
+			
+		case UNT_DIMENSIONDOOR:
+			if( tsd && !map[bl->m].flag.noteleport )
+				pc_randomwarp(tsd,3);
+			else if( bl->type == BL_MOB && battle_config.mob_warp&8 )
+				unit_warp(bl,-1,-1,-1,3);
+			break;
 	}
 
 	if (sg->state.magic_power && sc && !sc->data[SC_MAGICPOWER])
@@ -9790,6 +9822,13 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 				require.sp -= require.sp * 20 * count / 100; //  -20% each W/M in the party.
 			break;
 		}
+	case SC_DIMENSIONDOOR:
+		if( sc && sc->data[SC_MAGNETICFIELD] )
+		{
+			clif_skill_fail(sd,skill,0,0,0);
+			return 0;
+		}
+		break;
 	case RA_WUGMASTERY:
 		if((pc_isfalcon(sd) && !battle_config.warg_can_falcon) || sd->sc.data[SC__GROOMY]) {
 			clif_skill_fail(sd,skill,0x17,0,0);

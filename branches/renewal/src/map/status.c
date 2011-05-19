@@ -4332,6 +4332,8 @@ static short status_calc_aspd_rate(struct block_list *bl, struct status_change *
 		aspd_rate += 500;
 	if( sc->data[SC_GLOOMYDAY] )
 		aspd_rate += aspd_rate * sc->data[SC_GLOOMYDAY]->val3 / 100;
+	if( sc->data[SC__BODYPAINT] )
+		aspd_rate += aspd_rate * 5 * sc->data[SC__BODYPAINT]->val1 / 100;
 	}
 
 	return (short)cap_value(aspd_rate,0,SHRT_MAX);
