@@ -19,7 +19,7 @@
 // | ID da Habilidade //Nome                                |
 // \________________________________________________________/
 
-// Habilidades de Mago
+// Mago
 10,5000	// Chama Reveladora
 11,5000	// Ataque Espiritual
 12,5000	// Escudo Mágico
@@ -33,7 +33,7 @@
 20,5000	// Relâmpago
 21,5000	// Tempestade de Raios
 
-// Habilidades de Bruxo
+// Bruxo
 80,2500	// Coluna de Fogo
 81,2500	// Supernova
 83,2500	// Chuva de Meteoros

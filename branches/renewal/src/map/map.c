@@ -1606,6 +1606,7 @@ int map_quit(struct map_session_data *sd)
 			status_change_end(&sd->bl, SC_PRESERVE, INVALID_TIMER);
 			status_change_end(&sd->bl, SC_KAAHI, INVALID_TIMER);
 			status_change_end(&sd->bl, SC_SPIRIT, INVALID_TIMER);
+			status_change_end(&sd->bl, SC__REPRODUCE, INVALID_TIMER);
 		}
 	}
 

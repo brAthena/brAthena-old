@@ -62,6 +62,7 @@ struct s_skill_arrow_db skill_arrow_db[MAX_SKILL_ARROW_DB];
 struct s_skill_abra_db skill_abra_db[MAX_SKILL_ABRA_DB];
 struct s_skill_magicmushroom_db skill_magicmushroom_db[MAX_SKILL_MAGICMUSHROOM_DB];
 struct s_skill_improvise_db skill_improvise_db[MAX_SKILL_IMPROVISE_DB];
+struct s_skill_reproduce_db skill_reproduce_db[MAX_SKILL_DB];
 
 struct s_skill_unit_layout skill_unit_layout[MAX_SKILL_UNIT_LAYOUT];
 int firewall_unit_pos;
@@ -353,6 +354,11 @@ int skill_calc_heal(struct block_list *src, struct block_list *target, int skill
 // Making plagiarize check its own function [Aru]
 int can_copy (struct map_session_data *sd, int skillid, struct block_list* bl)
 {
+
+	int id;
+
+	id = skill_reproduce_db[skillid].reproduce;
+
 	// Never copy NPC/Wedding Skills
 	if (skill_get_inf2(skillid)&(INF2_NPC_SKILL|INF2_WEDDING_SKILL))
 		return 0;
@@ -371,6 +377,14 @@ int can_copy (struct map_session_data *sd, int skillid, struct block_list* bl)
 		skillid == CASH_BLESSING || skillid == CASH_INCAGI ||
 		skillid == MER_INCAGI || skillid == MER_BLESSING))
 		return 0;
+		
+	if( sd )
+	{
+		if( !(sd->sc.data[SC__REPRODUCE]) && (skillid >= RK_ENCHANTBLADE && skillid <= SR_RIDEINLIGHTNING) )
+			return 0;
+		if( sd->sc.data[SC__REPRODUCE] && !id )
+			return 0;
+	}
 
 	return 1;
 }
@@ -4565,6 +4579,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case AS_CLOAKING:
 	case GC_CLOAKINGEXCEED:
 	case RA_CAMOUFLAGE:
+	case SC_REPRODUCE:
 		if (tsce)
 		{
 			i = status_change_end(bl, type, INVALID_TIMER);
@@ -13830,6 +13845,19 @@ static bool skill_parse_row_improvisedb(char* split[], int columns, int current)
 	return true;
 }
 
+static bool skill_parse_row_reproducedb(char* split[], int column, int current)
+{
+	int skillid = atoi(split[0]);
+	
+	skillid = skill_get_index(skillid);
+	if( !skillid )
+		return false;
+
+	skill_reproduce_db[skillid].reproduce |= atoi(split[1]);
+
+	return true;
+}
+
 static void skill_readdb(void)
 {
 	// init skill db structures
@@ -13840,6 +13868,7 @@ static void skill_readdb(void)
 	memset(skill_abra_db,0,sizeof(skill_abra_db));
 	memset(skill_magicmushroom_db,0,sizeof(skill_magicmushroom_db));
 	memset(skill_improvise_db,0,sizeof(skill_improvise_db));
+	memset(skill_reproduce_db,0,sizeof(skill_reproduce_db));
 
 	// load skill databases
 	safestrncpy(skill_db[0].name, "UNKNOWN_SKILL", sizeof(skill_db[0].name));
@@ -13856,6 +13885,7 @@ static void skill_readdb(void)
 	sv_readdb(db_path, "abra_db.txt"           , ',',   4,  4, MAX_SKILL_ABRA_DB, skill_parse_row_abradb);
 	sv_readdb(db_path, "magicmushroom_db.txt"  , ',',   1,  1, MAX_SKILL_MAGICMUSHROOM_DB, skill_parse_row_magicmushroomdb);
 	sv_readdb(db_path, "improvise_db.txt"      , ',',   2,  2, MAX_SKILL_IMPROVISE_DB, skill_parse_row_improvisedb);
+	sv_readdb(db_path, "skill_reproduce_db.txt", ',',   2,  2, MAX_SKILL_DB, skill_parse_row_reproducedb);
 }
 
 void skill_reload (void)

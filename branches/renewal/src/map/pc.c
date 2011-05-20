@@ -1074,6 +1074,18 @@ int pc_reg_received(struct map_session_data *sd)
 			sd->status.skill[sd->cloneskill_id].flag = 13;	//cloneskill flag
 		}
 	}
+	
+	if ((i = pc_checkskill(sd,SC_REPRODUCE)) > 0) {
+		sd->reproduceskill_id = pc_readglobalreg(sd,"REPRODUCE_SKILL");
+		if( sd->reproduceskill_id > 0)
+		{
+			sd->status.skill[sd->reproduceskill_id].id = sd->reproduceskill_id;
+			sd->status.skill[sd->reproduceskill_id].lv = pc_readglobalreg(sd,"REPRODUCE_SKILL_LV");
+			if( i < sd->status.skill[sd->reproduceskill_id].lv)
+				sd->status.skill[sd->reproduceskill_id].lv = i;
+			sd->status.skill[sd->reproduceskill_id].flag = 13;
+		}
+	}
 
 	//Weird... maybe registries were reloaded?
 	if (sd->state.active)
@@ -6578,6 +6590,12 @@ int pc_jobchange(struct map_session_data *sd,int job, int upper)
 		sd->cloneskill_id = 0;
 		pc_setglobalreg(sd, "CLONE_SKILL", 0);
 		pc_setglobalreg(sd, "CLONE_SKILL_LV", 0);
+	}
+	if(sd->reproduceskill_id)
+	{
+		sd->reproduceskill_id = 0;
+		pc_setglobalreg(sd, "REPRODUCE_SKILL",0);
+		pc_setglobalreg(sd, "REPRODUCE_SKILL_LV",0);
 	}
 	if ((b_class&&MAPID_UPPERMASK) != (sd->class_&MAPID_UPPERMASK))
 	{ //Things to remove when changing class tree.
