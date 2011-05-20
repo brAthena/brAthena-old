@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0506 - 20/05/2011 [Protimus]
+	* Adicionadas as habilidades:
+	- SC_CHAOSPANIC (Símbolo do Caos).
+	- SC_MAELSTROM (Redemoinho de Absorção).
+
 	r0505 - 20/05/2011 [Protimus]
 	* Adiciona a habilidade:
 	- SC_MANHOLE (Pintar Armadilha).

@@ -2237,7 +2237,8 @@ static int skill_check_unit_range_sub (struct block_list *bl, va_list ap)
 	{
 		case MG_SAFETYWALL:
 		case AL_PNEUMA:
-			if(g_skillid != MG_SAFETYWALL && g_skillid != AL_PNEUMA)
+		case SC_MAELSTROM:
+			if(g_skillid != MG_SAFETYWALL && g_skillid != AL_PNEUMA && g_skillid != SC_MAELSTROM)
 				return 0;
 			break;
 		case AL_WARP:
@@ -7332,6 +7333,8 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 	case SC_DIMENSIONDOOR:
 	case SC_BLOODYLUST:
 	case SC_MANHOLE:
+	case SC_MAELSTROM:
+	case SC_CHAOSPANIC:
 		flag|=1;//Set flag to 1 to prevent deleting ammo (it will be deleted on group-delete).
 	case GS_GROUNDDRIFT: //Ammo should be deleted right away.
 		skill_unitsetting(src,skillid,skilllv,x,y,0);
@@ -8345,6 +8348,8 @@ static int skill_unit_onplace (struct skill_unit *src, struct block_list *bl, un
 			break; 
 
 	case UNT_PNEUMA:
+	case UNT_MAELSTROM:
+	case UNT_CHAOSPANIC:
 		if (!sce)
 			sc_start4(bl,type,100,sg->skill_lv,sg->group_id,0,0,sg->limit);
 		break;
@@ -9086,6 +9091,7 @@ static int skill_unit_onleft (int skill_id, struct block_list *bl, unsigned int 
 		case HW_GRAVITATION:
 		case NJ_SUITON:
 		case SC_BLOODYLUST:
+		case SC_MAELSTROM:
 			if (sce)
 				status_change_end(bl, type, INVALID_TIMER);
 			break;
@@ -11479,6 +11485,9 @@ struct skill_unit *skill_initunit (struct skill_unit_group *group, int idx, int 
 	case HP_BASILICA:
 		skill_unitsetmapcell(unit,HP_BASILICA,group->skill_lv,CELL_BASILICA,true);
 		break;
+	case SC_MAELSTROM:
+		skill_unitsetmapcell(unit,SC_MAELSTROM,group->skill_lv,CELL_MAELSTROM,true);
+		break;
 	default:
 		if (group->state.song_dance&0x1) //Check for dissonance.
 			skill_dance_overlap(unit, 1);
@@ -11544,6 +11553,9 @@ int skill_delunit (struct skill_unit* unit)
 			if( tsc && tsc->data[SC__MANHOLE] )
 				tsc->data[SC__MANHOLE]->val4 = 0;
 		}
+		break;
+	case SC_MAELSTROM:
+		skill_unitsetmapcell(unit,SC_MAELSTROM,group->skill_lv,CELL_MAELSTROM,false);
 		break;
 	}
 
