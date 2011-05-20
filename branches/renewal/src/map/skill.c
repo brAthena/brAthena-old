@@ -7331,6 +7331,7 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 	case WM_POEMOFNETHERWORLD:
 	case SC_DIMENSIONDOOR:
 	case SC_BLOODYLUST:
+	case SC_MANHOLE:
 		flag|=1;//Set flag to 1 to prevent deleting ammo (it will be deleted on group-delete).
 	case GS_GROUNDDRIFT: //Ammo should be deleted right away.
 		skill_unitsetting(src,skillid,skilllv,x,y,0);
@@ -7688,7 +7689,9 @@ int skill_castend_map (struct map_session_data *sd, short skill_num, const char 
 		sd->sc.data[SC_BASILICA] ||
 		sd->sc.data[SC_DEATHBOUND] ||
 		sd->sc.data[SC_DANCING] && skill_num < RK_ENCHANTBLADE && !pc_checkskill(sd, WM_LESSON) ||
-		sd->sc.data[SC_MARIONETTE]
+		sd->sc.data[SC_MARIONETTE] ||
+		sd->sc.data[SC__MANHOLE] ||
+		sd->sc.data[SC_SATURDAYNIGHTFEVER]
 	 )) {
 		skill_failed(sd);
 		return 0;
@@ -8502,6 +8505,7 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 			case UNT_ANKLESNARE: //These happen when a trap is splash-triggered by multiple targets on the same cell.
 			case UNT_FIREPILLAR_ACTIVE:
 			case UNT_ELECTRICSHOCKER:
+			case UNT_MANHOLE:
 				return 0;
 			default:
 				ShowError("skill_unit_onplace_timer: erro de intervalo (unit id %x)\n", sg->unit_id);
@@ -8656,7 +8660,8 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 			break;
 
 		case UNT_ANKLESNARE:
-			if( sg->val2 == 0 && tsc)
+		case UNT_MANHOLE:
+			if( sg->val2 == 0 && tsc && (sg->unit_id == UNT_ANKLESNARE || bl->id != sg->src_id) )
 			{
 				int sec = skill_get_time2(sg->skill_id,sg->skill_lv);
 				if( status_change_start(bl,type,10000,sg->skill_lv,sg->group_id,0,0,sec, 8) )
@@ -9829,6 +9834,7 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 			break;
 		}
 	case SC_DIMENSIONDOOR:
+	case SC_MANHOLE:
 		if( sc && sc->data[SC_MAGNETICFIELD] )
 		{
 			clif_skill_fail(sd,skill,0,0,0);
@@ -11529,6 +11535,14 @@ int skill_delunit (struct skill_unit* unit)
 			struct block_list* target = map_id2bl(group->val2);
 			if( target )
 				status_change_end(target, SC_ELECTRICSHOCKER, -1);
+		}
+		break;
+	case SC_MANHOLE:
+		if( group->val2 )
+		{ 
+			struct status_change *tsc = status_get_sc( map_id2bl(group->val2));
+			if( tsc && tsc->data[SC__MANHOLE] )
+				tsc->data[SC__MANHOLE]->val4 = 0;
 		}
 		break;
 	}

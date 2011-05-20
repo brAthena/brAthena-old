@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0505 - 20/05/2011 [Protimus]
+	* Adiciona a habilidade:
+	- SC_MANHOLE (Pintar Armadilha).
+	* Correções para habilidade:
+	- WM_SATURDAY_NIGHT_FEVER (Embalos de Sábado a Noite).
+
 	r0504 - 19/05/2011 [Protimus]
 	* Adicionada a habilidade:
 	- SC_BLOODYLUST (Sede de Sangue).

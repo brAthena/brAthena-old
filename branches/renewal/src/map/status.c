@@ -1324,6 +1324,18 @@ int status_check_skilluse(struct block_list *src, struct block_list *target, int
 				(sc->data[SC_NOCHAT] && sc->data[SC_NOCHAT]->val1&MANNER_NOSKILL)
 			)
 				return 0;
+				
+			if( sc->data[SC__MANHOLE] || ((tsc = status_get_sc(target)) && tsc->data[SC__MANHOLE]) )
+			{
+				switch(skill_num)
+				{
+					case SC_SHADOWFORM:
+					case SC_STRIPACCESSARY:
+						break;
+					default:
+						return 0;
+				}
+			}
 
 		}
 	}
@@ -6772,6 +6784,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_SPIDERWEB:
 		case SC_FEAR:
 		case SC_ELECTRICSHOCKER:
+		case SC__MANHOLE:
 			unit_stop_walking(bl,1);
 		break;
 		case SC_HIDING:
@@ -7404,7 +7417,9 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 			if (vd) vd->dead_sit = 0;
 			break;
 		case SC_WARM:
-			if (sce->val4) { //Clear the group.
+		case SC__MANHOLE:
+			if( sce->val4 )
+			{ 
 				struct skill_unit_group* group = skill_id2group(sce->val4);
 				sce->val4 = 0;
 				skill_delunitgroup(group);
@@ -8358,6 +8373,7 @@ int status_change_clear_buffs (struct block_list* bl, int type)
 			case SC_HAGALAZ:
 			case SC_NAUTHIZ:
 			case SC_ELECTRICSHOCKER:
+			case SC__MANHOLE:
 				continue;
 
 			//Debuffs that can be removed.

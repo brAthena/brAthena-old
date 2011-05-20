@@ -842,6 +842,7 @@ int unit_can_move(struct block_list *bl)
 			|| (sc->data[SC_GRAVITATION] && sc->data[SC_GRAVITATION]->val3 == BCT_SELF)
 			|| (sc->data[SC_FEAR] && sc->data[SC_FEAR]->val2 > 0)
 			|| sc->data[SC_DEEPSLEEP]
+			|| sc->data[SC__MANHOLE]
 		))
 			return 0;
 	}
@@ -913,7 +914,7 @@ int unit_skilluse_id2(struct block_list *src, int target_id, short skill_num, sh
 {
 	struct unit_data *ud;
 	struct status_data *tstatus;
-	struct status_change *sc;
+	struct status_change *sc, *tsc;
 	struct map_session_data *sd = NULL;
 	struct block_list * target = NULL;
 	unsigned int tick = gettick();
@@ -1009,9 +1010,14 @@ int unit_skilluse_id2(struct block_list *src, int target_id, short skill_num, sh
 
 	if( mob_ksprotected(src, target) )
 		return 0;
+		
+	tsc = status_get_sc(target);
 
-	//Normally not needed because clif.c checks for it, but the at/char/script commands don't! [Skotlex]
-	if(ud->skilltimer != INVALID_TIMER && skill_num != SA_CASTCANCEL)
+	if( tsc && tsc->data[SC__MANHOLE] )
+		return 0;
+		
+	if( ud->skilltimer != INVALID_TIMER && skill_num != SA_CASTCANCEL &&
+		!(skill_num == SO_SPELLFIST && (ud->skillid == MG_FIREBOLT || ud->skillid == MG_COLDBOLT || ud->skillid == MG_LIGHTNINGBOLT)) )
 		return 0;
 
 	if(skill_get_inf2(skill_num)&INF2_NO_TARGET_SELF && src->id == target_id)
@@ -1216,6 +1222,12 @@ int unit_skilluse_id2(struct block_list *src, int target_id, short skill_num, sh
 		status_change_end(src,SC_CLOAKINGEXCEED, INVALID_TIMER);
 		if (!src->prev) return 0;
 	}
+	
+	if( sc && sc->data[SC__MANHOLE] )
+	{
+		status_change_end(src,SC__MANHOLE,-1);
+		if (!src->prev) return 0; 
+	}
 
 	if( casttime > 0 )
 	{
@@ -1320,6 +1332,12 @@ int unit_skilluse_pos2( struct block_list *src, short skill_x, short skill_y, sh
 	{
 		status_change_end(src, SC_CLOAKING, INVALID_TIMER);
 		if (!src->prev) return 0; //Warped away!
+	}
+
+	if( sc && sc->data[SC__MANHOLE] )
+	{
+		status_change_end(src,SC__MANHOLE,-1);
+		if (!src->prev) return 0; 
 	}
 
 	if( casttime > 0 )
@@ -1887,6 +1905,7 @@ int unit_remove_map_(struct block_list *bl, clr_type clrtype, const char* file, 
 		status_change_end(bl,SC_CAMOUFLAGE, INVALID_TIMER);
 		status_change_end(bl,SC_CLOAKINGEXCEED, INVALID_TIMER);
 		status_change_end(bl, SC_ELECTRICSHOCKER, INVALID_TIMER);
+		status_change_end(bl, SC__MANHOLE, INVALID_TIMER);
 	}
 
 	if (bl->type&BL_CHAR) {
