@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Database: magicmushroom_db.txt                 |
+// | Nome do Database: skill_magicmushroom_db.txt           |
 // |--------------------------------------------------------|
 // | Criado por: brA Dev. Team                              |
 // |--------------------------------------------------------|
