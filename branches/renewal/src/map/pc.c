@@ -6939,7 +6939,7 @@ int pc_setwarg(TBL_PC* sd, int flag)
 		return 0;
 
 	if( flag ){
-		if( (pc_checkskill(sd,RA_WUGMASTERY)>0) && !(pc_isfalcon(sd)) && (!pc_iswarg(sd) || battle_config.warg_can_falcon) && !(pc_isriding(sd, OPTION_RIDING_WUG)) )
+		if( (pc_checkskill(sd,RA_WUGMASTERY)>0) && !(pc_isfalcon(sd)) && !pc_iswarg(sd) && !(pc_isriding(sd, OPTION_RIDING_WUG)) )
 			pc_setoption(sd,sd->sc.option|OPTION_WUG);
 	} else if( pc_isriding(sd, OPTION_RIDING_WUG) ) {
 		pc_setoption(sd,sd->sc.option&~OPTION_RIDING_WUG);

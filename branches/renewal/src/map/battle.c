@@ -1875,6 +1875,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					if(tsc && (tsc->data[SC_BITE] || tsc->data[SC_ANKLE] || tsc->data[SC_ELECTRICSHOCKER]) )
 						wd.div_ = tstatus->size+2;
 					break;
+				case RA_SENSITIVEKEEN:
+					skillratio += 50*skill_lv;
+					break;
 				case AB_DUPLELIGHT_MELEE:
 					skillratio += 10 * skill_lv;
 					break;

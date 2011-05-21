@@ -504,7 +504,6 @@ extern struct Battle_Config
 	int max_level_base;
 	int max_level_classe;
 	int rune_produce_rate;
-	int warg_can_falcon;
 	int pc_camouflage_check_type;
 	int metallicsound_spburn_rate;
 

@@ -1031,6 +1031,10 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 	case RA_WUGBITE:
 		sc_start(bl, SC_BITE, 70, skilllv, skill_get_time(skillid, skilllv) + (sd ? pc_checkskill(sd,RA_TOOTHOFWUG)*1000:0));
 		break;
+	case RA_SENSITIVEKEEN:
+		if(rand()%100 < 8*skilllv)
+			skill_castend_damage_id(src, bl, RA_WUGBITE,(sd ? pc_checkskill(sd,RA_WUGBITE):skilllv), tick, SD_ANIMATION);
+		break;
 	case WM_SOUND_OF_DESTRUCTION:
 		if( rand()%100 < 5 + 5 * skilllv ) 
 		{
@@ -3438,6 +3442,27 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 				if(sd && pc_isriding(sd,OPTION_RIDING_WUG) && !map_flag_gvg(src->m) && !map[src->m].flag.battleground && unit_movepos(src,bl->x,bl->y,1,1))
 					clif_slide(src, bl->x, bl->y);
 			skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
+		}
+		break;
+	case RA_SENSITIVEKEEN:
+		if( bl->type != BL_SKILL ) {
+			if(tsc && (tsc->option&(OPTION_HIDE|OPTION_CLOAK) || tsc->data[SC__INVISIBILITY]) )
+				skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
+		} else {
+			struct skill_unit *su = BL_CAST(BL_SKILL,bl);
+			struct skill_unit_group* sg;
+
+			if(su && (sg=su->group) && skill_get_inf2(sg->skill_id)&INF2_TRAP && sg->src_id!=src->id && battle_check_target(src, map_id2bl(sg->src_id),BCT_ENEMY)>0) {
+				if( sd && !(sg->unit_id==UNT_USED_TRAPS || (sg->unit_id==UNT_ANKLESNARE && sg->val2!=0 )) ) { 
+					struct item item_tmp;
+					memset(&item_tmp,0,sizeof(item_tmp));
+					item_tmp.nameid = ( sg->unit_id >= UNT_MAGENTATRAP && sg->unit_id <= UNT_CLUSTERBOMB )?ITEMID_TRAP_ALLOY:ITEMID_TRAP;
+					item_tmp.identify = 1;
+					if(item_tmp.nameid)
+						map_addflooritem(&item_tmp,1,sg->unit->bl.m,sg->unit->bl.x,sg->unit->bl.y,0,0,0,0);
+				}
+				skill_delunit(su);
+			}
 		}
 		break;
 	case WM_LULLABY_DEEPSLEEP:
@@ -6686,6 +6711,11 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			clif_skill_nodamage(src,bl,skillid,skilllv,1);
 		}
 		break;
+	case RA_SENSITIVEKEEN:
+		clif_skill_nodamage(src,bl,skillid,skilllv,1);
+		clif_skill_damage(src,src,tick, status_get_amotion(src), 0, -30000, 1, skillid, skilllv, 6);
+		map_foreachinrange(skill_area_sub,src,skill_get_splash(skillid,skilllv),BL_CHAR|BL_SKILL,src,skillid,skilllv,tick,flag|BCT_ENEMY,skill_castend_damage_id);
+		break;
 
 	case SC_BODYPAINT:
 		if( flag&1 )
@@ -9868,7 +9898,7 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 		}
 		break;
 	case RA_WUGMASTERY:
-		if((pc_isfalcon(sd) && !battle_config.warg_can_falcon) || sd->sc.data[SC__GROOMY]) {
+		if(pc_isfalcon(sd) || sd->sc.data[SC__GROOMY]) {
 			clif_skill_fail(sd,skill,0x17,0,0);
 			return 0;
 		}
@@ -9885,12 +9915,18 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 			return 0;
 		}
 		break;
+	case RA_SENSITIVEKEEN:
+		if(!pc_iswarg(sd)) {
+			clif_skill_fail(sd,skill,0x17,0,0);
+			return 0;
+		}
+		break;
 	case NC_REPAIR:
 		if( !pc_search_inventory(sd,ITEMID_REPAIR_KIT) && pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_MAGIC_GEAR_FUEL) )
 			{
 			clif_skill_fail(sd,skill,0,0,0);
 			return 0;
-			}	
+			}
 		break;
 	case NC_ACCELERATION:
 		if( !pc_search_inventory(sd,ITEMID_ACCELERATOR) && pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_MAGIC_GEAR_FUEL) )
