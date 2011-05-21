@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0514 - 21/05/2011 [Protimus]
+	* Alterada aspd e defesa máxima.
+
 	r0513 - 21/05/2011 [Protimus]
 	* Atualizado conforme eAthena r14829.
 	- Muitos códigos extras não foram adicionados porque já temos semelhantes e mais otimizados.

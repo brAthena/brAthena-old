@@ -9,7 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
-	r0512 - 21/05/2011 [Protimus]
+	r0514 - 21/05/2011 [Protimus]
+	* Corrigido problema com bonificação de exp por ataque.
+
+	r0513 - 21/05/2011 [Protimus]
 	* Atualizado conforme eAthena r14829.
 	- Muitos códigos extras não foram adicionados porque já temos semelhantes e mais otimizados.
 
