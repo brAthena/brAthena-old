@@ -4376,7 +4376,7 @@ static unsigned short status_calc_dmotion(struct block_list *bl, struct status_c
 		return 0;
 	if( sc->data[SC_CONCENTRATION] )
 		return 0;
-	if( sc->data[SC_RUN] )
+	if( sc->data[SC_RUN] || sc->data[SC_WUGDASH] )
 		return 0;
 
 	return (unsigned short)cap_value(dmotion,0,USHRT_MAX);
@@ -6358,6 +6358,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			val2 = 11-val1; //Chance to consume: 11-skilllv%
 			break;
 		case SC_RUN:
+		case SC_WUGDASH:
 			val4 = gettick(); //Store time at which you started running.
 			tick = -1;
 			break;
@@ -7019,6 +7020,13 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_MERC_SPUP:
 			status_percent_heal(bl, 0, 100); // Recover Full SP
 			break;
+		case SC_WUGDASH:
+			{
+				struct unit_data *ud = unit_bl2ud(bl);
+				if(ud)
+					ud->state.running = unit_wugdash(bl, sd);
+			}
+			break;
 	}
 
 	if( opt_flag&2 && sd && sd->touching_id )
@@ -7472,7 +7480,17 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 		case SC_HALLUCINATIONWALK:
 			sc_start(bl,SC_HALLUCINATIONWALK_POSTDELAY,100,sce->val1,skill_get_time2(GC_HALLUCINATIONWALK,sce->val1));
 			break;
-		}
+		case SC_WUGDASH:
+			{
+				struct unit_data *ud = unit_bl2ud(bl);
+				if(ud) {
+					ud->state.running = 0;
+					if (ud->walktimer != -1)
+						unit_stop_walking(bl,1);
+				}
+			}
+			break;
+	}
 
 	opt_flag = 1;
 	switch(type){

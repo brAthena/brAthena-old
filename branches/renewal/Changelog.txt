@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0516 - 21/05/2011 [brn0]
+	* Adicionadas as habilidades:
+	- RA_TOOTHOFWUG (Presas Afiadas).
+	- RA_WUGDASH (Corrida em Lobo).
+
 	r0515 - 21/05/2011 [Protimus]
 	* Correções para criação da lista de venenos do Sicário.
 	* Adicionada a habilidade:

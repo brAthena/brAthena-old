@@ -1878,6 +1878,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case RA_SENSITIVEKEEN:
 					skillratio += 50*skill_lv;
 					break;
+				case RA_WUGDASH:
+					skillratio += 500;
+					break;
 				case AB_DUPLELIGHT_MELEE:
 					skillratio += 10 * skill_lv;
 					break;
@@ -1977,7 +1980,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case RA_WUGSTRIKE:
 				case RA_WUGBITE:
 					if(sd)
-						ATK_ADD(30*pc_checkskill(sd, RA_TOOTHOFWUG));
+						ATK_ADD(6*pc_checkskill(sd, RA_TOOTHOFWUG));
 					break;
 			}
 		}

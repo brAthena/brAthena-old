@@ -6712,10 +6712,23 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			clif_skill_nodamage(src,bl,skillid,skilllv,1);
 		}
 		break;
+
 	case RA_SENSITIVEKEEN:
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
 		clif_skill_damage(src,src,tick, status_get_amotion(src), 0, -30000, 1, skillid, skilllv, 6);
 		map_foreachinrange(skill_area_sub,src,skill_get_splash(skillid,skilllv),BL_CHAR|BL_SKILL,src,skillid,skilllv,tick,flag|BCT_ENEMY,skill_castend_damage_id);
+		break;
+		
+	case RA_WUGDASH:
+		if(tsce) {
+			clif_skill_nodamage(src,bl,skillid,skilllv,status_change_end(bl, type, -1));
+			map_freeblock_unlock();
+			return 0;
+		}
+		if( sd && pc_isriding(sd, OPTION_RIDING_WUG) ) {
+			clif_skill_nodamage(src,bl,skillid,skilllv,sc_start4(bl,type,100,skilllv,unit_getdir(bl),0,0,1));
+			clif_walkok(sd);
+		}
 		break;
 
 	case SC_BODYPAINT:
@@ -6969,7 +6982,7 @@ int skill_castend_id(int tid, unsigned int tick, int id, intptr data)
 			flag = 1;
 		}
 
-		if (ud->walktimer != INVALID_TIMER && ud->skillid != TK_RUN)
+		if (ud->walktimer != INVALID_TIMER && ud->skillid != TK_RUN && ud->skillid != RA_WUGDASH)
 			unit_stop_walking(src,1);
 
 		if( sd && skill_get_cooldown(ud->skillid,ud->skilllv) > 0 ) 
