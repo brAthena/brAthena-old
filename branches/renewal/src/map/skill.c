@@ -2855,6 +2855,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case WM_GREAT_ECHO:
 	case NC_AXEBOOMERANG:
 	case NC_POWERSWING:
+	case NC_BOOSTKNUCKLE:
 	case SC_TRIANGLESHOT:
 	case SC_FEINTBOMB:
 		skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
