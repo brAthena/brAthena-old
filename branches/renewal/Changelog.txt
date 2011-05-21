@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0513 - 21/05/2011 [Protimus]
+	* Atualizado conforme eAthena r14829.
+	- Muitos códigos extras não foram adicionados porque já temos semelhantes e mais otimizados.
+
 	r0512 - 20/05/2011 [MiTh]
 	* Adicionada a habilidade:
 	- NC_BOOSTKNUCKLE (Punho Foguete)

@@ -160,7 +160,7 @@ struct view_data * mob_get_viewdata(int class_)
  *------------------------------------------*/
 int mob_parse_dataset(struct spawn_data *data)
 {
-	int i;
+	size_t len;
 	//FIXME: This implementation is not stable, npc scripts will stop working once MAX_MOB_DB changes value! [Skotlex]
 	if(data->class_ > 2*MAX_MOB_DB){ // large/tiny mobs [Valaris]
 		data->state.size=2;
@@ -173,36 +173,33 @@ int mob_parse_dataset(struct spawn_data *data)
 	if ((!mobdb_checkid(data->class_) && !mob_is_clone(data->class_)) || !data->num)
 		return 0;
 
-	//better safe than sorry, current md->npc_event has a size of 50
-	if ((i=strlen(data->eventname)) >= 50)
-		return 0;
+	if( npc_event_isspecial(data->eventname) )
+	{//Portable monster big/small implementation. [Skotlex]
+		int i = atoi(data->eventname);
 
-	if (data->eventname[0])
+		if( i )
+		{
+			if( i&2 )
+				data->state.size = 1;
+			else if( i&4 )
+				data->state.size = 2;
+			if( i&8 )
+				data->state.ai = 1;
+ 		}
+		data->eventname[0] = '\0'; //Clear event as it is not used.
+	}
+	else if( ( len = strlen(data->eventname) ) > 0 )
 	{
-		if(i <= 2)
-		{	//Portable monster big/small implementation. [Skotlex]
-			i = atoi(data->eventname);
-			if (i) {
-				if (i&2)
-					data->state.size=1;
-				else if (i&4)
-					data->state.size=2;
-				if (i&8)
-					data->state.ai=1;
-				data->eventname[0] = '\0'; //Clear event as it is not used.
-			}
-		} else {
-			if (data->eventname[i-1] == '"')
-				data->eventname[i-1] = '\0'; //Remove trailing quote.
-			if (data->eventname[0] == '"') //Strip leading quotes
-				memmove(data->eventname, data->eventname+1, i-1);
-		}
+		if( data->eventname[len-1] == '"' )
+			data->eventname[len-1] = '\0'; //Remove trailing quote.
+		if( data->eventname[0] == '"' ) //Strip leading quotes
+			memmove(data->eventname, data->eventname+1, len-1);
 	}
 
 	if(strcmp(data->name,"--en--")==0)
-		strncpy(data->name,mob_db(data->class_)->name,NAME_LENGTH-1);
+		safestrncpy(data->name, mob_db(data->class_)->name, sizeof(data->name));
 	else if(strcmp(data->name,"--ja--")==0)
-		strncpy(data->name,mob_db(data->class_)->jname,NAME_LENGTH-1);
+		safestrncpy(data->name, mob_db(data->class_)->jname, sizeof(data->name));
 
 	return 1;
 }
@@ -218,7 +215,7 @@ struct mob_data* mob_spawn_dataset(struct spawn_data *data)
 	md->bl.x = data->x;
 	md->bl.y = data->y;
 	md->class_ = data->class_;
-	md->boss = data->boss;
+	md->state.boss = data->state.boss;
 	md->db = mob_db(md->class_);
 	memcpy(md->name, data->name, NAME_LENGTH);
 	if (data->state.ai)
@@ -3440,7 +3437,7 @@ static unsigned int mob_drop_adjust(int baserate, int rate_adjust, unsigned shor
  *------------------------------------------*/
 static bool mob_parse_dbrow(char** str)
 {
-	struct mob_db *db;
+	struct mob_db *db, entry;
 	struct status_data *status;
 	int class_, i, k;
 	double exp, maxhp;
@@ -3449,29 +3446,28 @@ static bool mob_parse_dbrow(char** str)
 	class_ = atoi(str[0]);
 
 	if (class_ <= 1000 || class_ > MAX_MOB_DB) {
-		ShowWarning("Mob with ID: %d not loaded. ID must be in range [%d-%d]\n", class_, 1000, MAX_MOB_DB);
+		ShowError("mob_parse_dbrow: Invalid monster ID %d, must be in range %d-%d.\n", class_, 1000, MAX_MOB_DB);
 		return false;
 	}
 	if (pcdb_checkid(class_)) {
-		ShowWarning("Mob with ID: %d not loaded. That ID is reserved for player classes.\n", class_);
+		ShowError("mob_parse_dbrow: Invalid monster ID %d, reserved for player classes.\n", class_);
 		return false;
 	}
 
 	if (class_ >= MOB_CLONE_START && class_ < MOB_CLONE_END) {
-		ShowWarning("Mob with ID: %d not loaded. Range %d-%d is reserved for player clones. Please increase MAX_MOB_DB (%d)\n", class_, MOB_CLONE_START, MOB_CLONE_END-1, MAX_MOB_DB);
+		ShowError("mob_parse_dbrow: Invalid monster ID %d. Range %d-%d is reserved for player clones. Please increase MAX_MOB_DB (%d).\n", class_, MOB_CLONE_START, MOB_CLONE_END-1, MAX_MOB_DB);
 		return false;
 	}
 
-	if (mob_db_data[class_] == NULL)
-		mob_db_data[class_] = (struct mob_db*)aCalloc(1, sizeof (struct mob_db));
+	memset(&entry, 0, sizeof(entry));
 
-	db = mob_db_data[class_];
+	db = &entry;
 	status = &db->status;
 
 	db->vd.class_ = class_;
-	strncpy(db->sprite, str[1], NAME_LENGTH);
-	strncpy(db->jname, str[2], NAME_LENGTH);
-	strncpy(db->name, str[3], NAME_LENGTH);
+	safestrncpy(db->sprite, str[1], sizeof(db->sprite));
+	safestrncpy(db->jname, str[2], sizeof(db->jname));
+	safestrncpy(db->name, str[3], sizeof(db->name));
 	db->lv = atoi(str[4]);
 	db->lv = cap_value(db->lv, 1, USHRT_MAX);
 	status->max_hp = atoi(str[5]);
@@ -3522,11 +3518,13 @@ static bool mob_parse_dbrow(char** str)
 	status->def_ele = i%10;
 	status->ele_lv = i/20;
 	if (status->def_ele >= ELE_MAX) {
-		ShowWarning("Mob with ID: %d has invalid element type %d (max element is %d)\n", class_, status->def_ele, ELE_MAX-1);
+		ShowError("mob_parse_dbrow: Invalid element type %d for monster ID %d (max=%d).\n", status->def_ele, class_, ELE_MAX-1);
+		return false;
 		status->def_ele = ELE_NEUTRAL;
 	}
 	if (status->ele_lv < 1 || status->ele_lv > 4) {
-		ShowWarning("Mob with ID: %d has invalid element level %d (max is 4)\n", class_, status->ele_lv);
+		ShowError("mob_parse_dbrow: Invalid element level %d for monster ID %d, must be in range 1-4.\n", status->ele_lv, class_);
+		return false;
 		status->ele_lv = 1;
 	}
 
@@ -3666,6 +3664,11 @@ static bool mob_parse_dbrow(char** str)
 		}
 	}
 
+	// Finally insert monster's data into the database.
+	if (mob_db_data[class_] == NULL)
+		mob_db_data[class_] = (struct mob_db*)aCalloc(1, sizeof(struct mob_db));
+
+	memcpy(mob_db_data[class_], db, sizeof(struct mob_db));
 	return true;
 }
 

@@ -1706,7 +1706,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case AS_SPLASHER:
 					skillratio += 400+75*skill_lv;
 					if(sd)
-						skillratio += 30 * pc_checkskill(sd,AS_POISONREACT);
+						skillratio += 20 * pc_checkskill(sd,AS_POISONREACT);
 					break;
 				case ASC_BREAKER:
 					skillratio += 200+50*skill_lv;

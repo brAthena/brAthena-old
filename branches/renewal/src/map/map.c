@@ -1508,7 +1508,7 @@ void map_addiddb(struct block_list *bl)
 		TBL_MOB* md = (TBL_MOB*)bl;
 		idb_put(mobid_db,bl->id,bl);
 
-		if( md->boss )
+		if( md->state.boss )
 			idb_put(bossid_db, bl->id, bl);
 	}
 
@@ -1659,8 +1659,30 @@ struct mob_data * map_id2md(int id)
 
 struct npc_data * map_id2nd(int id)
 {// just a id2bl lookup because there's no npc_db
-	if (id <= 0) return NULL;
-	return (struct npc_data*)map_id2bl(id);
+	struct block_list* bl = map_id2bl(id);
+
+	return BL_CAST(BL_NPC, bl);
+}
+ 
+struct homun_data* map_id2hd(int id)
+{
+	struct block_list* bl = map_id2bl(id);
+
+	return BL_CAST(BL_HOM, bl);
+}
+
+struct mercenary_data* map_id2mc(int id)
+{
+	struct block_list* bl = map_id2bl(id);
+
+	return BL_CAST(BL_MER, bl);
+}
+
+struct chat_data* map_id2cd(int id)
+{
+	struct block_list* bl = map_id2bl(id);
+
+	return BL_CAST(BL_CHAT, bl);
 }
 
 /// Returns the nick of the target charid or NULL if unknown (requests the nick to the char server).

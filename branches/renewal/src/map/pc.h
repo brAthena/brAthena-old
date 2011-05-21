@@ -657,6 +657,7 @@ unsigned int pc_nextbaseexp(struct map_session_data *);
 unsigned int pc_thisbaseexp(struct map_session_data *);
 unsigned int pc_nextjobexp(struct map_session_data *);
 unsigned int pc_thisjobexp(struct map_session_data *);
+int pc_gets_status_point(int);
 int pc_need_status_point(struct map_session_data *,int);
 int pc_statusup(struct map_session_data*,int);
 int pc_statusup2(struct map_session_data*,int,int);
@@ -741,7 +742,7 @@ int pc_candrop(struct map_session_data *sd,struct item *item);
 int pc_jobid2mapid(unsigned short b_class);	// Skotlex
 int pc_mapid2jobid(unsigned short class_, int sex);	// Skotlex
 
-char * job_name(int class_);
+const char * job_name(int class_);
 
 struct skill_tree_entry {
 	short id;

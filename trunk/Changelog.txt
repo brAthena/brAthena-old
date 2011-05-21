@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0512 - 21/05/2011 [Protimus]
+	* Atualizado conforme eAthena r14829.
+	- Muitos códigos extras não foram adicionados porque já temos semelhantes e mais otimizados.
+
 	r0494 - 16/05/2011 [novekovas]
 	* Enviado pacote de traduções e ajustes do database.
 	- Vários arquivos traduzidos e reorganizados.
