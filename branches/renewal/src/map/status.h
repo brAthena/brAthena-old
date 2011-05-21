@@ -1423,6 +1423,7 @@ struct status_change {
 	unsigned short mp_matk_min, mp_matk_max; //Previous matk min/max for ground spells (Amplify magic power)
 	int sg_id; //ID of the previous Storm gust that hit you
 	unsigned char sg_counter; //Storm gust counter (previous hits from storm gust)
+	short comet_x, comet_y; // Point where src casted Comet - required to calculate damage from this point
 	struct status_change_entry *data[SC_MAX];
 };
 

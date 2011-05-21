@@ -278,7 +278,7 @@ int battle_attr_fix(struct block_list *src, struct block_list *target, int damag
 /*==========================================
  * ƒ_??[ƒW??IŒvŽZ
  *------------------------------------------*/
-int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damage *d,int damage,int skill_num,int skill_lv)
+int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damage *d,int damage,int skill_num,int skill_lv,int element)
 {
 	struct map_session_data *sd = NULL;
 	struct status_change *sc, *tsc;
@@ -323,6 +323,15 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 		{
 			d->dmg_lv = ATK_BLOCK;
 			return 0;
+		}
+
+		if(sc->data[SC_WHITEIMPRISON] && skill_num != HW_GRAVITATION && skill_num != PA_PRESSURE){
+			if(skill_num == MG_NAPALMBEAT || skill_num == MG_SOULSTRIKE || skill_num == WL_SOULEXPANSION || element == ELE_GHOST)
+				status_change_end(bl,SC_WHITEIMPRISON,-1);
+			else{
+				d->dmg_lv = ATK_BLOCK;
+				return 0;
+			}
 		}
 
 		if( sc->data[SC_SAFETYWALL] && (flag&(BF_SHORT|BF_MAGIC))==BF_SHORT )
@@ -2464,7 +2473,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 	{	//There is a total damage value
 		if(!wd.damage2)
 		{
-			wd.damage = battle_calc_damage(src,target,&wd,wd.damage,skill_num,skill_lv);
+			wd.damage = battle_calc_damage(src,target,&wd,wd.damage,skill_num,skill_lv,s_ele);
 			if( map_flag_gvg2(target->m) )
 				wd.damage=battle_calc_gvg_damage(src,target,wd.damage,wd.div_,skill_num,skill_lv,wd.flag);
 			else if( map[target->m].flag.battleground )
@@ -2472,7 +2481,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 		}
 		else if(!wd.damage)
 		{
-			wd.damage2 = battle_calc_damage(src,target,&wd,wd.damage2,skill_num,skill_lv);
+			wd.damage2 = battle_calc_damage(src,target,&wd,wd.damage2,skill_num,skill_lv,s_ele_);
 			if( map_flag_gvg2(target->m) )
 				wd.damage2 = battle_calc_gvg_damage(src,target,wd.damage2,wd.div_,skill_num,skill_lv,wd.flag);
 			else if( map[target->m].flag.battleground )
@@ -2481,7 +2490,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 		else
 		{
 			int d1 = wd.damage + wd.damage2,d2 = wd.damage2;
-			wd.damage = battle_calc_damage(src,target,&wd,d1,skill_num,skill_lv);
+			wd.damage = battle_calc_damage(src,target,&wd,d1,skill_num,skill_lv,s_ele);
 			if( map_flag_gvg2(target->m) )
 				wd.damage = battle_calc_gvg_damage(src,target,wd.damage,wd.div_,skill_num,skill_lv,wd.flag);
 			else if( map[target->m].flag.battleground )
@@ -2580,8 +2589,10 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 	nk = skill_get_nk(skill_num);
 	flag.imdef = nk&NK_IGNORE_DEF?1:0;
 
-	sd = BL_CAST(BL_PC, src);
-	tsd = BL_CAST(BL_PC, target);
+	if( skill_num == WL_HELLINFERNO ){
+		s_ele = (skill_lv >= 0) ? ELE_FIRE:ELE_DARK;
+		skill_lv *= (skill_lv < 0) ? -1:1;
+	}
 
 	//Initialize variables that will be used afterwards
 	s_ele = skill_get_ele(skill_num, skill_lv);
@@ -2788,14 +2799,94 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 					case AB_DUPLELIGHT_MAGIC:
 						skillratio += 100 + 20 * skill_lv;
 						break;
+					case WL_SOULEXPANSION:
+						{
+							struct status_change *tsc = status_get_sc(target);
+							skillratio += 300+100*skill_lv+status_get_int(src);
+							if(s_base_level > 100)
+								skillratio += skillratio * (s_base_level-100)/200;
+							if( tsc && tsc->data[SC_WHITEIMPRISON] )
+								skillratio <<= 1;
+						}
+						break;
+					case WL_FROSTMISTY:
+						skillratio += 100+100*skill_lv;
+						if(s_base_level > 100)
+							skillratio += skillratio*(s_base_level-100)/200;
+						break;
+					case WL_JACKFROST:
+						{
+							struct status_change *tsc = status_get_sc(target);
+							if(tsc && tsc->data[SC_FREEZING]){
+								skillratio += 900+300*skill_lv;
+								if(s_base_level > 100)
+									skillratio += skillratio*(s_base_level-100)/200;
+							}
+							else
+								skillratio = (int)((skillratio+100*skill_lv)*(1+((sd) ? s_job_level:0)/100));
+						}
+						break;
+					case WL_DRAINLIFE:
+						skillratio += 400+100*skill_lv*(1+sstatus->int_/1000);
+						if(s_base_level > 100)
+							skillratio += skillratio*(s_base_level-100)/200;
+						break;
+					case WL_CRIMSONROCK:
+						skillratio += 1200+300*skill_lv;
+						if(s_base_level > 100)
+							skillratio += 15*(s_base_level-100);
+						break;
+					case WL_HELLINFERNO:
+						skillratio += (s_ele == ELE_FIRE) ? (60*skill_lv-100):(240*skill_lv-100);
+						if(s_base_level > 100)
+							skillratio += skillratio*(s_base_level-100)/200;
+						break;
+					case WL_COMET:
+						{
+							int addv = 2400, mulv = 500;
+							if(sc){
+								i = distance_xy(target->x, target->y, sc->comet_x, sc->comet_y);
+								if(i > 1){
+									i = (i+3)%4;
+									addv -= 500 * i;
+									mulv -= 100 * i;
+								}
+							}
+							skillratio += addv+mulv*skill_lv;
+						}
+						break;
+					case WL_CHAINLIGHTNING_ATK:
+						skillratio += 100+300*skill_lv;
+						if(s_base_level > 100)
+							skillratio += skillratio*(s_base_level-100)/200;
+						break;
+					case WL_EARTHSTRAIN:
+						skillratio += 1900+100*skill_lv;
+						if(s_base_level > 100)
+							skillratio += skillratio*(s_base_level-100)/200;
+						break;
+					case WL_TETRAVORTEX_FIRE:
+					case WL_TETRAVORTEX_WATER:
+					case WL_TETRAVORTEX_WIND:
+					case WL_TETRAVORTEX_GROUND:
+						skillratio += 400+500*skill_lv;
+						break;
+					case WL_SUMMON_ATK_FIRE:
+					case WL_SUMMON_ATK_WATER:
+					case WL_SUMMON_ATK_WIND:
+					case WL_SUMMON_ATK_GROUND:
+						skillratio += 50*skill_lv-50;
+						if(s_base_level > 100)
+							skillratio += skillratio*(s_base_level-100)/100+(s_job_level/50);
+						break;
 					case WM_METALICSOUND:
-						skillratio += 120 * skill_lv + 60 * pc_checkskill(sd, WM_LESSON) - 100;
+						skillratio += 120*skill_lv+60*pc_checkskill(sd, WM_LESSON)-100;
 						break;
 					case WM_REVERBERATION_MAGIC:
-						skillratio += 100 * (sd ? pc_checkskill(sd, WM_REVERBERATION) : 1);
+						skillratio += 100*(sd ? pc_checkskill(sd, WM_REVERBERATION):1);
 						break;
 					case WM_SEVERE_RAINSTORM:
-						skillratio += 50 * skill_lv;
+						skillratio += 50*skill_lv;
 						break;
 				}
 
@@ -2941,14 +3032,24 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 
 	damage_div_fix(ad.damage, ad.div_);
 
-	if (flag.infdef && ad.damage)
-		ad.damage = ad.damage>0?1:-1;
+	if(flag.infdef && ad.damage){
+		ad.damage = (ad.damage > 0)? 1:-1;
+		if(skill_num == WL_JACKFROST || skill_num == WL_FROSTMISTY){
+			ad.damage = 0;
+			ad.dmg_lv = ATK_MISS;
+		}
+	}
 
-	ad.damage=battle_calc_damage(src,target,&ad,ad.damage,skill_num,skill_lv);
+	ad.damage=battle_calc_damage(src,target,&ad,ad.damage,skill_num,skill_lv,s_ele);
 	if( map_flag_gvg2(target->m) )
 		ad.damage=battle_calc_gvg_damage(src,target,ad.damage,ad.div_,skill_num,skill_lv,ad.flag);
 	else if( map[target->m].flag.battleground )
 		ad.damage=battle_calc_bg_damage(src,target,ad.damage,ad.div_,skill_num,skill_lv,ad.flag);
+
+	if(skill_num == WL_HELLINFERNO && s_ele == ELE_FIRE){
+		struct Damage md = battle_calc_magic_attack(src,target,skill_num,-skill_lv,mflag);
+		ad.damage += md.damage;
+	}
 	return ad;
 }
 
@@ -3197,7 +3298,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 	if(!(nk&NK_NO_ELEFIX))
 		md.damage=battle_attr_fix(src, target, md.damage, s_ele, tstatus->def_ele, tstatus->ele_lv);
 
-	md.damage=battle_calc_damage(src,target,&md,md.damage,skill_num,skill_lv);
+	md.damage=battle_calc_damage(src,target,&md,md.damage,skill_num,skill_lv,s_ele);
 	if( map_flag_gvg2(target->m) )
 		md.damage=battle_calc_gvg_damage(src,target,md.damage,md.div_,skill_num,skill_lv,md.flag);
 	else if( map[target->m].flag.battleground )
