@@ -6740,6 +6740,20 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 				src, skillid, skilllv, tick, flag|BCT_ENEMY|1, skill_castend_nodamage_id);
 		}
 		break;
+		
+	case SC_AUTOSHADOWSPELL:
+		if( sd )
+		{
+			if( sd->status.skill[sd->reproduceskill_id].id || sd->status.skill[sd->cloneskill_id].id )
+			{
+				sc_start(src,SC_STOP,100,skilllv,-1);
+				clif_skill_select_request(sd);
+				clif_skill_nodamage(src,bl,skillid,1,1);
+			}
+			else
+				clif_skill_fail(sd,skillid,0x15,0,0);
+		}
+		break;
 
 	default:
 		ShowWarning("skill_castend_nodamage_id: Habilidade desconhecida usada:%d\n",skillid);
@@ -12858,6 +12872,29 @@ int skill_poisoningweapon( struct map_session_data *sd, int nameid)
 	sc_start4(&sd->bl,SC_POISONINGWEAPON,100,t_lv,type,chance,0,skill_get_time(GC_POISONINGWEAPON,sd->menuskill_itemused));
 	sd->menuskill_itemused = 0;
 
+	return 0;
+}
+
+int skill_select_menu(struct map_session_data *sd,int flag,int skill_id)
+{
+	int id, lv, prob, aslvl = 0;
+	nullpo_ret(sd);
+	if (sd->sc.data[SC_STOP])
+	{
+		aslvl = sd->sc.data[SC_STOP]->val1;
+		status_change_end(&sd->bl,SC_STOP,-1);
+	}
+
+	if( (id = sd->status.skill[skill_id].id) == 0 || sd->status.skill[skill_id].flag != 13 || skill_id >= GS_GLITTERING || skill_get_type(skill_id) != BF_MAGIC )
+	{
+		clif_skill_fail(sd,SC_AUTOSHADOWSPELL,0,0,0);
+		return 0;
+	}
+
+	lv = (aslvl + 1) / 2; 
+	lv = min(lv,sd->status.skill[skill_id].lv);
+	prob = (aslvl == 10) ? 15 : (32 - 2 * aslvl); 
+	sc_start4(&sd->bl,SC__AUTOSHADOWSPELL,100,id,lv,prob,0,skill_get_time(SC_AUTOSHADOWSPELL,aslvl));
 	return 0;
 }
 

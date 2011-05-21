@@ -3678,6 +3678,32 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 			}
 		}
 	}
+
+	if( sd && wd.flag&BF_SHORT && sc && sc->data[SC__AUTOSHADOWSPELL] && rand()%100 < sc->data[SC__AUTOSHADOWSPELL]->val3 && sd->status.skill[sc->data[SC__AUTOSHADOWSPELL]->val1].id != 0 && sd->status.skill[sc->data[SC__AUTOSHADOWSPELL]->val1].flag == 13 )
+	{
+		int r_skill = sd->status.skill[sc->data[SC__AUTOSHADOWSPELL]->val1].id,
+			r_lv = sc->data[SC__AUTOSHADOWSPELL]->val2;
+
+		if (r_skill != AL_HOLYLIGHT && r_skill != PR_MAGNUS)
+		{
+			switch( skill_get_casttype(r_skill) )
+			{
+			case CAST_GROUND:
+				skill_castend_pos2(src, target->x, target->y, r_skill, r_lv, tick, flag);
+				break;
+			case CAST_NODAMAGE:
+				skill_castend_nodamage_id(src, target, r_skill, r_lv, tick, flag);
+				break;
+			case CAST_DAMAGE:
+				skill_castend_damage_id(src, target, r_skill, r_lv, tick, flag);
+				break;
+			}
+
+			sd->ud.canact_tick = tick + skill_delayfix(src, r_skill, r_lv);
+			clif_status_change(src, SI_ACTIONDELAY, 1, skill_delayfix(src, r_skill, r_lv), 0, 0, 1);
+		}
+	}
+
 	if (sd) {
 		if (wd.flag & BF_WEAPON && src != target && damage > 0) {
 			if (battle_config.left_cardfix_to_right)

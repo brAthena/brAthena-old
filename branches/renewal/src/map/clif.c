@@ -2983,7 +2983,7 @@ int clif_statusupack(struct map_session_data *sd,int type,int ok,int val)
 }
 
 /*==========================================
- * Lista de poções do Sicário
+ * Lista de Venenos do Sicário
  *------------------------------------------*/
 int clif_poison_list(struct map_session_data *sd, int skill_lv)
 {
@@ -3016,6 +3016,45 @@ int clif_poison_list(struct map_session_data *sd, int skill_lv)
 	{
 		clif_skill_fail(sd,GC_POISONINGWEAPON,0x2b,0,0);
 		return 0;
+	}
+
+	return 1;
+}
+
+/*======================================================================
+ * Lista de Habilidades para a SC_AUTOSHADOWSPELL (Desejo das Sombras)
+ *---------------------------------------------------------------------*/
+int clif_skill_select_request(struct map_session_data *sd)
+{
+	int fd, i, c;
+	nullpo_ret(sd);
+	fd = sd->fd;
+	if( !fd ) return 0;
+
+	if( sd->menuskill_id == SC_AUTOSHADOWSPELL )
+		return 0;
+
+	WFIFOHEAD(fd, 2 * 6 + 4);
+	WFIFOW(fd,0) = 0x442;
+	for( i = 0, c = 0; i < MAX_SKILL; i++ )
+		if( sd->status.skill[i].flag == 13 && sd->status.skill[i].id > 0 && sd->status.skill[i].id < GS_GLITTERING && skill_get_type(sd->status.skill[i].id) == BF_MAGIC )
+		{ 
+			WFIFOW(fd,8+c*2) = sd->status.skill[i].id;
+			c++;
+		}
+
+	if( c > 0 )
+	{
+		WFIFOW(fd,2) = 8 + c * 2;
+		WFIFOL(fd,4) = c;
+		WFIFOSET(fd,WFIFOW(fd,2));
+		sd->menuskill_id = SC_AUTOSHADOWSPELL;
+		sd->menuskill_val = c;
+	}
+	else
+	{
+		status_change_end(&sd->bl,SC_STOP,-1);
+		clif_skill_fail(sd,SC_AUTOSHADOWSPELL,0x15,0,0);
 	}
 
 	return 1;
@@ -10276,6 +10315,25 @@ void clif_parse_ProduceMix(int fd,struct map_session_data *sd)
 	skill_produce_mix(sd,0,RFIFOW(fd,2),RFIFOW(fd,4),RFIFOW(fd,6),RFIFOW(fd,8), 1);
 	sd->menuskill_val = sd->menuskill_id = sd->menuskill_itemused = 0;
 }
+		
+/*======================================================================================
+ * Parse para seleção da lista de habilidades de SC_AUTOSHADOWSPELL (Desejo das Sombras)
+ *------------------------------------------------------------------------------------*/
+void clif_parse_SkillSelectMenu(int fd, struct map_session_data *sd)
+{
+	if( sd->menuskill_id != SC_AUTOSHADOWSPELL )
+		return;
+
+	if( pc_istrading(sd) )
+	{
+		clif_skill_fail(sd,sd->ud.skillid,0,0,0);
+ 		sd->menuskill_val = sd->menuskill_id = 0;
+ 		return;
+ 	}
+	skill_select_menu(sd,RFIFOL(fd,2),RFIFOW(fd,6));
+	sd->menuskill_val = sd->menuskill_id = 0;
+}
+
 /*==========================================
  *
  *------------------------------------------*/

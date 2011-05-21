@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0515 - 21/05/2011 [Protimus]
+	* Correções para criação da lista de venenos do Sicário.
+	* Adicionada a habilidade:
+	- SC_AUTOSHADOWSPELL (Desejo das Sombras).
+
 	r0514 - 21/05/2011 [Protimus]
 	* Alterada aspd e defesa máxima.
 
