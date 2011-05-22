@@ -1035,6 +1035,13 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 		if(rand()%100 < 8*skilllv)
 			skill_castend_damage_id(src, bl, RA_WUGBITE,(sd ? pc_checkskill(sd,RA_WUGBITE):skilllv), tick, SD_ANIMATION);
 		break;
+	case RA_MAGENTATRAP:
+	case RA_COBALTTRAP:
+	case RA_MAIZETRAP:
+	case RA_VERDURETRAP:
+		if( dstmd && !(dstmd->status.mode&MD_BOSS) )
+			sc_start2(bl,SC_ELEMENTALCHANGE,100,skilllv,skill_get_ele(skillid,skilllv),skill_get_time2(skillid,skilllv));
+		break;
 	case WM_SOUND_OF_DESTRUCTION:
 		if( rand()%100 < 5 + 5 * skilllv ) 
 		{
