@@ -3792,7 +3792,9 @@ int pc_useitem(struct map_session_data *sd,int n)
 		sd->sc.data[SC_TRICKDEAD] ||
 		sd->sc.data[SC_HIDING] ||
 		(sd->sc.data[SC_NOCHAT] && sd->sc.data[SC_NOCHAT]->val1&MANNER_NOITEM) ||
-		sd->sc.data[SC_DEEPSLEEP]
+		sd->sc.data[SC_DEEPSLEEP] || 
+		sd->sc.data[SC_SATURDAYNIGHTFEVER] ||
+		sd->sc.data[SC__SHADOWFORM]
 	))
 		return 0;
 
@@ -4220,6 +4222,21 @@ int pc_setpos(struct map_session_data* sd, unsigned short mapindex, int x, int y
 					delete_timer(sce->timer, status_change_timer);
 				sce->timer = add_timer(gettick() + skill_get_time(SG_KNOWLEDGE, sce->val1), status_change_timer, sd->bl.id, SC_KNOWLEDGE);
 			}
+			if (sd->sc.data[SC__SHADOWFORM])
+			{
+				struct map_session_data *s_sd = map_id2sd(sd->sc.data[SC__SHADOWFORM]->val2);
+				if( s_sd )
+					s_sd->shadowform_id = 0;					
+				status_change_end(&sd->bl,SC__SHADOWFORM,-1);
+			}
+			if (sd->sc.data[SC_CURSEDCIRCLE_ATKER])
+				status_change_end(&sd->bl,SC_CURSEDCIRCLE_ATKER,-1);
+ 		}
+		if( sd->shadowform_id )
+		{
+			struct block_list *s_bl = map_id2bl(sd->shadowform_id);
+			if( s_bl ) status_change_end(s_bl,SC__SHADOWFORM,-1);
+			sd->shadowform_id = 0;
 		}
 		if (battle_config.clear_unit_onwarp&BL_PC)
 			skill_clear_unitgroup(&sd->bl);
@@ -5965,6 +5982,19 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 		if (devsd)
 			status_change_end(&devsd->bl, SC_DEVOTION, INVALID_TIMER);
 		sd->devotion[k] = 0;
+	}
+
+	if( sd->shadowform_id )
+	{
+		struct block_list *s_bl = map_id2bl(sd->shadowform_id);
+		if( s_bl ) status_change_end(s_bl,SC__SHADOWFORM,-1);
+		sd->shadowform_id = 0;
+	}
+ 
+	if( sd->sc.data[SC__SHADOWFORM] )
+	{
+		struct map_session_data *s_sd = map_id2sd(sd->sc.data[SC__SHADOWFORM]->val2);
+		if( s_sd ) s_sd->shadowform_id = 0 ;
 	}
 
 	if( pc_isriding(sd, OPTION_MADO) )

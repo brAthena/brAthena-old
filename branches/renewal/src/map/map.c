@@ -378,6 +378,7 @@ int map_moveblock(struct block_list *bl, int x1, int y1, unsigned int tick)
 	int x0 = bl->x, y0 = bl->y;
 	struct status_change *sc = NULL;
 	int moveblock = ( x0/BLOCK_SIZE != x1/BLOCK_SIZE || y0/BLOCK_SIZE != y1/BLOCK_SIZE);
+	struct map_session_data *sd = BL_CAST(BL_PC,bl);
 
 	if (!bl->prev) {
 		//Block not in map, just update coordinates, but do naught else.
@@ -410,7 +411,20 @@ int map_moveblock(struct block_list *bl, int x1, int y1, unsigned int tick)
 	else map_addblcell(bl);
 #endif
 
-	if (bl->type&BL_CHAR) {
+	if( bl->type&BL_CHAR )
+	{
+		if( sd )
+		{ 
+			struct block_list *d_bl;
+			if( sc && sc->data[SC__SHADOWFORM] && ((d_bl = map_id2bl(sc->data[SC__SHADOWFORM]->val2)) == NULL || bl->m != d_bl->m || !check_distance_bl(bl,d_bl,skill_get_range(SC_SHADOWFORM,1))) )
+				status_change_end(bl,SC__SHADOWFORM,-1);
+			if( sd->shadowform_id && ((d_bl = map_id2bl(sd->shadowform_id)) == NULL || bl->m != d_bl->m || !check_distance_bl(bl,d_bl,skill_get_range(SC_SHADOWFORM,1))) )
+			{
+				if( d_bl ) status_change_end(d_bl,SC__SHADOWFORM,-1);
+				sd->shadowform_id = 0;
+			}
+		}
+		
 		skill_unit_move(bl,tick,3);
 		sc = status_get_sc(bl);
 		if (sc) {

@@ -6737,6 +6737,16 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			break;	
 		case SC__BLOODYLUST:
 			val_flag |= 1|2;
+			break;
+		case SC__SHADOWFORM:
+			{
+				struct map_session_data * s_sd = map_id2sd(val2);
+				if( s_sd )
+					s_sd->shadowform_id = bl->id;
+				val4 = tick / 1000;
+				val_flag |= 1|2|4;
+				tick = 1000;
+			}
 			break;			
 		default:
 			if( calc_flag == SCB_NONE && StatusSkillChangeTable[type] == 0 && StatusIconChangeTable[type] == 0 )
@@ -7025,6 +7035,14 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 				struct unit_data *ud = unit_bl2ud(bl);
 				if(ud)
 					ud->state.running = unit_wugdash(bl, sd);
+			}
+			break;
+		case SC__SHADOWFORM:
+			{
+				struct map_session_data *s_sd = map_id2sd(sce->val2);
+				if( !s_sd )
+					break;
+				s_sd->shadowform_id = 0;
 			}
 			break;
 	}
@@ -8260,11 +8278,22 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr data)
 			return 0;
 		}
 		break;
+		
 	case SC__REPRODUCE:
 		if(!status_charge(bl, 0, 1))
 			break;
 		sc_timer_next(1000+tick, status_change_timer, bl->id, data);
 		return 0;
+		
+	case SC__SHADOWFORM:
+		if( --(sce->val4) >= 0 )
+		{
+			if( !status_charge(bl, 0, sce->val1 - (sce->val1 - 1)) )
+				break;
+			sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
+			return 0;
+		}
+		break;
 		
 	}
 	// default for all non-handled control paths is to end the status

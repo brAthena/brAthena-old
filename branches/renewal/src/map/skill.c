@@ -6774,6 +6774,16 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 				clif_skill_fail(sd,skillid,0x15,0,0);
 		}
 		break;
+	
+	case SC_SHADOWFORM:
+		if( sd && dstsd && src != bl && !dstsd->shadowform_id )
+		{
+			if( clif_skill_nodamage(src,bl,skillid,skilllv,sc_start4(src,type,100,skilllv,bl->id,4+skilllv,0,skill_get_time(skillid, skilllv))) )
+				dstsd->shadowform_id = src->id;
+		}
+		else if( sd )
+			clif_skill_fail(sd, skillid, 0, 0, 0);
+		break;
 
 	default:
 		ShowWarning("skill_castend_nodamage_id: Habilidade desconhecida usada:%d\n",skillid);
@@ -6940,6 +6950,7 @@ int skill_castend_id(int tid, unsigned int tick, int id, intptr data)
 				if( !map_flag_vs(src->m) && battle_check_target(src,target,BCT_PARTY) <= 0 )
 					break;
 			}
+			else if( ud->skillid != SC_SHADOWFORM && inf && battle_check_target(src, target, inf) <= 0 )
 
 			if(inf&BCT_ENEMY && (sc = status_get_sc(target)) &&
 				sc->data[SC_FOGWALL] &&
@@ -9549,6 +9560,14 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 	{
 		clif_skill_fail(sd,skill,9,0,0);
 		return 0;
+	}
+	
+	if( sc )
+	{ 
+		if( sc->data[SC__SHADOWFORM] || sc->data[SC__IGNORANCE] )
+			return 0;
+		if( sc->data[SC_SPELLFIST] )
+			status_change_end(&sd->bl,SC_SPELLFIST,-1);
 	}
 
 	switch( skill )

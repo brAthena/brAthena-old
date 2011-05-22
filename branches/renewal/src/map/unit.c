@@ -1980,6 +1980,7 @@ int unit_remove_map_(struct block_list *bl, clr_type clrtype, const char* file, 
 		status_change_end(bl, SC_ELECTRICSHOCKER, INVALID_TIMER);
 		status_change_end(bl, SC_WUGDASH, INVALID_TIMER);
 		status_change_end(bl, SC__MANHOLE, INVALID_TIMER);
+		status_change_end(bl, SC__SHADOWFORM, INVALID_TIMER);
 	}
 
 	if (bl->type&BL_CHAR) {

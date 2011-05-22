@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0520 - 22/05/2011 [Protimus]
+	* Adicionada a habilidade:
+	- SC_SHADOWFORM (Vínculo Sombrio).
+	* Correção para a habilidade:
+	- WM_SATURDAY_NIGHT_FEVER (Embalos de Sábado a Noite).
+
 	r0519 - 22/05/2011 [Protimus]
 	* Correções para leitura de flags da habilidade WM_RANDOMIZESPELL (Improviso).
 	- O mesmo fazia com que a escolha fosse feita, mas o efeito/ação inexistente.

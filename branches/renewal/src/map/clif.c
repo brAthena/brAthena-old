@@ -9174,7 +9174,7 @@ void clif_parse_ActionRequest_sub(struct map_session_data *sd, int action_type, 
 		if( sd->sc.option&OPTION_RIDING_WUG && sd->weapontype1 )
 			return;
 
-		if( sd->sc.data[SC_BASILICA] )
+		if( sd->sc.data[SC_BASILICA] || sd->sc.data[SC_CRYSTALIZE] || sd->sc.data[SC__SHADOWFORM] )
 			return;
 			
 		if( sd->sc.data[SC_VOICEOFSIREN] && sd->sc.data[SC_VOICEOFSIREN]->val2 == target_id )
