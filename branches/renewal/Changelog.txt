@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0521 - 22/05/2011 [Protimus]
+	* Adicionadas as habilidades:
+	- SC_INVISIBILITY (Forma Etérea).
+	- SC_DEADLYINFECT (Pestilência).
+
 	r0520 - 22/05/2011 [Protimus]
 	* Adicionada a habilidade:
 	- SC_SHADOWFORM (Vínculo Sombrio).

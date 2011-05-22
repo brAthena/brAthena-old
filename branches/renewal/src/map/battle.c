@@ -572,6 +572,9 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 		if ((sce=sc->data[SC_BLOODLUST]) && flag&BF_WEAPON && damage > 0 &&
 			rand()%100 < sce->val3)
 			status_heal(src, damage*sce->val4/100, 0, 3);
+			
+		if( sc->data[SC__DEADLYINFECT] && damage > 0 && rand()%100 < 20 )
+			status_change_spread(bl, src); 
 
 		//Reduzindo 90% de dano do corpo fechado
 		if( sc->data[SC_STEELBODY] )

@@ -882,6 +882,7 @@ int status_damage(struct block_list *src,struct block_list *target,int hp, int s
 			status_change_end(target, SC_CLOAKING, INVALID_TIMER);
 			status_change_end(target, SC_CHASEWALK, INVALID_TIMER);
 			status_change_end(target,SC_CAMOUFLAGE, INVALID_TIMER);
+			status_change_end(target,SC__INVISIBILITY, INVALID_TIMER);
 			if ((sce=sc->data[SC_ENDURE]) && !sce->val4) {
 				//Endure count is only reduced by non-players on non-gvg maps.
 				//val4 signals infinite endure. [Skotlex]
@@ -1312,7 +1313,9 @@ int status_check_skilluse(struct block_list *src, struct block_list *target, int
 				(sc->data[SC_MARIONETTE2] && skill_num == CG_MARIONETTE) || //Cannot use marionette if you are being buffed by another
 				sc->data[SC_STEELBODY] ||
 				sc->data[SC_BERSERK] ||
-				sc->data[SC_DEEPSLEEP]
+				sc->data[SC_DEEPSLEEP] ||
+				sc->data[SC_SATURDAYNIGHTFEVER] ||
+				sc->data[SC__INVISIBILITY]
 			))
 				return 0;
 
@@ -1466,12 +1469,13 @@ int status_check_visibility(struct block_list *src, struct block_list *target)
 			))
 			return 0;
 		if ( tsc->data[SC_CLOAKINGEXCEED] && !(status->mode&MD_BOSS) )
+		if( (tsc->option&(OPTION_HIDE|OPTION_CLOAK|OPTION_CHASEWALK) || tsc->data[SC__INVISIBILITY] || tsc->data[SC_CAMOUFLAGE]) && !(status->mode&MD_BOSS) &&
+			( ((TBL_PC*)target)->special_state.perfect_hiding || !(status->mode&MD_DETECTOR) ) )
 				return 0;
 		break;
 	default:
-		if (tsc && (tsc->option&(OPTION_HIDE|OPTION_CLOAK|OPTION_CHASEWALK) || (tsc->data[SC_CAMOUFLAGE])) &&
-			!(status->mode&(MD_BOSS|MD_DETECTOR)))
-				return 0;
+		if( tsc && (tsc->option&(OPTION_HIDE|OPTION_CLOAK|OPTION_CHASEWALK) || tsc->data[SC_CAMOUFLAGE]) && !(status->mode&(MD_BOSS|MD_DETECTOR)) )
+			return 0;
 	}
 
 	return 1;
@@ -3897,6 +3901,8 @@ static signed short status_calc_critical(struct block_list *bl, struct status_ch
 		critical += sc->data[SC_SPEARQUICKEN]->val3;
 	if (sc->data[SC_CAMOUFLAGE])
 		critical += 100;
+	if(sc->data[SC__INVISIBILITY])
+		critical += critical * sc->data[SC__INVISIBILITY]->val3 / 100;
 
 	return (short)cap_value(critical,10,SHRT_MAX);
 }
@@ -4362,6 +4368,8 @@ static short status_calc_aspd_rate(struct block_list *bl, struct status_change *
 		aspd_rate += aspd_rate * sc->data[SC_GLOOMYDAY]->val3 / 100;
 	if( sc->data[SC__BODYPAINT] )
 		aspd_rate += aspd_rate * 5 * sc->data[SC__BODYPAINT]->val1 / 100;
+	if( sc->data[SC__INVISIBILITY] )
+		aspd_rate += aspd_rate * sc->data[SC__INVISIBILITY]->val2 / 100;
 	}
 
 	return (short)cap_value(aspd_rate,0,SHRT_MAX);
@@ -4457,6 +4465,8 @@ static unsigned char status_calc_element_lv(struct block_list *bl, struct status
 		return 1;
 	if(sc->data[SC_ELEMENTALCHANGE])
 		return sc->data[SC_ELEMENTALCHANGE]->val1;
+	if(sc->data[SC__INVISIBILITY])
+		return 1;
 
 	return (unsigned char)cap_value(lv,1,4);
 }
@@ -4482,8 +4492,12 @@ unsigned char status_calc_attack_element(struct block_list *bl, struct status_ch
 		return ELE_HOLY;
 	if(sc->data[SC_SHADOWWEAPON])
 		return ELE_DARK;
-	if(sc->data[SC_GHOSTWEAPON])
+	if(sc->data[SC_GHOSTWEAPON] || sc->data[SC__INVISIBILITY])
 		return ELE_GHOST;
+	if(sc->data[SC_EXPIATIO])
+		return ELE_HOLY;
+	if(sc->data[SC_TIDAL_WEAPON_OPTION] || sc->data[SC_TIDAL_WEAPON] )
+		return ELE_WATER;
 	return (unsigned char)cap_value(element,0,UCHAR_MAX);
 }
 
@@ -5701,6 +5715,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			case SC_CHANGE: //Otherwise your Hp/Sp would get refilled while still within effect of the last invocation.
 			case SC_FEAR:
 			case SC_URUZ:
+			case SC__INVISIBILITY:
 				return 0;
 			case SC_COMBO:
 			case SC_DANCING:
@@ -6747,6 +6762,13 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 				val_flag |= 1|2|4;
 				tick = 1000;
 			}
+			break;
+		case SC__INVISIBILITY:
+			val2 = 50 - 10 * val1; 
+			val3 = 20 * val1; 
+			val4 = tick / 1000;
+			tick = 1000;
+			val_flag |= 1|2;
 			break;			
 		default:
 			if( calc_flag == SCB_NONE && StatusSkillChangeTable[type] == 0 && StatusIconChangeTable[type] == 0 )
@@ -6927,6 +6949,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			break;
 		case SC_CLOAKING:
 		case SC_CLOAKINGEXCEED:
+		case SC__INVISIBILITY:
 			sc->option |= OPTION_CLOAK;
 			opt_flag = 2;
 			break;
@@ -7538,6 +7561,7 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 		break;
 	case SC_CLOAKING:
 	case SC_CLOAKINGEXCEED:
+	case SC__INVISIBILITY:
 		sc->option &= ~OPTION_CLOAK;
 		opt_flag|= 2;
 		break;
@@ -8295,6 +8319,16 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr data)
 		}
 		break;
 		
+	case SC__INVISIBILITY:
+		if( --(sce->val4) >= 0 )
+		{
+			if( !status_charge(bl, 0, (status->sp * 6 - sce->val1) / 100) )
+				break;
+			sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
+			return 0;
+		}
+		break;
+		
 	}
 	// default for all non-handled control paths is to end the status
 	return status_change_end( bl,type,tid );
@@ -8326,13 +8360,16 @@ int status_change_timer_sub(struct block_list* bl, va_list ap)
 		status_change_end(bl, SC_CLOAKING, INVALID_TIMER);
 		status_change_end(bl, SC_CAMOUFLAGE, INVALID_TIMER);
 		status_change_end(bl, SC_CLOAKINGEXCEED, INVALID_TIMER);
+		status_change_end(bl, SC__INVISIBILITY, INVALID_TIMER);
 		break;
 	case SC_RUWACH:	/* ƒ‹ƒAƒt */
-		if (tsc && (tsc->data[SC_HIDING] || tsc->data[SC_CLOAKING] || tsc->data[SC_CAMOUFLAGE] || tsc->data[SC_CLOAKINGEXCEED])) {
+		if (tsc && (tsc->data[SC_HIDING] || tsc->data[SC_CLOAKING] || tsc->data[SC_CAMOUFLAGE] || 
+		tsc->data[SC_CLOAKINGEXCEED] || tsc->data[SC__INVISIBILITY])) {
 			status_change_end(bl, SC_HIDING, INVALID_TIMER);
 			status_change_end(bl, SC_CLOAKING, INVALID_TIMER);
 			status_change_end(bl, SC_CAMOUFLAGE, INVALID_TIMER);
 			status_change_end(bl, SC_CLOAKINGEXCEED, INVALID_TIMER);
+			status_change_end(bl, SC__INVISIBILITY, INVALID_TIMER);
 			if(battle_check_target( src, bl, BCT_ENEMY ) > 0)
 				skill_attack(BF_MAGIC,src,src,bl,AL_RUWACH,1,tick,0);
 		}
@@ -8570,7 +8607,7 @@ static int status_natural_heal(struct block_list* bl, va_list args)
 
 	if (flag && (
 		status_isdead(bl) ||
-		(sc && sc->option&(OPTION_HIDE|OPTION_CLOAK|OPTION_CHASEWALK))
+		(sc && (sc->option&(OPTION_HIDE|OPTION_CLOAK|OPTION_CHASEWALK) || sc->data[SC__INVISIBILITY]) )
 	))
 		flag=0;
 

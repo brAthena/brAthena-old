@@ -3794,7 +3794,8 @@ int pc_useitem(struct map_session_data *sd,int n)
 		(sd->sc.data[SC_NOCHAT] && sd->sc.data[SC_NOCHAT]->val1&MANNER_NOITEM) ||
 		sd->sc.data[SC_DEEPSLEEP] || 
 		sd->sc.data[SC_SATURDAYNIGHTFEVER] ||
-		sd->sc.data[SC__SHADOWFORM]
+		sd->sc.data[SC__SHADOWFORM] ||
+		sd->sc.data[SC__INVISIBILITY]
 	))
 		return 0;
 
