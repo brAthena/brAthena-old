@@ -5277,11 +5277,13 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case NC_F_SIDESLIDE:
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
 		skill_blown(src,bl,skill_get_blewcount(skillid,skilllv),unit_getdir(bl),0);
+		pc_delitem(sd,ITEMID_MAGIC_GEAR_FUEL,1,1,0);
 		break;
 
 	case NC_B_SIDESLIDE:
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
 		skill_blown(src,bl,skill_get_blewcount(skillid,skilllv),abs((unit_getdir(bl) - 8)),0);
+		pc_delitem(sd,ITEMID_MAGIC_GEAR_FUEL,1,1,0);
 		break;
 
 	case TK_HIGHJUMP:
@@ -10079,14 +10081,22 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 		}
 		break;
 	case NC_REPAIR:
-		if( !pc_search_inventory(sd,ITEMID_REPAIR_KIT) && pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_MAGIC_GEAR_FUEL) )
+		if( !pc_search_inventory(sd,ITEMID_REPAIR_KIT) || !pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_MAGIC_GEAR_FUEL) )
 			{
 			clif_skill_fail(sd,skill,0,0,0);
 			return 0;
 			}
 		break;
 	case NC_ACCELERATION:
-		if( !pc_search_inventory(sd,ITEMID_ACCELERATOR) && pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_MAGIC_GEAR_FUEL) )
+		if( !pc_search_inventory(sd,ITEMID_ACCELERATOR) || !pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_MAGIC_GEAR_FUEL) )
+			{
+			clif_skill_fail(sd,skill,0,0,0);
+			return 0;
+			}
+		break;
+	case NC_F_SIDESLIDE:
+	case NC_B_SIDESLIDE:
+		if( pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_MAGIC_GEAR_FUEL) )
 			{
 			clif_skill_fail(sd,skill,0,0,0);
 			return 0;

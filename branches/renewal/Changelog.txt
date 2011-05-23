@@ -8,7 +8,13 @@
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
-
+	
+	r0526 - 23/05/2011 [MiTh]
+	* Corrigidas as habilidades:
+	- NC_F_SIDESLIDE (Propulsão Dianteira)
+	- NC_B_SIDESLIDE (Propulsão Traseira)
+	- Correção no consumo de combustível e o mesmo como pré requisito
+	
 	r0525 - 23/05/2011 [MiTh]
 	* Adicionadas as habilidades:
 	- NC_F_SIDESLIDE (Propulsão Dianteira)
