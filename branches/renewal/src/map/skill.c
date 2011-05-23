@@ -1081,6 +1081,27 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 		if( rand()%100 < 5*skilllv )
 			skill_castend_damage_id(src, bl, NC_AXEBOOMERANG, pc_checkskill(sd, NC_AXEBOOMERANG), tick, 1);
 		break;
+	case LG_MOONSLASHER:
+		rate = 32 + 8 * skilllv;
+		if( rand()%100 < rate && dstsd ) // Uses skill_addtimerskill to avoid damage and setsit packet overlaping. Officially clif_setsit is received about 500 ms after damage packet.
+			skill_addtimerskill(src,tick+500,bl->id,0,0,skillid,skilllv,BF_WEAPON,0);
+		else if( dstmd && !is_boss(bl) )
+			sc_start(bl,SC_STOP,(rand()%3 + 1)*100,skilllv,skill_get_time(skillid,skilllv));
+		break;
+	case LG_PINPOINTATTACK:
+		rate = 5000;
+		if( skilllv == 1 )
+		{
+			sc_start(bl,SC_BLEEDING,rate/100,skilllv,skill_get_time(skillid,skilllv)); 
+			break;
+		} else {
+			skill_break_equip(bl,(skilllv == 2) ? EQP_HELM : 
+			(skilllv == 3) ? EQP_SHIELD : 
+			(skilllv == 4) ? EQP_ARMOR : EQP_WEAPON,rate,BCT_ENEMY); 
+			break;
+		}
+		break;
+
 	}
 
 	if (md && battle_config.summons_trigger_autospells && md->master_id && md->special_state.ai)
@@ -2611,6 +2632,18 @@ static int skill_timerskill(int tid, unsigned int tick, int id, intptr data)
 						unit_warp(target,-1,x,y,3);
 					}
 					break;
+				case LG_MOONSLASHER:
+					if( target->type == BL_PC )
+					{
+						struct map_session_data *tsd = BL_CAST(BL_PC,target);
+						if( tsd && !pc_issit(tsd) )
+						{
+							pc_setsit(tsd);
+							skill_sit(tsd,1);
+							clif_sitting(&tsd->bl);
+						}
+					}
+					break;
 				default:
 					skill_attack(skl->type,src,src,target,skl->skill_id,skl->skill_lv,tick,skl->flag);
 					break;
@@ -2865,6 +2898,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case NC_BOOSTKNUCKLE:
 	case SC_TRIANGLESHOT:
 	case SC_FEINTBOMB:
+	case LG_BANISHINGPOINT:
 		skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 
@@ -2936,6 +2970,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case SN_SHARPSHOOTING:
 	case MA_SHARPSHOOTING:
 	case NJ_KAMAITACHI:
+	case LG_CANNONSPEAR:
 		//It won't shoot through walls since on castend there has to be a direct
 		//line of sight between caster and target.
 		skill_area_temp[1] = bl->id;
@@ -3071,6 +3106,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case NC_AXETORNADO:
 	case RA_ARROWSTORM:
 	case RA_WUGDASH:
+	case LG_MOONSLASHER:
 		if( flag&1 )
 		{	//Recursive invocation
 			// skill_area_temp[0] holds number of targets in area
@@ -3093,7 +3129,9 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 		{
 			if ( skillid == NJ_BAKUENRYU )
 				clif_skill_nodamage(src,bl,skillid,skilllv,1);
-
+			if( skillid == LG_MOONSLASHER )
+				clif_skill_damage(src,bl,tick, status_get_amotion(src), 0, -30000, 1, skillid, skilllv, 6);
+ 
 			skill_area_temp[0] = 0;
 			skill_area_temp[1] = bl->id;
 			skill_area_temp[2] = 0;
@@ -3490,6 +3528,14 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 			skill_addtimerskill(src,tick + 800,src->id,x,y,skillid,skilllv,0,flag); 
 			clif_skill_damage(src,src,tick,status_get_amotion(src),0,-30000,1,skillid,skilllv,6);
 		}
+		break;
+	case LG_PINPOINTATTACK:
+		if( !map_flag_gvg(src->m) && !map[src->m].flag.battleground && unit_movepos(src, bl->x, bl->y, 1, 1) )
+		{
+			clif_slide(src,bl->x,bl->y);
+			clif_fixpos(src);
+		}
+		skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 
 	case 0:
@@ -4096,6 +4142,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case AB_DUPLELIGHT:
 	case AB_EXPIATIO:
 	case AB_RENOVATIO:
+	case LG_EXEEDBREAK:
 	case GC_VENOMIMPRESS:
 	case SC_DEADLYINFECT:
 	case NC_ACCELERATION:
@@ -4413,6 +4460,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case NPC_VAMPIRE_GIFT:
 	case NPC_HELLJUDGEMENT:
 	case NPC_PULSESTRIKE:
+	case LG_MOONSLASHER:
 		skill_castend_damage_id(src, src, skillid, skilllv, tick, flag);
 		break;
 
@@ -6881,7 +6929,7 @@ int skill_castend_id(int tid, unsigned int tick, int id, intptr data)
 			return 0;
 		}
 
-		if( sd && ud->skilltimer != INVALID_TIMER && pc_checkskill(sd,SA_FREECAST) > 0 )
+		if( sd && ud->skilltimer != INVALID_TIMER && (pc_checkskill(sd,SA_FREECAST) > 0 || ud->skillid == LG_EXEEDBREAK) )
 		{// restore original walk speed
 			ud->skilltimer = INVALID_TIMER;
 			status_calc_bl(&sd->bl, SCB_SPEED);
@@ -7173,7 +7221,7 @@ int skill_castend_pos(int tid, unsigned int tick, int id, intptr data)
 		return 0;
 	}
 
-	if( sd && ud->skilltimer != INVALID_TIMER && pc_checkskill(sd,SA_FREECAST) > 0 )
+	if( sd && ud->skilltimer != INVALID_TIMER && (pc_checkskill(sd,SA_FREECAST) > 0 || ud->skillid == LG_EXEEDBREAK) )
 	{// restore original walk speed
 		ud->skilltimer = INVALID_TIMER;
 		status_calc_bl(&sd->bl, SCB_SPEED);

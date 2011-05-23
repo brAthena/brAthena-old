@@ -1163,6 +1163,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				break;
 
 			case NPC_CRITICALSLASH:
+			case LG_PINPOINTATTACK:
 				flag.cri = 1; //Always critical skill.
 				break;
 
@@ -1974,6 +1975,23 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case SC_FEINTBOMB:
 					skillratio += 100 + 100 * skill_lv;
 					break;
+				case LG_MOONSLASHER:
+					skillratio += 120 * skill_lv + pc_checkskill(sd,LG_OVERBRAND) * 80;
+					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
+					break;
+				case LG_CANNONSPEAR:
+					skillratio += -100 + (50  + sstatus->str) * skill_lv;
+					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;	
+					break;
+				case LG_BANISHINGPOINT:
+					skillratio += -100 + 50 * skill_lv + (30 * ((sd) ? pc_checkskill(sd,SM_BASH) : 0));
+					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
+					break;
+				case LG_PINPOINTATTACK:
+					skillratio += 100 * skill_lv + 10 * sstatus->agi;
+					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
+					break;
+
 			}
 
 			ATK_RATE(skillratio);
@@ -3624,6 +3642,12 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 
 	wd = battle_calc_attack(BF_WEAPON, src, target, 0, 0, flag);
 	
+	if(sc && sc->data[SC_EXEEDBREAK])
+	{
+		wd.damage = wd.damage * sc->data[SC_EXEEDBREAK]->val1 / 100;
+		status_change_end(src,SC_EXEEDBREAK,-1);
+	}
+
 	if( sd && sc && sc->data[SC_THURISAZ] && wd.flag&(BF_WEAPON|BF_SHORT) && rand()%100 < pc_checkskill(sd,RK_RUNEMASTERY) )
 		wd.damage *= 3;
 

@@ -4153,9 +4153,12 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 	if( sc == NULL )
 		return cap_value(speed,10,USHRT_MAX);
 
-	if( sd && sd->ud.skilltimer != INVALID_TIMER && pc_checkskill(sd,SA_FREECAST) > 0 )
+	if( sd && sd->ud.skilltimer != INVALID_TIMER && (pc_checkskill(sd,SA_FREECAST) > 0 || sd->ud.skillid == LG_EXEEDBREAK) )
 	{
-		speed_rate = 175 - 5 * pc_checkskill(sd,SA_FREECAST);
+		if( sd->ud.skillid == LG_EXEEDBREAK )
+			speed_rate = 100 + 60 - (sd->ud.skilllv * 10);
+		else
+			speed_rate = 175 - 5 * pc_checkskill(sd,SA_FREECAST);
 	}
 	else
 	{
@@ -5767,6 +5770,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			case SC_ENCHANTARMS:
 			case SC_ARMOR_ELEMENT:
 			case SC_ARMOR_RESIST:
+			case SC_EXEEDBREAK:
 				break;
 			case SC_GOSPEL:
 				 //Must not override a casting gospel char.
@@ -6841,6 +6845,12 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			val_flag |= 1|2;
 			skill_strip_equip(bl,EQP_WEAPON|EQP_SHIELD,100,val1,tick);
 			break;			
+		case SC_EXEEDBREAK:
+			val1 *= 150; // 150 * skill_lv
+			if( sd->inventory_data[sd->equip_index[EQI_HAND_R]] )
+				val1 += (sd->inventory_data[sd->equip_index[EQI_HAND_R]]->weight * sd->inventory_data[sd->equip_index[EQI_HAND_R]]->wlv * status_get_lv(bl) / 100); // (weapon_weight * weapon_level * base_lvl)/100
+			val1 += 15 * sd->status.job_level; // 15 * job_lvl
+			break;
 		default:
 			if( calc_flag == SCB_NONE && StatusSkillChangeTable[type] == 0 && StatusIconChangeTable[type] == 0 )
 			{	//Status change with no calc, no icon, and no skill associated...?

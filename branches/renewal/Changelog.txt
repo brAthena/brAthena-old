@@ -9,6 +9,14 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0523 - 22/05/2011 [Mark]
+	* Adicionadas as habilidades:
+	- LG_PINPOINTATTACK (Estocada Precisa)
+	- LG_MOONSLASHER (Espiral Lunar)
+	- LG_CANNONSPEAR (Disparo Perfurante)
+	- LG_BANISHONGPOINT (Toque do Oblívio)
+	- LG_EXEEDBREAK (Exceder Limite)
+	
 	r0522 - 22/05/2011 [Protimus]
 	* Adicionadas as habilidades:
 	- SC_ENERVATION (Máscara da Fraqueza).
