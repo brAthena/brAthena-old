@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0524 - 23/05/2011 [MiTh]
+	* Adicionada a habilidade:
+	- NC_PILEBUKER (Bate Estaca)
+	* Precisamos rever depois o lance de superaquecimento, nao encontrei documentação sobre como ele é ativado
+	
 	r0523 - 22/05/2011 [Mark]
 	* Adicionadas as habilidades:
 	- LG_PINPOINTATTACK (Estocada Precisa)

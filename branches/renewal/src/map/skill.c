@@ -1078,8 +1078,18 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 
 	case NC_POWERSWING:
 		sc_start(bl, SC_STUN, 5*skilllv, skilllv, skill_get_time(skillid, skilllv));
-		if( rand()%100 < 5*skilllv )
+		if( rand()%100 < (5 + 15 * skilllv) )
 			skill_castend_damage_id(src, bl, NC_AXEBOOMERANG, pc_checkskill(sd, NC_AXEBOOMERANG), tick, 1);
+		break;
+	case NC_PILEBUNKER:
+		if(rand()%100 < 5 + 15 *skilllv)
+			{
+				status_change_end( bl, SC_KYRIE, INVALID_TIMER );
+				status_change_end( bl, SC_ASSUMPTIO, INVALID_TIMER );
+				status_change_end( bl, SC_STEELBODY, INVALID_TIMER );
+				status_change_end( bl, SC_AUTOGUARD, INVALID_TIMER );
+				status_change_end( bl, SC_BERKANA, INVALID_TIMER );
+			}
 		break;
 	case LG_MOONSLASHER:
 		rate = 32 + 8 * skilllv;
@@ -2896,6 +2906,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case NC_AXEBOOMERANG:
 	case NC_POWERSWING:
 	case NC_BOOSTKNUCKLE:
+	case NC_PILEBUNKER:
 	case SC_TRIANGLESHOT:
 	case SC_FEINTBOMB:
 	case LG_BANISHINGPOINT:
