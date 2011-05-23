@@ -5274,6 +5274,16 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		skill_blown(src,bl,skill_get_blewcount(skillid,skilllv),unit_getdir(bl),0);
 		break;
 
+	case NC_F_SIDESLIDE:
+		clif_skill_nodamage(src,bl,skillid,skilllv,1);
+		skill_blown(src,bl,skill_get_blewcount(skillid,skilllv),unit_getdir(bl),0);
+		break;
+
+	case NC_B_SIDESLIDE:
+		clif_skill_nodamage(src,bl,skillid,skilllv,1);
+		skill_blown(src,bl,skill_get_blewcount(skillid,skilllv),abs((unit_getdir(bl) - 8)),0);
+		break;
+
 	case TK_HIGHJUMP:
 		{
 			int x,y, dir = unit_getdir(src);

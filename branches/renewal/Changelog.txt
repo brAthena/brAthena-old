@@ -9,6 +9,13 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0525 - 23/05/2011 [MiTh]
+	* Adicionadas as habilidades:
+	- NC_F_SIDESLIDE (Propulsão Dianteira)
+	- NC_B_SIDESLIDE (Propulsão Traseira)
+	* Corrigida habilidade NC_TRAININGAXE
+    - Ajustado acrescimo em maças também
+	
 	r0524 - 23/05/2011 [MiTh]
 	* Adicionada a habilidade:
 	- NC_PILEBUKER (Bate Estaca)
