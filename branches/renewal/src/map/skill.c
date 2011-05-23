@@ -6787,6 +6787,34 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			clif_skill_fail(sd, skillid, 0, 0, 0);
 		break;
 
+	case SC_ENERVATION:
+	case SC_GROOMY:
+	case SC_LAZINESS:
+	case SC_UNLUCKY:
+	case SC_WEAKNESS:
+		if( !(tsc && tsc->data[type]) )
+		{ 
+			int rate = (int)(10000 * (0.1 + pow(1 - tstatus->agi/(float)sstatus->dex,2) + (1.5 * floor(sstatus->dex/60.) + floor(tstatus->agi/60.)) * (tstatus->agi * (sstatus->dex - tstatus->agi)/(float)(pow(sstatus->dex,2)))));
+			rate = cap_value(rate,0,10000);
+			clif_skill_nodamage(src,bl,skillid,0,
+				status_change_start(bl,type,rate,skilllv,0,0,0,skill_get_time(skillid,skilllv),0));
+		}
+		else if( sd )
+			 clif_skill_fail(sd,skillid,0,0,0);
+		break;
+
+	case SC_IGNORANCE:
+		if( !(tsc && tsc->data[type]) && clif_skill_nodamage(src,bl,skillid,0,sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv))) )
+		{
+			int sp = 200 * skilllv;
+			if( dstmd ) sp = dstmd->level * 2;
+			if( status_zap(bl,0,sp) )
+				status_heal(src,0,sp/2,3);
+		}
+		else if( sd )
+			clif_skill_fail(sd,skillid,0,0,0);
+		break;
+
 	default:
 		ShowWarning("skill_castend_nodamage_id: Habilidade desconhecida usada:%d\n",skillid);
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
@@ -10372,8 +10400,19 @@ struct skill_condition skill_get_requirement(struct map_session_data* sd, short 
 		req.sp += (status->max_sp * (-sp_rate))/100;
 	if( sd->dsprate!=100 )
 		req.sp = req.sp * sd->dsprate / 100;
+		
+	if( sc )
+	{
+		if( sc->data[SC__LAZINESS] )
+			req.sp += req.sp + sc->data[SC__LAZINESS]->val1 * 10;
+		if( sc->data[SC_UNLIMITEDHUMMINGVOICE] )
+			req.sp += req.sp * sc->data[SC_UNLIMITEDHUMMINGVOICE]->val3 / 100;
+	}
 
 	req.zeny = skill_db[j].zeny[lv-1];
+	
+	if( sc && sc->data[SC__UNLUCKY] )
+		req.zeny += sc->data[SC__UNLUCKY]->val1 * 500;
 
 	req.spiritball = skill_db[j].spiritball[lv-1];
 
@@ -10495,7 +10534,6 @@ struct skill_condition skill_get_requirement(struct map_session_data* sd, short 
 						req.sp += req.sp;
 			}
 	}
-
 	return req;
 }
 
@@ -10534,9 +10572,15 @@ int skill_castfix (struct block_list *bl, int skill_id, int skill_lv)
 		}
 	}
 
-	if( !(skill_get_castnodex(skill_id, skill_lv)&2) && sd )
-		if(sc && sc->data[SC_SECRAMENT])
+	if( !(skill_get_castnodex(skill_id, skill_lv)&2) && sd && sc){
+		if(sc->data[SC_SECRAMENT])
 			cast_fixo_reduct += sc->data[SC_SECRAMENT]->val2;
+		if(sc->data[SC_FREEZING])
+			cast_fixo_reduct -= 50;
+		if(sc->data[SC__LAZINESS])
+			cast_fixo_reduct -= cast_fixo_reduct*sc->data[SC__LAZINESS]->val2;
+	}
+
 	time += base_cast*(100-cast_fixo_reduct)/500;
 
 	// config cast time multiplier
@@ -10546,6 +10590,7 @@ int skill_castfix (struct block_list *bl, int skill_id, int skill_lv)
 	// return final cast time
 	return (time > 0) ? time : 0;
 }
+
 
 /*==========================================
  * Does cast-time reductions based on sc data.

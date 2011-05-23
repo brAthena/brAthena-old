@@ -9,6 +9,15 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0522 - 22/05/2011 [Protimus]
+	* Adicionadas as habilidades:
+	- SC_ENERVATION (Máscara da Fraqueza).
+	- SC_GROOMY (Máscara da Melancolia).
+	- SC_IGNORANCE (Máscara da Tolice).
+	- SC_LAZINESS (Máscara da Ociosidade).
+	- SC_UNLUCKY (Máscara do Infortúnio).
+	- SC_WEAKNESS (Máscara da Vulnerabilidade).
+
 	r0521 - 22/05/2011 [Protimus]
 	* Adicionadas as habilidades:
 	- SC_INVISIBILITY (Forma Etérea).

@@ -6993,6 +6993,9 @@ int pc_setcart(struct map_session_data *sd,int type)
  *------------------------------------------*/
 int pc_setfalcon(TBL_PC* sd, int flag)
 {
+	if( sd->sc.data[SC__GROOMY] )
+		return 0;
+		
 	if( flag )
 	{ 
 		if( pc_checkskill(sd,HT_FALCON)>0 && !(sd->sc.option&OPTION_RIDING_WUG || sd->sc.option&OPTION_WUG) )	// ファルコンマスタリ?スキル所持

@@ -6326,6 +6326,10 @@ int clif_sendegg(struct map_session_data *sd)
 		clif_displaymessage(fd, "Pets não são permitidos em GvGs.");
 		return 0;
 	}
+	
+	if( sd->sc.data[SC__GROOMY] )
+		return 0;
+
 	WFIFOHEAD(fd, MAX_INVENTORY * 2 + 4);
 	WFIFOW(fd,0)=0x1a6;
 	for(i=0,n=0;i<MAX_INVENTORY;i++){

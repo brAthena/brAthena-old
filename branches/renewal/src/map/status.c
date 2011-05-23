@@ -1315,7 +1315,8 @@ int status_check_skilluse(struct block_list *src, struct block_list *target, int
 				sc->data[SC_BERSERK] ||
 				sc->data[SC_DEEPSLEEP] ||
 				sc->data[SC_SATURDAYNIGHTFEVER] ||
-				sc->data[SC__INVISIBILITY]
+				sc->data[SC__INVISIBILITY] ||
+				sc->data[SC__IGNORANCE]
 			))
 				return 0;
 
@@ -3813,6 +3814,8 @@ static unsigned short status_calc_batk(struct block_list *bl, struct status_chan
 		batk += batk * sc->data[SC_BEYONDOFWARCRY]->val3/100;
 	if(sc->data[SC__BLOODYLUST])
 		batk += batk * 32 / 100;
+	if(sc->data[SC__ENERVATION])
+		batk -= batk * sc->data[SC__ENERVATION]->val2 / 100;
 	return (unsigned short)cap_value(batk,0,USHRT_MAX);
 }
 
@@ -3859,6 +3862,10 @@ static unsigned short status_calc_watk(struct block_list *bl, struct status_chan
 		watk += sc->data[SC_OTHILA]->val1;
 	if(sc->data[SC__BLOODYLUST])
 		watk += watk * 32 / 100;
+	if(sc->data[SC_INSPIRATION])
+		watk += sc->data[SC_INSPIRATION]->val2;
+	if(sc->data[SC__ENERVATION])
+		watk -= watk * sc->data[SC__ENERVATION]->val2 / 100;
 
 	return (unsigned short)cap_value(watk,0,USHRT_MAX);
 }
@@ -3903,6 +3910,8 @@ static signed short status_calc_critical(struct block_list *bl, struct status_ch
 		critical += 100;
 	if(sc->data[SC__INVISIBILITY])
 		critical += critical * sc->data[SC__INVISIBILITY]->val3 / 100;
+	if(sc->data[SC__UNLUCKY])
+		critical -= critical * sc->data[SC__UNLUCKY]->val2 / 100;
 
 	return (short)cap_value(critical,10,SHRT_MAX);
 }
@@ -3935,6 +3944,8 @@ static signed short status_calc_hit(struct block_list *bl, struct status_change 
 		hit += sc->data[SC_MERC_HITUP]->val2;
 	if(sc->data[SC_FEAR])
 		hit -= hit * 20 / 100;
+	if(sc->data[SC__GROOMY])
+		hit -= hit * sc->data[SC__GROOMY]->val3 / 100;
 
 	return (short)cap_value(hit,1,SHRT_MAX);
 }
@@ -3988,8 +3999,12 @@ static signed short status_calc_flee(struct block_list *bl, struct status_change
 		flee -= flee * 20 / 100;
 	if( sc->data[SC_HALLUCINATIONWALK] )
 		flee += sc->data[SC_HALLUCINATIONWALK]->val2;
+	if( sc->data[SC_SATURDAYNIGHTFEVER] )
+		flee -= flee * (40 + 10 * sc->data[SC_SATURDAYNIGHTFEVER]->val1) / 100;
 	if( sc->data[SC_GLOOMYDAY] )
 		flee -= flee * sc->data[SC_GLOOMYDAY]->val2 / 100;
+	if( sc->data[SC__LAZINESS] )
+		flee -= flee * sc->data[SC__LAZINESS]->val3 / 100;
 
 	return (short)cap_value(flee,0,SHRT_MAX);
 }
@@ -4003,6 +4018,8 @@ static signed short status_calc_flee2(struct block_list *bl, struct status_chang
 		flee2 += sc->data[SC_INCFLEE2]->val2;
 	if(sc->data[SC_WHISTLE])
 		flee2 += sc->data[SC_WHISTLE]->val3*10;
+	if(sc->data[SC__UNLUCKY])
+		flee2 -= flee2 * sc->data[SC__UNLUCKY]->val2 / 100;
 
 	return (short)cap_value(flee2,10,SHRT_MAX);
 }
@@ -4216,7 +4233,9 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 					val = max( val, 300 );
 				if( sc->data[SC_CAMOUFLAGE] && !(sc->data[SC_CAMOUFLAGE]->val3&1) )
 					val = max( val, sc->data[SC_CAMOUFLAGE]->val1<3 ? 300:25*(6 - sc->data[SC_CAMOUFLAGE]->val1) );
-
+				if( sc->data[SC__GROOMY] )
+					val = max( val, sc->data[SC__GROOMY]->val2);
+					
 				if( sd && sd->speed_rate + sd->speed_add_rate > 0 ) // permanent item-based speedup
 					val = max( val, sd->speed_rate + sd->speed_add_rate );
 			}
@@ -4370,6 +4389,8 @@ static short status_calc_aspd_rate(struct block_list *bl, struct status_change *
 		aspd_rate += aspd_rate * 5 * sc->data[SC__BODYPAINT]->val1 / 100;
 	if( sc->data[SC__INVISIBILITY] )
 		aspd_rate += aspd_rate * sc->data[SC__INVISIBILITY]->val2 / 100;
+	if( sc->data[SC__GROOMY] )
+		aspd_rate += aspd_rate * sc->data[SC__GROOMY]->val2 / 100;
 	}
 
 	return (short)cap_value(aspd_rate,0,SHRT_MAX);
@@ -5014,11 +5035,19 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 	case SC_RAID:
 	case SC_ADORAMUS:
 	case SC_SECRAMENT:
+	case SC_SWINGDANCE:
+	case SC__ENERVATION:
+	case SC__GROOMY:
+	case SC__IGNORANCE:
+	case SC__LAZINESS:
+	case SC__UNLUCKY:
+	case SC__WEAKNESS:
 		return 0;
 	}
 
 	sd = BL_CAST(BL_PC,bl);
 	status = status_get_status_data(bl);
+	sc = status_get_sc(bl);
 	switch (type)
 	{
 		case SC_SLEEP:
@@ -5031,15 +5060,14 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 			sc_def = status->agi;
 			break;
 		case SC_STUN:
-		case SC_POISON:
 		case SC_DPOISON:
 			sc_def = status->vit;
 			break;
 		case SC_BLIND:
 		case SC_FREEZE:
-		case SC_SILENCE:
 			sc_def = status->int_;
 			break;
+		case SC_ADORAMUS:
 		case SC_DECREASEAGI:
 			if (sd) tick>>=1;
 			sc_def = 3 + status->mdef;
@@ -5067,6 +5095,10 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 				tick >>= 1;
 		}
 		break;
+	case SC_POISON:
+	case SC_SILENCE:
+		if( sc && sc->data[SC__UNLUCKY] )
+			return tick;
 		default:
 			//Effect that cannot be reduced? Likely a buff.
 			if (!(rand()%10000 < rate))
@@ -5716,6 +5748,12 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			case SC_FEAR:
 			case SC_URUZ:
 			case SC__INVISIBILITY:
+			case SC__ENERVATION:
+			case SC__GROOMY:
+			case SC__IGNORANCE:
+			case SC__LAZINESS:
+			case SC__WEAKNESS:
+			case SC__UNLUCKY:
 				return 0;
 			case SC_COMBO:
 			case SC_DANCING:
@@ -6769,6 +6807,39 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			val4 = tick / 1000;
 			tick = 1000;
 			val_flag |= 1|2;
+			break;
+		case SC__ENERVATION:
+			val2 = 20 + 10 * val1; 
+			val_flag |= 1|2;
+			if( sd ) pc_delspiritball(sd,sd->spiritball,0);
+			break;
+		case SC__GROOMY:
+			val2 = 20 + 10 * val1; 
+			val3 = 20 * val1; 
+			val_flag |= 1|2|4;
+			if( sd )
+			{ 
+				if( pc_isriding(sd,OPTION_RIDING|OPTION_RIDING_DRAGON|OPTION_RIDING_WUG) ) pc_setriding(sd, 0);
+				if( pc_iswarg(sd) ) pc_setoption(sd, sd->sc.option&~OPTION_WUG);
+				if( pc_isfalcon(sd) ) pc_setoption(sd, sd->sc.option&~OPTION_FALCON);
+				if( sd->status.pet_id > 0 ) pet_menu(sd, 3);
+				if( merc_is_hom_active(sd->hd) ) merc_hom_vaporize(sd,1);
+				if( sd->md ) merc_delete(sd->md,3);
+			}
+			break;
+		case SC__LAZINESS:
+			val2 = 10 + 10 * val1; 
+			val3 = 10 * val1; 
+			val_flag |= 1|2|4;
+			break;
+		case SC__UNLUCKY:
+			val2 = 10 * val1; 
+			val_flag |= 1|2|4;
+			break;
+		case SC__WEAKNESS:
+			val2 = 10 * val1;
+			val_flag |= 1|2;
+			skill_strip_equip(bl,EQP_WEAPON|EQP_SHIELD,100,val1,tick);
 			break;			
 		default:
 			if( calc_flag == SCB_NONE && StatusSkillChangeTable[type] == 0 && StatusIconChangeTable[type] == 0 )
