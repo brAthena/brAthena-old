@@ -12,154 +12,155 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 2.2/1.0a                               |
+// | Versões eA/brA: 2.2/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: Mudança de Classe para Justiceiro           |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Otimizações no npc [Wolf]                          |
 // | 1.0a Pequenas otimizações [Lord]                       |
+// | 1.1 Script Traduzido [Wolf]                            |
 // \________________________________________________________/
 
-que_ng,152,167,3	script	Master Miller	901,{
-	mes "[Master Miller]";
+que_ng,152,167,3	script	Senhor Miller	901,{
+	mes "[Senhor Miller]";
 	if (Upper == 2) {
-		mes "Well, aren't you an";
-		mes "adorable little child~";
-		mes "Where's your mommy?";
-		mes "This place is dangerous, so";
-		mes "please go home soon, okay?";
+		mes "Bem, você não é";
+		mes "uma criança tão adorável~";
+		mes "Onde está sua mãe?";
+		mes "Esse lugar é perigoso, portanto,";
+		mes "vá logo para sua casa, ok?";
 		close;
 	}
 	if (Class == Job_Novice) {
 		if (JobLevel < 10 || getskilllv("NV_BASIC") < 9) {
-			mes "Interested in becoming";
-			mes "a Gunslinger, eh? You've";
-			mes "got potential, but you're";
-			mes "not yet experienced enough.";
-			mes "Just train yourself a bit more,";
-			mes "and then come back, you hear?";
+			mes "Interessado em se tornar";
+			mes "um Justiceiro, é? Você";
+			mes "tem potencial, mas você";
+			mes "ainda não é experiente o suficiente.";
+			mes "Apenas treine um pouco mais,";
+			mes "e depois volte, tudo bem?";
 			close;
 		}
 		if (GUNS_Q == 0) {
-			mes "I'm Miller, a full time";
-			mes "Gunslinger drillmaster, and";
-			mes "full time guardian for Lady";
-			mes "Selena. Now, what do you";
-			mes "need? If it's not important, then I can't make the time for you.";
+			mes "Sou Miller, um";
+			mes "Justiceiro, e um protetor";
+			mes "da senhora Selena.";
+			mes "Então, o que você";
+			mes "quer? Se não for importante, não poderei fazer nada por você.";
 			next;
-			if(select("Nothing.:I want to become a Gunslinger.") == 1) {
-				mes "[Master Miller]";
-				mes "Don't waste my time.";
-				mes "If you do want to become";
-				mes "a Gunslinger, then come";
-				mes "back and talk to me.";
+			if(select("Nada.:Quero me tornar um Justiceiro.") == 1) {
+				mes "[Senhor Miller]";
+				mes "Não desperdice meu tempo.";
+				mes "Se você quiser se tornar";
+				mes "um Justiceiro, volte aqui";
+				mes "e fale comigo.";
 				close;
 			}
-			mes "[Master Miller]";
-			mes "Hm. You're pretty young, but";
-			mes "your eyes tell me that you're";
-			mes "pretty ambitious. You'll need to pass our interview and educational";
-			mes "course to become a Gunslinger. Do you want to apply for the job?";
+			mes "[Senhor Miller]";
+			mes "Hm. Você é muito jovem, mas";
+			mes "em seu olhar eu posso sentir que você";
+			mes "é muito ambicioso. Você precisa passar em nossa entrevista e em";
+			mes "nosso teste de ensino para se tornar um Justiceiro. Você quer se candidatar a mudança de classe?";
 			next;
-			if(select("Give me some time to think.:Sure!") == 1) {
-				mes "[Master Miller]";
-				mes "Understandable.";
-				mes "If you do decide that";
-				mes "you want to become";
-				mes "a Gunslinger, then let";
-				mes "me know right away.";
-				mes "I'll get you started.";
+			if(select("Me dê um tempo para pensar.:Quero!") == 1) {
+				mes "[Senhor Miller]";
+				mes "Tudo bem.";
+				mes "Se você decidir";
+				mes "se tornar um Justiceiro,";
+				mes "volte aqui, e fale";
+				mes "imediatamente comigo.";
+				mes "Para que você comece o teste.";
 				close;
 			}
-			mes "[Master Miller]";
-			mes "Great, great. Alright then,";
-			mes "let's get you started. Take";
-			mes "this letter to Mr. Wise Bull";
-			mes "Horn in Payon. He's a shaman";
-			mes "that will judge whether or not";
-			mes "you qualify to be a Gunslinger.";
+			mes "[Senhor Miller]";
+			mes "Ótimo, ótimo. Certo, então,";
+			mes "vamos começar. Leve esta";
+			mes "carta para o Sábio Chifre";
+			mes "de Búfalo em payon. Ele é um xamã";
+			mes "que decidirá se você tem ou não";
+			mes "qualidade para ser um Justiceiro.";
 			set GUNS_Q,1;
 			setquest 6020;
 			close;
 		} else if(GUNS_Q == 1) {
-			mes "Take that letter of";
-			mes "introduction I've written";
-			mes "for you to Mr. Wise Bull";
-			mes "Horn in Payon. He'll test";
-			mes "you to see if you're really";
-			mes "Gunslinger material.";
+			mes "Leve esta carta que";
+			mes "eu escrevi sobre você";
+			mes "ao Sábio Chifre";
+			mes "de Búfalo em payon. Ele";
+			mes "decidirá se você tem ou não";
+			mes "qualidade para ser um Justiceiro.";
 			close;
 		} else if(GUNS_Q == 2) {
-			mes "Hmm... Wise Bull Horn";
-			mes "asked you to collect the";
-			mes "items you need to make the";
-			mes "voucher? Hm. I guess that's";
-			mes "part of his qualification test.";
+			mes "Hmm... O Sábio Chife de Búfalo";
+			mes "pediu-lhe para recolher os";
+			mes "itens para que você possa pegar";
+			mes "a certidão para mudança de classe?";
+			mes "Hm. Hm, eu acho que é uma parte do seu teste.";
 			close;
 		} else if(GUNS_Q == 3) {
-			mes "Wise Bull Horn asked";
-			mes "you to bring him some";
-			mes "Milk? He must really like";
-			mes "you if he's already asking";
-			mes "for favors. Good luck, friend.";
+			mes "Sábio Chife de Búfalo pediu-lhe";
+			mes "para trazer algum Leite?";
+			mes "Ele deve provavelmente";
+			mes "gostou de você, pois já está";
+			mes "pedindo favores. Boa sorte, amigo.";
 			close;
 		} else if(GUNS_Q == 4) {
-			mes "I expect to hear good";
-			mes "news from you soon. You";
-			mes "know, I have no doubt that";
-			mes "you'll become a Gunslinger.";
+			mes "Eu espero ouvir boas";
+			mes "notícias. Você sabe,";
+			mes "eu não tenho dúvidas que";
+			mes "você se tornará um Justiceiro.";
 			close;
 		} else if(GUNS_Q == 5) {
 			if (Skillpoint) {
-				mes "Hey, you have leftover";
-				mes "Skill Points. You better";
-				mes "use them all up before you";
-				mes "come and talk to me again.";
+				mes "Ei, você ainda tem";
+				mes "Pontos de Habilidade. Use";
+				mes "todos os seus pontos de";
+				mes "habilidade e depois volte.";
 				close;
 			}
-			mes "Oh, you've brought a";
-			mes "voucher from Wise Bull Horn?";
-			mes "It's been a while since he's";
-			mes "given one to anybody, so";
-			mes "I'm really proud of you!";
+			mes "Ah, você trouxe uma";
+			mes "certidão do Sábio Chifre de Búfalo?";
+			mes "Tem tempo que ele não";
+			mes "tem dado certidões, estou";
+			mes "muito orgulhoso de você!";
 			next;
-			mes "[Master Miller]";
-			mes "If Wise Bull Horn approves,";
-			mes "then I have no reason to";
-			mes "reject you. Alright then, I'll";
-			mes "promote you to a Gunslinger.";
-			mes "But first, let me explain";
-			mes "our job in more detail.";
+			mes "[Senhor Miller]";
+			mes "Se o Sábio Chifre de Búfalo aprovou,";
+			mes "então eu não tenho porque rejeitar";
+			mes "você. Certo, então irei";
+			mes "te transformar em um Justiceiro.";
+			mes "Antes disso, deixe-me explicar";
+			mes "os detalhes de nossa classe.";
 			next;
-			mes "[Master Miller]";
-			mes "As a Gunslinger, you must";
-			mes "keep your gun with you at";
-			mes "all times. The Gunslinger";
-			mes "Guild keeps track of every Gun";
-			mes "and Bullet, so you can only get";
-			mes "them from our guild members.";
+			mes "[Senhor Miller]";
+			mes "Como um Justiceiro, você";
+			mes "deve manter sua arma com você";
+			mes "em todos os momentos. A Guilda";
+			mes "dos Justiceiros mantém o registro";
+			mes "de cada arma, então você só";
+			mes "pode pegar dos membros da guilda.";
 			next;
-			mes "[Master Miller]";
-			mes "Don't worry, Gunslinger";
-			mes "Guildsmen can be found almost";
-			mes "anywhere these days. Anyway,";
-			mes "it has to be this way by order of our guild leader, Lady Selena.";
+			mes "[Senhor Miller]";
+			mes "Fique tranquilo, o Justiceiro";
+			mes "da Guilda pode ser encontrado em";
+			mes "qualquer lugar nestes dias. Enfim,";
+			mes "tem que ser desta maneira por ordem da nossa líder, Lady Selena.";
 			next;
-			mes "[Master Miller]";
-			mes "You might get the chance to";
-			mes "meet her one of these days.";
-			mes "Anyway, just now that we have";
-			mes "to regulate Gun and Bullet sales to keep them away from evil";
-			mes "or irresponsible folk.";
+			mes "[Senhor Miller]";
+			mes "Você poderá ter a chance";
+			mes "de conhecê-la qualquer dia.";
+			mes "Enfim, agora nós temos que nos";
+			mes "regular para mantermos as vendas das armas";
+			mes "fora do alcance de pessoas más ou irresponsáveis.";
 			next;
-			mes "[Master Miller]";
-			mes "In any case, it's always";
-			mes "a pleasure for me to talk";
-			mes "to another Gunslinger, so";
-			mes "let's keep in touch. May the";
-			mes "power of the earth protect";
-			mes "you in all of your adventures~";
+			mes "[Senhor Miller]";
+			mes "Em qualquer caso, é sempre";
+			mes "um prazer pra mim falar com";
+			mes "outro Justiceiro, então vamos";
+			mes "manter contato. Que o poder";
+			mes "da terra te proteja em todas";
+			mes "as suas aventuras~";
 			callfunc "Job_Change",Job_Gunslinger;
 			set GUNS_Q,6;
 			completequest 6024;
@@ -169,101 +170,100 @@ que_ng,152,167,3	script	Master Miller	901,{
 		}
 	}else{
 		if (Class == Job_Gunslinger) {
-			mes "Oh! Long time, no see,";
-			mes "friend. How have you been?";
-			mes "I hope you've been keeping";
-			mes "you Gun well maintained.";
-			mes "Take care of it, and it'll take";
-			mes "care of you. Remember it.";
+			mes "Opa! Há quanto tempo,";
+			mes "amigo. Como você está?";
+			mes "Eu espero que sua arma";
+			mes "esteja bem conservada.";
+			mes "Tenha cuidado com ela, ela";
+			mes "que te protege. Não se esqueça.";
 			close;
 		} else{
-			mes "If you don't have";
-			mes "any business with me,";
-			mes "then please go on your way.";
+			mes "Se você não tem nada";
+			mes "comigo, siga seu caminho.";
 			close;
 		}
 	}
 }
 
-payon,184,65,3	script	Wise Bull Horn	866,{
-	mes "[Wise Bull Horn]";
+payon,184,65,3	script	Sábio Chifre de Búfalo	866,{
+	mes "[Sábio Chifre de Búfalo]";
 	if (GUNS_Q == 1) {
-		mes "Hello, young wolf.";
-		mes "What business has";
-		mes "brought you before me?";
+		mes "Olá, jovem lobo.";
+		mes "O negócio trouxe-o";
+		mes "diante de mim?";
 		next;
 		mes "["+strcharinfo(0)+"]";
-		mes "Mr. Miller sent me to";
-		mes "deliver this letter to you.";
-		mes "Actually, I'm interested in";
-		mes "becoming a Gunslinger...";
+		mes "Sr. Miller me mandou entregar";
+		mes "essa carta para você.";
+		mes "Na verdade, meu interesse é";
+		mes "se tornar um Justiceiro...";
 		next;
-		mes "[Wise Bull Horn]";
-		mes "Miller, you said?";
-		mes "Hm, the Black Fox doesn't";
-		mes "give introductions for anyone";
-		mes "he doesn't believe will make";
-		mes "a good Gunslinger. Yes, I think";
-		mes "I know why he sent you to me.";
+		mes "[Sábio Chifre de Búfalo]";
+		mes "Você disse, Miller?";
+		mes "Hm, o senhor não dá";
+		mes "instruções para alguém que";
+		mes "ele acredita que não será um";
+		mes "bom Justiceiro. Sim, eu sei";
+		mes "por que ele te enviou até mim.";
 		next;
-		mes "[Wise Bull Horn]";
-		mes "I can see it in your eyes:";
-		mes "you've got a warm heart and a";
-		mes "strong sense of responsibility.";
-		mes "All you need is the blessing";
-		mes "of the Earth to protect you";
-		mes "as a Gunslinger.";
+		mes "[Sábio Chifre de Búfalo]";
+		mes "Eu posso ver nos seus olhos:";
+		mes "você tem um coração caloroso";
+		mes "e um forte sentido de responsabilidade.";
+		mes "Tudo que você precisa é de";
+		mes "uma bênção da terra para";
+		mes "protegê-lo como um Justiceiro.";
 		next;
-		mes "[Wise Bull Horn]";
-		mes "I can make a voucher that";
-		mes "will demonstrate your desire";
-		mes "to become a warrior of the";
-		mes "earth for you to present to";
-		mes "Gunslinger drillmasters.";
-		mes "I shall need these items...";
+		mes "[Sábio Chifre de Búfalo]";
+		mes "Eu posso fazer uma certidão";
+		mes "de que irá demonstrar o seu";
+		mes "desejo de se tornar um";
+		mes "guerreiro da terra para você";
+		mes "apresentar ao Sr. Miller.";
+		mes "Vou precisar alguns itens ...";
 		next;
-		mes "[Wise Bull Horn]";
-		mes "^3355FF1 Trunk^000000,";
-		mes "^3355FF3 Fluffs^000000,";
-		mes "^3355FF3 Zargons^000000,";
-		mes "^3355FF10 Shells^000000,";
-		mes "^3355FF3 Green Herbs^000000, and";
-		mes "^3355FF3 Rainbow Shells^000000.";
+		mes "[Sábio Chifre de Búfalo]";
+		mes "^3355FF1 Tronco^000000,";
+		mes "^3355FF3 Felpas^000000,";
+		mes "^3355FF3 Zargônios^000000,";
+		mes "^3355FF10 Cascas^000000,";
+		mes "^3355FF3 Ervas Verde^000000, and";
+		mes "^3355FF3 Cascos de Arco-Íris^000000.";
 		next;
-		mes "[Wise Bull Horn]";
-		mes "After I complete the";
-		mes "voucher, you may bring";
-		mes "it to Black Fox, and he";
-		mes "will help you achieve";
-		mes "your goal of becoming";
-		mes "a Gunslinger.";
+		mes "[Sábio Chifre de Búfalo]";
+		mes "Depois que eu terminar a";
+		mes "certidão, você pode levar";
+		mes "ao chefe, e então ele";
+		mes "vai te ajudar a atingir";
+		mes "sua meta de se tornar";
+		mes "um Justiceiro.";
 		set GUNS_Q,2;
 		changequest 6020,6021;
 		close;
 	} else if(GUNS_Q == 2) {
 		if (countitem(912) < 3 || countitem(914) < 3 || countitem(1019) < 1 || countitem(935) < 10 || countitem(511) < 3 || countitem(1013) < 3) {
-			mes "I can make a voucher that";
-			mes "will demonstrate your desire";
-			mes "to become a warrior of the";
-			mes "earth for you to present to";
-			mes "Gunslinger drillmasters.";
-			mes "I shall need these items...";
+			mes "Eu posso fazer uma certidão";
+			mes "de que irá demonstrar o seu";
+			mes "desejo de se tornar um";
+			mes "guerreiro da terra para você";
+			mes "apresentar ao Sr. Miller.";
+			mes "Vou precisar alguns itens ...";
 			next;
-			mes "[Wise Bull Horn]";
-			mes "^3355FF1 Trunk^000000,";
-			mes "^3355FF3 Fluffs^000000,";
-			mes "^3355FF3 Zargons^000000,";
-			mes "^3355FF10 Shells^000000,";
-			mes "^3355FF3 Green Herbs^000000, and";
-			mes "^3355FF3 Rainbow Shells^000000.";
+			mes "[Sábio Chifre de Búfalo]";
+			mes "^3355FF1 Tronco^000000,";
+			mes "^3355FF3 Felpas^000000,";
+			mes "^3355FF3 Zargônios^000000,";
+			mes "^3355FF10 Cascas^000000,";
+			mes "^3355FF3 Ervas Verde^000000, and";
+			mes "^3355FF3 Cascos de Arco-Íris^000000.";
 			next;
-			mes "[Wise Bull Horn]";
-			mes "After I complete the";
-			mes "voucher, you may bring";
-			mes "it to Black Fox, and he";
-			mes "will help you achieve";
-			mes "your goal of becoming";
-			mes "a Gunslinger.";
+			mes "[Sábio Chifre de Búfalo]";
+			mes "Depois que eu terminar a";
+			mes "certidão, você pode levar";
+			mes "ao chefe, e então ele";
+			mes "vai te ajudar a atingir";
+			mes "sua meta de se tornar";
+			mes "um Justiceiro.";
 			close;
 		}
 		delitem 912,3;	// Zargon
@@ -274,111 +274,111 @@ payon,184,65,3	script	Wise Bull Horn	866,{
 		delitem 1013,3;	// Colorful_Shell
 		set GUNS_Q,3;
 		changequest 6021,6022;
-		mes "Ah, you've returned";
-		mes "with everything I need.";
-		mes "Please give me some time";
-		mes "to make the voucher. If you";
-		mes "come back in a little while,";
-		mes "I should be finished with it.";
+		mes "Opa, você voltou";
+		mes "com tudo que preciso.";
+		mes "Por favor, me dê um tempo";
+		mes "para criar a certidão. Se você";
+		mes "voltar daqui a pouco,";
+		mes "eu já devo ter terminado.";
 		close;
 	} else if(GUNS_Q == 3) {
-		mes "Oh, you've arrived just";
-		mes "in time. It's been a while";
-		mes "since I've made one of these vouchers, so I might be a little";
-		mes "rusty. Still, this really takes me back to the days of my youth.";
+		mes "Opa, você chegou na";
+		mes "hora certo. Tem bastante tempo";
+		mes "que eu não fazia uma dessas certidões, então posso estar um pouco";
+		mes "enferrujado. Isso me lembra meus tempos de jovem.";
 		next;
-		mes "[Wise Bull Horn]";
-		mes "I've been serving in this";
-		mes "position of choosing worthy";
-		mes "recipients of Gunslinger";
-		mes "vouchers for a few decades";
-		mes "now. But before that, I was a";
-		mes "young adventurer just like you.";
+		mes "[Sábio Chifre de Búfalo]";
+		mes "Eu tenho servido nesta";
+		mes "posição de escolher os";
+		mes "preferidos para se tornar";
+		mes "um Justiceiro à algumas";
+		mes "decadas. Mas antes disso, eu era";
+		mes "um jovem aventureiro como você.";
 		next;
-		mes "[Wise Bull Horn]";
-		mes "It feels like it was only";
-		mes "yesterday when I held my own";
-		mes "little voucher as a Gunslinger,";
-		mes "a warrior of the earth. That's";
-		mes "when I met Selena's father...";
-		mes "How can time pass so quickly?";
+		mes "[Sábio Chifre de Búfalo]";
+		mes "Parece que foi ontem quando";
+		mes "eu tinha minha própia certidão";
+		mes "como um Justiceiro, um guerreiro";
+		mes "da terra. Foi quando";
+		mes "eu conheci o pai da Selena...";
+		mes "Como o tempo pode passar tão rapidamente?";
 		next;
-		mes "[Wise Bull Horn]";
-		mes "Ah... I reallly appreciate";
-		mes "Selena and Black Fox for all";
-		mes "of their help in recruiting";
-		mes "young Gunslingers. I'm very";
-		mes "old now, and can't do everything by myself. *Sigh...* Such is life.";
+		mes "[Sábio Chifre de Búfalo]";
+		mes "E...O que realmente admiro";
+		mes "em Selena e Black Fox é por";
+		mes "me conceder todos os tipos de ajuda";
+		mes "no recrutamento dos jovens Justiceiros. Estou";
+		mes "muito velho, não posso mais fazer tudo sózinho. *Suspiro...*Essa é a vida.";
 		next;
-		mes "[Wise Bull Horn]";
-		mes "Before you leave, may";
-		mes "I ask you for a small favor?";
-		mes "I'm thirsty, and would like";
-		mes "a cold glass of Milk. Would";
-		mes "you please bring me some?";
+		mes "[Sábio Chifre de Búfalo]";
+		mes "Antes de sair, posso te";
+		mes "pedir um pequeno favor?";
+		mes "Estou com sede, e gostaria";
+		mes "de um copo de Leite frio. Será";
+		mes "que você pode me trazer?";
 		set GUNS_Q,4;
 		changequest 6022,6023;
 		close;
 	} else if(GUNS_Q == 4) {
 		if (countitem(519) < 1) {
-			mes "I'm an old man that will";
-			mes "soon be reunited with mother";
-			mes "earth. Would you do this old";
-			mes "Gunslinger a favor a bring me";
-			mes "a cold glass of Milk, please?";
+			mes "Eu sou um velho homem que";
+			mes "em breve estará reunido com";
+			mes "a mãe da terra. Você poderia por";
+			mes "favor trazer um copo de Leite gelado";
+			mes "à um velho Justiceiro, por favor?";
 			close;		
 		}
 		delitem 519,1;	// Milk
 		set GUNS_Q,5;
 		changequest 6023,6024;
-		mes "Oh, thank you for your!";
-		mes "generosity--I see that";
-		mes "you've brought me some";
-		mes "Milk. Ahhhh, delicious~";
+		mes "Oh, muito obrigado pela sua!";
+		mes "gentileza--Você me trouxe";
+		mes "um pouco de Leite.";
+		mes "Huuumm, que delicia~";
 		next;
-		mes "[Wise Bull Horn]";
-		mes "I admire the patience,";
-		mes "gentleness, and kindness";
-		mes "that you've proven by bringing";
-		mes "this to me. Yes, those are traits we all want Gunslingers to have.";
+		mes "[Sábio Chifre de Búfalo]";
+		mes "Eu admiro a paciência,";
+		mes "gentileza e carinho que";
+		mes "você me provou ao trazer";
+		mes "isso para mim. Sim, essas são as principais características que nós queremos de um Justiceiro.";
 		next;
-		mes "[Wise Bull Horn]";
-		mes "Now, please take this voucher";
-		mes "to Miller, the Black Fox, with";
-		mes "my whole hearted approval.";
-		mes "I hope that you will use your";
-		mes "gun to uphold justice as a";
-		mes "noble warrior of the earth.";
+		mes "[Sábio Chifre de Búfalo]";
+		mes "Agora, por favor, leve essa certidão";
+		mes "para o Miller, o Black Fox, com";
+		mes "minha aprovação de coração.";
+		mes "Eu espero que você use a sua";
+		mes "arma para combater a injustiça";
+		mes "como um nobre guerreiro da terra.";
 		next;
-		mes "[Wise Bull Horn]";
+		mes "[Sábio Chifre de Búfalo]";
 		mes "Eeh~Yeah~Eeh~Hooom";
 		mes "Eeh~Yeah~Eeh~Hooom";
 		mes "Maaaaarrraaa Neeey~";
 		mes "Yippee Yippee Yai Yocaiyay~";
 		close;
 	} else if(GUNS_Q == 5) {
-		mes "Please take this voucher";
-		mes "to Miller, the Black Fox, with";
-		mes "my whole hearted approval.";
-		mes "I hope that you will use your";
-		mes "gun to uphold justice as a";
-		mes "noble warrior of the earth.";
+		mes "Agora, por favor, leve essa certidão";
+		mes "para o Miller, o Black Fox, com";
+		mes "minha aprovação de coração.";
+		mes "Eu espero que você use a sua";
+		mes "arma para combater a injustiça";
+		mes "como um nobre guerreiro da terra.";
 		next;
-		mes "[Wise Bull Horn]";
+		mes "[Sábio Chifre de Búfalo]";
 		mes "Eeh~Yeah~Eeh~Hooom";
 		mes "Eeh~Yeah~Eeh~Hooom";
 		mes "Maaaaarrraaa Neeey~";
 		mes "Yippee Yippee Yai Yocaiyay~";
 		close;
 	} else if(GUNS_Q == 6) {
-		mes "AAh, long time no see.";
-		mes "I hope that you become";
-		mes "a smart beast, and use";
-		mes "your powers as a Gunslinger to protect what is good and just.";
+		mes "AAh, quanto tempo sem te ver.";
+		mes "Eu espero que você se torne";
+		mes "um animal esperto, e use";
+		mes "seus poderes como Justiceiro para proteger o que é bom e justo.";
 		close;
 	} else {
 		mes "Zzzzzz~";
-		mes "^333333*Phew*^000000";
+		mes "^333333*Aborrecido*^000000";
 		close;
 	}
 }
