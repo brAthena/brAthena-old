@@ -926,6 +926,8 @@ int status_damage(struct block_list *src,struct block_list *target,int hp, int s
 			sc_start4(target,SC_PROVOKE,100,10,1,0,0,0);
 		if (sc->data[SC_BERSERK] && status->hp <= 100)
 			status_change_end(target, SC_BERSERK, INVALID_TIMER);
+		if( sc->data[SC_RAISINGDRAGON] && status->hp <= 1000 )
+			status_change_end(target, SC_RAISINGDRAGON, -1);
 	}
 
 	switch (target->type)
@@ -1526,6 +1528,8 @@ int status_base_amotion_pc(struct map_session_data* sd, struct status_data* stat
 			bonus += 150;
 		else if(sc->data[SC_MADNESSCANCEL])
 			bonus += 200;
+		/*if(sc->data[SC_RAISINGDRAGON])
+			bonus += 100;*/
 	}
 	amotion -= (int)(((float)sqrt((float)((float)pow((float)status->agi,2)/2) + ((float)pow((float)status->dex,2)/5) )/4)*10 + (bonus*status->agi/200));
 	amotion += sd->aspd_add;
@@ -2992,6 +2996,7 @@ void status_calc_regen_rate(struct block_list *bl, struct regen_data *regen, str
 		|| sc->data[SC_BERSERK]
 		|| sc->data[SC_TRICKDEAD]
 		|| sc->data[SC_BLEEDING]
+		|| sc->data[SC_RAISINGDRAGON]
 	)	//No regen
 		regen->flag = 0;
 
@@ -4438,6 +4443,9 @@ static unsigned int status_calc_maxhp(struct block_list *bl, struct status_chang
 	if(sc->data[SC_EPICLESIS])
 		maxhp += maxhp * 5 * sc->data[SC_EPICLESIS]->val1 / 100;
 
+	if(sc->data[SC_RAISINGDRAGON])
+		maxhp += maxhp*(2 + sc->data[SC_RAISINGDRAGON]->val1)/100;
+
 	return cap_value(maxhp,1,UINT_MAX);
 }
 
@@ -4452,6 +4460,8 @@ static unsigned int status_calc_maxsp(struct block_list *bl, struct status_chang
 		maxsp += maxsp * sc->data[SC_SERVICE4U]->val2/100;
 	if(sc->data[SC_MERC_SPUP])
 		maxsp += maxsp * sc->data[SC_MERC_SPUP]->val2/100;
+	if(sc->data[SC_RAISINGDRAGON])
+		maxsp += maxsp*(2 + sc->data[SC_RAISINGDRAGON]->val1)/100;
 
 	return cap_value(maxsp,1,UINT_MAX);
 }
@@ -6851,6 +6861,10 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 				val1 += (sd->inventory_data[sd->equip_index[EQI_HAND_R]]->weight * sd->inventory_data[sd->equip_index[EQI_HAND_R]]->wlv * status_get_lv(bl) / 100); // (weapon_weight * weapon_level * base_lvl)/100
 			val1 += 15 * sd->status.job_level; // 15 * job_lvl
 			break;
+		case SC_RAISINGDRAGON:
+			val3 = tick/5000;
+			tick = 5000;
+			break;
 		default:
 			if( calc_flag == SCB_NONE && StatusSkillChangeTable[type] == 0 && StatusIconChangeTable[type] == 0 )
 			{	//Status change with no calc, no icon, and no skill associated...?
@@ -7148,6 +7162,9 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 					break;
 				s_sd->shadowform_id = 0;
 			}
+			break;
+		case SC_RAISINGDRAGON:
+			sce->val2 = status->max_hp/100;
 			break;
 	}
 
@@ -7609,6 +7626,17 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 					ud->state.running = 0;
 					if (ud->walktimer != -1)
 						unit_stop_walking(bl,1);
+				}
+			}
+			break;
+		case SC_RAISINGDRAGON:
+			if(sd && sce->val2 && !pc_isdead(sd)) {
+				int i = min(sd->spiritball,5);
+				pc_delspiritball(sd, sd->spiritball, 0);
+				status_change_end(bl, SC_EXPLOSIONSPIRITS, -1);
+				while(i > 0) {
+					pc_addspiritball(sd, skill_get_time(MO_CALLSPIRITS, pc_checkskill(sd,MO_CALLSPIRITS)), 5);
+					--i;
 				}
 			}
 			break;
@@ -8409,7 +8437,13 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr data)
 			return 0;
 		}
 		break;
-		
+	case SC_RAISINGDRAGON:
+		if(--(sce->val3)>0 && status_charge(bl,sce->val2,0)) {
+			if(!sc->data[type]) return 0;
+			sc_timer_next(5000+tick, status_change_timer, bl->id, data);
+			return 0;
+		}
+		break;
 	}
 	// default for all non-handled control paths is to end the status
 	return status_change_end( bl,type,tid );

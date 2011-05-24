@@ -4368,18 +4368,29 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 
 	case MO_CALLSPIRITS:
 		if(sd) {
-			clif_skill_nodamage(src,bl,skillid,skilllv,1);
-			pc_addspiritball(sd,skill_get_time(skillid,skilllv),skilllv);
-		}
-		break;
+			if(!sd->sc.data[SC_RAISINGDRAGON])
+				pc_addspiritball(sd, skill_get_time(skillid, skilllv), skilllv);
+			else {
+				short rd_lvl=sd->sc.data[SC_RAISINGDRAGON]->val1;
+				pc_addspiritball(sd, skill_get_time(skillid, skilllv), skilllv + rd_lvl);
+			}
+ 			clif_skill_nodamage(src,bl,skillid,skilllv,1);
+ 		}
+ 		break;
 
 	case CH_SOULCOLLECT:
 		if(sd) {
-			clif_skill_nodamage(src,bl,skillid,skilllv,1);
-			for (i = 0; i < 5; i++)
-				pc_addspiritball(sd,skill_get_time(skillid,skilllv),5);
-		}
-		break;
+			if(!sd->sc.data[SC_RAISINGDRAGON])
+				for(i=0;i < 5;i++)
+					pc_addspiritball(sd, skill_get_time(skillid, skilllv), 5);
+			else {
+				short rd_lvl=sd->sc.data[SC_RAISINGDRAGON]->val1;
+				for(i=0;i < 15;i++)
+					pc_addspiritball(sd, skill_get_time(skillid, skilllv), 5 + rd_lvl);
+			}
+			clif_skill_nodamage(src, bl, skillid, skilllv, 1);
+ 		}
+ 		break;
 
 	case MO_KITRANSLATION:
 		if(dstsd && (dstsd->class_&MAPID_BASEMASK)!=MAPID_GUNSLINGER) {
@@ -6885,6 +6896,16 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		}
 		else if( sd )
 			clif_skill_fail(sd,skillid,0,0,0);
+		break;
+
+	case SR_RAISINGDRAGON:
+		if(sd){
+			short max = 5+skilllv;
+			sc_start(bl, SC_EXPLOSIONSPIRITS, 100, skilllv, skill_get_time(skillid, skilllv));				
+			for(i=0;i < max; i++)
+				pc_addspiritball(sd, skill_get_time(skillid, skilllv), max);
+			clif_skill_nodamage(src, bl, skillid, skilllv, sc_start(bl, type, 100, skilllv,skill_get_time(skillid, skilllv)));
+		}
 		break;
 
 	default:
@@ -9706,6 +9727,8 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 		}
 		break;
 	case MO_CALLSPIRITS:
+		if(sc && sc->data[SC_RAISINGDRAGON])
+			lv = sc->data[SC_RAISINGDRAGON]->val1 + lv;
 		if(sd->spiritball >= lv) {
 			clif_skill_fail(sd,skill,0,0,0);
 			return 0;
@@ -10604,7 +10627,8 @@ struct skill_condition skill_get_requirement(struct map_session_data* sd, short 
 							req.spiritball = sd->spiritball?sd->spiritball:1;
 							break;
 					}
-				}
+				} else if(sc->data[SC_RAISINGDRAGON])
+					req.spiritball = max((sd ? sd->spiritball:15),5);
 			}
 			break;
 		default:
