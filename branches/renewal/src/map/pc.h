@@ -22,6 +22,7 @@
 #define MAX_PC_BONUS 10
 #define MAX_PC_SKILL_REQUIRE 5
 #define MAX_PC_FEELHATE 3
+#define MAX_SPELLBOOK 10
 
 struct weapon_data {
 	int atkmods[3];
@@ -417,6 +418,12 @@ struct map_session_data {
 		struct mail_data inbox;
 		bool changed; // if true, should sync with charserver on next mailbox request
 	} mail;
+
+	struct {
+		unsigned short skillid;
+		unsigned char level;
+		unsigned char points;
+	} rsb[MAX_SPELLBOOK];
 
 	//Quest log system [Kevin] [Inkfish]
 	int num_quests;

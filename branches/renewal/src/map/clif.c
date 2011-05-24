@@ -2961,7 +2961,33 @@ int clif_arrow_create_list(struct map_session_data *sd)
 
 	return 0;
 }
+int clif_spellbook_list(struct map_session_data *sd){
+	int i, c;
+	int fd;
 
+	nullpo_ret(sd);
+
+	fd = sd->fd;
+	WFIFOHEAD(fd, 8 * 8 + 8);
+	WFIFOW(fd,0) = 0x1ad;
+
+	for(i = 0, c = 0; i < MAX_INVENTORY; i++){
+		if(itemdb_is_spellbook(sd->status.inventory[i].nameid)){ 
+			WFIFOW(fd,c*2+4) = sd->status.inventory[i].nameid;
+			c++;
+		}
+	}
+	
+	if(c > 0){
+		WFIFOW(fd,2) = c * 2 + 4;
+		WFIFOSET(fd, WFIFOW(fd, 2));
+		sd->menuskill_id = WL_READING_SB;
+		sd->menuskill_val = c;
+	}else
+		status_change_end(&sd->bl,SC_STOP,-1);
+
+	return 1;
+}
 /*==========================================
  *
  *------------------------------------------*/
@@ -10497,7 +10523,10 @@ void clif_parse_SelectArrow(int fd,struct map_session_data *sd)
 		sd->menuskill_val = sd->menuskill_id = 0;
 		return;
 	}
-	skill_arrow_create(sd,RFIFOW(fd,2));
+	if(sd->menuskill_id == AC_MAKINGARROW)
+		skill_arrow_create(sd,RFIFOW(fd,2));
+	else if(sd->menuskill_id == AC_MAKINGARROW)
+		skill_spellbook(sd,RFIFOW(fd,2));
 	sd->menuskill_val = sd->menuskill_id = 0;
 }
 /*==========================================

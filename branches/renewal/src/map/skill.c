@@ -60,6 +60,7 @@ struct s_skill_db skill_db[MAX_SKILL_DB];
 struct s_skill_produce_db skill_produce_db[MAX_SKILL_PRODUCE_DB];
 struct s_skill_arrow_db skill_arrow_db[MAX_SKILL_ARROW_DB];
 struct s_skill_abra_db skill_abra_db[MAX_SKILL_ABRA_DB];
+struct s_skill_spellbook_db skill_spellbook_db[MAX_SKILL_SPELLBOOK_DB];
 struct s_skill_magicmushroom_db skill_magicmushroom_db[MAX_SKILL_MAGICMUSHROOM_DB];
 struct s_skill_improvise_db skill_improvise_db[MAX_SKILL_IMPROVISE_DB];
 struct s_skill_reproduce_db skill_reproduce_db[MAX_SKILL_DB];
@@ -13043,7 +13044,57 @@ int skill_poisoningweapon( struct map_session_data *sd, int nameid)
 
 	return 0;
 }
+int skill_spellbook (struct map_session_data *sd, int nameid){
+	int i,j,points,skillid,preserved = 0,max_preserve;
+	nullpo_ret(sd);
 
+	if(sd->sc.data[SC_STOP])
+		status_change_end(&sd->bl,SC_STOP,-1);
+	if(nameid <= 0)
+		return 0;
+
+	if(pc_search_inventory(sd,nameid) < 0){
+		clif_skill_fail(sd,WL_READING_SB,0x04,0,0);
+		return 0;
+	}
+
+	ARR_FIND(0,MAX_SPELLBOOK,j,sd->rsb[j].skillid == 0);
+	if(j == MAX_SPELLBOOK){
+		clif_skill_fail(sd,WL_READING_SB,0x35,0,0);
+		return 0;
+	}
+
+	ARR_FIND(0,MAX_SKILL_SPELLBOOK_DB,i,skill_spellbook_db[i].nameid == nameid); // Search for information of this item
+	if(i == MAX_SKILL_SPELLBOOK_DB){
+		clif_skill_fail(sd,WL_READING_SB,0x04,0,0);
+		return 0;
+	}
+
+	skillid = skill_spellbook_db[i].skillid;
+	points = skill_spellbook_db[i].points;
+
+	if(!pc_checkskill(sd,skillid)){
+		sc_start(&sd->bl,SC_SLEEP,100,1,skill_get_time(WL_READING_SB,pc_checkskill(sd,WL_READING_SB)));
+		clif_skill_fail(sd,WL_READING_SB,0x34,0,0);
+		return 0;
+	}
+
+	max_preserve = 5 + (4 + 4*pc_checkskill(sd,WL_FREEZE_SP)) + sd->status.base_level/15 + status_get_int(&sd->bl)/10;
+	for( i = 0; i < MAX_SPELLBOOK && sd->rsb[i].skillid; i++ )
+		preserved += sd->rsb[i].points;
+
+	if((preserved+points) >= max_preserve){
+		clif_skill_fail(sd,WL_READING_SB,0x04,0,0);
+		return 0;
+	}
+
+	sd->rsb[j].skillid = skillid;
+	sd->rsb[j].level = pc_checkskill(sd,skillid);
+	sd->rsb[j].points = points;
+	sc_start2(&sd->bl,SC_READING_SB,100,0,preserved+points,-1);
+
+	return 1;
+}
 int skill_select_menu(struct map_session_data *sd,int flag,int skill_id)
 {
 	int id, lv, prob, aslvl = 0;

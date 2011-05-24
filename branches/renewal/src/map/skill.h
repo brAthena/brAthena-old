@@ -18,6 +18,7 @@ struct status_change_entry;
 #define MAX_SKILL_ARROW_DB		150
 #define MAX_ARROW_RESOURCE		5
 #define MAX_SKILL_ABRA_DB		350
+#define MAX_SKILL_SPELLBOOK_DB	17
 #define MAX_SKILL_MAGICMUSHROOM_DB 22
 #define MAX_SKILL_IMPROVISE_DB 50
 
@@ -209,6 +210,13 @@ struct s_skill_abra_db {
 };
 extern struct s_skill_abra_db skill_abra_db[MAX_SKILL_ABRA_DB];
 
+struct s_skill_spellbook_db {
+	int nameid;
+	int skillid;
+	int points;
+};
+extern struct s_skill_spellbook_db skill_spellbook_db[MAX_SKILL_SPELLBOOK_DB];
+
 struct s_skill_magicmushroom_db {
 	int skillid;
 };
@@ -361,6 +369,7 @@ int skill_produce_mix( struct map_session_data *sd, int skill_id, int nameid, in
 int skill_arrow_create( struct map_session_data *sd,int nameid);
 int skill_poisoningweapon( struct map_session_data *sd, int nameid);
 int skill_select_menu( struct map_session_data *sd, int flag, int skill_id);
+int skill_spellbook (struct map_session_data *sd, int nameid);
 
 // mobƒXƒLƒ‹‚Ì‚½‚ß
 int skill_castend_nodamage_id( struct block_list *src, struct block_list *bl,int skillid,int skilllv,unsigned int tick,int flag );

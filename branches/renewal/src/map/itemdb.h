@@ -142,6 +142,7 @@ struct item_data* itemdb_exists(int nameid);
 const char* itemdb_typename(int type);
 #define itemdb_is_rune(n) (n >= ITEMID_NAUTHIZ && n <= ITEMID_HAGALAZ)
 #define itemdb_is_poison(n) (n >= 12717 && n <= 12724)
+#define itemdb_is_spellbook(n) (n >= 6188 && n <= 6205)
 
 int itemdb_group_bonus(struct map_session_data* sd, int itemid);
 int itemdb_searchrandomid(int flags);
