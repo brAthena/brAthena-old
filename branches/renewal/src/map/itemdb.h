@@ -43,6 +43,9 @@
 //Combustível
 #define ITEMID_MAGIC_GEAR_FUEL 6146
 
+//PILE BUNKER
+#define ITEMID_PILE_BUNKER 1549
+
 struct item_data {
 	int nameid;
 	char name[ITEM_NAME_LENGTH],jname[ITEM_NAME_LENGTH];

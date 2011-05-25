@@ -777,6 +777,8 @@ extern const struct sg_data sg_info[MAX_PC_FEELHATE];
 void pc_setinvincibletimer(struct map_session_data* sd, int val);
 void pc_delinvincibletimer(struct map_session_data* sd);
 
+int pc_overheat(struct map_session_data *sd, int val); // Super Aquecimento
+
 int pc_addspiritball(struct map_session_data *sd,int,int);
 int pc_delspiritball(struct map_session_data *sd,int,int);
 void pc_addfame(struct map_session_data *sd,int count);

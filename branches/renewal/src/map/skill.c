@@ -2906,11 +2906,17 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case WM_GREAT_ECHO:
 	case NC_AXEBOOMERANG:
 	case NC_POWERSWING:
-	case NC_BOOSTKNUCKLE:
-	case NC_PILEBUNKER:
 	case SC_TRIANGLESHOT:
 	case SC_FEINTBOMB:
 	case LG_BANISHINGPOINT:
+		skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
+		break;
+
+	//Chamda diferenciada para lançar o superaquecimento
+	case NC_BOOSTKNUCKLE:
+	case NC_PILEBUNKER:
+	case NC_VULCANARM:
+		if (sd) pc_overheat(sd,1);
 		skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 
@@ -10120,7 +10126,14 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 		break;
 	case NC_F_SIDESLIDE:
 	case NC_B_SIDESLIDE:
-		if( pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_MAGIC_GEAR_FUEL) )
+		if( !pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_MAGIC_GEAR_FUEL) )
+			{
+			clif_skill_fail(sd,skill,0,0,0);
+			return 0;
+			}
+		break;
+	case NC_PILEBUNKER:
+		if( !pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_PILE_BUNKER) )
 			{
 			clif_skill_fail(sd,skill,0,0,0);
 			return 0;
