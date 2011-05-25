@@ -2765,6 +2765,39 @@ static int skill_ative_reverberation( struct block_list *bl, va_list ap)
 	return 0;
 }
 
+static int skill_destroy_trap( struct block_list *bl, va_list ap )
+{
+	struct skill_unit *su = (struct skill_unit *)bl;
+	struct skill_unit_group *sg;
+	unsigned int tick;
+	
+	nullpo_ret(su);
+	nullpo_ret(sg = su->group);
+	tick = va_arg(ap, unsigned int);
+
+	if (su->alive && su->group && skill_get_inf2(su->group->skill_id)&INF2_TRAP)
+	{
+		switch( su->group->unit_id )
+		{
+			case UNT_FIRINGTRAP:
+			case UNT_ICEBOUNDTRAP:
+			case UNT_CLUSTERBOMB:
+			case UNT_LANDMINE:
+			case UNT_CLAYMORETRAP:
+			case UNT_BLASTMINE:
+			case UNT_SHOCKWAVE:
+			case UNT_SANDMAN:
+			case UNT_FLASHER:
+			case UNT_FREEZINGTRAP:
+				map_foreachinrange(skill_trap_splash,&su->bl, skill_get_splash(sg->skill_id, sg->skill_lv), sg->bl_flag, &su->bl,tick);
+				break;
+		}
+		// Traps aren't recovered.
+		skill_delunit(su);
+	}
+	return 0;
+}
+
 /*==========================================
  *
  *
@@ -6930,6 +6963,10 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			clif_skill_nodamage(bl,src,skillid,skilllv,
 				sc_start(bl, type, 100, skilllv, skill_get_time(skillid, skilllv)));
 		}
+		break;
+	case LG_TRAMPLE:
+		clif_skill_damage(src,bl,tick, status_get_amotion(src), 0, -30000, 1, skillid, skilllv, 6);
+		map_foreachinrange(skill_destroy_trap,bl,skill_get_splash(skillid,skilllv),BL_SKILL,tick);
 		break;
 
 	default:
