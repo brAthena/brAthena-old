@@ -6952,6 +6952,21 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			clif_skill_nodamage(src, bl, skillid, skilllv, sc_start(bl, type, 100, skilllv,skill_get_time(skillid, skilllv)));
 		}
 		break;
+
+	case SR_ASSIMILATEPOWER:
+		if(flag&1) {
+			i=0;
+			if(dstsd && dstsd->spiritball && (sd==dstsd || map_flag_vs(src->m)) && (dstsd->class_&MAPID_BASEMASK)!=MAPID_GUNSLINGER) {
+				i = dstsd->spiritball;
+				pc_delspiritball(dstsd, dstsd->spiritball, 0);
+			}
+			if(i) status_percent_heal(src, 0, i); 
+			clif_skill_nodamage(src, bl, skillid, skilllv, i ? 1:0);
+		} else {
+			clif_skill_damage(src,bl,tick, status_get_amotion(src), 0, -30000, 1, skillid, skilllv, 6);
+			map_foreachinrange(skill_area_sub, bl, skill_get_splash(skillid, skilllv), splash_target(src), src, skillid, skilllv, tick, flag|BCT_ENEMY|BCT_SELF|SD_SPLASH|1, skill_castend_nodamage_id);
+		}
+		break;
 	case LG_INSPIRATION:
 		if( sd )
 		{
