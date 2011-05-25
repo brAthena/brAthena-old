@@ -9,7 +9,14 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
-	r0529 - 25/05/2011 [MiTh]
+	r0531 - 25/05/2011 [Mark]
+	* Adicionadas as habilidades:
+	- LG_RAYOFGENESIS (Luz da Criação)
+	- LG_PRESTIGE (Prestígio Divino)
+	- LG_INSPIRATION (Consagração)
+	- LG_BANDING (Formação Real)
+	
+	r0530 - 25/05/2011 [MiTh]
 	*Adicionada a habilidade:
 	- NC_ VULCAMARM (Metralhadora)
 	*Implementada lógida de Super Aquecimento

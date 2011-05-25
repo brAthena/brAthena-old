@@ -809,4 +809,6 @@ void pc_inventory_rental_add(struct map_session_data *sd, int seconds);
 int pc_read_motd(void); // [Valaris]
 int pc_disguise(struct map_session_data *sd, int class_);
 
+int pc_banding(struct map_session_data *sd, short skill_lv);
+
 #endif /* _PC_H_ */

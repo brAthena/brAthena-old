@@ -685,7 +685,12 @@ void initChangeTables(void)
 	StatusIconChangeTable[SC_LEECHESEND] = SI_LEECHESEND;
 
 	StatusIconChangeTable[SC_GLOOMYDAY_SK] = SI_GLOOMYDAY;
-	
+
+	StatusIconChangeTable[SC_SHIELDSPELL_DEF] = SI_SHIELDSPELL_DEF;
+	StatusIconChangeTable[SC_SHIELDSPELL_MDEF] = SI_SHIELDSPELL_MDEF;
+	StatusIconChangeTable[SC_SHIELDSPELL_REF] = SI_SHIELDSPELL_REF;
+	StatusIconChangeTable[SC_BANDING_DEFENCE] = SI_BANDING_DEFENCE;
+
 	//Other SC which are not necessarily associated to skills.
 	StatusChangeFlagTable[SC_ASPDPOTION0] = SCB_ASPD;
 	StatusChangeFlagTable[SC_ASPDPOTION1] = SCB_ASPD;
@@ -744,6 +749,10 @@ void initChangeTables(void)
 	StatusChangeFlagTable[SC_MERC_HITUP] |= SCB_HIT;
 	
 	StatusChangeFlagTable[SC_HALLUCINATIONWALK_POSTDELAY] |= SCB_ASPD|SCB_SPEED;
+
+	StatusChangeFlagTable[SC_SHIELDSPELL_DEF] |= SCB_WATK;
+	StatusChangeFlagTable[SC_SHIELDSPELL_REF] |= SCB_DEF2;
+	StatusChangeFlagTable[SC_BANDING_DEFENCE] |= SCB_SPEED;
 
 	if( !battle_config.display_hallucination ) //Disable Hallucination.
 		StatusIconChangeTable[SC_HALLUCINATION] = SI_BLANK;
@@ -3579,6 +3588,8 @@ static unsigned short status_calc_str(struct block_list *bl, struct status_chang
 		str += 30;
 	if(sc->data[SC_HARMONIZE])
 		str += sc->data[SC_HARMONIZE]->val2;
+	if(sc->data[SC_INSPIRATION])
+		str += sc->data[SC_INSPIRATION]->val3;
 
 	return (unsigned short)cap_value(str,0,USHRT_MAX);
 }
@@ -3622,6 +3633,8 @@ static unsigned short status_calc_agi(struct block_list *bl, struct status_chang
 		agi -= sc->data[SC_ADORAMUS]->val2;
 	if(sc->data[SC_HARMONIZE])
 		agi += sc->data[SC_HARMONIZE]->val2;
+	if(sc->data[SC_INSPIRATION])
+		agi += sc->data[SC_INSPIRATION]->val3;
 
 	return (unsigned short)cap_value(agi,0,USHRT_MAX);
 }
@@ -3657,6 +3670,8 @@ static unsigned short status_calc_vit(struct block_list *bl, struct status_chang
 		vit += 4 + sc->data[SC_LAUDAAGNUS]->val1;
 	if(sc->data[SC_HARMONIZE])
 		vit += sc->data[SC_HARMONIZE]->val2;
+	if(sc->data[SC_INSPIRATION])
+		vit += sc->data[SC_INSPIRATION]->val3;
 
 	return (unsigned short)cap_value(vit,0,USHRT_MAX);
 }
@@ -3698,6 +3713,8 @@ static unsigned short status_calc_int(struct block_list *bl, struct status_chang
 		int_ = 50;
 	if(sc->data[SC_HARMONIZE])
 		int_ += sc->data[SC_HARMONIZE]->val2;
+	if(sc->data[SC_INSPIRATION])
+		int_ += sc->data[SC_INSPIRATION]->val3;
 
 	return (unsigned short)cap_value(int_,0,USHRT_MAX);
 }
@@ -3742,6 +3759,8 @@ static unsigned short status_calc_dex(struct block_list *bl, struct status_chang
 		dex  = 50;
 	if(sc->data[SC_HARMONIZE])
 		dex += sc->data[SC_HARMONIZE]->val2;
+	if(sc->data[SC_INSPIRATION])
+		dex += sc->data[SC_INSPIRATION]->val3;
 
 	return (unsigned short)cap_value(dex,0,USHRT_MAX);
 }
@@ -3775,6 +3794,8 @@ static unsigned short status_calc_luk(struct block_list *bl, struct status_chang
 		luk += 4 + sc->data[SC_LAUDARAMUS]->val1;
 	if(sc->data[SC_HARMONIZE])
 		luk += sc->data[SC_HARMONIZE]->val2;
+	if(sc->data[SC_INSPIRATION])
+		luk += sc->data[SC_INSPIRATION]->val3;
 
 	return (unsigned short)cap_value(luk,0,USHRT_MAX);
 }
@@ -3871,6 +3892,8 @@ static unsigned short status_calc_watk(struct block_list *bl, struct status_chan
 		watk += sc->data[SC_INSPIRATION]->val2;
 	if(sc->data[SC__ENERVATION])
 		watk -= watk * sc->data[SC__ENERVATION]->val2 / 100;
+	if( sc->data[SC_BANDING] && sc->data[SC_BANDING]->val2 > 0 )
+		watk += (10 + 10 * sc->data[SC_BANDING]->val1) * (sc->data[SC_BANDING]->val2);
 
 	return (unsigned short)cap_value(watk,0,USHRT_MAX);
 }
@@ -3951,6 +3974,8 @@ static signed short status_calc_hit(struct block_list *bl, struct status_change 
 		hit -= hit * 20 / 100;
 	if(sc->data[SC__GROOMY])
 		hit -= hit * sc->data[SC__GROOMY]->val3 / 100;
+	if(sc->data[SC_INSPIRATION])
+		hit += 45 + 5 * sc->data[SC_INSPIRATION]->val1;
 
 	return (short)cap_value(hit,1,SHRT_MAX);
 }
@@ -4108,6 +4133,10 @@ static signed short status_calc_def2(struct block_list *bl, struct status_change
 		def2 -= def2 * (sc->data[SC_FLING]->val3)/100;
 	if( sc->data[SC_ECHOSONG] )
 		def2 += def2 * sc->data[SC_ECHOSONG]->val2/100;
+	if( sc->data[SC_BANDING] && sc->data[SC_BANDING]->val2 > 0 )
+		def2 += (5 + sc->data[SC_BANDING]->val1) * (sc->data[SC_BANDING]->val2);
+	if( sc->data[SC_PRESTIGE] )
+		def2 += sc->data[SC_PRESTIGE]->val1;
 
 	return (short)cap_value(def2,0,SHRT_MAX);
 }
@@ -4243,7 +4272,9 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 					val = max( val, sc->data[SC_CAMOUFLAGE]->val1<3 ? 300:25*(6 - sc->data[SC_CAMOUFLAGE]->val1) );
 				if( sc->data[SC__GROOMY] )
 					val = max( val, sc->data[SC__GROOMY]->val2);
-					
+				if( sc->data[SC_BANDING_DEFENCE] )
+					val = max( val, sc->data[SC_BANDING_DEFENCE]->val1 );
+
 				if( sd && sd->speed_rate + sd->speed_add_rate > 0 ) // permanent item-based speedup
 					val = max( val, sd->speed_rate + sd->speed_add_rate );
 			}
@@ -4442,6 +4473,8 @@ static unsigned int status_calc_maxhp(struct block_list *bl, struct status_chang
 		
 	if(sc->data[SC_EPICLESIS])
 		maxhp += maxhp * 5 * sc->data[SC_EPICLESIS]->val1 / 100;
+	if(sc->data[SC_INSPIRATION])
+		maxhp += (maxhp * 8 * sc->data[SC_INSPIRATION]->val1 + 9) / 100;
 
 	if(sc->data[SC_RAISINGDRAGON])
 		maxhp += maxhp*(2 + sc->data[SC_RAISINGDRAGON]->val1)/100;
@@ -6865,6 +6898,28 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			val3 = tick/5000;
 			tick = 5000;
 			break;
+		case SC_BANDING:
+			tick = 5000;
+			val_flag |= 1;
+			break;
+		case SC_PRESTIGE:
+			val2 = ((status->int_ + status->luk) / 7) + ((status->int_ + status->luk) * 5) / 100;
+			val1 *= 15;
+			if( sd )
+				val1 += 10 * pc_checkskill(sd,CR_DEFENDER) * status_get_lv(bl) / 100;
+			val_flag |= 1|2;
+			break;
+		case SC_INSPIRATION:
+			if( sd )
+			{
+				val2 = 100 + (40 * val1);
+				val3 = 20;
+			}
+			val4 = tick / 1000;
+			tick = 1000;
+			status_change_clear_buffs(bl,3);
+			break;
+
 		default:
 			if( calc_flag == SCB_NONE && StatusSkillChangeTable[type] == 0 && StatusIconChangeTable[type] == 0 )
 			{	//Status change with no calc, no icon, and no skill associated...?
@@ -6885,6 +6940,13 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			break;
 		case SC_KAAHI:
 			val4 = INVALID_TIMER;
+			break;
+		case SC_BANDING:
+			{
+				struct skill_unit_group *sg;
+				if( (sg = skill_unitsetting(bl,LG_BANDING,val1,bl->x,bl->y,0)) != NULL )
+					val4 = sg->group_id;
+			}
 			break;
 	}
 
@@ -7640,6 +7702,18 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 				}
 			}
 			break;
+		case SC_BANDING:
+			{
+				struct skill_unit_group *group;
+				if(sce->val4)
+				{
+					group = skill_id2group(sce->val4);
+					sce->val4 = 0;
+					skill_delunitgroup(group);
+				}
+			}
+			break;
+
 	}
 
 	opt_flag = 1;
@@ -8444,6 +8518,31 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr data)
 			return 0;
 		}
 		break;
+	case SC_BANDING:
+		if( status_charge(bl, 0, 7 - sce->val1) )
+		{
+			if( sd ) pc_banding(sd, sce->val1);
+			sc_timer_next(5000 + tick, status_change_timer, bl->id, data);
+			return 0;
+		}
+		break;
+
+	case SC_INSPIRATION:
+		if(--(sce->val4) >= 0)
+		{
+			int hp = status->max_hp / 100;
+			int sp = status->max_sp / 100;
+			
+			if( status->sp <= sp )
+				status_change_end(bl,type,-1);
+			
+			status_zap(bl, hp, sp);
+			if( !sc->data[type] ) break;
+			sc_timer_next(1000+tick,status_change_timer,bl->id, data);
+			return 0;
+		}
+		break;
+
 	}
 	// default for all non-handled control paths is to end the status
 	return status_change_end( bl,type,tid );

@@ -445,6 +445,12 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 			return 0;
 		}
 
+		if( flag&BF_MAGIC && (sce=sc->data[SC_PRESTIGE]) && rand()%100 < sce->val2)
+		{
+			clif_specialeffect(bl, 462, AREA);
+			return 0;
+		}
+
 		if (((sce=sc->data[SC_UTSUSEMI]) || sc->data[SC_BUNSINJYUTSU])
 		&&
 			flag&BF_WEAPON && !(skill_get_nk(skill_num)&NK_NO_CARDFIX_ATK))
@@ -2001,6 +2007,10 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio += 100 * skill_lv + 10 * sstatus->agi;
 					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
 					break;
+				case LG_RAYOFGENESIS:
+					skillratio += 300 + 300 * skill_lv;
+					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
+					break;
 
 			}
 
@@ -2042,6 +2052,14 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					if(sd)
 						ATK_ADD(6*pc_checkskill(sd, RA_TOOTHOFWUG));
 					break;
+				case LG_RAYOFGENESIS:
+					if( sc && sc->data[SC_BANDING] )
+					{
+						short lv = (short)skill_lv;
+						ATK_ADDRATE( 190 * ((sd) ? skill_check_pc_partner(sd,(short)skill_num,&lv,skill_get_splash(skill_num,skill_lv),0) : 1));
+					}
+					break;
+
 			}
 		}
 		//Div fix.
@@ -2603,6 +2621,12 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 		wd.flag |= md.flag;
 	}
 
+	if( skill_num == LG_RAYOFGENESIS )
+	{
+		struct Damage md = battle_calc_magic_attack(src, target, skill_num, skill_lv, wflag);
+		wd.damage += md.damage;
+	}
+
 	return wd;
 }
 
@@ -2957,6 +2981,10 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						break;
 					case WM_SEVERE_RAINSTORM:
 						skillratio += 50*skill_lv;
+						break;
+					case LG_RAYOFGENESIS:
+						skillratio += 300 * skill_lv;
+						if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
 						break;
 				}
 
@@ -3451,6 +3479,13 @@ int battle_calc_return_damage(struct block_list *src, struct block_list *bl, int
 			rdamage += (*damage) * sc->data[SC_REFLECTSHIELD]->val2 / 100;
 			rdamage = cap_value(rdamage,1,max_damage);
 		}
+
+		if( ssc && ssc->data[SC_INSPIRATION] )
+		{
+			rdamage += (*damage) / 100;
+			rdamage = cap_value(rdamage,1,max_damage);
+		}
+
 	} else {
 		if (sd && sd->long_weapon_damage_return)
 		{

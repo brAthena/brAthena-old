@@ -1099,6 +1099,10 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 		else if( dstmd && !is_boss(bl) )
 			sc_start(bl,SC_STOP,(rand()%3 + 1)*100,skilllv,skill_get_time(skillid,skilllv));
 		break;
+	case LG_RAYOFGENESIS:
+		if ( battle_check_undead(tstatus->race, tstatus->def_ele) || tstatus->race == RC_DEMON )
+			sc_start(bl, SC_BLIND,50, skilllv, skill_get_time(skillid,skilllv));
+		break;
 	case LG_PINPOINTATTACK:
 		rate = 5000;
 		if( skilllv == 1 )
@@ -2909,6 +2913,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case SC_TRIANGLESHOT:
 	case SC_FEINTBOMB:
 	case LG_BANISHINGPOINT:
+	case LG_RAYOFGENESIS:
 		skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 
@@ -4161,6 +4166,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case AB_EXPIATIO:
 	case AB_RENOVATIO:
 	case LG_EXEEDBREAK:
+	case LG_PRESTIGE:
 	case GC_VENOMIMPRESS:
 	case SC_DEADLYINFECT:
 	case NC_ACCELERATION:
@@ -6913,6 +6919,18 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			clif_skill_nodamage(src, bl, skillid, skilllv, sc_start(bl, type, 100, skilllv,skill_get_time(skillid, skilllv)));
 		}
 		break;
+	case LG_INSPIRATION:
+		if( sd )
+		{
+			if( !map[src->m].flag.noexppenalty )
+			{
+				sd->status.base_exp -= min(sd->status.base_exp, pc_nextbaseexp(sd) * 1 / 1000);
+				clif_updatestatus(sd,SP_BASEEXP);
+			}
+			clif_skill_nodamage(bl,src,skillid,skilllv,
+				sc_start(bl, type, 100, skilllv, skill_get_time(skillid, skilllv)));
+		}
+		break;
 
 	default:
 		ShowWarning("skill_castend_nodamage_id: Habilidade desconhecida usada:%d\n",skillid);
@@ -7869,6 +7887,27 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 		skill_blown(src,src,6,unit_getdir(src),0);
 		break;
 
+	case LG_BANDING:
+		if( sc && sc->data[SC_BANDING] )
+			status_change_end(src,SC_BANDING,-1);
+		else if( (sg = skill_unitsetting(src,skillid,skilllv,src->x,src->y,0)) != NULL )
+		{
+			sc_start4(src,SC_BANDING,100,skilllv,0,0,sg->group_id,skill_get_time(skillid,skilllv));
+			if( sd ) pc_banding(sd,skilllv);
+		}
+		clif_skill_nodamage(src,src,skillid,skilllv,1);
+		break;
+
+	case LG_RAYOFGENESIS:
+		if( status_charge(src,status_get_max_hp(src)*3*skilllv / 100,0) )
+		{
+			i = skill_get_splash(skillid,skilllv);
+			map_foreachinarea(skill_area_sub,src->m,x-i,y-i,x+i,y+i,BL_CHAR,
+				src,skillid,skilllv,tick,flag|BCT_ENEMY|1,skill_castend_damage_id);
+		}
+		else if( sd ) clif_skill_fail(sd,skillid,0xa,0,0);
+		break;
+
 	default:
 		ShowWarning("skill_castend_pos2: Habilidade desconhecida usada:%d\n",skillid);
 		return 1;
@@ -8373,6 +8412,11 @@ struct skill_unit_group* skill_unitsetting (struct block_list *src, short skilli
 		if( map_getcell(src->m, x, y, CELL_CHKLANDPROTECTOR) )
 			return NULL;
 		break;
+
+	case LG_BANDING:
+		limit = -1;
+		break;
+
 	}
 
 
@@ -9195,6 +9239,12 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 			else if( bl->type == BL_MOB && battle_config.mob_warp&8 )
 				unit_warp(bl,-1,-1,-1,3);
 			break;
+
+		case UNT_BANDING:
+			if( battle_check_target(ss,bl,BCT_ENEMY) > 0 && !(status_get_mode(bl)&MD_BOSS) && !(tsc && tsc->data[SC_BANDING_DEFENCE]) )
+				sc_start(bl,SC_BANDING_DEFENCE,100,90,skill_get_time2(sg->skill_id,sg->skill_lv));
+			break;
+
 	}
 
 	if (sg->state.magic_power && sc && !sc->data[SC_MAGICPOWER])
@@ -9490,6 +9540,15 @@ static int skill_check_condition_char_sub (struct block_list *bl, va_list ap)
 				p_sd[(*c)++] = tsd->bl.id;
 			return 1;
 		}
+
+		case LG_RAYOFGENESIS:
+		{
+			if( tsd->status.party_id == sd->status.party_id && (tsd->class_&MAPID_UPPERMASK_THIRD) == MAPID_ROYAL_GUARD &&
+				tsd->sc.data[SC_BANDING] )
+				p_sd[(*c)++] = tsd->bl.id;
+			return 1;
+		}
+
 		default: //Warning: Assuming Ensemble Dance/Songs for code speed. [Skotlex]
 			{
 				int skilllv;
@@ -10139,6 +10198,27 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 			return 0;
 			}
 		break;
+	case LG_BANDING:
+	case LG_PRESTIGE:
+		if( sc && sc->data[SC_INSPIRATION] )
+		{
+			clif_skill_fail(sd,skill,0,0,0);
+			return 0;
+		}
+		break;
+
+	case LG_RAYOFGENESIS:
+		if( sc && sc->data[SC_INSPIRATION]  )
+			return 1;
+		if( !(sc && sc->data[SC_BANDING]) )
+		{
+			clif_skill_fail(sd,skill,0xa,0,0);
+			return 0;
+		}
+		else if( skill_check_pc_partner(sd,skill,&lv,skill_get_range(skill,lv),0) < 1 )
+			return 0;
+		break;
+
 	}
 
 	switch(require.state) {
@@ -11992,6 +12072,15 @@ int skill_delunitgroup_(struct skill_unit_group *group, const char* file, int li
 		}
 	}
 
+	if (group->skill_id == LG_BANDING){
+		struct status_change *sc = status_get_sc(src);
+		if( sc && sc->data[SC_BANDING] )
+		{
+			sc->data[SC_BANDING]->val4 = 0;
+			status_change_end(src,SC_BANDING,-1);
+		}
+	}
+
 	if (src->type==BL_PC && group->state.ammo_consume)
 		battle_consume_ammo((TBL_PC*)src, group->skill_id, group->skill_lv);
 
@@ -12231,6 +12320,21 @@ static int skill_unit_timer_sub (DBKey key, void* data, va_list ap)
 				skill_delunit(unit);
 			}
 			break;
+
+			case UNT_BANDING:
+			{
+				struct block_list *src = map_id2bl(group->src_id);
+				struct status_change *sc;
+				if( !src || (sc = status_get_sc(src)) == NULL || !sc->data[SC_BANDING] )
+				{
+					skill_delunit(unit);
+					break;
+				}
+				group->limit = DIFF_TICK(tick+group->interval,group->tick);
+				unit->limit = DIFF_TICK(tick+group->interval,group->tick);
+			}
+			break;
+
 			default:
 				skill_delunit(unit);
 		}
