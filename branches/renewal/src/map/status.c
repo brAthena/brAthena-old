@@ -2589,7 +2589,7 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 
 	// Basic ASPD value
 	i = status_base_amotion_pc(sd,status);
-	status->amotion = cap_value(i,battle_config.max_aspd,2000);
+	status->amotion = cap_value(i,((sd->class_&JOBL_THIRD) ? battle_config.max_3rd_aspd : battle_config.max_aspd),2000);
 
 	// Relative modifiers from passive skills
 	if((skill=pc_checkskill(sd,SA_ADVANCEDBOOK))>0 && sd->status.weapon == W_BOOK)
@@ -3349,7 +3349,7 @@ void status_calc_bl_main(struct block_list *bl, enum scb_flag flag)
 				amotion += aspd_change;
 			}
 
-			status->amotion = cap_value(amotion,battle_config.max_aspd,2000);
+			status->amotion = cap_value(amotion,((sd->class_&JOBL_THIRD) ? battle_config.max_3rd_aspd : battle_config.max_aspd),2000);
 			status->adelay = 2*status->amotion;
 		}
 		else
