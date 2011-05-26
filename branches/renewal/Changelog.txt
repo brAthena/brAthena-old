@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0536 - 26/05/2011 [Protimus]
+	* Pequena correção do envio anterior.
+	- Não estava lendo corretamente a battleflag.
+
 	r0535 - 26/05/2011 [Protimus]
 	* Adicionada nova flag para máxima ASPD (velocidade de ataque).
 	- Classes normais tem 190 de ASPD máxima.
