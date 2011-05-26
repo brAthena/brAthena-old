@@ -889,6 +889,8 @@ int battle_addmastery(struct map_session_data *sd,struct block_list *target,int 
 				damage += (skill * 3);
 			if((skill = pc_checkskill(sd,SM_SWORD)) > 0)
 				damage += (skill * 4);
+			if((skill = pc_checkskill(sd,GN_TRAINING_SWORD)) > 0)
+				damage += skill * 10;
 			break;
 		case W_DAGGER:
 			if((skill = pc_checkskill(sd,SM_SWORD)) > 0)
@@ -1437,6 +1439,10 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 		// Weaponry Research hidden bonus
 		if (sd && (skill = pc_checkskill(sd,BS_WEAPONRESEARCH)) > 0)
 			hitrate += hitrate * ( 2 * skill ) / 100;
+			
+		if( sd && (sd->status.weapon == W_1HSWORD || sd->status.weapon == W_DAGGER) && 
+			(skill = pc_checkskill(sd, GN_TRAINING_SWORD))>0 )
+			hitrate += 3 * skill;
 
 		hitrate = cap_value(hitrate, battle_config.min_hitrate, battle_config.max_hitrate);
 

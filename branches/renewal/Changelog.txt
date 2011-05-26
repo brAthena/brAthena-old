@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0537 - 26/05/2011 [Protimus]
+	* Adicionadas as habilidades:
+	- GN_TRAINING_SWORD (Perícia em Esgrima).
+	- GN_REMODELING_CART (Aprimorar Carrinho).
+
 	r0536 - 26/05/2011 [Protimus]
 	* Pequena correção do envio anterior.
 	- Não estava lendo corretamente a battleflag.

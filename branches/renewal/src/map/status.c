@@ -1542,6 +1542,7 @@ int status_base_amotion_pc(struct map_session_data* sd, struct status_data* stat
 	}
 	amotion -= (int)(((float)sqrt((float)((float)pow((float)status->agi,2)/2) + ((float)pow((float)status->dex,2)/5) )/4)*10 + (bonus*status->agi/200));
 	amotion += sd->aspd_add;
+	amotion += amotion * pc_checkskill(sd, GN_TRAINING_SWORD) / 100;
 	
 	if(sd->status.shield > 0)
 		amotion += ((aspd_base[pc_class2idx(sd->status.class_)][MAX_WEAPON_TYPE])/10);
