@@ -140,7 +140,32 @@ struct block_list* battle_getenemy(struct block_list *target, int type, int rang
 		return NULL;
 	return bl_list[rand()%c];
 }
+static int battle_getenemyarea_sub(struct block_list *bl, va_list ap){
+	struct block_list **bl_list, *src;
+	int *c, ignore_id;
 
+	bl_list = va_arg(ap, struct block_list **);
+	c = va_arg(ap, int *);
+	src = va_arg(ap, struct block_list *);
+	ignore_id = va_arg(ap, int);
+
+	if((bl->id == src->id || bl->id == ignore_id) || *c >= 24 || status_isdead(bl))
+		return 0;
+
+	if(battle_check_target(src, bl, BCT_ENEMY) > 0)
+		return 1;
+
+	return 0;
+}
+struct block_list* battle_getenemyarea(struct block_list *src, int x, int y, int range, int type, int ignore_id){
+	struct block_list *bl_list[24];
+	int c = 0;
+	memset(bl_list, 0, sizeof(bl_list));
+	map_foreachinarea(battle_getenemyarea_sub, src->m, x - range, y - range, x + range, y + range, type, bl_list, &c, src, ignore_id);
+	if(c == 0 || c > 24)
+		return NULL;
+	return bl_list[rand()%c];
+}
 // ƒ_??[ƒW‚Ì’x‰„
 struct delay_damage {
 	struct block_list *src;
