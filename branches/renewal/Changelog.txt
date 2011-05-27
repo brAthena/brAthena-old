@@ -10,6 +10,10 @@
 // ==============================================================================
 
 
+	r0542 - 27/05/2011 [Protimus]
+	* Correção na bonificação de GN_CARTBOOST (Propulsão do Carrinho).
+	- Adicionado bônus de ATK que não estava computando.
+
 	r0541 - 27/05/2011 [Protimus]
 	* Adicionada a habilidade:
 	- GN_CARTBOOST (Propulsão do Carrinho).

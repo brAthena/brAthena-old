@@ -523,7 +523,7 @@ void initChangeTables(void)
 	set_sc( WM_BEYOND_OF_WARCRY           , SC_BEYONDOFWARCRY          , SI_WARCRYOFBEYOND            , SCB_BATK|SCB_MATK );
 	set_sc( WM_UNLIMITED_HUMMING_VOICE    , SC_UNLIMITEDHUMMINGVOICE   , SI_UNLIMITEDHUMMINGVOICE     , SCB_NONE );
 
-	set_sc( GN_CARTBOOST                   , SC_GN_CARTBOOST    , SI_CARTSBOOST                  , SCB_SPEED );
+	set_sc( GN_CARTBOOST                   , SC_GN_CARTBOOST    , SI_CARTSBOOST                  , SCB_SPEED|SCB_BATK );
 	set_sc( GN_THORNS_TRAP                 , SC_THORNSTRAP      , SI_THORNTRAP                   , SCB_NONE );
 	set_sc( GN_BLOOD_SUCKER                , SC_BLOODSUCKER     , SI_BLOODSUCKER                 , SCB_NONE );
 	set_sc( GN_WALLOFTHORN                 , SC_STOP            , SI_BLANK                       , SCB_NONE );
@@ -3843,6 +3843,8 @@ static unsigned short status_calc_batk(struct block_list *bl, struct status_chan
 		batk += batk * 32 / 100;
 	if(sc->data[SC__ENERVATION])
 		batk -= batk * sc->data[SC__ENERVATION]->val2 / 100;
+	if(sc->data[SC_GN_CARTBOOST])
+        batk += 10 * sc->data[SC_GN_CARTBOOST]->val1;
 	return (unsigned short)cap_value(batk,0,USHRT_MAX);
 }
 
