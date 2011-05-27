@@ -3075,6 +3075,18 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						skillratio += 300 * skill_lv;
 						if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
 						break;
+					case GN_DEMONIC_FIRE:
+						if( skill_lv > 20)
+						{	
+							skillratio += 110 + 20 * (skill_lv - 20) + status_get_int(src) * 3;	
+						}
+						else if( skill_lv > 10 )
+						{	
+							skillratio += 110 + 20 * (skill_lv - 10) / 2;
+						}
+						else
+							skillratio += 110 + 20 * skill_lv;
+						break;
 				}
 
 				MATK_RATE(skillratio);
