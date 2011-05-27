@@ -8543,6 +8543,25 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr data)
 			return 0;
 		}
 		break;
+		
+	case SC_BLOODSUCKER:
+		if( --(sce->val4) >= 0 )
+		{
+			struct block_list *src = map_id2bl(sce->val2);
+			int damage;
+			bool flag;
+			if( !src || (src && (status_isdead(src) || src->m != bl->m || distance_bl(src, bl) >= 12)) )
+				break;
+			map_freeblock_lock();
+			damage = skill_attack(skill_get_type(GN_BLOOD_SUCKER), src, src, bl, GN_BLOOD_SUCKER, sce->val1, tick, 0);
+			flag = !sc->data[type];
+			map_freeblock_unlock();
+			status_heal(src, damage, 0, 0);
+			clif_skill_nodamage(src, bl, GN_BLOOD_SUCKER, 0, 1);
+			if (!flag) sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
+			return 0;
+		}
+		break;
 
 	}
 	// default for all non-handled control paths is to end the status

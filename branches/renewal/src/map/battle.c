@@ -739,6 +739,8 @@ int battle_calc_bg_damage(struct block_list *src, struct block_list *bl, int dam
 		case HW_GRAVITATION:
 		case NJ_ZENYNAGE:
 		case RK_DRAGONBREATH:
+		case GN_THORNS_TRAP:
+		case GN_BLOOD_SUCKER:
 			break;
 		default:
 			if( flag&BF_SKILL )
@@ -3350,6 +3352,12 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 	case RA_FIRINGTRAP:
  	case RA_ICEBOUNDTRAP:
 		md.damage = (s_base_level*2 + (s_base_level/50 + 3)*sstatus->dex + 300)*skill_lv + sstatus->int_*5 + pc_checkskill(sd,RA_RESEARCHTRAP)*40;
+		break;
+	case GN_THORNS_TRAP:
+		md.damage = 100 + 200 * skill_lv + sstatus->int_;
+		break;
+	case GN_BLOOD_SUCKER:
+		md.damage = 200 + 100 * skill_lv + sstatus->int_;
 		break;
 	}
 

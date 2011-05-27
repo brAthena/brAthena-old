@@ -10,6 +10,13 @@
 // ==============================================================================
 
 
+	r0540 - 27/05/2011 [Protimus]
+	* Adicionadas as habilidades:
+	- GN_THORNS_TRAP (Armadilha de Espinhos)
+	- GN_BLOOD_SUCKER (Planta Sanguessuga).
+	* Correções para WM_POEMOFNETHERWORLD (Poema de Nifflheim).
+	- Adicionada parte de UNT para checagens de modo.
+
 	r0539 - 27/05/2011 [Protimus]
 	* Adicionadas as habilidades:
 	- GN_CART_TORNADO (Tornado de Carrinho).

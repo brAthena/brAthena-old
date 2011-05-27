@@ -3530,6 +3530,8 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case GS_FLING:
 	case NJ_ZENYNAGE:
 	case RK_DRAGONBREATH:
+	case GN_THORNS_TRAP:
+	case GN_BLOOD_SUCKER:
 		skill_attack(BF_MISC,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 
@@ -7366,6 +7368,19 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		clif_skill_damage(src,bl,tick, status_get_amotion(src), 0, -30000, 1, skillid, skilllv, 6);
 		map_foreachinrange(skill_destroy_trap,bl,skill_get_splash(skillid,skilllv),BL_SKILL,tick);
 		break;
+		
+	case GN_BLOOD_SUCKER:
+		if( skill_unitsetting(src, skillid, skilllv, bl->x, bl->y, 0) )
+		{
+			clif_skill_nodamage(src, bl, skillid, skilllv, 1);
+			sc_start2(bl, type, 100, skilllv, src->id, skill_get_time(skillid,skilllv));
+		}
+		else if( sd )
+		{
+			clif_skill_fail(sd, skillid, 0, 0, 0);
+			break;
+		}
+		break;
 
 	default:
 		ShowWarning("skill_castend_nodamage_id: Habilidade desconhecida usada:%d\n",skillid);
@@ -8013,6 +8028,7 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 	case SC_MANHOLE:
 	case SC_MAELSTROM:
 	case SC_CHAOSPANIC:
+	case GN_THORNS_TRAP:
 		flag|=1;//Set flag to 1 to prevent deleting ammo (it will be deleted on group-delete).
 	case GS_GROUNDDRIFT: //Ammo should be deleted right away.
 		skill_unitsetting(src,skillid,skilllv,x,y,0);
@@ -9706,7 +9722,38 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 			if( battle_check_target(ss,bl,BCT_ENEMY) > 0 && !(status_get_mode(bl)&MD_BOSS) && !(tsc && tsc->data[SC_BANDING_DEFENCE]) )
 				sc_start(bl,SC_BANDING_DEFENCE,100,90,skill_get_time2(sg->skill_id,sg->skill_lv));
 			break;
+			
+		case UNT_POEMOFNETHERWORLD:
+			if( !(status_get_mode(bl)&MD_BOSS) )
+			{
+				if( !(tsc && tsc->data[type]) )
+					sc_start(bl, type, 100, sg->skill_lv, skill_get_time2(sg->skill_id,sg->skill_lv));
+			}
+			break;
 
+		case UNT_THORNS_TRAP:
+			if( tsc )
+			{
+				if( !sg->val2 )
+				{
+					int sec = skill_get_time2(sg->skill_id, sg->skill_lv);
+					if( status_change_start(bl, type, 10000, sg->skill_lv, 0, 0, 0, sec, 0) )
+					{
+						const struct TimerData* td = tsc->data[type]?get_timer(tsc->data[type]->timer):NULL; 
+						if( td )
+							sec = DIFF_TICK(td->tick, tick);
+						map_moveblock(bl, src->bl.x, src->bl.y, tick);
+						clif_fixpos(bl);
+						sg->val2 = bl->id;
+					}
+					else
+						sec = 3000;	
+					sg->limit = DIFF_TICK(tick, sg->tick) + sec;
+				}
+				else if( tsc->data[SC_THORNSTRAP] && bl->id == sg->val2 )
+					skill_attack(skill_get_type(GN_THORNS_TRAP), ss, ss, bl, sg->skill_id, sg->skill_lv, tick, SD_LEVEL|SD_ANIMATION);
+			}
+			break;
 	}
 
 	if (sg->state.magic_power && sc && !sc->data[SC_MAGICPOWER])
@@ -12928,7 +12975,7 @@ int skill_unit_move_sub (struct block_list* bl, va_list ap)
 	if( !unit->alive || target->prev == NULL )
 		return 0;
 
-	if( unit->group->skill_id == PF_SPIDERWEB && flag&1 )
+	if( (unit->group->skill_id == PF_SPIDERWEB || unit->group->skill_id == GN_THORNS_TRAP)&& flag&1 )
 		return 0; // Fiberlock is never supposed to trigger on skill_unit_move. [Inkfish]
 
 	dissonance = skill_dance_switch(unit, 0);
