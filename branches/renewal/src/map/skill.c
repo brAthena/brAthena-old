@@ -2767,6 +2767,10 @@ static int skill_timerskill(int tid, unsigned int tick, int id, intptr data)
 						}
 					}
 					break;
+				case GN_SPORE_EXPLOSION:
+					map_foreachinrange(skill_area_sub, target, skill_get_splash(skl->skill_id, skl->skill_lv), BL_CHAR,
+						src, skl->skill_id, skl->skill_lv, 0, skl->flag|1|BCT_ENEMY, skill_castend_damage_id);
+					break;
 				default:
 					skill_attack(skl->type,src,src,target,skl->skill_id,skl->skill_lv,tick,skl->flag);
 					break;
@@ -3866,6 +3870,15 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 			clif_fixpos(src);
 		}
 		skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
+		break;
+	case GN_SPORE_EXPLOSION:
+		if( flag&1 )
+			skill_attack(skill_get_type(skillid), src, src, bl, skillid, skilllv, tick, flag);
+		else
+		{
+			clif_skill_nodamage(src, bl, skillid, 0, 1);
+			skill_addtimerskill(src, gettick() + skill_get_time(skillid, skilllv) - 1000, bl->id, 0, 0, skillid, skilllv, 0, 0);
+		}
 		break;
 
 	case 0:

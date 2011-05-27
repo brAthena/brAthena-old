@@ -1497,7 +1497,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 						wd.damage = sd->inventory_data[index]->weight/20 * skill_lv + sstatus->batk + sstatus->watk;
 				} else
 					wd.damage = sstatus->rhw.atk2*8/10;
-				skillratio += 100 + 50 * skill_lv;
+				skillratio += 50 * skill_lv;
 				if( sc && sc->data[SC_GLOOMYDAY_SK] && skill_num == LK_SPIRALPIERCE )
 					ATK_ADD(50 + 5 * sc->data[SC_GLOOMYDAY_SK]->val1);
                 break;
@@ -2067,6 +2067,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					if( sc && sc->data[SC_GN_CARTBOOST] )
 						skillratio += 10 * sc->data[SC_GN_CARTBOOST]->val1;
 					break;
+				case GN_SPORE_EXPLOSION:
+						skillratio += 200 + 100 * skill_lv;
+						break;
 			}
 
 			ATK_RATE(skillratio);

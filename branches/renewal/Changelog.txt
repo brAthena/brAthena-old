@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	
+	r0547 - 27/05/2011 [Protimus]
+	* Adicionada habilidade:
+	- GN_SPORE_EXPLOSION (Esporo Explosivo).
+	* Corrigido pequeno erro no cálculo do envio anterior.
 
 	r0546 - 27/05/2011 [Protimus]
 	* Modificações em habilidades:
