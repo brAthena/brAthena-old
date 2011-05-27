@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+
+	r0546 - 27/05/2011 [Protimus]
+	* Modificações em habilidades:
+	- Perfurar em Espiral: Alterado conforme novos padrões do kRO (espero que seja a últma mudança nela).
+
 	r0545 - 27/05/2011 [Mark]
 	* Adicionada a habilidade:
 	- LG_EARTHDRIVE (Aegis Inferi)

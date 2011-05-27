@@ -1487,18 +1487,17 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				wd.damage = sstatus->max_hp* 9/100;
 				wd.damage2 = 0;
 				break;
-            case LK_SPIRALPIERCE:
+			case LK_SPIRALPIERCE:
             case ML_SPIRALPIERCE:
 				if (sd) {
 					short index = sd->equip_index[EQI_HAND_R];
 					if (index >= 0 &&
 						sd->inventory_data[index] &&
 						sd->inventory_data[index]->type == IT_WEAPON)
-						wd.damage = sd->inventory_data[index]->weight/30*skill_lv + sstatus->batk + sstatus->watk;
+						wd.damage = sd->inventory_data[index]->weight/20 * skill_lv + sstatus->batk + sstatus->watk;
 				} else
 					wd.damage = sstatus->rhw.atk2*8/10;
-				skillratio += 50*skill_lv;
-				//(tstatus->size!=2?5*skill_lv:-99); Redução de tamanho fixo, necessita valor exato [Protimus]
+				skillratio += 100 + 50 * skill_lv;
 				if( sc && sc->data[SC_GLOOMYDAY_SK] && skill_num == LK_SPIRALPIERCE )
 					ATK_ADD(50 + 5 * sc->data[SC_GLOOMYDAY_SK]->val1);
                 break;
