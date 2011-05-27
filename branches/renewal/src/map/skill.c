@@ -4465,6 +4465,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case SC_DEADLYINFECT:
 	case NC_ACCELERATION:
 	case WL_RECOGNIZEDSPELL:
+	case GN_CARTBOOST:
 		clif_skill_nodamage(src,bl,skillid,skilllv,
 			sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv)));
 

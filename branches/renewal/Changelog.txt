@@ -10,6 +10,10 @@
 // ==============================================================================
 
 
+	r0541 - 27/05/2011 [Protimus]
+	* Adicionada a habilidade:
+	- GN_CARTBOOST (Propulsão do Carrinho).
+	
 	r0540 - 27/05/2011 [Protimus]
 	* Adicionadas as habilidades:
 	- GN_THORNS_TRAP (Armadilha de Espinhos)

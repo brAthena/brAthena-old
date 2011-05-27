@@ -4309,6 +4309,8 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 				val = max( val, 75 );
 			if( sc->data[SC_CLOAKINGEXCEED] )
 				val = max( val, sc->data[SC_CLOAKINGEXCEED]->val3);
+			if( sc->data[SC_GN_CARTBOOST] )
+				val = max( val, sc->data[SC_GN_CARTBOOST]->val2 );
 
 			//FIXME: official items use a single bonus for this [ultramage]
 			if( sc->data[SC_SPEEDUP0] ) // temporary item-based speedup
@@ -5676,7 +5678,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		if(sc->data[SC_DECREASEAGI] || sc->data[SC_ADORAMUS])
 		{	//Cancel Decrease Agi, but take no further effect [Skotlex]
 			status_change_end(bl, SC_DECREASEAGI, INVALID_TIMER);
-			status_change_end(bl,SC_ADORAMUS,-1);
+			status_change_end(bl,SC_ADORAMUS, INVALID_TIMER);
 			return 0;
 		}
 		break;
@@ -6919,6 +6921,14 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			val4 = tick / 1000;
 			tick = 1000;
 			status_change_clear_buffs(bl,3);
+			break;
+		case SC_GN_CARTBOOST:
+			if( val1 < 3 )
+				val2 = 50;
+			else if( val1 < 5 )
+				val2 = 75;
+			else
+				val2 = 100;
 			break;
 
 		default:
