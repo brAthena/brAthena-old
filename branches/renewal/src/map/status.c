@@ -487,7 +487,7 @@ void initChangeTables(void)
 	add_sc( SC_CHAOSPANIC        , SC_CHAOS );
 	set_sc( SC_BLOODYLUST        , SC__BLOODYLUST        , SI_BLOODYLUST        , SCB_DEF|SCB_DEF2|SCB_BATK|SCB_WATK );
 
-	add_sc( LG_REFLECTDAMAGE     , SC_REFLECTDAMAGE );
+	set_sc( LG_REFLECTDAMAGE     , SC_REFLECTDAMAGE      , SI_LG_REFLECTDAMAGE	, SCB_NONE  );
 	set_sc( LG_FORCEOFVANGUARD   , SC_FORCEOFVANGUARD    , SI_FORCEOFVANGUARD   , SCB_MAXHP|SCB_DEF );
 	set_sc( LG_PRESTIGE          , SC_PRESTIGE           , SI_PRESTIGE          , SCB_DEF2 );
 	set_sc( LG_PIETY             , SC_BENEDICTIO         , SI_BENEDICTIO        , SCB_DEF_ELE );
@@ -876,6 +876,16 @@ int status_damage(struct block_list *src,struct block_list *target,int hp, int s
 	sc = status_get_sc(target);
 	if( battle_config.invincible_nodamage && src && sc && sc->data[SC_INVINCIBLE] && !sc->data[SC_INVINCIBLEOFF] )
 		hp = 1;
+
+	if( hp && flag&32 )
+	{
+		if( sc && sc->data[SC_REFLECTDAMAGE] )
+		{
+			int rdamage = battle_calc_return_damage(src,target,&hp,BF_SHORT);
+			if( src != target )
+				map_foreachinrange(battle_damage_area,target,skill_get_splash(LG_REFLECTDAMAGE,1),BL_CHAR,gettick(),target,status_get_amotion(src),status_get_dmotion(src),rdamage,status->race);
+		}
+	}
 
 	if( hp && !(flag&(1|8)) ) {
 		if( sc ) {
@@ -5757,6 +5767,14 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		status_change_end(bl,SC_VOICEOFSIREN,-1);
 		status_change_end(bl,SC_DEEPSLEEP,-1);
 		status_change_end(bl,SC_SIRCLEOFNATURE,-1);
+		break;
+	case SC_REFLECTSHIELD:
+		status_change_end(bl,SC_REFLECTDAMAGE,-1);
+		break;
+	case SC_REFLECTDAMAGE:
+		status_change_end(bl,SC_REFLECTSHIELD,-1);
+		break;
+
 	}
 
 	//Check for overlapping fails
@@ -6931,6 +6949,9 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 				val2 = 75;
 			else
 				val2 = 100;
+			break;
+		case SC_REFLECTDAMAGE:
+			val2 = 15 + 5 * val1;
 			break;
 
 		default:

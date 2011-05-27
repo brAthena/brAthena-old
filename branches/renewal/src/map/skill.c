@@ -1918,8 +1918,8 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 		skillid == MER_INCAGI || skillid == MER_BLESSING) && tsd->sc.data[SC_CHANGEUNDEAD] )
 		damage = 1;
 
-	if( damage > 0 && dmg.flag&BF_WEAPON && src != bl && ( src == dsrc || ( dsrc->type == BL_SKILL && ( skillid == SG_SUN_WARM || skillid == SG_MOON_WARM || skillid == SG_STAR_WARM ) ) )
-		&& skillid != WS_CARTTERMINATION )
+	if( damage > 0 && ((dmg.flag&BF_WEAPON && src != bl && ( src == dsrc || ( dsrc->type == BL_SKILL && ( skillid == SG_SUN_WARM || skillid == SG_MOON_WARM || skillid == SG_STAR_WARM ) ) )
+		&& skillid != WS_CARTTERMINATION) || (sc && sc->data[SC_REFLECTDAMAGE])) )
 		rdamage = battle_calc_return_damage(src, bl, &damage, dmg.flag);
 
 	//Skill hit type
@@ -2250,15 +2250,23 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 
 	if( rdamage > 0 )
 	{
-		if( dmg.amotion )
-			battle_delay_damage(tick, dmg.amotion,bl,src,0,0,0,rdamage,ATK_DEF,0);
+		if( sc && sc->data[SC_REFLECTDAMAGE] )
+		{
+			if( src != bl )
+				map_foreachinrange(battle_damage_area,bl,skill_get_splash(LG_REFLECTDAMAGE,1),BL_CHAR,tick,bl,dmg.amotion,sstatus->dmotion,rdamage,tstatus->race);
+		}
 		else
-			status_fix_damage(bl,src,rdamage,0);
-		clif_damage(src,src,tick, dmg.amotion,0,rdamage,dmg.div_>1?dmg.div_:1,4,0);
-		//Use Reflect Shield to signal this kind of skill trigger. [Skotlex]
-		if( tsd && src != bl )
-			battle_drain(tsd, src, rdamage, rdamage, sstatus->race, is_boss(src));
-		skill_additional_effect(bl, src, CR_REFLECTSHIELD, 1, BF_WEAPON|BF_SHORT|BF_NORMAL,ATK_DEF,tick);
+		{
+			if( dmg.amotion )
+				battle_delay_damage(tick, dmg.amotion,bl,src,0,0,0,rdamage,ATK_DEF,0);
+			else
+				status_fix_damage(bl,src,rdamage,0);
+			clif_damage(src,src,tick, dmg.amotion,0,rdamage,dmg.div_>1?dmg.div_:1,4,0);
+			//Use Reflect Shield to signal this kind of skill trigger. [Skotlex]
+			if( tsd && src != bl )
+				battle_drain(tsd, src, rdamage, rdamage, sstatus->race, is_boss(src));
+			skill_additional_effect(bl, src, CR_REFLECTSHIELD, 1, BF_WEAPON|BF_SHORT|BF_NORMAL,ATK_DEF,tick);
+		}
 	}
 	
 	if( damage > 0 && skillid == RK_CRUSHSTRIKE ) 
@@ -7392,6 +7400,14 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			map_foreachinrange(skill_area_sub,bl,skill_get_splash(skillid,skilllv),BL_PC,src,skillid,skilllv,tick,flag|SD_PREAMBLE|BCT_PARTY|BCT_SELF|1,skill_castend_nodamage_id);
 			clif_skill_nodamage(src,bl,skillid,skilllv,1);
 		}
+		break;
+
+	case LG_REFLECTDAMAGE:
+		if( tsc && tsc->data[type] )
+			status_change_end(bl,type,-1);
+		else
+			sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv));
+		clif_skill_nodamage(src,bl,skillid,skilllv,1);
 		break;
 
 	default:

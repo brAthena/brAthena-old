@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0544 - 27/05/2011 [Mark]
+	* Adicionada a habilidade:
+	- LG_REFLECTDAMAGE (Reflexão Amplificada)
+
 	r0543 - 27/05/2011 [Mark]
 	* Adicionada a habilidade:
 	- LG_PIETY (Devoção)
