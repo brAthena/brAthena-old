@@ -4033,7 +4033,7 @@ static signed short status_calc_flee(struct block_list *bl, struct status_change
 	if( sc->data[SC_SATURDAYNIGHTFEVER] )
 		flee -= flee * (40 + 10 * sc->data[SC_SATURDAYNIGHTFEVER]->val1) / 100;
 	if( sc->data[SC_GLOOMYDAY] )
-		flee -= flee * sc->data[SC_GLOOMYDAY]->val2 / 100;
+		flee -= flee * sc->data[SC_GLOOMYDAY]->val2;
 	if( sc->data[SC__LAZINESS] )
 		flee -= flee * sc->data[SC__LAZINESS]->val3 / 100;
 
@@ -4424,7 +4424,7 @@ static short status_calc_aspd_rate(struct block_list *bl, struct status_change *
 	if( sc->data[SC_HALLUCINATIONWALK_POSTDELAY] )
 		aspd_rate += 500;
 	if( sc->data[SC_GLOOMYDAY] )
-		aspd_rate += aspd_rate * sc->data[SC_GLOOMYDAY]->val3 / 100;
+		aspd_rate -= aspd_rate * sc->data[SC_GLOOMYDAY]->val3 / 100;
 	if( sc->data[SC__BODYPAINT] )
 		aspd_rate += aspd_rate * 5 * sc->data[SC__BODYPAINT]->val1 / 100;
 	if( sc->data[SC__INVISIBILITY] )
@@ -6829,7 +6829,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			tick = 1000;
 			break;	
 		case SC_GLOOMYDAY:
-			val2 = 3 + 2 * val1;
+			val2 = 5 * val1;
 			val3 = 3 * val1; 
 			break;
 		case SC__STRIPACCESSORY:

@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0538 - 26/05/2011 [Protimus]
+	* Correções para WM_GLOOMYDAY (Ode a Hela).
+	- Não estava computando os bônus como é no kRO, são negativos e retornam valores diferentes.
+	* Correção para SC_MAELSTROM (Redemoinho de Absorção).
+	- Estava retornando resposta de um status negativo devido a uma adição sem necessidade.
+
 	r0537 - 26/05/2011 [Protimus]
 	* Adicionadas as habilidades:
 	- GN_TRAINING_SWORD (Perícia em Esgrima).
