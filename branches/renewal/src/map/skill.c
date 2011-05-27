@@ -1145,6 +1145,10 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 			break;
 		}
 		break;
+	case LG_EARTHDRIVE:
+		skill_break_equip(src, EQP_SHIELD, 500, BCT_SELF);
+		sc_start(bl, SC_EARTHDRIVE, 100, skilllv, skill_get_time(skillid, skilllv));
+		break;
 
 	}
 
@@ -3277,6 +3281,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case RA_ARROWSTORM:
 	case RA_WUGDASH:
 	case LG_MOONSLASHER:
+	case LG_EARTHDRIVE:
 	case GN_CART_TORNADO:
 	case GN_CARTCANNON:
 		if( flag&1 )
@@ -3299,7 +3304,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 		}
 		else
 		{
-			if( skillid == NJ_BAKUENRYU || skillid == GN_CARTCANNON )
+			if( skillid == NJ_BAKUENRYU || skillid == GN_CARTCANNON || skillid == LG_EARTHDRIVE )
 				clif_skill_nodamage(src,bl,skillid,skilllv,1);
 			if( skillid == LG_MOONSLASHER )
 				clif_skill_damage(src,bl,tick, status_get_amotion(src), 0, -30000, 1, skillid, skilllv, 6);
@@ -6582,7 +6587,14 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			sc_start2(bl,type,100,skilllv,100+20*skilllv+status_get_status_data(src)->matk_min/2,skill_get_time(skillid,skilllv)));
 		break;
 	case RK_IGNITIONBREAK:
+	case LG_EARTHDRIVE:
 		clif_skill_damage(src,bl,tick, status_get_amotion(src), 0, -30000, 1, skillid, skilllv, 6);
+		if( skillid == LG_EARTHDRIVE )
+		{
+			int dummy = 1;
+			i = skill_get_splash(skillid,skilllv);
+			map_foreachinarea(skill_cell_overlap, src->m, src->x-i, src->y-i, src->x+i, src->y+i, BL_SKILL, LG_EARTHDRIVE, &dummy, src);
+		}
 		map_foreachinrange(skill_area_sub, bl,skill_get_splash(skillid,skilllv),BL_CHAR,
 			src,skillid,skilllv,tick,flag|BCT_ENEMY|1,skill_castend_damage_id);
 		break;
@@ -7916,6 +7928,7 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 		case MO_BODYRELOCATION:
 		case CR_CULTIVATION:
 		case HW_GANBANTEIN:
+		case LG_EARTHDRIVE:
 			break; //Effect is displayed on respective switch case.
 		default:
 			if(skill_get_inf(skillid)&INF_SELF_SKILL)
@@ -12119,6 +12132,7 @@ static int skill_cell_overlap(struct block_list *bl, va_list ap)
 			}
 			break;
 		case HW_GANBANTEIN:
+		case LG_EARTHDRIVE:
 			if( !(unit->group->state.song_dance&0x1) )
 			{// Don't touch song/dance.
 				skill_delunit(unit);

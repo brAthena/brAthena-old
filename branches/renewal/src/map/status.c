@@ -4112,6 +4112,8 @@ static signed short status_calc_def(struct block_list *bl, struct status_change 
 		def -= def * 55 / 100;
 	if(sc->data[SC_SATURDAYNIGHTFEVER])
 		def -= def * (10 + 10 * sc->data[SC_SATURDAYNIGHTFEVER]->val1) / 100;
+	if(sc->data[SC_EARTHDRIVE])
+		def -= def * 25 / 100;
 
 	return (short)cap_value(def,SHRT_MIN,SHRT_MAX);
 }
@@ -4433,6 +4435,7 @@ static short status_calc_aspd_rate(struct block_list *bl, struct status_change *
 			aspd_rate += 250;
 		if( sc->data[SC_JOINTBEAT]->val2&BREAK_KNEE )
 			aspd_rate += 100;
+	}
 	if( sc->data[SC_OTHILA] && sc->data[SC_OTHILA]->val2 )
 		aspd_rate -= sc->data[SC_OTHILA]->val2;
 	if( sc->data[SC_HALLUCINATIONWALK_POSTDELAY] )
@@ -4445,7 +4448,8 @@ static short status_calc_aspd_rate(struct block_list *bl, struct status_change *
 		aspd_rate += aspd_rate * sc->data[SC__INVISIBILITY]->val2 / 100;
 	if( sc->data[SC__GROOMY] )
 		aspd_rate += aspd_rate * sc->data[SC__GROOMY]->val2 / 100;
-	}
+	if( sc->data[SC_EARTHDRIVE] )
+		aspd_rate += aspd_rate * 25 / 100;
 
 	return (short)cap_value(aspd_rate,0,SHRT_MAX);
 }

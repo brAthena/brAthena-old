@@ -1175,6 +1175,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 
 			case CR_SHIELDBOOMERANG:
 			case PA_SHIELDCHAIN:
+			case LG_EARTHDRIVE:
 				flag.weapon = 0;
 				break;
 
@@ -1503,6 +1504,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
                 break;
 			case CR_SHIELDBOOMERANG:
 			case PA_SHIELDCHAIN:
+			case LG_EARTHDRIVE:
 				if (sd) {
 					short index = sd->equip_index[EQI_HAND_L];
 					if (index >= 0 &&
@@ -2049,6 +2051,10 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					break;
 				case LG_RAYOFGENESIS:
 					skillratio += 300 + 300 * skill_lv;
+					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
+					break;
+				case LG_EARTHDRIVE:
+					skillratio += 100 + 100 * skill_lv;
 					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
 					break;
 				case GN_CART_TORNADO:
