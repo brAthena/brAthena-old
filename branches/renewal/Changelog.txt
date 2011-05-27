@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+
+	r0539 - 27/05/2011 [Protimus]
+	* Adicionadas as habilidades:
+	- GN_CART_TORNADO (Tornado de Carrinho).
+	- GN_CARTCANNON (Canhão de Prótons).
+
 	r0538 - 26/05/2011 [Protimus]
 	* Correções para WM_GLOOMYDAY (Ode a Hela).
 	- Não estava computando os bônus como é no kRO, são negativos e retornam valores diferentes.

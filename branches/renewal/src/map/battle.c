@@ -1116,6 +1116,8 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 	flag.infdef=(tstatus->mode&MD_PLANT?1:0);
 	if( !flag.infdef && (target->type == BL_SKILL && ((TBL_SKILL*)target)->group->unit_id == UNT_REVERBERATION) )
 		flag.infdef = 1; 
+	if( flag.infdef && skill_num == GN_CART_TORNADO )
+		flag.infdef = 0;
 
 	//Initial Values
 	wd.type=0; //Normal attack
@@ -1433,6 +1435,11 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				break;
 			case SC_FATALMENACE:
 				hitrate -= (35 - skill_lv * 5);
+				break;
+			case GN_CART_TORNADO:
+			case GN_CARTCANNON:
+			if( sd && pc_checkskill(sd, GN_REMODELING_CART) )
+				hitrate += pc_checkskill(sd, GN_REMODELING_CART) * 4;
 				break;
 		}
 
@@ -2042,7 +2049,17 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio += 300 + 300 * skill_lv;
 					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
 					break;
-
+				case GN_CART_TORNADO:
+					skillratio += 50 * skill_lv + pc_checkskill(sd, GN_REMODELING_CART) * 100 - 100;
+					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
+					if( sc && sc->data[SC_GN_CARTBOOST] )
+						skillratio += 10 * sc->data[SC_GN_CARTBOOST]->val1;
+					break;
+				case GN_CARTCANNON:
+					skillratio += 250 + 50 * skill_lv + pc_checkskill(sd, GN_REMODELING_CART) * (sstatus->int_ / 2);
+					if( sc && sc->data[SC_GN_CARTBOOST] )
+						skillratio += 10 * sc->data[SC_GN_CARTBOOST]->val1;
+					break;
 			}
 
 			ATK_RATE(skillratio);
@@ -2173,6 +2190,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 							flag.idef2 = 1;
 				}
 			}
+			
+			if( skill_num == GN_CART_TORNADO && (tstatus->mode&MD_PLANT) )
+				flag.idef = 1; 
 		}
 
 		if (!flag.idef || !flag.idef2)

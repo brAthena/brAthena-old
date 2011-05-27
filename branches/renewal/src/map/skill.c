@@ -3269,6 +3269,8 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case RA_ARROWSTORM:
 	case RA_WUGDASH:
 	case LG_MOONSLASHER:
+	case GN_CART_TORNADO:
+	case GN_CARTCANNON:
 		if( flag&1 )
 		{	//Recursive invocation
 			// skill_area_temp[0] holds number of targets in area
@@ -3289,7 +3291,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 		}
 		else
 		{
-			if ( skillid == NJ_BAKUENRYU )
+			if( skillid == NJ_BAKUENRYU || skillid == GN_CARTCANNON )
 				clif_skill_nodamage(src,bl,skillid,skilllv,1);
 			if( skillid == LG_MOONSLASHER )
 				clif_skill_damage(src,bl,tick, status_get_amotion(src), 0, -30000, 1, skillid, skilllv, 6);
@@ -4781,6 +4783,9 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		
 	case GC_COUNTERSLASH:
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
+		
+	case GN_CART_TORNADO:
+		clif_skill_nodamage(src,bl,skillid,skilllv,1);
 
 	case NPC_EARTHQUAKE:
 	case NPC_VAMPIRE_GIFT:
@@ -4789,7 +4794,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case LG_MOONSLASHER:
 		skill_castend_damage_id(src, src, skillid, skilllv, tick, flag);
 		break;
-
+		
 	case KN_BRANDISHSPEAR:
 	case ML_BRANDISH:
 		{
