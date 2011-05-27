@@ -9,7 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
-
+	r0543 - 27/05/2011 [Mark]
+	* Adicionada a habilidade:
+	- LG_PIETY (Devoção)
+	
 	r0542 - 27/05/2011 [Protimus]
 	* Correção na bonificação de GN_CARTBOOST (Propulsão do Carrinho).
 	- Adicionado bônus de ATK que não estava computando.
