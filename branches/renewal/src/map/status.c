@@ -1254,6 +1254,9 @@ int status_check_skilluse(struct block_list *src, struct block_list *target, int
 			return 0;
 		return 1;
 	}
+	
+	if( skill_num == GN_WALLOFTHORN && target && status_isdead(target) )
+		return 0;
 
 	//Should fail when used on top of Land Protector [Skotlex]
 	if (src && skill_num == AL_TELEPORT && map_getcell(src->m, src->x, src->y, CELL_CHKLANDPROTECTOR)

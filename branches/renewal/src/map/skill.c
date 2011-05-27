@@ -2201,12 +2201,18 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 		int direction = -1; // default
 		switch(skillid)
 		{
-			  direction = unit_getdir(bl); break; // backwards
-			case WZ_STORMGUST: direction = rand()%8;        break; // randomly
-			case PR_SANCTUARY: direction = unit_getdir(bl); break; // backwards 
+			case WZ_STORMGUST:
+				direction = rand()%8; // randomly
+				break;
+			case WL_CRIMSONROCK:
+				map_calc_dir(bl,skill_area_temp[4],skill_area_temp[5]);
+				break;
 			case MG_FIREWALL:
-			case SC_TRIANGLESHOT: direction = unit_getdir(bl); break;
-			case WL_CRIMSONROCK: map_calc_dir(bl,skill_area_temp[4],skill_area_temp[5]);
+			case PR_SANCTUARY:
+			case SC_TRIANGLESHOT:
+			case GN_WALLOFTHORN:
+				direction = unit_getdir(bl); // backward
+				break;
 				break;
 		}
 		skill_blown(dsrc,bl,dmg.blewcount,direction,0);
@@ -3880,7 +3886,43 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 			skill_addtimerskill(src, gettick() + skill_get_time(skillid, skilllv) - 1000, bl->id, 0, 0, skillid, skilllv, 0, 0);
 		}
 		break;
+	case GN_CRAZYWEED:
+		if( rand()%100 < 75 )
+		{
+			if( bl->type == BL_SKILL )
+			{
+				struct skill_unit *su = (struct skill_unit *)bl;
+				if( !su )
+					break;
+				if( skill_get_inf2(su->group->skill_id)&INF2_TRAP )
+				{	
+					skill_delunit(su);
+					break;
+				}
 
+				switch( su->group->skill_id )
+				{	
+					case GN_WALLOFTHORN:
+					case GN_THORNS_TRAP:
+					case SC_BLOODYLUST:
+					case SC_CHAOSPANIC:
+					case SC_MAELSTROM:
+					case WZ_FIREPILLAR:
+					case SA_LANDPROTECTOR:
+					case SA_VOLCANO:
+					case SA_DELUGE:
+					case SA_VIOLENTGALE:
+					case MG_SAFETYWALL:
+					case AL_PNEUMA:
+						skill_delunit(su);
+						break;
+				}
+				break;
+			}
+			else
+				skill_attack(BF_WEAPON,src,src,bl,GN_CRAZYWEED_ATK,skilllv,tick,flag);
+		}
+		break;
 	case 0:
 		if(sd) {
 			if (flag & 3){
@@ -7539,6 +7581,11 @@ int skill_castend_id(int tid, unsigned int tick, int id, intptr data)
 				}
 				ud->skilltimer=tid;
 				return skill_castend_pos(tid,tick,id,data);
+			case GN_WALLOFTHORN:
+				ud->skillx = target->x;
+				ud->skilly = target->y;
+				ud->skilltimer = tid;
+				return skill_castend_pos(tid,tick,id,data);
 		}
 
 		if(ud->skillid == RG_BACKSTAP) {
@@ -8083,6 +8130,7 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 	case SC_MAELSTROM:
 	case SC_CHAOSPANIC:
 	case GN_THORNS_TRAP:
+	case GN_WALLOFTHORN:
 		flag|=1;//Set flag to 1 to prevent deleting ammo (it will be deleted on group-delete).
 	case GS_GROUNDDRIFT: //Ammo should be deleted right away.
 		skill_unitsetting(src,skillid,skilllv,x,y,0);
@@ -8435,6 +8483,13 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 				src,skillid,skilllv,tick,flag|BCT_ENEMY|1,skill_castend_damage_id);
 		}
 		else if( sd ) clif_skill_fail(sd,skillid,0xa,0,0);
+		break;
+		
+	case GN_CRAZYWEED:
+		i = skill_get_splash(skillid,skilllv);
+		map_foreachinarea(skill_area_sub,src->m,x-i,y-i,x+i,y+i,BL_CHAR|BL_SKILL,
+			src,skillid,skilllv,tick,flag|BCT_ENEMY|1,
+			skill_castend_damage_id);
 		break;
 
 	default:
@@ -8949,6 +9004,12 @@ struct skill_unit_group* skill_unitsetting (struct block_list *src, short skilli
 	case LG_BANDING:
 		limit = -1;
 		break;
+		
+	case GN_WALLOFTHORN:
+		if( flag&1 )
+			limit = 3000;
+		val3 = (x<<16)|y;
+		break;
 
 	}
 
@@ -9043,6 +9104,10 @@ struct skill_unit_group* skill_unitsetting (struct block_list *src, short skilli
 			break;
 		case WM_REVERBERATION:
 			val1 = 1;
+			break;
+		case GN_WALLOFTHORN:
+			val1 = 1000 * skilllv;	
+			val2 = src->id;
 			break;
 		default:
 			if (group->state.song_dance&0x1)
@@ -9265,6 +9330,16 @@ static int skill_unit_onplace (struct skill_unit *src, struct block_list *bl, un
 			break;
 		skill_blown(ss,bl,skill_get_blewcount(sg->skill_id,sg->skill_lv),unit_getdir(bl),0);
 		break;
+		
+	case UNT_WALLOFTHORN:
+		if( status_get_mode(bl)&MD_BOSS )
+			break;
+		if( battle_check_target(ss,bl,BCT_ENEMY) <= 0 )
+			skill_blown(&src->bl,bl,skill_get_blewcount(sg->skill_id,sg->skill_lv),unit_getdir(bl),0);
+		else
+			skill_attack(skill_get_type(sg->skill_id), ss, &src->bl, bl, sg->skill_id, sg->skill_lv, tick, 0);
+		break;
+		
 	}
 	return skillid;
 }
@@ -9345,6 +9420,8 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 			int count=0;
 			const int x = bl->x, y = bl->y;
 
+			if( sg->skill_id == GN_WALLOFTHORN && !map_flag_vs(bl->m) )
+				break;
 			//Take into account these hit more times than the timer interval can handle.
 			do
 				skill_attack(BF_MAGIC,ss,&src->bl,bl,sg->skill_id,sg->skill_lv,tick+count*sg->interval,0);
@@ -10040,6 +10117,7 @@ int skill_unit_ondamaged (struct skill_unit *src, struct block_list *bl, int dam
 	case UNT_ANKLESNARE:
 	case UNT_ICEWALL:
 	case UNT_REVERBERATION:
+	case UNT_WALLOFTHORN:
 		src->val1-=damage;
 		break;
 	case UNT_BLASTMINE:
@@ -12960,6 +13038,13 @@ static int skill_unit_timer_sub (DBKey key, void* data, va_list ap)
 				if( unit->val1 <= 0 )
 					unit->limit = DIFF_TICK(tick + 700,group->tick);
 				break;
+			case UNT_WALLOFTHORN:
+				if( unit->val1 <= 0 )
+				{
+					group->unit_id = UNT_USED_TRAPS;
+					group->limit = DIFF_TICK(tick, group->tick) + 1500;
+				}
+				break;
 		}
 	}
 
@@ -13170,7 +13255,7 @@ int skill_unit_move_unit_group (struct skill_unit_group *group, int m, int dx, i
 	if (skill_get_unit_flag(group->skill_id)&UF_ENSEMBLE)
 		return 0; //Ensembles may not be moved around.
 
-	if( group->unit_id == UNT_ICEWALL )
+	if( group->unit_id == UNT_ICEWALL || group->unit_id == UNT_WALLOFTHORN )
 		return 0; //Icewalls don't get knocked back
 
 	m_flag = (int *) aCalloc(group->unit_count, sizeof(int));
@@ -14200,6 +14285,15 @@ void skill_init_unit_layout (void)
 					skill_db[i].unit_layout_type[j] = pos;
 				//Skip, this way the check below will fail and continue to the next skill.
 				pos++;
+				break;
+			}
+			case GN_WALLOFTHORN:
+			{
+				static const int dx[] = {-1,-2,-2,-2,-2,-2,-1, 0, 1, 2, 2, 2, 2, 2, 1, 0};
+				static const int dy[] = { 2, 2, 1, 0,-1,-2,-2,-2,-2,-2,-1, 0, 1, 2, 2, 2};
+				skill_unit_layout[pos].count = 16;
+				memcpy(skill_unit_layout[pos].dx,dx,sizeof(dx));
+				memcpy(skill_unit_layout[pos].dy,dy,sizeof(dy));
 				break;
 			}
 			default:

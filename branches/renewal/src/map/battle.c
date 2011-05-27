@@ -296,6 +296,31 @@ int battle_attr_fix(struct block_list *src, struct block_list *target, int damag
 			ratio += tsc->data[SC_ORATIO]->val1 * 2;
 		if( tsc->data[SC_VENOMIMPRESS] && atk_elem == ELE_POISON)
 			ratio += tsc->data[SC_VENOMIMPRESS]->val2;
+		if( atk_elem == ELE_FIRE && tsc->data[SC_THORNSTRAP] )
+			status_change_end(target, SC_THORNSTRAP, -1);
+	}
+	if( target && target->type == BL_SKILL )
+	{
+		if( atk_elem == ELE_FIRE && battle_getcurrentskill(target) == GN_WALLOFTHORN )
+		{
+			struct skill_unit *su = (struct skill_unit*)target;
+			struct skill_unit_group *sg;
+			struct block_list *src;
+			int x,y;
+						
+			if( !su || !su->alive || (sg = su->group) == NULL || !sg || sg->val3 == -1 ||
+				(src = map_id2bl(su->val2)) == NULL || status_isdead(src) )
+				return 0;
+			
+			if( sg->unit_id != UNT_FIREWALL )
+			{
+				x = sg->val3 >> 16;
+				y = sg->val3 & 0xffff;
+				skill_unitsetting(src,su->group->skill_id,su->group->skill_lv,x,y,1);
+				sg->val3 = -1;
+				sg->limit = DIFF_TICK(gettick(),sg->tick)+300;
+			}
+		}
 	}
 	return damage*ratio/100;
 }
@@ -2068,8 +2093,11 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 						skillratio += 10 * sc->data[SC_GN_CARTBOOST]->val1;
 					break;
 				case GN_SPORE_EXPLOSION:
-						skillratio += 200 + 100 * skill_lv;
-						break;
+					skillratio += 200 + 100 * skill_lv;
+					break;
+				case GN_CRAZYWEED_ATK:
+					skillratio += 400 + 100 * skill_lv;
+					break;
 			}
 
 			ATK_RATE(skillratio);
@@ -4069,13 +4097,14 @@ int battle_check_target( struct block_list *src, struct block_list *target,int f
 					case MS_MAGNUM:
 					case RA_DETONATOR:
 					case RA_SENSITIVEKEEN:
+					case GN_CRAZYWEED:
 						state |= BCT_ENEMY;
 						strip_enemy = 0;
 						break;
 					default:
 						return 0;
 				}
-			} else if (su->group->skill_id==WZ_ICEWALL || su->group->skill_id == WM_REVERBERATION)
+			} else if (su->group->skill_id==WZ_ICEWALL || su->group->skill_id == GN_WALLOFTHORN || su->group->skill_id == WM_REVERBERATION)
 			{
 				state |= BCT_ENEMY;
 				strip_enemy = 0;
