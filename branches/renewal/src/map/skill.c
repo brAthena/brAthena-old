@@ -2211,11 +2211,20 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 			case PR_SANCTUARY:
 			case SC_TRIANGLESHOT:
 			case GN_WALLOFTHORN:
+			case SR_KNUCKLEARROW:
 				direction = unit_getdir(bl); // backward
 				break;
-				break;
 		}
-		skill_blown(dsrc,bl,dmg.blewcount,direction,0);
+		if(skillid == SR_KNUCKLEARROW) {
+			if(skill_blown(dsrc,bl,dmg.blewcount,direction,0) && !(flag&4)) {
+				short dir_x, dir_y;
+				dir_x = dirx[(direction+4)%8];
+				dir_y = diry[(direction+4)%8];
+				if(map_getcell(bl->m, bl->x+dir_x, bl->y+dir_y, CELL_CHKNOPASS) != 0)
+					skill_addtimerskill(src, tick + 300*((flag&2) ? 1:2), bl->id, 0, 0, skillid, skilllv, BF_WEAPON, flag|4);	
+			}
+		} else 
+			skill_blown(dsrc,bl,dmg.blewcount,direction,0);
 	}
 
 	//Delayed damage must be dealt after the knockback (it needs to know actual position of target)
@@ -2776,6 +2785,9 @@ static int skill_timerskill(int tid, unsigned int tick, int id, intptr data)
 				case GN_SPORE_EXPLOSION:
 					map_foreachinrange(skill_area_sub, target, skill_get_splash(skl->skill_id, skl->skill_lv), BL_CHAR,
 						src, skl->skill_id, skl->skill_lv, 0, skl->flag|1|BCT_ENEMY, skill_castend_damage_id);
+					break;
+				case SR_KNUCKLEARROW:
+					skill_attack(BF_WEAPON, src, src, target, skl->skill_id, skl->skill_lv, tick, skl->flag|SD_LEVEL);
 					break;
 				default:
 					skill_attack(skl->type,src,src,target,skl->skill_id,skl->skill_lv,tick,skl->flag);
@@ -3922,6 +3934,16 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 			else
 				skill_attack(BF_WEAPON,src,src,bl,GN_CRAZYWEED_ATK,skilllv,tick,flag);
 		}
+		break;
+	case SR_KNUCKLEARROW:
+		if(!map_flag_gvg(src->m) && !map[src->m].flag.battleground && unit_movepos(src, bl->x, bl->y, 1, 1)) {
+			clif_slide(src,bl->x,bl->y);
+			clif_fixpos(src);
+		}
+		if(flag&1)
+			skill_attack(BF_WEAPON, src, src, bl, skillid, skilllv, tick, flag|SD_LEVEL);
+		else
+			skill_addtimerskill(src, tick+300, bl->id, 0, 0, skillid, skilllv, BF_WEAPON, flag|SD_LEVEL|2);
 		break;
 	case 0:
 		if(sd) {
