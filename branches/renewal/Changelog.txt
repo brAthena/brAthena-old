@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0554 - 28/05/2011 [Protimus]
+	* Adicionada a habilidade:
+	- GN_SLINGITEM (Arremessar Item).
+
 	r0553 - 28/05/2011 [Protimus]
 	* Adicionas as habilidades:
 	- GN_HELLS_PLANT (Planta Infernal).

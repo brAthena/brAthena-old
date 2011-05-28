@@ -2100,6 +2100,28 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case GN_CRAZYWEED_ATK:
 					skillratio += 400 + 100 * skill_lv;
 					break;
+				case GN_SLINGITEM_RANGEMELEEATK:
+					if( sd )
+					{
+						switch( sd->itemid )
+						{
+							case 13260: 
+							case 13261: 
+							case 13262: 
+							case 13263: 
+								skillratio += 400;	
+								break;
+							case 13264: 
+								skillratio += 1900;
+								break;
+							case 13265: skillratio -= 75; break; 
+							case 13266: skillratio -= 25; break; 
+							case 13267: skillratio += 100; break; 
+						}
+					}
+					else
+						skillratio += 300;	
+					break;
 				case SR_KNUCKLEARROW:
 					if(wflag&4)
 						skillratio = 150*skill_lv;
