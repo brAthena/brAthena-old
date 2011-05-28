@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0560 - 28/05/2011 [Protimus]
+	* Modificações em habilidades:
+	- Grito da Mandragora: Corrigida redução do tempo de conjuração após efeito da habilidade.
+
 	r0559 - 28/05/2011 [Protimus]
 	* Modificações em habilidades:
 	- Sacramentum: Corrigida redução do tempo de conjuração da habilidade.

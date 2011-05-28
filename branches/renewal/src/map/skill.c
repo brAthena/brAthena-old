@@ -11723,6 +11723,9 @@ int skill_castfix (struct block_list *bl, int skill_id, int skill_lv)
 	if( sc->data[SC_SECRAMENT] && sc->data[SC_SECRAMENT]->val2 > cast_fixo_reduct )
 	cast_fixo_reduct = sc->data[SC_SECRAMENT]->val2;
 	
+	if( sc && sc->data[SC_MANDRAGORA] && ( skill_id >= SM_BASH && skill_id <= RETURN_TO_ELDICASTES ) )
+		cast_fixo_reduct += 200;
+	
 	time += base_cast*(100-cast_fixo_reduct)/500;
 
 	// Battleconfig para multiplicador do tempo de conjuração.
