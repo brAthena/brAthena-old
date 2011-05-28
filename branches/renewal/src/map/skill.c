@@ -9949,6 +9949,15 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 				}
 			}
 			break;
+	
+		case UNT_FIRE_EXPANSION_SMOKE_POWDER:
+			sc_start(bl, status_skill2sc(GN_FIRE_EXPANSION_SMOKE_POWDER), 100, sg->skill_lv, 1000);
+			break;
+
+		case UNT_FIRE_EXPANSION_TEAR_GAS:
+			sc_start(bl, status_skill2sc(GN_FIRE_EXPANSION_TEAR_GAS), 100, sg->skill_lv, 1000);
+			break;
+
 	}
 
 	if (sg->state.magic_power && sc && !sc->data[SC_MAGICPOWER])
@@ -11367,6 +11376,10 @@ struct skill_condition skill_get_requirement(struct map_session_data* sd, short 
 			if (lv <= 5)	// no gems required at level 1-5
 				continue;
 			break;
+		case GN_FIRE_EXPANSION:
+			if( i < 5 )
+				continue;
+			break;
 		}
 
 		req.itemid[i] = skill_db[j].itemid[i];
@@ -11388,6 +11401,13 @@ struct skill_condition skill_get_requirement(struct map_session_data* sd, short 
 			}
 		}
 	}
+	
+	if( skill == GN_FIRE_EXPANSION)
+	{		
+		req.itemid[lv-1] = skill_db[j].itemid[lv-1];
+		req.amount[lv-1] = skill_db[j].amount[lv-1];
+	}
+
 
 	// Check for cost reductions due to skills & SCs
 	switch(skill) {

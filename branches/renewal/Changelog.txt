@@ -9,9 +9,16 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0550 - 27/05/2011 [Protimus]
+	* Adicionadas as habilidades:
+	- GN_FIRE_EXPANSION_SMOKE_POWDER (Catalisador Alquímico - Cortina de Fumaça em Pó).
+	- GN_FIRE_EXPANSION_TEAR_GAS (Catalisador Alquímico - Gás Lacrimogêneo).
+	- GN_FIRE_EXPANSION_ACID (Catalisador Alquímico - Garrafa de Ácido).
+
 	r0549 - 27/05/2011 [Protimus]
-	* Adicionada a habilidade:
+	* Adicionada as habilidades:
 	- GN_DEMONIC_FIRE (Bomba Napalm).
+	- GN_FIRE_EXPANSION (Catalisador Alquímico).
 
 	r0548 - 27/05/2011 [Protimus]
 	* Adicionadas as habilidades:
