@@ -1149,7 +1149,10 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 		skill_break_equip(src, EQP_SHIELD, 500, BCT_SELF);
 		sc_start(bl, SC_EARTHDRIVE, 100, skilllv, skill_get_time(skillid, skilllv));
 		break;
-
+	case GN_HELLS_PLANT_ATK:
+		sc_start(bl, SC_STUN, 5 + 5 * skilllv, skilllv, skill_get_time(skillid, skilllv));
+		sc_start(bl, SC_BLEEDING, 20 + 10 * skilllv, skilllv, skill_get_time2(skillid, skilllv));
+		break;
 	}
 
 	if (md && battle_config.summons_trigger_autospells && md->master_id && md->special_state.ai)
@@ -3567,6 +3570,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case RK_DRAGONBREATH:
 	case GN_THORNS_TRAP:
 	case GN_BLOOD_SUCKER:
+	case GN_HELLS_PLANT_ATK:
 		skill_attack(BF_MISC,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 
@@ -7498,6 +7502,18 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv));
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
 		break;
+		
+	case GN_MANDRAGORA:
+		if( flag&1 )
+		{
+			if ( clif_skill_nodamage(bl, src, skillid, skilllv,
+				sc_start(bl, type, 35 + 10 * skilllv, skilllv, skill_get_time(skillid, skilllv))) )
+				status_zap(bl, 0, status_get_max_sp(bl) / 100 * 25 + 5 * skilllv);
+		}
+		else
+			map_foreachinrange(skill_area_sub, bl, skill_get_splash(skillid, skilllv), BL_CHAR,
+				src, skillid, skilllv, tick, flag|BCT_ENEMY|1, skill_castend_nodamage_id);
+		break;
 
 	default:
 		ShowWarning("skill_castend_nodamage_id: Habilidade desconhecida usada:%d\n",skillid);
@@ -8154,6 +8170,7 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 	case GN_THORNS_TRAP:
 	case GN_WALLOFTHORN:
 	case GN_DEMONIC_FIRE:
+	case GN_HELLS_PLANT:
 		flag|=1;//Set flag to 1 to prevent deleting ammo (it will be deleted on group-delete).
 	case GS_GROUNDDRIFT: //Ammo should be deleted right away.
 		skill_unitsetting(src,skillid,skilllv,x,y,0);
@@ -9978,6 +9995,11 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 
 		case UNT_FIRE_EXPANSION_TEAR_GAS:
 			sc_start(bl, status_skill2sc(GN_FIRE_EXPANSION_TEAR_GAS), 100, sg->skill_lv, 1000);
+			break;
+			
+		case UNT_HELLS_PLANT:
+			if( skill_attack(skill_get_type(GN_HELLS_PLANT_ATK), ss, &src->bl, bl, GN_HELLS_PLANT_ATK, sg->skill_lv, tick, 0) )
+				sg->limit = DIFF_TICK(tick, sg->tick) + 100;
 			break;
 
 	}

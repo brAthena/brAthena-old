@@ -766,6 +766,7 @@ int battle_calc_bg_damage(struct block_list *src, struct block_list *bl, int dam
 		case RK_DRAGONBREATH:
 		case GN_THORNS_TRAP:
 		case GN_BLOOD_SUCKER:
+		case GN_HELLS_PLANT_ATK:
 			break;
 		default:
 			if( flag&BF_SKILL )
@@ -828,6 +829,7 @@ int battle_calc_gvg_damage(struct block_list *src,struct block_list *bl,int dama
 	case HW_GRAVITATION:
 	case NJ_ZENYNAGE:
 	case RK_DRAGONBREATH:
+	case GN_HELLS_PLANT_ATK:
 		break;
 	default:
 		/* Uncomment if you want god-mode Emperiums at 100 defense. [Kisuka]
@@ -3412,6 +3414,9 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		break;
 	case GN_BLOOD_SUCKER:
 		md.damage = 200 + 100 * skill_lv + sstatus->int_;
+		break;
+	case GN_HELLS_PLANT_ATK:
+		md.damage = sstatus->int_ * 4 * skill_lv * (10 / (10 - pc_checkskill(sd,AM_CANNIBALIZE)));
 		break;
 	}
 
