@@ -4919,10 +4919,26 @@ int clif_skill_produce_mix_list(struct map_session_data *sd, int skill_num, int 
 	return 0;
 }
 
+void clif_skill_msg(struct map_session_data *sd, int skill_id, int msg)
+{
+#if PACKETVER >= 20090922
+	int fd;
+
+	nullpo_retv(sd);
+
+	fd = sd->fd;
+	WFIFOHEAD(fd,packet_len(0x7e6));
+	WFIFOW(fd,0) = 0x7e6;
+	WFIFOW(fd,2) = skill_id;
+	WFIFOL(fd,4) = msg;
+	WFIFOSET(fd, packet_len(0x7e6));
+#endif
+}
+
 /*==========================================
  *
  *------------------------------------------*/
-void clif_cooking_list(struct map_session_data *sd, int trigger)
+void clif_cooking_list(struct map_session_data *sd, int trigger, int skill_id, int qty, int list_type)
 {
 	int fd;
 	int i, c;
@@ -4933,12 +4949,12 @@ void clif_cooking_list(struct map_session_data *sd, int trigger)
 
 	WFIFOHEAD(fd, 6 + 2*MAX_SKILL_PRODUCE_DB);
 	WFIFOW(fd,0) = 0x25a;
-	WFIFOW(fd,4) = 1; // list type
+	WFIFOW(fd,4) = list_type; 
 
 	c = 0;
 	for( i = 0; i < MAX_SKILL_PRODUCE_DB; i++ )
 	{
-		if( !skill_can_produce_mix(sd,skill_produce_db[i].nameid,trigger, 1) )
+		if( !skill_can_produce_mix(sd,skill_produce_db[i].nameid,trigger, qty) )
 			continue;
 
 		if( (view = itemdb_viewid(skill_produce_db[i].nameid)) > 0 )
@@ -4949,14 +4965,36 @@ void clif_cooking_list(struct map_session_data *sd, int trigger)
 		c++;
 	}
 
-	WFIFOW(fd,2) = 6 + 2*c;
-	WFIFOSET(fd,WFIFOW(fd,2));
+	if( skill_id == AM_PHARMACY )
+	{	
+		WFIFOW(fd,2) = 6 + 2 * c;
+		WFIFOSET(fd,WFIFOW(fd,2));
+	}
 
 	//TODO: replace with proper solution
 	if( c > 0 )
 	{
-		sd->menuskill_id = AM_PHARMACY;
+		sd->menuskill_id = skill_id;
 		sd->menuskill_val = trigger;
+		if( skill_id != AM_PHARMACY )
+		{
+			sd->menuskill_itemused = qty; 
+			WFIFOW(fd,2) = 6 + 2 * c;
+			WFIFOSET(fd,WFIFOW(fd,2));
+		}
+	}
+	else
+	{
+		sd->menuskill_id = sd->menuskill_val = sd->menuskill_itemused = 0;
+		if( skill_id != AM_PHARMACY ) 
+		{	
+#if PACKETVER >= 20090922
+			clif_skill_msg(sd,skill_id,SKMSG_MATERIAL_FAIL);
+#else
+			WFIFOW(fd,2) = 6 + 2 * c;
+			WFIFOSET(fd,WFIFOW(fd,2));
+#endif
+		}
 	}
 }
 

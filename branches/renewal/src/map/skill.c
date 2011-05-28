@@ -7550,7 +7550,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			if( ammo_id <= 0 )
 				break;
 			sd->itemid = ammo_id;
-			if( itemdb_is_GNbomb(ammo_id) )
+			if( itemdb_is_bomb(ammo_id) )
 			{
 				if(battle_check_target(src,bl,BCT_ENEMY) > 0)
 				{
@@ -7575,6 +7575,30 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		}
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
+		break;
+		
+	case GN_MIX_COOKING:
+		if( sd )
+		{
+			clif_cooking_list(sd,27,skillid,(skilllv == 2) ? 10 : 1,6);
+			clif_skill_nodamage(src,bl,skillid,skilllv,1);
+		}
+		break;
+
+	case GN_MAKEBOMB:
+		if( sd )
+		{
+			clif_cooking_list(sd,28,skillid,(skilllv==2) ? 10 : 1,5);
+			clif_skill_nodamage(src,bl,skillid,skilllv,1);
+		}
+		break;
+
+	case GN_S_PHARMACY:
+		if( sd )
+		{
+			clif_cooking_list(sd,29,skillid,1,6);
+			clif_skill_nodamage(src,bl,skillid,skilllv,1);
+		}
 		break;
 
 	default:
@@ -10520,18 +10544,26 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 		return 1;
 	}
 
-	if( sd->menuskill_id == AM_PHARMACY )
+	switch( sd->menuskill_id )
 	{
-		switch( skill )
-		{
 		case AM_PHARMACY:
-		case AC_MAKINGARROW:
-		case BS_REPAIRWEAPON:
-		case AM_TWILIGHT1:
-		case AM_TWILIGHT2:
-		case AM_TWILIGHT3:
-			return 0;
-		}
+			switch( skill )
+			{
+				case AM_PHARMACY:
+				case AC_MAKINGARROW:
+				case BS_REPAIRWEAPON:
+				case AM_TWILIGHT1:
+				case AM_TWILIGHT2:
+				case AM_TWILIGHT3:
+					return 0;
+			}
+			break;
+		case GN_MIX_COOKING:
+		case GN_MAKEBOMB:
+		case GN_S_PHARMACY:
+			if( sd->menuskill_id != skill )
+				return 0;
+			break;
 	}
 
 	status = &sd->battle_status;
@@ -11203,18 +11235,26 @@ int skill_check_condition_castend(struct map_session_data* sd, short skill, shor
 		return 1;
 	}
 
-	if( sd->menuskill_id == AM_PHARMACY )
+	switch( sd->menuskill_id )
 	{ // Cast start or cast end??
-		switch( skill )
-		{
 		case AM_PHARMACY:
-		case AC_MAKINGARROW:
-		case BS_REPAIRWEAPON:
-		case AM_TWILIGHT1:
-		case AM_TWILIGHT2:
-		case AM_TWILIGHT3:
-			return 0;
-		}
+			switch( skill )
+			{
+				case AM_PHARMACY:
+				case AC_MAKINGARROW:
+				case BS_REPAIRWEAPON:
+				case AM_TWILIGHT1:
+				case AM_TWILIGHT2:
+				case AM_TWILIGHT3:
+					return 0;
+			}
+			break;
+		case GN_MIX_COOKING:
+		case GN_MAKEBOMB:
+		case GN_S_PHARMACY:
+			if( sd->menuskill_id != skill )
+				return 0;
+			break;
 	}
 
 	if( sd->skillitem == skill ) // Casting finished (Item skill or Hocus-Pocus)
@@ -13760,6 +13800,22 @@ int skill_produce_mix(struct map_session_data *sd, int skill_id, int nameid, int
 				make_per = 3000 + 500 * skill_lv;
 				qty = rand()%(skill_lv+1);
 				break;
+			case GN_MIX_COOKING:
+				make_per = 3000; 
+				break;
+			case GN_MAKEBOMB:
+				make_per = (5000 + 50*status->dex + 30*status->luk);
+				break;
+			case GN_S_PHARMACY:
+				switch( pc_checkskill(sd,GN_S_PHARMACY) )
+				{
+					case 6: case 7: case 8: qty = 3; break;				
+					case 9: qty = 3 + rand()%3; break;					
+					case 10: qty = 4 + rand()%3; break;					
+					default: qty = 2;									
+				}
+				make_per = 100000; 
+				break;
 			default:
 				if (sd->menuskill_id ==	AM_PHARMACY &&
 					sd->menuskill_val > 10 && sd->menuskill_val <= 20)
@@ -13826,6 +13882,9 @@ int skill_produce_mix(struct map_session_data *sd, int skill_id, int nameid, int
 				case AM_TWILIGHT1:
 				case AM_TWILIGHT2:
 				case AM_TWILIGHT3:
+				case GN_MIX_COOKING:
+				case GN_MAKEBOMB:
+				case GN_S_PHARMACY:
 					flag = battle_config.produce_item_name_input&0x2;
 					break;
 				case AL_HOLYWATER:
@@ -13869,7 +13928,10 @@ int skill_produce_mix(struct map_session_data *sd, int skill_id, int nameid, int
 					if(skill_id != AM_PHARMACY &&
 						skill_id != AM_TWILIGHT1 &&
 						skill_id != AM_TWILIGHT2 &&
-						skill_id != AM_TWILIGHT3)
+						skill_id != AM_TWILIGHT3 &&
+						skill_id != GN_MIX_COOKING &&
+						skill_id != GN_MAKEBOMB &&
+						skill_id != GN_S_PHARMACY )
 						continue;
 					//Add fame as needed.
 					switch(++sd->potion_success_counter) {
@@ -13912,6 +13974,12 @@ int skill_produce_mix(struct map_session_data *sd, int skill_id, int nameid, int
 				case GC_CREATENEWPOISON:
 					clif_produceeffect(sd,2,nameid);
 					clif_misceffect(&sd->bl,5);
+					break;
+				case GN_MAKEBOMB:
+				case GN_MIX_COOKING:
+					clif_skill_msg(sd,skill_id,SKMSG_SUCCESS);
+					break;
+				case GN_S_PHARMACY:
 					break;
 				default: //Those that don't require a skill?
 					if( skill_produce_db[idx].itemlv > 10 && skill_produce_db[idx].itemlv <= 20)
@@ -13961,6 +14029,33 @@ int skill_produce_mix(struct map_session_data *sd, int skill_id, int nameid, int
 			case GC_CREATENEWPOISON:
 				clif_produceeffect(sd,3,nameid);
 				clif_misceffect(&sd->bl,6);
+				break;
+			case GN_MIX_COOKING:
+				{
+					struct item tmp_item;
+					const int products[5][2] = {{13265,6500},{13266,4000},{13267,3000},{13268,500},{12435,500}};
+					memset(&tmp_item,0,sizeof(tmp_item));
+					tmp_item.nameid = nameid;
+					do
+					{
+						i = rand()%5;
+						tmp_item.nameid = products[i][0];
+					}
+					while( rand()%10000 >= products[i][1] );
+					tmp_item.amount = (temp_qty > 1 )? 5 + rand()%5 : 1; 
+					tmp_item.identify = 1;
+					if( pc_additem(sd,&tmp_item,tmp_item.amount) )
+					{
+						clif_additem(sd,0,0,flag);
+						map_addflooritem(&tmp_item,tmp_item.amount,sd->bl.m,sd->bl.x,sd->bl.y,0,0,0,0);
+					}
+					clif_skill_msg(sd,skill_id,SKMSG_FAIL_MATERIAL_DESTROY);
+				}
+				break;
+			case GN_S_PHARMACY:
+				break;	
+			case GN_MAKEBOMB:
+				clif_skill_msg(sd,skill_id,SKMSG_FAIL_MATERIAL_DESTROY);
 				break;
 			default:
 				if( skill_produce_db[idx].itemlv > 10 && skill_produce_db[idx].itemlv <= 20 )

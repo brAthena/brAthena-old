@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0555 - 28/05/2011 [Protimus]
+	* Adicionadas as habilidades:
+	- GN_MIX_COOKING (Culinária Avançada).
+	- GN_MAKEBOMB (Criar Bomba Orgânica).
+	- GN_S_PHARMACY (Farmacologia Avançada).
+
 	r0554 - 28/05/2011 [Protimus]
 	* Adicionada a habilidade:
 	- GN_SLINGITEM (Arremessar Item).
