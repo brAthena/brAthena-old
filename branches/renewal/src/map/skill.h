@@ -370,6 +370,7 @@ int skill_arrow_create( struct map_session_data *sd,int nameid);
 int skill_poisoningweapon( struct map_session_data *sd, int nameid);
 int skill_select_menu( struct map_session_data *sd, int flag, int skill_id);
 int skill_spellbook (struct map_session_data *sd, int nameid);
+int skill_changematerial(struct map_session_data *sd, int n, unsigned short *item_list);
 
 // mobƒXƒLƒ‹‚Ì‚½‚ß
 int skill_castend_nodamage_id( struct block_list *src, struct block_list *bl,int skillid,int skilllv,unsigned int tick,int flag );

@@ -3086,6 +3086,35 @@ int clif_skill_select_request(struct map_session_data *sd)
 	return 1;
 }
 
+/*=====================================================================================
+ * Lista para GN_CHANGEMATERIAL (Reação Alquímica) & SO_EL_ANALYSIS (Análise Elemental)
+ *-----------------------------------------------------------------------------------*/
+int clif_skill_itemlistwindow( struct map_session_data *sd, int skill_id, int skill_lv )
+{
+#if PACKETVER >= 20090922
+	int fd;
+
+	nullpo_ret(sd);
+	
+	sd->menuskill_id = skill_id; 
+	sd->menuskill_val = skill_lv;
+
+	if( skill_id == GN_CHANGEMATERIAL )
+		skill_lv = 0; 
+
+	fd = sd->fd;
+	WFIFOHEAD(fd,packet_len(0x7e3));
+	WFIFOW(fd,0) = 0x7e3;
+	WFIFOL(fd,2) = skill_lv;
+	WFIFOL(fd,4) = 0;
+	WFIFOSET(fd,packet_len(0x7e3));
+
+#endif
+
+	return 1;
+
+}
+
 /*==========================================
  *
  *------------------------------------------*/
@@ -14354,6 +14383,43 @@ void clif_parse_LessEffect(int fd, struct map_session_data* sd)
 	int isLess = RFIFOL(fd,packet_db[sd->packet_ver][RFIFOW(fd,0)].pos[0]);
 
 	sd->state.lesseffect = ( isLess != 0 );
+}
+
+void clif_parse_ItemListWindowSelected(int fd, struct map_session_data* sd)
+{
+	int n = (RFIFOW(fd,2)-12) / 4;
+	int type = RFIFOL(fd,4);
+	int flag = RFIFOL(fd,8); 
+	unsigned short* item_list = (unsigned short*)RFIFOP(fd,12);
+ 
+	if( sd->state.trading || sd->npc_shopid )
+		return;
+	
+	if( flag == 0 || n == 0)
+	{
+		sd->menuskill_id = sd->menuskill_val = sd->menuskill_itemused = 0;
+		return; 
+	}
+
+	if( sd->menuskill_id != SO_EL_ANALYSIS && sd->menuskill_id != GN_CHANGEMATERIAL )
+	{		
+		sd->menuskill_id = sd->menuskill_val = sd->menuskill_itemused = 0;
+		return; 
+	}
+
+	switch( type )
+	{
+		case 0: 
+			skill_changematerial(sd,n,item_list);
+			break;
+//		case 1:	
+//		case 2:	
+//			skill_elementalanalysis(sd,n,type,item_list);
+			break;
+	}
+	sd->menuskill_id = sd->menuskill_val = sd->menuskill_itemused = 0;
+	
+	return;
 }
 
 /// Buying Store System

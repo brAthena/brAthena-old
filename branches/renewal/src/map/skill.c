@@ -7620,6 +7620,14 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			clif_skill_nodamage(src,bl,skillid,skilllv,1);
 		}
 		break;
+		
+	case GN_CHANGEMATERIAL:
+		if( sd )
+		{
+			clif_skill_nodamage(src,bl,skillid,skilllv,1);
+			clif_skill_itemlistwindow(sd,skillid,skilllv);
+		}
+		break;
 
 	default:
 		ShowWarning("skill_castend_nodamage_id: Habilidade desconhecida usada:%d\n",skillid);
@@ -10582,6 +10590,7 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 		case GN_MIX_COOKING:
 		case GN_MAKEBOMB:
 		case GN_S_PHARMACY:
+		case GN_CHANGEMATERIAL:
 			if( sd->menuskill_id != skill )
 				return 0;
 			break;
@@ -11288,6 +11297,7 @@ int skill_check_condition_castend(struct map_session_data* sd, short skill, shor
 		case GN_MIX_COOKING:
 		case GN_MAKEBOMB:
 		case GN_S_PHARMACY:
+		case GN_CHANGEMATERIAL:
 			if( sd->menuskill_id != skill )
 				return 0;
 			break;
@@ -13748,8 +13758,10 @@ int skill_produce_mix(struct map_session_data *sd, int skill_id, int nameid, int
 
 	if((equip=itemdb_isequip(nameid)))
 		wlv = itemdb_wlv(nameid);
-	if(!equip) {
-		switch(skill_id){
+	if( !equip || skill_id == GN_CHANGEMATERIAL )
+	{
+		switch( skill_id )
+		{
 			case BS_IRON:
 			case BS_STEEL:
 			case BS_ENCHANTEDSTONE:
@@ -13855,6 +13867,17 @@ int skill_produce_mix(struct map_session_data *sd, int skill_id, int nameid, int
 				}
 				make_per = 100000; 
 				break;
+			case GN_CHANGEMATERIAL:
+				switch( nameid )
+				{
+					case 1010: qty *= 8; break;
+					case 1061: qty *= 2; break;
+					case 13275: case 13278:
+						qty *= 10;
+						break;
+				}
+				make_per = 100000; 
+				break;
 			default:
 				if (sd->menuskill_id ==	AM_PHARMACY &&
 					sd->menuskill_val > 10 && sd->menuskill_val <= 20)
@@ -13897,14 +13920,14 @@ int skill_produce_mix(struct map_session_data *sd, int skill_id, int nameid, int
 	if(rand()%10000 < make_per || qty > 1){ //Success, or crafting multiple items.
 		struct item tmp_item;
 		memset(&tmp_item,0,sizeof(tmp_item));
-		tmp_item.nameid=nameid;
-		tmp_item.amount=1;
-		tmp_item.identify=1;
-		if(equip){
-			tmp_item.card[0]=CARD0_FORGE;
-			tmp_item.card[1]=((sc*5)<<8)+ele;
-			tmp_item.card[2]=GetWord(sd->status.char_id,0); // CharId
-			tmp_item.card[3]=GetWord(sd->status.char_id,1);
+		tmp_item.nameid = nameid;
+		tmp_item.amount = 1;
+		tmp_item.identify = 1;
+		if( equip && skill_id != GN_CHANGEMATERIAL ){
+			tmp_item.card[0] = CARD0_FORGE;
+			tmp_item.card[1] = ((sc*5)<<8)+ele;
+			tmp_item.card[2] = GetWord(sd->status.char_id,0); // CharId
+			tmp_item.card[3] = GetWord(sd->status.char_id,1);
 		} else {
 			//Flag is only used on the end, so it can be used here. [Skotlex]
 			switch (skill_id) {
@@ -13949,7 +13972,7 @@ int skill_produce_mix(struct map_session_data *sd, int skill_id, int nameid, int
 //			log_produce(sd,nameid,slot1,slot2,slot3,1);
 //TODO update PICKLOG
 
-		if(equip){
+		if( equip && skill_id != GN_CHANGEMATERIAL ){
 			clif_produceeffect(sd,0,nameid);
 			clif_misceffect(&sd->bl,3);
 			if(itemdb_wlv(nameid) >= 3 && ((ele? 1 : 0) + sc) >= 3) // Fame point system [DracoRPG]
@@ -13957,7 +13980,13 @@ int skill_produce_mix(struct map_session_data *sd, int skill_id, int nameid, int
 		} else {
 			int fame = 0;
 			tmp_item.amount = 0;
-			for (i=0; i< qty; i++)
+			if( skill_id == GN_MIX_COOKING && temp_qty > 1 )
+			{	
+				if( rand()%10000 < make_per )
+					tmp_item.amount = 5 + rand()%5;
+			}
+			else
+			for( i = 0; i < qty; i++ )
 			{	//Apply quantity modifiers.
 				if (rand()%10000 < make_per || qty == 1)
 				{ //Success
@@ -14043,7 +14072,7 @@ int skill_produce_mix(struct map_session_data *sd, int skill_id, int nameid, int
 //		log_produce(sd,nameid,slot1,slot2,slot3,0);
 //TODO update PICKLOG
 
-	if(equip){
+	if( equip && skill_id != GN_CHANGEMATERIAL ){
 		clif_produceeffect(sd,1,nameid);
 		clif_misceffect(&sd->bl,2);
 	} else {
@@ -14253,6 +14282,53 @@ int skill_select_menu(struct map_session_data *sd,int flag,int skill_id)
 	lv = min(lv,sd->status.skill[skill_id].lv);
 	prob = (aslvl == 10) ? 15 : (32 - 2 * aslvl); 
 	sc_start4(&sd->bl,SC__AUTOSHADOWSPELL,100,id,lv,prob,0,skill_get_time(SC_AUTOSHADOWSPELL,aslvl));
+	return 0;
+}
+
+int skill_changematerial(struct map_session_data *sd, int n, unsigned short *item_list)
+{
+	int i, j, k, c, p, nameid, amount;
+	
+	nullpo_ret(sd);
+	nullpo_ret(item_list);
+
+	for( i = 0; i < MAX_SKILL_PRODUCE_DB; i++ )
+	{
+		if( skill_produce_db[i].itemlv == 26 )
+		{
+			p = 0;
+			do
+			{
+				c = 0;
+
+				for( j = 0; j < MAX_PRODUCE_RESOURCE; j++ )
+				{
+					if( skill_produce_db[i].mat_id[j] > 0 )
+					{
+						for( k = 0; k < n; k++ )
+						{
+							int idx = item_list[k*2+0]-2;
+							nameid = sd->status.inventory[idx].nameid;
+							amount = item_list[k*2+1];
+
+							if( nameid == skill_produce_db[i].mat_id[j] && (amount-p*skill_produce_db[i].mat_amount[j]) >= skill_produce_db[i].mat_amount[j] )
+								c++; 
+						}
+					}
+					else
+						break;	
+				}
+				p++;
+			} while(n == j && c == n);
+			p--;
+			if ( p > 0 )
+			{
+				skill_produce_mix(sd,GN_CHANGEMATERIAL,skill_produce_db[i].nameid,0,0,0,p);
+				return 1;
+			}
+		}
+	}
+
 	return 0;
 }
 
