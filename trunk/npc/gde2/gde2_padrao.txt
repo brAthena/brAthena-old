@@ -12,7 +12,7 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 2.2/1.2                                |
+// | Versões eA/brA: 0/1.2                                  |
 // |--------------------------------------------------------|
 // | Descrição: Castelo 2 - GdE SE                          |
 // |--------------------------------------------------------|
@@ -21,6 +21,7 @@
 // | 1.1 Script Otimizado [Mark]                            |
 // | - Criação de 1 script para funcionamento de toda Gde2  |
 // | 1.2 Corrigida função Estado_Runa [Mark]                |
+// | 1.3 Atualizado com a rev14833 do eA [Lord]             |
 // \________________________________________________________/
 
 -	script	Gde2_Gerente::Gde2_Gerente	-1,{
@@ -1705,7 +1706,7 @@ OnDisable:
 			mes "comercial depois disso.";
 			close;
 		}
-		if (GetCastleData(strnpcinfo(2),4) == 2) {
+		if (GetCastleData(strnpcinfo(2),4) >= 2) {
 			mes "[ Steward ]";
 			mes "Você já fez dois";
 			mes "investimentos hoje, então você";
@@ -1731,6 +1732,14 @@ OnDisable:
 		next;
 		switch(select("Investir no comércio:Cancelar")) {
 		case 1:
+			if (GetCastleData(strnpcinfo(2),4) >= 2) {
+				mes "[ Steward ]";
+				mes "Você já fez dois";
+				mes "investimentos hoje, então você";
+				mes "tem que esperar até amanhã";
+				mes "para fazer outro investimento.";
+				close;
+			}
 			if (Zeny < .@eco_invest) {
 				mes "[ Steward ]";
 				mes "Desculpe, Mestre.";
@@ -1799,7 +1808,7 @@ OnDisable:
 			mes "não pode ser aumentada.";
 			close;
 		}
-		if (GetCastleData(strnpcinfo(2),5) == 2) {
+		if (GetCastleData(strnpcinfo(2),5) >= 2) {
 			mes "Mestre, você já";
 			mes "investiu duas vezes";
 			mes "hoje. Você terá que esperar";
@@ -1823,6 +1832,14 @@ OnDisable:
 		next;
 		switch(select("Investir em defesa:Cancelar")) {
 		case 1:
+			if (GetCastleData(strnpcinfo(2),5) >= 2) {
+				mes "Mestre, você já";
+				mes "investiu duas vezes";
+				mes "hoje. Você terá que esperar";
+				mes "até amanhã se realmente";
+				mes "deseja aumentar nossas defesas.";
+				close;
+			}
 			if (Zeny < .@def_invest) {
 				mes "[ Steward ]";
 				mes "Desculpa, Mestre.";
