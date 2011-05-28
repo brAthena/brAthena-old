@@ -46,6 +46,12 @@
 //PILE BUNKER
 #define ITEMID_PILE_BUNKER 1549
 
+//Flame Thrower
+#define ITEMID_FLAME_THROWER 2139
+
+//Liquid Condensed Bullet
+#define ITEMID_LIQUID_CONDENSED_BULLET 6147
+
 struct item_data {
 	int nameid;
 	char name[ITEM_NAME_LENGTH],jname[ITEM_NAME_LENGTH];

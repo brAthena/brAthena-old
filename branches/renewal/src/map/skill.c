@@ -1121,6 +1121,13 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 				status_change_end( bl, SC_BERKANA, INVALID_TIMER );
 			}
 		break;
+	case NC_FLAMELAUNCHER:
+		sc_start4(bl,SC_BURNING,50+10*skilllv,skilllv,1000,src->id,0,skill_get_time(skillid,skilllv));
+		break;
+	case NC_COLDSLOWER:
+		sc_start(bl,SC_FREEZING,20+10*skilllv,skilllv,skill_get_time2(skillid,skilllv));
+		sc_start(bl,SC_FREEZE,10*skilllv,skilllv,skill_get_time2(skillid,skilllv));
+		break;
 	case LG_MOONSLASHER:
 		rate = 32 + 8 * skilllv;
 		if( rand()%100 < rate && dstsd ) // Uses skill_addtimerskill to avoid damage and setsit packet overlaping. Officially clif_setsit is received about 500 ms after damage packet.
@@ -3191,6 +3198,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case MA_SHARPSHOOTING:
 	case NJ_KAMAITACHI:
 	case LG_CANNONSPEAR:
+	case NC_FLAMELAUNCHER:
 		//It won't shoot through walls since on castend there has to be a direct
 		//line of sight between caster and target.
 		skill_area_temp[1] = bl->id;
@@ -8253,6 +8261,7 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 	case SC_MANHOLE:
 	case SC_MAELSTROM:
 	case SC_CHAOSPANIC:
+	case NC_COLDSLOWER:
 	case GN_THORNS_TRAP:
 	case GN_WALLOFTHORN:
 	case GN_DEMONIC_FIRE:
@@ -11062,6 +11071,20 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 		break;
 	case NC_PILEBUNKER:
 		if( !pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_PILE_BUNKER) )
+			{
+			clif_skill_fail(sd,skill,0,0,0);
+			return 0;
+			}
+		break;
+	case NC_FLAMELAUNCHER:
+		if( !pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_FLAME_THROWER ) )
+			{
+			clif_skill_fail(sd,skill,0,0,0);
+			return 0;
+			}
+		break;
+	case NC_COLDSLOWER:
+		if( !pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_MAGIC_GEAR_FUEL )|| !pc_search_inventory(sd, ITEMID_LIQUID_CONDENSED_BULLET ) )
 			{
 			clif_skill_fail(sd,skill,0,0,0);
 			return 0;

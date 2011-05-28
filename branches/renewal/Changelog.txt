@@ -9,6 +9,13 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0556 - 28/05/2011 [MiTh]
+	* Adicionadas as habilidades:
+	- NC_VULCANARM (Metralhadora)
+	- NC_FLAMELAUNCHER (Lança Chamas)
+	- NC_COLDSLOWER (Gás Criogênico)
+	* Adicionados algumas referencias a itens em itemdb.h
+
 	r0555 - 28/05/2011 [Protimus]
 	* Adicionadas as habilidades:
 	- GN_MIX_COOKING (Culinária Avançada).
