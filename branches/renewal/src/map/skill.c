@@ -11675,9 +11675,9 @@ struct skill_condition skill_get_requirement(struct map_session_data* sd, short 
 	return req;
 }
 
-/*==========================================
- * Does cast-time reductions based on dex, item bonuses and config setting
- *------------------------------------------*/
+/*============================================================================
+ * Tempo de conjuração fixo e variável com base na renovação [Protimus & brn0]
+ *--------------------------------------------------------------------------*/
 int skill_castfix (struct block_list *bl, int skill_id, int skill_lv)
 {
 	int time = 0, cast_fixo_reduct=0, base_cast = skill_get_cast(skill_id, skill_lv);
@@ -11694,7 +11694,7 @@ int skill_castfix (struct block_list *bl, int skill_id, int skill_lv)
 	if((time=(int)((float)(1 - (stat_reduct>0 ? stat_reduct:0)) * base_cast * 4/5)) < 0)
 		time = 0;
 
-	// calculate cast time reduced by item/card bonuses
+	// Tempo de cast para itens, cartas e bônus.
 	if( !(skill_get_castnodex(skill_id, skill_lv)&4) && sd )
 	{
 		int i;
@@ -11711,8 +11711,6 @@ int skill_castfix (struct block_list *bl, int skill_id, int skill_lv)
 	}
 
 	if( !(skill_get_castnodex(skill_id, skill_lv)&2) && sd && sc){
-		if(sc->data[SC_SECRAMENT])
-			cast_fixo_reduct += sc->data[SC_SECRAMENT]->val2;
 		if(sc->data[SC_FREEZING])
 			cast_fixo_reduct -= 50;
 		if(sc->data[SC__LAZINESS])
@@ -11721,21 +11719,24 @@ int skill_castfix (struct block_list *bl, int skill_id, int skill_lv)
 
 	if(sd && pc_checkskill(sd, WL_RADIUS) && skill_id >= WL_WHITEIMPRISON && skill_id <= WL_FREEZE_SP)
 		cast_fixo_reduct = max(cast_fixo_reduct,5+5*pc_checkskill(sd,WL_RADIUS));
+		
+	if( sc->data[SC_SECRAMENT] && sc->data[SC_SECRAMENT]->val2 > cast_fixo_reduct )
+	cast_fixo_reduct = sc->data[SC_SECRAMENT]->val2;
 	
 	time += base_cast*(100-cast_fixo_reduct)/500;
 
-	// config cast time multiplier
+	// Battleconfig para multiplicador do tempo de conjuração.
 	if (battle_config.cast_rate != 100)
 		time = time * battle_config.cast_rate / 100;
 
-	// return final cast time
+	// Retorno do tempo de conjuração final.
 	return (time > 0) ? time : 0;
 }
 
 
-/*==========================================
- * Does cast-time reductions based on sc data.
- *------------------------------------------*/
+/*====================================================================
+ * Tempo de cast variável através de SC's (status changes). [Protimus]
+ *------------------------------------------------------------------*/
 int skill_castfix_sc (struct block_list *bl, int time)
 {
 	struct status_change *sc = status_get_sc(bl);

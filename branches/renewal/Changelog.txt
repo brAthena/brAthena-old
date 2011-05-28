@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0559 - 28/05/2011 [Protimus]
+	* Modificações em habilidades:
+	- Sacramentum: Corrigida redução do tempo de conjuração da habilidade.
+	* Reorganizado e comentada função de tempo de conjuração (cast) conforme renovação.
+
 	r0558 - 28/05/2011 [Protimus]
 	* Adicionada a habilidade:
 	- GN_CHANGEMATERIAL (Reação Alquímica).
