@@ -2133,6 +2133,12 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					else
 						skillratio += 400 + 100*skill_lv;
 					break;
+				case SR_RAMPAGEBLASTER:
+					if(sc && sc->data[SC_EXPLOSIONSPIRITS])
+						skillratio += 40*skill_lv*(sd ? sd->spiritball_old:5) - 100;
+					else
+						skillratio += 20*skill_lv*(sd ? sd->spiritball_old:5) - 100;
+					break;
 			}
 
 			ATK_RATE(skillratio);

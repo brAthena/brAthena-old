@@ -3118,6 +3118,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case LG_BANISHINGPOINT:
 	case LG_RAYOFGENESIS:
 	case GN_SLINGITEM_RANGEMELEEATK:
+	case SR_RAMPAGEBLASTER:
 		skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 
@@ -4904,12 +4905,13 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case GS_SPREADATTACK:
 	case RK_STORMBLAST:
 	case NC_AXETORNADO:
+	case SR_RAMPAGEBLASTER:
 		skill_area_temp[1] = 0;
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
 		map_foreachinrange(skill_area_sub, bl, skill_get_splash(skillid, skilllv), splash_target(src), 
 			src, skillid, skilllv, tick, flag|BCT_ENEMY|SD_SPLASH|1, skill_castend_damage_id);
 		break;
-		
+
 	case GC_COUNTERSLASH:
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
 		
@@ -7485,6 +7487,16 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			clif_skill_damage(src,bl,tick, status_get_amotion(src), 0, -30000, 1, skillid, skilllv, 6);
 			map_foreachinrange(skill_area_sub, bl, skill_get_splash(skillid, skilllv), splash_target(src), src, skillid, skilllv, tick, flag|BCT_ENEMY|BCT_SELF|SD_SPLASH|1, skill_castend_nodamage_id);
 		}
+		break;
+	case SR_POWERVELOCITY:
+		if(!dstsd)
+			break;
+		if(sd && dstsd->spiritball <= 5)
+			for(i=0;i <= 5;i++){
+				pc_addspiritball(dstsd, skill_get_time(MO_CALLSPIRITS, pc_checkskill(sd,MO_CALLSPIRITS)), i);
+				pc_delspiritball(sd, sd->spiritball, 0);
+			}
+		clif_skill_nodamage(src, bl, skillid, skilllv, 1);
 		break;
 	case LG_INSPIRATION:
 		if( sd )
@@ -10667,6 +10679,7 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 		break;
 	case MO_FINGEROFFENSIVE:
 	case GS_FLING:
+	case SR_RAMPAGEBLASTER:
 		if( sd->spiritball > 0 && sd->spiritball < require.spiritball )
 			sd->spiritball_old = require.spiritball = sd->spiritball;
 		else
@@ -11638,6 +11651,9 @@ struct skill_condition skill_get_requirement(struct map_session_data* sd, short 
 				} else if(sc->data[SC_RAISINGDRAGON])
 					req.spiritball = max((sd ? sd->spiritball:15),5);
 			}
+			break;
+		case SR_RAMPAGEBLASTER:
+			req.spiritball = sd->spiritball ? sd->spiritball:15;
 			break;
 		default:
 			if( sc && sc->data[SC_EDP] )

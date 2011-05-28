@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0557 - 28/05/2011 [brn0]
+	* Adicionada as habilidades:
+	- SR_RAMPAGEBLASTER (Explosão Espiritual).
+	- SR_POWERVELOCITY (Renúncia Espiritual).
+
 	r0556 - 28/05/2011 [MiTh]
 	* Adicionadas as habilidades:
 	- NC_VULCANARM (Metralhadora)
