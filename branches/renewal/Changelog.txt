@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+
+	r0565 - 29/05/2011 [Protimus]
+	* Modificações em habilidades:
+	- Onda de Choque: Valor de dano por level alterado conforme renovação.
+	- Lança das Mil Pontas: Adiciona bônus se conhecida a habilidade Perfurar em Espiral.
+
 	r0564 - 29/05/2011 [Protimus]
 	* Modificações em habilidades:
 	- Reação Alquímica: Remoção de condições desnecessárias para checagem de criação.

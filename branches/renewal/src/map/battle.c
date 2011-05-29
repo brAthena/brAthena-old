@@ -1935,6 +1935,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case RK_HUNDREDSPEAR:
 					skillratio += 500 + 40 * skill_lv; 
 					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
+					if(sd) skillratio += pc_checkskill(sd, ML_SPIRALPIERCE) * 10;
 					break;
 				case RK_IGNITIONBREAK: 
 					i = distance_bl(src,target) / 2;
@@ -1945,7 +1946,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					if( sstatus->rhw.ele == ELE_FIRE )	skillratio +=  skillratio / 2;
 					break;
 				case RK_SONICWAVE:
-					skillratio += 500 + 100 * skill_lv; 
+					skillratio += 400 + 100 * skill_lv; 
 					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
 					break;
 				case RK_WINDCUTTER: 
