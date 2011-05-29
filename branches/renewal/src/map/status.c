@@ -1268,7 +1268,7 @@ int status_check_skilluse(struct block_list *src, struct block_list *target, int
 
 	if(sc && sc->count)
 	{
-		if (sc->opt1 >0 && sc->opt1 != OPT1_BURNING)
+		if (sc->opt1>0 && sc->opt1!=OPT1_BURNING && skill_num!=SR_GENTLETOUCH_CURE)
 		{	//Stuned/Frozen/etc
 			if (flag != 1) //Can't cast, casted stuff can't damage.
 				return 0;

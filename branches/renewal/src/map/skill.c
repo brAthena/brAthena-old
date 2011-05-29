@@ -1078,6 +1078,9 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 		else if(dstmd && !is_boss(bl))
 			sc_start(bl, SC_STUN, 100, skilllv, 1000 + 1000*(rand()%3));
 		break;
+	case SR_GENTLETOUCH_QUIET:
+		sc_start(bl, SC_SILENCE, 2*skilllv, skilllv, skill_get_time(skillid, skilllv));
+		break;
 	case WM_SOUND_OF_DESTRUCTION:
 		if( rand()%100 < 5 + 5 * skilllv ) 
 		{
@@ -3131,6 +3134,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case GN_SLINGITEM_RANGEMELEEATK:
 	case SR_RAMPAGEBLASTER:
 	case SR_CRESCENTELBOW_AUTOSPELL:
+	case SR_GENTLETOUCH_QUIET:
 		skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 
@@ -7516,6 +7520,25 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			}
 		clif_skill_nodamage(src, bl, skillid, skilllv, 1);
 		break;
+	case SR_GENTLETOUCH_CURE:
+		if(status_isimmune(bl)){
+			clif_skill_nodamage(src,bl,skillid,skilllv,0);
+			break;
+		}
+		if((tsc && tsc->opt1) && rand()%100 < 5*skilllv) {
+			status_change_end(bl, SC_STONE, -1 );
+			status_change_end(bl, SC_FREEZE, -1 );
+			status_change_end(bl, SC_STUN, -1 );
+			status_change_end(bl, SC_POISON, -1 );
+			status_change_end(bl, SC_SILENCE, -1 );
+			status_change_end(bl, SC_BLIND, -1 );
+			status_change_end(bl, SC_HALLUCINATION, -1 );
+			status_change_end(bl, SC_BURNING, -1 );
+			status_change_end(bl, SC_FREEZING, -1 );
+		}
+		clif_skill_nodamage(src,bl,AL_HEAL,(120*skilllv + tstatus->max_hp*(2+skilllv)/100),1);
+		clif_skill_nodamage(src,bl,skillid,skilllv,1);
+		break;
 	case LG_INSPIRATION:
 		if( sd )
 		{
@@ -11869,18 +11892,18 @@ int skill_castfix (struct block_list *bl, int skill_id, int skill_lv)
 		
 	if( sc->data[SC_SECRAMENT] && sc->data[SC_SECRAMENT]->val2 > cast_fixo_reduct )
 	cast_fixo_reduct = sc->data[SC_SECRAMENT]->val2;
-	
-	if( sc && sc->data[SC_MANDRAGORA] && ( skill_id >= SM_BASH && skill_id <= RETURN_TO_ELDICASTES ) )
-		cast_fixo_reduct += 200;
-	
+
 	time += base_cast*(100-cast_fixo_reduct)/500;
 
 	// Battleconfig para multiplicador do tempo de conjuração.
 	if (battle_config.cast_rate != 100)
 		time = time * battle_config.cast_rate / 100;
-
+	if(time < 0)
+		time = 0;
+	if( sc && sc->data[SC_MANDRAGORA] && (skill_id >= SM_BASH && skill_id <= RETURN_TO_ELDICASTES) )
+			time += 2000;
 	// Retorno do tempo de conjuração final.
-	return (time > 0) ? time : 0;
+	return time;
 }
 
 

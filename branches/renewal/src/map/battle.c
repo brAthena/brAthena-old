@@ -2181,6 +2181,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case SR_WINDMILL:
 					skillratio += 150;
 					break;
+				case SR_GENTLETOUCH_QUIET:
+					skillratio += 100*skill_lv - 100 + sstatus->dex;
+					break;
 			}
 
 			ATK_RATE(skillratio);
