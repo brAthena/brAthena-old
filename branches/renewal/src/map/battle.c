@@ -2139,6 +2139,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					else
 						skillratio += 20*skill_lv*(sd ? sd->spiritball_old:5) - 100;
 					break;
+				case SR_WINDMILL:
+					skillratio += 150;
+					break;
 			}
 
 			ATK_RATE(skillratio);
@@ -3642,7 +3645,10 @@ int battle_calc_return_damage(struct block_list *src, struct block_list *bl, int
 			rdamage += (*damage) / 100;
 			rdamage = cap_value(rdamage,1,max_damage);
 		}
-
+		if(sc && sc->data[SC_CRESCENTELBOW] && !(flag&BF_SKILL) && !is_boss(src) && rand()%100 < sc->data[SC_CRESCENTELBOW]->val2) {
+			rdamage += (int)((*damage) + (*damage)*status_get_hp(src)*0.0000215);
+			if(rdamage < 1) rdamage = 1;
+		}
 	} else {
 		if (sd && sd->long_weapon_damage_return)
 		{
@@ -3919,6 +3925,13 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 			}
 			else
 			{
+				if(tsc && tsc->data[SC_CRESCENTELBOW]) {
+					clif_skill_nodamage(target,target,SR_CRESCENTELBOW_AUTOSPELL,tsc->data[SC_CRESCENTELBOW]->val1,1);
+					skill_blown(target,src,skill_get_blewcount(SR_CRESCENTELBOW_AUTOSPELL,tsc->data[SC_CRESCENTELBOW]->val1),unit_getdir(src),0);
+					status_damage(NULL,target,rdamage/10,0,0,1);
+					clif_damage(target, target, tick, wd.amotion, wd.dmotion, rdamage/10, wd.div_ , wd.type, wd.damage2);
+					status_change_end(target, SC_CRESCENTELBOW, INVALID_TIMER);
+				}
 				rdelay = clif_damage(src, src, tick, wd.amotion, sstatus->dmotion, rdamage, 1, 4, 0);
 				//Use Reflect Shield to signal this kind of skill trigger. [Skotlex]
 				skill_additional_effect(target,src,CR_REFLECTSHIELD,1,BF_WEAPON|BF_SHORT|BF_NORMAL,ATK_DEF,tick);

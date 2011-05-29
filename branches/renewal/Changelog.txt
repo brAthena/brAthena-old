@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0561 - 28/05/2011 [brn0]
+	* Adicionadas as habilidades:
+	- SR_WINDMILL (Rasteira).
+	- SR_CRESCENTELBOW (Cotovelada Ascendente).
+
 	r0560 - 28/05/2011 [Protimus]
 	* Modificações em habilidades:
 	- Grito da Mandragora: Corrigida redução do tempo de conjuração após efeito da habilidade.

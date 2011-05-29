@@ -1072,6 +1072,12 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 		if( dstmd && !(dstmd->status.mode&MD_BOSS) )
 			sc_start2(bl,SC_ELEMENTALCHANGE,100,skilllv,skill_get_ele(skillid,skilllv),skill_get_time2(skillid,skilllv));
 		break;
+	case SR_WINDMILL:
+		if(dstsd)
+			skill_addtimerskill(src,tick+status_get_amotion(src),bl->id,0,0,skillid,skilllv,BF_WEAPON,0);
+		else if(dstmd && !is_boss(bl))
+			sc_start(bl, SC_STUN, 100, skilllv, 1000 + 1000*(rand()%3));
+		break;
 	case WM_SOUND_OF_DESTRUCTION:
 		if( rand()%100 < 5 + 5 * skilllv ) 
 		{
@@ -2804,6 +2810,7 @@ static int skill_timerskill(int tid, unsigned int tick, int id, intptr data)
 					}
 					break;
 				case LG_MOONSLASHER:
+				case SR_WINDMILL:
 					if( target->type == BL_PC )
 					{
 						struct map_session_data *tsd = BL_CAST(BL_PC,target);
@@ -3119,6 +3126,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case LG_RAYOFGENESIS:
 	case GN_SLINGITEM_RANGEMELEEATK:
 	case SR_RAMPAGEBLASTER:
+	case SR_CRESCENTELBOW_AUTOSPELL:
 		skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 
@@ -3342,6 +3350,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case LG_EARTHDRIVE:
 	case GN_CART_TORNADO:
 	case GN_CARTCANNON:
+	case SR_WINDMILL:
 		if( flag&1 )
 		{	//Recursive invocation
 			// skill_area_temp[0] holds number of targets in area
@@ -4593,6 +4602,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case NC_ACCELERATION:
 	case WL_RECOGNIZEDSPELL:
 	case GN_CARTBOOST:
+	case SR_CRESCENTELBOW:
 		clif_skill_nodamage(src,bl,skillid,skilllv,
 			sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv)));
 
@@ -4913,9 +4923,8 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		break;
 
 	case GC_COUNTERSLASH:
-		clif_skill_nodamage(src,bl,skillid,skilllv,1);
-		
 	case GN_CART_TORNADO:
+	case SR_WINDMILL:
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
 
 	case NPC_EARTHQUAKE:
@@ -11132,7 +11141,12 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 		else if( skill_check_pc_partner(sd,skill,&lv,skill_get_range(skill,lv),0) < 1 )
 			return 0;
 		break;
-
+	case SR_CRESCENTELBOW:
+		if(sc && sc->data[SC_CRESCENTELBOW]) {
+			clif_skill_fail(sd,skill,0,0,0);
+			return 0;
+		}
+		break;
 	}
 
 	switch(require.state) {
