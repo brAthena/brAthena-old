@@ -1203,6 +1203,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			case CR_SHIELDBOOMERANG:
 			case PA_SHIELDCHAIN:
 			case LG_EARTHDRIVE:
+			case LG_SHIELDPRESS:
 				flag.weapon = 0;
 				break;
 
@@ -1531,6 +1532,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			case CR_SHIELDBOOMERANG:
 			case PA_SHIELDCHAIN:
 			case LG_EARTHDRIVE:
+			case LG_SHIELDPRESS:
 				if (sd) {
 					short index = sd->equip_index[EQI_HAND_L];
 					if (index >= 0 &&
@@ -2087,6 +2089,28 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case LG_EARTHDRIVE:
 					skillratio += 100 + 100 * skill_lv;
 					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
+					break;
+				case LG_SHIELDPRESS:
+					skillratio += 100 + 150 * skill_lv;
+					if( sc && sc->data[SC_GLOOMYDAY_SK] )
+						skillratio += 80 + (5 * sc->data[SC_GLOOMYDAY_SK]->val1);
+					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
+					break;
+				case LG_SHIELDSPELL:
+					if( wflag&1 )
+					{
+						skillratio += 200;
+						if( sd )
+						{
+							struct item_data *shield_data = sd->inventory_data[sd->equip_index[EQI_HAND_L]];
+							if( shield_data )
+								skillratio *= shield_data->def;
+						}
+						else
+							skillratio *= 9;
+					}
+					else
+						skillratio += (sd) ? sd->shieldmdef * 20 : 1000;
 					break;
 				case GN_CART_TORNADO:
 					skillratio += 50 * skill_lv + pc_checkskill(sd, GN_REMODELING_CART) * 100 - 100;
@@ -3649,6 +3673,12 @@ int battle_calc_return_damage(struct block_list *src, struct block_list *bl, int
 			rdamage += (int)((*damage) + (*damage)*status_get_hp(src)*0.0000215);
 			if(rdamage < 1) rdamage = 1;
 		}
+		if( sc && sc->data[SC_SHIELDSPELL_DEF] && sc->data[SC_SHIELDSPELL_DEF]->val1 == 2 )
+		{
+			rdamage += (*damage) * sc->data[SC_SHIELDSPELL_DEF]->val2 / 100;
+			rdamage = cap_value(rdamage,1,max_damage);
+		}
+
 	} else {
 		if (sd && sd->long_weapon_damage_return)
 		{

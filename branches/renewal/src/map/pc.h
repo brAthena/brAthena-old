@@ -161,6 +161,7 @@ struct map_session_data {
 		unsigned int perfect_hiding : 1; // [Valaris]
 		unsigned int no_knockback : 1;
 		unsigned int bonus_coma : 1;
+		unsigned checkshieldmdef : 1;
 	} special_state;
 	int login_id1, login_id2;
 	unsigned short class_;	//This is the internal job ID used by the map server to simplify comparisons/queries/etc. [Skotlex]
@@ -437,7 +438,8 @@ struct map_session_data {
 	int debug_line;
 	const char* debug_func;
 	int shadowform_id;
-	
+	short shieldmdef;
+
 	unsigned int bg_id;
 	unsigned short user_font;
 	

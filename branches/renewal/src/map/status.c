@@ -2223,21 +2223,19 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 					wa->ele = (sd->status.inventory[index].card[1]&0x0f);
 			}
 		}
-		else if(sd->inventory_data[index]->type == IT_ARMOR) {
-				int r = sd->status.inventory[index].refine;
-				do
-				{
-					status->def2 += r;
-					r -= 4;
-				}
-				while( r > 0 );
-				if(sd->inventory_data[index]->script) {
-					run_script(sd->inventory_data[index]->script,0,sd->bl.id,0);
-					if (!calculating) //Abort, run_script retriggered this. [Skotlex]
-						return 1;
-				}
+		else if(sd->inventory_data[index]->type == IT_ARMOR) 
+		{
+			refinedef += sd->status.inventory[index].refine * refinebonus[0][0];
+			if( sd->inventory_data[index]->script )
+			{
+				if( sd->status.inventory[index].equip == EQP_SHIELD )
+					sd->special_state.checkshieldmdef = 1;
+				run_script(sd->inventory_data[index]->script,0,sd->bl.id,0);
+				if( !calculating ) //Abort, run_script retriggered this. [Skotlex]
+					return 1;
 			}
 		}
+	}
 		
 	if(sd->equip_index[EQI_AMMO] >= 0){
 		index = sd->equip_index[EQI_AMMO];
@@ -3914,6 +3912,8 @@ static unsigned short status_calc_watk(struct block_list *bl, struct status_chan
 		watk -= watk * sc->data[SC__ENERVATION]->val2 / 100;
 	if( sc->data[SC_BANDING] && sc->data[SC_BANDING]->val2 > 0 )
 		watk += (10 + 10 * sc->data[SC_BANDING]->val1) * (sc->data[SC_BANDING]->val2);
+	if(sc->data[SC_SHIELDSPELL_DEF] && sc->data[SC_SHIELDSPELL_DEF]->val1 == 3)
+		watk += sc->data[SC_SHIELDSPELL_DEF]->val2;
 
 	return (unsigned short)cap_value(watk,0,USHRT_MAX);
 }
@@ -4159,6 +4159,8 @@ static signed short status_calc_def2(struct block_list *bl, struct status_change
 		def2 += (5 + sc->data[SC_BANDING]->val1) * (sc->data[SC_BANDING]->val2);
 	if( sc->data[SC_PRESTIGE] )
 		def2 += sc->data[SC_PRESTIGE]->val1;
+	if( sc->data[SC_SHIELDSPELL_REF] && sc->data[SC_SHIELDSPELL_REF]->val1 == 1 )
+		def2 += sc->data[SC_SHIELDSPELL_REF]->val2;
 
 	return (short)cap_value(def2,0,SHRT_MAX);
 }
@@ -5785,6 +5787,14 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 	case SC_REFLECTDAMAGE:
 		status_change_end(bl,SC_REFLECTSHIELD,-1);
 		break;
+	case SC_SHIELDSPELL_DEF:
+	case SC_SHIELDSPELL_MDEF:
+	case SC_SHIELDSPELL_REF:
+		status_change_end(bl,SC_MAGNIFICAT,-1);
+		status_change_end(bl,SC_SHIELDSPELL_DEF,-1);
+		status_change_end(bl,SC_SHIELDSPELL_MDEF,-1);
+		status_change_end(bl,SC_SHIELDSPELL_REF,-1);
+		break;
 
 	}
 
@@ -6952,6 +6962,11 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			val4 = tick / 1000;
 			tick = 1000;
 			status_change_clear_buffs(bl,3);
+			break;
+		case SC_SHIELDSPELL_DEF:
+		case SC_SHIELDSPELL_MDEF:
+		case SC_SHIELDSPELL_REF:
+			val_flag |= 1|2;
 			break;
 		case SC_GN_CARTBOOST:
 			if( val1 < 3 )
