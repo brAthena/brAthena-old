@@ -3135,6 +3135,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case SR_RAMPAGEBLASTER:
 	case SR_CRESCENTELBOW_AUTOSPELL:
 	case SR_GENTLETOUCH_QUIET:
+	case SR_SKYNETBLOW:
 		skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 
@@ -4003,6 +4004,20 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 			skill_attack(BF_WEAPON, src, src, bl, skillid, skilllv, tick, flag|SD_LEVEL);
 		else
 			skill_addtimerskill(src, tick+300, bl->id, 0, 0, skillid, skilllv, BF_WEAPON, flag|SD_LEVEL|2);
+		break;
+	case SR_EARTHSHAKER:
+		if(flag&1) {
+			if( tsc && (tsc->data[SC_HIDING] || tsc->data[SC_CHASEWALK] || tsc->data[SC_CLOAKING] || tsc->data[SC_CLOAKINGEXCEED]) ) {
+				status_change_end(bl, SC_HIDING, -1);
+				status_change_end(bl, SC_CLOAKING, -1);
+				status_change_end(bl, SC_CHASEWALK, -1);
+				status_change_end(bl, SC_CLOAKINGEXCEED, -1);
+				skill_attack(BF_WEAPON, src, src, bl, skillid, skilllv*3+2, tick, flag);
+			} else
+				skill_attack(BF_WEAPON, src, src, bl, skillid, skilllv, tick, flag);
+		} else
+			map_foreachinrange(skill_area_sub, bl, skill_get_splash(skillid, skilllv), splash_target(src), src, skillid, skilllv, tick, flag|BCT_ENEMY|SD_SPLASH|1, skill_castend_damage_id);
+		clif_skill_damage(src, src, tick, status_get_amotion(src), 0, -30000, 1, skillid, skilllv, 6);
 		break;
 	case 0:
 		if(sd) {
@@ -4929,6 +4944,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case RK_STORMBLAST:
 	case NC_AXETORNADO:
 	case SR_RAMPAGEBLASTER:
+	case SR_SKYNETBLOW:
 		skill_area_temp[1] = 0;
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
 		map_foreachinrange(skill_area_sub, bl, skill_get_splash(skillid, skilllv), splash_target(src), 
@@ -4938,6 +4954,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case GC_COUNTERSLASH:
 	case GN_CART_TORNADO:
 	case SR_WINDMILL:
+	case SR_EARTHSHAKER:
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
 
 	case NPC_EARTHQUAKE:

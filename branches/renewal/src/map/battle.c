@@ -2185,6 +2185,12 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case SR_GENTLETOUCH_QUIET:
 					skillratio += 100*skill_lv - 100 + sstatus->dex;
 					break;
+				case SR_SKYNETBLOW:
+					skillratio += 80*skill_lv - 100 + 4*sstatus->agi;
+					break;
+				case SR_EARTHSHAKER:
+					skillratio += 50*skill_lv - 50;
+					break;
 			}
 
 			ATK_RATE(skillratio);
