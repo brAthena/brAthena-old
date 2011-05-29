@@ -13930,9 +13930,9 @@ int skill_produce_mix(struct map_session_data *sd, int skill_id, int nameid, int
 		}while( j>=0 && x>0 );
 	}
 
-	if((equip=itemdb_isequip(nameid)))
+	if((equip = (itemdb_isequip(nameid) && skill_id != GN_CHANGEMATERIAL && skill_id != GN_MAKEBOMB )))
 		wlv = itemdb_wlv(nameid);
-	if( !equip || skill_id == GN_CHANGEMATERIAL )
+	if(!equip)
 	{
 		switch( skill_id )
 		{
@@ -14097,7 +14097,7 @@ int skill_produce_mix(struct map_session_data *sd, int skill_id, int nameid, int
 		tmp_item.nameid = nameid;
 		tmp_item.amount = 1;
 		tmp_item.identify = 1;
-		if( equip && skill_id != GN_CHANGEMATERIAL ){
+		if(equip){
 			tmp_item.card[0] = CARD0_FORGE;
 			tmp_item.card[1] = ((sc*5)<<8)+ele;
 			tmp_item.card[2] = GetWord(sd->status.char_id,0); // CharId
@@ -14146,7 +14146,7 @@ int skill_produce_mix(struct map_session_data *sd, int skill_id, int nameid, int
 //			log_produce(sd,nameid,slot1,slot2,slot3,1);
 //TODO update PICKLOG
 
-		if( equip && skill_id != GN_CHANGEMATERIAL ){
+		if(equip){
 			clif_produceeffect(sd,0,nameid);
 			clif_misceffect(&sd->bl,3);
 			if(itemdb_wlv(nameid) >= 3 && ((ele? 1 : 0) + sc) >= 3) // Fame point system [DracoRPG]
@@ -14246,7 +14246,7 @@ int skill_produce_mix(struct map_session_data *sd, int skill_id, int nameid, int
 //		log_produce(sd,nameid,slot1,slot2,slot3,0);
 //TODO update PICKLOG
 
-	if( equip && skill_id != GN_CHANGEMATERIAL ){
+	if(equip){
 		clif_produceeffect(sd,1,nameid);
 		clif_misceffect(&sd->bl,2);
 	} else {

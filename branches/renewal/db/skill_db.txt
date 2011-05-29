@@ -1184,7 +1184,7 @@
 2458,0,6,4,1,0x01,0,3,1,yes,0,0,0,none,0,		SO_SUMMON_AQUA,Invocar Varuna
 2459,0,6,4,4,0x01,0,3,1,yes,0,0,0,none,0,		SO_SUMMON_VENTUS,Invocar Vayu
 2460,0,6,4,2,0x01,0,3,1,yes,0,0,0,none,0,		SO_SUMMON_TERA,Invocar Chandra
-2461,9,6,1,0,0x01,0,1,1,yes,0,0,0,none,0,		SO_EL_ACTION,Incitar Elemental
+2461,5,6,1,0,0x01,0,1,1,yes,0,0,0,none,0,		SO_EL_ACTION,Incitar Elemental
 2462,0,6,4,0,0x01,0,2,1,no,0,0,0,none,0,		SO_EL_ANALYSIS,Análise Elemental
 2463,0,0,0,0,0,0,5,0,no,0,0,0,none,0,			SO_EL_SYMPATHY,Empatia Elemental
 2464,0,6,4,0,0x01,0,1,1,no,0,0,0,none,0,		SO_EL_CURE,Troca Espiritual
@@ -1257,6 +1257,36 @@
 8014,0,6,4,0,0x1,0,5,0,no,0,0,0,none,0,		HVAN_CHAOTIC,Bênção Caótica
 8015,0,0,0,0,0x1,0,5,0,no,0,0,0,none,0,		HVAN_INSTRUCT,Mudança de Planos
 8016,4,6,4,-1,0xD2,4,3,1,no,0,0,0,misc,0,		HVAN_EXPLOSION,Autodestruição
+//================================================================
+// Homunculos Bioquímico
+//================================================================
+8017,0,0,0,0,0,0,1,0,no,0,0,0,none,0,		MUTATION_BASEJOB,Mutation Base Job
+8018,9,0,0,0,0,0,5,0,no,0,0,0,none,0,		MH_SUMMON_LEGION,Summon Legion
+8019,5,0,0,0,0,0,5,0,no,0,0,0,none,0,		MH_NEEDLE_OF_PARALYZE,Needle of Paralyze
+8020,5,0,0,0,0,0,5,0,no,0,0,0,none,0,		MH_POISON_MIST,Poison Mist
+8021,0,0,0,0,0,0,5,0,no,0,0,0,none,0,		MH_PAIN_KILLER,Pain Killer
+8022,0,0,0,0,0,0,5,0,no,0,0,0,none,0,		MH_LIGHT_OF_REGENE,Light of Regene
+8023,0,0,0,0,0,0,5,0,no,0,0,0,none,0,		MH_OVERED_BOOST,Overed Boost
+8024,7,0,0,0,0,0,5,0,no,0,0,0,none,0,		MH_ERASER_CUTTER,Eraser Cutter
+8025,7,0,0,0,0,0,5,0,no,0,0,0,none,0,		MH_XENO_SLASHER,Xeno Slasher
+8026,5:5:7:7:9,0,0,0,0,0,5,0,no,0,0,0,none,0,	MH_SILENT_BREEZE,Silent Breeze
+8027,0,0,0,0,0,0,1,0,no,0,0,0,none,0,		MH_STYLE_CHANGE,Style Change
+8028,0,0,0,0,0,0,5,0,no,0,0,0,none,0,		MH_SONIC_CRAW,Sonic Claw
+8029,0,0,0,0,0,0,5,0,no,0,0,0,none,0,		MH_SILVERVEIN_RUSH,Silver Bain Rush
+8030,0,0,0,0,0,0,5,0,no,0,0,0,none,0,		MH_MIDNIGHT_FRENZY,Midnight Frenzy
+8031,5:6:7:8:9,0,0,0,0,0,5,0,no,0,0,0,none,0,	MH_STAHL_HORN,Steel Horn
+8032,0,0,0,0,0,0,5,0,no,0,0,0,none,0,		MH_GOLDENE_FERSE,Golden Heel
+8033,0,0,0,0,0,0,5,0,no,0,0,0,none,0,		MH_STEINWAND,Stone Wall
+8034,9,0,0,0,0,0,5,0,no,0,0,0,none,0,		MH_HEILIGE_STANGE,Holy Pole
+8035,0,0,0,0,0,0,5,0,no,0,0,0,none,0,		MH_ANGRIFFS_MODUS,Attack Mode
+8036,3:4:5:6:7,0,0,0,0,0,5,0,no,0,0,0,none,0,	MH_TINDER_BREAKER,Tinder Breaker
+8037,0,0,0,0,0,0,5,0,no,0,0,0,none,0,		MH_CBC,Continual Break Combo
+8038,0,0,0,0,0,0,5,0,no,0,0,0,none,0,		MH_EQC,Eternal Quick Combo
+8039,0,0,0,0,0,0,5,0,no,0,0,0,none,0,		MH_MAGMA_FLOW,Magma Flow
+8040,0,0,0,0,0,0,5,0,no,0,0,0,none,0,		MH_GRANITIC_ARMOR,Granitic Armor
+8041,7,0,0,0,0,0,5,0,no,0,0,0,none,0,		MH_LAVA_SLIDE,Lava Slide
+8042,0,0,0,0,0,0,5,0,no,0,0,0,none,0,		MH_PYROCLASTIC,Pyroclastic
+8043,7,0,0,0,0,0,5,0,no,0,0,0,none,0,		MH_VOLCANIC_ASH,Volcanic Ash
 //============================================================
 // Habilidades dos Mercenários de Aluguel
 //============================================================
@@ -1303,48 +1333,48 @@
 //============================================================
 // Habilidades das Invocações dos Feiticeiros
 //============================================================
-//8416,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_AQUAPLAY,
-//8420,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_BLAST,
-//8418,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_CHILLY_AIR,
-//8401,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_CIRCLE_OF_FIRE,
-//8417,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_COOLER,
-//8423,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_CURSED_SOIL,
-//8425,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_FIRE_ARROW,
-//8426,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_FIRE_BOMB,
-//8427,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_FIRE_BOMB_ATK,
-//8402,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_FIRE_CLOAK,
-//8403,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_FIRE_MANTLE,
-//8428,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_FIRE_WAVE,
-//8429,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_FIRE_WAVE_ATK,
-//8419,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_GUST,
-//8414,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_HEATER,
-//8435,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_HURRICANE,
-//8436,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_HURRICANE_ATK,
-//8430,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_ICE_NEEDLE,
-//8422,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_PETROLOGY,
-//8412,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_POWER_OF_GAIA,
-//8413,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_PYROTECHNIC,
-//8440,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_ROCK_CRUSHER,
-//8441,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_ROCK_CRUSHER_ATK,
-//8410,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_SOLID_SKIN,
-//8439,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_STONE_HAMMER,
-//8442,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_STONE_RAIN,
-//8411,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_STONE_SHIELD,
-//8433,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_TIDAL_WEAPON,
-//8415,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_TROPIC,
-//8437,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_TYPOON_MIS,
-//8438,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_TYPOON_MIS_ATK,
-//8424,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_UPHEAVAL,
-//8406,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_WATER_BARRIER,
-//8405,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_WATER_DROP,
-//8404,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_WATER_SCREEN,
-//8431,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_WATER_SCREW,
-//8432,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_WATER_SCREW_ATK,
-//8421,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_WILD_STORM,
-//8408,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_WIND_CURTAIN,
-//8434,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_WIND_SLASH,
-//8407,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_WIND_STEP,
-//8409,0,0,0,0,0,0,9,0,no,0,0,0,none,0		EL_ZEPHYR,
+8401,0,6,4,3,0,0,1,1,no,0,0,0,weapon,2,		EL_CIRCLE_OF_FIRE,Circle of Fire
+8402,0,6,4,0,0x1,0,1,1,no,0,0,0,none,0,		EL_FIRE_CLOAK,Fire Cloak
+8403,0,6,4,3,0,0,1,1,no,0,0,3,magic,2,		EL_FIRE_MANTLE,Fire Mantle
+8404,0,6,4,0,0x1,0,1,1,no,0,0,0,none,0,		EL_WATER_SCREEN,Water Screen
+8405,0,6,4,0,0x1,0,1,1,no,0,0,0,none,0,		EL_WATER_DROP,Water Drop
+8406,0,6,4,0,0x1,0,1,1,no,0,0,0,none,0,		EL_WATER_BARRIER,Water Barrier
+8407,0,6,4,0,0x1,0,1,1,no,0,0,0,none,5,		EL_WIND_STEP,Wind Step
+8408,0,6,4,0,0x1,0,1,1,no,0,0,0,none,0,		EL_WIND_CURTAIN,Wind Curtain
+8409,0,6,4,0,0x1,0,1,1,no,0,0,0,none,0,		EL_ZEPHYR,Zephyr
+8410,0,6,4,0,0x1,0,1,1,no,0,0,0,none,0,		EL_SOLID_SKIN,Solid Skin
+8411,0,6,4,0,0x1,0,1,1,no,0,0,0,none,0,		EL_STONE_SHIELD,Stone Shield
+8412,0,6,4,0,0x1,0,1,1,no,0,0,0,none,0,		EL_POWER_OF_GAIA,Power of Gaia
+8413,0,6,4,0,0x1,0,1,1,no,0,0,0,none,0,		EL_PYROTECHNIC,Pyrotechnic
+8414,0,6,4,0,0x1,0,1,1,no,0,0,0,none,0,		EL_HEATER,Heater
+8415,0,6,4,0,0x1,0,1,1,no,0,0,0,none,0,		EL_TROPIC,Tropic
+8416,0,6,4,0,0x1,0,1,1,no,0,0,0,none,0,		EL_AQUAPLAY,Aqua Play
+8417,0,6,4,0,0x1,0,1,1,no,0,0,0,none,0,		EL_COOLER,Cooler
+8418,0,6,4,0,0x1,0,1,1,no,0,0,0,none,0,		EL_CHILLY_AIR,Cool Air
+8419,0,6,4,0,0x1,0,1,1,no,0,0,0,none,0,		EL_GUST,Gust
+8420,0,6,4,0,0x1,0,1,1,no,0,0,0,none,0,		EL_BLAST,Blast
+8421,0,6,4,0,0x1,0,1,1,no,0,0,0,none,0,		EL_WILD_STORM,Wild Storm
+8422,0,6,4,0,0x1,0,1,1,no,0,0,0,none,0,		EL_PETROLOGY,Petrology
+8423,0,6,4,0,0x1,0,1,1,no,0,0,0,none,0,		EL_CURSED_SOIL,Cursed Soil
+8424,0,6,4,0,0x1,0,1,1,no,0,0,0,none,0,		EL_UPHEAVAL,Upheaval
+8425,6,6,1,3,0,0,1,1,no,0,0,0,magic,0,		EL_FIRE_ARROW,Fire Arrow
+8426,6,6,1,3,0,1,1,1,no,0,0,0,magic,0,		EL_FIRE_BOMB,Fire Bomb
+8427,6,6,1,3,0,1,1,1,no,0,0,0,weapon,0,		EL_FIRE_BOMB_ATK,Fire Bomb Attack
+8428,6,6,1,3,0,1,1,1,no,0,0,0,magic,0,		EL_FIRE_WAVE,Fire Wave
+8429,6,6,1,3,0,1,1,1,no,0,0,0,weapon,0,		EL_FIRE_WAVE_ATK,Fire Wave Attack
+8430,9,6,1,1,0,0,1,1,no,0,0,0,magic,0,		EL_ICE_NEEDLE,Ice Needle
+8431,9,6,1,1,0,1,1,1,no,0,0,0,magic,0,		EL_WATER_SCREW,Water Screw
+8432,9,6,1,1,0,1,1,1,no,0,0,0,weapon,0,		EL_WATER_SCREW_ATK,Water Screw Attack
+8433,9,6,1,1,0,1,1,1,no,0,0,0,weapon,0,		EL_TIDAL_WEAPON,Tidal Weapon
+8434,11,6,1,4,0,0,1,1,no,0,0,0,weapon,0,	EL_WIND_SLASH,Wind Slasher
+8435,11,6,1,4,0,1,1,1,no,0,0,0,weapon,0,	EL_HURRICANE,Hurricane Rage
+8436,7,6,1,4,0,0,1,1,no,0,0,0,magic,0,		EL_HURRICANE_ATK,Hurricane Rage Attack
+8437,11,6,1,4,0,1,1,1,no,0,0,0,weapon,0,	EL_TYPOON_MIS,Typhoon Missile
+8438,11,6,1,4,0,1,1,1,no,0,0,0,magic,0,		EL_TYPOON_MIS_ATK,Typhoon Missile Attack
+8439,5,6,1,2,0,0,1,1,no,0,0,0,weapon,0,		EL_STONE_HAMMER,Stone Hammer
+8440,3,6,1,2,0,1,1,1,no,0,0,0,weapon,0,		EL_ROCK_CRUSHER,Rock Launcher
+8441,5,6,1,2,0,1,1,1,no,0,0,0,magic,0,		EL_ROCK_CRUSHER_ATK,Rock Launcher Attack
+8442,9,6,1,2,0,1,1,-5,no,0,0,0,weapon,0,	EL_STONE_RAIN,Stone Rain
 //============================================================
 // Habilidades dos Clãs
 //============================================================

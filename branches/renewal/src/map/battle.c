@@ -3664,7 +3664,7 @@ int battle_calc_return_damage(struct block_list *src, struct block_list *bl, int
 			rdamage += (*damage) * sd->short_weapon_damage_return / 100;
 			if(rdamage < 1) rdamage = 1;
 		}
-		if( sc && sc->data[SC_DEATHBOUND] )
+		if( sc && sc->data[SC_DEATHBOUND] && !is_boss(src) )
 		{
 			int dir = map_calc_dir(bl,src->x,src->y),
 				t_dir = unit_getdir(bl), rd1 = 0;
@@ -3962,10 +3962,8 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 			skill_attack(skill_get_type(skillid), src, src, target, skillid, sc->data[SC_DUPLELIGHT]->val1, tick, SD_LEVEL);
 		}
 		
-		if( tsc && tsc->data[SC_DEATHBOUND] && (sstatus->mode&MD_BOSS)  )
-			rdamage = 0;
-		else
-			rdamage = battle_calc_return_damage(src, target, &damage, wd.flag);
+		rdamage = battle_calc_return_damage(src, target, &damage, wd.flag);
+		
 		if( rdamage > 0 )
 		{
 			if( tsc && tsc->data[SC_REFLECTDAMAGE] )
