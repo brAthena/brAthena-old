@@ -3138,6 +3138,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case NC_BOOSTKNUCKLE:
 	case NC_PILEBUNKER:
 	case NC_VULCANARM:
+	case NC_ARMSCANNON:
 		if (sd) pc_overheat(sd,1);
 		skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
 		break;
@@ -11241,6 +11242,13 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 		break;
 	case NC_COLDSLOWER:
 		if( !pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_MAGIC_GEAR_FUEL )|| !pc_search_inventory(sd, ITEMID_LIQUID_CONDENSED_BULLET ) )
+			{
+			clif_skill_fail(sd,skill,0,0,0);
+			return 0;
+			}
+		break;
+	case NC_ARMSCANNON:
+		if( !pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_MAGIC_GEAR_FUEL ) )
 			{
 			clif_skill_fail(sd,skill,0,0,0);
 			return 0;

@@ -2039,7 +2039,22 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case NC_FLAMELAUNCHER:
 					skillratio += 300 + 300 * skill_lv;
 					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 100) / 20;
-					break;		
+					break;
+				case NC_ARMSCANNON:
+					switch(tstatus->size)
+					{
+						case 1://Medio
+							skillratio += skill_lv == 1 ? 500 : (600 + 200*skill_lv);
+							break;
+						case 2://Grande
+							skillratio += 200 + (400*skill_lv-1);
+							break;
+						default://Pequeno ou outros
+							skillratio += skill_lv == 1 ? 700 : (600 + 300*skill_lv);
+							break;
+					}
+					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 100) / 20;
+					break;
 				case WM_REVERBERATION_MELEE:
 					skillratio += 200 + 100 * pc_checkskill(sd, WM_REVERBERATION);
 					break;
@@ -2345,6 +2360,8 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				if((battle_check_undead(sstatus->race,sstatus->def_ele) || sstatus->race==RC_DEMON) && 
 					src->type == BL_MOB && (skill=pc_checkskill(tsd,AB_EUCHARISTICA)) > 0)
 					vit_def += def2 * (skill/100);
+				if((skill = pc_checkskill(tsd, NC_MAINFRAME)) > 0 && pc_isriding(tsd,OPTION_MADO))
+					vit_def += skill > 2 ? (7 + skill * 4) : ( 1 + skill * 3 );
 			}
 			if (battle_config.weapon_defense_type) {
 				vit_def += def2*battle_config.weapon_defense_type;

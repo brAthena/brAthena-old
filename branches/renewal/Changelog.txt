@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0563
+	* Adicionadas as habilidades:
+	- NC_ARMSCANNON (Canhão)
+	- NC_MAINFRAME (Reforçar Estrutura)
+	
 	r0562 - 28/05/2011 [Mark]
 	* Adicionadas as habilidades:
 	- LG_SHIELDPRESS (Escudo Compressor)
