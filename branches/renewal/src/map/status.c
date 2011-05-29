@@ -2617,7 +2617,7 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 
 	if(pc_isriding(sd,OPTION_RIDING_DRAGON) && (sd->class_&JOBL_THIRD))
 		if ((skill=pc_checkskill(sd,RK_DRAGONTRAINING))>0) 
-			status->aspd_rate += (500-100 * skill);
+			status->aspd_rate += (600 + 100 * skill);
 
 	if(pc_isriding(sd,OPTION_MADO) && (sd->class_&JOBL_THIRD)
 		&& (skill = pc_checkskill(sd,NC_MADOLICENCE) > 0))
@@ -2640,8 +2640,8 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 		sd->max_weight += 2000*skill;
 	if(pc_isriding(sd,OPTION_RIDING) && pc_checkskill(sd,KN_RIDING)>0)
 		sd->max_weight += 10000; 
-	if(pc_isriding(sd,OPTION_RIDING_DRAGON) && (skill=pc_checkskill(sd,RK_DRAGONTRAINING))>0)
-		sd->max_weight += sd->max_weight * (30 + skill) / 100;
+	if(pc_isriding(sd,OPTION_RIDING_DRAGON) && pc_checkskill(sd,RK_DRAGONTRAINING)>0)
+		sd->max_weight += 2000*skill;
 	if(sd->sc.option&OPTION_MADO)
 		sd->max_weight += 20000;
 	if( sc->data[SC_KNOWLEDGE] )
