@@ -1239,11 +1239,6 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				if (!sd) wd.flag=(wd.flag&~(BF_RANGEMASK|BF_WEAPONMASK))|BF_LONG|BF_MISC;
 				break;
 
-			case NJ_ISSEN:
-				if(sc)
-					wd.div_ = (sc->data[SC_BUNSINJYUTSU] && sc->data[SC_BUNSINJYUTSU]->val2 > 0)?
-						(sc->data[SC_BUNSINJYUTSU]->val2 == 5)?-7:sc->data[SC_BUNSINJYUTSU]->val2:1;
-				break;
 		}
 	} else //Range for normal attacks.
 		wd.flag |= flag.arrow?BF_LONG:BF_SHORT;
@@ -1507,9 +1502,11 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 		switch (skill_num)
 		{	//Calc base damage according to skill
 			case NJ_ISSEN:
-				wd.damage = 40*sstatus->str +skill_lv*(sstatus->hp/10 + 35);
+				wd.damage = 40 * (sstatus->batk + sstatus->watk) + sstatus->hp * skill_lv * 8/100;
 				wd.damage2 = 0;
-				status_set_hp(src, 1, 0);
+				status_set_hp(src, sstatus->hp /100, 0);
+				if(sc && sc->data[SC_BUNSINJYUTSU] && sc->data[SC_BUNSINJYUTSU]->val2 > 0)
+					ATK_ADD(wd.damage * sc->data[SC_BUNSINJYUTSU]->val2 * 25/100);
 				break;
 			case PA_SACRIFICE:
 				wd.damage = sstatus->max_hp* 9/100;
@@ -2218,12 +2215,6 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					break;
 				case NJ_SYURIKEN:
 					ATK_ADD(4*skill_lv);
-					break;
-				case NJ_ISSEN:
-					ATK_RATE(4000); 
-					ATK_ADD(sstatus->hp*80/100);
-					if(sc && sc->data[SC_BUNSINJYUTSU] && sc->data[SC_BUNSINJYUTSU]->val2 > 0)
-						ATK_ADDRATE(sc->data[SC_BUNSINJYUTSU]->val2*25);
 					break;
 				case RA_WUGDASH:
 				case RA_WUGSTRIKE:

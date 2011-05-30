@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0570 - 30/05/2011 [Mark]
+	* Corrigida habilidade NJ_ISSEN (Ataque Mortal)
+	- Calculo da habilidade atualizado conforme renewal.
+	- Habilidade estava dando um dano absurdo.
+
 	r0569 - 29/05/2011 [CarlosHenrq]
 	* Corrigida habilidade NJ_RAIGEKISAI (Descarga Elétrica)
 	- A mesma estava sendo aplicada em área com dano nulo.
