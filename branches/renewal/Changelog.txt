@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0571 - 30/05/2011 [Mark]
+	* Corrigida habilidade NJ_HUUMA (Arremessar Shuriken Huuma)
+	- Habilidade estava com alvo em área e não aplicando dano.
+
 	r0570 - 30/05/2011 [Mark]
 	* Corrigida habilidade NJ_ISSEN (Ataque Mortal)
 	- Calculo da habilidade atualizado conforme renewal.
