@@ -5844,6 +5844,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			case SC__LAZINESS:
 			case SC__WEAKNESS:
 			case SC__UNLUCKY:
+			case SC_CHAOS:
 				return 0;
 			case SC_COMBO:
 			case SC_DANCING:
@@ -7038,6 +7039,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_FEAR:
 		case SC_ELECTRICSHOCKER:
 		case SC__MANHOLE:
+		case SC_CHAOS:
 			unit_stop_walking(bl,1);
 		break;
 		case SC_HIDING:
@@ -7068,7 +7070,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_POISON:       sc->opt2 |= OPT2_POISON;       break;
 		case SC_CURSE:        sc->opt2 |= OPT2_CURSE;        break;
 		case SC_SILENCE:      sc->opt2 |= OPT2_SILENCE;      break;
-		case SC_SIGNUMCRUCIS: sc->opt2 |= OPT2_SIGNUMCRUCIS; break;
+		case SC_SIGNUMCRUCIS: case SC_CHAOS: sc->opt2 |= OPT2_SIGNUMCRUCIS; break;
 		case SC_BLIND:        sc->opt2 |= OPT2_BLIND;        break;
 		case SC_ANGELUS:      sc->opt2 |= OPT2_ANGELUS;      break;
 		case SC_BLEEDING:     sc->opt2 |= OPT2_BLEEDING;     break;
@@ -7798,6 +7800,7 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 		sc->opt2 &= ~OPT2_DPOISON;
 		break;
 	case SC_SIGNUMCRUCIS:
+	case SC_CHAOS:
 		sc->opt2 &= ~OPT2_SIGNUMCRUCIS;
 		break;
 

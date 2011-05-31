@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0575 - 31/05/2011 [Mark]
+	* Corrigida habilidade SC_CHAOSPANIC (Símbolo do Caos)
+	- Não estava mudando direção do personagem nem do mob.
+
 	r0574 - 30/05/2011 [Mark]
 	* Adicionada a habilidade:
 	- LG_OVERBRAND (Lança do Destino)

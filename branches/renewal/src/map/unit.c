@@ -306,7 +306,7 @@ int unit_walktoxy( struct block_list *bl, short x, short y, int flag)
 	ud->to_y = y;
 
 	sc = status_get_sc(bl);
-	if (sc && sc->data[SC_CONFUSION]) //Randomize the target position
+	if (sc && (sc->data[SC_CONFUSION] || sc->data[SC_CHAOS]) ) //Randomize the target position
 		map_random_dir(bl, &ud->to_x, &ud->to_y);
 
 	if(ud->walktimer != INVALID_TIMER) {
@@ -374,7 +374,7 @@ int unit_walktobl(struct block_list *bl, struct block_list *tbl, int range, int 
 	ud->state.attack_continue = flag&2?1:0; //Chase to attack.
 
 	sc = status_get_sc(bl);
-	if (sc && sc->data[SC_CONFUSION]) //Randomize the target position
+	if (sc && (sc->data[SC_CONFUSION] || sc->data[SC_CHAOS]) ) //Randomize the target position
 		map_random_dir(bl, &ud->to_x, &ud->to_y);
 
 	if(ud->walktimer != INVALID_TIMER) {
