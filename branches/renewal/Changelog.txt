@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0576 - 31/05/2011 [MiTh]
+	- Adicionada a habilidade NC_EMERGENCYCOOL (Resfriamento)
+
 	r0575 - 31/05/2011 [Mark]
 	* Corrigida habilidade SC_CHAOSPANIC (Símbolo do Caos)
 	- Não estava mudando direção do personagem nem do mob.

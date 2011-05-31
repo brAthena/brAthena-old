@@ -4975,6 +4975,12 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		map_foreachinrange(skill_area_sub, bl, skill_get_splash(skillid, skilllv), splash_target(src), 
 			src, skillid, skilllv, tick, flag|BCT_ENEMY|SD_SPLASH|1, skill_castend_damage_id);
 		break;
+		
+	case NC_EMERGENCYCOOL:
+		clif_skill_nodamage(src,bl,skillid,skilllv,1);
+		status_change_end(src,SC_OVERHEAT_LIMITPOINT,-1);
+		status_change_end(src,SC_OVERHEAT,-1);
+		break;
 
 	case GC_COUNTERSLASH:
 	case GN_CART_TORNADO:
