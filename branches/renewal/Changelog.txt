@@ -9,8 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0579 - 31/05/2011 [Protimus]
+	* Adicionado NPC Oficial para Venda de Runas da Renovação, usadas pelo Cavaleiro Rúnico.
+	- Necessária revisão.
+
 	r0578 - 31/05/2011 [Protimus]
-	* Adicionado NPC oficial de Montarias para 3rd Classes da Renovação.
+	* Adicionado NPC Oficial de Montarias para 3rd Classes da Renovação.
     - Aparentemente o NPC precisa de mais modificações, nos servidores oficiais, por isso ele foi melhorado.
     Porém é necessário revisar futuramente, caso mudem-o.
 
