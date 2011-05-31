@@ -2078,6 +2078,7 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 	//Skills that need be passed as a normal attack for the client to display correctly.
 	case HVAN_EXPLOSION:
 	case NPC_SELFDESTRUCTION:
+	case NC_SELFDESTRUCTION:
 		if(src->type==BL_PC)
 			dmg.blewcount = 10;
 		dmg.amotion = 0; //Disable delay or attack will do no damage since source is dead by the time it takes effect. [Skotlex]
@@ -3373,6 +3374,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case WM_REVERBERATION:
 	case WM_SOUND_OF_DESTRUCTION:
 	case NC_AXETORNADO:
+	case NC_SELFDESTRUCTION:
 	case RA_ARROWSTORM:
 	case RA_WUGDASH:
 	case LG_MOONSLASHER:
@@ -5805,6 +5807,13 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
 		skill_blown(src,bl,skill_get_blewcount(skillid,skilllv),abs((unit_getdir(bl) - 8)),0);
 		pc_delitem(sd,ITEMID_MAGIC_GEAR_FUEL,1,1,0);
+		break;
+
+	case NC_SELFDESTRUCTION:
+		pc_setoption(sd, sd->sc.option&~OPTION_MADO);
+		status_zap(src, 0, sd->status.sp);
+		clif_skill_nodamage(src, bl, skillid, skilllv, 1);
+		skill_castend_damage_id(src, src, skillid, skilllv, tick, flag);
 		break;
 
 	case TK_HIGHJUMP:
@@ -11333,6 +11342,20 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 		break;
 	case NC_ARMSCANNON:
 		if( !pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_MAGIC_GEAR_FUEL ) )
+			{
+			clif_skill_fail(sd,skill,0,0,0);
+			return 0;
+			}
+		break;
+	case NC_EMERGENCYCOOL:
+		if( !pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_COOLING_DEVICE ) )
+			{
+			clif_skill_fail(sd,skill,0,0,0);
+			return 0;
+			}
+		break;
+	case NC_SELFDESTRUCTION:
+		if( !pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_SUICIDAL_DEVICE ) )
 			{
 			clif_skill_fail(sd,skill,0,0,0);
 			return 0;

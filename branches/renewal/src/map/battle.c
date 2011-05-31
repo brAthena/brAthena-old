@@ -2053,6 +2053,11 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					}
 					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 100) / 20;
 					break;
+
+				case NC_SELFDESTRUCTION:
+					skillratio += sstatus->hp + sstatus->sp;
+					break;
+
 				case WM_REVERBERATION_MELEE:
 					skillratio += 200 + 100 * pc_checkskill(sd, WM_REVERBERATION);
 					break;
