@@ -9,7 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
-	r0578 - 31/05/2011 [MiTh]
+	r0578 - 31/05/2011 [Protimus]
+	* Adicionado NPC oficial de Montarias para 3rd Classes da Renovação.
+    - Aparentemente o NPC precisa de mais modificações, nos servidores oficiais, por isso ele foi melhorado.
+    Porém é necessário revisar futuramente, caso mudem-o.
+
+	r0577 - 31/05/2011 [MiTh]
 	* Adicionada a habilidade NC_SELFDESTRUCTION(Auto destruíção)
 	
 	r0576 - 31/05/2011 [MiTh]
