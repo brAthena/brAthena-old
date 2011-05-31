@@ -2121,6 +2121,10 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 	case GN_SLINGITEM_RANGEMELEEATK:
 		dmg.dmotion = clif_skill_damage(src,bl,tick,dmg.amotion,dmg.dmotion,damage,dmg.div_,GN_SLINGITEM,-2,6);
 		break;
+	case LG_OVERBRAND_BRANDISH:
+	case LG_OVERBRAND_PLUSATK:
+		dmg.dmotion = clif_skill_damage(src,bl,tick,dmg.amotion,dmg.dmotion,damage,dmg.div_,skillid,-1,5);
+		break;
 
 	default:
 		if( flag&SD_ANIMATION && dmg.div_ < 2 ) //Disabling skill animation doesn't works on multi-hit.
@@ -2257,6 +2261,7 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 			case SC_TRIANGLESHOT:
 			case GN_WALLOFTHORN:
 			case SR_KNUCKLEARROW:
+			case LG_OVERBRAND:
 				direction = unit_getdir(bl); // backward
 				break;
 		}
@@ -2268,6 +2273,18 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 				if(map_getcell(bl->m, bl->x+dir_x, bl->y+dir_y, CELL_CHKNOPASS) != 0)
 					skill_addtimerskill(src, tick + 300*((flag&2) ? 1:2), bl->id, 0, 0, skillid, skilllv, BF_WEAPON, flag|4);	
 			}
+		} 
+		else if( skillid == LG_OVERBRAND )
+		{
+			if( skill_blown(dsrc,bl,dmg.blewcount,direction,0) )
+			{
+				short dir_x, dir_y;
+				dir_x = dirx[(direction+4)%8];
+				dir_y = diry[(direction+4)%8];
+				if( map_getcell(bl->m, bl->x+dir_x, bl->y+dir_y, CELL_CHKNOPASS) != 0 )
+					skill_addtimerskill(src, tick + status_get_amotion(src), bl->id, 0, 0, LG_OVERBRAND_PLUSATK, skilllv, BF_WEAPON, flag );
+			} else
+				skill_addtimerskill(src, tick + status_get_amotion(src), bl->id, 0, 0, LG_OVERBRAND_PLUSATK, skilllv, BF_WEAPON, flag );
 		} else 
 			skill_blown(dsrc,bl,dmg.blewcount,direction,0);
 	}
@@ -2833,6 +2850,8 @@ static int skill_timerskill(int tid, unsigned int tick, int id, intptr data)
 						src, skl->skill_id, skl->skill_lv, 0, skl->flag|1|BCT_ENEMY, skill_castend_damage_id);
 					break;
 				case SR_KNUCKLEARROW:
+				case LG_OVERBRAND_BRANDISH:
+				case LG_OVERBRAND_PLUSATK:
 					skill_attack(BF_WEAPON, src, src, target, skl->skill_id, skl->skill_lv, tick, skl->flag|SD_LEVEL);
 					break;
 				default:
@@ -3948,6 +3967,12 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case LG_SHIELDSPELL:
 		// flag&1: Ataque Físico, flag&2: Ataque Mágico
 		skill_attack((flag&1)?BF_WEAPON:BF_MAGIC,src,src,bl,skillid,skilllv,tick,flag);
+		break;
+	case LG_OVERBRAND:
+		skill_attack(BF_WEAPON, src, src, bl, skillid, skilllv, tick, flag|SD_LEVEL);
+		break;
+	case LG_OVERBRAND_BRANDISH:
+		skill_addtimerskill(src, tick + status_get_amotion(src)*8/10, bl->id, 0, 0, skillid, skilllv, BF_WEAPON, flag|SD_LEVEL);
 		break;
 	case GN_SPORE_EXPLOSION:
 		if( flag&1 )
@@ -8814,7 +8839,20 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 		}
 		else if( sd ) clif_skill_fail(sd,skillid,0xa,0,0);
 		break;
-		
+
+	case LG_OVERBRAND:
+		{
+			int dir = map_calc_dir(src, x, y);
+			struct s_skill_nounit_layout  *layout;
+			layout = skill_get_nounit_layout(LG_OVERBRAND_BRANDISH,skilllv,src,x,y,dir);
+			for( i = 0; i < layout->count; i++ )
+				map_foreachincell(skill_area_sub, src->m, x+layout->dx[i], y+layout->dy[i], BL_CHAR, src, LG_OVERBRAND_BRANDISH, skilllv, tick, flag|BCT_ENEMY,skill_castend_damage_id);
+			layout = skill_get_nounit_layout(skillid,skilllv,src,x,y,dir);
+			for( i = 0; i < layout->count; i++ )
+				map_foreachincell(skill_area_sub, src->m, x+layout->dx[i], y+layout->dy[i], BL_CHAR, src, skillid, skilllv, tick, flag|BCT_ENEMY,skill_castend_damage_id);
+		}
+		break;
+
 	case GN_CRAZYWEED:
 		i = skill_get_splash(skillid,skilllv);
 		map_foreachinarea(skill_area_sub,src->m,x-i,y-i,x+i,y+i,BL_CHAR|BL_SKILL,

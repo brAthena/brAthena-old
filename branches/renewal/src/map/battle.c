@@ -1135,7 +1135,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 	}
 
 	s_base_level = status_get_lv(src);
-	if( skill_num >= RK_ENCHANTBLADE &&
+	if( skill_num >= RK_ENCHANTBLADE && skill_num <= LG_OVERBRAND_PLUSATK &&
 		battle_config.max_level_base && s_base_level > battle_config.max_level_base )
 		s_base_level = battle_config.max_level_base;
 
@@ -2125,6 +2125,18 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					else
 						skillratio += (sd) ? sd->shieldmdef * 20 : 1000;
 					break;
+				case LG_OVERBRAND:
+					skillratio = 400 * skill_lv + (pc_checkskill(sd,CR_SPEARQUICKEN) * 30);
+					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
+					break;
+				case LG_OVERBRAND_BRANDISH:
+					skillratio = 300 * skill_lv + (2 * (sstatus->str + sstatus->dex) / 3);
+					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
+					break;
+				case LG_OVERBRAND_PLUSATK:
+					skillratio = 150 * skill_lv;
+					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
+					break;
 				case GN_CART_TORNADO:
 					skillratio += 50 * skill_lv + pc_checkskill(sd, GN_REMODELING_CART) * 100 - 100;
 					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
@@ -2838,7 +2850,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 	tsd = BL_CAST(BL_PC, target);
 
 	s_base_level = status_get_lv(src);
-	if( skill_num >= RK_ENCHANTBLADE &&
+	if( skill_num >= RK_ENCHANTBLADE && skill_num <= LG_OVERBRAND_PLUSATK &&
 		battle_config.max_level_base && s_base_level > battle_config.max_level_base )
 		s_base_level = battle_config.max_level_base;
 

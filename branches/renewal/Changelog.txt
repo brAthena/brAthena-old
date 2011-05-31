@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0574 - 30/05/2011 [Mark]
+	* Adicionada a habilidade:
+	- LG_OVERBRAND (Lança do Destino)
+
 	r0572 - 30/05/2011 [Protimus]
 	* Corrigido problemas com nova modificação skill_init_nounit_layout.
 	- Não estava carregando corretamente e por isso causava problemas em habilidades que utilizam-o.
