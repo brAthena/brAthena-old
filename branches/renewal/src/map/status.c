@@ -6984,6 +6984,12 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			val2 = 94 + val1;
 			val_flag |= 1|2;
 			break;
+		case SC_LIGHTNINGWALK:
+			val2 = tick/1000;
+			tick = 1000;
+			val3 = 88 + 2*val1;
+			val_flag |= 1;
+			break;
 		default:
 			if( calc_flag == SCB_NONE && StatusSkillChangeTable[type] == 0 && StatusIconChangeTable[type] == 0 )
 			{	//Status change with no calc, no icon, and no skill associated...?
@@ -8581,6 +8587,12 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr data)
 		if(--(sce->val3)>0 && status_charge(bl,sce->val2,0)) {
 			if(!sc->data[type]) return 0;
 			sc_timer_next(5000+tick, status_change_timer, bl->id, data);
+			return 0;
+		}
+		break;
+	case SC_LIGHTNINGWALK:
+		if( --(sce->val2)>0 && status_charge(bl, 0, 3-(sce->val1-1)/2) ){
+			sc_timer_next(1000+tick, status_change_timer,bl->id, data);
 			return 0;
 		}
 		break;

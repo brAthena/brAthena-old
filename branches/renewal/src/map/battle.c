@@ -620,6 +620,12 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 			if((--sce->val3)<=0 || (sce->val2<=0) || skill_num == AL_HOLYLIGHT)
 				status_change_end(bl, SC_KYRIE, INVALID_TIMER);
 		}
+		if( (sce=sc->data[SC_LIGHTNINGWALK]) && flag&BF_LONG && damage>0 && rand()%100 < sce->val3 ) {
+			skill_blown(src,bl,distance_bl(src,bl)-1,map_calc_dir(src,bl->x,bl->y),0);
+			d->div_ = ATK_DEF;
+			status_change_end(bl, SC_LIGHTNINGWALK, -1);
+			return 0;
+		}
 
 		if (!damage) return 0;
 
