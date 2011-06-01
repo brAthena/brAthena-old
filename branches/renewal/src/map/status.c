@@ -3860,6 +3860,8 @@ static unsigned short status_calc_batk(struct block_list *bl, struct status_chan
 		batk -= batk * sc->data[SC__ENERVATION]->val2 / 100;
 	if(sc->data[SC_GN_CARTBOOST])
         batk += 10 * sc->data[SC_GN_CARTBOOST]->val1;
+	if(sc->data[SC_GT_CHANGE])
+		batk += batk * sc->data[SC_GT_CHANGE]->val3 / 100;
 	return (unsigned short)cap_value(batk,0,USHRT_MAX);
 }
 
@@ -4121,6 +4123,8 @@ static signed short status_calc_def(struct block_list *bl, struct status_change 
 		def -= def * (10 + 10 * sc->data[SC_SATURDAYNIGHTFEVER]->val1) / 100;
 	if(sc->data[SC_EARTHDRIVE])
 		def -= def * 25 / 100;
+	if( sc->data[SC_GT_CHANGE] )
+		def -= def * sc->data[SC_GT_CHANGE]->val3 / 100;
 
 	return (short)cap_value(def,SHRT_MIN,SHRT_MAX);
 }
@@ -4161,6 +4165,8 @@ static signed short status_calc_def2(struct block_list *bl, struct status_change
 		def2 += sc->data[SC_PRESTIGE]->val1;
 	if( sc->data[SC_SHIELDSPELL_REF] && sc->data[SC_SHIELDSPELL_REF]->val1 == 1 )
 		def2 += sc->data[SC_SHIELDSPELL_REF]->val2;
+	if( sc->data[SC_GT_REVITALIZE] )
+		def2 += def2*(50 + 10*sc->data[SC_GT_REVITALIZE]->val1)/100;
 
 	return (short)cap_value(def2,0,SHRT_MAX);
 }
@@ -4186,6 +4192,8 @@ static signed short status_calc_mdef(struct block_list *bl, struct status_change
 		mdef += sc->data[SC_ENDURE]->val1;
 	if(sc->data[SC_CONCENTRATION])
 		mdef += 1; //Skill info says it adds a fixed 1 Mdef point.
+	if(sc->data[SC_GT_CHANGE])
+		mdef -= mdef*sc->data[SC_GT_CHANGE]->val3/100;
 
 	return (short)cap_value(mdef,SHRT_MIN,SHRT_MAX);
 }
@@ -4334,6 +4342,8 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 				val = max( val, sc->data[SC_CLOAKINGEXCEED]->val3);
 			if( sc->data[SC_GN_CARTBOOST] )
 				val = max( val, sc->data[SC_GN_CARTBOOST]->val2 );
+			if( sc->data[SC_GT_REVITALIZE] )
+				val = max( val, sc->data[SC_GT_REVITALIZE]->val2 );
 
 			//FIXME: official items use a single bonus for this [ultramage]
 			if( sc->data[SC_SPEEDUP0] ) // temporary item-based speedup
@@ -4459,6 +4469,10 @@ static short status_calc_aspd_rate(struct block_list *bl, struct status_change *
 		aspd_rate += aspd_rate * sc->data[SC__GROOMY]->val2 / 100;
 	if( sc->data[SC_EARTHDRIVE] )
 		aspd_rate += aspd_rate * 25 / 100;
+	if( sc->data[SC_GT_CHANGE] )
+		aspd_rate -= aspd_rate * (sc->data[SC_GT_CHANGE]->val2/200) / 100;
+	if( sc->data[SC_GT_REVITALIZE] )
+		aspd_rate -= aspd_rate * sc->data[SC_GT_REVITALIZE]->val2 / 100;
 
 	return (short)cap_value(aspd_rate,0,SHRT_MAX);
 }
@@ -4506,6 +4520,10 @@ static unsigned int status_calc_maxhp(struct block_list *bl, struct status_chang
 
 	if(sc->data[SC_RAISINGDRAGON])
 		maxhp += maxhp*(2 + sc->data[SC_RAISINGDRAGON]->val1)/100;
+	if(sc->data[SC_GT_CHANGE])
+		maxhp -= maxhp*sc->data[SC_GT_CHANGE]->val1/50;
+	if(sc->data[SC_GT_REVITALIZE])
+		maxhp += maxhp*3*sc->data[SC_GT_REVITALIZE]->val1/100;
 
 	return cap_value(maxhp,1,UINT_MAX);
 }
@@ -5795,7 +5813,18 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		status_change_end(bl,SC_SHIELDSPELL_MDEF,-1);
 		status_change_end(bl,SC_SHIELDSPELL_REF,-1);
 		break;
-
+	case SC_GT_ENERGYGAIN:
+		status_change_end(bl, SC_GT_CHANGE, -1);
+		status_change_end(bl, SC_GT_REVITALIZE, -1);
+		break;
+	case SC_GT_CHANGE:
+		status_change_end(bl, SC_GT_ENERGYGAIN, -1);
+		status_change_end(bl, SC_GT_REVITALIZE, -1);
+		break;
+	case SC_GT_REVITALIZE:
+		status_change_end(bl, SC_GT_ENERGYGAIN, -1);
+		status_change_end(bl, SC_GT_CHANGE, -1);
+		break;
 	}
 
 	//Check for overlapping fails
@@ -6942,6 +6971,15 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_RAISINGDRAGON:
 			val3 = tick/5000;
 			tick = 5000;
+			break;
+		case SC_GT_CHANGE:
+			if(sd)
+				val2 = 13 * val1/2 * sd->status.agi;
+			val3 = 20 + val1;
+			break;
+		case SC_GT_REVITALIZE:
+			val2 = 5*val1;
+			val3 = 50 + 30*val1;
 			break;
 		case SC_BANDING:
 			tick = 5000;
@@ -9007,6 +9045,8 @@ static int status_natural_heal(struct block_list* bl, va_list args)
 			val = 0;
 			do {
 				val += regen->hp;
+				if(sc && sc->data[SC_GT_REVITALIZE])
+					val = val*sc->data[SC_GT_REVITALIZE]->val3/100;
 				regen->tick.hp -= battle_config.natural_healhp_interval;
 			} while(regen->tick.hp >= (unsigned int)battle_config.natural_healhp_interval);
 			if (status_heal(bl, val, 0, 1) < val)

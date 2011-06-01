@@ -634,6 +634,12 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 		if ((sce=sc->data[SC_BLOODLUST]) && flag&BF_WEAPON && damage > 0 &&
 			rand()%100 < sce->val3)
 			status_heal(src, damage*sce->val4/100, 0, 3);
+
+		if( (sce=sc->data[SC_GT_ENERGYGAIN]) && flag&BF_WEAPON && rand()%100<10 + 5*sce->val1 ) {
+			int duration = skill_get_time(MO_CALLSPIRITS, sce->val1);
+			if(sd)
+				pc_addspiritball(sd, duration, sce->val1);
+		}
 			
 		if( sc->data[SC__DEADLYINFECT] && damage > 0 && rand()%100 < 20 )
 			status_change_spread(bl, src); 
@@ -641,7 +647,8 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 		//Reduzindo 90% de dano do corpo fechado
 		if( sc->data[SC_STEELBODY] )
 			damage /= 10;
-
+		if(sc->data[SC_GT_REVITALIZE])
+			damage -= ((TBL_PC *)bl)->status.vit/2 * sc->data[SC_GT_REVITALIZE]->val1;
 	}
 
 	//SC effects from caster side.
@@ -3945,6 +3952,11 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 		if (sc->data[SC_MAGICALATTACK])
 			//FIXME: invalid return type!
 			return (damage_lv)skill_attack(BF_MAGIC,src,src,target,NPC_MAGICALATTACK,sc->data[SC_MAGICALATTACK]->val1,tick,0);
+		if(sc->data[SC_GT_ENERGYGAIN]) {
+			int duration = skill_get_time(MO_CALLSPIRITS, sc->data[SC_GT_ENERGYGAIN]->val1); 
+			if(sd && rand()%100<10 + sc->data[SC_GT_ENERGYGAIN]->val1*5)
+				pc_addspiritball(sd, duration, sc->data[SC_GT_ENERGYGAIN]->val1);
+		}
 	}
 
 	if(tsc && tsc->data[SC_KAAHI] && tsc->data[SC_KAAHI]->val4 == INVALID_TIMER && tstatus->hp < tstatus->max_hp)

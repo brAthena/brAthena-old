@@ -12,80 +12,58 @@
 // |--------------------------------------------------------|
 // | Criado por: brA Dev. Team                              |
 // |--------------------------------------------------------|
-// | Versão brA: 1.0                                        |
+// | Versão brA: 1.2                                        |
 // |--------------------------------------------------------|
-// | Descrição: Vendedor de Runas para o Cavaleiro Rúnico.	|
+// | Descrição: Vendedor de Runas para o Cavaleiro Rúnico.  |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Criado [Protimus]                           |
-// | - Necessária revisão.                                  |
+// | 1.1 Adicionada chegagem de peso [brn0]                 |
+// | 1.2 Script Otimizado [brn0]                            |
 // \________________________________________________________/
 
 prontera,168,228,4	script	Vendedor de Runas	853,{
+	if(!checkweight(12734,20)) {
+		mes "- Espere!! -";
+		mes "- Você não pode receber o item. -";
+		mes "- O seu inventário está muito pesado. -";
+		mes "- Tente de novo -";
+		mes "- depois de diminuir o peso. -";
+		close;
+	}
 	mes "[Vendedor de Runas]";
 	mes "Ei, você precisa de Runas?!";
 	mes "Eu vendo Pedras de Runas!";
 	mes "Que tipo de Runa você quer?";
 	next;
-	menu "Comprar "+getitemname(12734)+"",L_rune,"Comprar "+getitemname(12737)+"",G_rune;
-
-L_rune:
+	set .@preco,(select("Comprar "+getitemname(12734)+":::Comprar "+getitemname(12737))==1 ? 2500:1000);
 	mes "[Vendedor de Runas]";
-	mes ""+getitemname(12734)+"?";
-	mes "Isso sai por 2500 zenys!";
+	mes getitemname(12733+@menu)+"?";
+	mes "Isso sai por "+(@menu==1 ? "2.500":"1.000")+" zenys!";
 	mes "Diga-me quantas você quer comprar, você pode comprar";
 	mes "no máximo 2000 unidades!";
 	next;
-	input .@rune;
-	if (.@rune == 0) {
+	switch(input(.@rune,1,2000)) {
 		mes "[Vendedor de Runas]";
-		mes "Você não quer comprar nada? Suma daqui, eu quero dinheiro!";
-		close;
+		case -1:
+			mes "Você não quer comprar nada? Suma daqui, eu quero dinheiro!";
+			close;
+		case 1:
+			mes "Você só pode comprar no máximo 2000 unidades.";
+			close;
+		case 0:
+			if (Zeny < .@rune*.@preco) {
+				mes "Você é podre de rico!";
+				mes "Veja como você tem dinheiro!!";
+				close;
+			}
+			if(!checkweight(12733+@menu,.@rune)) {
+				mes "Você não consegue carregar tudo isso.";
+				close;
+			}
+			getitem 12733+@menu,.@rune;
+			set Zeny,Zeny-.@rune*.@preco;
+			mes "Volte sempre que precisar!";
+			close;
 	}
-	if (.@rune >= 2000) {
-		mes "[Vendedor de Runas]";
-		mes "Você só pode comprar no máximo 2000 unidades.";
-		close;
-	}
-	if (Zeny < .@rune*2500) {
-		mes "[Vendedor de Runas]";
-		mes "Você é podre de rico!";
-		mes "Veja como você tem dinheiro!!";
-		close;
-	}
-	getitem 12734,.@rune;
-	set Zeny,Zeny-.@rune*2500;
-	mes "[Vendedor de Runas]";
-	mes "Volte sempre que precisar!";
-	close;
-
-G_rune:
-	mes "[Vendedor de Runas]";
-	mes ""+getitemname(12737)+"?";
-	mes "Isso sai por 1000 zenys!";
-	mes "Diga-me quantas você quer comprar, você pode comprar";
-	mes "no máximo 2000 unidades!";
-	next;
-	input .@rune;
-	if (.@rune == 0) {
-		mes "[Vendedor de Runas]";
-		mes "Você não quer comprar nada? Suma daqui, eu quero dinheiro!";
-		close;
-	}
-	if (.@rune >= 2000) {
-		mes "[Vendedor de Runas]";
-		mes "Você só pode comprar no máximo 2000 unidades";
-		close;
-	}
-	if (Zeny < .@rune*1000) {
-		mes "[Vendedor de Runas]";
-		mes "Você é podre de rico!";
-		mes "Veja como você tem dinheiro!!";
-		close;
-	}
-	getitem 12737,.@rune;
-	set Zeny,Zeny-.@rune*1000;
-	mes "[Vendedor de Runas]";
-	mes "Volte sempre que precisar!";
-	close;
 }
