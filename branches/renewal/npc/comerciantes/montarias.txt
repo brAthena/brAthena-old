@@ -12,7 +12,7 @@
 // |--------------------------------------------------------|
 // | Criado por: brA Dev. Team                              |
 // |--------------------------------------------------------|
-// | Versão brA: 1.0                                        |
+// | Versão brA: 1.1                                        |
 // |--------------------------------------------------------|
 // | Descrição: NPCs de Montarias para as 3rd Classes.		|
 // |--------------------------------------------------------|
@@ -21,47 +21,35 @@
 // | - Aparentemente o NPC precisa de mais modificações,    |
 // | nos servidores oficiais, por isso ele foi melhorado.   |
 // | Porém é necessário revisar futuramente, caso mudem-o.  |
+// | 1.1 Script Otimizado [Protimus]						|
+// | - Removidos menus e adicionadas vars.					|
 // \________________________________________________________/
 
 prontera,130,213,5	script	Domador de Criaturas	105,{
-	if((Class == Job_Rune_Knight || Class == Job_Rune_Knight_T) && getskilllv("RK_DRAGONTRAINING") > 0) {
 	mes "[Domador de Criaturas]";
-	mes "Bem-vindo.";
-	mes "Você gostaria de obter um Dragão?";
+	if((Class == Job_Rune_Knight || Class == Job_Rune_Knight_T) && getskilllv("RK_DRAGONTRAINING") > 0)
+		set .@montaria$,"Dragão";
+	else if((Class == Job_Royal_Guard || Class == Job_Royal_Guard_T) && getskilllv("KN_RIDING") > 0)
+		set .@montaria$,"Grifo";
+	else {
+		mes "Estou aqui para fornecer montarias para Cavaleiros Rúnicos e Guardiões Reais.";
+		close;
+	}
+	mes "Você gostaria de obter um "+.@montaria$+"?";
 	next;
-	menu "Sim",-,"Não",L_NO;
-	if(checkriding()) {
+	switch(select("Sim:Não")) {
+	case 1:
+		if(checkriding()) {
+			mes "[Domador de Criaturas]";
+			mes "Você já tem um "+.@montaria$+".";
+		}else
+			setriding;
+		close;
+	case 2:
 		mes "[Domador de Criaturas]";
-		mes "Você já tem um Dragão.";
-		close;
-	} else {
-		setriding;
+		mes "Certo, tenha um bom dia.";
 		close;
 	}
-	}
-	if((Class == Job_Royal_Guard || Class == Job_Royal_Guard_T) && getskilllv("KN_RIDING") > 0) {
-	mes "[Domador de Criaturas]";
-	mes "Bem-vindo.";
-	mes "Você gostaria de obter um Grifo?";
-	next;
-	menu "Sim",-,"Não",L_NO;
-	if(checkriding()) {
-		mes "[Domador de Criaturas]";
-		mes "Você já tem um Grifo.";
-		close;
-	} else {
-		setriding;
-		close;
-	}
-	}
-	mes "[Domador de Criaturas]";
-	mes "Estou aqui para fornecer montarias para Cavaleiros Rúnicos e Guardiões Reais.";
-	close;
-	
-L_NO:
-	mes "[Domador de Criaturas]";
-	mes "Certo, tenha um bom dia.";
-	close;
 }
 
 prontera,125,208,5	script	Soldado	105,{
@@ -74,28 +62,24 @@ prontera,125,208,5	script	Soldado	105,{
 }
 
 prontera,163,178,3	script	Artilheiro Mágico	105,{
-	if((Class == Job_Mechanic || Class == Job_Mechanic_T) && checkriding() == 0) {
 	mes "[Artilheiro Mágico]";
-	mes "Bem-vindo.";
-	mes "Você gostaria de obter um Robô?";
-	next;
-	menu "Sim",-,"Não",L_NO;
-	if(checkriding()) {
-		mes "[Domador de Criaturas]";
-		mes "Você já tem um Robô.";
-		close;
-	} else {
-		setriding;
+	if(Class == Job_Mechanic || Class == Job_Mechanic_T) {
+		mes "Bem-vindo.";
+		mes "Você gostaria de obter um Robô?";
+		next;
+		if(select("Sim:Não")==1) {
+			if(checkriding()) {
+				mes "[Artilheiro Mágico]";
+				mes "Você já tem um Robô.";
+			} else
+				setriding;
+			close;
+		}
+		mes "[Artilheiro Mágico]";
+		mes "Volte quando precisar de meus serviços.";
 		close;
 	}
-	}
-	mes "[Artilheiro Mágico]";
 	mes "Em que posso ajudar?";
 	mes "Robôs só estão disponíveis para Mecânicos.";
-	close;
-	
-L_NO:
-	mes "[Artilheiro Mágico]";
-	mes "Volte quando precisar de meus serviços.";
 	close;
 }
