@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0583 - 01/06/2011 [Protimus]
+	* Adicionado NPC Oficial para venda de Livros de Criação da Renovação.
+	- Otimizado e completamente funcional.
+
 	r0582 - 01/06/2011 [Protimus]
 	* Adicionado NPC Oficial para venda de Ervas Envenenadas da Renovação.
 	- Otimizado e completamente funcional.
