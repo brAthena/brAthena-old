@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0585 - 02/06/2011 [MiTh]
+	* Adicionada a habilidade NC_SILVERSNIPER (Artilharia Caçadora)
+
 	r0584 - 01/06/2011 [brn0]
 	* Otimizado o NPC Oficial para Venda de Runas.
 	- Também foi adicionada uma checagem, para verificar se o personagem tinha capacidade de carga o suficiente.

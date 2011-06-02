@@ -206,6 +206,10 @@ enum {
 	MSC_SPAWN,
 };
 
+enum{
+	MODID_SILVERSNIPER = 2042, // Artilharia (Mecânico)
+} mob_id;
+
 // The data structures for storing delayed item drops
 struct item_drop {
 	struct item item_data;
