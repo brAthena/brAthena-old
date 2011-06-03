@@ -9,6 +9,15 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	ro589 - 03/06/2011 [Protimus]
+	* Adicionadas cartas que podem ser dropadas través do Velho Álbum de Cartas.
+	- Padrões conforme renovação.
+	* Adições e remoções para monstros que são considerados chefe.
+	- Conta com novos monstros de Dewata, El Discates, Bifrost e Malangdo.
+	- Padrões conforme renovação.
+	* Adições de monstros que podem ser invocados através de Galho Seco.
+	- Padrões conforme renovação.
+
 	r0588 - 03/06/2011 [Protimus]
 	* Adicionados NPCs Oficiais para vendas de itens para as classes: Mecânico, Sentinela, Trovador e Musa.
 	- Falta apenas o de Arcano, porém é necessário revisar os atuais.

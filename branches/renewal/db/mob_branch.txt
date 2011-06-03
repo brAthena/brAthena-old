@@ -103,6 +103,7 @@
 1095,Andre,357142
 1096,Angeling,71428
 1097,Ovo de Andre,71428
+1098,Anubis,71428
 1099,Argiope,71428
 1100,Argos,214285
 1101,Bafomé Jr.,71428
@@ -158,6 +159,7 @@
 1158,Fen,214285
 1160,Piere,357142
 1161,Plankton,357142
+1162,Rafflesia,71428
 1163,Raydric,71428
 1164,Requiem,214285
 1165,Arenoso,214285
@@ -295,6 +297,7 @@
 1385,Deletério,71428
 1386,Rochoso,71428
 1387,Ferrão,71428
+1388,Archangeling,71428
 1390,Violi,71428
 1391,Pingu,71428
 1392,Giro-Goblin,214285
@@ -393,7 +396,11 @@
 1694,Plasma,71428
 1695,Plasma,71428
 1696,Plasma,71428
+1698,Palavra Morta,71428
 1699,Mímico Antigo,71428
+1700,Dama de Guarda,71428
+1701,Senhora do Abrigo,71428
+1702,Baronesa da Retribuição,71428
 1703,Senhora do Consolo,71428
 1704,Odium de Thanatos,71428
 1705,Despero de Thanatos,71428
@@ -402,10 +409,12 @@
 1713,Acidus,71428
 1714,Ferus,71428
 1715,Novus,71428
+1716,Acidus,71428
 1717,Ferus,71428
 1718,Novus,71428
 1720,Hydrolancer,71428
 1721,Ovo de Dragão,71428
+1735,Alicel,71428
 1736,Aliot,71428
 1737,Aliza,71428
 1738,Constante,71428
@@ -429,97 +438,106 @@
 1783,Galion,71428
 1784,Stapo,71428
 1789,Estalactite,71428
-
-//1796,Aunoe,71428
-//1797,Fanat,71428
-//1829,Espadachim Guardião,71428
-//1830,Arqueiro Guardião,71428
-//1831,Salamandra,71428
-//1833,Kasa,71428
-//1836,Magmaring,71428
-//1837,Imp,71428
-//1838,Golpeador,71428
-//1839,Byorgue,71428
-//1864,Massacre,71428
-//1865,Zumbi Dilacerado,71428
-//1866,Cão Infernal,71428
-//1867,Banshee,71428
-//1869,Crânio Flamejante,71428
-//1870,Necromancer,71428
-//1880,Leshij,71428
-//1881,Les,71428
-//1882,Baba-Yaga,71428
-//1883,Kikimora,71428
-//1884,Mavka,71428
-//1918,Sombra da Inveja,71428
-//1919,Sombra da Gula,71428
-//1920,Sombra da Vaidade,71428
-//1921,Sombra da Ira,71428
-//1974,Senhora das Banshees,71428
-//1975,Mestre Beholder,71428
-//1976,Cobalto,71428
-//1977,Metaling Pesado,71428
-//1978,Apocalipse Infernal,71428
-//1979,Zukadam,71428
-//1981,Soldado Orc,71428
-//1982,Orc Arqueiro,71428
-//1983,Zenorc,71428
-//1984,Guarda de Elite Orc,71428
-//1986,Tatacho,71428
-//1987,Centopéia,71428
-//1988,Nepenthes,71428
-//1989,Leão da Montanha,71428
-//1990,Mamute Rochoso,71428
-//1991,Leão de Vinhas,71428
-//1992,Cornus,71428
-//1993,Naga,71428
-//1994,Vespa Vagalume,71428
-//1995,Pinguicula,71428
-//1999,Larva de Centopéia,71428
-//2013,Dragão,71428
-//2014,Ovo de Dragão,71428
-//2015,Pinguicula Sombria,71428
-//2016,Elemental da Água,71428
-//2017,Ratatosk,71428
-//2018,Duneyrr,71428
-//2019,Árvore Anciã,71428
-//2020,Rhyncho,71428
-//2021,Phylla,71428
-//2023,Sombra Obscura,71428
-//2024,Golem de Bradium,71428
-//2069,Iara,71428
-//2070,Piranha,71428
-//2071,Mula Sem-Cabeça,71428
-//2072,Espiríto da Terra,71428
-//2073,Espiríto do Vento,71428
-//2074,Curupira,71428
-//2083,Scaraba de Um Chifre,71428
-//2084,Scaraba de Dois Chifres,71428
-//2085,Galho de Scaraba,71428
-//2086,Libertino de Scaraba,71428
-//2088,Ovo de Scaraba de Um Chifre,71428
-//2089,Ovo de Scaraba de Dois Chifre,71428
-//2090,Antler Scaraba Egg,71428
-//2091,Ovo de Libertino de Scaraba,71428
-//2092,Dolomedes,71428
-//2132,Aranha,71428
-//2133,Angra Mantis,71428
-//2134,Parus,71428
-//2136,Pequeno Fatum,71428
-//2137,Mímica,71428
-//2151,Alnoldi,71428
-//2152,Comodo,71428
-//2153,Cendrawasih,71428
-//2154,Banaspaty,71428
-//2155,Butoijo,71428
-//2161,Scaraba de Um Chifre,71428
-//2162,Scaraba de Dois Chifres,71428
-//2163,Galho de Scaraba,71428
-//2164,Libertino de Scaraba,71428
-//2166,Ovo de Scaraba de Um Chifre,71428
-//2167,Ovo de Scaraba de Dois Chifre,71428
-//2168,Ovo de Galho de Scaraba,71428
-//2169,Ovo de Libertino de Scaraba,71428
-//2197,Eruma Vermelha,71428
-//2198,Rei Dramoh,71428
-//2199,Siorava,71428
+1796,Aunoe,71428
+1797,Fanat,71428
+1829,Espadachim Guardião,71428
+1830,Arqueiro Guardião,71428
+1831,Salamandra,71428
+1833,Kasa,71428
+1836,Magmaring,71428
+1837,Imp,71428
+1838,Golpeador,71428
+1839,Byorgue,71428
+1864,Massacre,71428
+1865,Zumbi Dilacerado,71428
+1866,Cão Infernal,71428
+1867,Banshee,71428
+1869,Crânio Flamejante,71428
+1870,Necromancer,71428
+1880,Leshij,71428
+1881,Les,71428
+1882,Baba-Yaga,71428
+1883,Kikimora,71428
+1884,Mavka,71428
+1918,Sombra da Inveja,71428
+1919,Sombra da Gula,71428
+1920,Sombra da Vaidade,71428
+1921,Sombra da Ira,71428
+1974,Senhora das Banshees,71428
+1975,Mestre Beholder,71428
+1976,Cobalto,71428
+1977,Metaling Pesado,71428
+1978,Apocalipse Infernal,71428
+1979,Zukadam,71428
+1981,Soldado Orc,71428
+1982,Orc Arqueiro,71428
+1983,Zenorc,71428
+1984,Guarda de Elite Orc,71428
+1986,Tatacho,71428
+1987,Centopéia,71428
+1988,Nepenthes,71428
+1989,Leão da Montanha,71428
+1990,Mamute Rochoso,71428
+1991,Leão de Vinhas,71428
+1992,Cornus,71428
+1993,Naga,71428
+1994,Vespa Vagalume,71428
+1995,Pinguicula,71428
+1999,Larva de Centopéia,71428
+2013,Dragão,71428
+2014,Ovo de Dragão,71428
+2015,Pinguicula Sombria,71428
+2016,Elemental da Água,71428
+2017,Ratatosk,71428
+2018,Duneyrr,71428
+2019,Árvore Anciã,71428
+2020,Rhyncho,71428
+2021,Phylla,71428
+2023,Sombra Obscura,71428
+2024,Golem de Bradium,71428
+2069,Iara,71428
+2070,Piranha,71428
+2071,Mula Sem-Cabeça,71428
+2072,Espiríto da Terra,71428
+2073,Espiríto do Vento,71428
+2074,Curupira,71428
+2083,Scaraba de Um Chifre,71428
+2084,Scaraba de Dois Chifres,71428
+2085,Galho de Scaraba,71428
+2086,Libertino de Scaraba,71428
+2088,Ovo de Scaraba de Um Chifre,71428
+2089,Ovo de Scaraba de Dois Chifre,71428
+2090,Antler Scaraba Egg,71428
+2091,Ovo de Libertino de Scaraba,71428
+2092,Dolomedes,71428
+2132,Aranha,71428
+2133,Angra Mantis,71428
+2134,Parus,71428
+2136,Pequeno Fatum,71428
+2137,Mímica,71428
+2151,Alnoldi,71428
+2152,Comodo,71428
+2153,Cendrawasih,71428
+2154,Banaspaty,71428
+2155,Butoijo,71428
+2161,Scaraba de Um Chifre,71428
+2162,Scaraba de Dois Chifres,71428
+2163,Galho de Scaraba,71428
+2164,Libertino de Scaraba,71428
+2166,Ovo de Scaraba de Um Chifre,71428
+2167,Ovo de Scaraba de Dois Chifre,71428
+2168,Ovo de Galho de Scaraba,71428
+2169,Ovo de Libertino de Scaraba,71428
+2197,Eruma Vermelha,71428
+2198,Rei Dramoh,71428
+2199,Siorava,71428
+2201,Sropho,71428
+2203,Pot Dofle,71428
+2204,Sedora,71428
+2221,Randel,71428
+2222,Flamel,71428
+2223,Celia,71428
+2224,Chen,71428
+2225,Gertie,71428
+2226,Alphoccio,71428
+2227,Trentini,71428
