@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0586 - 03/06/2011 [MiTh]
+	* Correção na habilidade NC_SILVERSNIPER (Artilharia Caçadora)
+
 	r0585 - 02/06/2011 [MiTh]
 	* Adicionada a habilidade NC_SILVERSNIPER (Artilharia Caçadora)
 

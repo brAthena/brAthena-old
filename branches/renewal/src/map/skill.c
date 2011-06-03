@@ -11633,22 +11633,24 @@ int skill_check_condition_castend(struct map_session_data* sd, short skill, shor
 		break;
 	}
 	case NC_SILVERSNIPER:
-		int c=0;
-		int maxcount = skill_get_maxcount(skill,lv);
-		if(battle_config.land_skill_limit && maxcount>0 && (battle_config.land_skill_limit&BL_PC)) 
 		{
-			i = map_foreachinmap(skill_check_condition_mob_master_sub ,sd->bl.m, BL_MOB, sd->bl.id, MODID_SILVERSNIPER, skill, &c);
-			if(c >= maxcount)
-			{	//Fails when: exceed max limit. There are other plant types already out.
-				clif_skill_fail(sd,skill,0,0,0);
-				return 0;
+			int c = 0;
+			int maxcount = skill_get_maxcount(skill,lv);
+
+			if( battle_config.land_skill_limit && maxcount > 0 && ( battle_config.land_skill_limit&BL_PC ))
+			{
+				i = map_foreachinmap(skill_check_condition_mob_master_sub ,sd->bl.m, BL_MOB, sd->bl.id, MODID_SILVERSNIPER, skill, &c);
+				if( c >= maxcount )
+				{
+					clif_skill_fail(sd,skill,0,0,0);
+					return 0;
+				}
 			}
 		}
 		break;
 	}
 
 	status = &sd->battle_status;
-
 	require = skill_get_requirement(sd,skill,lv);
 
 	if( require.hp > 0 && status->hp <= (unsigned int)require.hp) {
