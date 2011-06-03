@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0588 - 03/06/2011 [Protimus]
+	* Adicionados NPCs Oficiais para vendas de itens para as classes: Mecânico, Sentinela, Trovador e Musa.
+	- Falta apenas o de Arcano, porém é necessário revisar os atuais.
+
 	r0587 - 03/06/2011 [Protimus]
 	* Atualizada source de acordo com r14843 do eAthena.
 

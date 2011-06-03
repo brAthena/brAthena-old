@@ -311,3 +311,21 @@ gonryun,147,101,5	shop	Cozinheiro Auxiliar#gon	83,7452:-1,580:-1
 ayothaya,203,178,3	shop	Cozinheiro Auxiliar#ayo	83,7455:-1,577:-1
 xmas,152,137,5	shop	Cozinheiro Auxiliar#xmas	83,7457:-1,577:-1
 niflheim,209,180,5	shop	Cozinheiro Auxiliar#nif	83,581:-1
+
+//======================================================
+// Renovação - NPCs Oficiais
+//======================================================
+// Lojas para Mecânico
+prt_in,175,137,4	shop	Mercado Negro#MN1::mercado	49,2139:-1,2800:-1,2801:-1,2802:-1,2803:-1,2804:-1,2805:-1,2806:-1,2807:-1,18000:-1,18001:-1,18002:-1,18003:-1,18004:-1,12392:-1,12393:-1,12394:-1,6145:-1,6146:-1,6147:-1,6186:-1,2808:-1
+
+ra_in01,257,266,4	duplicate(mercado)	Mercado Negro#MN2	49
+mid_camp,184,263,3	duplicate(mercado)	Mercado Negro#MN3	49
+einbroch,122,250,3	duplicate(mercado)	Mercado Negro#MN4	49
+
+// Lojas para Musa & Trovador
+comodo,196,162,4	shop	Harive	479,11513:200,6144:1000
+
+// Lojas para Sentinela
+prt_in,109,68,4	shop	Armadilhas Especiais#AE1::armadilha_especial	66,7940:200,12341:20000
+ra_in01,263,281,4	duplicate(armadilha_especial)	Armadilhas Especiais#AE2	66
+mid_camp,129,284,3	duplicate(armadilha_especial)	Armadilhas Especiais#AE3	66
