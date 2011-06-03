@@ -11984,6 +11984,11 @@ void clif_parse_FriendsListAdd(int fd, struct map_session_data *sd)
 		return;
 	}
 
+	if( sd->bl.id == f_sd->bl.id )
+	{// adding oneself as friend
+		return;
+	}
+
 	// @noask [LuzZza]
 	if(f_sd->state.noask) {
 		clif_noask_sub(sd, f_sd, 5);
@@ -12025,6 +12030,11 @@ void clif_parse_FriendsListReply(int fd, struct map_session_data *sd)
 	account_id = RFIFOL(fd,2);
 	char_id = RFIFOL(fd,6);
 	reply = RFIFOB(fd,10);
+	
+	if( sd->bl.id == account_id )
+	{// adding oneself as friend
+		return;
+	}
 
 	f_sd = map_id2sd(account_id); //The account id is the same as the bl.id of players.
 	if (f_sd == NULL)
@@ -12294,10 +12304,8 @@ void clif_parse_FeelSaveOk(int fd,struct map_session_data *sd)
 	sd->menuskill_val = sd->menuskill_id = 0;
 }
 
-/*==========================================
- * Question about Star Glaldiator save map [Komurka]
- *------------------------------------------*/
-void clif_parse_ReqFeel(int fd, struct map_session_data *sd, int skilllv)
+/// Star Gladiator's Feeling map confirmation prompt (ZC_STARPLACE)
+void clif_feel_req(int fd, struct map_session_data *sd, int skilllv)
 {
 	WFIFOHEAD(fd,packet_len(0x253));
 	WFIFOW(fd,0)=0x253;

@@ -9925,7 +9925,7 @@ static void clif_noask_sub(struct map_session_data *src, struct map_session_data
 void clif_parse_TradeRequest(int fd,struct map_session_data *sd)
 {
 	struct map_session_data *t_sd;
-
+	
 	t_sd = map_id2sd(RFIFOL(fd,2));
 
 	if(!sd->chatID && pc_cant_act(sd))
@@ -9942,7 +9942,7 @@ void clif_parse_TradeRequest(int fd,struct map_session_data *sd)
 		clif_skill_fail(sd,1,0,0,0);
 		return;
 	}
-
+	
 	trade_traderequest(sd,t_sd);
 }
 
@@ -12291,6 +12291,11 @@ void clif_parse_FriendsListReply(int fd, struct map_session_data *sd)
 	account_id = RFIFOL(fd,2);
 	char_id = RFIFOL(fd,6);
 	reply = RFIFOB(fd,10);
+	
+	if( sd->bl.id == account_id )
+	{// adding oneself as friend
+		return;
+	}
 
 	f_sd = map_id2sd(account_id); //The account id is the same as the bl.id of players.
 	if (f_sd == NULL)
@@ -12560,10 +12565,8 @@ void clif_parse_FeelSaveOk(int fd,struct map_session_data *sd)
 	sd->menuskill_val = sd->menuskill_id = 0;
 }
 
-/*==========================================
- * Question about Star Glaldiator save map [Komurka]
- *------------------------------------------*/
-void clif_parse_ReqFeel(int fd, struct map_session_data *sd, int skilllv)
+/// Star Gladiator's Feeling map confirmation prompt (ZC_STARPLACE)
+void clif_feel_req(int fd, struct map_session_data *sd, int skilllv)
 {
 	WFIFOHEAD(fd,packet_len(0x253));
 	WFIFOW(fd,0)=0x253;

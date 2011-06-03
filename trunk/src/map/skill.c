@@ -43,11 +43,11 @@
 
 // ranges reserved for mapping skill ids to skilldb offsets
 #define GD_SKILLRANGEMIN 900
-#define GD_SKILLRANGEMAX GD_SKILLRANGEMIN+MAX_GUILDSKILL
+#define GD_SKILLRANGEMAX (GD_SKILLRANGEMIN+MAX_GUILDSKILL)
 #define MC_SKILLRANGEMIN 800
-#define MC_SKILLRANGEMAX MC_SKILLRANGEMIN+MAX_MERCSKILL
+#define MC_SKILLRANGEMAX (MC_SKILLRANGEMIN+MAX_MERCSKILL)
 #define HM_SKILLRANGEMIN 700
-#define HM_SKILLRANGEMAX HM_SKILLRANGEMIN+MAX_HOMUNSKILL
+#define HM_SKILLRANGEMAX (HM_SKILLRANGEMIN+MAX_HOMUNSKILL)
 
 static struct eri *skill_unit_ers = NULL; //For handling skill_unit's [Skotlex]
 static struct eri *skill_timer_ers = NULL; //For handling skill_timerskills [Skotlex]
@@ -5531,7 +5531,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		//AuronX reported you CAN memorize the same map as all three. [Skotlex]
 		if (sd) {
 			if(!sd->feel_map[skilllv-1].index)
-				clif_parse_ReqFeel(sd->fd,sd, skilllv);
+				clif_feel_req(sd->fd,sd, skilllv);
 			else
 				clif_feel_info(sd, skilllv-1, 1);
 		}

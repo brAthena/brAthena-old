@@ -246,9 +246,13 @@ enum curly_type {
 	TYPE_ARGLIST // function argument list
 };
 
-#define ARGLIST_UNDEFINED 0
-#define ARGLIST_NO_PAREN  1
-#define ARGLIST_PAREN     2
+enum e_arglist
+{
+	ARGLIST_UNDEFINED = 0,
+	ARGLIST_NO_PAREN  = 1,
+	ARGLIST_PAREN     = 2,
+};
+
 static struct {
 	struct {
 		enum curly_type type;
@@ -4543,7 +4547,7 @@ BUILDIN_FUNC(warpchar)
  *------------------------------------------*/
 BUILDIN_FUNC(warpparty)
 {
-	TBL_PC *sd;
+	TBL_PC *sd = NULL;
 	TBL_PC *pl_sd;
 	struct party_data* p;
 	int type;
@@ -4558,14 +4562,8 @@ BUILDIN_FUNC(warpparty)
 	if ( script_hasdata(st,6) )
 		str2 = script_getstr(st,6);
 
-	sd=script_rid2sd(st);
-	if( sd == NULL )
-		return 0;
 	p = party_search(p_id);
 	if(!p)
-		return 0;
-
-	if(map[sd->bl.m].flag.noreturn || map[sd->bl.m].flag.nowarpto)
 		return 0;
 
 	type = ( strcmp(str,"Random")==0 ) ? 0
@@ -4573,6 +4571,11 @@ BUILDIN_FUNC(warpparty)
 		 : ( strcmp(str,"SavePoint")==0 ) ? 2
 		 : ( strcmp(str,"Leader")==0 ) ? 3
 		 : 4;
+		 
+	if( type == 2 && ( sd = script_rid2sd(st) ) == NULL )
+	{// "SavePoint" uses save point of the currently attached player
+		return 0;
+	}
 
 	for (i = 0; i < MAX_PARTY; i++)
 	{
@@ -4631,7 +4634,7 @@ BUILDIN_FUNC(warpparty)
  *------------------------------------------*/
 BUILDIN_FUNC(warpguild)
 {
-	TBL_PC *sd;
+	TBL_PC *sd = NULL;
 	TBL_PC *pl_sd;
 	struct guild* g;
 	struct s_mapiterator* iter;
@@ -4642,20 +4645,19 @@ BUILDIN_FUNC(warpguild)
 	int y           = script_getnum(st,4);
 	int gid         = script_getnum(st,5);
 
-	sd=script_rid2sd(st);
-	if( sd == NULL )
-		return 0;
 	g = guild_search(gid);
 	if( g == NULL )
-		return 0;
-
-	if(map[sd->bl.m].flag.noreturn || map[sd->bl.m].flag.nowarpto)
 		return 0;
 
 	type = ( strcmp(str,"Random")==0 ) ? 0
 	     : ( strcmp(str,"SavePointAll")==0 ) ? 1
 		 : ( strcmp(str,"SavePoint")==0 ) ? 2
 		 : 3;
+		 
+	if( type == 2 && ( sd = script_rid2sd(st) ) == NULL )
+	{// "SavePoint" uses save point of the currently attached player
+		return 0;
+	}
 
 	iter = mapit_getallusers();
 	for( pl_sd = (TBL_PC*)mapit_first(iter); mapit_exists(iter); pl_sd = (TBL_PC*)mapit_next(iter) )
@@ -11782,7 +11784,7 @@ BUILDIN_FUNC(movenpc)
 		return -1;
 
 	if (script_hasdata(st,5))
-		nd->ud.dir = script_getnum(st,5);
+		nd->ud.dir = script_getnum(st,5) % 8;
 	npc_movenpc(nd, x, y);
 	return 0;
 }
@@ -12846,7 +12848,7 @@ BUILDIN_FUNC(npcshopitem)
 	int n, i;
 	int amount;
 
-	if( !nd || nd->subtype != SHOP )
+	if( !nd || ( nd->subtype != SHOP && nd->subtype != CASHSHOP ) )
 	{	//Not found.
 		script_pushint(st,0);
 		return 0;
@@ -12875,7 +12877,7 @@ BUILDIN_FUNC(npcshopadditem)
 	int n, i;
 	int amount;
 
-	if( !nd || nd->subtype != SHOP )
+	if( !nd || ( nd->subtype != SHOP && nd->subtype != CASHSHOP ) )
 	{	//Not found.
 		script_pushint(st,0);
 		return 0;
@@ -12906,7 +12908,7 @@ BUILDIN_FUNC(npcshopdelitem)
 	int amount;
 	int size;
 
-	if( !nd || nd->subtype != SHOP )
+	if( !nd || ( nd->subtype != SHOP && nd->subtype != CASHSHOP ) )
 	{	//Not found.
 		script_pushint(st,0);
 		return 0;
