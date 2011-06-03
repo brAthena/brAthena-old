@@ -9,8 +9,13 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
-	ro589 - 03/06/2011 [Protimus]
-	* Adicionadas cartas que podem ser dropadas través do Velho Álbum de Cartas.
+	r0590 - 03/06/2011 [Protimus]
+	* Adição de monstros invocáveis através da Caixa Poring.
+	- Padrões conforme renovação.
+	* Adição de monstros na tabela de raças.
+
+	r0589 - 03/06/2011 [Protimus]
+	* Adicionadas cartas que podem ser dropadas através do Velho Álbum de Cartas.
 	- Padrões conforme renovação.
 	* Adições e remoções para monstros que são considerados chefe.
 	- Conta com novos monstros de Dewata, El Discates, Bifrost e Malangdo.
