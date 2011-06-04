@@ -1284,6 +1284,48 @@ void clif_send_homdata(struct map_session_data *sd, int type, int param)
 	return;
 }
 
+int clif_skillupdateinfo(struct map_session_data *sd,int skillid,int type,int range)
+{
+	int fd, id, cmd, offset = 0;
+
+	nullpo_ret(sd);
+
+#if PACKETVER < 20090715
+	cmd = 0x147;
+#else
+	cmd = 0x7e1;
+#endif
+
+	fd = sd->fd;
+	if( (id=sd->status.skill[skillid].id) <= 0 )
+		return 0;
+	WFIFOHEAD(fd,packet_len(cmd));
+	WFIFOW(fd,0) = cmd;
+	WFIFOW(fd,2) = id;
+	if(type)
+		WFIFOL(fd,4) = type;
+	else
+		WFIFOL(fd,4) = skill_get_inf(id);
+	WFIFOW(fd,8) = sd->status.skill[skillid].lv;
+	WFIFOW(fd,10) = skill_get_sp(id,sd->status.skill[skillid].lv);
+	if(range)
+		WFIFOW(fd,12) = range;
+	else
+		WFIFOW(fd,12) = skill_get_range2(&sd->bl, id,sd->status.skill[skillid].lv);
+
+#if PACKETVER < 20090715
+	safestrncpy((char*)WFIFOP(fd,14), skill_get_name(id), NAME_LENGTH);
+	offset = 24;
+#endif
+	if(sd->status.skill[skillid].flag == 0)
+		WFIFOB(fd,14+offset)= (sd->status.skill[skillid].lv < skill_tree_get_max(id, sd->status.class_))? 1:0;
+	else
+		WFIFOB(fd,14+offset) = 0;
+	WFIFOSET(fd,packet_len(cmd));
+
+	return 0;
+}
+
 int clif_homskillinfoblock(struct map_session_data *sd)
 {	//[orn]
 	struct homun_data *hd;
@@ -15317,7 +15359,7 @@ static int packetdb_readdb(void)
 #else // 0x7d9 changed
 	    6,  2, -1,  4,  4,  4,  4,  8,  8,268,  6,  8,  6, 54, 30, 54,
 #endif
-	    0,  0,  0,  0,  0,  8,  8, 32, -1,  5,  0,  0,  0,  0,  0,  0,
+	    0,  15,  0,  0,  0,  8,  8, 32, -1,  5,  0,  0,  0,  0,  0,  0,
 	    0,  0,  0,  0,  0,  0, 14, -1, -1, -1,  8,  0,  0,  0, 26,  0,
 	//#0x0800
 #if PACKETVER < 20091229

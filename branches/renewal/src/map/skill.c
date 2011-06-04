@@ -1081,6 +1081,9 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 	case SR_GENTLETOUCH_QUIET:
 		sc_start(bl, SC_SILENCE, 2*skilllv, skilllv, skill_get_time(skillid, skilllv));
 		break;
+	case SR_DRAGONCOMBO:
+		sc_start(bl, SC_STUN, 1 + skilllv, skilllv, skill_get_time(skillid, skilllv));
+		break;
 	case WM_SOUND_OF_DESTRUCTION:
 		if( rand()%100 < 5 + 5 * skilllv ) 
 		{
@@ -2016,7 +2019,7 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 		switch(skillid)
 		{
 			case MO_TRIPLEATTACK:
-				if (pc_checkskill(sd, MO_CHAINCOMBO) > 0)
+				if(pc_checkskill(sd, MO_CHAINCOMBO) > 0 || pc_checkskill(sd, SR_DRAGONCOMBO) > 0)
 					flag=1;
 				break;
 			case MO_CHAINCOMBO:
@@ -2059,11 +2062,17 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 				//Can't attack nor use items until skill's delay expires. [Skotlex]
 				sd->ud.attackabletime = sd->canuseitem_tick = sd->ud.canact_tick;
 				break;
+			case SR_DRAGONCOMBO:
+				if(pc_checkskill(sd,SR_FALLENEMPIRE) > 0)
+					flag = 1;
+				break;
 		}	//Switch End
 		if (flag) { //Possible to chain
 			flag = DIFF_TICK(sd->ud.canact_tick, tick);
 			if (flag < 0) flag = 0;
-			flag += 300 * battle_config.combo_delay_rate/100;
+			flag += 3*battle_config.combo_delay_rate;
+			if(skillid == MO_TRIPLEATTACK && pc_checkskill(sd, SR_DRAGONCOMBO) > 0)
+				clif_skillupdateinfo(sd,SR_DRAGONCOMBO,INF_SELF_SKILL,0);
 			sc_start(src,SC_COMBO,100,skillid,flag);
 			clif_combo_delay(src, flag);
 		}
@@ -4045,6 +4054,11 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 		} else
 			map_foreachinrange(skill_area_sub, bl, skill_get_splash(skillid, skilllv), splash_target(src), src, skillid, skilllv, tick, flag|BCT_ENEMY|SD_SPLASH|1, skill_castend_damage_id);
 		clif_skill_damage(src, src, tick, status_get_amotion(src), 0, -30000, 1, skillid, skilllv, 6);
+		break;
+	case SR_DRAGONCOMBO:
+		if(sd)
+			clif_skillupdateinfo(sd,SR_DRAGONCOMBO,0,0);
+		skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 	case 0:
 		if(sd) {
@@ -7987,7 +8001,7 @@ int skill_castend_id(int tid, unsigned int tick, int id, intptr data)
 			inf = skill_get_inf(ud->skillid);
 			inf2 = skill_get_inf2(ud->skillid);
 
-			if(inf&INF_ATTACK_SKILL ||
+			if(inf&INF_ATTACK_SKILL || (ud->skillid == SR_DRAGONCOMBO && src == target) ||
 				(inf&INF_SELF_SKILL && inf2&INF2_NO_TARGET_SELF)) //Combo skills
 				inf = BCT_ENEMY; //Offensive skill.
 			else if(inf2&INF2_NO_ENEMY)
@@ -12081,6 +12095,7 @@ int skill_delayfix (struct block_list *bl, int skill_id, int skill_lv)
 	case MO_COMBOFINISH:
 	case CH_TIGERFIST:
 	case CH_CHAINCRUSH:
+	case SR_DRAGONCOMBO:
 		time -= 4*status_get_agi(bl) - 2*status_get_dex(bl);
 		break;
 	case HP_BASILICA:

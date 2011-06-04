@@ -6509,6 +6509,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 				case MO_COMBOFINISH:
 				case CH_TIGERFIST:
 				case CH_CHAINCRUSH:
+				case SR_DRAGONCOMBO:
 					if( sd )
 					{
 						sd->state.combo = 1;
@@ -7688,6 +7689,7 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 				}
 				if( sd->skillid_old == sce->val1 )
 					sd->skillid_old = sd->skilllv_old = 0;
+				clif_skillupdateinfo(sd,SR_DRAGONCOMBO,0,0);
 			}
 			break;
 

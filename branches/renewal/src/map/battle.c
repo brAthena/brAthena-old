@@ -2218,6 +2218,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case SR_EARTHSHAKER:
 					skillratio += 50*skill_lv - 50;
 					break;
+				case SR_DRAGONCOMBO:
+					skillratio += 40*skill_lv;
+					break;
 			}
 
 			ATK_RATE(skillratio);
