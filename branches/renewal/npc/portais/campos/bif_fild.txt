@@ -1,0 +1,902 @@
+//  ________________________________________________________
+// /							    						\
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |							    						|
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: bif_fild.txt                           |
+// |--------------------------------------------------------|
+// | Criado por: brA Dev. Team			         			|
+// |--------------------------------------------------------|
+// | Versões brA: 1.0       				   				|
+// |--------------------------------------------------------|
+// | Descrição: Portais dos Campos de Bifrost.		    	|
+// |--------------------------------------------------------|
+// | Changelog:						    					|
+// | 1.0 Script Criado [Protimus]				    	    |
+// | - Necessária revisão.                                  |
+// \________________________________________________________/
+
+splendide,275,390,0	warp	bifrost_field0001	1,1,bif_fild01,316,50
+bif_fild01,318,48,0	warp	bifrost_field0002	1,1,splendide,275,387
+bif_fild02,285,333,0	warp	bifrost_field0003	1,1,mora,179,74
+mora,182,74,0	warp	bifrost_field0004	1,1,bif_fild02,285,330
+bif_fild02,95,310,0	warp	bifrost_field0005	1,1,mora,22,157
+mora,20,159,0	warp	bifrost_field0006	1,1,bif_fild02,98,309
+bif_fild02,174,162,0	warp	bifrost_field0007	1,1,mora,58,27
+mora,56,25,0	warp	bifrost_field0008	1,1,bif_fild02,177,162
+
+bif_fild01,161,355,0	warp	bifrost_field0011	1,1,1@mist,89,29
+1@mist,104,22,0	warp	bifrost_field0012	1,1,bif_fild01,161,352
+1@mist,109,69,0	warp	bifrost_field0013	1,1,1@mist,116,40
+1@mist,113,40,0	warp	bifrost_field0014	1,1,1@mist,90,81
+1@mist,93,81,0	warp	bifrost_field0015	1,1,1@mist,108,152
+1@mist,111,154,0	warp	bifrost_field0016	1,1,1@mist,239,110
+1@mist,236,110,0	warp	bifrost_field0017	1,1,1@mist,106,69
+
+1@mist,247,124,0	warp	bifrost_field0018	1,1,1@mist,164,66
+1@mist,161,67,0	warp	bifrost_field0019	1,1,1@mist,159,85
+1@mist,180,116,0	warp	bifrost_field0020	1,1,1@mist,164,66
+1@mist,180,63,0	warp	bifrost_field0021	1,1,1@mist,141,90
+1@mist,116,84,0	warp	bifrost_field0022	1,1,1@mist,223,133
+1@mist,220,133,0	warp	bifrost_field0023	1,1,1@mist,200,64
+1@mist,197,64,0	warp	bifrost_field0024	1,1,1@mist,177,116
+
+1@mist,225,98,0	warp	bifrost_field0025	1,1,1@mist,143,194
+1@mist,146,194,0	warp	bifrost_field0026	1,1,1@mist,225,95
+1@mist,133,194,0	warp	bifrost_field0027	1,1,1@mist,202,110
+1@mist,202,107,0	warp	bifrost_field0028	1,1,1@mist,133,191
+1@mist,217,110,0	warp	bifrost_field0029	1,1,1@mist,240,57
+1@mist,240,54,0	warp	bifrost_field0030	1,1,1@mist,214,110
+1@mist,234,67,0	warp	bifrost_field0031	1,1,1@mist,242,80
+1@mist,242,77,0	warp	bifrost_field0032	1,1,1@mist,153,136
+1@mist,156,136,0	warp	bifrost_field0033	1,1,1@mist,123,54
+1@mist,123,51,0	warp	bifrost_field0034	1,1,1@mist,240,57
+
+1@mist,159,184,0	warp	bifrost_field0035	1,1,1@mist,49,38
+1@mist,49,41,0	warp	bifrost_field0036	1,1,1@mist,174,165
+1@mist,171,165,0	warp	bifrost_field0037	1,1,1@mist,169,144
+1@mist,169,141,0	warp	bifrost_field0038	1,1,1@mist,102,107
+1@mist,99,107,0	warp	bifrost_field0039	1,1,1@mist,49,38
+
+1@mist,61,39,0	warp	bifrost_field0040	1,1,1@mist,68,113
+1@mist,65,113,0	warp	bifrost_field0041	1,1,1@mist,218,151
+1@mist,221,151,0	warp	bifrost_field0042	1,1,1@mist,118,126
+1@mist,115,126,0	warp	bifrost_field0043	1,1,1@mist,36,62
+1@mist,61,89,0	warp	bifrost_field0044	1,1,1@mist,189,140
+1@mist,186,140,0	warp	bifrost_field0045	1,1,1@mist,98,126
+1@mist,101,126,0	warp	bifrost_field0046	1,1,1@mist,238,152
+1@mist,235,152,0	warp	bifrost_field0047	1,1,1@mist,143,194
+
+1@mist,254,151,0	warp	bifrost_field0048	1,1,1@mist,271,164
+1@mist,275,211,0	warp	bifrost_field0049	1,1,1@mist,277,112
+1@mist,301,141,0	warp	bifrost_field0050	1,1,1@mist,99,232
+1@mist,99,229,0	warp	bifrost_field0051	1,1,1@mist,102,256
+1@mist,102,253,0	warp	bifrost_field0052	1,1,1@mist,215,177
+1@mist,212,177,0	warp	bifrost_field0053	1,1,1@mist,275,208
+1@mist,275,211,0	warp	bifrost_field0054	1,1,1@mist,277,112
+
+1@mist,230,179,0	warp	bifrost_field0055	1,1,1@mist,289,170
+1@mist,289,167,0	warp	bifrost_field0056	1,1,1@mist,152,219
+1@mist,149,219,0	warp	bifrost_field0057	1,1,1@mist,118,227
+1@mist,115,227,0	warp	bifrost_field0058	1,1,1@mist,230,353
+1@mist,233,353,0	warp	bifrost_field0059	1,1,1@mist,288,225
+1@mist,301,237,0	warp	bifrost_field0060	1,1,1@mist,289,170
+
+1@mist,285,225,0	warp	bifrost_field0061	1,1,1@mist,73,273
+1@mist,76,273,0	warp	bifrost_field0062	1,1,1@mist,288,225
+1@mist,62,282,0	warp	bifrost_field0063	1,1,1@mist,256,220
+1@mist,253,220,0	warp	bifrost_field0064	1,1,1@mist,65,282
+1@mist,267,213,0	warp	bifrost_field0065	1,1,1@mist,214,267
+1@mist,212,265,0	warp	bifrost_field0066	1,1,1@mist,288,266
+1@mist,285,266,0	warp	bifrost_field0067	1,1,1@mist,143,234
+1@mist,143,231,0	warp	bifrost_field0068	1,1,1@mist,223,282
+1@mist,223,279,0	warp	bifrost_field0069	1,1,1@mist,158,316
+1@mist,134,287,0	warp	bifrost_field0070	1,1,1@mist,293,195
+1@mist,295,197,0	warp	bifrost_field0071	1,1,1@mist,239,253
+1@mist,236,253,0	warp	bifrost_field0072	1,1,1@mist,288,266
+
+1@mist,161,316,0	warp	bifrost_field0073	1,1,1@mist,108,203
+1@mist,111,203,0	warp	bifrost_field0074	1,1,1@mist,202,333
+1@mist,199,333,0	warp	bifrost_field0075	1,1,1@mist,204,251
+1@mist,206,249,0	warp	bifrost_field0076	1,1,1@mist,168,239
+1@mist,165,239,0	warp	bifrost_field0077	1,1,1@mist,89,173
+1@mist,86,173,0	warp	bifrost_field0078	1,1,1@mist,218,313
+1@mist,215,313,0	warp	bifrost_field0079	1,1,1@mist,214,267
+1@mist,177,265,0	warp	bifrost_field0080	1,1,1@mist,108,152
+
+1@mist,230,324,0	warp	bifrost_field0081	1,1,1@mist,221,233
+1@mist,230,230,0	warp	bifrost_field0082	1,1,1@mist,263,261
+1@mist,263,258,0	warp	bifrost_field0083	1,1,1@mist,272,246
+1@mist,269,246,0	warp	bifrost_field0084	1,1,1@mist,143,265
+1@mist,140,265,0	warp	bifrost_field0085	1,1,1@mist,209,200
+
+1@mist,206,200,0	warp	bifrost_field0086	1,1,1@mist,298,141
+
+1@mist,221,236,0	warp	bifrost_field0087	1,1,1@mist,233,324
+
+1@mist,204,299,0	warp	bifrost_field0088	1,1,1@mist,169,314
+1@mist,166,314,0	warp	bifrost_field0089	1,1,1@mist,204,296
+1@mist,196,299,0	warp	bifrost_field0090	1,1,1@mist,168,200
+1@mist,165,200,0	warp	bifrost_field0091	1,1,1@mist,193,299
+1@mist,195,206,0	warp	bifrost_field0092	1,1,1@mist,169,341
+1@mist,166,341,0	warp	bifrost_field0093	1,1,1@mist,198,354
+1@mist,201,354,0	warp	bifrost_field0094	1,1,1@mist,83,224
+1@mist,86,224,0	warp	bifrost_field0095	1,1,1@mist,169,314
+
+1@mist,84,273,0	warp	bifrost_field0096	1,1,1@mist,98,287
+1@mist,111,298,0	warp	bifrost_field0097	1,1,1@mist,82,307
+1@mist,79,307,0	warp	bifrost_field0098	1,1,1@mist,284,89
+1@mist,281,89,0	warp	bifrost_field0099	1,1,1@mist,264,291
+1@mist,261,291,0	warp	bifrost_field0100	1,1,1@mist,114,298
+
+1@mist,95,287,0	warp	bifrost_field0101	1,1,1@mist,323,276
+1@mist,294,293,0	warp	bifrost_field0102	1,1,1@mist,78,330
+1@mist,81,330,0	warp	bifrost_field0103	1,1,1@mist,308,330
+1@mist,308,327,0	warp	bifrost_field0104	1,1,1@mist,309,165
+1@mist,306,165,0	warp	bifrost_field0105	1,1,1@mist,298,293
+1@mist,326,276,0	warp	bifrost_field0106	1,1,1@mist,277,112
+
+1@mist,324,325,0	warp	bifrost_field0107	1,1,1@mist,49,316
+1@mist,46,316,0	warp	bifrost_field0108	1,1,1@mist,113,328
+1@mist,95,328,0	warp	bifrost_field0109	1,1,1@mist,342,157
+1@mist,339,157,0	warp	bifrost_field0110	1,1,1@mist,343,328
+1@mist,343,325,0	warp	bifrost_field0111	1,1,1@mist,344,120
+1@mist,344,123,0	warp	bifrost_field0112	1,1,1@mist,277,343
+1@mist,317,89,0	warp	bifrost_field0113	1,1,1@mist,339,284
+1@mist,339,281,0	warp	bifrost_field0114	1,1,1@mist,332,171
+1@mist,329,171,0	warp	bifrost_field0115	1,1,1@mist,344,120
+
+1@mist,280,343,0	warp	bifrost_field0116	1,1,1@mist,49,316
+1@mist,256,313,0	warp	bifrost_field0117	1,1,1@mist,342,308
+1@mist,342,305,0	warp	bifrost_field0118	1,1,1@mist,332,120
+1@mist,335,120,0	warp	bifrost_field0119	1,1,1@mist,259,313
+
+1@mist,345,186,0	warp	bifrost_field0120	1,1,bif_fild02,151,121
+
+// Semente Misteriosa
+1@mist,146,186,4	script	Semente Misteriosa#01	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#01";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#01";
+	stopnpctimer;
+	end;
+}
+
+1@mist,142,182,4	script	Semente Misteriosa#02	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#02";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#02";
+	stopnpctimer;
+	end;
+}
+
+1@mist,132,180,4	script	Semente Misteriosa#03	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#03";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#03";
+	stopnpctimer;
+	end;
+}
+
+1@mist,123,184,4	script	Semente Misteriosa#04	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#04";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#04";
+	stopnpctimer;
+	end;
+}
+
+1@mist,118,194,4	script	Semente Misteriosa#05	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#05";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#05";
+	stopnpctimer;
+	end;
+}
+
+1@mist,122,204,4	script	Semente Misteriosa#06	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#06";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#06";
+	stopnpctimer;
+	end;
+}
+
+1@mist,137,209,4	script	Semente Misteriosa#07	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#07";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#07";
+	stopnpctimer;
+	end;
+}
+
+1@mist,144,203,4	script	Semente Misteriosa#08	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#08";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#08";
+	stopnpctimer;
+	end;
+}
+
+1@mist,216,103,4	script	Semente Misteriosa#09	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#09";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#09";
+	stopnpctimer;
+	end;
+}
+
+1@mist,213,96,4	script	Semente Misteriosa#10	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#10";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#10";
+	stopnpctimer;
+	end;
+}
+
+1@mist,205,92,4	script	Semente Misteriosa#11	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#11";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#11";
+	stopnpctimer;
+	end;
+}
+
+1@mist,193,94,4	script	Semente Misteriosa#12	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#12";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#12";
+	stopnpctimer;
+	end;
+}
+
+1@mist,188,109,4	script	Semente Misteriosa#13	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#13";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#13";
+	stopnpctimer;
+	end;
+}
+
+1@mist,194,118,4	script	Semente Misteriosa#14	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#14";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#14";
+	stopnpctimer;
+	end;
+}
+
+1@mist,207,120,4	script	Semente Misteriosa#15	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#15";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#15";
+	stopnpctimer;
+	end;
+}
+
+1@mist,212,116,4	script	Semente Misteriosa#16	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#16";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#16";
+	stopnpctimer;
+	end;
+}
+
+1@mist,72,276,4	script	Semente Misteriosa#17	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#17";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#17";
+	stopnpctimer;
+	end;
+}
+
+1@mist,72,271,4	script	Semente Misteriosa#18	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#18";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#18";
+	stopnpctimer;
+	end;
+}
+
+1@mist,61,268,4	script	Semente Misteriosa#19	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#19";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#19";
+	stopnpctimer;
+	end;
+}
+
+1@mist,52,270,4	script	Semente Misteriosa#20	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#20";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#20";
+	stopnpctimer;
+	end;
+}
+
+1@mist,48,286,4	script	Semente Misteriosa#21	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#21";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#21";
+	stopnpctimer;
+	end;
+}
+
+1@mist,54,293,4	script	Semente Misteriosa#22	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#22";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#22";
+	stopnpctimer;
+	end;
+}
+
+1@mist,69,295,4	script	Semente Misteriosa#23	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#23";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#23";
+	stopnpctimer;
+	end;
+}
+
+1@mist,73,290,4	script	Semente Misteriosa#24	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#24";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#24";
+	stopnpctimer;
+	end;
+}
+
+1@mist,54,277,4	script	Semente Misteriosa#25	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#25";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#25";
+	stopnpctimer;
+	end;
+}
+
+1@mist,62,291,4	script	Semente Misteriosa#26	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#26";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#26";
+	stopnpctimer;
+	end;
+}
+
+1@mist,265,216,4	script	Semente Misteriosa#27	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#27";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#27";
+	stopnpctimer;
+	end;
+}
+
+1@mist,260,214,4	script	Semente Misteriosa#28	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#28";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#28";
+	stopnpctimer;
+	end;
+}
+
+1@mist,252,206,4	script	Semente Misteriosa#29	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#29";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#29";
+	stopnpctimer;
+	end;
+}
+
+1@mist,244,211,4	script	Semente Misteriosa#30	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#30";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#30";
+	stopnpctimer;
+	end;
+}
+
+1@mist,238,224,4	script	Semente Misteriosa#31	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#31";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#31";
+	stopnpctimer;
+	end;
+}
+
+1@mist,244,232,4	script	Semente Misteriosa#32	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#32";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#32";
+	stopnpctimer;
+	end;
+}
+
+1@mist,257,232,4	script	Semente Misteriosa#33	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#33";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#33";
+	stopnpctimer;
+	end;
+}
+
+1@mist,262,229,4	script	Semente Misteriosa#34	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#34";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#34";
+	stopnpctimer;
+	end;
+}
+
+1@mist,244,216,4	script	Semente Misteriosa#35	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#35";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#35";
+	stopnpctimer;
+	end;
+}
+
+1@mist,252,228,4	script	Semente Misteriosa#36	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#36";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#36";
+	stopnpctimer;
+	end;
+}
+
+1@mist,174,318,4	script	Semente Misteriosa#37	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#37";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#37";
+	stopnpctimer;
+	end;
+}
+
+1@mist,187,320,4	script	Semente Misteriosa#38	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#38";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#38";
+	stopnpctimer;
+	end;
+}
+
+1@mist,192,316,4	script	Semente Misteriosa#39	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#39";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#39";
+	stopnpctimer;
+	end;
+}
+
+1@mist,195,301,4	script	Semente Misteriosa#40	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#40";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#40";
+	stopnpctimer;
+	end;
+}
+
+1@mist,191,301,4	script	Semente Misteriosa#41	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#41";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#41";
+	stopnpctimer;
+	end;
+}
+
+1@mist,181,294,4	script	Semente Misteriosa#42	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#42";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#42";
+	stopnpctimer;
+	end;
+}
+
+1@mist,172,296,4	script	Semente Misteriosa#43	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#43";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#43";
+	stopnpctimer;
+	end;
+}
+
+1@mist,169,310,4	script	Semente Misteriosa#44	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#44";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#44";
+	stopnpctimer;
+	end;
+}
+
+1@mist,175,303,4	script	Semente Misteriosa#45	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#45";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#45";
+	stopnpctimer;
+	end;
+}
+
+1@mist,182,315,4	script	Semente Misteriosa#46	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#46";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#46";
+	stopnpctimer;
+	end;
+}
+
+1@mist,191,306,4	script	Semente Misteriosa#47	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#47";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#47";
+	stopnpctimer;
+	end;
+}
+
+1@mist,335,126,4	script	Semente Misteriosa#48	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#48";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#48";
+	stopnpctimer;
+	end;
+}
+
+1@mist,331,123,4	script	Semente Misteriosa#49	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#49";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#49";
+	stopnpctimer;
+	end;
+}
+
+1@mist,321,118,4	script	Semente Misteriosa#50	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#50";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#50";
+	stopnpctimer;
+	end;
+}
+
+1@mist,314,122,4	script	Semente Misteriosa#51	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#51";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#51";
+	stopnpctimer;
+	end;
+}
+
+1@mist,308,136,4	script	Semente Misteriosa#52	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#52";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#52";
+	stopnpctimer;
+	end;
+}
+
+1@mist,314,144,4	script	Semente Misteriosa#53	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#53";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#53";
+	stopnpctimer;
+	end;
+}
+
+1@mist,328,144,4	script	Semente Misteriosa#54	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#54";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#54";
+	stopnpctimer;
+	end;
+}
+
+1@mist,332,141,4	script	Semente Misteriosa#55	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#55";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#55";
+	stopnpctimer;
+	end;
+}
+
+1@mist,326,125,4	script	Semente Misteriosa#56	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#56";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#56";
+	stopnpctimer;
+	end;
+}
+
+1@mist,314,128,4	script	Semente Misteriosa#57	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#57";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#57";
+	stopnpctimer;
+	end;
+}
+
+1@mist,322,140,4	script	Semente Misteriosa#58	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#58";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#58";
+	stopnpctimer;
+	end;
+}
+
+1@mist,330,131,4	script	Semente Misteriosa#59	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#59";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#59";
+	stopnpctimer;
+	end;
+}
+
+1@mist,321,133,4	script	Semente Misteriosa#60	844,{
+	getitem 12561,1;
+	initnpctimer;
+	disablenpc "Semente Misteriosa#60";
+	end;
+
+OnTimer600000:
+	enablenpc "Semente Misteriosa#60";
+	stopnpctimer;
+	end;
+}
+
+// Pétalas de Flores
+bif_fild01,38,374,4	script	Flower Petal	844,{
+	if (countitem(12561) >= 1) {
+		mes "A sua ^0000FFSemente Misteriosa^000000 está reagindo com as pétalas de flores, deseja usá-la?";
+		next;
+		switch(select("Sim.","Não, obrigado.")) {
+		case 1:
+			delitem 12561,1;
+			mes "-As pétalas de flores estão levando-o até o topo-";
+			close2;
+			warp "bif_fild02",160,230;
+			end;
+		case 2:
+			close;
+		}
+	}
+	else {
+		mes "Existem pétalas de flores aqui...";
+		close;
+	}
+}
