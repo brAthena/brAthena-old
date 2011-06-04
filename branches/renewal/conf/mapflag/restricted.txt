@@ -67,3 +67,6 @@ arug_cas05	mapflag	restricted	4
 4@tower	mapflag	restricted	6
 5@tower	mapflag	restricted	6
 6@tower	mapflag	restricted	6
+
+//Bifrost
+1@mist	mapflag	restricted	7

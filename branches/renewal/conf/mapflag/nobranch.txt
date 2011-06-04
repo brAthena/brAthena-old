@@ -351,6 +351,12 @@ arug_que01	mapflag	nobranch
 1@orcs	mapflag	nobranch
 2@orcs	mapflag	nobranch
 
-// Poring War ==================
+// Poring War
 poring_w01	mapflag	nobranch
 poring_w02	mapflag	nobranch
+
+
+// Bifrost 
+mora	mapflag	nobranch
+1@mist	mapflag	nobranch
+

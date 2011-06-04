@@ -158,3 +158,6 @@ spl_in01	mapflag	nowarpto
 // Poring War ====================
 poring_w01	mapflag	nowarpto
 poring_w02	mapflag	nowarpto
+
+// Bifrost
+1@mist	mapflag	nowarpto

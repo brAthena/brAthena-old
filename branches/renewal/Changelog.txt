@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0591 - 03/06/2011 [Protimus]
+	* Adicionados pontos de nascimento (respawn) para monstros dos campos de El Dicastes e Bifrost.
+	- Necessário revisar o nome dos monstros.
+	* Adicionadas opções de mapflags para os mapas dos episódios de El Dicastes e Bifrost.
+	- Todos oficiais e funcionais.
+
 	r0590 - 03/06/2011 [Protimus]
 	* Adição de monstros invocáveis através da Caixa Poring.
 	- Padrões conforme renovação.
@@ -18,7 +24,7 @@
 	* Adicionadas cartas que podem ser dropadas através do Velho Álbum de Cartas.
 	- Padrões conforme renovação.
 	* Adições e remoções para monstros que são considerados chefe.
-	- Conta com novos monstros de Dewata, El Discates, Bifrost e Malangdo.
+	- Conta com novos monstros de Dewata, El Dicastes, Bifrost e Malangdo.
 	- Padrões conforme renovação.
 	* Adições de monstros que podem ser invocados através de Galho Seco.
 	- Padrões conforme renovação.

@@ -729,6 +729,12 @@ spl_in01	mapflag	nomemo
 
 //evt_zombie	mapflag	nomemo
 
-// Poring War ====================
+// Poring War
 poring_w01	mapflag	nomemo
 poring_w02	mapflag	nomemo
+
+// Bifrost
+mora	mapflag	nomemo
+bif_fild01	mapflag	nomemo
+bif_fild02	mapflag	nomemo
+1@mist	mapflag	nomemo

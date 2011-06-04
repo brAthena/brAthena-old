@@ -302,3 +302,7 @@ splendide	mapflag	nightenabled
 spl_fild01	mapflag	nightenabled
 
 //evt_zombie	mapflag	nightenabled
+
+// Bifrost
+bif_fild01	mapflag	nightenabled
+bif_fild02	mapflag	nightenabled
