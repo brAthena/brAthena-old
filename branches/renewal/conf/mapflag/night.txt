@@ -306,3 +306,17 @@ spl_fild01	mapflag	nightenabled
 // Bifrost
 bif_fild01	mapflag	nightenabled
 bif_fild02	mapflag	nightenabled
+
+// Dewata
+dewata	mapflag	nightenabled
+dew_fild01	mapflag	nightenabled
+dew_dun02	mapflag	nightenabled
+
+// Dicastes
+dicastes01	mapflag	nightenabled
+dicastes02	mapflag	nightenabled
+dic_fild01	mapflag	nightenabled
+dic_fild02	mapflag	nightenabled
+
+// Malangdo
+malangdo	mapflag	nightenabled

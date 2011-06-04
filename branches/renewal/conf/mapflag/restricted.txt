@@ -70,3 +70,8 @@ arug_cas05	mapflag	restricted	4
 
 //Bifrost
 1@mist	mapflag	restricted	7
+
+// Malangdo
+1@cash	mapflag	restricted	7
+1@pump	mapflag	restricted	7
+2@pump	mapflag	restricted	7

@@ -360,3 +360,19 @@ poring_w02	mapflag	nobranch
 mora	mapflag	nobranch
 1@mist	mapflag	nobranch
 
+// Dewata
+dewata	mapflag	nobranch
+dew_in01	mapflag	nobranch
+
+// Dicastes
+dicastes01	mapflag	nobranch
+dicastes02	mapflag	nobranch
+dic_in01	mapflag	nobranch
+
+// Malangdo
+malangdo	mapflag	nobranch
+mal_in01	mapflag	nobranch
+mal_in02	mapflag	nobranch
+1@cash	mapflag	nobranch
+1@pump	mapflag	nobranch
+2@pump	mapflag	nobranch

@@ -738,3 +738,26 @@ mora	mapflag	nomemo
 bif_fild01	mapflag	nomemo
 bif_fild02	mapflag	nomemo
 1@mist	mapflag	nomemo
+
+// Dewata
+dew_in01	mapflag	nomemo
+dew_dun01	mapflag	nomemo
+dew_dun02	mapflag	nomemo
+
+// Dicastes
+dicastes01	mapflag	nomemo
+dicastes02	mapflag	nomemo
+dic_in01	mapflag	nomemo
+dic_fild01	mapflag	nomemo
+dic_fild02	mapflag	nomemo
+dic_dun01	mapflag	nomemo
+dic_dun02	mapflag	nomemo
+dic_dun03	mapflag	nomemo
+
+// Malangdo
+mal_in01	mapflag	nomemo
+mal_in02	mapflag	nomemo
+mal_dun01	mapflag	nomemo
+1@cash	mapflag	nomemo
+1@pump	mapflag	nomemo
+2@pump	mapflag	nomemo

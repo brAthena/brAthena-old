@@ -43,3 +43,8 @@
 
 // Bifrost
 1@mist	mapflag	partylock
+
+// Malangdo
+1@cash	mapflag	partylock
+1@pump	mapflag	partylock
+2@pump	mapflag	partylock

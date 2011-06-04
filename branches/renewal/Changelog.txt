@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0593 - 03/06/2011 [Protimus]
+	* Adicionados pontos de nascimento para os montros das cavernas de El Dicastes, Malangdo e Dewata.
+	- Conforme padrões da renovação.
+	* Adicionadas opções de mapflags para os mapas de Malangdo e Dewata.
+	* Correções de opções de mapflags que faltavam para os mapas de El Dicastes.
+
 	r0592 - 03/06/2011 [Protimus]
 	* Adicionado spawns dos monstros do 6° andar da Caverna de Byalan.
 	- Conforme padrões da renovação.

@@ -161,3 +161,8 @@ poring_w02	mapflag	nowarpto
 
 // Bifrost
 1@mist	mapflag	nowarpto
+
+// Malangdo
+1@cash	mapflag	nowarpto
+1@pump	mapflag	nowarpto
+2@pump	mapflag	nowarpto

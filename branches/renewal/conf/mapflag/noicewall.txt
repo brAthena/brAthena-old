@@ -163,3 +163,8 @@ poring_w02	mapflag	noicewall
 
 // Bifrost
 1@mist	mapflag	noicewall
+
+// Malangdo
+1@cash	mapflag	noicewall
+1@pump	mapflag	noicewall
+2@pump	mapflag	noicewall

@@ -413,3 +413,19 @@ poring_w02	mapflag	monster_noteleport
 // Bifrost
 1@mist	mapflag	noteleport
 1@mist	mapflag	monster_noteleport
+
+// Dewata
+dew_in01	mapflag	noteleport
+
+// Dicastes
+dic_in01	mapflag	noteleport
+
+// Malangdo
+mal_in01	mapflag	noteleport
+mal_in02	mapflag	noteleport
+1@cash	mapflag	noteleport
+1@cash	mapflag	monster_noteleport
+1@pump	mapflag	noteleport
+1@pump	mapflag	monster_noteleport
+2@pump	mapflag	noteleport
+2@pump	mapflag	monster_noteleport
