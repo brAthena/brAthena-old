@@ -1084,6 +1084,9 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 	case SR_DRAGONCOMBO:
 		sc_start(bl, SC_STUN, 1 + skilllv, skilllv, skill_get_time(skillid, skilllv));
 		break;
+	case SR_HOWLINGOFLION:
+		sc_start(bl, SC_FEAR, 5*(skilllv+1), skilllv, skill_get_time(skillid, skilllv));
+		break;
 	case WM_SOUND_OF_DESTRUCTION:
 		if( rand()%100 < 5 + 5 * skilllv ) 
 		{
@@ -3391,6 +3394,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case GN_CART_TORNADO:
 	case GN_CARTCANNON:
 	case SR_WINDMILL:
+	case SR_RIDEINLIGHTNING:
 		if( flag&1 )
 		{	//Recursive invocation
 			// skill_area_temp[0] holds number of targets in area
@@ -4059,6 +4063,24 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 		if(sd)
 			clif_skillupdateinfo(sd,SR_DRAGONCOMBO,0,0);
 		skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
+		break;
+	case SR_HOWLINGOFLION:
+		{
+			status_change_end(bl, SC_SWINGDANCE, -1);
+			status_change_end(bl, SC_SYMPHONYOFLOVER, -1);
+			status_change_end(bl, SC_MOONLITSERENADE, -1);
+			status_change_end(bl, SC_RUSHWINDMILL, -1);
+			status_change_end(bl, SC_ECHOSONG, -1);
+			status_change_end(bl, SC_HARMONIZE, -1);
+			status_change_end(bl, SC_SIRCLEOFNATURE, -1);
+			status_change_end(bl, SC_SATURDAYNIGHTFEVER, -1);
+			status_change_end(bl, SC_DANCEWITHWUG, -1);
+			status_change_end(bl, SC_LERADSDEW, -1);
+			status_change_end(bl, SC_MELODYOFSINK, -1);
+			status_change_end(bl, SC_BEYONDOFWARCRY, -1);
+			status_change_end(bl, SC_UNLIMITEDHUMMINGVOICE, -1);
+			skill_attack(BF_WEAPON, src, src, bl, skillid, skilllv, tick, flag);
+		}
 		break;
 	case 0:
 		if(sd) {
@@ -4990,6 +5012,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case NC_AXETORNADO:
 	case SR_RAMPAGEBLASTER:
 	case SR_SKYNETBLOW:
+	case SR_HOWLINGOFLION:
 		skill_area_temp[1] = 0;
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
 		map_foreachinrange(skill_area_sub, bl, skill_get_splash(skillid, skilllv), splash_target(src), 
@@ -8415,6 +8438,12 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 			src->m, x-i, y-i, x+i,y+i,BL_SKILL);
 		break;
 
+	case SR_RIDEINLIGHTNING:
+		i = skill_get_splash(skillid, skilllv);
+		map_foreachinarea(skill_area_sub, src->m, x-i, y-i, x+i, y+i, BL_CHAR, 
+			src, skillid, skilllv, tick, flag|BCT_ENEMY|1, skill_castend_damage_id);
+		break;
+
 	case SA_VOLCANO:
 	case SA_DELUGE:
 	case SA_VIOLENTGALE:
@@ -10951,6 +10980,7 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 	case MO_FINGEROFFENSIVE:
 	case GS_FLING:
 	case SR_RAMPAGEBLASTER:
+	case SR_RIDEINLIGHTNING:
 		if( sd->spiritball > 0 && sd->spiritball < require.spiritball )
 			sd->spiritball_old = require.spiritball = sd->spiritball;
 		else

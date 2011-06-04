@@ -2221,6 +2221,12 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case SR_DRAGONCOMBO:
 					skillratio += 40*skill_lv;
 					break;
+				case SR_HOWLINGOFLION:
+					skillratio += 300*skill_lv - 100;
+					break;
+				case SR_RIDEINLIGHTNING:
+					skillratio += 200*skill_lv - 100;
+					break;
 			}
 
 			ATK_RATE(skillratio);
@@ -2297,6 +2303,10 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			case NC_AXETORNADO:
 				if( (sstatus->rhw.ele) == ELE_WIND || (sstatus->lhw.ele) == ELE_WIND )
 					ATK_ADDRATE(50);
+				break;
+			case SR_RIDEINLIGHTNING:
+				if((sstatus->rhw.ele) == ELE_WIND || (sstatus->lhw.ele) == ELE_WIND)
+					ATK_ADDRATE(20);
 				break;
 		}
 
