@@ -8,14 +8,14 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Monstros dos Campos de Dicastes        |
+// | Nome do Script: Monstros dos Campos de El Dicastes     |
 // |--------------------------------------------------------|
-// | Criado por: brAthena Dev. Team                         |
+// | Criado por: brA Dev. Team                              |
 // |--------------------------------------------------------|
-// | Versão brA: 1.0                                        |
+// | Versões brA: 1.0                                       |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
-// | 1.0 Script Criado [Dani]                               |
+// | 1.0 Script Criado [Protimus]                           |
 // \________________________________________________________/
 
 //==================================================
@@ -29,8 +29,8 @@ dic_fild01,0,0,0,0	monster	Dolomedes	2092,20,0,0,0
 //==================================================
 // dic_fild02 - Base da Montanha Kamidal
 //==================================================
-dic_fild02,0,0,0,0	monster	Golem de Bradium	2024,3,0,0,0
 dic_fild02,0,0,0,0	monster	Centopéia	1987,35,0,0,0
 dic_fild02,0,0,0,0	monster	Larva de Centopéia	1999,10,0,0,0
 dic_fild02,0,0,0,0	monster	Tatacho	1986,25,0,0,0
 dic_fild02,0,0,0,0	monster	Dolomedes	2092,80,0,0,0
+dic_fild02,0,0,0,0	monster	Golem de Bradium	2024,3,0,0,0

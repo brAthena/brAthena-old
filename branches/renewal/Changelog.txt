@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0592 - 03/06/2011 [Protimus]
+	* Adicionado spawns dos monstros do 6° andar da Caverna de Byalan.
+	- Conforme padrões da renovação.
+	* Removido antigo arquivo de spawn dos monstros de dicastes que estava desatualizado.
+
 	r0591 - 03/06/2011 [Protimus]
 	* Adicionados pontos de nascimento (respawn) para monstros dos campos de El Dicastes e Bifrost.
 	- Necessário revisar o nome dos monstros.
