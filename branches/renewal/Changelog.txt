@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0600 - 04/06/2011 [Protimus]
+	* Correções para erros com itens enviados anteriormente.
+	- Ainda não foi criado o novo item type e por isso estava causando erros.
+
 	r0599 - 04/06/2011 [Protimus]
 	* Adicionados novos Itens da Renovação, incluindo novos episódios.
 	- Foi revertida a tradução dos item_db antigo devido estar mal organizada.
