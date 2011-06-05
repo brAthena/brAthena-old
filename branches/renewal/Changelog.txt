@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0599 - 04/06/2011 [Protimus]
+	* Adicionados novos Itens da Renovação, incluindo novos episódios.
+	- Foi revertida a tradução dos item_db antigo devido estar mal organizada.
+	- É necessário revisar se todas as bonificações realmente estão corretas.
+	* Corrigidos erros de envios anteriores com falta de tabs e erros de digitação.
+
 	r0598 - 04/06/2011 [Protimus]
 	* Adicionado novo mob_db.txt contendo:
 	- Nova organização por episódios.

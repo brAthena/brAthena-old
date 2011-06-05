@@ -22,7 +22,7 @@
 // dic_dun01 - Caverna de El Dicastes
 //==================================================
 dic_dun01,0,0,0,0	monster	Scaraba de Um Chifre	2083,50,0,0,0
-dic_dun01,0,0,0,0	monster Scaraba de Dois Chifres	2084,45,0,0,0
+dic_dun01,0,0,0,0	monster	Scaraba de Dois Chifres	2084,45,0,0,0
 dic_dun01,0,0,0,0	monster	Ovo de Scaraba 	2088,15,0,0,0
 dic_dun01,0,0,0,0	monster	Ovo de Scaraba	2089,15,0,0,0
 
