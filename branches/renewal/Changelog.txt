@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0605 - 05/06/2011 [CarlosHenrq]
+	* Corrigido crash no map-server ao usar WL_HELLINFERNO
+	- Erro na formula em battle.c
+
 	r0604 - 05/06/2011 [Protimus]
 	* Adicionadas habilidades dos monstros dos novos episódios: Brasilis, El Dicastes, Dewata, Bifrost, etc..
 	- Necessária retradução do arquivo, estava desorganizado, agora deve ser traduzido corretamente.

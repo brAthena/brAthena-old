@@ -2925,10 +2925,8 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 	nk = skill_get_nk(skill_num);
 	flag.imdef = nk&NK_IGNORE_DEF?1:0;
 
-	if( skill_num == WL_HELLINFERNO ){
+	if(skill_num == WL_HELLINFERNO)
 		s_ele = (skill_lv >= 0) ? ELE_FIRE:ELE_DARK;
-		skill_lv *= (skill_lv < 0) ? -1:1;
-	}
 
 	//Initialize variables that will be used afterwards
 	s_ele = skill_get_ele(skill_num, skill_lv);
