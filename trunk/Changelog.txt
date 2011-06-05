@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0606 - 05/06/2011 [Protimus]
+	* Removidas ferramentas desnecessárias ou que entraram em desuso.
+	- Futuramente o Lord irá adicionar meios mais fáceis de converter o item e mob para SQL através de PHP.
+
 	r0587 - 03/06/2011 [Protimus]
 	* Atualizada source de acordo com r14843 do eAthena.
 
