@@ -9,6 +9,14 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0607 - 05/06/2011 [Protimus]
+	* Modificação em habilidade:
+	- Reação Alquímica: Adição para checagens que faltavam para uso de itens da habilidade.
+	* Adição de novos SI's que faltavam.	
+	* Correções para database de habilidades das 3rd classes.
+	- Removidas habilidades passivas de requerimentos.
+	- Corrigidos valores, ranges, etc..
+
 	r0606 - 05/06/2011 [Protimus]
 	* Removidas ferramentas desnecessárias ou que entraram em desuso.
 	- Futuramente o Lord irá adicionar meios mais fáceis de converter o item e mob para SQL através de PHP.

@@ -869,10 +869,10 @@
 //693,0,0,0,0,0,0,9,0,no,0,0x2,0,none,0,		ALL_PARTYFLEE,Party Flee
 //694,0,0,0,0,0,0,9,0,no,0,0x2,0,none,0,		ALL_ANGEL_PROTECT,Angel's Protection
 //695,0,0,0,0,0,0,9,0,no,0,0x2,0,none,0,		ALL_DREAM_SUMMERNIGHT,Summer Night Dream
-//696,0,0,0,0,0,0,9,0,no,0,0x2,0,none,0,		NPC_CHANGEUNDEAD2,Change Undead
+//696,7,6,1,0,0,0,1,1,no,0,0x2,0,none,0,		NPC_CHANGEUNDEAD2,Change Undead
 //697,9,6,4,0,0x1,0,1,1,yes,0,0x2,0,magic,0,		ALL_REVERSEORCISH,Transformação Orc
-698,0,6,4,0,0x01,0,1,1,no,0,0x2,0,none,0,		ALL_WEWISH,Noite Feliz!
-//699,0,0,0,0,0,0,9,0,no,0,0x2,0,none,0,		ALL_SONKRAN,ALL_SONKRAN
+698,0,6,4,0,0x1,0,1,1,no,0,0x2,0,none,0,		ALL_WEWISH,Noite Feliz!
+//699,6,6,1,0,0,0,1,1,no,0,0x2,0,none,0,		ALL_SONKRAN,ALL_SONKRAN
 //============================================================
 // Habilidades Extras das Classes Transcedentais
 //============================================================
@@ -898,127 +898,127 @@
 //============================================================
 // Cavaleiro Rúnico
 //============================================================
-2001,9,6,16,0,0x1,0,5,1,yes,0,0,0,magic,0,	RK_ENCHANTBLADE,Encantar Lâmina
-2002,11,6,1,-1,0,0,5,1,no,0,0,0,weapon,0,	RK_SONICWAVE,Onda de Choque
+2001,1,6,16,0,0x1,0,5,1,yes,0,0,0,none,0,	RK_ENCHANTBLADE,Encantar Lâmina
+2002,7:8:9:10:11,6,1,-1,0,0,5,1,no,0,0,0,weapon,0,	RK_SONICWAVE,Onda de Choque
 2003,0,6,4,0,0x1,0,10,1,no,0,0,0,weapon,0,	RK_DEATHBOUND,Revidar Dano
-2004,1,8,1,-1,0,1,10,-5,no,0,0,0,weapon,0,	RK_HUNDREDSPEAR,Lança das Mil Pontas
+2004,1,8,1,-1,0,0,10,-5,no,0,0,0,weapon,0,	RK_HUNDREDSPEAR,Lança das Mil Pontas
 2005,1,6,2,4,0x2,2,5,1,no,0,0,0,weapon,3,	RK_WINDCUTTER,Vento Cortante
-2006,0,6,4,-1,0x2,5,0,0,no,0,0,0,weapon,0,	RK_IGNITIONBREAK,Impacto Flamejante
+2006,0,6,4,-1,0x2,5,5,1,no,0,0,0,weapon,0,	RK_IGNITIONBREAK,Impacto Flamejante
 2007,0,0,0,0,0,0,5,0,no,0,0,0,weapon,0,		RK_DRAGONTRAINING,Adestrar Dragão
-2008,9,6,2,3,0xCA,1:1:1:2:2:2:3:3:4:4,10,1,no,0,0,0,weapon,0,	RK_DRAGONBREATH,Sopro do Dragão
-2009,0,8,4,0,0x3,3:4:5:6:7,5,0,yes,0,0,0,weapon,0,	RK_DRAGONHOWLING,Rugido do Dragão
+2008,9,6,2,3,0xC2,1:1:1:2:2:2:3:3:4:4,10,1,no,0,0,0,misc,0,	RK_DRAGONBREATH,Sopro do Dragão
+2009,0,6,4,0,0x3,3:4:5:6:7,5,1,yes,0,0,0,weapon,0,	RK_DRAGONHOWLING,Rugido do Dragão
 2010,0,0,0,0,0,0,10,0,no,0,0,0,none,0,		RK_RUNEMASTERY,Perícia em Runas
-2011,0,6,4,0,0x1,0,1,1,yes,0,0,0,magic,0,	RK_MILLENNIUMSHIELD,Escudos Milenares
-2012,3,6,1,-1,0,0x8,1,1,yes,0,0,0,weapon,0,	RK_CRUSHSTRIKE,Golpe Titânico
-2013,9,6,4,0,0x1,0,1,1,yes,0,0,0,magic,0,	RK_REFRESH,Purificação
-2014,9,6,4,0,0x1,0,1,1,yes,0,0,0,magic,0,	RK_GIANTGROWTH,Força Titânica
-2015,9,6,4,0,0x1,0,1,1,yes,0,0,0,magic,0,	RK_STONEHARDSKIN,Escamas Rochosas
-2016,9,6,4,0,0x1,0,1,1,yes,0,0,0,magic,0,	RK_VITALITYACTIVATION,Vitalidade Rúnica
+2011,0,6,4,0,0x1,0,1,1,yes,0,0,0,none,0,	RK_MILLENNIUMSHIELD,Escudos Milenares
+2012,1,6,1,-1,0,0x8,1,1,yes,0,0,0,weapon,0,	RK_CRUSHSTRIKE,Golpe Titânico
+2013,0,6,4,0,0x1,0,1,1,yes,0,0,0,none,0,	RK_REFRESH,Purificação
+2014,0,6,4,0,0x1,0,1,1,yes,0,0,0,none,0,	RK_GIANTGROWTH,Força Titânica
+2015,0,6,4,0,0x1,0,1,1,yes,0,0,0,none,0,	RK_STONEHARDSKIN,Escamas Rochosas
+2016,0,6,4,0,0x1,0,1,1,yes,0,0,0,none,0,	RK_VITALITYACTIVATION,Vitalidade Rúnica
 2017,0,6,4,-1,0x2,3,1,1,no,0,0,0,weapon,7,	RK_STORMBLAST,Explosão Rúnica
-2018,0,6,4,0,0x3,-1,1,1,yes,0,0,0,magic,0,	RK_FIGHTINGSPIRIT,Aura de Combate
-2019,9,6,4,6,0x1,0,1,1,yes,0,0,0,magic,0,	RK_ABUNDANCE,Regeneração Espiritual
-2020,5:6:7:8:9,6,1,0,0,0,5,1,yes,0,0,0,weapon,0,	RK_PHANTOMTHRUST,Arpão
+2018,0,6,4,0,0x3,-1,1,1,yes,0,0,0,none,0,	RK_FIGHTINGSPIRIT,Aura de Combate
+2019,9,6,4,6,0x1,0,1,1,yes,0,0,0,none,0,	RK_ABUNDANCE,Regeneração Espiritual
+2020,5:6:7:8:9,6,1,-1,0,0,5,1,yes,0,0,0,weapon,0,	RK_PHANTOMTHRUST,Arpão
 //============================================================
 // Sicário
 //============================================================
-2021,5,6,1,5,0x1,0,5,1,no,0,0,0,weapon,0,	GC_VENOMIMPRESS,Potencializar Veneno
+2021,5,6,1,0,0x1,0,5,1,no,0,0,0,none,0,		GC_VENOMIMPRESS,Potencializar Veneno
 2022,3,8,1,-1,0,0,5,-7,no,0,0,0,weapon,0,	GC_CROSSIMPACT,Lâminas Retalhadoras
 2023,3:4:5:6:7,6,1,-1,0,0,5,1,no,0,0,0,weapon,0,	GC_DARKILLUSION,Passo Sombrio
 2024,0,0,0,0,0,0,10,0,no,0,0,0,none,0,		GC_RESEARCHNEWPOISON,Pesquisa de Toxinas
-2025,0,6,4,0,0x1,0,1,0,no,0,0,0,none,0,		GC_CREATENEWPOISON,Criar Toxina
+2025,0,6,4,0,0x1,0,1,1,no,0,0,0,none,0,		GC_CREATENEWPOISON,Criar Toxina
 2026,5,6,16,0,0x1,0,1,1,no,0,0,0,none,0,	GC_ANTIDOTE,Aplicar Antídoto
-2027,0,6,4,0,0x1,0,5,1,no,0,0,0,weapon,0,	GC_POISONINGWEAPON,Aplicar Toxina
+2027,0,6,4,0,0x1,0,5,1,no,0,0,0,none,0,	GC_POISONINGWEAPON,Aplicar Toxina
 2028,0,6,4,0,0x1,0,5,1,no,0,0,0,none,0,	GC_WEAPONBLOCKING,Reflexo de Combate
 2029,-2,6,4,-1,0x2,1,5,1,no,0,0,0,weapon,3,	GC_COUNTERSLASH,Retaliação
 2030,-2,6,4,-1,0x1,0,5,1,no,0,0x200,0,weapon,0,	GC_WEAPONCRUSH,Estilhaçar Arma
-2031,1,6,1,5,0,0,5,1,no,0,0,0,weapon,0,	GC_VENOMPRESSURE,Intoxicar
-2032,2,6,2,5,0x1,0,5,1,yes,0,0,1,weapon,0,	GC_POISONSMOKE,Nevoeiro Tóxico
+2031,1,6,1,-1,0,0,5,1,no,0,0,0,weapon,0,	GC_VENOMPRESSURE,Intoxicar
+2032,5,6,2,0,0x1,0,5,1,yes,0,0,1,none,0,	GC_POISONSMOKE,Nevoeiro Tóxico
 2033,0,6,4,0,0x1,0,5,1,no,0,0,0,weapon,0,	GC_CLOAKINGEXCEED,Ocultação
 2034,0,6,4,-1,0x2,3,1,1,no,0,0,0,weapon,0,	GC_PHANTOMMENACE,Ameaça Fantasma
-2035,0,6,4,0,0x1,0,5,1,no,0,0,0,weapon,0,	GC_HALLUCINATIONWALK,Passos da Ilusão
-2036,0,8,4,-1,0x2,1,5,1,no,0,0,0,weapon,0,	GC_ROLLINGCUTTER,Lâminas de Loki
-2037,7,8,1,-1,0,0,5,1,no,0,0,0,weapon,0,		GC_CROSSRIPPERSLASHER,Castigo de Loki
+2035,0,6,4,0,0x1,0,5,1,no,0,0,0,none,0,	GC_HALLUCINATIONWALK,Passos da Ilusão
+2036,0,6,4,-1,0x2,1,5,1,no,0,0,0,weapon,0,	GC_ROLLINGCUTTER,Lâminas de Loki
+2037,7,6,1,-1,0,0,5,1,no,0,0,0,weapon,0,		GC_CROSSRIPPERSLASHER,Castigo de Loki
 //============================================================
 // Arcebispo
 //============================================================
-2038,3,8,1,6,0x2,1,5,-3,yes,0,0,0,magic,0,	AB_JUDEX,Judex
+2038,11,8,1,6,0x2,3,5,-3,yes,0,0,0,magic,0,	AB_JUDEX,Judex
 2039,0,6,4,0,0x1,0,1,1,yes,0,0,0,magic,0,	AB_ANCILLA,Criar Ancilla
-2040,9,8,1,6,0,3,10,-10,yes,0,0,0,magic,0,	AB_ADORAMUS,Adoramus
-2041,9,6,4,0,0x3,3:7:15,3,1,yes,0,0,0,magic,0,	AB_CLEMENTIA,Crementia
-2042,9,6,4,0,0x3,3:7:15,3,1,yes,0,0,0,magic,0,	AB_CANTO,Canto Candidus
-2043,9,6,4,6,0x3,3:7:15,3,1,yes,0,0,0,magic,0,	AB_CHEAL,Sopro Divino
-2044,7,6,2,6,0x21,0,5,1,yes,0,0,1,magic,1,	AB_EPICLESIS,Epiclesis
-2045,0,6,4,0,0x3,-1,10,1,yes,0,0,0,magic,0,	AB_PRAEFATIO,Praefatio
-2046,0,6,4,0,0x3,-1,10,1,yes,0,0,0,magic,0,	AB_ORATIO,Oratio
-2047,0,6,4,0,0x3,-1,4,1,yes,0,0,0,magic,0,	AB_LAUDAAGNUS,Lauda Agnus
-2048,0,6,4,0,0x3,-1,4,1,yes,0,0,0,magic,0,	AB_LAUDARAMUS,Lauda Ramus
+2040,11,8,1,6,0,0,10,-10,yes,0,0,0,magic,0,	AB_ADORAMUS,Adoramus
+2041,0,6,4,6,0x3,3:7:15,3,1,yes,0,0,0,magic,0,	AB_CLEMENTIA,Crementia
+2042,0,6,4,6,0x3,3:7:15,3,1,yes,0,0,0,magic,0,	AB_CANTO,Canto Candidus
+2043,0,6,4,6,0x3,3:7:15,3,1,yes,0,0,0,magic,0,	AB_CHEAL,Sopro Divino
+2044,11,6,2,6,0x1,0,5,1,yes,0,0,1,magic,0,	AB_EPICLESIS,Epiclesis
+2045,0,6,4,6,0x3,15,10,1,yes,0,0,0,magic,0,	AB_PRAEFATIO,Praefatio
+2046,0,6,4,6,0x3,15,10,1,yes,0,0,0,magic,0,	AB_ORATIO,Oratio
+2047,0,6,4,6,0x3,15,4,1,yes,0,0,0,magic,0,	AB_LAUDAAGNUS,Lauda Agnus
+2048,0,6,4,6,0x3,15,4,1,yes,0,0,0,magic,0,	AB_LAUDARAMUS,Lauda Ramus
 2049,0,0,0,0,0,0,10,0,no,0,0,0,none,0,		AB_EUCHARISTICA,Eucharistica
-2050,9,6,16,0,0x1,0,1,1,yes,0,0,0,magic,0,	AB_RENOVATIO,Renovatio
-2051,9,6,16,6,0x21,0,5,1,yes,0,0,0,magic,0,	AB_HIGHNESSHEAL,Curatio
-2052,9,6,1,0:0:0:0:0:-1,0x1,0,5,1,yes,0,0xE00,0,magic,0,	AB_CLEARANCE,Gênese
-2053,9,6,4,0,0x1,0,5,1,yes,0,0,0,magic,0,	AB_EXPIATIO,Expiatio
-2054,0,6,4,0,0x1,0,10,1,yes,0,0,0,none,0,	AB_DUPLELIGHT,Gemini Lumen
+2050,11,6,16,6,0x1,0,1,1,yes,0,0,0,magic,0,	AB_RENOVATIO,Renovatio
+2051,11,6,16,6,0x21,0,5,1,yes,0,0,0,magic,0,	AB_HIGHNESSHEAL,Curatio
+2052,11,6,1,0,0x1,0,5,1,yes,0,0xA00,0,magic,0,	AB_CLEARANCE,Gênese
+2053,0,6,4,0,0x1,0,5,1,yes,0,0,0,magic,0,	AB_EXPIATIO,Expiatio
+2054,0,6,4,6,0x1,0,10,1,yes,0,0,0,none,0,	AB_DUPLELIGHT,Gemini Lumen
 2055,-1,6,1,-1,0,0,10,1,no,0,0,0,weapon,0,	AB_DUPLELIGHT_MELEE,Gemini Lumen
 2056,-1,6,1,0,0,0,10,1,no,0,0,0,magic,0,	AB_DUPLELIGHT_MAGIC,Gemini Lumen
-2057,0,6,4,0,0x3,4:5:6:7:8,5,1,yes,0,0,0,magic,0,	AB_SILENTIUM,Silentium
+2057,0,6,4,6,0x3,4:5:6:7:8,5,1,yes,0,0,0,magic,0,	AB_SILENTIUM,Silentium
 //============================================================
 // Arcano
 //============================================================
-2201,9,6,16,0,0x1,0,5,0,yes,0,0,0,magic,0,	WL_WHITEIMPRISON,Exílio
-2202,9,8,1,8,0x2,1:1:1:2:2,5,-2,yes,0,0,0,magic,0,	WL_SOULEXPANSION,Impacto Espiritual
-2203,9,8,4,1,0x2,-1,5,-3:-4:-5:-6:-7,yes,0,0,0,magic,0,	WL_FROSTMISTY,Zero Absoluto
+2201,11,6,16,0,0,0,5,1,yes,0,0,0,magic,0,	WL_WHITEIMPRISON,Exílio
+2202,11,8,1,8,0x2,1:1:1:2:2,5,-2,yes,0,0,0,magic,0,	WL_SOULEXPANSION,Impacto Espiritual
+2203,0,8,4,1,0x2,13,5,-3:-4:-5:-6:-7,yes,0,0,0,magic,0,	WL_FROSTMISTY,Zero Absoluto
 2204,0,8,4,1,0x3,-1,5,-5,yes,0,0,0,magic,0,	WL_JACKFROST,Esquife de Gelo
-2205,9,6,1,0,0x1,0,5,0,yes,0,0,0,magic,0,	WL_MARSHOFABYSS,Pântano de Nifflheim
+2205,11,6,1,0,0x1,0,5,1,yes,0,0,0,magic,0,	WL_MARSHOFABYSS,Pântano de Nifflheim
 2206,0,6,4,0,0x1,0,5,1,yes,0,0,0,magic,0,	WL_RECOGNIZEDSPELL,Maestria Arcana
-2207,7,6,1,2,0x3,3,5,0,yes,0,0,0,magic,0,	WL_SIENNAEXECRATE,Fúria da Medusa
+2207,7,6,1,2,0x3,1:2:2:3:3,5,1,yes,0,0,0,magic,0,	WL_SIENNAEXECRATE,Fúria da Medusa
 2208,0,0,0,0,0,0,3,0,no,0,0,0,none,0,		WL_RADIUS,Expansão Arcana
 2209,0,6,4,0,0x3,9:10:11:12:13,5,1,yes,0,0,0,magic,0,	WL_STASIS,Distorção Arcana
-2210,9,8,1,0,0,0,5,1,yes,0,0,0,magic,0,		WL_DRAINLIFE,Drenar Vida
-2211,9,8,1,3,0x2,3,5,-7,yes,0,0,0,magic,3,	WL_CRIMSONROCK,Meteoro Escarlate
-2212,9,6,1,3,0,0,5,1,yes,0,0,0,magic,0,		WL_HELLINFERNO,Chamas de Hela
-2213,9,8,2,0,0x2,15,5,-20,yes,0,0,0,magic,2,	WL_COMET,Cometa
-2214,9,6,1,0,0,3,5,1,yes,0,0,0,magic,0,		WL_CHAINLIGHTNING,Corrente Elétrica
-2215,9,6,1,4,0,0,5,1,no,0,0,0,magic,0,		WL_CHAINLIGHTNING_ATK,Corrente Elétrica
+2210,11,6,1,0,0,0,5,1,yes,0,0,0,magic,0,		WL_DRAINLIFE,Drenar Vida
+2211,11,8,1,3,0x2,3,5,-7,yes,0,0,0,magic,3,	WL_CRIMSONROCK,Meteoro Escarlate
+2212,11,6,1,3,0,0,5,1,yes,0,0,0,magic,0,		WL_HELLINFERNO,Chamas de Hela
+2213,11,8,2,0,0x2,15,5,-20,yes,0,0,0,magic,2,	WL_COMET,Cometa
+2214,11,6,1,0,0,3,5,1,yes,0,0,0,magic,0,		WL_CHAINLIGHTNING,Corrente Elétrica
+2215,11,6,1,4,0,0,5,1,no,0,0,0,magic,0,		WL_CHAINLIGHTNING_ATK,Corrente Elétrica
 2216,3,8,2,2,0x1,0,5,-6:-7:-8:-9:-10,yes,0,0,0,magic,0,	WL_EARTHSTRAIN,Abalo Sísmico
-2217,9,6,1,0,0,0,5,1,yes,0,0,0,magic,0,		WL_TETRAVORTEX,Tetra Vortex
-2218,9,6,1,3,0,0,5,1,no,0,0,0,magic,0,		WL_TETRAVORTEX_FIRE,Tetra Vortex Fire
-2219,9,6,1,1,0,0,5,1,no,0,0,0,magic,0,		WL_TETRAVORTEX_WATER,Tetra Vortex Water
-2220,9,6,1,4,0,0,5,1,no,0,0,0,magic,0,		WL_TETRAVORTEX_WIND,Tetra Vortex Wind
-2221,9,6,1,2,0,0,5,1,no,0,0,0,magic,0,		WL_TETRAVORTEX_GROUND,Tetra Vortex Earth
+2217,11,6,1,0,0,0,5,1,yes,0,0,0,magic,0,		WL_TETRAVORTEX,Tetra Vortex
+2218,11,6,1,3,0,0,5,1,no,0,0,0,magic,0,		WL_TETRAVORTEX_FIRE,Tetra Vortex Fire
+2219,11,6,1,1,0,0,5,1,no,0,0,0,magic,0,		WL_TETRAVORTEX_WATER,Tetra Vortex Water
+2220,11,6,1,4,0,0,5,1,no,0,0,0,magic,0,		WL_TETRAVORTEX_WIND,Tetra Vortex Wind
+2221,11,6,1,2,0,0,5,1,no,0,0,0,magic,0,		WL_TETRAVORTEX_GROUND,Tetra Vortex Earth
 2222,0,6,4,3,0x1,0,5,1,yes,0,0,0,magic,0,	WL_SUMMONFB,Invocar Esfera de Fogo
 2223,0,6,4,4,0x1,0,5,1,yes,0,0,0,magic,0,	WL_SUMMONBL,Invocar Esfera de Vento
 2224,0,6,4,1,0x1,0,5,1,yes,0,0,0,magic,0,	WL_SUMMONWB,Invocar Esfera de Água
-2225,9,6,1,3,0,0,5,1,no,0,0,1,magic,0,		WL_SUMMON_ATK_FIRE,Invocar Esfera de Fogo
-2226,9,6,1,4,0,0,5,1,no,0,0,1,magic,0,		WL_SUMMON_ATK_WIND,Invocar Esfera de Vento
-2227,9,6,1,1,0,0,5,1,no,0,0,1,magic,0,		WL_SUMMON_ATK_WATER,Invocar Esfera de Água
-2228,9,6,1,2,0,0,5,1,no,0,0,1,magic,0,		WL_SUMMON_ATK_GROUND,Invocar Esfera da Terra
+2225,11,6,1,3,0,0,5,1,no,0,0,1,magic,0,		WL_SUMMON_ATK_FIRE,Invocar Esfera de Fogo
+2226,11,6,1,4,0,0,5,1,no,0,0,1,magic,0,		WL_SUMMON_ATK_WIND,Invocar Esfera de Vento
+2227,11,6,1,1,0,0,5,1,no,0,0,1,magic,0,		WL_SUMMON_ATK_WATER,Invocar Esfera de Água
+2228,11,6,1,2,0,0,5,1,no,0,0,1,magic,0,		WL_SUMMON_ATK_GROUND,Invocar Esfera da Terra
 2229,0,6,4,2,0x1,0,5,1,yes,0,0,0,magic,0,	WL_SUMMONSTONE,Invocar Esfera de Terra
-2230,9,8,1,0,0,0,2,1,yes,0,0,0,magic,0,		WL_RELEASE,Disparo Arcano
+2230,11,8,1,0,0,0,2,1,yes,0,0,0,magic,0,		WL_RELEASE,Disparo Arcano
 2231,0,6,4,0,0x1,0,1,1,yes,0,0,0,magic,0,	WL_READING_SB,Estudo Arcano
 2232,0,0,0,0,0,0,5,0,no,0,0,0,none,0,		WL_FREEZE_SP,Estudo Arcano Avançado
 //============================================================
 // Sentinela
 //============================================================
 2233,9,8,1,-1,0x2,2:2:2:2:2:3:3:3:3:4,10,3,yes,0,0,0,weapon,0,	RA_ARROWSTORM,Tempestade de Flechas
-2234,0,8,4,0,0,0,5,5,no,0,0,0,none,0,		RA_FEARBREEZE,Disparo Selvagem
+2234,0,6,4,0,0,0,5,1,yes,0,0,0,none,0,		RA_FEARBREEZE,Disparo Selvagem
 2235,0,0,0,0,0,0,10,0,no,0,0,0,none,0,		RA_RANGERMAIN,Táticas de Sobrevivência
 2236,9,8,1,-1,0,0,10,1,yes,0,0,0,weapon,0,	RA_AIMEDBOLT,Disparo Certeiro
 2237,9,6,2,0,0x3,3,1,1,no,0,0,0,none,0,		RA_DETONATOR,Detonador
 2238,3,6,2,0,0x3,2,5,1,no,0,0x80,3,misc,0,	RA_ELECTRICSHOCKER,Armadilha Energizada
 2239,3,6,2,0,0x42,3,5,1,no,0,0x80,3,misc,0,	RA_CLUSTERBOMB,Bomba Relógio
-2240,0,6,4,0,0,0,1,0,no,0,0,0,none,0,		RA_WUGMASTERY,Adestrar Lobo
-2241,0,6,4,0,0,0,3,0,no,0,0,0,none,0,		RA_WUGRIDER,Montaria em Lobo
-2242,0,6,4,0,0x2,1,1,0,no,0,0,0,weapon,0,	RA_WUGDASH,Corrida em Lobo
-2243,9,8,1,-1,0,0,5,1,no,0,0,0,weapon,0,	RA_WUGSTRIKE,Investida de Lobo
-2244,9,8,1,-1,0,0,5,1,no,0,0,0,weapon,0,	RA_WUGBITE,Mordida Feroz
+2240,0,6,4,0,0,0,1,1,no,0,0,0,none,0,		RA_WUGMASTERY,Adestrar Lobo
+2241,0,6,4,0,0,0,3,1,no,0,0,0,none,0,		RA_WUGRIDER,Montaria em Lobo
+2242,0,6,4,-1,0x2,1,1,0,no,0,0,0,weapon,0,	RA_WUGDASH,Corrida em Lobo
+2243,9,6,1,-1,0,0,5,1,no,0,0,0,weapon,0,	RA_WUGSTRIKE,Investida de Lobo
+2244,9,6,1,-1,0,0,5,1,no,0,0,0,weapon,0,	RA_WUGBITE,Mordida Feroz
 2245,0,0,0,0,0,0,10,0,no,0,0,0,none,0,		RA_TOOTHOFWUG,Presas Afiadas
-2246,0,6,4,0,0x2,3:4:5:6:7,5,0,no,0,0,0,weapon,0,	RA_SENSITIVEKEEN,Faro Aguçado
-2247,0,6,4,0,0x1,0,5,0,no,0,0,0,weapon,0,	RA_CAMOUFLAGE,Camuflagem
+2246,0,6,4,0,0x2,3:4:5:6:7,5,1,no,0,0,0,weapon,0,	RA_SENSITIVEKEEN,Faro Aguçado
+2247,0,6,4,0,0x1,0,5,1,no,0,0,0,none,0,	RA_CAMOUFLAGE,Camuflagem
 2248,0,0,0,0,0,0,5,0,no,0,0,0,none,0,		RA_RESEARCHTRAP,Perícia com Armadilha
-2249,3,6,2,3,0x40,2,1,1,no,0,0x80,1,misc,0,	RA_MAGENTATRAP,Armadilha Escarlate
-2250,3,6,2,1,0x40,2,1,1,no,0,0x80,1,misc,0,	RA_COBALTTRAP,Armadilha Cobalto
-2251,3,6,2,2,0x40,2,1,1,no,0,0x80,1,misc,0,	RA_MAIZETRAP,Armadilha Ocre
-2252,3,6,2,4,0x40,2,1,1,no,0,0x80,1,misc,0,	RA_VERDURETRAP,Armadilha Esmeralda
+2249,3,6,2,3,0x43,2,1,1,no,0,0x80,1,misc,0,	RA_MAGENTATRAP,Armadilha Escarlate
+2250,3,6,2,1,0x43,2,1,1,no,0,0x80,1,misc,0,	RA_COBALTTRAP,Armadilha Cobalto
+2251,3,6,2,2,0x43,2,1,1,no,0,0x80,1,misc,0,	RA_MAIZETRAP,Armadilha Ocre
+2252,3,6,2,4,0x43,2,1,1,no,0,0x80,1,misc,0,	RA_VERDURETRAP,Armadilha Esmeralda
 2253,3,6,2,0,0x42,2,5,1,no,0,0x80,2,misc,0,	RA_FIRINGTRAP,Armadilha Incendiária
 2254,3,6,2,0,0x42,2,5,1,no,0,0x80,2,misc,0,	RA_ICEBOUNDTRAP,Armadilha Glacial
 //============================================================
@@ -1026,9 +1026,9 @@
 //============================================================
 2255,0,0,0,0,0,0,5,0,no,0,0,0,none,0,		NC_MADOLICENCE,Licença de Pilotagem
 2256,11,6,1,-1,0,0,5,1,no,0,0,0,weapon,0,	NC_BOOSTKNUCKLE,Punho Foguete
-2257,4,6,1,-1,0,0,3,1,no,0,0,0,weapon,0,		NC_PILEBUNKER,Bate Estaca
-2258,13,8,1,-1,0,0,3,1,no,0,0,0,weapon,0,	NC_VULCANARM,Metralhadora
-2259,5,6,1,3,0x1,0,3,1,no,0,0,0,weapon,0,	NC_FLAMELAUNCHER,Lança Chamas
+2257,3,6,1,-1,0,0,3,1,no,0,0,0,weapon,0,		NC_PILEBUNKER,Bate Estaca
+2258,13,6,1,-1,0,0,3,1,no,0,0,0,weapon,0,	NC_VULCANARM,Metralhadora
+2259,5,6,1,3,0,2,3,1,no,0,0,5,weapon,0,	NC_FLAMELAUNCHER,Lança Chamas
 2260,7,6,2,1,0x2,2:3:4,3,1,no,0,0,0,weapon,0,	NC_COLDSLOWER,Gás Criogênico
 2261,7,6,2,-1,0x42,3:2:1,3,1,no,0,0,0,weapon,0,	NC_ARMSCANNON,Canhão
 2262,0,6,4,0,0x1,0,3,1,no,0,0,0,none,0,	NC_ACCELERATION,Aceleração
@@ -1037,30 +1037,30 @@
 2265,0,6,4,0,0x1,0,1,1,no,0,0,0,none,7,		NC_B_SIDESLIDE,Propulsão Traseira
 2266,0,0,0,0,0,0,4,0,no,0,0,0,none,0,		NC_MAINFRAME,Reforçar Estrutura
 2267,0,6,4,-1,0x2,2:3:4,3,1,no,0,0,0,misc,5,	NC_SELFDESTRUCTION,Autodestruicão
-2268,0,6,4,0,0x1,0,4,0,yes,0,0,0,none,0,		NC_SHAPESHIFT,Reconfigurar Elemento
-2269,0,6,4,0,0x1,0,1,0,no,0,0,0,none,0,	NC_EMERGENCYCOOL,Resfriamento
+2268,0,6,4,0,0x1,0,4,1,yes,0,0,0,none,0,		NC_SHAPESHIFT,Reconfigurar Elemento
+2269,0,6,4,0,0x1,0,1,1,no,0,0,0,none,0,	NC_EMERGENCYCOOL,Resfriamento
 2270,0,6,4,0,0x3,7,1,1,yes,0,0,0,none,0,		NC_INFRAREDSCAN,Sensor Infravermelho
 2271,9,6,1,0,0x1,0,3,1,yes,0,0,0,none,0,		NC_ANALYZE,Analisar
 2272,0,6,4,0,0x3,1:2:3,3,1,yes,0,0,0,none,0,	NC_MAGNETICFIELD,Campo Magnético
 2273,0,6,4,0,0x1,0,3,1,yes,0,0,0,none,0,	NC_NEUTRALBARRIER,Campo Protetor
 2274,0,6,4,0,0x1,0,3,1,yes,0,0,0,none,0,	NC_STEALTHFIELD,Campo de Invisibilidade
-2275,5,6,16,0,0x21,0,5,1,yes,0,0,0,magic,0,	NC_REPAIR,Reparar
+2275,5,6,16,0,0x1,0,5,1,yes,0,0,0,magic,0,	NC_REPAIR,Reparar
 2276,0,0,0,0,0,0,10,0,no,0,0,0,none,0,		NC_TRAININGAXE,Maestria com Machados
 2277,0,0,0,0,0,0,5,0,no,0,0,0,none,0,		NC_RESEARCHFE,Sabedoria de Hefesto
-2278,5:6:7:8:9,6,1,-1,0,0,5,1,no,0,0,0,weapon,3,	NC_AXEBOOMERANG,Arremesso de Machado
-2279,4,6,1,-1,0,0,5,1,no,0,0,0,weapon,0,	NC_POWERSWING,Brandir Machado
-2280,0,8,4,-1,0x2,1,5,-3,no,0,0,0,weapon,0,	NC_AXETORNADO,Fúria do Furacão
-2281,4,6,2,0,0x1,0,5,1,yes,0,0,2,none,0,		NC_SILVERSNIPER,Artilharia Caçadora
-2282,4,6,2,0,0x1,0,5,1,yes,0,0,2,none,0,		NC_MAGICDECOY,Artilharia Arcana
+2278,4:5:6:7:8,6,1,-1,0,0,5,1,no,0,0,0,weapon,2:3:4:5:6,	NC_AXEBOOMERANG,Arremesso de Machado
+2279,1,6,1,-1,0,0,5,1,no,0,0,0,weapon,0,	NC_POWERSWING,Brandir Machado
+2280,0,8,4,-1,0x2,2:2:3:3:3,5,-6,no,0,0,0,weapon,0,	NC_AXETORNADO,Fúria do Furacão
+2281,2,6,2,0,0x1,0,5,1,yes,0,0,2,none,0,		NC_SILVERSNIPER,Artilharia Caçadora
+2282,2,6,2,0,0x1,0,5,1,yes,0,0,2,none,0,		NC_MAGICDECOY,Artilharia Arcana
 2283,2,6,1,0,0x1,0,1,1,no,0,0,0,none,0,		NC_DISJOINT,Remover Artilharia
 //============================================================
 // Renegado
 //============================================================
-2284,4,6,1,-1,0x2,1,5,1,no,0,0,0,weapon,0,		SC_FATALMENACE,Acerto de Contas
+2284,1,6,1,-1,0x2,1,5,1,no,0,0,0,weapon,0,		SC_FATALMENACE,Acerto de Contas
 2285,0,6,4,0,0x1,0,10,1,no,0,0,0,none,0,	SC_REPRODUCE,Mimetismo
 2286,0,6,4,0,0x1,0,10,1,yes,0,0,0,none,0,	SC_AUTOSHADOWSPELL,Desejo das Sombras
 2287,5,6,1,0,0x1,0,5,1,no,0,0,0,none,0,	SC_SHADOWFORM,Vínculo Sombrio
-2288,7:7:7:9:9:9:9:11:11:11,8,1,-1,0,0,10,-3,yes,0,0,0,weapon,4,	SC_TRIANGLESHOT,Disparo Triplo
+2288,7:7:7:9:9:9:9:11:11:11,8,1,-1,0,0,10,-3,yes,0,0,0,weapon,3,	SC_TRIANGLESHOT,Disparo Triplo
 2289,0,6,4,0,0x3,2,5,1,no,0,0,0,none,0,		SC_BODYPAINT,Borrifar Tinta
 2290,0,6,4,0,0x1,0,5,1,yes,0,0,0,none,0,	SC_INVISIBILITY,Forma Etérea
 2291,0,6,4,0,0x1,0,5,1,no,0,0,0,none,0,		SC_DEADLYINFECT,Pestilência
@@ -1070,99 +1070,99 @@
 2295,3,6,1,0,0x1,0,3,1,yes,0,0,0,none,0,		SC_LAZINESS,Máscara da Ociosidade
 2296,3,6,1,0,0x1,0,3,1,yes,0,0,0,none,0,		SC_UNLUCKY,Máscara do Infortúnio
 2297,3,6,1,0,0x1,0,3,1,yes,0,0,0,none,0,		SC_WEAKNESS,Máscara da Vulnerabilidade
-2298,1,6,1,0,0x1,0,5,1,yes,0,0,0,weapon,0,	SC_STRIPACCESSARY,Remover Acessório
-2299,7,6,2,0,0x1,0,3,1,yes,0,0,3,misc,0,		SC_MANHOLE,Pintar Armadilha
+2298,3,6,1,0,0x1,0,5,1,yes,0,0,0,weapon,0,	SC_STRIPACCESSARY,Remover Acessório
+2299,7,6,2,0,0x1,0,3,1,yes,0,0,3,none,0,		SC_MANHOLE,Pintar Armadilha
 2300,7,6,2,0,0x1,0,3,1,yes,0,0,1,none,0,		SC_DIMENSIONDOOR,Portal Dimensional
 2301,7,6,2,0,0x1,0,3,1,no,0,0,0,none,0,		SC_CHAOSPANIC,Símbolo do Caos
 2302,7,6,2,0,0x1,0,3,1,yes,0,0,0,none,0,		SC_MAELSTROM,Redemoinho de Absorção
 2303,7,6,2,0,0x1,0,3,1,no,0,0,0,none,0,		SC_BLOODYLUST,Sede de Sangue
-2304,0,6,4,-1,0,0,3,1,yes,0,0,0,weapon,0,		SC_FEINTBOMB,Cópia Explosiva
+2304,0,6,4,-1,0,0,3,1,no,0,0,0,weapon,0,		SC_FEINTBOMB,Cópia Explosiva
 //============================================================
 // Guardião Real
 //============================================================
 2307,11,6,1,-1,0x02,1,5,1,no,0,0,10,weapon,0,		LG_CANNONSPEAR,Disparo Perfurante
 2308,7,6,1,-1,0,0,10,1,no,0,0,0,weapon,0,		LG_BANISHINGPOINT,Toque do Oblívio
-2309,0,6,4,0,0x3,2,5,0,no,0,0,0,none,0,		LG_TRAMPLE,Pisotear Armadilha
-2310,3,6,1,0,0,0,5,1,no,0,0,0,weapon,0,		LG_SHIELDPRESS,Escudo Compressor
+2309,0,6,4,0,0x3,2,5,1,no,0,0,0,none,0,		LG_TRAMPLE,Pisotear Armadilha
+2310,1,6,1,0,0,0,5,1,no,0,0,0,weapon,0,		LG_SHIELDPRESS,Escudo Compressor
 2311,0,6,4,0,0x03,3,5,1,no,0,0,0,none,0,		LG_REFLECTDAMAGE,Reflexão Amplificada
 2312,5,6,1,-1,0,0,5,1,no,0,0,0,weapon,0,		LG_PINPOINTATTACK,Estocada Precisa
-2313,0,6,4,0,0x01,0,5,1,no,0,0,0,weapon,0,		LG_FORCEOFVANGUARD,Proteção da Vanguarda
-2314,2,6,1,-1,0,0,1,1,no,0,0,0,weapon,0,		LG_RAGEBURST,Retribuição da Vanguarda
-2315,0,6,4,0,0x1,3,3,1,yes,0,0,0,none,2,		LG_SHIELDSPELL,Aegis Domini
+2313,0,6,4,0,0x1,0,5,1,yes,0,0,0,none,0,		LG_FORCEOFVANGUARD,Proteção da Vanguarda
+2314,1,6,1,-1,0,0,1,1,no,0,0,0,weapon,0,		LG_RAGEBURST,Retribuição da Vanguarda
+2315,0,6,4,0,0x2,3,3,1,yes,0,0,0,none,2,		LG_SHIELDSPELL,Aegis Domini
 2316,0,6,4,0,0x1,0,5,1,yes,0,0,0,none,0,		LG_EXEEDBREAK,Exceder Limite
-2317,0,6,2,-1,0x2,5,5,1,no,0,0,0,none,3:4:5:6:7,		LG_OVERBRAND,Lança do Destino
+2317,1,6,2,-1,0x2,5,5,1,yes,0,0,0,none,3:4:5:6:7,		LG_OVERBRAND,Lança do Destino
 2318,0,6,4,0,0x1,0,5,1,yes,0,0,0,none,0,		LG_PRESTIGE,Prestígio Divino
-2319,0,6,4,0,0x01,3,5,1,no,0,0,0,weapon,0,		LG_BANDING,Formação Real
-2320,0,6,4,-1,0x2,3,5,1,no,0,0,0,weapon,0,		LG_MOONSLASHER,Espiral Lunar
-2321,2,8,2,6,0x2,5,5,-7,yes,0,0,0,weapon,0,		LG_RAYOFGENESIS,Luz da Criação 
-2322,7,6,16,0,0x3,1,5,1,yes,0,0,0,none,0,		LG_PIETY,Devoção
-2323,0,8,4,2,0x2,1:1:2:2:3,5,-5,no,0,0,0,weapon,0,		LG_EARTHDRIVE,Aegis Inferi
-2324,0,0,0,0,0,0,5,0,no,0,0,0,none,0,		LG_HESPERUSLIT,Trindade
+2319,0,6,4,0,0x1,3,5,1,no,0,0,0,weapon,0,		LG_BANDING,Formação Real
+2320,0,6,4,-1,0x2,3,5,1,yes,0,0,0,weapon,0,		LG_MOONSLASHER,Espiral Lunar
+2321,1,8,2,6,0x2,5,5,-7,yes,0,0,0,weapon,0,		LG_RAYOFGENESIS,Luz da Criação 
+2322,0,6,16,0,0x3,1,5,1,yes,0,0,0,none,0,		LG_PIETY,Devoção
+2323,0,8,4,2,0x2,1:1:2:2:3,5,-5,yes,0,0,0,weapon,0,		LG_EARTHDRIVE,Aegis Inferi
+2324,3,8,1,-1,0,0,5,3,yes,0,0,0,weapon,0,		LG_HESPERUSLIT,Trindade
 2325,0,6,4,0,0x1,0,5,1,yes,0,0,0,none,0,		LG_INSPIRATION,Consagração
 //============================================================
 // Shura
 //============================================================
 2326,-2,8,1,-1,0,0,10,2,no,0,0,0,weapon,0,		SR_DRAGONCOMBO,Punho do Dragão
-2327,0,6,4,-1,0x2,2,5,1,no,0,0,0,weapon,3,		SR_SKYNETBLOW,Soco Furação
+2327,0,8,4,-1,0x2,2,5,-3,no,0,0,0,weapon,3,		SR_SKYNETBLOW,Soco Furação
 2328,0,6,4,-1,0x2,1:2:3:4:5,5,1,no,0,0,0,weapon,0,		SR_EARTHSHAKER,Impacto Sísmico
-2329,-2,8,4,-1,0,0,5,1,no,0,0x200,0,weapon,0,		SR_FALLENEMPIRE,Ruína
-2330,-2,6,4,-1,0x42,1:1:1:1:1:2:2:2:2:2,10,1,no,0,0x200,0,weapon,0,	SR_TIGERCANNON,Garra de Tigre
+2329,-2,8,4,-1,0,0,5,-2,no,0,0x200,0,weapon,0,		SR_FALLENEMPIRE,Ruína
+2330,-2,6,1,-1,0x42,1:1:1:1:1:2:2:2:2:2,10,1,yes,0,0,0,weapon,0,	SR_TIGERCANNON,Garra de Tigre
 2331,0,0,0,0,0,0,10,0,no,0,0,0,none,0,		SR_HELLGATE,Hell Gate
 2332,5,6,4,-1,0x2,3,5,1,no,0,0,0,weapon,0,		SR_RAMPAGEBLASTER,Explosão Espiritual
-2333,0,6,4,0,0x1,0,5,1,no,0,0,0,none,0,			SR_CRESCENTELBOW,Cotovelada Ascendente
+2333,0,6,4,0,0x1,0,5,1,no,0,0,0,none,0,		SR_CRESCENTELBOW,Cotovelada Ascendente
 2334,0,6,4,0,0x3,1:1:2:2:3,5,1,no,0,0,0,none,0,	SR_CURSEDCIRCLE,Campo Amaldiçoado
 2335,0,6,4,0,0x1,0,5,1,no,0,0,0,none,0,			SR_LIGHTNINGWALK,Salto Relâmpago
-2336,9,6,1,-1,0,0,5,1,no,0,0,0,weapon,2,		SR_KNUCKLEARROW,Investida de Shura
-2337,0,6,4,-1,0x2,2,1,1,no,0,0,0,weapon,0,		SR_WINDMILL,Rasteira
-2338,0,6,4,0,0x1,0,10,1,yes,0,0,0,none,0,		SR_RAISINGDRAGON,Dragão Ascendente
+2336,7:8:9:10:11,6,1,-1,0,0,5,1,no,0,0,0,weapon,2:3:4:5:6,		SR_KNUCKLEARROW,Investida de Shura
+2337,0,6,4,-1,0x2,2,1,1,yes,0,0,0,weapon,0,		SR_WINDMILL,Rasteira
+2338,0,6,4,0,0x1,0,10,1,no,0,0,0,none,0,		SR_RAISINGDRAGON,Dragão Ascendente
 2339,0,0,0,0,0,0,5,1,no,0,0,0,none,0,			SR_GENTLETOUCH,Chakra
-2340,0,6,4,0,0x3,2,1,1,yes,0,0,0,none,0,		SR_ASSIMILATEPOWER,Absorção Espiritual
-2341,9,6,16,0,0x1,0,1,1,yes,0,0x200,0,none,0,		SR_POWERVELOCITY,Renúncia Espiritual
-2342,4,6,1,-1,0x20,0,5,1,no,0,0,0,weapon,3,		SR_CRESCENTELBOW_AUTOSPELL,Cotovelada Ascendente
-2343,7,8,1,0,0,0,10,1,no,0,0,0,weapon,0,		SR_GATEOFHELL,Portões do Inferno
+2340,0,6,4,0,0x3,2,1,1,no,0,0,0,none,0,		SR_ASSIMILATEPOWER,Absorção Espiritual
+2341,3,6,16,0,0x1,0,1,1,yes,0,0x200,0,none,0,		SR_POWERVELOCITY,Renúncia Espiritual
+2342,1,6,1,-1,0x20,0,5,1,no,0,0,0,weapon,3,		SR_CRESCENTELBOW_AUTOSPELL,Cotovelada Ascendente
+2343,1:2:3:3:4:4:5:5:6:7,8,1,0,0,0,10,-7,yes,0,0,0,weapon,0,		SR_GATEOFHELL,Portões do Inferno
 2344,2,6,1,-1,0,0,5,1,no,0,0,0,weapon,0,		SR_GENTLETOUCH_QUIET,Chakra do Silêncio
 2345,2,6,16,0,0x1,0,5,1,no,0,0,0,magic,0,		SR_GENTLETOUCH_CURE,Chakra da Cura
-2346,0,6,4,0,0x1,0,5,1,no,0,0,0,none,0,			SR_GENTLETOUCH_ENERGYGAIN,Chakra da Energia
-2347,0,6,4,0,0x1,0,5,1,no,0,0,0,none,0,			SR_GENTLETOUCH_CHANGE,Chakra da Fúria
-2348,0,6,4,0,0x1,0,5,1,no,0,0,0,none,0,			SR_GENTLETOUCH_REVITALIZE,Chakra do Vigor
+2346,0,6,4,0,0x1,0,5,1,yes,0,0,0,none,0,			SR_GENTLETOUCH_ENERGYGAIN,Chakra da Energia
+2347,2,6,16,0,0x1,0,5,1,yes,0,0,0,none,0,		SR_GENTLETOUCH_CHANGE,Chakra da Fúria
+2348,2,6,16,0,0x1,0,5,1,yes,0,0,0,none,0,		SR_GENTLETOUCH_REVITALIZE,Chakra do Vigor
 //============================================================
 // Musa
 //============================================================
-2350,0,6,4,0,0x3,-1,5,1,yes,0,0,0,magic,0,	WA_SWING_DANCE,Ritmo Contagiante
-2351,0,6,4,0,0x3,-1,5,1,yes,0,0,0,magic,0,	WA_SYMPHONY_OF_LOVER,Balada Sinfônica
-2352,0,6,4,0,0x3,-1,5,1,yes,0,0,0,magic,0,	WA_MOONLIT_SERENADE,Serenata ao Luar
+2350,0,6,4,0,0x3,7:8:9:10:11,5,1,yes,0,0,0,none,0,	WA_SWING_DANCE,Ritmo Contagiante
+2351,0,6,4,0,0x3,7:8:9:10:11,5,1,yes,0,0,0,none,0,	WA_SYMPHONY_OF_LOVER,Balada Sinfônica
+2352,0,6,4,0,0x3,7:8:9:10:11,5,1,yes,0,0,0,none,0,	WA_MOONLIT_SERENADE,Serenata ao Luar
 //============================================================
 // Trovador
 //============================================================
-2381,0,6,4,0,0x3,-1,5,1,yes,0,0,0,magic,0,	MI_RUSH_WINDMILL,Sinfonia dos Ventos
-2382,0,6,4,0,0x3,-1,5,1,yes,0,0,0,magic,0,	MI_ECHOSONG,Canção de Balder
-2383,6,6,16,0,0x1,0,5,1,yes,0,0,0,magic,0,	MI_HARMONIZE,Harmonizar
+2381,0,6,4,0,0x3,7:8:9:10:11,5,1,yes,0,0,0,none,0,	MI_RUSH_WINDMILL,Sinfonia dos Ventos
+2382,0,6,4,0,0x3,7:8:9:10:11,5,1,yes,0,0,0,none,0,	MI_ECHOSONG,Canção de Balder
+2383,9,6,16,0,0x1,0,5,1,yes,0,0,0,none,0,	MI_HARMONIZE,Harmonizar
 //============================================================
 // Trovador & Musa
 //============================================================
 2412,0,0,0,0,0,0,10,0,no,0,0,0,none,0,		WM_LESSON,Domínio Musical
 2413,9,6,1,-1,0,0,5,1,yes,0,0,0,weapon,0,		WM_METALICSOUND,Ruído Estridente
-2414,9,6,2,-1,0x1,1,5,1,no,0,0,3,none,0,		WM_REVERBERATION,Ressonância
-2415,0,0,0,-1,0,0,5,1,no,0,0,0,weapon,0,		WM_REVERBERATION_MELEE,Ressonância
-2416,0,0,0,-1,0,0,5,1,no,0,0,0,magic,0,			WM_REVERBERATION_MAGIC,Ressonância
+2414,9,6,2,-1,0x3,1,5,1,yes,0,0x80,3,none,0,		WM_REVERBERATION,Ressonância
+2415,0,6,1,-1,0x2,1,5,1,no,0,0,0,weapon,0,		WM_REVERBERATION_MELEE,Ressonância
+2416,0,6,1,-1,0x2,1,5,1,no,0,0,0,magic,0,			WM_REVERBERATION_MAGIC,Ressonância
 2417,11,6,2,0,0x3,5,1,1,no,0,0,0,none,0,		WM_DOMINION_IMPULSE,Ativar Ressonância
-2418,8,6,2,-1,0x1,0,5,1,yes,0,0,0,none,0,	WM_SEVERE_RAINSTORM,Temporal de Mil Flechas
-2419,9,6,2,0,0x1,0,5,1,yes,0,0,5,none,0,		WM_POEMOFNETHERWORLD,Poema de Nifflheim
-2420,0,6,4,0,0x2,-1,5,1,yes,0,0,0,none,0,		WM_VOICEOFSIREN,Canto da Sereia
-2421,9,6,16,0,0x1,0,5,1,yes,0,0,0,none,0,		WM_DEADHILLHERE,Réquiem de Orfeu
-2422,8,6,2,0,0x3,5:6:7:8:9,5,1,yes,0,0,0,misc,0,		WM_LULLABY_DEEPSLEEP,Melodia de Morfeu
-2423,0,6,4,0,0x3,-1,5,1,yes,0,0,0,none,0,		WM_SIRCLEOFNATURE,Sibilo de Eir
-2424,0,6,4,0,0x1,0,5,1,yes,0,0,0,magic,0,		WM_RANDOMIZESPELL,Improviso
-2425,5,6,1,0,0x1,0,5,1,yes,0,0,0,none,0,		WM_GLOOMYDAY,Ode a Hela
-2426,9,6,2,-1,0x2,2:3:3:4:4,5,1,no,0,0x2000,0,weapon,0,		WM_GREAT_ECHO,Brado de Odin
-2427,0,6,4,0,0x3,-1,5,0,yes,0,0x2000,0,none,0,		WM_SONG_OF_MANA,Canção de Alfheim
-2428,0,6,4,0,0x3,-1,5,1,yes,0,0x2000,0,none,0,		WM_DANCE_WITH_WUG,Dança com Lobos
-2429,9,6,1,0,0x3,2:3:3:4:4,5,1,no,0,0x2000,0,none,0,		WM_SOUND_OF_DESTRUCTION,Prelúdio do Ragnarök
-2430,0,6,4,0,0x3,-1,5,1,yes,0,0x2000,0,none,0,		WM_SATURDAY_NIGHT_FEVER,Embalos de Sábado a Noite
-2431,0,6,4,0,0x3,-1,5,1,yes,0,0x2000,0,magic,0,		WM_LERADS_DEW,Orvalho de Idun
-2432,0,6,4,0,0x3,-1,5,1,yes,0,0x2000,0,none,0,		WM_MELODYOFSINK,Cântico da Iluminação
-2433,0,6,4,0,0x3,-1,5,1,yes,0,0x2000,0,none,0,		WM_BEYOND_OF_WARCRY,Clamor de Batalha
-2434,0,6,4,0,0x3,-1,5,1,yes,0,0x2000,0,none,0,		WM_UNLIMITED_HUMMING_VOICE,Murmúrio Perene
+2418,9,6,2,-1,0x1,0,5,1,yes,0,0,0,none,0,	WM_SEVERE_RAINSTORM,Temporal de Mil Flechas
+2419,9,6,2,0,0x3,1,5,1,yes,0,0x80,5,none,0,		WM_POEMOFNETHERWORLD,Poema de Nifflheim
+2420,0,6,4,0,0x2,2:3:4:5:6,5,1,yes,0,0,0,none,0,		WM_VOICEOFSIREN,Canto da Sereia
+2421,7,6,16,0,0x1,0,5,1,yes,0,0,0,none,0,		WM_DEADHILLHERE,Réquiem de Orfeu
+2422,7,6,2,0,0x3,5:6:7:8:9,5,1,yes,0,0,0,none,0,		WM_LULLABY_DEEPSLEEP,Melodia de Morfeu
+2423,0,6,4,0,0x3,3:4:5:6:7,5,1,yes,0,0,0,none,0,		WM_SIRCLEOFNATURE,Sibilo de Eir
+2424,9,6,4,0,0x1,0,5,1,yes,0,0,0,magic,0,		WM_RANDOMIZESPELL,Improviso
+2425,9,6,16,0,0x1,0,5,1,yes,0,0,0,none,0,		WM_GLOOMYDAY,Ode a Hela
+2426,9,6,2,0,0x2,2:3:3:4:4,5,1,yes,0,0x2000,0,weapon,0,		WM_GREAT_ECHO,Brado de Odin
+2427,0,6,4,0,0x3,5:6:7:8:9,5,1,yes,0,0x2000,0,none,0,		WM_SONG_OF_MANA,Canção de Alfheim
+2428,0,6,4,0,0x3,5:6:7:8:9,5,1,yes,0,0x2000,0,none,0,		WM_DANCE_WITH_WUG,Dança com Lobos
+2429,9,6,1,0,0x2,2:2:3:3:4,5,1,yes,0,0x2000,0,weapon,0,		WM_SOUND_OF_DESTRUCTION,Prelúdio do Ragnarök
+2430,0,6,4,0,0x3,3:4:5:6:7,5,1,yes,0,0x2000,0,none,0,		WM_SATURDAY_NIGHT_FEVER,Embalos de Sábado a Noite
+2431,0,6,4,0,0x3,5,5,1,yes,0,0x2000,0,magic,0,		WM_LERADS_DEW,Orvalho de Idun
+2432,0,6,4,0,0x3,5,5,1,yes,0,0x2000,0,none,0,		WM_MELODYOFSINK,Cântico da Iluminação
+2433,0,6,4,0,0x3,5,5,1,yes,0,0x2000,0,none,0,		WM_BEYOND_OF_WARCRY,Clamor de Batalha
+2434,0,6,4,0,0x3,5,5,1,yes,0,0x2000,0,none,0,		WM_UNLIMITED_HUMMING_VOICE,Murmúrio Perene
 //============================================================
 // Feiticeiro
 //============================================================
@@ -1171,23 +1171,23 @@
 2445,0,6,4,0,0x1,0,5,1,no,0,0,0,none,0,			SO_SPELLFIST,Punho Arcano
 2446,9,6,2,2,0x2,3:3:3:4:4,5,-3,yes,0,0,0,magic,0,			SO_EARTHGRAVE,Castigo de Nerthus
 2447,9,6,2,1,0x2,3:3:3:4:4,5,-5,yes,0,0,0,magic,0,		SO_DIAMONDDUST,Pó de Diamante
-2448,9,6,1,5,0,0,5,1,yes,0,0,0,magic,0,		SO_POISON_BUSTER,Implosão Tóxica
-2449,9,8,2,0,0,3:3:4:4:5,5,1,yes,0,0,0,magic,0,	SO_PSYCHIC_WAVE,Onda Psíquica
+2448,9,6,1,5,0x2,1:1:1:1:2,5,1,yes,0,0,0,magic,0,		SO_POISON_BUSTER,Implosão Tóxica
+2449,9,6,2,0,0,0,5,1,yes,0,0,0,magic,0,		SO_PSYCHIC_WAVE,Onda Psíquica
 2450,9,6,2,0,0x1,3,5,-1,yes,0,0,0,magic,0,		SO_CLOUD_KILL,Maldição de Jormungand
 2451,9,6,16,0,0x1,0,5,1,yes,0,0,0,none,0,		SO_STRIKING,Encanto de Órion
 2452,9,6,2,0,0x1,-1,5,1,yes,0,0,0,magic,0,		SO_WARMER,Aquecer Terreno
 2453,9,6,2,0,0x1,1:1:2:2:3,5,1,yes,0,0,0,magic,0,	SO_VACUUM_EXTREME,Tornado
 2454,9,6,1,4,0x2,1:1:2:2:3,5,1,yes,0,0,0,magic,0,	SO_VARETYR_SPEAR,Lanças de Aesir
 2455,9,6,1,0,0x3,1:1:2:2:3,5,1,yes,0,0,0,magic,0,	SO_ARRULLO,Onda Hipnótica
-2456,0,6,4,0,0x01,0,4,1,yes,0,0,0,none,0,		SO_EL_CONTROL,Domínio Elemental
-2457,0,6,4,3,0x01,0,3,1,yes,0,0,0,none,0,		SO_SUMMON_AGNI,Invocar Agni
-2458,0,6,4,1,0x01,0,3,1,yes,0,0,0,none,0,		SO_SUMMON_AQUA,Invocar Varuna
-2459,0,6,4,4,0x01,0,3,1,yes,0,0,0,none,0,		SO_SUMMON_VENTUS,Invocar Vayu
-2460,0,6,4,2,0x01,0,3,1,yes,0,0,0,none,0,		SO_SUMMON_TERA,Invocar Chandra
-2461,5,6,1,0,0x01,0,1,1,yes,0,0,0,none,0,		SO_EL_ACTION,Incitar Elemental
-2462,0,6,4,0,0x01,0,2,1,no,0,0,0,none,0,		SO_EL_ANALYSIS,Análise Elemental
+2456,0,6,4,0,0x1,0,4,1,yes,0,0,0,none,0,		SO_EL_CONTROL,Domínio Elemental
+2457,0,6,4,3,0x1,0,3,1,yes,0,0,0,none,0,		SO_SUMMON_AGNI,Invocar Agni
+2458,0,6,4,1,0x1,0,3,1,yes,0,0,0,none,0,		SO_SUMMON_AQUA,Invocar Varuna
+2459,0,6,4,4,0x1,0,3,1,yes,0,0,0,none,0,		SO_SUMMON_VENTUS,Invocar Vayu
+2460,0,6,4,2,0x1,0,3,1,yes,0,0,0,none,0,		SO_SUMMON_TERA,Invocar Chandra
+2461,5,6,1,0,0x1,0,1,1,yes,0,0,0,none,0,		SO_EL_ACTION,Incitar Elemental
+2462,0,6,4,0,0x1,0,2,1,yes,0,0,0,none,0,		SO_EL_ANALYSIS,Análise Elemental
 2463,0,0,0,0,0,0,5,0,no,0,0,0,none,0,			SO_EL_SYMPATHY,Empatia Elemental
-2464,0,6,4,0,0x01,0,1,1,no,0,0,0,none,0,		SO_EL_CURE,Troca Espiritual
+2464,0,6,4,0,0x01,0,1,1,yes,0,0,0,none,0,		SO_EL_CURE,Troca Espiritual
 2465,9,6,0,3,0x01,0,3,1,no,0,0,0,none,0,		SO_FIRE_INSIGNIA,Insígnia do Fogo
 2466,9,6,0,1,0x01,0,3,1,no,0,0,0,none,0,		SO_WATER_INSIGNIA,Insígnia da Água
 2467,9,6,0,4,0x01,0,3,1,no,0,0,0,none,0,		SO_WIND_INSIGNIA,Insígnia do Vento
@@ -1195,38 +1195,38 @@
 //============================================================
 // Bioquímico
 //============================================================
-2474,0,0,0,0,0,0,5,0,no,0,0,0,weapon,0,		GN_TRAINING_SWORD,Perícia em Esgrima
-2475,0,0,0,0,0,0,5,0,no,0,0,0,weapon,0,		GN_REMODELING_CART,Aprimorar Carrinho
-2476,0,6,4,-1,0x02,2,5,1,no,0,0,0,weapon,2,	GN_CART_TORNADO,Tornado de Carrinho
-2477,7,6,1,-1,0,2,5,0,yes,0,0,0,weapon,0,	GN_CARTCANNON,Canhão de Prótons
-2478,0,6,4,0,0x1,0,5,1,yes,0,0,0,weapon,0,	GN_CARTBOOST,Propulsão do Carrinho
-2479,6,6,2,0,0x1,0,5,1,no,0,0x80,1,misc,0,	GN_THORNS_TRAP,Armadilha de Espinhos
-2480,9,6,1,0,0x1,0,5,0,yes,0,0,3,misc,0,		GN_BLOOD_SUCKER,Planta Sanguessuga
-2481,9,6,1,-1,0,1:2:3:4:5,5,1,yes,0,0,0,weapon,0,	GN_SPORE_EXPLOSION,Esporo Explosivo
-2482,6,6,16,0,0x1,0,5,-1,yes,0,0,1,weapon,2,	GN_WALLOFTHORN,Muralha de Espinhos
-2483,9,6,2,0,0x2,3,10,1,yes,0,0,0,weapon,0,	GN_CRAZYWEED,Erva Daninha
-2484,0,6,1,2,0,0,10,0,no,0,0,0,weapon,0,	GN_CRAZYWEED_ATK,Erva Daninha
+2474,0,0,0,0,0,0,5,0,no,0,0,0,none,0,		GN_TRAINING_SWORD,Perícia em Esgrima
+2475,0,0,0,0,0,0,5,0,no,0,0,0,none,0,		GN_REMODELING_CART,Aprimorar Carrinho
+2476,0,6,4,-1,0x2,2,5,1,no,0,0,0,weapon,2,	GN_CART_TORNADO,Tornado de Carrinho
+2477,7:8:9:10:11,6,1,-1,0x2,1:1:2:2:3,5,1,yes,0,0,0,weapon,0,	GN_CARTCANNON,Canhão de Prótons
+2478,0,6,4,0,0x1,0,5,1,yes,0,0,0,none,0,	GN_CARTBOOST,Propulsão do Carrinho
+2479,9,6,2,0,0,0,5,1,yes,0,0x80,5,misc,0,	GN_THORNS_TRAP,Armadilha de Espinhos
+2480,11,6,1,0,0,0,5,1,yes,0,0,3,misc,0,		GN_BLOOD_SUCKER,Planta Sanguessuga
+2481,11,6,1,-1,0x2,1:2:3:4:5,5,1,yes,0,0,0,weapon,0,	GN_SPORE_EXPLOSION,Esporo Explosivo
+2482,11,6,16,0,0,0,5,1,yes,0,0,1,weapon,2,	GN_WALLOFTHORN,Muralha de Espinhos
+2483,11,6,2,0,0x2,3,10,1,yes,0,0,0,weapon,0,	GN_CRAZYWEED,Erva Daninha
+2484,0,6,2,2,0x2,2,10,1,no,0,0,0,weapon,0,	GN_CRAZYWEED_ATK,Erva Daninha
 2485,9,6,2,3,0,0,5,1,yes,0,0,0,magic,0,		GN_DEMONIC_FIRE,Bomba Napalm
-2486,9,6,2,0,0,0,5,1,yes,0,0,0,weapon,0,	GN_FIRE_EXPANSION,Catalisador Alquímico
-2487,9,6,2,0,0,0,1,1,no,0,0,0,weapon,0,	GN_FIRE_EXPANSION_SMOKE_POWDER,Catalisador Alquímico - Cortina de Fumaça em Pó
-2488,9,6,2,0,0,0,1,1,no,0,0,0,weapon,0,	GN_FIRE_EXPANSION_TEAR_GAS,Catalisador Alquímico - Gás Lacrimogêneo
-2489,9,6,2,0,0,0,1,1,no,0,0,0,weapon,0,	GN_FIRE_EXPANSION_ACID,Catalisador Alquímico - Garrafa de Ácido
-2490,9,6,2,0,0,0,5,1,yes,0,0,2:3:4:5:6,none,0,	GN_HELLS_PLANT,Planta Infernal
+2486,9,6,2,0,0,0,5,1,yes,0,0,0,none,0,	GN_FIRE_EXPANSION,Catalisador Alquímico
+2487,9,6,2,0,0,0,1,1,no,0,0,0,none,0,	GN_FIRE_EXPANSION_SMOKE_POWDER,Catalisador Alquímico - Cortina de Fumaça em Pó
+2488,9,6,2,0,0,0,1,1,no,0,0,0,none,0,	GN_FIRE_EXPANSION_TEAR_GAS,Catalisador Alquímico - Gás Lacrimogêneo
+2489,11,6,1,0,0,0,10,1:2:3:4:5:6:7:8:9:10,no,0,0,0,weapon,0,	GN_FIRE_EXPANSION_ACID,Catalisador Alquímico - Garrafa de Ácido
+2490,9,6,2,0,0x3,1,5,1,yes,0,0x80,2:3:4:5:6,none,0,	GN_HELLS_PLANT,Planta Infernal
 2491,0,6,1,0,0x90,0,5,1,no,0,0,0,misc,0,		GN_HELLS_PLANT_ATK,Planta Infernal
-2492,0,6,4,0,0x3,9,5,0,yes,0,0,0,none,0,		GN_MANDRAGORA,Grito da Mandrágora
-2493,11,6,16,0,0x1,0,1,0,yes,0,0,0,none,0,		GN_SLINGITEM,Arremessar Item
-2494,0,6,4,0,0x1,0,1,0,no,0,0,0,none,0,		GN_CHANGEMATERIAL,Reação Alquímica
-2495,0,6,4,0,0x1,0,2,0,no,0,0,0,none,0,		GN_MIX_COOKING,Culinária Avançada
-2496,0,6,4,0,0x1,0,2,0,no,0,0,0,none,0,		GN_MAKEBOMB,Criar Bomba Orgânica
+2492,0,6,4,0,0x3,6:7:8:9:10,5,1,yes,0,0,0,none,0,		GN_MANDRAGORA,Grito da Mandrágora
+2493,11,6,16,0,0x1,0,1,1,yes,0,0,0,none,0,		GN_SLINGITEM,Arremessar Item
+2494,0,6,4,0,0x1,0,1,1,no,0,0,0,none,0,			GN_CHANGEMATERIAL,Reação Alquímica
+2495,0,6,4,0,0x1,0,2,1,no,0,0,0,none,0,		GN_MIX_COOKING,Culinária Avançada
+2496,0,6,4,0,0x1,0,2,1,no,0,0,0,none,0,		GN_MAKEBOMB,Criar Bomba Orgânica
 2497,0,6,4,0,0x1,0,10,0,no,0,0,0,none,0,	GN_S_PHARMACY,Farmacologia Avançada
 2498,11,6,1,0,0,0,1,1,no,0,0,0,weapon,0,		GN_SLINGITEM_RANGEMELEEATK,Arremessar Item
 //============================================================
 // Habilidades das 3° Classes com IDs posteriores.
 //============================================================
-2515,9,6,16,0,0x1,0,5,1,yes,0,0,0,magic,0,	AB_SECRAMENT,Sacramentum
-2516,0,0,1,-1,0x2,5,5,0,no,0,0,0,weapon,0,		WM_SEVERE_RAINSTORM_MELEE,Temporal de Mil Flechas
+2515,11,6,16,0,0x1,0,5,1,yes,0,0,0,magic,0,	AB_SECRAMENT,Sacramentum
+2516,11,6,1,-1,0x2,5,5,1,no,0,0,0,weapon,0,		WM_SEVERE_RAINSTORM_MELEE,Temporal de Mil Flechas
 2517,0,6,4,-1,0x2,3:4:5:6:7,5,1,no,0,0,0,weapon,0,	SR_HOWLINGOFLION,Rugido do Leão
-2518,9,6,2,-1,0x2,2:2:3:3:4,5,1,no,0,0,0,weapon,0,	SR_RIDEINLIGHTNING,Tempestade Espiritual
+2518,11,6,2,-1,0x2,2:2:3:3:4,5,1,no,0,0,0,weapon,0,	SR_RIDEINLIGHTNING,Tempestade Espiritual
 2519,0,6,2,-1,0,0,5,1,no,0,0,0,weapon,0,		LG_OVERBRAND_BRANDISH,Lança do Destino
 2520,0,6,1,-1,0,0,5,1,no,0,0,0,weapon,0,		LG_OVERBRAND_PLUSATK,Lança do Destino
 //============================================================

@@ -247,13 +247,18 @@ int skill_get_range2 (struct block_list *bl, int id, int lv)
 	//TODO: Find a way better than hardcoding the list of skills affected by AC_VULTURE
 	switch( id )
 	{
-	case AC_SHOWER:			case MA_SHOWER:
-	case AC_DOUBLE:			case MA_DOUBLE:
-	case HT_BLITZBEAT:		case RA_WUGBITE:
-	case AC_CHARGEARROW:	case RA_AIMEDBOLT:
-	case MA_CHARGEARROW:	case RA_ARROWSTORM:
+	case AC_SHOWER:			
+	case AC_DOUBLE:			
+	case HT_BLITZBEAT:		
+	case AC_CHARGEARROW:	
+	case MA_CHARGEARROW:	
 	case SN_FALCONASSAULT:
 	case HT_POWER:
+	case MA_SHOWER:
+	case MA_DOUBLE:
+	case RA_WUGBITE:
+	case RA_AIMEDBOLT:
+	case RA_ARROWSTORM:
 		if( bl->type == BL_PC )
 			range += pc_checkskill((TBL_PC*)bl, AC_VULTURE);
 		else
@@ -275,20 +280,30 @@ int skill_get_range2 (struct block_list *bl, int id, int lv)
 			range = skill_get_range(NJ_SHADOWJUMP,pc_checkskill((TBL_PC*)bl,NJ_SHADOWJUMP));
 		break;
 
-		case WL_WHITEIMPRISON:		case WL_CRIMSONROCK:
-		case WL_SOULEXPANSION:		case WL_HELLINFERNO:
-		case WL_FROSTMISTY:			case WL_COMET:
-		case WL_JACKFROST:			case WL_CHAINLIGHTNING:
-		case WL_MARSHOFABYSS:		case WL_EARTHSTRAIN:
-		case WL_SIENNAEXECRATE:		case WL_TETRAVORTEX:
-		case WL_DRAINLIFE:			case WL_RELEASE:
+		case WL_WHITEIMPRISON:		
+		case WL_SOULEXPANSION:		
+		case WL_FROSTMISTY:			
+		case WL_JACKFROST:			
+		case WL_MARSHOFABYSS:		
+		case WL_SIENNAEXECRATE:		
+		case WL_DRAINLIFE:
+		case WL_RELEASE:
+		case WL_CRIMSONROCK:
+		case WL_HELLINFERNO:
+		case WL_COMET:
+		case WL_CHAINLIGHTNING:
+		case WL_EARTHSTRAIN:
+		case WL_TETRAVORTEX:
 			if( bl->type == BL_PC )
 				range += pc_checkskill((TBL_PC*)bl, WL_RADIUS);
 			break;
-		case HT_LANDMINE:		case HT_FREEZINGTRAP:
-		case HT_BLASTMINE:		case HT_CLAYMORETRAP:
-		case RA_CLUSTERBOMB:	case RA_FIRINGTRAP:
+		case HT_LANDMINE:		
+		case HT_BLASTMINE:		
+		case RA_CLUSTERBOMB:	
 		case RA_ICEBOUNDTRAP:
+		case HT_FREEZINGTRAP:
+		case HT_CLAYMORETRAP:
+		case RA_FIRINGTRAP:
 			if( bl->type == BL_PC )
 				range += (1 + pc_checkskill((TBL_PC*)bl, RA_RESEARCHTRAP))/2;
 			break;
@@ -8850,7 +8865,7 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 		break;
 	case WL_EARTHSTRAIN:
 		{
-			int i,wave = skilllv+2,dir = map_calc_dir(src,x,y),sx = x,sy = y;
+			int i,wave = skilllv+4,dir = map_calc_dir(src,x,y),sx = x,sy = y;
 
 			if(sc && sc->data[SC_MAGICPOWER])
 				flag |= 2;
@@ -8860,7 +8875,7 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 				else if(dir >= 3 && dir <= 5) sy = src->y-i;
 				else if(dir == 2) sx = src->x-i;
 				else if(dir == 6) sx = src->x+i;
-				skill_addtimerskill(src,gettick() + (250 * i),0,sx,sy,skillid,skilllv,dir,flag&2);
+				skill_addtimerskill(src,gettick() + (200 * i),0,sx,sy,skillid,skilllv,dir,flag&2);
 			}
 		}
 		break;
@@ -14242,7 +14257,7 @@ int skill_produce_mix(struct map_session_data *sd, int skill_id, int nameid, int
 				{
 					case 1010: qty *= 8; break;
 					case 1061: qty *= 2; break;
-					case 13275: case 13278:
+					case 13275: case 13276: case 13277: case 13278: case 13279: case 13280:
 						qty *= 10;
 						break;
 				}
