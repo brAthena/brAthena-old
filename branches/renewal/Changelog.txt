@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0603 - 05/06/2011 [Protimus]
+	* Correções do envio da r600.
+	- Não será necessário criar um novo item type para o caso desses itens pois a função é a mesma que munições.
+	- Agora todos os itens que funcionam com o "novo" item type estão funcionando corretamente.
+
 	r0602 - 05/06/2011 [Protimus]
 	* Adicionado IT_CHARM, novo item type para scripts de itens no item_db.txt 
 	- Ele serve para bonificar o personagem caso tenha o item no inventário
