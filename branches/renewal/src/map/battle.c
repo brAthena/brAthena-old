@@ -2227,6 +2227,26 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case SR_RIDEINLIGHTNING:
 					skillratio += 200*skill_lv - 100;
 					break;
+				case SR_FALLENEMPIRE:
+					skillratio += 150*skill_lv;
+					break;
+				case SR_TIGERCANNON:
+				{
+					int hp = sstatus->max_hp*(5 + skill_lv)/50;
+					int sp = sstatus->max_sp*(5 + skill_lv)/100;
+					if (sstatus->hp <= hp)
+						hp = sstatus->hp - 1;
+					if (sstatus->sp <= sp)
+						sp = sstatus->sp -1;
+					status_damage(NULL, src, hp, sp, NULL, false);
+					skillratio += (hp + sp)/4 - 100;
+					if (sc && sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == SR_FALLENEMPIRE)
+						skillratio *= 2;
+				}
+					break;
+				case SR_GATEOFHELL:
+					skillratio += 500*skill_lv - 100;
+					break;
 			}
 
 			ATK_RATE(skillratio);
@@ -2268,7 +2288,11 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 						ATK_ADDRATE( 190 * ((sd) ? skill_check_pc_partner(sd,(short)skill_num,&lv,skill_get_splash(skill_num,skill_lv),0) : 1));
 					}
 					break;
-
+				case SR_GATEOFHELL:
+					ATK_ADD(sstatus->max_hp - status_get_hp(src));
+					break;
+				case SR_TIGERCANNON:
+					ATK_ADD(240*skill_lv + status_get_lv(target)*40);
 			}
 		}
 		//Div fix.

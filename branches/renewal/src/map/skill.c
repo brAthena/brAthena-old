@@ -1087,6 +1087,12 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 	case SR_HOWLINGOFLION:
 		sc_start(bl, SC_FEAR, 5*(skilllv+1), skilllv, skill_get_time(skillid, skilllv));
 		break;
+	case SR_FALLENEMPIRE:
+		sc_start(bl, SC_STOP, 100, skilllv, skill_get_time(skillid, skilllv));
+		break;
+	case SR_TIGERCANNON:
+		status_percent_damage(src, bl, 0, 5 + skilllv, false);
+		break;
 	case WM_SOUND_OF_DESTRUCTION:
 		if( rand()%100 < 5 + 5 * skilllv ) 
 		{
@@ -2067,6 +2073,10 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 				break;
 			case SR_DRAGONCOMBO:
 				if(pc_checkskill(sd,SR_FALLENEMPIRE) > 0)
+					flag = 1;
+				break;
+			case SR_FALLENEMPIRE:
+				if(pc_checkskill(sd, SR_TIGERCANNON) > 0 || pc_checkskill(sd, SR_GATEOFHELL) > 0)
 					flag = 1;
 				break;
 		}	//Switch End
@@ -3168,6 +3178,8 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case SR_CRESCENTELBOW_AUTOSPELL:
 	case SR_GENTLETOUCH_QUIET:
 	case SR_SKYNETBLOW:
+	case SR_FALLENEMPIRE:
+	case SR_GATEOFHELL:
 		skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 
@@ -3395,6 +3407,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case GN_CARTCANNON:
 	case SR_WINDMILL:
 	case SR_RIDEINLIGHTNING:
+	case SR_TIGERCANNON:
 		if( flag&1 )
 		{	//Recursive invocation
 			// skill_area_temp[0] holds number of targets in area
@@ -7637,6 +7650,12 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		clif_skill_nodamage(src,bl,AL_HEAL,(120*skilllv + tstatus->max_hp*(2+skilllv)/100),1);
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
 		break;
+
+	case SR_TIGERCANNON:
+		clif_skill_damage(src, bl, tick, status_get_amotion(src), 0, -30000, 1, skillid, skilllv, 6);
+		map_foreachinrange(skill_area_sub, bl, skill_get_splash(skillid, skilllv), splash_target(src), src, skillid, skilllv, tick, flag|BCT_ENEMY|1, skill_castend_damage_id);
+		break;
+
 	case LG_INSPIRATION:
 		if( sd )
 		{
@@ -11451,6 +11470,14 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 			return 0;
 		}
 		break;
+	case SR_FALLENEMPIRE:
+		if(!(sc && sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == SR_DRAGONCOMBO))
+			return 0;
+		break;
+	case SR_GATEOFHELL:
+		if(sd->spiritball > 0)
+			sd->spiritball_old = require.spiritball;
+		break;
 	}
 
 	switch(require.state) {
@@ -11998,6 +12025,10 @@ struct skill_condition skill_get_requirement(struct map_session_data* sd, short 
 		case SR_RAMPAGEBLASTER:
 			req.spiritball = sd->spiritball ? sd->spiritball:15;
 			break;
+		case SR_GATEOFHELL:
+			if (sc && sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == SR_FALLENEMPIRE)
+				req.sp -= req.sp/10;
+			break;
 		default:
 			if( sc && sc->data[SC_EDP] )
 				switch(skill){
@@ -12126,6 +12157,7 @@ int skill_delayfix (struct block_list *bl, int skill_id, int skill_lv)
 	case CH_TIGERFIST:
 	case CH_CHAINCRUSH:
 	case SR_DRAGONCOMBO:
+	case SR_FALLENEMPIRE:
 		time -= 4*status_get_agi(bl) - 2*status_get_dex(bl);
 		break;
 	case HP_BASILICA:
