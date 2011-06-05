@@ -371,6 +371,7 @@ int itemdb_isstackable(int nameid)
 	  case IT_ARMOR:
 	  case IT_PETEGG:
 	  case IT_PETARMOR:
+	  case IT_CHARM:
 		  return 0;
 	  default:
 		  return 1;
@@ -388,6 +389,7 @@ int itemdb_isstackable2(struct item_data *data)
 	  case IT_ARMOR:
 	  case IT_PETEGG:
 	  case IT_PETARMOR:
+	  case IT_CHARM:
 		  return 0;
 	  default:
 		  return 1;

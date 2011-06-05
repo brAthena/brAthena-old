@@ -2159,6 +2159,20 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 	sd->aspd_add_rate += 1000;
 
 	// Parse equipment.
+    for(i=0;i<MAX_INVENTORY;i++){  
+            if(!sd->inventory_data[i])
+                continue;
+        if(sd->inventory_data[i]->type == IT_CHARM){
+                if(sd->inventory_data[i]->script && sd->inventory_data[i]->elv <=sd->status.base_level) {
+                if((!((1<<(sd->class_&MAPID_BASEMASK)) &(sd->inventory_data[i]->class_base[sd->class_&JOBL_2_1?1:(sd->class_&JOBL_2_2?2:0)])))
+                || (!((1<<(sd->class_&JOBL_UPPER?1:(sd->class_&JOBL_BABY?2:0))) &sd->inventory_data[i]->class_upper))) continue;            
+                    run_script(sd->inventory_data[i]->script,0,sd->bl.id,0);
+                if (!calculating) 
+                    return 1;
+                }
+			}
+		}
+
 	for(i=0;i<EQI_MAX-1;i++) {
 		current_equip_item_index = index = sd->equip_index[i]; //We pass INDEX to current_equip_item_index - for EQUIP_SCRIPT (new cards solution) [Lupus]
 		if(index < 0)
