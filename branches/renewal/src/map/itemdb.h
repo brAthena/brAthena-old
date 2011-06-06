@@ -153,6 +153,7 @@ const char* itemdb_typename(int type);
 #define itemdb_is_poison(n) (n >= 12717 && n <= 12724)
 #define itemdb_is_spellbook(n) (n >= 6188 && n <= 6205)
 #define itemdb_is_bomb(n) (n >= 13260 && n <= 13267)
+#define itemdb_is_element(n) (n >= 990 && n <= 993)
 
 int itemdb_group_bonus(struct map_session_data* sd, int itemid);
 int itemdb_searchrandomid(int flags);

@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0609 - 06/06/2011 [MiTh]
+	* Adicionadas as habilidades
+	- NC_MAGICDECOY (Artilharia Arcana)
+	- NC_DISJOINT (Remover Artilharia)
+
 	r0608 - 05/06/2011 [Protimus]
 	* Modificação em habilidade:
 	- Redenção: A habilidade Gloria Domini passa a atingir o alvo mesmo que esteja com a Redenção.

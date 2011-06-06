@@ -3089,6 +3089,45 @@ int clif_poison_list(struct map_session_data *sd, int skill_lv)
 	return 1;
 }
 
+/*==========================================
+ * Lista Elementos de Artilharia
+ *------------------------------------------*/
+int clif_magicdecoy_list(struct map_session_data *sd, int skill_lv, int x,int y)
+{
+	int i, c;
+	int fd;
+
+	nullpo_ret(sd);
+
+	fd = sd->fd;
+	WFIFOHEAD(fd, 8 * 8 + 8);
+	WFIFOW(fd,0) = 0x1ad; 
+
+	for( i = 0, c = 0; i < MAX_INVENTORY; i ++ )
+	{
+	if( itemdb_is_element(sd->status.inventory[i].nameid) )
+		{ 
+			WFIFOW(fd, c * 2 + 4) = sd->status.inventory[i].nameid;
+			c ++;
+		}
+	}
+	if( c > 0 )
+	{
+		sd->menuskill_id = NC_MAGICDECOY;
+		sd->menuskill_val = c;
+		sd->menuskill_itemused = (x<<16)|y;
+		WFIFOW(fd,2) = c * 2 + 4;
+		WFIFOSET(fd, WFIFOW(fd, 2));
+	}
+	else
+	{
+		clif_skill_fail(sd,NC_MAGICDECOY,0,0,0);
+		return 0;
+	}
+
+	return 1;
+}
+
 /*======================================================================
  * Lista de Habilidades para a SC_AUTOSHADOWSPELL (Desejo das Sombras)
  *---------------------------------------------------------------------*/
@@ -10634,8 +10673,15 @@ void clif_parse_SelectArrow(int fd,struct map_session_data *sd)
 	}
 	if(sd->menuskill_id == AC_MAKINGARROW)
 		skill_arrow_create(sd,RFIFOW(fd,2));
-	else if(sd->menuskill_id == AC_MAKINGARROW)
-		skill_spellbook(sd,RFIFOW(fd,2));
+	else if(sd->menuskill_id == SA_AUTOSPELL)
+		skill_autospell(sd,RFIFOW(fd,2));
+	else if(sd->menuskill_id == GC_POISONINGWEAPON)
+		skill_poisoningweapon(sd,RFIFOW(fd,2));
+	else if(sd->menuskill_id == WL_READING_SB)
+		skill_autospell(sd,RFIFOW(fd,2));
+	else if(sd->menuskill_id == NC_MAGICDECOY)
+		return;
+
 	sd->menuskill_val = sd->menuskill_id = 0;
 }
 /*==========================================

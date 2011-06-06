@@ -5885,6 +5885,20 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		skill_castend_damage_id(src, src, skillid, skilllv, tick, flag);
 		break;
 
+	case NC_DISJOINT:
+		{
+			if( bl->type != BL_MOB )
+				break;
+
+			md = map_id2md(bl->id);
+
+			if( md->class_ >= 2042 && md->class_ <= 2046 )
+				status_kill(bl);
+
+			clif_skill_nodamage(src, bl, skillid, skilllv, 1);
+		}
+		break;
+
 	case TK_HIGHJUMP:
 		{
 			int x,y, dir = unit_getdir(src);
@@ -9006,9 +9020,14 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 				if( md->deletetimer != INVALID_TIMER )
 					delete_timer(md->deletetimer, mob_timer_delete);
 				md->deletetimer = add_timer (gettick() + skill_get_time(skillid,skilllv), mob_timer_delete, md->bl.id, 0);
+				md->status.atk_bonus = skilllv * 100 - 100 ; // Ataque inicial é 300 + 100 de bonus para cada level
 				mob_spawn (md); //Sumona o mob
 			}
 		}
+		break;
+
+	case NC_MAGICDECOY:
+		clif_magicdecoy_list(sd,skilllv,x,y);
 		break;
 
 	default:
@@ -14596,6 +14615,50 @@ int skill_poisoningweapon( struct map_session_data *sd, int nameid)
 
 	return 0;
 }
+
+int skill_magicdecoy(struct map_session_data *sd, int nameid){
+
+	int x, y, i, skill ;
+	struct mob_data *md;
+	nullpo_ret(sd);
+	skill = sd->menuskill_val;
+
+	pc_delitem(sd,i,1,0,0); // Deleta o item
+
+	//Recupera posição
+	x = sd->menuskill_itemused>>16;
+	y = sd->menuskill_itemused&0xffff;
+	sd->menuskill_itemused = sd->menuskill_val = 0;
+
+	/*
+	990,Boody_Red, Sangue Escarlate
+	991,Crystal_Blue, Cristal Azul
+	992,Wind_Of_Verdure, Frescor Vento
+	993,Yellow_Live, Vida verdejante
+	MAGICDECOY_FIRE 2043
+	MAGICDECOY_WATER 2044
+	MAGICDECOY_EARTH 2045
+	MAGICDECOY_WIND 2046
+	*/
+	//Id do mob a ser sumonado
+	mob_id = nameid + 1053;
+
+	//Constrói struct mob
+	md =  mob_once_spawn_sub(&sd->bl, sd->bl.m, x, y, sd->status.name, mob_id, "");
+	if( md )
+	{
+		md->master_id = sd->bl.id;
+		md->special_state.ai = 3;
+		if( md->deletetimer != INVALID_TIMER )
+			delete_timer(md->deletetimer, mob_timer_delete);
+		md->deletetimer = add_timer (gettick() + skill_get_time(NC_MAGICDECOY,skill), mob_timer_delete, md->bl.id, 0);
+		md->status.matk_min = md->status.matk_max = 250 + 50 * skill;
+		mob_spawn(md); // Sumona o mob
+	}
+
+	return 0;
+}
+
 int skill_spellbook (struct map_session_data *sd, int nameid){
 	int i,j,points,skillid,preserved = 0,max_preserve;
 	nullpo_ret(sd);
@@ -14647,6 +14710,7 @@ int skill_spellbook (struct map_session_data *sd, int nameid){
 
 	return 1;
 }
+
 int skill_select_menu(struct map_session_data *sd,int flag,int skill_id)
 {
 	int id, lv, prob, aslvl = 0;
