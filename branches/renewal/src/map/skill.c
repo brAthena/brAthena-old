@@ -9013,7 +9013,7 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 		{
 			struct mob_data *md;
 
-			md = mob_once_spawn_sub(src, src->m, x, y, status_get_name(src),MODID_SILVERSNIPER,""); // Monta a struct mob
+			md = mob_once_spawn_sub(src, src->m, x, y, status_get_name(src),MOBID_SILVERSNIPER,""); // Monta a struct mob
 			if (md) {
 				md->master_id = src->id;
 				md->special_state.ai = 3;
@@ -11744,7 +11744,26 @@ int skill_check_condition_castend(struct map_session_data* sd, short skill, shor
 
 			if( battle_config.land_skill_limit && maxcount > 0 && ( battle_config.land_skill_limit&BL_PC ))
 			{
-				i = map_foreachinmap(skill_check_condition_mob_master_sub ,sd->bl.m, BL_MOB, sd->bl.id, MODID_SILVERSNIPER, skill, &c);
+				i = map_foreachinmap(skill_check_condition_mob_master_sub ,sd->bl.m, BL_MOB, sd->bl.id, MOBID_SILVERSNIPER, skill, &c);
+				if( c >= maxcount )
+				{
+					clif_skill_fail(sd,skill,0,0,0);
+					return 0;
+				}
+			}
+		}
+		break;
+	case NC_MAGICDECOY:
+		{
+			int c = 0;
+			int maxcount = skill_get_maxcount(skill,lv);
+
+			if( battle_config.land_skill_limit && maxcount > 0 && ( battle_config.land_skill_limit&BL_PC ))
+			{
+				i =	map_foreachinmap(skill_check_condition_mob_master_sub ,sd->bl.m, BL_MOB, sd->bl.id, MOBID_MAGICDECOY_FIRE, skill, &c);
+				i = map_foreachinmap(skill_check_condition_mob_master_sub ,sd->bl.m, BL_MOB, sd->bl.id, MOBID_MAGICDECOY_WATER, skill, &c);
+				i = map_foreachinmap(skill_check_condition_mob_master_sub ,sd->bl.m, BL_MOB, sd->bl.id, MOBID_MAGICDECOY_WIND, skill, &c);
+				i = map_foreachinmap(skill_check_condition_mob_master_sub ,sd->bl.m, BL_MOB, sd->bl.id, MOBID_MAGICDECOY_EARTH, skill, &c);
 				if( c >= maxcount )
 				{
 					clif_skill_fail(sd,skill,0,0,0);

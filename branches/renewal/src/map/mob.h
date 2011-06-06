@@ -207,11 +207,11 @@ enum {
 };
 
 enum{
-	MODID_SILVERSNIPER = 2042, // Artilharia (Mecânico)
-	MAGICDECOY_FIRE,
-	MAGICDECOY_WATER,
-	MAGICDECOY_EARTH,
-	MAGICDECOY_WIND,
+	MOBID_SILVERSNIPER = 2042, // Artilharia (Mecânico)
+	MOBID_MAGICDECOY_FIRE,
+	MOBID_MAGICDECOY_WATER,
+	MOBID_MAGICDECOY_EARTH,
+	MOBID_MAGICDECOY_WIND,
 } mob_id;
 
 // The data structures for storing delayed item drops

@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0610 - 06/06/2011 [MiTh]
+	* Adicionada validação de quantidade de artilharias invocadas ao mesmo tempo
+
 	r0609 - 06/06/2011 [MiTh]
 	* Adicionadas as habilidades
 	- NC_MAGICDECOY (Artilharia Arcana)
