@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0609 - 06/06/2011 [Protimus]
+	* Modificada versão do packetver em packet_db para 23.
+	- A trunk não trabalha com a renovação e os últimos sakexes são para esse valor.
+
 	r0606 - 05/06/2011 [Protimus]
 	* Removidas ferramentas desnecessárias ou que entraram em desuso.
 	- Futuramente o Lord irá adicionar meios mais fáceis de converter o item e mob para SQL através de PHP.
