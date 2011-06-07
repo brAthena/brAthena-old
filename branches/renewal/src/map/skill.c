@@ -14637,7 +14637,7 @@ int skill_poisoningweapon( struct map_session_data *sd, int nameid)
 
 int skill_magicdecoy(struct map_session_data *sd, int nameid){
 
-	int x, y, skill ;
+	int x, y, skill,mob_id = nameid + 1053;
 	struct mob_data *md;
 	nullpo_ret(sd);
 	skill = sd->menuskill_val;
@@ -14659,8 +14659,6 @@ int skill_magicdecoy(struct map_session_data *sd, int nameid){
 	MAGICDECOY_EARTH 2045
 	MAGICDECOY_WIND 2046
 	*/
-	//Id do mob a ser sumonado
-	int mob_id = nameid + 1053;
 
 	//Constrói struct mob
 	md =  mob_once_spawn_sub(&sd->bl, sd->bl.m, x, y, sd->status.name, mob_id, "");

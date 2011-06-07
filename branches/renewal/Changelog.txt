@@ -9,10 +9,14 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
-	r6013 - 07/06/2011 [MiTh]
+	r0614 - 07/06/2011 [CarlosHenrq]
+	* Correção na função skill_magicdecoy
+	- Variavel iniciada sem ser no inicio da mesma.
+
+	r0613 - 07/06/2011 [MiTh]
 	* Correção na declaração do metodo skill_magicdecoy
 
-	r6012 - 07/06/2011 [MiTh]
+	r0612 - 07/06/2011 [MiTh]
 	* Correção no método skill_magicdecoy()
 
 	r0610 - 06/06/2011 [MiTh]
