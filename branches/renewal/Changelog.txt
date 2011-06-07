@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r6012 - 07/06/2011 [MiTh]
+	* Correção no método skill_magicdecoy()
+
 	r0610 - 06/06/2011 [MiTh]
 	* Adicionada validação de quantidade de artilharias invocadas ao mesmo tempo
 

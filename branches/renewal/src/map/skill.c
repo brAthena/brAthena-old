@@ -14637,12 +14637,12 @@ int skill_poisoningweapon( struct map_session_data *sd, int nameid)
 
 int skill_magicdecoy(struct map_session_data *sd, int nameid){
 
-	int x, y, i, skill ;
+	int x, y, skill ;
 	struct mob_data *md;
 	nullpo_ret(sd);
 	skill = sd->menuskill_val;
 
-	pc_delitem(sd,i,1,0,0); // Deleta o item
+	pc_delitem(sd,nameid,1,0,0); // Deleta o item
 
 	//Recupera posição
 	x = sd->menuskill_itemused>>16;
@@ -14660,7 +14660,7 @@ int skill_magicdecoy(struct map_session_data *sd, int nameid){
 	MAGICDECOY_WIND 2046
 	*/
 	//Id do mob a ser sumonado
-	mob_id = nameid + 1053;
+	int mob_id = nameid + 1053;
 
 	//Constrói struct mob
 	md =  mob_once_spawn_sub(&sd->bl, sd->bl.m, x, y, sd->status.name, mob_id, "");
