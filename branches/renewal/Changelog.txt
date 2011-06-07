@@ -9,21 +9,25 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0615 - 07/06/2011 [Protimus]
+	* Adicionado @go para El Dicastes e Dewata.
+	- Necessário verificar se as coordenadas oficiais mudaram.
+
 	r0614 - 07/06/2011 [CarlosHenrq]
-	* Correção na função skill_magicdecoy
+	* Correção na função skill_magicdecoy.
 	- Variavel iniciada sem ser no inicio da mesma.
 
 	r0613 - 07/06/2011 [MiTh]
-	* Correção na declaração do metodo skill_magicdecoy
+	* Correção na declaração do metodo skill_magicdecoy.
 
 	r0612 - 07/06/2011 [MiTh]
-	* Correção no método skill_magicdecoy()
+	* Correção no método skill_magicdecoy().
 
 	r0610 - 06/06/2011 [MiTh]
-	* Adicionada validação de quantidade de artilharias invocadas ao mesmo tempo
+	* Adicionada validação de quantidade de artilharias invocadas ao mesmo tempo.
 
 	r0609 - 06/06/2011 [MiTh]
-	* Adicionadas as habilidades
+	* Adicionadas as habilidades:
 	- NC_MAGICDECOY (Artilharia Arcana)
 	- NC_DISJOINT (Remover Artilharia)
 

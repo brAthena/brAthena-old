@@ -2268,6 +2268,8 @@ ACMD_FUNC(go)
 		{ MAP_VEINS,       216, 123 }, // 24=Veins
 		{ MAP_MOSCOVIA,    223, 184 }, // 25=Moscovia
 		{ MAP_BRASILIS,	   195, 213	}, // 26=Brasilis
+		{ MAP_DICASTES,	   198, 192	}, // 27=Dicastes
+		{ MAP_DEWATA,	   200, 199	}, // 28=Dewata
 	};
 
 	nullpo_retr(-1, sd);
@@ -2296,6 +2298,7 @@ ACMD_FUNC(go)
 		clif_displaymessage(fd, " 18=Ayothaya        19=Einbroch    20=Lighthalzen");
 		clif_displaymessage(fd, " 21=Einbech         22=Hugel       23=Rachel");
 		clif_displaymessage(fd, " 24=Veins           25=Moscovia	26=Brasilis");
+		clif_displaymessage(fd, " 27=Dicastes        28=Dewata");
 		return -1;
 	}
 
@@ -2371,6 +2374,10 @@ ACMD_FUNC(go)
 		town = 25;
 	} else if (strncmp(map_name, "brasilis", 3) == 0) {
 		town = 26;
+	} else if (strncmp(map_name, "dicastes01", 3) == 0) {
+		town = 27;
+	} else if (strncmp(map_name, "dewata", 3) == 0) {
+		town = 28;
 	}
 
 	if (town >= 0 && town < ARRAYLENGTH(data))
