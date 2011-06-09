@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0616 - 09/06/2011 [Protimus]
+	* Adicionadas Quests de Dewata.
+	- Precisa mudar os nomes de itens para português e otimizar a conversão.
+
 	r0615 - 07/06/2011 [Protimus]
 	* Adicionado @go para El Dicastes e Dewata.
 	- Necessário verificar se as coordenadas oficiais mudaram.
