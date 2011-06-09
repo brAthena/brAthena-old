@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0619 - 09/06/2011 [Protimus]
+	* Adicionados NPCs Oficiais para vendas de itens para o Renegado.
+	* Modificações nos portais de s_atelier.
+	* Adicionados novos mapflags para s_atelier.
+
 	r0618 - 09/06/2011 [Protimus]
 	* Adicionados portais que faltavam para Brasilis e correções nos que já tinham.
 

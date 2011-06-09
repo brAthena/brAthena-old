@@ -329,3 +329,9 @@ comodo,196,162,4	shop	Harive	479,11513:200,6144:1000
 prt_in,109,68,4	shop	Armadilhas Especiais#AE1::armadilha_especial	66,7940:200,12341:20000
 ra_in01,263,281,4	duplicate(armadilha_especial)	Armadilhas Especiais#AE2	66
 mid_camp,129,284,3	duplicate(armadilha_especial)	Armadilhas Especiais#AE3	66
+
+// Lojas para Renegado
+s_atelier,17,110,5	shop	Part-Timer#PT01::p_timer	67,6123:-1,6120:-1
+s_atelier,137,60,5	duplicate(p_timer)	Part-Timer#PT02	70
+s_atelier,114,117,8	duplicate(p_timer)	Part-Timer#PT03	92
+s_atelier,15,65,4	duplicate(p_timer)	Part-Timer#PT04	89

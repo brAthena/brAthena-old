@@ -429,3 +429,6 @@ mal_in02	mapflag	noteleport
 1@pump	mapflag	monster_noteleport
 2@pump	mapflag	noteleport
 2@pump	mapflag	monster_noteleport
+
+// Atelier
+s_atelier	mapflag	noteleport

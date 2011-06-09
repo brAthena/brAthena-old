@@ -376,3 +376,6 @@ mal_in02	mapflag	nobranch
 1@cash	mapflag	nobranch
 1@pump	mapflag	nobranch
 2@pump	mapflag	nobranch
+
+// Atelier
+s_atelier	mapflag	nobranch
