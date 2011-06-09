@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0617 - 09/06/2011 [Protimus]
+	* Adicionados portais para quests de eden e s_atelier.
+
 	r0616 - 09/06/2011 [Protimus]
 	* Adicionadas Quests de Dewata.
 	- Precisa mudar os nomes de itens para português e otimizar a conversão.
