@@ -688,6 +688,7 @@ void initChangeTables(void)
 	StatusIconChangeTable[SC_LEECHESEND] = SI_LEECHESEND;
 
 	StatusIconChangeTable[SC_GLOOMYDAY_SK] = SI_GLOOMYDAY;
+	StatusIconChangeTable[SC_CURSEDCIRCLE_ATKER] = SI_CURSEDCIRCLE_ATKER;
 
 	StatusIconChangeTable[SC_SHIELDSPELL_DEF] = SI_SHIELDSPELL_DEF;
 	StatusIconChangeTable[SC_SHIELDSPELL_MDEF] = SI_SHIELDSPELL_MDEF;
@@ -1343,7 +1344,8 @@ int status_check_skilluse(struct block_list *src, struct block_list *target, int
 				sc->data[SC_DEEPSLEEP] ||
 				sc->data[SC_SATURDAYNIGHTFEVER] ||
 				sc->data[SC__INVISIBILITY] ||
-				sc->data[SC__IGNORANCE]
+				sc->data[SC__IGNORANCE] ||
+				sc->data[SC_CURSEDCIRCLE_TARGET]
 			))
 				return 0;
 
@@ -1442,6 +1444,8 @@ int status_check_skilluse(struct block_list *src, struct block_list *target, int
 			if ( tsc->data[SC_CAMOUFLAGE] && !skill_num && !(status->mode&MD_BOSS) && !(status->mode&MD_DETECTOR) )
 				return 0;
 			if ( tsc->data[SC_CLOAKINGEXCEED] && !(status->mode&MD_BOSS) )
+				return 0;
+			if (sc && sc->data[SC_CURSEDCIRCLE_TARGET])
 				return 0;
 		}
 		break;
@@ -7046,6 +7050,9 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			val3 = 88 + 2*val1;
 			val_flag |= 1;
 			break;
+		case SC_CURSEDCIRCLE_ATKER:
+			val_flag |= 1|2|4;
+			break;
 		default:
 			if( calc_flag == SCB_NONE && StatusSkillChangeTable[type] == 0 && StatusIconChangeTable[type] == 0 )
 			{	//Status change with no calc, no icon, and no skill associated...?
@@ -7102,6 +7109,8 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_ELECTRICSHOCKER:
 		case SC__MANHOLE:
 		case SC_CHAOS:
+		case SC_CURSEDCIRCLE_ATKER:
+		case SC_CURSEDCIRCLE_TARGET:
 			unit_stop_walking(bl,1);
 		break;
 		case SC_HIDING:
@@ -7280,7 +7289,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		calc_flag&=~SCB_DYE;
 	}
 
-	if( vd && (pcdb_checkid(vd->class_) || bl->type == BL_MER ) ) //Only for players sprites, client crashes if they receive this for a mob o.O [Skotlex]
+	if( (vd && (pcdb_checkid(vd->class_))) || bl->type == BL_MER || bl->type == BL_MOB )
 		clif_status_change(bl,StatusIconChangeTable[type],1,duration,(val_flag&1)?val1:1,(val_flag&2)?val2:0,(val_flag&4)?val3:0);
 	else if( sd ) //Send packet to self otherwise (disguised player?)
 		clif_status_load(bl,StatusIconChangeTable[type],1);
@@ -7841,7 +7850,10 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 				}
 			}
 			break;
-
+		case SC_CURSEDCIRCLE_ATKER:
+			if(sce->val3)
+				map_foreachinrange(status_change_timer_sub, bl, skill_get_splash(SR_CURSEDCIRCLE, sce->val1),BL_CHAR, bl, sce, SC_CURSEDCIRCLE_TARGET, gettick());
+			break;
 	}
 
 	opt_flag = 1;
@@ -8003,7 +8015,7 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 	}
 
 	//On Aegis, when turning off a status change, first goes the sc packet, then the option packet.
-	if( vd && (pcdb_checkid(vd->class_) || bl->type == BL_MER ) )
+	if( vd && (pcdb_checkid(vd->class_) || bl->type == BL_MER || bl->type == BL_MOB) )
 		clif_status_change(bl,StatusIconChangeTable[type],0,0,0,0,0);
 	else if (sd)
 		clif_status_load(bl,StatusIconChangeTable[type],0);
@@ -8757,6 +8769,12 @@ int status_change_timer_sub(struct block_list* bl, va_list ap)
 			status_change_end(bl, SC_CLOSECONFINE2, INVALID_TIMER);
 		}
 		break;
+	case SC_CURSEDCIRCLE_TARGET:
+		if(tsc && tsc->data[SC_CURSEDCIRCLE_TARGET] && tsc->data[SC_CURSEDCIRCLE_TARGET]->val2 == src->id) {
+			status_change_end(bl, type, -1);			
+			clif_bladestop(src, bl->id, 0);
+		}
+		break;
 	}
 	return 0;
 }
@@ -8831,6 +8849,8 @@ int status_change_clear_buffs (struct block_list* bl, int type)
 			case SC_NAUTHIZ:
 			case SC_ELECTRICSHOCKER:
 			case SC__MANHOLE:
+			case SC_CURSEDCIRCLE_ATKER:
+			case SC_CURSEDCIRCLE_TARGET:
 				continue;
 
 			//Debuffs that can be removed.

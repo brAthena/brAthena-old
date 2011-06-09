@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0620 - 09/06/2011 [brn0]
+	* Adicionada a habilidade:
+	- SR_CURSEDCIRCLE (Campo Amaldiçoado).
+	* Corrigido erro de tabulação no arquivo:
+	- npc\portais\outros\s_atelier.txt
+
 	r0619 - 09/06/2011 [Protimus]
 	* Adicionados NPCs Oficiais para vendas de itens para o Renegado.
 	* Modificações nos portais de s_atelier.

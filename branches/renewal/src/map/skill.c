@@ -7679,10 +7679,30 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		clif_skill_nodamage(src,bl,AL_HEAL,(120*skilllv + tstatus->max_hp*(2+skilllv)/100),1);
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
 		break;
-
 	case SR_TIGERCANNON:
 		clif_skill_damage(src, bl, tick, status_get_amotion(src), 0, -30000, 1, skillid, skilllv, 6);
 		map_foreachinrange(skill_area_sub, bl, skill_get_splash(skillid, skilllv), splash_target(src), src, skillid, skilllv, tick, flag|BCT_ENEMY|1, skill_castend_damage_id);
+		break;
+	case SR_CURSEDCIRCLE:
+		if(flag&1) {
+			if( is_boss(bl) )
+				break;
+			if( sc_start2(bl, type, 100, skilllv, src->id, skill_get_time(skillid, skilllv)) ) {
+				unit_stop_attack(bl);
+				clif_bladestop(src, bl->id, 1);
+				map_freeblock_unlock();
+				return 1;
+			}
+		} else {
+			int count = 0;
+			clif_skill_damage(src, bl, tick, status_get_amotion(src), 0, -30000, 1, skillid, skilllv, 6);
+			count = map_forcountinrange(skill_area_sub, src, skill_get_splash(skillid,skilllv), (sd)?sd->spiritball_old:15,
+				BL_CHAR, src, skillid, skilllv, tick, flag|BCT_ENEMY|1, skill_castend_nodamage_id);
+			if(sd)
+				pc_delspiritball(sd, count, 0);
+			clif_skill_nodamage(src, src, skillid, skilllv,
+				sc_start2(src, SC_CURSEDCIRCLE_ATKER, 100, skilllv, count, skill_get_time(skillid,skilllv)));
+		}
 		break;
 
 	case LG_INSPIRATION:
@@ -8192,6 +8212,11 @@ int skill_castend_id(int tid, unsigned int tick, int id, intptr data)
 		map_freeblock_lock();
 		
 		sc = status_get_sc(src);
+
+		if(sc && sc->data[SC_CURSEDCIRCLE_ATKER]) {
+			sc->data[SC_CURSEDCIRCLE_ATKER]->val3 = 1;
+			status_change_end(src,SC_CURSEDCIRCLE_ATKER,-1);
+		}
 			
 		if (skill_get_casttype(ud->skillid) == CAST_NODAMAGE)
 			skill_castend_nodamage_id(src,target,ud->skillid,ud->skilllv,tick,flag);
@@ -8436,8 +8461,14 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 	type = status_skill2sc(skillid);
 	sce = (sc && type != -1)?sc->data[type]:NULL;
 	
-	if( sc && sc->data[SC_CAMOUFLAGE] )
-		status_change_end(src,SC_CAMOUFLAGE,-1);
+	if(sc) {
+		if(sc->data[SC_CAMOUFLAGE])
+			status_change_end(src,SC_CAMOUFLAGE,-1);
+		if(sc->data[SC_CURSEDCIRCLE_ATKER]) {
+			sc->data[SC_CURSEDCIRCLE_ATKER]->val3 = 1;
+			status_change_end(src,SC_CURSEDCIRCLE_ATKER,-1);
+		}
+	}
 
 	switch (skillid) { //Skill effect.
 		case WZ_METEOR:
@@ -11064,7 +11095,7 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 	case MO_EXTREMITYFIST:
 //		if(sc && sc->data[SC_EXTREMITYFIST]) //To disable Asura during the 5 min skill block uncomment this...
 //			return 0;
-		if( sc && sc->data[SC_BLADESTOP] )
+		if( sc && (sc->data[SC_BLADESTOP] || sc->data[SC_CURSEDCIRCLE_ATKER]) )
 			break;
 		if( sc && sc->data[SC_COMBO] )
 		{
@@ -11511,6 +11542,14 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 	case SR_GATEOFHELL:
 		if(sd->spiritball > 0)
 			sd->spiritball_old = require.spiritball;
+		break;
+	case SR_CURSEDCIRCLE:
+		if(sd->spiritball > 0)
+			sd->spiritball_old = require.spiritball = sd->spiritball;
+		else {
+			clif_skill_fail(sd,skill,0,0,0);
+			return 0;
+		}
 		break;
 	}
 

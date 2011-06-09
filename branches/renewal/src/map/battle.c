@@ -2239,7 +2239,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 						hp = sstatus->hp - 1;
 					if (sstatus->sp <= sp)
 						sp = sstatus->sp -1;
-					status_damage(NULL, src, hp, sp, NULL, false);
+					status_damage(NULL, src, hp, sp, 0, false);
 					skillratio += (hp + sp)/4 - 100;
 					if (sc && sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == SR_FALLENEMPIRE)
 						skillratio *= 2;
