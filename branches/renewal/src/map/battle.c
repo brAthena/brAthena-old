@@ -2156,6 +2156,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio = 150 * skill_lv;
 					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
 					break;
+				case LG_HESPERUSLIT:
+					skillratio += 120 * skill_lv;
+					break;
 				case GN_CART_TORNADO:
 					skillratio += 50 * skill_lv + pc_checkskill(sd, GN_REMODELING_CART) * 100 - 100;
 					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;

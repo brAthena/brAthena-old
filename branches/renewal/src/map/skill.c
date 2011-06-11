@@ -3188,6 +3188,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case LG_BANISHINGPOINT:
 	case LG_RAYOFGENESIS:
 	case LG_SHIELDPRESS:
+	case LG_HESPERUSLIT:
 	case GN_SLINGITEM_RANGEMELEEATK:
 	case SR_RAMPAGEBLASTER:
 	case SR_CRESCENTELBOW_AUTOSPELL:
@@ -11528,6 +11529,13 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 		}
 		else if( skill_check_pc_partner(sd,skill,&lv,skill_get_range(skill,lv),0) < 1 )
 			return 0;
+		break;
+	case LG_HESPERUSLIT:
+		if( !sc || !sc->data[SC_BANDING] )
+		{
+			clif_skill_fail(sd,skill,0,0,0);
+			return 0;
+		}
 		break;
 	case SR_CRESCENTELBOW:
 		if(sc && sc->data[SC_CRESCENTELBOW]) {
