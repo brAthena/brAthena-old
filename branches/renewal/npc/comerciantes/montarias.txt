@@ -12,7 +12,7 @@
 // |--------------------------------------------------------|
 // | Criado por: brA Dev. Team                              |
 // |--------------------------------------------------------|
-// | Versão brA: 1.1                                        |
+// | Versão brA: 1.2                                        |
 // |--------------------------------------------------------|
 // | Descrição: NPCs de Montarias para as 3rd Classes.		|
 // |--------------------------------------------------------|
@@ -23,13 +23,14 @@
 // | Porém é necessário revisar futuramente, caso mudem-o.  |
 // | 1.1 Script Otimizado [Protimus]						|
 // | - Removidos menus e adicionadas vars.					|
+// | 1.2 Adicionado suporte para uso de classes bebês.      |
 // \________________________________________________________/
 
 prontera,130,213,5	script	Domador de Criaturas	105,{
 	mes "[Domador de Criaturas]";
-	if((Class == Job_Rune_Knight || Class == Job_Rune_Knight_T) && getskilllv("RK_DRAGONTRAINING") > 0)
+	if((Class == Job_Rune_Knight || Class == Job_Rune_Knight_T || Class == Job_Baby_Rune) && getskilllv("RK_DRAGONTRAINING") > 0)
 		set .@montaria$,"Dragão";
-	else if((Class == Job_Royal_Guard || Class == Job_Royal_Guard_T) && getskilllv("KN_RIDING") > 0)
+	else if((Class == Job_Royal_Guard || Class == Job_Royal_Guard_T || Class == Job_Baby_Guard) && getskilllv("KN_RIDING") > 0)
 		set .@montaria$,"Grifo";
 	else {
 		mes "Estou aqui para fornecer montarias para Cavaleiros Rúnicos e Guardiões Reais.";
@@ -63,7 +64,7 @@ prontera,125,208,5	script	Soldado	105,{
 
 prontera,163,178,3	script	Artilheiro Mágico	105,{
 	mes "[Artilheiro Mágico]";
-	if(Class == Job_Mechanic || Class == Job_Mechanic_T) {
+	if(Class == Job_Mechanic || Class == Job_Mechanic_T || Class == Job_Baby_Mechanic) {
 		mes "Bem-vindo.";
 		mes "Você gostaria de obter um Robô?";
 		next;

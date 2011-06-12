@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0624 - 12/06/2011 [Protimus]
+	* Adicionado suporte para uso de 3rd classes bebês ao NPC de montarias da renovação. 
+
 	r0623 - 12/06/2011 [Protimus]
 	* Adicionadas mais modificações para itens conforme renovação.
 	- Modificações em defesa, bonificações de ataque mágico e estruturais gerais.
