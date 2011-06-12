@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0623 - 12/06/2011 [Protimus]
+	* Adicionadas mais modificações para itens conforme renovação.
+	- Modificações em defesa, bonificações de ataque mágico e estruturais gerais.
+	- Agora faltam apenas as mudanças nas taxas de refinamento.
+
 	r0622 - 11/06/2011 [Mark]
 	* Adicionada a habilidade:
 	- LG_HESPERUSLIT (Formação Real)
