@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0625 - 13/06/2011 [Protimus]
+	* Modificação em habilidade:
+	- Adestrar Dragão: Valor de ASPD é múltiplo de 10 começando em 60% de ASPD.
+
 	r0624 - 12/06/2011 [Protimus]
 	* Adicionado suporte para uso de 3rd classes bebês ao NPC de montarias da renovação. 
 
