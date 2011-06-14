@@ -5217,6 +5217,10 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 			if (!(rand()%10000 < rate))
 				return 0;
 			return tick?tick:1;
+	
+	case SC_MAGNETICFIELD:
+		if(sc->data[SC_HOVERING])
+			return 0;
 	}
 
 	if (sd) {
@@ -7053,6 +7057,10 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_CURSEDCIRCLE_ATKER:
 			val_flag |= 1|2|4;
 			break;
+		case SC_MAGNETICFIELD:
+			val3 = tick / 1000;
+			tick = 1000;
+			break;
 		default:
 			if( calc_flag == SCB_NONE && StatusSkillChangeTable[type] == 0 && StatusIconChangeTable[type] == 0 )
 			{	//Status change with no calc, no icon, and no skill associated...?
@@ -7111,6 +7119,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_CHAOS:
 		case SC_CURSEDCIRCLE_ATKER:
 		case SC_CURSEDCIRCLE_TARGET:
+		case SC_MAGNETICFIELD:
 			unit_stop_walking(bl,1);
 		break;
 		case SC_HIDING:
@@ -8708,7 +8717,25 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr data)
 			return 0;
 		}
 		break;
-
+	case SC_MAGNETICFIELD:
+		{
+			if( --(sce->val3) <= 0 )
+				break; //Timeout
+			if( sce->val2 == bl->id )
+			{
+				if( !status_charge(bl,0,14 + (3 * sce->val1)) )
+					break; //Se acabar o SP acaba a Skill
+			}
+			else
+			{
+				struct block_list *src = map_id2bl(sce->val2);
+				struct status_change *ssc;
+				if( !src || (ssc = status_get_sc(src)) == NULL || !ssc->data[SC_MAGNETICFIELD] )
+					break;
+			}
+			sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
+		}
+		break;
 	}
 	// default for all non-handled control paths is to end the status
 	return status_change_end( bl,type,tid );

@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0627 - 13/06/2011 [MiTh]
+	* Adicionada a habilidade NC_MAGNETICFIELD (Campo Magnético)
+
 	r0626 - 13/06/2011 [CarlosHenrq]
 	* Corrigido crash na skill 'NC_AXEBOOMERANG'.
 

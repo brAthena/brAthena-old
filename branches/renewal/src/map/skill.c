@@ -1164,6 +1164,9 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 		sc_start(bl,SC_FREEZING,20+10*skilllv,skilllv,skill_get_time2(skillid,skilllv));
 		sc_start(bl,SC_FREEZE,10*skilllv,skilllv,skill_get_time2(skillid,skilllv));
 		break;
+	case NC_MAGNETICFIELD:
+		sc_start2(bl,SC_MAGNETICFIELD,100,skilllv,src->id,skill_get_time(skillid,skilllv));
+		break;
 	case LG_MOONSLASHER:
 		rate = 32 + 8 * skilllv;
 		if( rand()%100 < rate && dstsd ) // Uses skill_addtimerskill to avoid damage and setsit packet overlaping. Officially clif_setsit is received about 500 ms after damage packet.
@@ -5898,6 +5901,17 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 
 			clif_skill_nodamage(src, bl, skillid, skilllv, 1);
 		}
+		break;
+
+	case NC_MAGNETICFIELD:
+		if( (i = sc_start2(bl,type,100,skilllv,src->id,skill_get_time(skillid,skilllv))) )
+		{
+			map_foreachinrange(skill_area_sub,src,skill_get_splash(skillid,skilllv),splash_target(src),src,skillid,skilllv,tick,flag|BCT_ENEMY|SD_SPLASH|1,skill_castend_damage_id);;
+			clif_skill_damage(src,src,tick,status_get_amotion(src),0,-30000,1,skillid,skilllv,6);
+			pc_delitem(sd,ITEMID_MAGIC_GEAR_FUEL,3,1,0);
+			pc_overheat(sd,1);
+		}
+		clif_skill_nodamage(src,src,skillid,skilllv,i);
 		break;
 
 	case TK_HIGHJUMP:
@@ -11505,6 +11519,13 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 		break;
 	case NC_SELFDESTRUCTION:
 		if( !pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_SUICIDAL_DEVICE ) )
+			{
+			clif_skill_fail(sd,skill,0,0,0);
+			return 0;
+			}
+		break;
+	case NC_MAGNETICFIELD:
+		if( !pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_MAGNETIC_FIELD_GENERATOR || pc_search_inventory(sd, ITEMID_MAGIC_GEAR_FUEL ) < 3 ) )
 			{
 			clif_skill_fail(sd,skill,0,0,0);
 			return 0;
