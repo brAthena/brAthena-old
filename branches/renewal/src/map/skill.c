@@ -1222,6 +1222,9 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 			sd->itemid = -1;
 		}
 		break;
+	case SO_EARTHGRAVE:
+		sc_start(bl, SC_BLEEDING, 10 + 10 * skilllv, skilllv, skill_get_time2(skillid, skilllv));	
+		break;
 	}
 
 	if (md && battle_config.summons_trigger_autospells && md->master_id && md->special_state.ai)
@@ -8644,6 +8647,7 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 	case GN_WALLOFTHORN:
 	case GN_DEMONIC_FIRE:
 	case GN_HELLS_PLANT:
+	case SO_EARTHGRAVE:
 		flag|=1;//Set flag to 1 to prevent deleting ammo (it will be deleted on group-delete).
 	case GS_GROUNDDRIFT: //Ammo should be deleted right away.
 		skill_unitsetting(src,skillid,skilllv,x,y,0);
