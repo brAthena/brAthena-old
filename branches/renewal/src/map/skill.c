@@ -1225,6 +1225,12 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 	case SO_EARTHGRAVE:
 		sc_start(bl, SC_BLEEDING, 10 + 10 * skilllv, skilllv, skill_get_time2(skillid, skilllv));	
 		break;
+	case SO_DIAMONDDUST:
+		rate = 10 + 10 * skilllv;
+		if( sc && sc->data[SC_COOLER_OPTION] )
+			rate += rate * sc->data[SC_COOLER_OPTION]->val2 / 100;
+		sc_start(bl, SC_CRYSTALIZE, rate, skilllv, skill_get_time2(skillid, skilllv));
+		break;
 	}
 
 	if (md && battle_config.summons_trigger_autospells && md->master_id && md->special_state.ai)
@@ -4117,6 +4123,15 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 			status_change_end(bl, SC_UNLIMITEDHUMMINGVOICE, -1);
 			skill_attack(BF_WEAPON, src, src, bl, skillid, skilllv, tick, flag);
 		}
+		break;
+	case SO_POISON_BUSTER:
+		if( tsc && tsc->data[SC_POISON] )
+		{
+			skill_attack(skill_get_type(skillid), src, src, bl, skillid, skilllv, tick, flag);
+			status_change_end(bl, SC_POISON, -1);
+		}
+		else if( sd )
+			clif_skill_fail(sd, skillid, 0, 0, 0);
 		break;
 	case 0:
 		if(sd) {
@@ -8648,6 +8663,7 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 	case GN_DEMONIC_FIRE:
 	case GN_HELLS_PLANT:
 	case SO_EARTHGRAVE:
+	case SO_DIAMONDDUST:
 		flag|=1;//Set flag to 1 to prevent deleting ammo (it will be deleted on group-delete).
 	case GS_GROUNDDRIFT: //Ammo should be deleted right away.
 		skill_unitsetting(src,skillid,skilllv,x,y,0);

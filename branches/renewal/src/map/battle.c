@@ -3257,6 +3257,17 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						if( sc && sc->data[SC_CURSED_SOIL_OPTION] )
 							skillratio += skillratio * sc->data[SC_CURSED_SOIL_OPTION]->val2 / 100;
 						break;
+					case SO_DIAMONDDUST:
+						skillratio = ( 200 * pc_checkskill(sd, SA_FROSTWEAPON) + sstatus->int_ * skill_lv );
+						if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;	
+						if( sc && sc->data[SC_COOLER_OPTION] )
+							skillratio += skillratio * sc->data[SC_COOLER_OPTION]->val3 / 100;
+						break;
+					case SO_POISON_BUSTER:
+						skillratio += 1100 + 300 * skill_lv;
+						if( sc && sc->data[SC_CURSED_SOIL_OPTION] )
+							skillratio += skillratio * sc->data[SC_CURSED_SOIL_OPTION]->val2 / 100;
+						break;
 					case GN_DEMONIC_FIRE:
 						if( skill_lv > 20)
 						{	
