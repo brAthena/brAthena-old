@@ -3636,11 +3636,11 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 			for( y = src->y - range; y <= src->y + range; ++y )
 				for( x = src->x - range; x <= src->x + range; ++x )
 				{
-					if( !map_find_skill_unit_oncell(src,x,y,SA_LANDPROTECTOR,NULL) )
+					if( !map_find_skill_unit_oncell(src,x,y,SA_LANDPROTECTOR,NULL,1) )
 					{
 						if( src->type != BL_PC || map_getcell(src->m,x,y,CELL_CHKWATER) ) // non-players bypass the water requirement
 							count++; // natural water cell
-						else if( (unit = map_find_skill_unit_oncell(src,x,y,SA_DELUGE,NULL)) != NULL || (unit = map_find_skill_unit_oncell(src,x,y,NJ_SUITON,NULL)) != NULL )
+						else if( (unit = map_find_skill_unit_oncell(src,x,y,SA_DELUGE,NULL,1)) != NULL || (unit = map_find_skill_unit_oncell(src,x,y,NJ_SUITON,NULL,1)) != NULL )
 						{
 							count++; // skill-induced water cell
 							skill_delunit(unit); // consume cell
@@ -9075,6 +9075,14 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 	case NC_MAGICDECOY:
 		clif_magicdecoy_list(sd,skilllv,x,y);
 		break;
+		
+	case SO_FIREWALK:
+	case SO_ELECTRICWALK:
+		if( sc && sc->data[type] )
+			status_change_end(src,type,-1);
+		clif_skill_nodamage(src, src ,skillid, skilllv,
+			sc_start2(src, type, 100, skillid, skilllv, skill_get_time(skillid, skilllv)));
+		break;
 
 	default:
 		ShowWarning("skill_castend_pos2: Habilidade desconhecida usada:%d\n",skillid);
@@ -10359,6 +10367,8 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 			break;
 
 		case UNT_GRAVITATION:
+		case UNT_FIREWALK:
+		case UNT_ELECTRICWALK:
 			skill_attack(skill_get_type(sg->skill_id),ss,&src->bl,bl,sg->skill_id,sg->skill_lv,tick,0);
 			break;
 
@@ -11577,6 +11587,15 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 			sd->spiritball_old = require.spiritball = sd->spiritball;
 		else {
 			clif_skill_fail(sd,skill,0,0,0);
+			return 0;
+		}
+		break;
+	case SO_FIREWALK:
+	case SO_ELECTRICWALK:	
+		if( sc && sc->data[SC_PROPERTYWALK] &&
+			sc->data[SC_PROPERTYWALK]->val3 < skill_get_maxcount(sc->data[SC_PROPERTYWALK]->val1,sc->data[SC_PROPERTYWALK]->val2) )
+		{
+			clif_skill_fail(sd,skill,0x0,0,0);
 			return 0;
 		}
 		break;

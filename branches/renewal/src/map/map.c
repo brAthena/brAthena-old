@@ -437,6 +437,17 @@ int map_moveblock(struct block_list *bl, int x1, int y1, unsigned int tick)
 					skill_unit_move_unit_group(skill_id2group(sc->data[SC_DANCING]->val2), bl->m, x1-x0, y1-y0);
 				if (sc->data[SC_WARM])
 					skill_unit_move_unit_group(skill_id2group(sc->data[SC_WARM]->val4), bl->m, x1-x0, y1-y0);
+				if (sc->data[SC_PROPERTYWALK])
+				{
+					if( sc->data[SC_PROPERTYWALK]->val3 < skill_get_maxcount(sc->data[SC_PROPERTYWALK]->val1,sc->data[SC_PROPERTYWALK]->val2) )
+					{
+						if( map_find_skill_unit_oncell(bl,bl->x,bl->y,SO_ELECTRICWALK,NULL,0) == NULL && map_find_skill_unit_oncell(bl,bl->x,bl->y,SO_FIREWALK,NULL,0) == NULL )
+						{	
+							if( skill_unitsetting(bl,sc->data[SC_PROPERTYWALK]->val1,sc->data[SC_PROPERTYWALK]->val2,x0, y0,0) )
+								sc->data[SC_PROPERTYWALK]->val3++;
+						}
+					}
+				}
 			}
 		}
 	} else
@@ -476,7 +487,7 @@ int map_count_oncell(int m, int x, int y, int type)
 /*
  * «»«E¾ªÎõÌôøªËÌ¸ªÄª±ª¿«¹«­«Eæ«Ë«Ã«ÈªòÚ÷ª?
  */
-struct skill_unit* map_find_skill_unit_oncell(struct block_list* target,int x,int y,int skill_id,struct skill_unit* out_unit)
+struct skill_unit* map_find_skill_unit_oncell(struct block_list* target,int x,int y,int skill_id,struct skill_unit* out_unit,int flag)
 {
 	int m,bx,by;
 	struct block_list *bl;
@@ -497,7 +508,7 @@ struct skill_unit* map_find_skill_unit_oncell(struct block_list* target,int x,in
 		unit = (struct skill_unit *) bl;
 		if( unit == out_unit || !unit->alive || !unit->group || unit->group->skill_id != skill_id )
 			continue;
-		if( battle_check_target(&unit->bl,target,unit->group->target_flag) > 0 )
+		if( !(flag&1) || battle_check_target(&unit->bl,target,unit->group->target_flag) > 0 )
 			return unit;
 	}
 	return NULL;

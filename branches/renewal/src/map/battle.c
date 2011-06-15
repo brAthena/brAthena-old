@@ -3230,6 +3230,18 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						skillratio += 300 * skill_lv;
 						if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
 						break;
+					case SO_FIREWALK:
+						skillratio = 300;
+						if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;	
+						if( sc && sc->data[SC_HEATER_OPTION] )
+							skillratio += skillratio * sc->data[SC_HEATER_OPTION]->val3 / 100;
+						break;
+					case SO_ELECTRICWALK:
+						skillratio = 300;
+						if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;	
+						if( sc && sc->data[SC_BLAST_OPTION] )
+							skillratio += skillratio * sc->data[SC_BLAST_OPTION]->val2 / 100;
+						break;
 					case GN_DEMONIC_FIRE:
 						if( skill_lv > 20)
 						{	
