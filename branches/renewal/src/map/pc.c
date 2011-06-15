@@ -4775,6 +4775,7 @@ int pc_jobid2mapid(unsigned short b_class)
 	//2_2 classes
 		case JOB_CRUSADER:          return MAPID_CRUSADER;
 		case JOB_SAGE:              return MAPID_SAGE;
+		case JOB_BARD:
 		case JOB_DANCER:            return MAPID_BARDDANCER;
 		case JOB_MONK:              return MAPID_MONK;
 		case JOB_ALCHEMIST:         return MAPID_ALCHEMIST;

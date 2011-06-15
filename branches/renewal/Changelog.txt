@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0632 - 14/06/2011 [Mark]
+	* Corrigido problema com Job_Bard.
+	- Não era reconhecido. (Problema relatado por: Luxaras)
+
 	r0631 - 14/06/2011 [Mark]
 	* Adicionadas as habilidade:
 	- LG_RAGEBURST (Retribuição da Vanguarda).
