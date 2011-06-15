@@ -4144,6 +4144,8 @@ static signed short status_calc_def(struct block_list *bl, struct status_change 
 		def -= def * (10 + 10 * sc->data[SC_SATURDAYNIGHTFEVER]->val1) / 100;
 	if(sc->data[SC_EARTHDRIVE])
 		def -= def * 25 / 100;
+	if( sc->data[SC_FORCEOFVANGUARD] )
+		def += def * 2 * sc->data[SC_FORCEOFVANGUARD]->val1 / 100;
 	if( sc->data[SC_GT_CHANGE] )
 		def -= def * sc->data[SC_GT_CHANGE]->val3 / 100;
 
@@ -4533,18 +4535,17 @@ static unsigned int status_calc_maxhp(struct block_list *bl, struct status_chang
 		maxhp += maxhp * sc->data[SC_MERC_HPUP]->val2/100;
 	if(sc->data[SC_EPICLESIS])
 		maxhp += maxhp / 100 * 5 * sc->data[SC_EPICLESIS]->val1;
-		
-	if(sc->data[SC_EPICLESIS])
-		maxhp += maxhp * 5 * sc->data[SC_EPICLESIS]->val1 / 100;
 	if(sc->data[SC_INSPIRATION])
 		maxhp += (maxhp * 8 * sc->data[SC_INSPIRATION]->val1 + 9) / 100;
-
 	if(sc->data[SC_RAISINGDRAGON])
 		maxhp += maxhp*(2 + sc->data[SC_RAISINGDRAGON]->val1)/100;
+
 	if(sc->data[SC_GT_CHANGE])
 		maxhp -= maxhp*sc->data[SC_GT_CHANGE]->val1/50;
 	if(sc->data[SC_GT_REVITALIZE])
 		maxhp += maxhp*3*sc->data[SC_GT_REVITALIZE]->val1/100;
+	if(sc->data[SC_FORCEOFVANGUARD])
+		maxhp += maxhp * 3 * sc->data[SC_FORCEOFVANGUARD]->val1 / 100;
 
 	return cap_value(maxhp,1,UINT_MAX);
 }
@@ -7061,6 +7062,12 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			val3 = tick / 1000;
 			tick = 1000;
 			break;
+		case SC_FORCEOFVANGUARD:
+			val2 = 20 + 12 * (val1 - 1);
+			val3 = 5 + (2 * val1);
+			tick = 6000;
+			val_flag |= 1|2|4;
+			break;
 		default:
 			if( calc_flag == SCB_NONE && StatusSkillChangeTable[type] == 0 && StatusIconChangeTable[type] == 0 )
 			{	//Status change with no calc, no icon, and no skill associated...?
@@ -8736,6 +8743,13 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr data)
 			sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
 		}
 		break;
+	case SC_FORCEOFVANGUARD:
+		if( !status_charge(bl,0,20) )
+			break;
+		sc_timer_next(6000 + tick, status_change_timer, bl->id, data);
+		return 0;
+		break;
+
 	}
 	// default for all non-handled control paths is to end the status
 	return status_change_end( bl,type,tid );

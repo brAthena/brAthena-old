@@ -634,14 +634,15 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 		//(since battle_drain is strictly for players currently)
 		if ((sce=sc->data[SC_BLOODLUST]) && flag&BF_WEAPON && damage > 0 &&
 			rand()%100 < sce->val3)
-			status_heal(src, damage*sce->val4/100, 0, 3);
-
+			status_heal(src, damage*sce->val4/100, 0, 3);			
 		if( (sce=sc->data[SC_GT_ENERGYGAIN]) && flag&BF_WEAPON && rand()%100<10 + 5*sce->val1 ) {
 			int duration = skill_get_time(MO_CALLSPIRITS, sce->val1);
 			if(sd)
 				pc_addspiritball(sd, duration, sce->val1);
 		}
-			
+		if( sd && (sce = sc->data[SC_FORCEOFVANGUARD]) && flag&BF_WEAPON && rand()%100 < sce->val2 )
+			pc_addrageball(sd,skill_get_time(LG_FORCEOFVANGUARD,sce->val1),sce->val3);
+
 		if( sc->data[SC__DEADLYINFECT] && damage > 0 && rand()%100 < 20 )
 			status_change_spread(bl, src); 
 
@@ -2158,6 +2159,14 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					break;
 				case LG_HESPERUSLIT:
 					skillratio += 120 * skill_lv;
+					break;
+				case LG_RAGEBURST:
+					if( sd && sd->rageball_old )
+						//Aguardando formula correta do iRO.
+						skillratio += (sstatus->batk + sstatus->watk) * sd->rageball_old * 2 * s_base_level/100 + ((sstatus->max_hp - sstatus->hp)/10)/3;
+					else
+						skillratio += -100 + 15 * 200;
+					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
 					break;
 				case GN_CART_TORNADO:
 					skillratio += 50 * skill_lv + pc_checkskill(sd, GN_REMODELING_CART) * 100 - 100;

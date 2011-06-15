@@ -1191,6 +1191,8 @@ int clif_spawn(struct block_list *bl)
 				clif_specialeffect(bl,421,AREA);
 			if( sd->bg_id && map[sd->bl.m].flag.battleground )
 				clif_sendbgemblem_area(sd);
+			if( sd->sc.count && sd->sc.data[SC_BANDING] )
+				clif_status_change(&sd->bl,SI_BANDING,1,9999,sd->sc.data[SC_BANDING]->val1,0,0);
 		}
 		break;
 	case BL_MOB:
@@ -3961,6 +3963,8 @@ void clif_getareachar_unit(struct map_session_data* sd,struct block_list *bl)
 				clif_specialeffect_single(bl,421,sd->fd);
 			if( tsd->bg_id && map[tsd->bl.m].flag.battleground )
 				clif_sendbgemblem_single(sd->fd,tsd);
+			if( tsd->sc.count && tsd->sc.data[SC_BANDING] )
+				clif_display_banding(&sd->bl,&tsd->bl,tsd->sc.data[SC_BANDING]->val1);
 		}
 		break;
 	case BL_MER: // Devotion Effects
@@ -5184,6 +5188,30 @@ int clif_status_change(struct block_list *bl, int type, int flag, unsigned int t
 	}
 	clif_send(buf,packet_len(WBUFW(buf,0)),bl,AREA);
 	return 0;
+}
+
+void clif_display_banding(struct block_list *dst, struct block_list *bl, int val1)
+{
+	unsigned char buf[32];
+
+	nullpo_retv(bl);
+	nullpo_retv(dst);
+
+	if( battle_config.display_status_timers )
+		WBUFW(buf, 0) = 0x043f;
+	else
+		WBUFW(buf, 0)= 0x0196;
+	WBUFW(buf, 2) = SI_BANDING;
+	WBUFL(buf, 4) = bl->id;
+	WBUFB(buf, 8) = 1;
+	if( battle_config.display_status_timers )
+	{
+		WBUFL(buf, 9) = 0;
+		WBUFL(buf,13) = val1;
+		WBUFL(buf,17) = 0;
+		WBUFL(buf,21) = 0;
+	}
+	clif_send(buf,packet_len(WBUFW(buf,0)),dst,SELF);
 }
 
 /*==========================================

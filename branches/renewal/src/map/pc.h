@@ -18,6 +18,7 @@
 #include "vending.h" // struct s_vending
 #include "mob.h"
 
+#define MAX_RAGE 15
 #define MAX_RUNE 20
 #define MAX_PC_BONUS 10
 #define MAX_PC_SKILL_REQUIRE 5
@@ -334,6 +335,8 @@ struct map_session_data {
 
 	short spiritball, spiritball_old;
 	int spirit_timer[MAX_SKILL_LEVEL];
+	short rageball, rageball_old;
+	int rage_timer[MAX_RAGE];
 
 	unsigned char potion_success_counter; //Potion successes in row counter
 	unsigned char mission_count; //Stores the bounty kill count for TK_MISSION
@@ -783,6 +786,8 @@ int pc_overheat(struct map_session_data *sd, int val); // Super Aquecimento
 
 int pc_addspiritball(struct map_session_data *sd,int,int);
 int pc_delspiritball(struct map_session_data *sd,int,int);
+int pc_addrageball(struct map_session_data *sd,int interval, int max);
+int pc_delrageball(struct map_session_data *sd,int);
 void pc_addfame(struct map_session_data *sd,int count);
 unsigned char pc_famerank(int char_id, int job);
 int pc_set_hate_mob(struct map_session_data *sd, int pos, struct block_list *bl);

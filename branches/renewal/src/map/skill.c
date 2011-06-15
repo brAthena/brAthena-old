@@ -3192,6 +3192,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case LG_RAYOFGENESIS:
 	case LG_SHIELDPRESS:
 	case LG_HESPERUSLIT:
+	case LG_RAGEBURST:
 	case GN_SLINGITEM_RANGEMELEEATK:
 	case SR_RAMPAGEBLASTER:
 	case SR_CRESCENTELBOW_AUTOSPELL:
@@ -5270,11 +5271,12 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case RA_CAMOUFLAGE:
 	case SC_REPRODUCE:
 	case SC_INVISIBILITY:
+	case LG_FORCEOFVANGUARD:
 		if (tsce)
 		{
 			i = status_change_end(bl, type, INVALID_TIMER);
 			if( i )
-				clif_skill_nodamage(src,bl,skillid,-1,i);
+				clif_skill_nodamage(src,bl,skillid,(skillid==LG_FORCEOFVANGUARD)?skilllv:-1,i);
 			else if( sd )
 				clif_skill_fail(sd,skillid,0,0,0);
 			map_freeblock_unlock();
@@ -5282,7 +5284,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		}
 		i = sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv));
 		if( i )
-			clif_skill_nodamage(src,bl,skillid,-1,i);
+			clif_skill_nodamage(src,bl,skillid,(skillid==LG_FORCEOFVANGUARD)?skilllv:-1,i);
 		else if( sd )
 			clif_skill_fail(sd,skillid,0,0,0);
 		break;
@@ -11568,6 +11570,14 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 			return 0;
 		}
 		break;
+	case LG_RAGEBURST:
+		if( sd->rageball == 0 )
+		{
+			clif_skill_fail(sd,skill,0x04,0,0);
+			return 0;
+		}
+		sd->rageball_old = require.spiritball = sd->rageball;
+		break;
 	case SR_CRESCENTELBOW:
 		if(sc && sc->data[SC_CRESCENTELBOW]) {
 			clif_skill_fail(sd,skill,0,0,0);
@@ -11719,7 +11729,7 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 		return 0;
 	}
 
-	if( require.spiritball > 0 && sd->spiritball < require.spiritball) {
+	if( require.spiritball > 0 && sd->spiritball < require.spiritball && skill != LG_RAGEBURST ) {
 		clif_skill_fail(sd,skill,0,0,0);
 		return 0;
 	}
@@ -11934,7 +11944,10 @@ int skill_consume_requirement( struct map_session_data *sd, short skill, short l
 			status_zap(&sd->bl, req.hp, req.sp);
 
 		if(req.spiritball > 0)
-			pc_delspiritball(sd,req.spiritball,0);
+			if( skill == LG_RAGEBURST )
+				pc_delrageball(sd,req.spiritball);
+			else
+				pc_delspiritball(sd,req.spiritball,0);
 
 		if(req.zeny > 0)
 		{
@@ -12169,6 +12182,10 @@ struct skill_condition skill_get_requirement(struct map_session_data* sd, short 
 			if (sc && sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == SR_FALLENEMPIRE)
 				req.sp -= req.sp/10;
 			break;
+		case LG_RAGEBURST:
+			req.spiritball = sd->rageball?sd->rageball:1;
+			break;
+
 		default:
 			if( sc && sc->data[SC_EDP] )
 				switch(skill){
