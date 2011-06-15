@@ -2267,9 +2267,13 @@ ACMD_FUNC(go)
 		{ MAP_RACHEL,      130, 110 }, // 23=Rachel
 		{ MAP_VEINS,       216, 123 }, // 24=Veins
 		{ MAP_MOSCOVIA,    223, 184 }, // 25=Moscovia
-		{ MAP_BRASILIS,	   195, 213	}, // 26=Brasilis
-		{ MAP_DICASTES,	   198, 192	}, // 27=Dicastes
-		{ MAP_DEWATA,	   200, 199	}, // 28=Dewata
+		{ MAP_BRASILIS,	   195, 218	}, // 26=Brasilis
+		{ MAP_MANUK,	   295, 190	}, // 27=Manuk
+		{ MAP_SPLENDIDE,   202,	150	}, // 28=Splendide
+		{ MAP_DICASTES,	   198, 192	}, // 29=Dicastes
+		{ MAP_MORA,		   120, 110 }, // 30=Mora
+		{ MAP_DEWATA,	   200, 199	}, // 31=Dewata
+		{ MAP_MALANGDO,    208, 118 }, // 32=Malangdo
 	};
 
 	nullpo_retr(-1, sd);
@@ -2297,8 +2301,9 @@ ACMD_FUNC(go)
 		clif_displaymessage(fd, " 15=Novice Grounds  16=Prison      17=Jawaii");
 		clif_displaymessage(fd, " 18=Ayothaya        19=Einbroch    20=Lighthalzen");
 		clif_displaymessage(fd, " 21=Einbech         22=Hugel       23=Rachel");
-		clif_displaymessage(fd, " 24=Veins           25=Moscovia	26=Brasilis");
-		clif_displaymessage(fd, " 27=Dicastes        28=Dewata");
+		clif_displaymessage(fd, " 24=Veins           25=Moscovia    26=Brasilis");
+		clif_displaymessage(fd, " 27=Manuk           28=Splendide   29=Dicastes");
+		clif_displaymessage(fd, " 30=Mora            31=Dewata      32=Malangdo");
 		return -1;
 	}
 
@@ -2374,9 +2379,17 @@ ACMD_FUNC(go)
 		town = 25;
 	} else if (strncmp(map_name, "brasilis", 3) == 0) {
 		town = 26;
-	} else if (strncmp(map_name, "dicastes01", 3) == 0) {
+	} else if (strncmp(map_name, "manuk", 3) == 0) {
 		town = 27;
+	} else if (strncmp(map_name, "splendide", 3) == 0) {
+		town = 28;
+	} else if (strncmp(map_name, "dicastes01", 3) == 0) {
+		town = 29;
+	} else if (strncmp(map_name, "mora", 3) == 0) {
+		town = 28;
 	} else if (strncmp(map_name, "dewata", 3) == 0) {
+		town = 30;
+	} else if (strncmp(map_name, "malangdo", 3) == 0) {
 		town = 28;
 	}
 
