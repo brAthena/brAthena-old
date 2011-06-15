@@ -3937,6 +3937,8 @@ static unsigned short status_calc_watk(struct block_list *bl, struct status_chan
 		watk += (10 + 10 * sc->data[SC_BANDING]->val1) * (sc->data[SC_BANDING]->val2);
 	if(sc->data[SC_SHIELDSPELL_DEF] && sc->data[SC_SHIELDSPELL_DEF]->val1 == 3)
 		watk += sc->data[SC_SHIELDSPELL_DEF]->val2;
+	if(sc->data[SC_STRIKING])
+		watk += sc->data[SC_STRIKING]->val2;
 
 	return (unsigned short)cap_value(watk,0,USHRT_MAX);
 }
@@ -3983,6 +3985,8 @@ static signed short status_calc_critical(struct block_list *bl, struct status_ch
 		critical += critical * sc->data[SC__INVISIBILITY]->val3 / 100;
 	if(sc->data[SC__UNLUCKY])
 		critical -= critical * sc->data[SC__UNLUCKY]->val2 / 100;
+	if(sc->data[SC_STRIKING])
+		critical += sc->data[SC_STRIKING]->val1;
 
 	return (short)cap_value(critical,10,SHRT_MAX);
 }
@@ -7068,6 +7072,10 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			tick = 6000;
 			val_flag |= 1|2|4;
 			break;
+		case SC_STRIKING:
+			val4 = tick / 1000;
+			tick = 1000;
+			break;
 		default:
 			if( calc_flag == SCB_NONE && StatusSkillChangeTable[type] == 0 && StatusIconChangeTable[type] == 0 )
 			{	//Status change with no calc, no icon, and no skill associated...?
@@ -8748,6 +8756,15 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr data)
 			break;
 		sc_timer_next(6000 + tick, status_change_timer, bl->id, data);
 		return 0;
+		break;
+	case SC_STRIKING:
+		if( --(sce->val4) >= 0 )
+		{
+			if( !status_charge(bl,0, sce->val1 ) )
+				break;
+			sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
+			return 0;
+		}
 		break;
 
 	}
