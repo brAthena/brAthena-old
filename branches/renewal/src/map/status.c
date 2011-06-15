@@ -5428,6 +5428,8 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 	case SC_STUN:
 		if (sc->opt1)
 			return 0; //Cannot override other opt1 status changes. [Skotlex]
+		if((type == SC_FREEZE || type == SC_FREEZING) && sc->data[SC_WARMER])
+			return 0; 
 	break;
 	case SC_SIGNUMCRUCIS:
 		//Only affects demons and undead element (but not players)
@@ -7075,6 +7077,15 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_STRIKING:
 			val4 = tick / 1000;
 			tick = 1000;
+			break;
+		case SC_PROPERTYWALK:
+			val_flag |= 1|2;
+			val3 = 0;
+			break;
+		case SC_WARMER:
+			status_change_end(bl, SC_FREEZE, -1);
+			status_change_end(bl, SC_FREEZING, -1);
+			status_change_end(bl, SC_CRYSTALIZE, -1);
 			break;
 		default:
 			if( calc_flag == SCB_NONE && StatusSkillChangeTable[type] == 0 && StatusIconChangeTable[type] == 0 )

@@ -2265,6 +2265,12 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					if( sc && sc->data[SC_BLAST_OPTION] )
 						skillratio += skillratio * sc->data[SC_BLAST_OPTION]->val2 / 100;
 					break;
+					case SO_CLOUD_KILL:
+						skillratio += -100 + skill_lv * 40;
+						if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
+						if( sc && sc->data[SC_CURSED_SOIL_OPTION] )
+							skillratio += skillratio * sc->data[SC_CURSED_SOIL_OPTION]->val2 / 100;
+						break;
 			}
 
 			ATK_RATE(skillratio);

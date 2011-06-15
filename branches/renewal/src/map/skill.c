@@ -9129,6 +9129,12 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 		clif_skill_nodamage(src, src ,skillid, skilllv,
 			sc_start2(src, type, 100, skillid, skilllv, skill_get_time(skillid, skilllv)));
 		break;
+		
+	case SO_CLOUD_KILL:
+	case SO_WARMER:
+		flag|=(skillid == SO_WARMER)?8:4;
+		skill_unitsetting(src,skillid,skilllv,x,y,0);
+		break;
 
 	default:
 		ShowWarning("skill_castend_pos2: Habilidade desconhecida usada:%d\n",skillid);
@@ -9648,6 +9654,13 @@ struct skill_unit_group* skill_unitsetting (struct block_list *src, short skilli
 			limit = 3000;
 		val3 = (x<<16)|y;
 		break;
+		
+	case SO_CLOUD_KILL:
+		skill_clear_group(src, 4);
+		break;
+	case SO_WARMER:
+		skill_clear_group(src, 8);
+		break;
 
 	}
 
@@ -9993,7 +10006,7 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 	TBL_PC* sd;
 	TBL_PC* tsd;
 	struct status_data *tstatus, *sstatus;
-	struct status_change *tsc, *sc;
+    struct status_change *tsc, *sc, *ssc;
 	struct skill_unit_group_tickset *ts;
 	enum sc_type type;
 	int skillid;
@@ -10011,6 +10024,7 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 	tsd = BL_CAST(BL_PC, bl);
 	tsc = status_get_sc(bl);
 	tstatus = status_get_status_data(bl);
+	ssc = status_get_sc(ss); 
 
 	if(tsc->data[SC_HOVERING])
 		return 0;
@@ -10565,6 +10579,25 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 		case UNT_HELLS_PLANT:
 			if( skill_attack(skill_get_type(GN_HELLS_PLANT_ATK), ss, &src->bl, bl, GN_HELLS_PLANT_ATK, sg->skill_lv, tick, 0) )
 				sg->limit = DIFF_TICK(tick, sg->tick) + 100;
+			break;
+			
+		case UNT_CLOUD_KILL:
+			if(tsc && !tsc->data[type])
+				status_change_start(bl,type,10000,sg->skill_lv,sg->group_id,0,0,skill_get_time2(sg->skill_id,sg->skill_lv),8);
+			skill_attack(skill_get_type(sg->skill_id),ss,&src->bl,bl,sg->skill_id,sg->skill_lv,tick,0);
+			break;
+
+		case UNT_WARMER:
+			if( bl->type == BL_PC && !battle_check_undead(tstatus->race, tstatus->def_ele) && tstatus->race != RC_DEMON )
+			{
+				int hp = 125 * sg->skill_lv; 
+				if( ssc && ssc->data[SC_HEATER_OPTION] )
+					hp += hp * ssc->data[SC_HEATER_OPTION]->val3 / 100;
+				status_heal(bl, hp, 0, 0);
+				if( tstatus->hp != tstatus->max_hp )
+					clif_skill_nodamage(&src->bl, bl, AL_HEAL, hp, 0);
+					sc_start(bl, SC_WARMER, 100, sg->skill_lv, skill_get_time2(sg->skill_id,sg->skill_lv));
+			}
 			break;
 
 	}
@@ -12942,6 +12975,14 @@ int skill_clear_group (struct block_list *bl, int flag)
 				if (flag&1)
 					group[count++]= ud->skillunit[i];
 				break;
+			case SO_CLOUD_KILL:
+				if( flag&4 )
+					group[count++]= ud->skillunit[i];
+				break;
+			case SO_WARMER:
+				if( flag&8 )
+					group[count++]= ud->skillunit[i];
+				break;
 			default:
 				if (flag&2 && skill_get_inf2(ud->skillunit[i]->skill_id)&INF2_TRAP)
 					group[count++]= ud->skillunit[i];
@@ -12971,6 +13012,8 @@ struct skill_unit_group *skill_locate_element_field(struct block_list *bl)
 			case SA_VIOLENTGALE:
 			case SA_LANDPROTECTOR:
 			case NJ_SUITON:
+			case SO_WARMER:
+			case SO_CLOUD_KILL:
 				return ud->skillunit[i];
 		}
 	}

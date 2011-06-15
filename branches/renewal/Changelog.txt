@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0641 - 15/06/2011 [Protimus]
+    * Correção para valores de SC_PROPERTYWALK.
+	* Adicionadas as habilidades:
+	- SO_CLOUD_KILL (Maldição de Jormungand).
+	- SO_WARMER (Aquecer Terreno).
+
 	r0640 - 15/06/2011 [Protimus]
 	* Adicionadas as habilidades:
 	- SO_ARRULLO (Onda Hipnótica).
