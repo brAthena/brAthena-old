@@ -5224,7 +5224,7 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 			return tick?tick:1;
 	
 	case SC_MAGNETICFIELD:
-		if(sc->data[SC_HOVERING])
+		if(sc->data[SC_HOVERING] || sc->data[SC_FUSION])
 			return 0;
 	}
 
