@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0634 - 15/06/2011 [Protimus]
+	* Pequena correção do envio anterior.
+	- Esqueci de mudar os números das cidades em uma parte.
+
 	r0633 - 15/06/2011 [Protimus]
 	* Modificadas coordenadas de algumas Cidades através do @go.
 	* Adicionados @go para Cidades que faltavam.

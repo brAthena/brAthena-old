@@ -2386,11 +2386,11 @@ ACMD_FUNC(go)
 	} else if (strncmp(map_name, "dicastes01", 3) == 0) {
 		town = 29;
 	} else if (strncmp(map_name, "mora", 3) == 0) {
-		town = 28;
-	} else if (strncmp(map_name, "dewata", 3) == 0) {
 		town = 30;
+	} else if (strncmp(map_name, "dewata", 3) == 0) {
+		town = 31;
 	} else if (strncmp(map_name, "malangdo", 3) == 0) {
-		town = 28;
+		town = 32;
 	}
 
 	if (town >= 0 && town < ARRAYLENGTH(data))
