@@ -2260,6 +2260,11 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case SR_GATEOFHELL:
 					skillratio += 500*skill_lv - 100;
 					break;
+				case SO_VARETYR_SPEAR: 
+					skillratio += -100 + 200 * ( sd ? pc_checkskill(sd, SA_LIGHTNINGLOADER) : 1 );
+					if( sc && sc->data[SC_BLAST_OPTION] )
+						skillratio += skillratio * sc->data[SC_BLAST_OPTION]->val2 / 100;
+					break;
 			}
 
 			ATK_RATE(skillratio);
@@ -3268,6 +3273,12 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						if( sc && sc->data[SC_CURSED_SOIL_OPTION] )
 							skillratio += skillratio * sc->data[SC_CURSED_SOIL_OPTION]->val2 / 100;
 						break;
+					case SO_VARETYR_SPEAR: 
+						skillratio += -100 + ( 100 * pc_checkskill(sd, SA_LIGHTNINGLOADER) + sstatus->int_ * skill_lv );
+						if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;	
+						if( sc && sc->data[SC_BLAST_OPTION] )
+							skillratio += skillratio * sc->data[SC_BLAST_OPTION]->val2 / 100;
+						break;
 					case GN_DEMONIC_FIRE:
 						if( skill_lv > 20)
 						{	
@@ -3442,6 +3453,13 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 		struct Damage md = battle_calc_magic_attack(src,target,skill_num,-skill_lv,mflag);
 		ad.damage += md.damage;
 	}
+	
+	if( skill_num == SO_VARETYR_SPEAR )
+	{ 
+		struct Damage wd = battle_calc_weapon_attack(src,target,skill_num,skill_lv,mflag);
+		ad.damage += wd.damage;
+	}
+
 	return ad;
 }
 

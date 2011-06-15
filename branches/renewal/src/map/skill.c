@@ -1231,6 +1231,9 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 			rate += rate * sc->data[SC_COOLER_OPTION]->val2 / 100;
 		sc_start(bl, SC_CRYSTALIZE, rate, skilllv, skill_get_time2(skillid, skilllv));
 		break;
+	case SO_VARETYR_SPEAR:
+		sc_start(bl, SC_STUN, 5 + 5 * skilllv, skilllv, skill_get_time2(skillid, skilllv));
+		break;
 	}
 
 	if (md && battle_config.summons_trigger_autospells && md->master_id && md->special_state.ai)
@@ -3437,6 +3440,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case SR_WINDMILL:
 	case SR_RIDEINLIGHTNING:
 	case SR_TIGERCANNON:
+	case SO_VARETYR_SPEAR:
 		if( flag&1 )
 		{	//Recursive invocation
 			// skill_area_temp[0] holds number of targets in area
@@ -7994,6 +7998,17 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		{
 			clif_skill_nodamage(src,bl,skillid,skilllv,1);
 			clif_skill_itemlistwindow(sd,skillid,skilllv);
+		}
+		break;
+
+	case SO_ARRULLO:
+		if( flag&1 )
+			sc_start2(bl, type, 80, skilllv, 1, skill_get_time(skillid, skilllv));
+		else
+		{
+			clif_skill_nodamage(src, bl, skillid, 0, 1);
+			map_foreachinrange(skill_area_sub, bl, skill_get_splash(skillid, skilllv), BL_CHAR,
+				src, skillid, skilllv, tick, flag|BCT_ENEMY|1, skill_castend_nodamage_id);
 		}
 		break;
 

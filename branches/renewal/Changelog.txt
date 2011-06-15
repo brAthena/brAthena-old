@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0640 - 15/06/2011 [Protimus]
+	* Adicionadas as habilidades:
+	- SO_ARRULLO (Onda Hipnótica).
+	- SO_VARETYR_SPEAR (Lanças de Aesir).
+
 	r0639 - 15/06/2011 [MiTh]
 	* Adicionada a habilidade NC_HOVERING (Planar)
 
