@@ -4742,6 +4742,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case GC_VENOMIMPRESS:
 	case SC_DEADLYINFECT:
 	case NC_ACCELERATION:
+	case NC_HOVERING:
 	case WL_RECOGNIZEDSPELL:
 	case GN_CARTBOOST:
 	case SR_CRESCENTELBOW:
@@ -4752,7 +4753,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		clif_skill_nodamage(src,bl,skillid,skilllv,
 			sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv)));
 
-		if(skillid == NC_ACCELERATION)
+		if(skillid == NC_ACCELERATION || NC_HOVERING)
 			pc_delitem(sd,ITEMID_MAGIC_GEAR_FUEL,1,1,0);
 
 		break;
@@ -9995,6 +9996,10 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 	tsd = BL_CAST(BL_PC, bl);
 	tsc = status_get_sc(bl);
 	tstatus = status_get_status_data(bl);
+
+	if(tsc->data[SC_HOVERING])
+		return 0;
+
 	if (sg->state.magic_power)  //For magic power.
 	{
 		sc = status_get_sc(ss);
@@ -11566,6 +11571,13 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 		break;
 	case NC_MAGNETICFIELD:
 		if( !pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_MAGNETIC_FIELD_GENERATOR || pc_search_inventory(sd, ITEMID_MAGIC_GEAR_FUEL ) < 3 ) )
+			{
+			clif_skill_fail(sd,skill,0,0,0);
+			return 0;
+			}
+		break;
+	case NC_HOVERING:
+		if( !pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_HOVERING_BOOSTER || !pc_search_inventory(sd, ITEMID_MAGIC_GEAR_FUEL ) ) )
 			{
 			clif_skill_fail(sd,skill,0,0,0);
 			return 0;
