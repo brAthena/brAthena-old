@@ -695,6 +695,28 @@ void initChangeTables(void)
 	StatusIconChangeTable[SC_SHIELDSPELL_REF] = SI_SHIELDSPELL_REF;
 	StatusIconChangeTable[SC_BANDING_DEFENCE] = SI_BANDING_DEFENCE;
 
+	// Feiticeiro
+	StatusIconChangeTable[SC_PYROTECHNIC] = SI_PYROTECHNIC;
+	StatusIconChangeTable[SC_HEATER] = SI_HEATER;
+	StatusIconChangeTable[SC_TROPIC] = SI_TROPIC;
+	StatusIconChangeTable[SC_AQUAPLAY] = SI_AQUAPLAY;
+	StatusIconChangeTable[SC_COOLER] = SI_COOLER;
+	StatusIconChangeTable[SC_CHILLY_AIR] = SI_CHILLY_AIR;
+	StatusIconChangeTable[SC_GUST] = SI_GUST;
+	StatusIconChangeTable[SC_BLAST] = SI_BLAST;
+	StatusIconChangeTable[SC_WILD_STORM] = SI_WILD_STORM;
+	StatusIconChangeTable[SC_PETROLOGY] = SI_PETROLOGY;
+	StatusIconChangeTable[SC_CURSED_SOIL] = SI_CURSED_SOIL;
+	StatusIconChangeTable[SC_UPHEAVAL] = SI_UPHEAVAL;
+	StatusIconChangeTable[SC_CIRCLE_OF_FIRE] = SI_CIRCLE_OF_FIRE;
+	StatusIconChangeTable[SC_FIRE_CLOAK] = SI_FIRE_CLOAK;
+	StatusIconChangeTable[SC_WATER_SCREEN] = SI_WATER_SCREEN;
+	StatusIconChangeTable[SC_WATER_DROP] = SI_WATER_DROP;
+	StatusIconChangeTable[SC_WIND_STEP] = SI_WIND_STEP;
+	StatusIconChangeTable[SC_WIND_CURTAIN] = SI_WIND_CURTAIN;
+	StatusIconChangeTable[SC_SOLID_SKIN] = SI_SOLID_SKIN;
+	StatusIconChangeTable[SC_STONE_SHIELD] = SI_STONE_SHIELD;
+
 	//Other SC which are not necessarily associated to skills.
 	StatusChangeFlagTable[SC_ASPDPOTION0] = SCB_ASPD;
 	StatusChangeFlagTable[SC_ASPDPOTION1] = SCB_ASPD;
@@ -3941,6 +3963,8 @@ static unsigned short status_calc_watk(struct block_list *bl, struct status_chan
 		watk += sc->data[SC_STRIKING]->val2;
 	if( sc->data[SC_HEATER_OPTION] )
 		watk += sc->data[SC_HEATER_OPTION]->val2;
+	if( sc->data[SC_PYROTECHNIC_OPTION] )
+		watk += sc->data[SC_PYROTECHNIC_OPTION]->val2;
 
 	return (unsigned short)cap_value(watk,0,USHRT_MAX);
 }
@@ -3960,6 +3984,8 @@ static unsigned short status_calc_matk(struct block_list *bl, struct status_chan
 		matk += matk * sc->data[SC_MINDBREAKER]->val2/100;
 	if(sc->data[SC_INCMATKRATE])
 		matk += matk * sc->data[SC_INCMATKRATE]->val1/100;
+	if(sc->data[SC_AQUAPLAY_OPTION])
+		matk += sc->data[SC_AQUAPLAY_OPTION]->val2;
 
 	return (unsigned short)cap_value(matk,0,USHRT_MAX);
 }
@@ -7064,6 +7090,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			val_flag |= 1;
 			break;
 		case SC_CURSEDCIRCLE_ATKER:
+		case SC_SPELLFIST:
 			val_flag |= 1|2|4;
 			break;
 		case SC_MAGNETICFIELD:
@@ -7111,6 +7138,20 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			val2 = 33;
 			val3 = 4;
 			val_flag |= 1|2|4;
+			break;
+		case SC_PYROTECHNIC_OPTION:
+			val2 = 60;
+			val3 = 11;
+			val_flag |= 1|2|4;
+			break;
+		case SC_AQUAPLAY_OPTION:
+			val2 = 40;
+			val3 = 33;
+			val_flag |= 1|2|4;
+			break;
+		case SC_GUST_OPTION:
+			val2 = 33;
+			val_flag |= 1|2;
 			break;
 
 		default:

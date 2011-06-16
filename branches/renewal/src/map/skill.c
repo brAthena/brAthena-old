@@ -5971,6 +5971,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		break;
 
 	case SA_CASTCANCEL:
+	case SO_SPELLFIST:
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
 		unit_skillcastcancel(src,1);
 		if(sd) {
@@ -5978,6 +5979,8 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			sp = sp * (90 - (skilllv-1)*20) / 100;
 			if(sp < 0) sp = 0;
 			status_zap(src, 0, sp);
+			if( skillid == SO_SPELLFIST )
+				sc_start4(src,type,100,skilllv+1,skilllv,(sd->skillid_old)?sd->skillid_old:MG_FIREBOLT,(sd->skilllv_old)?sd->skilllv_old:skilllv,skill_get_time(skillid,skilllv));
 		}
 		break;
 	case SA_SPELLBREAKER:
@@ -8070,7 +8073,8 @@ int skill_castend_id(int tid, unsigned int tick, int id, intptr data)
 		return 0;
 	}
 
-	if(ud->skillid != SA_CASTCANCEL )
+	if(ud->skillid != SA_CASTCANCEL &&
+			!(ud->skillid == SO_SPELLFIST && (sd && (sd->skillid_old == MG_FIREBOLT || sd->skillid_old == MG_COLDBOLT || sd->skillid_old == MG_LIGHTNINGBOLT))) )
 	{// otherwise handled in unit_skillcastcancel()
 		if( ud->skilltimer != tid ) {
 			ShowError("skill_castend_id: Timer incompativel %d!=%d!\n", ud->skilltimer, tid);
@@ -11152,6 +11156,7 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 	switch( skill )
 	{
 	case SA_CASTCANCEL:
+	case SO_SPELLFIST:
 		if(sd->ud.skilltimer == INVALID_TIMER) {
 			clif_skill_fail(sd,skill,0,0,0);
 			return 0;

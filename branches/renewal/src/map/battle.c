@@ -3069,8 +3069,8 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 
 				switch(skill_num){
 					case MG_FIREBALL:
-					skillratio += 40 + 20*skill_lv;
-					break;
+						skillratio += 40 + 20*skill_lv;
+						break;
 					case MG_NAPALMBEAT:
 						skillratio += skill_lv*10-30;
 						break;
@@ -3078,15 +3078,65 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						if (battle_check_undead(tstatus->race,tstatus->def_ele))
 							skillratio += 5*skill_lv;
 						break;
+					case MG_COLDBOLT:
+						if ( sc ) 
+						{
+							if ( sc->data[SC_SPELLFIST] ) 
+							{
+								skillratio += (sc->data[SC_SPELLFIST]->val4 * 100) + (sc->data[SC_SPELLFIST]->val2 * 100) - 100; 
+								ad.div_ = 1;
+								ad.flag = BF_WEAPON|BF_SHORT;
+								ad.type = 0;
+							}
+							if( sc->data[SC_AQUAPLAY_OPTION] )
+								skillratio += skillratio * sc->data[SC_AQUAPLAY_OPTION]->val3 / 100;
+						}
+						break;
 					case MG_FIREWALL:
-						skillratio -= 50;
+						skillratio -= 50;						
+						if( sc && sc->data[SC_PYROTECHNIC_OPTION] )
+							skillratio += skillratio * sc->data[SC_PYROTECHNIC_OPTION]->val3 / 100;
+						break;
+					case MG_FIREBOLT:
+						if ( sc )
+						{
+							if ( sc->data[SC_SPELLFIST] )
+							{
+								skillratio += (sc->data[SC_SPELLFIST]->val4 * 100) + (sc->data[SC_SPELLFIST]->val2 * 100) - 100;
+								ad.div_ = 1;
+								ad.flag = BF_WEAPON|BF_SHORT;
+								ad.type = 0;
+							}
+							if( sc->data[SC_PYROTECHNIC_OPTION] )
+								skillratio += skillratio * sc->data[SC_PYROTECHNIC_OPTION]->val3 / 100;
+						}
+						break;
+					case MG_LIGHTNINGBOLT:
+						if ( sc )
+						{
+							if ( sc->data[SC_SPELLFIST] )
+							{
+								skillratio += (sc->data[SC_SPELLFIST]->val4 * 100) + (sc->data[SC_SPELLFIST]->val2 * 100) - 100;
+								ad.div_ = 1;
+								ad.flag = BF_WEAPON|BF_SHORT;
+								ad.type = 0;
+							}
+							if( sc->data[SC_GUST_OPTION] )
+								skillratio += skillratio * sc->data[SC_GUST_OPTION]->val2 / 100;
+						}
 						break;
 					case MG_THUNDERSTORM:
 						skillratio -= 20;
+						if( sc && sc->data[SC_GUST_OPTION] )
+							skillratio += skillratio * sc->data[SC_GUST_OPTION]->val2 / 100;
 						break;
 					case MG_FROSTDIVER:
 						skillratio += 10*skill_lv;
+						if( sc && sc->data[SC_AQUAPLAY_OPTION] )
+							skillratio += skillratio * sc->data[SC_AQUAPLAY_OPTION]->val3 / 100;
 						break;
+
+
 					case AL_HOLYLIGHT:
 						skillratio += 25;
 						if (sd && sd->sc.data[SC_SPIRIT] && sd->sc.data[SC_SPIRIT]->val2 == SL_PRIEST)
@@ -4094,6 +4144,14 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 	{
 		wd.damage = wd.damage * sc->data[SC_EXEEDBREAK]->val1 / 100;
 		status_change_end(src,SC_EXEEDBREAK,-1);
+	}
+
+	if(sc && sc->data[SC_SPELLFIST] )
+	{
+		if( --(sc->data[SC_SPELLFIST]->val1) >= 0 )
+			wd = battle_calc_attack(BF_MAGIC,src,target,sc->data[SC_SPELLFIST]->val3,sc->data[SC_SPELLFIST]->val4,flag);
+		else
+			status_change_end(src,SC_SPELLFIST,-1);
 	}
 
 	if( sd && sc && sc->data[SC_THURISAZ] && wd.flag&(BF_WEAPON|BF_SHORT) && rand()%100 < pc_checkskill(sd,RK_RUNEMASTERY) )
