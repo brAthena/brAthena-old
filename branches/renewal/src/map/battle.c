@@ -2952,6 +2952,15 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 	if(skill_num == WL_HELLINFERNO)
 		s_ele = (skill_lv >= 0) ? ELE_FIRE:ELE_DARK;
 
+	if( skill_num == SO_PSYCHIC_WAVE && sc && (sc->data[SC_HEATER_OPTION] || sc->data[SC_COOLER_OPTION] ||
+		sc->data[SC_BLAST_OPTION] || sc->data[SC_CURSED_SOIL_OPTION]) )
+	{
+		if( sc->data[SC_HEATER_OPTION] ) s_ele = sc->data[SC_HEATER_OPTION]->val4;
+		else if( sc->data[SC_COOLER_OPTION] ) s_ele = sc->data[SC_COOLER_OPTION]->val4;
+		else if( sc->data[SC_BLAST_OPTION] ) s_ele = sc->data[SC_BLAST_OPTION]->val3;
+		else if( sc->data[SC_CURSED_SOIL_OPTION] ) s_ele = sc->data[SC_CURSED_SOIL_OPTION]->val4;
+	}
+
 	//Initialize variables that will be used afterwards
 	s_ele = skill_get_ele(skill_num, skill_lv);
 
@@ -3285,6 +3294,22 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						if( sc && sc->data[SC_BLAST_OPTION] )
 							skillratio += skillratio * sc->data[SC_BLAST_OPTION]->val2 / 100;
 						break;
+					case SO_PSYCHIC_WAVE:
+						skillratio += -100 + skill_lv * 70 + (sstatus->int_ * 3);
+						if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
+						if( sc )
+						{
+							if( sc->data[SC_HEATER_OPTION] )
+								skillratio += skillratio * sc->data[SC_HEATER_OPTION]->val3 / 100;
+							else if(sc->data[SC_COOLER_OPTION] )
+								skillratio += skillratio * sc->data[SC_COOLER_OPTION]->val3 / 100;
+							else if(sc->data[SC_BLAST_OPTION] )
+								skillratio += skillratio * sc->data[SC_BLAST_OPTION]->val2 / 100;
+							else if(sc->data[SC_CURSED_SOIL_OPTION] )
+								skillratio += skillratio * sc->data[SC_CURSED_SOIL_OPTION]->val3 / 100;
+						}
+						break;
+
 					case GN_DEMONIC_FIRE:
 						if( skill_lv > 20)
 						{	

@@ -3939,6 +3939,8 @@ static unsigned short status_calc_watk(struct block_list *bl, struct status_chan
 		watk += sc->data[SC_SHIELDSPELL_DEF]->val2;
 	if(sc->data[SC_STRIKING])
 		watk += sc->data[SC_STRIKING]->val2;
+	if( sc->data[SC_HEATER_OPTION] )
+		watk += sc->data[SC_HEATER_OPTION]->val2;
 
 	return (unsigned short)cap_value(watk,0,USHRT_MAX);
 }
@@ -7087,6 +7089,30 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			status_change_end(bl, SC_FREEZING, -1);
 			status_change_end(bl, SC_CRYSTALIZE, -1);
 			break;
+		case SC_HEATER_OPTION:
+			val2 = 120;
+			val3 = 33;
+			val4 = 3;
+			val_flag |= 1|2|4;
+			break;
+		case SC_COOLER_OPTION:
+			val2 = 80;
+			val3 = 33;
+			val4 = 1;
+			val_flag |= 1|2|4;
+			break;
+		case SC_CURSED_SOIL_OPTION:
+			val2 = 10;
+			val3 = 33;
+			val4 = 2;
+			val_flag |= 1|2|3;
+			break;
+		case SC_BLAST_OPTION:
+			val2 = 33;
+			val3 = 4;
+			val_flag |= 1|2|4;
+			break;
+
 		default:
 			if( calc_flag == SCB_NONE && StatusSkillChangeTable[type] == 0 && StatusIconChangeTable[type] == 0 )
 			{	//Status change with no calc, no icon, and no skill associated...?

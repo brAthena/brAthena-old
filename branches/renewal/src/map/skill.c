@@ -8688,6 +8688,7 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 	case GN_HELLS_PLANT:
 	case SO_EARTHGRAVE:
 	case SO_DIAMONDDUST:
+	case SO_PSYCHIC_WAVE:
 		flag|=1;//Set flag to 1 to prevent deleting ammo (it will be deleted on group-delete).
 	case GS_GROUNDDRIFT: //Ammo should be deleted right away.
 		skill_unitsetting(src,skillid,skilllv,x,y,0);
@@ -10433,6 +10434,7 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 		case UNT_GRAVITATION:
 		case UNT_FIREWALK:
 		case UNT_ELECTRICWALK:
+		case SO_PSYCHIC_WAVE:
 			skill_attack(skill_get_type(sg->skill_id),ss,&src->bl,bl,sg->skill_id,sg->skill_lv,tick,0);
 			break;
 
