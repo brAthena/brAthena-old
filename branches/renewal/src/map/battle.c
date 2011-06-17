@@ -25,6 +25,7 @@
 #include "party.h"
 #include "battle.h"
 #include "battleground.h"
+#include "elemental.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -102,6 +103,7 @@ int battle_gettarget(struct block_list* bl)
 		case BL_PET: return ((struct pet_data*)bl)->target_id;
 		case BL_HOM: return ((struct homun_data*)bl)->ud.target;
 		case BL_MER: return ((struct mercenary_data*)bl)->ud.target;
+		case BL_ELEM: return ((struct elemental_data*)bl)->ud.target;
 	}
 	return 0;
 }
@@ -4359,6 +4361,10 @@ struct block_list* battle_get_master(struct block_list *src)
 				if (((TBL_MER*)src)->master)
 					src = (struct block_list*)((TBL_MER*)src)->master;
 				break;
+			case BL_ELEM:
+				if (((TBL_ELEM*)src)->master)
+					src = (struct block_list*)((TBL_ELEM*)src)->master;
+				break;
 			case BL_SKILL:
 				if (((TBL_SKILL*)src)->group && ((TBL_SKILL*)src)->group->src_id)
 					src = map_id2bl(((TBL_SKILL*)src)->group->src_id);
@@ -4449,6 +4455,7 @@ int battle_check_target( struct block_list *src, struct block_list *target,int f
 		//Valid targets with no special checks here.
 		case BL_MER:
 		case BL_HOM:
+		case BL_ELEM:
 			break;
 		//All else not specified is an invalid target.
 		default:

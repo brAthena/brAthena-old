@@ -30,6 +30,7 @@
 #include "intif.h"
 #include "chrif.h"
 #include "script.h"
+#include "elemental.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -48,6 +49,7 @@ struct unit_data* unit_bl2ud(struct block_list *bl)
 	if( bl->type == BL_NPC) return &((struct npc_data*)bl)->ud;
 	if( bl->type == BL_HOM) return &((struct homun_data*)bl)->ud;
 	if( bl->type == BL_MER) return &((struct mercenary_data*)bl)->ud;
+	if( bl->type == BL_ELEM) return &((struct elemental_data*)bl)->ud;
 	return NULL;
 }
 
@@ -2137,6 +2139,20 @@ int unit_remove_map_(struct block_list *bl, clr_type clrtype, const char* file, 
 		}
 		break;
 	}
+	case BL_ELEM:
+	{
+		struct elemental_data *ed = (struct elemental_data *)bl;
+		ud->canact_tick = ud->canmove_tick;
+		if( elemental_get_lifetime(ed) <= 0 && !(ed->master && !ed->master->state.active) )
+		{
+			clif_clearunit_area(bl,clrtype);
+			map_delblock(bl);
+			unit_free(bl,0);
+			map_freeblock_unlock();
+			return 0;
+		}
+		break;
+	}
 	default: ;// do nothing
 	}
 
@@ -2377,6 +2393,27 @@ int unit_free(struct block_list *bl, clr_type clrtype)
 				sd->md = NULL;
 
 			merc_contract_stop(md);
+			break;
+		}
+		case BL_ELEM:
+		{
+			struct elemental_data *ed = (TBL_ELEM*)bl;
+			struct map_session_data *sd = ed->master;
+			if( clrtype >= 0 )
+			{
+				if( elemental_get_lifetime(ed) > 0 )
+					elemental_save(ed);
+				else
+				{
+					intif_elemental_delete(ed->elemental.elemental_id);
+					if( sd )
+						sd->status.ele_id = 0;
+				}
+			}
+			if( sd )
+				sd->ed = NULL;
+
+			elemental_summon_stop(ed);
 			break;
 		}
 	}

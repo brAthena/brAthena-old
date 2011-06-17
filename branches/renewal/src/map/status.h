@@ -1335,9 +1335,9 @@ enum scb_flag
 };
 
 //Define to determine who gets HP/SP consumed on doing skills/etc. [Skotlex]
-#define BL_CONSUME (BL_PC|BL_HOM|BL_MER)
+#define BL_CONSUME (BL_PC|BL_HOM|BL_MER|BL_ELEM)
 //Define to determine who has regen
-#define BL_REGEN (BL_PC|BL_HOM|BL_MER)
+#define BL_REGEN (BL_PC|BL_HOM|BL_MER|BL_ELEM)
 
 
 //Basic damage info of a weapon
@@ -1545,6 +1545,7 @@ int status_change_spread(struct block_list *src, struct block_list *bl);
 #define status_calc_pc(sd, first) status_calc_bl_(&(sd)->bl, SCB_ALL, first)
 #define status_calc_homunculus(hd, first) status_calc_bl_(&(hd)->bl, SCB_ALL, first)
 #define status_calc_mercenary(md, first) status_calc_bl_(&(md)->bl, SCB_ALL, first)
+#define status_calc_elemental(ed, first) status_calc_bl_(&(ed)->bl, SCB_ALL, first)
 
 void status_calc_bl_(struct block_list *bl, enum scb_flag flag, bool first);
 int status_calc_mob_(struct mob_data* md, bool first);
@@ -1552,6 +1553,7 @@ int status_calc_pet_(struct pet_data* pd, bool first);
 int status_calc_pc_(struct map_session_data* sd, bool first);
 int status_calc_homunculus_(struct homun_data *hd, bool first);
 int status_calc_mercenary_(struct mercenary_data *md, bool first);
+int status_calc_elemental_(struct elemental_data *ed, bool first);
 
 void status_calc_misc(struct block_list *bl, struct status_data *status, int level);
 void status_calc_regen(struct block_list *bl, struct status_data *status, struct regen_data *regen);

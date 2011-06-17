@@ -33,6 +33,7 @@
 #include "atcommand.h"
 #include "date.h"
 #include "quest.h"
+#include "elemental.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -1882,6 +1883,15 @@ void mob_log_damage(struct mob_data *md, struct block_list *src, int damage)
 			if( md2->master_id && battle_config.retaliate_to_master )
 				md->attacked_id = md2->master_id;
 			else
+				md->attacked_id = src->id;
+			break;
+		}
+		case BL_ELEM:
+		{
+			struct elemental_data *ele = (TBL_ELEM*)src;
+			if( ele->master )
+				char_id = ele->master->status.char_id;
+			if( damage )
 				md->attacked_id = src->id;
 			break;
 		}

@@ -36,6 +36,7 @@
 #include "trade.h"
 #include "unit.h"
 #include "mail.h"
+#include "elemental.h"
 
 #include <stdio.h>
 #include <stdlib.h>

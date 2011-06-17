@@ -44,6 +44,7 @@
 #include "atcommand.h"
 #include "log.h"
 #include "mail.h"
+#include "elemental.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

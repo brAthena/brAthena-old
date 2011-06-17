@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0646 - 17/06/2011 [Protimus]
+	* Adicionado novo sistema de elementais para o Feiticeiro.
+	- Necessita de limpezas.
+	
 	r0645 - 17/06/2011 [Mark]
 	* Adicionada a habilidade SO_VACUUM_EXTREME (Tornado).
 	* Atualizado db/skill_nocast_db.txt

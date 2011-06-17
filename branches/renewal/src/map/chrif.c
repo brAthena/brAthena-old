@@ -24,6 +24,7 @@
 #include "mercenary.h"
 #include "chrif.h"
 #include "quest.h"
+#include "elemental.h"
 
 #include <stdio.h>
 #include <stdlib.h>

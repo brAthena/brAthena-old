@@ -636,5 +636,7 @@ void clif_search_store_info_click_ack(struct map_session_data* sd, short x, shor
 
 void clif_millenniumshield(struct map_session_data *sd, short shields );
 void clif_display_banding(struct block_list *dst, struct block_list *bl, int val1);
+void clif_elemental_info(struct map_session_data *sd);
+void clif_elemental_updatestatus(struct map_session_data *sd, int type);
 
 #endif /* _CLIF_H_ */

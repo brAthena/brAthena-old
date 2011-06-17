@@ -32,6 +32,7 @@
 #include "guild.h"
 #include "date.h"
 #include "unit.h"
+#include "elemental.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -4184,6 +4185,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	struct mob_data *md, *dstmd;
 	struct homun_data *hd;
 	struct mercenary_data *mer;
+	struct elemental_data *ele;
 	struct status_data *sstatus, *tstatus;
 	struct status_change *tsc;
 	struct status_change_entry *tsce;
@@ -4202,6 +4204,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	hd = BL_CAST(BL_HOM, src);
 	md = BL_CAST(BL_MOB, src);
 	mer = BL_CAST(BL_MER, src);
+	ele = BL_CAST(BL_ELEM, src);
 
 	dstsd = BL_CAST(BL_PC, bl);
 	dstmd = BL_CAST(BL_MOB, bl);

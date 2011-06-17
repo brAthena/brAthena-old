@@ -37,6 +37,7 @@
 #include "status.h" // struct status_data
 #include "pc.h"
 #include "quest.h"
+#include "elemental.h"
 
 #include <stdio.h>
 #include <stdlib.h>

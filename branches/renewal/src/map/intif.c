@@ -22,6 +22,7 @@
 #include "homunculus.h"
 #include "mail.h"
 #include "quest.h"
+#include "elemental.h"
 
 #include <sys/types.h>
 #include <stdio.h>
@@ -1978,6 +1979,94 @@ int intif_parse_mercenary_saved(int fd)
 	return 0;
 }
 
+/*==========================================
+ * Elemental's System
+ *------------------------------------------*/
+int intif_elemental_create(struct s_elemental *ele)
+{
+	int size = sizeof(struct s_elemental) + 4;
+
+	if( CheckForCharServer() )
+		return 0;
+
+	WFIFOHEAD(inter_fd,size);
+	WFIFOW(inter_fd,0) = 0x307c;
+	WFIFOW(inter_fd,2) = size;
+	memcpy(WFIFOP(inter_fd,4), ele, sizeof(struct s_elemental));
+	WFIFOSET(inter_fd,size);
+	return 0;
+}
+
+int intif_parse_elemental_received(int fd)
+{
+	int len = RFIFOW(fd,2) - 5;
+	if( sizeof(struct s_elemental) != len )
+	{
+		if( battle_config.etc_log )
+			ShowError("intif: create elemental data size error %d != %d\n", sizeof(struct s_elemental), len);
+		return 0;
+	}
+
+	elemental_data_received((struct s_elemental*)RFIFOP(fd,5), RFIFOB(fd,4));
+	return 0;
+}
+
+int intif_elemental_request(int ele_id, int char_id)
+{
+	if (CheckForCharServer())
+		return 0;
+
+	WFIFOHEAD(inter_fd,10);
+	WFIFOW(inter_fd,0) = 0x307d;
+	WFIFOL(inter_fd,2) = ele_id;
+	WFIFOL(inter_fd,6) = char_id;
+	WFIFOSET(inter_fd,10);
+	return 0;
+}
+
+int intif_elemental_delete(int ele_id)
+{
+	if (CheckForCharServer())
+		return 0;
+
+	WFIFOHEAD(inter_fd,6);
+	WFIFOW(inter_fd,0) = 0x307e;
+	WFIFOL(inter_fd,2) = ele_id;
+	WFIFOSET(inter_fd,6);
+	return 0;
+}
+
+int intif_parse_elemental_deleted(int fd)
+{
+	if( RFIFOB(fd,2) != 1 )
+		ShowError("Elemental data delete failure\n");
+
+	return 0;
+}
+
+int intif_elemental_save(struct s_elemental *ele)
+{
+	int size = sizeof(struct s_elemental) + 4;
+
+	if( CheckForCharServer() )
+		return 0;
+
+	WFIFOHEAD(inter_fd,size);
+	WFIFOW(inter_fd,0) = 0x307f;
+	WFIFOW(inter_fd,2) = size;
+	memcpy(WFIFOP(inter_fd,4), ele, sizeof(struct s_elemental));
+	WFIFOSET(inter_fd,size);
+	return 0;
+}
+
+int intif_parse_elemental_saved(int fd)
+{
+	if( RFIFOB(fd,2) != 1 )
+		ShowError("Elemental data save failure\n");
+
+	return 0;
+}
+
 //-----------------------------------------------------------------
 // inter serverÇ©ÇÁÇÃí êM
 // ÉGÉâÅ[Ç™Ç†ÇÍÇŒ0(false)Çï‘Ç∑Ç±Ç∆
@@ -2067,6 +2156,10 @@ int intif_parse(int fd)
 	case 0x3870:	intif_parse_mercenary_received(fd); break;
 	case 0x3871:	intif_parse_mercenary_deleted(fd); break;
 	case 0x3872:	intif_parse_mercenary_saved(fd); break;
+// Elemental System
+	case 0x387c:	intif_parse_elemental_received(fd); break;
+	case 0x387d:	intif_parse_elemental_deleted(fd); break;
+	case 0x387e:	intif_parse_elemental_saved(fd); break;
 
 	case 0x3880:	intif_parse_CreatePet(fd); break;
 	case 0x3881:	intif_parse_RecvPetData(fd); break;
