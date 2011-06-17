@@ -1897,11 +1897,11 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 
 	if (src != dsrc) {
 		//When caster is not the src of attack, this is a ground skill, and as such, do the relevant target checking. [Skotlex]
-		if (!status_check_skilluse(battle_config.skill_caster_check?src:NULL, bl, skillid, 2))
+		if( !status_check_skilluse(battle_config.skill_caster_check?src:NULL, bl, skillid, skilllv, 2))
 			return 0;
 	} else if ((flag&SD_ANIMATION) && skill_get_nk(skillid)&NK_SPLASH) {
 		//Note that splash attacks often only check versus the targetted mob, those around the splash area normally don't get checked for being hidden/cloaked/etc. [Skotlex]
-		if (!status_check_skilluse(src, bl, skillid, 2))
+		if( !status_check_skilluse(src, bl, skillid, skilllv, 2))
 			return 0;
 	}
 
@@ -8201,7 +8201,7 @@ int skill_castend_id(int tid, unsigned int tick, int id, intptr data)
 		}
 
 		//Avoid doing double checks for instant-cast skills.
-		if (tid != INVALID_TIMER && !status_check_skilluse(src, target, ud->skillid, 1))
+		if( tid != INVALID_TIMER && !status_check_skilluse(src, target, ud->skillid, ud->skilllv, 1))
 			break;
 
 		if(md) {
@@ -8431,7 +8431,7 @@ int skill_castend_pos(int tid, unsigned int tick, int id, intptr data)
 
 		if(tid != INVALID_TIMER)
 		{	//Avoid double checks on instant cast skills. [Skotlex]
-			if (!status_check_skilluse(src, NULL, ud->skillid, 1))
+			if( !status_check_skilluse(src, NULL, ud->skillid, ud->skilllv, 1))
 				break;
 			if(battle_config.skill_add_range &&
 				!check_distance_blxy(src, ud->skillx, ud->skilly, skill_get_range2(src,ud->skillid,ud->skilllv)+battle_config.skill_add_range)) {
@@ -12948,7 +12948,7 @@ int skill_attack_area (struct block_list *bl, va_list ap)
 		return skill_attack(atk_type,src,dsrc,bl,skillid,skilllv,tick,flag);
 
 	if(battle_check_target(dsrc,bl,type) <= 0 ||
-		!status_check_skilluse(NULL, bl, skillid, 2))
+		!status_check_skilluse(NULL, bl, skillid, skilllv, 2))
 		return 0;
 
 

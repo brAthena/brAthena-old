@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0647 - 17/06/2011 [Protimus]
+	* Adicionado novo parâmetro para status_check_skilluse.
+	- Warnings corrigidos.
+
 	r0646 - 17/06/2011 [Protimus]
 	* Adicionado novo sistema de elementais para o Feiticeiro.
 	- Necessita de limpezas.

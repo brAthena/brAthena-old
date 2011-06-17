@@ -941,7 +941,7 @@ int mob_target(struct mob_data *md,struct block_list *bl,int dist)
 	if(md->target_id && !mob_can_changetarget(md, bl, status_get_mode(&md->bl)))
 		return 0;
 
-	if(!status_check_skilluse(&md->bl, bl, 0, 0))
+	if(!status_check_skilluse(&md->bl, bl, 0, 0, 0))
 		return 0;
 
 	md->target_id = bl->id;	// Since there was no disturbance, it locks on to target.
@@ -969,7 +969,7 @@ static int mob_ai_sub_hard_activesearch(struct block_list *bl,va_list ap)
 	mode= va_arg(ap,int);
 
 	//If can't seek yet, not an enemy, or you can't attack it, skip.
-	if ((*target) == bl || !status_check_skilluse(&md->bl, bl, 0, 0))
+	if ((*target) == bl || !status_check_skilluse(&md->bl, bl, 0, 0, 0))
 		return 0;
 
 	if ((mode&MD_TARGETWEAK) && status_get_lv(bl) >= md->level-5)
@@ -1023,7 +1023,7 @@ static int mob_ai_sub_hard_changechase(struct block_list *bl,va_list ap)
 	//If can't seek yet, not an enemy, or you can't attack it, skip.
 	if ((*target) == bl ||
 		battle_check_target(&md->bl,bl,BCT_ENEMY)<=0 ||
-	  	!status_check_skilluse(&md->bl, bl, 0, 0))
+	  	!status_check_skilluse(&md->bl, bl, 0, 0, 0))
 		return 0;
 		
 	if( md->sc.count && md->sc.data[SC_VOICEOFSIREN] && md->sc.data[SC_VOICEOFSIREN]->val2 == (*target)->id )
@@ -1162,7 +1162,7 @@ static int mob_ai_sub_hard_slavemob(struct mob_data *md,unsigned int tick)
 				if (tbl && battle_check_target(&md->bl, tbl, BCT_ENEMY) <= 0)
 					tbl = NULL;
 			}
-			if (tbl && status_check_skilluse(&md->bl, tbl, 0, 0)) {
+			if (tbl && status_check_skilluse(&md->bl, tbl, 0, 0, 0)) {
 				md->target_id=tbl->id;
 				md->min_chase=md->db->range3+distance_bl(&md->bl, tbl);
 				if(md->min_chase>MAX_MINCHASE)
@@ -1335,7 +1335,7 @@ static bool mob_ai_sub_hard(struct mob_data *md, unsigned int tick)
 	{	//Check validity of current target. [Skotlex]
 		tbl = map_id2bl(md->target_id);
 		if (!tbl || tbl->m != md->bl.m ||
-			(md->ud.attacktimer == INVALID_TIMER && !status_check_skilluse(&md->bl, tbl, 0, 0)) ||
+			(md->ud.attacktimer == INVALID_TIMER && !status_check_skilluse(&md->bl, tbl, 0, 0, 0)) ||
 			(md->ud.walktimer != INVALID_TIMER && !(battle_config.mob_ai&0x1) && !check_distance_bl(&md->bl, tbl, md->min_chase)) ||
 			(
 				tbl->type == BL_PC &&
@@ -1382,7 +1382,7 @@ static bool mob_ai_sub_hard(struct mob_data *md, unsigned int tick)
 				|| (dist = distance_bl(&md->bl, abl)) >= MAX_MINCHASE // Attacker longer than visual area
 				|| battle_check_target(&md->bl, abl, BCT_ENEMY) <= 0 // Attacker is not enemy of mob
 				|| status_isdead(abl) // Attacker is Dead (Reflecting Damage?)
-				|| (battle_config.mob_ai&0x2 && !status_check_skilluse(&md->bl, abl, 0, 0)) // Cannot normal attack back to Attacker
+				|| (battle_config.mob_ai&0x2 && !status_check_skilluse(&md->bl, abl, 0, 0, 0)) // Cannot normal attack back to Attacker
 				|| (!battle_check_range(&md->bl, abl, md->status.rhw.range) // Not on Melee Range and ...
 				&& ( // Reach check
 					(!can_move && DIFF_TICK(tick, md->ud.canmove_tick) > 0 && (battle_config.mob_ai&0x2 || (md->sc.data[SC_SPIDERWEB] && md->sc.data[SC_SPIDERWEB]->val1)
@@ -1402,7 +1402,7 @@ static bool mob_ai_sub_hard(struct mob_data *md, unsigned int tick)
 				}
 			}
 			else
-			if (!(battle_config.mob_ai&0x2) && !status_check_skilluse(&md->bl, abl, 0, 0))
+			if (!(battle_config.mob_ai&0x2) && !status_check_skilluse(&md->bl, abl, 0, 0, 0))
 			{
 				//Can't attack back, but didn't invoke a rude attacked skill...
 			}
