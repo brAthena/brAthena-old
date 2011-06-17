@@ -664,6 +664,7 @@ int pc_stop_following(struct map_session_data*);
 
 unsigned int pc_maxbaselv(struct map_session_data *sd);
 unsigned int pc_maxjoblv(struct map_session_data *sd);
+unsigned int pc_get_stat_point(struct map_session_data *sd);
 int pc_checkbaselevelup(struct map_session_data *sd);
 int pc_checkjoblevelup(struct map_session_data *sd);
 int pc_gainexp(struct map_session_data*,struct block_list*,unsigned int,unsigned int, bool);

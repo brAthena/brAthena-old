@@ -1824,7 +1824,9 @@ ACMD_FUNC(baselevelup)
 		if ((unsigned int)level > pc_maxbaselv(sd) || (unsigned int)level > pc_maxbaselv(sd) - sd->status.base_level) // fix positiv overflow
 			level = pc_maxbaselv(sd) - sd->status.base_level;
 		for (i = 1; i <= level; i++)
-			status_point += (sd->status.base_level + i + 14) / 5;
+			{
+				status_point += pc_get_stat_point(sd);
+			}
 
 		sd->status.status_point += status_point;
 		sd->status.base_level += (unsigned int)level;

@@ -5300,6 +5300,18 @@ int pc_follow(struct map_session_data *sd,int target_id)
 	return 0;
 }
 
+unsigned int pc_get_stat_point(struct map_session_data *sd)
+{
+	int status = 0;
+
+	if (battle_config.use_statpoint_table || battle_config.use_statpoint2_table)
+		status = statp[sd->status.base_level] - statp[sd->status.base_level-1];
+	else 
+		status = (sd->status.base_level+14) / 5 ;
+
+	return status;
+}
+
 int pc_checkbaselevelup(struct map_session_data *sd)
 {
 	unsigned int next = pc_nextbaseexp(sd);
