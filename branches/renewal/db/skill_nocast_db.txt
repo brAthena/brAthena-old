@@ -135,7 +135,6 @@
 26,512	// AL_TELEPORT#Teleporte#
 219,512	// RG_INTIMIDATE#Rapto#
 361,512	// HP_ASSUMPTIO#Assumptio#
-691,512	// CASH_ASSUMPTIO#Assumptio em Grupo#
 
 //============================================================
 // Zona 6 - Torre sem Fim
@@ -144,4 +143,7 @@
 87,1024	// WZ_ICEWALL
 219,1024	// RG_INTIMIDATE
 405,1024	// PF_SPIDERWEB
+426,1024	// TK_HIGHJUMP
 674,1024	// NPC_EXPULSION
+2244,1024	// RA_WUGBITE
+2453,1024	// SO_VACUUM_EXTREME

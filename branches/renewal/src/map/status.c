@@ -5241,10 +5241,13 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 				tick >>= 1;
 		}
 		break;
-	case SC_POISON:
-	case SC_SILENCE:
-		if( sc && sc->data[SC__UNLUCKY] )
-			return tick;
+		case SC_VACUUM_EXTREME:
+			tick -= 20*status->str;
+			break;
+		case SC_POISON:
+		case SC_SILENCE:
+			if( sc && sc->data[SC__UNLUCKY] )
+				return tick;
 		default:
 			//Effect that cannot be reduced? Likely a buff.
 			if (!(rand()%10000 < rate))
@@ -7213,6 +7216,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_CURSEDCIRCLE_ATKER:
 		case SC_CURSEDCIRCLE_TARGET:
 		case SC_MAGNETICFIELD:
+		case SC_VACUUM_EXTREME:
 			unit_stop_walking(bl,1);
 		break;
 		case SC_HIDING:
@@ -9006,6 +9010,7 @@ int status_change_clear_buffs (struct block_list* bl, int type)
 			case SC_FEAR:
 			case SC_BURNING:
 			case SC_ADORAMUS:
+			case SC_VACUUM_EXTREME:
 				if (!(type&2))
 					continue;
 				break;

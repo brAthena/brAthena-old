@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0645 - 17/06/2011 [Mark]
+	* Adicionada a habilidade SO_VACUUM_EXTREME (Tornado).
+	* Atualizado db/skill_nocast_db.txt
+	- Atualizadas habilidades desabilitadas na Torre Sem Fim.
+
 	r0644 - 16/06/2011 [MiTh]
 	* Corrigido cálculo dos stats points no atcommand baselevelup
 

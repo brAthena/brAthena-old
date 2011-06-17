@@ -8693,6 +8693,7 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 	case SO_EARTHGRAVE:
 	case SO_DIAMONDDUST:
 	case SO_PSYCHIC_WAVE:
+	case SO_VACUUM_EXTREME:
 		flag|=1;//Set flag to 1 to prevent deleting ammo (it will be deleted on group-delete).
 	case GS_GROUNDDRIFT: //Ammo should be deleted right away.
 		skill_unitsetting(src,skillid,skilllv,x,y,0);
@@ -10604,6 +10605,10 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 					clif_skill_nodamage(&src->bl, bl, AL_HEAL, hp, 0);
 					sc_start(bl, SC_WARMER, 100, sg->skill_lv, skill_get_time2(sg->skill_id,sg->skill_lv));
 			}
+			break;
+
+		case UNT_VACUUM_EXTREME:
+			sc_start(bl, SC_VACUUM_EXTREME, 100, sg->skill_lv, sg->limit);
 			break;
 
 	}
