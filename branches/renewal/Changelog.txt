@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0651 - 18/06/2011 [Protimus]
+	* Adicionadas as habilidades:
+	- SO_EL_ACTION (Incitar Elemental).
+	- SO_EL_CURE (Troca Espiritual).
+
 	r0650 - 18/06/2011 [Protimus]
 	* Adicionada a habilidade:
 	- SO_EL_ANALYSIS (Análise Elemental).
