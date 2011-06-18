@@ -8000,6 +8000,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		break;
 		
 	case GN_CHANGEMATERIAL:
+	case SO_EL_ANALYSIS:
 		if( sd )
 		{
 			clif_skill_nodamage(src,bl,skillid,skilllv,1);
@@ -15038,6 +15039,82 @@ int skill_select_menu(struct map_session_data *sd,int flag,int skill_id)
 	lv = min(lv,sd->status.skill[skill_id].lv);
 	prob = (aslvl == 10) ? 15 : (32 - 2 * aslvl); 
 	sc_start4(&sd->bl,SC__AUTOSHADOWSPELL,100,id,lv,prob,0,skill_get_time(SC_AUTOSHADOWSPELL,aslvl));
+	return 0;
+}
+
+int skill_elementalanalysis(struct map_session_data* sd, int n, int skill_lv, unsigned short* item_list)
+{
+	int i;
+
+	nullpo_ret(sd);
+	nullpo_ret(item_list);
+
+	if( n <= 0 )
+		return 1;
+
+	for( i = 0; i < n; i++ )
+	{
+		int nameid, add_amount, del_amount, idx, product, flag;
+		struct item tmp_item;
+
+		idx = item_list[i*2+0]-2;
+		del_amount = item_list[i*2+1];
+
+		if( skill_lv == 2 )
+			del_amount -= (del_amount % 10);
+		add_amount = (skill_lv == 1) ? del_amount * (5 + rand()%5) : del_amount / 10 ;
+
+		if( (nameid = sd->status.inventory[idx].nameid) <= 0 || del_amount > sd->status.inventory[idx].amount )
+		{
+			clif_skill_fail(sd,SO_EL_ANALYSIS,0,0,0);
+			return 1;
+		}
+
+		switch( nameid )
+		{
+			case 994: product = 990; break;	
+			case 995: product = 991; break;	
+			case 996: product = 992; break; 
+			case 997: product = 993; break; 
+
+			case 990: product = 994; break;	
+			case 991: product = 995; break;	
+			case 992: product = 996; break; 
+			case 993: product = 997; break; 
+			default:
+				clif_skill_fail(sd,SO_EL_ANALYSIS,0,0,0);
+				return 1;
+		}
+
+		if( pc_delitem(sd,idx,del_amount,0,0) )
+		{
+			clif_skill_fail(sd,SO_EL_ANALYSIS,0,0,0);
+			return 1;
+		}
+
+		if( skill_lv == 2 && rand()%100 < 25 )
+		{	
+			clif_skill_fail(sd,SO_EL_ANALYSIS,0,0,0);
+			return 1;
+		}
+
+
+		memset(&tmp_item,0,sizeof(tmp_item));
+		tmp_item.nameid = product;
+		tmp_item.amount = add_amount;
+		tmp_item.identify = 1;
+
+		if( tmp_item.amount )
+		{
+			if( (flag = pc_additem(sd,&tmp_item,tmp_item.amount)) )
+			{
+				clif_additem(sd,0,0,flag);
+				map_addflooritem(&tmp_item,tmp_item.amount,sd->bl.m,sd->bl.x,sd->bl.y,0,0,0,0);
+			}
+		}
+
+	}
+
 	return 0;
 }
 
