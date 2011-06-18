@@ -9,6 +9,13 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0648 - 17/06/2011 [Protimus]
+	* Adicionadas as habilidades:
+	- SO_SUMMON_AGNI (Invocar Agni).
+	- SO_SUMMON_AQUA (Invocar Varuna).
+	- SO_SUMMON_VENTUS (Invocar Vayu).
+	- SO_SUMMON_TERA (Invocar Chandra).
+
 	r0647 - 17/06/2011 [Protimus]
 	* Adicionado novo parâmetro para status_check_skilluse.
 	- Warnings corrigidos.

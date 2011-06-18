@@ -8017,6 +8017,28 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 				src, skillid, skilllv, tick, flag|BCT_ENEMY|1, skill_castend_nodamage_id);
 		}
 		break;
+		
+	case SO_SUMMON_AGNI:
+	case SO_SUMMON_AQUA:
+	case SO_SUMMON_VENTUS:
+	case SO_SUMMON_TERA:
+		if( sd )
+		{
+			int elemental_class = skill_get_elemental_type(skillid,skilllv);
+
+			if( sd->ed && elemental_delete(sd->ed,0) )
+			{
+				clif_skill_fail(sd,skillid,0,0,0);
+				break;
+			}
+			if( !elemental_create(sd,elemental_class,skill_get_time(skillid,skilllv)) )
+			{
+				clif_skill_fail(sd,skillid,0,0,0);
+				break;
+			}
+			clif_skill_nodamage(src,bl,skillid,skilllv,1);
+		}
+		break;
 
 	default:
 		ShowWarning("skill_castend_nodamage_id: Habilidade desconhecida usada:%d\n",skillid);
@@ -12188,6 +12210,13 @@ struct skill_condition skill_get_requirement(struct map_session_data* sd, short 
 			if( i < 5 )
 				continue;
 			break;
+		case SO_SUMMON_AGNI:
+		case SO_SUMMON_AQUA:
+		case SO_SUMMON_VENTUS:
+		case SO_SUMMON_TERA:
+			if( i < 3 )
+				continue;
+			break;
 		}
 
 		req.itemid[i] = skill_db[j].itemid[i];
@@ -12210,7 +12239,8 @@ struct skill_condition skill_get_requirement(struct map_session_data* sd, short 
 		}
 	}
 	
-	if( skill == GN_FIRE_EXPANSION)
+	if( skill == GN_FIRE_EXPANSION || skill == SO_SUMMON_AGNI ||
+		skill == SO_SUMMON_AQUA || skill == SO_SUMMON_VENTUS || skill == SO_SUMMON_TERA)
 	{		
 		req.itemid[lv-1] = skill_db[j].itemid[lv-1];
 		req.amount[lv-1] = skill_db[j].amount[lv-1];
@@ -12287,6 +12317,12 @@ struct skill_condition skill_get_requirement(struct map_session_data* sd, short 
 			break;
 		case LG_RAGEBURST:
 			req.spiritball = sd->rageball?sd->rageball:1;
+			break;
+		case SO_SUMMON_AGNI:
+		case SO_SUMMON_AQUA:
+		case SO_SUMMON_VENTUS:
+		case SO_SUMMON_TERA:
+			req.sp -= req.sp * (5 + 5 * pc_checkskill(sd,SO_EL_SYMPATHY)) / 100;
 			break;
 
 		default:
@@ -15713,6 +15749,23 @@ void skill_init_nounit_layout (void)
 		}
 		pos++;
 	}
+}
+
+int skill_get_elemental_type(int skill_id, int skill_lv )
+{
+	int type = 0;
+
+	switch( skill_id )
+	{
+		case SO_SUMMON_AGNI:	type = 2114; break;
+		case SO_SUMMON_AQUA:	type = 2117; break;
+		case SO_SUMMON_VENTUS:	type = 2120; break;
+		case SO_SUMMON_TERA:	type = 2123; break;
+	}
+
+	type += skill_lv - 1;
+
+	return type;
 }
 
 /*==========================================
