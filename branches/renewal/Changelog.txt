@@ -9,7 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
-	r0653 - 19/06/2011 [Protimus]
+	r0654 - 18/06/2011 [brn0]
+	* Otimizado o arquivo:
+	- npc\quests\quests_dewata.txt
+	* Retirados alguns portais incorretos em Dewata.
+
+	r0653 - 18/06/2011 [Protimus]
 	* Adicionadas as habilidades:
 	- SO_FIRE_INSIGNIA (Insígnia do Fogo).
 	- SO_WATER_INSIGNIA (Insígnia da Água).
@@ -17,7 +22,7 @@
 	- SO_EARTH_INSIGNIA (Insígnia da Terra).
 	- OBS: Faltam os efeitos das habilidades.
 
-	r0652 - 19/06/2011 [Protimus]
+	r0652 - 18/06/2011 [Protimus]
 	* Atualizada tabela de experiência dos homunculus até level 150.
 	- Conforme renovação e novos Homunculus S.
 
