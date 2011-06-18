@@ -6056,6 +6056,13 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		clif_skill_nodamage(src, bl, skillid, skilllv, 1);
 		skill_castend_damage_id(src, src, skillid, skilllv, tick, flag);
 		break;
+		
+	case NC_ANALYZE:
+		clif_skill_damage(src, bl, tick, status_get_amotion(src), 0, -30000, 1, skillid, skilllv, 6);
+		clif_skill_nodamage(src, bl, skillid, skilllv,
+			sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv)));
+			pc_delitem(sd,ITEMID_MAGIC_GEAR_FUEL,1,1,0);
+		break;
 
 	case NC_DISJOINT:
 		{
@@ -11896,6 +11903,7 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 		break;
 	case NC_F_SIDESLIDE:
 	case NC_B_SIDESLIDE:
+	case NC_ANALYZE:
 		if( !pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_MAGIC_GEAR_FUEL) )
 			{
 			clif_skill_fail(sd,skill,0,0,0);

@@ -4294,6 +4294,8 @@ static signed short status_calc_def(struct block_list *bl, struct status_change 
 		def += def * sc->data[SC_POWER_OF_GAIA]->val2 / 100;
 	if( sc->data[SC_ROCK_CRUSHER] )
 		def -= def * sc->data[SC_ROCK_CRUSHER]->val2 / 100;
+	if( sc->data[SC_ANALYZE] )
+		def -= def * (14 * sc->data[SC_ANALYZE]->val1) / 100;
 
 	return (short)cap_value(def,SHRT_MIN,SHRT_MAX);
 }
@@ -4335,7 +4337,9 @@ static signed short status_calc_def2(struct block_list *bl, struct status_change
 	if( sc->data[SC_SHIELDSPELL_REF] && sc->data[SC_SHIELDSPELL_REF]->val1 == 1 )
 		def2 += sc->data[SC_SHIELDSPELL_REF]->val2;
 	if( sc->data[SC_GT_REVITALIZE] )
-		def2 += def2*(50 + 10*sc->data[SC_GT_REVITALIZE]->val1)/100;
+		def2 += def2* (50 + 10*sc->data[SC_GT_REVITALIZE]->val1) / 100;
+	if(sc->data[SC_ANALYZE])
+		def2 -= def2 * (14 * sc->data[SC_ANALYZE]->val1) / 100;
 
 	return (short)cap_value(def2,0,SHRT_MAX);
 }
@@ -4365,6 +4369,8 @@ static signed short status_calc_mdef(struct block_list *bl, struct status_change
 		mdef -= mdef*sc->data[SC_GT_CHANGE]->val3/100;
 	if(sc->data[SC_WATER_BARRIER])
 		mdef += sc->data[SC_WATER_BARRIER]->val2;
+	if(sc->data[SC_ANALYZE])
+		mdef -= mdef * (14 * sc->data[SC_ANALYZE]->val1) / 100;
 
 	return (short)cap_value(mdef,SHRT_MIN,SHRT_MAX);
 }
@@ -4378,6 +4384,8 @@ static signed short status_calc_mdef2(struct block_list *bl, struct status_chang
 		return 0;
 	if(sc->data[SC_MINDBREAKER])
 		mdef2 -= mdef2 * sc->data[SC_MINDBREAKER]->val3/100;
+	if(sc->data[SC_ANALYZE])
+		mdef2 -= mdef2 * (14 * sc->data[SC_ANALYZE]->val1) / 100;
 
 	return (short)cap_value(mdef2,0,SHRT_MAX);
 }

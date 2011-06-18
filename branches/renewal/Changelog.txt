@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0658 - 18/06/2011 [Protimus]
+	* Adicionada a habilidade:
+	- NC_ANALYZE (Analisar).
+
 	r0657 - 18/06/2011 [Protimus]
 	* Adicionado novo comando de script para falha em refinamentos.
 	- Necessário para o novo NPC de refinamento da renovação que está sendo criado.
