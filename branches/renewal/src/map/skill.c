@@ -8039,6 +8039,36 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			clif_skill_nodamage(src,bl,skillid,skilllv,1);
 		}
 		break;
+		
+	case SO_EL_CONTROL:
+		if( sd )
+		{
+			int mode = EL_MODE_PASSIVE;
+			if( !sd->ed )
+			{
+				clif_skill_fail(sd,skillid,0,0,0);
+				break;
+			}
+			if( skilllv == 4 )
+			{	
+				if( elemental_delete(sd->ed, 0) )
+					clif_skill_fail(sd,skillid,0,0,0);
+				break;
+			}
+			switch( skilllv )
+			{	
+				case 1: mode = EL_MODE_PASSIVE; break;
+				case 2: mode = EL_MODE_ASSIST; break;
+				case 3: mode = EL_MODE_AGGRESSIVE; break;
+			}
+			if( !elemental_change_mode(sd->ed,mode) )
+			{
+				clif_skill_fail(sd,skillid,0,0,0);
+				break;
+			}
+			clif_skill_nodamage(src,bl,skillid,skilllv,1);
+		}
+		break;
 
 	default:
 		ShowWarning("skill_castend_nodamage_id: Habilidade desconhecida usada:%d\n",skillid);
@@ -11731,6 +11761,13 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 			sc->data[SC_PROPERTYWALK]->val3 < skill_get_maxcount(sc->data[SC_PROPERTYWALK]->val1,sc->data[SC_PROPERTYWALK]->val2) )
 		{
 			clif_skill_fail(sd,skill,0x0,0,0);
+			return 0;
+		}
+		break;
+	case SO_EL_CONTROL:
+		if( !sd->status.ele_id || !sd->ed )
+		{
+			clif_skill_fail(sd,skill,0x00,0,0);
 			return 0;
 		}
 		break;
