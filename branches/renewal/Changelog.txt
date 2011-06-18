@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0652 - 19/06/2011 [Protimus]
+	* Atualizada tabela de experiência dos homunculus até level 150.
+	- Conforme renovação e novos Homunculus S.
+
 	r0651 - 18/06/2011 [Protimus]
 	* Adicionadas as habilidades:
 	- SO_EL_ACTION (Incitar Elemental).
