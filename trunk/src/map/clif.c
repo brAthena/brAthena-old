@@ -773,11 +773,9 @@ static int clif_set_unit_idle(struct block_list* bl, unsigned char* buffer, bool
 	struct status_change* sc = status_get_sc(bl);
 	struct view_data* vd = status_get_viewdata(bl);
 	unsigned char *buf = WBUFP(buffer,0);
+	unsigned short offset = 0;
 #if PACKETVER < 20091103
 	bool type = !pcdb_checkid(vd->class_);
-#endif
-#if PACKETVER >= 7
-	unsigned short offset = 0;
 #endif
 #if PACKETVER >= 20091103
 	const char *name;
@@ -3417,7 +3415,7 @@ void clif_tradestart(struct map_session_data* sd, uint8 type)
 {
 	int fd = sd->fd;
 	struct map_session_data* tsd = map_id2sd(sd->trade_partner);
-	if( PACKETVER < 6 || !tsd ) {
+	if( PACKETER < 6 || !tsd ) {
 		WFIFOHEAD(fd,packet_len(0xe7));
 		WFIFOW(fd,0) = 0xe7;
 		WFIFOB(fd,2) = type;
