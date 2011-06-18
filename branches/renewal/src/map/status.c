@@ -2790,6 +2790,31 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 			sd->subele[ELE_FIRE] += sc->data[SC_ARMOR_RESIST]->val3;
 			sd->subele[ELE_WIND] += sc->data[SC_ARMOR_RESIST]->val4;
 		}
+		if( sc->data[SC_FIRE_CLOAK_OPTION] )
+		{
+			i = sc->data[SC_FIRE_CLOAK_OPTION]->val2;
+			sd->subele[ELE_FIRE] += i;
+			sd->subele[ELE_WATER] -= i;
+		}
+		if( sc->data[SC_WATER_DROP_OPTION] )
+		{
+			i = sc->data[SC_WATER_DROP_OPTION]->val2;
+			sd->subele[ELE_WATER] += i;
+			sd->subele[ELE_WIND] -= i;
+		}
+		if( sc->data[SC_WIND_CURTAIN_OPTION] )
+		{
+			i = sc->data[SC_WIND_CURTAIN_OPTION]->val2;
+			sd->subele[ELE_WIND] += i;
+			sd->subele[ELE_WATER] -= i;
+		}
+		if( sc->data[SC_STONE_SHIELD_OPTION] )
+		{
+			i = sc->data[SC_STONE_SHIELD_OPTION]->val2;
+			sd->subele[ELE_EARTH] += i;
+			sd->subele[ELE_FIRE] -= i;
+		}
+
 	}
 
 	status_cpy(&sd->battle_status, status);
@@ -4034,6 +4059,12 @@ static unsigned short status_calc_watk(struct block_list *bl, struct status_chan
 		watk += sc->data[SC_HEATER_OPTION]->val2;
 	if( sc->data[SC_PYROTECHNIC_OPTION] )
 		watk += sc->data[SC_PYROTECHNIC_OPTION]->val2;
+	if( sc->data[SC_TROPIC_OPTION] )
+		watk += sc->data[SC_TROPIC_OPTION]->val2;
+	if( sc->data[SC_WATER_BARRIER] )
+		watk -= sc->data[SC_WATER_BARRIER]->val3;
+	if( sc && sc->data[SC_TIDAL_WEAPON] )
+		watk += watk * sc->data[SC_TIDAL_WEAPON]->val2 / 100;
 
 	return (unsigned short)cap_value(watk,0,USHRT_MAX);
 }
@@ -4055,6 +4086,10 @@ static unsigned short status_calc_matk(struct block_list *bl, struct status_chan
 		matk += matk * sc->data[SC_INCMATKRATE]->val1/100;
 	if(sc->data[SC_AQUAPLAY_OPTION])
 		matk += sc->data[SC_AQUAPLAY_OPTION]->val2;
+	if(sc->data[SC_CHILLY_AIR_OPTION])
+		matk += sc->data[SC_CHILLY_AIR_OPTION]->val2;
+	if(sc->data[SC_WATER_BARRIER])
+		matk -= sc->data[SC_WATER_BARRIER]->val3;
 
 	return (unsigned short)cap_value(matk,0,USHRT_MAX);
 }
@@ -4179,6 +4214,12 @@ static signed short status_calc_flee(struct block_list *bl, struct status_change
 		flee -= flee * sc->data[SC_GLOOMYDAY]->val2;
 	if( sc->data[SC__LAZINESS] )
 		flee -= flee * sc->data[SC__LAZINESS]->val3 / 100;
+	if( sc->data[SC_WATER_BARRIER] )
+		flee -= sc->data[SC_WATER_BARRIER]->val3;
+	if( sc->data[SC_WIND_STEP_OPTION] )
+		flee += flee * sc->data[SC_WIND_STEP_OPTION]->val2 / 100;
+	if( sc->data[SC_ZEPHYR] )
+		flee += flee * sc->data[SC_ZEPHYR]->val2 / 100;
 
 	return (short)cap_value(flee,0,SHRT_MAX);
 }
@@ -4249,6 +4290,10 @@ static signed short status_calc_def(struct block_list *bl, struct status_change 
 		def += def * 2 * sc->data[SC_FORCEOFVANGUARD]->val1 / 100;
 	if( sc->data[SC_GT_CHANGE] )
 		def -= def * sc->data[SC_GT_CHANGE]->val3 / 100;
+	if( sc->data[SC_POWER_OF_GAIA] )
+		def += def * sc->data[SC_POWER_OF_GAIA]->val2 / 100;
+	if( sc->data[SC_ROCK_CRUSHER] )
+		def -= def * sc->data[SC_ROCK_CRUSHER]->val2 / 100;
 
 	return (short)cap_value(def,SHRT_MIN,SHRT_MAX);
 }
@@ -4318,6 +4363,8 @@ static signed short status_calc_mdef(struct block_list *bl, struct status_change
 		mdef += 1; //Skill info says it adds a fixed 1 Mdef point.
 	if(sc->data[SC_GT_CHANGE])
 		mdef -= mdef*sc->data[SC_GT_CHANGE]->val3/100;
+	if(sc->data[SC_WATER_BARRIER])
+		mdef += sc->data[SC_WATER_BARRIER]->val2;
 
 	return (short)cap_value(mdef,SHRT_MIN,SHRT_MAX);
 }
@@ -4430,6 +4477,10 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 					val = max( val, sc->data[SC__GROOMY]->val2);
 				if( sc->data[SC_BANDING_DEFENCE] )
 					val = max( val, sc->data[SC_BANDING_DEFENCE]->val1 );
+				if( sc->data[SC_POWER_OF_GAIA] )
+					val = max( val, sc->data[SC_POWER_OF_GAIA]->val2 );
+				if( sc->data[SC_ROCK_CRUSHER_ATK] )
+					val = max( val, sc->data[SC_ROCK_CRUSHER_ATK]->val2 );
 
 				if( sd && sd->speed_rate + sd->speed_add_rate > 0 ) // permanent item-based speedup
 					val = max( val, sd->speed_rate + sd->speed_add_rate );
@@ -4468,6 +4519,8 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 				val = max( val, sc->data[SC_GN_CARTBOOST]->val2 );
 			if( sc->data[SC_GT_REVITALIZE] )
 				val = max( val, sc->data[SC_GT_REVITALIZE]->val2 );
+			if( sc->data[SC_WIND_STEP_OPTION] )
+				val = max( val, sc->data[SC_WIND_STEP_OPTION]->val2 );
 
 			//FIXME: official items use a single bonus for this [ultramage]
 			if( sc->data[SC_SPEEDUP0] ) // temporary item-based speedup
@@ -4597,6 +4650,9 @@ static short status_calc_aspd_rate(struct block_list *bl, struct status_change *
 		aspd_rate -= aspd_rate * (sc->data[SC_GT_CHANGE]->val2/200) / 100;
 	if( sc->data[SC_GT_REVITALIZE] )
 		aspd_rate -= aspd_rate * sc->data[SC_GT_REVITALIZE]->val2 / 100;
+	if( sc->data[SC_GUST_OPTION] )
+		aspd_rate += aspd_rate * sc->data[SC_GUST_OPTION]->val3 / 100;
+
 
 	return (short)cap_value(aspd_rate,0,SHRT_MAX);
 }
@@ -4647,6 +4703,16 @@ static unsigned int status_calc_maxhp(struct block_list *bl, struct status_chang
 		maxhp += maxhp*3*sc->data[SC_GT_REVITALIZE]->val1/100;
 	if(sc->data[SC_FORCEOFVANGUARD])
 		maxhp += maxhp * 3 * sc->data[SC_FORCEOFVANGUARD]->val1 / 100;
+	if(sc->data[SC_PETROLOGY_OPTION])
+		maxhp += maxhp * sc->data[SC_PETROLOGY_OPTION]->val2 / 100;
+	if(sc->data[SC_CURSED_SOIL_OPTION])
+		maxhp += maxhp * sc->data[SC_CURSED_SOIL_OPTION]->val2 / 100;
+	if(sc->data[SC_UPHEAVAL_OPTION])
+		maxhp += maxhp * sc->data[SC_UPHEAVAL_OPTION]->val3 / 100;
+	if(sc->data[SC_SOLID_SKIN_OPTION])
+		maxhp += 2000;
+	if(sc->data[SC_POWER_OF_GAIA])
+		maxhp += maxhp * sc->data[SC_POWER_OF_GAIA]->val2 / 100;
 
 	return cap_value(maxhp,1,UINT_MAX);
 }
@@ -5547,8 +5613,10 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 	//Check for inmunities / sc fails
 	switch (type)
 	{
-	case SC_FREEZE:
 	case SC_STONE:
+		if(sc->data[SC_POWER_OF_GAIA])
+			return 0;
+	case SC_FREEZE:
 		//Undead are immune to Freeze/Stone
 		if (undead_flag && !(flag&1))
 			return 0;
@@ -5767,6 +5835,11 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		if (sc->data[SC_AETERNA])
 			return 0;
 	break;
+	case SC_BLEEDING:
+		if(sc->data[SC_POWER_OF_GAIA])
+			return 0;
+	break;
+
 	}
 
 	//Check for BOSS resistances
@@ -7216,42 +7289,108 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			status_change_end(bl, SC_FREEZING, -1);
 			status_change_end(bl, SC_CRYSTALIZE, -1);
 			break;
+		case SC_PYROTECHNIC_OPTION:
+			val2 = 60;
+			val3 = 10;
+			val_flag |= 1|2|4;
+			break;
 		case SC_HEATER_OPTION:
 			val2 = 120;
-			val3 = 33;
+			val3 = 20;
 			val4 = 3;
+			val_flag |= 1|2|4;
+			break;
+		case SC_TROPIC_OPTION:
+			val2 = 180;
+			val3 = MG_FIREBOLT;
+			break;
+		case SC_CIRCLE_OF_FIRE_OPTION:
+			val2 = 300;
+			val_flag |= 1|2;
+			break;
+		case SC_AQUAPLAY_OPTION:
+			val2 = 40;
+			val3 = 10;
 			val_flag |= 1|2|4;
 			break;
 		case SC_COOLER_OPTION:
 			val2 = 80;
-			val3 = 33;
+			val3 = 20;
 			val4 = 1;
+			val_flag |= 1|2|4;
+			break;
+		case SC_CHILLY_AIR_OPTION:
+			val2 = 120;
+			val3 = MG_COLDBOLT;
+			val_flag |= 1|2;
+			break;
+		case SC_WATER_BARRIER:
+			val2 = 20;
+			val3 = 30;
+			val_flag |= 1|2|4;
+			break;
+		case SC_TIDAL_WEAPON:
+			val2 = 20;
+			break;
+		case SC_PETROLOGY_OPTION:
+			val2 = 5;
+			val3 = 20;
 			val_flag |= 1|2|4;
 			break;
 		case SC_CURSED_SOIL_OPTION:
 			val2 = 10;
-			val3 = 33;
+			val3 = 20;
 			val4 = 2;
 			val_flag |= 1|2|3;
 			break;
+		case SC_UPHEAVAL_OPTION:
+			val2 = WZ_EARTHSPIKE;
+			val3 = 15;
+			val_flag |= 1|2;
+			break;
+		case SC_GUST_OPTION:
+			val2 = 20;
+			val3 = 5;
+			val_flag |= 1|2;
+			break;
 		case SC_BLAST_OPTION:
-			val2 = 33;
+			val2 = 20;
 			val3 = 4;
 			val_flag |= 1|2|4;
 			break;
-		case SC_PYROTECHNIC_OPTION:
-			val2 = 60;
-			val3 = 11;
-			val_flag |= 1|2|4;
-			break;
-		case SC_AQUAPLAY_OPTION:
-			val2 = 40;
-			val3 = 33;
-			val_flag |= 1|2|4;
-			break;
-		case SC_GUST_OPTION:
-			val2 = 33;
+		case SC_WILD_STORM_OPTION:
+			val2 = MG_LIGHTNINGBOLT;
 			val_flag |= 1|2;
+			break;
+		case SC_WIND_STEP_OPTION:
+			val2 = 50;
+			break;
+		case SC_ZEPHYR:
+			val2 = 25;
+			break;
+
+		case SC_FIRE_CLOAK_OPTION:
+		case SC_WATER_DROP_OPTION:
+		case SC_WIND_CURTAIN_OPTION:
+		case SC_STONE_SHIELD_OPTION:
+			val2 = 100;
+			break;
+
+		case SC_CIRCLE_OF_FIRE:
+		case SC_FIRE_CLOAK:
+		case SC_WATER_DROP:
+		case SC_WATER_SCREEN:
+		case SC_WIND_CURTAIN:
+		case SC_WIND_STEP:
+		case SC_STONE_SHIELD:
+		case SC_SOLID_SKIN:
+			val2 = 10;
+			tick = 2000;
+			break;
+		case SC_ROCK_CRUSHER:
+		case SC_ROCK_CRUSHER_ATK:
+		case SC_POWER_OF_GAIA:
+			val2 = 20;
 			break;
 
 		default:
@@ -8945,6 +9084,25 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr data)
 			return 0;
 		}
 		break;
+
+	case SC_CIRCLE_OF_FIRE:
+	case SC_FIRE_CLOAK:
+	case SC_WATER_DROP:
+	case SC_WATER_SCREEN:
+	case SC_WIND_CURTAIN:
+	case SC_WIND_STEP:
+	case SC_STONE_SHIELD:
+	case SC_SOLID_SKIN:
+		if( !status_charge(bl,0,sce->val2) )
+		{
+			struct block_list *s_bl = battle_get_master(bl);
+			if( s_bl )
+				status_change_end(s_bl,type+1,-1);
+			status_change_end(bl,type,-1);
+			break;
+		}
+		sc_timer_next(2000 + tick, status_change_timer, bl->id, data);
+		return 0;
 
 	}
 	// default for all non-handled control paths is to end the status
