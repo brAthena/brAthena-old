@@ -4032,6 +4032,24 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 			}
 		}
 		break;
+		
+	case NC_INFRAREDSCAN:
+		if( flag&1 )
+		{ 
+			if( rand()%100 < 50 )
+				sc_start(bl, SC_INFRAREDSCAN, 10000, skilllv, skill_get_time(skillid, skilllv));
+			status_change_end(bl, SC_HIDING, -1);
+			status_change_end(bl, SC_CLOAKING, -1);
+			status_change_end(bl, SC_CLOAKINGEXCEED, -1); 
+		}
+		else
+		{
+			map_foreachinrange(skill_area_sub, bl, skill_get_splash(skillid, skilllv), splash_target(src), src, skillid, skilllv, tick, flag|BCT_ENEMY|SD_SPLASH|1, skill_castend_damage_id);
+			clif_skill_damage(src,src,tick, status_get_amotion(src), 0, -30000, 1, skillid, skilllv, 6);
+			if( sd ) pc_overheat(sd,1);
+		}
+		break;
+		
 	case WL_FROSTMISTY:
 		if( tsc && (tsc->option&(OPTION_HIDE|OPTION_CLOAK|OPTION_CHASEWALK) || tsc->data[SC__INVISIBILITY]) )
 			break;
@@ -5217,7 +5235,8 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		status_change_end(src,SC_OVERHEAT_LIMITPOINT,-1);
 		status_change_end(src,SC_OVERHEAT,-1);
 		break;
-
+		
+	case NC_INFRAREDSCAN:
 	case GC_COUNTERSLASH:
 	case GN_CART_TORNADO:
 	case SR_WINDMILL:
@@ -6062,6 +6081,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		clif_skill_nodamage(src, bl, skillid, skilllv,
 			sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv)));
 			pc_delitem(sd,ITEMID_MAGIC_GEAR_FUEL,1,1,0);
+		if( sd ) pc_overheat(sd,1);
 		break;
 
 	case NC_DISJOINT:

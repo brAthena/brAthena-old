@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0659 - 18/06/2011 [Protimus]
+	* Adicionada a habilidade:
+	- NC_INFRAREDSCAN (Sensor Infravermelho).
+	* Correção do envio anterior para a habilidade Analisar.
+
 	r0658 - 18/06/2011 [Protimus]
 	* Adicionada a habilidade:
 	- NC_ANALYZE (Analisar).

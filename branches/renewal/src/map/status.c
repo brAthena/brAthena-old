@@ -4220,6 +4220,8 @@ static signed short status_calc_flee(struct block_list *bl, struct status_change
 		flee += flee * sc->data[SC_WIND_STEP_OPTION]->val2 / 100;
 	if( sc->data[SC_ZEPHYR] )
 		flee += flee * sc->data[SC_ZEPHYR]->val2 / 100;
+	if(sc->data[SC_INFRAREDSCAN])
+		flee -= flee * 30 / 100;
 
 	return (short)cap_value(flee,0,SHRT_MAX);
 }
