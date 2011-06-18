@@ -6941,6 +6941,41 @@ BUILDIN_FUNC(failedrefitem)
 	return 0;
 }
 
+/*============================================
+ * Redução de refinamento por falha. [Protimus]
+ *-------------------------------------------*/
+BUILDIN_FUNC(failedrefitem2)
+{
+	int i=-1,num;
+	TBL_PC *sd;
+
+	num=script_getnum(st,2);
+	sd = script_rid2sd(st);
+	if( sd == NULL )
+	return 0;
+
+	if (num > 0 && num <= ARRAYLENGTH(equip))
+	i=pc_checkequip(sd,equip[num-1]);
+	if(i >= 0) {
+
+		if(log_config.enable_logs&0x40)
+		log_pick_pc(sd, "N", sd->status.inventory[i].nameid, -1, &sd->status.inventory[i]);
+
+		sd->status.inventory[i].refine = sd->status.inventory[i].refine - 3;
+		pc_unequipitem(sd,i,2); 
+
+		clif_refine(sd->fd,0,i,sd->status.inventory[i].refine);
+		clif_delitem(sd,i,1,2);
+
+		if(log_config.enable_logs&0x40)
+		log_pick_pc(sd, "N", sd->status.inventory[i].nameid, 1, &sd->status.inventory[i]);
+		clif_additem(sd,i,1,0);
+		clif_misceffect(&sd->bl,2);
+	}
+
+	return 0;
+}
+
 /*==========================================
  *
  *------------------------------------------*/
@@ -14957,6 +14992,7 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(getequippercentrefinery,"i"),
 	BUILDIN_DEF(successrefitem,"i"),
 	BUILDIN_DEF(failedrefitem,"i"),
+	BUILDIN_DEF(failedrefitem2,"i"),
 	BUILDIN_DEF(statusup,"i"),
 	BUILDIN_DEF(statusup2,"ii"),
 	BUILDIN_DEF(bonus,"iv"),

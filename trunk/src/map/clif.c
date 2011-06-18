@@ -3415,7 +3415,7 @@ void clif_tradestart(struct map_session_data* sd, uint8 type)
 {
 	int fd = sd->fd;
 	struct map_session_data* tsd = map_id2sd(sd->trade_partner);
-	if( PACKETER < 6 || !tsd ) {
+	if( PACKETVER < 6 || !tsd ) {
 		WFIFOHEAD(fd,packet_len(0xe7));
 		WFIFOW(fd,0) = 0xe7;
 		WFIFOB(fd,2) = type;

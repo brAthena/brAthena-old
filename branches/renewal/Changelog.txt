@@ -9,7 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
-	r0655 - 18/06/2011 [Mark]
+	r0657 - 18/06/2011 [Protimus]
+	* Adicionado novo comando de script para falha em refinamentos.
+	- Necessário para o novo NPC de refinamento da renovação que está sendo criado.
+	- Remove -3 da taxa de refinamento de armas e armaduras caso na hora do refinamento falhe.
+
+	r0656 - 18/06/2011 [Mark]
 	* Adicionadas habilidades dos Elementos dos Feiticeiros.
 
 	r0654 - 18/06/2011 [brn0]

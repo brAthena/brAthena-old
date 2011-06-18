@@ -9,9 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
-	r0654 - 18/06/2011
-	*Corrigido pequeno erro que quebrava buil no Clic.c 
-	- Faltava declarar uma variavel fora do if e ajustar o nome da constante que recebe a version do emulador
+	r0657 - 18/06/2011 [Protimus]
+	* Corrigido erro de digitação no envio da r0654.
+
+	r0654 - 18/06/2011 [MiTh]
+	* Corrigido pequeno erro que quebrava build no clif.c 
+	- Faltava declarar uma variavel fora do if e ajustar o nome da constante que recebe a version do emulador.
 	
 	r0629 - 15/06/2011 [Protimus]
 	* Corrigido pequeno erro de gramática no NPC Encantador de Armaduras.
