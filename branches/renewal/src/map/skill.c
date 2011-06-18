@@ -8783,6 +8783,10 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 	case SO_DIAMONDDUST:
 	case SO_PSYCHIC_WAVE:
 	case SO_VACUUM_EXTREME:
+	case SO_FIRE_INSIGNIA:
+	case SO_WATER_INSIGNIA:
+	case SO_WIND_INSIGNIA:
+	case SO_EARTH_INSIGNIA:
 		flag|=1;//Set flag to 1 to prevent deleting ammo (it will be deleted on group-delete).
 	case GS_GROUNDDRIFT: //Ammo should be deleted right away.
 		skill_unitsetting(src,skillid,skilllv,x,y,0);

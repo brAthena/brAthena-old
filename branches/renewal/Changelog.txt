@@ -9,6 +9,14 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0653 - 19/06/2011 [Protimus]
+	* Adicionadas as habilidades:
+	- SO_FIRE_INSIGNIA (Insígnia do Fogo).
+	- SO_WATER_INSIGNIA (Insígnia da Água).
+	- SO_WIND_INSIGNIA (Insígnia do Vento).
+	- SO_EARTH_INSIGNIA (Insígnia da Terra).
+	- OBS: Faltam os efeitos das habilidades.
+
 	r0652 - 19/06/2011 [Protimus]
 	* Atualizada tabela de experiência dos homunculus até level 150.
 	- Conforme renovação e novos Homunculus S.
