@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0661 - 20/06/2011 [Mark]
+	* Corrigido brA_svn0660 enviado na rev 660.
+
 	r0660 - 19/06/2011 [Mark]
 	* Adicionados na db Espíritos Elementais de Feiticeiro e habilidades:
 	- elemental_db.txt
