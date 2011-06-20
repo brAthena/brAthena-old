@@ -9,6 +9,17 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0660 - 19/06/2011 [Mark]
+	* Adicionados na db Espíritos Elementais de Feiticeiro e habilidades:
+	- elemental_db.txt
+	- elemental_skill_db.txt
+	* Adicionada tabela elemental e coluna elemental na tabela char.
+	* Adicionados na source:
+	- src/char/int_elemental.c
+	- src/char/int_elemental.h
+	* Corrigidas habilidades que sumonam os Espíritos Elementais.
+	- Os Espíritos não estavam sendo sumonados.
+	
 	r0659 - 18/06/2011 [Protimus]
 	* Adicionada a habilidade:
 	- NC_INFRAREDSCAN (Sensor Infravermelho).

@@ -5129,6 +5129,8 @@ void status_set_viewdata(struct block_list *bl, int class_)
 		vd = merc_get_hom_viewdata(class_);
 	else if (merc_class(class_))
 		vd = merc_get_viewdata(class_);
+	else if (elemental_class(class_))
+		vd = elemental_get_viewdata(class_);
 	else
 		vd = NULL;
 

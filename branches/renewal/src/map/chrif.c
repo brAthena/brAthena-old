@@ -287,6 +287,8 @@ int chrif_save(struct map_session_data *sd, int flag)
 		mercenary_save(sd->md);
 	if( sd->save_quest )
 		intif_quest_save(sd);
+ 	if( sd->ed && elemental_get_lifetime(sd->ed) > 0 )
+		elemental_save(sd->ed);
 
 	return 0;
 }
