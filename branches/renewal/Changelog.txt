@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0665 - 21/06/2011 [Mark]
+	* Correção na habilidade Análise Elemental:
+	- Não estava sendo efetuada.
+	- Faltava liberação de Packets.
+
 	r0664 - 20/06/2011 [Mark]
 	* Correção em habilidades:
 	- Corrente Elétrica: Não estava dando 9 danos e não estava random.
