@@ -9,6 +9,13 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0664 - 20/06/2011 [Mark]
+	* Correção em habilidades:
+	- Corrente Elétrica: Não estava dando 9 danos e não estava random.
+	- Armadilha Incendiária/Glacial: Estava podendo ser utilizada 2 vezes.
+	* Correção em item_db.txt:
+	- Caixa de Armadilhas Especiais.
+
 	r0663 - 20/06/2011 [Protimus]
 	* Modificações em habilidades:
 	- Assumptio: Não estava dando o dobro de MDEF conforme Renovação.

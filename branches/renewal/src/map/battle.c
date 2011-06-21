@@ -155,8 +155,10 @@ static int battle_getenemyarea_sub(struct block_list *bl, va_list ap){
 		return 0;
 
 	if(battle_check_target(src, bl, BCT_ENEMY) > 0)
+	{
+		bl_list[(*c)++] = bl;
 		return 1;
-
+	}
 	return 0;
 }
 struct block_list* battle_getenemyarea(struct block_list *src, int x, int y, int range, int type, int ignore_id){
