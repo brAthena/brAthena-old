@@ -9,6 +9,13 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0662 - 20/06/2011 [Mark]
+	* Corrigida habilidade Cura.
+	- Quando utilizada por mobs estava curando 0.
+	- Habilidade Curatio não estava realizando cálculo correto.
+	* Corrigida habilidade Ferimento Crítico.
+	- Estava com efeito contrário.
+
 	r0661 - 20/06/2011 [Mark]
 	* Corrigido brA_svn0660 enviado na rev 660.
 

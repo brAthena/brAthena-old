@@ -326,7 +326,7 @@ int skill_calc_heal(struct block_list *src, struct block_list *target, int skill
 	int skill, hp, temp_skill;
 	struct map_session_data *sd = map_id2sd(src->id);
 	struct map_session_data *tsd = map_id2sd(target->id);
-	struct status_change* sc;
+	struct status_change* sc = status_get_sc(target);
 	struct status_data *status = status_get_status_data(src);
 
 	skill = 0;
@@ -339,14 +339,6 @@ int skill_calc_heal(struct block_list *src, struct block_list *target, int skill
 	if( tsd && (temp_skill = pc_skillheal2_bonus(tsd, skill_id)) )
 		skill += temp_skill;
 
-	sc = status_get_sc(target);
-	if( sc && sc->count )
-	{
-		if( sc->data[SC_CRITICALWOUND] && heal ) // Critical Wound has no effect on offensive heal. [Inkfish]
-			skill += sc->data[SC_CRITICALWOUND]->val2;
-		if( sc->data[SC_INCHEALRATE] )
-			skill += sc->data[SC_INCHEALRATE]->val1; // Only affects Heal, Sanctuary and PotionPitcher.(like bHealPower) [Inkfish]
-	}
 	switch( skill_id )
 	{
 	case BA_APPLEIDUN:
@@ -360,27 +352,40 @@ int skill_calc_heal(struct block_list *src, struct block_list *target, int skill
 	case NPC_EVILLAND:
 		hp = (skill_lv>6)?666:skill_lv*100;
 		break;
-	case AL_HEAL:
-		if(sd)
-			return hp = (status_get_lv(src)+status_get_int(src))*6*(100+skill)*skill_lv/1000+
-			sd->base_status.matk_max+sd->base_status.matk_min + 
-			(rand()%2 ? 1:-1)*
-			(sd && sd->matk_bonus ? rand()%(sd->matk_bonus*sd->inventory_data[sd->equip_index[EQI_HAND_R]]->wlv/10):0);
 	case NC_REPAIR:
 		return hp = (status_get_hp(target) * ( (3 + 3 * skill_lv) / 100 ) );
 		break;
+
 	default:
 		if (skill_lv >= battle_config.max_heal_lv)
 			return battle_config.max_heal;
-		hp = ( status_get_lv(src)+status_get_int(src) )/5 *(4+ skill_lv*8); 
+
+		if (sd)
+			hp = (status_get_lv(src)+status_get_int(src))*6*(100+skill)*
+			( skill_id == AB_HIGHNESSHEAL ? ( sd ? pc_checkskill(sd,AL_HEAL) : 10 ) : skill_lv )/1000+
+			sd->base_status.matk_max+sd->base_status.matk_min + 
+			(rand()%2 ? 1:-1)*
+			(sd && sd->matk_bonus ? rand()%(sd->matk_bonus*sd->inventory_data[sd->equip_index[EQI_HAND_R]]->wlv/10):0);
+		else
+			hp = ( status_get_lv(src)+status_get_int(src) )/5 *(4+ ( skill_id == AB_HIGHNESSHEAL ? ( sd ? pc_checkskill(sd,AL_HEAL) : 10 ) : skill_lv )*8); 
 		if( src->type == BL_HOM && (skill = merc_hom_checkskill(((TBL_HOM*)src), HLIF_BRAIN)) > 0 )
 			hp += hp * skill * 2 / 100;
-			
-		if( skill_id == AB_HIGHNESSHEAL )
-		hp = (hp * (20 + 3 * (skill_lv - 1))) / 10;
+		break;
+	}
+
+	if( skill_id == AB_HIGHNESSHEAL ){
+			hp = (hp * (20 + 3 * (skill_lv - 1))) / 10;}
+
+	if( sc && sc->count )
+	{
+		if( sc->data[SC_CRITICALWOUND] && heal ) // Critical Wound has no effect on offensive heal. [Inkfish]
+			hp -= hp * sc->data[SC_CRITICALWOUND]->val2/100;
+		if( sc->data[SC_INCHEALRATE] && skill_id != NPC_EVILLAND && skill_id != BA_APPLEIDUN )
+			hp += hp * sc->data[SC_INCHEALRATE]->val1/100; // Only affects Heal, Sanctuary and PotionPitcher.(like bHealPower) [Inkfish]
 	}
 
 	hp = hp*(100+skill)/100;
+
 	return hp;
 }
 
