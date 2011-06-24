@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0667 - 24/06/2011 [Protimus]
+	* Modificados leveis máximos para algumas funções de NPCs.
+	- Atualizados para level de base 150.
+
 	r0666 - 24/06/2011 [Protimus]
 	* Corrigido possível warning que causava crash devido ao case de uma habilidade não ser lido corretamente e consequêntemente o restante dos cases.
 	* Modificações em habilidades:
