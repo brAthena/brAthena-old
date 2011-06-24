@@ -8,6 +8,11 @@
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
+	
+	
+	r0668 - 24/06/2011 [Protimus]
+	* Adicionadas mais modificações referentes ao envio anterior.
+	- Para mudanças em quests são necessárias maiores informações.
 
 	r0667 - 24/06/2011 [Protimus]
 	* Modificados leveis máximos para algumas funções de NPCs.
