@@ -4455,8 +4455,6 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 					heal_get_jobexp = 1;
 				pc_gainexp (sd, bl, 0, heal_get_jobexp, false);
 			}
-			if(skillid == NC_REPAIR)
-				pc_delitem(sd,ITEMID_MAGIC_GEAR_FUEL,1,1,0);
 		}
 		break;
 
@@ -4912,11 +4910,6 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case SR_GENTLETOUCH_REVITALIZE:
 		clif_skill_nodamage(src,bl,skillid,skilllv,
 			sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv)));
-
-		if(skillid == NC_ACCELERATION || NC_HOVERING)
-			pc_delitem(sd,ITEMID_MAGIC_GEAR_FUEL,1,1,0);
-
-		break;
 	case SO_STRIKING:
 		{
 			int bonus;
@@ -6065,17 +6058,16 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
 		skill_blown(src,bl,skill_get_blewcount(skillid,skilllv),unit_getdir(bl),0);
 		break;
-
+		
 	case NC_F_SIDESLIDE:
-		clif_skill_nodamage(src,bl,skillid,skilllv,1);
-		skill_blown(src,bl,skill_get_blewcount(skillid,skilllv),unit_getdir(bl),0);
-		pc_delitem(sd,ITEMID_MAGIC_GEAR_FUEL,1,1,0);
-		break;
-
 	case NC_B_SIDESLIDE:
-		clif_skill_nodamage(src,bl,skillid,skilllv,1);
-		skill_blown(src,bl,skill_get_blewcount(skillid,skilllv),abs((unit_getdir(bl) - 8)),0);
-		pc_delitem(sd,ITEMID_MAGIC_GEAR_FUEL,1,1,0);
+		{
+			int dir = (skillid == NC_F_SIDESLIDE) ? (unit_getdir(src)+4)%8 : unit_getdir(src);
+			skill_blown(src,bl,skill_get_blewcount(skillid,skilllv),dir,0x1);
+			clif_slide(src,src->x,src->y);
+			clif_fixpos(src); 
+			clif_skill_nodamage(src,bl,skillid,skilllv,1);
+		}
 		break;
 
 	case NC_SELFDESTRUCTION:
@@ -6089,7 +6081,6 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		clif_skill_damage(src, bl, tick, status_get_amotion(src), 0, -30000, 1, skillid, skilllv, 6);
 		clif_skill_nodamage(src, bl, skillid, skilllv,
 			sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv)));
-			pc_delitem(sd,ITEMID_MAGIC_GEAR_FUEL,1,1,0);
 		if( sd ) pc_overheat(sd,1);
 		break;
 
@@ -6112,7 +6103,6 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		{
 			map_foreachinrange(skill_area_sub,src,skill_get_splash(skillid,skilllv),splash_target(src),src,skillid,skilllv,tick,flag|BCT_ENEMY|SD_SPLASH|1,skill_castend_damage_id);;
 			clif_skill_damage(src,src,tick,status_get_amotion(src),0,-30000,1,skillid,skilllv,6);
-			pc_delitem(sd,ITEMID_MAGIC_GEAR_FUEL,3,1,0);
 			pc_overheat(sd,1);
 		}
 		clif_skill_nodamage(src,src,skillid,skilllv,i);
@@ -11915,85 +11905,6 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 			clif_skill_fail(sd,skill,0x17,0,0);
 			return 0;
 		}
-		break;
-	case NC_REPAIR:
-		if( !pc_search_inventory(sd,ITEMID_REPAIR_KIT) || !pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_MAGIC_GEAR_FUEL) )
-			{
-			clif_skill_fail(sd,skill,0,0,0);
-			return 0;
-			}
-		break;
-	case NC_ACCELERATION:
-		if( !pc_search_inventory(sd,ITEMID_ACCELERATOR) || !pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_MAGIC_GEAR_FUEL) )
-			{
-			clif_skill_fail(sd,skill,0,0,0);
-			return 0;
-			}
-		break;
-	case NC_F_SIDESLIDE:
-	case NC_B_SIDESLIDE:
-	case NC_ANALYZE:
-		if( !pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_MAGIC_GEAR_FUEL) )
-			{
-			clif_skill_fail(sd,skill,0,0,0);
-			return 0;
-			}
-		break;
-	case NC_PILEBUNKER:
-		if( !pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_PILE_BUNKER) )
-			{
-			clif_skill_fail(sd,skill,0,0,0);
-			return 0;
-			}
-		break;
-	case NC_FLAMELAUNCHER:
-		if( !pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_FLAME_THROWER ) )
-			{
-			clif_skill_fail(sd,skill,0,0,0);
-			return 0;
-			}
-		break;
-	case NC_COLDSLOWER:
-		if( !pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_MAGIC_GEAR_FUEL )|| !pc_search_inventory(sd, ITEMID_LIQUID_CONDENSED_BULLET ) )
-			{
-			clif_skill_fail(sd,skill,0,0,0);
-			return 0;
-			}
-		break;
-	case NC_ARMSCANNON:
-		if( !pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_MAGIC_GEAR_FUEL ) )
-			{
-			clif_skill_fail(sd,skill,0,0,0);
-			return 0;
-			}
-		break;
-	case NC_EMERGENCYCOOL:
-		if( !pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_COOLING_DEVICE ) )
-			{
-			clif_skill_fail(sd,skill,0,0,0);
-			return 0;
-			}
-		break;
-	case NC_SELFDESTRUCTION:
-		if( !pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_SUICIDAL_DEVICE ) )
-			{
-			clif_skill_fail(sd,skill,0,0,0);
-			return 0;
-			}
-		break;
-	case NC_MAGNETICFIELD:
-		if( !pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_MAGNETIC_FIELD_GENERATOR || pc_search_inventory(sd, ITEMID_MAGIC_GEAR_FUEL ) < 3 ) )
-			{
-			clif_skill_fail(sd,skill,0,0,0);
-			return 0;
-			}
-		break;
-	case NC_HOVERING:
-		if( !pc_isriding(sd,OPTION_MADO)  || !pc_search_inventory(sd, ITEMID_HOVERING_BOOSTER || !pc_search_inventory(sd, ITEMID_MAGIC_GEAR_FUEL ) ) )
-			{
-			clif_skill_fail(sd,skill,0,0,0);
-			return 0;
-			}
 		break;
 	case LG_BANDING:
 	case LG_PRESTIGE:

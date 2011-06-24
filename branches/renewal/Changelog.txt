@@ -9,6 +9,24 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0666 - 24/06/2011 [Protimus]
+	* Corrigido possível warning que causava crash devido ao case de uma habilidade não ser lido corretamente e consequêntemente o restante dos cases.
+	* Modificações em habilidades:
+	- NC_ACCELERATION (Aceleração): Removidas checagens desnecessárias para consumo de itens.
+	- NC_F_SIDESLIDE (Propulsão Dianteira): Removidas checagens desnecessárias para consumo de itens e melhorado o código de posição de unit.
+	- NC_B_SIDESLIDE (Propulsão Traseira): Removidas checagens desnecessárias para consumo de itens e melhorado o código de posição de unit.
+	- NC_ANALYZE: Removidas checagens desnecessárias para consumo de itens.
+	- NC_MAGNETICFIELD: Removidas checagens desnecessárias para consumo de itens.
+	- NC_REPAIR: Removidas checagens desnecessárias para consumo de de itens e estar montado em um robô.
+	- NC_PILEBUNKER: Removidas checagens desnecessárias para consumo de itens e estar montado em um robô.
+	- NC_FLAMELAUNCHER: Removidas checagens desnecessárias para consumo de e estar montado em um robô.
+	- NC_COLDSLOWER: Removidas checagens desnecessárias para consumo de itens e estar montado em um robô.
+	- NC_ARMSCANNON: Removidas checagens desnecessárias para consumo de itens e estar montado em um robô.
+	- NC_EMERGENCYCOOL: Removidas checagens desnecessárias para consumo de itens e estar montado em um robô.
+	- NC_SELFDESTRUCTION: Removidas checagens desnecessárias para consumo de itens e estar montado em um robô.
+	- NC_MAGNETICFIELD: Removidas checagens desnecessárias para consumo de itens e estar montado em um robô.
+	- NC_HOVERING: Removidas checagens desnecessárias para consumo de itens e estar montado em um robô.
+	
 	r0665 - 21/06/2011 [Mark]
 	* Correção na habilidade Análise Elemental:
 	- Não estava sendo efetuada.
