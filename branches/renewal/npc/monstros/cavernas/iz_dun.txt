@@ -125,8 +125,8 @@ iz_dun04,130,216,15,15	monster	Tritão	1264,3,160000,0,0
 //==================================================
 // iz_dun05 - Túnel Submarino - 6° Andar
 //==================================================
-iz_dun05,0,0,0,0	monster	Rei Dramoh	2198,10,0,0,0
-iz_dun05,0,0,0,0	monster	Sropho	2201,50,0,0,0
-iz_dun05,0,0,0,0	monster	Pote de Dofle	2203,30,0,0,0
-iz_dun05,0,0,0,0	monster	Sedora	2204,50,0,0,0
-iz_dun05,0,0,0,0	boss_monster	Kraken	2202,1,7200000,600000,1
+//iz_dun05,0,0,0,0	monster	Rei Dramoh	2198,10,0,0,0
+//iz_dun05,0,0,0,0	monster	Sropho	2201,50,0,0,0
+//iz_dun05,0,0,0,0	monster	Pote de Dofle	2203,30,0,0,0
+//iz_dun05,0,0,0,0	monster	Sedora	2204,50,0,0,0
+//iz_dun05,0,0,0,0	boss_monster	Kraken	2202,1,7200000,600000,1
