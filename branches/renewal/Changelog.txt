@@ -8,6 +8,13 @@
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
+
+
+	r0671 - 27/06/2011 [Protimus]
+	* Adicionados bônus de bMatk de cada refinamento para armas de níveis diferentes.
+	- Level da Arma - Bônus: 1-2; 2-3; 3-5; 4-7
+	- Ainda falta terminar todos os itens, apenas alguns foram adicionados.
+
 	r0670 - 27/06/2011 [cleyton]
 	* Mobs desativados:
 	- Desativados mobs do mapa iz_dun05. Os sprites ainda não estão liberados.Testei com kro e renewal atualizados.
