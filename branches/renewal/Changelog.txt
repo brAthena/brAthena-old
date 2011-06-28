@@ -9,6 +9,10 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0676 - 28/06/2011 [Dani]
+	* Merge da trunk com Renewal
+	- Merge visando a revisão de certas coisas durante o processo, então algumas mudanças foram feitas em ambas as branchs
+
 	r0675 - 28/06/2011 [Protimus]
 	* Atualizadas fórmulas das habilidades do Cavaleiro Rúnico:
 	- RK_PHANTOMTHRUST (Arpão).

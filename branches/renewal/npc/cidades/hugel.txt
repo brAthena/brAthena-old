@@ -12,12 +12,13 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.7/1.0                                |
+// | Versões eA/brA: 1.7/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: NPCs da Cidade de Hugel                     |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
+// | 1.1 Script Otimizado [Architect]                       |
 // \________________________________________________________/
 
 // Hugel
@@ -158,25 +159,23 @@ hu_in01,23,311,4	script	Loja de Suprimentos	898,{
 	mes "Providenciaremos 5 pra você";
 	mes "por 500 zenys.";
 	next;
-	switch (select("Comprar:Cancelar")) {
-		case 1:
-			if (Zeny < 500) {
-				mes "[Vendedor]";
-				mes "Sinto muito, você não tem";
-				mes "dinheiro suficiente.";
-				close;
-			}
-			set Zeny,Zeny-500;
-			getitem 12018,5;	// Fire_Cracker
+	if (select("Comprar:Cancelar") == 1) {
+		if (Zeny < 500) {
 			mes "[Vendedor]";
-			mes "Aqui está!";
-			mes "Divirta-se com eles!";
+			mes "Sinto muito, você não tem";
+			mes "dinheiro suficiente.";
 			close;
-		case 2:
-			mes "[Vendedor]";
-			mes "Obrigado e volte novamente!";
-			close;
+		}
+		set Zeny,Zeny-500;
+		getitem 12018,5;	// Fire_Cracker
+		mes "[Vendedor]";
+		mes "Aqui está!";
+		mes "Divirta-se com eles!";
+		close;
 	}
+	mes "[Vendedor]";
+	mes "Obrigado e volte novamente!";
+	close;
 }
 
 hu_in01,18,94,0	script	Meio expediente#1	49,{

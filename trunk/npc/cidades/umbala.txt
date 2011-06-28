@@ -18,7 +18,8 @@
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
-// | 1.1 Correção no nome das classes (Bertan) [Architect]	|
+// | 1.1 Remoção de um 'close' desnecessário e correção dos |
+// |     nomes das classes no NPC 'Bertan#um' [Architect]   |
 // \________________________________________________________/
 
 comodo,170,137,7	script	La Ed#um	84,{
@@ -1029,3 +1030,4 @@ OnTouch:
 	warp "umbala",145,166;
 	end;
 }
+

@@ -18,7 +18,7 @@
 // | Sells candy, candy cane and well baked cookie.         |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
+// | 1.0 Script Traduzido [Wolf]                            |
 // | - Anotações		   			   						|
 // \________________________________________________________/
 
@@ -29,53 +29,53 @@ alberta,188,64,4	script	Sugar	91,{
 	set @maplePrice,0;
 	set @maplePriceT,0;
 	mes "[Sugar]";
-	mes "Welcome!";
-	mes "How delicious are sweets?";
-	mes "My teacher.........";
-	mes "The sweets craftsman of ARUBERUTA";
-	mes "There are sweets that is built hard.";
+	mes "Bem-vindo!";
+	mes "Como são deliciosos os doces, não?";
+	mes "Meu professor.........";
+	mes "o doceiro de ARUBERUTA";
+	mes "Há doces difíceis de serem feitos.";
 	next;
 	mes "[Sugar]";
-	mes "It was given by the darling person.";
-	mes "In return of the present ....";
-	mes "heartfelt like";
-	mes "the sweetness of the present some how.";
+	mes "Isso foi dado a uma pessoa querida.";
+	mes "Em troca do presente ....";
+	mes "sincero como a doçura";
+	mes "de alguns presentes.";
 	next;
-	menu "Please give me!",-,"I don't need it.",M_END,"The teacher.",M_L1;
+	menu "Por favor me dê!!",-,"Eu não preciso disso.",M_END,"O professor.",M_L1;
 
 	mes "[Sugar]";
-	mes "Yes!";
-	mes "Select from menu here.";
-	mes "Since there is a limitation in numbers";
-	mes "Not more than ^ff0000 5 pieces^000000.";
-	mes "are allowed to carry out?";
+	mes "Sim!";
+	mes "Selecione no menu abaixo.";
+	mes "Uma vez que existe uma limitação,";
+	mes "não escola mais do que ^ff0000 5 pedaços^000000.";
+	mes "Qual vai querer?";
 	next;
-	menu "Candy",-,"Candy Cane",L0_2,"Well baked cookie",L0_3;
+	menu "Bala",-,"Bengala Doce",L0_2,"Biscoito de Gengibre",L0_3;
 
 	set @maplePrice,3000;
 	set @mapleItemID,529;
 	mes "[Sugar]";
-	mes "It is a candy, and the price is";
-	mes "3000 Zeny each.";
-	mes "How many do you like to purchase?";
+	mes "O preço é de";
+	mes "3000 Zeny cada um.";
+	mes "Quantos você deseja comprar?";
 	next;
 	goto L_INPUT;
 L0_2:
 	set @maplePrice,4000;
 	set @mapleItemID,530;
 	mes "[Sugar]";
-	mes "It is a candy cane, and the price is";
-	mes "4000 Zeny each.";
-	mes "How many do you like to purchase?";
+	mes "Essa é a bengala doce, e o preço é de";
+	mes "4000 Zeny cada uma.";
+	mes "Quantos você deseja comprar?";
 	next;
 	goto L_INPUT;
 L0_3:
 	set @maplePrice,2000;
 	set @mapleItemID,538; 
 	mes "[Sugar]";
-	mes "It is a well baked cookie, and the price is";
-	mes "2000 Zeny each.";
-	mes "How many do you like to purchase?";
+	mes "Esse é o biscoito de gengibre, e o preço é de";
+	mes "2000 Zeny cada uma.";
+	mes "Quantos você deseja comprar?";
 	next;
 
 L_INPUT:
@@ -87,51 +87,51 @@ L_INPUT:
 	set Zeny,Zeny- @maplePriceT;
 	getitem @mapleItemID,@maplenum;
 	mes "[Sugar]";
-	mes "Thank you!!!";
-	mes "These sweets are really delicious.";
-	mes "Since my teacher of sweet is the No.1 teacher's in world!";
-	mes "Although you may eat by yourself";
-	mes "don't eat so much or you'll grow fat.";
-	mes "Please take care!!!";
+	mes "Obrigado!!!";
+	mes "Estes doces são realmente deliciosos.";
+	mes "Uma vez que meu professor de doces é o Nº 1 do mundo!";
+	mes "Embora você possa comer sozinho";
+	mes "não coma muito ou ficará gordo.";
+	mes "Por favor, tome cuidado!!!";
 	close;
 
 M_L1:
 	mes "[Sugar]";
-	mes "Yes";
-	mes "The teacher of mine";
-	mes "is Mr. Kuberu, a sweets craftsman.";
-	mes "Making sweets under two persons.";
-	mes "which is allowed to self-train.";
+	mes "Sim";
+	mes "O meu professor é";
+	mes "o Sr. Kuberu, um doceiro.";
+	mes "Ele cria doce com mais duas pessoas.";
+	mes "que estão lá para aprender.";
 	next;
 	mes "[Sugar]";
 	mes "Although selling is seemingly to carried out ....";
-	mes "Where he is now?";
-	mes "Which I don't know.";
+	mes "Onde ele está agora?";
+	mes "Eu não sei.";
 	close;
 
 L_ERROR:
 	mes "[Sugar]";
 	mes "???";
-	mes "You seem to have a failure on hearing.";
-	mes "I will tell you once again?";
-	mes "You can only purchase";
-	mes "^ff0000 5 pieces^000000 at once.";
+	mes "Você só pode ser surdo.";
+	mes "Vou te dizer mais uma vez!";
+	mes "você só pode comprar";
+	mes "^ff0000 5 pedaços^000000 de cada vez.";
 	next;
 	goto L_INPUT;
 
 L_ERROR2:
 	mes "[Sugar]";
 	mes "???";
-	mes "Hmmm it seems you don't have enough money";
-	mes "to make that purchase.";
-	mes "I will ask you to check your money first.";
+	mes "Hmmm me parece que você não tem dinheiro";
+	mes "o suficiente para fazer a compra.";
+	mes "Veja novamente se você tem dinheiro.";
 	close;
 
 M_END:
 	mes "[Sugar]";
-	mes "Really .... You might regret it..";
-	mes "If you change your mind.";
-	mes "I am just here ok.";
-	mes "Have a nice day!";
+	mes "Realmente .... Você pode recusar..";
+	mes "Se você mudar de idéia,";
+	mes "eu estarei aqui.";
+	mes "Tenha um bom dia!";
 	close;
 }

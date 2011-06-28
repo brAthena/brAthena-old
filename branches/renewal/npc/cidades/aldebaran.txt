@@ -19,8 +19,7 @@
 // | Changelog:                                            |
 // | 1.0 Script Traduzido [Dani]                           |
 // | 1.1 Script Revisado [Dani]                            |
-// | 1.2 Substituição de 'switch' descenessários (2 cases) |
-// |     por 'if'[Architect]                               |
+// | 1.2 Script Otimizado [Architect]                      |
 // \_______________________________________________________/
 
 // Al De Baran

@@ -8,20 +8,22 @@
 // |							    						|
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Brasilis Warp Script		    		|
+// | Nome do Script: Portais de Brasilis                    |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0				    			|
+// | Versões eA/brA: 1.0/1.1				    			|
 // |--------------------------------------------------------|
 // | Descrição: Portais de Brasilis.		    			|
 // |--------------------------------------------------------|
 // | Changelog:						    					|
-// | 1.0 Modificação [Autor]				   				|
+// | 1.0 Script Traduzido [Lord]                            |
+// | 1.1 Script Revisado [insidemybrain]                    |
 // | - Anotações					    					|
 // \________________________________________________________/
 
 brasilis,308,336,0	warp	brasilis_bra_fild01	1,1,bra_fild01,74,34
+bra_fild01,72,34,0	warp	bra_fild01_brasilis	1,1,brasilis,309,334
 brasilis,146,162,0	warp	brasilis_bra_in01	1,1,bra_in01,17,137
 bra_in01,17,134,0	warp	bra_in01_brasilis	1,1,brasilis,148,161
 bra_in01,50,145,0	warp	bra_in01_bra_in01#2	1,1,bra_in01,81,143

@@ -19,7 +19,7 @@
 // | Changelog:                                            |
 // | 1.0 Script Traduzido [Dani]                           |
 // | 1.1 Script Revisado [Dani]                            |
-// | 1.2 Otimização [Architect]                            |
+// | 1.2 Script Otimizado [Architect]                      |
 // \_______________________________________________________/
 
 alberta,97,51,0	script	Fabian	84,{
@@ -71,11 +71,11 @@ alberta,131,139,2	script	Velho Bêbado	54,{
 	mes "O que... O que está";
 	mes "olhando? Desaparece!!";
 	next;
-	if (select("Nada.","Irei lhe deixar em paz.") == 1) {
+	if (select("Nada.:Irei lhe deixar em paz.") == 1) {
 		mes "[Deagle]";
 		mes "Hahahahaha ^666666*hiccup*^000000... Você ficou nervoso. Sou meio inútil olhando agora, mas eu costumava ser um marinheiro no Navio Pirata.";
 		next;
-		if (select("Nunca ouvi falar disso.","Sério? Não brinca!") == 1) {
+		if (select("Nunca ouvi falar disso.:Sério? Não brinca!") == 1) {
 			mes "[Deagle]";
 			mes "Nunca ouviu falar?! Todos já ouviram falar do Grandioso Navio Pirata! ^666666*Hiccup~*^000000";
 			next;
@@ -202,7 +202,7 @@ alberta,189,151,5	script	Fisk	100,{
 	mes "E aí colega!";
 	mes "Onde você quer ir?";
 	next;
-	switch(select("Navio Fantasma -> 250 zeny.","Marina de Izlude -> 500 zeny.","Não quero...")) {
+	switch(select("Navio Fantasma -> 250 zeny.:Marina de Izlude -> 500 zeny.:Não quero...")) {
 		case 1:
 			if (Zeny < 250) {
 				mes "[Fisk]";
@@ -234,7 +234,7 @@ alb2trea,39,50,6	script	Fisk#a2t	100,{
 	mes "[Fisk]";
 	mes "Então você quer voltar para o continente em Alberta, né?";
 	next;
-	if(select("Sim, por favor.","Eu mudei de idéia.") == 1)
+	if(select("Sim, por favor.:Eu mudei de idéia.") == 1)
 		warp "alberta",192,169;
 	close;
 }
@@ -255,7 +255,7 @@ alberta,195,151,2	script	Paul	86,{
 	mes "Então, deseja inscrever-se?";
 	mes "A taxa de admissão é de apenas 200 Zeny.";
 	next;
-	if (select("Inscreva-me!!","Huh... Não obrigado!") == 1) {
+	if (select("Inscreva-me!!:Huh... Não obrigado!") == 1) {
 		if (Zeny < 200) {
 			mes "[Paul]";
 			mes "Parece que você não tem o dinheiro, mas por favor, volte quando for capaz de pagar.";
@@ -296,7 +296,7 @@ alberta,190,173,4	script	Phelix	85,{
 	} else {
 		mes "Hmm... você quer trocar Jellopys por Poção Vermelha ou por Cenouras? Bom, decida-se.";
 		next;
-		if (select("Poção Vermelha.","Cenouras.") == 1) {
+		if (select("Poção Vermelha.:Cenouras.") == 1) {
 			mes "[Phelix]";
 			mes "Bem...";
 			mes "deixe me ver...";
@@ -312,7 +312,7 @@ alberta,190,173,4	script	Phelix	85,{
 				mes "Hmm, nada mal.";
 				mes "Quantas poções você vai querer?";
 				next;
-				switch(select("Quantas você puder trocar","Quero esta quantidade.","Esquece, amo meus Jellopys")) {
+				switch(select("Quantas você puder trocar:Quero esta quantidade.:Esquece, amo meus Jellopys")) {
 				case 1:
 					delitem 909,.@max*10;	// Jellopy
 					getitem 501,.@max;	// Poção Vermelha
@@ -366,7 +366,7 @@ alberta,190,173,4	script	Phelix	85,{
 			mes "Nada mal...";
 			mes "Quantos você quer?";
 			next;
-			switch(select("Quantos puder, por favor","Quero esta quantidade","Esquece, amo meus Jellopys.")) {
+			switch(select("Quantos puder, por favor:Quero esta quantidade:Esquece, amo meus Jellopys.")) {
 			case 1:
 				delitem 909,.@max*3;	// Jellopy
 				getitem 515,.@max;	// Cenoura

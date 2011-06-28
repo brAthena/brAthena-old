@@ -8,16 +8,17 @@
 // |							    						|
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: God Seal Quest Warps		    		|
+// | Nome do Script: Portais da Quest Selo dos Deuses       |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0				    			|
+// | Versões eA/brA: 1.0/1.1				    			|
 // |--------------------------------------------------------|
-// | Descrição: Portais da Quest Selo dos deuses.	    	|
+// | Descrição: Portais da Quest Selo dos Deuses.	    	|
 // |--------------------------------------------------------|
 // | Changelog:						    					|
-// | 1.0 Modificação [Autor]				   				|
+// | 1.0 Script Traduzido [Lord]                            |
+// | 1.1 Script Revisado [insidemybrain]                    |
 // | - Anotações					    					|
 // \________________________________________________________/
 

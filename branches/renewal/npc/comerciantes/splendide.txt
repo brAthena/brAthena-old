@@ -8,117 +8,76 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Splendide Merchant						|
+// | Nome do Script: Mercador de Splendide					|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.1/1.0                                |
+// | Versões eA/brA: 1.1/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição:	Splendide coin redemption NPC.				|
+// | Descrição:	NPC de troca das Moedas de Splendide.		|
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]		                        |
-// | - Anotações		   			    					| 
+// | 1.0 Script Traduzido [Mark]	                        |
+// | 1.1 Script Otimizado [Mark]	                        |
+// | - Adição da Label S_BuySpl		    					| 
 // \________________________________________________________/
 
-spl_in01,110,326,5	script	Merchant of Splendide	439,{
+spl_in01,110,326,5	script	Mercador de Splendide	439,{
 	if ((isequipped(2782) == 1) && (ep13_2_rhea == 100)) {
 		if (checkweight(1201,1) == 0) {
-			mes "[Merchant of Splendide]";
-			mes "It looks like you're carrying too many things.";
-			mes "Why not put some of your items in storage and come back?";
+			mes "[Mercador de Splendide]";
+			mes "Está parecendo que você está carregando muitos itens.";
+			mes "Por que você não coloca algumas coisas no Armazém e volta?";
 			close;
 		}
-		mes "[Merchant of Splendide]";
-		mes "Hello.";
-		mes "What are you looking for?";
+		mes "[Mercador de Splendide]";
+		mes "Olá.";
+		mes "O que você está procurando?";
 		next;
-		switch(select("View item description:Buy Pinguicula's fruit Jam:Buy Luciola's Honey Jam:Buy Cornus' Tears:Do nothing")) {
+		switch(select("Ver descrição dos itens:Comprar Geléia de Frutas de Pinguicula:Comprar Geléia de Mel de Vagalume:Comprar Lágrimas de Cornus:Nada")) {
 		case 1:
-			mes "[Merchant of Splendide]";
-			mes "Would you like to see the item description?";
+			mes "[Mercador de Splendide]";
+			mes "Você gostaria de ver as descrições dos itens?";
 			close2;
 			ReadBook 11018,1;
 			end;
-		case 2:
-			mes "[Merchant of Splendide]";
-			mes "I can sell you 3 Pinguicula's fruit Jam for^3131FF 1 coin^000000";
-			next;
-			switch(select("Purchase:Do not purchase.")) {
-			case 1:
-				if (countitem(6081) > 0) {
-					mes "[Merchant of Splendide]";
-					mes "Thank you for coming.";
-					delitem 6081,1; //Splendide_Coin
-					getitem 12344,3; //Pinguicula's_fruit_Jam
-					close;
-				}
-				else {
-					mes "[Merchant of Splendide]";
-					mes "You don't have enough coins.";
-					close;
-				}
-			case 2:
-				mes "[Merchant of Splendide]";
-				mes "Come again if you change your mind.";
-				close;
-			}
-		case 3:
-			mes "[Merchant of Splendide]";
-			mes "I can sell you 3 Luciola's Honey Jam for^3131FF 1 coin^000000";
-			next;
-			switch(select("Purchase:Do not purchase.")) {
-			case 1:
-				if (countitem(6081) > 0) {
-					mes "[Merchant of Splendide]";
-					mes "Thank you for coming.";
-					delitem 6081,1; //Splendide_Coin
-					getitem 12345,3; //Luciola's_Honey_Jam
-					close;
-				}
-				else {
-					mes "[Merchant of Splendide]";
-					mes "You don't have enough coins.";
-					close;
-				}
-			case 2:
-				mes "[Merchant of Splendide]";
-				mes "Come again if you change your mind.";
-				close;
-			}
-		case 4:
-			mes "[Merchant of Splendide]";
-			mes "I can sell you 3 Cornus' Tears for^3131FF 1 coin^000000";
-			next;
-			switch(select("Purchase:Do not purchase.")) {
-			case 1:
-				if (countitem(6081) > 0) {
-					mes "[Merchant of Splendide]";
-					mes "Thank you for coming.";
-					delitem 6081,1; //Splendide_Coin
-					getitem 12349,3; //Cornus'_Tears
-					close;
-				}
-				else {
-					mes "[Merchant of Splendide]";
-					mes "You don't have enough coins.";
-					close;
-				}
-			case 2:
-				mes "[Merchant of Splendide]";
-				mes "Come again if you change your mind.";
-				close;
-			}
+		case 2: callsub S_BuySpl,12344; break;
+		case 3: callsub S_BuySpl,12345; break;
+		case 4: callsub S_BuySpl,12349; break;
 		case 5:
-			mes "[Merchant of Splendide]";
-			mes "Come again if you change your mind.";
+			mes "[Mercador de Splendide]";
+			mes "Volte novamente se mudar de idéia.";
 			close;
 		}
 	}
 	else {
-		mes "[Merchant of Splendide]";
+		mes "[Mercador de Splendide]";
 		mes "BurWehAla";
 		mes "tasnarAndu Ie Ru";
 		close;
 	}
+			
+S_BuySpl:			
+	mes "[Mercador de Splendide]";
+	mes "Eu posso lhe vender 3 "+getitemname(getarg(0))+" por^3131FF 1 moeda^000000";		
+	next;
+	if(select("Comprar.:Não Comprar.") == 1) {
+		if (countitem(6081) > 0) {
+			mes "[Mercador de Splendide]";
+			mes "Obrigado pela negociação.";
+			delitem 6081,1; //Splendide_Coin
+			getitem getarg(0),3;
+			close;
+		}
+		else {
+			mes "[Mercador de Splendide]";
+			mes "Você não possui moedas o suficiente.";
+			close;
+		}
+	} else {
+		mes "[Mercador de Splendide]";
+		mes "Volte novamente se mudar de idéia.";
+		close;
+	}
 }
+	

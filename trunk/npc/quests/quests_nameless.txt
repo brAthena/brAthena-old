@@ -42,7 +42,7 @@
 // | - Variable in use: rumour_nd (Max: 22                  |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
-// | 1.0 Script Traduzido[Avassalador]                      |
+// | 1.0 Script Traduzido [Avassalador]                     |
 // | - Anotações                                            |
 // \________________________________________________________/
 

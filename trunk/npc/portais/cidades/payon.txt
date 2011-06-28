@@ -22,7 +22,7 @@
 // | - Anotações					    					|
 // \________________________________________________________/
 
-// == Portais Oficiais das ScreenShots do Kro ==
+// == Portais Oficiais baseados em ScreenShots do kRO ==
 
 //= Entrada/Saída
 payon,16,142,0	warp	payonwarp001	1,1,pay_gld,370,149
@@ -71,7 +71,7 @@ payon_in03,99,148,0	warp	payonwarp035	2,2,payon_in03,99,130
 payon_in03,107,124,0	warp	payonwarp036	2,2,payon_in03,117,124
 payon_in03,114,124,0	warp	payonwarp037	2,2,payon_in03,104,124
 
-//= Cronstrução de Armazenamento de Arma
+//= Construção de Armazenamento de Arma
 payon,189,233,0	warp	payonwarp038	2,2,payon_in03,149,39
 payon_in03,146,39,0	warp	payonwarp039	2,2,payon,186,233
 payon_in03,158,32,0	warp	payonwarp040	2,2,payon_in03,130,14

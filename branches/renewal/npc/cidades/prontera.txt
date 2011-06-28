@@ -12,12 +12,13 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 2.1/1.0                                |
+// | Versões eA/brA: 2.1/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: NPCs da Cidade de Prontera                  |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
+// | 1.1 Script Otimizado [Architect]	                    |
 // \________________________________________________________/
 
 // Prontera
@@ -427,7 +428,6 @@ prt_in,177,20,2	script	TenSue#pront	97,{
 		mes "[TenSue]";
 		mes "Eu não sei mesmo se você não gosta de receber ordens, mas se esse for o caso, por que você não faz seu próprio clã?";
 		close;
-
 	case 2:
 		mes "[TenSue]";
 		mes "Uma vez  eu andei todo o caminho para Al de Baran, em vez de tomar um portal . Foi muito perigoso com todos aqueles monstros!";
@@ -444,7 +444,7 @@ prt_in,177,20,2	script	TenSue#pront	97,{
 		mes "[TenSue]";
 		mes "A sede Corporação  da Kafra  também está localizada em Al de Baran. Você realmente deve parar para checar tudo.";
 		close;
-	Default:
+	default:
 		mes "[TenSue]";
 		mes "O reino de";
 		mes "Rune-Midgarts é governado ";
@@ -473,10 +473,7 @@ prt_in,177,18,2	script	Marvin#pront	80,{
 	mes "Seja  um membro do sexo oposto, ou lutador contra monstros, o que  eu tenho que dizer, é tudo sobre ^333399habilidades^000000.";
 	next;
 	mes "[Marvin]";
-	if (sex)
-		mes "Eu não posso te ajudar muito quando se trata  de falar com mulheres atraentes, como eu, mas Posso dizer-lhe competências um pouco mais sobre o que pode te  ajudar na batalha.";
-	else
-		mes "Eu realmente não tenho nenhum conselho para as competências quando se trata de falar com um rapaz bonito, mas eu posso deixá-lo em relação ao que eu sei sobre as habilidades que ajudam em uma batalha.";
+	mes (Sex ? "Eu não posso te ajudar muito quando se trata  de falar com mulheres atraentes, como eu, mas Posso dizer-lhe competências um pouco mais sobre o que pode te  ajudar na batalha.":"Eu realmente não tenho nenhum conselho para as competências quando se trata de falar com um rapaz bonito, mas eu posso deixá-lo em relação ao que eu sei sobre as habilidades que ajudam em uma batalha.");
 	next;
 	mes "[Marvin]";
 	mes "Para a maioria das habilidades, o nível máximo é o nível 10. É fácil de compreender , pois tem tantos pontos para dominar completamente uma habilidade. Que habilidades você deve escolher?!";

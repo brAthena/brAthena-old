@@ -19,7 +19,7 @@
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [Dynasty]                         |
 // | 1.1 Script Revisado [Tyler & insidemybrain]            |
-// | 1.2 Otimizações no npc [Wolf]                          |
+// | 1.2 Script Otimizado [Wolf]                            |
 // \_______________________________________________________/
 
 valkyrie,48,86,4	script	Valquíria#	811,{
@@ -149,20 +149,27 @@ valkyrie,48,86,4	script	Valquíria#	811,{
 			mes "E rezo para que a nova vida que a deusa Skuld lhe concedeu seja ainda mais honrosa do que foi a sua passada.";
 			close2;
 			switch (ADVJOB) {
-				case 4008:
-				case 4015: warp "izlude",94,103; break;
-				case 4009:
-				case 4016: warp "prontera",273,354; break;
-				case 4010:
-				case 4017: warp "geffen",120,60; break;
-				case 4011:
-				case 4019: warp "alberta",116,57; break;
-				case 4012:
-				case 4020:
-				case 4021: warp "payon",69,100; break;
-				case 4013:
-				case 4018: warp "morocc",154,50; break;
-				default: warp "yuno_in02",93,205; break;
+			case 4008:
+			case 4015:
+				warp "izlude",94,103; break;
+			case 4009:
+			case 4016:
+				warp "prontera",273,354; break;
+			case 4010:
+			case 4017:
+				warp "geffen",120,60; break;
+			case 4011:
+			case 4019:
+				warp "alberta",116,57; break;
+			case 4012:
+			case 4020:
+			case 4021:
+				warp "payon",69,100; break;
+			case 4013:
+			case 4018:
+				warp "morocc",154,50; break;
+			default:
+				warp "yuno_in02",93,205; break;
 			}
 			end;
 		}

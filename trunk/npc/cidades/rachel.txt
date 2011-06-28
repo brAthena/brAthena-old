@@ -685,3 +685,4 @@ airplane,238,54,7	script	Aventureiro	59,{
 	mes "e oferecer a minha ajuda. Hummm, melhor não.";
 	close;
 }
+

@@ -12,12 +12,13 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.1/1.0                                |
+// | Versões eA/brA: 1.1/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: NPCs da Cidade de Splendide                 |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
+// | 1.1 Script Otimizado [Architect]                       |
 // \________________________________________________________/
 
 // cat_enhance
@@ -490,8 +491,7 @@ spl_in01,172,225,3	script	Wandering Poet#ep13	51,{
 	mes "[Poeta Nell]";
 	mes "Então, você quer me ouvir tocar?";
 	next;
-	switch(select("Claro.:Não, obrigado.")) {
-	case 1:
+	if (select("Claro.:Não, obrigado.") == 1) {
 		mes "[Poeta Nell]";
 		mes "Que música você quer??";
 		next;
@@ -548,8 +548,7 @@ spl_in01,172,225,3	script	Wandering Poet#ep13	51,{
 			mes "^4d4dff O usuário para sempre será amaldiçoado com o ciúme de Rocky."				;
 			break;
 		}
-		break;
-	case 2:
+	} else {
 		cutin "god_nelluad03",2;
 		mes "[Poeta Nell]";
 		mes "Por que não?";
@@ -568,7 +567,6 @@ spl_in01,172,225,3	script	Wandering Poet#ep13	51,{
 		next;
 		cutin "god_nelluad01",255;
 		mes "- Nell parece envergonhado, e começa a tocar uma música complicada -";
-		break;
 	}
 	close2;
 	cutin "god_nelluad01",255;

@@ -12,13 +12,14 @@
 // |--------------------------------------------------------|
 // | Criado por: eAthena Dev. Team                          |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 3.0/1.1                                |
+// | Versões eA/brA: 3.0/1.2                                |
 // |--------------------------------------------------------|
 // | Descrição: Quest para mudança Transclasse.             |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [Dynasty]                         |
 // | 1.1 Script Revisado [Tyler & insidemybrain]            |
+// | 1.2 Script Otimizado [Wolf]                            |
 // \_______________________________________________________/
 
 valkyrie,48,86,4	script	Valquíria#	811,{
@@ -34,8 +35,7 @@ valkyrie,48,86,4	script	Valquíria#	811,{
 		mes "por aqui.";
 		mes "Honra aos guerreiros!";
 		close;
-	}
-	else if (Baselevel > 98 && JobLevel > 49 && Class >= Job_Knight && Class <= Job_Crusader2) {
+	} else if (Baselevel > 98 && JobLevel > 49 && Class >= Job_Knight && Class <= Job_Crusader2) {
 		mes "[Valquíria]";
 		mes "Bem-vindo";
 		mes "ao Valhalla,";
@@ -65,8 +65,7 @@ valkyrie,48,86,4	script	Valquíria#	811,{
 			close2;
 			warp "yuno_in02",93,205;
 			end;
-		}
-		else {
+		} else {
 			mes "[Valquíria]";
 			mes "Vejo que você já se";
 			mes "livrou de todas";
@@ -76,8 +75,8 @@ valkyrie,48,86,4	script	Valquíria#	811,{
 			mes "[Valquíria]";
 			mes "Esta foi uma sábia atitude para alguém como você. A Honra vem quando abandonamos todos os desejos pessoais para o bem da humanidade.";
 			next;
+			mes "[Valquíria]";
 			if (SkillPoint) {
-				mes "[Valquíria]";
 				mes "Hmm... Sinto que você possui";
 				mes "alguns pontos remanescentes,";
 				mes "negócios penhorados ou";
@@ -87,7 +86,6 @@ valkyrie,48,86,4	script	Valquíria#	811,{
 				warp "yuno_in02",93,205;
 				end;
 			}
-			mes "[Valquíria]";
 			mes "Agora, permita-me remover";			  
 			mes "todas as suas memórias";
 			mes "presentes... No entanto,";
@@ -99,7 +97,6 @@ valkyrie,48,86,4	script	Valquíria#	811,{
 			mes "vou pedir à deusa Urd";			 
 			mes "para remover todas as";
 			mes "suas memórias presentes.";
-			
 			next;
 			mes "[Valquíria]";
 			mes "Segundo,";
@@ -176,8 +173,7 @@ valkyrie,48,86,4	script	Valquíria#	811,{
 			}
 			end;
 		}
-	}
-	else {
+	} else {
 		mes "[Valquíria]";
 		mes "Bem-Vindo";
 		mes "ao Valhalla,";
@@ -256,8 +252,7 @@ yuno_in02,93,207,1	script	Livro de Ymir	111,{
 		close2;
 		warp "valkyrie",48,8;
 		end;
-	}
-	else if (Baselevel > 98 && JobLevel > 49 && Class >= Job_Knight && Class <= Job_Crusader2) {
+	} else if (Baselevel > 98 && JobLevel > 49 && Class >= Job_Knight && Class <= Job_Crusader2) {
 		if (valkyrie_Q != 0) {
 			mes "[O Livro de Ymir]";
 			mes "...Portanto, antigos heróis vieram";
@@ -345,22 +340,21 @@ valkyrie,44,33,5	script	Teleportador	124,{
 		mes "uma das exposições.";
 		mes "..........";
 		close;
-	}
-	else {
+	} else {
 		mes "[Teleportador]";
 		mes "Honorável,";
 		mes "onde deseja ir?";
 		next;
 		switch(select("Prontera.:Morroc.:Payon.:Geffen.:Alberta.:Izlude.:Al De Baran.:Comodo.:Juno.")) {
-		case 1: callsub S_Warpchar,"prontera",116,72;
-		case 2: callsub S_Warpchar,"morocc",156,46;
-		case 3: callsub S_Warpchar,"payon",69,100;
-		case 4: callsub S_Warpchar,"geffen",120,39;
-		case 5: callsub S_Warpchar,"alberta",117,56;
-		case 6: callsub S_Warpchar,"izlude",94,103;
-		case 7: callsub S_Warpchar,"aldebaran",91,105;
-		case 8: callsub S_Warpchar,"comodo",209,143;
-		case 9: callsub S_Warpchar,"yuno",328,101;
+			case 1: callsub S_Warpchar,"prontera",116,72;
+			case 2: callsub S_Warpchar,"morocc",156,46;
+			case 3: callsub S_Warpchar,"payon",69,100;
+			case 4: callsub S_Warpchar,"geffen",120,39;
+			case 5: callsub S_Warpchar,"alberta",117,56;
+			case 6: callsub S_Warpchar,"izlude",94,103;
+			case 7: callsub S_Warpchar,"aldebaran",91,105;
+			case 8: callsub S_Warpchar,"comodo",209,143;
+			case 9: callsub S_Warpchar,"yuno",328,101;
 		}
 	}
 S_WarpChar:

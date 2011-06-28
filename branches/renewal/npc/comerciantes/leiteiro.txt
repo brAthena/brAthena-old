@@ -12,43 +12,35 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.5/1.0                                |
+// | Versões eA/brA: 1.5/1.2                                |
 // |--------------------------------------------------------|
 // | Descrição:    Trades bottles for milk                  |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [insidemybrain]                   |
 // | 1.1 Script Revisado [insidemybrain]                    |
+// | 1.2 Script Otimizado [Mark]		                    |
 // | - Anotações                                            | 
 // \________________________________________________________/
 
 prontera,73,140,0	script	Vendedor de Leite	86,{
 	if (checkweight(1201,1) == 0) {
 		mes "^3355FFSó um minuto!";
-		mes "Eu não posso lhe oferecer meus";
-		mes "serviços, pois você";
-		mes "está carregando muitos itens";
-		mes "Coloque seus itens extras no";
-		mes "Armazém da Kafra e volte~";
+		mes "Eu não posso lhe oferecer meus serviços, pois você está carregando muitos itens.";
+		mes "Coloque seus itens extras no Armazém da Kafra e volte~";
 		close;
 	}
 	mes "[Vendedor de Leite]";
 	mes "Hey, hey...";
-	mes "Se você me trouxer";
-	mes "1 Garrafa Vazia e";
-	mes "15 Zenys, poderei trocá-los";
-	mes "por 1 Leite. Isso";
-	mes "parece ser bom para você?";
+	mes "Se você me trouxer 1 Garrafa Vazia e 15 Zenys, poderei trocá-los por 1 Leite.";
+	mes "Isso parece ser bom para você?";
 	next;
 	if (select("Trocar todas minhas Garrafas Vazias.:Cancelar") == 1) {
 		if (countitem(713) <= 0) {
 			mes "[Vendedor de Leite]";
 			mes "Hey...";
-			mes "Você não tem";
-			mes "nenhuma Garrafa Vazia.";
-			mes "Eu realmente não posso te dar";
-			mes "o leite de outra";
-			mes "forma, você sabe...";
+			mes "Você não tem nenhuma Garrafa Vazia.";
+			mes "Eu realmente não posso te dar o leite de outra forma, você sabe...";
 			close;
 		}
 		set .@bottles,countitem(713);
@@ -57,21 +49,14 @@ prontera,73,140,0	script	Vendedor de Leite	86,{
 		if (zeny < .@Total_cost) {
 			mes "[Vendedor de Leite]";
 			mes "Oh, whoa~!";
-			mes "Você não tem os";
-			mes "zenys necessários";
-			mes "para esse número de Garrafas Vazias.";
-			mes "Você precisa me trazer";
-			mes "um total de " + .@total_cost + " zenys.";
+			mes "Você não tem os zenys necessários para esse número de Garrafas Vazias.";
+			mes "Você precisa me trazer um total de " + .@total_cost + " zenys.";
 			close;
 		}
 		if ((maxweight-weight) < .@total_weight) {
 			mes "[Vendedor de Leite]";
 			mes "Hmm...";
-			mes "Acho que você";
-			mes "deveria abrir mais";
-			mes "espaço em seu inventário";
-			mes "antes que eu lhe dê";
-			mes "todo esse leite...";
+			mes "Acho que você deveria abrir mais espaço em seu inventário antes que eu lhe dê todo esse leite...";
 			close;
 		}
 		set zeny,zeny-.@total_cost;

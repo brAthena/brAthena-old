@@ -208,7 +208,7 @@ mosk_dun01,264,191,3	script	Rocha#1-3	111,{
 		warp "mosk_dun03",117,36;
 		end;
 	}
-	mes "- Você dicidiu ficar. -";
+	mes "- Você decidiu ficar. -";
 	close;
 }
 
@@ -272,7 +272,7 @@ mosk_dun03,119,46,3	script	Rocha#3-1	111,{
 		warp "mosk_dun01",257,190;
 		end;
 	}
-	mes "- Você dicidiu ficar. -";
+	mes "- Você decidiu ficar. -";
 	close;
 }
 
@@ -292,6 +292,6 @@ mosk_fild02,198,53,3	script	Navio#mos_dun	111,{
 		warp "moscovia",140,54;
 		end;
 	}
-	mes "- Esta área desconhecida desperta seu interese. -";
+	mes "- Esta área desconhecida desperta seu interesse. -";
 	close;
 }

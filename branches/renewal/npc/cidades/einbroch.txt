@@ -12,12 +12,13 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.8/1.0                                |
+// | Versões eA/brA: 1.8/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: NPCs da Cidade de Einbroch                  |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
+// | 1.1 Script Otimizado [Architect]                       |
 // \________________________________________________________/
 
 einbroch,218,198,5	script	Mark#ein	855,{
@@ -39,8 +40,7 @@ einbroch,175,196,5	script	Morei#ein	854,{
 	mes "voltar para o";
 	mes "andar térreo?";
 	next;
-	switch(select("Sim.:Não.")) {
-	case 1:
+	if (select("Sim.:Não.") == 1) {
 		mes "[Morei]";
 		mes "Entendo.";
 		mes "Deixe-me guiá-lo";
@@ -59,14 +59,13 @@ einbroch,175,196,5	script	Morei#ein	854,{
 			warp "einbroch",178,167;
 			end;
 		}
-	case 2:
-		mes "[Morei]";
-		mes "Entendo.";
-		mes "Espero que você";
-		mes "aprecie seu passeio";
-		mes "na Torre de Einbroch.";
-		close;
 	}
+	mes "[Morei]";
+	mes "Entendo.";
+	mes "Espero que você";
+	mes "aprecie seu passeio";
+	mes "na Torre de Einbroch.";
+	close;
 }
 
 einbroch,173,229,5	script	Oberu#ein	855,{
@@ -307,8 +306,7 @@ einbroch,40,116,1	script	Engenheiro do Dirigível#ein-1	855,{
 	mes "e agora ela está dormindo!";
 	mes "Afaste-se dela!";
 	next;
-	switch(select("Quem é Burielle?:Desculpe.")) {
-	case 1:
+	if (select("Quem é Burielle?:Desculpe.") == 1) {
 		mes "[Engenheiro]";
 		mes "Burielle é o melhor modelo de";
 		mes "avião feito nos últimos dez";
@@ -317,8 +315,7 @@ einbroch,40,116,1	script	Engenheiro do Dirigível#ein-1	855,{
 		mes "poderes curativos, logo ela";
 		mes "conquistará os céus novamente!";
 		next;
-		switch(select("Ah~:Uh huh...")) {
-		case 1:
+		if (select("Ah~:Uh huh...") == 1) {
 			mes "["+strcharinfo(0)+"]";
 			mes "Ah~";
 			mes "Entendo, então você";
@@ -332,35 +329,33 @@ einbroch,40,116,1	script	Engenheiro do Dirigível#ein-1	855,{
 			mes "Eu coloquei muito amor";
 			mes "no conserto da Burielle...";
 			close;
-		case 2:
-			mes "["+strcharinfo(0)+"]";
-			mes "Uh huh...";
-			mes "Certo. Por um segundo";
-			mes "achei que você estivesse";
-			mes "falando de uma pessoa,";
-			mes "mas aí eu também achei";
-			mes "que você fosse meio doido.";
-			next;
-			mes "["+strcharinfo(0)+"]";
-			mes "Oh, você disse o 'melhor";
-			mes "modelo de avião'?";
-			mes "Todos os aviões são iguais";
-			mes "para mim, e esse daí não";
-			mes "tem nada de especial.";
-			mes "Você é meio maluco.";
-			next;
-			emotion e_an;
-			mes "[Engenheiro]";
-			mes "O-o quê...?!";
-			close;
 		}
-	case 2:
+		mes "["+strcharinfo(0)+"]";
+		mes "Uh huh...";
+		mes "Certo. Por um segundo";
+		mes "achei que você estivesse";
+		mes "falando de uma pessoa,";
+		mes "mas aí eu também achei";
+		mes "que você fosse meio doido.";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "Oh, você disse o 'melhor";
+		mes "modelo de avião'?";
+		mes "Todos os aviões são iguais";
+		mes "para mim, e esse daí não";
+		mes "tem nada de especial.";
+		mes "Você é meio maluco.";
+		next;
+		emotion e_an;
 		mes "[Engenheiro]";
-		mes "Bem, pelo menos você sabe";
-		mes "o que fez de errado. Agora";
-		mes "pare de incomodá-la e vá!";
+		mes "O-o quê...?!";
 		close;
 	}
+	mes "[Engenheiro]";
+	mes "Bem, pelo menos você sabe";
+	mes "o que fez de errado. Agora";
+	mes "pare de incomodá-la e vá!";
+	close;
 }
 
 einbroch,294,312,3	script	Centzu#ein	854,{

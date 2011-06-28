@@ -12,12 +12,14 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 3.0/1.0                                |
+// | Versões eA/brA: 3.0/1.2                                |
 // |--------------------------------------------------------|
 // | Descrição: Mudança de Classe para Alquimista           |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Molini]                          |
+// | 1.1 Remoção de espaço [Wolf]                           |
+// | 1.2 Otimizações no npc [Wolf]                          |
 // \________________________________________________________/
 
 alde_alche,27,185,5	script	Alchemist Guildsman#am	744,{
@@ -39,7 +41,7 @@ alde_alche,27,185,5	script	Alchemist Guildsman#am	744,{
 	}
 	if (BaseJob != Job_Merchant) {
 		if (BaseJob == Job_Alchemist) {
-			mes "Bem vindo a, " + strcharinfo(0) + ".";
+			mes "Bem vindo a, "+strcharinfo(0)+".";
 			mes "Guilda dos Alquimistas";
 			mes "estamos ocupados hoje, como sempre.";
 			next;
@@ -50,8 +52,7 @@ alde_alche,27,185,5	script	Alchemist Guildsman#am	744,{
 			mes "[Parmy Gianino]";
 			mes "Todos estão esperando que os estudos biotecnológicos produzirão resultados positivos. Falando nisso, eu me pergunto como que os Alquimistas trabalham em vida artificial estão fazendo isso...";
 			close;
-		}
-		else if (BaseClass == Job_Novice) {
+		} else if (BaseClass == Job_Novice) {
 			mes "Bem vindo a,";
 			mes "Guilda dos Alquimistas";
 			mes "Nõs estamos recrutanto";
@@ -220,8 +221,7 @@ alde_alche,27,185,5	script	Alchemist Guildsman#am	744,{
 			mes "se você precisar de algo.";
 			close;
 		}
-	}
-	else if (ALCH_Q >= 1 && ALCH_Q <= 3) {
+	} else if (ALCH_Q >= 1 && ALCH_Q <= 3) {
 		if (countitem(1006) > 0 && countitem(1005) > 0) {
 			mes "Muito bem!";
 			mes "Você trouxe um";
@@ -236,15 +236,9 @@ alde_alche,27,185,5	script	Alchemist Guildsman#am	744,{
 			mes "Ok, agora você precisa aprender";
 			mes "o básico para ser um Alquimista e aprender os procedimentos de misturar produtos químicos e medicamentos.";
 			set ALCH_Q,4;
-			if(checkquest(2028) != -1) {
-				changequest 2028,2031;
-			}
-			else if(checkquest(2029) != -1) {
-				changequest 2029,2031;
-			}
-			else {
-				changequest 2030,2031;
-			}
+			if(checkquest(2028) != -1) changequest 2028,2031;
+			else if(checkquest(2029) != -1) changequest 2029,2031;
+			else changequest 2030,2031;
 			next;
 			mes "[Parmy Gianino]";
 			mes "Mas antes de tudo isso, você precisa falar com Raspuchin. Eu realmente não tenho certeza do que você vai estar falando com ele...";
@@ -254,9 +248,9 @@ alde_alche,27,185,5	script	Alchemist Guildsman#am	744,{
 			close;
 		}
 		switch(ALCH_Q) {
-		case 1: setarray .@items[0],657,7; break;
-		case 2: setarray .@items[0],612,100; break;
-		case 3: setarray .@items[0],1752,7500; break;
+			case 1: setarray .@items[0],657,7; break;
+			case 2: setarray .@items[0],612,100; break;
+			case 3: setarray .@items[0],1752,7500; break;
 		}
 		if (countitem(.@items[0]) >= .@items[1]) {
 			mes "Parece que";
@@ -269,15 +263,9 @@ alde_alche,27,185,5	script	Alchemist Guildsman#am	744,{
 			mes "Ok, agora você precisa aprender";
 			mes "o básico para ser um Alquimista e aprender os procedimentos de misturar produtos químicos e medicamentos.";
 			set ALCH_Q,4;
-			if(checkquest(2028) != -1) {
-				changequest 2028,2031;
-			}
-			else if(checkquest(2029) != -1) {
-				changequest 2029,2031;
-			}
-			else {
-				changequest 2030,2031;
-			}
+			if(checkquest(2028) != -1) changequest 2028,2031;
+			else if(checkquest(2029) != -1) changequest 2029,2031;
+			else changequest 2030,2031;
 			next;
 			mes "[Parmy Gianino]";
 			mes "Mas antes de tudo isso, você precisa falar com Raspuchin. Eu realmente não tenho certeza do que você vai estar falando com ele...";
@@ -296,8 +284,7 @@ alde_alche,27,185,5	script	Alchemist Guildsman#am	744,{
 		mes "tiver preparado os";
 		mes "itens requeridos.";
 		close;
-	}
-	else if (ALCH_Q == 4) {
+	} else if (ALCH_Q == 4) {
 		mes "Vá e fale com";
 		mes "Mr. Raspuchin.";
 		mes "Ele está envolvido no";
@@ -309,8 +296,7 @@ alde_alche,27,185,5	script	Alchemist Guildsman#am	744,{
 		mes "problema. Eu acho que ele só vai te entrevistar, e perguntar-lhe";
 		mes "algumas perguntas simples.";
 		close;
-	}
-	else {
+	} else {
 		mes "Ah, me desculpe, mas";
 		mes "estou ocupado agora.";
 		next;
@@ -342,8 +328,7 @@ alde_alche,175,107,3	script	Fastidious Alchemist#am	749,{
 			mes "tolerado aqui no";
 			mes "Guilda dos Alquimistas!";
 			close;
-		}
-		else if (BaseClass == Job_Novice) {
+		} else if (BaseClass == Job_Novice) {
 			mes "Heeheehee";
 			mes "hehehehe!";
 			mes "Que bonitinho, você veio";
@@ -355,8 +340,7 @@ alde_alche,175,107,3	script	Fastidious Alchemist#am	749,{
 			mes "Mas da próxima vez, não espere";
 			mes "sair tão facilmente ..";
 			close;
-		}
-		else {
+		} else {
 			mes "O que é isso??!";
 			mes "Você está curioso para saber";
 			mes "o que estou fazendo?";
@@ -398,8 +382,7 @@ alde_alche,175,107,3	script	Fastidious Alchemist#am	749,{
 		mes "e me deixe sozinho em meu";
 		mes "negócio sombrio!";
 		close;
-	}
-	else if (ALCH_Q >= 1 && ALCH_Q <= 3) {
+	} else if (ALCH_Q >= 1 && ALCH_Q <= 3) {
 		mes "Heeheehee";
 		mes "hehehehe!";
 		mes "O que você";
@@ -414,8 +397,7 @@ alde_alche,175,107,3	script	Fastidious Alchemist#am	749,{
 		mes "[Raspuchin Gregory]";
 		mes "Mesmo se você já tentou estudar por mil anos, talvez até mais, seria inútil a você! Esqueça isso e apenas se preocupar com sua loja!";
 		close;
-	}
-	else if ((ALCH_Q == 4) || (ALCH_Q == 5)) {
+	} else if ((ALCH_Q == 4) || (ALCH_Q == 5)) {
 		if (ALCH_Q == 4) {
 			mes "Heeheehee";
 			mes "hehehehe!";
@@ -447,8 +429,7 @@ alde_alche,175,107,3	script	Fastidious Alchemist#am	749,{
 					mes "Você pode ser um menino bonito,";
 					mes "mas posso dizer que você é esperto";
 					mes "apenas olhando em seus olhos.";
-				}
-				else {
+				} else {
 					mes "Hmm. Você é bem fofo,";
 					mes "mas posso dizer que você tem cérebro.";
 				}
@@ -469,8 +450,7 @@ alde_alche,175,107,3	script	Fastidious Alchemist#am	749,{
 				mes "eu enviei-lhe.";
 				set ALCH_Q,6;
 				close;
-			}
-			else {
+			} else {
 				mes "[Raspuchin Gregory]";
 				mes "Surpreso, não é?";
 				mes "Hehehehe Se você pensou que";
@@ -485,8 +465,7 @@ alde_alche,175,107,3	script	Fastidious Alchemist#am	749,{
 				mes "Vamos ver o quão inteligente";
 				mes "você realmente é.";
 			}
-		}
-		else if (ALCH_Q == 5) {
+		} else if (ALCH_Q == 5) {
 			mes "O que...?!";
 			mes "Você quer fazer";
 			mes "o teste novamente?!";
@@ -726,22 +705,19 @@ alde_alche,175,107,3	script	Fastidious Alchemist#am	749,{
 			mes "Você consiguiu acertar todas?";
 			mes "Hehehehe, Eu não tenho escolha, mas reconhecê-lo...";
 			next;
-		}
-		else if (.@w_point == 1) {
+		} else if (.@w_point == 1) {
 			mes "[Raspuchin Gregory]";
 			mes "Você tem uma errada!";
 			mes "Mas eu vou deixar passar.";
 			mes "Você passou na entrevista!";
 			next;
-		}
-		else if (.@w_point == 2 && ALCH_Q == 5) {
+		} else if (.@w_point == 2 && ALCH_Q == 5) {
 			mes "[Raspuchin Gregory]";
 			mes "Você tem graves";
 			mes "deficiências em matemática,";
 			mes "mas eu vou deixar você ir desta vez...";
 			next;
-		}
-		else {
+		} else {
 			set ALCH_Q,5;
 			mes "[Raspuchin Gregory]";
 			mes "Hehehehe! Idiota!";
@@ -777,8 +753,7 @@ alde_alche,175,107,3	script	Fastidious Alchemist#am	749,{
 		set ALCH_Q,6;
 		changequest 2031,2032;
 		close;
-	}
-	else if (ALCH_Q == 6) {
+	} else if (ALCH_Q == 6) {
 		mes "O que você está fazendo?";
 		mes "Vá e encontre Darwin agora.";
 		next;
@@ -822,8 +797,7 @@ alde_alche,13,15,7	script	Studying Man#am	750,{
 			mes "Harmona...";
 			mes "Meu amor...";
 			close;
-		}
-		else {
+		} else {
 			mes "Quando você tem";
 			mes "seus sonhos, você";
 			mes "tem tudo.";
@@ -975,8 +949,7 @@ alde_alche,13,15,7	script	Studying Man#am	750,{
 			mes "você não reconhecê-lo.";
 			close;
 		}
-	}
-	else if (ALCH_Q == 7) {
+	} else if (ALCH_Q == 7) {
 		mes "...";
 		mes "......";
 		next;
@@ -1093,8 +1066,7 @@ alde_alche,13,15,7	script	Studying Man#am	750,{
 			mes "últimos vestígios de vida de mercador!";
 			set ALCH_Q,40;
 			close;
-		}
-		else if (countitem(7134) > 2 && countitem(713) > 2 && countitem(507) > 0 && countitem(508) > 0 && countitem(509) > 0) {
+		} else if (countitem(7134) > 2 && countitem(713) > 2 && countitem(507) > 0 && countitem(508) > 0 && countitem(509) > 0) {
 			mes "[Darwin]";
 			mes "Parece que você tem tudo pronto. Como prometido, eu vou te ensinar a fazer remédios simples.";
 			next;
@@ -1265,8 +1237,7 @@ alde_alche,13,15,7	script	Studying Man#am	750,{
 			mes "Você deve sempre proteger";
 			mes "o que é mais precioso para você.";
 			close;
-		}
-		else {
+		} else {
 			mes "[Darwin]";
 			mes "Esqueceu-se o";
 			mes "que você precisa trazer?";
@@ -1284,8 +1255,7 @@ alde_alche,13,15,7	script	Studying Man#am	750,{
 			mes "Volte quando você estiver pronto.";
 			close;
 		}
-	}
-	else if (ALCH_Q == 8) {
+	} else if (ALCH_Q == 8) {
 		mes "Eu disse para ir para o Van Helmont.";
 		mes "Eu gostaria de ensinar-lhe mais, mas eu não posso.";
 		next;
@@ -1294,16 +1264,14 @@ alde_alche,13,15,7	script	Studying Man#am	750,{
 		mes "Harmona, meu amor.";
 		mes "Eu não posso nem ver a flor mais. Minha alma em silêncio murcha...";
 		close;
-	}
-	else if (ALCH_Q == 40) {
+	} else if (ALCH_Q == 40) {
 		mes "Eu já lhe dei todo o meu conhecimento e não tenho mais nada para te ensinar.";
 		next;
 		mes "[Darwin]";
 		mes "Vá para o segundo andar e vpa falar com o Lider da Guild. Uma vez";
 		mes "que você fizer isso, sua vida como um Alquimista começará.";
 		close;
-	}
-	else {
+	} else {
 		mes "Quando você tem";
 		mes "seus sonhos, você";
 		mes "tem tudo.";
@@ -1340,8 +1308,7 @@ alde_alche,79,19,5	script	Experiment Expert#am	748,{
 			mes "[Van Helmont]";
 			mes "Lendo revistas científicas e realização de experimentos. Isso é o que é Alquemia. Agora, deixe-me voltar ao trabalho!";
 			close;
-		}
-		else {
+		} else {
 			mes "Só um pouco...";
 			mes "Um pouco mais...";
 			mes "Nããõ! Apenas um pouco mais e ela teria sido feito!";
@@ -1440,8 +1407,7 @@ alde_alche,79,19,5	script	Experiment Expert#am	748,{
 		mes "Merda!";
 		mes "O que eu vou fazer?";
 		close;
-	}
-	else if (ALCH_Q == 9) {
+	} else if (ALCH_Q == 9) {
 		mes "Tudo bem, se eu fazer uma incisão aqui no Tentáculo, e adicionar um Jellopy e um Muco Pegajoso para dentro dos... Onde diabos minha Vasilha de Mistura está? ";
 		next;
 		mes "[Van Helmont]";
@@ -1503,8 +1469,7 @@ alde_alche,79,19,5	script	Experiment Expert#am	748,{
 			mes "Vá! Nós dois";
 			mes "temos coisas mais importantes para fazer!";
 			close;
-		}
-		else {
+		} else {
 			mes "[Van Helmont]";
 			mes "Qual item você";
 			mes "precisa para fazer";
@@ -1524,8 +1489,7 @@ alde_alche,79,19,5	script	Experiment Expert#am	748,{
 			mes "Nem pense em voltar, até você falar com ele! Agora, pare de me aborrecer e sair daqui!";
 			close;
 		}
-	}
-	else if (ALCH_Q == 20) {
+	} else if (ALCH_Q == 20) {
 		mes "O que...?";
 		mes "Eu disse-lhe para ir falar com o Nicholas porta ao lado?";
 		next;
@@ -1533,8 +1497,7 @@ alde_alche,79,19,5	script	Experiment Expert#am	748,{
 		mes "Preciso continuar minha pesquisa,";
 		mes "e você precisa tornar-se um Alquimista. Vamos, mexa-se!";
 		close;
-	}
-	else {
+	} else {
 		mes "Só um pouco...";
 		mes "Um pouco mais...";
 		mes "Nããõ! Apenas um pouco mais e ela teria sido feito!";
@@ -1575,16 +1538,14 @@ alde_alche,101,184,4	script	Master Alchemist#am	122,{
 			mes "[Vincent Carsciallo]";
 			mes "Se você descobrir algo novo,";
 			mes "venha e diga-nos. Não se esqueça que estamos todos a trabalhar juntos para desvendar os mistérios da ciência!";
-		}
-		else if (BaseClass == Job_Novice) {
+		} else if (BaseClass == Job_Novice) {
 			mes "Hm...";
 			mes "Um Noviço?";
 			mes "Você não deveria estar brincando em um lugar como este.";
 			next;
 			mes "[Vincent Carsciallo]";
 			mes "Há uma grande quantidade de produtos químicos voláteis e outros materiais perigosos neste edifício. Seria muito melhor se você simplesmente brinque fora.";
-		}
-		else {
+		} else {
 			mes "Hmm...?";
 			mes "O que um aventureiro está fazendo aqui na";
 			mes "Guilda dos Alquimistas?";
@@ -1613,8 +1574,7 @@ alde_alche,101,184,4	script	Master Alchemist#am	122,{
 		close2;
 		cutin "",255;
 		end;
-	}
-	else if (ALCH_Q == 40) {
+	} else if (ALCH_Q == 40) {
 		if (JobLevel < 40) {
 			set ALCH_Q,0;
 			mes "Hmm... você não parece estar qualificado.";
@@ -1632,9 +1592,7 @@ alde_alche,101,184,4	script	Master Alchemist#am	122,{
 			cutin "",255;
 			end;
 		}
-		if(checkquest(2039) != -1) {
-			changequest 2039,2040;
-		}
+		if(checkquest(2039) != -1) changequest 2039,2040;
 		mes "Ah, muito bem.";
 		mes "Eu posso ver que você aprendeu todos os princípios da Alquimia.";
 		next;
@@ -1647,7 +1605,6 @@ alde_alche,101,184,4	script	Master Alchemist#am	122,{
 		mes "Daí em diante, você agora é um membro da nossa brilhante Guilda.";
 		mes "Eu espero que você aprenda muito...";
 		next;
-
 		if (.@jlevel == 50) {
 			getitem 7133,1; //Slim_Potion_Create_Book
 			mes "[Vincent Carsciallo]";
@@ -1656,23 +1613,12 @@ alde_alche,101,184,4	script	Master Alchemist#am	122,{
 		}
 		else {
 			switch(rand(1,6)) {
-			case 1:
-				getitem 7127,1; //Alcol_Create_Book
-				break;
-			case 2:
-				getitem 7128,1; //FireBottle_Create_Book
-				break;
-			case 3:
-				getitem 7129,1; //Acid_Create_Book
-				break;
-			case 4:
-				getitem 7130,1; //Plant_Create_Book
-				break;
-			case 5:
-				getitem 7131,1; //Mine_Create_Book
-				break;
-			case 6:
-				getitem 7144,1; //Normal_Potion_Book
+				case 1: getitem 7127,1; break; //Alcol_Create_Book
+				case 2: getitem 7128,1; break; //FireBottle_Create_Book
+				case 3: getitem 7129,1; break; //Acid_Create_Book
+				case 4: getitem 7130,1; break; //Plant_Create_Book
+				case 5: getitem 7131,1; break; //Mine_Create_Book
+				case 6: getitem 7144,1; //Normal_Potion_Book
 			}
 			mes "[Vincent Carsciallo]";
 			mes "e...";
@@ -1685,8 +1631,7 @@ alde_alche,101,184,4	script	Master Alchemist#am	122,{
 		close2;
 		cutin "",255;
 		end;
-	}
-	else {
+	} else {
 		mes "Ah...";
 		mes "Eu acredito que você já tenha se registrado para o treinamento para se tornar um alquimista.";
 		next;
@@ -1792,8 +1737,7 @@ alde_alche,145,19,1	script	Chief Researcher#am	57,{
 			mes "Ah, e antes de falar comigo de novo, verifique se você tem";
 			mes "^551A8Bespaço de sobra em seu inventário^000000.";
 			close;
-		}
-		else {
+		} else {
 			set ALCH_Q,21;
 			mes "^666666*Gasp!*^000000 H-horrivel!";
 			next;
@@ -1808,8 +1752,7 @@ alde_alche,145,19,1	script	Chief Researcher#am	57,{
 			close;
 
 		}
-	}
-	else if (ALCH_Q == 22) {
+	} else if (ALCH_Q == 22) {
 		set .@now_weight,MaxWeight-Weight;
 		if (.@now_weight < 1370) {
 			mes "[Nicholas Flamel]";
@@ -1847,13 +1790,11 @@ alde_alche,145,19,1	script	Chief Researcher#am	57,{
 		mes "Muito bem.";
 		mes "Tenha uma boa viagem e volte logo.";
 		close;
-	}
-	else if (ALCH_Q == 23) {
+	} else if (ALCH_Q == 23) {
 		mes "[Nicholas Flamel]";
 		mes "Eu não te disse para ir para Juno e ajudar o Bain e Bajin com suas pesquisas?";
 		close;
-	}
-	else if (ALCH_Q == 24) {
+	} else if (ALCH_Q == 24) {
 		set ALCH_Q,40;
 		changequest 2038,2039;
 		mes "[Nicholas Flamel]";
@@ -1868,13 +1809,11 @@ alde_alche,145,19,1	script	Chief Researcher#am	57,{
 		mes "Bom trabalho!";
 		mes "Tudo que você tem a fazer agora é falar com o Líder da Guilda no 2 º andar! Parabéns, você vai se tornar um Alquimista muito em breve!";
 		close;
-	}
-	else if (ALCH_Q == 40 && BaseJob == Job_Merchant) {
+	} else if (ALCH_Q == 40 && BaseJob == Job_Merchant) {
 		mes "[Nicholas Flamel]";
 		mes "Tudo que você tem a fazer agora é falar com o Líder da Guilda no 2 º andar! Parabéns, você vai se tornar um Alquimista muito em breve!";
 		close;
-	}
-	else {
+	} else {
 		mes "[Nicholas Flamel]";
 		mes "Lorem ipsum dolor sit amet,";
 		mes "consectetuer adipiscing elit.";

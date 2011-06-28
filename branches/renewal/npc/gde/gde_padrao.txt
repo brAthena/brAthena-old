@@ -12,7 +12,7 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.7/1.2                                |
+// | Versões eA/brA: 1.8/1.2                                |
 // |--------------------------------------------------------|
 // | Descrição: NPCs padrões de todos os castelos.          |
 // |--------------------------------------------------------|
@@ -22,7 +22,6 @@
 // | 1.2 Otimização [Filid]                                 |
 // |    - Substituição de 'switch' descenessários (2 cases) |
 // |    - por 'if'                                          |
-// | - Anotações                                            |
 // \________________________________________________________/
 
 // Gerenciador Automático
@@ -492,7 +491,7 @@ OnRecvCastle:
 			mes "^ff0000Mas o nível de investimento comercial chegou a 100%. Não é mais necessário investir. Como eu esperava, você possui grande perspicácia mestre.^000000";
 			close;
 		}
-		if (GetCastleData(strnpcinfo(2),4) == 2) {
+		if (GetCastleData(strnpcinfo(2),4) >= 2) {
 			mes "^ff0000Mas você já investiu duas vezes hoje, então você não pode investir mais.^000000 Eu espero que o nível de investimento cresça cada vez mais.";
 			close;
 		}
@@ -504,6 +503,11 @@ OnRecvCastle:
 		}
 		next;
 		if (select("Investir no crescimento comercial.:Cancelar.") == 1) {
+			if (GetCastleData(strnpcinfo(2),4) >= 2) {
+				mes "[ Mordomo " + .@name$ + " ]";
+				mes "Sinto muito, mas você já investiu duas vezes hoje, então você não pode investir mais.";
+				close;
+			}
 			if (Zeny < .@eco_invest) {
 				mes "[ Mordomo " + .@name$ + " ]";
 				mes "Sinto muito, mas você não possui zenys para investir. Mestre, tente novamente quando tiver juntado mais fundos.";
@@ -552,7 +556,7 @@ OnRecvCastle:
 			mes "^ff0000Mas o nível de investimento da defesa chegou a 100%. Não é mais necessário investir. Como eu esperava, você possui grande perspicácia mestre.^000000";
 			close;
 		}
-		if (GetCastleData(strnpcinfo(2),5) == 2) {
+		if (GetCastleData(strnpcinfo(2),5) >= 2) {
 			mes "^ff0000^ff0000Mas você já investiu duas vezes hoje, então você não pode investir mais.^000000 Eu espero que o nível de defesa cresça cada vez mais.";
 			close;
 		}
@@ -564,6 +568,11 @@ OnRecvCastle:
 		}
 		next;
 		if (select("Investir na defesa.:Cancelar.") == 1) {
+			if (GetCastleData(strnpcinfo(2),5) >= 2) {
+				mes "[ Mordomo " + .@name$ + " ]";
+				mes "Sinto muito, mas você já investiu duas vezes hoje, então você não pode investir mais.";
+				close;
+			}
 			if (Zeny < .@def_invest) {
 				mes "[ Mordomo " + .@name$ + " ]";
 				mes "Sinto muito, mas você não possui zenys para investir. Mestre, tente novamente quando tiver juntado mais fundos.";

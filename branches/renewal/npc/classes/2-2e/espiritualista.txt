@@ -12,15 +12,15 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.5/1.0                                |
+// | Versões eA/brA: 1.5/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: Mudança de Classe para Espiritualista       |
 // | [Vars Used]											|
 // | SOUL_Q = Job Change Phase. (Max 4)						|
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    					| 
+// | 1.0 Otimização [Wolf]                                  |
+// | 1.1 Otimizações no npc [Wolf]                          |
 // \________________________________________________________/
 
 morocc_in,174,30,6	script	Kid#link1	716,{
@@ -36,14 +36,7 @@ morocc_in,174,30,6	script	Kid#link1	716,{
 	}
 	if (Class == Job_Star_Gladiator) {
 		mes "[Kid]";
-		if (Sex == 1) {
-			mes "Aren't you a warrior";
-			mes "of the sun? I'm familiar";
-		}
-		else {
-			mes "Aren't you a warrior of";
-			mes "the moon? I'm familiar";
-		}
+		mes "Aren't you a warrior of the "+((Sex)?"sun?":"moon?")+" I'm familiar";
 		mes "with your ways. After all,";
 		mes "the basis of both of our";
 		mes "skills is grounded in the";
@@ -68,14 +61,13 @@ morocc_in,174,30,6	script	Kid#link1	716,{
 		mes "refining those skills and";
 		mes "stick to your training.";
 		close;
-	}
-	else if (JobLevel > 39) {
+	} else if (JobLevel > 39) {
 		if (SOUL_Q == 0) {
 			mes "[Kid]";
 			mes "...";
 			mes "Hey you.";
 			next;
-			mes "["+ strcharinfo(0) +"]";
+			mes "["+strcharinfo(0)+"]";
 			mes "Did you call me?";
 			next;
 			mes "[Kid]";
@@ -183,8 +175,7 @@ morocc_in,174,30,6	script	Kid#link1	716,{
 			mes "you going? I'm...";
 			mes "I'm talking to you!";
 			close;
-		}
-		else if (SOUL_Q == 1) {
+		} else if (SOUL_Q == 1) {
 			if (Class == Job_Taekwon) {
 				mes "[Kid]";
 				mes "You're back, eh?";
@@ -256,8 +247,7 @@ morocc_in,174,30,6	script	Kid#link1	716,{
 			mes "idea you had that potential.";
 			mes "I suppose I can't blame you...";
 			close;
-		}
-		else if (SOUL_Q == 2) {
+		} else if (SOUL_Q == 2) {
 			if (SkillPoint) {
 				mes "[Maia]";
 				mes "You still have some";
@@ -289,8 +279,7 @@ morocc_in,174,30,6	script	Kid#link1	716,{
 			close2;
 			warp "job_soul",30,30;
 			end;
-		}
-		else if (SOUL_Q > 2) {
+		} else if (SOUL_Q > 2) {
 			mes "[Maia]";
 			mes "Are you ready to";
 			mes "enter the depths";
@@ -371,8 +360,7 @@ OnTouch:
 			mes "to the spirits while you";
 			mes "have the opportunity.";
 			close;
-		}
-		else if (SOUL_Q == 3) {
+		} else if (SOUL_Q == 3) {
 			mes "[Maia]";
 			mes "Listen to what";
 			mes "spirits are tending to say.";
@@ -380,8 +368,7 @@ OnTouch:
 			mes "they cannot move on";
 			mes "to the next world.";
 			close;
-		}
-		else if (SOUL_Q == 4) {
+		} else if (SOUL_Q == 4) {
 			mes "[Maia]";
 			mes "I believe that you are";
 			mes "now ready to become";
@@ -467,8 +454,7 @@ OnTouch:
 		mes "you to venture out into the";
 		mes "wide world! More Soul Linkers";
 		mes "will definitely be needed in the ongoing battle against evil...";
-	}
-	else {
+	} else {
 		mes "[Maia]";
 		mes "That's strange...";
 		mes "You're not supposed to";

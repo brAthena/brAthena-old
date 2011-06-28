@@ -8,16 +8,17 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Sealed Shrine		            		|
+// | Nome do Script: Santuário Selado	            		|
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.5/1.0                                |
+// | Versões eA/brA: 1.5/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: Seal away the Great Demon Baphomet.         |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Avassalador]                     | 
+// | 1.1 Script Otimizado [Mark]		                    | 
 // \________________________________________________________/
 
 // Sealed Catacomb Entrance
@@ -48,8 +49,7 @@ monk_test,309,146,3	script	Frei Patrick#edq	412,{
 		mes "[Frei Patrick]";
 		mes "É o lugar onde o grande Demônio que demoliu esse mundo uma vez se encontra dormindo.";
 		next;
-		switch(select("Me conte mais.:Terminar conversa.")) {
-		case 1:
+		if(select("Me conte mais.:Terminar conversa.") == 1) {
 			cutin "ins_cata_pri_n",2;
 			mes "[Frei Patrick]";
 			mes "Baphomet... é o nome do Demônio... Eu acho que você já tenha escutado o nome dele.";
@@ -75,7 +75,7 @@ monk_test,309,146,3	script	Frei Patrick#edq	412,{
 			mes "[Frei Patrick]";
 			mes "Treine mais e use suas habilidades para proteger o mundo da eminente presença do mal...";
 			break;
-		case 2:
+		} else {
 			cutin "ins_cata_pri_n",2;
 			mes "[Frei Patrick]";
 			mes "Todos que lutam pelo bem, devem saber, que o mal ameaça conquistar esse mundo...";
@@ -124,7 +124,7 @@ monk_test,309,146,3	script	Frei Patrick#edq	412,{
 							}
 
 							instance_attach(.@instance);
-							instance_set_timeout 7200,300,.@instance;
+							instance_set_timeout 14400,300,.@instance;
 							instance_init(.@instance);
 
 							// First Floor
@@ -255,66 +255,60 @@ monk_test,306,151,3	script	Túmulo de Baphomet#edq	111,{
 		delitem 6002,countitem(6002); //Token_Of_Apostle
 	mes "Esse túmulo tem uma imagem de um grande demônio com enormes chifres. Ela desperta um sentimento ameaçador.";
 	next;
-	switch(select("Tocar.:Voltar.")) {
-	case 1:
+	if(select("Tocar.:Voltar.") == 2) close;
 
-		set .@party_id,getcharid(1);
-		getpartymember(.@party_id);
-		set .@partymembercount,$@partymembercount;
-		copyarray .@partymembername$[0],$@partymembername$[0],.@partymembercount;
+	set .@party_id,getcharid(1);
+	getpartymember(.@party_id);
+	set .@partymembercount,$@partymembercount;
+	copyarray .@partymembername$[0],$@partymembername$[0],.@partymembercount;
+	set .@instance, instance_id(1);
+	instance_attach(.@instance);
 
-		set .@instance, instance_id(1);
-		instance_attach(.@instance);
+	// 12 hour cooldown
+	set .@ins_bapho_check,checkquest(3046,PLAYTIME);
 
-		// 12 hour cooldown
-		set .@ins_bapho_check,checkquest(3046,PLAYTIME);
-		// Two hour play limit
-		set .@ins_bapho_check2,checkquest(3045,PLAYTIME);
-
-		if ((.@ins_bapho_check == -1) || ((.@ins_bapho_check2 >= 0) && (.@ins_bapho_check2 < 2))) {
-			if (has_instance("1@cata") == "") {
-				mes "É frio ao tocar. Mais nada acontece.";
-			}
-			//else if (ret == 2) {
-			//	mes "It's cold to the touch. It doesn't respond.";
-			//	close;
-			//}
-			else if ((has_instance("1@cata") != "") && (.@partymembercount < 2)) {
-				mes "[Frei Patrick]";
-				mes "Para entrar nesse lugar perigoso, não poderás ir sozinho. Volte novamente após entrar num grupo.";
-			}
-			//else if (ret == 0) {
-			else {
-				mapannounce "monk_test","[" + strcharinfo(0) + "] membro do grupo [" + getpartyname(.@party_id) + "] entrou no Santuário Selado.",bc_map,"0x00ff99";
-				setquest 3046;
-				setquest 3045;
-				warp "1@cata",100,224;
-			}
+	// Two hour play limit
+	set .@ins_bapho_check2,checkquest(3045,PLAYTIME);
+	if ((.@ins_bapho_check == -1) || ((.@ins_bapho_check2 >= 0) && (.@ins_bapho_check2 < 2))) {
+	if (has_instance("1@cata") == "") {
+			mes "É frio ao tocar. Mais nada acontece.";
 		}
-		else if ((.@ins_bapho_check == 0) || (.@ins_bapho_check == 1)) {
+		//else if (ret == 2) {
+		//	mes "It's cold to the touch. It doesn't respond.";
+		//	close;
+		//}
+		else if ((has_instance("1@cata") != "") && (.@partymembercount < 2)) {
 			mes "[Frei Patrick]";
-			mes "Parece que você entrou no santuário recentemente... Você não pode entrar novamente pois a Maldição de Baphomet ainda continua.";
-			mes "A Maldição de Baphomet desparece após de um certo tempo após sua entrada.";
+			mes "Para entrar nesse lugar perigoso, não poderás ir sozinho. Volte novamente após entrar num grupo.";
 		}
-		else if (.@ins_bapho_check == 2) {
-			mes "[Frei Patrick]";
-			mes "Humm... Parece que a maldição de Baphomet está enfraquecendo. Irei retirá-la completamente.";
-			next;
-			mes "[Frei Patrick]";
-			mes "Haaaaaaap... Wingardium Leviosa Expecto Patronum !!!!!";
-			specialeffect2 EF_HOLYHIT;
-			if (checkquest(3046)) erasequest 3046;
-			if (checkquest(3041)) erasequest 3041;
-			if (checkquest(3045)) erasequest 3045;
-			next;
-			mes "[Frei Patrick]";
-			mes "Huu... Acabou. Agora que retirei todas as maldições sobre você. Você pode entrar novamente.";
+		//else if (ret == 0) {}
+		else {
+			mapannounce "monk_test","[" + strcharinfo(0) + "] membro do grupo [" + getpartyname(.@party_id) + "] entrou no Santuário Selado.",bc_map,"0x00ff99";
+			setquest 3046;
+			setquest 3045;
+			warp "1@cata",100,224;
 		}
-		break;
-	case 2:
-		break;
 	}
-	close;
+	else if ((.@ins_bapho_check == 0) || (.@ins_bapho_check == 1)) {
+		mes "[Frei Patrick]";
+		mes "Parece que você entrou no santuário recentemente... Você não pode entrar novamente pois a Maldição de Baphomet ainda continua.";
+		mes "A Maldição de Baphomet desparece após de um certo tempo após sua entrada.";
+	}
+	else if (.@ins_bapho_check == 2) {
+		mes "[Frei Patrick]";
+		mes "Humm... Parece que a maldição de Baphomet está enfraquecendo. Irei retirá-la completamente.";
+		next;
+		mes "[Frei Patrick]";
+		mes "Haaaaaaap... Wingardium Leviosa Expecto Patronum !!!!!";
+		specialeffect2 EF_HOLYHIT;
+		if (checkquest(3046)) erasequest 3046;
+		if (checkquest(3041)) erasequest 3041;
+		if (checkquest(3045)) erasequest 3045;
+		next;
+		mes "[Frei Patrick]";
+		mes "Huu... Acabou. Agora que retirei todas as maldições sobre você. Você pode entrar novamente.";
+	}
+close;
 }
 
 prt_monk,261,91,3	script	Rust Blackhand#edq	826,{
@@ -369,8 +363,7 @@ prt_monk,261,91,3	script	Rust Blackhand#edq	826,{
 		}
 	}
 	else if ((.@new_maje == -1) && (countitem(6004) > 0)) {
-		switch(select("Sobre o Boneco de Baphomet Amaldiçoado:Terminar conversa.")) {
-		case 1:
+		if(select("Sobre o Boneco de Baphomet Amaldiçoado:Terminar conversa.") == 1) {
 			mes "[Rust Blackhand]";
 			mes "Como?... Hmmm... Você conseguiu o boneco?...";
 			next;
@@ -389,13 +382,12 @@ prt_monk,261,91,3	script	Rust Blackhand#edq	826,{
 			mes "[Rust Blackhand]";
 			mes "O Boneco de Baphomet Amaldiçoado é a peça mais importante... Poderei fazer isso se você quiser. Deseja que eu o faça?";
 			next;
-			switch(select("Quero sim.:Não preciso disso!")) {
-			case 1:
+			if(select("Quero sim.:Não preciso disso!") == 1) {
 				mes "[Rust Blackhand]";
 				mes "kkk... Sim, homens sabem o que fazem quando a oportunidade chega. Irei lhe falar os ingredientes. Não esqueça, e traga eles todos.";
 				next;
 				mes "[Rust Blackhand]";
-			    	mes "^0000FFBoneco de Baphomet Amaldiçoado, Chifres Magestosos, 30 Cristais da Escuridão, 50 Fragmentos da Escuridão^000000, e o mais importante, o custo da produção é de ^0000FF 990000^000000 Zeny.";
+			   	mes "^0000FFBoneco de Baphomet Amaldiçoado, Chifres Magestosos, 30 Cristais da Escuridão, 50 Fragmentos da Escuridão^000000, e o mais importante, o custo da produção é de ^0000FF 990000^000000 Zeny.";
 				next;
 				mes "[Rust Blackhand]";
 				mes "Você pode conseguir os chifres Majestosos dos Baphomets enfraquecidos do labirinto da floresta. E os cristais você consegue com as Sombras de Morroc.";
@@ -407,7 +399,7 @@ prt_monk,261,91,3	script	Rust Blackhand#edq	826,{
 				mes "Você nunca saberá como é bom isso até conseguir um. Se você souber, vá e pegue os ingredientes.";
 				changequest 3042,3043;
 				close;
-			case 2:
+			} else {
 				mes "[Rust Blackhand]";
 				mes "Huh... Não mesmo? Faça o que quiser... Você quer realmente perder essa oportunidade?";
 				next;
@@ -415,7 +407,7 @@ prt_monk,261,91,3	script	Rust Blackhand#edq	826,{
 				mes "Tut, tut... Eu não ligo se esse boneco ameaça sua vida todo o tempo!";
 				close;
 			}
-		case 2:
+		} else {
 			mes "[Rust Blackhand]";
 			mes "Que menino chato é esse?... huh...";
 			close;
@@ -427,8 +419,7 @@ prt_monk,261,91,3	script	Rust Blackhand#edq	826,{
 		close;
 	}
 	else if ((.@new_maje == 2) && (countitem(6004) > 0)) {
-		switch(select("Sobre o Boneco de Baphomet Amaldiçoado:Terminar conversa.")) {
-		case 1:
+		if(select("Sobre o Boneco de Baphomet Amaldiçoado:Terminar conversa.") == 1) {
 			mes "[Rust Blackhand]";
 			mes "Que?... Você denovo? O que faz nesse instante?";
 			next;
@@ -444,13 +435,12 @@ prt_monk,261,91,3	script	Rust Blackhand#edq	826,{
 			mes "[Rust Blackhand]";
 			mes "Irei lhe falar os ingredientes novamente. Então, você deseja fazer?";
 			next;
-			switch(select("Quero sim.:Não preciso disso!")) {
-			case 1:
+			if(select("Quero sim.:Não preciso disso!")== 1) {
 				mes "[Rust Blackhand]";
 				mes "kkk... Sim, homens sabem o que fazem quando a oportunidade chega. Irei lhe falar os ingredientes. Não esqueça, e traga eles todos.";
 				next;
 				mes "[Rust Blackhand]";
-			    	mes "^0000FFBoneco de Baphomet Amaldiçoado, Chifres Magestosos, 30 Cristais da Escuridão, 50 Fragmentos da Escuridão^000000, e o mais importante, o custo da produção é de ^0000FF 990000^000000 Zeny.";
+			   	mes "^0000FFBoneco de Baphomet Amaldiçoado, Chifres Magestosos, 30 Cristais da Escuridão, 50 Fragmentos da Escuridão^000000, e o mais importante, o custo da produção é de ^0000FF 990000^000000 Zeny.";
 				next;
 				mes "[Rust Blackhand]";
 				mes "Você pode conseguir os chifres Majestosos dos Baphomets enfraquecidos do labirinto da floresta. E os cristais você consegue com as Sombras de Morroc.";
@@ -463,7 +453,7 @@ prt_monk,261,91,3	script	Rust Blackhand#edq	826,{
 				//recall_completequest 3043
 				changequest 3042,3043;
 				close;
-			case 2:
+			} else {
 				mes "[Rust Blackhand]";
 				mes "Huh... Não mesmo? Faça o que quiser... Você quer realmente perder essa oportunidade?";
 				next;
@@ -471,7 +461,7 @@ prt_monk,261,91,3	script	Rust Blackhand#edq	826,{
 				mes "Tut, tut... Eu não ligo se esse boneco ameaça sua vida todo o tempo!";
 				close;
 			}
-		case 2:
+		} else {
 			mes "[Rust Blackhand]";
 			mes "Que menino chato é esse?... huh...";
 			close;
@@ -487,220 +477,19 @@ prt_monk,261,91,3	script	Rust Blackhand#edq	826,{
 // Sealed Shrine Interior
 1@cata,1,2,0	script	ins_baphomet_lotto	-1,{
 OnEnable:
-	switch(rand(1,13)) {
-	case 1:
-		enablenpc instance_npcname("Túmulo#1F_1T", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_2F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_3F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_4F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_5F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_6F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_7F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_8F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_9F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_10F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_11F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_12F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_13F", instance_id());
-		end;
-	case 2:
-		enablenpc instance_npcname("Túmulo#1F_1F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_2T", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_3F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_4F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_5F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_6F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_7F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_8F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_9F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_10F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_11F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_12F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_13F", instance_id());
-		end;
-	case 3:
-		enablenpc instance_npcname("Túmulo#1F_1F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_2F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_3T", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_4F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_5F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_6F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_7F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_8F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_9F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_10F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_11F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_12F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_13F", instance_id());
-		end;
-	case 4:
-		enablenpc instance_npcname("Túmulo#1F_1F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_2F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_3F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_4T", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_5F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_6F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_7F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_8F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_9F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_10F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_11F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_12F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_13F", instance_id());
-		end;
-	case 5:
-		enablenpc instance_npcname("Túmulo#1F_1F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_2F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_3F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_4F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_5T", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_6F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_7F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_8F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_9F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_10F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_11F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_12F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_13F", instance_id());
-		end;
-	case 6:
-		enablenpc instance_npcname("Túmulo#1F_1F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_2F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_3F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_4F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_5F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_6T", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_7F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_8F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_9F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_10F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_11F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_12F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_13F", instance_id());
-		end;
-	case 7:
-		enablenpc instance_npcname("Túmulo#1F_1F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_2F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_3F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_4F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_5F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_6F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_7T", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_8F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_9F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_10F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_11F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_12F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_13F", instance_id());
-		end;
-	case 8:
-		enablenpc instance_npcname("Túmulo#1F_1F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_2F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_3F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_4F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_5F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_6F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_7F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_8T", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_9F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_10F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_11F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_12F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_13F", instance_id());
-		end;
-	case 9:
-		enablenpc instance_npcname("Túmulo#1F_1F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_2F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_3F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_4F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_5F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_6F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_7F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_8F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_9T", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_10F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_11F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_12F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_13F", instance_id());
-		end;
-	case 10:
-		enablenpc instance_npcname("Túmulo#1F_1F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_2F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_3F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_4F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_5F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_6F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_7F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_8F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_9F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_10T", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_11F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_12F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_13F", instance_id());
-		end;
-	case 11:
-		enablenpc instance_npcname("Túmulo#1F_1F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_2F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_3F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_4F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_5F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_6F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_7F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_8F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_9F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_10F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_11T", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_12F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_13F", instance_id());
-		end;
-	case 12:
-		enablenpc instance_npcname("Túmulo#1F_1F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_2F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_3F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_4F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_5F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_6F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_7F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_8F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_9F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_10F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_11F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_12T", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_13F", instance_id());
-		end;
-	case 13:
-		enablenpc instance_npcname("Túmulo#1F_1F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_2F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_3F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_4F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_5F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_6F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_7F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_8F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_9F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_10F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_11F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_12F", instance_id());
-		enablenpc instance_npcname("Túmulo#1F_13T", instance_id());
-		end;
+	set .@n,rand(1,13);
+	for(set .@i,1; .@i <= 13; set .@i,.@i + 1) {
+		if(.@n == .@i) set .@n$,"T";
+		else set .@n$,"F";
+		enablenpc instance_npcname("Túmulo#1F_"+.@i+.@n$, instance_id());
 	}
 	end;
 }
 
 1@cata,3,2,0	script	ins_baphomet_lotto2	-1,{
 OnEnable:
-	enablenpc instance_npcname("Tocha#1", instance_id());
-	enablenpc instance_npcname("Tocha#2", instance_id());
-	enablenpc instance_npcname("Tocha#3", instance_id());
-	enablenpc instance_npcname("Tocha#4", instance_id());
-	enablenpc instance_npcname("Tocha#5", instance_id());
-	enablenpc instance_npcname("Tocha#6", instance_id());
-	enablenpc instance_npcname("Tocha#7", instance_id());
-	enablenpc instance_npcname("Tocha#8", instance_id());
-	enablenpc instance_npcname("Tocha#9", instance_id());
-	enablenpc instance_npcname("Tocha#10", instance_id());
-	enablenpc instance_npcname("Tocha#11", instance_id());
-	enablenpc instance_npcname("Tocha#12", instance_id());
+	for(set .@i,1; .@i <= 12; set .@i,.@i + 1)
+		enablenpc instance_npcname("Tocha#"+.@i, instance_id());
 	end;
 }
 
@@ -1071,7 +860,7 @@ OnTouch:
 	}
 }
 
-1@cata,86,214,0	script	Túmulo#1F_1T	844,{
+-	script	Túmulo Santuario::Tumulo1F_T	-1,{
 	if ('ins_baphomet == 1) {
 		getitem 6003,1; //Soul_Pendant
 		set 'ins_baphomet,2;
@@ -1087,267 +876,52 @@ OnTouch:
 	}
 }
 
-1@cata,86,214,0	script	Túmulo#1F_1F	844,{
+-	script	Túmulo Santuario::Tumulo1F_F	-1,{
 	mes "Posso sentir a tristeza vinda desse túmulo.";
 	close;
 	end;
 }
 
-1@cata,200,209,0	script	Túmulo#1F_2T	844,{
-	if ('ins_baphomet == 1) {
-		getitem 6003,1; //Soul_Pendant
-		set 'ins_baphomet,2;
-		mes "Um pequeno objeto está brilhando abaixo do antigo túmulo.";
-		next;
-		mes "[" + strcharinfo(0) + "]";
-		mes "Eu acho que é o pingente...";
-		close;
-	}
-	else {
-		mes "Posso sentir a tristeza vinda desse túmulo.";
-		close;
-	}
-}
+1@cata,86,214,0	duplicate(Tumulo1F_T)	Túmulo#1F_1T	844
+1@cata,86,214,0	duplicate(Tumulo1F_F)	Túmulo#1F_1F	844
 
-1@cata,200,209,0	script	Túmulo#1F_2F	844,{
-	mes "Posso sentir a tristeza vinda desse túmulo.";
-	close;
-}
+1@cata,200,209,0	duplicate(Tumulo1F_T)	Túmulo#1F_2T	844
+1@cata,200,209,0	duplicate(Tumulo1F_F)	Túmulo#1F_2F	844
 
-1@cata,230,195,0	script	Túmulo#1F_3T	844,{
-	if ('ins_baphomet == 1) {
-		getitem 6003,1; //Soul_Pendant
-		set 'ins_baphomet,2;
-		mes "Um pequeno objeto está brilhando abaixo do antigo túmulo.";
-		next;
-		mes "[" + strcharinfo(0) + "]";
-		mes "Eu acho que é o pingente...";
-		close;
-	}
-	else {
-		mes "Posso sentir a tristeza vinda desse túmulo.";
-		close;
-	}
-}
+1@cata,230,195,0	duplicate(Tumulo1F_T)	Túmulo#1F_3T	844
+1@cata,230,195,0	duplicate(Tumulo1F_F)	Túmulo#1F_3F	844
 
-1@cata,230,195,0	script	Túmulo#1F_3F	844,{
-	mes "Posso sentir a tristeza vinda desse túmulo.";
-	close;
-}
+1@cata,118,182,0	duplicate(Tumulo1F_T)	Túmulo#1F_4T	844
+1@cata,118,182,0	duplicate(Tumulo1F_F)	Túmulo#1F_4F	844
 
-1@cata,118,182,0	script	Túmulo#1F_4T	844,{
-	if ('ins_baphomet == 1) {
-		getitem 6003,1; //Soul_Pendant
-		set 'ins_baphomet,2;
-		mes "Um pequeno objeto está brilhando abaixo do antigo túmulo.";
-		next;
-		mes "[" + strcharinfo(0) + "]";
-		mes "Eu acho que é o pingente...";
-		close;
-	}
-	else {
-		mes "Posso sentir a tristeza vinda desse túmulo.";
-		close;
-	}
-}
+1@cata,193,182,0	duplicate(Tumulo1F_T)	Túmulo#1F_5T	844
+1@cata,193,182,0	duplicate(Tumulo1F_F)	Túmulo#1F_5F	844
 
-1@cata,118,182,0	script	Túmulo#1F_4F	844,{
-	mes "Posso sentir a tristeza vinda desse túmulo.";
-	close;
-}
+1@cata,253,156,0	duplicate(Tumulo1F_T)	Túmulo#1F_6T	844
+1@cata,253,156,0	duplicate(Tumulo1F_F)	Túmulo#1F_6F	844
 
-1@cata,193,182,0	script	Túmulo#1F_5T	844,{
-	if ('ins_baphomet == 1) {
-		getitem 6003,1; //Soul_Pendant
-		set 'ins_baphomet,2;
-		mes "Um pequeno objeto está brilhando abaixo do antigo túmulo.";
-		next;
-		mes "[" + strcharinfo(0) + "]";
-		mes "Eu acho que é o pingente...";
-		close;
-	}
-	else {
-		mes "Posso sentir a tristeza vinda desse túmulo.";
-		close;
-	}
-}
+1@cata,88,154,0	duplicate(Tumulo1F_T)	Túmulo#1F_7T	844
+1@cata,88,154,0	duplicate(Tumulo1F_F)	Túmulo#1F_7F	844
 
-1@cata,193,182,0	script	Túmulo#1F_5F	844,{
-	mes "Posso sentir a tristeza vinda desse túmulo.";
-	close;
-}
+1@cata,127,116,0	duplicate(Tumulo1F_T)	Túmulo#1F_8T	844
+1@cata,127,116,0	duplicate(Tumulo1F_F)	Túmulo#1F_8F	844
 
-1@cata,253,156,0	script	Túmulo#1F_6T	844,{
-	if ('ins_baphomet == 1) {
-		getitem 6003,1; //Soul_Pendant
-		set 'ins_baphomet,2;
-		mes "Um pequeno objeto está brilhando abaixo do antigo túmulo.";
-		next;
-		mes "[" + strcharinfo(0) + "]";
-		mes "Eu acho que é o pingente...";
-		close;
-	}
-	else {
-		mes "Posso sentir a tristeza vinda desse túmulo.";
-		close;
-	}
-}
+1@cata,90,98,0	duplicate(Tumulo1F_T)	Túmulo#1F_9T	844
+1@cata,90,98,0	duplicate(Tumulo1F_F)	Túmulo#1F_9F	844
 
-1@cata,253,156,0	script	Túmulo#1F_6F	844,{
-	mes "Posso sentir a tristeza vinda desse túmulo.";
-	close;
-}
+1@cata,188,84,0	duplicate(Tumulo1F_T)	Túmulo#1F_10T	844
+1@cata,188,84,0	duplicate(Tumulo1F_F)	Túmulo#1F_10F	844
 
-1@cata,88,154,0	script	Túmulo#1F_7T	844,{
-	if ('ins_baphomet == 1) {
-		getitem 6003,1; //Soul_Pendant
-		set 'ins_baphomet,2;
-		mes "Um pequeno objeto está brilhando abaixo do antigo túmulo.";
-		next;
-		mes "[" + strcharinfo(0) + "]";
-		mes "Eu acho que é o pingente...";
-		close;
-	}
-	else {
-		mes "Posso sentir a tristeza vinda desse túmulo.";
-		close;
-	}
-}
+1@cata,244,42,0	duplicate(Tumulo1F_T)	Túmulo#1F_11T	844
+1@cata,244,42,0	duplicate(Tumulo1F_F)	Túmulo#1F_11F	844
 
-1@cata,88,154,0	script	Túmulo#1F_7F	844,{
-	mes "Posso sentir a tristeza vinda desse túmulo.";
-	close;
-}
+1@cata,127,32,0	duplicate(Tumulo1F_T)	Túmulo#1F_12T	844
+1@cata,127,32,0	duplicate(Tumulo1F_F)	Túmulo#1F_12F	844
 
-1@cata,127,116,0	script	Túmulo#1F_8T	844,{
-	if ('ins_baphomet == 1) {
-		getitem 6003,1; //Soul_Pendant
-		set 'ins_baphomet,2;
-		mes "Um pequeno objeto está brilhando abaixo do antigo túmulo.";
-		next;
-		mes "[" + strcharinfo(0) + "]";
-		mes "Eu acho que é o pingente...";
-		close;
-	}
-	else {
-		mes "Posso sentir a tristeza vinda desse túmulo.";
-		close;
-	}
-}
+1@cata,267,30,0	duplicate(Tumulo1F_T)	Túmulo#1F_13T	844
+1@cata,267,30,0	duplicate(Tumulo1F_F)	Túmulo#1F_13F	844
 
-1@cata,127,116,0	script	Túmulo#1F_8F	844,{
-	mes "Posso sentir a tristeza vinda desse túmulo.";
-	close;
-}
-
-1@cata,90,98,0	script	Túmulo#1F_9T	844,{
-	if ('ins_baphomet == 1) {
-		getitem 6003,1; //Soul_Pendant
-		set 'ins_baphomet,2;
-		mes "Um pequeno objeto está brilhando abaixo do antigo túmulo.";
-		next;
-		mes "[" + strcharinfo(0) + "]";
-		mes "Eu acho que é o pingente...";
-		close;
-	}
-	else {
-		mes "Posso sentir a tristeza vinda desse túmulo.";
-		close;
-	}
-}
-
-1@cata,90,98,0	script	Túmulo#1F_9F	844,{
-	mes "Posso sentir a tristeza vinda desse túmulo.";
-	close;
-	end;
-}
-
-1@cata,188,84,0	script	Túmulo#1F_10T	844,{
-	if ('ins_baphomet == 1) {
-		getitem 6003,1; //Soul_Pendant
-		set 'ins_baphomet,2;
-		mes "Um pequeno objeto está brilhando abaixo do antigo túmulo.";
-		next;
-		mes "[" + strcharinfo(0) + "]";
-		mes "Eu acho que é o pingente...";
-		close;
-	}
-	else {
-		mes "Posso sentir a tristeza vinda desse túmulo.";
-		close;
-	}
-}
-
-1@cata,188,84,0	script	Túmulo#1F_10F	844,{
-	mes "Posso sentir a tristeza vinda desse túmulo.";
-	close;
-	end;
-}
-
-1@cata,244,42,0	script	Túmulo#1F_11T	844,{
-	if ('ins_baphomet == 1) {
-		getitem 6003,1; //Soul_Pendant
-		set 'ins_baphomet,2;
-		mes "Um pequeno objeto está brilhando abaixo do antigo túmulo.";
-		next;
-		mes "[" + strcharinfo(0) + "]";
-		mes "Eu acho que é o pingente...";
-		close;
-	}
-	else {
-		mes "Posso sentir a tristeza vinda desse túmulo.";
-		close;
-	}
-}
-
-1@cata,244,42,0	script	Túmulo#1F_11F	844,{
-	mes "Posso sentir a tristeza vinda desse túmulo.";
-	close;
-}
-
-1@cata,127,32,0	script	Túmulo#1F_12T	844,{
-	if ('ins_baphomet == 1) {
-		getitem 6003,1; //Soul_Pendant
-		set 'ins_baphomet,2;
-		mes "Um pequeno objeto está brilhando abaixo do antigo túmulo.";
-		next;
-		mes "[" + strcharinfo(0) + "]";
-		mes "Eu acho que é o pingente...";
-		close;
-	}
-	else {
-		mes "Posso sentir a tristeza vinda desse túmulo.";
-		close;
-	}
-}
-
-1@cata,127,32,0	script	Túmulo#1F_12F	844,{
-	mes "Posso sentir a tristeza vinda desse túmulo.";
-	close;
-}
-
-1@cata,267,30,0	script	Túmulo#1F_13T	844,{
-	if ('ins_baphomet == 1) {
-		getitem 6003,1; //Soul_Pendant
-		set 'ins_baphomet,2;
-		mes "Um pequeno objeto está brilhando abaixo do antigo túmulo.";
-		next;
-		mes "[" + strcharinfo(0) + "]";
-		mes "Eu acho que é o pingente...";
-		close;
-	}
-	else {
-		mes "Posso sentir a tristeza vinda desse túmulo.";
-		close;
-	}
-}
-
-1@cata,267,30,0	script	Túmulo#1F_13F	844,{
-	mes "Posso sentir a tristeza vinda desse túmulo.";
-	close;
-}
-
-1@cata,267,210,0	script	Tocha#1	844,{
+-	script	Tocha Santuario::TochaSantuario	-1,{
 	set .@party_id,getcharid(1);
 	if (getpartyleader(.@party_id,2) == getcharid(0)) {
 		if (('ins_baphomet == 3) && (countitem(6001) < 11)) {
@@ -1358,7 +932,7 @@ OnTouch:
 			specialeffect2 EF_HOLYHIT;
 			getitem 6001,1; //Essence_Of_Fire
 			mes "O símbolo do herdeiro brilha. Nisso um pequeno cristal cai da tocha.";
-			disablenpc instance_npcname("Tocha#1", instance_id());
+			disablenpc instance_npcname(strnpcinfo(0), instance_id());
 			close;
 		}
 		else if (('ins_baphomet == 3) && (countitem(6001) > 10)) {
@@ -1381,379 +955,18 @@ OnTouch:
 	}
 }
 
-1@cata,85,182,0	script	Tocha#2	844,{
-	set .@party_id,getcharid(1);
-	if (getpartyleader(.@party_id,2) == getcharid(0)) {
-		if (('ins_baphomet == 3) && (countitem(6001) < 11)) {
-			mes "Uma antiga tocha parece que pode queimar tudo que está a minha volta.";
-			next;
-			mes "Sua grande aparência e o calor de suas chamas me faz voltar... Porém tive coragem e estiquei o braço para segura-la.";
-			next;
-			specialeffect2 EF_HOLYHIT;
-			getitem 6001,1; //Essence_Of_Fire
-			mes "O símbolo do herdeiro brilha. Nisso um pequeno cristal cai da tocha.";
-			disablenpc instance_npcname("Tocha#2", instance_id());
-			close;
-		}
-		else if (('ins_baphomet == 3) && (countitem(6001) > 10)) {
-			mes "Você já tem 10 Essências de Fogo. Você não precisa mais pegar nenhuma.";
-			close;
-		}
-		else {
-			mes "Você não precisa mais pegar as Essências de Fogo.";
-			close;
-		}
-	}
-	else {
-		mes "Uma antiga tocha parece que pode queimar tudo que está a minha volta.";
-		next;
-		mes "[Voz Misteriosa]";
-		mes "Você não é o Herdeiro da Fé. Não coloque essas Essências nessas mãos imundas.";
-		specialeffect2 EF_FIRESPLASHHIT;
-		percentheal -50,0;
-		close;
-	}
-}
-
-1@cata,267,154,0	script	Tocha#3	844,{
-	set .@party_id,getcharid(1);
-	if (getpartyleader(.@party_id,2) == getcharid(0)) {
-		if (('ins_baphomet == 3) && (countitem(6001) < 11)) {
-			mes "Uma antiga tocha parece que pode queimar tudo que está a minha volta.";
-			next;
-			mes "Sua grande aparência e o calor de suas chamas me faz voltar... Porém tive coragem e estiquei o braço para segura-la.";
-			next;
-			specialeffect2 EF_HOLYHIT;
-			getitem 6001,1; //Essence_Of_Fire
-			mes "O símbolo do herdeiro brilha. Nisso um pequeno cristal cai da tocha.";
-			disablenpc instance_npcname("Tocha#3", instance_id());
-			close;
-		}
-		else if (('ins_baphomet == 3) && (countitem(6001) > 10)) {
-			mes "Você já tem 10 Essências de Fogo. Você não precisa mais pegar nenhuma.";
-			close;
-		}
-		else {
-			mes "Você não precisa mais pegar as Essências de Fogo.";
-			close;
-		}
-	}
-	else {
-		mes "Uma antiga tocha parece que pode queimar tudo que está a minha volta.";
-		next;
-		mes "[Voz Misteriosa]";
-		mes "Você não é o Herdeiro da Fé. Não coloque essas Essências nessas mãos imundas.";
-		specialeffect2 EF_FIRESPLASHHIT;
-		percentheal -50,0;
-		close;
-	}
-}
-
-1@cata,157,139,0	script	Tocha#4	844,{
-	set .@party_id,getcharid(1);
-	if (getpartyleader(.@party_id,2) == getcharid(0)) {
-		if (('ins_baphomet == 3) && (countitem(6001) < 11)) {
-			mes "Uma antiga tocha parece que pode queimar tudo que está a minha volta.";
-			next;
-			mes "Sua grande aparência e o calor de suas chamas me faz voltar... Porém tive coragem e estiquei o braço para segura-la.";
-			next;
-			specialeffect2 EF_HOLYHIT;
-			getitem 6001,1; //Essence_Of_Fire
-			mes "O símbolo do herdeiro brilha. Nisso um pequeno cristal cai da tocha.";
-			disablenpc instance_npcname("Tocha#4", instance_id());
-			close;
-		}
-		else if (('ins_baphomet == 3) && (countitem(6001) > 10)) {
-			mes "Você já tem 10 Essências de Fogo. Você não precisa mais pegar nenhuma.";
-			close;
-		}
-		else {
-			mes "Você não precisa mais pegar as Essências de Fogo.";
-			close;
-		}
-	}
-	else {
-		mes "Uma antiga tocha parece que pode queimar tudo que está a minha volta.";
-		next;
-		mes "[Voz Misteriosa]";
-		mes "Você não é o Herdeiro da Fé. Não coloque essas Essências nessas mãos imundas.";
-		specialeffect2 EF_FIRESPLASHHIT;
-		percentheal -50,0;
-		close;
-	}
-}
-
-1@cata,193,138,0	script	Tocha#5	844,{
-	set .@party_id,getcharid(1);
-	if (getpartyleader(.@party_id,2) == getcharid(0)) {
-		if (('ins_baphomet == 3) && (countitem(6001) < 11)) {
-			mes "Uma antiga tocha parece que pode queimar tudo que está a minha volta.";
-			next;
-			mes "Sua grande aparência e o calor de suas chamas me faz voltar... Porém tive coragem e estiquei o braço para segura-la.";
-			next;
-			specialeffect2 EF_HOLYHIT;
-			getitem 6001,1; //Essence_Of_Fire
-			mes "O símbolo do herdeiro brilha. Nisso um pequeno cristal cai da tocha.";
-			disablenpc instance_npcname("Tocha#5", instance_id());
-			close;
-		}
-		else if (('ins_baphomet == 3) && (countitem(6001) > 10)) {
-			mes "Você já tem 10 Essências de Fogo. Você não precisa mais pegar nenhuma.";
-			close;
-		}
-		else {
-			mes "Você não precisa mais pegar as Essências de Fogo.";
-			close;
-		}
-	}
-	else {
-		mes "Uma antiga tocha parece que pode queimar tudo que está a minha volta.";
-		next;
-		mes "[Voz Misteriosa]";
-		mes "Você não é o Herdeiro da Fé. Não coloque essas Essências nessas mãos imundas.";
-		specialeffect2 EF_FIRESPLASHHIT;
-		percentheal -50,0;
-		close;
-	}
-}
-
-1@cata,193,102,0	script	Tocha#6	844,{
-	set .@party_id,getcharid(1);
-	if (getpartyleader(.@party_id,2) == getcharid(0)) {
-		if (('ins_baphomet == 3) && (countitem(6001) < 11)) {
-			mes "Uma antiga tocha parece que pode queimar tudo que está a minha volta.";
-			next;
-			mes "Sua grande aparência e o calor de suas chamas me faz voltar... Porém tive coragem e estiquei o braço para segura-la.";
-			next;
-			specialeffect2 EF_HOLYHIT;
-			getitem 6001,1; //Essence_Of_Fire
-			mes "O símbolo do herdeiro brilha. Nisso um pequeno cristal cai da tocha.";
-			disablenpc instance_npcname("Tocha#6", instance_id());
-			close;
-		}
-		else if (('ins_baphomet == 3) && (countitem(6001) > 10)) {
-			mes "Você já tem 10 Essências de Fogo. Você não precisa mais pegar nenhuma.";
-			close;
-		}
-		else {
-			mes "Você não precisa mais pegar as Essências de Fogo.";
-			close;
-		}
-	}
-	else {
-		mes "Uma antiga tocha parece que pode queimar tudo que está a minha volta.";
-		next;
-		mes "[Voz Misteriosa]";
-		mes "Você não é o Herdeiro da Fé. Não coloque essas Essências nessas mãos imundas.";
-		specialeffect2 EF_FIRESPLASHHIT;
-		percentheal -50,0;
-		close;
-	}
-}
-
-1@cata,157,102,0	script	Tocha#7	844,{
-	set .@party_id,getcharid(1);
-	if (getpartyleader(.@party_id,2) == getcharid(0)) {
-		if (('ins_baphomet == 3) && (countitem(6001) < 11)) {
-			mes "Uma antiga tocha parece que pode queimar tudo que está a minha volta.";
-			next;
-			mes "Sua grande aparência e o calor de suas chamas me faz voltar... Porém tive coragem e estiquei o braço para segura-la.";
-			next;
-			specialeffect2 EF_HOLYHIT;
-			getitem 6001,1; //Essence_Of_Fire
-			mes "O símbolo do herdeiro brilha. Nisso um pequeno cristal cai da tocha.";
-			disablenpc instance_npcname("Tocha#7", instance_id());
-			close;
-		}
-		else if (('ins_baphomet == 3) && (countitem(6001) > 10)) {
-			mes "Você já tem 10 Essências de Fogo. Você não precisa mais pegar nenhuma.";
-			close;
-		}
-		else {
-			mes "Você não precisa mais pegar as Essências de Fogo.";
-			close;
-		}
-	}
-	else {
-		mes "Uma antiga tocha parece que pode queimar tudo que está a minha volta.";
-		next;
-		mes "[Voz Misteriosa]";
-		mes "Você não é o Herdeiro da Fé. Não coloque essas Essências nessas mãos imundas.";
-		specialeffect2 EF_FIRESPLASHHIT;
-		percentheal -50,0;
-		close;
-	}
-}
-
-1@cata,113,112,0	script	Tocha#8	844,{
-	set .@party_id,getcharid(1);
-	if (getpartyleader(.@party_id,2) == getcharid(0)) {
-		if (('ins_baphomet == 3) && (countitem(6001) < 11)) {
-			mes "Uma antiga tocha parece que pode queimar tudo que está a minha volta.";
-			next;
-			mes "Sua grande aparência e o calor de suas chamas me faz voltar... Porém tive coragem e estiquei o braço para segura-la.";
-			next;
-			specialeffect2 EF_HOLYHIT;
-			getitem 6001,1; //Essence_Of_Fire
-			mes "O símbolo do herdeiro brilha. Nisso um pequeno cristal cai da tocha.";
-			disablenpc instance_npcname("Tocha#8", instance_id());
-			close;
-		}
-		else if (('ins_baphomet == 3) && (countitem(6001) > 10)) {
-			mes "Você já tem 10 Essências de Fogo. Você não precisa mais pegar nenhuma.";
-			close;
-		}
-		else {
-			mes "Você não precisa mais pegar as Essências de Fogo.";
-			close;
-		}
-	}
-	else {
-		mes "Uma antiga tocha parece que pode queimar tudo que está a minha volta.";
-		next;
-		mes "[Voz Misteriosa]";
-		mes "Você não é o Herdeiro da Fé. Não coloque essas Essências nessas mãos imundas.";
-		specialeffect2 EF_FIRESPLASHHIT;
-		percentheal -50,0;
-		close;
-	}
-}
-
-1@cata,253,56,0	script	Tocha#9	844,{
-	set .@party_id,getcharid(1);
-	if (getpartyleader(.@party_id,2) == getcharid(0)) {
-		if (('ins_baphomet == 3) && (countitem(6001) < 11)) {
-			mes "Uma antiga tocha parece que pode queimar tudo que está a minha volta.";
-			next;
-			mes "Sua grande aparência e o calor de suas chamas me faz voltar... Porém tive coragem e estiquei o braço para segura-la.";
-			next;
-			specialeffect2 EF_HOLYHIT;
-			getitem 6001,1; //Essence_Of_Fire
-			mes "O símbolo do herdeiro brilha. Nisso um pequeno cristal cai da tocha.";
-			disablenpc instance_npcname("Tocha#9", instance_id());
-			close;
-		}
-		else if (('ins_baphomet == 3) && (countitem(6001) > 10)) {
-			mes "Você já tem 10 Essências de Fogo. Você não precisa mais pegar nenhuma.";
-			close;
-		}
-		else {
-			mes "Você não precisa mais pegar as Essências de Fogo.";
-			close;
-		}
-	}
-	else {
-		mes "Uma antiga tocha parece que pode queimar tudo que está a minha volta.";
-		next;
-		mes "[Voz Misteriosa]";
-		mes "Você não é o Herdeiro da Fé. Não coloque essas Essências nessas mãos imundas.";
-		specialeffect2 EF_FIRESPLASHHIT;
-		percentheal -50,0;
-		close;
-	}
-}
-
-1@cata,239,56,0	script	Tocha#10	844,{
-	set .@party_id,getcharid(1);
-	if (getpartyleader(.@party_id,2) == getcharid(0)) {
-		if (('ins_baphomet == 3) && (countitem(6001) < 11)) {
-			mes "Uma antiga tocha parece que pode queimar tudo que está a minha volta.";
-			next;
-			mes "Sua grande aparência e o calor de suas chamas me faz voltar... Porém tive coragem e estiquei o braço para segura-la.";
-			next;
-			specialeffect2 EF_HOLYHIT;
-			getitem 6001,1; //Essence_Of_Fire
-			mes "O símbolo do herdeiro brilha. Nisso um pequeno cristal cai da tocha.";
-			disablenpc instance_npcname("Tocha#10", instance_id());
-			close;
-		}
-		else if (('ins_baphomet == 3) && (countitem(6001) > 10)) {
-			mes "Você já tem 10 Essências de Fogo. Você não precisa mais pegar nenhuma.";
-			close;
-		}
-		else {
-			mes "Você não precisa mais pegar as Essências de Fogo.";
-			close;
-		}
-	}
-	else {
-		mes "Uma antiga tocha parece que pode queimar tudo que está a minha volta.";
-		next;
-		mes "[Voz Misteriosa]";
-		mes "Você não é o Herdeiro da Fé. Não coloque essas Essências nessas mãos imundas.";
-		specialeffect2 EF_FIRESPLASHHIT;
-		percentheal -50,0;
-		close;
-	}
-}
-
-1@cata,71,42,0	script	Tocha#11	844,{
-	set .@party_id,getcharid(1);
-	if (getpartyleader(.@party_id,2) == getcharid(0)) {
-		if (('ins_baphomet == 3) && (countitem(6001) < 11)) {
-			mes "Uma antiga tocha parece que pode queimar tudo que está a minha volta.";
-			next;
-			mes "Sua grande aparência e o calor de suas chamas me faz voltar... Porém tive coragem e estiquei o braço para segura-la.";
-			next;
-			specialeffect2 EF_HOLYHIT;
-			getitem 6001,1; //Essence_Of_Fire
-			mes "O símbolo do herdeiro brilha. Nisso um pequeno cristal cai da tocha.";
-			disablenpc instance_npcname("Tocha#11", instance_id());
-			close;
-		}
-		else if (('ins_baphomet == 3) && (countitem(6001) > 10)) {
-			mes "Você já tem 10 Essências de Fogo. Você não precisa mais pegar nenhuma.";
-			close;
-		}
-		else {
-			mes "Você não precisa mais pegar as Essências de Fogo.";
-			close;
-		}
-	}
-	else {
-		mes "Uma antiga tocha parece que pode queimar tudo que está a minha volta.";
-		next;
-		mes "[Voz Misteriosa]";
-		mes "Você não é o Herdeiro da Fé. Não coloque essas Essências nessas mãos imundas.";
-		specialeffect2 EF_FIRESPLASHHIT;
-		percentheal -50,0;
-		close;
-	}
-}
-
-1@cata,155,14,0	script	Tocha#12	844,{
-	set .@party_id,getcharid(1);
-	if (getpartyleader(.@party_id,2) == getcharid(0)) {
-		if (('ins_baphomet == 3) && (countitem(6001) < 11)) {
-			mes "Uma antiga tocha parece que pode queimar tudo que está a minha volta.";
-			next;
-			mes "Sua grande aparência e o calor de suas chamas me faz voltar... Porém tive coragem e estiquei o braço para segura-la.";
-			next;
-			specialeffect2 EF_HOLYHIT;
-			getitem 6001,1; //Essence_Of_Fire
-			mes "O símbolo do herdeiro brilha. Nisso um pequeno cristal cai da tocha.";
-			disablenpc instance_npcname("Tocha#12", instance_id());
-			close;
-		}
-		else if (('ins_baphomet == 3) && (countitem(6001) > 10)) {
-			mes "Você já tem 10 Essências de Fogo. Você não precisa mais pegar nenhuma.";
-			close;
-		}
-		else {
-			mes "Você não precisa mais pegar as Essências de Fogo.";
-			close;
-		}
-	}
-	else {
-		mes "Uma antiga tocha parece que pode queimar tudo que está a minha volta.";
-		next;
-		mes "[Voz Misteriosa]";
-		mes "Você não é o Herdeiro da Fé. Não coloque essas Essências nessas mãos imundas.";
-		specialeffect2 EF_FIRESPLASHHIT;
-		percentheal -50,0;
-		close;
-	}
-}
+1@cata,267,210,0	duplicate(TochaSantuario)	Tocha#1	844
+1@cata,85,182,0	duplicate(TochaSantuario)	Tocha#2	844
+1@cata,267,154,0	duplicate(TochaSantuario)	Tocha#3	844
+1@cata,157,139,0	duplicate(TochaSantuario)	Tocha#4	844
+1@cata,193,138,0	duplicate(TochaSantuario)	Tocha#5	844
+1@cata,193,102,0	duplicate(TochaSantuario)	Tocha#6	844
+1@cata,157,102,0	duplicate(TochaSantuario)	Tocha#7	844
+1@cata,113,112,0	duplicate(TochaSantuario)	Tocha#8	844
+1@cata,253,56,0	duplicate(TochaSantuario)	Tocha#9	844
+1@cata,239,56,0	duplicate(TochaSantuario)	Tocha#10	844
+1@cata,71,42,0	duplicate(TochaSantuario)	Tocha#11	844
+1@cata,155,14,0	duplicate(TochaSantuario)	Tocha#12	844
 
 1@cata,1,1,0	script	ins_baphomet_1f_timer	-1,{
 OnEnable:
@@ -1761,7 +974,7 @@ OnEnable:
 	initnpctimer;
 	end;
 
-OnDisable:;
+OnDisable:
 	disablenpc instance_npcname("ins_baphomet_1f_timer", instance_id());
 	stopnpctimer;
 	end;
@@ -1898,167 +1111,41 @@ OnTouch:
 }
 
 2@cata,79,81,0	script	Selo Mágico#0	844,{
-	set .@seal_check,checkquest(3041,PLAYTIME);
-	if (.@seal_check == -1) {
-		specialeffect EF_LEXDIVINA;
-		disablenpc instance_npcname("Selo Mágico#0", instance_id());
-		areamobuseskill "2@cata",79,81,10,1929,686,1,0,0,26,0;
-		percentheal -50,0;
-		sc_start Eff_Stone,20000,0;
-		setquest 3041;
-		instance_announce 0, "O selo é ativado colocando o poder mágico sobre o altar.",bc_map,"0x87ceeb";
-		mes "Eu posso sentir o poder voltando ao altar colocando seu poder mágico.";
-		next;
-		mes "Você não pode colocar o selo novamente durante 3 minutos pois perdeu seu SP com isso.";
-		close;
-	}
-	else if ((.@seal_check == 0) || (.@seal_check == 1)) {
-		specialeffect2 EF_SILENCEATTACK;
-		percentheal -50,0;
-		sc_start Eff_Stone,30000,0;
-		mes "Seu SP não esta cheio ainda. Você perdeu seu SP no altar, mas parece que o poder do selo ainda não voltou.";
-		close;
-	}
-	else if (.@seal_check == 2) {
-		erasequest 3041;
-		specialeffect EF_LEXDIVINA;
-		disablenpc instance_npcname("Selo Mágico#0", instance_id());
-		areamobuseskill "2@cata",79,81,10,1929,686,1,0,0,26,0;
-		percentheal -50,0;
-		sc_start Eff_Stone,20000,0;
-		setquest 3041;
-		instance_announce 0, "O selo é ativado colocando o poder mágico sobre o altar.",bc_map,"0x87ceeb";
-		mes "Eu posso sentir o poder voltando ao altar colocando seu poder mágico.";
-		next;
-		mes "Você não pode colocar o selo novamente durante 3 minutos pois perdeu seu SP com isso.";
-		close;
-	}
+	callfunc "SeloMagico",79,81,10,1929,686,1,0,0,26,0;
 	end;
 }
 
 2@cata,123,109,0	script	Selo Mágico#2	844,{
-	set .@seal_check,checkquest(3041,PLAYTIME);
-	if (.@seal_check == -1) {
-		specialeffect EF_LEXDIVINA;
-		disablenpc instance_npcname("Selo Mágico#2", instance_id());
-		areamobuseskill "2@cata",123,109,10,1929,686,1,0,0,26,0;
-		percentheal -50,0;
-		sc_start Eff_Stone,20000,0;
-		setquest 3041;
-		instance_announce 0, "O selo é ativado colocando o poder mágico sobre o altar.",bc_map,"0x87ceeb";
-		mes "Eu posso sentir o poder voltando ao altar colocando seu poder mágico.";
-		next;
-		mes "Você não pode colocar o selo novamente durante 3 minutos pois perdeu seu SP com isso.";
-		close;
-	}
-	else if ((.@seal_check == 0) || (.@seal_check == 1)) {
-		specialeffect2 EF_SILENCEATTACK;
-		percentheal -50,0;
-		sc_start Eff_Stone,30000,0;
-		mes "Seu SP não esta cheio ainda. Você perdeu seu SP no altar, mas parece que o poder do selo ainda não voltou.";
-		close;
-	}
-	else if (.@seal_check == 2) {
-		erasequest 3041;
-		specialeffect EF_LEXDIVINA;
-		disablenpc instance_npcname("Selo Mágico#2", instance_id());
-		areamobuseskill "2@cata",123,109,10,1929,686,1,0,0,26,0;
-		percentheal -50,0;
-		sc_start Eff_Stone,20000,0;
-		setquest 3041;
-		instance_announce 0, "O selo é ativado colocando o poder mágico sobre o altar.",bc_map,"0x87ceeb";
-		mes "Eu posso sentir o poder voltando ao altar colocando seu poder mágico.";
-		next;
-		mes "Você não pode colocar o selo novamente durante 3 minutos pois perdeu seu SP com isso.";
-		close;
-	}
+	callfunc "SeloMagico",123,109,10,1929,686,1,0,0,26,0;
 	end;
 }
 
 2@cata,123,22,0	script	Selo Mágico#4	844,{
-	set .@seal_check,checkquest(3041,PLAYTIME);
-	if (.@seal_check == -1) {
-		specialeffect EF_LEXDIVINA;
-		disablenpc instance_npcname("Selo Mágico#4", instance_id());
-		areamobuseskill "2@cata",123,22,10,1929,686,1,0,0,26,0;
-		percentheal -50,0;
-		sc_start Eff_Stone,20000,0;
-		setquest 3041;
-		instance_announce 0, "O selo é ativado colocando o poder mágico sobre o altar.",bc_map,"0x87ceeb";
-		mes "Eu posso sentir o poder voltando ao altar colocando seu poder mágico.";
-		next;
-		mes "Você não pode colocar o selo novamente durante 3 minutos pois perdeu seu SP com isso.";
-		close;
-	}
-	else if ((.@seal_check == 0) || (.@seal_check == 1)) {
-		specialeffect2 EF_SILENCEATTACK;
-		percentheal -50,0;
-		sc_start Eff_Stone,30000,0;
-		mes "Seu SP não esta cheio ainda. Você perdeu seu SP no altar, mas parece que o poder do selo ainda não voltou.";
-		close;
-	}
-	else if (.@seal_check == 2) {
-		erasequest 3041;
-		specialeffect EF_LEXDIVINA;
-		disablenpc instance_npcname("Selo Mágico#4", instance_id());
-		areamobuseskill "2@cata",123,22,10,1929,686,1,0,0,26,0;
-		percentheal -50,0;
-		sc_start Eff_Stone,20000,0;
-		setquest 3041;
-		instance_announce 0, "O selo é ativado colocando o poder mágico sobre o altar.",bc_map,"0x87ceeb";
-		mes "Eu posso sentir o poder voltando ao altar colocando seu poder mágico.";
-		next;
-		mes "Você não pode colocar o selo novamente durante 3 minutos pois perdeu seu SP com isso.";
-		close;
-	}
+	callfunc "SeloMagico",123,22,10,1929,686,1,0,0,26,0;
 	end;
 }
 
 2@cata,35,21,0	script	Selo Mágico#8	844,{
-	set .@seal_check,checkquest(3041,PLAYTIME);
-	if (.@seal_check == -1) {
-		specialeffect EF_LEXDIVINA;
-		disablenpc instance_npcname("Selo Mágico#8", instance_id());
-		areamobuseskill "2@cata",35,21,10,1929,686,1,0,0,26,0;
-		percentheal -50,0;
-		sc_start Eff_Stone,20000,0;
-		setquest 3041;
-		instance_announce 0, "O selo é ativado colocando o poder mágico sobre o altar.",bc_map,"0x87ceeb";
-		mes "Eu posso sentir o poder voltando ao altar colocando seu poder mágico.";
-		next;
-		mes "Você não pode colocar o selo novamente durante 3 minutos pois perdeu seu SP com isso.";
-		close;
-	}
-	else if ((.@seal_check == 0) || (.@seal_check == 1)) {
-		specialeffect2 EF_SILENCEATTACK;
-		percentheal -50,0;
-		sc_start Eff_Stone,30000,0;
-		mes "Seu SP não esta cheio ainda. Você perdeu seu SP no altar, mas parece que o poder do selo ainda não voltou.";
-		close;
-	}
-	else if (.@seal_check == 2) {
-		erasequest 3041;
-		specialeffect EF_LEXDIVINA;
-		disablenpc instance_npcname("Selo Mágico#8", instance_id());
-		areamobuseskill "2@cata",35,21,10,1929,686,1,0,0,26,0;
-		percentheal -50,0;
-		sc_start Eff_Stone,20000,0;
-		setquest 3041;
-		instance_announce 0, "O selo é ativado colocando o poder mágico sobre o altar.",bc_map,"0x87ceeb";
-		mes "Eu posso sentir o poder voltando ao altar colocando seu poder mágico.";
-		next;
-		mes "Você não pode colocar o selo novamente durante 3 minutos pois perdeu seu SP com isso.";
-		close;
-	}
+	callfunc "SeloMagico",35,21,10,1929,686,1,0,0,26,0;
 	end;
 }
 
 2@cata,35,109,0	script	Selo Mágico#10	844,{
+	callfunc "SeloMagico",35,109,10,1929,686,1,0,0,26,0;
+	end;
+}
+
+//////////////////////////////////////////
+// Função para o Selo Mágico
+//////////////////////////////////////////
+
+function	script	SeloMagico	{
 	set .@seal_check,checkquest(3041,PLAYTIME);
-	if (.@seal_check == -1) {
+	if (.@seal_check == -1 || .@seal_check == 2) {
+		if (.@seal_check == 2) erasequest 3041;
 		specialeffect EF_LEXDIVINA;
-		disablenpc instance_npcname("Selo Mágico#10", instance_id());
-		areamobuseskill "2@cata",35,109,10,1929,686,1,0,0,26,0;
+		disablenpc instance_npcname(strnpcinfo(0), instance_id());
+		areamobuseskill "2@cata",getarg(0),getarg(1),getarg(2),getarg(3),getarg(4),getarg(5),getarg(6),getarg(7),getarg(8),getarg(10);
 		percentheal -50,0;
 		sc_start Eff_Stone,20000,0;
 		setquest 3041;
@@ -2073,20 +1160,6 @@ OnTouch:
 		percentheal -50,0;
 		sc_start Eff_Stone,30000,0;
 		mes "Seu SP não esta cheio ainda. Você perdeu seu SP no altar, mas parece que o poder do selo ainda não voltou.";
-		close;
-	}
-	else if (.@seal_check == 2) {
-		erasequest 3041;
-		specialeffect EF_LEXDIVINA;
-		disablenpc instance_npcname("Selo Mágico#10", instance_id());
-		areamobuseskill "2@cata",35,109,10,1929,686,1,0,0,26,0;
-		percentheal -50,0;
-		sc_start Eff_Stone,20000,0;
-		setquest 3041;
-		instance_announce 0, "O selo é ativado colocando o poder mágico sobre o altar.",bc_map,"0x87ceeb";
-		mes "Eu posso sentir o poder voltando ao altar colocando seu poder mágico.";
-		next;
-		mes "Você não pode colocar o selo novamente durante 3 minutos pois perdeu seu SP com isso.";
 		close;
 	}
 	end;
@@ -2366,46 +1439,13 @@ OnDisable:
 	end;
 
 OnTimer70000:
-	switch(rand(1,5)) {
-	case 1:
-		instance_announce 0, "Alma do Herói : Meu Deus! O poder controlado pelo altar principal está enfraquecendo!",bc_map,"0xFFFF00";
-		enablenpc instance_npcname("Selo Mágico#0", instance_id());
-		disablenpc instance_npcname("Selo Mágico#2", instance_id());
-		disablenpc instance_npcname("Selo Mágico#4", instance_id());
-		disablenpc instance_npcname("Selo Mágico#8", instance_id());
-		disablenpc instance_npcname("Selo Mágico#10", instance_id());
-		break;
-	case 2:
-		instance_announce 0, "Alma do Herói : O poder do altar das 2 horas está enfraquecendo. Vá para o altar e reative-o.",bc_map,"0xFFFF00";
-		disablenpc instance_npcname("Selo Mágico#0", instance_id());
-		enablenpc instance_npcname("Selo Mágico#2", instance_id());
-		disablenpc instance_npcname("Selo Mágico#4", instance_id());
-		disablenpc instance_npcname("Selo Mágico#8", instance_id());
-		disablenpc instance_npcname("Selo Mágico#10", instance_id());
-		break;
-	case 3:
-		instance_announce 0, "Alma do Herói : O poder do altar das 4 horas está enfraquecendo. Vá para o altar e reative-o.",bc_map,"0xFFFF00";
-		disablenpc instance_npcname("Selo Mágico#0", instance_id());
-		disablenpc instance_npcname("Selo Mágico#2", instance_id());
-		enablenpc instance_npcname("Selo Mágico#4", instance_id());
-		disablenpc instance_npcname("Selo Mágico#8", instance_id());
-		disablenpc instance_npcname("Selo Mágico#10", instance_id());
-		break;
-	case 4:
-		instance_announce 0, "Alma do Herói : O poder do altar das 8 horas está enfraquecendo. Vá para o altar e reative-o.",bc_map,"0xFFFF00";
-		disablenpc instance_npcname("Selo Mágico#0", instance_id());
-		disablenpc instance_npcname("Selo Mágico#2", instance_id());
-		disablenpc instance_npcname("Selo Mágico#4", instance_id());
-		enablenpc instance_npcname("Selo Mágico#8", instance_id());
-		disablenpc instance_npcname("Selo Mágico#10", instance_id());
-		break;
-	case 5:
-		instance_announce 0, "Alma do Herói : O poder do altar das 10 horas está enfraquecendo. Vá para o altar e reative-o.",bc_map,"0xFFFF00";
-		disablenpc instance_npcname("Selo Mágico#0", instance_id());
-		disablenpc instance_npcname("Selo Mágico#2", instance_id());
-		disablenpc instance_npcname("Selo Mágico#4", instance_id());
-		disablenpc instance_npcname("Selo Mágico#8", instance_id());
-		enablenpc instance_npcname("Selo Mágico#10", instance_id());
+	set .@n,6;
+	while(.@n == 6) set .@n,rand(5)*2;
+	for (set .@i,0; .@i <= 10; set .@i,.@i + 2) {
+		if(.@i != 6){
+			if(.@n == .@i) enablenpc instance_npcname("Selo Mágico#"+.@n, instance_id());
+			else disablenpc instance_npcname("Selo Mágico#"+.@i, instance_id());
+		}
 	}
 	stopnpctimer;
 	donpcevent instance_npcname("ins_2f_hero_pattern_c", instance_id())+"::Ongo";

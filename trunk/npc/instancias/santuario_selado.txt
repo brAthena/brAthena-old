@@ -974,7 +974,7 @@ OnEnable:
 	initnpctimer;
 	end;
 
-OnDisable:;
+OnDisable:
 	disablenpc instance_npcname("ins_baphomet_1f_timer", instance_id());
 	stopnpctimer;
 	end;

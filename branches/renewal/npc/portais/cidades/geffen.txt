@@ -8,20 +8,20 @@
 // |							    						|
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Geffen Town Warp Script		    	|
+// | Nome do Script: Portais da Cidade de Geffen            |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.1a/1.0				    			|
+// | Versões eA/brA: 1.1a/1.1				    			|
 // |--------------------------------------------------------|
 // | Descrição: Portais da Cidade de Geffen.		    	|
 // |--------------------------------------------------------|
 // | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
+// | 1.0 Script Traduzido [Lord]                            |
+// | 1.1 Script Revisado [insidemybrain]                    |
 // | - Anotações					    					|
 // \________________________________________________________/
 
-//Geffen City
 geffen,119,213,0	warp	gef001	3,2,gef_fild04,187,42
 geffen,120,114,0	warp	gef002	3,1,gef_tower,52,177
 geffen,217,119,0	warp	gef003	2,4,gef_fild00,46,199

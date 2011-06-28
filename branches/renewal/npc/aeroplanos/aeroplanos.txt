@@ -15,11 +15,11 @@
 // | Versões eA/brA: 1.4/1.2                                |
 // |--------------------------------------------------------|
 // | Descrição: NPC's do Aeroplano de Einbroch, Lighthalzen |
-// | 		    e Yuno.				    |
+// | 		    e Yuno.				                        |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Scripts Traduzidos [Tyler]                         |
-// | 1.1 Scripts Revisados [Dani]                           |
+// | 1.0 Script Traduzido [Tyler]                           |
+// | 1.1 Script Revisado [Dani]                             |
 // | 1.2 Scripts Otimizados e Unificados                    |
 // |	 (einbroch + lighthalzen + yuno) [Architect]        |
 // \________________________________________________________/

@@ -12,128 +12,190 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.9/1.0                                |
+// | Versões eA/brA: 1.9/1.3                                |
 // |--------------------------------------------------------|
 // | Descrição: Mudança de Classe para Arqueiro             |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [Protimus]                        |
 // | 1.1 Script Revisado [insidemybrain]                    |
+// | 1.2 Corrigido alguns erros [Wolf]                      |
+// | 1.3 Otimizações no npc & remoções [Wolf]               |
 // \________________________________________________________/
 
-payon_in02,64,71,4	script	Archer Guildsman#archer	85,{
+payon_in02,64,71,4	script	Arqueiro#archer	85,{
 	if (Upper == 1) {
+		mes "[Membro da Guilda dos Arqueiros]";
 		if (Class == Job_Novice_High && (ADVJOB == Job_Sniper || ADVJOB == Job_Clown || ADVJOB == Job_Gypsy)) {
-			mes "[Archer Guildsman]";
-			mes "Hey, I know you.";
-			mes "You took this test";
-			mes "before, didn't you?";
+			mes "Você não me é estranho...";
+			mes "Você quer não que ser um arqueiro?";
 			next;
-			mes "[Archer Guildsman]";
-			mes "Ah, you must have been";
-			mes "to Valhalla and been reborn.";
-			mes "Wow, that's so impressive!";
-			next;
+			mes "[Membro da Guilda dos Arqueiros]";
 			if (getskilllv("NV_BASIC") < 9) {
-				mes "[Archer Guildsman]";
-				mes "Err...";
-				mes "You'd better learn all the Basic Skills first before you can become an Archer.";
+				mes "Como você já sabe, para ser um arqueiro você precisa aprender";
+				mes "todas as habilidades básicas.";
 				next;
-				mes "[Archer Guildsman]";
-				mes "Alright, see you later.";
-				close;
+				mes "[Membro da Guilda dos Arqueiros]";
+				mes "Certo? Cuide-se.";
+			} else {
+				mes "Não preciso dizer muita coisa.";
+				mes "Basta mirar bem usando os seus sentidos.";
+				next;
+				skill 143,0,0;
+				jobchange Job_Archer_high;
+				skill 147,1,0;
+				skill 148,1,0;
+				mes "[Membro da Guilda dos Arqueiros]";
+				mes "Não temos nada aqui neste momento...";
+				mes "Bem, isso não importa. Divirta-se.";
 			}
-			mes "[Archer Guildsman]";
-			mes "Well then. I don't";
-			mes "need to say anything else.";
-			mes "I know you'll make a great Archer...";
-			next;
-			skill 143,0,0;
-			jobchange Job_Archer_high;
-			skill 147,1,0;
-			skill 148,1,0;
-			mes "[Archer Guildsman]";
-			mes "Although there's no special";
-			mes "reward for you this time, I hope you understand. Take care of yourself.";
 			close;
-		}else{
-			mes "[Archer Guildsman]";
-			mes "Oh...?";
-			mes "Hey, what are";
-			mes "you doing here...?";
+		} else {
+			mes "O que você está olhando?";
+			mes "Apenas vá embora...";
+			mes "Eu sou bem orgulhoso...";
+			mes "Ôpa, não, não...!";
 			next;
-			mes "[Archer Guildsman]";
-			mes "I can tell that you're not cut out to be an Archer. It sort of feels like you're meant to do";
-			mes "something else...";
+			mes "[Membro da Guilda dos Arqueiros]";
+			mes "Haha, você não ouviu nada do que eu disse.";
+			mes "Entendeu tudo errado.";
 			close;
 		}
 	}
-	mes "[Archer Guildsman]";
-	mes "Nice to meet you. How may I help you?";
+	mes "[Membro da Guilda dos Arqueiros]";
+	mes "Bom dia. Como posso ajudá-lo?";
 	next;
-	switch(select("I want to be an Archer.:I need the requirements, please.:Nothing, thanks.")) {
+	switch(select("Eu quero ser um Arqueiro.:O que é preciso para ser um Arqueiro?:Não preciso de ajuda.")) {
 	case 1:
-		if(Class != Job_Novice) {
-			mes "[Archer Guildsman]";
-			if(Class == Job_Archer) {
-				mes "Haha, you are kidding me..";
-			}else{
-				mes "I feel sorry but only Novices can change their job.";
-				mes "You already have your own decent job, don't you?";
-			}
+		mes "[Membro da Guilda dos Arqueiros]";
+		if (BaseJob == Job_Archer) {
+			mes "Você já é um arqueiro.";
 			close;
-		}else{
-			mes "[Archer Guildsman]";
-			mes "You are... "+strcharinfo(0)+". right?";
-			next;
-			if (getskilllv("NV_BASIC") < 9) {
-				mes "[Archer Guildsman]";
-				mes "Well, you're not at the right skill level.";
-				mes "Your job level must be at least ^4A4AFF10^000000 and your Basic Skill level should reach ^4A4AFFlevel 9";
-				next;
-				mes "[Archer Guildsman]";
-				mes "Because an Archer needs extremely high concentration, so we do not accept those who have little patience.";
-				close;
-			}
-			mes "[Archer Guildsman]";
-			mes "Your Basic Skill is now enough..";
-			mes "....Hm~~ so you are now ready to be an Archer. I will take the step right away.";
-			next;
-			mes "[Archer Guildsman]";
-			mes "Congratulations! You are now an Archer! Also, we hope that you actively participate in many programs for the revival of the Archer Guild.";
-			mes "Ah, items have arrived from the Production Department. Here, take these! These are all yours!";
-			jobchange Job_Archer;
-			getitem 1742,1;	// N_Composite_Bow
-			getitem 12004,1;	// Arrow_Container
-			getitem 12009,1;	// Silver_Arrow_Container
-			getitem 12008,1;	// Fire_Arrow_Container
-			next;
-			mes "[Archer Guildsman]";
-			mes "Having a bow and arrows, now you became a real Archer.";
-			mes "If you open the arrow container, there are arrows in it and then you can equip them.";
-			mes "Well, I expect to hear better news from you. It's time to say goodbye.";
-			mes "Bye.";
+		} else if (BaseJob != Job_Archer && BaseJob != Job_Novice) {
+			mes "Hmm... Você não parece ser um Aprendiz...";
+			mes "Seja lá o que você for, você não pode ser um arqueiro, porque já é de outra classe.";
 			close;
 		}
+		if (job_archer_q == 0) {
+			mes "Você quer ser um arqueiro?";
+			mes "Se você quer, preencha este formulário.";
+			next;
+			if (select("Inscrever-se.:Cancelar.") == 1) {
+				set job_archer_q,1;
+				setquest 1004;
+				mes "[Membro da Guilda dos Arqueiros]";
+				mes "Ok, assine aqui... Certo... Hmm, você será promovido de classe assim que cumprir os pré-requisitos necessários.";
+				mes "Se você acha que está pronto, podemos começar agora.";
+				mes "Você está pronto?";
+				next;
+				if (select("Sim!:Não, não estou pronto ainda.") == 1) {
+					mes "[Membro da Guilda dos Arqueiros]";
+					mes "Vamos ver então.";
+					next;
+				} else {
+					mes "[Membro da Guilda dos Arqueiros]";
+					mes "Compreendo...";
+					mes "Se você quiser saber os pré-requisitos para se tornar um Arqueiro, apenas fale comigo.";
+					close;
+				}
+			}
+			mes "[Membro da Guilda dos Arqueiros]";
+			mes "Até mais!";
+			close;
+		}
+		mes "[Membro da Guilda dos Arqueiros]";
+		mes "Você se chama "+strcharinfo(0)+"?";
+		next;
+		mes "[Membro da Guilda dos Arqueiros]";
+		if (getskilllv("NV_BASIC") < 9) {
+			mes "O seu nível como Aprendiz está abaixo do necessário...";
+			mes "Você deve chegar ao nível 10 de classe para se tornar um Arqueiro.";
+			close;
+		}
+		if (job_archer_q == 1) {
+			set .@archer_item1,countitem(1066) * 5;
+			set .@archer_item2,countitem(1067) * 3;
+			set .@archer_item3,countitem(1068) * 2;
+			set .@archer_item4,countitem(1019);
+			set .@total_archer,.@archer_item1 + .@archer_item2 + .@archer_item3 + .@archer_item4;
+			set .@total_archer2,(((.@archer_item2 + .@archer_item3) * 2) + .@archer_item4);
+			mes "Ótimo! Bom trabalho!";
+			mes "[Membro da Guilda dos Arqueiros]";
+			mes "Agora vamos ver se você trouxe Troncos suficientes para fazermos um Arco.";
+			next;
+			mes "[Membro da Guilda dos Arqueiros]";
+			if (countitem(1066) == 0 && countitem(1067) == 0 && countitem(1068) == 0 && countitem(1019) == 0) {
+				mes "...Hmm...";
+				mes "Você não me trouxe nada!";
+				close;
+			}
+			if (countitem(1066)) mes "Tronco Tipo 1: "+countitem(1066)+" unidades: "+.@archer_item1+".";
+			if (countitem(1067)) mes "Tronco Tipo 2: "+countitem(1067)+" unidades: "+.@archer_item2+".";
+			if (countitem(1068)) mes "Tronco Tipo 3: "+countitem(1068)+" unidades: "+.@archer_item3+".";
+			if (countitem(1019)) mes "Tronco Tipo 4: : "+countitem(1019)+" unidades: "+.@archer_item4+".";
+			if (.@total_archer < 25) {
+				mes "O seu total de pontos foi: ^FF0000"+.@total_archer+"^000000/40";
+				next;
+				mes "[Membro da Guilda dos Arqueiros]";
+				mes "Menos de 25?!?! Se esforce um pouco mais...";
+				close;
+			} else {
+				mes "O seu total de pontos foi: ^0000FF"+.@total_archer+"^000000/40";
+				next;
+				mes "[Membro da Guilda dos Arqueiros]";
+				if (.@total_archer > 40) mes "Nossa! Mais de 40! Fantástico! Meus parabéns!";
+				else mes ( .@total_archer > 30 ) ? "Mais de 30! Ótimo! Parabéns.":"Passou raspando... Mas tudo bem!";
+			}
+			next;
+			mes "[Membro da Guilda dos Arqueiros]";
+			mes "Vou mandar o material para o Departamento de Produção de Arcos.";
+			if (countitem(1066)) delitem 1066,countitem(1066); //Tree_Of_Archer_1
+			if (countitem(1067)) delitem 1067,countitem(1067); //Tree_Of_Archer_2
+			if (countitem(1068)) delitem 1068,countitem(1068); //Tree_Of_Archer_3
+			if (countitem(1019)) delitem 1019,countitem(1019); //Wooden_Block
+		}
+		next;
+		callfunc "Job_Change",Job_Archer;
+		callfunc "F_ClearJobVar";
+		completequest 1004;
+		mes "[Membro da Guilda dos Arqueiros]";
+		mes "Parabéns, você passou no teste! Vou nomeá-lo um Arqueiro!";
+		next;
+		mes "[Membro da Guilda dos Arqueiros]";
+		mes "Parabéns! Nós esperamos que você contribua para a grandiosidade de nossa Guilda!";
+		next;
+		mes "[Membro da Guilda dos Arqueiros]";
+		mes "Ah! Seu Arco chegou do Departamento de Produção, aqui está ele.";
+		getitem 1702,1; //Bow_
+		getitem 1750,.@total_archer2; //Arrow
+		next;
+		mes "[Membro da Guilda dos Arqueiros]";
+		mes "Agora você é um Arqueiro legítimo, com arco, flecha e tudo mais!";
+		mes "Boa Sorte em sua jornada pelo mundo, espero que você se torne o melhor de todos os Arqueiros!";
+		close;
 	case 2:
-		mes "[Archer Guildsman]";
-		mes "An Archer has skills using a bow and has various talents.";
-		mes "The greatest ability of an Archer is attacking enemies from a long distance.";
+		mes "[Membro da Guilda dos Arqueiros]";
+		mes "Eu vou explicar os pré-requisitos para se tornar Arqueiro:";
+		if (BaseJob != Job_Novice) {
+			next;
+			mes "[Membro da Guilda dos Arqueiros]";
+			mes ( BaseJob == Job_Archer ) ? ".... mas você já é um Arqueiro...":"Hmm.. você já pertence a uma classe...";
+			mes ".... E daí? Quem se importa?";
+		}
 		next;
-		mes "[Archer Guildsman]";
-		mes "Although an Archer has weaker HP, he or she can shoot enemies at a long range,";
-		mes "so an Archer is safer in a real battle.";
+		mes "[Membro da Guilda dos Arqueiros]";
+		mes "Antes de tudo você deve alcançar nível 10 de classe como Aprendiz.";
+		mes "Arqueiros precisam ter muita concentração, devido a dificuldade de se mirar.. Não podemos aceitar pessoas que não se concentram bem.";
 		next;
-		mes "[Archer Guildsman]";
-		mes "Although an Archer in Ragnarok has lower HP, he or she has high accuracy and attack rate so that the archer can kill monsters before they get close to an Archer.";
+		mes "[Membro da Guilda dos Arqueiros]";
+		mes "Você vai precisar juntar quantos ^FF0000Troncos^000000 conseguir.";
+		mes "Existem 4 tipos de Troncos, de diferentes qualidades de madeira, logo cada um tem uma pontuação diferente.";
+		mes "Você se tornará um Arqueiro se obtiver pelo menos ^0000FF25 ^000000 pontos num total de 40.";
 		next;
-		mes "[Archer Guildsman]";
-		mes "^8C2121An Archer can change jobs to a Hunter.^000000";
-		mes "^8C2121Other than Hunter, if you are a man, you can change your job to Bard and if you are a woman, you can change your job to Dancer.^000000";
+		mes "[Membro da Guilda dos Arqueiros]";
+		mes "Você pode conseguir Troncos dos 'Salgueiros'. Mesmo que não sejam monstros perigosos, tenha cuidado.";
 		close;
 	case 3:
-		mes "[Archer Guildsman]";
-		mes "If you have any questions, feel free to come and ask me.";
 		close;
 	}
 }

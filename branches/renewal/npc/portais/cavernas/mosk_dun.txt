@@ -8,16 +8,17 @@
 // |							    						|
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Moscovia Dungeon Warp Script	    	|
+// | Nome do Script: Portais da Caverna de Moscovia         |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.4/1.0				    			|
+// | Versões eA/brA: 1.4/1.1				    			|
 // |--------------------------------------------------------|
 // | Descrição: Portais da Abadia Amaldiçoada de Moscovia.  |
 // |--------------------------------------------------------|
 // | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
+// | 1.0 Script Traduzido [Lord]                            |
+// | 1.1 Script Revisado [insidemybrain]                    |
 // | - Anotações					    					|
 // \________________________________________________________/
 
@@ -32,19 +33,19 @@ OnTouch:
 		donpcevent "Soldier1#mos::OnEnable";
 		donpcevent "Soldier2#mos::OnEnable";
 		donpcevent "Soldier3#mos::OnEnable";
-		mes "[Soldier]";
-		mes "Halt right there!";
+		mes "[Soldado]";
+		mes "Parado aí!";
 		next;
-		mes "[Soldier]";
-		mes "We have information";
-		mes "that you've been secretly";
-		mes "communicating with";
-		mes "Baba Yaga, the Horrible.";
+		mes "[Soldado]";
+		mes "Temos informações";
+		mes "de que você está se comunicando";
+		mes "secretamenta com a";
+		mes "Baba Yaga, a Horrível.";
 		next;
-		mes "[Soldier]";
-		mes "If you have something to say,";
-		mes "speak to the Csar.";
-		mes "Come with us.";
+		mes "[Soldado]";
+		mes "Se você tem algo a dizer,";
+		mes "fale com o Csar.";
+		mes "Venha conosco.";
 		close2;
 		donpcevent "Soldier1#mos::OnInit";
 		donpcevent "Soldier2#mos::OnInit";
@@ -57,14 +58,14 @@ OnTouch:
 		donpcevent "Soldier1#mos::OnEnable";
 		donpcevent "Soldier2#mos::OnEnable";
 		donpcevent "Soldier3#mos::OnEnable";
-		mes "[Soldier]";
-		mes "We expected";
-		mes "that you would appear again.";
-		mes "What is your business with the Csar?";
+		mes "[Soldado]";
+		mes "Esperávamos que";
+		mes "você poderia aparecer denovo.";
+		mes "Qual é o seu negócio com Csar?";
 		next;
-		if(select("Run away.:Explain the situation.") == 1) {
+		if(select("Sair correndo.:Explicar a situação.") == 1) {
 			mes "["+strcharinfo(0)+"]";
-			mes "I should get out of here...";
+			mes "Eu devo sair daqui...";
 			close2;
 			warp "mosk_dun02",100,100;
 			donpcevent "Soldier1#mos::OnInit";
@@ -72,13 +73,13 @@ OnTouch:
 			donpcevent "Soldier3#mos::OnInit";
 			end;
 		}
-		mes "-I explain what happend until now.-";
+		mes "-Eu explico o que aconteceu até agora.-";
 		next;
-		mes "[Soldier]";
-		mes "If you have something to say, speak";
-		mes "to the Csar.";
-		mes "If you leave to this place,";
-		mes "you will be considered as our enemy.";
+		mes "[Soldado]";
+		mes "Se você tem algo a dizer,";
+		mes "fale com Csar.";
+		mes "Se você sair deste lugar,";
+		mes "você será considerado nosso inimigo.";
 		close2;
 		donpcevent "Soldier1#mos::OnInit";
 		donpcevent "Soldier2#mos::OnInit";
@@ -89,14 +90,14 @@ OnTouch:
 		donpcevent "Soldier1#mos::OnEnable";
 		donpcevent "Soldier2#mos::OnEnable";
 		donpcevent "Soldier3#mos::OnEnable";
-		mes "[Soldier]";
-		mes "We expected";
-		mes "that you would appear again.";
-		mes "What is your business with the Csar?";
+		mes "[Soldado]";
+		mes "Esperávamos que";
+		mes "você poderia aparecer denovo.";
+		mes "Qual é o seu negócio com Csar?";
 		next;
-		if(select("Run away.:Explain the situation.") == 1) {
+		if(select("Sair correndo.:Explicar a situação.") == 1) {
 			mes "["+strcharinfo(0)+"]";
-			mes "I should get out of here...";
+			mes "Eu devo sair daqui...";
 			close2;
 			warp "mosk_dun02",100,100;
 			donpcevent "Soldier1#mos::OnInit";
@@ -104,13 +105,13 @@ OnTouch:
 			donpcevent "Soldier3#mos::OnInit";
 			end;
 		}
-		mes "-I explain what happend until now.-";
+		mes "-Eu explico o que aconteceu até agora.-";
 		next;
-		mes "[Soldier]";
-		mes "If you have something to say, speak";
-		mes "to the Csar.";
-		mes "If you leave to this place,";
-		mes "you will be considered as our enemy.";
+		mes "[Soldado]";
+		mes "Se você tem algo a dizer,";
+		mes "fale com Csar.";
+		mes "Se você sair deste lugar,";
+		mes "você será considerado nosso inimigo.";
 		close2;
 		donpcevent "Soldier1#mos::OnInit";
 		donpcevent "Soldier2#mos::OnInit";
@@ -124,10 +125,10 @@ OnTouch:
 }
 
 mosk_dun02,53,215,3	script	Soldier1#mos	966,{
-	mes "[Soldier]";
-	mes "We're the Csar's soldiers.";
-	mes "We're called out for emergencies,";
-	mes "don't disturb us anymore.";
+	mes "[Soldado]";
+	mes "Nós somos os soldados de Csar.";
+	mes "Nós somos chamados para emergências,";
+	mes "não nos pertube mais.";
 	close;
 	
 OnInit:
@@ -140,10 +141,10 @@ OnEnable:
 }
 
 mosk_dun02,50,217,3	script	Soldier2#mos	966,{
-	mes "[Soldier]";
-	mes "We're the Csar's soldiers.";
-	mes "We're called out for emergencies,";
-	mes "don't disturb us anymore.";
+	mes "[Soldado]";
+	mes "Nós somos os soldados de Csar.";
+	mes "Nós somos chamados para emergências,";
+	mes "não nos pertube mais.";
 	close;
 	
 OnInit:
@@ -157,10 +158,10 @@ OnEnable:
 
 
 mosk_dun02,56,217,5	script	Soldier3#mos	966,{
-	mes "[Soldier]";
-	mes "We're the Csar's soldiers.";
-	mes "We're called out for emergencies,";
-	mes "don't disturb us anymore.";
+	mes "[Soldado]";
+	mes "Nós somos os soldados de Csar.";
+	mes "Nós somos chamados para emergências,";
+	mes "não nos pertube mais.";
 	close;
 	
 OnInit:
@@ -172,125 +173,125 @@ OnEnable:
 	end;
 }
 
-mosk_dun01,170,164,3	script	Milestone#1	111,{
-	mes "- There is writing on a big rock. -";
+mosk_dun01,170,164,3	script	Rocha#1	111,{
+	mes "- Há escrito sobre uma grande rocha. -";
 	next;
-	mes "^3131FF- Those who serve the Sun will die, Go to the North. -^000000";
+	mes "^3131FF- Aqueles que servem ao sol irão morrer, Vá para o Norte. -^000000";
 	close;
 }
 
-mosk_dun01,207,276,3	script	Milestone#1-2	111,{
-	mes "- There is writing on a big rock. -";
+mosk_dun01,207,276,3	script	Rocha#1-2	111,{
+	mes "- Há escrito sobre uma grande rocha. -";
 	next;
-	mes "^3131FF- Those who advance may get hurt but are courageous of heart and those who move back will remain safe.";
-	mes "If you have courage, step forward. Otherwise, step backward. -^000000";
+	mes "^3131FF- Aqueles que avançarem podem se machucar mas serão corajosos de coração e aqueles que ficarem permanecerão seguros.";
+	mes "Se você tem coragem , vá em frente. Caso contrário, volte. -^000000";
 	next;
-	if(select("Step forward.:Stay.") == 1) {
-		mes "- You follow the way before you. -";
+	if(select("Ir em frente.:Ficar.") == 1) {
+		mes "- Você segue o caminho diante de você. -";
 		close2;
 		warp "mosk_dun02",165,30;
 		end;
 	}
-	mes "- You won't advance. -";
+	mes "- Você não vai avançar. -";
 	close;
 }
 
-mosk_dun01,264,191,3	script	Milestone#1-3	111,{
-	mes "- There is writing on a big rock. -";
+mosk_dun01,264,191,3	script	Rocha#1-3	111,{
+	mes "- Há escrito sobre uma grande rocha. -";
 	next;
-	mes "^3131FF- Those who advance may get hurt but are brave of heart and those who move back will remain safe.";
-	mes "If you are brave, then take a step forward. Otherwise, step back. -^000000";
+	mes "^3131FF- Aqueles que avançarem podem se machucar mas serão corajosos de coração e aqueles que voltarem permanecerão seguros.";
+	mes "Se você for corajoso , então siga em frente. Caso contrário, volte. -^000000";
 	next;
-	if(select("Step forward.:Stay.") == 1) {
-		mes "- You follow the way before you. -";
+	if(select("Ir em frente.:Ficar.") == 1) {
+		mes "- Você segue o caminho diante de você. -";
 		close2;
 		warp "mosk_dun03",117,36;
 		end;
 	}
-	mes "- You decide to stay. -";
+	mes "- Você decidiu ficar. -";
 	close;
 }
 
-mosk_dun02,168,28,3	script	Milestone#2-1	111,{
-	mes "- There is writing on a big rock. -";
+mosk_dun02,168,28,3	script	Rocha#2-1	111,{
+	mes "- Há escrito sobre uma grande rocha. -";
 	next;
-	mes "^3131FF- Those who advance may get hurt but are valorous of heart and those who move back will remain safe.";
-	mes "If you valorous, then take a step forward. Otherwise, step back. -^000000";
+	mes "^3131FF- Aqueles que avançarem podem se machucar mas serão valentes de coração e aqueles que voltarem permanecerão seguros.";
+	mes "Se você for valente , então siga em frente. Caso contrário, volte. -^000000";
 	next;
-	if(select("Go back.:Stay.") == 1) {
-		mes "- You sense danger and decide to go back -";
+	if(select("Voltar.:Stay.") == 1) {
+		mes "- Você sentiu medo e decidiu voltar -";
 		close2;
 		warp "mosk_dun01",201,269;
 		end;
 	}
-	mes "- You decided to stay. -";
+	mes "- Você dicidiu ficar. -";
 	close;
 }
 
-mosk_dun02,268,117,3	script	Milestone#2-3	111,{
-	mes "- There is writing on a big rock. -";
+mosk_dun02,268,117,3	script	Rocha#2-3	111,{
+	mes "- Há escrito sobre uma grande rocha. -";
 	next;
-	mes "^3131FF- Those who step forward will gain honor but may die, those who step backward will have courage but may still get hurt.";
-	mes "If you are truly brave, step forward. Otherwise, step back -^000000";
+	mes "^3131FF- Aqueles que avançarem irão ganhar honra mas porderão morrer, e aqueles que voltarem ganharão coragem mas ainda podem se machucar.";
+	mes "Se você é realmente corajoso , siga em frente. Caso contrário, volte. -^000000";
 	next;
-	if(select("Step forward.:Stay.") == 1) {
-		mes "- You bravely step forward. -";
+	if(select("Ir em frente.:Ficar.") == 1) {
+		mes "- Você corajosamente seguiu em frente. -";
 		close2;
 		warp "mosk_dun03",32,135;
 		end;
 	}
-	mes "- You decided to stay. -";
+	mes "- Você dicidiu ficar. -";
 	close;
 }
 
-mosk_dun03,27,131,3	script	Milestone#3-2	111,{
-	mes "- There is writing on a big rock. -";
+mosk_dun03,27,131,3	script	Rocha#3-2	111,{
+	mes "- Há escrito sobre uma grande rocha. -";
 	next;
-	mes "^3131FF- Those who stay may die but will gain honor, those who go back may get hurt but will gain courage.";
-	mes "Those who have courage will go back, otherwise step forward and stay. -^000000";
+	mes "^3131FF- Aqueles que ficarem poderão morrer mas irão ganhar honra. e aqueles que voltarem poderam se machucar mas ganharão coragem.";
+	mes "Aqueles que têm coragem irão voltar, caso contrário vá em frente e fique. -^000000";
 	next;
-	if(select("Go back.:Stay.") == 1) {
-		mes "- You sense danger and decide to go back -";
+	if(select("Voltar.:Ficar.") == 1) {
+		mes "- Você sentiu medo e decidiu voltar -";
 		close2;
 		warp "mosk_dun02",262,118;
 		end;
 	}
-	mes "- You decide to stay. -";
+	mes "- Você dicidiu ficar. -";
 	close;
 }
 
-mosk_dun03,119,46,3	script	Milestone#3-1	111,{
-	mes "There is writing on a big rock.";
+mosk_dun03,119,46,3	script	Rocha#3-1	111,{
+	mes "- Há escrito sobre uma grande rocha. -";
 	next;
-	mes "^3131FF- Those who stay may die but will gain honor, those who go back may get hurt but will gain courage.";
-	mes "Those who are afraid of the death will go back, otherwise step forward and stay. -^000000";
+	mes "^3131FF- Aqueles que ficarem poderão morrer mas irão ganhar honra. e aqueles que voltarem poderam se machucar mas ganharão coragem.";
+	mes "Aqueles que têm medo da morte irão voltar, caso contrário vá em frente e fique. -^000000";
 	next;
-	if(select("Go back.:Stay.") == 1) {
-		mes "- You sense danger and decide to go back -";
+	if(select("Voltar.:Ficar.") == 1) {
+		mes "- Você sentiu medo e decidiu voltar -";
 		close2;
 		warp "mosk_dun01",257,190;
 		end;
 	}
-	mes "- You decided to stay. -";
+	mes "- Você decidiu ficar. -";
 	close;
 }
 
-mosk_dun01,194,43,3	script	Milestone#1-1	111,{
-	mes "- There is writing on a big rock. -";
+mosk_dun01,194,43,3	script	Rocha#1-1	111,{
+	mes "- Há escrito sobre uma grande rocha. -";
 	next;
-	mes "- If you want to protect your life, go back -";
+	mes "- Se você quer proteger sua vida, volte. -";
 	close;
 }
 
-mosk_fild02,198,53,3	script	Ship#mos_dun	111,{
-	mes "- You find a ship at anchor. -";
+mosk_fild02,198,53,3	script	Navio#mos_dun	111,{
+	mes "- Você encontra um navio ancorado. -";
 	next;
-	if(select("Take the ship and go back to the village.:Explore more.") == 1) {
-		mes "- You board the ship and pull at the oars. -";
+	if(select("Pegue o navio e volte para a aldeia.:Explorar mais.") == 1) {
+		mes "- Você entrou no navio e começou a puxar os remos. -";
 		close2;
 		warp "moscovia",140,54;
 		end;
 	}
-	mes "- That unknown area arouses your interest. -";
+	mes "- Esta área desconhecida desperta seu interesse. -";
 	close;
 }

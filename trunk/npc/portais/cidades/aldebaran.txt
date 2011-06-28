@@ -22,7 +22,7 @@
 // | - Anotações					    					|
 // \________________________________________________________/
 
-//= Portais de Al De Baran Warps
+//= Portais de Al De Baran
 aldebaran,118,63,0	warp	ald01	1,1,aldeba_in,211,117
 aldebaran,139,34,0	warp	ald001	3,2,mjolnir_12,199,375
 aldebaran,197,70,0	warp	ald02	1,1,aldeba_in,94,41

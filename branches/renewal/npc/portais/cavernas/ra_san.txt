@@ -8,16 +8,17 @@
 // |							    						|
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Rachel Sanctuary Dungeon Warp Script   |
+// | Nome do Script: Portais do Santuário de Rachel         |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.4/1.0				    			|
+// | Versões eA/brA: 1.4/1.1				    			|
 // |--------------------------------------------------------|
 // | Descrição: Portais do Santuário de Rachel.		    	|
 // |--------------------------------------------------------|
 // | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
+// | 1.0 Script Traduzido [Lord]                            |
+// | 1.1 Script Revisado [insidemybrain]                    |
 // | - Anotações					    					|
 // \________________________________________________________/
 
@@ -44,5 +45,5 @@ ra_san02,213,4,0	warp	sanctuary12	1,1,ra_san04,35,216
 ra_san04,35,221,0	warp	sanctuary13	1,1,ra_san02,213,9
 ra_san02,30,21,0	warp	sanctuary14	1,1,ra_san05,14,149
 
-//Additional Dungeon warp. (Exit)
+//= Portal adicional(Saída)
 ra_san01,139,139,0	warp	sanctuary15	1,1,ra_temin,27,314

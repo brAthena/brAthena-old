@@ -12,12 +12,13 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 3.6/1.0                                |
+// | Versões eA/brA: 3.6/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: NPCs da Cidade de Jawaii                    |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
+// | 1.1 Script Otimizado [Architect]                       |
 // \________________________________________________________/
 
 // Jawaii
@@ -480,10 +481,7 @@ jawaii_in,25,98,0	script	Funcionaria#jaw3	724,{
 		mes "Oh~";
 		mes "Olhe só...";
 		mes "Você é o par ideal";
-		if (sex)
-			mes "para sua esposa~";
-		else
-			mes "para o seu marido~";
+		mes (Sex ? "para sua esposa~":"para o seu marido~");
 		mes "Awwww, gostaria de";
 		mes "me casar em breve~!";
 		close;
@@ -1180,7 +1178,7 @@ jawaii_in,41,106,3	script	Cliente#Cage	98,{
 	mes "Beba, beba...!";
 	mes "Coma, coma...!!";
 	mes "Junte-se a mim,";
-	mes "meu irmão";
+	mes (Sex ? "meu irmão":"minha irmã");
 	mes "de solteirice!";
 	next;
 	mes "[Cage]";

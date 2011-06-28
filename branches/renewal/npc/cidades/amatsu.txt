@@ -12,12 +12,13 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.3/1.0                                |
+// | Versões eA/brA: 1.3/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: NPCs da Cidade de Amatsu                    |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
+// | 1.1 Script Otimizado [Architect]                       |
 // \________________________________________________________/
 
 // Amatsu Transportation
@@ -510,7 +511,8 @@ amatsu,274,178,7	script	Veterinária#ama	735,{
 }
 
 amatsu,262,197,1	script	Lendária Árvore	111,{
-	if (jap_tree == 1) {
+	switch (jap_tree) {
+	case 1:
 		mes "^3355FFComo disseram, essa árvore";
 		mes "parece ser um lugar famoso para";
 		mes "pedidos de casamento.";
@@ -525,8 +527,7 @@ amatsu,262,197,1	script	Lendária Árvore	111,{
 		mes "os tipos de histórias";
 		mes "nesse lugar magnífico.^000000";
 		close;
-	}
-	else if (jap_tree == 2) {
+	case 2:
 		mes "^3355FFA peça lendária, a 'Ninfa Branca'...";
 		mes "Nunca ouvi falar nesse título,";
 		mes "mas ele me parece familiar...";
@@ -544,8 +545,7 @@ amatsu,262,197,1	script	Lendária Árvore	111,{
 		mes "^3355FFEu posso ter algum talento para atuar que ainda não descobri.";
 		mes "Pensei, 'se eu tivesse o figurino certo, poderia atuar como a 'Ninfa Branca'...'^000000";
 		close;
-	}
-	else if (jap_tree == 3) {
+	case 3:
 		mes "^3355FFDiferente das outras cerejeiras,";
 		mes "essa tem uma fragrância muito forte.";
 		mes "Eu me sinto muito relaxado.";
@@ -559,8 +559,7 @@ amatsu,262,197,1	script	Lendária Árvore	111,{
 		mes "para cá algum dia e me sentar";
 		mes "embaixo dessa árvore...^000000";
 		close;
-	}
-	else if (jap_tree == 4) {
+	case 4:
 		mes "^3355FFEsse cheiro forte";
 		mes "está me deixando tonto. Diferente";
 		mes "das outras cerejeiras, as pétalas";
@@ -571,19 +570,20 @@ amatsu,262,197,1	script	Lendária Árvore	111,{
 		mes "fosse ser arrancada se eu ficasse";
 		mes "lá por mais tempo. Depois de olhar";
 		mes "a cerejeira, pensei comigo mesmo";
-		mes "'É melhor eu sair daqui agora''^000000";
+		mes "'É melhor eu sair daqui agora'^000000";
+		close;
+	default:
+		mes "^3355FFTem uma cerejeira";
+		mes "na colina. Não parece";
+		mes "com as outras árvores.";
+		mes "Essa parece ter";
+		mes "uma longa história...^000000";
+		next;
+		mes "^3355FFExiste alguém que more";
+		mes "por aqui? Olhei em volta";
+		mes "e vi alguém no sopé";
+		mes "da colina. Melhor ir lá";
+		mes "e perguntar sobre essa árvore.^000000";
 		close;
 	}
-	mes "^3355FFTem uma cerejeira";
-	mes "na colina. Não parece";
-	mes "com as outras árvores.";
-	mes "Essa parece ter";
-	mes "uma longa história...^000000";
-	next;
-	mes "^3355FFExiste alguém que more";
-	mes "por aqui? Olhei em volta";
-	mes "e vi alguém no sopé";
-	mes "da colina. Melhor ir lá";
-	mes "e perguntar sobre essa árvore.^000000";
-	close;
 }

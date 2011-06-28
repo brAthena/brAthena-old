@@ -12,18 +12,19 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 3.4/1.0                                |
+// | Versões eA/brA: 3.4/1.2                                |
 // |--------------------------------------------------------|
 // | Descrição: Mudança de Classe para Mercenário           |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    					| 
+// | 1.0 Script Otimizado [Wolf]                            |
+// | 1.1 Remoção de espaços [Wolf]                          |
+// | 1.2 Otimizações no npc [Wolf]                          |
 // \________________________________________________________/
 
 in_moc_16,19,33,1	script	Guildsman#asn	55,{
+	mes "[Ferocious-looking guy]";
 	if (Upper == 1) {
-		mes "[Ferocious-looking guy]";
 		mes "Hm? You....?";
 		mes "I sense that you're different than most people...";
 		next;
@@ -32,12 +33,10 @@ in_moc_16,19,33,1	script	Guildsman#asn	55,{
 		close;
 	}
 	if (SkillPoint) {
-		mes "[Ferocious-looking guy]";
 		mes "You can't change your job if you have any unused skill points from the 1st job. You better go and use those up first.";
 		close;
 	}
 	if (ASSIN_Q == 4) {
-		mes "[Ferocious-looking guy]";
 		mes "Oh, stop making that face. Can you really be in that much pain?";
 		next;
 		mes "[Ferocious-looking guy]";
@@ -108,8 +107,7 @@ in_moc_16,19,33,1	script	Guildsman#asn	55,{
 		mes "[Assassin Expert 'Huey']";
 		mes "Now! Do your best to be a great Assassin! Travel with faith and kill with dignity. Come by anytime and pay us a visit. Once again, congratulations.";
 		close;
-	}
-	else if (countitem(1008) > 0 && BaseJob == Job_Thief && ASSIN_Q < 7) {
+	} else if (countitem(1008) > 0 && BaseJob == Job_Thief && ASSIN_Q < 7) {
 		mes "[Ferocious-looking guy]";
 		mes "Eh?";
 		mes "What do you want?";
@@ -133,8 +131,7 @@ in_moc_16,19,33,1	script	Guildsman#asn	55,{
 		close2;
 		warp "moc_fild16",206,229;
 		end;
-	}
-	else {
+	} else {
 		mes "[Ferocious-looking guy]";
 		mes "What brings you here?";
 		mes "I don't think I like the way you're looking at me... Punk.";
@@ -143,21 +140,18 @@ in_moc_16,19,33,1	script	Guildsman#asn	55,{
 			mes "[Ferocious-looking guy]";
 			mes "Hey Newbie. You should really get out of here as soon as you can. I can't guarantee your safety.";
 			close;
-		}
-		else if (BaseClass == Job_Swordman) {
+		} else if (BaseClass == Job_Swordman) {
 			mes "[Ferocious-looking guy]";
 			mes "What brings a man of the sword to this place? Why don't you try smashing stuff somewhere else, ya lunkhead.";
 			close;
-		}
-		else if (BaseClass == Job_Mage) {
+		} else if (BaseClass == Job_Mage) {
 			mes "[Ferocious-looking guy]";
 			mes "Now what would a magic user be doing here?";
 			next;
 			mes "[Ferocious-looking guy]";
 			mes "There's a library in Prontera and Juno where you're welcome, so why don't you make like a magic trick and disappear?";
 			close;
-		}
-		else if (BaseClass == Job_Archer) {
+		} else if (BaseClass == Job_Archer) {
 			mes "[Ferocious-looking guy]";
 			mes "Well well well.";
 			mes "Look at that purdy bow.";
@@ -165,18 +159,15 @@ in_moc_16,19,33,1	script	Guildsman#asn	55,{
 			mes "[Ferocious-looking guy]";
 			mes "There aren't many Bowmen with the gall to even come close to this place. Well, what do you think you're doin' here?!";
 			close;
-		}
-		else if (BaseClass == Job_Acolyte) {
+		} else if (BaseClass == Job_Acolyte) {
 			mes "[Ferocious-looking guy]";
 			mes "I thought something smelled funny. What's a servant of God doing in this place? You don't belong here.";
 			close;
-		}
-		else if (BaseClass == Job_Merchant) {
+		} else if (BaseClass == Job_Merchant) {
 			mes "[Ferocious-looking guy]";
 			mes "We don't like greedy people around these parts. You better sell your stuff somewhere else, Moneybags.";
 			close;
-		}
-		else if (BaseJob == Job_Rogue) {
+		} else if (BaseJob == Job_Rogue) {
 			mes "[Ferocious-looking guy]";
 			mes "You look like you don't have a care in the world. Well, I hope you enjoy your rest while you stay here. It's okay, since the Rogue and Assassin Guilds have always gotten along pretty well.";
 			next;
@@ -189,27 +180,23 @@ in_moc_16,19,33,1	script	Guildsman#asn	55,{
 			mes "Markie...";
 			mes "We promised that we'd be together forever. ^666666*Sigh...*^000000 I don't even think she remembers that promise anymore. Then again, we were pretty young back then...";
 			close;
-		}
-		else if (BaseJob == Job_Assassin) {
+		} else if (BaseJob == Job_Assassin) {
 			mes "[Assassin Expert 'Huey']";
 			mes "Hey, I remember you~";
 			mes "Wasn't your name, umm, I remember 'cause it sounded funny to me...";
 			next;
 			mes "[Assassin Expert 'Huey']";
-			mes ":+:" + strcharinfo(0) + ":+:, right? No wait, just "+ strcharinfo(0) +". Yeah, how's it goin'?";
+			mes ":+:"+strcharinfo(0)+":+:, right? No wait, just "+strcharinfo(0)+". Yeah, how's it goin'?";
 			next;
 			mes "[Assassin Expert 'Huey']";
 			mes "Unfortunately, I don't have any requests for you at this time from the guild. Just keep focusing on your training. Till then, see ya.";
 			close;
-		}
-		else if (BaseJob == Job_Thief && JobLevel > 39) {
+		} else if (BaseJob == Job_Thief && JobLevel > 39) {
+			mes "[Ferocious-looking guy]";
 			if (SkillPoint) {
-				mes "[Ferocious-looking guy]";
 				mes "You can't change your job if you still have unused skill points from First Job. You better use up those skill points first.";
 				close;
-			}
-			else {
-				mes "[Ferocious-looking guy]";
+			} else {
 				mes "Hmm...";
 				mes "A Thief...?";
 				next;
@@ -250,8 +237,7 @@ in_moc_16,19,33,1	script	Guildsman#asn	55,{
 					close;
 				}
 			}
-		}
-		else {
+		} else {
 			mes "[Ferocious-looking guy]";
 			mes "Huh. You're not qualified to become an Assassin yet. There are requirements you need to meet first, you know.";
 			next;
@@ -358,8 +344,7 @@ OnTouch:
 				next;
 				mes "[Assassin 'Khai']";
 				mes "Yeah yeah, I understand. Everyone messes up from time to time. Sorry for laughing at your mistakes.";
-			}
-			else
+			} else 
 				mes "Hmm. I like your attitude. You should keep your pride as a Thief. Sorry for laughing at your mistakes. I think you'll do better next time.";
 			next;
 			mes "[Assassin 'Khai']";
@@ -494,8 +479,7 @@ OnTouch:
 			warp "c_tower4",64,76;
 			end;
 		}
-	}
-	else {
+	} else {
 		mes "[Assassin 'Khai']";
 		mes "Oh, you must be an Assassin trainee. You are here to become";
 		mes "an Assassin, aren't you?";
@@ -507,12 +491,12 @@ OnTouch:
 			mes "[Assassin 'Khai']";
 			mes "Let's see.";
 			mes "Your name is";
-			mes "" + strcharinfo(0) + "...";
-			mes "Job level " + JobLevel + "...";
+			mes ""+strcharinfo(0)+"...";
+			mes "Job level "+JobLevel+"...";
 			next;
+			mes "[Assassin 'Khai']";
 			if (JobLevel > 48) {
-				mes "[Assassin 'Khai']";
-				mes "Wait, Job level " + JobLevel + "?! I can see you've been training pretty hard! My bosses will like this~";
+				mes "Wait, Job level "+JobLevel+"?! I can see you've been training pretty hard! My bosses will like this~";
 				next;
 				mes "[Assassin 'Khai']";
 				mes "Did you finish the form? Alright, go ahead and give it to me. Give me a second and I'll transport you to the Test Hall.";
@@ -526,9 +510,7 @@ OnTouch:
 				changequest 8001,8002;
 				warp "in_moc_16",19,144;
 				end;
-			}
-			else if (JobLevel < 49) {
-				mes "[Assassin 'Khai']";
+			} else if (JobLevel < 49) {
 				mes "Well, you passed";
 				mes "the requirements.";
 				mes "Not bad at all.";
@@ -549,9 +531,7 @@ OnTouch:
 				changequest 8001,8002;
 				warp "in_moc_16",19,144;
 				end;
-			}
-			else {
-				mes "[Assassin 'Khai']";
+			} else {
 				mes "Who the";
 				mes "hell are you?";
 				mes "...Guards!";
@@ -559,8 +539,7 @@ OnTouch:
 				warp "moc_fild16",206,229;
 				end;
 			}
-		}
-		else {
+		} else {
 			mes "[Assassin 'Khai']";
 			mes "Huh...?";
 			mes "What, are you trying to trick me or something? Don't you wanna be an Assassin?";
@@ -586,14 +565,14 @@ OnTouch:
 			mes "Fill out the application form with your name and job level.";
 			next;
 			mes "[Assassin 'Khai']";
-			mes "" + strcharinfo(0) + "?";
+			mes ""+strcharinfo(0)+"?";
 			mes "That's your name?";
 			mes "It sounds funny.";
-			mes "Let's see... Job Level " + JobLevel + "...";
+			mes "Let's see... Job Level "+JobLevel+"...";
 			next;
+			mes "[Assassin 'Khai']";
 			if (JobLevel > 48) {
-				mes "[Assassin 'Khai']";
-				mes "Ho? Job Level " + JobLevel + "?! You must have been training really hard. The bosses will like that for sure...";
+				mes "Ho? Job Level "+JobLevel+"?! You must have been training really hard. The bosses will like that for sure...";
 				next;
 				mes "[Assassin 'Khai']";
 				mes "Are you done filling out the form? Alright, give it to me so I can send you to the Test Hall. Good luck~";
@@ -603,9 +582,7 @@ OnTouch:
 				changequest 8001,8002;
 				warp "in_moc_16",19,144;
 				end;
-			}
-			else if (JobLevel < 49) {
-				mes "[Assassin 'Khai']";
+			} else if (JobLevel < 49) {
 				mes "Not bad. You fulfilled our requirements. Not bad at all. Now are you done filling out the form?";
 				next;
 				mes "[Assassin 'Khai']";
@@ -617,9 +594,7 @@ OnTouch:
 				changequest 8001,8002;
 				warp "in_moc_16",19,144;
 				end;
-			}
-			else {
-				mes "[Assassin 'Khai']";
+			} else {
 				mes "How the hell did";
 				mes "you get in here?";
 				mes "Get out!";
@@ -778,8 +753,7 @@ OnTouch:
 			mes "[The Anonymous One]";
 			mes "Are you ready?";
 			mes "Prepare yourself!";
-		}
-		else if (ASSIN_Q2 < 5) {
+		} else if (ASSIN_Q2 < 5) {
 			mes "[The Anonymous One]";
 			mes "Having problems";
 			mes "passing a simple test?";
@@ -814,168 +788,136 @@ OnTouch:
 			mes "[The Anonymous One]";
 			mes "1. Choose skill that is not required to learn Grimtooth.";
 			next;
-			if (select("Cloaking level 2:Sonic Blow level 5:Katar Mastery level 4:Right hand Mastery level 2") == 4)
-				set .@assassin_t,.@assassin_t+10;
+			if (select("Cloaking level 2:Sonic Blow level 5:Katar Mastery level 4:Right hand Mastery level 2") == 4) set .@assassin_t,.@assassin_t+10;
 			mes "[The Anonymous One]";
 			mes "2. What property does Enchant Poison possess?";
 			next;
-			if (select("Poison:Earth:Fire:Wind") == 1)
-				set .@assassin_t,.@assassin_t+10;
+			if (select("Poison:Earth:Fire:Wind") == 1) set .@assassin_t,.@assassin_t+10;
 			mes "[The Anonymous One]";
 			mes "3. How does Level 4 Right Hand Mastery work?";
 			next;
-			if (select("Recover 80% of damage decrease:Recover 90% of damage decrease:Increase 90% of damage:Increase 108% of damage") == 2)
-				set .@assassin_t,.@assassin_t+10;
+			if (select("Recover 80% of damage decrease:Recover 90% of damage decrease:Increase 90% of damage:Increase 108% of damage") == 2) set .@assassin_t,.@assassin_t+10;
 			mes "[The Anonymous One]";
 			mes "4. What is the item required for using Venom Dust?";
 			next;
-			if (select("Red Blood:Blue Gemstone:Yellow Gemstone:Red Gemstone") == 4)
-				set .@assassin_t,.@assassin_t+10;
+			if (select("Red Blood:Blue Gemstone:Yellow Gemstone:Red Gemstone") == 4) set .@assassin_t,.@assassin_t+10;
 			mes "[The Anonymous One]";
 			mes "5. Which skill can you learn when you reach Level 5 Enchant Poison?";
 			next;
-			if (select("Envenom:Sonic Blow:Venom Splasher:Venom Dust") == 4)
-				set .@assassin_t,.@assassin_t+10;
+			if (select("Envenom:Sonic Blow:Venom Splasher:Venom Dust") == 4) set .@assassin_t,.@assassin_t+10;
 			mes "[The Anonymous One]";
 			mes "6. Among the following skills, which allows you to walk while invisible?";
 			next;
-			if (select("Hiding:Back Slide:Cloaking:Sand Attack") == 3)
-				set .@assassin_t,.@assassin_t+10;
+			if (select("Hiding:Back Slide:Cloaking:Sand Attack") == 3) set .@assassin_t,.@assassin_t+10;
 			mes "[The Anonymous One]";
 			mes "7. Choose the condition that is unrelated to Venom Splasher.";
 			next;
-			if (select("Poisoned target.:Red Gemstone.:Remaing HP of Target.") == 2)
-				set .@assassin_t,.@assassin_t+10;
+			if (select("Poisoned target.:Red Gemstone.:Remaing HP of Target.") == 2) set .@assassin_t,.@assassin_t+10;
 			mes "[The Anonymous One]";
 			mes "8. Which monster is weak to a weapon with Vadon card (adds 20% damage on Fire property monster)?";
 			next;
-			if (select("Steel Chonchon:Deviruchi:Elder Willow:Baphomet") == 3)
-				set .@assassin_t,.@assassin_t+10;
+			if (select("Steel Chonchon:Deviruchi:Elder Willow:Baphomet") == 3) set .@assassin_t,.@assassin_t+10;
 			mes "[The Anonymous One]";
 			mes "9. How much SP does";
 			mes "Double Attack need?";
 			next;
-			if (select("15:It's a passive skill, so SP use is 0.:It's passive skill, so SP use is 10.:54") == 2)
-				set .@assassin_t,.@assassin_t+10;
+			if (select("15:It's a passive skill, so SP use is 0.:It's passive skill, so SP use is 10.:54") == 2) set .@assassin_t,.@assassin_t+10;
 			mes "[The Anonymous One]";
 			mes "10. What is the best elemental Main Gauche weapon for hunting in Izlude dungeon?";
 			next;
-			if (select("Wind Main Gauche:Ice Main Gauche:Earth Main Gauche:Fire Main Gauche") == 1)
-				set .@assassin_t,.@assassin_t+10;
+			if (select("Wind Main Gauche:Ice Main Gauche:Earth Main Gauche:Fire Main Gauche") == 1) set .@assassin_t,.@assassin_t+10;
 			break;
 		case 2:
 			mes "[The Anonymous One]";
 			mes "1. Which monster";
 			mes "drops a slotted Katar?";
 			next;
-			if (select("Thief Bug:Peco Peco:Desert Wolf:Hammer Cobolt") == 3)
-				set .@assassin_t,.@assassin_t+10;
+			if (select("Thief Bug:Peco Peco:Desert Wolf:Hammer Cobolt") == 3) set .@assassin_t,.@assassin_t+10;
 			mes "[The Anonymous One]";
 			mes "2. Which monster";
 			mes "drops a slotted Jur?";
 			next;
-			if (select("Martin:Desert Wolf:Marionette:Myst") == 1)
-				set .@assassin_t,.@assassin_t+10;
+			if (select("Martin:Desert Wolf:Marionette:Myst") == 1) set .@assassin_t,.@assassin_t+10;
 			mes "[The Anonymous One]";
 			mes "3. Which class is allowed to craft elemental weapons?";
 			next;
-			if (select("Merchant:Blacksmith:Thief:Priest") == 2)
-				set .@assassin_t,.@assassin_t+10;
+			if (select("Merchant:Blacksmith:Thief:Priest") == 2) set .@assassin_t,.@assassin_t+10;
 			mes "[The Anonymous One]";
 			mes "4. Choose the weapon which is not in the Katar class.";
 			next;
-			if (select("Jamadhar:Jur:Katar:Gladius") == 4)
-				set .@assassin_t,.@assassin_t+10;
+			if (select("Jamadhar:Jur:Katar:Gladius") == 4) set .@assassin_t,.@assassin_t+10;
 			mes "[The Anonymous One]";
 			mes "5. What property do Izlude dungeon monsters posses?";
 			next;
-			if (select("Water:Fire:Wind:Earth") == 1)
-				set .@assassin_t,.@assassin_t+10;
+			if (select("Water:Fire:Wind:Earth") == 1) set .@assassin_t,.@assassin_t+10;
 			mes "[The Anonymous One]";
 			mes "6. Which monster";
 			mes "cannot be a Cute Pet?";
 			next;
-			if (select("Poporing:Roda Frog:Smokie:Poison Spore") == 2)
-				set .@assassin_t,.@assassin_t+10;
+			if (select("Poporing:Roda Frog:Smokie:Poison Spore") == 2) set .@assassin_t,.@assassin_t+10;
 			mes "[The Anonymous One]";
 			mes "7. Choose a monster that Fire property Daggers work the best on.";
 			next;
-			if (select("Dagger Goblin:Mace Goblin:Morning Star Goblin:Hammer Goblin") == 4)
-				set .@assassin_t,.@assassin_t+10;
+			if (select("Dagger Goblin:Mace Goblin:Morning Star Goblin:Hammer Goblin") == 4) set .@assassin_t,.@assassin_t+10;
 			mes "[The Anonymous One]";
 			mes "8. Choose the non-elemental Katar from the following:";
 			next;
-			if (select("Katar of Raging Blaze:Katar of Dusty Thornbush:Sharpened Legbone of Ghoul:Infiltrator") == 4)
-				set .@assassin_t,.@assassin_t+10;
+			if (select("Katar of Raging Blaze:Katar of Dusty Thornbush:Sharpened Legbone of Ghoul:Infiltrator") == 4) set .@assassin_t,.@assassin_t+10;
 			mes "[The Anonymous One]";
 			mes "9. Which is the uncommon monster?";
 			next;
-			if (select("Poring:Mastering:Ghostring:Spore") == 3)
-				set .@assassin_t,.@assassin_t+10;
+			if (select("Poring:Mastering:Ghostring:Spore") == 3) set .@assassin_t,.@assassin_t+10;
 			mes "[The Anonymous One]";
 			mes "10. Choose the monster";
 			mes "that is not Undead.";
 			next;
-			if (select("Drake:Megalodon:Spore:Khalitzburg") == 3)
-				set .@assassin_t,.@assassin_t+10;
+			if (select("Drake:Megalodon:Spore:Khalitzburg") == 3) set .@assassin_t,.@assassin_t+10;
 			break;
 		case 3:
 			mes "[The Anonymous One]";
 			mes "1. Choose the correct amount of the maximum dodge rate increase from the 'Increase Dodge' skill when at level 10.";
 			next;
-			if (select("30:40:160:20") == 1)
-				set .@assassin_t,.@assassin_t+10;
+			if (select("30:40:160:20") == 1) set .@assassin_t,.@assassin_t+10;
 			mes "[The Anonymous One]";
 			mes "2. Choose a monster which detects hiding/cloaking Thieves and Assassins.";
 			next;
-			if (select("Worm Tail:Andre:Mummy:Soldier Skeleton") == 2)
-				set .@assassin_t,.@assassin_t+10;
+			if (select("Worm Tail:Andre:Mummy:Soldier Skeleton") == 2) set .@assassin_t,.@assassin_t+10;
 			mes "[The Anonymous One]";
 			mes "3. Choose a group of weapons that cannot be used by an Assassin at once.";
 			next;
-			if (select("Main Gaughe + Gladius:Stiletto + Main Gauche:Katar + Maingauche:Hammer + Stiletto") == 3)
-				set .@assassin_t,.@assassin_t+10;
+			if (select("Main Gaughe + Gladius:Stiletto + Main Gauche:Katar + Maingauche:Hammer + Stiletto") == 3) set .@assassin_t,.@assassin_t+10;
 			mes "[The Anonymous One]";
 			mes "4. Choose the town where Thieves can change their jobs.";
 			next;
-			if (select("Prontera:Lutie:Alberta:Morocc") == 4)
-				set .@assassin_t,.@assassin_t+10;
+			if (select("Prontera:Lutie:Alberta:Morocc") == 4) set .@assassin_t,.@assassin_t+10;
 			mes "[The Anonymous One]";
 			mes "5. Choose a card that does not affect the AGI stat.";
 			next;
-			if (select("Baphomet Jr. card:Whisper Card:Female Thiefbug card:Male Thiefbug card") == 2)
-				set .@assassin_t,.@assassin_t+10;
+			if (select("Baphomet Jr. card:Whisper Card:Female Thiefbug card:Male Thiefbug card") == 2) set .@assassin_t,.@assassin_t+10;
 			mes "[The Anonymous One]";
 			mes "6. Choose the correct specialty of the Assassin class.";
 			next;
-			if (select("Excellent singing talent:Excellent reading talent:Excellent dancing talent:Excellent dodge ability") == 4)
-				set .@assassin_t,.@assassin_t+10;
+			if (select("Excellent singing talent:Excellent reading talent:Excellent dancing talent:Excellent dodge ability") == 4) set .@assassin_t,.@assassin_t+10;
 			mes "[The Anonymous One]";
 			mes "7. Choose the maximum AGI bonus an Assassin can get at job level 50.";
 			next;
-			if (select("7:8:9:10") == 4) 
-				set .@assassin_t,.@assassin_t+10;
+			if (select("7:8:9:10") == 4) set .@assassin_t,.@assassin_t+10;
 			mes "[The Anonymous One]";
 			mes "8. Choose the item that an Assassin cannot equip.";
 			next;
-			if (select("Dagger:Helm:Boots:Brooch") == 2) 
-				set .@assassin_t,.@assassin_t+10;
+			if (select("Dagger:Helm:Boots:Brooch") == 2) set .@assassin_t,.@assassin_t+10;
 			mes "[The Anonymous One]";
 			mes "9. Choose the job change item for Thief.";
 			next;
 			switch(select("Orange Gooey Mushroom:Red Gooey Mushroom:Orange Net Mushroom:Orange Hair Mushroom")) {
 			case 1:
-			case 3:
-				set .@assassin_t,.@assassin_t+10;
-				break;
-			default:
-				break;
+			case 3: set .@assassin_t,.@assassin_t+10; break;
+			default: break;
 			}
 			mes "[The Anonymous One]";
 			mes "10. Choose a card that would typically benefit an Assassin the least.";
 			next;
-			if (select("Whisper card:Elder Willow card:Soldier Skeleton card:Cobold card") == 2)
-				set .@assassin_t,.@assassin_t+10;
+			if (select("Whisper card:Elder Willow card:Soldier Skeleton card:Cobold card") == 2) set .@assassin_t,.@assassin_t+10;
 			break;
 		}
 		if (ASSIN_Q2 == 3) {
@@ -989,7 +931,7 @@ OnTouch:
 			mes "[The Anonymous One]";
 			mes "Let's see...";
 			mes "You scored";
-			mes "" + .@assassin_t + " percent...";
+			mes ""+.@assassin_t+" percent...";
 			if (.@assassin_t > 80) {
 				set ASSIN_Q2,5;
 				changequest 8002,8003;
@@ -999,8 +941,7 @@ OnTouch:
 				mes "[The Anonymous One]";
 				mes "However, another test awaits you. When you go inside the next area, you will receive your instructions...";
 				close;
-			}
-			else {
+			} else {
 				set ASSIN_Q2,4;
 				mes "That means you fail!";
 				next;
@@ -1016,8 +957,7 @@ OnTouch:
 				warp "in_moc_16",19,76;
 				end;
 			}
-		}
-		else if (ASSIN_Q2 == 4) {
+		} else if (ASSIN_Q2 == 4) {
 			next;
 			mes "[The Anonymous One]";
 			mes "You showed";
@@ -1026,7 +966,7 @@ OnTouch:
 			mes "[The Anonymous One]";
 			mes "Let's see...";
 			mes "You scored";
-			mes "" + .@assassin_t + " points...";
+			mes ""+.@assassin_t+" points...";
 			if (.@assassin_t > 80) {
 				set ASSIN_Q2,5;
 				changequest 8002,8003;
@@ -1034,8 +974,7 @@ OnTouch:
 				mes "[The Anonymous One]";
 				mes "You didn't fail this time! But you're not done just yet. You have another test ahead of you. Once you proceed, you will be informed about your next trial.";
 				close;
-			}
-			else {
+			} else {
 				set ASSIN_Q2,4;
 				mes "You failed!";
 				next;
@@ -1058,8 +997,7 @@ OnTouch:
 				end;
 			}
 		}
-	}
-	else {
+	} else {
 		mes "[The Anonymous One]";
 		mes "...I will keep watching you.";
 		close;
@@ -1101,7 +1039,7 @@ OnTouch:
 	}
 	if (ASSIN_Q == 1 && ASSIN_Q2 == 5) {
 		mes "[Barcardi]";
-		mes "" + strcharinfo(0) + "...";
+		mes ""+strcharinfo(0)+"...";
 		mes "You passed the test..?";
 		next;
 		mes "[Barcardi]";
@@ -1133,8 +1071,7 @@ OnTouch:
 		mes "[Barcardi]";
 		mes "Only one person is allowed to take the test at a time, so if anyone is taking the test, you'll have to wait until that person finishes.";
 		close;
-	}
-	else {
+	} else {
 		mes "[Barcardi]";
 		mes "Hey, don't be too hard";
 		mes "on yourself. Cheer up!";
@@ -1239,10 +1176,7 @@ OnMyMobDead:
 		donpcevent "Beholder#ASNTEST::OnResetmob";
 		set .DisableTraps,1;
 		stopnpctimer;
-	}
-	else {
-		mapannounce "in_moc_16","Okay, you're doing good! Hang in there, you're almost there!",bc_map;
-	}
+	} else mapannounce "in_moc_16","Okay, you're doing good! Hang in there, you're almost there!",bc_map;
 	end;
 
 OnMyMobDead2:
@@ -1418,10 +1352,8 @@ OnInit:
 
 OnTouch:
 	donpcevent "Thomas#ASNTEST::OnDisable";
-	if (ASSIN_Q == 3)
-		set ASSIN_Q,3;
-	else
-		set ASSIN_Q,4;
+	if (ASSIN_Q == 3) set ASSIN_Q,3;
+	else set ASSIN_Q,4;
 	warp "in_moc_16",87,102;
 	savepoint "in_moc_16",16,13;
 	end;
@@ -1472,13 +1404,7 @@ OnTouch:
 		mes "It looks like you're having a tough time. You're either trying too hard, or not trying hard";
 		mes "enough, kid.";
 		next;
-		switch(select("I'm gonna try it again!:I... I quit!")) {
-		case 1:
-			mes "[Thomas]";
-			mes "Hmm. Well, okay.";
-			mes "Good luck out there.";
-			close;
-		case 2:
+		if (select("I'm gonna try it again!:I... I quit!")==2) {
 			mes "[Thomas]";
 			mes "Huh...";
 			mes "Quit the test, eh? Well, I guess you don't wanna waste any more of our time.";
@@ -1496,8 +1422,11 @@ OnTouch:
 			donpcevent "Standby Room#ASNTEST::OnStart";
 			end;
 		}
+		mes "[Thomas]";
+		mes "Hmm. Well, okay.";
+		mes "Good luck out there.";
+		close;
 	}
-
 	mes "[Thomas]";
 	mes "Hey, I'm Thomas. I'm in charge of testing your use of the hiding skill. Think you're up to it?";
 	next;
@@ -1511,7 +1440,6 @@ OnTouch:
 	mes "If you run away, get a nose bleed and pass out or something like that, I'll fail ya'. Enough talk. Let's see what you got.";
 	close2;
 	set ASSIN_Q,4;
-
 	monster "in_moc_16",81,77,"Mummy",1041,1,"timestopper#1::OnMyMobDead";
 	monster "in_moc_16",82,77,"Mummy",1041,1,"timestopper#1::OnMyMobDead";
 	monster "in_moc_16",83,77,"Mummy",1041,1,"timestopper#1::OnMyMobDead";
@@ -1569,8 +1497,7 @@ OnTouch:
 		warp "in_moc_16",181,183;
 		set ASSIN_Q,ASSIN_Q+1;
 		changequest 8005,8006;
-	}
-	else {
+	} else {
 		mapannounce "in_moc_16",strcharinfo(0)+" has entered 'Guildmaster's room.'",bc_map;
 		savepoint "in_moc_16",181,183;
 		donpcevent "Guildmaster#ASN2::OnDisable";
@@ -1848,10 +1775,7 @@ OnTouch:
 				mes "Haha, the needs of the body are sometimes hard to ignore. It's best to accept that part of human nature.";
 				next;
 				mes "[Guildmaster]";
-				if (sex )
-					mes "But you must never reveal to her the Assassin side of your life. No matter what it takes.";
-				else
-					mes "But you must never reveal to him the Assassin side of your life, no matter what it takes.";
+				mes "But you must never reveal to "+((Sex)?"him":"her")+" the Assassin side of your life. No matter what it takes.";
 				next;
 				mes "[Guildmaster]";
 				mes "Love your beloved forever, even if you can't openly express it. Sometimes, life doesn't allow you to find true love more than once.";
@@ -1902,9 +1826,9 @@ OnTouch:
 		mes "Please give me";
 		mes "one second...";
 		next;
-		mapannounce "in_moc_16","Those involved with the testing of " + strcharinfo(0) + ", please gather before me.",bc_map;
+		mapannounce "in_moc_16","Those involved with the testing of "+strcharinfo(0)+", please gather before me.",bc_map;
 		mes "[Guildmaster]";
-		mes "Those involved with the testing of " + strcharinfo(0) + ", please gather before me.";
+		mes "Those involved with the testing of "+strcharinfo(0)+", please gather before me.";
 		next;
 		mes "[Guildmaster]";
 		mes "They will";
@@ -1921,7 +1845,7 @@ OnTouch:
 		mes "I am here.";
 		next;
 		mes "[Guildmaster]";
-		mes "I would like to listen to your opinion of " + strcharinfo(0) + " for the job change test.";
+		mes "I would like to listen to your opinion of "+strcharinfo(0)+" for the job change test.";
 		next;
 		mes "[The Anonymous One]";
 		mes "Ah yeah...";
@@ -1947,7 +1871,7 @@ OnTouch:
 		}
 		else {
 			mes "[Huey]";
-			mes "Although "+ strcharinfo(0) +" looks too mellow and gentle, kind of like a pussycat, "+ strcharinfo(0) +" has the stuff.";
+			mes "Although "+strcharinfo(0)+" looks too mellow and gentle, kind of like a pussycat, "+strcharinfo(0)+" has the stuff.";
 			next;
 			mes "[Huey]";
 			mes "If it's alright with you, I'd like to get back to my job.";
@@ -1968,7 +1892,7 @@ OnTouch:
 		next;
 		mes "[Guildmaster]";
 		mes "Hmm...";
-		mes "It seems we are all in agreement. Good. I don't have any problem with "+ strcharinfo(0) +" as well...";
+		mes "It seems we are all in agreement. Good. I don't have any problem with "+strcharinfo(0)+" as well...";
 		next;
 		switch(ASSIN_Q) {
 		case 8:
@@ -2057,28 +1981,18 @@ OnTouch:
 				getitem 1220,1; //Gladius_
 			}
 			next;
-		}
-		else {
+		} else {
 			set ASSIN_Q,17;
 			mes "[Guildmaster]";
 			mes "Well, I talked too much.";
 			mes "Please take this first.";
 			next;
 			switch(rand(1,5)) {
-			case 1:
-				getitem 1207,1; //Main_Gauche
-				break;
-			case 2:
-				getitem 1250,1; //Jur
-				break;
-			case 3:
-				getitem 1216,1; //Stiletto
-				break;
-			case 4:
-				getitem 1201,1; //Knife
-				break;
-			case 5:
-				getitem 1252,1; //Katar
+				case 1: getitem 1207,1; break; //Main_Gauche
+				case 2: getitem 1250,1; break; //Jur
+				case 3: getitem 1216,1; break; //Stiletto
+				case 4: getitem 1201,1; break; //Knife
+				case 5: getitem 1252,1; //Katar
 			}
 		}
 		mes "[Guildmaster]";
@@ -2088,7 +2002,7 @@ OnTouch:
 		mes "Upon receiving this token, Huey will promote you to an Assassin.";
 		next;
 		mes "[Guildmaster]";
-		mes "You, " + strcharinfo(0) + ", have chosen to live as an Assassin. May you learn our ways and be an honorable example to others.";
+		mes "You, "+strcharinfo(0)+", have chosen to live as an Assassin. May you learn our ways and be an honorable example to others.";
 		savepoint "morocc",100,100;
 		getitem 1008,1; //Frozen_Heart
 		changequest 8006,8007;
@@ -2105,8 +2019,7 @@ OnTouch:
 		close2;
 		warp "in_moc_16",17,19;
 		end;
-	}
-	else if (ASSIN_Q == 17) {
+	} else if (ASSIN_Q == 17) {
 		mes "[Guildmaster]";
 		mes "Umm...?";
 		mes "How come you're in here...?";
@@ -2116,8 +2029,7 @@ OnTouch:
 		close2;
 		warp "in_moc_16",17,19;
 		end;
-	}
-	else if (ASSIN_Q > 7 && ASSIN_Q < 17) {
+	} else if (ASSIN_Q > 7 && ASSIN_Q < 17) {
 		set ASSIN_Q,7;
 		mes "[Guildmaster]";
 		mes "What the hell? You pressed 'Cancel' during the process. Do you want to change your job or what?";
@@ -2126,8 +2038,7 @@ OnTouch:
 		mes "^666666*Sigh...*^000000";
 		mes "Ok, let's start again. If you don't listen this time, you won't leave this room alive. You got me?";
 		close;
-	}
-	else {
+	} else {
 		mes "[Guildmaster]";
 		mes "Umm? How come your in here?";
 		next;

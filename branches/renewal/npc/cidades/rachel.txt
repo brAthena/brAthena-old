@@ -18,7 +18,7 @@
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
-// | 1.1 NPC 'Sacerdote de Freya#play' Otimizado [Architect]|
+// | 1.1 Script Otimizado [Architect]						|
 // \________________________________________________________/
 
 //===== Set 1 ================================================
@@ -341,7 +341,6 @@ rachel,197,137,3	script	Bardo#aru	51,{
 	mes "tipo de música aqui";
 	mes "em Arunafeltz!";
 	next;
-	mes "[Bardo]";
 	mes ".........";
 	mes ".........";
 	mes ".........";
@@ -686,5 +685,4 @@ airplane,238,54,7	script	Aventureiro	59,{
 	mes "e oferecer a minha ajuda. Hummm, melhor não.";
 	close;
 }
-
 

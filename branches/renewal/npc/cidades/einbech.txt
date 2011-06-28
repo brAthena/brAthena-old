@@ -18,8 +18,7 @@
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
-// | 1.1 Substituição de 'switch' descenessários (2 cases)  |
-// |     por 'if'[Architect]                                |
+// | 1.1 Script Otimizado [Architect]						|
 // \________________________________________________________/
 
 einbech,172,113,4	script	Nemuk#ein	855,{
@@ -117,7 +116,7 @@ einbech,128,238,5	script	Mogan#ein	848,{
 	mes "saíram machucados. Discutimos no";
 	mes "Conselho da Cidade, e na minha";
 	mes "opinião, acho que os mineradores";
-	mes "cavaram muito fundo e perturbaram... ^FF0000it^000000.";
+	mes "cavaram muito fundo e perturbaram... ^FF0000isso^000000.";
 	next;
 	mes "[Mogan]";
 	mes "Sim, eles acordaram Ungoliant,";
@@ -883,7 +882,7 @@ einbech,148,246,5	script	Franz#ein	851,{
 	mes "a Mina ou os campos de fora";
 	mes "da cidade? Vamos conversar e talvez você aprenda algo.";
 	next;
-	if (select("Está bem..:Não, obrigado.")) {
+	if (select("Está bem..:Não, obrigado.") == 1) {
 		mes "[Franz]";
 		mes "Aah, você já ouviu sobre";
 		mes "a criatura que vive na";
@@ -892,8 +891,7 @@ einbech,148,246,5	script	Franz#ein	851,{
 		mes "Sobre qual você";
 		mes "gostaria de saber?";
 		next;
-		switch(select("Criatura da Mina:Incidente na Cidade")) {
-		case 1:
+		if (select("Criatura da Mina:Incidente na Cidade") == 1) {
 			mes "[Franz]";
 			mes "Estou falando sobre Ungoliant, também conhecido como o Mestre das Cavernas.";
 			mes "Dizem que ele mora nas profundezas das cavernas, e guarda minérios e minerais peculiares, com poderes estranhos.";
@@ -937,64 +935,63 @@ einbech,148,246,5	script	Franz#ein	851,{
 			mes "Shell, Long Leg, Neon Liquid";
 			mes "e Zilcon.";
 			close;
-		case 2:
-			mes "[Franz]";
-			mes "Em Einbroch, houve uma época";
-			mes "em que todas as crianças queriam comprar";
-			mes "um novo lançamento: ursinhos de pelúcia.";
-			mes "Aí começaram a ocorrer";
-			mes "acidentes e tragédias, incluindo";
-			mes "o assassinato de famílias inteiras.";
-			next;
-			mes "[Franz]";
-			mes "Então perceberam que todas as";
-			mes "familías que foram mortas tinham";
-			mes "comprado recentemente um desses ursinhos. Surgiram até rumores que os ursos de pelúcia estavam ganhando vida.";
-			next;
-			mes "[Franz]";
-			mes "Na investigação, a polícia";
-			mes "descobriu que os mercadores que vendiam";
-			mes "os ursinhos tinham comprado-os do";
-			mes "mesmo revendedor, um estrangeiro";
-			mes "completamente desconhecido de todos.";
-			next;
-			mes "[Franz]";
-			mes "Desde que os ursinhos claramente";
-			mes "não tinham sido feitos para serem";
-			mes "meros brinquedos inocentes,";
-			mes "as autoridades organizaram tropas";
-			mes "para apreender todos os ursinhos";
-			mes "e colocá-los fora da cidade.";
-			next;
-			mes "[Franz]";
-			mes "Mas assim que os ursinhos";
-			mes "foram colocados para fora da";
-			mes "cidade, eles ganharam vida e";
-			mes "começaram a se revoltar! Essa é";
-			mes "uma prova de que esses ursos";
-			mes "eram controlados por alguma força do mal.";
-			next;
-			mes "[Franz]";
-			mes "Agora esses ursinhos agressivos";
-			mes "estão espalhados por todo";
-			mes "lugar, e o governo classificou-os";
-			mes "como monstros perigosos.";
-			next;
-			mes "[Franz]";
-			mes "De acordo com aventureiros que";
-			mes "caçaram esses ursinhos, eles são";
-			mes "pequenos, de elemento neutro,";
-			mes "e dropam Honey, Screw, Well-baked Cookie e Oridecon Hammer.";
-			next;
-			mes "[Franz]";
-			mes "Isso é tudo que sei sobre";
-			mes "essa história. Tenha cuidado";
-			mes "com esses ursinhos se você";
-			mes "for sair para explorar.";
-			mes "Eles podem ser bonitinhos,";
-			mes "mas são extremamente perigosos!";
-			close;
 		}
+		mes "[Franz]";
+		mes "Em Einbroch, houve uma época";
+		mes "em que todas as crianças queriam comprar";
+		mes "um novo lançamento: ursinhos de pelúcia.";
+		mes "Aí começaram a ocorrer";
+		mes "acidentes e tragédias, incluindo";
+		mes "o assassinato de famílias inteiras.";
+		next;
+		mes "[Franz]";
+		mes "Então perceberam que todas as";
+		mes "familías que foram mortas tinham";
+		mes "comprado recentemente um desses ursinhos. Surgiram até rumores que os ursos de pelúcia estavam ganhando vida.";
+		next;
+		mes "[Franz]";
+		mes "Na investigação, a polícia";
+		mes "descobriu que os mercadores que vendiam";
+		mes "os ursinhos tinham comprado-os do";
+		mes "mesmo revendedor, um estrangeiro";
+		mes "completamente desconhecido de todos.";
+		next;
+		mes "[Franz]";
+		mes "Desde que os ursinhos claramente";
+		mes "não tinham sido feitos para serem";
+		mes "meros brinquedos inocentes,";
+		mes "as autoridades organizaram tropas";
+		mes "para apreender todos os ursinhos";
+		mes "e colocá-los fora da cidade.";
+		next;
+		mes "[Franz]";
+		mes "Mas assim que os ursinhos";
+		mes "foram colocados para fora da";
+		mes "cidade, eles ganharam vida e";
+		mes "começaram a se revoltar! Essa é";
+		mes "uma prova de que esses ursos";
+		mes "eram controlados por alguma força do mal.";
+		next;
+		mes "[Franz]";
+		mes "Agora esses ursinhos agressivos";
+		mes "estão espalhados por todo";
+		mes "lugar, e o governo classificou-os";
+		mes "como monstros perigosos.";
+		next;
+		mes "[Franz]";
+		mes "De acordo com aventureiros que";
+		mes "caçaram esses ursinhos, eles são";
+		mes "pequenos, de elemento neutro,";
+		mes "e dropam Honey, Screw, Well-baked Cookie e Oridecon Hammer.";
+		next;
+		mes "[Franz]";
+		mes "Isso é tudo que sei sobre";
+		mes "essa história. Tenha cuidado";
+		mes "com esses ursinhos se você";
+		mes "for sair para explorar.";
+		mes "Eles podem ser bonitinhos,";
+		mes "mas são extremamente perigosos!";
+		close;
 	}
 	mes "[Franz]";
 	mes "Ah, certo.";
@@ -1011,4 +1008,3 @@ einbech,148,246,5	script	Franz#ein	851,{
 	mes "Sim. Estou muito ocupado.";
 	close;
 }
-

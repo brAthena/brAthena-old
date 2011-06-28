@@ -8,20 +8,21 @@
 // |							    						|
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Yuno Field Warp Script		    		|
+// | Nome do Script: Portais dos Campos de Juno             |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.2/1.0				    			|
+// | Versões eA/brA: 1.2/1.1				    			|
 // |--------------------------------------------------------|
 // | Descrição: Portais dos Campos de Juno.		    		|
 // |--------------------------------------------------------|
 // | Changelog:						    					|
-// | 1.0 Modificação [Autor]				  				|
+// | 1.0 Script Traduzido [Lord]                            |
+// | 1.1 Script Revisado [insidemybrain]                    |
 // | - Anotações					    					|
 // \________________________________________________________/
 
-//= Yuno Field ===============================================
+//= Campos de Juno
 //yuno_fild01,286,368,0	warp	yunfild01	1,1,yuno_fild02,294,26
 //yuno_fild02,294,24,0	warp	yunfild01-1	1,1,yuno_fild01,286,366
 //yuno_fild01,70,378,0	warp	yunfild02	1,1,yuno_fild02,70,25

@@ -8,21 +8,22 @@
 // |							    						|
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Einbroch Field Warp Script		    	|
+// | Nome do Script: Portais dos Campos de Einbroch         |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.2/1.0				    			|
+// | Versões eA/brA: 1.2/1.1				    			|
 // |--------------------------------------------------------|
 // | Descrição: Portais dos Campos de Einbroch.		    	|
 // |--------------------------------------------------------|
 // | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
+// | 1.0 Script Traduzido [Lord]                            |
+// | 1.1 Script Revisado [insidemybrain]                    |
 // | - Anotações					    					|
 // \________________________________________________________/
 
 
-//Einbroch Field <-> Juno Field
+//Campo de Einbroch <-> Campo de Juno
 yuno_fild04,251,21,0	warp	ein001	1,1,ein_fild06,252,363
 ein_fild06,252,365,0	warp	ein001a	1,1,yuno_fild04,251,23
 yuno_fild07,73,219,0	warp	ein002	1,1,ein_fild06,338,170
@@ -32,7 +33,7 @@ ein_fild06,356,94,0	warp	ein003a	1,1,yuno_fild07,58,76
 yuno_fild11,28,266,0	warp	ein004	1,1,ein_fild07,380,263
 ein_fild07,382,263,0	warp	ein004a	1,1,yuno_fild11,30,266
 
-//Einbroch Field
+//Campos de Einbroch
 ein_fild06,135,35,0	warp	ein005	1,1,ein_fild07,147,360
 ein_fild07,145,362,0	warp	ein005a	1,1,ein_fild06,135,37
 ein_fild07,191,42,0	warp	ein006	1,1,ein_fild10,194,370
@@ -42,7 +43,7 @@ ein_fild09,329,346,0	warp	ein007a	1,1,ein_fild10,26,331
 ein_fild09,34,132,0	warp	ein008	1,1,ein_fild08,361,128
 ein_fild08,363,128,0	warp	ein008a	1,1,ein_fild09,36,132
 
-//Einbroch Field <-> Lighthalzen Field
+//Campo de Einbroch <-> Campo de Lighthalzen
 einbech,62,29,0	warp	ein_fd03	1,1,ein_fild09,74,350
 ein_fild09,71,352,0	warp	ein_fd03a	1,1,einbech,62,32
 

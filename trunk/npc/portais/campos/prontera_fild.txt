@@ -96,7 +96,7 @@ prt_fild11,302,301,0	warp	prtf022	5,2,gef_fild03,312,19
 prt_fild11,361,184,0	warp	prtf20-1	2,5,prt_fild10,23,196
 prt_fild11,362,111,0	warp	prtf19-1	2,6,prt_fild10,23,122
 
-//= St. Abbey
+//= Monastério de Santa Capitolina
 monk_in,128,46,0	warp	monk03	1,3,monk_in,161,38
 monk_in,128,84,0	warp	monk04	1,3,monk_in,161,90
 monk_in,159,38,0	warp	monk03-1	1,3,monk_in,126,46

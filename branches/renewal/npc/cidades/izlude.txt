@@ -12,13 +12,14 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.9/1.1                                |
+// | Versões eA/brA: 1.9/1.2                                |
 // |--------------------------------------------------------|
 // | Descrição: NPCs da Cidade de Izlude                    |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [Protimus & Dani]                 |
 // | 1.1 Script Revisado [Dani]                             |
+// | 1.2 Script Otimizado [Architect]                       |
 // \________________________________________________________/
 
 // Izlude
@@ -82,8 +83,7 @@ izlude,55,74,2	script	Bonne#izlude	90,{
 
 izlude,135,78,2	script	Charfri#izlude	91,{
 	mes "[Charfri]";
-	switch(rand(2)) {
-	case 1:
+	if (rand(2)) {
 		mes "Algumas pessoas podem pensar Izlude é apenas a cidade satélite de Prontera, e não vêem sua verdadeira beleza...";
 		next;
 		mes "[Charfri]";
@@ -92,29 +92,27 @@ izlude,135,78,2	script	Charfri#izlude	91,{
 		mes "[Charfri]";
 		mes "Você terá que ir até o navio no porto de nossa cidade para chegar à Ilha Byalan. Existem cavernas perigosas nessa ilha, por isso não vá bisbilhotando em qualquer lugar.";
 		close;
-	Default:
-		mes "A Ilha Byalan além de ser linda tem uma misteriosa e profunda masmorra que se estende sob o mar.";
-		next;
-		mes "[Charfri]";
-		mes "Pessoas que realmente estiveram lá dizem que se você ir a uma determinada profundidade a caverna fica submersa.";
-		next;
-		mes "[Charfri]";
-		mes "Surpreendentemente, uma vez que você está submergido, você pode respirar como um peixe. Talvez algum tipo de força sobrenatural atue lá.";
-		next;
-		mes "[Charfri]";
-		mes "Ah...";
-		mes "As pessoas que viram a paisagem debaixo d'água dizem que ela é tão fantástica que eles sonham com ela até hoje.";
-		next;
-		mes "[Charfri]";
-		mes "Mas, infelizmente, os monstros são muito fortes para um cidadão comum visitar o lugar. Ainda assim, apenas uma vez, gostaria de ir lá.";
-		close;
 	}
+	mes "A Ilha Byalan além de ser linda tem uma misteriosa e profunda masmorra que se estende sob o mar.";
+	next;
+	mes "[Charfri]";
+	mes "Pessoas que realmente estiveram lá dizem que se você ir a uma determinada profundidade a caverna fica submersa.";
+	next;
+	mes "[Charfri]";
+	mes "Surpreendentemente, uma vez que você está submergido, você pode respirar como um peixe. Talvez algum tipo de força sobrenatural atue lá.";
+	next;
+	mes "[Charfri]";
+	mes "Ah...";
+	mes "As pessoas que viram a paisagem debaixo d'água dizem que ela é tão fantástica que eles sonham com ela até hoje.";
+	next;
+	mes "[Charfri]";
+	mes "Mas, infelizmente, os monstros são muito fortes para um cidadão comum visitar o lugar. Ainda assim, apenas uma vez, gostaria de ir lá.";
+	close;
 }
 
 izlude,119,121,2	script	Cuskoal#izlude	124,{
 	mes "[Cuskoal]";
-	switch(rand(2)) {
-	case 1:
+	if (rand(2)) {
 		mes "A Arena é o lugar perfeito para pessoas jovens de todas as partes do Reino de Rune-Midgard desafiarem e testarem suas habilidades.";
 		next;
 		mes "[Cuskoal]";
@@ -123,16 +121,15 @@ izlude,119,121,2	script	Cuskoal#izlude	124,{
 		mes "[Cuskoal]";
 		mes "Então, o que me diz?";
 		close;
-	Default:
-		mes "Os bares de Prontera estão sempre cheios de nativos e visitantes.";
-		next;
-		mes "[Cuskoal]";
-		mes "Há muitas informações e rumores, pois muitas pessoas entram e saem de lá.";
-		next;
-		mes "[Cuskoal]";
-		mes "Se você escutar cuidadosamente, você pode dar sorte e descobrir informações muito úteis.";
-		close;
 	}
+	mes "Os bares de Prontera estão sempre cheios de nativos e visitantes.";
+	next;
+	mes "[Cuskoal]";
+	mes "Há muitas informações e rumores, pois muitas pessoas entram e saem de lá.";
+	next;
+	mes "[Cuskoal]";
+	mes "Se você escutar cuidadosamente, você pode dar sorte e descobrir informações muito úteis.";
+	close;
 }
 
 izlude,150,118,2	script	Dega#izlude	84,{
@@ -213,8 +210,7 @@ izlude,150,118,2	script	Dega#izlude	84,{
 
 izlude,150,143,2	script	Kylick#izlude	97,{
 	mes "[Kylick]";
-	switch(rand(2)) {
-	case 1:
+	if (rand(2)) {
 		mes "Você não acha o Binóculos";
 		mes "algo muito útil?! Você pode";
 		mes "ver todos os tipos de lugares...!";
@@ -230,16 +226,15 @@ izlude,150,143,2	script	Kylick#izlude	97,{
 		mes "do que remediar!";
 		mes "Não concorda?";
 		close;
-	Default:
-		mes "Eu estava pensando, apesar do povo de Izlude viver tão bem mesmo perto do oceano......";
-		next;
-		mes "[Kylick]";
-		mes "Há outras culturas que desenvolveram uma vida totalmente longe do oceano. Claro que estou falando de Amatsu.";
-		next;
-		mes "[Kylick]";
-		mes "Eu ouvi dizer que a cozinha lá é muito boa! Embora a idéia de comer peixe cru é nova para mim, eu adoraria ir para lá, e experimentar só uma vez!";
-		close;
 	}
+	mes "Eu estava pensando, apesar do povo de Izlude viver tão bem mesmo perto do oceano......";
+	next;
+	mes "[Kylick]";
+	mes "Há outras culturas que desenvolveram uma vida totalmente longe do oceano. Claro que estou falando de Amatsu.";
+	next;
+	mes "[Kylick]";
+	mes "Eu ouvi dizer que a cozinha lá é muito boa! Embora a idéia de comer peixe cru é nova para mim, eu adoraria ir para lá, e experimentar só uma vez!";
+	close;
 }
 
 izlude,56,126,2	script	Red#izlude::RedCebalis	85,{
@@ -493,9 +488,7 @@ izlu2dun,108,27,0	script	Marinheiro#2izlude	100,{
 	mes "[Marinheiro]";
 	mes "Quer voltar?";
 	next;
-	if (select("Sim, estou muito cansado.: Não, eu adoro esse lugar!") == 1) {
-		warp "izlude",176,182;
-		end;
-	}
-	close;
+	if (select("Sim, estou muito cansado.: Não, eu adoro esse lugar!") == 2) close;
+	warp "izlude",176,182;
+	end;
 }

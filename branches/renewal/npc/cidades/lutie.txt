@@ -303,7 +303,7 @@ xmas,117,304,4	script	Poze	713,{
 		mes "E isso é tudo que sei. Para saber detalhes, converse com o ^3355FFTio Cabeludo Cantata.^000000.";
 		set xmas_npc,4;
 		close;
-	}else{
+	} else {
 		mes "[Poze]";
 		mes "Bem vindo a Lutie,";
 		mes "a cidade que abençoa os";
@@ -830,7 +830,7 @@ xmas,206,168,4	script	Garoto#xmas	706,{
 		mes "Ele é um boneco de neve muito legal!";
 		mes "Você quer saber mais sobre ele? Bem, eu não sei muito! Melhor você perguntar para a Marcell!";
 		close;
-	}else{
+	} else {
 		mes "[Charu Charu]";
 		mes "Feliz Natal!";
 		mes "Heheheheheh~!";
@@ -901,7 +901,7 @@ xmas,208,168,4	script	Garota	703,{
 			mes "Você sabe mais sobre Snowysnow do que qualquer outro! Vá falar com ele, ele vai ficar feliz de ver que você se importa com ele. Feliz Natal!";
 			close;
 		}
-	}else{
+	} else {
 		mes "[Marcell]";
 		mes "Feliz Natal~!";
 		next;

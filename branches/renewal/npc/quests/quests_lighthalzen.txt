@@ -10,17 +10,17 @@
 // |--------------------------------------------------------|
 // | Nome do Script: Quest NPCs located in Lighthalzen 	    |
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    |
+// | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 4.6/1.0				    |
+// | Versões eA/brA: 4.7/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição: Quests related to Lighthalzen City.	    |
+// | Descrição: Quests related to Lighthalzen City.         |
 // |--------------------------------------------------------|
-// | Changelog:						    |
-// | 1.0 Script Traduzido [Avassalador]			    |
-// | 1.1 Correção adicionado comando na linha 3183	    |
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [Avassalador]                     |
+// | 1.1 Correção adicionado comando na linha 3183          |
 // | - Faltava o comando set friendship,12 conforme script  |
-// | original.					    	    |
+// | original.                                              |
 // \________________________________________________________/
 
 // Gangster Alert [Aegis Conversion]

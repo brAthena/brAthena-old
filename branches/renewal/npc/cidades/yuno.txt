@@ -335,11 +335,7 @@ yuno,263,320,4	script	Soldado de Juno#7juno	105,{
 	close;
 }
 
-//===================================OBSERVAÇÃO brAthena================================================================================
-//PROTIMUS - favor verificar se esse npc ainda está ativo no servidor oficial, pois ele só serviria se os dirigíveis não estivessem funcionando.
-//=====CLEYTON===================================================================================================================
-
-
+/* Script removido.
 yuno,142,183,5	script	Representante do Dirigível	100,{
 	mes "[Representante do Dirigível]";
 	mes "Olá, estou aqui para informá-lo";
@@ -392,5 +388,5 @@ S_Warp:
 		close;
 	}
 }
-
+*/
 

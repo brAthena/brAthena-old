@@ -8,20 +8,20 @@
 // |							    						|
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Geffen Field Warp Script		    	|
+// | Nome do Script: Portais dos Campos de Geffen           |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team			    			|
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0				    			|
+// | Versões eA/brA: 1.0/1.1				    			|
 // |--------------------------------------------------------|
 // | Descrição: Portais dos Campos de Geffen.		    	|
 // |--------------------------------------------------------|
 // | Changelog:						   	 					|
-// | 1.0 Modificação [Autor]				    			|
+// | 1.0 Script Traduzido [Lord]                            |
+// | 1.1 Script Revisado [insidemybrain]                    |
 // | - Anotações					    					|
 // \________________________________________________________/
 
-//= Geffen Field Warps =======================================
 gef_fild00,267,382,0	warp	gef007	4,2,mjolnir_06,265,32
 gef_fild00,381,137,0	warp	gef008	3,9,prt_fild00,24,125
 gef_fild00,40,199,0	warp	gef009	2,7,geffen,213,119

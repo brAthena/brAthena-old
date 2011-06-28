@@ -23,26 +23,26 @@
 // \________________________________________________________/
 
 prontera,150,193,4	script	Resetadora	124,{
-	set .@preco[1],5000; // Preço para resetar os atributos
-	set .@preco[2],5000; // Preço para resetar as habilidades
-	set .@preco[3],9000; // Preço para resetar ambos
-	
 	mes "[Resetadora]";
 	mes "Eu sou a resetadora.";
-	mes "Resetar atributos: "+.@preco[1];
-	mes "Resetar habilidades: "+.@preco[2];
-	mes "Resetar ambos: "+.@preco[3];
+	mes "Resetar atributos: "+.preco[1];
+	mes "Resetar habilidades: "+.preco[2];
+	mes "Resetar ambos: "+.preco[3];
 	mes "Por favor, escolha o que desejas:";
 	next;
 	if(select("^FF3355Resetar Atributos:Resetar habilidades:Resetar ambos^000000:Sair")==4) close;
 	mes "[Resetadora]";
-	if(Zeny < .@preco[@menu]){
+	if(Zeny < .preco[@menu]){
 		mes "Desculpe-me, mas você não possui zenys suficientes";
 		close;
 	}
 	mes "Prontinho";
-	set Zeny,Zeny - .@preco[@menu];
-        if(@menu != 2) resetstatus;
-        if(@menu != 1) resetskill;
+	set Zeny,Zeny - .preco[@menu];
+	if(@menu != 2) resetstatus;
+	if(@menu != 1) resetskill;
 	close;
+
+OnInit:
+	set .preco[1],5000,5000,9000; // Preço para resetar: [1] os atributos, [2] as habilidades e [3] ambos.
+	end;
 }

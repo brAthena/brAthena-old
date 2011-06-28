@@ -232,8 +232,8 @@ function	script	F_KafStor	{
 	if(getarg(0) == 1){
 		if(guildopenstorage() == 1){
 			mes "[Funcionária Kafra]";
-			mes "Sinto muito, mas somente membros da guilda podem nossos serviços.";
-			mes "Por favor, aguarde um membro para unir-se a guilda.";
+			mes "Sinto muito, mas outro membro do Clã está usando o armazém neste instante.";
+			mes "Por favor, aguarde até que esta pessoa termine.";
 			close2;
 			cutin "", 255;
 			end;

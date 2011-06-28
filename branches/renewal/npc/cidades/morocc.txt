@@ -12,14 +12,13 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 2.2/1.0                                |
+// | Versões eA/brA: 2.2/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: NPCs da Cidade de Morroc                    |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
-// | 1.1 Substituição de comandos e removação de linhas     |
-// |     desnecessárias [Architect]                         |
+// | 1.1 Script Otimizado [Architect]                       |
 // \________________________________________________________/
 
 // Morroc

@@ -8,85 +8,82 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Quest do Arquimago   	       	   		|
+// | Nome do Script: Quest do Arquimago                     |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.3/1.0                                |
+// | Versões eA/brA: 1.3/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: Mudança de Classe para Arquimago            |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    					| 
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [Wolf]                            |
+// | 1.1 Otimizações no npc [Wolf]                          |
 // \________________________________________________________/
 
-valkyrie,44,47,5	script	High Wizard#Valkyrie	735,{
+valkyrie,44,47,5	script	Arquimago#Valkyrie	735,{
 	if (ADVJOB == 0 ||  Upper != 1) {
+		mes "[Arquimago]";
 		set .@karma_d,rand(1,10);
 		if (.@karma_d > 4) {
-			mes "[High Wizard]";
-			mes "Congratulations.";
-			mes "Honor to the warriors!";
+			mes "Parabéns.";
+			mes "Honre os guerreiros!";
 			close;
 		}
-		mes "[High Wizard]";
-		mes "We High Wizards have";
-		mes "the responsibility of";
-		mes "using our destructive magic";
-		mes "for the right purposes.";
+		mes "Nós Arquimagos temos a";
+		mes "responsabilidade de";
+		mes "usar as nossas magias";
+		mes "destrutivas para nos defender.";
 		next;
-		mes "[High Wizard]";
-		mes "A lifetime of training";
-		mes "is required before becoming";
-		mes "a High Wizard. Can you imagine";
-		mes "what would happen if our power";
-		mes "was placed in the wrong hands?!";
+		mes "[Arquimago]";
+		mes "É necessário uma vida";
+		mes "inteira de treinamento para se";
+		mes "tornar um Arquimago. Você pode imaginar";
+		mes "o que aconteceria se nosso poder fosse";
+		mes "colocado em mãos erradas?!";
 		close;
-	}
-	else if (ADVJOB == Job_High_Wizard && Class == Job_Mage_High && JobLevel > 39) {
-		mes "[High Wizard]";
-		mes "It is time.";
-		mes "And Rune-Midgard has";
-		mes "need of those who can";
-		mes "wield the strongest of magic...";
+	} else if (ADVJOB == Job_High_Wizard && Class == Job_Mage_High && JobLevel > 39) {
+		mes "[Arquimago]";
+		mes "Essa é a hora.";
+		mes "E Rune-Midgard precisa";
+		mes "daquele que pode exercer";
+		mes "a mais forte magia...";
 		next;
-		mes "[High Wizard]";
-		mes "Would you like to";
-		mes "become a High Wizard?";
+		mes "[Arquimago]";
+		mes "Você gostaria de se tornar";
+		mes "um Arquimago?";
 		next;
-		if (select("No.:Yes.") == 1) {
-			mes "[High Wizard]";
-			mes "When you're ready,";
-			mes "feel free to come back.";
-			mes "Honors to the warriors!";
+		if (select("Não.:Sim.") == 1) {
+			mes "[Arquimago]";			
+			mes "Quando você estiver pronto,";
+			mes "fique à vontade para voltar.";
+			mes "Honre os guerreiros!";
 			close;
 		}
+		mes "[Arquimago]";
 		if (SkillPoint) {
-			mes "[High Wizard]";
-			mes "It is still possible for you to learn more skills. Please use";
-			mes "all of your remaining Skill Points before returning to me.";
+			mes "Você ainda tem Pontos de Habilidade. Por favor,";
+			mes "use todos os seus Pontos de Habilidade e depois volte.";
 			close;
 		}
 		jobchange Job_high_Wizard;
 		set ADVJOB,0;
-		mes "[High Wizard]";
-		mes "Congratulations.";
-		mes "As a High Wizard,";
-		mes "I hope use you use";
-		mes "your powers to bring";
-		mes "peace to the oppressed.";
+		mes "Parabéns.";
+		mes "Como um Arquimago,";
+		mes "Eu espero que você use";
+		mes "seus poderes para trazer";
+		mes "a paz para os oprimidos.";
 		close;
 	}
-	mes "[High Wizard]";
-	mes "Welcome";
-	mes "to Valhalla,";
-	mes "the Hall of Honor.";
+	mes "[Arquimago]";
+	mes "Bem-vindo à";
+	mes "Valhalla,";
+	mes "o Salão de Honra.";
 	next;
-	mes "[High Wizard]";
-	mes "Please make";
-	mes "yourself comfortable";
-	mes "while you are here.";
-	mes "Honor to the warriors!";
+	mes "[Arquimago]";
+	mes "Por favor";
+	mes "sinta-se à vontade";
+	mes "enquanto estiver aqui.";
+	mes "Honre os guerreiros.";
 	close;
 }

@@ -18,8 +18,7 @@
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
-// | 1.1 Substituição de 'switch' descenessários (2 cases)  |
-// |     por 'if'[Architect]                                |
+// | 1.1 Script Otimizado [Architect]						|
 // \________________________________________________________/
 
 alberta,247,115,3	script	Brute Sailor#bra2	100,{

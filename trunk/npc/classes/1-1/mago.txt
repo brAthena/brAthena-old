@@ -22,7 +22,6 @@
 // | 1.2 Script Otimizado [Wolf]                            |
 // | 1.3 Remoção de espaços e correção no cabeçalho [Wolf]  |
 // | 1.4 Otimizações no npc [Wolf]                          |
-// | -                                                      |
 // \________________________________________________________/
 
 geffen_in,164,124,4	script	Instrutora	123,{

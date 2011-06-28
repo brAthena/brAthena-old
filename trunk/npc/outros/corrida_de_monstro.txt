@@ -8,13 +8,13 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Corrida de Monstros 		    |
+// | Nome do Script: Corrida de Monstros                    |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.4/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: Corrida de Monstros em Hugel    	    |
+// | Descrição: Corrida de Monstros em Hugel                |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [cleyton]                         |
