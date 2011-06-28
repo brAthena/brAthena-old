@@ -9,6 +9,11 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0673 - 28/06/2011 [Dani]
+	* Correção do summon dos elementais
+	- Não estava eliminando o summon pós-login
+	- Report por Venom (#138)
+
 	r0672 - 28/06/2011 [brn0]
 	* Corrigido o erro causado quando armadilhas eram empurradas.
 	* Corrigido bônus de atributos para a classe Bioquímico T.
@@ -445,8 +450,8 @@
 
 	r0578 - 31/05/2011 [Protimus]
 	* Adicionado NPC Oficial de Montarias para 3rd Classes da Renovação.
-    - Aparentemente o NPC precisa de mais modificações, nos servidores oficiais, por isso ele foi melhorado.
-    Porém é necessário revisar futuramente, caso mudem-o.
+	- Aparentemente o NPC precisa de mais modificações, nos servidores oficiais, por isso ele foi melhorado.
+	Porém é necessário revisar futuramente, caso mudem-o.
 
 	r0577 - 31/05/2011 [MiTh]
 	* Adicionada a habilidade NC_SELFDESTRUCTION(Auto destruíção)
