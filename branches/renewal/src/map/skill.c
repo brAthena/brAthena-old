@@ -10342,7 +10342,7 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 	TBL_PC* sd;
 	TBL_PC* tsd;
 	struct status_data *tstatus, *sstatus;
-    struct status_change *tsc, *sc, *ssc;
+	struct status_change *tsc, *sc, *ssc;
 	struct skill_unit_group_tickset *ts;
 	enum sc_type type;
 	int skillid;
@@ -10362,7 +10362,7 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 	tstatus = status_get_status_data(bl);
 	ssc = status_get_sc(ss); 
 
-	if(tsc->data[SC_HOVERING])
+	if(tsc && tsc->data[SC_HOVERING])
 		return 0;
 
 	if (sg->state.magic_power)  //For magic power.

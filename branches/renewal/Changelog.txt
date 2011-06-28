@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0672 - 28/06/2011 [brn0]
+	* Corrigido o erro causado quando armadilhas eram empurradas.
+	* Corrigido bônus de atributos para a classe Bioquímico T.
 
 	r0671 - 27/06/2011 [Protimus]
 	* Adicionados bônus de bMatk de cada refinamento para armas de níveis diferentes.
