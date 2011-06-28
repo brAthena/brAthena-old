@@ -2119,16 +2119,13 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio += 100 + 100 * skill_lv;
 					break;
 				case LG_MOONSLASHER:
-					skillratio += 120 * skill_lv + pc_checkskill(sd,LG_OVERBRAND) * 80;
-					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
+					skillratio += 120 * skill_lv + (pc_checkskill(sd,LG_OVERBRAND) * 80) * s_base_level / 100;
 					break;
 				case LG_CANNONSPEAR:
-					skillratio += -100 + (50  + sstatus->str) * skill_lv;
-					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;	
+					skillratio += 50 + (1 * status_get_str(src)) * skill_lv * s_base_level / 100;
 					break;
 				case LG_BANISHINGPOINT:
-					skillratio += -100 + 50 * skill_lv + (30 * ((sd) ? pc_checkskill(sd,SM_BASH) : 0));
-					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
+					skillratio += 50 * skill_lv + (pc_checkskill(sd,SM_BASH) * 30) * s_base_level / 100;
 					break;
 				case LG_PINPOINTATTACK:
 					skillratio += 150 * skill_lv + (10 * status_get_agi(src)) * s_base_level / 100;
@@ -2179,13 +2176,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio += 120 * skill_lv;
 					break;
 				case LG_RAGEBURST:
-					if( sd && sd->rageball_old )
-						//Aguardando formula correta do iRO.
-						skillratio += (sstatus->batk + sstatus->watk) * sd->rageball_old * 2 * s_base_level/100 + ((sstatus->max_hp - sstatus->hp)/10)/3;
-					else
-						skillratio += -100 + 15 * 200;
-					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
-					break;
+					skillratio += 300 * skill_lv + sd->rageball_old * (2 * s_base_level) / 100;
 				case GN_CART_TORNADO:
 					skillratio += 50 * skill_lv + pc_checkskill(sd, GN_REMODELING_CART) * 100 - 100;
 					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;

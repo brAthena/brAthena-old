@@ -9,6 +9,13 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0674 - 28/06/2011 [Protimus]
+	* Atualizadas fórmulas das habilidades do Guardião Real:
+	- LG_CANNONSPEAR (Disparo Perfurante).
+	- LG_MOONSLASHER (Espiral Lunar).
+	- LG_BANISHINGPOINT (Toque do Oblívio).
+	- LG_RAGEBURST (Retribuição da Vanguarda).
+
 	r0673 - 28/06/2011 [Dani]
 	* Correção do summon dos elementais
 	- Não estava eliminando o summon pós-login
