@@ -186,12 +186,15 @@ yuno_in05,40,178,0	script	#yun74	45,1,1,{
 	case 2:	warp "yuno_in05",176,13; end;
 	case 3:	warp "yuno_in05",136,75; end;
 	}
+}
+
 yuno_in05,47,186,0	script	#yun75	45,1,1,{
 	switch(rand(3)) {
 	case 1:	warp "yuno_in05",181,94; end;
 	case 2:	warp "yuno_in05",176,13; end;
 	case 3:	warp "yuno_in05",136,75; end;
 	}
+}
 
 //= Juno In05 (Destino - Escapar Portais Aleatórios)
 yuno_in05,31,167,0	warp	yun76	1,1,yuno_in05,50,85

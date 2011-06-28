@@ -9,6 +9,9 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0677 - 28/06/2011 [Dani]
+	* Correção de erros visíveis do meu commit anterior
+
 	r0676 - 28/06/2011 [Dani]
 	* Merge da trunk com Renewal
 	- Merge visando a revisão de certas coisas durante o processo, então algumas mudanças foram feitas em ambas as branchs
