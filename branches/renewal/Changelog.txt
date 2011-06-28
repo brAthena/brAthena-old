@@ -9,6 +9,12 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0675 - 28/06/2011 [Protimus]
+	* Atualizadas fórmulas das habilidades do Cavaleiro Rúnico:
+	- RK_PHANTOMTHRUST (Arpão).
+	- RK_HUNDREDSPEAR (Lança das Mil Pontas).
+	- RK_SONICWAVE (Onda de Choque).
+
 	r0674 - 28/06/2011 [Protimus]
 	* Atualizadas fórmulas das habilidades do Guardião Real:
 	- LG_CANNONSPEAR (Disparo Perfurante).
