@@ -9,6 +9,7 @@
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0679 - 28/06/2011 [Dani]
 	r0678 - 28/06/2011 [Dani]
 	* Correção da r676
 	- Não havia percebido que esse arquivo não tinha sido enviado ao SVN
