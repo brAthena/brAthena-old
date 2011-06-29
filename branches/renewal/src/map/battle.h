@@ -510,6 +510,7 @@ extern struct Battle_Config
 	int rune_produce_rate;
 	int pc_camouflage_check_type;
 	int metallicsound_spburn_rate;
+	int block_relocation;	// [CarlosHenrq]
 
 } battle_config;
 

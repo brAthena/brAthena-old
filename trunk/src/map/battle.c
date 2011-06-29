@@ -4025,6 +4025,7 @@ static const struct _battle_data {
 	{ "bg_flee_penalty",                    &battle_config.bg_flee_penalty,                 20,     0,      INT_MAX,        },
 	// brAthena Modificações
     { "use_statpoint2_table",                &battle_config.use_statpoint2_table,             1,      0,      1,              },
+	{ "block_relocation_trapped",			&battle_config.block_relocation,				  1,      0,      1,			  },
 };
 
 

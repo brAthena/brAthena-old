@@ -6392,6 +6392,10 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 		return 0; // not to consume item.
 
 	case MO_BODYRELOCATION:
+		if(sd && sd->sc.data[SC_ANKLE] && battle_config.block_relocation){
+			clif_skill_fail(sd,skillid,0,0);
+			return 0;
+		}
 		if (unit_movepos(src, x, y, 1, 1)) {
 			clif_skill_poseffect(src,skillid,skilllv,src->x,src->y,tick);
 //			clif_slide(src, src->x, src->y); //Poseffect is the one that makes the char snap on the client...
@@ -8962,7 +8966,7 @@ struct skill_condition skill_get_requirement(struct map_session_data* sd, short 
 				req.sp -= req.sp*25/100; //FIXME: Need real data. this is a custom value.
 			break;
 		case MO_BODYRELOCATION:
-			if( sc && sc->data[SC_EXPLOSIONSPIRITS] )
+			if(sc && (sc->data[SC_EXPLOSIONSPIRITS] || sc->data[SC_ANKLE] && battle_config.block_relocation))
 				req.spiritball = 0;
 			break;
 		case MO_EXTREMITYFIST:

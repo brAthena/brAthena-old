@@ -6,9 +6,12 @@
 // *Dica: Para encontrar atualizações de uma revisão específica pressione Ctrl+F
 //	e digite rxxxx onde "xxxx" refere-se a revisão desejada. 
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
-//	Acesse o link: http://svn.brathena.org/trac/timeline
+//	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0683 - 27/06/2011 [CarlosHenrq]
+	* Adicionada nova configuração de batalha opcional:
+	- Bloqueia ou não o jogador usar a skill 'MO_BODYRELOCATION' enquanto trapeado.
 
 	r0681 - 29/06/2011 [Protimus]
 	* Adicionada lista de database das quests do episódios 13.3 (El Dicastes).

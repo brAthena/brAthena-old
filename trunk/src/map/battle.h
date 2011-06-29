@@ -500,6 +500,7 @@ extern struct Battle_Config
 
 	// brAthena Modificações
     int use_statpoint2_table; // [Protimus]
+	int block_relocation;	// [CarlosHenrq]
 } battle_config;
 
 void do_init_battle(void);

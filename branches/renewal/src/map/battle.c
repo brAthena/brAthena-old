@@ -5183,6 +5183,7 @@ static const struct _battle_data {
 	{ "max_baby_3rd_parameter",             &battle_config.max_baby_3rd_parameter,          108,   10,      10000,          },
 	{ "max_level_base",                     &battle_config.max_level_base,               	100,    0,      INT_MAX,        },
 	{ "max_level_classe",                   &battle_config.max_level_classe,                100,    0,      INT_MAX,        },
+	{ "block_relocation_trapped",			&battle_config.block_relocation,				  1,    0,      1,				},
 };
 
 
