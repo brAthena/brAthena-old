@@ -8,24 +8,24 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Bunny Band Quest			    		|
+// | Nome do Script: Quest "O Sinal"                        |
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    			|
+// | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 3.3/1.0				    			|
+// | Versões eA/brA: 3.4/1.0                                |
 // |--------------------------------------------------------|
 // | Descrição: Quest de abertura dos portais para Geffenia.|
 // | O script usa os arquivos sign_01.bmp - sign_04.bmp,    |
-// | esses serão encontrados na linguagem do seu cliente.	|
+// | esses serão encontrados na linguagem do seu cliente.   |
 // |--------------------------------------------------------|
-// | Changelog:						    					|
-// | 1.0 Script Traduzido [Avassalador]				    	|
-// | - Anotações					    					|
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [Avassalador]                     |
+// | - Anotações                                            |
 // \________________________________________________________/
 
-//============================================================ 
+//============================================================
 // O Sinal(Parte 1)
-//============================================================ 
+//============================================================
 prontera,147,305,0	script	Sinal#prontera::TheSign	111,{
 	callfunc "F_UpdateSignVars";
 	cutin "sign_01",4;
@@ -51,7 +51,7 @@ OnInit:
 	// Remove old depreciated settings.
 	set $signbmps,0;
 	set $signmazemonster,0;
-	
+
 	// Set the time zone of the server.
 	// - Not official but seemed like a nice way to handle it.
 	set $timezonestring$,"^FF0000GMT^000000";
@@ -1235,7 +1235,7 @@ prt_in,248,23,0	script	Donzela#Sign2	111,{
 			mes "[Elle]";
 			mes "Eu comecei";
 			mes "a sair com alguém!";
-			mes "Ele é um garoto alto e lindo";	
+			mes "Ele é um garoto alto e lindo";
 			mes "e eu estou tão apaixonada por";
 			mes "ele e ele é tão...";
 			next;
@@ -1531,7 +1531,7 @@ morocc_in,115,154,5	script	Arruaceiro#Sign	810,{
 			mes "Tudo bem. Vai falar";
 			mes "com o cara à minha esquerda.";
 			mes "O carinha ali no canto.";
-			mes "Aquele zé-mané, Ganaan.";	
+			mes "Aquele zé-mané, Ganaan.";
 			set sign_q,11;
 			close;
 		case 11:
@@ -2245,7 +2245,7 @@ payon_in03,11,31,4	script	Daewoon#Sign	808,{
 				mes "[Daewoon]";
 				mes "Ao enfrentar grandes";
 				mes "adversidades, não se desespere. Afinal, o que é uma realização se não for conquistada com dificuldade? Quanto maior o desafio,";
-				mes "maior a glória.";	
+				mes "maior a glória.";
 				next;
 				mes "[Daewoon]";
 				mes "Mesmo se você estiver tendo problemas,";
@@ -4442,7 +4442,7 @@ geffen_in,61,72,7	script	Aaron#Sign	754,{
 			mes "[Jesqurienne]";
 			mes "Empatados?! ";
 			mes "Certo, estou impressionada.";
-			mes "Vou admitir, você é muito";	
+			mes "Vou admitir, você é muito";
 			mes "mais esperto do que pensei...";
 		}
 		else {
@@ -4521,7 +4521,7 @@ cmd_in02,88,51,4	script	Cara Estranho#Sign	806,{
 			mes "Hah! Você está liso!";
 			emotion e_pif;
 			mes "Parece também que você está curto de grana! Bem, isso é o que caras como eu fazemos com ladrões";
-			mes "sem-vergonha feito você!";	
+			mes "sem-vergonha feito você!";
 			percentheal -10,0;
 			close;
 		}
@@ -5644,7 +5644,7 @@ OnDisable:
 	//specialeffect EF_SUMMONSLAVE;
 	disablenpc "s_dance#cen";
 	end;
-	
+
 Onup:
 	set .s_center,.s_center + 1;
 	end;
@@ -7222,9 +7222,9 @@ yuno,330,100,4	script	Cavaleiro#ss	734,{
 	}
 }
 
-//============================================================ 
+//============================================================
 // O Sinal(Parte 2)
-//============================================================ 
+//============================================================
 
 geffen_in,159,48,5	script	Mulher Solitária	711,{
 	callfunc "F_UpdateSignVars";
@@ -8877,9 +8877,9 @@ himinn,48,86,5	script	Valquíria#Sign	811,{
 	}
 }
 
-//============================================================ 
+//============================================================
 // O Sinal(Parte 3)
-//============================================================ 
+//============================================================
 
 que_sign01,196,39,4	script	Serin#dummy	90,{
 	end;
@@ -10468,7 +10468,7 @@ que_sign01,122,141,4	script	Bruxa#s	792,{
 		mes "que o símbolo é mais";
 		mes "do que uma mera insígnia.";
 		mes "Na verdade, ele contém";
-		mes "um enorme poder...";	
+		mes "um enorme poder...";
 		close;
 	}
 	else if (sign_q == 118) {
@@ -14700,7 +14700,7 @@ function	script	F_UpdateSignVars	{
 		// Because of the horrible way this was scripted, it's incompatable
 		// With the new script, So I am resetting the quest to the start
 		// of this step.
-		if (signlaichin >= 1) { 
+		if (signlaichin >= 1) {
 			mes "^FF0000Você tropeça e derruba o^000000";
 			if (countitem(7306)) {
 				mes "^FF0000"+getitemname(7306)+"^000000";
@@ -14714,11 +14714,11 @@ function	script	F_UpdateSignVars	{
 			mes "^FF0000no chão e eles desaparecem! Talvez você deva conversar com Lachin.^000000";
 			delitem 7306,countitem(7306); //Fragment_Of_Soul
 			delitem 7307,countitem(7307); //Whisper_Of_Soul
-			set sign_q,rand(97,100); 
+			set sign_q,rand(97,100);
 		}
 
 		// Same BS as above, unable to save pickup time for 'The Sign' from Engel.
-		if (signengelhour) { 
+		if (signengelhour) {
 			mes "^FF0000Você percebe que Engel se esqueceu de olhar 'O Sinal', é melhor lembrá-lo que precisa dar uma olhada nele.^000000";
 			getitem 7314,1; //The_Sign
 			set sign_q,139;
@@ -14743,7 +14743,7 @@ function	script	F_UpdateSignVars	{
 		}
 
 		// Unable to save when the Sinal should be picked up from Metz
-		if (signmetzhour) { 
+		if (signmetzhour) {
 			mes "^FF0000Você percebeu que Metz se esqueceu de olhar 'O Sinal', é melhor lembrar Metz que ele precisa dar uma olhada nele.^000000";
 			getitem 7314,1; //The_Sign
 			set sign_q,138;

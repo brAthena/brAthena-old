@@ -4,14 +4,20 @@
 //	* Notação
 //	- Comentário (opcional)
 // *Dica: Para encontrar atualizações de uma revisão específica pressione Ctrl+F
-//	e digite rxxxx onde "xxxx" refere-se a revisão desejada. 
+//	e digite rxxxx onde "xxxx" refere-se a revisão desejada.
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
+
+	r0682 - 29/06/2011 [Dani]
+	* Modificações em npc/classes/1-1/mago.txt
+	- Correção em algumas concatenações de funções
+	- Correções ortográficas
+
 	r0680 - 29/06/2011 [cleyton]
 	* Corrigidos os menus referentes aos diálogos da cidade de Payon.
 	- Problemas referentes ao emulador, devem ser informados no Tracker.
-	
+
 	r0677 - 28/06/2011 [Dani]
 	* Correção de erros visíveis do meu commit anterior
 
@@ -23,9 +29,9 @@
 	* Corrigido erro de digitação no envio da r0654.
 
 	r0654 - 18/06/2011 [MiTh]
-	* Corrigido pequeno erro que quebrava build no clif.c 
+	* Corrigido pequeno erro que quebrava build no clif.c
 	- Faltava declarar uma variavel fora do if e ajustar o nome da constante que recebe a version do emulador.
-	
+
 	r0629 - 15/06/2011 [Protimus]
 	* Corrigido pequeno erro de gramática no NPC Encantador de Armaduras.
 
@@ -47,14 +53,14 @@
 	* Atualizado pasta npc de acordo com a r14833 do eA.
 	* Feito revert no script quests_lighthalzen.
 	* Corrigido maps_athena.conf.
-	
+
 	r0528 - 24/05/2011 [Lord]
 	* Corrigido cabeçalho de payon.txt.
 	* Enviada otimizações da pasta okolnir e turbotrack.
 	* Corrigido erro em espadachim.txt.
 	- report id:101
 	* Enviada tradução da pasta classes/1-1e.
-	
+
 	r0518 - 22/05/2011 [brn0]
 	* Corrigidos alguns alertas no map-server.
 
@@ -80,7 +86,7 @@
 	* Corrigido erro em sacerdote.txt.
 	* Adicionado otimizações das revs 445 e 448.
 	* Enviado otimizações das pastas: comerciantes, instancias, cidades, aeroplanos e personalizados.
-	- Por Mark e Architect 
+	- Por Mark e Architect
 
 	r0465 - 13/05/2011 [Protimus]
 	* Atualizado conforme eAthena 14811.
@@ -103,7 +109,7 @@
 	r0456 - 01/05/2011 [Wolf]
 	* Enviada tradução de script.
 	- npc/classes/1-1/mercador.txt
-	
+
 	r0454 - 01/05/2011 [cleyton]
 	* Enviada tradução de script.
 	- npc/outros/corrida_de_monstros.txt
@@ -134,8 +140,8 @@
 
 	r0437 - 28/04/2011 [Wolf]
 	* Enviada correções, remoções de espaços, e otimizações da pasta npc/classes.
-	* Enviado e corrigido os erros/bugs da r0434. 
-	- Agradecimento a insidemybrain por reportá-los.		
+	* Enviado e corrigido os erros/bugs da r0434.
+	- Agradecimento a insidemybrain por reportá-los.
 
 	r0435 - 27/04/2011 [insidemybrain]
 	* Enviada única tradução para a pasta comerciantes:
@@ -309,7 +315,7 @@
 
 	r0321 - 20/03/2011 [cleyton]
 	* Script Torre Infinita atualizado
-	- Atualizado conforme eAthena r14747		
+	- Atualizado conforme eAthena r14747
 
 	r0316 - 17/03/2011 [novekovas]
 	* Reorganizações e adiçoes de padrões para melhor organização do database.
@@ -321,7 +327,7 @@
 	r0303 - 14/03/2011 [cleyton]
 	* Correções efetuadas nos diálogos
 	- npc/cidades/payon.txt
-	
+
 	r0301 - 14/03/2011 [cleyton]
 	* Envidada tradução
 	- npc/cidades/payon.txt
@@ -330,20 +336,20 @@
 
 	r0299 - 14/03/2011 [cleyton]
 	* Correção do cabeçalho da quest_lighthouzen.txt
-	
+
 	r0294 - 13/03/2011 [cleyton]
 	* Correção dos cabeçalhos de NPC de revisões passadas
 	- Revisões r0291, r0289 e 0285.
 
 	r0291 - 13/03/2011 [cleyton]
-	* Correção do script quests_lighthouzen.txt 
+	* Correção do script quests_lighthouzen.txt
 	- Faltava o comando set friendship,12 na linha 3183.
 	- Isso impossibilitava o término da quest da Amizade (friendship).
 
 	r0289 - 13/03/2011 [cleyton]
 	* Corrigidas as mensagens do arquivo msg_athena.txt
 	- Linhas 541 e 542.
-	* Corrigido NPC flavius_entrada 
+	* Corrigido NPC flavius_entrada
 	- Localizações nos npcs estavam trocadas conforme Track #25.
 	* Modificação de nomes de NPCs Campais
 	- Modificados nomes dos npcs conforme sugestão no Track #26.
@@ -351,14 +357,12 @@
 	* Warps desabilitados
 	- Referente aos mapas de ve_fild05 pay_fild05 e pay_fild11 que não existem mais.
 	* Mapa habilitado
-	- Conforme informações do renewal o mapa ve_fild01 ainda existe. 
+	- Conforme informações do renewal o mapa ve_fild01 ainda existe.
 	- Somente ve_fild05 está desabilitado nas proximidades de Veins.
 
-	
 	r0285 - 12/03/2011 [cleyton]
 	* Corrigidas falas do npc funcoes_kafra
-	- Erro apontado no report #27 do Tracker	
-
+	- Erro apontado no report #27 do Tracker
 
 	r0283 - 11/03/2011 [insidemybrain]
 	* Corrigidos erros dos npcs enviados na r0282, por falha minha
@@ -419,13 +423,13 @@
 	- Necessita de revisão.
 	* Enviado npc buying_shops.txt
 	- Era para ter sido enviado na rev0255.
-	
+
 	r0260 - 01/03/2011 [Protimus]
 	* Correções para o npc aluguel_de_mercenarios.txt
 
 	r0255 - 27/02/2011 [Floozie]
 	* Atualizado conforme eAthena r14725.
-	
+
 	r0253 - 27/02/2011 [insidemybrain]
 	* Enviada a revisão do arquivo:
 	- classes/1-1/mago.txt
@@ -631,7 +635,7 @@
 	r0168 - 28/01/2011 [Floozie]
 	* Correção no script npc/kafras/funcoes_kafras.txt
 	- Corrigido de acordo com o report: 18
-	
+
 	r0162 - 27/01/2011 [Dani]
 	* Revisões efetuadas
 	- npc/aeroplanos/einbroch.txt
@@ -712,7 +716,7 @@
 	- scripts_portais.conf
 	- scripts_personalizados.conf
 	* Corrigido um erro de português no cabeçalho para reconhecimento do CT:
-	- npc/quest/bunnyband.txt	
+	- npc/quest/bunnyband.txt
 	* Corrigido alguns npcs na pasta npc para seguir o modelo de npcs originais e refeita a revisão dos mesmos:
 	- npc/quests/quests_aldebaran.txt
 	- npc/quests/quests_geffen.txt
