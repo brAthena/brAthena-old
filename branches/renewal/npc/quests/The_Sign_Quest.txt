@@ -8,19 +8,19 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Bunny Band Quest			    		|
+// | Nome do Script: Bunny Band Quest			    |
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    			|
+// | Criado por: eA/brA Dev. Team			    |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 3.3/1.0				    			|
+// | Versões eA/brA: 3.4/1.0				    |
 // |--------------------------------------------------------|
 // | Descrição: Quest de abertura dos portais para Geffenia.|
 // | O script usa os arquivos sign_01.bmp - sign_04.bmp,    |
-// | esses serão encontrados na linguagem do seu cliente.	|
+// | esses serão encontrados na linguagem do seu cliente.   |
 // |--------------------------------------------------------|
-// | Changelog:						    					|
-// | 1.0 Script Traduzido [Avassalador]				    	|
-// | - Anotações					    					|
+// | Changelog:						    |
+// | 1.0 Script Traduzido [Avassalador]			    |
+// | - Anotações					    |
 // \________________________________________________________/
 
 //============================================================ 
@@ -5187,8 +5187,8 @@ cmd_in01,33,33,1	script	Sala de Espera#Sign	66,{
 	end;
 
 OnInit:
-	waitingroom "DANCE~ DANCE~",20,"Sala de Espera#Sign::OnStartArena",1;
-	//SetReqLevel 44 99
+	waitingroom "DANCE~ DANCE~",20,"Sala de Espera#Sign::OnStartArena",1,0,44,150;
+	//SetReqLevel 44 150
 	enablewaitingroomevent;
 	end;
 

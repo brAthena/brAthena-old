@@ -8,8 +8,11 @@
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://svn.brathena.org/trac/timeline
 // ==============================================================================
-
-	r0679 - 28/06/2011 [Dani]
+	r0680 - 29/06/2011 [cleyton]
+	* Corrigidos os menus referentes aos diálogos da cidade de Payon.
+	- Problemas referentes as traduções, devem ser informados no Tracker.
+	* Aplicada modificação no npc The_sign traduzido conforme r0667 referente ao renewal.
+		
 	r0678 - 28/06/2011 [Dani]
 	* Correção da r676
 	- Não havia percebido que esse arquivo não tinha sido enviado ao SVN

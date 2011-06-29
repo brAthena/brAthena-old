@@ -18,7 +18,7 @@
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
-// | 1.1 Script Otimizado [Architect]          				|
+// | 1.1 Script Otimizado [Architect]          		    |
 // \________________________________________________________/
 
 // Payon
@@ -120,7 +120,7 @@ OnTouch:
 	close;
 }
 
-payon,249,156,1	script	Woman#payon	66,{
+payon,249,156,1	script	Mulher#payon	66,{
 	mes "[Mulher]";
 	mes "Bem vindo a Payon";
 	mes "você deve ter tido";
@@ -143,7 +143,7 @@ payon,249,156,1	script	Woman#payon	66,{
 	mes "[Mulher]";
 	mes "Se você estiver interessado, vá para o Norte, passe pela floresta, e siga em direção ao noroeste. Você saberá que você chegou quando você estiver num lugar com o o mau cheiro de monstros.";
 	next;
-	switch(select("Parece perigoso! melhor eu me preparar ...!: É um belo vestido que você está vestindo ~")) {
+	switch(select("Parece perigoso!:Melhor eu me preparar ...!:É um belo vestido que você está vestindo ~")) {
 	case 1:
 		mes "[Mulher]";
 		mes "Oh venha, não seja coverde.";
@@ -194,7 +194,7 @@ payon,246,158,5	script	Mulher#2payon	66,0,0,{
 		mes "ou com uma piada sem graça.";
 	}
 	next;
-	if (select("Cartomante..? :Bem, eu vejo você mais tarde~") == 1) {
+	if (select("Cartomante..?:Bem, eu vejo você mais tarde~") == 1) {
 		mes "[Mãe de Jim]";
 		mes "Oh sim...";
 		mes "Existe uma cartomante extraordinária no Palácio Central de Payon. Quanto mais você paga a ela, mais sorte você vai ganhar!";
@@ -241,7 +241,7 @@ payon,210,110,1	script	Bêbado#payon	120,{
 		mes "Será que você poderia comprar para mim uma bebida?";
 	}
 	next;
-	switch(select("Certo, mas só uma bebida. :Não, obrigado amigo.:Oh meu Deus, inferno não!! ")) {
+	switch(select("Certo, mas só uma bebida.:Não, obrigado amigo.:Oh meu Deus, inferno não!! ")) {
 	case 1:
 		set zeny,zeny-100;
 		mes "[Bêbado]";
@@ -291,7 +291,7 @@ payon,132,235,3	script	Escola de Monstros#02	98,{
 	mes "Eu sou chamado Vuicokk.";
 	mes "Eu sou um estudioso da organização de Pesquisa de monstros do reino de Rune Midgard. Você tem alguma dúvida sobre monstros?";
 	next;
-	switch(select("Quer saber alguma notícia:? sobre monstros:? Sobre a Organização de Pesquisas sobre os monstros?")) {
+	switch(select("Quer saber alguma notícia?:Sobre monstros?:Sobre a Organização de Pesquisas de monstros?")) {
 	case 1:
 		mes "[Escola de Monstros Vuicokk]";
 		mes "Payon fica no fundo da floresta, onde ela pode ser facilmente atacada por monstros. Eles também vêm da caverna perigosa localizada perto da cidade.";
@@ -395,7 +395,7 @@ payon_in01,180,7,2	script	Garçonete#payon	90,{
 	mes "então...";
 	mes "Como posso te ajudar?";
 	next;
-	switch(select("Você ja ouviu falar de zumbis:? Fortune Teller...?: eu preciso de uma bebida.")) {
+	switch(select("Você ja ouviu falar de zumbis?:Bancário...?:Eu preciso de uma bebida.")) {
 	case 1:
 		mes "[Garçonete]";
 		mes "É claro que quero";
@@ -477,7 +477,7 @@ payon_in01,66,64,5	script	Arqueiro Zakk#payon	88,{
 	mes "[Arqueiro Zakk]";
 	mes "Mesmo que ele seja um perito em tiro com arco, ninguém gosta de pessoas aque falam demais e não tem limites .Até mesmo nosso chefe está ficando farto dele!";
 	next;
-	switch(select("Seu amigo:?Payon tem um chefe:? Boca:? Motor:?")) {
+	switch(select("Seu amigo?:Payon tem um chefe?:Boca... motorizada?")) {
 	case 1:
 		mes "[Arqueiro Zakk]";
 		mes "Sim vou te explicar melhor. Este meu amigo é o arqueiro número um de payon.";
@@ -505,7 +505,7 @@ payon_in01,66,64,5	script	Arqueiro Zakk#payon	88,{
 	case 3:
 		mes "[Arqueiro Zakk]";
 		mes "Você não sabe";
-		mes "o que é um boca de motor ?";
+		mes "o que é um boca de motorizada ?";
 		next;
 		mes "[Arqueiro Zakk]";
 		mes "Boca de motor.";
@@ -517,7 +517,7 @@ payon_in01,66,64,5	script	Arqueiro Zakk#payon	88,{
 		mes "uma lenda no arco e flecha, ele também ficou conhecido, pela sua sua fama de inconveniente.";
 		next;
 		mes "[Arqueiro Zakk]";
-		mes "enfim meu amigo Wolt não tem";
+		mes "Enfim meu amigo Wolt não tem";
 		mes "uma casa própria, ele fica na pousada.Por que você não vai lá encontrá-lo? ele é realmente um cara legal, se você gostar de pessoas que falam muito.";
 		close;
 	}
@@ -541,7 +541,7 @@ payon_in01,47,59,2	script	Arqueiro Wolt#payon	88,{
 	mes "mas você quer gastar ";
 	mes "seu tempo comigo?";
 	next;
-	if (select("Oh, que diabos! não quero: Sim. eu acho que...")) {
+	if (select("Oh, que inferno! não quero:Sim. eu acho que...")) {
 		mes "[Arqueiro Wolt]";
 		mes "Oh isso é bom, na verdade, isso é ótimo! Se todos nós arqueiros tivessémos essa atitude.Se você tem tempo para sentar e ouvir, você terá tempo para sair e praticar.";
 		next;
@@ -565,7 +565,7 @@ payon_in01,47,59,2	script	Arqueiro Wolt#payon	88,{
 		mes "Nós nos aventuramos e passamos o dia todo á procura de monstros.";
 		mes "Depois de encontrar alguns, nós os matamos,é claro.";
 		next;
-		if (select("Eu acho que você precisa de um bom arco. : Você chama isso de 'prática?'") == 1) {
+		if (select("Eu acho que você precisa de um bom arco.:Você chama isso de 'prática?'") == 1) {
 			mes "[Arqueiro Wolt]";
 			mes "Isso mesmo!";
 			mes "Um arqueiro depende";
@@ -610,7 +610,7 @@ payon_in01,47,59,2	script	Arqueiro Wolt#payon	88,{
 			mes "[Arqueiro Wolt]";
 			mes "Nós arqueiros, estamos aqui para proteger o nosso território contra eles, como é ordenado pelo nosso chefe!";
 			next;
-			if (select("Você disse caverna:? chefe ...? : Cara, eu odeio essa cidade!") == 1) {
+			if (select("Você disse caverna?:Chefe ...? :Cara, eu odeio essa cidade!") == 1) {
 				mes "[Arqueiro Wolt]";
 				mes "Se você for para o norte";
 				mes "da cidade, você irpa encontrar";
@@ -713,7 +713,7 @@ payon_in01,47,59,2	script	Arqueiro Wolt#payon	88,{
 	mes "[Arqueiro Wolt]";
 	mes "Porém, eu descobri que ninguém me ouvia.O nosso teto desabou demolindo as paredes ao meu redor.Dessa forma puderam ouvir meus gritos e foi assim que sobrevivi.";
 	next;
-	switch(select("Hum, qual é o ponto mais importante dessa história:? Eu acho que é melhor eu não ficar com preguiça então. : Blah blah blah. See ya.")) {
+	switch(select("Hum, qual é o ponto mais importante dessa história?:Eu acho que é melhor eu não ficar com preguiça então.:Blah blah blah. See ya.")) {
 	case 1:
 		mes "[Arqueiro Wolt]";
 		mes "Oh...";
@@ -727,10 +727,10 @@ payon_in01,47,59,2	script	Arqueiro Wolt#payon	88,{
 		mes "[Arqueiro Wolt]";
 		mes "Nosso chefe é o que mais se irrita com esses tipos de atitude.Eu acho que por aqui só bêbados aprovam esses comportamentos insanos.";
 		next;
-		switch(select("Chefe:? bêbado da cidade? : Cara, você fala demais!")) {
+		switch(select("Chefe?:bêbado da cidade?:Cara, você fala demais!")) {
 		case 1:
 			mes "[Arqueiro Wolt]";
-			mes "Our chief? Ah, he's such a swell guy. Then again, he's always scolds me for talking too much.";
+			mes "Nosso chefe? Ah, ele é um cara meio chato. Ele sempre me repreende por eu falar demais.";
 			next;
 			mes "[Arqueiro Wolt]";
 			mes "Ele sempre está trabalhando para garantir";
@@ -977,20 +977,20 @@ pay_arche,77,131,2	script	Arqueiro Joe#payon	88,{
 	mes "Você já ouvir falar";
 	mes "na famosa Payon?";
 	next;
-	switch(select("Sim, é claro~! :Pay...on?:...")) {
+	switch(select("Sim, é claro~!:Pay...on? :...")) {
 	case 1:
 		mes "[Arqueiro Joe]";
 		mes "Ah, você é o cara!";
 		mes "Você cnhece os arqueiros de Payon!";
 		mes "Nós jamais perderemos nossa meta, mesmo a distância nossos inimigos não estarão seguros.";
 		next;
-		if (select("Então, você gosta desse lugar, ein? :Hahahaha~") == 1) {
+		if (select("Então, você gosta desse lugar, ein?:Hahahaha~") == 1) {
 			mes "[Arqueiro Joe]";
 			mes "Sim! Eu amo esse lugar!";
 			mes "Eu amo muito essa cidade.";
 			mes "Eu mesmo estava pesquisando sobre ela. Se existe algo que você queira saber sobre Payon, fale comigo por favor!";
 			next;
-			switch(select("As pessoas usam roupas únicas aqui.:Onde fica o edifício central da Cidade?:Quem é aquele cara bebendo ali? :Conversar outra hora.")) {
+			switch(select("As pessoas usam roupas únicas aqui.:Onde fica o edifício central da Cidade?:Quem é aquele cara bebendo ali?:Conversar outra hora.")) {
 			case 1:
 				mes "[Arqueiro Joe]";
 				mes "Sim, eu concordo.";
