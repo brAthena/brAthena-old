@@ -9521,6 +9521,8 @@ int skill_castend_map (struct map_session_data *sd, short skill_num, const char 
 		sd->sc.data[SC_BASILICA] ||
 		sd->sc.data[SC_DEATHBOUND] ||
 		sd->sc.data[SC_DANCING] && skill_num < RK_ENCHANTBLADE && !pc_checkskill(sd, WM_LESSON) ||
+		sd->sc.data[SC_WHITEIMPRISON] ||
+		(sd->sc.data[SC_STASIS] && skill_stasis_check(&sd->bl, sd->sc.data[SC_STASIS]->val2, skill_num)) ||
 		sd->sc.data[SC_MARIONETTE] ||
 		sd->sc.data[SC__MANHOLE] ||
 		sd->sc.data[SC_SATURDAYNIGHTFEVER]
@@ -10144,6 +10146,7 @@ static int skill_unit_onplace (struct skill_unit *src, struct block_list *bl, un
 	struct skill_unit_group *sg;
 	struct block_list *ss;
 	struct status_change *sc;
+	struct status_change *ssc;
 	struct status_change_entry *sce;
 	enum sc_type type;
 	int skillid;
@@ -10161,7 +10164,8 @@ static int skill_unit_onplace (struct skill_unit *src, struct block_list *bl, un
 		return 0; //AoE skills are ineffective. [Skotlex]
 
 	sc = status_get_sc(bl);
-
+	ssc = status_get_sc(ss);
+	
 	if (sc && sc->option&OPTION_HIDE && sg->skill_id != WZ_HEAVENDRIVE && sg->skill_id != WL_EARTHSTRAIN && sg->skill_id != RA_ARROWSTORM)
 		return 0; //Hidden characters are immune to AoE skills except Heaven's Drive. [Skotlex]
 
@@ -10268,7 +10272,9 @@ static int skill_unit_onplace (struct skill_unit *src, struct block_list *bl, un
 		 //Needed to check when a dancer/bard leaves their ensemble area.
 		if (sg->src_id==bl->id && !(sc && sc->data[SC_SPIRIT] && sc->data[SC_SPIRIT]->val2 == SL_BARDDANCER))
 			return skillid;
-		if (!sce)
+		if( ssc && ssc->data[SC_STASIS] )
+			return 0; 
+		if( !sce )
 			sc_start4(bl,type,100,sg->skill_lv,sg->val1,sg->val2,0,sg->limit);
 		break;
 	case UNT_WHISTLE:
@@ -10281,8 +10287,11 @@ static int skill_unit_onplace (struct skill_unit *src, struct block_list *bl, un
 	case UNT_SERVICEFORYOU:
 		if (sg->src_id==bl->id && !(sc && sc->data[SC_SPIRIT] && sc->data[SC_SPIRIT]->val2 == SL_BARDDANCER))
 			return 0;
-		if (!sc) return 0;
-		if (!sce)
+		if( ssc && ssc->data[SC_STASIS] )
+			return 0; 
+		if( !sc )
+			return 0;
+		if( !sce )
 			sc_start4(bl,type,100,sg->skill_lv,sg->val1,sg->val2,0,sg->limit);
 		else if (sce->val4 == 1) {
 			//Readjust timers since the effect will not last long.
@@ -10627,16 +10636,21 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 		case UNT_LULLABY:
 			if (ss->id == bl->id)
 				break;
+			if( ssc && ssc->data[SC_STASIS] )
+				break;
 			skill_additional_effect(ss, bl, sg->skill_id, sg->skill_lv, BF_LONG|BF_SKILL|BF_MISC, ATK_DEF, tick);
 			break;
 
 		case UNT_UGLYDANCE:	//Ugly Dance [Skotlex]
-			if (ss->id != bl->id)
+			if( ssc && ssc->data[SC_STASIS] )
+				break;
+			if( ss->id != bl->id )
 				skill_additional_effect(ss, bl, sg->skill_id, sg->skill_lv, BF_LONG|BF_SKILL|BF_MISC, ATK_DEF, tick);
 			break;
 
 		case UNT_DISSONANCE:
-			skill_attack(BF_MISC, ss, &src->bl, bl, sg->skill_id, sg->skill_lv, tick, 0);
+			if( !(ssc && ssc->data[SC_STASIS]) )
+				skill_attack(BF_MISC, ss, &src->bl, bl, sg->skill_id, sg->skill_lv, tick, 0);
 			break;
 
 		case UNT_APPLEIDUN: //Apple of Idun [Skotlex]
@@ -10644,6 +10658,8 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 			int heal;
 			if( sg->src_id == bl->id && !(tsc && tsc->data[SC_SPIRIT] && tsc->data[SC_SPIRIT]->val2 == SL_BARDDANCER) )
 				break; // affects self only when soullinked
+			if( ssc && ssc->data[SC_STASIS] )
+				break;
 			heal = skill_calc_heal(ss,bl,sg->skill_id, sg->skill_lv, true);
 			clif_skill_nodamage(&src->bl, bl, AL_HEAL, heal, 1);
 			status_heal(bl, heal, 0, 0);
@@ -10656,9 +10672,11 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 			break;
 
 		case UNT_GOSPEL:
-			if (rand()%100 > sg->skill_lv*10 || ss == bl)
+			if( ssc && ssc->data[SC_STASIS] )
 				break;
-			if (battle_check_target(ss,bl,BCT_PARTY)>0)
+			if( rand()%100 > sg->skill_lv*10 || ss == bl )
+				break;
+			if( battle_check_target(ss,bl,BCT_PARTY) > 0 )
 			{ // Support Effect only on party, not guild
 				int heal;
 				int i = rand()%13; // Positive buff count
@@ -11223,8 +11241,8 @@ static int skill_check_condition_char_sub (struct block_list *bl, va_list ap)
 	skillid = va_arg(ap,int);
 	lv = va_arg(ap,int);
 
-	if ((skillid != PR_BENEDICTIO && *c >=1) || *c >=2)
-		return 0; //Partner found for ensembles, or the two companions for Benedictio. [Skotlex]
+	if( ((skillid != PR_BENEDICTIO && *c >=1) || *c >=2) && !(skill_get_inf2(skillid)&INF2_CHORUS_SKILL) )
+		return 0; 
 
 	if (bl == src)
 		return 0;
@@ -11232,8 +11250,15 @@ static int skill_check_condition_char_sub (struct block_list *bl, va_list ap)
 	if(pc_isdead(tsd))
 		return 0;
 
-	if (tsd->sc.data[SC_SILENCE] || tsd->sc.opt1)
+	if (tsd->sc.data[SC_SILENCE] || (tsd->sc.opt1 && tsd->sc.opt1 != OPT1_BURNING) )
 		return 0;
+
+	if( skill_get_inf2(skillid)&INF2_CHORUS_SKILL )
+	{
+		if( tsd->status.party_id == sd->status.party_id && (tsd->class_&MAPID_UPPERMASK_THIRD) == MAPID_MINSTRELWANDERER )
+			p_sd[(*c)++] = tsd->bl.id;
+		return 1;
+	}
 
 	switch(skillid)
 	{
@@ -11293,25 +11318,47 @@ static int skill_check_condition_char_sub (struct block_list *bl, va_list ap)
 /*==========================================
  * Checks and stores partners for ensemble skills [Skotlex]
  *------------------------------------------*/
-int skill_check_pc_partner (struct map_session_data *sd, short skill_id, short* skill_lv, int range, int cast_flag)
+int skill_check_pc_partner(struct map_session_data *sd, short skill_id, short* skill_lv, int range, int cast_flag)
 {
-	static int c=0;
-	static int p_sd[2] = { 0, 0 };
+	static int c = 0;
+	static int p_sd[MAX_PARTY] = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
 	int i;
 
-	if (!battle_config.player_skill_partner_check ||
-		(battle_config.gm_skilluncond && pc_isGM(sd) >= battle_config.gm_skilluncond))
-		return 99; //As if there were infinite partners.
+	nullpo_ret(sd);
 
-	if (cast_flag)
-	{	//Execute the skill on the partners.
+	if( !battle_config.player_skill_partner_check || (battle_config.gm_skilluncond && pc_isGM(sd) >= battle_config.gm_skilluncond) )
+	{
+		if( skill_get_inf2(skill_id)&INF2_CHORUS_SKILL )
+			return MAX_PARTY;
+		else
+			return 99; //As if there were infinite partners.
+	}
+
+	if( cast_flag == 0 || cast_flag == 2 )
+	{ 
+		c = 0;
+		memset(p_sd, 0, sizeof(p_sd));
+		if( skill_get_inf2(skill_id)&INF2_CHORUS_SKILL )
+			i = party_foreachsamemap(skill_check_condition_char_sub,sd,AREA_SIZE,&sd->bl, &c, &p_sd, skill_id, *skill_lv);
+		else
+			i = map_foreachinrange(skill_check_condition_char_sub, &sd->bl, range, BL_PC, &sd->bl, &c, &p_sd, skill_id, *skill_lv);
+
+		if( skill_id != PR_BENEDICTIO && skill_id != AB_ADORAMUS && skill_id != WL_COMET ) 
+			*skill_lv = (i+(*skill_lv))/(c+1); 
+	}
+
+	if( cast_flag == 1 || cast_flag == 2 )
+	{ // Execute the Skill on Partners
 		struct map_session_data* tsd;
-		if( skill_id == WM_GREAT_ECHO )
+		if( skill_get_inf2(skill_id)&INF2_CHORUS_SKILL )
 		{
-			for( i = 0; i < c; i++ )
+			if( skill_id == WM_GREAT_ECHO )
 			{
-				if( (tsd = map_id2sd(p_sd[i])) != NULL )
-					status_zap(&tsd->bl,0,skill_get_sp(skill_id,*skill_lv)/c);
+				for( i = 0; i < c; i++ )
+				{
+					if( (tsd = map_id2sd(p_sd[i])) != NULL )
+						status_zap(&tsd->bl,0,skill_get_sp(skill_id,*skill_lv)/c);
+				}
 			}
 		}
 		else
@@ -11324,16 +11371,16 @@ int skill_check_pc_partner (struct map_session_data *sd, short skill_id, short* 
 					if ((tsd = map_id2sd(p_sd[i])) != NULL)
 						status_charge(&tsd->bl, 0, 10);
 				}
-				return c;
+				break;
 			case AB_ADORAMUS:
 				if( c > 0 && (tsd = map_id2sd(p_sd[0])) != NULL )
 				{
 					i = 2 * (*skill_lv);
 					status_charge(&tsd->bl, 0, i);
 				}
-				return c;
+				break;
 			default: //Warning: Assuming Ensemble skills here (for speed)
-				if (c > 0 && sd->sc.data[SC_DANCING] && (tsd = map_id2sd(p_sd[0])) != NULL)
+				if( c > 0 && sd->sc.data[SC_DANCING] && (tsd = map_id2sd(p_sd[0])) != NULL )
 				{
 					sd->sc.data[SC_DANCING]->val4 = tsd->bl.id;
 					sc_start4(&tsd->bl,SC_DANCING,100,skill_id,sd->sc.data[SC_DANCING]->val2,*skill_lv,sd->bl.id,skill_get_time(skill_id,*skill_lv)+1000);
@@ -11341,17 +11388,11 @@ int skill_check_pc_partner (struct map_session_data *sd, short skill_id, short* 
 					tsd->skillid_dance = skill_id;
 					tsd->skilllv_dance = *skill_lv;
 				}
-				return c;
+				break;
 			}
 		}
 	}
-	//Else: new search for partners.
-	c = 0;
-	memset (p_sd, 0, sizeof(p_sd));
-	i = map_foreachinrange(skill_check_condition_char_sub, &sd->bl, range, BL_PC, &sd->bl, &c, &p_sd, skill_id);
 
-	if(skill_id != PR_BENEDICTIO && skill_id != AB_ADORAMUS && skill_id != WL_COMET)
-		*skill_lv = (i+(*skill_lv))/(c+1); //I know c should be one, but this shows how it could be used for the average of n partners.
 	return c;
 }
 
@@ -16109,6 +16150,53 @@ void skill_init_nounit_layout (void)
 		}
 		pos++;
 	}
+}
+
+int skill_stasis_check(struct block_list *bl, int src_id, int skillid)
+{
+	if( !bl || skillid < 1 )
+		return 0; 	
+
+	if( skill_get_inf2(skillid) == INF2_SONG_DANCE || skill_get_inf2(skillid) == INF2_CHORUS_SKILL || skill_get_inf2(skillid) == INF2_SPIRIT_SKILL )
+		return 1; 
+
+	switch( skillid )
+	{
+		case NV_FIRSTAID:		case TF_HIDING:			case AS_CLOAKING:		case WZ_SIGHTRASHER:	
+		case RG_STRIPWEAPON:	case RG_STRIPSHIELD:	case RG_STRIPARMOR:		case WZ_METEOR:
+		case RG_STRIPHELM:		case SC_STRIPACCESSARY:	case ST_FULLSTRIP:		case WZ_SIGHTBLASTER:
+		case ST_CHASEWALK:		case SC_ENERVATION:		case SC_GROOMY:			case WZ_ICEWALL:
+		case SC_IGNORANCE:		case SC_LAZINESS:		case SC_UNLUCKY:		case WZ_STORMGUST:
+		case SC_WEAKNESS:		case AL_RUWACH:			case AL_PNEUMA:			case WZ_JUPITEL:
+		case AL_HEAL:			case AL_BLESSING:		case AL_INCAGI:			case WZ_VERMILION:
+		case AL_TELEPORT:		case AL_WARP:			case AL_HOLYWATER:		case WZ_EARTHSPIKE:
+		case AL_HOLYLIGHT:		case PR_IMPOSITIO:		case PR_ASPERSIO:		case WZ_HEAVENDRIVE:
+		case PR_SANCTUARY:		case PR_STRECOVERY:		case PR_MAGNIFICAT:		case WZ_QUAGMIRE:
+		case ALL_RESURRECTION:	case PR_LEXDIVINA:		case PR_LEXAETERNA:		case HW_GRAVITATION:
+		case PR_MAGNUS:			case PR_TURNUNDEAD:		case MG_SRECOVERY:		case HW_MAGICPOWER:
+		case MG_SIGHT:			case MG_NAPALMBEAT:		case MG_SAFETYWALL:		case HW_GANBANTEIN:
+		case MG_SOULSTRIKE:		case MG_COLDBOLT:		case MG_FROSTDIVER:		case WL_DRAINLIFE:
+		case MG_STONECURSE:		case MG_FIREBALL:		case MG_FIREWALL:		case WL_SOULEXPANSION:
+		case MG_FIREBOLT:		case MG_LIGHTNINGBOLT:	case MG_THUNDERSTORM:	case MG_ENERGYCOAT:
+		case WL_WHITEIMPRISON:	case WL_SUMMONFB:		case WL_SUMMONBL:		case WL_SUMMONWB:
+		case WL_SUMMONSTONE:	case WL_SIENNAEXECRATE:	case WL_RELEASE:		case WL_EARTHSTRAIN:
+		case WL_RECOGNIZEDSPELL:case WL_READING_SB:		case SA_MAGICROD:		case SA_SPELLBREAKER:
+		case SA_DISPELL:		case SA_FLAMELAUNCHER:	case SA_FROSTWEAPON:	case SA_LIGHTNINGLOADER:
+		case SA_SEISMICWEAPON:	case SA_VOLCANO:		case SA_DELUGE:			case SA_VIOLENTGALE:
+		case SA_LANDPROTECTOR:	case PF_HPCONVERSION:	case PF_SOULCHANGE:		case PF_SPIDERWEB:
+		case PF_FOGWALL:		case TK_RUN:			case TK_HIGHJUMP:		case TK_SEVENWIND:
+		case SL_KAAHI:			case SL_KAUPE:			case SL_KAITE:
+		case SO_FIREWALK:		case SO_ELECTRICWALK:	case SO_SPELLFIST:		case SO_EARTHGRAVE:
+		case SO_DIAMONDDUST:	case SO_POISON_BUSTER:	case SO_PSYCHIC_WAVE:	case SO_CLOUD_KILL:
+		case SO_STRIKING:		case SO_WARMER:			case SO_VACUUM_EXTREME:	case SO_VARETYR_SPEAR:
+		case SO_ARRULLO:
+			return 1;	
+
+		default:
+			return 0; 
+	}
+	
+	return 0; 
 }
 
 int skill_get_elemental_type(int skill_id, int skill_lv )

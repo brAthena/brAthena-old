@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0685 - 29/06/2011 [Protimus]
+	* Modificações em habilidades:
+	- WL_WHITEIMPRISON (Exílio): Adicionadas checagens que faltavam para o funcionamento da habilidade.
+	- WL_STASIS (Distorção Arcana): Adicionada lista de checagem de habilidades gerais para a habilidade.
+	* Modificações em valores de tick e sc_def para vários status de habilidades.
+
 	r0684 - 29/06/2011 [CarlosHenrq]
 	* Adicionado 'quests_brasilis.txt' e corrigido erro da r0683.
 

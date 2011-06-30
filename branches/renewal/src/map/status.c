@@ -1367,6 +1367,7 @@ int status_check_skilluse(struct block_list *src, struct block_list *target, int
 				(sc->data[SC_MARIONETTE2] && skill_num == CG_MARIONETTE) || //Cannot use marionette if you are being buffed by another
 				sc->data[SC_STEELBODY] ||
 				sc->data[SC_BERSERK] ||
+				sc->data[SC_WHITEIMPRISON] ||
 				sc->data[SC_DEEPSLEEP] ||
 				sc->data[SC_SATURDAYNIGHTFEVER] ||
 				sc->data[SC__INVISIBILITY] ||
@@ -5375,67 +5376,88 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 	sc = status_get_sc(bl);
 	switch (type)
 	{
-		case SC_SLEEP:
-			tick_def = status->int_;
+	case SC_POISON:
+	case SC_SILENCE:
+		if( sc && sc->data[SC__UNLUCKY] )
+			return tick;
+	case SC_STUN:
+	case SC_DPOISON:
+	case SC_BLEEDING:
+		sc_def = 3 + status->vit;
+		break;
+	case SC_SLEEP:
+		sc_def = 3 +status->int_;
+		break;
 	case SC_DEEPSLEEP:
 		tick_def = status->int_ / 10 + status_get_lv(bl) * 65 / 1000; 
 		sc_def = 5 * status->int_ /10;
 		break;
-		case SC_BLEEDING:
-			sc_def = status->agi;
-			break;
-		case SC_STUN:
-		case SC_DPOISON:
-			sc_def = status->vit;
-			break;
-		case SC_BLIND:
-		case SC_FREEZE:
-			sc_def = status->int_;
-			break;
-		case SC_ADORAMUS:
-		case SC_DECREASEAGI:
-			if (sd) tick>>=1;
-			sc_def = 3 + status->mdef;
-			break;
-		case SC_CONFUSION:
-		case SC_CURSE:
-		case SC_STONE:
-			sc_def = tick_def = status->luk;
-			break;
-		case SC_ANKLE:
-			if(status->mode&MD_BOSS)
-				tick /= 5;
-			tick -= status->agi / 10;		
-			break;
-		case SC_MAGICMIRROR:
-		case SC_ARMORCHANGE:
-			if (sd)
-				tick /= 15;
-		case SC_ELECTRICSHOCKER:
-		case SC_BITE:
+	case SC_DECREASEAGI:
+	case SC_ADORAMUS:
+		if (sd) tick>>=1; 
+	case SC_STONE:
+	case SC_FREEZE:
+		sc_def = 3 + status->mdef;
+		break;
+	case SC_CURSE:
+		if (status->luk > status_get_lv(bl) || status->luk == 0)
+			return 0;
+		else
+			sc_def = 3 +status->luk;
+		tick_def = status->vit;
+		break;
+	case SC_BLIND:
+		if( sc && sc->data[SC__UNLUCKY] )
+			return tick;
+		sc_def = 3 +(status->vit + status->int_)/2;
+		break;
+	case SC_CONFUSION:
+		sc_def = 3 +(status->str + status->int_)/2;
+		break;
+	case SC_ANKLE:
+		if(status->mode&MD_BOSS) 
+			tick /= 5;
+		sc_def = status->agi / 2;
+		break;
+	case SC_WHITEIMPRISON:
+		rate -= (status_get_lv(bl) / 5 + status->vit / 4 + status->agi / 10)*100; 
+		tick_def = (int)floor(log10(status_get_lv(bl)) * 10.);
+		break;
+	case SC_BURNING:
+		tick -= 50*status->luk + 60*status->int_ + 170*status->vit;
+		tick = max(tick,10000); 
+		break;
+	case SC_FREEZING:
+		tick -= 40 * status->vit;
+		tick = max(tick,10000); 
+		break;
+	case SC_OBLIVIONCURSE:
+		sc_def = status->int_*4/5; 
+		break;
+	case SC_ELECTRICSHOCKER:
+	case SC_BITE:
 		{
 			if( bl->type == BL_MOB )
-				tick -= 100 * status->agi;
+				tick -= 1000 * (status->agi/10);
 			if( sd && type != SC_ELECTRICSHOCKER )
 				tick >>= 1;
 		}
 		break;
-		case SC_VACUUM_EXTREME:
-			tick -= 20*status->str;
-			break;
-		case SC_POISON:
-		case SC_SILENCE:
-			if( sc && sc->data[SC__UNLUCKY] )
-				return tick;
+	case SC_CRYSTALIZE:
+		tick -= (1000*(status->vit/10))+(status_get_lv(bl)/50);
+		break;
+	case SC_VACUUM_EXTREME:
+		tick -= 50*status->str;
+		break;
+	case SC_MAGICMIRROR:
+	case SC_ARMORCHANGE:
+		if (sd) 
+			tick /= 15;
 		default:
 			//Effect that cannot be reduced? Likely a buff.
 			if (!(rand()%10000 < rate))
 				return 0;
 			return tick?tick:1;
-	
-	case SC_MAGNETICFIELD:
-		if(sc->data[SC_HOVERING] || sc->data[SC_FUSION])
-			return 0;
 	}
 
 	if (sd) {
@@ -5485,19 +5507,22 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 		tick_def = sc_def;
 
 	//Natural resistance
-	if (!(flag&8)) {
-		rate -= rate*sc_def/100;
+	if( !(flag&8) )
+	{
+		if( !(type == SC_FREEZE && sc && sc->data[SC_FREEZING]) )
+			rate -= rate * sc_def/100; 
 
 		//Item resistance (only applies to rate%)
-		if(sd && SC_COMMON_MIN <= type && type <= SC_COMMON_MAX)
+		if( sd && SC_COMMON_MIN <= type && type <= SC_COMMON_MAX )
 		{
-			if( sd->reseff[type-SC_COMMON_MIN] > 0 )
+			if( sd->reseff[type-SC_COMMON_MIN] > 0 && (!(type == SC_FREEZE && sc && sc->data[SC_FREEZING]) || sd->reseff[type-SC_COMMON_MIN] >= 10000) ) 
 				rate -= rate*sd->reseff[type-SC_COMMON_MIN]/10000;
-			if( sd->sc.data[SC_COMMONSC_RESIST] )
+			if( sd->sc.data[SC_COMMONSC_RESIST] && !(type == SC_FREEZE && sc && sc->data[SC_FREEZING]) )
 				rate -= rate*sd->sc.data[SC_COMMONSC_RESIST]->val1/100;
 		}
 	}
-	if (!(rand()%10000 < rate))
+
+	if( !(rand()%10000 < rate) )
 		return 0;
 
 	//Why would a status start with no duration? Presume it has

@@ -67,6 +67,7 @@ enum e_skill_inf2
 	INF2_PARTY_ONLY     = 0x0400,
 	INF2_GUILD_ONLY     = 0x0800,
 	INF2_NO_ENEMY       = 0x1000,
+	INF2_CHORUS_SKILL 	= 0x2000,
 };
 
 //Walk intervals at which chase-skills are attempted to be triggered.
@@ -383,7 +384,8 @@ int skill_select_menu( struct map_session_data *sd, int flag, int skill_id);
 int skill_spellbook (struct map_session_data *sd, int nameid);
 int skill_changematerial(struct map_session_data *sd, int n, unsigned short *item_list);
 int skill_get_elemental_type(int skill_id, int skill_lv);
-int skill_elementalanalysis(struct map_session_data *sd, int n, int type, unsigned short *item_list); 
+int skill_elementalanalysis(struct map_session_data *sd, int n, int type, unsigned short *item_list);
+int skill_stasis_check(struct block_list *bl, int src_id, int skillid); 
 
 // mobƒXƒLƒ‹‚Ì‚½‚ß
 int skill_castend_nodamage_id( struct block_list *src, struct block_list *bl,int skillid,int skilllv,unsigned int tick,int flag );
