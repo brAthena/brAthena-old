@@ -9086,7 +9086,7 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 
 	case MO_BODYRELOCATION:
 		if(sd && sd->sc.data[SC_ANKLE] && battle_config.block_relocation){
-			clif_skill_fail(sd,skillid,0,0);
+			clif_skill_fail(sd,skillid,0,0,0);
 			return 0;
 		}
 		if (unit_movepos(src, x, y, 1, 1)) {

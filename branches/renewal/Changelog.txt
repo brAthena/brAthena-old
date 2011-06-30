@@ -9,7 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
-	r0683 - 27/06/2011 [CarlosHenrq]
+	r0684 - 29/06/2011 [CarlosHenrq]
+	* Adicionado 'quests_brasilis.txt' e corrigido erro da r0683.
+
+	r0683 - 29/06/2011 [CarlosHenrq]
 	* Adicionada nova configuração de batalha opcional:
 	- Bloqueia ou não o jogador usar a skill 'MO_BODYRELOCATION' enquanto trapeado.
 
