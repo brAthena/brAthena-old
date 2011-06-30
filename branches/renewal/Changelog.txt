@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0686 - 30/06/2011 [Protimus]
+	* Adicionadas opções de status para SITDOWN forçado de habilidades.
+	* Adicionados valores de de status change de WM_DANCE_WITH_WUG (Dança com Lobos) que faltavam.
+
 	r0685 - 29/06/2011 [Protimus]
 	* Modificações em habilidades:
 	- WL_WHITEIMPRISON (Exílio): Adicionadas checagens que faltavam para o funcionamento da habilidade.

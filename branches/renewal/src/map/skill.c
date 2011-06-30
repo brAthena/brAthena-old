@@ -2952,7 +2952,7 @@ static int skill_timerskill(int tid, unsigned int tick, int id, intptr data)
 						{
 							pc_setsit(tsd);
 							skill_sit(tsd,1);
-							clif_sitting(&tsd->bl);
+							clif_sitting(&tsd->bl,true);
 						}
 					}
 					break;

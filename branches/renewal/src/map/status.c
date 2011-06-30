@@ -6595,7 +6595,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_TENSIONRELAX:
 			if (sd) {
 				pc_setsit(sd);
-				clif_sitting(&sd->bl);
+				clif_sitting(&sd->bl,true);
 			}
 			val2 = 12; //SP cost
 			val4 = 10000; //Decrease at 10secs intervals.
@@ -7151,6 +7151,18 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			break;
 		case SC_SWINGDANCE:
 			val2 = 4 * val1;
+			break;
+		case SC_SITDOWN_FORCE:
+		case SC_BANANA_BOMB_SITDOWN:
+			if( sd && !pc_issit(sd) )
+			{
+				pc_setsit(sd);
+				skill_sit(sd,1);
+				clif_sitting(bl,true);
+			}
+			break;
+		case SC_DANCEWITHWUG:
+			val3 = (5 * val1) + (1 * val2); 
 			break;
 		case SC_SYMPHONYOFLOVER:
 		case SC_RUSHWINDMILL:
@@ -7746,6 +7758,13 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			break;
 		case SC_RAISINGDRAGON:
 			sce->val2 = status->max_hp/100;
+			break;
+		case SC_SITDOWN_FORCE:
+			if( sd && pc_issit(sd) )
+			{
+				pc_setstand(sd);
+				clif_standing(bl,true);
+			}
 			break;
 	}
 
