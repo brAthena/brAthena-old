@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0687 - 30/06/2011 [Dani]
+	* Correções de itens que encantam armas com elementos
+	- Bug iniciado na r599, afetando somente o Renewal
+	- Report por Luxaras (#144)
+
 	r0686 - 30/06/2011 [Protimus]
 	* Adicionadas opções de status para SITDOWN forçado de habilidades.
 	* Adicionados valores de de status change de WM_DANCE_WITH_WUG (Dança com Lobos) que faltavam.
