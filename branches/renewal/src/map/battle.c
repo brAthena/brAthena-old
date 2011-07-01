@@ -3927,15 +3927,11 @@ int battle_calc_return_damage(struct block_list *src, struct block_list *bl, int
 		{
 			int dir = map_calc_dir(bl,src->x,src->y),
 				t_dir = unit_getdir(bl), rd1 = 0;
-
-			if( distance_bl(src,bl) <= 0 || !map_check_dir(dir,t_dir) )
-			{
 				rd1 = min((*damage),max_damage) * sc->data[SC_DEATHBOUND]->val2 / 100;
 				(*damage) = rd1 / 2;
 				clif_skill_damage(src,bl,gettick(), status_get_amotion(src), 0, -30000, 1, RK_DEATHBOUND, sc->data[SC_DEATHBOUND]->val1,6);
 				status_change_end(bl,SC_DEATHBOUND,-1);
 				rdamage += rd1;
-			}
 		}
 		if (sc && sc->data[SC_REFLECTSHIELD])
 		{

@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0693 - 01/07/2011 [brn0]
+	* Corrigida a habilidade RK_DEATHBOUND (Revidar Dano).
+	- O dano só era causado quando os dois personagens estavam na mesma célula.
+
 	r0692 - 01/07/2011 [Protimus]
 	* Modificação em habilidade:
 	- ASC_EDP (Encantar com Veneno Mortal): Revertida r424.
