@@ -718,6 +718,13 @@ void initChangeTables(void)
 	StatusIconChangeTable[SC_SOLID_SKIN] = SI_SOLID_SKIN;
 	StatusIconChangeTable[SC_STONE_SHIELD] = SI_STONE_SHIELD;
 
+	// Esferas de Arcano
+	StatusIconChangeTable[SC_SPHERE_1] = SI_SPHERE_1;
+	StatusIconChangeTable[SC_SPHERE_2] = SI_SPHERE_2;
+	StatusIconChangeTable[SC_SPHERE_3] = SI_SPHERE_3;
+	StatusIconChangeTable[SC_SPHERE_4] = SI_SPHERE_4;
+	StatusIconChangeTable[SC_SPHERE_5] = SI_SPHERE_5;
+
 	//Other SC which are not necessarily associated to skills.
 	StatusChangeFlagTable[SC_ASPDPOTION0] = SCB_ASPD;
 	StatusChangeFlagTable[SC_ASPDPOTION1] = SCB_ASPD;
@@ -1368,6 +1375,7 @@ int status_check_skilluse(struct block_list *src, struct block_list *target, int
 				sc->data[SC_STEELBODY] ||
 				sc->data[SC_BERSERK] ||
 				sc->data[SC_WHITEIMPRISON] ||
+				(sc->data[SC_STASIS] && skill_stasis_check(src, sc->data[SC_STASIS]->val2, skill_num)) ||
 				sc->data[SC_DEEPSLEEP] ||
 				sc->data[SC_SATURDAYNIGHTFEVER] ||
 				sc->data[SC__INVISIBILITY] ||
@@ -4156,6 +4164,8 @@ static signed short status_calc_hit(struct block_list *bl, struct status_change 
 		hit -= hit * sc->data[SC__GROOMY]->val3 / 100;
 	if(sc->data[SC_INSPIRATION])
 		hit += 45 + 5 * sc->data[SC_INSPIRATION]->val1;
+	if( sc->data[SC_MARSHOFABYSS] )
+		hit -= (9 * sc->data[SC_MARSHOFABYSS]->val3 / 10 + sc->data[SC_MARSHOFABYSS]->val2 / 10) * (bl->type == BL_MOB ? 2 : 1);
 
 	return (short)cap_value(hit,1,SHRT_MAX);
 }
@@ -4299,6 +4309,8 @@ static signed short status_calc_def(struct block_list *bl, struct status_change 
 		def -= def * sc->data[SC_ROCK_CRUSHER]->val2 / 100;
 	if( sc->data[SC_ANALYZE] )
 		def -= def * (14 * sc->data[SC_ANALYZE]->val1) / 100;
+	if( sc->data[SC_MARSHOFABYSS] )
+		def -= def * ( 6 + 6 * sc->data[SC_MARSHOFABYSS]->val3/10 + (bl->type == BL_MOB ? 5 : 3) * sc->data[SC_MARSHOFABYSS]->val2/36 ) / 100;
 
 	return (short)cap_value(def,SHRT_MIN,SHRT_MAX);
 }
@@ -4376,6 +4388,8 @@ static signed short status_calc_mdef(struct block_list *bl, struct status_change
 		mdef -= mdef * (14 * sc->data[SC_ANALYZE]->val1) / 100;
 	if(sc->data[SC_ASSUMPTIO])
 		mdef *= 2;
+	if( sc->data[SC_MARSHOFABYSS] )
+		mdef -= mdef * ( 6 + 6 * sc->data[SC_MARSHOFABYSS]->val3/10 + (bl->type == BL_MOB ? 5 : 3) * sc->data[SC_MARSHOFABYSS]->val2/36 ) / 100;
 
 	return (short)cap_value(mdef,SHRT_MIN,SHRT_MAX);
 }
@@ -4496,6 +4510,8 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 					val = max( val, sc->data[SC_POWER_OF_GAIA]->val2 );
 				if( sc->data[SC_ROCK_CRUSHER_ATK] )
 					val = max( val, sc->data[SC_ROCK_CRUSHER_ATK]->val2 );
+				if( sc->data[SC_MARSHOFABYSS] )
+					val = max( val, 40 + 10 * sc->data[SC_MARSHOFABYSS]->val1 );
 
 				if( sd && sd->speed_rate + sd->speed_add_rate > 0 ) // permanent item-based speedup
 					val = max( val, sd->speed_rate + sd->speed_add_rate );
@@ -5908,6 +5924,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			case SC_MAGICMUSHROOM:
 			case SC_OBLIVIONCURSE:
 			case SC_LEECHESEND:
+			case SC_MARSHOFABYSS:
 				return 0;
 		}
 	}
@@ -7445,7 +7462,31 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_POWER_OF_GAIA:
 			val2 = 20;
 			break;
-
+		case SC_WHITEIMPRISON:
+			status_change_end(bl, SC_BURNING, -1);
+			status_change_end(bl, SC_FREEZING, -1);
+			status_change_end(bl, SC_FREEZE, -1);
+			status_change_end(bl, SC_STONE, -1);
+			break;
+		case SC_FREEZING:
+			status_change_end(bl, SC_BURNING, -1);
+			break;
+		case SC_READING_SB:
+			tick = 1000;
+			break;
+		case SC_SPHERE_1:
+		case SC_SPHERE_2:
+		case SC_SPHERE_3:
+		case SC_SPHERE_4:
+		case SC_SPHERE_5:
+			if( !sd )
+				return 0;
+			val4 = tick / 1000;
+			if( val4 < 1 )
+				val4 = 1;
+			tick = 1000;
+			val_flag |= 1;
+			break;
 		default:
 			if( calc_flag == SCB_NONE && StatusSkillChangeTable[type] == 0 && StatusIconChangeTable[type] == 0 )
 			{	//Status change with no calc, no icon, and no skill associated...?
@@ -7506,6 +7547,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_CURSEDCIRCLE_TARGET:
 		case SC_MAGNETICFIELD:
 		case SC_VACUUM_EXTREME:
+		case SC_WHITEIMPRISON:
 			unit_stop_walking(bl,1);
 		break;
 		case SC_HIDING:
@@ -8256,6 +8298,16 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 			if(sce->val3)
 				map_foreachinrange(status_change_timer_sub, bl, skill_get_splash(SR_CURSEDCIRCLE, sce->val1),BL_CHAR, bl, sce, SC_CURSEDCIRCLE_TARGET, gettick());
 			break;
+		case SC_WHITEIMPRISON:
+			if( tid == -1 )
+				break;
+			clif_damage(bl,bl,0,0,0,400*sce->val1,0,0,0);
+			status_zap(bl,400*sce->val1,0);
+			break;
+		case SC_READING_SB:
+			if( sd ) memset(sd->rsb,0,sizeof(sd->rsb));
+			break;
+
 	}
 
 	opt_flag = 1;
@@ -8264,6 +8316,7 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 	case SC_FREEZE:
 	case SC_STUN:
 	case SC_SLEEP:
+	case SC_WHITEIMPRISON:
 		sc->opt1 = 0;
 		break;
 
@@ -9163,6 +9216,26 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr data)
 		}
 		sc_timer_next(2000 + tick, status_change_timer, bl->id, data);
 		return 0;
+
+	case SC_READING_SB:
+		if( !status_charge(bl, 0, sce->val2) )
+			break;
+		sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
+		return 0;
+
+	case SC_SPHERE_1:
+	case SC_SPHERE_2:
+	case SC_SPHERE_3:
+	case SC_SPHERE_4:
+	case SC_SPHERE_5:
+		if( --(sce->val4) >= 0 )
+		{
+			if( !status_charge(bl, 0, 1) )
+				break;
+			sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
+			return 0;
+		}
+		break;
 
 	}
 	// default for all non-handled control paths is to end the status

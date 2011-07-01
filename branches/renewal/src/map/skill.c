@@ -3907,8 +3907,9 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 
 	case WL_TETRAVORTEX:
 		if(sd){
-			int spheres[5] = {0,0,0,0,0},positions[5] = {-1,-1,-1,-1,-1 },i,j = 0,k,subskill = 0,
-			wls_check[4] = {WLS_FIRE,WLS_WATER,WLS_WIND,WLS_STONE},wls_tetra[4] = {WL_TETRAVORTEX_FIRE,WL_TETRAVORTEX_WATER,WL_TETRAVORTEX_WIND,WL_TETRAVORTEX_GROUND};
+			int spheres[5] = {0,0,0,0,0},
+				positions[5] = {-1,-1,-1,-1,-1 },
+				i,j = 0,k,subskill = 0;
 
 			for(i = SC_SPHERE_1; i <= SC_SPHERE_5; i++)
 				if(sc && sc->data[i]){
@@ -3929,10 +3930,14 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 						swap(spheres[i],spheres[k]);
 					}
 			k = 0;
-			for(i = 0; i < 4; i++){
-				if(sc->data[spheres[i]]->val1 == wls_check[i]){
-					subskill = wls_tetra[i];
-					k |= 2^i;
+			for( i = 0; i < 4; i++ )
+			{
+				switch( sc->data[spheres[i]]->val1 )
+				{
+					case WLS_FIRE:  subskill = WL_TETRAVORTEX_FIRE; k |= 1; break;
+					case WLS_WIND:  subskill = WL_TETRAVORTEX_WIND; k |= 4; break;
+					case WLS_WATER: subskill = WL_TETRAVORTEX_WATER; k |= 2; break;
+					case WLS_STONE: subskill = WL_TETRAVORTEX_GROUND; k |= 8; break;
 				}
 				skill_addtimerskill(src,tick+status_get_adelay(src)*i,bl->id,k,0,subskill,skilllv,i,flag);
 				status_change_end(src,spheres[i],-1);
@@ -10792,6 +10797,7 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 		case UNT_FIREWALK:
 		case UNT_ELECTRICWALK:
 		case UNT_PSYCHIC_WAVE:
+		case UNT_EARTHSTRAIN:
 			skill_attack(skill_get_type(sg->skill_id),ss,&src->bl,bl,sg->skill_id,sg->skill_lv,tick,0);
 			break;
 
@@ -16227,6 +16233,7 @@ int skill_get_elemental_type(int skill_id, int skill_lv )
  * produce_db.txt
  * create_arrow_db.txt
  * abra_db.txt
+ * spellbook_db.txt
  *------------------------------------------*/
 
 static bool skill_parse_row_skilldb(char* split[], int columns, int current)
@@ -16506,6 +16513,31 @@ static bool skill_parse_row_abradb(char* split[], int columns, int current)
 	return true;
 }
 
+static bool skill_parse_row_spellbookdb(char* split[], int columns, int current)
+{// SkillID,Slots Requeridos
+
+	int skillid = atoi(split[0]),
+		points = atoi(split[1]),
+		nameid = atoi(split[2]);
+
+	if( !skill_get_index(skillid) || !skill_get_max(skillid) )
+		ShowError("spellbook_db: ID de habilidade %d invalido\n", skillid);
+	if ( !skill_get_inf(skillid) )
+		ShowError("spellbook_db: Habilidades passivas não podem ser memorizadas (%d/%s)\n", skillid, skill_get_name(skillid));
+	if( points < 1 )
+		ShowError("spellbook_db: Slots Requeridos deve ser 1 ou maior! (%d/%s)\n", skillid, skill_get_name(skillid));
+	else
+	{
+		skill_spellbook_db[current].skillid = skillid;
+		skill_spellbook_db[current].points = points;
+		skill_spellbook_db[current].nameid = nameid;
+
+		return true;
+	}
+
+	return false;
+}
+
 static bool skill_parse_row_magicmushroomdb(char* split[], int column, int current)
 {
 	int i = atoi(split[0]);
@@ -16592,6 +16624,7 @@ static void skill_readdb(void)
 	sv_readdb(db_path, "produce_db.txt"        , ',',   4,  4+2*MAX_PRODUCE_RESOURCE, MAX_SKILL_PRODUCE_DB, skill_parse_row_producedb);
 	sv_readdb(db_path, "create_arrow_db.txt"   , ',', 1+2,  1+2*MAX_ARROW_RESOURCE, MAX_SKILL_ARROW_DB, skill_parse_row_createarrowdb);
 	sv_readdb(db_path, "abra_db.txt"           , ',',   4,  4, MAX_SKILL_ABRA_DB, skill_parse_row_abradb);
+	sv_readdb(db_path, "spellbook_db.txt"      , ',',   3,  3, MAX_SKILL_SPELLBOOK_DB, skill_parse_row_spellbookdb);
 	sv_readdb(db_path, "skill_magicmushroom_db.txt"  , ',',   1,  1, MAX_SKILL_MAGICMUSHROOM_DB, skill_parse_row_magicmushroomdb);
 	sv_readdb(db_path, "skill_improvise_db.txt"      , ',',   2,  2, MAX_SKILL_IMPROVISE_DB, skill_parse_row_improvisedb);
 	sv_readdb(db_path, "skill_reproduce_db.txt", ',',   2,  2, MAX_SKILL_DB, skill_parse_row_reproducedb);

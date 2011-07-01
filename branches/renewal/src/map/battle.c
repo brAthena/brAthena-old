@@ -2172,6 +2172,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					break;
 				case LG_RAGEBURST:
 					skillratio += 300 * skill_lv + sd->rageball_old * (2 * s_base_level) / 100;
+					break;
 				case GN_CART_TORNADO:
 					skillratio += 50 * skill_lv + pc_checkskill(sd, GN_REMODELING_CART) * 100 - 100;
 					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
@@ -3314,7 +3315,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 							skillratio += skillratio*(s_base_level-100)/200;
 						break;
 					case WL_EARTHSTRAIN:
-						skillratio += 1900+100*skill_lv;
+						skillratio += 2000+100*skill_lv;
 						if(s_base_level > 100)
 							skillratio += skillratio*(s_base_level-100)/200;
 						break;
@@ -3322,7 +3323,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 					case WL_TETRAVORTEX_WATER:
 					case WL_TETRAVORTEX_WIND:
 					case WL_TETRAVORTEX_GROUND:
-						skillratio += 400+500*skill_lv;
+						skillratio += 500+500*skill_lv;
 						break;
 					case WL_SUMMON_ATK_FIRE:
 					case WL_SUMMON_ATK_WATER:

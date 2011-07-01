@@ -10754,7 +10754,7 @@ void clif_parse_SelectArrow(int fd,struct map_session_data *sd)
 	else if(sd->menuskill_id == GC_POISONINGWEAPON)
 		skill_poisoningweapon(sd,RFIFOW(fd,2));
 	else if(sd->menuskill_id == WL_READING_SB)
-		skill_autospell(sd,RFIFOW(fd,2));
+		skill_spellbook(sd,RFIFOW(fd,2));
 	else if(sd->menuskill_id == NC_MAGICDECOY)
 		return;
 

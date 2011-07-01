@@ -915,6 +915,7 @@ int unit_can_move(struct block_list *bl)
 			|| sc->data[SC_CURSEDCIRCLE_TARGET]
 			|| sc->data[SC_MAGNETICFIELD]
 			|| sc->data[SC_VACUUM_EXTREME]
+			|| sc->data[SC_WHITEIMPRISON]
 		))
 			return 0;
 	}
@@ -1143,6 +1144,13 @@ int unit_skilluse_id2(struct block_list *src, int target_id, short skill_num, sh
 			if (skill_check_pc_partner(sd, skill_num, &skill_lv, 1, 0) < 1)
 			{
 				clif_skill_fail(sd,skill_num,0,0,0);
+				return 0;
+			}
+			break;
+		case WL_WHITEIMPRISON:
+			if( battle_check_target(src,target,BCT_SELF|BCT_ENEMY) < 0 )
+			{
+				clif_skill_fail(sd,skill_num,0xb,0,0);
 				return 0;
 			}
 			break;

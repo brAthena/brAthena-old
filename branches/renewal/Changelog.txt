@@ -9,6 +9,16 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0688 - 01/07/2011 [Mark]
+	* Correções em algumas habilidades.
+	- Abalo Sísmico, habilidade não funcionava.
+	- Estudo arcano, trava quando você memoriza qualquer skill.
+	- Tetra Vortex, habilidade não funcionava.
+	- Invocar Esferas, as esferas não apareciam.
+	- Pântano de Nifflheim, não funcionava o status só a animação.
+	- Exílio, dava pra andar no exílio e não tomava dano fixo.
+	- Report por khimy (#146)
+
 	r0687 - 30/06/2011 [Dani]
 	* Correções de itens que encantam armas com elementos
 	- Bug iniciado na r599, afetando somente o Renewal
