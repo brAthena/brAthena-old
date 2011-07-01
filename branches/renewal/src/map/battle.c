@@ -2363,7 +2363,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			if(sc->data[SC_EDP] &&
 			  	skill_num != ASC_BREAKER &&
 				skill_num != ASC_METEORASSAULT &&
-				skill_num != AS_SPLASHER && !(tstatus->mode&MD_BOSS))
+				skill_num != AS_SPLASHER)
 				ATK_ADDRATE(sc->data[SC_EDP]->val3);
 		}
 

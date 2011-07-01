@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0692 - 01/07/2011 [Protimus]
+	* Modificação em habilidade:
+	- ASC_EDP (Encantar com Veneno Mortal): Revertida r424.
+	- Não é o dano e sim o status de envenenar o MvP.
+
 	r0691 - 01/07/2011 [Protimus]
 	* Revertidos alguns problemas dos envios de r688 e r689.
 
