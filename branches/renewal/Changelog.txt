@@ -9,8 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0689 - 01/07/2011 [Mark]
+	* Correção no dano da habilidade Lâminas Retalhadoras.
+	* Pequena correção na habilidade Camuflagem.
+
 	r0688 - 01/07/2011 [Mark]
-	* Correções em algumas habilidades.
+	* Correções em algumas habilidades:
 	- Abalo Sísmico, habilidade não funcionava.
 	- Estudo arcano, trava quando você memoriza qualquer skill.
 	- Tetra Vortex, habilidade não funcionava.

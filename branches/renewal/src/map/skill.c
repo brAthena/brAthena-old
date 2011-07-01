@@ -8596,6 +8596,8 @@ int skill_castend_id(int tid, unsigned int tick, int id, intptr data)
 		
 		sc = status_get_sc(src);
 
+		if( sc->data[SC_CAMOUFLAGE] )
+			status_change_end(src,SC_CAMOUFLAGE,-1);
 		if(sc && sc->data[SC_CURSEDCIRCLE_ATKER]) {
 			sc->data[SC_CURSEDCIRCLE_ATKER]->val3 = 1;
 			status_change_end(src,SC_CURSEDCIRCLE_ATKER,-1);

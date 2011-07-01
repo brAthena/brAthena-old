@@ -2023,7 +2023,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio += 10 * skill_lv;
 					break;
 				case GC_CROSSIMPACT:
-					skillratio += 1050 + 50 * skill_lv;
+					skillratio += 1150 + 50 * skill_lv;
 					break;
 				case GC_COUNTERSLASH:
 					skillratio += 300 + (100 * skill_lv) + status_get_agi(src);
