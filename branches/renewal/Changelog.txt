@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0694 - 01/07/2011 [Protimus]
+	* Modificação em habilidade:
+	- WA_MOONLIT_SERENADE (Serenata ao Luar): Não estava dando bônus de ataque mágico.
+
 	r0693 - 01/07/2011 [brn0]
 	* Corrigida a habilidade RK_DEATHBOUND (Revidar Dano).
 	- O dano só era causado quando os dois personagens estavam na mesma célula.

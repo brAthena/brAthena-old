@@ -4099,6 +4099,8 @@ static unsigned short status_calc_matk(struct block_list *bl, struct status_chan
 		matk += sc->data[SC_CHILLY_AIR_OPTION]->val2;
 	if(sc->data[SC_WATER_BARRIER])
 		matk -= sc->data[SC_WATER_BARRIER]->val3;
+	if(sc->data[SC_MOONLITSERENADE])
+		matk += matk * sc->data[SC_MOONLITSERENADE]->val1/100;
 
 	return (unsigned short)cap_value(matk,0,USHRT_MAX);
 }
@@ -7169,6 +7171,8 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_SWINGDANCE:
 			val2 = 4 * val1;
 			break;
+		case SC_MOONLITSERENADE:
+			val2 = 20*val1; // Adição de matk.
 		case SC_SITDOWN_FORCE:
 		case SC_BANANA_BOMB_SITDOWN:
 			if( sd && !pc_issit(sd) )
