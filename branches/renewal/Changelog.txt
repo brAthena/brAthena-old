@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0690 - 01/07/2011 [Protimus]
+	* Modificações em habilidades:
+	- ST_REJECTSWORD (Instinto de Defesa): Estava sem opções de requerimento, funcionando incorretamente.
+	- RK_DEATHBOUND (Revidar Dano): Faltava uma verificação para obtenção do status_check_skilluse corretamente.
+
 	r0689 - 01/07/2011 [Mark]
 	* Correção no dano da habilidade Lâminas Retalhadoras.
 	* Pequena correção na habilidade Camuflagem.
