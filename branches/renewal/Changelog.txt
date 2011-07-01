@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0691 - 01/07/2011 [Protimus]
+	* Revertidos alguns problemas dos envios de r688 e r689.
+
 	r0690 - 01/07/2011 [Protimus]
 	* Modificações em habilidades:
 	- ST_REJECTSWORD (Instinto de Defesa): Estava sem opções de requerimento, funcionando incorretamente.

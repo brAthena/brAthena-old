@@ -2023,7 +2023,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio += 10 * skill_lv;
 					break;
 				case GC_CROSSIMPACT:
-					skillratio += 1150 + 50 * skill_lv;
+					skillratio += 1050 + 50 * skill_lv;
 					break;
 				case GC_COUNTERSLASH:
 					skillratio += 300 + (100 * skill_lv) + status_get_agi(src);
@@ -3315,7 +3315,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 							skillratio += skillratio*(s_base_level-100)/200;
 						break;
 					case WL_EARTHSTRAIN:
-						skillratio += 2000+100*skill_lv;
+						skillratio += 1900+100*skill_lv;
 						if(s_base_level > 100)
 							skillratio += skillratio*(s_base_level-100)/200;
 						break;
@@ -3323,7 +3323,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 					case WL_TETRAVORTEX_WATER:
 					case WL_TETRAVORTEX_WIND:
 					case WL_TETRAVORTEX_GROUND:
-						skillratio += 500+500*skill_lv;
+						skillratio += 400+500*skill_lv;
 						break;
 					case WL_SUMMON_ATK_FIRE:
 					case WL_SUMMON_ATK_WATER:
