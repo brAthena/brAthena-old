@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0695 - 01/07/2011 [Protimus]
+	* Modificações em habilidades:
+	- WA_SWING_DANCE (Ritmo Contagiante): Não estava dando bônus na velocidade de ataque.
+	- WA_SYMPHONY_OF_LOVER (Balada Sinfônica): Não estava dando bônus de defesa mágica.
+	* Correção do envio anterior para WA_MOONLIT_SERENADE (Serenata ao Luar).
+	
 	r0694 - 01/07/2011 [Protimus]
 	* Modificação em habilidade:
 	- WA_MOONLIT_SERENADE (Serenata ao Luar): Não estava dando bônus de ataque mágico.

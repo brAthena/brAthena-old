@@ -4392,7 +4392,9 @@ static signed short status_calc_mdef(struct block_list *bl, struct status_change
 		mdef *= 2;
 	if( sc->data[SC_MARSHOFABYSS] )
 		mdef -= mdef * ( 6 + 6 * sc->data[SC_MARSHOFABYSS]->val3/10 + (bl->type == BL_MOB ? 5 : 3) * sc->data[SC_MARSHOFABYSS]->val2/36 ) / 100;
-
+	if( sc->data[SC_SYMPHONYOFLOVER] )
+		mdef += mdef*sc->data[SC_SYMPHONYOFLOVER]->val1/100;
+	
 	return (short)cap_value(mdef,SHRT_MIN,SHRT_MAX);
 }
 
@@ -4554,6 +4556,8 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 				val = max( val, sc->data[SC_GT_REVITALIZE]->val2 );
 			if( sc->data[SC_WIND_STEP_OPTION] )
 				val = max( val, sc->data[SC_WIND_STEP_OPTION]->val2 );
+			if( sc->data[SC_SWINGDANCE] )
+                val = max( val, sc->data[SC_SWINGDANCE]->val2 );
 
 			//FIXME: official items use a single bonus for this [ultramage]
 			if( sc->data[SC_SPEEDUP0] ) // temporary item-based speedup
@@ -4685,6 +4689,8 @@ static short status_calc_aspd_rate(struct block_list *bl, struct status_change *
 		aspd_rate -= aspd_rate * sc->data[SC_GT_REVITALIZE]->val2 / 100;
 	if( sc->data[SC_GUST_OPTION] )
 		aspd_rate += aspd_rate * sc->data[SC_GUST_OPTION]->val3 / 100;
+	if(sc->data[SC_SWINGDANCE])
+		aspd_rate += aspd_rate * sc->data[SC_SWINGDANCE]->val1/100;
 
 
 	return (short)cap_value(aspd_rate,0,SHRT_MAX);
@@ -7172,7 +7178,8 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			val2 = 4 * val1;
 			break;
 		case SC_MOONLITSERENADE:
-			val2 = 20*val1; // Adição de matk.
+			val2 = 20 * val1; // Adição de matk.
+			break;
 		case SC_SITDOWN_FORCE:
 		case SC_BANANA_BOMB_SITDOWN:
 			if( sd && !pc_issit(sd) )
@@ -7185,13 +7192,14 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_DANCEWITHWUG:
 			val3 = (5 * val1) + (1 * val2); 
 			break;
-		case SC_SYMPHONYOFLOVER:
 		case SC_RUSHWINDMILL:
 		case SC_ECHOSONG:
 			val2 = 6 * val1;
 			val2 += val3; 
 			val2 += (int)(floor(val4*0.2)); 
 			break;
+		case SC_SYMPHONYOFLOVER:
+			val2 = 20 + 20 * val1;
 		case SC_HARMONIZE:
 			val2 = 3 + 2 * val1;
 			break;
