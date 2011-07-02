@@ -581,9 +581,17 @@ static void disp_error_message2(const char *mes,const char *pos,int report)
 /// Checks event parameter validity
 static void check_event(struct script_state *st, const char *evt)
 {
-	if( evt != NULL && *evt != '\0' && !stristr(evt,"::On") ){
-		ShowError("Parametro de evento de NPC obsoleto! Favor usar 'NPCNAME::OnEVENT' ao inves de '%s'.\n",evt);
+	if( evt && evt[0] && !stristr(evt, "::On") )
+	{
+		if( npc_event_isspecial(evt) )
+		{
+			;  // portable small/large monsters or other attributes
+		}
+		else
+		{
+		ShowWarning("Parametro de evento de NPC obsoleto! Favor usar 'NPCNAME::OnEVENT' ao inves de '%s'.\n",evt);
 		script_reportsrc(st);
+		}
 	}
 }
 
@@ -3311,7 +3319,7 @@ struct linkdb_node* script_erase_sleepdb(struct linkdb_node *n)
 /*==========================================
  * sleep用タイマー関数
  *------------------------------------------*/
-int run_script_timer(int tid, unsigned int tick, int id, intptr data)
+int run_script_timer(int tid, unsigned int tick, int id, intptr_t data)
 {
 	struct script_state *st     = (struct script_state *)data;
 	struct linkdb_node *node    = (struct linkdb_node *)sleep_db;
@@ -3508,7 +3516,7 @@ void run_script_main(struct script_state *st)
 		sd = map_id2sd(st->rid); // Get sd since script might have attached someone while running. [Inkfish]
 		st->sleep.charid = sd?sd->status.char_id:0;
 		st->sleep.timer  = add_timer(gettick()+st->sleep.tick,
-			run_script_timer, st->sleep.charid, (intptr)st);
+			run_script_timer, st->sleep.charid, (intptr_t)st);
 		linkdb_insert(&sleep_db, (void*)st->oid, st);
 	}
 	else if(st->state != END && st->rid){
@@ -4570,7 +4578,7 @@ BUILDIN_FUNC(warpparty)
 		 : ( strcmp(str,"SavePoint")==0 ) ? 2
 		 : ( strcmp(str,"Leader")==0 ) ? 3
 		 : 4;
-		 
+
 	if( type == 2 && ( sd = script_rid2sd(st) ) == NULL )
 	{// "SavePoint" uses save point of the currently attached player
 		return 0;
@@ -4652,7 +4660,7 @@ BUILDIN_FUNC(warpguild)
 	     : ( strcmp(str,"SavePointAll")==0 ) ? 1
 		 : ( strcmp(str,"SavePoint")==0 ) ? 2
 		 : 3;
-		 
+
 	if( type == 2 && ( sd = script_rid2sd(st) ) == NULL )
 	{// "SavePoint" uses save point of the currently attached player
 		return 0;
@@ -5504,7 +5512,6 @@ BUILDIN_FUNC(checkweight)
 	{
 		ShowError("buildin_checkweight: Invalid item '%s'.\n", script_getstr(st,2));  // returns string, regardless of what it was
 		script_pushint(st,0);
-		ShowError("buildin_checkweight: Wrong item ID or amount.\n");
 		return 1;
 	}
 
@@ -8182,8 +8189,8 @@ BUILDIN_FUNC(cmdothernpc)	// Added by RoVeRT
 {
 	const char* npc = script_getstr(st,2);
 	const char* command = script_getstr(st,3);
-	char event[51];
-	snprintf(event, 51, "%s::OnCommand%s", npc, command);
+	char event[EVENT_NAME_LENGTH];
+	snprintf(event, sizeof(event), "%s::OnCommand%s", npc, command);
 	check_event(st, event);
 	npc_event_do(event);
 	return 0;
@@ -9274,8 +9281,8 @@ BUILDIN_FUNC(globalmes)
 /// waitingroom "<title>",<limit>{,"<event>"{,<trigger>{,<zeny>{,<minlvl>{,<maxlvl>}}}}};
 BUILDIN_FUNC(waitingroom)
 {
-	struct npc_data* nd;	
- 	int pub = 1;
+	struct npc_data* nd;
+	int pub = 1;
 	const char* title = script_getstr(st, 2);
 	int limit = script_getnum(st, 3);
 	const char* ev = script_hasdata(st,4) ? script_getstr(st,4) : "";
@@ -9450,11 +9457,12 @@ BUILDIN_FUNC(warpwaitingpc)
 	for( i = 0; i < n && cd->users > 0; i++ )
 	{
 		sd = cd->usersd[0];
+
 		if( strcmp(map_name,"SavePoint") == 0 && map[sd->bl.m].flag.noteleport )
 		{// can't teleport on this map
 			break;
- 		}
- 
+		}
+
 		if( cd->zeny )
 		{// fee set
 			if( (uint32)sd->status.zeny < cd->zeny )
@@ -12725,17 +12733,17 @@ int buildin_query_sql_sub(struct script_state* st, Sql* handle)
 
 BUILDIN_FUNC(query_sql)
 {
+	return buildin_query_sql_sub(st, mmysql_handle);
+}
+
+BUILDIN_FUNC(query_logsql)
+{
 	if( !log_config.sql_logs )
 	{
 		ShowWarning("buildin_query_logsql: SQL logs are disabled, query '%s' will not be executed.\n", script_getstr(st,2));
 		script_pushint(st,-1);
 		return 1;
 	}
-	return buildin_query_sql_sub(st, mmysql_handle);
-}
-
-BUILDIN_FUNC(query_logsql)
-{
 	return buildin_query_sql_sub(st, logmysql_handle);
 }
 
@@ -14226,6 +14234,7 @@ BUILDIN_FUNC(bg_monster_set_team)
 		return 0;
 	md = (TBL_MOB *)mbl;
 	md->bg_id = bg_id;
+
 	mob_stop_attack(md);
 	mob_stop_walking(md, 0);
 	md->target_id = md->attacked_id = 0;

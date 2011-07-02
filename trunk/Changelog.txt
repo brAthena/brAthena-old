@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0697 - 02/07/2011 [Dani]
+	* Atualizado conforme eAthena r14881.
+
 	r0683 - 27/06/2011 [CarlosHenrq]
 	* Adicionada nova configuração de batalha opcional:
 	- Bloqueia ou não o jogador usar a skill 'MO_BODYRELOCATION' enquanto trapeado.

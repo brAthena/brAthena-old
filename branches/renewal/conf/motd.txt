@@ -23,7 +23,6 @@
 // | texto será inválido conforme a source.                 |
 // | Lembre-se que "NOTAS" dão recomendações importantes.   |
 // \________________________________________________________/
-
 // NOTA: O motd serve para informar notícias aos personagens que logarem no servidor,
 // adicione abaixo suas notícias ou saudações.
 // O limite de linhas é de 128, se você precisar de mais linhas precisará modificar

@@ -219,8 +219,19 @@ struct point {
 	short x,y;
 };
 
+enum e_skill_flag
+{
+	SKILL_FLAG_PERMANENT,
+	SKILL_FLAG_TEMPORARY,
+	SKILL_FLAG_PLAGIARIZED,
+	SKILL_FLAG_REPLACED_LV_0, // temporary skill overshadowing permanent skill of level 'N - SKILL_FLAG_REPLACED_LV_0'
+	//...
+};
+
 struct s_skill {
-	unsigned short id,lv,flag;
+	unsigned short id;
+	unsigned short lv;
+	unsigned short flag; // see enum e_skill_flag
 };
 
 struct global_reg {
@@ -319,7 +330,6 @@ struct s_friend {
 	int char_id;
 	char name[NAME_LENGTH];
 };
-
 
 #ifdef HOTKEY_SAVING
 struct hotkey {
@@ -535,12 +545,6 @@ struct guild_castle {
 	int temp_guardians_max;
 };
 
-// for Brandish Spear calculations
-struct square {
-	int val1[5];
-	int val2[5];
-};
-
 struct fame_list {
 	int id;
 	int fame;
@@ -667,7 +671,7 @@ enum {
 	JOB_STAR_GLADIATOR,
 	JOB_STAR_GLADIATOR2,
 	JOB_SOUL_LINKER,
-	
+
 	JOB_GANGSI,
 	JOB_DEATH_KNIGHT,
 	JOB_DARK_COLLECTOR,
@@ -729,10 +733,10 @@ enum {
 	JOB_BABY_GUARD2,
 	JOB_BABY_RANGER2,
 	JOB_BABY_MECHANIC2,
-	
+
 	JOB_SUPER_NOVICE_E = 4190,
 	JOB_SUPER_BABY_E,
-	
+
 	JOB_MAX,
 };
 

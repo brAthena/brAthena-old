@@ -220,7 +220,7 @@ uint16 clif_getport(void);
 
 int clif_authok(struct map_session_data *);
 int clif_authfail_fd(int fd,int type);
-int clif_charselectok(int);
+int clif_charselectok(int id, uint8 ok);
 int clif_dropflooritem(struct flooritem_data *);
 int clif_clearflooritem(struct flooritem_data *,int);
 
@@ -404,7 +404,7 @@ int clif_movetoattack(struct map_session_data *sd,struct block_list *bl);
 int clif_party_created(struct map_session_data *sd,int result);
 int clif_party_member_info(struct party_data *p, struct map_session_data *sd);
 int clif_party_info(struct party_data *p, struct map_session_data *sd);
-int clif_party_invite(struct map_session_data *sd,struct map_session_data *tsd);
+void clif_party_invite(struct map_session_data *sd,struct map_session_data *tsd);
 void clif_party_inviteack(struct map_session_data* sd, const char* nick, int flag);
 int clif_party_option(struct party_data *p,struct map_session_data *sd,int flag);
 int clif_party_withdraw(struct party_data* p, struct map_session_data* sd, int account_id, const char* name, int flag);

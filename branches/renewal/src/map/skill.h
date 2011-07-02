@@ -241,7 +241,7 @@ struct s_skill_reproduce_db {
 
 struct s_skill_improvise_db {
 	int skillid;
-	int per; 
+	int per;
 };
 extern struct s_skill_improvise_db skill_improvise_db[MAX_SKILL_IMPROVISE_DB];
 
@@ -298,8 +298,8 @@ const char*	skill_get_desc( int id ); 	// [Skotlex]
 int skill_name2id(const char* name);
 
 int skill_isammotype(struct map_session_data *sd, int skill);
-int skill_castend_id(int tid, unsigned int tick, int id, intptr data);
-int skill_castend_pos(int tid, unsigned int tick, int id, intptr data);
+int skill_castend_id(int tid, unsigned int tick, int id, intptr_t data);
+int skill_castend_pos(int tid, unsigned int tick, int id, intptr_t data);
 int skill_castend_map( struct map_session_data *sd,short skill_num, const char *map);
 
 int skill_cleartimerskill(struct block_list *src);
@@ -350,8 +350,7 @@ int skill_guildaura_sub (struct block_list *bl,va_list ap);
 int skill_castcancel(struct block_list *bl,int type);
 
 int skill_sit (struct map_session_data *sd, int type);
-void skill_brandishspear_first(struct square *tc,int dir,int x,int y);
-void skill_brandishspear_dir(struct square *tc,int dir,int are);
+void skill_brandishspear(struct block_list* src, struct block_list* bl, int skillid, int skilllv, unsigned int tick, int flag);
 void skill_repairweapon(struct map_session_data *sd, int idx);
 void skill_identify(struct map_session_data *sd,int idx);
 void skill_weaponrefine(struct map_session_data *sd,int idx); // [Celest]
@@ -385,7 +384,7 @@ int skill_spellbook (struct map_session_data *sd, int nameid);
 int skill_changematerial(struct map_session_data *sd, int n, unsigned short *item_list);
 int skill_get_elemental_type(int skill_id, int skill_lv);
 int skill_elementalanalysis(struct map_session_data *sd, int n, int type, unsigned short *item_list);
-int skill_stasis_check(struct block_list *bl, int src_id, int skillid); 
+int skill_stasis_check(struct block_list *bl, int src_id, int skillid);
 
 // mobƒXƒLƒ‹‚Ì‚½‚ß
 int skill_castend_nodamage_id( struct block_list *src, struct block_list *bl,int skillid,int skilllv,unsigned int tick,int flag );
@@ -1236,7 +1235,7 @@ enum e_skill {
 	SC_MAELSTROM,
 	SC_BLOODYLUST,
 	SC_FEINTBOMB,
-	
+
 	LG_CANNONSPEAR = 2307,
 	LG_BANISHINGPOINT,
 	LG_TRAMPLE,
@@ -1364,7 +1363,7 @@ enum e_skill {
 	GN_S_PHARMACY,
 	GN_SLINGITEM_RANGEMELEEATK,
 
-	AB_SECRAMENT = 2515, 
+	AB_SECRAMENT = 2515,
 	WM_SEVERE_RAINSTORM_MELEE,
 	SR_HOWLINGOFLION,
 	SR_RIDEINLIGHTNING,
@@ -1602,7 +1601,7 @@ enum {
 
 	UNT_MAX = 0x190
 };
-	
+
 enum gx_poison {
 	PO_PARALYSE = 12717,
 	PO_LEECHESEND,

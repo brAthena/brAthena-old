@@ -236,7 +236,7 @@ int map_freeblock_unlock (void)
 // この関数は、do_timer() のトップレベルから呼ばれるので、
 // block_free_lock を直接いじっても支障無いはず。
 
-int map_freeblock_timer(int tid, unsigned int tick, int id, intptr data)
+int map_freeblock_timer(int tid, unsigned int tick, int id, intptr_t data)
 {
 	if (block_free_lock > 0) {
 		ShowError("map_freeblock_timer: block_free_lock(%d) invalido.\n", block_free_lock);
@@ -1213,7 +1213,7 @@ int map_get_new_object_id(void)
  * 後者は、map_clearflooritem(id)へ
  * map.h?で#defineしてある
  *------------------------------------------*/
-int map_clearflooritem_timer(int tid, unsigned int tick, int id, intptr data)
+int map_clearflooritem_timer(int tid, unsigned int tick, int id, intptr_t data)
 {
 	struct flooritem_data* fitem = (struct flooritem_data*)idb_get(id_db, id);
 	if( fitem==NULL || fitem->bl.type!=BL_ITEM || (!data && fitem->cleartimer != tid) )
@@ -1658,12 +1658,12 @@ struct npc_data * map_id2nd(int id)
 	struct block_list* bl = map_id2bl(id);
 
 	return BL_CAST(BL_NPC, bl);
- }
- 
+}
+
 struct homun_data* map_id2hd(int id)
 {
 	struct block_list* bl = map_id2bl(id);
- 
+
 	return BL_CAST(BL_HOM, bl);
 }
 
@@ -2142,7 +2142,7 @@ int map_removemobs_sub(struct block_list *bl, va_list ap)
 	return 1;
 }
 
-int map_removemobs_timer(int tid, unsigned int tick, int id, intptr data)
+int map_removemobs_timer(int tid, unsigned int tick, int id, intptr_t data)
 {
 	int count;
 	const int m = id;
@@ -3428,9 +3428,6 @@ void do_final(void)
 		map_quit(sd);
 	mapit_free(iter);
 
-	for( i = 0; i < MAX_INSTANCE; i++ )
-		instance_destroy(i);
-
 	id_db->foreach(id_db,cleanup_db_sub);
 	chrif_char_reset_offline();
 	chrif_flush_fifo();
@@ -3440,6 +3437,7 @@ void do_final(void)
 	do_final_chrif();
 	do_final_npc();
 	do_final_script();
+	do_final_instance();
 	do_final_itemdb();
 	do_final_storage();
 	do_final_guild();
@@ -3559,6 +3557,27 @@ void set_server_type(void)
 {
 	SERVER_TYPE = ATHENA_SERVER_MAP;
 }
+
+
+/// Called when a terminate signal is received.
+void do_shutdown(void)
+{
+	if( runflag != MAPSERVER_ST_SHUTDOWN )
+	{
+		runflag = MAPSERVER_ST_SHUTDOWN;
+		ShowStatus("Shutting down...\n");
+		{
+			struct map_session_data* sd;
+			struct s_mapiterator* iter = mapit_getallusers();
+			for( sd = (TBL_PC*)mapit_first(iter); mapit_exists(iter); sd = (TBL_PC*)mapit_next(iter) )
+				clif_GM_kick(NULL, sd);
+			mapit_free(iter);
+			flush_fifos();
+		}
+		chrif_check_shutdown();
+	}
+}
+
 
 int do_init(int argc, char *argv[])
 {
@@ -3693,6 +3712,12 @@ int do_init(int argc, char *argv[])
 		ShowNotice("Servidor rodando em '"CL_WHITE"Modo PK"CL_RESET"'.\n");
 
 	ShowStatus("Servidor de mapas '"CL_GREEN"Ativado"CL_RESET"' (porta '"CL_WHITE"%d"CL_RESET"').\n\n", map_port);
+
+	if( runflag != CORE_ST_STOP )
+	{
+		shutdown_callback = do_shutdown;
+		runflag = MAPSERVER_ST_RUNNING;
+	}
 
 	return 0;
 }

@@ -1,0 +1,80 @@
+
+#
+# local copy
+#
+if( WIN32 )
+message( STATUS "Detecting local MYSQL" )
+find_path( MYSQL_LOCAL_INCLUDE_DIRS "mysql.h"
+	PATHS "${CMAKE_CURRENT_SOURCE_DIR}/include"
+	NO_DEFAULT_PATH )
+find_library( MYSQL_LOCAL_LIBRARIES
+	NAMES libmysql
+	PATHS "${CMAKE_CURRENT_SOURCE_DIR}/lib"
+	NO_DEFAULT_PATH )
+mark_as_advanced( MYSQL_LOCAL_LIBRARIES )
+mark_as_advanced( MYSQL_LOCAL_INCLUDE_DIRS )
+
+if( MYSQL_LOCAL_LIBRARIES AND MYSQL_LOCAL_INCLUDE_DIRS )
+	if( EXISTS "${MYSQL_LOCAL_INCLUDE_DIRS}/mysql_version.h" )
+		file( STRINGS "${MYSQL_LOCAL_INCLUDE_DIRS}/mysql_version.h" MYSQL_VERSION_H REGEX "^#define MYSQL_SERVER_VERSION[ \t]+\"[^\"]+\".*$" )
+		string( REGEX REPLACE "^.*MYSQL_SERVER_VERSION[ \t]+\"([^\"]+)\".*$" "\\1" MYSQL_SERVER_VERSION "${MYSQL_VERSION_H}" )
+		message( STATUS "Found MYSQL: ${MYSQL_LOCAL_LIBRARIES} (found version ${MYSQL_SERVER_VERSION})" )
+	else()
+		message( STATUS "Found MYSQL: ${MYSQL_LOCAL_LIBRARIES}" )
+	endif()
+	set( HAVE_LOCAL_MYSQL ON
+		CACHE BOOL "mysql client is available as a local copy")
+else()
+	foreach( _VAR MYSQL_LOCAL_LIBRARIES MYSQL_LOCAL_INCLUDE_DIRS )
+		if( NOT "${_VAR}" )
+			set( MISSING_VARS ${MISSING_VARS} ${_VAR} )
+		endif()
+	endforeach()
+	message( STATUS "Could NOT find MYSQL (missing: ${MISSING_VARS})" )
+	unset( HAVE_LOCAL_MYSQL CACHE )
+endif()
+message( STATUS "Detecting local MYSQL - done" )
+endif( WIN32 )
+
+
+#
+# system
+#
+message( STATUS "Detecting system MYSQL" )
+find_program( MYSQL_CONFIG_EXECUTABLE "mysql_config" )
+mark_as_advanced( MYSQL_CONFIG_EXECUTABLE )
+if( MYSQL_CONFIG_EXECUTABLE )
+	# use mysql_config data
+	message( "Found mysql_config: ${MYSQL_CONFIG_EXECUTABLE}" )
+	execute_process( COMMAND "${MYSQL_CONFIG_EXECUTABLE} --libs"
+		OUTPUT_VARIABLE MYSQL_LIBRARIES )
+	execute_process( COMMAND "${MYSQL_CONFIG_EXECUTABLE} --include"
+		OUTPUT_VARIABLE MYSQL_INCLUDE_DIRS )
+	execute_process( COMMAND "${MYSQL_CONFIG_EXECUTABLE} --version"
+		OUTPUT_VARIABLE MYSQL_VERSION )
+	message( STATUS "Found MYSQL: ${MYSQL_LIBRARIES} (found version ${MYSQL_VERSION})" )
+else()
+	# find mysql package
+	unset( MYSQL_LIBRARIES CACHE )
+	unset( MYSQL_INCLUDE_DIRS CACHE )
+	set( CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_MODULE_PATH} )
+	find_package( MYSQL )
+endif()
+set( MYSQL_SYSTEM_LIBRARIES "${MYSQL_LIBRARIES}"
+	CACHE PATH "system mysql libraries" )
+set( MYSQL_SYSTEM_INCLUDE_DIRS "${MYSQL_INCLUDE_DIRS}"
+	CACHE PATH "system mysql include directories" )
+mark_as_advanced( MYSQL_SYSTEM_LIBRARIES )
+mark_as_advanced( MYSQL_SYSTEM_INCLUDE_DIRS )
+
+if( MYSQL_SYSTEM_LIBRARIES AND MYSQL_SYSTEM_INCLUDE_DIRS )
+	set( HAVE_SYSTEM_MYSQL ON
+		CACHE BOOL "mysql client is available on the system" )
+endif()
+message( STATUS "Detecting system MYSQL - done" )
+
+
+#
+# configure
+#
+CONFIGURE_USE_LOCAL_OR_SYSTEM( MYSQL )

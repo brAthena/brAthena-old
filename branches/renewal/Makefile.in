@@ -4,10 +4,10 @@ HAVE_MYSQL=@HAVE_MYSQL@
 ifeq ($(HAVE_MYSQL),yes)
 	ALL_DEPENDS=common_sql login_sql char_sql map_sql tools 
 	SQL_DEPENDS=common_sql login_sql char_sql map_sql 
-	COMMON_SQL_DEPENDS=
-	LOGIN_SQL_DEPENDS=common_sql
-	CHAR_SQL_DEPENDS=common_sql
-	MAP_SQL_DEPENDS=common_sql
+	COMMON_SQL_DEPENDS=mt19937ar
+	LOGIN_SQL_DEPENDS=mt19937ar common_sql
+	CHAR_SQL_DEPENDS=mt19937ar common_sql
+	MAP_SQL_DEPENDS=mt19937ar common_sql
 	CONVERTERS_DEPENDS=common_sql
 else
 	ALL_DEPENDS=needs_mysql
@@ -29,6 +29,7 @@ endif
 #####################################################################
 .PHONY: sql  \
 	common_sql \
+	mt19937ar \
 	login_sql \
 	char_sql \
 	map_sql \
@@ -41,6 +42,9 @@ sql: $(SQL_DEPENDS)
 
 common_sql: $(COMMON_SQL_DEPENDS)
 	@$(MAKE) -C src/common sql
+
+mt19937ar:
+	@$(MAKE) -C 3rdparty/mt19937ar
 
 login_sql: $(LOGIN_SQL_DEPENDS)
 	@$(MAKE) -C src/login sql
@@ -59,6 +63,7 @@ plugins addons: $(PLUGIN_DEPENDS)
 
 clean:
 	@$(MAKE) -C src/common $@
+	@$(MAKE) -C 3rdparty/mt19937ar $@
 	@$(MAKE) -C src/login $@
 	@$(MAKE) -C src/char $@
 	@$(MAKE) -C src/map $@
@@ -69,6 +74,7 @@ help:
 	@echo "Os alvos comuns são: 'all' 'sql' 'clean' 'help'"
 	@echo "Os possíveis trajetos únicos são:"
 	@echo "'common_sql'  - compila os arquivos de objeto usados em outros arquivos (SQL)"
+	@echo "'mt19937ar'   - builds object file of Mersenne Twister MT19937"
 	@echo "'login_sql'   - compila o servidor de login (SQL)"
 	@echo "'char_sql'    - compila o servidor de personagens (SQL)"
 	@echo "'map_sql'     - compila o servidor de mapas (SQL)"

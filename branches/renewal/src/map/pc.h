@@ -373,10 +373,10 @@ struct map_session_data {
 	int vend_num;
 	char message[MESSAGE_SIZE];
 	struct s_vending vending[MAX_VENDING];
-	
+
 	unsigned int buyer_id;  // uid of open buying store
 	struct s_buyingstore buyingstore;
-	
+
 	struct s_search_store_info searchstore;
 
 	struct pet_data *pd;
@@ -446,7 +446,7 @@ struct map_session_data {
 
 	unsigned int bg_id;
 	unsigned short user_font;
-	
+
 	// temporary debugging of bug #3504
 	const char* delunit_prevfile;
 	int delunit_prevline;
@@ -674,7 +674,7 @@ unsigned int pc_thisbaseexp(struct map_session_data *);
 unsigned int pc_nextjobexp(struct map_session_data *);
 unsigned int pc_thisjobexp(struct map_session_data *);
 int pc_gets_status_point(int);
-int pc_need_status_point(struct map_session_data *,int);
+int pc_need_status_point(struct map_session_data *,int,int);
 int pc_statusup(struct map_session_data*,int);
 int pc_statusup2(struct map_session_data*,int,int);
 int pc_skillup(struct map_session_data*,int);

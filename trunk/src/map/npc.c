@@ -354,7 +354,7 @@ bool npc_event_isspecial(const char* eventname)
 /*==========================================
  * 時計イベント実行
  *------------------------------------------*/
-int npc_event_do_clock(int tid, unsigned int tick, int id, intptr data)
+int npc_event_do_clock(int tid, unsigned int tick, int id, intptr_t data)
 {
 	static struct tm ev_tm_b; // tracks previous execution time
 	time_t timer;
@@ -453,7 +453,7 @@ struct timer_event_data {
 /*==========================================
  * triger 'OnTimerXXXX' events
  *------------------------------------------*/
-int npc_timerevent(int tid, unsigned int tick, int id, intptr data)
+int npc_timerevent(int tid, unsigned int tick, int id, intptr_t data)
 {
 	int next;
 	int old_rid, old_timer;
@@ -496,9 +496,9 @@ int npc_timerevent(int tid, unsigned int tick, int id, intptr data)
 		next = nd->u.scr.timer_event[ ted->next ].timer - nd->u.scr.timer_event[ ted->next - 1 ].timer;
 		ted->time += next;
 		if( sd )
-			sd->npc_timer_id = add_timer(tick+next,npc_timerevent,id,(intptr)ted);
+			sd->npc_timer_id = add_timer(tick+next,npc_timerevent,id,(intptr_t)ted);
 		else
-			nd->u.scr.timerid = add_timer(tick+next,npc_timerevent,id,(intptr)ted);
+			nd->u.scr.timerid = add_timer(tick+next,npc_timerevent,id,(intptr_t)ted);
 	}
 	else
 	{
@@ -568,13 +568,13 @@ int npc_timerevent_start(struct npc_data* nd, int rid)
 	if( sd )
 	{
 		ted->rid = sd->bl.id; // Attach only the player if attachplayerrid was used.
-		sd->npc_timer_id = add_timer(tick+next,npc_timerevent,nd->bl.id,(intptr)ted);
+		sd->npc_timer_id = add_timer(tick+next,npc_timerevent,nd->bl.id,(intptr_t)ted);
 	}
 	else
 	{
 		ted->rid = 0;
 		nd->u.scr.timertick = tick; // Set when timer is started
-		nd->u.scr.timerid = add_timer(tick+next,npc_timerevent,nd->bl.id,(intptr)ted);
+		nd->u.scr.timerid = add_timer(tick+next,npc_timerevent,nd->bl.id,(intptr_t)ted);
 	}
 
 	return 0;
@@ -1150,7 +1150,7 @@ int npc_buysellsel(struct map_session_data* sd, int id, int type)
 //npc_buylist for script-controlled shops.
 static int npc_buylist_sub(struct map_session_data* sd, int n, unsigned short* item_list, struct npc_data* nd)
 {
-	char npc_ev[EVENT_NAME_LENGTH*2+3];
+	char npc_ev[EVENT_NAME_LENGTH];
 	int i;
 	int key_nameid = 0;
 	int key_amount = 0;
@@ -1162,8 +1162,8 @@ static int npc_buylist_sub(struct map_session_data* sd, int n, unsigned short* i
 	// save list of bought items
 	for( i = 0; i < n; i++ )
 	{
-		script_setarray_pc(sd, "@bought_nameid", i, (void*)(intptr)item_list[i*2+1], &key_nameid);
-		script_setarray_pc(sd, "@bought_quantity", i, (void*)(intptr)item_list[i*2], &key_amount);
+		script_setarray_pc(sd, "@bought_nameid", i, (void*)(intptr_t)item_list[i*2+1], &key_nameid);
+		script_setarray_pc(sd, "@bought_quantity", i, (void*)(intptr_t)item_list[i*2], &key_amount);
 	}
 
 	// invoke event
@@ -1367,8 +1367,9 @@ int npc_buylist(struct map_session_data* sd, int n, unsigned short* item_list)
 	// custom merchant shop exp bonus
 	if( battle_config.shop_exp > 0 && z > 0 && (skill = pc_checkskill(sd,MC_DISCOUNT)) > 0 )
 	{
-		if( sd->status.skill[MC_DISCOUNT].flag != 0 )
-			skill = sd->status.skill[MC_DISCOUNT].flag - 2;
+		if( sd->status.skill[MC_DISCOUNT].flag >= SKILL_FLAG_REPLACED_LV_0 )
+			skill = sd->status.skill[MC_DISCOUNT].flag - SKILL_FLAG_REPLACED_LV_0;
+
 		if( skill > 0 )
 		{
 			z = z * (double)skill * (double)battle_config.shop_exp/10000.;
@@ -1385,7 +1386,7 @@ int npc_buylist(struct map_session_data* sd, int n, unsigned short* item_list)
 /// npc_selllist for script-controlled shops
 static int npc_selllist_sub(struct map_session_data* sd, int n, unsigned short* item_list, struct npc_data* nd)
 {
-	char npc_ev[EVENT_NAME_LENGTH*2+3];
+	char npc_ev[EVENT_NAME_LENGTH];
 	int i, idx;
 	int key_nameid = 0;
 	int key_amount = 0;
@@ -1399,8 +1400,8 @@ static int npc_selllist_sub(struct map_session_data* sd, int n, unsigned short* 
 	{
 		idx = item_list[i*2]-2;
 
-		script_setarray_pc(sd, "@sold_nameid", i, (void*)(intptr)sd->status.inventory[idx].nameid, &key_nameid);
-		script_setarray_pc(sd, "@sold_quantity", i, (void*)(intptr)item_list[i*2+1], &key_amount);
+		script_setarray_pc(sd, "@sold_nameid", i, (void*)(intptr_t)sd->status.inventory[idx].nameid, &key_nameid);
+		script_setarray_pc(sd, "@sold_quantity", i, (void*)(intptr_t)item_list[i*2+1], &key_amount);
 	}
 
 	// invoke event
@@ -1503,8 +1504,9 @@ int npc_selllist(struct map_session_data* sd, int n, unsigned short* item_list)
 	// custom merchant shop exp bonus
 	if( battle_config.shop_exp > 0 && z > 0 && ( skill = pc_checkskill(sd,MC_OVERCHARGE) ) > 0)
 	{
-		if( sd->status.skill[MC_OVERCHARGE].flag != 0 )
-			skill = sd->status.skill[MC_OVERCHARGE].flag - 2;
+		if( sd->status.skill[MC_OVERCHARGE].flag >= SKILL_FLAG_REPLACED_LV_0 )
+			skill = sd->status.skill[MC_OVERCHARGE].flag - SKILL_FLAG_REPLACED_LV_0;
+
 		if( skill > 0 )
 		{
 			z = z * (double)skill * (double)battle_config.shop_exp/10000.;
@@ -2217,7 +2219,7 @@ static const char* npc_parse_script(char* w1, char* w2, char* w3, char* w4, cons
 		if ((lname[0] == 'O' || lname[0] == 'o') && (lname[1] == 'N' || lname[1] == 'n'))
 		{
 			struct event_data* ev;
-			char buf[EVENT_NAME_LENGTH*2+3]; // 24 for npc name + 24 for label + 2 for a "::" and 1 for EOS
+			char buf[EVENT_NAME_LENGTH];
 			snprintf(buf, ARRAYLENGTH(buf), "%s::%s", nd->exname, lname);
 
 			// generate the data and insert it
@@ -2405,7 +2407,7 @@ const char* npc_parse_duplicate(char* w1, char* w2, char* w3, char* w4, const ch
 		if ((lname[0] == 'O' || lname[0] == 'o') && (lname[1] == 'N' || lname[1] == 'n'))
 		{
 			struct event_data* ev;
-			char buf[NPC_NAME_LENGTH*2+3]; // 24 for npc name + 24 for label + 2 for a "::" and 1 for EOS
+			char buf[EVENT_NAME_LENGTH];
 			snprintf(buf, ARRAYLENGTH(buf), "%s::%s", nd->exname, lname);
 
 			// generate the data and insert it
@@ -2732,13 +2734,13 @@ static const char* npc_parse_mob(char* w1, char* w2, char* w3, char* w4, const c
 	// check monster ID if exists!
 	if( mobdb_checkid(class_) == 0 )
 	{
-		ShowError("npc_parse_mob: ID de mob desconhecido : %s %s (arquivo '%s', linha '%d').\n", w3, w4, filepath, strline(buffer,start-buffer));
+		ShowError("npc_parse_mob: ID de mob desconhecido %d (arquivo '%s', linha '%d').\n", class_, filepath, strline(buffer,start-buffer));
 		return strchr(start,'\n');// skip and continue
 	}
 
 	if( num < 1 || num > 1000 )
 	{
-		ShowError("npc_parse_mob: Numero de monstros invalido (deve estar dentro do intervalo [1,1000]) : %s %s (arquivo '%s', linha '%d').\n", w3, w4, filepath, strline(buffer,start-buffer));
+		ShowError("npc_parse_mob: Numero de monstros %d invalido, deve estar dentro do intervalo [1,1000] (arquivo '%s', linha '%d').\n", num, filepath, strline(buffer,start-buffer));
 		return strchr(start,'\n');// skip and continue
 	}
 
@@ -2784,7 +2786,7 @@ static const char* npc_parse_mob(char* w1, char* w2, char* w3, char* w4, const c
 	}
 
 	if(mob.delay1>0xfffffff || mob.delay2>0xfffffff) {
-		ShowError("npc_parse_mob: intervalos de aparecimento de monstros invalidos : %s %s (arquivo '%s', linha '%d').\n", w3, w4, filepath, strline(buffer,start-buffer));
+		ShowError("npc_parse_mob: intervalos de aparecimento de monstros invalidos : %u %u (arquivo '%s', linha '%d').\n", mob.delay1, mob.delay2, filepath, strline(buffer,start-buffer));
 		return strchr(start,'\n');// skip and continue
 	}
 
@@ -2799,7 +2801,7 @@ static const char* npc_parse_mob(char* w1, char* w2, char* w3, char* w4, const c
 	//Verify dataset.
 	if( !mob_parse_dataset(&mob) )
 	{
-		ShowError("npc_parse_mob: dataset invalido : %s %s (arquivo '%s', linha '%d').\n", w3, w4, filepath, strline(buffer,start-buffer));
+		ShowError("npc_parse_mob: dataset invalido do monstro de ID %d (arquivo '%s', linha '%d').\n", class_, filepath, strline(buffer,start-buffer));
 		return strchr(start,'\n');// skip and continue
 	}
 

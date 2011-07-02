@@ -81,7 +81,7 @@ const int mob_splendide[5] = { 1991, 1992, 1993, 1994, 1995 };
  * Local prototype declaration   (only required thing)
  *------------------------------------------*/
 static int mob_makedummymobdb(int);
-static int mob_spawn_guardian_sub(int tid, unsigned int tick, int id, intptr data);
+static int mob_spawn_guardian_sub(int tid, unsigned int tick, int id, intptr_t data);
 int mob_skillid2skillidx(int class_,int skillid);
 
 /*==========================================
@@ -161,6 +161,7 @@ struct view_data * mob_get_viewdata(int class_)
 int mob_parse_dataset(struct spawn_data *data)
 {
 	size_t len;
+
 	//FIXME: This implementation is not stable, npc scripts will stop working once MAX_MOB_DB changes value! [Skotlex]
 	if(data->class_ > 2*MAX_MOB_DB){ // large/tiny mobs [Valaris]
 		data->state.size=2;
@@ -185,7 +186,7 @@ int mob_parse_dataset(struct spawn_data *data)
 				data->state.size = 2;
 			if( i&8 )
 				data->state.ai = 1;
- 		}
+		}
 		data->eventname[0] = '\0'; //Clear event as it is not used.
 	}
 	else if( ( len = strlen(data->eventname) ) > 0 )
@@ -506,7 +507,7 @@ int mob_once_spawn_area(struct map_session_data* sd,int m,int x0,int y0,int x1,i
 /*==========================================
  * Set a Guardian's guild data [Skotlex]
  *------------------------------------------*/
-static int mob_spawn_guardian_sub(int tid, unsigned int tick, int id, intptr data)
+static int mob_spawn_guardian_sub(int tid, unsigned int tick, int id, intptr_t data)
 {	//Needed because the guild_data may not be available at guardian spawn time.
 	struct block_list* bl = map_id2bl(id);
 	struct mob_data* md;
@@ -765,7 +766,7 @@ int mob_linksearch(struct block_list *bl,va_list ap)
 /*==========================================
  * mob spawn with delay (timer function)
  *------------------------------------------*/
-int mob_delayspawn(int tid, unsigned int tick, int id, intptr data)
+int mob_delayspawn(int tid, unsigned int tick, int id, intptr_t data)
 {
 	struct block_list* bl = map_id2bl(id);
 	struct mob_data* md = BL_CAST(BL_MOB, bl);
@@ -1635,7 +1636,7 @@ static int mob_ai_sub_lazy(struct mob_data *md, va_list args)
 /*==========================================
  * Negligent processing for mob outside PC field of view   (interval timer function)
  *------------------------------------------*/
-static int mob_ai_lazy(int tid, unsigned int tick, int id, intptr data)
+static int mob_ai_lazy(int tid, unsigned int tick, int id, intptr_t data)
 {
 	map_foreachmob(mob_ai_sub_lazy,tick);
 	return 0;
@@ -1644,7 +1645,7 @@ static int mob_ai_lazy(int tid, unsigned int tick, int id, intptr data)
 /*==========================================
  * Serious processing for mob in PC field of view   (interval timer function)
  *------------------------------------------*/
-static int mob_ai_hard(int tid, unsigned int tick, int id, intptr data)
+static int mob_ai_hard(int tid, unsigned int tick, int id, intptr_t data)
 {
 
 	if (battle_config.mob_ai&0x20)
@@ -1683,7 +1684,7 @@ static struct item_drop* mob_setlootitem(struct item* item)
 /*==========================================
  * item drop with delay (timer function)
  *------------------------------------------*/
-static int mob_delay_item_drop(int tid, unsigned int tick, int id, intptr data)
+static int mob_delay_item_drop(int tid, unsigned int tick, int id, intptr_t data)
 {
 	struct item_drop_list *list;
 	struct item_drop *ditem, *ditem_prev;
@@ -1743,7 +1744,7 @@ static void mob_item_drop(struct mob_data *md, struct item_drop_list *dlist, str
 	dlist->item = ditem;
 }
 
-int mob_timer_delete(int tid, unsigned int tick, int id, intptr data)
+int mob_timer_delete(int tid, unsigned int tick, int id, intptr_t data)
 {
 	struct block_list* bl = map_id2bl(id);
 	struct mob_data* md = BL_CAST(BL_MOB, bl);
@@ -1790,7 +1791,7 @@ int mob_deleteslave(struct mob_data *md)
 	return 0;
 }
 // Mob respawning through KAIZEL or NPC_REBIRTH [Skotlex]
-int mob_respawn(int tid, unsigned int tick, int id, intptr data)
+int mob_respawn(int tid, unsigned int tick, int id, intptr_t data)
 {
 	struct block_list *bl = map_id2bl(id);
 
@@ -2295,7 +2296,7 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 				mob_item_drop(md, dlist, mob_setlootitem(&md->lootitem[i]), 1, 10000, homkillonly);
 		}
 		if (dlist->item) //There are drop items.
-			add_timer(tick + (!battle_config.delay_battle_damage?500:0), mob_delay_item_drop, 0, (intptr)dlist);
+			add_timer(tick + (!battle_config.delay_battle_damage?500:0), mob_delay_item_drop, 0, (intptr_t)dlist);
 		else //No drops
 			ers_free(item_drop_list_ers, dlist);
 	} else if (md->lootitem && md->lootitem_count) {	//Loot MUST drop!
@@ -2309,7 +2310,7 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 		dlist->item = NULL;
 		for(i = 0; i < md->lootitem_count; i++)
 			mob_item_drop(md, dlist, mob_setlootitem(&md->lootitem[i]), 1, 10000, homkillonly);
-		add_timer(tick + (!battle_config.delay_battle_damage?500:0), mob_delay_item_drop, 0, (intptr)dlist);
+		add_timer(tick + (!battle_config.delay_battle_damage?500:0), mob_delay_item_drop, 0, (intptr_t)dlist);
 	}
 
 	if(mvp_sd && md->db->mexp > 0 && !md->special_state.ai)
@@ -3489,12 +3490,10 @@ static bool mob_parse_dbrow(char** str)
 	if (status->def_ele >= ELE_MAX) {
 		ShowError("mob_parse_dbrow: Invalid element type %d for monster ID %d (max=%d).\n", status->def_ele, class_, ELE_MAX-1);
 		return false;
-		status->def_ele = ELE_NEUTRAL;
 	}
 	if (status->ele_lv < 1 || status->ele_lv > 4) {
 		ShowError("mob_parse_dbrow: Invalid element level %d for monster ID %d, must be in range 1-4.\n", status->ele_lv, class_);
 		return false;
-		status->ele_lv = 1;
 	}
 
 	status->mode = (int)strtol(str[25], NULL, 0);
@@ -3513,6 +3512,7 @@ static bool mob_parse_dbrow(char** str)
 	if(battle_config.monster_damage_delay_rate != 100)
 		status->dmotion = status->dmotion * battle_config.monster_damage_delay_rate / 100;
 
+	// Fill in remaining status data by using a dummy monster.
 	data.bl.type = BL_MOB;
 	data.level = db->lv;
 	memcpy(&data.status, status, sizeof(struct status_data));

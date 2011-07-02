@@ -582,9 +582,17 @@ static void disp_error_message2(const char *mes,const char *pos,int report)
 /// Checks event parameter validity
 static void check_event(struct script_state *st, const char *evt)
 {
-	if( evt != NULL && *evt != '\0' && !stristr(evt,"::On") ){
-		ShowError("Parametro de evento de NPC obsoleto! Favor usar 'NPCNAME::OnEVENT' ao inves de '%s'.\n",evt);
+	if( evt && evt[0] && !stristr(evt, "::On") )
+	{
+		if( npc_event_isspecial(evt) )
+		{
+			;  // portable small/large monsters or other attributes
+		}
+		else
+		{
+		ShowWarning("Parametro de evento de NPC obsoleto! Favor usar 'NPCNAME::OnEVENT' ao inves de '%s'.\n",evt);
 		script_reportsrc(st);
+		}
 	}
 }
 
@@ -3312,7 +3320,7 @@ struct linkdb_node* script_erase_sleepdb(struct linkdb_node *n)
 /*==========================================
  * sleep用タイマー関数
  *------------------------------------------*/
-int run_script_timer(int tid, unsigned int tick, int id, intptr data)
+int run_script_timer(int tid, unsigned int tick, int id, intptr_t data)
 {
 	struct script_state *st     = (struct script_state *)data;
 	struct linkdb_node *node    = (struct linkdb_node *)sleep_db;
@@ -3509,7 +3517,7 @@ void run_script_main(struct script_state *st)
 		sd = map_id2sd(st->rid); // Get sd since script might have attached someone while running. [Inkfish]
 		st->sleep.charid = sd?sd->status.char_id:0;
 		st->sleep.timer  = add_timer(gettick()+st->sleep.tick,
-			run_script_timer, st->sleep.charid, (intptr)st);
+			run_script_timer, st->sleep.charid, (intptr_t)st);
 		linkdb_insert(&sleep_db, (void*)st->oid, st);
 	}
 	else if(st->state != END && st->rid){
@@ -4571,7 +4579,7 @@ BUILDIN_FUNC(warpparty)
 		 : ( strcmp(str,"SavePoint")==0 ) ? 2
 		 : ( strcmp(str,"Leader")==0 ) ? 3
 		 : 4;
-		 
+
 	if( type == 2 && ( sd = script_rid2sd(st) ) == NULL )
 	{// "SavePoint" uses save point of the currently attached player
 		return 0;
@@ -4653,7 +4661,7 @@ BUILDIN_FUNC(warpguild)
 	     : ( strcmp(str,"SavePointAll")==0 ) ? 1
 		 : ( strcmp(str,"SavePoint")==0 ) ? 2
 		 : 3;
-		 
+
 	if( type == 2 && ( sd = script_rid2sd(st) ) == NULL )
 	{// "SavePoint" uses save point of the currently attached player
 		return 0;
@@ -5505,7 +5513,6 @@ BUILDIN_FUNC(checkweight)
 	{
 		ShowError("buildin_checkweight: Invalid item '%s'.\n", script_getstr(st,2));  // returns string, regardless of what it was
 		script_pushint(st,0);
-		ShowError("buildin_checkweight: Wrong item ID or amount.\n");
 		return 1;
 	}
 
@@ -6962,7 +6969,7 @@ BUILDIN_FUNC(failedrefitem2)
 		log_pick_pc(sd, "N", sd->status.inventory[i].nameid, -1, &sd->status.inventory[i]);
 
 		sd->status.inventory[i].refine = sd->status.inventory[i].refine - 3;
-		pc_unequipitem(sd,i,2); 
+		pc_unequipitem(sd,i,2);
 
 		clif_refine(sd->fd,0,i,sd->status.inventory[i].refine);
 		clif_delitem(sd,i,1,2);
@@ -8218,8 +8225,8 @@ BUILDIN_FUNC(cmdothernpc)	// Added by RoVeRT
 {
 	const char* npc = script_getstr(st,2);
 	const char* command = script_getstr(st,3);
-	char event[51];
-	snprintf(event, 51, "%s::OnCommand%s", npc, command);
+	char event[EVENT_NAME_LENGTH];
+	snprintf(event, sizeof(event), "%s::OnCommand%s", npc, command);
 	check_event(st, event);
 	npc_event_do(event);
 	return 0;
@@ -9490,8 +9497,8 @@ BUILDIN_FUNC(warpwaitingpc)
 		if( strcmp(map_name,"SavePoint") == 0 && map[sd->bl.m].flag.noteleport )
 		{// can't teleport on this map
 			break;
- 		}
- 
+		}
+
 		if( cd->zeny )
 		{// fee set
 			if( (uint32)sd->status.zeny < cd->zeny )
@@ -13869,7 +13876,7 @@ BUILDIN_FUNC(mercenary_create)
 
 	if( !merc_class(class_) )
 		return 0;
-		
+
 	if( sd->sc.data[SC__GROOMY] )
 		return 0;
 

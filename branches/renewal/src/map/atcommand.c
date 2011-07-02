@@ -1824,10 +1824,8 @@ ACMD_FUNC(baselevelup)
 		} // End Addition
 		if ((unsigned int)level > pc_maxbaselv(sd) || (unsigned int)level > pc_maxbaselv(sd) - sd->status.base_level) // fix positiv overflow
 			level = pc_maxbaselv(sd) - sd->status.base_level;
-		for (i = 1; i <= level; i++)
-			{
-				status_point += pc_get_stat_point(sd);
-			}
+		for (i = 0; i < level; i++)
+			status_point += pc_gets_status_point(sd->status.base_level + i);
 
 		sd->status.status_point += status_point;
 		sd->status.base_level += (unsigned int)level;
@@ -1843,7 +1841,7 @@ ACMD_FUNC(baselevelup)
 		if ((unsigned int)level >= sd->status.base_level)
 			level = sd->status.base_level-1;
 		for (i = 0; i > -level; i--)
-			status_point += (sd->status.base_level + i + 14) / 5;
+			status_point += pc_gets_status_point(sd->status.base_level + i - 1);
 		if (sd->status.status_point < status_point)
 			pc_resetstate(sd);
 		if (sd->status.status_point < status_point)
@@ -2930,7 +2928,7 @@ ACMD_FUNC(displaystatus)
 {
 	int i, type, flag, tick, val1, val2, val3;
 	nullpo_retr(-1, sd);
-	
+
 	if (!message || !*message || (i = sscanf(message, "%d %d %d %d %d %d", &type, &flag, &tick, &val1, &val2, &val3)) < 1) {
 		clif_displaymessage(fd, "Favor digitar um tipo/flag (uso: @displaystatus <tipo de status> <flag> <tick> <val1> <val2> <val3>).");
 		return -1;
@@ -4001,23 +3999,9 @@ ACMD_FUNC(agitend2)
  *------------------------------------------*/
 ACMD_FUNC(mapexit)
 {
-	struct map_session_data* pl_sd;
-	struct s_mapiterator* iter;
-
 	nullpo_retr(-1, sd);
 
-	iter = mapit_getallusers();
-	for( pl_sd = (TBL_PC*)mapit_first(iter); mapit_exists(iter); pl_sd = (TBL_PC*)mapit_next(iter) )
-		if (sd->status.account_id != pl_sd->status.account_id)
-			clif_GM_kick(NULL, pl_sd);
-	mapit_free(iter);
-
-	clif_GM_kick(NULL, sd);
-
-	flush_fifos();
-
-	runflag = 0;
-
+	do_shutdown();
 	return 0;
 }
 
@@ -4619,7 +4603,7 @@ ACMD_FUNC(mount)
 {
 	int msg[4] = { 0, 0, 0, 0 }, option = 0, skillnum = 0, val, riding_flag = 0;
  	nullpo_retr(-1, sd);
- 
+
 	if( !message || !*message || sscanf(message, "%d", &val) < 1 || val < 1 || val > 5 )
 		val = 0;
 
@@ -4628,7 +4612,7 @@ ACMD_FUNC(mount)
 		if( sd->class_&JOBL_THIRD )
  		{
 			if( (sd->class_&MAPID_UPPERMASK) == MAPID_KNIGHT )
-			{ 
+			{
 				if( pc_isriding(sd,OPTION_RIDING_DRAGON) )
 					riding_flag = 1;
 				msg[0] = 700; msg[1] = 702; msg[2] = 701; msg[3] = 703;
@@ -4641,7 +4625,7 @@ ACMD_FUNC(mount)
 				skillnum = RK_DRAGONTRAINING;
 			}
 			else
-			{ 
+			{
 				if( pc_isriding(sd,OPTION_RIDING) )
 					riding_flag = 1;
 				msg[0] = 714; msg[1] = 716; msg[2] = 715; msg[3] = 717;
@@ -4649,9 +4633,9 @@ ACMD_FUNC(mount)
 				skillnum = KN_RIDING;
 			}
  		}
-		
+
 		else
-		{ 
+		{
 			if( pc_isriding(sd,OPTION_RIDING) )
 				riding_flag = 1;
 			msg[0] = 102; msg[1] = 214; msg[2] = 213; msg[3] = 212;
@@ -4679,34 +4663,34 @@ ACMD_FUNC(mount)
 			option = OPTION_MADO;
  		}
 	}
- 
+
 	if( !option )
 	{
 		clif_displaymessage(fd, "Você não pode montar com essa classe.");
 		return -1;
  	}
- 
+
 	if( skillnum && !pc_checkskill(sd,skillnum) )
-	{ 
+	{
 		clif_displaymessage(fd, msg_txt(msg[2]));
 		return -1;
 	}
 	if( sd->disguise )
-	{ 
+	{
 		clif_displaymessage(fd, msg_txt(msg[3]));
 		return -1;
 	}
 	if( riding_flag )
-	{ 
+	{
 		pc_setoption(sd, sd->sc.option & ~option);
 		if( option == OPTION_RIDING_WUG )
 			pc_setoption(sd, sd->sc.option&OPTION_WUG);
-		clif_displaymessage(fd, msg_txt(msg[1])); 
+		clif_displaymessage(fd, msg_txt(msg[1]));
 	}
 	else
-	{ 
+	{
 		pc_setoption(sd, sd->sc.option | option);
-		clif_displaymessage(fd, msg_txt(msg[0])); 
+		clif_displaymessage(fd, msg_txt(msg[0]));
 	}
 
  	return 0;
@@ -7202,7 +7186,7 @@ ACMD_FUNC(mobinfo)
 * @showmobs by KarLaeda
 * => For 5 sec displays the mobs on minimap
 *------------------------------------------*/
-int atshowmobs_timer(int tid, unsigned int tick, int id, intptr data)
+int atshowmobs_timer(int tid, unsigned int tick, int id, intptr_t data)
 {
 	struct map_session_data* sd = map_id2sd(id);
 	if( sd == NULL )
@@ -7925,12 +7909,12 @@ ACMD_FUNC(fakename)
 		{
 			sd->fakename[0] = '\0';
 			clif_charnameack(0, &sd->bl);
-			clif_displaymessage(sd->fd,"Retornado ao nome real.");
+			clif_displaymessage(sd->fd, "Retornado ao nome real.");
 			return 0;
-	}
-	
-	clif_displaymessage(sd->fd, "Você deve digitar um nome.");
-	return -1;
+		}
+
+		clif_displaymessage(sd->fd, "Você deve digitar um nome.");
+		return -1;
 	}
 
 	if( strlen(message) < 2 )

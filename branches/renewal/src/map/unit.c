@@ -53,8 +53,8 @@ struct unit_data* unit_bl2ud(struct block_list *bl)
 	return NULL;
 }
 
-static int unit_attack_timer(int tid, unsigned int tick, int id, intptr data);
-static int unit_walktoxy_timer(int tid, unsigned int tick, int id, intptr data);
+static int unit_attack_timer(int tid, unsigned int tick, int id, intptr_t data);
+static int unit_walktoxy_timer(int tid, unsigned int tick, int id, intptr_t data);
 
 int unit_walktoxy_sub(struct block_list *bl)
 {
@@ -110,7 +110,7 @@ int unit_walktoxy_sub(struct block_list *bl)
 	return 1;
 }
 
-static int unit_walktoxy_timer(int tid, unsigned int tick, int id, intptr data)
+static int unit_walktoxy_timer(int tid, unsigned int tick, int id, intptr_t data)
 {
 	int i;
 	int x,y,dx,dy;
@@ -267,7 +267,7 @@ static int unit_walktoxy_timer(int tid, unsigned int tick, int id, intptr data)
 	return 0;
 }
 
-static int unit_delay_walktoxy_timer(int tid, unsigned int tick, int id, intptr data)
+static int unit_delay_walktoxy_timer(int tid, unsigned int tick, int id, intptr_t data)
 {
 	struct block_list *bl = map_id2bl(id);
 
@@ -331,7 +331,7 @@ int unit_walktoxy( struct block_list *bl, short x, short y, int flag)
 	if((bl)->type == BL_MOB && (flag)) \
 		((TBL_MOB*)(bl))->state.skillstate = ((TBL_MOB*)(bl))->state.aggressive?MSS_FOLLOW:MSS_RUSH;
 
-static int unit_walktobl_sub(int tid, unsigned int tick, int id, intptr data)
+static int unit_walktobl_sub(int tid, unsigned int tick, int id, intptr_t data)
 {
 	struct block_list *bl = map_id2bl(id);
 	struct unit_data *ud = bl?unit_bl2ud(bl):NULL;
@@ -486,18 +486,18 @@ int unit_wugdash(struct block_list *bl, struct map_session_data *sd)
 
 	nullpo_ret(sd);
 	nullpo_ret(bl);
-	
+
 	if (!(sc && sc->data[SC_WUGDASH]))
 		return 0;
 	if (!unit_can_move(bl)) {
 		status_change_end(bl,SC_WUGDASH,-1);
 		return 0;
 	}
-	
+
 	lv = sc->data[SC_WUGDASH]->val1;
 	dir_x = dirx[sc->data[SC_WUGDASH]->val2];
 	dir_y = diry[sc->data[SC_WUGDASH]->val2];
-	
+
 	to_x = bl->x;
 	to_y = bl->y;
 
@@ -926,7 +926,7 @@ int unit_can_move(struct block_list *bl)
  * Resume running after a walk delay
  *------------------------------------------*/
 
-int unit_resume_running(int tid, unsigned int tick, int id, intptr data)
+int unit_resume_running(int tid, unsigned int tick, int id, intptr_t data)
 {
 
 	struct unit_data *ud = (struct unit_data *)data;
@@ -974,7 +974,7 @@ int unit_set_walkdelay(struct block_list *bl, unsigned int tick, int delay, int 
 			//Resume running after can move again [Kevin]
 			if(ud->state.running)
 			{
-				add_timer(ud->canmove_tick, unit_resume_running, bl->id, (intptr)ud);
+				add_timer(ud->canmove_tick, unit_resume_running, bl->id, (intptr_t)ud);
 			}
 			else
 			{
@@ -1014,7 +1014,7 @@ int unit_skilluse_id2(struct block_list *src, int target_id, short skill_num, sh
 				(
 					( !(skill_get_inf(skill_num)&INF_SELF_SKILL) && sd && sd->state.combo ) ||
 					( skill_get_inf(skill_num)&INF_SELF_SKILL && skill_get_inf2(skill_num)&INF2_NO_TARGET_SELF ) ||
-					skill_num == SR_DRAGONCOMBO 
+					skill_num == SR_DRAGONCOMBO
 				)
 			);
 	if (temp)
@@ -1088,12 +1088,12 @@ int unit_skilluse_id2(struct block_list *src, int target_id, short skill_num, sh
 
 	if( mob_ksprotected(src, target) )
 		return 0;
-		
+
 	tsc = status_get_sc(target);
 
 	if( tsc && tsc->data[SC__MANHOLE] )
 		return 0;
-		
+
 	if( ud->skilltimer != INVALID_TIMER && skill_num != SA_CASTCANCEL &&
 		!(skill_num == SO_SPELLFIST && (ud->skillid == MG_FIREBOLT || ud->skillid == MG_COLDBOLT || ud->skillid == MG_LIGHTNINGBOLT)) )
 		return 0;
@@ -1315,17 +1315,17 @@ int unit_skilluse_id2(struct block_list *src, int target_id, short skill_num, sh
 		status_change_end(src, SC_CLOAKING, INVALID_TIMER);
 		if (!src->prev) return 0; //Warped away!
 	}
-	
+
 	if( sc && sc->data[SC_CLOAKINGEXCEED] && !(sc->data[SC_CLOAKINGEXCEED]->val4&4) && skill_num != GC_CLOAKINGEXCEED )
-	{ 
+	{
 		status_change_end(src,SC_CLOAKINGEXCEED, INVALID_TIMER);
 		if (!src->prev) return 0;
 	}
-	
+
 	if( sc && sc->data[SC__MANHOLE] )
 	{
 		status_change_end(src,SC__MANHOLE,-1);
-		if (!src->prev) return 0; 
+		if (!src->prev) return 0;
 	}
 
 	if( casttime > 0 )
@@ -1436,7 +1436,7 @@ int unit_skilluse_pos2( struct block_list *src, short skill_x, short skill_y, sh
 	if( sc && sc->data[SC__MANHOLE] )
 	{
 		status_change_end(src,SC__MANHOLE,-1);
-		if (!src->prev) return 0; 
+		if (!src->prev) return 0;
 	}
 
 	if( casttime > 0 )
@@ -1802,7 +1802,7 @@ static int unit_attack_timer_sub(struct block_list* src, int tid, unsigned int t
 	return 1;
 }
 
-static int unit_attack_timer(int tid, unsigned int tick, int id, intptr data)
+static int unit_attack_timer(int tid, unsigned int tick, int id, intptr_t data)
 {
 	struct block_list *bl;
 	bl = map_id2bl(id);
@@ -2039,7 +2039,7 @@ int unit_remove_map_(struct block_list *bl, clr_type clrtype, const char* file, 
 			storage_guild_storage_quit(sd,0);
 		sd->state.storage_flag = 0; //Force close it when being warped.
 		if(sd->party_invite>0)
-			party_reply_invite(sd,sd->party_invite_account,0);
+			party_reply_invite(sd,sd->party_invite,0);
 		if(sd->guild_invite>0)
 			guild_reply_invite(sd,sd->guild_invite,0);
 		if(sd->guild_alliance>0)

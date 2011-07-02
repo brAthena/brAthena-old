@@ -4,8 +4,8 @@
 #ifndef _ELEMENTAL_H_
 #define _ELEMENTAL_H_
 
-#include "status.h" 
-#include "unit.h" 
+#include "status.h"
+#include "unit.h"
 
 #define MIN_ELETHINKTIME 100
 #define MIN_ELEDISTANCE 2

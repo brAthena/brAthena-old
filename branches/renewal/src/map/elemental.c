@@ -36,7 +36,7 @@
 #include <string.h>
 #include <math.h>
 
-struct s_elemental_db elemental_db[MAX_ELEMENTAL_CLASS]; 
+struct s_elemental_db elemental_db[MAX_ELEMENTAL_CLASS];
 
 int elemental_search_index(int class_)
 {
@@ -75,7 +75,7 @@ int elemental_create(struct map_session_data *sd, int class_, unsigned int lifet
 
 	ele.char_id = sd->status.char_id;
 	ele.class_ = class_;
-	ele.mode = EL_MODE_PASSIVE; 
+	ele.mode = EL_MODE_PASSIVE;
 	ele.hp = db->status.max_hp;
 	ele.sp = db->status.max_sp;
 	ele.life_time = lifetime;
@@ -122,7 +122,7 @@ static int elemental_summon_end(int tid, unsigned int tick, int id, intptr data)
 	}
 
 	ed->summon_timer = INVALID_TIMER;
-	elemental_delete(ed, 0); 
+	elemental_delete(ed, 0);
 
 	return 0;
 }
@@ -140,7 +140,7 @@ int elemental_delete(struct elemental_data *ed, int reply)
 	struct map_session_data *sd;
 
 	nullpo_ret(ed);
-	
+
 	sd = ed->master;
 	ed->elemental.life_time = 0;
 
@@ -175,14 +175,14 @@ int elemental_data_received(struct s_elemental *ele, bool flag)
 		return 0;
 
 	if( !flag || i < 0 )
-	{ 
+	{
 		sd->status.ele_id = 0;
 		return 0;
 	}
 
 	db = &elemental_db[i];
 	if( !sd->ed )
-	{	
+	{
 		sd->ed = ed = (struct elemental_data*)aCalloc(1,sizeof(struct elemental_data));
 		ed->bl.type = BL_ELEM;
 		ed->bl.id = npc_get_new_npc_id();
@@ -190,7 +190,7 @@ int elemental_data_received(struct s_elemental *ele, bool flag)
 		ed->db = db;
 		memcpy(&ed->elemental, ele, sizeof(struct s_elemental));
 		status_set_viewdata(&ed->bl, ed->elemental.class_);
-		ed->vd->head_mid = 10; 
+		ed->vd->head_mid = 10;
 		status_change_init(&ed->bl);
 		unit_dataset(&ed->bl);
 		ed->ud.dir = sd->ud.dir;
@@ -206,7 +206,7 @@ int elemental_data_received(struct s_elemental *ele, bool flag)
 		status_calc_elemental(ed,1);
 		ed->last_thinktime = gettick();
 		ed->summon_timer = INVALID_TIMER;
-		ed->battle_status.mode = ele->mode = EL_MODE_PASSIVE; 
+		ed->battle_status.mode = ele->mode = EL_MODE_PASSIVE;
 		elemental_summon_init(ed);
 	}
 	else
@@ -216,7 +216,7 @@ int elemental_data_received(struct s_elemental *ele, bool flag)
 	}
 
 	sd->status.ele_id = ele->elemental_id;
-	ed->battle_status.mode = ele->mode = EL_MODE_PASSIVE; 
+	ed->battle_status.mode = ele->mode = EL_MODE_PASSIVE;
 
 	if( ed->bl.prev == NULL && sd->bl.prev != NULL )
 	{
@@ -239,7 +239,7 @@ int elemental_clean_single_effect(struct elemental_data *ed, int skill_num)
 	nullpo_ret(ed);
 
 	bl = battle_get_master(&ed->bl);
-	
+
 	if( type )
 	{
 		switch( type )
@@ -263,10 +263,10 @@ int elemental_clean_single_effect(struct elemental_data *ed, int skill_num)
 			case SC_SOLID_SKIN_OPTION:
 			case SC_CURSED_SOIL_OPTION:
 			case SC_STONE_SHIELD_OPTION:
-			case SC_UPHEAVAL_OPTION:				
+			case SC_UPHEAVAL_OPTION:
 			case SC_TIDAL_WEAPON_OPTION:
-				if( bl ) status_change_end(bl,type,-1);	
-				status_change_end(&ed->bl,type-1,-1);	
+				if( bl ) status_change_end(bl,type,-1);
+				status_change_end(&ed->bl,type-1,-1);
 				break;
 			case SC_ZEPHYR:
 				if( bl ) status_change_end(bl,type,-1);
@@ -350,12 +350,12 @@ int elemental_action(struct elemental_data *ed, struct block_list *bl, unsigned 
 		return 0;
 
 	if( ed->target_id )
-		elemental_unlocktarget(ed);	
-	
+		elemental_unlocktarget(ed);
+
 	ARR_FIND(0, MAX_ELESKILLTREE, i, ed->db->skill[i].id && (ed->db->skill[i].mode&EL_SKILLMODE_AGGRESSIVE));
 	if( i == MAX_ELESKILLTREE )
 		return 0;
-	
+
 	skillnum = ed->db->skill[i].id;
 	skilllv = ed->db->skill[i].lv;
 
@@ -367,7 +367,7 @@ int elemental_action(struct elemental_data *ed, struct block_list *bl, unsigned 
 	else if( DIFF_TICK(tick, ed->ud.canact_tick) < 0 )
 		return 0;
 
-	ed->target_id = ed->ud.skilltarget = bl->id;	
+	ed->target_id = ed->ud.skilltarget = bl->id;
 	ed->last_thinktime = tick;
 
 	if( !battle_check_range(&ed->bl,bl,skill_get_range(skillnum,skilllv)) )
@@ -406,7 +406,7 @@ int elemental_change_mode_ack(struct elemental_data *ed, int mode)
 	int i;
 
 	nullpo_ret(ed);
-	
+
 	if( !bl )
 		return 0;
 
@@ -425,15 +425,15 @@ int elemental_change_mode_ack(struct elemental_data *ed, int mode)
 	else if( DIFF_TICK(gettick(), ed->ud.canact_tick) < 0 )
 		return 0;
 
-	ed->target_id = bl->id;	
+	ed->target_id = bl->id;
 	ed->last_thinktime = gettick();
-	
+
 	if( skill_get_inf(skillnum) & INF_GROUND_SKILL )
 		unit_skilluse_pos(&ed->bl, bl->x, bl->y, skillnum, skilllv);
 	else
 		unit_skilluse_id(&ed->bl,bl->id,skillnum,skilllv);
-	
-	ed->target_id = 0;	
+
+	ed->target_id = 0;
 
 	return 1;
 }
@@ -445,13 +445,13 @@ int elemental_change_mode(struct elemental_data *ed, int mode)
 	elemental_unlocktarget(ed);
 
 	if(ed->elemental.mode != mode ) elemental_clean_effect(ed);
-	
+
 	ed->battle_status.mode = ed->elemental.mode = mode;
 
 
-	if( mode == EL_MODE_AGGRESSIVE ) mode = EL_SKILLMODE_AGGRESSIVE;	
-	else if( mode == EL_MODE_ASSIST ) mode = EL_SKILLMODE_ASSIST;		
-	else mode = EL_SKILLMODE_PASIVE;									
+	if( mode == EL_MODE_AGGRESSIVE ) mode = EL_SKILLMODE_AGGRESSIVE;
+	else if( mode == EL_MODE_ASSIST ) mode = EL_SKILLMODE_ASSIST;
+	else mode = EL_SKILLMODE_PASIVE;
 
 	if( mode != EL_SKILLMODE_AGGRESSIVE )
 		elemental_change_mode_ack(ed,mode);
@@ -496,7 +496,7 @@ int elemental_skillnotok(int skillid, struct elemental_data *ed)
 	nullpo_retr(1,ed);
 
 	if (i == 0)
-		return 1; 
+		return 1;
 
 	if( ed->blockskill[i] > 0 )
 		return 1;
@@ -513,7 +513,7 @@ int elemental_set_target( struct map_session_data *sd, struct block_list *bl )
 
 	if( ed->bl.m != bl->m || !check_distance_bl(&ed->bl, bl, ed->db->range2) )
 		return 0;
-	
+
 	if( !status_check_skilluse(&ed->bl, bl, 0, 0, 0) )
 		return 0;
 
@@ -548,7 +548,7 @@ static int elemental_ai_sub_timer_activesearch(struct block_list *bl, va_list ap
 		default:
 			dist = distance_bl(&ed->bl, bl);
 			if( ((*target) == NULL || !check_distance_bl(&ed->bl, *target, dist)) && battle_check_range(&ed->bl,bl,ed->db->range2) )
-			{ 
+			{
 				(*target) = bl;
 				ed->target_id = bl->id;
 				ed->min_chase = dist + ed->db->range3;
@@ -581,10 +581,10 @@ static int elemental_ai_sub_timer(struct elemental_data *ed, struct map_session_
 		return 0;
 
 	if( ed->ud.walktimer != -1 && ed->ud.walkpath.path_pos <= 2 )
-		return 0; 
-	
+		return 0;
+
 	if(ed->ud.walkpath.path_pos < ed->ud.walkpath.path_len && ed->ud.target == sd->bl.id)
-		return 0; 
+		return 0;
 
 	if( ed->sc.count && ed->sc.data[SC_BLIND] )
 		view_range = 3;
@@ -592,28 +592,28 @@ static int elemental_ai_sub_timer(struct elemental_data *ed, struct map_session_
 		view_range = ed->db->range2;
 
 	mode = status_get_mode(&ed->bl);
-	
+
 	master_dist = distance_bl(&sd->bl, &ed->bl);
 	if( master_dist > AREA_SIZE )
-	{	
+	{
 		elemental_unlocktarget(ed);
 		unit_warp(&ed->bl,sd->bl.m,sd->bl.x,sd->bl.y,3);
 		return 0;
 	}
 	else if( master_dist > MAX_ELEDISTANCE )
-	{	
+	{
 		short x = sd->bl.x, y = sd->bl.y;
 		if( ed->target_id )
 			elemental_unlocktarget(ed);
 		if( ed->ud.walktimer != -1 && ed->ud.target == sd->bl.id )
-			return 0; 
+			return 0;
 		if( DIFF_TICK(tick, ed->ud.canmove_tick) < 0 )
-			return 0; 
-		if( map_search_freecell(&ed->bl, sd->bl.m, &x, &y, MIN_ELEDISTANCE, MIN_ELEDISTANCE, 1) 
+			return 0;
+		if( map_search_freecell(&ed->bl, sd->bl.m, &x, &y, MIN_ELEDISTANCE, MIN_ELEDISTANCE, 1)
 			&& unit_walktoxy(&ed->bl, x, y, 0) )
 		return 0;
 	}
-	
+
 	if( mode == EL_MODE_AGGRESSIVE )
 	{
 		target = map_id2bl(ed->ud.target);
@@ -622,22 +622,22 @@ static int elemental_ai_sub_timer(struct elemental_data *ed, struct map_session_
 			map_foreachinrange(elemental_ai_sub_timer_activesearch, &ed->bl, ed->base_status.rhw.range, BL_CHAR, ed, &target, status_get_mode(&ed->bl));
 
 		if( !target )
-		{ 
+		{
 			elemental_unlocktarget(ed);
 			return 1;
 		}
-		
-		if( battle_check_range(&ed->bl,target,ed->db->range2) && rand()%100 < 2 ) 
+
+		if( battle_check_range(&ed->bl,target,ed->db->range2) && rand()%100 < 2 )
 		{
 			if(	elemental_action(ed,target,tick) )
 				return 1;
 		}
-	
-		if( ed->ud.target == target->id && ed->ud.attacktimer != -1 ) 
+
+		if( ed->ud.target == target->id && ed->ud.attacktimer != -1 )
 			return 1;
-	
+
 		if( battle_check_range(&ed->bl, target, ed->base_status.rhw.range) )
-		{	
+		{
 			unit_attack(&ed->bl,target->id,1);
 			return 1;
 		}
@@ -729,7 +729,7 @@ int read_elementaldb(void)
 		db->range3 = atoi(str[18]);
 		status->size = atoi(str[19]);
 		status->race = atoi(str[20]);
-	
+
 		ele = atoi(str[21]);
 		status->def_ele = ele%10;
 		status->ele_lv = ele/20;
@@ -802,7 +802,7 @@ int read_elemental_skilldb(void)
 			ShowError("read_elemental_skilldb : Class not found in elemental_db for skill entry, line %d.\n", k);
 			continue;
 		}
-		
+
 		skillid = atoi(str[1]);
 		if( skillid < EL_SKILLBASE || skillid >= EL_SKILLBASE + MAX_ELEMENTALSKILL )
 		{
@@ -855,7 +855,7 @@ int do_init_elemental(void)
 
 	add_timer_func_list(elemental_ai_timer,"elemental_ai_timer");
 	add_timer_interval(gettick()+MIN_ELETHINKTIME,elemental_ai_timer,0,0,MIN_ELETHINKTIME);
-	
+
 	return 0;
 }
 

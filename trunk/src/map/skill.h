@@ -263,8 +263,8 @@ const char*	skill_get_desc( int id ); 	// [Skotlex]
 int skill_name2id(const char* name);
 
 int skill_isammotype(struct map_session_data *sd, int skill);
-int skill_castend_id(int tid, unsigned int tick, int id, intptr data);
-int skill_castend_pos(int tid, unsigned int tick, int id, intptr data);
+int skill_castend_id(int tid, unsigned int tick, int id, intptr_t data);
+int skill_castend_pos(int tid, unsigned int tick, int id, intptr_t data);
 int skill_castend_map( struct map_session_data *sd,short skill_num, const char *map);
 
 int skill_cleartimerskill(struct block_list *src);
@@ -315,8 +315,7 @@ int skill_guildaura_sub (struct block_list *bl,va_list ap);
 int skill_castcancel(struct block_list *bl,int type);
 
 int skill_sit (struct map_session_data *sd, int type);
-void skill_brandishspear_first(struct square *tc,int dir,int x,int y);
-void skill_brandishspear_dir(struct square *tc,int dir,int are);
+void skill_brandishspear(struct block_list* src, struct block_list* bl, int skillid, int skilllv, unsigned int tick, int flag);
 void skill_repairweapon(struct map_session_data *sd, int idx);
 void skill_identify(struct map_session_data *sd,int idx);
 void skill_weaponrefine(struct map_session_data *sd,int idx); // [Celest]
@@ -1016,7 +1015,7 @@ enum e_skill {
 	SA_ELEMENTGROUND,
 	SA_ELEMENTFIRE,
 	SA_ELEMENTWIND,
-	
+
 	ALL_ODINS_RECALL = 2533,
 	RETURN_TO_ELDICASTES,
 	ALL_BUYING_STORE,

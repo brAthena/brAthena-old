@@ -35,7 +35,7 @@ typedef enum sc_type {
 	SC_BLEEDING,
 	SC_DPOISON, //10
 	SC_COMMON_MAX = 10, // end
-	
+
 	//Next up, we continue on 20, to leave enough room for additional "common" ailments in the future.
 	SC_PROVOKE = 20,
 	SC_ENDURE,
@@ -276,7 +276,7 @@ typedef enum sc_type {
 	SC_SUMMER,
 	SC_EXPBOOST,
 	SC_ITEMBOOST,
-	SC_BOSSMAPINFO, 
+	SC_BOSSMAPINFO,
 	SC_LIFEINSURANCE, //260
 	SC_INCCRI,
 	//SC_INCDEF,
@@ -434,7 +434,7 @@ typedef enum sc_type {
 	SC_VENOMIMPRESS = 451,
 	SC_HALLUCINATIONWALK,
 	SC_HALLUCINATIONWALK_POSTDELAY,
-	SC_READING_SB, 
+	SC_READING_SB,
 	SC_NEUTRALBARRIER_MASTER,
 	SC_NEUTRALBARRIER,
 	SC_STEALTHFIELD_MASTER,
@@ -705,13 +705,13 @@ enum si_type {
 //	SI_FRIEND = 162,
 //	SI_FRIENDUP = 163,
 //	SI_SG_WARM = 164,
-	SI_WARM			= 165,	
-//	166 | The three show the exact same display: ultra red character (165, 166, 167)	
+	SI_WARM			= 165,
+//	166 | The three show the exact same display: ultra red character (165, 166, 167)
 //	167 | Their names would be SI_SG_SUN_WARM, SI_SG_MOON_WARM, SI_SG_STAR_WARM
 //	SI_EMOTION = 168,
 	SI_SUN_COMFORT		= 169,
-	SI_MOON_COMFORT		= 170,	
-	SI_STAR_COMFORT		= 171,	
+	SI_MOON_COMFORT		= 170,
+	SI_STAR_COMFORT		= 171,
 //	SI_EXPUP = 172,
 //	SI_GDSKILL_BATTLEORDER = 173,
 //	SI_GDSKILL_REGENERATION = 174,
@@ -1532,8 +1532,8 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val1,int val2,int val3,int val4,int tick,int flag);
 int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const char* file, int line);
 #define status_change_end(bl,type,tid) status_change_end_(bl,type,tid,__FILE__,__LINE__)
-int kaahi_heal_timer(int tid, unsigned int tick, int id, intptr data);
-int status_change_timer(int tid, unsigned int tick, int id, intptr data);
+int kaahi_heal_timer(int tid, unsigned int tick, int id, intptr_t data);
+int status_change_timer(int tid, unsigned int tick, int id, intptr_t data);
 int status_change_timer_sub(struct block_list* bl, va_list ap);
 int status_change_clear(struct block_list* bl, int type);
 int status_change_clear_buffs(struct block_list* bl, int type);
@@ -1560,7 +1560,7 @@ void status_calc_regen(struct block_list *bl, struct status_data *status, struct
 void status_calc_regen_rate(struct block_list *bl, struct regen_data *regen, struct status_change *sc);
 
 int status_getrefinebonus(int lv,int type);
-int status_check_skilluse(struct block_list *src, struct block_list *target, int skill_lv, int skill_num, int flag); 
+int status_check_skilluse(struct block_list *src, struct block_list *target, int skill_lv, int skill_num, int flag);
 int status_check_visibility(struct block_list *src, struct block_list *target); //[Skotlex]
 
 int status_amotion_pc(struct map_session_data* sd);

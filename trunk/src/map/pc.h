@@ -378,7 +378,7 @@ struct map_session_data {
 	unsigned short pvp_rank, pvp_lastusers;
 	unsigned short pvp_won, pvp_lost;
 
-	char eventqueue[MAX_EVENTQUEUE][NAME_LENGTH*2+3];
+	char eventqueue[MAX_EVENTQUEUE][EVENT_NAME_LENGTH];
 	int eventtimer[MAX_EVENTTIMER];
 	unsigned short eventcount; // [celest]
 
@@ -418,10 +418,10 @@ struct map_session_data {
 	const char* debug_file;
 	int debug_line;
 	const char* debug_func;
-	
+
 	unsigned int bg_id;
 	unsigned short user_font;
-	
+
 	// temporary debugging of bug #3504
 	const char* delunit_prevfile;
 	int delunit_prevline;
@@ -549,7 +549,11 @@ enum equip_index {
 #define pc_check_weapontype(sd, type) ((type)&((sd)->status.weapon < MAX_WEAPON_TYPE? \
 	1<<(sd)->status.weapon:(1<<(sd)->weapontype1)|(1<<(sd)->weapontype2)))
 //Checks if the given class value corresponds to a player class. [Skotlex]
-#define pcdb_checkid(class_) (class_ < JOB_MAX_BASIC || (class_ >= JOB_NOVICE_HIGH && class_ < JOB_MAX))
+#define pcdb_checkid(class_) \
+( \
+	( (class_) >= JOB_NOVICE      && (class_) <  JOB_MAX_BASIC   ) \
+||	( (class_) >= JOB_NOVICE_HIGH && (class_) <  JOB_MAX         ) \
+)
 
 int pc_class2idx(int class_);
 int pc_isGM(struct map_session_data *sd);
@@ -615,7 +619,7 @@ int pc_updateweightstatus(struct map_session_data *sd);
 
 int pc_addautobonus(struct s_autobonus *bonus,char max,const char *script,short rate,unsigned int dur,short atk_type,const char *o_script,unsigned short pos,bool onskill);
 int pc_exeautobonus(struct map_session_data* sd,struct s_autobonus *bonus);
-int pc_endautobonus(int tid, unsigned int tick, int id, intptr data);
+int pc_endautobonus(int tid, unsigned int tick, int id, intptr_t data);
 int pc_delautobonus(struct map_session_data* sd,struct s_autobonus *bonus,char max,bool restore);
 
 int pc_bonus(struct map_session_data*,int,int);
@@ -645,7 +649,8 @@ unsigned int pc_nextbaseexp(struct map_session_data *);
 unsigned int pc_thisbaseexp(struct map_session_data *);
 unsigned int pc_nextjobexp(struct map_session_data *);
 unsigned int pc_thisjobexp(struct map_session_data *);
-int pc_need_status_point(struct map_session_data *,int);
+int pc_gets_status_point(int);
+int pc_need_status_point(struct map_session_data *,int,int);
 int pc_statusup(struct map_session_data*,int);
 int pc_statusup2(struct map_session_data*,int,int);
 int pc_skillup(struct map_session_data*,int);
@@ -708,7 +713,7 @@ int pc_cleareventtimer(struct map_session_data *sd);
 int pc_addeventtimercount(struct map_session_data *sd,const char *name,int tick);
 
 int pc_calc_pvprank(struct map_session_data *sd);
-int pc_calc_pvprank_timer(int tid, unsigned int tick, int id, intptr data);
+int pc_calc_pvprank_timer(int tid, unsigned int tick, int id, intptr_t data);
 
 int pc_ismarried(struct map_session_data *sd);
 int pc_marriage(struct map_session_data *sd,struct map_session_data *dstsd);
@@ -772,8 +777,8 @@ enum {ADDITEM_EXIST,ADDITEM_NEW,ADDITEM_OVERAMOUNT};
 // timer for night.day
 extern int day_timer_tid;
 extern int night_timer_tid;
-int map_day_timer(int tid, unsigned int tick, int id, intptr data); // by [yor]
-int map_night_timer(int tid, unsigned int tick, int id, intptr data); // by [yor]
+int map_day_timer(int tid, unsigned int tick, int id, intptr_t data); // by [yor]
+int map_night_timer(int tid, unsigned int tick, int id, intptr_t data); // by [yor]
 
 // Rental System
 void pc_inventory_rentals(struct map_session_data *sd);

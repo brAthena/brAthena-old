@@ -1753,8 +1753,8 @@ ACMD_FUNC(baselevelup)
 		} // End Addition
 		if ((unsigned int)level > pc_maxbaselv(sd) || (unsigned int)level > pc_maxbaselv(sd) - sd->status.base_level) // fix positiv overflow
 			level = pc_maxbaselv(sd) - sd->status.base_level;
-		for (i = 1; i <= level; i++)
-			status_point += (sd->status.base_level + i + 14) / 5;
+		for (i = 0; i < level; i++)
+			status_point += pc_gets_status_point(sd->status.base_level + i);
 
 		sd->status.status_point += status_point;
 		sd->status.base_level += (unsigned int)level;
@@ -1770,7 +1770,7 @@ ACMD_FUNC(baselevelup)
 		if ((unsigned int)level >= sd->status.base_level)
 			level = sd->status.base_level-1;
 		for (i = 0; i > -level; i--)
-			status_point += (sd->status.base_level + i + 14) / 5;
+			status_point += pc_gets_status_point(sd->status.base_level + i - 1);
 		if (sd->status.status_point < status_point)
 			pc_resetstate(sd);
 		if (sd->status.status_point < status_point)
@@ -3908,23 +3908,9 @@ ACMD_FUNC(agitend2)
  *------------------------------------------*/
 ACMD_FUNC(mapexit)
 {
-	struct map_session_data* pl_sd;
-	struct s_mapiterator* iter;
-
 	nullpo_retr(-1, sd);
 
-	iter = mapit_getallusers();
-	for( pl_sd = (TBL_PC*)mapit_first(iter); mapit_exists(iter); pl_sd = (TBL_PC*)mapit_next(iter) )
-		if (sd->status.account_id != pl_sd->status.account_id)
-			clif_GM_kick(NULL, pl_sd);
-	mapit_free(iter);
-
-	clif_GM_kick(NULL, sd);
-
-	flush_fifos();
-
-	runflag = 0;
-
+	do_shutdown();
 	return 0;
 }
 
@@ -7033,7 +7019,7 @@ ACMD_FUNC(mobinfo)
 * @showmobs by KarLaeda
 * => For 5 sec displays the mobs on minimap
 *------------------------------------------*/
-int atshowmobs_timer(int tid, unsigned int tick, int id, intptr data)
+int atshowmobs_timer(int tid, unsigned int tick, int id, intptr_t data)
 {
 	struct map_session_data* sd = map_id2sd(id);
 	if( sd == NULL )

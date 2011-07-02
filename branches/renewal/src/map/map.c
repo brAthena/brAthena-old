@@ -237,7 +237,7 @@ int map_freeblock_unlock (void)
 // この関数は、do_timer() のトップレベルから呼ばれるので、
 // block_free_lock を直接いじっても支障無いはず。
 
-int map_freeblock_timer(int tid, unsigned int tick, int id, intptr data)
+int map_freeblock_timer(int tid, unsigned int tick, int id, intptr_t data)
 {
 	if (block_free_lock > 0) {
 		ShowError("map_freeblock_timer: block_free_lock(%d) invalido.\n", block_free_lock);
@@ -415,7 +415,7 @@ int map_moveblock(struct block_list *bl, int x1, int y1, unsigned int tick)
 	if( bl->type&BL_CHAR )
 	{
 		if( sd )
-		{ 
+		{
 			struct block_list *d_bl;
 			if( sc && sc->data[SC__SHADOWFORM] && ((d_bl = map_id2bl(sc->data[SC__SHADOWFORM]->val2)) == NULL || bl->m != d_bl->m || !check_distance_bl(bl,d_bl,skill_get_range(SC_SHADOWFORM,1))) )
 				status_change_end(bl,SC__SHADOWFORM,-1);
@@ -425,7 +425,7 @@ int map_moveblock(struct block_list *bl, int x1, int y1, unsigned int tick)
 				sd->shadowform_id = 0;
 			}
 		}
-		
+
 		skill_unit_move(bl,tick,3);
 		sc = status_get_sc(bl);
 		if (sc) {
@@ -443,7 +443,7 @@ int map_moveblock(struct block_list *bl, int x1, int y1, unsigned int tick)
 					if( sc->data[SC_PROPERTYWALK]->val3 < skill_get_maxcount(sc->data[SC_PROPERTYWALK]->val1,sc->data[SC_PROPERTYWALK]->val2) )
 					{
 						if( map_find_skill_unit_oncell(bl,bl->x,bl->y,SO_ELECTRICWALK,NULL,0) == NULL && map_find_skill_unit_oncell(bl,bl->x,bl->y,SO_FIREWALK,NULL,0) == NULL )
-						{	
+						{
 							if( skill_unitsetting(bl,sc->data[SC_PROPERTYWALK]->val1,sc->data[SC_PROPERTYWALK]->val2,x0, y0,0) )
 								sc->data[SC_PROPERTYWALK]->val3++;
 						}
@@ -595,7 +595,7 @@ int map_forcountinrange(int (*func)(struct block_list*,va_list), struct block_li
 	y0 = max(center->y-range, 0);
 	x1 = min(center->x+range, map[m].xs-1);
 	y1 = min(center->y+range, map[m].ys-1);
-	
+
 	if (type&~BL_MOB)
 		for (by = y0 / BLOCK_SIZE; by <= y1 / BLOCK_SIZE; by++) {
 			for(bx = x0 / BLOCK_SIZE; bx <= x1 / BLOCK_SIZE; bx++) {
@@ -1308,7 +1308,7 @@ int map_get_new_object_id(void)
  * 後者は、map_clearflooritem(id)へ
  * map.h?で#defineしてある
  *------------------------------------------*/
-int map_clearflooritem_timer(int tid, unsigned int tick, int id, intptr data)
+int map_clearflooritem_timer(int tid, unsigned int tick, int id, intptr_t data)
 {
 	struct flooritem_data* fitem = (struct flooritem_data*)idb_get(id_db, id);
 	if( fitem==NULL || fitem->bl.type!=BL_ITEM || (!data && fitem->cleartimer != tid) )
@@ -1760,7 +1760,7 @@ struct npc_data * map_id2nd(int id)
 
 	return BL_CAST(BL_NPC, bl);
 }
- 
+
 struct homun_data* map_id2hd(int id)
 {
 	struct block_list* bl = map_id2bl(id);
@@ -2243,7 +2243,7 @@ int map_removemobs_sub(struct block_list *bl, va_list ap)
 	return 1;
 }
 
-int map_removemobs_timer(int tid, unsigned int tick, int id, intptr data)
+int map_removemobs_timer(int tid, unsigned int tick, int id, intptr_t data)
 {
 	int count;
 	const int m = id;
@@ -3532,9 +3532,6 @@ void do_final(void)
 		map_quit(sd);
 	mapit_free(iter);
 
-	for( i = 0; i < MAX_INSTANCE; i++ )
-		instance_destroy(i);
-
 	id_db->foreach(id_db,cleanup_db_sub);
 	chrif_char_reset_offline();
 	chrif_flush_fifo();
@@ -3544,6 +3541,7 @@ void do_final(void)
 	do_final_chrif();
 	do_final_npc();
 	do_final_script();
+	do_final_instance();
 	do_final_itemdb();
 	do_final_storage();
 	do_final_guild();
@@ -3664,6 +3662,27 @@ void set_server_type(void)
 {
 	SERVER_TYPE = ATHENA_SERVER_MAP;
 }
+
+
+/// Called when a terminate signal is received.
+void do_shutdown(void)
+{
+	if( runflag != MAPSERVER_ST_SHUTDOWN )
+	{
+		runflag = MAPSERVER_ST_SHUTDOWN;
+		ShowStatus("Shutting down...\n");
+		{
+			struct map_session_data* sd;
+			struct s_mapiterator* iter = mapit_getallusers();
+			for( sd = (TBL_PC*)mapit_first(iter); mapit_exists(iter); sd = (TBL_PC*)mapit_next(iter) )
+				clif_GM_kick(NULL, sd);
+			mapit_free(iter);
+			flush_fifos();
+		}
+		chrif_check_shutdown();
+	}
+}
+
 
 int do_init(int argc, char *argv[])
 {
@@ -3799,6 +3818,12 @@ int do_init(int argc, char *argv[])
 		ShowNotice("Servidor rodando em '"CL_WHITE"Modo PK"CL_RESET"'.\n");
 
 	ShowStatus("Servidor de mapas '"CL_GREEN"Ativado"CL_RESET"' (porta '"CL_WHITE"%d"CL_RESET"').\n\n", map_port);
+
+	if( runflag != CORE_ST_STOP )
+	{
+		shutdown_callback = do_shutdown;
+		runflag = MAPSERVER_ST_RUNNING;
+	}
 
 	return 0;
 }

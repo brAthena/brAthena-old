@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0697 - 02/07/2011 [Dani]
+	* Atualizado conforme eAthena r14881.
+
 	r0696 - 01/07/2011 [brn0]
 	* Modificações na habilidade SC_SHADOWFORM (Vínculo Sombrio).
 	- O usuário da habilidade continuava recebendo dano mesmo com ela ativa.
