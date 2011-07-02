@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0696 - 01/07/2011 [brn0]
+	* Modificações na habilidade SC_SHADOWFORM (Vínculo Sombrio).
+	- O usuário da habilidade continuava recebendo dano mesmo com ela ativa.
+	- Quando o efeito da habilidade era cancelado por tempo ou falta de SP, não era possível reutilizá-la.
+
 	r0695 - 01/07/2011 [Protimus]
 	* Modificações em habilidades:
 	- WA_SWING_DANCE (Ritmo Contagiante): Não estava dando bônus na velocidade de ataque.

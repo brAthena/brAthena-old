@@ -9102,14 +9102,17 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr data)
 		
 	case SC__SHADOWFORM:
 		if( --(sce->val4) >= 0 )
+			if( status_charge(bl, 0, sce->val1 - (sce->val1 - 1)) ){
+				sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
+				return 0;
+			}
 		{
-			if( !status_charge(bl, 0, sce->val1 - (sce->val1 - 1)) )
-				break;
-			sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
-			return 0;
+			struct block_list *s_bl = map_id2bl(sce->val2);
+			if( s_bl && s_bl->type == BL_PC )
+				((TBL_PC*)s_bl)->shadowform_id = 0;
+			break;
 		}
-		break;
-		
+
 	case SC__INVISIBILITY:
 		if( --(sce->val4) >= 0 )
 		{
