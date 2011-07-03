@@ -60,7 +60,7 @@ obj_sql:
 
 #executables
 login-server_sql: $(LOGIN_SERVER_SQL_DEPENDS)
-	@CC@ @LDFLAGS@ -o ../../login-server_sql@EXEEXT@ $(LOGIN_SQL_OBJ) $(COMMON_OBJ) $(COMMON_SQL_OBJ) @LIBS@ @MYSQL_LIBS@
+	@CC@ @LDFLAGS@ -o ../../login-server_sql@EXEEXT@ $(LOGIN_SQL_OBJ) $(COMMON_OBJ) $(COMMON_SQL_OBJ) $(MT19937AR_OBJ) @LIBS@ @MYSQL_LIBS@
 
 # login object files
 obj_sql/%.o: %.c $(LOGIN_H) $(COMMON_H) $(MT19937AR_H)
