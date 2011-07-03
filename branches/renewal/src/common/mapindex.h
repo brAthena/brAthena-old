@@ -40,6 +40,7 @@ extern char mapindex_cfgfile[80];
 #define MAP_MANUK "manuk"
 #define MAP_SPLENDIDE "splendide"
 #define MAP_DICASTES "dicastes01"
+#define MAP_ERISCASTLE "dicastes01"
 #define MAP_MORA "mora"
 #define MAP_DEWATA "dewata"
 #define MAP_MALANGDO "malangdo"

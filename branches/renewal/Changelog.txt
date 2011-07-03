@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0699 - 03/07/2011 [Protimus]
+	* Adicionada a habilidade RETURN_TO_ELDICASTES (Retorno para El Dicastes).
+	- Necessária para funcionamento do episódio.
+
 	r0698 - 03/07/2011 [Dani]
 	* Corrigido erro que impedia a compilação no gcc
 	- Missing code no merge da r697

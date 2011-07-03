@@ -461,6 +461,7 @@ int skillnotok (int skillid, struct map_session_data *sd)
 
 	switch (skillid) {
 		case AL_WARP:
+		case RETURN_TO_ELDICASTES:
 			if(map[m].flag.nowarp) {
 				clif_skill_teleportmessage(sd,0);
 				return 1;
@@ -8292,6 +8293,23 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		}
 		break;
 
+	case RETURN_TO_ELDICASTES:
+		if( sd )
+		{
+			short x = 198, y = 187; 
+			unsigned short mapindex;
+
+			mapindex  = mapindex_name2id(MAP_ERISCASTLE);
+
+			if(!mapindex)
+			{ 
+				clif_skill_fail(sd,skillid,0,0,0);
+				return 0;
+			}
+			pc_setpos(sd, mapindex, x, y, 3);
+		}
+		break;
+
 	default:
 		ShowWarning("skill_castend_nodamage_id: Habilidade desconhecida usada:%d\n",skillid);
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
@@ -11985,6 +12003,13 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 		if( !sd->status.ele_id || !sd->ed )
 		{
 			clif_skill_fail(sd,skill,0x00,0,0);
+			return 0;
+		}
+		break;
+	case RETURN_TO_ELDICASTES:
+		if( pc_isriding(sd,OPTION_MADO) )
+		{ 
+			clif_skill_fail(sd,skill,0,0,0);
 			return 0;
 		}
 		break;
