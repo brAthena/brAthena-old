@@ -9,6 +9,15 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0702 - 04/07/2011 [Mark]
+	* Atualizadas algumas habilidades de Guardião Real.
+	* Corrigido job_db1.txt e job_db2.txt em relação às classes:
+	- Guardião Real
+	- Sicário
+	- Cavaleiro Rúnico
+	- Arcebispo
+	- Bioquímico
+
 	r0701 - 03/07/2011 [brn0]
 	* Alteração na fórmula da defesa, para aumentar a precisão do calculo de danos.
 	- Alterado tanto o cálculo do dano quanto o calculo do atributo Defesa.

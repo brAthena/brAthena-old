@@ -7250,10 +7250,10 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			skill_strip_equip(bl,EQP_WEAPON|EQP_SHIELD,100,val1,tick);
 			break;
 		case SC_EXEEDBREAK:
-			val1 *= 150; // 150 * skill_lv
+			val1 *= 150;
 			if( sd->inventory_data[sd->equip_index[EQI_HAND_R]] )
-				val1 += (sd->inventory_data[sd->equip_index[EQI_HAND_R]]->weight * sd->inventory_data[sd->equip_index[EQI_HAND_R]]->wlv * status_get_lv(bl) / 100); // (weapon_weight * weapon_level * base_lvl)/100
-			val1 += 15 * sd->status.job_level; // 15 * job_lvl
+				val1 += (sd->inventory_data[sd->equip_index[EQI_HAND_R]]->weight * sd->inventory_data[sd->equip_index[EQI_HAND_R]]->wlv * status_get_lv(bl) / 100);
+			val1 += 15 * sd->status.job_level + 100;
 			break;
 		case SC_RAISINGDRAGON:
 			val3 = tick/5000;
