@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0700 - 03/07/2011 [Protimus]
+	* Correção do bônus de ASPD para itens em geral.
+	* Correção do bônus de ASPD para poções.
+	- Removidos códigos inutilizáveis.
+	- Reorganizado e construído o código.
+
 	r0699 - 03/07/2011 [Protimus]
 	* Adicionada a habilidade RETURN_TO_ELDICASTES (Retorno para El Dicastes).
 	- Necessária para funcionamento do episódio.

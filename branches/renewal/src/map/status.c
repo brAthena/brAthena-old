@@ -1548,7 +1548,8 @@ int status_check_visibility(struct block_list *src, struct block_list *target)
 
 	return 1;
 }
-// Calculo do asdp das armas.
+
+// Cálculo de ASPD para armas.
 int status_amotion_pc(struct map_session_data* sd){
 	int i;
 	if( sd->status.weapon < MAX_WEAPON_TYPE )
@@ -1563,43 +1564,25 @@ int status_amotion_pc(struct map_session_data* sd){
 	}
 	return i;
 }
-// Basic ASPD value
+
+// Valores de ASPD
 int status_base_amotion_pc(struct map_session_data* sd, struct status_data* status)
 {
-	int bonus=0, amotion, i;
-	struct status_change *sc = status_get_sc(&sd->bl);
+	int bonus = 0, amotion;
 
-	// base weapon delay
+	// Bônus vindo de armas
 	amotion = status_amotion_pc(sd);
 
-
-	if( sc && sc->count ){
-		if(sc->data[i=SC_ASPDPOTION3])
-			bonus += sc->data[i]->val2;
-		else if(sc->data[i=SC_ASPDPOTION2])
-			bonus += sc->data[i]->val2;
-		else if(sc->data[i=SC_ASPDPOTION1])
-			bonus += sc->data[i]->val2;
-		else if(sc->data[i=SC_ASPDPOTION0])
-			bonus += sc->data[i]->val2;
-
-		if(sc->data[i=SC_TWOHANDQUICKEN])
-			bonus += sc->data[i]->val2;
-		if(sc->data[i=SC_ONEHAND])
-			bonus += sc->data[i]->val2;
-		if(sc->data[i=SC_ADRENALINE] )
-			bonus += sc->data[i]->val3;
-		if(sc->data[SC_BERSERK])
-			bonus += 150;
-		else if(sc->data[SC_MADNESSCANCEL])
-			bonus += 200;
-		/*if(sc->data[SC_RAISINGDRAGON])
-			bonus += 100;*/
-	}
+	// Redução por status
 	amotion -= (int)(((float)sqrt((float)((float)pow((float)status->agi,2)/2) + ((float)pow((float)status->dex,2)/5) )/4)*10 + (bonus*status->agi/200));
+	
+	// Ajustes vindo do bônus bAspd
 	amotion += sd->aspd_add;
+	
+	// Ajustes de bônus vindo da habilidade Perícia em Esgrima
 	amotion += amotion * pc_checkskill(sd, GN_TRAINING_SWORD) / 100;
-
+	
+	// Ajustes vindo para uso de escudos
 	if(sd->status.shield > 0)
 		amotion += ((aspd_base[pc_class2idx(sd->status.class_)][MAX_WEAPON_TYPE])/10);
 
@@ -2170,7 +2153,6 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 		+ sizeof(sd->speed_add_rate)
 		+ sizeof(sd->aspd_add)
 		+ sizeof(sd->matk_bonus)
-		+ sizeof(sd->aspd_add_rate)
 		+ sizeof(sd->setitem_hash)
 		+ sizeof(sd->setitem_hash2)
 		+ sizeof(sd->itemhealrate2)
@@ -2195,8 +2177,6 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 	pc_delautobonus(sd,sd->autobonus,ARRAYLENGTH(sd->autobonus),true);
 	pc_delautobonus(sd,sd->autobonus2,ARRAYLENGTH(sd->autobonus2),true);
 	pc_delautobonus(sd,sd->autobonus3,ARRAYLENGTH(sd->autobonus3),true);
-
-	sd->aspd_add_rate += 1000;
 
 	// Parse equipment.
     for(i=0;i<MAX_INVENTORY;i++){
@@ -3484,16 +3464,6 @@ void status_calc_bl_main(struct block_list *bl, enum scb_flag flag)
 			if(status->aspd_rate != 1000)
 				amotion = amotion*status->aspd_rate/1000;
 
-			sd = (TBL_PC*)bl;
-			if(sd->aspd_add_rate != 1000)
-			{
-				int aspd_change = 0;
-				aspd_change = (amotion - battle_config.max_aspd);
-				aspd_change *= (1000 - sd->aspd_add_rate);
-				aspd_change /= 1000;
-				amotion += aspd_change;
-			}
-
 			status->amotion = cap_value(amotion,((sd->class_&JOBL_THIRD) ? battle_config.max_3rd_aspd : battle_config.max_aspd),2000);
 			status->adelay = 2*status->amotion;
 		}
@@ -4600,6 +4570,7 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 /// Note that the scale of aspd_rate is 1000 = 100%.
 static short status_calc_aspd_rate(struct block_list *bl, struct status_change *sc, int aspd_rate)
 {
+	int i;
 	if(!sc || !sc->count)
 		return cap_value(aspd_rate,0,SHRT_MAX);
 
@@ -4649,6 +4620,11 @@ static short status_calc_aspd_rate(struct block_list *bl, struct status_change *
 			aspd_rate -= 200;
 	}
 
+	if( sc->data[i=SC_ASPDPOTION3] ||
+		sc->data[i=SC_ASPDPOTION2] ||
+		sc->data[i=SC_ASPDPOTION1] ||
+		sc->data[i=SC_ASPDPOTION0])
+		aspd_rate -= sc->data[i]->val2;
 	if(sc->data[SC_DONTFORGETME])
 		aspd_rate += 10 * sc->data[SC_DONTFORGETME]->val2;
 	if(sc->data[SC_LONGING])
@@ -6421,16 +6397,10 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			val2 = 75 + 25*val1; //Cri bonus
 			break;
 		case SC_ASPDPOTION0:
-			val2 = 40;
-			break;
 		case SC_ASPDPOTION1:
-			val2 = 60;
-			break;
 		case SC_ASPDPOTION2:
-			val2 = 90;
-			break;
 		case SC_ASPDPOTION3:
-			val2 = 110;
+			val2 = 50*(2+type-SC_ASPDPOTION0);
 			break;
 
 		case SC_WEDDING:

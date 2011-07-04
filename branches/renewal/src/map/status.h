@@ -1366,7 +1366,7 @@ struct status_data {
 		hit, flee, cri, flee2,
 		def2, mdef2,
 		def, mdef,
-		aspd_rate, aspd_add_rate;
+		aspd_rate;
 	unsigned char
 		def_ele, ele_lv,
 		size, race;

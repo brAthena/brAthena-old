@@ -307,7 +307,7 @@ struct map_session_data {
 	int matk_bonus;
 	int crit_atk_rate;
 	int classchange; // [Valaris]
-	int speed_rate, speed_add_rate, aspd_add, aspd_add_rate;
+	int speed_rate, speed_add_rate, aspd_add;
 	int itemhealrate2; // [Epoque] Increase heal rate of all healing items.
 	unsigned int setitem_hash, setitem_hash2; //Split in 2 because shift operations only work on int ranges. [Skotlex]
 
