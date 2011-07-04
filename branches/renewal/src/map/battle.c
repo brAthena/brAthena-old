@@ -1517,7 +1517,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 //Assuming that 99% of the cases we will not need to check for the flag.rh... we don't.
 //ATK_RATE scales the damage. 100 = no change. 50 is halved, 200 is doubled, etc
 #define ATK_RATE( a ) { wd.damage= wd.damage*(a)/100; if(flag.lh) wd.damage2= wd.damage2*(a)/100; }
-#define ATK_RATE2( a , b ) { wd.damage= wd.damage*(a)/1000; if(flag.lh) wd.damage2= wd.damage2*(b)/1000; }
+#define ATK_RATE2( a , b ) { wd.damage= wd.damage*(a)/100; if(flag.lh) wd.damage2= wd.damage2*(b)/100; }
 //Adds dmg%. 100 = +100% (double) damage. 10 = +10% damage
 #define ATK_ADDRATE( a ) { wd.damage+= wd.damage*(a)/100; if(flag.lh) wd.damage2+= wd.damage2*(a)/100; }
 #define ATK_ADDRATE2( a , b ) { wd.damage+= wd.damage*(a)/100; if(flag.lh) wd.damage2+= wd.damage2*(b)/100; }
@@ -2435,9 +2435,10 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 
 		if (!flag.idef || !flag.idef2)
 		{	//Defense reduction
-			short vit_def, def_rate;
+			short vit_def;
 			signed short def2 = status_get_def2(target); //Don't use tstatus->def2 due to skill timer reductions.
 			short def1 = (short)tstatus->def;
+			float def_rate;
 
 			if( sc && sc->data[SC_EXPIATIO] )
 			{
@@ -2485,17 +2486,17 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				def2 = 0;
 			}
 			if (def2 > 835) def2 = 835;
-			def_rate = (short)(((float)1-((float)580/(def2 + 580)))*1000);
+			def_rate = (float)580/(def2 + 580);
 
 			ATK_ADD2(flag.pdef ? def2/2:0, flag.pdef2 ? def2/2:0);
 
-			ATK_RATE2(
-				1000-(flag.idef ? 0:def_rate),
-				1000-(flag.idef2 ? 0:def_rate)
-			);
+			wd.damage = (int)(wd.damage*def_rate);
+			if(flag.lh)
+				wd.damage2 = (int)(wd.damage2*def_rate);
+
 			wd.damage = max(wd.damage-(flag.idef ? 0:vit_def),1);
 			if(flag.lh)
-				wd.damage2 = max(wd.damage-(flag.idef2 ? 0:vit_def),1);
+				wd.damage2 = max(wd.damage2-(flag.idef2 ? 0:vit_def),1);
 		}
 
 		//Post skill/vit reduction damage increases
@@ -2738,7 +2739,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				cardfix=cardfix*(100+sd->long_attack_atk_rate)/100;
 
 			if( cardfix != 1000 || cardfix_ != 1000 )
-				ATK_RATE2(cardfix, cardfix_);	//What happens if you use right-to-left and there's no right weapon, only left?
+				ATK_RATE2(cardfix/10, cardfix_/10);	//What happens if you use right-to-left and there's no right weapon, only left?
 		}
 
 		if( skill_num == CR_SHIELDBOOMERANG || skill_num == PA_SHIELDCHAIN )
@@ -2905,7 +2906,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 		wd.damage += (20*wd.damage)/100;
 	}
 
-	if( sc && sc->data[SC_ENCHANTBLADE] && !skill_num && sd && ((flag.rh && sd->weapontype1) || (flag.lh && sd->weapontype2)) )
+	if( sc && sc->data[SC_ENCHANTBLADE] && !skill_num && sd )
 	{
 		struct Damage md = battle_calc_magic_attack(src, target, RK_ENCHANTBLADE, ((TBL_PC*)src)->status.skill[RK_ENCHANTBLADE].lv, wflag);
 		wd.damage += md.damage;

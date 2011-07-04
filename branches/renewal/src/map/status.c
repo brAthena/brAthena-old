@@ -1641,7 +1641,7 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int lev
 
 	status->hit += level + status->dex + status->luk/3 + 175;
 	status->flee += level + status->agi + status->luk/5 + 100;
-	status->def += (level + status->vit)/2 + (status->agi/5);
+	status->def += (int)(((float)level + status->vit)/2 + ((float)status->agi/5));
 	status->mdef += (int)(status->int_ + ((float)level/4) + ((float)status->dex/5) + ((float)status->vit/5));
 
 	status->matk_min = status_base_status_matk(status, level);
@@ -4348,8 +4348,6 @@ static signed short status_calc_mdef(struct block_list *bl, struct status_change
 		mdef += 25*mdef/100;
 	if(sc->data[SC_FREEZE])
 		mdef += 25*mdef/100;
-	if(sc->data[SC_ENDURE] && sc->data[SC_ENDURE]->val4 == 0)
-		mdef += sc->data[SC_ENDURE]->val1;
 	if(sc->data[SC_CONCENTRATION])
 		mdef += 1; //Skill info says it adds a fixed 1 Mdef point.
 	if(sc->data[SC_GT_CHANGE])
@@ -4381,6 +4379,9 @@ static signed short status_calc_mdef2(struct block_list *bl, struct status_chang
 		mdef2 -= mdef2 * (14 * sc->data[SC_ANALYZE]->val1) / 100;
 	if(sc->data[SC_ASSUMPTIO])
 		mdef2 *= 2;
+
+	if(sc->data[SC_ENDURE] && sc->data[SC_ENDURE]->val4 == 0)
+		mdef2 += sc->data[SC_ENDURE]->val1;
 
 	return (short)cap_value(mdef2,0,SHRT_MAX);
 }

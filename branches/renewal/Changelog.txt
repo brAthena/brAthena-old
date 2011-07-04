@@ -9,6 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0701 - 03/07/2011 [brn0]
+	* Alteração na fórmula da defesa, para aumentar a precisão do calculo de danos.
+	- Alterado tanto o cálculo do dano quanto o calculo do atributo Defesa.
+	* Corrigida a habilidade RK_ENCHANTBLADE (Encantar Lâmina).
+	- Só estava funcionando quando o usuário estava armado.
+	* Corrigida a habilidade SM_ENDURE (Vigor).
+	- Estava concedendo Mdef1, o certo é conceder Mdef2.
+
 	r0700 - 03/07/2011 [Protimus]
 	* Correção do bônus de ASPD para itens em geral.
 	* Correção do bônus de ASPD para poções.
