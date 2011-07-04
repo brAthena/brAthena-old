@@ -9,6 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0703 - 04/07/2011 [Protimus]
+	* Corrigidas todas as habilidades que dão ASPD, como:
+	- KN_TWOHANDQUICKEN (Rapidez com Duas Mãos).
+	- KN_ONEHAND (Rapidez com Uma Mão).
+	- CR_SPEARQUICKEN (Rapidez com Lança).
+	- BS_ADRENALINE (Adrenalina Pura).
+	- OS valores são conforme kRO/iRO RE.
+
 	r0702 - 04/07/2011 [Mark]
 	* Atualizadas algumas habilidades de Guardião Real.
 	* Corrigido job_db1.txt e job_db2.txt em relação às classes:

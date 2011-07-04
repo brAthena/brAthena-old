@@ -4581,16 +4581,28 @@ static short status_calc_aspd_rate(struct block_list *bl, struct status_change *
 		if(sc->data[SC_STAR_COMFORT])
 			max = sc->data[SC_STAR_COMFORT]->val2;
 
-		if(sc->data[SC_MERC_QUICKEN] &&
-			max < sc->data[SC_MERC_QUICKEN]->val2)
+		if( sc->data[SC_TWOHANDQUICKEN] && max < sc->data[SC_TWOHANDQUICKEN]->val2 )
+			max = sc->data[SC_TWOHANDQUICKEN]->val2;
+
+		if( sc->data[SC_ONEHAND] && max < sc->data[SC_ONEHAND]->val2 )
+			max = sc->data[SC_ONEHAND]->val2;
+
+		if( sc->data[SC_MERC_QUICKEN] && max < sc->data[SC_MERC_QUICKEN]->val2 )
 			max = sc->data[SC_MERC_QUICKEN]->val2;
 
-		if(sc->data[SC_SPEARQUICKEN] &&
-			max < sc->data[SC_SPEARQUICKEN]->val2)
+		if( sc->data[SC_ADRENALINE2] && max < sc->data[SC_ADRENALINE2]->val3 )
+			max = sc->data[SC_ADRENALINE2]->val3;
+		
+		if( sc->data[SC_ADRENALINE] && max < sc->data[SC_ADRENALINE]->val3 )
+			max = sc->data[SC_ADRENALINE]->val3;
+		
+		if( sc->data[SC_SPEARQUICKEN] && max < sc->data[SC_SPEARQUICKEN]->val2 )
 			max = sc->data[SC_SPEARQUICKEN]->val2;
 
-		if(sc->data[SC_FLEET] &&
-			max < sc->data[SC_FLEET]->val2)
+		if( sc->data[SC_GATLINGFEVER] && max < sc->data[SC_GATLINGFEVER]->val2 )
+			max = sc->data[SC_GATLINGFEVER]->val2;
+		
+		if( sc->data[SC_FLEET] && max < sc->data[SC_FLEET]->val2 )
 			max = sc->data[SC_FLEET]->val2;
 
 		if(sc->data[SC_ASSNCROS] &&
@@ -4668,6 +4680,8 @@ static short status_calc_aspd_rate(struct block_list *bl, struct status_change *
 		aspd_rate += aspd_rate * sc->data[SC_GUST_OPTION]->val3 / 100;
 	if(sc->data[SC_SWINGDANCE])
 		aspd_rate += aspd_rate * sc->data[SC_SWINGDANCE]->val1/100;
+	if( sc->data[SC_RAISINGDRAGON] )
+		aspd_rate -= 100;
 
 
 	return (short)cap_value(aspd_rate,0,SHRT_MAX);
@@ -6363,22 +6377,17 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			break;
 		case SC_ONEHAND:
 		case SC_TWOHANDQUICKEN:
-			val2 = 70;
+			val2 = 250;
 			if (val1 > 10) //For boss casted skills [Skotlex]
 				val2 += 20*(val1-10);
 			break;
 		case SC_MERC_QUICKEN:
-			val2 = 300;
+			val2 = 250;
 			break;
-
 		case SC_SPEARQUICKEN:
-			//val1 : Skill Lv.
-			//val2 : ASPD
-			//val3 : Critical Increment
-			//val4 : Flee Increment
-			val2 = 7;
-			val3 = 3*val1;
-			val4 = 2*val1;
+			val2 = 200+10*val1; // Adição de ASPD
+			val3 = 3*val1; // Adição de Crítico
+			val4 = 2*val1; // Adição de Esquiva
 			break;
 		case SC_DANCING:
 			//val1 : Skill ID + LV
