@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0704 - 04/07/2011 [Dani]
+	* Reduzido range do OnTouch do NPC Minister (tu_archer.txt)
+	- Report por Heishim (#150)
+	- Por fazer: consultar no Aegis qual é o range certo. Se for 10 10 deixar como está agora.
+	* Corrigido uso da label OnTouch no NPC #peter (quests_morocc.txt)
+
 	r0703 - 04/07/2011 [Protimus]
 	* Corrigidas todas as habilidades que dão ASPD, como:
 	- KN_TWOHANDQUICKEN (Rapidez com Duas Mãos).

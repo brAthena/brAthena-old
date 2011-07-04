@@ -23,7 +23,7 @@
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [Avassalador]                     |
-// | - Anotações                                            |
+// | 1.1 Corrigido uso da label OnTouch no NPC #peter [Dani]|
 // \________________________________________________________/
 
 // Stop Post Quest
@@ -8406,7 +8406,7 @@ OnTouch:
 }
 
 prt_castle,354,276,0	script	#peter	45,1,1,{
-OnTouch:;
+OnTouch:
 	if (checkquest(10019) == 1) {
 		donpcevent "Príncipe#eisen5::OnEnable";
 	}
