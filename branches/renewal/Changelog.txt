@@ -9,6 +9,15 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0706 - 05/07/2011 [Protmus]
+	* Atualizada tabase dos elementais de Feiticeiro.
+	- Valores baseados no kRO/iRO, necessário fazer uma última checagem.
+	* Modificações habilidades:
+	- RA_ARROWSTORM (Tempestade de Flechas): Necessário o uso de arcos para funcionamento.
+	- RA_FEARBREEZE (Disparo Selvagem): Necessário o uso de arcos para funcionamento.
+	- LG_OVERBRAND_BRANDISH (Lança do Destino): Necessário o uso de lanças para funcionamento.
+	- LG_PINPOINTATTACK (Estocada Precisa): Necessário o uso de lanças para funcionamento.
+
 	r0705 - 05/07/2011 [brn0]
 	* Corrigida a fórmula do ataque físico.
 	- Agora o ataque com armas está mais preciso.
