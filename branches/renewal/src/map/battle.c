@@ -953,10 +953,9 @@ int battle_addmastery(struct map_session_data *sd,struct block_list *target,int 
 		case W_1HSPEAR:
 		case W_2HSPEAR:
 			if((skill = pc_checkskill(sd,KN_SPEARMASTERY)) > 0) {
-				if(!pc_isriding(sd, OPTION_RIDING|OPTION_RIDING_DRAGON))
-					damage += (skill * (4 + pc_checkskill(sd,RK_DRAGONTRAINING)));
-				else
-					damage += (skill * (5 + pc_checkskill(sd,RK_DRAGONTRAINING)));
+				damage += skill*4;
+				if(pc_isriding(sd, OPTION_RIDING|OPTION_RIDING_DRAGON))
+					damage += skill;
 			}
 			break;
 		case W_1HAXE:
@@ -1016,7 +1015,8 @@ int battle_addmastery(struct map_session_data *sd,struct block_list *target,int 
 static int battle_calc_base_damage(struct status_data *status, struct weapon_atk *wa, struct status_change *sc, unsigned short t_size, struct map_session_data *sd, int flag)
 {
 	short type;
-	int randatk=0, damage=0, modf=100, str=status->str, atkmin, atkmax, r;
+	int damage=0, modf=100, str=status->str, atkmin, atkmax, r;
+	float randatk;
 	if (!sd){
 		if(flag&4){
 			atkmin = status->matk_min;
@@ -1032,19 +1032,24 @@ static int battle_calc_base_damage(struct status_data *status, struct weapon_atk
 	}else{
 		if(flag&2)
 			str = status->dex;
+		type = (wa == &status->rhw ? EQI_HAND_R:EQI_HAND_L);
+		if(!sd->special_state.no_sizefix && !pc_isriding(sd,OPTION_RIDING_DRAGON))
+			modf = (type==EQI_HAND_L ? sd->left_weapon.atkmods[t_size]:sd->right_weapon.atkmods[t_size]);
 
-		type = (wa == &status->rhw) ? EQI_HAND_R:EQI_HAND_L;
-		modf = (!(sd->special_state.no_sizefix) ? (type==EQI_HAND_L ? sd->left_weapon.atkmods[t_size]:sd->right_weapon.atkmods[t_size]):100);
-		if(type==EQI_HAND_R ? sd->weapontype1:sd->weapontype2)
-			randatk = wa->atk*sd->inventory_data[sd->equip_index[type]]->wlv/20;
-		if(randatk)
-			randatk = rand()%randatk * (rand()%2 ? 1:-1);
-		damage = (int)(((float)wa->atk*(str + 200)/200 + wa->atk2 + (!(type==EQI_HAND_R ? sd->weapontype1:sd->weapontype2) ? 0:
-			sd->status.inventory[sd->equip_index[type]].refine + (sd->status.inventory[sd->equip_index[type]].refine+sd->inventory_data[sd->equip_index[type]]->wlv)*
-			((r=sd->status.inventory[sd->equip_index[type]].refine - status_getrefinebonus(sd->inventory_data[sd->equip_index[type]]->wlv,2))>0 ? r:0) ))*modf/100);
-		damage = (damage + randatk) * modf/100;
-		damage += status->batk * 2 + status->atk_bonus + (flag&2 && sd->arrow_atk ? (flag&1 ?sd->arrow_atk:rand()%sd->arrow_atk):0);
+		if(type==EQI_HAND_R ? sd->weapontype1:sd->weapontype2){
+			int overrefinebonus;
+			if(type==EQI_HAND_R ? sd->weapontype1:sd->weapontype2)
+				overrefinebonus = sd->status.inventory[sd->equip_index[type]].refine + (sd->status.inventory[sd->equip_index[type]].refine+sd->inventory_data[sd->equip_index[type]]->wlv)*
+					((r=sd->status.inventory[sd->equip_index[type]].refine - status_getrefinebonus(sd->inventory_data[sd->equip_index[type]]->wlv,2))>0 ? r:0);
 
+			if((randatk=(float)(wa->atk*sd->inventory_data[sd->equip_index[type]]->wlv)) > 0)
+				randatk = (float)(-randatk + rand()%(int)(randatk*2)) / 20;
+
+			damage = (int)((float)(wa->atk*(str + 200)/200 + randatk) + wa->atk2 + overrefinebonus);
+			damage = damage*modf/100;
+		}
+		damage += 2*status->batk;
+		damage += status->atk_bonus + (flag&2 && sd->arrow_atk ? (flag&1 ?sd->arrow_atk:rand()%sd->arrow_atk):0);
 		//rodatazone says that Overrefine bonuses are part of baseatk
 		//Here we also apply the weapon_atk_rate bonus so it is correctly applied on left/right hands.
 		if (type == EQI_HAND_L) {
@@ -1056,6 +1061,7 @@ static int battle_calc_base_damage(struct status_data *status, struct weapon_atk
 	}
 	if(flag&1)
 		damage += damage * 4 / 10;
+
 	return damage;
 }
 
@@ -1965,7 +1971,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					if( sstatus->rhw.ele == ELE_FIRE )	skillratio +=  skillratio / 2;
 					break;
 				case RK_SONICWAVE:
-					skillratio += 500 + 100 * skill_lv * s_base_level / 100;
+					skillratio += 400 + 100*skill_lv;
+					if(s_base_level > 50)
+						skillratio += skillratio*(s_base_level - 50)/200;
 					break;
 				case RK_WINDCUTTER:
 					skillratio += 50 * skill_lv;
@@ -2488,8 +2496,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 
 			ATK_ADD2(flag.pdef ? def2/2:0, flag.pdef2 ? def2/2:0);
 
-			wd.damage = (int)(wd.damage*def_rate);
-			if(flag.lh)
+			if(!flag.idef)
+				wd.damage = (int)(wd.damage*def_rate);
+			if(flag.lh && !flag.idef2)
 				wd.damage2 = (int)(wd.damage2*def_rate);
 
 			wd.damage = max(wd.damage-(flag.idef ? 0:vit_def),1);

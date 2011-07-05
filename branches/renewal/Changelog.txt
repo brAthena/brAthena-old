@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0705 - 05/07/2011 [brn0]
+	* Corrigida a fórmula do ataque físico.
+	- Agora o ataque com armas está mais preciso.
+	* Corrigida a habilidade KN_SPEARMASTERY (Perícia com Lança).
+	* Corrigida a habilidade RK_SONICWAVE (Onda de Choque).
+
 	r0704 - 04/07/2011 [Dani]
 	* Reduzido range do OnTouch do NPC Minister (tu_archer.txt)
 	- Report por Heishim (#150)
