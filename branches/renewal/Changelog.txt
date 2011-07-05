@@ -9,6 +9,15 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0707 - 05/07/2011 [Protimus]
+	* Adicionadas habilidades das 3rd classes que dispensam dex na redução do tempo de conjuração variável.
+	- Revisar outras em skill_castnodex.txt.
+	* Modificações em habilidades: 
+	- SR_TIGERCANNON (Garra de Tigre): Adicionado consumo de SP corretamente.
+	- SC_DEADLYINFECT (Pestilência): Modificada chance de status.
+	- AB_DUPLELIGHT (Gemini Lumen): Modificada chance de status.
+	- SC_AUTOSHADOWSPELL (Desejo das Sombras): Adicionadas condições de status faltantes para o status da habilidade.
+
 	r0706 - 05/07/2011 [Protmus]
 	* Atualizada tabase dos elementais de Feiticeiro.
 	- Valores baseados no kRO/iRO, necessário fazer uma última checagem.

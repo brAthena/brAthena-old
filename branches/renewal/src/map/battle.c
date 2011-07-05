@@ -657,7 +657,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 		if( sd && (sce = sc->data[SC_FORCEOFVANGUARD]) && flag&BF_WEAPON && rand()%100 < sce->val2 )
 			pc_addrageball(sd,skill_get_time(LG_FORCEOFVANGUARD,sce->val1),sce->val3);
 
-		if( sc->data[SC__DEADLYINFECT] && damage > 0 && rand()%100 < 20 )
+		if( sc->data[SC__DEADLYINFECT] && damage > 0 && rand()%100 < 65 + 5 * sc->data[SC__DEADLYINFECT]->val1 )
 			status_change_spread(bl, src);
 
 		//Reduzindo 90% de dano do corpo fechado
@@ -722,7 +722,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 		{
 		if( tsc->data[SC_POISONINGWEAPON] && skill_num != GC_VENOMPRESSURE && (flag&BF_WEAPON) && damage > 0 && rand()%100 < tsc->data[SC_POISONINGWEAPON]->val3 )
 			sc_start(bl,tsc->data[SC_POISONINGWEAPON]->val2,100,tsc->data[SC_POISONINGWEAPON]->val1,skill_get_time2(GC_POISONINGWEAPON,tsc->data[SC_POISONINGWEAPON]->val1));
-		if( tsc->data[SC__DEADLYINFECT] && damage > 0 && rand()%100 < 20 )
+		if( tsc->data[SC__DEADLYINFECT] && damage > 0 && rand()%100 < 65 + 5 * tsc->data[SC__DEADLYINFECT]->val1 )
 			status_change_spread(src, bl);
 		}
 
@@ -4220,7 +4220,7 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 	if( damage > 0 && src != target )
 	{
 
-		if( sc && sc->data[SC_DUPLELIGHT] && (wd.flag&BF_SHORT) && rand()%100 <= 25 )
+		if( sc && sc->data[SC_DUPLELIGHT] && (wd.flag&BF_SHORT) && rand()%100 <= 10+2*sc->data[SC_DUPLELIGHT]->val1 )
 		{
 			int skillid;
 			if( rand()%2 == 1 )
@@ -4315,6 +4315,7 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 		if (skilllv < 1) skilllv = 1;
 		sp = skill_get_sp(skillid,skilllv) * 2 / 3;
 
+		if (sd) sd->state.autocast = 1;
 		if (status_charge(src, 0, sp)) {
 			switch (skill_get_casttype(skillid)) {
 				case CAST_GROUND:
@@ -4328,8 +4329,8 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 					break;
 			}
 		}
+		if (sd) sd->state.autocast = 0;
 	}
-
 	if( sd && wd.flag&BF_SHORT && sc && sc->data[SC__AUTOSHADOWSPELL] && rand()%100 < sc->data[SC__AUTOSHADOWSPELL]->val3 && sd->status.skill[sc->data[SC__AUTOSHADOWSPELL]->val1].id != 0 && sd->status.skill[sc->data[SC__AUTOSHADOWSPELL]->val1].flag == 13 )
 	{
 		int r_skill = sd->status.skill[sc->data[SC__AUTOSHADOWSPELL]->val1].id,

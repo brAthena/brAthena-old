@@ -64,11 +64,27 @@
 498,1	// AM_TWILIGHT3#Criação Espiritual de Poções#
 512,3	// GS_TRACKING#Rastrear o Alvo#
 1014,1	// PR_REDEMPTIO#Martírio#
+2012,7	// RK_CRUSHSTRIKE#Golpe Titânico#
+2013,7	// RK_REFRESH#Purificação#
+2014,7	// RK_GIANTGROWTH#Força Titânica#
+2015,7	// RK_STONEHARDSKIN#Escamas Rochosas#
+2032,7	// GC_POISONSMOKE#Nevoeiro Tóxico#
+2205,7	// WL_MARSHOFABYSS#Pântano de Nifflheim#
+2206,7	// WL_RECOGNIZEDSPELL#Maestria Arcana#
+2234,7	// RA_FEARBREEZE#Disparo Selvagem#
+2267,7	// NC_SELFDESTRUCTION#Autodestruicão#
+2268,7	// NC_SHAPESHIFT#Reconfigurar Elemento#
+2270,7	// NC_INFRAREDSCAN#Sensor Infravermelho#
+2271,7	// NC_ANALYZE#Analisar#
+2281,7	// NC_SILVERSNIPER#Artilharia Caçadora#
+2282,7	// NC_MAGICDECOY#Artilharia Arcana#
+2313,7	// LG_FORCEOFVANGUARD#Proteção da Vanguarda#
 2316,1	// LG_EXCEEDBREAK#Exceder Limite#
-10010,3	// GD_BATTLEORDER#Comando de Batalha#
-10011,3	// GD_REGENERATION#Regeneração#
-10012,6	// GD_RESTORE#Restauração#
-10013,7	// GD_DEVELOPMENT#Desenvolvimento Permanente#
+2462,7	// SO_EL_ANALYSIS#Análise Elemental#
+2533,7	// ALL_ODINS_RECALL
+2534,7	// RETURN_TO_ELDICASTES
+2536,7	// ALL_GUARDIAN_RECALL
+
 //============================================================
 // Habilidades dos Assistentes
 //============================================================
@@ -83,3 +99,11 @@
 8235,7	// MER_SCAPEGOAT#Bode Expiatório#
 8238,7	// MER_KYRIE#Kyrie Eleison#
 8240,7	// MER_INCAGI#Aumentar Agilidade#
+
+//============================================================
+// Habilidades de Guilda
+//============================================================
+10010,3	//GD_BATTLEORDER#Comando de Batalha#
+10011,3	//GD_REGENERATION#Regeneração#
+10012,6	//GD_RESTORE#Restauração#
+10013,7	//GD_EMERGENCYCALL#Chamado Urgente#
