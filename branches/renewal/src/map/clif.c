@@ -9432,17 +9432,9 @@ void clif_parse_ActionRequest_sub(struct map_session_data *sd, int action_type, 
 		if( sd->sc.option&OPTION_RIDING_WUG && sd->weapontype1 )
 			return;
 
-		if( sd->sc.data[SC_BASILICA] || sd->sc.data[SC_CRYSTALIZE] || sd->sc.data[SC__SHADOWFORM] )
-			return;
-
-		if( sd->sc.data[SC_VOICEOFSIREN] && sd->sc.data[SC_VOICEOFSIREN]->val2 == target_id )
-			return;
-
-		if( sd->sc.data[SC_DEEPSLEEP] )
-			return;
-
-		if( (sd->sc.count && sd->sc.data[SC__MANHOLE]) || (tsc && tsc->data[SC__MANHOLE]) )
-			return;
+		if( sd->sc.data[SC_BASILICA] || sd->sc.data[SC__SHADOWFORM] || (tsc && tsc->data[SC__MANHOLE]) ||
+			(sd->sc.data[SC_VOICEOFSIREN] && sd->sc.data[SC_VOICEOFSIREN]->val2 == target_id) )
+			return;			
 
 		if (!battle_config.sdelay_attack_enable && pc_checkskill(sd, SA_FREECAST) <= 0) {
 			if (DIFF_TICK(tick, sd->ud.canact_tick) < 0) {
@@ -9771,6 +9763,9 @@ void clif_parse_DropItem(int fd, struct map_session_data *sd)
 		if (sd->sc.count && (
 			sd->sc.data[SC_AUTOCOUNTER] ||
 			sd->sc.data[SC_BLADESTOP] ||
+			sd->sc.data[SC_CRYSTALIZE] ||
+			sd->sc.data[SC_DEEPSLEEP] ||
+			sd->sc.data[SC__MANHOLE] ||
 			sd->sc.data[SC_DEATHBOUND] ||
 			(sd->sc.data[SC_NOCHAT] && sd->sc.data[SC_NOCHAT]->val1&MANNER_NOITEM) ||
 			sd->sc.data[SC_CURSEDCIRCLE_TARGET]

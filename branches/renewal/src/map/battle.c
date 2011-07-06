@@ -3115,7 +3115,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 					case MG_COLDBOLT:
 						if ( sc )
 						{
-							if ( sc->data[SC_SPELLFIST] )
+							if ( sc->data[SC_SPELLFIST] && (!sd || !sd->state.autocast))
 							{
 								skillratio += (sc->data[SC_SPELLFIST]->val4 * 100) + (sc->data[SC_SPELLFIST]->val2 * 100) - 100;
 								ad.div_ = 1;
@@ -3134,7 +3134,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 					case MG_FIREBOLT:
 						if ( sc )
 						{
-							if ( sc->data[SC_SPELLFIST] )
+							if ( sc->data[SC_SPELLFIST] && (!sd || !sd->state.autocast))
 							{
 								skillratio += (sc->data[SC_SPELLFIST]->val4 * 100) + (sc->data[SC_SPELLFIST]->val2 * 100) - 100;
 								ad.div_ = 1;
@@ -3148,7 +3148,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 					case MG_LIGHTNINGBOLT:
 						if ( sc )
 						{
-							if ( sc->data[SC_SPELLFIST] )
+							if ( sc->data[SC_SPELLFIST] && (!sd || !sd->state.autocast))
 							{
 								skillratio += (sc->data[SC_SPELLFIST]->val4 * 100) + (sc->data[SC_SPELLFIST]->val2 * 100) - 100;
 								ad.div_ = 1;
@@ -4331,13 +4331,15 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 		}
 		if (sd) sd->state.autocast = 0;
 	}
-	if( sd && wd.flag&BF_SHORT && sc && sc->data[SC__AUTOSHADOWSPELL] && rand()%100 < sc->data[SC__AUTOSHADOWSPELL]->val3 && sd->status.skill[sc->data[SC__AUTOSHADOWSPELL]->val1].id != 0 && sd->status.skill[sc->data[SC__AUTOSHADOWSPELL]->val1].flag == 13 )
+	if( sd && wd.flag&BF_SHORT && sc && sc->data[SC__AUTOSHADOWSPELL] && rand()%100 < sc->data[SC__AUTOSHADOWSPELL]->val3 &&
+		sd->status.skill[sc->data[SC__AUTOSHADOWSPELL]->val1].id != 0 && sd->status.skill[sc->data[SC__AUTOSHADOWSPELL]->val1].flag == 13 )
 	{
 		int r_skill = sd->status.skill[sc->data[SC__AUTOSHADOWSPELL]->val1].id,
 			r_lv = sc->data[SC__AUTOSHADOWSPELL]->val2;
 
 		if (r_skill != AL_HOLYLIGHT && r_skill != PR_MAGNUS)
 		{
+			skill_consume_requirement(sd,r_skill,r_lv,3);
 			switch( skill_get_casttype(r_skill) )
 			{
 			case CAST_GROUND:
@@ -4364,8 +4366,10 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 		else if( sc->data[SC_WILD_STORM_OPTION] ) skillid = sc->data[SC_WILD_STORM_OPTION]->val2;
 		else if( sc->data[SC_UPHEAVAL_OPTION] ) skillid = sc->data[SC_UPHEAVAL_OPTION]->val2;
 
+		sd->state.autocast = 1;
 		if( skillid && rand()%100 < 25 )
 			skill_castend_damage_id(src, target, skillid, pc_checkskill(sd,skillid), tick, flag);
+		sd->state.autocast = 0;
 	}
 
 	if (sd) {

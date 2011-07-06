@@ -7313,6 +7313,9 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			break;
 		case SC_REFLECTDAMAGE:
 			val2 = 15 + 5 * val1;
+			val3 = (val1==5)?20:(val1+4)*2; 
+			val4 = tick/10000;
+			tick = 10000;
 			break;
 		case SC_CRESCENTELBOW:
 			val2 = 94 + val1;
@@ -7401,9 +7404,9 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			break;
 		case SC_CURSED_SOIL_OPTION:
 			val2 = 10;
-			val3 = 20;
+			val3 = 33;
 			val4 = 2;
-			val_flag |= 1|2|3;
+			val_flag |= 1|2|4;
 			break;
 		case SC_UPHEAVAL_OPTION:
 			val2 = WZ_EARTHSPIKE;
@@ -9123,18 +9126,24 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 			return 0;
 		}
 		break;
+		
+	case SC_REFLECTDAMAGE:
+		if( --(sce->val4) >= 0 ) {
+			if( !status_charge(bl,0,sce->val3) )
+				break;
+			sc_timer_next(10000 + tick, status_change_timer, bl->id, data);
+			return 0;
+		}
+		break;
 
 	case SC_INSPIRATION:
 		if(--(sce->val4) >= 0)
 		{
-			int hp = status->max_hp / 100;
-			int sp = status->max_sp / 100;
-
-			if( status->sp <= sp )
-				status_change_end(bl,type,-1);
-
-			status_zap(bl, hp, sp);
-			if( !sc->data[type] ) break;
+			int hp = status->max_hp * (7-sce->val1) / 100;
+			int sp = status->max_sp * (9-sce->val1) / 100;
+			
+			if( !status_charge(bl,hp,sp) ) break;
+			
 			sc_timer_next(1000+tick,status_change_timer,bl->id, data);
 			return 0;
 		}

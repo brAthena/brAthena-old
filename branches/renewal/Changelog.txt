@@ -9,6 +9,15 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0709 - 05/07/2011 [Protimus]
+	* Modificações em habilidades:
+	- LG_INSPIRATION (Consagração): Adicionados HP e SP oficiais.
+	- LG_REFLECTDAMAGE (Reflexão Amplificada): Adicionado SP oficial.
+	- SO_SPELLFIST (Punho Arcano): Não é mais utilizada em conjurações diretas.
+	- SC_AUTOSHADOWSPELL (Desejo das Sombras): Adicionado consumo de requerimentos corretamente.
+	* Modificações no sucesso de cada habilidade de máscaras usadas pelo Renegado.
+	* Pequenas correções de envios anteriores ou apenas para mudança estética.
+	
 	r0708 - 05/07/2011 [Protimus]
 	* Correções gerais para todas as habilidades:
 	- Correção de tempo de reuso de conjuração da habilidade (cooldown).
