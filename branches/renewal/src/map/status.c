@@ -452,7 +452,7 @@ void initChangeTables(void)
 	set_sc( WL_STASIS            , SC_STASIS          , SI_STASIS          , SCB_NONE );
 	set_sc( WL_RECOGNIZEDSPELL   , SC_RECOGNIZEDSPELL , SI_RECOGNIZEDSPELL , SCB_NONE );
 	set_sc( WL_FROSTMISTY        , SC_FREEZING        , SI_FROSTMISTY      , SCB_ASPD|SCB_SPEED|SCB_DEF|SCB_DEF2 );
-	set_sc( WL_MARSHOFABYSS      , SC_MARSHOFABYSS    , SI_MARSHOFABYSS    , SCB_SPEED|SCB_HIT|SCB_DEF|SCB_MDEF );
+	set_sc( WL_MARSHOFABYSS      , SC_MARSHOFABYSS    , SI_MARSHOFABYSS    , SCB_SPEED|SCB_FLEE|SCB_DEF|SCB_MDEF );
 
 	set_sc( RA_FEARBREEZE        , SC_FEARBREEZE      , SI_FEARBREEZE      , SCB_NONE );
 	set_sc( RA_ELECTRICSHOCKER   , SC_ELECTRICSHOCKER , SI_ELECTRICSHOCKER , SCB_NONE );
@@ -4136,8 +4136,6 @@ static signed short status_calc_hit(struct block_list *bl, struct status_change 
 		hit -= hit * sc->data[SC__GROOMY]->val3 / 100;
 	if(sc->data[SC_INSPIRATION])
 		hit += 45 + 5 * sc->data[SC_INSPIRATION]->val1;
-	if( sc->data[SC_MARSHOFABYSS] )
-		hit -= (9 * sc->data[SC_MARSHOFABYSS]->val3 / 10 + sc->data[SC_MARSHOFABYSS]->val2 / 10) * (bl->type == BL_MOB ? 2 : 1);
 
 	return (short)cap_value(hit,1,SHRT_MAX);
 }
@@ -4205,6 +4203,8 @@ static signed short status_calc_flee(struct block_list *bl, struct status_change
 		flee += flee * sc->data[SC_ZEPHYR]->val2 / 100;
 	if(sc->data[SC_INFRAREDSCAN])
 		flee -= flee * 30 / 100;
+	if( sc->data[SC_MARSHOFABYSS] )
+		flee -= (9 * sc->data[SC_MARSHOFABYSS]->val3 / 10 + sc->data[SC_MARSHOFABYSS]->val2 / 10) * (bl->type == BL_MOB ? 2 : 1);
 
 	return (short)cap_value(flee,0,SHRT_MAX);
 }
@@ -4665,7 +4665,7 @@ static short status_calc_aspd_rate(struct block_list *bl, struct status_change *
 	if( sc->data[SC_GLOOMYDAY] )
 		aspd_rate -= aspd_rate * sc->data[SC_GLOOMYDAY]->val3 / 100;
 	if( sc->data[SC__BODYPAINT] )
-		aspd_rate += aspd_rate * 5 * sc->data[SC__BODYPAINT]->val1 / 100;
+		aspd_rate += aspd_rate * (20 + 5 * sc->data[SC__BODYPAINT]->val1) / 100;
 	if( sc->data[SC__INVISIBILITY] )
 		aspd_rate += aspd_rate * sc->data[SC__INVISIBILITY]->val2 / 100;
 	if( sc->data[SC__GROOMY] )

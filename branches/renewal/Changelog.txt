@@ -9,6 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0708 - 05/07/2011 [Protimus]
+	* Correções gerais para todas as habilidades:
+	- Correção de tempo de reuso de conjuração da habilidade (cooldown).
+	- Correção de tempo de conjuração na execução da habilidade.
+	* Modificações em habilidades:
+	- WL_MARSHOFABYSS (Pântano de Nifflheim): Reduz esquiva ao invés de ataque.
+	- SC_BODYPAINT (Borrifar Tinta): Corrigida fórmula.
+
 	r0707 - 05/07/2011 [Protimus]
 	* Adicionadas habilidades das 3rd classes que dispensam dex na redução do tempo de conjuração variável.
 	- Revisar outras em skill_castnodex.txt.
@@ -26,6 +34,7 @@
 	- RA_FEARBREEZE (Disparo Selvagem): Necessário o uso de arcos para funcionamento.
 	- LG_OVERBRAND_BRANDISH (Lança do Destino): Necessário o uso de lanças para funcionamento.
 	- LG_PINPOINTATTACK (Estocada Precisa): Necessário o uso de lanças para funcionamento.
+	- GN_DEMONIC_FIRE (Bomba Napalm): Correção para dano em AoE.
 
 	r0705 - 05/07/2011 [brn0]
 	* Corrigida a fórmula do ataque físico.
