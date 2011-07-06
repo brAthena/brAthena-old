@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0711 - 06/07/2011 [Protimus]
+	* Atualizada tabela de statpoint (ganho de pontos de status) conforme renovação.
+	- Está atualizada até o level máximo da renovação, para maiores use o statpoint2.
+
 	r0710 - 05/07/2011 [Protimus]
 	* Adicionadas atualizações de IDs dos status changes.
 	- Necessária revisão de alguns.
