@@ -5826,6 +5826,11 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		if( sd && pc_checkskill(sd, AS_CLOAKING) < 3 && !skill_check_cloaking(bl,NULL) )
 			return 0;
 	break;
+	case SC_CLOAKINGEXCEED:
+	case SC_HIDING:
+		if( sc->data[SC_BITE] )
+			return 0; 
+	break;
 	case SC_MODECHANGE:
 	{
 		int mode;
@@ -9480,19 +9485,26 @@ int status_change_clear_buffs (struct block_list* bl, int type)
 			case SC_WINKCHARM:
 			case SC_STOP:
 			case SC_ORCISH:
+			case SC_BITE:
+			case SC_ADORAMUS:
+			case SC_VACUUM_EXTREME:
+			case SC_BURNING:
+			case SC_FEAR:
+			case SC_MAGNETICFIELD:
+				if (!(type&2))
+					continue;
+				break;
+				
 			case SC_STRIPWEAPON:
 			case SC_STRIPSHIELD:
 			case SC_STRIPARMOR:
 			case SC_STRIPHELM:
-			case SC_FEAR:
-			case SC_BURNING:
-			case SC_ADORAMUS:
-			case SC_VACUUM_EXTREME:
-				if (!(type&2))
+				if(type&4)
 					continue;
-				break;
+					
 			//The rest are buffs that can be removed.
 			case SC_BERSERK:
+			case SC_SATURDAYNIGHTFEVER:
 				if (!(type&1))
 					continue;
 			  	sc->data[i]->val2 = 0;

@@ -3279,6 +3279,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case NC_PILEBUNKER:
 	case NC_VULCANARM:
 	case NC_ARMSCANNON:
+	case NC_COLDSLOWER:
 		if (sd) pc_overheat(sd,1);
 		skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
 		break;
@@ -4021,8 +4022,11 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case RA_WUGBITE:
 		if(path_search(NULL,src->m,src->x,src->y,bl->x,bl->y,1,CELL_CHKNOREACH)) {
 			if(skillid == RA_WUGSTRIKE)
+			{
 				if(sd && pc_isriding(sd,OPTION_RIDING_WUG) && !map_flag_gvg(src->m) && !map[src->m].flag.battleground && unit_movepos(src,bl->x,bl->y,1,1))
 					clif_slide(src, bl->x, bl->y);
+			}
+
 			skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
 		}
 		break;
@@ -8981,7 +8985,6 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 	case SC_MANHOLE:
 	case SC_MAELSTROM:
 	case SC_CHAOSPANIC:
-	case NC_COLDSLOWER:
 	case GN_THORNS_TRAP:
 	case GN_WALLOFTHORN:
 	case GN_DEMONIC_FIRE:
@@ -9256,6 +9259,8 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 		}
 		break;
 
+	case NC_COLDSLOWER:
+	case NC_ARMSCANNON:	
 	case RK_DRAGONBREATH:
 	case WM_LULLABY_DEEPSLEEP:
 		i = skill_get_splash(skillid,skilllv);
