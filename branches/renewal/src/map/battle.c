@@ -955,7 +955,7 @@ int battle_addmastery(struct map_session_data *sd,struct block_list *target,int 
 			if((skill = pc_checkskill(sd,KN_SPEARMASTERY)) > 0) {
 				damage += skill*4;
 				if(pc_isriding(sd, OPTION_RIDING|OPTION_RIDING_DRAGON))
-					damage += skill;
+					damage += skill*6;
 			}
 			break;
 		case W_1HAXE:
@@ -1044,12 +1044,11 @@ static int battle_calc_base_damage(struct status_data *status, struct weapon_atk
 
 			if((randatk=(float)(wa->atk*sd->inventory_data[sd->equip_index[type]]->wlv)) > 0)
 				randatk = (float)(-randatk + rand()%(int)(randatk*2)) / 20;
-
 			damage = (int)((float)(wa->atk*(str + 200)/200 + randatk) + wa->atk2 + overrefinebonus);
 			damage = damage*modf/100;
 		}
 		damage += 2*status->batk;
-		damage += status->atk_bonus + (flag&2 && sd->arrow_atk ? (flag&1 ?sd->arrow_atk:rand()%sd->arrow_atk):0);
+		damage += status->atk_bonus + (flag&2 && sd->arrow_atk ? sd->arrow_atk:0);
 		//rodatazone says that Overrefine bonuses are part of baseatk
 		//Here we also apply the weapon_atk_rate bonus so it is correctly applied on left/right hands.
 		if (type == EQI_HAND_L) {
@@ -2044,7 +2043,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 100) / 20;
 					break;
 				case NC_AXEBOOMERANG:
-					skillratio += (160 + (skill_lv * 40) + sd->inventory_data[sd->equip_index[EQI_HAND_R]]->weight );
+					skillratio += 160 + 40*skill_lv;
+					if(sd)
+						skillratio += sd->inventory_data[sd->equip_index[EQI_HAND_R]]->weight;
 					break;
 				case NC_POWERSWING:
 					skillratio += (180 + (skill_lv * 20) + sstatus->dex + sstatus->str );

@@ -6038,8 +6038,10 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		break;
 
 	case NC_SELFDESTRUCTION:
-		pc_setoption(sd, sd->sc.option&~OPTION_MADO);
-		status_zap(src, 0, sd->status.sp);
+		if(sd){
+			pc_setoption(sd, sd->sc.option&~OPTION_MADO);
+			status_zap(src, 0, sd->status.sp);
+		}
 		clif_skill_nodamage(src, bl, skillid, skilllv, 1);
 		skill_castend_damage_id(src, src, skillid, skilllv, tick, flag);
 		break;

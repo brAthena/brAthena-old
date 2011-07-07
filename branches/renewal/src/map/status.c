@@ -1677,9 +1677,9 @@ static unsigned short status_base_atk(const struct block_list *bl, const struct 
 	// equation, hinting that perhaps non-players should use this for batk.
 	// [Skotlex]
 
-	if( bl->type == BL_PC ) {
-		str += (int)(((float)status->dex/5) + ((float)status->luk/3) + ((float)level/4));
-	}
+	if( bl->type == BL_PC )
+		str += (int)((float)dex/5 + (float)status->luk/3 + (float)level/4);
+
 	return cap_value(str, 0, USHRT_MAX);
 }
 
@@ -7350,9 +7350,9 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			break;
 		case SC_EXEEDBREAK:
 			val1 *= 150;
-			if( sd->inventory_data[sd->equip_index[EQI_HAND_R]] )
+			if( sd && sd->inventory_data[sd->equip_index[EQI_HAND_R]] )
 				val1 += (sd->inventory_data[sd->equip_index[EQI_HAND_R]]->weight * sd->inventory_data[sd->equip_index[EQI_HAND_R]]->wlv * status_get_lv(bl) / 100);
-			val1 += 15 * sd->status.job_level + 100;
+			val1 += 15 * (sd ? sd->status.job_level:50) + 100;
 			break;
 		case SC_RAISINGDRAGON:
 			val3 = tick/5000;

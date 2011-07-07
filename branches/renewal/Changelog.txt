@@ -9,6 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0713 - 07/07/2011 [brn0]
+	* Corrigido o ataque base durante o uso de arcos.
+	* Corrigido o dano causado por flechas.
+	* Corrigida novamente a KN_SPEARMASTERY (Perícia com Lança).
+	- Estava com valor incorreto para personagens com montaria.
+	* Corrigidos erros em algumas habilidades de Guardião Real e Mecânico.
+	- Estavam causando queda do map-server quando usadas por clones.
+
 	r0712 - 07/07/2011 [Protimus]
 	* Atualizações em alguns status e adições para prevenções.
 	* Modificações em habilidades:
