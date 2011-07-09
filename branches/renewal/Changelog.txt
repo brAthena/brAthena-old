@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0715 - 09/07/2011 [Protimus]
+	* Corrigida bonificação de esquiva para itens.
+	- Não estava adicionando de forma correta, estava adicionando como esquiva perfeita e não normal.
+
 	r0714 - 09/07/2011 [Protimus]
 	* Corrigida habilidade WL_COMET (Cometa).
 	- Não estava sendo executada corretamente e sua fórmula de dano foi alterada com novas condições.
