@@ -9,6 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0716 - 09/07/2011 [Mark]
+	* Corrigida habilidade LG_SHIELDSPELL (Aegis Domini).
+	- Estava com todos os valores incorretos.
+	- Não estava executando as 3 possiveis habilidades no level 3.
+	* Corrigida variável shieldmdef estava sendo somada ao trocar de escudo ao invés de ser alterada.
+	* Corrigido cast da habilidade LG_FORCEOFVANGUARD (Proteção da Vanguarda).
+	* Corrigido weight da Musa e do Trovador.
+
 	r0715 - 09/07/2011 [Protimus]
 	* Corrigida bonificação de esquiva para itens.
 	- Não estava adicionando de forma correta, estava adicionando como esquiva perfeita e não normal.

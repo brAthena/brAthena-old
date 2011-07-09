@@ -2081,7 +2081,7 @@ int pc_bonus(struct map_session_data *sd,int type,int val)
 	case SP_MDEF2:
 		if( sd->special_state.checkshieldmdef )
 		{
-			sd->shieldmdef += val;
+			sd->shieldmdef = val;
 			sd->special_state.checkshieldmdef = 0;
 		}
 		if(sd->state.lr_flag != 2) {

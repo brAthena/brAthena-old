@@ -1309,6 +1309,8 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 				rate += sd->break_armor_rate;
 			if( sc && sc->data[SC_MELTDOWN] )
 				rate += sc->data[SC_MELTDOWN]->val3;
+			if( sc && sc->data[SC_SHIELDSPELL_REF] && sc->data[SC_SHIELDSPELL_REF]->val1 == 3)
+				rate += sc->data[SC_SHIELDSPELL_REF]->val2;
 			if( rate )
 				skill_break_equip(bl, EQP_ARMOR, rate, BCT_ENEMY);
 		}
@@ -7974,12 +7976,12 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 								status_change_end(bl,SC_SHIELDSPELL_DEF,-1);
 								break;
 							case 2:
-								val = 10 * shield_data->def;
-								sc_start2(bl,SC_SHIELDSPELL_DEF,brate,opt,val,shield_data->def * 30000);
+								val =  shield_data->def /2;
+								sc_start2(bl,SC_SHIELDSPELL_DEF,brate,opt,val,shield_data->def * 2000);
 								break;
 							case 3:
-								val = 20 * shield_data->def;
-								sc_start2(bl,SC_SHIELDSPELL_DEF,brate,opt,val,shield_data->def * 30000);
+								val = shield_data->def;
+								sc_start2(bl,SC_SHIELDSPELL_DEF,brate,opt,val,shield_data->def * 3000);
 								break;
 						}
 					}
@@ -8007,6 +8009,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 							clif_skill_damage(src,bl,tick, status_get_amotion(src), 0, -30000, 1, skillid, skilllv, 6);
 							if( rate < brate )
 								map_foreachinrange(skill_area_sub,src,skill_get_splash(skillid,skilllv),BL_CHAR,src,skillid,skilllv,tick,flag|BCT_ENEMY|1,skill_castend_nodamage_id);
+							status_change_end(bl,SC_SHIELDSPELL_MDEF,-1);
 							break;
 						case 3:
 							if( sc_start(bl,SC_SHIELDSPELL_MDEF,brate,opt,sd->shieldmdef * 30000) )
@@ -8024,25 +8027,28 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 						clif_skill_fail(sd,skillid,0,0,0);
 						break;
 					}
-					brate = it->refine * 5;
-					if( rate < 25 )
+					if( rate < 33 )
 						opt = 1;
-					else if( rate < 50 )
+					else if( rate < 66 )
 						opt = 2;
 					else
 						opt = 3;
 					switch( opt )
 					{
 						case 1:
-							val = 105 * it->refine / 10;
-							sc_start2(bl,SC_SHIELDSPELL_REF,brate,opt,val,it->refine * 20000);
+							val = 13 * it->refine;
+							sc_start2(bl,SC_SHIELDSPELL_REF,100,opt,val,it->refine * 20000);
 							break;
-						case 2: case 3:
-							if( rate < brate )
-							{
-								val = sstatus->max_hp * (11 + it->refine) / 100;
-								status_heal(bl, val, 0, 3);
-							}
+						case 2:
+							sc_start(bl,SC_SHIELDSPELL_REF,100,opt,-1);
+							val = sstatus->max_hp * (14 + it->refine) / 100;
+							status_heal(bl, val, 0, 1);
+							clif_skill_nodamage(src, bl, AL_HEAL, val, 1);
+							status_change_end(bl,SC_SHIELDSPELL_REF,-1);
+							break;
+						case 3:
+							val = 10000;
+							sc_start2(bl,SC_SHIELDSPELL_REF,100,opt,val,it->refine * 30000);
 							break;
 					}
 				}

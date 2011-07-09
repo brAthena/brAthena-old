@@ -2143,18 +2143,16 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case LG_SHIELDSPELL:
 					if( wflag&1 )
 					{
-						skillratio += 200;
+						skillratio += 400;
 						if( sd )
 						{
 							struct item_data *shield_data = sd->inventory_data[sd->equip_index[EQI_HAND_L]];
 							if( shield_data )
-								skillratio *= shield_data->def;
+								skillratio += 10 * shield_data->def;
 						}
 						else
 							skillratio *= 9;
 					}
-					else
-						skillratio += (sd) ? sd->shieldmdef * 20 : 1000;
 					break;
 				case LG_OVERBRAND:
 					skillratio = (400 * skill_lv + (pc_checkskill(sd,CR_SPEARQUICKEN) * 30)) * s_base_level /100;
@@ -3428,6 +3426,11 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 					case EL_FIRE_WAVE:
 					case EL_TYPOON_MIS_ATK:
 						skillratio += 1200;
+						break;
+					case LG_SHIELDSPELL:
+						if( mflag&2 )
+							skillratio += (sd) ? sd->shieldmdef * 113 : 1000;
+						skillratio += 250;
 						break;
 
 				}
