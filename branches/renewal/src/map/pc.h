@@ -149,7 +149,8 @@ struct map_session_data {
 		struct guild *gmaster_flag;
 		unsigned no_gemstone : 1;
 		unsigned improv_flag : 1;
-		unsigned magicmushroom_flag : 1;
+		unsigned magicmushroom_flag : 1; 
+		unsigned fearbreeze : 4;
 	} state;
 	struct {
 		unsigned char no_weapon_damage, no_magic_damage, no_misc_damage;

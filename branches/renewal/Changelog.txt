@@ -9,6 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0714 - 09/07/2011 [Protimus]
+	* Corrigida habilidade WL_COMET (Cometa).
+	- Não estava sendo executada corretamente e sua fórmula de dano foi alterada com novas condições.
+	* Correções para uso de gemas.
+	- Não estava captando o consumo das gemas de forma adequada e causava erros em habilidades que precisam delas.
+	* Correções para declaração de algumas habilidades.
+
 	r0713 - 07/07/2011 [brn0]
 	* Corrigido o ataque base durante o uso de arcos.
 	* Corrigido o dano causado por flechas.

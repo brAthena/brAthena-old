@@ -3297,18 +3297,20 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 							skillratio += skillratio*(s_base_level-100)/200;
 						break;
 					case WL_COMET:
-						{
+						if( sc )
+						{ 
 							int addv = 2400, mulv = 500;
-							if(sc){
-								i = distance_xy(target->x, target->y, sc->comet_x, sc->comet_y);
-								if(i > 1){
-									i = (i+3)%4;
-									addv -= 500 * i;
-									mulv -= 100 * i;
-								}
+							i = distance_xy(target->x, target->y, sc->comet_x, sc->comet_y);
+							if( i > 1 )
+							{
+								i = (i+3)%4;
+								addv -= 500 * i;
+								mulv -= 100 * i;
 							}
-							skillratio += addv+mulv*skill_lv;
+							skillratio += addv + mulv * skill_lv;
 						}
+						else
+							skillratio += 2400 + 500 * skill_lv; 
 						break;
 					case WL_CHAINLIGHTNING_ATK:
 						skillratio += 100+300*skill_lv;

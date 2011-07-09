@@ -9279,7 +9279,8 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 		break;
 
 	case WL_COMET:
-		if(sc){
+		if(sc)
+		{
 			sc->comet_x = x;
 			sc->comet_y = y;
 		}
@@ -11822,8 +11823,9 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 		break;
 	case WL_COMET:
 	case AB_ADORAMUS:
-		if(skill_check_pc_partner(sd,skill,&lv,1,0) <= 0 && pc_search_inventory(sd,ITEMID_BLUE_GEMSTONE) <= require.amount[0]){
-			clif_skill_fail(sd,skill,0x04,0,0);
+		if( skill_check_pc_partner(sd,skill,&lv,1,0) <= 0 && ((i = pc_search_inventory(sd,require.itemid[0])) < 0 || sd->status.inventory[i].amount < require.amount[0]))
+		{
+			clif_skill_fail(sd,skill,0x47,require.amount[0],require.itemid[0]);
 			return 0;
 		}
 		break;
@@ -12393,6 +12395,8 @@ int skill_consume_requirement( struct map_session_data *sd, short skill, short l
 			if( (n = pc_search_inventory(sd,req.itemid[i])) >= 0 )
 				pc_delitem(sd,n,req.amount[i],0,1);
 		}
+		
+		sd->state.no_gemstone = 0;
 	}
 
 	return 1;
@@ -12515,11 +12519,9 @@ struct skill_condition skill_get_requirement(struct map_session_data* sd, short 
 
 		if( itemid_isgemstone(req.itemid[i]) && skill != HW_GANBANTEIN )
 		{
-			if( sd->special_state.no_gemstone )
-			{	//Make it substract 1 gem rather than skipping the cost.
-				if( --req.amount[i] < 1 )
-					req.itemid[i] = 0;
-			}
+			if(sd->special_state.no_gemstone || sd->state.no_gemstone)
+			//Make it substract 1 gem rather than skipping the cost.
+				req.amount[i] = req.itemid[i] = 0;
 			if(sc && sc->data[SC_INTOABYSS])
 			{
 				if( skill != SA_ABRACADABRA )
