@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0717 - 09/07/2011 [Mark]
+	* Corrigida habilidade SC_REPRODUCE (Mimetismo) e RG_PLAGIARISM (Plágio).
+	- Estava copiando várias habilidades.
+
 	r0716 - 09/07/2011 [Mark]
 	* Corrigida habilidade LG_SHIELDSPELL (Aegis Domini).
 	- Estava com todos os valores incorretos.

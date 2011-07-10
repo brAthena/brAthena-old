@@ -2269,7 +2269,7 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 			if( sc && sc->data[SC__REPRODUCE] && (skill = sc->data[SC__REPRODUCE]->val1) )
 			{
 				copy_level = min(skill,skill_get_max(copy_skill));
-				if( tsd->reproduceskill_id && tsd->status.skill[tsd->reproduceskill_id].flag == SKILL_FLAG_PLAGIARIZED )
+				if( tsd->reproduceskill_id && tsd->status.skill[tsd->reproduceskill_id].flag == 13 )
 				{
 					tsd->status.skill[tsd->reproduceskill_id].id = 0;
 					tsd->status.skill[tsd->reproduceskill_id].lv = 0;
@@ -2289,7 +2289,7 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 			else if( (skill = pc_checkskill(tsd,RG_PLAGIARISM)) > 0 && (!sc || !sc->data[SC_PRESERVE]) )
 			{
 				copy_level = min(copy_level,skill);
-				if( tsd->cloneskill_id && tsd->status.skill[tsd->cloneskill_id].flag == 13 )
+				if( tsd->cloneskill_id && tsd->status.skill[tsd->cloneskill_id].flag == SKILL_FLAG_PLAGIARIZED )
 				{
 					tsd->status.skill[tsd->cloneskill_id].id = 0;
 					tsd->status.skill[tsd->cloneskill_id].lv = 0;
