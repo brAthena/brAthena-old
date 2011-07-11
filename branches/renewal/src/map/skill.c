@@ -12636,6 +12636,8 @@ struct skill_condition skill_get_requirement(struct map_session_data* sd, short 
 			if( sc && sc->data[SC_EDP] )
 				switch(skill){
 					case AS_SONICBLOW:
+					case GC_COUNTERSLASH:
+					case GC_CROSSIMPACT:
 						req.sp += req.sp;
 			}
 	}

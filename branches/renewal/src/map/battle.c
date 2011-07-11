@@ -2358,10 +2358,11 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				ATK_ADDRATE(2*sc->data[SC_TRUESIGHT]->val1);
 
 			if(sc->data[SC_EDP] &&
-			  	skill_num != ASC_BREAKER &&
 				skill_num != ASC_METEORASSAULT &&
-				skill_num != AS_SPLASHER)
-				ATK_ADDRATE(sc->data[SC_EDP]->val3);
+				skill_num != AS_SPLASHER &&
+				skill_num != AS_GRIMTOOTH &&
+				skill_num != AS_VENOMKNIFE)
+				ATK_RATE(sc->data[SC_EDP]->val3);
 		}
 
 		switch (skill_num) {

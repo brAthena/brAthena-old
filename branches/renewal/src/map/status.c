@@ -6353,7 +6353,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			break;
 		case SC_EDP:	// [Celest]
 			val2 = val1 + 2; //Chance to Poison enemies.
-			val3 = 50*(val1+3);
+			val3 = 35 * val1;
 			break;
 		case SC_POISONREACT:
 			val2=(val1+1)/2 + val1/10; // Number of counters [Skotlex]

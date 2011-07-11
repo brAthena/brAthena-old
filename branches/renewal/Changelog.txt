@@ -9,6 +9,15 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0718 - 09/07/2011 [Protimus]
+	* Modificações em habilidades:
+	- GC_CROSSIMPACT (Lâminas Retalhadoras): Adicionada condição de custo para SP.
+	- GC_COUNTERSLASH (Retaliação): Adicionada condição de custo para SP.
+	- ASC_EDP (Encantar com Veneno Mortal): Modificado valores da fórmula, foi nerfada novamente.
+	- ASC_BREAKER (Destruidor de Almas): Adicionado bonificação do efeito de Encantar com Veneno Mortal.
+	- AS_GRIMTOOTH (Tocaia): Removido o efeito de Encantar com Veneno Mortal para a habilidade.
+	- AS_VENOMKNIFE (Faca Envenenada): Removido o efeito de Encantar com Veneno Mortal para a habilidade.
+
 	r0717 - 09/07/2011 [Mark]
 	* Corrigida habilidade SC_REPRODUCE (Mimetismo) e RG_PLAGIARISM (Plágio).
 	- Estava copiando várias habilidades.
