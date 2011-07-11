@@ -9,11 +9,17 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0720 - 11/07/2011 [Protimus]
+	* Adicionado sistema de costume itens.
+	- Necessário modificar no item_db os itens para serem usados como costume, alterando o valor para o do enumerator correto.
+	- Necessário verificar possíveis problemas e incompatibilidades com outros códigos na leitura.
+	OBS: Não é recomendado usar esse sistema ainda.
+
 	r0719 - 11/07/2011 [brn0]
 	* Corrigida a fórmula dano mágico.
 	* Corrigida a fórmula da cura.
 
-	r0718 - 09/07/2011 [Protimus]
+	r0718 - 10/07/2011 [Protimus]
 	* Modificações em habilidades:
 	- GC_CROSSIMPACT (Lâminas Retalhadoras): Adicionada condição de custo para SP.
 	- GC_COUNTERSLASH (Retaliação): Adicionada condição de custo para SP.
@@ -22,7 +28,7 @@
 	- AS_GRIMTOOTH (Tocaia): Removido o efeito de Encantar com Veneno Mortal para a habilidade.
 	- AS_VENOMKNIFE (Faca Envenenada): Removido o efeito de Encantar com Veneno Mortal para a habilidade.
 
-	r0717 - 09/07/2011 [Mark]
+	r0717 - 10/07/2011 [Mark]
 	* Corrigida habilidade SC_REPRODUCE (Mimetismo) e RG_PLAGIARISM (Plágio).
 	- Estava copiando várias habilidades.
 
