@@ -360,19 +360,20 @@ int skill_calc_heal(struct block_list *src, struct block_list *target, int skill
 		if (skill_lv >= battle_config.max_heal_lv)
 			return battle_config.max_heal;
 
-		if (sd)
-			hp = (status_get_lv(src)+status_get_int(src))*6*(100+skill)*
-			( skill_id == AB_HIGHNESSHEAL ? ( sd ? pc_checkskill(sd,AL_HEAL) : 10 ) : skill_lv )/1000+
-			sd->base_status.matk_max+sd->base_status.matk_min +
-			(rand()%2 ? 1:-1)*
-			(sd && sd->matk_bonus ? rand()%(sd->matk_bonus*sd->inventory_data[sd->equip_index[EQI_HAND_R]]->wlv/10):0);
-		else
+		if (sd) {
+			hp = (status_get_lv(src)+status_get_int(src))/5*30*
+			( skill_id == AB_HIGHNESSHEAL ? ( sd ? pc_checkskill(sd,AL_HEAL) : 10 ) : skill_lv )/10+
+			sd->base_status.matk_max + sd->base_status.matk_min;
+			if(sd->matk_bonus){
+				int randheal = sd->matk_bonus*sd->inventory_data[sd->equip_index[EQI_HAND_R]]->wlv/5;
+				hp += -randheal/2 + rand()%randheal;
+			}
+		} else
 			hp = ( status_get_lv(src)+status_get_int(src) )/5 *(4+ ( skill_id == AB_HIGHNESSHEAL ? ( sd ? pc_checkskill(sd,AL_HEAL) : 10 ) : skill_lv )*8);
 		if( src->type == BL_HOM && (skill = merc_hom_checkskill(((TBL_HOM*)src), HLIF_BRAIN)) > 0 )
 			hp += hp * skill * 2 / 100;
 		break;
 	}
-
 	if( skill_id == AB_HIGHNESSHEAL ){
 			hp = (hp * (20 + 3 * (skill_lv - 1))) / 10;}
 
@@ -385,7 +386,6 @@ int skill_calc_heal(struct block_list *src, struct block_list *target, int skill
 	}
 
 	hp = hp*(100+skill)/100;
-
 	return hp;
 }
 

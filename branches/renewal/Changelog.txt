@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0719 - 11/07/2011 [brn0]
+	* Corrigida a fórmula dano mágico.
+	* Corrigida a fórmula da cura.
+
 	r0718 - 09/07/2011 [Protimus]
 	* Modificações em habilidades:
 	- GC_CROSSIMPACT (Lâminas Retalhadoras): Adicionada condição de custo para SP.

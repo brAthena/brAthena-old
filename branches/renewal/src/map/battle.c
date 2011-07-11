@@ -3082,11 +3082,11 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 			{
 				int min_damage, max_damage;
 				if(sd){
-					min_damage = sstatus->matk_max*2 + 3*sstatus->matk_min/2;
-					max_damage = ( sstatus->matk_max+(sd->matk_bonus*(sd->weapontype1 ? sd->inventory_data[sd->equip_index[EQI_HAND_R]]->wlv:0))/10 )*2 + 3*sstatus->matk_min/2;
+					min_damage = sstatus->matk_max*2 + sstatus->matk_min;
+					max_damage = ( sstatus->matk_max+(sd->matk_bonus*(sd->weapontype1 ? sd->inventory_data[sd->equip_index[EQI_HAND_R]]->wlv:0))/10 )*2 + sstatus->matk_min;
 				}else{
-					min_damage = sstatus->int_ + (sstatus->int_/7)*(sstatus->int_/7);
-					max_damage = sstatus->int_ + (sstatus->int_/5)*(sstatus->int_/5);
+					min_damage = sstatus->int_ + sstatus->int_*sstatus->int_/49;
+					max_damage = sstatus->int_ + sstatus->int_*sstatus->int_/25;
 				}
 				if(min_damage >= max_damage){
 					MATK_ADD(max_damage);
@@ -3458,7 +3458,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 				flag.imdef = 1;
 		}
 		if(!flag.imdef){
-			int mdef_rate;
+			float mdef_rate;
 			short mdef = tstatus->mdef;
 			short mdef2 = tstatus->mdef2;
 
@@ -3471,11 +3471,11 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 					mdef2 -= mdef2 * i/100;
 				}
 			}
-			mdef_rate = (int)( ((float)111.5/ (111.5+mdef2) )*100);
+			mdef_rate = (float)(111.5/(111.5 + mdef2));
 			if(battle_config.magic_defense_type)
-				ad.damage = ad.damage - mdef_rate*battle_config.magic_defense_type - mdef;
+				ad.damage = (int)(ad.damage - 100*mdef_rate*battle_config.magic_defense_type - mdef);
 			else
-				ad.damage = ad.damage * mdef_rate / 100 - (3*mdef/2);
+				ad.damage = (int)(ad.damage*mdef_rate - mdef);
 		}
 		if (skill_num == NPC_EARTHQUAKE)
 		{	//Adds atk2 to the damage, should be influenced by number of hits and skill-ratio, but not mdef reductions. [Skotlex]
