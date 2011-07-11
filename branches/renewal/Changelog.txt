@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0721 - 11/07/2011 [Protimus]
+	* Adicionados espíritos de espiritualista para as 3rd classes.
+	- Necessário verificar se a bonificação é a mesma que as de classes normais.
+
 	r0720 - 11/07/2011 [Protimus]
 	* Adicionado sistema de costume itens.
 	- Necessário modificar no item_db os itens para serem usados como costume, alterando o valor para o do enumerator correto.
