@@ -2973,37 +2973,43 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 
 	//Initial Values
 	ad.damage = 1;
-	ad.div_=skill_get_num(skill_num,skill_lv);
 	ad.amotion=skill_get_inf(skill_num)&INF_GROUND_SKILL?0:sstatus->amotion; //Amotion should be 0 for ground skills.
 	ad.dmotion=tstatus->dmotion;
-	ad.blewcount = skill_get_blewcount(skill_num,skill_lv);
 	ad.flag=BF_MAGIC|BF_SKILL;
 	ad.dmg_lv=ATK_DEF;
 	nk = skill_get_nk(skill_num);
 	flag.imdef = nk&NK_IGNORE_DEF?1:0;
 
-	if(skill_num == WL_HELLINFERNO)
-		s_ele = (skill_lv >= 0) ? ELE_FIRE:ELE_DARK;
-
-	if( skill_num == SO_PSYCHIC_WAVE && sc && (sc->data[SC_HEATER_OPTION] || sc->data[SC_COOLER_OPTION] ||
-		sc->data[SC_BLAST_OPTION] || sc->data[SC_CURSED_SOIL_OPTION]) )
+	if( skill_num == WL_HELLINFERNO )
 	{
+		if( skill_lv >= 0 )
+			s_ele = ELE_FIRE;
+		else
+		{
+			s_ele = ELE_DARK;
+			skill_lv = -skill_lv;
+		}
+	}
+	else if( skill_num == SO_PSYCHIC_WAVE && sc && (sc->data[SC_HEATER_OPTION] || sc->data[SC_COOLER_OPTION] ||
+		sc->data[SC_BLAST_OPTION] || sc->data[SC_CURSED_SOIL_OPTION]) )
+	{	
 		if( sc->data[SC_HEATER_OPTION] ) s_ele = sc->data[SC_HEATER_OPTION]->val4;
 		else if( sc->data[SC_COOLER_OPTION] ) s_ele = sc->data[SC_COOLER_OPTION]->val4;
 		else if( sc->data[SC_BLAST_OPTION] ) s_ele = sc->data[SC_BLAST_OPTION]->val3;
 		else if( sc->data[SC_CURSED_SOIL_OPTION] ) s_ele = sc->data[SC_CURSED_SOIL_OPTION]->val4;
 	}
+	else
+	{
+		s_ele = skill_get_ele(skill_num, skill_lv);
+		if( s_ele == -1 )
+			s_ele = sstatus->rhw.ele;
+		else if( s_ele == -2 )
+			s_ele = status_get_attack_sc_element(src,sc);
+		else if( s_ele == -3 ) 
+			s_ele = rand()%ELE_MAX;
+	}
 
 	//Initialize variables that will be used afterwards
-	s_ele = skill_get_ele(skill_num, skill_lv);
-
-	if (s_ele == -1) // pl=-1 : the skill takes the weapon's element
-		s_ele = sstatus->rhw.ele;
-	else if (s_ele == -2) //Use status element
-		s_ele = status_get_attack_sc_element(src,status_get_sc(src));
-	else if( s_ele == -3 ) //Use random element
-		s_ele = rand()%ELE_MAX;
-
 	ad.div_=skill_get_num(skill_num,skill_lv);
 	ad.blewcount = skill_get_blewcount(skill_num,skill_lv);
 
@@ -3291,9 +3297,11 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 							skillratio += 15*(s_base_level-100);
 						break;
 					case WL_HELLINFERNO:
-						skillratio += (s_ele == ELE_FIRE) ? (60*skill_lv-100):(240*skill_lv-100);
-						if(s_base_level > 100)
-							skillratio += skillratio*(s_base_level-100)/200;
+						if( s_ele == ELE_FIRE )
+							skillratio += 60 * skill_lv - 100;
+						else
+							skillratio += 240 * skill_lv - 100;
+						if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
 						break;
 					case WL_COMET:
 						if( sc )

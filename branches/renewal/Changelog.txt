@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0722 - 11/07/2011 [Protimus]
+	* Modificações em habilidades:
+	- WL_HELLINFERNO (Chamas de Hela): Mudança no dano e considera propriedade sombria.
+	- NC_FLAMELAUNCHER (Lança Chamas): Adicionado requerimento de item para poder utilizá-la.
+
 	r0721 - 11/07/2011 [Protimus]
 	* Adicionados espíritos de espiritualista para as 3rd classes.
 	- Necessário verificar se a bonificação é a mesma que as de classes normais.
