@@ -9,6 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0773 - 12/07/2011 [Protimus]
+	* Correções para o sistema de costume itens.
+	- Adicionadas definições para visualização do item na janela corretamente.
+	- Adicionadas declarações para não computar status de itens costumes, resolvido erros anteriores.
+	OBS: O sistema já pode ser utilizado sem problemas.
+	* Modificados valores do campo de uso para itens de costumes já prontos no item_db.txt
+	- Necessário verificar todos os itens de costumes e fazer os que faltam.
+
 	r0722 - 11/07/2011 [Protimus]
 	* Modificações em habilidades:
 	- WL_HELLINFERNO (Chamas de Hela): Mudança no dano e considera propriedade sombria.

@@ -6803,9 +6803,9 @@
 19521,Charlies_Hat,Charlies Hat,5,20,,0,,0,,0,0xFFFFFFFF,7,2,256,,1,1,706,{},{},{}
 19522,Mini_Crown,Mini Crown,5,20,,0,,0,,0,0xFFFFFFFF,7,2,256,,1,1,707,{},{},{}
 19523,Green_Ribbon,Green Ribbon,5,20,,0,,0,,0,0xFFFFFFFF,7,2,256,,1,0,244,{},{},{}
-19524,Costume_Green_Feeler,Costume Green Feeler,5,20,,0,,0,,0,0xFFFFFFFF,7,2,256,,1,0,85,{},{},{}
-19525,Costume_Mini_Glasses,Costume Mini Glasses,5,20,,0,,0,,0,0xFFFFFFFF,7,2,256,,1,0,47,{},{},{}
-19526,Costume_Helm,Costume Helm,5,20,,0,,0,,0,0xFFFFFFFF,7,2,256,,1,0,40,{},{},{}
-19527,Costume_Spiky_Band,Costume Spiky Band,5,20,,0,,0,,0,0xFFFFFFFF,7,2,256,,1,0,43,{},{},{}
-19528,Costume_Iron_Cain,Costume Iron Cain,5,20,,0,,0,,0,0xFFFFFFFF,7,2,256,,1,0,53,{},{},{}
-19529,Costume_Angel_Wing,Costume Angel Wing,5,20,,0,,0,,0,0xFFFFFFFF,7,2,256,,1,0,38,{},{},{}
+19524,Costume_Green_Feeler,Costume Green Feeler,5,20,,0,,0,,0,0xFFFFFFFF,7,2,1024,,1,0,85,{},{},{}
+19525,Costume_Mini_Glasses,Costume Mini Glasses,5,20,,0,,0,,0,0xFFFFFFFF,7,2,1024,,1,0,47,{},{},{}
+19526,Costume_Helm,Costume Helm,5,20,,0,,0,,0,0xFFFFFFFF,7,2,1024,,1,0,40,{},{},{}
+19527,Costume_Spiky_Band,Costume Spiky Band,5,20,,0,,0,,0,0xFFFFFFFF,7,2,1024,,1,0,43,{},{},{}
+19528,Costume_Iron_Cain,Costume Iron Cain,5,20,,0,,0,,0,0xFFFFFFFF,7,2,1024,,1,0,53,{},{},{}
+19529,Costume_Angel_Wing,Costume Angel Wing,5,20,,0,,0,,0,0xFFFFFFFF,7,2,1024,,1,0,38,{},{},{}
