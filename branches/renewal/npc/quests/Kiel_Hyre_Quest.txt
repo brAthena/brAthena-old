@@ -206,7 +206,7 @@
 //----------------------------------------------------------------------------
 // Juno Pub Master/Starting point.
 //----------------------------------------------------------------------------
-yuno_in01,35,179,4	script	Pub Master#kh	46,2,2,{
+yuno_in01,35,179,4	script	Pub Master#kh	46,5,5,{
 	if (checkweight(7487,1) == 0) {
 		mes "[Vandt]";
 		mes "Just a second! You're";

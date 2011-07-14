@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0725 - 14/07/2011 [Dani]
+	* Correção definitiva dos problemas dos portais
+	- A ordem de carregamento dos npcs do emulador estava incorreta
+	- Revertido ao padrão eAthena
+	- Reports de Heishim (#150 e #161)
+
 	r0724 - 14/07/2011 [Dani]
 	* Renewal atualizada até a r14905 do eAthena
 	* Envio das atualizações da trunk pra Renewal
