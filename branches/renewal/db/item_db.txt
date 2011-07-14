@@ -2921,7 +2921,7 @@
 5463,Rainbow_Scarf,Rainbow Scarf,5,,,100,,0,,0,0xFFFFFFFF,7,2,1,,90,0,460,{ bonus bInt,1; bonus bMdef,2; bonus bMatkRate,1; },{},{}
 5464,Zaha_Doll_Hat,Zaha Doll Hat,5,,,0,,1,,0,0xFFFFFFFF,7,2,256,,0,0,461,{ bonus bInt,2; skill "PR_MAGNIFICAT",3; },{},{}
 //5465,Celestial_Hat,Hat Of Fortune,5,,,500,,6,,1,0xFFFFFFFF,7,2,256,,40,1,462,{ bonus bLuk,2; bonus bMdef,5; if(getrefine()>4) bonus bLuk,getrefine()-4; },{},{}
-//5466,Wind_Milestone,Wind Milestone,5,,,100,,4,,0,0xFFFFFFFF,7,2,256,,30,1,463,{ bonus bAgi,2; skill "AL_TELEPORT",1; },{},{}
+//5466,5466,Wind_Milestone,Boné de Carteiro,5,,,100,,4,,1,0xFFFFFFFF,7,2,256,,30,1,463,{ bonus bAgi,2; skill "AL_TELEPORT",1; },{},{}
 //5467,Helm_Of_Dragoon,Helm Of Dragon,5,,,200,,10,,0,0xFFFFFFFF,7,2,256,,50,1,464,{ bonus2 bAddRace,RC_Dragon,20; bonus3 bAutoSpell,"NPC_DRAGONFEAR",1,30; },{},{}
 5468,Parade_Cap,Parade Hat,5,,,800,,5,,0,0xFFFFFFFF,7,2,256,,1,1,465,{ bonus bDelayRate,-5; bonus bMdef,2; if(getrefine()>5) bonus bCastrate,-(getrefine()-5); },{},{}
 //5469,Noble_Hat,Musketeer Hat,5,,,300,,4,,0,0xFFFFFFFF,7,2,256,,30,1,466,{ bonus bStr,2; bonus3 bAutoSpellWhenHit,"BS_ADRENALINE",1,7; },{},{}

@@ -1,3 +1,5 @@
+#####################################################################
+#
 # "Getting Started with CMake", a tutorial video by Eric Wing.
 #   Part 1 of 6: http://www.youtube.com/watch?v=CLvZTyji_Uw
 #   Part 2 of 6: http://www.youtube.com/watch?v=gUW-RrRQjEg
@@ -5,8 +7,28 @@
 #   Part 4 of 6: http://www.youtube.com/watch?v=JICZOkyNXbg
 #   Part 5 of 6: http://www.youtube.com/watch?v=lAiuLHy4dCk
 #   Part 6 of 6: http://www.youtube.com/watch?v=fAtJNzDZdH8
-cmake_minimum_required( VERSION 2.8.4 )
-project( eAthena )
+#
+# You can use notepad++ for syntax highlighting.
+# Naming conventions:
+#   WITH_*   : option to use an external package or not
+#   ENABLE_* : option to use an internal feature/code or not
+#   HAVE_*   : internal variable indicating if we have and are using something
+#
+#####################################################################
+
+
+#cmake_minimum_required( VERSION 2.8.4 )
+# Functional changes from 2.8.3 to 2.8.4:
+#   string(SUBSTRING) works with length -1 as "rest of string"
+#   changes to some CPack generators
+#   CYGWIN no longer defines WIN32
+#   CMP0017: Prefer files from the CMake module directory when including from there.
+set( CMAKE_LEGACY_CYGWIN_WIN32 0 )
+cmake_minimum_required( VERSION 2.8.3 )
+project( eAthena C )
+if( CYGWIN )
+	unset( WIN32 )
+endif()
 
 
 #
@@ -15,240 +37,250 @@ project( eAthena )
 if( ALLOW_SAME_DIRECTORY )
 elseif( "${CMAKE_CURRENT_SOURCE_DIR}" STREQUAL "${CMAKE_CURRENT_BINARY_DIR}" )
 	option( ALLOW_SAME_DIRECTORY "Allow CMake to build in the source directory." OFF )
-	message( FATAL_ERROR "Do not use the source directory to build your files, instead create a separate folder and build there.\nExample:\n  mkdir build\n  cd build\n  cmake -G\"Unix Makefiles\" ..\n  make install\nTo skip this check, set ALLOW_SAME_DIRECTORY to 1 or ON" )
+	message( FATAL_ERROR
+		"Do not use the source directory to build your files, instead delete CMakeCache.txt, create a separate folder and build there.\n"
+		"Example: (build in subdir 'build' and install to source dir)\n"
+		"  rm -f CMakeCache.txt\n"
+		"  mkdir build\n"
+		"  cd build\n"
+		"  cmake -G\"Unix Makefiles\" -DINSTALL_TO_SOURCE=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo ..\n"
+		"  make install\n"
+		"  cd ..\n"
+		"  rm -rf build\n"
+		"To skip this check, set ALLOW_SAME_DIRECTORY to ON (-DALLOW_SAME_DIRECTORY=ON)" )
 endif()
-
-
-#
-# Debug stuff
-#
-if( NOT SKIP_DEBUG )
-message( STATUS "DEBUG: # Variables That Change Behavior" )
-message( STATUS "DEBUG: BUILD_SHARED_LIBS=${BUILD_SHARED_LIBS}" )
-message( STATUS "DEBUG: CMAKE_BACKWARDS_COMPATIBILITY=${CMAKE_BACKWARDS_COMPATIBILITY}" )
-message( STATUS "DEBUG: CMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}" )
-message( STATUS "DEBUG: CMAKE_COLOR_MAKEFILE=${CMAKE_COLOR_MAKEFILE}" )
-message( STATUS "DEBUG: CMAKE_CONFIGURATION_TYPES=${CMAKE_CONFIGURATION_TYPES}" )
-message( STATUS "DEBUG: CMAKE_FIND_LIBRARY_PREFIXES=${CMAKE_FIND_LIBRARY_PREFIXES}" )
-message( STATUS "DEBUG: CMAKE_FIND_LIBRARY_SUFFIXES=${CMAKE_FIND_LIBRARY_SUFFIXES}" )
-message( STATUS "DEBUG: CMAKE_IGNORE_PATH=${CMAKE_IGNORE_PATH}" )
-message( STATUS "DEBUG: CMAKE_INCLUDE_PATH=${CMAKE_INCLUDE_PATH}" )
-message( STATUS "DEBUG: CMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}" )
-message( STATUS "DEBUG: CMAKE_LIBRARY_PATH=${CMAKE_LIBRARY_PATH}" )
-message( STATUS "DEBUG: CMAKE_MFC_FLAG=${CMAKE_MFC_FLAG}" )
-message( STATUS "DEBUG: CMAKE_MODULE_PATH=${CMAKE_MODULE_PATH}" )
-message( STATUS "DEBUG: CMAKE_NOT_USING_CONFIG_FLAGS=${CMAKE_NOT_USING_CONFIG_FLAGS}" )
-message( STATUS "DEBUG: CMAKE_PREFIX_PATH=${CMAKE_PREFIX_PATH}" )
-message( STATUS "DEBUG: CMAKE_PROGRAM_PATH=${CMAKE_PROGRAM_PATH}" )
-message( STATUS "DEBUG: CMAKE_SKIP_INSTALL_ALL_DEPENDENCY=${CMAKE_SKIP_INSTALL_ALL_DEPENDENCY}" )
-message( STATUS "DEBUG: CMAKE_SYSTEM_IGNORE_PATH=${CMAKE_SYSTEM_IGNORE_PATH}" )
-message( STATUS "DEBUG: CMAKE_SYSTEM_INCLUDE_PATH=${CMAKE_SYSTEM_INCLUDE_PATH}" )
-message( STATUS "DEBUG: CMAKE_SYSTEM_LIBRARY_PATH=${CMAKE_SYSTEM_LIBRARY_PATH}" )
-message( STATUS "DEBUG: CMAKE_SYSTEM_PREFIX_PATH=${CMAKE_SYSTEM_PREFIX_PATH}" )
-message( STATUS "DEBUG: CMAKE_SYSTEM_PROGRAM_PATH=${CMAKE_SYSTEM_PROGRAM_PATH}" )
-message( STATUS "DEBUG: CMAKE_USER_MAKE_RULES_OVERRIDE=${CMAKE_USER_MAKE_RULES_OVERRIDE}" )
-message( STATUS "DEBUG: # Variables That Describe the System" )
-message( STATUS "DEBUG: APPLE=${APPLE}" )
-message( STATUS "DEBUG: BORLAND=${BORLAND}" )
-message( STATUS "DEBUG: CMAKE_CL_64=${CMAKE_CL_64}" )
-message( STATUS "DEBUG: CMAKE_COMPILER_2005=${CMAKE_COMPILER_2005}" )
-message( STATUS "DEBUG: CMAKE_HOST_APPLE=${CMAKE_HOST_APPLE}" )
-message( STATUS "DEBUG: CMAKE_HOST_SYSTEM=${CMAKE_HOST_SYSTEM}" )
-message( STATUS "DEBUG: CMAKE_HOST_SYSTEM_NAME=${CMAKE_HOST_SYSTEM_NAME}" )
-message( STATUS "DEBUG: CMAKE_HOST_SYSTEM_PROCESSOR=${CMAKE_HOST_SYSTEM_PROCESSOR}" )
-message( STATUS "DEBUG: CMAKE_HOST_SYSTEM_VERSION=${CMAKE_HOST_SYSTEM_VERSION}" )
-message( STATUS "DEBUG: CMAKE_HOST_UNIX=${CMAKE_HOST_UNIX}" )
-message( STATUS "DEBUG: CMAKE_HOST_WIN32=${CMAKE_HOST_WIN32}" )
-message( STATUS "DEBUG: CMAKE_OBJECT_PATH_MAX=${CMAKE_OBJECT_PATH_MAX}" )
-message( STATUS "DEBUG: CMAKE_SYSTEM=${CMAKE_SYSTEM}" )
-message( STATUS "DEBUG: CMAKE_SYSTEM_NAME=${CMAKE_SYSTEM_NAME}" )
-message( STATUS "DEBUG: CMAKE_SYSTEM_PROCESSOR=${CMAKE_SYSTEM_PROCESSOR}" )
-message( STATUS "DEBUG: CMAKE_SYSTEM_VERSION=${CMAKE_SYSTEM_VERSION}" )
-message( STATUS "DEBUG: CYGWIN=${CYGWIN}" )
-message( STATUS "DEBUG: MSVC=${MSVC}" )
-message( STATUS "DEBUG: MSVC80=${MSVC80}" )
-message( STATUS "DEBUG: MSVC_IDE=${MSVC_IDE}" )
-message( STATUS "DEBUG: MSVC_VERSION=${MSVC_VERSION}" )
-message( STATUS "DEBUG: UNIX=${UNIX}" )
-message( STATUS "DEBUG: WIN32=${WIN32}" )
-message( STATUS "DEBUG: XCODE_VERSION=${XCODE_VERSION}" )
-message( STATUS "DEBUG: # Variables that Control the Build" )
-message( STATUS "DEBUG: CMAKE_ARCHIVE_OUTPUT_DIRECTORY=${CMAKE_ARCHIVE_OUTPUT_DIRECTORY}" )
-message( STATUS "DEBUG: CMAKE_BUILD_WITH_INSTALL_RPATH=${CMAKE_BUILD_WITH_INSTALL_RPATH}" )
-message( STATUS "DEBUG: CMAKE_DEBUG_POSTFIX=${CMAKE_DEBUG_POSTFIX}" )
-message( STATUS "DEBUG: CMAKE_EXE_LINKER_FLAGS=${CMAKE_EXE_LINKER_FLAGS}" )
-message( STATUS "DEBUG: CMAKE_INCLUDE_CURRENT_DIR=${CMAKE_INCLUDE_CURRENT_DIR}" )
-message( STATUS "DEBUG: CMAKE_INSTALL_NAME_DIR=${CMAKE_INSTALL_NAME_DIR}" )
-message( STATUS "DEBUG: CMAKE_INSTALL_RPATH=${CMAKE_INSTALL_RPATH}" )
-message( STATUS "DEBUG: CMAKE_INSTALL_RPATH_USE_LINK_PATH=${CMAKE_INSTALL_RPATH_USE_LINK_PATH}" )
-message( STATUS "DEBUG: CMAKE_LIBRARY_OUTPUT_DIRECTORY=${CMAKE_LIBRARY_OUTPUT_DIRECTORY}" )
-message( STATUS "DEBUG: CMAKE_LIBRARY_PATH_FLAG=${CMAKE_LIBRARY_PATH_FLAG}" )
-message( STATUS "DEBUG: CMAKE_LINK_DEF_FILE_FLAG=${CMAKE_LINK_DEF_FILE_FLAG}" )
-message( STATUS "DEBUG: CMAKE_LINK_LIBRARY_FILE_FLAG=${CMAKE_LINK_LIBRARY_FILE_FLAG}" )
-message( STATUS "DEBUG: CMAKE_LINK_LIBRARY_FLAG=${CMAKE_LINK_LIBRARY_FLAG}" )
-message( STATUS "DEBUG: CMAKE_NO_BUILTIN_CHRPATH=${CMAKE_NO_BUILTIN_CHRPATH}" )
-message( STATUS "DEBUG: CMAKE_RUNTIME_OUTPUT_DIRECTORY=${CMAKE_RUNTIME_OUTPUT_DIRECTORY}" )
-message( STATUS "DEBUG: CMAKE_SKIP_BUILD_RPATH=${CMAKE_SKIP_BUILD_RPATH}" )
-message( STATUS "DEBUG: CMAKE_TRY_COMPILE_CONFIGURATION=${CMAKE_TRY_COMPILE_CONFIGURATION}" )
-message( STATUS "DEBUG: CMAKE_USE_RELATIVE_PATHS=${CMAKE_USE_RELATIVE_PATHS}" )
-message( STATUS "DEBUG: EXECUTABLE_OUTPUT_PATH=${EXECUTABLE_OUTPUT_PATH}" )
-message( STATUS "DEBUG: LIBRARY_OUTPUT_PATH=${LIBRARY_OUTPUT_PATH}" )
-message( STATUS "DEBUG: # Variables that Provide Information" )
-message( STATUS "DEBUG: CMAKE_AR=${CMAKE_AR}" )
-message( STATUS "DEBUG: CMAKE_BINARY_DIR=${CMAKE_BINARY_DIR}" )
-message( STATUS "DEBUG: CMAKE_BUILD_TOOL=${CMAKE_BUILD_TOOL}" )
-message( STATUS "DEBUG: CMAKE_CACHEFILE_DIR=${CMAKE_CACHEFILE_DIR}" )
-message( STATUS "DEBUG: CMAKE_CACHE_MAJOR_VERSION=${CMAKE_CACHE_MAJOR_VERSION}" )
-message( STATUS "DEBUG: CMAKE_CACHE_MINOR_VERSION=${CMAKE_CACHE_MINOR_VERSION}" )
-message( STATUS "DEBUG: CMAKE_CACHE_PATCH_VERSION=${CMAKE_CACHE_PATCH_VERSION}" )
-message( STATUS "DEBUG: CMAKE_CFG_INTDIR=${CMAKE_CFG_INTDIR}" )
-message( STATUS "DEBUG: CMAKE_COMMAND=${CMAKE_COMMAND}" )
-message( STATUS "DEBUG: CMAKE_CROSSCOMPILING=${CMAKE_CROSSCOMPILING}" )
-message( STATUS "DEBUG: CMAKE_CTEST_COMMAND=${CMAKE_CTEST_COMMAND}" )
-message( STATUS "DEBUG: CMAKE_CURRENT_BINARY_DIR=${CMAKE_CURRENT_BINARY_DIR}" )
-message( STATUS "DEBUG: CMAKE_CURRENT_LIST_DIR=${CMAKE_CURRENT_LIST_DIR}" )
-message( STATUS "DEBUG: CMAKE_CURRENT_LIST_FILE=${CMAKE_CURRENT_LIST_FILE}" )
-message( STATUS "DEBUG: CMAKE_CURRENT_LIST_LINE=${CMAKE_CURRENT_LIST_LINE}" )
-message( STATUS "DEBUG: CMAKE_CURRENT_SOURCE_DIR=${CMAKE_CURRENT_SOURCE_DIR}" )
-message( STATUS "DEBUG: CMAKE_DL_LIBS=${CMAKE_DL_LIBS}" )
-message( STATUS "DEBUG: CMAKE_EDIT_COMMAND=${CMAKE_EDIT_COMMAND}" )
-message( STATUS "DEBUG: CMAKE_EXECUTABLE_SUFFIX=${CMAKE_EXECUTABLE_SUFFIX}" )
-message( STATUS "DEBUG: CMAKE_EXTRA_GENERATOR=${CMAKE_EXTRA_GENERATOR}" )
-message( STATUS "DEBUG: CMAKE_EXTRA_SHARED_LIBRARY_SUFFIXES=${CMAKE_EXTRA_SHARED_LIBRARY_SUFFIXES}" )
-message( STATUS "DEBUG: CMAKE_GENERATOR=${CMAKE_GENERATOR}" )
-message( STATUS "DEBUG: CMAKE_HOME_DIRECTORY=${CMAKE_HOME_DIRECTORY}" )
-message( STATUS "DEBUG: CMAKE_IMPORT_LIBRARY_PREFIX=${CMAKE_IMPORT_LIBRARY_PREFIX}" )
-message( STATUS "DEBUG: CMAKE_IMPORT_LIBRARY_SUFFIX=${CMAKE_IMPORT_LIBRARY_SUFFIX}" )
-message( STATUS "DEBUG: CMAKE_LINK_LIBRARY_SUFFIX=${CMAKE_LINK_LIBRARY_SUFFIX}" )
-message( STATUS "DEBUG: CMAKE_MAJOR_VERSION=${CMAKE_MAJOR_VERSION}" )
-message( STATUS "DEBUG: CMAKE_MAKE_PROGRAM=${CMAKE_MAKE_PROGRAM}" )
-message( STATUS "DEBUG: CMAKE_MINOR_VERSION=${CMAKE_MINOR_VERSION}" )
-message( STATUS "DEBUG: CMAKE_PARENT_LIST_FILE=${CMAKE_PARENT_LIST_FILE}" )
-message( STATUS "DEBUG: CMAKE_PATCH_VERSION=${CMAKE_PATCH_VERSION}" )
-message( STATUS "DEBUG: CMAKE_PROJECT_NAME=${CMAKE_PROJECT_NAME}" )
-message( STATUS "DEBUG: CMAKE_RANLIB=${CMAKE_RANLIB}" )
-message( STATUS "DEBUG: CMAKE_ROOT=${CMAKE_ROOT}" )
-message( STATUS "DEBUG: CMAKE_SHARED_LIBRARY_PREFIX=${CMAKE_SHARED_LIBRARY_PREFIX}" )
-message( STATUS "DEBUG: CMAKE_SHARED_LIBRARY_SUFFIX=${CMAKE_SHARED_LIBRARY_SUFFIX}" )
-message( STATUS "DEBUG: CMAKE_SHARED_MODULE_PREFIX=${CMAKE_SHARED_MODULE_PREFIX}" )
-message( STATUS "DEBUG: CMAKE_SHARED_MODULE_SUFFIX=${CMAKE_SHARED_MODULE_SUFFIX}" )
-message( STATUS "DEBUG: CMAKE_SIZEOF_VOID_P=${CMAKE_SIZEOF_VOID_P}" )
-message( STATUS "DEBUG: CMAKE_SKIP_RPATH=${CMAKE_SKIP_RPATH}" )
-message( STATUS "DEBUG: CMAKE_SOURCE_DIR=${CMAKE_SOURCE_DIR}" )
-message( STATUS "DEBUG: CMAKE_STANDARD_LIBRARIES=${CMAKE_STANDARD_LIBRARIES}" )
-message( STATUS "DEBUG: CMAKE_STATIC_LIBRARY_PREFIX=${CMAKE_STATIC_LIBRARY_PREFIX}" )
-message( STATUS "DEBUG: CMAKE_STATIC_LIBRARY_SUFFIX=${CMAKE_STATIC_LIBRARY_SUFFIX}" )
-message( STATUS "DEBUG: CMAKE_TWEAK_VERSION=${CMAKE_TWEAK_VERSION}" )
-message( STATUS "DEBUG: CMAKE_USING_VC_FREE_TOOLS=${CMAKE_USING_VC_FREE_TOOLS}" )
-message( STATUS "DEBUG: CMAKE_VERBOSE_MAKEFILE=${CMAKE_VERBOSE_MAKEFILE}" )
-message( STATUS "DEBUG: CMAKE_VERSION=${CMAKE_VERSION}" )
-message( STATUS "DEBUG: PROJECT_BINARY_DIR=${PROJECT_BINARY_DIR}" )
-message( STATUS "DEBUG: PROJECT_NAME=${PROJECT_NAME}" )
-message( STATUS "DEBUG: PROJECT_SOURCE_DIR=${PROJECT_SOURCE_DIR}" )
-set( CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_BINARY_DIR}/install CACHE PATH "test install to dir" FORCE )
-#set( CMAKE_INSTALL_PREFIX ${CMAKE_CURRENT_SOURCE_DIR} CACHE PATH "test install to source dir" FORCE )
-endif( NOT SKIP_DEBUG )
 
 
 #
 # Global stuff
 #
-set( GLOBAL_LIBRARIES "" CACHE INTERNAL "" )
-set( GLOBAL_INCLUDE_DIRS "" CACHE INTERNAL "" )
-set( GLOBAL_DEFINITIONS "" CACHE INTERNAL "" )
-mark_as_advanced( GLOBAL_LIBRARIES GLOBAL_INCLUDE_DIRS GLOBAL_DEFINITIONS )
+set( GLOBAL_LIBRARIES ${LINK_LIBRARIES}  CACHE INTERNAL "" )# list (comma separated values)
+set( GLOBAL_INCLUDE_DIRS ${INCLUDE_DIRECTORIES}  CACHE INTERNAL "" )# list (comma separated values)
+set( GLOBAL_DEFINITIONS ${COMPILE_DEFINITIONS}  CACHE INTERNAL "" )# string (space separated values -DFOO=bar)
+mark_as_advanced( GLOBAL_LIBRARIES  GLOBAL_INCLUDE_DIRS  GLOBAL_DEFINITIONS )
 if( WIN32 )
-	list( APPEND GLOBAL_DEFINITIONS FD_SETSIZE=4096 )
+	set_property( CACHE GLOBAL_DEFINITIONS  PROPERTY VALUE "${GLOBAL_DEFINITIONS} -DFD_SETSIZE=4096" )
 endif()
 if( MSVC )
-	list( APPEND GLOBAL_DEFINITIONS _CRT_SECURE_NO_DEPRECATE _CRT_NONSTDC_NO_DEPRECATE DB_MANUAL_CAST_TO_UNION )
+	set_property( CACHE GLOBAL_LIBRARIES    PROPERTY VALUE ${GLOBAL_LIBRARIES} "oldnames.lib" "ws2_32.lib" )
+	set_property( CACHE GLOBAL_DEFINITIONS  PROPERTY VALUE "${GLOBAL_DEFINITIONS} -D_CRT_SECURE_NO_DEPRECATE -D_CRT_NONSTDC_NO_DEPRECATE -DDB_MANUAL_CAST_TO_UNION" )
 endif()
 
 
 #
-# packetver
+# Find svnversion
 #
-set( PACKETVER ""
-	CACHE STRING "Sets the PACKETVER define of the servers. (see src/common/mmo.h)" )
+message( STATUS "Detecting svnversion" )
+find_program( SVNVERSION_EXECUTABLE svnversion )
+mark_as_advanced( SVNVERSION_EXECUTABLE )
+if( SVNVERSION_EXECUTABLE )
+	message( STATUS "Found svnversion: ${SVNVERSION_EXECUTABLE}" )
+endif()
+message( STATUS "Detecting svnversion - done" )
+
+
+#
+# Find Subversion
+#
+message( STATUS "Detecting Subversion" )
+find_package( Subversion )
+message( STATUS "Detecting Subversion - done" )
+
+#
+# PACKETVER
+#
+set( PACKETVER CACHE STRING "Sets the PACKETVER define of the servers. (see src/common/mmo.h)" )
+if( PACKETVER )
+	list( APPEND GLOBAL_DEFINITIONS  PACKETVER=${PACKETVER} )
+endif()
+
+
+#
+# SVNVERSION
+#
+if( SVNVERSION_EXECUTABLE )
+	message( STATUS "Getting svn version" )
+	execute_process( COMMAND ${SVNVERSION_EXECUTABLE} ${PROJECT_SOURCE_DIR}
+		OUTPUT_VARIABLE SVNVERSION
+		OUTPUT_STRIP_TRAILING_WHITESPACE )
+	string( REGEX REPLACE "[^1234567890MSexported]" "_" SVNVERSION ${SVNVERSION} )
+	message( STATUS "Found version: ${SVNVERSION}" )
+	message( STATUS "Getting svn version - done" )
+endif()
+if( Subversion_FOUND AND SVNVERSION )
+	message( STATUS "Getting svn branch" )
+	Subversion_WC_INFO( ${PROJECT_SOURCE_DIR} eAthena )
+	if( eAthena_WC_URL )
+		string( REGEX MATCH "[^/]+$" BRANCH ${eAthena_WC_URL} )
+		set( SVNVERSION "${BRANCH}-${SVNVERSION}" )
+		message( STATUS "Found branch: ${BRANCH}" )
+	endif()
+	message( STATUS "Getting svn branch - done" )
+endif()
+
+
+#
+# 3rdparty and library tests
+#
+add_subdirectory( 3rdparty )
+include( FindFunctionLibrary )
+include( CheckIncludeFile )
+
+
+#
+# math library (FreeBSD/Linux/Solaris)
+#
+message( STATUS "Detecting m library (math)" )
+CHECK_INCLUDE_FILE( math.h HAVE_MATH_H )
+if( NOT HAVE_MATH_H )
+	message( FATAL_ERROR "math.h not found" )
+endif()
+set( CMAKE_REQUIRED_LIBRARIES ${GLOBAL_LIBRARIES} )
+find_function_library( floor FUNCTION_FLOOR_LIBRARIES m )
+if( FUNCTION_FLOOR_LIBRARIES )
+	message( STATUS "Adding global library: ${FUNCTION_FLOOR_LIBRARIES}" )
+	list( APPEND GLOBAL_LIBRARIES ${FUNCTION_FLOOR_LIBRARIES} )
+endif()
+message( STATUS "Detecting m library (math) - done" )
+
+
+#
+# dynamic loading library (Linux)
+#
+if( NOT WIN32 )
+message( STATUS "Detecting dl library (dynamic loading)" )
+set( CMAKE_REQUIRED_LIBRARIES ${GLOBAL_LIBRARIES} )
+find_function_library( dlopen FUNCTION_DLOPEN_LIBRARIES dl )
+if( FUNCTION_DLOPEN_LIBRARIES )
+	message( STATUS "Adding global library: ${FUNCTION_DLOPEN_LIBRARIES}" )
+	list( APPEND GLOBAL_LIBRARIES ${FUNCTION_DLOPEN_LIBRARIES} )
+endif()
+message( STATUS "Detecting dl library (dynamic loading) - done" )
+endif()
+
+
+#
+# socket/nsl/ws2_32 library (Solaris/MinGW)
+#
+if( NOT MSVC )
+message( STATUS "Detecting socket/nsl/ws2_32 library (networking)" )
+set( CMAKE_REQUIRED_LIBRARIES ${GLOBAL_LIBRARIES} )
+find_function_library( bind FUNCTION_BIND_LIBRARIES socket ws2_32 )
+if( FUNCTION_BIND_LIBRARIES )
+	message( STATUS "Adding global library: ${FUNCTION_BIND_LIBRARIES}" )
+	list( APPEND GLOBAL_LIBRARIES ${FUNCTION_BIND_LIBRARIES} )
+endif()
+set( CMAKE_REQUIRED_LIBRARIES ${GLOBAL_LIBRARIES} )
+find_function_library( gethostbyname FUNCTION_GETHOSTBYNAME_LIBRARIES nsl )
+if( FUNCTION_GETHOSTBYNAME_LIBRARIES )
+	message( STATUS "Adding global library: ${FUNCTION_GETHOSTBYNAME_LIBRARIES}" )
+	list( APPEND GLOBAL_LIBRARIES ${FUNCTION_GETHOSTBYNAME_LIBRARIES} )
+endif()
+message( STATUS "Detecting socket/nsl/ws2_32 library (networking) - done" )
+endif()
 
 
 #####################################################################
 # package stuff
 #
-if( OFF )
 set( CPACK_PACKAGE_NAME "eAthena" )
 set( CPACK_PACKAGE_DESCRIPTION_SUMMARY "MMORPG server package" )
-set( CPACK_PACKAGE_FILE_NAME )
-set( CPACK_PACKAGE_INSTALL_DIRECTORY  )
-set( CPACK_PROJECT_CONFIG_FILE )
+set( CPACK_PACKAGE_VERSION ${SVNVERSION} )
 set( CPACK_RESOURCE_FILE_LICENSE ${CMAKE_CURRENT_SOURCE_DIR}/LICENSE )
-set( CPACK_RESOURCE_FILE_README )
-set( CPACK_RESOURCE_FILE_WELCOME )
-set( CPACK_MONOLITHIC_INSTALL ON )
-set( CPACK_GENERATOR "ZIP" )
-set( CPACK_OUTPUT_CONFIG_FILE )
-set( CPACK_PACKAGE_EXECUTABLES )
-set( CPACK_STRIP_FILES )
-#source
-set( CPACK_SOURCE_PACKAGE_FILE_NAME )
-set( CPACK_SOURCE_STRIP_FILES )
-set( CPACK_SOURCE_GENERATOR "ZIP" )
-set( CPACK_SOURCE_OUTPUT_CONFIG_FILE )
-set( CPACK_SOURCE_IGNORE_FILES )
-include(CPACK)
+#set( CPACK_MONOLITHIC_INSTALL ON )
+include( CPACK  OPTIONAL  RESULT_VARIABLE HAVE_CPACK )
+if( NOT HAVE_CPACK )
+	# empty replacements
+	macro( cpack_add_component_group )
+	endmacro()
+	macro( cpack_add_component )
+	endmacro()
+	message( STATUS "CPACK not found, package creation disabled" )
 endif()
+
+set( Runtime "Runtime files"  CACHE INTERNAL "" )
+set( Runtime_base "configurations, dbs, npcs, docs, ..."  CACHE INTERNAL "" )
+set( Runtime_templates "conf/import and save (generated from conf/import-tmpl and save-tmpl)"  CACHE INTERNAL "" )
+cpack_add_component_group( Runtime DESCRIPTION ${Runtime} DISPLAY_NAME "Runtime" )
+cpack_add_component( Runtime_base DESCRIPTION ${Runtime_base} DISPLAY_NAME "Base files" GROUP Runtime )
+cpack_add_component( Runtime_templates DESCRIPTION ${Runtime_templates} DISPLAY_NAME "Base templates" GROUP Runtime )
+
+set( Development "Development files"  CACHE INTERNAL "" )
+set( Development_base "projects, 3rdparty, sources, templates"  CACHE INTERNAL "" )
+cpack_add_component_group( Development DESCRIPTION ${Development} DISPLAY_NAME "Development" )
+cpack_add_component( Development_base DESCRIPTION ${Development_base} DISPLAY_NAME "Base files" GROUP Development )
 
 
 #
 # install stuff
 #
-set( COMPONENT_SOURCE "Source code, librarires and project files" CACHE INTERNAL "" )
-set( COMPONENT_BASE "Base files" CACHE INTERNAL "" )
-option( INSTALL_RUN_DATA "install files needed to run the project" ON )
-option( INSTALL_BUILD_DATA "install files needed to build the project" OFF )
-set( SVN_FOLDER_PATTERN "[\\.]svn"
-	CACHE STRING "pattern of svn folder that we exclude from instalations" )
-mark_as_advanced( SVN_FOLDER_PATTERN )
-if( "${CMAKE_CURRENT_SOURCE_DIR}" STREQUAL "${CMAKE_INSTALL_PREFIX}" )
-	set( INSTALLING_TO_SOURCE ON
-		CACHE INTERNAL "we are installing to the source folder, skip uneeded stuff" )
-else()
-	unset( INSTALLING_TO_SOURCE CACHE )
+option( WITH_COMPONENT_RUNTIME "install/package files needed to run the project" ON )
+option( WITH_COMPONENT_DEVELOPMENT "install/package files needed to build the project" OFF )
+option( INSTALL_TO_PATH "copy files to INSTALL_PATH" OFF )
+option( INSTALL_TO_SOURCE "copy files to source directory, skips what is already there (${CMAKE_CURRENT_SOURCE_DIR})" OFF )
+option( INSTALL_TO_SUBDIR "copy files to subdirectory (${CMAKE_CURRENT_BINARY_DIR}/install)" OFF )
+set( INSTALL_PATH "${CMAKE_INSTALL_PREFIX}"  CACHE STRING "install path (only used when INSTALL_TO_PATH is set)" )
+mark_as_advanced( CMAKE_INSTALL_PREFIX )
+if( INSTALL_TO_PATH AND NOT ("${INSTALL_TO}" STREQUAL "path") )# changed to path
+	set_property( CACHE INSTALL_TO_SOURCE INSTALL_TO_SUBDIR  PROPERTY VALUE OFF )
+elseif( INSTALL_TO_SOURCE AND NOT ("${INSTALL_TO}" STREQUAL "source") )# changed to source
+	set_property( CACHE INSTALL_TO_PATH INSTALL_TO_SUBDIR  PROPERTY VALUE OFF )
+elseif( INSTALL_TO_SUBDIR AND NOT ("${INSTALL_TO}" STREQUAL "subdir") )# changed to subdir
+	set_property( CACHE INSTALL_TO_PATH INSTALL_TO_SOURCE  PROPERTY VALUE OFF )
+elseif( NOT INSTALL_TO_PATH AND NOT INSTALL_TO_SOURCE AND NOT INSTALL_TO_SUBDIR )# default
+	set_property( CACHE INSTALL_TO_SUBDIR  PROPERTY VALUE ON )
 endif()
-set( LOCAL_BUILD_FILES
-	"CMakeLists.txt"
-	"configure"
-	"configure.in"
-	"brAthena-9.sln"
-	"brAthena-10.sln"
+if( INSTALL_TO_PATH )
+	set( INSTALL_TO "path"  CACHE INTERNAL "" )
+	set_property( CACHE CMAKE_INSTALL_PREFIX  PROPERTY VALUE "${INSTALL_PATH}" )
+elseif( INSTALL_TO_SOURCE )
+	set( INSTALL_TO "source"  CACHE INTERNAL "" )
+	set_property( CACHE CMAKE_INSTALL_PREFIX  PROPERTY VALUE "${CMAKE_CURRENT_SOURCE_DIR}" )
+elseif( INSTALL_TO_SUBDIR )
+	set( INSTALL_TO "subdir"  CACHE INTERNAL "" )
+	set_property( CACHE CMAKE_INSTALL_PREFIX  PROPERTY VALUE "${CMAKE_CURRENT_BINARY_DIR}/install" )
+endif()
+set( SVN_FOLDER_PATTERN "[\\.]svn"  CACHE STRING "pattern of svn folder that we exclude from instalations" )
+mark_as_advanced( SVN_FOLDER_PATTERN )
+set( DEVELOPMENT_FILES
+	"${CMAKE_CURRENT_SOURCE_DIR}/CMakeLists.txt"
+	"${CMAKE_CURRENT_SOURCE_DIR}/configure"
+	"${CMAKE_CURRENT_SOURCE_DIR}/configure.in"
+	"${CMAKE_CURRENT_SOURCE_DIR}/brAthena-9.sln"
+	"${CMAKE_CURRENT_SOURCE_DIR}/brAthena-10.sln"
 	)
-set( LOCAL_BUILD_DIRECTORIES
+set( DEVELOPMENT_DIRECTORIES
 	"3rdparty"
+	"conf/import-tmpl"
+	"save-tmpl"
 	"src"
 	"vcproj-9"
 	"vcproj-10"
 	)
-set( LOCAL_RUN_FILES
-	"brathena-admin"
-	"brathena-start"
-	"Changelog.txt"
-	"char-server.sh"
-	"charserv-sql.bat"
-	"charserv.bat"
-	"dbghelp.dll"
-	"LICENSE"
-	"login-server.sh"
-	"logserv-sql.bat"
-	"logserv.bat"
-	"map-server.sh"
-	"mapserv-sql.bat"
-	"mapserv.bat"
-	"runserver-sql.bat"
-	"runserver.bat"
-	"serv.bat"
-	"start"
+set( RUNTIME_FILES
+	"${CMAKE_CURRENT_SOURCE_DIR}/brathena-admin"
+	"${CMAKE_CURRENT_SOURCE_DIR}/brathena-start"
+	"${CMAKE_CURRENT_SOURCE_DIR}/Changelog.txt"
+	"${CMAKE_CURRENT_SOURCE_DIR}/char-server.sh"
+	"${CMAKE_CURRENT_SOURCE_DIR}/charserv-sql.bat"
+	"${CMAKE_CURRENT_SOURCE_DIR}/charserv.bat"
+	"${CMAKE_CURRENT_SOURCE_DIR}/dbghelp.dll"
+	"${CMAKE_CURRENT_SOURCE_DIR}/libmysql.dll"
+	"${CMAKE_CURRENT_SOURCE_DIR}/LICENSE"
+	"${CMAKE_CURRENT_SOURCE_DIR}/login-server.sh"
+	"${CMAKE_CURRENT_SOURCE_DIR}/logserv-sql.bat"
+	"${CMAKE_CURRENT_SOURCE_DIR}/logserv.bat"
+	"${CMAKE_CURRENT_SOURCE_DIR}/map-server.sh"
+	"${CMAKE_CURRENT_SOURCE_DIR}/mapserv-sql.bat"
+	"${CMAKE_CURRENT_SOURCE_DIR}/mapserv.bat"
+	"${CMAKE_CURRENT_SOURCE_DIR}/pcre3.dll"
+	"${CMAKE_CURRENT_SOURCE_DIR}/runserver-sql.bat"
+	"${CMAKE_CURRENT_SOURCE_DIR}/runserver.bat"
+	"${CMAKE_CURRENT_SOURCE_DIR}/serv.bat"
+	"${CMAKE_CURRENT_SOURCE_DIR}/start"
+	"${CMAKE_CURRENT_SOURCE_DIR}/zlib1.dll"
 	)
-set( LOCAL_RUN_DIRECTORIES
+set( RUNTIME_DIRECTORIES
 	"conf"
 	"db"
 	"npc"
@@ -256,64 +288,65 @@ set( LOCAL_RUN_DIRECTORIES
 	"sql-files"
 	"tools"
 	)
-if( USE_LOCAL_MYSQL )
-	list( APPEND LOCAL_RUN_FILES "libmysql.dll" )
-endif()
-if( USE_LOCAL_PCRE )
-	list( APPEND LOCAL_RUN_FILES "pcre3.dll" )
-endif()
-if( USE_LOCAL_ZLIB )
-	list( APPEND LOCAL_RUN_FILES "zlib1.dll" )
-endif()
-function( INSTALL_DIRECTORY DIR DEST EXCLUDE_PATTERN )
-	# warning: that slash(/) is important here, otherwise the whole directory (not its content) will be copied!
-	install( DIRECTORY ${DIR}/
-		DESTINATION ${DEST}
-		PATTERN ${SVN_FOLDER_PATTERN} EXCLUDE
-		PATTERN "${EXCLUDE_PATTERN}" EXCLUDE )
-endfunction()
-function( INSTALL_DIRECTORIES DIRS EXCLUDE_PATTERN )
-	foreach( DIR IN ITEMS ${DIRS} )
-		INSTALL_DIRECTORY( ${DIR} ${DIR} "${EXCLUDE_PATTERN}" )
-	endforeach()
-endfunction()
-if( NOT INSTALLING_TO_SOURCE )
-	# skipped if in-source
-	if( INSTALL_RUN_DATA )
-		# base
-		install( FILES ${LOCAL_RUN_FILES}
-			DESTINATION ${CMAKE_INSTALL_PREFIX} )
-		foreach( DIR IN ITEMS ${LOCAL_RUN_DIRECTORIES} )
+if( INSTALL_TO_SOURCE )# skip, already in the source dir
+else()
+	if( WITH_COMPONENT_RUNTIME )
+		install( FILES ${RUNTIME_FILES}
+			DESTINATION "."
+			COMPONENT Runtime_base )
+		foreach( DIR IN ITEMS ${RUNTIME_DIRECTORIES} )
 			install( DIRECTORY "${DIR}/"
 				DESTINATION "${DIR}"
+				COMPONENT Runtime_base
 				PATTERN ${SVN_FOLDER_PATTERN} EXCLUDE
 				PATTERN "conf/import-tmpl" EXCLUDE )
 		endforeach()
 	endif()
-	if( INSTALL_BUILD_DATA )
-		# source
-		install( FILES ${LOCAL_BUILD_FILES}
-			DESTINATION ${CMAKE_INSTALL_PREFIX} )
-		foreach( DIR IN ITEMS ${LOCAL_BUILD_DIRECTORIES} )
+	if( WITH_COMPONENT_DEVELOPMENT )
+		install( FILES ${DEVELOPMENT_FILES}
+			DESTINATION "."
+			COMPONENT Development_base )
+		foreach( DIR IN ITEMS ${DEVELOPMENT_DIRECTORIES} )
 			install( DIRECTORY "${DIR}/"
 				DESTINATION "${DIR}"
+				COMPONENT Development_base
 				PATTERN ${SVN_FOLDER_PATTERN} EXCLUDE )
 		endforeach()
 	endif()
 endif()
-if( INSTALL_RUN_DATA )
-	# base templates
+if( WITH_COMPONENT_RUNTIME )
+	# templates
 	install( DIRECTORY "save-tmpl/"
 		DESTINATION "save"
+		COMPONENT Runtime_templates
 		PATTERN ${SVN_FOLDER_PATTERN} EXCLUDE )
 	install( DIRECTORY "conf/import-tmpl/"
 		DESTINATION "conf/import"
+		COMPONENT Runtime_templates
 		PATTERN ${SVN_FOLDER_PATTERN} EXCLUDE )
 endif()
 
 
 #
-# subdirectories
+# sources
 #
-add_subdirectory( 3rdparty )
+set( TARGET_LIST  CACHE INTERNAL "" )
 add_subdirectory( src )
+
+
+#####################################################################
+# final checks and warnings
+#
+if( CMAKE_SIZEOF_VOID_P EQUAL 8 )
+	message( WARNING "64bit should work, but is not recommended." )
+elseif( NOT CMAKE_SIZEOF_VOID_P EQUAL 4 )
+	message( FATAL_ERROR "unexpected architecture (CMAKE_SIZEOF_VOID_P is ${CMAKE_SIZEOF_VOID_P})" )
+endif()
+list( LENGTH  TARGET_LIST  _LEN )
+if( _LEN EQUAL 0 )
+	message( FATAL_ERROR "no targets available" )
+endif()
+message( STATUS "Available targets:" )
+foreach( _TARGET IN ITEMS ${TARGET_LIST} )
+	message( STATUS "\t${_TARGET}" )
+endforeach()

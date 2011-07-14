@@ -1094,7 +1094,7 @@
 2318,0,6,4,0,0x1,0,5,1,yes,0,0,0,none,0,		LG_PRESTIGE,Prestígio Divino
 2319,0,6,4,0,0x1,3,5,1,no,0,0,0,weapon,0,		LG_BANDING,Formação Real
 2320,0,6,4,-1,0x2,3,5,1,yes,0,0,0,weapon,0,		LG_MOONSLASHER,Espiral Lunar
-2321,1,8,2,6,0x2,5,5,-7,yes,0,0,0,weapon,0,		LG_RAYOFGENESIS,Luz da Criação 
+2321,1,8,2,6,0x2,5,5,-7,yes,0,0,0,weapon,0,		LG_RAYOFGENESIS,Luz da Criação
 2322,0,6,16,0,0x3,1,5,1,yes,0,0,0,none,0,		LG_PIETY,Devoção
 2323,0,8,4,2,0x2,1:1:2:2:3,5,-5,yes,0,0,0,weapon,0,		LG_EARTHDRIVE,Aegis Inferi
 2324,3,8,1,-1,0,0,5,3,yes,0,0,0,weapon,0,		LG_HESPERUSLIT,Trindade

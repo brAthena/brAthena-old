@@ -1618,7 +1618,7 @@ packet_ver: 26
 0x0366,10,useskilltopos,2:4:6:8
 0x0367,90,useskilltoposinfo,2:4:6:8:10
 0x0368,6,getcharnamerequest,2
-0x0369,6,solvecharname,2 
+0x0369,6,solvecharname,2
 0x0856,-1
 0x0857,-1
 0x0858,-1

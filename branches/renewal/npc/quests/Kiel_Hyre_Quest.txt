@@ -8,18 +8,18 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Kiel Hyre Quest			    		|
+// | Nome do Script: Kiel Hyre Quest                        |
 // |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    			|
+// | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 4.6/1.0				    			|
+// | Versões eA/brA: 4.6/1.0                                |
 // |--------------------------------------------------------|
-// | Descrição: Quest for opening Robot Factory first and 	|
-// | second floors.											|
+// | Descrição: Quest for opening Robot Factory first and   |
+// | second floors.                                         |
 // |--------------------------------------------------------|
-// | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
-// | - Anotações					    					|
+// | Changelog:                                             |
+// | 1.0 Modificação [Autor]                                |
+// | - Anotações                                            |
 // \________________________________________________________/
 
 //============================================================================
@@ -32,7 +32,7 @@
 //----------------------------------------------------------------------------
 // [Notes]
 //  - Let it be noted that ALL DIALOG IS OFFICIAL TO IRO UNLESS SPECIFIED.
-//  - I've fixed a few of iRO's mistakes, but I'm sure I made some of my own. 
+//  - I've fixed a few of iRO's mistakes, but I'm sure I made some of my own.
 //  - Will probably require a major optimizing.
 //  - Not going to list ALL of the more usless NPCs. (Doors + Empty "Beautiful Ladies")
 //  - Parties are *NOT REQUIRED* as per Doddler's Wiki information.
@@ -53,9 +53,9 @@
 // [Variables in Use]
 //  KielHyreQuest 	- Main quest tracking variable (Quest finished at 106)
 //
-//  KHToastGirlEnd	- Pick up delivery if set to 1, 
+//  KHToastGirlEnd	- Pick up delivery if set to 1,
 //			- picked up delivery if set to 2
-//			- finished if set to 3 
+//			- finished if set to 3
 //			- Deleted once no longer needed.
 //
 //  KHCottagePoem1	- Tracks Poem 1 quest in cottage. (finished = 5)
@@ -206,7 +206,7 @@
 //----------------------------------------------------------------------------
 // Juno Pub Master/Starting point.
 //----------------------------------------------------------------------------
-yuno_in01,35,179,4	script	Pub Master#kh	46,5,5,{
+yuno_in01,35,179,4	script	Pub Master#kh	46,2,2,{
 	if (checkweight(7487,1) == 0) {
 		mes "[Vandt]";
 		mes "Just a second! You're";
@@ -429,7 +429,7 @@ yuno_in01,35,179,4	script	Pub Master#kh	46,5,5,{
 
 //OnTouch2:
 OnTouch:
-	if (KielHyreQuest < 1) {
+	if (BaseLevel > 69 && KielHyreQuest < 1) {
 		mes "[Vandt]";
 		mes "Arrrggghhh...";
 		mes "This can't be good...";
@@ -437,7 +437,7 @@ OnTouch:
 		mes "What am I suposed to do?";
 		set KielHyreQuest,1;
 		close;
-	} 
+	}
 }
 
 //----------------------------------------------------------------------------
@@ -445,7 +445,7 @@ OnTouch:
 //----------------------------------------------------------------------------
 yuno,217,114,6	script	Little Kid#kh	96,{
 	if (KielHyreQuest < 6) {
-		mes "[Cezu]"; 
+		mes "[Cezu]";
 		mes "Fresh, crunchy toast!";
 		mes "If you want some, come";
 		mes "and get some tooooast~";
@@ -453,7 +453,7 @@ yuno,217,114,6	script	Little Kid#kh	96,{
 	}
 	else if (KielHyreQuest == 6) {
 		if (KHToastGirlEnd < 1) {
-			mes "[Cezu]"; 
+			mes "[Cezu]";
 			mes "Fresh, crunchy toast!";
 			mes "If you want some, come";
 			mes "and get some tooooast~";
@@ -462,7 +462,7 @@ yuno,217,114,6	script	Little Kid#kh	96,{
 			next;
 			switch(select("I'm here for Elly:No, thanks")) {
 			case 1:
-				mes "[Cezu]"; 
+				mes "[Cezu]";
 				mes "Oh, I see. Elly must have";
 				mes "wasted another batch of";
 				mes "ingredients again. Well,";
@@ -470,7 +470,7 @@ yuno,217,114,6	script	Little Kid#kh	96,{
 				mes "so I really want to help, but";
 				mes "I can't really do anything.";
 				next;
-				mes "[Cezu]"; 
+				mes "[Cezu]";
 				mes "You see, I just ran";
 				mes "out of ingredients too!";
 				mes "But I can't really leave";
@@ -478,7 +478,7 @@ yuno,217,114,6	script	Little Kid#kh	96,{
 				mes "people need to buy toast?";
 				mes "Listen, can you help me out?";
 				next;
-				mes "[Cezu]"; 
+				mes "[Cezu]";
 				mes "Would you please go get";
 				mes "some flour and eggs for me";
 				mes "from the ^3355FFLighthalzen Windmill^000000";
@@ -486,7 +486,7 @@ yuno,217,114,6	script	Little Kid#kh	96,{
 				mes "divide the ingredients, and you";
 				mes "can deliver some to Elly.";
 				next;
-				mes "[Cezu]"; 
+				mes "[Cezu]";
 				mes "I know that I'm basically";
 				mes "making you do everything";
 				mes "on your own, but please try";
@@ -680,7 +680,7 @@ yuno_fild08,196,196,5	script	Hanie#kh1	102,{
 // Academy Security Guards
 //----------------------------------------------------------------------------
 yuno_fild08,158,194,6	script	Security Guard#1::KHAGuard	852,{
-	if ((KielHyreQuest < 2) || (KielHyreQuest > 31)) { 
+	if ((KielHyreQuest < 2) || (KielHyreQuest > 31)) {
 		mes "[Security Guard]";
 		mes "I'm sorry, but if you aren't";
 		mes "associated with this institution,";
@@ -690,7 +690,7 @@ yuno_fild08,158,194,6	script	Security Guard#1::KHAGuard	852,{
 		mes "an appointment with the staff.";
 		close;
 	}
-	else if (KielHyreQuest == 2) { 
+	else if (KielHyreQuest == 2) {
 		mes "[Security Guard]";
 		mes "I'm sorry, but if you aren't";
 		mes "associated with this institution,";
@@ -775,7 +775,7 @@ yuno_fild08,158,194,6	script	Security Guard#1::KHAGuard	852,{
 			close;
 		}
 	}
-	else if (KielHyreQuest < 32) { 
+	else if (KielHyreQuest < 32) {
 		mes "[Security Guard]";
 		mes "Oh, did you have";
 		mes "other business inside";
@@ -851,7 +851,7 @@ kh_school,176,60,4	script	Lady#kh	101,{
 		mes "in here, please leave.";
 		close;
 	}
-	else if (KielHyreQuest == 2) { 
+	else if (KielHyreQuest == 2) {
 		mes "[Mrs. Lecollane]";
 		mes "Oh, hello. Ah!";
 		mes "have you come to";
@@ -936,7 +936,7 @@ kh_school,179,39,0	script	Cute Student#kh	895,{
 		close;
 	}
 	cutin "kh_elly01",2;
-	if (KielHyreQuest < 4) { 
+	if (KielHyreQuest < 4) {
 		cutin "kh_elly03",2;
 		mes "[Elly]";
 		mes "W-wah! Oh...!";
@@ -945,7 +945,7 @@ kh_school,179,39,0	script	Cute Student#kh	895,{
 		mes "again! Why do I have so much";
 		mes "trouble handling ingredients?";
 	}
-	else if (KielHyreQuest == 4) { 
+	else if (KielHyreQuest == 4) {
 		cutin "kh_elly03",2;
 		mes "[Elly]";
 		mes "Oh no, what should";
@@ -1428,7 +1428,7 @@ kh_school,179,39,0	script	Cute Student#kh	895,{
 		mes "homework before it's due!";
 		mes "Yeah, I've got to go see";
 		mes "Mrs. Lecollane now.";
-		next;		
+		next;
 		mes "[Elly]";
 		mes "Say, "+strcharinfo(0)+",";
 		mes "if it's okay, would you";
@@ -1468,7 +1468,7 @@ kh_school,179,39,0	script	Cute Student#kh	895,{
 }
 
 //----------------------------------------------------------------------------
-// Elly's Window 
+// Elly's Window
 //----------------------------------------------------------------------------
 yuno_fild08,69,185,0	script	Window#kh	111,{
 	if (KielHyreQuest < 29) {
@@ -2188,12 +2188,12 @@ OnTouch:
 		getitem 7490,1; //Kyll_Hire_Letter
 		set KielHyreQuest,20;
 		close;
-	} 
+	}
 	else{
 		mes "^3355FFYou entered the room.^000000";
 		close;
 	}
-	end; 
+	end;
 }
 
 //----------------------------------------------------------------------------
@@ -2262,7 +2262,7 @@ kh_vila,30,184,0	script	Apple Box#khp1	111,{
 		mes "prevented you from";
 		mes "taking the box.^000000";
 		close;
-	case 2: 
+	case 2:
 		mes "^3355FFSomething is wrong";
 		mes "with this box of apples.^000000";
 		close;
@@ -4255,7 +4255,7 @@ kh_mansion,22,28,4	script	Kiel Hyre#kh	903,{
 		mes "the Rekenber Corporation, I'd";
 		mes "say it was entirely possible!";
 		next;
-		cutin "kh_Kyel03",2; 
+		cutin "kh_Kyel03",2;
 		mes "[Kiel Hyre]";
 		mes "Well played, adventurer.";
 		mes "Well played. I don't regret";
@@ -5248,7 +5248,7 @@ yuno,257,140,4	script	Odd Grandma	846,{
 		mes "you go? You were";
 		mes "supposed to come";
 		mes "home a while ago!";
-		if (countitem(7500) < 1) { 
+		if (countitem(7500) < 1) {
 			close;
 		}
 		else {
@@ -5381,9 +5381,9 @@ yuno,250,132,0	script	Old Lady#kh	711,{
 	}
 
 	else if ((KielHyreQuest == 58) &&
-		(countitem(7499) < 1) || 
-		(countitem(7500) < 1) || 
-		(countitem(7501) < 1) || 
+		(countitem(7499) < 1) ||
+		(countitem(7500) < 1) ||
+		(countitem(7501) < 1) ||
 		(countitem(7502) < 1)) {
 		mes "[Old Lady]";
 		mes "Please hurry and find";
@@ -5396,9 +5396,9 @@ yuno,250,132,0	script	Old Lady#kh	711,{
 	}
 
 	else if ((KielHyreQuest == 58) &&
-		(countitem(7499) == 1) && 
-		(countitem(7500) == 1) && 
-		(countitem(7501) == 1) && 
+		(countitem(7499) == 1) &&
+		(countitem(7500) == 1) &&
+		(countitem(7501) == 1) &&
 		(countitem(7502) == 1)) {
 		mes "[Old Lady]";
 		mes "Oh, you're finished";
@@ -5436,7 +5436,7 @@ yuno,250,132,0	script	Old Lady#kh	711,{
 		mes "Allysia's body in the river,";
 		mes "so he might have a better";
 		mes "idea of what had happened.";
-		delitem 7498,1; //Rosimier_Key 
+		delitem 7498,1; //Rosimier_Key
 		set KielHyreQuest,60;
 		close;
 	}
@@ -5923,7 +5923,7 @@ kh_kiehl01,17,39,0	script	Receiver#kh	111,{
 	}
 
 OnMyMobDead:
-	if (mobcount("kh_kiehl01","Receiver#kh::OnMyMobDead") <1) { 
+	if (mobcount("kh_kiehl01","Receiver#kh::OnMyMobDead") <1) {
 		makeitem 7506,1,"this",19,36;
 	}
 	end;
@@ -6302,7 +6302,7 @@ kh_kiehl01,15,179,0	script	Robots#kh1	111,{
 	}
 
 OnMyMobDead:
-	if (mobcount("kh_kiehl01","Robots#kh1::OnMyMobDead") < 1) { 
+	if (mobcount("kh_kiehl01","Robots#kh1::OnMyMobDead") < 1) {
 		makeitem 7506,1,"this",18,180;
 		}
 	end;
@@ -6348,8 +6348,8 @@ kh_kiehl01,166,187,0	script	Big Door#BigDoorKHQ5	111,{
 			monster "kh_kiehl01",163,179,"Aliot",1740,1;
 			monster "kh_kiehl01",169,183,"Alicel",1739,1;
 			monster "kh_kiehl01",169,179,"Aliot",1740,1;
-			if (@KHDoorPushAttempt >= 3) { 
-				set KielHyreQuest,86; 
+			if (@KHDoorPushAttempt >= 3) {
+				set KielHyreQuest,86;
 			}
 			end;
 		}
@@ -6953,7 +6953,7 @@ kh_kiehl02,50,52,4	script	Kiehl#Original	902,{
 		delitem 7504,1; //Toy_Motor
 		set KielHyreQuest,104;
 		hideonnpc "Kiehl#Copy";
-		donpcevent "Kiehl_Room_Exit::OnEnable";			
+		donpcevent "Kiehl_Room_Exit::OnEnable";
 		enablenpc "Kiehl_Room_Exit";
 		initnpctimer;
 		cutin "",255;
@@ -7041,8 +7041,8 @@ kh_kiehl02,1,1,0	script	KiehlRoom	-1,{
 
 OnKiehlMobDead:
 	set .KHKilled,.KHKilled+1;
-	if (.KHKilled == 5) { 
-		hideoffnpc "Kiehl#Original"; 
+	if (.KHKilled == 5) {
+		hideoffnpc "Kiehl#Original";
 	}
 	end;
 
@@ -7050,7 +7050,7 @@ OnKiehlDead:
 	set .KHKilledBoss,1;
 	hideoffnpc "Kiehl#Original";
 	end;
-	
+
 OnReset:
 	donpcevent "Kiehl_Room_Trap::OnGlobalTimerOff";
 	if (getmapusers("kh_kiehl02") > 0)
@@ -7063,7 +7063,7 @@ OnReset:
 	hideonnpc "Agent#KHAgent3";
 	hideonnpc "Agent#KHAgent4";
 	hideonnpc "Kiehl#Copy";
-	hideoffnpc "Kiehl#Original"; 
+	hideoffnpc "Kiehl#Original";
 	set .KHKilledBoss,0;
 	set .KHKilled,0;
 	set getvariableofnpc(.KHTrapSprung,"Kiehl_Room_Trap"),0;

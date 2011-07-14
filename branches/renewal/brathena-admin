@@ -41,8 +41,8 @@ compilar(){
 	while [ $estado -eq 0 ] ; do
 		echo "Selecione seu sistema operacional (OS)."
 		echo
-		echo "1 - CentOS, Fedora ou baseados em RHEL."
-		echo -e -n "2 - Ubuntu, Debian e Kurumin.\n> "
+		echo "1 - CentOS, Fedora ou outros baseados em RHEL."
+		echo -e -n "2 - Ubuntu ou outros baseados em Debian.\n> "
 		read escolher
 		case $escolher in
 			1) rhel
@@ -85,12 +85,16 @@ instalar() {
 	
 	estado=0
 	while [ $estado -eq 0 ] ; do
-		echo -e -n "Escreva o nome da branche do brAthena que você deseja baixar\n(NOMES: trunk ou renewal)\n> "
-		read branche
-		if [ $branche = "trunk" -o $branche = "renewal" ] ; then
+		echo -e -n "Escreva o nome da branch do brAthena que você deseja baixar\n(NOMES: trunk ou renewal)\n> "
+		read branch
+		if [ $branch = "trunk" -o $branch = "renewal" ] ; then
 			echo "Conectando-se ao servidor..."
-			svn co http://svn.brathena.org/brAthena/$branche/ $diretorio/$branche/
-			cd $diretorio/trunk
+			if [ $branch = "renewal" ] ; then
+				svn co http://svn.brathena.org/brAthena/branches/$branch/ $diretorio/$branch/
+			else
+				svn co http://svn.brathena.org/brAthena/$branch/ $diretorio/$branch/
+			fi
+			cd $diretorio/$branch
 			sh ./configure
 			make sql
 			estado=1

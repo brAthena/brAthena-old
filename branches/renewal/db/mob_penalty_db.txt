@@ -3,7 +3,7 @@
 // Recommended formatting to handle the level penalty system.
 //
 // Mob Level Penalty Database
-// 
+//
 // Structure of Database :
 // Type or MOD ID,Level Difference:Percentage{,Level Difference:Percentage{,...}}
 //

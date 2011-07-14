@@ -25,7 +25,7 @@
 // | habilidade Portal.                                     |
 // | nosave: Não é permitido salvar lugar como ponto        |
 // | de retorno.                                            |
-// | noteleport: Teleporte proibido mesmo com Asa de Mosca  | 
+// | noteleport: Teleporte proibido mesmo com Asa de Mosca  |
 // | ou Asa de Borboleta.                                   |
 // \________________________________________________________/
 

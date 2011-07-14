@@ -13,12 +13,15 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.8/1.1                                |
+// | Versões eA/brA: 1.8/1.2                                |
 // |--------------------------------------------------------|
 // | Descrição:                                             |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.1 Reduzido range do OnTouch do NPC Minister [Dani]   |
+// | 1.2 Correção do range do OnTouch do NPC Minister [Dani]|
+// | - De acordo com o Aegis, a variável deveria ser igual  |
+// | a 6, não diferente de 6                                |
 // \________________________________________________________/
 
 //=================================================Bard Jet====================================================
@@ -1903,15 +1906,14 @@ prt_castle,76,165,6	script	Minister#tu	55,{
 //=================================================Range NPC====================================================
 prt_castle,94,150,4	script	#sound_tu	139,5,5,{
 OnTouch_:
-	if(tu_archer02 != 6) {
+	if(tu_archer02 == 6) {
 		mes "[Minister]";
 		mes "Contact the";
 		mes "Prontera Church.";
 		mes "Hurry, this is urgent!";
-		set tu_archer02, 7;
+		set tu_archer02,7;
 		close;
 	}
-	end;
 }
 
 //=================================================Bishop Maugins====================================================

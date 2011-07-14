@@ -9,6 +9,19 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0724 - 14/07/2011 [Dani]
+	* Trunk atualizada até a r14905 do eAthena
+	* Correção do Boné de Carteiro
+	- Estava sem slot, mas deveria possuir
+	- Report por Aly (#163)
+	* Envio das checagens corretas de acordo com o Aegis dos NPCs Pub Master (Kiel_Hyre_Quest) e Minister (tu_archer)
+	- O OnTouch estava sobrepondo o script do portal, impossibilitando o uso do mesmo
+	- Correção do OnTouch na TODO list, redução dos ranges é a solução possível no momento
+	- Reports por Heishim (#150 e #161)
+	* Pequenas alterações e uma correção no brathena-admin
+	- Kurumin foi descontinuado em 2008
+	- Não dava pra fazer checkout da branch renewal por um erro pequeno no comando
+
 	r0704 - 04/07/2011 [Dani]
 	* Reduzido range do OnTouch do NPC Minister (tu_archer.txt)
 	- Report por Heishim (#150)

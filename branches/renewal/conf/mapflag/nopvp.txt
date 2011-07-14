@@ -13,7 +13,7 @@
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Descrição: Configuração Mapflag que desabilita o       |
-// | PvP/PK num mapa, mesmo o servidor configurado para     | 
+// | PvP/PK num mapa, mesmo o servidor configurado para     |
 // | modo PvP global.                                       |
 // |--------------------------------------------------------|
 // | Changelog:                                             |

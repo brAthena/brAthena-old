@@ -903,7 +903,7 @@
 4006,155,1,0,0,0,0,0,0,0,0,0,0			// MC_LOUD#Grito de Guerra#
 4006,410,1,0,0,0,0,0,0,0,0,0,0			// WE_CALLBABY#Vem cá filhote!#
 4006,681,1,0,0,0,0,0,0,0,0,0,0			// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-4006,2535,1,41,1,0,0,0,0,0,0,0,0 //ALL_BUYING_STORE#Open Buying Store# 
+4006,2535,1,41,1,0,0,0,0,0,0,0,0 //ALL_BUYING_STORE#Open Buying Store#
 //============================================================
 // Gatuno T.
 //============================================================
@@ -1424,7 +1424,7 @@
 4019,497,1,228,10,0,0,0,0,0,0,0,0		// AM_TWILIGHT2#Criação Espiritual de Poções#
 4019,498,1,228,10,0,0,0,0,0,0,0,0		// AM_TWILIGHT3#Criação Espiritual de Poções#
 4019,681,1,0,0,0,0,0,0,0,0,0,0			// ALL_INCCARRY#Aumentar Capacidade de Carga Especial#
-4019,2535,1,41,1,0,0,0,0,0,0,0,0 //ALL_BUYING_STORE#Open Buying Store# 
+4019,2535,1,41,1,0,0,0,0,0,0,0,0 //ALL_BUYING_STORE#Open Buying Store#
 //============================================================
 // Menestrel
 //============================================================
@@ -4066,7 +4066,7 @@
 4081,356,10,3,10,6,5,60,3,0,0,0,0 //LK_PARRYING#Aparar Golpe#
 4081,357,5,4,1,55,5,63,1,0,0,0,0 //LK_CONCENTRATION#Dedicação#
 4081,358,1,4,10,6,5,8,3,0,0,0,0 //LK_TENSIONRELAX#Relaxar#
-4081,359,1,0,0,0,0,0,0,0,0,0,0 //LK_BERSERK#Frenzy# 
+4081,359,1,0,0,0,0,0,0,0,0,0,0 //LK_BERSERK#Frenzy#
 4081,397,5,55,10,56,5,58,5,63,1,0,0 //LK_SPIRALPIERCE#Perfurar em Espiral#
 4081,398,5,55,9,63,1,0,0,0,0,0,0 //LK_HEADCRUSH#Golpe Traumático#
 4081,399,10,55,9,64,3,398,3,0,0,0,0 //LK_JOINTBEAT#Ataque Vital#

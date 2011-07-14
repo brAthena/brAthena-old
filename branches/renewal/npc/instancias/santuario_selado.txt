@@ -12,7 +12,7 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.5/1.1                                |
+// | Versões eA/brA: 1.6/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: Seal away the Great Demon Baphomet.         |
 // |--------------------------------------------------------|
@@ -98,115 +98,113 @@ monk_test,309,146,3	script	Frei Patrick#edq	412,{
 			next;
 
 			// 12 hour cooldown
-			set .@ins_bapho_check,checkquest(3046,PLAYTIME);
+			set .@ins_bapho_check,checkquest(3040,PLAYTIME);
 			// Two hour play limit
-			set .@ins_bapho_check2,checkquest(3045,PLAYTIME);
+			//set .@ins_bapho_check2,checkquest(3045,PLAYTIME);
 
-			if (.@ins_bapho_check < 2) {
-				if (.@ins_bapho_check == -1) {
-					if ((getpartyleader(.@party_id,2) == getcharid(0)) && (.@partymembercount > 1)) {
-						set .@instance, instance_create("Sealed Catacombs", .@party_id);
-						if (.@instance < 0) {
-							mes "[Frei Patrick]";
-							mes "O nome do grupo é "+getpartyname(.@party_id)+"...";
-							mes "O nome do líder é "+.@partymembername$[0]+"...";
-							mes "Umm... Mais parece que temos um problema aqui... Irei checar rapidamente. Por-favor aguarde.";
-						}
-						else {
-
-							for( set .@i, 1; .@i <= 2; set .@i, .@i + 1 ) {
-								if( instance_attachmap("" + .@i + "@cata", .@instance) == "" )
-									break;
-							}
-							if( .@i < 2 ) {
-								instance_destroy(.@instance);
-								close;
-							}
-
-							instance_attach(.@instance);
-							instance_set_timeout 14400,300,.@instance;
-							instance_init(.@instance);
-
-							// First Floor
-							disablenpc instance_npcname("Alma do Herói#1F", instance_id());
-							disablenpc instance_npcname("ins_bapho_to_2f", instance_id());
-
-							for( set .@i, 1; .@i < 13; set .@i, .@i + 1 ) {
-								disablenpc instance_npcname("Túmulo#1F_"+.@i+"T", instance_id());
-								disablenpc instance_npcname("Túmulo#1F_"+.@i+"F", instance_id());
-							}
-							for( set .@i, 1; .@i <= 12; set .@i, .@i + 1 ) {
-								disablenpc instance_npcname("Tocha#"+.@i, instance_id());
-							}
-
-							// Second Floor
-							disablenpc instance_npcname("ins_baphomet_1f_timer", instance_id());
-							disablenpc instance_npcname("ins_2f_enter_broad", instance_id());
-							disablenpc instance_npcname("Selo Mágico#0", instance_id());
-							disablenpc instance_npcname("Selo Mágico#2", instance_id());
-							disablenpc instance_npcname("Selo Mágico#4", instance_id());
-							disablenpc instance_npcname("Selo Mágico#8", instance_id());
-							disablenpc instance_npcname("Selo Mágico#10", instance_id());
-							disablenpc instance_npcname("Alma do Herói#2F", instance_id());
-							disablenpc instance_npcname("control_baphomet", instance_id());
-							disablenpc instance_npcname("ins_2f_hero_broad2", instance_id());
-							disablenpc instance_npcname("2f_callmon_pattern_c", instance_id());
-							disablenpc instance_npcname("2f_callmon_pattern", instance_id());
-							disablenpc instance_npcname("ins_2f_hero_pattern_c", instance_id());
-							disablenpc instance_npcname("ins_2f_hero_pattern", instance_id());
-
-							// Pick proper grave
-							donpcevent instance_npcname("ins_baphomet_lotto", instance_id())+"::OnEnable";
-
-							// Spawn monsters.
-							donpcevent instance_npcname("ins_1f_spawn_mobs", instance_id())+"::OnEnable";
-
-							mes "[Frei Patrick]";
-							mes "O nome do grupo é "+getpartyname(.@party_id)+"...";
-							mes "O nome do líder é "+.@partymembername$[0]+"...";
-							mes "Ok... Irei ajustar o selo do santuário para você e seu grupo possam entrar..";
-							next;
-							mes "[Frei Patrick]";
-							mes "Você verá um sinal quando o selo for destruído. Aguarde até o sinal aparecer...";
-							next;
-							mes "[Frei Patrick]";
-							mes "Quando você ver o sinal, coloque suas mãos sobre o túmulo... E então você pode empurrá-lo.";
-							next;
-							mes "[Frei Patrick]";
-							mes "Uma coisa que você deve lembrar é... Todos aqueles que entrarem no santuário serão amaldiçoados por Baphomet e não poderam entrar ou sair enquando estiverem amaldioçoados.";
-							next;
-							mes "[Frei Patrick]";
-							mes "E mais uma coisa... Nessa área amaldiçoada, certas habilidades, que são protegidas por uma força exterior, são proibidas pelo efeito do selo.";
-							next;
-							mes "[Frei Patrick]";
-							mes "Por exemplo, habilidades como ^0000FFEscudo Mágico e Assumptio^000000... Então é melhor você estar preparado entes de entrar no santuário.";
-						}
+			if (.@ins_bapho_check == -1) {
+				if ((getpartyleader(.@party_id,2) == getcharid(0)) && (.@partymembercount > 1)) {
+					set .@instance, instance_create("Sealed Catacombs", .@party_id);
+					if (.@instance < 0) {
+						mes "[Frei Patrick]";
+						mes "O nome do grupo é "+getpartyname(.@party_id)+"...";
+						mes "O nome do líder é "+.@partymembername$[0]+"...";
+						mes "Umm... Mais parece que temos um problema aqui... Irei checar rapidamente. Por-favor aguarde.";
 					}
 					else {
+
+						for( set .@i, 1; .@i <= 2; set .@i, .@i + 1 ) {
+							if( instance_attachmap("" + .@i + "@cata", .@instance) == "" )
+								break;
+						}
+						if( .@i < 2 ) {
+							instance_destroy(.@instance);
+							close;
+						}
+
+						instance_attach(.@instance);
+						instance_set_timeout 7200,300,.@instance;
+						instance_init(.@instance);
+
+						// First Floor
+						disablenpc instance_npcname("Alma do Herói#1F", instance_id());
+						disablenpc instance_npcname("ins_bapho_to_2f", instance_id());
+
+						for( set .@i, 1; .@i < 13; set .@i, .@i + 1 ) {
+							disablenpc instance_npcname("Túmulo#1F_"+.@i+"T", instance_id());
+							disablenpc instance_npcname("Túmulo#1F_"+.@i+"F", instance_id());
+						}
+						for( set .@i, 1; .@i <= 12; set .@i, .@i + 1 ) {
+							disablenpc instance_npcname("Tocha#"+.@i, instance_id());
+						}
+
+						// Second Floor
+						disablenpc instance_npcname("ins_baphomet_1f_timer", instance_id());
+						disablenpc instance_npcname("ins_2f_enter_broad", instance_id());
+						disablenpc instance_npcname("Selo Mágico#0", instance_id());
+						disablenpc instance_npcname("Selo Mágico#2", instance_id());
+						disablenpc instance_npcname("Selo Mágico#4", instance_id());
+						disablenpc instance_npcname("Selo Mágico#8", instance_id());
+						disablenpc instance_npcname("Selo Mágico#10", instance_id());
+						disablenpc instance_npcname("Alma do Herói#2F", instance_id());
+						disablenpc instance_npcname("control_baphomet", instance_id());
+						disablenpc instance_npcname("ins_2f_hero_broad2", instance_id());
+						disablenpc instance_npcname("2f_callmon_pattern_c", instance_id());
+						disablenpc instance_npcname("2f_callmon_pattern", instance_id());
+						disablenpc instance_npcname("ins_2f_hero_pattern_c", instance_id());
+						disablenpc instance_npcname("ins_2f_hero_pattern", instance_id());
+
+						// Pick proper grave
+						donpcevent instance_npcname("ins_baphomet_lotto", instance_id())+"::OnEnable";
+
+						// Spawn monsters.
+						donpcevent instance_npcname("ins_1f_spawn_mobs", instance_id())+"::OnEnable";
+
 						mes "[Frei Patrick]";
-						mes "Umm... Eu reconheço usa coragem, porém... Não posso permitir qualquer um entrar nesse lugar. Eu só permito o líder do grupo a entrar primeiro.";
+						mes "O nome do grupo é "+getpartyname(.@party_id)+"...";
+						mes "O nome do líder é "+.@partymembername$[0]+"...";
+						mes "Ok... Irei ajustar o selo do santuário para você e seu grupo possam entrar..";
 						next;
 						mes "[Frei Patrick]";
-						mes "Uma vez que o líder grupo foi permitido, o resto do grupo pode entrar. Isto é uma regra deste monastério, por favor a entenda.";
+						mes "Você verá um sinal quando o selo for destruído. Aguarde até o sinal aparecer...";
+						next;
+						mes "[Frei Patrick]";
+						mes "Quando você ver o sinal, coloque suas mãos sobre o túmulo... E então você pode empurrá-lo.";
+						next;
+						mes "[Frei Patrick]";
+						mes "Uma coisa que você deve lembrar é... Todos aqueles que entrarem no santuário serão amaldiçoados por Baphomet e não poderam entrar ou sair enquando estiverem amaldioçoados.";
+						next;
+						mes "[Frei Patrick]";
+						mes "E mais uma coisa... Nessa área amaldiçoada, certas habilidades, que são protegidas por uma força exterior, são proibidas pelo efeito do selo.";
+						next;
+						mes "[Frei Patrick]";
+						mes "Por exemplo, habilidades como ^0000FFEscudo Mágico e Assumptio^000000... Então é melhor você estar preparado entes de entrar no santuário.";
 					}
 				}
-				else if ((.@ins_bapho_check == 0) || (.@ins_bapho_check == 1)) {
+				else {
 					mes "[Frei Patrick]";
-					mes "Parece que você entrou no santuário recentemente... Você não pode entrar novamente pois a Maldição de Baphomet ainda continua. A maldição de Baphomet só desaparece quando um certo período de tempo se passa.";
-				}
-				else if (.@ins_bapho_check == 2) {
-					mes "[Frei Patrick]";
-					mes "Umm... Parece que a Maldição de Baphomet se enfraqueceu. Eu posso retira-la agora.";
+					mes "Umm... Eu reconheço usa coragem, porém... Não posso permitir qualquer um entrar nesse lugar. Eu só permito o líder do grupo a entrar primeiro.";
 					next;
 					mes "[Frei Patrick]";
-					mes "Haaaaaaap... Hocus Pocus Wingardium Abracadabra!!!!!";
-					next;
-					if (checkquest(3046)) erasequest 3046;
-					if (checkquest(3041)) erasequest 3041;
-					if (checkquest(3045)) erasequest 3045;
-					mes "[Frei Patrick]";
-					mes "Huu... Acabou. Agora que retirei a Maldição de Baphomet, você pode entrar novamente.";
+					mes "Uma vez que o líder grupo foi permitido, o resto do grupo pode entrar. Isto é uma regra deste monastério, por favor a entenda.";
 				}
+			}
+			else if ((.@ins_bapho_check == 0) || (.@ins_bapho_check == 1)) {
+				mes "[Frei Patrick]";
+				mes "Parece que você entrou no santuário recentemente... Você não pode entrar novamente pois a Maldição de Baphomet ainda continua. A maldição de Baphomet só desaparece quando um certo período de tempo se passa.";
+			}
+			else if (.@ins_bapho_check == 2) {
+				mes "[Frei Patrick]";
+				mes "Umm... Parece que a Maldição de Baphomet se enfraqueceu. Eu posso retira-la agora.";
+				next;
+				mes "[Frei Patrick]";
+				mes "Haaaaaaap... Hocus Pocus Wingardium Abracadabra!!!!!";
+					next;
+				if (checkquest(3040)) erasequest 3040;
+				if (checkquest(3041)) erasequest 3041;
+				if (checkquest(3045)) erasequest 3045;
+				mes "[Frei Patrick]";
+				mes "Huu... Acabou. Agora que retirei a Maldição de Baphomet, você pode entrar novamente.";
 			}
 		}
 		else {
@@ -250,65 +248,64 @@ monk_test,309,146,3	script	Frei Patrick#edq	412,{
 }
 
 monk_test,306,151,3	script	Túmulo de Baphomet#edq	111,{
-	if (checkquest(3040)>=0) erasequest 3040;
 	if (countitem(6002) > 0)
 		delitem 6002,countitem(6002); //Token_Of_Apostle
 	mes "Esse túmulo tem uma imagem de um grande demônio com enormes chifres. Ela desperta um sentimento ameaçador.";
 	next;
 	if(select("Tocar.:Voltar.") == 2) close;
 
-	set .@party_id,getcharid(1);
-	getpartymember(.@party_id);
-	set .@partymembercount,$@partymembercount;
-	copyarray .@partymembername$[0],$@partymembername$[0],.@partymembercount;
-	set .@instance, instance_id(1);
-	instance_attach(.@instance);
+		set .@party_id,getcharid(1);
+		getpartymember(.@party_id);
+		set .@partymembercount,$@partymembercount;
+		copyarray .@partymembername$[0],$@partymembername$[0],.@partymembercount;
 
-	// 12 hour cooldown
-	set .@ins_bapho_check,checkquest(3046,PLAYTIME);
+		set .@instance, instance_id(1);
+		instance_attach(.@instance);
 
-	// Two hour play limit
-	set .@ins_bapho_check2,checkquest(3045,PLAYTIME);
-	if ((.@ins_bapho_check == -1) || ((.@ins_bapho_check2 >= 0) && (.@ins_bapho_check2 < 2))) {
-	if (has_instance("1@cata") == "") {
-			mes "É frio ao tocar. Mais nada acontece.";
+		// 12 hour cooldown
+		set .@ins_bapho_check,checkquest(3040,PLAYTIME);
+		// Two hour play limit
+		//set .@ins_bapho_check2,checkquest(3045,PLAYTIME);
+
+		if (.@ins_bapho_check == -1) {
+			if (has_instance("1@cata") == "") {
+				mes "É frio ao tocar. Mais nada acontece.";
+			}
+			//else if (ret == 2) {
+			//	mes "It's cold to the touch. It doesn't respond.";
+			//	close;
+			//}
+			else if ((has_instance("1@cata") != "") && (.@partymembercount < 2)) {
+				mes "[Frei Patrick]";
+				mes "Para entrar nesse lugar perigoso, não poderás ir sozinho. Volte novamente após entrar num grupo.";
+			}
+			//else if (ret == 0) {}
+			else {
+				mapannounce "monk_test","[" + strcharinfo(0) + "] membro do grupo [" + getpartyname(.@party_id) + "] entrou no Santuário Selado.",bc_map,"0x00ff99";
+				if (!checkquest(3040)) setquest 3040;
+				warp "1@cata",100,224;
+			}
 		}
-		//else if (ret == 2) {
-		//	mes "It's cold to the touch. It doesn't respond.";
-		//	close;
-		//}
-		else if ((has_instance("1@cata") != "") && (.@partymembercount < 2)) {
+		else if ((.@ins_bapho_check == 0) || (.@ins_bapho_check == 1)) {
 			mes "[Frei Patrick]";
-			mes "Para entrar nesse lugar perigoso, não poderás ir sozinho. Volte novamente após entrar num grupo.";
+			mes "Parece que você entrou no santuário recentemente... Você não pode entrar novamente pois a Maldição de Baphomet ainda continua.";
+			mes "A Maldição de Baphomet desparece após de um certo tempo após sua entrada.";
 		}
-		//else if (ret == 0) {}
-		else {
-			mapannounce "monk_test","[" + strcharinfo(0) + "] membro do grupo [" + getpartyname(.@party_id) + "] entrou no Santuário Selado.",bc_map,"0x00ff99";
-			setquest 3046;
-			setquest 3045;
-			warp "1@cata",100,224;
+		else if (.@ins_bapho_check == 2) {
+			mes "[Frei Patrick]";
+			mes "Humm... Parece que a maldição de Baphomet está enfraquecendo. Irei retirá-la completamente.";
+			next;
+			mes "[Frei Patrick]";
+			mes "Haaaaaaap... Wingardium Leviosa Expecto Patronum !!!!!";
+			specialeffect2 EF_HOLYHIT;
+			if (checkquest(3040)) erasequest 3040;
+			if (checkquest(3041)) erasequest 3041;
+			if (checkquest(3045)) erasequest 3045;
+			next;
+			mes "[Frei Patrick]";
+			mes "Huu... Acabou. Agora que retirei todas as maldições sobre você. Você pode entrar novamente.";
 		}
-	}
-	else if ((.@ins_bapho_check == 0) || (.@ins_bapho_check == 1)) {
-		mes "[Frei Patrick]";
-		mes "Parece que você entrou no santuário recentemente... Você não pode entrar novamente pois a Maldição de Baphomet ainda continua.";
-		mes "A Maldição de Baphomet desparece após de um certo tempo após sua entrada.";
-	}
-	else if (.@ins_bapho_check == 2) {
-		mes "[Frei Patrick]";
-		mes "Humm... Parece que a maldição de Baphomet está enfraquecendo. Irei retirá-la completamente.";
-		next;
-		mes "[Frei Patrick]";
-		mes "Haaaaaaap... Wingardium Leviosa Expecto Patronum !!!!!";
-		specialeffect2 EF_HOLYHIT;
-		if (checkquest(3046)) erasequest 3046;
-		if (checkquest(3041)) erasequest 3041;
-		if (checkquest(3045)) erasequest 3045;
-		next;
-		mes "[Frei Patrick]";
-		mes "Huu... Acabou. Agora que retirei todas as maldições sobre você. Você pode entrar novamente.";
-	}
-close;
+	close;
 }
 
 prt_monk,261,91,3	script	Rust Blackhand#edq	826,{
@@ -1201,8 +1198,8 @@ function	script	SeloMagico	{
 2@cata,80,63,4	script	Alma do Herói#2F	411,{
 	cutin "ins_cata_champ_s",2;
 	if (checkquest(3041)) erasequest 3041;
-	if (checkquest(3046)) erasequest 3046;
-	setquest 3046;
+	if (checkquest(3040)) erasequest 3040;
+	setquest 3040;
 	mes "[Alma do Herói]";
 	mes "Bom trablaho, meus descendentes... Vocês realizaram meu desejo que muitos não cumprem faz tempo.";
 	next;
@@ -1287,7 +1284,7 @@ OnDisable:
 OnMyMobDead:
 	if (mobcount("2@cata",instance_npcname("control_baphomet", instance_id())+"::OnMyMobDead") < 1) {
 		set 'ins_baphomet,7;
-		setquest 3046;
+		setquest 3040;
 		erasequest 3041;
 		instance_announce 0, "Baphomet : Não! Nãoooo!Levarei isso como insulto, seus insetos!... Não...",bc_map,"0xdb7093";
 		enablenpc instance_npcname("Alma do Herói#2F", instance_id());

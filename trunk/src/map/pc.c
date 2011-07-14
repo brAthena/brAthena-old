@@ -1603,8 +1603,8 @@ static int pc_bonus_item_drop(struct s_add_drop *drop, const short max, short id
 	}
 	for(i = 0; i < max && (drop[i].id || drop[i].group); i++) {
 		if(
-			(id && drop[i].id == id) ||
-			(group && drop[i].group == group)
+			((id && drop[i].id == id) ||
+			(group && drop[i].group == group)) && race < (RC_MAX<<1)
 		) {
 			drop[i].race |= race;
 			if(drop[i].rate > 0 && rate > 0)
@@ -2848,6 +2848,10 @@ int pc_bonus3(struct map_session_data *sd,int type,int type2,int type3,int val)
 	case SP_ADD_MONSTER_DROP_ITEM:
 		if(sd->state.lr_flag != 2)
 			pc_bonus_item_drop(sd->add_drop, ARRAYLENGTH(sd->add_drop), type2, 0, 1<<type3, val);
+		break;
+	case SP_ADD_CLASS_DROP_ITEM:
+		if(sd->state.lr_flag != 2)
+			pc_bonus_item_drop(sd->add_drop, ARRAYLENGTH(sd->add_drop), type2, 0, type3, val);
 		break;
 	case SP_AUTOSPELL:
 		if(sd->state.lr_flag != 2)
@@ -4687,7 +4691,8 @@ const char* job_name(int class_)
 
 	case JOB_WEDDING:
 	case JOB_SUPER_NOVICE:
-
+	case JOB_GUNSLINGER:
+	case JOB_NINJA:
 	case JOB_XMAS:
 		return msg_txt(570 - JOB_WEDDING+class_);
 
@@ -4768,11 +4773,6 @@ const char* job_name(int class_)
 		return msg_txt(617);
 	case JOB_SOUL_LINKER:
 		return msg_txt(618);
-
-	case JOB_GUNSLINGER:
-		return msg_txt(619);
-	case JOB_NINJA:
-		return msg_txt(620);
 
 	default:
 		return msg_txt(650);

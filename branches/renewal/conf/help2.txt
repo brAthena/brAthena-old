@@ -38,7 +38,7 @@
  60:/item <nome do item> - Cria o item desejado.
  60:@item <nome/ID do item> <quantidade> - Cria o item desejado.
  60:@item2 <nome/ID do item> <quantidade> <identificado?> <refinado?> <quebrado?> <Carta1> <Carta2> <Carta3> <Carta4> - Cria o item desejado.
- 40: 
+ 40:
  40:--- Comandos de PVP ---
  40:@pvpon - Liga o PvP no mapa atual.
  40:@pvpoff - Desliga o PvP no mapa atual.
@@ -46,14 +46,14 @@
  40:@gvgoff/@gpvpoff - Desliga o GvG no mapa atual.
  60:@agitstart - Começa a Guerra do Emperium.
  60:@agitend - Encerra a Guerra do Emperium.
-  1: 
+  1:
   1:--- Comandos de Comunidade ---
   1:@party <nome do grupo> - Cria um grupo.
  50:@guild <nome do clã> - Cria um Clã.
  60:@guildlvup/@guildlvlup <número de níveis> - Aumenta certo numero de níveis do clã.
  60:@guildrecall <nome/id da guild> - Teleporta todos os personagens online de um clã ate você.
  60:@partyrecall <nome/id da party> - Teleporta todos os personagens online de um grupo ate você.
-  1: 
+  1:
   1:--- Comandos de Bichinho de Estimação ---
   1:@petrename - Re-habilita a renomeação do Bichinho de estimação.
  10:@pettalk [Message] - Faz com que o bichinho de estimaçao fale algo.
@@ -61,7 +61,7 @@
  40:@pethungry <#> - Muda a fome do Bichinho de Estimação. (0-100) 100 = Max
  60:@hatch - Choca um ovo que está em seu inventário.
  60:@makeegg <pet_id> - Cria um ovo de Bichinho de Estimação.
- 20: 
+ 20:
  20:--- Comandos Remotos de Personagem ---
  20:@kick <nome do personagem> - Desconecta o personagem do servidor.
  40:@charkillable <nome do personagem> - Deixa o personagem capaz de matar.
@@ -84,7 +84,7 @@
  80:@doommap - Mata todos que estiverem no mapa e não sejam GM do servidor.
  80:@raise - Ressucita todos no servidor.
  80:@raisemap - Ressucita todos no mapa.
- 80: 
+ 80:
  80:--- Comandos de Ambiente ---
  80:@night - Usa @option 00 16 00 em todos os personagens. Transforma em Noite.
  80:@day - Usa @option 00 00 00 em todos os personagens. Transforma em Dia.
@@ -112,7 +112,7 @@
  99:@reloadmobdb - Recarrega a mob_db, database de monstros.
  99:@reloadskilldb - Recarrega a skill_db, database de skills.
  99:@reloadscript - Recarrega todos os scripts.
- 99: 
+ 99:
  99:@gat - Deleta Bugs (inspeciona os mapas)
  99:@packet - Deleta Bugs (inspeciona os pacotes)
 100:@nuke <nome do personagem> - Mata o personagem selecionado (efeito nuclear).

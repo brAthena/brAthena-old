@@ -123,9 +123,9 @@
  40:
  40:@option <param1> <param2> <param3> - Adiciona efeitos visuais diferentes em seu personagem ou ao seu redor.
  40:	<param1>      <param2>          <param3>
- 40:	1 Petrified    01 Poison         01 Sight              
- 40:	2 Frozen       02 Cursed         02 Hide              
- 40:	3 Stunned      04 Silenced       04 Cloak 
+ 40:	1 Petrified    01 Poison         01 Sight
+ 40:	2 Frozen       02 Cursed         02 Hide
+ 40:	3 Stunned      04 Silenced       04 Cloak
  40:	4 Sleeping     08 ???            08 Level 1 Cart
  40:	6 darkness     16 darkness       16 Falcon
  40:	                                 32 Peco Peco riding

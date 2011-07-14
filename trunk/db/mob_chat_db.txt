@@ -47,3 +47,9 @@
 27,0xFF0000,O que você quer de mim?
 28,0xFF0000,Não! Eu não fiz isso! Ele é quem planejou tudo isso!
 29,0xFF0000,Eu so queria encontrar um pouco de paz..! É por isso que tenho de fugir para longe!
+30,0xFF0000,Ahhhh!!! Now, I just have to kill you all!
+31,0xFF0000,Annoying flies!! Get off of me!
+32,0xFF0000,Suffer in Hell!
+33,0xFF0000,Mwahahaha! Taste the anger of the earth!!!
+34,0xFF0000,No... I won't accept this as defeat!
+

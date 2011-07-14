@@ -837,8 +837,8 @@ dic_dun03
 //evt_swar_r
 //evt_swar_s
 //evt_swar_t
-1@lhz 
-lhz_dun04 
+1@lhz
+lhz_dun04
 que_lhz
 //
 // Somente adicione mapas abaixo desta linha se eles não forem mapas PADRÃO!
