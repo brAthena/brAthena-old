@@ -9430,7 +9430,7 @@ void clif_parse_ActionRequest_sub(struct map_session_data *sd, int action_type, 
 		if( sd->sc.option&(OPTION_WEDDING|OPTION_XMAS|OPTION_SUMMER) )
 			return;
 
-		if( sd->sc.option&OPTION_RIDING_WUG && sd->weapontype1 )
+		if( sd->sc.option&OPTION_RIDING_WUG )
 			return;
 
 		if( sd->sc.data[SC_BASILICA] || sd->sc.data[SC__SHADOWFORM] || (tsc && tsc->data[SC__MANHOLE]) ||

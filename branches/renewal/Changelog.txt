@@ -9,6 +9,15 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0725 - 15/07/2011 [brn0]
+	* Retirada uma verificação desnecessária no código do ataque.
+	* Corrigido erro causado por espíritos.
+	* Correção no ataque com lobos.
+	- Segundo alguns testes, personagens montados em lobo não podem atacar quando estão desarmados.
+	* Correção em uma verificação na fórmula da habilidade Cura.
+	* Correção na habilidade Camuflagem.
+	- O efeito da habilidade não deve ser retirado ao reutilizá-la.
+
 	r0725 - 14/07/2011 [Dani]
 	* Correção definitiva dos problemas dos portais
 	- A ordem de carregamento dos npcs do emulador estava incorreta

@@ -364,7 +364,7 @@ int skill_calc_heal(struct block_list *src, struct block_list *target, int skill
 			hp = (status_get_lv(src)+status_get_int(src))/5*30*
 			( skill_id == AB_HIGHNESSHEAL ? ( sd ? pc_checkskill(sd,AL_HEAL) : 10 ) : skill_lv )/10+
 			sd->base_status.matk_max + sd->base_status.matk_min;
-			if(sd->matk_bonus){
+			if(sd->matk_bonus && sd->weapontype1){
 				int randheal = sd->matk_bonus*sd->inventory_data[sd->equip_index[EQI_HAND_R]]->wlv/5;
 				hp += -randheal/2 + rand()%randheal;
 			}
@@ -6759,7 +6759,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case SL_SUPERNOVICE:
 	case SL_WIZARD:
 		//NOTE: here, 'type' has the value of the associated MAPID, not of the SC_SPIRIT constant.
-		if (sd && !(dstsd && (dstsd->class_&MAPID_UPPERMASK) == type || (dstsd->class_&MAPID_UPPERMASK) == (type+1024))) {
+		if (sd && !(dstsd && (dstsd->class_&MAPID_UPPERMASK) == type)) {
 			clif_skill_fail(sd,skillid,0,0,0);
 			break;
 		}
@@ -8582,12 +8582,14 @@ int skill_castend_id(int tid, unsigned int tick, int id, intptr_t data)
 
 		map_freeblock_lock();
 
-		sc = status_get_sc(src);
-
-		if(sc && sc->data[SC_CURSEDCIRCLE_ATKER]) {
-			sc->data[SC_CURSEDCIRCLE_ATKER]->val3 = 1;
-			status_change_end(src,SC_CURSEDCIRCLE_ATKER,-1);
-		}
+		if(sc=status_get_sc(src)){
+			if(sc->data[SC_CAMOUFLAGE])
+				status_change_end(src,SC_CAMOUFLAGE,-1); 
+			if(sc->data[SC_CURSEDCIRCLE_ATKER]) {
+				sc->data[SC_CURSEDCIRCLE_ATKER]->val3 = 1;
+				status_change_end(src,SC_CURSEDCIRCLE_ATKER,-1);
+			}
+ 		}
 
 		if (skill_get_casttype(ud->skillid) == CAST_NODAMAGE)
 			skill_castend_nodamage_id(src,target,ud->skillid,ud->skilllv,tick,flag);

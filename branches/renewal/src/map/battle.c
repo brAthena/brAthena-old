@@ -1038,9 +1038,8 @@ static int battle_calc_base_damage(struct status_data *status, struct weapon_atk
 
 		if(type==EQI_HAND_R ? sd->weapontype1:sd->weapontype2){
 			int overrefinebonus;
-			if(type==EQI_HAND_R ? sd->weapontype1:sd->weapontype2)
-				overrefinebonus = sd->status.inventory[sd->equip_index[type]].refine + (sd->status.inventory[sd->equip_index[type]].refine+sd->inventory_data[sd->equip_index[type]]->wlv)*
-					((r=sd->status.inventory[sd->equip_index[type]].refine - status_getrefinebonus(sd->inventory_data[sd->equip_index[type]]->wlv,2))>0 ? r:0);
+			overrefinebonus = sd->status.inventory[sd->equip_index[type]].refine + (sd->status.inventory[sd->equip_index[type]].refine+sd->inventory_data[sd->equip_index[type]]->wlv)*
+				((r=sd->status.inventory[sd->equip_index[type]].refine - status_getrefinebonus(sd->inventory_data[sd->equip_index[type]]->wlv,2))>0 ? r:0);
 
 			if((randatk=(float)(wa->atk*sd->inventory_data[sd->equip_index[type]]->wlv)) > 0)
 				randatk = (float)(-randatk + rand()%(int)(randatk*2)) / 20;

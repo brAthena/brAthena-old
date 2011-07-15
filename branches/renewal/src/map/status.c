@@ -606,20 +606,20 @@ void initChangeTables(void)
 	set_sc( GD_REGENERATION      , SC_REGENERATION    , SI_BLANK           , SCB_REGEN );
 
 	// Storing the target job rather than simply SC_SPIRIT simplifies code later on.
-	SkillStatusChangeTable[SL_ALCHEMIST]   = (sc_type)MAPID_ALCHEMIST||MAPID_GENETIC,
-	SkillStatusChangeTable[SL_MONK]        = (sc_type)MAPID_MONK||MAPID_SURA,
+	SkillStatusChangeTable[SL_ALCHEMIST]   = (sc_type)MAPID_ALCHEMIST,
+	SkillStatusChangeTable[SL_MONK]        = (sc_type)MAPID_MONK,
 	SkillStatusChangeTable[SL_STAR]        = (sc_type)MAPID_STAR_GLADIATOR,
-	SkillStatusChangeTable[SL_SAGE]        = (sc_type)MAPID_SAGE||MAPID_SORCERER,
-	SkillStatusChangeTable[SL_CRUSADER]    = (sc_type)MAPID_CRUSADER||MAPID_ROYAL_GUARD,
+	SkillStatusChangeTable[SL_SAGE]        = (sc_type)MAPID_SAGE,
+	SkillStatusChangeTable[SL_CRUSADER]    = (sc_type)MAPID_CRUSADER,
 	SkillStatusChangeTable[SL_SUPERNOVICE] = (sc_type)MAPID_SUPER_NOVICE,
-	SkillStatusChangeTable[SL_KNIGHT]      = (sc_type)MAPID_KNIGHT||MAPID_RUNE_KNIGHT,
-	SkillStatusChangeTable[SL_WIZARD]      = (sc_type)MAPID_WIZARD||MAPID_WARLOCK,
-	SkillStatusChangeTable[SL_PRIEST]      = (sc_type)MAPID_PRIEST||MAPID_ARCH_BISHOP,
-	SkillStatusChangeTable[SL_BARDDANCER]  = (sc_type)MAPID_BARDDANCER||MAPID_MINSTRELWANDERER,
-	SkillStatusChangeTable[SL_ROGUE]       = (sc_type)MAPID_ROGUE||MAPID_SHADOW_CHASER,
-	SkillStatusChangeTable[SL_ASSASIN]     = (sc_type)MAPID_ASSASSIN||MAPID_GUILLOTINE_CROSS,
-	SkillStatusChangeTable[SL_BLACKSMITH]  = (sc_type)MAPID_BLACKSMITH||MAPID_MECHANIC,
-	SkillStatusChangeTable[SL_HUNTER]      = (sc_type)MAPID_HUNTER||MAPID_RANGER,
+	SkillStatusChangeTable[SL_KNIGHT]      = (sc_type)MAPID_KNIGHT,
+	SkillStatusChangeTable[SL_WIZARD]      = (sc_type)MAPID_WIZARD,
+	SkillStatusChangeTable[SL_PRIEST]      = (sc_type)MAPID_PRIEST,
+	SkillStatusChangeTable[SL_BARDDANCER]  = (sc_type)MAPID_BARDDANCER,
+	SkillStatusChangeTable[SL_ROGUE]       = (sc_type)MAPID_ROGUE,
+	SkillStatusChangeTable[SL_ASSASIN]     = (sc_type)MAPID_ASSASSIN,
+	SkillStatusChangeTable[SL_BLACKSMITH]  = (sc_type)MAPID_BLACKSMITH,
+	SkillStatusChangeTable[SL_HUNTER]      = (sc_type)MAPID_HUNTER,
 	SkillStatusChangeTable[SL_SOULLINKER]  = (sc_type)MAPID_SOUL_LINKER,
 
 	//Status that don't have a skill associated.
