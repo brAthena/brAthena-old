@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0732 - 17/07/2011 [Dani]
+	* Envio da tradução do item_db
+	- Um salve pro Lord que usou seu signature move jumpkick pra traduzir a db
+	* Conversão do EOL do brathena-start para UNIX
+
 	r0731 - 17/07/2011 [Dani]
 	* Ajustes finos
 	* Correções no CMake para compilar corretamente no brAthena
