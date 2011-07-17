@@ -56,8 +56,8 @@ dew_in01,15,49,5	script	Cacique de Dewata	540,{
 		mes "Guarde este ^0000FFShining Cendrawasih Feather^000000 como prova de que você faz parte de nossa tribo.";
 		next;
 		delitem 6405,15;
-		getitem 6406,1; 
-		getitem 18520,1; 
+		getitem 6406,1;
+		getitem 18520,1;
 		set dewdungeon,2;
 		mes "[Cacique de Dewata]";
 		mes "Você também pode ter um dos nossos chápeus lutando com os monstros do lado de fora da nossa aldeia.";
@@ -105,7 +105,7 @@ dew_fild01,127,240,4	script	Ferreiro#dew01	813,{
 		mes "Deixe-me forjar o item necessário para o punhal!";
 		next;
 		delitem 6403,100;
-		getitem 6404,1; 
+		getitem 6404,1;
 		set dewdungeon,4;
 		mes "[Ferreiro]";
 		mes "Tudo pronto! Agora para fazer o resto do punhal eu vou precisar de mais ^0000FF100 Comodo Leathers^000000.";
@@ -117,7 +117,7 @@ dew_fild01,127,240,4	script	Ferreiro#dew01	813,{
 		next;
 		delitem 6403,100;
 		delitem 6404,1;
-		getitem 13067,1; 
+		getitem 13067,1;
 		set dewdungeon,5;
 		mes "[Ferreiro]";
 		mes "Pronto! Esse punhal pode curá-lo em pequenas quantias enquanto você ataca um inimigo, faça bom uso!";

@@ -443,9 +443,9 @@ OnTouch:
 		mes "Haven't you ever seen a delicate damsel sigh before? Leave me the hell alone!";
 		close;
 	}
-	
+
 }
-	
+
 ayo_dun02,91,263,0	script	#Annonblood	111,2,3,{
 
 if(!$annonactive)
@@ -604,9 +604,9 @@ if(!$annonactive)
 	}
 
 }
-	
+
 }
-	
+
 ayo_dun02,91,264,3	script	Haggard Man	841,{
 
 	if(thai_find == 13)
@@ -931,14 +931,14 @@ ayo_dun02,91,264,3	script	Haggard Man	841,{
 		disablenpc "Haggard Man";
 		end;
 	}
-	
+
 OnInit:
 	set $annonactive,0;
 	disablenpc "Haggard Man";
 	end;
-	
+
 }
-		
+
 ayothaya,253,99,3	script	Fisherman	843,{
 
 	if(thai_find == 1)
@@ -1092,9 +1092,9 @@ ayothaya,253,99,3	script	Fisherman	843,{
 		mes "own fortunes.";
 		close;
 	}
-	
+
 }
-	
+
 ayo_dun01,255,62,0	script	AyoFootprint1	139,2,0,{
 OnTouch:
 	if(thai_find == 4)
@@ -1107,9 +1107,9 @@ OnTouch:
 			close;
 		}
 	}
-	
+
 }
-	
+
 ayo_dun01,74,142,0	script	AyoFootprint2	139,2,0,{
 OnTouch:
 	if(thai_find == 5)
@@ -1123,9 +1123,9 @@ OnTouch:
 			close;
 		}
 	}
-	
+
 }
-	
+
 ayo_dun01,244,256,2	script	AyoFootprint3	139,2,0,{
 OnTouch:
 	if(thai_find == 6)
@@ -1139,9 +1139,9 @@ OnTouch:
 			close;
 		}
 	}
-	
+
 }
-	
+
 ayo_dun01,17,257,0	script	AyoFootprint4	139,2,0,{
 OnTouch:
 	if(thai_find == 7)
@@ -1155,9 +1155,9 @@ OnTouch:
 			close;
 		}
 	}
-	
+
 }
-	
+
 ayo_dun02,145,120,0	script	AyoFootprint5	139,2,0,{
 OnTouch:
 	if(thai_find == 8)
@@ -1174,10 +1174,10 @@ OnTouch:
 			close;
 		}
 	}
-	
+
 }
-	
-	
+
+
 ayo_dun02,135,168,0	script	AyoFootprint6	139,0,2,{
 OnTouch:
 	if(thai_find == 9)
@@ -1259,9 +1259,9 @@ OnTouch:
 			close;
 		}
 	}
-	
+
 }
-	
+
 ayo_dun02,77,213,0	script	AyoFootprint7	139,1,1,{
 OnTouch:
 	if(thai_find == 10)
@@ -1278,9 +1278,9 @@ OnTouch:
 			close;
 		}
 	}
-	
+
 }
-	
+
 ayo_dun02,86,254,0	script	AyoFootprint8	139,1,1,{
 OnTouch:
 	if(thai_find == 11)
@@ -1293,9 +1293,9 @@ OnTouch:
 			close;
 		}
 	}
-	
+
 }
-	
+
 ayothaya,193,171,3	script	Old Man#02	842,{
 
 	if(thai_find == 3)
@@ -1386,7 +1386,7 @@ ayothaya,193,171,3	script	Old Man#02	842,{
 			close;
 		}
 	}
-	
+
 }
 
 // Ayothaya Dungeon Quest
@@ -2332,7 +2332,7 @@ ayothaya,196,265,3	script	Einon#ayo	842,{
 	mes "Wouldn't you agree with me?";
 	close;
 }
-	
+
 ayo_in01,145,163,3	script	Cook#ayo	839,{
 	if (tomyumgoong < 2) {
 		mes "[Mali the Spicy]";
@@ -2678,7 +2678,7 @@ ayo_in01,145,163,3	script	Cook#ayo	839,{
 	mes "Heh heh heh~!";
 	close;
 }
-	
+
 ayothaya,153,86,5	script	Thongpool#ayo	843,{
 	if ((MaxWeight-Weight) < 2000 || checkweight(1201,1) == 0) {
 		mes "- Wait a minute! -";
@@ -2794,7 +2794,7 @@ ayothaya,153,86,5	script	Thongpool#ayo	843,{
 	mes "I've got the best Shrimp caught in the cleanest waters in the world~!";
 	close;
 }
-	
+
 ayothaya,121,240,7	script	Mr. Jun#ayo	842,1,1,{
 	if ((MaxWeight-Weight) < 2000 || checkweight(1201,1) == 0) {
 		mes "- Wait a minute! -";

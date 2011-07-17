@@ -1156,7 +1156,7 @@ prontera,164,304,3	script	Guarda Continental#09::ConMensageiro	997,3,3,{
 		next;
 		mes "[Guarda Continental]";
 		mes "Parte da minha missão é ajudar a recrutar aventureiros de todo o mundo para ajudar a prender o Imperador Morroc novamente. Não vai ser fácil, mas ele já foi derrotado antes. o Imperador Morroc pode ser aprisionado de novo.";
-		next;			
+		next;
 		mes "[Guarda Continental]";
 		mes "Pelo menos 70% da Vila de Morroc foi destruída com a ressurreição do Imperador Morroc.";
 		next;
@@ -1280,7 +1280,7 @@ morocc,159,113,3	script	Chefe Balrog	752,{
 		switch(select("Perguntar sobre Guarda Continental:Quero entrar para a Guarda Continental.:Terminar Conversa")) {
 		case 1:
 			mes "[Chefe Balrog]";
-			mes "[Chefe Balrog]"; 
+			mes "[Chefe Balrog]";
 			mes "Os danos causados pela ressurreição do Imperador Morroc ficam evidentes só de olhar para esta área.";
 			mes "O assustador é que tudo isso foi causado simplesmente por ele escapar de sua prisão. Pense nos danos que vão acontecer se ele continuar livre...";
 			next;
@@ -1407,7 +1407,7 @@ morocc,159,113,3	script	Chefe Balrog	752,{
 		next;
 		if (countitem(7098) > 29) {
 			mes "[Chefe Balrog]";
-			mes "Vejamos... Uma, duas, três... Trinta, você trouxe todas. Bem, essa foi uma tarefa bem simples. Só é preciso tempo e um pouco de esforço. Qualquer um pode fazer isso.";		
+			mes "Vejamos... Uma, duas, três... Trinta, você trouxe todas. Bem, essa foi uma tarefa bem simples. Só é preciso tempo e um pouco de esforço. Qualquer um pode fazer isso.";
 			next;
 			mes "[Chefe Balrog]";
 			mes "De qualquer forma, obrigado por trazer as Lenhas em Brasa. Você é mais forte do que eu pensava.";
@@ -1573,7 +1573,7 @@ morocc,159,113,3	script	Chefe Balrog	752,{
 		next;
 		if (countitem(7820) > 0) {
 			mes "[Chefe Balrog]";
-			mes "Isso... Isso não é...?!";		
+			mes "Isso... Isso não é...?!";
 			next;
 			mes "[Chefe Balrog]";
 			mes "Nossa... Acho que é realmente a pele do Imperador Morroc. Parabéns, soldado. Você salvou este mundo e seu povo de serem consumidos pela destruição do mal.";
@@ -2905,7 +2905,7 @@ yuno_in04,117,102,3	script	Livro de Recortes	844,{
 				mes "dizendo: 'Isso é ridículo.";
 				mes "Mercenários devem viver sozinhos, envoltos em sombras.'";
 				mes "Esperamos que a reação das fãs não cause problemas";
-				mes "para Sieglinde e sua futura esposa."; 
+				mes "para Sieglinde e sua futura esposa.";
 				mes " ";
 				next;
 			}
@@ -2926,7 +2926,7 @@ yuno_in04,117,102,3	script	Livro de Recortes	844,{
 				next;
 			}
 			else if (.@newspp == 5) {
-				mes "Alerta de Deus: Laboratório Secreto Reduzido a Cinzas"; 
+				mes "Alerta de Deus: Laboratório Secreto Reduzido a Cinzas";
 				mes " ";
 				mes " A fumaça que encobriu o céu de Juno ontem à noite";
 				mes "veio, na verdade,";
@@ -3234,7 +3234,7 @@ yuno_in04,167,120,3	script	Worn-out Book#garas	111,{
 			mes "- Você sente como se tivesse deixado algo importante para trás. -";
 			close;
 		}
-  		mes "^660000A capa do livro está bem danificada, considerando que o livro foi publicado recentemente. Muitas pessoas o devem ter folheado.^000000"; 
+  		mes "^660000A capa do livro está bem danificada, considerando que o livro foi publicado recentemente. Muitas pessoas o devem ter folheado.^000000";
   		next;
   		mes "^660000Você virou a primeira página cuidadosamente, com medo de ter outro sonho maluco.^000000";
   		next;
@@ -3295,7 +3295,7 @@ yuno_in04,167,120,3	script	Worn-out Book#garas	111,{
   		next;
   		mes "[Oliver Hilpert]";
   		mes "^660000Ele tirou um enorme pedaço de papel da mala, escreveu algo bem rápido e o entregou a você.^000000";
-  		next;       
+  		next;
   		mes "Haha, veja. Escrevi bem grande para você poder se gabar dele com seus amigos!";
   		next;
   		mes "[Oliver Hilpert]";
@@ -3465,7 +3465,7 @@ yuno_in04,167,120,3	script	Worn-out Book#garas	111,{
 		end;
 	}
 	else {
-		mes "^660000A capa do livro está bem danificada, considerando que o livro foi publicado recentemente. Muitas pessoas o devem ter folheado.^000000"; 
+		mes "^660000A capa do livro está bem danificada, considerando que o livro foi publicado recentemente. Muitas pessoas o devem ter folheado.^000000";
 		close;
 	}
 }
@@ -7011,23 +7011,23 @@ prt_castle,368,312,4	script	Príncipe#ern	985,{
 			mes "[Ernst]";
 			mes "Já conheceu meu irmão Ahrum?";
 			mes "Ele é um grande homem,";
-			mes "de verdade.";        
+			mes "de verdade.";
 			next;
 			mes "Às vezes ele tenta lidar com as coisas de forma muito dura, e causa problemas.";
 			mes "Mas até mesmo nesses momentos,";
 			mes "ele se dispõe a me escutar,";
-			mes "então raramente ficamos com problemas sérios entre nós."; 
+			mes "então raramente ficamos com problemas sérios entre nós.";
 			next;
 			mes "[Ernst]";
-			mes "Isso acontece porque crescemos bem próximos um do outro."; 
+			mes "Isso acontece porque crescemos bem próximos um do outro.";
 			next;
 			mes "[Ernst]";
-			mes "O irmão Ahrum me acusa de "; 
+			mes "O irmão Ahrum me acusa de ";
 			mes "pensar demais,";
-			mes "mas ele me ouve e segue minhas sugestões."; 
+			mes "mas ele me ouve e segue minhas sugestões.";
 			next;
 			mes "[Ernst]";
-			mes "Ele não é ótimo?"; 
+			mes "Ele não é ótimo?";
 			mes "Ele é uma pessoa confiável.";
 			close;
 		}
@@ -7039,12 +7039,12 @@ prt_castle,368,312,4	script	Príncipe#ern	985,{
 		}
 		else if (nkprince_eisen == 6) {
 			mes "[Ernst]";
-			mes "Ah, ouvi que alguém da família Walter veio aqui."; 
+			mes "Ah, ouvi que alguém da família Walter veio aqui.";
 			mes "Você o viu?";
 			next;
 			mes "[Ernst]";
-			mes "Parece que nem mesmo o irmão Arhum falou com ele."; 
-			mes "Hum...";  
+			mes "Parece que nem mesmo o irmão Arhum falou com ele.";
+			mes "Hum...";
 			set nkprince_eisen,7;
 			changequest 10012,10016;
 			close;
@@ -7066,12 +7066,12 @@ prt_castle,368,312,4	script	Príncipe#ern	985,{
 		else if ((nkprince_eisen == 10) || (nkprince_eisen == 11) || (nkprince_eisen == 12)) {
 			mes "[Ernst]";
 			mes "Ahrum anda estranho.";
-			mes "Não é uma mudança qualquer; é quase como se ele estivesse corrompido."; 
+			mes "Não é uma mudança qualquer; é quase como se ele estivesse corrompido.";
 			mes "Isso me incomoda.";
 			next;
 			mes "[Ernst]";
 			mes "Vou fingir que não aconteceu.";
-			mes "Acho que Ahrum vai voltar ao normal."; 
+			mes "Acho que Ahrum vai voltar ao normal.";
 			mes "Mesmo assim, não me sinto bem.";
 			close;
 		}
@@ -7128,13 +7128,13 @@ prt_castle,368,312,4	script	Príncipe#ern	985,{
 				mes "Não briguei seriamente com ninguém, mas também não fui muito educado e polido.";
 				next;
 				mes "[Ernst]";
-				mes "As pessoas me achavam tímido, mas isso é porque"; 
+				mes "As pessoas me achavam tímido, mas isso é porque";
 				mes "não queria que os outros me culpassem por nada.";
 				next;
 				mes "[Ernst]";
 				mes "É claro que meu irmão Eigen";
 				mes "Ahrum é uma exceção. ";
-				mes "Ele não é muito educado, mas pode concordar com os outros"; 
+				mes "Ele não é muito educado, mas pode concordar com os outros";
 				mes "se for convencido disso.";
 				next;
 				mes "[Ernst]";
@@ -7145,14 +7145,14 @@ prt_castle,368,312,4	script	Príncipe#ern	985,{
 				mes "[Ernst]";
 				mes "Para mim, os meios sempre foram mais importantes do que os fins.";
 				mes "Agora, tenho ambos em igual consideração. Eu não tomava o resultado como importante,";
-				mes "mas Ahrum conseguiu me convencer do contrário."; 
+				mes "mas Ahrum conseguiu me convencer do contrário.";
 				break;
 			case 2:
 				mes "[Ernst]";
 				mes "Minha visão para a nação, quando eu for o rei?";
 				next;
 				mes "[Ernst]";
-				mes "Pode-se pensar que o poder do rei é ilimitado, mas"; 
+				mes "Pode-se pensar que o poder do rei é ilimitado, mas";
 				mes "sendo ele apenas um homem, ele é limitado, sim.";
 				next;
 				mes "[Ernst]";
@@ -7177,12 +7177,12 @@ prt_castle,368,312,4	script	Príncipe#ern	985,{
 				next;
 				mes "[Ernst]";
 				mes "E também gosto de conversar com Ahrum.";
-				mes "Ahrum é esperto o bastante para inventar idéias novas, que posso"; 
+				mes "Ahrum é esperto o bastante para inventar idéias novas, que posso";
 				mes "acompanhar.";
 				next;
 				mes "[Ernst]";
 				mes "Bem, para dizer a verdade, o que faço de melhor é sair com Ahrum para pescar.";
-				mes "No entanto, estamos ocupados demais para pescar, com essa"; 
+				mes "No entanto, estamos ocupados demais para pescar, com essa";
 				mes "questão do reinado.";
 				next;
 				mes "[Ernst]";
@@ -7231,7 +7231,7 @@ OnTouch:
 		mes "a família Riehart terá o segundo posto.";
 		next;
 		mes "[Membro da Família Riehart]";
-		mes "Hehe, Ahrum já é o candidato mais favorecido e influente."; 
+		mes "Hehe, Ahrum já é o candidato mais favorecido e influente.";
 		mes "Que feito incrível você ";
 		mes "conseguiu.";
 		next;
@@ -7274,7 +7274,7 @@ OnTouch:
 		next;
 		mes "[Membro da Família Riehart]";
 		mes "Sendo assim, é bom nos prepararmos.";
-		mes "Todos os que conhecem o passado não querem saber de Ahrum e"; 
+		mes "Todos os que conhecem o passado não querem saber de Ahrum e";
 		mes "Ernst.";
 		next;
 		mes "[Membro da Família Walter]";
@@ -7830,7 +7830,7 @@ prt_castle,336,202,7	script	Príncipe#eisen2	983,{
 	next;
 	mes "[Ahrum]";
 	mes "Você não tem valor.";
-	mes "Como pode acreditar que sua beleza"; 
+	mes "Como pode acreditar que sua beleza";
 	mes "basta para reinar? Porcaria de homem!";
 	mes "Não quero ficar perto de você também.";
 	mes "Fique no seu mundinho para sempre, e não";

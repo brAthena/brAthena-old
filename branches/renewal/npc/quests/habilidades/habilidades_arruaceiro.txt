@@ -1344,7 +1344,7 @@ function	script	F_Kienna	{
 		mes "[Kienna]";
 		mes "Alright, we're done";
 		mes "here. You earned a";
-		switch(.@suc_1) { 
+		switch(.@suc_1) {
 		case 10:
 			mes "training grade of ''^0000FFS^000000.''";
 			mes "That's a perfect score!";

@@ -250,7 +250,7 @@ moc_ruins,66,164,4	script	Thief Trainer#T	84,{
 			next;
 			while(1){
 				switch(select("Double Attack:Increase Dodge:Steal:Hiding:Envenom:Detoxify:Cancel")){
-				case 1: 
+				case 1:
 					mes "[Yierhan]";
 					mes "Just like its name,";
 					mes "Double Attack gives your attacks the chance to be a double attack, two strikes in one blow.";
@@ -299,7 +299,7 @@ moc_ruins,66,164,4	script	Thief Trainer#T	84,{
 					set @read_p, 1;
 					next;
 					break;
-				case 5: 
+				case 5:
 					mes "[Yierhan]";
 					mes "Envenom is an offensive Active Skill that every Thief should know. But that's just what I think.";
 					next;
@@ -310,7 +310,7 @@ moc_ruins,66,164,4	script	Thief Trainer#T	84,{
 					set @read_h, 1;
 					next;
 					break;
-				case 6: 
+				case 6:
 					mes "[Yierhan]";
 					mes "Since Thieves deal";
 					mes "quite a bit with poison,";

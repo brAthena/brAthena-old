@@ -109,7 +109,7 @@ prt_castle,54,34,4	script	Carl Orleans	47,{
 	mes "Sim?";
 	next;
 	menu "Eu quero um Chocolate Caseiro.",-,"Estou perdido, desculpe por incomodá-lo.",M_WAT;
-     
+
 	mes "[Carl Orleans]";
 	mes "Bem, vou verificar se você possue os itens necessários...";
 	next;

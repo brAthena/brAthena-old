@@ -33,7 +33,7 @@ bat_room,169,226,5	script	Sala de Espera do KVM#a::KvM01R_Guillaume	418,{
 OnInit:
 	waitingroom "Estação de Batalha de 5 jogadores",5,"KvM01_BG::OnGuillaumeJoin",1;
 	end;
-	
+
 OnEnterBG:
 	set $@KvM01BG_id1, waitingroom2bg("bat_c01",52,129,"KvM01_BG::OnGuillaumeQuit","KvM01_BG::OnGuillaumeDie");
 	end;
@@ -60,11 +60,11 @@ bat_room,169,211,0	warp	#kvm802	2,2,bat_room,154,150
 -	script	KVM01::CellEffect	-1,{
 	end;
 
-OnKvM01One: 
+OnKvM01One:
 	misceffect EF_CHANGECOLD;
 	end;
 
-OnKvM01Two: 
+OnKvM01Two:
 	misceffect EF_CHANGEPOISON;
 	end;
 }

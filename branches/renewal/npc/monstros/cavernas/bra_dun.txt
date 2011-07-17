@@ -16,7 +16,7 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Tyler]                           |
-// | 1.1 Script Revisado [Tyler]                            | 
+// | 1.1 Script Revisado [Tyler]                            |
 // \________________________________________________________/
 
 //==================================================
@@ -30,7 +30,7 @@ bra_dun01,0,0,0,0	monster	Marina	1141,10,0,0,0
 bra_dun01,0,0,0,0	monster	Cogumelo Negro	1084,10,0,0,0
 
 //==================================================
-// bra_dun02 - Profundezas das Cataratas 
+// bra_dun02 - Profundezas das Cataratas
 //==================================================
 bra_dun02,0,0,0,0	monster	Plankton	1161,10,0,0,0
 bra_dun02,0,0,0,0	monster	Iara	2069,120,0,0,0

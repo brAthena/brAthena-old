@@ -25,7 +25,7 @@
 // \________________________________________________________/
 
 // Prontera Culvert
-//============================================================ 
+//============================================================
 prt_in,88,105,2	script	Recruiter	105,{
 	if (MISC_QUEST & 8) {
 		mes "[Recruiter]";
@@ -140,7 +140,7 @@ prt_fild05,270,212,5	script	Culvert Guardian	105,{
 }
 
 // Ph.D Hat Quest
-//============================================================ 
+//============================================================
 prt_in,38,108,4	script	Teacher	53,{
 	if ((countitem(710) > 0) && (countitem(703) > 0) && (countitem(704) > 0) && (countitem(708) > 0)) {
 		mes "[Teacher]";
@@ -224,7 +224,7 @@ prt_in,38,108,4	script	Teacher	53,{
 }
 
 // Gaebolg Family Curse
-//============================================================ 
+//============================================================
 prontera,248,212,3	script	Busy Boy#prt	706,3,3,{
 	callsub S_CheckWeight; //Check Player's weight
 	if (BaseLevel > 59) {
@@ -1225,9 +1225,9 @@ morocc_in,45,126,3	script	Historian#prt02	702,{
 			mes "that she might spread around!";
 			mes "Oh well, I guess I better head";
 			mes "back to the priests...)^000000";
-			if (prt_curse == 30) 
+			if (prt_curse == 30)
 				set prt_curse,31;
-			else 
+			else
 				set prt_curse,60;
 			close;
 		}

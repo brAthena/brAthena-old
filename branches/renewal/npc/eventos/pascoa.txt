@@ -117,7 +117,7 @@ geffen,95,201,3 script  Shilo   50,{
                         mes "Então o que você me diz?";
                         next;
                         menu "Parece divertido, eu vou participar!",ssM_0, "Eu tenho coisas melhores para fazer.",ssM_End;
-        
+
                         ssM_0:
                                 mes "[Shilo]";
                                 mes "Ótimo! Mas devo avisar...";

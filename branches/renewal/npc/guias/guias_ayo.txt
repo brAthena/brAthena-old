@@ -18,7 +18,7 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Protimus]                        |
-// | 1.1 Script Revisado [Protimus]							| 
+// | 1.1 Script Revisado [Protimus]							|
 // \________________________________________________________/
 
 ayothaya,203,169,3	script	Noi#ayo	839,{

@@ -18,12 +18,12 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			  						| 
+// | - Anotações		   			  						|
 // \________________________________________________________/
 
-//============================================================ 
+//============================================================
 //= The Airship System (Juno -> Hugel -> Einbroch -> Lighthalzen -> repeat)
-//============================================================ 
+//============================================================
 
 airplane,243,74,4	script	#AirshipWarp-1	45,2,2,{
 OnTouch:
@@ -81,7 +81,7 @@ OnTimer45000:
 	enablenpc "#AirshipWarp-1";
 	enablenpc "#AirshipWarp-2";
 	donpcevent "#AirshipWarp-1::OnUnhide";
-	donpcevent "#AirshipWarp-2::OnUnhide";	
+	donpcevent "#AirshipWarp-2::OnUnhide";
 	mapannounce "airplane","Welcome to Hugel. Have a safe trip.",bc_map,0xBA55D3;
 	end;
 OnTimer55000:
@@ -169,9 +169,9 @@ OnTimer260000:
 
 //C4644E
 
-//============================================================ 
+//============================================================
 //= Some normal NPCS (airplane)
-//============================================================ 
+//============================================================
 
 airplane,240,64,5	script	Exit#01::Exit2	857,{
 	end;
@@ -389,9 +389,9 @@ airplane,221,158,2	script	Pilot#airplane	852,{
 	close;
 }
 
-//============================================================ 
+//============================================================
 //= The Airship System (Izlude -> Juno -> Rachel -> Repeat)
-//============================================================ 
+//============================================================
 
 airplane_01,243,74,4	script	#AirshipWarp-3	45,2,2,{
 OnTouch:
@@ -455,7 +455,7 @@ OnTimer45000:
 	enablenpc "#AirshipWarp-3";
 	enablenpc "#AirshipWarp-4";
 	donpcevent "#AirshipWarp-3::OnUnhide";
-	donpcevent "#AirshipWarp-4::OnUnhide";	
+	donpcevent "#AirshipWarp-4::OnUnhide";
 	mapannounce "airplane_01","Welcome to Izlude. Have a safe trip.",bc_map,0x00FF00;
 	end;
 OnTimer55000:
@@ -522,9 +522,9 @@ OnReturn:
 	end;
 }
 
-//============================================================ 
+//============================================================
 //= Some normal NPCS (airplane_01)
-//============================================================ 
+//============================================================
 
 airplane_01,240,64,5	duplicate(Exit2)	Exit#05	857
 
@@ -1023,7 +1023,7 @@ airplane_01,71,31,2	script	Swordsman Shimizu#01	106,{
 	close;
 }
 
-//============================================================ 
+//============================================================
 //= The Izlude Airship Staff
 //============================================================
 
@@ -1036,7 +1036,7 @@ izlude,201,54,3	script	Airship Staff#izl	91,{
 		mes "[Airship Staff]";
 		mes "The Airship boarding fee";
 		mes "is 1,200 zeny, but if you've";
-		mes "got a Free Ticket for Airship,"; 
+		mes "got a Free Ticket for Airship,";
 		mes "the fee will be waived. Will";
 		mes "you board the Airship?";
 		next;
@@ -1062,7 +1062,7 @@ izlude,201,54,3	script	Airship Staff#izl	91,{
 	close;
 }
 
-//============================================================ 
+//============================================================
 //= The Hugel Airship Staff
 //============================================================
 
@@ -1075,7 +1075,7 @@ hugel,182,150,3	script	Airship Staff#hu	91,{
 		mes "[Airship Staff]";
 		mes "The Airship boarding fee";
 		mes "is 1,200 zeny, but if you've";
-		mes "got a Free Ticket for Airship,"; 
+		mes "got a Free Ticket for Airship,";
 		mes "the fee will be waived. Will";
 		mes "you board the Airship?";
 		next;
@@ -1101,7 +1101,7 @@ hugel,182,150,3	script	Airship Staff#hu	91,{
 	close;
 }
 
-//============================================================ 
+//============================================================
 //= The Rachel Airship Staff
 //============================================================
 
@@ -1129,7 +1129,7 @@ OnTouch:
 	close;
 }
 
-//============================================================ 
+//============================================================
 //= Juno Airport NPCs
 //============================================================
 
@@ -1212,7 +1212,7 @@ yuno,88,263,3	script	Airship Staff#yuno02	91,{
 	close;
 }
 
-//============================================================ 
+//============================================================
 //= Apple Gambling Function
 //============================================================
 

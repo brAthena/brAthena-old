@@ -19,11 +19,11 @@
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [YuMs]		                    |
 // | 1.1 Script Revisado [Mark]			                    |
-// | - Anotações		   			    					| 
+// | - Anotações		   			    					|
 // \________________________________________________________/
 
 // Black Marketeer (Buy Licenses - Non-Merchant Classes)
-//============================================================ 
+//============================================================
 que_job01,68,84,1	script	Black Marketeer#Buying	881,{
 	if(getskilllv("ALL_BUYING_STORE") == 1) {
 		mes "[Sr. Jass]";
@@ -105,7 +105,7 @@ que_job01,68,84,1	script	Black Marketeer#Buying	881,{
 }
 
 // Purchasing Team (Learn Skill - Merchant Classes)
-//============================================================ 
+//============================================================
 alberta_in,58,52,4	script	Purchasing Team#Buying	59,{
 	if(BaseClass == Job_Merchant && getskilllv("MC_VENDING") >= 1) {
 		if(getskilllv("ALL_BUYING_STORE") == 1) {
@@ -244,7 +244,7 @@ alberta_in,58,52,4	script	Purchasing Team#Buying	59,{
 				mes "Eu te dei 5 Licença para Loja de Compras em Massa para o seu experimento.";
 				mes "Boas compras!";
 				close;
-			}			
+			}
 		}
 	}else{
 		mes "[Sr. Hugh]";
@@ -253,6 +253,6 @@ alberta_in,58,52,4	script	Purchasing Team#Buying	59,{
 		next;
 		mes "[Sr. Hugh]";
 		mes "Meu tempo é dedicado exclusivamente aos nossos clientes na indústria do comercio.";
-		close;	
+		close;
 	}
 }

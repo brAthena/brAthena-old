@@ -42,7 +42,7 @@
 // \________________________________________________________/
 
 // Lost Child Quest (Prerequisite to High Priest quest)
-//============================================================ 
+//============================================================
 ra_in01,384,246,3	script	Vincent#ra_in01	47,{
 	if (BaseLevel < 60) {
 		mes "[Vincent]";
@@ -378,7 +378,7 @@ ra_in01,384,246,3	script	Vincent#ra_in01	47,{
 		mes "Jenny about Phobe?";
 		mes "Sure, sure, I'll do that.";
 		close;
-	}	
+	}
 
 	else if (lost_boy == 11) {
 		mes "["+strcharinfo(0)+"]";
@@ -814,7 +814,7 @@ rachel,48,237,3	script	Jenny#ra_in01	894,{
 	}
 
 	end;
-	
+
 }
 
 rachel,138,73,5	script	Idle Merchant#ra_in01	85,{
@@ -1269,10 +1269,10 @@ rachel,263,32,3	script	Kid#ra_in01	931,{
 }
 
 //End of Lost Child quest
-//============================================================ 
+//============================================================
 
 //Bruspetti Quest (Perequisite: Lighthalzen "Friendship" quest)
-//============================================================ 
+//============================================================
 ra_in01,235,194,5	script	Katinshuell	931,{
 	if (rach_vice > 21) {
 		mes "[Katinshuell]";
@@ -2712,10 +2712,10 @@ ra_in01,255,25,0	script	Book#ra_in	111,{
 }
 
 //End of Bruspetti quest
-//============================================================ 
+//============================================================
 
 // Ice Necklace/Summon Ktullanux Quest and Glacial Heart buyer
-//============================================================ 
+//============================================================
 //iRO Changed this NPC to avoid "offending" people.
 //To enable how it originally looked, uncomment the
 //line below (npc header), and comment the line
@@ -3269,7 +3269,7 @@ ice_dun02,120,105,3	script	Man Stuck in Ice#cave	924,5,5,{
 OnTouch:
 	end;
 
-OnTouchNPC: 
+OnTouchNPC:
 	emotion e_an;
 	//emotion e_gg,1; //Emote on monster - unsupported
 	end;
@@ -3369,7 +3369,7 @@ rachel,265,98,3	script	Hamion#aru	930,{
 		close;
 	}
 	else if (ice_necklace_q == 3) {
-		if ((countitem(996) < 5) || (countitem(1354) < 1) || (countitem(7433) < 1)) { 
+		if ((countitem(996) < 5) || (countitem(1354) < 1) || (countitem(7433) < 1)) {
 			mes "[Hamion]";
 			mes "I need to create";
 			mes "a magical artifact";
@@ -3797,7 +3797,7 @@ OnTimer7200000:
 	hideoffnpc "Blazing Fire#ice4";
 	end;
 }
-	
+
 ice_dun03,1,175,3	script	#ice_sec	-1,{
 OnStart:
 	initnpctimer;
@@ -3881,11 +3881,11 @@ OnEnable:
 }
 
 // End of Ice Necklace/Summon Ktullanux Quest
-//============================================================ 
+//============================================================
 
 
 // Donation Lottery Quest/High Priest Quest
-//============================================================ 
+//============================================================
 ra_temple,119,180,0	script	Temple Entrance#ra_tem	45,1,1,{
 OnTouch:
 	if ($rachel_donate >= 10000) {
@@ -4439,7 +4439,7 @@ rachel,243,37,3	script	Kid#Candy Addict	921,{
 
 			case 3:
 				break;
-			
+
 			case 4:
 				mes "[Kid]";
 				mes "Oh. It's 'cause you're";
@@ -7476,7 +7476,7 @@ OnTouch:
 
 	mes "^3355FFThe door is locked.^000000";
 	close;
-	
+
 }
 
 que_san04,119,115,0	script	imir1#rachel	-1,2,2,{

@@ -442,7 +442,7 @@ OnTouch:
 		donpcevent "#DrawerOpener::OnEnable";
 		close;
 	}
-	
+
 }
 
 hu_in01,385,247,5	script	Postell Schuwell#D	97,{
@@ -555,7 +555,7 @@ hu_fild06,34,123,3	script	Postell Schuwell	97,{
 		mes "more could I want?";
 		close;
 	}
-	
+
 }
 
 hu_in01,370,255,3	script	Upper Drawer#First	139,2,2,{
@@ -737,7 +737,7 @@ OnTouch:
 			close;
 		}
 	}
-	
+
 }
 
 hu_in01,370,255,3	script	Upper Drawer#Second	139,2,2,{
@@ -766,7 +766,7 @@ OnInit:
 			mes "kept inside this drawer.^000000";
 			close;
 		}
-		
+
 }
 
 hu_in01,1,1,0	script	#DrawerOpener	-1,{
@@ -790,7 +790,7 @@ OnTimer4500:
 	disablenpc "#DrawerOpener";
 	stopnpctimer;
 	end;
-	
+
 }
 
 //-------------------------------------------------------------------------
@@ -1349,7 +1349,7 @@ ein_in01,16,36,3	script	Morriphen	86,{
 		mes "come visit our house sometime?";
 		close;
 	}
-	
+
 }
 
 hu_in01,326,307,3	script	Siria	90,{
@@ -1555,7 +1555,7 @@ hu_in01,326,307,3	script	Siria	90,{
 		mes "with anything?";
 		close;
 	}
-	
+
 }
 
 lighthalzen,88,79,7	script	Dono	85,{
@@ -1869,7 +1869,7 @@ lighthalzen,88,79,7	script	Dono	85,{
 		mes "anything! Now, scram!";
 		close;
 	}
-	
+
 }
 
 lhz_in03,193,28,3	script	Makkie	83,{
@@ -2048,7 +2048,7 @@ lhz_in03,193,28,3	script	Makkie	83,{
 		mes "and make yourself at home~";
 		close;
 	}
-	
+
 }
 
 //-------------------------------------------------------------------------
@@ -2321,7 +2321,7 @@ hugel,70,137,5	script	Shede	879,{
 		cutin "",255;
 		end;
 	}
-	
+
 }
 
 hu_in01,256,40,3	script	Herico	897,{
@@ -3057,7 +3057,7 @@ hu_in01,256,40,3	script	Herico	897,{
 		end;
 	}
 	else
-	{	
+	{
 		if(countitem(7342))
 		{
 			mes "[Herico]";
@@ -3067,7 +3067,7 @@ hu_in01,256,40,3	script	Herico	897,{
 			close2;
 			cutin "",255;
 			end;
-		}	
+		}
 		else
 		{
 			mes "[Herico]";
@@ -3144,7 +3144,7 @@ hu_in01,256,40,3	script	Herico	897,{
 	}
 	cutin "",255;
 	end;
-	
+
 }
 
 lhz_in03,39,44,3	script	Enquro Carson	97,{
@@ -3335,7 +3335,7 @@ lhz_in03,39,44,3	script	Enquro Carson	97,{
 		mes "Yeah, I know, it is a shame.";
 		close;
 	}
-	
+
 }
 
 hu_in01,310,380,5	script	Girl#hugel	891,{
@@ -3462,7 +3462,7 @@ hu_in01,310,380,5	script	Girl#hugel	891,{
 		mes "you can take a look at the shelf.";
 		close;
 	}
-	
+
 }
 
 hu_in01,317,312,0	script	Book	111,{
@@ -3793,7 +3793,7 @@ einbech,208,124,3	script	Bomb Maker	851,{
 		mes "You can call me Boomer.";
 		close;
 	}
-	
+
 }
 
 hu_fild06,168,359,3	script	Moks Mushrooms#Mush1	111,{
@@ -4305,7 +4305,7 @@ OnTimer20000:
 	enablenpc "Moks Bugs#Bug1";
 	stopnpctimer;
 	end;
-	
+
 }
 
 hu_fild06,218,320,1	script	Moks Bugs#Bug2	1053,{
@@ -4369,7 +4369,7 @@ OnTimer20000:
 	enablenpc "Moks Bugs#Bug2";
 	stopnpctimer;
 	end;
-	
+
 }
 
 hu_fild06,249,329,1	script	Moks Bugs#Bug3	1053,{
@@ -4433,7 +4433,7 @@ OnTimer20000:
 	enablenpc "Moks Bugs#Bug3";
 	stopnpctimer;
 	end;
-	
+
 }
 
 hu_fild06,218,373,1	script	Moks Bugs#Bug4	1053,{
@@ -4497,7 +4497,7 @@ OnTimer20000:
 	enablenpc "Moks Bugs#Bug4";
 	stopnpctimer;
 	end;
-	
+
 }
 
 lhz_in01,214,129,0	script	A Pile of Paper	111,{
@@ -4515,7 +4515,7 @@ lhz_in01,214,129,0	script	A Pile of Paper	111,{
 		donpcevent "HuMSpawner::OnMonster";
 		close;
 	}
-	
+
 }
 
 lhz_in01,235,129,0	script	HuMSpawner	139,{
@@ -4534,10 +4534,10 @@ OnTimer60000:
 	killmonster "lhz_in01","HuMSpawner::OnMonsterDead";
 	stopnpctimer;
 	end;
-	
+
 OnMonsterDead:
 	end;
-	
+
 }
 
 lhz_dun02,244,226,0	script	Unethical Machine	111,{
@@ -4568,20 +4568,20 @@ lhz_dun02,244,226,0	script	Unethical Machine	111,{
 			close;
 		}
 	}
-	
+
 }
 
 lhz_dun02,244,227,0	script	HiddenExplosion	139,5,5,{
 OnInit:
 	disablenpc "HiddenExplosion";
 	end;
-	
+
 OnTouch:
 	percentheal -10,0;
 	specialeffect EF_HIT5;
 	disablenpc "HiddenExplosion";
 	end;
-	
+
 }
 
 hu_in01,365,170,3	script	Girl#Hu	793,{
@@ -4590,7 +4590,7 @@ hu_in01,365,170,3	script	Girl#Hu	793,{
 	mes "I love sitting in front of a stove because it makes me warm~";
 	mes "Ah...it is so warm and relaxing...and now I feel sleepy...Zzzzz Zzzz...";
 	close;
-	
+
 }
 
 hu_in01,377,106,3	script	Pub Granny	892,{
@@ -4661,7 +4661,7 @@ hugel,198,169,0	script	#HugelTree	139,2,2,{
 		mes "of overwhelming comfort.^000000";
 		close;
 	}
-	
+
 }
 
 hugel,191,172,3	script	Manainne	892,1,{
@@ -4966,7 +4966,7 @@ hugel,191,172,3	script	Manainne	892,1,{
 		mes "the world, I'd live right here~";
 		close;
 	}
-	
+
 }
 
 niflheim,90,106,3	script	A Spirit#HQuest	802,{
@@ -5034,7 +5034,7 @@ niflheim,90,106,3	script	A Spirit#HQuest	802,{
 		mes "I miss them...";
 		close;
 	}
-	
+
 }
 
 hugel,100,103,3	script	Perfitz	866,{
@@ -5102,7 +5102,7 @@ hugel,100,103,3	script	Perfitz	866,{
 		mes "that are worth having.";
 		close;
 	}
-	
+
 }
 
 hugel,196,164,3	script	El Schatt	50,{
@@ -5576,7 +5576,7 @@ hugel,107,67,3	script	Torpy	706,{
 		mes "Where are yooooou?!";
 		close;
 	}
-	
+
 }
 
 hu_fild06,190,367,3	script	Torpy's Mom	701,{
@@ -5729,7 +5729,7 @@ hu_fild06,190,367,3	script	Torpy's Mom	701,{
 		mes "up with one or he'll be sorry!";
 		close;
 	}
-	
+
 }
 
 hugel,100,176,3	script	Suspicious Barrel	111,{
@@ -5934,7 +5934,7 @@ hugel,100,176,3	script	Suspicious Barrel	111,{
 		mes "^800080However, it doesn't seem to be a big deal.^000000";
 		close;
 	}
-	
+
 }
 
 hugel,100,174,3	script	Strange Man#Hugel	898,{
@@ -6008,23 +6008,23 @@ hugel,100,174,3	script	Strange Man#Hugel	898,{
 		mes "have to eat again for days!";
 		close;
 	}
-	
+
 OnEnable:
 	enablenpc "Strange Man#Hugel";
 	disablenpc "Suspicious Barrel";
 	initnpctimer;
 	end;
-	
+
 OnInit:
 	disablenpc "Strange Man#Hugel";
 	end;
-	
+
 OnTimer60000:
 	stopnpctimer;
 	disablenpc "Strange Man#Hugel";
 	enablenpc "Suspicious Barrel";
 	end;
-	
+
 }
 
 //-------------------------------------------------------------------------
@@ -6538,7 +6538,7 @@ hugel,76,134,3	script	Neha	101,{
 		mes "a little bit as well. Hoho~";
 		close;
 	}
-	
+
 }
 
 hugel,87,139,3	script	Maewan	86,{
@@ -6627,7 +6627,7 @@ hugel,87,139,3	script	Maewan	86,{
 		mes "all sorts of new things~";
 		close;
 	}
-	
+
 }
 
 hugel,84,125,3	script	Layoma	700,{
@@ -6706,7 +6706,7 @@ hugel,84,125,3	script	Layoma	700,{
 		mes "that's a pretty exciting life!";
 		close;
 	}
-	
+
 }
 
 hugel,102,161,3	script	Erjan	100,{
@@ -7177,7 +7177,7 @@ yuno,111,156,3	script	Euslan	90,{
 		mes "relaxed than she used to be.^000000";
 		close;
 	}
-	
+
 }
 
 que_bingo,49,12,0	script	#Hg_Quest	139,4,4,{
@@ -7199,7 +7199,7 @@ OnTouch:
 		mes "game coordinators tend";
 		mes "to be pretty busy...";
 		close;
-	}	
+	}
 }
 
 que_bingo,53,190,7	script	Eukran	778,{
@@ -7247,7 +7247,7 @@ que_bingo,53,190,7	script	Eukran	778,{
 		warp "que_bingo",37,24;
 		end;
 	}
-	
+
 }
 
 odin_tem01,129,127,0	script	HiddenActivator#Hugel	139,3,3,{
@@ -7314,12 +7314,12 @@ OnTimer180000:
 	disablenpc "Young Man#Hu_Quest";
 	stopnpctimer;
 	end;
-	
+
 OnInit:
 	disablenpc "Young Man#Hu_Quest";
 	end;
 
-}	
+}
 
 odin_tem01,130,134,4	script	Young Man#Hu_Quest	774,{
 
@@ -7569,7 +7569,7 @@ odin_tem01,130,134,4	script	Young Man#Hu_Quest	774,{
 		mes "I swear I'll come home to you!";
 		close;
 	}
-	
+
 }
 
 odin_tem01,111,144,0	script	HiddenHugel	139,2,2,{
@@ -7644,7 +7644,7 @@ hugel,56,104,3	script	Kurupe	709,3,3,{
 				mes "somewhere just outside of town.";
 				set hg_milk,2;
 				close;
-			
+
 			case 2:
 				mes "[Kurupe]";
 				mes "N-no...!";
@@ -7755,7 +7755,7 @@ hugel,56,104,3	script	Kurupe	709,3,3,{
 				mes "let you milk Booboo the cow.";
 				set hg_milk,10;
 				close;
-			
+
 			case 2:
 				mes "[Kurupe]";
 				mes "Let's see...";
@@ -7771,7 +7771,7 @@ hugel,56,104,3	script	Kurupe	709,3,3,{
 				mes "1 Bundle of Food. Hmmm...";
 				mes "That sounds fair, right?";
 				close;
-			
+
 			case 3:
 				mes "[Kurupe]";
 				mes "Ahahahah, it's good";
@@ -8180,7 +8180,7 @@ hugel,72,101,0	script	Burupu's Instructions	111,{
 			mes "her song. I'll explain more";
 			mes "about that in Chapter 2.";
 			close;
-	
+
 		case 2:
 			mes "[Chapter 2 Contents]";
 			mes " ";
@@ -8241,7 +8241,7 @@ hugel,72,101,0	script	Burupu's Instructions	111,{
 					mes "then just brush her";
 					mes "5 times. That's all~";
 					close;
-				
+
 				case 2:
 					mes "[Chapter 2, Part 2]";
 					mes "Booboo the cow will";
@@ -8265,7 +8265,7 @@ hugel,72,101,0	script	Burupu's Instructions	111,{
 					mes "hum the correvt word to her.";
 					close;
 			}
-		
+
 		case 3:
 			mes "[Chapter 3]";
 			mes "If you want to milk";
@@ -8311,7 +8311,7 @@ hugel,68,99,3	script	Booboo the Cow	889,{
 				mes "You can only brush Booboo";
 				mes "with this luxurious magic comb.^000000";
 				close;
-				
+
 			case 2:
 				mes "^3355FFMaybe you should learn more";
 				mes "about Booboo the cow, and";
@@ -8326,7 +8326,7 @@ hugel,68,99,3	script	Booboo the Cow	889,{
 	mes "Booboo Boop~";
 	close;
 }
-					
+
 function	script	Func_MilkCow	{
 
 
@@ -8515,7 +8515,7 @@ hu_in01,19,161,0	script	Alex	803,{
 				close2;
 				cutin "",255;
 				end;
-				
+
 			case 2:
 				mes "[Alex]";
 				mes "Oh, so you saw the";
@@ -8627,7 +8627,7 @@ hu_in01,19,161,0	script	Alex	803,{
 				close2;
 				cutin "",255;
 				end;
-				
+
 			case 2:
 				mes "[Alex]";
 				mes "Yeah, well, I know";
@@ -9032,13 +9032,13 @@ hu_in01,14,11,4	script	Laura	70,{
 						close2;
 						cutin "hu_laura02.bmp",255;
 						end;
-						
+
 					case 2:
 						break;
 				}
 				// Allow fall-through into the next case statment as this is a minor bug in aegis.
 				//break;
-			
+
 			case 2:
 				mes "[Laura]";
 				mes "Perfect! Now, you first";
@@ -9230,7 +9230,7 @@ hu_in01,14,11,4	script	Laura	70,{
 				mes "while you were at the shrine!";
 				next;
 				break;
-				
+
 			case 2:
 				cutin "hu_laura01.bmp",2;
 				mes "[Laura]";
@@ -9289,7 +9289,7 @@ hu_in01,14,11,4	script	Laura	70,{
 				close2;
 				cutin "hu_laura03.bmp",255;
 				end;
-				
+
 			case 2:
 				mes "[Laura]";
 				mes "If you're having second";
@@ -9367,7 +9367,7 @@ hu_in01,14,11,4	script	Laura	70,{
 				close2;
 				cutin "hu_laura03.bmp",255;
 				end;
-			
+
 			case 2:
 				if (countitem(7511) > 4)
 				{
@@ -9561,7 +9561,7 @@ hu_in01,14,11,4	script	Laura	70,{
 				mes "...Me?";
 				next;
 				break;
-				
+
 			case 2:
 				break;
 		}
@@ -9649,7 +9649,7 @@ hu_in01,14,11,4	script	Laura	70,{
 				mes "finish their guardian research?";
 				mes "What else did you learn?";
 				next;
-				
+
 			case 2:
 				mes "["+strcharinfo(0)+"]";
 				mes "Well, have you";
@@ -9673,7 +9673,7 @@ hu_in01,14,11,4	script	Laura	70,{
 						mes "Um, really...";
 						next;
 						break;
-						
+
 					case 2:
 						mes "["+strcharinfo(0)+"]";
 						mes "Er, you see...";
@@ -9681,7 +9681,7 @@ hu_in01,14,11,4	script	Laura	70,{
 						mes "about Ymir's Heart...";
 						next;
 						break;
-						
+
 					case 3:
 						mes "["+strcharinfo(0)+"]";
 						mes "You know the expression,";
@@ -9689,7 +9689,7 @@ hu_in01,14,11,4	script	Laura	70,{
 						mes "is?'' Er, well, Ymir's Heart...";
 						next;
 						break;
-						
+
 					case 4:
 						mes "["+strcharinfo(0)+"]";
 						mes "The truth is,";
@@ -9882,7 +9882,7 @@ hu_in01,16,20,4	script	Ashe	95,{
 			mes "this area. Have you come to";
 			mes "assist in the expedition?";
 			close;
-		
+
 		case 1:
 			mes "[Ashe]";
 			mes "Oh, you've here in response";
@@ -9952,7 +9952,7 @@ hu_in01,16,20,4	script	Ashe	95,{
 			mes "that one person's victory";
 			mes "in research is victory for all.";
 			close;
-		
+
 		case 6:
 			mes "[Ashe]";
 			mes "How's the work coming";
@@ -9962,13 +9962,13 @@ hu_in01,16,20,4	script	Ashe	95,{
 			mes "that one person's victory";
 			mes "in research is victory for all.";
 			close;
-			
+
 		case 14:
 			mes "[Ashe]";
 			mes "Please keep up";
 			mes "the good work~";
 			close;
-			
+
 		case 15:
 			if(countitem(7511) > 4)
 			{
@@ -9983,8 +9983,8 @@ hu_in01,16,20,4	script	Ashe	95,{
 			mes "Oh, dear, you don't";
 			mes "look very well. Did";
 			mes "something happen?";
-			close;			
-		
+			close;
+
 		case 16:
 			mes "[Ashe]";
 			mes "I know that Ms. Laurence";
@@ -9994,7 +9994,7 @@ hu_in01,16,20,4	script	Ashe	95,{
 			mes "work. Thank you so much for";
 			mes "all of your efforts~";
 			close;
-		
+
 		case 17:
 			mes "[Ashe]";
 			mes "Why does Ms. Laurence";
@@ -10002,14 +10002,14 @@ hu_in01,16,20,4	script	Ashe	95,{
 			mes "I honestly think this";
 			mes "rivalry is awfully petty...";
 			close;
-		
+
 		case 19:
 			mes "[Ashe]";
 			mes "Ehm...";
 			mes "Don't worry";
 			mes "about it~";
 			close;
-		
+
 		case 20:
 			mes "[Ashe]";
 			mes "Please don't ask";
@@ -10365,7 +10365,7 @@ OnTouch:
 				mes "members of ''Secret Wing.''";
 				next;
 				break;
-				
+
 			case 2:
 				mes "[???]";
 				mes "She'll be fine. If you're that";
@@ -10434,7 +10434,7 @@ hugel,209,109,2	script	Boatman#hugel	709,{
 			mes "to return and just";
 			mes "let me know.";
 			close;
-		
+
 		case 2:
 			if (Zeny < 800)
 			{
@@ -10479,7 +10479,7 @@ odin_tem01,93,146,4	script	Boatman	709,{
 			mes "when you're ready to";
 			mes "leave this dangerous place.";
 			close;
-			
+
 		case 2:
 			mes "[Boatman]";
 			mes "Alright then,";
@@ -10538,15 +10538,15 @@ OnTouch:
 			case 1:
 				donpcevent "warpinside#2::OnEnter";
 				break;
-				
+
 			case 2:
 				donpcevent "warpinside#3::OnEnter";
 				break;
-				
+
 			case 3:
 				donpcevent "warpinside#4::OnEnter";
 				break;
-				
+
 			case 4:
 				donpcevent "warpinside#5::OnEnter";
 				break;
@@ -10576,15 +10576,15 @@ OnTouch:
 			case 1:
 				donpcevent "warpinside#1::OnEnter";
 				break;
-				
+
 			case 2:
 				donpcevent "warpinside#3::OnEnter";
 				break;
-				
+
 			case 3:
 				donpcevent "warpinside#4::OnEnter";
 				break;
-				
+
 			case 4:
 				donpcevent "warpinside#5::OnEnter";
 				break;
@@ -10614,15 +10614,15 @@ OnTouch:
 			case 1:
 				donpcevent "warpinside#1::OnEnter";
 				break;
-				
+
 			case 2:
 				donpcevent "warpinside#2::OnEnter";
 				break;
-				
+
 			case 3:
 				donpcevent "warpinside#4::OnEnter";
 				break;
-				
+
 			case 4:
 				donpcevent "warpinside#5::OnEnter";
 				break;
@@ -10652,15 +10652,15 @@ OnTouch:
 			case 1:
 				donpcevent "warpinside#1::OnEnter";
 				break;
-				
+
 			case 2:
 				donpcevent "warpinside#2::OnEnter";
 				break;
-				
+
 			case 3:
 				donpcevent "warpinside#3::OnEnter";
 				break;
-				
+
 			case 4:
 				donpcevent "warpinside#5::OnEnter";
 				break;
@@ -10690,15 +10690,15 @@ OnTouch:
 			case 1:
 				donpcevent "warpinside#1::OnEnter";
 				break;
-				
+
 			case 2:
 				donpcevent "warpinside#2::OnEnter";
 				break;
-				
+
 			case 3:
 				donpcevent "warpinside#3::OnEnter";
 				break;
-				
+
 			case 4:
 				donpcevent "warpinside#4::OnEnter";
 				break;
@@ -10740,7 +10740,7 @@ OnTouch:
 				mes "^3355FFYou decided to pass";
 				mes "by the shrine's remnants.^000000";
 				close;
-				
+
 			case 2:
 				if (rand(1,3) == 1)
 				{
@@ -10755,7 +10755,7 @@ OnTouch:
 							mes "searching through the";
 							mes "shrine's ruins.^000000";
 							close;
-						
+
 						case 2:
 							mes "^3355FFYou find a shining stone";
 							mes "within the ruins, and carefully";

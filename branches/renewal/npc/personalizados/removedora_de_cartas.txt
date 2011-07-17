@@ -28,7 +28,7 @@ prt_in,28,73,4	script	Velha Sábia#brA	78,{
 	{
 		// Para desabilitar qualquer chance, custo de zeny ou items da quest, coloque 0 no campo(s).
 		// Por padrão, todas as opções de chance estão desabilitadas, exceto a chance de falha comum que é de 10%.
-		
+
 		set .custoBase, 200000; // Custo inicial de zeny.
 		set .custoPorCarta, 50000; // Custo adicional por carta.
 		setarray .ItemsQuest[0],	715,	1000; // IDs dos ítens de quest. (Zere todos os campos para desabilitar).
@@ -38,9 +38,9 @@ prt_in,28,73,4	script	Velha Sábia#brA	78,{
 		set .ChanceQuebrarTudo, 0; // Chance, em porcentagem, de quebrar tudo. (100 = 100%)
 		set .ChanceQuebrarEquip, 0; // Idem, apenas para o equipamento. (100 = 100%)
 		set .ChanceQuebrarCarta, 0; // Idem, apenas para as cartas. (100 = 100%)
-		
+
 		set .ChanceDeFalha, 10; // Chance do processo falhar, sem quebrar nada. (100 = 100%)
-		
+
 		set .TipoDeChance, 0; // Será levado em conta a escolha do usuário sobre qual parte é mais importante (equipamento ou cartas) ? 0: Não, 1: Sim.
 
 		// CHANCES QUE DEPENDEM DA ESCOLHA DO USUÁRIO (somente se .TipoDeChance estiver habilitado)

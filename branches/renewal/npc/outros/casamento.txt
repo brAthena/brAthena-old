@@ -26,7 +26,7 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações                                            | 
+// | - Anotações                                            |
 // \________________________________________________________/
 
 prt_church,97,100,4	script	Wedding Staff#w	71,{
@@ -331,7 +331,7 @@ prt_church,97,100,4	script	Wedding Staff#w	71,{
 					mes "Anyway, let's try it again.";
 					next;
 				}
-				else 
+				else
 					break;
 			}
 			mes "[Marry Happy]";

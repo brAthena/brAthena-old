@@ -37,7 +37,7 @@
 // \________________________________________________________/
 
 // Onward to the New World
-//============================================================ 
+//============================================================
 prontera,163,53,3	script	Promotional Staff#prt	100,{
 	mes "[Promotional Staff]";
 	mes "We are looking for adventurers who are super curious and extremely brave.";
@@ -2561,7 +2561,7 @@ moc_fild22b,370,370,3	script	Allied Manager#gm	100,{
 */
 
 // New Surroundings
-//============================================================ 
+//============================================================
 mid_camp,222,283,4	script	Marian#ep13bs	727,{
 	if (checkweight(1201,1) == 0) {
 		mes "[Marian]";
@@ -4295,7 +4295,7 @@ mid_camp,267,258,0	script	Post#ep13bs2	111,{
 }
 
 // Attitude to the New
-//============================================================ 
+//============================================================
 mid_camp,188,254,3	script	Monster Scholar#ep13	883,{
 	if (ep13_ryu < 100) {
 		mes "[Monster Scholar]";
@@ -6005,7 +6005,7 @@ man_fild01,92,230,3	script	Frozen Tree#evt_lumis	111,1,1,{
 }
 
 // Finding a Fairy & Finding a Giant Tree
-//============================================================ 
+//============================================================
 spl_fild02,34,223,5	script	Small Fairy#spl	442,{
 	if (BaseLevel > 69) {
 		if (checkquest(2158) == -1) {
@@ -6175,7 +6175,7 @@ mid_camp,212,237,5	script	Camp Guard Captain#man1	852,{
 }
 
 // The Tripartite Union's Feud
-//============================================================ 
+//============================================================
 mid_campin,376,120,0	script	Research Official#ep131	754,3,3,{
 	mes "[United Research Official]";
 	mes "Hmm? What did you just say?";
@@ -8175,7 +8175,7 @@ OnTimer300000:
 }
 
 // Part Time Work
-//============================================================ 
+//============================================================
 mid_camp,1,1,0	script	#timer_alba01	844,{
 	/*
 	mes "Please enter the password";
@@ -8767,7 +8767,7 @@ OnMyMobDead:
 }
 
 // Cat Hand Trading Post
-//============================================================ 
+//============================================================
 mid_camp,62,125,4	script	Cat Hand Agent	421,{
 	if (ep13_yong1 < 1) {
 		mes "[Cat Hand Agent]";
@@ -10001,7 +10001,7 @@ mid_camp,69,144,0	script	Ferocious Gorurug	421,{
 				close;
 			}
 			else {
-				// custom translation				
+				// custom translation
 				mes "Ferocious Gorurug welcomes you gracefully.";
 				next;
 				mes "[Ferocious Gorurug]";
@@ -11038,7 +11038,7 @@ OnTimer120000:
 }
 
 // Report from the New World
-//============================================================ 
+//============================================================
 mid_campin,90,121,5	script	Hibba Agip	459,{
 	cutin "ep13_captin_edq",2;
 	set .@start,(ep13_newbs + ep13_ryu + mao_morocc2 + ep13_1_rhea + ep13_animal);
@@ -14148,7 +14148,7 @@ OnMyMobDead:
 }
 
 // Persuing Rayan Moore
-//============================================================ 
+//============================================================
 mid_campin,68,185,3	script	Pursuit Party Leader#1	803,{
 	if (checkweight(714,1) == 0) {
 		mes "- You cannot proceed with the quest when you're carrying too many items with you. -";

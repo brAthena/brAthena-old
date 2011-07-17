@@ -1,14 +1,14 @@
-//===== eAthena Script ======================================= 
+//===== eAthena Script =======================================
 // Eden Group Quests - Repeatable experience quests [55-70]
-//===== By: ================================================== 
+//===== By: ==================================================
 //= L0ne_W0lf
-//===== Current Version: ===================================== 
+//===== Current Version: =====================================
 //= 1.0
-//===== Compatible With: ===================================== 
+//===== Compatible With: =====================================
 //= eAthena SVN
-//===== Description: ========================================= 
+//===== Description: =========================================
 //= [AEGIS Conversion]
-//===== Additional Comments: ================================= 
+//===== Additional Comments: =================================
 //= 1.0 First Version.
 //============================================================
 
@@ -1217,7 +1217,7 @@ moc_para01,42,38,3	script	Mission [56 - 70]	857,{
 							next;
 							mes "This mission doesn't have time limits.";
 						}
-						else 
+						else
 							mes "These missions are not fit for my level. I should look for other missions.";
 						break;
 					case 2:

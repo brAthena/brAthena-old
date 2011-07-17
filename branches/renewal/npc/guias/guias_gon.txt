@@ -18,12 +18,12 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Protimus]                        |
-// | 1.1 Script Revisado [Protimus]							| 
+// | 1.1 Script Revisado [Protimus]							|
 // \________________________________________________________/
 
 gonryun,163,60,4	script	Guia#gon	780,{
 	mes "[WonChi Ha]";
-	mes "Bem-vindo a KunLun, uma cidade cheia de paixão e energia!"; 
+	mes "Bem-vindo a KunLun, uma cidade cheia de paixão e energia!";
 	mes "Você pode sentir a alegria só de passear pela cidade!";
 	next;
 	mes "[WonChi Ha]";

@@ -203,7 +203,7 @@ lhz_cube,123,26,0	script	cubew09-4	45,1,1,{
 	callfunc "randomw";
 	end;
 }
- 
+
 //= Função para Portais Aleatórios
 function	script	randomw	{
 	switch(rand(3)) {

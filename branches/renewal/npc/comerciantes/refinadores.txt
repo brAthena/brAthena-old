@@ -19,7 +19,7 @@
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Mark]	                        |
 // | 1.1 Script Otimizado [Mark]	                        |
-// | - Anotações		   			    					| 
+// | - Anotações		   			    					|
 // \________________________________________________________/
 
 //=========================================================
@@ -163,7 +163,7 @@ L_BuyChris:
 	mes "[ "+.@npcname$+" ]";
 	mes getarg(2)+"Obrigado por comprar em minha oficina.  Sinta-se à vontade para voltar sempre que precisar.";
 	close;
-	
+
 L_BuyMetal:
 	mes "[ "+.@npcname$+" ]";
 	mes "Bem, quantos você deseja comprar? Se quiser cancelar a negociação, digite o número '0'.";
@@ -200,7 +200,7 @@ L_BuyMetal:
 	mes "[ "+.@npcname$+" ]";
 	mes "Obrigado por comprar em minha oficina.  Sinta-se à vontade para voltar sempre que precisar.";
 	close;
-	
+
 L_BuyPur:
 	if (countitem(getarg(0)) < 5) {
 		mes "[ "+.@npcname$+" ]";
@@ -306,27 +306,27 @@ function	script	refinemain	{
 	case 1: 	//Refine Level 1 Weapon
 		set .@price,50;
 		set .@material,1010;
-		set .@safe,7; 
+		set .@safe,7;
 		break;
 	case 2: 	//Refine Level 2 Weapon
 		set .@price,200;
 		set .@material,1011;
-		set .@safe,6; 
+		set .@safe,6;
 		break;
 	case 3: 	//Refine Level 3 Weapon
 		set .@price,5000;
 		set .@material,984;
-		set .@safe,5; 
+		set .@safe,5;
 		break;
 	case 4: 	//Refine Level 4 Weapon
 		set .@price,20000;
 		set .@material,984;
-		set .@safe,4; 
+		set .@safe,4;
 		break;
 	case 5: 	//Refine other stuff?
 		set .@price,2000;
 		set .@material,985;
-		set .@safe,4; 
+		set .@safe,4;
 		break;
 	}
 	if(.@features != 1) {
@@ -445,7 +445,7 @@ function	script	refinemain	{
 		set .@menu2,select("Até um limite seguro, por favor.:Eu irei decidir quantas vezes.:Eu mudei de idéia...");
 	} else set .@menu2,2;
 	switch(.@menu2){
-	case 1: 
+	case 1:
 		set .@refinecnt,.@safe - getequiprefinerycnt(.@part);
 		break;
 	case 2:
@@ -506,7 +506,7 @@ function	script	refinemain	{
 			mes "Você trocou de item...";
 			mes "Saia daqui antes que eu te estoure com o meu martelo!!!";
 			close;
-		} 
+		}
 		mes "Clang, clang!!!";
 		if(.@menu2 == 2 && getequippercentrefinery(.@part) <= rand(100)) {
 			failedrefitem .@part;
@@ -528,7 +528,7 @@ function	script	refinemain	{
 	}
 	mes "[" + getarg(0) + "]";
 	mes "Tudo pronto... Volte sempre.";
-	close;		
+	close;
 }
 
 

@@ -20,7 +20,7 @@
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Mark]	                        |
 // | 1.1 Script Otimizado [Mark]	                        |
-// | - Anotações		   			    					| 
+// | - Anotações		   			    					|
 // \________________________________________________________/
 
 prontera,123,102,5	script	Merchant#pron	85,{

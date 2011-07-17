@@ -488,7 +488,7 @@ mjolnir_11,149,247,5	script	Dwarf Blacksmith#east	826,{
 					mes "...";
 					close;
 				case 2:
-					if (countitem(1005) > 0) { //Hammer_Of_Blacksmith 
+					if (countitem(1005) > 0) { //Hammer_Of_Blacksmith
 						mes "[Austri]";
 						mes "Ah, I see that the entire human race is not worthy of scorn. Unlike many of your kind, I see that you respect your elders.";
 						next;
@@ -2146,7 +2146,7 @@ mjolnir_01,35,136,7	script	Dwarf Blacksmith#west	826,{
 					mes "[Vestri]";
 					mes "No matter what other people say, if you're confident and your will is unwavering, you'll always be satisfied with the results.";
 					close;
-				
+
 				case 2:
 					set god_mjo_2,3;
 					mes "[Vestri]";
@@ -2163,7 +2163,7 @@ mjolnir_01,35,136,7	script	Dwarf Blacksmith#west	826,{
 				mes "Great...!";
 				mes "Which one should I upgrade first, huh? My heart is pounding with anticipation...";
 				next;
-				
+
 				setarray .@position$[1], "Head","Body","Left hand","Right hand","Robe","Shoes","Accessory 1","Accessory 2","Head 2","Head 3";
 				set .@menu$,"";
 				for( set .@i,1; .@i <= 10; set .@i,.@i+1 )

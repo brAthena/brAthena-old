@@ -172,7 +172,7 @@ moc_fild17,208,346,5	script	Shone#Hode_Hunt	707,{
 						/*
 						if (checkweight(502,10) == 0) {
 							mes "[Shone]";
-							mes "Ei, parece que você vai ser esmagado pelo peso nas suas costas."; 
+							mes "Ei, parece que você vai ser esmagado pelo peso nas suas costas.";
 							mes "Volte quando não estiver carregando tanta coisa.";
 							close;
 						}

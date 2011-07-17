@@ -128,7 +128,7 @@ xmas,117,295,4	script	Homem da Máquina de Vender	704,{
 			mes "20 Pedaços de Bolo,";
 			mes "10 Aços.";
 			break;
-		  
+
 
 		case 9:
 			mes "[Titicupe]";
@@ -253,7 +253,7 @@ xmas,115,297,4	script	Máquina de Vender	111,{
 		break;
 
 	case 5:
-		if ((countitem(5015) > 0) && (countitem(978) > 0) && (countitem(7030) > 49)){ 
+		if ((countitem(5015) > 0) && (countitem(978) > 0) && (countitem(7030) > 49)){
 			mes "^3355FF*Você cautelosamente coloca os itens na boca do Boneco de Neve...*^000000";
 			next;
 			delitem 5015,1;  // Casca de Ovo
@@ -345,7 +345,7 @@ xmas,115,297,4	script	Máquina de Vender	111,{
 		break;
 
 	case 9:
-		if ((countitem(529) > 9) && (countitem(530) > 4) && (countitem(538) > 14) && (countitem(539) > 19) && (countitem(999) > 9)) { 
+		if ((countitem(529) > 9) && (countitem(530) > 4) && (countitem(538) > 14) && (countitem(539) > 19) && (countitem(999) > 9)) {
 			mes "^3355FF*Você cautelosamente coloca os itens na boca do Boneco de Neve...*^000000";
 			next;
 			delitem 529,10;  // Bala

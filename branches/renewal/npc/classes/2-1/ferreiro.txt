@@ -52,19 +52,19 @@ ein_in01,18,28,4	script	Guildsman#BLS	731,{
 	mes "our craft. Our skills of melting metal into new weapons";
 	mes "and tools is truly a form of art!";
 	next;
-	mes "[Altiregen]"; 
+	mes "[Altiregen]";
 	if (BaseClass == Job_Novice) {
-		if (sex == 0) { 
-			mes "Oh~"; 
-			mes "what a very"; 
-			mes "pretty lady!"; 
-			mes "Are you interested in"; 
-			mes "becoming a Blacksmith?"; 
-			next; 
-			mes "[Altiregen]"; 
-			mes "First, you must become a Merchant before you can become a Blacksmith. Go to the city of Alberta to learn the Merchant trade."; 
-			close; 
-		} 
+		if (sex == 0) {
+			mes "Oh~";
+			mes "what a very";
+			mes "pretty lady!";
+			mes "Are you interested in";
+			mes "becoming a Blacksmith?";
+			next;
+			mes "[Altiregen]";
+			mes "First, you must become a Merchant before you can become a Blacksmith. Go to the city of Alberta to learn the Merchant trade.";
+			close;
+		}
 	} else if (BaseClass == Job_Swordman) {
 		mes "Oh, are you interested in having a weapon forged? I'm sorry to disappoint you, but I actually have a lot of business to attend to.";
 		close;
@@ -91,7 +91,7 @@ ein_in01,18,28,4	script	Guildsman#BLS	731,{
 		mes "Have you come to purchase supplies from Christopher? These days I'm stuck behind this desk. My body's itching to strike the ol' anvil.";
 		close;
 	} else if (BaseJob == Job_Merchant) {
-		mes "[Altiregen]"; 
+		mes "[Altiregen]";
 		if (SkillPoint) {
 			mes "You can't change to the Blacksmith Job Class without first using all your skill points. Please come back after wisely using your skill points.";
 			close;
@@ -1322,7 +1322,7 @@ ein_in01,24,41,5	script	Blacksmith Guildsman#moc	726,{
 				mes "stones do you have the most";
 				mes "of in your Kafra Storage?";
 				next;
-				select("Wind of Verdure:Red Blood:Green Live:Crystal Blue"); 
+				select("Wind of Verdure:Red Blood:Green Live:Crystal Blue");
 					set .@blackss_te,.@blackss_te+20;
 				mes "[Mitehmaeeuh]";
 				mes "4. In general,";

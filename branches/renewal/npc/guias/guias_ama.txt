@@ -57,7 +57,7 @@ amatsu,207,89,3	script	Recepcionista#ama	758,{
 		close;
 	}
 }
-	
+
 amatsu,251,283,4	script	Guia#2ama	767,{
 	mes "[Guia]";
 	mes "Bem-vindo, turista de outro continente.";

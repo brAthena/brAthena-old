@@ -19,11 +19,11 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido e Otimizado [Mark]				|
-// | - Anotações		   			    					| 
+// | - Anotações		   			    					|
 // \________________________________________________________/
 
 // Elemental Stone Trader
-//============================================================ 
+//============================================================
 ama_in02,61,27,7	script	Alquimista#ama	749,{
 	mes "[Laspuchin Gregory]";
 	mes "KeekeekeeKeheheh.";
@@ -108,7 +108,7 @@ L_TradeStone:
 			mes "Keheheh! Você escolheu a melhor!";
 			mes "Use-a bem...";
 			mes "Traga-me outras pedras caso tenha!";
-			close;			
+			close;
 		case 2:
 			delitem getarg(0),8;
 			getitem .@stone[1],1;
@@ -116,7 +116,7 @@ L_TradeStone:
 			mes "Keheheh! Você escolheu a melhor!";
 			mes "Use-a bem...";
 			mes "Traga-me outras pedras caso tenha!";
-			close;	
+			close;
 		case 3:
 			if (countitem(getarg(0)) > 11) {
 				delitem getarg(0),12;

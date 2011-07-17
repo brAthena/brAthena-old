@@ -90,7 +90,7 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante	69,{
 		case 5:
 			mes "Ahhh um mercador trambiqueiro!! Vou te denunciar pros GMs...";
 			break;
-		}	
+		}
 		next;
 		mes "[Gatuna Ajudante]";
 		mes "*O quê que você tá fazendo aqui? Volta pra sua mamãezinha, vai.";
@@ -209,7 +209,7 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante	69,{
 			mes "Nós já podemos fazer o teste se você se sentir preparado...";
 			mes "Tentar não custa nada! Quer fazer agora?";
 			next;
-			if (select("Quero tentar.:Ainda não estou pronto.")==2) { 
+			if (select("Quero tentar.:Ainda não estou pronto.")==2) {
 				mes "[Gatuna Ajudante]";
 				mes "Você que sabe... Volte quando estiver mais seguro de si!";
 				close;

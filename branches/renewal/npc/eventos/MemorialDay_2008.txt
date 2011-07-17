@@ -119,7 +119,7 @@ prontera,182,214,4	script	Lauds#Memorial	58,{
 			close;
 		}
 	}
-	
+
 	else if(Memorial08 == 2) {
 		mes "[Mad Sago Lauds]";
 		mes "Ah, agora você tem uma nova toalha macia";
@@ -198,14 +198,14 @@ prontera,182,214,4	script	Lauds#Memorial	58,{
 		mes "direção em Prontera para a sua jornada!";
 		close;
 	}
-	
+
 	else if(Memorial08 >= 9) {
 		set .@RandomMsg, rand(1,5);
 		if(.@RandomMsg == 1) {
 			mes "[Mad Sago Lauds]";
 			mes "Sem Pânico!";
 			emotion 0;
-			close;	
+			close;
 		}
 		else if(.@RandomMsg == 2) {
 			mes "[Mad Sago Lauds]";
@@ -237,7 +237,7 @@ prontera,182,214,4	script	Lauds#Memorial	58,{
 		}
 	}
 }
-		
+
 // ============== Memorial Plaque ================
 // ===============================================
 prontera,153,286,4	script	Memorial Plaque#Memorial	857,{
@@ -246,7 +246,7 @@ prontera,153,286,4	script	Memorial Plaque#Memorial	857,{
 		mes "- Placa empoeirada .-";
 		close;
 	}
-	
+
 	else if(Memorial08 == 8) {
 		mes "[" + strcharinfo(0) + "]";
 		mes "- Placa empoeirada .-";
@@ -257,11 +257,11 @@ prontera,153,286,4	script	Memorial Plaque#Memorial	857,{
 		getexp 93750,43750;
 		goto L_CleanPlaque;
 	}
-	
+
 	else if(Memorial08 >= 9) {
 		goto L_CleanPlaque;
 	}
-	
+
 	L_CleanPlaque:
 		mes "- Placa Limpa.";
 		next;
@@ -283,7 +283,7 @@ prontera,153,286,4	script	Memorial Plaque#Memorial	857,{
 		mes "-mas acho que  acabou";
 		mes "precisando ser.-";
 		mes "- Douglas Adams.-";
-		if(Memorial08 == 9) { 
+		if(Memorial08 == 9) {
 			getexp 93750,43750;
 		}
 		next;
@@ -296,7 +296,7 @@ prontera,153,286,4	script	Memorial Plaque#Memorial	857,{
 		mes "- mas o desejo  de  servir aos outros em";
 		mes "custe o que custar. -";
 		mes "- Arthur Ashe -";
-		if(Memorial08 == 9) { 
+		if(Memorial08 == 9) {
 			getexp 93750,43750;
 			set Memorial08,10;
 		}
@@ -315,7 +315,7 @@ prontera,150,270,4	script	Grast#Memorial	900,{
 		mes "deles...";
 		close;
 	}
-	
+
 	else if(Memorial08 == 3) {
 		mes "[Grast]";
 		mes "Ah, isso não é uma toalha de memória?";
@@ -379,7 +379,7 @@ prontera,150,270,4	script	Grast#Memorial	900,{
 			close;
 		}
 	}
-	
+
 	else if(Memorial08 == 5) {
 		if (countitem(1065) < 1 || countitem(610) < 1 || countitem(717) < 1 || countitem(747) < 1 || countitem(517) < 1 || countitem(515) < 1) {
 			mes "[Grast]";
@@ -412,7 +412,7 @@ prontera,150,270,4	script	Grast#Memorial	900,{
 			close;
 		}
 	}
-	
+
 	else if(Memorial08 == 6) {
 		if (countitem(643) < 1 || countitem(12018) < 1 || countitem(741) < 1 || countitem(745) < 1) {
 			mes "[Grast]";
@@ -476,7 +476,7 @@ prontera,150,270,4	script	Grast#Memorial	900,{
 			close;
 		}
 	}
-	
+
 	else if(Memorial08 == 7) {
 		mes "[Grast]";
 		mes "Você conheceu  Laudes?";
@@ -518,7 +518,7 @@ prontera,150,270,4	script	Grast#Memorial	900,{
 		mes "Por favor, não se assuste, mesmo que ele";
 		mes "começa a falar asneiras.";
 		close;
-	
+
 	L_Continue:
 		mes "[Grast]";
 		mes "Essa é uma  boa idéia.";

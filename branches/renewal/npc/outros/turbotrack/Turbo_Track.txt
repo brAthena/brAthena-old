@@ -1,5 +1,5 @@
 //  ________________________________________________________
-// /                                                        \ 
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
@@ -570,7 +570,7 @@ turbo_room,93,117,5	script	Distribuidor de Pontos	125,{
 						mes "Track que você ganhou antes";
 						mes "de gastar seus pontos novamente.";
 						close;
-	
+
 					}
 					set tt_point,tt_point-40;
 					if (BaseLevel < 70)

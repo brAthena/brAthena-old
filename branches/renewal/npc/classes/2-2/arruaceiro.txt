@@ -836,7 +836,7 @@ S_Req:
 	mes "^FF0000"+getarg(2)+"^000000 and";
 	mes "^FF0000"+getarg(3)+"^000000.";
 	set ROGUE_Q,getarg(4);
-	if(getarg(4) == 3) changequest 2017,2018; 
+	if(getarg(4) == 3) changequest 2017,2018;
 	else if(getarg(4) == 4) changequest 2017,2019;
 	else changequest 2017,2020;
 	next;
@@ -1037,7 +1037,7 @@ OnTouch:
 			break;
 		case 4:
 			mes "["+strcharinfo(0)+"]";
-			mes "Hollgrehenn"; 
+			mes "Hollgrehenn";
 			break;
 	}
 	switch(select("enjoys:doesn't enjoy:likes:doesn't like")) {

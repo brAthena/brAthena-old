@@ -67,7 +67,7 @@ morocc,190,96,3	script	Vendedora de Ervas	877,{
 		getitem .pocoes[@menu],((.pocoes[@menu] == 7931) ? 1:.@pherb);
 		mes "Obrigada. Até mais!";
 	} else
-		mes "Por favor verifique sua quantia de zenys,"; 
+		mes "Por favor verifique sua quantia de zenys,";
 		mes "parece-me que não é a suficiente para negociar.";
 	close;
 

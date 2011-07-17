@@ -145,7 +145,7 @@ OnRecvCastleN03:
 	end;
 }
 
-// Dentro do Castelo 
+// Dentro do Castelo
 //============================================================
 nguild_pay,238,67,4	duplicate(NGuildPay)	NGuild Payon#f1-6	722
 nguild_pay,233,67,4	duplicate(NGuildPay)	NGuild Payon#f1-7	722

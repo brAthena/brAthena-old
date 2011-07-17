@@ -14,7 +14,7 @@
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.5/1.0				   				|
 // |--------------------------------------------------------|
-// | Descrição: Quests for skills: Crazy Uproar,			| 
+// | Descrição: Quests for skills: Crazy Uproar,			|
 // | Change Cart, Cart Revolution							|
 // |--------------------------------------------------------|
 // | Changelog:						    					|

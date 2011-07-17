@@ -150,7 +150,7 @@ alberta_in,70,51,5	script	Guarnien	98,{
 			set tu_merchant, 16;
 			close;
 		}
-	
+
 		mes "[Guarnien]";
 		mes "Ah, now you have mastered the fundamentals of the Merchant class. Just keep practicing the basic principles, like researching the market for item prices, and you should be fine.";
 		next;
@@ -574,7 +574,7 @@ alberta_in,70,51,5	script	Guarnien	98,{
 				mes "I'll talk about the Mammonite skill. For now, let me take a little bit of a break from all of this arduous lecture. ^666666*Whew!*^000000";
 				close;
 			}
-		} else { 
+		} else {
 			mes "No? That's fine.";
 			mes "But I can't teach you";
 			mes "much more if you can't grasp these simple basics, so hurry and learn those skills, okay?";
@@ -585,7 +585,7 @@ alberta_in,70,51,5	script	Guarnien	98,{
 		set tu_merchant, 2;
 		close;
 	}
-	
+
 	mes "You've just started out as a Merchant, haven't you? How would you like to learn the fundamentals of business from an experienced colleague?";
 	next;
 	if(select("Sure!:I'll make it on my own!")==1){
@@ -661,7 +661,7 @@ alberta_in,70,51,5	script	Guarnien	98,{
 		close;
 	}
 }
-	
+
 //=================================================Sagle====================================================
 prontera,66,111,3	script	Sagle	82,{
 	mes "[Sagle]";
@@ -789,7 +789,7 @@ prontera,66,111,3	script	Sagle	82,{
 					mes "Zeny, alright?";
 					close;
 				}
-				if(MaxWeight - Weight < 71){			
+				if(MaxWeight - Weight < 71){
 					next;
 					mes "[Sagle]";
 					mes "Whoa, hold on!";
@@ -853,7 +853,7 @@ prontera,93,330,3	script	Kellion	97,{
 				mes "...Huh?";
 				mes "You better put some of your stuff in Kafra Storage, you can't carry much else!";
 				close;
-			} else { 
+			} else {
 				set Zeny, Zeny - 340;
 				set tu_merchant, 10;
 				getitem 569, 10;
@@ -894,7 +894,7 @@ prontera,93,330,3	script	Kellion	97,{
 				mes "...Huh?";
 				mes "You better put some of your stuff in Kafra Storage, you can't carry much else!";
 				close;
-			} else { 
+			} else {
 				set Zeny, Zeny - 390;
 				set tu_merchant, 9;
 				getitem 501, 10;
@@ -935,7 +935,7 @@ prontera,93,330,3	script	Kellion	97,{
 				mes "...Huh?";
 				mes "You better put some of your stuff in Kafra Storage, you can't carry much else!";
 				close;
-			} else { 
+			} else {
 				set Zeny, Zeny - 400;
 				set tu_merchant, 10;
 				getitem 501, 10;
@@ -964,7 +964,7 @@ prontera,93,330,3	script	Kellion	97,{
 	mes "Well, hopefully, there's no truth to it whatsoever. None at all...";
 	close;
 }
-	
+
 //=================================================Aigie====================================================
 prt_in,169,11,3	script	Aigie	92,{
 	if(tu_merchant == 8){
@@ -1012,7 +1012,7 @@ prt_in,169,11,3	script	Aigie	92,{
 			mes "^666666*Sniff Sniff*^000000";
 			close;
 			break;
-		}					
+		}
 	}
 	if(tu_merchant == 7){
 		mes "[Aigie]";
@@ -1059,7 +1059,7 @@ prt_in,169,11,3	script	Aigie	92,{
 			mes "^666666*Sniff Sniff*^000000";
 			close;
 			break;
-		}					
+		}
 	}
 	if(tu_merchant == 6){
 		mes "[Aigie]";
@@ -1115,7 +1115,7 @@ prt_in,169,11,3	script	Aigie	92,{
 	mes "However, money can be much more dependable than some people I know. You can rely on money more than anything else in this world.";
 	close;
 }
-	
+
 //=================================================Jayon====================================================
 prontera,247,129,3	script	Jayon	85,{
 	if(tu_merchant == 8){

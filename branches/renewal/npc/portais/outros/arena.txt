@@ -49,24 +49,24 @@ DLGTEMP:
 	}
 	else if (@input_arena == 1357)
 	{
-		mes "Abrindo o Painel de Controle";	
-		mes "' A - R - E - N - A '";	
+		mes "Abrindo o Painel de Controle";
+		mes "' A - R - E - N - A '";
 		next;
-		mes "Por favor selecione um";	
-		mes "estado para a Arena.";	
+		mes "Por favor selecione um";
+		mes "estado para a Arena.";
 		next;
 		switch( select( "Aberta.","Fechada.") )
 		{
 			case 1:
-				mes "No momento estamos";	
-				mes "abrindo a arena.";	
+				mes "No momento estamos";
+				mes "abrindo a arena.";
 				misceffect EF_ENHANCE;	//CHECK
 				enablenpc "welcome_arena";
 				next;
 				break;
 			case 2:
-				mes "No momento estamos";	
-				mes "fechando a arena.";	
+				mes "No momento estamos";
+				mes "fechando a arena.";
 				misceffect EF_EXIT;	//CHECK
 				disablenpc "welcome_arena";
 				next;
@@ -75,7 +75,7 @@ DLGTEMP:
 	}
 	else
 	{
-		mes "Saindo do Painel de Controle.";	
+		mes "Saindo do Painel de Controle.";
 		close;
 	}
 }

@@ -652,7 +652,7 @@ geffen,67,180,4	script	New Mage Manager#M	102,{
 				}
 				set tu_mana,0;
 				close;
-			default: 
+			default:
 				break;
 			}
 		}

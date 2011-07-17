@@ -18,7 +18,7 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Protimus]                        |
-// | 1.1 Script Revisado [Protimus]							| 
+// | 1.1 Script Revisado [Protimus]							|
 // \________________________________________________________/
 
 louyang,213,213,3	script	Soldado#BA::LouGuide	825,{

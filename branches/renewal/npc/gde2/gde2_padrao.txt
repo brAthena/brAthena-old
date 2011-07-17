@@ -156,7 +156,7 @@ Onchange:
 	else if(strnpcinfo(2) == "schg_cas03") { setarray $agit_sc03[0],2,2,1,1,2,0; setarray .@empxy[0],338,202;}
 	else if(strnpcinfo(2) == "schg_cas04") { setarray $agit_sc04[0],2,2,1,1,2,0; setarray .@empxy[0],120,272;}
 	else if(strnpcinfo(2) == "schg_cas05") { setarray $agit_sc05[0],2,2,1,1,2,0; setarray .@empxy[0],120,272;}
-	
+
 	monster strnpcinfo(2),.@empxy[0],.@empxy[1],"Emperium",1288,1,"Steward#"+ strnpcinfo(2) +"::OnStartArena";
 	donpcevent "Controle03#" + strnpcinfo(2) + "::OnEnable";
 	donpcevent "1ª Runa Guardiã#" + strnpcinfo(2) + "::OnEnable";
@@ -184,7 +184,7 @@ OnClock0001:
 	set .@Treasure,GetCastleData(strnpcinfo(2),2)/5+4;
 	if (.@Treasure) {
 
-		if(strnpcinfo(2) == "arug_cas01"){ 
+		if(strnpcinfo(2) == "arug_cas01"){
 			setarray .@baux[0],251,251,253,254,255,256,257,258,251,252,253,254,255,256,257,258,251,252,253,254,255,256,257,258;
 			setarray .@bauy[0],369,369,369,369,368,368,368,368,367,367,367,367,366,366,366,366,365,365,365,365,364,364,364,364;
 			setarray .@bau[0],1943,1324,1943,1324,1943,1324,1943,1324,1943,1324,1943,1324,1943,1324,1943,1324,1943,1324,1943,1324,1943,1324,1943,1324;
@@ -583,34 +583,34 @@ OnInit:
 -	script	Gde2_gard01::Gde2_gard01	-1,{
 OnEnable:
 
-	if(strnpcinfo(2) == "arug_cas01"){ 
+	if(strnpcinfo(2) == "arug_cas01"){
 		setarray .@guardx[0],233,252,252,232,252,232,201,252,232,201,224,195,196,269,252,201,224,222;
 		setarray .@guardy[0],83,81,81,108,81,108,130,81,108,130,168,250,137,89,81,130,168,129;
-	}else if(strnpcinfo(2) == "arug_cas02"){ 
+	}else if(strnpcinfo(2) == "arug_cas02"){
 		setarray .@guardx[0],104,67,67,67,67,67,113,67,67,113,122,20,67,90,91,122,20,67;
 		setarray .@guardy[0],32,36,36,85,36,85,87,36,85,87,112,169,60,167,119,112,169,85;
-	}else if(strnpcinfo(2) == "arug_cas03"){ 
+	}else if(strnpcinfo(2) == "arug_cas03"){
 		setarray .@guardx[0],130,128,128,128,128,128,128,128,128,128,110,66,92,65,65,110,128,128;
 		setarray .@guardy[0],60,77,77,90,77,90,100,77,90,100,96,157,53,71,103,96,100,77;
-	}else if(strnpcinfo(2) == "arug_cas04"){ 
+	}else if(strnpcinfo(2) == "arug_cas04"){
 		setarray .@guardx[0],130,128,128,128,128,128,128,128,128,128,110,66,92,65,65,110,128,128;
 		setarray .@guardy[0],60,77,77,90,77,90,100,77,90,100,96,157,53,71,103,96,100,77;
-	}else if(strnpcinfo(2) == "arug_cas05"){ 
+	}else if(strnpcinfo(2) == "arug_cas05"){
 		setarray .@guardx[0],130,128,128,128,128,128,128,128,128,128,110,66,92,65,65,110,128,128;
 		setarray .@guardy[0],60,77,77,90,77,90,100,77,90,100,96,157,53,71,103,96,100,77;
-	}else if(strnpcinfo(2) == "schg_cas01"){ 
+	}else if(strnpcinfo(2) == "schg_cas01"){
 		setarray .@guardx[0],111,109,109,65,109,65,110,109,65,110,88,108,64,47,109,111,112,120;
 		setarray .@guardy[0],18,44,44,22,44,22,40,44,22,40,20,32,40,43,48,18,32,37;
-	}else if(strnpcinfo(2) == "schg_cas02"){ 
+	}else if(strnpcinfo(2) == "schg_cas02"){
 		setarray .@guardx[0],326,337,337,334,337,334,296,337,334,296,285,337,236,285,296,334,337,334;
 		setarray .@guardy[0],83,95,95,119,95,119,82,95,119,82,40,95,41,40,82,119,95,119;
-	}else if(strnpcinfo(2) == "schg_cas03"){ 
+	}else if(strnpcinfo(2) == "schg_cas03"){
 		setarray .@guardx[0],323,273,273,288,273,288,306,273,288,306,323,306,323,273,288,306,273,273;
 		setarray .@guardy[0],308,309,309,306,309,306,326,309,306,326,308,325,308,309,306,325,309,309;
-	}else if(strnpcinfo(2) == "schg_cas04"){ 
+	}else if(strnpcinfo(2) == "schg_cas04"){
 		setarray .@guardx[0],111,109,109,65,109,65,110,109,65,110,88,108,64,47,109,111,112,120;
 		setarray .@guardy[0],18,44,44,22,44,22,40,44,22,40,20,32,40,43,48,18,32,37;
-	}else if(strnpcinfo(2) == "schg_cas05"){ 
+	}else if(strnpcinfo(2) == "schg_cas05"){
 		setarray .@guardx[0],111,109,109,65,109,65,110,109,65,110,88,108,64,47,109,111,112,120;
 		setarray .@guardy[0],18,44,44,22,44,22,40,44,22,40,20,32,40,43,48,18,32,37;
 	}
@@ -694,19 +694,19 @@ Onreset:
 -	script	Gde2_gard02::Gde2_gard02	-1,{
 OnEnable:
 
-	if(strnpcinfo(2) == "arug_cas01"){ 
+	if(strnpcinfo(2) == "arug_cas01"){
 		setarray .@guard2x[0],294,256,256,240,256,240,246,256,240,246,235,292,235,246,240,256,254,242;
 		setarray .@guard2y[0],210,203,203,133,203,133,92,203,133,92,132,188,132,92,133,203,95,151;
-	} else if(strnpcinfo(2) == "arug_cas02"){ 
+	} else if(strnpcinfo(2) == "arug_cas02"){
 		setarray .@guard2x[0],175,204,204,211,204,211,209,204,211,209,161,268,186,183,150,161,209,211;
 		setarray .@guard2y[0],31,32,32,63,32,63,88,32,63,88,91,169,170,121,110,91,88,63;
-	} else if(strnpcinfo(2) == "arug_cas03"){ 
+	} else if(strnpcinfo(2) == "arug_cas03"){
 		setarray .@guard2x[0],156,172,172,154,172,154,156,172,154,156,155,211,187,212,211,155,156,172;
 		setarray .@guard2y[0],101,95,95,90,95,90,77,95,90,77,60,159,54,67,105,60,77,95;
-	} else if(strnpcinfo(2) == "arug_cas04"){ 
+	} else if(strnpcinfo(2) == "arug_cas04"){
 		setarray .@guard2x[0],156,172,172,154,172,154,156,172,154,156,155,211,187,212,211,155,156,172;
 		setarray .@guard2y[0],101,95,95,90,95,90,77,95,90,77,60,159,54,67,105,60,77,95;
-	} else if(strnpcinfo(2) == "arug_cas05"){ 
+	} else if(strnpcinfo(2) == "arug_cas05"){
 		setarray .@guard2x[0],156,172,172,154,172,154,156,172,154,156,155,211,187,212,211,155,156,172;
 		setarray .@guard2y[0],101,95,95,90,95,90,77,95,90,77,60,159,54,67,105,60,77,95;
 	} else if(strnpcinfo(2) == "schg_cas01"){
@@ -812,7 +812,7 @@ OnEnable:
 
 	if(compare(strnpcinfo(0),"df01")){
 		guardian strnpcinfo(2),.@runa1[0],.@runa1[1],"1ª Runa Guardiã",1907,"Gde2_df01#" + strnpcinfo(2) + "::OnGuardianStoneDied"; //22;
-	} else { 
+	} else {
 		guardian strnpcinfo(2),.@runa2[0],.@runa2[1],"2ª Runa Guardiã",1908,"Gde2_df02#" + strnpcinfo(2) + "::OnGuardianStoneDied"; //23;
 	}
 	end;
@@ -822,7 +822,7 @@ OnDisable:
 	if(compare(strnpcinfo(0),"df01")){
 		killmonster strnpcinfo(2),"Gde2_df01#" + strnpcinfo(2) + "::OnGuardianStoneDied";
 		set .@n,0;
-	} else { 
+	} else {
 		killmonster strnpcinfo(2),"Gde2_df02#" + strnpcinfo(2) + "::OnGuardianStoneDied";
 		set .@n,1;
 	}
@@ -837,7 +837,7 @@ OnDisable:
 	else if(strnpcinfo(2) == "schg_cas03"){ setarray $agit_sc03[.@n],1; }
 	else if(strnpcinfo(2) == "schg_cas04"){ setarray $agit_sc04[.@n],1; }
 	else if(strnpcinfo(2) == "schg_cas05"){ setarray $agit_sc05[.@n],1; }
-	
+
 	stopnpctimer;
 	end;
 
@@ -846,7 +846,7 @@ OnGuardianStoneDied:
 	// 1st and/or 2nd Guardian Stone is Destroyed
 	if(compare(strnpcinfo(0),"df01")){
 		set .@n,0;
-	} else { 
+	} else {
 		set .@n,1;
 	}
 	if(strnpcinfo(2) == "arug_cas01"){
@@ -936,19 +936,19 @@ OnGuardianStoneDied:
 		donpcevent "Gde2_RL00#" + strnpcinfo(2) + "::OnDisable";
 		if(compare(strnpcinfo(0),"df01")){
 			donpcevent "Gde2_gard01#" + strnpcinfo(2) + "::Onreset";
-		} else { 
+		} else {
 			donpcevent "Gde2_gard02#" + strnpcinfo(2) + "::Onreset";
 		}
-		
+
 	}
 	else {
 		if(compare(strnpcinfo(0),"df01")){
 			mapannounce strnpcinfo(2),"A 1ª Runa Guardiã foi destruída!",bc_map,"0x00ff00";
 			donpcevent "Gde2_gard01#" + strnpcinfo(2) + "::Onreset";
-		} else { 
+		} else {
 			mapannounce strnpcinfo(2),"A 2ª Runa Guardiã foi destruída!",bc_map,"0x00ff00";
 			donpcevent "Gde2_gard02#" + strnpcinfo(2) + "::Onreset";
-		}	
+		}
 	}
 	initnpctimer;
 	end;
@@ -958,7 +958,7 @@ OnTimer300000:
 	if(compare(strnpcinfo(0),"df01")){
 		donpcevent "1ª Runa Guardiã#" + strnpcinfo(2) + "::OnEnable";
 		set .@n,0;
-	} else { 
+	} else {
 		donpcevent "2ª Runa Guardiã#" + strnpcinfo(2) + "::OnEnable";
 		set .@n,1;
 	}
@@ -1172,8 +1172,8 @@ OnTimer300000:
 						set .@n,1;
 					}
 
-					if(strnpcinfo(2) == "arug_cas01" && $agit_ar01[.@n] == 0 || 
-					strnpcinfo(2) == "arug_cas02" && $agit_ar02[.@n] == 0 || 
+					if(strnpcinfo(2) == "arug_cas01" && $agit_ar01[.@n] == 0 ||
+					strnpcinfo(2) == "arug_cas02" && $agit_ar02[.@n] == 0 ||
 					strnpcinfo(2) == "arug_cas03" && $agit_ar03[.@n] == 0 ||
 					strnpcinfo(2) == "arug_cas04" && $agit_ar04[.@n] == 0 ||
 					strnpcinfo(2) == "arug_cas05" && $agit_ar05[.@n] == 0 ||
@@ -1523,7 +1523,7 @@ OnDisable:
 							disablenpc "Controle0"+.@n+"#"+strnpcinfo(2);
 							mapannounce strnpcinfo(2),"O "+.@n+"º Portão da Fortaleza foi reconstruído!",bc_map,"0x00ff00";
 
-							if(compare(strnpcinfo(1),"01")){ 
+							if(compare(strnpcinfo(1),"01")){
 								if(strnpcinfo(2) == "arug_cas01"){ setarray $agit_ar01[2],0; }
 								else if(strnpcinfo(2) == "arug_cas02"){ setarray $agit_ar02[2],0; }
 								else if(strnpcinfo(2) == "arug_cas03"){ setarray $agit_ar03[2],0; }

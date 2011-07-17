@@ -18,7 +18,7 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [cleyton]                         |
-// | - Anotações                                            | 
+// | - Anotações                                            |
 // \________________________________________________________/
 
 hugel,51,61,0	script	#race_timer1-1	-1,{
@@ -102,7 +102,7 @@ OnEnable:
 	}
 	else if ((.@1st_line > 10) && (.@1st_line < 31)) {
 		set $@mr_1_luk1,.@1st_line;
-		
+
 		enablenpc "Luk#5";
 		set .@tired1,rand(40,60);
 		if (.@tired1 > 49) && (.@tired1 < 61) {
@@ -2679,7 +2679,7 @@ OnDisable:
 	enablenpc "Tire2#4";
 	enablenpc "Tire2#5";
 	enablenpc "Tire2#6";
-	set $@mr_1_luk2,0; 
+	set $@mr_1_luk2,0;
 	set $@mr_1_tire2,0;
 	end;
 
@@ -11917,7 +11917,7 @@ S_BonusReward:
 	}
 
 }
-	
+
 hugel,71,83,4	script	Wayne	900,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Por favor espero um pouco!! -";

@@ -152,7 +152,7 @@ yuno_in05,136,71,0	script	#yun70	45,1,1,{
 	case 1:	warp "yuno_in05",181,112; end;
 	case 2:	warp "yuno_in05",16,185;  end;
 	case 3:	warp "yuno_in05",176,48;  end;
-	}	
+	}
 }
 
 //= Juno In05 (Portais Aleatórios - Outro)

@@ -53,7 +53,7 @@ prt_in,88,101,4	script	Chivalry Captain#knt	56,{
 				next;
 				mes "[Captain Herman]";
 				mes "This isn't the Swordsman guild, it's the Prontera Chivalry! If you wish to become a Swordman, visit the Swordman Guild located in Izlude.";
-				close; 
+				close;
 			case 2:
 				mes "[Captain Herman]";
 				mes "Ah, I see that you have great ambition. But you must first become a Swordman before becoming";

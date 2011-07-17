@@ -30,7 +30,7 @@
 // \________________________________________________________/
 
 // Morroc
-//============================================================ 
+//============================================================
 morocc_in,144,138,4	script	PVPNarrator#moc	84,{
 	callfunc "F_PVPNarrator","morocc_in",141,139;
 }
@@ -116,7 +116,7 @@ morocc_in,144,142,4	script	Gate Keeper#moc::PVPGateKeeper	83,{
 }
 
 // Alberta
-//============================================================ 
+//============================================================
 alberta_in,22,146,4	script	PVP Narrator#alb	84,{
 	callfunc "F_PVPNarrator","alberta_in",22,148;
 }
@@ -124,7 +124,7 @@ alberta_in,22,146,4	script	PVP Narrator#alb	84,{
 alberta_in,26,146,4	duplicate(PVPGateKeeper)	Gate Keeper#alb	83
 
 // Prontera
-//============================================================ 
+//============================================================
 prt_in,56,140,4	script	PVPNarrator#prt	84,{
 	callfunc "F_PVPNarrator","prt_in",54,137;
 }
@@ -132,7 +132,7 @@ prt_in,56,140,4	script	PVPNarrator#prt	84,{
 prt_in,52,140,4	duplicate(PVPGateKeeper)	Gate Keeper#prt	83
 
 // Geffen
-//============================================================ 
+//============================================================
 geffen_in,67,63,4	script	PVPNarrator#gef	84,{
 	callfunc "F_PVPNarrator","geffen_in",70,59;
 }
@@ -140,7 +140,7 @@ geffen_in,67,63,4	script	PVPNarrator#gef	84,{
 geffen_in,63,63,4	duplicate(PVPGateKeeper)	Gate Keeper#gef	83
 
 // Payon
-//============================================================ 
+//============================================================
 payon_in01,142,50,4	script	PVPNarrator#pay	84,{
 	callfunc "F_PVPNarrator","payon_in01",142,46;
 }
@@ -149,7 +149,7 @@ payon_in01,140,53,4	duplicate(PVPGateKeeper)	Gate Keeper#pay	83
 
 
 // PVP Yoyo Mode Staff
-//============================================================ 
+//============================================================
 pvp_y_room,86,85,4	script	Fight Square Reception#1	105,{
 	set .@mapcount_1,getmapusers("pvp_y_8-1");
 	set .@mapcount_2,getmapusers("pvp_y_8-2");
@@ -190,13 +190,13 @@ S_CheckPVPRoom:
 		return;
 	}
 	else {
-		warp getarg(1),0,0; 
+		warp getarg(1),0,0;
 		end;
 	}
 }
 
 // PVP Nightmare Mode Staff
-//============================================================ 
+//============================================================
 pvp_n_room,30,85,4	script	Fight Square Reception#2	105,{
 	set .@mapcount_1,getmapusers("pvp_n_8-1");
 	set .@mapcount_2,getmapusers("pvp_n_8-2");
@@ -237,13 +237,13 @@ S_CheckPVPRoom:
 		return;
 	}
 	else {
-		warp getarg(1),0,0; 
+		warp getarg(1),0,0;
 		end;
 	}
 }
 
-// Function 
-//============================================================ 
+// Function
+//============================================================
 function	script	F_PVPNarrator	{
 	mes "[Guia do PVP]";
 	mes "Olá e bem vindo!";
@@ -392,7 +392,7 @@ function	script	F_PVPNarrator	{
 }
 
 // Event Contestant Entrance
-//============================================================ 
+//============================================================
 pvp_room,54,85,4	script	Equipe de Registro#1	105,{
 	if (countitem(7028) == 0) {
 		mes "[Equipe de Registro PVP]";
@@ -465,7 +465,7 @@ OnInit:
 }
 
 // Spectator Entrance
-//============================================================ 
+//============================================================
 pvp_room,62,85,4	script	Spectator's Entrance#1::PVPSpectator	105,{
 	if (countitem(7029) == 0) {
 		mes "[Equipe de Registro para arena PVP]";
@@ -500,7 +500,7 @@ pvp_room,78,85,4	duplicate(PVPSpectator)	Spectator's Entrance#3	105
 pvp_room,86,85,4	duplicate(PVPSpectator)	Spectator's Entrance#4	105
 
 // Spectator Warps
-//============================================================ 
+//============================================================
 pvp_2vs2,5,4,0	script	Equipe Arena de Combate#1::PVPSpecWarp	45,1,1,{
 OnTouch:
 	mes "[Equipe Arena de batalha]";
@@ -536,7 +536,7 @@ pvp_2vs2,40,40,0	script	Equipe Arena de Combate#5	45,1,1,{
 }
 
 // PVP Area Exit warp
-//============================================================ 
+//============================================================
 pvp_room,51,19,0	script	out#eventpvp	45,4,2,{
 OnTouch:
 	mes "[Equipe Arena de batalha]";

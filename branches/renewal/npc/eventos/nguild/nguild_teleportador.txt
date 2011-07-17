@@ -90,11 +90,11 @@ M_WARP:
 
 n_castle,102,107,5	script	Cita	729,{
 	mes "[Cita]";
-	mes "Olá, "+ strcharinfo(0) +"."; 
+	mes "Olá, "+ strcharinfo(0) +".";
 	mes "Como posso ajudar-lhe?";
 	next;
 	menu "Me teleporte para Prontera!",-,"Cancelar.",LEnd;
-	
+
 		warp "prontera",155,177+rand(5);
 		close;
 	LEnd:

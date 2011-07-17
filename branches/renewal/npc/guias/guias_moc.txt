@@ -43,7 +43,7 @@ morocc,153,286,6	script	Guia#moc::MocGuide	707,{
 			while(.@loop2) {
 				if (.@wait_button_chk == 0) set .@wait_button_chk,1;
 				else next;
-				
+
 				switch(select("^FF0000Guilda dos Gatunos.^000000:Loja de Armas.:Estalagem.:Bar.:Covil.:Cancelar.")) {
 				case 1:
 					mes "[Guia de Morroc]";
@@ -97,7 +97,7 @@ morocc,153,286,6	script	Guia#moc::MocGuide	707,{
 			mes "[Guia de Morroc]";
 			mes "Nós fomos exaustivamente treinados para servi-lo da melhor maneira possivel e sem falhas.";
 			mes "Assim você tem a garantia das melhores indicações possiveis.";
-			next;					
+			next;
 			mes "[Guia de Morroc]";
 			mes "As indicações que lhe daremos podem ser marcadas no seu mini-mapa.";
 			mes "Para visualizar o seu mini-mapa, aperte 'ctrl+tab', ou clique no botão 'mapa' no menu principal.";

@@ -16,13 +16,13 @@
 // |--------------------------------------------------------|
 // | Descrição: NPCs de entrada do KvM.                     |
 // | Mercenário Oficial do KvM - Lado Guillaume             |
-// | Cavaleiro Guillaume - KvM                              | 
+// | Cavaleiro Guillaume - KvM                              |
 // | Mercenário Oficial do KvM - Lado Croix                 |
-// | Cavaleiro Croix - KvM                                  | 
+// | Cavaleiro Croix - KvM                                  |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // |  1.0 Script Traduzido [Tyler]                          |
-// | - Anotações                                            | 
+// | - Anotações                                            |
 // \________________________________________________________/
 
 // Oficial do KvM - Lado Guillaume

@@ -71,7 +71,7 @@ L0_2:
 	goto L_INPUT;
 L0_3:
 	set @maplePrice,2000;
-	set @mapleItemID,538; 
+	set @mapleItemID,538;
 	mes "[Sugar]";
 	mes "Esse é o biscoito de gengibre, e o preço é de";
 	mes "2000 Zeny cada uma.";

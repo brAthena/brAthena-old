@@ -24,7 +24,7 @@
 // \________________________________________________________/
 
 // Momotaro Event
-//============================================================ 
+//============================================================
 amatsu,223,236,3	script	Publisher#ama	763,{
 	if (checkweight(1201,1) == 0) {
 		mes "- Wait a moment!! -";
@@ -213,7 +213,7 @@ amatsu,223,236,3	script	Publisher#ama	763,{
 		close;
 	}
 }
-	
+
 ama_test,52,44,3	script	Assistant#ama	109,{
 	if (event_momo == 0) {
 		mes "[Satoshi]";
@@ -404,7 +404,7 @@ OnTouch:
 	mes ".....or bl-ue toilet paper.... ";
 	close;
 }
-	
+
 ama_test,49,93,4	script	Grandpa#ama	766,{
 	end;
 
@@ -412,7 +412,7 @@ OnInit:
 	disablenpc "Grandpa#ama";
 	end;
 }
-	
+
 ama_test,50,93,4	script	Grandma#ama1	761,10,10,{
 	end;
 
@@ -468,7 +468,7 @@ OnTouch:
 	}
 	end;
 }
-	
+
 ama_test,34,15,0	script	Dokebi#ez	-1,{
 OnInit:
 	disablenpc "Dokebi#ez";
@@ -516,7 +516,7 @@ OnMyMobDead:
 	}
 	end;
 }
-	
+
 ama_test,34,16,0	script	Dokebi#hd	-1,{
 OnInit:
 	disablenpc "Dokebi#hd";
@@ -564,7 +564,7 @@ OnMyMobDead:
 	}
 	end;
 }
-	
+
 ama_test,50,100,3	script	Coach#ama	762,15,15,{
 	mes "[Coach]";
 	mes "Hoho~ Good.";
@@ -665,7 +665,7 @@ OnTouch:
 	mes "Tada~~~ !";
 	close;
 }
-	
+
 ama_test,34,17,0	script	Am Mut#ama	-1,{
 OnInit:
 	disablenpc "Am Mut#ama";
@@ -702,7 +702,7 @@ OnMyMobDead:
 	}
 	end;
 }
-	
+
 ama_test,50,100,3	script	Coach#after	762,5,5,{
 	end;
 
@@ -732,7 +732,7 @@ OnTouch:
 	donpcevent "Timer#ama::OnDisable";
 	end;
 }
-	
+
 ama_test,34,18,0	script	Timer#ama	-1,{
 OnInit:
 	disablenpc "Timer#ama";
@@ -774,7 +774,7 @@ OnTimer362500:
 	donpcevent "Timer#ama::OnDisable";
 	end;
 }
-	
+
 ama_test,50,100,0	script	backwarp#ama	-1,25,25,{
 OnInit:
 	disablenpc "backwarp#ama";
@@ -786,7 +786,7 @@ OnTouch:
 }
 
 // Sushi Quest
-//============================================================ 
+//============================================================
 ama_in01,162,17,1	script	Sushi Master#ama	765,{
 	set .@now_weight,MaxWeight-Weight;
 	if (.@now_weight < 5000) {
@@ -1289,7 +1289,7 @@ ama_in01,162,17,1	script	Sushi Master#ama	765,{
 }
 
 // Dungeon Quest
-//============================================================ 
+//============================================================
 amatsu,112,164,4	script	Gate Soldier#ama1	767,{
 	mes "[Gate Soldier]";
 	mes "This is the great palace,";
@@ -1305,7 +1305,7 @@ amatsu,112,164,4	script	Gate Soldier#ama1	767,{
 	mes " ";
 	close;
 }
-	
+
 amatsu,119,164,4	script	Gate Soldier#ama2	767,{
 	mes "[Gate Soldier]";
 	mes "Are you from Rune-Midgard?";
@@ -1320,7 +1320,7 @@ amatsu,119,164,4	script	Gate Soldier#ama2	767,{
 	mes "Amatsu, and intercontinental trade was his idea.";
 	close;
 }
-	
+
 ama_in02,207,40,6	script	Gate Soldier#ama3	767,{
 	mes "[Gate Soldier]";
 	mes "Welcome. The lord of the palace";
@@ -1332,7 +1332,7 @@ ama_in02,207,40,6	script	Gate Soldier#ama3	767,{
 	mes "Please enjoy your stay.";
 	close;
 }
-	
+
 ama_in02,207,49,6	script	Gate Soldier#ama4	767,{
 	mes "[Gate Soldier]";
 	mes "The lord is really nice guy.";
@@ -1347,7 +1347,7 @@ ama_in02,207,49,6	script	Gate Soldier#ama4	767,{
 	mes " ";
 	close;
 }
-	
+
 amatsu,164,174,4	script	Gate Soldier#ama5	767,{
 	mes "[Gate Soldier]";
 	if (event_amatsu == 0) {
@@ -1384,7 +1384,7 @@ amatsu,164,174,4	script	Gate Soldier#ama5	767,{
 	}
 	close;
 }
-	
+
 amatsu,171,174,4	script	Gate Soldier#ama6	767,{
 	mes "[Gate Soldier]";
 	if (event_amatsu == 0) {
@@ -1424,7 +1424,7 @@ amatsu,171,174,4	script	Gate Soldier#ama6	767,{
 	}
 	close;
 }
-	
+
 ama_in02,187,57,2	script	Soldier#ama1	767,{
 	mes "[Ichiro]";
 	mes "Welcome.";
@@ -1437,7 +1437,7 @@ ama_in02,187,57,2	script	Soldier#ama1	767,{
 	mes "palace. This is all provided by him.";
 	close;
 }
-	
+
 ama_in02,170,62,4	script	Soldier#ama2	767,{
 	mes "[Jiro]";
 	mes "I'm Jiro, the administrator";
@@ -1488,7 +1488,7 @@ ama_in02,170,62,4	script	Soldier#ama2	767,{
 		close;
 	}
 }
-	
+
 ama_in02,37,157,4	script	Soldier#ama3	767,{
 	mes "[Saburo]";
 	mes "This is the training ground for improving our battle skills.";
@@ -1514,7 +1514,7 @@ ama_in02,37,157,4	script	Soldier#ama3	767,{
 	mes "See ya...";
 	close;
 }
-	
+
 ama_in02,32,51,6	script	Soldier#ama4	767,{
 	mes "[Shiro]";
 	mes "*Cough, Cough* What...";
@@ -1533,7 +1533,7 @@ ama_in02,32,51,6	script	Soldier#ama4	767,{
 	mes "*Cough*... *Cough*...";
 	close;
 }
-	
+
 ama_in02,40,167,3	script	Soldier#ama5	767,{
 	mes "[Goro]";
 	mes "*Psst*... Please, be quiet.";
@@ -1561,7 +1561,7 @@ ama_in02,40,167,3	script	Soldier#ama5	767,{
 	mes "Just don't tell anyone that I've told you this, okay?";
 	close;
 }
-	
+
 ama_in02,32,167,5	script	Soldier#ama6	767,{
 	mes "[Rokuro]";
 	mes "He always talks nonsense.";
@@ -1583,7 +1583,7 @@ ama_in02,32,167,5	script	Soldier#ama6	767,{
 	mes "improve after their visits...";
 	close;
 }
-	
+
 ama_in02,42,34,2	script	Soldier#ama7	767,{
 	mes "[Shichiro]";
 	mes "Have a good time.";
@@ -1599,7 +1599,7 @@ ama_in02,42,34,2	script	Soldier#ama7	767,{
 	mes "Have a good day.";
 	close;
 }
-	
+
 ama_in02,203,156,4	script	Soldier#ama8	767,{
 	mes "[Hachiro]";
 	mes "My lord is inside.";
@@ -1613,7 +1613,7 @@ ama_in02,203,156,4	script	Soldier#ama8	767,{
 	mes "What could have happened to him...?";
 	close;
 }
-	
+
 ama_in02,195,156,4	script	Soldier#ama9	767,{
 	mes "[Kyuro]";
 	mes "This is not good.";
@@ -1628,7 +1628,7 @@ ama_in02,195,156,4	script	Soldier#ama9	767,{
 	mes "him as a soldier.";
 	close;
 }
-	
+
 ama_in02,115,177,7	script	Soldier#ama10	767,{
 	mes "[Jyuro]";
 	mes "What are you doing in here?";
@@ -1720,7 +1720,7 @@ ama_in02,115,177,7	script	Soldier#ama10	767,{
 	mes "There are more things to enjoy in town. Have yourself a good time...";
 	close;
 }
-	
+
 ama_dun01,229,7,0	script	Soldier#ama11	767,{
 	mes "[Jyuro]";
 	mes "Do you want to go back?";
@@ -1736,7 +1736,7 @@ ama_dun01,229,7,0	script	Soldier#ama11	767,{
 	mes "Take care...";
 	close;
 }
-	
+
 ama_in02,200,176,4	script	Lord of Palace#ama	768,{
 	if (event_amatsu == 0) {
 		mes "[Ishida Yoshinaga]";
@@ -1889,7 +1889,7 @@ ama_in02,200,176,4	script	Lord of Palace#ama	768,{
 	mes "I have faith in your ability.";
 	close;
 }
-	
+
 ama_in01,22,111,0	script	Grandma#ama2	761,{
 	if (event_amatsu == 4) {
 		mes "[....]";
@@ -2032,7 +2032,7 @@ ama_in01,22,111,0	script	Grandma#ama2	761,{
 	warp "amatsu",167,197;
 	end;
 }
-	
+
 amatsu,189,166,5	script	Kouji#ama	764,{
 	mes "[Kouji]";
 	mes "Ralralrah Ralralrah Ralralrahralralrah~";
@@ -2086,7 +2086,7 @@ amatsu,189,166,5	script	Kouji#ama	764,{
 	mes "Ralralrah Ralralrah Ralralrahralralrah~";
 	close;
 }
-	
+
 ama_in01,169,173,1	script	Shaman#ama	769,{
 	mes "[Tokako]";
 	mes "Er, I'm not really a shaman...";
@@ -2107,7 +2107,7 @@ ama_in01,169,173,1	script	Shaman#ama	769,{
 	mes " ";
 	close;
 }
-	
+
 ama_in01,180,173,3	script	Kitsune Mask#ama	762,{
 	if (event_amatsu == 3) {
 		mes "[Takehue]";

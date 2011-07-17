@@ -21,7 +21,7 @@
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
 // | 1.1 Script Revisado [cleyton]                          |
-// |                                                        | 
+// |                                                        |
 // \________________________________________________________/
 
 payon,173,141,4	script	Ripped Cabus#GymPass	899,{

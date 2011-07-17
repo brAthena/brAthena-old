@@ -549,7 +549,7 @@ moscovia,135,49,5	script	Mr. Ibanoff#npc	964,{
 			warp "mosk_ship",94,110;
 			end;
 		}
-		else if (gettime(3) >= 18 && gettime(3) < 21) {	
+		else if (gettime(3) >= 18 && gettime(3) < 21) {
 			mes "[Mr. Ibanoff]";
 			mes "Hmm. It's not a bad time.";
 			mes "We should hurry up";
@@ -632,7 +632,7 @@ moscovia,135,49,5	script	Mr. Ibanoff#npc	964,{
 			warp "mosk_ship",94,110;
 			end;
 		}
-		else if (gettime(3) >= 18 && gettime(3) < 21) {	
+		else if (gettime(3) >= 18 && gettime(3) < 21) {
 			mes "[Mr. Ibanoff]";
 			mes "Hmm. It's not a bad time.";
 			mes "We should hurry up";
@@ -819,7 +819,7 @@ moscovia,135,49,5	script	Mr. Ibanoff#npc	964,{
 			warp "mosk_ship",94,110;
 			end;
 		}
-		else if (gettime(3) >= 18 && gettime(3) < 21) {	
+		else if (gettime(3) >= 18 && gettime(3) < 21) {
 			mes "[Mr. Ibanoff]";
 			mes "Hmm. It's not a bad time.";
 			mes "We should hurry up";
@@ -898,7 +898,7 @@ moscovia,135,49,5	script	Mr. Ibanoff#npc	964,{
 			warp "mosk_ship",94,110;
 			end;
 		}
-		else if (gettime(3) >= 18 && gettime(3) < 21) {	
+		else if (gettime(3) >= 18 && gettime(3) < 21) {
 			mes "[Mr. Ibanoff]";
 			mes "Hmm. It's not a bad time.";
 			mes "We should hurry up";
@@ -4872,7 +4872,7 @@ mosk_in,127,89,3	script	Prime Minister Dmitree#m	967,{
 //----------------------------------------------------------------------------
 moscovia,136,46,4	script	Find#ship	844,4,4,{
 	end;
-	
+
 OnTouch:
 	if (mos_whale_edq > 34) {
 		mes "-Watching the sea from the docks,";
@@ -4984,7 +4984,7 @@ OnInit:
 	disablenpc "Baehideun1#ship";
 	stopnpctimer;
 	end;
-	
+
 OnEnable:
 	enablenpc "Baehideun1#ship";
 	monster "mosk_ship",89,112,"Sea Monster",1425,1,"Baehideun1#ship::OnMyMobDead";
@@ -5777,7 +5777,7 @@ mosk_in,202,269,5	script	Mikhail#mos	962,{
 OnInit:
 	hideonnpc "Mikhail#mos";
 	end;
-	
+
 OnEnable:
 	hideoffnpc "Mikhail#mos";
 	end;
@@ -6419,7 +6419,7 @@ mosk_in,147,202,3	script	Victor#mos	968,{
 
 mosk_in,215,181,0	script	#swan_inn	-1,1,1,{
 	end;
-	
+
 OnTouch:
 	if (mos_swan == 4) {
 		mes "..................";
@@ -6757,7 +6757,7 @@ moscovia,208,182,7	script	Acorn Dealer#mos	967,{
 			mes "You can't buy more than 500.";
 			next;
 		}
-		
+
 	}
 	if (!checkweight(1026, .@input)) {
 		mes "[Acorn Dealer]";
@@ -7108,7 +7108,7 @@ mosk_fild01,113,108,3	script	Big Squirrel#mos	111,{
 
 mosk_fild01,113,108,5	script	#mos_sq	1104,2,2,{
 	end;
-	
+
 OnTouch:
 	if (checkweight(1201,1) == 0 ) {
 		mes "- Please stop here !! -";
@@ -7437,7 +7437,7 @@ OnTouch:
 //----------------------------------------------------------------------------
 mosk_in,215,46,5	script	#babayaga	-1,7,7,{
 	end;
-	
+
 OnTouch:
 	if (mos_nowinter == 0) {
 		if (countitem(7762) > 39 && BaseLevel > 59) {
@@ -10018,7 +10018,7 @@ mosk_dun03,225,233,0	script	Pile of skeletons#mosk	111,{
 
 mosk_dun03,225,233,0	script	#Magic_Bottle	-1,5,5,{
 	end;
-	
+
 OnTouch:
 	if (mos_nowinter == 8) {
 		mes "-She said that the Magic Gourd Bottle that";

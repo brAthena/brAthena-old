@@ -24,7 +24,7 @@
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
 // | 1.1 Script Revisado [cleyton]                          |
-// |                                                        | 
+// |                                                        |
 // \________________________________________________________/
 
 nif_in,190,112,5	script	Deviruchi#divorce	738,{
@@ -43,7 +43,7 @@ nif_in,190,112,5	script	Deviruchi#divorce	738,{
 //		mes "é muito popular, heh heh~";
 //		close;
 //	}
-//	else 
+//	else
   	if (!getpartnerid()) {
 		mes "Bwah hah hah~!";
 		mes "Aquele olhar em seus olhos ~!";

@@ -1,14 +1,14 @@
-//===== eAthena Script ======================================= 
+//===== eAthena Script =======================================
 // Eden Group Quests - Common NPCs
-//===== By: ================================================== 
+//===== By: ==================================================
 //= L0ne_W0lf
-//===== Current Version: ===================================== 
+//===== Current Version: =====================================
 //= 1.1
-//===== Compatible With: ===================================== 
+//===== Compatible With: =====================================
 //= eAthena SVN
-//===== Description: ========================================= 
+//===== Description: =========================================
 //= [AEGIS Conversion]
-//===== Additional Comments: ================================= 
+//===== Additional Comments: =================================
 //= 1.0 First Version.
 //= 1.1 Removed showevent use, and use of duplicates.
 //=     Commented out warps that should not be active.

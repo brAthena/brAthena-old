@@ -9,7 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
-	r0725 - 15/07/2011 [brn0]
+	r0728 - 17/07/2011 [Dani]
+	* Limpeza de espaços em branco
+
+	r0726 - 15/07/2011 [brn0]
 	* Retirada uma verificação desnecessária no código do ataque.
 	* Corrigido erro causado por espíritos.
 	* Correção no ataque com lobos.

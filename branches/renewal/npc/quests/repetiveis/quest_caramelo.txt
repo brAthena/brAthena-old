@@ -170,7 +170,7 @@ mjolnir_01,296,29,6	script	Yullo#Caramel_Hunt	95,{
 						/*
 						if (checkweight(501,10) == 0) {
 							mes "[Yullo]";
-							mes "Ei, parece que você vai ser esmagado pelo peso nas suas costas."; 
+							mes "Ei, parece que você vai ser esmagado pelo peso nas suas costas.";
 							mes "Volte quando não estiver carregando tanta coisa.";
 							close;
 						}

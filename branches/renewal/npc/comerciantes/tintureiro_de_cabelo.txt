@@ -19,7 +19,7 @@
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Mark]	                        |
 // | 1.1 Script Otimizado [Mark]	                        |
-// | - Anotações		   			    					| 
+// | - Anotações		   			    					|
 // \________________________________________________________/
 
 prt_in,243,168,4	script	Jovovich	91,{

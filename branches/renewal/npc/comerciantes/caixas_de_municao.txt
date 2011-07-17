@@ -19,7 +19,7 @@
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Mark]	                        |
 // | 1.1 Script Otimizado [Mark]	                        |
-// | - Anotações		   			    					| 
+// | - Anotações		   			    					|
 // \________________________________________________________/
 
 que_ng,187,149,3	script	Negociador de Carregadores Kenny	83,{

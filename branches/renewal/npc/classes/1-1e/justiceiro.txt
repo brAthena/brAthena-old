@@ -326,7 +326,7 @@ payon,184,65,3	script	Sábio Chifre de Búfalo	866,{
 			mes "a mãe da terra. Você poderia por";
 			mes "favor trazer um copo de Leite gelado";
 			mes "à um velho Justiceiro, por favor?";
-			close;		
+			close;
 		}
 		delitem 519,1;	// Milk
 		set GUNS_Q,5;

@@ -167,7 +167,7 @@ que_ng,30,65,3	script	Cougar#nq	730,{
 				mes "vejo porque nós não";
 				mes "podemos nos ajudar em uma";
 				mes "situação como essa...";
-				close;	
+				close;
 			}
 			mes "[Cougar]";
 			mes "Ótimo! Agora, pergunte para";
@@ -440,7 +440,7 @@ einbroch,184,194,3	script	Suspicious Man#nq	 	881,{
 			mes "o mais rápido possível. E então,";
 			mes "eu irei te ajudar na procura do";
 			mes "Vermelho Leopardo Joe.";
-			close;	
+			close;
 		}
 		mes "Bom, muito bom. Você";
 		mes "trouxe os materiais...";

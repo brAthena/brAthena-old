@@ -18,7 +18,7 @@
 // |------------------------------------------------------------|
 // | Changelog:                                                 |
 // | 1.0 Script Traduzido [Heaven]                              |
-// | 1.1 Script Revisado [Protimus & Tyler]                     | 
+// | 1.1 Script Revisado [Protimus & Tyler]                     |
 // | - Anotações                                                |
 // \____________________________________________________________/
 
@@ -33,7 +33,7 @@ payon,93,81,4	script	Mestre Exorcista Fahae	834,{
 		mes "Eu tenho alguns itens para ajudá-lo a completá-la, gostaria de comprá-los?";
         next;
         menu "Sim.",-, "Não, obrigado.",M_FIN;
-  
+
         mes "[Mestre Exorcista Fahae]";
         mes "Eu tenho dois itens que podem ser úteis a você.";
         next;
@@ -53,17 +53,17 @@ payon,93,81,4	script	Mestre Exorcista Fahae	834,{
         mes "[Mestre Exorcista Fahae]";
         mes "Aqui está, espero que você tenha sucesso em sua jornada.";
         close;
-  
+
 L_SORRY:
         mes "[Mestre Exorcista Fahae]";
         mes "Você não deve ser pão-duro, este é o caminho de Deus para ser honesto.";
         close;
-  
+
 M_FIN:
         mes "[Mestre Exorcista Fahae]";
         mes "O caminho da vitória do demônio está longe, me ajude no caminho de Deus.";
         close;
-  
+
 M_HERB:
         mes "[Mestre Exorcista Fahae]";
         mes "Quantas você precisa?";
@@ -86,11 +86,11 @@ L_NOZENY:
         mes "Dinheiro não traz alegria a todos, mas nós precisamos dele para sustentar o templo. Por favor, tente matar alguns monstros e pegue seus itens!";
         close;
 }
-  
+
 //=============================================
-// Spawn de Monstros do Evento 
+// Spawn de Monstros do Evento
 //=============================================
-  
+
 // ~Bolinho de Massa~
 gef_fild00,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
 gef_fild07,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
@@ -109,10 +109,10 @@ pay_fild06,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
 pay_fild05,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
 pay_fild02,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
 pay_fild09,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
-  
+
 // ~Lady Branca~
 moc_fild03,0,0,0,0	monster	Lady Branca	1518,1,60000,66000
-  
+
 // ~Chung E~
 moc_fild03,0,0,0,0	monster	Chung E	1519,1,60000,66000
 moc_fild13,0,0,0,0	monster	Chung E	1519,1,60000,66000
