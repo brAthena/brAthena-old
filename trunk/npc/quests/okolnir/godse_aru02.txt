@@ -18,7 +18,7 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido e Otimizado [Mark]                |
-// | - Anotações                                            | 
+// | - Anotações                                            |
 // \________________________________________________________/
 
 arug_cas02,349,347,3	duplicate(guiaSE)	Guia#arug_cas02	899

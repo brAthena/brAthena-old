@@ -86,7 +86,7 @@ valkyrie,48,86,4	script	Valquíria#	811,{
 				warp "yuno_in02",93,205;
 				end;
 			}
-			mes "Agora, permita-me remover";			  
+			mes "Agora, permita-me remover";
 			mes "todas as suas memórias";
 			mes "presentes... No entanto,";
 			mes "você será capaz de lembrar";
@@ -94,7 +94,7 @@ valkyrie,48,86,4	script	Valquíria#	811,{
 			next;
 			mes "[Valquíria]";
 			mes "Primeiro,";
-			mes "vou pedir à deusa Urd";			 
+			mes "vou pedir à deusa Urd";
 			mes "para remover todas as";
 			mes "suas memórias presentes.";
 			next;
@@ -128,7 +128,7 @@ valkyrie,48,86,4	script	Valquíria#	811,{
 			if(ADVJOB == Job_Paladin2) set ADVJOB,Job_Paladin;
 			jobchange Job_Novice_High;
 			resetlvl(1);
-			set MISC_QUEST,MISC_QUEST | 1024; //<-Evento pra Reset de Skill 
+			set MISC_QUEST,MISC_QUEST | 1024; //<-Evento pra Reset de Skill
 			skill 142,1,0;
 			skill 143,1,0;
 			completequest 1000;
@@ -367,6 +367,6 @@ S_WarpChar:
 }
 
 // Portais
-//============================================================ 
+//============================================================
 valkyrie,48,73,0	warp	valk01#1	1,1,valkyrie,48,64
 valkyrie,48,66,0	warp	valk01#2	1,1,valkyrie,48,75

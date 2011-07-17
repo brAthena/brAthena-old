@@ -19,7 +19,7 @@
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
 // | 1.1 Script Revisado [cleyton]                          |
-// |                                                        | 
+// |                                                        |
 // \________________________________________________________/
 
 
@@ -97,7 +97,7 @@ function	script	F_ClearGarbage	{
 	// Old DTS variables that are no longer used.
 	set dtseligible,0;
 	set MISC_QUEST,MISC_QUEST & ~128;
-	
+
 	return;
 }
 
@@ -201,7 +201,7 @@ function	script	getJobName	{
 }
 
 //////////////////////////////////////////////////////////////////////////////////
-// *** Function "F_SaveQuestSkills": Store learnt quest skills 
+// *** Function "F_SaveQuestSkills": Store learnt quest skills
 //////////////////////////////////////////////////////////////////////////////////
 function	script	F_SaveQuestSkills	{
 	set ADV_QSK,0; set ADV_QSK2,0;
@@ -296,14 +296,14 @@ function	script	F_GetArmorType	{
 // *********************************************************************
 function	script	Time2Str	{
 	set .@Time_Left, getarg(0) - gettimetick(2);
-	
+
 	set .@Days, .@Time_Left / 86400;
 	set .@Time_Left, .@Time_Left - (.@Days * 86400);
 	set .@Hours, .@Time_Left / 3600;
 	set .@Time_Left, .@Time_Left - (.@Hours * 3600);
 	set .@Minutes, .@Time_Left / 60;
 	set .@Time_Left, .@Time_Left - (.@Minutes * 60);
-	
+
 	set .@Time$, "";
 	if( .@Days > 1 )
 		set .@Time$, .@Time$ + .@Days + "dias.";
@@ -324,6 +324,6 @@ function	script	Time2Str	{
 		set .@Time$, .@Time$ + .@Time_Left + "segundos.";
 	else if( .@Time_Left == 1 )
 		set .@Time$, .@Time$ + .@Time_Left + "segundo.";
-	
+
 	return .@Time$;
 }

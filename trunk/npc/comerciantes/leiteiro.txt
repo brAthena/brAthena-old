@@ -20,7 +20,7 @@
 // | 1.0 Script Traduzido [insidemybrain]                   |
 // | 1.1 Script Revisado [insidemybrain]                    |
 // | 1.2 Script Otimizado [Mark]		                    |
-// | - Anotações                                            | 
+// | - Anotações                                            |
 // \________________________________________________________/
 
 prontera,73,140,0	script	Vendedor de Leite	86,{

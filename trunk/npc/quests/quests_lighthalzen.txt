@@ -491,9 +491,9 @@ lighthalzen,341,224,3	script	Espinha	868,{
 			mes "Regenschirm. Entretanto, eu conheço";
 			mes "um labirinto secreto que deve";
 			mes "levar você até lá. Isso, se você ainda";
-			mes "quiser e estiver preparado para ir...";			
+			mes "quiser e estiver preparado para ir...";
 			}
-			else {	
+			else {
 				mes "Tá bom...";
 				mes "Já está pronto?";
 				mes "eu vou te mandar para";
@@ -2908,7 +2908,7 @@ lighthalzen,337,232,3	script	Maku	870,{
 		mes "provavelmente eu aceitarei, sabe.";
 		next;
 		mes "[Maku]";
-		mes "Tá, pensando bem,";		
+		mes "Tá, pensando bem,";
 		mes "claro que sim.";
 		mes "Quero dizer, ei não sou";
 		mes "de guardar rancor. É tudo";
@@ -4589,7 +4589,7 @@ L_NoText:
 				changequest 2086,2087;
 				set lhz_curse,6;
 				close;
-		
+
 			case 2:
 				mes "[Anciã]";
 				mes "Louca...? Hm, você não deve";
@@ -5046,7 +5046,7 @@ lhz_in03,32,162,3	script	Garota Aleijada	53,{
 									changequest 2093,2094;
 									set lhz_curse,25;
 									close;
-						
+
 								case 2:
 									mes "Oh, vamos...";
 									mes "Não chore, tá?";
@@ -5086,7 +5086,7 @@ lhz_in03,32,162,3	script	Garota Aleijada	53,{
 									close;
 							}
 					}
-			
+
 				case 2:
 					mes "[Garota Aleijada]";
 					mes "Você também,";
@@ -5102,7 +5102,7 @@ lighthalzen,324,322,1	script	#lhz_Porta1	45,2,2,{
 
 OnTouch:
 	if((lhz_curse > 19) && (lhz_curse < 23))
-	{	
+	{
 		mes "^3131ffA porta está trancada.^000000";
 		close;
 	}
@@ -5612,7 +5612,7 @@ L_Ask1:
 		}
 		switch( select( "Que tipo de pesquisa?" ) )
 		{
-			case 1:				
+			case 1:
 				mes "[Wolfchev]";
 				mes "Bem, eu não posso contar a você ";
 				mes "exatamente o que é. Mas não se";
@@ -5683,7 +5683,7 @@ lhz_in01,286,226,3	script	Secretária Slierre	831,{
 				mes "de emprego.";
 				set lhz_curse,27;
 				close;
-			
+
 			case 2:
 				mes "[Sueii Slierre]";
 				mes "Eu sou Sueii Slierre,";
@@ -5721,7 +5721,7 @@ lhz_in01,286,226,3	script	Secretária Slierre	831,{
 				mes "o Laboratório Regenschirm.";
 				set lhz_curse,28;
 				close;
-		
+
 			case 2:
 				mes "[Sueii Slierre]";
 				mes "Desculpe, mas eu não tenho";
@@ -5829,7 +5829,7 @@ lhz_in01,286,226,3	script	Secretária Slierre	831,{
 				mes "seria antiético nos meter nas";
 				mes "vidas pessoais dos funcionários.";
 				close;
-			
+
 			case 2:
 				mes "[Sueii Slierre]";
 				mes "Os objetos de teste de Wolfchev?";
@@ -5839,7 +5839,7 @@ lhz_in01,286,226,3	script	Secretária Slierre	831,{
 				mes "o experimento. E, é claro, ele deve estar testando apenas em animais.";
 				next;
 				switch( select( "A pesquisa de Wolfchev é fantástica!","Seus experimentos são suspeitos..." ) )
-				{		
+				{
 					case 1:
 						mes "[Sueii Slierre]";
 						mes "Sim, sim, eu concordaria";
@@ -5969,7 +5969,7 @@ L_Evidence:
 								mes "encontrarmos alguma coisa significante...";
 								set lhz_curse,30;
 								close;
-				
+
 							case 2:
 								mes "[Sueii Slierre]";
 								mes "Se você terminou,";
@@ -5978,7 +5978,7 @@ L_Evidence:
 								close;
 						}
 				}
-				
+
 		}
 	}
 	else if(lhz_curse == 29) goto L_Evidence;
@@ -6323,7 +6323,7 @@ lighthalzen,179,170,4	script	Homem Comum	98,{
 				mes "......";
 				mes "..........";
 				mes "...............";
-				next;	
+				next;
 				mes "[Ghalstein]";
 				mes "Está bem. Sim, é isso";
 				mes "mesmo, eu encontro";
@@ -6482,8 +6482,8 @@ lighthalzen,179,170,4	script	Homem Comum	98,{
 				mes " Se escolher";
 				mes "cooperar conosco, deve";
 				mes "tomar periodicamente esse";
-				mes "tônico vermelho mágico.";	
-				next;	
+				mes "tônico vermelho mágico.";
+				next;
 				mes "[Ghalstein]";
 				mes "O tônico vermelho nos permitirá ";
 				mes "monitorar todos os seus";
@@ -6569,7 +6569,7 @@ lighthalzen,179,170,4	script	Homem Comum	98,{
 				{
 					case 1:
 						break;
-	
+
 					case 2:
 						mes "[Ghalstein]";
 						mes "Muito bom.";
@@ -6728,7 +6728,7 @@ lighthalzen,179,170,4	script	Homem Comum	98,{
 			mes "nem faz nada estranho.";
 			next;
 			mes "[Ghalstein]";
-			mes "Agora, encontre ^FF0000Gusharr^000000, um dos";         
+			mes "Agora, encontre ^FF0000Gusharr^000000, um dos";
 			mes "nossos membros, ^FF0000perto de Juno^000000.";
 			mes "Ele vai lhe contar sobre a sua";
 			mes "próxima missão. Mostre isso a";
@@ -6889,7 +6889,7 @@ OnTouch:
 				mes "bastante familiar...";
 				mes "Mas e eu com isso?)";
 				close;
-			
+
 			case 2:
 				mes "["+strcharinfo(0)+"]";
 				mes "(Essa voz é ";
@@ -7177,7 +7177,7 @@ yuno_pre,69,20,4	script	Secretária#1	862,{
 					case 2:
 						mes "[Hes O'Neil]";
 						mes "Desculpe-me, mas como ";
-						mes "o presidente é um homem"; 
+						mes "o presidente é um homem";
 						mes "extremamente ocupado, ele só ";
 						mes "tem tempo para ver as pessoas";
 						mes "que marcaram uma reunião.";
@@ -7269,7 +7269,7 @@ yuno_pre,69,20,4	script	Secretária#1	862,{
 					case 2:
 						mes "[Hes O'Neil]";
 						mes "Desculpe-me, mas como ";
-						mes "o presidente é um homem"; 
+						mes "o presidente é um homem";
 						mes "extremamente ocupado, ele só ";
 						mes "tem tempo para ver as pessoas";
 						mes "que marcaram uma reunião.";
@@ -7283,7 +7283,7 @@ yuno_pre,69,20,4	script	Secretária#1	862,{
 				mes "do governo, por isso ";
 				mes "lembre-se que em certas áreas,";
 				mes "vigiadas por guardas, não";
-				mes "se permite visitas.";	
+				mes "se permite visitas.";
 				close;
 		}
 	}
@@ -8417,7 +8417,7 @@ L_Mission:
 		close2;
 		cutin "",255;
 		end;
-	}		
+	}
 }
 
 yuno_pre,77,68,0	script	Secretária#2	862,{
@@ -8909,7 +8909,7 @@ lhz_fild02,228,214,0	script	Homem Ferido	849,{
 				mes "Jargeah acabou de morrer";
 				mes "de um modo muito desagradável.";
 				close;
-			
+
 			case 2:
 				mes "^3355FFEntão você deixou o";
 				mes "homem ferido. Não foi";
@@ -9688,7 +9688,7 @@ L_Search:
 				}
 				else if(@sneaksearch$ == "lighthalzen")
 				{
-					mes "^663300[Resultado da Busca]"; 
+					mes "^663300[Resultado da Busca]";
 					mes "Os documentos relativos";
 					mes "a Lighthalzen estão armazenados";
 					mes "na Área 6-1.^000000";
@@ -9704,7 +9704,7 @@ L_Search:
 				}
 				else
 				{
-					mes "^663300[Resultado da Busca]"; 
+					mes "^663300[Resultado da Busca]";
 					mes "Palavra-chave não encontrada.";
 					mes "Por favor, procure outro";
 					mes "arquivo ou aumente";
@@ -10863,7 +10863,7 @@ einbroch,55,52,3	script	Guarda do Laboratório#reken	 852,{
 					case 2:
 						break;
 				}
-				
+
 			case 2:
 				mes "[" + strcharinfo(0) + "]";
 				mes "Eu... volto mais tarde.";
@@ -10914,7 +10914,7 @@ airplane_01,96,48,3	script	Homem#Lyozien	868,{
 		mes "Quer dar uma parada";
 		mes "ou algo assim?";
 		close;
-	}	
+	}
 	else if(lhz_rekenber == 20)
 	{
 		mes "[Lyozien]";
@@ -10958,7 +10958,7 @@ airplane_01,96,48,3	script	Homem#Lyozien	868,{
 		mes "Então, nós vamos terminar assim";
 		mes "que você falar com o Sr. Ahman em Izlude.";
 		close;
-	}	
+	}
 	else if(lhz_rekenber == 18)
 	{
 		mes "[Lyozien]";
@@ -11065,7 +11065,7 @@ airplane_01,96,48,3	script	Homem#Lyozien	868,{
 		mes "quando aparecem esses brutamontes.";
 		next;
 		mes "[Lyozien]";
-		mes "Essa é uma das razões porque"; 
+		mes "Essa é uma das razões porque";
 		mes "meu irmão estava contratando";
 		mes "aventureiros como você: precisamos";
 		mes "proteger os pacotes contra esses ladrões.";
@@ -11162,7 +11162,7 @@ airplane_01,96,48,3	script	Homem#Lyozien	868,{
 		mes "vou estar esperando bem aqui.";
 		set lhz_rekenber,11;
 		close;
-	}	
+	}
 	else if(lhz_rekenber == 9)
 	{
 		mes "[Lyozien]";
@@ -11173,7 +11173,7 @@ airplane_01,96,48,3	script	Homem#Lyozien	868,{
 		mes "Diga a ele que seu pedido";
 		mes "acabou de chegar, certo?";
 		close;
-	}	
+	}
 	else if(lhz_rekenber == 8)
 	{
 		mes "Hmm, se importaria";
@@ -11439,7 +11439,7 @@ airplane_01,1,1,1	script	#bully1	-1,{
 OnInit:
 	disablenpc "#bully1";
 	end;
-	
+
 OnEnter:
 	enablenpc "#bully1";
 	initnpctimer;
@@ -11447,7 +11447,7 @@ OnEnter:
 	monster "airplane_01",87,47,"Brutamonte",1592,1,"#bully1::OnMyMobDead";
 	set .bullymobs,2;
 	end;
-	
+
 OnReset:
 	killmonster "airplane_01","#bully1::OnMyMobDead";
 	end;
@@ -11468,7 +11468,7 @@ OnMyMobDead:
 		stopnpctimer;
 	}
 	end;
-	
+
 OnTimer120000:
 	donpcevent "#bully1::OnReset";
 	donpcevent "#bully1::OnInit";
@@ -11482,7 +11482,7 @@ airplane_01,2,2,1	script	#bully2	-1,{
 OnInit:
 	disablenpc "#bully2";
 	end;
-	
+
 OnEnter:
 	enablenpc "#bully2";
 	initnpctimer;
@@ -11491,7 +11491,7 @@ OnEnter:
 	monster "airplane_01",97,43,"Brutamonte",1592,1,"#bully2::OnMyMobDead";
 	set .bullymobs,3;
 	end;
-	
+
 OnReset:
 	killmonster "airplane_01","#bully2::OnMyMobDead";
 	end;
@@ -11511,7 +11511,7 @@ OnMyMobDead:
 		stopnpctimer;
 	}
 	end;
-	
+
 OnTimer120000:
 	donpcevent "#bully2::OnReset";
 	donpcevent "#bully2::OnInit";
@@ -11522,7 +11522,7 @@ OnTimer120000:
 
 airplane_01,99,47,3	script	#packidentity	139,2,2,{
 	end;
-	
+
 OnInit:
 	disablenpc "#packidentity";
 	end;

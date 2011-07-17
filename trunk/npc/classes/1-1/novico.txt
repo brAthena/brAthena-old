@@ -254,7 +254,7 @@ prt_fild03,365,255,2	script	Irmão Simão#aco	89,{
 			mes "Saudações.";
 			next;
 			mes "[Irmão Simão]";
-			mes "Seja bem vindo, sinta-se a vontade para sentar e contemplar a palavra do Senhor comigo."; 
+			mes "Seja bem vindo, sinta-se a vontade para sentar e contemplar a palavra do Senhor comigo.";
 			mes "Este lugar é lindo, mesmo quando o perigo nos acompanha, podemos sentir a serenidade dele...";
 			close;
 		} else {
@@ -335,7 +335,7 @@ prt_fild00,208,218,6	script	Irmão Bartolomeu#3aco	98,{
 	   			mes "Nada mal hein, chegou até aqui inteiro...";
 	  			mes "O seu nome é "+strcharinfo(0)+", não é?";
 	   			next;
-	   			mes "[Irmão Bartolomeu]";				
+	   			mes "[Irmão Bartolomeu]";
 	   			mes "Então está tudo certinho, vou avisar o Necrus de que você chegou até aqui.";
 	   			mes "Agora volte para Prontera e fale com ele.";
 				close2;

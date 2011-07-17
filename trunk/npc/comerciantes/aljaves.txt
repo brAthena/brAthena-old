@@ -24,7 +24,7 @@
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Mark]	                        |
 // | 1.1 Script Otimizado [Mark]	                        |
-// | - Anotações		   			    					| 
+// | - Anotações		   			    					|
 // \________________________________________________________/
 
 payon_in01,5,134,5	script	Inventor Jaax	89,{

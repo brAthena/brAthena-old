@@ -20,7 +20,7 @@
 // |------------------------------------------------------------|
 // | Changelog:                                                 |
 // | 1.0 Script Traduzido [Heaven]                              |
-// | 1.1 Script Revisado [Protimus & Tyler]                     | 
+// | 1.1 Script Revisado [Protimus & Tyler]                     |
 // | - Anotações                                                |
 // \____________________________________________________________/
 
@@ -70,7 +70,7 @@ yuno,138,187,4	script	Hipnotizadora	124,{
         mes "Se você quiser ajuda, sabe onde me encontrar!";
         close;
 
-L_Info: 
+L_Info:
         mes @npcname$;
 		mes "A redistribuição de Pontos de Habilidade dá outra chance aos aventureiros de distribuir seus pontos.";
 		mes "Se não estiver satisfeito com suas habilidades atuais, então você pode usufruir do meu serviço.";
@@ -85,13 +85,13 @@ L_Info:
 		mes "Lembre-se que só é possível redistribuir seus pontos de Habilidade se não estiver carregando nenhum item com você.";
 		mes "Por favor, use antes o serviço de armazenamentro Kafra para reduzir seu peso.";
         close;
-        
+
 L_Reset:
         mes @npcname$;
-        mes "Antes de resetar suas habilidades, você deve me dizer seu Nível de Base."; 
+        mes "Antes de resetar suas habilidades, você deve me dizer seu Nível de Base.";
         next;
         mes "^D5A500[" + strcharinfo(0) + "]^000000";
-        mes "Meu ^AA00AANível de Base é " + BaseLevel + "^000000."; 
+        mes "Meu ^AA00AANível de Base é " + BaseLevel + "^000000.";
         next;
         set @zeny,BaseLevel*20000;
         mes @npcname$;

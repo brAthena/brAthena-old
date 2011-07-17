@@ -67,7 +67,7 @@ function	script	F_GldTreasSw	{
 }
 
 // 1° Castelo
-//================================================ 
+//================================================
 
 // Spawn de Tesouros
 //================================================
@@ -123,10 +123,10 @@ nguild_gef,152,117,0	script	Switch#TresN02	111,{
 	end;
 }
 
-// 3° Castelo 
+// 3° Castelo
 //================================================
 
-// Spawn de Tesouros 
+// Spawn de Tesouros
 //================================================
 nguild_pay,1,1,0	script	Treasure_N03	-1,{
 OnRecvCastleN03:

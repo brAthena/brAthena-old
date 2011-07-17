@@ -286,7 +286,7 @@ aldebaran,54,238,5	script	Recepcionista Kafra#sn	117,{
 		mes "para os Super Aprendizes!";
 		mes "mas parece que a direção da Companhia das Kafras";
 		mes "não gostou muito da idéia.";
-		mes "Então temos que oferecer esse serviço secretamente... Hihi.";		
+		mes "Então temos que oferecer esse serviço secretamente... Hihi.";
 		next;
 		mes "[Recepcionista Kafra]";
 		mes "Hihi, mas chega de papo!";

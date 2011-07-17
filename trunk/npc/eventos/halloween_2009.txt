@@ -161,7 +161,7 @@ OnTouch:
 				mes "Bom. Eu não tenho escolha, tome a travessura!";
 				sc_start SC_Stun,5000,0;
 				close;
-			}	
+			}
 		case 3:
 			if(countitem(538) > 0) {
 				mes "[Doces ou Travessuras]";
@@ -182,7 +182,7 @@ OnTouch:
 				mes "Bom. Eu não tenho escolha, tome a travessura!";
 				sc_start SC_Stun,5000,0;
 				close;
-			}	
+			}
 		case 4:
 			mes "[Doces ou Travessuras]";
 			mes "Pelo menos uma Bala, ou um Biscoito de Gengibre, ou até uma Bengala Doce da Sorte, é tudo que eu peço.";
@@ -200,17 +200,17 @@ OnInit:
 	hideonnpc "Trick or Treater#iRO7";
 	hideonnpc "Trick or Treater#iRO8";
 	end;
-	
+
 OnEnableTreat:
 	enablenpc strnpcinfo(3);
 	hideonnpc strnpcinfo(3);
 	end;
-	
+
 OnTimer15000:
 	hideonnpc strnpcinfo(3);
 	disablenpc strnpcinfo(3);
 	end;
-		
+
 OnTimer300000:
 	donpcevent strnpcinfo(3)+"::OnEnableTreat";
 	stopnpctimer;

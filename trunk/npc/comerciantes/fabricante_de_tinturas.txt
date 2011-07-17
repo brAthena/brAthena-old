@@ -19,7 +19,7 @@
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Wolf]                            |
 // | 1.1 Script Otimizado [Mark]                            |
-// | - Anotações		   			    					| 
+// | - Anotações		   			    					|
 // \________________________________________________________/
 
 morocc_in,146,99,3	script	Java Dullihan	58,{
@@ -151,7 +151,7 @@ S_MakeDye:
 	case 7:
 		mes "Hmm... Eu preciso de 30 Ervas Brancas, 1 Antígeno, e 1 Garrafa Vazia para criar a Tintura Branca. O preço é de apenas 3000 zenys.";
 		setarray .@item[0], 509, 973, 713;
-		setarray .@count[0], 30,   1,   1; 
+		setarray .@count[0], 30,   1,   1;
 		set .@cost,3000;
 		set .@dyestuff,982;
 		break;
@@ -185,7 +185,7 @@ S_MakeDye:
 		set zeny,zeny-.@cost;
 		// get dyestuff
 		getitem .@dyestuff,1;
-		
+
 		mes "[Criador de Tintura Java Dullihan]";
 		mes "Hmm... Ficou muito boa. Uma cor muito rica. Claro que é mais difícil, mas eu sempre tentarei fazer uma cor mais charmosa...";
 		next;

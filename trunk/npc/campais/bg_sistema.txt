@@ -25,7 +25,7 @@
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Tyler]			    |
 // | 1.1 Correção conforme track #26 [cleyton]		    |
-// | - Anotações                                            | 		   		            
+// | - Anotações                                            |
 // \________________________________________________________/
 
 // Gerais e Acessores
@@ -593,7 +593,7 @@ bat_room,160,150,3	script	Erundek	109,{
 			}
 			if (.@cost[0] == 7829)
 				set .@type$,"(EV)";
-			else 
+			else
 				set .@type$,"(EB)";
 			mes "[Erundek]";
 			mes "Você escolheu o item ^3131FF"+getitemname(.@item[0])+""+.@type$+"^000000.";

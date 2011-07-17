@@ -1,5 +1,5 @@
 //  ________________________________________________________
-// /                                                        \ 
+// /                                                        \
 // |       _           _   _   _                            |
 // |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
 // |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
@@ -33,7 +33,7 @@ OnInit:
 	if(compare(strnpcinfo(1),"Solo"))
 		waitingroom "Modo Solo",60,"Modo Solo#n1::OnStartArena",1;
 	else
-		waitingroom "Modo "+.modo$[0]+" - "+.pess+" Pessoas",60,"Modo "+.modo$+" - "+.pess+" Pessoas::OnStartArena",.pess,1000,10,99; 
+		waitingroom "Modo "+.modo$[0]+" - "+.pess+" Pessoas",60,"Modo "+.modo$+" - "+.pess+" Pessoas::OnStartArena",.pess,1000,10,99;
 	//SetFeeZeny 1000
 	if(compare(strnpcinfo(1),"Solo"))
 		enablewaitingroomevent "Modo Solo#n1";
@@ -60,7 +60,7 @@ OnStartArena:
 		disablewaitingroomevent "Modo "+.modo$[0]+" - "+.pess+" Pessoas";
 	end;
 }
-	
+
 -	script	Auxiliar Track::AuxiliarTrack	-1,{
 	mes "[Auxiliar]";
 	mes "Você está agora na sala";
@@ -1070,5 +1070,5 @@ OnTouch:
 		warp "turbo_"+.modo$[1]+"_"+.pess,218,228;
 	else if (.@bing1 == 6)
 		warp "turbo_"+.modo$[1]+"_"+.pess,220,195;
-	end;	
+	end;
 }

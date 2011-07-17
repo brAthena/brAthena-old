@@ -20,7 +20,7 @@
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [YuMs]            		        |
 // | 1.1 Script Revisado e Otimizado [Mark]    		        |
-// | - Anotações		   			    					| 
+// | - Anotações		   			    					|
 // \________________________________________________________/
 
 itemmall,19,74,5	script	Cabeleireiro#cash	91,{

@@ -45,7 +45,7 @@ yuno_in04,190,125,4	script	Scholar	700,{
 					mes "...........";
 					mes "Hmpf.";
 					close;
-			
+
 				case 2:
 					mes "[Scholar]";
 					mes "...";
@@ -99,7 +99,7 @@ yuno_in04,190,125,4	script	Scholar	700,{
 					mes "...........";
 					mes "Hmpf.";
 					close;
-			
+
 				case 2:
 					mes "["+strcharinfo(0)+"]";
 					mes "By any chance...";
@@ -214,7 +214,7 @@ yuno_in04,190,125,4	script	Scholar	700,{
 			next;
 			switch( select( "I found something in Juperos.","Nothing much." ) )
 			{
-		
+
 				case 1:
 					mes "[" +strcharinfo(0)+"]";
 					mes "I went to Juperos like";
@@ -282,10 +282,10 @@ yuno_in04,190,125,4	script	Scholar	700,{
 					mes "My life is also fairly";
 					mes "uneventful, but somehow,";
 					mes "I'm don't think I'm content.";
-					close;		
+					close;
 			}
 
-		case 4:	
+		case 4:
 			mes "[Fayruz]";
 			mes "Oh hello, "+strcharinfo(0)+".";
 			mes "So what brings you to";
@@ -302,7 +302,7 @@ yuno_in04,190,125,4	script	Scholar	700,{
 					mes "I really miss nice weather";
 					mes "sometimes, you know?";
 					close;
-			
+
 				case 2:
 					if((countitem(7352)) || (countitem(7353)) || (countitem(7354)) || (countitem(7355)))
 					{
@@ -333,7 +333,7 @@ yuno_in04,190,125,4	script	Scholar	700,{
 								else if(countitem(7354)) callfunc "Func_JupHist",7354,4;
 								else if(countitem(7355)) callfunc "Func_JupHist",7352,8;
 
-		
+
 							case 2:
 								mes "[Fayruz]";
 								mes "Mm? Are you serious?";
@@ -363,7 +363,7 @@ yuno_in04,190,125,4	script	Scholar	700,{
 					mes "If you find anything else while";
 					mes "you're in Juperos, please come back and show it to me, alright?";
 					close;
-		
+
 				case 3:
 					mes "[Fayruz]";
 					mes "Ah, I see. Well, while";
@@ -381,7 +381,7 @@ yuno_in04,190,125,4	script	Scholar	700,{
 					mes "significant, I'd appreciate it";
 					mes "if you bring it right away.";
 					close;
-				
+
 			}
 
 		case 5:
@@ -395,7 +395,7 @@ yuno_in04,190,125,4	script	Scholar	700,{
 			next;
 			switch( select( "Take a look at this.","Oh, I'm sorry...") )
 			{
-				case 1:	
+				case 1:
 					switch(jupe_hist)
 					{
 						case 1:
@@ -431,7 +431,7 @@ yuno_in04,190,125,4	script	Scholar	700,{
 			}
 
 		case 6:
-			mes "[Fayruz]";	
+			mes "[Fayruz]";
 			mes "Oh, "+strcharinfo(0)+"!";
 			mes "The Transparent Plate";
 			mes "that you brought for me";
@@ -1066,8 +1066,8 @@ yuno_in04,186,125,4	script	Bundle of Files	111,{
 						mes "regarding the history";
 						mes "of Juperos have allowed";
 						mes "us to make a few conclusions.^000000";
-						close;			
-				
+						close;
+
 					case 2:
 						if(yuno_hist < 9)
 						{
@@ -1127,7 +1127,7 @@ yuno_in04,186,125,4	script	Bundle of Files	111,{
 							mes "^8B6914...";
 							mes "......";
 							mes "..........^000000";
-							next;				
+							next;
 							mes "["+strcharinfo(0)+"]";
 							mes "Huh. This writer keeps";
 							mes "talking about theories,";
@@ -1239,7 +1239,7 @@ yuno_in04,186,125,4	script	Bundle of Files	111,{
 					mes "There's barely any";
 					mes "research in it...";
 					close;
-				
+
 				case 2:
 					mes "["+strcharinfo(0)+"]";
 					mes "Hmm...";
@@ -1251,7 +1251,7 @@ yuno_in04,186,125,4	script	Bundle of Files	111,{
 			}
 		case 2:
 			if(yuno_hist < 5)
-			{		
+			{
 				mes "["+strcharinfo(0)+"]";
 				mes "Nah...";
 				mes "I'm tired of reading.";
@@ -1415,8 +1415,8 @@ juperos_01,99,112,4	script	Bronze Statue#1	844,{
 				mes "Juno, could make sense";
 				mes "of what this stuff says.";
 				close;
-			
-			case 2 : 
+
+			case 2 :
 				close;
 		}
 	}
@@ -1656,7 +1656,7 @@ yuno_in04,118,116,4	script	Paper	111,{
 				mes "Please...";
 				mes "Come back to me.";
 				mes " ";
-				mes " ";		  
+				mes " ";
 				mes "Love,";
 				mes "Fayruz^000000";
 				close;
@@ -1688,7 +1688,7 @@ yuno_in04,118,116,4	script	Paper	111,{
 			mes "Booooooooo!";
 			mes "Love stinks!";
 			close;
-	
+
 		case 2:
 			mes "["+strcharinfo(0)+"]";
 			mes "I guess I better";
@@ -1700,7 +1700,7 @@ yuno_in04,118,116,4	script	Paper	111,{
 }
 
 juperos_01,123,92,4	script	Stone Statue	844,{
-	
+
 	if(yuno_hist)
 	{
 		mes "^3355FFIt's a stone statue";
@@ -1822,7 +1822,7 @@ OnTimer2000:
 }
 
 //============================================================
-// 2nd Floor 
+// 2nd Floor
 //============================================================
 
 juperos_02,97,70,0	script	3F Gate Switch#jupe	-1,{
@@ -4025,7 +4025,7 @@ OnMyMobDead:
 	}
 	end;
 }
-	
+
 //============================================================
 // Security Checkpoint 2-4
 //============================================================

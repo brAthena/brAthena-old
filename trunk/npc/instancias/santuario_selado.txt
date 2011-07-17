@@ -17,8 +17,8 @@
 // | Descrição: Seal away the Great Demon Baphomet.         |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Script Traduzido [Avassalador]                     | 
-// | 1.1 Script Otimizado [Mark]		                    | 
+// | 1.0 Script Traduzido [Avassalador]                     |
+// | 1.1 Script Otimizado [Mark]		                    |
 // \________________________________________________________/
 
 // Sealed Catacomb Entrance

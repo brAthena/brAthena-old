@@ -92,7 +92,7 @@ alberta,117,135,0	script	Elin	96,{
 						next;
 						mes "[Elin]";
 						if (Sex == 1) {
-							mes "But since a cute boy is giving it to me, I'll happily take it! Hee hee, soft and fluffy Poring doll~";	
+							mes "But since a cute boy is giving it to me, I'll happily take it! Hee hee, soft and fluffy Poring doll~";
 						} else {
 							mes "But since a nice girl is giving it to me, I'll take it! Hee he, soft and fluffy Poring doll~";
 						}
@@ -430,7 +430,7 @@ alberta_in,28,145,4	script	Grampa	120,{
 			mes "He...Hey, kid !! W-Wait !";
 			close;
 		}
-	} 
+	}
 	else {
 		switch(select("Talk:Cancel")) {
 		case 1:
@@ -464,7 +464,7 @@ alberta_in,28,145,4	script	Grampa	120,{
 }
 
 //=======================================================================================================//
-//						Antlers Quest 
+//						Antlers Quest
 //=======================================================================================================//
 alberta_in,122,53,4	script	Cherokee	47,{
 	mes "[Cherokee]";
@@ -2313,7 +2313,7 @@ tur_dun03,67,130,4	script	Knight#tur4	105,{
 }
 
 // Alberta Boy
-//============================================================ 
+//============================================================
 alberta_in,131,95,5	script	Iromo#ep3_2	706,{
 	if (ep13_2_hiki == 13) {
 		mes "[Iromo]";

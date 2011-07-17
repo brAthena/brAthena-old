@@ -39,7 +39,7 @@ payon_in01,99,72,4	script	Vovó	103,{
 		next;
 		switch(select("Certo.:De forma alguma!")) {
 		case 1:
-			delitem 1049,4; // Saia Virginal 
+			delitem 1049,4; // Saia Virginal
 			mes "[Vovó]";
 			mes "Oh! Muito obrigado! Agora eu posso fazer algumas roupas para minha neta.";
 			next;
@@ -50,7 +50,7 @@ payon_in01,99,72,4	script	Vovó	103,{
 			mes "Se estiver de acordo...";
 			mes "Eu gostaria de lhe dar isto.";
 			next;
-			getitem 2293,1; // Faca Falsa 
+			getitem 2293,1; // Faca Falsa
 			mes "[Vovó]";
 			mes "Adeus, aventureiro!";
 			mes "Obrigado por fazer uma velha tão feliz...";
@@ -75,7 +75,7 @@ payon_in01,99,72,4	script	Vovó	103,{
 }
 
 // Quest Aquecedor de Orelha
-//============================================= 
+//=============================================
 payon_in01,18,10,4	script	Senhora Mística	76,{
 	mes "[Senhora Mística]";
 	mes "Minha família tem produzido e vendido um produto especial de inverno chamado ^3355FFAquecedor de Orelha^000000 por muitos anos. Nós nos mudamos para cá, mas o clima é sempre quente, então não poderemos ganhar a vida.";
@@ -121,8 +121,8 @@ payon_in01,18,10,4	script	Senhora Mística	76,{
 	}
 }
 
-// Quest Máscara de Oxigênio  
-//============================================= 
+// Quest Máscara de Oxigênio
+//=============================================
 payon_in02,25,71,4	script	Garoto	86,{
 	if (countitem(701) > 4) {
 		mes "[Jovem]";
@@ -159,10 +159,10 @@ payon_in02,25,71,4	script	Garoto	86,{
 			mes "Vocês vão me pagar!!!";
 			next;
 			mes "[Jovem]";
-			mes "Huk...Huk..."; 
+			mes "Huk...Huk...";
 			mes "Desculpe, acabei perdendo o meu controle por um momento. Agora vou dar o meu tesouro, como prometido.";
 			next;
-			getitem 5004,1; // Máscara de Oxigênio 
+			getitem 5004,1; // Máscara de Oxigênio
 			mes "[Homem Jovem]";
 			mes "Quando você usar isso em sua boca e começar a respirar, ela vai filtrar as impuresas antes de chegar aos seus pulmões.";
 			next;
@@ -217,8 +217,8 @@ payon_in02,25,71,4	script	Garoto	86,{
 	}
 }
 
-// Quests Chapéu de Deviruchi / Elmo Angelical 
-//============================================= 
+// Quests Chapéu de Deviruchi / Elmo Angelical
+//=============================================
 payon_in01,56,12,7	script	Jovem#12	89,{
 	mes "[Jovem]";
 	mes "...O que é isso?";
@@ -251,11 +251,11 @@ payon_in01,56,12,7	script	Jovem#12	89,{
 					mes "[Jovem]";
 					mes ".....Hm.";
 					mes "Muito bem, aqui está o seu Elmo Angelical. Leve-o.";
-					delitem 2229,1;  // Elmo 
-					delitem 2254,1;  // Asas de Anjo 
-					delitem 7036,5;  // Presa de Hati 
+					delitem 2229,1;  // Elmo
+					delitem 2254,1;  // Asas de Anjo
+					delitem 7036,5;  // Presa de Hati
 					close2;
-					getitem 5025,1; // Elmo Angelical 
+					getitem 5025,1; // Elmo Angelical
 					end;
 				}
 				mes "[Jovem]";

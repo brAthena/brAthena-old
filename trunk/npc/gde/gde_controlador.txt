@@ -22,7 +22,7 @@
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [cleyton]                         |
 // | 1.1 Script Revisado [Protimus & Tyler]                 |
-// | - Anotações                                            | 
+// | - Anotações                                            |
 // \________________________________________________________/
 
 -	script	Agit_Event	-1,{
@@ -48,7 +48,7 @@ OnAgitInit:
 	// Checagens de Término
 	if ((gettime(4)==2) && (gettime(3)==23) ||
 	    (gettime(4)==4) && (gettime(3)==23) ||
-	    (gettime(4)==6) && (gettime(3)==18)) { 
+	    (gettime(4)==6) && (gettime(3)==18)) {
 		if (agitcheck()) {
 			AgitEnd;
 			callsub S_DisplayOwners;
@@ -68,7 +68,7 @@ S_DisplayOwners:
 		}
 		else {
 			Announce "O castelo [" + GetCastleName(.@maps$[.@i]) + "] está desocupado.",bc_all|bc_woe;
-		}		
+		}
 	}
 	end;
 }

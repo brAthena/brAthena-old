@@ -33,7 +33,7 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [rafaaaaaH]                       |
-// | - Anotações		   			 						| 
+// | - Anotações		   			 						|
 // \________________________________________________________/
 
 //============================================================
@@ -244,7 +244,7 @@ prt_fild05,170,286,4	script	Duende Ancioso#8pday	954,{
 			mes "[Duende O'Riley]";
 			mes "Obrigado, aqui está sua cerveja~";
 			if (countitem(7915) >= 10) {
-				getitem 12135,1; 
+				getitem 12135,1;
 				delitem 7915,10;
 			}
 			close;
@@ -252,7 +252,7 @@ prt_fild05,170,286,4	script	Duende Ancioso#8pday	954,{
 			mes "[Duende O'Riley]";
 			mes "Obrigado, aqui está sua cerveja~";
 			if (countitem(7916) >= 5) {
-				getitem 12135,1; 
+				getitem 12135,1;
 				delitem 7916,5;
 			}
 			close;
@@ -260,7 +260,7 @@ prt_fild05,170,286,4	script	Duende Ancioso#8pday	954,{
 			mes "[Duende O'Riley]";
 			mes "Obrigado, aqui está sua cerveja~";
 			if (countitem(7720) >= 1) {
-				getitem 12135,1; 
+				getitem 12135,1;
 				delitem 7720,1;
 			}
 			close;

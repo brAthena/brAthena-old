@@ -18,7 +18,7 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações                                            | 
+// | - Anotações                                            |
 // \________________________________________________________/
 
 // Prontera
@@ -403,7 +403,7 @@ prt_in,168,56,4	script	Monster Encyclopedia#prt	111,{
 		}
 	}
 }
-				
+
 prt_in,159,56,4	script	Monster Encyclopedia#2pr	111,{
 	mes "^FF0000[Monster Encyclopedia]^000000";
 	mes "This is a Monster Encyclopedia";

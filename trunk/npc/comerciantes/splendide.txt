@@ -19,7 +19,7 @@
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Mark]	                        |
 // | 1.1 Script Otimizado [Mark]	                        |
-// | - Adição da Label S_BuySpl		    					| 
+// | - Adição da Label S_BuySpl		    					|
 // \________________________________________________________/
 
 spl_in01,110,326,5	script	Mercador de Splendide	439,{
@@ -56,10 +56,10 @@ spl_in01,110,326,5	script	Mercador de Splendide	439,{
 		mes "tasnarAndu Ie Ru";
 		close;
 	}
-			
-S_BuySpl:			
+
+S_BuySpl:
 	mes "[Mercador de Splendide]";
-	mes "Eu posso lhe vender 3 "+getitemname(getarg(0))+" por^3131FF 1 moeda^000000";		
+	mes "Eu posso lhe vender 3 "+getitemname(getarg(0))+" por^3131FF 1 moeda^000000";
 	next;
 	if(select("Comprar.:Não Comprar.") == 1) {
 		if (countitem(6081) > 0) {
@@ -80,4 +80,3 @@ S_BuySpl:
 		close;
 	}
 }
-	

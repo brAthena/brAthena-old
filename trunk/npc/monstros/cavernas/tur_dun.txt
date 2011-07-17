@@ -20,7 +20,7 @@
 // \________________________________________________________/
 
 //==================================================
-// tur_dun01 - Ilha da Tartaruga 
+// tur_dun01 - Ilha da Tartaruga
 //==================================================
 tur_dun01,0,0,0,0	monster	Lavadeira	1321,25,0,0,0
 tur_dun01,0,0,0,0	monster	Coelho	1322,25,0,0,0
@@ -29,7 +29,7 @@ tur_dun01,0,0,0,0	monster	Batedor	1314,10,0,0,0
 tur_dun01,0,0,0,0	monster	Peste	1256,15,0,0,0
 
 //==================================================
-// tur_dun02 - Ilha da Tartaruga 
+// tur_dun02 - Ilha da Tartaruga
 //==================================================
 tur_dun02,0,0,0,0	monster	Batedor	1314,40,0,0,0
 tur_dun02,0,0,0,0	monster	Soldado	1316,40,0,0,0
@@ -37,7 +37,7 @@ tur_dun02,0,0,0,0	monster	Congelador	1319,20,0,0,0
 tur_dun02,0,0,0,0	monster	Peste	1256,15,0,0,0
 
 //==================================================
-// tur_dun03 - Ilha da Tartaruga 
+// tur_dun03 - Ilha da Tartaruga
 //==================================================
 tur_dun03,0,0,0,0	monster	Batedor	1314,15,0,0,0
 tur_dun03,0,0,0,0	monster	Congelador	1319,40,0,0,0
@@ -45,7 +45,7 @@ tur_dun03,0,0,0,0	monster	Agressor	1315,35,0,0,0
 tur_dun03,0,0,0,0	monster	Aquecedor	1318,10,50000,0,0
 
 //==================================================
-// tur_dun04 - Ilha da Tartaruga 
+// tur_dun04 - Ilha da Tartaruga
 //==================================================
 tur_dun04,99,92,10,10	monster	Andarilho	1208,1,60000,30000,0
 tur_dun04,99,93,20,20	boss_monster	General Tartaruga	1312,1,3600000,600000,0
@@ -74,7 +74,7 @@ tur_dun04,0,0,0,0	monster	Batedor	1314,2,300000,150000,0
 tur_dun04,0,0,0,0	monster	Batedor	1314,2,640000,320000,0
 
 //==================================================
-// tur_dun05 - Ilha da Tartaruga 
+// tur_dun05 - Ilha da Tartaruga
 //==================================================
 tur_dun05,0,0,0,0	monster	Batedor	1314,3,20000,0,0
 tur_dun05,0,0,0,0	monster	Congelador	1319,5,30000,0,0

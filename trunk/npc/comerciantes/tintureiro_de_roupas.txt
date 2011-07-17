@@ -19,7 +19,7 @@
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Mark]	                        |
 // | 1.1 Script Otimizado [Mark]	                        |
-// | - Anotações		   			    					| 
+// | - Anotações		   			    					|
 // \________________________________________________________/
 
 // Tintureiro Ginedin ---------------------------------------------------
@@ -102,35 +102,35 @@ prt_in,284,167,2	script	Tintureiro Ginedin	55,{
 					close;
 				}
 			} else {
-				if(BaseJob==Job_Novice || BaseJob==Job_Novice_High || BaseJob==Job_Baby) 
+				if(BaseJob==Job_Novice || BaseJob==Job_Novice_High || BaseJob==Job_Baby)
 				setarray .@jobs[0],1,1,2,3,4;
-				else if(BaseJob==Job_Swordman || BaseJob==Job_Swordman_High || BaseJob==Job_Baby_Swordman)  
+				else if(BaseJob==Job_Swordman || BaseJob==Job_Swordman_High || BaseJob==Job_Baby_Swordman)
 				setarray .@jobs[0],2,0,1,3,4;
-				else if(BaseJob==Job_Mage || BaseJob==Job_Mage_High || BaseJob==Job_Baby_Mage)  
+				else if(BaseJob==Job_Mage || BaseJob==Job_Mage_High || BaseJob==Job_Baby_Mage)
 				setarray .@jobs[0],3,0,1,0,4,2,3;
-				else if(BaseJob==Job_Archer || BaseJob==Job_Archer_High || BaseJob==Job_Baby_Archer)  
+				else if(BaseJob==Job_Archer || BaseJob==Job_Archer_High || BaseJob==Job_Baby_Archer)
 				setarray .@jobs[0],4,0,1,2,4,0,3;
-				else if(BaseJob==Job_Acolyte || BaseJob==Job_Acolyte_High || BaseJob==Job_Baby_Acolyte)  
+				else if(BaseJob==Job_Acolyte || BaseJob==Job_Acolyte_High || BaseJob==Job_Baby_Acolyte)
 				setarray .@jobs[0],5,0,1,3,4;
-				else if(BaseJob==Job_Merchant || BaseJob==Job_Merchant_High || BaseJob==Job_Baby_Merchant)  
+				else if(BaseJob==Job_Merchant || BaseJob==Job_Merchant_High || BaseJob==Job_Baby_Merchant)
 				setarray .@jobs[0],6,0,0,3,4,1;
-				else if(BaseJob==Job_Thief || BaseJob==Job_Thief_High || BaseJob==Job_Baby_Thief)  
+				else if(BaseJob==Job_Thief || BaseJob==Job_Thief_High || BaseJob==Job_Baby_Thief)
 				setarray .@jobs[0],7,0,1,0,4,0,3;
-				else if(BaseJob==Job_Knight || BaseJob==Job_Knight2 || BaseJob==Job_Crusader || BaseJob==Job_Crusader2 || BaseJob==Job_Lord_Knight || BaseJob==Job_Lord_Knight2 || BaseJob==Job_Paladin || BaseJob==Job_Paladin2 || BaseJob==Job_Stalker || BaseJob==Job_Baby_Knight || BaseJob==Job_Baby_Knight2 || BaseJob==Job_Baby_Crusader || BaseJob==Job_Baby_Crusader2)  
+				else if(BaseJob==Job_Knight || BaseJob==Job_Knight2 || BaseJob==Job_Crusader || BaseJob==Job_Crusader2 || BaseJob==Job_Lord_Knight || BaseJob==Job_Lord_Knight2 || BaseJob==Job_Paladin || BaseJob==Job_Paladin2 || BaseJob==Job_Stalker || BaseJob==Job_Baby_Knight || BaseJob==Job_Baby_Knight2 || BaseJob==Job_Baby_Crusader || BaseJob==Job_Baby_Crusader2)
 				setarray .@jobs[0],8,1,0,0,4,0,3;
-				else if(BaseJob==Job_Priest || BaseJob==Job_Baby_Priest) 
+				else if(BaseJob==Job_Priest || BaseJob==Job_Baby_Priest)
 				setarray .@jobs[0],9,0,1,2,4,0,3;
-				else if(BaseJob==Job_Wizard || BaseJob==Job_Sage || BaseJob==Job_High_Wizard || BaseJob==Job_Professor || BaseJob==Job_Baby_Wizard || BaseJob==Job_Baby_Sage)  
+				else if(BaseJob==Job_Wizard || BaseJob==Job_Sage || BaseJob==Job_High_Wizard || BaseJob==Job_Professor || BaseJob==Job_Baby_Wizard || BaseJob==Job_Baby_Sage)
 				setarray .@jobs[0],1,2,1,4,0,0,3;
-				else if(BaseJob==Job_Blacksmith || BaseJob==Job_Alchemist || BaseJob==Job_Whitesmith || BaseJob==Job_Creator || BaseJob==Job_Baby_Blacksmith || BaseJob==Job_Baby_Alchemist)  
+				else if(BaseJob==Job_Blacksmith || BaseJob==Job_Alchemist || BaseJob==Job_Whitesmith || BaseJob==Job_Creator || BaseJob==Job_Baby_Blacksmith || BaseJob==Job_Baby_Alchemist)
 				setarray .@jobs[0],1,0,1,2,4,3;
-				else if(BaseJob==Job_Hunter || BaseJob==Job_Dancer || BaseJob==Job_Sniper || BaseJob==Job_Gypsy || BaseJob==Job_Baby_Hunter || BaseJob==Job_Baby_Dancer)  
+				else if(BaseJob==Job_Hunter || BaseJob==Job_Dancer || BaseJob==Job_Sniper || BaseJob==Job_Gypsy || BaseJob==Job_Baby_Hunter || BaseJob==Job_Baby_Dancer)
 				setarray .@jobs[0],1,1,0,3,0,4;
-				else if(BaseJob==Job_Assassin || BaseJob==Job_Baby_Assassin)  
+				else if(BaseJob==Job_Assassin || BaseJob==Job_Baby_Assassin)
 				setarray .@jobs[0],1,0,0,0,1,0,3,2;
-				else if(BaseJob==Job_Rogue || BaseJob==Job_Assassin_Cross || BaseJob==Job_Baby_Rogue)  
+				else if(BaseJob==Job_Rogue || BaseJob==Job_Assassin_Cross || BaseJob==Job_Baby_Rogue)
 				setarray .@jobs[0],1,0,0,0,0,0,3,2;
-				else if(BaseJob==Job_SuperNovice || BaseJob==Job_Super_Baby)  
+				else if(BaseJob==Job_SuperNovice || BaseJob==Job_Super_Baby)
 				setarray .@jobs[0],1,1,2,3,4;
 				else {
 					mes "Nossa, suas roupas são muito estranhas, Eu nunca vi coisa assim antes. Hummm... Me desculpe, mas não tenho como tingir suas roupas.";

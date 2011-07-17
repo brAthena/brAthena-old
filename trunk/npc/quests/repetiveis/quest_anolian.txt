@@ -172,7 +172,7 @@ cmd_fild01,362,256,3	script	Cuir#Gator_Hunt	106,{
 						/*
 						if (checkweight(503,10) == 0) {
 							mes "[Cuir]";
-							mes "Ei, parece que você vai ser esmagado pelo peso nas suas costas."; 
+							mes "Ei, parece que você vai ser esmagado pelo peso nas suas costas.";
 							mes "Volte quando não estiver carregando tanta coisa.";
 							close;
 						}

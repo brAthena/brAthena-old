@@ -130,7 +130,7 @@ mosk_dun02,53,215,3	script	Soldier1#mos	966,{
 	mes "Nós somos chamados para emergências,";
 	mes "não nos pertube mais.";
 	close;
-	
+
 OnInit:
 	hideonnpc "Soldier1#mos";
 	end;
@@ -146,7 +146,7 @@ mosk_dun02,50,217,3	script	Soldier2#mos	966,{
 	mes "Nós somos chamados para emergências,";
 	mes "não nos pertube mais.";
 	close;
-	
+
 OnInit:
 	hideonnpc "Soldier2#mos";
 	end;
@@ -163,7 +163,7 @@ mosk_dun02,56,217,5	script	Soldier3#mos	966,{
 	mes "Nós somos chamados para emergências,";
 	mes "não nos pertube mais.";
 	close;
-	
+
 OnInit:
 	hideonnpc "Soldier3#mos";
 	end;

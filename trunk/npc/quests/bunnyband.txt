@@ -61,7 +61,7 @@ alberta,26,229,0	script	Funcionária Kafra#bunny	83,{
 				mes "trazer pelo menos";
 				mes "1 Pérola.";
 				close;
-			}		
+			}
 			if (countitem(2213) == 0) {
 				mes "[Funcionária Kafra]";
 				mes "Ooh, eu sinto muito";

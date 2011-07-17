@@ -21,7 +21,7 @@
 // | 1.0 Script Traduzido [insidemybrain]		            |
 // | 1.1 Script Revisado [insidemybrain]		            |
 // | 1.2 Script Otimizado [Mark]				            |
-// | - Anotações		   			    					| 
+// | - Anotações		   			    					|
 // \________________________________________________________/
 
 que_ng,72,29,3	script	Mercador de Kunais	83,{

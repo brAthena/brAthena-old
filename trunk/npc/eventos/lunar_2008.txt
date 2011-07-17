@@ -16,7 +16,7 @@
 // | Descrições:                                            |
 // | iRO Lunar New Year event; Year of the Rat. (2008)      |
 // | Kill Cramps, Taruus, and Matrins to retrieve           |
-// | "Rice Pouches" in return for various rice-themed foods,| 
+// | "Rice Pouches" in return for various rice-themed foods,|
 // | envelopes, and a "New year Doll" egg. Rates are guessed|
 // |                                                        |
 // | Cramp, Tarou, and Matrin drops altered, Uncomment in   |

@@ -18,7 +18,7 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações                                            | 
+// | - Anotações                                            |
 // \________________________________________________________/
 
 // Poring War Recruiter
@@ -362,7 +362,7 @@ OnInit:
 //============================================================
 poring_w01,91,97,3	script	Poring#wop_door_all	1002,{
 	end;
-	
+
 OnInit:
 	waitingroom "[Recruiting 10 Battle Participants]",10,"Poring#wop_door_all::OnStartArena",10,500,9,99;
 	enablewaitingroomevent;

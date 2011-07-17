@@ -63,7 +63,7 @@ prontera,156,183,4	script	Pesquisas Oficiais	831,{
 			mes "Deseja ver o resultado parcial da enquete?";
 			next;
 			if(select("Sim.:Não.")==2) close;
-			mes "[ Enquete ]";			
+			mes "[ Enquete ]";
 		case 2:
 			if(!$total){
 				mes "A enquete ainda não teve nenhum voto.";

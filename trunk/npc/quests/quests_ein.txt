@@ -34,7 +34,7 @@
 // \________________________________________________________/
 
 // Oridecon Stone OR Mineral Stone Quest
-//============================================================ 
+//============================================================
 einbech,97,167,5	script	Cavitar	847,{
 	if (ein_gear1 == 2){
 		mes "[Cavitar]";
@@ -131,7 +131,7 @@ einbech,97,167,5	script	Cavitar	847,{
 			mes "Come back";
 			mes "whenever you're ready.";
 			close;
-		}				
+		}
 	}
 	else {
 		if (BaseLevel < 40){
@@ -405,7 +405,7 @@ einbech,97,167,5	script	Cavitar	847,{
 						mes "But please understand";
 						mes "that I'm desperate...";
 						close;
-					}	
+					}
 		 		case 2:
 					mes "[Cavitar]";
 					mes "You're...";
@@ -4204,7 +4204,7 @@ sec_in02,127,86,3	script	Factory Quest Test	851,{
 /**/
 
 // Murder Quest
-//============================================================ 
+//============================================================
 einbech,165,105,7	script	Buender Hikeman#ein	847,{
 	cutin "ein_hicman",2;
 	if (Shinokas_Quest == 0) {
@@ -5347,7 +5347,7 @@ ein_in01,266,27,3	script	Unknown Stuff#ein	111,{
 	mes "and folds of barbed wire.^000000";
 	close;
 }
-		
+
 einbroch,51,46,5	script	Laboratory Soldier#ein-1	852,{
 	mes "[Laboratory Soldier]";
 	mes "This area";
@@ -5356,7 +5356,7 @@ einbroch,51,46,5	script	Laboratory Soldier#ein-1	852,{
 	mes "immediately.";
 	close;
 }
-	
+
 einbroch,51,56,5	script	Laboratory Soldier#ein-2	852,{
 	mes "[Laboratory Soldier]";
 	mes "Yuck...!";
@@ -5816,7 +5816,7 @@ OnTouch:
 }
 
 // Lovers Quest
-//============================================================ 
+//============================================================
 ein_in01,31,138,3	script	Calla#ein	90,{
 	if (checkweight(908,70) == 0) {
 		mes "^3355FFWait a second!";
@@ -6002,7 +6002,7 @@ ein_in01,31,138,3	script	Calla#ein	90,{
 			mes "Would you please tell";
 			mes "me your name again?";
 			close;
-		}	
+		}
 	}
 	if (EIN_LOVERQ == 4) {
 		mes "[Calla]";
@@ -6310,7 +6310,7 @@ ein_in01,200,101,5	script	Clitzer#ein	854,{
 			mes "time, why don't you talk";
 			mes "to my mother? She always";
 			mes "likes meeting my friends.";
-			close;	
+			close;
 		}
 		else {
 			mes "[Clitzer]";

@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0727 - 14/07/2011 [Dani]
+	* Limpeza de espaços em branco
+
 	r0725 - 14/07/2011 [Dani]
 	* Correção definitiva dos problemas dos portais
 	- A ordem de carregamento dos npcs do emulador estava incorreta

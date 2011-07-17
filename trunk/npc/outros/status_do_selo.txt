@@ -19,7 +19,7 @@
 // | Changelog:                                             |
 // | 1.0 Script Traduzido[cleyton]                          |
 // | 1.1 Script Revisado[cleyton]                           |
-// |                                                        | 
+// |                                                        |
 // \________________________________________________________/
 
 prontera,113,294,3	script	Selos	837,{

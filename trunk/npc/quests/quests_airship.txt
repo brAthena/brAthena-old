@@ -772,7 +772,7 @@ function	script	cherno	{
 	next;
 	misceffect 20;
 	mes "^33355F*Crash!*^000000";
-	mes "....."; 
+	mes ".....";
 	emotion 4, "Theo Cherno";
 	Emotion 4, "Tarsha Cherno";
 	next;
@@ -1803,7 +1803,7 @@ airplane,236,163,5	script	Airship Captain#03	873,{
 				close2;
 				cutin "",255;
 				end;
-			
+
 			case 2:
 				mes "[Ferlock]";
 				mes "Well, I shouldn't be";
@@ -2034,7 +2034,7 @@ airplane,236,163,5	script	Airship Captain#03	873,{
 		close2;
 		cutin "",255;
 		end;
-		
+
 	case 2:
 		if (lght_air == 2) {
 			changequest 8032,8033;
@@ -2222,7 +2222,7 @@ airplane,236,63,4	script	Hallen	706,{
 				mes "Kaci. That's how I roll, yo.";
 				next;
 				break;
-				
+
 			case 2:
 				mes "[Hallen]";
 				mes "Ummm... Isn't it obvious?";
@@ -2787,7 +2787,7 @@ L_Ask:
 				mes "but he's also very sweet.";
 				next;
 				break;
-				
+
 			case 2:
 				set .@mesb,1;
 				mes "[Kaci]";
@@ -2815,7 +2815,7 @@ L_Ask:
 				mes "just for a little while.";
 				next;
 				break;
-				
+
 			case 3:
 				set .@mesc,1;
 				mes "[Kaci]";

@@ -54,7 +54,7 @@ valkyrie,44,47,5	script	Arquimago#Valkyrie	735,{
 		mes "um Arquimago?";
 		next;
 		if (select("Não.:Sim.") == 1) {
-			mes "[Arquimago]";			
+			mes "[Arquimago]";
 			mes "Quando você estiver pronto,";
 			mes "fique à vontade para voltar.";
 			mes "Honre os guerreiros!";

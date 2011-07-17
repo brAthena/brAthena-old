@@ -26,7 +26,7 @@
 // | Changelog:                                             |
 // | 1.0 Script Traduzido[cleyton]                          |
 // | 1.1 Script Revisado[cleyton]                           |
-// |                                                        | 
+// |                                                        |
 // \________________________________________________________/
 
 // Prontera

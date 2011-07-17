@@ -34,7 +34,7 @@ function	script	F_GldManager	{
 	set @GID, GetCastleData(getarg(1),1);
 	mes "["+getarg(0)+"]";
 	if (@GID == 0){
-		mes "Eu estou aguardando o meu mestre.";  
+		mes "Eu estou aguardando o meu mestre.";
 		mes "Pois bem... Bravo aventureiro, siga o seu destino!";
 		return;
 	}
@@ -49,7 +49,7 @@ function	script	F_GldManager	{
 		return 0;
 	}
 
-	mes "Bem-vindo mestre ^5533FF" + getguildmaster(@GID) + "^000000!"; 
+	mes "Bem-vindo mestre ^5533FF" + getguildmaster(@GID) + "^000000!";
 	mes "Dar-lhe-ei assistência no que puder!";
 	next;
 
@@ -73,7 +73,7 @@ function	script	F_GldManager	{
 
 				mes "["+getarg(0)+"]";
 				if (Zeny < 10000){
-					mes "Mestre, você não possui verba para contratar uma Kafra."; 
+					mes "Mestre, você não possui verba para contratar uma Kafra.";
 					mes "A contratação foi cancelada.";
 					return;
 				}

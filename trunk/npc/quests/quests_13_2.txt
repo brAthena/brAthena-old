@@ -33,7 +33,7 @@
 // \________________________________________________________/
 
 // Cat Hand Addition.
-//============================================================ 
+//============================================================
 spl_fild02,25,211,4	script	Cat Hand Agent#spl	421,{
 	if (ep13_yong1 < 3) {
 		mes "[Cat Hand Agent]";
@@ -5503,7 +5503,7 @@ mid_camp,192,239,4	script	Wanted Sign#ep13_2ect01	857,{
 				set ep13_2_wanted,1;
 				setquest 7076;
 				close;
-			
+
 			case 2:
 				mes "No, I won't get involved in it.";
 				close;
@@ -6014,7 +6014,7 @@ OnTimer300000:
 }
 
 // Otherworld language
-//============================================================ 
+//============================================================
 mid_camp,197,237,3	script	Schwartzvalt Mechanic#1	869,{
 	if (ep13_1_edq > 2) {
 		if (ep13_2_rhea < 1) {
@@ -7203,7 +7203,7 @@ mid_camp,7,3,0	script	Translator Preparation#1	708,{
 // Daily Quests
 // - Midgard Ore
 // - Alfheim Perfume
-//============================================================ 
+//============================================================
 man_in01,372,221,5	script	Scientist#lifeguard	449,{
 	if ((isequipped(2782) == 1) && (ep13_2_rhea == 100)) {
 		if (ep13_2_tre == 0) {
@@ -7275,7 +7275,7 @@ man_in01,372,221,5	script	Scientist#lifeguard	449,{
 				mes "Why not put some of your items in storage and come back?";
 				close;
 			}
-			
+
 			set .@dayq_chk,checkquest(2182,PLAYTIME);
 			if ((.@dayq_chk == 0) || (.@dayq_chk == 1)) {
 				mes "[Dr. Lifeguard]";
@@ -7416,7 +7416,7 @@ man_in01,372,221,5	script	Scientist#lifeguard	449,{
 					close;
 				}
 			}
-		
+
 		}
 		else if (ep13_2_tre == 2) {
 			if (countitem(6077) > 9) {
@@ -7616,7 +7616,7 @@ OnInit:
 OnTouch:
 	if ((ep13_2_tre == 2) && (countitem(6076) == 1)) {
 		if (countitem(6077) < 10) {
-			specialeffect EF_COUPLECASTING; 
+			specialeffect EF_COUPLECASTING;
 		}
 	}
 	end;
@@ -8932,7 +8932,7 @@ mjolnir_10,188,260,3	script	#mj10_01	111,10,10,{
 						else {
 							getitem 6077,2; //Rough_Mineral
 						}
-						
+
 						close2;
 						donpcevent "#mj10_01_t::OnEnable";
 						disablenpc "#mj10_01";
@@ -10194,7 +10194,7 @@ spl_in02,139,65,3	script	Middle-Ranked Laphine#la	438,{
 			mes "Can you believe that right in front of us is a battle field? Though it's very silent and peaceful at the moment. So do I~";
 			close;
 		}
-		
+
 	}
 	else {
 		mes "[Middle-Ranked Laphine]";
@@ -10784,7 +10784,7 @@ OnTimer60000:
 }
 
 // Secret note of Bazett
-//============================================================ 
+//============================================================
 mid_camp,283,198,5	script	Bazett Teablack#ep13bs	883,{
 	if (checkweight(1201,1) == 0) {
 		mes " - Hold on!! -";
@@ -11450,7 +11450,7 @@ manuk,193,135,0	script	Worker#ep13bs	454,{
 }
 
 // Yggdrasil Dungeon Floor 2 puzzle.
-//============================================================ 
+//============================================================
 nyd_dun02,178,255,0	script	Strange Device#ep13_out	844,3,3,{
 	mes "There's something strange here.";
 	mes "Maybe that device can be controlled from here.";

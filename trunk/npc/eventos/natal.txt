@@ -89,7 +89,7 @@ L_Start:
                 mes "Pegue mais 3 meias e te darei outra caixa.";
                 mes "Espero que você ganhe um item bom.";
                 close;
-        
+
                 L_NotEnuf:
                         mes "Você ainda não está com a quantidade necessária de meias.";
                         mes "Vá a procura desses falsos noeis e pegue suas meias.";

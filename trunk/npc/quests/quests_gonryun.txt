@@ -23,7 +23,7 @@
 // \________________________________________________________/
 
 // Broken Sword
-//============================================================ 
+//============================================================
 gon_in,17,93,5	script	Chief#gon	775,{
 	if (BaseLevel > 50) {
 		if (b_sword == 0) {
@@ -3112,7 +3112,7 @@ geffen_in,106,106,7	script	Girl#gnbs2	716,{
 	mes "Heehehe...";
 	if (Sex == 0)
 		mes "Thank you my pretty sister.";
-	else 
+	else
 		mes "Thank you handsome brother~";
 	mes "I'll get my health back";
 	mes "and be a strong girl!";
@@ -3703,10 +3703,10 @@ OnTouch:
 		end;
 	}
 	end;
-}					
+}
 
 // Lost Knife
-//============================================================ 
+//============================================================
 gonryun,237,226,3	script	Han Ran Jiao#gon	776,{
 	if (nakha == 0) {
 		mes "[Han Ran Jiao]";

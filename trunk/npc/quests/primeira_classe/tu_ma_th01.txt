@@ -614,7 +614,7 @@ moc_fild18,109,197,0	script	Trace of Battle#15	844,{
 					delitem 716, 1;
 					set tu_thief01, 24;
 					close;
-				} else if(countitem(511) > 0){	// Green_Herb	
+				} else if(countitem(511) > 0){	// Green_Herb
 					mes "Make powder out of Green Herb and sprinkle it. Nothing happens. It may need some other catalyst.";
 					close;
 				} else {

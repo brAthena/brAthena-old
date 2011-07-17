@@ -508,8 +508,8 @@ yuno_in03,154,35,4	script	Staff of the Academy#a	742,{
 			switch (SAGE_Q) {
 			case 1:
 				//Feather_Of_Bird, Fluff, Iron_Ore
-				setarray .@item[0], 916,914,1002; 
-				setarray .@count[0], 50,50,25; 
+				setarray .@item[0], 916,914,1002;
+				setarray .@count[0], 50,50,25;
 				break;
 			case 2:
 				//Clover, Feather, Chinese_Ink
@@ -522,12 +522,12 @@ yuno_in03,154,35,4	script	Staff of the Academy#a	742,{
 				setarray .@count[0], 50,50,50,50;
 				break;
 			}
-			set .@size, (getarraysize(.@item)-1); 
+			set .@size, (getarraysize(.@item)-1);
 			for( set .@i,0 ; .@i < .@size && countitem(.@item[.@i]) >= .@count[.@i] ; set .@i,.@i+1 );
-			if(.@i == .@size) {  
+			if(.@i == .@size) {
 				if (Zeny > 29999) {
 					for (set .@i, 0; .@i < .@size ; set .@i, .@i+1)
-						delitem .@item[.@i], .@count[.@i];  
+						delitem .@item[.@i], .@count[.@i];
 					set zeny,zeny-30000;
 					mes "[Metheus Sylphe]";
 					mes "Well done. Let me proceed with your application request.";

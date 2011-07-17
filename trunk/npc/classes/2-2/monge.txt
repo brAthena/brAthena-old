@@ -18,7 +18,7 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |
-// | - Anotações		   			    					| 
+// | - Anotações		   			    					|
 // \________________________________________________________/
 
 prt_monk,59,247,1	script	Guarding Monk#mk	120,6,2,{
@@ -400,13 +400,13 @@ monk_in,99,58,1	script	Sensei Moohae#mk	60,{
 		next;
 		mes "[Sensei Moohae]";
 		switch (.@items[6]) {
-		case 3: mes "Why the face? This is a test of your abilities."; break; 
-		case 4: mes "What's wrong? This is a test of your abilities."; break; 
-		case 5: mes "You do understand don't you? This is a test of your abilities."; break; 
-		case 6: mes "Don't look at me like that. This is a test of your abilities."; break; 
-		case 7: mes "You don't seem concerned, this is a test of your abilities You should take this seriously."; break; 
-		case 8: mes "It is a test of your abilities so make sure you acquire these on your own."; break; 
-		case 9: mes "Don't be concerned, I believe you can do it. This is only to test your abilities."; break; 
+		case 3: mes "Why the face? This is a test of your abilities."; break;
+		case 4: mes "What's wrong? This is a test of your abilities."; break;
+		case 5: mes "You do understand don't you? This is a test of your abilities."; break;
+		case 6: mes "Don't look at me like that. This is a test of your abilities."; break;
+		case 7: mes "You don't seem concerned, this is a test of your abilities You should take this seriously."; break;
+		case 8: mes "It is a test of your abilities so make sure you acquire these on your own."; break;
+		case 9: mes "Don't be concerned, I believe you can do it. This is only to test your abilities."; break;
 		}
 		next;
 		mes "[Sensei Moohae]";
@@ -2603,8 +2603,8 @@ monk_test,137,338,1	script	switchreset#monkmonk	79,{
 	close;
 }
 
-//============================================================ 
+//============================================================
 // Monsters of Mushroom Collecting
-//============================================================ 
+//============================================================
 job_monk,0,0,0,0	monster	Thief Mushroom	1182,70,0,0,0
 job_monk,0,0,0,0	monster	Thief Bug Larva	1051,20,0,0,0

@@ -18,12 +18,12 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido e Otimizado [Mark]                |
-// | - Criada função para todos os scripts da quest         | 
+// | - Criada função para todos os scripts da quest         |
 // \________________________________________________________/
 
 -	script	Guia SE::guiaSE	-1,{
 	if(strnpcinfo(1) == "Guia SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -148,7 +148,7 @@
 
 OnInit:
 	if(strnpcinfo(1) == "Guia SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -349,7 +349,7 @@ OnInit:
 
 OnInit:
 	if(strnpcinfo(1) == "Dama dos Desejos SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -370,7 +370,7 @@ OnInit:
 
 OnInit:
 	if(strnpcinfo(1) == "Gate01 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -382,7 +382,7 @@ OnInit:
 
 OnEnable:
 	if(strnpcinfo(1) == "Gate01 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -435,7 +435,7 @@ OnTouch:
 						monster "que_q"+.cas$+.casn$,.@mobx[.@i],.@moby[.@i],strcharinfo(0),1660,1,"#Gate_manager_"+.cas$+.casn$+"::OnMyMobDead";
 					else if (BaseClass == Job_Acolyte)
 						monster "que_q"+.cas$+.casn$,.@mobx[.@i],.@moby[.@i],strcharinfo(0),1661,1,"#Gate_manager_"+.cas$+.casn$+"::OnMyMobDead";
-					else 
+					else
 						monster "que_q"+.cas$+.casn$,.@mobx[.@i],.@moby[.@i],strcharinfo(0),1652,1,"#Gate_manager_"+.cas$+.casn$+"::OnMyMobDead";
 					setd "$gqse_"+.cas$+.casn$+"_miro",.@i+1;
 					warp "que_q"+.cas$+.casn$,.@warpx[.@i],.@warpy[.@i];
@@ -453,9 +453,9 @@ OnTouch:
 
 -	script	#Gate_manager SE::Gate_Manag_SE	-1,{
 	if(strnpcinfo(2) == "Gate_manager SE") end;
-	
+
 OnMyMobDead:
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -473,7 +473,7 @@ OnMyMobDead:
 -	script	#gq_miromob2 SE::GateMob2	-1,{
 OnEnable:
 	if(strnpcinfo(2) == "gq_miromob2 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -531,7 +531,7 @@ OnMyMobDead:
 
 OnEnable:
 	if(strnpcinfo(2) == "okolnir SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -556,7 +556,7 @@ OnEnable:
 	end;
 
 OnDisable:
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -728,7 +728,7 @@ OnTimer3611000:
 -	script	#Maze_Manager SE::mazemanag_SE	-1,{
 OnInit:
 	if(strnpcinfo(2) == "Maze_Manager SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -797,7 +797,7 @@ OnTimer360000:
 	if(strnpcinfo(2) == "miro_bf SE") end;
 
 OnEnable:
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -883,7 +883,7 @@ OnEnable:
 	end;
 
 OnDisable:
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -939,7 +939,7 @@ OnMyMobDead:
 	if(strnpcinfo(2) == "miro_rf SE") end;
 
 OnEnable:
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -1037,7 +1037,7 @@ OnEnable:
 	end;
 
 OnDisable:
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -1100,7 +1100,7 @@ OnMyMobDead:
 	if(strnpcinfo(2) == "miro_yf SE") end;
 
 OnEnable:
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -1206,7 +1206,7 @@ OnEnable:
 	end;
 
 OnDisable:
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -1271,7 +1271,7 @@ OnMyMobDead:
 -	script	windpath01 SE::wind01SE	-1,{
 	if(strnpcinfo(1) == "windpath01 SE") end;
 OnTouch:
-	if(compare(strnpcinfo(1),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(1),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(1),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(1),"02")) set .casn$,"02";
@@ -1302,7 +1302,7 @@ OnInit:
 
 OnInit:
 	if(strnpcinfo(2) == "event_start1 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -1314,7 +1314,7 @@ OnInit:
 
 OnEnable:
 	if(strnpcinfo(2) == "event_start1 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -1357,7 +1357,7 @@ OnTimer14000:
 
 OnInit:
 	if(strnpcinfo(2) == "gdtimer1 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -1368,7 +1368,7 @@ OnInit:
 
 OnEnable:
 	if(strnpcinfo(2) == "gdtimer1 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -1461,7 +1461,7 @@ OnTimer80000:
 
 OnInit:
 	if(strnpcinfo(2) == "gdtimer2 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -1472,7 +1472,7 @@ OnInit:
 
 OnEnable:
 	if(strnpcinfo(2) == "gdtimer2 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -1550,7 +1550,7 @@ OnMyMobDead:
 
 OnInit:
 	if(strnpcinfo(2) == "piamette SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -1561,7 +1561,7 @@ OnInit:
 
 OnEnable:
 	if(strnpcinfo(2) == "piamette SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -1598,7 +1598,7 @@ OnMyMobDead:
 -	script	#getspell SE::getspellSE	-1,{
 OnInit:
 	if(strnpcinfo(2) == "getspell SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -1618,7 +1618,7 @@ OnInit:
 
 OnEnable:
 	if(strnpcinfo(2) == "getspell SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -1643,7 +1643,7 @@ OnDisable:
 
 OnTouch:
 	if(strnpcinfo(2) == "getspell SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -1703,7 +1703,7 @@ OnTouch:
 -	script	#cage SE::cageSE	-1,{
 OnInit:
 	if(strnpcinfo(2) == "cage SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -1721,7 +1721,7 @@ OnInit:
 
 OnTouch:
 	if(strnpcinfo(2) == "cage SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -1744,7 +1744,7 @@ OnTouch:
 
 OnInit:
 	if(strnpcinfo(2) == "gd_mobctrl SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -1755,7 +1755,7 @@ OnInit:
 
 OnEnable:
 	if(strnpcinfo(2) == "gd_mobctrl SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -1833,7 +1833,7 @@ OnMyMobDead:
 -	script	windpath3 SE::wind03SE	-1,{
 OnInit:
 	if(strnpcinfo(1) == "windpath3 SE") end;
-	if(compare(strnpcinfo(1),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(1),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(1),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(1),"02")) set .casn$,"02";
@@ -1845,7 +1845,7 @@ OnInit:
 
 OnTouch:
 	if(strnpcinfo(1) == "windpath3 SE") end;
-	if(compare(strnpcinfo(1),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(1),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(1),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(1),"02")) set .casn$,"02";
@@ -1859,7 +1859,7 @@ OnTouch:
 -	script	windpath4 SE::wind04SE	-1,{
 OnInit:
 	if(strnpcinfo(1) == "windpath4 SE") end;
-	if(compare(strnpcinfo(1),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(1),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(1),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(1),"02")) set .casn$,"02";
@@ -1871,7 +1871,7 @@ OnInit:
 
 OnTouch:
 	if(strnpcinfo(1) == "windpath4 SE") end;
-	if(compare(strnpcinfo(1),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(1),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(1),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(1),"02")) set .casn$,"02";
@@ -1885,7 +1885,7 @@ OnTouch:
 -	script	#nm_switch SE::nmswitchSE	-1,{
 OnInit:
 	if(strnpcinfo(2) == "nm_switch SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -1897,7 +1897,7 @@ OnInit:
 
 OnEnable:
 	if(strnpcinfo(2) == "nm_switch SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -1951,7 +1951,7 @@ OnTimer370000:
 
 OnInit:
 	if(strnpcinfo(2) == "nmsom_jin1 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -1962,7 +1962,7 @@ OnInit:
 
 OnEnable:
 	if(strnpcinfo(2) == "nmsom_jin1 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -2050,7 +2050,7 @@ OnMyMobDead:
 
 OnInit:
 	if(strnpcinfo(2) == "stone01 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -2061,7 +2061,7 @@ OnInit:
 
 OnEnable:
 	if(strnpcinfo(2) == "stone01 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -2099,7 +2099,7 @@ OnMyMobDead:
 
 OnInit:
 	if(strnpcinfo(2) == "nmsom_jin02 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -2110,7 +2110,7 @@ OnInit:
 
 OnEnable:
 	if(strnpcinfo(2) == "nmsom_jin02 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -2197,7 +2197,7 @@ OnMyMobDead:
 
 OnInit:
 	if(strnpcinfo(2) == "stone02 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -2208,7 +2208,7 @@ OnInit:
 
 OnEnable:
 	if(strnpcinfo(2) == "stone02 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -2246,7 +2246,7 @@ OnMyMobDead:
 
 OnInit:
 	if(strnpcinfo(2) == "nmsom_jin03 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -2257,7 +2257,7 @@ OnInit:
 
 OnEnable:
 	if(strnpcinfo(2) == "nmsom_jin03 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -2337,7 +2337,7 @@ OnMyMobDead:
 
 OnInit:
 	if(strnpcinfo(2) == "stone03 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -2348,7 +2348,7 @@ OnInit:
 
 OnEnable:
 	if(strnpcinfo(2) == "stone03 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -2386,7 +2386,7 @@ OnMyMobDead:
 -	script	Guard of Shadow SE::guardshadowSE	-1,{
 OnInit:
 	if(strnpcinfo(1) == "Guard of Shadow SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -2419,7 +2419,7 @@ OnMyMobDead:
 -	script	Caçador de Sangue SE::bloodyhuntSE	-1,{
 OnInit:
 	if(strnpcinfo(1) == "Caçador de Sangue SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -2452,7 +2452,7 @@ OnMyMobDead:
 -	script	Guardião do Templo SE::templekeepSE	-1,{
 OnInit:
 	if(strnpcinfo(1) == "Guardião do Templo SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -2483,7 +2483,7 @@ OnMyMobDead:
 -	script	Dama dos Desejos#bossSE::wishbossSE	-1,{
 OnInit:
 	if(strnpcinfo(2) == "bossSE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -2501,7 +2501,7 @@ OnDisable:
 
 Onfight:
 	if(strnpcinfo(2) == "bossSE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -2632,7 +2632,7 @@ OnMyMobDead:
 OnInit:
 	if(strnpcinfo(2) == "giftSE") end;
 	if(compare(strnpcinfo(2),"aru")){
-		set .cas$,"aru"; 
+		set .cas$,"aru";
 		if(compare(strnpcinfo(2),"01")){ set .casn$,"01"; setarray .caswarp[0],157,369;}
 		else if(compare(strnpcinfo(2),"02")){ set .casn$,"02"; setarray .caswarp[0],349,355;}
 		else if(compare(strnpcinfo(2),"03")){ set .casn$,"03"; setarray .caswarp[0],321,153;}
@@ -2652,7 +2652,7 @@ OnInit:
 OnEnable:
 	if(strnpcinfo(2) == "giftSE") end;
 	if(compare(strnpcinfo(2),"aru")){
-		set .cas$,"aru"; 
+		set .cas$,"aru";
 		if(compare(strnpcinfo(2),"01")){ set .casn$,"01"; setarray .caswarp[0],157,369;}
 		else if(compare(strnpcinfo(2),"02")){ set .casn$,"02"; setarray .caswarp[0],349,355;}
 		else if(compare(strnpcinfo(2),"03")){ set .casn$,"03"; setarray .caswarp[0],321,153;}
@@ -2700,7 +2700,7 @@ OnTimer300000:
 OnInit:
 	if(strnpcinfo(2) == "to_agit_gate SE") end;
 	if(compare(strnpcinfo(2),"aru")){
-		set .cas$,"aru"; 
+		set .cas$,"aru";
 		if(compare(strnpcinfo(2),"01")){ set .casn$,"01"; setarray .caswarp[0],157,369;}
 		else if(compare(strnpcinfo(2),"02")){ set .casn$,"02"; setarray .caswarp[0],349,355;}
 		else if(compare(strnpcinfo(2),"03")){ set .casn$,"03"; setarray .caswarp[0],321,153;}
@@ -2725,7 +2725,7 @@ OnTouch:
 -	script	#okolnir_time1 SE::okolnirtimeSE	-1,{
 OnInit:
 	if(strnpcinfo(2) == "okolnir_time1 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";
@@ -2739,7 +2739,7 @@ OnInit:
 
 OnEnable:
 	if(strnpcinfo(2) == "okolnir_time1 SE") end;
-	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru"; 
+	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
 	else set .cas$,"sch";
 	if(compare(strnpcinfo(2),"01")) set .casn$,"01";
 	else if(compare(strnpcinfo(2),"02")) set .casn$,"02";

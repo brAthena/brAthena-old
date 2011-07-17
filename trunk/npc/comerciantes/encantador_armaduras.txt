@@ -21,7 +21,7 @@
 // | 1.0 Script Traduzido [YuMs]                            |
 // | 1.1 Script Otimizado [Mark]                            |
 // | 1.2 Corrigido pequeno erro de gramática. [Protimus]	|
-// | - Anotações		   			    					| 
+// | - Anotações		   			    					|
 // \________________________________________________________/
 
 prontera,165,60,2	script	Aprendiz de Artesão	73,{
@@ -43,7 +43,7 @@ prontera,165,60,2	script	Aprendiz de Artesão	73,{
 		next;
 		switch(select("Armadura sem Slotada.:Armadura com Slot.:Armadura de Alto Nível.:Talvez na próxima.")) {
 		case 1:
-		
+
 			switch(select("Capote:Casaco:Cota de Malha:Armadura Metálica:Manto de Seda:Manto Sagrado:Batina:Armadura de Madeira:Malha:Manto Prateado:Vestimenta Arcana:Traje de Gatuno:Armadura Legionária:Couraça da Fúria Flamejante:Couraça da Submissão Oceânica:Couraça da Liberdade Celestial:Couraça da Perseverança Continental:Indumentária Ninja:Armadura Camaleão:Túnica Gloriosa:Túnica Gloriosa Industrializada:Túnica Gloriosa Barata")) {
 			case 1: callsub S_EnchantArmor,2307,50;
 			case 2: callsub S_EnchantArmor,2309,50;

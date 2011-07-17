@@ -21,7 +21,7 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Tyler]                           |
-// | - Anotações                                            | 		   		            
+// | - Anotações                                            |
 // \________________________________________________________/
 
 // Oficiais do Desfiladeiro de Tierra- Lado Guillaume

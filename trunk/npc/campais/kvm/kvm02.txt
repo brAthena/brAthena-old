@@ -25,7 +25,7 @@
 // |  - Anotações                                           |
 // \________________________________________________________/
 
-// NPC's da Sala de Espera   
+// NPC's da Sala de Espera
 //============================================================
 bat_room,197,226,5	script	Sala de Espera do KVM#a2::KvM02R_Guillaume	418,{
 	end;
@@ -33,7 +33,7 @@ bat_room,197,226,5	script	Sala de Espera do KVM#a2::KvM02R_Guillaume	418,{
 OnInit:
 	waitingroom "Estação de Batalha de 5 jogadores",5,"KvM02_BG::OnGuillaumeJoin",1;
 	end;
-	
+
 OnEnterBG:
 	set $@KvM02BG_id1, waitingroom2bg("bat_c02",52,129,"KvM02_BG::OnGuillaumeQuit","KvM02_BG::OnGuillaumeDie");
 	end;
@@ -55,16 +55,16 @@ OnEnterBG:
 
 bat_room,197,211,0	warp	#kvm602	2,2,bat_room,154,150
 
-// Mecanismo de Início  
+// Mecanismo de Início
 //============================================================
 -	script	KVM02::CellEffect2	-1,{
 	end;
 
-OnKvM02One: 
+OnKvM02One:
 	misceffect EF_CHANGECOLD;
 	end;
 
-OnKvM02Two: 
+OnKvM02Two:
 	misceffect EF_CHANGEPOISON;
 	end;
 }

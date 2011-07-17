@@ -58,7 +58,7 @@ nguild_alde,212,181,0	script	Switch#DunN01	111,{
 	close;
 }
 
-// 2° Castelo 
+// 2° Castelo
 //============================================================
 nguild_gef,78,84,0	script	Switch#DunN02	111,{
 	callfunc "F_GldDunSw","nguild_gef","04",39,258;
@@ -72,7 +72,7 @@ nguild_pay,101,25,0	script	Switch#DunN03	111,{
 	close;
 }
 
-// 4° Castelo 
+// 4° Castelo
 //============================================================
 nguild_prt,94,200,0	script	Switch#DunN04	111,{
 	callfunc "F_GldDunSw","nguild_prt","03",28,251;

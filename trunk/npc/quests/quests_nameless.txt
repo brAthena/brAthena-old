@@ -27,7 +27,7 @@
 // | - Variable in use: diamond_edq (Max: 14)               |
 // | Broken Diamond:                                        |
 // | - Help Ibrahim retrieve his stolen diamond.            |
-// | - prerequisite Quest to "Unlucky Emerald"              |    
+// | - prerequisite Quest to "Unlucky Emerald"              |
 // | - Variable in use: diamond_edq (Max: 26)               |
 // | Z-Gang Quest:                                          |
 // | - Help to aprehend the infamous Z-Gang.                |
@@ -51,7 +51,7 @@
 airplane_01,95,61,3	script	QuestTrigger#Aru	-1,3,3,{
 	end;
 
-OnTouch:	
+OnTouch:
 	if ((prt_curse == 36 || prt_curse == 45 || prt_curse == 56 || prt_curse == 61) && (aru_monas < 1)) {
 		hideoffnpc "Agente#Aru";
 		mes "[????]";
@@ -460,7 +460,7 @@ ve_in,78,314,5	script	Magistrado#Aru	945,{
 		mes "pública, e deixar qualquer um";
 		mes "entrar vai causar problemas.";
 		close;
-	}	
+	}
 	else if (aru_monas == 10) {
 		mes "[Al Hamad]";
 		mes "Pensei ter dito que";
@@ -1665,7 +1665,7 @@ OnTouch:
 }
 
 nameless_i,127,207,0	script	Corvo Morto#Aru	111,{
-	if (aru_monas < 17) { 
+	if (aru_monas < 17) {
 		mes "^3355FFÉ apenas um corvo morto.^000000";
 		close;
 	}
@@ -3066,7 +3066,7 @@ OnTimer53000:
 que_temsky,99,7,0	warp	quetemskyout	1,1,ra_temin,276,231
 
 // Muff's Loan
-//============================================================ 
+//============================================================
 comodo,224,187,3	script	Muff	86,{
 	if (checkweight(907,200) == 0) {
 		mes "[Muff]";
@@ -4523,7 +4523,7 @@ izlude_in,113,66,0	script	Máquina#nam	111,{
 }
 
 // Broken Diamond
-//============================================================ 
+//============================================================
 moc_ruins,152,147,5	script	Ibrahim	732,3,3,{
 	if (checkweight(907,200) == 0) {
 		mes "[Ibrahim]";
@@ -6253,7 +6253,7 @@ OnInit:
 }
 
 // Z-Gang Quest
-//============================================================ 
+//============================================================
 prontera,150,326,0	script	Aviso de Procura#edq	111,{
 	if (zdan_edq == 0) {
 		mes "==========Procurados==========";
@@ -9158,7 +9158,7 @@ OnInit:
 }
 
 // Unlucky Emerald
-//============================================================ 
+//============================================================
 morocc,143,63,3	script	Maltrapilho#nd	929,{
 	if (treasure_nd == 0) {
 		mes "[Maltrapilho]";
@@ -9416,7 +9416,7 @@ morocc,102,298,3	script	Homem#zgang	98,{
 			emotion e_gasp;
 			mes "[Homem]";
 			mes "What? So you're the one";
-			mes "Quê? Então é sobre você "; 
+			mes "Quê? Então é sobre você ";
 			mes "que me alertaram! Já estava";
 			mes "pensando em quando você ia";
 			mes "aparecer. Prepare-se para morrer!";
@@ -11572,7 +11572,7 @@ OnTouch:
 }
 
 // Rogue Guild Investigation
-//============================================================ 
+//============================================================
 prontera,163,204,3	script	Homem de Morroc	99,{
 	if (rumour_nd == 0) {
 		mes "[Viajante de Morroc]";
@@ -12953,10 +12953,10 @@ comodo,233,199,5	script	Agente da Guilda#nd3	810,{
 			mes "[Agente]";
 			mes "Certo, deixe-me ver.";
 			next;
-			if ((countitem(2278) > 0) || (countitem(2281) > 0) || (countitem(5043) > 0) || (countitem(2288) > 0) || 
-			(countitem(2292) > 0) || (countitem(2297) > 0) || (countitem(5005) > 0) || (countitem(5086) > 0) || 
-			(countitem(5087) > 0) || (countitem(5088) > 0) || (countitem(5089) > 0) || (countitem(5090) > 0) || 
-			(countitem(5176) > 0) || (countitem(5203) > 0) || (countitem(5098) > 0) || (countitem(5121) > 0) || 
+			if ((countitem(2278) > 0) || (countitem(2281) > 0) || (countitem(5043) > 0) || (countitem(2288) > 0) ||
+			(countitem(2292) > 0) || (countitem(2297) > 0) || (countitem(5005) > 0) || (countitem(5086) > 0) ||
+			(countitem(5087) > 0) || (countitem(5088) > 0) || (countitem(5089) > 0) || (countitem(5090) > 0) ||
+			(countitem(5176) > 0) || (countitem(5203) > 0) || (countitem(5098) > 0) || (countitem(5121) > 0) ||
 			(countitem(5130) > 0) || (countitem(5177) > 0) || (countitem(5169) > 0) || (countitem(5143) > 0)) {
 				mes "[Agente]";
 				mes "Excelente!";

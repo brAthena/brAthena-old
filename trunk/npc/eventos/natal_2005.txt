@@ -24,7 +24,7 @@
 // | 	arg(1) Next NPC to be enabled                       |
 // | 	arg(2) Map name of originating NPC                  |
 // | 	arg(3) Coordinate X to be teleported to             |
-// | 	arg(4) Coordinate Y to be teleported to             | 
+// | 	arg(4) Coordinate Y to be teleported to             |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Modificação [Autor]                                |

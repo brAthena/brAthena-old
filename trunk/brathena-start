@@ -36,7 +36,7 @@ check_files() {
 echo "Checagem completa."
 #EOF
 }
-    
+
 
 case $1 in
     'start')

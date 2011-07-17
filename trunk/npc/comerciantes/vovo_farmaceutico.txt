@@ -22,7 +22,7 @@
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Mark]	                        |
 // | 1.1 Script Otimizado [Mark]	                        |
-// | - Anotações		   			    					| 
+// | - Anotações		   			    					|
 // \________________________________________________________/
 
 alberta_in,16,28,4	script	Vovô Farmacêutico	61,{
@@ -62,7 +62,7 @@ alberta_in,16,28,4	script	Vovô Farmacêutico	61,{
 				if (countitem(507) < countitem(713)) set .@max,countitem(507);
 				else if (countitem(508) < countitem(713)) set .@max,countitem(508);
 				else set .@max,countitem(713);
-				
+
 				if ((countitem(507) < 1) || (countitem(508) < 1) || (countitem(713) == 0) || Zeny < 3) {
 					mes "Safado! O que estava pensando?! Vindo aqui sem nada. Tsk!";
 					mes "Vá embora!";
@@ -173,12 +173,12 @@ alberta_in,16,28,4	script	Vovô Farmacêutico	61,{
 		mes "Como você é chato. Se tem algo a dizer, porque você não diz logo?!";
 		close;
 	}
-	
+
 L_making:
 	mes "[Vovô Farmacêutico]";
 	if ((countitem(getarg(0))/2) < countitem(713)) set .@max,countitem(getarg(0))/2;
 	else  set .@max,countitem(713);
-	
+
 	if ((countitem(getarg(0)) < 2) || (countitem(713) == 0) || Zeny < 3) {
 		mes "Safado! O que estava pensando?! Vindo aqui sem nada. Tsk!";
 		mes "Vá embora!";
@@ -196,7 +196,7 @@ L_making:
 		set Zeny,Zeny-(.@max*getarg(1));
 		delitem getarg(0),.@max*2;
 		delitem 713,.@max;	// Empty_Bottle
-		getitem getarg(2),.@max; 
+		getitem getarg(2),.@max;
 		break;
 	case 2:
 		next;
@@ -225,7 +225,7 @@ L_making:
 		set Zeny,Zeny-(.@amount*getarg(1));
 		delitem getarg(0),.@amount*2;
 		delitem 713,.@amount;	// Empty_Bottle
-		getitem getarg(2),.@amount; 
+		getitem getarg(2),.@amount;
 		mes "[Vovô Farmacêutico]";
 		mes "Pode ir. Está tudo pronto, pode pegar. Mas lembre! Medicamentos demais não é bom.";
 		close;

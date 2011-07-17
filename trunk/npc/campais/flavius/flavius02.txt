@@ -15,13 +15,13 @@
 // | Versões eA/brA: 1.2/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: NPC's de Flavius II.                        |
-// | - NPC's da Sala de Espera                              |	
+// | - NPC's da Sala de Espera                              |
 // | - Engine do Campo de Batalha Flavius                   |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Tyler]                           |
 // | 1.1 Script Otimizado [Devil]                           |
-// | - Anotações                                            | 			   		            
+// | - Anotações                                            |
 // \________________________________________________________/
 
 // NPC's da Sala de Espera
@@ -29,7 +29,7 @@
 bat_room,142,227,4	script	Tenente Huvas	418,{
 	end;
 OnInit:
-	waitingroom "Estação de Batalha",10,"start#bat_b02::OnReadyCheck",1,0,80,99; 
+	waitingroom "Estação de Batalha",10,"start#bat_b02::OnReadyCheck",1,0,80,99;
 	end;
 OnEnterBG:
 	set $@FlaviusBG2_id1, waitingroom2bg("bat_b02",10,290,"start#bat_b02::OnGuillaumeQuit","");

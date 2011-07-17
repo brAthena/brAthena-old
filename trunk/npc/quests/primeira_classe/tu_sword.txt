@@ -915,7 +915,7 @@ izlude_in,82,163,3	script	Shurank	733,{
 }
 
 //=================================================Daqu'ee====================================================
-geffen,154,143,3	script	Dequ'ee	734,{ 
+geffen,154,143,3	script	Dequ'ee	734,{
 	if(BaseJob == Job_Novice){
 		mes "[Dequ'ee]";
 		mes "Hey there.";
@@ -1083,8 +1083,8 @@ if((tu_swordman == 17) || (tu_swordman == 18)){
 			close;
 			break;
 	}
-}	
-	
+}
+
 if(tu_swordman == 16){
 	mes "[Dequ'ee]";
 	mes "I guess these codes need to be arranged in a certain order before we can figure out its secrets.";
@@ -1445,7 +1445,7 @@ if(tu_swordman == 16){
 					break;
 			}
 			break;
-		case 3: 	
+		case 3:
 			mes "[Dequ'ee]";
 			mes "Okay, Geil's";
 			mes "code is what we'll";
@@ -1454,7 +1454,7 @@ if(tu_swordman == 16){
 			mes "should go second?";
 			next;
 			switch(select("Muetro", "Hans", "Bankley")){
-				case 1:					
+				case 1:
 					mes "[Dequ'ee]";
 					mes "Muestro's...?";
 					mes "Alright, then";
@@ -1463,7 +1463,7 @@ if(tu_swordman == 16){
 					mes "would be...?";
 					next;
 					switch(select("Hans", "Bankley")){
-						case 1:			 
+						case 1:
 							mes "[Dequ'ee]";
 							mes "Geil, Muetro,";
 							mes "Hans and Bankley.";
@@ -1745,7 +1745,7 @@ if(tu_swordman == 16){
 							break;
 					}
 					break;
-				case 3:	
+				case 3:
 					mes "[Dequ'ee]";
 					mes "Geil's...?";
 					mes "Alright, then";
@@ -1754,7 +1754,7 @@ if(tu_swordman == 16){
 					mes "would be...?";
 					next;
 					switch(select("Muetro", "Hans")){
-						case 1:	
+						case 1:
 							mes "[Dequ'ee]";
 							mes "Bankley, Geil,";
 							mes "Muetro, and Hans.";
@@ -1806,7 +1806,7 @@ if(tu_swordman == 16){
 							close;
 							break;
 					}
-					break; 						
+					break;
 			}
 			break;
 	}
@@ -1984,7 +1984,7 @@ if(tu_swordman == 7){
 	close;
 }
 
-if(tu_swordman == 6){	
+if(tu_swordman == 6){
 	mes "[Dequ'ee]";
 	mes "Ah...!";
 	mes "Are you the Swordman";
@@ -2008,7 +2008,7 @@ if(tu_swordman == 6){
 					mes "Did you find";
 					mes "out who he is?";
 					mes "If you did...";
-					next; 
+					next;
 					switch(select("Why are we...", "What are we...")){
 						case 1:
 							mes "[" + strcharinfo(0) + "]";
@@ -2051,7 +2051,7 @@ if(tu_swordman == 6){
 					mes "Did you figure out";
 					mes "who's behind all this?";
 					mes "If you did...";
-					next; 
+					next;
 					switch(select("Why are we...", "What are we...")){
 						case 1:
 							mes "[" + strcharinfo(0) + "]";
@@ -2102,7 +2102,7 @@ if(tu_swordman == 6){
 					mes "Did you find";
 					mes "out who he is?";
 					mes "If you did...";
-					next; 
+					next;
 					switch(select("Why are we...", "What are we...")){
 						case 1:
 							mes "[" + strcharinfo(0) + "]";
@@ -2170,7 +2170,7 @@ if(tu_swordman == 6){
 					mes "Did you figure out";
 					mes "who's behind all this?";
 					mes "If you did...";
-					next; 
+					next;
 					switch(select("Why are we...", "What are we...")){
 						case 1:
 							mes "[" + strcharinfo(0) + "]";
@@ -2217,7 +2217,7 @@ if(tu_swordman == 6){
 			break;
 	}
 }
-	
+
 	mes "Hmm...?";
 	mes "Do you have any";
 	mes "business with me?";
@@ -2276,7 +2276,7 @@ morocc_in,51,101,3	script	Geil	89,{
 	close;
 }
 
-//=================================================Meutro====================================================		
+//=================================================Meutro====================================================
 morocc,82,292,5	script	Muetro	84,{
 	mes "[Muetro]";
 	if(tu_swordman == 15){
@@ -2372,7 +2372,7 @@ morocc,240,72,3	script	Hans	86,{
 	mes "But I don't think I can be of any help to you. Right now, it seems that I've got problems of my own...";
 	close;
 }
-	
+
 //=================================================Bankley====================================================
 morocc_in,12,156,3	script	Bankley	97,{
 	if(tu_swordman > 19){

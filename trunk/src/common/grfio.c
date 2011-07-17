@@ -230,7 +230,7 @@ int decode_zip(unsigned char* dest, unsigned long* destLen, const unsigned char*
 
 
 ///////////////////////////////////////////////////////////////////////////////
-///	Grf data sub : zip encode 
+///	Grf data sub : zip encode
 int encode_zip(unsigned char* dest, unsigned long* destLen, const unsigned char* source, unsigned long sourceLen)
 {
 	return compress(dest, destLen, source, sourceLen);

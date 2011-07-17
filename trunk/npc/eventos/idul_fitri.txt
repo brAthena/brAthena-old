@@ -28,7 +28,7 @@ prontera,146,92,3       script  Cellerb 58,{
         if((gettime(6)==10 && (gettime(5)==24 || gettime(5)==25))==0) {
                 mes "Parabéns! Comemore a festa do fim do Ramadã no feriado de Idul Fitri.";
                 specialeffect EF_SANDMAN;
-                close;  
+                close;
         }
         mes "Oláa......^FF8800"+strcharinfo(0)+"^000000!!";
         mes "O dia de Idul Fitri chegou.";
@@ -52,7 +52,7 @@ prontera,146,92,3       script  Cellerb 58,{
                 mes "^000088~2 Ervas Verdes, 5 Caules.~^000000";
                 next;
                 mes @npcname$;
-                if ( (countitem(552)<5 || countitem(515)<5 ||countitem(516)<5 || countitem(517)<10 || countitem(511)<2 || countitem(905)<5) ) { 
+                if ( (countitem(552)<5 || countitem(515)<5 ||countitem(516)<5 || countitem(517)<10 || countitem(511)<2 || countitem(905)<5) ) {
                         mes "Você não tem todos os itens.";
                         mes "Volte aqui quando tiver todos.";
                         close;
@@ -76,7 +76,7 @@ prontera,146,92,3       script  Cellerb 58,{
                 emotion e_thx;
                 close;
 
-        case 2: 
+        case 2:
                 mes @npcname$;
                 mes "Oh, tudo bem, talvez você participe da Quest de amanhã.";
                 emotion e_hmm;

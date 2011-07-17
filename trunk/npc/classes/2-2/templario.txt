@@ -109,7 +109,7 @@ prt_castle,45,169,5	script	Senior Crusader	752,{
 					mes "[Michael Halig]";
 					mes "Train yourself more as a Swordsman and wait for your calling. I understand your intent, but as of now, you cannot join us.";
 					close;
-				} 
+				}
 				mes "[Michael Halig]";
 				if (Skillpoint) {
 					mes "You haven't finished learning everything as a Swordsman. Use all of your remaining skill points, and then return to me.";

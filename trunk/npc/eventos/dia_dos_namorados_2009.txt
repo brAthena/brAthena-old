@@ -25,7 +25,7 @@
 // |--------------------------------------------------------    |
 // | Changelog:                                                 |
 // | 1.0 Script Traduzido [Boomer]                              |
-// | - Anotações                                                |                                           
+// | - Anotações                                                |
 // \____________________________________________________________/
 
 // Marco Bassinio (Cria Chocolate/Caixa de Chocolate)
@@ -163,7 +163,7 @@ prontera,164,174,4      script  Vendedor#Val09  58,{
                                 mes "uma caixa de chocolate vazia";
                                 mes "sem nenhum chocolate dentro,";
                                 mes "estou certo?";
-                                close;                          
+                                close;
                         }
                         if (!checkweight(12744,1)) {
                                 mes "[Marco Bassinio]";
@@ -355,7 +355,7 @@ prontera,147,171,5      script  Vendedor Embrulho#Val09 58,{
                                         getitem 7948,.@input;
                                         next;
                                         break;
-                                }       
+                                }
                         case 4:
                                 mes "[Vendedor de Embrulho]";
                                 mes "Adeusinho ~!";
@@ -383,7 +383,7 @@ prontera,154,185,5      script  Joalheiro#Val09 721,{
                 mes "para lidar com as missões.";
                 close;
         }
-        
+
         if (iROval09ring >= 1) {
                 mes "[Joalheiro]";
                 mes "A caixa com o anel,";
@@ -406,7 +406,7 @@ prontera,154,185,5      script  Joalheiro#Val09 721,{
                 mes "tente ficar popular!";
                 close;
         }
-        
+
         mes "[Joalheiro]";
         mes "Olá..";
         mes "Se veio até mim é porque";
@@ -501,7 +501,7 @@ prontera,154,185,5      script  Joalheiro#Val09 721,{
         mes "participar da votação, entendeu?";
         mes "Desafie-se a torna-se";
         mes "Valentine's Hottest!";
-        close;  
+        close;
 }
 
 // Gerente de Votos do Dia dos Namorados (Registros de votos)
@@ -556,7 +556,7 @@ prontera,157,185,4      script  Gerente de Votos#v      113,{
                                         next;
                                         break;
                                 }
-                                
+
                                 if (Sex) {
                                         if (countitem(7947) > .@input) {
                                                 mes "[Gerente de Votos]";
@@ -565,7 +565,7 @@ prontera,157,185,4      script  Gerente de Votos#v      113,{
                                                 next;
                                                 break;
                                         }
-                                        
+
                                         if (countitem(7947) < .@input) {
                                                 mes "[Gerente de Votos]";
                                                 mes "Parece que o valor que você digitou é muito grande.";
@@ -573,7 +573,7 @@ prontera,157,185,4      script  Gerente de Votos#v      113,{
                                                 next;
                                                 break;
                                         }
-                                        
+
                                         mes "[Gerente de Votos]";
                                         mes "Eu vou levar os anéis de prata,";
                                         mes "e a contagem de votos para você.";
@@ -594,7 +594,7 @@ prontera,157,185,4      script  Gerente de Votos#v      113,{
                                                 next;
                                                 break;
                                         }
-                                        
+
                                         if (countitem(7946) < .@input) {
                                                 mes "[Gerente de Votos]";
                                                 mes "Parece que o valor que você digitou é muito grande.";
@@ -602,7 +602,7 @@ prontera,157,185,4      script  Gerente de Votos#v      113,{
                                                 next;
                                                 break;
                                         }
-                                        
+
                                         mes "[Gerente de Votos]";
                                         mes "Eu vou levar os anéis de ouro,";
                                         mes "e a contagem de votos para você.";
@@ -629,7 +629,7 @@ prontera,157,185,4      script  Gerente de Votos#v      113,{
                                 mes "[Gerente de Votos]";
                                 mes "O recorde atual mostra... "+$Val09name_F$+" é o lider de votos femininos, que é registrado o total de "+$Val09votes_F+" anéis.";
                                 next;
-                                break;                  
+                                break;
 
                         case 3:
                                 mes "[Gerente de Votos]";
@@ -661,7 +661,7 @@ prt_castle,42,35,3      script  Gerente Sobremesas#Val09        47,{
                 mes "Chato, chato, chato~~!";
                 close;
         }
-        
+
         mes "[Charles Orleans]";
         mes "Oh, Mademoiselle!";
         mes "Neste pequeno espaço insignificante";
@@ -786,5 +786,5 @@ prt_castle,42,35,3      script  Gerente Sobremesas#Val09        47,{
                 mes "belo coração por dentro.";
                 close;
         }
-        
+
 }

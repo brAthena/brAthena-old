@@ -18,7 +18,7 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Protimus]                        |
-// | 1.1 Script Revisado [Protimus]							| 
+// | 1.1 Script Revisado [Protimus]							|
 // \________________________________________________________/
 
 aldebaran,139,63,4	script	Soldado#alde	105,{
@@ -63,7 +63,7 @@ aldebaran,133,108,4	script	Soldier#2alde	105,{
 	next;
 	mes "[Guarda de Al de Baran]";
 	mes "Eu faço parte da Guarda de Al de Baran!!";
-	mes "Então, deixe me mostrá-lo o mapa da cidade.";	
+	mes "Então, deixe me mostrá-lo o mapa da cidade.";
 	next;
 	switch(select("Central das Kafras.:Loja de Armas.:Guilda dos Magos.:Bar.:Loja de Utilidades.:Guilda dos Alquimistas.:Cancelar.")) {
 	case 1:

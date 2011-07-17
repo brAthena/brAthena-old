@@ -279,15 +279,15 @@ job_duncer,43,93,4	script	Aile#da	724,{
 		end;
 	} else if (DANC_Q >= 2 && DANC_Q <= 4) {
 		switch(DANC_Q) {
-			case 2: 
+			case 2:
 				setarray .@item[0], 938,909,501,2403;
 				setarray .@count[0], 20,3,5,1;
 				break;
-			case 3: 
+			case 3:
 				setarray .@item[0], 1055,2405;
 				setarray .@count[0], 5,1;
 				break;
-			case 4: 
+			case 4:
 				setarray .@item[0], 965,503,909,1020,2401;
 				setarray .@count[0], 2,5,20,10,1;
 				break;
@@ -826,10 +826,10 @@ job_duncer,95,93,4	script	Bijou#da	101,{
 		else getitem 1950,1; //Rope
 		close;
 	}
-} 
+}
 
 // Waiting Room
-//============================================================ 
+//============================================================
 job_duncer,32,154,1	script	Waiting Room#dance	66,{
 OnInit:
 	waitingroom "Waiting Room",20,"Waiting Room#dance::OnStartArena",1;
@@ -869,7 +869,7 @@ job_duncer,32,154,1	script	Waiting Room#click	66,{
 }
 
 // Dance Timer
-//============================================================ 
+//============================================================
 job_duncer,69,105,0	script	Bijou#dance_timer	-1,{
 OnEnable:
 	initnpctimer;
@@ -1222,7 +1222,7 @@ OnEnable:
 }
 
 // Dance Move Triggers
-//============================================================ 
+//============================================================
 -	script	dancestep::StepTrigger	-1,1,1,{
 OnTouch:
 	donpcevent "Backdancer#1::OnOmg";
@@ -1256,7 +1256,7 @@ OnDisable:
 }
 
 // Backup Dancers
-//============================================================ 
+//============================================================
 job_duncer,63,110,4	script	Backdancer#1::BackDancer	724,{
 	end;
 

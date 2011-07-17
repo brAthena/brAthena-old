@@ -50,10 +50,10 @@ alberta,214,77,6	script	Capitão Jassen	709,{
 		mes "Eu fiquei comovido quando você aceitou um pedido meu, um estranho, tão facilmente. Você deve ser realmente um dos bons, herói aventureiro. Você está interessado em sair numa viagem oceânica?";
 		next;
 		mes "["+.@name_102$+"]";
-		mes "Já naveguei algumas vezes... Mas agora penso sobre isto, e vejo que nunca cruzei todo o continente"; 
+		mes "Já naveguei algumas vezes... Mas agora penso sobre isto, e vejo que nunca cruzei todo o continente";
 		next;
 		mes "[Capitão Janssen]";
-		mes "Não, isso é bom o suficiente. Talvez eu só tenha uma pequena embarcação de pesca, mas eu costumava ser um capitão que comandou uma frota"; 
+		mes "Não, isso é bom o suficiente. Talvez eu só tenha uma pequena embarcação de pesca, mas eu costumava ser um capitão que comandou uma frota";
 		next;
 		mes "[Capitão Janssen]";
 		mes "Como você deve saber após algumas viagens marítimas, talvez muitas pessoas não tenham atravessado o oceano além do continente. Eu também falhei na conquista do oceano.";
@@ -255,7 +255,7 @@ e_tower,81,105,0	script	Pedra de Proteção da Torre	406,{
 						// Desabilita os teleportes em todos os mapas. (habilita como andares que estão limpos)
 						for( set .@i, 1; .@i <= 99; set .@i, .@i + 1 )
 							donpcevent instance_npcname(.@i+"FGate102tower", instance_id())+"::OnInstanceInit";
-						// Teleportes habilitam com contador, então jogadores não poderão pegar Cinzas ilimitadas. 
+						// Teleportes habilitam com contador, então jogadores não poderão pegar Cinzas ilimitadas.
 						donpcevent instance_npcname("25FGate102tower-2", instance_id())+"::OnInstanceInit";
 						donpcevent instance_npcname("50FGate102tower-2", instance_id())+"::OnInstanceInit";
 						donpcevent instance_npcname("75FGate102tower-2", instance_id())+"::OnInstanceInit";
@@ -3486,7 +3486,7 @@ OnMyMobDead:
 		donpcevent instance_npcname("91FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 91
 	}
-	else 
+	else
 		instance_announce 0,"Monstros vivos no 91° andar: " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
@@ -3720,65 +3720,65 @@ OnEnable:
 	enablenpc instance_npcname("98FGate102tower", instance_id());
 	for( set .@i, 1; .@i <= 7; set .@i, .@i + 1 ) {
 		set .@mob_ran,rand(1,30);
-		if (.@mob_ran == 1) 
+		if (.@mob_ran == 1)
 			areamonster "4@tower",267,9,277,45,"Kathryne Keyron",1639,2,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
-		else if (.@mob_ran == 2) 
+		else if (.@mob_ran == 2)
 			areamonster "4@tower",267,9,277,45,"Seyren Windsor",1634,2,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
-		else if (.@mob_ran == 3) 
+		else if (.@mob_ran == 3)
 			areamonster "4@tower",267,9,277,45,"Margaretha Sorin",1637,2,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
-		else if (.@mob_ran == 4) 
+		else if (.@mob_ran == 4)
 			areamonster "4@tower",267,9,277,45,"Eremes Guile",1635,2,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
-		else if (.@mob_ran == 5) 
+		else if (.@mob_ran == 5)
 			areamonster "4@tower",267,9,277,45,"Howard Alt-Eisen",1636,2,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
-		else if (.@mob_ran == 6) 
+		else if (.@mob_ran == 6)
 			areamonster "4@tower",267,9,277,45,"Cecil Damon",1638,2,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
-		else if (.@mob_ran == 7) 
+		else if (.@mob_ran == 7)
 			areamonster "4@tower",267,9,277,45,"Sombra da Inveja",1918,5,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
-		else if (.@mob_ran == 8) 
+		else if (.@mob_ran == 8)
 			areamonster "4@tower",267,9,277,45,"Sombra da Gula",1919,5,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
-		else if (.@mob_ran == 9) 
+		else if (.@mob_ran == 9)
 			areamonster "4@tower",267,9,277,45,"Sombra da Vaidade",1920,5,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
-		else if (.@mob_ran == 10) 
+		else if (.@mob_ran == 10)
 			areamonster "4@tower",267,9,277,45,"Sombra da Ira",1921,5,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
-		else if (.@mob_ran == 11) 
+		else if (.@mob_ran == 11)
 			areamonster "4@tower",267,9,277,45,"Valkyrie",1765,5,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
-		else if (.@mob_ran == 12) 
+		else if (.@mob_ran == 12)
 			areamonster "4@tower",267,9,277,45,"Skeggiold",1755,10,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
-		else if (.@mob_ran == 13) 
+		else if (.@mob_ran == 13)
 			areamonster "4@tower",267,9,277,45,"Skeggiold",1754,10,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
-		else if (.@mob_ran == 14) 
+		else if (.@mob_ran == 14)
 			areamonster "4@tower",267,9,277,45,"Seyren Windsor",1634,15,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
-		else if (.@mob_ran == 15) 
+		else if (.@mob_ran == 15)
 			areamonster "4@tower",267,9,277,45,"Cavaleiro Sanguinário",1268,10,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
-		else if (.@mob_ran == 16) 
+		else if (.@mob_ran == 16)
 			areamonster "4@tower",267,9,277,45,"Cavaleiro do Abismo",1219,10,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
-		else if (.@mob_ran == 17) 
+		else if (.@mob_ran == 17)
 			areamonster "4@tower",267,9,277,45,"Andarilho",1208,10,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
-		else if (.@mob_ran == 18) 
+		else if (.@mob_ran == 18)
 			areamonster "4@tower",267,9,277,45,"Guardião Espadachim",1829,15,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
-		else if (.@mob_ran == 19) 
+		else if (.@mob_ran == 19)
 			areamonster "4@tower",267,9,277,45,"Guardião Arqueiro",1830,15,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
-		else if (.@mob_ran == 20) 
+		else if (.@mob_ran == 20)
 			areamonster "4@tower",267,9,277,45,"Kathryne Keyron",1639,15,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
-		else if (.@mob_ran == 21) 
+		else if (.@mob_ran == 21)
 			areamonster "4@tower",267,9,277,45,"Ancião",1377,10,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
-		else if (.@mob_ran == 22) 
+		else if (.@mob_ran == 22)
 			areamonster "4@tower",267,9,277,45,"Laurell Weinder",1657,10,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
-		else if (.@mob_ran == 23) 
+		else if (.@mob_ran == 23)
 			areamonster "4@tower",267,9,277,45,"Xamã do Vento",1263,10,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
-		else if (.@mob_ran == 24) 
+		else if (.@mob_ran == 24)
 			areamonster "4@tower",267,9,277,45,"Marduk",1140,10,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
-		else if (.@mob_ran == 25) 
+		else if (.@mob_ran == 25)
 			areamonster "4@tower",267,9,277,45,"Cecil Damon",1638,10,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
-		else if (.@mob_ran == 26) 
+		else if (.@mob_ran == 26)
 			areamonster "4@tower",267,9,277,45,"Guardião Arqueiro",1830,10,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
-		else if (.@mob_ran == 27) 
+		else if (.@mob_ran == 27)
 			areamonster "4@tower",267,9,277,45,"Kavach Icarus",1656,30,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
-		else if (.@mob_ran == 28) 
+		else if (.@mob_ran == 28)
 			areamonster "4@tower",267,9,277,45,"Baronesa da Retribuição",1702,10,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
-		else if (.@mob_ran == 29) 
+		else if (.@mob_ran == 29)
 			areamonster "4@tower",267,9,277,45,"Lady Solace",1703,10,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
-		else 
+		else
 			areamonster "4@tower",267,9,277,45,"Anjo Fajuto",1371,10,instance_npcname("98FGate102tower", instance_id())+"::OnMyMobDead";
 	}
 	end;

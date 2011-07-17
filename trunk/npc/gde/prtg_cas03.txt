@@ -20,7 +20,7 @@
 // | 1.0 Script Traduzido [cleyton]                         |
 // | 1.1 Script Revisado [Protimus & Tyler]                 |
 // | 1.2 Correção de Tradução [Protimus]                    |
-// | - Corrigido erro de concordância nominal               |  
+// | - Corrigido erro de concordância nominal               |
 // \________________________________________________________/
 
 // Bandeira do Castelo (Cidade)

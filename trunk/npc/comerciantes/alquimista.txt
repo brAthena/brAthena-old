@@ -19,7 +19,7 @@
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Mark]	                        |
 // | 1.1 Script Otimizado [Mark]	                        |
-// | - Anotações		   			    					| 
+// | - Anotações		   			    					|
 // \________________________________________________________/
 
 alde_alche,24,188,3	script	Comerciante da Guilda	740,{
@@ -94,7 +94,7 @@ alde_alche,24,188,3	script	Comerciante da Guilda	740,{
 		next;
 		switch(select("Manual de Criação de Poções:Manual de Criação de Álcool:Manual de Criação de Fogo Grego:Manual de Criação de Frasco de Ácido:Manual de Criação de Plantas:Manual de Criação de Esferas-Marinhas:Manual de Criação de Revestimentos:Manual de Criação de Poções Condensadas:Cancelar Negociação.")) {
 		case 1:
-			callsub S_SellManual,7144,100000; //Normal_Potion_Book 
+			callsub S_SellManual,7144,100000; //Normal_Potion_Book
 			break;
 		case 2:
 			callsub S_SellManual,7127,100000; //Alcol_Create_Book

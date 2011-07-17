@@ -142,7 +142,7 @@ alberta_in,53,43,6	script	Merchant#mer	86,{
 		callfunc "F_ClearJobVar";
 		if(checkquest(1009) != -1) completequest 1009;
 		else if(checkquest(1010) != -1) completequest 1010;
-		else if(checkquest(1011) != -1) completequest 1011; 
+		else if(checkquest(1011) != -1) completequest 1011;
 		else completequest 1012;
 		mes "Estou muito feliz que você tenha se integrado a Guilda dos Mercadores, e espero que você desempenhe um papel ativo na economia de Rune-Midgard.";
 		next;

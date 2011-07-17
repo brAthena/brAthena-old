@@ -358,7 +358,7 @@ payon,132,235,3	script	Escola de Monstros#02	98,{
 }
 
 // Inside Payon
-//============================================================ 
+//============================================================
 payon_in01,180,7,2	script	Garçonete#payon	90,{
 	mes "[Garçonete]";
 	mes "Este lugar sempre está movimentado com pessoas.Noviços sempre aparecem por aqui para virar arqueiros, ou para comprar flecha. Eles se divertem enquanto eu fico aqui nessa pequena loja. ";
@@ -848,7 +848,7 @@ OnTouch:
 			mes "Embora nossos antepassados não usufruiam dos beneficios de intercâmbio cultural com o reino de Rune-Midgard, como fazemos hoje, eles sabiam sobreviver sem pedir ";
 			mes "qualquer ajuda.";
 			next;
-			mes "[Chefe]"; 
+			mes "[Chefe]";
 			mes "Payon desenvolveu suas próprias culturas e formas de vida. Nós inventamos nossos próprios meios de nos proteger contra elementos do mal .E treinamos arqueiros e caçadores sejam eles homens ou mulheres.";
 			next;
 			mes "[Chefe]";
@@ -872,64 +872,64 @@ OnTouch:
 			mes "No entanto, com o tempo";
 			mes "conseguimos resolver essas diferenças mesquinhas.Além do que não posso negar que, eles nos ajudaram a desenvolver o comércio com as nações estrangeiras.";
 			next;
-			mes "[Chefe]"; 
+			mes "[Chefe]";
 			mes "Agora as pessoas que costumavam esnobar payon, hoje possuem um imenso prazer em visitar a nossa cidade.Quando eu era jovem eu nunca imaginei que isso aconteceria um dia. Hahaha~!";
 			next;
-			mes "[Chefe]"; 
+			mes "[Chefe]";
 			mes "Acredite, hoje eu me agrado em conhecer esses povos.Apesar de terem vindo de outros lugares, eles possuem um amor por payon que é tão sincero quanto o meu.";
 			break;
 		case 3:
-			mes "[Chefe]"; 
+			mes "[Chefe]";
 			mes "Ah...";
 			mes "As vezes eu costumava ir";
 			mes "para a caverna ao norte. Mas agora";
 			mes "é mais difícil que antigamente.";
 			next;
-			mes "[Chefe]"; 
+			mes "[Chefe]";
 			mes "Criaturas do mal nascem em qualquer lugar na caverna de Payon, sendo que são monstros diferentes dos quais nós estamos habituados a lutar";
 			next;
-			mes "[Chefe]"; 
+			mes "[Chefe]";
 			mes "Você chegou a ver os";
 			mes "Zombis...? Alguns zumbis são guerreiros que sairam para proteger essa cidade e nunca mais voltaram.";
 			next;
-			mes "[Chefe]"; 
+			mes "[Chefe]";
 			mes "Apesar desses mortos vivos serem uma ameaça para essa cidade, alguns são vítimas da própria caverna. Estou velho de mais para suportar esse tipo de dor...";
 			next;
-			mes "[Chefe]"; 
+			mes "[Chefe]";
 			mes "Eu preciso fazer algo para libertar as almas dos mortos vivos de sua angústia eterna.";
 			break;
 		case 4:
-			mes "[Chefe]"; 
+			mes "[Chefe]";
 			mes "Ah, aqui existe uma ambudância de arqueiros especialistas em Payon, por causa floresta, possuimos grande suprimento de madeira para criar flechas.";
 			next;
-			mes "[Chefe]"; 
+			mes "[Chefe]";
 			mes "A floresta é um bom lugar para os arqueiros treinarem e aprenderem a usar o ambiente para impedir o avanço de forças inimigas, podendo atacar a uma distância segura.";
 			next;
-			mes "[Chefe]"; 
+			mes "[Chefe]";
 			mes "A floresta pode ser conveniente para surpresas inexperadas. Quando eu era jovem, eu corre com as flechas para lutar contra os monstros da floresta, mas eu acabei deixando as flechas cairem e outro monstro salvou minha vida! Mwahaha!";
 			break;
 		case 5:
-			mes "[Chefe]"; 
+			mes "[Chefe]";
 			mes "Como muitas culturas foram introduzidas em Payon, mudanças tem influênciado nosso estilo de batalha.";
 			next;
-			mes "[Chefe]"; 
+			mes "[Chefe]";
 			mes "Tecnologia, especialmente com explosivos, habilitando novos métodos";
 			mes "de batalha. Nós não ficaremos limitados somente ao uso de arco e flecha.";
 			next;
-			mes "[Chefe]"; 
+			mes "[Chefe]";
 			mes "Habilidade com armadilhas, fazem";
 			mes "caçar monstros com maior facilidade, foram desenvolvidas aqui em Payon. Os especialistas com essa nova habilidade são chamados de 'Caçadores' por nosso Chefe anterior.";
 			next;
-			mes "[Chefe]"; 
+			mes "[Chefe]";
 			mes "Embora altamente efetiva, essa habilidade realmente é um perigo para quem não sabe usar. Por isso nós não aprovamos pessoas experientes para se tornar um Caçador.";
 			next;
-			mes "[Chefe]"; 
+			mes "[Chefe]";
 			mes "Porém, nós damos boas vindas as pessoas";
 			mes "que provam ser capazes de se tornar um Caçador.";
 			break;
 		}
 		next;
-		mes "[Chefe]"; 
+		mes "[Chefe]";
 		mes "Então, cansado...";
 		mes "É melhor descansar um pouco.";
 		mes "Por favor, se";
@@ -964,7 +964,7 @@ payon_in03,102,185,5	script	Guard#payon	708,{
 }
 
 // Payon Archer Village
-//============================================================ 
+//============================================================
 pay_arche,77,131,2	script	Arqueiro Joe#payon	88,{
 	mes "[Arqueiro Joe]";
 	mes "Payon!";

@@ -24,7 +24,7 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Mark]                            |
-// | - Anotações		      			                    | 
+// | - Anotações		      			                    |
 // \________________________________________________________/
 
 // Inicio/Término WoE
@@ -51,7 +51,7 @@ OnAgitInit2:
 	// Checando final da WoE
 	if ((gettime(4)==2) && (gettime(3)==21) ||
 	    (gettime(4)==4) && (gettime(3)==21) ||
-	    (gettime(4)==6) && (gettime(3)==23)) { 
+	    (gettime(4)==6) && (gettime(3)==23)) {
 		if (agitcheck2()) {
 			AgitEnd2;
 		}

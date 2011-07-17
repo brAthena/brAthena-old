@@ -40,8 +40,8 @@ prontera,146,92,4	script	Torres Gêmeas#tt1::Torres Gêmeas	812,{
 	next;
 	menu "Vou aceitar sua oferta.",YES,"Vou procurar pelos seus serviços uma outra hora.",NO;
 
-	NO:	
-	mes "[Torres Gêmeas]"; 
+	NO:
+	mes "[Torres Gêmeas]";
 	mes "Er, que pena. Viajando sozinho é ainda a melhor prova de aventura.";
 	mes "Não é isso que demonstra que você ainda é jovem?";
 	mes "Nós respeitamos os corações corajosos como o seu!";
@@ -55,7 +55,7 @@ prontera,146,92,4	script	Torres Gêmeas#tt1::Torres Gêmeas	812,{
 	mes "Esqueça todos os seus problemas e crie uma lenda esplêndida neste mundo maravilhoso.";
 	mes "Este é um mundo tão maravilhoso, e você sempre será um grande aventureiro!";
 	close;
-	YES:	
+	YES:
 	mes "[Torres Gêmeas]";
 	mes "A paixão ardente de um aventureiro, o desejo";
 	mes "de explorar os reinos desconhecidos, a dedicação";

@@ -17,7 +17,7 @@
 // | Descrição:                                             |
 // | iRO Halloween (2008)                                   |
 // | Run away from the zombies for tickets.                 |
-// | Redeem tickets for prizes.                             | 
+// | Redeem tickets for prizes.                             |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Wolf]                            |
@@ -26,7 +26,7 @@
 
 
 payon,162,176,4	script	Halloween Magician#iRO08	704,{
-	
+
 	if(Hallow08 < 1) {
 			mes "[Halloween Mágico]";
 			mes "Kkkkkkkkk!";
@@ -82,7 +82,7 @@ payon,162,176,4	script	Halloween Magician#iRO08	704,{
 		next;
 		goto MainMenu2;
 	}
-	
+
 		Rules:
 			mes "[Halloween Mágico]";
 			mes "Essa aldeia é como uma Payon";
@@ -128,7 +128,7 @@ payon,162,176,4	script	Halloween Magician#iRO08	704,{
 			}else{
 				goto MainMenu;
 			}
-			
+
 		Participate:
 			mes "[Halloween Magician]";
 			mes "Ok, você está pronto.";
@@ -172,7 +172,7 @@ payon,162,176,4	script	Halloween Magician#iRO08	704,{
 				warp "evt_zombie",155,246;
 				end;
 			}
-			
+
 		TicketExchange:
 			mes "[Halloween Magician]";
 			mes "Você quer trocar os tickets";
@@ -230,7 +230,7 @@ payon,162,176,4	script	Halloween Magician#iRO08	704,{
 						getitem 617,1;
 						goto Enough;
 					}
-					break;			
+					break;
 				case 5:
 					if(countitem(7941) < 200) {
 						goto NotEnough;
@@ -240,7 +240,7 @@ payon,162,176,4	script	Halloween Magician#iRO08	704,{
 						goto Enough;
 					}
 			}
-					
+
 		NextTime:
 			mes "[Halloween Magician]";
 			mes "Ok, até então.";
@@ -273,7 +273,7 @@ payon,162,176,4	script	Halloween Magician#iRO08	704,{
 			goto MainMenu;
 		}
 }
-	
+
 // --------------- MapFlags ---------------
 
 

@@ -14,13 +14,13 @@
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.7/1.1                                |
 // |--------------------------------------------------------|
-// | Descrição:	Aluguel de Peco Peco para Cavaleiros e 		| 
+// | Descrição:	Aluguel de Peco Peco para Cavaleiros e 		|
 // | Templários e Falcões para Caçadores					|
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Traduzido [Mark]	                        |
 // | 1.1 Script Otimizado [Mark]	                        |
-// | - Anotações		   			    					| 
+// | - Anotações		   			    					|
 // \________________________________________________________/
 
 // Criador de Peco Peco (Para Cavaleiros)-------------------------------------------

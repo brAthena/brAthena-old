@@ -22,7 +22,7 @@
 // | 1.0 Script Traduzido [Barsaglini]                      |
 // | 1.1 Script Revisado [Tyler & Kooler]                   |
 // \________________________________________________________/
- 
+
 // Ofertas do Edgar
 //============================================================
 izlude,182,186,2	script	Edgar#izlude	49,{

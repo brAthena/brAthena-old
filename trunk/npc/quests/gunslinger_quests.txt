@@ -370,11 +370,11 @@ SubGarrison_:
 			delitem 13104, 1;
 			getitem 13105, 1;
 			close;
-		
+
 		case 3:
 			mes "[Garrison]";
 			mes "I'll see you when I see you~";
-			close;	
+			close;
 	}
 }
 
@@ -730,7 +730,7 @@ que_ng,185,180,3	script	Vanessa	726,{
 			next;
 			switch( select( "Maybe next time.","Okay.") )
 			{
-				case 1:	
+				case 1:
 					mes "[Vanessa]";
 					mes "Mm~ Is that so~";
 					mes "It will be an opportunity for you.";
@@ -738,8 +738,8 @@ que_ng,185,180,3	script	Vanessa	726,{
 					mes "Then see you next time~";
 					mes "Bye~Bye~";
 					close;
-           
-				case 2:	
+
+				case 2:
 					mes "[Vanessa]";
 					mes "Mm, Okay.";
 					mes "To make a Destroyer,";
@@ -753,7 +753,7 @@ que_ng,185,180,3	script	Vanessa	726,{
 
 		case 1:
 			callsub SubDestroyer;
-			
+
 		case 2:
 			mes "[Vanessa]";
 			mes "Oh~ You're back.?";
@@ -785,7 +785,7 @@ que_ng,185,180,3	script	Vanessa	726,{
 							case 2:
 							callsub SubDestroyer;
 					}
-							
+
 				case 2:
 					mes "[Vanessa]";
 					mes "Oh~ The Slotted Destroyer~";
@@ -808,12 +808,12 @@ que_ng,185,180,3	script	Vanessa	726,{
 							mes "Ok, well, think about it";
 							mes "and come back...";
 							close;
-			
+
 						case 2:
 							callsub SubDestroyer_;
-			
+
 					}
-           
+
 				case 3:
 					mes "[Vanessa]";
 					mes "Hmm~ Yeah~";

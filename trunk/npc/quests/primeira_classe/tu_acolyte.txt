@@ -127,7 +127,7 @@ prt_church,179,15,1	script	Priest Praupin	110,{
 			}
 			delitem 7181, 1;
 			set tu_acolyte01, 23;
-			close;  
+			close;
 		} else {
 			mes "You are such a good person,";
 			mes "a true child of the light. I hope that many others will benefit from the purity of your heart and mind.";
@@ -244,7 +244,7 @@ prt_monk,230,106,3	script	Asthe#tu	79,{
 		mes "is the most necessary";
 		mes "skill for an Acolyte?";
 		next;
-		switch(select("Heal:Aqua Benedicta:Teleport")){ 
+		switch(select("Heal:Aqua Benedicta:Teleport")){
 		case 1:
 			mes "[Asthe]";
 			mes "Ah, yes.";
@@ -378,7 +378,7 @@ prt_monk,230,106,3	script	Asthe#tu	79,{
 				next;
 				mes "[Asthe]";
 				mes "But you must have forgotten the Mace I've lent you. Would you bring it back so that I can return it to the church?";
-				close;  
+				close;
 			}
 		}
 		mes "Are you having";
@@ -1055,7 +1055,7 @@ prt_monk,226,257,6	script	Ill Girl#tu	93,{
 			mes "^3355FFNothing happened.";
 			mes "It doesn't look like";
 			mes "that skill will work.^000000";
-			close; 
+			close;
 			break;
 		case 2:
 			if(getskilllv("AL_BLESSING") == 0) goto L_NONE;
@@ -1343,7 +1343,7 @@ prt_monk,219,164,3	script	Gloria#tu	95,{
 	mes "Prontera anymore. ^333333*Sniff*^000000";
 	close;
 }
-//=================================================Cleope Verce====================================================  
+//=================================================Cleope Verce====================================================
 prt_monk,153,210,3	script	Cleope Verce	95,{
 	mes "[Cleope Verce]";
 	if(BaseJob != Job_Acolyte){
@@ -1361,10 +1361,10 @@ prt_monk,153,210,3	script	Cleope Verce	95,{
 		mes "an Acolyte! I hate to admit it,";
 		mes "but you're too good for me to";
 		mes "call you a rookie anymore~";
-		close; 
+		close;
 	}
 	if(BaseLevel < 26){
-		mes "Oh my.. "; 
+		mes "Oh my.. ";
 		mes "A newbie Acolyte?";
 		mes "It doesn't even seem";
 		mes "like you've learned";
@@ -1406,7 +1406,7 @@ prt_monk,153,210,3	script	Cleope Verce	95,{
 		mes "Rookie.";
 		close;
 	} else if(BaseLevel < 36){
-		mes "Oh my.. "; 
+		mes "Oh my.. ";
 		mes "A young Acolyte?";
 		mes "You seem to have just";
 		mes "started learning your skills?";
@@ -1457,7 +1457,7 @@ prt_monk,153,210,3	script	Cleope Verce	95,{
 		mes "young friend.";
 		close;
 	} else if(BaseLevel < 46){
-		mes "Well, well, well~"; 
+		mes "Well, well, well~";
 		mes "Hello, young Acolyte.";
 		mes "You're still kind of";
 		mes "green, but I guess you're";
@@ -1493,7 +1493,7 @@ prt_monk,153,210,3	script	Cleope Verce	95,{
 			break;
 		}
 		next;
-		mes "[Cleope Verce]";	
+		mes "[Cleope Verce]";
 		mes "^333333*Sigh*^000000";
 		mes "Ah, memories~";
 		mes "Of course, if I had";
@@ -1521,9 +1521,9 @@ prt_monk,153,210,3	script	Cleope Verce	95,{
 	mes "an Acolyte! I hate to admit it,";
 	mes "but you're too good for me to";
 	mes "call you a rookie anymore~";
-	close; 
+	close;
 }
-//=================================================Range NPC====================================================  
+//=================================================Range NPC====================================================
 prt_monk,217,123,4	script	#tu_monk	139,10,10,{
 OnTouch:
 	if(BaseJob == Job_Acolyte){
@@ -1552,7 +1552,7 @@ OnTouch:
 	}
 	end;
 }
-//=================================================Eavesdrop====================================================  
+//=================================================Eavesdrop====================================================
 prt_monk,223,123,3	script	Eavesdrop#tu	111,{
 	if(BaseJob != Job_Acolyte){
 		mes "^3355FFThere's nothing here.^000000";
