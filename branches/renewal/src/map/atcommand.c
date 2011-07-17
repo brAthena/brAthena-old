@@ -4602,7 +4602,7 @@ ACMD_FUNC(mapinfo)
 ACMD_FUNC(mount)
 {
 	int msg[4] = { 0, 0, 0, 0 }, option = 0, skillnum = 0, val, riding_flag = 0;
- 	nullpo_retr(-1, sd);
+	nullpo_retr(-1, sd);
 
 	if( !message || !*message || sscanf(message, "%d", &val) < 1 || val < 1 || val > 5 )
 		val = 0;
@@ -4610,7 +4610,7 @@ ACMD_FUNC(mount)
 	if( (sd->class_&MAPID_UPPERMASK) == MAPID_KNIGHT || (sd->class_&MAPID_UPPERMASK) == MAPID_CRUSADER )
 	{
 		if( sd->class_&JOBL_THIRD )
- 		{
+		{
 			if( (sd->class_&MAPID_UPPERMASK) == MAPID_KNIGHT )
 			{
 				if( pc_isriding(sd,OPTION_RIDING_DRAGON) )
@@ -4632,7 +4632,7 @@ ACMD_FUNC(mount)
 				option = OPTION_RIDING;
 				skillnum = KN_RIDING;
 			}
- 		}
+		}
 
 		else
 		{
@@ -4656,12 +4656,12 @@ ACMD_FUNC(mount)
 			skillnum = RA_WUGRIDER;
 		}
 		else if( (sd->class_&MAPID_UPPERMASK) == MAPID_BLACKSMITH )
- 		{
+		{
 			if( pc_isriding(sd, OPTION_MADO) )
 				riding_flag = 1;
 			msg[0] = 710; msg[1] = 712; msg[2] = 711; msg[3] = 713;
 			option = OPTION_MADO;
- 		}
+		}
 	}
 
 	if( !option )
@@ -4693,8 +4693,8 @@ ACMD_FUNC(mount)
 		clif_displaymessage(fd, msg_txt(msg[0]));
 	}
 
- 	return 0;
- }
+	return 0;
+}
 
 /*==========================================
  *Spy Commands by Syrus22

@@ -499,7 +499,7 @@ extern struct Battle_Config
 	int bg_flee_penalty;
 
 	// brAthena Modificações
-    int use_statpoint2_table; // [Protimus]
+	int use_statpoint2_table; // [Protimus]
 	int block_relocation;	// [CarlosHenrq]
 } battle_config;
 

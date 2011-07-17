@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0731 - 17/07/2011 [Dani]
+	* Ajustes finos
+	* Correções no CMake para compilar corretamente no brAthena
+
 	r0729 - 17/07/2011 [Dani]
 	* Revertida otimização da pasta npc/gde2 feita na r457
 	- Motivo: aumento significativo no consumo de memória ram pelo map-server

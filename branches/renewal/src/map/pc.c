@@ -7222,9 +7222,9 @@ int pc_setoption(struct map_session_data *sd,int type)
 		new_look = -1;
 
 	if (sd->disguise || !new_look)
-		return 0;
+		return 0; //Disguises break sprite changes
 
-	if (new_look < 0) {
+	if (new_look < 0) { //Restore normal look.
 		status_set_viewdata(&sd->bl, sd->status.class_);
 		new_look = sd->vd.class_;
 	}

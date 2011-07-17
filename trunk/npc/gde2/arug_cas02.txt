@@ -2913,4 +2913,3 @@ OnRecvCastleAr02:
 	FlagEmblem GetCastleData("arug_cas02",1);
 	end;
 }
-

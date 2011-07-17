@@ -511,7 +511,6 @@ extern struct Battle_Config
 	int pc_camouflage_check_type;
 	int metallicsound_spburn_rate;
 	int block_relocation;	// [CarlosHenrq]
-
 } battle_config;
 
 void do_init_battle(void);

@@ -3012,6 +3012,7 @@ int clif_arrow_create_list(struct map_session_data *sd)
 
 	return 0;
 }
+
 int clif_spellbook_list(struct map_session_data *sd){
 	int i, c;
 	int fd;
@@ -3039,6 +3040,7 @@ int clif_spellbook_list(struct map_session_data *sd){
 
 	return 1;
 }
+
 /*==========================================
  *
  *------------------------------------------*/
@@ -7975,12 +7977,17 @@ int clif_refresh(struct map_session_data *sd)
 	clif_weather_check(sd);
 	if( sd->chatID )
 		chat_leavechat(sd,0);
+	if( sd->state.vending )
+		clif_openvending(sd, sd->bl.id, sd->vending);
 	if( pc_issit(sd) )
 		clif_sitting(&sd->bl,false); // FIXME: just send to self, not area
 	if( pc_isdead(sd) ) //When you refresh, resend the death packet.
 		clif_clearunit_single(sd->bl.id,CLR_DEAD,sd->fd);
 	else
 		clif_changed_dir(&sd->bl, SELF);
+
+	// unlike vending, resuming buyingstore crashes the client.
+	buyingstore_close(sd);
 
 #ifndef TXT_ONLY
 	mail_clear(sd);

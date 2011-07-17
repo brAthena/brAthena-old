@@ -47,7 +47,7 @@ struct unit_data {
 
 struct view_data {
 	unsigned short
-	  	class_,
+		class_,
 		weapon,
 		shield, //Or left-hand weapon.
 		robe,

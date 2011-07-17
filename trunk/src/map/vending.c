@@ -317,7 +317,6 @@ void vending_openvending(struct map_session_data* sd, const char* message, bool 
 	clif_showvendingboard(&sd->bl,message,0);
 }
 
-
 /// Checks if an item is being sold in given player's vending.
 bool vending_search(struct map_session_data* sd, unsigned short nameid)
 {

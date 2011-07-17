@@ -396,7 +396,7 @@ struct map_session_data {
 	unsigned short pvp_rank, pvp_lastusers;
 	unsigned short pvp_won, pvp_lost;
 
-	char eventqueue[MAX_EVENTQUEUE][NAME_LENGTH*2+3];
+	char eventqueue[MAX_EVENTQUEUE][EVENT_NAME_LENGTH];
 	int eventtimer[MAX_EVENTTIMER];
 	unsigned short eventcount; // [celest]
 
@@ -453,7 +453,7 @@ struct map_session_data {
 	int delunit_prevline;
 };
 
-//Update this max as necessary. 54 is the value needed for Super Baby currently
+//Update this max as necessary. 55 is the value needed for Super Baby currently
 #define MAX_SKILL_TREE 100
 //Total number of classes (for data storage)
 #define CLASS_COUNT (JOB_MAX - JOB_NOVICE_HIGH + JOB_MAX_BASIC)

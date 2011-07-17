@@ -261,22 +261,14 @@ set( RUNTIME_FILES
 	"${CMAKE_CURRENT_SOURCE_DIR}/brathena-admin"
 	"${CMAKE_CURRENT_SOURCE_DIR}/brathena-start"
 	"${CMAKE_CURRENT_SOURCE_DIR}/Changelog.txt"
-	"${CMAKE_CURRENT_SOURCE_DIR}/char-server.sh"
 	"${CMAKE_CURRENT_SOURCE_DIR}/charserv-sql.bat"
-	"${CMAKE_CURRENT_SOURCE_DIR}/charserv.bat"
 	"${CMAKE_CURRENT_SOURCE_DIR}/dbghelp.dll"
 	"${CMAKE_CURRENT_SOURCE_DIR}/libmysql.dll"
 	"${CMAKE_CURRENT_SOURCE_DIR}/LICENSE"
-	"${CMAKE_CURRENT_SOURCE_DIR}/login-server.sh"
 	"${CMAKE_CURRENT_SOURCE_DIR}/logserv-sql.bat"
-	"${CMAKE_CURRENT_SOURCE_DIR}/logserv.bat"
-	"${CMAKE_CURRENT_SOURCE_DIR}/map-server.sh"
 	"${CMAKE_CURRENT_SOURCE_DIR}/mapserv-sql.bat"
-	"${CMAKE_CURRENT_SOURCE_DIR}/mapserv.bat"
 	"${CMAKE_CURRENT_SOURCE_DIR}/pcre3.dll"
 	"${CMAKE_CURRENT_SOURCE_DIR}/runserver-sql.bat"
-	"${CMAKE_CURRENT_SOURCE_DIR}/runserver.bat"
-	"${CMAKE_CURRENT_SOURCE_DIR}/serv.bat"
 	"${CMAKE_CURRENT_SOURCE_DIR}/start"
 	"${CMAKE_CURRENT_SOURCE_DIR}/zlib1.dll"
 	)
@@ -313,17 +305,6 @@ else()
 				PATTERN ${SVN_FOLDER_PATTERN} EXCLUDE )
 		endforeach()
 	endif()
-endif()
-if( WITH_COMPONENT_RUNTIME )
-	# templates
-	install( DIRECTORY "save-tmpl/"
-		DESTINATION "save"
-		COMPONENT Runtime_templates
-		PATTERN ${SVN_FOLDER_PATTERN} EXCLUDE )
-	install( DIRECTORY "conf/import-tmpl/"
-		DESTINATION "conf/import"
-		COMPONENT Runtime_templates
-		PATTERN ${SVN_FOLDER_PATTERN} EXCLUDE )
 endif()
 
 
