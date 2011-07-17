@@ -9,6 +9,16 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0729 - 17/07/2011 [Dani]
+	* Revertida otimização da pasta npc/gde2 feita na r457
+	- Motivo: aumento significativo no consumo de memória ram pelo map-server
+	- Mais testes serão feitos para verificar outros pontos em que o emulador esteja
+	consumindo memória em demasia
+	* Adição de mais alguns portais de Brasilis
+	- Report por MissingNo (#179)
+	* Correção de ifs que deveriam ser selects em quests_brasilis.txt
+	- Report por MissingNo (#179)
+
 	r0728 - 17/07/2011 [Dani]
 	* Limpeza de espaços em branco
 

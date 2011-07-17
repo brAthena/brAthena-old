@@ -8,23 +8,22 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: War of Emperium SE - Auto-Start	    |
+// | Nome do Script: War of Emperium SE - Auto-Start        |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
 // | Versões eA/brA: 1.0/1.0                                |
 // |--------------------------------------------------------|
 // | Descrição: Inicia automaticamente a Guerra do Emperium |
-// | Informações sobre horário de WoE, ler 		            |
-// | doc\woe_time_explanation.txt			                |
+// | Informações sobre horário de WoE, ler                  |
+// | doc\woe_time_explanation.txt                           |
 // |                                                        |
-// | gettime(3): Informa hora (Formato 24h)	                |
-// | gettime(4): Informa dia da semana 0=Domingo,	        |
-// | 1=Segunda, 2=Terça, 3=Quarta, etc.		                |
+// | gettime(3): Informa hora (Formato 24h)                 |
+// | gettime(4): Informa dia da semana 0=Domingo,           |
+// | 1=Segunda, 2=Terça, 3=Quarta, etc.                     |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
+// | Changelog:                                             |
 // | 1.0 Script Traduzido [Mark]                            |
-// | - Anotações		      			                    |
 // \________________________________________________________/
 
 // Inicio/Término WoE

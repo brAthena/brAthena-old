@@ -21,6 +21,8 @@
 // | - ????                                                 |
 // | 1.1 Script otimizado [CarlosHenrq]                     |
 // | - Muitas falas removidas e adicionadas em função.      |
+// | 1.2 Correção de ifs que deveriam ser selects [Dani]    |
+// | - Report por MissingNo (#179)                          |
 // \________________________________________________________/
 
 //==================================================//
@@ -1149,7 +1151,7 @@ function	script	bra_loira	{
 	mes "Hehe... não, é só que... tenho medo do fantasma.";
 	mes "Mas não acredito que meus amigos mentiriam, certo?";
 	next;
-	if("Palavras mágicas especiais?");
+	select("Palavras mágicas especiais?");
 	mes "[Pedro]";
 	mes "O pessoal deve ter ouvido isso por acaso.";
 	mes "As palavras mágicas são...";
@@ -1173,7 +1175,7 @@ function	script	bra_loira	{
 	mes "[Mariana]";
 	mes "Hum... isso parece mais uma cantiga do que um feitiço.";
 	next;
-	if("Vão me ajudar a encontrar o fantasma?");
+	select("Vão me ajudar a encontrar o fantasma?");
 	mes "[Pedro]";
 	mes "Hehe, desculpe.";
 	next;
