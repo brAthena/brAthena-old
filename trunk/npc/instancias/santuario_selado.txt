@@ -12,7 +12,7 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.6/1.1                                |
+// | Versões eA/brA: 1.7/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição: Seal away the Great Demon Baphomet.         |
 // |--------------------------------------------------------|
@@ -282,7 +282,7 @@ monk_test,306,151,3	script	Túmulo de Baphomet#edq	111,{
 			//else if (ret == 0) {}
 			else {
 				mapannounce "monk_test","[" + strcharinfo(0) + "] membro do grupo [" + getpartyname(.@party_id) + "] entrou no Santuário Selado.",bc_map,"0x00ff99";
-				if (!checkquest(3040)) setquest 3040;
+				if (checkquest(3040) == -1) setquest 3040;
 				warp "1@cata",100,224;
 			}
 		}
