@@ -194,7 +194,6 @@ enum item_types {
 				//IT_THROWWEAPON	= 0x11
 	IT_CASH = 18,		//IT_CASH_POINT_ITEM	= 0x12
 				//IT_CANNONBALL		= 0x13
-	IT_CHARM = 20,
 	IT_MAX 
 };
 

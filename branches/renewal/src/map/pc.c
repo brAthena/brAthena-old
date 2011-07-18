@@ -3675,7 +3675,6 @@ int pc_additem(struct map_session_data *sd,struct item *item_data,int amount)
 	clif_updatestatus(sd,SP_WEIGHT);
 	//Auto-equip
 	if(data->flag.autoequip) pc_equipitem(sd, i, data->equip);
-	if(sd->inventory_data[i]->type == IT_CHARM) status_calc_pc(sd,0);
 	return 0;
 }
 
@@ -3684,7 +3683,6 @@ int pc_additem(struct map_session_data *sd,struct item *item_data,int amount)
  *------------------------------------------*/
 int pc_delitem(struct map_session_data *sd,int n,int amount,int type, short reason)
 {
-	int mem = 0;
 	nullpo_retr(1, sd);
 
 	if(sd->status.inventory[n].nameid==0 || amount <= 0 || sd->status.inventory[n].amount<amount || sd->inventory_data[n] == NULL)
@@ -3695,7 +3693,6 @@ int pc_delitem(struct map_session_data *sd,int n,int amount,int type, short reas
 	if(sd->status.inventory[n].amount<=0){
 		if(sd->status.inventory[n].equip)
 			pc_unequipitem(sd,n,3);
-		mem = sd->inventory_data[n]->type;
 		memset(&sd->status.inventory[n],0,sizeof(sd->status.inventory[0]));
 		sd->inventory_data[n] = NULL;
 	}
@@ -3703,8 +3700,6 @@ int pc_delitem(struct map_session_data *sd,int n,int amount,int type, short reas
 		clif_delitem(sd,n,amount,reason);
 	if(!(type&2))
 		clif_updatestatus(sd,SP_WEIGHT);
-
-	if(mem == IT_CHARM) status_calc_pc(sd,0);
 
 	return 0;
 }

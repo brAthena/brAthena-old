@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0736 - 18/07/2011 [Protimus]
+	* Removido item type CHARM.
+	- Não será mais utilizado para os itens da renovação, tornando-se desnecessário.
+	OBS: Foi encontrada novas maneiras de realizar tal trabalho.
+
 	r0735 - 18/07/2011 [brn0]
 	* Corrigido erro com os tipos de equipamentos.
 	- Não estava considerando os tipos do sistema de costumes.
