@@ -2251,7 +2251,7 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 			}
 		}
 
-	for(i=0;i<EQI_MAX-1;i++) {
+	for(i=0;i<EQI_MAX-4;i++) {
 		current_equip_item_index = index = sd->equip_index[i]; //We pass INDEX to current_equip_item_index - for EQUIP_SCRIPT (new cards solution) [Lupus]
 		if(index < 0)
 			continue;
@@ -2352,7 +2352,7 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 		status->def2 += (refinedef+50)/100;
 
 	//Parse Cards
-	for(i=0;i<EQI_MAX-1;i++) {
+	for(i=0;i<EQI_MAX-4;i++) {
 		current_equip_item_index = index = sd->equip_index[i]; //We pass INDEX to current_equip_item_index - for EQUIP_SCRIPT (new cards solution) [Lupus]
 		if(index < 0)
 			continue;

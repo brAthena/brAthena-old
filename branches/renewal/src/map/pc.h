@@ -174,7 +174,7 @@ struct map_session_data {
 	struct registry save_reg;
 
 	struct item_data* inventory_data[MAX_INVENTORY]; // direct pointers to itemdb entries (faster than doing item_id lookups)
-	short equip_index[11];
+	short equip_index[14];
 	unsigned int weight,max_weight;
 	int cart_weight,cart_num;
 	int fd;

@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0735 - 18/07/2011 [brn0]
+	* Corrigido erro com os tipos de equipamentos.
+	- Não estava considerando os tipos do sistema de costumes.
+
 	r0733 - 17/07/2011 [Dani]
 	* Atualização até a r14911 do eAthena
 
