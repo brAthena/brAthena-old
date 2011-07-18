@@ -8,7 +8,7 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Santuário Selado	            		|
+// | Nome do Script: Santuário Selado                       |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
@@ -16,9 +16,9 @@
 // |--------------------------------------------------------|
 // | Descrição: Seal away the Great Demon Baphomet.         |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
+// | Changelog:                                             |
 // | 1.0 Script Traduzido [Avassalador]                     |
-// | 1.1 Script Otimizado [Mark]		                    |
+// | 1.1 Script Otimizado [Mark]                            |
 // \________________________________________________________/
 
 // Sealed Catacomb Entrance

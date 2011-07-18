@@ -17,11 +17,11 @@
 // | Descrição: Reviva a memória de um orc.                 |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
-// | 1.0 Script Traduzido [insidemybrain]		            |
-// | 1.1 Script Revisado [Protimus]			           		|
+// | 1.0 Script Traduzido [insidemybrain]                   |
+// | 1.1 Script Revisado [Protimus]                         |
 // | - Corrigidas as tabulações do cabeçalho                |
-// | 1.2 Script Otimizado [Mark]							|
-// | - Comandos monster juntandos. Criada Função Tochas		|
+// | 1.2 Script Otimizado [Mark]                            |
+// | - Comandos monster juntandos. Criada Função Tochas     |
 // \________________________________________________________/
 
 // Entrada
