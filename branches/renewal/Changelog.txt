@@ -9,6 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0738 - 21/07/2011 [Protimus]
+	* Adicionados bônus para habilidades em que o personagem esteja sob o efeito de WM_GLOOMYDAY (Ode a Hela).
+	- CR_SHIELDBOOMERANG (Escudo Bumerangue).
+	- PA_SHIELDCHAIN (Choque Rápido).
+	- LG_SHIELDPRESS (Escudo Compressor).
+	- LK_SPIRALPIERCE (Perfurar em Espiral).
+	- KN_BRANDISHSPEAR (Brandir Lança).
+
 	r0737 - 20/07/2011 [Mark]
 	* Corrigido item_db.
 	* Corrigidas algumas traduções.

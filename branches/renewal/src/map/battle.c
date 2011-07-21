@@ -1554,7 +1554,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					wd.damage = sstatus->rhw.atk2*8/10;
 				skillratio += 50 * skill_lv;
 				if( sc && sc->data[SC_GLOOMYDAY_SK] && skill_num == LK_SPIRALPIERCE )
-					ATK_ADD(50 + 5 * sc->data[SC_GLOOMYDAY_SK]->val1);
+					ATK_ADDRATE(100+25*(sc->data[SC_GLOOMYDAY_SK]->val1-1));
                 break;
 			case CR_SHIELDBOOMERANG:
 			case PA_SHIELDCHAIN:
@@ -1569,8 +1569,6 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					break;
 				} else
 					wd.damage = sstatus->rhw.atk2;
-				if( sc && sc->data[SC_GLOOMYDAY_SK] )
-					ATK_ADD(50 + 5 * sc->data[SC_GLOOMYDAY_SK]->val1);
 				break;
 			case HFLI_SBR44:	//[orn]
 				if(src->type == BL_HOM) {
@@ -1771,6 +1769,8 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					break;
 				case CR_SHIELDBOOMERANG:
 					skillratio += 30*skill_lv;
+					if( sc && sc->data[SC_GLOOMYDAY_SK] )
+						skillratio += 190 + 10 * sc->data[SC_GLOOMYDAY_SK]->val1;
 					break;
 				case NPC_DARKCROSS:
 				case CR_HOLYCROSS:
@@ -1854,6 +1854,8 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					break;
 				case PA_SHIELDCHAIN:
 					skillratio += 30*skill_lv;
+					if( sc && sc->data[SC_GLOOMYDAY_SK] )
+						skillratio += 190 + 10 * sc->data[SC_GLOOMYDAY_SK]->val1;
 					break;
 				case WS_CARTTERMINATION:
 					i = 10 * (16 - skill_lv);
