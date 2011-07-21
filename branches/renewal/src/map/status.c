@@ -4269,6 +4269,8 @@ static signed short status_calc_flee(struct block_list *bl, struct status_change
 		flee -= flee * 30 / 100;
 	if( sc->data[SC_MARSHOFABYSS] )
 		flee -= (9 * sc->data[SC_MARSHOFABYSS]->val3 / 10 + sc->data[SC_MARSHOFABYSS]->val2 / 10) * (bl->type == BL_MOB ? 2 : 1);
+	if( sc->data[SC_GLOOMYDAY_SK] )
+		flee -= flee * sc->data[SC_GLOOMYDAY_SK]->val2/100;
 
 	return (short)cap_value(flee,0,SHRT_MAX);
 }
@@ -4757,6 +4759,8 @@ static short status_calc_aspd_rate(struct block_list *bl, struct status_change *
 		aspd_rate -= aspd_rate * sc->data[SC_BOOST500]->val1/100;
 	if(sc->data[SC_EXTRACT_SALAMINE_JUICE])
 		aspd_rate -= aspd_rate * sc->data[SC_EXTRACT_SALAMINE_JUICE]->val1/100;
+	if( sc->data[SC_GLOOMYDAY] )
+		aspd_rate += aspd_rate * sc->data[SC_GLOOMYDAY]->val3 / 100;
 
 
 	return (short)cap_value(aspd_rate,0,SHRT_MAX);
@@ -7282,7 +7286,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			tick = 1000;
 			break;
 		case SC_GLOOMYDAY:
-			val2 = 5 * val1;
+			val2 = 3 + 2 * val1;
 			val3 = 3 * val1;
 			break;
 		case SC__STRIPACCESSORY:

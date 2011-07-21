@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0739 - 21/07/2011 [Protimus]
+	* Habilitados summons dos montros da Túnel Submarino 5 (caverna de Izlude 6° andar).
+	* Correções para habilidade WM_GLOOMYDAY (Ode a Hela).
+	- Agora dá bonificações negativas para quem estiver utilizando-a, redução de esquiva e velocidade de ataque.
+
 	r0738 - 21/07/2011 [Protimus]
 	* Adicionados bônus para habilidades em que o personagem esteja sob o efeito de WM_GLOOMYDAY (Ode a Hela).
 	- CR_SHIELDBOOMERANG (Escudo Bumerangue).
