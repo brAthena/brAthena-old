@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0737 - 20/07/2011 [Mark]
+	* Corrigido item_db.
+	* Corrigidas algumas traduções.
+
 	r0733 - 17/07/2011 [Dani]
 	* Atualização até a r14911 do eAthena
 

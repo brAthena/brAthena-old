@@ -674,32 +674,32 @@ function	script	F_VoteKafra	{
 	end;
 }
 
-yuno,162,191,4	script	Kafra Voting Staff#yuno	861,{
+yuno,162,191,4	script	Funcionária de Votação#yuno	861,{
 	callfunc "F_VoteKafra",9;
 }
-prontera,164,125,4	script	Kafra Voting Staff#prt	116,{
+prontera,164,125,4	script	Funcionária de Votação#prt	116,{
 	callfunc "F_VoteKafra",2;
 }
-moc_ruins,97,133,4	script	Kafra Voting Staff#moc	116,{
+moc_ruins,97,133,4	script	Funcionária de Votação#moc	116,{
 	callfunc "F_VoteKafra",2;
 }
-geffen,122,37,4	script	Kafra Voting Staff#gef	116,{
+geffen,122,37,4	script	Funcionária de Votação#gef	116,{
 	callfunc "F_VoteKafra",2;
 }
-payon,158,182,4	script	Kafra Voting Staff#pay	116,{
+payon,158,182,4	script	Funcionária de Votação#pay	116,{
 	callfunc "F_VoteKafra",2;
 }
-alberta,119,70,4	script	Kafra Voting Staff#alb	116,{
+alberta,119,70,4	script	Funcionária de Votação#alb	116,{
 	callfunc "F_VoteKafra",2;
 }
-aldebaran,145,102,4	script	Kafra Voting Staff#alde	116,{
+aldebaran,145,102,4	script	Funcionária de Votação#alde	116,{
 	callfunc "F_VoteKafra",2;
 }
-lighthalzen,163,60,4	script	Kafra Voting Staff#lght	861,{
+lighthalzen,163,60,4	script	Funcionária de Votação#lght	861,{
 	callfunc "F_VoteKafra",9;
 }
 
-yuno,153,191,6	script	Cool Event Staff#yuno::VotingStaffCCE	874,{
+yuno,153,191,6	script	Funcionário de Votação#yuno::VotingStaffCCE	874,{
 	callfunc "F_ClearGarbage";				//Clear outdated, unused variables
 	cutin "zonda_01",2;
 	mes "[Equipe Eventos legais de votação]";
@@ -1091,13 +1091,13 @@ yuno,153,191,6	script	Cool Event Staff#yuno::VotingStaffCCE	874,{
 	end;
 }
 
-prontera,147,125,6	duplicate(VotingStaffCCE)	Cool Event Staff#prt	874
-moc_ruins,104,133,6	duplicate(VotingStaffCCE)	Cool Event Staff#moc	874
-geffen,117,37,6	duplicate(VotingStaffCCE)	Cool Event Staff#gef	874
-payon,153,182,6	duplicate(VotingStaffCCE)	Cool Event Staff#pay	874
-alberta,114,70,6	duplicate(VotingStaffCCE)	Cool Event Staff#alb	874
-aldebaran,138,102,6	duplicate(VotingStaffCCE)	Cool Event Staff#alde	874
-lighthalzen,154,60,6	duplicate(VotingStaffCCE)	Cool Event Staff#lhz	874
+prontera,147,125,6	duplicate(VotingStaffCCE)	Funcionário de Votação#prt	874
+moc_ruins,104,133,6	duplicate(VotingStaffCCE)	Funcionário de Votação#moc	874
+geffen,117,37,6	duplicate(VotingStaffCCE)	Funcionário de Votação#gef	874
+payon,153,182,6	duplicate(VotingStaffCCE)	Funcionário de Votação#pay	874
+alberta,114,70,6	duplicate(VotingStaffCCE)	Funcionário de Votação#alb	874
+aldebaran,138,102,6	duplicate(VotingStaffCCE)	Funcionário de Votação#alde	874
+lighthalzen,154,60,6	duplicate(VotingStaffCCE)	Funcionário de Votação#lhz	874
 
 yuno,103,225,0	script	Scrutiny Association#5	-1,{
 OnInit:

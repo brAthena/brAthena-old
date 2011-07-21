@@ -10950,9 +10950,9 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 				int hp = 125 * sg->skill_lv;
 				if( ssc && ssc->data[SC_HEATER_OPTION] )
 					hp += hp * ssc->data[SC_HEATER_OPTION]->val3 / 200;
-				status_heal(bl, hp, 0, 0);
+				status_heal(bl, hp, 0, 1);
 				if( tstatus->hp != tstatus->max_hp )
-					clif_skill_nodamage(&src->bl, bl, AL_HEAL, hp, 0);
+					clif_skill_nodamage(&src->bl, bl, AL_HEAL, hp, 1);
 					sc_start(bl, SC_WARMER, 100, sg->skill_lv, skill_get_time2(sg->skill_id,sg->skill_lv));
 			}
 			break;

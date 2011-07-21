@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0737 - 20/07/2011 [Mark]
+	* Corrigido item_db.
+	* Corrigidas algumas traduções.
+	* Corrigida habilidade Aquecer Terreno.
+	- Cura executava mas não aparecia.
+
 	r0736 - 18/07/2011 [Protimus]
 	* Removido item type CHARM.
 	- Não será mais utilizado para os itens da renovação, tornando-se desnecessário.
