@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0741 - 22/07/2011 [brn0]
+	* Corrigido efeito de paralização da habilide RA_WUGBITE (Mordida Feroz).
+	* Pequena correção na imunidade de MvPs à status anormais.
+
 	r0740 - 22/07/2011 [Protimus]
 	* Corrigida leitura do bônus para esquiva.
 	* Limpeza para o sistema de costumes.

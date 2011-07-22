@@ -5536,7 +5536,7 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 	case SC_BITE:
 		{
 			if( bl->type == BL_MOB )
-				tick -= 1000 * (status->agi/10);
+				tick -= 100*status->agi;
 			if( sd && type != SC_ELECTRICSHOCKER )
 				tick >>= 1;
 		}
@@ -6012,6 +6012,9 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			case SC_OBLIVIONCURSE:
 			case SC_LEECHESEND:
 			case SC_MARSHOFABYSS:
+			case SC_BITE:
+			case SC_ELECTRICSHOCKER:
+			case SC_MAGNETICFIELD:
 				return 0;
 		}
 	}
@@ -7624,6 +7627,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_SPIDERWEB:
 		case SC_FEAR:
 		case SC_ELECTRICSHOCKER:
+		case SC_BITE:
 		case SC__MANHOLE:
 		case SC_CHAOS:
 		case SC_CURSEDCIRCLE_ATKER:
