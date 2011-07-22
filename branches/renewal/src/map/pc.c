@@ -2101,6 +2101,7 @@ int pc_bonus(struct map_session_data *sd,int type,int val)
 			bonus = status->flee + val;
 			status->flee = cap_value(bonus, SHRT_MIN, SHRT_MAX);
 		}
+		break;
 	case SP_FLEE2:
 		if(sd->state.lr_flag != 2) {
 			bonus = status->flee2 + val;
@@ -7940,41 +7941,27 @@ int pc_equipitem(struct map_session_data *sd,int n,int req_pos)
 	}
 	//Added check to prevent sending the same look on multiple slots ->
 	//causes client to redraw item on top of itself. (suggested by Lupus)
-	if(pos & EQP_HEAD_LOW) {
+	if(pos&(EQP_HEAD_LOW|EQP_COS_LOW_TOP)) {
 		if(id && !(pos&(EQP_HEAD_TOP|EQP_HEAD_MID|EQP_COS_MID_TOP|EQP_COS_HEAD_TOP)))
 			sd->status.head_bottom = id->look;
 		else
 			sd->status.head_bottom = 0;
 		clif_changelook(&sd->bl,LOOK_HEAD_BOTTOM,sd->status.head_bottom);
 	}
-	if(pos & EQP_HEAD_TOP) {
+	if(pos&(EQP_HEAD_TOP|EQP_COS_HEAD_TOP)) {
 		if(id)
 			sd->status.head_top = id->look;
 		else
 			sd->status.head_top = 0;
 		clif_changelook(&sd->bl,LOOK_HEAD_TOP,sd->status.head_top);
 	}
-    if(pos & EQP_COS_HEAD_TOP) {
-        if(id)
-            sd->status.head_top = id->look;
-        else
-            sd->status.head_top = 0;
-        clif_changelook(&sd->bl,LOOK_HEAD_TOP,sd->status.head_top);
-    }
-	if(pos & EQP_HEAD_MID) {
-		if(id && !(pos&EQP_HEAD_TOP))
+	if(pos&(EQP_HEAD_MID|EQP_COS_MID_TOP)) {
+		if(id && !(pos&(EQP_HEAD_TOP|EQP_COS_HEAD_TOP)))
 			sd->status.head_mid = id->look;
 		else
 			sd->status.head_mid = 0;
 		clif_changelook(&sd->bl,LOOK_HEAD_MID,sd->status.head_mid);
 	}
-    if(pos & EQP_COS_MID_TOP) {
-        if(id && !(pos&EQP_COS_HEAD_TOP))
-            sd->status.head_mid = id->look;
-        else
-            sd->status.head_mid = 0;
-        clif_changelook(&sd->bl,LOOK_HEAD_MID,sd->status.head_mid);
-    }
 	if(pos & EQP_SHOES)
 		clif_changelook(&sd->bl,LOOK_SHOES,0);
 	if( pos&EQP_GARMENT )
@@ -8058,30 +8045,18 @@ int pc_unequipitem(struct map_session_data *sd,int n,int flag)
 		pc_calcweapontype(sd);
 		clif_changelook(&sd->bl,LOOK_SHIELD,sd->status.shield);
 	}
-	if(sd->status.inventory[n].equip & EQP_HEAD_LOW) {
+	if(sd->status.inventory[n].equip & (EQP_HEAD_LOW|EQP_COS_LOW_TOP)) {
 		sd->status.head_bottom = 0;
 		clif_changelook(&sd->bl,LOOK_HEAD_BOTTOM,sd->status.head_bottom);
 	}
-    if(sd->status.inventory[n].equip & EQP_COS_LOW_TOP) {
-        sd->status.head_bottom = 0;
-        clif_changelook(&sd->bl,LOOK_HEAD_BOTTOM,sd->status.head_bottom);
-    }
-	if(sd->status.inventory[n].equip & EQP_HEAD_TOP) {
+	if(sd->status.inventory[n].equip & (EQP_HEAD_TOP|EQP_COS_HEAD_TOP)) {
 		sd->status.head_top = 0;
 		clif_changelook(&sd->bl,LOOK_HEAD_TOP,sd->status.head_top);
 	}
-    if(sd->status.inventory[n].equip & EQP_COS_HEAD_TOP) {
-        sd->status.head_top = 0;
-        clif_changelook(&sd->bl,LOOK_HEAD_TOP,sd->status.head_top);
-    }
-	if(sd->status.inventory[n].equip & EQP_HEAD_MID) {
+	if(sd->status.inventory[n].equip & (EQP_HEAD_MID|EQP_COS_MID_TOP)) {
 		sd->status.head_mid = 0;
 		clif_changelook(&sd->bl,LOOK_HEAD_MID,sd->status.head_mid);
 	}
-    if(sd->status.inventory[n].equip & EQP_COS_MID_TOP) {
-        sd->status.head_mid = 0;
-        clif_changelook(&sd->bl,LOOK_HEAD_MID,sd->status.head_mid);
-    }
 	if(sd->status.inventory[n].equip & EQP_SHOES)
 		clif_changelook(&sd->bl,LOOK_SHOES,0);
 	if( sd->status.inventory[n].equip&EQP_GARMENT )

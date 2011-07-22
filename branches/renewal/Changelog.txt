@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0740 - 22/07/2011 [Protimus]
+	* Corrigida leitura do bônus para esquiva.
+	* Limpeza para o sistema de costumes.
+	* Correção para leitura dos itens de costumes da parte de baixo da cabeça.
+
 	r0739 - 21/07/2011 [Protimus]
 	* Habilitados summons dos montros da Túnel Submarino 5 (caverna de Izlude 6° andar).
 	* Correções para habilidade WM_GLOOMYDAY (Ode a Hela).
