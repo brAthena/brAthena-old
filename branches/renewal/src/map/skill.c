@@ -8127,6 +8127,8 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case GN_S_PHARMACY:
 		if( sd )
 		{
+			sd->skillid_old = skillid;
+			sd->skilllv_old = skilllv;
 			clif_cooking_list(sd,29,skillid,1,6);
 			clif_skill_nodamage(src,bl,skillid,skilllv,1);
 		}
@@ -12183,7 +12185,7 @@ int skill_check_condition_castend(struct map_session_data* sd, short skill, shor
 	}
 
 	switch( sd->menuskill_id )
-	{ // Cast start or cast end??
+	{ 
 		case AM_PHARMACY:
 			switch( skill )
 			{
@@ -14894,14 +14896,15 @@ int skill_produce_mix(struct map_session_data *sd, int skill_id, int nameid, int
 				make_per = (5000 + 50*status->dex + 30*status->luk);
 				break;
 			case GN_S_PHARMACY:
-				switch( pc_checkskill(sd,GN_S_PHARMACY) )
+				switch( sd->skilllv_old )
 				{
-					case 6: case 7: case 8: qty = 3; break;
-					case 9: qty = 3 + rand()%3; break;
-					case 10: qty = 4 + rand()%3; break;
-					default: qty = 2;
+					case 6: case 7: case 8: qty = 3; break;				
+					case 9: qty = 3 + rand()%3; break;					
+					case 10: qty = 4 + rand()%3; break;					
+					default: qty = 2;									
 				}
-				make_per = 100000;
+				make_per = 100000; 
+				sd->skillid_old = sd->skilllv_old = 0;
 				break;
 			case GN_CHANGEMATERIAL:
 				switch( nameid )
@@ -14915,8 +14918,7 @@ int skill_produce_mix(struct map_session_data *sd, int skill_id, int nameid, int
 				make_per = 100000;
 				break;
 			default:
-				if (sd->menuskill_id ==	AM_PHARMACY &&
-					sd->menuskill_val > 10 && sd->menuskill_val <= 20)
+				if( sd->menuskill_id ==	AM_PHARMACY && sd->menuskill_val > 10 && sd->menuskill_val <= 20 )
 				{	//Assume Cooking Dish
 					if (sd->menuskill_val >= 15) //Legendary Cooking Set.
 						make_per = 10000; //100% Success

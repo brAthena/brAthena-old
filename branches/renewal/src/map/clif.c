@@ -10609,10 +10609,10 @@ void clif_parse_SkillSelectMenu(int fd, struct map_session_data *sd)
  *------------------------------------------*/
 void clif_parse_Cooking(int fd,struct map_session_data *sd)
 {
-	//int type = RFIFOW(fd,2); // '1' for cooking, but what do other values mean?
+	int type = RFIFOW(fd,2); 
 	int nameid = RFIFOW(fd,4);
 
-	if( sd->menuskill_id != AM_PHARMACY )
+	if( type == 6 && sd->menuskill_id != GN_MIX_COOKING && sd->menuskill_id != GN_S_PHARMACY )
 	{
 		return;
 	}
@@ -10623,8 +10623,8 @@ void clif_parse_Cooking(int fd,struct map_session_data *sd)
 		sd->menuskill_val = sd->menuskill_id = 0;
 		return;
 	}
-	skill_produce_mix(sd,0,nameid,0,0,0,1);
-	sd->menuskill_val = sd->menuskill_id = 0;
+	skill_produce_mix(sd,sd->menuskill_id,nameid,0,0,0,sd->menuskill_itemused);
+	sd->menuskill_val = sd->menuskill_id = sd->menuskill_itemused = 0;
 }
 /*==========================================
  * •ŠíC—
