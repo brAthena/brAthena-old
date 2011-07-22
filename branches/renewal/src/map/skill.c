@@ -8310,13 +8310,13 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case RETURN_TO_ELDICASTES:
 		if( sd )
 		{
-			short x = 198, y = 187; 
+			short x = 198, y = 187;
 			unsigned short mapindex;
 
 			mapindex  = mapindex_name2id(MAP_ERISCASTLE);
 
 			if(!mapindex)
-			{ 
+			{
 				clif_skill_fail(sd,skillid,0,0,0);
 				return 0;
 			}
@@ -8586,7 +8586,7 @@ int skill_castend_id(int tid, unsigned int tick, int id, intptr_t data)
 
 		if(sc=status_get_sc(src)){
 			if(sc->data[SC_CAMOUFLAGE])
-				status_change_end(src,SC_CAMOUFLAGE,-1); 
+				status_change_end(src,SC_CAMOUFLAGE,-1);
 			if(sc->data[SC_CURSEDCIRCLE_ATKER]) {
 				sc->data[SC_CURSEDCIRCLE_ATKER]->val3 = 1;
 				status_change_end(src,SC_CURSEDCIRCLE_ATKER,-1);
@@ -9272,7 +9272,7 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 		break;
 
 	case NC_COLDSLOWER:
-	case NC_ARMSCANNON:	
+	case NC_ARMSCANNON:
 	case RK_DRAGONBREATH:
 	case WM_LULLABY_DEEPSLEEP:
 		i = skill_get_splash(skillid,skilllv);
@@ -12027,7 +12027,7 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 		break;
 	case RETURN_TO_ELDICASTES:
 		if( pc_isriding(sd,OPTION_MADO) )
-		{ 
+		{
 			clif_skill_fail(sd,skill,0,0,0);
 			return 0;
 		}
@@ -12185,7 +12185,7 @@ int skill_check_condition_castend(struct map_session_data* sd, short skill, shor
 	}
 
 	switch( sd->menuskill_id )
-	{ 
+	{
 		case AM_PHARMACY:
 			switch( skill )
 			{
@@ -12405,7 +12405,7 @@ int skill_consume_requirement( struct map_session_data *sd, short skill, short l
 			if( (n = pc_search_inventory(sd,req.itemid[i])) >= 0 )
 				pc_delitem(sd,n,req.amount[i],0,1);
 		}
-		
+
 		sd->state.no_gemstone = 0;
 	}
 
@@ -14898,12 +14898,12 @@ int skill_produce_mix(struct map_session_data *sd, int skill_id, int nameid, int
 			case GN_S_PHARMACY:
 				switch( sd->skilllv_old )
 				{
-					case 6: case 7: case 8: qty = 3; break;				
-					case 9: qty = 3 + rand()%3; break;					
-					case 10: qty = 4 + rand()%3; break;					
-					default: qty = 2;									
+					case 6: case 7: case 8: qty = 3; break;
+					case 9: qty = 3 + rand()%3; break;
+					case 10: qty = 4 + rand()%3; break;
+					default: qty = 2;
 				}
-				make_per = 100000; 
+				make_per = 100000;
 				sd->skillid_old = sd->skilllv_old = 0;
 				break;
 			case GN_CHANGEMATERIAL:

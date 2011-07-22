@@ -8,16 +8,15 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Spawns da Caverna de Yggdrasil			|
+// | Nome do Script: Spawns da Caverna de Yggdrasil         |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.2                                |
+// | Versões eA/brA: 1.0/1.1                                |
 // |--------------------------------------------------------|
-// | Changelog:               	                            |
+// | Changelog:                                             |
 // | 1.0 Script Traduzido [K2X]                             |
-// | 1.1 Script Revisado [Protimus]							|
-// | 1.2 Adicionados andares do ninho  de nyd que faltavam. |
+// | 1.1 Script Revisado [Protimus]                         |
 // \________________________________________________________/
 
 //==================================================
@@ -29,27 +28,3 @@ nyd_dun01,0,0,0,0	monster	Elemental da Água	2016,20,0,0,0
 nyd_dun01,0,0,0,0	monster	Pinguicula Sombria	2015,10,0,0,0
 nyd_dun01,0,0,0,0	monster	Ratatosk	2017,2,900000,0,0
 nyd_dun01,0,0,0,0	monster	Duneyrr	2018,2,900000,0,0
-
-//==================================================
-// nyd_dun02 - Yggdrasil - 2° Andar
-//==================================================
-nyd_dun02,0,0,0,0	monster	Draco	2013,2,18000,0,0
-
-//==================================================
-// 1@nyd - Ninho do Nidhoggr 
-//==================================================
-1@nyd,0,0,0,0	monster	Pinguicula Sombria	2015,10,0,0,0
-1@nyd,0,0,0,0	monster	Elemental da Água	2016,20,0,0,0
-1@nyd,0,0,0,0	monster	Árvore Anciã	2019,60,0,0,0
-1@nyd,0,0,0,0	monster	Rhyncho	2020,30,0,0,0
-1@nyd,0,0,0,0	monster	Phylla	2021,30,0,0,0
-1@nyd,0,0,0,0	monster	Sombra Obscura	2023,10,0,0,0
-
-//==================================================
-// 2@nyd - Ninho do Nidhoggr - 2° Andar
-//==================================================
-2@nyd,200,100,180,80	monster	Pinguicula Sombria	2015,20,0,0,0
-2@nyd,200,100,180,80	monster	Rhyncho	2020,45,0,0,0
-2@nyd,200,100,180,80	monster	Phylla	2021,45,0,0,0
-2@nyd,200,100,180,80	monster	Sombra Obscura	2023,80,0,0,0
-2@nyd,200,328,14,14	boss_monster	Sombra de Nidhogg	2022,1,14400000,0,0

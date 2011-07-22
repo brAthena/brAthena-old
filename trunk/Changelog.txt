@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0744 - 22/07/2011 [Dani]
+	* r743 revertida
+	- Os mobs são ativados por instância, que está em instancias/ninho_de_nidhoggr.txt, e ativa.
+
 	r0743 - 22/07/2011 [Protimus]
 	* Adicionados spawns dos monstros da Caverna de Nidhoggr.
 	- Faltavam alguns andares e o principal: O MvP.
