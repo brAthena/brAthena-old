@@ -10,6 +10,11 @@
 // ==============================================================================
 
 
+	r0743 - 22/07/2011 [Protimus]
+	* Adicionados spawns dos monstros da Caverna de Nidhoggr.
+	- Faltavam alguns andares e o principal: O MvP.
+	* Pequena tradução do monstro Pinguicula Sombria.
+
 	r0742 - 22/07/2011 [Protimus]
 	* Adicionadas correções para criação de listas de criação das habilidades: 
 	- GN_MIX_COOKING (Culinária Avançada).

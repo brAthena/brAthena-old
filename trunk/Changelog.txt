@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0743 - 22/07/2011 [Protimus]
+	* Adicionados spawns dos monstros da Caverna de Nidhoggr.
+	- Faltavam alguns andares e o principal: O MvP.
+
 	r0737 - 20/07/2011 [Mark]
 	* Corrigido item_db.
 	* Corrigidas algumas traduções.
