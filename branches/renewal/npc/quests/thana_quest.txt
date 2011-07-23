@@ -18,6 +18,7 @@
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Traduzido [Avassalador]                     |
+// | 1.2 Suporte para as Classes 3 [Dani]                   |
 // \________________________________________________________/
 
 hu_fild01,140,163,5	script	Gerente da Torre	852,3,3,{
@@ -2588,7 +2589,7 @@ OnThanaDead:
 }
 
 tha_t06,119,120,0	script	thana6-7	45,1,1,{
-		if (((Upper == 1) && ((Class > Job_Thief_High) && (Class < Job_Baby))) || (((Class == Job_Gunslinger) || (Class == Job_Ninja) || (BaseClass == Job_Taekwon)) && (BaseLevel >= 95))) {
+		if (((Upper == 1) && ((Class > Job_Thief_High) && (Class < Job_Baby))) || ((Upper > 3) && ((Class > Job_Dark_Collector) && (Class < Job_Baby_Rune))) || (((Class == Job_Gunslinger) || (Class == Job_Ninja) || (BaseClass == Job_Taekwon)) && (BaseLevel >= 95))) {
 		warp "thana_step",69,369;
 		end;
 	}

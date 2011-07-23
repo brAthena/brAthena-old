@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0745 - 23/07/2011 [Dani]
+	* Adição do suporte pras Classes 3 fazerem a quest da Torre Thanatos
+	- Report por scaflone (#204)
+
 	r0744 - 22/07/2011 [Dani]
 	* r743 parcialmente revertida
 	- Os mobs são ativados por instância, que está em instancias/ninho_de_nidhoggr.txt, e ativa.

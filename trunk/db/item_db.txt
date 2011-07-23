@@ -5963,7 +5963,7 @@
 //13691,Freyja_Overcoat_Box,Freya's Clothes Box,18,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ rentitem 2369,1,604800; },{},{}
 //13692,Freyja_Boots_Box,Freya's Boots Box,18,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ rentitem 2428,1,604800; },{},{}
 //13693,Freyja_Cape_Box,Freya's Manteau Box,18,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ rentitem 2533,1,604800; },{},{}
-//13694,Freyja_Crown_Box,Caixa de Coroa de Freya,18,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 5306,1,604800; },{},{}
+//13694,Freyja_Crown_Box,Caixa de Coroa de Freya,18,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 5306,1; },{},{}
 13695,Battle_Manual25_Box,Field Manual 25% Box,18,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 14532,10; },{},{}
 13696,Battle_Manual100_Box,Caixa de Grimório de Combate,18,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 14533,10; },{},{}
 13697,J_Blessing10_Box,Blessing Scroll 10 Box,18,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 12215,10; },{},{}
@@ -6237,7 +6237,7 @@
 13965,Tayelin_Doll_Hat_Box,Tailring Doll Hat Box,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 5343,1; },{},{}
 13966,Binit_Doll_Hat_Box,Vinit Doll Hat Box,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 5344,1; },{},{}
 13967,Debril_Doll_Hat_Box,W Doll Hat Box,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 5345,1; },{},{}
-//13968,Bubblegum_Lower_Box,Bubble Gum Hat Box,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ rentitem 5394,86400;},{},{}
+//13968,Bubblegum_Lower_Box,Bubble Gum Hat Box,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ rentitem 5394,86400; },{},{}
 //13969,Lucky_Clip_Box,Lucky Clip Box,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ rentitem 2742,86400; },{},{}
 13970,Iron_10_Box,Caixa de Ferro,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 998,10; },{},{}
 13971,Steel_10_Box,Caixa de Aço,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 999,10; },{},{}
