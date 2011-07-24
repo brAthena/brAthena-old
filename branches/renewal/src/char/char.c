@@ -3408,7 +3408,7 @@ int parse_char(int fd)
 			int sex = RFIFOB(fd,16);
 			RFIFOSKIP(fd,17);
 
-			ShowInfo("conexao requisitada - account_id:%d/login_id1:%d/login_id2:%d\n", account_id, login_id1, login_id2);
+			ShowInfo("Conexao requisitada - account_id: %d / login_id1: %d / login_id2: %d\n", account_id, login_id1, login_id2);
 
 			if (sd) {
 				//Received again auth packet for already authentified account?? Discard it.

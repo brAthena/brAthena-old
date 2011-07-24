@@ -935,14 +935,14 @@ bool pc_authok(struct map_session_data *sd, int login_id2, time_t expiration_tim
 
 	//display login notice
 	if( sd->gmlevel >= battle_config.lowest_gm_level )
-		ShowInfo("GM '"CL_WHITE"%s"CL_RESET"' logged in."
+		ShowInfo("GM '"CL_WHITE"%s"CL_RESET"' logou."
 			" (AID/CID: '"CL_WHITE"%d/%d"CL_RESET"',"
 			" Packet Ver: '"CL_WHITE"%d"CL_RESET"', IP: '"CL_WHITE"%d.%d.%d.%d"CL_RESET"',"
-			" GM Level '"CL_WHITE"%d"CL_RESET"').\n",
+			" Nivel de GM '"CL_WHITE"%d"CL_RESET"').\n",
 			sd->status.name, sd->status.account_id, sd->status.char_id,
 			sd->packet_ver, CONVIP(ip), sd->gmlevel);
 	else
-		ShowInfo("'"CL_WHITE"%s"CL_RESET"' logged in."
+		ShowInfo("'"CL_WHITE"%s"CL_RESET"' logou."
 			" (AID/CID: '"CL_WHITE"%d/%d"CL_RESET"',"
 			" Packet Ver: '"CL_WHITE"%d"CL_RESET"', IP: '"CL_WHITE"%d.%d.%d.%d"CL_RESET"').\n",
 			sd->status.name, sd->status.account_id, sd->status.char_id,

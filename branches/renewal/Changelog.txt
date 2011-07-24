@@ -9,6 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0747 - 24/07/2011 [Dani]
+	* Adicionada flag para não mostrar o warning do "break strict-aliasing rules"
+	- Temporary fix
+	* Capitulares de outputs dos servers corrigidos
+	* Remoção do output do char-server que revelava login, senha e banco (informaçoes de sql)
+	* Adição de arquivo perdido durante atualizações com eAthena
+	- 3rdparty/pcre/lib/libpcre.dll.a
+
 	r0746 - 24/07/2011 [Dani]
 	* Atualização até a r14921 do eAthena
 

@@ -214,18 +214,6 @@ static int inter_config_read(const char* cfgName)
 			char_server_port = atoi(w2);
 			ShowStatus ("Definindo char_server_port : %s\n", w2);
 		} else
-		if(!strcmpi(w1,"char_server_id")) {
-			strcpy(char_server_id,w2);
-			ShowStatus ("Definindo char_server_id : %s\n", w2);
-		} else
-		if(!strcmpi(w1,"char_server_pw")) {
-			strcpy(char_server_pw,w2);
-			ShowStatus ("Definindo char_server_pw : %s\n", w2);
-		} else
-		if(!strcmpi(w1,"char_server_db")) {
-			strcpy(char_server_db,w2);
-			ShowStatus ("Definindo char_server_db : %s\n", w2);
-		} else
 		if(!strcmpi(w1,"default_codepage")) {
 			strcpy(default_codepage,w2);
 			ShowStatus ("Definindo default_codepage : %s\n", w2);

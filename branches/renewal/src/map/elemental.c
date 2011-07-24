@@ -756,7 +756,7 @@ int read_elementaldb(void)
 	}
 
 	fclose(fp);
-	ShowStatus("Leitura de '"CL_WHITE"%d"CL_RESET"' elementos em '"CL_WHITE"db/elemental_db.txt"CL_RESET"'.\n",j);
+	ShowStatus("Leitura de '"CL_WHITE"%d"CL_RESET"' elementais em '"CL_WHITE"db/elemental_db.txt"CL_RESET"'.\n",j);
 
 	return 0;
 }

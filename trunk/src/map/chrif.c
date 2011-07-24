@@ -1127,7 +1127,7 @@ int chrif_recvfamelist(int fd)
 	}
 	total += num;
 
-	ShowInfo("Recebida Fame List de '"CL_WHITE"%d"CL_RESET"'personagens.\n", total);
+	ShowInfo("Recebida Fame List de '"CL_WHITE"%d"CL_RESET"' personagens.\n", total);
 
 	return 0;
 }

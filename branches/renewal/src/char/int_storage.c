@@ -68,7 +68,7 @@ int storage_fromsql(int account_id, struct storage_data* p)
 	p->storage_amount = i;
 	Sql_FreeResult(sql_handle);
 
-	ShowInfo("deposito carregado pelo BD - id: %d (total: %d)\n", account_id, p->storage_amount);
+	ShowInfo("Armazem carregado pelo BD - id: %d (total: %d)\n", account_id, p->storage_amount);
 	return 1;
 }
 #endif //TXT_SQL_CONVERT
