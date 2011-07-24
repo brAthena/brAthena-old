@@ -198,7 +198,7 @@ endif()
 #
 # Test typecast to union
 #
-message( STATUS "Check if we can typecast to union" )
+message( STATUS "Check for typecast to union" )
 set( SOURCECODE
 	"typedef union Foonion{\n"
 	"  int i;\n"
@@ -207,15 +207,15 @@ set( SOURCECODE
 	"} Foonion;\n"
 	"int get_i(Foonion onion){ return onion.i; }\n"
 	"int main(int argc, char** argv){\n"
-		"int i = 0;\n"
-		"return get_i(((Foonion)(int)i));\n"
+	"  int i = 0;\n"
+	"  return get_i(((Foonion)(int)i));\n"
 	"}\n"
 	)
 CHECK_C_SOURCE_COMPILES( "${SOURCECODE}" HAVE_TYPECAST_TO_UNION )
 if( HAVE_TYPECAST_TO_UNION )
-	message( STATUS "Check typecast to union - yes" )
+	message( STATUS "Check for typecast to union - yes" )
 else()
-	message( STATUS "Check typecast to union - no" )
+	message( STATUS "Check for typecast to union - no" )
 	set_property( CACHE GLOBAL_DEFINITIONS  PROPERTY VALUE "${GLOBAL_DEFINITIONS} -DDB_MANUAL_CAST_TO_UNION" )
 endif()
 
@@ -236,8 +236,8 @@ set( SOURCECODE
 	"#include <time.h>\n"
 	"#include <unistd.h>\n"
 	"int main(int argc, char** argv){\n"
-		"struct timespec tval;\n"
-		"return clock_gettime(CLOCK_MONOTONIC, &tval);\n"
+	"  struct timespec tval;\n"
+	"  return clock_gettime(CLOCK_MONOTONIC, &tval);\n"
 	"}\n"
 	)
 find_library( RT_LIBRARY rt )# (optional, rt on Debian)
@@ -272,16 +272,124 @@ endforeach()
 
 
 #
-# Use RDTSC instruction as a timing source (time stamp counter on x86 since Pentium)
+# Use RDTSC instruction as a timing source (time stamp counter on x86 since Pentium) (default=OFF)
 #
 # Enable it when you've timing issues. (ex: in conjunction with XEN or Other Virtualization mechanisms)
 # Please ensure that you've disabled dynamic CPU-Frequencys, such as power saving options.
 # (On the most modern Dedicated Servers cpufreq is preconfigured, see your distribution's manual how to disable it)
 #
-option( ENABLE_RDTSC "use RDTSC instruction as a timing source" OFF )
+option( ENABLE_RDTSC "use RDTSC instruction as a timing source (default=OFF)" OFF )
 if( ENABLE_RDTSC )
-	message( STATUS "Enabled RDTSC" )
 	set_property( CACHE GLOBAL_DEFINITIONS  PROPERTY VALUE "${GLOBAL_DEFINITIONS} -DENABLE_RDTSC" )
+	message( STATUS "Enabled RDTSC as a timing source" )
+endif()
+
+
+#
+# Enable extra debug code (default=OFF)
+#
+option( ENABLE_EXTRA_DEBUG_CODE "enable extra debug code (default=OFF)" OFF )
+if( ENABLE_EXTRA_DEBUG_CODE )
+	set_property( CACHE GLOBAL_DEFINITIONS  PROPERTY VALUE "${GLOBAL_DEFINITIONS} -DDEBUG" )
+	message( STATUS "Enabled extra DEBUG code" )
+endif()
+
+
+#
+# Enable builtin memory manager (default=default)
+#
+set( MEMMGR_OPTIONS "default;yes;no" )
+set( ENABLE_MEMMGR "default" CACHE STRING "enable builtin memory manager: ${MEMMGR_OPTIONS} (default=default)" )
+set_property( CACHE ENABLE_MEMMGR  PROPERTY STRINGS ${MEMMGR_OPTIONS} )
+if( ENABLE_MEMMGR STREQUAL "default" )
+	# use source code default
+elseif( ENABLE_MEMMGR STREQUAL "yes" )
+	set_property( CACHE GLOBAL_DEFINITIONS  PROPERTY VALUE "${GLOBAL_DEFINITIONS} -DUSE_MEMMGR" )
+	message( STATUS "Enabled the builtin memory manager" )
+elseif( ENABLE_MEMMGR STREQUAL "no" )
+	set_property( CACHE GLOBAL_DEFINITIONS  PROPERTY VALUE "${GLOBAL_DEFINITIONS} -DNO_MEMMGR" )
+	message( STATUS "Disabled the builtin memory manager" )
+else()
+	message( FATAL_ERROR "invalid option ENABLE_MEMMGR=${ENABLE_MEMMGR} (valid options: ${MEMMGR_OPTIONS})" )
+endif()
+
+
+#
+# Enable memory library (default=system)
+#
+set( MEMORY_OPTIONS "system;memwatch;dmalloc;gcollect" )
+set( ENABLE_MEMORY "system" CACHE STRING "enable memory library: ${MEMORY_OPTIONS} (default=system)" )
+set_property( CACHE ENABLE_MEMORY  PROPERTY STRINGS ${MEMORY_OPTIONS} )
+if( ENABLE_MEMORY STREQUAL "system" )
+	# use system functions
+
+elseif( ENABLE_MEMORY STREQUAL "memwatch" )
+	CHECK_INCLUDE_FILE( memwatch.h HAVE_MEMWATCH_H )
+	find_library( MEMWATCH_LIBRARY memwatch )
+	mark_as_advanced( MEMWATCH_LIBRARY )
+	if( HAVE_MEMWATCH_H AND MEMWATCH_LIBRARY )
+		message( STATUS "Adding global library: ${MEMWATCH_LIBRARY}" )
+		set_property( CACHE GLOBAL_LIBRARIES    PROPERTY VALUE ${GLOBAL_LIBRARIES} ${MEMWATCH_LIBRARY} )
+		set_property( CACHE GLOBAL_DEFINITIONS  PROPERTY VALUE "${GLOBAL_DEFINITIONS} -DMEMWATCH" )
+		message( STATUS "Enabled the memory library memwatch" )
+	else()
+		message( FATAL_ERROR "Failed to enable the memory library memwatch" )
+	endif()
+
+elseif( ENABLE_MEMORY STREQUAL "dmalloc" )
+	CHECK_INCLUDE_FILE( dmalloc.h HAVE_DMALLOC_H )
+	find_library( DMALLOC_LIBRARY dmalloc )
+	mark_as_advanced( DMALLOC_LIBRARY )
+	if( HAVE_DMALLOC_H AND DMALLOC_LIBRARY )
+		message( STATUS "Adding global library: ${DMALLOC_LIBRARY}" )
+		set_property( CACHE GLOBAL_LIBRARIES    PROPERTY VALUE ${GLOBAL_LIBRARIES} ${DMALLOC_LIBRARY} )
+		set_property( CACHE GLOBAL_DEFINITIONS  PROPERTY VALUE "${GLOBAL_DEFINITIONS} -DDMALLOC -DDMALLOC_FUNC_CHECK" )
+		message( STATUS "Enabled the memory library dmalloc" )
+	else()
+		message( FATAL_ERROR "Failed to enable the memory library dmalloc" )
+	endif()
+
+elseif( ENABLE_MEMORY STREQUAL "gcollect" )
+	CHECK_INCLUDE_FILE( gc.h HAVE_GC_H )
+	find_library( GC_LIBRARY gc )
+	mark_as_advanced( GC_LIBRARY )
+	if( HAVE_GC_H AND GC_LIBRARY )
+		message( STATUS "Adding global library: ${GC_LIBRARY}" )
+		set_property( CACHE GLOBAL_LIBRARIES    PROPERTY VALUE ${GLOBAL_LIBRARIES} ${GC_LIBRARY} )
+		set_property( CACHE GLOBAL_DEFINITIONS  PROPERTY VALUE "${GLOBAL_DEFINITIONS} -DGCOLLECT" )
+		message( STATUS "Enabled the memory library gcollect" )
+	else()
+		message( FATAL_ERROR "Failed to enable the memory library gcollect" )
+	endif()
+
+else()
+	message( FATAL_ERROR "invalid option ENABLE_MEMORY=${ENABLE_MEMORY} (valid options: ${MEMORY_OPTIONS})" )
+endif()
+
+
+#
+# Enable profiler (default=none)
+#
+set( PROFILER_OPTIONS "none;gprof" )
+set( ENABLE_PROFILER "none" CACHE STRING "enable profiler: ${PROFILER_OPTIONS} (default=none)" )
+set_property( CACHE ENABLE_PROFILER  PROPERTY STRINGS ${PROFILER_OPTIONS} )
+if( ENABLE_PROFILER STREQUAL "none" )
+	# no profiler
+
+elseif( ENABLE_PROFILER STREQUAL "gprof" )
+	if( CMAKE_C_COMPILER_ID STREQUAL "GNU" )
+		if( NOT HAVE_GPROF_FLAGS )
+			set_property( CACHE CMAKE_C_FLAGS  PROPERTY VALUE "${CMAKE_C_FLAGS} -pg" )
+			set_property( CACHE CMAKE_EXE_LINKER_FLAGS  PROPERTY VALUE "${CMAKE_EXE_LINKER_FLAGS} -pg" )
+			set( HAVE_GPROF_FLAGS ON  CACHE INTERNAL "" )
+		endif()
+		message( STATUS "Enabled the profiler gprof" )
+	else()
+		message( FATAL_ERROR "Failed to enable the profiler gprof - not GNU" )
+	endif()
+
+else()
+	message( FATAL_ERROR "invalid option ENABLE_PROFILER=${ENABLE_PROFILER} (valid options: ${PROFILER_OPTIONS})" )
 endif()
 
 
@@ -294,13 +402,16 @@ set( CPACK_PACKAGE_VERSION ${SVNVERSION} )
 set( CPACK_RESOURCE_FILE_LICENSE ${CMAKE_CURRENT_SOURCE_DIR}/LICENSE )
 #set( CPACK_MONOLITHIC_INSTALL ON )
 include( CPACK  OPTIONAL  RESULT_VARIABLE HAVE_CPACK )
-if( NOT HAVE_CPACK )
+if( HAVE_CPACK )
+	option( WITH_CPACK "enable building packages with CPack ('package' target)" ON )
+endif()
+if( NOT WITH_CPACK )
 	# empty replacements
 	macro( cpack_add_component_group )
 	endmacro()
 	macro( cpack_add_component )
 	endmacro()
-	message( STATUS "CPACK not found, package creation disabled" )
+	message( STATUS "Disabled package creation" )
 endif()
 
 set( Runtime "Runtime files"  CACHE INTERNAL "" )
@@ -319,8 +430,8 @@ cpack_add_component( Development_base DESCRIPTION ${Development_base} DISPLAY_NA
 #
 # install stuff
 #
-option( WITH_COMPONENT_RUNTIME "install/package files needed to run the project" ON )
-option( WITH_COMPONENT_DEVELOPMENT "install/package files needed to build the project" OFF )
+option( INSTALL_COMPONENT_RUNTIME "install/package files needed to run the project" ON )
+option( INSTALL_COMPONENT_DEVELOPMENT "install/package files needed to build the project" OFF )
 option( INSTALL_TO_PATH "copy files to INSTALL_PATH" OFF )
 option( INSTALL_TO_SOURCE "copy files to source directory, skips what is already there (${CMAKE_CURRENT_SOURCE_DIR})" OFF )
 option( INSTALL_TO_SUBDIR "copy files to subdirectory (${CMAKE_CURRENT_BINARY_DIR}/install)" OFF )
@@ -387,7 +498,7 @@ set( RUNTIME_DIRECTORIES
 	)
 if( INSTALL_TO_SOURCE )# skip, already in the source dir
 else()
-	if( WITH_COMPONENT_RUNTIME )
+	if( INSTALL_COMPONENT_RUNTIME )
 		install( FILES ${RUNTIME_FILES}
 			DESTINATION "."
 			COMPONENT Runtime_base )
@@ -398,8 +509,8 @@ else()
 				PATTERN ${SVN_FOLDER_PATTERN} EXCLUDE
 				PATTERN "conf/import-tmpl" EXCLUDE )
 		endforeach()
-	endif()
-	if( WITH_COMPONENT_DEVELOPMENT )
+	endif( INSTALL_COMPONENT_RUNTIME )
+	if( INSTALL_COMPONENT_DEVELOPMENT )
 		install( FILES ${DEVELOPMENT_FILES}
 			DESTINATION "."
 			COMPONENT Development_base )
@@ -409,7 +520,7 @@ else()
 				COMPONENT Development_base
 				PATTERN ${SVN_FOLDER_PATTERN} EXCLUDE )
 		endforeach()
-	endif()
+	endif( INSTALL_COMPONENT_DEVELOPMENT )
 endif()
 
 

@@ -8,7 +8,7 @@ set( SQL_CHAR_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}  CACHE INTERNAL "" )
 #
 # char sql
 #
-if( HAVE_common_sql )
+if( BUILD_SQL_SERVERS )
 message( STATUS "Creating target char-server_sql" )
 set( SQL_CHAR_HEADERS
 	"${CMAKE_CURRENT_SOURCE_DIR}/char.h"
@@ -50,17 +50,11 @@ add_executable( char-server_sql ${SOURCE_FILES} )
 add_dependencies( char-server_sql ${DEPENDENCIES} )
 target_link_libraries( char-server_sql ${LIBRARIES} ${DEPENDENCIES} )
 set_target_properties( char-server_sql PROPERTIES COMPILE_FLAGS "${DEFINITIONS}" )
-if( WITH_COMPONENT_RUNTIME )
+if( INSTALL_COMPONENT_RUNTIME )
 	cpack_add_component( Runtime_charserver_sql DESCRIPTION "char-server (sql version)" DISPLAY_NAME "char-server_sql" GROUP Runtime )
 	install( TARGETS char-server_sql
 		DESTINATION "."
 		COMPONENT Runtime_charserver_sql )
-endif()
-set( HAVE_char-server_sql ON  CACHE BOOL "char-server_sql target is available" )
-mark_as_advanced( HAVE_char-server_sql )
-set( TARGET_LIST ${TARGET_LIST} char-server_sql  CACHE INTERNAL "" )
+endif( INSTALL_COMPONENT_RUNTIME )
 message( STATUS "Creating target char-server_sql - done" )
-else()
-message( STATUS "Skipping target char-server_sql (requires common_sql)" )
-unset( HAVE_char-server_sql CACHE )
-endif()
+endif( BUILD_SQL_SERVERS )

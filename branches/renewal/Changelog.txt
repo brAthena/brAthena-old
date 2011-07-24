@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0746 - 24/07/2011 [Dani]
+	* Atualização até a r14921 do eAthena
+
 	r0745 - 23/07/2011 [Dani]
 	* Adição do suporte pras Classes 3 fazerem a quest da Torre Thanatos
 	- Report por scaflone (#204)
