@@ -1,29 +1,30 @@
-//  ________________________________________________________
-// /                                                        \
-// |       _           _   _   _                            |
-// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
-// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
-// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
-// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |                                                        |
-// |                    brAthena Script                     |
-// |--------------------------------------------------------|
-// | Nome do Database: castle_db.txt                        |
-// |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team                           |
-// |--------------------------------------------------------|
-// | Descrição: Database dos Castelos.                      |
-// |--------------------------------------------------------|
-// | Estrutura do Banco de Dados:                           |
-// | Id do Castelo,Nome do Mapa,Nome do Castelo,            |
-// | OnGuildBreakEventName(1),Bandeira(2),                  |
-// | (1) Expulsão do Castelo Conquistado,(2) Reservas.	    |
-// \________________________________________________________/
+//  _____________________________________________________________
+// /                                                             \
+// |          _           _   _   _                              |
+// |         | |__  _ __ / \ | |_| |__   ___ _ __   __ _         |
+// |         | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |        |
+// |         | |_) | | / ___ \ |_| | | |  __/ | | | (_| |        |
+// |         |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|        |
+// |                                                             |
+// |                       brAthena Script                       |
+// |-------------------------------------------------------------|
+// | Nome do Database: castle_db.txt                             |
+// |-------------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                                |
+// |-------------------------------------------------------------|
+// | Descrição: Database de Castelos.                            |
+// |-------------------------------------------------------------|
+// | Estrutura do Banco de Dados:                                |
+// | ID do Castelo,Nome do Mapa,Nome do Castelo,                 |
+// | OnGuildBreakEventName(1),Bandeira(2),                       |
+// | (1) Expulsão do Castelo Conquistado,(2) Reservas.	         |
+// \_____________________________________________________________/
+//
 //
 //========================================================================================================
 // Feudo de Luina (Al De Baran)
 //========================================================================================================
-0,aldeg_cas01,Sirius,Agit#aldeg_cas01,1                    // kRO : Noisyubantian | iRO: Neuschwanstein
+0,aldeg_cas01,Sirius,Agit#aldeg_cas01,1          		   // kRO : Noisyubantian | iRO: Neuschwanstein
 1,aldeg_cas02,Astrum,Agit#aldeg_cas02,1                    // kRO : Hohensyubangawoo | iRO: Hohenschwangau
 2,aldeg_cas03,Canopus,Agit#aldeg_cas03,1                   // kRO : Nyirenverk | iRO: Nuenberg
 3,aldeg_cas04,Rigel,Agit#aldeg_cas04,1                     // kRO : Byirtsburi | iRO: Wuerzburg
@@ -81,3 +82,4 @@
 31,arug_cas03,Horn,Agit_Ar03,1                             // kRO : Horn | iRO: Horn
 32,arug_cas04,Gefn,Agit_Ar04,1                             // kRO : Gefn | iRO: Gefn
 33,arug_cas05,Vanadis,Agit_Ar05,1                          // kRO : Bandis | iRO: Bandis
+//========================================================================================================

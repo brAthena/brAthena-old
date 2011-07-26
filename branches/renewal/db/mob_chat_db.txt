@@ -1,23 +1,25 @@
-//  ________________________________________________________
-// /                                                        \
-// |       _           _   _   _                            |
-// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
-// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
-// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
-// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |                                                        |
-// |                    brAthena Script                     |
-// |--------------------------------------------------------|
-// | Nome do Database: mob_chat_db.txt                      |
-// |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team                           |
-// |--------------------------------------------------------|
-// | Descrição: Banco de dados de falas de monstros.        |
-// |--------------------------------------------------------|
-// | Estrutura do Banco de Dados:                           |
-// | Linha, Cor, Diálogo                                    |
-// \________________________________________________________/
-
+//  _____________________________________________________________
+// /                                                             \
+// |          _           _   _   _                              |
+// |         | |__  _ __ / \ | |_| |__   ___ _ __   __ _         |
+// |         | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |        |
+// |         | |_) | | / ___ \ |_| | | |  __/ | | | (_| |        |
+// |         |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|        |
+// |                                                             |
+// |                       brAthena Script                       |
+// |-------------------------------------------------------------|
+// | Nome do Database: mob_chat_db.txt                           |
+// |-------------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                                |
+// |-------------------------------------------------------------|
+// | Descrição: Banco de dados de falas de monstros.             |
+// |-------------------------------------------------------------|
+// | Estrutura do Database:                                      |
+// | Linha, Cor, Diálogo                                         |
+// \_____________________________________________________________/
+//
+//
+//========================================================================================================
 1,0xFF0000,Fraco! Me desafie se tiver alguma coragem!
 2,0xFF0000,Impressionante! Eu me pergunto até onde sua imprudencia irá levá-lo.
 3,0xFF0000,Tenho pena de você estar contra mim. Agora se prepare para meu ataque!
@@ -46,10 +48,10 @@
 26,0xFF0000,Argh... Eu... Eu, estou enfraquecendo...
 27,0xFF0000,O que você quer de mim?
 28,0xFF0000,Não! Eu não fiz isso! Ele é quem planejou tudo isso!
-29,0xFF0000,Eu so queria encontrar um pouco de paz..! É por isso que tenho de fugir para longe!
-30,0xFF0000,Ahhhh!!! Now, I just have to kill you all!
-31,0xFF0000,Annoying flies!! Get off of me!
-32,0xFF0000,Suffer in Hell!
-33,0xFF0000,Mwahahaha! Taste the anger of the earth!!!
-34,0xFF0000,No... I won't accept this as defeat!
-
+29,0xFF0000,Eu só queria encontrar a paz..!  É por isso que eu estava fugindo!
+30,0xFF0000,Ahhhh!!! Agora, só tenho que matá-lo!
+31,0xFF0000,Moscas irritantes!! Saiam de mim!
+32,0xFF0000,Sofra no Inferno!
+33,0xFF0000,Mwahahaha! Sinta a fúria da terra!!!
+34,0xFF0000,Não... Eu não irei aceitar esta derrota!
+//========================================================================================================

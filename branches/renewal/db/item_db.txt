@@ -1,25 +1,28 @@
-//  ________________________________________________________
-// /                                                        \
-// |       _           _   _   _                            |
-// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
-// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
-// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
-// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |                                                        |
-// |                    brAthena Script                     |
-// |--------------------------------------------------------|
-// | Nome do Database: item_db.txt                          |
-// |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team                           |
-// |--------------------------------------------------------|
-// | Descrição: Banco de Dados dos itens oficiais.          |
-// \________________________________________________________/
-//
-//============================================================
-// ID,Nome no Aegis,Nome em Português,Tipo,Preço de Compra,Preço de Venda,Peso,ATQ,DEF,Alcance,Slots,Classe,Upper,Sexo,Loc,Nível da Arma,Nível Requerido,Refinável,View,{ Script },{ Script quando equipar },{ Script quando desequipar }
+//  _____________________________________________________________
+// /                                                             \
+// |          _           _   _   _                              |
+// |         | |__  _ __ / \ | |_| |__   ___ _ __   __ _         |
+// |         | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |        |
+// |         | |_) | | / ___ \ |_| | | |  __/ | | | (_| |        |
+// |         |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|        |
+// |                                                             |
+// |                       brAthena Script                       |
+// |-------------------------------------------------------------|
+// | Nome do Database: item_db.txt                               |
+// |-------------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                                |
+// |-------------------------------------------------------------|
+// | Descrição: Database de itens.                               |
+// |-------------------------------------------------------------|
+// | Estrutura do Database:                                      |
+// | ID,Nome no Aegis,Nome em Português,Tipo,Preço de Compra,    |
+// | Preço de Venda,Peso,ATQ,DEF,Alcance,Slots,Classe,Upper,Sexo,|
+// | Loc,Nível da Arma,Nível Requerido,Refinável,View,{ Script },|
+// | { Script quando equipar },{ Script quando desequipar }      |
+// \_____________________________________________________________/
 //
 // Healing Items
-//=============================================================
+//========================================================================================================
 501,Red_Potion,Poção Vermelha,0,50,,70,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal rand(45,65),0; },{},{}
 502,Orange_Potion,Poção Laranja,0,200,,100,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal rand(105,145),0; },{},{}
 503,Yellow_Potion,Poção Amarela,0,550,,130,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal rand(175,235),0; },{},{}
@@ -118,7 +121,7 @@
 598,Light_Red_Pot,Light Red Potion,0,50,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal rand(45,65),0; },{},{}
 599,Light_Orange_Pot,Light Orange Potion,0,200,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal rand(105,145),0; },{},{}
 // Usable Items
-//===================================================================
+//==============================================================================================================
 601,Wing_Of_Fly,Asa de Mosca,11,60,,50,,,,,0xFFFFFFFF,7,2,,,,,,{ itemskill "AL_TELEPORT",1; },{},{}
 602,Wing_Of_Butterfly,Asa de Borboleta,11,300,,50,,,,,0xFFFFFFFF,7,2,,,,,,{ itemskill "AL_TELEPORT",3; },{},{}
 603,Old_Blue_Box,Velha Caixa Azul,2,10000,,200,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem groupranditem(IG_BlueBox),1; },{},{}
@@ -210,7 +213,7 @@
 699,Fire_Scroll_3_5,Barreira de Fogo Nível 5,11,2000,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ itemskill "MG_FIREWALL",5; },{},{}
 700,Cold_Scroll_2_1,Rajada Congelante Nível 1,11,1000,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ itemskill "MG_FROSTDIVER",1; },{},{}
 // Etc Items
-//===================================================================
+//==============================================================================================================
 701,Ora_Ora,Armadilha para Insetos,3,55000,,200,,,,,,,,,,,,,{},{},{}
 702,Animal_Blood,Sangue de Animal,3,450,,100,,,,,,,,,,,,,{},{},{}
 703,Hinalle,Hinalle,3,500,,10,,,,,,,,,,,,,{},{},{}
@@ -464,7 +467,7 @@
 1098,Manacles,Algemas,3,658,,10,,,,,,,,,,,,,{},{},{}
 1099,Worn_Out_Prison_Uniform,Uniforme Velho de Presidiário,3,680,,10,,,,,,,,,,,,,{},{},{}
 // Weapons
-//===================================================================
+//==============================================================================================================
 // 1-Handed Swords
 1101,Sword,Espada,4,100,,500,25,,1,3,0x000654E3,7,2,2,1,2,1,2,{ bonus bMatk,2*getrefine();},{},{}
 1102,Sword_,Espada,4,100,,500,25,,1,4,0x000654E3,7,2,2,1,2,1,2,{ bonus bMatk,2*getrefine();},{},{}
@@ -1130,7 +1133,7 @@
 2013,Crimson_Staff2,Crimson Staff II,4,20,,900,30,,1,1,0x00000200,8,2,34,4,130,1,10,{ bonus bMatk,270; bonus bInt,5; bonus bAtkEle,Ele_Fire; bonus2 bSkillAtk,"MG_FIREBOLT",30; bonus2 bSkillAtk,"MG_FIREBALL",30; if (isequipped(2469,2861,15027)) { bonus2 bSubEle,Ele_Water,-50; }; },{},{}
 2014,Forest_Staff2,Forest Staff II,4,20,,900,30,,1,1,0x00000200,8,2,34,4,130,1,10,{ bonus bMatk,270; bonus bInt,5; bonus bAtkEle,Ele_Earth; bonus2 bSkillAtk,"WZ_EARTHSPIKE",30; bonus2 bSkillAtk,"WZ_HEAVENDRIVE",30; if (isequipped(2470,2862,15028)) { bonus2 bSubEle,Ele_Fire,-50; }; },{},{}
 // Shields
-//===================================================================
+//==============================================================================================================
 2101,Guard,Vembrassa,5,500,,300,,20,,0,0xFFFFFFFF,7,2,32,,0,1,1,{},{},{}
 2102,Guard_,Vembrassa,5,500,,300,,20,,1,0xFFFFFFFF,7,2,32,,0,1,1,{},{},{}
 2103,Buckler,Broquel,5,14000,,600,,40,,0,0x000ED5F2,7,2,32,,0,1,2,{},{},{}
@@ -1191,7 +1194,7 @@
 2161,Geffenia_Tomb_of_Water,Geffenia Tomb of Water,5,20,,1000,,30,,0,0x00000200,8,2,32,,100,1,1,{ bonus bMdef,2; bonus bInt,1; if(readparam(bInt)>=120){ bonus bMatk,10; bonus bMaxHP,800; } },{},{}
 2162,Holy_Scripture_Vol2,Holy Scripture Vol2,5,20,,500,,20,,1,0x00000100,8,2,32,,140,1,1,{ bonus bMdef,5; bonus bHealPower,5; skill "ALL_ODINS_POWER",2; },{},{}
 // Headgears
-//===================================================================
+//==============================================================================================================
 2201,Sunglasses,Óculos Escuros,5,5000,,100,,0,,0,0xFFFFFFFF,7,2,512,,0,0,12,{ bonus2 bResEff,Eff_Blind,500; },{},{}
 2202,Sunglasses_,Óculos Escuros,5,5000,,100,,0,,1,0xFFFFFFFF,7,2,512,,0,0,12,{ bonus2 bResEff,Eff_Blind,500; },{},{}
 2203,Glasses,Óculos,5,4000,,100,,0,,0,0xFFFFFFFF,7,2,512,,0,0,3,{},{},{}
@@ -1292,7 +1295,7 @@
 2298,Green_Feeler,Antenas Verdes,5,20,,100,,3,,0,0xFFFFFFFF,7,2,256,,0,0,85,{},{},{}
 2299,Viking_Helm,Capacete de Orc,5,20,,500,,9,,0,0x000654E2,7,2,256,,0,1,86,{},{},{}
 // Armors
-//===================================================================
+//==============================================================================================================
 2301,Cotton_Shirt,Camisa de Algodão,5,10,,100,,10,,0,0xFFFFFFFF,7,2,16,,0,1,0,{},{},{}
 2302,Cotton_Shirt_,Camisa de Algodão,5,10,,100,,10,,1,0xFFFFFFFF,7,2,16,,0,1,0,{},{},{}
 2303,Leather_Jacket,Gibão,5,200,,200,,15,,0,0xFFFFFFFF,7,2,16,,0,1,0,{},{},{}
@@ -1393,7 +1396,7 @@
 2398,Sniping_Suit_M,Sniping Suit,5,0,,750,,42,,0,0x00000800,2,2,16,,50,1,0,{ bonus bMdef,5; bonus bCritical,6+(readparam(bLuk)/10); bonus bDelayRate,-23; },{},{}
 2399,Dragon_Vest,Colete do Dragão,5,0,,500,,20,,1,0xFFFFFFFE,7,2,16,,0,1,0,{ bonus bMdef,3; if(isequipped(2553)) { bonus bAgi,5; bonus bFlee,15; } },{},{}
 // Footgears
-//===================================================================
+//==============================================================================================================
 2401,Sandals,Sandálias,5,400,,200,,5,,0,0xFFFFFFFF,7,2,64,,0,1,0,{},{},{}
 2402,Sandals_,Sandálias,5,400,,200,,5,,1,0xFFFFFFFF,7,2,64,,0,1,0,{},{},{}
 2403,Shoes,Sapatos,5,3500,,400,,10,,0,0xFFFFFFFE,7,2,64,,0,1,0,{},{},{}
@@ -1474,7 +1477,7 @@
 2479,White_Wing_Boots,White Wing Boots,5,20,,400,,18,,1,0x00000800,8,2,64,,100,1,0,{ bonus bAgi,2; },{},{}
 2480,Black_Wing_Boots,Black Wing Boots,5,20,,400,,18,,1,0x00000800,8,2,64,,100,1,0,{ bonus bInt,2; bonus bMaxSPRate,5; },{},{}
 // Garments
-//===================================================================
+//==============================================================================================================
 2501,Hood,Capuz,5,1000,,200,,4,,0,0xFFFFFFFF,7,2,4,,0,1,0,{},{},{}
 2502,Hood_,Capuz,5,1000,,200,,4,,1,0xFFFFFFFF,7,2,4,,0,1,0,{},{},{}
 2503,Muffler,Sobrepeliz,5,5000,,400,,8,,0,0xFFFFFFFE,7,2,4,,0,1,0,{},{},{}
@@ -1552,7 +1555,7 @@
 2581,Black_Wing_Manteau,Black Wing Manteau,5,20,,200,,15,,0,0x00000800,8,2,4,,100,1,0,{ bonus bInt,1; if(getrefine()>=7){ bonus bFlee2,getrefine()-6; } },{},{}
 2582,Salvage_Cape,Salvage Cape,5,20,,400,,1,,0,0x00000300,8,2,4,,130,1,0,{ skill "NJ_UTSUSEMI",1; bonus bUseSPrate,100;  },{},{ heal 0,-1200; }
 // Accessories
-//===================================================================
+//==============================================================================================================
 2601,Ring,Anel,5,30000,,100,,0,,0,0xFFFFFFFE,7,2,136,,20,0,0,{ bonus bStr,2; },{},{}
 2602,Earring,Brinco,5,30000,,100,,0,,0,0xFFFFFFFE,7,2,136,,20,0,0,{ bonus bInt,2; },{},{}
 2603,Necklace,Colar,5,30000,,100,,0,,0,0xFFFFFFFE,7,2,136,,20,0,0,{ bonus bVit,2; },{},{}
@@ -1817,7 +1820,7 @@
 2891,Black_Wing_Brooch,Black Wing Brooch,5,20,,100,,0,,0,0x00000800,8,2,136,,100,0,0,{ bonus bInt,2; bonus bFlee2,3; },{},{}
 2892,Assassin's_Glove,Assassin's Glove,5,20,,400,,3,,0,0x00001000,8,2,136,,100,0,0,{ bonus bMaxSP,20; bonus bCritical,3; if(isequipped(1284)){ bonus bBaseAtk,50; bonus2 bSkillAtk,"AS_SONICBLOW",50; bonus bFlee,-30; } if(isequipped(1285)){ bonus bCritAtkRate,40; bonus bCritical,4; bonus bMaxHPRate,-10; } },{},{}
 // Cards
-//===================================================================
+//==============================================================================================================
 4001,Poring_Card,Carta Poring,6,20,,10,,,,,,,,16,,,,,{ bonus bLuk,2; bonus bFlee2,1; },{},{}
 4002,Fabre_Card,Carta Fabre,6,20,,10,,,,,,,,2,,,,,{ bonus bVit,1; bonus bMaxHP,100; },{},{}
 4003,Pupa_Card,Carta Pupa,6,20,,10,,,,,,,,16,,,,,{ bonus bMaxHP,700; },{},{}
@@ -2295,7 +2298,7 @@
 4476,Pinguicula_Card,Pinguicula Card,6,20,,10,,,,,,,,2,,,,,{ bonus2 bMagicAddRace,RC_Insect,10; },{},{}
 4477,Hell_Apocalypse_Card,Hell_Apocalypse Card,6,20,,10,,,,,,,,2,,,,,{ bonus2 bMagicAddRace,RC_Demon,10; },{},{}
 // Armor Enchant System
-//===================================================================
+//==============================================================================================================
 4700,Strength1,FOR +1,6,20,,10,,,,,,,,16,,,,,{ bonus bStr,1; },{},{}
 4701,Strength2,FOR +2,6,20,,10,,,,,,,,16,,,,,{ bonus bStr,2; },{},{}
 4702,Strength3,FOR +3,6,20,,10,,,,,,,,16,,,,,{ bonus bStr,3; },{},{}
@@ -2455,7 +2458,7 @@
 4861,MHP+1%,MaxHP+1%,6,20,,10,,,,,,,,16,,,,,{ bonus bMaxHPrate,1; },{},{}
 4862,MHP+2%,MaxHP+2%,6,20,,10,,,,,,,,16,,,,,{ bonus bMaxHPrate,2; },{},{}
 // More Headgears
-//===================================================================
+//==============================================================================================================
 5001,Headset,Fone de Ouvido,5,20,,200,,6,,0,0xFFFFFFFE,7,2,256,,1,1,87,{ bonus2 bResEff,Eff_Curse,1000; },{},{}
 5002,Gemmed_Crown,Coroa Adornada,5,20,,600,,9,,0,0x000654E2,7,2,256,,60,1,88,{ bonus bMdef,3; bonus bInt,2; bonus bLuk,1; },{},{}
 5003,Joker_Jester,Chapéu de Bufão,5,20,,100,,3,,0,0xFFFFFFFE,7,2,256,,0,1,89,{ bonus bMdef,5; bonus bLuk,2; },{},{}
@@ -3271,7 +3274,7 @@
 5858,Victory_Ball_Cap,Chapéu da Copa: Vitória,5,20,,600,,2,,1,0xFFFFFFFF,7,2,256,,1,1,673,{ bonus bAgi,2; bonus bLuk,2; },{},{}
 5859,Glory_Ball_Cap,Chapéu da Copa: Honra,5,20,,600,,2,,1,0xFFFFFFFF,7,2,256,,1,1,674,{ bonus bAllStats,1; bonus bAspd,1; bonus bBaseAtk,(BaseLevel/10); bonus bMatk,(BaseLevel/10); },{},{}
 // More Etc Items
-//===================================================================
+//==============================================================================================================
 6000,Dark_Ashes,Cinzas da Escuridão,3,0,,0,,,,,,,,,,,,,{},{},{}
 6001,Essence_Of_Fire,Essência de Fogo,3,0,,10,,,,,,,,,,,,,{},{},{}
 6002,Token_Of_Apostle,Medalhão do Apóstolo,3,0,,10,,,,,,,,,,,,,{},{},{}
@@ -4605,7 +4608,7 @@
 //7998,Chinese_Card_21
 //7999,Chinese_Card_22
 // Pet Eggs
-//===================================================================
+//==============================================================================================================
 9001,Poring_Egg,Ovo de Poring,7,20,,0,,,,,,,,,,,,,{},{},{}
 9002,Drops_Egg,Ovo de Drops,7,20,,0,,,,,,,,,,,,,{},{},{}
 9003,Poporing_Egg,Ovo de Poporing,7,20,,0,,,,,,,,,,,,,{},{},{}
@@ -4663,7 +4666,7 @@
 9055,Succubus_Egg,Ovo de Succubus,7,20,,0,,,,,,,,,,,,,{},{},{}
 9056,Imp_Egg,Ovo de Imp,7,20,,0,,,,,,,,,,,,,{},{},{}
 // Pet Accessories
-//===================================================================
+//==============================================================================================================
 10001,Skull_Helm,Elmo de Crânio,8,20,,0,,,,,,,,,,,,,{},{},{}
 10002,Monster_Oxygen_Mask,Máscara de Oxigênio para Bichinhos,8,20,,0,,,,,,,,,,,,,{},{},{}
 10003,Transparent_Headgear,Capacete Espacial,8,20,,0,,,,,,,,,,,,,{},{},{}
@@ -4703,7 +4706,7 @@
 10037,Black_Butterfly_Mask,Black Butterfly Mask,8,20,,0,,,,,,,,,,,,,{},{},{}
 10038,Horn_Protector,Protetor de Chifre,8,20,,0,,,,,,,,,,,,,{},{},{}
 // Misc "Etc" Books
-//===================================================================
+//==============================================================================================================
 11000,Prontera_Book_01,História de Prontera,3,8000,,0,,,,,,,,,,,,,{},{},{}
 11001,Adventure_Story01,Histórias de Aventura Vol.1,3,8000,,0,,,,,,,,,,,,,{},{},{}
 11002,Great_Chef_Orleans01,Mestre-Cuca Orleans Vol.1,3,8000,,0,,,,,,,,,,,,,{},{},{}
@@ -4724,8 +4727,8 @@
 11017,Reward_List_Book2,KVM Reward Items Catalog,3,0,,10,,,,,,,,,,,,,{},{},{}
 11018,Splendide_Selling_Item,Itens de Esplendor à Venda,3,0,,10,,,,,,,,,,,,,{},{},{}
 11019,Manuk_Selling_Item,Itens de Esplendor à Venda,3,0,,10,,,,,,,,,,,,,{},{},{}
-11020,Japanese_Book1,Japanese Book 1,3,0,,10,,,,,,,,,,,,,{},{},{}
-11021,Japanese_Book2,Japanese Book 2,3,0,,10,,,,,,,,,,,,,{},{},{}
+11020,Japanese_Book1,Livro Japonês 1,3,0,,10,,,,,,,,,,,,,{},{},{}
+11021,Japanese_Book2,Livro Japonês 2,3,0,,10,,,,,,,,,,,,,{},{},{}
 11022,Mix_Cooking_Ingredient_Book_1,Livro de Culinária Avançada,3,10,,50,,,,,,,,,,,,,{},{},{}
 11023,Vitality_Boost_Research_Book,Como Aumentar sua Força,3,10,,50,,,,,,,,,,,,,{},{},{}
 11024,Energy_Drink_Formula,Como Aumentar sua Energia,3,10,,50,,,,,,,,,,,,,{},{},{}
@@ -4742,7 +4745,7 @@
 11055,Book_of_Basic_Adventure,Book of Basic Adventure,3,10,,50,,,,,,,,,,,,,{},{},{}
 //11056,Spiritualism_Guide,
 // More Usable Items
-//===================================================================
+//==============================================================================================================
 11500,Light_Yellow_Pot,Light Yellow Potion,0,500,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal rand(175,235),0; },{},{}
 11501,Light_White_Pot,Poção Branca Leve,0,1200,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal rand(325,405),0; },{},{}
 11502,Light_Blue_Pot,Poção Refrescante Azul,0,5000,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal 0,rand(40,60); },{},{}
@@ -5492,7 +5495,7 @@
 12998,Oridecon_Box,Oridecon Box,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 984,5; },{},{}
 12999,Branch_Of_Dead_Tree_Box,Caixa de Galhos Secos,18,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 604,3; },{},{}
 // More Weapons
-//===================================================================
+//==============================================================================================================
 // Daggers and Ninja Weapons
 13000,Jujube_Dagger,Adaga de Jujube,4,10000,,600,39,,1,0,0x008F5EEF,7,2,2,1,1,1,1,{ bonus bAtkEle,Ele_Wind; },{},{}
 13001,Dragon_Killer,Matadora de Dragão,4,20,,900,110,,1,0,0x008F5EEF,7,2,2,4,60,1,1,{ bonus bIgnoreDefRace,RC_Dragon; bonus2 bExpAddRace,RC_Dragon,10; },{},{}
@@ -6809,3 +6812,4 @@
 19527,Costume_Spiky_Band,Costume Spiky Band,5,20,,0,,0,,0,0xFFFFFFFF,7,2,1024,,1,0,43,{},{},{}
 19528,Costume_Iron_Cain,Costume Iron Cain,5,20,,0,,0,,0,0xFFFFFFFF,7,2,4096,,1,0,53,{},{},{}
 19529,Costume_Angel_Wing,Costume Angel Wing,5,20,,0,,0,,0,0xFFFFFFFF,7,2,1024,,1,0,38,{},{},{}
+//========================================================================================================

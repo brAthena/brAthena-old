@@ -9,6 +9,15 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0748 - 26/07/2011 [Protimus]
+	* Modificações para o Database:
+	- Correções de cabeçalhos para maioria dos arquivos.
+	- Algumas traduções que faltavam foram realizadas.
+	- Algumas correções que haviam sido esquecidas foram realizadas.
+	- As explicações foram removidas e em breve será adicionado um o novo arquivo de notas do database, contendo tudo.
+	- Ainda faltam alguns ajustes e traduções que não foram encontradas informações.
+	OBS: Necessário fazer um merge para a trunk após terminado o processo de conclusão do database.
+	
 	r0747 - 24/07/2011 [Dani]
 	* Adicionada flag para não mostrar o warning do "break strict-aliasing rules"
 	- Temporary fix
