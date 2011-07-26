@@ -9,7 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
-	r0748 - 26/07/2011 [Protimus]
+
+	r0750 - 26/07/2011 [Protimus]
+	* Corrigido problema com a Resetadora personalizada do brAthena.
+
+	r0749 - 26/07/2011 [Protimus]
 	* Modificações para o Database:
 	- Correções de cabeçalhos para maioria dos arquivos.
 	- Algumas traduções que faltavam foram realizadas.

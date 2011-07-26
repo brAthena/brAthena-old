@@ -19,18 +19,18 @@
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Script Criado [Equipe brAthena]                    |
-// | - Anotações                                            |
+// | 1.1 Corrigido problema com array. [Protimus]			|
 // \________________________________________________________/
 
-prontera,150,193,4	script	Resetadora	124,{
+prontera,143,227,4	script	Resetadora	78,{
 	mes "[Resetadora]";
 	mes "Eu sou a resetadora.";
-	mes "Resetar atributos: "+.preco[1];
-	mes "Resetar habilidades: "+.preco[2];
-	mes "Resetar ambos: "+.preco[3];
+	mes "Resetar atributos: ^0000FF"+.preco[1]+"z^000000.";
+	mes "Resetar habilidades: ^0000FF"+.preco[2]+"z^000000.";
+	mes "Resetar ambos: ^0000FF"+.preco[3]+"z^000000.";
 	mes "Por favor, escolha o que desejas:";
 	next;
-	if(select("^FF3355Resetar Atributos:Resetar habilidades:Resetar ambos^000000:Sair")==4) close;
+	if(select("^FF3355Resetar Atributos.:Resetar habilidades.:Resetar ambos.^000000:Sair") == 4) close;
 	mes "[Resetadora]";
 	if(Zeny < .preco[@menu]){
 		mes "Desculpe-me, mas você não possui zenys suficientes";
@@ -43,6 +43,6 @@ prontera,150,193,4	script	Resetadora	124,{
 	close;
 
 OnInit:
-	set .preco[1],5000,5000,9000; // Preço para resetar: [1] os atributos, [2] as habilidades e [3] ambos.
+	setarray .preco[1],5000,5000,9000; // Preço para resetar: [1] os atributos, [2] as habilidades e [3] ambos.
 	end;
 }

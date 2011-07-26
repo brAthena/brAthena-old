@@ -9,10 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
-	r0748 - 24/07/2011
+	r0750 - 26/07/2011 [Protimus]
+	* Corrigido problema com a Resetadora personalizada do brAthena.
+
+	r0748 - 24/07/2011 [Dani]
 	* Revisão do script cidades/payon.txt
 
-	r0747 - 24/07/2011
+	r0747 - 24/07/2011 [Dani]
 	* Adicionada flag para não mostrar o warning do "break strict-aliasing rules"
 	- Temporary fix
 	* Capitulares de outputs dos servers corrigidos
