@@ -38,15 +38,14 @@ prontera,130,213,5	script	Domador de Criaturas	105,{
 	}
 	mes "Você gostaria de obter um "+.@montaria$+"?";
 	next;
-	switch(select("Sim:Não")) {
-	case 1:
+	if (select("Sim:Não")==1) {
 		if(checkriding()) {
 			mes "[Domador de Criaturas]";
 			mes "Você já tem um "+.@montaria$+".";
 		}else
 			setriding;
 		close;
-	case 2:
+	} else {
 		mes "[Domador de Criaturas]";
 		mes "Certo, tenha um bom dia.";
 		close;

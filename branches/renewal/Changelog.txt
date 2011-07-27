@@ -9,7 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
-
+	r0751 - 27/07/2011 [Lord]
+	* Revertida pequena alteração em inter.c na r0747.
+	* Enviada pequena modificação no npc montarias.txt.
+	- por Architect.
+	
 	r0750 - 26/07/2011 [Protimus]
 	* Corrigido problema com a Resetadora personalizada do brAthena.
 
