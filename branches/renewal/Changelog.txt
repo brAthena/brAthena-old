@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0752 - 28/07/2011 [Dani]
+	* Alterações no item_db
+	- Revisão dos itens existentes antes do Renewal
+	- Atualização das traduções até o patch corrente (27/07/2011)
+	-- Atualização de vários itens pendente.
+
 	r0751 - 27/07/2011 [Lord]
 	* Revertida pequena alteração em inter.c na r0747.
 	* Enviada pequena modificação no npc montarias.txt.

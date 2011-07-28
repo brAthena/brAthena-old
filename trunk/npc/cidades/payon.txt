@@ -942,7 +942,7 @@ OnTouch:
 	close;
 }
 
-payon_in03,102,185,5	script	Guarda#payon	708,{
+payon_in03,102,185,5	script	Guarda#payon01	708,{
 	mes "[Guarda]";
 	if (BaseLevel < 30) {
 		mes "Hey...!";
