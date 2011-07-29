@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0755 - 29/07/2011 [Mark]
+	* Correção da habilidade Reparar (NC_REPAIR).
+
 	r0754 - 29/07/2011 [Mark]
 	* Correção para habilidades:
 	- Lança Chamas (NC_FLAMELAUNCHER) o requisito do item Lança-Chamas estava sendo consumido.

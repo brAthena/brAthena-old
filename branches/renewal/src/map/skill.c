@@ -352,9 +352,6 @@ int skill_calc_heal(struct block_list *src, struct block_list *target, int skill
 	case NPC_EVILLAND:
 		hp = (skill_lv>6)?666:skill_lv*100;
 		break;
-	case NC_REPAIR:
-		return hp = (status_get_hp(target) * ( (3 + 3 * skill_lv) / 100 ) );
-		break;
 
 	default:
 		if (skill_lv >= battle_config.max_heal_lv)
@@ -4431,7 +4428,6 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case HLIF_HEAL:	//[orn]
 	case AL_HEAL:
 	case AB_HIGHNESSHEAL:
-	case NC_REPAIR:
 		{
 			int heal = skill_calc_heal(src, bl, skillid, skilllv, true);
 			int heal_get_jobexp;
@@ -6077,6 +6073,26 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			pc_overheat(sd,1);
 		}
 		clif_skill_nodamage(src,src,skillid,skilllv,i);
+		break;
+
+	case NC_REPAIR:
+		if( sd )
+		{
+			int heal;
+			if( dstsd && pc_isriding(dstsd,OPTION_MADO) )
+			{
+				heal = dstsd->status.max_hp * (3+3*skilllv) / 100;
+				status_heal(bl,heal,0,2);
+			}
+			else
+			{
+				heal = sd->status.max_hp * (3+3*skilllv) / 100;
+				status_heal(src,heal,0,2);
+			}
+
+			clif_skill_damage(src, src, tick, status_get_amotion(src), 0, -30000, 1, skillid, skilllv, 6);
+			clif_skill_nodamage(src, bl, skillid, skilllv, heal);
+		}
 		break;
 
 	case TK_HIGHJUMP:
