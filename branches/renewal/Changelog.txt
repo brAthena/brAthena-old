@@ -9,6 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0756 - 29/07/2011 [Protimus]
+	* Modificado número máximo de instâncias por mapa.
+	- Necessário devido as novas adições de NPCs de instâncias.
+	* Adicionados materiais do bioquímico que faltavam para lista de criação.
+	* Corrigido problema de transbordamento de memória com o uso de cooldowns.
+	- Devido parâmetros errôneos.
+
 	r0755 - 29/07/2011 [Mark]
 	* Correção da habilidade Reparar (NC_REPAIR).
 

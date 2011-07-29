@@ -4,7 +4,7 @@
 #ifndef _INSTANCE_H_
 #define _INSTANCE_H_
 
-#define MAX_MAP_PER_INSTANCE 10
+#define MAX_MAP_PER_INSTANCE 50
 #define MAX_INSTANCE 500
 
 #define INSTANCE_NAME_LENGTH (60+1)

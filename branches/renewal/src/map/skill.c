@@ -14933,7 +14933,7 @@ int skill_produce_mix(struct map_session_data *sd, int skill_id, int nameid, int
 				{
 					case 1010: qty *= 8; break;
 					case 1061: qty *= 2; break;
-					case 13275: case 13276: case 13277: case 13278: case 13279: case 13280:
+					case 13275: case 13276: case 13277: case 13278: case 13279: case 13280: case 13281: case 13282: case 13283:
 						qty *= 10;
 						break;
 				}
@@ -15523,7 +15523,7 @@ int skill_blockpc_get(struct map_session_data *sd, int skillid)
 	return (i >= MAX_SKILLCOOLDOWN) ? -1 : i;
 }
 
-int skill_blockpc_end(int tid, unsigned int tick, int id, intptr_t data)
+int skill_blockpc_end(int tid, unsigned int tick, int id, intptr data)
 {
 	struct map_session_data *sd = map_id2sd(id);
 	int i = (int)data;
