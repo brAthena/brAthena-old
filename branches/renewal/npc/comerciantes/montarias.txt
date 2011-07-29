@@ -63,7 +63,7 @@ prontera,125,208,5	script	Soldado	105,{
 
 prontera,163,178,3	script	Artilheiro Mágico	105,{
 	mes "[Artilheiro Mágico]";
-	if(Class == Job_Mechanic || Class == Job_Mechanic_T || Class == Job_Baby_Mechanic) {
+	if((Class == Job_Mechanic || Class == Job_Mechanic_T || Class == Job_Baby_Mechanic) && getskilllv("NC_MADOLICENCE")) {
 		mes "Bem-vindo.";
 		mes "Você gostaria de obter um Robô?";
 		next;

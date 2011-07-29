@@ -9,6 +9,16 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0754 - 29/07/2011 [Mark]
+	* Correção para habilidades:
+	- Lança Chamas (NC_FLAMELAUNCHER) o requisito do item Lança-Chamas estava sendo consumido.
+	- Canhão (NC_ARMSCANNON) o requisito de Balas de Canhão estavam incorretos.
+	* Correção de verificação de M.E.C.H.A para o uso de algumas habilidades de Mecânico.
+	- O uso obrigatório de M.E.C.H.A não estava sendo requerido.
+	* Correção no npc Montarias:
+	- Não estava requerindo a habilidade Licença de Pilotagem para adquirir M.E.C.H.A
+	* Pequena correção no nome do Orc Arqueiro no mob_db.
+
 	r0753 - 28/07/2011 [Dani]
 	* Alterada coluna Upper de alguns itens
 	- Não existe Upper 8, máximo com a soma dos Uppers é 7

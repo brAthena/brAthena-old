@@ -12128,6 +12128,12 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 			return 0;
 		}
 		break;
+	case ST_MADO:
+		if(!pc_isriding(sd,OPTION_MADO)) {
+			clif_skill_fail(sd,skill,0,0,0);
+			return 0;
+		}
+		break;
 	case ST_ELEMENTALSPIRIT:
 		if(!sd->ed) {
 			clif_skill_fail(sd,skill,0,0,0x4f);
@@ -16407,6 +16413,7 @@ static bool skill_parse_row_requiredb(char* split[], int columns, int current)
 	else if( strcmpi(split[10],"water")==0 ) skill_db[i].state = ST_WATER;
 	else if( strcmpi(split[10],"warg")==0 ) skill_db[i].state = ST_WUG;
 	else if( strcmpi(split[10],"ridingwarg")==0 ) skill_db[i].state = ST_RIDINGWUG;
+	else if( strcmpi(split[10],"mado")==0 ) skill_db[i].state = ST_MADO;
 	else if( strcmpi(split[10],"elementalspirit")==0 ) skill_db[i].state = ST_ELEMENTALSPIRIT;
 	else skill_db[i].state = ST_NONE;
 
