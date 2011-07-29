@@ -2012,6 +2012,10 @@ int unit_remove_map_(struct block_list *bl, clr_type clrtype, const char* file, 
 		status_change_end(bl, SC__MANHOLE, INVALID_TIMER);
 		status_change_end(bl, SC__SHADOWFORM, INVALID_TIMER);
 		status_change_end(bl, SC_MAGNETICFIELD, INVALID_TIMER);
+		status_change_end(bl, SC_NEUTRALBARRIER_MASTER, INVALID_TIMER);
+		status_change_end(bl, SC_NEUTRALBARRIER, INVALID_TIMER);
+		status_change_end(bl, SC_STEALTHFIELD_MASTER, INVALID_TIMER);
+		status_change_end(bl, SC_STEALTHFIELD, INVALID_TIMER);
 		status_change_end(bl, SC_VACUUM_EXTREME, INVALID_TIMER);
 	}
 

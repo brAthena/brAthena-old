@@ -1540,6 +1540,8 @@ int status_check_skilluse(struct block_list *src, struct block_list *target, int
 				return 0;
 			if (sc && sc->data[SC_CURSEDCIRCLE_TARGET])
 				return 0;
+			if( tsc->data[SC_STEALTHFIELD] )
+				return 0;
 		}
 		break;
 	case BL_ITEM:	//Allow targetting of items to pick'em up (or in the case of mobs, to loot them).
@@ -1559,6 +1561,8 @@ int status_check_skilluse(struct block_list *src, struct block_list *target, int
 	default:
 		//Check for chase-walk/hiding/cloaking opponents.
 		if (tsc && tsc->option&hide_flag && !(status->mode&(MD_BOSS|MD_DETECTOR)))
+			return 0;
+		if( tsc->data[SC_STEALTHFIELD] )
 			return 0;
 	}
 	return 1;
@@ -1582,6 +1586,8 @@ int status_check_visibility(struct block_list *src, struct block_list *target)
 	}
 
 	if (src->m != target->m || !check_distance_bl(src, target, view_range))
+		return 0;
+	if( tsc && tsc->data[SC_STEALTHFIELD] )
 		return 0;
 
 	switch (target->type)
@@ -4553,6 +4559,8 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 					val = max( val, sc->data[SC_ROCK_CRUSHER_ATK]->val2 );
 				if( sc->data[SC_MARSHOFABYSS] )
 					val = max( val, 40 + 10 * sc->data[SC_MARSHOFABYSS]->val1 );
+				if( sc->data[SC_STEALTHFIELD_MASTER] )
+					val = max( val, 30 );
 
 				if( sd && sd->speed_rate + sd->speed_add_rate > 0 ) // permanent item-based speedup
 					val = max( val, sd->speed_rate + sd->speed_add_rate );
@@ -5981,6 +5989,10 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 	break;
 	case SC_BLEEDING:
 		if(sc->data[SC_POWER_OF_GAIA])
+			return 0;
+	break;
+	case SC_MAGNETICFIELD:
+		if(sc->data[SC_HOVERING])
 			return 0;
 	break;
 
@@ -8393,6 +8405,15 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 			break;
 		case SC_READING_SB:
 			if( sd ) memset(sd->rsb,0,sizeof(sd->rsb));
+			break;
+		case SC_NEUTRALBARRIER_MASTER:
+		case SC_STEALTHFIELD_MASTER:
+			if( sce->val2 )
+			{
+				struct skill_unit_group* group = skill_id2group(sce->val2);
+				sce->val2 = 0;
+				skill_delunitgroup(group);
+			}
 			break;
 
 	}

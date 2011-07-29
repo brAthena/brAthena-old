@@ -4436,6 +4436,10 @@ int pc_setpos(struct map_session_data* sd, unsigned short mapindex, int x, int y
 			status_change_end(&sd->bl, SC_MOON_COMFORT, INVALID_TIMER);
 			status_change_end(&sd->bl, SC_STAR_COMFORT, INVALID_TIMER);
 			status_change_end(&sd->bl, SC_MIRACLE, INVALID_TIMER);
+			status_change_end(&sd->bl, SC_NEUTRALBARRIER_MASTER, INVALID_TIMER);
+			status_change_end(&sd->bl, SC_NEUTRALBARRIER, INVALID_TIMER);
+			status_change_end(&sd->bl, SC_STEALTHFIELD_MASTER, INVALID_TIMER);
+			status_change_end(&sd->bl, SC_STEALTHFIELD, INVALID_TIMER);
 			if (sd->sc.data[SC_KNOWLEDGE]) {
 				struct status_change_entry *sce = sd->sc.data[SC_KNOWLEDGE];
 				if (sce->timer != INVALID_TIMER)

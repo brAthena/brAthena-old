@@ -9,6 +9,15 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0757 - 29/07/2011 [Mark]
+	* Corrigidas as habilidades:
+	- Autodestruição (NC_SELFDESTRUCTION).
+	- Artilharia Arcana (NC_MAGICDECOY).
+	* Corrigidas parcialmente as habilidades:
+	- Campo Magnético (NC_MAGNETICFIELD).
+	- Campo Protetor (NC_NEUTRALBARRIER).
+	- Campo de Invisibilidade (NC_STEALTHFIELD).
+
 	r0756 - 29/07/2011 [Protimus]
 	* Modificado número máximo de instâncias por mapa.
 	- Necessário devido as novas adições de NPCs de instâncias.

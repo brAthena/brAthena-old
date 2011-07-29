@@ -3125,7 +3125,7 @@ int clif_magicdecoy_list(struct map_session_data *sd, int skill_lv, int x,int y)
 	if( c > 0 )
 	{
 		sd->menuskill_id = NC_MAGICDECOY;
-		sd->menuskill_val = c;
+		sd->menuskill_val = skill_lv;
 		sd->menuskill_itemused = (x<<16)|y;
 		WFIFOW(fd,2) = c * 2 + 4;
 		WFIFOSET(fd, WFIFOW(fd, 2));
@@ -10770,6 +10770,8 @@ void clif_parse_SelectArrow(int fd,struct map_session_data *sd)
 	else if(sd->menuskill_id == WL_READING_SB)
 		skill_spellbook(sd,RFIFOW(fd,2));
 	else if(sd->menuskill_id == NC_MAGICDECOY)
+		skill_magicdecoy(sd,RFIFOW(fd,2));
+	else
 		return;
 
 	sd->menuskill_val = sd->menuskill_id = 0;

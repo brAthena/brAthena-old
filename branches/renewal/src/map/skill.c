@@ -6001,7 +6001,8 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 				case SC_SERVICE4U:		case SC_FOOD_STR_CASH:	case SC_FOOD_AGI_CASH:
 				case SC_FOOD_VIT_CASH:	case SC_FOOD_DEX_CASH:	case SC_FOOD_INT_CASH:
 				case SC_FOOD_LUK_CASH:	case SC_BERKANA: 	case SC_ELECTRICSHOCKER:
-				case SC__SHADOWFORM:
+				case SC__SHADOWFORM:	case SC_NEUTRALBARRIER_MASTER:case SC_NEUTRALBARRIER:
+				case SC_STEALTHFIELD_MASTER:case SC_STEALTHFIELD:
 					continue;
 				case SC_ASSUMPTIO:
 					if( bl->type == BL_MOB )
@@ -7261,6 +7262,8 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 				case SC_ELECTRICSHOCKER: case SC_BITE:    case SC__STRIPACCESSORY:
 				case SC__ENERVATION: case SC__GROOMY:     case SC__IGNORANCE:
 				case SC__LAZINESS:   case SC__UNLUCKY:    case SC__WEAKNESS:
+				case SC_MAGNETICFIELD:case SC_NEUTRALBARRIER_MASTER:case SC_NEUTRALBARRIER:	
+				case SC_STEALTHFIELD_MASTER:case SC_STEALTHFIELD:
 					continue;
 				case SC_ASSUMPTIO:
 					if( bl->type == BL_MOB )
@@ -9466,6 +9469,16 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 		clif_magicdecoy_list(sd,skilllv,x,y);
 		break;
 
+	case NC_NEUTRALBARRIER:
+	case NC_STEALTHFIELD:
+		skill_clear_unitgroup(src);
+		if( (sg = skill_unitsetting(src,skillid,skilllv,src->x,src->y,0)) != NULL )
+		{
+			sc_start2(src,skillid == NC_NEUTRALBARRIER ? SC_NEUTRALBARRIER_MASTER : SC_STEALTHFIELD_MASTER,100,skilllv,sg->group_id,skill_get_time(skillid,skilllv));
+			if( sd ) pc_overheat(sd,1);
+		}
+		break;
+
 	case SO_FIREWALK:
 	case SO_ELECTRICWALK:
 		if( sc && sc->data[type] )
@@ -10984,6 +10997,13 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 				skill_attack(BF_MAGIC,ss,&src->bl,bl,sg->skill_id,sg->skill_lv,tick,0);
 			break;
 
+		case UNT_STEALTHFIELD:
+			if( bl->id == sg->src_id )
+				break;
+		case UNT_NEUTRALBARRIER:
+			sc_start(bl,type,100,sg->skill_lv,sg->interval + 100);
+			break;
+
 	}
 
 	if (sg->state.magic_power && sc && !sc->data[SC_MAGICPOWER])
@@ -11039,6 +11059,8 @@ int skill_unit_onout (struct skill_unit *src, struct block_list *bl, unsigned in
 	case UNT_WARMER:
 	case UNT_WATER_BARRIER:
 	case UNT_ZEPHYR:
+	case UNT_NEUTRALBARRIER:
+	case UNT_STEALTHFIELD:
 		if( sce ) status_change_end(bl,type,-1);
 		break;
 
@@ -14085,6 +14107,25 @@ int skill_delunitgroup_(struct skill_unit_group *group, const char* file, int li
 			status_change_end(src,SC_BANDING,-1);
 		}
 	}
+
+	if (group->skill_id == NC_NEUTRALBARRIER){
+		struct status_change *sc = status_get_sc(src);
+		if( sc && sc->data[SC_NEUTRALBARRIER_MASTER] )
+		{
+			sc->data[SC_NEUTRALBARRIER_MASTER]->val2 = 0;
+			status_change_end(src,SC_NEUTRALBARRIER_MASTER,-1);
+		}
+	}
+
+	if (group->skill_id == NC_STEALTHFIELD){
+		struct status_change *sc = status_get_sc(src);
+		if( sc && sc->data[SC_STEALTHFIELD_MASTER] )
+		{
+			sc->data[SC_STEALTHFIELD_MASTER]->val2 = 0;
+			status_change_end(src,SC_STEALTHFIELD_MASTER,-1);
+		}
+	}
+
 
 	if (src->type==BL_PC && group->state.ammo_consume)
 		battle_consume_ammo((TBL_PC*)src, group->skill_id, group->skill_lv);

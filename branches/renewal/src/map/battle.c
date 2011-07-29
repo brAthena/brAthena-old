@@ -1430,83 +1430,88 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			flee = tstatus->flee,
 			hitrate=0; //Default hitrate
 
-		if(battle_config.agi_penalty_type &&
-			battle_config.agi_penalty_target&target->type)
+		if( tsc && tsc->data[SC_NEUTRALBARRIER] && (wd.flag&(BF_SHORT|BF_MAGIC)) == BF_SHORT )
+			hitrate = 5;
+		else
 		{
-			unsigned char attacker_count; //256 max targets should be a sane max
-			attacker_count = unit_counttargeted(target,battle_config.agi_penalty_count_lv);
-			if(attacker_count >= battle_config.agi_penalty_count)
+
+			if(battle_config.agi_penalty_type &&
+				battle_config.agi_penalty_target&target->type)
 			{
-				if (battle_config.agi_penalty_type == 1)
-					flee = (flee * (100 - (attacker_count - (battle_config.agi_penalty_count - 1))*battle_config.agi_penalty_num))/100;
-				else //asume type 2: absolute reduction
-					flee -= (attacker_count - (battle_config.agi_penalty_count - 1))*battle_config.agi_penalty_num;
-				if(flee < 1) flee = 1;
+				unsigned char attacker_count; //256 max targets should be a sane max
+				attacker_count = unit_counttargeted(target,battle_config.agi_penalty_count_lv);
+				if(attacker_count >= battle_config.agi_penalty_count)
+				{
+					if (battle_config.agi_penalty_type == 1)
+						flee = (flee * (100 - (attacker_count - (battle_config.agi_penalty_count - 1))*battle_config.agi_penalty_num))/100;
+					else //asume type 2: absolute reduction
+						flee -= (attacker_count - (battle_config.agi_penalty_count - 1))*battle_config.agi_penalty_num;
+					if(flee < 1) flee = 1;
+				}
 			}
+
+			hitrate+= sstatus->hit - flee;
+			if(wd.flag&BF_LONG && !skill_num && //Fogwall's hit penalty is only for normal ranged attacks.
+				tsc && tsc->data[SC_FOGWALL])
+				hitrate -= 50;
+	
+			if(sd && flag.arrow)
+				hitrate += sd->arrow_hit;
+			if(skill_num)
+				switch(skill_num)
+			{	//Hit skill modifiers
+				//It is proven that bonus is applied on final hitrate, not hit.
+				case SM_BASH:
+				case MS_BASH:
+					hitrate += hitrate * 5 * skill_lv / 100;
+					break;
+				case MS_MAGNUM:
+				case SM_MAGNUM:
+					hitrate += hitrate * 10 * skill_lv / 100;
+					break;
+				case KN_AUTOCOUNTER:
+				case PA_SHIELDCHAIN:
+				case NPC_WATERATTACK:
+				case NPC_GROUNDATTACK:
+				case NPC_FIREATTACK:
+				case NPC_WINDATTACK:
+				case NPC_POISONATTACK:
+				case NPC_HOLYATTACK:
+				case NPC_DARKNESSATTACK:
+				case NPC_UNDEADATTACK:
+				case NPC_TELEKINESISATTACK:
+				case NPC_BLEEDING:
+					hitrate += hitrate * 20 / 100;
+					break;
+				case KN_PIERCE:
+				case ML_PIERCE:
+					hitrate += hitrate * 5 * skill_lv / 100;
+					break;
+				case AS_SONICBLOW:
+					if(sd && pc_checkskill(sd,AS_SONICACCEL)>0)
+						hitrate += hitrate * 50 / 100;
+					break;
+				case GC_VENOMPRESSURE:
+					hitrate += 10 + 4 * skill_lv;
+					break;
+				case SC_FATALMENACE:
+					hitrate -= (35 - skill_lv * 5);
+					break;
+				case GN_CART_TORNADO:
+				case GN_CARTCANNON:
+				if( sd && pc_checkskill(sd, GN_REMODELING_CART) )
+					hitrate += pc_checkskill(sd, GN_REMODELING_CART) * 4;
+					break;
+			}
+
+			// Weaponry Research hidden bonus
+			if (sd && (skill = pc_checkskill(sd,BS_WEAPONRESEARCH)) > 0)
+				hitrate += hitrate * ( 2 * skill ) / 100;
+	
+			if( sd && (sd->status.weapon == W_1HSWORD || sd->status.weapon == W_DAGGER) &&
+				(skill = pc_checkskill(sd, GN_TRAINING_SWORD))>0 )
+				hitrate += 3 * skill;
 		}
-
-		hitrate+= sstatus->hit - flee;
-		if(wd.flag&BF_LONG && !skill_num && //Fogwall's hit penalty is only for normal ranged attacks.
-			tsc && tsc->data[SC_FOGWALL])
-			hitrate -= 50;
-
-		if(sd && flag.arrow)
-			hitrate += sd->arrow_hit;
-		if(skill_num)
-			switch(skill_num)
-		{	//Hit skill modifiers
-			//It is proven that bonus is applied on final hitrate, not hit.
-			case SM_BASH:
-			case MS_BASH:
-				hitrate += hitrate * 5 * skill_lv / 100;
-				break;
-			case MS_MAGNUM:
-			case SM_MAGNUM:
-				hitrate += hitrate * 10 * skill_lv / 100;
-				break;
-			case KN_AUTOCOUNTER:
-			case PA_SHIELDCHAIN:
-			case NPC_WATERATTACK:
-			case NPC_GROUNDATTACK:
-			case NPC_FIREATTACK:
-			case NPC_WINDATTACK:
-			case NPC_POISONATTACK:
-			case NPC_HOLYATTACK:
-			case NPC_DARKNESSATTACK:
-			case NPC_UNDEADATTACK:
-			case NPC_TELEKINESISATTACK:
-			case NPC_BLEEDING:
-				hitrate += hitrate * 20 / 100;
-				break;
-			case KN_PIERCE:
-			case ML_PIERCE:
-				hitrate += hitrate * 5 * skill_lv / 100;
-				break;
-			case AS_SONICBLOW:
-				if(sd && pc_checkskill(sd,AS_SONICACCEL)>0)
-					hitrate += hitrate * 50 / 100;
-				break;
-			case GC_VENOMPRESSURE:
-				hitrate += 10 + 4 * skill_lv;
-				break;
-			case SC_FATALMENACE:
-				hitrate -= (35 - skill_lv * 5);
-				break;
-			case GN_CART_TORNADO:
-			case GN_CARTCANNON:
-			if( sd && pc_checkskill(sd, GN_REMODELING_CART) )
-				hitrate += pc_checkskill(sd, GN_REMODELING_CART) * 4;
-				break;
-		}
-
-		// Weaponry Research hidden bonus
-		if (sd && (skill = pc_checkskill(sd,BS_WEAPONRESEARCH)) > 0)
-			hitrate += hitrate * ( 2 * skill ) / 100;
-
-		if( sd && (sd->status.weapon == W_1HSWORD || sd->status.weapon == W_DAGGER) &&
-			(skill = pc_checkskill(sd, GN_TRAINING_SWORD))>0 )
-			hitrate += 3 * skill;
-
 		hitrate = cap_value(hitrate, battle_config.min_hitrate, battle_config.max_hitrate);
 
 		if(rand()%100 >= hitrate)
@@ -2083,10 +2088,6 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 							break;
 					}
 					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 100) / 20;
-					break;
-
-				case NC_SELFDESTRUCTION:
-					skillratio += sstatus->hp + sstatus->sp;
 					break;
 
 				case WM_REVERBERATION_MELEE:
@@ -3772,6 +3773,9 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		break;
 	case GN_HELLS_PLANT_ATK:
 		md.damage = sstatus->int_ * 4 * skill_lv * (10 / (10 - pc_checkskill(sd,AM_CANNIBALIZE)));
+		break;
+	case NC_SELFDESTRUCTION:
+		md.damage = (sstatus->hp + sstatus->sp) * 50 * skill_lv / 100;
 		break;
 	}
 
