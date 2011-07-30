@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0759 - 30/07/2011 [Protimus]
+	* Removidas habilidade Prisão de Teia dos monstros: Galho de Scaraba & Libertino de Scaraba.
+	* Fórmula da habilidade Bomba Ácida revertida conforme parâmetros pré-renewal.
+	- Ainda não se tem valores oficiais, por isso é necessário maior investigação para algo concreto.
+
 	r0758 - 30/07/2011 [Protimus]
 	* Adicionadas restrições de habilidades que curam o Emperium na GvG.
 	- O emperium não pode mais ser curado por habilidades normais, apenas da guilda.
