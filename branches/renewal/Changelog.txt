@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0761 - 30/07/2011 [Mark]
+	* Adicionados materiais de Bioquímico que faltavam para a habilidade Reação Alquímica.
+	- Faltavam várias combinações de itens que poderiam ser feitas.
+
 	r0760 - 30/07/2011 [Mark]
 	* Corrigida a criação de Runas de Cavaleiro Rúnico.
 
