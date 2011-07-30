@@ -9,6 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0758 - 30/07/2011 [Protimus]
+	* Adicionadas restrições de habilidades que curam o Emperium na GvG.
+	- O emperium não pode mais ser curado por habilidades normais, apenas da guilda.
+	- Necessário verificar habilidades de AoE que possam ou não ser usadas no Emperium.
+	* Modificada fórmula de HP por pontos de investimento na defesa.
+	- Daria um HP absurdo com poucos pontos de investimento e no caso tornaria-se impossível quebrar o Emperium.
+	- Essa fórmula ainda não é oficial, é necessário revisar e ver se está de acordo.
+
 	r0757 - 29/07/2011 [Mark]
 	* Corrigidas as habilidades:
 	- Autodestruição (NC_SELFDESTRUCTION).

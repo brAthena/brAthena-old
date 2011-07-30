@@ -1879,7 +1879,7 @@ int status_calc_mob_(struct mob_data* md, bool first)
 		else {
 			if(gc->castle_id > 23) {
 				if(md->class_ == MOBID_EMPERIUM) {
-					status->max_hp += 1000 * gc->defense;
+					status->max_hp += 30 * gc->defense;
 					status->max_sp += 200 * gc->defense;
 					status->hp = status->max_hp;
 					status->sp = status->max_sp;
