@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0760 - 30/07/2011 [Mark]
+	* Corrigida a criação de Runas de Cavaleiro Rúnico.
+
 	r0759 - 30/07/2011 [Protimus]
 	* Removidas habilidade Prisão de Teia dos monstros: Galho de Scaraba & Libertino de Scaraba.
 	* Fórmula da habilidade Bomba Ácida revertida conforme parâmetros pré-renewal.

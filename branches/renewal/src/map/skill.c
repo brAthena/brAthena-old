@@ -14771,7 +14771,7 @@ int skill_can_produce_mix (struct map_session_data *sd, int nameid, int trigger,
 int skill_produce_mix(struct map_session_data *sd, int skill_id, int nameid, int slot1, int slot2, int slot3, int qty)
 {
 	int slot[3];
-	int i,sc,ele,idx,equip,wlv,make_per,flag,skill_lv,temp_qty;
+	int i,sc,ele,idx,equip,wlv=0,make_per,flag=0,skill_lv=0,temp_qty;
 	int num = -1; // exclude the recipe
 	struct status_data *status;
 
@@ -14945,7 +14945,6 @@ int skill_produce_mix(struct map_session_data *sd, int skill_id, int nameid, int
 				if( battle_config.rune_produce_rate != 100 )
 					make_per = make_per * battle_config.rune_produce_rate / 100;
 				qty = temp_qty;
-				sd->menuskill_itemused = sd->menuskill_id = 0;
 				break;
 			case GC_CREATENEWPOISON:
 				skill_lv = pc_checkskill(sd,GC_RESEARCHNEWPOISON);
@@ -15086,6 +15085,8 @@ int skill_produce_mix(struct map_session_data *sd, int skill_id, int nameid, int
 				if( rand()%10000 < make_per )
 					tmp_item.amount = 5 + rand()%5;
 			}
+			else if ( skill_id == RK_RUNEMASTERY )
+				tmp_item.amount = temp_qty;
 			else
 			for( i = 0; i < qty; i++ )
 			{	//Apply quantity modifiers.
