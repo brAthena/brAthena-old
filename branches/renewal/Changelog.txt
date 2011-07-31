@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0762 - 31/07/2011 [Protimus]
+	* Modificações para conjuração variável e fixa.
+	- Conjuração de algumas habilidades não dependem apenas de destreza.
+	- Tempo de duração das habilidades ajustado para valores oficiais.
+
 	r0761 - 30/07/2011 [Mark]
 	* Adicionados materiais de Bioquímico que faltavam para a habilidade Reação Alquímica.
 	- Faltavam várias combinações de itens que poderiam ser feitas.
