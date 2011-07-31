@@ -1204,7 +1204,7 @@
 2479,9,6,2,0,0,0,5,1,yes,0,0x80,5,misc,0,	GN_THORNS_TRAP,Armadilha de Espinhos
 2480,11,6,1,0,0,0,5,1,yes,0,0,3,misc,0,		GN_BLOOD_SUCKER,Planta Sanguessuga
 2481,11,6,1,-1,0x2,1:2:3:4:5,5,1,yes,0,0,0,weapon,0,	GN_SPORE_EXPLOSION,Esporo Explosivo
-2482,11,6,16,0,0,0,5,1,yes,0,0,1,weapon,2,	GN_WALLOFTHORN,Muralha de Espinhos
+2482,11,6,16,0,0x1,0,5,-1,yes,0,0,1,weapon,2,	GN_WALLOFTHORN,Muralha de Espinhos
 2483,11,6,2,0,0x2,3,10,1,yes,0,0,0,weapon,0,	GN_CRAZYWEED,Erva Daninha
 2484,0,6,2,2,0x2,2,10,1,no,0,0,0,weapon,0,	GN_CRAZYWEED_ATK,Erva Daninha
 2485,9,6,2,3,0,0,5,1,yes,0,0,0,magic,0,		GN_DEMONIC_FIRE,Bomba Napalm

@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0768 - 31/07/2011 [Mark]
+	* Corrigida habilidade Muralha de Espinhos (GN_WALLOFTHORN).
+	- Nada acontecia.
+
 	r0767 - 31/07/2011 [Mark]
 	* Corrigida habilidade Exceder Limites.
 	- Aplicado nerf na habilidade.
