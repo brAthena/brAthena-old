@@ -9,6 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0773 - 31/07/2011 [Protimus]
+	* Corrigida habilidade AB_EPICLESIS (Epiclesis).
+	- Não estava ressucitando.
+	* Corrigida a habilidade WM_LERADS_DEW (Orvalho de Idun).
+	- Não estava dando bônus de MaxHP.
+	* Padronizado cases de status_change_end com INVALID_TIMER.
+
 	r0772 - 31/07/2011 [Mark]
 	* Corrigida habilidade Armadilha de Espinhos.
 	- Não estava prendendo o inimigo.

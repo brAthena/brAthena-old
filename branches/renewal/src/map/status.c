@@ -4839,6 +4839,8 @@ static unsigned int status_calc_maxhp(struct block_list *bl, struct status_chang
 		maxhp += maxhp * sc->data[SC_POWER_OF_GAIA]->val2 / 100;
 	if(sc->data[SC_MUSTLE_M])
 		maxhp += maxhp * sc->data[SC_MUSTLE_M]->val1/100;
+	if(sc->data[SC_LERADSDEW])
+		maxhp += maxhp * sc->data[SC_LERADSDEW]->val3 / 100;
 
 	return cap_value(maxhp,1,UINT_MAX);
 }
@@ -6082,7 +6084,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		break;
 	case SC_INCREASEAGI:
 		status_change_end(bl, SC_DECREASEAGI, INVALID_TIMER);
-		status_change_end(bl,SC_ADORAMUS,-1);
+		status_change_end(bl,SC_ADORAMUS, INVALID_TIMER);
 		break;
 	case SC_QUAGMIRE:
 		status_change_end(bl, SC_CONCENTRATE, INVALID_TIMER);
@@ -6206,7 +6208,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		status_change_end(bl, SC_LUKFOOD, INVALID_TIMER);
 		break;
 	case SC_OTHILA:
-		status_change_end(bl,type,-1);
+		status_change_end(bl,type, INVALID_TIMER);
 		break;
 	case SC_SWINGDANCE:
 	case SC_SYMPHONYOFLOVER:
@@ -6217,43 +6219,45 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 	case SC_VOICEOFSIREN:
 	case SC_DEEPSLEEP:
 	case SC_SIRCLEOFNATURE:
+	case SC_LERADSDEW:
 		if( sc->data[type] )
 			break;
-		status_change_end(bl,SC_SWINGDANCE,-1);
-		status_change_end(bl,SC_SYMPHONYOFLOVER,-1);
-		status_change_end(bl,SC_MOONLITSERENADE,-1);
-		status_change_end(bl,SC_RUSHWINDMILL,-1);
-		status_change_end(bl,SC_ECHOSONG,-1);
-		status_change_end(bl,SC_HARMONIZE,-1);
-		status_change_end(bl,SC_VOICEOFSIREN,-1);
-		status_change_end(bl,SC_DEEPSLEEP,-1);
-		status_change_end(bl,SC_SIRCLEOFNATURE,-1);
+		status_change_end(bl,SC_SWINGDANCE, INVALID_TIMER);
+		status_change_end(bl,SC_SYMPHONYOFLOVER, INVALID_TIMER);
+		status_change_end(bl,SC_MOONLITSERENADE, INVALID_TIMER);
+		status_change_end(bl,SC_RUSHWINDMILL, INVALID_TIMER);
+		status_change_end(bl,SC_ECHOSONG, INVALID_TIMER);
+		status_change_end(bl,SC_HARMONIZE, INVALID_TIMER);
+		status_change_end(bl,SC_VOICEOFSIREN, INVALID_TIMER);
+		status_change_end(bl,SC_DEEPSLEEP, INVALID_TIMER);
+		status_change_end(bl,SC_SIRCLEOFNATURE, INVALID_TIMER);
+		status_change_end(bl, SC_LERADSDEW, INVALID_TIMER);
 		break;
 	case SC_REFLECTSHIELD:
-		status_change_end(bl,SC_REFLECTDAMAGE,-1);
+		status_change_end(bl,SC_REFLECTDAMAGE, INVALID_TIMER);
 		break;
 	case SC_REFLECTDAMAGE:
-		status_change_end(bl,SC_REFLECTSHIELD,-1);
+		status_change_end(bl,SC_REFLECTSHIELD, INVALID_TIMER);
 		break;
 	case SC_SHIELDSPELL_DEF:
 	case SC_SHIELDSPELL_MDEF:
 	case SC_SHIELDSPELL_REF:
-		status_change_end(bl,SC_MAGNIFICAT,-1);
-		status_change_end(bl,SC_SHIELDSPELL_DEF,-1);
-		status_change_end(bl,SC_SHIELDSPELL_MDEF,-1);
-		status_change_end(bl,SC_SHIELDSPELL_REF,-1);
+		status_change_end(bl,SC_MAGNIFICAT, INVALID_TIMER);
+		status_change_end(bl,SC_SHIELDSPELL_DEF, INVALID_TIMER);
+		status_change_end(bl,SC_SHIELDSPELL_MDEF, INVALID_TIMER);
+		status_change_end(bl,SC_SHIELDSPELL_REF, INVALID_TIMER);
 		break;
 	case SC_GT_ENERGYGAIN:
-		status_change_end(bl, SC_GT_CHANGE, -1);
-		status_change_end(bl, SC_GT_REVITALIZE, -1);
+		status_change_end(bl, SC_GT_CHANGE, INVALID_TIMER);
+		status_change_end(bl, SC_GT_REVITALIZE, INVALID_TIMER);
 		break;
 	case SC_GT_CHANGE:
-		status_change_end(bl, SC_GT_ENERGYGAIN, -1);
-		status_change_end(bl, SC_GT_REVITALIZE, -1);
+		status_change_end(bl, SC_GT_ENERGYGAIN, INVALID_TIMER);
+		status_change_end(bl, SC_GT_REVITALIZE, INVALID_TIMER);
 		break;
 	case SC_GT_REVITALIZE:
-		status_change_end(bl, SC_GT_ENERGYGAIN, -1);
-		status_change_end(bl, SC_GT_CHANGE, -1);
+		status_change_end(bl, SC_GT_ENERGYGAIN, INVALID_TIMER);
+		status_change_end(bl, SC_GT_CHANGE, INVALID_TIMER);
 		break;
 	}
 
@@ -6348,6 +6352,9 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 				break;
 			case SC_JOINTBEAT:
 				val2 |= sce->val2; // stackable ailments
+			case SC_LERADSDEW:
+				if( sc && sc->data[SC_BERSERK] )
+					return 0;
 			default:
 				if(sce->val1 > val1)
 					return 1; //Return true to not mess up skill animations. [Skotlex]
@@ -7314,6 +7321,9 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			}
 			break;
 		case SC_DANCEWITHWUG:
+			val3 = (5 * val1) + (1 * val2);
+			break;
+		case SC_LERADSDEW:
 			val3 = (5 * val1) + (1 * val2);
 			break;
 		case SC_RUSHWINDMILL:
