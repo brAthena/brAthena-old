@@ -786,7 +786,6 @@ int battle_calc_bg_damage(struct block_list *src, struct block_list *bl, int dam
 		case NJ_ZENYNAGE:
 		case RK_DRAGONBREATH:
 		case GN_THORNS_TRAP:
-		case GN_BLOOD_SUCKER:
 		case GN_HELLS_PLANT_ATK:
 			break;
 		default:
@@ -3776,7 +3775,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		md.damage = 200 + 100 * skill_lv + sstatus->int_;
 		break;
 	case GN_HELLS_PLANT_ATK:
-		md.damage = sstatus->int_ * 4 * skill_lv * (10 / (10 - pc_checkskill(sd,AM_CANNIBALIZE)));
+		md.damage = sstatus->int_ * 25 + (status_get_lv(target) * 15 * skill_lv) * (10 / (10 - pc_checkskill(sd,AM_CANNIBALIZE))) - 25;
 		break;
 	case NC_SELFDESTRUCTION:
 		md.damage = (sstatus->hp + sstatus->sp) * 50 * skill_lv / 100;

@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0770 - 31/07/2011 [Mark]
+	* Corrigida a habilidade Planta Sanguessuga (GN_BLOOD_SUCKER).
+	- Estava sem nenhum efeito.
+	* Corrigida a formula da habilidade Planta Infernal (GN_HELLS_PLANT).
+	- Estava dando um dano muito abaixo dos servidores oficiais.
+
 	r0769 - 31/07/2011 [Protimus]
 	* Correções para o status BURNING (Ardor).
 	- Não estava funcionando direito, agora está retornando os danos corretamente.

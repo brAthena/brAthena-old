@@ -7626,6 +7626,13 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			tick = 1000;
 			val_flag |= 1;
 			break;
+		case SC_BLOODSUCKER:
+			val4 = tick / 1000;
+			if( val4 < 1 )
+				val4 = 1;
+			tick = 1000;
+			break;
+
 		default:
 			if( calc_flag == SCB_NONE && StatusSkillChangeTable[type] == 0 && StatusIconChangeTable[type] == 0 )
 			{	//Status change with no calc, no icon, and no skill associated...?
