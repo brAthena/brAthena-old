@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0765 - 31/07/2011 [Protimus]
+	* Corrigida a habilidade SC_STRIPACCESSARY (Remover Acessório).
+	- Não estava funcionando corretamente.
+	- Valores de atributos que repercutem na remoção não estavam corretos.
 
 	r0764 - 31/07/2011 [Protimus]
 	* Correções de requerimentos dos equipamentos para uso das habilidades de Trovador e Musa.

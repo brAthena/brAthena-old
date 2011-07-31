@@ -3958,6 +3958,8 @@ static unsigned short status_calc_dex(struct block_list *bl, struct status_chang
 		dex += sc->data[SC_HARMONIZE]->val2;
 	if(sc->data[SC_INSPIRATION])
 		dex += sc->data[SC_INSPIRATION]->val3;
+	if(sc->data[SC__STRIPACCESSORY])
+		dex -= dex * sc->data[SC__STRIPACCESSORY]->val2 / 100;
 
 	return (unsigned short)cap_value(dex,0,USHRT_MAX);
 }
@@ -3993,6 +3995,8 @@ static unsigned short status_calc_luk(struct block_list *bl, struct status_chang
 		luk += sc->data[SC_HARMONIZE]->val2;
 	if(sc->data[SC_INSPIRATION])
 		luk += sc->data[SC_INSPIRATION]->val3;
+	if(sc->data[SC__STRIPACCESSORY])
+		luk -= luk * sc->data[SC__STRIPACCESSORY]->val2 / 100;
 
 	return (unsigned short)cap_value(luk,0,USHRT_MAX);
 }
@@ -5937,6 +5941,27 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 	case SC_CAMOUFLAGE:
 		if( sd && pc_checkskill(sd, RA_CAMOUFLAGE) < 3 && !skill_check_camouflage(bl,NULL) )
 			return 0;
+	break;
+	case SC__STRIPACCESSORY:
+		if( sd )
+		{
+			int i = -1;
+			if( !(sd->unstripable_equip&EQI_ACC_L) )
+			{
+				i = sd->equip_index[EQI_ACC_L];
+				if( i >= 0 && sd->inventory_data[i] && sd->inventory_data[i]->type == IT_ARMOR )
+					pc_unequipitem(sd,i,3); 
+			}
+			if( !(sd->unstripable_equip&EQI_ACC_R) )
+			{
+				i = sd->equip_index[EQI_ACC_R];
+				if( i >= 0 && sd->inventory_data[i] && sd->inventory_data[i]->type == IT_ARMOR )
+					pc_unequipitem(sd,i,3); 
+			}
+			if( i < 0 )
+				return 0;
+		}
+		if (tick == 1) return 1; 
 	break;
 	case SC_STRFOOD:
 		if (sc->data[SC_FOOD_STR_CASH] && sc->data[SC_FOOD_STR_CASH]->val1 > val1)
