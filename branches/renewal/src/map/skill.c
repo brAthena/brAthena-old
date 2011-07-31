@@ -15355,12 +15355,18 @@ int skill_poisoningweapon( struct map_session_data *sd, int nameid)
 
 int skill_magicdecoy(struct map_session_data *sd, int nameid){
 
-	int x, y, skill,mob_id = nameid + 1053;
+	int x, y, i, skill,mob_id = nameid + 1053;
 	struct mob_data *md;
 	nullpo_ret(sd);
 	skill = sd->menuskill_val;
 
-	pc_delitem(sd,nameid,1,0,0); // Deleta o item
+	if( nameid <= 0 || !itemdb_is_element(nameid) || (i = pc_search_inventory(sd,nameid)) < 0 || !skill )
+	{
+		clif_skill_fail(sd,NC_MAGICDECOY,0,0,0);
+		return 0;
+	}
+
+	pc_delitem(sd,i,1,0,0); // Deleta o item
 
 	//Recupera posição
 	x = sd->menuskill_itemused>>16;

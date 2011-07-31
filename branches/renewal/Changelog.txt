@@ -9,6 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0771 - 31/07/2011 [Mark]
+	* Corrigido requerimento da habilidade Artilharia Arcana.
+	- Não estava consumindo a pedra elemental.
+	* Corrigido item Boné de Carteiro no arquivo item_db.txt
+	* Quantia máxima de MAX_SKILL_PRODUCE_DB alterada para 250.
+	- Alteração necessária para ser feito o carregamento total do produce_db.txt
+	
 	r0770 - 31/07/2011 [Mark]
 	* Corrigida a habilidade Planta Sanguessuga (GN_BLOOD_SUCKER).
 	- Estava sem nenhum efeito.
