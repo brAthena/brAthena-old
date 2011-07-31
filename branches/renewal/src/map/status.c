@@ -7392,7 +7392,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_EXEEDBREAK:
 			val1 *= 150;
 			if( sd && sd->inventory_data[sd->equip_index[EQI_HAND_R]] )
-				val1 += (sd->inventory_data[sd->equip_index[EQI_HAND_R]]->weight * sd->inventory_data[sd->equip_index[EQI_HAND_R]]->wlv * status_get_lv(bl) / 100);
+				val1 += (sd->inventory_data[sd->equip_index[EQI_HAND_R]]->weight/10 * sd->inventory_data[sd->equip_index[EQI_HAND_R]]->wlv * status_get_lv(bl) / 100);
 			val1 += 15 * (sd ? sd->status.job_level:50) + 100;
 			break;
 		case SC_RAISINGDRAGON:

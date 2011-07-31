@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0767 - 31/07/2011 [Mark]
+	* Corrigida habilidade Exceder Limites.
+	- Aplicado nerf na habilidade.
+
 	r0766 - 31/07/2011 [Protimus]
 	* Correções de diversos itens e suas bonificações de acordo com iRO/bRO.
 	* Correção para o monstro Abelha-Rainha.
