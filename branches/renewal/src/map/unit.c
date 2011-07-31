@@ -915,6 +915,7 @@ int unit_can_move(struct block_list *bl)
 			|| sc->data[SC_CURSEDCIRCLE_ATKER]
 			|| sc->data[SC_CURSEDCIRCLE_TARGET]
 			|| sc->data[SC_MAGNETICFIELD]
+			|| sc->data[SC_THORNSTRAP]
 			|| sc->data[SC_VACUUM_EXTREME]
 			|| sc->data[SC_WHITEIMPRISON]
 		))

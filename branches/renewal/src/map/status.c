@@ -7695,6 +7695,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_MAGNETICFIELD:
 		case SC_VACUUM_EXTREME:
 		case SC_WHITEIMPRISON:
+		case SC_THORNSTRAP:
 			unit_stop_walking(bl,1);
 		break;
 		case SC_HIDING:

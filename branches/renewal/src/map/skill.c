@@ -6465,7 +6465,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			// Players can only remove their own traps or traps on Vs maps.
 			if( su && (sg = su->group) && (src->type == BL_MER || sg->src_id == src->id || map_flag_vs(bl->m)) && (skill_get_inf2(sg->skill_id)&INF2_TRAP) )
 			{
-				if( sd && !(sg->unit_id == UNT_USED_TRAPS || (sg->unit_id == UNT_ANKLESNARE && sg->val2 != 0 )) )
+				if( sd && !(sg->unit_id == UNT_USED_TRAPS || (sg->unit_id == UNT_ANKLESNARE && sg->val2 != 0 )) && sg->unit_id != UNT_THORNS_TRAP )
 				{ // prevent picking up expired traps
 					if( battle_config.skill_removetrap_type )
 					{ // get back all items used to deploy the trap
@@ -11036,7 +11036,7 @@ int skill_unit_onout (struct skill_unit *src, struct block_list *bl, unsigned in
 	sce = (sc && type != -1)?sc->data[type]:NULL;
 
 	if( bl->prev==NULL ||
-		(status_isdead(bl) && sg->unit_id != UNT_ANKLESNARE && sg->unit_id != UNT_ELECTRICSHOCKER && sg->unit_id != UNT_SPIDERWEB) ) //Need to delete the trap if the source died.
+		(status_isdead(bl) && sg->unit_id != UNT_ANKLESNARE && sg->unit_id != UNT_ELECTRICSHOCKER && sg->unit_id != UNT_SPIDERWEB && sg->unit_id != UNT_THORNS_TRAP) ) //Need to delete the trap if the source died.
 		return 0;
 
 	switch(sg->unit_id){
@@ -11066,6 +11066,7 @@ int skill_unit_onout (struct skill_unit *src, struct block_list *bl, unsigned in
 		break;
 
 	case UNT_SPIDERWEB:
+	case UNT_THORNS_TRAP:
 		{
 			struct block_list *target = map_id2bl(sg->val2);
 			if (target && target==bl)

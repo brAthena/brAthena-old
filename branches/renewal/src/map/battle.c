@@ -785,7 +785,6 @@ int battle_calc_bg_damage(struct block_list *src, struct block_list *bl, int dam
 		case HW_GRAVITATION:
 		case NJ_ZENYNAGE:
 		case RK_DRAGONBREATH:
-		case GN_THORNS_TRAP:
 		case GN_HELLS_PLANT_ATK:
 			break;
 		default:
@@ -2190,7 +2189,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio += 200 + 100 * skill_lv;
 					break;
 				case GN_CRAZYWEED_ATK:
-					skillratio += 400 + 100 * skill_lv;
+					skillratio += 500 + 100 * skill_lv;
 					break;
 				case GN_SLINGITEM_RANGEMELEEATK:
 					if( sd )

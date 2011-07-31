@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0772 - 31/07/2011 [Mark]
+	* Corrigida habilidade Armadilha de Espinhos.
+	- Não estava prendendo o inimigo.
+	* Corrigida formula da habilidade Erva Daninha.
+	
 	r0771 - 31/07/2011 [Mark]
 	* Corrigido requerimento da habilidade Artilharia Arcana.
 	- Não estava consumindo a pedra elemental.
