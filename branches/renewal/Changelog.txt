@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+
+	r0764 - 31/07/2011 [Protimus]
+	* Correções de requerimentos dos equipamentos para uso das habilidades de Trovador e Musa.
+	* Corrigida a habilidade WM_DEADHILLHERE (Réquiem de Orfeu).
+	- Não estava ressucitando o alvo.
+
 	r0763 - 31/07/2011 [Protimus]
 	* Corrigido problema que afetava o uso de algumas habilidade com armadilhas.
 	- Estava causando crash ao ser empurrado por outras habilidades como Chuva de Flechas.
