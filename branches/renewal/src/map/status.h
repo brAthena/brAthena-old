@@ -329,6 +329,7 @@ typedef enum sc_type {
 	SC_FOOD_DEX_CASH,
 	SC_FOOD_INT_CASH,
 	SC_FOOD_LUK_CASH,
+	
 	SC_BURNING = 350,
 	SC_FREEZING,
 	SC_FEAR,

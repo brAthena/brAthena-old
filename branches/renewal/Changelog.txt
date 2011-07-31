@@ -9,6 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0769 - 31/07/2011 [Protimus]
+	* Correções para o status BURNING (Ardor).
+	- Não estava funcionando direito, agora está retornando os danos corretamente.
+	- Falta verificar ícone de efeito.
+	* Correções em algumas coisas do status FREEZING
+	- Totalmente funcional.
+
 	r0768 - 31/07/2011 [Mark]
 	* Corrigida habilidade Muralha de Espinhos (GN_WALLOFTHORN).
 	- Nada acontecia.

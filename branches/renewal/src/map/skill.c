@@ -9537,7 +9537,7 @@ int skill_castend_map (struct map_session_data *sd, short skill_num, const char 
 		return 0;
 	}
 
-	if(sd->sc.opt1 || sd->sc.option&OPTION_HIDE ) {
+	if( (sd->sc.opt1 && sd->sc.opt1 != OPT1_BURNING) || sd->sc.option&OPTION_HIDE ) {
 		skill_failed(sd);
 		return 0;
 	}
