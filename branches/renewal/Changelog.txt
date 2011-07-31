@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0763 - 31/07/2011 [Protimus]
+	* Corrigido problema que afetava o uso de algumas habilidade com armadilhas.
+	- Estava causando crash ao ser empurrado por outras habilidades como Chuva de Flechas.
+	* Ajustado maxcount das habilidades Armadilha Incendiária e Armadilha Glacial.
+	- Conforme padrões corretos da renovação.
+
 	r0762 - 31/07/2011 [Protimus]
 	* Modificações para conjuração variável e fixa.
 	- Conjuração de algumas habilidades não dependem apenas de destreza.

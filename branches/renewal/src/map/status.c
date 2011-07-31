@@ -1560,10 +1560,13 @@ int status_check_skilluse(struct block_list *src, struct block_list *target, int
 			return 0; // Can't use Potion Pitcher on Mercenaries
 	default:
 		//Check for chase-walk/hiding/cloaking opponents.
-		if (tsc && tsc->option&hide_flag && !(status->mode&(MD_BOSS|MD_DETECTOR)))
-			return 0;
-		if( tsc->data[SC_STEALTHFIELD] )
-			return 0;
+		if( tsc )
+		{
+			if( tsc->option&hide_flag && !(status->mode&(MD_BOSS|MD_DETECTOR)) )
+				return 0;
+			if( tsc->data[SC_STEALTHFIELD] )
+				return 0;
+		}
 	}
 	return 1;
 }
