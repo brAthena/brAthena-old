@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0766 - 31/07/2011 [Protimus]
+	* Correções de diversos itens e suas bonificações de acordo com iRO/bRO.
+	* Correção para o monstro Abelha-Rainha.
+	- Estava com valores incorretos em relação a Renovação.
+
 	r0765 - 31/07/2011 [Protimus]
 	* Corrigida a habilidade SC_STRIPACCESSARY (Remover Acessório).
 	- Não estava funcionando corretamente.

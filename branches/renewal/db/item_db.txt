@@ -3247,21 +3247,20 @@
 5827,Stack_of_Books,Pilha de Livros,5,20,,100,,1,,0,0xFFFFFFFF,7,2,1,,0,0,423,{},{},{}
 5828,Gold_Ring_Of_Honor,Gold Ring Of Honor,5,20,,50,,0,,0,0xFFFFFFFF,7,2,136,,0,0,0,{},{},{}
 
-5830,Chinese_Hat_of_Eq._Alpha,Chapéu Chinês da Eq. Alfa,5,20,,100,,0,,0,0xFFFFFFFF,7,2,1,,0,0,67,{},{},{}
-5831,Great_Bow_of_Eq._Alpha,Laço Grande da Eq. Alfa,5,20,,100,,0,,0,0xFFFFFFFF,7,2,1,,0,0,28,{},{},{}
-5832,Cata-Vento's_Corp._Umbrella,Cata-Vento da Corp. Sombrinha,5,20,,100,,0,,0,0xFFFFFFFF,7,2,1,,0,0,313,{},{},{}
-5833,Summer_Hat_Eq._Bravo,Chapéu de Verão da Eq. Bravo,5,20,,100,,0,,0,0xFFFFFFFF,7,2,1,,0,0,117,{},{},{}
-5834,Crown_Corp._Umbrella,Coroa da Corp. Sombrinha,5,20,,100,,0,,0,0xFFFFFFFF,7,2,1,,0,0,45,{},{},{}
-5835,Diadem_of_Spy,Diadema da Espiã,5,20,,100,,0,,0,0xFFFFFFFF,7,2,1,,0,0,19,{},{},{}
-5836,Kepi_of_Eq._Bravo,Quepe da Eq. Bravo,5,20,,100,,0,,0,0xFFFFFFFF,7,2,1,,0,0,102,{},{},{}
-5837,Vesque_of_Sunglasses,Óculos Escuros de Vesquer,5,20,,100,,0,,0,0xFFFFFFFF,7,2,1,,0,0,12,{},{},{}
-5838,Fins_of_Prague,Barbatanas da Praga,5,20,,100,,0,,0,0xFFFFFFFF,7,2,1,,0,0,100,{},{},{}
-5839,Candura_Shiva,Candura de Shiva,5,20,,100,,0,,0,0xFFFFFFFF,7,2,1,,0,0,125,{},{},{}
-5840,Ourobolos_Ears,Orelhas de Ourobolos,5,20,,100,,0,,0,0xFFFFFFFF,7,2,1,,0,0,73,{},{},{}
-5841,Chinese_Winged_Hat,Chapéu Alado Chinês,5,20,,100,,0,,0,0xFFFFFFFF,7,2,256,,0,0,596,{},{},{}
+5830,Chinese_Hat_of_Eq._Alpha,Chapéu Chinês da Eq. Alfa,5,20,,10,,0,,0,0xFFFFFFFF,7,2,256,,60,0,67,{ bonus2 bSubRace,RC_DemiHuman,10; },{},{}
+5831,Great_Bow_of_Eq._Alpha,Laço Grande da Eq. Alfa,5,20,,10,,0,,0,0xFFFFFFFF,7,2,256,,60,0,28,{ bonus2 bSubRace,RC_DemiHuman,10; },{},{}
+5832,Cata-Vento's_Corp._Umbrella,Cata-Vento da Corp. Sombrinha,5,20,,10,,0,,0,0xFFFFFFFF,7,2,256,,60,0,313,{ bonus2 bSubRace,RC_DemiHuman,10; },{},{}
+5833,Summer_Hat_Eq._Bravo,Chapéu de Verão da Eq. Bravo,5,20,,10,,0,,0,0xFFFFFFFF,7,2,256,,60,0,117,{ bonus2 bSubRace,RC_DemiHuman,10; },{},{}
+5834,Crown_Corp._Umbrella,Coroa da Corp. Sombrinha,5,20,,10,,0,,0,0xFFFFFFFF,7,2,256,,60,0,45,{ bonus2 bSubRace,RC_DemiHuman,10; },{},{}
+5835,Diadem_of_Spy,Diadema da Espiã,5,20,,10,,0,,0,0xFFFFFFFF,7,2,256,,60,0,19,{ bonus2 bSubRace,RC_DemiHuman,10; },{},{}
+5836,Kepi_of_Eq._Bravo,Quepe da Eq. Bravo,5,20,,10,,0,,0,0xFFFFFFFF,7,2,1,,60,0,102,{ bonus2 bSubRace,RC_DemiHuman,10; },{},{}
+5837,Vesque_of_Sunglasses,Óculos Escuros de Vesquer,5,20,,10,,2,,0,0xFFFFFFFF,7,2,512,,70,0,12,{ bonus2 bSubRace,RC_DemiHuman,2; },{},{}
+5838,Fins_of_Prague,Barbatanas da Praga,5,20,,100,,2,,0,0xFFFFFFFF,7,2,512,,70,0,100,{ bonus2 bSubRace,RC_DemiHuman,2; },{},{}
+5839,Candura_Shiva,Candura de Shiva,5,20,,100,,2,,0,0xFFFFFFFF,7,2,512,,70,0,125,{ bonus2 bSubRace,RC_DemiHuman,2; },{},{}
+5840,Ourobolos_Ears,Orelhas de Ourobolos,5,20,,100,,2,,0,0xFFFFFFFF,7,2,512,,70,0,73,{ bonus2 bSubRace,RC_DemiHuman,2; },{},{}
 
 5845,Buzzy_Bol_Hat,Placa Buzzy Bol,5,20,,400,,0,,0,0xFFFFFFFF,7,2,256,,0,1,641,{},{},{}
-5846,Chewing_Bubblegum_,Chapéu Goma de Mascar,5,20,,100,,2,,0,0xFFFFFFFF,7,2,1,,1,0,572,{},{},{}
+5846,Chewing_Bubblegum_,Chapéu Goma de Mascar,5,20,,100,,1,,0,0xFFFFFFFF,7,2,1,,1,0,572,{ bonus bMdef,5; },{},{}
 5847,April's_Fool_Day_Hat,April's Fool Day Hat,5,20,,0,,0,,0,0xFFFFFFFF,7,2,256,,0,1,647,{},{},{}
 //5848,Bandit_Disguise
 //5849,Doctor_Hairband
@@ -6665,11 +6664,12 @@
 15029,Protection_Robe,Protection Robe,5,20,,300,,22,,0,0x00000100,2,2,16,,100,1,0,{ bonus bDefEle,Ele_Holy; bonus bMdef,10; bonus bInt,1; bonus bUseSPrate,-5; },{},{}
 15030,Judgement_Robe,Judgement Robe,5,20,,300,,22,,0,0x00000100,2,2,16,,100,1,0,{ bonus bDefEle,Ele_Dark; bonus bMdef,10; bonus bStr,2; bonus2 bSkillAtk,"AB_JUDEX",30; bonus bUseSPrate,5; },{},{}
 15031,Paradise_Uniform4,Paradise Uniform IV,5,0,,0,,58,,0,0xFFFFFFFF,7,2,16,,60,0,0,{ bonus bMdef,5; bonus bMaxHP,500; bonus bMaxSP,50; bonus bStr,1; bonus bInt,1; bonus bDex,1; },{},{}
-15032,Tidon,Tidung,5,20,,500,,72,,1,0xFFFFFFFE,7,2,16,,71,1,0,{ bonus bMdef,10; bonus2 bResEff,Eff_Stun,1500; bonus2 bResEff,Eff_Freeze,1500; bonus2 bSubSize,0,5; bonus2 bSubSize,1,5; bonus2 bSubSize,2,5; },{},{}
+15032,Tidon,Tidung,5,20,,500,,2,,1,0xFFFFFFFE,7,2,16,,1,1,0,{ bonus bMdef,10; bonus2 bResEff,Eff_Stun,1500; bonus2 bResEff,Eff_Freeze,1500; bonus2 bSubRace,RC_Boss,5; bonus2 bSubRace,RC_NonBoss,5; },{},{}
 15036,Urj_Plate,Urj Plate,5,20,,3000,,110,,0,0x00004000,7,2,16,,100,1,0,{ bonus bMdef,10; bonus bMaxHPRate,getrefine(); if(isequipped(2475,2574,2883)){ bonus bMaxHPRate,14; bonus2 bSubEle,Ele_Neutral,10; bonus2 bSubEle,Ele_Ghost,5; bonus2 bSubRace,RC_DemiHuman,5; bonus2 bSkillAtk,"RK_HUNDREDSPEAR",50; bonus bUseSPrate,10; bonus3 bAutoSpell,"CR_AUTOGUARD",2,10; } },{},{}
 15037,Pertz_Plate,Pertz Plate,5,20,,3000,,110,,0,0x00004000,7,2,16,,100,1,0,{ bonus bMdef,10; bonus bBaseAtk,20; bonus bFlee,17; if(isequipped(2476,2575,2884)){ bonus2 bAddRace,RC_NonBoss,10; bonus2 bAddRace,RC_Boss,10; bonus2 bSkillAtk,"RK_SONICWAVE",100; bonus2 bSkillAtk,"RK_WINDCUTTER",100; bonus3 bAutoSpell,"RK_STORMBLAST",1,10; } },{},{}
 15038,Sabath's_Cloth,Sabath's Cloth,5,20,,100,,45,,1,0x00001000,7,2,16,,100,1,0,{ bonus bLuk,3; bonus3 bAutoSpell,"ASC_METEORASSAULT",getskilllv("ASC_METEORASSAULT"),10; if(isequipped(2477,2577,2886)){ bonus bCritical,15; bonus bFlee,10; bonus bCritAtkRate,40; bonus2 bSkillAtk,"GC_CROSSIMPACT",20; } },{},{}
 15039,Nab's_Cloth,Nab's Cloth,5,20,,100,,45,,1,0x00001000,7,2,16,,100,1,0,{ bonus bStr,2; bonus bInt,2; if(isequipped(2478,2578,2887)){ bonus2 bAddRace,RC_NonBoss,10; bonus2 bAddRace,RC_Boss,10; bonus bMatk,10; if(readparam(bStr)>=120){ bonus bBaseAtk,30; } bonus3 bAutoSpell,"ASC_BREAKER",getskilllv("ASC_BREAKER"),10; bonus bCritical,-20; } },{},{}
+15041,Couraca_de_Boitata,Couraça de Boitatá,5,20,,600,,45,,1,0xFFFFFFFF,7,2,16,,60,1,0,{ bonus bFlee,5; bonus bMaxHPRate,5; bonus bMdef,3; bonus2 bSubEle,Ele_Neutral,7; bonus bUnbreakableArmor,0; },{},{}
 15042,White_Wing_Suit,White Wing Suit,5,20,,100,,45,,1,0x00000800,7,2,16,,100,1,0,{ bonus bLongAtkRate,getrefine()*2; bonus bFlee,getrefine(); if(isequipped(2479,2580,2890)){ bonus bAspd,2; bonus bLongAtkRate,30; bonus3 bAutoSpell,"AC_DOUBLE",3,10; bonus2 bSkillAtk,"RA_ARROWSTORM",50; } },{},{}
 15043,Black_Wing_Suit,Black Wing Suit,5,20,,100,,45,,1,0x00000800,7,2,16,,100,1,0,{ bonus bInt,2; bonus bBaseAtk,getrefine()*3; if(isequipped(2480,2581,2891)){ bonus bMaxHPRate,15; bonus bFlee2,20; bonus bLongAtkRate,-30; bonus bAspd,-7; } },{},{}
 15044,Green_Surgical_Gown,Green Surgical Gown,5,20,,660,,66,,1,0x00000400,7,2,16,,100,1,0,{ bonus bDex,1; bonus bMaxSP,30; if(isequipped(13027)){ bonus3 bAddMonsterDropItem,929,RC_Brute,100+(getrefine()*10); bonus3 bAddMonsterDropItem,929,RC_DemiHuman,100+(getrefine()*10); bonus3 bAddMonsterDropItem,970,RC_Brute,20+(getrefine()*2); bonus3 bAddMonsterDropItem,970,RC_DemiHuman,20+(getrefine()*2); } },{},{}
