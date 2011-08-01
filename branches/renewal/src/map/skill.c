@@ -3890,7 +3890,8 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 		break;
 	case WL_DRAINLIFE:
 		{
-			int heal = skill_attack(skill_get_type(skillid),src,src,bl,skillid,skilllv,tick,flag),rate = 25+5*skilllv;
+			int heal = skill_attack(skill_get_type(skillid),src,src,bl,skillid,skilllv,tick,flag);
+			int rate = 70+5*skilllv;
 			if(sd)
 				rate *= (int)(1+s_job_level/50.);
 

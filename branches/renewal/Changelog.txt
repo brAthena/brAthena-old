@@ -9,6 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0782 - 01/08/2011 [Protimus]
+	* Corrigida habilidade WL_DRAINLIFE (Drenar Vida).
+	- A chance para drenar estava muito baixa, agora está conforme kRO RE.
+	* Corrigida habilidade WL_READING_SB (Estudo Arcano).
+	- Removidos valores de cooldown, não existem mais.
+	- Modificado valor de conjuração conforme o oficial.
+
 	r0781 - 01/08/2011 [Protimus]
 	* Corrigida habilidade NC_AXEBOOMERANG (Arremesso de Machado).
 	- Estava causando crash ao ser usada sem machados (por GMS).
