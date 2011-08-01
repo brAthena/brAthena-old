@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0784 - 01/08/2011 [Protimus]
+	* Corrigida a habilidade WL_EARTHSTRAIN (Abalo Sísmico).
+	- Agora tem um alcance de 6 células.
+	* Corrigida a habilidade AB_EPICLESIS (Epiclesis).
+	- Estava com problemas quando monstros morto-vivo passavam por ela.
+
 	r0783 - 01/08/2011 [brn0]
 	* Corrigido o calculo das penalidades de experiência.
 	- Estava exibindo valores incorretos no comando @showexp e estava doando valores incorretos ao clã do personagem.

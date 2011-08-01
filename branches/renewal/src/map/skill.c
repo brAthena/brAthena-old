@@ -3667,6 +3667,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case AB_HIGHNESSHEAL:
 	case WL_HELLINFERNO:
 	case WM_METALICSOUND:
+	case AB_EPICLESIS:
 		skill_attack(BF_MAGIC,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 
