@@ -9,6 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0779 - 01/08/2011 [Protimus]
+	* Corrigida habilidade LG_EXEEDBREAK (Exceder Limite).
+	- Tempo de conjuração estava errado.
+	* Corrigida habilidade LG_FORCEOFVANGUARD (Proteção da Vanguarda).
+	- Consumo de SP por level estava errado.
+	* Corrigida habilidade CR_SPEARQUICKEN (Rapidez com Lança).
+	- O status de bonificação para crítico e esquiva não estavam corretos.
+
 	r0778 - 01/08/2011 [Mark]
 	* Corrigida habilidade Arremesso de Machado.
 	- Dano estava muito elevado.

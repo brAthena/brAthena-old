@@ -6559,8 +6559,8 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			break;
 		case SC_SPEARQUICKEN:
 			val2 = 200+10*val1; // Adição de ASPD
-			val3 = 3*val1; // Adição de Crítico
-			val4 = 2*val1; // Adição de Esquiva
+			val3 = 30*val1; // Adição de Crítico
+			val4 = 20*val1; // Adição de Esquiva
 			break;
 		case SC_DANCING:
 			//val1 : Skill ID + LV
