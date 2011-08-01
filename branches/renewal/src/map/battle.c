@@ -1172,8 +1172,6 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 	flag.infdef=(tstatus->mode&MD_PLANT?1:0);
 	if( !flag.infdef && (target->type == BL_SKILL && ((TBL_SKILL*)target)->group->unit_id == UNT_REVERBERATION) )
 		flag.infdef = 1;
-	if( flag.infdef && skill_num == GN_CART_TORNADO )
-		flag.infdef = 0;
 
 	//Initial Values
 	wd.type=0; //Normal attack
@@ -2107,7 +2105,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					}
 					break;
 				case WM_SOUND_OF_DESTRUCTION:
-					skillratio += 150;
+					skillratio += 400;
 					break;
 				case SC_FATALMENACE:
 					skillratio += 100 * skill_lv;
@@ -2438,9 +2436,6 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 							flag.idef2 = 1;
 				}
 			}
-
-			if( skill_num == GN_CART_TORNADO && (tstatus->mode&MD_PLANT) )
-				flag.idef = 1;
 		}
 
 		if (!flag.idef || !flag.idef2)
@@ -4203,7 +4198,7 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 			return (damage_lv)skill_attack(BF_MAGIC,src,src,target,NPC_MAGICALATTACK,sc->data[SC_MAGICALATTACK]->val1,tick,0);
 		if(sc->data[SC_GT_ENERGYGAIN]) {
 			int duration = skill_get_time(MO_CALLSPIRITS, sc->data[SC_GT_ENERGYGAIN]->val1);
-			if(sd && rand()%100<10 + sc->data[SC_GT_ENERGYGAIN]->val1*5)
+			if( sd && rand()%100 < 10 + 5 * sc->data[SC_GT_ENERGYGAIN]->val1)
 				pc_addspiritball(sd, duration, sc->data[SC_GT_ENERGYGAIN]->val1);
 		}
 	}

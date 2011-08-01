@@ -9,6 +9,19 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+
+	r0775 - 31/07/2011 [Protimus]
+	* Corrigida habilidade GN_CART_TORNADO (Tornado de Carrinho).
+	- O dano em monstros planta é normal, apenas 1.
+	* Corrigida fórmula da WM_SOUND_OF_DESTRUCTION (Prelúdio do Ragnarök).
+	- Dano conforme iRO.
+	* Corrigida fórmula da habilidade SR_GENTLETOUCH_ENERGYGAIN (Chakra da Energia).
+	- Valores para randomização estavam incorretos.
+	* Correções das habilidades RA_FIRINGTRAP (Armadilha Incendiária) & RA_ICEBOUNDTRAP (Armadilha Glacial).
+	- Modificada chance de ocorrer SC_BURNING (Ardor) e SC_FREEZING.
+	* Remoções de alguns códigos de item_types que não são mais úteis.
+	- Necessário verificar valores de Upper para itens novamente, talvez alguns estejam com problemas.
+
 	r0774 - 31/07/2011 [Mark]
 	* Corrigidas poções de Bioquímico.
 	- Códigos alterados e/ou adicionados.
