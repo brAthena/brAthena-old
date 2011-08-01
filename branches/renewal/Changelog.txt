@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0781 - 01/08/2011 [Protimus]
+	* Corrigida habilidade NC_AXEBOOMERANG (Arremesso de Machado).
+	- Estava causando crash ao ser usada sem machados (por GMS).
+	- O dano foi modificado de acordo com kRO Renewal.
+
 	r0780 - 01/08/2011 [Mark]
 	* Corrigida habilidade Pó de Diamante.
 	- Efeito SC_CRYSTALIZE não estava correto.

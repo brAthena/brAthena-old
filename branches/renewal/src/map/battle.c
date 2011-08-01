@@ -1581,6 +1581,19 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				} else
 					wd.damage = sstatus->rhw.atk2;
 				break;
+			case NC_AXEBOOMERANG:
+				if( sd )
+				{
+					short index = sd->equip_index[EQI_HAND_R];
+					if (index >= 0 &&
+						sd->inventory_data[index] &&
+						sd->inventory_data[index]->type == IT_WEAPON)
+						wd.damage = sd->inventory_data[index]->weight/5;
+				} else
+					wd.damage = sstatus->rhw.atk2*2;
+				i=100+(40*(skill_lv-1));
+				ATK_ADDRATE(i);
+				break;
 			case HFLI_SBR44:	//[orn]
 				if(src->type == BL_HOM) {
 					wd.damage = ((TBL_HOM*)src)->homunculus.intimacy;
@@ -2055,10 +2068,8 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 100) / 20;
 					break;
 				case NC_AXEBOOMERANG:
-					skillratio += 160 + 40*skill_lv;
-					if(sd)
-						skillratio += sd->inventory_data[sd->equip_index[EQI_HAND_R]]->weight/10;
-					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 100) / 20;
+					skillratio += 100 + 40 * skill_lv;
+					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
 					break;
 				case NC_POWERSWING:
 					skillratio += (180 + (skill_lv * 20) + sstatus->dex + sstatus->str );
