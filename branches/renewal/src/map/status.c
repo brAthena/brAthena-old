@@ -1340,6 +1340,8 @@ int status_check_skilluse(struct block_list *src, struct block_list *target, int
 		//on dead characters, said checks are left to skill.c [Skotlex]
 		if (target && status_isdead(target))
 			return 0;
+		if( (sc = status_get_sc(src)) && sc->data[SC_CRYSTALIZE] )
+			return 0;
 	}
 
 	if (skill_num == PA_PRESSURE && flag && target) {
@@ -1438,6 +1440,7 @@ int status_check_skilluse(struct block_list *src, struct block_list *target, int
 				sc->data[SC_SATURDAYNIGHTFEVER] ||
 				sc->data[SC__INVISIBILITY] ||
 				sc->data[SC__IGNORANCE] ||
+				sc->data[SC_CRYSTALIZE] ||
 				sc->data[SC_CURSEDCIRCLE_TARGET]
 			))
 				return 0;
@@ -7737,6 +7740,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_VACUUM_EXTREME:
 		case SC_WHITEIMPRISON:
 		case SC_THORNSTRAP:
+		case SC_CRYSTALIZE:
 			unit_stop_walking(bl,1);
 		break;
 		case SC_HIDING:
@@ -9458,6 +9462,15 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 				clif_sitting(bl,true);
 			}
 			sc_timer_next(10000 + tick, status_change_timer, bl->id, data);
+		}
+		break;
+
+	case SC_CRYSTALIZE:
+		if( --(sce->val4) >= 0 )
+		{
+			status_charge(bl, status->max_hp * 2 / 100, status->max_sp / 100);
+			sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
+			return 0;
 		}
 		break;
 

@@ -331,6 +331,12 @@ int battle_attr_fix(struct block_list *src, struct block_list *target, int damag
 			}
 		}
 	}
+	if( atk_elem == ELE_FIRE && tsc && tsc->count && tsc->data[SC_CRYSTALIZE] )
+	{
+		tsc->data[SC_CRYSTALIZE]->val1 = 0;
+		if( tsc->data[SC_CRYSTALIZE]->val2 == 0 )
+			status_change_end(target,SC_CRYSTALIZE,-1);
+	}
 	return damage*ratio/100;
 }
 

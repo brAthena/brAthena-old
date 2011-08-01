@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0780 - 01/08/2011 [Mark]
+	* Corrigida habilidade Pó de Diamante.
+	- Efeito SC_CRYSTALIZE não estava correto.
+
 	r0779 - 01/08/2011 [Protimus]
 	* Corrigida habilidade LG_EXEEDBREAK (Exceder Limite).
 	- Tempo de conjuração estava errado.

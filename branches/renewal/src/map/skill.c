@@ -1236,7 +1236,7 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 		sc_start(bl, SC_BLEEDING, 10 + 10 * skilllv, skilllv, skill_get_time2(skillid, skilllv));
 		break;
 	case SO_DIAMONDDUST:
-		rate = 10 + 10 * skilllv;
+		rate = 10 * skilllv;
 		if( sc && sc->data[SC_COOLER_OPTION] )
 			rate += rate * sc->data[SC_COOLER_OPTION]->val2 / 100;
 		sc_start(bl, SC_CRYSTALIZE, rate, skilllv, skill_get_time2(skillid, skilllv));
@@ -9560,6 +9560,7 @@ int skill_castend_map (struct map_session_data *sd, short skill_num, const char 
 		(sd->sc.data[SC_STASIS] && skill_stasis_check(&sd->bl, sd->sc.data[SC_STASIS]->val2, skill_num)) ||
 		sd->sc.data[SC_MARIONETTE] ||
 		sd->sc.data[SC__MANHOLE] ||
+		sd->sc.data[SC_CRYSTALIZE] ||
 		sd->sc.data[SC_SATURDAYNIGHTFEVER]
 	 )) {
 		skill_failed(sd);
