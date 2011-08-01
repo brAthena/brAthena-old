@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0777 - 01/08/2011 [Mark]
+	* Corrigida habilidade Canhão de Prótons.
+	- Não estava sendo possível equipar Balas de Canhão.
+	* Corrigido script do item Guloseima Recheada.
+	
 	r0776 - 01/08/2011 [Mark]
 	* Corrigida habilidade Chakra da Cura.
 	- Hp do alvo não estava sendo reajustado.
