@@ -3783,6 +3783,10 @@ static unsigned short status_calc_str(struct block_list *bl, struct status_chang
 		str += sc->data[SC_HARMONIZE]->val2;
 	if(sc->data[SC_INSPIRATION])
 		str += sc->data[SC_INSPIRATION]->val3;
+	if(sc->data[SC_SAVAGE_STEAK])
+		str += sc->data[SC_SAVAGE_STEAK]->val1;
+	if(sc->data[SC_STOMACHACHE])
+		str -= sc->data[SC_STOMACHACHE]->val1;
 
 	return (unsigned short)cap_value(str,0,USHRT_MAX);
 }
@@ -3828,6 +3832,10 @@ static unsigned short status_calc_agi(struct block_list *bl, struct status_chang
 		agi += sc->data[SC_HARMONIZE]->val2;
 	if(sc->data[SC_INSPIRATION])
 		agi += sc->data[SC_INSPIRATION]->val3;
+	if(sc->data[SC_DROCERA_HERB_STEAMED])
+		agi += sc->data[SC_DROCERA_HERB_STEAMED]->val1;
+	if(sc->data[SC_STOMACHACHE])
+		agi -= sc->data[SC_STOMACHACHE]->val1;
 
 	return (unsigned short)cap_value(agi,0,USHRT_MAX);
 }
@@ -3865,6 +3873,10 @@ static unsigned short status_calc_vit(struct block_list *bl, struct status_chang
 		vit += sc->data[SC_HARMONIZE]->val2;
 	if(sc->data[SC_INSPIRATION])
 		vit += sc->data[SC_INSPIRATION]->val3;
+	if(sc->data[SC_MINOR_BBQ])
+		vit += sc->data[SC_MINOR_BBQ]->val1;
+	if(sc->data[SC_STOMACHACHE])
+		vit -= sc->data[SC_STOMACHACHE]->val1;
 
 	return (unsigned short)cap_value(vit,0,USHRT_MAX);
 }
@@ -3912,6 +3924,10 @@ static unsigned short status_calc_int(struct block_list *bl, struct status_chang
 		int_ -= 5 + 5 * sc->data[SC_MANDRAGORA]->val1;
 	if(sc->data[SC__STRIPACCESSORY])
 		int_ -= int_ * sc->data[SC__STRIPACCESSORY]->val2 / 100;
+	if(sc->data[SC_COCKTAIL_WARG_BLOOD])
+		int_ += sc->data[SC_COCKTAIL_WARG_BLOOD]->val1;
+	if(sc->data[SC_STOMACHACHE])
+		int_ -= sc->data[SC_STOMACHACHE]->val1;
 
 	return (unsigned short)cap_value(int_,0,USHRT_MAX);
 }
@@ -3960,6 +3976,10 @@ static unsigned short status_calc_dex(struct block_list *bl, struct status_chang
 		dex += sc->data[SC_INSPIRATION]->val3;
 	if(sc->data[SC__STRIPACCESSORY])
 		dex -= dex * sc->data[SC__STRIPACCESSORY]->val2 / 100;
+	if(sc->data[SC_SIROMA_ICE_TEA])
+		dex += sc->data[SC_SIROMA_ICE_TEA]->val1;
+	if(sc->data[SC_STOMACHACHE])
+		dex -= sc->data[SC_STOMACHACHE]->val1;
 
 	return (unsigned short)cap_value(dex,0,USHRT_MAX);
 }
@@ -3997,6 +4017,10 @@ static unsigned short status_calc_luk(struct block_list *bl, struct status_chang
 		luk += sc->data[SC_INSPIRATION]->val3;
 	if(sc->data[SC__STRIPACCESSORY])
 		luk -= luk * sc->data[SC__STRIPACCESSORY]->val2 / 100;
+	if(sc->data[SC_PUTTI_TAILS_NOODLES])
+		luk += sc->data[SC_PUTTI_TAILS_NOODLES]->val1;
+	if(sc->data[SC_STOMACHACHE])
+		luk -= sc->data[SC_STOMACHACHE]->val1;
 
 	return (unsigned short)cap_value(luk,0,USHRT_MAX);
 }
@@ -4860,6 +4884,8 @@ static unsigned int status_calc_maxsp(struct block_list *bl, struct status_chang
 		maxsp += maxsp*(2 + sc->data[SC_RAISINGDRAGON]->val1)/100;
 	if(sc->data[SC_LIFE_FORCE_F])
 		maxsp += maxsp * sc->data[SC_LIFE_FORCE_F]->val1/100;
+	if(sc->data[SC_VITATA_500])
+		maxsp += maxsp * sc->data[SC_VITATA_500]->val1/400;
 
 	return cap_value(maxsp,1,UINT_MAX);
 }
@@ -7642,6 +7668,11 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 				val4 = 1;
 			tick = 1000;
 			break;
+		case SC_STOMACHACHE:
+			val2 = 8;
+			val4 = tick / 10000;
+			tick = 10000;
+			break;
 
 		default:
 			if( calc_flag == SCB_NONE && StatusSkillChangeTable[type] == 0 && StatusIconChangeTable[type] == 0 )
@@ -9415,6 +9446,21 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 		}
 		break;
 
+	case SC_STOMACHACHE:
+		if( --(sce->val4) > 0 )
+		{
+			status_charge(bl,0,sce->val2);
+			if( sd && !pc_issit(sd) )
+			{
+				pc_stop_walking(sd,1|4);
+				pc_stop_attack(sd);
+				pc_setsit(sd);
+				clif_sitting(bl,true);
+			}
+			sc_timer_next(10000 + tick, status_change_timer, bl->id, data);
+		}
+		break;
+
 	}
 	// default for all non-handled control paths is to end the status
 	return status_change_end( bl,type,tid );
@@ -9557,6 +9603,12 @@ int status_change_clear_buffs (struct block_list* bl, int type)
 			case SC__MANHOLE:
 			case SC_CURSEDCIRCLE_ATKER:
 			case SC_CURSEDCIRCLE_TARGET:
+			case SC_SAVAGE_STEAK:
+			case SC_COCKTAIL_WARG_BLOOD:
+			case SC_MINOR_BBQ:
+			case SC_SIROMA_ICE_TEA:
+			case SC_DROCERA_HERB_STEAMED:
+			case SC_PUTTI_TAILS_NOODLES:
 				continue;
 
 			//Debuffs that can be removed.

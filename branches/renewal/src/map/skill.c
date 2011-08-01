@@ -6001,8 +6001,10 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 				case SC_HUMMING:		case SC_DONTFORGETME:	case SC_FORTUNE:
 				case SC_SERVICE4U:		case SC_FOOD_STR_CASH:	case SC_FOOD_AGI_CASH:
 				case SC_FOOD_VIT_CASH:	case SC_FOOD_DEX_CASH:	case SC_FOOD_INT_CASH:
-				case SC_FOOD_LUK_CASH:	case SC_BERKANA: 	case SC_ELECTRICSHOCKER:
-				case SC__SHADOWFORM:	case SC_NEUTRALBARRIER_MASTER:case SC_NEUTRALBARRIER:
+				case SC_FOOD_LUK_CASH:	case SC_BERKANA: 				case SC_ELECTRICSHOCKER:
+				case SC_SAVAGE_STEAK:	case SC_COCKTAIL_WARG_BLOOD:	case SC_MINOR_BBQ:
+				case SC_SIROMA_ICE_TEA:	case SC_DROCERA_HERB_STEAMED:	case SC_PUTTI_TAILS_NOODLES:
+				case SC__SHADOWFORM:	case SC_NEUTRALBARRIER_MASTER:	case SC_NEUTRALBARRIER:
 				case SC_STEALTHFIELD_MASTER:case SC_STEALTHFIELD:
 					continue;
 				case SC_ASSUMPTIO:
@@ -7265,6 +7267,8 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 				case SC__LAZINESS:   case SC__UNLUCKY:    case SC__WEAKNESS:
 				case SC_MAGNETICFIELD:case SC_NEUTRALBARRIER_MASTER:case SC_NEUTRALBARRIER:	
 				case SC_STEALTHFIELD_MASTER:case SC_STEALTHFIELD:
+				case SC_SAVAGE_STEAK:  case SC_COCKTAIL_WARG_BLOOD:case SC_MINOR_BBQ:   
+				case SC_SIROMA_ICE_TEA: case SC_DROCERA_HERB_STEAMED: case SC_PUTTI_TAILS_NOODLES:
 					continue;
 				case SC_ASSUMPTIO:
 					if( bl->type == BL_MOB )

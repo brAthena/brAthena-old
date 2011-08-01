@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0774 - 31/07/2011 [Mark]
+	* Corrigidas poções de Bioquímico.
+	- Códigos alterados e/ou adicionados.
+
 	r0773 - 31/07/2011 [Protimus]
 	* Corrigida habilidade AB_EPICLESIS (Epiclesis).
 	- Não estava ressucitando.
