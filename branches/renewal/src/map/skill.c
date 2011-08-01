@@ -7883,7 +7883,9 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			status_change_end(bl, SC_BURNING, -1 );
 			status_change_end(bl, SC_FREEZING, -1 );
 		}
-		clif_skill_nodamage(src,bl,AL_HEAL,(120*skilllv + tstatus->max_hp*(2+skilllv)/100),1);
+		i = (120*skilllv + tstatus->max_hp*(2+skilllv)/100);
+		status_heal(bl, i, 0, 1);
+		clif_skill_nodamage(src,bl,AL_HEAL,i,1);
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
 		break;
 	case SR_TIGERCANNON:
@@ -8087,7 +8089,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		{
 			if ( clif_skill_nodamage(bl, src, skillid, skilllv,
 				sc_start(bl, type, 35 + 10 * skilllv, skilllv, skill_get_time(skillid, skilllv))) )
-				status_zap(bl, 0, status_get_max_sp(bl) / 100 * 25 + 5 * skilllv);
+				status_zap(bl, 0, status_get_max_sp(bl) / 100 * (25 + 5 * skilllv));
 		}
 		else
 			map_foreachinrange(skill_area_sub, bl, skill_get_splash(skillid, skilllv), BL_CHAR,

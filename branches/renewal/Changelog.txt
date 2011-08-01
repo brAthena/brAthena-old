@@ -9,8 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0776 - 01/08/2011 [Mark]
+	* Corrigida habilidade Chakra da Cura.
+	- Hp do alvo não estava sendo reajustado.
 
-	r0775 - 31/07/2011 [Protimus]
+	r0775 - 01/08/2011 [Protimus]
 	* Corrigida habilidade GN_CART_TORNADO (Tornado de Carrinho).
 	- O dano em monstros planta é normal, apenas 1.
 	* Corrigida fórmula da WM_SOUND_OF_DESTRUCTION (Prelúdio do Ragnarök).
