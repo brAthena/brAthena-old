@@ -9,6 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0783 - 01/08/2011 [brn0]
+	* Corrigido o calculo das penalidades de experiência.
+	- Estava exibindo valores incorretos no comando @showexp e estava doando valores incorretos ao clã do personagem.
+	* Corrigida a habilidade SC_SHADOWFORM (Vínculo Sombrio).
+	- O efeito não era cancelado quando a pessoa que usou a habilidade se movia.
+	* Corrigido um warning na compilação.
+
 	r0782 - 01/08/2011 [Protimus]
 	* Corrigida habilidade WL_DRAINLIFE (Drenar Vida).
 	- A chance para drenar estava muito baixa, agora está conforme kRO RE.
@@ -41,7 +48,7 @@
 	* Corrigida habilidade Canhão de Prótons.
 	- Não estava sendo possível equipar Balas de Canhão.
 	* Corrigido script do item Guloseima Recheada.
-	
+
 	r0776 - 01/08/2011 [Mark]
 	* Corrigida habilidade Chakra da Cura.
 	- Hp do alvo não estava sendo reajustado.

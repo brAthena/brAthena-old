@@ -412,13 +412,16 @@ int map_moveblock(struct block_list *bl, int x1, int y1, unsigned int tick)
 	else map_addblcell(bl);
 #endif
 
+	sc = status_get_sc(bl);
 	if( bl->type&BL_CHAR )
 	{
 		if( sd )
 		{
 			struct block_list *d_bl;
-			if( sc && sc->data[SC__SHADOWFORM] && ((d_bl = map_id2bl(sc->data[SC__SHADOWFORM]->val2)) == NULL || bl->m != d_bl->m || !check_distance_bl(bl,d_bl,skill_get_range(SC_SHADOWFORM,1))) )
+			if( sc && sc->data[SC__SHADOWFORM] && ((d_bl = map_id2bl(sc->data[SC__SHADOWFORM]->val2)) == NULL || bl->m != d_bl->m || !check_distance_bl(bl,d_bl,skill_get_range(SC_SHADOWFORM,1))) ){
+			if( d_bl && d_bl->type == BL_PC ) ((TBL_PC*)d_bl)->shadowform_id = 0;
 				status_change_end(bl,SC__SHADOWFORM,-1);
+			}
 			if( sd->shadowform_id && ((d_bl = map_id2bl(sd->shadowform_id)) == NULL || bl->m != d_bl->m || !check_distance_bl(bl,d_bl,skill_get_range(SC_SHADOWFORM,1))) )
 			{
 				if( d_bl ) status_change_end(d_bl,SC__SHADOWFORM,-1);
@@ -427,7 +430,6 @@ int map_moveblock(struct block_list *bl, int x1, int y1, unsigned int tick)
 		}
 
 		skill_unit_move(bl,tick,3);
-		sc = status_get_sc(bl);
 		if (sc) {
 			if (sc->count) {
 				if (sc->data[SC_CLOAKING])

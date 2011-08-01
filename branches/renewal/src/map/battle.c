@@ -1341,10 +1341,10 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 		} else if(sc && sc->data[SC_FEARBREEZE] && sd->weapontype1==W_BOW && (i = sd->equip_index[EQI_AMMO]) >= 0 && sd->inventory_data[i] && sd->status.inventory[i].amount > 1){
 			short rate[] = { 4, 4, 7, 9, 10 };
 			if(sc->data[SC_FEARBREEZE]->val1 > 0 && sc->data[SC_FEARBREEZE]->val1 < 6 && rand()%100 < rate[sc->data[SC_FEARBREEZE]->val1-1]) {
-				int chance;
 				wd.type = 0x08;
 				wd.div_ = 2;
 				if(sc->data[SC_FEARBREEZE]->val1 > 2){
+					int chance;
 					wd.div_ += ((chance=rand()%100) >= 40) + (chance >= 70) + (chance >= 90);
 					wd.div_ = min(wd.div_,sc->data[SC_FEARBREEZE]->val1);
 				}

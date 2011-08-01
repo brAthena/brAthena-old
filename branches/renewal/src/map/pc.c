@@ -5456,6 +5456,26 @@ int pc_gainexp(struct map_session_data *sd, struct block_list *src, unsigned int
 	if(!battle_config.pvp_exp && map[sd->bl.m].flag.pvp)  // [MouseJstr]
 		return 0; // no exp on pvp maps
 
+	if(diferenca >= 16)
+		diferenca_exp = 40;
+	else if(diferenca <= 15 && diferenca >= 10)
+		diferenca_exp = 140-((diferenca-10)*5);
+	else if(diferenca <= 9 && diferenca >= 3)
+		diferenca_exp = 105+((diferenca-3)*5);
+	else if(diferenca <= 2 && diferenca >= -5)
+		diferenca_exp = 100;
+	else if(diferenca <= -6 && diferenca >= -20)
+		diferenca_exp = 100+((int)((diferenca+1)/5))*5;
+	else if(diferenca <= -21 && diferenca >= -25)
+		diferenca_exp = 60;
+	else if(diferenca <= -26 && diferenca >= -30)
+		diferenca_exp = 35;
+	else if(diferenca <= -30)
+		diferenca_exp = 10;
+
+	if(base_exp) base_exp = base_exp*diferenca_exp/100;
+	if(job_exp) job_exp = job_exp*diferenca_exp/100;
+
 	if(sd->status.guild_id>0)
 		base_exp-=guild_payexp(sd,base_exp);
 
@@ -5485,25 +5505,6 @@ int pc_gainexp(struct map_session_data *sd, struct block_list *src, unsigned int
 			}
 		}
 	}
-	if(diferenca >= 16)
-		diferenca_exp = 40;
-	else if(diferenca <= 15 && diferenca >= 10)
-		diferenca_exp = 140-((diferenca-10)*5);
-	else if(diferenca <= 9 && diferenca >= 3)
-		diferenca_exp = 105+((diferenca-3)*5);
-	else if(diferenca <= 2 && diferenca >= -5)
-		diferenca_exp = 100;
-	else if(diferenca <= -6 && diferenca >= -20)
-		diferenca_exp = 100+((int)((diferenca+1)/5))*5;
-	else if(diferenca <= -21 && diferenca >= -25)
-		diferenca_exp = 60;
-	else if(diferenca <= -26 && diferenca >= -30)
-		diferenca_exp = 35;
-	else if(diferenca <= -30)
-		diferenca_exp = 10;
-
-	if(base_exp) base_exp = base_exp*diferenca_exp/100;
-	if(job_exp) job_exp = job_exp*diferenca_exp/100;
 
 	//Cap exp to the level up requirement of the previous level when you are at max level, otherwise cap at UINT_MAX (this is required for some S. Novice bonuses). [Skotlex]
 	if (base_exp) {
