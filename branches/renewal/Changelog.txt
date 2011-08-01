@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0778 - 01/08/2011 [Mark]
+	* Corrigida habilidade Arremesso de Machado.
+	- Dano estava muito elevado.
+
 	r0777 - 01/08/2011 [Mark]
 	* Corrigida habilidade Canhão de Prótons.
 	- Não estava sendo possível equipar Balas de Canhão.
