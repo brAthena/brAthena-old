@@ -9,6 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0785 - 02/08/2011 [Mark]
+	* Corrigido efeito Incêndio (SC_BURNING).
+	- Estava impedindo que o alvo se mexesse ou usasse habilidades.
+	* Corrigido npc Vendedor de Livros (Vende livros de Bioquímico).
+	- Não estava entregando o livro.
+	* Corrigido item Cetro Glorioso.
+	- Não estava equipando em Espiritualista.
+
 	r0784 - 01/08/2011 [Protimus]
 	* Corrigida a habilidade WL_EARTHSTRAIN (Abalo Sísmico).
 	- Agora tem um alcance de 6 células.

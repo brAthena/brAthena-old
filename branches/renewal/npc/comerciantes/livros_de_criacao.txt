@@ -57,22 +57,22 @@ alde_alche,31,186,3	script	Vendedor de Livros	883,{
 	mes "livros criação disponíveis.";
 	next;
 	while(1) {
-		select(.menu$);
+		set .@sel,select(.menu$);
 		mes "[Vendedor de Livros]";
-		if (@menu == 11) {
+		if (.@sel == 11) {
 			mes "Obrigado por sua preferência.";
 			mes "Volte sempre.";
 			close;
 		}
-		mes "^0000FF["+getitemname(.item[@menu])+"]^000000 custa";
+		mes "^0000FF["+getitemname(.item[.@sel])+"]^000000 custa";
 		mes "100,000 Zenys.";
-		mes "Quandos deles você";
+		mes "Quantos deles você";
 		mes "gostaria de comprar?";
 		next;
 		input .@craftbook;
 		mes "[Vendedor de Livros]";
 		if (.@craftbook) {
-			mes "Você requisitou "+.@craftbook+" ^0000FF["+getitemname(.item[@menu])+"]^000000, que custa "+@craftbook*100000+".";
+			mes "Você requisitou "+.@craftbook+" ^0000FF["+getitemname(.item[.@sel])+"]^000000, que custa "+.@craftbook*100000+".";
 			mes "Gostaria de prosseguir?";
 			next;
 			if (select("Sim:Não")==1) {
@@ -82,7 +82,7 @@ alde_alche,31,186,3	script	Vendedor de Livros	883,{
 					mes "zenys necessários para negociar.";
 				} else {
 					set Zeny,Zeny-.@craftbook*100000;
-					getitem .item[@menu],@craftbook;
+					getitem .item[.@sel],.@craftbook;
 					mes "Obrigado por sua preferência.";
 				}
 				close;
@@ -101,6 +101,6 @@ OnInit:
 	for(set .@i,1; .@i < getarraysize(.item); set .@i,.@i+1) {
 		set .menu$,.menu$+getitemname(.item[.@i])+":";
 	}
-	set .menu$,.menu$+":Close";
+	set .menu$,.menu$+":Sair";
 	end;
 }
