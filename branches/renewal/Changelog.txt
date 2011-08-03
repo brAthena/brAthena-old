@@ -9,6 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0788 - 03/08/2011 [Protimus]
+	* Correções para status que tem seu tempo de conjuração final alterado em determinados casos.
+	* Corrigida a habilidade GC_CLOAKINGEXCEED (Ocultação).
+	- O status é terminado em determinada circunstância, estava direto.
+	* Corrigida a habilidade LG_EXEEDBREAK (Exceder Limite).
+	- Corrigida leitura para fazer o efeito de status_calc_speed corretamente.
+
 	r0787 - 03/08/2011 [Protimus]
 	* Removida database exp2.txt
 	- Não é viável manter desatualizada e nem criar uma nova no momento.

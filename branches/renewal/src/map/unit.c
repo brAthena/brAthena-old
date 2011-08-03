@@ -1373,18 +1373,18 @@ int unit_skilluse_pos2( struct block_list *src, short skill_x, short skill_y, sh
 
 	if(ud->skilltimer != INVALID_TIMER) //Normally not needed since clif.c checks for it, but at/char/script commands don't! [Skotlex]
 		return 0;
-
+	
 	sc = status_get_sc(src);
 	if (sc && !sc->count)
 		sc = NULL;
-
+	
 	if( sd )
 	{
 		if( skillnotok(skill_num, sd) || !skill_check_condition_castbegin(sd, skill_num, skill_lv) )
 			return 0;
 	}
 
-	if (!status_check_skilluse(src, NULL, skill_num, skill_lv, 0))
+	if( !status_check_skilluse(src, NULL, skill_num, skill_lv, 0) )
 		return 0;
 
 	if( map_getcell(src->m, skill_x, skill_y, CELL_CHKWALL) )
@@ -1409,9 +1409,18 @@ int unit_skilluse_pos2( struct block_list *src, short skill_x, short skill_y, sh
 
 	unit_stop_attack(src);
 
-	// moved here to prevent Suffragium from ending if skill fails
-	if (!(skill_get_castnodex(skill_num, skill_lv)&2))
-		casttime = skill_castfix_sc(src, casttime);
+	if( !(skill_get_castnodex(skill_num, skill_lv)&2) && sc )
+	{
+		status_change_end(src, SC_SUFFRAGIUM, -1);
+		if (sc->data[SC_MEMORIZE] && (--sc->data[SC_MEMORIZE]->val2) <= 0)
+			status_change_end(src, SC_MEMORIZE, -1);
+	}
+
+	if( sc && sc->data[SC_MAGICMUSHROOM] )
+	{
+		if( sd && sd->state.magicmushroom_flag && sd->skillitem == skill_num )
+			casttime = 0;
+	}
 
 	ud->state.skillcastcancel = castcancel&&casttime>0?1:0;
 	if( !sd || sd->skillitem != skill_num || skill_get_cast(skill_num,skill_lv) )
@@ -1436,10 +1445,16 @@ int unit_skilluse_pos2( struct block_list *src, short skill_x, short skill_y, sh
 		if (!src->prev) return 0; //Warped away!
 	}
 
+	if (sc && sc->data[SC_CLOAKINGEXCEED] && !(sc->data[SC_CLOAKINGEXCEED]->val4&4))
+	{
+		status_change_end(src,SC_CLOAKINGEXCEED,-1);
+		if (!src->prev) return 0;
+	}
+
 	if( sc && sc->data[SC__MANHOLE] )
 	{
 		status_change_end(src,SC__MANHOLE,-1);
-		if (!src->prev) return 0;
+		if (!src->prev) return 0; 
 	}
 
 	if( casttime > 0 )
@@ -1447,7 +1462,7 @@ int unit_skilluse_pos2( struct block_list *src, short skill_x, short skill_y, sh
 		unit_stop_walking(src,1);
 		clif_skillcasting(src, src->id, 0, skill_x, skill_y, skill_num, skill_get_ele(skill_num, skill_lv), casttime);
 		ud->skilltimer = add_timer( tick+casttime, skill_castend_pos, src->id, 0 );
-		if( sd && (pc_checkskill(sd,SA_FREECAST) > 0 || skill_num == LG_EXEEDBREAK) )
+		if( (sd && pc_checkskill(sd,SA_FREECAST) > 0) || skill_num == LG_EXEEDBREAK)
 			status_calc_bl(&sd->bl, SCB_SPEED);
 	}
 	else
