@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0786 - 02/08/2011 [brn0]
+	* Corrigida a battle flag castrate_dex_scale.
+	* Corrigida as habilidade mimetismo e plágio.
+	- A habilidade copiada não continuava após o personagem relogar.
+	* Corrigido bônus bCastRate.
+
 	r0785 - 02/08/2011 [Mark]
 	* Corrigido efeito Incêndio (SC_BURNING).
 	- Estava impedindo que o alvo se mexesse ou usasse habilidades.

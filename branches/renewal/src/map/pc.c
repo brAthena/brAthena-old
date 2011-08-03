@@ -1369,13 +1369,13 @@ int pc_calc_skilltree(struct map_session_data *sd)
 
 	for( i = 0; i < MAX_SKILL; i++ )
 	{
-		if( sd->status.skill[i].flag != SKILL_FLAG_PLAGIARIZED ) //Don't touch plagiarized skills
+		if( sd->status.skill[i].flag != 13 ) //Don't touch plagiarized skills
 			sd->status.skill[i].id = 0; //First clear skills.
 	}
 
 	for( i = 0; i < MAX_SKILL; i++ )
 	{
-		if( sd->status.skill[i].flag != SKILL_FLAG_PERMANENT && sd->status.skill[i].flag != SKILL_FLAG_PLAGIARIZED )
+		if( sd->status.skill[i].flag != SKILL_FLAG_PERMANENT && sd->status.skill[i].flag != 13 )
 		{ // Restore original level of skills after deleting earned skills.
 			sd->status.skill[i].lv = (sd->status.skill[i].flag == SKILL_FLAG_TEMPORARY) ? 0 : sd->status.skill[i].flag - SKILL_FLAG_REPLACED_LV_0;
 			sd->status.skill[i].flag = SKILL_FLAG_PERMANENT;
@@ -1428,7 +1428,7 @@ int pc_calc_skilltree(struct map_session_data *sd)
 				for(j = 0; j < MAX_PC_SKILL_REQUIRE; j++) {
 					if((k=skill_tree[c][i].need[j].id))
 					{
-						if (sd->status.skill[k].id == 0 || sd->status.skill[k].flag == SKILL_FLAG_TEMPORARY || sd->status.skill[k].flag == SKILL_FLAG_PLAGIARIZED)
+						if(!sd->status.skill[k].id || sd->status.skill[k].flag == 13)
 							k = 0; //Not learned.
 						else
 						if (sd->status.skill[k].flag >= SKILL_FLAG_REPLACED_LV_0) //Real lerned level
@@ -1529,7 +1529,7 @@ static void pc_check_skilltree(struct map_session_data *sd, int skill)
 			{
 				if( (k = skill_tree[c][i].need[j].id) )
 				{
-					if( sd->status.skill[k].id == 0 || sd->status.skill[k].flag == SKILL_FLAG_TEMPORARY || sd->status.skill[k].flag == SKILL_FLAG_PLAGIARIZED )
+					if(!sd->status.skill[k].id || sd->status.skill[k].flag == 13)
 						k = 0; //Not learned.
 					else
 					if( sd->status.skill[k].flag >= SKILL_FLAG_REPLACED_LV_0) //Real lerned level
@@ -1568,7 +1568,7 @@ int pc_clean_skilltree(struct map_session_data *sd)
 {
 	int i;
 	for (i = 0; i < MAX_SKILL; i++){
-		if (sd->status.skill[i].flag == SKILL_FLAG_TEMPORARY || sd->status.skill[i].flag == SKILL_FLAG_PLAGIARIZED)
+		if (sd->status.skill[i].flag == SKILL_FLAG_TEMPORARY || sd->status.skill[i].flag == 13)
 		{
 			sd->status.skill[i].id = 0;
 			sd->status.skill[i].lv = 0;

@@ -2260,7 +2260,7 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 			break;
 		}
 
-		if( can_copy(tsd,copy_skill,bl) && (!tsd->status.skill[copy_skill].id || tsd->status.skill[copy_skill].flag >= SKILL_FLAG_PLAGIARIZED) )
+		if( can_copy(tsd,copy_skill,bl) && (!tsd->status.skill[copy_skill].id || tsd->status.skill[copy_skill].flag >= 13) )
 		{
 			copy_level = cap_value(copy_level,1,10);
 			if( sc && sc->data[SC__REPRODUCE] && (skill = sc->data[SC__REPRODUCE]->val1) )
@@ -2286,7 +2286,7 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 			else if( (skill = pc_checkskill(tsd,RG_PLAGIARISM)) > 0 && (!sc || !sc->data[SC_PRESERVE]) )
 			{
 				copy_level = min(copy_level,skill);
-				if( tsd->cloneskill_id && tsd->status.skill[tsd->cloneskill_id].flag == SKILL_FLAG_PLAGIARIZED )
+				if( tsd->cloneskill_id && tsd->status.skill[tsd->cloneskill_id].flag == 13 )
 				{
 					tsd->status.skill[tsd->cloneskill_id].id = 0;
 					tsd->status.skill[tsd->cloneskill_id].lv = 0;
@@ -2300,7 +2300,7 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 
 				tsd->status.skill[copy_skill].id = copy_skill;
 				tsd->status.skill[copy_skill].lv = copy_level;
-				tsd->status.skill[copy_skill].flag = SKILL_FLAG_PLAGIARIZED;
+				tsd->status.skill[copy_skill].flag = 13;
 				clif_addskill(tsd,copy_skill);
 			}
 		}
@@ -12717,28 +12717,24 @@ int skill_castfix (struct block_list *bl, int skill_id, int skill_lv)
 	sd = BL_CAST(BL_PC, bl);
 	sc = status_get_sc(bl);
 
-	if( !(skill_get_castnodex(skill_id, skill_lv)&1) && sd )
-		stat_reduct = (float)sqrt((float)(status_get_dex(bl)*2 + status_get_int(bl)) /530);
-	if((time=(int)((float)(1 - (stat_reduct>0 ? stat_reduct:0)) * base_cast * 4/5)) < 0)
-		time = 0;
+	if(!(skill_get_castnodex(skill_id, skill_lv)&1))
+		stat_reduct = (float)sqrt((float)(status_get_dex(bl)*2 + status_get_int(bl))/battle_config.castrate_dex_scale);
+	time=max((int)((float)(1 - stat_reduct)*base_cast*4/5),0);
 
 	// Tempo de cast para itens, cartas e bônus.
-	if( !(skill_get_castnodex(skill_id, skill_lv)&4) && sd )
-	{
+	if(sd && !(skill_get_castnodex(skill_id, skill_lv)&4)) {
 		int i;
 		if( sd->castrate != 100 )
 			time = time*sd->castrate / 100;
-		for( i = 0; i < ARRAYLENGTH(sd->skillcast) && sd->skillcast[i].id; i++ )
-		{
-			if( sd->skillcast[i].id == skill_id )
-			{
+		for(i=0; i < ARRAYLENGTH(sd->skillcast) && sd->skillcast[i].id; i++)
+			if(sd->skillcast[i].id == skill_id) {
 				time += time*sd->skillcast[i].val/100;
+				if(time < 0) time = 0;
 				break;
 			}
-		}
 	}
 
-	if( !(skill_get_castnodex(skill_id, skill_lv)&2) && sd && sc){
+	if(sc && !(skill_get_castnodex(skill_id, skill_lv)&2)){
 		if(sc->data[SC_FREEZING])
 			cast_fixo_reduct -= 50;
 		if(sc->data[SC__LAZINESS])

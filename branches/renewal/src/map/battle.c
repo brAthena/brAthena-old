@@ -1344,8 +1344,8 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				wd.type = 0x08;
 				wd.div_ = 2;
 				if(sc->data[SC_FEARBREEZE]->val1 > 2){
-					int chance;
-					wd.div_ += ((chance=rand()%100) >= 40) + (chance >= 70) + (chance >= 90);
+					int chance = rand()%100;
+					wd.div_ += (chance >= 40) + (chance >= 70) + (chance >= 90);
 					wd.div_ = min(wd.div_,sc->data[SC_FEARBREEZE]->val1);
 				}
 				wd.div_ = min(wd.div_,sd->status.inventory[i].amount);
