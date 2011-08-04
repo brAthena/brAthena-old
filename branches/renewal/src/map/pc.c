@@ -7954,21 +7954,24 @@ int pc_equipitem(struct map_session_data *sd,int n,int req_pos)
 			sd->status.head_bottom = id->look;
 		else
 			sd->status.head_bottom = 0;
-		clif_changelook(&sd->bl,LOOK_HEAD_BOTTOM,sd->status.head_bottom);
+		if((pos&EQP_HEAD_LOW && (pc_checkequip(sd,EQP_COS_LOW_TOP)) < 0) || pos&EQP_COS_LOW_TOP)
+			clif_changelook(&sd->bl,LOOK_HEAD_BOTTOM,sd->status.head_bottom);
 	}
-	if(pos&(EQP_HEAD_TOP|EQP_COS_HEAD_TOP)) {
-		if(id)
-			sd->status.head_top = id->look;
-		else
+	if(pos&(EQP_HEAD_TOP|EQP_COS_HEAD_TOP)) { 
+		if(id) 
+			sd->status.head_top = id->look; 
+		else 
 			sd->status.head_top = 0;
-		clif_changelook(&sd->bl,LOOK_HEAD_TOP,sd->status.head_top);
+		if((pos&EQP_HEAD_TOP && (pc_checkequip(sd,EQP_COS_HEAD_TOP)) < 0) || pos&EQP_COS_HEAD_TOP)
+			clif_changelook(&sd->bl,LOOK_HEAD_TOP,sd->status.head_top);
 	}
 	if(pos&(EQP_HEAD_MID|EQP_COS_MID_TOP)) {
 		if(id && !(pos&(EQP_HEAD_TOP|EQP_COS_HEAD_TOP)))
 			sd->status.head_mid = id->look;
 		else
 			sd->status.head_mid = 0;
-		clif_changelook(&sd->bl,LOOK_HEAD_MID,sd->status.head_mid);
+		if((pos&EQP_HEAD_MID && (pc_checkequip(sd,EQP_COS_MID_TOP)) < 0) || pos&EQP_COS_MID_TOP)
+			clif_changelook(&sd->bl,LOOK_HEAD_MID,sd->status.head_mid);
 	}
 	if(pos & EQP_SHOES)
 		clif_changelook(&sd->bl,LOOK_SHOES,0);
@@ -8053,16 +8056,28 @@ int pc_unequipitem(struct map_session_data *sd,int n,int flag)
 		pc_calcweapontype(sd);
 		clif_changelook(&sd->bl,LOOK_SHIELD,sd->status.shield);
 	}
-	if(sd->status.inventory[n].equip & (EQP_HEAD_LOW|EQP_COS_LOW_TOP)) {
-		sd->status.head_bottom = 0;
+	if(sd->status.inventory[n].equip & EQP_HEAD_LOW) {
+			sd->status.head_bottom = ( pc_checkequip(sd,EQP_COS_LOW_TOP) >= 0 ) ?sd->inventory_data[pc_checkequip(sd,EQP_COS_LOW_TOP)]->look:0;
 		clif_changelook(&sd->bl,LOOK_HEAD_BOTTOM,sd->status.head_bottom);
 	}
-	if(sd->status.inventory[n].equip & (EQP_HEAD_TOP|EQP_COS_HEAD_TOP)) {
-		sd->status.head_top = 0;
+	if(sd->status.inventory[n].equip & EQP_COS_LOW_TOP) {
+			sd->status.head_bottom = ( pc_checkequip(sd,EQP_HEAD_LOW) >= 0 ) ?sd->inventory_data[pc_checkequip(sd,EQP_HEAD_LOW)]->look:0;
+		clif_changelook(&sd->bl,LOOK_HEAD_BOTTOM,sd->status.head_bottom);
+	}
+	if(sd->status.inventory[n].equip & EQP_HEAD_TOP) {
+		sd->status.head_top = ( pc_checkequip(sd,EQP_COS_HEAD_TOP) >= 0 ) ?sd->inventory_data[pc_checkequip(sd,EQP_COS_HEAD_TOP)]->look:0;
 		clif_changelook(&sd->bl,LOOK_HEAD_TOP,sd->status.head_top);
 	}
-	if(sd->status.inventory[n].equip & (EQP_HEAD_MID|EQP_COS_MID_TOP)) {
-		sd->status.head_mid = 0;
+	if(sd->status.inventory[n].equip & EQP_COS_HEAD_TOP) {
+		sd->status.head_top = ( pc_checkequip(sd,EQP_HEAD_TOP) >= 0 ) ?sd->inventory_data[pc_checkequip(sd,EQP_HEAD_TOP)]->look:0;
+		clif_changelook(&sd->bl,LOOK_HEAD_TOP,sd->status.head_top);
+	}
+	if(sd->status.inventory[n].equip & EQP_HEAD_MID) {
+			sd->status.head_mid = ( pc_checkequip(sd,EQP_COS_MID_TOP) >= 0 ) ?sd->inventory_data[pc_checkequip(sd,EQP_COS_MID_TOP)]->look:0;
+		clif_changelook(&sd->bl,LOOK_HEAD_MID,sd->status.head_mid);
+	}
+	if(sd->status.inventory[n].equip & EQP_COS_MID_TOP) {
+			sd->status.head_mid = ( pc_checkequip(sd,EQP_HEAD_MID) >= 0 ) ?sd->inventory_data[pc_checkequip(sd,EQP_HEAD_MID)]->look:0;
 		clif_changelook(&sd->bl,LOOK_HEAD_MID,sd->status.head_mid);
 	}
 	if(sd->status.inventory[n].equip & EQP_SHOES)

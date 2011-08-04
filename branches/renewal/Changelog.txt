@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0789 - 04/08/2011 [Mark]
+	* Correção para o Sistema de Costume Itens.
+	- Ao equipar/remover/trocar equipamentos que equipam em apenas um local (Topo OU Meio OU Baixo), os problemas foram corrigidos.
+	- Necessária verificação quanto a equipamentos equipáveis em mais de um lugar, que ainda estão com problemas. 
+	- Ex: Óculos de Proteção (Equipa em Topo e Meio).
+
 	r0788 - 03/08/2011 [Protimus]
 	* Correções para status que tem seu tempo de conjuração final alterado em determinados casos.
 	* Corrigida a habilidade GC_CLOAKINGEXCEED (Ocultação).
