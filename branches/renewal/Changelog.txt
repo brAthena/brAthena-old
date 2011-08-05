@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0794 - 05/08/2011 [Protimus]
+	* Corrigidas as fórmulas das habilidades MG_FIREBALL (Bolas de Fogo) & WZ_STORMGUST (Nevasca).
+	- Todas de acordo com kRO.
+
 	r0793 - 05/08/2011 [Protimus]
 	* Corrigida a habilidade CH_SOULCOLLECT (Zen).
 	- O cast é fixo e não variável pela dex.
