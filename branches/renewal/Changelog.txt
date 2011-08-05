@@ -9,6 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0791 - 05/08/2011 [Mark]
+	* Corrigida habilidade Sinfonia dos Ventos.
+	- Estava com requerimento incorreto.
+	* Corrigida formula da habilidade Temporal de Mil Flechas.
+	* Corrigida habilidade Ressonância.
+	- Ressonância só deve ser ativada quando o mob passar por cima.
+
 	r0790 - 05/08/2011 [Mark]
 	* Corrigido efeito SC_BURNING.
 	- Estava impedindo que usasse habilidades, usar itens e atacar.

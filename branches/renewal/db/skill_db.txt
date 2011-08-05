@@ -1143,9 +1143,9 @@
 //========================================================================================================
 2412,0,0,0,0,0,0,10,0,no,0,0,0,none,0,		WM_LESSON,Domínio Musical
 2413,9,6,1,-1,0,0,5,1,yes,0,0,0,weapon,0,		WM_METALICSOUND,Ruído Estridente
-2414,9,6,2,-1,0x3,1,5,1,yes,0,0x80,3,none,0,		WM_REVERBERATION,Ressonância
-2415,0,6,1,-1,0x2,1,5,1,no,0,0,0,weapon,0,		WM_REVERBERATION_MELEE,Ressonância
-2416,0,6,1,-1,0x2,1,5,1,no,0,0,0,magic,0,			WM_REVERBERATION_MAGIC,Ressonância
+2414,9,6,2,-1,0x3,3,5,1,yes,0,0x80,3,none,0,		WM_REVERBERATION,Ressonância
+2415,0,6,1,-1,0x2,3,5,1,no,0,0,0,weapon,0,		WM_REVERBERATION_MELEE,Ressonância
+2416,0,6,1,-1,0x2,3,5,1,no,0,0,0,magic,0,			WM_REVERBERATION_MAGIC,Ressonância
 2417,11,6,2,0,0x3,5,1,1,no,0,0,0,none,0,		WM_DOMINION_IMPULSE,Ativar Ressonância
 2418,9,6,2,-1,0x1,0,5,1,yes,0,0,0,none,0,	WM_SEVERE_RAINSTORM,Temporal de Mil Flechas
 2419,9,6,2,0,0x3,1,5,1,yes,0,0x80,5,none,0,		WM_POEMOFNETHERWORLD,Poema de Nifflheim
