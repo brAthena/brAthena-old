@@ -54,6 +54,7 @@
 371,0,2	// CH_TIGERFIST#Punho do Tigre#
 372,0,2	// CH_CHAINCRUSH#Combo Esmagador#
 394,0,2	// CG_ARROWVULCAN#Vulcão de Flechas#
+401,1	// CH_SOULCOLLECT#Zen#
 403,3	// PF_MEMORIZE#Presciência#
 408,1	// WE_BABY#Mãe Pai amo vocês!#
 409,1	// WE_CALLPARENT#Mãe Pai cadê vocês?#

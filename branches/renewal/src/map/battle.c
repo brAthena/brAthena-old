@@ -3218,7 +3218,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						skillratio += 40*skill_lv-20;
 						break;
 					case WZ_METEOR:
-						skillratio += 25*skill_lv;
+						skillratio += -100 + 125 * (skill_lv/(skill_lv%2==0?2:1));
 						break;
 					case WZ_WATERBALL:
 						skillratio += 30*skill_lv;
@@ -3230,6 +3230,8 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 					case WZ_HEAVENDRIVE:
 						if( sc && sc->data[SC_PETROLOGY_OPTION] )
 							skillratio += skillratio * sc->data[SC_PETROLOGY_OPTION]->val3 / 100;
+						else
+							skillratio += 25;
 						break;
 					case HW_NAPALMVULCAN:
 						skillratio += 10*skill_lv-30;

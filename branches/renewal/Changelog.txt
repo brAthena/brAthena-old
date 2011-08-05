@@ -9,6 +9,16 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0793 - 05/08/2011 [Protimus]
+	* Corrigida a habilidade CH_SOULCOLLECT (Zen).
+	- O cast é fixo e não variável pela dex.
+	* Corrigidas fórmulas das habilidades WZ_METEOR (Chuva de Meteoros) & WZ_HEAVENDRIVE (Fúria da Terra).
+	- De acordo com kRO, últimos updates.
+
+	r0792 - 05/08/2011 [Protimus]
+	* Correções para o efeito SC_FREEZING (Hipotermia).
+	- Não estava dando reduções de 30% da defesa física e 70% da velocidade de movimento.
+
 	r0791 - 05/08/2011 [Mark]
 	* Corrigida habilidade Sinfonia dos Ventos.
 	- Estava com requerimento incorreto.
