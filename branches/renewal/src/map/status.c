@@ -4391,7 +4391,9 @@ static signed short status_calc_def(struct block_list *bl, struct status_change 
 		def -= def * (14 * sc->data[SC_ANALYZE]->val1) / 100;
 	if( sc->data[SC_MARSHOFABYSS] )
 		def -= def * ( 6 + 6 * sc->data[SC_MARSHOFABYSS]->val3/10 + (bl->type == BL_MOB ? 5 : 3) * sc->data[SC_MARSHOFABYSS]->val2/36 ) / 100;
-
+	if( sc->data[SC_FREEZING] )
+		def -= def * 3 / 10;
+		
 	return (short)cap_value(def,SHRT_MIN,SHRT_MAX);
 }
 
@@ -4597,6 +4599,8 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 					val = max( val, 40 + 10 * sc->data[SC_MARSHOFABYSS]->val1 );
 				if( sc->data[SC_STEALTHFIELD_MASTER] )
 					val = max( val, 30 );
+				if( sc->data[SC_FREEZING] )
+					val = max( val, 70 );
 
 				if( sd && sd->speed_rate + sd->speed_add_rate > 0 ) // permanent item-based speedup
 					val = max( val, sd->speed_rate + sd->speed_add_rate );
