@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0790 - 05/08/2011 [Mark]
+	* Corrigido efeito SC_BURNING.
+	- Estava impedindo que usasse habilidades, usar itens e atacar.
+	* Corrigido efeito SC_CRYSTALIZE.
+	- Estava afetando MvPs.
+
 	r0789 - 04/08/2011 [Mark]
 	* Correção para o Sistema de Costume Itens.
 	- Ao equipar/remover/trocar equipamentos que equipam em apenas um local (Topo OU Meio OU Baixo), os problemas foram corrigidos.

@@ -449,6 +449,7 @@ void initChangeTables(void)
 	set_sc( AB_SECRAMENT         , SC_SECRAMENT       , SI_SECRAMENT    , SCB_NONE );
 
 	add_sc( WL_WHITEIMPRISON     , SC_WHITEIMPRISON );
+	add_sc( WL_HELLINFERNO       , SC_BURNING );
 	set_sc( WL_FROSTMISTY        , SC_FREEZING        , SI_FROSTMISTY      , SCB_ASPD|SCB_SPEED|SCB_DEF|SCB_DEF2 );
 	set_sc( WL_MARSHOFABYSS      , SC_MARSHOFABYSS    , SI_MARSHOFABYSS    , SCB_SPEED|SCB_FLEE|SCB_DEF|SCB_MDEF );
 	set_sc( WL_RECOGNIZEDSPELL   , SC_RECOGNIZEDSPELL , SI_RECOGNIZEDSPELL , SCB_NONE );
@@ -534,6 +535,7 @@ void initChangeTables(void)
 	set_sc( GN_FIRE_EXPANSION_SMOKE_POWDER , SC_SMOKEPOWDER     , SI_FIRE_EXPANSION_SMOKE_POWDER , SCB_NONE );
 	set_sc( GN_FIRE_EXPANSION_TEAR_GAS     , SC_TEARGAS         , SI_FIRE_EXPANSION_TEAR_GAS     , SCB_NONE );
 	set_sc( GN_MANDRAGORA                  , SC_MANDRAGORA      , SI_MANDRAGORA                  , SCB_INT );
+	add_sc( GN_DEMONIC_FIRE                , SC_BURNING ); 
 
 	set_sc( SO_FIREWALK          , SC_PROPERTYWALK    , SI_PROPERTYWALK    , SCB_NONE );
 	set_sc( SO_ELECTRICWALK      , SC_PROPERTYWALK    , SI_PROPERTYWALK    , SCB_NONE );
@@ -5568,8 +5570,7 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 		tick_def = (int)floor(log10(status_get_lv(bl)) * 10.);
 		break;
 	case SC_BURNING:
-		tick -= 50*status->luk + 60*status->int_ + 170*status->vit;
-		tick = max(tick,10000);
+		tick -= 100*((status->mdef/2+status->mdef2/2)/2);
 		break;
 	case SC_FREEZING:
 		tick -= 40 * status->vit;
@@ -6095,6 +6096,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			case SC_MAGNETICFIELD:
 			case SC_FREEZING:
 			case SC_BURNING:
+			case SC_CRYSTALIZE:
 				return 0;
 		}
 	}
@@ -7248,8 +7250,8 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			tick = 1000;
 			break;
 		case SC_BURNING:
-			val4 = tick / 2000; 
-			tick = 2000; 
+			val4 = tick / 3000; 
+			tick = 3000; 
 			break;
 		case SC_DEATHBOUND:
 			val2 = 500 + 100 * val1;
