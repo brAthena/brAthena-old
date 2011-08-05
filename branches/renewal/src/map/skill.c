@@ -4544,6 +4544,13 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			}
 		}
 		break;
+		
+	case AB_SECRAMENT:
+		if(sd && (map_flag_gvg(bl->m) || map[bl->m].flag.battleground))
+		{
+			clif_skill_fail(sd,skillid,0,0,0);
+			break;
+		}
 
 	case AL_DECAGI:
 	case MER_DECAGI:

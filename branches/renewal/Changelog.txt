@@ -9,6 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0795 - 05/08/2011 [Protimus]
+	* Corrigida a habilidade AB_SECRAMENT (Sacramentum).
+	- Estava sendo possível usar nos jogadores em GvG & Batalhas Campais.
+	- Necessário verificar condições de uso em PvP.
+	* Corrigida a habilidade AB_JUDEX (Judex).
+	- Modificado valor da área de efeito.
+
 	r0794 - 05/08/2011 [Protimus]
 	* Corrigidas as fórmulas das habilidades MG_FIREBALL (Bolas de Fogo) & WZ_STORMGUST (Nevasca).
 	- Todas de acordo com kRO.
