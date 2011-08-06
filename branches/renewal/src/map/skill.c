@@ -7877,15 +7877,23 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			break;
 		}
 		if((tsc && tsc->opt1) && rand()%100 < 5*skilllv) {
-			status_change_end(bl, SC_STONE, -1 );
-			status_change_end(bl, SC_FREEZE, -1 );
-			status_change_end(bl, SC_STUN, -1 );
-			status_change_end(bl, SC_POISON, -1 );
-			status_change_end(bl, SC_SILENCE, -1 );
-			status_change_end(bl, SC_BLIND, -1 );
-			status_change_end(bl, SC_HALLUCINATION, -1 );
-			status_change_end(bl, SC_BURNING, -1 );
-			status_change_end(bl, SC_FREEZING, -1 );
+			status_change_end(bl, SC_PARALYSE , INVALID_TIMER);
+			status_change_end(bl, SC_TOXIN , INVALID_TIMER);
+			status_change_end(bl, SC_VENOMBLEED	, INVALID_TIMER);
+			status_change_end(bl, SC_MAGICMUSHROOM , INVALID_TIMER);
+			status_change_end(bl, SC_DEATHHURT , INVALID_TIMER);
+			status_change_end(bl, SC_PYREXIA , INVALID_TIMER);
+			status_change_end(bl, SC_OBLIVIONCURSE , INVALID_TIMER);
+			status_change_end(bl, SC_LEECHESEND , INVALID_TIMER);
+			status_change_end(bl, SC_STONE , INVALID_TIMER);
+			status_change_end(bl, SC_FREEZE , INVALID_TIMER);
+			status_change_end(bl, SC_STUN , INVALID_TIMER);
+			status_change_end(bl, SC_POISON , INVALID_TIMER);
+			status_change_end(bl, SC_BURNING , INVALID_TIMER);
+			status_change_end(bl, SC_FREEZING , INVALID_TIMER);
+			status_change_end(bl, SC_SILENCE , INVALID_TIMER);
+			status_change_end(bl, SC_BLIND , INVALID_TIMER);
+			status_change_end(bl, SC_HALLUCINATION , INVALID_TIMER);
 		}
 		i = (120*skilllv + tstatus->max_hp*(2+skilllv)/100);
 		status_heal(bl, i, 0, 1);

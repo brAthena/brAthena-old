@@ -2059,7 +2059,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio += 200;
 					break;
 				case GC_CROSSRIPPERSLASHER:
-					skillratio += 60 + 40 * skill_lv;
+					skillratio += 100 + 40 * (skill_lv-1);
 					if( sc && sc->data[SC_ROLLINGCUTTER] )
 						skillratio += 25 * sc->data[SC_ROLLINGCUTTER]->val1;
 					break;

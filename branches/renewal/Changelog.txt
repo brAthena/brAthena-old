@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0804 - 06/08/2011 [Mark]
+	* Corrigida habilidade Chakra da Cura.
+	- Não estava curando efeitos de venenos de Sicários.
+	* Corrigida formula da habilidade Castigo de Loki.
+
 	r0803 - 06/08/2011 [brn0]
 	* Corrigida a habilidade SR_TIGERCANNON (Garra de Tigre).
 	- Estava consumindo mais HP e SP do que deveria.
