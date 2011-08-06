@@ -452,7 +452,7 @@ void initChangeTables(void)
 	add_sc( WL_HELLINFERNO       , SC_BURNING );
 	set_sc( WL_FROSTMISTY        , SC_FREEZING        , SI_FROSTMISTY      , SCB_ASPD|SCB_SPEED|SCB_DEF|SCB_DEF2 );
 	set_sc( WL_MARSHOFABYSS      , SC_MARSHOFABYSS    , SI_MARSHOFABYSS    , SCB_SPEED|SCB_FLEE|SCB_DEF|SCB_MDEF );
-	set_sc( WL_RECOGNIZEDSPELL   , SC_RECOGNIZEDSPELL , SI_RECOGNIZEDSPELL , SCB_NONE );
+	set_sc( WL_RECOGNIZEDSPELL   , SC_RECOGNIZEDSPELL , SI_RECOGNIZEDSPELL , SCB_MATK );
 	set_sc( WL_STASIS            , SC_STASIS          , SI_STASIS          , SCB_NONE );
 
 	set_sc( RA_FEARBREEZE        , SC_FEARBREEZE      , SI_FEARBREEZE      , SCB_NONE );
@@ -1447,6 +1447,28 @@ int status_check_skilluse(struct block_list *src, struct block_list *target, int
 			))
 				return 0;
 
+			if(!flag && (src->type != BL_PC || ((TBL_PC*)src)->skillitem != skill_num) 
+				&& sc->data[SC_STASIS]){
+				switch(skill_num){
+					case HW_GRAVITATION:
+					case WL_DRAINLIFE:
+					case HW_MAGICCRASHER:
+					case WL_MARSHOFABYSS:
+					case MG_SAFETYWALL:
+					case WL_SUMMONFB:
+					case WL_SUMMONBL:
+					case WL_SUMMONWB:
+					case WL_SUMMONSTONE:
+					case WL_RECOGNIZEDSPELL:
+					case HW_MAGICPOWER:
+					case WZ_ESTIMATION:
+					case MG_SIGHT:
+						break;
+					default:
+						return 0;
+				}
+			}
+				
 			//Skill blocking.
 			if (
 				(sc->data[SC_VOLCANO] && skill_num == WZ_ICEWALL) ||
@@ -3537,6 +3559,9 @@ void status_calc_bl_main(struct block_list *bl, enum scb_flag flag)
 		status->matk_max = status_calc_matk(bl, sc, b_status->matk_max);
 		status->matk_min = status_calc_matk(bl, sc, b_status->matk_min);
 
+		if( sc->data[SC_RECOGNIZEDSPELL] )
+			status->matk_min = status->matk_max;
+		
 		if( bl->type&BL_HOM && battle_config.hom_setting&0x20 )
 			status->matk_max = status->matk_min;
 
@@ -7743,6 +7768,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_SLEEP:
 		case SC_STONE:
 		case SC_DEEPSLEEP:
+		case SC_WHITEIMPRISON:
 			if (sd && pc_issit(sd)) //Avoid sprite sync problems.
 				pc_setstand(sd);
 		case SC_TRICKDEAD:
@@ -7766,7 +7792,6 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_CURSEDCIRCLE_TARGET:
 		case SC_MAGNETICFIELD:
 		case SC_VACUUM_EXTREME:
-		case SC_WHITEIMPRISON:
 		case SC_THORNSTRAP:
 		case SC_CRYSTALIZE:
 			unit_stop_walking(bl,1);
@@ -7796,6 +7821,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_STUN:   sc->opt1 = OPT1_STUN;      break;
 		case SC_SLEEP:  sc->opt1 = OPT1_SLEEP;     break;
 		case SC_BURNING:  sc->opt1 = OPT1_BURNING;   break; 
+		case SC_WHITEIMPRISON: sc->opt1 = OPT1_IMPRISON;  break;
 		//OPT2
 		case SC_POISON:       sc->opt2 |= OPT2_POISON;       break;
 		case SC_CURSE:        sc->opt2 |= OPT2_CURSE;        break;

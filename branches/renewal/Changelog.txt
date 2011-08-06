@@ -9,6 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0802 - 06/08/2011 [Mark]
+	* Corrigida habilidade Drenar Vida:
+	- Hp do usuário não estava sendo drenado.
+	* Corrigida habilidade Exílio.
+	- O inimigo estava podendo atacar fisicamente quando o usuário chegava perto.
+	* Corrigida habilidade Maestria Arcana.
+	- Os ataques não estavam sendo com matk max.
+
 	r0801 - 06/08/2011 [Mark]
 	* Corrigido uso de habilidades que não sejam 3rd ao estar montado em um Robô.
 	- Estava podendo ser utilizadas habilidades de Ferreiro e Mestre-Ferreiro utilizando um Robô.

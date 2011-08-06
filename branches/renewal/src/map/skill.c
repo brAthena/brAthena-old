@@ -3891,20 +3891,14 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 		break;
 	case WL_DRAINLIFE:
 		{
-			int heal = skill_attack(skill_get_type(skillid),src,src,bl,skillid,skilllv,tick,flag);
-			int rate = 70+5*skilllv;
-			if(sd)
-				rate *= (int)(1+s_job_level/50.);
-
-			heal *= 8*skilllv*status_get_lv(src)/10000;
-
-			if(bl->type == BL_SKILL)
-				heal = 0;
-
-			if(heal && rand()%100 < rate){
-				status_heal(src,heal,0,0);
-				clif_skill_nodamage(NULL, src, AL_HEAL, heal, 1);
-			}
+			if(sd){
+				int heal =  skill_attack( BF_MAGIC, src, src, bl, skillid, skilllv, tick, flag);
+				heal = heal * (5 + 5* skilllv) / 100 ; 
+				if(heal > 0 && (rand()%100 < (25+5*skilllv)*(1+sd->status.job_level/50)) && bl->type != BL_SKILL){
+					clif_skill_nodamage(NULL, src, AL_HEAL, heal, 1);
+					status_heal(src, heal, 0, 0);
+				}
+			}		
 		}
 		break;
 
