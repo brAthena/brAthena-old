@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0797 - 05/08/2011 [Protimus]
+	* Correções para habilidades de elementais.
+	- Mudanças na estrutura das habilidades e na duração por parte do cast.
+
 	r0796 - 05/08/2011 [Protimus]
 	* Corrigida a habilidade WM_SEVERE_RAINSTORM (Temporal de Mil Flechas).
 	- Tempo de conjuração modificado.
