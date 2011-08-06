@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0800 - 06/08/2011 [Protimus]
+	* Correções para remoção de efeitos de determinadas habilidades ao usar um M.E.C.H.A (Robô).
+	- Falta verificação para remoção do uso de habilidades que não sejam 3rd ao estar montado no robô.
+	* Corrigida a habilidade WL_EARTHSTRAIN (Abalo Sísmico).
+	- Modificada área de efeito, layout e outros, conforme renovação.
+
 	r0799 - 06/08/2011 [Protimus]
 	* Correções para a área de efeito das habilidades:
 	- AB_CLEMENTIA (Crementia), AB_CANTO (Canto Candidus), AB_CHEAL (Sopro Divino), AB_EPICLESIS (Epiclesis).

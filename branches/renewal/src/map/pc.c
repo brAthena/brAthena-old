@@ -7194,13 +7194,24 @@ int pc_setoption(struct map_session_data *sd,int type)
 		if( (sd->class_&MAPID_UPPERMASK) == MAPID_BLACKSMITH )
 		{
 			if( type&OPTION_MADO && !(p_type&OPTION_MADO) )
+			{
 				status_calc_pc(sd, 0);
+				status_change_end(&sd->bl,SC_MAXIMIZEPOWER,-1);
+				status_change_end(&sd->bl,SC_OVERTHRUST,-1);
+				status_change_end(&sd->bl,SC_WEAPONPERFECTION,-1);
+				status_change_end(&sd->bl,SC_ADRENALINE,-1);
+				status_change_end(&sd->bl,SC_CARTBOOST,-1);
+				status_change_end(&sd->bl,SC_MELTDOWN,-1);
+				status_change_end(&sd->bl,SC_MAXOVERTHRUST,-1);
+			}
 			else if( !(type&OPTION_MADO) && p_type&OPTION_MADO )
 			{
 				status_calc_pc(sd, 0);
 				status_change_end(&sd->bl,SC_SHAPESHIFT,-1);
 				status_change_end(&sd->bl,SC_HOVERING,-1);
 				status_change_end(&sd->bl,SC_ACCELERATION,-1);
+				status_change_end(&sd->bl,SC_OVERHEAT_LIMITPOINT,-1);
+				status_change_end(&sd->bl,SC_OVERHEAT,-1);
 			}
 		}
 	}
