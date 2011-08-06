@@ -2266,18 +2266,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio += 150*skill_lv;
 					break;
 				case SR_TIGERCANNON:
-				{
-					int hp = sstatus->max_hp*(5 + skill_lv)/50;
-					int sp = sstatus->max_sp*(5 + skill_lv)/100;
-					if (sstatus->hp <= hp)
-						hp = sstatus->hp - 1;
-					if (sstatus->sp <= sp)
-						sp = sstatus->sp -1;
-					status_damage(NULL, src, hp, sp, 0, false);
-					skillratio += (hp + sp)/4 - 100;
+					skillratio += (sstatus->max_hp*2 + sstatus->max_sp)*(5 + skill_lv)/400 - 100;
 					if (sc && sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == SR_FALLENEMPIRE)
 						skillratio *= 2;
-				}
 					break;
 				case SR_GATEOFHELL:
 					skillratio += 500*skill_lv - 100;

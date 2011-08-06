@@ -1443,6 +1443,7 @@ int status_check_skilluse(struct block_list *src, struct block_list *target, int
 				sc->data[SC__INVISIBILITY] ||
 				sc->data[SC__IGNORANCE] ||
 				sc->data[SC_CRYSTALIZE] ||
+				sc->data[SC_OBLIVIONCURSE] ||
 				sc->data[SC_CURSEDCIRCLE_TARGET]
 			))
 				return 0;
@@ -3246,7 +3247,7 @@ void status_calc_regen_rate(struct block_list *bl, struct regen_data *regen, str
 			(((TBL_PC*)bl)->class_&MAPID_UPPERMASK) == MAPID_MONK &&
 			(sc->data[SC_EXTREMITYFIST] || (sc->data[SC_EXPLOSIONSPIRITS] && (!sc->data[SC_SPIRIT] || sc->data[SC_SPIRIT]->val2 != SL_MONK)))
 			)
-		|| sc->data[SC_MAXIMIZEPOWER]
+		|| sc->data[SC_MAXIMIZEPOWER] || sc->data[SC_OBLIVIONCURSE]
 	)
 		if(sc->data[SC_EXTREMITYFIST] && !sc->data[SC_DANCING] && !sc->data[SC_EXPLOSIONSPIRITS])
 			regen->rate.sp *= 50/100;

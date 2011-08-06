@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0803 - 06/08/2011 [brn0]
+	* Corrigida a habilidade SR_TIGERCANNON (Garra de Tigre).
+	- Estava consumindo mais HP e SP do que deveria.
+	* Corrigido o efeito do Veneno Obliviun (SC_OBLIVIONCURSE).
+	- Não estava bloqueando o uso de habilidades nem a recuperação de SP.
+
 	r0802 - 06/08/2011 [Mark]
 	* Corrigida habilidade Drenar Vida:
 	- Hp do usuário não estava sendo drenado.
