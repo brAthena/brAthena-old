@@ -942,7 +942,7 @@
 //========================================================================================================
 // Arcebispo
 //========================================================================================================
-2038,9,8,1,6,0x2,1,5,-3,no,0,0,0,magic,0,	AB_JUDEX,Judex
+2038,9,8,1,6,0x2,1,5,-3,yes,0,0,0,magic,0,	AB_JUDEX,Judex
 2039,0,6,4,0,0x1,0,1,1,yes,0,0,0,magic,0,	AB_ANCILLA,Criar Ancilla
 2040,11,8,1,6,0,0,10,-10,yes,0,0,0,magic,0,	AB_ADORAMUS,Adoramus
 2041,0,6,4,6,0x3,3:7:15,3,1,yes,0,0,0,magic,0,	AB_CLEMENTIA,Crementia
@@ -1088,7 +1088,7 @@
 2311,0,6,4,0,0x03,3,5,1,no,0,0,0,none,0,		LG_REFLECTDAMAGE,Reflexão Amplificada
 2312,5,6,1,-1,0,0,5,1,no,0,0,0,weapon,0,		LG_PINPOINTATTACK,Estocada Precisa
 2313,0,6,4,0,0x1,0,5,1,yes,0,0,0,none,0,		LG_FORCEOFVANGUARD,Proteção da Vanguarda
-2314,1,6,1,-1,0,0,1,1,no,0,0,0,weapon,0,		LG_RAGEBURST,Retribuição da Vanguarda
+2314,1,6,1,0,0,0,1,1,no,0,0,0,weapon,0,		LG_RAGEBURST,Retribuição da Vanguarda
 2315,0,6,4,0,0x2,3,3,1,yes,0,0,0,none,2,		LG_SHIELDSPELL,Aegis Domini
 2316,0,6,4,0,0x1,0,5,1,yes,0,0,0,none,0,		LG_EXEEDBREAK,Exceder Limite
 2317,1,6,2,-1,0x2,5,5,1,yes,0,0,0,none,3:4:5:6:7,		LG_OVERBRAND,Lança do Destino

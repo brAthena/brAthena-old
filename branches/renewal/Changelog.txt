@@ -9,6 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0796 - 05/08/2011 [Protimus]
+	* Corrigida a habilidade WM_SEVERE_RAINSTORM (Temporal de Mil Flechas).
+	- Tempo de conjuração modificado.
+	* Corrigida a habilidade LG_RAGEBURST (Retribuição da Vanguarda).
+	- Modificado elemento da habilidade para nulo.
+	* Correção do envio anterior que foi modificado um campo sem querer.
+	* Adições dos Effs de Burning e Freezing ao database.
+	
 	r0795 - 05/08/2011 [Protimus]
 	* Corrigida a habilidade AB_SECRAMENT (Sacramentum).
 	- Estava sendo possível usar nos jogadores em GvG & Batalhas Campais.
