@@ -2407,6 +2407,12 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				if((sstatus->rhw.ele) == ELE_WIND || (sstatus->lhw.ele) == ELE_WIND)
 					ATK_ADDRATE(20);
 				break;
+			case SR_FALLENEMPIRE:
+				if(sd && tsd && sd->weight < tsd->weight){
+					ATK_ADDRATE(tsd->weight / sd->weight *10);
+				}else if(target->type == BL_MOB)
+					ATK_ADDRATE(60);
+				break;
 		}
 
 		if( sd )
@@ -4219,7 +4225,12 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 		if(sc->data[SC_GT_ENERGYGAIN]) {
 			int duration = skill_get_time(MO_CALLSPIRITS, sc->data[SC_GT_ENERGYGAIN]->val1);
 			if( sd && rand()%100 < 10 + 5 * sc->data[SC_GT_ENERGYGAIN]->val1)
-				pc_addspiritball(sd, duration, sc->data[SC_GT_ENERGYGAIN]->val1);
+				if(!sd->sc.data[SC_RAISINGDRAGON])
+					pc_addspiritball(sd, duration, sc->data[SC_GT_ENERGYGAIN]->val1);
+				else {
+					short rd_lvl=sd->sc.data[SC_RAISINGDRAGON]->val1;
+					pc_addspiritball(sd, duration, sc->data[SC_GT_ENERGYGAIN]->val1 + rd_lvl);
+				}
 		}
 	}
 

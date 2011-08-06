@@ -4550,8 +4550,10 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		{
 			clif_skill_fail(sd,skillid,0,0,0);
 			break;
+		} else {
+			clif_skill_nodamage(src,bl,skillid,skilllv,
+			sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv)));
 		}
-
 	case AL_DECAGI:
 	case MER_DECAGI:
 		clif_skill_nodamage (src, bl, skillid, skilllv,
@@ -4908,7 +4910,6 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case NPC_INVINCIBLE:
 	case NPC_INVINCIBLEOFF:
 	case RK_DEATHBOUND:
-	case AB_SECRAMENT:
 	case AB_DUPLELIGHT:
 	case AB_EXPIATIO:
 	case AB_RENOVATIO:
@@ -12050,9 +12051,11 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 		}
 		break;
 	case SR_FALLENEMPIRE:
-		if(!(sc && sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == SR_DRAGONCOMBO))
+		if(!sc)
 			return 0;
-		break;
+		if(sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == SR_DRAGONCOMBO)
+			break;
+		return 0;
 	case SR_GATEOFHELL:
 		if(sd->spiritball > 0)
 			sd->spiritball_old = require.spiritball;

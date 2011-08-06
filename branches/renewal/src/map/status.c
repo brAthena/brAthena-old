@@ -6974,6 +6974,10 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 						clif_skillinfoblock(sd);
 					}
 					break;
+				case SR_FALLENEMPIRE:
+				case SR_GATEOFHELL:
+					tick += 1000;
+					break;
 				case TK_JUMPKICK:
 					if( sd )
 					{
