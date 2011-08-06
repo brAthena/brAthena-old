@@ -3772,7 +3772,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		nk|=NK_IGNORE_FLEE|NK_NO_ELEFIX; //These two are not properties of the weapon based part.
 		break;
 	case HW_GRAVITATION:
-		md.damage = 500+100*skill_lv;
+		md.damage = 200+200*skill_lv;
 		md.dmotion = 0; //No flinch animation.
 		break;
 	case NPC_EVILLAND:

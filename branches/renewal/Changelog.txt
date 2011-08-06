@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0799 - 06/08/2011 [Protimus]
+	* Correções para a área de efeito das habilidades:
+	- AB_CLEMENTIA (Crementia), AB_CANTO (Canto Candidus), AB_CHEAL (Sopro Divino), AB_EPICLESIS (Epiclesis).
+	* Corrigida a habilidade HW_GRAVITATION (Campo Gravitacional).
+	- Dano conforme kRO.
+
 	r0798 - 06/08/2011 [Mark]
 	* Corrigido envio r795.
 	- AB_SECRAMENT (Sacramentum) estava sendo citado 2x.
