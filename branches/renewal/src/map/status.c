@@ -1505,6 +1505,24 @@ int status_check_skilluse(struct block_list *src, struct block_list *target, int
 			}
 		if (sc->option&OPTION_CHASEWALK && skill_num != ST_CHASEWALK)
 			return 0;
+		if( sc->option&OPTION_MADO && ((TBL_PC*)src)->skillitem != skill_num )
+		{
+			switch( skill_num )
+			{
+				case BS_REPAIRWEAPON:  case WS_MELTDOWN:
+				case BS_HAMMERFALL:    case WS_CARTBOOST:
+				case BS_ADRENALINE:    case WS_WEAPONREFINE:
+				case BS_WEAPONPERFECT: case WS_CARTTERMINATION:
+				case BS_OVERTHRUST:    case WS_OVERTHRUSTMAX:
+				case BS_MAXIMIZE:
+				case BS_ADRENALINE2:
+				case BS_UNFAIRLYTRICK:
+				case BS_GREED:
+					return 0;
+				default:
+					break;
+			}
+		}
 	}
 	if (target == NULL || target == src) //No further checking needed.
 		return 1;

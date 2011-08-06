@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0801 - 06/08/2011 [Mark]
+	* Corrigido uso de habilidades que não sejam 3rd ao estar montado em um Robô.
+	- Estava podendo ser utilizadas habilidades de Ferreiro e Mestre-Ferreiro utilizando um Robô.
+
 	r0800 - 06/08/2011 [Protimus]
 	* Correções para remoção de efeitos de determinadas habilidades ao usar um M.E.C.H.A (Robô).
 	- Falta verificação para remoção do uso de habilidades que não sejam 3rd ao estar montado no robô.
