@@ -9,6 +9,15 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+
+	r0805 - 07/08/2011 [Protimus]
+	* Corrigida a habilidade WL_RECOGNIZEDSPELL (Maestria Arcana).
+	- Consumo de SP modificado.
+	- Tempo de duração modificado.
+	* Removido do database modificações dos bônus de bMatk de cada refinamento para armas de níveis diferentes.
+	- É feito pela source e pesa menos do que cada modificação em database.
+	* Corrigida pequeno erro de envio da r800.
+
 	r0804 - 06/08/2011 [Mark]
 	* Corrigida habilidade Chakra da Cura.
 	- Não estava curando efeitos de venenos de Sicários.
