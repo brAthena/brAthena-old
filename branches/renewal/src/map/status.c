@@ -2365,7 +2365,11 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 		}
 		else if(sd->inventory_data[index]->type == IT_ARMOR)
 		{
-			refinedef += sd->status.inventory[index].refine * refinebonus[0][0];
+			int r=sd->status.inventory[index].refine;
+			while(r > 0){
+				refinedef += r*refinebonus[0][0];
+				r -= 4;
+			}
 			if( sd->inventory_data[index]->script )
 			{
 				if( sd->status.inventory[index].equip == EQP_SHIELD )

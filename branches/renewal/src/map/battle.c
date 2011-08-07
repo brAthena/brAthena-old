@@ -2065,7 +2065,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					break;
 				case NC_AXETORNADO:
 					skillratio += ( 200 + (100 * skill_lv) + sstatus->vit );
-					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 100) / 20;
+					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 100) / 200;
 					break;
 				case NC_AXEBOOMERANG:
 					skillratio += 100 + 40 * skill_lv;
@@ -2073,24 +2073,24 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					break;
 				case NC_POWERSWING:
 					skillratio += (180 + (skill_lv * 20) + sstatus->dex + sstatus->str );
-					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 100) / 20;
+					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 100) / 200;
 					break;
 				case NC_BOOSTKNUCKLE:
 					skillratio += (300 + (skill_lv * 100) + sstatus->dex );
-					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 100) / 20;
+					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 100) / 200;
 					break;
 				case NC_PILEBUNKER:
 					skillratio += ( 150 + 50 * skill_lv + sstatus->str );
-					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 100) / 20;
+					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 100) / 200;
 					break;
 				case NC_VULCANARM:
 					skillratio += 70 * skill_lv + sstatus->dex ;
-					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 100) / 20;
+					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 100) / 200;
 					break;
 				case NC_COLDSLOWER:
 				case NC_FLAMELAUNCHER:
 					skillratio += 300 + 300 * skill_lv;
-					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 100) / 20;
+					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 100) / 200;
 					break;
 				case NC_ARMSCANNON:
 					switch(tstatus->size)
@@ -2105,7 +2105,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 							skillratio += skill_lv == 1 ? 700 : (600 + 300*skill_lv);
 							break;
 					}
-					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 100) / 20;
+					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 100) / 200;
 					break;
 
 				case WM_REVERBERATION_MELEE:
