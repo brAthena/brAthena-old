@@ -25,7 +25,7 @@
 // mosk_fild02 - Campo de Moscovia
 //==================================================
 mosk_fild02,0,0,0,0	monster	Sorrateiro	1037,40,0,0,0
-mosk_fild02,0,0,0,0	monster	Argiope	1199,30,0,0,0
+mosk_fild02,0,0,0,0	monster	Punk	1199,30,0,0,0
 mosk_fild02,0,0,0,0	monster	Louva-a-Deus	1139,10,0,0,0
 mosk_fild02,0,0,0,0	monster	Planta Carnívora	1368,5,0,0,0
 mosk_fild02,0,0,0,0	monster	Planta Amarela	1081,5,0,0,0

@@ -7826,15 +7826,22 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		break;
 
 	case SC_IGNORANCE:
-		if( !(tsc && tsc->data[type]) && clif_skill_nodamage(src,bl,skillid,0,sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv))) )
+		if( !(tsc && tsc->data[type]))
 		{
-			int sp = 200 * skilllv;
-			if( dstmd ) sp = dstmd->level * 2;
-			if( status_zap(bl,0,sp) )
-				status_heal(src,0,sp/2,3);
+			int rate = (int)(10000 * (0.1 + pow(1 - tstatus->agi/(float)sstatus->dex,2) + (1.5 * floor(sstatus->dex/60.) + floor(tstatus->agi/60.)) * (tstatus->agi * (sstatus->dex - tstatus->agi)/(float)(pow(sstatus->dex,2)))));
+			rate = cap_value(rate,0,10000);	
+			if( rand()%100 < rate && clif_skill_nodamage(src,bl,skillid,0,sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv))) )
+			{
+				int sp = 200 * skilllv;
+				if( dstmd ) sp = dstmd->level * 2;
+				if( status_zap(bl,0,sp) )
+					status_heal(src,0,sp/2,3);
+			}
+			else if( sd )
+				clif_skill_fail(sd,skillid,0,0,0);
 		}
 		else if( sd )
-			clif_skill_fail(sd,skillid,0,0,0);
+			clif_skill_fail(sd,skillid,0,0,0);		
 		break;
 
 	case SR_RAISINGDRAGON:

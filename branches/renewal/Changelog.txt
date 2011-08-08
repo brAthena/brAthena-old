@@ -9,6 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0807 - 07/08/2011 [Mark]
+	* Corrigido campos/moscovia.txt
+	- Monstro com nome incorreto.
+	* Corrigida habilidade Máscara da Tolice.
+	- Estava sem verificação de rate.
+	* Corrigida habilidade Máscara da Vulnerabilidade.
+	- Não estava reduzindo hp máximo do alvo.
+
 	r0806 - 07/08/2011 [brn0]
 	* Corrigido bônus de defesa por refinamento.
 	* Corrigidos os bônus de dano de algumas habilidades.

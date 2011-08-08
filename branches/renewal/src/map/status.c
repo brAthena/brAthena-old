@@ -4922,7 +4922,10 @@ static unsigned int status_calc_maxhp(struct block_list *bl, struct status_chang
 		maxhp += maxhp * sc->data[SC_MUSTLE_M]->val1/100;
 	if(sc->data[SC_LERADSDEW])
 		maxhp += maxhp * sc->data[SC_LERADSDEW]->val3 / 100;
-
+	if(sc->data[SC__WEAKNESS])
+		maxhp -= maxhp * sc->data[SC__WEAKNESS]->val2/100;
+		
+		
 	return cap_value(maxhp,1,UINT_MAX);
 }
 
