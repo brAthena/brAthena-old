@@ -8106,9 +8106,12 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case GN_MANDRAGORA:
 		if( flag&1 )
 		{
-			if ( clif_skill_nodamage(bl, src, skillid, skilllv,
-				sc_start(bl, type, 35 + 10 * skilllv, skilllv, skill_get_time(skillid, skilllv))) )
+			int rate= (25 + 5 * skilllv) - (tstatus->luk + tstatus->vit)/10;
+			if ( rand()%100 < rate && clif_skill_nodamage(bl, src, skillid, skilllv,
+				sc_start(bl, type, 100, skilllv, skill_get_time(skillid, skilllv))) )
 				status_zap(bl, 0, status_get_max_sp(bl) / 100 * (25 + 5 * skilllv));
+			else
+				clif_skill_fail(sd,skillid,0,0,0);
 		}
 		else
 			map_foreachinrange(skill_area_sub, bl, skill_get_splash(skillid, skilllv), BL_CHAR,

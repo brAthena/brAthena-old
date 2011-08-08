@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0808 - 08/08/2011 [Mark]
+	* Corrigida habilidade Grito da Mandrágora.
+	- Não estava calculando chance de ser ativada.
+
 	r0807 - 07/08/2011 [Mark]
 	* Corrigido campos/moscovia.txt
 	- Monstro com nome incorreto.
