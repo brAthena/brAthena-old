@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0809 - 09/08/2011 [Mark]
+	* Corrigida maxcount das habilidades Armadilha Incendiária e Armadilha Glacial.
+
 	r0808 - 08/08/2011 [Mark]
 	* Corrigida habilidade Grito da Mandrágora.
 	- Não estava calculando chance de ser ativada.
