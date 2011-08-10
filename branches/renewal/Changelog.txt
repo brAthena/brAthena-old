@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0810 - 10/08/2011 [Mark]
+	* Corrigida habilidade Abalo Sísmico.
+	- Estava com efeito aparecendo em X.
+	- Não estava atacando todos os alvos dentro da área da habilidade.
+
 	r0809 - 09/08/2011 [Mark]
 	* Corrigida maxcount das habilidades Armadilha Incendiária e Armadilha Glacial.
 

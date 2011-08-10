@@ -548,10 +548,9 @@ int skillnotok_mercenary(int skillid, struct mercenary_data *md)
 	return skillnotok(skillid, md->master);
 }
 
-struct s_skill_unit_layout* skill_get_unit_layout (int skillid, int skilllv, struct block_list* src, int x, int y)
+struct s_skill_unit_layout* skill_get_unit_layout (int skillid, int skilllv, struct block_list* src, int x, int y, int dir)
 {
 	int pos = skill_get_unit_layout_type(skillid,skilllv);
-	int dir;
 
 	if (pos < -1 || pos >= MAX_SKILL_UNIT_LAYOUT) {
 		ShowError("skill_get_unit_layout: tipo de layout %d nao suportado para habilidade %d (nivel %d)\n", pos, skillid, skilllv);
@@ -561,7 +560,8 @@ struct s_skill_unit_layout* skill_get_unit_layout (int skillid, int skilllv, str
 	if (pos != -1) // simple single-definition layout
 		return &skill_unit_layout[pos];
 
-	dir = (src->x == x && src->y == y) ? 6 : map_calc_dir(src,x,y); // 6 - default aegis direction
+	if( dir == -1 )
+		dir = (src->x == x && src->y == y) ? 6 : map_calc_dir(src,x,y); // 6 - default aegis direction
 
 	if( skillid == MG_FIREWALL )
 		return &skill_unit_layout [firewall_unit_pos + dir];
@@ -9811,7 +9811,7 @@ struct skill_unit_group* skill_unitsetting (struct block_list *src, short skilli
 		dir = flag>>16;
 		flag = flag&0xFFFF;
 	}
-	layout = skill_get_unit_layout(skillid,skilllv,src,x,y);
+	layout = skill_get_unit_layout(skillid,skilllv,src,x,y,dir);
 
 	sd = BL_CAST(BL_PC, src);
 	status = status_get_status_data(src);
