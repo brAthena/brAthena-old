@@ -1274,7 +1274,12 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				if( !(wflag&1) )
 					wd.div_ = 1;
 				break;
-
+				
+			case NJ_ISSEN:
+				if(sc)
+					wd.div_ = (sc->data[SC_BUNSINJYUTSU] && sc->data[SC_BUNSINJYUTSU]->val2 > 0)? 
+							-(sc->data[SC_BUNSINJYUTSU]->val2 +1):1;
+				break;
 		}
 	} else //Range for normal attacks.
 		wd.flag |= flag.arrow?BF_LONG:BF_SHORT;
