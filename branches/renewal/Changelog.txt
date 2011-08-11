@@ -9,6 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0813 - 11/08/2011 [Mark]
+	* Corrigida habilidade Canto Candidus.
+	- Estava como passiva.
+	* Corrigido spawn monstros de gl_chyard.
+	* Corrigida habilidade Fúria do Furacão.
+	- Range incorreto e faltava verificação do range para acréscimo de dano.
+	
 	r0812 - 11/08/2011 [Mark]
 	* Corrigida habilidade Ataque Mortal.
 	- Estava com dano único.

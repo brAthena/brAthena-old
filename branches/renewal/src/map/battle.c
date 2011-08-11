@@ -2069,8 +2069,15 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 						skillratio += 25 * sc->data[SC_ROLLINGCUTTER]->val1;
 					break;
 				case NC_AXETORNADO:
+					i = distance_bl(src,target);
 					skillratio += ( 200 + (100 * skill_lv) + sstatus->vit );
 					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 100) / 200;
+					if( i > 5 ){
+						if(skill_lv <= 2)
+							skillratio = 0;
+						else
+							skillratio -= 100 + (25 * ( skill_lv - 1 ));
+					}
 					break;
 				case NC_AXEBOOMERANG:
 					skillratio += 100 + 40 * skill_lv;
