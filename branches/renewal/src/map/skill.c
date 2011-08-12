@@ -12546,6 +12546,8 @@ struct skill_condition skill_get_requirement(struct map_session_data* sd, short 
 
 	if( sc )
 	{
+        if(sc && sc->data[SC_RECOGNIZEDSPELL])
+            req.sp += req.sp / 4;
 		if( sc->data[SC__LAZINESS] )
 			req.sp += req.sp + sc->data[SC__LAZINESS]->val1 * 10;
 		if( sc->data[SC_UNLIMITEDHUMMINGVOICE] )

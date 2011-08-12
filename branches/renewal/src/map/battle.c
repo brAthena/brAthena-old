@@ -3103,6 +3103,11 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 			case AB_RENOVATIO:
 				ad.damage = (int)((15 * s_base_level) + (1.5 * sstatus->int_));
 				break;
+			case WL_RECOGNIZEDSPELL:
+				if(sc && sc->data[SC_RECOGNIZEDSPELL]) {
+					ad.damage += sstatus->matk_max;
+				}
+				break;
 			case RK_ENCHANTBLADE:
 				{
 					if( sc && sc->data[SC_ENCHANTBLADE] )
@@ -3125,7 +3130,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 				}else{
 					MATK_ADD(min_damage+rand()%(1+max_damage-min_damage));
 				}
-
+				
 				if(nk&NK_SPLASHSPLIT){ // Divide MATK in case of multiple targets skill
 					if(mflag>0)
 						ad.damage/= mflag;

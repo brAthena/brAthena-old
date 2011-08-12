@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0814 - 11/08/2011 [Protimus]
+	* Corrigida a habilidade WL_RECOGNIZEDSPELL (Maestria Arcana).
+	- Não estava funcionando corretamente.
+	* Corrigida a habilidade MG_FIREBOLT (Lanças de Fogo).
+	- Tempo de conjuração reduzido conforme Renovação.
+
 	r0813 - 11/08/2011 [Mark]
 	* Corrigida habilidade Canto Candidus.
 	- Estava como passiva.
