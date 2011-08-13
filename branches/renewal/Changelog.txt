@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0815 - 13/08/2011 [Mark]
+	* Corrigido bonus da habilidade Rapidez com Lança (SC_SPEARQUICKEN).
+	- Estava com valores de Esquiva e Critico incorretos.
+	* Corrigida duração do status SC_BURNING na habilidade Chamas de Hela.
+
 	r0814 - 11/08/2011 [Protimus]
 	* Corrigida a habilidade WL_RECOGNIZEDSPELL (Maestria Arcana).
 	- Não estava funcionando corretamente.

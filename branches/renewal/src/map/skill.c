@@ -2336,7 +2336,7 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 	}
 
 	if( skillid == WL_HELLINFERNO && dmg.damage > 0 )
-		sc_start4(bl,SC_BURNING,55+5*skilllv,skilllv,1000,src->id,0,skill_get_time(skillid,skilllv));
+		sc_start4(bl,SC_BURNING,55+5*skilllv,skilllv,1000,src->id,0,5000*skilllv);
 
 	if( skillid == SC_TRIANGLESHOT && rand()%100 > (1 + skilllv) )
 		dmg.blewcount = 0;
