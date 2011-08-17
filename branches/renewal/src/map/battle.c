@@ -556,8 +556,8 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 		if( sc->data[SC_VOICEOFSIREN] && damage > 0)
 			status_change_end(bl,SC_VOICEOFSIREN,-1);
 
-		if(sc->data[SC_DEFENDER] &&
-			(flag&(BF_LONG|BF_WEAPON)) == (BF_LONG|BF_WEAPON))
+		if( sc->data[SC_DEFENDER] && 
+			( (flag&(BF_LONG|BF_WEAPON)) == (BF_LONG|BF_WEAPON) || skill_num == RK_DRAGONBREATH ))
 			damage=damage*(100-sc->data[SC_DEFENDER]->val2)/100;
 
 		if(sc->data[SC_ADJUSTMENT] &&
@@ -3414,7 +3414,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 							skillratio += skillratio * sc->data[SC_COOLER_OPTION]->val3 / 100;
 						break;
 					case SO_POISON_BUSTER:
-						skillratio += 1100 + 300 * skill_lv;
+						skillratio += 276 + 165 * ( sstatus->int_ / 10 + sstatus->matk_max * skill_lv / 50);
 						if( sc && sc->data[SC_CURSED_SOIL_OPTION] )
 							skillratio += skillratio * sc->data[SC_CURSED_SOIL_OPTION]->val2 / 100;
 						break;

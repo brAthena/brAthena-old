@@ -9,6 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0816 - 17/08/2011 [Mark]
+	* Corrigida habilidade Sopro do Dragão.
+	- O dano não estava sendo diminuído quando o alvo estava sob efeito de Aura Sagrada.
+	* Corrigida Fúria do Super Aprendiz.
+	- Não podia ser utilizada quando este atingia level máximo.
+	* Corrigida formula da habilidade Implosão Tóxica.
+	* Corrigido npc quest_brasilis.txt
+
 	r0815 - 13/08/2011 [Mark]
 	* Corrigido bonus da habilidade Rapidez com Lança (SC_SPEARQUICKEN).
 	- Estava com valores de Esquiva e Critico incorretos.
