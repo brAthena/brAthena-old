@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0817 - 17/08/2011 [Mark]
+	* Corrigida habilidade Maestria Arcana.
+	- Ataques mágicos não saiam com o máximo do ATQM.
+
 	r0816 - 17/08/2011 [Mark]
 	* Corrigida habilidade Sopro do Dragão.
 	- O dano não estava sendo diminuído quando o alvo estava sob efeito de Aura Sagrada.
