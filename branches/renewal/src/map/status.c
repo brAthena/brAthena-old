@@ -4071,6 +4071,8 @@ static unsigned short status_calc_luk(struct block_list *bl, struct status_chang
 		luk += sc->data[SC_PUTTI_TAILS_NOODLES]->val1;
 	if(sc->data[SC_STOMACHACHE])
 		luk -= sc->data[SC_STOMACHACHE]->val1;
+	if(sc->data[SC_BANANA_BOMB])
+		luk -= luk * sc->data[SC_BANANA_BOMB]->val1 / 100;
 
 	return (unsigned short)cap_value(luk,0,USHRT_MAX);
 }
@@ -4646,6 +4648,8 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 					val = max( val, 30 );
 				if( sc->data[SC_FREEZING] )
 					val = max( val, 70 );
+				if( sc->data[SC_MELON_BOMB] )
+					val = max( val, 2 * sc->data[SC_MELON_BOMB]->val1 );
 
 				if( sd && sd->speed_rate + sd->speed_add_rate > 0 ) // permanent item-based speedup
 					val = max( val, sd->speed_rate + sd->speed_add_rate );
@@ -7733,6 +7737,10 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			val2 = 8;
 			val4 = tick / 10000;
 			tick = 10000;
+			break;
+		case SC_MELON_BOMB:
+		case SC_BANANA_BOMB:
+			val1 = 20;
 			break;
 
 		default:

@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0818 - 17/08/2011 [Protimus]
+	* Corrigdas fórmulas dos itens de criação do Bioquímico: Bomba de Banana & Bomba de Melão.
+	- Conforme iRO Sakray, necessita de uma futura revisão, caso existam possíveis updates no kRO.
+
 	r0817 - 17/08/2011 [Mark]
 	* Corrigida habilidade Maestria Arcana.
 	- Ataques mágicos não saiam com o máximo do ATQM.
