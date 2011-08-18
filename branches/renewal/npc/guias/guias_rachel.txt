@@ -21,7 +21,7 @@
 // | 1.1 Script Revisado [Protimus]							|
 // \________________________________________________________/
 
-rachel,138,146,5	script	Rachel Guide	934,{
+rachel,138,146,5	script	Guia de Rachel	934,{
 	mes "[Guia de Rachel]";
 	mes "Bem-vindo à capital de Arunafeltz, Rachel, onde contamos com a proteção de nossa deusa Freya.";
 	mes "Se essa é a primeira vez que você usa nossos Serviços de guia, por que não consulta o menu “Aviso” primeiro?";

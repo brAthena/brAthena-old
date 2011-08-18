@@ -9,6 +9,15 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0819 - 18/08/2011 [Mark]
+	* Corrigida habilidade Portões do Inferno.
+	- Formula de bonus estava incorreta.
+	* Corrigida habilidade Armadilha de Espinhos.
+	- Estava podendo colocar uma em cima da outra causando bug na habilidade.
+	* Corrigidas as habilidades Lanças de Gelo e Relâmpago.
+	- Tempo de conjuração reduzido conforme Renovação.
+	* Traduzido nome do npc Guia de Rachel.
+
 	r0818 - 17/08/2011 [Protimus]
 	* Corrigdas fórmulas dos itens de criação do Bioquímico: Bomba de Banana & Bomba de Melão.
 	- Conforme iRO Sakray, necessita de uma futura revisão, caso existam possíveis updates no kRO.

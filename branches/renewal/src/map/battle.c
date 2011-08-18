@@ -2416,6 +2416,14 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				}else if(target->type == BL_MOB)
 					ATK_ADDRATE(60);
 				break;
+			case SR_GATEOFHELL:
+				if(sd){ 
+					int ratio = ((status_get_sp(src) - ((status_get_sp(src)*10+skill_lv)/100) ) * (100 + 20 * skill_lv)/100) + 10 * status_get_lv(src) + status_get_max_hp(src) - status_get_hp(src);
+					ATK_ADD(ratio);
+				}
+				if(sc && sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == SR_FALLENEMPIRE) 
+					ATK_ADDRATE(5);
+				break;
 		}
 
 		if( sd )
