@@ -7192,7 +7192,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		if( flag&1 || sd == NULL )
 		{
 			if( (tsc && (tsc->data[SC_FREEZE] || tsc->data[SC_STONE] ||
-				tsc->data[SC_BLIND]))&& (rand()%100 < 30+5*skilllv) )
+				tsc->data[SC_BLIND]))&& (rand()%100 < 50+5*skilllv) )
 			{
 				status_change_end(bl, SC_FREEZE, -1);
 				status_change_end(bl, SC_STONE, -1);
@@ -7210,7 +7210,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		if( flag&1 || sd == NULL )
 		{
 			if( (tsc && (tsc->data[SC_SLEEP] || tsc->data[SC_STUN] ||
-				tsc->data[SC_SILENCE]))&& (rand()%100 < 30+5*skilllv) )
+				tsc->data[SC_SILENCE]))&& (rand()%100 < 50+5*skilllv) )
 			{
 				status_change_end(bl, SC_SLEEP, -1);
 				status_change_end(bl, SC_STUN, -1);
@@ -7235,7 +7235,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		{
 			clif_skill_nodamage(src,bl,skillid,skilllv,1);
 			if((dstsd && (dstsd->class_&MAPID_UPPERMASK) == MAPID_SOUL_LINKER)
-				|| (tsc && tsc->data[SC_SPIRIT]) || rand()%100 >= 30 + 10 * skilllv)
+				|| (tsc && tsc->data[SC_SPIRIT]) || rand()%100 >= 50 + 10 * skilllv)
 			{
 				if (sd)
 					clif_skill_fail(sd,skillid,0,0,0);

@@ -9,6 +9,16 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0820 - 19/08/2011 [Protimus]
+	* Corrigida habilidade AB_CLEARANCE (Gênese).
+	- Modificada taxa de sucesso.
+	* Corrigidas as habilidades AB_LAUDAAGNUS (Lauda Agnus) &  AB_LAUDARAMUS (Lauda Ramus).
+	- Modificada taxa de sucesso para remoção de efeitos de status.
+	* Corrigida habilidade AB_CHEAL (Sopro Divino).
+	- Modificado tempo de conjuração e re-uso da habilidade conforme kRO.
+	* Corrigida habilidade AB_HIGHNESSHEAL (Curatio).
+	- Modificado tempo de re-uso da habilidade conforme kRO.
+
 	r0819 - 18/08/2011 [Mark]
 	* Corrigida habilidade Portões do Inferno.
 	- Formula de bonus estava incorreta.
