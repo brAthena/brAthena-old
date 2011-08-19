@@ -1986,13 +1986,14 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio += ((skill_lv-1)%5+1)*100;
 					break;
 				case RK_PHANTOMTHRUST:
-					skillratio += 50 * skill_lv + (pc_checkskill(sd,KN_SPEARMASTERY) * 10) * s_base_level / 100;
+					skillratio = 50 * skill_lv + 10 * pc_checkskill(sd,KN_SPEARMASTERY);
+					if( s_base_level > 100 ) skillratio += skillratio * s_base_level / 150;
 					break;
 				case RK_HUNDREDSPEAR:
 					skillratio += 500 + 40 * skill_lv + (pc_checkskill(sd,ML_SPIRALPIERCE) * 10) * s_base_level / 100;
 					break;
 				case RK_IGNITIONBREAK:
-					i = distance_bl(src,target) / 2;
+					i = distance_bl(src,target);
 					skillratio += 100 * skill_lv;
 					if( i < 4 ) skillratio += 100 * skill_lv;
 					if( i < 2 ) skillratio += 100;
@@ -2009,19 +2010,17 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					if( s_base_level > 50 ) skillratio += skillratio * (s_base_level - 50) / 200;
 					break;
 				case RK_CRUSHSTRIKE:
-					skillratio += 550;
 					if( sd )
 					{
 						short index = sd->equip_index[EQI_HAND_R];
 						if( index >= 0 && sd->inventory_data[index] && sd->inventory_data[index]->type == IT_WEAPON )
 						{
-							skillratio += 100 * sd->status.inventory[index].refine;
-							skillratio *= sd->inventory_data[index]->wlv;
+							skillratio = sstatus->rhw.atk + 100 * sd->inventory_data[index]->wlv * (sd->status.inventory[index].refine + 6);
 						}
 					}
 					break;
 				case RK_STORMBLAST:
-					skillratio += -100 + 100 * (sd ? pc_checkskill(sd,RK_RUNEMASTERY) : 1) +  100 * (sstatus->int_ / 4);
+					skillratio = 100 * (sd ? pc_checkskill(sd,RK_RUNEMASTERY) : 1) +  100 * (sstatus->int_ / 4);
 					break;
 				case RA_CLUSTERBOMB:
 					skillratio += 100 + 100*skill_lv;
@@ -3793,9 +3792,9 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		md.damage = skill_calc_heal(src,target,skill_num,skill_lv,false);
 		break;
 	case RK_DRAGONBREATH:
-		md.damage = ((status_get_hp(src) * 16 / 1000) + (status_get_sp(src) * 192 / 1000)) * skill_lv;
-		if (sd) md.damage += md.damage * 5 * (pc_checkskill(sd,RK_DRAGONTRAINING) -1) / 100;
-		if (status_get_lv(src) > 100) md.damage += md.damage * (s_base_level - 100) / 200;
+		md.damage = ((status_get_hp(src) / 50) + (status_get_max_sp(src) / 4)) * skill_lv;
+		if (sd) md.damage = md.damage * (100 + 5 * (pc_checkskill(sd,RK_DRAGONTRAINING) - 1)) / 100;
+		if (status_get_lv(src) > 100) md.damage = md.damage * s_base_level / 150;
 		break;
 	case RA_CLUSTERBOMB:
 	case RA_FIRINGTRAP:

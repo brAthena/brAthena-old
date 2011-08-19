@@ -9,6 +9,20 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0821 - 19/08/2011 [Protimus]
+	* Pequenas mudanças em fórmulas de habilidades.
+	- Mudanças em divisões com números grandes desnecessárias, efetuadas simplificações.
+	* Corrigida habilidade RK_PHANTOMTHRUST (Arpão).
+	- Adicionada bonificação em caso do usuário ter level maior que 100.
+	* Corrigida habilidade RK_IGNITIONBREAK (Impacto Flamejante).
+	- Modificado cálculo de dano dependente de divisão da distância estava incorreto.
+	* Corrigida habilidade RK_CRUSHSTRIKE (Golpe Titânico).
+	- Removido cálculo de dano habitual e aperfeiçoado com ratio original dependente de refinamento.
+	* Corrigida habilidade RK_STORMBLAST (Explosão Rúnica).
+	- Pequeno erro na fórmula de dano.
+    * Corrigida habilidade RK_MILLENNIUMSHIELD (Escudos Milenares).
+	- Porcentagem de gerar escudos conforme kRO.
+	
 	r0820 - 19/08/2011 [Protimus]
 	* Corrigida habilidade AB_CLEARANCE (Gênese).
 	- Modificada taxa de sucesso.
