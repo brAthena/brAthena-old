@@ -1802,7 +1802,7 @@
 //2845,NoFear_Belts
 2853,Telekinetic_Orb,Telekinetic Orb,5,20,,20,,2,,0,0xFFFFFFFE,2,2,136,,110,0,0,{ bonus bMdef,1; bonus bInt,3; bonus bMaxSP,30; bonus2 bSkillAtk,"SO_PSYCHIC_WAVE",10; },{},{}
 2854,Glove_Of_Alchemy,Glove Of Alchemy,5,20,,10,,1,,1,0xFFFFFFFE,2,2,136,,125,0,0,{ bonus bMdef,2; bonus bInt,1; bonus2 bSubEle,Ele_Water,30; bonus3 bAutoSpell,"MG_FIREWALL",5,10; },{},{}
-//2855,Black_Tail_Hyukke
+2855,Black_Tail_Hyukke,Rabo de Gato Preto,5,20,,100,,0,,0,0xFFFFFFFF,7,2,136,,45,0,0,{ bonus bAspdRate,3; bonus bCritical,7; if(isequipped(5360)){ bonus bCritAtkRate,10; if(getequiprefinerycnt(EQI_HEAD_TOP)>=7) { bonus bCritical,5; } } },{},{}
 2858,Guardian_Pendant,Guardian Pendant,5,20,,0,,0,,0,0xFFFFFFFF,7,2,136,,70,0,0,{ skill "ALL_GUARDIAN_RECALL",1; },{},{}
 2859,Golden_Lord_Orb,Golden Lord Orb,5,20,,200,,2,,1,0x00000200,2,2,136,,100,0,0,{ bonus bMdef,2; bonus bInt,1; bonus2 bSubEle,Ele_Wind,15; bonus3 bAutoSpellWhenHit,"WZ_JUPITEL",3,10; },{},{}
 2860,Aqua_Orb,Aqua Orb,5,20,,200,,2,,1,0x00000200,2,2,136,,100,0,0,{ bonus bMdef,2; bonus bInt,1; bonus2 bSubEle,Ele_Water,15; bonus3 bAutoSpellWhenHit,"WZ_FROSTNOVA",3,10; },{},{}

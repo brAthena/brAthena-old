@@ -464,7 +464,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 			return 0;
 		}
 
-		if( sd && (sce = sc->data[SC_BERKANA]) && sce->val2 > 0 && damage > 0 )
+		if( sd && (sce = sc->data[SC_MILLENNIUMSHIELD]) && sce->val2 > 0 && damage > 0 )
 		{
 			clif_skill_nodamage(bl, bl, RK_MILLENNIUMSHIELD, 1, 1);
 			sce->val3 -= damage;
@@ -479,7 +479,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 					sce->val3 = 1000;
 				}
 				else
-					status_change_end(bl,SC_BERKANA,-1);
+					status_change_end(bl,SC_MILLENNIUMSHIELD,-1);
 			}
 			return 0;
 		}
@@ -605,6 +605,14 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 			damage -= damage * 6 * (1+per) / 100;
 		}
 
+		if( (sce = sc->data[SC_STONEHARDSKIN]) && flag&BF_WEAPON && damage > 0 )
+		{
+			sce->val2 -= damage;
+			skill_break_equip(src,EQP_WEAPON,2500,BCT_SELF);
+
+			if( sce->val2 <= 0 ) status_change_end(bl, SC_STONEHARDSKIN, -1);
+		}
+		
 		// FIXME:
 		// So Reject Sword calculates the redirected damage before calculating WoE/BG reduction? This is weird. [Inkfish]
 		if((sce=sc->data[SC_REJECTSWORD]) && flag&BF_WEAPON &&
@@ -4266,7 +4274,7 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 			status_change_end(src,SC_SPELLFIST,-1);
 	}
 
-	if( sd && sc && sc->data[SC_THURISAZ] && wd.flag&(BF_WEAPON|BF_SHORT) && rand()%100 < pc_checkskill(sd,RK_RUNEMASTERY) )
+	if( sd && sc && sc->data[SC_GIANTGROWTH] && wd.flag&(BF_WEAPON|BF_SHORT) && rand()%100 < pc_checkskill(sd,RK_RUNEMASTERY) )
 		wd.damage *= 3;
 
 	if( sc && sc->data[SC_FEARBREEZE] && sc->data[SC_FEARBREEZE]->val4 > 0 && sd->status.inventory[sd->equip_index[EQI_AMMO]].amount >= sc->data[SC_FEARBREEZE]->val4 && battle_config.arrow_decrement){

@@ -9,6 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0822 - 19/08/2011 [Protimus]
+	* Adicionado o item "Rabo de Gato Preto".
+	- Conforme informações oficiais, faltava no database original.
+	* Corrigida habilidade RK_STONEHARDSKIN (Escamas Rochosas).
+	- Não estava realizando o efeito de destruir a arma do inimigo.
+	* Modificados nomes de todos os status changes de habilidades de runas.
+	- Conforme padrão original do nome da habilidade.
+
 	r0821 - 19/08/2011 [Protimus]
 	* Pequenas mudanças em fórmulas de habilidades.
 	- Mudanças em divisões com números grandes desnecessárias, efetuadas simplificações.

@@ -420,13 +420,13 @@ void initChangeTables(void)
 	set_sc( RK_WINDCUTTER        , SC_FEAR            , SI_BLANK           , SCB_FLEE|SCB_HIT );
 	add_sc( RK_DRAGONBREATH      , SC_BURNING         );
 	set_sc( RK_DRAGONHOWLING     , SC_FEAR            , SI_BLANK           , SCB_FLEE|SCB_HIT );
-	set_sc( RK_MILLENNIUMSHIELD  , SC_BERKANA         , SI_MILLENNIUMSHIELD   , SCB_NONE );
-	set_sc( RK_REFRESH           , SC_NAUTHIZ         , SI_REFRESH            , SCB_NONE );
-	set_sc( RK_GIANTGROWTH       , SC_THURISAZ        , SI_GIANTGROWTH        , SCB_STR );
-	set_sc( RK_STONEHARDSKIN     , SC_HAGALAZ         , SI_STONEHARDSKIN      , SCB_NONE );
-	set_sc( RK_VITALITYACTIVATION       , SC_ISA      , SI_VITALITYACTIVATION , SCB_REGEN );
-	set_sc( RK_FIGHTINGSPIRIT    , SC_OTHILA          , SI_FIGHTINGSPIRIT     , SCB_WATK|SCB_ASPD );
-	set_sc( RK_ABUNDANCE         , SC_URUZ            , SI_ABUNDANCE          , SCB_NONE );
+	set_sc( RK_MILLENNIUMSHIELD  , SC_MILLENNIUMSHIELD  , SI_MILLENNIUMSHIELD  , SCB_NONE );
+	set_sc( RK_REFRESH           , SC_REFRESH           , SI_REFRESH           , SCB_NONE );
+	set_sc( RK_GIANTGROWTH       , SC_GIANTGROWTH       , SI_GIANTGROWTH       , SCB_STR );
+	set_sc( RK_STONEHARDSKIN     , SC_STONEHARDSKIN     , SI_STONEHARDSKIN     , SCB_NONE );
+	set_sc( RK_VITALITYACTIVATION, SC_VITALITYACTIVATION, SI_VITALITYACTIVATION, SCB_REGEN );
+	set_sc( RK_FIGHTINGSPIRIT    , SC_FIGHTINGSPIRIT    , SI_FIGHTINGSPIRIT    , SCB_WATK|SCB_ASPD );
+	set_sc( RK_ABUNDANCE         , SC_ABUNDANCE         , SI_ABUNDANCE         , SCB_NONE );
 
 	set_sc( GC_VENOMIMPRESS      , SC_VENOMIMPRESS    , SI_VENOMIMPRESS       , SCB_NONE );
 	set_sc( GC_POISONINGWEAPON   , SC_POISONINGWEAPON , SI_POISONINGWEAPON    , SCB_NONE );
@@ -1098,7 +1098,7 @@ int status_damage(struct block_list *src,struct block_list *target,int hp, int s
 	}
 
 	if( !(flag&8) && sc && sc->data[SC_KAIZEL] )
-	{ //flag&8 = disable Kaizel
+	{ //flag&8 = dVITALITYACTIVATIONble Kaizel
 		int time = skill_get_time2(SL_KAIZEL,sc->data[SC_KAIZEL]->val1);
 		//Look for Osiris Card's bonus effect on the character and revive 100% or revive normally
 		if ( target->type == BL_PC && BL_CAST(BL_PC,target)->special_state.restart_full_recover == 1 )
@@ -3280,7 +3280,7 @@ void status_calc_regen_rate(struct block_list *bl, struct regen_data *regen, str
 		} else
 			regen->flag&=~sce->val4; //Remove regen as specified by val4
 	}
-	if( sc->data[SC_ISA] )
+	if( sc->data[SC_VITALITYACTIVATION] )
 		regen->flag &=~RGN_SP;
 	if(sc->data[SC_EXTRACT_WHITE_POTION_Z])
 		regen->rate.hp += regen->rate.hp * sc->data[SC_EXTRACT_WHITE_POTION_Z]->val1/100;
@@ -3827,7 +3827,7 @@ static unsigned short status_calc_str(struct block_list *bl, struct status_chang
 		str += ((sc->data[SC_MARIONETTE2]->val3)>>16)&0xFF;
 	if(sc->data[SC_SPIRIT] && sc->data[SC_SPIRIT]->val2 == SL_HIGH && str < 50)
 		str = 50;
-	if(sc->data[SC_THURISAZ])
+	if(sc->data[SC_GIANTGROWTH])
 		str += 30;
 	if(sc->data[SC_HARMONIZE])
 		str += sc->data[SC_HARMONIZE]->val2;
@@ -4167,8 +4167,8 @@ static unsigned short status_calc_watk(struct block_list *bl, struct status_chan
 		watk -= watk * sc->data[SC_STRIPWEAPON]->val2/100;
 	if(sc->data[SC_MERC_ATKUP])
 		watk += sc->data[SC_MERC_ATKUP]->val2;
-	if(sc->data[SC_OTHILA])
-		watk += sc->data[SC_OTHILA]->val1;
+	if(sc->data[SC_FIGHTINGSPIRIT])
+		watk += sc->data[SC_FIGHTINGSPIRIT]->val1;
 	if(sc->data[SC__BLOODYLUST])
 		watk += watk * 32 / 100;
 	if(sc->data[SC_INSPIRATION])
@@ -4826,8 +4826,8 @@ static short status_calc_aspd_rate(struct block_list *bl, struct status_change *
 		aspd_rate += 300;
 	if( sc->data[SC_HALLUCINATIONWALK_POSTDELAY] )
 		aspd_rate += 500;
-	if( sc->data[SC_OTHILA] && sc->data[SC_OTHILA]->val2 )
-		aspd_rate -= sc->data[SC_OTHILA]->val2;
+	if( sc->data[SC_FIGHTINGSPIRIT] && sc->data[SC_FIGHTINGSPIRIT]->val2 )
+		aspd_rate -= sc->data[SC_FIGHTINGSPIRIT]->val2;
 	if( sc->data[SC_PARALYSE] )
 		aspd_rate += 100;
 	if( sc->data[SC__BODYPAINT] )
@@ -5775,7 +5775,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 	if( !sc )
 		return 0; //Unable to receive status changes
 
-	if( sc->data[SC_NAUTHIZ] )
+	if( sc->data[SC_REFRESH] )
 	{
 		if( type >= SC_COMMON_MIN && type <= SC_COMMON_MAX && type != SC_STUN )
 			return 0;
@@ -6294,7 +6294,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 	case SC_FOOD_LUK_CASH:
 		status_change_end(bl, SC_LUKFOOD, INVALID_TIMER);
 		break;
-	case SC_OTHILA:
+	case SC_FIGHTINGSPIRIT:
 		status_change_end(bl,type, INVALID_TIMER);
 		break;
 	case SC_SWINGDANCE:
@@ -6386,7 +6386,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			case SC_NOCHAT:
 			case SC_CHANGE: //Otherwise your Hp/Sp would get refilled while still within effect of the last invocation.
 			case SC_FEAR:
-			case SC_URUZ:
+			case SC_ABUNDANCE:
 			case SC__INVISIBILITY:
 			case SC__ENERVATION:
 			case SC__GROOMY:
@@ -7316,14 +7316,14 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_DEATHBOUND:
 			val2 = 500 + 100 * val1;
 			break;
-		case SC_URUZ:
+		case SC_ABUNDANCE:
 			val4 = tick / 10000;
 			tick = 10000;
 			break;
-		case SC_OTHILA:
+		case SC_FIGHTINGSPIRIT:
 			val_flag |= 1|2;
 			break;
-		case SC_THURISAZ:
+		case SC_GIANTGROWTH:
 			val2 = 10;
 			break;
 		case SC_SECRAMENT:
@@ -8514,7 +8514,7 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 					status_change_end(tbl, SC_STOP, INVALID_TIMER);
 			}
 			break;
-		case SC_BERKANA:
+		case SC_MILLENNIUMSHIELD:
 			clif_millenniumshield(sd,0);
 			break;
 		case SC_ADORAMUS:
@@ -9170,7 +9170,7 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 			return 0;
 		}
 		break;
-	case SC_URUZ:
+	case SC_ABUNDANCE:
 		if( --(sce->val4) > 0)
 		{
 			if( !sc->data[SC_BERSERK] )
@@ -9672,13 +9672,13 @@ int status_change_clear_buffs (struct block_list* bl, int type)
 			case SC_EXPBOOST:
 			case SC_JEXPBOOST:
 			case SC_ITEMBOOST:
-			case SC_BERKANA:
-			case SC_URUZ:
-			case SC_ISA:
-			case SC_OTHILA:
-			case SC_THURISAZ:
-			case SC_HAGALAZ:
-			case SC_NAUTHIZ:
+			case SC_MILLENNIUMSHIELD:
+			case SC_ABUNDANCE:
+			case SC_VITALITYACTIVATION:
+			case SC_FIGHTINGSPIRIT:
+			case SC_GIANTGROWTH:
+			case SC_STONEHARDSKIN:
+			case SC_REFRESH:
 			case SC_ELECTRICSHOCKER:
 			case SC__MANHOLE:
 			case SC_CURSEDCIRCLE_ATKER:
