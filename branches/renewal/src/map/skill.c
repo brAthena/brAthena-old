@@ -6012,6 +6012,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 				case SC_STEALTHFIELD:			case SC_GIANTGROWTH:			case SC_MILLENNIUMSHIELD:
 				case SC_REFRESH:				case SC_STONEHARDSKIN:			case SC_VITALITYACTIVATION:
 				case SC_FIGHTINGSPIRIT:			case SC_ABUNDANCE:				case SC__SHADOWFORM:
+				case SC_READING_SB:
 					continue;
 				case SC_ASSUMPTIO:
 					if( bl->type == BL_MOB )
@@ -7319,13 +7320,14 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 
 	case WL_WHITEIMPRISON:
 		if(!(tsc && tsc->data[type]) && (src == bl || battle_check_target(src, bl, BCT_ENEMY))){
-			int rate;
-			rate = ((sd) ? (int)((50+3*skilllv)*(1 + s_job_level/100.)):50+3*skilllv);
-
+			int rate = 50 + 3 * skilllv;
+			if( sd ) rate = (int)( rate * (1 + s_job_level / 100. ) );
 			i = sc_start2(bl,type,rate,skilllv,src->id,(src == bl)?skill_get_time2(skillid,skilllv):skill_get_time(skillid, skilllv));
 			clif_skill_nodamage(src,bl,skillid,skilllv,i);
+			if(tsc && tsc->data[SC_WHITEIMPRISON])
+				status_change_end(bl,SC_WHITEIMPRISON,-1);
 			if(sd && i)
-				skill_blockpc_start(sd,skillid,4000); // Reuse Delay only activated on success
+				skill_blockpc_start(sd,skillid,4000); 
 		}else if(sd)
 			clif_skill_fail(sd,skillid,0,0,0);
 		break;
