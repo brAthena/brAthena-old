@@ -3241,7 +3241,9 @@ void status_calc_regen_rate(struct block_list *bl, struct regen_data *regen, str
 		|| sc->data[SC_BERSERK]
 		|| sc->data[SC_TRICKDEAD]
 		|| sc->data[SC_BLEEDING]
+		|| sc->data[SC_MAGICMUSHROOM]
 		|| sc->data[SC_RAISINGDRAGON]
+		|| sc->data[SC_SATURDAYNIGHTFEVER]
 	)	//No regen
 		regen->flag = 0;
 
@@ -3269,6 +3271,11 @@ void status_calc_regen_rate(struct block_list *bl, struct regen_data *regen, str
 	{
 		regen->rate.hp += 1;
 		regen->rate.sp += 1;
+	}
+	if( sc->data[SC_DEATHHURT] )
+	{
+		regen->rate.hp -= 1;
+		regen->rate.sp -= 1;
 	}
 	if (sc->data[SC_REGENERATION])
 	{
@@ -4275,7 +4282,7 @@ static signed short status_calc_hit(struct block_list *bl, struct status_change 
 		hit += sc->data[SC_CONCENTRATION]->val3;
 	if(sc->data[SC_INCHITRATE])
 		hit += hit * sc->data[SC_INCHITRATE]->val1/100;
-	if(sc->data[SC_BLIND])
+	if(sc->data[SC_BLIND] || sc->data[SC_PYREXIA])
 		hit -= hit * 25/100;
 	if(sc->data[SC_ADJUSTMENT])
 		hit -= 30;
@@ -4326,7 +4333,7 @@ static signed short status_calc_flee(struct block_list *bl, struct status_change
 		flee -= flee * 50/100;
 	if(sc->data[SC_BERSERK])
 		flee -= flee * 50/100;
-	if(sc->data[SC_BLIND])
+	if(sc->data[SC_BLIND] || sc->data[SC_PYREXIA])
 		flee -= flee * 25/100;
 	if(sc->data[SC_ADJUSTMENT])
 		flee += 30;
@@ -4360,6 +4367,8 @@ static signed short status_calc_flee(struct block_list *bl, struct status_change
 		flee -= (9 * sc->data[SC_MARSHOFABYSS]->val3 / 10 + sc->data[SC_MARSHOFABYSS]->val2 / 10) * (bl->type == BL_MOB ? 2 : 1);
 	if( sc->data[SC_GLOOMYDAY_SK] )
 		flee -= flee * sc->data[SC_GLOOMYDAY_SK]->val2/100;
+	if(sc->data[SC_PARALYSE])
+		flee -= flee / 10; 
 
 	return (short)cap_value(flee,0,SHRT_MAX);
 }
@@ -4650,6 +4659,8 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 					val = max( val, 70 );
 				if( sc->data[SC_MELON_BOMB] )
 					val = max( val, 2 * sc->data[SC_MELON_BOMB]->val1 );
+				if( sc->data[SC_PARALYSE] )
+					val = max( val, 50 );
 
 				if( sd && sd->speed_rate + sd->speed_add_rate > 0 ) // permanent item-based speedup
 					val = max( val, sd->speed_rate + sd->speed_add_rate );
@@ -4893,7 +4904,7 @@ static unsigned int status_calc_maxhp(struct block_list *bl, struct status_chang
 		maxhp += maxhp * 2;
 	if(sc->data[SC_MARIONETTE])
 		maxhp -= 1000;
-
+		
 	if(sc->data[SC_MERC_HPUP])
 		maxhp += maxhp * sc->data[SC_MERC_HPUP]->val2/100;
 	if(sc->data[SC_EPICLESIS])
@@ -4925,7 +4936,8 @@ static unsigned int status_calc_maxhp(struct block_list *bl, struct status_chang
 		maxhp += maxhp * sc->data[SC_LERADSDEW]->val3 / 100;
 	if(sc->data[SC__WEAKNESS])
 		maxhp -= maxhp * sc->data[SC__WEAKNESS]->val2/100;
-		
+	if(sc->data[SC_VENOMBLEED])
+		maxhp -= maxhp * 15 / 100;
 		
 	return cap_value(maxhp,1,UINT_MAX);
 }

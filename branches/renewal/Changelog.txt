@@ -9,6 +9,16 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0827 - 20/08/2011 [Protimus]
+	* Corrigida habilidade WM_SATURDAY_NIGHT_FEVER (Embalos de Sábado a Noite).
+	- Estava com um pequeno problema com as drenagens de HP.
+	* Corrigidos venenos do sicário criados a partir de GC_CREATENEWPOISON (Criar Toxina).
+	- Paralyse: Não estava dando redução de movimento e esquiva.
+	- Death Hurt: Não estava dando redução da regeneração de hp/sp.
+	- Magic Mushroom: Não estava com as condições de perda involuntária do HP.
+	- Pyrexia: Não estava dando redução de esquiva.
+	- Venom Bleed: Não estava dando redução do HP Máximo.
+
 	r0826 - 20/08/2011 [Protimus]
 	* Corrigida a habilidade RA_CLUSTERBOMB (Bomba Relógio).
 	- O efeito de HpDrain não deve funcionar com ela.
