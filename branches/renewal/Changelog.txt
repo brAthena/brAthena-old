@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0824 - 20/08/2011 [Protimus]
+	* Corrigidas as habilidades: WM_MELODYOFSINK (Cântico da Iluminação) & WM_BEYOND_OF_WARCRY (Clamor de Batalha).
+	- Não estavam com seus valores definidos, portanto as bonificações não eram calculadas corretamente.
+	* Correções para várias habilidades de Trovador e Musa.
+	- Cancelamento de seus status.
+
 	r0823 - 20/08/2011 [Protimus]
 	* Corrigidas as habilidades: RA_FIRINGTRAP (Armadilha Incendiária), RA_ICEBOUNDTRAP (Armadilha Glacial) & RA_CLUSTERBOMB (Bomba Relógio).
 	- O efeito de HpDrain igual ao de monstros como Mosca Caçadora não estava funcionando nas habilidades.

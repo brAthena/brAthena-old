@@ -6306,7 +6306,6 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 	case SC_VOICEOFSIREN:
 	case SC_DEEPSLEEP:
 	case SC_SIRCLEOFNATURE:
-	case SC_LERADSDEW:
 		if( sc->data[type] )
 			break;
 		status_change_end(bl,SC_SWINGDANCE, INVALID_TIMER);
@@ -6318,7 +6317,21 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		status_change_end(bl,SC_VOICEOFSIREN, INVALID_TIMER);
 		status_change_end(bl,SC_DEEPSLEEP, INVALID_TIMER);
 		status_change_end(bl,SC_SIRCLEOFNATURE, INVALID_TIMER);
+		break;
+	case SC_SONGOFMANA:
+	case SC_DANCEWITHWUG:
+	case SC_LERADSDEW:
+	case SC_MELODYOFSINK:
+	case SC_BEYONDOFWARCRY:
+	case SC_UNLIMITEDHUMMINGVOICE:
+		if( sc->data[type] ) 
+			break;
+		status_change_end(bl, SC_SONGOFMANA, INVALID_TIMER);
+		status_change_end(bl, SC_DANCEWITHWUG, INVALID_TIMER);
 		status_change_end(bl, SC_LERADSDEW, INVALID_TIMER);
+		status_change_end(bl, SC_MELODYOFSINK, INVALID_TIMER);
+		status_change_end(bl, SC_BEYONDOFWARCRY, INVALID_TIMER);
+		status_change_end(bl, SC_UNLIMITEDHUMMINGVOICE, INVALID_TIMER);
 		break;
 	case SC_REFLECTSHIELD:
 		status_change_end(bl,SC_REFLECTDAMAGE, INVALID_TIMER);
@@ -7415,6 +7428,8 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			val3 = (5 * val1) + (1 * val2);
 			break;
 		case SC_LERADSDEW:
+		case SC_MELODYOFSINK:
+		case SC_BEYONDOFWARCRY:
 			val3 = (5 * val1) + (1 * val2);
 			break;
 		case SC_RUSHWINDMILL:
