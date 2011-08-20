@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0823 - 20/08/2011 [Protimus]
+	* Corrigidas as habilidades: RA_FIRINGTRAP (Armadilha Incendiária), RA_ICEBOUNDTRAP (Armadilha Glacial) & RA_CLUSTERBOMB (Bomba Relógio).
+	- O efeito de HpDrain igual ao de monstros como Mosca Caçadora não estava funcionando nas habilidades.
+
 	r0822 - 19/08/2011 [Protimus]
 	* Adicionado o item "Rabo de Gato Preto".
 	- Conforme informações oficiais, faltava no database original.

@@ -3927,7 +3927,16 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		struct Damage wd;
 		wd = battle_calc_weapon_attack(src,target,skill_num,skill_lv,mflag);
 		md.damage += wd.damage;
+		if (sd) {
+			if (src != target && md.damage > 0) {
+				if (battle_config.left_cardfix_to_right)
+					battle_drain(sd, target, md.damage, md.damage, tstatus->race, is_boss(target));
+				else
+					battle_drain(sd, target, md.damage, md.damage2, tstatus->race, is_boss(target));
+			}
+		}
 	}
+	
 	else if (skill_num == NJ_ZENYNAGE && sd)
 	{	//Time to Pay Up.
 		if ( md.damage > sd->status.zeny )
