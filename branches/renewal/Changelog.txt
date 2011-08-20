@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0826 - 20/08/2011 [Protimus]
+	* Corrigida a habilidade RA_CLUSTERBOMB (Bomba Relógio).
+	- O efeito de HpDrain não deve funcionar com ela.
+	* Corrigidas as habilidades RA_FIRINGTRAP (Armadilha Incendiária) & RA_ICEBOUNDTRAP (Armadilha Glacial).
+	- Modificações para o maxcount.
+
 	r0825 - 20/08/2011 [Protimus]
 	* Corrigida a habilidade WL_WHITEIMPRISON (Exílio).
 	- Agora a habilidade não pode ser utilizada em algém que já esteja no exílio.
