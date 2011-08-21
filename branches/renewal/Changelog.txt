@@ -9,6 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0829 - 21/08/2011 [Mark]
+	* Corrigidos venenos do Sicário.
+	- Death Hurt: não estava diminuindo valores de habilidades de cura.
+	- Leeche End: ajustado dano do veneno.
+	* Corrigida habilidade Fortaleza do homunculo Amistr.
+	- Bonus de Vit ajustado de acordo com a Renovação.
+
 	r0828 - 21/08/2011 [Protimus]
 	* Corrigida a habilidade SR_GENTLETOUCH_REVITALIZE (Chakra do Vigor).
 	- Estava com os valores de def invertidos e podendo causar overflow devido def excessiva.

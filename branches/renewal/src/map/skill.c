@@ -376,8 +376,14 @@ int skill_calc_heal(struct block_list *src, struct block_list *target, int skill
 
 	if( sc && sc->count )
 	{
-		if( sc->data[SC_CRITICALWOUND] && heal ) // Critical Wound has no effect on offensive heal. [Inkfish]
-			hp -= hp * sc->data[SC_CRITICALWOUND]->val2/100;
+		if( sc->data[SC_CRITICALWOUND] && heal )
+		{	// Critical Wound has no effect on offensive heal. [Inkfish]
+			hp -= hp * sc->data[SC_CRITICALWOUND]->val2 /100;
+		}
+		if( sc->data[SC_DEATHHURT] && heal )
+		{
+			hp -= hp * sc->data[SC_DEATHHURT]->val2 /100;
+		}
 		if( sc->data[SC_INCHEALRATE] && skill_id != NPC_EVILLAND && skill_id != BA_APPLEIDUN )
 			hp += hp * sc->data[SC_INCHEALRATE]->val1/100; // Only affects Heal, Sanctuary and PotionPitcher.(like bHealPower) [Inkfish]
 	}
@@ -5902,10 +5908,15 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 				hp += hp * i / 100;
 				sp += sp * i / 100;
 			}
-			if( tsc && tsc->data[SC_CRITICALWOUND] )
+			if (tsc && tsc->data[SC_CRITICALWOUND] )
 			{
 				hp -= hp * tsc->data[SC_CRITICALWOUND]->val2 / 100;
 				sp -= sp * tsc->data[SC_CRITICALWOUND]->val2 / 100;
+			}
+			if (tsc && tsc->data[SC_DEATHHURT] )
+			{
+				hp -= hp * tsc->data[SC_DEATHHURT]->val2 / 100;
+				sp -= sp * tsc->data[SC_DEATHHURT]->val2 / 100;
 			}
 			clif_skill_nodamage(src,bl,skillid,skilllv,1);
 			if( hp > 0 || (skillid == AM_POTIONPITCHER && sp <= 0) )
@@ -6634,10 +6645,15 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 				if (sp)
 					sp = sp * (100 + pc_checkskill(dstsd,MG_SRECOVERY)*10 + pc_skillheal2_bonus(dstsd, skillid))/100;
 			}
-			if (tsc && tsc->data[SC_CRITICALWOUND])
+			if (tsc && tsc->data[SC_CRITICALWOUND] )
 			{
 				hp -= hp * tsc->data[SC_CRITICALWOUND]->val2 / 100;
 				sp -= sp * tsc->data[SC_CRITICALWOUND]->val2 / 100;
+			}
+			if (tsc && tsc->data[SC_DEATHHURT] )
+			{
+				hp -= hp * tsc->data[SC_DEATHHURT]->val2 / 100;
+				sp -= sp * tsc->data[SC_DEATHHURT]->val2 / 100;
 			}
 			if(hp > 0)
 				clif_skill_nodamage(NULL,bl,AL_HEAL,hp,1);

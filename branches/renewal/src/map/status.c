@@ -550,7 +550,7 @@ void initChangeTables(void)
 	set_sc( HLIF_CHANGE          , SC_CHANGE          , SI_BLANK           , SCB_VIT|SCB_INT );
 	set_sc( HFLI_FLEET           , SC_FLEET           , SI_BLANK           , SCB_ASPD|SCB_BATK|SCB_WATK );
 	set_sc( HFLI_SPEED           , SC_SPEED           , SI_BLANK           , SCB_FLEE );
-	set_sc( HAMI_DEFENCE         , SC_DEFENCE         , SI_BLANK           , SCB_DEF );
+	set_sc( HAMI_DEFENCE         , SC_DEFENCE         , SI_BLANK           , SCB_VIT );
 	set_sc( HAMI_BLOODLUST       , SC_BLOODLUST       , SI_BLANK           , SCB_BATK|SCB_WATK );
 
 	add_sc( MER_CRASH            , SC_STUN            );
@@ -816,10 +816,10 @@ void initChangeTables(void)
 
 	StatusChangeFlagTable[SC_HALLUCINATIONWALK_POSTDELAY] |= SCB_ASPD|SCB_SPEED;
 
-	StatusChangeFlagTable[SC_PARALYSE] |= SCB_ASPD|SCB_FLEE;
+	StatusChangeFlagTable[SC_PARALYSE] |= SCB_SPEED|SCB_ASPD|SCB_FLEE;
 	StatusChangeFlagTable[SC_VENOMBLEED] |= SCB_MAXHP;
 	StatusChangeFlagTable[SC_MAGICMUSHROOM] |= SCB_REGEN;
-	StatusChangeFlagTable[SC_DEATHHURT] |= SCB_REGEN;
+	StatusChangeFlagTable[SC_DEATHHURT] |= SCB_NONE;
 	StatusChangeFlagTable[SC_PYREXIA] |= SCB_FLEE|SCB_HIT;
 	StatusChangeFlagTable[SC_OBLIVIONCURSE] |= SCB_REGEN;
 
@@ -3272,11 +3272,6 @@ void status_calc_regen_rate(struct block_list *bl, struct regen_data *regen, str
 		regen->rate.hp += 1;
 		regen->rate.sp += 1;
 	}
-	if( sc->data[SC_DEATHHURT] )
-	{
-		regen->rate.hp -= 1;
-		regen->rate.sp -= 1;
-	}
 	if (sc->data[SC_REGENERATION])
 	{
 		const struct status_change_entry *sce = sc->data[SC_REGENERATION];
@@ -3934,6 +3929,8 @@ static unsigned short status_calc_vit(struct block_list *bl, struct status_chang
 		vit += sc->data[SC_MINOR_BBQ]->val1;
 	if(sc->data[SC_STOMACHACHE])
 		vit -= sc->data[SC_STOMACHACHE]->val1;
+	if(sc->data[SC_DEFENCE])
+		vit += sc->data[SC_DEFENCE]->val2;
 
 	return (unsigned short)cap_value(vit,0,USHRT_MAX);
 }
@@ -4405,8 +4402,6 @@ static signed short status_calc_def(struct block_list *bl, struct status_change 
 		def += sc->data[SC_ARMORCHANGE]->val2;
 	if(sc->data[SC_DRUMBATTLE])
 		def += sc->data[SC_DRUMBATTLE]->val3;
-	if(sc->data[SC_DEFENCE])	//[orn]
-		def += sc->data[SC_DEFENCE]->val2 ;
 	if(sc->data[SC_INCDEFRATE])
 		def += def * sc->data[SC_INCDEFRATE]->val1/100;
 	if(sc->data[SC_STONE] && sc->opt1 == OPT1_STONE)
@@ -4596,6 +4591,9 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 			if( sc->data[SC_GATLINGFEVER] )
 				val = 25;
 
+			if( sc->data[SC_PARALYSE] )
+				val = val/2;
+				
 			speed_rate -= val;
 		}
 
@@ -4840,7 +4838,7 @@ static short status_calc_aspd_rate(struct block_list *bl, struct status_change *
 	if( sc->data[SC_FIGHTINGSPIRIT] && sc->data[SC_FIGHTINGSPIRIT]->val2 )
 		aspd_rate -= sc->data[SC_FIGHTINGSPIRIT]->val2;
 	if( sc->data[SC_PARALYSE] )
-		aspd_rate += 100;
+		aspd_rate += aspd_rate/10;
 	if( sc->data[SC__BODYPAINT] )
 		aspd_rate += aspd_rate * (20 + 5 * sc->data[SC__BODYPAINT]->val1) / 100;
 	if( sc->data[SC__INVISIBILITY] )
@@ -7172,7 +7170,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			//val2 = 10*val1; //Speed change rate.
 			break;
 		case SC_DEFENCE:
-			val2 = 2*val1; //Def bonus
+			val2 = 5 + 5*val1; //Bonus Vit Amistr
 			break;
 		case SC_BLOODLUST:
 			val2 = 20+10*val1; //Atk rate change.
@@ -7248,6 +7246,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			else if (val2 < 0)
 				val2 = rand()%ELE_MAX;
 			break;
+		case SC_DEATHHURT:
 		case SC_CRITICALWOUND:
 			val2 = 20*val1; //Heal effectiveness decrease
 			break;
@@ -9266,7 +9265,7 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 			if( sd && (sd->status.class_ == JOB_GUILLOTINE_CROSS || sd->status.class_ == JOB_GUILLOTINE_CROSS_T || sd->status.class_ == JOB_BABY_CROSS) )
 				damage += 3 * status->vit;
 			else
-				damage += 7 * status->vit;
+				damage += 2 * status->vit;
 
 			unit_skillcastcancel(bl,0);
 
