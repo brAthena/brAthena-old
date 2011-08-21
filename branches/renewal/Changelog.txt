@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0828 - 21/08/2011 [Protimus]
+	* Corrigida a habilidade SR_GENTLETOUCH_REVITALIZE (Chakra do Vigor).
+	- Estava com os valores de def invertidos e podendo causar overflow devido def excessiva.
+
 	r0827 - 20/08/2011 [Protimus]
 	* Corrigida habilidade WM_SATURDAY_NIGHT_FEVER (Embalos de Sábado a Noite).
 	- Estava com um pequeno problema com as drenagens de HP.

@@ -507,7 +507,7 @@ void initChangeTables(void)
 	set_sc( SR_RAISINGDRAGON            , SC_RAISINGDRAGON        , SI_RAISINGDRAGON            , SCB_REGEN|SCB_MAXHP|SCB_MAXSP/*|SCB_ASPD*/ );
 	set_sc( SR_GENTLETOUCH_ENERGYGAIN   , SC_GT_ENERGYGAIN        , SI_GENTLETOUCH_ENERGYGAIN   , SCB_NONE );
 	set_sc( SR_GENTLETOUCH_CHANGE       , SC_GT_CHANGE            , SI_GENTLETOUCH_CHANGE       , SCB_BATK|SCB_ASPD|SCB_DEF|SCB_MDEF );
-	set_sc( SR_GENTLETOUCH_REVITALIZE   , SC_GT_REVITALIZE        , SI_GENTLETOUCH_REVITALIZE   , SCB_MAXHP|SCB_DEF2|SCB_REGEN|SCB_ASPD|SCB_SPEED );
+	set_sc( SR_GENTLETOUCH_REVITALIZE   , SC_GT_REVITALIZE        , SI_GENTLETOUCH_REVITALIZE   , SCB_MAXHP|SCB_DEF|SCB_REGEN|SCB_ASPD|SCB_SPEED );
 
 	set_sc( WA_SWING_DANCE                , SC_SWINGDANCE              , SI_SWINGDANCE                , SCB_SPEED|SCB_ASPD );
 	set_sc( WA_SYMPHONY_OF_LOVER          , SC_SYMPHONYOFLOVER         , SI_SYMPHONYOFLOVERS          , SCB_MDEF );
@@ -4449,6 +4449,8 @@ static signed short status_calc_def(struct block_list *bl, struct status_change 
 		def -= def * ( 6 + 6 * sc->data[SC_MARSHOFABYSS]->val3/10 + (bl->type == BL_MOB ? 5 : 3) * sc->data[SC_MARSHOFABYSS]->val2/36 ) / 100;
 	if( sc->data[SC_FREEZING] )
 		def -= def * 3 / 10;
+	if( sc->data[SC_GT_REVITALIZE] )
+		def += def * (50 + 10*sc->data[SC_GT_REVITALIZE]->val1) / 100;
 		
 	return (short)cap_value(def,SHRT_MIN,SHRT_MAX);
 }
@@ -4489,8 +4491,6 @@ static signed short status_calc_def2(struct block_list *bl, struct status_change
 		def2 += sc->data[SC_PRESTIGE]->val1;
 	if( sc->data[SC_SHIELDSPELL_REF] && sc->data[SC_SHIELDSPELL_REF]->val1 == 1 )
 		def2 += sc->data[SC_SHIELDSPELL_REF]->val2;
-	if( sc->data[SC_GT_REVITALIZE] )
-		def2 += def2* (50 + 10*sc->data[SC_GT_REVITALIZE]->val1) / 100;
 	if(sc->data[SC_ANALYZE])
 		def2 -= def2 * (14 * sc->data[SC_ANALYZE]->val1) / 100;
 
