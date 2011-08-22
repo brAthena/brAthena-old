@@ -9,6 +9,35 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0831 - 21/08/2011 [Protimus]
+	* Corrigida habilidade WL_FROSTMISTY (Zero Absoluto).
+	- Modificado tempo de duração do status FREEZING (Hipotermia).
+	- Modificada duração do status 
+	- Atualizada fórmula do FREEZING (Hipotermia) com o uso da habilidade.
+	* Corrigida habilidade WL_JACKFROST (Esquife de Gelo).
+	- Modificado tempo de duração.	
+	- Atualizada fórmula de dano.
+	* Corrigida habilidade WL_STASIS (Distorção Arcana).
+	- Modificado tempo de duração.
+	* Corrigida habilidade WL_EARTHSTRAIN (Abálo Sísmico).
+	- Modificado tempo de duração.
+	* Corrigida habilidade WL_SOULEXPANSION (Impacto Espiritual).
+	- Atualizada fórmula de dano.
+	- Não adiciona danos diferenciais para alvos que estejam aprisionados com WL_WHITEIMPRISON (Exílio).
+	* Corrigida habilidade WL_WHITEIMPRISON (Exílio).
+	- Atualizada fórmula de chance para aprisionamento.
+	* Corrigidas habilidades de Sumon do Arcano WL_SUMMON_* (Invocar Esfera de *)
+	- Atualizadas todas as fórmulas de dano.
+	* Corrigida habilidade WL_SIENNAEXECRATE (Fúria da Medusa).
+	- Modificada chance de sucesso dos efeitos.
+	* Corrigida habilidade WL_READING_SB (Estudo Arcano) & WL_FREEZE_SP (Estudo Arcano Avançado).
+	- Atualizada fórmula de dano.
+	* Corrigida habilidade WL_COMET (Cometa).
+	- Correções para fórmula de dano em área que estava dando valores desproporcionais.
+	* Corrigida habilidade WL_DRAINLIFE (Drenar Vida).
+	- Atualizada fórmula de chance para drenar vida.
+	- Atualizada fórmula da quantidade de drenagem da vida.
+	
 	r0830 - 21/08/2011 [Protimus]
 	* Corrigida habilidade NPC_HELLPOWER (Poder Infernal).
 	- Poderia causar crash quando usado Curar em sua condição.

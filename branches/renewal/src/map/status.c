@@ -5639,7 +5639,7 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 		tick -= 100*((status->mdef/2+status->mdef2/2)/2);
 		break;
 	case SC_FREEZING:
-		tick -= 40 * status->vit;
+		tick -= 1000 * ((status->vit + status->dex) / 20);
 		tick = max(tick,10000);
 		break;
 	case SC_OBLIVIONCURSE:

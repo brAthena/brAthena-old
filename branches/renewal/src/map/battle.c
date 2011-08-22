@@ -3305,65 +3305,53 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 					case AB_DUPLELIGHT_MAGIC:
 						skillratio += 100 + 20 * skill_lv;
 						break;
-					case WL_SOULEXPANSION:
-						{
-							struct status_change *tsc = status_get_sc(target);
-							skillratio += 300+100*skill_lv+status_get_int(src);
-							if(s_base_level > 100)
-								skillratio += skillratio * (s_base_level-100)/200;
-							if( tsc && tsc->data[SC_WHITEIMPRISON] )
-								skillratio <<= 1;
-						}
+				case WL_SOULEXPANSION:
+						skillratio += 300 + 100 * skill_lv + sstatus->int_;
+						if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;	
 						break;
 					case WL_FROSTMISTY:
 						skillratio += 100+100*skill_lv;
 						if(s_base_level > 100)
 							skillratio += skillratio*(s_base_level-100)/200;
 						break;
-					case WL_JACKFROST:
+				case WL_JACKFROST:
 						{
 							struct status_change *tsc = status_get_sc(target);
-							if(tsc && tsc->data[SC_FREEZING]){
-								skillratio += 900+300*skill_lv;
-								if(s_base_level > 100)
-									skillratio += skillratio*(s_base_level-100)/200;
+							if( tsc && tsc->data[SC_FREEZING] )
+							{
+								skillratio += 900 + 300 * skill_lv;
+								if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
 							}
 							else
-								skillratio = (int)((skillratio+100*skill_lv)*(1+((sd) ? s_job_level:0)/100));
+								skillratio += 400 + 100 * skill_lv;
+								if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
 						}
 						break;
 					case WL_DRAINLIFE:
-						skillratio += 400+100*skill_lv*(1+sstatus->int_/1000);
+						skillratio = 200 * skill_lv + sstatus->int_;
 						if(s_base_level > 100)
 							skillratio += skillratio*(s_base_level-100)/200;
 						break;
 					case WL_CRIMSONROCK:
 						skillratio += 1200+300*skill_lv;
-						if(s_base_level > 100)
-							skillratio += 15*(s_base_level-100);
+						if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
 						break;
 					case WL_HELLINFERNO:
 						if( s_ele == ELE_FIRE )
-							skillratio += 60 * skill_lv - 100;
+							skillratio = 60 * skill_lv;
 						else
-							skillratio += 240 * skill_lv - 100;
+							skillratio = 240 * skill_lv;
 						if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
 						break;
 					case WL_COMET:
-						if( sc )
-						{ 
-							int addv = 2400, mulv = 500;
-							i = distance_xy(target->x, target->y, sc->comet_x, sc->comet_y);
-							if( i > 1 )
-							{
-								i = (i+3)%4;
-								addv -= 500 * i;
-								mulv -= 100 * i;
-							}
-							skillratio += addv + mulv * skill_lv;
-						}
+					i = distance_xy(target->x, target->y, sc->comet_x, sc->comet_y);
+						if( i < 2 ) skillratio = 2500 + 500 * skill_lv;
 						else
-							skillratio += 2400 + 500 * skill_lv; 
+						if( i < 4 ) skillratio = 1600 + 400 * skill_lv;
+						else
+						if( i < 6 ) skillratio = 1200 + 300 * skill_lv;
+						else
+						skillratio = 800 + 200 * skill_lv;
 						break;
 					case WL_CHAINLIGHTNING_ATK:
 						skillratio += 100+300*skill_lv;
@@ -3385,9 +3373,8 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 					case WL_SUMMON_ATK_WATER:
 					case WL_SUMMON_ATK_WIND:
 					case WL_SUMMON_ATK_GROUND:
-						skillratio += 50*skill_lv-50;
-						if(s_base_level > 100)
-							skillratio += skillratio*(s_base_level-100)/100+(s_job_level/50);
+						skillratio = skill_lv * (s_base_level + s_job_level);
+							if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;	
 						break;
 					case WM_METALICSOUND:
 						skillratio += 120*skill_lv+60*pc_checkskill(sd, WM_LESSON)-100;

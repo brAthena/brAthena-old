@@ -1072,7 +1072,7 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 		{
 			int rate = 0, i;
 			const int pos[5] = {EQP_WEAPON,EQP_HELM,EQP_SHIELD,EQP_ARMOR,EQP_ACC};
-			rate = (6+((skilllv > 2) ? 6:0)+2*skilllv)*status_get_lv(src)/100;
+			rate = 6 * skilllv + sstatus->dex / 10 + sd->status.job_level / 4 - tstatus->dex /5;
 			rate *= 1-tstatus->dex/200;
 
 			for( i = 0; i < skilllv; i++ )
@@ -3901,17 +3901,16 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 		break;
 	case WL_DRAINLIFE:
 		{
-			if(sd){
 				int heal =  skill_attack( BF_MAGIC, src, src, bl, skillid, skilllv, tick, flag);
-				heal = heal * (5 + 5* skilllv) / 100 ; 
-				if(heal > 0 && (rand()%100 < (25+5*skilllv)*(1+sd->status.job_level/50)) && bl->type != BL_SKILL){
+				int rate = 70 + 4 * skilllv + s_job_level / 5;
+				heal = 8 * skilllv;
+				if(heal && rand()%100 < rate && bl->type != BL_SKILL){
 					clif_skill_nodamage(NULL, src, AL_HEAL, heal, 1);
 					status_heal(src, heal, 0, 0);
 				}
-			}		
-		}
+		}		
 		break;
-
+		
 	case WL_TETRAVORTEX:
 		if(sd){
 			int spheres[5] = {0,0,0,0,0},
@@ -4077,9 +4076,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case WL_FROSTMISTY:
 		if( tsc && (tsc->option&(OPTION_HIDE|OPTION_CLOAK|OPTION_CHASEWALK) || tsc->data[SC__INVISIBILITY]) )
 			break;
-
-		sc_start(bl,status_skill2sc(skillid),(int)( (20+12*skilllv)*(1+(sd?s_job_level/200.:0)) ),skilllv,skill_get_time(skillid,skilllv));
-
+		sc_start(bl,status_skill2sc(skillid),20+12*skilllv+s_job_level/5,skilllv,skill_get_time(skillid,skilllv));
 		if( path_search(NULL,src->m,src->x,src->y,bl->x,bl->y,1,CELL_CHKWALL) )
 			skill_attack(BF_MAGIC,src,src,bl,skillid,skilllv,tick,flag);
 		break;
@@ -7348,18 +7345,17 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			clif_skill_nodamage(src, bl, skillid, skilllv, 1);
 		}
 		break;
-
+		
 	case WL_WHITEIMPRISON:
-		if(!(tsc && tsc->data[type]) && (src == bl || battle_check_target(src, bl, BCT_ENEMY))){
-			int rate = 50 + 3 * skilllv;
-			if( sd ) rate = (int)( rate * (1 + s_job_level / 100. ) );
+		if( !(tsc && tsc->data[type]) && (src == bl || battle_check_target(src, bl, BCT_ENEMY)) )
+		{
+			int rate = 50 + 3 * skilllv + s_job_level / 4;
 			i = sc_start2(bl,type,rate,skilllv,src->id,(src == bl)?skill_get_time2(skillid,skilllv):skill_get_time(skillid, skilllv));
 			clif_skill_nodamage(src,bl,skillid,skilllv,i);
-			if(tsc && tsc->data[SC_WHITEIMPRISON])
-				status_change_end(bl,SC_WHITEIMPRISON,-1);
-			if(sd && i)
-				skill_blockpc_start(sd,skillid,4000); 
-		}else if(sd)
+			if( sd && i )
+				skill_blockpc_start(sd,skillid,4000);
+		}
+		else if( sd )
 			clif_skill_fail(sd,skillid,0,0,0);
 		break;
 
@@ -7388,14 +7384,13 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			if(tsc && tsc->data[SC_STONE])
 				status_change_end(bl,SC_STONE,-1);
 			else
-				status_change_start(bl,SC_STONE,10000,skilllv,0,0,1000,(7+2*skilllv)*1000,2);
+				status_change_start(bl,SC_STONE,10000,skilllv,0,0,1000,(8+2*skilllv)*1000,2);
 		}else{
-			int rate = 40 + 8 * skilllv;
-			rate = ((sd) ? (int)(rate*(1+s_job_level/200.)):40+8*skilllv);
+			int rate = 40 + 8 * skilllv + s_job_level / 4;
 			if(rand()%100 < rate){
 				rate = 0;
 				if(!tsc->data[SC_STONE])
-					rate = status_change_start(bl,SC_STONE,10000,skilllv,0,0,1000,(7+2*skilllv)*1000,2);
+					rate = status_change_start(bl,SC_STONE,10000,skilllv,0,0,1000,(8+2*skilllv)*1000,2);
 				else{
 					rate = 1;
 					status_change_end(bl,SC_STONE,-1);
@@ -7443,7 +7438,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 
 	case WL_READING_SB:
 		if(sd){
-			int i,preserved = 0,max_preserve = 5+(4+4*pc_checkskill(sd,WL_FREEZE_SP))+sd->status.base_level/15+sstatus->int_/10;
+			int i, preserved = 0, max_preserve = 4 * pc_checkskill(sd,WL_FREEZE_SP) + sstatus->int_ / 10 + sd->status.base_level / 10;
 			ARR_FIND(0, MAX_SPELLBOOK, i, sd->rsb[i].skillid == 0);
 			if(i == MAX_SPELLBOOK){
 				clif_skill_fail(sd,skillid,0x04,0,0);
@@ -15465,28 +15460,30 @@ int skill_magicdecoy(struct map_session_data *sd, int nameid){
 	return 0;
 }
 
-int skill_spellbook (struct map_session_data *sd, int nameid){
-	int i,j,points,skillid,preserved = 0,max_preserve;
+int skill_spellbook (struct map_session_data *sd, int nameid)
+{
+	int i, j, points, skillid, preserved = 0, max_preserve;
 	nullpo_ret(sd);
+	
+	if( sd->sc.data[SC_STOP] ) status_change_end(&sd->bl,SC_STOP,-1);
+	if( nameid <= 0 ) return 0;
 
-	if(sd->sc.data[SC_STOP])
-		status_change_end(&sd->bl,SC_STOP,-1);
-	if(nameid <= 0)
-		return 0;
-
-	if(pc_search_inventory(sd,nameid) < 0){
+	if( pc_search_inventory(sd,nameid) < 0 )
+	{ 
 		clif_skill_fail(sd,WL_READING_SB,0x04,0,0);
 		return 0;
 	}
 
-	ARR_FIND(0,MAX_SPELLBOOK,j,sd->rsb[j].skillid == 0);
-	if(j == MAX_SPELLBOOK){
+	ARR_FIND(0,MAX_SPELLBOOK,j,sd->rsb[j].skillid == 0); 
+	if( j == MAX_SPELLBOOK )
+	{ 
 		clif_skill_fail(sd,WL_READING_SB,0x35,0,0);
 		return 0;
 	}
 
-	ARR_FIND(0,MAX_SKILL_SPELLBOOK_DB,i,skill_spellbook_db[i].nameid == nameid); // Search for information of this item
-	if(i == MAX_SKILL_SPELLBOOK_DB){
+	ARR_FIND(0,MAX_SKILL_SPELLBOOK_DB,i,skill_spellbook_db[i].nameid == nameid); 
+	if( i == MAX_SKILL_SPELLBOOK_DB )
+	{ 
 		clif_skill_fail(sd,WL_READING_SB,0x04,0,0);
 		return 0;
 	}
@@ -15494,17 +15491,19 @@ int skill_spellbook (struct map_session_data *sd, int nameid){
 	skillid = skill_spellbook_db[i].skillid;
 	points = skill_spellbook_db[i].points;
 
-	if(!pc_checkskill(sd,skillid)){
+	if( !pc_checkskill(sd,skillid) )
+	{ 
 		sc_start(&sd->bl,SC_SLEEP,100,1,skill_get_time(WL_READING_SB,pc_checkskill(sd,WL_READING_SB)));
 		clif_skill_fail(sd,WL_READING_SB,0x34,0,0);
 		return 0;
 	}
 
-	max_preserve = 5 + (4 + 4*pc_checkskill(sd,WL_FREEZE_SP)) + sd->status.base_level/15 + status_get_int(&sd->bl)/10;
+	max_preserve = 4 * pc_checkskill(sd,WL_FREEZE_SP) + status_get_int(&sd->bl) / 10 + sd->status.base_level / 10;
 	for( i = 0; i < MAX_SPELLBOOK && sd->rsb[i].skillid; i++ )
 		preserved += sd->rsb[i].points;
 
-	if((preserved+points) >= max_preserve){
+	if( preserved + points >= max_preserve )
+	{ 
 		clif_skill_fail(sd,WL_READING_SB,0x04,0,0);
 		return 0;
 	}
