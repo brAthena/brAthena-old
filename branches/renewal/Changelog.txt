@@ -9,6 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0833 - 22/08/2011 [Mark]
+	* Ativadas habilidades:
+	- Insígnia do Fogo
+	- Insígnia da Água
+	- Insígnia do Vento
+	- Insígnia da Terra
+	- Estas devem ser revisadas e corrigidas.
+
 	r0832 - 21/08/2011 [Protimus]
 	* Corrigida habilidade RK_FIGHTINGSPIRIT (Aura de Combate).
 	- Estava captando a velocidade de movimento com valores errados na fórmula.

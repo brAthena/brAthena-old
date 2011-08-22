@@ -555,6 +555,11 @@ typedef enum sc_type {
 	SC_TIDAL_WEAPON_OPTION,
 	SC_ROCK_CRUSHER,
 	SC_ROCK_CRUSHER_ATK,
+	SC_FIRE_INSIGNIA,
+	SC_WATER_INSIGNIA,
+	SC_WIND_INSIGNIA,
+	SC_EARTH_INSIGNIA,
+	
 
 	SC_MAX, //Automatically updated max, used in for's to check we are within bounds.
 } sc_type;

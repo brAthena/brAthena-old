@@ -378,14 +378,17 @@ int skill_calc_heal(struct block_list *src, struct block_list *target, int skill
 	{
 		if( sc->data[SC_CRITICALWOUND] && heal )
 		{	// Critical Wound has no effect on offensive heal. [Inkfish]
+		if( sc->data[SC_CRITICALWOUND] && heal )	// Critical Wound has no effect on offensive heal. [Inkfish]
 			hp -= hp * sc->data[SC_CRITICALWOUND]->val2 /100;
-		}
+		
 		if( sc->data[SC_DEATHHURT] && heal )
-		{
 			hp -= hp * sc->data[SC_DEATHHURT]->val2 /100;
-		}
+		
 		if( sc->data[SC_INCHEALRATE] && skill_id != NPC_EVILLAND && skill_id != BA_APPLEIDUN )
 			hp += hp * sc->data[SC_INCHEALRATE]->val1/100; // Only affects Heal, Sanctuary and PotionPitcher.(like bHealPower) [Inkfish]
+			
+		if( sc->data[SC_WATER_INSIGNIA] && sc->data[SC_WATER_INSIGNIA]->val1 == 2)
+			hp += hp / 10;
 	}
 
 	hp = hp*(100+skill)/100;
@@ -5920,6 +5923,11 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 				hp -= hp * tsc->data[SC_DEATHHURT]->val2 / 100;
 				sp -= sp * tsc->data[SC_DEATHHURT]->val2 / 100;
 			}
+			if( tsc->data[SC_WATER_INSIGNIA] && tsc->data[SC_WATER_INSIGNIA]->val1 == 2)
+			{
+				hp += hp / 10;
+				sp += sp / 10;
+			}
 			clif_skill_nodamage(src,bl,skillid,skilllv,1);
 			if( hp > 0 || (skillid == AM_POTIONPITCHER && sp <= 0) )
 				clif_skill_nodamage(NULL,bl,AL_HEAL,hp,1);
@@ -6656,6 +6664,11 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			{
 				hp -= hp * tsc->data[SC_DEATHHURT]->val2 / 100;
 				sp -= sp * tsc->data[SC_DEATHHURT]->val2 / 100;
+			}
+			if( tsc->data[SC_WATER_INSIGNIA] && tsc->data[SC_WATER_INSIGNIA]->val1 == 2)
+			{
+				hp += hp / 10;
+				sp += sp / 10;
 			}
 			if(hp > 0)
 				clif_skill_nodamage(NULL,bl,AL_HEAL,hp,1);
@@ -11048,6 +11061,13 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 			}
 			break;
 
+		case UNT_FIRE_INSIGNIA:
+		case UNT_WATER_INSIGNIA:
+		case UNT_WIND_INSIGNIA:
+		case UNT_EARTH_INSIGNIA:
+			sc_start(bl,SC_FIRE_INSIGNIA, 100, sg->skill_lv, sg->interval);
+			break;
+			
 		case UNT_VACUUM_EXTREME:
 			sc_start(bl, SC_VACUUM_EXTREME, 100, sg->skill_lv, sg->limit);
 			break;
@@ -11195,6 +11215,10 @@ static int skill_unit_onleft (int skill_id, struct block_list *bl, unsigned int 
 		case EL_WATER_BARRIER:
 		case EL_ZEPHYR:
 		case EL_POWER_OF_GAIA:
+		case SO_FIRE_INSIGNIA:
+		case SO_WATER_INSIGNIA:
+		case SO_WIND_INSIGNIA:
+		case SO_EARTH_INSIGNIA:
 			if (sce)
 				status_change_end(bl, type, INVALID_TIMER);
 			break;
