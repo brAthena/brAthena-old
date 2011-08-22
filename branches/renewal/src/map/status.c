@@ -7755,8 +7755,6 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			break;
 		case SC_BLOODSUCKER:
 			val4 = tick / 1000;
-			if( val4 < 1 )
-				val4 = 1;
 			tick = 1000;
 			break;
 		case SC_STOMACHACHE:

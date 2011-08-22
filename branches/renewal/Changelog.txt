@@ -9,6 +9,16 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0830 - 21/08/2011 [Protimus]
+	* Corrigida habilidade NPC_HELLPOWER (Poder Infernal).
+	- Poderia causar crash quando usado Curar em sua condição.
+	* Corrigida habilidade LG_OVERBRAND (Lança do Destino).
+	- Estava causando crash ao ser copiada.
+	* Corrigida habilidade AB_CLEARANCE (Gênese).
+	- Não estava funcionando com espírito do espiritualista ativado (SL).
+	* Corrigida habilidade GN_BLOOD_SUCKER (Planta Sanguessuga).
+	- Removida condição de valor desnecessário para fórmulas.
+
 	r0829 - 21/08/2011 [Mark]
 	* Corrigidos venenos do Sicário.
 	- Death Hurt: não estava diminuindo valores de habilidades de cura.

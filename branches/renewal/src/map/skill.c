@@ -2264,6 +2264,10 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 		case GN_HELLS_PLANT_ATK:
 			copy_skill = GN_HELLS_PLANT;
 			break;
+		case LG_OVERBRAND_BRANDISH:
+		case LG_OVERBRAND_PLUSATK:
+			copy_skill = LG_OVERBRAND;
+			break;
 		}
 
 		if( can_copy(tsd,copy_skill,bl) && (!tsd->status.skill[copy_skill].id || tsd->status.skill[copy_skill].flag >= 13) )
@@ -4499,6 +4503,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		} else //Invalid target, skip resurrection.
 			break;
 
+
 	case ALL_RESURRECTION:
 		if(sd && (map_flag_gvg(bl->m) || map[bl->m].flag.battleground))
 		{	//No reviving in WoE grounds!
@@ -4509,7 +4514,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			break;
 		{
 			int per = 0, sper = 0;
-			if (status_get_sc(bl)->data[SC_HELLPOWER])
+			if (tsc && tsc->data[SC_HELLPOWER])
 				break;
 
 			if (map[bl->m].flag.pvp && dstsd && dstsd->pvp_point < 0)
@@ -7251,10 +7256,9 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 
 	case AB_CLEARANCE:
 		if( flag&1 || (i = skill_get_splash(skillid, skilllv)) < 1 )
-		{
+		{ 
 			clif_skill_nodamage(src,bl,skillid,skilllv,1);
-			if((dstsd && (dstsd->class_&MAPID_UPPERMASK) == MAPID_SOUL_LINKER)
-				|| (tsc && tsc->data[SC_SPIRIT]) || rand()%100 >= 50 + 10 * skilllv)
+			if((dstsd && (dstsd->class_&MAPID_UPPERMASK) == MAPID_SOUL_LINKER) || rand()%100 >= 30 + 10 * skilllv)
 			{
 				if (sd)
 					clif_skill_fail(sd,skillid,0,0,0);
@@ -7275,30 +7279,41 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 				case SC_INTFOOD:     case SC_DEXFOOD:     case SC_LUKFOOD:
 				case SC_HITFOOD:     case SC_FLEEFOOD:    case SC_BATKFOOD:
 				case SC_WATKFOOD:    case SC_MATKFOOD:    case SC_DANCING:
-				case SC_GUILDAURA:   case SC_AUTOBERSERK: case SC_CARTBOOST:
-				case SC_MELTDOWN:    case SC_SAFETYWALL:  case SC_SMA:
-				case SC_SPEEDUP0:    case SC_NOCHAT:      case SC_ANKLE:
-				case SC_SPIDERWEB:   case SC_JAILED:      case SC_ITEMBOOST:
-				case SC_EXPBOOST:    case SC_LIFEINSURANCE: case SC_BOSSMAPINFO:
-				case SC_PNEUMA:      case SC_AUTOSPELL:   case SC_INCHITRATE:
-				case SC_INCATKRATE:  case SC_NEN:         case SC_READYSTORM:
-				case SC_READYDOWN:   case SC_READYTURN:   case SC_READYCOUNTER:
-				case SC_DODGE:       case SC_WARM:        case SC_SPEEDUP1:
-				case SC_AUTOTRADE:   case SC_CRITICALWOUND: case SC_JEXPBOOST:
-				case SC_ELECTRICSHOCKER: case SC_BITE:    case SC__STRIPACCESSORY:
-				case SC__ENERVATION: case SC__GROOMY:     case SC__IGNORANCE:
-				case SC__LAZINESS:   case SC__UNLUCKY:    case SC__WEAKNESS:
-				case SC_MAGNETICFIELD:case SC_NEUTRALBARRIER_MASTER:case SC_NEUTRALBARRIER:	
-				case SC_STEALTHFIELD_MASTER:case SC_STEALTHFIELD:
-				case SC_SAVAGE_STEAK:  case SC_COCKTAIL_WARG_BLOOD:case SC_MINOR_BBQ:   
-				case SC_SIROMA_ICE_TEA: case SC_DROCERA_HERB_STEAMED: case SC_PUTTI_TAILS_NOODLES:
+				case SC_GUILDAURA:   case SC_SPIRIT:      case SC_AUTOBERSERK:
+				case SC_CARTBOOST:   case SC_MELTDOWN:    case SC_SAFETYWALL:
+				case SC_SMA:         case SC_SPEEDUP0:    case SC_NOCHAT:
+				case SC_ANKLE:       case SC_SPIDERWEB:   case SC_JAILED:
+				case SC_ITEMBOOST:   case SC_EXPBOOST:    case SC_LIFEINSURANCE:
+				case SC_BOSSMAPINFO: case SC_PNEUMA:      case SC_AUTOSPELL:
+				case SC_INCHITRATE:  case SC_INCATKRATE:  case SC_NEN:
+				case SC_READYSTORM:  case SC_READYDOWN:   case SC_READYTURN:
+				case SC_READYCOUNTER:case SC_DODGE:       case SC_WARM:
+				case SC_SPEEDUP1:    case SC_AUTOTRADE:   case SC_CRITICALWOUND:
+				case SC_JEXPBOOST:	 case SC_INVINCIBLE:  case SC_INVINCIBLEOFF:
+				case SC_HELLPOWER:	 case SC_MANU_ATK:    case SC_MANU_DEF:
+				case SC_SPL_ATK:	 case SC_SPL_DEF:	  case SC_MANU_MATK:
+				case SC_SPL_MATK:	 case SC_RICHMANKIM:  case SC_ETERNALCHAOS:
+				case SC_DRUMBATTLE:	 case SC_NIBELUNGEN:  case SC_ROKISWEIL:
+				case SC_INTOABYSS:	 case SC_SIEGFRIED:	  case SC_WHISTLE:
+				case SC_ASSNCROS:	 case SC_POEMBRAGI:	  case SC_APPLEIDUN:
+				case SC_HUMMING:	 case SC_DONTFORGETME: case SC_FORTUNE:
+				case SC_SERVICE4U:	 case SC_FOOD_STR_CASH:	case SC_FOOD_AGI_CASH:
+				case SC_FOOD_VIT_CASH:	case SC_FOOD_DEX_CASH:	case SC_FOOD_INT_CASH:
+				case SC_FOOD_LUK_CASH:   case SC_ELECTRICSHOCKER: case SC_BITE:
+				case SC__STRIPACCESSORY: case SC__ENERVATION: case SC__GROOMY:
+				case SC__IGNORANCE:  case SC__LAZINESS:   case SC__UNLUCKY:
+				case SC__WEAKNESS:   case SC_SAVAGE_STEAK:  case SC_COCKTAIL_WARG_BLOOD:
+				case SC_MAGNETICFIELD:case SC_MINOR_BBQ:   case SC_SIROMA_ICE_TEA:
+				case SC_DROCERA_HERB_STEAMED: case SC_PUTTI_TAILS_NOODLES:
+				case SC_NEUTRALBARRIER_MASTER: case SC_NEUTRALBARRIER:
+				case SC_STEALTHFIELD_MASTER: case SC_STEALTHFIELD:
 					continue;
 				case SC_ASSUMPTIO:
 					if( bl->type == BL_MOB )
 						continue;
 					break;
 				}
-				if(i==SC_BERSERK || i==SC_SATURDAYNIGHTFEVER) tsc->data[i]->val2=0;
+				if(i==SC_BERSERK || i==SC_SATURDAYNIGHTFEVER) tsc->data[i]->val2=0; 
 				status_change_end(bl,(sc_type)i,-1);
 			}
 			break;
