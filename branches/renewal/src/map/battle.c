@@ -2002,11 +2002,13 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					break;
 				case RK_IGNITIONBREAK:
 					i = distance_bl(src,target);
-					skillratio += 100 * skill_lv;
-					if( i < 4 ) skillratio += 100 * skill_lv;
-					if( i < 2 ) skillratio += 100;
-					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
-					if( sstatus->rhw.ele == ELE_FIRE )	skillratio +=  skillratio / 2;
+					if( i < 2 ) skillratio = 200 + 200 * skill_lv;
+					else
+					if( i < 4 ) skillratio = 100 + 200 * skill_lv;
+					else
+					skillratio = 100 + 100 * skill_lv;
+					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;	
+					if( sstatus->rhw.ele == ELE_FIRE )	skillratio +=  skillratio / 2;	
 					break;
 				case RK_SONICWAVE:
 					skillratio += 400 + 100*skill_lv;

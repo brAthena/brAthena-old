@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0832 - 21/08/2011 [Protimus]
+	* Corrigida habilidade RK_FIGHTINGSPIRIT (Aura de Combate).
+	- Estava captando a velocidade de movimento com valores errados na fórmula.
+	* Corrigida habilidade RK_IGNITIONBREAK (Impacto Flamejante).
+	- Correções para fórmula de dano.
+
 	r0831 - 21/08/2011 [Protimus]
 	* Corrigida habilidade WL_FROSTMISTY (Zero Absoluto).
 	- Modificado tempo de duração do status FREEZING (Hipotermia).

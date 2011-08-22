@@ -7143,7 +7143,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		if( flag&1 )
 		{
 			if( src == bl )
-				sc_start2(bl,type,100,skill_area_temp[5],40*(sd?pc_checkskill(sd,RK_RUNEMASTERY):10),skill_get_time(skillid,skilllv));
+				sc_start2(bl,type,100,skill_area_temp[5],10*(sd?pc_checkskill(sd,RK_RUNEMASTERY):10),skill_get_time(skillid,skilllv));
 			else
 				sc_start(bl,type,100,skill_area_temp[5]/4,skill_get_time(skillid,skilllv));
 		}
