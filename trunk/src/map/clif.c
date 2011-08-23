@@ -11916,11 +11916,11 @@ void clif_parse_NoviceExplosionSpirits(int fd, struct map_session_data *sd)
 	{
 		unsigned int next = pc_nextbaseexp(sd);
 
-		if( next )
+		if( next || sd->status.base_level >= 99) 
 		{
 			int percent = (int)( ( (float)sd->status.base_exp/(float)next )*1000. );
 
-			if( percent && ( percent%100 ) == 0 )
+			if( (percent && ( percent%100 ) == 0) || sd->status.base_level >= 99 )
 			{// 10.0%, 20.0%, ..., 90.0%
 				sc_start(&sd->bl, status_skill2sc(MO_EXPLOSIONSPIRITS), 100, 17, skill_get_time(MO_EXPLOSIONSPIRITS, 5)); //Lv17-> +50 critical (noted by Poki) [Skotlex]
 				clif_skill_nodamage(&sd->bl, &sd->bl, MO_EXPLOSIONSPIRITS, 5, 1);  // prayer always shows successful Lv5 cast and disregards noskill restrictions

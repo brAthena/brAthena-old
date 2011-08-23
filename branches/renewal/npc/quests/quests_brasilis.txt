@@ -24,6 +24,8 @@
 // | 1.2 Correção de ifs que deveriam ser selects [Dani]    |
 // | - Report por MissingNo (#179)                          |
 // | 1.3 Correção em input [Mark]                           |
+// | 1.4 Correção no npc Doceira [Mark]                     |
+// | - Report #318                                          |
 // \________________________________________________________/
 
 //==================================================//
@@ -148,55 +150,54 @@ brasilis,187,162,5	script	Doceira	476,{
 			getitem 12414,1;
 			set bra_guarana,11;
 		}
-		if(bra_guarana >= 2 && bra_guarana < 9)
-			mes "Doce de guaraná... minha obra-prima, com certeza!";
-		else if(bra_guarana){
-			mes "Se quiser encontrar o guaraná, fale com Paulão.";
-			mes "Ele deve estar no museu.";
-		}else{
-			mes "Ei, você conhece um fruto chamado ^FF0000Guaraná^000000?";
+	} else if(bra_guarana >= 2 && bra_guarana < 9)
+		mes "Doce de guaraná... minha obra-prima, com certeza!";
+	else if(bra_guarana){
+		mes "Se quiser encontrar o guaraná, fale com Paulão.";
+		mes "Ele deve estar no museu.";
+	}else{
+		mes "Ei, você conhece um fruto chamado ^FF0000Guaraná^000000?";
+		next;
+		mes .nome$;
+		mes "Ele se parece com o olho de uma pessoa, é um pouco assustador... Mas ele é muito útil e faz bem ao corpo.";
+		next;
+		mes .nome$;
+		mes "Eu costumava fazer um doce de guaraná muito popular aqui em Brasilis.";
+		mes "Eu sempre ganhava o prêmio de 'Melhor Doce do Ano', era incrível!";
+		next;
+		mes .nome$;
+		mes "Mas de repente a produção de guaraná caiu, o preço subiu, então tive que trocá-lo pelo coco e outras frutas tropicais. Elas não são melhores nem piores que o guaraná. Mas não é a mesma coisa.";
+		next;
+		mes .nome$;
+		if(select("Gostaria de provar esse doce.:Não gosto de doces.") == 2)
+			mes "Que bons tempos eram aqueles...";
+		else{
+			mes "Hum... Eu já vendi todo o meu estoque.";
 			next;
 			mes .nome$;
-			mes "Ele se parece com o olho de uma pessoa, é um pouco assustador... Mas ele é muito útil e faz bem ao corpo.";
+			mes "Mas se me trouxer o guaraná, posso fazer o doce para você.";
 			next;
 			mes .nome$;
-			mes "Eu costumava fazer um doce de guaraná muito popular aqui em Brasilis.";
-			mes "Eu sempre ganhava o prêmio de 'Melhor Doce do Ano', era incrível!";
-			next;
-			mes .nome$;
-			mes "Mas de repente a produção de guaraná caiu, o preço subiu, então tive que trocá-lo pelo coco e outras frutas tropicais. Elas não são melhores nem piores que o guaraná. Mas não é a mesma coisa.";
-			next;
-			mes .nome$;
-			if(select("Gostaria de provar esse doce.:Não gosto de doces.") == 2)
-				mes "Que bons tempos eram aqueles...";
+			if(select("Como encontrar o guaraná?:Ahh, muito difícil...") == 2)
+				mes "Então nem adianta oferecer a cocada, né?";
 			else{
-				mes "Hum... Eu já vendi todo o meu estoque.";
+				mes "Você vai procurar um pouco de guaraná?? Oh...";
 				next;
 				mes .nome$;
-				mes "Mas se me trouxer o guaraná, posso fazer o doce para você.";
+				mes "Será que consegue?";
+				mes "Mesmo que encontre, ele é bem caro.";
+				mes "Bom, aí não tenho certeza...";
 				next;
 				mes .nome$;
-				if(select("Como encontrar o guaraná?:Ahh, muito difícil...") == 2)
-					mes "Então nem adianta oferecer a cocada, né?";
-				else{
-					mes "Você vai procurar um pouco de guaraná?? Oh...";
-					next;
-					mes .nome$;
-					mes "Será que consegue?";
-					mes "Mesmo que encontre, ele é bem caro.";
-					mes "Bom, aí não tenho certeza...";
-					next;
-					mes .nome$;
-					mes "Vou lhe indicar a pessoa com quem eu entrava em contato para comprar guaraná.";
-					mes "Fale com ele e veja o que consegue.";
-					next;
-					mes .nome$;
-					mes "O nome dele é Paulão.";
-					mes "Se não o encontrar na cidade, procure no museu.";
-					mes "Ele é vaidoso, meio afetado.";
-					mes "Ele deve estar no museu hoje, para se exibir como se fosse uma obra de arte. Tenho certeza.";
-					set bra_guarana,1;
-				}
+				mes "Vou lhe indicar a pessoa com quem eu entrava em contato para comprar guaraná.";
+				mes "Fale com ele e veja o que consegue.";
+				next;
+				mes .nome$;
+				mes "O nome dele é Paulão.";
+				mes "Se não o encontrar na cidade, procure no museu.";
+				mes "Ele é vaidoso, meio afetado.";
+				mes "Ele deve estar no museu hoje, para se exibir como se fosse uma obra de arte. Tenho certeza.";
+				set bra_guarana,1;
 			}
 		}
 	}

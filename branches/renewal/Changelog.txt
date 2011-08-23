@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0836 - 23/08/2011 [Mark]
+	* Npc Doceira em quests_brasilis.txt
+
 	r0835 - 22/08/2011 [Mark]
 	* Corrigido erro no envio anterior.
 	* Revertida otimização do arquivo npc/instancias/santuario_selado.txt
