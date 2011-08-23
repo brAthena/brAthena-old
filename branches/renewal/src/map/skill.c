@@ -389,6 +389,7 @@ int skill_calc_heal(struct block_list *src, struct block_list *target, int skill
 			
 		if( sc->data[SC_WATER_INSIGNIA] && sc->data[SC_WATER_INSIGNIA]->val1 == 2)
 			hp += hp / 10;
+		}
 	}
 
 	hp = hp*(100+skill)/100;

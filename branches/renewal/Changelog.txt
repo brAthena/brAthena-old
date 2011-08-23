@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0834 - 22/08/2011 [Protimus]
+	* Corrigido erro do envio anterior.
+
 	r0833 - 22/08/2011 [Mark]
 	* Ativadas habilidades:
 	- Insígnia do Fogo
