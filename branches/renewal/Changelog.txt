@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0835 - 22/08/2011 [Mark]
+	* Corrigido erro no envio anterior.
+	* Revertida otimização do arquivo npc/instancias/santuario_selado.txt
+	- Estava causando erros e entregando recompensa incorreta.
+	
 	r0834 - 22/08/2011 [Protimus]
 	* Corrigido erro do envio anterior.
 

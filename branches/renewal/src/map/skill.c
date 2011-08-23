@@ -371,13 +371,11 @@ int skill_calc_heal(struct block_list *src, struct block_list *target, int skill
 			hp += hp * skill * 2 / 100;
 		break;
 	}
-	if( skill_id == AB_HIGHNESSHEAL ){
-			hp = (hp * (20 + 3 * (skill_lv - 1))) / 10;}
+	if( skill_id == AB_HIGHNESSHEAL )
+		hp = (hp * (20 + 3 * (skill_lv - 1))) / 10;
 
 	if( sc && sc->count )
 	{
-		if( sc->data[SC_CRITICALWOUND] && heal )
-		{	// Critical Wound has no effect on offensive heal. [Inkfish]
 		if( sc->data[SC_CRITICALWOUND] && heal )	// Critical Wound has no effect on offensive heal. [Inkfish]
 			hp -= hp * sc->data[SC_CRITICALWOUND]->val2 /100;
 		
@@ -389,7 +387,6 @@ int skill_calc_heal(struct block_list *src, struct block_list *target, int skill
 			
 		if( sc->data[SC_WATER_INSIGNIA] && sc->data[SC_WATER_INSIGNIA]->val1 == 2)
 			hp += hp / 10;
-		}
 	}
 
 	hp = hp*(100+skill)/100;
