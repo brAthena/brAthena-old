@@ -9,6 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0837 - 30/08/2011 [brn0]
+	* Corrigido problema com a habilidade SR_GENTLETOUCH_REVITALIZE (Chakra do Vigor).
+	- Em alguns casos fazia o dano ficar negativo.
+	* Corrigido problema no reset de habilidades.
+	- Estava considerando pontos de habilidades plagiadas.
+	* Corrigidos os requisitos para a habilidade perfurar em espiral.
+
 	r0836 - 23/08/2011 [Mark]
 	* Npc Doceira em quests_brasilis.txt
 

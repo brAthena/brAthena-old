@@ -6071,8 +6071,8 @@ int pc_resetskill(struct map_session_data* sd, int flag)
 		if( sd->status.skill[i].flag == SKILL_FLAG_PERMANENT )
 			skill_point += lv;
 		else
-		if( sd->status.skill[i].flag >= SKILL_FLAG_REPLACED_LV_0 )
-			skill_point += (sd->status.skill[i].flag - SKILL_FLAG_REPLACED_LV_0);
+		if(sd->status.skill[i].flag >= SKILL_FLAG_REPLACED_LV_0 && sd->status.skill[i].flag != 13)
+			skill_point += sd->status.skill[i].flag - 2;
 
 		if( !(flag&2) )
 		{// reset

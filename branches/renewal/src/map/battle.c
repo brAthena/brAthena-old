@@ -677,8 +677,8 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 		//Reduzindo 90% de dano do corpo fechado
 		if( sc->data[SC_STEELBODY] )
 			damage /= 10;
-		if(sc->data[SC_GT_REVITALIZE])
-			damage -= ((TBL_PC *)bl)->status.vit/2 * sc->data[SC_GT_REVITALIZE]->val1;
+		if(sc->data[SC_GT_REVITALIZE] && damage > 1)
+			damage = max( damage-((TBL_PC *)bl)->status.vit/2 * sc->data[SC_GT_REVITALIZE]->val1, 1);
 
 		if( sc->data[SC__SHADOWFORM] ){
 			struct block_list *s_bl = map_id2bl(sc->data[SC__SHADOWFORM]->val2);
