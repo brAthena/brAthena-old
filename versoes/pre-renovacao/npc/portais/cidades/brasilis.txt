@@ -1,0 +1,42 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Portais de Brasilis                    |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.0/1.1                                |
+// |--------------------------------------------------------|
+// | Descrição: Portais de Brasilis.                        |
+// |--------------------------------------------------------|
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [Lord]                            |
+// | 1.1 Script Revisado [insidemybrain]                    |
+// | 1.2 Adição de mais alguns portais [Dani]               |
+// \________________________________________________________/
+
+brasilis,308,336,0	warp	brasilis_bra_fild01	1,1,bra_fild01,74,34
+bra_fild01,72,34,0	warp	bra_fild01_brasilis	1,1,brasilis,309,334
+brasilis,146,162,0	warp	brasilis_bra_in01	1,1,bra_in01,17,137
+bra_in01,17,134,0	warp	bra_in01_brasilis	1,1,brasilis,148,161
+bra_in01,50,145,0	warp	bra_in01_bra_in01#2	1,1,bra_in01,81,143
+bra_in01,79,142,0	warp	bra_in01_bra_in01#3	1,1,bra_in01,47,144
+bra_in01,50,171,0	warp	bra_in01_bra_in01#4	1,1,bra_in01,82,168
+bra_in01,79,169,0	warp	bra_in01_bra_in01#5	1,1,bra_in01,46,170
+bra_in01,38,6,0	warp	bra_in01_brasilis#1	1,1,brasilis,274,150
+brasilis,274,153,0	warp	brasilis_bra_in01#1	1,1,bra_in01,38,9
+bra_in01,31,28,0	warp	bra_in01_bra_in01#6	1,1,bra_in01,22,70
+bra_in01,25,70	warp	bra_in01_bra_in01#7	1,1,bra_in01,31,25
+bra_in01,31,75,0	warp	bra_in01_bra_in01#8	1,1,bra_in01,138,177
+bra_in01,138,174,0	warp	bra_in01_bra_in01#9	1,1,bra_in01,31,72
+bra_in01,8,66,0	warp	bra_in01_bra_in01#10	1,1,bra_in01,154,23
+bra_in01,157,23,0	warp	bra_in01_bra_in01#11	1,1,bra_in01,11,66
+bra_in01,53,67,0	warp	bra_in01_bra_in01#12	1,1,bra_in01,87,67
+bra_in01,84,67,0	warp	bra_in01_bra_in01#13	1,1,bra_in01,50,67

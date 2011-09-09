@@ -1,0 +1,491 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Novice Skills Quests			    	|
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team			    			|
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.6/1.0				   				|
+// |--------------------------------------------------------|
+// | Descrição: Quest for skills: First Aid, Trick Dead		|
+// |--------------------------------------------------------|
+// | Changelog:						    					|
+// | 1.0 Script Traduzido [Wolf]                            |
+// | - Anotações					    					|
+// \________________________________________________________/
+
+prt_in,234,133,4	script	Nami#qsk_nv	66,{
+	if ((BaseClass == Job_Novice && JobLevel > 3) || (BaseLevel > 11 && NOV_SK < 3)) {
+		mes "[Nami]";
+		mes "Olá!";
+		mes "Eu quero muito ser uma enfermeira!";
+		mes "Sempre vou tentar aprender mais.";
+		mes "Realmente, eu sou boa.";
+		mes "Você deixa eu tentar em você? ? ? . .";
+		next;
+		if (select("Continue a conversa:Slowly slink away. . . .") == 1) {
+			if (NOV_SK >= 0 && NOV_SK <= 2) {
+				switch(NOV_SK) {
+				case 0:
+					mes "[Nami]";
+					mes "Obrigado por me dar essa chance!";
+					mes "Farei o melhor que poder.";
+					mes "Quando cuido de uma pessoa, Eu nunca";
+					mes "mido esforços. -";
+					next;
+					mes "[Nami]";
+					mes "Deixa eu explicar essa";
+					mes "habilidade que vou usar, ^3355FF' Primeiros Socorros '^000000 ";
+					mes "Ela não requisita nenhum";
+					mes "item ou equipamento especial . .";
+					mes "Usando apenas uma camisa antiga, algumas poções,";
+					mes "e alguns materiais insubstanciais";
+					next;
+					mes "[Nami]";
+					mes "Você pode realizar os primeiros socorros. -";
+					mes "É uma simples habilidade que quando";
+					mes "usada recupera um pouco do seu HP.";
+					mes "Não me importo de te ensinar...";
+					mes "Se você quiser aprender essa habilidade,";
+					mes "não é muito difícil. . .";
+					next;
+					mes "[Nami]";
+					mes "Primeiros socorros requere";
+					mes "algumas preparações. . .";
+					mes "Alguns itens que você precisa trazer é";
+					mes "^3355FF' 3 Ervas Vermelhas '^000000 ";
+					mes "^3355FF' 3 Trevos '^000000 ";
+					mes "^3355FF' 1 Bandagem Esterelizada '^000000 ";
+					next;
+					mes "[Nami]";
+					mes "Você pode encontrar esses itens";
+					mes "em monstros aqui por perto";
+					mes "ou comprar com mercadores.";
+					mes "Não deve ser difícil preparar esses itens";
+					mes "para a habilidade Primeiro Socorros.";
+					next;
+					mes "[Nami]";
+					mes "O único item que você deve demorar";
+					mes "para conseguir é a bandagem.";
+					mes "Ele se encontra no segundo andar";
+					mes "do Castelo de Prontera, lá você";
+					mes "encontra um enfermeiro que te fornecerá";
+					mes "o item. Você deverá vê-lo para conseguir o item";
+					next;
+					mes "[Nami]";
+					mes "Se você encontrar esses itens, ";
+					mes "Eu ficarei feliz de te ensinar a habilidade.";
+					mes "Bem, eu vou estar aguardando o seu retorno.";
+					set NOV_SK,1;
+					close;
+				case 1:
+					mes "[Nami]";
+					mes "Primeiros socorros exige";
+					mes "certos simples itens. . .";
+					mes "Algum dos pequenos simples itens que você deve ter em mão, são ";
+					mes "^3355FF' 3 Ervas Vermelhas '^000000 ";
+					mes "^3355FF' 3 Trevos '^000000 ";
+					mes "^3355FF' 1 Bandagem Esterelizada '^000000 ";
+					next;
+					mes "[Nami]";
+					mes "Você pode encontrar esses itens";
+					mes "em monstros aqui por perto";
+					mes "ou comprar com mercadores.";
+					mes "Não deve ser difícil preparar esses itens";
+					mes "para a habilidade Primeiro Socorros.";
+					next;
+					mes "[Nami]";
+					mes "O único item que você deve demorar";
+					mes "para conseguir é a bandagem.";
+					mes "Dois mapas a leste daqui você pode";
+					mes "encontrar o enfermeiro que pode lhe conceder";
+					mes "o item. Você deverá vê-lo para";
+					mes "conseguir o item. . . ";
+					close;
+				case 2:
+					if (countitem(507) > 2 && countitem(705) > 2) {
+						delitem 507,3; //Red_Herb
+						delitem 705,3; //Clover
+						mes "[Nami]";
+						mes "Olá, bem vindo de volta!";
+						mes "Você fez bem em encontrar";
+						mes "os itens necessários.";
+						mes "Sei que o enfermeiro é um pouco";
+						mes "estranho, tenho certeza que foi um pouco complicado. . .";
+						mes "hee hee hee . . . . .";
+						next;
+						mes "[Nami]";
+						mes "Bem, vamos começar nosso treinamento.";
+						mes "Quando você usa o Primeiro Socorros";
+						mes "você usa 3 de SP que é convertido";
+						mes "em uma taxa de 5 HP.";
+						mes "Isso é feito com Primeiro Socorros e";
+						mes "seus fornecimentos.";
+						next;
+						mes "[Nami]";
+						mes "Você deve pegar isso e colocar aqui. . .";
+						mes "Então isso poderá curar o ferimento. . .";
+						mes "Depois disso você terá que aplicar isso. . .";
+						mes "Não!!! Não é fácil? ! ? !";
+						next;
+						mes "[Nami]";
+						mes ". . Basicamente.";
+						mes "Você tem que pegar";
+						mes "certas ervas e alguns itens";
+						mes "comuns, combiná-los, e. . .";
+						mes "Pimba !!";
+						next;
+						skill 142,1,0;
+						set NOV_SK,3;
+						mes "[Nami]";
+						mes "Sim sim, isso mesmo!";
+						mes "Agora você tem essa";
+						mes "habilidade, espero que ela possa te ajudar";
+						mes "no futuro.";
+						mes "Obrigado e tenha um bom dia!~~~";
+						close;
+					}
+					else {
+						mes "[Nami]";
+						mes "Primeiros socorros exige";
+						mes "certos simples itens. . .";
+						mes "Algum dos pequenos simples itens que você deve ter em mão, são ";
+						mes "^3355FF' 3 Ervas Vermelhas '^000000 ";
+						mes "^3355FF' 3 Trevos '^000000 ";
+						mes "^3355FF' 1 Bandagem Esterelizada '^000000 ";
+						close;
+					}
+				}
+			}
+			else {
+				mes "[Nami]";
+				mes ". . . . . Z z z";
+				mes "Me desculpe!!!...Eu sei que fiz tudo errado...!!";
+				mes "ahhhh ..";
+				mes "!! *sigh* !!";
+				mes "- *revira os olhos* -";
+				close;
+			}
+		}
+		else {
+			mes "[Nami]";
+			mes "Ei! .. Onde você vai? !";
+			mes "Venha até aqui e tenha uma chance!";
+			mes "Prick and its over !!";
+			mes "Tenha paciência! ! !";
+			close;
+		}
+	}
+	else {
+		mes "[Nami]";
+		mes "Estou trabalhando duro para receber";
+		mes "minha licensa de enfermeira . . .";
+		mes "Eu acho que não é tão fácil";
+		mes "se tornar uma enfermeira . .";
+		mes "Será que é por causa da minha falta de experiência?";
+		next;
+		mes "[Nami]";
+		mes "Se você tivesse fosse pelo";
+		mes "menos um da primeira classe . .";
+		mes "ou talvez um ^3355FF aprendiz com 4 de classe^000000";
+		mes "Eu poderia ter falado com";
+		mes "você um pouco mais. . . . . . .";
+		close;
+	}
+}
+
+prt_in,73,87,4	script	Chivalry Member#qsk_nv	65,{
+	if ((BaseJob == Job_Novice && Upper != 1 && JobLevel > 6) && NOV_SK >= 3 && NOV_SK <= 5) {
+		mes "[Bulma]";
+		mes "Sim. . . Parece ser bom. . .";
+		mes "Eu sou um cavaleiro da guilda de";
+		mes "cavaleiros de Prontera! Kuhahhahhahah !!";
+		mes "Não tem muito tempo que eu me tornei um";
+		mes " cavaleiro, mas parece ser bom, não?";
+		mes "Oque você acha? ? ?";
+		next;
+		switch(NOV_SK) {
+		case 3:
+			mes "[Bulma]";
+			mes "Olá meu jovem amigo -";
+			mes "Você me faz lembrar quando eu era um jovem";
+			mes "espadachim. . . ";
+			mes "Kekekkek, Eu tenho saudades dessa época. .";
+			mes "Olhe para mim agindo como uma pessoa madura.";
+			mes "Heh heh Desculpe...";
+			next;
+			mes "[Bulma]";
+			mes "Eu ainda sou jovem!!! Não sou???";
+			mes "Se você trabalhar duro e ser paciente,";
+			mes "você passará para a classe que você desejar.";
+			mes "É só ter paciencia, mas que";
+			mes "vida boa kekkeke";
+			mes "Hmm, Eu gostaria de te ajudar . .";
+			next;
+			mes "[Bulma]";
+			mes ". . . . . Eu não estou entendendo porque você";
+			mes "está me olhando assim. Garanto à você que";
+			mes "isso possa parecer um pouco estranho no começo, mas";
+			mes "tenho a dizer coisas para você que será de grande ajuda . .";
+			next;
+			mes "[Bulma]";
+			mes "Ha ha... Parece que você está ficando";
+			mes "um pouco interessado no que tenho a dizer.";
+			mes "Eu posso te ensinar uma habilidade muito útil!";
+			mes "Essa habilidade é para fingir de morto! '";
+			mes "Não Não, É mais do que fingir, você ";
+			mes "realmente parece estar morto!!! ..";
+			next;
+			mes "[Bulma]";
+			mes "O nome da habilidade é ^3355FF' Fingir de Morto '^000000";
+			mes "É uma habilidade que eu usei quando era aprendiz.";
+			mes "Mas eu não uso mais por ser uma";
+			mes "habilidade de aprendiz. Na verdade, é preciso";
+			mes "uma extrema concentração e habilidade";
+			mes "para fazer essa habilidade parecer verdadeira.";
+			next;
+			mes "[Bulma]";
+			mes "Por exemplo,";
+			mes "Se você é atacado por um forte monstro";
+			mes "e não pode sobreviver.";
+			mes "Você usa a habilidade Fingir de Morto!";
+			mes "Mas se o monstro for fraco,";
+			mes "você pode controlar ele, né?";
+			next;
+			mes "[Bulma]";
+			mes "A habilidade vai te ajudar muito";
+			mes "em situações como estas.";
+			mes "É uma habilidade de forte espírito.";
+			mes "O objetivo da habilidade é apararentemente";
+			mes "parecer um morto. . .";
+			next;
+			mes "[Bulma]";
+			mes "Acho que já expliquei suficientemente.";
+			mes "Eu posso te dizer olhando pros seus olhos";
+			mes "que você está pronto para o treinamento.";
+			mes "Não vamos nos atrasar!";
+			mes "Ok, tome esta pílula antes. . .";
+			mes "Vamos ver até onde isso vai. . .";
+			next;
+			mes "[Bulma]";
+			mes "Dentro de 10 minutos, você deverá";
+			mes "ir ao segundo andar do castelo à";
+			mes "leste de prontera. ^3355FF' Crachá de Aprendiz '^000000 é";
+			mes "o item que você terá que buscar. ! . .";
+			next;
+			mes "^3355FF- *Engoliu* (Você engoliu a pílula) -^000000";
+			next;
+			mes "[Bulma]";
+			mes "A pílula que você acabou de tomar vai fazer";
+			mes "você ficar com dificuldade em respirar. . .";
+			mes "Kekekk . .AH HA - Brincadeira !";
+			mes "É uma pílula para dá-lhe calma";
+			mes "mentalmente para você ter paciencia.";
+			mes "É melhor você fazer com calma e certo";
+			next;
+			mes "[Bulma]";
+			mes "do que você correr.";
+			mes "Ok? VÁ! ! ! ! ~~~~~";
+			mes "Se você atrasar, terá que fazer isso denovo! !";
+			mes "Agora VÁ ! VÁ ! VÁ !";
+			mes "Corre ~~~~~!!!!";
+			set NOV_SK,4;
+			close;
+		case 4:
+			mes "[Bulma]";
+			mes "Ei! O que você está fazendo aqui? !";
+			mes "Você tem que ser muito irresponsável";
+			mes "para estar aqui agora com o tempo se esgotando.";
+			mes "Corra Corra Corra! - - - - -";
+			next;
+			mes "[Bulma]";
+			mes "A leste daqui!";
+			mes "No segundo andar do castelo de prontera!";
+			mes "Okayyyyy~~~!! *Dá adeus*";
+			close;
+		case 5:
+			if (countitem(7039) > 0) {
+				mes "[Bulma]";
+				mes "Ei ... Vejo que você pode -";
+				mes "terminar sua missão! ! ! . .";
+				mes "Se você puder suportar tudo isso,";
+				mes "não deverá ser um problema usar";
+				mes "essa habilidade. É um dom natural!";
+				next;
+				mes "[Bulma]";
+				mes "Agora, se você se sentir ameaçado,";
+				mes "use essa habilidade.";
+				mes " ' Fingir de Morto ' ";
+				mes "Ok ok, é por aí! ! !";
+				set NOV_SK,6;
+				delitem 7039,1; //Novice_Nametag
+				skill 143,1,0;
+				close;
+			}
+			else {
+				mes "[Bulma]";
+				mes "What? -";
+				mes "Why haven't you finished your quest?";
+				mes " *Tsk* *Tsk* You must have lost the pass . . .";
+				mes "Such irresponsibility is not acceptable.";
+				mes "I can't accept you into training until";
+				mes "I know you are capable. Go and try again.";
+				next;
+				mes "[Bulma]";
+				mes "Não me veje de ânimo leve. . .";
+				mes "Se eu disse pra você vir em 10 minutos,";
+				mes "era para ter vindo nesse tempo.";
+				mes "Para que você tenha outra chance,";
+				mes "você terá que começar desde o início. . .";
+				mes "Faça certo desta vez ! ! ! !";
+				set NOV_SK,4;
+				close;
+			}
+		}
+	}
+	else {
+		mes "[Bulma]";
+		mes "Pois é ... Lembro-me da época de Aprendiz...";
+		mes "É embaraçoso esses anos de Aprendiz.";
+		mes "Uau ... É engraçado pensar sobre aqueles anos.";
+		mes "Aqueles anos foram difíceis. . .";
+		mes "Felizmente você pode usar o Primeiro Socorros";
+		mes "quando você atingir o Nível 7 de Classe.";
+		next;
+		mes "[Bulma]";
+		mes "Isso me salvou muitas vezes no passado. . .";
+		mes "Tenho certeza que te ajudar muito também.";
+		mes "Espero que seja algo que você use bem . .";
+		next;
+		mes "[Bulma]";
+		mes "Se você tem amigos aprendizes,";
+		mes "fale de mim para eles.";
+		mes "Se eu puder, vou ajudá-los";
+		mes "da melhor forma possível . . . .";
+		close;
+	}
+}
+
+prt_castle,175,146,4	script	Nursing Instructor#qsk_n	50,{
+	mes "[Dread Lord]";
+	mes ". . . . . . . . . .";
+	mes ". . . . . . . . . .";
+	mes "Pare de importunar-me! ! !";
+	mes "Eu estou muito ocupado ! ! !";
+	mes "Quer apenas enxer o saco ? ! ? !";
+	next;
+	if (NOV_SK == 0 || NOV_SK == 1 || NOV_SK == 2 || NOV_SK == 4 || NOV_SK == 5) {
+		switch(NOV_SK) {
+		case 0:
+			mes "[Dread Lord]";
+			mes "As pessoas que trabalham aqui";
+			mes "na clinica de Prontera estão lutando";
+			mes "contra a vida e a morte todos os dias.";
+			mes "É preciso muita paciencia e ";
+			mes "coloca muita tensão sobre nós.";
+			mes "Desculpe se pareço um pouco tenso. . .";
+			next;
+			mes "[Dread Lord]";
+			mes "Eu sou o diretor de Enfermagem.";
+			mes "Há muitas coisas que devo fazer.";
+			mes "Se sua missão foi completa, por favor, saia.";
+			close;
+		case 1:
+			mes "[Dread Lord]";
+			mes "Ohhh . .";
+			mes "Você veio aqui pelas bandagens?";
+			mes "Você sabe mesmo como obtemos";
+			mes "essas preciosas bandagens ?";
+			mes "Eles vêm de um poderoso monstro que";
+			mes "é encontrado nas pirâmides de Morocc.";
+			next;
+			mes "[Dread Lord]";
+			mes "O monstro é uma espécie de múmia.";
+			mes "Nós tiraremos as bandagens podres";
+			mes "do corpo para depois limparmos. . .";
+			mes "Você acredita em mim ? . .";
+			mes "Heh heh... Há mesmo veneno";
+			mes "nas bandagens.";
+			next;
+			mes "[Dread Lord]";
+			mes "Felizmente, o veneno mata outros venenos";
+			mes "e não prejudica os pacientes . .";
+			mes "Você deve destruir o veneno com veneno. . .";
+			mes "Eu acho que ouvi algo similar à isso. . .";
+			mes ". . . . . De qualquer jeito, lhe darei um tempo a";
+			mes "mais para trazer as bandagens,";
+			next;
+			mes "[Dread Lord]";
+			mes "mas hoje, estou muito cansado";
+			mes "para te dar qualquer problema. . .";
+			mes "Se você sempre pratica habilidades como medicina e primeiros socorros,";
+			mes "por favor entre em nossa clínica.";
+			mes "Agora vá e tome cuidado com as bandagens";
+			mes "e tente não ser morto, tenha cuidado. -";
+			next;
+			mes "^3355FF- Pegue 1 Bandagem Esterelizada -^000000";
+			set NOV_SK,2;
+			close;
+		case 2:
+			mes "[Dread Lord]";
+			mes "Olha, se você já concluiu";
+			mes "suas missões saia do meu pé! ! !";
+			mes "Eu não tenho tempo para essas bobagens ..";
+			mes ". . . . .";
+			mes "- Andando *Saindo de perto* . . . . . -";
+			close;
+		case 4:
+			if (countitem(7039) == 0) {
+				mes "[Dread Lord]";
+				mes "Olha esse cara!";
+				mes "Acorde e veja onde você está indo.";
+				mes "O que você está pensando correndo nessa clínica!";
+				mes "Correr??";
+				mes "*Suspiro* . . ";
+				mes "O que você quer? ! ? !";
+				next;
+				mes "[Dread Lord]";
+				mes "Eu entendo. . . .";
+				mes ". . . . . oque ?";
+				mes "Você quer uma bandagem para aprender os primeiros socorros?";
+				mes " *Arg* Aqui toma!";
+				mes "-uau - *esbravejando*";
+				next;
+				mes "^3355FF- Tome 1 Crachá de Aprendiz -^000000";
+				set NOV_SK,5;
+				getitem 7039,1; //Crachá de Aprendiz
+				close;
+			}
+			else {
+				mes "[Dread Lord]";
+				mes "Oque ! !";
+				mes "Eu só vou te dar um!";
+				mes "Você não precisa de mais nada para o teste!";
+				mes "Você quer ser um aprendiz para sempre??";
+				mes "Eu ficaria feliz de fazer isso!";
+				close;
+			}
+			break;
+		case 5:
+			mes "[Dread Lord]";
+			mes "O que mais você quer!";
+			mes "Sai daqui!";
+			mes "SAIA !";
+			close;
+		}
+	}
+	else {
+		mes "[Dread Lord]";
+		mes "Arg, Sai daqui!";
+		mes "Eu não gosto de gritar, mas ..";
+		mes "SAI DAQUI AGORA! ! ! ! ! !";
+		close;
+	}
+}

@@ -1,0 +1,181 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: NGuild - Gerenciadores                 |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.2/1.1                                |
+// |--------------------------------------------------------|
+// | Descrição:                                             |
+// | Argumentos usados nas funções:                         |
+// |   arg(0): Nome do Gerenciador do Castelo.              |
+// |   arg(1): Nome do Clã do Castelo.                      |
+// |   arg(2): Coordenada x1 para ir para Sala do Tesouro.  |
+// |   arg(3): Coordenada y1 para ir para Sala do Tesouro.  |
+// |   arg(4): Sufixos, como para Kafra por exemplo.        |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [cleyton]          	            |
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// | - Anotações                                            |
+// \________________________________________________________/
+
+//==============================================
+function	script	F_GldManager	{
+
+	set @GID, GetCastleData(getarg(1),1);
+	mes "["+getarg(0)+"]";
+	if (@GID == 0){
+		mes "Eu estou aguardando o meu mestre.";
+		mes "Pois bem... Bravo aventureiro, siga o seu destino!";
+		return;
+	}
+	if (getcharid(2) != @GID){
+		mes "Eu estou aqui para seguir ordens do mestre(a) ^5533FF" + getguildmaster(@GID) + "^000000'!";
+		mes "Hey! Você sequer faz parte do Clã!";
+		return;
+	}
+	if (strcharinfo(0) != getguildmaster(@GID)){
+		mes "Você não é ^5533FF" + getguildmaster(@GID) + "^000000!";
+		mes "Eu sigo somente as ordens de ^5533FF" + getguildmaster(@GID) + "^000000'";
+		return 0;
+	}
+
+	mes "Bem-vindo mestre ^5533FF" + getguildmaster(@GID) + "^000000!";
+	mes "Dar-lhe-ei assistência no que puder!";
+	next;
+
+	menu "Serviço de Kafras.",M_Kaf, "Entrar na sala do tesouro.",M_Treas, "Cancelar.",M_End;
+
+	//===========================
+	M_Kaf:
+	//======
+		mes "[ "+getarg(0)+" ]";
+		if (GetCastleData(getarg(1),9) == 1) goto L_Dismiss;
+		if (getgdskilllv(@GID,10001) == 0){
+			mes "Mestre, você não possui contrato com o Escritório Central das Kafras.";
+			mes "Para contratar uma Kafra, você precisa possuir a habilidade de Clã ^5533FFContrato com Kafra^000000.";
+			return;
+		}
+
+		L_Hire:
+			mes "Você gostaria de contratar os serviços de uma Kafra? Você vai precisar de ^5533FF10.000 zenys^000000 para isto...";
+			next;
+			menu "Contratar Kafra.",-,"Cancelar.",sM_KafEnd;
+
+				mes "["+getarg(0)+"]";
+				if (Zeny < 10000){
+					mes "Mestre, você não possui verba para contratar uma Kafra.";
+					mes "A contratação foi cancelada.";
+					return;
+				}
+				set Zeny,Zeny-10000;
+				enablenpc "Assistente Kafra#"+getarg(4);
+				SetCastleData getarg(1),9,1;
+				mes "Você criou um contrato com o Escritório Central das Kafras.";
+				next;
+				cutin "kafra_01",2;
+				mes "[Kafra]";
+				mes "Como você está? Eu estou aqui para providenciar meus serviços úteis! Eu farei o melhor para servi-lo bem.";
+				next;
+				cutin "kafra_01",255;
+				mes "["+getarg(0)+"]";
+				mes "Acho que os serviços da Kafra irão beneficiar os membros do Clã.";
+				return;
+
+			sM_KafEnd:
+				mes "["+getarg(0)+"]";
+				mes "Como você quiser mestre, mas sugiro que contrate uma kafra novamente o mais rápido possível!";
+				return;
+
+		L_Dismiss:
+			mes "Você gostaria de dispensar a Kafra atual?";
+			next;
+			menu "Dispensar.",-,"Cancelar.",sM_KafEnd2;
+
+				cutin "kafra_01",2;
+				mes "[Kafra]";
+				mes "Oh, Mestre! Eu fiz algo errado? Se fiz, você poderia me perdoar?";
+				next;
+				menu "Dispensar a Kafra.",-,"Cancelar.",ssM_KafEnd2;
+
+					mes "[Kafra]";
+					mes "É uma pena que não irei mais servir ao seu Clã....";
+					next;
+					disablenpc "Assistente Kafra#"+getarg(4);
+					SetCastleData getarg(1),9,0;
+					cutin "kafra_01",255;
+					mes "["+getarg(0)+"]";
+					mes "A Kafra foi dispensada.";
+					mes "Mas... Nós precisamos ter uma Kafra assim que possível!";
+					return;
+				ssM_KafEnd2:
+					mes "[Kafra]";
+					mes "Obrigado mestre! Eu farei o meu melhor!";
+					cutin "kafra_01",255;
+					return;
+			sM_KafEnd2:
+				mes "["+getarg(0)+"]";
+				mes "Mestre, eu acho que é melhor manter a Kafra atual, pois ela está fazendo o seu melhor";
+				return;
+
+	//=========================
+	M_Treas:
+	//========
+		mes "["+getarg(0)+"]";
+		mes "Deseja ir para a sala do tesouro? Somente você, mestre do clã, pode entrar na sala do tesouro.";
+		next;
+		menu "Entrar na sala do tesouro.",-,"Cancelar.",sM_TresEnd;
+
+			mes "["+getarg(0)+"]";
+			mes "Por favor, siga-me até o caminho da passagem secreta.";
+			mes "Você deve puxar a alavanca secreta para poder sair.";
+			next;
+			warp getarg(1),getarg(2),getarg(3);
+			return;
+		sM_TresEnd:
+			mes "["+getarg(0)+"]";
+			mes "Tesouros são produzidos todos os dias.";
+			mes "Você deve recolher eles todos os dias ou eles podem desaparecer.";
+			return;
+
+
+	//==========================
+	M_End:
+	//=======
+		mes "["+getarg(0)+"]";
+		mes "Como você desejar mestre.";
+		return;
+}
+
+// 1° Castelo ==================================================================================
+nguild_alde,218,175,0	script	Frolo	55,{
+	callfunc "F_GldManager","Frolo","nguild_alde",119,223,"N01";
+	close;
+}
+
+// 2° Castelo ==================================================================================
+nguild_gef,40,48,5	script	Leiber	55,{
+	callfunc "F_GldManager","Leiber","nguild_gef",155,112,"N02";
+	close;
+}
+
+// 3° Castelo ==================================================================================
+nguild_pay,120,58,4	script	Dundar	55,{
+	callfunc "F_GldManager","Dundar","nguild_pay",290,7,"N03";
+	close;
+}
+
+// 4° Castelo ==================================================================================
+nguild_prt,112,181,0	script	Thefton	55,{
+	callfunc "F_GldManager","Thefton","nguild_prt",15,209,"N04";
+	close;
+}

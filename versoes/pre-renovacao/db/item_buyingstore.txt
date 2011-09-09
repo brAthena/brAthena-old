@@ -1,0 +1,1033 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Database: item_buyingstore.txt                 |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Descrição:                                             |
+// | Lista de itens que podem ser vendidos em lojas.        |
+// |                                                        |
+// | Itens na mesma ordem de "data\buyingstoreitemlist.txt",|
+// | que deve ser editado da mesma forma no cliente-side    |
+// | para que os itens adicionados sejam aceitos.           |
+// |--------------------------------------------------------|
+// | Estrutura do Banco de Dados:                           |
+// | <ID do Item>                                           |
+// |--------------------------------------------------------|
+// | Exemplo:                                               |
+// | 512  // Maçã                                           |
+// \________________________________________________________/
+//
+//===========================================================
+// Itens atualizados 12-03-2010
+//===========================================================
+601   // Asa de Mosca
+602   // Asa de Borboleta
+603   // Velha Caixa Azul
+604   // Galho Seco
+605   // Analgésico
+606   // Aloe Vera
+607   // Fruto de Yggdrasil
+608   // Semente de Yggdrasil
+609   // Amuleto
+610   // Folha de Yggdrasil
+611   // Lupa
+612   // Mini-Fornalha
+613   // Martelo de Ferro
+614   // Martelo de Ouro
+615   // Martelo de Oridecon
+616   // Velho Álbum de Cartas
+617   // Velha Caixa Roxa
+618   // Pergaminho Desgastado
+619   // Maçã Verde
+620   // Suco de Laranja
+621   // Erva Amarga
+622   // Cenoura Arco-Íris
+623   // Minhoca Boa-Pinta
+624   // Peixe Podre
+625   // Ferro Enferrujado
+626   // Suco de Monstro
+627   // Leite Doce
+628   // Osso Seco
+629   // Flor Cantante
+630   // Musgo Encharcado
+631   // Erva Letal
+632   // Minhoca Gorducha
+633   // Batata Assada
+634   // Banana Tropical
+635   // Horror da Tribo
+636   // Sem Destinatário
+637   // Vassoura Velha
+638   // Faca de Prata da Castidade
+639   // Bracelete da Obediência
+640   // Pedra Brilhante
+641   // Contratos das Sombras
+642   // Livro do Diabo
+643   // Incubadora
+644   // Caixa de Presente
+645   // Poção da Concentração
+656   // Poção do Despertar
+657   // Poção da Fúria Selvagem
+658   // União da Tribo
+659   // Coração Apaixonado
+660   // Vela do Marquês de Sade
+661   // Avental Elegante
+662   // Emblema Oficial
+663   // Ovos de Chocolate Branco
+664   // Caixa de Presente 1
+665   // Caixa de Presente 2
+666   // Caixa de Presente 3
+667   // Caixa de Presente 4
+668   // Envelope Vermelho
+669   // Sopa de Arroz
+678   // Garrafa de Veneno
+679   // Pílula Dourada
+681   // Álbum de Fotos de Casamento
+682   // Bebida de Realgar
+683   // Erva de Exorcismo
+684   // Jaca
+686   // Coluna de Pedra Nível 3
+687   // Coluna de Pedra Nível 5
+688   // Lanças de Gelo Nível 3
+689   // Lanças de Gelo Nível 5
+690   // Lanças de Fogo Nível 3
+691   // Lanças de Fogo Nível 5
+692   // Relâmpago Nível 3
+693   // Relâmpago Nível 5
+694   // Espíritos Anciões Nível 3
+695   // Espíritos Anciões Nível 5
+696   // Bolas de Fogo Nível 1
+697   // Bolas de Fogo Nível 5
+698   // Barreira de Fogo Nível 1
+699   // Barreira de Fogo Nível 5
+700   // Rajada Congelante Nível 1
+12000   // Rajada Congelante Nível 5
+12001   // Cura Nível 3
+12002   // Cura Nível 5
+12003   // Teleporte Nível 1
+12004   // Aljave
+12005   // Aljave de Flechas de Ferro
+12006   // Aljave de Flechas de Aço
+12007   // Aljave de Flechas de Oridecon
+12008   // Aljave de Flechas de Fogo
+12009   // Aljave de Flechas de Prata
+12010   // Aljave de Flechas de Vento
+12011   // Aljave de Flechas de Pedra
+12012   // Aljave de Flechas de Cristal
+12013   // Aljave de Flechas de Sombra
+12014   // Aljave de Flechas Imateriais
+12015   // Aljave de Flechas Enferrujadas
+12016   // Poção do Vento
+12017   // Poção da Lentidão
+12018   // Fogo de Artifício
+12020   // Água Amaldiçoada
+12027   // Caixa Risonha
+12028   // Caixa do Trovão
+12029   // Caixa da Escuridão
+12030   // Caixa do Ressentimento
+12031   // Caixa da Sonolência
+12032   // Caixa da Tempestade
+12033   // Caixa da Luz do Sol
+12034   // Caixa do Arquejo
+12040   // Pedra do Sábio
+12041   // Pernas de Gafanhoto Fritas
+12042   // Palmípede Temperado
+12043   // Bife Bombástico
+12044   // Bife Marinado com Ervas
+12045   // Panqueca de Lutie
+12046   // Chá de Ervas com Uvas
+12047   // Chá Vermelho de Outono
+12048   // Chá de Ervas e Mel
+12049   // Vinho de Frutas de Morroc
+12050   // Vinho de Mastela
+12051   // Garras de Caranguejo no Vapor
+12052   // Frutos do Mar Sortidos
+12053   // Sopa de Ostra
+12054   // Água-Viva Temperada
+12055   // Pão de Carne Picante Frito
+12056   // Sopa de Tinta de Lula e Ovos de Sapo
+12057   // Macarrão Liso
+12058   // Queijo Gratinado com Tentáculos
+12059   // Macarrão Frio de Lutie
+12060   // Asa de Morcego com Abóbora no Vapor
+12061   // Suco de Uva e Mel
+12062   // Bolo-Mousse de Chocolate
+12063   // Salada de Frutas
+12064   // Sanduíche Cremoso
+12065   // Salada Verde
+12066   // Caudas de Macaco Fritas
+12067   // Suco Misto
+12068   // Batata-Doce Frita
+12069   // Lábios Fossilizados no Vapor
+12070   // Caudas de Escorpião Fritas
+12071   // Bife Marinado Brilhante
+12072   // Assado Inteiro
+12073   // Pé de Urso Especial
+12074   // Saté de Tendões
+12075   // Língua no Vapor
+12076   // Vinho de Cogumelo Vermelho
+12077   // Chá de Ervas e Geléia Real Especial
+12078   // Chá da Família Real
+12079   // Tristam 12 Anos
+12080   // Coquetel Sopro do Dragão
+12081   // Bebida Amargosa
+12082   // Banquete Suntuoso
+12083   // Burrito Gigante
+12084   // Sopa de Dragão Ascendente
+12085   // Cozido Imortal
+12086   // Gratinado de Chilli e Camarão
+12087   // Crocodilo no Vapor com Vegetais
+12088   // Curry Incrivelmente Picante
+12089   // Cozido de Carne Especial
+12090   // Escorpiões do Deserto no Vapor
+12091   // Bolo de Pêssego
+12092   // Pão Doce Assombroso
+12093   // Torrada Especial
+12094   // Suco de Frutas Divino
+12095   // Tônico de Hwergelmir
+12096   // Sopa da Sorte
+12097   // Espetinho Sortido
+12098   // Bolinho de Arroz com Morango
+12099   // Refrigerante Sangrento
+12100   // Nove Caudas Cozidas
+12101   // Citron
+12102   // Grilled Skewer
+12103   // Galho Sangrento
+12104   // Aljave Aleatório
+12105   // Kit de Domesticação
+12106   // Caixa de Jóias
+12107   // Máscara Embrulhada
+12108   // Pacote de Pergaminho
+12109   // Caixa Poring
+12110   // Kit de Primeiros Socorros
+12111   // Trouxa de Comida
+12112   // Sograt Tropical
+12113   // Escarlate Praiano
+12114   // Conversor Elemental
+12115   // Conversor Elemental
+12116   // Conversor Elemental
+12117   // Conversor Elemental
+12118   // Poção Anti-Fogo
+12119   // Poção Anti-Água
+12120   // Poção Anti-Terra
+12121   // Poção Anti-Vento
+12122   // Ovinhos Coloridos
+12123   // Biscoito de Mel
+12124   // Bolo Arco-Íris
+12125   // Kit de Culinária Portátil
+12126   // Kit de Culinária Caseiro
+12127   // Kit de Culinária Profissional
+12128   // Kit de Culinária Real
+12129   // Kit de Culinária Fantástico
+12130   // Sacola de Biscoitos
+12132   // Bolsa de Papai Noel
+12144   // Pacote de Esferas de Relâmpago
+12145   // Pacote de Esferas Cegantes
+12146   // Pacote de Esferas Venenosas
+12147   // Pacote de Esferas Congelantes
+12148   // Pacote de Esferas de Chamas
+12149   // Carregador
+12150   // Carregador Sanguinário
+12151   // Carregador de Prata
+12183   // Aljave de Flechas Sagradas
+12184   // Poção Vermelha de Ajudante
+12185   // Poção Azul de Ajudante
+12194   // Hometown Gift
+12195   // Plain Rice Cake
+12196   // Hearty Rice Cake
+12197   // Salty Rice Cake
+12198   // Lucky Rice Cake
+12241   // Poção da Concentração para Assistentes
+12242   // Poção de Despertar para Assistentes
+12243   // Poção da Fúria Selvagem para Assistentes
+12246   // Álbum Mágico de Cartas
+12260   // Roupas de Praia
+12290   // Mysterious Can Magic Powder
+12291   // Mysterious PET Bottle
+12292   // Unripe Fruit
+12293   // Dried Yggdrasilberry
+12341   // Special Alloy Trap Box
+12346   // Avelã Verde
+12347   // Geleia de Avelã
+12353   // Garrafa Pequena
+12358   // Leque dos Ventos
+12359   // Folha Macia
+12360   // Suco Vermelho-Sangue
+12362   // Kuloren
+12364   // Cajado do Líder
+12365   // Flor de Lótus
+12366   // Bonequinha Oriental
+12367   // Garrafa de Bebida
+12368   // Espelho de Mão
+12369   // Oilpalm Coconut
+12371   // Magical Lithography
+12372   // Hell Contract
+12373   // Coração Puro
+12374   // Chama Azulada
+12376   // Mysterious Can2
+12377   // Mysterious PET Bottle2
+12379   // Pope Cookie
+12383   // Vulcan Bullet Magazine
+12392   // Repair A
+12393   // Repair B
+12394   // Repair C
+12395   // Guloseima Recheada
+//12414   // Bala de Guaraná
+12717   // Curare
+12718   // Vipera
+12719   // Toque do Oblívio
+12720   // Beijo da Morte
+12721   // Cicuta
+12722   // Pirexia
+12723   // Waraitake
+12724   // Beladona
+12734   // Runa Bruta Forte
+12735   // Runa Bruta Antiga
+12736   // Runa Bruta Mística
+12737   // Runa Bruta Comum
+12738   // Runa Bruta Rara
+506   // Poção Verde
+507   // Erva Vermelha
+508   // Erva Amarela
+509   // Erva Branca
+510   // Erva Azul
+511   // Erva Verde
+512   // Maçã
+513   // Banana
+514   // Uvas
+515   // Cenoura
+516   // Batata Doce
+517   // Carne
+518   // Mel
+519   // Leite
+520   // Folha de Hinalle
+521   // Folha de Aloe
+522   // Mastela
+523   // Água Benta
+525   // Panacéia
+526   // Geléia Real
+528   // Ração para Monstros
+529   // Bala
+530   // Bengala Doce
+531   // Suco de Maçã
+532   // Suco de Banana
+533   // Suco de Uva
+534   // Suco de Cenoura
+535   // Abóbora
+536   // Sorvete
+537   // Ração para Bichinho
+538   // Biscoito de Gengibre
+539   // Pedaço de Bolo
+544   // Peixe Cru
+548   // Queijo
+549   // Batata Doce Assada
+550   // Bolinhos de Arroz
+551   // Sushi
+553   // Pão de Carne
+564   // Bolinho de Arroz
+566   // Sopa Tailandesa
+567   // Camarão
+568   // Limão
+569   // Poção de Aprendiz
+570   // Doce da Sorte
+571   // Bengala Doce da Sorte
+572   // Biscoito da Sorte
+574   // Ovo
+576   // Fruta Espinhosa
+577   // Sacola de Grãos
+578   // Morango
+579   // Peixe Fresco
+580   // Pão
+581   // Cogumelo Comestível
+582   // Laranja
+584   // Sopa com Bolinhos de Peixe
+587   // Fruta Espinhosa Escarlate
+591   // Panqueca de Caviar
+592   // Panqueca de Geléia
+593   // Panqueca com Mel
+594   // Panqueca Azeda
+595   // Panqueca de Cogumelos
+//11513   // Pastilha Refrescante
+11515   // Coco
+11516   // Açaí
+//11517   // Poção Puri
+701   // Armadilha para Insetos
+702   // Sangue de Animal
+703   // Hinalle
+704   // Aloés
+705   // Trevo
+706   // Trevo de Quatro Folhas
+707   // Planta da Melodia
+708   // Menta
+709   // Izidor
+710   // Flor das Ilusões
+711   // Broto
+712   // Flor
+713   // Garrafa Vazia
+715   // Gema Amarela
+716   // Gema Vermelha
+717   // Gema Azul
+718   // Granada
+719   // Ametista
+720   // Aquamarina
+721   // Esmeralda
+722   // Pérola
+723   // Rubi
+724   // Rubi Amaldiçoado
+725   // Peridoto
+726   // Safira
+727   // Opala
+728   // Topázio
+729   // Zircônio
+730   // Diamante de 1 quilate
+731   // Diamante de 2 quilates
+732   // Diamante de 3 quilates
+733   // Diamante Rachado
+734   // Moldura Vermelha
+735   // Chung Jah
+736   // Prato de Porcelana
+737   // Concha Preta
+738   // Estojo de Lápis
+739   // Batom
+740   // Boneco de Pelúcia
+741   // Boneco de Poring
+742   // Boneco de Chonchon
+743   // Boneco de Esporo
+744   // Buquê
+745   // Buquê de Casamento
+746   // Bolinha de Gude
+747   // Espelho de Cristal
+748   // Rosa Eterna
+749   // Rosa de Gelo
+750   // Boneco de Bafomé
+751   // Boneco de Osíris
+752   // Boneco de Rocker
+753   // Boneco de Yoyo
+754   // Boneco de Fumacento
+756   // Minério de Oridecon
+757   // Minério de Elunium
+901   // Trança
+902   // Raiz de Árvore
+903   // Língua de Réptil
+904   // Cauda de Escorpião
+905   // Caule
+906   // Escama Afiada
+907   // Resina
+908   // Ova de Sapo
+909   // Jellopy
+910   // Garleta
+911   // Scell
+912   // Zargônio
+913   // Dente de Morcego
+914   // Felpa
+915   // Crisálida
+916   // Plumas de Ave
+917   // Garra de Ave
+918   // Pata Pegajosa
+919   // Couro de Animal
+920   // Garra de Lobo
+921   // Esporo de Cogumelo
+922   // Presa de Orc
+923   // Chifre Diabólico
+924   // Pó de Borboleta
+925   // Bico de Ave
+926   // Escamas de Cobra
+928   // Antenas de Inseto
+929   // Coração Imortal
+930   // Bandagem Estragada
+931   // Amuleto dos Orcs
+932   // Osso
+934   // Espólio
+935   // Casca
+936   // Casca Escamada
+937   // Canino Venenoso
+938   // Muco Pegajoso
+939   // Ferrão de Abelha
+940   // Perna de Gafanhoto
+941   // Argola
+942   // Cauda de Yoyo
+943   // Casca Rija
+944   // Ferradura
+945   // Folha de Fumacento
+946   // Casco de Caramujo
+947   // Chifre
+948   // Pata de Urso
+949   // Pluma
+950   // Coração de Sereia
+951   // Nadadeira
+952   // Espinho de Cacto
+953   // Coração de Pedra
+954   // Escama Brilhante
+955   // Pele de Verme
+956   // Guelra
+957   // Unha Apodrecida
+958   // Mandíbula Horrenda
+959   // Escama Fétida
+960   // Garra de Crustáceo
+961   // Concha
+962   // Tentáculo
+963   // Escama Aquática
+964   // Casco de Caranguejo
+965   // Casco de Ostra
+966   // Carne de Ostra
+967   // Casco de Tartaruga
+968   // Insígnia do Herói
+969   // Ouro
+971   // Detrimindexta
+972   // Karvodailnirol
+973   // Antígeno
+974   // Mistura
+975   // Tintura Vermelha
+976   // Tintura Amarela
+978   // Tintura Azul
+979   // Tintura Verde
+980   // Tintura Laranja
+981   // Tintura Violeta
+982   // Tintura Branca
+983   // Tintura Preta
+984   // Oridecon
+985   // Elunium
+986   // Bigorna
+987   // Bigorna de Oridecon
+988   // Bigorna de Ouro
+989   // Bigorna de Emperium
+990   // Sangue Escarlate
+991   // Cristal Azul
+992   // Frescor do Vento
+993   // Vida Verdejante
+994   // Coração Flamejante
+995   // Gelo Místico
+996   // Vento Bruto
+997   // Natureza Grandiosa
+998   // Ferro
+999   // Aço
+1000   // Fragmento Estelar
+1001   // Poeira Estelar
+1002   // Minério de Ferro
+1003   // Carvão
+1004   // Insígnia da Cavalaria
+1005   // Martelo de Ferreiro
+1006   // Grimório Antigo
+1007   // Colar da Sabedoria
+1008   // Colar do Oblívio
+1009   // Mão Divina
+1010   // Fracon
+1011   // Emveretarcon
+1012   // Brasão
+1013   // Casco Arco-Íris
+1014   // Mandíbula de Formiga
+1015   // Língua
+1016   // Cauda de Rato
+1017   // Bigodes de Toupeira
+1018   // Garras de Toupeira
+1019   // Tronco
+1020   // Cabelos Morenos
+1021   // Chifre de Dokebi
+1022   // Nove-Caudas
+1023   // Cauda de Peixe
+1024   // Tinta de Polvo
+1025   // Teia de Aranha
+1026   // Avelã
+1027   // Espinho de Porco-Espinho
+1028   // Crina
+1029   // Pele de Tigre
+1030   // Pata de Tigre
+1031   // Foice de Louva-a-Deus
+1032   // Flor de Planta Carnívora
+1033   // Raiz de Planta Carnívora
+1034   // Cabelo Azul
+1035   // Canino de Dragão
+1036   // Escama de Dragão
+1037   // Cauda de Dragão
+1038   // Pequeno Chifre Maligno
+1039   // Pequena Asa Maligna
+1040   // Bigode de Anão Ancião
+1041   // Lampião
+1042   // Pata de Inseto
+1043   // Garra de Orc
+1044   // Presa de Zenorc
+1045   // Máscara Ritualística
+1046   // Garra de Escorpião
+1047   // Cabeça de Medusa
+1048   // Cabelo Horrendo
+1049   // Saia Virginal
+1050   // Tendões
+1051   // Neurônio
+1052   // Célula Única
+1053   // Dente Fossilizado
+1054   // Lábios Fossilizados
+1055   // Pele de Minhoca
+1056   // Torrão de Areia
+1057   // Pó de Traça
+1058   // Asas de Traça
+1059   // Tecido
+1060   // Cabelos Dourados
+1061   // Areia Estelar de Bruxa
+1062   // Zé-Lanterna
+1063   // Presa
+1064   // Rédeas
+1065   // Armadilha
+1066   // Tronco de Alta Qualidade
+1067   // Tronco Sólido
+1068   // Tronco Estéril
+1088   // Solução de Morroc
+1089   // Solução de Payon
+1092   // Tubo de Ensaio
+1093   // Garrafa de Poção
+1094   // Trança Curta
+1095   // Ponteiro
+1096   // Casca Arredondada
+1097   // Página Deteriorada
+1098   // Algemas
+1099   // Uniforme Velho de Presidiário
+6001   // Essência de Fogo
+6002   // Medalhão do Apóstolo
+6003   // Pingente do Espírito
+6004   // Boneco de Bafomé Maldito
+6008   // Wood
+6010   // Picareta
+6020   // Pêlo
+6021   // Chapéu Pontudo
+6022   // Pele Dura
+6023   // Chifre Místico
+6032   // Chifre de Leão da Montanha
+6033   // Chifre de Leão de Vinhas
+6073   // Crina de Dragão
+6075   // Lágrima Cristalizada
+6086   // Flor Murcha
+6087   // Crista Espiritual Azul
+6088   // Crista Espiritual Vermelha
+6089   // Fragmento Sombrio
+6090   // Bradium Purificado
+6091   // Escama Vermelha-Escura
+6095   // Líquido Aromatizado
+6096   // Peixe Azulado
+6097   // Torta Assustadora
+6098   // Cristal de Neve
+6099   // Grilled Rice Cake
+6100   // Fumaça Negra
+6104   // Cristal Gigante
+6105   // Orvalho da Manhã
+6106   // Morango Maduro
+6107   // Coquetel de Verão
+6108   // Gelatina de Maçã
+6109   // Plant Neutrient
+6110   // Flor Vívida
+6111   // Mystic Stone
+6112   // Fresh Plant
+6113   // Flor Vital
+6114   // Gema em Chamas
+6115   // Bolinho Quente
+6120   // Tinta para Parede
+6123   // Surface Paint
+6128   // Antídoto
+6144   // Lágrimas de Arrependimento
+6145   // Cápsula Incandescente
+6146   // Combustível Diferenciado Leve
+6147   // Cápsula de Nitrogênio Líquido
+6186   // Chave Inglesa
+//6189   // Grimório de Lanças de Fogo
+//6190   // Grimório de Lanças de Gelo
+//6191   // Grimório de Relâmpago
+//6192   // Grimório de Nevasca
+//6193   // Grimório de Ira de Thor
+//6194   // Grimório de Chuva de Meteoros
+//6195   // Grimório de Cometa
+//6196   // Grimório de Tetra Vortex
+//6197   // Grimório de Tempestade de Raios
+//6198   // Grimório de Trovão de Júpiter
+//6199   // Grimório de Esferas D'Água
+//6200   // Grimório de Fúria da Terra
+//6201   // Grimório de Coluna de Pedra
+//6202   // Grimório de Abalo Sísmico
+//6203   // Grimório de Corrente Elétrica
+//6204   // Grimório de Meteoro Escarlate
+//6205   // Grimório de Drenar Vida
+//6210   // Semente de Planta Selvagem
+//6211   // Semente de Planta Sanguessuga
+//6212   // Esporo de Cogumelo Explosivo
+//6213   // Pó Explosivo
+//6214   // Gás de Fumaça
+//6215   // Gás Lacrimejante
+//6216   // Garrafa com Óleo
+//6217   // Muda de Mandrágora
+6223   // Carnium
+6224   // Bradium
+//6244   // Mistura de Pólvora
+//6245   // Pó Negro
+//6246   // Pó Amarelo
+//6247   // Pó Branco
+//6248   // Vasilha Melange
+//6249   // Carne de Selvagem
+//6250   // Espeto de Cozinha
+//6251   // Carvão Negro
+//6252   // Sangue de Lobo
+//6253   // Gelo
+//6254   // Medalhões de Carne
+//6255   // Vasilha Grande
+//6256   // Raspadinha
+//6257   // Gelo Cristalino
+//6258   // Fruta de Comodo
+//6259   // Tentáculo de Drosera
+//6260   // Rabo de Petite
+//6261   // Macarrão Fino
+//6262   // Molho Especial
+//6263   // Coco Fresco
+//6264   // Melão
+//6265   // Abacaxi
+//6279   // Livro de Bombas de Maçã
+//6280   // Livro de Bombas de Abacaxi
+//6281   // Livro de Bombas de Coco
+//6282   // Livro de Bombas de Melão
+//6283   // Livro de Bombas de Banana
+//6284   // Livro de Genética Vegetal
+//6285   // Livro de Farmacologia
+6297   // Garrafa de Arremesso
+//6321   // Rake Helmet
+//6322   // Antler Helmet
+//6323   // Two-Horn Helmet
+//6324   // One-Horn Helmet
+//6325   // White Spider Legs
+//6326   // Queen Scraba Shell
+//6360   // Fragmento Escarlate
+//6361   // Fragmento Azul
+//6362   // Fragmento Amarelo
+//6363   // FragmentoVerde
+7001   // Pó de Bolor
+7002   // Dente de Ogro
+7003   // Pele de Anolian
+7004   // Monte de Lama
+7005   // Crânio
+7006   // Asa de Morcego Vermelho
+7007   // Garra de Rato
+7008   // Chifre Firme
+7009   // Casca Brilhante
+7010   // Cauda de Escorpião de Aço
+7011   // Garra de Macaco
+7012   // Pedaço de Escama Dura
+7013   // Coral
+7014   // Retrato Velho
+7015   // Marca-Página
+7016   // Colher Entortada
+7017   // Luva do Carrasco
+7018   // Graveto de Visco
+7019   // Sussurros de Loki
+7020   // Pesadelo Maternal
+7021   // Tolice do Cego
+7022   // Bainha Velha
+7023   // Lâmina Perdida nas Trevas
+7024   // Lâmina Ensanguentada
+7026   // Chave para a Torre do Relógio
+7027   // Chave para o Subterrâneo
+7030   // Garra de Lobo do Deserto
+7031   // Frigideira Velha
+7032   // Pedaço de Casca de Ovo
+7033   // Esporo Venenoso
+7034   // Meia Furada
+7035   // Palito de Fósforo
+7036   // Presa de Hati
+7038   // Novelo
+7041   // Torrão de Areia Fina
+7043   // Areia Fina
+7047   // Avental de Alice
+7048   // Garra de Grifo
+7049   // Pedra
+7053   // Cyfar
+7054   // Brigan
+7055   // Cocô de Bichinho
+7056   // Extrato de Pagamento
+7057   // Gjallar
+7058   // Gleipnir
+7063   // Pena Macia
+7064   // Asas de Libélula
+7065   // Pele de Lontra
+7066   // Cubo de Gelo
+7067   // Pedaço de Pedra
+7068   // Madeira Queimada
+7069   // Armadura Destruída
+7070   // Casca Quebrada
+7071   // Farrapos
+7072   // Shuriken Gasto
+7073   // Lágrimas de Freyja
+7074   // Manopla de Thor
+7075   // Dama de Ferro
+7076   // Roda desconhecida
+7077   // Ornamento de Prata
+7078   // Fúria das Valquírias
+7079   // Pena de Asas Angelicais
+7080   // Passos de Gato
+7081   // Barbas de Mulher
+7082   // Raiz de Montanha
+7083   // Hálito de Peixe
+7084   // Saliva de Ave
+7085   // Nervos de Urso
+7086   // Símbolo do Deus-Sol
+7087   // Essência de Espírito
+7088   // Floco de Neve
+7089   // Presságio de Tempestade
+7090   // Murmúrio
+7091   // Tsunami
+7092   // Ar Silencioso
+7093   // Engrenagem
+7094   // Fragmento Misterioso
+7095   // Pedaço de Metal
+7096   // Pedra Pome
+7097   // Coração Incandescente
+7098   // Lenha em Brasa
+7099   // Pergaminho Antigo
+7100   // Folha Afiada
+7101   // Pena de Grand Peco
+7102   // Pedra do Pesadelo
+7103   // Essência de AXE
+7104   // Asas de Anjo Fajutas
+7105   // Auréola Fajuta
+7106   // Chifre de Bode
+7107   // Pele de Bode
+7108   // Pedaço de Escudo Colossal
+7109   // Lâmina de Lança Colossal
+7110   // Espada Chanfrada
+7111   // Pedaço de Papel
+7112   // Lâmina de Papel
+7113   // Cetro do Faraó
+7114   // Máscara do Faraó
+7115   // Pena de Harpia
+7116   // Garra de Harpia
+7117   // Velho Grimório
+7118   // Pergaminho Gasto
+7119   // Bactérias
+7120   // Ferradura em Chamas
+7121   // Pote de Mel
+7122   // Pelugem Incandescente
+7123   // Pele de Dragão
+7124   // Areia Molhada
+7125   // Pinças de Escorpião
+7126   // Jellopy Tamanho Família
+7127   // Manual de Criação Vol.2: Álcool
+7128   // Manual de Criação: Vol.3: Fogo Grego
+7129   // Manual de Criação: Vol.4: Ácidos
+7130   // Manual de Criação: Vol.5: Plantas
+7131   // Manual de Criação: Vol.6: Explosivos
+7132   // Manual de Criação: Vol.7: Revestimentos
+7133   // Manual de Criação: Vol.8: Poções Compactas
+7134   // Vasilha de Mistura
+7140   // Semente da Vida
+7141   // Orvalho da Yggdrasil
+7143   // Cápsula da Criação
+7144   // Manual de Criação: Vol.1: Poções Comuns
+7147   // Jasmim
+7149   // Prato Amarelado
+7150   // Pedaço de Bambu
+7151   // Papel Amarelado
+7152   // Cabelos Perfumados
+7153   // Velho Obi
+7154   // Poeira Venenosa
+7155   // Pele de Sapo
+7156   // Shuriken Despedaçado
+7157   // Máscara Ninja
+7158   // Jarro de Saquê
+7159   // Nariz de Tengu
+7160   // Passe Imperial
+7161   // Pele Negra de Urso
+7162   // Jarro de Nuvem
+7163   // Antenas Afiadas
+7164   // Pêssego Petrificado
+7165   // Manto Cerimonial Celestial
+7166   // Seda Macia
+7167   // Misterioso Metal em Pano
+7168   // Grandes Asas de Borboleta
+7169   // Ba Gua
+7170   // Smoking
+7171   // Pele de Leopardo
+7172   // Garras de Leopardo
+7174   // Laço para presente
+7175   // Papel de presente
+7182   // Cacau
+7186   // Cipó
+7187   // Máscara do Festival
+7188   // Raiz Marrom
+7189   // Coração de Madeira
+7190   // Casco de Inseto
+7191   // Lanterna
+7192   // Catavento
+7193   // Semente
+7194   // Grama
+7195   // Estilingue
+7196   // Ombreira
+7197   // Palha
+7198   // Folha Gigante
+7199   // Cupom Misterioso
+7200   // Elástico
+7201   // Tora
+7202   // Pata de Besouro
+7203   // Galho Resistente
+7204   // Pólvora
+7205   // Retalho Negro
+7206   // Boneco de Gato Preto
+7207   // Manteau Velho
+7208   // Faca Enferrujada
+7209   // Elmo de Dullahan
+7210   // Armadura de Dullahan
+7211   // Lasca de Pedra
+7212   // Boneca Enforcada
+7213   // Almofada de Alfinetes
+7214   // Gaiola de Morcegos
+7215   // Espeto Quebrado
+7216   // Cachecol Vermelho
+7217   // Carretel
+7218   // Corda Decomposta
+7219   // Meia Listrada
+7220   // Ectoplasma
+7221   // Corrente
+7222   // Coluna de Madeira
+7223   // Auto Retrato
+7225   // Lanterna de Abóbora
+7226   // Pílula
+7262   // Leque Fantasma
+7263   // Olho de Gato
+7264   // Areia Seca
+7265   // Chifre de Dragão
+7266   // Dentadura da Máscara do Dragão
+7267   // Tanga de Tigre
+7268   // Pequena Boneca Fantasma
+7269   // Babador
+7270   // Mamadeira
+7277   // Boneco de Munak
+7286   // Pimenta Vermelha
+7289   // Cristal de Peridoto
+7290   // Flogopita
+7291   // Ágata
+7292   // Moscovita
+7293   // Quartzo Rosa
+7294   // Turquesa
+7295   // Citrina
+7296   // Piroxênio
+7297   // Biotita
+7298   // Folha de Figo
+7299   // Cesto de Palha
+7300   // Pedras Preciosas
+7301   // Fitilhos
+7303   // Saco de Arroz
+7312   // Jubileu
+7315   // Fragmento de Cristal Negro
+7316   // Perna de Inseto
+7317   // Parafuso Enferrujado
+7318   // Picareta Velha
+7319   // Placa de Ferro Usada
+7320   // Poeira Poluente
+7321   // Fragmento de Cristal
+7322   // Gás Tóxico
+7323   // Chaleira Surrada
+7325   // Tubo Flexível
+7326   // Líquido Fluorescente
+7327   // Lanterna de Capacete
+7340   // Desejo das Trevas
+7345   // Algemas
+7352   // Prato Transparente
+7353   // Prato Transparente
+7354   // Prato Transparente
+7355   // Prato Transparente
+7356   // Pedaço de Crista
+7357   // Pedaço de Crista
+7358   // Pedaço de Crista
+7359   // Pedaço de Crista
+7419   // Guia de Criação de Embriões
+7433   // Pergaminho em Branco
+7434   // Guia de Criação de Poções Elementais
+7435   // Ornamento Dourado
+7436   // Fragmento de Agonia
+7437   // Fragmento de Desgraça
+7438   // Fragmento de Ódio
+7439   // Fragmento de Desespero
+7440   // Pena Vermelha
+7441   // Pena Azul
+7442   // Selo Maldito
+7443   // Cabeça de Dragão de Três Cabeças
+7444   // Arca de Tesouro
+7445   // Bijuteria Verde
+7446   // Bijuteria Azul
+7447   // Bijuteria Vermelha
+7448   // Bijuteria Amarela
+7449   // Página Sangrenta
+7450   // Peça de Armadura de Esqueleto
+7451   // Escama de Dragão de Fogo
+7452   // Condimento Amarelo
+7453   // Molho Doce
+7454   // Molho Saboroso
+7455   // Molho Picante
+7456   // Condimento Vermelho
+7457   // Óleo de Cozinha
+7472   // Livro de Culinária Nível 1
+7473   // Livro de Culinária Nível 2
+7474   // Livro de Culinária Nível 3
+7475   // Livro de Culinária Nível 4
+7476   // Livro de Culinária Nível 5
+7477   // Livro de Culinária Nível 6
+7478   // Livro de Culinária Nível 7
+7479   // Livro de Culinária Nível 8
+7480   // Livro de Culinária Nível 9
+7481   // Livro de Culinária Nível 10
+7482   // Panela
+7507   // Pedaço de Ferro Sólido
+7510   // Flor de Valhalla
+7511   // Runa da Escuridão
+7512   // Peça Queimada
+7513   // Relógio de Bolso
+7521   // Pedra do Fogo
+7522   // Pedra do Gelo
+7523   // Pedra do Vento
+7524   // Esfera das Sombras
+7561   // Coração Glacial
+7562   // Escama de Gelo
+7563   // Runa Sangrenta
+7564   // Carne Estragada
+7565   // Veneno Pegajoso
+7566   // Desejo das Trevas Escarlate
+7567   // Chapéu Suspeito
+7568   // Máscara Branca
+7574   // Pó Glacial
+7751   // Velha Vestimenta Branca
+7752   // Crânio Atordoante
+7753   // Utensílio Rural Quebrado
+7754   // Coroa Quebrada
+7830   // Lágrima da Deusa
+7831   // Símbolo da Valquíria
+7832   // Pedaço de Vestimenta
+7833   // Cinzas de Herói
+7834   // Anel de Andvari
+7835   // Crepúsculo Vermelho
+7836   // Essência do Alvorecer
+7837   // Luar Gélido
+7838   // Constelação Obscura
+7931   // Kit de Veneno
+7932   // Nerium
+7933   // Lantana
+7934   // Makulrata
+7935   // Celatom
+7936   // Scoforia
+7937   // Amoena
+7938   // Partículas de Luz
+7939   // Galho Antigo
+7940   // Armadilha Especial
+11000   // História de Prontera
+11001   // Histórias de Aventura Vol.1
+11002   // Mestre-Cuca Orleans Vol.1
+11003   // Lendas das Kafras Vol.1
+11004   // Livro Antigo
+11005   // A Família Real de Rune-Midgard
+11006   // Flores de Sangue Vol.1
+11007   // Flores de Sangue Vol.2
+11008   // Dicionário Biográfico
+11009   // Histórias de Aventura Vol.2
+//11020   // Japanese Book 1
+//11021   // Japanese Book 2
+//11022   // Livro de Culinária Avançada
+//11023   // Como Aumentar sua Força
+//11024   // Como Aumentar sua Energia

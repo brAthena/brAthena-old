@@ -1,0 +1,82 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Manuk Merchant                         |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.1/1.2                                |
+// |--------------------------------------------------------|
+// | Descrição:    Manuk coin redemption NPC.               |
+// |--------------------------------------------------------|
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [insidemybrain]                   |
+// | 1.1 Script Revisado [insidemybrain]                    |
+// | 1.2 Script Otimizado [Mark]		                    |
+// | - Anotações                                            |
+// \________________________________________________________/
+
+man_in01,286,16,1	script	Mercador de Manuk	454,{
+	if ((isequipped(2782) == 1) && (ep13_2_rhea == 100)) {
+		if (checkweight(1201,1) == 0) {
+			mes "[Mercador de Manuk]";
+			mes "Parece que você está carregando itens demais.";
+			mes "Por que não os põe no Armazém e depois retorna?";
+			close;
+		}
+		mes "[Mercador de Manuk]";
+		mes "Olá.";
+		mes "O que você está procurando?";
+		next;
+		switch(select("Ver a descrição dos itens:Oportunidade de Manuk:Coragem de Manuk:Fé de Manuk:Cancelar")) {
+		case 1:
+			mes "[Mercador de Manuk]";
+			mes "Aqui está a descrição dos itens.";
+			close2;
+			ReadBook 11019,1;
+			end;
+		case 2: callsub L_MercManuk,12342;
+		case 3: callsub L_MercManuk,12343;
+		case 4: callsub L_MercManuk,12348;
+		case 5:
+			mes "[Mercador de Manuk]";
+			mes "Volte caso mude de ideia.";
+			close;
+		}
+	}
+	else {
+		mes "[Mercador de Manuk]";
+		mes "Rtt od d";
+		mes "Qwo hd is d irr";
+		close;
+	}
+
+L_MercManuk:
+	mes "[Mercador de Manuk]";
+	mes "Eu posso lhe vender 3 "+getitemname(getarg(0))+" por apenas^3131FF 1 Moeda^000000";
+	next;
+	if(select("Comprar:Não comprar.") == 1) {
+		if (countitem(6080) > 0) {
+			mes "[Mercador de Manuk]";
+			mes "Obrigado pelo bom negócio.";
+			delitem 6080,1; // Moeda Manuk
+			getitem getarg(0),3;
+			close;
+		} else {
+			mes "[Mercador de Manuk]";
+			mes "Você não tem moedas o suficente.";
+			close;
+		}
+	} else {
+		mes "[Mercador de Manuk]";
+		mes "Volte caso mude de ideia.";
+		close;
+	}
+}

@@ -1,0 +1,143 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Guerra do Emperium (Al de Baran)       |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.1/1.2                                |
+// |--------------------------------------------------------|
+// | Descrição: NPCs relacionados ao castelo Sirius.        |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [cleyton]                         |
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// | 1.2 Correção de Tradução [Protimus]                    |
+// | - Corrigido erro de concordância nominal               |
+// \________________________________________________________/
+
+// Bandeira do Castelo (Cidade)
+//============================================================
+aldebaran,152,97,4	script	Sirius#a1-1::Sirius	722,{
+	end;
+
+OnRecvCastleA01:
+	FlagEmblem GetCastleData("aldeg_cas01",1);
+	end;
+}
+
+// Bandeira do Castelo (Fora do Castelo)
+//============================================================
+alde_gld,61,87,6	script	Sirius#a1-2::Sirius2	722,{
+	set .@GID, GetCastleData("aldeg_cas01",1);
+	if (.@GID == 0) {
+		mes " [ Decreto do Reino de Midgard ]";
+		mes " ";
+		mes "1. Conforme o pacto do Reino de Midgard e o Feudo de Luina, declaro que este Castelo não possui um Senhor.";
+		mes " ";
+		mes "2. Aquele que superar terríveis desafios e destruir o Emperium, receberá a posse do castelo com o apoio do nosso rei.";
+	}
+	else {
+		if (getcharid(2) == .@GID) {
+			mes "Bravo guerreiro...";
+			mes "Você deseja retornar ao seu lugar de honra?";
+			next;
+			if (select("Retornar para o castelo do Clã.:Não.") == 1) {
+				if (getcharid(2) == GetCastleData("aldeg_cas01",1)) {
+					warp "aldeg_cas01",218,170;
+					end;
+				}
+			}
+			close;
+		}
+		mes "[ Decreto do Reino de Midgard ]";
+		mes " ";
+		mes "1. Seguindo o decreto do Reino de Midgard.";
+		mes "Nós declaramos que esse castelo pertence ao clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
+		mes " ";
+		mes "2. O líder do clã ^ff0000"+ GetGuildName(.@GID) + "^000000 se chama ^FF0000" + GetGuildMaster(.@GID) + "^000000.";
+		mes "Se alguém se opõe a esse decreto, que prove sua força e honra com uma espada em suas mãos.";
+	}
+	close;
+
+OnRecvCastleA01:
+	FlagEmblem GetCastleData("aldeg_cas01",1);
+	end;
+}
+
+alde_gld,61,79,6	duplicate(Sirius2)	Sirius#a1-3	722
+alde_gld,45,87,8	duplicate(Sirius2)	Sirius#a1-4	722
+alde_gld,51,87,8	duplicate(Sirius2)	Sirius#a1-5	722
+
+// Bandeira do Castelo (Dentro do Castelo)
+//============================================================
+aldeg_cas01,30,248,4	script	Sirius#a1-6::Sirius3	722,{
+	end;
+
+OnRecvCastleA01:
+	FlagEmblem GetCastleData("aldeg_cas01",1);
+	end;
+}
+
+aldeg_cas01,30,246,4	duplicate(Sirius3)	Sirius#a1-7	722
+aldeg_cas01,37,248,4	duplicate(Sirius3)	Sirius#a1-8	722
+aldeg_cas01,37,246,4	duplicate(Sirius3)	Sirius#a1-9	722
+aldeg_cas01,95,80,2	duplicate(Sirius3)	Sirius#a1-10	722
+aldeg_cas01,95,59,2	duplicate(Sirius3)	Sirius#a1-11	722
+aldeg_cas01,62,75,2	duplicate(Sirius3)	Sirius#a1-12	722
+aldeg_cas01,70,75,2	duplicate(Sirius3)	Sirius#a1-13	722
+aldeg_cas01,74,75,2	duplicate(Sirius3)	Sirius#a1-14	722
+aldeg_cas01,62,64,2	duplicate(Sirius3)	Sirius#a1-15	722
+aldeg_cas01,66,64,2	duplicate(Sirius3)	Sirius#a1-16	722
+aldeg_cas01,70,64,2	duplicate(Sirius3)	Sirius#a1-17	722
+aldeg_cas01,74,64,2	duplicate(Sirius3)	Sirius#a1-18	722
+aldeg_cas01,203,150,4	duplicate(Sirius3)	Sirius#a1-19	722
+aldeg_cas01,210,150,4	duplicate(Sirius3)	Sirius#a1-20	722
+aldeg_cas01,66,75,2	duplicate(Sirius3)	Sirius#a1-21	722
+
+// Gerenciador Automático
+//============================================================
+aldeg_cas01,216,24,0	duplicate(Gld_Agit_Manager)	Agit#aldeg_cas01	-1
+
+// Administração
+//============================================================
+aldeg_cas01,218,175,0	duplicate(Gld_Mngr_Template)	Alfredo#aldeg_cas01	55
+
+// Guardiões
+//============================================================
+aldeg_cas01,218,175,0	duplicate(Gld_Guard_Template)	Guardian#aldeg_cas01	-1
+
+// Kafra
+//============================================================
+aldeg_cas01,218,170,0	duplicate(Gld_Kafra_Template)	Assistente Kafra#aldeg_cas01	117
+
+// Saída da Sala do Mestre
+//============================================================
+aldeg_cas01,123,223,0	script	#switch_A01	111,{
+	mes " ";
+	mes "Há uma pequena alavanca aqui.";
+	mes "Você deseja puxar ela?";
+	next;
+	if(select("Puxar.:Não puxar.") == 2) close;
+	warp "aldeg_cas01",218,176;
+	end;
+}
+
+// Proteção de Tesouros
+//============================================================
+aldeg_cas01,118,223,0	duplicate(Gld_Trea_Protect)	ban_warp#aldeg_cas01	-1,8,8
+
+// Spawns de Tesouros
+//============================================================
+aldeg_cas01,118,223,0	duplicate(Gld_Trea_Spawn)	Treasure#aldeg_cas01	-1
+
+// Mudanças de Cavernas
+//============================================================
+aldeg_cas01,211,181,0	duplicate(Gld_Dun_Template)	#aldeg_cas01	111

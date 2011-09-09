@@ -1,0 +1,80 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: NGuild - Cavernas                      |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.1/1.1                                |
+// |--------------------------------------------------------|
+// | Descrição: Teleporta para a Caverna do Clã.            |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [cleyton]          	            |
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// | - Anotações                                            |
+// \________________________________________________________/
+
+//==================================================
+function	script	F_GldDunSw	{
+	set .@GID, GetCastleData(getarg(0),1);
+	if (.@GID == 0) {
+		mes "[ Voz ecoando ]";
+		mes " ' Aquele que superar as provações com bravura... encontrará o caminho... ' ";
+		close;
+	}
+	else {
+		mes "[ Voz ecoando ]";
+		mes " ' Somente aquele que demonstrar bravura pode superar as provações. '";
+		next;
+		mes " ";
+		mes "Há uma pequena alavanca aqui.";
+		mes "Você deseja puxar ela?";
+		next;
+
+		if (select("Puxar.:Não puxar.") == 1) {
+			if (getcharid(2) == .@GID) {
+				warp "gld_dun"+getarg(1),getarg(2),getarg(3);
+				end;
+			}
+			mes " ";
+			mes " Não aconteceu nada.";
+		}
+		return;
+	}
+}
+
+// 1° Castelo
+//============================================================
+nguild_alde,212,181,0	script	Switch#DunN01	111,{
+	callfunc "F_GldDunSw","nguild_alde","02",32,122;
+	close;
+}
+
+// 2° Castelo
+//============================================================
+nguild_gef,78,84,0	script	Switch#DunN02	111,{
+	callfunc "F_GldDunSw","nguild_gef","04",39,258;
+	close;
+}
+
+// 3° Castelo
+//============================================================
+nguild_pay,101,25,0	script	Switch#DunN03	111,{
+	callfunc "F_GldDunSw","nguild_pay","01",186,165;
+	close;
+}
+
+// 4° Castelo
+//============================================================
+nguild_prt,94,200,0	script	Switch#DunN04	111,{
+	callfunc "F_GldDunSw","nguild_prt","03",28,251;
+	close;
+}

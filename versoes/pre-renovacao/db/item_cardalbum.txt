@@ -1,0 +1,498 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Database: item_cardalbum.txt                   |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Descrição: Banco de Dados das cartas obtidas pelo      |
+// | 'Velho Álbum de Cartas'.                               |
+// |--------------------------------------------------------|
+// | Estrutura do Banco de Dados:                           |
+// | ID do Grupo de Itens, ID do Item, Taxa                 |
+// \________________________________________________________/
+//
+3,4001,15	// Carta Poring -> 0,15%
+3,4002,17	// Carta Fabre -> 0,17%
+3,4003,6	// Carta Pupa -> 0,06%
+3,4004,18	// Carta Drops -> 0,18%
+3,4005,2	// Carta Poring Noel -> 0,02%
+3,4006,14	// Carta Lunático -> 0,14%
+3,4007,4	// Carta Ovo de Pecopeco -> 0,04%
+3,4008,10	// Carta Picky -> 0,10%
+3,4009,10	// Carta Chonchon -> 0,10%
+3,4010,10	// Carta Salgueiro -> 0,10%
+3,4011,10	// Carta Picky com casca -> 0,10%
+3,4012,8	// Carta Ovo de Besouro-Ladrão -> 0,08%
+3,4013,7	// Carta Ovo de Andre -> 0,07%
+3,4014,5	// Carta Sapo de Rodda -> 0,05%
+3,4015,7	// Carta Condor -> 0,07%
+3,4016,7	// Carta Besouro-Ladrão -> 0,07%
+3,4017,5	// Carta Bebe Selvagem -> 0,05%
+3,4019,5	// Carta Zangão -> 0,05%
+3,4020,5	// Carta Familiar -> 0,05%
+3,4021,5	// Carta Rocker -> 0,05%
+3,4022,5	// Carta Esporo -> 0,05%
+3,4023,5	// Carta Filhote de Lobo do Deserto -> 0,05%
+3,4024,5	// Carta Plankton -> 0,05%
+3,4025,5	// Carta Esqueleto -> 0,05%
+3,4026,3	// Carta Besouro-Ladrão Fêmea -> 0,03%
+3,4027,3	// Carta Kukre -> 0,03%
+3,4028,3	// Carta Tarou -> 0,03%
+3,4029,3	// Carta Lobo -> 0,03%
+3,4030,3	// Carta Mandrágora -> 0,03%
+3,4031,3	// Carta PecoPeco -> 0,03%
+3,4032,3	// Carta Ambernite -> 0,03%
+3,4033,3	// Carta Poporing -> 0,03%
+3,4034,3	// Carta Rabo-de-Verme -> 0,03%
+3,4035,3	// Carta Hidra -> 0,03%
+3,4036,3	// Carta Muka -> 0,03%
+3,4037,3	// Carta Jibóia -> 0,03%
+3,4038,3	// Carta Zumbi -> 0,03%
+3,4039,3	// Carta Percevejo -> 0,03%
+//3,4040,1	// Carta Creamy -> 0,01%
+3,4041,3	// Carta Koko -> 0,03%
+3,4042,3	// Carta Chonchon de Aço -> 0,03%
+3,4043,3	// Carta Andre -> 0,03%
+3,4044,3	// Carta Fumacento -> 0,03%
+3,4045,3	// Carta Besouro-Chifre -> 0,03%
+3,4046,3	// Carta Martin -> 0,03%
+//3,4047,1	// Carta Ghostring -> 0,01%
+3,4048,3	// Carta Esporo Venenoso -> 0,03%
+3,4049,3	// Carta Vadon -> 0,03%
+3,4050,3	// Carta Besouro-Ladrão Macho -> 0,03%
+3,4051,3	// Carta Yoyo -> 0,03%
+3,4052,3	// Carta Salgueiro Ancião -> 0,03%
+3,4053,1	// Carta Vitata -> 0,01%
+//3,4054,1	// Carta Angeling -> 0,01%
+3,4055,3	// Carta Marina -> 0,03%
+3,4056,3	// Carta Poeira -> 0,03%
+3,4057,2	// Carta Metaller -> 0,02%
+3,4058,2	// Carta Sapo de Thara -> 0,02%
+//3,4059,1	// Carta Soldado Andre (N/A) -> 0,01%
+3,4060,2	// Carta Goblin -> 0,02%
+3,4061,2	// Carta Cornutus -> 0,02%
+3,4062,2	// Carta Anaconda -> 0,02%
+3,4063,2	// Carta Caramelo -> 0,02%
+3,4064,2	// Carta Zerom -> 0,02%
+3,4065,2	// Carta Kaho -> 0,02%
+3,4066,2	// Carta Guerreiro Orc -> 0,02%
+3,4067,2	// Carta Megalodon -> 0,02%
+3,4068,2	// Carta Escorpião -> 0,02%
+3,4069,2	// Carta Drainliar -> 0,02%
+3,4070,2	// Carta Eggyra -> 0,02%
+3,4071,2	// Carta Orc Zumbi -> 0,02%
+3,4072,2	// Carta Golem -> 0,02%
+3,4073,2	// Carta Esqueleto Pirata -> 0,02%
+3,4074,2	// Carta Pé-Grande -> 0,02%
+3,4075,2	// Carta Argos -> 0,02%
+3,4076,2	// Carta Magnólia -> 0,02%
+3,4077,2	// Carta Fen -> 0,02%
+3,4078,2	// Carta Selvagem -> 0,02%
+3,4079,2	// Carta Louva-a-Deus -> 0,02%
+3,4080,2	// Carta Flora -> 0,02%
+3,4081,2	// Carta Hode -> 0,02%
+3,4082,1	// Carta Lobo do Deserto -> 0,01%
+3,4083,1	// Carta Rafflesia -> 0,01%
+3,4084,1	// Carta Esfera Marinha -> 0,01%
+3,4085,1	// Carta Orc Esqueleto -> 0,01%
+3,4086,1	// Carta Esqueleto Soldado -> 0,01%
+3,4087,1	// Carta Giearth -> 0,01%
+3,4088,1	// Carta Frilldora -> 0,01%
+3,4089,1	// Carta Peixe-Espada -> 0,01%
+3,4090,1	// Carta Munak -> 0,01%
+3,4091,1	// Carta Cobold -> 0,01%
+3,4092,1	// Carta Esqueleto Operário -> 0,01%
+3,4093,1	// Carta Obeaune -> 0,01%
+3,4094,1	// Carta Esqueleto Arqueiro -> 0,01%
+3,4095,1	// Carta Marte -> 0,01%
+3,4096,1	// Carta Zenorc -> 0,01%
+3,4097,1	// Carta Matyr -> 0,01%
+3,4098,1	// Carta Dokebi -> 0,01%
+3,4099,1	// Carta Pasana -> 0,01%
+3,4100,1	// Carta Sohee -> 0,01%
+3,4101,1	// Carta Arenoso -> 0,01%
+3,4102,1	// Carta Sussurro -> 0,01%
+3,4103,1	// Carta Horong -> 0,01%
+3,4104,1	// Carta Réquiem -> 0,01%
+3,4105,1	// Carta Cavalo-Marinho -> 0,01%
+3,4106,1	// Carta Múmia -> 0,01%
+3,4107,1	// Carta Verit -> 0,01%
+3,4108,1	// Carta Névoa -> 0,01%
+3,4109,1	// Carta Jakk -> 0,01%
+3,4110,1	// Carta Carniçal -> 0,01%
+3,4111,1	// Carta Strouf -> 0,01%
+3,4112,1	// Carta Marduk -> 0,01%
+3,4113,1	// Carta Marionete -> 0,01%
+3,4114,1	// Carta Argiope -> 0,01%
+3,4115,1	// Carta Mosca Caçadora -> 0,01%
+3,4116,1	// Carta Ísis -> 0,01%
+3,4117,1	// Carta Sorrateiro -> 0,01%
+3,4118,1	// Carta Petite -> 0,01%
+3,4119,1	// Carta Bathory -> 0,01%
+3,4120,1	// Carta Petite Voador -> 0,01%
+//3,4121,1	// Carta Freeoni (MVP) -> 0,01%
+3,4122,1	// Carta Deviruchi -> 0,01%
+//3,4123,1	// Carta Eddga (MVP) -> 0,01%
+//314124,1	// Carta Medusa -> 0,01%
+3,4125,1	// Carta Deviace -> 0,01%
+//3,4126,1	// Carta Minorous -> 0,01%
+3,4127,1	// Carta Pesadelo -> 0,01%
+//3,4128,1	// Carta Besouro-Ladrão Dourado (MVP) -> 0,01%
+3,4129,1	// Carta Bafomé Jr. -> 0,01%
+//3,4130,1	// Carta Rei Escorpião (N/A) -> 0,01%
+//3,4131,1	// Carta Flor do Luar (MVP) -> 0,01%
+//3,4132,1	// Carta Abelha-Rainha (MVP) -> 0,01%
+3,4133,1	// Carta Raydric -> 0,01%
+//3,4134,1	// Carta Drácula (MVP) -> 0,01%
+//3,4135,1	// Carta Senhor dos Orcs (MVP) -> 0,01%
+3,4136,1	// Carta Khalitzburg -> 0,01%
+//3,4137,1	// Carta Drake (MVP) -> 0,01%
+//3,4138,1	// Carta Anubis -> 0,01%
+//3,4139,1	// Carta Coringa -> 0,01%
+//3,4140,1	// Carta Cavaleiro do Abismo -> 0,01%
+3,4141,1	// Carta Druida Maligno -> 0,01%
+//3,4142,1	// Carta Doppelganger (MVP) -> 0,01%
+//3,4143,1	// Carta Carta Orc Herói (MVP) -> 0,01%
+//3,4144,1	// Carta Osíris (MVP) -> 0,01%
+//3,4145,1	// Carta Belzebu (MVP) -> 0,01%
+//3,4146,1	// Carta Maya (MVP) -> 0,01%
+//3,4147,1	// Carta Bafomé (MVP) -> 0,01%
+//3,4148,1	// Carta Faraó (MVP) -> 0,01%
+3,4149,1	// Carta Gárgula -> 0,01%
+3,4150,1	// Carta Bode -> 0,01%
+3,4151,1	// Carta Gajomart -> 0,01%
+3,4152,1	// Carta Pingu -> 0,01%
+3,4153,1	// Carta Caranguejo -> 0,01%
+3,4154,1	// Carta Pirralho -> 0,01%
+//3,4155,1	// Carta Líder Goblin -> 0,01%
+3,4156,1	// Carta Goblin a Vapor -> 0,01%
+3,4157,1	// Carta Goblin Arqueiro -> 0,01%
+3,4158,1	// Carta Exterminador Voador -> 0,01%
+3,4159,1	// Carta Nove Caudas -> 0,01%
+3,4160,1	// Carta Soldado Atirador -> 0,01%
+3,4161,1	// Carta Grand Peco -> 0,01%
+3,4162,1	// Carta Grizzly -> 0,01%
+//3,4163,1	// Carta Grifo -> 0,01%
+3,4164,1	// Carta Gullinbursti -> 0,01%
+3,4165,1	// Carta Ferrão -> 0,01%
+3,4166,1	// Carta Pesadelo Sombrio -> 0,01%
+3,4167,1	// Carta Nereida -> 0,01%
+//3,4168,1	// Carta Senhor das Trevas (MVP) -> 0,01%
+//3,4169,1	// Carta Ilusão das Trevas -> 0,01%
+3,4170,1	// Carta Moldura Maldita -> 0,01%
+//3,4171,1	// Carta Sacerdote Maldito -> 0,01%
+3,4172,1	// Carta Papel -> 0,01%
+3,4173,1	// Carta Pungus -> 0,01%
+//3,4174,1	// Carta Deviling -> 0,01%
+3,4175,1	// Carta Sapo Venenoso -> 0,01%
+3,4176,1	// Carta Dullahan -> 0,01%
+3,4177,1	// Carta Dríade -> 0,01%
+3,4178,1	// Carta Lavadeira -> 0,01%
+//3,4179,1	// Carta Libélula -> 0,01%
+3,4180,1	// Carta Furador -> 0,01%
+3,4181,1	// Carta Mascarado -> 0,01%
+3,4182,1	// Carta Diabolik -> 0,01%
+//3,4183,1	// Carta Lobo Errante -> 0,01%
+3,4184,1	// Carta Golem de Lava -> 0,01%
+3,4185,1	// Carta Rideword -> 0,01%
+3,4186,1	// Carta Raggler -> 0,01%
+3,4187,1	// Carta Raydric Arqueiro -> 0,01%
+3,4188,1	// Carta Leib Olmai -> 0,01%
+3,4189,1	// Carta Aparição -> 0,01%
+3,4190,1	// Carta Alma Penada -> 0,01%
+3,4191,1	// Carta Loli Ruri -> 0,01%
+3,4192,1	// Carta Giro-Goblin -> 0,01%
+3,4193,1	// Carta Lude -> 0,01%
+3,4194,1	// Carta Rybio -> 0,01%
+3,4195,1	// Carta Gato de Folha -> 0,01%
+3,4196,1	// Carta Marin -> 0,01%
+//3,4197,1	// Carta Mastering -> 0,01%
+//3,4198,1	// Carta Maya Macho -> 0,01%
+3,4199,1	// Carta Tritão -> 0,01%
+3,4200,1	// Carta Megalith -> 0,01%
+3,4201,1	// Carta Majoruros -> 0,01%
+3,4202,1	// Carta Mao Guai -> 0,01%
+//3,4203,1	// Carta Dragão Mutante -> 0,01%
+3,4204,1	// Carta Diabinho -> 0,01%
+3,4205,1	// Carta Mímico -> 0,01%
+3,4206,1	// Carta Presente -> 0,01%
+//3,4207,1	// Carta Mysteltainn -> 0,01%
+3,4208,1	// Carta Boneco de Miyabi -> 0,01%
+3,4209,1	// Carta Violi -> 0,01%
+3,4210,1	// Carta Andarilho -> 0,01%
+//3,4211,1	// Carta Vocal -> 0,01%
+3,4212,1	// Carta Bongun -> 0,01%
+3,4213,1	// Carta Escaravelho -> 0,01%
+3,4214,1	// Carta Serial Killer -> 0,01%
+3,4215,1	// Carta Labareda -> 0,01%
+3,4216,1	// Carta Sasquatch -> 0,01%
+3,4217,1	// Carta Pessegueira Encantada -> 0,01%
+3,4218,1	// Carta Succubus -> 0,01%
+3,4219,1	// Carta Verme Sábio -> 0,01%
+3,4220,1	// Carta Soldado -> 0,01%
+3,4221,1	// Carta Esqueleto General -> 0,01%
+3,4222,1	// Carta Esqueleto Prisioneiro -> 0,01%
+3,4223,1	// Carta Golem Estalactítico -> 0,01%
+3,4224,1	// Carta Talo de Verme -> 0,01%
+3,4225,1	// Carta Atirador de Pedras -> 0,01%
+3,4226,1	// Carta Sting -> 0,01%
+3,4227,1	// Carta Coelho -> 0,01%
+3,4228,1	// Carta Rochoso -> 0,01%
+3,4229,1	// Carta Gerente -> 0,01%
+3,4230,1	// Carta Shinobi -> 0,01%
+3,4231,1	// Carta Mi Gao -> 0,01%
+3,4232,1	// Carta Ermitão Selvagem -> 0,01%
+3,4233,1	// Carta Leopardo Filhote -> 0,01%
+3,4234,1	// Carta Anolian -> 0,01%
+3,4235,1	// Carta Cookie Natalino -> 0,01%
+//3,4236,1	// Carta Amon-Ra (MVP) -> 0,01%
+3,4237,1	// Carta Duque Coruja -> 0,01%
+3,4238,1	// Carta Barão Coruja -> 0,01%
+3,4239,1	// Carta Mão de Ferro -> 0,01%
+3,4240,1	// Carta Arclouse -> 0,01%
+//3,4241,1	// Carta ArchAngeling -> 0,01%
+3,4242,1	// Carta Apocalipse -> 0,01%
+//3,4243,1	// Carta Antonio -> 0,01%
+3,4244,1	// Carta Alarme -> 0,01%
+3,4245,1	// Carta Am Mut -> 0,01%
+3,4246,1	// Carta Agressor -> 0,01%
+3,4247,1	// Carta Estrela-do-Mar -> 0,01%
+3,4248,1	// Carta Múmia Anciã -> 0,01%
+3,4249,1	// Carta Verme Ancião -> 0,01%
+//3,4250,1	// Carta Executor -> 0,01%
+3,4251,1	// Carta Ancião -> 0,01%
+3,4252,1	// Carta Crocodilo -> 0,01%
+3,4253,1	// Carta Alice -> 0,01%
+//3,4254,1	// Carta Tirfing -> 0,01%
+3,4255,1	// Carta Senhora Orc -> 0,01%
+3,4256,1	// Carta Orc Arqueiro -> 0,01%
+3,4257,1	// Carta Rosa Selvagem -> 0,01%
+3,4258,1	// Carta Ninfa Perversa -> 0,01%
+3,4259,1	// Carta Golem de Madeira -> 0,01%
+3,4260,1	// Carta Artilheiro Wootan -> 0,01%
+3,4261,1	// Carta Guerreiro Wootan -> 0,01%
+3,4262,1	// Carta Ermitão Maligno -> 0,01%
+//3,4263,1	// Carta Samurai Encarnado (MVP) -> 0,01%
+3,4264,1	// Carta Xamã do Vento -> 0,01%
+3,4265,1	// Carta Jing Guai -> 0,01%
+//3,4266,1	// Carta Eclipse -> 0,01%
+3,4267,1	// Carta Estrondo -> 0,01%
+3,4268,1	// Carta Injustiçado -> 0,01%
+3,4269,1	// Carta Inccubus -> 0,01%
+3,4270,1	// Carta Aranha Gigante -> 0,01%
+3,4271,1	// Carta Zangão Gigante -> 0,01%
+3,4272,1	// Carta Zhu Po Long -> 0,01%
+3,4273,1	// Carta Molusco -> 0,01%
+3,4274,1	// Carta Zumbi Mestre -> 0,01%
+3,4275,1	// Carta Zumbi Prisioneiro -> 0,01%
+//3,4276,1	// Carta Senhor dos Mortos (MVP) -> 0,01%
+3,4277,1	// Carta Jirtas -> 0,01%
+3,4278,1	// Carta Árvore Maldita -> 0,01%
+3,4279,1	// Carta Exterminador Terrestre -> 0,01%
+3,4280,1	// Carta Planta Carnívora -> 0,01%
+3,4281,1	// Carta Zipper -> 0,01%
+3,4282,1	// Carta Tengu -> 0,01%
+3,4283,1	// Carta Guardião da Floresta -> 0,01%
+3,4284,1	// Carta Chepet -> 0,01%
+3,4285,1	// Carta Choco -> 0,01%
+3,4286,1	// Carta Karakasa -> 0,01%
+3,4287,1	// Carta Kapha -> 0,01%
+3,4288,1	// Carta Carat -> 0,01%
+3,4289,1	// Carta Lagarta -> 0,01%
+3,4290,1	// Carta Gato de Nove Caudas -> 0,01%
+//3,4291,1	// Carta Líder Cobold -> 0,01%
+3,4292,1	// Carta Cobold Arqueiro -> 0,01%
+3,4293,1	// Carta Cookie -> 0,01%
+3,4294,1	// Carta Quve -> 0,01%
+3,4295,1	// Carta Kraben -> 0,01%
+3,4296,1	// Carta Cãibra -> 0,01%
+3,4297,1	// Carta Soldadinho de Chumbo -> 0,01%
+3,4298,1	// Carta Creamy Ameaçador -> 0,01%
+3,4299,1	// Carta Relógio -> 0,01%
+3,4300,1	// Carta Quimera -> 0,01%
+3,4301,1	// Carta Mantis Assassino -> 0,01%
+//3,4302,1	// Carta Tao Gunka (MVP) -> 0,01%
+//3,4303,1	// Carta Cochicho -> 0,01%
+3,4304,1	// Carta Tamruan -> 0,01%
+//3,4305,1	// Carta General Tartaruga (MVP) -> 0,01%
+//3,4306,1	// Carta Sapo-Cururu -> 0,01%
+3,4307,1	// Carta Besouro-Rei -> 0,01%
+3,4308,1	// Carta Trilobita -> 0,01%
+3,4309,1	// Carta Parasita -> 0,01%
+3,4310,1	// Carta Panzer Goblin -> 0,01%
+3,4311,1	// Carta Batedor -> 0,01%
+3,4312,1	// Carta Foca -> 0,01%
+3,4313,1	// Carta Punk -> 0,01%
+3,4314,1	// Carta Penomena -> 0,01%
+3,4315,1	// Carta Peste -> 0,01%
+3,4316,1	// Carta Anjo Fajuto -> 0,01%
+//3,4317,1	// Carta Yakuza -> 0,01%
+//3,4318,1	// Carta Cavaleiro da Tempestade (MVP) -> 0,01%
+3,4319,1	// Carta Congelador -> 0,01%
+//3,4320,1	// Carta Cavaleiro Sanguinário -> 0,01%
+3,4321,1	// Carta Poltergeist -> 0,01%
+3,4322,1	// Carta Grand Orc -> 0,01%
+3,4323,1	// Carta Filhote de Hatii -> 0,01%
+//3,4324,1	// Carta Hatii (MVP) -> 0,01%
+3,4325,1	// Carta Harpia -> 0,01%
+3,4326,1	// Carta Lontra -> 0,01%
+3,4327,1	// Carta Borboleta Sanguinária -> 0,01%
+3,4328,1	// Carta Yao Jun -> 0,01%
+3,4329,1	// Carta Fendark -> 0,01%
+3,4331,1	// Carta Aquecedor -> 0,01%
+//3,4330,1	// Carta Serpente Suprema (MVP) -> 0,01%
+3,4332,1	// Carta Fornalha Velha -> 0,01%
+3,4333,3	// Carta Nuvem Venenosa -> 0,03%
+3,4334,1	// Carta Nuvem Tóxica -> 0,01%
+3,4335,3	// Carta Minérios -> 0,03%
+3,4336,1	// Carta Ungoliant -> 0,01%
+3,4337,1	// Carta Porcellio -> 0,01%
+3,4338,1	// Carta Obsidiana -> 0,01%
+3,4339,1	// Carta Mineral -> 0,01%
+3,4340,1	// Carta Ursinho -> 0,01%
+3,4341,1	// Carta Metaling -> 0,01%
+//3,4342,1	// Carta RSX-0806 (MVP) -> 0,01%
+3,4343,1	// Carta Holden -> 0,01%
+3,4344,3	// Carta Anopheles -> 0,03%
+3,4345,3	// Carta Vento da Colina -> 0,03%
+3,4346,1	// Carta Egnigem Cenia -> 0,01%
+3,4347,3	// Carta Armeyer Dinze -> 0,03%
+3,4348,1	// Carta Wickebine Tres -> 0,01%
+3,4349,1	// Carta Errende Ebecee -> 0,01%
+3,4350,3	// Carta Laurell Weinder -> 0,03%
+3,4351,1	// Carta Kavach Icarus -> 0,01%
+//3,4352,1	// Carta Egnigem Cenia (MVP) -> 0,01%
+3,4353,1	// Carta Remover -> 0,01%
+3,4354,1	// Carta Gemini-S58 -> 0,01%
+3,4355,3	// Carta Gremlin -> 0,03%
+3,4356,1	// Carta Beholder -> 0,01%
+//3,4357,1	// Carta Lorde Seyren (MVP) -> 0,01%
+3,4358,1	// Carta Seyren Windsor -> 0,01%
+//3,4359,1	// Carta Algoz Eremes (MVP) -> 0,01%
+3,4360,3	// Carta Eremes Guile -> 0,03%
+//3,4361,3	// Carta Mestre-Ferreiro Howard (MVP) -> 0,03%
+3,4362,1	// Carta Howard Alt-Eisen -> 0,01%
+//3,4363,1	// Carta Sumo-Sacerdotisa Margaretha (MVP) -> 0,01%
+3,4364,1	// Carta Margaretha Sorin -> 0,01%
+//3,4365,1	// Carta Arquimaga Kathryne (MVP) -> 0,01%
+3,4366,1	// Carta Kathryne Keyron -> 0,01%
+//3,4367,1	// Carta Atiradora de Elite Cecil (MVP) -> 0,01%
+3,4368,1	// Carta Cecil Damon -> 0,01%
+3,4369,1	// Carta Venatu -> 0,01%
+3,4370,1	// Carta Dimik -> 0,01%
+3,4371,1	// Carta Archdam -> 0,01%
+//3,4372,1	// Carta Lady Branca (MVP) -> 0,01%
+3,4373,1	// Carta Donzela Verde -> 0,01%
+//3,4374,1	// Carta Vesper (MVP) -> 0,01%
+3,4375,1	// Carta Filhote de Orc -> 0,01%
+//3,4376,1	// Carta Lady Tanee (MVP) -> 0,01%
+3,4377,3	// Carta Grove -> 0,03%
+3,4378,1	// Carta Acidus Dourado -> 0,01%
+3,4379,1	// Carta Acidus Azul -> 0,01%
+3,4380,3	// Carta Ferus Escarlate -> 0,03%
+3,4381,1	// Carta Ferus Verde -> 0,01%
+3,4382,1	// Carta Novus Dourado -> 0,01%
+3,4383,3	// Carta Novus Escarlate -> 0,03%
+3,4384,1	// Carta Hydrolancer -> 0,01%
+3,4385,3	// Carta Ovo de Dragão -> 0,03%
+//3,4386,1	// Carta Detardeurus (MVP) -> 0,01%
+3,4387,1	// Carta Mimico Antigo -> 0,01%
+3,4388,3	// Carta Palavra Morta -> 0,03%
+3,4389,1	// Carta Plasma -> 0,01%
+3,4390,1	// Carta Breeze -> 0,01%
+3,4391,3	// Carta Baronesa da Retribuição -> 0,03%
+3,4392,1	// Carta Dama da Guarda -> 0,01%
+3,4393,1	// Carta Senhora do Abrigo -> 0,01%
+3,4394,1	// Carta Senhora do Conforto -> 0,01%
+3,4395,1	// Carta Maero de Thanatos -> 0,01%
+3,4396,1	// Carta Odium de Thanatos -> 0,01%
+3,4397,1	// Carta Despero de Thanatos -> 0,01%
+//3,4398,1	// Carta Pesar de Thanatos -> 0,01%
+//3,4399,1	// Carta Memória de Thanatos (MVP) -> 0,01%
+3,4400,1	// Carta Aliza -> 0,01%
+3,4401,1	// Carta Alicel -> 0,01%
+3,4402,1	// Carta Aliot -> 0,01%
+//3,4403,1	// Carta Kiel-D-01 (MVP) -> 0,01%
+3,4404,1	// Carta Skogul -> 0,01%
+3,4405,1	// Carta Frus -> 0,01%
+//3,4406,1	// Carta Skeggiold -> 0,01%
+//3,4407,1	// Carta Valkyrie Randgris (MVP) -> 0,01%
+//3,4408,1	// Carta Pesar Noturno (MVP) -> 0,01%
+3,4409,1	// Carta Agav -> 0,01%
+3,4410,1	// Carta Echio -> 0,01%
+3,4411,1	// Carta Vanberk -> 0,01%
+3,4412,1	// Carta Isilla -> 0,01%
+3,4413,1	// Carta Hodremlin -> 0,01%
+3,4414,1	// Carta Rastreador -> 0,01%
+3,4415,2	// Carta Yeti -> 0,02%
+3,4416,1	// Carta Siroma -> 0,01%
+3,4417,1	// Carta Titã de Gelo -> 0,01%
+3,4418,1	// Carta Gazeti -> 0,01%
+//3,4419,1	// Carta Ktullanux (MVP) -> 0,01%
+3,4420,1	// Carta Muscipular -> 0,01%
+3,4421,2	// Carta Drosera -> 0,02%
+3,4422,1	// Carta Roween -> 0,01%
+3,4423,1	// Carta Galion -> 0,01%
+3,4424,3	// Carta Stapo -> 0,03%
+//3,4425,1	// Carta Atroce (MVP) -> 0,01%
+3,4426,1	// Carta Byorgue -> 0,01%
+3,4427,1	// Carta Espadachim Guardião -> 0,01%
+3,4428,1	// Carta Arqueiro Guardião -> 0,01%
+3,4429,1	// Carta Salamandra -> 0,01%
+//3,4430,1	// Carta Ifrit (MVP) -> 0,01%
+3,4431,1	// Carta Kasa -> 0,01%
+3,4432,2	// Carta Magmaring -> 0,02%
+3,4433,1	// Carta Imp -> 0,01%
+3,4434,1	// Carta Golpeador -> 0,01%
+3,4435,1	// Carta Massacre -> 0,01%
+3,4436,2	// Carta Zumbi Dilacerado -> 0,02%
+3,4437,2	// Carta Cão Infernal -> 0,02%
+3,4438,2	// Carta Banshee -> 0,02%
+3,4439,1	// Carta Crânio Flamejante -> 0,01%
+3,4440,1	// Carta Necromante -> 0,01%
+3,4442,1	// Carta Tatacho -> 0,01%
+//3,4441,1	// Carta Bispo Decadente (MVP) -> 0,01%
+//3,4442,2	// Carta Tatacho -> 0,02%
+//3,4443,2	// Carta Elemental da Água -> 0,02%
+//3,4444,2	// Carta Draco -> 0,02%
+//3,4445,1	// Carta Vespa Vagalume -> 0,01%
+//3,4446,1	// NÃO EXISTE REGISTRO -> 0,01%
+//3,4447,1	// Carta Centopéia -> 0,01%
+//3,4448,1	// Carta Cornus -> 0,01%
+//3,4449,1	// Carta Sombra Obscura -> 0,01%
+//3,4450,1	// Carta Senhora das Bashees -> 0,01%
+//3,4451,1	// Carta Entweihen Crothen -> 0,01%
+//3,4452,2	// Carta Larva de Centopéia -> 0,02%
+//3,4453,1	// Carta Leão da Montanha -> 0,01%
+//3,4454,1	// Fake Valkyrie Card (SEM INFORMAÇÃO) -> 0,01%
+//3,4455,1	// Fake Valkyrie Card (SEM INFORMAÇÃO) -> 0,01%
+//3,4456,1	// Carta Sombra de Nidhogg (MVP) -> 0,01%
+//3,4457,1	// Carta Naght Sieger (MVP) -> 0,01%
+//3,4458,1	// Carta Duneyrr -> 0,01%
+//3,4459,1	// Carta Ratatosk -> 0,01%
+//3,4460,1	// Carta Ryncho -> 0,01%
+//3,4461,1	// Carta Phylla -> 0,01%
+//3,4462,1	// Carta Mamute Rochoso (MVP - Mini Boss) -> 0,01%
+//3,4463,1	// Carta Leão de Vinhas (MVP - Mini Boss) -> 0,01%
+//3,4464,1	// Carta Aunoe -> 0,01%
+//3,4465,1	// Carta Fanat -> 0,01%
+//3,4466,1	// Carta Mestre Beholder -> 0,01%
+//3,4467,1	// Carta Metalling Pesado -> 0,01%
+//3,4468,1	// Carta Pinguicula Sombria -> 0,01%
+//3,4469,3	// Carta Naga -> 0,03%
+//3,4470,3	// Carta Nepenthes -> 0,03%
+//3,4471,3	// Carta Ovo de Draco -> 0,03%
+//3,4472,3	// Carta Golem de Bradium -> 0,03%
+//3,4473,3	// Carta Árvore Anciã -> 0,03%
+//3,4474,3	// Carta Zakudam -> 0,03%
+//3,4475,3	// Carta Cobalto -> 0,03%
+//3,4476,3	// Carta Pinguicula -> 0,03%
+//3,4477,3	// Carta Apocalipse Infernal -> 0,03%

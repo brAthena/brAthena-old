@@ -1,0 +1,79 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Spirit Liquor trader                   |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.0/1.1                                |
+// |--------------------------------------------------------|
+// | Descrição:    Trade Broken Liquor Jars and alcohol for |
+// | wanderer pet food, 'Spirit Liquor'                     |
+// |--------------------------------------------------------|
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [Wolf]                            |
+// | 1.1 Script Otimizado [Mark]                            |
+// | - Anotações                                            |
+// \________________________________________________________/
+
+prontera,218,218,3	script	Entusiasta de Animais	96,{
+	mes "[Entusiasta de Animais Jenny]";
+	mes "Opa, olá!";
+	mes "Você gosta dos animais como eu?";
+	next;
+	mes "[Entusiasta de Animais Jenny]";
+	mes "É realmente difícil manter os bichinhos fofos felizes.";
+	mes "Para isso, é necessário uma alimentação correta à eles.";
+	next;
+	mes "[Entusiasta de Animais Jenny]";
+	mes "Eu sei que é realmente difícil obter os alimentos corretos para seu bichinho de estimação.";
+	next;
+	mes "[Entusiasta de Animais Jenny]";
+	mes "Você quer o Refresco para seu bichinho de estimação ficar feliz?";
+	next;
+	if(select("Sim:Não") == 2) close;
+	if ((countitem(7158) > 19) && (countitem(970) > 0)) {
+		mes "[Entusiasta de Animais Jenny]";
+		mes "Hm, você tem ^ff000020 Jarros de Saquê^000000s e ^ff00001 Álcool^000000!";
+		mes "Você quer trocá-los por ";
+		mes "^ff000020 Refrescos^000000 para seu Pet do Andarilho?";
+		next;
+		if(select("Sim, por favor!:Não, obrigado.") == 1) {
+			mes "[Entusiasta de Animais Jenny]";
+			mes "Ok aqui vai então.";
+			mes "Eu espero que você mantenha";
+			mes "seu bichinho bonito e feliz.";
+			delitem 7158,20; //Jarro de Saquê
+			delitem 970,1; //Álcool
+			getitem 7824,20; //Refresco
+			close;
+		} else {
+			mes "[Entusiasta de Animais Jenny]";
+			mes "Hehe, volte aqui se você mudar de idéia.";
+			close;
+		}
+	}
+	else {
+		mes "[Entusiasta de Animais Jenny]";
+		mes "Na verdade, agora eu posso ajudar se você pegar os Refrescos para os Pet Andarilhos.";
+		next;
+		mes "[Entusiasta de Animais Jenny]";
+		mes "Você tem que me trazer ^FF0000 20 Jarros de Saquê^000000 e ^FF0000 1 Álcool^000000.";
+		mes "Aí sim eu poderei te dar ^FF0000 20 Refrescos^000000 em troca.";
+		next;
+		mes "Você pode obter os Jarros de Saquê dos monstros Tengu no calabouço de Amatsu.";
+		close;
+	}
+}
+
+prontera,220,218,3	script	Berry Toe	955,{
+	specialeffect EF_CHANGEDARK;
+	end;
+}

@@ -1,0 +1,143 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Guerra do Emperium (Al De Baran)	    |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.1/1.2                                |
+// |--------------------------------------------------------|
+// | Descrição: NPCs relacionados ao castelo Rigel.         |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [cleyton]                         |
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// | 1.2 Correção de Tradução [Protimus]                    |
+// | - Corrigido erro de concordância nominal               |
+// \________________________________________________________/
+
+// Bandeira do Castelo (Cidade)
+//============================================================
+aldebaran,131,97,4	script	Rigel#a4-1::Rigel	722,{
+	end;
+
+OnRecvCastleA04:
+	FlagEmblem GetCastleData("aldeg_cas04",1);
+	end;
+}
+
+// Bandeira do Castelo (Fora do Castelo)
+//============================================================
+alde_gld,239,246,2	script	Rigel#a4-2::Rigel2	722,{
+	set .@GID, GetCastleData("aldeg_cas04",1);
+	if (.@GID == 0) {
+		mes " [ Decreto do Reino de Midgard ]";
+		mes " ";
+		mes "1. Conforme o pacto do Reino de Midgard e o Feudo de Luina, declaro que este Castelo não possui um Senhor.";
+		mes " ";
+		mes "2. Aquele que superar terríveis desafios e destruir o Emperium, receberá a posse do castelo com o apoio do nosso rei.";
+	}
+	else {
+		if (getcharid(2) == .@GID) {
+			mes "Bravo guerreiro...";
+			mes "Você deseja retornar ao seu lugar de honra?";
+			next;
+			if (select("Retornar para o castelo do Clã.:Não.") == 1) {
+				if (getcharid(2) == GetCastleData("aldeg_cas04",1)) {
+					warp "aldeg_cas04",45,88;
+					//warp "aldeg_cas04",116,217;
+					end;
+				}
+			}
+			close;
+		}
+		mes "[ Decreto do Reino de Midgard ]";
+		mes " ";
+		mes "1. Seguindo o decreto do Reino de Midgard.";
+		mes "Nós declaramos que esse castelo pertence ao clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
+		mes " ";
+		mes "2. O líder do clã ^ff0000"+ GetGuildName(.@GID) + "^000000 se chama ^FF0000" + GetGuildMaster(.@GID) + "^000000.";
+		mes "Se alguém se opõe a esse decreto, que prove sua força e honra com uma espada em suas mãos.";
+	}
+	close;
+
+OnRecvCastleA04:
+	FlagEmblem GetCastleData("aldeg_cas04",1);
+	end;
+}
+
+alde_gld,239,239,2	duplicate(Rigel2)	Rigel#a4-3	722
+
+// Bandeira do Castelo (Dentro do Castelo)
+//============================================================
+aldeg_cas04,167,61,2	script	Rigel#a4-4::Rigel3	722,{
+	end;
+
+OnRecvCastleA04:
+	FlagEmblem GetCastleData("aldeg_cas04",1);
+	end;
+}
+
+aldeg_cas04,164,90,2	duplicate(Rigel3)	Rigel#a4-5	722
+aldeg_cas04,129,193,2	duplicate(Rigel3)	Rigel#a4-6	722
+aldeg_cas04,112,206,2	duplicate(Rigel3)	Rigel#a4-7	722
+aldeg_cas04,113,212,2	duplicate(Rigel3)	Rigel#a4-8	722
+aldeg_cas04,77,117,2	duplicate(Rigel3)	Rigel#a4-9	722
+aldeg_cas04,186,42,2	duplicate(Rigel3)	Rigel#a4-10	722
+aldeg_cas04,30,69,2	duplicate(Rigel3)	Rigel#a4-11	722
+aldeg_cas04,55,97,2	duplicate(Rigel3)	Rigel#a4-12	722
+aldeg_cas04,45,98,2	duplicate(Rigel3)	Rigel#a4-13	722
+aldeg_cas04,33,116,2	duplicate(Rigel3)	Rigel#a4-14	722
+aldeg_cas04,130,180,2	duplicate(Rigel3)	Rigel#a4-15	722
+aldeg_cas04,129,193,2	duplicate(Rigel3)	Rigel#a4-16	722
+aldeg_cas04,33,107,2	duplicate(Rigel3)	Rigel#a4-17	722
+aldeg_cas04,133,220,2	duplicate(Rigel3)	Rigel#a4-18	722
+aldeg_cas04,169,22,2	duplicate(Rigel3)	Rigel#a4-19	722
+aldeg_cas04,169,15,2	duplicate(Rigel3)	Rigel#a4-20	722
+
+// Gerenciador Automático
+//============================================================
+aldeg_cas04,36,218,0	duplicate(Gld_Agit_Manager)	Agit#aldeg_cas04	-1
+
+// Administração
+//============================================================
+aldeg_cas04,67,116,0	duplicate(Gld_Mngr_Template)	Brymhensen#aldeg_cas04	55
+
+// Guardiões
+//============================================================
+aldeg_cas04,67,116,0	duplicate(Gld_Guard_Template)	Guardian#aldeg_cas04	-1
+
+// Kafras
+//============================================================
+aldeg_cas04,45,88,0	duplicate(Gld_Kafra_Template)	Assistente Kafra#aldeg_cas04	117
+
+// Saída da Sala do Mestre
+//============================================================
+aldeg_cas04,83,17,0	script	#switch_A04	111,{
+	mes " ";
+	mes "Há uma pequena alavanca aqui.";
+	mes "Você deseja puxar ela?";
+	next;
+	if(select("Puxar.:Não puxar.") == 2) close;
+	warp "aldeg_cas04",67,117;
+	end;
+}
+
+// Proteção de Tesouros
+//============================================================
+aldeg_cas04,84,13,0	duplicate(Gld_Trea_Protect)	ban_warp#aldeg_cas04	-1,8,8
+
+// Spawns de Tesouros
+//============================================================
+aldeg_cas04,84,13,0	duplicate(Gld_Trea_Spawn)	Treasure#aldeg_cas04	-1
+
+// Mudanças de Cavernas
+//============================================================
+aldeg_cas04,38,76,0	duplicate(Gld_Dun_Template)	#aldeg_cas04	111

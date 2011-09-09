@@ -1,0 +1,119 @@
+//  ____________________________________________________________
+// /                                                            \
+// |       _           _   _   _                                |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _           |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |          |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |          |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|          |
+// |                                                            |
+// |                    brAthena Script                         |
+// |------------------------------------------------------------|
+// | Nome do Script: Festival do Bolinho                        |
+// |------------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                               |
+// |------------------------------------------------------------|
+// | Versões eA/brA: 1.01/1.1                                   |
+// |------------------------------------------------------------|
+// | Descrição: Festival do Bolinho.                            |
+// |------------------------------------------------------------|
+// | Changelog:                                                 |
+// | 1.0 Script Traduzido [Heaven]                              |
+// | 1.1 Script Revisado [Protimus & Tyler]                     |
+// | - Anotações                                                |
+// \____________________________________________________________/
+
+payon,93,81,4	script	Mestre Exorcista Fahae	834,{
+
+        mes "[Mestre Exorcista Fahae]";
+        mes "Saudações jovem guerreiro, eu sou o Mestre Exorcista Fahae.";
+        mes "Eu estive procurando a Lady Branca por algum tempo.";
+        next;
+        mes "[Mestre Exorcista Fahae]";
+		mes "Sinto que é hora de outro guerreiro tentar completar minha jornada.";
+		mes "Eu tenho alguns itens para ajudá-lo a completá-la, gostaria de comprá-los?";
+        next;
+        menu "Sim.",-, "Não, obrigado.",M_FIN;
+
+        mes "[Mestre Exorcista Fahae]";
+        mes "Eu tenho dois itens que podem ser úteis a você.";
+        next;
+        menu "Bebida de Realgar.",-, "Erva de Exorcismo.",M_HERB;
+        mes "[Mestre Exorcista Fahae]";
+        mes "Quantas você precisa?";
+        mes "Você só pode comprar 5 de cada vez.";
+        mes "Cada uma custa 20.000z.";
+        mes "(Digite 0 caso não queira nenhuma).";
+        next;
+        input @input;
+        if(@input==0) close;
+        if(@input>5) goto L_SORRY;
+        if(Zeny< @input*20000) goto L_NOZENY;
+        set Zeny,Zeny-20000*@input;
+        getitem 682,@input;
+        mes "[Mestre Exorcista Fahae]";
+        mes "Aqui está, espero que você tenha sucesso em sua jornada.";
+        close;
+
+L_SORRY:
+        mes "[Mestre Exorcista Fahae]";
+        mes "Você não deve ser pão-duro, este é o caminho de Deus para ser honesto.";
+        close;
+
+M_FIN:
+        mes "[Mestre Exorcista Fahae]";
+        mes "O caminho da vitória do demônio está longe, me ajude no caminho de Deus.";
+        close;
+
+M_HERB:
+        mes "[Mestre Exorcista Fahae]";
+        mes "Quantas você precisa?";
+        mes "Você só pode comprar 5 de cada vez.";
+        mes "Cada uma custa 10.000z.";
+        mes "(Digite 0 caso não queira nenhuma).";
+        next;
+        input @input;
+        if(@input==0) close;
+        if(@input>5) goto L_SORRY;
+        if(Zeny< @input*10000) goto L_NOZENY;
+        set Zeny,Zeny-10000*@input;
+        getitem 683,@input;
+        mes "[Mestre Exorcista Fahae]";
+        mes "Aqui vai você, espero que você tenha sucesso em minha busca.";
+        close;
+
+L_NOZENY:
+        mes "[Mestre Exorcista Fahae]";
+        mes "Dinheiro não traz alegria a todos, mas nós precisamos dele para sustentar o templo. Por favor, tente matar alguns monstros e pegue seus itens!";
+        close;
+}
+
+//=============================================
+// Spawn de Monstros do Evento
+//=============================================
+
+// ~Bolinho de Massa~
+gef_fild00,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
+gef_fild07,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
+gef_fild04,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
+gef_fild00,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
+prt_fild06,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
+prt_fild01,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
+prt_fild05,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
+prt_fild08,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
+pay_fild04,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
+moc_fild02,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
+pay_fild01,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
+pay_fild07,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
+moc_fild03,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
+pay_fild06,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
+pay_fild05,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
+pay_fild02,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
+pay_fild09,0,0,0,0	monster	Bolinho de Massa	1520,20,60000,66000
+
+// ~Lady Branca~
+moc_fild03,0,0,0,0	monster	Lady Branca	1518,1,60000,66000
+
+// ~Chung E~
+moc_fild03,0,0,0,0	monster	Chung E	1519,1,60000,66000
+moc_fild13,0,0,0,0	monster	Chung E	1519,1,60000,66000
+pay_fild01,0,0,0,0	monster	Chung E	1519,1,60000,66000

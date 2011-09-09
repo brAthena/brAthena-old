@@ -1,0 +1,74 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Guerra do Emperium - Gerência: On/Off  |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 2.0/1.1                                |
+// |--------------------------------------------------------|
+// | Descrição: Gerenciador Automático.                     |
+// | gettime(3): Serve para um horário (formato 24h)        |
+// | gettime(4): Serve para um dia da semana                |
+// | 1=Segunda, 2=Terça, 3=Quarta, 4=Quinta, etc            |
+// |--------------------------------------------------------|
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [cleyton]                         |
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// | - Anotações                                            |
+// \________________________________________________________/
+
+-	script	Agit_Event	-1,{
+	end;
+
+OnClock2100:	//Início para Terça(2), Quinta(4)
+OnClock2300:	//Termino para Terça(2), Quinta(4)
+OnClock1600:	//Início para Sábado(6)
+OnClock1800:	//Término para Sábado(6)
+
+OnAgitInit:
+	// Checagens de Início
+	if((gettime(4)==2) && (gettime(3)>=21 && gettime(3)<23) ||
+	   (gettime(4)==4) && (gettime(3)>=21 && gettime(3)<23) ||
+	   (gettime(4)==6) && (gettime(3)>=16 && gettime(3)<18)) {
+		if (!agitcheck()) {
+			AgitStart;
+			callsub S_DisplayOwners;
+		}
+		end;
+	}
+
+	// Checagens de Término
+	if ((gettime(4)==2) && (gettime(3)==23) ||
+	    (gettime(4)==4) && (gettime(3)==23) ||
+	    (gettime(4)==6) && (gettime(3)==18)) {
+		if (agitcheck()) {
+			AgitEnd;
+			callsub S_DisplayOwners;
+		}
+		end;
+	}
+	end;
+
+S_DisplayOwners:
+	setarray .@maps$[0],"aldeg_cas01","aldeg_cas02","aldeg_cas03","aldeg_cas04","aldeg_cas05";
+	setarray .@maps$[5],"gefg_cas01","gefg_cas02","gefg_cas03","gefg_cas04","gefg_cas05";
+	setarray .@maps$[10],"payg_cas01","payg_cas02","payg_cas03","payg_cas04","payg_cas05";
+	setarray .@maps$[15],"prtg_cas01","prtg_cas02","prtg_cas03","prtg_cas04","prtg_cas05";
+	for( set .@i, 0; .@i <= 19; set .@i, .@i+1 ) {
+		if (GetCastleData(.@maps$[.@i],1)) {
+			Announce "O castelo [" + GetCastleName(.@maps$[.@i]) + "] foi conquistado pelo Clã [" + GetGuildName(GetCastleData(.@maps$[.@i],1)) + "].",bc_all|bc_woe;
+		}
+		else {
+			Announce "O castelo [" + GetCastleName(.@maps$[.@i]) + "] está desocupado.",bc_all|bc_woe;
+		}
+	}
+	end;
+}

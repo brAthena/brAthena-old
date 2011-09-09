@@ -1,0 +1,210 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Evento dos Ovos de Páscoa              |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.0a/1.1                               |
+// |--------------------------------------------------------|
+// | Descrição: Quebrar ovos nas cidades para encontrar     |
+// | Chocolates.                                            |
+// | - Trocar os Chocolates por prêmios.                    |
+// | - Inclui os monstros Ovo de Páscoa e Coelhinho da      |
+// | Páscoa.                                                |
+// |--------------------------------------------------------|
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [viitorgabriiell & Power]         |
+// | 1.1 Script Revisado [Tyler & insimybrain]              |
+// | - Anotações                                            |
+// \________________________________________________________/
+
+geffen,95,201,3 script  Shilo   50,{
+        mes "[Shilo]";
+        if(easter_Q == 1) goto L_Check;
+        mes "*Suspiro*... Onde está a minha irmã!?";
+        next;
+        mes "[Shilo]";
+        mes "Ah... Olá! Estou muito animado! Você sabe por quê?";
+        next;
+        mes "[Shilo]";
+        mes "Meu feriado favorito chegou... A ^D2A200Páscoa^000000!!";
+        next;
+        mes "[Shilo]";
+        mes "Eu não posso esperar para encontrar alguns ovos de Páscoa...";
+        next;
+        if(@talked == 1) menu "Eu quero olhar estes ovos.",sM_0, "... Ovos? Por quê?",M_0, "Você me levou a sério... *Bocejo*.",M_End;
+        menu "... Ovos? Por quê?",M_0, "Você me levou a sério... *Bocejo*.",M_End;
+
+        M_0:
+                mes "[Shilo]";
+                mes "Quer dizer que nunca esteve em uma ^5533FFCaça aos Ovos de Páscoa^000000 antes?";
+                next;
+                mes "[Shilo]";
+                mes "Essas caçadas são as melhores! Veja todos os anos, pessoas de todos os lugares escondem ^5533FFOvos de Páscoa^000000 por toda Rune-Midgard.";
+                mes "E é nosso trabalho ir encontrar o maior número possível e recolher todos os presentes dentro deles.";
+                next;
+                mes "[Shilo]";
+                mes "Veja, há muito tempo, o PecoPeco vagou pela terra livre de qualquer hostilidades ...";
+                mes "Em toda Rune-Midgard, eles faziam o que queriam e se reproduziam sem qualquer receio.";
+                next;
+                mes "[Shilo]";
+                mes "A população PecoPecos prosperou e foi crescendo ... Eventualmente, os seus números de PecoPecos ficaram fora de controle.";
+                mes "O povo de Rune-Midgard decidiu que precisava fazer alguma coisa sobre a grandiosa população de PecoPecos.";
+                next;
+                mes "[Shilo]";
+                mes "Então, eles estavam determinados a destruir o maior número de Ovos de PecoPeco que poderiam encontrar!!";
+                next;
+                mes "[Shilo]";
+                mes "Muitas crianças viram a insuportável destruição dos ovos indefesos de PecoPecos.";
+                mes "Elas ficaram muito tristes com isso, e pediram a seus pais para pararem.";
+                next;
+                mes "[Shilo]";
+                mes "Infelizmente, eles não poderiam mais parar.";
+                mes "Se eles não fizessem nada, as terras férteis de Rune-Midard seriam destruídas por PecoPecos";
+                next;
+                mes "[Shilo]";
+                mes "Então eles decidiram tentar convencer os filhos que a destruição dos ovos fora uma coisa boa.";
+                mes "Os pais de começaram a fazer ovos falsos de PecoPeco.";
+                next;
+                mes "[Shilo]";
+                mes "Eles esconderam os ovos por toda a cidade e as crianças teriam que procurar.";
+                mes "Uma vez encontrado, as crianças iriam quebrar os ovos e descobrir o que havia dentro. Eles, então, sintiam prazer em quebrar os falsos ovos de PecoPeco.";
+                next;
+                mes "[Shilo]";
+                mes "Agora, o PecoPeco tem inimigos naturais, como Lobos do Deserto, que mantêm a população PecoPeco em um número estável..";
+                mes "Por isso o povo de Rune-Midgard já não têm de destruir ovos indefesos de PecoPeco.";
+                next;
+                mes "[Shilo]";
+                mes "Mas ainda mantêm a tradição de esconder ovos falsos em toda Rune-Midgard cada ano que passa.";
+                mes "E essa é a história por trás da Páscoa em Rune-Midgard.";
+                next;
+                mes "[Shilo]";
+                mes "Você sabe... parece que eu vou ficar aqui por enquanto. Eu vou te dizer que...";
+                next;
+                mes "[Shilo]";
+                mes "Se você sair e encontrar alguns ^5533FFOvos de Páscoa^000000 e me trazer de volta, eu lhe darei algo...";
+                mes "O que você acha?";
+                set @talked, 1;
+                next;
+                menu "O que eu tenho que fazer?",sM_0, "Não, eu estou ocupado.",sM_End;
+
+                sM_0:
+                        mes "[Shilo]";
+                        mes "Tudo que você tem a fazer é ir caçar alguns Ovos de Páscoa que podem ser encontrados nas cidades de toda Rune-Midgard.";
+                        next;
+                        mes "[Shilo]";
+                        mes "Quando você encontrar, quebre os ovos. Se você tiver sorte, vai ter alguns deliciosos ^D2A200'Chocolates'^000000 dentro deles.";
+                        mes "Encontre pelo menos ^00950010^000000,e se você trazê-los para mim e eu vou lhe dar um grande ^FF5533prêmio^000000.";
+                        next;
+                        mes "[Shilo]";
+                        mes "Quanto mais você me trazer, melhor vai ser o meu presente para você.";
+                        next;
+                        mes "[Shilo]";
+                        mes "Posso lhe oferecer:";
+                        mes "^00950010 ^D2A200Chocolates";      // 1 gold coin ?
+                        mes "^5533FF50 ^D2A200Chocolates^000000";       // 1 old blue box
+                        mes "and ^FF3355150 ^D2A200Chocolates^000000";  // 1 old purple box
+                        next;
+                        mes "[Shilo]";
+                        mes "Então o que você me diz?";
+                        next;
+                        menu "Parece divertido, eu vou participar!",ssM_0, "Eu tenho coisas melhores para fazer.",ssM_End;
+
+                        ssM_0:
+                                mes "[Shilo]";
+                                mes "Ótimo! Mas devo avisar...";
+                                next;
+                                mes "[Shilo]";
+                                mes "Durante a sua caçada aos Ovos de Páscoa, você pode se deparar com os protetores desses tais ovos...";
+                                next;
+                                mes "[Shilo]";
+                                mes "Eles são monstros brilhantes, cor azul claro e são muito 'fofinhos'...";
+                                mes "Embora eu nunca tenha visto um, já ouvi muitas histórias sobre eles.";
+                                next;
+                                mes "[Shilo]";
+                                mes "O que vieram a ser conhecidos como... '^FF3355Coelhos da Páscoa^000000'!";
+                                mes "Seja cuidadoso e de boa sorte. Eu estarei esperando por aqui.";
+                                set easter_Q, 1;
+                                close;
+
+                        ssM_End:
+                                mes "[Shilo]";
+                                mes "Bem, a perda é somente sua...";
+                                emotion 9;
+                                close;
+                sM_End:
+                        mes "[Shilo]";
+                        mes "Ahh, eu entendo... Passe bem.";
+                        close;
+        M_End:
+                mes "[Shilo]";
+                mes "...Bem, você não está tão interessado para falar com alguém...";
+                emotion 9;
+                close;
+//---------------------
+L_Check:
+//----------
+        mes "Encontrou algum ^D2A200Chocolate^000000 até agora?";
+        next;
+        mes "[Shilo]";
+        if (countitem(558) < 10) goto L_NotEnuf;
+        mes "Excelente. Você tem " + countitem(558) + " ^D2A200Chocolates^000000. Aqui está seu prêmio...";
+        if (countitem(558) >= 150) goto L_150;
+        if (countitem(558) >= 50) goto L_50;
+
+        delitem 558,10;
+        getitem 671,1;
+        goto L_Cont;
+
+        L_50:
+                delitem 558,50;
+                getitem 603,1;
+                goto L_Cont;
+
+        L_150:
+                delitem 558,150;
+                getitem 617,1;
+                goto L_Cont;
+
+        L_Cont:
+        mes "Divirta-se e feliz Páscoa!";
+        close;
+
+        L_NotEnuf:
+                mes "Você não tem ^D2A200Chocolates^000000 o suficiente para o prêmio.";
+                close;
+}
+
+//======================================================
+// Ovos da Páscoa (mob_db2.txt/mob_avail.txt/mob_skill_db2.txt)
+//=====================================================
+alberta,0,0,0,0 monster Ovo de Páscoa      3006,100,0,0,0
+aldebaran,0,0,0,0       monster Ovo de Páscoa      3006,150,0,0,0
+amatsu,0,0,0,0  monster Ovo de Páscoa      3006,100,0,0,0
+comodo,0,0,0,0  monster Ovo de Páscoa      3006,100,0,0,0
+geffen,0,0,0,0  monster Ovo de Páscoa      3006,120,0,0,0
+gonryun,0,0,0,0 monster Ovo de Páscoa      3006,100,0,0,0
+izlude,0,0,0,0  monster Ovo de Páscoa      3006,80,0,0,0
+louyang,0,0,0,0 monster Ovo de Páscoa      3006,200,0,0,0
+morocc,0,0,0,0  monster Ovo de Páscoa      3006,250,0,0,0
+payon,0,0,0,0   monster Ovo de Páscoa      3006,150,0,0,0
+prontera,0,0,0,0        monster Ovo de Páscoa      3006,250,0,0,0
+umbala,0,0,0,0  monster Ovo de Páscoa      3006,100,0,0,0
+yuno,0,0,0,0    monster Ovo de Páscoa      3006,150,0,0,0
+
+//======================================================
+// Coelhinho da Páscoa (mob_db2.txt/mob_avail.txt/mob_skill_db2.txt)
+//======================================================
+alberta,0,0,0,0 monster Coelhinho da Páscoa    3007,1,1200000,900000,0
+geffen,0,0,0,0  monster Coelhinho da Páscoa    3007,1,1200000,900000,0
+morocc,0,0,0,0  monster Coelhinho da Páscoa    3007,2,1200000,900000,0
+payon,0,0,0,0   monster Coelhinho da Páscoa    3007,1,1200000,900000,0
+prontera,0,0,0,0        monster Coelhinho da Páscoa    3007,2,840000,420000,0

@@ -1,0 +1,102 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Torres Gêmeas                          |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.6/1.1                                |
+// |--------------------------------------------------------|
+// | Descrição: mRO Event: Torres Gêmeas - Irmãos Siameses. |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [CaroLPunk]                       |
+// | 1.1 Script Revisado [Tyler]                            |
+// | - Anotações                                            |
+// \________________________________________________________/
+
+prontera,146,92,4	script	Torres Gêmeas#tt1::Torres Gêmeas	812,{
+	mes "[Torres Gêmeas]";
+	mes "Como você está? Nós somos os Irmãos Siameses.";
+	mes "É um prazer enorme encontrá-lo por aqui.";
+	mes "Eu suponho que você já saiba que este é o Ragnarok Online, uma terra de sonhos e fantasias.";
+	mes "Você está tendo uma aventura alegre e uma experiência excitante?";
+	next;
+	mes "[Torres Gêmeas]";
+	mes "Apesar de não podermos nos movimentar por aí e não podermos viver do jeito que você faz,";
+	mes "nós amamos o mundo o tanto quanto você!";
+	next;
+	mes "[Torres Gêmeas]";
+	mes "Que você possa experimentar a sensação deste mundo lindo!";
+	mes "Por esta razão, estamos aqui ao seu serviço com a nossa magia especial.";
+	mes "Por favor, avise-nos se quiser utilizá-la.";
+	next;
+	menu "Vou aceitar sua oferta.",YES,"Vou procurar pelos seus serviços uma outra hora.",NO;
+
+	NO:
+	mes "[Torres Gêmeas]";
+	mes "Er, que pena. Viajando sozinho é ainda a melhor prova de aventura.";
+	mes "Não é isso que demonstra que você ainda é jovem?";
+	mes "Nós respeitamos os corações corajosos como o seu!";
+	next;
+	mes "[Torres Gêmeas]";
+	mes "Há bons e maus momentos na vida, aliás, a aventura não é uma tarefa fácil, em primeiro lugar.";
+	mes "Não é verdade?";
+	mes "Sinta-se livre para vir até nós quando tiver tempo, nós sempre estaremos aqui para atendê-lo.";
+	next;
+	mes "[Torres Gêmeas]";
+	mes "Esqueça todos os seus problemas e crie uma lenda esplêndida neste mundo maravilhoso.";
+	mes "Este é um mundo tão maravilhoso, e você sempre será um grande aventureiro!";
+	close;
+	YES:
+	mes "[Torres Gêmeas]";
+	mes "A paixão ardente de um aventureiro, o desejo";
+	mes "de explorar os reinos desconhecidos, a dedicação";
+	mes "e o empenho para alcançar uma melhor aspiração...";
+	mes "Você é simplesmente um verdadeiro aventureiro com essa compaixão.";
+	next;
+	mes "[Torres Gêmeas]";
+	mes "Queremos ajudar os aventureiros apaixonados.";
+	mes "Embora não sejamos capazes de nos movimentar, felizmente, nós temos a habilidade especial que pode transportá-lo para lugares de perigo e emoção.";
+	next;
+	mes "[Torres Gêmeas]";
+	mes "Vamos lá! Onde você quer ir?";
+	mes "Só nos mostre o destino desejado e nós enviaremos você até lá!";
+	menu "Arredores de Prontera.", HiddenTemple,"Calabouço dos Orcs.",OrcDungeon,"Formigueiro Infernal.",AntHell,"Minas de Carvão no Mt. Mjolnir.",MjolnirWastePit,"Esfinges.",Sphinx,"Glast Heim.",GlastHeim,"Campos de Comodo.",Comodo;
+		HiddenTemple:
+			warp "prt_fild01",136,368;
+			close;
+		OrcDungeon:
+			warp "gef_fild10",67,334;
+			close;
+		AntHell:
+			warp "moc_fild04",210,329;
+			close;
+		MjolnirWastePit:
+			warp "mjolnir_02",79,361;
+			close;
+		Sphinx:
+			warp "moc_fild19",105,99;
+			close;
+		GlastHeim:
+			warp "gef_fild06",45,304;
+			close;
+		Comodo:
+			warp "cmd_fild01",30,317;
+			close;
+}
+
+morocc,160,97,4	duplicate(Twin-Towers)	Torres Gêmeas#tt2	812
+payon,176,226,4	duplicate(Twin-Towers)	Torres Gêmeas#tt3	812
+izlude,134,92,4	duplicate(Twin-Towers)	Torres Gêmeas#tt4	812
+alberta,25,238,4	duplicate(Twin-Towers)	Torres Gêmeas#tt5	812
+geffen,120,60,4	duplicate(Twin-Towers)	Torres Gêmeas#tt6	812
+aldebaran,143,116,4	duplicate(Twin-Towers)	Torres Gêmeas#tt7	812
+comodo,194,158,4	duplicate(Twin-Towers)	Torres Gêmeas#tt8	812

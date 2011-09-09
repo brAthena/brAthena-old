@@ -1,0 +1,170 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Novice Goods Exchanger					|
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.4/1.1                                |
+// |--------------------------------------------------------|
+// | Descrição:	Exchanges your Basic Monster drops 			|
+// | for Red Potions.										|
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [Mark]	                        |
+// | 1.1 Script Otimizado [Mark]	                        |
+// | - Anotações		   			    					|
+// \________________________________________________________/
+
+prontera,123,102,5	script	Merchant#pron	85,{
+	callfunc "Npc_PotExchange",935,5,914,10;
+	end;
+}
+
+morocc,180,259,3	script	Merchant#morroc	85,{
+	callfunc "Npc_PotExchange",935,5,916,7;
+	end;
+}
+
+payon,200,134,5	script	Merchant#pay	85,{
+	callfunc "Npc_PotExchange",902,6,916,7;
+	end;
+}
+
+aldebaran,152,63,5	script	Merchant#alde	85,{
+	callfunc "Npc_PotExchange",955,1,916,7;
+	end;
+}
+
+geffen,173,88,5	script	Merchant#geff	85,{
+	callfunc "Npc_PotExchange",935,5,915,6;
+	end;
+}
+
+function	script	Npc_PotExchange	{
+
+	set .@now_weight,MaxWeight-Weight;
+	if (.@now_weight < 6301 || checkweight(1201,1) == 0) {
+		mes "[Merchant]";
+		mes "Haha!";
+		mes "O que você é, o Super-Homem?";
+		mes "Você está carregando muitos itens!";
+		mes "Melhor deixar algumas coisas no Armazém da Kafra~";
+		close;
+	}
+	mes "[Merchant]";
+	mes "Bom dia!";
+	mes "Você tem algum";
+	mes getitemname(getarg(0))+" ou "+getitemname(getarg(2))+"?";
+	mes "Que tal Jellopies? Ah sim,";
+	mes "preciso deles para algumas coisas.";
+	next;
+	mes "[Merchant]";
+	mes "É claro, não vou pedir para me dar esses itens por nada.";
+	mes "Que tal se eu trocar 5 Poções Vermelhas por "+getarg(1)+" "+getitemname(getarg(0))+", "+getarg(3)+" "+getitemname(getarg(2))+"";
+	mes "ou 10 Jellopies?";
+	next;
+	switch(select("Claro!:Acho que está me passando a perna!:Não, obrigado.")) {
+	case 1:
+		mes "[Merchant]";
+		mes "Então qual item você vai me trazer?";
+		mes getitemname(getarg(0))+", "+getitemname(getarg(2))+",";
+		mes "ou Jellopies?";
+		next;
+		switch(select(getitemname(getarg(0))+":"+getitemname(getarg(2))+":Jellopy:Cancelar")) {
+		case 1: callfunc "F_PotExchange",getarg(0),getarg(1);
+		case 2: callfunc "F_PotExchange",getarg(2),getarg(3);
+		case 3: callfunc "F_PotExchange",909,10;
+		case 4:
+			mes "[Merchant]";
+			mes "Tudo bem~";
+			mes "Sem problemas.";
+			close;
+		}
+	case 2:
+		mes "[Merchant]";
+		mes "Passando a perna...?";
+		mes "Se você olhar o valor de mercado dos itens que estou pedindo, verá quem está passando a perna em quem...";
+		close;
+	case 3:
+		mes "[Merchant]";
+		mes "Certo, sem problemas.";
+		mes "Se mudar de idéia volte até mim.";
+		close;
+	}
+}
+
+function	script	F_PotExchange	{
+	if (countitem(getarg(0)) < getarg(1)) {
+		mes "[Merchant]";
+		mes "Ei, onde estão todos os "+getitemname(getarg(0))+" que você prometeu?";
+		mes "Me dê "+getitemname(getarg(0))+"!";
+		close;
+	}
+	else {
+		mes "[Merchant]";
+		mes "Certo, deixe-me ver quantos "+getitemname(getarg(0))+" você tem. Humm...";
+		next;
+		mes "[Merchant]";
+		mes "Você tem um total de "+countitem(getarg(0))+" "+getitemname(getarg(0))+".";
+		mes "Eu posso lhe dar um total de "+(countitem(getarg(0))/getarg(1))+" Poções Vermelhas por isso.";
+		next;
+		mes "[Merchant]";
+		mes "O que você me diz?";
+		mes "Temos um negócio?";
+		next;
+		if (select("Negociar.:Cancelar.") == 1) {
+			mes "[Merchant]";
+			mes "Você sabe quantas Poções Vermelhas vai receber por estes "+getitemname(getarg(0))+", não sabe?";
+			next;
+			mes "[Merchant]";
+			mes "Eu posso trocar no mínimo 1 Poção Vermelha e no máximo 100 Poções Vermelhas por vez.";
+			mes "Se você mudar de idéia digite '0' para cancelar.";
+			next;
+			while(1) {
+				input .@input,0,101;
+				if (.@input == 0) {
+					mes "[Merchant]";
+					mes "Que...?";
+					mes "Por que você ainda está falando comigo?";
+					mes "Bem indeciso, você né?";
+					close;
+				}
+				else if (.@input > 100) {
+					mes "[Merchant]";
+					mes "Não posso lhe dar mais que 100 Poções Vermelhas por vez.";
+					mes "Vamos tentar novamente.";
+					next;
+				}
+				else {
+					break;
+				}
+			}
+			set .@put_out_item,.@input * getarg(1);
+			if (countitem(getarg(0)) < .@put_out_item) {
+				mes "[Merchant]";
+				mes "Uh oh, o número que você digitou parece incorreto. Melhor checar novamente o número de poções que posso lhe dar.";
+				close;
+			}
+			mes "[Merchant]";
+			mes "Aqui está!";
+			mes "Olhe quantas Poções Vermelhas eu lhe dei, isso deve ser bom.";
+			mes "Obrigado, foi uma boa negociação~";
+			delitem getarg(0),.@put_out_item;
+			getitem 501,.@input; //Red_Potion
+			close;
+		}
+		mes "[Merchant]";
+		mes "Huh~";
+		mes "Tudo bem.";
+		mes "Poções Vermelhas não seriam melhores para um aventureiro como você?";
+		close;
+	}
+}

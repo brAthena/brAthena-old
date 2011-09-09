@@ -1,0 +1,113 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Quest da Máscara Feliz                 |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.4a/1.1                               |
+// |--------------------------------------------------------|
+// | Descrição: Evento para obter a Máscara Feliz.          |
+// |--------------------------------------------------------|
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [CaroLPunk]                       |
+// | 1.1 Script Revisado [Tyler]                            |
+// | - Anotações                                            |
+// \________________________________________________________/
+
+prontera,157,187,4	script	Dona Risadinha#prt::SmileHelper	92,{
+	mes "[Dona Risadinha]";
+	mes "Hi ~ Hi ~";
+	mes "Eu sou a Assistente da Máscara Feliz.";
+	mes "Como posso ajudá-lo?";
+	next;
+	switch(select("^3355FFMáscara Feliz^000000?:Construir uma ^3355FFMáscara Feliz^000000.:Finalizar conversa.")) {
+	case 1:
+		mes "[Dona Risadinha]";
+		mes "Este é um evento nacional realizado sob o comando da";
+		mes "^5577FFsua majestade, o rei Tristram III^000000, que";
+		mes "pretende incentivar a nação do Reino de Rune-Midgard";
+		mes "a jogar em um ambiente mais agradável!";
+		mes "Eu sou a ^3355FF'Dona Risadinha'^000000,";
+		mes "...que conduz o evento nacional nomeado de";
+		mes "^3355FFSorria em todo o Reino de Rune-Midgard^000000";
+		next;
+		mes "[Dona Risadinha]";
+		mes "É simples e fácil de obter os itens,";
+		mes "para fazer uma a máscara do sorriso.";
+		mes "Eu posso lhe dar a linda";
+		mes "^3355FF'Máscara Feliz'^000000.";
+		mes "Os requisitos são os seguintes.";
+		next;
+		mes "[Dona Risadinha]";
+		mes "^3355FF10 Jellopys^000000";
+		mes "^3355FF10 Felpas^000000";
+		mes "^3355FF10 Trevos^000000";
+		next;
+		mes "[Dona Risadinha]";
+		mes "Com este evento";
+		mes "Todo mundo vai ser feliz e sorrir,";
+		mes "vamos nos reunir com outras pessoas!";
+		mes "E vou tentar fazer o jogo Ragnarok o mais agradável do mundo.";
+		close;
+	case 2:
+		if (countitem(909) > 9 && countitem(914) > 9 && countitem(705) > 9) {
+			mes "[Dona Risadinha]";
+			mes "Parabéns!";
+			mes "Agora, por favor tome esta Máscara Feliz!";
+			next;
+			delitem 909,10; //Jellopy
+			delitem 914,10; //Felpa
+			delitem 705,10; //Trevo
+			getitem 2278,1; //Máscara Feliz
+			mes "[Dona Risadinha]";
+			mes "Sua majestade, o rei Tristram, comprometeu-se a tentar o seu";
+			mes "melhor para fazer do game Ragnarok o melhor e mais agradável.";
+			next;
+			mes "O fato mencionado acima";
+			mes "foi anunciado pelo";
+			mes "Departamento da Informação Pública do Reino Rune-Midgard.";
+			close;
+		}
+		else {
+			mes "[Dona Risadinha]";
+			mes "Oh! Infelizmente";
+			mes "Você não trouxe os itens";
+			mes "necessários para fazer a Máscara Feliz.";
+			mes "^3355FF10 Jellopys^000000";
+			mes "^3355FF10 Felpas^000000";
+			mes "^3355FF10 Trevos^000000";
+			mes "Por favor, verifique os requisitos listados acima.";
+			close;
+		}
+	case 3:
+		mes "[Dona Risadinha]";
+		mes "Obrigado por nos visitar.";
+		mes "Que nós...";
+		mes "do Reino de Rune-Midgard,";
+		mes "possamos cada vez mais fazer de Ragnarok,";
+		mes "um jogo melhor e mais agradável.";
+		next;
+		mes "[Dona Risadinha]";
+		mes "Sinceramente, peço-lhe";
+		mes "para colaborar com isso!!!";
+		mes "O fato mencionado acima";
+		mes "foi anunciado pelo Departamento da Informação Pública do Reino de  Rune-Midgard.";
+		close;
+	}
+}
+
+// Assistentes do Evento Adicionais
+moc_ruins,59,154,3	duplicate(SmileHelper)	Dona Risadinha#moc	92
+aldebaran,136,135,4	duplicate(SmileHelper)	Dona Risadinha#alde	92
+geffen,119,107,4	duplicate(SmileHelper)	Dona Risadinha#gef	92
+alberta,113,53,4	duplicate(SmileHelper)	Dona Risadinha#alb	92
+payon,186,104,5	duplicate(SmileHelper)	Dona Risadinha#pay	92
+izlude,129,118,4	duplicate(SmileHelper)	Dona Risadinha#iz	92

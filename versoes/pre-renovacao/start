@@ -1,0 +1,35 @@
+#!/bin/bash
+# modified by shazeya@syafi.com (NL130240)
+
+./brathena-start start
+sleep 30
+
+while [ true ]; do
+    if [ "      0" = "$(ps | grep -e log | wc -l)" ] ||
+#    if [ "      0" = "$(ps | grep -e login | wc -l)" ] ||
+       [ "      0" = "$(ps | grep -e char  | wc -l)" ] ||
+       [ "      0" = "$(ps | grep -e map   | wc -l)" ]; then
+        printf "Erro:"
+        date
+        sleep 10
+        printf "Checando:"
+        date
+        if [ "      0" = "$(ps | grep -e log | wc -l)" ] ||
+#        if [ "      0" = "$(ps | grep -e login | wc -l)" ] ||
+           [ "      0" = "$(ps | grep -e char  | wc -l)" ] ||
+           [ "      0" = "$(ps | grep -e map   | wc -l)" ]; then
+            printf "Confirmação de Erro:"
+            date
+            printf "Restauração:"
+            date
+            ./brathena-start start
+        else
+            printf "Checagem Incompleta:"
+            date
+        fi
+#    else
+#        printf "Checagem Completa:"
+#        date
+    fi
+    sleep 10
+done

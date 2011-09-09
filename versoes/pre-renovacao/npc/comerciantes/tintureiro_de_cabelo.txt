@@ -1,0 +1,206 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Tintureiro de Cabelo					|
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.4/1.1                                |
+// |--------------------------------------------------------|
+// | Descrição:	Tinjir Cabelos com palletas padrão			|
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [Mark]	                        |
+// | 1.1 Script Otimizado [Mark]	                        |
+// | - Anotações		   			    					|
+// \________________________________________________________/
+
+prt_in,243,168,4	script	Jovovich	91,{
+	mes "[Cabeleireiro Jovovich]";
+	mes "Bem Vindo~!";
+	mes "Como posso ajudá-lo?";
+	next;
+	mes "[Cabeleireiro Jovovich]";
+	if (sex) mes "Oh, não! Seu cabelo está danificado. Parece que você precisa de um tratamento profissional. Venha e sente aqui, por favor, venha.";
+	else {
+		if (rand(20) > 11) {
+			mes "Eh!? Oh! Ah, não não não não! Seu cabelo está muito danificado. Não é bom deixar seu cabelo assim.";
+			next;
+			mes "[Cabeleireiro Jovovich]";
+			mes "Você deixa eu dar uma olhada no seu cabelo, por favor?";
+		}
+		else mes "Uau! Seu cabelo ficaria perfeito se você tingisse~ Que tal tingir o seu cabelo para uma mudança?";
+	}
+	next;
+	switch(select("Tingir o Cabelo:Dicas e Informações:Cancelar")) {
+	case 1:
+		mes "[Cabeleireiro Jovovich]";
+		mes "Sim, sim, uma boa escolha~";
+		mes "essa e sua chance de florecer, escolha a cor que você deseja.";
+		next;
+		switch(select("Vermelho, por favor.:Amarelo, por favor.:Roxo, por favor.:Laranja, por favor.:Verde, por favor.:Azul, por favor.:Branco, por favor.:Preto, por favor.:Na verdade, prefiro meu cabelo como ele é.")) {
+		case 1: set .@headpalette,8; break;
+		case 2: set .@headpalette,1; break;
+		case 3: set .@headpalette,2; break;
+		case 4: set .@headpalette,3; break;
+		case 5: set .@headpalette,4; break;
+		case 6: set .@headpalette,5; break;
+		case 7: set .@headpalette,6; break;
+		case 8: set .@headpalette,7; break;
+		case 9:
+			mes "[Cabeleireiro Jovovich]";
+			mes "Eehh~? Você não irá tingir o seu cabelo? Estou triste...";
+			close;
+		}
+		if (.@headpalette == getlook(VAR_HEADPALETTE)) {
+			mes "[Cabeleireiro Jovovich]";
+			mes "Eh? Mas essa é a cor de cabelo que você já tem. Escolha uma cor diferente.";
+			close;
+		}
+		else {
+			if (zeny < 1000) {
+				mes "[Cabeleireiro Jovovich]";
+				mes "A taxa é de 1.000 zeny. Você não tem zeny o suficiente...?";
+				close;
+			}
+			setarray .@cores[1],976,978,979,980,981,982,983,975;
+			for(set .@i,1; .@i <= 8; set .@i,.@i+1){
+				if(.@headpalette == .@i && countitem(.@cores[.@i])){
+					delitem .@cores[.@i],1;
+					set Zeny,Zeny - 1000;
+					setlook VAR_HEADPALETTE,.@headpalette;
+					close;
+				} else if(.@headpalette == .@i && !countitem(.@cores[.@i])){
+					mes "[Cabeleireiro Jovovich]";
+					mes "Eh?! Mas você precisa do item '"+getitemname(.@cores[.@i])+"' para tingir seu cabelo...";
+					close;
+				}
+			}
+		}
+	case 2:
+		mes "[Cabeleireiro Jovovich]";
+		mes "Quando voce se sentir para baixo, quando quiser impressionar alguém, ou mesmo quando quiser apenas mudar um pouco...";
+		next;
+		mes "[Cabeleireiro Jovovich]";
+		mes "Desde que você tenha a tintura apropriada eu fareu seu cabelo ficar lindo.";
+		next;
+		mes "[Cabeleireiro Jovovich]";
+		mes "Tente não se preocupar com a taxa. Aquisição de beleza é o mesmo que adquirir tudo. Hehe~";
+		next;
+		mes "[Cabeleireiro Jovovich]";
+		mes "* Taxas e Informações *";
+		mes "- 1 Tintura da cor do cabelo que você quer.";
+		mes "- Taxa de 1000 zeny.";
+		close;
+	case 3:
+		mes "[Cabeleireiro Jovovich]";
+		mes "Homens ou Mulheres...";
+		mes "Toda a pessoa tem o direito e a obrigação de ser bonito.";
+		close;
+	}
+}
+
+// Lighthalzen
+lhz_in02,100,134,3	script	Hair Dyer#lich	850,{
+	mes "[Rossa]";
+	if (Sex == 1) {
+		mes "Bem vindo, pode entrar~";
+		mes "Oh, vejo que você cuida do seu cabelo muito melhor que os outros meninos.";
+		mes "Agora você deseja tingir seu cabelo com outra cor?";
+	}
+	else {
+		mes "Oh, uau~";
+		mes "Onde você conseguiu este estilo de cabelo?";
+		mes "Eu Amei! Mas... Poderia ficar mais bonito se você tingisse seu cabelo.";
+		mes "O que você acha?";
+	}
+	next;
+	switch(select("Tingir Cabelo:Informação de Coloração:Cancelar")) {
+	case 1:
+		mes "[Rossa]";
+		mes "Ho ho ho ho~";
+		mes "Então qual cor você gostaria de tentar?";
+		mes "Alguma coisa vívida ou escura? Sexy ou bonitinho?";
+		next;
+		switch(select("Vermelho, por favor.:Amarelo, por favor.:Violeta, por favor.:Laranja, por favor.:Verde, por favor.:Azul, por favor.:Branco, por favor.:Castanho, por favor.:Eu prefiro minha cor de cabelo.")) {
+		case 1:
+			set .@headpalette,8;
+			break;
+		case 2:
+			set .@headpalette,1;
+			break;
+		case 3:
+			set .@headpalette,2;
+			break;
+		case 4:
+			set .@headpalette,3;
+			break;
+		case 5:
+			set .@headpalette,4;
+			break;
+		case 6:
+			set .@headpalette,5;
+			break;
+		case 7:
+			set .@headpalette,6;
+			break;
+		case 8:
+			set .@headpalette,7;
+			break;
+		case 9:
+			mes "[Rossa]";
+			mes "Você tem certeza?";
+			mes "Está bem, você sabe o melhor para sua beleza, e para te dizer a verdade, eu concordo com você~";
+			close;
+		}
+		if (getlook(VAR_HEADPALETTE) == .@headpalette) {
+			mes "[Rossa]";
+			mes "Humm, a cor do seu cabelo continua ótima, você não precisa recolorir com a mesma cor novamente.";
+			close;
+		}
+		else {
+			if(Zeny < 1000){
+				mes "[Rossa]";
+				mes "Oh, me desculpe querido, mas meu serviço custa 1.000 zeny.";
+				mes "Você esqueceu de trazer seu dinheiro com você?";
+				close;
+			}
+			setarray .@cores[1],976,981,980,979,978,982,983,975;
+			for(set .@i,1; .@i <= 8; set .@i,.@i+1){
+				if(.@headpalette == .@i && countitem(.@cores[.@i])){
+					delitem .@cores[.@i],1;
+					set Zeny,Zeny - 1000;
+					setlook VAR_HEADPALETTE,.@headpalette;
+					close;
+				} else if(.@headpalette == .@i && !countitem(.@cores[.@i])){
+					mes "[Rossa]";
+					mes "Oh, me desculpe querido, mas não posso tingir seu cabelo se você não me trouxer uma "+getitemname(.@cores[.@i])+"...";
+					close;
+				}
+			}
+		}
+	case 2:
+		mes "[Rossa]";
+		mes "Quando você está se sentindo pra baixo,";
+		mes "quando quer apenas parecer bem para quem ama,";
+		mes "ou quando você quer apenas mudar um pouco,";
+		mes "Por que você não tingi seu cabelo?";
+		next;
+		mes "[Rossa]";
+		mes "Tudo que você precisa é de uma Tintura da cor que deseja tingir seu cabelo, e também a taxa de 1.000 zeny.";
+		mes "Estou aqui para a necessidade da sua beleza~";
+		close;
+	case 3:
+		mes "[Rossa]";
+		mes "Você sabe, quando você muda sua aparência, você não vai ter apenas uma aparência melhor, mas vai se sentir melhor consigo.";
+		mes "Faz sentido né?";
+		close;
+	}
+}

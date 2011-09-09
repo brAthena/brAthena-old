@@ -1,0 +1,137 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Guerra do Emperium (Payon)             |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.1/1.2                                |
+// |--------------------------------------------------------|
+// | Descrição: NPCs relacionados ao castelo                |
+// | Palácio da Colina.                                     |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [cleyton]                         |
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// | 1.2 Correção de Tradução [Protimus]                    |
+// | - Corrigido erro de concordância nominal               |
+// \________________________________________________________/
+
+// Bandeira do Castelo (Cidade)
+//============================================================
+payon,166,165,3	script	Palácio da Colina#f5-1::Palácio da Colina	722,{
+	end;
+
+OnRecvCastlePy05:
+	FlagEmblem GetCastleData("payg_cas05",1);
+	end;
+}
+
+payon,123,322,4	duplicate(Palácio da Colina)	Palácio da Colina#f5-2	722
+
+// Bandeira do Castelo (Fora do Castelo)
+//============================================================
+pay_gld,208,268,4	script	Palácio da Colina#f5-3::Palácio da Colina2	722,{
+	set .@GID, GetCastleData("payg_cas05",1);
+	if (.@GID == 0) {
+		mes " [ Decreto do Reino de Midgard ]";
+		mes " ";
+		mes "1. Conforme o pacto do Reino de Midgard e o Feudo do Bosque Celestial, declaro que este Castelo não possui um Senhor.";
+		mes " ";
+		mes "2. Aquele que superar terríveis desafios e destruir o Emperium, receberá a posse do castelo com o apoio do nosso rei.";
+	}
+	else {
+		if (getcharid(2) == .@GID) {
+			mes "Bravo guerreiro...";
+			mes "Você deseja retornar ao seu lugar de honra?";
+			next;
+			if (select("Retornar para o castelo do Clã.:Não.") == 1) {
+				if (getcharid(2) == GetCastleData("payg_cas05",1)) {
+					warp "payg_cas05",276,227;
+					//warp "payg_cas05",243;27;
+					end;
+				}
+			}
+			close;
+		}
+		mes "[ Decreto do Reino de Midgard ]";
+		mes " ";
+		mes "1. Seguindo o decreto do Reino de Midgard.";
+		mes "Nós declaramos que esse castelo pertence ao clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
+		mes " ";
+		mes "2. O líder do clã ^ff0000"+ GetGuildName(.@GID) + "^000000 se chama ^FF0000" + GetGuildMaster(.@GID) + "^000000.";
+		mes "Se alguém se opõe a esse decreto, que prove sua força e honra com uma espada em suas mãos.";
+	}
+	close;
+
+OnRecvCastlePy05:
+	FlagEmblem GetCastleData("payg_cas05",1);
+	end;
+}
+
+pay_gld,199,268,4	duplicate(Palácio da Colina2)	Palácio da Colina#f5-4	722
+pay_gld,190,277,3	duplicate(Palácio da Colina2)	Palácio da Colina#f5-5	722
+pay_gld,187,294,2	duplicate(Palácio da Colina2)	Palácio da Colina#f5-6	722
+
+// Bandeira do Castelo (Dentro do Castelo)
+//============================================================
+payg_cas05,32,249,4	script	Palácio da Colina#f5-7::Palácio da Colina3	722,{
+	end;
+
+OnRecvCastlePy05:
+	FlagEmblem GetCastleData("payg_cas05",1);
+	end;
+}
+
+payg_cas05,24,249,4	duplicate(Palácio da Colina3)	Palácio da Colina#f5-8	722
+payg_cas05,62,271,0	duplicate(Palácio da Colina3)	Palácio da Colina#f5-9	722
+payg_cas05,57,271,0	duplicate(Palácio da Colina3)	Palácio da Colina#f5-10	722
+payg_cas05,55,252,2	duplicate(Palácio da Colina3)	Palácio da Colina#f5-11	722
+payg_cas05,55,260,2	duplicate(Palácio da Colina3)	Palácio da Colina#f5-12	722
+
+// Gerenciador Automático
+//============================================================
+payg_cas05,30,30,0	duplicate(Gld_Agit_Manager)	Agit#payg_cas05	-1
+
+// Administração
+//============================================================
+payg_cas05,277,249,3	duplicate(Gld_Mngr_Template)	Nahzarf#payg_cas05	55
+
+// Guardiões
+//============================================================
+payg_cas05,277,249,3	duplicate(Gld_Guard_Template)	Guardian#payg_cas05	-1
+
+// Kafras
+//============================================================
+payg_cas05,276,227,1	duplicate(Gld_Kafra_Template)	Assistente Kafra#payg_cas05	117
+
+// Saída da Sala do Mestre
+//============================================================
+payg_cas05,161,136,0	script	#switch_Py05	111,{
+	mes " ";
+	mes "Há uma pequena alavanca aqui.";
+	mes "Você deseja puxar ela?";
+	next;
+	if(select("Puxar.:Não puxar.") == 2) close;
+	warp "payg_cas05",277,250;
+	end;
+}
+
+// Proteção de Tesouros
+//============================================================
+payg_cas05,157,132,0	duplicate(Gld_Trea_Protect)	ban_warp#payg_cas05	-1,6,6
+
+// Spawns de Tesouros
+//============================================================
+payg_cas05,157,132,0	duplicate(Gld_Trea_Spawn)	Treasure#payg_cas05	-1
+
+// Mudanças de Cavernas
+//============================================================
+payg_cas05,248,14,0	duplicate(Gld_Dun_Template)	#payg_cas05	111

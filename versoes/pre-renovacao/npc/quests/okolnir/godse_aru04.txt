@@ -1,0 +1,171 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Falicious Okolnir - Valfreja 4         |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.3/1.0                                |
+// |--------------------------------------------------------|
+// | Descrição: God Item SE Creation scipt (Asprika)        |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido e Otimizado [Mark]                |
+// | - Anotações                                            |
+// \________________________________________________________/
+
+arug_cas04,324,161,3	duplicate(guiaSE)	Guia#arug_cas04	899
+
+que_qaru04,345,23,0	warp	Gate02#gq_aru04	1,1,arug_cas04,321,153
+
+que_qaru04,345,82,3	duplicate(WishSE)	Dama dos Desejos#arug_cas04	403
+
+que_qaru04,346,81,0	duplicate(Gate01SE)	Gate01#arug_cas04	45,1,1
+
+que_qaru04,1,4,0	duplicate(Gate_Manag_SE)	#Gate_manager_aru04	844
+
+que_qaru04,1,4,0	duplicate(GateMob2)	#gq_miromob2_aru04	844
+
+que_qaru04,1,1,0	duplicate(okolnir_SE)	#okolnir_aru04	844
+
+que_qaru04,1,2,0	duplicate(mazemanag_SE)	#Maze_Manager_aru04	844
+
+que_qaru04,2,1,0	duplicate(MirobfSE)	#miro_bf_aru04	844
+
+que_qaru04,2,2,0	duplicate(MirorfSE)	#miro_rf_aru04	844
+
+que_qaru04,2,3,0	duplicate(MiroyfSE)	#miro_yf_aru04	844
+
+que_qaru04,132,172,0	duplicate(wind01SE)	windpath01_aru04	45,1,1
+
+que_qaru04,113,165,0	warp	windpath02_aru04	1,1,que_qaru04,139,172
+
+que_qaru04,131,136,3	duplicate(PiametSE)	Piamette#arug_cas04	1930
+
+que_qaru04,114,158,0	duplicate(eventstartSE)	#event_start1_aru04	-1,1,1
+
+que_qaru04,2,2,0	duplicate(gdtimer01SE)	#gdtimer1_aru04	844
+
+que_qaru04,2,3,0	duplicate(gdtimer02SE)	#gdtimer2_aru04	844
+
+que_qaru04,1,4,0	duplicate(piametteSE)	#piamette_aru04	844
+
+que_qaru04,113,135,0	duplicate(getspellSE)	#getspell1_aru04	-1,1,1
+que_qaru04,146,150,0	duplicate(getspellSE)	#getspell2_aru04	-1,1,1
+que_qaru04,131,117,0	duplicate(getspellSE)	#getspell3_aru04	-1,1,1
+que_qaru04,117,150,0	duplicate(getspellSE)	#getspell4_aru04	-1,1,1
+que_qaru04,150,135,0	duplicate(getspellSE)	#getspell5_aru04	-1,1,1
+que_qaru04,117,121,0	duplicate(getspellSE)	#getspell6_aru04	-1,1,1
+que_qaru04,131,154,0	duplicate(getspellSE)	#getspell7_aru04	-1,1,1
+que_qaru04,146,121,0	duplicate(getspellSE)	#getspell8_aru04	-1,1,1
+
+que_qaru04,103,153,0	duplicate(cageSE)	#aru04_cage1	-1,1,1
+que_qaru04,102,135,0	duplicate(cageSE)	#aru04_cage2	-1,1,1
+que_qaru04,113,111,0	duplicate(cageSE)	#aru04_cage3	-1,1,1
+que_qaru04,161,105,0	duplicate(cageSE)	#aru04_cage4	-1,1,1
+que_qaru04,168,135,0	duplicate(cageSE)	#aru04_cage5	-1,1,1
+que_qaru04,150,159,0	duplicate(cageSE)	#aru04_cage6	-1,1,1
+
+que_qaru04,1,8,0	duplicate(mobctrlSE)	#gd_aru04_mobctrl	844
+
+que_qaru04,149,105,0	duplicate(wind03SE)	windpath3_aru04	45,1,1
+
+que_qaru04,128,104,0	duplicate(wind04SE)	windpath4_aru04	45,1,1
+
+que_qaru04,253,273,0	duplicate(nmswitchSE)	#nm_switch_aru04	-1,5,5
+
+que_qaru04,229,297,0	duplicate(jin01SE)	#nmsomaru04_jin1	-1
+
+que_qaru04,2,8,0	duplicate(stone01SE)	#aru04_stone1	844
+
+que_qaru04,275,299,0	duplicate(jin02SE)	#nmsomaru04_jin2	-1
+
+que_qaru04,2,9,0	duplicate(stone02SE)	#aru04_stone2	844
+
+que_qaru04,251,340,0	duplicate(jin03SE)	#nmsomaru04_jin3	-1
+
+que_qaru04,2,10,0	duplicate(stone03SE)	#aru04_stone3	844
+
+que_qaru04,235,285,5	duplicate(guardshadowSE)	Guarda das Sombras#aru04_1	1752,4,4
+
+que_qaru04,224,290,5	duplicate(guardshadowSE)	Guarda das Sombras#aru04_2	1752,4,4
+
+que_qaru04,236,296,5	duplicate(guardshadowSE)	Guarda das Sombras#aru04_3	1752,4,4
+
+que_qaru04,225,303,5	duplicate(guardshadowSE)	Guarda das Sombras#aru04_4	1752,4,4
+
+que_qaru04,266,296,3	duplicate(bloodyhuntSE)	Caçador de Sangue#aru04_ac1	1753,4,4
+
+que_qaru04,271,283,3	duplicate(bloodyhuntSE)	Caçador de Sangue#aru04_ac2	1753,4,4
+
+que_qaru04,270,307,3	duplicate(bloodyhuntSE)	Caçador de Sangue#aru04_ac3	1753,4,4
+
+que_qaru04,279,300,3	duplicate(bloodyhuntSE)	Caçador de Sangue#aru04_ac4	1753,4,4
+
+que_qaru04,247,330,5	duplicate(templekeepSE)	Guardião do Templo#aru04_ac1	1933,4,4
+
+que_qaru04,255,330,3	duplicate(templekeepSE)	Guardião do Templo#aru04_ac2	1933,4,4
+
+que_qaru04,251,255,3	duplicate(wishbossSE)	Dama dos Desejos#aru04_boss	1931
+
+que_qaru04,252,340,3	duplicate(wishgiftSE)	Dama dos Desejos#aru04_gift	403
+
+que_qaru04,252,339,0	duplicate(agitgateSE)	#to_agit_aru04_gate	45,1,1
+
+que_qaru04,1,6,0	duplicate(okolnirtimeSE)	#okolnir_aru04_time1	844
+
+
+
+que_qaru04,116,313,0,0	monster	Guarda do Jardim	1932,1,180000,0,0
+que_qaru04,120,285,0,0	monster	Guarda do Jardim	1932,1,180000,0,0
+que_qaru04,117,236,0,0	monster	Guarda do Jardim	1932,1,180000,0,0
+que_qaru04,103,223,0,0	monster	Guarda do Jardim	1932,1,180000,0,0
+que_qaru04,85,204,0,0	monster	Guarda do Jardim	1932,1,180000,0,0
+que_qaru04,79,186,0,0	monster	Guarda do Jardim	1932,1,180000,0,0
+que_qaru04,73,167,0,0	monster	Guarda do Jardim	1932,1,180000,0,0
+que_qaru04,68,150,0,0	monster	Guarda do Jardim	1932,1,180000,0,0
+que_qaru04,71,128,0,0	monster	Guarda do Jardim	1932,1,180000,0,0
+que_qaru04,69,118,0,0	monster	Guarda do Jardim	1932,1,180000,0,0
+que_qaru04,117,78,0,0	monster	Guarda do Jardim	1932,1,180000,0,0
+que_qaru04,110,79,0,0	monster	Guarda do Jardim	1932,1,180000,0,0
+que_qaru04,141,80,0,0	monster	Guarda do Jardim	1932,1,180000,0,0
+que_qaru04,158,84,0,0	monster	Guarda do Jardim	1932,1,180000,0,0
+que_qaru04,193,104,0,0	monster	Guarda do Jardim	1932,1,180000,0,0
+que_qaru04,119,269,0,0	monster	Guarda do Jardim	1932,1,180000,0,0
+que_qaru04,155,77,0,0	monster	Guarda do Jardim	1932,1,180000,0,0
+que_qaru04,110,317,0,0	monster	Observador do Jardim	1933,1,600000,0,0
+que_qaru04,115,295,0,0	monster	Observador do Jardim	1933,1,1200000,0,0
+que_qaru04,116,256,0,0	monster	Observador do Jardim	1933,1,600000,0,0
+que_qaru04,113,242,0,0	monster	Observador do Jardim	1933,1,1200000,0,0
+que_qaru04,99,223,0,0	monster	Observador do Jardim	1933,1,600000,0,0
+que_qaru04,94,216,0,0	monster	Observador do Jardim	1933,1,1200000,0,0
+que_qaru04,77,198,0,0	monster	Observador do Jardim	1933,1,600000,0,0
+que_qaru04,70,174,0,0	monster	Observador do Jardim	1933,1,1200000,0,0
+que_qaru04,72,147,0,0	monster	Observador do Jardim	1933,1,600000,0,0
+que_qaru04,64,134,0,0	monster	Observador do Jardim	1933,1,1200000,0,0
+que_qaru04,77,107,0,0	monster	Observador do Jardim	1933,1,600000,0,0
+que_qaru04,84,88,0,0	monster	Observador do Jardim	1933,1,1200000,0,0
+que_qaru04,98,82,0,0	monster	Observador do Jardim	1933,1,600000,0,0
+que_qaru04,129,79,0,0	monster	Observador do Jardim	1933,1,1200000,0,0
+que_qaru04,91,124,0,0	monster	Observador do Jardim	1933,1,600000,0,0
+que_qaru04,173,95,0,0	monster	Observador do Jardim	1933,1,1200000,0,0
+que_qaru04,179,127,0,0	monster	Observador do Jardim	1933,1,600000,0,0
+que_qaru04,195,120,0,0	monster	Observador do Jardim	1933,1,1200000,0,0
+que_qaru04,178,159,0,0	monster	Observador do Jardim	1933,1,600000,0,0
+que_qaru04,88,145,0,0	monster	Observador do Jardim	1933,1,1200000,0,0
+que_qaru04,94,157,0,0	monster	Observador do Jardim	1933,1,600000,0,0
+que_qaru04,95,177,0,0	monster	Observador do Jardim	1933,1,1200000,0,0
+que_qaru04,129,196,0,0	monster	Observador do Jardim	1933,1,600000,0,0
+que_qaru04,154,196,0,0	monster	Observador do Jardim	1933,1,1200000,0,0
+que_qaru04,170,187,0,0	monster	Observador do Jardim	1933,1,600000,0,0
+que_qaru04,194,180,0,0	monster	Observador do Jardim	1933,1,1200000,0,0
+que_qaru04,214,181,0,0	monster	Observador do Jardim	1933,1,600000,0,0
+que_qaru04,243,199,0,0	monster	Observador do Jardim	1933,1,1200000,0,0
+

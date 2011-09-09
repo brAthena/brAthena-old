@@ -1,0 +1,147 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Mail Boxes                             |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.5/1.0                                |
+// |--------------------------------------------------------|
+// | Descrição:                                             |
+// | Pickup and write mail from/to players in game.         |
+// |--------------------------------------------------------|
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [cleyton]                         |
+// | 1.1 Script Revisado [cleyton]                          |
+// |                                                        |
+// \_______________________________________________________/
+
+// Allow Mail Inbox reading from
+//============================================================
+
+// Prontera
+//============================================================
+prontera,146,86,0	script	Correio#prt::MailBox	888,{
+	mes "[Correio]";
+	mes "Se você deseja usar";
+	mes "o serviço de correio,";
+	mes "será necessário";
+	mes "pagar a quantia de 130 zeny.";
+	mes "Você deseja usar";
+	mes "sua caixa de correio agora?";
+	next;
+	if (select("Sim.:Não.") == 1) {
+		if (Zeny < 130) {
+			mes "[Correio]";
+			mes "Lamento, mas você";
+			mes "verficar o seu";
+			mes "dinheiro novamente? Você não";
+			mes "possui dinheiro suficiente para pagar";
+			mes "os 130 zeny solicitados.";
+			close;
+		}
+		mes "[Correio]";
+		mes "Muito obrigado por";
+		mes "estar aqui. Por favor";
+		mes "volte novamente para usar";
+		mes "o nosso serviço de correio~";
+		set Zeny,Zeny-130;
+		openmail;
+		close;
+	}
+	mes "[Correio]";
+	mes "Obrigado e volte novamente.";
+	close;
+}
+
+prontera,275,213,0	duplicate(MailBox)	Correio#2prt	888
+prontera,34,212,0	duplicate(MailBox)	Correio#3prt	888
+
+// Izlude
+//============================================================
+izlude,136,94,0	duplicate(MailBox)	Correio#iz	888
+
+// Morroc
+//============================================================
+moc_ruins,72,166,0	duplicate(MailBox)	Correio#1moc	888
+moc_ruins,156,52,0	duplicate(MailBox)	Correio#2moc	888
+
+// Geffen
+//============================================================
+geffen,115,67,0	duplicate(MailBox)	Correio#gef	888
+geffen,199,125,0	duplicate(MailBox)	Correio#2gef	888
+
+// Payon
+//============================================================
+payon,191,104,0	duplicate(MailBox)	Correio#pay	888
+payon,171,226,0	duplicate(MailBox)	Correio#2pay	888
+pay_arche,55,127,0	duplicate(MailBox)	Correio#3pay	888
+
+// Alberta
+//============================================================
+alberta,90,60,0	duplicate(MailBox)	Correio#alb	888
+alberta,30,240,0	duplicate(MailBox)	Correio#2alb	888
+
+// Al De Baran
+//============================================================
+aldebaran,135,122,0	duplicate(MailBox)	Correio#alde	888
+
+// Juno
+//============================================================
+yuno,148,187,0	duplicate(MailBox)	Correio#yuno	888
+yuno,332,108,0	duplicate(MailBox)	Correio#2yuno	888
+
+// Lightalzen
+//============================================================
+lighthalzen,164,85,0	duplicate(MailBox)	Correio#lht	888
+lighthalzen,196,320,0	duplicate(MailBox)	Correio#2lht	888
+
+// Einbroch and Einbech
+//============================================================
+einbroch,231,215,0	duplicate(MailBox)	Correio#ein	888
+einbroch,77,202,0	duplicate(MailBox)	Correio#2ein	888
+einbech,182,124,0	duplicate(MailBox)	Correio#3ein	888
+
+// Comodo
+//============================================================
+comodo,200,150,0	duplicate(MailBox)	Correio#cmd	888
+
+// Umbala
+//============================================================
+umbala,104,155,0	duplicate(MailBox)	Correio#um	888
+
+// Amatsu
+//============================================================
+amatsu,102,146,0	duplicate(MailBox)	Correio#ama	888
+
+// Gonryun
+//============================================================
+gonryun,152,117,0	duplicate(MailBox)	Correio#gon	888
+
+// Ayothaya
+//============================================================
+ayothaya,205,169,0	duplicate(MailBox)	Correio#ayo	888
+
+// Louyang
+//============================================================
+louyang,204,100,0	duplicate(MailBox)	Correio#lou	888
+
+// Hugel
+//============================================================
+hugel,86,168,0	duplicate(MailBox)	Correio#hu	111
+
+// Rachel
+//============================================================
+rachel,122,146,0	duplicate(MailBox)	Caixa de correio#ra	888
+
+// Veins
+//============================================================
+veins,218,123,0	duplicate(MailBox)	Caixa de correio#ve	888
+

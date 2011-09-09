@@ -1,0 +1,147 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Npc administrador de váriaveis para a  |
+// | quest dos itens divinos                                |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.1/1.1                                |
+// |--------------------------------------------------------|
+// | Descrição: Utilize este NPC se as variáveis busca      |
+// | pelos selos ficar confusa.                             |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [CaroLPunk]                       |
+// | 1.1 Script Revisado [Tyler & Kooler]                   |
+// \________________________________________________________/
+
+sec_in02,15,170,0	script	Golbal var	817,{
+	//mes "[Checador]";
+	//mes "Por favor, digite a senha.";
+	//next;
+	//set .@check,68392411;
+	//dlgwrite 0 10000000
+	//if (check == input){
+	if (getgmlevel() > 98) {
+		mes "[Checador]";
+		mes "Escolha um menu.";
+		next;
+		switch(select("Agora.:No.1.:No.2.:No.3.:No.4.:Resetar.")) {
+		case 1:
+			mes "^0000FF$God1^000000 = ^FF0000" + $God1 + "^000000.";
+			mes "^0000FF$God2^000000 = ^FF0000" + $God2 + "^000000.";
+			mes "^0000FF$God3^000000 = ^FF0000" + $God3 + "^000000.";
+			mes "^0000FF$God4^000000 = ^FF0000" + $God4 + "^000000.";
+			close;
+		case 2:
+			input .@input,0,100;
+			mes "[Checador]";
+			mes "Você gostaria de mudar para "+.@input+"?";
+			next;
+			if (select("Sim:Não") == 1) {
+				mes "[Checador]";
+				mes "O comando "+.@input+" foi confirmado.";
+				next;
+				set $God1,.@input;
+				mes "$God1 "+.@input+"";
+				close;
+			}
+			else {
+				mes "[Checador]";
+				mes "O comando foi cancelado.";
+				close;
+			}
+		case 3:
+			input .@input,0,100;
+			mes "[Checador]";
+			mes "Você gostaria de mudar para "+.@input+"?";
+			next;
+			if (select("Sim:Não") == 1) {
+				mes "[Checador]";
+				mes "O comando "+.@input+" foi confirmado.";
+				next;
+				set $God2,.@input;
+				mes "$God2 "+.@input+"";
+				close;
+			}
+			else {
+				mes "[Checador]";
+				mes "O comando foi cancelado.";
+				close;
+			}
+		case 4:
+			input .@input,0,100;
+			mes "[Checador]";
+			mes "Você gostaria de mudar para "+.@input+"?";
+			next;
+			if (select("Sim:Não") == 1) {
+				mes "[Checador]";
+				mes "O comando "+.@input+" foi confirmado.";
+				next;
+				set $God3,.@input;
+				mes "$God3 "+.@input+"";
+				close;
+			}
+			else {
+				mes "[Checador]";
+				mes "O comando foi cancelado.";
+				close;
+			}
+		case 5:
+			input .@input,0,100;
+			mes "[Checador]";
+			mes "Você gostaria de mudar para "+.@input+"?";
+			next;
+			if (select("Sim:Não") == 1) {
+				mes "[Checador]";
+				mes "O comando "+.@input+" foi confirmado.";
+				next;
+				set $God4,.@input;
+				mes "$God4 "+.@input+"";
+				close;
+			}
+			else {
+				mes "[Checador]";
+				mes "O comando foi cancelado.";
+				close;
+			}
+		case 6:
+			mes "[Checador]";
+			mes "Você tem certeza de que deseja resetar a lista do Deus Globalvar?";
+			next;
+			if (select("Sim:Não") == 1) {
+				mes "[Checador]";
+				mes "Agora, a lista do Deus Globalvar está sendo resetada.";
+				next;
+				set $God1,0;
+				set $God2,0;
+				set $God3,0;
+				set $God4,0;
+				mes "^0000FF$God1^000000 = ^FF0000" + $God1 + "^000000.";
+				mes "^0000FF$God2^000000 = ^FF0000" + $God2 + "^000000.";
+				mes "^0000FF$God3^000000 = ^FF0000" + $God3 + "^000000.";
+				mes "^0000FF$God4^000000 = ^FF0000" + $God4 + "^000000.";
+				close;
+			}
+			else {
+				mes "[Checador]";
+				mes "O comando foi cancelado.";
+				close;
+			}
+		}
+	}
+	else {
+		mes "[Checador]";
+		//mes "Senha incorreta.";
+		mes "Você não pode acessar este NPC.";
+		close;
+	}
+}

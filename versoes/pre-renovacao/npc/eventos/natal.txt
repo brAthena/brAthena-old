@@ -1,0 +1,365 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Evento de Natal                        |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.4/1.1                                |
+// |--------------------------------------------------------|
+// | Descrição: Derrote os Antonios e pegue as suas meias.  |
+// | - Pegue pelo menos 3 delas e entregue-as ao Papai Noel |
+// | em troca de um presente.                               |
+// | - Esse NPC DESATIVA o Papai Noel ativo atualmente em   |
+// | Lutie.                                                 |
+// |--------------------------------------------------------|
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [NewLom]                          |
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// | - Anotações                                            |
+// \________________________________________________________/
+
+
+xmas_in,100,96,4        script  Papai Noel::Santa2      718,{
+        mes "[Papai Noel]";
+//Checagem, Quest de Lutie e de Bardo
+        if(xmas_npc==0) set xmas_npc, 1;
+//
+        if(#event_xmas > 0 && #event_xmas < 30 ) goto L_Start;
+        mes "Ho ho ho!!";
+        mes "Feliz Natal!!";
+        if(Class==0 || #event_xmas>=30 ) close; //Proteção contra exploit
+        mes "Eu tenho um presente para você!";
+        mes "Ho ho ho!!";
+        getitem rand(664,667),1; //Dá 1 das 4 caixas de presentes
+        set #event_xmas,#event_xmas+1;
+        close;
+
+L_Start:
+        mes "Estou tendo um pequeno problema...";
+        mes "Se importa em ouví-lo?";
+        next;
+        menu "Pode falar.",M_0, "Já terminei.",M_1, "Não quero saber.",M_End;
+
+        M_0:
+                mes "[Papai Noel]";
+                mes "Meu problema é o seguinte:";
+                mes "Ao que parece tem um homem por aí";
+                mes "com minha aparência espalhando o terror entre as crianças.";
+                next;
+                mes "[Papai Noel]";
+                mes "Igual ao Grinch... Ele está destruindo o natal!";
+                mes "Ele está roubando todos os brinquedos das crianças e guardando para si";
+                next;
+                mes "[Papai Noel]";
+                mes "Eu estou muito ocupado com a criação de brinquedos para esse ano, portanto não posso ir acha-lô.";
+                next;
+                mes "[Papai Noel]";
+                mes "Você gostaria de procurá-lo para mim e faze-lô parar com isso?";
+                next;
+                mes "[Papai Noel]";
+                mes "Mas cuidado pois ele possuí uma das minhas sacolas mágicas e pode escapar de você cada vez que você for atacá-lo";
+                next;
+                mes "[Papai Noel]";
+                mes "Contudo, em sua fuga ele pode dropar itens.";
+                mes "Com sorte ele deixará cair uma de suas meias, que ele usa para roubar os brinquedos das crianças.";
+                next;
+                mes "[Papai Noel]";
+                mes "Colete 3 dessas meias que ele usa para roubar os presentes e eu lhe darei uma misteriosa caixa que eu tenho desenvolvido no meu laboratório.";
+                mes "Ela lhe dá presentes e me poupará de muito trabalho.";
+                close;
+        M_1:
+                mes "[Papai Noel]";
+                if(countitem(7034) < 3) goto L_NotEnuf;
+                delitem 7034,3;
+                mes "Você fez um ótimo trabalho caçando os falsos noéis!!";
+                mes "Continue assim!!";
+                next;
+                getitem 644,1; // Misteriosa Caixa de Presentes
+                set #event_xmas,#event_xmas+1;
+                mes "[Papai Noel]";
+                mes "Aqui está seu presente.";
+                mes "Pegue mais 3 meias e te darei outra caixa.";
+                mes "Espero que você ganhe um item bom.";
+                close;
+
+                L_NotEnuf:
+                        mes "Você ainda não está com a quantidade necessária de meias.";
+                        mes "Vá a procura desses falsos noeis e pegue suas meias.";
+                        close;
+        M_End:
+                mes "[Papai Noel]";
+                mes "Nos vemos na noite de natal!!!";
+                close;
+
+OnInit:
+        disablenpc "Santa1";
+        end;
+}
+
+
+//========================================================================================
+// Goblins Natalinos
+//========================================================================================
+//
+prt_fild11,0,0,0,0      monster Goblin Natalinos        1245,5,0,0,0
+gef_fild11,0,0,0,0      monster Goblin Natalinos        1245,5,0,0,0
+yuno_fild09,0,0,0,0     monster Goblin Natalinos        1245,5,0,0,0
+//
+//========================================================================================
+// Porings Noéis
+//========================================================================================
+//
+ein_fild03,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+ein_fild04,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+ein_fild06,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+ein_fild07,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+ein_fild08,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+ein_fild09,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+ein_fild10,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+gef_fild00,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+gef_fild01,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+gef_fild02,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+gef_fild03,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+gef_fild04,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+gef_fild05,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+gef_fild07,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+gef_fild08,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+gef_fild09,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+gef_fild10,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+gef_fild11,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+gef_fild12,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+gef_fild13,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+gef_fild14,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+glast_01,0,0,0,0        monster Poring Natalino 1062,15,0,0,0
+lhz_fild01,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+lhz_fild02,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+lhz_fild03,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+mjolnir_01,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+mjolnir_02,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+mjolnir_03,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+mjolnir_04,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+mjolnir_05,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+mjolnir_06,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+mjolnir_07,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+mjolnir_08,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+mjolnir_09,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+mjolnir_10,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+mjolnir_11,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+mjolnir_12,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+moc_fild01,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+moc_fild02,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+moc_fild03,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+moc_fild04,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+moc_fild05,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+moc_fild06,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+moc_fild07,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+moc_fild08,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+moc_fild09,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+moc_fild10,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+moc_fild11,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+moc_fild12,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+moc_fild13,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+moc_fild14,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+moc_fild15,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+moc_fild16,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+moc_fild17,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+moc_fild18,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+pay_fild01,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+pay_fild02,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+pay_fild03,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+pay_fild04,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+pay_fild05,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+pay_fild06,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+pay_fild07,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+pay_fild08,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+pay_fild09,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+pay_fild10,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+pay_fild11,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+prt_fild00,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+prt_fild01,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+prt_fild02,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+prt_fild03,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+prt_fild04,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+prt_fild05,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+prt_fild06,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+prt_fild07,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+prt_fild08,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+prt_fild09,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+prt_fild10,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+prt_fild11,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+xmas_fild01,0,0,0,0     monster Poring Natalino 1062,15,0,0,0
+cmd_fild01,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+cmd_fild02,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+cmd_fild03,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+cmd_fild04,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+cmd_fild05,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+cmd_fild06,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+cmd_fild07,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+cmd_fild08,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+cmd_fild09,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+yuno_fild01,0,0,0,0     monster Poring Natalino 1062,15,0,0,0
+yuno_fild02,0,0,0,0     monster Poring Natalino 1062,15,0,0,0
+yuno_fild03,0,0,0,0     monster Poring Natalino 1062,15,0,0,0
+yuno_fild04,0,0,0,0     monster Poring Natalino 1062,15,0,0,0
+yuno_fild05,0,0,0,0     monster Poring Natalino 1062,15,0,0,0
+yuno_fild06,0,0,0,0     monster Poring Natalino 1062,15,0,0,0
+yuno_fild07,0,0,0,0     monster Poring Natalino 1062,15,0,0,0
+yuno_fild08,0,0,0,0     monster Poring Natalino 1062,15,0,0,0
+yuno_fild09,0,0,0,0     monster Poring Natalino 1062,15,0,0,0
+yuno_fild11,0,0,0,0     monster Poring Natalino 1062,15,0,0,0
+yuno_fild12,0,0,0,0     monster Poring Natalino 1062,15,0,0,0
+ama_fild01,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+gon_fild01,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+um_fild01,0,0,0,0       monster Poring Natalino 1062,15,0,0,0
+um_fild02,0,0,0,0       monster Poring Natalino 1062,15,0,0,0
+um_fild03,0,0,0,0       monster Poring Natalino 1062,15,0,0,0
+um_fild04,0,0,0,0       monster Poring Natalino 1062,15,0,0,0
+nif_fild01,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+nif_fild02,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+lou_fild01,0,0,0,0      monster Poring Natalino 1062,15,0,0,0
+hu_fild01,0,0,0,0       monster Poring Natalino 1062,15,0,0,0
+hu_fild04,0,0,0,0       monster Poring Natalino 1062,15,0,0,0
+hu_fild05,0,0,0,0       monster Poring Natalino 1062,15,0,0,0
+hu_fild07,0,0,0,0       monster Poring Natalino 1062,15,0,0,0
+//
+//========================================================================================
+// Antonios
+//========================================================================================
+//
+ein_fild03,0,0,0,0      monster Antonio 1247,1,0,0,0
+ein_fild04,0,0,0,0      monster Antonio 1247,1,0,0,0
+ein_fild06,0,0,0,0      monster Antonio 1247,1,0,0,0
+ein_fild07,0,0,0,0      monster Antonio 1247,1,0,0,0
+ein_fild08,0,0,0,0      monster Antonio 1247,1,0,0,0
+ein_fild09,0,0,0,0      monster Antonio 1247,1,0,0,0
+ein_fild10,0,0,0,0      monster Antonio 1247,1,0,0,0
+gef_fild00,0,0,0,0      monster Antonio 1247,1,0,0,0
+gef_fild01,0,0,0,0      monster Antonio 1247,1,0,0,0
+gef_fild02,0,0,0,0      monster Antonio 1247,1,0,0,0
+gef_fild03,0,0,0,0      monster Antonio 1247,1,0,0,0
+gef_fild04,0,0,0,0      monster Antonio 1247,1,0,0,0
+gef_fild05,0,0,0,0      monster Antonio 1247,1,0,0,0
+gef_fild07,0,0,0,0      monster Antonio 1247,1,0,0,0
+gef_fild08,0,0,0,0      monster Antonio 1247,1,0,0,0
+gef_fild09,0,0,0,0      monster Antonio 1247,1,0,0,0
+gef_fild10,0,0,0,0      monster Antonio 1247,1,0,0,0
+gef_fild11,0,0,0,0      monster Antonio 1247,1,0,0,0
+gef_fild12,0,0,0,0      monster Antonio 1247,1,0,0,0
+gef_fild13,0,0,0,0      monster Antonio 1247,1,0,0,0
+gef_fild14,0,0,0,0      monster Antonio 1247,1,0,0,0
+glast_01,0,0,0,0        monster Antonio 1247,1,0,0,0
+lhz_fild01,0,0,0,0      monster Antonio 1247,1,0,0,0
+lhz_fild02,0,0,0,0      monster Antonio 1247,1,0,0,0
+lhz_fild03,0,0,0,0      monster Antonio 1247,1,0,0,0
+mjolnir_01,0,0,0,0      monster Antonio 1247,1,0,0,0
+mjolnir_02,0,0,0,0      monster Antonio 1247,1,0,0,0
+mjolnir_03,0,0,0,0      monster Antonio 1247,1,0,0,0
+mjolnir_04,0,0,0,0      monster Antonio 1247,1,0,0,0
+mjolnir_05,0,0,0,0      monster Antonio 1247,1,0,0,0
+mjolnir_06,0,0,0,0      monster Antonio 1247,1,0,0,0
+mjolnir_07,0,0,0,0      monster Antonio 1247,1,0,0,0
+mjolnir_08,0,0,0,0      monster Antonio 1247,1,0,0,0
+mjolnir_09,0,0,0,0      monster Antonio 1247,1,0,0,0
+mjolnir_10,0,0,0,0      monster Antonio 1247,1,0,0,0
+mjolnir_11,0,0,0,0      monster Antonio 1247,1,0,0,0
+mjolnir_12,0,0,0,0      monster Antonio 1247,1,0,0,0
+moc_fild01,0,0,0,0      monster Antonio 1247,1,0,0,0
+moc_fild02,0,0,0,0      monster Antonio 1247,1,0,0,0
+moc_fild03,0,0,0,0      monster Antonio 1247,1,0,0,0
+moc_fild04,0,0,0,0      monster Antonio 1247,1,0,0,0
+moc_fild05,0,0,0,0      monster Antonio 1247,1,0,0,0
+moc_fild06,0,0,0,0      monster Antonio 1247,1,0,0,0
+moc_fild07,0,0,0,0      monster Antonio 1247,1,0,0,0
+moc_fild08,0,0,0,0      monster Antonio 1247,1,0,0,0
+moc_fild09,0,0,0,0      monster Antonio 1247,1,0,0,0
+moc_fild10,0,0,0,0      monster Antonio 1247,1,0,0,0
+moc_fild11,0,0,0,0      monster Antonio 1247,1,0,0,0
+moc_fild12,0,0,0,0      monster Antonio 1247,1,0,0,0
+moc_fild13,0,0,0,0      monster Antonio 1247,1,0,0,0
+moc_fild14,0,0,0,0      monster Antonio 1247,1,0,0,0
+moc_fild15,0,0,0,0      monster Antonio 1247,1,0,0,0
+moc_fild16,0,0,0,0      monster Antonio 1247,1,0,0,0
+moc_fild17,0,0,0,0      monster Antonio 1247,1,0,0,0
+moc_fild18,0,0,0,0      monster Antonio 1247,1,0,0,0
+pay_fild01,0,0,0,0      monster Antonio 1247,1,0,0,0
+pay_fild02,0,0,0,0      monster Antonio 1247,1,0,0,0
+pay_fild03,0,0,0,0      monster Antonio 1247,1,0,0,0
+pay_fild04,0,0,0,0      monster Antonio 1247,1,0,0,0
+pay_fild05,0,0,0,0      monster Antonio 1247,1,0,0,0
+pay_fild06,0,0,0,0      monster Antonio 1247,1,0,0,0
+pay_fild07,0,0,0,0      monster Antonio 1247,1,0,0,0
+pay_fild08,0,0,0,0      monster Antonio 1247,1,0,0,0
+pay_fild09,0,0,0,0      monster Antonio 1247,1,0,0,0
+pay_fild10,0,0,0,0      monster Antonio 1247,1,0,0,0
+pay_fild11,0,0,0,0      monster Antonio 1247,1,0,0,0
+prt_fild00,0,0,0,0      monster Antonio 1247,1,0,0,0
+prt_fild01,0,0,0,0      monster Antonio 1247,1,0,0,0
+prt_fild02,0,0,0,0      monster Antonio 1247,1,0,0,0
+prt_fild03,0,0,0,0      monster Antonio 1247,1,0,0,0
+prt_fild04,0,0,0,0      monster Antonio 1247,1,0,0,0
+prt_fild05,0,0,0,0      monster Antonio 1247,1,0,0,0
+prt_fild06,0,0,0,0      monster Antonio 1247,1,0,0,0
+prt_fild07,0,0,0,0      monster Antonio 1247,1,0,0,0
+prt_fild08,0,0,0,0      monster Antonio 1247,1,0,0,0
+prt_fild09,0,0,0,0      monster Antonio 1247,1,0,0,0
+prt_fild10,0,0,0,0      monster Antonio 1247,1,0,0,0
+prt_fild11,0,0,0,0      monster Antonio 1247,1,0,0,0
+xmas_fild01,0,0,0,0     monster Antonio 1247,1,0,0,0
+cmd_fild01,0,0,0,0      monster Antonio 1247,1,0,0,0
+cmd_fild02,0,0,0,0      monster Antonio 1247,1,0,0,0
+cmd_fild03,0,0,0,0      monster Antonio 1247,1,0,0,0
+cmd_fild04,0,0,0,0      monster Antonio 1247,1,0,0,0
+cmd_fild05,0,0,0,0      monster Antonio 1247,1,0,0,0
+cmd_fild06,0,0,0,0      monster Antonio 1247,1,0,0,0
+cmd_fild07,0,0,0,0      monster Antonio 1247,1,0,0,0
+cmd_fild08,0,0,0,0      monster Antonio 1247,1,0,0,0
+cmd_fild09,0,0,0,0      monster Antonio 1247,1,0,0,0
+yuno_fild01,0,0,0,0     monster Antonio 1247,1,0,0,0
+yuno_fild02,0,0,0,0     monster Antonio 1247,1,0,0,0
+yuno_fild03,0,0,0,0     monster Antonio 1247,1,0,0,0
+yuno_fild04,0,0,0,0     monster Antonio 1247,1,0,0,0
+yuno_fild05,0,0,0,0     monster Antonio 1247,1,0,0,0
+yuno_fild06,0,0,0,0     monster Antonio 1247,1,0,0,0
+yuno_fild07,0,0,0,0     monster Antonio 1247,1,0,0,0
+yuno_fild08,0,0,0,0     monster Antonio 1247,1,0,0,0
+yuno_fild09,0,0,0,0     monster Antonio 1247,1,0,0,0
+yuno_fild11,0,0,0,0     monster Antonio 1247,1,0,0,0
+yuno_fild12,0,0,0,0     monster Antonio 1247,1,0,0,0
+ama_fild01,0,0,0,0      monster Antonio 1247,1,0,0,0
+gon_fild01,0,0,0,0      monster Antonio 1247,1,0,0,0
+um_fild01,0,0,0,0       monster Antonio 1247,1,0,0,0
+um_fild02,0,0,0,0       monster Antonio 1247,1,0,0,0
+um_fild03,0,0,0,0       monster Antonio 1247,1,0,0,0
+um_fild04,0,0,0,0       monster Antonio 1247,1,0,0,0
+nif_fild01,0,0,0,0      monster Antonio 1247,1,0,0,0
+nif_fild02,0,0,0,0      monster Antonio 1247,1,0,0,0
+lou_fild01,0,0,0,0      monster Antonio 1247,1,0,0,0
+hu_fild01,0,0,0,0       monster Antonio 1247,1,0,0,0
+hu_fild04,0,0,0,0       monster Antonio 1247,1,0,0,0
+hu_fild05,0,0,0,0       monster Antonio 1247,1,0,0,0
+hu_fild07,0,0,0,0       monster Antonio 1247,1,0,0,0
+//
+//========================================================================================
+// Jakks Natalinos
+//========================================================================================
+//
+gef_dun01,0,0,0,0       monster Jakk Natalino  1244,5,0,0,0
+//gefenia02,0,0,0,0     monster Jakk Natalino  1244,5,0,0,0
+//
+//========================================================================================
+// Orcs Natalinos
+//========================================================================================
+//
+gef_fild02,0,0,0,0      monster Orc Natalino   1588,5,0,0,0
+gef_fild03,0,0,0,0      monster Orc Natalino   1588,5,0,0,0
+gef_fild10,0,0,0,0      monster Orc Natalino   1588,5,0,0,0
+gef_fild14,0,0,0,0      monster Orc Natalino   1588,5,0,0,0
+alde_dun02,0,0,0,0      monster Orc Natalino   1588,5,0,0,0

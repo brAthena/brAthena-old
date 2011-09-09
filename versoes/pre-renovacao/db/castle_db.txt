@@ -1,0 +1,83 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Database: castle_db.txt                        |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Descrição: Database dos Castelos.                      |
+// |--------------------------------------------------------|
+// | Estrutura do Banco de Dados:                           |
+// | Id do Castelo,Nome do Mapa,Nome do Castelo,            |
+// | OnGuildBreakEventName(1),Bandeira(2),                  |
+// | (1) Expulsão do Castelo Conquistado,(2) Reservas.	    |
+// \________________________________________________________/
+//
+//========================================================================================================
+// Feudo de Luina (Al De Baran)
+//========================================================================================================
+0,aldeg_cas01,Sirius,Agit#aldeg_cas01,1                    // kRO : Noisyubantian | iRO: Neuschwanstein
+1,aldeg_cas02,Astrum,Agit#aldeg_cas02,1                    // kRO : Hohensyubangawoo | iRO: Hohenschwangau
+2,aldeg_cas03,Canopus,Agit#aldeg_cas03,1                   // kRO : Nyirenverk | iRO: Nuenberg
+3,aldeg_cas04,Rigel,Agit#aldeg_cas04,1                     // kRO : Byirtsburi | iRO: Wuerzburg
+4,aldeg_cas05,Acrux,Agit#aldeg_cas05,1                     // kRO : Rotenburk |iRO: Rothenburg
+
+//========================================================================================================
+// Feudo de Britoniah (Geffen)
+//========================================================================================================
+5,gefg_cas01,Arsulf,Agit#gefg_cas01,1                      // kRO : Reprion | iRO: Repherion
+6,gefg_cas02,Trapesac,Agit#gefg_cas02,1                    // kRO : Yolbriger | iRO: Eeyolbriggar
+7,gefg_cas03,Ruaden,Agit#gefg_cas03,1                      // kRO : Isinlife | iRO: Yesnelph
+8,gefg_cas04,Saffran,Agit#gefg_cas04,1                     // kRO : Berigel | iRO: Bergel
+9,gefg_cas05,Arima,Agit#gefg_cas05,1                       // kRO : Melsedetsu | iRO: Mersetzdeitz
+
+//========================================================================================================
+// Feudo do Bosque Celestial (Payon)
+//========================================================================================================
+10,payg_cas01,Palácio do Sol,Agit#payg_cas01,1             // kRO : Mingting | iRO: Bright Arbor
+11,payg_cas02,Palácio do Lago Sagrado,Agit#payg_cas02,1	   // kRO : Tiantan | iRO: Scarlet Palace
+12,payg_cas03,Palácio da Sombra,Agit#payg_cas03,1          // kRO : Fuying | iRO: Holy Shadow
+13,payg_cas04,Palácio Escarlate,Agit#payg_cas04,1          // kRO : Honglou | iRO: Sacred Altar
+14,payg_cas05,Palácio da Colina,Agit#payg_cas05,1          // kRO : Zhulinxian | iRO: Bamboo Grove Hill
+
+//========================================================================================================
+// Feudo das Valquírias (Prontera)
+//========================================================================================================
+15,prtg_cas01,Kriemhild,Agit#prtg_cas01,1                  // kRO : Creamhilt | iRO: Kriemhild
+16,prtg_cas02,Hrist,Agit#prtg_cas02,1                      // kRO : Sbanhealt | iRO: Swanhild
+17,prtg_cas03,Brynhildr,Agit#prtg_cas03,1                  // kRO : Lazrigees | iRO: Fadhgridh
+18,prtg_cas04,Skoegul,Agit#prtg_cas04,1                    // kRO : Squagul | iRO: Skoegul
+19,prtg_cas05,Gondul,Agit#prtg_cas05,1                     // kRO : Guindull | iRO: Gondul
+
+//========================================================================================================
+// Feudo de Aprendizes
+//========================================================================================================
+20,nguild_alde,Terra,Agit_N01,2                            // kRO : Aldebaran | iRO: Earth
+21,nguild_gef,Vento,Agit_N02,2                             // kRO : Geffen | iRO: Air
+22,nguild_pay,Água,Agit_N03,2                              // kRO : Payon | iRO: Water
+23,nguild_prt,Fogo,Agit_N04,2                              // kRO : Prontera | iRO: Fire
+
+//========================================================================================================
+// Feudo de Nithafjoll (Schwartzwald)
+//========================================================================================================
+24,schg_cas01,Himinn,Agit_Sc01,1                           // kRO : Himinn | iRO: Himinn
+25,schg_cas02,Andlangr,Agit_Sc02,1                         // kRO : Andlangr | iRO: Andlangr
+26,schg_cas03,Viblainn,Agit_Sc03,1                         // kRO : Viblainn | iRO: Viblainn
+27,schg_cas04,Hljod,Agit_Sc04,1                            // kRO : Hljod | iRo: Hljod
+28,schg_cas05,Skatyrnir,Agit_Sc05,1                        // kRO : Skidbladnir | iRo: Skidbladnir
+
+//========================================================================================================
+// Feudo de Valfreyja (Arunafeltz)
+//========================================================================================================
+29,arug_cas01,Mardol,Agit_Ar01,1                           // kRO : Mardol | iRO: Mardol
+30,arug_cas02,Syr,Agit_Ar02,1                              // kRO : Cyr | iRO: Cyr
+31,arug_cas03,Horn,Agit_Ar03,1                             // kRO : Horn | iRO: Horn
+32,arug_cas04,Gefn,Agit_Ar04,1                             // kRO : Gefn | iRO: Gefn
+33,arug_cas05,Vanadis,Agit_Ar05,1                          // kRO : Bandis | iRO: Bandis

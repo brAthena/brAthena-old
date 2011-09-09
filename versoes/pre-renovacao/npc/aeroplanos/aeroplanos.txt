@@ -1,0 +1,65 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                     brAthena Script                    |
+// |--------------------------------------------------------|
+// | Nome do Script: Equipe do Aeroporto                    |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.4/1.2                                |
+// |--------------------------------------------------------|
+// | Descrição: NPC's do Aeroplano de Einbroch, Lighthalzen |
+// | 		    e Yuno.				                        |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [Tyler]                           |
+// | 1.1 Script Revisado [Dani]                             |
+// | 1.2 Scripts Otimizados e Unificados                    |
+// |	 (einbroch + lighthalzen + yuno) [Architect]        |
+// \________________________________________________________/
+
+// Einbroch
+airport,126,43,4	script	Equipe do Aeroporto#E1::Airport	90,{
+	callfunc "F_Airport";
+}
+airport,143,43,4	duplicate(Airport)	Equipe do Aeroporto#E2	90
+airport,156,43,4	duplicate(Airport)	Equipe do Aeroporto#E3	90
+airport,126,51,4	script	Equipe do Aeroporto#E4::Airport2	90,{
+	callfunc "F_Airport2";
+}
+airport,143,51,4	duplicate(Airport2)	Equipe do Aeroporto#E5	90
+airport,156,51,4	duplicate(Airport2)	Equipe do Aeroporto#E6	90
+
+einbroch,94,267,4	script	Equipe do Aeroporto#07	91,{
+	mes "[Funcionária do Aeroporto]";
+	mes "Seja bem-vindo ao Aeroporto de Einbroch.";
+	mes "Por favor, use esta porta para embarcar no Aeroplano.";
+	mes "Ele fará paradas em Lighthalzen e em Juno na República de Schwartzwald.";
+	next;
+	mes "[Funcionária do Aeroporto]";
+	mes "Caso contrário, se Einbroch for seu destino desejado, siga e desça as escadas e fale com a Funcionária de Desembarque para seguir para o Terminal Principal.";
+	mes "Agradecemos desde já, aprecie e curta as suas viagens!";
+	close;
+}
+
+// Lighthalzen
+lhz_airport,126,43,4	duplicate(Airport)	Equipe do Aeroporto#L1	90
+lhz_airport,143,43,4	duplicate(Airport)	Equipe do Aeroporto#L2	90
+lhz_airport,156,43,4	duplicate(Airport)	Equipe do Aeroporto#L3	90
+lhz_airport,126,51,4	duplicate(Airport2)	Equipe do Aeroporto#L4	90
+lhz_airport,143,51,4	duplicate(Airport2)	Equipe do Aeroporto#L5	90
+lhz_airport,156,51,4	duplicate(Airport2)	Equipe do Aeroporto#L6	90
+
+// Yuno
+y_airport,126,43,4	duplicate(Airport)	Equipe do Aeroporto#Y1	90
+y_airport,143,43,4	duplicate(Airport)	Equipe do Aeroporto#Y2	90
+y_airport,156,43,4	duplicate(Airport)	Equipe do Aeroporto#Y3	90
+y_airport,126,51,4	duplicate(Airport2)	Equipe do Aeroporto#Y4	90
+y_airport,143,51,4	duplicate(Airport2)	Equipe do Aeroporto#Y5	90
+y_airport,156,51,4	duplicate(Airport2)	Equipe do Aeroporto#Y6	90

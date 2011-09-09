@@ -1,0 +1,1074 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Turbo Track Funções					|
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA:    /1.0                                |
+// |--------------------------------------------------------|
+// | Descrição:                                             |
+// | Percurso da Turbo Track							    |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Criado [Mark & Architect]              		|
+// | - Anotações                                            |
+// \________________________________________________________/
+
+-	script	Modotrack::ChatTrack	-1,{
+	end;
+
+OnInit:
+	if(compare(strnpcinfo(1),"Modotrack")) end;
+	set .modo,(!compare(strnpcinfo(1),"Solo"))*((compare(strnpcinfo(1),"Avançado")*10)+10+((2*compare(strnpcinfo(1),"4"))+(3*compare(strnpcinfo(1),"8"))+(4*compare(strnpcinfo(1),"16"))));
+	setarray .modo$[0],((.modo > 20) ? "Avançado":((!.modo) ? "Solo":"Normal")),((.modo > 20) ? "e":"n");
+	set .pess,pow(2,(.modo%10));
+	if(compare(strnpcinfo(1),"Solo"))
+		waitingroom "Modo Solo",60,"Modo Solo#n1::OnStartArena",1;
+	else
+		waitingroom "Modo "+.modo$[0]+" - "+.pess+" Pessoas",60,"Modo "+.modo$+" - "+.pess+" Pessoas::OnStartArena",.pess,1000,10,99;
+	//SetFeeZeny 1000
+	if(compare(strnpcinfo(1),"Solo"))
+		enablewaitingroomevent "Modo Solo#n1";
+	else
+		enablewaitingroomevent "Modo "+.modo$[0]+" - "+.pess+" Pessoas";
+	end;
+
+OnEnable:
+	if(compare(strnpcinfo(1),"Solo")){
+		enablenpc "Modo Solo#n1";
+		enablewaitingroomevent "Modo Solo#n1";
+	} else {
+		enablenpc "Modo "+.modo$[0]+" - "+.pess+" Pessoas";
+		enablewaitingroomevent "Modo "+.modo$[0]+" - "+.pess+" Pessoas";
+	}
+	end;
+
+OnStartArena:
+		warpwaitingpc "turbo_"+.modo$[1]+"_"+.pess,298,161;
+		donpcevent "Broadcast#"+.modo$[1]+.pess+"::OnEnable";
+	if(compare(strnpcinfo(1),"Solo"))
+		disablewaitingroomevent "Modo Solo#n1";
+	else
+		disablewaitingroomevent "Modo "+.modo$[0]+" - "+.pess+" Pessoas";
+	end;
+}
+
+-	script	Auxiliar Track::AuxiliarTrack	-1,{
+	mes "[Auxiliar]";
+	mes "Você está agora na sala";
+	mes "de espera. Você";
+	mes "será guiado para a linha de largada";
+	mes "depois de 30 segundos, então por favor";
+	mes "use esse tempo para preparar seus itens";
+	mes "e equipamentos. Obrigado.";
+	close;
+}
+
+-	script	Auxiliar Pont Track::AuxiliarPont	-1,{
+OnInit:
+	if(compare(strnpcinfo(1),"Auxiliar Pont Track")) end;
+	set .modo,(!compare(strnpcinfo(2),"Solo"))*((compare(strnpcinfo(2),"Avançado")*10)+10+((2*compare(strnpcinfo(2),"4"))+(3*compare(strnpcinfo(2),"8"))+(4*compare(strnpcinfo(2),"16"))));
+	setarray .modo$[0],((.modo > 20) ? "Avançado":((!.modo) ? "Solo":"Normal")),((.modo > 20) ? "e":"n");
+	set .pess,pow(2,(.modo%10));
+	disablenpc "Auxiliar de Pontuação#"+.modo$[1]+.pess;
+	end;
+
+OnTouch:
+	if (tt_point < 28999) {
+		set tt_point,tt_point+2;
+		warp "turbo_"+.modo$[1]+"_"+.pess,59,364;
+	}
+	else
+		warp "turbo_"+.modo$[1]+"_"+.pess,59,364;
+	end;
+}
+
+-	script	BroadcastTrack::BroadcastTrack	-1,{
+OnInit:
+	if(compare(strnpcinfo(1),"BroadcastTrack")) end;
+	set .modo,(!compare(strnpcinfo(2),"Solo"))*((compare(strnpcinfo(2),"Avançado")*10)+10+((2*compare(strnpcinfo(2),"4"))+(3*compare(strnpcinfo(2),"8"))+(4*compare(strnpcinfo(2),"16"))));
+	setarray .modo$[0],((.modo > 20) ? "Avançado":((!.modo) ? "Solo":"Normal")),((.modo > 20) ? "e":"n");
+	set .pess,pow(2,(.modo%10));
+	disablenpc "Broadcast#"+.modo$[1]+.pess;
+	end;
+
+OnEnable:
+	enablenpc "Broadcast#"+.modo$[1]+.pess;
+	initnpctimer;
+	end;
+
+OnTimer2000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Você está agora na sala de espera onde você pode checar e preparar seus itens e equipamentos para a corrida.",bc_map,"0x33FF66";
+	end;
+
+OnTimer7000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Você terá 30 segundos antes de ser teletransportado para a Linha de Largada.",bc_map,"0x33FF66";
+	end;
+
+OnTimer10000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Por favor tenha certeza que você está com equipamentos e itens adequados.",bc_map,"0x33FF66";
+	end;
+
+OnTimer15000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"A contagem regressiva de 30 segundos deve começar logo.",bc_map,"0x33FF66";
+	end;
+
+OnTimer17000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Faltam 30 segundos.",bc_map,"0x33FF66";
+	end;
+
+OnTimer27000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Faltam 20 segundos.",bc_map,"0x33FF66";
+	end;
+
+OnTimer37000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Faltam 10 segundos.",bc_map,"0x33FF66";
+	end;
+
+OnTimer42000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Faltam 5 segundos.",bc_map,"0x33FF66";
+	end;
+
+OnTimer43000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Faltam 4 segundos.",bc_map,"0x33FF66";
+	end;
+
+OnTimer44000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Faltam 3 segundos.",bc_map,"0x33FF66";
+	end;
+
+OnTimer45000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Faltam 2 segundos.",bc_map,"0x33FF66";
+	end;
+
+OnTimer46000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Faltam 1 segundos",bc_map,"0x33FF66";
+	end;
+
+OnTimer47000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Você será teletransportado para a Linha de Largada.",bc_map,"0x33FF66";
+	end;
+
+OnTimer49000:
+	enablenpc "Auxiliar de Pontuação#"+.modo$[1]+.pess;
+	donpcevent "Master#"+.modo$[1]+.pess+"::OnEnable";
+	end;
+
+OnTimer50000:
+	donpcevent "snake#"+.modo$[1]+.pess+"::OnEnable";
+	donpcevent "hunting#"+.modo$[1]+.pess+"::OnEnable";
+	enablenpc "bing#"+.modo$[1]+.pess;
+	end;
+
+OnTimer57000:
+	disablenpc "Auxiliar de Pontuação#"+.modo$[1]+.pess;
+	end;
+}
+
+-	script	MasterTrack::MasterTrack	-1,{
+OnInit:
+	if(compare(strnpcinfo(1),"MasterTrack")) end;
+	set .modo,(!compare(strnpcinfo(2),"Solo"))*((compare(strnpcinfo(2),"Avançado")*10)+10+((2*compare(strnpcinfo(2),"4"))+(3*compare(strnpcinfo(2),"8"))+(4*compare(strnpcinfo(2),"16"))));
+	setarray .modo$[0],((.modo > 20) ? "Avançado":((!.modo) ? "Solo":"Normal")),((.modo > 20) ? "e":"n");
+	set .pess,pow(2,(.modo%10));
+	disablenpc "Master#"+.modo$[1]+.pess;
+	end;
+
+OnEnable:
+	enablenpc "Master#"+.modo$[1]+.pess;
+	initnpctimer;
+	end;
+
+OnDisable:
+	stopnpctimer;
+	disablenpc "Master#"+.modo$[1]+.pess;
+	end;
+
+OnTimer7000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Bem vindo à Turbo Track.",bc_map,"0x33FF66";
+	end;
+
+OnTimer9000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"O jogo será de 15 minutos e pelo menos uma pessoa tem que completar o curso inteiro.",bc_map,"0x33FF66";
+	end;
+
+OnTimer11000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Nós esperamos que você faça o seu melhor.",bc_map,"0x33FF66";
+	end;
+
+OnTimer13000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"O jogo começará após uma contagem de 5 segundos. Todos, por favor assumam suas posições atrás da Linha de Largada.",bc_map,"0x33FF66";
+	end;
+
+OnTimer15000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"A contagem iniciará imediatamente.",bc_map,"0x33FF66";
+	end;
+
+OnTimer17000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"- 5 -",bc_map,"0x33FF66";
+	end;
+
+OnTimer18000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"- 4 -",bc_map,"0x33FF66";
+	end;
+
+OnTimer19000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"- 3 -",bc_map,"0x33FF66";
+	end;
+
+OnTimer20000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"- 2 -",bc_map,"0x33FF66";
+	end;
+
+OnTimer21000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"- 1 -",bc_map,"0x33FF66";
+	end;
+
+OnTimer22000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"- 0 -",bc_map,"0x33FF66";
+	end;
+
+OnTimer23000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Agora! A corrida começou! Vão Vão Vão!!",bc_map,"0x33FF66";
+	disablenpc "No_Unfair_Start#"+.modo$[1]+.pess+"-1";
+	disablenpc "No_Unfair_Start#"+.modo$[1]+.pess+"-2";
+	end;
+
+OnTimer30000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Lembre-se que esta é uma corrida de 15 minutos. Após 15 minutos, todos serão teletransportados para fora da pista de corrida.",bc_map,"0x33FF66";
+	end;
+
+OnTimer83000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Você tem 14 minutos restantes.",bc_map,"0x33FF66";
+	end;
+
+OnTimer143000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Você tem 13 minutos restantes.",bc_map,"0x33FF66";
+	end;
+
+OnTimer203000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Você tem 12 minutos restantes.",bc_map,"0x33FF66";
+	end;
+
+OnTimer263000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Você tem 11 minutos restantes.",bc_map,"0x33FF66";
+	end;
+
+OnTimer323000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Você tem 10 minutos restantes.",bc_map,"0x33FF66";
+	end;
+
+OnTimer383000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Você tem 9 minutos restantes.",bc_map,"0x33FF66";
+	end;
+
+OnTimer443000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Você tem 8 minutos restantes.",bc_map,"0x33FF66";
+	end;
+
+OnTimer503000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Você tem 7 minutos restantes.",bc_map,"0x33FF66";
+	end;
+
+OnTimer563000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Você tem 6 minutos restantes.",bc_map,"0x33FF66";
+	end;
+
+OnTimer623000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Você tem 5 minutos restantes.",bc_map,"0x33FF66";
+	end;
+
+OnTimer683000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Você tem 4 minutos restantes.",bc_map,"0x33FF66";
+	end;
+
+OnTimer743000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Você tem 3 minutos restantes.",bc_map,"0x33FF66";
+	end;
+
+OnTimer803000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Você tem 2 minutos restantes.",bc_map,"0x33FF66";
+	end;
+
+OnTimer863000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Você tem 1 minuto restante.",bc_map,"0x33FF66";
+	end;
+
+OnTimer893000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Você tem 30 segundos restantes.",bc_map,"0x33FF66";
+	end;
+
+OnTimer903000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Você tem 20 segundos restantes.",bc_map,"0x33FF66";
+	end;
+
+OnTimer913000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Você tem 10 segundos restantes.",bc_map,"0x33FF66";
+	end;
+
+OnTimer918000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Você tem 5 segundos restantes.",bc_map,"0x33FF66";
+	end;
+
+OnTimer919000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Você tem 4 segundos restantes.",bc_map,"0x33FF66";
+	end;
+
+OnTimer920000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Você tem 3 segundos restantes.",bc_map,"0x33FF66";
+	end;
+
+OnTimer921000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Você tem 2 segundos restantes.",bc_map,"0x33FF66";
+	end;
+
+OnTimer922000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Você só tem 1 segundo.",bc_map,"0x33FF66";
+	end;
+
+OnTimer923000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Tempo esgotado!",bc_map,"0x33FF66";
+	end;
+
+OnTimer925000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"A corrida acabou.",bc_map,"0x33FF66";
+	end;
+
+OnTimer927000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"[Todos serão teletransportados para uma Sala de Espera.]",bc_map,"0x33FF66";
+	mapwarp "turbo_"+.modo$[1]+"_"+.pess,"turbo_room",71,89;
+	// all NPC OFF
+	disablenpc "Broadcast#"+.modo$[1]+.pess;
+	donpcevent "Master#"+.modo$[1]+.pess+"::OnDisable";
+	if(compare(strnpcinfo(2),"n1"))
+		donpcevent "Modo Solo#n1::OnEnable";
+	else
+		donpcevent "Modo "+.modo$[0]+" - "+.pess+" Pessoas::OnEnable";
+	// start line NPC ON
+	enablenpc "No_Unfair_Start#"+.modo$[1]+.pess+"-1";
+	enablenpc "No_Unfair_Start#"+.modo$[1]+.pess+"-2";
+	// monster reset
+	donpcevent "snake#"+.modo$[1]+.pess+"::Onreset";
+	donpcevent "hunting#"+.modo$[1]+.pess+"::Onreset";
+	disablenpc "bing2#"+.modo$[1]+.pess;
+	// NPC
+	disablenpc "Auxiliar do Vencedor#T"+.modo$[1]+.pess;
+	enablenpc "cos_"+.modo$[1]+"_"+.pess+"_end";
+	enablenpc "Notice_Maker1#TBT_"+.modo$[1]+"_"+.pess;
+	enablenpc "Notice_Maker3#TBT_"+.modo$[1]+"_"+.pess;
+	enablenpc "Notice_Maker4#TBT_"+.modo$[1]+"_"+.pess;
+	enablenpc "Disposable_Switch#"+.modo$[1]+.pess;
+	disablenpc "Flasher_Exit_1#"+.modo$[1]+.pess;
+	disablenpc "Flasher_Exit_2#"+.modo$[1]+.pess;
+	end;
+}
+
+-	script	No_Unfair_Start_Track::nounfTrack	-1,{
+OnTouch:
+	if(compare(strnpcinfo(1),"No_Unfair_Start_Track")) end;
+	set .modo,(!compare(strnpcinfo(2),"Solo"))*((compare(strnpcinfo(2),"Avançado")*10)+10+((2*compare(strnpcinfo(2),"4"))+(3*compare(strnpcinfo(2),"8"))+(4*compare(strnpcinfo(2),"16"))));
+	setarray .modo$[0],((.modo > 20) ? "Avançado":((!.modo) ? "Solo":"Normal")),((.modo > 20) ? "e":"n");
+	set .pess,pow(2,(.modo%10));
+	warp "turbo_"+.modo$[1]+"_"+.pess,59,364;
+	end;
+}
+
+
+// Turbo Track: (Log Race)
+-	script	trap_track::TurboLogRace	-1,{
+OnTouch:
+	set .modo,(!compare(strnpcinfo(2),"Solo"))*((compare(strnpcinfo(2),"Avançado")*10)+10+((2*compare(strnpcinfo(2),"4-"))+(3*compare(strnpcinfo(2),"8-"))+(4*compare(strnpcinfo(2),"16-"))));
+	setarray .modo$[0],((.modo > 20) ? "Avançado":((!.modo) ? "Solo":"Normal")),((.modo > 20) ? "e":"n");
+	set .pess,pow(2,(.modo%10));
+	set .@dropuser,rand(1,3);
+	if (.@dropuser == 1)
+		warp "turbo_"+.modo$[1]+"_"+.pess,72,372;
+	else if (.@dropuser == 2)
+		warp "turbo_"+.modo$[1]+"_"+.pess,72,365;
+	else
+		warp "turbo_"+.modo$[1]+"_"+.pess,72,357;
+	end;
+}
+
+// Turbo Track:(Sand Hill)
+-	script	#TBT_trap_Track::TurboSandHill	-1,{
+OnTouch:
+	switch(rand(1,10)) {
+	case 1:
+	case 9:
+		sc_start SC_CONFUSION,8000,0;
+		emotion e_swt2,1;
+		end;
+	case 2:
+		sc_start SC_STONE,4000,0;
+		end;
+	case 4:
+		sc_start SC_SLEEP,4000,0;
+		end;
+	case 6:
+		sc_start SC_FREEZE,4000,0;
+		emotion e_swt2,1;
+		end;
+	case 8:
+		sc_start SC_STUN,4000,0;
+		end;
+	case 10:
+		sc_start SC_CURSE,80000,0;
+		end;
+	}
+}
+
+-	script	#TBT_trap_track::SandHillTrap24	-1,{
+OnTouch:
+	if (rand(1,3) == 1) {
+		cutin "kafra_03",2;
+		mes "^4d4dffA Turbo Track foi";
+		mes "trazido para Al de Baran";
+		mes " e para você pela";
+		mes "^800000Corporação Kafra^4Dd4dff.^000000";
+		next;
+		mes "^4d4dffNós desejamos boa sorte para todos";
+		mes "os participantes da Turbo Track de hoje";
+		mes "e agradeço de todo coração a todos por usar os Serviços Kafra.^000000";
+		next;
+		mes "^800000A Corporação Kafra^4d4dff tem promovido os serviços de Armazém,";
+		mes "Ponto de Retorno e Teleportes^4d4dff para nossos clientes há anos. Apenas escute esses reais clientes...^000000";
+		next;
+		mes "^4d4dff[Kachua]";
+		mes "Oh sim, elas promovem os melhores armazéns! Há muito";
+		mes "espaço para meus Diaaaaaaaaaamantes!";
+		mes " ";
+		mes "[Chefe Mahnsoo]";
+		mes "Eu amo você Kafra!^000000";
+		next;
+		mes "^ff0000Turbo Track";
+		mes "^ff0000Armadilhas no Percurso do Deserto!";
+		mes "^4d4dffPatrocinado pela ^800000Corporação Kafra^4d4dff";
+		mes "''Nós estamos sempre do seu lado.''^000000";
+		close2;
+		cutin "kafra_03",255;
+		end;
+	}
+	else {
+		sc_start SC_CONFUSION,4000,0;
+		end;
+	}
+}
+
+// Turbo Track: (Water Maze)
+-	script	flasher#traptrack::TurboWaterMaze	-1,{
+OnTouch:
+	sc_start SC_BLIND,60000,0;
+	end;
+}
+
+
+// Turbo Track: (Snake Dice course)
+-	script	snake01track::SnakeTrack01	-1,{
+OnTouch:
+	set .modo,(!compare(strnpcinfo(2),"Solo"))*((compare(strnpcinfo(2),"Avançado")*10)+10+((2*compare(strnpcinfo(2),"4"))+(3*compare(strnpcinfo(2),"8"))+(4*compare(strnpcinfo(2),"16"))));
+	setarray .modo$[0],((.modo > 20) ? "Avançado":((!.modo) ? "Solo":"Normal")),((.modo > 20) ? "e":"n");
+	set .pess,pow(2,(.modo%10));
+	set .@turbo2,rand(1,7);
+	if (.@turbo2 > 0) && (.@turbo2 < 3)
+		warp "turbo_"+.modo$[1]+"_"+.pess,370,292;
+	else if (.@turbo2 > 2) && (.@turbo2 < 5)
+		warp "turbo_"+.modo$[1]+"_"+.pess,295,293;
+	else if (.@turbo2 > 4) && (.@turbo2 < 7)
+		warp "turbo_"+.modo$[1]+"_"+.pess,355,292;
+	else
+		warp "turbo_"+.modo$[1]+"_"+.pess,279,292;
+	end;
+}
+
+-	script	snake02track::SnakeTrack02	-1,{
+OnTouch:
+	set .modo,(!compare(strnpcinfo(2),"Solo"))*((compare(strnpcinfo(2),"Avançado")*10)+10+((2*compare(strnpcinfo(2),"4"))+(3*compare(strnpcinfo(2),"8"))+(4*compare(strnpcinfo(2),"16"))));
+	setarray .modo$[0],((.modo > 20) ? "Avançado":((!.modo) ? "Solo":"Normal")),((.modo > 20) ? "e":"n");
+	set .pess,pow(2,(.modo%10));
+	set .@turbo2,rand(1,8);
+	if (.@turbo2 > 0) && (.@turbo2 < 3)
+		warp "turbo_"+.modo$[1]+"_"+.pess,287,256;
+	else if (.@turbo2 > 2) && (.@turbo2 < 5)
+		warp "turbo_"+.modo$[1]+"_"+.pess,303,256;
+	else if (.@turbo2 > 4) && (.@turbo2 < 7)
+		warp "turbo_"+.modo$[1]+"_"+.pess,347,256;
+	else
+		warp "turbo_"+.modo$[1]+"_"+.pess,363,256;
+	end;
+}
+
+-	script	snake03track::SnakeTrack03	-1,{
+OnTouch:
+	set .modo,(!compare(strnpcinfo(2),"Solo"))*((compare(strnpcinfo(2),"Avançado")*10)+10+((2*compare(strnpcinfo(2),"4"))+(3*compare(strnpcinfo(2),"8"))+(4*compare(strnpcinfo(2),"16"))));
+	setarray .modo$[0],((.modo > 20) ? "Avançado":((!.modo) ? "Solo":"Normal")),((.modo > 20) ? "e":"n");
+	set .pess,pow(2,(.modo%10));
+	set .@turbo2,rand(1,8);
+	if (.@turbo2 > 0) && (.@turbo2 < 3)
+		warp "turbo_"+.modo$[1]+"_"+.pess,279,292;
+	else if (.@turbo2 > 2) && (.@turbo2 < 5)
+		warp "turbo_"+.modo$[1]+"_"+.pess,311,292;
+	else if (.@turbo2 > 4) && (.@turbo2 < 7)
+		warp "turbo_"+.modo$[1]+"_"+.pess,347,256;
+	else
+		warp "turbo_"+.modo$[1]+"_"+.pess,370,292;
+	end;
+}
+
+-	script	snake04track::SnakeTrack04	-1,{
+OnTouch:
+	set .modo,(!compare(strnpcinfo(2),"Solo"))*((compare(strnpcinfo(2),"Avançado")*10)+10+((2*compare(strnpcinfo(2),"4"))+(3*compare(strnpcinfo(2),"8"))+(4*compare(strnpcinfo(2),"16"))));
+	setarray .modo$[0],((.modo > 20) ? "Avançado":((!.modo) ? "Solo":"Normal")),((.modo > 20) ? "e":"n");
+	set .pess,pow(2,(.modo%10));
+	set .@turbo2,rand(1,7);
+	if (.@turbo2 > 0) && (.@turbo2 < 3)
+		warp "turbo_"+.modo$[1]+"_"+.pess,363,256;
+	else if (.@turbo2 > 2) && (.@turbo2 < 5)
+		warp "turbo_"+.modo$[1]+"_"+.pess,295,293;
+	else if (.@turbo2 > 4) && (.@turbo2 < 7)
+		warp "turbo_"+.modo$[1]+"_"+.pess,355,292;
+	else
+		warp "turbo_"+.modo$[1]+"_"+.pess,287,256;
+	end;
+}
+
+//monsters
+-	script	snaketrack::SnakeTrack	-1,{
+Onreset:
+	set .modo,(!compare(strnpcinfo(2),"Solo"))*((compare(strnpcinfo(2),"Avançado")*10)+10+((2*compare(strnpcinfo(2),"4"))+(3*compare(strnpcinfo(2),"8"))+(4*compare(strnpcinfo(2),"16"))));
+	setarray .modo$[0],((.modo > 20) ? "Avançado":((!.modo) ? "Solo":"Normal")),((.modo > 20) ? "e":"n");
+	set .pess,pow(2,(.modo%10));
+	killmonsterall "turbo_"+.modo$[1]+"_"+.pess;
+	end;
+
+OnEnable:
+	set .modo,(!compare(strnpcinfo(2),"Solo"))*((compare(strnpcinfo(2),"Avançado")*10)+10+((2*compare(strnpcinfo(2),"4"))+(3*compare(strnpcinfo(2),"8"))+(4*compare(strnpcinfo(2),"16"))));
+	setarray .modo$[0],((.modo > 20) ? "Avançado":((!.modo) ? "Solo":"Normal")),((.modo > 20) ? "e":"n");
+	set .pess,pow(2,(.modo%10));
+	monster "turbo_"+.modo$[1]+"_"+.pess,279,284,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,279,268,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,279,260,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,287,288,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,287,280,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,287,264,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,295,284,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,295,268,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,295,260,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,303,288,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,303,280,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,303,264,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,311,284,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,311,268,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,311,260,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,347,288,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,347,280,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,347,264,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,355,284,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,355,268,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,355,260,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,363,288,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,363,280,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,363,264,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,371,284,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,371,268,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,371,260,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,379,288,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,379,280,"Esqueleto Arqueiro",1420,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,379,264,"Esqueleto Arqueiro",1420,1;
+	end;
+}
+
+// ÇåÆÃÄÚ½º
+-	script	huntingtrack::HuntingTrack	-1,{
+Onreset:
+	set .modo,(!compare(strnpcinfo(2),"Solo"))*((compare(strnpcinfo(2),"Avançado")*10)+10+((2*compare(strnpcinfo(2),"4"))+(3*compare(strnpcinfo(2),"8"))+(4*compare(strnpcinfo(2),"16"))));
+	setarray .modo$[0],((.modo > 20) ? "Avançado":((!.modo) ? "Solo":"Normal")),((.modo > 20) ? "e":"n");
+	set .pess,pow(2,(.modo%10));
+	killmonsterall "turbo_"+.modo$[1]+"_"+.pess;
+	end;
+
+OnEnable:
+	set .modo,(!compare(strnpcinfo(2),"Solo"))*((compare(strnpcinfo(2),"Avançado")*10)+10+((2*compare(strnpcinfo(2),"4"))+(3*compare(strnpcinfo(2),"8"))+(4*compare(strnpcinfo(2),"16"))));
+	setarray .modo$[0],((.modo > 20) ? "Avançado":((!.modo) ? "Solo":"Normal")),((.modo > 20) ? "e":"n");
+	set .pess,pow(2,(.modo%10));
+	monster "turbo_"+.modo$[1]+"_"+.pess,47,87,"Munak",1610,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,47,87,"Bongun",1611,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,47,87,"Munak",1610,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,24,74,"Munak",1610,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,24,74,"Bongun",1611,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,24,74,"Munak",1610,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,67,42,"Munak",1610,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,67,42,"Bongun",1611,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,67,42,"Munak",1610,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,60,70,"Munak",1610,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,60,70,"Bongun",1611,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,60,70,"Munak",1610,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,32,51,"Munak",1610,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,32,51,"Bongun",1611,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,32,51,"Munak",1610,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,30,25,"Munak",1610,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,30,25,"Bongun",1611,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,30,25,"Munak",1610,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,68,56,"Yao Jun",1612,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,26,46,"Yao Jun",1612,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,62,20,"Munak",1610,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,62,20,"Bongun",1611,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,62,20,"Munak",1610,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,216,378,"Munak",1610,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,218,360,"Munak",1610,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,223,361,"Munak",1610,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,243,342,"Munak",1610,1;
+	monster "turbo_"+.modo$[1]+"_"+.pess,247,364,"Munak",1610,1;
+	end;
+}
+
+// Turbo Track: 16 Pessoas e Modo Solo (Water Maze)
+-	script	#Intersection::TurboHint_1	-1,{
+OnTouch:
+	emotion e_what,1;
+	end;
+}
+
+-	script	#CorrectPath::TurboHint_2	-1,{
+OnTouch:
+	emotion e_gasp,1;
+}
+
+-	script	#NoWayOut::TurboHint_3	-1,{
+OnTouch:
+	emotion e_swt2,1;
+	if (rand(1,4) == 3)
+		emotion e_gasp;
+	end;
+}
+
+// Turbo Track: (Course-clear broadcasters, and exits?)
+-	script	cos_1::cos1track	-1,{
+OnTouch:
+	set .modo,(!compare(strnpcinfo(1),"Solo"))*((compare(strnpcinfo(1),"Avançado")*10)+10+((2*compare(strnpcinfo(1),"4"))+(3*compare(strnpcinfo(1),"8"))+(4*compare(strnpcinfo(1),"16"))));
+	setarray .modo$[0],((.modo > 20) ? "Avançado":((!.modo) ? "Solo":"Normal")),((.modo > 20) ? "e":"n");
+	set .pess,pow(2,(.modo%10));
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,strcharinfo(0)+" acaba de passar o Percurso da Ponte de Madeira!",bc_map,"0x70DBDB";
+	set .@move1,rand(1,3);
+	if (.@move1 == 1)
+		warp "turbo_"+.modo$[1]+"_"+.pess,210,369;
+	else if (.@move1 == 2)
+		warp "turbo_"+.modo$[1]+"_"+.pess,210,361;
+	else
+		warp "turbo_"+.modo$[1]+"_"+.pess,210,354;
+	end;
+}
+
+-	script	cos_2::cos2track	-1,{
+OnTouch:
+	set .modo,(!compare(strnpcinfo(1),"Solo"))*((compare(strnpcinfo(1),"Avançado")*10)+10+((2*compare(strnpcinfo(1),"4"))+(3*compare(strnpcinfo(1),"8"))+(4*compare(strnpcinfo(1),"16"))));
+	setarray .modo$[0],((.modo > 20) ? "Avançado":((!.modo) ? "Solo":"Normal")),((.modo > 20) ? "e":"n");
+	set .pess,pow(2,(.modo%10));
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,strcharinfo(0)+" acaba de passar o Percurso das Caixas Empilhadas!",bc_map,"0x70DBDB";
+	warp "turbo_"+.modo$[1]+"_"+.pess,316,365;
+	end;
+}
+
+-	script	Disposable_Switch::dispoTrack	-1,{
+OnTouch:
+	set .modo,(!compare(strnpcinfo(2),"Solo"))*((compare(strnpcinfo(2),"Avançado")*10)+10+((2*compare(strnpcinfo(2),"4"))+(3*compare(strnpcinfo(2),"8"))+(4*compare(strnpcinfo(2),"16"))));
+	setarray .modo$[0],((.modo > 20) ? "Avançado":((!.modo) ? "Solo":"Normal")),((.modo > 20) ? "e":"n");
+	set .pess,pow(2,(.modo%10));
+	if (rand(1,2) == 1)
+		enablenpc "Flasher_Exit_1#"+.modo$[1]+.pess;
+	else
+		enablenpc "Flasher_Exit_2#"+.modo$[1]+.pess;
+	disablenpc "Disposable_Switch#"+.modo$[1]+.pess;
+	end;
+}
+
+-	script	cos_3::cos3track	-1,{
+OnTouch:
+	set .modo,(!compare(strnpcinfo(1),"Solo"))*((compare(strnpcinfo(1),"Avançado")*10)+10+((2*compare(strnpcinfo(1),"4"))+(3*compare(strnpcinfo(1),"8"))+(4*compare(strnpcinfo(1),"16"))));
+	setarray .modo$[0],((.modo > 20) ? "Avançado":((!.modo) ? "Solo":"Normal")),((.modo > 20) ? "e":"n");
+	set .pess,pow(2,(.modo%10));
+	set .@to_miro,rand(1,4);
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,strcharinfo(0)+" acaba de passar o Percurso do Deserto!",bc_map,"0x70DBDB";
+	if (.@to_miro == 1)
+		warp "turbo_"+.modo$[1]+"_"+.pess,46,254;
+	else if (.@to_miro == 2)
+		warp "turbo_"+.modo$[1]+"_"+.pess,76,227;
+	else if (.@to_miro == 3)
+		warp "turbo_"+.modo$[1]+"_"+.pess,42,197;
+	else
+		warp "turbo_"+.modo$[1]+"_"+.pess,86,220;
+	end;
+}
+
+-	script	Flasher_Exit::flashexitTrack	-1,{
+OnInit:
+	if(compare(strnpcinfo(1),"Flasher_Exit")) end;
+	set .modo,(!compare(strnpcinfo(2),"Solo"))*((compare(strnpcinfo(2),"Avançado")*10)+10+((2*compare(strnpcinfo(2),"4"))+(3*compare(strnpcinfo(2),"8"))+(4*compare(strnpcinfo(2),"16"))));
+	setarray .modo$[0],((.modo > 20) ? "Avançado":((!.modo) ? "Solo":"Normal")),((.modo > 20) ? "e":"n");
+	set .pess,pow(2,(.modo%10));
+	if(compare(strnpcinfo(1),"1")) set .n,1;
+	else set .n,2;
+	disablenpc "Flasher_Exit_"+.n+"#"+.modo$[1]+.pess;
+	end;
+
+OnTouch:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,strcharinfo(0)+" acaba de passar o Percurso Labirinto!",bc_map,"0x70DBDB";
+	warp "turbo_"+.modo$[1]+"_"+.pess,185,227;
+	end;
+}
+
+-	script	cos_5::cos5track	-1,{
+OnTouch:
+	set .modo,(!compare(strnpcinfo(1),"Solo"))*((compare(strnpcinfo(1),"Avançado")*10)+10+((2*compare(strnpcinfo(1),"4"))+(3*compare(strnpcinfo(1),"8"))+(4*compare(strnpcinfo(1),"16"))));
+	setarray .modo$[0],((.modo > 20) ? "Avançado":((!.modo) ? "Solo":"Normal")),((.modo > 20) ? "e":"n");
+	set .pess,pow(2,(.modo%10));
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,strcharinfo(0)+" acaba de passar o Percurso Caracol!",bc_map,"0x70DBDB";
+	warp "turbo_"+.modo$[1]+"_"+.pess,268,275;
+	end;
+}
+
+-	script	cos_6::cos6track	-1,{
+OnTouch:
+	set .modo,(!compare(strnpcinfo(1),"Solo"))*((compare(strnpcinfo(1),"Avançado")*10)+10+((2*compare(strnpcinfo(1),"4"))+(3*compare(strnpcinfo(1),"8"))+(4*compare(strnpcinfo(1),"16"))));
+	setarray .modo$[0],((.modo > 20) ? "Avançado":((!.modo) ? "Solo":"Normal")),((.modo > 20) ? "e":"n");
+	set .pess,pow(2,(.modo%10));
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,strcharinfo(0)+" acaba de passar o Percurso da Serpente!",bc_map,"0x70DBDB";
+	warp "turbo_"+.modo$[1]+"_"+.pess,5,91;
+	end;
+}
+
+-	script	cos_7::cos7track	-1,{
+OnTouch:
+	set .modo,(!compare(strnpcinfo(1),"Solo"))*((compare(strnpcinfo(1),"Avançado")*10)+10+((2*compare(strnpcinfo(1),"4"))+(3*compare(strnpcinfo(1),"8"))+(4*compare(strnpcinfo(1),"16"))));
+	setarray .modo$[0],((.modo > 20) ? "Avançado":((!.modo) ? "Solo":"Normal")),((.modo > 20) ? "e":"n");
+	set .pess,pow(2,(.modo%10));
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,strcharinfo(0)+" acaba de passar o Percurso da Caverna! Rápido, você está quase na chegada!",bc_map,"0x70DBDB";
+	set .@move1,rand(1,3);
+	if (.@move1 == 1)
+		warp "turbo_"+.modo$[1]+"_"+.pess,307,52;
+	else if (.@move1 == 2)
+		warp "turbo_"+.modo$[1]+"_"+.pess,307,46;
+	else
+		warp "turbo_"+.modo$[1]+"_"+.pess,307,40;
+	end;
+}
+
+-	script	cos_end::cosendtrack	-1,{
+OnInit:
+	if(compare(strnpcinfo(1),"cos_end")) end;
+	set .modo,(!compare(strnpcinfo(1),"Solo"))*((compare(strnpcinfo(1),"Avançado")*10)+10+((2*compare(strnpcinfo(1),"4"))+(3*compare(strnpcinfo(1),"8"))+(4*compare(strnpcinfo(1),"16"))));
+	setarray .modo$[0],((.modo > 20) ? "Avançado":((!.modo) ? "Solo":"Normal")),((.modo > 20) ? "e":"n");
+	set .pess,pow(2,(.modo%10));
+	enablenpc "cos_"+.modo$[1]+"_"+.pess+"_end";
+	end;
+
+OnTouch:
+	set .modo,(!compare(strnpcinfo(1),"Solo"))*((compare(strnpcinfo(1),"Avançado")*10)+10+((2*compare(strnpcinfo(1),"4"))+(3*compare(strnpcinfo(1),"8"))+(4*compare(strnpcinfo(1),"16"))));
+	setarray .modo$[0],((.modo > 20) ? "Avançado":((!.modo) ? "Solo":"Normal")),((.modo > 20) ? "e":"n");
+	set .pess,pow(2,(.modo%10));
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,strcharinfo(0)+" há pouco chegou à Linha de Chegada! Parabéns!",bc_map,"0xFFFF00";
+	set $ttnames$[4],strcharinfo(0);
+	donpcevent "Guia TBT#Broadcast::Onwin_"+.modo$[1]+.pess;
+	warp "turbo_"+.modo$[1]+"_"+.pess,384,161;
+	donpcevent "Auxiliar do Vencedor#T"+.modo$[1]+.pess+"::OnEnable";
+	donpcevent "Master#"+.modo$[1]+.pess+"::OnDisable";
+	disablenpc "Broadcast#"+.modo$[1]+.pess;
+	disablenpc "cos_"+.modo$[1]+"_"+.pess+"_end";
+	end;
+}
+
+-	script	Auxiliar do VencedorTRACK::AuxVendTrack	-1,{
+//---reward points & record player name
+	if (tt_rank < 29999) {
+		mes "[Guia]";
+		mes "Parabéns!";
+		mes "Como vencedor, sua recompensa";
+		mes "é 40 Pontos da Turbo Track~";
+		set tt_point,tt_point+40;
+		mes "Você tem um total de "+tt_point+" Pontos da Turbo Track.";
+		next;
+		for( set .@i,0; .@i <= 5; set .@i,.@i+1){
+			if(tt_point > $ttrank[.@i]){
+				setarray $ttranks[.@i],tt_point;
+				setarray $ttnames$[.@i],strcharinfo(0);
+				mes "[Guia]";
+				mes "Parabéns!";
+				mes "Você está em nosso Ranking Top 5 na Turbo Track!";
+				mes "E atualmente ocupa a posição "+.@i+1;
+				if(.@i == 0) donpcevent "Guia TBT#Broadcast::Onnew_top1";
+				break;
+			}
+		}
+		mes "[Guia]";
+		mes "Se você puder vencer mais jogos";
+		mes "do que todos, seu";
+		mes "nome será registrado em";
+		mes "nosso Rank Top 5 dos jogadores.";
+		next;
+		mes "[Guia]";
+		mes "O que você";
+		mes "imagina, " + strcharinfo(0) +"?";
+		mes "A glória pode ser sua se";
+		mes "você puder acumula vitórias!";
+		next;
+		mes "[Guia]";
+		mes "Obrigado por";
+		mes "participar da";
+		mes "Turbo Track.";
+		mes "Você será teletransportado";
+		mes "para uma Sala de Espera imediatamente.";
+		close2;
+		warp "turbo_room",72,89;
+		end;
+	}
+	else {
+		mes "[Guia]";
+		mes "Parabéns!";
+		mes "Desculpe mas você possui o máximo de pontos da Turbo Track!";
+		close2;
+		warp "turbo_room",72,89;
+		end;
+	}
+
+OnInit:
+	if(compare(strnpcinfo(1),"Auxiliar do VencedorTRACK")) end;
+	set .modo,(!compare(strnpcinfo(1),"Solo"))*((compare(strnpcinfo(1),"Avançado")*10)+10+((2*compare(strnpcinfo(1),"4"))+(3*compare(strnpcinfo(1),"8"))+(4*compare(strnpcinfo(1),"16"))));
+	setarray .modo$[0],((.modo > 20) ? "Avançado":((!.modo) ? "Solo":"Normal")),((.modo > 20) ? "e":"n");
+	set .pess,pow(2,(.modo%10));
+	disablenpc "Auxiliar do Vencedor#T"+.modo$[1]+.pess;
+	end;
+
+OnEnable:
+	set .modo,(!compare(strnpcinfo(1),"Solo"))*((compare(strnpcinfo(1),"Avançado")*10)+10+((2*compare(strnpcinfo(1),"4"))+(3*compare(strnpcinfo(1),"8"))+(4*compare(strnpcinfo(1),"16"))));
+	setarray .modo$[0],((.modo > 20) ? "Avançado":((!.modo) ? "Solo":"Normal")),((.modo > 20) ? "e":"n");
+	set .pess,pow(2,(.modo%10));
+	enablenpc "Auxiliar do Vencedor#T"+.modo$[1]+.pess;
+	initnpctimer;
+	end;
+
+OnTimer4000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Este é o fim da Turbo Track Modo Avançado - 4 Pessoas.",bc_map,"0x33FF66";
+	end;
+
+OnTimer8000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"O jogo terminará em aproximadamente 1 minuto.",bc_map,"0x33FF66";
+	end;
+
+OnTimer12000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Nesse momento, um portal se abrirá.",bc_map,"0x33FF66";
+	end;
+
+OnTimer16000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Jogadores na arena devem estar prontos para partir pelo Portal.",bc_map,"0x33FF66";
+	end;
+
+OnTimer20000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Enquanto isso, os vencedores têm que proceder para receber as suas recompensas o mais cedo possível.",bc_map,"0x33FF66";
+	end;
+
+OnTimer24000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Obrigado por visitar a Turbo Track em Al De Baran.",bc_map,"0x33FF66";
+	end;
+
+OnTimer28000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Turbo Track de Al De Baran é trazido a você pela...",bc_map,"0x33FF66";
+	end;
+
+OnTimer32000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"[Sede da Corporação Kafra de Al De Baran]",bc_map,"0x33FF66";
+	end;
+
+OnTimer36000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"[A Administração dos Castelos de Luina em Al De Baran]",bc_map,"0x33FF66";
+	end;
+
+OnTimer40000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"[Sindicato dos Ferreiros]",bc_map,"0x33FF66";
+	end;
+
+OnTimer44000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"E [Cassino de Comodo].",bc_map,"0x33FF66";
+	end;
+
+OnTimer48000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Mais uma vez, nós gostaríamos de agradecer aos nossos patrocinadores.",bc_map,"0x33FF66";
+	end;
+
+OnTimer52000:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,"Tenha um bom dia.",bc_map,"0x33FF66";
+	end;
+
+//--- warp all players to turbo room
+OnTimer58000:
+	mapwarp "turbo_"+.modo$[1]+"_"+.pess,"turbo_room",72,89;
+	end;
+
+//----end game, reset all
+OnTimer60000:
+	enablenpc "Notice_Maker1#TBT_"+.modo$[1]+"_"+.pess;
+	enablenpc "Notice_Maker3#TBT_"+.modo$[1]+"_"+.pess;
+	enablenpc "Notice_Maker4#TBT_"+.modo$[1]+"_"+.pess;
+	enablenpc "Disposable_Switch#"+.modo$[1]+.pess;
+	disablenpc "Flasher_Exit_1#"+.modo$[1]+.pess;
+	disablenpc "Flasher_Exit_2#"+.modo$[1]+.pess;
+	enablenpc "No_Unfair_Start#"+.modo$[1]+.pess+"-1";
+	enablenpc "No_Unfair_Start#"+.modo$[1]+.pess+"-2";
+	donpcevent "snake#"+.modo$[1]+.pess+"::Onreset";
+	donpcevent "hunting#"+.modo$[1]+.pess+"::Onreset";
+	if(.modo$[0] == "Solo") donpcevent "Modo Solo#n1::OnEnable";
+	else donpcevent "Modo "+.modo$[0]+" - "+.pess+" Pessoas::OnEnable";
+	disablenpc "bing2#"+.modo$[1]+.pess;
+	enablenpc "cos_"+.modo$[1]+"_"+.pess+"_end";
+	stopnpctimer;
+	end;
+}
+
+-	script	Notice_Maker1TT#TBT::Notice01T	-1,{
+OnInit:
+	if(compare(strnpcinfo(1),"Notice_Maker1TT")) end;
+	set .modo,(!compare(strnpcinfo(2),"Solo"))*((compare(strnpcinfo(2),"Avançado")*10)+10+((2*compare(strnpcinfo(2),"4"))+(3*compare(strnpcinfo(2),"8"))+(4*compare(strnpcinfo(2),"16"))));
+	setarray .modo$[0],((.modo > 20) ? "Avançado":((!.modo) ? "Solo":"Normal")),((.modo > 20) ? "e":"n");
+	set .pess,pow(2,(.modo%10));
+	enablenpc "Notice_Maker1#TBT_"+.modo$[1]+"_"+.pess;
+	end;
+
+OnTouch:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,strcharinfo(0)+" está entrando agora no Percurso da Caverna! "+strcharinfo(0)+" está agora na dianteira!",bc_map,"0xFFFF00";
+	donpcevent "Guia TBT#Broadcast::Onend_"+.modo$[1]+.pess;
+	disablenpc "Notice_Maker1#TBT_"+.modo$[1]+"_"+.pess;
+	end;
+}
+
+-	script	Notice_Maker3TT#TBT::Notice03T	-1,{
+OnInit:
+	if(compare(strnpcinfo(1),"Notice_Maker3TT")) end;
+	set .modo,(!compare(strnpcinfo(2),"Solo"))*((compare(strnpcinfo(2),"Avançado")*10)+10+((2*compare(strnpcinfo(2),"4"))+(3*compare(strnpcinfo(2),"8"))+(4*compare(strnpcinfo(2),"16"))));
+	setarray .modo$[0],((.modo > 20) ? "Avançado":((!.modo) ? "Solo":"Normal")),((.modo > 20) ? "e":"n");
+	set .pess,pow(2,(.modo%10));
+	enablenpc "Notice_Maker3#TBT_"+.modo$[1]+"_"+.pess;
+	end;
+
+OnTouch:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,strcharinfo(0)+" está entrando agora no Percurso do Caracol! "+strcharinfo(0)+" está agora na dianteira!",bc_map,"0xFFFF00";
+	disablenpc "Notice_Maker3#TBT_"+.modo$[1]+"_"+.pess;
+	end;
+}
+
+-	script	Notice_Maker4TT#TBT::Notice04T	-1,{
+OnInit:
+	if(compare(strnpcinfo(1),"Notice_Maker4TT")) end;
+	set .modo,(!compare(strnpcinfo(2),"Solo"))*((compare(strnpcinfo(2),"Avançado")*10)+10+((2*compare(strnpcinfo(2),"4"))+(3*compare(strnpcinfo(2),"8"))+(4*compare(strnpcinfo(2),"16"))));
+	setarray .modo$[0],((.modo > 20) ? "Avançado":((!.modo) ? "Solo":"Normal")),((.modo > 20) ? "e":"n");
+	set .pess,pow(2,(.modo%10));
+	enablenpc "Notice_Maker4#TBT_"+.modo$[1]+"_"+.pess;
+	end;
+
+OnTouch:
+	mapannounce "turbo_"+.modo$[1]+"_"+.pess,strcharinfo(0)+" está atualmente em Primeiro Lugar!",bc_map,"0xFFFF00";
+	disablenpc "Notice_Maker4#TBT_"+.modo$[1]+"_"+.pess;
+	end;
+}
+
+-	script	Warp#Track::WarpTrack1	-1,{
+OnTouch:
+	set .modo,(!compare(strnpcinfo(2),"Solo"))*((compare(strnpcinfo(2),"Avançado")*10)+10+((2*compare(strnpcinfo(2),"4"))+(3*compare(strnpcinfo(2),"8"))+(4*compare(strnpcinfo(2),"16"))));
+	setarray .modo$[0],((.modo > 20) ? "Avançado":((!.modo) ? "Solo":"Normal")),((.modo > 20) ? "e":"n");
+	set .pess,pow(2,(.modo%10));
+	set .@warprand,rand(1,20);
+	if (.@warprand == 1)
+		warp "turbo_"+.modo$[1]+"_"+.pess,216,378;
+	else if (.@warprand == 2)
+		warp "turbo_"+.modo$[1]+"_"+.pess,218,360;
+	else if (.@warprand == 4)
+		warp "turbo_"+.modo$[1]+"_"+.pess,223,361;
+	else if (.@warprand == 5)
+		warp "turbo_"+.modo$[1]+"_"+.pess,243,342;
+	else if (.@warprand == 6)
+		warp "turbo_"+.modo$[1]+"_"+.pess,247,364;
+	end;
+}
+
+-	script	trap#F1::TurboTrap	-1,{
+OnTouch:
+	specialeffect EF_BLASTMINEBOMB;
+	set .@HitTrap,10;
+	if (.@HitTrap > 0 && .@HitTrap < 4)
+		percentheal -1,0;
+	else if (.@HitTrap > 4 && .@HitTrap < 8)
+		percentheal -5,0;
+	else
+		percentheal -2,0;
+	end;
+}
+
+-	script	trap_track02::TurboTrap02	-1,{
+OnTouch:
+	specialeffect EF_FREEZING;
+	set .@HitTrap,10;
+	if (.@HitTrap > 0 && .@HitTrap < 4)
+		percentheal -1,0;
+	else if (.@HitTrap > 4 && .@HitTrap < 8) {
+		percentheal -5,0;
+		sc_start SC_FREEZE,3000,0;
+	}
+	else {
+		sc_start SC_FREEZE,4000,0;
+		percentheal -2,0;
+	}
+}
+
+-	script	bingtrack1::BingTrack1	-1,{
+OnTouch:
+	if(compare(strnpcinfo(1),"bingtrack1")) end;
+	set .modo,(!compare(strnpcinfo(2),"Solo"))*((compare(strnpcinfo(2),"Avançado")*10)+10+((2*compare(strnpcinfo(2),"4"))+(3*compare(strnpcinfo(2),"8"))+(4*compare(strnpcinfo(2),"16"))));
+	setarray .modo$[0],((.modo > 20) ? "Avançado":((!.modo) ? "Solo":"Normal")),((.modo > 20) ? "e":"n");
+	set .pess,pow(2,(.modo%10));
+	set .@bing1,rand(1,10);
+	if (.@bing1 > 0 && .@bing1 < 4)
+		warp "turbo_"+.modo$[1]+"_"+.pess,217,232;
+	else if (.@bing1 == 6)
+		warp "turbo_"+.modo$[1]+"_"+.pess,233,207;
+	else if (.@bing1 == 7)
+		warp "turbo_"+.modo$[1]+"_"+.pess,208,219;
+	else if (.@bing1 == 8)
+		warp "turbo_"+.modo$[1]+"_"+.pess,219,202;
+	else if (.@bing1 == 9)
+		warp "turbo_"+.modo$[1]+"_"+.pess,218,228;
+	disablenpc "bing#"+.modo$[1]+.pess;
+	enablenpc "bing2#"+.modo$[1]+.pess;
+	end;
+}
+
+-	script	bingtrack2::BingTrack2	-1,{
+OnInit:
+	if(compare(strnpcinfo(1),"bingtrack2")) end;
+	set .modo,(!compare(strnpcinfo(2),"Solo"))*((compare(strnpcinfo(2),"Avançado")*10)+10+((2*compare(strnpcinfo(2),"4"))+(3*compare(strnpcinfo(2),"8"))+(4*compare(strnpcinfo(2),"16"))));
+	setarray .modo$[0],((.modo > 20) ? "Avançado":((!.modo) ? "Solo":"Normal")),((.modo > 20) ? "e":"n");
+	set .pess,pow(2,(.modo%10));
+	disablenpc "bing2#"+.modo$[1]+.pess;
+	end;
+
+OnTouch:
+	set bing1,rand(1,10);
+	if (.@bing1 == 1)
+		warp "turbo_"+.modo$[1]+"_"+.pess,217,232;
+	else if (.@bing1 == 2)
+		warp "turbo_"+.modo$[1]+"_"+.pess,233,207;
+	else if (.@bing1 == 3)
+		warp "turbo_"+.modo$[1]+"_"+.pess,208,219;
+	else if (.@bing1 == 4)
+		warp "turbo_"+.modo$[1]+"_"+.pess,219,202;
+	else if (.@bing1 == 5)
+		warp "turbo_"+.modo$[1]+"_"+.pess,218,228;
+	else if (.@bing1 == 6)
+		warp "turbo_"+.modo$[1]+"_"+.pess,220,195;
+	end;
+}

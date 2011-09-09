@@ -1,0 +1,248 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nãome do Script: Quests Repetíveis - Pungus	   		|
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team			   				|
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.0/1.1				    			|
+// |--------------------------------------------------------|
+// | Descrição: Quests repetíveis para ganho de EXP 		|
+// |--------------------------------------------------------|
+// | Changelog:						    					|
+// | 1.0 Script Traduzido [insidemybrain]					|
+// | 1.1 Script Revisado [Protimus]							|
+// \_______________________________________________________/
+
+ein_fild01,43,249,0	script	Camponês#hunt	898,{
+	if (checkquest(60125) != -1) {
+		if (checkquest(60125,HUNTING) != 2 ) {
+			mes "[Camponês]";
+			mes "Você terminou de caçar os 50 Pungus?";
+			next;
+			switch(select("Sim.:Não.:Quero desistir.")) {
+			case 1:
+				mes "[Camponês]";
+				mes "Hm... Acho que você não terminou de caçar os 50 Pungus...";
+				close;
+			case 2:
+				mes "[Camponês]";
+				mes "Lembre-se, eu preciso de ajuda para caçar os 50 Pungus.";
+				close;
+			case 3:
+				mes "[Camponês]";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
+				next;
+				switch(select("Sim.:Não.")) {
+				case 1:
+					mes "[Camponês]";
+					mes "Tudo bem então, volte quando mudar de idéia.";
+					erasequest 60125;
+					close;
+				case 2:
+					mes "[Camponês]";
+					mes "Por favor mate 50 Pungus.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Camponês]";
+			mes "Impressionante! Você conseguiu completar a quest com facilidade.";
+			getexp 250266,144452;
+			erasequest 60125;
+			close;
+		}
+	}
+	if (checkquest(60126) != -1) {
+		if (checkquest(60126,HUNTING) != 2 ) {
+			mes "[Camponês]";
+			mes "Você terminou de caçar os 100 Pungus?";
+			next;
+			switch(select("Sim.:Não.:Quero desistir.")) {
+			case 1:
+				mes "[Camponês]";
+				mes "Hm... Acho que você não terminou de caçar os 100 Pungus...";
+				close;
+			case 2:
+				mes "[Camponês]";
+				mes "Lembre-se, eu preciso de ajuda para caçar os 100 Pungus.";
+				close;
+			case 3:
+				mes "[Camponês]";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
+				next;
+				switch(select("Sim.:Não.")) {
+				case 1:
+					mes "[Camponês]";
+					mes "Tudo bem então, volte quando mudar de idéia.";
+					erasequest 60126;
+					close;
+				case 2:
+					mes "[Camponês]";
+					mes "Por favor mate 100 Pungus.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Camponês]";
+			mes "Impressionante! Você conseguiu completar a quest com facilidade.";
+			getexp 250266,144452;
+			getexp 250266,144452;
+			erasequest 60126;
+			close;
+		}
+	}
+	if (checkquest(60127) != -1) {
+		if (checkquest(60127,HUNTING) != 2 ) {
+			mes "[Camponês]";
+			mes "Você terminou de caçar os 150 Pungus?";
+			next;
+			switch(select("Sim.:Não.:Quero desistir.")) {
+			case 1:
+				mes "[Camponês]";
+				mes "Hm... Acho que você não terminou de caçar os 150 Pungus...";
+				close;
+			case 2:
+				mes "[Camponês]";
+				mes "Lembre-se, eu preciso de ajuda para caçar os 150 Pungus.";
+				close;
+			case 3:
+				mes "[Camponês]";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
+				next;
+				switch(select("Sim.:Não.")) {
+				case 1:
+					mes "[Camponês]";
+					mes "Tudo bem então, volte quando mudar de idéia.";
+					erasequest 60127;
+					close;
+				case 2:
+					mes "[Camponês]";
+					mes "Por favor mate 150 Pungus.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Camponês]";
+			mes "Impressionante! Você conseguiu completar a quest com facilidade.";
+			getexp 250266,144452;
+			getexp 250266,144452;
+			getexp 250266,144452;
+			erasequest 60127;
+			close;
+		}
+	}
+	//Para level mínimo
+	if (BaseLevel > 59) {
+		//Para level máximo
+		if (BaseLevel < 75) {
+			mes "[Camponês]";
+			mes "Ei, você aí. Você mesmo!";
+			mes "Acha que pode me ajudar com um problema?";
+			next;
+			switch(select("Claro.:Não.")) {
+			case 1:
+				mes "[Camponês]";
+				mes "Estou tentando ir pelo meu caminho, mas não consigo passar por esses Pungus.";
+				mes "Como pode me ajudar?";
+				next;
+				switch(select("Pegar Itens.:Caçar Pungus.:Cancelar.")) {
+				case 1:
+					mes "[Camponês]";
+					mes "Você pode me ajudar trazendo algumas ^FF0000Bactérias^000000?";
+					mes "Dar-lhe-ei uma recompensa a você por me ajudar com isso.";
+					next;
+					switch(select("Eu tenho Bactérias.:Do que você precisava?")) {
+					case 1:
+						/*
+						if (checkweight(504,10) == 0) {
+							mes "[Camponês]";
+							mes "Ei, parece que você vai ser esmagado pelo peso nas suas costas.";
+							mes "Volte quando não estiver carregando tanta coisa.";
+							close;
+						}
+						*/
+						if (countitem(7119) > 49) {
+							mes "[Camponês]";
+							mes "Eu tinha minhas dúvidas, mas você provou seu valor.";
+							delitem 7119,50; //Bactétias
+							getexp 250266,144452;
+							//getitem 504,10; //Poção Branca
+							close;
+						}
+						else {
+							mes "[Camponês]";
+							mes "Parece que você não tem o suficiente.";
+							next;
+							mes "[Camponês]";
+							mes "Eu preciso ver que você juntou ^FF000050 Bactérias^000000, antes de dar a sua recompensa.";
+							close;
+						}
+					case 2:
+						mes "[Camponês]";
+						mes "Eu preciso ver que você juntou ^FF000050 Bactérias^000000, antes de dar a sua recompensa.";
+						close;
+					}
+				case 2:
+					// Matar Pungus
+					mes "[Camponês]";
+					mes "Então gostaria de caçar Pungus, não é?";
+					mes "Quantos gostaria de caçar?";
+					next;
+					switch(select("50 Pungus.:100 Pungus.:150 Pungus.")) {
+					case 1:
+						mes "[Camponês]";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
+						setquest 60125;
+						close;
+					case 2:
+						mes "[Camponês]";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
+						setquest 60126;
+						close;
+					case 3:
+						mes "[Camponês]";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
+						setquest 60127;
+						close;
+					}
+				case 3:
+					mes "[Camponês]";
+					mes "Caso mude de idéia, venha falar comigo novamente.";
+					close;
+				}
+			case 2:
+				mes "[Camponês]";
+				mes "Caso mude de idéia, venha falar comigo novamente.";
+				close;
+			}
+		}
+		else {
+			mes "[Camponês]";
+			mes "Ah, tá. Acho que não...";
+			next;
+			mes "[Camponês]";
+			mes "É, desculpe por não poder conversar agora...";
+			close;
+		}
+	}
+	else {
+		mes "[Camponês]";
+		mes "É impressionante, realmente.";
+		mes "Eu só queria poder passar por lá.";
+		close;
+	}
+}

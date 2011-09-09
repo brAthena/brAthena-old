@@ -1,0 +1,30 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: motd.conf                              |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Descrição: Mensagem de Boas-vindas in-game.            |
+// |--------------------------------------------------------|
+// | Changelog:                                             |
+// | 1.0 Modificação [brAthena]                             |
+// | 1.1 Traduções revisadas [Constantini]                  |
+// | - Anotações                                            |
+// | "Comentários" devem ser adicionados com // no início   |
+// | da frase, senão você causará problemas de conf, pois o |
+// | texto será inválido conforme a source.                 |
+// | Lembre-se que "NOTAS" dão recomendações importantes.   |
+// \________________________________________________________/
+// NOTA: O motd serve para informar notícias aos personagens que logarem no servidor,
+// adicione abaixo suas notícias ou saudações.
+// O limite de linhas é de 128, se você precisar de mais linhas precisará modificar
+// o MOTD_LINE_SIZE na pasta: source/map no arquivo pc.c e recompilar o emulador.
+Bem-vindo à versão SVN Trunk do brAthena Emulador! Favor reportar bugs no fórum: www.brathena.org!

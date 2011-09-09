@@ -1,0 +1,153 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Loja de Alquimista						|
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.6/1.1                                |
+// |--------------------------------------------------------|
+// | Descrição:	Vende materiais e manuais de Alquimia		|
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [Mark]	                        |
+// | 1.1 Script Otimizado [Mark]	                        |
+// | - Anotações		   			    					|
+// \________________________________________________________/
+
+alde_alche,24,188,3	script	Comerciante da Guilda	740,{
+	if (checkweight(1201,1) == 0) {
+		mes "- Espere um pouco! -";
+		mes "- Você está carregando -";
+		mes "- muitos itens com você. -";
+		mes "- Por favor, volte novamente -";
+		mes "- depois que você guardar alguns itens no Armazém da Kafra. -";
+		close;
+	}
+	mes "[Gever Al Sharp]";
+	mes "Bem-vindo à União dos Alquimistas.";
+	mes "Como posso ajudá-lo hoje?";
+	next;
+	switch(select("Comprar materiais.:Comprar manuais de produção.:Sair.")) {
+	case 1:
+		mes "[Gever Al Sharp]";
+		mes "O que você gostaria de comprar?";
+		next;
+		if (select("Vasilha de Mistura - 8 Zeny:Cancelar.") == 1) {
+			mes "[Gever Al Sharp]";
+			mes "De quantas você precisa?";
+			mes "Digite '0' se você deseja cancelar.";
+			next;
+			while(1) {
+				input .@input,0,2001;
+				if (.@input == 0) {
+					mes "[Gever Al Sharp]";
+					mes "A negociação foi cancelada.";
+					mes "Volte sempre.";
+					close;
+				}
+				else if (.@input < 1 || .@input > 2000) {
+					mes "[Gever Al Sharp]";
+					mes "O número deve";
+					mes "ser menor que 2000.";
+					next;
+				}
+				else {
+					break;
+				}
+			}
+			set .@sell,.@input * 8;
+			set .@item_weight,.@input * 10;
+			if (Zeny < .@sell) {
+				mes "[Gever Al Sharp]";
+				mes "Você não possui zeny o suficiente.";
+				mes "Cheque quanto de Zeny você possui primeiramente.";
+				close;
+			}
+			if ((MaxWeight - Weight) < .@item_weight) {
+				mes "[Gever Al Sharp]";
+				mes "Me parece que você não pode carregar tudo.";
+				mes "Por favor, verifique o espaço em seu inventário.";
+				close;
+			}
+			set zeny,zeny-.@sell;
+			getitem 7134,.@input; //Medicine_Bowl
+			mes "[Gever Al Sharp]";
+			mes "Obrigado.";
+			mes "Volte Sempre.";
+			close;
+		}
+		mes "[Gever Al Sharp]";
+		mes "Pois bem, volte novamente quando precisar comprar mais materiais relacionados a Alquimia, certo?";
+		close;
+	case 2:
+		mes "[Gever Al Sharp]";
+		mes "Do que você precisa?";
+		mes "Os manuais custam geralmente 100.000 zeny. Mas há alguns outros manuais que custarão bem mais caro.";
+		next;
+		switch(select("Manual de Criação de Poções:Manual de Criação de Álcool:Manual de Criação de Fogo Grego:Manual de Criação de Frasco de Ácido:Manual de Criação de Plantas:Manual de Criação de Esferas-Marinhas:Manual de Criação de Revestimentos:Manual de Criação de Poções Condensadas:Cancelar Negociação.")) {
+		case 1:
+			callsub S_SellManual,7144,100000; //Normal_Potion_Book
+			break;
+		case 2:
+			callsub S_SellManual,7127,100000; //Alcol_Create_Book
+			break;
+		case 3:
+			callsub S_SellManual,7128,100000; //FireBottle_Create_Book
+			break;
+		case 4:
+			callsub S_SellManual,7129,100000; //Acid_Create_Book
+			break;
+		case 5:
+			callsub S_SellManual,7130,100000; //Plant_Create_Book
+			break;
+		case 6:
+			callsub S_SellManual,7131,100000; //Mine_Create_Book
+			break;
+		case 7:
+			callsub S_SellManual,7132,100000; //Coating_Create_Book
+			break;
+		case 8:
+			callsub S_SellManual,7133,240000; //Slim_Potion_Create_Book
+			break;
+		case 9:
+			mes "[Gever Al Sharp]";
+			mes "Pois bem...";
+			mes "Volte caso você tenha nescessidade de comprar um manual de produção.";
+			close;
+		}
+	case 3:
+		mes "[Gever Al Sharp]";
+		mes "Certo, então tenha um bom dia.";
+		close;
+	}
+
+S_SellManual:
+	if (Zeny < getarg(1)) {
+		mes "[Gever Al Sharp]";
+		mes "Você não possui zeny o suficiente.";
+		mes "Cheque quanto de zeny você possui primeiramente.";
+		close;
+	}
+	mes "[Gever Al Sharp]";
+	mes getitemname(getarg(0))+"?";
+	mes "Isso vai custar "+getarg(1)+" zeny.";
+	next;
+	if (select("Comprar.:Sair.") == 1) {
+		set zeny,zeny-getarg(1);
+		getitem getarg(0),1;
+		mes "[Gever Al Sharp]";
+		mes "Obrigado pela sua fidelidade.";
+		close;
+	}
+	mes "[Gever Al Sharp]";
+	mes "Volte Sempre!";
+	close;
+}

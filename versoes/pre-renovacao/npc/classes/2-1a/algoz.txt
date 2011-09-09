@@ -1,0 +1,103 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Quest do Algoz                         |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.3/1.1                                |
+// |--------------------------------------------------------|
+// | Descrição: Mudança de Classe para Algoz                |
+// |--------------------------------------------------------|
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [Wolf]                            |
+// | 1.1 Otimizações no npc [Wolf]                          |
+// \________________________________________________________/
+
+valkyrie,44,58,5	script	Algoz#Valkyrie	725,{
+	if (ADVJOB == 0 || Upper != 1) {
+		mes "[Algoz]";
+		set .@karma_d,rand(1,10);
+		if (.@karma_d > 4) {
+			mes "Parabéns...";
+			next;
+			mes "[Algoz]";
+			mes "...";
+			next;
+			mes "[Algoz]";
+			mes "...";
+			mes "......";
+			next;
+			mes "[Algoz]";
+			mes "...";
+			mes "......";
+			mes "Honre os";
+			mes "guerreiros.";
+			close;
+		}
+		mes "Nós somos os guerreiros";
+		mes "do deserto. Ninguém";
+		mes "pode olhar para baixo.";
+		mes "Ninguém...";
+		close;
+	} else if (ADVJOB == Job_Assassin_Cross && Class == Job_Thief_High && JobLevel > 39) {
+		mes "[Algoz]";
+		mes "Chegou a hora.";
+		mes "O mundo precisa de você...";
+		mes "Mais do que nunca.";
+		next;
+		mes "[Algoz]";
+		mes "Eu peço que você continue vivendo nas sombras, mas como um bom Assassino e com uma nova aparência.";
+		next;
+		mes "[Algoz]";
+		mes "Você quer se tornar";
+		mes "um Algoz?";
+		next;
+		if (select("Não.:Sim.") == 1) {
+			mes "[Algoz]";
+			mes "Quando estiver";
+			mes "pronto, volte.";
+			next;
+			mes "[Algoz]";
+			mes "Honre os";
+			mes "guerreiros.";
+			close;
+		}
+		mes "[Algoz]";
+		if (SkillPoint) {
+			mes "Você ainda não";
+			mes "aprendeu tudo";
+			mes "pode.";
+			next;
+			mes "[Algoz]";
+			mes "Use todos os seus";
+			mes "Pontos de Habilidade";
+			mes "e depois volte.";
+			close;
+		}
+		jobchange Job_Assassin_Cross;
+		set ADVJOB,0;
+		mes "Parabéns.";
+		mes "Como um Algoz,";
+		mes "eu espero que você lute por um futuro melhor dentro da escuridão.";
+		close;
+	}
+	mes "[Algoz]";
+	mes "Bem-vindo à";
+	mes "Valhalla,";
+	mes "o Salão de Honra.";
+	next;
+	mes "[Algoz]";
+	mes "Por favor";
+	mes "sinta-se à vontade";
+	mes "enquanto estiver aqui.";
+	mes "Honre os guerreiros.";
+	close;
+}

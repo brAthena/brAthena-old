@@ -1,0 +1,245 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nãome do Script: Quests Repetíveis - Caramelo          |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.0/1.1                                |
+// |--------------------------------------------------------|
+// | Descrição: Quests repetíveis para ganho de EXP.        |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [insidemybrain]                   |
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// \_______________________________________________________/
+
+mjolnir_01,296,29,6	script	Yullo#Caramel_Hunt	95,{
+	if (checkquest(60116) != -1) {
+		if (checkquest(60116,HUNTING) != 2 ) {
+			mes "[Yullo]";
+			mes "Você terminou de caçar os 50 Caramelos?";
+			next;
+			switch(select("Sim.:Não.:Quero desistir.")) {
+			case 1:
+				mes "[Yullo]";
+				mes "Hm... Acho que você não terminou de caçar os 50 Caramelos...";
+				close;
+			case 2:
+				mes "[Yullo]";
+				mes "Lembre-se, eu preciso de ajuda para caçar os 50 Caramelos.";
+				close;
+			case 3:
+				mes "[Yullo]";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
+				next;
+				switch(select("Sim.:Não.")) {
+				case 1:
+					mes "[Yullo]";
+					mes "Tudo bem então, volte quando mudar de idéia.";
+					erasequest 60116;
+					close;
+				case 2:
+					mes "[Yullo]";
+					mes "Por favor mate 50 Caramelos.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Yullo]";
+			mes "Impressionante! Você conseguiu completar a quest com facilidade.";
+			getexp 10425,6272;
+			erasequest 60116;
+			close;
+		}
+	}
+	if (checkquest(60117) != -1) {
+		if (checkquest(60117,HUNTING) != 2 ) {
+			mes "[Yullo]";
+			mes "Você terminou de caçar os 100 Caramelos?";
+			next;
+			switch(select("Sim.:Não.:Quero desistir.")) {
+			case 1:
+				mes "[Yullo]";
+				mes "Hm... Acho que você não terminou de caçar os 100 Caramelos...";
+				close;
+			case 2:
+				mes "[Yullo]";
+				mes "Lembre-se, eu preciso de ajuda para caçar os 100 Caramelos.";
+				close;
+			case 3:
+				mes "[Yullo]";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
+				next;
+				switch(select("Sim.:Não.")) {
+				case 1:
+					mes "[Yullo]";
+					mes "Tudo bem então, volte quando mudar de idéia.";
+					erasequest 60117;
+					close;
+				case 2:
+					mes "[Yullo]";
+					mes "Por favor mate 100 Caramelos.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Yullo]";
+			mes "Impressionante! Você conseguiu completar a quest com facilidade.";
+			getexp 10425,6272;
+			getexp 10425,6272;
+			erasequest 60117;
+			close;
+		}
+	}
+	if (checkquest(60118) != -1) {
+		if (checkquest(60118,HUNTING) != 2 ) {
+			mes "[Yullo]";
+			mes "Você terminou de caçar os 150 Caramelos?";
+			next;
+			switch(select("Sim.:Não.:Quero desistir.")) {
+			case 1:
+				mes "[Yullo]";
+				mes "Hm... Acho que você não terminou de caçar os 150 Caramelos...";
+				close;
+			case 2:
+				mes "[Yullo]";
+				mes "Lembre-se, eu preciso de ajuda para caçar os 150 Caramelos.";
+				close;
+			case 3:
+				mes "[Yullo]";
+				mes "Você tem certeza que deseja parar a caça?";
+				mes "Tudo o que você já fez será inválidado.";
+				next;
+				switch(select("Sim.:Não.")) {
+				case 1:
+					mes "[Yullo]";
+					mes "Tudo bem então, volte quando mudar de idéia.";
+					erasequest 60118;
+					close;
+				case 2:
+					mes "[Yullo]";
+					mes "Por favor mate 150 Caramelos.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Yullo]";
+			mes "Impressionante! Você conseguiu completar a quest com facilidade.";
+			getexp 10425,6272;
+			getexp 10425,6272;
+			getexp 10425,6272;
+			erasequest 60118;
+			close;
+		}
+	}
+	// Para level mínimo
+	if (BaseLevel > 23) {
+		// Para level máximo
+		if (BaseLevel < 61) {
+			mes "[Yullo]";
+			mes "Não consigo mais... estou falando sério.";
+			mes "Olhe pra mim, é sério, não consigo trazer mais dessas coisas.";
+			next;
+			switch(select("Que coisas?:Ignorar.")) {
+			case 1:
+				mes "[Yullo]";
+				mes "Quer saber? Tenho uma idéia.";
+				mes "Se você fizer alguns favores para mim, te darei uma recompensa pelo seu esforço!";
+				next;
+				switch(select("Pegar itens.:Caçar Caramelos.:Cancelar.")) {
+				case 1:
+					mes "[Yullo]";
+					mes "Bem, então eu preciso de ^00CC0025 Espinhos de Porco-Espinho^000000.";
+					mes "Diga-me que você tem alguns ou que pode me ajudar!";
+					next;
+					switch(select("Eu tenho os Espinhos de Porco-Espinho.:Bem, não creio que possa ajudar você.")) {
+					case 1:
+						/*
+						if (checkweight(501,10) == 0) {
+							mes "[Yullo]";
+							mes "Ei, parece que você vai ser esmagado pelo peso nas suas costas.";
+							mes "Volte quando não estiver carregando tanta coisa.";
+							close;
+						}
+						*/
+						if (countitem(1027) > 24) {
+							mes "[Yullo]";
+							mes "Ótimo, você já tem o bastante!";
+							mes "Uma pequena recompensa, como prometido.";
+							delitem 1027,25; // Espinhos de Porco-Espinho
+							getexp 10425,6272;
+							//getitem 501,10; // Poção Vermelha
+							close;
+						}
+						else {
+							mes "[Yullo]";
+							mes "Onde estão os Espinhos de Porco-Espinho?";
+							mes "Você acha que não consigo perceber que não é isso o que pedi?";
+							close;
+						}
+					case 2:
+						mes "[Yullo]";
+						mes "Eu preciso de ^FF000025 Espinhos de Porco-Espinho^000000";
+						close;
+					}
+				case 2:
+					// Matar Caramelos
+					mes "[Yullo]";
+					mes "Ah, sim, acho que você pode me ajudar caçando alguns Caramelos.";
+					mes "Quantos gostaria de caçar?";
+					next;
+					switch(select("50 Caramelos.:100 Caramelos.:150 Caramelos.")) {
+					case 1:
+						mes "[Yullo]";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
+						setquest 60116;
+						close;
+					case 2:
+						mes "[Yullo]";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
+						setquest 60117;
+						close;
+					case 3:
+						mes "[Yullo]";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
+						setquest 60118;
+						close;
+					}
+				case 3:
+					mes "[Yullo]";
+					mes "Caso mude de idéia, venha falar comigo novamente.";
+					close;
+				}
+			case 2:
+				mes "[Yullo]";
+				mes "Caso mude de idéia, venha falar comigo novamente.";
+				close;
+			}
+		}
+		else {
+			mes "[Yullo]";
+			mes "Olá, meu nome é Yullo.";
+			mes "Espere um pouco, o seu nível não é alto demais para isso?";
+			close;
+		}
+	}
+	else {
+		mes "[Yullo]";
+		mes "Humm, talvez esse pedido seja difícil demais para você.";
+		mes "Volte quando crescer e ficar mais forte.";
+		close;
+	}
+}

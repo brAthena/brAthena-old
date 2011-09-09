@@ -1,0 +1,241 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nãome do Script: Quests Repetíveis - Pupa		   		|
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team			   				|
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.0/1.1				    			|
+// |--------------------------------------------------------|
+// | Descrição: Quests repetíveis para ganho de EXP 		|
+// |--------------------------------------------------------|
+// | Changelog:               	                        	|
+// | 1.0 Script Traduzido [insidemybrain]					|
+// | 1.1 Script Revisado [Protimus]							|
+// \_______________________________________________________/
+
+gef_fild04,191,54,3	script	Halgus#Pupa_Hunt	123,{
+	if (checkquest(60110) != -1) {
+		if (checkquest(60110,HUNTING) != 2 ) {
+			mes "[Halgus]";
+			mes "Você terminou de caçar as Pupas?";
+			next;
+			switch(select("Sim.:Não.:Quero desistir.")) {
+			case 1:
+				mes "[Halgus]";
+				mes "Hm... Acho que você não terminou de caçar as 50 Pupas...";
+				close;
+			case 2:
+				mes "[Halgus]";
+				mes "Lembre-se, eu preciso de ajuda para caçar as 50 Pupas.";
+				close;
+			case 3:
+				mes "[Halgus]";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
+				next;
+				switch(select("Sim:Não")) {
+				case 1:
+					mes "[Halgus]";
+					mes "Tudo bem então, volte quando mudar de idéia.";
+					erasequest 60110;
+					close;
+				case 2:
+					mes "[Halgus]";
+					mes "Por favor mate as 50 Pupas.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Halgus]";
+			mes "Ah muito obrigado.";
+			mes "Eu sei que você deve estar se pergutnando por que eu não fiz isso sozinho...";
+			getexp 385,30;
+			erasequest 60110;
+			close;
+		}
+	}
+	if (checkquest(60111) != -1) {
+		if (checkquest(60111,HUNTING) != 2 ) {
+			mes "[Halgus]";
+			mes "Você terminou de caçar as Pupas?";
+			next;
+			switch(select("Sim.:Não.:Quero desistir.")) {
+			case 1:
+				mes "[Halgus]";
+				mes "Hm... Acho que você não terminou de caçar as 100 Pupas...";
+				close;
+			case 2:
+				mes "[Halgus]";
+				mes "Lembre-se, eu preciso de ajuda para caçar as 100 Pupas.";
+				close;
+			case 3:
+				mes "[Halgus]";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
+				next;
+				switch(select("Sim.:Não.")) {
+				case 1:
+					mes "[Halgus]";
+					mes "Tudo bem então, volte quando mudar de idéia.";
+					erasequest 60111;
+					close;
+				case 2:
+					mes "[Halgus]";
+					mes "Por favor mate as 100 Pupas.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Halgus]";
+			mes "Ah muito obrigado.";
+			mes "Eu sei que você deve estar se pergutnando por que eu não fiz isso sozinho...";
+			getexp 385,30;
+			getexp 385,30;
+			erasequest 60111;
+			close;
+		}
+	}
+	if (checkquest(60112) != -1) {
+		if (checkquest(60112,HUNTING) != 2 ) {
+			mes "[Halgus]";
+			mes "Você terminou de caçar as Pupas?";
+			next;
+			switch(select("Sim.:Não.:Quero desistir.")) {
+			case 1:
+				mes "[Halgus]";
+				mes "Hm... Acho que você não terminou de caçar as 150 Pupas...";
+				close;
+			case 2:
+				mes "[Halgus]";
+				mes "Lembre-se, eu preciso de ajuda para caçar as 150 Pupas.";
+				close;
+			case 3:
+				mes "[Halgus]";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
+				next;
+				switch(select("Sim.:Não.")) {
+				case 1:
+					mes "[Halgus]";
+					mes "Tudo bem então, volte quando mudar de idéia.";
+					erasequest 60112;
+					close;
+				case 2:
+					mes "[Halgus]";
+					mes "Por favor mate as 150 Pupas.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Halgus]";
+			mes "Ah muito obrigado.";
+			mes "Eu sei que você deve estar se perguntando por que eu não fiz isso sozinho...";
+			getexp 385,30;
+			getexp 385,30;
+			getexp 385,30;
+			erasequest 60112;
+			close;
+		}
+	}
+	//Para level mínimo
+	if (BaseLevel > 1) {
+		//Para level máximo
+		if (BaseLevel < 21) {
+			mes "[Halgus]";
+			mes "Você não é daqui, é?";
+			mes "Bem, veja, eu gosto de ajudar os rostos novos por aqui.";
+			mes "E sejamos honestos, você não tem o rosto mais bonito que eu já vi.";
+			next;
+			mes "[Halgus]";
+			mes "De qualquer maneira, minha filha quer um colar novo.";
+			mes "Eu não sou nem um pouco rica, então quero juntar Crisálidas das Pupas desta região.";
+			mes "Pode me ajudar?";
+			next;
+			switch(select("Claro.:Não.")) {
+			case 1:
+				mes "[Halgus]";
+				mes "Sério? Como poderia me ajudar?";
+				next;
+				switch(select("Pegar Itens.:Caçar Pupas.:Cancelar.")) {
+				case 1:
+					mes "[Halgus]";
+					mes "Você pode juntar ^00cc0025 Crisálidas^000000 e entregá-las para mim?";
+					mes "Eu prometo uma boa recompensa...";
+					next;
+					switch(select("Eu tenho Crisálidas.:Do que você precisava?")) {
+					case 1:
+						if (countitem(915) > 24) {
+							mes "[Halgus]";
+							mes "Impressionante como achou tantas tão rápido?";
+							mes "Como prometi, dê-me as Crisálidas e eu recompensarei você com a minha sabedoria.";
+							delitem 915,25; //Crisálidas
+							getexp 385,30;
+							close;
+						}
+						else {
+							mes "[Halgus]";
+							mes "Eu preciso de ^00cc0025 Crisálidas^000000 e nem uma a menos, por favor.";
+							close;
+						}
+					case 2:
+						mes "[Halgus]";
+						mes "Eu preciso de ^00CC0025 Crisálidas^000000.";
+						close;
+					}
+				case 2:
+					// Matar Pupas
+					mes "[Halgus]";
+					mes "Muito obrigado por me ajudar!";
+					mes "Quantos Pupas gostaria de caçar?";
+					next;
+					switch(select("50 Pupas.:100 Pupas.:150 Pupas.")) {
+					case 1:
+						mes "[Halgus]";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
+						setquest 60110;
+						close;
+					case 2:
+						mes "[Halgus]";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
+						setquest 60111;
+						close;
+					case 3:
+						mes "[Halgus]";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
+						setquest 60112;
+						close;
+					}
+				case 3:
+					mes "[Halgus]";
+					mes "Caso mude de idéia, venha falar comigo novamente.";
+					close;
+				}
+			case 2:
+				mes "[Halgus]";
+				mes "Caso mude de idéia, venha falar comigo novamente.";
+				close;
+			}
+		}
+		else {
+			mes "[Halgus]";
+			mes "Você é experiente demais para caçar esses monstrinhos.";
+			close;
+		}
+	}
+	else {
+		mes "[Halgus]";
+		mes "Por favor, volte aqui quando estiver mais forte.";
+		close;
+	}
+}

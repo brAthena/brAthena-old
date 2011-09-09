@@ -1,0 +1,137 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Auction system                         |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.2/1.0                                |
+// |--------------------------------------------------------|
+// | Descrição: Auction house releated NPCs, and warps.     |
+// |--------------------------------------------------------|
+// | Changelog:                                             |
+// | 1.0 Script Traduzido[cleyton]                          |
+// | 1.1 Script Revisado[cleyton]                           |
+// |                                                        |
+// \________________________________________________________/
+
+// Auction House warpers
+//============================================================
+moc_ruins,78,173,6	script	Guia do Leilão#moc	98,{
+	callfunc "F_AuctionWarper",1;
+}
+
+prontera,218,120,4	script	Guia do Leilão#prt	117,{
+	callfunc "F_AuctionWarper",2;
+}
+
+yuno,129,116,0	script	Guia do Leilão#yuno	90,{
+	callfunc "F_AuctionWarper",3;
+}
+
+lighthalzen,205,169,6	script	Guia do Leilão#lhz	833,{
+	callfunc "F_AuctionWarper",4;
+}
+
+function	script	F_AuctionWarper	{
+	mes "[Guia do Leilão]";
+	mes "Olá, você gostaria";
+	mes "de entrar na sala de";
+	mes "Leilão?";
+	next;
+	if (select("Sim:Não") == 1) {
+		if (getarg(0) == 1 || getarg(0) == 4) {
+			mes "[Guia do Leilão]";
+			mes "Muito bem! Eu espero que,";
+			mes "se divirta muito e";
+			mes "aproveite o leilão~";
+		}else{
+			mes "[Guia do Leilão]";
+			mes "Bom proveito no leilão.";
+		}
+		close2;
+		switch(getarg(0)) {
+		case 1:
+			warp "auction_01",179,53; end;
+		case 2:
+			warp "auction_01",21,43; end;
+		case 3:
+			warp "auction_02",151,23; end;
+		case 4:
+			warp "auction_02",43,24; end;
+		}
+	}
+	mes "[Guia do Leilão]";
+	mes "Muito bem, mas se,";
+	mes "mais tarde.";
+	mes "você mudar de idéia";
+	mes "por favor, venha";
+	mes "e aprecie o leilão~";
+	close;
+}
+
+// Sign posts
+//============================================================
+moc_ruins,76,176,6	script	Informativo#moc::AuctionSign	837,{
+	mes "[Information]";
+	mes "Auction Warp Guide";
+	close;
+}
+
+prontera,216,120,4	duplicate(AuctionSign)	Informativo#prt	837,{
+yuno,131,116,0	duplicate(AuctionSign)	Informativo#yuno	837,{
+lighthalzen,207,169,6	duplicate(AuctionSign)	Informativo#lhz	837,{
+
+
+// Warps
+//============================================================
+auction_01,180,49,0	warp	auction_entrance_moc	1,1,moc_ruins,78,171
+auction_01,22,37,0	warp	auction_entrance_prt	1,1,prontera,214,120
+auction_02,151,17,0	warp	auction_enterance_juno	1,1,yuno,132,119
+auction_02,43,17,0	warp	auction_enterance_lhz	1,1,lighthalzen,209,169
+
+// Auction House NPCs
+//============================================================
+auction_01,182,68,6	script	Corretor#moc1::AuctionBroker	98,{
+	mes "[Corretor]";
+	mes "Bem vindo a sala de leilão.";
+	mes "Você gostaria de ver as ofertas?";
+	next;
+	if (select("Sim:Não") == 1) {
+		mes "[Corretor]";
+		mes "Muito bem.";
+		mes "Por favor";
+		mes "dê uma olhada, e veja";
+		mes "o que está sendo oferecido~";
+		OpenAuction;
+		close;
+	}
+	mes "[Corretor]";
+	mes "Muito bem, então.";
+	mes "se você mudar de";
+	mes "idéia, por favor";
+	mes "volte e confira";
+	mes "os leilões~";
+	close;
+}
+
+auction_01,182,75,0	duplicate(AuctionBroker)	Corretor#moc2	99
+auction_01,177,75,2	duplicate(AuctionBroker)	Corretor#moc3	98
+auction_01,177,68,4	duplicate(AuctionBroker)	Corretor#moc4	99
+auction_01,21,74,4	duplicate(AuctionBroker)	Corretor#prt1	117
+auction_01,27,78,4	duplicate(AuctionBroker)	Corretor#prt2	116
+auction_01,16,78,4	duplicate(AuctionBroker)	Corretor#prt3	115
+auction_02,158,47,6	duplicate(AuctionBroker)	Corretor#yuno1	90
+auction_02,145,47,2	duplicate(AuctionBroker)	Corretor#yuno2	90
+auction_02,151,54,0	duplicate(AuctionBroker)	Corretor#yuno3	90
+auction_02,152,41,4	duplicate(AuctionBroker)	Corretor#yuno4	90
+auction_02,57,46,2	duplicate(AuctionBroker)	Corretor#lhz1	874
+auction_02,31,46,6	duplicate(AuctionBroker)	Corretor#lhz2	874
+auction_02,43,65,4	duplicate(AuctionBroker)	Corretor#lhz3	833

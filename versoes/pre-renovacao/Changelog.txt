@@ -1,0 +1,1499 @@
+// Estrutura para o Changelog.
+//
+//	r0000 - Dia/Mês/Ano [Autor(es)]
+//	* Notação
+//	- Comentário (opcional)
+// *Dica: Para encontrar atualizações de uma revisão específica pressione Ctrl+F
+//	e digite rxxxx onde "xxxx" refere-se a revisão desejada.
+// *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
+//	Acesse o link: http://trac.brathena.org/trac/timeline
+// ==============================================================================
+
+	r0836 - 23/08/2011 [Mark]
+	* Corrigido Fúria Interior de Super Aprendiz level 99.
+
+	r0751 - 27/07/2011 [Lord]
+	* Revertida pequena alteração em inter.c na r0747.
+
+	r0750 - 26/07/2011 [Protimus]
+	* Corrigido problema com a Resetadora personalizada do brAthena.
+
+	r0748 - 24/07/2011 [Dani]
+	* Revisão do script cidades/payon.txt
+
+	r0747 - 24/07/2011 [Dani]
+	* Adicionada flag para não mostrar o warning do "break strict-aliasing rules"
+	- Temporary fix
+	* Capitulares de outputs dos servers corrigidos
+	* Remoção do output do char-server que revelava login, senha e banco (informaçoes de sql)
+	* Adição de arquivo perdido durante atualizações com eAthena
+	- 3rdparty/pcre/lib/libpcre.dll.a
+
+	r0746 - 24/07/2011 [Dani]
+	* Atualização até a r14921 do eAthena
+
+	r0745 - 23/07/2011 [Dani]
+	* Pequenas correções na db
+	- Traduções em mob_db.txt
+	- Pequeno erro de script em um item desabilitado (Freyja_Crown_Box)
+	
+	r0744 - 22/07/2011 [Dani]
+	* r743 revertida
+	- Os mobs são ativados por instância, que está em instancias/ninho_de_nidhoggr.txt, e ativa.
+
+	r0743 - 22/07/2011 [Protimus]
+	* Adicionados spawns dos monstros da Caverna de Nidhoggr.
+	- Faltavam alguns andares e o principal: O MvP.
+
+	r0737 - 20/07/2011 [Mark]
+	* Corrigido item_db.
+	* Corrigidas algumas traduções.
+
+	r0733 - 17/07/2011 [Dani]
+	* Atualização até a r14911 do eAthena
+
+	r0732 - 17/07/2011 [Dani]
+	* Atualização na tradução e atualização massiva de itens feita na r14901 (eAthena) do item_db
+	- Um salve pro Lord que usou seu signature move jumpkick pra traduzir a db
+	* Conversão do EOL do brathena-start para UNIX
+
+	r0731 - 17/07/2011 [Dani]
+	* Ajustes finos
+	* Correções no CMake para compilar corretamente no brAthena
+
+	r0729 - 17/07/2011 [Dani]
+	* Revertida otimização da pasta npc/gde2 feita na r457
+	- Motivo: aumento significativo no consumo de memória ram pelo map-server
+	- Mais testes serão feitos para verificar outros pontos em que o emulador esteja
+	consumindo memória em demasia
+	* Adição de mais alguns portais de Brasilis
+
+	r0727 - 16/07/2011 [Dani]
+	* Limpeza de espaços em branco
+
+	r0725 - 14/07/2011 [Dani]
+	* Correção definitiva dos problemas dos portais
+	- A ordem de carregamento dos npcs do emulador estava incorreta
+	- Revertido ao padrão eAthena
+	- Reports de Heishim (#150 e #161)
+
+	r0724 - 14/07/2011 [Dani]
+	* Trunk atualizada até a r14905 do eAthena
+	* Correção do Boné de Carteiro
+	- Estava sem slot, mas deveria possuir
+	- Report por Aly (#163)
+	* Envio das checagens corretas de acordo com o Aegis dos NPCs Pub Master (Kiel_Hyre_Quest) e Minister (tu_archer)
+	- O OnTouch estava sobrepondo o script do portal, impossibilitando o uso do mesmo
+	- Correção do OnTouch na TODO list, redução dos ranges é a solução possível no momento
+	- Reports por Heishim (#150 e #161)
+	* Pequenas alterações e uma correção no brathena-admin
+	- Kurumin foi descontinuado em 2008
+	- Não dava pra fazer checkout da branch renewal por um erro pequeno no comando
+
+	r0704 - 04/07/2011 [Dani]
+	* Reduzido range do OnTouch do NPC Minister (tu_archer.txt)
+	- Report por Heishim (#150)
+	- Por fazer: consultar no Aegis qual é o range certo. Se for 10 10 deixar como está agora.
+	* Corrigido uso da label OnTouch no NPC #peter (quests_morocc.txt)
+
+	r0698 - 03/07/2011 [Dani]
+	* Corrigido erro que impedia a compilação no gcc
+	- Missing code no merge da r697
+	- Report por Mateus (#148)
+
+	r0697 - 02/07/2011 [Dani]
+	* Atualizado conforme eAthena r14881.
+
+	r0683 - 27/06/2011 [CarlosHenrq]
+	* Adicionada nova configuração de batalha opcional:
+	- Bloqueia ou não o jogador usar a skill 'MO_BODYRELOCATION' enquanto trapeado.
+
+	r0682 - 29/06/2011 [Dani]
+	* Modificações em npc/classes/1-1/mago.txt
+	- Correção em algumas concatenações de funções
+	- Correções ortográficas
+
+	r0680 - 29/06/2011 [cleyton]
+	* Corrigidos os menus referentes aos diálogos da cidade de Payon.
+	- Problemas referentes ao emulador, devem ser informados no Tracker.
+
+	r0677 - 28/06/2011 [Dani]
+	* Correção de erros visíveis do meu commit anterior
+
+	r0676 - 28/06/2011 [Dani]
+	* Merge da trunk com Renewal
+	- Merge visando a revisão de certas coisas durante o processo, então algumas mudanças foram feitas em ambas as branchs
+
+	r0657 - 18/06/2011 [Protimus]
+	* Corrigido erro de digitação no envio da r0654.
+
+	r0654 - 18/06/2011 [MiTh]
+	* Corrigido pequeno erro que quebrava build no clif.c
+	- Faltava declarar uma variavel fora do if e ajustar o nome da constante que recebe a version do emulador.
+
+	r0629 - 15/06/2011 [Protimus]
+	* Corrigido pequeno erro de gramática no NPC Encantador de Armaduras.
+
+	r0628 - 15/06/2011 [Protimus]
+	* Atualizado conforme eAthena r14850.
+
+	r0609 - 06/06/2011 [Protimus]
+	* Modificada versão do packetver em packet_db para 23.
+	- A trunk não trabalha com a renovação e os últimos sakexes são para esse valor.
+
+	r0606 - 05/06/2011 [Protimus]
+	* Removidas ferramentas desnecessárias ou que entraram em desuso.
+	- Futuramente o Lord irá adicionar meios mais fáceis de converter o item e mob para SQL através de PHP.
+
+	r0587 - 03/06/2011 [Protimus]
+	* Atualizada source de acordo com r14843 do eAthena.
+
+	r0551 - 27/05/2011 [Lord]
+	* Atualizado pasta npc de acordo com a r14833 do eA.
+	* Feito revert no script quests_lighthalzen.
+	* Corrigido maps_athena.conf.
+
+	r0528 - 24/05/2011 [Lord]
+	* Corrigido cabeçalho de payon.txt.
+	* Enviada otimizações da pasta okolnir e turbotrack.
+	* Corrigido erro em espadachim.txt.
+	- report id:101
+	* Enviada tradução da pasta classes/1-1e.
+
+	r0518 - 22/05/2011 [brn0]
+	* Corrigidos alguns alertas no map-server.
+
+	r0514 - 21/05/2011 [Protimus]
+	* Corrigido problema com bonificação de exp por ataque.
+
+	r0513 - 21/05/2011 [Protimus]
+	* Atualizado conforme eAthena r14829.
+	- Muitos códigos extras não foram adicionados porque já temos semelhantes e mais otimizados.
+
+	r0494 - 16/05/2011 [novekovas]
+	* Enviado pacote de traduções e ajustes do database.
+	- Vários arquivos traduzidos e reorganizados.
+
+	r0470 - 15/05/2011 [Protimus]
+	* Corrigido problema com make ocasionado pela mudança de nome de arquivos na pasta map.
+	- Problemas com compilações resolvido.
+
+	r0466 - 13/05/2011 [Lord]
+	* Enviada algumas traduções.
+	* Corrigido erros em alguns cabeçalhos de npcs.
+	* Pequenas otimizações no script justiceiro.txt.
+	* Corrigido erro em sacerdote.txt.
+	* Adicionado otimizações das revs 445 e 448.
+	* Enviado otimizações das pastas: comerciantes, instancias, cidades, aeroplanos e personalizados.
+	- Por Mark e Architect
+
+	r0465 - 13/05/2011 [Protimus]
+	* Atualizado conforme eAthena 14811.
+
+	r0460 - 01/05/2011 [Mark]
+	* Corrigido alguns erros.
+	- npc/gde2/gde2_padrao.txt
+
+	r0459 - 01/05/2011 [Wolf]
+	* Corrigido alguns erros de sintaxe.
+	- npc/classes/
+
+	r0457 - 01/05/2011 [Mark]
+	* Otimizada pasta npc/gde2
+	- Criação de gde2_padrao.txt (Funções de toda GDE2).
+	- Alteração de todos scripts relacionados a cada castelo.
+	- Traduzida gde2_controlador.txt
+	- Removido gde2_bandeiras.txt e gde2_cavernas.txt (Funções em gde2_padrao.txt e scripts dos próprios castelos).
+
+	r0456 - 01/05/2011 [Wolf]
+	* Enviada tradução de script.
+	- npc/classes/1-1/mercador.txt
+
+	r0454 - 01/05/2011 [cleyton]
+	* Enviada tradução de script.
+	- npc/outros/corrida_de_monstros.txt
+
+	r0451 - 01/05/2011 [Protimus]
+	* Atualizado conforme eAthena r14808.
+
+	r0441 - 29/04/2011 [Protimus]
+	* Adicionado arquivo para uso de proxy nos servidores.
+	- Modo de compilar: cc -o proxy -O proxy.c
+	- Explicações sobre o uso serão dadas quando for feita a pasta de documentações do emulador.
+
+	r0440 - 29/04/2011 [Protimus]
+	* Atualizado conforme eAthena r14806.
+
+	r0439 - 28/04/2011 [Wolf]
+	* Corrigido erros em npcs.
+	* Correção na sintaxe dos scripts.
+	* Correção na versão dos scripts.
+	* Enviada traduções de alguns scripts.
+	- npc/classes/2-2a/
+
+	r0438 - 28/04/2011 [Lord]
+	* Corrigido erros em npcs.
+	* Revertida modificações em monge.txt e aprendiz.txt
+	* Removida tradução do npc: cabelereiro.txt
+	- Tradução inválida e faltando linha.
+
+	r0437 - 28/04/2011 [Wolf]
+	* Enviada correções, remoções de espaços, e otimizações da pasta npc/classes.
+	* Enviado e corrigido os erros/bugs da r0434.
+	- Agradecimento a insidemybrain por reportá-los.
+
+	r0435 - 27/04/2011 [insidemybrain]
+	* Enviada única tradução para a pasta comerciantes:
+	- npc/comerciantes/cabelereiro.txt
+	* Tentados corrigidos bugs da r0434 e corrigidos alguns bugs da tradução enviada
+	* PEÇO QUE REVISEM OS ERROS QUE AINDA CONTINUAM!
+
+	r0434 - 26/04/2011 [Wolf]
+	* Otimizações, correções, remoção de espaços, dos seguintes arquivos:
+	- npc/classes/1-1/arqueiro
+	- npc/classes/1-1/espadachim.txt
+	- npc/classes/1-1/gatuno.txt
+	- npc/classes/1-1/mago.txt
+	- npc/classes/1-1/mercador.txt
+	- npc/classes/1-1/novico.txt
+	- npc/classes/2-1/bruxo.txt
+	- npc/classes/2-1/cacador.txt
+	- npc/classes/2-1/cavaleiro.txt
+	- npc/classes/2-1/ferreiro.txt
+	- npc/classes/2-1/mercenario.txt
+	- npc/classes/2-1/sacerdote.txt
+	- npc/classes/2-1e/mestre_taekwon.txt
+	- npc/classes/2-2/alquimista.txt
+	- npc/classes/2-2/arruaceiro.txt
+	- npc/classes/2-2/bardo.txt
+	- npc/classes/2-2/monge.txt
+	- npc/classes/2-2/odalisca.txt
+	- npc/classes/2-2/sabio.txt
+	- npc/classes/2-2/templario.txt
+	- npc/classes/2-2e/espiritualista.txt
+
+	r0433 - 26/04/2011 [Wolf]
+	* Algumas correções do commit anterior:
+	- Acabei removendo algumas coisas sem querer.
+
+	r0432 - 26/04/2011 [Wolf]
+	* Enviado otimizações dos seguintes arquivos:
+	- npc/classes/1-1/gatuno.txt
+	- npc/classes/1-1/mago.txt
+	- npc/classes/1-1/mago.txt
+	- npc/classes/1-1e/taekwon.txt
+	- npc/classes/2-1/bruxo.txt
+	- npc/classes/2-1/cacador.txt
+	- npc/classes/2-1/cavaleiro.txt
+	- npc/classes/2-1/ferreiro.txt
+	- npc/classes/2-1/mercenario.txt
+	- npc/classes/2-1/sacerdote.txt
+
+	r0431 - 25/04/2011 [insidemybrain]
+	* Enviadas traduções da seguinte pasta:
+	- npc/classes/2-1a/
+	* Enviada tradução do script: wander_pet_food.txt
+
+	r0427 - 25/04/2011 [Protimus]
+	* Atualizado conforme eAthena r14801.
+
+	r0419 - 21/04/2011 [Destino]
+	* Enviando mob's
+	- Todos Revisados e traduzidos
+
+	r0418 - 21/04/2011 [Lord]
+	* Enviado varias traduções.
+	- Necessita de revisão.
+	* Corrigido cabeçalho de payon.txt.
+
+	r0417 - 21/04/2011 [Protimus]
+	* Corrigido pequeno problema na leitura de alguns arquivos pelo make.
+	- Problema com compilar o login solucionado.
+
+	r0416 - 21/04/2011 [Protimus]
+	* Atualizado conforme eAthena 14800.
+
+	r0410 - 18/04/2011 [brn0]
+	* Corrigida a tabela de experiência de clãs.
+	* Pequenas otimizações e correções no diálogo do npc de batalha de clãs.
+	- npc/outros/cla_pvp.txt
+
+	r0405 - 18/04/2011 [Protimus]
+	* Atualizado conforme eAthena r14799.
+	* Corrigido warning no tamanho do direction em mapinfo do atcommand.c
+
+	r0404 - 18/04/2011 [Protimus]
+	* Atualizado conforme eAthena r14798.
+
+	r0402 - 17/04/2011 [brn0]
+	* Corrigida a tabela de experiência dos homunculos.
+
+	r0397 - 15/04/2011 [Lord]
+	* Corrigido erro em char.c.
+	- Estava dando erro ao compilar.
+	* Corrigido erro gramatical na pasta /conf.
+
+	r0393 - 13/04/2011 [Protimus]
+	* Atualizado conforme eAthena r14793.
+
+	r0387 - 13/04/2011 [Destino]
+	* Retraduzido mob_db.
+
+	r0385 - 12/04/2011 [Protimus]
+	* Adicionadas modificações de r383 ~ 385.
+
+	r0383 - 11/04/2011 [Protimus]
+	* Correções para arquivos de compiladores.
+	- Processando apenas SQL e não TXT.
+
+	r0381 - 11/04/2011 [Protimus]
+	* Adicionadas correções nos arquivos de configure e make gerais do emulador.
+	- Corrigido erro ao compilar plugins e tools.
+	- Corrigido erro de save folder.
+	- Necessário uma segunda e última limpeza em todos os arquivos.
+
+	r0380 - 10/04/2011 [Protimus]
+	* Atualizado conforme eAthena r14792.
+	- Falta modificar os arquivos de configure e make.
+
+	r0379 - 10/04/2011 [Lord]
+	* Adicionado battle conf warp_ress.
+	- Leia mais no config/batlle/player.conf.
+
+	r0372 - 09/04/2011 [Lord]
+	* Enviado um arquivo de 'upgrade sql' faltante.
+	* Realizado algumas modificações na pasta /sql-files.
+	* Removido item_db.sql e mob_db.sql
+	- Eles agora seram gerados online(em breve mais informações).
+
+	r0369 - 09/04/2011 [Protimus]
+	* Correções para o layout dos arquivos de experiência.
+
+	r0362 - 04/04/2011 [Protimus]
+	* Adicionadas correções para brathena-admin.
+	- Estava faltando opções pra baixar o subversion.
+
+	r0361 - 04/04/2011 [Protimus]
+	* Reorganizados arquivos de configure e make principais.
+	* Removida pasta char da source.
+
+	r0360 - 04/04/2011 [Protimus]
+	* Adicionado novo campo na tabela de login do SQL.
+	- reg_account para datar registro de conta.
+
+	r0358 - 03/04/2011 [brn0]
+	* Correção em alguns NPCs.
+
+	r0356 - 03/04/2011 [Protimus]
+	* Atualizado conforme eAthena r14764.
+
+	r0355 - 03/04/2011 [brn0]
+	* Correção no arquivo "scripts_personalizados.conf".
+
+	r0336 - 23/03/2011 [Lord]
+	* Revertida rev 0333.
+	- Continha vários erros.
+	* Revertida algumas alterações indevidas na pasta /portais.
+	* Corrigido alguns cabeçalhos na pasta /portais.
+
+	r0335 - 23/03/2011 [Protimus]
+	* Adicionadas mais organizações e traduções do database.
+
+	r0333 - 23/03/2011 [cleyton]
+	* Scripts kvm02.txt e kvm03.txt da pasta campais foram atualizados.
+	- Atualizações conforme eAthena r14750.
+	* Scripts quests_morroc.txt e anthell.txt(localizado na pasta portais) atualizados.
+	- Atualizações conforme eAthena r14753.
+	* Script The_sign atualizado.
+	- Atualizações conforme eAthena r14757.
+	- Nota: Embora a atualização do script The_sign seja atribuída ao Renewal, ele também foi atualizado na versão trunk para não ficar desatualizado.
+	* Corrigido atributo do item Seal_scroll - ID 6028 no arquivo item_db.
+
+	r0332 - 22/03/2011 [Protimus]
+	* Adicionadas organizações e traduções para o database.
+
+	r0321 - 20/03/2011 [cleyton]
+	* Script Torre Infinita atualizado
+	- Atualizado conforme eAthena r14747
+
+	r0316 - 17/03/2011 [novekovas]
+	* Reorganizações e adiçoes de padrões para melhor organização do database.
+	* Adicionadas traduções para o database.
+
+	r0307 - 15/03/2011 [Protimus]
+	* Atualizado totalmente conforme eAthena r14746.
+
+	r0303 - 14/03/2011 [cleyton]
+	* Correções efetuadas nos diálogos
+	- npc/cidades/payon.txt
+
+	r0301 - 14/03/2011 [cleyton]
+	* Envidada tradução
+	- npc/cidades/payon.txt
+	* Correção do comando set friendship,12;
+	- npc/quests/quests_lighthalzen.txt
+
+	r0299 - 14/03/2011 [cleyton]
+	* Correção do cabeçalho da quest_lighthouzen.txt
+
+	r0294 - 13/03/2011 [cleyton]
+	* Correção dos cabeçalhos de NPC de revisões passadas
+	- Revisões r0291, r0289 e 0285.
+
+	r0291 - 13/03/2011 [cleyton]
+	* Correção do script quests_lighthouzen.txt
+	- Faltava o comando set friendship,12 na linha 3183.
+	- Isso impossibilitava o término da quest da Amizade (friendship).
+
+	r0289 - 13/03/2011 [cleyton]
+	* Corrigidas as mensagens do arquivo msg_athena.txt
+	- Linhas 541 e 542.
+	* Corrigido NPC flavius_entrada
+	- Localizações nos npcs estavam trocadas conforme Track #25.
+	* Modificação de nomes de NPCs Campais
+	- Modificados nomes dos npcs conforme sugestão no Track #26.
+	- Organização interna dos scripts Batalhas campais
+	* Warps desabilitados
+	- Referente aos mapas de ve_fild05 pay_fild05 e pay_fild11 que não existem mais.
+	* Mapa habilitado
+	- Conforme informações do renewal o mapa ve_fild01 ainda existe.
+	- Somente ve_fild05 está desabilitado nas proximidades de Veins.
+
+	r0285 - 12/03/2011 [cleyton]
+	* Corrigidas falas do npc funcoes_kafra
+	- Erro apontado no report #27 do Tracker
+
+	r0283 - 11/03/2011 [insidemybrain]
+	* Corrigidos erros dos npcs enviados na r0282, por falha minha
+	- Reportado pelo YuMs
+
+	r0282 - 11/03/2011 [insidemybrain]
+	* Enviadas traduções necessitando revisão
+	* Enviadas algumas traduções/revisões minhas pendentes.
+
+	r0281 - 11/03/2011 [Protimus]
+	* Atualizada source conforme eAthena 14741.
+
+	r0280 - 10/03/2011 [insidemybrain]
+	* Enviadas traduções de alguns scripts da pasta /comerciantes.
+
+	r0274 - 05/03/2011 [Protimus]
+	* Atualizações para o comando @whosell.
+	- Funcionando conforme novos parâmetros de ACMD_FUNC.
+
+	r0273 - 04/03/2011 [Protimus]
+	* Atualizações de item e mob para o SQL.
+	* Pequenas correções dos commits anteriores.
+	* Removidos arquivos desnecessários de upgrade para o SQL.
+
+	r0272 - 04/03/2011 [Protimus]
+	* Pequena correção para leitura de opção na pasta CONF.
+
+	r0269 - 03/03/2011 [insidemybrain]
+	* Corrigido erro de changelog equecidos na r0267 e na r0268
+
+	r0268 - 03/03/2011 [insidemybrain]
+	* Corrigidos erros de sintaxe de algusn scripts que não foram feitos na r0267
+
+	r0267 - 03/03/2011 [insidemybrain]
+	* Enviadas traduções dos scripts (Necessitam revisão):
+	- comerciantes/refinador_avancado.txt
+	- eventos/dia_dos_namorados_2009.txt
+	- eventos/lunar_2008.txt
+	- eventos/MemorialDay_2008.txt
+	- eventos/StPatrick_2008.txt
+	- quests/doomed_swords_quest.txt
+	- quests/quests_lighthalzen.txt
+
+	r0266 - 03/03/2011 [insidemybrain]
+	* Enviada tradução do script:
+	- quests/selos/sleipnir_seal.txt
+	* Enviadas traduções e revisões dos scripts:
+	- comerciantes/sorveteiro.txt
+	- comerciantes/manuk.txt
+
+	r0265 - 03/03/2011 [insidemybrain]
+	* Enviadas revisões da pasta /portais
+	* Enviada tradução e revisão do script:
+	- comerciantes/gemas.txt
+
+	r0264 - 03/03/2011 [Lord]
+	* Enviada tradução da pasta /portais
+	- Necessita de revisão.
+	* Enviado npc buying_shops.txt
+	- Era para ter sido enviado na rev0255.
+
+	r0260 - 01/03/2011 [Protimus]
+	* Correções para o npc aluguel_de_mercenarios.txt
+
+	r0255 - 27/02/2011 [Floozie]
+	* Atualizado conforme eAthena r14725.
+
+	r0253 - 27/02/2011 [insidemybrain]
+	* Enviada a revisão do arquivo:
+	- classes/1-1/mago.txt
+	* Enviadas traduções e revisões dos arquivos:
+	- comerciantes/leiteiro.txt
+	- comerciantes/lojas_cash.txt
+
+	r0252 - 23/02/2011 [insidemybrain]
+	* Enviada a tradução do arquivo, necessitando revisão:
+	- quests_morocc.txt
+
+	r0251 - 20/02/2011 [Protimus]
+	* Atualizado conforme eAthena r14717.
+
+	r0247 - 15/02/2011 [insidemybrain]
+	* Enviadas algumas traduções e revisões da pasta npc/outros:
+	- correio.txt
+	- divorcio.txt
+	- funcoes_globais.txt
+	- ginasio.txt
+	- leilao.txt
+	- powernpc.txt
+	- pvp.txt
+	- quadro_de_mensagens.txt
+	- resetar_habilidades.txt
+	- status_do_selo.txt
+	- cla_pvp.txt
+
+	r0246 - 14/02/2011 [insidemybrain]
+	* Corrigido erro no npc nguild_teleportador.txt
+	- Faltavam as aspas(") e o ponto e vírgula(;) na linha 92 [Reportado pelo Destino]
+
+	r0245 - 13/12/2011 [Dani]
+	* Tradução não-feita da palavra "guild", para "guilda" nos arquivos das Kafras
+	- issue: 24
+
+	r0244 - 13/12/2011 [Dani]
+	* Correção nas duplicatas do Aluguel de Mercenários
+	- issue: 23
+
+	r0239 - 12/02/2011 [Dani]
+	* Remoção de features posteriores ao Renewal
+	* Revisão do item_db comparando com o item_db do Renewal
+	* Adição dos novos scripts personalizados no launcher
+
+	r0237 - 12/02/2011 [Dani]
+	* Padrão de postagem dos sql-files revisto
+	- A partir de hoje, estarão no root da /sql-files, os upgrades do eA
+	antigos foram adicionados como upgrade_svnxxxx.sql, e os que foram
+	feitos a partir do início do brA foram colocados como brA_svnxxx.sql
+
+	r0234 - 12/02/2011 [Dani]
+	* Limpeza de espaços desnecessários na pasta /src
+
+	r0229 - 12/02/2011 [Dani]
+	* Atualizado conforme eAthena 14702 (14691:14702)
+
+	r0225 - 11/02/2011 [brn0]
+	* Adicionado NPC Banqueiro na pasta personalizados.
+	- npc/personalizados/Banqueiro.txt
+	* Adicionado NPC Resetadora na pasta personalizados.
+	- npc/personalizados/Resetadora.txt
+	* Adicionado NPC Garota Negociante na pasta personalizados.
+	- npc/personalizados/Garota Negociante.txt
+
+	r0210 - 05/02/2011 [Dani]
+	* Envio de traduções
+	- npc/outros/arena/arena_grupo.txt [Thor]
+	- npc/outros/arena/arena_lvl50.txt [Thor]
+	- npc/outros/arena/arena_lvl60.txt [Thor]
+	- npc/outros/arena/arena_lvl70.txt [Thor]
+	- npc/outros/arena/arena_lvl80.txt [Thor]
+	- npc/outros/arena/arena_pontos.txt [Thor]
+	- npc/outros/arena/arena_sala.txt [Thor]
+	* Revertido nome de mob Verme Sábio para Verme Ancião
+	- Pequeno erro cometido na r183
+
+	r0200 - 03/02/2011 [Dani]
+	* Correção de erros apontados no map-server (seguindo r196)
+
+	r0199 - 03/02/2011 [Dani]
+	* Correção dos cabeçalhos da pasta npc/kafras completa
+	- Seguindo r196
+	* Limpeza de espaços desnecessários em todos os scripts da pasta npc/kafras
+
+	r0198 - 03/02/2011 [Dani]
+	* Correção dos cabeçalhos da pasta npc/cidades completa
+	- Seguindo r196 e r197
+	* Limpeza de espaços desnecessários em todos os scripts da pasta npc/cidades
+
+	r0197 - 03/02/2011 [insidemybrain]
+	* Corrigido o cabeçalho dos scripts da pasta Cidades
+	* Corrigidas as tabulações dos scripts da pasta Cidades
+
+	r0196 - 03/02/2011 [insidemybrain]
+	* Envio de traduções
+	- cidades/amatsu.txt
+	- cidades/brasilis.txt
+	- cidades/comodo.txt
+	- cidades/einbech.txt
+	- cidades/einbroch.txt
+	- cidades/geffen.txt
+	- cidades/gonryun.txt
+	- cidades/hugel.txt
+	- cidades/jawaii.txt
+	- cidades/lighthalzen.txt
+	- cidades/louyang.txt
+	- cidades/lutie.txt
+	- cidades/manuk.txt
+	- cidades/morocc.txt
+	- cidades/moscovia.txt
+	- cidades/niflheim.txt
+	- cidades/payon.txt
+	- cidades/prontera.txt
+	- cidades/rachel.txt
+	- cidades/splendide.txt
+	- cidades/umbala.txt
+	- cidades/veins.txt
+	- cidades/yuno.txt
+	* Corrigidos erros de tabulações
+	- kafras/*
+	- instâncias/memorial_orc.txt
+	- instancias/torre_infinita.txt
+
+	r0193 - 02/02/2011 [Dani]
+	* Envio de traduções
+	- npc/gde2/arug_cas01.txt
+	- npc/gde2/arug_cas02.txt
+	- npc/gde2/arug_cas03.txt
+	- npc/gde2/arug_cas04.txt
+	- npc/gde2/arug_cas05.txt
+
+	r0191 - 01/02/2011 [insidemybrain]
+	* Revisões efetuadas
+	- classes/1-1/espadachim.txt
+	- classes/1-1/novico.txt
+
+	r0190 - 01/02/2011 [Dani]
+	* Envio de traduções
+	- npc/quests/Bard_Quest.txt [Boomer]
+	- npc/quests/ninja_quests.txt [Boomer]
+	- npc/quests/thana_quest.txt [Avassalador]
+	- npc/quests/capacetes/2005_headgears.txt [Avassalador]
+	* Correção de vários cabeçalhos na DB
+
+	r0188 - 01/02/2011 [insidemybrain]
+	* Adicionadas revisões de alguns scripts e edições do cabeçalho:
+	- classes/aprendiz/super-aprendiz.txt
+	- classes/1-1/arqueiro.txt
+	- classes/valquiria.txt
+
+	r0186 - 31/01/2011 [brn0]
+	* Adicionadas algumas duplicatas para o NPC estilista.
+
+	r0185 - 31/01/2011 [Dani]
+	* Atualizado conforme eAthena 14690 (14676:14690)
+	* Corrigidos alguns cabeçalhos e versões
+
+	r0182 - 30/01/2011 [Dani]
+	* Revisões efetuadas
+	- gde2/gde2_cavernas.txt
+	- quests/habilidades/habilidades_cavaleiro.txt
+	* Correções em instancias/torre_infinita.txt
+	- Conversão de final de linha para Windows
+	- Corrigido nome do Naght Sieger
+	- Alteradas letra "a" maiúsculas de "Andar" para "andar"
+
+	r0176 - 29/01/2011 [Protimus]
+	* Adicionados headers padrões para o SQLite.
+	- Necessário fazer ifdefs para funcionamento com outros arquivos e defines para erro e sucesso do uso.
+
+	r0175 - 29/01/2011 [Protimus]
+	* Adicionados includes padrões para o SQLite.
+	- Necessário fazer as checagens em outros arquivos para o SQLite, além do MySQL.
+
+	r0174 - 29/01/2011 [Protimus]
+	* Adicionada estrutura padrão para início da criação do banco de dados em SQLite.
+	- Um banco de dados diferente para servidores maiores terem mais desempenho.
+
+	r0173 - 29/01/2011 [Protimus]
+	* Corrigido problema de dano ao usar corrida com o Mestre Taekwon.
+
+	r0172 - 28/01/2011 [Tyler]
+	* Pequena correção do commit anterior:
+	- db/item_cardalbum.txt
+
+	r0171 - 28/01/2011 [Tyler]
+	* Corrigido alguns cabeçalhos da pasta db.
+	* Adicionados novos itens (pré RENEWAL) ao db para posterior revisão
+	* Iniciada a tradução do db:
+	- db/quest_db.txt
+	- db/creat_arrow_db.txt
+	* Pequena correção no db/item_cardalbum.txt
+	* Pequena correção no db/mob_db.txt
+	* Adicionados mais mobs ao db/mob_race2_db.txt
+	* Corrigido (cabeçalhos) e revisados alguns npc's da pasta npc
+	* Corrigido o nome de alguns monstros da instancia Torre sem Fim
+
+	r0170 - 28/01/2011 [Dani]
+	* Revisão efetuada
+	- npc/quests/doomed_swords.txt
+
+	r0168 - 28/01/2011 [Floozie]
+	* Correção no script npc/kafras/funcoes_kafras.txt
+	- Corrigido de acordo com o report: 18
+
+	r0162 - 27/01/2011 [Dani]
+	* Revisões efetuadas
+	- npc/aeroplanos/einbroch.txt
+	- npc/aeroplanos/lighthalzen.txt
+	- npc/aeroplanos/yuno.txt
+	* Removido script refinador_avançado.txt
+	- Estava duplicado
+
+	r0154 - 27/01/2011 [Dani]
+	* Envio de Traduções
+	- npc/quests/habilidades/habilidades_novico.txt
+	* Adicionados scripts personalizados no launcher
+	- Comentados, vistos que não são padrões do RO
+	- Descomentar caso deseje utilizar
+	* Pequenas revisões
+	- npc/quests/quests_aldebaran.txt
+	- npc/quests/quests_geffen.txt
+	- npc/quests/quests_izlude.txt
+	- npc/quests/quests_lutie.txt
+	- npc/quests/quests_payon.txt
+
+	r0152 - 26/01/2011 [Dani]
+	* Envio de Traduções
+	- npc/cidades/izlude.txt
+	- npc/comerciantes/lojas.txt
+	* Revisão final na pasta npc/monstros
+
+	r0149 - 25/01/2011 [Dani]
+	* Correção no cabeçalho dos NPCs que foram enviados na r147,
+	para leitura automática do Centro de Traduções
+	- http://www.brathena.org/projetos/ct/
+
+	r0147 - 25/01/2011 [Dani]
+	* Enviadas traduções
+	- cidades/alberta.txt
+	- cidades/aldebaran.txt
+	- cidades/ayothaya.txt
+	* Pequenas alterações em alguns diálogos de inter-server
+	- Capitulares e acentos que não são aceitos
+
+	r0140 - 24/01/2011 [Dani]
+	* Enviadas alterações do eAthena que foram perdidas no meio do caminho
+
+	r0139 - 24/01/2011 [Protimus]
+	* Adicionadas mudanças no db/statpoint.txt para level máximo 99.
+
+	r0138 - 24/01/2011 [brn0]
+	* Adicionado NPC Estilista na pasta personalizados.
+	- npc/personalizados/Estilista.txt
+
+	r0135 - 20/01/2011 [Dani]
+	* Ajustes finos nos arquivos da pasta /db
+	- Somente pra consertar a organização dos cabeçalhos
+
+	r0131 - 20/01/2011 [Dani]
+	* Revisadas e feitas algumas traduções no atcommand.c
+
+	r0129 - 19/01/2011 [Dani]
+	* Remoção de monstros desnecessários da Trunk (seguindo r128)
+
+	r0121 - 19/01/2011 [Dani]
+	* Pequenas alterações no arquivo quests_geffen.txt (seguindo r117)
+	- Corrigido erro apontado no map-server
+	- Corrigidas indentações
+	- Removido espaço em branco no fim de cada linha
+
+
+	r0117 - 19/01/2011 [Tyler]
+
+	* Ajustado o cabeçalho de alguns arquivos CONF na pasta npc:
+	- npc/personalizados/Enquetes_oficiais.txt
+	- npc/personalizados/removedora_de_cartas.txt
+	- scripts_brathena.conf
+	- scripts_classes.conf
+	- scripts_guild.conf
+	- scripts_main.conf
+	- scripts_monstros.conf
+	- scripts_portais.conf
+	- scripts_personalizados.conf
+	* Corrigido um erro de português no cabeçalho para reconhecimento do CT:
+	- npc/quest/bunnyband.txt
+	* Corrigido alguns npcs na pasta npc para seguir o modelo de npcs originais e refeita a revisão dos mesmos:
+	- npc/quests/quests_aldebaran.txt
+	- npc/quests/quests_geffen.txt
+	- npc/quests/quests_izlude.txt
+	- npc/quests/quests_lutie.txt
+	- npc/quests/quests_payon.txt
+	* Continuada a organização da pasta db para facilitar futuras configurações e revisões.
+
+	r0115 - 18/01/2011 [Dani]
+	* Atualizado conforme eAthena 14676
+	* Adicionados todos os upgrades do eA
+	- Favor não remover
+	* Corrigidos erros primários apontados no map-server
+	- Comentário de várias linhas que não é suportado pelo mob_db modificado para //
+	- Habilidades de monstros custom (eles não existem por padrão,
+	e estão com as IDs reservadas para clones) desativadas
+	- Tabulações apontadas no report #14 no Tracker
+	- Pedido de atenção aos Devs (todos): favor TESTAR toda e qualquer modificação feita no emulador
+
+	r0113 - 18/01/2011 [brn0]
+	* Adicionado NPC de Enquetes Oficiais na pasta personalizados.
+	- npc/personalizados/Enquetes_oficiais.txt
+
+	r0111 - 18/01/2011 [Rafoka]
+	* Adicionado removedora de cartas custom na pasta personalizados
+	- personalizados/removedora_de_cartas.txt
+
+	r0110 - 18/01/2001 [Tyler]
+	* Iniciada a tradução da pasta db para posterior revisão.
+	* Modificados os arquivos da pasta db para otimização e fácil localização.
+	* Corrigido alguns npc's:
+	- npc/classes/valquíria.txt
+	- npc/eventos/pascoa.txt
+	- npc/quests/selos/god_global.txt
+	* Adicionada a revisão dos npc's:
+	- npc/eventos/nguild/nguild_gerenciadores.txt
+	* Ajustado o cabeçalho dos npc's da pasta npc/outros/turbotrack
+	* Adicionado os npc's de Brasilis para o episódio no emulador (faltam quests):
+	- npc/monstros/campos/brasilis.txt
+	- npc/monstros/cavernas/bra_dun.txt
+	* Alterado o scripts_monstros.conf para dar suporte à Brasilis.
+
+	r0109 - 18/01/2011 [Kooler]
+	* Adicionadas traduções de alguns npcs da pasta Quests.
+	- Todos Revisados;
+	- quests_aldebaran.txt
+	- quests_izlude.txt
+	- quests_geffen.txt
+	- qusts_payon.txt
+
+	r0108 - 17/01/2011 [Rafoka]
+	* Corrigido um pequeno bug com relação ao "killmonsterall". Report por: xMaickx
+	- classes/2-1/cacador.txt
+
+	r0107 - 17/01/2011 [insidemybrain]
+	* Adicionados novos npc's traduzidos, cada um com sua respectiva pasta abaixo:
+	- classes/valquíria.txt (REVISADO/CONCLUÍDO)
+	- eventos/pascoa.txt (REVISADO/CONCLUÍDO)
+	- selos/god_global.txt (REVISADO/CONCLUíDO)
+	- quests/doomed_swords.txt (APENAS TRADUZIDO)
+	- quests/habilidades/habilidades_cavaleiro.txt (APENAS TRADUZIDO)
+
+	r0106 - 17/01/2011 [insidemybrain]
+	* Adicionadas as traduções de todos npcs da pasta outros/turbotrack.
+
+	r0105 - 17/01/2011 [Protimus]
+	* Removido comando skillcheck, faz a mesma coisa do getskillvl.
+
+	r0104 - 17/01/2011 [Protimus]
+	* Correções de códigos do commit anterior para arquivos da pasta de NPC's.
+	* Alterado NPC_NAME_LENGTH para 37.
+	- Para suportar os NPCs.
+
+	r0103 - 17/01/2011 [Tyler]
+	* Adicionadas traduções de alguns npcs da pasta Aeroplanos.
+	- einbroch.txt
+	- lighthalzen.txt
+	- yuno.txt
+	* Adicionadas correções dos npcs da pasta Campais.
+	- bg_sistema.txt
+	- flavius01.txt
+	- flavius02.txt
+	- flavius_entrada.txt
+	- kvm01.txt
+	- kvm02.txt
+	- kvm03.txt
+	- kvm_troca.txt
+	- kvm_entrada.txt
+	- tierra01.txt
+	- tierra02.txt
+	- tierra_entrada.txt
+	* Adicionadas traduções e revisões da pasta Eventos.
+	- Revisão completa da pasta Eventos/nguild.
+	- dia_dos_namorados.txt
+	- festival_do_bolinho.txt
+	- idul_fitri.txt
+	- natal.txt
+	- resetar_habilidades.txt
+	- semana_da_criança.txt
+	- torres_gemeas.txt
+	* Revisão completa da pasta Gde.
+	* Correção do npc da pasta Instancias.
+	- torre_infinita.txt
+	* Revisão de alguns arquivos da pasta Kafras.
+	- cool_event_corp.txt
+	- kafras_alb.txt
+	- kafras_alde.txt
+	- kafras_brasilis.txt
+	- kafras_com.txt
+	- kafras_dungeons.txt
+	- kafras_gef.txt
+	- kafras_izl.txt
+	- kafras_mor.txt
+	- kafras_mosk.txt
+	- kafras_new.txt
+	- kafras_pay.txt
+	- kafras_pron.txt
+	- kafras_yun.txt
+	* Revisão de alguns arquivos da pasta Monstros.
+	- Revisão completa da pasta Monstros/campos.
+	- cidades.txt
+	- pvp.txt
+	* Adicionada a revisão do npc da pasta Portais/Outros.
+	- arena.txt
+	* Adicionadas algumas traduções e revisões da pasta Quests.
+	- bunnyband.txt
+	- mrsmile.txt
+	- quests_lutie.txt
+
+	r0102 - 16/01/2011 [Dani]
+	* Atualizado conforme eAthena 14670.
+
+	r0101 - 15/01/2011 [Protimus]
+	* Realizadas algumas limpezas em arquivos de Make para Linux.
+
+	r0100 - 14/01/2011 [Protimus]
+	* Adicionadas traduções de npcs da pasta de Kafras.
+	- kafras/cool_event_corp.txt
+	- kafras/dts_warper.txt
+	- kafras/funcoes_kafras.txt
+	- kafras/kafras_alb.txt
+	- kafras/kafras_alde.txt
+	- kafras/kafras_brasilis.txt
+	- kafras/kafras_com.txt
+	- kafras/kafras_dungeons.txt
+	- kafras/kafras_gef.txt
+	- kafras/kafras_izl.txt
+	- kafras/kafras_mor.txt
+	- kafras/kafras_mosk.txt
+	- kafras/kafras_new.txt
+	- kafras/kafras_pay.txt
+	- kafras/kafras_pron.txt
+	- kafras/kafras_yun.txt
+
+	r0099 - 14/01/2011 [Protimus]
+	* Adicionada tradução de npc da pasta de quests.
+	- quests/quests_lutie.txt
+	* Revisada tradução de npcs da pasta de instancias e quests.
+	- instancias/torre_infinita.txt
+	- quests/quests_lutie.txt
+
+	r0098 - 13/01/2011 [Protimus]
+	* Adicionada tradução de npc da pasta eventos.
+	- eventos/natal.txt
+	- Apenas mencionando que o natal e semana_da_criança, já estão revisados.
+
+	r0097 - 13/01/2011 [Wiskovisky]
+	* Adicionada toda a tradução atual da src ao Trunk
+	- Será revisada posteriormente novamente
+	* exemplo no grf-files.txt modificado para facilitar o entendimento
+
+	r0096 - 13/01/2011 [Protimus]
+	* Adicionada tradução de npc da pasta eventos.
+	- eventos/semana_da_crianca.txt
+	* Pequena correção em guias_alde.txt, eu havia esquecido de por o status no cabeçalho.
+
+	r0095 - 12/01/2011 [Protimus]
+	* Revisadas traduções de npcs da pasta de guias.
+	* Correções nos códigos dos npcs da pasta campa.
+
+	r0094 - 12/01/2011 [Protimus]
+	* Adicionadas traduções de npcs da pasta campal.
+	- campal/bg_sistema.txt
+	- campal/flavius/flavius_entrada.txt
+	- campal/flavius/flavius01.txt
+	- campal/flavius/flavius02.txt
+	- campal/tierra/tierra_entrada.txt
+	- campal/tierra/tierra01.txt
+	- campal/tierra/tierra02.txt
+	- campal/kvm_entrada.txt
+	- campal/kvm_troca.txt
+	- campal/kvm01.txt
+	- campal/kvm02.txt
+	- campal/kvm03.txt
+
+	r0093 - 12/01/2011 [Protimus]
+	* Adicionado brathena-admin para gerenciamento de servidores Linux.
+	- Foi removido o brathena-upgrade por ser obsoleto.
+
+	r0092 - 11/01/2011 [Protimus]
+	* Adicionado @go para Cidade de Brasilis.
+	- Não existe no eAthena, não apenas de Brasilis mas de vários novos campos.
+	OBS: Quando as traduções terminarem será enviado massivamente NPCs que não tem no eA, de novos EPs.
+
+	r0091 - 11/01/2011 [Protimus]
+	* Termino de traduções de npcs da pasta de guias.
+	- guias/guias_alde.txt
+	- guias/guias_brasilis.txt
+	- guias/guias_cmd.txt
+	- guias/guias_louyang.txt
+	- guias/guias_nif.txt
+	- guias/guias_um.txt
+
+	r0090 - 11/01/2011 [Protimus]
+	* Adicionadas traduções de npcs da pasta de guias.
+	- guias/guias_ama.txt
+	- guias/guias_ayo.txt
+	- guias/guias_einbe.txt
+	- guias/guias_einbr.txt
+	- guias/guias_gon.txt
+	- guias/guias_juno.txt
+
+	r0089 - 11/01/2011 [Protimus]
+	* Revisadas traduções de npcs da pasta de eventos enviados em r87.
+	* Atualizado conforme eAthena r14663.
+	* Pequena correção no commit anterior.
+
+	r0088 - 11/01/2011 [Floozie]
+	* Correção da mensagem de revisão do SVN do brAthena.
+	- Estava com o padrão do eAthena ainda.
+
+	r0087 - 10/01/2011 [Protimus]
+	* Adicionadas traduções de npcs da pasta de eventos.
+	- eventos/festival_do_bolinho.txt
+	- eventos/evento_resetar_habilidades.txt
+
+	r0086 - 10/01/2011 [Protimus]
+	* Modificado nome de refinador_avançado.txt para refinador_avancado.txt
+	- Procurem não usar acentos nos nomes de arquivos dos NPCs.
+	* Revisado npcs da pasta de monstros.
+	- O que estiver sem uma especificação é porque eu não soube o nome de cabeça e é necessário por depois.
+
+	r0085 - 10/01/2011 [Protimus]
+	* Adionadas traduções de npcs da pasta de classes.
+	- classes/2-2/alquimista.txt
+	- classes/2-2/bardo.txt
+
+	r0084 - 09/01/2011 [Protimus]
+	* Revisado npc da pasta de instancias:
+	- instancias/memorial_orc.txt
+	* Removida pasta "log" do emulador.
+	- Não adicione novamente por favor, não usamos logs em *txt.
+
+	r0083 - 09/01/2011 [Protimus]
+	* Adicionada tradução de npc da pasta instancias:
+	- instancias/santuario_selado.txt
+	* Revisões dos npcs da pasta repetíveis.
+	- Os nomes de alguns arquivos foram alterados.
+
+	r0082 - 09/01/2011 [Protimus]
+	* Corrigido pequeno erro de concordância nos NPCs da pasta GdE.
+	* Revisões dos npcs da pasta nguild.
+	- Os nomes de alguns arquivos foram alterados.
+	* Atualizado conforme eAthena r14660.
+
+	r0081 - 09/01/2011 [Protimus]
+	* Adicionadas traduções da pasta nguild:
+	- eventos/nguild/nguild_bandeiras.txt
+	- eventos/nguild/nguild_cavernas.txt
+	- eventos/nguild/nguild_controlador.txt
+	- eventos/nguild/nguild_gestores.txt
+	- eventos/nguild/nguild_guardioes.txt
+	- eventos/nguild/nguild_kafras.txt
+	- eventos/nguild/nguild_teleportador.txt
+	- eventos/nguild/nguild_tesouros.txt
+
+	r0080 - 08/01/2011 [Protimus]
+	* Atualizado conforme eAthena r14659.
+
+	r0079 - 08/01/2011 [Protimus]
+	* Alterações nos nomes de mobs dos Guardiões.
+	- Guardião Cavaleiro, Guardião Soldado e Guardião Arqueiro são os nomes corretos, Guardião sucedido pelas suas patentes.
+	* Revisões dos npcs da pasta GdE.
+	- Todos os NPCs estão concluídos não sendo necessário mais alterá-los. Foi revisado a escrita, código e layout.
+	OBS: Os nomes dos castelos estão conforme o bRO. Decidi alterará-los dessa forma, porque a maioria conhece e joga conforme os nomes do bRO.
+
+	r0078 - 08/01/2011 [Wiskovisky]
+	* Configurações relacionadas ao MYSQL do login_athena.conf passadas ao inter_athena.conf
+	* Configuração inútil removida (account_engine)
+	* Descrição do log_login corrigida
+	* Correção no arquivo leia-me.txt
+	* Removido arquivo desnecessário:
+	- import/ladmin_conf.txt
+
+	r0077 - 07/01/2011 [Protimus]
+	* Atualizada data do projeto no core banner: 2008 ~ 2011.
+	* Corrigido pequeno erro no script_main, havia esquecido de trocar o nome da pasta customizados para personalizados.
+	* Removido arquivo desnecessário:
+	- conf/ladmin_athena.conf
+	* Códigos de funções para TXT removidas de arquivos da pasta conf.
+	- Importante: Configuração de logs agora são apenas por meio de database.
+
+	r0076 - 07/01/2011 [Protimus]
+	* Adicionada tradução de npcs da pasta de classes.
+	- classes/1-1/espadachim.txt
+	* Corrigido pequeno erro do commit anterior, acabei removendo um código por engano.
+	* Aumentado o número de caracteres para nomes de NPCs para 30.
+	- Devido label ser maior e o nome ser extenso estava dando truncating.
+	OBS: O nome original não passa de 29 caracteres, foi aumentado apenas por causa da label, não use nomes com + de 29 caracteres.
+
+	r0075 - 07/01/2011 [Protimus]
+	* Adicionada nova definição para nome máximo de NPCs: NPC_NAME_LENGTH.
+	- Foi alterado o nome máximo e as labeis para 29 caracteres, não é possível mais porque o hexed não suporta.
+	- Agradecimentos ao Rafael que ajudou com o código.
+	* Adicionada tradução de npcs da pasta de classes.
+	- classes/aprendiz.txt
+
+	r0074 - 07/01/2011 [Protimus]
+	* Atualizado conforme eAthena r14653.
+	* Enviadas correções de códigos de npcs da pasta repetíveis.
+	- Agora só falta revisar a escrita e renomear os arquivos para português.
+	* Adicionada tradução de npcs da pasta de classes.
+	- classes/super_aprendiz.txt
+
+	r0073 - 06/01/2011 [Protimus]
+	* Renomeado nome da pasta customizados para personalizados.
+	- O nome customizados é aportuguêsado, por isso optei em por um nome mais bonito a nossa língua.
+	* Renomeado nome da pasta repetitiveis para repetiveis.
+	- A tradução de repetitivel não é incorreta mas é algo mais informal, por isso optamos pela mudança.
+
+	r0072 - 06/01/2011 [Protimus]
+	* Adicionadas traduções da pasta repetitiveis.
+	- quests/repetitiveis/quest_alligator.txt
+	- quests/repetitiveis/quest_caramel.txt
+	- quests/repetitiveis/quest_coco.txt
+	- quests/repetitiveis/quest_creamy.txt
+	- quests/repetitiveis/quest_demonpungus.txt
+	- quests/repetitiveis/quest_dokebi.txt
+	- quests/repetitiveis/quest_dryad.txt
+	- quests/repetitiveis/quest_fabre.txt
+	- quests/repetitiveis/quest_frilldora.txt
+	- quests/repetitiveis/quest_goat.txt
+	- quests/repetitiveis/quest_golem.txt
+	- quests/repetitiveis/quest_hode.txt
+	- quests/repetitiveis/quest_leafcat.txt
+	- quests/repetitiveis/quest_pecopeco.txt
+	- quests/repetitiveis/quest_pupa.txt
+
+	r0071 - 05/01/2011 [Dani]
+	* Atualizado conforme eAthena r14651
+
+	r0070 - 28/12/2010 [Protimus]
+	* Removido comando mapcheck
+	- Redundânte, não iremos usar no renewal e é possível usar outros meios.
+	* Adicionada tradução de memorial_orc.txt.
+
+	r0069 - 28/12/2010 [Protimus]
+	* Adicionadas traduções da pasta GdE.
+	- gde/aldeg_cas01.txt
+	- gde/aldeg_cas02.txt
+	- gde/aldeg_cas03.txt
+	- gde/aldeg_cas04.txt
+	- gde/aldeg_cas05.txt
+	- gde/gde_controlador.txt
+	- gde/gde_padrao.txt
+	- gde/gefg_cas01.txt
+	- gde/gefg_cas02.txt
+	- gde/gefg_cas03.txt
+	- gde/gefg_cas04.txt
+	- gde/gefg_cas05.txt
+	- gde/payg_cas01.txt
+	- gde/payg_cas02.txt
+	- gde/payg_cas03.txt
+	- gde/payg_cas04.txt
+	- gde/payg_cas05.txt
+	- gde/prtg_cas01.txt
+	- gde/prtg_cas02.txt
+	- gde/prtg_cas03.txt
+	- gde/prtg_cas04.txt
+	- gde/prtg_cas05.txt
+	NOTA: Farei a revisão ainda hoje.
+
+	r0068 - 28/12/2010 [Protimus]
+	* Atualizado conforme eAthena r14635.
+	* Corrigidos problemas com linux na hora de compilar.
+	* Removidas traduções da source e criada uma branche para isso.
+	- Devem ser traduzidas em outra branche e passadas para essa quando estiverem revisadas.
+	* Revertido merge da txt-remove r28.
+	- Necessários mais testes e fusão do limpezas que foram feitas no charmerge do eAthena e não lançadas.
+	NOTA: Não se esquecer de modificar o comando whosell conforme novos parâmetros de indexação.
+
+	r0067 - 25/12/2010 [Lord]
+	* Enviada tradução da pasta /monstros.
+	- Traduzida por K2X.
+	* Enviada tradução do mob_db.
+	- Traduzida por SoulSyntax, Natushi e Floozie.
+	* Corrigido codificação do script espadachim.txt.
+	* Corrigido cabeçalho da torre_infinita.txt.
+	-  Também foi enviada uma pequena tradução faltante.
+	* Renomeado script professor_.txt para professor.txt.
+	* Corrigido pequeno waring na source ( atcommand.c ).
+	- Aumentado o máximo de caracteres declarados de uma array.
+	* Corrigido algumas traduções da source ( log.c ).
+	- Removido alguns acentos.
+
+	r0066 - 23/12/2010 [Wiskovisky]
+	* Enviada mais uma grande parte da tradução do emulador.
+
+	r0065 - 23/12/2010 [Soul Syntax]
+	* Enviada tradução.
+	- instancias/torre_infinita.txt
+
+	r0064 - 22/12/2010 [Protimus]
+	* Atualizado conforme eAthena r14616.
+	* Correções em alguns guias.
+	* Enviadas traduções.
+	- guias/guias_hu.txt
+	- guias/guias_mosk.txt
+
+	r0063 - 22/12/2010 [Protimus]
+	* Atualizado conforme eAthena r14615.
+	* Pequena correção em guias_pront.txt
+	* Enviadas traduções.
+	- guias/guias_veins.txt
+	- guias/guias_moc.txt
+	- guias/guias_rachel.txt
+	- guias/guias_lhz.txt
+
+	r0062 - 22/12/2010 [Protimus]
+	* Atualizado conforme eAthena r14613.
+
+	r0061 - 22/12/2010 [Protimus]
+	* Realizado terceiro merge de remoções do TXT da source.
+	- Merge de acordo com r61 da branch txt-remove.
+
+	r0060 - 21/12/2010 [Protimus]
+	* Enviadas traduções.
+	- guias/guias_alb.txt
+	- guias/guias_gef.txt
+	- guias/guias_izl.txt
+	- guias/guias_pay.txt
+	- guias/guias_pron.txt
+
+	r0059 - 21/12/2010 [Wiskovisky]
+	* Enviada mais uma parta da tradução do emulador
+	- src/map/npc.c
+	* Revisado e corrigido código de gatuno.txt e mago.txt.
+	* Correção dos arquivos homunculus_db.txt e castle_db.txt
+
+	r0058 - 21/12/2010 [Protimus]
+	* Enviada tradução.
+	- classes/1-1/mago.txt
+	* Revisado código de gatuno.txt, falta corrigir mais alguns erros.
+
+	r0057 - 21/12/2010 [Protimus]
+	* Enviadas traduções.
+	- classes/1-1/novico.txt
+	- classes/1-1/gatuno.txt
+
+	r0056 - 21/12/2010 [Protimus]
+	* Iniciado processo de merge das traduções de npcs.
+	- Traduzido classes/1-1/arqueiro.txt
+
+	r0055 - 21/12/2010 [Protimus]
+	* Realizado segundo merge de remoções do TXT da source.
+	- Merge de acordo com r28 da branch txt-remove.
+	* Correções do commit de r49.
+
+	r0054 - 21/12/2010 [Protimus]
+	* Readicionado comando skillcheck que foi removido em r53.
+	- Não remover, será utilizado para o renewal todos os três novos comandos: skillcheck, mapcheck e sc_check.
+	* Corrigigo pequeno erro no main.sql através dos updates que foram realizados do merge do eA e limpezas que o Lord fez.
+	* Revisão de TODOS os cabeçalhos de arquivos do emulador.
+	- Favor não modificar a estrutura mais, vamos manter um padrão e será esse, caso tenham ou dúvidas ou queiram alterar comuniquem na área da equipe.
+	OBS: Isso é válido para os NPCs, os cabeçalhos de CONF e DB que foram modificados serão alterados depois por um novo layout mas por enquanto será esse.
+
+	r0053 - 20/12/2010 [Floozie]
+	* Adicionado novo comando de script 'sc_check'.
+
+	r0049 - 20/12/2010 [Protimus]
+	* Atualizado conforme eAthena r14609.
+
+	r0048 - 19/12/2010 [Protimus]
+	* Pequena correção relacionada ao commit da r22.
+	- As configurações para leitura da pasta char-sql haviam sido removidas por engano, através de ac_config_files.
+	OBS: Quanto a pasta char e char-sql continuaram na source até o termino do merge da txt-remove, pois é necessário verificar mudanças do charmerge no eAthena.
+
+	r0047 - 19/12/2010 [SoulSyntax]
+	* Traduções revisadas da pasta battle
+
+	r0046 - 18/12/2010 [Wiskovisky]
+	* Enviada mais uma parte da tradução do emulador
+	- Principalmente do Map-server
+
+	r0045 - 18/12/2010 [Wiskovisky]
+	* Enviada mais uma parte da tradução do emulador
+	- Algumas partes do Login-server, Char-server e Map-server
+
+	r0044 - 18/12/2010 [Wiskovisky]
+	* Finalizadas as edições nos arquivos de database.
+	- Exemplos do item_noequip.txt modificados de acordo com a src
+	* Enviada grande parte da tradução do login-server
+
+	r0043 - 18/12/2010 [Wiskovisky]
+	* Tradução e edição dos cabeçalhos dos arquivos de database (db).
+	* Corrigida palavra do battle/client.conf incorreta.
+
+	r0042 - 17/12/2010 [Constantini]
+	* Revisão das traduções da pasta e arquivos de configuração (CONF).
+
+	r0041 - 16/12/2010 [Lord]
+	* Corrigido pequeno erro de tradução na pasta /db.
+	* Efetuada mais uma parte da tradução do nomes dos scripts da pasta /npc.
+
+	r0038 - 16/12/2010 [Protimus]
+	* Atualizado conforme eAthena r14593.
+	* Revisão de estrutura e traduções dos arquivos da pasta das configurações de batalhas (BATTLE).
+	- Arquivos revisados: guild.conf, homunc.conf e items.conf
+
+	r0037 - 15/12/2010 [Protimus]
+	* Atualizado conforme eAthena r14592.
+	* Revisão de estrutura e traduções dos arquivos da pasta das configurações de batalhas (BATTLE).
+	- Arquivos revisados: drops.conf, exp.conf e gm.conf
+
+	r0036 - 15/12/2010 [Protimus]
+	* Remoção de códigos inutilizáveis para uso do configure na hora de compilar o emulador.
+	* Revisão de estrutura e traduções dos arquivos da pasta das configurações de batalhas (BATLLE).
+	- Arquivos revisados: battle.conf, battleground.conf e client.conf
+	OBS: Favor não mexerem nos arquivos da pasta de configurações (CONF) até que eu termine as revisões.
+
+	r0035 - 13/12/2010 [Lord]
+	* Corrigido pequeno erro de escrita na pasta conf.
+	* Iniciada tradução e organização da pasta /db
+	* Atualizado conforme eAthena r14590.
+
+	r0033 - 13/12/2010 [Floozie]
+	* Alterado nome da pasta npc/classes/novice para 'aprendiz'
+
+	r0032 - 10/12/2010 [Protimus]
+	* Atualizado conforme eAthena r14589.
+
+	r0031 - 10/12/2010 [RawArkanis]
+	* Adicionada o carregamento e utilização do statpoint2.txt de acordo com a ativação nos arquivos de configuração.
+
+	r0030 - 10/12/2010 [Lord]
+	* Iniciado organização e tradução da pasta /sql-files
+	* Iniciada tradução dos nomes dos arquivos e pastas em /npc
+	* Corrigido pequeno erro no castle_db.
+	* Readcionada a pata /log
+	- A mesma pode ser utilizada para a versão SQL do emulador.
+
+	r0029 - 10/12/2010 [Protimus]
+	* Realizado primeiro merge de remoções do TXT da source.
+	- Merge de acordo com r28 da branch txt-remove.
+
+	r0028 - 10/12/2010 [Protimus]
+	* Removidas opções para compilar o release de TXT no Visual Studio C++ 2009.
+	- Preparações para primeiro merge de limpezas do txt.
+
+	r0026 - 09/12/2010 [Protimus]
+	* Atualizado conforme eAthena r14571.
+	* Adicionadas propriedas svn:eol-style para o projeto do Visual Studio C++ 2010.
+
+	r0025 - 09/12/2010 [Protimus]
+	* Removida pasta log devido ser desnecessária.
+	* Adicionado novo comando de script na source, skillcheck.
+	- Depois será modificado para ter mais uma função de checagem de status.
+
+	r0024 - 09/12/2010 [Lord]
+	* Adicionado pasta /npc/customizados e scripts_customizados.conf.
+	* Liberado npcs e adicionado import dos scripts_customizados em scripts_main.conf.
+	* Toda pasta /npc atulizada à eA rev 14562.
+	* Adicionado os cabeçalhos do brA em todos scripts.
+	* Emulador em geral agora se encontra na eA rev 14562.
+	* Corrigido alguns erros na pasta /npc.
+	* Aviso: A pasta dos npcs será traduzida em meu próximo commit.
+	* Reenviado pasta mapflag atualizada.
+	* Emulador encontra-se sem erros.
+
+	r0023 - 07/12/2010 [Floozie]
+	* Revisado e corrigido pasta conf/battle.
+	- Correções na escrita e pequenas traduções.
+
+	r0022 - 07/12/2010 [Protimus]
+	* Removidos bats e shs de inicialização para versões TXT.
+	- Não há necessidade em mantê-los, visto que só é possível versões SQL agora.
+	* Corrigido pequeno erro para solução de configuração "configure" para o Linux.
+	- Remoção de building para configuração de txt converter que não existe mais.
+	* Removida pasta save-tmpl onde ficava o "banco de dados" das versões TXT.
+
+	r0020 - 07/12/2010 [Protimus]
+	* Atualizada source de acordo com r14560.
+	- Agora só falta a revisão de atualizações da pasta NPC.
+
+	r0018 - 07/12/2010 [Lord]
+	* Efetuado limpeza no 'Solution' brAthena-10.
+	* Removido a possibilidade de compilar TXT no  'Solution' brAthena-9.
+	- Em breve a elminação total do servidor TXT será efetuada no emulador.
+	* Adiconado pasta /import na pasta /conf.
+	* Removido alguns configurações desnecessárias em: /conf/battle/player.conf.
+	* Corrigido nome de alguns arquivos em /npc.
+	* Desativado o import de todos npcs no scripts_main.conf.
+	- Irei revisar todos npc de acordo com o eA e traduzir os nomes deles, após isso reativo.
+	* Atualizado toda pasta DB com eA rev 14560 e corrigido erros nas DB's.
+	- Tradução para algumas DB's será enviada em breve.
+
+	r0015 - 06/12/2010 [Natsuhi]
+	* Revisado e corrigido arquivos da pasta configurações (CONF)
+	-atcommand_athena.txt
+	-battle_athena.txt
+	-char_athena.txt
+
+ 	r0011 - 06/12/2010 [Protimus]
+	* Adicionado comando @whosell, criado por mim em 2008 a partir da idéia original de zephyrus do eAthena.
+	- Coloquei o comando porque acho útil, hoje em dia vários servidores usam.
+
+	r0010 - 06/12/2010 [Protimus]
+	* Corrigido todos os warnings do Visual Studio C++ 2010, agora o compilador não acusa erros inválidos
+	* Removida as opção de compilação para versões TXT do Visual C++ 2010.
+	- Pelo motivo que essa opção será removida futuramente do emulador por completo.
+	OBS: Deixei a opção para compilação em TXT no VC++ 2009 por enquanto, quem quiser use até iniciarmos o trabalho de remoção dos códigos TXT na source.
+	* Removidos Visual Studio 6, 7 e 8.
+	- Não há necessidade de manter algo tão antigo no emulador, qual a importância?
+
+	r0009 - 06/12/2010 [Protimus]
+	* Adicionado novo projeto do Visual Studio C++ 2010.
+	- Visando maior upgrades e respostas de possíveis erros do emulador com um projeto atualizado.
+	OBS: Podem ocorrer alguns erros de compatibilidade que ainda não foram corrigidos.
+	* Pequena falha no envio de tabela do statpoint2.txt do commit r0008 resolvida.
+
+	r0008 - 06/12/2010 [Protimus]
+	* Adicionado sistema de distribuição de status para servidores de rate alta. (statpoint2.txt)
+	- Adicionada tabela com os cálculos de status ganhos para cada level ganho.
+	- Adiciona opção para uso de tabela do database, statpoint2.txt
+	OBS: Lembrando que caso você use esse sistema, desabilite o sistema padrão, statpoint.txt
+	OBS2: Creio que ainda faltam modificações na source para os status lerem a database custom quando ativada, se alguém tiver um tempo favor verificar depois.
+
+	r0007 - 06/12/2010 [Floozie]
+	* Revisado os cabeçalhos da pasta npc/merchants.
+
+	r0006 - 06/12/2010 [Protimus]
+	* Adicionado novo comando de script na source, checkmap.
+	- Modo de usar: checkmap através do if ou else.
+	Ex: if (mapcheck("nomedomapa")).
+
+	r0005 - 05/12/2010 [Damascus]
+	* Adicionados cabeçalhos para maior parte dos arquivos na pasta de database (DB).
+
+	r0004 - 05/12/2010 [Protimus]
+	* Adicionada traduções dos arquivos brathena-start e start (para inicialização do emulador).
+	* Adicionado novo script para upgrade do emulador, brathena-upgrade (apenas para linux).
+	- Modo de usar: Ir até a pasta do emulador com cd /diretório e usar sh ./brathena-upgrade
+	OBS: É útil pelo motivo do SVN poder ser alterado, assim não é necessário pegar a URL toda hora para atualizar.
+
+	r0003 - 05/12/2010 [Protimus]
+	* Reformulada pasta 3rdparty de acordo com eAthena.
+	- Havia sido esquecida e não foi atualizada.
+	* Removido save-tmpl
+	- Será feita conversão e remoção de versões TXT do emulador, não há necessidade em manter tal pasta. Assim agilizamos o processo para futuramente efetuar as ações de remoção.
+
+	r0002 - 05/12/2010 [Protimus]
+	* Iniciada revisão das traduções da pasta e arquivos de configuração (CONF).
+	- Revisado atcommand_athena.conf
+	* Atualizado conforme eAthena r14558.
+
+	r0001 - 04/12/2010 [Protimus]
+	* brAthena reiniciado.
+	- A tradução de algumas pastas e arquivos não será modificada do inglês para português devido não existir uma tradução coesa, sendo preferível deixar como está.
+	- Os arquivos serão adicionados aos poucos e enviado os merges de traduções, iniciaremos do zero dando merge em tudo.
+	OBS: O antigo changelog foi apago e não há importância e restituí-lo devido ao trabalho ter sido totalmente recomeçado e apenas enviados os merges.
+	* Adição dos ramos de controle.
+	- Apenas versão trunk no momento que corresponde a mesma versão trunk do eAthena sem o renewal.
+	* Adicionado core banner do brAthena.
+	* Adicionadas traduções da pasta CONF, BATTLE & MAPFLAG.
+	- Explicações foram feitas e algumas escritas modificadas para maior coesão.
+	* Adicionadas traduções de alguns arquivos da pasta de database (DB).
+	* Adicionados cabeçalhos em todos os scripts (NPCs) e arquivos de configuração (CONF).
+	* Modificados nomes dos projetos de building (v-project) para brAthena.
+	* Removidas pastas desnecessárias do eAthena.
+	* Atualizado conforme eAthena r14556.
+	- Necessário revisar pastas CONF & NPC, alguma modificação pode ter sido esquecida, visto que é uma atualização de mais de 1000 commits.

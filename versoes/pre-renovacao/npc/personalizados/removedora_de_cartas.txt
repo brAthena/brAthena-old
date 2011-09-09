@@ -1,0 +1,313 @@
+//  ___________________________________________________________________________
+// /                                                                           \
+// |                                                                            |
+// |                | |__  _ __ / \ | |_| |__   ___ _ __   __ _                 |
+// |                | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                |
+// |                | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                |
+// |                |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_                 |
+// |                                                                            |
+// |                              brAthena Script                               |
+// |----------------------------------------------------------------------------|
+// | Nome do Script: removedor_de_cartas.txt                                    |
+// |----------------------------------------------------------------------------|
+// | Criado por: brAthena Dev. Team                                             |
+// |----------------------------------------------------------------------------|
+// | Versão brA: 1.0                                                            |
+// |----------------------------------------------------------------------------|
+// | Descrição: NPC que remove cartas com variáveis que podem ser alteradas     |
+// | para mudar o preço, os ítens necessários ou as chances de se remover uma   |
+// | ou mais cartas de um equipamento.                                          |
+// |----------------------------------------------------------------------------|
+// | Changelog:                                                                 |
+// | 1.0 Script Criado [Equipe brAthena]                                        |
+// \___________________________________________________________________________/
+
+prt_in,28,73,4	script	Velha Sábia#brA	78,{
+
+	if( !.loaded)
+	{
+		// Para desabilitar qualquer chance, custo de zeny ou items da quest, coloque 0 no campo(s).
+		// Por padrão, todas as opções de chance estão desabilitadas, exceto a chance de falha comum que é de 10%.
+
+		set .custoBase, 200000; // Custo inicial de zeny.
+		set .custoPorCarta, 50000; // Custo adicional por carta.
+		setarray .ItemsQuest[0],	715,	1000; // IDs dos ítens de quest. (Zere todos os campos para desabilitar).
+		setarray .QuantQuest[0],	1,		1; // Quantidade dos ítens.
+
+		// CHANCES FIXAS
+		set .ChanceQuebrarTudo, 0; // Chance, em porcentagem, de quebrar tudo. (100 = 100%)
+		set .ChanceQuebrarEquip, 0; // Idem, apenas para o equipamento. (100 = 100%)
+		set .ChanceQuebrarCarta, 0; // Idem, apenas para as cartas. (100 = 100%)
+
+		set .ChanceDeFalha, 10; // Chance do processo falhar, sem quebrar nada. (100 = 100%)
+
+		set .TipoDeChance, 0; // Será levado em conta a escolha do usuário sobre qual parte é mais importante (equipamento ou cartas) ? 0: Não, 1: Sim.
+
+		// CHANCES QUE DEPENDEM DA ESCOLHA DO USUÁRIO (somente se .TipoDeChance estiver habilitado)
+		set .ChanceQuebarMenosPrecioso, 0; // Chance, em porcentagem, de quebrar aquilo que for menos precioso. (100 = 100%)
+		set .ChanceQuebarMaisPrecioso, 0;  // Chance, em porcentagem, de quebrar aquilo que for mais precioso. (100 = 100%)
+
+		// Atenção: As chances fixas (.ChanceQuebrarTudo, .ChanceQuebrarEquip e .ChanceQuebrarCarta) funcionam em conjunto com as chances dependentes do usuário (.ChanceQuebrarMenosPrecioso, .ChanceQuebrarMaisPrecioso), se estas últimas estiverem habilitadas.
+		// Para, por exemplo, utilizar somente as chances que consideram a escolha do usuário (.ChanceQuebrarMenosPrecioso, .ChanceQuebrarMaisPrecioso) basta zerar os três fixos e certificar-se de que .TipoDeChance esteja habilitada.
+		set .loaded, 1;
+	}
+
+	mes "[Velha Sábia]";
+	if(sex) mes "Bom dia, meu jovem.";
+	else mes "Bom dia, minha jovem.";
+	mes "Eu tenho o poder para remover as cartas dos equipamentos. Esse poder lhe interessa ?";
+	next;
+	switch(select("Sim, bastante.:O que você cobra?:Não, obrigado.")) {
+		case 1:
+			mes "[Velha Sábia]";
+			mes "Muito bem. Qual íten você deseja que eu examine para você ?";
+			next;
+
+			setarray .@position$[1], "Cabeça","Corpo","Mão Esquerda","Mão Direita","Manto","Sapatos","Acessório 1","Acessório 2","Cabeça Meio","Cabeça Baixo";
+			set .@menu$,"";
+			for( set .@i,1; .@i <= 10; set .@i,.@i+1 )
+			{
+				if( getequipisequiped(.@i) )
+					set .@menu$, .@menu$ + .@position$[.@i] + "-" + "[" + getequipname(.@i) + "]";
+				set .@menu$, .@menu$ + ":";
+			}
+			set .@part,select(.@menu$);
+			if(!getequipisequiped(.@part)) {
+				mes "[Velha Sábia]";
+				mes "Ah meu jovem, você não está utilizando nada para que eu possa retirar cartas.";
+				close;
+			}
+			if(getequipcardcnt(.@part) == 0) {
+				mes "[Velha Sábia]";
+				mes "Ah meu jovem, não existem cartas gravadas neste item. Não posso fazer nada com isto.";
+				close;
+			}
+			set .@cardcount,getequipcardcnt(.@part);
+
+			if (!checkweight(1202,(.@cardcount+1))) {
+				mes "^3355FFEspere um minuto!";
+				mes "Eu não posso oferecê-lo nenhum";
+				mes "de meus serviços para você";
+				mes "porque você está carregando muitas";
+				mes "cousas pesadas. Coloque-as no ármazem";
+				mes "da Kafra e venha aqui novamente !~";
+				close;
+			}
+			mes "[Velha Sábia]";
+			mes "Este item possui " + .@cardcount + " cartas atreladas a ele.";
+			set .@arraysize, getarraysize(.ItemsQuest);
+			if( .@arraysize > 0 || .custoBase > 0 || .custoPorCarta > 0){
+				if( .custoBase > 0 || .custoPorCarta > 0){
+					mes "Para fazer minha mágica vou precisar de " + (.custoBase+(.@cardcount * .custoPorCarta)) + " zeny.";
+				}
+				if( .@arraysize > 0)
+				{
+					mes "Também irei precisar de:";
+					for(set .@i, 0; .@i < .@arraysize; set .@i, .@i + 1)
+					{
+						mes .QuantQuest[.@i]+" "+getitemname(.ItemsQuest[.@i]);
+					}
+				}
+			}
+			next;
+			if(select("Tudo bem, prossiga.:Nem pensar.") == 2) {
+				mes "[Velha Sábia]";
+				mes "Tudo bem. Volte quando precisar de meus serviços.";
+				close;
+			}
+			if(zeny < (.custoBase+(.@cardcount * .custoPorCarta))){
+				mes "[Velha Sábia]";
+				mes "Criança, você não possui o zeny necessário para que eu realize meu serviço";
+				mes "Volte e me traga o zeny para que eu o faça para você.";
+				close;
+			}
+			for(set .@i, 0; .@i < .@arraysize; set .@i, .@i + 1)
+			{
+				if( countitem(.ItemsQuest[.@i]) < .QuantQuest[.@i])
+				{
+					mes "[Velha Sábia]";
+					mes "Espere aí !";
+					mes "Você não me trouxe o suficiente de "+getitemname(.ItemsQuest[.@i]);
+					next;
+					mes "[Velha Sábia]";
+					mes "Pegue todos os ítens de que eu preciso e volte logo !";
+					close;
+				}
+			}
+
+			if(.TipoDeChance){
+				mes "[Velha Sábia]";
+				mes "Antes, me diga o que é mais precioso para você: ";
+				next;
+				switch(select("O equipamento.:As cartas.")) {
+					case 1:
+						set .@failtype,1;
+						break;
+					case 2:
+						set .@failtype,2;
+				}
+			}
+
+			if( .ChanceQuebrarTudo > 0 || .ChanceQuebrarEquip > 0 || .ChanceQuebrarCarta > 0 || .ChanceDeFalha > 0 || ( .TipoDeChance && (.ChanceQuebrarMenosPrecioso > 0 || .ChanceQuebrarMaisPrecioso > 0) ) )
+			{
+				mes "[Velha Sábia]";
+				mes "Antes de começarmos, preciso avisá-lo ! Eu posso falhar ...";
+				set .@frase$, "Se isso aconteçer, você pode acabar perdendo ";
+
+				if( .ChanceQuebrarTudo > 0){
+					set .@frase$, .@frase$ + "o equipamento e também as cartas, poderá acabar ficando sem nada, ";
+				}
+				else{
+					if( .ChanceDeFalha > 0 ){
+						if( (.custoPorCarta > 0 || .custoBase > 0) && .@arraysize > 0 ){
+							set .@frase$, .@frase$ + "os zenys e ingredientes, ";
+						}
+						else if( .@arraysize > 0 ){
+							set .@frase$, .@frase$ + "os ingredientes, ";
+						}
+						else if( .custoPorCarta > 0 || .custoBase > 0 ){
+							set .@frase$, .@frase$ + "os zenys, ";
+						}
+					}
+					if( .ChanceQuebrarEquip > 0) set .@frase$, .@frase$ + "o equipamento, ";
+					if( .ChanceQuebrarCarta > 0) set .@frase$, .@frase$ + "as cartas, ";
+
+					if( .TipoDeChance && .ChanceQuebarMaisPrecioso > 0){
+						if( .@failtype == 1 && .ChanceQuebrarEquip <= 0 && .ChanceQuebrarTudo <= 0){ // Verifica se o mais precioso (o equipamento, no caso) ainda não foi dito.
+							set .@frase$, .@frase$ + "o equipamento, ";
+						}
+						else if( .@failtype == 2 && .ChanceQuebrarCarta <= 0 && .ChanceQuebrarTudo <= 0){
+							set .@frase$, .@frase$ + "as cartas, ";
+						}
+					}
+					if( .TipoDeChance && .ChanceQuebarMenosPrecioso > 0){
+						if( .@failtype == 1 && .ChanceQuebrarCarta <= 0 && .ChanceQuebrarTudo <= 0){
+							set .@frase$, .@frase$ + "as cartas, ";
+						}
+						else if( .@failtype == 2 && .ChanceQuebrarEquip <= 0 && .ChanceQuebrarTudo <= 0){
+							set .@frase$, .@frase$ + "o equipamento, ";
+						}
+					}
+
+				}
+				set .@frase$, .@frase$ + "enfim... É uma operação arriscada.";
+				mes .@frase$;
+				mes "Devo continuar ?";
+				next;
+			}
+
+			if(select("Sim...:Não !!")== 2) {
+					mes "[Velha Sábia]";
+               mes "A decisão é toda sua. Volte quando precisar de meus serviços";
+               close;
+			}
+			mes "[Velha Sábia]";
+			mes "Tudo bem. Irei começar ...";
+			set zeny,zeny - (.custoBase+(.@cardcount * .custoPorCarta));
+			for(set .@i, 0; .@i < .@arraysize; set .@i, .@i + 1)
+			{
+				delitem .ItemsQuest[.@i],.QuantQuest[.@i];
+			}
+
+			set .@failchance,rand(100);
+
+			if(.@failchance < .ChanceQuebrarTudo) {
+				next;
+				failedremovecards .@part,0;
+				mes "[Velha Sábia]";
+				mes "O processo falhou miseravelmente. Eu receio de que o item e as cartas foram destruídos !";
+				close;
+			}
+
+			if(.@failchance < .ChanceQuebrarEquip) {
+				next;
+				failedremovecards .@part,2;
+				mes "[Velha Sábia]";
+				mes "Enquanto eu tentava retirar a carta do equipamento, este não aguentou e quebrou.";
+				mes "A carta, porém, está a salva.";
+				close;
+			}
+
+			if(.@failchance < .ChanceQuebrarCarta) {
+				next;
+				failedremovecards .@part,1;
+				mes "[Velha Sábia]";
+				mes "Aconteceram coisas inesperadas durante o processo e não consegui salvar a carta.";
+				mes "Felizmente, o equipamento está intacto.";
+				close;
+			}
+
+			if(.@failchance < .ChanceQuebarMaisPrecioso) {
+				if (.@failtype == 1) {
+					next;
+					failedremovecards .@part,2;
+					mes "[Velha Sábia]";
+					mes "Desculpe-me, mas houve um problema durante o processo.";
+					mes "A carta foi salva, porém enquanto eu tentava retirar a carta do equipamento, este não aguentou e quebrou.";
+					close;
+				}
+
+				if (.@failtype == 2) {
+					next;
+					failedremovecards .@part,1;
+					mes "[Velha Sábia]";
+					mes "Desculpe-me, mas houve um problema durante o processo.";
+					mes "Eu consegui salvar o seu equipamento, mas a carta se rasgou durante o processo...";
+					close;
+				}
+			}
+
+
+			if(.@failchance < .ChanceQuebarMenosPrecioso) {
+				if (.@failtype == 1) {
+					next;
+					failedremovecards .@part,1;
+					mes "[Velha Sábia]";
+					mes "Ocorreram algums problemas, mas não foi um desastre total.";
+					mes "Eu consegui salvar o seu equipamento, mas a carta se rasgou durante o processo...";
+					close;
+				}
+
+				if (.@failtype == 2) {
+					next;
+					failedremovecards .@part,2;
+               mes "[Velha Sábia]";
+					mes "Ocorreram algums problemas, mas não foi um desastre total.";
+					mes "A carta foi salva, porém enquanto eu tentava retirar a carta do equipamento, este não aguentou e quebrou.";
+					close;
+				}
+			}
+
+
+			if(.@failchance < .ChanceDeFalha) {
+				next;
+				failedremovecards .@part,3;
+				mes "[Velha Sábia]";
+				mes "Eu falei em remover a carta. Mas, felizmente, o item e as cartas estão salvos.";
+				close;
+			}
+
+			next;
+			successremovecards .@part;
+			mes "[Velha Sábia]";
+			mes "O processo foi um grande sucesso. Aí estão suas cartas e ítens.";
+			close;
+		case 2:
+			mes "[Velha Sábia]";
+			mes "Eu sempre peço "+.custoBase+"z e mais "+.custoPorCarta+"z por cada carta atrelada ao equipamento.";
+			set .@arraysize, getarraysize(.ItemsQuest);
+			if( .@arraysize > 0)
+			{
+				mes "Também irei precisar de:";
+				for(set .@i, 0; .@i < .@arraysize; set .@i, .@i + 1)
+				{
+					mes .QuantQuest[.@i]+" "+getitemname(.ItemsQuest[.@i]);
+				}
+			}
+			close;
+		case 3:
+			mes "[Velha Sábia]";
+			mes "Tudo bem. Volte quando você precisar de meus serviços.";
+			close;
+	}
+}

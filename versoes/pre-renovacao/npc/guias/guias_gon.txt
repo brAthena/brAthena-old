@@ -1,0 +1,70 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Guias de Kunlun			  			|
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.0/1.1                                |
+// |--------------------------------------------------------|
+// | Descrição: Guias da Cidade de Kunlun                   |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [Protimus]                        |
+// | 1.1 Script Revisado [Protimus]							|
+// \________________________________________________________/
+
+gonryun,163,60,4	script	Guia#gon	780,{
+	mes "[WonChi Ha]";
+	mes "Bem-vindo a KunLun, uma cidade cheia de paixão e energia!";
+	mes "Você pode sentir a alegria só de passear pela cidade!";
+	next;
+	mes "[WonChi Ha]";
+	mes "Eu sou responsável por responder suas dúvidas sobre a cidade.";
+	mes "Por favor, sinta-se à vontade para perguntar.";
+	next;
+	switch(select("Residência do Chefe.:Vendedor de Utilidades.:Vendedor de Armas.:Vendedor de Armaduras.:Loja de Vinhos.")) {
+	case 1:
+		viewpoint 1,109,131,0,0xFF3355;
+     	mes "[WonChi Ha]";
+     	mes "Veja seu mini-mapa.";
+		mes "Se você for em ^FF3355+^000000 encontrará o governador.";
+        mes "Aproveite sua estada na adorável KunLun!";
+		close;
+	case 2:
+		viewpoint 1,147,82,1,0xCE6300;
+		mes "[WonChi Ha]";
+		mes "Veja seu mini-mapa.";
+		mes "Se você for em ^CE6300+^000000 encontrará um Vendedor de Utilidades.";
+		mes "Aproveite sua estada na adorável KunLun!";
+		close;
+	case 3:
+		viewpoint 1,174,104,2,0x55FF33;
+        mes "[WonChi Ha]";
+        mes "Veja seu mini-mapa.";
+        mes "Se você for em ^55FF33+^000000 encontrará um Vendedor de Armas.";
+        mes "Aproveite sua estada na adorável KunLun!";
+		close;
+	case 4:
+		viewpoint 1,173,84,3,0x3355FF;
+        mes "[WonChi Ha]";
+        mes "Veja seu mini-mapa.";
+        mes "Se você for a ^3355FF+^000000 encontrará um Vendedor de Armaduras.";
+        mes "Aproveite sua estada na adorável KunLun!";
+		close;
+	case 5:
+		viewpoint 1,215,114,3,0xCD69C9;
+        mes "[WonChi Ha]";
+        mes "Veja seu mini-mapa.";
+        mes "Se você for a ^FFFFFF+^000000 encontrará uma loja de vinhos.";
+        mes "Aproveite sua estada na adorável KunLun!";
+		close;
+	}
+}

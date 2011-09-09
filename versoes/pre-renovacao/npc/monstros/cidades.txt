@@ -1,0 +1,48 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Monstros Limpadores das Cidades	    |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.1/1.1                                |
+// |--------------------------------------------------------|
+// | Descrição: Invoca monstros para limpar a cidade. 	    |
+// | - Aparentemente invoca no kRO e no iRO                 |
+// | - Ative isso se desejar                                |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [K2X]                             |
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// \________________________________________________________/
+
+prontera,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
+morocc,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
+alberta,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
+aldebaran,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
+geffen,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
+payon,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
+comodo,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
+izlude,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
+yuno,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
+umbala,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
+amatsu,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
+gonryun,0,0,0,0	monster	Rosa Selvagem	1261,1,7200000,3600000,0
+
+//==================================================
+// einbech - Einbech, A Vila Mineradora
+//==================================================
+einbech,0,0,0,0	monster	Rosa Selvagem	1261,1,3600000,3000000,0
+einbech,0,0,0,0	monster	Tarou	1175,5,1800000,1500000,0
+
+//==================================================
+// payon_in02 - Dentro de Payon
+//==================================================
+payon_in02,23,68,5,5	monster	Besouro-Ladrão	1051,7,1200000,600000,0

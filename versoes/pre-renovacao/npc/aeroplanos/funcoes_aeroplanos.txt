@@ -1,0 +1,78 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                     brAthena Script                    |
+// |--------------------------------------------------------|
+// | Nome do Script: Função da 'Equipe do Aeroporto'	    |
+// |--------------------------------------------------------|
+// | Criado por: Architect                                  |
+// |--------------------------------------------------------|
+// | Versão: 1.0                                            |
+// |--------------------------------------------------------|
+// | Descrição: NPC's do Aeroplano de Lighthalzen.          |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Criado [Architect]                          |
+// \________________________________________________________/
+
+function	script	F_Airport	{
+	mes "[Funcionária do Aeroporto]";
+	mes "Seja bem-vindo ao aeroporto.";
+	mes "Como eu posso te ajudar?";
+	next;
+	if (select("Embarcar no Aeroplano.:Cancelar.") == 1) {
+		mes "[Funcionária do Aeroporto]";
+		mes "O embarque no Aeroplano está custando 1.200 zenys, mas se você possuir um Bilhete para Aeroplano, este pagamento será desconsiderado.";
+		next;
+		mes "[Funcionária do Aeroporto]";
+		mes "Você deseja embarcar no Aeroplano?";
+		next;
+		if (select("Sim.:Não.") == 1) {
+			if(countitem(7311) > 0) {
+				delitem 7311,1;
+				warp strcharinfo(3),148,51;
+				close;
+			}
+			if(Zeny >= 1200) {
+				set Zeny, Zeny - 1200;
+				warp strcharinfo(3),148,51;
+				close;
+			}
+			mes "[Funcionária do Aeroporto]";
+			mes "Você não possui zenys suficientes.";
+			close;
+		}
+	}
+	mes "[Funcionária do Aeroporto]";
+	mes "Muito obrigada!";
+	mes "Tenha um ótimo dia!";
+	close;
+}
+
+function	script	F_Airport2	{
+	mes "[Funcionária do Aeroporto]";
+	mes "Bem-vindo!";
+	mes "Por favor, siga em frente para embarcar no Aeroplano.";
+	next;
+	if (select("Deixar o Terminal Principal.:Cancelar.") == 1) {
+		mes "[Funcionária do Aeroporto]";
+		mes "Se você sair agora, do Terminal Principal, você terá de pagar novamente a taxa de embarque para poder entrar novamente no Aeroplano.";
+		next;
+		mes "[Funcionária do Aeroporto]";
+		mes "Você tem certeza que deseja sair do Terminal?";
+		next;
+		if (select("Sim.:Não.") == 1) {
+			warp strcharinfo(3),142,40;
+			close;
+		}
+	}
+	mes "[Funcionária do Aeroporto]";
+	mes "Certo, obrigado por contribuir com o Aeroporto com seu pagamento.";
+	mes "Eu desejo que você faça uma viagem muito agradável!";
+	close;
+}

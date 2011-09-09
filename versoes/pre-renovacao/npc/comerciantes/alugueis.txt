@@ -1,0 +1,165 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Aluguel de Peco Peco e Falcão			|
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.7/1.1                                |
+// |--------------------------------------------------------|
+// | Descrição:	Aluguel de Peco Peco para Cavaleiros e 		|
+// | Templários e Falcões para Caçadores					|
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [Mark]	                        |
+// | 1.1 Script Otimizado [Mark]	                        |
+// | - Anotações		   			    					|
+// \________________________________________________________/
+
+// Criador de Peco Peco (Para Cavaleiros)-------------------------------------------
+prontera,55,350,5	script	Criador de Peco Peco#knt	105,{
+	if(Upper==0) set .@price,2500; //Normal Peco - default price
+	if(Upper==1) set .@price,2500; //Armored Peco
+	if(Upper==2) set .@price,2500; //Baby Peco
+
+	mes "[Criador de Peco Peco]";
+	if (BaseJob == Job_Knight) {
+		mes "Bem-Vindo.";
+		mes "Honorável Cavaleiro, você gostaria de alugar um Peco Peco?";
+		mes "O aluguel custa "+.@price+" zeny.";
+		next;
+		if(select("Alugar Peco Peco:Cancelar") == 1) {
+			if (zeny < .@price) {
+				mes "[Criador de Peco Peco]";
+				mes "Você não possui zeny o suficiente.";
+				mes "Você está... falido?";
+				close;
+			}
+			else if(getskilllv("KN_RIDING") == 0) {
+				mes "[Criador de Peco Peco]";
+				mes "Me desculpe, mas você não pode receber meus serviços.";
+				mes "Por favor vá aprender a habilidade Montaria primeiro.";
+				close;
+			}
+			else if(checkriding()) {
+				mes "[Criador de Peco Peco]";
+				mes "Você já está montando um Peco Peco.";
+				close;
+			}
+			set zeny,zeny-.@price;
+			setriding;
+			close;
+		} else {
+			mes "[Criador de Peco Peco]";
+			mes "Entendo.";
+			mes "Tudo bem, tenha um bom dia.";
+			close;
+		}
+	} else {
+		mes "Me desculpe, mas estes Peco Pecos estão apenas disponíveis para Cavaleiros e Lordes.";
+		close;
+	}
+}
+
+// Criador de Peco Peco (Para Templários)-------------------------------------------
+prontera,232,318,3	script	Criador de Peco Peco#cru	105,{
+	if(Upper==0) set .@price,3500; //Normal Peco - default price
+	if(Upper==1) set .@price,3500; //Armored Peco
+	if(Upper==2) set .@price,3500; //Baby Peco
+
+	mes "[Criador de Peco Peco]";
+	if (BaseJob == Job_Crusader) {
+		if(Upper != 1 ) mes "Bem-Vindo, Templário.";
+		else mes "Bem-Vindo, Paladino.";
+		mes "Nós temos um tipo especial de Peco Peco preparado para você.";
+		mes "Para alugar um vai custar "+.@price+" zeny.";
+		next;
+		if(select("Alugar um Peco Peco:Sair")== 1) {
+			if (zeny < .@price) {
+				mes "[Criador de Peco Peco]";
+				mes "Você não possui zeny o suficiente.";
+				mes "Se você gostaria de ter um Peco Peco por favor traga "+.@price+" zeny..";
+				close;
+			}
+			else if(getskilllv("KN_RIDING") == 0) {
+				mes "[Criador de Peco Peco]";
+				mes "Você deve primeiro aprender a montar um Peco Peco.";
+				mes "E então poderei alugar um para você.";
+				close;
+			}
+			else if(checkriding()) {
+				mes "[Criador de Peco Peco]";
+				mes "Você já está montando um Peco Peco.";
+				close;
+			}
+			set zeny,zeny-.@price;
+			setriding;
+			close;
+		} else {
+			mes "[Criador de Peco Peco]";
+			mes "Te vejo por aí.";
+			close;
+		}
+	} else {
+		mes "O que posso fazer por você?";
+		mes "Esteja ciente de que este serviço de aluguel de Peco Pecos é restrito a Templários de Paladinos.";
+		close;
+	}
+}
+
+// Criador de Falcões --------------------------------------------------------------
+hu_in01,381,304,5	script	Criador de Falcão#hnt	105,{
+	if(Upper==0) set .@price,2500; //Normal Falcon - default price
+	if(Upper==1) set .@price,2500; //Scarf Falcon
+	if(Upper==2) set .@price,2500; //Baby Falcon
+
+	mes "[Criador de Falcão]";
+	if (BaseJob == Job_Hunter) {
+		mes "Você necessita de um Falcão?";
+		mes "Você pode alugar o seu próprio falcão por um preço justo de apenas "+.@price+" zeny~";
+		next;
+		if(select("Alugar Falcão:Cancelar") == 1) {
+			if (zeny < .@price) {
+				mes "[Criador de Falcão]";
+				mes "O que é isso?";
+				mes "Você não possui zeny o suficiente?!";
+				mes "Você deveria começar a ganhar dinheiro matando monstros~";
+				close;
+			}
+			else if(getskilllv("HT_FALCON") == 0) {
+				mes "[Criador de Falcão]";
+				mes "Deus~";
+				mes "Vá aprender como cuidar de um Falcão primeiro!";
+				mes "Não posso alugar um para você se não pode adestrá-lo.";
+				close;
+			}
+			else if(checkfalcon()) {
+				mes "[Criador de Falcão]";
+				mes "Hum...";
+				mes "Você já possui um Falcão.";
+				mes "Está bem aí, você não pode vê-lo?";
+				close;
+			}
+			set zeny,zeny-.@price;
+			setfalcon;
+			close;
+		} else {
+			mes "[Criador de Falcão]";
+			mes "E-espere, o que você está pensando?";
+			mes "Estes Falcões são os melhores, eu garanto isso! Vamos~";
+			close;
+		}
+	} else {
+		mes "Jovem Tolo!";
+		mes "Falcões apenas podem ser usados por Caçadores e Atiradores de Elite, entendeu?";
+		mes "...Heh heh, inveja?";
+		close;
+	}
+}

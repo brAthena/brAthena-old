@@ -1,0 +1,247 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nãome do Script: Quests Repetíveis - Driáde            |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.0/1.1                                |
+// |--------------------------------------------------------|
+// | Descrição: Quests repetíveis para ganho de EXP.        |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [insidemybrain]                   |
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// \_______________________________________________________/
+
+um_fild01,34,281,5	script	Lilla#Dryad_Hunt	724,{
+	if (checkquest(60131) != -1) {
+		if (checkquest(60131,HUNTING) != 2 ) {
+			mes "[Lilla]";
+			mes "Você terminou de caçar as 50 Driádes?";
+			next;
+			switch(select("Sim.:Não.:Quero desistir.")) {
+			case 1:
+				mes "[Lilla]";
+				mes "Hm... Acho que você não caçou as 50 Driádes...";
+				close;
+			case 2:
+				mes "[Lilla]";
+				mes "Lembre-se que eu preciso de ajuda para matar as 50 Driádes.";
+				close;
+			case 3:
+				mes "[Lilla]";
+				mes "Deseja realmente parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
+				next;
+				switch(select("Sim.:Não;")) {
+				case 1:
+					mes "[Lilla]";
+					mes "Tudo bem, volte quando mudar de idéia.";
+					erasequest 60131;
+					close;
+				case 2:
+					mes "[Lilla]";
+					mes "Por favor mate 50 Driádes.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Lilla]";
+			mes "Incrível, você terminou a quest rapidamente.";
+			getexp 262485,141835;
+			erasequest 60131;
+			close;
+		}
+	}
+	if (checkquest(60132) != -1) {
+		if (checkquest(60132,HUNTING) != 2 ) {
+			mes "[Lilla]";
+			mes "Você terminou de caçar as 100 Driádes?";
+			next;
+			switch(select("Sim.:Não.:Quero desistir.")) {
+			case 1:
+				mes "[Lilla]";
+				mes "Hm... Acho que você não caçou as 100 Driádes...";
+				close;
+			case 2:
+				mes "[Lilla]";
+				mes "Lembre-se que eu preciso de ajuda para matar as 100 Driádes.";
+				close;
+			case 3:
+				mes "[Lilla]";
+				mes "Deseja realmente parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
+				next;
+				switch(select("Sim.:Não.")) {
+				case 1:
+					mes "[Lilla]";
+					mes "Tudo bem, volte quando mudar de idéia.";
+					erasequest 60132;
+					close;
+				case 2:
+					mes "[Lilla]";
+					mes "Por favor mate 100 Driádes.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Lilla]";
+			mes "Incrível, você terminou a quest rapidamente.";
+			getexp 262485,141835;
+			getexp 262485,141835;
+			erasequest 60132;
+			close;
+		}
+	}
+	if (checkquest(60133) != -1) {
+		if (checkquest(60133,HUNTING) != 2 ) {
+			mes "[Lilla]";
+			mes "Você terminou de caçar as 150 Driádes?";
+			next;
+			switch(select("Sim.:Não.:Quero desistir.")) {
+			case 1:
+				mes "[Lilla]";
+				mes "Hm... Acho que você não caçou as 150 Driádes...";
+				close;
+			case 2:
+				mes "[Lilla]";
+				mes "Lembre-se que eu preciso de ajuda para matar as 150 Driádes.";
+				close;
+			case 3:
+				mes "[Lilla]";
+				mes "Deseja realmente parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
+				next;
+				switch(select("Sim.:Não.")) {
+				case 1:
+					mes "[Lilla]";
+					mes "Tudo bem, volte quando mudar de idéia.";
+					erasequest 60133;
+					close;
+				case 2:
+					mes "[Lilla]";
+					mes "Por favor mate 150 Driádes.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Lilla]";
+			mes "Incrível, você terminou a quest rapidamente.";
+			getexp 262485,141835;
+			getexp 262485,141835;
+			getexp 262485,141835;
+			erasequest 60133;
+			close;
+		}
+	}
+	// Para level mínimo
+	if (BaseLevel > 59) {
+		// Para level máximo
+		if (BaseLevel < 86) {
+			mes "[Lilla]";
+			mes "Ora, ora, olá!";
+			mes "Você parece ser alguém que ajudaria uma pessoa indefesa como eu.";
+			next;
+			switch(select("Claro.:Não.")) {
+			case 1:
+				mes "[Lilla]";
+				mes "Sério?!";
+				mes "Que ótimo!";
+				next;
+				switch(select("Pegar Itens.:Caçar Driádes.:Cancelar.")) {
+				case 1:
+					mes "[Lilla]";
+					mes "Eu preciso muito de ^00CC0050 Folhas Afiadas^000000 para um chá no meu jardim.";
+					mes "Você tem algumas??";
+					next;
+					switch(select("Eu tenho as Folhas Afiadas.:O quê? Desculpe, estava pensando em outra coisa.")) {
+					case 1:
+						/*
+						if (checkweight(504,10) == 0) {
+							mes "[Lilla]";
+							mes "Ei, parece que você vai ser esmagado pelo peso nas suas costas.";
+							mes "Volte quando não estiver carregando tanta coisa.";
+							close;
+						}
+						*/
+						if (countitem(7100) > 49) {
+							mes "[Lilla]";
+							mes "Ei, mas que gentileza da sua parte.";
+							mes "Eu agradeço muito por me ajudar!";
+							next;
+							mes "[Lilla]";
+							mes "Oh, eu quase me esqueci, tenho algo para você.";
+							mes "Muito obrigada novamente.";
+							delitem 7100,50; // Folha Afiada
+							getexp 262485,141835;
+							//getitem 504,10; // Poção Branca
+							close;
+						}
+						else {
+							mes "[Lilla]";
+							mes "Ora, eu posso ser bonitinha e meio tola, mas não brinque comigo.";
+							close;
+						}
+					case 2:
+						mes "[Lilla]";
+						mes "Eu preciso de ^FF000050 Folhas Afiadas^000000.";
+						close;
+					}
+				case 2:
+					// Kill Count Quest
+					mes "[Lilla]";
+					mes "Ah sim, você quer caçar algumas Driádes.";
+					mes "Quantas gostaria de caçar?";
+					next;
+					switch(select("50 Driádes.:100 Driádes.:150 Driádes.")) {
+					case 1:
+						mes "[Lilla]";
+						mes "Volte quando terminar e darei-lhe um pequena recompensa.";
+						setquest 60131;
+						close;
+					case 2:
+						mes "[Lilla]";
+						mes "Volte quando terminar e darei-lhe um pequena recompensa.";
+						setquest 60132;
+						close;
+					case 3:
+						mes "[Lilla]";
+						mes "Volte quando terminar e darei-lhe um pequena recompensa.";
+						setquest 60133;
+						close;
+					}
+				case 3:
+					mes "[Lilla]";
+					mes "Se mudar de idéia, fale comigo novamente";
+					close;
+				}
+			case 2:
+				mes "[Lilla]";
+				mes "Se mudar de idéia, fale comigo novamente";
+				close;
+			}
+		}
+		else {
+			mes "[Lilla]";
+			mes "Desculpe-me, mas você é um pouco velho e assustador demais para conversar!";
+			close;
+		}
+	}
+	else {
+		mes "[Lilla]";
+		mes "Você é muito pequenininho para me ajudar.";
+		mes "Mas obrigada pela oferta";
+		close;
+	}
+}

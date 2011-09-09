@@ -1,0 +1,62 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                     brAthena Script                    |
+// |--------------------------------------------------------|
+// | Nome do Script: Banqueiro                              |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões brA: 1.0                                       |
+// |--------------------------------------------------------|
+// | Descrição: Banqueiro que permite que o usuario faça    |
+// | depósitos, saques e veja o saldo de sua conta.         |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Criado [Equipe brAthena]                    |
+// \________________________________________________________/
+
+prontera,132,217,5	script	Banqueiro	109,{
+	mes "[ Banqueiro ]";
+	mes "Olá, eu sou o banqueiro de Rune-Midgard. Como posso ajudá-lo hoje?";
+	next;
+	if(select("Eu gostaria de fazer um depósito.:Eu gostaria de efetuar um saque.:Como está minha conta atualmente?:Cancelar")==4) close;
+	mes "[ Banqueiro ]";
+	if(@menu==3){
+		mes "Hmmmm, deixe-me ver nas papeladas.";
+		next;
+		mes "^0000FF*Rustle, Rustle*^000000";
+		next;
+		mes "[ Banqueiro ]";
+		mes "Atualmente você possui "+#bankstorage+" Zeny em sua conta bancária.";
+		close;
+	}
+	mes "Muito bem... Quanto deseja "+(@menu==1 ? "depositar":"sacar")+"? O valor máximo é "+.configs[@menu]+" Zeny.";
+	if(.configs)
+		mes "Ah, e não se esqueça que preciso de "+.configs+" Zeny para efetuar uma operação.";
+	next;
+	if(input(@quantidade,1,.configs[@menu])){
+		mes "[ Banqueiro ]";
+		mes "O valor da operação tem que ser entre 0 e "+.configs[@menu]+" Zeny.";
+		close;
+	}
+	set @quantidade,@quantidade*(@menu==1 ? 1:-1);
+	mes "[ Banqueiro ]";
+	if(Zeny-@quantidade < .configs || Zeny-@quantidade > .configs[3] || @quantidade+#bankstorage > 2000000000 || #bankstorage+@quantidade < 0){
+		mes "Você não pode "+(@menu==1 ? "depositar":"sacar")+" esta quantidade de Zeny.";
+		close;
+	}
+	mes "Operação concluida.";
+	set #bankstorage,#bankstorage+@quantidade;
+	set Zeny,Zeny-@quantidade-.configs;
+	close;
+
+OnInit:
+	setarray .configs,5000,10000000,10000000,1000000000; //Preço, Máximo de depósito, Máximo de retirada, Máximo de zeny que um personagem pode ter.
+	end;
+}

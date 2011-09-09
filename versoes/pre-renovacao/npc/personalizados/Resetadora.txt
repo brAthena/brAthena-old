@@ -1,0 +1,48 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                     brAthena Script                    |
+// |--------------------------------------------------------|
+// | Nome do Script: Resetadora                             |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões brA: 1.0                                       |
+// |--------------------------------------------------------|
+// | Descrição: NPC para resetar atributos, habilidades e   |
+// | ambos, podendo configurar preço de cada um.            |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Criado [Equipe brAthena]                    |
+// | 1.1 Corrigido problema com array. [Protimus]			|
+// \________________________________________________________/
+
+prontera,143,227,4	script	Resetadora	78,{
+	mes "[Resetadora]";
+	mes "Eu sou a resetadora.";
+	mes "Resetar atributos: ^0000FF"+.preco[1]+"z^000000.";
+	mes "Resetar habilidades: ^0000FF"+.preco[2]+"z^000000.";
+	mes "Resetar ambos: ^0000FF"+.preco[3]+"z^000000.";
+	mes "Por favor, escolha o que desejas:";
+	next;
+	if(select("^FF3355Resetar Atributos.:Resetar habilidades.:Resetar ambos.^000000:Sair") == 4) close;
+	mes "[Resetadora]";
+	if(Zeny < .preco[@menu]){
+		mes "Desculpe-me, mas você não possui zenys suficientes";
+		close;
+	}
+	mes "Prontinho";
+	set Zeny,Zeny - .preco[@menu];
+	if(@menu != 2) resetstatus;
+	if(@menu != 1) resetskill;
+	close;
+
+OnInit:
+	setarray .preco[1],5000,5000,9000; // Preço para resetar: [1] os atributos, [2] as habilidades e [3] ambos.
+	end;
+}

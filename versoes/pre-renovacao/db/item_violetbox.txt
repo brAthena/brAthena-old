@@ -1,0 +1,861 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Database: item_violetbox.txt                   |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Descrição: Banco de Dados dos itens obtidos pela       |
+// | 'Velha Caixa Roxa'.                                    |
+// |--------------------------------------------------------|
+// | Estrutura do Banco de Dados:                           |
+// | ID do Grupo de Itens, ID do Item, Taxa                 |
+// \________________________________________________________/
+
+2,501,14	// Poção Vermelha
+2,502,14	// Poção Laranja
+2,503,14	// Poção Amarela
+2,504,14	// Poção Branca
+2,505,14	// Poção Azul
+2,506,14	// Poção Verde
+2,507,14	// Erva Vermelha
+2,508,14	// Erva Amarela
+2,509,14	// Erva Branca
+2,510,14	// Erva Azul
+2,511,14	// Erva Verde
+2,512,14	// Maçã
+2,513,14	// Banana
+2,514,14	// Uvas
+2,515,14	// Cenoura
+2,516,14	// Batata Doce
+2,517,14	// Carne
+2,518,14	// Mel
+2,519,14	// Leite
+2,520,14	// Folha de Hinalle
+2,521,14	// Folha de Aloe
+2,522,14	// Mastela
+2,523,14	// Água Benta
+2,525,14	// Panacéia
+2,526,14	// Geléia Real
+2,528,14	// Ração para Monstros
+2,529,14	// Bala
+2,530,14	// Bengala Doce
+2,531,14	// Suco de Maçã
+2,532,14	// Suco de Banana
+2,533,14	// Suco de Uva
+2,534,14	// Suco de Cenoura
+2,535,14	// Abóbora
+2,536,14	// Sorvete
+2,537,14	// Ração para Bichinho
+2,538,14	// Biscoito de Gengibre
+2,539,14	// Pedaço de Bolo
+2,544,14	// Peixe Cru
+2,545,14	// Poção Vermelha Compacta
+2,546,14	// Poção Amarela Compacta
+2,547,14	// Poção Branca Compacta
+2,548,14	// Queijo
+2,549,14	// Batata Doce Assada
+2,550,14	// Bolinhos de Arroz
+2,551,14	// Sushi
+2,553,14	// Pão de Carne
+2,555,14	// Bolinho de Arroz
+2,558,14	// Chocolate
+2,561,14	// Chocolate Branco
+2,601,14	// Asa de Mosca
+2,602,14	// Asa de Borboleta
+2,603,614	// Velha Caixa Azul
+2,604,214	// Galho Seco
+2,605,14	// Analgésico
+2,606,14	// Aloe Vera
+2,607,14	// Fruto de Yggdrasil
+2,608,14	// Semente de Yggdrasil
+2,609,14	// Amuleto
+2,610,14	// Folha de Yggdrasil
+2,611,14	// Lupa
+2,612,14	// Mini-Fornalha
+2,613,14	// Martelo de Ferro
+2,614,14	// Martelo de Ouro
+2,615,14	// Martelo de Oridecon
+2,616,1	// Velho Álbum de Cartas
+2,617,103	// Velha Caixa Roxa
+2,618,14	// Pergaminho Desgastado
+2,619,14	// Maçã Verde
+2,620,14	// Suco de Laranja
+2,621,14	// Erva Amarga
+2,622,14	// Cenoura Arco-Íris
+2,623,14	// Minhoca Boa-Pinta
+2,624,14	// Peixe Podre
+2,625,14	// Ferro Enferrujado
+2,626,14	// Suco de Monstro
+2,627,14	// Leite Doce
+2,628,14	// Osso Seco
+2,629,14	// Flor Cantante
+2,630,14	// Musgo Encharcado
+2,631,14	// Erva Letal
+2,632,14	// Minhoca Gorducha
+2,633,14	// Batata Assada
+2,634,14	// Banana Tropical
+2,635,14	// Horror da Tribo
+2,636,14	// Sem Destinatário
+2,637,14	// Vassoura Velha
+2,638,14	// Faca de Prata da Castidade
+2,639,14	// Bracelete da Obediência
+2,640,14	// Pedra Brilhante
+2,641,14	// Contratos das Sombras
+2,642,14	// Livro do Diabo
+2,643,14	// Incubadora
+2,644,114	// Caixa de Presente
+2,645,14	// Poção da Concentração
+2,656,14	// Poção do Despertar
+2,657,14	// Poção da Fúria Selvagem
+2,659,14	// Coração Apaixonado
+2,663,14	// Ovos de Chocolate Branco
+2,664,14	// Caixa de Presente 1
+2,665,14	// Caixa de Presente 2
+2,666,14	// Caixa de Presente 3
+2,667,14	// Caixa de Presente 4
+2,668,14	// Envelope Vermelho
+2,678,14	// Garrafa de Veneno
+2,679,14	// Pílula Dourada
+2,701,14	// Armadilha para Insetos
+2,702,14	// Sangue de Animal
+2,703,14	// Hinalle
+2,704,14	// Aloés
+2,705,14	// Trevo
+2,706,14	// Trevo de Quatro Folhas
+2,707,14	// Planta da Melodia
+2,708,14	// Menta
+2,710,14	// Flor das Ilusões
+2,711,14	// Broto
+2,712,14	// Flor
+2,713,14	// Garrafa Vazia
+2,714,14	// Emperium
+2,715,14	// Gema Amarela
+2,716,14	// Gema Vermelha
+2,717,14	// Gema Azul
+2,718,14	// Granada
+2,719,14	// Ametista
+2,720,14	// Aquamarina
+2,721,14	// Esmeralda
+2,722,14	// Pérola
+2,723,14	// Rubi
+2,724,14	// Rubi Amaldiçoado
+2,725,14	// Peridoto
+2,726,14	// Safira
+2,727,14	// Opala
+2,728,14	// Topázio
+2,729,14	// Zircônio
+2,730,14	// Diamante de 1 quilate
+2,731,14	// Diamante de 2 quilates
+2,732,14	// Diamante de 3 quilates
+2,733,14	// Diamante Rachado
+2,734,14	// Moldura Vermelha
+2,735,14	// Chung Jah
+2,736,14	// Prato de Porcelana
+2,737,14	// Concha Preta
+2,738,14	// Estojo de Lápis
+2,739,14	// Batom
+2,740,14	// Boneco de Pelúcia
+2,741,14	// Boneco de Poring
+2,742,14	// Boneco de Chonchon
+2,743,14	// Boneco de Esporo
+2,744,14	// Buquê
+2,745,14	// Buquê de Casamento
+2,746,14	// Bolinha de Gude
+2,747,14	// Espelho de Cristal
+2,748,14	// Rosa Eterna
+2,749,14	// Rosa de Gelo
+2,750,14	// Boneco de Bafomé
+2,751,14	// Boneco de Osíris
+2,752,14	// Boneco de Rocker
+2,753,14	// Boneco de Yoyo
+2,754,14	// Boneco de Fumacento
+2,756,14	// Minério de Oridecon
+2,757,14	// Minério de Elunium
+2,901,14	// Trança
+2,902,14	// Raiz de Árvore
+2,903,14	// Língua de Réptil
+2,904,14	// Cauda de Escorpião
+2,905,14	// Caule
+2,906,14	// Escama Afiada
+2,907,14	// Resina
+2,908,14	// Ova de Sapo
+2,909,14	// Jellopy
+2,910,14	// Garleta
+2,911,14	// Scell
+2,912,14	// Zargônio
+2,913,14	// Dente de Morcego
+2,914,14	// Felpa
+2,915,14	// Crisálida
+2,916,14	// Plumas de Ave
+2,917,14	// Garra de Ave
+2,918,14	// Pata Pegajosa
+2,919,14	// Couro de Animal
+2,920,14	// Garra de Lobo
+2,921,14	// Esporo de Cogumelo
+2,922,14	// Presa de Orc
+2,923,14	// Chifre Diabólico
+2,924,14	// Pó de Borboleta
+2,925,14	// Bico de Ave
+2,926,14	// Escamas de Cobra
+2,928,14	// Antenas de Inseto
+2,929,14	// Coração Imortal
+2,930,14	// Bandagem Estragada
+2,931,14	// Amuleto dos Orcs
+2,932,14	// Osso
+2,934,14	// Espólio
+2,935,14	// Casca
+2,936,14	// Casca Escamada
+2,937,14	// Canino Venenoso
+2,938,14	// Muco Pegajoso
+2,939,14	// Ferrão de Abelha
+2,940,14	// Perna de Gafanhoto
+2,941,14	// Argola
+2,942,14	// Cauda de Yoyo
+2,943,14	// Casca Rija
+2,944,14	// Ferradura
+2,945,14	// Folha de Fumacento
+2,946,14	// Casco de Caramujo
+2,947,14	// Chifre
+2,948,14	// Pata de Urso
+2,949,14	// Pluma
+2,950,14	// Coração de Sereia
+2,951,14	// Nadadeira
+2,952,14	// Espinho de Cacto
+2,953,14	// Coração de Pedra
+2,954,14	// Escama Brilhante
+2,955,14	// Pele de Verme
+2,956,14	// Guelra
+2,957,14	// Unha Apodrecida
+2,958,14	// Mandíbula Horrenda
+2,959,14	// Escama Fétida
+2,960,14	// Garra de Crustáceo
+2,961,14	// Concha
+2,962,14	// Tentáculo
+2,963,14	// Escama Aquática
+2,964,14	// Casco de Caranguejo
+2,965,14	// Casco de Ostra
+2,966,14	// Carne de Ostra
+2,967,14	// Casco de Tartaruga
+2,968,14	// Insígnia do Herói
+2,969,14	// Ouro
+2,970,14	// Álcool
+2,971,14	// Detrimindexta
+2,972,14	// Karvodailnirol
+2,973,14	// Antígeno
+2,974,14	// Mistura
+2,975,14	// Tintura Vermelha
+2,976,14	// Tintura Amarela
+2,978,14	// Tintura Azul
+2,979,14	// Tintura Verde
+2,980,14	// Tintura Laranja
+2,981,14	// Tintura Violeta
+2,982,14	// Tintura Branca
+2,983,14	// Tintura Preta
+2,984,14	// Oridecon
+2,985,14	// Elunium
+2,986,14	// Bigorna
+2,987,14	// Bigorna de Oridecon
+2,988,14	// Bigorna de Ouro
+2,989,14	// Bigorna de Emperium
+2,990,14	// Sangue Escarlate
+2,991,14	// Cristal Azul
+2,992,14	// Frescor do Vento
+2,993,14	// Vida Verdejante
+2,994,14	// Coração Flamejante
+2,995,14	// Gelo Místico
+2,996,14	// Vento Bruto
+2,997,14	// Natureza Grandiosa
+2,998,14	// Ferro
+2,999,14	// Aço
+2,1000,14	// Fragmento Estelar
+2,1001,14	// Poeira Estelar
+2,1002,14	// Minério de Ferro
+2,1003,14	// Carvão
+2,1004,14	// Insígnia da Cavalaria
+2,1005,14	// Martelo de Ferreiro
+2,1006,14	// Grimório Antigo
+2,1007,14	// Colar da Sabedoria
+2,1008,14	// Colar do Oblívio
+2,1009,14	// Mão Divina
+2,1010,14	// Fracon
+2,1011,14	// Emveretarcon
+2,1012,14	// Brasão
+2,1013,14	// Casco Arco-Íris
+2,1014,14	// Mandíbula de Formiga
+2,1015,14	// Língua
+2,1016,14	// Cauda de Rato
+2,1017,14	// Bigodes de Toupeira
+2,1018,14	// Garras de Toupeira
+2,1019,14	// Tronco
+2,1020,14	// Cabelos Morenos
+2,1021,14	// Chifre de Dokebi
+2,1022,14	// Nove-Caudas
+2,1023,14	// Cauda de Peixe
+2,1024,14	// Tinta de Polvo
+2,1025,14	// Teia de Aranha
+2,1026,14	// Avelã
+2,1027,14	// Espinho de Porco-Espinho
+2,1028,14	// Crina
+2,1029,14	// Pele de Tigre
+2,1030,14	// Pata de Tigre
+2,1031,14	// Foice de Louva-a-Deus
+2,1032,14	// Flor de Planta Carnívora
+2,1033,14	// Raiz de Planta Carnívora
+2,1034,14	// Cabelo Azul
+2,1035,14	// Canino de Dragão
+2,1036,14	// Escama de Dragão
+2,1037,14	// Cauda de Dragão
+2,1038,14	// Pequeno Chifre Maligno
+2,1039,14	// Pequena Asa Maligna
+2,1040,14	// Bigode de Anão Ancião
+2,1041,14	// Lampião
+2,1042,14	// Pata de Inseto
+2,1043,14	// Garra de Orc
+2,1044,14	// Presa de Zenorc
+2,1045,14	// Máscara Ritualística
+2,1046,14	// Garra de Escorpião
+2,1047,14	// Cabeça de Medusa
+2,1048,14	// Cabelo Horrendo
+2,1049,14	// Saia Virginal
+2,1050,14	// Tendões
+2,1051,14	// Neurônio
+2,1052,14	// Célula Única
+2,1053,14	// Dente Fossilizado
+2,1054,14	// Lábios Fossilizados
+2,1055,14	// Pele de Minhoca
+2,1056,14	// Torrão de Areia
+2,1057,14	// Pó de Traça
+2,1058,14	// Asas de Traça
+2,1059,14	// Tecido
+2,1060,14	// Cabelos Dourados
+2,1061,14	// Areia Estelar de Bruxa
+2,1062,14	// Zé-Lanterna
+2,1063,14	// Presa
+2,1064,14	// Rédeas
+2,1065,14	// Armadilha
+2,1066,14	// Tronco de Alta Qualidade
+2,1067,14	// Tronco Sólido
+2,1068,14	// Tronco Estéril
+2,1088,14	// Solução de Morroc
+2,1089,14	// Solução de Payon
+2,1092,14	// Tubo de Ensaio
+2,1093,14	// Garrafa de Poção
+2,1094,14	// Trança Curta
+2,1095,14	// Ponteiro
+2,1096,14	// Casca Arredondada
+2,1097,14	// Página Deteriorada
+2,1098,14	// Algemas
+2,1099,14	// Uniforme Velho de Presidiário
+2,1102,7	// Espada
+2,1105,7	// Alfanje
+2,1108,7	// Lâmina
+2,1111,7	// Florete
+2,1114,7	// Cimitarra
+2,1117,7	// Kataná
+2,1120,7	// Tsurugi
+2,1124,7	// Espada Orc
+2,1125,7	// Sabre de Impacto
+2,1127,7	// Sabre
+2,1128,7	// Haedonggum
+2,1129,7	// Flamberge
+2,1152,7	// Espada Matadora
+2,1155,7	// Espada Bastarda
+2,1158,7	// Espada de Duas Mãos
+2,1162,7	// Espada Larga
+2,1163,7	// Claymore
+2,1202,7	// Faca
+2,1205,7	// Punhal
+2,1208,7	// Main Gauche
+2,1211,7	// Punhal
+2,1214,7	// Adaga
+2,1217,7	// Stiletto
+2,1220,7	// Gladius
+2,1226,7	// Damascus
+2,1243,7	// Adaga do Aprendiz
+2,1251,7	// Jur
+2,1253,7	// Katar
+2,1255,7	// Jamadhar
+2,1256,7	// Katar Gélida
+2,1257,7	// Katar da Espinheira Empoeirada
+2,1258,7	// Katar da Chama Impetuosa
+2,1259,7	// Katar do Vento Perfurante
+2,1302,7	// Machado
+2,1304,7	// Machado dos Orcs
+2,1352,7	// Machado de Batalha
+2,1355,7	// Marreta
+2,1358,7	// Demolidor
+2,1361,7	// Machado de Duas Mãos
+2,1402,7	// Azagaia
+2,1405,7	// Ranseur
+2,1408,7	// Pique
+2,1411,7	// Lança
+2,1452,7	// Guisarme
+2,1455,7	// Glaive
+2,1458,7	// Guerrilheira
+2,1461,7	// Tridente
+2,1464,7	// Alabarda
+2,1472,7	// Cajado Cabalístico
+2,1502,7	// Clava
+2,1505,7	// Maça
+2,1508,7	// Esmagador
+2,1511,7	// Mangual
+2,1514,7	// Maça de Guerra
+2,1517,7	// Maça Espada
+2,1520,7	// Mangual Pesado
+2,1522,7	// Atordoador
+2,1550,7	// Livro
+2,1551,7	// Bíblia
+2,1552,7	// Tábula
+2,1553,7	// Livro das Ondas
+2,1554,7	// Livro da Mãe Terra
+2,1555,7	// Livro do Sol Ardente
+2,1556,7	// Livro do Golpe de Vento
+2,1558,7	// Diário de Menina
+2,1602,7	// Bastão
+2,1605,7	// Vareta
+2,1608,7	// Cajado
+2,1611,7	// Cetro
+2,1613,7	// Cajado do Poder
+2,1614,7	// Bastão Xamista
+2,1615,7	// Bastão Arcano
+2,1702,7	// Arco
+2,1705,7	// Arco Composto
+2,1708,7	// Arco Grande
+2,1711,7	// Besta
+2,1715,7	// Arbaleste
+2,1716,7	// Gakkung
+2,1718,7	// Arco de Caça
+2,1750,14	// Flecha
+2,1751,14	// Flecha de Prata
+2,1752,14	// Flecha de Fogo
+2,1753,14	// Flecha de Aço
+2,1754,14	// Flecha de Cristal
+2,1755,14	// Flecha de Vento
+2,1756,14	// Flecha de Pedra
+2,1757,14	// Flecha Incorpórea
+2,1758,14	// Flecha Atordoante
+2,1759,14	// Flecha Congelante
+2,1760,14	// Flecha Luminosa
+2,1761,14	// Flecha Amaldiçoada
+2,1762,14	// Flecha Enferrujada
+2,1763,14	// Flecha Envenenada
+2,1764,14	// Flecha Afiada
+2,1765,14	// Flecha de Oridecon
+2,1767,14	// Flecha Sombria
+2,1768,14	// Flecha Sonífera
+2,1769,14	// Flecha Emudecedora
+2,1770,14	// Flecha de Ferro
+2,1802,7	// Waghnak
+2,1804,7	// Soqueira
+2,1806,7	// Soco Inglês
+2,1808,7	// Punho
+2,1810,7	// Garra
+2,1812,7	// Dedos Afiados
+2,1902,7	// Violino
+2,1904,7	// Bandolin
+2,1906,7	// Alaúde
+2,1908,7	// Violão
+2,1910,7	// Harpa
+2,1912,7	// Gumoongoh
+2,1951,7	// Cordel
+2,1953,7	// Cordame
+2,1955,7	// Açoite
+2,1957,7	// Azorrague
+2,1959,7	// Chibata
+2,1961,7	// Chicote
+2,2102,7	// Vembrassa
+2,2104,7	// Broquel
+2,2106,7	// Escudo
+2,2108,7	// Escudo Espelhado
+2,2109,7	// Grimório
+2,2112,7	// Vembrassa do Aprendiz
+2,2201,7	// Óculos Escuros
+2,2203,7	// Óculos
+2,2205,7	// Óculos de Mergulho
+2,2206,7	// Véu de Noiva
+2,2207,7	// Florzinha
+2,2208,7	// Laço
+2,2209,7	// Laço
+2,2210,7	// Faixa de Cabelo
+2,2211,7	// Bandana
+2,2212,7	// Tapa-Olho
+2,2213,7	// Orelha de Gato
+2,2214,7	// Orelha de Coelho
+2,2215,7	// Chapéu Florido
+2,2216,7	// Solidéu
+2,2217,7	// Solidéu
+2,2218,7	// Máscara Cirúrgica
+2,2220,7	// Chapéu
+2,2221,7	// Chapéu
+2,2222,7	// Turbante
+2,2223,7	// Turbante
+2,2224,7	// Óculos de Proteção
+2,2225,7	// Óculos de Proteção
+2,2226,7	// Barrete
+2,2227,7	// Barrete
+2,2228,7	// Elmo
+2,2229,7	// Elmo
+2,2230,7	// Capacete de Schallern
+2,2231,7	// Capacete de Schallern
+2,2232,7	// Tiara
+2,2233,7	// Tiara
+2,2234,1	// Diadema
+2,2235,1	// Coroa
+2,2236,7	// Gorro de Natal
+2,2239,7	// Monóculo
+2,2241,7	// Bigode Grisalho
+2,2242,7	// Óculos Ultra-Violeta
+2,2243,7	// Quatro-Olhos
+2,2244,7	// Laço Grande
+2,2245,7	// Chapéu Charmoso
+2,2246,7	// Peça Dourada
+2,2247,7	// Chapéu Romântico
+2,2248,7	// Chapéu do Velho Oeste
+2,2249,1	// Coroa Menor
+2,2250,7	// Laço Meigo
+2,2251,7	// Chapéu de Monge
+2,2252,7	// Chapéu de Bathory
+2,2253,7	// Girassol
+2,2254,1	// Asas de Anjo
+2,2255,1	// Asas de Demônio
+2,2256,1	// Chifres Majestosos
+2,2257,7	// Chifre de Unicórnio
+2,2258,1	// Chifres Pontudos
+2,2259,7	// Hélices
+2,2260,7	// Pince-Nez
+2,2261,7	// Capacete de Soldado
+2,2262,7	// Nariz de Palhaço
+2,2263,7	// Máscara de Bandido
+2,2265,7	// Máscara X
+2,2266,7	// Bevor
+2,2267,7	// Cigarro
+2,2268,7	// Cachimbo
+2,2269,7	// Flor Romântica
+2,2270,7	// Folha Romântica
+2,2271,7	// Óculos Charmoso
+2,2274,1	// Faixa de Fantasma
+2,2275,7	// Faixa Marrom
+2,2276,7	// Óculos de Gatinho
+2,2277,7	// Chapéu de Enfermeira
+2,2278,7	// Máscara Feliz
+2,2279,7	// Pavio
+2,2282,7	// Auréola
+2,2285,7	// Maçã de Guilherme Tell
+2,2286,1	// Orelhas de Elfo
+2,2287,7	// Bandana Pirata
+2,2288,7	// Máscara Assustadora
+2,2289,7	// Chapéu Fedorento
+2,2290,7	// Chapéu Funebre
+2,2291,7	// Disfarce
+2,2294,7	// Presilha de Estrela
+2,2295,7	// Venda
+2,2297,7	// Máscara de Goblin
+2,2298,7	// Antenas Verdes
+2,2299,7	// Capacete de Orc
+2,2302,7	// Camisa de Algodão
+2,2304,7	// Gibão
+2,2306,7	// Túnica
+2,2308,7	// Capote
+2,2310,7	// Casaco
+2,2311,7	// Casaco de Pele
+2,2313,7	// Armadura Acolchoada
+2,2315,7	// Cota de Malha
+2,2317,7	// Armadura Metálica
+2,2318,7	// Vestimental Nobre
+2,2320,7	// Paletó
+2,2322,7	// Manto de Seda
+2,2324,7	// Escapulário
+2,2326,7	// Manto Sagrado
+2,2327,1	// Batina
+2,2329,7	// Armadura de Madeira
+2,2331,7	// Malha
+2,2333,7	// Manto Prateado
+2,2334,1	// Vestimenta Arcana
+2,2336,7	// Traje de Gatuno
+2,2337,7	// Indumentária Ninja
+2,2338,7	// Vestido de Casamento
+2,2339,7	// Roupa de Baixo
+2,2340,7	// Armadura de Aprendiz
+2,2352,7	// Traje do Aprendiz
+2,2402,7	// Sandálias
+2,2404,7	// Sapatos
+2,2406,7	// Botas
+2,2407,7	// Sapatilha de Cristal
+2,2408,7	// Grilhões
+2,2409,7	// Salto Alto
+2,2411,7	// Grevas
+2,2414,7	// Sandálias do Aprendiz
+2,2502,7	// Capuz
+2,2504,7	// Sobrepeliz
+2,2506,7	// Manteau
+2,2507,7	// Capa do Marquês
+2,2508,7	// Capa Velha
+2,2510,7	// Capuz do Aprendiz
+2,2601,7	// Anel
+2,2602,7	// Brinco
+2,2603,7	// Colar
+2,2604,7	// Luvas
+2,2605,7	// Broche
+2,2607,7	// Presilha
+2,2608,7	// Rosário
+2,2609,7	// Anel de Caveira
+2,2610,7	// Anel de Ouro
+2,2611,7	// Anel de Prata
+2,2612,7	// Anel de Flor
+2,2613,7	// Anel de Diamante
+2,2614,1	// Olho de Dullahan
+2,2615,1	// Anel de Defesa
+2,2616,1	// Anel Certeiro
+2,2617,7	// Luva Sacra
+2,2618,7	// Coleira de Matyr
+2,2621,1	// Anel
+2,2622,1	// Brinco
+2,2623,1	// Colar
+2,2624,1	// Luva
+2,2625,1	// Broche
+2,2626,1	// Rosário
+2,2627,7	// Cinto
+2,2628,7	// Bracelete de Aprendiz
+2,5002,1	// Coroa Adornada
+2,5003,7	// Chapéu de Bufão
+2,5005,7	// Máscara de Gás
+2,5006,7	// Óculos de Machão
+2,5007,1	// Coroa do Líder
+2,5008,7	// Grinalda
+2,5009,7	// Capacete de Segurança
+2,5010,7	// Penacho
+2,5011,7	// Antena
+2,5014,7	// Barbatanas
+2,5015,7	// Casca de Ovo
+2,5017,1	// Elmo de Osso
+2,5019,1	// Chapéu de Corsário
+2,5030,7	// Chapéu de Panda
+2,5035,7	// Chapéu de Poring
+2,5037,7	// Casca de Maçã
+2,5053,1	// Coroa de Faraó
+2,5055,7	// Chapéu de Ovo do Aprendiz
+2,5066,1	// Chifre de Succubus
+2,5072,1	// Chifre de Incubus
+2,5085,1	// Lacinhos
+2,5088,7	// Máscara Surpresa
+2,5089,7	// Máscara Aflita
+2,5090,7	// Máscara de Líder Goblin
+2,5096,1	// Máscara do Sicário
+2,7001,14	// Pó de Bolor
+2,7002,14	// Dente de Ogro
+2,7003,14	// Pele de Anolian
+2,7004,14	// Monte de Lama
+2,7005,14	// Crânio
+2,7006,14	// Asa de Morcego Vermelho
+2,7007,14	// Garra de Rato
+2,7008,14	// Chifre Firme
+2,7009,14	// Casca Brilhante
+2,7010,14	// Cauda de Escorpião de Aço
+2,7011,14	// Garra de Macaco
+2,7012,14	// Pedaço de Escama Dura
+2,7013,14	// Coral
+2,7014,14	// Retrato Velho
+2,7015,14	// Marca-Página
+2,7016,14	// Colher Entortada
+2,7026,14	// Chave para a Torre do Relógio
+2,7027,14	// Chave para o Subterrâneo
+2,7030,14	// Garra de Lobo do Deserto
+2,7031,14	// Frigideira Velha
+2,7032,14	// Pedaço de Casca de Ovo
+2,7033,14	// Esporo Venenoso
+2,7034,14	// Meia Furada
+2,7035,14	// Palito de Fósforo
+2,7036,14	// Presa de Hati
+2,7038,14	// Novelo
+2,7041,14	// Torrão de Areia Fina
+2,7047,14	// Avental de Alice
+2,7048,14	// Garra de Grifo
+2,7049,14	// Pedra
+2,7053,14	// Cyfar
+2,7054,14	// Brigan
+2,7059,14	// Vale-Armazém
+2,7060,14	// Vale-Teletransporte
+2,7061,14	// Vale-Carrinho
+2,7063,14	// Pena Macia
+2,7064,14	// Asas de Libélula
+2,7065,14	// Pele de Lontra
+2,7066,14	// Cubo de Gelo
+2,7067,14	// Pedaço de Pedra
+2,7068,14	// Madeira Queimada
+2,7069,14	// Armadura Destruída
+2,7070,14	// Casca Quebrada
+2,7071,14	// Farrapos
+2,7072,14	// Shuriken Gasto
+2,7093,14	// Engrenagem
+2,7094,14	// Fragmento Misterioso
+2,7095,14	// Pedaço de Metal
+2,7096,14	// Pedra Pome
+2,7097,14	// Coração Incandescente
+2,7098,14	// Lenha em Brasa
+2,7099,14	// Pergaminho Antigo
+2,7100,14	// Folha Afiada
+2,7101,14	// Pena de Grand Peco
+2,7106,14	// Chifre de Bode
+2,7107,14	// Pele de Bode
+2,7108,14	// Pedaço de Escudo Colossal
+2,7109,14	// Lâmina de Lança Colossal
+2,7110,14	// Espada Chanfrada
+2,7111,14	// Pedaço de Papel
+2,7112,14	// Lâmina de Papel
+2,7113,14	// Cetro do Faraó
+2,7114,14	// Máscara do Faraó
+2,7115,14	// Pena de Harpia
+2,7116,14	// Garra de Harpia
+2,7117,14	// Velho Grimório
+2,7118,14	// Pergaminho Gasto
+2,7119,14	// Bactérias
+2,7120,14	// Ferradura em Chamas
+2,7121,14	// Pote de Mel
+2,7122,14	// Pelugem Incandescente
+2,7123,14	// Pele de Dragão
+2,7124,14	// Areia Molhada
+2,7125,14	// Pinças de Escorpião
+2,7126,14	// Jellopy Tamanho Família
+2,7134,14	// Vasilha de Mistura
+2,7135,14	// Frasco de Fogo Grego
+2,7136,14	// Frasco de Ácido
+2,7137,14	// Frasco de Planta Carnívora
+2,7138,14	// Frasco de Esfera Marinha
+2,7139,14	// Frasco de Revestimento
+2,7149,14	// Prato Amarelado
+2,7150,14	// Pedaço de Bambu
+2,7151,14	// Papel Amarelado
+2,7152,14	// Cabelos Perfumados
+2,7153,14	// Velho Obi
+2,7154,14	// Poeira Venenosa
+2,7155,14	// Pele de Sapo
+2,7156,14	// Shuriken Despedaçado
+2,7157,14	// Máscara Ninja
+2,7158,14	// Jarro de Saquê
+2,7159,14	// Nariz de Tengu
+2,7161,14	// Pele Negra de Urso
+2,7162,14	// Jarro de Nuvem
+2,7163,14	// Antenas Afiadas
+2,7164,14	// Pêssego Petrificado
+2,7165,14	// Manto Cerimonial Celestial
+2,7166,14	// Seda Macia
+2,7167,14	// Misterioso Metal em Pano
+2,7168,14	// Grandes Asas de Borboleta
+2,7169,14	// Ba Gua
+2,7170,14	// Smoking
+2,7171,14	// Pele de Leopardo
+2,7172,14	// Garras de Leopardo
+2,7174,14	// Laço para presente
+2,7175,14	// Papel de presente
+2,7182,14	// Cacau
+2,7186,14	// Cipó
+2,7187,14	// Máscara do Festival
+2,7188,14	// Raiz Marrom
+2,7189,14	// Coração de Madeira
+2,7190,14	// Casco de Inseto
+2,7191,14	// Lanterna
+2,7192,14	// Catavento
+2,7193,14	// Semente
+2,7194,14	// Grama
+2,7195,14	// Estilingue
+2,7196,14	// Ombreira
+2,7197,14	// Palha
+2,7198,14	// Folha Gigante
+2,7200,14	// Elástico
+2,7201,14	// Tora
+2,7202,14	// Pata de Besouro
+2,7203,14	// Galho Resistente
+2,7205,14	// Retalho Negro
+2,7206,14	// Boneco de Gato Preto
+2,7207,14	// Manteau Velho
+2,7208,14	// Faca Enferrujada
+2,7209,14	// Elmo de Dullahan
+2,7210,14	// Armadura de Dullahan
+2,7211,14	// Lasca de Pedra
+2,7212,14	// Boneca Enforcada
+2,7213,14	// Almofada de Alfinetes
+2,7214,14	// Gaiola de Morcegos
+2,7215,14	// Espeto Quebrado
+2,7216,14	// Cachecol Vermelho
+2,7217,14	// Carretel
+2,7218,14	// Corda Decomposta
+2,7219,14	// Meia Listrada
+2,7220,14	// Ectoplasma
+2,7221,14	// Corrente
+2,7222,14	// Coluna de Madeira
+2,7223,14	// Auto Retrato
+2,7225,14	// Lanterna de Abóbora
+2,7262,14	// Leque Fantasma
+2,7263,14	// Olho de Gato
+2,7264,14	// Areia Seca
+2,7265,14	// Chifre de Dragão
+2,7266,14	// Dentadura da Máscara do Dragão
+2,7267,14	// Tanga de Tigre
+2,7268,14	// Pequena Boneca Fantasma
+2,7269,14	// Babador
+2,7270,14	// Mamadeira
+2,10001,7	// Elmo de Crânio
+2,10002,7	// Máscara de Oxigênio para Bichinhos
+2,10003,7	// Capacete Espacial
+2,10004,7	// Chupeta
+2,10005,7	// Peruca
+2,10006,7	// Ornamento da Rainha
+2,10007,7	// Laço de Seda
+2,10008,7	// Pavana
+2,10009,7	// Flor Selvagem
+2,10010,7	// Panela Velha
+2,10011,7	// Ornato Estelar
+2,10012,7	// Casca de Ovo Minúscula
+2,10013,7	// Mochila
+2,10014,7	// Óculos de Rocker
+2,10015,7	// Laço Verde
+2,10016,7	// Sino de Ouro
+2,10017,7	// Saia Havaiana
+2,10018,7	// Coroa de Macaco
+2,10019,7	// Pano Vermelho
+2,10020,7	// Espada chinesa
+2,7751,17	// Velha Vestimenta Branca
+2,7752,16	// Crânio Atordoante
+2,7753,17	// Utensílio Rural Quebrado
+2,1264,1	// Jur Especial
+2,1269,1	// Escama Invertida
+2,1271,1	// Lágrimas Sangrentas
+2,1370,1	// Machado do Apocalipse
+2,1376,1	// Desolador
+2,1377,1	// Fúria do Furacão
+2,1478,1	// Ahlspiess
+2,13304,1	// Huuma da Calmaria
+2,1730,1	// Arco Incendiário
+2,1731,1	// Arco Glacial
+2,1732,1	// Arco da Terra
+2,1733,1	// Arco do Vendaval
+2,1818,1	// Punho de Magma
+2,1819,1	// Punho Gélido
+2,1820,1	// Punho Voltaico
+2,1821,1	// Punho Sísmico
+2,1822,1	// Luva de Combo
+2,1919,1	// Contra-Baixo
+2,1972,1	// Enguia Elétrica
+2,1973,1	// Botas da Bruxa do Mar
+2,1974,1	// Chicote de Cenoura
+2,13200,1	// Projétil
+2,13201,1	// Projétil de Prata
+2,13202,1	// Projétil Sanguinário
+2,13203,1	// Esfera de Chamas
+2,13204,1	// Esfera de Relâmpagos
+2,13205,1	// Esfera Venenosa
+2,13206,1	// Esfera Cegante
+2,13207,1	// Esfera Congelante
+2,13167,1	// Leão-de-Chácara
+2,13168,1	// Trovoada
+2,13163,1	// Rifle de Alcance
+2,13170,2	// Espingarda Calibre 12
+2,13164,1	// Rifle de Alcance

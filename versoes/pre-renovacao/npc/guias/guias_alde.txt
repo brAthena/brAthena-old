@@ -1,0 +1,102 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Guias de Aldebaran			 			|
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.7/1.1                                |
+// |--------------------------------------------------------|
+// | Descrição: Guias da Cidade de Aldebaran                |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [Protimus]                        |
+// | 1.1 Script Revisado [Protimus]							|
+// \________________________________________________________/
+
+aldebaran,139,63,4	script	Soldado#alde	105,{
+	cutin "prt_soldier",2;
+	mes "[Guarda de Al de Baran]";
+	mes "Eu não sou um guarda comum que protege vilarejos.";
+	mes "Sou um membro da Guarda de Al de Baran. Eu sou o responsável por guiar os turitas.";
+	next;
+	mes "[Guarda de Al de Baran]";
+	mes "Eu faço parte da Guarda de Al de Baran! Então, deixe me mostrá-lo o mapa da cidade.";
+	next;
+	if (select("Ver o mapa.:Sair.") == 1) {
+		viewpoint 1,61,229,0,0xFF6633;
+		viewpoint 1,72,197,1,0x0000FF;
+		viewpoint 1,223,222,2,0x00FFFF;
+		viewpoint 1,233,105,3,0x515151;
+		viewpoint 1,197,70,4,0x3355FF;
+		viewpoint 1,60,60,5,0xFF5555;
+		mes "^FF6633+^000000 -> Central das Kafras.";
+		mes "^0000FF+^000000 -> Loja de Armas.";
+		mes "^00FFFF+^000000 -> Guilda dos Magos (Fechada).";
+		mes "^515151+^000000 -> Bar.";
+		mes "^3355FF+^000000 -> Loja de Utilidades.";
+		mes "^FF5555+^000000 -> Guilda dos Alquimistas.";
+		close2;
+		cutin "prt_soldier",255;
+		end;
+	}
+	mes "[Guarda de Al de Baran]";
+	mes "Pela Defesa de Al de Baran!!";
+	mes "Não somos forças civis convencionais... Somos as forças Armadas de Al de Baran!! Você pode confiar em mim!";
+	close2;
+	cutin "prt_soldier",255;
+	end;
+}
+
+aldebaran,133,108,4	script	Soldier#2alde	105,{
+	cutin "prt_soldier",2;
+	mes "[Guarda de Al de Baran]";
+	mes "Eu não sou um guarda comum que protege vilarejos.";
+	mes "Sou um membro da Guarda de Al de Baran. Eu sou o responsável por guiar os turitas.";
+	next;
+	mes "[Guarda de Al de Baran]";
+	mes "Eu faço parte da Guarda de Al de Baran!!";
+	mes "Então, deixe me mostrá-lo o mapa da cidade.";
+	next;
+	switch(select("Central das Kafras.:Loja de Armas.:Guilda dos Magos.:Bar.:Loja de Utilidades.:Guilda dos Alquimistas.:Cancelar.")) {
+	case 1:
+		viewpoint 1,61,229,0,0xFF6633;
+		mes "^FF6633+^000000 -> Central das Kafras";
+		break;
+	case 2:
+		viewpoint 1,72,197,1,0x0000FF;
+		mes "^0000FF+^000000 -> Loja de Armas.";
+		break;
+	case 3:
+		viewpoint 1,223,222,2,0x00FFFF;
+		mes "^00FFFF+^000000 -> Guilda dos Magos (Fechada).";
+		break;
+	case 4:
+		viewpoint 1,233,105,3,0x515151;
+		mes "^515151+^000000 -> Bar";
+		break;
+	case 5:
+		viewpoint 1,197,70,4,0x3355FF;
+		mes "^3355FF+^000000 -> Loja de Utilidades.";
+		break;
+	case 6:
+		viewpoint 1,60,60,5,0xFF5555;
+		mes "^FF5555+^000000 -> Guilda dos Alquimistas.";
+		break;
+	case 7:
+		mes "[Guarda de Al de Baran]";
+		mes "Pela Defesa de Al de Baran!!";
+		mes "Não somos forças civis convencionais... Somos as forças Armadas de Al de Baran!! Você pode confiar em mim!";
+		break;
+	}
+	close2;
+	cutin "prt_soldier",255;
+	end;
+}

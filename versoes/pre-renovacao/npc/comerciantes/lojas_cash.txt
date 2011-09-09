@@ -1,0 +1,36 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Cash Shop NPCs                         |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.1/1.1                                |
+// |--------------------------------------------------------|
+// | Descrição:    Sell Cash shop items.                    |
+// | Based on iRO's Cash shop. Headgears omitted.           |
+// |--------------------------------------------------------|
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [insidemybrain]                   |
+// | 1.1 Script Revisado [insidemybrain]                    |
+// | - Anotações                                            |
+// \________________________________________________________/
+
+// Payon
+//============================================================
+// Sells:
+// Battle Manual Box, Life Insurance Box, Bubble Gum Box,
+// Kafra Card Box, Giant Fly Wing Box, Neuralizer Box,
+// Token of Ziegfried Box, Enriched Oridecon and Elunium,
+// Assumpito, Wind Walk, Aspersio, Adreniline Rush,
+// Blessing and Increase Agility Scroll boxes, Dungeon
+// Teleport Scroll Box, Stat Food boxes, and Gym Passes.
+
+payon,171,142,4	cashshop	Funcionária da Loja Kafra	116,12900:1000,12901:200,12902:1000,12909:100,12910:100,12911:1500,12922:150,7619:100,7620:100,12916:150,12917:150,12915:100,12918:100,12913:125,12914:125,13553:50,12903:100,12904:100,12905:100,12906:100,12907:100,12908:100,7776:50

@@ -1,0 +1,88 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Kafras da Cidade de Morroc             |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 2.4/1.1                                |
+// |--------------------------------------------------------|
+// | Descrição: Configurações callfunc "F_Kafra".           |
+// | arg(0):                                                |
+// |  Setando em 0 a mensagem padrão da Kafra é exibida     |
+// |  Setando em 1 a mensagem da Kafra de Niflheim é exibida|
+// |  Setando em 2 a mensagem da Kafra de Clã é exibida     |
+// | arg(1): 1 para desabilitar o menu "Teleporte"          |
+// |  0 para exibi-lo                                       |
+// | arg(2): 1 para desabilitar o menu "Informações"        |
+// |  0 para exibi-lo                                       |
+// | arg(3): Custo do serviço de "Armazém"                  |
+// | arg(4): Custo do serviço "Alugar Carrinho"             |
+// |--------------------------------------------------------|
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [cleyton]                         |
+// | 1.1 Script Revisado [Tyler]                            |
+// | Anotações:                                             |
+// | - Corrigidas as tabulações no cabeçalho.               |
+// \________________________________________________________/
+
+
+// Sul
+//============================================================
+morocc,156,97,4	script	Funcionária Kafra::kaf_morocc	113,{
+	cutin "kafra_05",2;
+	callfunc "F_KafSetMoc";
+	mes "[Funcionária Kafra]";
+	mes "A Corporação Kafra";
+	mes "está trabalhando para oferecer";
+	mes "serviços convenientes a você.";
+	mes "Como eu posso ajudar você?";
+	callfunc "F_Kafra",5,0,0,60,930;
+
+	M_Save:
+		savepoint "morocc",156,46;
+		callfunc "F_KafEnd",0,1," na cidade de Morroc";
+}
+
+// Norte
+//============================================================
+morocc,160,258,4	script	Funcionária Kafra::kaf_morocc2	114,{
+	cutin "kafra_04",2;
+	callfunc "F_KafSetMoc";
+	mes "[Funcionária Kafra]";
+	mes "Bem-vindo!";
+	mes "A Corporação Kafra";
+	mes "sempre estará aqui para dar";
+	mes "suporte aos aventureiros de Rune-Midgard";
+	mes "com a excelência de qualidade em serviços.";
+	mes "Como eu posso ajudar você hoje?";
+	callfunc "F_Kafra",5,0,0,60,930;
+
+	M_Save:
+		savepoint "morocc",157,272;
+		callfunc "F_KafEnd",0,1," na cidade de Morroc";
+}
+
+// Função: Seta as variáveis para as Kafras de Morroc
+//============================================================
+function	script	F_KafSetMoc	{
+	cleararray @wrpC$[0],"",getarraysize(@wrpC$);
+	setarray @wrpD$[0], "Prontera", "Payon", "Alberta", "Comodo", "Ilha do Farol, Pharos";
+	setarray @wrpP[0], 1200, 1200, 1800, 1800, 1200;
+	set @wrpC$[0], @wrpD$[0]+" -> "+@wrpP[0];
+	set @wrpC$[1], @wrpD$[1]+" -> "+@wrpP[1];
+	set @wrpC$[2], @wrpD$[2]+" -> "+@wrpP[2];
+	set @wrpC$[3], @wrpD$[3]+" -> "+@wrpP[3];
+	set @wrpC$[4], @wrpD$[4]+" -> "+@wrpP[4];
+	set @wrpC$[5], "Cancelar";
+	setarray @viewpX[0], 156, 163, 28, 292;
+	setarray @viewpY[0], 97, 260, 167, 211;
+	return;
+}

@@ -1,0 +1,212 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Tintureiro de Roupas					|
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 2.4/1.1                                |
+// |--------------------------------------------------------|
+// | Descrição:	Tintureiros de Roupa com Palletas padrão.	|
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [Mark]	                        |
+// | 1.1 Script Otimizado [Mark]	                        |
+// | - Anotações		   			    					|
+// \________________________________________________________/
+
+// Tintureiro Ginedin ---------------------------------------------------
+prt_in,284,167,2	script	Tintureiro Ginedin	55,{
+	mes "[Tintureiro Ginedin]";
+	mes "11...";
+	mes "12...";
+	mes "Humm... bom.";
+	mes "Eu acho que estarei pronto antes da festa a noite.";
+	next;
+	mes "[Tintureiro Ginedin]";
+	mes "Oh! Eu não tinha notado que você estava aqui.";
+	mes "Então, como posso lhe ajudar?";
+	next;
+	while(1){
+		switch(select("- Conversar:- Tingir Roupas:- Lista de Preços:- Cancelar")) {
+		case 1:
+			mes "[Tintureiro Ginedin]";
+			mes "A vida pode ter começado um pouco melhor.... mas quando eu olho todos os pedidos que eu tenho recebido!";
+			mes "parece que as jovens mulheres de Rune Midgard devem ser muito ricas hoje em dia.";
+			next;
+			mes "[Tintureiro Ginedin]";
+			mes "Não que eu pense de que elas estejam entregando-se a qualquer coisa que pensem luxuosa.";
+			mes "Eu não vejo nada de errado com a perseguição da beleza e estar na moda.";
+			next;
+			mes "[Tintureiro Ginedin]";
+			mes "Para nós os seres humanos, que não tem nenhuma pele colorida ou escama decorativa, roupa são uma das poucas maneiras que nós temos de mostrar nossa personalidade, estilo, e beleza.";
+			next;
+			mes "[Tintureiro Ginedin]";
+			mes "Haha... Quando eu penso sobre isso, eu sinto que realmente meu trabalho possui valor. Eu acredito que eu forneço um serviço que as pessoas desejam.";
+			next;
+			mes "[Tintureiro Ginedin]";
+			mes "Pode você sentir isso também? A energia que é liberada quando a tela e o couro àsperos forem trazidos à vida com cor?....";
+			next;
+			mes "[Tintureiro Ginedin]";
+			mes "Embora o processo seja muito tedioso e consuma muito tempo, a alegria e a felicidade que eu sinto quando um vestido é terminado.....";
+			mes "Compensa mais do que todo o trabalho duro!!";
+			next;
+			break;
+		case 2:
+			mes "[Tintureiro Ginedin]";
+			mes "Oh... você precisa do meu trabalho?";
+			mes "Bem... parece bom.";
+			next;
+			mes "[Tintureiro Ginedin]";
+			mes "Por favor escolha uma cor que agrade você.";
+			next;
+			setarray .@tinturas[1],978,975,979,983,981,982,976,980;
+			if(Sex) {
+				if(BaseJob==Job_Novice || BaseJob==Job_Novice_High || BaseJob==Job_Baby)
+				setarray .@jobs[0],1,2,0,3,1;
+				else if(BaseJob==Job_Swordman || BaseJob==Job_Swordman_High || BaseJob==Job_Baby_Swordman)
+				setarray .@jobs[0],1,2,0,3,1;
+				else if(BaseJob==Job_Mage || BaseJob==Job_Mage_High || BaseJob==Job_Baby_Mage)
+				setarray .@jobs[0],1,0,1,0,0,2,2,0,3;
+				else if(BaseJob==Job_Archer || BaseJob==Job_Archer_High || BaseJob==Job_Baby_Archer)
+				setarray .@jobs[0],1,0,0,3,1,2;
+				else if(BaseJob==Job_Acolyte || BaseJob==Job_Acolyte_High || BaseJob==Job_Baby_Acolyte)
+				setarray .@jobs[0],1,1,2,0,4,0,3;
+				else if(BaseJob==Job_Merchant || BaseJob==Job_Merchant_High || BaseJob==Job_Baby_Merchant)
+				setarray .@jobs[0],1,2,0,3,1;
+				else if(BaseJob==Job_Thief || BaseJob==Job_Thief_High || BaseJob==Job_Baby_Thief)
+				setarray .@jobs[0],1,0,2,1,0,0,4;
+				else if(BaseJob==Job_Knight || BaseJob==Job_Knight2 || BaseJob==Job_Crusader || BaseJob==Job_Crusader2 || BaseJob==Job_Lord_Knight || BaseJob==Job_Lord_Knight2 || BaseJob==Job_Paladin || BaseJob==Job_Paladin2 || BaseJob==Job_Stalker || BaseJob==Job_Baby_Knight || BaseJob==Job_Baby_Knight2 || BaseJob==Job_Baby_Crusader || BaseJob==Job_Baby_Crusader2)
+				setarray .@jobs[0],1,0,3,0,4,1;
+				else if(BaseJob==Job_Priest || BaseJob==Job_Monk || BaseJob==Job_High_Priest || BaseJob==Job_Champion || BaseJob==Job_Baby_Priest || BaseJob==Job_Baby_Monk)
+				setarray .@jobs[0],1,1,3,2,0,0,4;
+				else if(BaseJob==Job_Wizard || BaseJob==Job_High_Wizard || BaseJob==Job_Baby_Wizard)
+				setarray .@jobs[0],1,1,0,3,4;
+				else if(BaseJob==Job_Blacksmith || BaseJob==Job_Alchemist || BaseJob==Job_Whitesmith || BaseJob==Job_Creator || BaseJob==Job_Baby_Blacksmith || BaseJob==Job_Baby_Alchemist)
+				setarray .@jobs[0],1,0,0,2,1,0,3;
+				else if(BaseJob==Job_Hunter || BaseJob==Job_Bard || BaseJob==Job_Sniper || BaseJob==Job_Clown || BaseJob==Job_Baby_Hunter || BaseJob==Job_Baby_Bard)
+				setarray .@jobs[0],1,2,0,3,1;
+				else if(BaseJob==Job_Assassin || BaseJob==Job_Rogue || BaseJob==Job_Assassin_Cross || BaseJob==Job_Baby_Assassin || BaseJob==Job_Baby_Rogue)
+				setarray .@jobs[0],1,1;
+				else if(BaseJob==Job_SuperNovice || BaseJob==Job_Super_Baby)
+				setarray .@jobs[0],1,2,0,3,4,1;
+				else {
+					mes "Nossa, suas roupas são muito estranhas, Eu nunca vi coisa assim antes. Hummm... Me desculpe, mas não tenho como tingir suas roupas.";
+					close;
+				}
+			} else {
+				if(BaseJob==Job_Novice || BaseJob==Job_Novice_High || BaseJob==Job_Baby)
+				setarray .@jobs[0],1,1,2,3,4;
+				else if(BaseJob==Job_Swordman || BaseJob==Job_Swordman_High || BaseJob==Job_Baby_Swordman)
+				setarray .@jobs[0],2,0,1,3,4;
+				else if(BaseJob==Job_Mage || BaseJob==Job_Mage_High || BaseJob==Job_Baby_Mage)
+				setarray .@jobs[0],3,0,1,0,4,2,3;
+				else if(BaseJob==Job_Archer || BaseJob==Job_Archer_High || BaseJob==Job_Baby_Archer)
+				setarray .@jobs[0],4,0,1,2,4,0,3;
+				else if(BaseJob==Job_Acolyte || BaseJob==Job_Acolyte_High || BaseJob==Job_Baby_Acolyte)
+				setarray .@jobs[0],5,0,1,3,4;
+				else if(BaseJob==Job_Merchant || BaseJob==Job_Merchant_High || BaseJob==Job_Baby_Merchant)
+				setarray .@jobs[0],6,0,0,3,4,1;
+				else if(BaseJob==Job_Thief || BaseJob==Job_Thief_High || BaseJob==Job_Baby_Thief)
+				setarray .@jobs[0],7,0,1,0,4,0,3;
+				else if(BaseJob==Job_Knight || BaseJob==Job_Knight2 || BaseJob==Job_Crusader || BaseJob==Job_Crusader2 || BaseJob==Job_Lord_Knight || BaseJob==Job_Lord_Knight2 || BaseJob==Job_Paladin || BaseJob==Job_Paladin2 || BaseJob==Job_Stalker || BaseJob==Job_Baby_Knight || BaseJob==Job_Baby_Knight2 || BaseJob==Job_Baby_Crusader || BaseJob==Job_Baby_Crusader2)
+				setarray .@jobs[0],8,1,0,0,4,0,3;
+				else if(BaseJob==Job_Priest || BaseJob==Job_Baby_Priest)
+				setarray .@jobs[0],9,0,1,2,4,0,3;
+				else if(BaseJob==Job_Wizard || BaseJob==Job_Sage || BaseJob==Job_High_Wizard || BaseJob==Job_Professor || BaseJob==Job_Baby_Wizard || BaseJob==Job_Baby_Sage)
+				setarray .@jobs[0],1,2,1,4,0,0,3;
+				else if(BaseJob==Job_Blacksmith || BaseJob==Job_Alchemist || BaseJob==Job_Whitesmith || BaseJob==Job_Creator || BaseJob==Job_Baby_Blacksmith || BaseJob==Job_Baby_Alchemist)
+				setarray .@jobs[0],1,0,1,2,4,3;
+				else if(BaseJob==Job_Hunter || BaseJob==Job_Dancer || BaseJob==Job_Sniper || BaseJob==Job_Gypsy || BaseJob==Job_Baby_Hunter || BaseJob==Job_Baby_Dancer)
+				setarray .@jobs[0],1,1,0,3,0,4;
+				else if(BaseJob==Job_Assassin || BaseJob==Job_Baby_Assassin)
+				setarray .@jobs[0],1,0,0,0,1,0,3,2;
+				else if(BaseJob==Job_Rogue || BaseJob==Job_Assassin_Cross || BaseJob==Job_Baby_Rogue)
+				setarray .@jobs[0],1,0,0,0,0,0,3,2;
+				else if(BaseJob==Job_SuperNovice || BaseJob==Job_Super_Baby)
+				setarray .@jobs[0],1,1,2,3,4;
+				else {
+					mes "Nossa, suas roupas são muito estranhas, Eu nunca vi coisa assim antes. Hummm... Me desculpe, mas não tenho como tingir suas roupas.";
+					close;
+				}
+			}
+			setarray .@coresmenu$[1],"Azul","Vermelho","Verde","Preto","Violeta","Branco","Amarelo","Laranja";
+			for( set .@a,1; .@a <= 8; set .@a,.@a+1 ) {
+				if(.@jobs[.@a]){
+					set .@menu$, .@menu$ + "- "+.@coresmenu$[.@a]+":";
+					set .@j,.@j+1;
+					setarray .@n[.@a],1;
+				}
+			}
+			set .@menu$,"- Normal:"+.@menu$+"- Cancelar";
+			set .@menu,select(.@menu$);
+			if(.@menu == 1){
+				mes "[Tintureiro Ginedin]";
+				mes "Posso mudar suas roupas pelas roupas padrão de graça.";
+				mes "Você tem certeza?";
+				next;
+				if(select("Sim:Não") == 2) close;
+				mes "[Tintureiro Ginedin]";
+				mes "OK. Aqui está.";
+				setlook 7,0;
+				close;
+			} else {
+				for (set .@i,2; .@i <= (.@j+1); set .@i,.@i+1){
+					if(.@menu == (.@j + 2)){
+						mes "[Tintureiro Ginedin]";
+						mes "Sinta-se em casa. Embora eu não tenha tempo para você.";
+						close;
+					}
+					if(.@menu == .@i){
+						for(set .@i2,1; .@i2 <= 8; set .@i2,.@i2+1){
+							if(.@n[.@i2]){
+								if(.@i3 == .@n2) break;
+								set .@n2,.@n2+1;
+							}
+						}
+						mes "[Tintureiro Ginedin]";
+						if(countitem(.@tinturas[.@i2]) < 1){
+							mes "Para que eu tinja suas roupas,"+getitemname(.@tinturas[.@i2])+" vou precisar das tinturas apropriadas. Por favor cheque minha lista de preços para esta informação.";
+							close;
+						}
+						if(Zeny < 10000){
+							mes "Me desculpe, mas você não possui zeny o suficiente.";
+							close;
+						}
+						delitem .@tinturas[.@i2],1;
+						set Zeny, Zeny - 10000;
+						mes "Ok. Eu vou tingir sua roupa com a "+getitemname(.@tinturas[.@i2])+".";
+						setlook 7,.@jobs[.@i2];
+						close;
+					} else {
+						set .@i3,.@i3 + 1;
+					}
+				}
+			}
+		case 3:
+			mes "[Tintureiro Ginedin]";
+			mes "Aqui está a lista de cores você pode escolher à partir de seus preços:";
+			mes " - ^FF4422Vermelho^000000: 10000 zeny, 1 Tintura Vermelha";
+			mes " - ^D5A500Amarelo^000000: 10000 zeny, 1 Tintura Amarela";
+			mes " - ^AA00AAVioleta^000000: 10000 zeny, 1 Tintura Violeta";
+			mes " - ^FF8800Laranja^000000: 10000 zeny, 1 Tintura Laranja";
+			mes " - ^4422FFAzul^000000: 10000 zeny, 1 Tintura Azul";
+			mes " - ^009500Verde^000000: 10000 zeny, 1 Tintura Verde";
+			mes " - Preto: 10000 zeny, 1 Tintura Preta";
+			mes " - Branco: 10000 zeny, 1 Tintura Branca";
+			next;
+			break;
+		case 4:
+			mes "[Tintureiro Ginedin]";
+			mes "Sinta-se em casa. Embora eu não tenha tempo para você.";
+			close;
+		}
+	}
+}

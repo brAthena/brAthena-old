@@ -1,0 +1,235 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nãome do Script: Quests Repetíveis - Dokebi            |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.0/1.1                                |
+// |--------------------------------------------------------|
+// | Descrição: Quests repetíveis para ganho de EXP.        |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [insidemybrain]                   |
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// \_______________________________________________________/
+
+pay_fild10,108,357,5	script	Li#Dokebi_Hunt	90,{
+	if (checkquest(60128) != -1) {
+		if (checkquest(60128,HUNTING) != 2 ) {
+			mes "[Li]";
+			mes "Você terminou de caçar os 50 Dokebis?";
+			next;
+			switch(select("Sim.:Não.:Quero desistir.")) {
+			case 1:
+				mes "[Li]";
+				mes "Hm... Acho que você não terminou de caçar os 50 Dokebis...";
+				close;
+			case 2:
+				mes "[Li]";
+				mes "Lembre-se, eu preciso de ajuda para caçar 50 Dokebis.";
+				close;
+			case 3:
+				mes "[Li]";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
+				next;
+				switch(select("Sim.:Não.")) {
+				case 1:
+					mes "[Li]";
+					mes "Tudo bem então, volte quando mudar de idéia.";
+					erasequest 60128;
+					close;
+				case 2:
+					mes "[Li]";
+					mes "Por favor mate 50 Dokebis.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Li]";
+			mes "Impressionante! Você conseguiu completar a quest com facilidade.";
+			getexp 42000,36000;
+			erasequest 60128;
+			close;
+		}
+	}
+	if (checkquest(60129) != -1) {
+		if (checkquest(60129,HUNTING) != 2 ) {
+			mes "[Li]";
+			mes "Você terminou de caçar os 100 Dokebis?";
+			next;
+			switch(select("Sim.:Não.:Quero desistir.")) {
+			case 1:
+				mes "[Li]";
+				mes "Hm... Acho que você não terminou de caçar os 100 Dokebis...";
+				close;
+			case 2:
+				mes "[Li]";
+				mes "Lembre-se, eu preciso de ajuda para caçar 100 Dokebis.";
+				close;
+			case 3:
+				mes "[Li]";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado";
+				next;
+				switch(select("Sim.:Não.")) {
+				case 1:
+					mes "[Li]";
+					mes "Tudo bem então, volte quando mudar de idéia.";
+					erasequest 60129;
+					close;
+				case 2:
+					mes "[Li]";
+					mes "Por favor mate 100 Dokebis.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Li]";
+			mes "Impressionante! Você conseguiu completar a quest com facilidade.";
+			getexp 42000,36000;
+			getexp 42000,36000;
+			erasequest 60129;
+			close;
+		}
+	}
+	if (checkquest(60130) != -1) {
+		if (checkquest(60130,HUNTING) != 2 ) {
+			mes "[Li]";
+			mes "Você terminou de caçar os 150 Dokebis?";
+			next;
+			switch(select("Sim.:Não.:Quero desistir.")) {
+			case 1:
+				mes "[Li]";
+				mes "Hm... Acho que você não terminou de caçar os 150 Dokebis...";
+				close;
+			case 2:
+				mes "[Li]";
+				mes "Lembre-se, eu preciso de ajuda para caçar 150 Dokebis.";
+				close;
+			case 3:
+				mes "[Li]";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
+				next;
+				switch(select("Sim.:Não.")) {
+				case 1:
+					mes "[Li]";
+					mes "Tudo bem então, volte quando mudar de idéia.";
+					erasequest 60130;
+					close;
+				case 2:
+					mes "[Li]";
+					mes "Por favor mate 150 Dokebis.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Li]";
+			mes "Impressionante! Você conseguiu completar a quest com facilidade.";
+			getexp 42000,36000;
+			getexp 42000,36000;
+			getexp 42000,36000;
+			erasequest 60130;
+			close;
+		}
+	}
+	// Para level mínimo
+	if (BaseLevel > 34) {
+		// Para level máximo
+		if (BaseLevel < 71) {
+			mes "[Li]";
+			mes "Olá, você poderia me ajudar?";
+			next;
+			switch(select("Claro.:Não.")) {
+			case 1:
+				mes "[Li]";
+				mes "Existem muitos Dokebis aqui... Não estou me sentindo muito segura.";
+				next;
+				switch(select("Pegar Itens.:Caçar Dokebis.:Cancelar.")) {
+				case 1:
+					mes "[Li]";
+					mes "Como vidente profissional eu preciso de uma reserva de ^00CC0050 Chifres de Dokebi^000000 para dar boa sorte aos meus clientes.";
+					next;
+					switch(select("Eu tenho alguns Chifres de Dokebi.:Do que você precisava?")) {
+					case 1:
+						if (countitem(1021) > 49) {
+							mes "[Li]";
+							mes "Ah, ótimo!";
+							mes "Obrigada pelos chifres.";
+							delitem 1021,50; //Chifres de Dokebi
+							getexp 42000,36000;
+							close;
+						}
+						else {
+							mes "[Li]";
+							mes "Parece que você não tem o suficiente.";
+							next;
+							mes "[Li]";
+							mes "Eu preciso de ^FF000050 Chifres de Dokebi^000000 para meu negócio de vidente.";
+							close;
+						}
+					case 2:
+						mes "[Li]";
+						mes "Se você me trouxer ^FF000050 Chifres de Dokebi^000000, eu posso lhe dar boa sorte.";
+						close;
+					}
+				case 2:
+					mes "[Li]";
+					mes "Então gostaria de caçar Dokebis, não é?";
+					mes "Quantos gostaria de caçar?";
+					next;
+					switch(select("50 Dokebis.:100 Dokebis.:150 Dokebis.")) {
+					case 1:
+						mes "[Li]";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
+						setquest 60128;
+						close;
+					case 2:
+						mes "[Li]";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
+						setquest 60129;
+						close;
+					case 3:
+						mes "[Li]";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
+						setquest 60130;
+						close;
+					}
+				case 3:
+					mes "[Li]";
+					mes "Caso mude de idéia, venha falar comigo novamente.";
+					close;
+				}
+			case 2:
+				mes "[Li]";
+				mes "Caso mude de idéia, venha falar comigo novamente.";
+				close;
+			}
+		}
+		else {
+			mes "[Li]";
+			mes "Olá, eu sou uma vidente de Payon.";
+			close;
+		}
+	}
+	else {
+		mes "[Li]";
+		mes "Este lugar é perigoso!";
+		next;
+		mes "[Li]";
+		mes "Você deveria sair daqui rápido!";
+		close;
+	}
+}

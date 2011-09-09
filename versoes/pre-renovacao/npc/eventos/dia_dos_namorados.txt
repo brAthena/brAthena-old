@@ -1,0 +1,151 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Evento do Dia dos Namorados            |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.01/1.1                               |
+// |--------------------------------------------------------|
+// | Descrição: Evento do Dia dos Namorados.                |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [rafaaaaaH]                       |
+// | 1.1 Script Revisado [Tyler]                            |
+// | - Anotações                                            |
+// \________________________________________________________/
+
+// Stephen - Vendedor de Chocolates
+//=============================================
+alberta,26,243,4	script	Stephen	58,{
+	mes "[Stephen]";
+	mes "Adivinhe o que eu consegui?";
+	mes "Um chocolate delicioso dificilmente encontrado em Rune-Midgard...";
+	next;
+	mes "[Stephen]";
+	mes "Chocolate!";
+	mes "Está certo, você não gosta de chocolate?... Eu amo.";
+	mes "E você está com sorte, porque eu estou vendendo eles por apenas 5.000 zenys cada pedaço!";
+	next;
+	menu "Eu quero chocolate!",M_CHOCO,"Não obrigado.",-;
+	mes "[Stephen]";
+	mes "Você não quer nenhum chocolate?";
+	mes "Estou dizendo a você, vai se arrepender...";
+	mes "É melhor pegar agora, ou você nunca mais verá chocolate como este.";
+	mes "Pense nisso e venha me visitar novamente algum dia.";
+	close;
+
+M_CHOCO:
+	mes "[Stephen]";
+	mes "Haha!";
+	mes "Eu sabia disto!";
+	mes "Mas eu não posso vender mais do que 5 de uma vez... Mas, se você realmente precisar de mais...";
+	mes "Você pode voltar novamente.";
+	mes "Então quantos você quer?";
+	mes "(Digite 0 caso não queira nenhum).";
+	next;
+	set @needmon,0;
+	input @flag_num;
+	if (@flag_num <= 0) goto L_NONE;
+	if (@flag_num > 5) goto L_ERR;
+	set @needmon,@flag_num*5000;
+	if (Zeny < @needmon) goto L_NOTENO;
+	set Zeny,Zeny - @needmon;
+	getitem 558,@flag_num;
+	mes "[Stephen]";
+	mes "Aqui está!";
+	mes "Você pode dar de presente a alguém ou apreciá-lo você mesmo!";
+	mes "Mmm....doce Chocolate...";
+	mes "Visite-me qualquer hora...!";
+	close;
+
+L_ERR:
+	mes "[Stephen]";
+	mes "Desculpe-me, mas não posso lhe dar muitos.";
+L_NONE:
+	close;
+
+L_NOTENO:
+	mes "[Stephen]";
+	mes "Desculpe-me, mas parece que você não tem recursos para comprar isto de mim.";
+	close;
+}
+
+// Jainie - Informações sobre o Evento
+//=============================================
+alberta,29,243,4	script	Jainie	53,{
+	mes "[Jainie]";
+	mes "Você sabia? Os chocolates que meu namorado vende são de minha autoria!";
+	mes "Eu mesma os faço.";
+	next;
+	mes "[Jainie]";
+	mes "Você sabe ... Em certos países, há uma tradição de presentear um pessoa que você ama com chocolates...";
+	mes "Este dia nos chamamos de ^3355FFDia dos Namorados^000000.";
+	next;
+	mes "[Jainie]";
+	mes "Então eu dei a ele meus deliciosos chocolates...";
+	mes "Ele os cozinhou muito mais...";
+	mes "E agora está vendendo para todos.";
+	mes "Eu acho que ele está realmente se divertindo.";
+	mes "Mas, me sinto orgulhosa quando alguém compra algo que fiz e gosta.";
+	next;
+	mes "[Jainie]";
+	mes "Seria ótimo se compra-se alguns também...";
+	mes "Eu estarei fazendo chocolates por enquanto...";
+	close;
+}
+
+// Carl Orleans - Cozinheiro de Chocolate
+//=============================================
+prt_castle,54,34,4	script	Carl Orleans	47,{
+	mes "[Carl Orleans]";
+	mes "Sim?";
+	next;
+	menu "Eu quero um Chocolate Caseiro.",-,"Estou perdido, desculpe por incomodá-lo.",M_WAT;
+
+	mes "[Carl Orleans]";
+	mes "Bem, vou verificar se você possue os itens necessários...";
+	next;
+	if (countitem(558) >=3) goto L_ENO;
+	mes "Me desculpe, mas você não tem chocolates necessários para o processo.";
+	close;
+
+L_ENO:
+	delitem 558,3;
+	mes "[Carl Orleans]";
+	mes "Vejo que você tem 3 pedaços do mais puro chocolate.";
+	mes "Me dê eles...";
+	next;
+	mes "Ok, agora eu irei apenas criar meus especiais chocolates se você prometer usá-los sabiamente.";
+	next;
+	mes "....Hmmmmmm.....";
+	mes "Certo...";
+	next;
+	mes "Aqui.";
+	getitem 559,1;
+	mes "Espero que você dê este chocolate a alguém muito especial, porque ele é um chocolate especial.";
+	mes "Como você sabe... Somente eu posso fazê-los.";
+	next;
+	mes "Divirta-se!";
+	close;
+
+M_WAT:
+	mes "[Carl Orleans]";
+	mes "Oh... Bem, se você quiser que eu faça alguns de meus chocolates...";
+	mes "Você precisará me dar pelo menos ^0000FF 3 Chocolates^000000.";
+	next;
+	mes "[Carl Orleans]";
+	mes "Isso mesmo, apenas ^0000FF 3 Chocolates^000000.";
+	mes "Traga-os para mim e você irá ter um Chocolate Caseiro!";
+	next;
+	mes "[Carl Orleans]";
+	mes "Até mais.";
+	close;
+}

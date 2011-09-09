@@ -1,0 +1,42 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: partylock.txt                          |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Descrição: Configuração Mapflag que impede modf. na    |
+// | configuração de Grupo.                                 |
+// |--------------------------------------------------------|
+// | Changelog:                                             |
+// | 1.0 Modificação [brAthena]                             |
+// | - Anotações                                            |
+// | Atualmente não é utilizada.                            |
+// \________________________________________________________/
+
+//Sealed Shrine ==================
+1@cata	mapflag	partylock
+2@cata	mapflag	partylock
+
+//Endless Tower ==================
+1@tower	mapflag	partylock
+2@tower	mapflag	partylock
+3@tower	mapflag	partylock
+4@tower	mapflag	partylock
+5@tower	mapflag	partylock
+6@tower	mapflag	partylock
+
+//Orc's Memory ===================
+1@orcs	mapflag	partylock
+2@orcs	mapflag	partylock
+
+// Nidhoggr's Instance ===========
+1@nyd	mapflag	partylock
+2@nyd	mapflag	partylock

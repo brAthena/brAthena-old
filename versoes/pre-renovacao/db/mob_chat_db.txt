@@ -1,0 +1,55 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Database: mob_chat_db.txt                      |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Descrição: Banco de dados de falas de monstros.        |
+// |--------------------------------------------------------|
+// | Estrutura do Banco de Dados:                           |
+// | Linha, Cor, Diálogo                                    |
+// \________________________________________________________/
+
+1,0xFF0000,Fraco! Me desafie se tiver alguma coragem!
+2,0xFF0000,Impressionante! Eu me pergunto até onde sua imprudencia irá levá-lo.
+3,0xFF0000,Tenho pena de você estar contra mim. Agora se prepare para meu ataque!
+4,0xFF0000,Meus servos fiéis! O recebram com uma morte dolorosa!
+5,0xFF0000,Não fuja!
+6,0xFF0000,Vocês, humanos inúteis. Seus poderes sagrados não tem efeito sobre mim!
+7,0xFF0000,Subalternos inúteis!... Tudo bem, eu tenho mais armas descartáveis para usar.
+8,0xFF0000,Reze para seus deuses!
+9,0xFF0000,Você ainda acha que é um jogo para mim?
+10,0xFF0000,Vanish!
+11,0xFF0000,Vamos ver por quanto tempo você pode agüentar meu poder!
+12,0xFF0000,Isso é tudo que você tem?
+13,0xFF0000,Você está me fazendo cócegas!
+14,0xFF0000,Chama isso de ataque? Assista e aprenda, seus fracos!
+15,0xFF0000,É hora de terminar o jogo!
+16,0xFF0000,Ha! Você é mais forte do que eu pensava!
+17,0xFF0000,Não! Isso não poder estar acontecendo! Eu sou Satan Morroc, o Rei da Destruição!
+18,0xFF0000,Eu nunca morrei! Sempre estarei voltando para lhe pegar!
+19,0xFF0000,Eu nasci para conquistar este mundo! Nada poderá me impedir!
+20,0xFF0000,Seus dias estão contados!
+21,0xFF0000,Strike! Meus dedos dilaceradores de aço!
+22,0xFF0000,Hahaha! Me diga quem sou! Eo sou Bafomé! O herdeiro do inferno!
+23,0xFF0000,Aproveite sua vida enquanto pode! Sua esperança em breve irá se transformar em desespero!
+24,0xFF0000,Quando você aprenderá a lição? Quando morrer?
+25,0xFF0000,Não... Eu não posso perder! Não vou implorar por minha vida! Eu não estou fugindo! Eu não aceito isso como derrota!
+26,0xFF0000,Argh... Eu... Eu, estou enfraquecendo...
+27,0xFF0000,O que você quer de mim?
+28,0xFF0000,Não! Eu não fiz isso! Ele é quem planejou tudo isso!
+29,0xFF0000,Eu so queria encontrar um pouco de paz..! É por isso que tenho de fugir para longe!
+30,0xFF0000,Ahhhh!!! Now, I just have to kill you all!
+31,0xFF0000,Annoying flies!! Get off of me!
+32,0xFF0000,Suffer in Hell!
+33,0xFF0000,Mwahahaha! Taste the anger of the earth!!!
+34,0xFF0000,No... I won't accept this as defeat!
+

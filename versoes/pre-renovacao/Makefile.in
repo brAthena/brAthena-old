@@ -1,0 +1,96 @@
+@SET_MAKE@
+
+HAVE_MYSQL=@HAVE_MYSQL@
+ifeq ($(HAVE_MYSQL),yes)
+	ALL_DEPENDS=common_sql login_sql char_sql map_sql tools 
+	SQL_DEPENDS=common_sql login_sql char_sql map_sql 
+	COMMON_SQL_DEPENDS=mt19937ar
+	LOGIN_SQL_DEPENDS=mt19937ar common_sql
+	CHAR_SQL_DEPENDS=mt19937ar common_sql
+	MAP_SQL_DEPENDS=mt19937ar common_sql
+	CONVERTERS_DEPENDS=common_sql
+else
+	ALL_DEPENDS=needs_mysql
+	SQL_DEPENDS=needs_mysql
+	COMMON_SQL_DEPENDS=needs_mysql
+	LOGIN_SQL_DEPENDS=needs_mysql
+	CHAR_SQL_DEPENDS=needs_mysql
+	MAP_SQL_DEPENDS=needs_mysql
+endif
+
+WITH_PLUGINS=@WITH_PLUGINS@
+ifeq ($(WITH_PLUGINS),yes)
+	ALL_DEPENDS+=plugins
+	PLUGIN_DEPENDS=common_sql
+else
+	PLUGIN_DEPENDS=no_plugins
+endif
+
+#####################################################################
+.PHONY: sql  \
+	common_sql \
+	mt19937ar \
+	login_sql \
+	char_sql \
+	map_sql \
+	tools plugins addons \
+	clean help
+
+all: $(ALL_DEPENDS)
+
+sql: $(SQL_DEPENDS)
+
+common_sql: $(COMMON_SQL_DEPENDS)
+	@$(MAKE) -C src/common sql
+
+mt19937ar:
+	@$(MAKE) -C 3rdparty/mt19937ar
+
+login_sql: $(LOGIN_SQL_DEPENDS)
+	@$(MAKE) -C src/login sql
+
+char_sql: $(CHAR_SQL_DEPENDS)
+	@$(MAKE) -C src/char 
+
+map_sql: $(MAP_SQL_DEPENDS)
+	@$(MAKE) -C src/map sql
+
+tools:
+	@$(MAKE) -C src/tool
+
+plugins addons: $(PLUGIN_DEPENDS)
+	@$(MAKE) -C src/plugins
+
+clean:
+	@$(MAKE) -C src/common $@
+	@$(MAKE) -C 3rdparty/mt19937ar $@
+	@$(MAKE) -C src/login $@
+	@$(MAKE) -C src/char $@
+	@$(MAKE) -C src/map $@
+	@$(MAKE) -C src/plugins $@
+	@$(MAKE) -C src/tool $@
+
+help:
+	@echo "Os alvos comuns são: 'all' 'sql' 'clean' 'help'"
+	@echo "Os possíveis trajetos únicos são:"
+	@echo "'common_sql'  - compila os arquivos de objeto usados em outros arquivos (SQL)"
+	@echo "'mt19937ar'   - builds object file of Mersenne Twister MT19937"
+	@echo "'login_sql'   - compila o servidor de login (SQL)"
+	@echo "'char_sql'    - compila o servidor de personagens (SQL)"
+	@echo "'map_sql'     - compila o servidor de mapas (SQL)"
+	@echo "'tools'       - compila todas as ferramentas em src/tools"
+	@echo "'plugins'     - compila todos os plugins em src/plugins"
+	@echo "'all'         - compila todos os trajetos possíveis"
+	@echo "'sql'         - compila os trajetos de SQL"
+	@echo "'clean'       - limpa os objetos compilados"
+	@echo "'help'        - mensagens de ajuda"
+
+#####################################################################
+
+needs_mysql:
+	@echo "MySQL não instalado ou desabilitado"
+	@exit 1
+
+no_plugins:
+	@echo "Plugins desabilitados"
+	@exit 1

@@ -1,0 +1,59 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: jail.txt                               |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Descrição: Configuração Mapflag da Prisão.             |
+// |--------------------------------------------------------|
+// | Changelog:                                             |
+// | 1.0 Modificação [brAthena]                             |
+// | - Anotações                                            |
+// | pvp: Liga o PVP.                                       |
+// | pvp_noparty: possibilita atacar pessoas de um mesmo    |
+// | grupo.                                                 |
+// | nobranch: Não é permitido Galho Seco.                  |
+// | nomemo: Não é permitido salvar o lugar com a           |
+// | habilidade Portal.                                     |
+// | nosave: Não é permitido salvar lugar como ponto        |
+// | de retorno.                                            |
+// | noteleport: Teleporte proibido mesmo com Asa de Mosca  |
+// | ou Asa de Borboleta.                                   |
+// \________________________________________________________/
+
+// Não memorizar.
+sec_pri	mapflag	nomemo
+
+// Não salvar.
+sec_pri	mapflag	nosave	SavePoint
+
+// Não teletransportar.
+sec_pri	mapflag	noteleport
+
+// Não usar Portal.
+sec_pri	mapflag	nowarp
+
+// Não retornar: não deixa os jogadores serem puxados pelo Chamado Urgente ou por Grupo.
+sec_pri	mapflag	noreturn
+
+// Não usar Galho Seco.
+sec_pri	mapflag	nobranch
+
+// Prisão sangüinária. É permitido PVP entre os presos.
+
+// PvP
+sec_pri	mapflag	pvp
+
+// Permite atacar membros do grupo.
+sec_pri	mapflag	pvp_noparty
+
+// Equipamentos são dropados no modo pesadelo.
+sec_pri	mapflag	pvp_nightmaredrop	random,equip,300

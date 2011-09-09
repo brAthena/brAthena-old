@@ -1,0 +1,115 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Guias de Einbech			  			|
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.5/1.1                                |
+// |--------------------------------------------------------|
+// | Descrição: Guias da Cidade de Einbech                  |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [Protimus]                        |
+// | 1.1 Script Revisado [Protimus]							|
+// \________________________________________________________/
+
+einbech,67,37,4	script	Guia#4ein::EinGuide2	852,{
+	cutin "ein_soldier",2;
+	mes "[Guia de Einbech]";
+	mes "Bem-vindo a Einbech,";
+	mes "Nós estamos aqui para ajudar os turistas, então por favor sinta-se a vontade para fazer as perguntas que quiser.";
+	set .@loop1,1;
+	while (.@loop1) {
+		next;
+		switch(select("Guia da Cidade.:Limpar as indicações do minimapa.:Aviso.:Cancelar.")) {
+		case 1:
+			mes "[Einbech Guide]";
+			mes "Basta escolher no menu a seguir:";
+			if (.@compass_check == 0) {
+				mes "Você gostaria de deixar as marcações dos locais no seu minimapa?";
+				next;
+				if (select("Sim.:Não.") == 1) set .@compass_check,1;
+			}
+			set .@loop2,1;
+			while (.@loop2) {
+				if (.@wait_button_chk == 0) set .@wait_button_chk,1;
+				else next;
+				switch(select("Estação de Trem.:Taverna,:Loja de Utilidades.:Guilda dos Espadachins.:Mina.:Cancelar.")) {
+				case 1:
+					mes "[Guia de Einbech]";
+  					mes "As Estações de Trem estão localizadas a nordeste e a noroeste. Nós temos linhas que operam de Einbech para Einbroch.";
+					if (.@compass_check)
+						viewpoint 1,43,213,2,0xFF0000;
+					break;
+				case 2:
+  					mes "[Guia de Einbech]";
+  					mes "A Taverna fica na parte sul de nossa cidade. É um bom local para relaxar após um longo dia.";
+					if (.@compass_check)
+						viewpoint 1,142,112,3,0xFF00FF;
+					break;
+				case 3:
+  					mes "[Guia de Einbech]";
+  					mes "A Loja de Utilidades está localizada no centro de Einbech, aonde você poderá comprar diversas ferramentas que irá precisar.";
+					if (.@compass_check)
+						viewpoint 1,176,136,4,0xFF00FF;
+					break;
+				case 4:
+  					mes "[Guia de Einbech]";
+  					mes "A Guilda dos Espadachins está localizada na parte leste de Einbech. Ela está em construção e eles ainda não estão aceitando inscrições.";
+					if (.@compass_check)
+						viewpoint 1,250,110,5,0xFF00FF;
+					break;
+				case 5:
+					mes "[Guia de Einbech]";
+  					mes "A Mina está localizada ao norte, e ainda está ativa. É lá que conseguimos todos os nossos minerais, apesar de alguns monstros tentarem às vezes interferir em nossa indústria.";
+					if (.@compass_check)
+						viewpoint 1,138,251,6,0x00FF00;
+					break;
+				case 6:
+  					mes "[Guia de Einbech]";
+  					mes "Por favor, escolha a opção “Limpar as Indicações do menu do Minimapa” se você não deseja mais ter as indicações dos locais em seu minimapa.";
+					set .@loop2,0;
+				}
+			}
+			break;
+		case 2:
+			viewpoint 2,43,213,2,0xFF0000;
+			viewpoint 2,142,112,3,0xFF00FF;
+			viewpoint 2,176,136,4,0xFF00FF;
+			viewpoint 2,250,110,5,0xFF00FF;
+			viewpoint 2,138,251,6,0x00FF00;
+			set .@compass_check,0;
+			mes "[Guia de Einbroch]";
+			mes "Apaguei todas as marcações do mini-mapa.";
+			mes "Se quiser as marcas denovo, é só pedir.";
+			break;
+		case 3:
+			mes "[Guia de Einbech]";
+			mes "Nós atualizamos nosso sistema de informações de analógico para o digital mais avançado.  Esse novo sistema nos permite indicar os locais no minimapa para uma navegação mais simples.";
+			mes "Por favor, utilize esse novo sistema de acordo com suas necessidades e vivencie a extraordinária tecnologia de magia e ciência da República de Schwaltzwald.";
+			next;
+			mes "[Guia de Einbech]";
+			mes "Antes de começar, visualize o mapa no canto superior direito. Se não houver um minimapa em sua tela, aperte '^3355FFCtrl+Tab^000000,'' ou clique no botão ‘mapa’ na janela Informações Básicas.";
+			mes "Agora, se você conseguir visualizar o minimapa, clique no ícone '^3355FF-^000000' várias vezes para visualizar a cidade inteira.";
+			break;
+		case 4:
+			mes "[Guia de Einbech]";
+			mes "Esperamos que você aproveite a sua viagem.";
+			mes "E, por favor, tome cuidado se ficarmos sob Estado de Emergência pela Poluição do Ar";
+			close2;
+			set .@loop1,0;
+		}
+	}
+	cutin "ein_soldier",255;
+	end;
+}
+
+einbech,48,214,4	duplicate(EinGuide2)	Guia#5ein	852
