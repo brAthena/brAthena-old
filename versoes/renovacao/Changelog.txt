@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0842 - 11/09/2011 [Protimus]
+	* Correções para as Coroas e Diademas do Zodiáco.
+	- Bonificações e visualizações estavam erradas.
+	* Corrigida bonificação do item Rosquinha.
+
 	r0841 - 11/09/2011 [brn0]
 	* Corrigido o bônus bFlee2.
 	* Corrigido o bônus de precisão da habilidade NC_TRAININGAXE (Maestria com Machados).

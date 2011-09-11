@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0842 - 11/09/2011 [Protimus]
+	* Correções para as Coroas e Diademas do Zodiáco.
+	- Bonificações e visualizações estavam erradas.
+	* Corrigida bonificação do item Rosquinha.
+
 	r0836 - 23/08/2011 [Mark]
 	* Corrigido Fúria Interior de Super Aprendiz level 99.
 
