@@ -2106,7 +2106,7 @@ int pc_bonus(struct map_session_data *sd,int type,int val)
 		break;
 	case SP_FLEE2:
 		if(sd->state.lr_flag != 2) {
-			bonus = status->flee2 + val;
+			bonus = status->flee2 + val*10;
 			status->flee2 = cap_value(bonus, SHRT_MIN, SHRT_MAX);
 		}
 		break;

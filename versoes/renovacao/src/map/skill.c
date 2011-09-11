@@ -2376,11 +2376,11 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 				break;
 		}
 		if(skillid == SR_KNUCKLEARROW) {
-			if(skill_blown(dsrc,bl,dmg.blewcount,direction,0) && !(flag&4)) {
+			if(!(flag&4)) {
 				short dir_x, dir_y;
 				dir_x = dirx[(direction+4)%8];
 				dir_y = diry[(direction+4)%8];
-				if(map_getcell(bl->m, bl->x+dir_x, bl->y+dir_y, CELL_CHKNOPASS) != 0)
+				if(!skill_blown(dsrc,bl,dmg.blewcount,direction,0) || map_getcell(bl->m, bl->x+dir_x, bl->y+dir_y, CELL_CHKNOPASS))
 					skill_addtimerskill(src, tick + 300*((flag&2) ? 1:2), bl->id, 0, 0, skillid, skilllv, BF_WEAPON, flag|4);
 			}
 		}
@@ -3904,7 +3904,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 		{
 				int heal =  skill_attack( BF_MAGIC, src, src, bl, skillid, skilllv, tick, flag);
 				int rate = 70 + 4 * skilllv + s_job_level / 5;
-				heal = 8 * skilllv;
+				heal = heal*(1+skilllv)/20;
 				if(heal && rand()%100 < rate && bl->type != BL_SKILL){
 					clif_skill_nodamage(NULL, src, AL_HEAL, heal, 1);
 					status_heal(src, heal, 0, 0);
@@ -6066,12 +6066,12 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		break;
 
 	case NC_SELFDESTRUCTION:
+		clif_skill_nodamage(src, bl, skillid, skilllv, 1);
+		skill_castend_damage_id(src, src, skillid, skilllv, tick, flag);
 		if(sd){
 			pc_setoption(sd, sd->sc.option&~OPTION_MADO);
 			status_zap(src, 0, sd->status.sp);
 		}
-		clif_skill_nodamage(src, bl, skillid, skilllv, 1);
-		skill_castend_damage_id(src, src, skillid, skilllv, tick, flag);
 		break;
 
 	case NC_ANALYZE:

@@ -9,6 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0841 - 11/09/2011 [brn0]
+	* Corrigido o bônus bFlee2.
+	* Corrigido o bônus de precisão da habilidade NC_TRAININGAXE (Maestria com Machados).
+	* Corrigida a recuperação de HP da habilidade WL_DRAINLIFE (Drenar Vida).
+	* Corrigidos os requisitos para a habilidade ST_REJECTSWORD (Instinto de Defesa).
+	* Corrigida a habilidade SR_KNUCKLEARROW (Investida de Shura).
+	* Corrigida a fórmula da habilidade NC_SELFDESTRUCTION (Autodestruicão).
+
 	r0837 - 30/08/2011 [brn0]
 	* Corrigido problema com a habilidade SR_GENTLETOUCH_REVITALIZE (Chakra do Vigor).
 	- Em alguns casos fazia o dano ficar negativo.
