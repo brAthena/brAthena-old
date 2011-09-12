@@ -9968,9 +9968,12 @@ struct skill_unit_group* skill_unitsetting (struct block_list *src, short skilli
 			val1 += pc_checkskill(sd,DC_DANCINGLESSON);
 		break;
 	case BA_POEMBRAGI:
-		val1 = 2*skilllv+status->dex/10; // Casting time reduction
-		if(sd)
-			val1 += 2*pc_checkskill(sd,BA_MUSICALLESSON);
+		val1 = 3*skilllv+status->dex/10; // Redução do Cast Time
+		val2 = (skilllv<10?3*skilllv:50)+status->int_/5; // Redução do Delay
+		if(sd){
+			val1 += pc_checkskill(sd,BA_MUSICALLESSON);
+			val2 += 2*pc_checkskill(sd,BA_MUSICALLESSON);
+		}
 		break;
 	case DC_DONTFORGETME:
 		val1 = status->dex/10 + 3*skilllv + 5; // ASPD decrease
@@ -12857,7 +12860,7 @@ int skill_castfix_sc (struct block_list *bl, int time)
 				status_change_end(bl, SC_MEMORIZE, INVALID_TIMER);
 		}
 		if (sc->data[SC_POEMBRAGI])
-			time -= time * sc->data[SC_POEMBRAGI]->val2 / 100;
+			time -= time * sc->data[SC_POEMBRAGI]->val1 / 100;
 	}
 	return (time > 0) ? time : 0;
 }
@@ -12937,7 +12940,7 @@ int skill_delayfix (struct block_list *bl, int skill_id, int skill_lv)
 	{
 		if (sc && sc->count) {
 			if (sc->data[SC_POEMBRAGI])
-				time -= time * sc->data[SC_POEMBRAGI]->val3 / 100;
+				time -= time * sc->data[SC_POEMBRAGI]->val2 / 100;
 		}
 	}
 

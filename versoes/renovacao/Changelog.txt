@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0843 - 12/09/2011 [Mark]
+	* Corrigida a habilidade BA_POEMBRAGI (Poema de Bragi).
+	- Não estava reduzindo cast time nem delay corretamente.
+	* Corrigido cast time da habilidade MG_ENERGYCOAT (Proteção Arcana).
+
 	r0842 - 11/09/2011 [Protimus]
 	* Correções para as Coroas e Diademas do Zodiáco.
 	- Bonificações e visualizações estavam erradas.

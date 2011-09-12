@@ -45,6 +45,7 @@
 // Habilidades das Classes
 //========================================================================================================
 136,0,2	// AS_SONICBLOW#Lâminas Destruidoras#
+157,1	// MG_ENERGYCOAT#Proteção Arcana#
 263,0,2	// MO_TRIPLEATTACK#Combo Triplo#
 272,0,2	// MO_CHAINCOMBO#Combo Quádruplo#
 273,0,2	// MO_COMBOFINISH#O Último Dragão#
