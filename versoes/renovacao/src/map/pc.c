@@ -3838,7 +3838,7 @@ int pc_isUseitem(struct map_session_data *sd,int n)
 	if( !item->script ) //if it has no script, you can't really consume it!
 		return 0;
 
-	if( (sd->status.class_ != 4054 && sd->status.class_ != 4060) && (nameid >= 12388 && nameid <= 12390 || nameid >= 12725 && nameid <= 12738) )
+	if( (sd->status.class_ != 4054 && sd->status.class_ != 4060 && sd->status.class_ != 4096) && (nameid >= 12388 && nameid <= 12390 || nameid >= 12725 && nameid <= 12738) )
 		return 0;
 
 	switch( nameid )

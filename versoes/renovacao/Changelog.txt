@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0844 - 13/09/2011 [Protimus]
+	* Corrigido uso de runas para o Mini Cavaleiro Rúnico.
+	* Adicionadas leituras para os jobs de classe Mini que faltavam.
+	* Revisão de todos os jobs do atcommand e respectivas mensagens no cliente.
+
 	r0843 - 12/09/2011 [Mark]
 	* Corrigida a habilidade BA_POEMBRAGI (Poema de Bragi).
 	- Não estava reduzindo cast time nem delay corretamente.

@@ -1252,110 +1252,191 @@ ACMD_FUNC(jobchange)
 	{
 		int i, found = 0;
 		const struct { char name[21]; int id; } jobs[] = {
-			{ "aprendiz",			0 },
-			{ "espadachim",			1 },
-			{ "mago",				2 },
-			{ "arqueiro",			3 },
-			{ "noviço",				4 },
-			{ "mercador",			5 },
-			{ "gatuno",				6 },
-			{ "cavaleiro",			7 },
-			{ "sacerdote",			8 },
-			{ "sacerdotisa",		8 },
-			{ "bruxo",				9 },
-			{ "ferreiro",			10 },
-			{ "caçador",			11 },
-			{ "mercenário",			12 },
-			{ "templário",			14 },
-			{ "monge",				15 },
-			{ "sábio",				16 },
-			{ "arruaceiro",			17 },
-			{ "alquimista",			18 },
-			{ "bardo",				19 },
-			{ "odalisca",			20 },
-			{ "super aprendiz",		23 },
-			{ "superaprendiz",		23 },
-			{ "justiceiro",			24 },
-			{ "ninja",				25 },
-			{ "aprendiz t",			4001 },
-			{ "espadachim t",		4002 },
-			{ "mago t",				4003 },
-			{ "arqueiro t",			4004 },
-			{ "noviço t",			4005 },
-			{ "mercador t",			4006 },
-			{ "gatuno t",			4007 },
-			{ "lorde",				4008 },
-			{ "sumo sacerdote",		4009 },
-			{ "suma sacerdotisa",	4009 },
-			{ "arquimago",			4010 },
-			{ "mestre ferreiro",	4011 },
-			{ "atirador de elite",	4012 },
-			{ "algoz",				4013 },
-			{ "paladino",			4015 },
-			{ "mestre",				4016 },
-			{ "professor",			4017 },
-			{ "desordeiro",			4018 },
-			{ "criador",			4019 },
-			{ "menestrel",			4020 },
-			{ "cigana",				4021 },
-			{ "aprendiz bebê",		4023 },
-			{ "espadachim bebê",	4024 },
-			{ "mago bebê",			4025 },
-			{ "arqueiro bebê",		4026 },
-			{ "noviço bebê",		4027 },
-			{ "mercador bebê",		4028 },
-			{ "gatuno bebê",		4029 },
-			{ "cavaleiro bebê",		4030 },
-			{ "sacerdote bebê",		4031 },
-			{ "sacerdotisa bebê",	4031 },
-			{ "bruxo bebê",			4032 },
-			{ "ferreiro bebê",		4033 },
-			{ "caçador bebê",		4034 },
-			{ "mercenário bebê",	4035 },
-			{ "templário bebê",		4037 },
-			{ "monge bebê",			4038 },
-			{ "sábio bebê",			4039 },
-			{ "arruaceiro bebê",	4040 },
-			{ "alquimista bebê",	4041 },
-			{ "bardo bebê",			4042 },
-			{ "odalisca bebê",		4043 },
-			{ "super aprendiz bebê",4045 },
-			{ "taekwon",			4046 },
-			{ "mestre taekwon",		4047 },
-			{ "espiritualista",		4049 },
-			{ "gangsi",				4050 },
-			{ "bongun",				4050 },
-			{ "munak",				4050 },
-			{ "death knight",		4051 },
-			{ "dark collector",		4052 },
-			{ "cavaleiro rúnico",	4054 },
-			{ "arcano",				4055 },
-			{ "sentinela",			4056 },
-			{ "arcebispo",			4057 },
-			{ "mecânico",			4058 },
-			{ "sicário",			4059 },
-			{ "cavaleiro rúnico t",	4060 },
-			{ "arcano t",			4061 },
-			{ "sentinela t",		4062 },
-			{ "arcebispo t",		4063 },
-			{ "mecânico t",			4064 },
-			{ "sicário t",			4065 },
-			{ "guarda real",		4066 },
-			{ "feiticeiro",			4067 },
-			{ "trovador",			4068 },
-			{ "musa",				4069 },
-			{ "shura",				4070 },
-			{ "bioquímico",			4071 },
-			{ "renegado",			4072 },
-			{ "guarda real t",		4073 },
-			{ "feiticeiro t",		4074 },
-			{ "trovador t",			4075 },
-			{ "musa t",				4076 },
-			{ "shura t",			4077 },
-			{ "bioquímico t",		4078 },
-			{ "renegado t",			4079 },
+			{ "aprendiz",				   0 },
+			{ "espadachim",				   1 },
+			{ "mago",					   2 },
+			{ "maga",					   2 },
+			{ "arqueiro",				   3 },
+			{ "arqueira",				   3 },
+			{ "noviço",					   4 },
+			{ "noviça",					   4 },
+			{ "mercador",				   5 },
+			{ "mercadora",				   5 },
+			{ "gatuno",					   6 },
+			{ "gatuna",					   6 },
+			{ "cavaleiro",				   7 },
+			{ "cavaleira",				   7 },
+			{ "sacerdote",				   8 },
+			{ "sacerdotiza",			   8 },
+			{ "bruxo",					   9 },
+			{ "bruxa",					   9 },
+			{ "ferreiro",				  10 },
+			{ "ferreira",				  10 },
+			{ "caçador",				  11 },
+			{ "caçadora",				  11 },
+			{ "mercenário",				  12 },
+			{ "mercenária",				  12 },
+			{ "templário",				  14 },
+			{ "templária",				  14 },
+			{ "monge",					  15 },
+			{ "monja",					  15 },
+			{ "sábio",					  16 },
+			{ "sábia",					  16 },
+			{ "arruaceiro",				  17 },
+			{ "arruaceira",				  17 },
+			{ "alquimista",				  18 },
+			{ "bardo",					  19 },
+			{ "odalisca",				  20 },
+			{ "super aprendiz",			  23 },
+			{ "justiceiro",				  24 },
+			{ "justiceira",				  24 },
+			{ "ninja",					  25 },
+			{ "aprendiz t",				4001 },
+			{ "espadachim t",			4002 },
+			{ "mago t",					4003 },
+			{ "maga t",					4003 },
+			{ "arqueiro t",				4004 },
+			{ "arqueira t",				4004 },
+			{ "noviço t",				4005 },
+			{ "noviça t",				4005 },
+			{ "mercador t",				4006 },
+			{ "mercadora t",			4006 },
+			{ "gatuno t",				4007 },
+			{ "gatuna t",				4007 },
+			{ "lorde",					4008 },
+			{ "lady",					4008 },
+			{ "sumo sacerdote",			4009 },
+			{ "sumo sacerdotisa",		4009 },
+			{ "arquimago",				4010 },
+			{ "arquimaga",				4010 },
+			{ "mestre ferreiro",		4011 },
+			{ "mestre ferreira",		4011 },
+			{ "atirador de elite",		4012 },
+			{ "algoz",					4013 },
+			{ "paladino",				4015 },
+			{ "paladina",				4015 },
+			{ "mestre",					4016 },
+			{ "mestra",					4016 },
+			{ "professor",				4017 },
+			{ "professora",				4017 },
+			{ "desordeiro",				4018 },
+			{ "desordeira",				4018 },
+			{ "criador",				4019 },
+			{ "criadora",				4019 },
+			{ "menestrel",				4020 },
+			{ "cigana",					4021 },
+			{ "mini aprendiz",			4023 },
+			{ "mini espadachim",		4024 },
+			{ "mini mago",				4025 },
+			{ "mini maga",				4025 },
+			{ "mini arqueiro",			4026 },
+			{ "mini arqueira",			4026 },
+			{ "mini noviço",			4027 },
+			{ "mini noviça",			4027 },
+			{ "mini mercador",			4028 },
+			{ "mini mercadora",			4028 },
+			{ "mini gatuno",			4029 },
+			{ "mini gatuna",			4029 },
+			{ "mini cavaleiro",			4030 },
+			{ "mini cavaleira",			4030 },
+			{ "mini sacerdote",			4031 },
+			{ "mini sacerdotisa",		4031 },
+			{ "mini bruxo",				4032 },
+			{ "mini bruxa",				4032 },
+			{ "mini ferreiro",			4033 },
+			{ "mini ferreira",			4033 },
+			{ "mini caçador",			4034 },
+			{ "mini caçadora",			4034 },
+			{ "mini mercenário",		4035 },
+			{ "mini mercenária",		4035 },
+			{ "mini templário",			4037 },
+			{ "mini templária",			4037 },
+			{ "mini monge",				4038 },
+			{ "mini monja",				4038 },
+			{ "mini sábio",				4039 },
+			{ "mini sábia",				4039 },
+			{ "mini arruaceiro",		4040 },
+			{ "mini arruaceira",		4040 },
+			{ "mini alquimista",		4041 },
+			{ "mini bardo",				4042 },
+			{ "mini odalisca",			4043 },
+			{ "mini super aprendiz",	4045 },
+			{ "taekwon",				4046 },
+			{ "mestre taekwon",			4047 },
+			{ "espiritualista",			4049 },
+			{ "gangsi",					4050 },
+			{ "bongun",					4050 },
+			{ "munak",					4050 },
+			{ "death knight",			4051 },
+			{ "dark collector",			4052 },
+			{ "cavaleiro rúnico",		4054 },
+			{ "cavaleira rúnica",		4054 },
+			{ "arcano",					4055 },
+			{ "arcana",					4055 },
+			{ "sentinela",				4056 },
+			{ "arcebispo",				4057 },
+			{ "arcebispa",				4057 },
+			{ "mecânico",				4058 },
+			{ "mecânica",				4058 },
+			{ "sicário",				4059 },
+			{ "sicária",				4059 },
+			{ "cavaleiro rúnico t",		4060 },
+			{ "cavaleira rúnica t",		4060 },
+			{ "arcano t",				4061 },
+			{ "arcana t",				4061 },
+			{ "sentinela t",			4062 },
+			{ "arcebispo t",			4063 },
+			{ "arcebispa t",			4063 },
+			{ "mecânico t",				4064 },
+			{ "mecânica t",				4064 },
+			{ "sicário t",				4065 },
+			{ "sicária t",				4065 },
+			{ "guardião real",			4066 },
+			{ "guardiã real",			4066 },
+			{ "feiticeiro",				4067 },
+			{ "feiticeira",				4067 },
+			{ "trovador",				4068 },
+			{ "musa",					4069 },
+			{ "shura",					4070 },
+			{ "bioquímico",				4071 },
+			{ "bioquímica",				4071 },
+			{ "renegado",				4072 },
+			{ "renegada",				4072 },
+			{ "guardião real t",		4073 },
+			{ "guardiã real t",			4073 },
+			{ "feiticeiro t",			4074 },
+			{ "feiticeira t",			4074 },
+			{ "trovador t",				4075 },
+			{ "musa t",					4076 },
+			{ "shura t",				4077 },
+			{ "bioquímico t",			4078 },
+			{ "bioquímica t",			4078 },
+			{ "renegado t",				4079 },
+			{ "renegada t",				4079 },
+			{ "mini cavaleiro rúnico",	4096 },
+			{ "mini cavaleira rúnica",	4096 },
+			{ "mini arcano",			4097 },
+			{ "mini arcana",			4097 },
+			{ "mini sentinela",			4098 },
+			{ "mini arcebispo",			4099 },
+			{ "mini arcebispa",			4099 },
+			{ "mini mecânico",			4100 },
+			{ "mini mecânica",			4100 },
+			{ "mini sicário",			4101 },
+			{ "mini sicaria",			4101 },
+			{ "mini guardião real",		4102 },
+			{ "mini guardiã real",		4102 },
+			{ "mini feiticeiro",		4103 },
+			{ "mini feiticeira",		4103 },
+			{ "mini trovador",			4104 },
+			{ "mini musa",				4105 },
+			{ "mini shura",				4106 },
+			{ "mini bioquímico",		4107 },
+			{ "mini bioquímica",		4107 },
+			{ "mini renegado",			4108 },
+			{ "mini renegada",			4108 },
 			{ "super aprendiz t",		4190 },
-			{ "super aprendiz bebê t",		4191 },
+			{ "mini super aprendiz t",	4191 },
 		};
 
 		for (i=0; i < ARRAYLENGTH(jobs); i++) {
@@ -1368,7 +1449,7 @@ ACMD_FUNC(jobchange)
 		}
 
 		if (!found) {
-			clif_displaymessage(fd, "Favor digitar um ID/nome de classe (uso: @job/@jobchange <Nome/ID da classe>).");
+			clif_displaymessage(fd, "Favor digitar um NOME/ID de Classe (Uso: @job/@jobchange <NOME/ID da Classe>).");
 			clif_displaymessage(fd, "   0 Aprendiz                1 Espadachim                 2 Mago              3 Arqueiro");
 			clif_displaymessage(fd, "   4 Noviço                  5 Mercador                   6 Gatuno");
 			clif_displaymessage(fd, "----- Segundas Classes -----");
@@ -1376,7 +1457,7 @@ ACMD_FUNC(jobchange)
 			clif_displaymessage(fd, "  11 Caçador                 12 Mercenário                14 Templário        15 Monge");
 			clif_displaymessage(fd, "  16 Sábio                   17 Arruaceiro                18 Alquimista       19 Bardo");
 			clif_displaymessage(fd, "  20 Odalisca");
-			clif_displaymessage(fd, "----- Aprendiz T / Primeiras Classes T -----");
+			clif_displaymessage(fd, "----- Aprendiz Transcendental / Primeiras Classes Transcendentais -----");
 			clif_displaymessage(fd, "4001 Aprendiz T              4002 Espadachim T.           4003 Mago T.        4004 Arqueiro T");
 			clif_displaymessage(fd, "4005 Noviço T                4006 Mercador T              4007 Gatuno T");
 			clif_displaymessage(fd, "----- Segundas Classes -----");
@@ -1388,14 +1469,14 @@ ACMD_FUNC(jobchange)
 			clif_displaymessage(fd, "23 Super Aprendiz            24 Justiceiro                 25 Ninja           4046 Taekwon");
 			clif_displaymessage(fd, "4047 Mestre Taekwon          4049 Espiritualista");
 			clif_displaymessage(fd, "4047 Mestre Taekwon		  4049 Espiritualista    		4050 Gangsi         4051 Death Knight");
-			clif_displaymessage(fd, "4052 Dark Collector 		  4090 Super Aprendiz T.  	    4191 Bebê Super Aprendiz T.");
-			clif_displaymessage(fd, "---- Classes Bebê ----");
-			clif_displaymessage(fd, "4023 Bebê Aprendiz           4024 Bebê Espadachim          4025 Bebê Mago      4026 Bebê Arqueiro");
-			clif_displaymessage(fd, "4027 Bebê Noviço             4028 Bebê Mercador            4029 Bebê Gatuno    4030 Bebê Cavaleiro");
-			clif_displaymessage(fd, "4031 Bebê Sacerdote          4032 Bebê Bruxo               4033 Bebê Ferreiro  4034 Bebê Caçador");
-			clif_displaymessage(fd, "4035 Bebê Mercenário         4037 Bebê Templário           4038 Bebê Monge     4039 Bebê Sábio");
-			clif_displaymessage(fd, "4040 Bebê Arruaceiro         4041 Bebê Alquimísta          4042 Bebê Bardo     4043 Bebê Odalisca");
-			clif_displaymessage(fd, "4045 Bebê Super Aprendiz");
+			clif_displaymessage(fd, "4052 Dark Collector 		  4090 Super Aprendiz T.  	    4191 Mini Super Aprendiz T.");
+			clif_displaymessage(fd, "---- Classes Mini ----");
+			clif_displaymessage(fd, "4023 Mini Aprendiz           4024 Mini Espadachim          4025 Mini Mago      4026 Mini Arqueiro");
+			clif_displaymessage(fd, "4027 Mini Noviço             4028 Mini Mercador            4029 Mini Gatuno    4030 Mini Cavaleiro");
+			clif_displaymessage(fd, "4031 Mini Sacerdote          4032 Mini Bruxo               4033 Mini Ferreiro  4034 Mini Caçador");
+			clif_displaymessage(fd, "4035 Mini Mercenário         4037 Mini Templário           4038 Mini Monge     4039 Mini Sábio");
+			clif_displaymessage(fd, "4040 Mini Arruaceiro         4041 Mini Alquimísta          4042 Mini Bardo     4043 Mini Odalisca");
+			clif_displaymessage(fd, "4045 Mini Super Aprendiz");
 			clif_displaymessage(fd, "---- Terceiras Classes ----");
 			clif_displaymessage(fd, "4054 Cavaleiro Rúnico        4055 Arcano          4056 Sentinela          4057 Arcebispo");
 			clif_displaymessage(fd, "4058 Mecânico                4059 Sicário         4066 Guarda Real        4067 Feiticeiro");
@@ -1406,11 +1487,11 @@ ACMD_FUNC(jobchange)
 			clif_displaymessage(fd, "4064 Mecânico                4065 Sicário         4073 Guarda Real        4074 Feiticeiro");
 			clif_displaymessage(fd, "4075 Trovador                4076 Musa            4077 Shura              4078 Bioquímico");
 			clif_displaymessage(fd, "4079 Renegado");
-			clif_displaymessage(fd, "---- Terceiras Classes Bebê ----");
-			clif_displaymessage(fd, "4096 Bebê Cavaleiro Rúnico Bebê   4097 Bebê Arcano    4098 Bebê Sentinela     4099 Bebê Arcebispo");
-			clif_displaymessage(fd, "4100 Bebê Mecânico                4101 Bebê Sicário   4102 Bebê Guarda Real   4103 Bebê Feiticeiro");
-			clif_displaymessage(fd, "4104 Bebê Trovador                4105 Bebê Musa      4106 Bebê Shura         4107 Bebê Bioquímico");
-			clif_displaymessage(fd, "4108 Bebê Renegado");
+			clif_displaymessage(fd, "---- Terceiras Classes Mini ----");
+			clif_displaymessage(fd, "4096 Mini Cavaleiro Rúnico  4097 Mini Arcano    4098 Mini Sentinela     4099 Mini Arcebispo");
+			clif_displaymessage(fd, "4100 Mini Mecânico                4101 Mini Sicário   4102 Mini Guarda Real   4103 Mini Feiticeiro");
+			clif_displaymessage(fd, "4104 Mini Trovador                4105 Mini Musa      4106 Mini Shura         4107 Mini Bioquímico");
+			clif_displaymessage(fd, "4108 Mini Renegado");
 			clif_displaymessage(fd, "[upper]: -1 (default) to automatically determine the 'level', 0 to force normal job, 1 to force high job.");
 			return -1;
 		}
@@ -1443,7 +1524,7 @@ ACMD_FUNC(jobchange)
 		clif_displaymessage(fd, "  11 Caçador                 12 Mercenário                14 Templário        15 Monge");
 		clif_displaymessage(fd, "  16 Sábio                   17 Arruaceiro                18 Alquimista       19 Bardo");
 		clif_displaymessage(fd, "  20 Odalisca");
-		clif_displaymessage(fd, "----- Aprendiz T / Primeiras Classes T -----");
+		clif_displaymessage(fd, "----- Aprendiz Transcendental / Primeiras Classes Transcendentais -----");
 		clif_displaymessage(fd, "4001 Aprendiz T              4002 Espadachim T.           4003 Mago T.        4004 Arqueiro T");
 		clif_displaymessage(fd, "4005 Noviço T                4006 Mercador T              4007 Gatuno T");
 		clif_displaymessage(fd, "----- Segundas Classes -----");
@@ -1454,29 +1535,29 @@ ACMD_FUNC(jobchange)
 		clif_displaymessage(fd, "----- Classes Expandidas -----");
 		clif_displaymessage(fd, "23 Super Aprendiz            24 Justiceiro                 25 Ninja           4046 Taekwon");
 		clif_displaymessage(fd, "4047 Mestre Taekwon		  4049 Espiritualista    		4050 Gangsi         4051 Death Knight");
-		clif_displaymessage(fd, "4052 Dark Collector 		  4090 Super Aprendiz T.  	    4191 Bebê Super Aprendiz T.");
-		clif_displaymessage(fd, "---- Classes Bebê ----");
-		clif_displaymessage(fd, "4023 Bebê Aprendiz           4024 Bebê Espadachim          4025 Bebê Mago      4026 Bebê Arqueiro");
-		clif_displaymessage(fd, "4027 Bebê Noviço             4028 Bebê Mercador            4029 Bebê Gatuno    4030 Bebê Cavaleiro");
-		clif_displaymessage(fd, "4031 Bebê Sacerdote          4032 Bebê Bruxo               4033 Bebê Ferreiro  4034 Bebê Caçador");
-		clif_displaymessage(fd, "4035 Bebê Mercenário         4037 Bebê Templário           4038 Bebê Monge     4039 Bebê Sábio");
-		clif_displaymessage(fd, "4040 Bebê Arruaceiro         4041 Bebê Alquimísta          4042 Bebê Bardo     4043 Bebê Odalisca");
-		clif_displaymessage(fd, "4045 Bebê Super Aprendiz");
+		clif_displaymessage(fd, "4052 Dark Collector 		  4090 Super Aprendiz T.  	    4191 Mini Super Aprendiz T.");
+		clif_displaymessage(fd, "---- Classes Mini ----");
+		clif_displaymessage(fd, "4023 Mini Aprendiz           4024 Mini Espadachim          4025 Mini Mago      4026 Mini Arqueiro");
+		clif_displaymessage(fd, "4027 Mini Noviço             4028 Mini Mercador            4029 Mini Gatuno    4030 Mini Cavaleiro");
+		clif_displaymessage(fd, "4031 Mini Sacerdote          4032 Mini Bruxo               4033 Mini Ferreiro  4034 Mini Caçador");
+		clif_displaymessage(fd, "4035 Mini Mercenário         4037 Mini Templário           4038 Mini Monge     4039 Mini Sábio");
+		clif_displaymessage(fd, "4040 Mini Arruaceiro         4041 Mini Alquimísta          4042 Mini Bardo     4043 Mini Odalisca");
+		clif_displaymessage(fd, "4045 Mini Super Aprendiz");
 		clif_displaymessage(fd, "---- Terceiras Classes ----");
 		clif_displaymessage(fd, "4054 Cavaleiro Rúnico        4055 Arcano                   4056 Sentinela      4057 Arcebispo");
 		clif_displaymessage(fd, "4058 Mecânico                4059 Sicário                  4066 Guarda Real    4067 Feiticeiro");
-		clif_displaymessage(fd, "4068 Trovador                4069 Musa                     4070 Shura          4071 Bioquímico");
+		clif_displaymessage(fd, "4068 Trovador                4069 Musa                     4070 Sura           4071 Bioquímico");
 		clif_displaymessage(fd, "4072 Renegado");
 		clif_displaymessage(fd, "---- Terceiras Classes Transcendentais ----");
 		clif_displaymessage(fd, "4060 Cavaleiro Rúnico        4061 Arcano                   4062 Sentinela      4063 Arcebispo");
 		clif_displaymessage(fd, "4064 Mecânico                4065 Sicário                  4073 Guarda Real    4074 Feiticeiro");
-		clif_displaymessage(fd, "4075 Trovador                4076 Musa                     4077 Shura          4078 Bioquímico");
+		clif_displaymessage(fd, "4075 Trovador                4076 Musa                     4077 Sura           4078 Bioquímico");
 		clif_displaymessage(fd, "4079 Renegado");
-		clif_displaymessage(fd, "---- Terceiras Classes Bebê ----");
-		clif_displaymessage(fd, "4096 Bebê Cavaleiro Rúnico Bebê   4097 Bebê Arcano    4098 Bebê Sentinela     4099 Bebê Arcebispo");
-		clif_displaymessage(fd, "4100 Bebê Mecânico                4101 Bebê Sicário   4102 Bebê Guarda Real   4103 Bebê Feiticeiro");
-		clif_displaymessage(fd, "4104 Bebê Trovador                4105 Bebê Musa      4106 Bebê Shura         4107 Bebê Bioquímico");
-		clif_displaymessage(fd, "4108 Bebê Renegado");
+		clif_displaymessage(fd, "---- Terceiras Classes Mini ----");
+		clif_displaymessage(fd, "4096 Mini Cavaleiro Rúnico Mini   4097 Mini Arcano    4098 Mini Sentinela     4099 Mini Arcebispo");
+		clif_displaymessage(fd, "4100 Mini Mecânico                4101 Mini Sicário   4102 Mini Guarda Real   4103 Mini Feiticeiro");
+		clif_displaymessage(fd, "4104 Mini Trovador                4105 Mini Musa      4106 Mini Sura          4107 Mini Bioquímico");
+		clif_displaymessage(fd, "4108 Mini Renegado");
 		return -1;
 	}
 
@@ -6016,7 +6097,7 @@ ACMD_FUNC(marry)
 	return 0;
   }
 
-	clif_displaymessage(fd, "Os dois não podem casar pois um deles é um bebê ou já está casado.");
+	clif_displaymessage(fd, "Os dois não podem casar pois um deles é um Mini ou já está casado.");
 	return -1;
 }
 
