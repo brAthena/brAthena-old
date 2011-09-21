@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0845 - 21/09/2011 [Mark]
+	* Corrigida habilidade Chakra do Vigor (SC_GT_REVITALIZE).
+	- Estava aplicando uma def desnecessária pois a redução é realizada em outra parte do código.
+	* Adicionada habilidade "Return to El Dicastes".
+	- Estava desabilitada.
+
 	r0844 - 13/09/2011 [Protimus]
 	* Corrigido uso de runas para o Mini Cavaleiro Rúnico.
 	* Adicionadas leituras para os jobs de classe Mini que faltavam.

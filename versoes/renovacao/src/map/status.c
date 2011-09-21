@@ -4475,8 +4475,6 @@ static signed short status_calc_def(struct block_list *bl, struct status_change 
 		def -= def * ( 6 + 6 * sc->data[SC_MARSHOFABYSS]->val3/10 + (bl->type == BL_MOB ? 5 : 3) * sc->data[SC_MARSHOFABYSS]->val2/36 ) / 100;
 	if( sc->data[SC_FREEZING] )
 		def -= def * 3 / 10;
-	if( sc->data[SC_GT_REVITALIZE] )
-		def += def * (50 + 10*sc->data[SC_GT_REVITALIZE]->val1) / 100;
 	if(sc->data[SC_EARTH_INSIGNIA] && sc->data[SC_EARTH_INSIGNIA]->val1 == 2)
 		def += 50;
 		
