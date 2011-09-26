@@ -44,7 +44,7 @@ alberta,23,238,4	script	Guia#alb::AlbGuide	105,{
 				if (.@wait_button_chk == 0) set .@wait_button_chk,1;
 				else next;
 
-				switch(select("^FF0000Guilda dos Mercadores.^000000:Loja de Armas.:Loja de Ferramentas.:Estalagem.:Cancelar.")) {
+				switch(select("^FF0000Guilda dos Mercadores^000000:Loja de Armas:Loja de Ferramentas:Estalagem:Refinaria:Cancelar")) {
 				case 1:
 					mes "[Guia de Alberta]";
 					mes "A Guilda dos Mercadores é o lugar onde Aprendizes podem tornar-se Mercadores. Ela se encontra ao sudoeste da cidade.";
@@ -70,6 +70,12 @@ alberta,23,238,4	script	Guia#alb::AlbGuide	105,{
 						viewpoint 1,65,233,5,0xFF00FF;
 					break;
 				case 5:
+					mes "[Guia de Alberta]";
+					mes "A 'Refinaria' fica no mesmo prédio da Guilda dos Mercadores, ao sudoeste da cidade.";
+					if (.@compass_check)
+						viewpoint 1,35,41,6,0xFF00FF;
+					break;
+				case 6:
 					mes "[Guia de Alberta]";
 					mes "Se você deseja apagar as indicações do seu mini-mapa, por favor selecione 'Limpar as indicações do minimapa.'.";
 					set .@loop2,0;

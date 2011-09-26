@@ -54,7 +54,7 @@ moscovia,161,76,4	script	Guia de Moscóvia#mosk	959,{
 					mes "[Guia de Moscóvia]";
 					mes "A Loja de Armas é o lugar onde você pode comprar armas feitas pelos melhores fabricantes de Moscóvia.";
 					close2;
-					viewpoint 1,185,185,3,0x00FF00;
+					viewpoint 1,185,187,2,0x00FF00;
 					end;
 				case 4:
 					mes "[Guia de Moscóvia]";

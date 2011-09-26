@@ -40,7 +40,7 @@ amatsu,207,89,3	script	Recepcionista#ama	758,{
 	case 2:
 		viewpoint 1,96,118,1,0xCE6300;
 		mes "[Amachang]";
-		mes "No mini-mapa, vá em ^FF3355+^000000 para chegar à Loja de Utilidades.";
+		mes "No mini-mapa, vá em ^CE6300+^000000 para chegar à Loja de Utilidades.";
 		mes "Aproveite a estadia em Amatsu.";
 		close;
 	case 3:
@@ -76,7 +76,7 @@ amatsu,251,283,4	script	Guia#2ama	767,{
 	case 2:
 		viewpoint 1,96,118,1,0xCE6300;
 		mes "[Guia]";
-		mes "No mini-mapa, vá em ^FF3355+^000000 para encontrar a Loja de Utilidades.";
+		mes "No mini-mapa, vá em ^CE6300+^000000 para encontrar a Loja de Utilidades.";
 		mes "Aproveite a estadia em Amatsu.";
 		close;
 	case 3:

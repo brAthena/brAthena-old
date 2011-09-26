@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0846 - 26/09/2011 [Protimus]
+	* Atualizado conforme eAthena r14962.
+	- Necessário revisar quests_brasilis.txt conforme eAthena.
+	- Envios referente as adições de habilidades das 3rd serão enviados posteriormente, com maior verificação do que é útil ou não.
+	- Parcialmente enviados e faltando revisão dos envios de habilidades: 14941:14948.
+
 	r0845 - 21/09/2011 [Mark]
 	* Corrigida habilidade Chakra do Vigor (SC_GT_REVITALIZE).
 	- Estava aplicando uma def desnecessária pois a redução é realizada em outra parte do código.

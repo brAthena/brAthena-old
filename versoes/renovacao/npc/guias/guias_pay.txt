@@ -43,7 +43,7 @@ payon,162,67,4	script	Guia#pay	708,{
 			while(.@loop2) {
 				if (.@wait_button_chk == 0) set .@wait_button_chk,1;
 				else next;
-				switch(select("^FF0000Guilda dos Arqueiros.^000000:Loja de Armas.:Loja de Ferramentas.:Estalagem.:Palácio Central.:Cancelar.")) {
+				switch(select("^FF0000Guilda dos Arqueiros^000000:Loja de Armas:Loja de Ferramentas:Estalagem:Palácio Central:Imperatriz:Palácio Annex:Cozinha Real:Refinaria:Cancelar")) {
 				case 1:
 					mes "[Guia de Payon]";
 					mes "A Guilda dos Arqueiros é o lugar onde Aprendizes podem tornar-se Arqueiros. Ela se encontra ao Norte da Vila dos Arqueiros.";
@@ -76,6 +76,30 @@ payon,162,67,4	script	Guia#pay	708,{
 						viewpoint 1,155,245,6,0x00FF00;
 					break;
 				case 6:
+					mes "[Payon Guide]";
+					mes "A 'Imperatriz' se encontra ao noroeste da cidade.";
+					if (.@compass_check)
+						viewpoint 1,107,324,7,0x00FF00;
+					break;
+				case 7:
+					mes "[Payon Guide]";
+					mes "O 'Palácio Annex' se encontra ao oeste da cidade.";
+					if (.@compass_check)
+						viewpoint 1,130,204,8,0x00FF00;
+					break;
+				case 8:
+					mes "[Payon Guide]";
+					mes "A 'Cozinha Real' fica ao norte do final da cidade.";
+					if (.@compass_check)
+						viewpoint 1,154,325,9,0x00FF00;
+					break;
+				case 9:
+					mes "[Payon Guide]";
+					mes "A 'Refinaria' fica próxima ao centro da cidade.";
+					if (.@compass_check)
+						viewpoint 1,126,169,10,0xFFFF00;
+					break;
+				case 10:
 					mes "[Guia de Payon]";
 					mes "Se você deseja apagar as indicações do seu mini-mapa, por favor selecione 'Limpar indicações'.";
 					set .@loop2,0;

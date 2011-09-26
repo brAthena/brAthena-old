@@ -44,7 +44,7 @@ morocc,153,286,6	script	Guia#moc::MocGuide	707,{
 				if (.@wait_button_chk == 0) set .@wait_button_chk,1;
 				else next;
 
-				switch(select("^FF0000Guilda dos Gatunos.^000000:Loja de Armas.:Estalagem.:Bar.:Covil.:Cancelar.")) {
+				switch(select("^FF0000Guilda dos Gatunos^000000:Loja de Armas:Estalagem:Bar:Covil:Refinaria:Cancelar")) {
 				case 1:
 					mes "[Guia de Morroc]";
 					mes "Ouvi dizer que a Guilda dos Gatunos, o lugar aonde Aprendizes podem se tornar Gatunos, se encontra na Pirâmide da saída Noroeste da cidade.";
@@ -78,6 +78,12 @@ morocc,153,286,6	script	Guia#moc::MocGuide	707,{
 						viewpoint 1,284,171,7,0x00FF00;
 					break;
 				case 6:
+					mes "[Guia de Morroc]";
+					mes "A 'Refinaria' fica ao sudoeste do centro da cidade.";
+					if (.@compass_check)
+						viewpoint 1,47,47,7,0xFF00FF;
+					break;
+				case 7:
 					mes "[Guia de Morroc]";
 					mes "Se você deseja apagar as indicações do seu mini-mapa, por favor selecione 'Limpar indicações'.";
 					set .@loop2,0;

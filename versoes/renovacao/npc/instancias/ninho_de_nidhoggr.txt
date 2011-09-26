@@ -1873,7 +1873,6 @@ OnTouch_:
 						next;
 						mes "[World Tree Yggdrasil]";
 						mes "And... Be careful... Be careful of the shadow's power.";
-						set 'ins_nyd2,1;
 						close;
 					}
 				case 2:
@@ -2640,7 +2639,7 @@ OnTimer10000:
 }
 
 2@nyd,6,8,0	script	nyd_2f_yellow_c	-1,{
-OnInstanceInit:;
+OnInstanceInit:
 	disablenpc instance_npcname("nyd_2f_yellow_c", instance_id());
 	end;
 
@@ -2942,7 +2941,7 @@ OnTouch:
 }
 
 2@nyd,1,1,0	script	ins_nyd2_spawn_mobs	-1,{
-OnIntanceInit:
+OnInstanceInit:
 	areamonster "2@nyd",200,92,180,80,"Rhyncho",2020,20;
 	areamonster "2@nyd",200,92,180,80,"Phylla",2021,20;
 	areamonster "2@nyd",200,92,180,80,"Dark Shadow",2023,20;
