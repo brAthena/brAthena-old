@@ -57,7 +57,7 @@ brasilis,219,97,3	script	Guia	478,{
 			break;
 		case 2:
 			mes "[Guia]";
-			mes "Quer passear pela selva? Você pode pegar o teleférico em ^00FF00+^000000.";
+			mes "Quer passear pela selva? Você pode pegar o teleférico em ^0xCC6600+^000000.";
 			if (.@compass_check == 1) {
 				viewpoint 1,308,333,3,0xCC6600;
 			}
@@ -90,6 +90,7 @@ brasilis,219,97,3	script	Guia	478,{
 			mes "Se quiser remover as marcações de local do seu minimapa, selecione 'Limpar as indicações do minimapa'.";
 			close;
 		}
+		close;
 		break;
 	case 2:
 		viewpoint 2,273,149,2,0xFF0000;

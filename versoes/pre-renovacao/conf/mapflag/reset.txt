@@ -8,26 +8,45 @@
 // |                                                        |
 // |                    brAthena Script                     |
 // |--------------------------------------------------------|
-// | Nome do Script: Monstros das Cavernas de Brasilis      |
+// | Nome do Script: restricted.txt                         |
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.2                                |
+// | Descrição: Configuração Mapflag que faz checagens para |
+// | o neutralizador.                                       |
 // |--------------------------------------------------------|
 // | Changelog:                                             |
-// | 1.0 Script Traduzido [Tyler]                           |
-// | 1.1 Script Revisado [Tyler]                            |
-// | 1.2 Spawns do Renewal [Dani]                           |
-// | - Revisado                                             |
+// | 1.0 Modificação [brAthena]                             |
+// | - Anotações                                            |
 // \________________________________________________________/
 
-//==================================================
-// bra_fild01 - Campo de Brasilis
-//==================================================
-bra_fild01,0,0,0,0	monster	Curupira	2074,50,5000,0,0
-bra_fild01,0,0,0,0	monster	Dokebi	1110,10,5000,0,0
-bra_fild01,0,0,0,0	monster	Selvagem	1166,5,5000,0,0
-bra_fild01,0,0,0,0	monster	Mula Sem-Cabeça	2071,40,5000,0,0
-bra_fild01,0,0,0,0	monster	Cogumelo Vermelho	1085,5,5000,0,0
-bra_fild01,0,0,0,0	monster	Jaguar	2072,55,5000,0,0
-bra_fild01,0,0,0,0	monster	Tucano	2073,60,5000,0,0
+alberta	mapflag	reset
+aldebaran	mapflag	reset
+amatsu	mapflag	reset
+ayothaya	mapflag	reset
+brasilis	mapflag	reset
+comodo	mapflag	reset
+einbroch	mapflag	reset
+einbech	mapflag	reset
+geffen	mapflag	reset
+gonryun	mapflag	reset
+izlude	mapflag	reset
+jawaii	mapflag	reset
+hugel	mapflag	reset
+lighthalzen	mapflag	reset
+louyang	mapflag	reset
+manuk	mapflag	reset
+mid_camp	mapflag	reset
+moc_ruins	mapflag	reset
+morocc	mapflag	reset
+moscovia	mapflag	reset
+niflheim	mapflag	reset
+prontera	mapflag	reset
+payon	mapflag	reset
+pay_arche	mapflag	reset
+rachel	mapflag	reset
+splendide	mapflag	reset
+umbala	mapflag	reset
+veins	mapflag	reset
+xmas	mapflag	reset
+yuno	mapflag	reset

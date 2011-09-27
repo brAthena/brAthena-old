@@ -1,35 +1,27 @@
-//  ________________________________________________________
-// /                                                        \
-// |       _           _   _   _                            |
-// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
-// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
-// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
-// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |                                                        |
-// |                    brAthena Script                     |
-// |--------------------------------------------------------|
-// | Nome do Database: packet_db.txt                        |
-// |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team                           |
-// |--------------------------------------------------------|
-// | Descrição: Database packet para suporte de clients de  |
-// | acesso.                                                |
-// |--------------------------------------------------------|
-// | The packet database allows you to add support for      |
-// | new clients, because packets change every release.     |
-// | Note: Every packet version needs a wanttoconnection    |
-// | specification, since that is the packet used to        |
-// | identify a client's version.                           |
-// | If multiple versions have the same connection packet,  |
-// | the higher version will be used (unless the lower one  |
-// | is specified as the default)                           |
-// \________________________________________________________/
-
-// Main packet version of the DB to use (default = max available version)
-// Client detection is faster when all clients use this version.
-// Version 23 is the latest Sakexe (above versions are for Renewal clients)
-packet_db_ver: 23
-//packet_db_ver: default
+//  _____________________________________________________________
+// /                                                             \
+// |          _           _   _   _                              |
+// |         | |__  _ __ / \ | |_| |__   ___ _ __   __ _         |
+// |         | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |        |
+// |         | |_) | | / ___ \ |_| | | |  __/ | | | (_| |        |
+// |         |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|        |
+// |                                                             |
+// |                       brAthena Script                       |
+// |-------------------------------------------------------------|
+// | Nome do Database: packet_db.txt                             |
+// |-------------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                                |
+// |-------------------------------------------------------------|
+// | Descrição: Database packet para suporte de clients de       |
+// | acesso.                                                     |
+// \_____________________________________________________________/
+//
+//
+//========================================================================================================
+// Definição do valor de pacote padrão para leitura do cliente.
+// Versão 23 é do último Sakexe (versões acima são da Renovação)
+//packet_db_ver: 23
+packet_db_ver: default
 
 packet_ver: 5
 0x0064,55
@@ -752,7 +744,7 @@ packet_ver: 17
 0x0113,33,useskilltopos,12:15:18:31
 0x0116,12,dropitem,3:10
 0x0190,24,actionrequest,11:23
-0x0216,0
+0x0216,-1
 0x023d,-1
 0x023e,4
 
@@ -829,7 +821,7 @@ packet_ver: 19
 0x0240,-1
 0x0248,-1,mailsend,2:4:28:68
 0x0255,5
-0x0256,0
+0x0256,-1
 0x0257,8
 
 //2005-09-12bSakexe
@@ -929,7 +921,7 @@ packet_ver: 20
 0x0285,6
 0x0286,4
 0x0287,-1
-0x0288,6
+0x0288,6,cashshopbuy,2:4
 0x0289,8
 0x028a,18
 0x028b,-1
@@ -952,8 +944,8 @@ packet_ver: 20
 0x029d,-1
 0x029e,11
 0x029f,3,mermenu,0
-0x02a0,0
-0x02a1,0
+0x02a0,-1
+0x02a1,-1
 0x02a2,8
 
 //2007-01-08aSakexe
@@ -980,8 +972,8 @@ packet_ver: 21
 
 //2007-01-29aSakexe
 0x029b,72
-0x02a3,0
-0x02a4,0
+0x02a3,-1
+0x02a4,-1
 0x02a5,8
 
 // 2007-02-05aSakexe
@@ -1101,8 +1093,8 @@ packet_ver: 22
 0x02ef,8
 
 //2008-03-18aSakexe
-0x02bf,0
-0x02c0,0
+0x02bf,-1
+0x02c0,-1
 0x02f0,10
 0x02f1,2,progressbar,0
 0x02f2,2
@@ -1286,7 +1278,7 @@ packet_ver: 23
 
 //2008-12-10aSakexe
 0x0442,-1
-0x0443,8
+0x0443,8,skillselectmenu,2:6
 
 //2009-01-14aSakexe
 0x043f,25
@@ -1404,15 +1396,15 @@ packet_ver: 25
 //0x07e0,58
 
 //2009-07-15aRagexeRE
-//0x07e1,15
+0x07e1,15
 
 //2009-08-05aRagexeRE
-//0x07e2,8
+0x07e2,8
 
 //2009-08-18aRagexeRE
-//0x07e3,6
-//0x07e4,-1
-//0x07e6,8
+0x07e3,6
+0x07e4,-1,itemlistwindowselected,2:4:8
+0x07e6,8
 
 //2009-08-25aRagexeRE
 //0x07e6,28
@@ -1420,7 +1412,7 @@ packet_ver: 25
 
 //2009-09-22aRagexeRE
 0x07e5,8
-//0x07e6,8
+0x07e6,8
 0x07e7,32
 0x07e8,-1
 0x07e9,5
@@ -1463,7 +1455,7 @@ packet_ver: 25
 //2009-12-01aRagexeRE
 //0x07fc,10
 //0x07fd,-1
-//0x07fe,26
+0x07fe,26
 //0x07ff,-1
 
 //2009-12-15aRagexeRE
@@ -1527,8 +1519,8 @@ packet_ver: 25
 //0x081A,4
 //0x081B,4
 //0x081C,6
-//0x081D,22
-//0x081E,8
+0x081D,22
+0x081E,8
 
 //2010-03-23aRagexeRE
 //0x081F,-1
@@ -1538,7 +1530,7 @@ packet_ver: 25
 
 //2010-04-13aRagexeRE
 //0x081A,10
-//0x0820,11
+0x0820,11
 //0x0821,2
 //0x0822,9
 //0x0823,-1
@@ -1624,5 +1616,6 @@ packet_ver: 26
 0x0858,-1
 0x0859,-1
 
-//Add new packets here
+// Adicione novos pacotes aqui.
 //packet_ver: 27
+//========================================================================================================

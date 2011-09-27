@@ -298,7 +298,7 @@ ein_in01,201,27,3	script	Membro da Guilda#alberta	63,{
 					mes "1. Qual das regiões a seguir está combinada incorretamente";
 					mes "com sua especialidade?";
 					next;
-					if (select("Morroc - Traje de Gatuno:Alberta - Machado de Duas Mãos:Comodo - Poção da Fúria Selvagem:Alberta - Clava") == 2) set .@black_q,.@black_q+10;
+					if (select("Morroc - Traje de Gatuno:Alberta - Machado de Duas Mãos:Comodo - Poção da Fúria Selvagem:Alberta - Clava") == 4) set .@black_q,.@black_q+10;
 					mes "[Geschupenschte]";
 					mes "2. Que condição pode ser";
 					mes "inflingido com a habilidade";
