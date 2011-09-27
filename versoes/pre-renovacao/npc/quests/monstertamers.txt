@@ -578,7 +578,7 @@ izlude_in,129,64,4	script	Monster Tamer#izu	125,{
 		next;
 		if ((countitem(1004) > 0) && (countitem(904) > 0)) {
 			mes "[Shogo]";
-			mes ""Oh! Você tem todos os itens necessários para fazer um Horror da Tribo! Bom, bom! Com todo o meu orgulho como um Domador de Monstros, vou fazer isso para você imediatamente!";
+			mes "Oh! Você tem todos os itens necessários para fazer um Horror da Tribo! Bom, bom! Com todo o meu orgulho como um Domador de Monstros, vou fazer isso para você imediatamente!";
 			next;
 			mes "[Shogo]";
 			mes "Tem que...";

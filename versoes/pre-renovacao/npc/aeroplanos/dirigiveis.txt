@@ -201,7 +201,10 @@ airplane,250,58,2	script	Airship Staff#airplane	67,{
 		mes "ao Aeroplano.";
 		mes "Como posso ajudá-lo?";
 		next;
-		if (select("Você tem um passageiro chamado Thierry?") ==1) break;
+		switch(select("Você tem um passageiro chamado Thierry?")) {
+			case 1:
+				break;
+		}
 		mes "[Tripulação do Aeroplano]";
 		mes "Sinto muito, mas eu não acho que temos um passageiro com esse nome.";
 		close;
@@ -298,7 +301,10 @@ airplane,221,158,2	script	Pilot#airplane	852,{
 		mes "Mas! Que eu queria beber, eu queria.";
 		emotion e_sob;
 		next;
-		if (select("Você tem um passageiro chamado Thierry?") ==1) break;
+		switch(select("Você tem um passageiro chamado Thierry?")) {
+			case 1:
+				break;
+		}
 		mes "[Piloto]";
 		mes "Esse uniforme é";
 		mes "muito elegante, mas";

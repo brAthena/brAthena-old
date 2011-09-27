@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0849 - 27/09/2011 [Protimus]
+	* Corrigidos erros nos NPCs enviados na r847.
+
 	r0848 - 26/09/2011 [Protimus]
 	* Atualizado conforme eAthena r14962.
 
