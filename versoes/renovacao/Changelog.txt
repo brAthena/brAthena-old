@@ -9,6 +9,20 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0852 - 27/09/2011 [Protimus]
+	* Corrigido ataque físico do homunculus.
+	* Corrigida fórmula do ataque físico normal, apenas por bonificações de status.
+	* Atualizada fórmula da esquiva.
+	- A cada 7 pontos de sorte adiciona 1 em esquiva e não mais a cada 5 pontos.
+	* Atualizada fórmula da defesa física.
+	- A cada 6 leveis aumenta 1 ponto de defesa e não a cada level.
+	- A cada 4 pontos de destreza aumenta 1 de defesa mágica.
+	- Não aumenta mais bônus por agilidade.
+	* Atualizada fórmula da defesa mágica.
+	- A cada 6 leveis aumenta 1 ponto de defesa mágica e não a cada level.
+	- A cada 2 pontos de inteligência aumenta 1 de defesa mágica e não a cada ponto.
+	- Não aumenta mais bônus por destreza.
+
 	r0851 - 27/09/2011 [Protimus]
 	* Corrigida habilidade AB_CLAREANCE (Clareance).
 	- Modificada fórmula da taxa de sucesso do uso de status.

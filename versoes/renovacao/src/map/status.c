@@ -1710,7 +1710,7 @@ int status_base_amotion_pc(struct map_session_data* sd, struct status_data* stat
 
 static unsigned short status_base_atk(const struct block_list *bl, const struct status_data *status, int level)
 {
-	int flag = 0, str, dex;
+	int flag = 0, str, dex, dstr;
 
 	if(!(bl->type&battle_config.enable_baseatk))
 		return 0;
@@ -1737,15 +1737,15 @@ static unsigned short status_base_atk(const struct block_list *bl, const struct 
 	//Normally only players have base-atk, but homunc have a different batk
 	// equation, hinting that perhaps non-players should use this for batk.
 	// [Skotlex]
-
-	if( bl->type == BL_PC )
-		str += (int)((float)dex/5 + (float)status->luk/3 + (float)level/4);
+	dstr = str/10;
+	str += dstr*dstr;
+	if (bl->type == BL_PC)
+		str+= dex/5 + status->luk/5;
 
 	return cap_value(str, 0, USHRT_MAX);
 }
 
 #define status_base_status_matk(status, level) (status->int_ + status->int_/2 + (level/4) + (status->dex/5) + (status->luk/3))
-
 //Fills in the misc data that can be calculated from the other status info (except for level)
 void status_calc_misc(struct block_list *bl, struct status_data *status, int level)
 {
@@ -1759,9 +1759,10 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int lev
 	status->batk = status_base_atk(bl, status, level);
 
 	status->hit += level + status->dex + status->luk/3 + 175;
-	status->flee += level + status->agi + status->luk/5 + 100;
-	status->def += (int)(((float)level + status->vit)/2 + ((float)status->agi/5));
-	status->mdef += (int)(status->int_ + ((float)level/4) + ((float)status->dex/5) + ((float)status->vit/5));
+	status->flee += level + status->agi + status->luk/7 + 100;
+	status->def += (int)((float)level/6 + status->vit/2 + (float)status->dex/4);
+	status->mdef += (int)((float)level/6 + (float)status->vit/5 + status->int_/2);
+	status->batk += (int)((float)level/4 + status->str + (float)status->dex/4 + (float)status->luk/3);
 
 	status->matk_min = status_base_status_matk(status, level);
 	if (bl->type == BL_PC )
