@@ -374,7 +374,7 @@
 //-- Glistening Coat <-- AM_PHARMACY & Glistening Coat Creation Guide & 1 Alcohol, 1 Heart of Mermaid, 1 Zenorcs Fang, 1 Empty Bottle
 7139,22,228,1,7132,0,970,1,950,1,1044,1,713,1
 //-- Ancilla <-- AB_ANCILLA & 1 Blue Gemstone
-12333,24,2039,1,717,1
+12333,22,2039,1,717,1
 //----------------------------------------------
 
 //---- Poções Elementais ----------------

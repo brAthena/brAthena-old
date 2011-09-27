@@ -9,6 +9,16 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0850 - 27/09/2011 [Protimus]
+	* Corrigida habilidade AB_EPICLESIS (Epiclesis).
+	- Usável apenas em amigos, seja de grupo ou guilda.
+	* Corrigidas habilidades AB_JUDEX (Judex) & AB_ADORAMUS (Adoramus).
+	- Fórmula de dano atualizada.
+	* Adicionado NPC de mudança de classe para Arcebispo.
+    * Adicionada modificação na taxa de refinamento das armaduras.
+	* Alterado Itemlv da Ancilla conforme original.
+	* Pequenas correções não mencionadas para posteriores adições.
+	
 	r0846 - 26/09/2011 [Protimus]
 	* Atualizado conforme eAthena r14962.
 	- Necessário revisar quests_brasilis.txt conforme eAthena.
