@@ -9,6 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0851 - 27/09/2011 [Protimus]
+	* Corrigida habilidade AB_CLAREANCE (Clareance).
+	- Modificada fórmula da taxa de sucesso do uso de status.
+	* Adicionada habilidade ALL_PARTYFLEE.
+	- Adiciona 10 pontos de bônus de esquiva para os membros do grupo em level 1.
+	* Adicionado bônus ALL_PARTYFLEE ao item: Enorme Galho de Cerejeira.
+
 	r0850 - 27/09/2011 [Protimus]
 	* Corrigida habilidade AB_EPICLESIS (Epiclesis).
 	- Usável apenas em amigos, seja de grupo ou guilda.
