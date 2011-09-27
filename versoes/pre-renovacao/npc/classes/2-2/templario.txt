@@ -12,139 +12,140 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 3.3/1.1                                |
+// | Versões eA/brA: 3.3/1.2                                |
 // |--------------------------------------------------------|
 // | Descrição: Mudança de Classe para Templário            |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
 // | 1.0 Otimização e Remoção de espaços [Wolf]             |
 // | 1.1 Otimizações no npc [Wolf]                          |
+// | 1.2 Script Traduzido [FelipeM]                         |
 // \________________________________________________________/
 
 
 //=============== Senior Crusader: 1st Collect Items Test============================
-prt_castle,45,169,5	script	Senior Crusader	752,{
+prt_castle,45,169,5	script	Templário Mestre	752,{
 	mes "[Michael Halig]";
 	if (Upper == 1) { //the baby classes were totally blocked... due to missing == 1
-		mes "Go and train yourself in preparation for the holy war that is coming. Victory will be in the hands of those who are most ready to receive it.";
+		mes "Vá treinar e se preparar para a guerra santa que está chegando. A vitória estará nas mãos daqueles que estão mais preparados para recebê-la.";
 		next;
 		mes "[Michael Halig]";
-		mes "You don't belong here, my friend.";
-		mes "Be advised to continue practicing yourself.";
+		mes "Você não deve ficar aqui, meu amigo.";
+		mes "Lhe aconselho á continuar praticando.";
 		close;
 	} else if(BaseJob != Job_Swordman) {
 		if(BaseJob == Job_Crusader) {
-			mes "Go and train yourself in preparation for the holy war that is coming. Victory will be in the hands of those who are most ready to receive it.";
+			mes "Vá treinar e se preparar para a guerra santa que está chegando. A vitória estará nas mãos daqueles que estão mais preparados para recebê-la.";
 			next;
 			mes "[Michael Halig]";
-			mes "Chaos will one day arise to challenge our principles of peace, justice and order. Until we have eliminated evil and created our ideal world, we must not cease training.";
+			mes "O caos irá surgir um dia, para abalar nossos princípios de paz, justiça e ordem. Até que nós não tenhamos acabado com o mal e criado nosso mundo ideal, nós não podemos parar de treinar.";
 			close;
 		} else if(BaseJob == Job_Novice) {
-			mes "We are Crusaders,";
-			mes "warriors preparing";
-			mes "to fight in the Holy War.";
+			mes "Nós somos Templários,";
+			mes "guerreiros preparados";
+			mes "para lutar na Guerra Santa.";
 			next;
 			mes "[Michael Halig]";
-			mes "If you wish to join us, you must first learn the Swordsman discipline and train yourself thoroughly...";
+			mes "Se você quer ser um de nós, antes você deve aprender as doutrinas de um Espadachim e treinar muito...";
 			close;
 		}
-		mes "We are Crusaders,";
-		mes "warriors preparing";
-		mes "to fight in the Holy War.";
+		mes "Nós somos Templários,";
+		mes "guerreiros preparados";
+		mes "para lutar na Guerra Santa.";
 		next;
 		mes "[Michael Halig]";
-		mes "As it happened one thousand years ago, evil forces will one day attack in droves in an attempt to take over the world once again.";
+		mes "Como aconteceu milhares de anos atrás, as forças do mal virão em grande número, para tentar tomar o mundo novamente.";
 		close;
 	} else if(CRUS_Q <= 3 && countitem(1004) && countitem(1009)) {
 		mes "Ah...";
-		mes "I see that you have been called to become a Crusader. We are assured of your will, but now we must test your capabilities.";
+		mes "Eu vejo que você tem vocação para ser um Templário. Estamos seguros que sim, mas agora precisamos testar suas capacidades.";
 		next;
 		mes "[Michael Halig]";
-		mes "Meet with Moorenak Miyol who is training in the underground dungeon of the Prontera Castle. Go, and speak with him first.";
+		mes "Se encontre com Murnak Mijoul, que está preso no subsolo do Castelo de Prontera. Vá, e fale com ele antes.";
 		next;
 		delitem 1004, 1;
 		delitem 1009, 1;
 		set CRUS_Q,4;
 		mes "[Michael Halig]";
-		mes "Moorenak and others like him will test the limits of your capabilities and help you find your path. Return to me after you have completed their tests...";
+		mes "Murnak e os outros iguais a ele, irão testar os limites de suas capacidades e te ajudar a encontrar seu caminho. Venha até mim quando tiver completado os testes deles...";
 		close;
 	} else if(CRUS_Q == 0) {
-		mes "We are Crusaders, warriors preparing for the Holy War.";
-		mes "What brings you";
-		mes "to this place?";
+		mes "Nós somos Templários, guerreiros preparados para a Guerra Santa.";
+		mes "O que trás você";
+		mes "á este lugar?";
 		next;
-		if (select("I want to prepare for the Holy War!:Nothing in particular.") == 1) {
+		if (select("Quero estar preparado para a Guerra Santa!:Nada em particular.") == 1) {
 			mes "[Michael Halig]";
-			mes "You wish to become";
-			mes "a Crusader...?";
-			mes "Joining us is not as";
-			mes "easy as it sounds.";
+			mes "Você quer se tornar";
+			mes "um Templário...?";
+			mes "Se unir a nós não é tão";
+			mes "fácil quanto parece.";
 			next;
 			mes "[Michael Halig]";
-			mes "I am Michael Halig. I am one of but many Crusaders preparing for the Holy War. We continuously train ourselves with sincere faith and endless loyalty.";
+			mes "Eu sou Michael Halig. Eu sou um dos muitos Templários preparados para a Guerra Santa. Nós treinamos continuamente com muita fé e lealdade infindável.";
 			next;
 			mes "[Michael Halig]";
-			mes "We recruit Swordsmen that express exceptional faith, or those who were born as warriors";
-			mes "by Odin's will.";
+			mes "Nós recrutamos Espadachins que possuem fé excepcional, ou aqueles que nasceram com espírito guerreiro";
+			mes "para a causa de Odin.";
 			next;
 			mes "[Michael Halig]";
-			mes "Possessing the ^3355FFChivalry Emblem^000000 and ^3355FFHand of God^000000 is seen as a sign that you have been called to become a Crusader.";
+			mes "Possuir o ^3355FFEmblema da Cavalaria^000000 e ^3355FFMão de Deus^000000 é sinal de que você foi chamado para ser um Templário.";
 			next;
 			mes "[Michael Halig]";
-			mes "After obtaining those items and passing our tests, you too, can become a Crusader.";
+			mes "Depois de obter estes itens e acabar os teste, você também, pode se tornar um Templário.";
 			next;
 			mes "[Michael Halig]";
-			mes "I don't know what type of person you are right now though. But";
-			mes "I shall test you if you desire. Are you willing to endure these tests in preparation for the Holy War?";
+			mes "Não sei que tipo de pessoa você é agora. Mas";
+			mes "eu posso testar você, se assim desejar. Você está certo de que quer encarar estes testes para se preparar para a Guerra Santa?";
 			next;
-			if (select("Yes, I do.:I'd like to think about it.") == 1) {
+			if (select("Sim, estou.:Ainda quero pensar sobre isso.") == 1) {
 				if(JobLevel < 40) {
 					mes "[Michael Halig]";
-					mes "Wait...";
-					mes "You're not ready yet.";
-					mes "You need to be at least";
-					mes "Job Level 40 to become";
-					mes "a Crusader.";
+					mes "Espere...";
+					mes "Você ainda não está preparado.";
+					mes "Você precisa de pelo menos";
+					mes "40 de Nível de Classe, para se tornar um";
+					mes "Templário.";
 					next;
 					mes "[Michael Halig]";
-					mes "Train yourself more as a Swordsman and wait for your calling. I understand your intent, but as of now, you cannot join us.";
+					mes "Treine mais como um Espadachim até receber seu chamado. Eu entendo sua intenção, mas por enquanto, você não pode se juntar a nós.";
 					close;
 				}
 				mes "[Michael Halig]";
 				if (Skillpoint) {
-					mes "You haven't finished learning everything as a Swordsman. Use all of your remaining skill points, and then return to me.";
+					mes "Você ainda não terminou sua saga de Espadachim. Use todos os seus pontos de Habilidade restantes, e retorne até mim.";
 					close;
 				}
-				mes "Then...";
-				mes "I shall test you to see if you are fit to become a Crusader.";
+				mes "Então...";
+				mes "Eu devo testá-lo a fim de ver se você pode se tornar um Templário.";
 				next;
 				mes "[Michael Halig]";
-				mes "Your name is";
+				mes "Seu nome é";
 				mes ""+strcharinfo(0)+"...?";
-				mes "Let's see...";
+				mes "Vejamos...";
 				next;
 				if (countitem(1004) && countitem(1009)) {
 					mes "[Michael Halig]";
 					mes "Ah...";
-					mes "I see that you have been called to become a Crusader. We are assured of your will, but now we must test your capabilities.";
+					mes "Eu vejo que você recebeu o chamado para se tornar um Templário. Estou certo de que você vai, mas agora devo testar suas capacidades.";
 					next;
 					mes "[Michael Halig]";
-					mes "Meet with Moorenak Miyol who is training in the underground dungeon of the Prontera Castle. Go, and speak with him first.";
+					mes "Encontre-se com Murnak Mijoul, que está preso no subsolo do Castelo de Prontera. Vá, e fale com ele primeiro.";
 					next;
 					delitem 1004, 1;
 					delitem 1009, 1;
 					set CRUS_Q,4;
 					setquest 3009;
 					mes "[Michael Halig]";
-					mes "Moorenak and others like him will test the limits of your capabilities and help you find your path. Return to me after you have completed their tests...";
+					mes "Murnak e outros como ele, vão testar os limites de suas capacidades, bem como lhe ajudar a encontrar seu caminho. Volte aqui depois de completar todos os testes necessários...";
 					close;
 				}
 				mes "[Michael Halig]";
-				mes "Mmm. I can't discern whether or not you have the heart to become a Crusader. However, if you have the will and put forth the effort, you may have what it takes.";
+				mes "Mmm. Não posso saber se você realmente tem o coração de um Templário. Entretando, se você tiver força de vontade, você pode conseguir me provar isto.";
 				next;
 				mes "[Michael Halig]";
-				mes "Now...";
-				mes "This is my test for you. Bring me the following items and prove your determination to me.";
+				mes "Agora...";
+				mes "Este é meu teste para você. Me traga os seguinets itens para provar sua determinação.";
 				next;
 				mes "[Michael Halig]";
 				set .@cru_m1,rand(1,3);
@@ -174,23 +175,23 @@ prt_castle,45,169,5	script	Senior Crusader	752,{
 					next;
 				}
 				mes "[Michael Halig]";
-				mes "Show me the strength of your will by gathering these items. If you prove successful, you will progress to the next test. May Odin protect you.";
+				mes "Me mostre sua força e perseverança conseguindo estes itens. Se você for bem sucedido, irá avançar para o próximo teste. Que Odin o proteja.";
 				close;
 			}
 			mes "[Michael Halig]";
-			mes "Nobody knows when the Holy War will come. We must prepare in advance and cannot afford to slacken";
-			mes "our training.";
+			mes "Ninguém sabe quando a guerra Santa virá. Nós precisamos nos preparar e estar vigiando, para não nos enfraquecermos";
+			mes "em nosso treinamento.";
 			next;
 			mes "[Michael Halig]";
-			mes "If you feel that participating in the Holy War is your calling, please come back right away and take the test to become";
-			mes "a Crusader.";
+			mes "Se você sente que participar da Guerra Santa é o seu chamado, por favor volte e faça o teste para se tornar um";
+			mes "Templário.";
 			close;
 		}
 		mes "[Michael Halig]";
-		mes ""+((Sex)?"If you, too, are a man of the sword, constantly train and prepare yourself. No one knows when the Holy War may begin.":"As a woman of the sword, you must train diligently and constantly. Prepare yourself, for no one knows when the Holy War may be coming.")+"";
+		mes ""+((Sex)?"Se você também é um homem da espada, treine e se prepare constantemente. Ninguém sabe quando a Guerra Santa irá começar.":"Como uma mulher da espada, você deve treinar constantemente e ser diligente. Esteja preparada, pois ninguém sabe quando a Guerra Santa virá.")+"";
 		close;
 	} else if(CRUS_Q >= 1 && CRUS_Q <= 3) {
-		mes "Have you proven your determination with the task I have given you, or do you possess the items proving that you have received your calling?";
+		mes "Você provou sua determinação na tarefa que te passei, ou ainda, você possui os itens que provam que você recebeu seu chamado?";
 		next;
 		switch(CRUS_Q) {
 			case 1: set @item1, 957; set @item2, 959; set @item3, 1099; set @item4, 901; break;
@@ -199,11 +200,11 @@ prt_castle,45,169,5	script	Senior Crusader	752,{
 		}
 		if (countitem(@item1) > 9 && countitem(@item2) > 9 && countitem(@item3) > 9 && countitem(@item4) > 9) {
 			mes "[Michael Halig]";
-			mes "Ah, well done.";
-			mes "I must acknowledge your efforts and determination. You may now proceed to take the next test.";
+			mes "Ah, Muito bem.";
+			mes "Devo reconhecer seus esforços e determinação. Agora você deve prosseguir para a próxima etapa.";
 			next;
 			mes "[Michael Halig]";
-			mes "Meet with Moorenak Miyol who is training in the underground dungeon of the Prontera Castle. Go, and speak with him first.";
+			mes "Encontre-se com Murnak Mijoul, que está preso no subsolo do Castelo de Prontera. Vá, e fale com ele primeiro.";
 			next;
 			delitem @item1, 10;
 			delitem @item2, 10;
@@ -214,11 +215,11 @@ prt_castle,45,169,5	script	Senior Crusader	752,{
 			else if(checkquest(3007) != -1) changequest 3007,3009;
 			else changequest 3008,3009;
 			mes "[Michael Halig]";
-			mes "Moorenak and others like him will test the limits of your capabilities and help you find your path. Return to me after you have completed their tests...";
+			mes "Murnak e outros como ele, vão testar os limites de suas capacidades, bem como lhe ajudar a encontrar seu caminho. Volte aqui depois de completar todos os testes necessários...";
 			close;
 		}
 		mes "[Michael Halig]";
-		mes "Ah, you still have not completed the task I have given to you. Bring me the following items, and prove your will to become a Crusader to me...";
+		mes "Ah, você ainda não completou a tarefa que te pedi. Me traga os seguintes itens, e prove para mim que você pode ser um Templário...";
 		next;
 		mes "[Michael Halig]";
 		mes "10 ^3355FF"+getitemname(@item1)+"^000000";
@@ -227,584 +228,584 @@ prt_castle,45,169,5	script	Senior Crusader	752,{
 		mes "10 ^3355FF"+getitemname(@item4)+"^000000";
 		next;
 		mes "[Michael Halig]";
-		mes "If you put forth the effort, you'll be able to accomplish this task. May Odin protect you on your journeys.";
+		mes "Se você tiver força de vontade, será capaz de completar esta tarefa. Que Odin te proteja em sua jornada.";
 		close;
 	} else if(CRUS_Q == 10) {
 		if(SkillPoint) {
-			mes "You haven't finished learning everything as a Swordsman. Use all of your remaining skill points, and then return to me.";
+			mes "Você ainda não completou sua saga com Espadachim. Use todos os seus pontos de Habilidade restantes, e então, retorne até mim.";
 			close;
 		}
-		mes "Congratulations on completing all of your tests. You are truly worthy of fighting alongside side us in the Holy War as a Crusader.";
+		mes "Parabéns, você completou todos os testes. Você é realmente digno de lutar ao nosso lado na Guerra Santa como Templário.";
 		next;
 		mes "[Michael Halig]";
-		mes "Together, let us ready ourselves and be victorious over evil and tyranny!";
+		mes "Juntos, iremos nos preparar e seremos vitoriosos contras as forças do mal e sua tirania!";
 		next;
 		set .@Joblevel,JobLevel;
 		completequest 3015;
 		callfunc "Job_Change",Job_Crusader;
 		callfunc "F_ClearJobVar";		//clears all job variables for the current player
 		mes "[Michael Halig]";
-		mes "Behold...!";
-		mes "You are now a Crusader!";
-		mes "When the Holy War comes, we shall fight side by side against the forces of evil.";
+		mes "Então...!";
+		mes "Agora você é um Templário!";
+		mes "Quando a guerra Santa vier, nós lutaremos lado-a-lado contra o mal.";
 		next;
 		mes "[Michael Halig]";
-		mes "Now you are";
-		mes "one of us!";
-		mes ""+((Sex)?"Brother.":"Comrade.")+"";
+		mes "Agora você é";
+		mes "um de nós!";
+		mes ""+((Sex)?"irmão..":"irmã.")+"";
 		next;
 		if(.@JobLevel != 50) getitem 504, 6;
 		else getitem 504, 12;
 		mes "[Michael Halig]";
-		mes "And use this in times of dire peril. It will give you strength when your wounds are most grievous.";
+		mes "Use isso em tempos de perigo. Vai lhe dar forças quando tudo ao seu redor parecer perdido.";
 		next;
 		mes "[Michael Halig]";
-		mes "Never forget that the Holy War is approaching. We must be prepare for the inevitable tide of evil that will sweep this world. Now, go forth and fight for the principles of freedom and justice!";
+		mes "Nunca se esqueça de que a Guerra Santa está chegando. Precisamos estar preparados para enfrentar o inevitável mal que sobrevirá sobre este mundo. Agora, vá, e lute pelos princípios da justiça e liberdade !";
 		close;
 	}
-	mes "It seems that you have not yet completed all of the testing. You will not be ready to become a Crusader until you have completed the tests set before you.";
+	mes "Parece que você não completou todo seu teste. Você não estará preparado para ser um Templário até que tenha completado todas as tarefas propostas á você.";
 	next;
 	mes "[Michael Halig]";
-	mes "Return to me when you have completed all of your tests. When you finally prove eligible, you will join the proud ranks of the mighty Crusaders.";
+	mes "Volte aqui quando tiver feito todas as tarefas. Quando você finalmente provar que é capaz, estará no ranking dos Templários mais incríveis!";
 	close;
 }
 
 //===================== Suffering Man: 2nd Endurance Test ===============================================
-prt_castle,164,32,1	script	Man in Anguish	733,{
+prt_castle,164,32,1	script	Homem Angustiado	733,{
 	mes "[Murnak Mijoul]";
 	if(BaseJob != Job_Swordman) {
 		if (BaseJob == Job_Crusader) {
-			mes "Don't linger around in a place like this and forge your own path towards discovering your own strengths. The day that we will join hands in battle will come soon.";
+			mes "Pare de passear em lugares como esse e vá gastar seu tempo descobrindo até onde vai sua força. O dia em que uniremos nossas forças em batalha chegará em breve.";
 			close;
 		} else if(BaseJob == Job_Novice) {
-			mes "A Novice...?";
-			mes "So green, and yet,";
-			mes "so much potential.";
+			mes "Um aprendiz...?";
+			mes "Você não está maduro, mas,";
+			mes "tem muito potencial.";
 			next;
 			mes "[Murnak Mijoul]";
-			mes "Let me assure you that I'm no criminal. I'm here merely to train myself. Perhaps as you become stronger, you will understand.";
+			mes "Que fique bem claro que não sou um criminoso. Estou aqui meramente por questões de treino. Talvez quando você ficar forte, irá me entender.";
 			close;
 		}
-		mes "Hm. You have no business in a place like this. Please leave, and do not interrupt my training.";
+		mes "Hm. Você não tem nada o que afzer aqui. Por favor, saia e me deixe treinando.";
 		close;
 	} else if(CRUS_Q >= 0 && CRUS_Q <= 3) {
-		mes "What do you want...?";
-		mes "If you have no business here,";
-		mes "then please leave. A tranquil state of mind is essential in self training...";
+		mes "O que você quer...?";
+		mes "Se você não tem o que fazer aqui,";
+		mes "então saia. Uma mente tranqüila é essencial para o treinamento...";
 		next;
 		mes "[Murnak Mijoul]";
-		mes "I wish to improve the sense of serenity in my heart in preparation for the Holy War that is to come. So please, do not disturb me.";
+		mes "Quero melhorar o senso de serenidade em meu coração para me preparar melhor para a Guerra Santa que virá. Então eu lhe peço que não me perturbe.";
 		close;
 	} else if(CRUS_Q == 4) {
-		mes "What is it...?";
-		mes "Do you have business";
-		mes "with me, "+((Sex)?"man":"woman")+" of the sword?";
+		mes "O que é isso...?";
+		mes "Você tem assuntos a tratar comigo";
+		mes "comigo, "+((Sex)?"homem":"mulher")+" da espada?";
 		next;
-		if (select("I'd like to take the Crusader test.:Nothing.") == 1) {
+		if (select("Quer continuar meu teste de Templário.:Não, não é nada.") == 1) {
 			mes "[Murnak Mijoul]";
-			mes "You wish to become a Crusader...? Hm, fighting in the Holy War is an admirable goal we may both share.";
+			mes "Você quer ser um Templário...? Hm, lutar na Guerra Santa é um objetivo de vida admirável, que nós dois compartilhamos.";
 			next;
 			mes "[Murnak Mijoul]";
-			mes "Your name is";
+			mes "Seu nome é";
 			mes ""+strcharinfo(0)+"...?";
-			mes "Let me take";
-			mes "a look at your face.";
+			mes "Deixe-me";
+			mes "dar uma olhada no seu rosto.";
 			next;
 			if(getequipid(7) != 2608 && getequipid(8) != 2608) {
 				mes "[Murnak Mijoul]";
-				mes "Hmm. You wish to become a Crusader, but do not wear a Rosary? I have no business with you if you cannot uphold our customs.";
+				mes "Hmm. Você quer ser Templário, mas não usa seu Rosário? Não tenho o que falar pra ti se não tens esse símbolo precioso.";
 				close;
 			}
 			mes "[Murnak Mijoul]";
 			mes "Hmm...";
-			mes "You seem so-so, but also young and ambitious. Ambition may work against you if it is not tempered with patience.";
+			mes "Você parece meio 'mais-ou-menos', entretanto é jovem e ambicioso. Ambição pode trabalhar CONTRA você, caso não tenha uma boa dose de paciência em seu coração.";
 			next;
 			mes "[Murnak Mijoul]";
-			mes "Don't give me a reason to doubt you, and show me your patience. You must endure my test with your patience if you wish to become a Crusader.";
+			mes "Não me dê rasões para duvidar de você, e me mostre sua paciência. Você deve ser muito paciente, caso deseje completar meu teste e se tornar um Templário.";
 			next;
 			mes "[Murnak Mijoul]";
-			mes "You may take my test right away. It's actually quite simple. All you must do is walk to the end of the corridor.";
+			mes "Acho que você fará isso de forma fácil. É bem simples. Tudo que você precisa fazer é caminhar até o fim do corredor.";
 			next;
 			mes "[Murnak Mijoul]";
 			mes "But...";
-			mes "You must keep one thing in mind. Under no condition are you allowed to kill the monsters.";
+			mes "Você precisa ter uma coisa em mente: Você está estritamente proibido de matar qualquer um dos monstros.";
 			next;
 			set CRUS_Q,5;
 			changequest 3009,3010;
 			mes "[Murnak Mijoul]";
-			mes "Well then...";
-			mes "Good luck.";
+			mes "Então...";
+			mes "Boa sorte.";
 			close2;
 			warp "job_cru",98,40;
 			end;
 		}
 		mes "[Murnak Mijoul]";
-		mes "You seem to have a lot of time on your hands. Why don't you do something more productive, like pick Jellopy off the streets or something?";
+		mes "Parece que tens muito tempo em mãos. Porque você não faz algo mais produtivo, como coletar Jellopyes do chão ou coisa parecida?";
 		close;
 	} else if(CRUS_Q == 5) {
-		mes "What is it...?";
-		mes "You're the Swordman from before. What happened, did you fail?";
+		mes "O que é isso...?";
+		mes "Você é o candidado que acabei de conhecer... O que aconteceu? Você falhou?";
 		next;
-		if (select("Let me retake the test.:What kind of test was that?!") == 1) {
+		if (select("Deixe-me refazer o teste.:Que tipo de teste é aquele?!") == 1) {
 			mes "[Murnak Mijoul]";
-			mes "I'll let you retake the test as much as you like. But if you continuously fail, there's an inherent problem with your";
-			mes "state of mind.";
+			mes "Vou lhe dar quantas chances desejar. Mas se você falhar continuamente, é sinal de que há algo errado com você";
+			mes "e com sua mente.";
 			next;
 			if(getequipid(7) != 2608 && getequipid(8) != 2608) {
 				mes "[Murnak Mijoul]";
-				mes "Wait...";
-				mes "Where have you left your Rosary? You can't let that lie around just anywhere. We are supposed to be warriors of holiness.";
+				mes "Espere...";
+				mes "Você está sem seu Rosário? Você não pode esconder isso de ninguém. Nós somos Guerreiros Divinos.";
 				next;
 				mes "[Murnak Mijoul]";
-				mes "Carelessly losing things is an attitude for mere Swordsmen. If you really want to retake the test, you must respect the Crusader traditions.";
+				mes "Deixar as coisas pelo caminho é atitude de Espadachins medíocres. Se você realmente quer retomar o teste, deve respeitar as tradições dos Templários.";
 				close;
 			}
 			mes "[Murnak Mijoul]";
-			mes "Your problem is your habit of hitting monsters the moment you see one. You must develop your patience and endurance.";
+			mes "Seu problema é o hábito de atacar os monstros assim que os vê. Você deve aumentar sua paciência e força de vontade.";
 			next;
 			mes "[Murnak Mijoul]";
-			mes "Just focus...";
-			mes "Your only goal is to walk from one end of the corridor to the other. It's simple when you think";
-			mes "about it.";
+			mes "É o foco...";
+			mes "Sua ÚNICA meta é andar de um lado do corredor ao outro. É mais fácil quando você raciocina";
+			mes "sobre isso.";
 			next;
 			mes "[Murnak Mijoul]";
-			mes "No matter what you do, do not kill any of the monsters. This time, think carefully before you draw your sword.";
+			mes "Não importa o que aconteça, não mate monstro algum. Dessa vez, pense melhor antes de tirar a espada da bainha.";
 			next;
 			set CRUS_Q,5;
 			mes "[Murnak Mijoul]";
-			mes "Well then...";
-			mes "Good luck.";
+			mes "Então...";
+			mes "Boa sorte.";
 			close2;
 			warp "job_cru",98,40;
 		}
 		mes "[Murnak Mijoul]";
-		mes "Who are you to say that you don't like my test? With that kind of attitude, you'll never become a Crusader.";
+		mes "Quem é você para dizer que não gosta de meu teste? Com essas atitudes, você nunca será um Templário.";
 		next;
 		mes "[Murnak Mijoul]";
-		mes "I can understand if you are easily frustrated, but you must overcome your frustration to pass this test.";
+		mes "Não consigo entender o porquê você não usa sua frustração, para ganhar forças e completar este teste.";
 		close;
 	} else if(CRUS_Q == 6) {
-		mes "Hmm, seems like you did well. It shouldn't have been too hard. You no longer have any business";
-		mes "with me.";
+		mes "Hmm, parece que você conseguiu. Não foi tão difícil...Agora você não tem mais o que tratar";
+		mes "comigo.";
 		next;
 		mes "[Murnak Mijoul]";
-		mes "For your next test, go look for Gabriel Valentine in the Prontera Sanctuary. Well then, I'll see you around.";
+		mes "Para seu próximo teste, vá procurar Gabriel Valentine na Catedral de Prontera. Então, te vejo por aí.";
 		close;
 	}
 	mes "Hmmm...";
-	mes "You still have tests to complete if you want to become a Crusader, don't you?";
+	mes "Você ainda deve completar alguns testes antes de virar Templário, não?";
 	close;
 }
 
 //===================== Gabriel Valentine: 3rd Knowledge Test =================================
-prt_church,95,127,3	script	Crusader	745,{
+prt_church,95,127,3	script	Templário	745,{
 	mes "[Gabriel Valentine]";
 	if(BaseJob != Job_Swordman) {
 		if (BaseJob == Job_Crusader) {
-			mes "Welcome, fellow Crusader.";
-			mes "How is your training";
-			mes "coming along?";
+			mes "Bem vindo, amigo Templário.";
+			mes "Como está indo";
+			mes "o seu treinamento?";
 			next;
 			mes "[Gabriel Valentine]";
-			mes "You must not forget to train everyday, and prepare for the day the Holy War will come upon us.";
+			mes "Você não deve esquecer de treinar todos os dias, e se preparar para o dia da Guerra Santa que virá sobre nós.";
 			close;
 		} else if(BaseJob == Job_Novice) {
-			mes "Welcome, I am a Crusader.";
-			mes "I am preparing for the";
-			mes "foretold Holy War";
-			mes "that is to come.";
+			mes "Bem-vindo, eu sou um Templário.";
+			mes "Eu estou me preparando para a";
+			mes "tão-dita Guerra Santa";
+			mes "que está por vir.";
 			next;
 			mes "[Gabriel Valentine]";
-			mes "If you are interested in becoming a Crusader, you must train first as a Swordman. Come and visit us again when you believe that you have learned enough as a Swordman...";
+			mes "Se você está interessado em se tornar um Templário, você precisa treinar primeiro como um Espadachim. Venha e nos visite novamente quando você acreditar que aprendeu o bastante como um Espadachim...";
 			next;
 			mes "[Gabriel Valentine]";
-			mes "We are located in the Prontera Central Palace, so if you have time, it wouldn't hurt to stop by.";
+			mes "Nós nos encontramos no Palácio Central de Prontera, então se você tiver tempo, não seria má idéia se você nos fizesse uma visita.";
 			close;
 		}
-		mes "Welcome, we are Crusaders.";
-		mes "We are preparing for the";
-		mes "foretold Holy War";
-		mes "that is to come.";
+		mes "Bem-vindo, nós somos Templários.";
+		mes "Nós estamos nos preparando para";
+		mes "tão-dita Guerra Santa";
+		mes "que está por vir.";
 		next;
 		mes "[Gabriel Valentine]";
-		mes "I hope you will train yourself in preparation for the future as well.";
+		mes "Eu espero que você treine o bastante para o futuro próximo.";
 		close;
 	} else if(CRUS_Q == 0) {
-		mes "Welcome. We are Crusaders.";
-		mes "We are preparing for the";
-		mes "foretold Holy War";
-		mes "that is to come.";
+		mes "Bem-vindo, nós somos Templários.";
+		mes "Nós estamos nos preparando para";
+		mes "tão-dita Guerra Santa";
+		mes "que está por vir.";
 		next;
 		mes "[Gabriel Valentine]";
-		mes "If you would like to become a Crusader, please speak with our leader in the Prontera Central Palace.";
+		mes "Se você quiser se tornar um Templário, por favor fale com o nosso líder no Palácio Central de Prontera.";
 		close;
 	} else if((CRUS_Q == 6) || (CRUS_Q == 7)) {
 		if(CRUS_Q == 6) {
-			mes "Welcome.";
-			mes "Did you do well";
-			mes "on those painful tests?";
-			mes "I will be conducting your next test.";
+			mes "Bem-vindo.";
+			mes "Você foi bem";
+			mes "naqueles dolorosos testes?";
+			mes "Eu vou conduzir seu próximo teste.";
 			next;
 			mes "[Gabriel Valentine]";
-			mes "My name is Gabriel Valentine. I, too, am preparing for the Holy War. For the time being, I act as guard for this church.";
+			mes "Meu nome é Gabriel Valentine. Eu, também, estou me preparando para Guerra Santa. Nesses tempos de agora, eu atuo como um guarda para essa igreja.";
 			next;
 			mes "[Gabriel Valentine]";
-			mes "I will test to see if you have acquired the knowledge that is necessary to become a Crusader.";
-			mes "We can't very well win the Holy War just by swinging a sword.";
+			mes "Eu vou testar você pra ver se você adquiriu o conhecimento necessário para tornar-se um Templário.";
+			mes "Nós não podemos ganhar completamente a Guerra Santa só por brandir nossas espadas sobre nossos inimigos.";
 			next;
 			mes "[Gabriel Valentine]";
-			mes "I will give";
-			mes "you 10 questions.";
-			mes "Answer them correctly.";
+			mes "Eu vou dar para";
+			mes "você 10 questões.";
+			mes "Responda-as corretamente.";
 			next;
 		} else if(CRUS_Q == 7) {
-			mes "Welcome back~";
-			mes "Did you prepare";
-			mes "well for this test?";
-			mes "Let's try again,";
-			mes "shall we...?";
+			mes "Bem-vindo de volta~";
+			mes "Você se preparou";
+			mes "bem para este teste?";
+			mes "Vamos tentar novamente,";
+			mes "ok...?";
 			next;
 			mes "[Gabriel Valentine]";
-			mes "Once again, I'm going";
-			mes "to give you 10 questions";
-			mes "Listen carefully, and";
-			mes "choose the correct answer.";
+			mes "Mais uma vez, eu vou";
+			mes "te dar 10 questões";
+			mes "Escute-as com atenção, e";
+			mes "escolha a resposta correta.";
 			next;
 		}
 		set .@cru_m,rand(1,3);
 		if (.@cru_m == 1) {
 			mes "[Gabriel Valentine]";
-			mes "1. Which attribute is the most effective in atttacking the Undead?";
+			mes "1. Qual o atributo mais eficiênte para se atacar Mortos-Vivos?";
 			next;
-			if (select("Neutral:Earth:Undead:Holy") == 4) set .@cru_t,.@cru_t+10;
+			if (select("Neutro::Terra:Morto-Vivo:Sagrado") == 4) set .@cru_t,.@cru_t+10;
 			mes "[Gabriel Valentine]";
-			mes "2. If the monster is a Level 2 Undead, how much more damage does a Holy attack do compared to Fire?";
+			mes "2. Se um monstro for Morto-Vivo nível 2, quanto a mais o dano Sagrado causa comparado ao Fogo?";
 			next;
 			if (select("25 %:50 %:75 %:100 %") == 2) set .@cru_t,.@cru_t+10;
 			mes "[Gabriel Valentine]";
-			mes "3. What item can you not get from an Evil Druid?";
+			mes "3. Qual desses itens você NÂO pode conseguir de um Druída Maligno?";
 			next;
-			if (select("Monk Hat:Yggdrasil leaf:White Herb:Amulet ") == 1) set .@cru_t,.@cru_t+10;
+			if (select("Chapéu de Monge:Folha de Yggdrasil:Erva Branca:Amuleto") == 1) set .@cru_t,.@cru_t+10;
 			mes "[Gabriel Valentine]";
-			mes "4. Which Undead monster";
-			mes "has the highest HP?";
+			mes "4. Qual desses montros Mortos-Vivos";
+			mes "tem o maior HP?";
 			next;
-			if (select("Ghoul:Skeleton Prisoner:Wraith:Zombie Prisoner") == 4) set .@cru_t,.@cru_t+10;
+			if (select("Carniçal:Prisioneiro Esqueleto:Alma Penada:Zumbi Prisioneiro") == 4) set .@cru_t,.@cru_t+10;
 			mes "[Gabriel Valentine]";
-			mes "5. Which of the following monsters is a different size than the others?";
+			mes "5. Qual dos monstros a seguir tem o tamanho diferente dos demais?";
 			next;
-			if (select("Wraith:Khalitzburg:Drake:Evil Druid") == 3) set .@cru_t,.@cru_t+10;
+			if (select("Alma Penada:Khalitzburg:Drake:Druída Maligno") == 3) set .@cru_t,.@cru_t+10;
 			mes "[Gabriel Valentine]";
-			mes "6. Which card grants you tolerance to Undead property attacks?";
+			mes "6. Qual dessas cartas te dá tolerância contra ataques da propriedade Morto-vivo?";
 			next;
-			if (select("Orc Skeleton Card:Orc Zombie Card:Ghoul Card:Skel Worker Card") == 2) set .@cru_t,.@cru_t+10;
+			if (select("Carta Orc Esqueleto:Carta Orc Zumbi:Carta Carniçal:Carta Esqueleto Operário") == 2) set .@cru_t,.@cru_t+10;
 			mes "[Gabriel Valentine]";
-			mes "7. What was the relationship between Munak and Bongun before they passed away?";
+			mes "7. Qual era o tipo de relacionamente entre Munak e Bongun antes dele morrerem?";
 			next;
-			if (select("Big Brother and Little Sister:Childhood friends in the same village:Stepbrother and sister:Complete strangers") == 2) set .@cru_t,.@cru_t+10;
+			if (select("Irmaõ mais velho e Irmã mais nova:Amigos de infância do mesmo vilarejo:Meio irmão e irmã:Completamente estranhos") == 2) set .@cru_t,.@cru_t+10;
 			mes "[Gabriel Valentine]";
-			mes "8. Which of the following monsters is not aggressive?";
+			mes "8. Qual dos monstros a seguir não é agressivo?";
 			next;
-			if (select("Soldier Skeleton:Orc Skeleton:Skeleton:Skel Worker") == 3) set .@cru_t,.@cru_t+10;
+			if (select("Soldado Esqueleto:Orc Esqueleto:Skeleton:Esqueleto Operário") == 3) set .@cru_t,.@cru_t+10;
 			mes "[Gabriel Valentine]";
-			mes "9. What is the name of the shield in which a Munak Card has been inserted?";
+			mes "9. Qual o nome do escudo em que a carta Munak foi inserida?";
 			next;
-			if (select("Atomic Shield:Amulet Shield:Hypnotic Shield:Homeroth Shield") == 2) set .@cru_t,.@cru_t+10;
+			if (select("Escudo atômico:Escudo Amuleto:Escudo Hipnótico:Escudo Homeroth") == 2) set .@cru_t,.@cru_t+10;
 			mes "[Gabriel Valentine]";
-			mes "10. Which of the following monsters does not drop Memento?";
+			mes "10. Qual dos monstros a seguir não dropa Espólio?";
 			next;
-			if (select("Munak:Ghoul:Mummy:Soldier Skeleton") == 1) set .@cru_t,.@cru_t+10;
+			if (select("Munak:Carniçal:Múmia:Soldado Esqueleto") == 1) set .@cru_t,.@cru_t+10;
 		} else if (.@cru_m == 2) {
 			mes "[Gabriel Valentine]";
-			mes "1. Which of the following monsters is a different attribute than the others?";
+			mes "1. Qual desses monstros tem o atributo diferente dos demais?";
 			next;
-			if (select("Carat:Wind Ghost:Isis:Wanderer") == 3) set .@cru_t,.@cru_t+10;
+			if (select("Karat:Alma da Ventania:Ísis:Andarilho") == 3) set .@cru_t,.@cru_t+10;
 			mes "[Gabriel Valentine]";
-			mes "2. Which sword is effective in attacking Demon monsters?";
+			mes "2. Qual espada é eficiente para atacar monstros Demoníacos?";
 			next;
-			if (select("Decussate Tsurugi:Hollowed Tsurugi:Damned Tsurugi:Drowsy Tsurugi") == 1) set .@cru_t,.@cru_t+10;
+			if (select("Tsurugi Cruzada:Tsurugi Esburacada:Tsurugi Amaldiçoada:Tsurugi Sonolenta") == 1) set .@cru_t,.@cru_t+10;
 			mes "[Gabriel Valentine]";
-			mes "3. Which item is NOT dropped by Dokebi?";
+			mes "3. Qual item NÃO é derrubado pelo Dokebi?";
 			next;
-			if (select("Rough Elunium:Golden Hammer:Sword Mace:Mighty Staff") == 2) set .@cru_t,.@cru_t+10;
+			if (select("Minério de Elunium:Martelo de Ouro:Maça_Espada:Cajado do Poder") == 2) set .@cru_t,.@cru_t+10;
 			mes "[Gabriel Valentine]";
-			mes "4. Which Demon monster has the most HP?";
+			mes "4. Qual monstro Demoníaco tem mais HP?";
 			next;
-			if (select("Giearth:Magnolia:Dokebi:Marionette") == 4) set .@cru_t,.@cru_t+10;
+			if (select("Giearth:Magnólia:Dokebi:Marionete") == 4) set .@cru_t,.@cru_t+10;
 			mes "[Gabriel Valentine]";
-			mes "5. Which Demon monster is a different size than the others?";
+			mes "5. Qual monstro Demoníaco tem o tamanho diferente dos outros?";
 			next;
-			if (select("Ghostring:Whisper:Deviruchi:Baphomet Junior") == 1) set .@cru_t,.@cru_t+10;
+			if (select("Ghostring:Susurro:Deviruchi:Bafomé Junior") == 1) set .@cru_t,.@cru_t+10;
 			mes "[Gabriel Valentine]";
-			mes "6. Which shield reduces damage inflicted by Demon monsters?";
+			mes "6. Qual escudo reduz os danos causados pelos monstros Demoníacos?";
 			next;
-			if (select("Satanic Shield:Shield from Hell:Amulet Shield:Excellent Shield") == 2) set .@cru_t,.@cru_t+10;
+			if (select("Escudo Satânico:Escudo do Inferno:Escudo Amuleto:Escudo Exelente") == 2) set .@cru_t,.@cru_t+10;
 			mes "[Gabriel Valentine]";
-			mes "7. Which attribute is the most effective on the Wind Ghost?";
+			mes "7. Qual atributo é mais efetivo no Alma da Ventania?";
 			next;
-			if (select("Water:Earth:Fire:Wind") == 2) set .@cru_t,.@cru_t+10;
+			if (select("Água:Terra:Fogo:Vento") == 2) set .@cru_t,.@cru_t+10;
 
 			mes "[Gabriel Valentine]";
-			mes "8. Which monster is different from the other Demon monsters?";
+			mes "8. Qual monstro é diferente dos outros monstros Demoníacos?";
 			next;
-			if (select("Sohee:Isis:Dokebi:Whisper") == 4) set .@cru_t,.@cru_t+10;
+			if (select("Sohee:Ísis:Dokebi:Susurro") == 4) set .@cru_t,.@cru_t+10;
 			mes "[Gabriel Valentine]";
-			mes "9. What effect does the Marionette Card have?";
+			mes "9. Qual efeito a Carta Marionete tem?";
 			next;
-			if (select("Increase defense against Shadow attacks by 30 %:Increase defense against poison attacks by 30 %:Increase defense against Ghost attacks by 30 %:Increase defense against Neutral attacks by 30 %") == 3) set .@cru_t,.@cru_t+10;
+			if (select("Aumenta defesa contra ataques Sombrios em 30%:Aumenta defesa contra ataques Venenosos em 30%:Aumenta defesa contra ataques Fantasma em 30%:Aumenta defesa contra ataques Neutros em 30%") == 3) set .@cru_t,.@cru_t+10;
 			mes "[Gabriel Valentine]";
-			mes "10. Which of the following is an effective way to react when encountering a demon monster?";
+			mes "10. Qual das alternativas a seguir é um boa maneira de reagir quando encontrar um monstro Demoníaco?";
 			next;
-			if (select("Scream, 'Evil one, go away!':Offer your soul and get a deal.:Put Holy Water on a weapon and attack.:Put on a Deviruchi hat.") == 3) set .@cru_t,.@cru_t+10;
+			if (select("Gritar, 'Ser malígno, vá embora!':Oferecer sua alma e fazer um acordo.:Colocar Água Benta em sua arma e atacar.:Vestir um chapéu de Deviruchi.") == 3) set .@cru_t,.@cru_t+10;
 		} else {
 			mes "[Gabriel Valentine]";
-			mes "1. What level of 'Divine Protection' do you need to learn 'Demon Bane?'";
+			mes "1. Qual o nível da habilidade 'Proteção Divina' necessário para aprender a habilidade 'Flagelo do Mal?'";
 			next;
-			if (select("Level 1:Level 2:Level 3:Level 4") == 3) set .@cru_t,.@cru_t+10;
+			if (select("Nível 1:Nível 2:Nível 3:Nível 4") == 3) set .@cru_t,.@cru_t+10;
 			mes "[Gabriel Valentine]";
-			mes "2. If your INT is 30, including INT bonuses from quipment, at level 55, how much HP does Level 5 Heal recover?";
+			mes "2. Se sua INT é 30, incluindo bonus de INT de seu equipamento, no nível 55, quanto de HP a habilidade 'Curar' nível 5 restaura?";
 			next;
 			if (select("396:440:484:528") == 2) set .@cru_t,.@cru_t+10;
 			mes "[Gabriel Valentine]";
-			mes "3. With Level 7 Divine Protection, by how much is your defense against the Undead increased?";
+			mes "3. Com nível 7 de 'Proteção Divina', a sua defesa contra Mortos-vivos é aumentada em quanto?";
 			next;
 			if (select("21:22:23:24") == 1) set .@cru_t,.@cru_t+10;
 			mes "[Gabriel Valentine]";
-			mes "4. Which of the following spears can attack Nightmare, which is endowed with the Ghost attribute?";
+			mes "4. Qual das lanças a seguir pode atacar o monstro 'Pesadelo', que é um monstro de atributo fantasma?";
 			next;
-			if (select("Lance:Bill Guisarme:Cresent scythe:Zephyrus") == 4) set .@cru_t,.@cru_t+10;
+			if (select("Lança:Guisarme-Bico:Foice:Zéfiro") == 4) set .@cru_t,.@cru_t+10;
 			mes "[Gabriel Valentine]";
-			mes "5. What level of 'Heal' do you need to learn 'Cure?'";
+			mes "5. Qual nível de 'Curar' é necessário pra aprender a habilidade 'Medicar'?";
 			next;
-			if (select("Level 1:Level 2:Level 3:Level 4") == 2) set .@cru_t,.@cru_t+10;
+			if (select("Nível 1:Nível 2:Nível 3:Nível 4") == 2) set .@cru_t,.@cru_t+10;
 			mes "[Gabriel Valentine]";
-			mes "6. What is the attack speed when Level 3 Cavalier Mastery is learned?";
+			mes "6. Qual é a velocidade de ataque quando a habilidade 'Perícia em Montaria' Nível 3 é aprendida?";
 			next;
-			if (select("70 % of normal speed:80 % of normal speed:90 % of normal speed:100 % of normal speed") == 2) set .@cru_t,.@cru_t+10;
+			if (select("70 % da velocidade normal:80 % da velocidade normal:90 % da velocidade normal:100 % da velocidade normal") == 2) set .@cru_t,.@cru_t+10;
 			mes "[Gabriel Valentine]";
-			mes "7. Which of the following is not correct of the Demon Bane skill?";
+			mes "7. Qual das afirmações a seguir NÃO está correta sobra a habilidade 'Flagelo do Mal'?";
 			next;
-			if (select("Increase attack on Undead:Only Acolytes can learn the skill:When mastered, + 30 increase:Passive Skill") == 2) set .@cru_t,.@cru_t+10;
+			if (select("Aumenta o ataque contra Mortos-vivos:Apenas Noviços podem aprender a habilidade:Quando no nível máximo, aumenta em +30:Habilidade Passiva") == 2) set .@cru_t,.@cru_t+10;
 			mes "[Gabriel Valentine]";
-			mes "8. How much SP does Level 7 Heal use?";
+			mes "8. Quanto de SP a habilidade 'Curar' nível 7 usa?";
 			next;
 			if (select("30:31:33:35") == 2) set .@cru_t,.@cru_t+10;
 			mes "[Gabriel Valentine]";
-			mes "9. What status cannot be";
-			mes "cured with the Cure skill?";
+			mes "9. Qual atributo não pode ser";
+			mes "curado com a habilidade medicar?";
 			next;
-			if (select("Curse:Silence:Chaos:Blind") == 1) set .@cru_t,.@cru_t+10;
+			if (select("Maldição:Silêncio:Caos:Cegueira") == 1) set .@cru_t,.@cru_t+10;
 			mes "[Gabriel Valentine]";
-			mes "10. What best describes a Crusader?";
+			mes "10. O que melhor descreve um Templário?";
 			next;
-			if (select("One preparing for matrimony.:One preparing for the Holy War.:One preparing consummation.:One preparing potions.") == 2) set .@cru_t,.@cru_t+10;
+			if (select("Aquele que está se preparando para um Matrimônio.:Aquele que está se preparando para Guerra Santa.:Aquele preparando consumação.:Aquele preparando poções.") == 2) set .@cru_t,.@cru_t+10;
 		}
 		mes "[Gabriel Valentine]";
-		mes "Good work~";
-		mes "Well, first let me";
-		mes "look at your results.";
+		mes "Bom trabalho~";
+		mes "Então, primeiro deixe-me";
+		mes "olhar seus resultados.";
 		next;
 		mes "[Gabriel Valentine]";
-		mes " "+strcharinfo(0)+"'s score";
-		mes "is " + .@cru_t + " points...";
+		mes " "+strcharinfo(0)+"'sua pontuação ";
+		mes "é " + .@cru_t + " pontos...";
 		if(.@cru_t == 100) {
 			set CRUS_Q, 8;
 			changequest 3011,3013;
-			mes "Superb! Now, it's time for";
-			mes "you to take the next test.";
+			mes "Exelente! Agora é hora de você";
+			mes "fazer seu próximo teste.";
 			next;
 			mes "[Gabriel Valentine]";
-			mes "Go to Prontera Castle";
-			mes "and meet Bliant Piyord.";
-			mes "I will inform him that";
-			mes "he will be testing you next.";
+			mes "Vá para o castelo de Prontera";
+			mes "e encontre Bliant Piyord..";
+			mes "Eu vou informar a ele";
+			mes "que ele irá fazer seu próximo teste.";
 			close;
 		} else if(.@cru_t == 90) {
 			set CRUS_Q, 8;
 			changequest 3011,3013;
-			mes "Well done~ Now, it's time for";
-			mes "you to take the next test.";
+			mes "Bom trabalho~ Agora, é hora de você";
+			mes "fazer seu próximo teste.";
 			next;
 			mes "[Gabriel Valentine]";
-			mes "Go to Prontera Castle";
-			mes "and meet Bliant Piyord.";
-			mes "I will inform him that";
-			mes "he will be testing you next.";
+			mes "Vá para o castelo de Prontera";
+			mes "e encontre Bliant Piyord.";
+			mes "Eu vou informar a ele";
+			mes "que ele irá fazer seu próximo teste.";
 			close;
 		} else if (.@cru_t == 80 && CRUS_Q == 7) {
 			set CRUS_Q,8;
 			changequest 3011,3013;
-			mes "Seems like you prepared a lot so I'll let you pass this time.";
-			mes "Hurry now and go take the next test.";
+			mes "Parece que você se preparou bem para o teste então eu vou deixar você passar dessa vez.";
+			mes "Se apresse e vá fazer seu próximo teste.";
 			next;
 			mes "[Gabriel Valentine]";
-			mes "Go to the Prontera Castle and meet Bliant Piyord.";
-			mes "I will inform him to prepare the next test.";
+			mes "Vá para o castelo de Prontera e encontre Bliant Piyord.";
+			mes "Eu vou informar a ele para preparar seu próximo teste.";
 			close;
 		}
 		set CRUS_Q,7;
 		if(checkquest(3011) != -1) {
 			changequest 3011,3012;
 		}
-		mes "Hmmm... What a pity.";
-		mes "Go study some more and";
-		mes "take this test again, okay?";
+		mes "Hmmm... que pena.";
+		mes "Vá estudar um pouco mais e";
+		mes "faça esse teste de novo, ok?";
 		next;
 		mes "[Gabriel Valentine]";
-		mes "Don't stress, you need to know a lot in order to pass this test. In any case, I'll be waiting right here. When you think you're ready, come back, alright?";
+		mes "Não fique nervoso, você precisa saber muito pra passar neste teste. De qualquer jeito, eu vou estar esperando bem aqui. Quando você achar que está pronto, volte aqui, certo?";
 		close;
 	} else if(CRUS_Q == 8 || CRUS_Q == 9) {
-		mes "Like I mentioned before, you should go to Prontera Castle and meet with Bliant Piyord to take your next test. Good luck, and become a Crusder soon, alright?";
+		mes "Como eu mencionei anteriormente, você deveria ir para o castelo de Prontera e encontrar Bliant Piyord para fazer seu próximo teste. Boa sorte, e se torne um Templário logo, ok?";
 		close;
 	} else if(CRUS_Q == 10) {
-		mes "What are you still doing here? You've already completed all the tests. Go talk to our leader, you're pretty much ready to become a Crusader now.";
+		mes "O que você ainda está fazendo aqui? Você já completou todos os meus testes. Vá falar com o nosso líder, você está muito bem preparado para se tornar um Templário agora.";
 		next;
 		mes "[Gabriel Valentine]";
-		mes "You will soon join us in our preparations for the Holy War. Continue to live with faith after becoming a Crusader.";
+		mes "Você vai se juntar a nós em breve para as preparações para a Guerra Santa. Continue a viver com fé após se tornar um Templário.";
 		close;
 	}
 	mes "Mmm...?";
-	mes "It seems that you're";
-	mes "an aspiring Crusader...";
-	mes "But, it's not my turn";
-	mes "to test you quite yet.";
+	mes "Me parece que você é";
+	mes "um aspirante a Templário...";
+	mes "Mas, não é minha vez";
+	mes "ainda de testar você.";
 	next;
 	mes "[Gabriel Valentine]";
-	mes "Finish those other tests,";
-	mes "and come to me once you're";
-	mes "instructed. Until then,";
-	mes "I'll see you later~";
+	mes "Termine aqueles outros testes,";
+	mes "e venha aqui logo quando você for";
+	mes "instruído para vir até mim. Até lá,";
+	mes "vejo você depois~";
 	close;
 }
 
 //===================== Crusader: 4th Purification Test =====================================================
 prt_castle,35,151,5	script	Patron Knight	751,{
 	mes "[Bliant Piyord]";
-	mes "Welcome.";
+	mes "Bem vindo.";
 	if(BaseJob != Job_Swordman) {
 		if(BaseJob == Job_Crusader) {
-			mes "How goes";
-			mes "your training?";
+			mes "Como vai";
+			mes "seu treinamento?";
 			next;
 			mes "[Bliant Piyord]";
-			mes "Develop your faith. From faith springs strength and discipline. Day after day, train yourself and become a great Crusader.";
+			mes "Desenvolva sua fé. Da fé nasce força e disciplina. Dia após dia, treine bastante e se torne um grande Templário.";
 			close;
 		} else if(BaseJob == Job_Novice) {
-			mes "We are Crusaders,";
-			mes "warriors of holiness preparing for the great Holy War that is to come.";
+			mes "Nós somos Templários,";
+			mes "guerreiros sagrados se preparando para a grande Guerra Santa que está por vir.";
 			next;
 			mes "[Bliant Piyord]";
-			mes "Are you interested";
-			mes "in becoming a Crusader?";
-			mes "We are always waiting";
-			mes "for more capable men and";
-			mes "women to join our ranks.";
+			mes "Você está interessado";
+			mes "em se tornar um Templário?";
+			mes "Nós sempre estamos esperando";
+			mes "mais homens e mulheres capazes";
+			mes "para se juntar a nossas forças.";
 			next;
 			mes "[Bliant Piyord]";
-			mes "Train as a Swordsman and come to us when you think you are ready. If you have been called by Odin to become a Crusader, that would be even better.";
+			mes "Treine como um Espadachim e venha falar conosco quando você achar que está pronto. Se você foi chamado por Odin para se tornar um Templário, isso iria ser melhor ainda.";
 			close;
 		}
-		mes "We are Crusaders,";
-		mes "warriors of holiness preparing for the great Holy War that is to come.";
+		mes "Nós somos Templários,";
+		mes "guerreiros sagrados se preparando para a grande Guerra Santa que está por vir.";
 		next;
 		mes "[Bliant Piyord]";
-		mes "Even in these relatively peaceful times, our training is ceaseless. We must be ready for the day with the tides of darkness shall rush against mankind...";
+		mes "Mesmo que tudo pareça estar relativamente em paz, nosso treinamento não tem fim. Nós devemos estar preparados para o dia em que as forças do mal tentarem um ataque contra a humanidade...";
 		close;
 	} else if(CRUS_Q == 0) {
-		mes "We are Crusaders,";
-		mes "warriors of holiness preparing for the great Holy War that is to come.";
+		mes "Nós somos Templários,";
+		mes "guerreiros sagrados se preparando para a grande Guerra Santa que está por vir.";
 		next;
 		mes "[Bliant Piyord]";
-		mes "Are you interested";
-		mes "in becoming a Crusader?";
-		mes "We are always waiting";
-		mes "for more capable men and";
-		mes "women to join our ranks.";
+		mes "Você está interessado";
+		mes "em se tornar um Templário?";
+		mes "Nós sempre estamos esperando";
+		mes "mais homens e mulheres capazes";
+		mes "para se juntar a nossas forças.";
 		next;
 		mes "[Bliant Piyord]";
-		mes "To become a Crusader, you must train until you are Job Level 40. For more details, please speak with our leader inside.";
+		mes "Para se tornar um Templáro, para se tornar um templário você deve treinar até que você chegue ao nível 40 de classe. Para mais detalhes, pro favor fale com nosso líder dentro da sala atrás de mim.";
 		next;
 		mes "[Bliant Piyord]";
-		mes "May Odin";
-		mes "be with you...";
+		mes "Que Odin";
+		mes "esteja com você...";
 		close;
 	} else if(CRUS_Q == 8 || CRUS_Q == 9) {
 		if (CRUS_Q == 8) {
-			mes "It's nice";
-			mes "to meet you.";
-			mes "It is now time";
-			mes "for your final test.";
+			mes "É um prazer";
+			mes "em conecer você.";
+			mes "Agora é hora";
+			mes "do nosso teste final.";
 			next;
 			mes "[Bliant Piyord]";
-			mes "My name is Bliant Piyord and I too, am preparing for the Holy War. It must've been quite a hassle to come all this way.";
+			mes "Meu nome é Bliant Piyord e eu também, estou me preparando para Guerra Santa. Deve ter sido bem cansativo fazer todo esse percurso.";
 			next;
 			mes "[Bliant Piyord]";
-			mes "This test will gauge your skills in battle. Only those with great fighting ability can become Crusaders.";
+			mes "Este teste vai testar sua habilidades em batalha. Apenas aqueles com grande habilidade em luta podem se tornar Templários.";
 			next;
 			mes "[Bliant Piyord]";
-			mes "To take the battle test, bring";
-			mes "1 ^3355FFHoly Water^000000. This will be used to purify you prior to taking the test.";
+			mes "Para fazer o teste, traga";
+			mes "1 ^3355FFÁgua Benta^000000. Ela vai ser usada para te purificar antes de fazer o teste.";
 			if(checkquest(3013) != -1) {
 				changequest 3013,3014;
 			}
 			next;
 			mes "[Bliant Piyord]";
-			mes "Well then...";
-			mes "Shall we";
-			mes "begin right away?";
-			mes "Or do you need time";
-			mes "to prepare yourself?";
+			mes "Então...";
+			mes "vamos";
+			mes "começar agora mesmo?";
+			mes "ou você precisa de mais um tempo para";
+			mes "se preparar?";
 		} else {
-			mes "Are you prepared";
-			mes "for the test now?";
+			mes "Você está preparado";
+			mes "para o teste agora?";
 			next;
 			mes "[Bliant Piyord]";
-			mes "Would you like to begin now, or do you still need time to make preparations?";
+			mes "Você gostaria de começar o teste agora, ou você necessita de mais um tempo para se preparar?";
 		}
 		next;
-		if (select("I would like to begin.:Give me some time to prepare.") == 1) {
+		if (select("Eu gostaria de começar o teste agora.:Me dê mais um tempo para me preparar mais um pouco.") == 1) {
 			if(getequipid(7) != 2608 && getequipid(8) != 2608) {
 				mes "[Bliant Piyord]";
-				mes "Just a second, you do not have a Rosary equipped. As a Crusader, you must always have a Rosary on your person.";
+				mes "Só um momento, você não tem um rosário equipado. Como um templário, você sempre deve ter um rosário com você.";
 				next;
 				mes "[Bliant Piyord]";
-				mes "Come back and take";
-				mes "the test after you";
-				mes "have a Rosary.";
+				mes "Venha aqui para";
+				mes "fazer o teste quando";
+				mes "você tiver um Rosário.";
 				close;
 			} else if(countitem(523) < 1) {
 				mes "[Bliant Piyord]";
-				mes "For the battle test, please prepare one ^3355FFHoly water^000000.";
-				mes "I told you just to purify the candidates.";
+				mes "Para o teste de batalha, por favor prepare uma ^3355FFÁgua Benta^000000.";
+				mes "Ela é para purificar os candidatos.";
 				next;
 				mes "[Bliant Piyord]";
-				mes "Get prepares and come back to here.";
-				mes "I will wait for you.";
+				mes "Consiga os preparativos e volte aqui.";
+				mes "Eu vou estar esperando por você.";
 				close;
 			}
 			delitem 523, 1; //Holy Water
 			mes "[Bliant Piyord]";
-			mes "Then, I'll start";
-			mes "the test. You will";
-			mes "be purified with the";
-			mes "Holy Water you prepared.";
+			mes "Então, eu vou começar";
+			mes "o teste. Você vai ser";
+			mes "purificado com a";
+			mes "Água Benta que você preparou.";
 			next;
 			mes "[Bliant Piyord]";
 			mes "...............";
 			next;
 			mes "[Bliant Piyord]";
-			mes "Let's begin.";
-			mes "Go and enter";
-			mes "the waiting room.";
-			mes "Defeat the monsters";
-			mes "that appear in";
-			mes "the 4 stages.";
+			mes "Vamos começar.";
+			mes "Vá e entre";
+			mes "na Sala de Espera.";
+			mes "Derrote os monstros";
+			mes "que aparecem nos";
+			mes "4 estágios.";
 			close2;
 			warp "job_cru",24,169;
 			end;
 		}
 		mes "[Bliant Piyord]";
-		mes "Prepare 1 ^3355FFHoly Water^000000 to take the battle test. As I've said, it will be used to purify you prior to taking the test.";
+		mes "Para o teste de batalha, por favor prepare uma ^3355FFÁgua Benta^000000. Ela é para purificar os candidatos ao teste de Templário.";
 		next;
 		mes "[Bliant Piyord]";
 		mes "Come back and take";
@@ -815,32 +816,32 @@ prt_castle,35,151,5	script	Patron Knight	751,{
 		mes "waiting.";
 		close;
 	} else if(CRUS_Q == 10) {
-		mes "Congratulations.";
-		mes "You have completed";
-		mes "all the tests to";
-		mes "become a Crusader.";
+		mes "Parabéns.";
+		mes "Você completou";
+		mes "todos os teste para se";
+		mes "tornar um Templário.";
 		next;
 		mes "[Bliant Piyord]";
-		mes "Go talk to our";
-		mes "leader inside.";
-		mes "We welcome you into";
-		mes "the ranks of those";
-		mes "preparing for the";
-		mes "coming Holy War.";
+		mes "Vá falar com nosso";
+		mes "líder dentro da sala atrás de mim.";
+		mes "Nós damos a boas vindas à você";
+		mes "para as forças daqueles que estão";
+		mes "se preparando para a";
+		mes "Guerra Santa que está por vir.";
 		close;
 	}
-	mes "Are you not one of the ones in the process of becoming a Crusader?";
+	mes "Você não é um daqueles que está no processo de se tornar um Templário?";
 	next;
 	mes "[Bliant Piyord]";
-	mes "It's not your turn";
-	mes "to take my test yet.";
-	mes "Come back after taking";
-	mes "all the other tests.";
+	mes "Não é sua vez ainda";
+	mes "de fazer meu teste.";
+	mes "Volte aqui após você ter completado";
+	mes "todos os outros testes.";
 	next;
 	mes "[Bliant Piyord]";
-	mes "I'll see you soon.";
-	mes "May Odin's blessings";
-	mes "be with you.";
+	mes "Vejo você em breve.";
+	mes "que a benção de Odin";
+	mes "esteja com você.";
 	close;
 }
 
@@ -864,35 +865,35 @@ OnTimer301000:
 
 OnInit:
 	enablenpc "Summoner#cr1";
-	monster "job_cru",94,45,"Mandragora",1020,1,"Summoner#cr1::OnDead";
-	monster "job_cru",94,55,"Mandragora",1020,1,"Summoner#cr1::OnDead";
-	monster "job_cru",94,65,"Mandragora",1020,1,"Summoner#cr1::OnDead";
-	monster "job_cru",94,75,"Mandragora",1020,1,"Summoner#cr1::OnDead";
-	monster "job_cru",94,85,"Mandragora",1020,1,"Summoner#cr1::OnDead";
-	monster "job_cru",94,95,"Mandragora",1020,1,"Summoner#cr1::OnDead";
-	monster "job_cru",101,45,"Mandragora",1020,1,"Summoner#cr1::OnDead";
-	monster "job_cru",101,55,"Mandragora",1020,1,"Summoner#cr1::OnDead";
-	monster "job_cru",101,65,"Mandragora",1020,1,"Summoner#cr1::OnDead";
-	monster "job_cru",101,75,"Mandragora",1020,1,"Summoner#cr1::OnDead";
-	monster "job_cru",101,85,"Mandragora",1020,1,"Summoner#cr1::OnDead";
-	monster "job_cru",101,95,"Mandragora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",94,45,"Mandrágora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",94,55,"Mandrágora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",94,65,"Mandrágora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",94,75,"Mandrágora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",94,85,"Mandrágora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",94,95,"Mandrágora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",101,45,"Mandrágora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",101,55,"Mandrágora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",101,65,"Mandrágora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",101,75,"Mandrágora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",101,85,"Mandrágora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",101,95,"Mandrágora",1020,1,"Summoner#cr1::OnDead";
 	initnpctimer;
 	end;
 
 OnStart:
 	enablenpc "Summoner#cr1";
-	monster "job_cru",94,45,"Mandragora",1020,1,"Summoner#cr1::OnDead";
-	monster "job_cru",94,55,"Mandragora",1020,1,"Summoner#cr1::OnDead";
-	monster "job_cru",94,65,"Mandragora",1020,1,"Summoner#cr1::OnDead";
-	monster "job_cru",94,75,"Mandragora",1020,1,"Summoner#cr1::OnDead";
-	monster "job_cru",94,85,"Mandragora",1020,1,"Summoner#cr1::OnDead";
-	monster "job_cru",94,95,"Mandragora",1020,1,"Summoner#cr1::OnDead";
-	monster "job_cru",101,45,"Mandragora",1020,1,"Summoner#cr1::OnDead";
-	monster "job_cru",101,55,"Mandragora",1020,1,"Summoner#cr1::OnDead";
-	monster "job_cru",101,65,"Mandragora",1020,1,"Summoner#cr1::OnDead";
-	monster "job_cru",101,75,"Mandragora",1020,1,"Summoner#cr1::OnDead";
-	monster "job_cru",101,85,"Mandragora",1020,1,"Summoner#cr1::OnDead";
-	monster "job_cru",101,95,"Mandragora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",94,45,"Mandrágora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",94,55,"Mandrágora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",94,65,"Mandrágora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",94,75,"Mandrágora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",94,85,"Mandrágora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",94,95,"Mandrágora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",101,45,"Mandrágora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",101,55,"Mandrágora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",101,65,"Mandrágora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",101,75,"Mandrágora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",101,85,"Mandrágora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",101,95,"Mandrágora",1020,1,"Summoner#cr1::OnDead";
 	initnpctimer;
 	end;
 
@@ -976,27 +977,27 @@ OnTimer346000:
 
 OnInit:
 	enablenpc "Summoner#cr3";
-	monster "job_cru",92,50,"Greatest General",1277,1,"Summoner#cr3::OnDead";
-	monster "job_cru",104,50,"Greatest General",1277,1,"Summoner#cr3::OnDead";
-	monster "job_cru",98,50,"Greatest General",1277,1,"Summoner#cr3::OnDead";
-	monster "job_cru",92,70,"Greatest General",1277,1,"Summoner#cr3::OnDead";
-	monster "job_cru",104,70,"Greatest General",1277,1,"Summoner#cr3::OnDead";
-	monster "job_cru",98,80,"Greatest General",1277,1,"Summoner#cr3::OnDead";
-	monster "job_cru",92,90,"Greatest General",1277,1,"Summoner#cr3::OnDead";
-	monster "job_cru",104,90,"Greatest General",1277,1,"Summoner#cr3::OnDead";
+	monster "job_cru",92,50,"Guardião da Floresta",1277,1,"Summoner#cr3::OnDead";
+	monster "job_cru",104,50,"Guardião da Floresta",1277,1,"Summoner#cr3::OnDead";
+	monster "job_cru",98,50,"Guardião da Floresta",1277,1,"Summoner#cr3::OnDead";
+	monster "job_cru",92,70,"Guardião da Floresta",1277,1,"Summoner#cr3::OnDead";
+	monster "job_cru",104,70,"Guardião da Floresta",1277,1,"Summoner#cr3::OnDead";
+	monster "job_cru",98,80,"Guardião da Floresta",1277,1,"Summoner#cr3::OnDead";
+	monster "job_cru",92,90,"Guardião da Floresta",1277,1,"Summoner#cr3::OnDead";
+	monster "job_cru",104,90,"Guardião da Floresta",1277,1,"Summoner#cr3::OnDead";
 	Initnpctimer;
 	end;
 
 OnStart:
 	enablenpc "Summoner#cr3";
-	monster "job_cru",92,50,"Greatest General",1277,1,"Summoner#cr3::OnDead";
-	monster "job_cru",104,50,"Greatest General",1277,1,"Summoner#cr3::OnDead";
-	monster "job_cru",98,50,"Greatest General",1277,1,"Summoner#cr3::OnDead";
-	monster "job_cru",92,70,"Greatest General",1277,1,"Summoner#cr3::OnDead";
-	monster "job_cru",104,70,"Greatest General",1277,1,"Summoner#cr3::OnDead";
-	monster "job_cru",98,80,"Greatest General",1277,1,"Summoner#cr3::OnDead";
-	monster "job_cru",92,90,"Greatest General",1277,1,"Summoner#cr3::OnDead";
-	monster "job_cru",104,90,"Greatest General",1277,1,"Summoner#cr3::OnDead";
+	monster "job_cru",92,50,"Guardião da Floresta",1277,1,"Summoner#cr3::OnDead";
+	monster "job_cru",104,50,"Guardião da Floresta",1277,1,"Summoner#cr3::OnDead";
+	monster "job_cru",98,50,"Guardião da Floresta",1277,1,"Summoner#cr3::OnDead";
+	monster "job_cru",92,70,"Guardião da Floresta",1277,1,"Summoner#cr3::OnDead";
+	monster "job_cru",104,70,"Guardião da Floresta",1277,1,"Summoner#cr3::OnDead";
+	monster "job_cru",98,80,"Guardião da Floresta",1277,1,"Summoner#cr3::OnDead";
+	monster "job_cru",92,90,"Guardião da Floresta",1277,1,"Summoner#cr3::OnDead";
+	monster "job_cru",104,90,"Guardião da Floresta",1277,1,"Summoner#cr3::OnDead";
 	Initnpctimer;
 	end;
 
@@ -1038,8 +1039,8 @@ OnInit:
 	monster "job_cru",98,80,"Familiar",1005,1,"Summoner#cr3::OnDead";
 	monster "job_cru",98,85,"Familiar",1005,1,"Summoner#cr3::OnDead";
 	monster "job_cru",98,90,"Familiar",1005,1,"Summoner#cr3::OnDead";
-	monster "job_cru",90,34,"Mushroom",1182,1,"Summoner#cr3::OnDead";
-	monster "job_cru",105,34,"Mushroom",1182,1,"Summoner#cr3::OnDead";
+	monster "job_cru",90,34,"Cogumelo",1182,1,"Summoner#cr3::OnDead";
+	monster "job_cru",105,34,"Cogumelo",1182,1,"Summoner#cr3::OnDead";
 	initnpctimer;
 	end;
 
@@ -1054,8 +1055,8 @@ OnStart:
 	monster "job_cru",98,80,"Familiar",1005,1,"Summoner#cr3::OnDead";
 	monster "job_cru",98,85,"Familiar",1005,1,"Summoner#cr3::OnDead";
 	monster "job_cru",98,90,"Familiar",1005,1,"Summoner#cr3::OnDead";
-	monster "job_cru",90,34,"Mushroom",1182,1,"Summoner#cr3::OnDead";
-	monster "job_cru",105,34,"Mushroom",1182,1,"Summoner#cr3::OnDead";
+	monster "job_cru",90,34,"Cogumelo",1182,1,"Summoner#cr3::OnDead";
+	monster "job_cru",105,34,"Cogumelo",1182,1,"Summoner#cr3::OnDead";
 	initnpctimer;
 	end;
 
@@ -1082,29 +1083,29 @@ OnTouch:
 }
 
 //=== Purification Test ===================================
-job_cru,24,187,4	script	Patron Knight#2	751,{
+job_cru,24,187,4	script	Cavaleiro Patrono#2	751,{
 	mes "[Bliant Piyord]";
-	mes "Welcome.";
-	mes "You will take";
-	mes "the last test here.";
-	mes "If you are ready for";
-	mes "the test, enter the";
-	mes "waiting room.";
+	mes "Bem-Vindo.";
+	mes "Você fará o seu";
+	mes "último teste aqui.";
+	mes "Se você estiver pronto para";
+	mes "o teste, entre na";
+	mes "sala de espera.";
 	next;
 	mes "[Bliant Piyord]";
-	mes "Only one person can take the test at a time. If someone else is already testing, please wait until the testing area is made available once again.";
+	mes "Apenas uma pessoa pode fazer o teste por vez. Se alguém já está fazendo o teste, por favor, aguarde até a área de testes ficar livre.";
 	next;
 	mes "[Bliant Piyord]";
-	mes "Each person will get 4 minutes to complete the test. If you wish to leave in the middle of the test, please disconnect from the game.";
+	mes "Cada pessoa tem 4 minutos para completar o teste. Se você quiser sair no meio do teste, apenas se disconecte do servidor.";
 	close;
 }
 
-job_cru,24,187,2	script	Waiting Room#cr1	700,{
+job_cru,24,187,2	script	Sala de Espera#cr1	700,{
 	end;
 
 OnInit:
-	disablenpc "Waiting Room#cr1";
-	waitingroom "Waiting Room",20,"Waiting Room#cr1::OnStartArena",1;
+	disablenpc "Sala de Espera#cr1";
+	waitingroom "Sala de Espera",20,"Sala de Espera#cr1::OnStartArena",1;
 	enablewaitingroomevent;
 	end;
 
@@ -1122,15 +1123,15 @@ OnStart:
 job_cru,168,17,0	script	Zombie Guide	-1,2,2,{
 OnTouch:
 	mes "[Bliant Piyord]";
-	mes "Go forth and defeat all";
-	mes "the monsters that appear.";
-	mes "You will not pass if any";
-	mes "are remaining.";
+	mes "Vá em frente e derrote todos";
+	mes "os monstros que aparecerem.";
+	mes "Você não irá passar se";
+	mes "sobrar algum.";
 	next;
 	mes "[Bliant Piyord]";
-	mes "You will be given";
-	mes "4 minutes. Go forth";
-	mes "and do your best...";
+	mes "Lhe serão dados";
+	mes "4 minutos. Avance";
+	mes "e dê o melhor de si...";
 	close;
 }
 
@@ -1150,23 +1151,23 @@ OnStart:
 	end;
 
 OnMonster1:
-	monster "job_cru",168,45,"Zombie",1015,1,"Monster Summon#cr0::OnDead";
-	monster "job_cru",168,45,"Zombie",1015,1,"Monster Summon#cr0::OnDead";
-	monster "job_cru",168,45,"Zombie",1015,1,"Monster Summon#cr0::OnDead";
-	monster "job_cru",168,45,"Zombie",1015,1,"Monster Summon#cr0::OnDead";
-	monster "job_cru",168,45,"Zombie",1015,1,"Monster Summon#cr0::OnDead";
-	monster "job_cru",168,45,"Zombie",1015,1,"Monster Summon#cr0::OnDead";
+	monster "job_cru",168,45,"Zumbi",1015,1,"Monster Summon#cr0::OnDead";
+	monster "job_cru",168,45,"Zumbi",1015,1,"Monster Summon#cr0::OnDead";
+	monster "job_cru",168,45,"Zumbi",1015,1,"Monster Summon#cr0::OnDead";
+	monster "job_cru",168,45,"Zumbi",1015,1,"Monster Summon#cr0::OnDead";
+	monster "job_cru",168,45,"Zumbi",1015,1,"Monster Summon#cr0::OnDead";
+	monster "job_cru",168,45,"Zumbi",1015,1,"Monster Summon#cr0::OnDead";
 	end;
 
 OnMonster2:
-	monster "job_cru",168,80,"Soldier Skeleton",1028,1,"Monster Summon#cr0::OnDead";
-	monster "job_cru",168,80,"Soldier Skeleton",1028,1,"Monster Summon#cr0::OnDead";
-	monster "job_cru",168,80,"Soldier Skeleton",1028,1,"Monster Summon#cr0::OnDead";
+	monster "job_cru",168,80,"Soldado Esqueleto",1028,1,"Monster Summon#cr0::OnDead";
+	monster "job_cru",168,80,"Soldado Esqueleto",1028,1,"Monster Summon#cr0::OnDead";
+	monster "job_cru",168,80,"Soldado Esqueleto",1028,1,"Monster Summon#cr0::OnDead";
 	end;
 
 OnMonster3:
-	monster "job_cru",168,110,"Archer Skeleton",1016,1,"Monster Summon#cr0::OnDead";
-	monster "job_cru",168,115,"Mummy",1041,1,"Monster Summon#cr0::OnDead";
+	monster "job_cru",168,110,"Esqueleto Arqueiro",1016,1,"Monster Summon#cr0::OnDead";
+	monster "job_cru",168,115,"Múmia",1041,1,"Monster Summon#cr0::OnDead";
 	end;
 
 OnDead:
@@ -1291,7 +1292,7 @@ OnTouch:
 	donpcevent "Monster Summon#cr5::OnEnd";
 	donpcevent "Monster Summon#cr6::OnStop";
 	donpcevent "Monster Summon#cr6::OnEnd";
-	donpcevent "Waiting Room#cr1::OnStart";
+	donpcevent "Sala de Espera#cr1::OnStart";
 	end;
 
 OnStart:
@@ -1313,7 +1314,7 @@ OnTimer241000:
 	donpcevent "Monster Summon#cr5::OnEnd";
 	donpcevent "Monster Summon#cr6::OnStop";
 	donpcevent "Monster Summon#cr6::OnEnd";
-	donpcevent "Waiting Room#cr1::OnStart";
+	donpcevent "Sala de Espera#cr1::OnStart";
 	end;
 
 OnInit:

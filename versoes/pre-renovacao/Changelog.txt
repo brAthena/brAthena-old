@@ -8,6 +8,16 @@
 // *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
+	r0847 - 26/09/2011 [cleyton]
+	* Enviadas traduções de script para o svn de pre-renovação.
+	- npc/aeroplanos/dirigiveis.txt
+	- npc/classes/2-1/bruxo.txt
+	- npc/classes/2-1/ferreiro.txt
+	- npc/classes/2-2/templario.txt
+	- npc/classes/2-2e/espiritualista.txt
+	- npc/eventos/halloween_2006.txt
+	- npc/quests/monstertamers.txt
+	*Traduções serão enviadas para o svn renovação posteriormente.
 
 	r0842 - 11/09/2011 [Protimus]
 	* Correções para as Coroas e Diademas do Zodiáco.
