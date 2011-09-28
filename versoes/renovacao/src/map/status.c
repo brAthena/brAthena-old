@@ -1734,13 +1734,14 @@ static unsigned short status_base_atk(const struct block_list *bl, const struct 
 		str = status->str;
 		dex = status->dex;
 	}
-	//Normally only players have base-atk, but homunc have a different batk
-	// equation, hinting that perhaps non-players should use this for batk.
-	// [Skotlex]
-	dstr = str/10;
-	str += dstr*dstr;
-	if (bl->type == BL_PC)
-		str+= dex/5 + status->luk/5;
+	
+	// Fórmula de bonificações para o ataque físico para jogadores.
+	if( bl->type == BL_PC){
+		str += (int)((float)dex/5 + (float)status->luk/3 + (float)level/4);
+	} else {  // Ataque físico para homunculos e outros.
+		dstr = str/10;
+		str += dstr*dstr;
+	}
 
 	return cap_value(str, 0, USHRT_MAX);
 }
@@ -1755,14 +1756,13 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int lev
 		status->hit = status->flee =
 		status->cri = status->flee2 =
 		status->mdef = status->def = 0;
-
+		
 	status->batk = status_base_atk(bl, status, level);
 
 	status->hit += level + status->dex + status->luk/3 + 175;
-	status->flee += level + status->agi + status->luk/7 + 100;
-	status->def += (int)((float)level/6 + status->vit/2 + (float)status->dex/4);
-	status->mdef += (int)((float)level/6 + (float)status->vit/5 + status->int_/2);
-	status->batk += (int)((float)level/4 + status->str + (float)status->dex/4 + (float)status->luk/3);
+    status->flee += level + status->agi + status->luk/5 + 100;
+    status->def += (int)(((float)level + status->vit)/2 + ((float)status->agi/5));
+    status->mdef += (int)(status->int_ + ((float)level/4) + ((float)status->dex/5) + ((float)status->vit/5));
 
 	status->matk_min = status_base_status_matk(status, level);
 	if (bl->type == BL_PC )

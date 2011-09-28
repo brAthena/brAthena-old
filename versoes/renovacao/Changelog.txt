@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0853 - 27/09/2011 [Protimus]
+	* Modificação na posição da bonificação da fórmula de ataque físico.
+	- Adicionada instrução com else para outros tipos de ataque físico que não sejam de jogadores.
+	* Revertido parcialmente envio anterior.
+	- Necessário maiores informações para oficializar fórmulas.
+
 	r0852 - 27/09/2011 [Protimus]
 	* Corrigido ataque físico do homunculus.
 	* Corrigida fórmula do ataque físico normal, apenas por bonificações de status.
