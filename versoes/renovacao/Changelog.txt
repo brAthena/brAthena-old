@@ -9,6 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0854 - 28/09/2011 [Protimus]
+	* Corrigidas habilidades AB_EPICLESIS (Epiclesis) & GC_POISONSMOKE (Nevoeiro Tóxico).
+	- Áreas de efeito estavam incorretas.
+	* Adicionadas habilidades dos elementais nos campos de unidade.
+	* Corrigida habilidade WL_EARTHSTRAIN (Abálo Sísmico).
+	- Possível crash corrigido.
+	- Necessário verificar cálculos redutivos da chance para remoção de itens.
+
 	r0853 - 27/09/2011 [Protimus]
 	* Modificação na posição da bonificação da fórmula de ataque físico.
 	- Adicionada instrução com else para outros tipos de ataque físico que não sejam de jogadores.
