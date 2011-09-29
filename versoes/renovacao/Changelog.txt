@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0855 - 28/09/2011 [Protimus]
+	* Adicionado ao banco de dados todas as habilidades dos homunculus mutantes do bioquímico.
+	- Necessário fazer os códigos por parte de source e efetuar eventuais limpezas que não precisem de checagens no database.
+	
 	r0854 - 28/09/2011 [Protimus]
 	* Corrigidas habilidades AB_EPICLESIS (Epiclesis) & GC_POISONSMOKE (Nevoeiro Tóxico).
 	- Áreas de efeito estavam incorretas.
