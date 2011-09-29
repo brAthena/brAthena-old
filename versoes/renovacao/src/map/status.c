@@ -5651,7 +5651,7 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 		if (sd) tick>>=1;
 	case SC_STONE:
 	case SC_FREEZE:
-		sc_def = 3 + status->mdef;
+		sc_def = status->mdef/2;
 		break;
 	case SC_CURSE:
 		if (status->luk > status_get_lv(bl) || status->luk == 0)

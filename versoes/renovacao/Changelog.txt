@@ -9,6 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0857 - 29/09/2011 [Protimus]
+	* Correção para os status de petrificação e congelamento.
+	- São baseados na defesa mágica de status.
+	- Agora estão funcionando de acordo, para ter imunidade total é preciso ter aproximadamente 200 de mdef.
+	* Corrigida habilidade NC_SELFDESTRUCTION (Autodestruição).
+	- Agora tem imunidade à status de esquiva.
+	* Corrigido pequeno erro no envio da r855.
+
 	r0856 - 28/09/2011 [Protimus]
 	* Corrigida habilidade RK_WINDCUTTER (Vento Cortante).
 	- Atualizada fórmula conforme kRO.
