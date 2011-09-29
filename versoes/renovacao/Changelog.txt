@@ -9,6 +9,19 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0856 - 28/09/2011 [Protimus]
+	* Corrigida habilidade RK_WINDCUTTER (Vento Cortante).
+	- Atualizada fórmula conforme kRO.
+	* Corrigida habilidade RA_CLUSTERBOMB (Bomba Relógio).
+	- Correções para dano em monstros de propriedade planta.
+	* Corrigido dano das esferas do feiticeiro.
+	- Dano dependente do level utilizado.
+	* Corrigidas todas as habilidades de armadilhas do sentinela.
+	- Correções para Área que define o andar pelas armadilhas para 3x3.
+	- Não podem mais ser colocadas umas sob as outras e no pé de jogadores.
+	* Corrigida habilidade RA_WUGDASH (Corrida em Warg).
+	- Atualizados valores da velocidade de movimento.
+
 	r0855 - 28/09/2011 [Protimus]
 	* Adicionado ao banco de dados todas as habilidades dos homunculus mutantes do bioquímico.
 	- Necessário fazer os códigos por parte de source e efetuar eventuais limpezas que não precisem de checagens no database.

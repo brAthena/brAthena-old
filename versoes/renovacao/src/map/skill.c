@@ -2588,6 +2588,12 @@ static int skill_check_unit_range_sub (struct block_list *bl, va_list ap)
 		case RA_ELECTRICSHOCKER:
 		case RA_CLUSTERBOMB:
 		case SC_DIMENSIONDOOR:
+		case RA_MAGENTATRAP:
+		case RA_COBALTTRAP:
+		case RA_MAIZETRAP:
+		case RA_VERDURETRAP:
+		case RA_FIRINGTRAP:
+		case RA_ICEBOUNDTRAP:
 			//Non stackable on themselves and traps (including venom dust which does not has the trap inf2 set)
 			if (skillid != g_skillid && !(skill_get_inf2(g_skillid)&INF2_TRAP) && g_skillid != AS_VENOMDUST)
 				return 0;
@@ -4015,7 +4021,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 				if(skilllv == 1) j = 1;
 				for(i = 0; i < j;i++){
 					skele = WL_RELEASE-5+sc->data[spheres[i]]->val1-WLS_FIRE;
-					skill_addtimerskill(src,tick+status_get_adelay(src)*i,bl->id,0,0,skele,skilllv,BF_MAGIC,flag|SD_LEVEL);
+					skill_addtimerskill(src,tick+status_get_adelay(src)*i,bl->id,0,0,skele,sc->data[spheres[i]]->val3,BF_MAGIC,flag|SD_LEVEL);
 					status_change_end(src,spheres[i],-1);
 				}
 				clif_skill_nodamage(src,bl,skillid,0,1);
@@ -6551,7 +6557,6 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 					case UNT_FREEZINGTRAP:
 					case UNT_CLAYMORETRAP:
 					case UNT_TALKIEBOX:
-					case UNT_CLUSTERBOMB:
 						su->group->unit_id = UNT_USED_TRAPS;
 						clif_changetraplook(bl, UNT_USED_TRAPS);
 						su->group->limit=DIFF_TICK(tick+1500,su->group->tick);
@@ -7454,7 +7459,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 
 			element = ((WL_SUMMONWB-skillid < 0) ? WLS_STONE:wl_check[WL_SUMMONWB-skillid]);
 
-			sc_start2(src,sctype,100,element,pos,skill_get_time(skillid,skilllv));
+			sc_start4(src,sctype,100,element,pos,skilllv,0,skill_get_time(skillid,skilllv));
 			clif_skill_nodamage(src,bl,skillid,0,0);
 		}
 		break;
@@ -9932,6 +9937,12 @@ struct skill_unit_group* skill_unitsetting (struct block_list *src, short skilli
 	case HT_BLASTMINE:
 	case RA_ELECTRICSHOCKER:
 	case RA_CLUSTERBOMB:
+	case RA_MAGENTATRAP:
+	case RA_COBALTTRAP:
+	case RA_MAIZETRAP:
+	case RA_VERDURETRAP:
+	case RA_FIRINGTRAP:
+	case RA_ICEBOUNDTRAP:
 		if( map_flag_gvg(src->m) || map[src->m].flag.battleground )
 			limit *= 4; // longer trap times in WOE [celest]
 		if( battle_config.vs_traps_bctall && map_flag_vs(src->m) && (src->type&battle_config.vs_traps_bctall) )
@@ -10192,6 +10203,12 @@ struct skill_unit_group* skill_unitsetting (struct block_list *src, short skilli
 		case MA_SKIDTRAP:
 		case RA_ELECTRICSHOCKER:
 		case RA_CLUSTERBOMB:
+		case RA_MAGENTATRAP:
+		case RA_COBALTTRAP:
+		case RA_MAIZETRAP:
+		case RA_VERDURETRAP:
+		case RA_FIRINGTRAP:
+		case RA_ICEBOUNDTRAP:
 			val1 = 3500;
 			break;
 		case GS_DESPERADO:

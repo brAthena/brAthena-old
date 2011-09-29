@@ -2536,8 +2536,6 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 		status->int_ += (skill+1)/2; // +1 INT / 2 lv
 	if((skill=pc_checkskill(sd,AC_OWL))>0)
 		status->dex += skill;
-	if( (skill = pc_checkskill(sd,WM_LESSON)) > 0 )
-		status->max_sp += 30 * skill;
 	if((skill = pc_checkskill(sd,RA_RESEARCHTRAP))>0)
 		status->int_ += skill;
 
@@ -2608,6 +2606,8 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 		status->max_sp += status->max_sp * 2*skill/100;
 	if((skill = pc_checkskill(sd,RA_RESEARCHTRAP))>0)
 		status->max_sp += 200 + 20*skill;
+	if( (skill = pc_checkskill(sd,WM_LESSON)) > 0 )
+		status->max_sp += 30 * skill;
 
 	// Apply relative modifiers from equipment
 	if(sd->sprate < 0)
@@ -4620,7 +4620,7 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
  				val = 25;
 			else
 			if( sd && pc_isriding(sd,OPTION_RIDING_WUG) )
-				val = 10 * pc_checkskill(sd, RA_WUGRIDER);
+				val = 15 + 5 * pc_checkskill(sd, RA_WUGRIDER);
 			else
 			if( sc->data[SC_ACCELERATION] )
 				val = 25;

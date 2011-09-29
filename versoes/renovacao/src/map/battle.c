@@ -2016,7 +2016,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 						skillratio += skillratio*(s_base_level - 50)/200;
 					break;
 				case RK_WINDCUTTER:
-					skillratio += 50 * skill_lv;
+					skillratio += 100 * skill_lv;
 					if( s_base_level > 50 ) skillratio += skillratio * (s_base_level - 50) / 200;
 					break;
 				case RK_CRUSHSTRIKE:
@@ -3900,7 +3900,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 
 	if(md.damage < 0)
 		md.damage = 0;
-	else if(md.damage && tstatus->mode&MD_PLANT && skill_num != RA_CLUSTERBOMB)
+	else if(md.damage && tstatus->mode&MD_PLANT)
 		md.damage = 1;
 
 	if(!(nk&NK_NO_ELEFIX))
