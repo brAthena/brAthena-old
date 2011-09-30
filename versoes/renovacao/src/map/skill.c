@@ -2160,7 +2160,6 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 	//Skills that need be passed as a normal attack for the client to display correctly.
 	case HVAN_EXPLOSION:
 	case NPC_SELFDESTRUCTION:
-	case NC_SELFDESTRUCTION:
 		if(src->type==BL_PC)
 			dmg.blewcount = 10;
 		dmg.amotion = 0; //Disable delay or attack will do no damage since source is dead by the time it takes effect. [Skotlex]
@@ -6075,7 +6074,6 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		skill_castend_damage_id(src, src, skillid, skilllv, tick, flag);
 		if(sd){
 			pc_setoption(sd, sd->sc.option&~OPTION_MADO);
-			status_zap(src, 0, sd->status.sp);
 		}
 		break;
 
@@ -15470,7 +15468,7 @@ int skill_poisoningweapon( struct map_session_data *sd, int nameid)
 
 int skill_magicdecoy(struct map_session_data *sd, int nameid){
 
-	int x, y, i, skill,mob_id = nameid + 1053;
+	int x, y, i, skill, class_;
 	struct mob_data *md;
 	nullpo_ret(sd);
 	skill = sd->menuskill_val;
@@ -15488,19 +15486,10 @@ int skill_magicdecoy(struct map_session_data *sd, int nameid){
 	y = sd->menuskill_itemused&0xffff;
 	sd->menuskill_itemused = sd->menuskill_val = 0;
 
-	/*
-	990,Boody_Red, Sangue Escarlate
-	991,Crystal_Blue, Cristal Azul
-	992,Wind_Of_Verdure, Frescor Vento
-	993,Yellow_Live, Vida verdejante
-	MAGICDECOY_FIRE 2043
-	MAGICDECOY_WATER 2044
-	MAGICDECOY_EARTH 2045
-	MAGICDECOY_WIND 2046
-	*/
+	class_ = (nameid == 990 || nameid == 991) ? 2043 + nameid - 990 : (nameid == 992) ? 2046 : 2045;
 
 	//Constrói struct mob
-	md =  mob_once_spawn_sub(&sd->bl, sd->bl.m, x, y, sd->status.name, mob_id, "");
+	md =  mob_once_spawn_sub(&sd->bl, sd->bl.m, x, y, sd->status.name, class_, "");
 	if( md )
 	{
 		md->master_id = sd->bl.id;

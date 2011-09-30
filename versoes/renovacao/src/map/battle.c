@@ -798,8 +798,6 @@ int battle_calc_bg_damage(struct block_list *src, struct block_list *bl, int dam
 		case PA_PRESSURE:
 		case HW_GRAVITATION:
 		case NJ_ZENYNAGE:
-		case RK_DRAGONBREATH:
-		case GN_HELLS_PLANT_ATK:
 			break;
 		default:
 			if( flag&BF_SKILL )
@@ -865,8 +863,6 @@ int battle_calc_gvg_damage(struct block_list *src,struct block_list *bl,int dama
 	case PA_PRESSURE:
 	case HW_GRAVITATION:
 	case NJ_ZENYNAGE:
-	case RK_DRAGONBREATH:
-	case GN_HELLS_PLANT_ATK:
 		break;
 	default:
 		/* Uncomment if you want god-mode Emperiums at 100 defense. [Kisuka]
@@ -1594,19 +1590,6 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				} else
 					wd.damage = sstatus->rhw.atk2;
 				break;
-			case NC_AXEBOOMERANG:
-				if( sd )
-				{
-					short index = sd->equip_index[EQI_HAND_R];
-					if (index >= 0 &&
-						sd->inventory_data[index] &&
-						sd->inventory_data[index]->type == IT_WEAPON)
-						wd.damage = sd->inventory_data[index]->weight/5;
-				} else
-					wd.damage = sstatus->rhw.atk2*2;
-				i=100+(40*(skill_lv-1));
-				ATK_ADDRATE(i);
-				break;
 			case HFLI_SBR44:	//[orn]
 				if(src->type == BL_HOM) {
 					wd.damage = ((TBL_HOM*)src)->homunculus.intimacy;
@@ -2089,7 +2072,13 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					}
 					break;
 				case NC_AXEBOOMERANG:
-					skillratio += 100 + 40 * skill_lv;
+					skillratio += 60 + 40 * skill_lv;
+					if( sd )
+					{
+						short index = sd->equip_index[EQI_HAND_R];
+						if( index >= 0 && sd->inventory_data[index] && sd->inventory_data[index]->type == IT_WEAPON )
+						skillratio += sd->inventory_data[index]->weight / 10;
+					}
 					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
 					break;
 				case NC_POWERSWING:
@@ -2105,7 +2094,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 100) / 200;
 					break;
 				case NC_VULCANARM:
-					skillratio += 70 * skill_lv + sstatus->dex ;
+					skillratio = 70 * skill_lv + sstatus->dex;
 					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 100) / 200;
 					break;
 				case NC_COLDSLOWER:
@@ -3808,7 +3797,10 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		md.damage = sstatus->int_ * 25 + (status_get_lv(target) * 15 * skill_lv) * (10 / (10 - pc_checkskill(sd,AM_CANNIBALIZE))) - 25;
 		break;
 	case NC_SELFDESTRUCTION:
-		md.damage = (sstatus->sp + sstatus->vit)*skill_lv*s_base_level/15 + sstatus->hp - tstatus->def - tstatus->def2;
+		md.damage = (status_get_sp(src) + status_get_max_hp(src)) * 20 * skill_lv/3 * s_base_level/100 + status_get_hp(src) - (tstatus->def + tstatus->def2);
+		if (status_get_lv(src) > 100) md.damage = md.damage * s_base_level / 150;
+		if (sd) md.damage = md.damage + status_get_hp(src);
+		status_set_sp(src, 0, 0);
 		break;
 	}
 

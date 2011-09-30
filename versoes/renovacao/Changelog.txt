@@ -9,8 +9,20 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0859 - 30/09/2011 [Protimus]
+	* Corrigida habilidade NC_DISJOINT (Remover Artilharia).
+	- Necessita de uma Chave Inglesa no inventário para poder utilizar a habilidade.
+	* Corrigidas habilidades NC_SELFDESTRUCTION (Autodestruição).
+	- Fórmulas de dano atualizada.
+	- Problema com checagem de SP para posterior cálculo na fórmula de dano corrigido.
+	- Correções que causavam atrasos de animação.
+	* Corrigida habilidade NC_AXEBOOMERANG (Arremesso de Machado).
+	- Fórmula de dano atualizada.
+	* Corrigidas habilidades RK_DRAGONBREATH (Sopro do Dragão) & GN_HELLS_PLANT (Planta Infernal).
+	- O dano é reduzido em áreas de batalha, como PvP, GvG, WoE e Batalhas Campais.	
+
 	r0858 - 30/09/2011 [Protimus]
-	* Corrigido crash ao comparar itens de ROPs.
+	* Corrigido crash ao comprar itens de ROPs.
 	- Erro ocorre com novos clientes de 2011 para cima.
 
 	r0857 - 29/09/2011 [Protimus]

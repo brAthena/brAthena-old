@@ -4622,6 +4622,13 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 			if( sd && pc_isriding(sd,OPTION_RIDING_WUG) )
 				val = 15 + 5 * pc_checkskill(sd, RA_WUGRIDER);
 			else
+			if( sd && pc_isriding(sd,OPTION_MADO) )
+			{
+				val = (- 10 * (5 - pc_checkskill(sd,NC_MADOLICENCE)));
+				if( sc->data[SC_ACCELERATION] )
+					val += 25;
+			}
+			else
 			if( sc->data[SC_ACCELERATION] )
 				val = 25;
 			else
