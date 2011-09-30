@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0858 - 30/09/2011 [Protimus]
+	* Corrigido crash ao comparar itens de ROPs.
+	- Erro ocorre com novos clientes de 2011 para cima.
+
 	r0857 - 29/09/2011 [Protimus]
 	* Correção para os status de petrificação e congelamento.
 	- São baseados na defesa mágica de status.

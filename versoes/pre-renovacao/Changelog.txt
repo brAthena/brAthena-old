@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0858 - 30/09/2011 [Protimus]
+	* Corrigido crash ao comparar itens de ROPs.
+	- Erro ocorre com novos clientes de 2011 para cima.
+
 	r0849 - 27/09/2011 [Protimus]
 	* Corrigidos erros nos NPCs enviados na r847.
 

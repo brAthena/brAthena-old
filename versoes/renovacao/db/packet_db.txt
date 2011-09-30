@@ -921,7 +921,6 @@ packet_ver: 20
 0x0285,6
 0x0286,4
 0x0287,-1
-0x0288,6,cashshopbuy,2:4
 0x0289,8
 0x028a,18
 0x028b,-1
@@ -1615,6 +1614,7 @@ packet_ver: 26
 0x0857,-1
 0x0858,-1
 0x0859,-1
+0x0288,-1,cashshopbuy,4:8
 
 // Adicione novos pacotes aqui.
 //packet_ver: 27
