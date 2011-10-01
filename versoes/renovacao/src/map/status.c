@@ -549,6 +549,8 @@ void initChangeTables(void)
 	set_sc( SO_WATER_INSIGNIA    , SC_WATER_INSIGNIA  , SI_WATER_INSIGNIA  , SCB_NONE );
 	set_sc( SO_WIND_INSIGNIA     , SC_WIND_INSIGNIA   , SI_WIND_INSIGNIA   , SCB_NONE );
 	set_sc( SO_EARTH_INSIGNIA    , SC_EARTH_INSIGNIA  , SI_EARTH_INSIGNIA  , SCB_MDEF|SCB_DEF|SCB_MAXHP|SCB_MAXSP|SCB_WATK );
+	
+	set_sc( ALL_RIDING			 , SC_ALL_RIDING      , SI_ALL_RIDING      , SCB_SPEED );
 
 	set_sc( HLIF_AVOID           , SC_AVOID           , SI_BLANK           , SCB_SPEED );
 	set_sc( HLIF_CHANGE          , SC_CHANGE          , SI_BLANK           , SCB_VIT|SCB_INT );
@@ -758,6 +760,9 @@ void initChangeTables(void)
 	StatusIconChangeTable[SC_PETROLOGY] = SI_PETROLOGY;
 	StatusIconChangeTable[SC_CURSED_SOIL] = SI_CURSED_SOIL;
 	StatusIconChangeTable[SC_UPHEAVAL] = SI_UPHEAVAL;
+	
+	// Montarias de Aluguel
+	StatusIconChangeTable[SC_ALL_RIDING] = SI_ALL_RIDING;
 
 	//Other SC which are not necessarily associated to skills.
 	StatusChangeFlagTable[SC_ASPDPOTION0] = SCB_ASPD;
@@ -851,6 +856,9 @@ void initChangeTables(void)
 	StatusChangeFlagTable[SC_EXTRACT_WHITE_POTION_Z] |= SCB_REGEN;
 	StatusChangeFlagTable[SC_VITATA_500] |= SCB_REGEN;
 	StatusChangeFlagTable[SC_EXTRACT_SALAMINE_JUICE] |= SCB_ASPD;
+	
+	// Montarias de Aluguel
+	StatusChangeFlagTable[SC_ALL_RIDING] = SCB_SPEED;
 
 	if( !battle_config.display_hallucination ) 
 		StatusIconChangeTable[SC_HALLUCINATION] = SI_BLANK;
@@ -1450,7 +1458,8 @@ int status_check_skilluse(struct block_list *src, struct block_list *target, int
 				sc->data[SC__IGNORANCE] ||
 				sc->data[SC_CRYSTALIZE] ||
 				sc->data[SC_OBLIVIONCURSE] ||
-				sc->data[SC_CURSEDCIRCLE_TARGET]
+				sc->data[SC_CURSEDCIRCLE_TARGET] ||
+				sc->data[SC_ALL_RIDING]
 			))
 				return 0;
 
@@ -4745,6 +4754,8 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 				val = max( val, sc->data[SC_WIND_STEP_OPTION]->val2 );
 			if( sc->data[SC_SWINGDANCE] )
                 val = max( val, sc->data[SC_SWINGDANCE]->val2 );
+			if( sc->data[SC_ALL_RIDING] )
+				val = max( val, 25 );
 
 			//FIXME: official items use a single bonus for this [ultramage]
 			if( sc->data[SC_SPEEDUP0] ) // temporary item-based speedup
@@ -7783,6 +7794,15 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_BANANA_BOMB:
 			val1 = 20;
 			break;
+		case SC_ALL_RIDING:
+			if ( sc->data[SC_ALL_RIDING] )
+			{
+				status_change_end(bl, SC_ALL_RIDING, -1);
+				return 0;
+			}
+			if (pc_isriding(sd,OPTION_RIDING|OPTION_RIDING_DRAGON|OPTION_RIDING_WUG|OPTION_MADO))
+				return 0;
+			break;
 
 		default:
 			if( calc_flag == SCB_NONE && StatusSkillChangeTable[type] == 0 && StatusIconChangeTable[type] == 0 )
@@ -7857,6 +7877,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_CAMOUFLAGE:
 		case SC_CLOAKINGEXCEED:
 		case SC_VOICEOFSIREN:
+		case SC_ALL_RIDING:
 			unit_stop_attack(bl);
 		break;
 		case SC_SILENCE:
@@ -7975,6 +7996,10 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 //			opt_flag = 0;
 //			break;
 		//OPTION
+		case SC_ALL_RIDING:
+			sc->opt3 |= OPT3_ALL_RIDING;
+			opt_flag = 0;
+			break;
 		case SC_HIDING:
 			sc->option |= OPTION_HIDE;
 			opt_flag = 2;
@@ -8193,6 +8218,7 @@ int status_change_clear(struct block_list* bl, int type)
 		case SC_FOOD_DEX_CASH:
 		case SC_FOOD_INT_CASH:
 		case SC_FOOD_LUK_CASH:
+		case SC_ALL_RIDING:
 			continue;
 		}
 
@@ -8798,6 +8824,10 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 //		sc->opt3 &= ~OPT3_CONTRACT;
 //		opt_flag = 0;
 //		break;
+	case SC_ALL_RIDING:
+		sc->opt3 &= ~OPT3_ALL_RIDING;
+		opt_flag = 0;
+		break;
 	default:
 		opt_flag = 0;
 	}

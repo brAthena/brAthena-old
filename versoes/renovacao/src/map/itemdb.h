@@ -22,6 +22,7 @@
 #define ITEMID_TRAP_ALLOY 7940
 #define ITEMID_STONE 7049
 #define ITEMID_SKULL_ 7420
+#define ITEMID_REIN_OF_MOUTS 12622
 #define itemdb_iscashfood(id) ( (id) >= 12202 && (id) <= 12207 )
 
 //The only item group required by the code to be known. See const.txt for the full list.

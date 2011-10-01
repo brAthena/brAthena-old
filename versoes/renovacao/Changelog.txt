@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0860 - 01/10/2011 [Protimus]
+	* Adicionadas novas montarias de aluguel, distintas para todas as classes.
+	- Funcional conforme padrões oficiais.
+	- Caso queira o funcionamento de todas as montarias é necessário usar um cliente igual ou superior à: 2011-06-09.
+
 	r0859 - 30/09/2011 [Protimus]
 	* Corrigida habilidade NC_DISJOINT (Remover Artilharia).
 	- Necessita de uma Chave Inglesa no inventário para poder utilizar a habilidade.

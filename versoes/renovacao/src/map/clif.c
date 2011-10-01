@@ -9476,6 +9476,9 @@ void clif_parse_ActionRequest_sub(struct map_session_data *sd, int action_type, 
 
 		if( sd->sc.option&(OPTION_WEDDING|OPTION_XMAS|OPTION_SUMMER) )
 			return;
+			
+		if (sd->sc.data[SC_ALL_RIDING]) 
+			return;
 
 		if( sd->sc.option&OPTION_RIDING_WUG )
 			return;

@@ -5409,6 +5409,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		break;
 	case TF_HIDING:
 	case ST_CHASEWALK:
+	case ALL_RIDING:
 		if (tsce)
 		{
 			clif_skill_nodamage(src,bl,skillid,-1,status_change_end(bl, type, INVALID_TIMER)); //Hide skill-scream animation.
@@ -11653,11 +11654,14 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 				return 0;
 			}
 			//Consume
-			sd->itemid = sd->itemindex = -1;
-			if( skill == WZ_EARTHSPIKE && sc && sc->data[SC_EARTHSCROLL] && rand()%100 > sc->data[SC_EARTHSCROLL]->val2 ) // [marquis007]
-				; //Do not consume item.
-			else if( sd->status.inventory[i].expire_time == 0 )
-				pc_delitem(sd,i,1,0,0); // Rental usable items are not consumed until expiration
+			if ( sd->itemid != ITEMID_REIN_OF_MOUTS )
+			{
+				sd->itemid = sd->itemindex = -1;
+				if( skill == WZ_EARTHSPIKE && sc && sc->data[SC_EARTHSCROLL] && rand()%100 > sc->data[SC_EARTHSCROLL]->val2 ) // [marquis007]
+					; //Do not consume item.
+				else if( sd->status.inventory[i].expire_time == 0 )
+					pc_delitem(sd,i,1,0,0); // Rental usable items are not consumed until expiration
+			}
 		}
 		return 1;
 	}
@@ -11681,7 +11685,7 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 	case BS_MAXIMIZE:		case NV_TRICKDEAD:	case TF_HIDING:			case AS_CLOAKING:		case CR_AUTOGUARD:
 	case ML_AUTOGUARD:		case CR_DEFENDER:	case ML_DEFENDER:		case ST_CHASEWALK:		case PA_GOSPEL:
 	case CR_SHRINK:			case TK_RUN:		case GS_GATLINGFEVER:	case TK_READYCOUNTER:	case TK_READYDOWN:
-	case TK_READYSTORM:		case TK_READYTURN:	case SG_FUSION:
+	case TK_READYSTORM:		case TK_READYTURN:	case SG_FUSION:			case ALL_RIDING:
 		if( sc && sc->data[status_skill2sc(skill)] )
 			return 1;
 	}
@@ -12594,7 +12598,7 @@ struct skill_condition skill_get_requirement(struct map_session_data* sd, short 
 	case BS_MAXIMIZE:		case NV_TRICKDEAD:	case TF_HIDING:			case AS_CLOAKING:		case CR_AUTOGUARD:
 	case ML_AUTOGUARD:		case CR_DEFENDER:	case ML_DEFENDER:		case ST_CHASEWALK:		case PA_GOSPEL:
 	case CR_SHRINK:			case TK_RUN:		case GS_GATLINGFEVER:	case TK_READYCOUNTER:	case TK_READYDOWN:
-	case TK_READYSTORM:		case TK_READYTURN:	case SG_FUSION:
+	case TK_READYSTORM:		case TK_READYTURN:	case SG_FUSION:			case ALL_RIDING:
 		if( sc && sc->data[status_skill2sc(skill)] )
 			return req;
 	}
