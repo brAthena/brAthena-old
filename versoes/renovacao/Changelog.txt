@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0861 - 01/10/2011 [Protimus]
+	* Correção da r859.
+	- Removidas repetições de bônus da fórmula de dano da habilidade NC_SELFDESTRUCTION (Autodestruição).
+
 	r0860 - 01/10/2011 [Protimus]
 	* Adicionadas novas montarias de aluguel, distintas para todas as classes.
 	- Funcional conforme padrões oficiais.

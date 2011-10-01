@@ -3797,7 +3797,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		md.damage = sstatus->int_ * 25 + (status_get_lv(target) * 15 * skill_lv) * (10 / (10 - pc_checkskill(sd,AM_CANNIBALIZE))) - 25;
 		break;
 	case NC_SELFDESTRUCTION:
-		md.damage = (status_get_sp(src) + status_get_max_hp(src)) * 20 * skill_lv/3 * s_base_level/100 + status_get_hp(src) - (tstatus->def + tstatus->def2);
+		md.damage = (status_get_sp(src) + sstatus->vit) * 20 * skill_lv/3 - (tstatus->def + tstatus->def2);
 		if (status_get_lv(src) > 100) md.damage = md.damage * s_base_level / 150;
 		if (sd) md.damage = md.damage + status_get_hp(src);
 		status_set_sp(src, 0, 0);
