@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0862 - 01/10/2011 [Protimus]
+	* Adicionado suporte para pacote de login 0x0835.
+	- Necessário para uso de clientes 2011-02 ou superiores.
+	* Adicionada checagem para remoção de PIN.
+	- Novo sistema feito pelo kRO, necessária remoção para uso de clientes 2011-03 ou superiores.
+
 	r0861 - 01/10/2011 [Protimus]
 	* Correção da r859.
 	- Removidas repetições de bônus da fórmula de dano da habilidade NC_SELFDESTRUCTION (Autodestruição).
