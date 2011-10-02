@@ -1,0 +1,14 @@
+// Estrutura para o Changelog.
+//
+//	r0000 - Dia/Mês/Ano [Autor(es)]
+//	* Notação
+//	- Comentário (opcional)
+// *Dica: Para encontrar atualizações de uma revisão específica pressione Ctrl+F
+//	e digite rxxxx onde "xxxx" refere-se a revisão desejada. 
+// *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
+//	Acesse o link: http://trac.brathena.org/trac/timeline
+// ==============================================================================
+
+	r0863 - 01/10/2011 [Protimus]
+	* Adicionado LEIA-ME.txt contendo as informações do projeto.
+	* Criada estrutura de ramos para o projeto.

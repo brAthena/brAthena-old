@@ -1,0 +1,38 @@
+== brADATA ==
+
+--------------------------
+O que é?
+--------------------------
+
+O Projeto brAData (brAthena Data) é referente à disponibilização de pastas com os arquivos necessários para rodar o cliente executável de forma correta.
+Os arquivos contam com com suporte ao Português-PtBR, com todos os itens, habilidades e classes do jogo traduzidas.
+
+É importante salientar que o projeto contém modificações do jogo original, não tendo nenhuma customização adicional. 
+Caso queira alguma mudança, deve visitar nosso fórum para obter os arquivos de customização e ler os guias ensinando como adicionar.
+
+
+--------------------------
+Como funciona?
+--------------------------
+Este projeto contém 2 versões de datas, sendo elas: renovação e pre-renovação. 
+Para a pre-renovação você não precisa realizar nenhuma modificação ao não ser no "clientinfo.xml", alterando conforme o endereço de seu servidor
+e suas especificações.
+Já a renovação é atualizada constantemente, por isso é importante verificar possíveis atualizações. Para usar a renovação você precisa além de obter
+a pasta, extrair dentro dela os arquivos que estão em formato *zip, cujo contém os arquivos LUA dentro, necessários para o funcionamento da mesma.
+
+
+--------------------------
+Responsabilidade.
+--------------------------
+Lembramos aos usuários que utilizarem estes arquivos que o mesmo é de total responsabilidade pelos seus atos. O brAthena não se responsabiliza pelo
+uso de arquivos para possíveis servidores de testes. Não aprovamos a comercialização de servidores e quebras de regras da impresa detentora deles: Gravity.
+
+
+--------------------------
+Informações & Problemas.
+--------------------------
+Para maiores informações ou caso deseje reportar algum problema, visite o brAthena e poste no sistema de Track do Fórum ou envie uma mensagem para um dos administradores.
+
+
+Copyright (c) 2011
+Emulador brAthena, todos os direitos reservados.(www.brathena.org)

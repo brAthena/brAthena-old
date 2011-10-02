@@ -1,0 +1,42 @@
+== brACliente ==
+
+--------------------------
+O que é?
+--------------------------
+
+O Projeto brACliente (brAthena Cliente) é referente à disponibilização de executáveis e arquivos de complemento para o mesmo.
+
+O uso dos arquivos de complemento são necessários para o funcionamento correto do cliente e para escolha de opções do usuário na modificação e testes
+do servidor.
+
+
+--------------------------
+Como funciona?
+--------------------------
+
+Existem duas pastas, uma contendo os executáveis originais do jogo e outra contendo os complementos em formato *diff.
+O usuário deverá aplicar conforme deseja as aplicações do arquivo *diff ao executável.
+
+Lembre-se de baixar o arquivo de forma correta, sempre em combinação com a versão do executável e complemento. Caso contrário você não conseguirá 
+aplicar corretamente, pois os valores podem ser diferentes.
+
+OBS: Antes de aplicar o complemento, extraia o executável que está em formato *zip.
+
+
+--------------------------
+Responsabilidade.
+--------------------------
+
+Lembramos aos usuários que utilizarem estes arquivos que o mesmo é de total responsabilidade pelos seus atos. O brAthena não se responsabiliza pelo
+uso de arquivos para possíveis servidores de testes. Não aprovamos a comercialização de servidores e quebras de regras da impresa detentora deles: Gravity.
+
+
+--------------------------
+Informações & Problemas.
+--------------------------
+
+Para maiores informações ou caso deseje reportar algum problema, visite o brAthena e poste no sistema de Track do Fórum ou envie uma mensagem para um dos administradores.
+
+
+Copyright (c) 2011
+Emulador brAthena, todos os direitos reservados.(www.brathena.org)
