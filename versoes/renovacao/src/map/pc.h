@@ -454,7 +454,7 @@ struct map_session_data {
 //Update this max as necessary. 55 is the value needed for Super Baby currently
 #define MAX_SKILL_TREE 100
 //Total number of classes (for data storage)
-#define CLASS_COUNT (JOB_MAX - JOB_NOVICE_HIGH + JOB_MAX_BASIC)
+#define CLASS_COUNT (JOB_MAX - JOB_NOVICE_T + JOB_MAX_BASIC)
 
 enum weapon_type {
 	W_FIST,	//Bare hands
@@ -579,7 +579,7 @@ enum equip_index {
 #define pc_check_weapontype(sd, type) ((type)&((sd)->status.weapon < MAX_WEAPON_TYPE? \
 	1<<(sd)->status.weapon:(1<<(sd)->weapontype1)|(1<<(sd)->weapontype2)))
 //Checks if the given class value corresponds to a player class. [Skotlex]
-#define pcdb_checkid(class_) (class_ < JOB_MAX_BASIC || (class_ >= JOB_NOVICE_HIGH && class_ <= JOB_DARK_COLLECTOR) || (class_ >= JOB_RUNE_KNIGHT && class_ <= JOB_MECHANIC_T2) || (class_ >= JOB_BABY_RUNE && class_ <= JOB_BABY_MECHANIC2) || (class_ >= JOB_SUPER_NOVICE_E && class_ < JOB_MAX))
+#define pcdb_checkid(class_) (class_ < JOB_MAX_BASIC || (class_ >= JOB_NOVICE_T && class_ <= JOB_DARK_COLLECTOR) || (class_ >= JOB_RUNE_KNIGHT && class_ <= JOB_MECHANIC_MADO_T) || (class_ >= JOB_BABY_RUNE && class_ <= JOB_BABY_MECHANIC_MADO) || (class_ >= JOB_SUPER_NOVICE_E && class_ < JOB_MAX))
 
 int pc_class2idx(int class_);
 int pc_isGM(struct map_session_data *sd);

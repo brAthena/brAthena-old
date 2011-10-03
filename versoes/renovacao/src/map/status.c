@@ -5429,58 +5429,58 @@ void status_set_viewdata(struct block_list *bl, int class_)
 				switch (class_)
 				{	//Adapt class to a Mounted one.
 				case JOB_KNIGHT:
-					class_ = JOB_KNIGHT2;
+					class_ = JOB_KNIGHT_PECO;
 					break;
 				case JOB_CRUSADER:
-					class_ = JOB_CRUSADER2;
+					class_ = JOB_CRUSADER_PECO;
 					break;
 				case JOB_LORD_KNIGHT:
-					class_ = JOB_LORD_KNIGHT2;
+					class_ = JOB_LORD_KNIGHT_PECO;
 					break;
 				case JOB_PALADIN:
-					class_ = JOB_PALADIN2;
+					class_ = JOB_PALADIN_PECO;
 					break;
 				case JOB_BABY_KNIGHT:
-					class_ = JOB_BABY_KNIGHT2;
+					class_ = JOB_BABY_KNIGHT_PECO;
 					break;
 				case JOB_BABY_CRUSADER:
-					class_ = JOB_BABY_CRUSADER2;
+					class_ = JOB_BABY_CRUSADER_PECO;
 					break;
 				case JOB_RUNE_KNIGHT:
-					class_ = JOB_RUNE_KNIGHT2;
+					class_ = JOB_RUNE_KNIGHT_DRAGON;
 					break;
 				case JOB_RUNE_KNIGHT_T:
-					class_ = JOB_RUNE_KNIGHT_T2;
+					class_ = JOB_RUNE_KNIGHT_DRAGON_T;
 					break;
 				case JOB_ROYAL_GUARD:
-					class_ = JOB_ROYAL_GUARD2;
+					class_ = JOB_ROYAL_GUARD_GRIFFON;
 					break;
 				case JOB_ROYAL_GUARD_T:
-					class_ = JOB_ROYAL_GUARD_T2;
+					class_ = JOB_ROYAL_GUARD_GRIFFON_T;
 					break;
 				case JOB_RANGER:
-					class_ = JOB_RANGER2;
+					class_ = JOB_RANGER_WARG;
 					break;
 				case JOB_RANGER_T:
-					class_ = JOB_RANGER_T2;
+					class_ = JOB_RANGER_WARG_T;
 					break;
 				case JOB_MECHANIC:
-					class_ = JOB_MECHANIC2;
+					class_ = JOB_MECHANIC_MADO;
 					break;
 				case JOB_MECHANIC_T:
-					class_ = JOB_MECHANIC_T2;
+					class_ = JOB_MECHANIC_MADO_T;
 					break;
 				case JOB_BABY_RUNE:
-					class_ = JOB_BABY_RUNE2;
+					class_ = JOB_BABY_RUNE_DRAGON;
 					break;
 				case JOB_BABY_RANGER:
-					class_ = JOB_BABY_RANGER2;
+					class_ = JOB_BABY_RANGER_WARG;
 					break;
 				case JOB_BABY_MECHANIC:
-					class_ = JOB_BABY_MECHANIC2;
+					class_ = JOB_BABY_MECHANIC_MADO;
 					break;
 				case JOB_BABY_GUARD:
-					class_ = JOB_BABY_GUARD2;
+					class_ = JOB_BABY_GUARD_GRIFFON;
 					break;
 				}
 				sd->vd.class_ = class_;

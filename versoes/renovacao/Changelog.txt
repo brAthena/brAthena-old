@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0864 - 03/10/2011 [Protimus]
+	* Atualizadas máscaras de classes.
+	- Nomes alterados para maior compreensão.
+	- Adicionados IDs oficiais conforme últimas atualizações.
+
 	r0862 - 01/10/2011 [Protimus]
 	* Adicionado suporte para pacote de login 0x0835.
 	- Necessário para uso de clientes 2011-02 ou superiores.
