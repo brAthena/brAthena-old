@@ -9,6 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0865 - 04/10/2011 [Mark]
+	* Corrigida habilidade Chuva de Meteoros.
+	- Formula incorreta, dano absurdo.
+	* Corrigido bonus da habilidade Rapidez com Lança.
+	- Bonus de Crítico não estava sendo aplicado corretamente.
+	* Corrigido script do item Ovo da Fortuna.
+
 	r0864 - 03/10/2011 [Protimus]
 	* Atualizadas máscaras de classes.
 	- Nomes alterados para maior compreensão.
