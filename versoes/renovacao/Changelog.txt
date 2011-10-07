@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0866 - 07/10/2011 [Mark]
+	* Corrigida habilidade Campo Amaldiçoado [SR_CURSEDCIRCLE]
+	- Alcance do efeito incorreto.
+	* Corrigida r856 referente às armadilhas do Sentinela.
+	- Algumas ainda podem ser utilizadas sob o oponente.
+	
 	r0865 - 04/10/2011 [Mark]
 	* Corrigida habilidade Chuva de Meteoros.
 	- Formula incorreta, dano absurdo.
