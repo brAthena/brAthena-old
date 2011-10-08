@@ -2909,6 +2909,7 @@ static int skill_timerskill(int tid, unsigned int tick, int id, intptr_t data)
 					{
 						struct block_list *nbl = NULL;
 						skill_attack(BF_MAGIC,src,src,target,skl->skill_id,skl->skill_lv,tick,skl->flag);
+						status_change_end(src, SC_MAGICPOWER, INVALID_TIMER);
 						if(skl->type > 1){
 							nbl = battle_getenemyarea(src,target->x,target->y,2,BL_CHAR|BL_SKILL,target->id);
 							if(nbl == NULL && skl->x > 1){
@@ -8705,7 +8706,7 @@ int skill_castend_id(int tid, unsigned int tick, int id, intptr_t data)
 
 		if(sc && sc->count) {
 		  	if(sc->data[SC_MAGICPOWER] &&
-				ud->skillid != HW_MAGICPOWER && ud->skillid != WZ_WATERBALL && ud->skillid != WL_TETRAVORTEX)
+				ud->skillid != HW_MAGICPOWER && ud->skillid != WZ_WATERBALL && ud->skillid != WL_TETRAVORTEX && ud->skillid != WL_CHAINLIGHTNING)
 				status_change_end(src, SC_MAGICPOWER, INVALID_TIMER);
 			if(sc->data[SC_SPIRIT] &&
 				sc->data[SC_SPIRIT]->val2 == SL_WIZARD &&
