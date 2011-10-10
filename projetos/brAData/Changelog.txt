@@ -9,6 +9,11 @@
 // Dica2: Consulte o Histórico (Linha do Tempo) acessando o endereço: http://trac.brathena.org/timeline
 // ============================================================================================================================================
 
+	r0869 - 10/10/2011 [Protimus]
+	-> Renovação
+	* Adicionados txts de informações de livros de váriados tipos.
+	- Atualizada conforme kRO 2011-10-x.
+
 	r0868 - 10/10/2011 [Protimus]
 	-> Renovação 
 	* Adicionada pasta de texturas.
