@@ -9,6 +9,15 @@
 // Dica2: Consulte o Histórico (Linha do Tempo) acessando o endereço: http://trac.brathena.org/timeline
 // ============================================================================================================================================
 
+	r0870 - 10/10/2011 [Protimus]
+	-> Renovação
+	* Adicionados txts para recibo de informações do nome de cartas.
+	- Necessária tradução dos  novos prefixos para itens equipados com determinada carta. (4456:4479)
+	* Adicionado txt para leitura do nome de livros.
+	* Adicionados txts para leitura de mensagens da habilidade BA_FROSTJOKER (Piada Infame).
+	* Adicionados txts que fazem leituras para gráfico, mapas e efeitos como FOG (Neblina).
+	* Adicionado txt que faz leitura dos itens do sistema de buyingstore.
+
 	r0869 - 10/10/2011 [Protimus]
 	-> Renovação
 	* Adicionados txts de informações de livros de váriados tipos.
