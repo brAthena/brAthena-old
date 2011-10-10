@@ -1,13 +1,22 @@
 // Estrutura para o Changelog.
 //
 //	r0000 - Dia/Mês/Ano [Autor(es)]
+//  -> Versão
 //	* Notação
 //	- Comentário (opcional)
-// *Dica: Para encontrar atualizações de uma revisão específica pressione Ctrl+F
-//	e digite rxxxx onde "xxxx" refere-se a revisão desejada. 
-// *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
-//	Acesse o link: http://trac.brathena.org/trac/timeline
-// ==============================================================================
+//
+// Dica: Para encontrar atualizações de uma revisão específica pressione Ctrl+F e digite rxxxx onde "xxxx" refere-se a revisão desejada. 
+// Dica2: Consulte o Histórico (Linha do Tempo) acessando o endereço: http://trac.brathena.org/timeline
+// ============================================================================================================================================
+
+	r0868 - 10/10/2011 [Protimus]
+	-> Renovação 
+	* Adicionada pasta de texturas.
+	- Atualizada conforme kRO 2011-10-x.
+	- Algumas imagens estão com nome em inglês pelo fato de ainda não existirem em português. 
+	  É preferível uma linguagem global neste caso, porém não se restringe à uma possível tradução dos botões futuramente.
+	- Necessário alterar o scr_logo, background e loadings para originais do projeto.
+	- Precisa de uma segunda revisão para arquivos repetidos ou que possam ser ignorados, sem serventia para tradução e funcionalidade.
 
 	r0863 - 01/10/2011 [Protimus]
 	* Adicionado LEIA-ME.txt contendo as informações do projeto.
