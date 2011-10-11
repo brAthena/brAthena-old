@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0871 - 11/10/2011 [Mark]
+	* Corrigida habilidade Explosão Tóxica (AS_SPLASHER)
+	- Pode ser utilizada em oponentes com hp completo conforme Renewal.
+	* Corrigido mob Petite.
+	- Estava com MDEF incorreta.
+	
 	r0867 - 08/10/2011 [brn0]
 	* Revertida a alteração na área da habilidade Campo Amaldiçoado.
 	* Corrigido efeito da habilidade HW_MAGICPOWER (Amplificação Mística) sobre a habilidade WL_CHAINLIGHTNING (Corrente Elétrica).
