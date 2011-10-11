@@ -13790,8 +13790,8 @@ void clif_parse_cashshop_buy(int fd, struct map_session_data *sd)
     }
     cmd = RFIFOW(fd, 0);   
     if(sd->packet_ver > 25) {
-            short len = RFIFOW(fd, 2), count;
-            if(len < 10 || len != 10 + (count = RFIFOW(fd, packet_db[sd->packet_ver][cmd].pos[1])) * 4) {
+            short len = RFIFOW(fd, 2), count = RFIFOW(fd, packet_db[sd->packet_ver][cmd].pos[1]);
+            if(len < 10 || len != 10 + count * 4) {
                     ShowWarning("Player %u sent incorrect cash shop buy packet(len %u:%u)!\n", sd->status.char_id, len, 10 + count * 4); // [Randajad]
                     return;
             }

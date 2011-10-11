@@ -2472,9 +2472,6 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 		}
 	}
 
-	if ( skillid == WM_METALICSOUND )
-		status_zap(bl, 0, damage*battle_config.metallicsound_spburn_rate/(100*(110-pc_checkskill(sd,WM_LESSON)*10)));
-
 	if (!(flag&2) &&
 		(
 			skillid == MG_COLDBOLT || skillid == MG_FIREBOLT || skillid == MG_LIGHTNINGBOLT

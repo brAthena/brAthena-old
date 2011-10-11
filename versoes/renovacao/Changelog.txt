@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0872 - 11/10/2011 [brn0]
+	* Corrigido o bônus de dano da habilidade WM_METALICSOUND (Ruído Estridente).
+	* Corrigido o dano causado ao SP do alvo, na habilidade WM_METALICSOUND (Ruído Estridente).
+	* Corrigido um warning na compilação.
+
 	r0871 - 11/10/2011 [Mark]
 	* Corrigida habilidade Explosão Tóxica (AS_SPLASHER)
 	- Pode ser utilizada em oponentes com hp completo conforme Renewal.

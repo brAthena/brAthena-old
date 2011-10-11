@@ -732,6 +732,12 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 		}
 	}
 
+	if(skill_num == WM_METALICSOUND){
+		status_zap(bl, 0, damage*battle_config.metallicsound_spburn_rate/(100*(110-pc_checkskill(sd,WM_LESSON)*10)));
+		if(sc && sc->count && (sc->data[SC_DEEPSLEEP] || sc->data[SC_SLEEP]))
+			damage += damage/2;
+	}
+
 	if( tsc && tsc->count )
 		{
 		if( tsc->data[SC_POISONINGWEAPON] && skill_num != GC_VENOMPRESSURE && (flag&BF_WEAPON) && damage > 0 && rand()%100 < tsc->data[SC_POISONINGWEAPON]->val3 )
@@ -5245,7 +5251,8 @@ static const struct _battle_data {
 	{ "max_baby_3rd_parameter",             &battle_config.max_baby_3rd_parameter,          108,   10,      10000,          },
 	{ "max_level_base",                     &battle_config.max_level_base,               	100,    0,      INT_MAX,        },
 	{ "max_level_classe",                   &battle_config.max_level_classe,                100,    0,      INT_MAX,        },
-	{ "block_relocation_trapped",			&battle_config.block_relocation,				  1,    0,      1,				},
+	{ "block_relocation_trapped",           &battle_config.block_relocation,                  1,    0,      1,              },
+	{ "metallicsound_spburn_rate",          &battle_config.metallicsound_spburn_rate,        100,   0,      INT_MAX,        },
 };
 
 
