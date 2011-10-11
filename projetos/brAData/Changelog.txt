@@ -9,6 +9,16 @@
 // Dica2: Consulte o Histórico (Linha do Tempo) acessando o endereço: http://trac.brathena.org/timeline
 // ============================================================================================================================================
 
+	r0873 - 11/10/2011 [Protimus]
+	-> Renovação
+	* Adicionados txts para leitura de nomes de mapas e suas texturas.
+	- Necessária revisão do arquivo mapnametable.txt conforme kRO: Tradução dos novos mapas de Bifrost, El Dicastes e Testes das 3rd.
+	* Adicionados txts referente a localização de músicas que rodam à partir da pasta BGM.
+	* Adicionados txts que fazem a leitura de diferentes outras funcionalidades, como lista de classes, etc...
+	* Adicionado txt com descrição de quests por ID.
+	- Necessária revisão do arquivo questid2display.txt conforme kRO: Pode ser que tenha faltado algum ID e muitos precisam ser traduzidos.
+	* Adicionado txt de manner, que faz o bloqueio do uso de certas palavras no jogo.
+
 	r0870 - 10/10/2011 [Protimus]
 	-> Renovação
 	* Adicionados txts para recibo de informações do nome de cartas.
