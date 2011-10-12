@@ -9,6 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0874 - 11/10/2011 [Mark]
+	* Corrigida habilidade Reparar (NC_REPAIR).
+	- Não era contado o aumento de hp por cartas.
+	* Atualizada formula da habilidade Canhão (NC_ARMSCANNON).
+	* Corrigida adição de dano à algumas habilidades por meio do level do personagem.
+	* Adicionada habilidade Reconfigurar Elemento (NC_SHAPESHIFT).
+
 	r0872 - 11/10/2011 [brn0]
 	* Corrigido o bônus de dano da habilidade WM_METALICSOUND (Ruído Estridente).
 	* Corrigido o dano causado ao SP do alvo, na habilidade WM_METALICSOUND (Ruído Estridente).

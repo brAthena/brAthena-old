@@ -2032,11 +2032,11 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					break;
 				case RA_ARROWSTORM:
 					skillratio += 100 + 50*skill_lv;
-					if(s_base_level > 100) skillratio += skillratio*(s_base_level - 100)/ 200;
+					if(s_base_level > 99) skillratio += skillratio*(s_base_level - 99)/ 20;
 					break;
 				case RA_AIMEDBOLT:
 					skillratio += 100 + 20*skill_lv;
-					if(s_base_level > 100) skillratio += skillratio * (s_base_level - 100) / 200;
+					if(s_base_level > 99) skillratio += skillratio * (s_base_level - 99) / 20;
 					if(tsc && (tsc->data[SC_BITE] || tsc->data[SC_ANKLE] || tsc->data[SC_ELECTRICSHOCKER]) )
 						wd.div_ = tstatus->size+2;
 					break;
@@ -2069,7 +2069,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case NC_AXETORNADO:
 					i = distance_bl(src,target);
 					skillratio += ( 200 + (100 * skill_lv) + sstatus->vit );
-					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 100) / 200;
+					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 99) / 20;
 					if( i > 5 ){
 						if(skill_lv <= 2)
 							skillratio = 0;
@@ -2085,43 +2085,43 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 						if( index >= 0 && sd->inventory_data[index] && sd->inventory_data[index]->type == IT_WEAPON )
 						skillratio += sd->inventory_data[index]->weight / 10;
 					}
-					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
+					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 99) / 20;
 					break;
 				case NC_POWERSWING:
 					skillratio += (180 + (skill_lv * 20) + sstatus->dex + sstatus->str );
-					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 100) / 200;
+					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 99) / 20;
 					break;
 				case NC_BOOSTKNUCKLE:
 					skillratio += (300 + (skill_lv * 100) + sstatus->dex );
-					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 100) / 200;
+					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 99) / 20;
 					break;
 				case NC_PILEBUNKER:
 					skillratio += ( 150 + 50 * skill_lv + sstatus->str );
-					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 100) / 200;
+					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 99) / 20;
 					break;
 				case NC_VULCANARM:
 					skillratio = 70 * skill_lv + sstatus->dex;
-					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 100) / 200;
+					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 99) / 20;
 					break;
 				case NC_COLDSLOWER:
 				case NC_FLAMELAUNCHER:
 					skillratio += 300 + 300 * skill_lv;
-					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 100) / 200;
+					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 99) / 20;
 					break;
 				case NC_ARMSCANNON:
 					switch(tstatus->size)
 					{
 						case 1://Medio
-							skillratio += skill_lv == 1 ? 500 : (600 + 200*skill_lv);
+							skillratio += 100 + 400*skill_lv;
 							break;
 						case 2://Grande
-							skillratio += 200 + (400*skill_lv-1);
+							skillratio += 300 + (skill_lv == 1 ? 100 : (200*skill_lv));
 							break;
 						default://Pequeno ou outros
-							skillratio += skill_lv == 1 ? 700 : (600 + 300*skill_lv);
+							skillratio += 500 + (skill_lv == 1 ? 100 : (300*skill_lv));
 							break;
 					}
-					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 100) / 200;
+					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 99) / 20;
 					break;
 
 				case WM_REVERBERATION_MELEE:

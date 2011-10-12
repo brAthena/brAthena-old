@@ -5037,6 +5037,8 @@ static unsigned char status_calc_element(struct block_list *bl, struct status_ch
 		return ELE_UNDEAD;
 	if(sc->data[SC_ELEMENTALCHANGE])
 		return sc->data[SC_ELEMENTALCHANGE]->val2;
+	if(sc->data[SC_SHAPESHIFT])
+		return sc->data[SC_SHAPESHIFT]->val2;
 	return (unsigned char)cap_value(element,0,UCHAR_MAX);
 }
 
@@ -5056,6 +5058,8 @@ static unsigned char status_calc_element_lv(struct block_list *bl, struct status
 	if(sc->data[SC_ELEMENTALCHANGE])
 		return sc->data[SC_ELEMENTALCHANGE]->val1;
 	if(sc->data[SC__INVISIBILITY])
+		return 1;
+	if(sc->data[SC_SHAPESHIFT])
 		return 1;
 
 	return (unsigned char)cap_value(lv,1,4);
@@ -6525,6 +6529,8 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			case SC_LERADSDEW:
 				if( sc && sc->data[SC_BERSERK] )
 					return 0;
+			case SC_SHAPESHIFT:
+				break;
 			default:
 				if(sce->val1 > val1)
 					return 1; //Return true to not mess up skill animations. [Skotlex]
@@ -7803,7 +7809,16 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			if (pc_isriding(sd,OPTION_RIDING|OPTION_RIDING_DRAGON|OPTION_RIDING_WUG|OPTION_MADO))
 				return 0;
 			break;
-
+		case SC_SHAPESHIFT:
+			switch( val1 )
+			{
+				case 1: val2 = ELE_FIRE; break;
+				case 2: val2 = ELE_EARTH; break;
+				case 3: val2 = ELE_WIND; break;
+				case 4: val2 = ELE_WATER; break;
+			}
+			break;
+			
 		default:
 			if( calc_flag == SCB_NONE && StatusSkillChangeTable[type] == 0 && StatusIconChangeTable[type] == 0 )
 			{	//Status change with no calc, no icon, and no skill associated...?

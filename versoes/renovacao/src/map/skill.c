@@ -4924,6 +4924,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case SC_DEADLYINFECT:
 	case NC_ACCELERATION:
 	case NC_HOVERING:
+	case NC_SHAPESHIFT:
 	case WL_RECOGNIZEDSPELL:
 	case GN_CARTBOOST:
 	case SR_CRESCENTELBOW:
@@ -6113,7 +6114,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			int heal;
 			if( dstsd && pc_isriding(dstsd,OPTION_MADO) )
 			{
-				heal = dstsd->status.max_hp * (3+3*skilllv) / 100;
+				heal = status_get_max_hp(src) * (3+3*skilllv) / 100;
 				status_heal(bl,heal,0,2);
 			}
 			else
@@ -12675,6 +12676,10 @@ struct skill_condition skill_get_requirement(struct map_session_data* sd, short 
 			if (lv <= 5)	// no gems required at level 1-5
 				continue;
 			break;
+		case NC_SHAPESHIFT:
+			if( i < 4 )
+				continue;
+			break;
 		case GN_FIRE_EXPANSION:
 			if( i < 5 )
 				continue;
@@ -12714,7 +12719,7 @@ struct skill_condition skill_get_requirement(struct map_session_data* sd, short 
 
 	}
 
-	if( skill == GN_FIRE_EXPANSION || skill == SO_SUMMON_AGNI ||
+	if( skill == NC_SHAPESHIFT || skill == GN_FIRE_EXPANSION || skill == SO_SUMMON_AGNI ||
 		skill == SO_SUMMON_AQUA || skill == SO_SUMMON_VENTUS || skill == SO_SUMMON_TERA)
 	{
 		req.itemid[lv-1] = skill_db[j].itemid[lv-1];
