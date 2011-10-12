@@ -9,6 +9,11 @@
 // Dica2: Consulte o Histórico (Linha do Tempo) acessando o endereço: http://trac.brathena.org/timeline
 // ============================================================================================================================================
 
+	r0875 - 12/10/2011 [Protimus]
+	-> Renovação
+	* Adicionado novo msgstringtable.txt & tipofday.txt
+	- Contendo mensagens necessárias de informações do jogo.
+
 	r0873 - 11/10/2011 [Protimus]
 	-> Renovação
 	* Adicionados txts para leitura de nomes de mapas e suas texturas.
