@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0877 - 12/10/2011 [Protimus]
+	* Corrigido problemas com Comidas.
+	- Estavam com valores de status changes invertidos.
+	* Corrigido problema com status Burning (Ardor).
+	- Estava com valor de tempo da duração de status incorreto.
+
 	r0876 - 12/10/2011 [Protimus]
 	* Correção para os Venenos do Sicário.
 	- Curare: Estava com bonificações de esquiva, velocidade de ataque erradas.

@@ -4995,12 +4995,12 @@
 12200,Event_Cake,Bolo Natalino,11,20,,50,,,,,0xFFFFFFFF,7,2,,,,,,{ itemskill "PR_MAGNIFICAT",3; },{},{}
 12201,Red_Box_C,Commonplace Red Box,2,20,,200,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
 // Cash Shop Usable Items
-12202,Str_Dish10_,Língua no Vapor,0,2,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_FOOD_STR_CASH,1800000,10; percentheal 15,5; },{},{}
-12203,Agi_Dish10_,Escorpião no Vapor,0,2,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_FOOD_AGI_CASH,1800000,10; percentheal 15,5; },{},{}
-12204,Int_Dish10_,Coquetel Sopro do Dragão,0,2,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_FOOD_INT_CASH,1800000,10; percentheal 15,5; },{},{}
-12205,Dex_Dish10_,Tônico de Hwergelmir,0,2,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_FOOD_DEX_CASH,1800000,10; percentheal 15,5; },{},{}
-12206,Luk_Dish10_,Nove Caudas Cozidas,0,2,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_FOOD_LUK_CASH,1800000,10; percentheal 15,5; },{},{}
-12207,Vit_Dish10_,Sopa da Imortalidade,0,2,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_FOOD_VIT_CASH,1800000,10; percentheal 15,5; },{},{}
+12202,Str_Dish10_,Língua no Vapor,0,2,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_STRFOOD,1800000,10; percentheal 20,20; },{},{}
+12203,Agi_Dish10_,Escorpião no Vapor,0,2,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_AGIFOOD,1800000,10; percentheal 15,5; },{},{}
+12204,Int_Dish10_,Coquetel Sopro do Dragão,0,2,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_INTFOOD,1800000,10; percentheal 10,20; },{},{}
+12205,Dex_Dish10_,Tônico de Hwergelmir,0,2,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_DEXFOOD,1800000,10; percentheal 10,10; },{},{}
+12206,Luk_Dish10_,Nove Caudas Cozidas,0,2,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_LUKFOOD,1800000,10; percentheal 14,8; },{},{}
+12207,Vit_Dish10_,Sopa da Imortalidade,0,2,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_VITFOOD,1800000,10; percentheal 25,0; },{},{}
 12208,Battle_Manual,Manual de Combate,2,2,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_EXPBOOST,1800000,50; },{},{}
 12209,Insurance,Seguro de Vida,2,2,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_LIFEINSURANCE,1800000,0; },{},{}
 12210,Bubble_Gum,Goma de Mascar,2,2,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_ITEMBOOST,1800000,200; },{},{}
@@ -5040,12 +5040,12 @@
 12247,Halohalo,Salada de Frutas Tropicais,2,2,,100,,,,,0xFFFFFFFF,7,2,,,20,,,{ sc_start SC_INCALLSTATUS,600000,3; },{},{}
 12248,Masquerade_Ball_Box,Fancy Ball Box,2,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem groupranditem(IG_Masquerade),1; },{},{}
 12249,Payroll_Of_Kafra_,Payment Statement for Kafra Employee,2,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
-12250,Str_Dish10_M,Língua no Vapor,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_STRFOOD,3600000,10; percentheal 20,20; },{},{}
-12251,Agi_Dish10_M,Escorpião no Vapor,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_AGIFOOD,3600000,10; percentheal 15,5; },{},{}
-12252,Int_Dish10_M,Coquetel Sopro do Dragão,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_INTFOOD,3600000,10; percentheal 10,20; },{},{}
-12253,Dex_Dish10_M,Tônico de Hwergelmir,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_DEXFOOD,3600000,10; percentheal 10,10; },{},{}
-12254,Luk_Dish10_M,Nove Caudas Cozidas,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_LUKFOOD,3600000,10; percentheal 14,8; },{},{}
-12255,Vit_Dish10_M,Sopa da Imortalidade,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_VITFOOD,3600000,10; percentheal 25,0; },{},{}
+12250,Str_Dish10_M,Língua no Vapor,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_FOOD_STR_CASH,3600000,10; percentheal 15,5; },{},{}
+12251,Agi_Dish10_M,Escorpião no Vapor,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_FOOD_AGI_CASH,3600000,10; percentheal 15,5; },{},{}
+12252,Int_Dish10_M,Coquetel Sopro do Dragão,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_FOOD_INT_CASH,3600000,10; percentheal 15,5; },{},{}
+12253,Dex_Dish10_M,Tônico de Hwergelmir,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_FOOD_DEX_CASH,3600000,10; percentheal 15,5; },{},{}
+12254,Luk_Dish10_M,Nove Caudas Cozidas,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_FOOD_LUK_CASH,3600000,10; percentheal 15,5; },{},{}
+12255,Vit_Dish10_M,Sopa da Imortalidade,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_FOOD_VIT_CASH,3600000,10; percentheal 15,5; },{},{}
 12256,PRO_Gift_Box,PRO Gift Box,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
 12257,Cold_Medicine,Anti-Térmico,2,20,,100,,,,,0xFFFFFFFF,7,2,,,50,,,{ percentheal 25,25; },{},{}
 12258,Bombring_Box,Capsula de Bombardeio,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ monster "this",-1,-1,"--ja--",1904,1,""; },{},{}
