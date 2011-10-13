@@ -4409,7 +4409,7 @@ static signed short status_calc_flee(struct block_list *bl, struct status_change
 	if( sc->data[SC_GLOOMYDAY_SK] )
 		flee -= flee * sc->data[SC_GLOOMYDAY_SK]->val2/100;
 	if(sc->data[SC_PARALYSE])
-		flee -= flee / 10; 
+		flee -= flee * 10 / 100; 
 
 	return (short)cap_value(flee,0,SHRT_MAX);
 }
@@ -4893,7 +4893,7 @@ static short status_calc_aspd_rate(struct block_list *bl, struct status_change *
 	if( sc->data[SC_FIGHTINGSPIRIT] && sc->data[SC_FIGHTINGSPIRIT]->val2 )
 		aspd_rate -= sc->data[SC_FIGHTINGSPIRIT]->val2;
 	if( sc->data[SC_PARALYSE] )
-		aspd_rate += aspd_rate/10;
+		aspd_rate += aspd_rate * 10 / 100;
 	if( sc->data[SC__BODYPAINT] )
 		aspd_rate += aspd_rate * (20 + 5 * sc->data[SC__BODYPAINT]->val1) / 100;
 	if( sc->data[SC__INVISIBILITY] )
@@ -7280,7 +7280,6 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			else if (val2 < 0)
 				val2 = rand()%ELE_MAX;
 			break;
-		case SC_DEATHHURT:
 		case SC_CRITICALWOUND:
 			val2 = 20*val1; //Heal effectiveness decrease
 			break;
@@ -7441,10 +7440,15 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			break;
 		case SC_LEECHESEND:
 			val4 = tick / 1000;
-			tick = 1000;
+			tick = 3000;
 			break;
 		case SC_OBLIVIONCURSE:
 			val4 = tick / 3000;
+			tick = 3000;
+			break;
+		case SC_PARALYSE:
+		case SC_DEATHHURT:
+			val2 = 20 * val1;
 			tick = 3000;
 			break;
 		case SC_ELECTRICSHOCKER:
@@ -9340,7 +9344,7 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 		if( --(sce->val4) >= 0 )
 		{
 			bool flag;
-			int damage = status->max_hp/100;
+			int damage = status->max_hp/100 - status->mdef2 + status->mdef;
 			if( sd && (sd->status.class_ == JOB_GUILLOTINE_CROSS || sd->status.class_ == JOB_GUILLOTINE_CROSS_T || sd->status.class_ == JOB_BABY_CROSS) )
 				damage += 3 * status->vit;
 			else

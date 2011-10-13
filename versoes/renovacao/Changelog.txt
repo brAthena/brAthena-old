@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0876 - 12/10/2011 [Protimus]
+	* Correção para os Venenos do Sicário.
+	- Curare: Estava com bonificações de esquiva, velocidade de ataque erradas.
+	- Vipera: Atualizada fórmula de dano.
+	- Atualizado tempo de execução de alguns venenos em que faltavam.
+
 	r0874 - 11/10/2011 [Mark]
 	* Corrigida habilidade Reparar (NC_REPAIR).
 	- Não era contado o aumento de hp por cartas.
