@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0878 - 12/10/2011 [Protimus]
+	* Correção do envio anterior para o Burning (Ardor).
+	* Corrigido problema com status Freezing (Congelar).
+	- Estava com o mesmo problema do Ardor, tempo incorreto.
+
 	r0877 - 12/10/2011 [Protimus]
 	* Corrigido problemas com Comidas.
 	- Estavam com valores de status changes invertidos.
