@@ -503,6 +503,10 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 		if(sc->data[SC_HERMODE] && flag&BF_MAGIC)
 			return 0;
 
+		if(sc->data[SC_NEUTRALBARRIER] && flag&BF_MAGIC)
+			d->dmg_lv = ATK_BLOCK;
+			return 0;
+
 		if(sc->data[SC_TATAMIGAESHI] && (flag&(BF_MAGIC|BF_LONG)) == BF_LONG)
 			return 0;
 
@@ -1451,8 +1455,8 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			flee = tstatus->flee,
 			hitrate=0; //Default hitrate
 
-		if( tsc && tsc->data[SC_NEUTRALBARRIER] && (wd.flag&(BF_SHORT|BF_MAGIC)) == BF_SHORT )
-			hitrate = 5;
+		if( tsc && tsc->data[SC_NEUTRALBARRIER] && (wd.flag&(BF_MAGIC|BF_LONG)) == BF_LONG)
+			wd.dmg_lv = ATK_BLOCK;
 		else
 		{
 
@@ -3807,6 +3811,8 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		if (status_get_lv(src) > 100) md.damage = md.damage * s_base_level / 150;
 		if (sd) md.damage = md.damage + status_get_hp(src);
 		status_set_sp(src, 0, 0);
+		nk|=NK_IGNORE_FLEE|NK_IGNORE_DEF|NK_NO_ELEFIX;
+		if(tstatus->race == RC_DEMIHUMAN) nk |= NK_NO_CARDFIX_DEF;
 		break;
 	}
 

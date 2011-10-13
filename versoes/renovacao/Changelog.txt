@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0879 - 13/10/2011 [Floozie]
+	* Correção na Habilidade Campo Protetor (NC_NEUTRALBARRIER)
+	- Não estava deixando o usuário imune a ataques à distância e mágicos
+	* Correção na Habilidade Altodestruição (NC_SELFDESTRUCTION)
+	- Não estava ignorando reduções de DemiHumano, Elemental, Tamanho e Defesa.
+	
 	r0878 - 12/10/2011 [Protimus]
 	* Correção do envio anterior para o Burning (Ardor).
 	* Corrigido problema com status Freezing (Congelar).
