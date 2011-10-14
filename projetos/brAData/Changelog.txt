@@ -9,6 +9,15 @@
 // Dica2: Consulte o Histórico (Linha do Tempo) acessando o endereço: http://trac.brathena.org/timeline
 // ============================================================================================================================================
 
+	r0880 - 14/10/2011 [Protimus]
+	-> Renovação
+	* Adicionados txts para leitura de habilidades.
+	- Atualizado conforme kRO 2011-10-x.
+	- Necessária tradução de algumas habilidades.
+	* Adicionados txts para leitura de itens.
+	- Atualizado conforme bRO  2011-10-x.
+	- Necessária revisão e adição dos itens do kRO.
+
 	r0875 - 12/10/2011 [Protimus]
 	-> Renovação
 	* Adicionado novo msgstringtable.txt & tipofday.txt
