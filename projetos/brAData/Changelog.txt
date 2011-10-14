@@ -9,6 +9,12 @@
 // Dica2: Consulte o Histórico (Linha do Tempo) acessando o endereço: http://trac.brathena.org/timeline
 // ============================================================================================================================================
 
+	r0881 - 14/10/2011 [Protimus]
+	-> Renovação
+	* Adicionados xmls necessários para leitura de falas dos bichinhos de estimação e entrada no servidor.
+	- É necessário atualizar as falas de monstros no emulador.
+	OBS: Término da Clean Data - Início dos arquivos LUA, necessário apenas revisões.
+
 	r0880 - 14/10/2011 [Protimus]
 	-> Renovação
 	* Adicionados txts para leitura de habilidades.

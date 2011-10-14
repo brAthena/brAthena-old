@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="euc-kr" ?>
+<clientinfo>
+<servicetype>korea</servicetype>
+<servertype>sakray</servertype>
+   <connection>
+      <display>brAthena</display>
+      <balloon>Servidor de Testes</balloon>
+      <desc>Descri豫o</desc>
+      <address>127.0.0.1</address>
+      <port>6900</port>
+      <version>26</version>
+      <langtype>8</langtype>
+      <registrationweb></registrationweb>
+      <aid>
+	  <admin></admin>
+         <yellow></yellow>
+      </aid>
+   </connection>
+</clientinfo>
