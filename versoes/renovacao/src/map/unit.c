@@ -883,7 +883,10 @@ int unit_can_move(struct block_list *bl)
 
 		if ((sc->option & OPTION_HIDE) && (!sd || pc_checkskill(sd, RG_TUNNELDRIVE) <= 0))
 			return 0;
-
+			
+		if(sc->data[SC_HOVERING])
+			return 1;
+			
 		if (sc->count && (
 			sc->data[SC_ANKLE]
 			|| sc->data[SC_AUTOCOUNTER]

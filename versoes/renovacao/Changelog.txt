@@ -9,8 +9,15 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0883 - 15/10/2011 [Protimus]
+	* Otimização nos códigos da r882 & r879.
+	* Corrigida habilidade Planar (NC_HOVERING).
+	- Não ignorava armadilhas ao andar e ataques mágicos.
+	- Não estava dando bônus na velocidade de movimento.
+
 	r0882 - 15/10/2011 [Floozie]
-	* Correção no código da skill Autodestruição (NC_SELFDESTRUCTION)
+	* Corrigida habilidade Campo Protetor (NC_NEUTRALBARRIER).
+	- Envio da r879 com duplicação de estado.
 	* Correção na habilidade Rugido do Dragão (RK_DRAGONHOWLING)
 	- Estava sendo possível utilizá-la sem um dragão
 	

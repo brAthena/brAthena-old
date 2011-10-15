@@ -500,10 +500,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 			return 0;
 		}
 
-		if(sc->data[SC_HERMODE] && flag&BF_MAGIC)
-			return 0;
-
-		if(sc->data[SC_NEUTRALBARRIER] && flag&BF_MAGIC)
+		if((sc->data[SC_HERMODE] || sc->data[SC_NEUTRALBARRIER] || sc->data[SC_HOVERING]) && flag&BF_MAGIC)
 			return 0;
 
 		if(sc->data[SC_TATAMIGAESHI] && (flag&(BF_MAGIC|BF_LONG)) == BF_LONG)
