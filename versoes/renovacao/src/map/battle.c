@@ -504,7 +504,6 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 			return 0;
 
 		if(sc->data[SC_NEUTRALBARRIER] && flag&BF_MAGIC)
-			d->dmg_lv = ATK_BLOCK;
 			return 0;
 
 		if(sc->data[SC_TATAMIGAESHI] && (flag&(BF_MAGIC|BF_LONG)) == BF_LONG)

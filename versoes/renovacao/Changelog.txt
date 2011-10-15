@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0882 - 15/10/2011 [Floozie]
+	* Correção no código da skill Autodestruição (NC_SELFDESTRUCTION)
+	* Correção na habilidade Rugido do Dragão (RK_DRAGONHOWLING)
+	- Estava sendo possível utilizá-la sem um dragão
+	
 	r0879 - 13/10/2011 [Floozie]
 	* Correção na Habilidade Campo Protetor (NC_NEUTRALBARRIER)
 	- Não estava deixando o usuário imune a ataques à distância e mágicos
