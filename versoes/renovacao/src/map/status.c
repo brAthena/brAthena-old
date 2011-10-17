@@ -1725,7 +1725,7 @@ int status_base_amotion_pc(struct map_session_data* sd, struct status_data* stat
 
 static unsigned short status_base_atk(const struct block_list *bl, const struct status_data *status, int level)
 {
-	int flag = 0, str, dex, dstr;
+	int flag = 0, str, dex, dstr, base;
 
 	if(!(bl->type&battle_config.enable_baseatk))
 		return 0;
@@ -1743,16 +1743,16 @@ static unsigned short status_base_atk(const struct block_list *bl, const struct 
 			flag = 1;
 	}
 	if (flag) {
-		str = status->dex;
+		base = str = status->dex;
 		dex = status->str;
 	} else {
-		str = status->str;
+		base = str = status->str;
 		dex = status->dex;
 	}
 	
 	// Fórmula de bonificações para o ataque físico para jogadores.
 	if( bl->type == BL_PC){
-		str += (int)((float)dex/5 + (float)status->luk/3 + (float)level/4);
+		str = (int)((float)dex/5 + (float)status->luk/3 + (float)level/4);
 	} else {  // Ataque físico para homunculos e outros.
 		dstr = str/10;
 		str += dstr*dstr;
@@ -6563,6 +6563,8 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_INCREASEAGI:
 		case SC_ADORAMUS:
 			val2 = 2 + val1; //Agi change
+			if (val3)
+					val2 += (val3/10);
 			if( type == SC_ADORAMUS )
 				sc_start(bl,SC_BLIND,100,val1,skill_get_time(status_sc2skill(type),val1));
 			break;
@@ -7135,7 +7137,11 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			break;
 		case SC_BLESSING:
 			if ((!undead_flag && status->race!=RC_DEMON) || bl->type == BL_PC)
+			{
 				val2 = val1;
+				if (val3) 
+						val2 += (val3/10);
+				}
 			else
 				val2 = 0; //0 -> Half stat.
 			break;

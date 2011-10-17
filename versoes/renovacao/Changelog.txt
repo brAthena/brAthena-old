@@ -9,6 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0887 - 17/10/2011 [Protimus]
+	* Modificada fórmula de força física.
+	- Adicionada variável para não alocar de forma errada.
+	* Corrigidas habilidades Bênção (AL_BLESSING).
+	- Adição de bônus de agilidade conforme nível de classe.
+	* Corrigida habilidade Aumentar Agilidade (AL_INCAGI) & Adoramus (AB_ADORAMUS).
+	- Adição de bônus de força, inteligência e destreza conforme nível de classe.
+	
 	r0886 - 17/10/2011 [Protimus]
 	* Corrigida habilidade Lauda Agnus (AB_LAUDAAGNUS) & Lauda Ramus (AB_LAUDARAMUS).
 	- Otimizado código, não sendo desnecessário o uso de mais casos ao invés de checagens.
