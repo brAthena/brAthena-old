@@ -64,35 +64,53 @@ static inline int itemtype(int type)
 	return ( type == IT_PETEGG ) ? IT_WEAPON : type;
 }
 
-#define WBUFPOS(p,pos,x,y,dir) \
-	do { \
-		uint8 *__p = (p); \
-		__p+=(pos); \
-		__p[0] = (uint8)((x)>>2); \
-		__p[1] = (uint8)(((x)<<6) | (((y)>>4)&0x3f)); \
-		__p[2] = (uint8)(((y)<<4) | ((dir)&0xf)); \
-	} while(0)
+static inline void WBUFPOS(uint8* p, unsigned short pos, short x, short y, unsigned char dir)
+{
+	p += pos;
+	p[0] = (uint8)(x>>2);
+	p[1] = (uint8)((x<<6) | ((y>>4)&0x3f));
+	p[2] = (uint8)((y<<4) | (dir&0xf));
+}
 // client-side: x0+=sx0*0.0625-0.5 and y0+=sy0*0.0625-0.5
-#define WBUFPOS2(p,pos,x0,y0,x1,y1,sx0,sy0) \
-	do { \
-		uint8 *__p = (p); \
-		__p+=(pos);	\
-		__p[0]=(uint8)((x0)>>2); \
-		__p[1]=(uint8)(((x0)<<6) | (((y0)>>4)&0x3f)); \
-		__p[2]=(uint8)(((y0)<<4) | (((x1)>>6)&0x0f)); \
-		__p[3]=(uint8)(((x1)<<2) | (((y1)>>8)&0x03)); \
-		__p[4]=(uint8)(y1); \
-		__p[5]=(uint8)(((sx0)<<4) | ((sy0)&0x0f)); \
-	} while(0)
+static inline void WBUFPOS2(uint8* p, unsigned short pos, short x0, short y0, short x1, short y1, unsigned char sx0, unsigned char sy0)
+{
+	p += pos;
+	p[0] = (uint8)(x0>>2);
+	p[1] = (uint8)((x0<<6) | ((y0>>4)&0x3f));
+	p[2] = (uint8)((y0<<4) | ((x1>>6)&0x0f));
+	p[3] = (uint8)((x1<<2) | ((y1>>8)&0x03));
+	p[4] = (uint8)y1;
+	p[5] = (uint8)((sx0<<4) | (sy0&0x0f));
+}
 
-#define WFIFOPOS(fd,pos,x,y,dir) WBUFPOS(WFIFOP(fd,pos),0,x,y,dir)
-#define WFIFOPOS2(fd,pos,x0,y0,x1,y1,sx0,sy0) WBUFPOS2(WFIFOP(fd,pos),0,x0,y0,x1,y1,sx0,sy0)
+static inline void WFIFOPOS(int fd, unsigned short pos, short x, short y, unsigned char dir)
+{
+	WBUFPOS(WFIFOP(fd,pos), 0, x, y, dir);
+}
+ 
+
+inline void WFIFOPOS2(int fd, unsigned short pos, short x0, short y0, short x1, short y1, unsigned char sx0, unsigned char sy0)
+{
+	WBUFPOS2(WFIFOP(fd,pos), 0, x0, y0, x1, y1, sx0, sy0);
+}
 
 //To idenfity disguised characters.
-#define disguised(bl) ((bl)->type==BL_PC && ((TBL_PC*)bl)->disguise)
+static inline bool disguised(struct block_list* bl)
+{
+	return (bool)( bl->type == BL_PC && ((TBL_PC*)bl)->disguise );
+}
 
-//Guarantees that the given string does not exceeds the allowed size, as well as making sure it's null terminated. [Skotlex\]
-#define mes_len_check(mes, len, max) if (len > max) { mes[max-1] = '\0'; len = max; } else mes[len-1] = '\0';
+//Guarantees that the given string does not exceeds the allowed size, as well as making sure it's null terminated. [Skotlex]
+static inline unsigned int mes_len_check(char* mes, unsigned int len, unsigned int max)
+{
+	if( len > max )
+		len = max;
+
+	mes[len-1] = '\0';
+
+	return len;
+}
+
 static char map_ip_str[128];
 static uint32 map_ip;
 static uint32 bind_ip = INADDR_ANY;
@@ -4028,7 +4046,10 @@ void clif_getareachar_unit(struct map_session_data* sd,struct block_list *bl)
 
 //Modifies the type of damage according to status changes [Skotlex]
 //Aegis data specifies that: 4 endure against single hit sources, 9 against multi-hit.
-#define clif_calc_delay(type,div,damage,delay) ((delay)==0&&(damage)>0?((div)>1?9:4):type)
+static inline int clif_calc_delay(int type, int div, int damage, int delay)
+{
+	return ( delay == 0 && damage > 0 ) ? ( div > 1 ? 9 : 4 ) : type;
+}
 
 /*==========================================
  * Estimates walk delay based on the damage criteria. [Skotlex]
@@ -4053,8 +4074,8 @@ static int clif_calc_walkdelay(struct block_list *bl,int delay, int type, int da
 
 /*==========================================
  * Sends a 'damage' packet (src performs action on dst)
- * R 008a <src ID>.L <dst ID>.L <server tick>.L <src speed>.L <dst speed>.L <damage>.W <div>.W <type>.B <damage2>.W
- * R 02e1 <src ID>.L <dst ID>.L <server tick>.L <src speed>.L <dst speed>.L <damage>.L <div>.W <type>.B <damage2>.L
+ * R 008a <src ID>.L <dst ID>.L <server tick>.L <src speed>.L <dst speed>.L <damage>.W <div>.W <type>.B <damage2>.W (ZC_NOTIFY_ACT)
+ * R 02e1 <src ID>.L <dst ID>.L <server tick>.L <src speed>.L <dst speed>.L <damage>.L <div>.W <type>.B <damage2>.L (ZC_NOTIFY_ACT2)
  *
  * type=00 damage [param1: total damage, param2: div, param3: assassin dual-wield damage]
  * type=01 pick up item
@@ -4068,8 +4089,13 @@ static int clif_calc_walkdelay(struct block_list *bl,int delay, int type, int da
  *------------------------------------------*/
 int clif_damage(struct block_list* src, struct block_list* dst, unsigned int tick, int sdelay, int ddelay, int damage, int div, int type, int damage2)
 {
-	unsigned char buf[256];
+	unsigned char buf[33];
 	struct status_change *sc;
+#if PACKETVER < 20071113
+	const int cmd = 0x8a;
+#else
+	const int cmd = 0x2e1;
+#endif
 
 	nullpo_ret(src);
 	nullpo_ret(dst);
@@ -4083,13 +4109,13 @@ int clif_damage(struct block_list* src, struct block_list* dst, unsigned int tic
 		}
 	}
 
-	WBUFW(buf,0)=0x8a;
+	WBUFW(buf,0)=cmd;
 	WBUFL(buf,2)=src->id;
 	WBUFL(buf,6)=dst->id;
 	WBUFL(buf,10)=tick;
 	WBUFL(buf,14)=sdelay;
 	WBUFL(buf,18)=ddelay;
-	if (battle_config.hide_woe_damage && map_flag_gvg(src->m)) {
+#if PACKETVER < 20071113
 		WBUFW(buf,22)=damage?div:0;
 		WBUFW(buf,27)=damage2?div:0;
 	} else {
@@ -4098,20 +4124,35 @@ int clif_damage(struct block_list* src, struct block_list* dst, unsigned int tic
 	}
 	WBUFW(buf,24)=div;
 	WBUFB(buf,26)=type;
+#else
+	if (battle_config.hide_woe_damage && map_flag_gvg(src->m)) {
+		WBUFL(buf,22)=damage?div:0;
+		WBUFL(buf,29)=damage2?div:0;
+	} else {
+		WBUFL(buf,22)=damage;
+		WBUFL(buf,29)=damage2;
+	}
+	WBUFW(buf,26)=div;
+	WBUFB(buf,28)=type;
+#endif
 	if(disguised(dst)) {
-		clif_send(buf,packet_len(0x8a),dst,AREA_WOS);
+		clif_send(buf,packet_len(cmd),dst,AREA_WOS);
 		WBUFL(buf,6) = -dst->id;
-		clif_send(buf,packet_len(0x8a),dst,SELF);
+		clif_send(buf,packet_len(cmd),dst,SELF);
 	} else
-		clif_send(buf,packet_len(0x8a),dst,AREA);
+		clif_send(buf,packet_len(cmd),dst,AREA);
 
 	if(disguised(src)) {
 		WBUFL(buf,2) = -src->id;
 		if (disguised(dst))
 			WBUFL(buf,6) = dst->id;
 		if(damage > 0) WBUFW(buf,22) = -1;
+#if PACKETVER < 20071113
 		if(damage2 > 0) WBUFW(buf,27) = -1;
-		clif_send(buf,packet_len(0x8a),src,SELF);
+#else
+		if(damage2 > 0) WBUFW(buf,29) = -1;
+#endif
+		clif_send(buf,packet_len(cmd),src,SELF);
 	}
 	//Return adjusted can't walk delay for further processing.
 	return clif_calc_walkdelay(dst,ddelay,type,damage+damage2,div);
@@ -5335,7 +5376,7 @@ void clif_GlobalMessage(struct block_list* bl, const char* message)
 	WBUFW(buf,0)=0x8d;
 	WBUFW(buf,2)=len+8;
 	WBUFL(buf,4)=bl->id;
-	strncpy((char *) WBUFP(buf,8),message,len);
+	safestrncpy((char *) WBUFP(buf,8),message,len);
 	clif_send((unsigned char *) buf,WBUFW(buf,2),bl,ALL_CLIENT);
 }
 
@@ -5344,7 +5385,7 @@ void clif_GlobalMessage(struct block_list* bl, const char* message)
  *------------------------------------------*/
 void clif_MainChatMessage(const char* message)
 {
-	char buf[200];
+	uint8 buf[200];
 	int len;
 
 	if(!message)
@@ -5358,8 +5399,8 @@ void clif_MainChatMessage(const char* message)
 	WBUFW(buf,0)=0x8d;
 	WBUFW(buf,2)=len+8;
 	WBUFL(buf,4)=0;
-	strncpy((char *) WBUFP(buf,8),message,len);
-	clif_send((unsigned char *) buf,WBUFW(buf,2),NULL,CHAT_MAINCHAT);
+	safestrncpy((char *) WBUFP(buf,8),message,len);
+	clif_send(buf,WBUFW(buf,2),NULL,CHAT_MAINCHAT);
 }
 
 /*==========================================
@@ -6210,34 +6251,42 @@ void clif_party_invite(struct map_session_data *sd,struct map_session_data *tsd)
 	WFIFOSET(fd,packet_len(cmd));
 }
 
-/*==========================================
- * Party invitation result.
- * R 00fd <nick>.24S <flag>.B
- * R 02c5 <nick>.24S <flag>.L
- * Flag values are:
- * 0 -> char is already in a party
- * 1 -> party invite was rejected
- * 2 -> party invite was accepted
- * 3 -> party is full
- * 4 -> char of the same account already joined the party
- *------------------------------------------*/
-void clif_party_inviteack(struct map_session_data* sd, const char* nick, int flag)
+/// Party invite result.
+/// R 00fd <nick>.24S <result>.B
+/// R 02c5 <nick>.24S <result>.L
+/// result=0 : char is already in a party -> MsgStringTable[80]
+/// result=1 : party invite was rejected -> MsgStringTable[81]
+/// result=2 : party invite was accepted -> MsgStringTable[82]
+/// result=3 : party is full -> MsgStringTable[83]
+/// result=4 : char of the same account already joined the party -> MsgStringTable[608]
+/// result=5 : char blocked party invite -> MsgStringTable[1324] (since 20070904)
+/// result=7 : char is not online or doesn't exist -> MsgStringTable[71] (since 20070904)
+/// result=8 : (%s) TODO instance related? -> MsgStringTable[1388] (since 20080527)
+/// return=9 : TODO map prohibits party joining? -> MsgStringTable[1871] (since 20110205)
+void clif_party_inviteack(struct map_session_data* sd, const char* nick, int result)
 {
 	int fd;
 	nullpo_retv(sd);
 	fd=sd->fd;
+	
+#if PACKETVER < 20070904
+	if( result == 7 ) {
+		clif_displaymessage(fd, msg_txt(3));
+		return;
+	}
+#endif
 
 #if PACKETVER < 20070821
 	WFIFOHEAD(fd,packet_len(0xfd));
 	WFIFOW(fd,0) = 0xfd;
 	safestrncpy((char*)WFIFOP(fd,2),nick,NAME_LENGTH);
-	WFIFOB(fd,26) = flag;
+	WFIFOB(fd,26) = result;
 	WFIFOSET(fd,packet_len(0xfd));
 #else
 	WFIFOHEAD(fd,packet_len(0x2c5));
 	WFIFOW(fd,0) = 0x2c5;
 	safestrncpy((char*)WFIFOP(fd,2),nick,NAME_LENGTH);
-	WFIFOL(fd,26) = flag;
+	WFIFOL(fd,26) = result;
 	WFIFOSET(fd,packet_len(0x2c5));
 #endif
 }
@@ -7447,26 +7496,29 @@ void clif_guild_expulsionlist(struct map_session_data* sd)
 	WFIFOSET(fd,WFIFOW(fd,2));
 }
 
-/*==========================================
- * ƒMƒ‹ƒh‰ï˜b
- *------------------------------------------*/
-int clif_guild_message(struct guild *g,int account_id,const char *mes,int len)
-{
+/// Notification of a guild chat message (ZC_GUILD_CHAT)
+/// 017f <packet len>.W <message>.?B
+void clif_guild_message(struct guild *g,int account_id,const char *mes,int len)
+{// TODO: account_id is not used, candidate for deletion? [Ai4rei]
 	struct map_session_data *sd;
-	unsigned char *buf;
+	uint8 buf[256];
 
-	buf = (unsigned char*)aMallocA((len + 4)*sizeof(unsigned char));
+	if( len == 0 )
+	{
+		return;
+	}
+	else if( len > sizeof(buf)-5 )
+	{
+		ShowWarning("clif_guild_message: Truncated message '%s' (len=%d, max=%d, guild_id=%d).\n", mes, len, sizeof(buf)-5, g->guild_id);
+		len = sizeof(buf)-5;
+	}
 
 	WBUFW(buf, 0) = 0x17f;
-	WBUFW(buf, 2) = len + 4;
-	memcpy(WBUFP(buf,4), mes, len);
+	WBUFW(buf, 2) = len + 5;
+	safestrncpy((char*)WBUFP(buf,4), mes, len+1);
 
 	if ((sd = guild_getavailablesd(g)) != NULL)
 		clif_send(buf, WBUFW(buf,2), &sd->bl, GUILD_NOBG);
-
-	if(buf) aFree(buf);
-
-	return 0;
 }
 /*==========================================
  * ƒMƒ‹ƒhƒXƒLƒ‹Š„‚èU‚è’Ê’m
@@ -7709,18 +7761,9 @@ void clif_parse_ReqMarriage(int fd, struct map_session_data *sd)
 /*==========================================
  *
  *------------------------------------------*/
-int clif_disp_onlyself(struct map_session_data *sd, const char *mes, int len)
+void clif_disp_onlyself(struct map_session_data *sd, const char *mes, int len)
 {
-	int fd;
-	nullpo_ret(sd);
-	fd = sd->fd;
-	if (!fd || !len) return 0; //Disconnected player.
-	WFIFOHEAD(fd, len+5);
-	WFIFOW(fd, 0) = 0x17f;
-	WFIFOW(fd, 2) = len + 5;
-	memcpy(WFIFOP(fd,4), mes, len);
-	WFIFOSET(fd, WFIFOW(fd,2));
-	return 1;
+	clif_disp_message(&sd->bl, mes, len, SELF);
 }
 
 /*==========================================
@@ -7728,13 +7771,22 @@ int clif_disp_onlyself(struct map_session_data *sd, const char *mes, int len)
  *------------------------------------------*/
 void clif_disp_message(struct block_list* src, const char* mes, int len, enum send_target target)
 {
-	unsigned char buf[1024];
-	if (!len) return;
+	unsigned char buf[256];
+
+	if( len == 0 )
+	{
+		return;
+	}
+	else if( len > sizeof(buf)-5 )
+	{
+		ShowWarning("clif_disp_message: Truncated message '%s' (len=%d, max=%d, aid=%d).\n", mes, len, sizeof(buf)-5, src->id);
+		len = sizeof(buf)-5;
+	}
+	
 	WBUFW(buf, 0) = 0x17f;
 	WBUFW(buf, 2) = len + 5;
-	memcpy(WBUFP(buf,4), mes, len);
+	safestrncpy((char*)WBUFP(buf,4), mes, len+1);
 	clif_send(buf, WBUFW(buf,2), src, target);
-	return;
 }
 
 /*==========================================
@@ -7957,12 +8009,12 @@ int clif_messagecolor(struct block_list* bl, unsigned long color, const char* ms
 }
 
 // messages (from mobs/npcs) [Valaris]
-int clif_message(struct block_list* bl, const char* msg)
+void clif_message(struct block_list* bl, const char* msg)
 {
 	unsigned short msg_len = strlen(msg) + 1;
 	uint8 buf[256];
 
-	nullpo_ret(bl);
+	nullpo_retv(bl);
 
 	if( msg_len > sizeof(buf)-8 )
 	{
@@ -7973,11 +8025,9 @@ int clif_message(struct block_list* bl, const char* msg)
 	WBUFW(buf,0) = 0x8d;
 	WBUFW(buf,2) = msg_len + 8;
 	WBUFL(buf,4) = bl->id;
-	memcpy(WBUFP(buf,8), msg, msg_len);
+	safestrncpy((char*)WBUFP(buf,8), msg, msg_len);
 
 	clif_send(buf, WBUFW(buf,2), bl, AREA_CHAT_WOC);
-
-	return 0;
 }
 
 // refresh the client's screen, getting rid of any effects
@@ -8257,29 +8307,27 @@ void clif_slide(struct block_list *bl, int x, int y)
 /*------------------------------------------
  * @me command by lordalfa, rewritten implementation by Skotlex
  *------------------------------------------*/
-int clif_disp_overhead(struct map_session_data *sd, const char* mes)
+void clif_disp_overhead(struct map_session_data *sd, const char* mes)
 {
 	unsigned char buf[256]; //This should be more than sufficient, the theorical max is CHAT_SIZE + 8 (pads and extra inserted crap)
 	int len_mes = strlen(mes)+1; //Account for \0
 
-	if (len_mes + 8 >= 256) {
+	if (len_mes > sizeof(buf)-8) {
 		ShowError("clif_disp_overhead: Mensagem muito longa (comprimento %d)\n", len_mes);
-		len_mes = 247; //Trunk it to avoid problems.
+		len_mes = sizeof(buf)-8; //Trunk it to avoid problems.
 	}
 	// send message to others
 	WBUFW(buf,0) = 0x8d;
 	WBUFW(buf,2) = len_mes + 8; // len of message + 8 (command+len+id)
 	WBUFL(buf,4) = sd->bl.id;
-	memcpy(WBUFP(buf,8), mes, len_mes);
+	safestrncpy((char*)WBUFP(buf,8), mes, len_mes);
 	clif_send(buf, WBUFW(buf,2), &sd->bl, AREA_CHAT_WOC);
 
 	// send back message to the speaker
 	WBUFW(buf,0) = 0x8e;
 	WBUFW(buf, 2) = len_mes + 4;
-	memcpy(WBUFP(buf,4), mes, len_mes);
+	safestrncpy((char*)WBUFP(buf,4), mes, len_mes);  
 	clif_send(buf, WBUFW(buf,2), &sd->bl, SELF);
-
-	return 0;
 }
 
 /*==========================
@@ -9741,7 +9789,7 @@ void clif_parse_Broadcast(int fd, struct map_session_data* sd)
 		return;
 
 	// as the length varies depending on the command used, just block unreasonably long strings
-	mes_len_check(msg, len, CHAT_SIZE_MAX);
+	len = mes_len_check(msg, len, CHAT_SIZE_MAX);
 
 	intif_broadcast(msg, len, 0);
 
@@ -10896,7 +10944,7 @@ void clif_parse_LocalBroadcast(int fd, struct map_session_data* sd)
 		return;
 
 	// as the length varies depending on the command used, just block unreasonably long strings
-	mes_len_check(msg, len, CHAT_SIZE_MAX);
+	len = mes_len_check(msg, len, CHAT_SIZE_MAX);
 
 	clif_broadcast(&sd->bl, msg, len, 0, ALL_SAMEMAP);
 
@@ -15561,7 +15609,7 @@ static int packetdb_readdb(void)
 	//#0x02C0
 	    0,  0,  0,  0,  0, 30, 30,  0,  0,  3,  0, 65,  4, 71, 10,  0,
 	   -1, -1,  0,  0, 29,  0,  6, -1, 10, 10,  3,  0, -1, 32,  6,  0,
-	    0, 33,  0,  0,  0,  0,  0,  0, -1,  0, -1,  0, 67, 59, 60,  8,
+	    0, 33,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0, 67, 59, 60,  8,
 	   10,  2,  2,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  8,  0,  0,
 	//#0x0300
 	    0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,

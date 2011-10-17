@@ -1222,6 +1222,7 @@ int socket_getips(uint32* ips, int max)
 void socket_init(void)
 {
 	char *SOCKET_CONF_FILENAME = "conf/packet_athena.conf";
+	unsigned int rlim_cur = FD_SETSIZE;
 
 #ifdef WIN32
 	{// Start up windows networking
@@ -1265,6 +1266,7 @@ void socket_init(void)
 					if( err == EPERM )
 						errmsg = "permissao negada";
 					ShowWarning("socket_init: falha ao definir limite de socket para %d, configurando para maximo permitido (limite original=%d, limite atual=%d, maximo permitido=%d, erro=%s).\n", FD_SETSIZE, rlim_ori, (int)rlp.rlim_cur, (int)rlp.rlim_max, errmsg);
+					rlim_cur = rlp.rlim_cur;
 				}
 			}
 		}
@@ -1294,6 +1296,8 @@ void socket_init(void)
 	add_timer_func_list(connect_check_clear, "connect_check_clear");
 	add_timer_interval(gettick()+1000, connect_check_clear, 0, 0, 5*60*1000);
 #endif
+
+	ShowInfo("Server supports up to '"CL_WHITE"%u"CL_RESET"' concurrent connections.\n", rlim_cur);
 }
 
 
@@ -1368,19 +1372,30 @@ void send_shortlist_add_fd(int fd)
 // Do pending network sends and eof handling from the shortlist.
 void send_shortlist_do_sends()
 {
-	int i = 0;
+	int i;
 
-	while( i < send_shortlist_count )
+	for( i = send_shortlist_count-1; i >= 0; --i )
 	{
 		int fd = send_shortlist_array[i];
 		int idx = fd/32;
 		int bit = fd%32;
 
+		// Remove fd from shortlist, move the last fd to the current position
+		--send_shortlist_count;
+		send_shortlist_array[i] = send_shortlist_array[send_shortlist_count];
+		send_shortlist_array[send_shortlist_count] = 0;
+
+		if( fd <= 0 || fd >= FD_SETSIZE )
+		{
+			ShowDebug("send_shortlist_do_sends: fd is out of range, corrupted memory? (fd=%d)\n", fd);
+			continue;
+		}
 		if( ((send_shortlist_set[idx]>>bit)&1) == 0 )
 		{
 			ShowDebug("send_shortlist_do_sends: fd is not set, why is it in the shortlist? (fd=%d)\n", fd);
+			continue;
 		}
-		else
+		send_shortlist_set[idx]&=~(1<<bit);// unset fd
 		// If this session still exists, perform send operations on it and
 		// check for the eof state.
 		if( session[fd] )
@@ -1395,19 +1410,10 @@ void send_shortlist_do_sends()
 				session[fd]->func_parse(fd);
 
 			// If the session still exists, is not eof and has things left to
-			// be sent from it we'll keep it in the shortlist.
+			// be sent from it we'll re-add it to the shortlist.
 			if( session[fd] && !session[fd]->flag.eof && session[fd]->wdata_size )
-			{
-				++i;
-				continue;
-			}
+				send_shortlist_add_fd(fd);
 		}
-
-		// Remove fd from shortlist, move the last fd to the current position
-		--send_shortlist_count;
-		send_shortlist_array[i] = send_shortlist_array[send_shortlist_count];
-		send_shortlist_array[send_shortlist_count] = 0;
-		send_shortlist_set[idx]&=~(1<<bit);
 	}
 }
 #endif

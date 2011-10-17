@@ -1082,9 +1082,9 @@ OnTouch:
 
 OnClock0001:
 	if (strnpcinfo(1) == "Gld_Trea_Spawn") end;
-
-	if (!GetCastleData(strnpcinfo(2),1)) end;
-
+	set .@GID, GetCastleData(strnpcinfo(2),1);
+	
+	if (!.@GID) end;
 	set .@Treasure,GetCastleData(strnpcinfo(2),2)/5+4;
 
 	if (strnpcinfo(2) == "aldeg_cas01") {

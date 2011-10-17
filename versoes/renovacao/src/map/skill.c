@@ -79,7 +79,10 @@ int overbrand_nounit_pos;
 int overbrand_brandish_nounit_pos;
 
 //Since only mob-casted splash skills can hit ice-walls
-#define splash_target(bl) (bl->type==BL_MOB?BL_SKILL|BL_CHAR:BL_CHAR)
+static inline int splash_target(struct block_list* bl)
+{
+	return ( bl->type == BL_MOB ) ? BL_SKILL|BL_CHAR : BL_CHAR;
+}
 
 static int skill_area_temp[8];
 

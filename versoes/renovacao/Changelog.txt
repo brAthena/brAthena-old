@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0885 - 17/10/2011 [Protimus]
+	* Atualizado conforme eAthena r14979.
+	- Excessão da 14964:14965, necessário revisar.
+
 	r0884 - 17/10/2011 [Floozie]
 	* Corrigida habilidade Punho do Dragão (SR_DRAGONCOMBO)
 	- Ela não estava sendo utilizável depois de combo triplo
