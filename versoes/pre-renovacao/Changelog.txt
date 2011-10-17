@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0888 - 17/10/2011 [Protimus]
+	* Atualizado conforme eAthena r14980.
+	- Corrigido crash no sistema de grupos.
+
 	r0885 - 17/10/2011 [Protimus]
 	* Atualizado conforme eAthena r14979.
 

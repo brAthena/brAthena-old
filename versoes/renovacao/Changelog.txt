@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0888 - 17/10/2011 [Protimus]
+	* Atualizada lista de SI's conforme novos clientes.
+	- Por enquanto estão desabilitados até que seja necessário o funcionamento.
+	* Atualizado conforme eAthena r14980.
+	- Corrigido crash no sistema de grupos.
+
 	r0887 - 17/10/2011 [Protimus]
 	* Modificada fórmula de força física.
 	- Adicionada variável para não alocar de forma errada.
