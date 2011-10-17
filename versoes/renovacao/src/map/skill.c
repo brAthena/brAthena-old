@@ -7253,7 +7253,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		break;
 
 	case AB_LAUDARAMUS:
-		if( flag&1 || sd == NULL )
+		if( (flag&1) || sd == NULL || sd->status.party_id == 0 )
 		{
 			if( (tsc && (tsc->data[SC_SLEEP] || tsc->data[SC_STUN] ||
 				tsc->data[SC_SILENCE]))&& (rand()%100 < 50+5*skilllv) )
@@ -12001,14 +12001,6 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 				clif_skill_fail(sd, skill, 0x0c, 0, 0);
 				return 0;
 			}
-		}
-		break;
-	case AB_LAUDAAGNUS:
-	case AB_LAUDARAMUS:
-		if( !sd->status.party_id )
-		{
-			clif_skill_fail(sd,skill,0,0,0);
-			return 0;
 		}
 		break;
 	case AB_HIGHNESSHEAL:

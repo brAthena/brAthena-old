@@ -9,6 +9,15 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0886 - 17/10/2011 [Protimus]
+	* Corrigida habilidade Lauda Agnus (AB_LAUDAAGNUS) & Lauda Ramus (AB_LAUDARAMUS).
+	- Otimizado código, não sendo desnecessário o uso de mais casos ao invés de checagens.
+	* Adicionado tempo de reuso para as Runas do Cavaleiro Rúnico.
+	* Correção para opção de defesa máxima.
+	- Número conforme o máximo de defesa possível no momento.
+	- Otimização para alocamento de valores que ainda não haviam sido modificados.
+	* Corrigida pequena checagem na quest de classe do Arcebispo.
+
 	r0885 - 17/10/2011 [Protimus]
 	* Atualizado conforme eAthena r14979.
 	- Excessão da 14964:14965, necessário revisar.
