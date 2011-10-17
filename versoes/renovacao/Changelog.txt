@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0884 - 17/10/2011 [Floozie]
+	* Corrigida habilidade Punho do Dragão (SR_DRAGONCOMBO)
+	- Ela não estava sendo utilizável depois de combo triplo
+	* Correção no 'item script' do item Anel de Maça Verde
+	- Não estava reduzindo os pontos a cada 5 leveis
+	
 	r0883 - 15/10/2011 [Protimus]
 	* Otimização nos códigos da r882 & r879.
 	* Corrigida habilidade Planar (NC_HOVERING).

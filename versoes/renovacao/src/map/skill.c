@@ -2144,8 +2144,6 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 			if (flag < 1) flag = 1;
 			sc_start2(src,SC_COMBO,100,skillid,bl->id,flag);
 			clif_combo_delay(src, flag);
-			if(skillid == MO_TRIPLEATTACK && pc_checkskill(sd, SR_DRAGONCOMBO) > 0)
-				clif_skillupdateinfo(sd,SR_DRAGONCOMBO,INF_SELF_SKILL,0);
 			sc_start(src,SC_COMBO,100,skillid,flag);
 			clif_combo_delay(src, flag);
 		}
@@ -4197,8 +4195,6 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 		clif_skill_damage(src, src, tick, status_get_amotion(src), 0, -30000, 1, skillid, skilllv, 6);
 		break;
 	case SR_DRAGONCOMBO:
-		if(sd)
-			clif_skillupdateinfo(sd,SR_DRAGONCOMBO,0,0);
 		skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 	case SR_HOWLINGOFLION:
@@ -8568,8 +8564,7 @@ int skill_castend_id(int tid, unsigned int tick, int id, intptr_t data)
 			inf = skill_get_inf(ud->skillid);
 			inf2 = skill_get_inf2(ud->skillid);
 
-			if(inf&INF_ATTACK_SKILL || (ud->skillid == SR_DRAGONCOMBO && src == target) ||
-				(inf&INF_SELF_SKILL && inf2&INF2_NO_TARGET_SELF)) //Combo skills
+			if(inf&INF_ATTACK_SKILL || (inf&INF_SELF_SKILL && inf2&INF2_NO_TARGET_SELF)) //Combo skills
 				inf = BCT_ENEMY; //Offensive skill.
 			else if(inf2&INF2_NO_ENEMY)
 				inf = BCT_NOENEMY;
@@ -12147,9 +12142,7 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 		}
 		break;
 	case SR_FALLENEMPIRE:
-		if(!sc)
-			return 0;
-		if(sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == SR_DRAGONCOMBO)
+		if(sc && sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == SR_DRAGONCOMBO)
 			break;
 		return 0;
 	case SR_GATEOFHELL:
