@@ -5206,27 +5206,27 @@
 12414,Guarana_Candy,Bala de Guaraná,2,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
 12415,Siege_Map_Teleport_Scroll_II,Siege Map Teleport Scroll II,2,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
 12416,Fortune_Egg_III,Fortune Egg III,2,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
-12417,Boost_500,Boost 500,0,100,,50,,,,,0x00040000,7,2,,,,,,{ sc_start SC_BOOST500,500000,10; },{},{}
-12418,Full_Swing_K,Poção de Ataque,0,100,,50,,,,,0x00040000,7,2,,,,,,{ sc_start SC_FULL_SWING_K,500000,50; },{},{}
-12419,Manaplus,Poção de Ataque Mágico,0,100,,50,,,,,0x00040000,7,2,,,,,,{ sc_start SC_MANA_PLUS,500000,50; },{},{}
-12420,Muramura_M,Muramura M,0,100,,50,,,,,0x00040000,7,2,,,,,,{ sc_start SC_MUSTLE_M,500000,5; },{},{}
-12421,Falmons_F,Falmons F,0,100,,50,,,,,0x00040000,7,2,,,,,,{ sc_start SC_LIFE_FORCE_F,500000,5; },{},{}
-12422,HP_Increase_Potion_(Small),Poção Pequena de HP,0,100,,20,,,,,0x00040000,7,2,,,,,,{ sc_start SC_INCMHPRATE,500000,1; percentheal 1,0; },{},{}
-12423,HP_Increase_Potion_(Medium),Poção Média de HP,0,100,,40,,,,,0x00040000,7,2,,,,,,{ sc_start SC_INCMHPRATE,500000,2; percentheal 2,0; },{},{}
-12424,HP_Increase_Potion_(Large),Poção Grande de HP,0,100,,80,,,,,0x00040000,7,2,,,,,,{ sc_start SC_INCMHPRATE,500000,5; percentheal 5,0; },{},{}
-12425,SP_Increase_Potion_(Small),Poção Pequena de SP,0,100,,20,,,,,0x00040000,7,2,,,,,,{ sc_start SC_INCMSPRATE,500000,2; percentheal 0,2; },{},{}
-12426,SP_Increase_Potion_(Medium),Poção Média de SP,0,100,,40,,,,,0x00040000,7,2,,,,,,{ sc_start SC_INCMSPRATE,500000,4; percentheal 0,4; },{},{}
-12427,SP_Increase_Potion_(Large),Poção Grande de SP,0,100,,80,,,,,0x00040000,7,2,,,,,,{ sc_start SC_INCMSPRATE,500000,8; percentheal 0,8; },{},{}
-12428,Concentrated_White_Potion_Z,Poção Branca Especial,0,100,,70,,,,,0x00040000,7,2,,,,,,{ sc_start SC_EXTRACT_WHITE_POTION_Z,500000,20; itemheal rand(1500,1600),0; },{},{}
-12429,Savage_Full_Roast,Churrasco de Selvagem,0,1000,,50,,,,,0x00040000,7,2,,,,,,{ sc_start SC_SAVAGE_STEAK,300000,20; },{},{}
-12430,Cocktail_Warg_Blood,Coquetel Uivante,0,1000,,50,,,,,0x00040000,7,2,,,,,,{ sc_start SC_COCKTAIL_WARG_BLOOD,300000,20; },{},{}
-12431,Minor_Stew,Carne ao Vinho,0,1000,,50,,,,,0x00040000,7,2,,,,,,{ sc_start SC_MINOR_BBQ,300000,20; },{},{}
-12432,Siroma_Iced_Tea,Chá Gelado de Sinoma,0,,,50,,,,,0x00040000,7,2,,,,,,{ sc_start SC_SIROMA_ICE_TEA, 300000, 20; },{},{}
-12433,Drosera_Herb_Salad,Cozido de Drosera,0,,,50,,,,,0x00040000,7,2,,,,,,{ sc_start SC_DROCERA_HERB_STEAMED, 300000, 20; },{},{}
-12434,Petite_Tail_Noodles,Macarrão com Petite,0,1000,,50,,,,,0x00040000,7,2,,,,,,{ sc_start SC_PUTTI_TAILS_NOODLES,300000,20; },{},{}
-12435,Black_Mass,Gororoba Preta,0,1000,,50,,,,,0x00040000,7,2,,,,,,{ sc_start SC_STOMACHACHE,60000,rand(5,10); },{},{}
-12436,Vitata_500,Poção Vitata 500,0,2,,0,,,,,0x00040000,7,2,,,,,,{ sc_start SC_VITATA_500,500000,20; },{},{}
-12437,Concentrated_Ceromain_Soup,Suco Celular Enriquecido,0,100,,50,,,,,0x00040000,7,2,,,,,,{ sc_start SC_EXTRACT_SALAMINE_JUICE,500000,10; itemheal rand(1500,1600),0; },{},{}
+12417,Boost_500,Boost 500,0,100,,50,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_BOOST500,500000,10; },{},{}
+12418,Full_Swing_K,Poção de Ataque,0,100,,50,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_FULL_SWING_K,500000,50; },{},{}
+12419,Manaplus,Poção de Ataque Mágico,0,100,,50,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_MANA_PLUS,500000,50; },{},{}
+12420,Muramura_M,Muramura M,0,100,,50,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_MUSTLE_M,500000,5; },{},{}
+12421,Falmons_F,Falmons F,0,100,,50,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_LIFE_FORCE_F,500000,5; },{},{}
+12422,HP_Increase_Potion_(Small),Poção Pequena de HP,0,100,,20,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_INCMHPRATE,500000,1; percentheal 1,0; },{},{}
+12423,HP_Increase_Potion_(Medium),Poção Média de HP,0,100,,40,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_INCMHPRATE,500000,2; percentheal 2,0; },{},{}
+12424,HP_Increase_Potion_(Large),Poção Grande de HP,0,100,,80,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_INCMHPRATE,500000,5; percentheal 5,0; },{},{}
+12425,SP_Increase_Potion_(Small),Poção Pequena de SP,0,100,,20,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_INCMSPRATE,500000,2; percentheal 0,2; },{},{}
+12426,SP_Increase_Potion_(Medium),Poção Média de SP,0,100,,40,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_INCMSPRATE,500000,4; percentheal 0,4; },{},{}
+12427,SP_Increase_Potion_(Large),Poção Grande de SP,0,100,,80,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_INCMSPRATE,500000,8; percentheal 0,8; },{},{}
+12428,Concentrated_White_Potion_Z,Poção Branca Especial,0,100,,70,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_EXTRACT_WHITE_POTION_Z,500000,20; itemheal rand(1500,1600),0; },{},{}
+12429,Savage_Full_Roast,Churrasco de Selvagem,0,1000,,50,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_SAVAGE_STEAK,300000,20; },{},{}
+12430,Cocktail_Warg_Blood,Coquetel Uivante,0,1000,,50,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_COCKTAIL_WARG_BLOOD,300000,20; },{},{}
+12431,Minor_Stew,Carne ao Vinho,0,1000,,50,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_MINOR_BBQ,300000,20; },{},{}
+12432,Siroma_Iced_Tea,Chá Gelado de Sinoma,0,,,50,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_SIROMA_ICE_TEA, 300000, 20; },{},{}
+12433,Drosera_Herb_Salad,Cozido de Drosera,0,,,50,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_DROCERA_HERB_STEAMED, 300000, 20; },{},{}
+12434,Petite_Tail_Noodles,Macarrão com Petite,0,1000,,50,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_PUTTI_TAILS_NOODLES,300000,20; },{},{}
+12435,Black_Mass,Gororoba Preta,0,1000,,50,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_STOMACHACHE,60000,rand(5,10); },{},{}
+12436,Vitata_500,Poção Vitata 500,0,2,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_VITATA_500,500000,20; },{},{}
+12437,Concentrated_Ceromain_Soup,Suco Celular Enriquecido,0,100,,50,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_EXTRACT_SALAMINE_JUICE,500000,10; itemheal rand(1500,1600),0; },{},{}
 //12438,Giant_Fly_Wing,
 //12439,Battle_Manual,
 //12440,Insurance,

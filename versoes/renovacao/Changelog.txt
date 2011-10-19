@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0890 - 19/10/2011 [Protimus]
+	* Correção para os condições de Comidas do Bioquímico.
+	- Comidas normais podem ser usadas por qualquer classe.
+	* Corrigida a habilidade WZ_FROSTNOVA (Congelar).
+	- Alterado delay conforme renovação.
+
 	r0889 - 19/10/2011 [Protimus]
 	* Correções para todas as Comidas do Bioquímico.
 	- Bloqueio de repetição do uso de status em comidas normais.
