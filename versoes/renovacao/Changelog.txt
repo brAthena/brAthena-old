@@ -9,6 +9,15 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0889 - 19/10/2011 [Protimus]
+	* Correções para todas as Comidas do Bioquímico.
+	- Bloqueio de repetição do uso de status em comidas normais.
+	- Mudanças nas informações gerais dos itens, como valores de venda ou compra e uso exclusivo de classe.
+	- Bloqueio para ganho de status ao equipar a Comida de Arremesso, ele é ganho apenas no alvo.
+	- Comidas normais estavam com item type de arremesso ao invés de consumível.
+	* Removio tempo de reuso para os itens de Runas do Cavaleiro Rúnico.
+	- Sem necessidade, existe o reuso da habilidade.
+
 	r0888 - 17/10/2011 [Protimus]
 	* Atualizada lista de SI's conforme novos clientes.
 	- Por enquanto estão desabilitados até que seja necessário o funcionamento.

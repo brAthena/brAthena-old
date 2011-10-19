@@ -6202,14 +6202,37 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			return 0;
 	break;
 	case SC_BLEEDING:
-		if(sc->data[SC_POWER_OF_GAIA])
+		if(sc->data[SC_POWER_OF_GAIA] || sd->inventory_data[sd->equip_index[EQI_AMMO]])
 			return 0;
 	break;
+		
 	case SC_MAGNETICFIELD:
 		if(sc->data[SC_HOVERING])
 			return 0;
 	break;
-
+	case SC_CURSE:
+	case SC_SILENCE:
+	case SC_MYSTERIOUS_POWDER:
+	case SC_BOOST500:
+	case SC_FULL_SWING_K:
+	case SC_MANA_PLUS:
+	case SC_MUSTLE_M:
+	case SC_LIFE_FORCE_F:
+	case SC_INCMHPRATE:
+	case SC_EXTRACT_WHITE_POTION_Z:
+	case SC_SAVAGE_STEAK:
+	case SC_VITATA_500:
+	case SC_EXTRACT_SALAMINE_JUICE:
+	case SC_COCKTAIL_WARG_BLOOD:
+	case SC_MINOR_BBQ:
+	case SC_SIROMA_ICE_TEA:
+	case SC_DROCERA_HERB_STEAMED:
+	case SC_PUTTI_TAILS_NOODLES:
+	case SC_STOMACHACHE:
+		if( sd->inventory_data[sd->equip_index[EQI_AMMO]] )
+			return 0;
+	break;
+	
 	}
 
 	//Check for BOSS resistances
@@ -9815,12 +9838,25 @@ int status_change_clear_buffs (struct block_list* bl, int type)
 			case SC__MANHOLE:
 			case SC_CURSEDCIRCLE_ATKER:
 			case SC_CURSEDCIRCLE_TARGET:
-			case SC_SAVAGE_STEAK:
-			case SC_COCKTAIL_WARG_BLOOD:
-			case SC_MINOR_BBQ:
-			case SC_SIROMA_ICE_TEA:
-			case SC_DROCERA_HERB_STEAMED:
-			case SC_PUTTI_TAILS_NOODLES:
+			case SC_STOMACHACHE:
+			case SC_MYSTERIOUS_POWDER:
+			case SC_MELON_BOMB:
+			case SC_BANANA_BOMB:
+			case SC_BANANA_BOMB_SITDOWN:
+ 			case SC_SAVAGE_STEAK:
+ 			case SC_COCKTAIL_WARG_BLOOD:
+ 			case SC_MINOR_BBQ:
+ 			case SC_SIROMA_ICE_TEA:
+ 			case SC_DROCERA_HERB_STEAMED:
+ 			case SC_PUTTI_TAILS_NOODLES:
+			case SC_BOOST500:
+			case SC_FULL_SWING_K:
+			case SC_MANA_PLUS:
+			case SC_MUSTLE_M:
+			case SC_LIFE_FORCE_F:
+			case SC_EXTRACT_WHITE_POTION_Z:
+			case SC_VITATA_500:
+			case SC_EXTRACT_SALAMINE_JUICE:
 				continue;
 
 			//Debuffs that can be removed.
