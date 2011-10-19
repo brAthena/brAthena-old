@@ -1725,7 +1725,7 @@ int status_base_amotion_pc(struct map_session_data* sd, struct status_data* stat
 
 static unsigned short status_base_atk(const struct block_list *bl, const struct status_data *status, int level)
 {
-	int flag = 0, str, dex, dstr, base;
+	int flag = 0, str, dex, dstr;
 
 	if(!(bl->type&battle_config.enable_baseatk))
 		return 0;
@@ -1743,16 +1743,16 @@ static unsigned short status_base_atk(const struct block_list *bl, const struct 
 			flag = 1;
 	}
 	if (flag) {
-		base = str = status->dex;
+		str = status->dex;
 		dex = status->str;
 	} else {
-		base = str = status->str;
+		str = status->str;
 		dex = status->dex;
 	}
 	
 	// Fórmula de bonificações para o ataque físico para jogadores.
 	if( bl->type == BL_PC){
-		str = (int)((float)dex/5 + (float)status->luk/3 + (float)level/4);
+		str += (int)((float)dex/5 + (float)status->luk/3 + (float)level/4);
 	} else {  // Ataque físico para homunculos e outros.
 		dstr = str/10;
 		str += dstr*dstr;

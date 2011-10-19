@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0892 - 19/10/2011 [Protimus]
+	* Revertida parte de mudanças da força física, enviada em r887.
+	* Modificada versão de cliente para 2011-06-09.
+	- Necessária versões iguais ou superiores para funcionamento correto de alguns sistemas.
+
 	r0890 - 19/10/2011 [Protimus]
 	* Correção para os condições de Comidas do Bioquímico.
 	- Comidas normais podem ser usadas por qualquer classe.
