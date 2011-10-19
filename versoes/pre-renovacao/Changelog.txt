@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0891 - 19/10/2011 [Feanor]
+	* Enviada tradução de script para o svn de pré-renovação.
+	- npc/eventos/god_se_festival.txt
+
 	r0888 - 17/10/2011 [Protimus]
 	* Atualizado conforme eAthena r14980.
 	- Corrigido crash no sistema de grupos.
