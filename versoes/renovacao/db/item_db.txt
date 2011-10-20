@@ -2764,7 +2764,7 @@
 5303,Flower_Coronet,Coroa de Flores,5,20,,300,,2,,0,0xFFFFFFFF,7,2,256,,0,1,325,{ bonus bMdef,3; bonus bMaxHP,50; },{},{}
 5304,Cap_Of_Blindness,Capuz da Escuridão,5,20,,800,,4,,1,0xFFFFFFFF,7,2,769,,50,1,326,{ bonus2 bResEff,Eff_Curse,700; bonus2 bResEff,Eff_Blind,10000; },{},{}
 5305,Pirate_Dagger,Adaga de Arremesso,5,20,,100,,0,,0,0xFFFFFFFF,7,2,1,,0,0,327,{ bonus bBaseAtk,5; },{},{}
-//5306,Freyja_Crown,Coroa de Freya [A],5,0,,500,,20,,0,0xFFFFFFFE,7,2,256,,0,0,328,{ bonus2 bSubRace,RC_DemiHuman,5; },{},{}
+//5306,Freyja_Crown,Coroa de Freya [A],5,0,,500,,20,,0,0xFFFFFFFE,7,2,256,,0,0,328,{ bonus2 bSubRace,RC_DemiHuman,5; skill "WZ_FROSTNOVA",10; bonus bMaxHPrate,20; },{},{}
 5307,Carmen_Miranda's_Hat,Chapéu de Frutas,5,20,,400,,5,,0,0xFFFFFFFF,7,0,256,,0,1,329,{ bonus bMdef,3; bonus3 bAutoSpellWhenHit,"DC_WINKCHARM",1,50; },{},{}
 //5308,Brazilian_Flag_Hat,Chapéu de Bandeira Brasileira,5,20,,300,,5,,1,0xFFFFFFFF,7,0,256,,0,1,330,{ bonus bSpeedAddRate,25; },{},{}
 5309,Mahican,Wool Mask,5,20,,200,,1,,0,0xFFFFFFFF,7,0,769,,0,1,331,{ skill "RG_GRAFFITI",1; },{},{}

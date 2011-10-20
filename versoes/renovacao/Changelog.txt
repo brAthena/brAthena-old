@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0893 - 20/10/2011 [Floozie]
+	* Corrigido o uso de skills em cristais na battleground
+	- Skills do tipo BF_WEAPON estavam pulando a checagem
+	* Corrigido 'item script' do item Coroa de Freya [A]
+	
 	r0892 - 19/10/2011 [Protimus]
 	* Revertida parte de mudanças da força física, enviada em r887.
 	* Modificada versão de cliente para 2011-06-09.
