@@ -5712,10 +5712,10 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 		tick_def = (int)floor(log10(status_get_lv(bl)) * 10.);
 		break;
 	case SC_BURNING:
-		tick -= 1000 * ((status->mdef/2 + status->mdef2/2) / 20);
+		tick -= 25 * (status->mdef + status->mdef2);
 		tick = max(tick,10000);
 			if (tick < 10000)
-				tick = 10000; 			
+				tick = 10000;
 		break;
 	case SC_FREEZING:
 		tick -= 1000 * ((status->vit + status->dex) / 20);
@@ -7413,7 +7413,9 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			tick = 1000;
 			break;
 		case SC_BURNING:
-			val4 = tick / 3000; 
+			val4 = tick / 3000;
+			tick = 3000;
+			break;
 		case SC_DEATHBOUND:
 			val2 = 500 + 100 * val1;
 			break;
@@ -9319,7 +9321,7 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 			flag = !sc->data[type];
 			map_freeblock_unlock();
 			if( !flag )
-				sc_timer_next(2000 + tick, status_change_timer, bl->id, data);
+				sc_timer_next(3000 + tick, status_change_timer, bl->id, data);
 			return 0;
 		}
 		break;

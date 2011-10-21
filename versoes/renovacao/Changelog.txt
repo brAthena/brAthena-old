@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0894 - 21/10/2011 [Mark]
+	* Corrigido problema com status Burning (Ardor).
+	- Estava com valor de tempo de duração incorreto.
+	* Corrigido cooldown da habilidade Esconderijo (TF_HIDING).
+
 	r0893 - 20/10/2011 [Floozie]
 	* Corrigido o uso de skills em cristais na battleground
 	- Skills do tipo BF_WEAPON estavam pulando a checagem
