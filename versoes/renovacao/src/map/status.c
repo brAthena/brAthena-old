@@ -4867,7 +4867,7 @@ static short status_calc_aspd_rate(struct block_list *bl, struct status_change *
 
 	  	//These stack with the rest of bonuses.
 		if(sc->data[SC_BERSERK])
-			aspd_rate -= 150;
+			aspd_rate -= 300;
 		else if(sc->data[SC_MADNESSCANCEL])
 			aspd_rate -= 200;
 	}
@@ -4966,7 +4966,7 @@ static unsigned int status_calc_maxhp(struct block_list *bl, struct status_chang
 	if(sc->data[SC_DELUGE])
 		maxhp += maxhp * sc->data[SC_DELUGE]->val2/100;
 	if(sc->data[SC_BERSERK])
-		maxhp += maxhp * 2;
+		maxhp += maxhp * 3;
 	if(sc->data[SC_MARIONETTE])
 		maxhp -= 1000;
 		
@@ -6202,7 +6202,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			return 0;
 	break;
 	case SC_BLEEDING:
-		if(sc->data[SC_POWER_OF_GAIA] || sd->inventory_data[sd->equip_index[EQI_AMMO]])
+		if (sc->data[SC_POWER_OF_GAIA] && sd->inventory_data[sd->equip_index[EQI_AMMO]])
 			return 0;
 	break;
 		
@@ -6341,6 +6341,9 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			status_change_end(bl, SC_PARRYING, INVALID_TIMER);
 			status_change_end(bl, SC_AURABLADE, INVALID_TIMER);
 			status_change_end(bl, SC_MERC_QUICKEN, INVALID_TIMER);
+			status_change_end(bl,SC_ENCHANTBLADE, INVALID_TIMER);
+			status_change_end(bl,SC_ONEHAND, INVALID_TIMER);
+			status_change_end(bl,SC_TWOHANDQUICKEN, INVALID_TIMER);
 		}
 		break;
 	case SC_ASSUMPTIO:

@@ -9,6 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0895 - 21/10/2011 [Protimus]
+	* Corrigida a habilidade Frenesi (LK_BERSERK).
+	- Não estava cancelando todos os buffs de habilidades ganhos pela classe do próprio personagem.
+	- Bonificação de HP é triplicada.
+	- Bonificação de Velocidade de Ataque é 30%.
+	* Possível correção de crash relacionado a r889.
+
 	r0894 - 21/10/2011 [Mark]
 	* Corrigido problema com status Burning (Ardor).
 	- Estava com valor de tempo de duração incorreto.
@@ -27,7 +34,7 @@
 	r0890 - 19/10/2011 [Protimus]
 	* Correção para os condições de Comidas do Bioquímico.
 	- Comidas normais podem ser usadas por qualquer classe.
-	* Corrigida a habilidade WZ_FROSTNOVA (Congelar).
+	* Corrigida a habilidade Congelar (WZ_FROSTNOVA).
 	- Alterado delay conforme renovação.
 
 	r0889 - 19/10/2011 [Protimus]
