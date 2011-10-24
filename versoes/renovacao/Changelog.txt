@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0897 - 24/10/2011 [Mark]
+	* Corrigida habilidade Encantar com Veneno Mortal (SC_EDP).
+	- Não estava diminuindo dano de algumas habilidades conforme renovação.
+
 	r0896 - 24/10/2011 [Mark]
 	* Corrigida habilidade Ativar Ressonância (WM_DOMINION_IMPULSE).
 	- Ao ativar a habilidade Ressonância não estava causando dano.

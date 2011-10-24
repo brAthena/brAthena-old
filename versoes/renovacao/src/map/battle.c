@@ -2389,7 +2389,16 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				skill_num != AS_SPLASHER &&
 				skill_num != AS_GRIMTOOTH &&
 				skill_num != AS_VENOMKNIFE)
+			{
 				ATK_RATE(sc->data[SC_EDP]->val3);
+				switch(skill_num){
+					case AS_SONICBLOW:
+					case ASC_BREAKER:
+					case GC_COUNTERSLASH:
+					case GC_CROSSIMPACT:
+						ATK_RATE(50);
+				}
+			}
 		}
 
 		switch (skill_num) {
