@@ -3085,9 +3085,11 @@ static int skill_ative_reverberation( struct block_list *bl, va_list ap)
 		return 0;
 	if( su->alive && su->group && su->group->skill_id == WM_REVERBERATION )
 	{
+		map_foreachinrange(skill_trap_splash, bl, skill_get_splash(su->group->skill_id, su->group->skill_lv), su->group->bl_flag, bl, su->group->tick);
 		clif_changetraplook(bl, UNT_USED_TRAPS);
-		su->limit=DIFF_TICK(gettick(),su->group->tick)+1500;
 		su->group->unit_id = UNT_USED_TRAPS;
+		su->limit=DIFF_TICK(gettick(),su->group->tick)+1500;
+		su->group->limit=DIFF_TICK(gettick(),su->group->tick)+1500;
 	}
 	return 0;
 }

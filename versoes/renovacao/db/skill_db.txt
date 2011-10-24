@@ -1216,7 +1216,7 @@
 2490,9,6,2,0,0x3,1,5,1,yes,0,0x80,2:3:4:5:6,none,0,	GN_HELLS_PLANT,Planta Infernal
 2491,0,6,1,0,0x90,0,5,1,no,0,0,0,misc,0,		GN_HELLS_PLANT_ATK,Planta Infernal
 2492,0,6,4,0,0x3,6:7:8:9:10,5,1,yes,0,0,0,none,0,		GN_MANDRAGORA,Grito da Mandrágora
-2493,11,6,16,0,0x1,0,1,1,yes,0,0,0,none,0,		GN_SLINGITEM,Arremessar Item
+2493,11,6,16,0,0x1,0,1,1,yes,0,0x200,0,none,0,		GN_SLINGITEM,Arremessar Item
 2494,0,6,4,0,0x1,0,1,1,no,0,0,0,none,0,			GN_CHANGEMATERIAL,Reação Alquímica
 2495,0,6,4,0,0x1,0,2,1,no,0,0,0,none,0,		GN_MIX_COOKING,Culinária Avançada
 2496,0,6,4,0,0x1,0,2,1,no,0,0,0,none,0,		GN_MAKEBOMB,Criar Bomba Orgânica

@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0896 - 24/10/2011 [Mark]
+	* Corrigida habilidade Ativar Ressonância (WM_DOMINION_IMPULSE).
+	- Ao ativar a habilidade Ressonância não estava causando dano.
+	* Corrigida habilidade Arremessar Item (GN_SLINGITEM).
+	- Não pode ser utilizada no usuário.
+
 	r0895 - 21/10/2011 [Protimus]
 	* Corrigida a habilidade Frenesi (LK_BERSERK).
 	- Não estava cancelando todos os buffs de habilidades ganhos pela classe do próprio personagem.
