@@ -1034,6 +1034,15 @@ int unit_skilluse_id2(struct block_list *src, int target_id, short skill_num, sh
 	{
 		target_id = ud->target; //Auto-select target. [Skotlex]
 		temp = 1;
+	} else 
+	if (skill_num == MO_EXTREMITYFIST && sc && sc->data[SC_COMBO] &&
+		(sc->data[SC_COMBO]->val1 == MO_COMBOFINISH ||
+		sc->data[SC_COMBO]->val1 == CH_TIGERFIST ||
+		sc->data[SC_COMBO]->val1 == CH_CHAINCRUSH ||
+		sc->data[SC_COMBO]->val1 == SR_DRAGONCOMBO))
+	{
+		target_id = ud->target;
+		temp = 1;
 	}
 
 	if (sd) {

@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0898 - 25/10/2011 [Protimus]
+	* Corrigida habilidade Punho Supremo de Asura (MO_EXTREMITYFIST).
+	- Não estava acumulando e causando o dano correto após o uso de habilidades de combo.
+
 	r0897 - 24/10/2011 [Mark]
 	* Corrigida habilidade Encantar com Veneno Mortal (SC_EDP).
 	- Não estava diminuindo dano de algumas habilidades conforme renovação.
