@@ -54,8 +54,8 @@ compilar(){
 		esac
 	done
 }
-
-rhel(){
+	
+rhel(){	
 	sudo yum update -y
 	sudo yum groupinstall 'Development Tools' -y
 	sudo yum install subversion -y
@@ -82,18 +82,14 @@ instalar() {
 			echo "ATENÇÃO: Diretório inválido ou sem permissão de escrita."
 		fi
 	done
-
+	
 	estado=0
 	while [ $estado -eq 0 ] ; do
-		echo -e -n "Escreva o nome da branch do brAthena que você deseja baixar\n(NOMES: trunk ou renewal)\n> "
+		echo -e -n "Escreva o nome da branch do brAthena que você deseja baixar\n(NOMES: pre-renovacao ou renovacao)\n> "
 		read branch
-		if [ $branch = "trunk" -o $branch = "renewal" ] ; then
+		if [ $branch = "pre-renovacao" -o $branch = "renovacao"] ; then
 			echo "Conectando-se ao servidor..."
-			if [ $branch = "renewal" ] ; then
-				svn co http://svn.brathena.org/brAthena/branches/$branch/ $diretorio/$branch/
-			else
-				svn co http://svn.brathena.org/brAthena/$branch/ $diretorio/$branch/
-			fi
+			svn co http://svn.brathena.org/versoes/$branch/ $diretorio/$branch/
 			cd $diretorio/$branch
 			sh ./configure
 			make sql
@@ -122,9 +118,9 @@ gerencia() {
 			echo "\nATENÇÃO: O arquivo de configuração não possui uma entrada válida."
 		fi
 	else
-		echo "\nATENÇÃO: Não foi possível detectar configurações prévias. Impossível achar diretório de instalação."
+		echo "\nATENÇÃO: Não foi possível detectar configurações prévias. Impossível achar diretório de instalação."	
 	fi
-
+	
 	if $result ; then
 		echo -e -n "Selecione a opção desejada (iniciar, desligar e reiniciar)\n> "
 		read opcao

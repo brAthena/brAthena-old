@@ -1,13 +1,20 @@
-// Estrutura para o Changelog.
+//  Estrutura para o Changelog.
 //
 //	r0000 - Dia/Mês/Ano [Autor(es)]
 //	* Notação
 //	- Comentário (opcional)
-// *Dica: Para encontrar atualizações de uma revisão específica pressione Ctrl+F
+//  * Dica: Para encontrar atualizações de uma revisão específica pressione Ctrl+F
 //	e digite rxxxx onde "xxxx" refere-se a revisão desejada. 
-// *Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
-//	Acesse o link: http://trac.brathena.org/trac/timeline
+//  * Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
+//	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
+
+	r0899 - 25/10/2011 [Protimus]
+	* Correções para o arquivo de gerencia: brathena-admin.
+	- Modificações nos endereços para baixar corretamente o emulador.
+	- Remoção de laço desnecessário, verificação por um único endereço.
+	* Adicionado delay para uso dos itens: Fruto e Semente de Yggdrasil.
+	- Repesctivamente 5 e 3 segundos.
 
 	r0898 - 25/10/2011 [Protimus]
 	* Corrigida habilidade Punho Supremo de Asura (MO_EXTREMITYFIST).

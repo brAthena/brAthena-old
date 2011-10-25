@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0899 - 25/10/2011 [Protimus]
+	* Correções para o arquivo de gerencia: brathena-admin.
+	- Modificações nos endereços para baixar corretamente o emulador.
+	- Remoção de laço desnecessário, verificação por um único endereço.
+
 	r0891 - 19/10/2011 [Feanor]
 	* Enviada tradução de script para o svn de pré-renovação.
 	- npc/eventos/god_se_festival.txt

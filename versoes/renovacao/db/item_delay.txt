@@ -30,6 +30,8 @@
 12210,60000	//Goma de Mascar -> 60 segundos (1 minutos)
 14538,300000	//Cálice da Ilusão -> 300 segundos (5 minutos)
 14586,180000	//Doce Hiper Açucarado -> 180 segundos (3 minutos)
+607,5000 // Fruto de Yggdrasil -> (5 segundos)
+608,3000 // Semente de Yggdrasil -> (3 segundos)
 //
 //========================================================================================================
 // Items de Bifrost
