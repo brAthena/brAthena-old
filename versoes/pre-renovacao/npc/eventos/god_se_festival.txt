@@ -12,21 +12,23 @@
 // |--------------------------------------------------------|
 // | Criado por: eA/brA Dev. Team                           |
 // |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0                                |
+// | Versões eA/brA: 1.0/1.1                                |
 // |--------------------------------------------------------|
 // | Descrição:                                             |
 // | Post-God Item SE Creation Summoning Event              |
 // | Second Sister is a cusotm translation.                 |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Script Traduzido [Feanor]                                |
+// | 1.0 Script Traduzido. [Feanor]                         |
+// | 1.1 Correções em frases, remoção de condição do if, e  |
+// | remoção corrigido uma tabulação incorreta. [Feanor]    |
 // | - Anotações		   			   						|
 // \________________________________________________________/
 
 /*
 yuno,1,1,0	script	Gerente do Festival#gq_fes00	891,{
 	mes "[Gerente do Festival]";
-	mes "Eu sou o gerente do festival da segunda edição dos items dos deuses.";
+	mes "Eu sou o gerente da segunda edição do festival do item dos deuses.";
 	mes "Por favor, insira sua senha.";
 	next;
 	input .@input$;
@@ -57,7 +59,7 @@ yuno,1,1,0	script	Gerente do Festival#gq_fes00	891,{
 
 yuno,118,192,5	script	Rmimi Ravies#gq_fes01	891,{
 	set .@GID, getcharid(2);
-	if (countitem(7840) > 0) {
+	if (countitem(7840)) {
 		mes "[Rmimi Ravies]";
 		mes "Nossa, a flor está aqui.";
 		mes "Vou checar suas qualificações.";
@@ -219,7 +221,7 @@ OnTimer10000:
 	end;
 
 OnTimer13000:
-	announce "Venha para Juno para assistir a invocação cerimônia de invocação.",bc_all,"0x70dbdb";
+	announce "Venha para Juno para assistir o duelo da cerimônia de invocação.",bc_all,"0x70dbdb";
 	end;
 
 OnTimer120000:
@@ -227,7 +229,7 @@ OnTimer120000:
 	end;
 
 OnTimer123000:
-	announce "Venha para Juno para assistir a invocação cerimônia de invocação.",bc_all,"0x70dbdb";
+	announce "Venha para Juno para assistir o duelo da cerimônia de invocação.",bc_all,"0x70dbdb";
 	end;
 
 OnTimer240000:
@@ -235,7 +237,7 @@ OnTimer240000:
 	end;
 
 OnTimer243000:
-	announce "Venha para Juno para assistir a invocação cerimônia de invocação.",bc_all,"0x70dbdb";
+	announce "Venha para Juno para assistir o duelo da cerimônia de invocação.",bc_all,"0x70dbdb";
 	end;
 
 OnTimer300000:
@@ -248,7 +250,7 @@ OnTimer303000:
 	end;
 
 OnTimer308000:
-	announce "Venha para Juno para assistir a invocação cerimônia de invocação.",bc_all,"0x70dbdb";
+	announce "Venha para Juno para assistir o duelo da cerimônia de invocação.",bc_all,"0x70dbdb";
 	end;
 
 OnTimer600000:
@@ -261,7 +263,7 @@ OnTimer603000:
 	end;
 
 OnTimer608000:
-	announce "Venha para Juno para assistir a invocação cerimônia de invocação.",bc_all,"0x70dbdb";
+	announce "Venha para Juno para assistir o duelo da cerimônia de invocação.",bc_all,"0x70dbdb";
 	end;
 
 OnTimer900000:
@@ -274,7 +276,7 @@ OnTimer903000:
 	end;
 
 OnTimer908000:
-	announce "Venha para Juno para assistir a invocação cerimônia de invocação.",bc_all,"0x70dbdb";
+	announce "Venha para Juno para assistir o duelo da cerimônia de invocação.",bc_all,"0x70dbdb";
 	end;
 
 OnTimer1200000:
@@ -287,7 +289,7 @@ OnTimer1203000:
 	end;
 
 OnTimer1208000:
-	announce "Venha para Juno para assistir a invocação cerimônia de invocação.",bc_all,"0x70dbdb";
+	announce "Venha para Juno para assistir o duelo da cerimônia de invocação.",bc_all,"0x70dbdb";
 	end;
 
 OnTimer1500000:
@@ -300,7 +302,7 @@ OnTimer1503000:
 	end;
 
 OnTimer1508000:
-	announce "Venha para Juno para assistir a invocação cerimônia de invocação.",bc_all,"0x70dbdb";
+	announce "Venha para Juno para assistir o duelo da cerimônia de invocação.",bc_all,"0x70dbdb";
 	end;
 
 OnTimer1800000:
@@ -313,7 +315,7 @@ OnTimer1803000:
 	end;
 
 OnTimer1808000:
-	announce "Venha para Juno para assistir a invocação cerimônia de invocação.",bc_all,"0x70dbdb";
+	announce "Venha para Juno para assistir o duelo da cerimônia de invocação.",bc_all,"0x70dbdb";
 	end;
 
 OnTimer2100000:
@@ -326,7 +328,7 @@ OnTimer2103000:
 	end;
 
 OnTimer2108000:
-	announce "Venha para Juno para assistir a invocação cerimônia de invocação.",bc_all,"0x70dbdb";
+	announce "Venha para Juno para assistir o duelo da cerimônia de invocação.",bc_all,"0x70dbdb";
 	end;
 
 OnTimer2400000:
@@ -339,7 +341,7 @@ OnTimer2403000:
 	end;
 
 OnTimer2408000:
-	announce "Venha para Juno para assistir a invocação cerimônia de invocação.",bc_all,"0x70dbdb";
+	announce "Venha para Juno para assistir o duelo da cerimônia de invocação.",bc_all,"0x70dbdb";
 	end;
 
 OnTimer2700000:
@@ -352,7 +354,7 @@ OnTimer2703000:
 	end;
 
 OnTimer2708000:
-	announce "Venha para Juno para assistir a invocação cerimônia de invocação.",bc_all,"0x70dbdb";
+	announce "Venha para Juno para assistir o duelo da cerimônia de invocação.",bc_all,"0x70dbdb";
 	end;
 
 OnTimer3000000:
@@ -365,7 +367,7 @@ OnTimer3003000:
 	end;
 
 OnTimer3008000:
-	announce "Venha para Juno para assistir a invocação cerimônia de invocação.",bc_all,"0x70dbdb";
+	announce "Venha para Juno para assistir o duelo da cerimônia de invocação.",bc_all,"0x70dbdb";
 	end;
 
 OnTimer3300000:
@@ -378,7 +380,7 @@ OnTimer3303000:
 	end;
 
 OnTimer3308000:
-	announce "Venha para Juno para assistir a invocação cerimônia de invocação.",bc_all,"0x70dbdb";
+	announce "Venha para Juno para assistir o duelo da cerimônia de invocação.",bc_all,"0x70dbdb";
 	end;
 
 OnTimer3600000:
@@ -391,7 +393,7 @@ OnTimer3603000:
 	end;
 
 OnTimer3608000:
-	announce "Venha para Juno para assistir a invocação cerimônia de invocação.",bc_all,"0x70dbdb";
+	announce "Venha para Juno para assistir o duelo da cerimônia de invocação.",bc_all,"0x70dbdb";
 	end;
 
 OnTimer3900000:
@@ -408,7 +410,7 @@ OnTimer3900000:
 /*
 rachel,1,1,0	script	Festival Manager#god_se_fes02	891,{
 	mes "[Gerente do Festival]";
-	mes "Eu sou o gerente do festival da segunda edição dos items dos deuses.";
+	mes "Eu sou o gerente da segunda edição do festival do item dos deuses.";
 	mes "Por favor, insira sua senha.";
 	next;
 	input .@input$;
@@ -440,7 +442,7 @@ rachel,1,1,0	script	Festival Manager#god_se_fes02	891,{
 
 rachel,132,117,3	script	Rhehe Ravies#gq_fes03	891,{
 	set .@GID, getcharid(2);
-	if (countitem(7840) > 0) {
+	if (countitem(7840)) {
 		mes "[Rhehe Ravies]";
 		mes "A flor!!";
 		mes "Devemos proceder?";
@@ -607,7 +609,7 @@ OnTimer10000:
 	end;
 
 OnTimer13000:
-	announce "Venha para Rachel para assistir a invocação cerimônia de invocação.",bc_all,"0x70dbdb";
+	announce "Venha para Rachel para assistir o duelo da cerimônia de invocação.",bc_all,"0x70dbdb";
 	end;
 
 OnTimer120000:
@@ -615,7 +617,7 @@ OnTimer120000:
 	end;
 
 OnTimer123000:
-	announce "Venha para Rachel para assistir a invocação cerimônia de invocação.",bc_all,"0x70dbdb";
+	announce "Venha para Rachel para assistir o duelo da cerimônia de invocação.",bc_all,"0x70dbdb";
 	end;
 
 OnTimer240000:
@@ -623,7 +625,7 @@ OnTimer240000:
 	end;
 
 OnTimer243000:
-	announce "Venha para Rachel para assistir a invocação cerimônia de invocação.",bc_all,"0x70dbdb";
+	announce "Venha para Rachel para assistir o duelo da cerimônia de invocação.",bc_all,"0x70dbdb";
 	end;
 
 OnTimer300000:
@@ -636,7 +638,7 @@ OnTimer303000:
 	end;
 
 OnTimer308000:
-	announce "Venha para Rachel para assistir a invocação cerimônia de invocação.",bc_all,"0x70dbdb";
+	announce "Venha para Rachel para assistir o duelo da cerimônia de invocação.",bc_all,"0x70dbdb";
 	end;
 
 OnTimer600000:
@@ -649,7 +651,7 @@ OnTimer603000:
 	end;
 
 OnTimer608000:
-	announce "Venha para Rachel para assistir a invocação cerimônia de invocação.",bc_all,"0x70dbdb";
+	announce "Venha para Rachel para assistir o duelo da cerimônia de invocação.",bc_all,"0x70dbdb";
 	end;
 
 OnTimer900000:
@@ -662,7 +664,7 @@ OnTimer903000:
 	end;
 
 OnTimer908000:
-	announce "Venha para Rachel para assistir a invocação cerimônia de invocação.",bc_all,"0x70dbdb";
+	announce "Venha para Rachel para assistir o duelo da cerimônia de invocação.",bc_all,"0x70dbdb";
 	end;
 
 OnTimer1200000:
@@ -675,7 +677,7 @@ OnTimer1203000:
 	end;
 
 OnTimer1208000:
-	announce "Venha para Rachel para assistir a invocação cerimônia de invocação.",bc_all,"0x70dbdb";
+	announce "Venha para Rachel para assistir o duelo da cerimônia de invocação.",bc_all,"0x70dbdb";
 	end;
 
 OnTimer1500000:
@@ -688,7 +690,7 @@ OnTimer1503000:
 	end;
 
 OnTimer1508000:
-	announce "Venha para Rachel para assistir a invocação cerimônia de invocação.",bc_all,"0x70dbdb";
+	announce "Venha para Rachel para assistir o duelo da cerimônia de invocação.",bc_all,"0x70dbdb";
 	end;
 
 OnTimer1800000:
@@ -701,7 +703,7 @@ OnTimer1803000:
 	end;
 
 OnTimer1808000:
-	announce "Venha para Rachel para assistir a invocação cerimônia de invocação.",bc_all,"0x70dbdb";
+	announce "Venha para Rachel para assistir o duelo da cerimônia de invocação.",bc_all,"0x70dbdb";
 	end;
 
 OnTimer2100000:
@@ -714,7 +716,7 @@ OnTimer2103000:
 	end;
 
 OnTimer2108000:
-	announce "Venha para Rachel para assistir a invocação cerimônia de invocação.",bc_all,"0x70dbdb";
+	announce "Venha para Rachel para assistir o duelo da cerimônia de invocação.",bc_all,"0x70dbdb";
 	end;
 
 OnTimer2400000:
@@ -727,7 +729,7 @@ OnTimer2403000:
 	end;
 
 OnTimer2408000:
-	announce "Venha para Rachel para assistir a invocação cerimônia de invocação.",bc_all,"0x70dbdb";
+	announce "Venha para Rachel para assistir o duelo da cerimônia de invocação.",bc_all,"0x70dbdb";
 	end;
 
 OnTimer2700000:
@@ -740,7 +742,7 @@ OnTimer2703000:
 	end;
 
 OnTimer2708000:
-	announce "Venha para Rachel para assistir a invocação cerimônia de invocação.",bc_all,"0x70dbdb";
+	announce "Venha para Rachel para assistir o duelo da cerimônia de invocação.",bc_all,"0x70dbdb";
 	end;
 
 OnTimer3000000:
@@ -753,7 +755,7 @@ OnTimer3003000:
 	end;
 
 OnTimer3008000:
-	announce "Venha para Rachel para assistir a invocação cerimônia de invocação.",bc_all,"0x70dbdb";
+	announce "Venha para Rachel para assistir o duelo da cerimônia de invocação.",bc_all,"0x70dbdb";
 	end;
 
 OnTimer3300000:
@@ -766,7 +768,7 @@ OnTimer3303000:
 	end;
 
 OnTimer3308000:
-	announce "Venha para Rachel para assistir a invocação cerimônia de invocação.",bc_all,"0x70dbdb";
+	announce "Venha para Rachel para assistir o duelo da cerimônia de invocação.",bc_all,"0x70dbdb";
 	end;
 
 OnTimer3600000:
@@ -779,7 +781,7 @@ OnTimer3603000:
 	end;
 
 OnTimer3608000:
-	announce "Venha para Rachel para assistir a invocação cerimônia de invocação.",bc_all,"0x70dbdb";
+	announce "Venha para Rachel para assistir o duelo da cerimônia de invocação.",bc_all,"0x70dbdb";
 	end;
 
 OnTimer3900000:

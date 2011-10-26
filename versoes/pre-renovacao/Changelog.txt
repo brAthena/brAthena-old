@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r901 - 26/10/2011 [Feanor]
+	* Correções em frases, remoção de condição do if, e remoção corrigido uma tabulação incorreta.
+	- npc/eventos/god_se_festival.txt
+
 	r900 - 26/10/2011 [Protimus]
 	* Adicionados novos pacotes para clientes 2011-10-05aRagexeRE.
 	- Necessária possível criação de estruturas ou mudanças na source.
