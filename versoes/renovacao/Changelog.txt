@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r900 - 26/10/2011 [Protimus]
+	* Adicionados novos pacotes para clientes 2011-10-05aRagexeRE.
+	- Necessária possível criação de estruturas ou mudanças na source.
+	- Novo packet_ver: 27.
+
 	r0899 - 25/10/2011 [Protimus]
 	* Correções para o arquivo de gerencia: brathena-admin.
 	- Modificações nos endereços para baixar corretamente o emulador.
