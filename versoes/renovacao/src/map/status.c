@@ -2402,7 +2402,8 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 		if(sd->inventory_data[index]){		// Arrows
 			sd->arrow_atk += sd->inventory_data[index]->atk;
 			sd->state.lr_flag = 2;
-			run_script(sd->inventory_data[index]->script,0,sd->bl.id,0);
+			if( sd->inventory_data[index]->look != A_THROWWEAPON )
+				run_script(sd->inventory_data[index]->script,0,sd->bl.id,0);
 			sd->state.lr_flag = 0;
 			if (!calculating) //Abort, run_script retriggered status_calc_pc. [Skotlex]
 				return 1;
@@ -6202,7 +6203,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			return 0;
 	break;
 	case SC_BLEEDING:
-		if (sc->data[SC_POWER_OF_GAIA] && sd->inventory_data[sd->equip_index[EQI_AMMO]])
+		if (sc->data[SC_POWER_OF_GAIA])
 			return 0;
 	break;
 		
@@ -6210,29 +6211,6 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		if(sc->data[SC_HOVERING])
 			return 0;
 	break;
-	case SC_CURSE:
-	case SC_SILENCE:
-	case SC_MYSTERIOUS_POWDER:
-	case SC_BOOST500:
-	case SC_FULL_SWING_K:
-	case SC_MANA_PLUS:
-	case SC_MUSTLE_M:
-	case SC_LIFE_FORCE_F:
-	case SC_INCMHPRATE:
-	case SC_EXTRACT_WHITE_POTION_Z:
-	case SC_SAVAGE_STEAK:
-	case SC_VITATA_500:
-	case SC_EXTRACT_SALAMINE_JUICE:
-	case SC_COCKTAIL_WARG_BLOOD:
-	case SC_MINOR_BBQ:
-	case SC_SIROMA_ICE_TEA:
-	case SC_DROCERA_HERB_STEAMED:
-	case SC_PUTTI_TAILS_NOODLES:
-	case SC_STOMACHACHE:
-		if( sd->inventory_data[sd->equip_index[EQI_AMMO]] )
-			return 0;
-	break;
-	
 	}
 
 	//Check for BOSS resistances

@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r902 - 26/10/2011 [brn0]
+	* Corrigida a utilização de comidas de arremesso.
+	* Adicionados alguns NPCs da cidade de Dewata.
+	- npc/cidades/dewata.txt
+
 	r900 - 26/10/2011 [Protimus]
 	* Adicionados novos pacotes para clientes 2011-10-05aRagexeRE.
 	- Necessária possível criação de estruturas ou mudanças na source.

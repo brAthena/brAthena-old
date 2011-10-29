@@ -498,7 +498,9 @@ enum ammo_type {
 	A_SHELL,    //4
 	A_GRENADE,  //5
 	A_SHURIKEN, //6
-	A_KUNAI,     //7
+	A_KUNAI,    //7
+	A_CANNONBALL,   //8
+	A_THROWWEAPON,   //9
 };
 
 //Equip position constants
