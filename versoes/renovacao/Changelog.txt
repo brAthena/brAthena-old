@@ -9,7 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
-	r0903 - 30/10/2011 [Protimus]
+	r0904 - 01/11/2011 [Protimus]
+	* Adicionadas IDs das habilidades de Kagerou e Oboro na source.
+	* Adicionado esqueleto da árvore de habilidades para Kagerou e Oboro.
+	* Adicionado esqueleto do requerimento para uso de habilidades de Kagerou e Oboro.
+	- Traduzido de Coreano para Inglês, não foi traduzido para o Português pois necessita de discussão para adição de nomes adequados.
+	OBS: Outras adições ao database serão feitas no ato de criação da habilidade na source.
+
+	r0903 - 01/11/2011 [Protimus]
 	* Adicionadas classes Oboro e Kagerou.
 	- Necessitam de testes e estão incompletas no momento.
 	- Só funcionam com clientes superiores à 2011-10-x.
