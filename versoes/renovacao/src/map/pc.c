@@ -4766,6 +4766,8 @@ int pc_jobid2mapid(unsigned short b_class)
 		case JOB_BLACKSMITH:        return MAPID_BLACKSMITH;
 		case JOB_ASSASSIN:          return MAPID_ASSASSIN;
 		case JOB_STAR_GLADIATOR:    return MAPID_STAR_GLADIATOR;
+		case JOB_KAGEROU:
+		case JOB_OBORO:         	return MAPID_KAGEROUOBORO;
 	//2_2 classes
 		case JOB_CRUSADER:          return MAPID_CRUSADER;
 		case JOB_SAGE:              return MAPID_SAGE;
@@ -4903,6 +4905,7 @@ int pc_mapid2jobid(unsigned short class_, int sex)
 		case MAPID_ASSASSIN:              return JOB_ASSASSIN;
 		case MAPID_STAR_GLADIATOR:        return JOB_STAR_GLADIATOR;
 		case MAPID_DEATH_KNIGHT:          return JOB_DEATH_KNIGHT;
+		case MAPID_KAGEROUOBORO:          return sex?JOB_KAGEROU:JOB_OBORO;
 	//2_2 classes
 		case MAPID_CRUSADER:              return JOB_CRUSADER;
 		case MAPID_SAGE:                  return JOB_SAGE;
@@ -5128,6 +5131,10 @@ const char* job_name(int class_)
 		return msg_txt(617);
 	case JOB_SOUL_LINKER:
 		return msg_txt(618);
+	case JOB_OBORO:
+		return msg_txt(619);
+	case JOB_KAGEROU:
+		return msg_txt(620);
 
 	case JOB_GANGSI:
 	case JOB_DEATH_KNIGHT:

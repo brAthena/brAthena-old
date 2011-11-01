@@ -29,7 +29,7 @@ struct party_booking_ad_info;
 #include <stdarg.h>
 // packet DB
 #define MAX_PACKET_DB		0x900
-#define MAX_PACKET_VER		26
+#define MAX_PACKET_VER		27
 
 struct s_packet_db {
 	short len;
