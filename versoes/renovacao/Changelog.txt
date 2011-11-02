@@ -9,6 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0905 - 02/11/2011 [Protimus]
+	* Revertido mudança nos valores de defesa máxima.
+	- Foram realizados testes e não passa de centena todo e qualquer bonificação por pontos de status.
+	* Corrigida habilidade Análise Elemental (SO_EL_ANALYSIS).
+	- Estava com problemas no salvamento devido a liberação de pacotes incorretos.
+	- Pedaços removidos de r665 foram readicionados.
+
 	r0904 - 01/11/2011 [Protimus]
 	* Adicionadas IDs das habilidades de Kagerou e Oboro na source.
 	* Adicionado esqueleto da árvore de habilidades para Kagerou e Oboro.
