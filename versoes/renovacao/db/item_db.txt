@@ -3683,6 +3683,34 @@
 6441,Advanced_Lubrication,Advanced Lubrication,3,20,,0,,,,,,,,,,,,,{},{},{}
 6442,Octopus_Hunting_Skewer,Octopus Hunting Skewer,3,20,,0,,,,,,,,,,,,,{},{},{}
 
+// --------------------------------------
+// Exclusive brAthena Kagerou & Oboro Itens
+// --------------------------------------
+//2171,Bracelete_da_Raposa,Bracelete da Raposa,,,,,,,,,,,,,,,,,{},{},{}
+//2172,Bracelete_do_Lobo,Bracelete do Lobo,,,,,,,,,,,,,,,,,{},{},{}
+//2173,Bracelete_da_Lua_Crescente,Bracelete da Lua Crescente,,,,,,,,,,,,,,,,,{},{},{}
+//6493,Estrepe,Estrepe,,,,,,,,,,,,,,,,,{},{},{}
+//6512,Amuleto_de_Fogo,Amuleto de Fogo,,,,,,,,,,,,,,,,,{},{},{}
+//6513,Amuleto_de_Gelo,Amuleto de Gelo,,,,,,,,,,,,,,,,,{},{},{}
+//6514,Amuleto_de_Vento,Amuleto de Vento,,,,,,,,,,,,,,,,,{},{},{}
+//6515,Amuleto_de_Terra,Amuleto de Terra,,,,,,,,,,,,,,,,,{},{},{}
+//13074,Kunai_Explosiva,Kunai Explosiva,,,,,,,,,,,,,,,,,{},{},{}
+//13075,Kurenai,Kurenai,,,,,,,,,,,,,,,,,{},{},{}
+//13076,Nachalgeom,Nachalgeom,,,,,,,,,,,,,,,,,{},{},{}
+//13078,Mikacheuchi,Mikacheuchi,,,,,,,,,,,,,,,,,{},{},{}
+//13294,Prototipo_de_Espada_Ninja,Protótipo de Espada Ninja,,,,,,,,,,,,,,,,,{},{},{}
+//13311,Estrepe,Estrepe,,,,,,,,,,,,,,,,,{},{},{}
+//13312,Novo_Shuriken_Huuma,Novo Shuriken Huuma,,,,,,,,,,,,,,,,,{},{},{}
+//13313,Shuriken_Huuma_Nanhwa,Shuriken Huuma Nanhwa,,,,,,,,,,,,,,,,,{},{},{}
+//13314,Shuriken_Huuma_Diluvio,Shuriken Huuma Dilúvio,,,,,,,,,,,,,,,,,{},{},{}
+//13315,Shuriken_Huuma_Tempestade_Elétrica,Shuriken Huuma Tempestade Elétrica,,,,,,,,,,,,,,,,,{},{},{}
+//13316,Shuriken_Huuma_Aprimorado,Shuriken Huuma Aprimorado,,,,,,,,,,,,,,,,,{},{},{}
+//15053,Indumentaria_Ninja_Especial,Indumentária Ninja Especial,,,,,,,,,,,,,,,,,{},{},{}
+//15054,Armadura_Ninja_de_Escamas,Armadura Ninja de Escamas,,,,,,,,,,,,,,,,,{},{},{}
+//15055,Mujungamyoung,Mujungamyoung,,,,,,,,,,,,,,,,,{},{},{}
+//13056,Indumentaria_Ninja_Especial_SLOTADA,Indumentária Ninja Especial,,,,,,,,,,,,,,,,,{},{},{}
+// ---------------------------------------
+
 7001,Mould_Powder,Pó de Bolor,3,466,,10,,,,,,,,,,,,,{},{},{}
 7002,Ogre_Tooth,Dente de Ogro,3,658,,10,,,,,,,,,,,,,{},{},{}
 7003,Anolian_Skin,Pele de Anolian,3,968,,10,,,,,,,,,,,,,{},{},{}

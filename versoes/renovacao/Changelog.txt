@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0906 - 02/11/2011 [insidemybrain]
+	* Enviado "esqueleto" dos itens das classes Kagerou e Oboro
+	- Todos os itens ainda terão seus efeitos adicionados e ainda não estão prontos para a utilização.
+	- AVISO: Não tentem usá-los poderá causar bug.
+
 	r0905 - 02/11/2011 [Protimus]
 	* Revertido mudança nos valores de defesa máxima.
 	- Foram realizados testes e não passa de centena todo e qualquer bonificação por pontos de status.
