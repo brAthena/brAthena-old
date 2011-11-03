@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0908 - 03/11/2011 [insidemybrain]
+	* Adicionado mais partes do esqueleto das Habilidades de Kagerou e Oboro na db.
+	- Adição na skill_db e correção na skill_require_db;
+
 	r0907 - 03/11/2011 [insidemybrain]
 	* Corrigido o script do tem Rondel (Ice Pick)
 	- Não estava ignorando a defesa de monstros tipo Chefe e normais, conforme está na Renovação.
@@ -18,7 +22,7 @@
 	- Caso ainda esteja errado, favor reportar no Tracker
 
 	r0906 - 02/11/2011 [insidemybrain]
-	* Enviado "esqueleto" dos itens das classes Kagerou e Oboro
+	* Enviado esqueleto dos itens das classes Kagerou e Oboro
 	- Todos os itens ainda terão seus efeitos adicionados e ainda não estão prontos para a utilização.
 	- AVISO: Não tentem usá-los poderá causar bug.
 

@@ -783,10 +783,10 @@
 2537,0,0,1,0,0,0,99,0,0,none,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0	//ALL_ODINS_POWER#Odin's Power#
 2538,0,0,1,0,0,0,99,0,0,none,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0	//ALL_RIDING#Chamar Montaria#
 
-// Kagerou/Oboro
+// Habilidades de Kagerou & Oboro [brAthena]
 //3001,0,0,1,0,0,0,99,0,0,none,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0	//KO_YAMIKUMO#Yamikumo#
-//3002,0,0,1,0,0,0,99,0,0,none,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0	//KO_RIGHT#Right Hand Mastery#
-//3003,0,0,1,0,0,0,99,0,0,none,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0	//KO_LEFT#Left Hand Mastery#
+//3002,0,0,1,0,0,0,99,0,0,none,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0	//KO_RIGHT#Perícia com a Mão Direita#
+//3003,0,0,1,0,0,0,99,0,0,none,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0	//KO_LEFT#Perícia com a Mão Esquerda#
 //3004,0,0,1,0,0,0,99,0,0,none,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0	//KO_JYUMONJIKIRI#Juumonjigiri#
 //3005,0,0,1,0,0,0,99,0,0,none,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0	//KO_SETSUDAN#Tamashii Setsudan#
 //3006,0,0,1,0,0,0,99,0,0,none,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0	//KO_BAKURETSU#Bakuretsu Kunai#
@@ -807,12 +807,12 @@
 //3021,0,0,1,0,0,0,99,0,0,none,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0	//KO_GENWAKU#Genwaku#
 //3022,0,0,1,0,0,0,99,0,0,none,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0	//KO_IZAYOI#Izayoi#
 
-// Kagerou
+// Habilidades exclusivas de Kagerou [brAthena]
 //3023,0,0,1,0,0,0,99,0,0,none,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0	//KG_KAGEHUMI#Kagefumi#
 //3024,0,0,1,0,0,0,99,0,0,none,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0	//KG_KYOMU#Komu no Kage#
 //3025,0,0,1,0,0,0,99,0,0,none,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0	//KG_KAGEMUSYA#Kagemusha#
 
-// Oboro
+// Habilidades exclusivas de Oboro [brAthena]
 //3026,0,0,1,0,0,0,99,0,0,none,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0	//OB_ZANGETSU#Zangetsu#
 //3027,0,0,1,0,0,0,99,0,0,none,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0	//OB_OBOROGENSOU#Oboro Gensou#
 //3028,0,0,1,0,0,0,99,0,0,none,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0	//OB_OBOROGENSOU_TRANSITION_ATK#Oboro Gensou#
