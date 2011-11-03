@@ -1914,7 +1914,7 @@
 4091,Kobold_Card,Carta Cobold,6,20,,10,,,,,,,,136,,,,,{ bonus bStr,1; bonus bCritical,4; },{},{}
 4092,Skel_Worker_Card,Carta Esqueleto Operário,6,20,,10,,,,,,,,2,,,,,{ bonus2 bAddSize,1,15; bonus bBaseAtk,5; },{},{}
 4093,Obeaune_Card,Carta Obeaune,6,20,,10,,,,,,,,136,,,,,{ skill "AL_CURE",1; },{},{}
-4094,Archer_Skeleton_Card,Carta Esqueleto Arqueiro,6,20,,10,,,,,,,,2,,,,,{ bonus2 bWeaponAtkRate,11,10; },{},{}
+4094,Archer_Skeleton_Card,Carta Esqueleto Arqueiro,6,20,,10,,,,,,,,2,,,,,{ bonus bLongAtkRate,10; },{},{}
 4095,Marse_Card,Carta Marte,6,20,,10,,,,,,,,4,,,,,{ bonus2 bSubEle,Ele_Water,30; bonus bFlee,5; },{},{}
 4096,Zenorc_Card,Carta Zenorc,6,20,,10,,,,,,,,2,,,,,{ bonus2 bAddEff,Eff_Poison,400; bonus bBaseAtk,10; },{},{}
 4097,Matyr_Card,Carta Matyr,6,20,,10,,,,,,,,64,,,,,{ bonus bMaxHPrate,10; bonus bAgi,1; },{},{}

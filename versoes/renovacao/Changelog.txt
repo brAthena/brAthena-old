@@ -9,6 +9,15 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0910 - 03/11/2011 [Mark]
+	* Corrigido problema com Árvore de Habilidades.
+	- Estava podendo colocar habilidades de 3rd sem antes colocar habilidades de trans.
+	- Ex: Cavaleiro Rúnico após resetar habilidades podia colocar habilidades 3rd sem ter colocado habilidades de Lorde/Cavaleiro.
+	* Corrigido Spawn do monstro Lude em Niflheim.
+	- Estava com spawn em local fixo, no renewal não é mais fixo.
+	* Corrigido script do item Carta Esqueleto Arqueiro.
+	- Dano agora é aumentado por ataques de distância, independente da arma utilizada. 
+
 	r0909 - 03/11/2011 [Protimus]
 	* Adicionados valores para o requerimento de habilidades do Kagerou e Oboro.
 	- Liberado uso de requerimentos conforme kRO.

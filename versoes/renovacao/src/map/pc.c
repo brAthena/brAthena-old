@@ -1559,6 +1559,17 @@ int pc_calc_skilltree_normalize_job(struct map_session_data *sd)
 		c = MAPID_NOVICE;
 	else
 	//Do not send S. Novices to first class (Novice)
+	if ((sd->class_&JOBL_THIRD) && sd->status.skill_point >= sd->status.job_level) {
+		if (skill_point < 58)
+			c &= MAPID_BASEMASK;
+		else
+		if (skill_point < 107)
+			c &= MAPID_UPPERMASK;
+		else
+		if ((sd->class_&JOBL_UPPER) && skill_point < 127)
+			c &= MAPID_UPPERMASK;
+		
+	} else
 	if ((sd->class_&JOBL_2) && (sd->class_&MAPID_UPPERMASK) != MAPID_SUPER_NOVICE &&
 		sd->status.skill_point >= sd->status.job_level &&
 		((sd->change_level > 0 && skill_point < sd->change_level+8) || skill_point < 58)) {
