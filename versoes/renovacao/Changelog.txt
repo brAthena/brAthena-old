@@ -9,6 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0907 - 03/11/2011 [insidemybrain]
+	* Corrigido o script do tem Rondel (Ice Pick)
+	- Não estava ignorando a defesa de monstros tipo Chefe e normais, conforme está na Renovação.
+	- Agora o dano é o mesmo ou está na mesma faixa de dano;
+	- Testado com monstros: Poring, Abelha, Titã de Gelo, Tao Gunka, Golem, Múmia, Amon-RA;
+	- Todos apresentaram danos na faixa de 460~700, o que no caso está certo.
+	- Caso ainda esteja errado, favor reportar no Tracker
+
 	r0906 - 02/11/2011 [insidemybrain]
 	* Enviado "esqueleto" dos itens das classes Kagerou e Oboro
 	- Todos os itens ainda terão seus efeitos adicionados e ainda não estão prontos para a utilização.
