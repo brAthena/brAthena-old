@@ -9,6 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0909 - 03/11/2011 [Protimus]
+	* Adicionados valores para o requerimento de habilidades do Kagerou e Oboro.
+	- Liberado uso de requerimentos conforme kRO.
+	- Necessário checar se faltou requerimento em alguma das habilidades ou ainda serão adicionados no kRO.
+	* Adicionados valores de pré-requesitos para árvore de habilidades.
+	- Liberado uso da árvore de habilidades conforme kRO.
+
 	r0908 - 03/11/2011 [insidemybrain]
 	* Adicionado mais partes do esqueleto das Habilidades de Kagerou e Oboro na db.
 	- Adição na skill_db e correção na skill_require_db;

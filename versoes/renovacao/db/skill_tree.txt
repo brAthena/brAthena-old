@@ -5615,108 +5615,108 @@
 //========================================================================================================
 // Kagerou
 //========================================================================================================
-//4211,1,9,0,0,0,0,0,0,0,0,0,0			// NV_BASIC#Habilidades Básicas#
-//4211,142,1,0,0,0,0,0,0,0,0,0,0		// NV_FIRSTAID#Primeiros Socorros#
-//4211,522,10,0,0,0,0,0,0,0,0,0,0		// NJ_TOBIDOUGU#Prática de Arremesso de Shuriken#
-//4211,523,10,522,1,0,0,0,0,0,0,0,0		// NJ_SYURIKEN#Arremessar Shuriken#
-//4211,524,5,523,5,0,0,0,0,0,0,0,0		// NJ_KUNAI#Arremessar Kunai#
-//4211,525,5,522,5,524,5,0,0,0,0,0,0	// NJ_HUUMA#Arremessar Shuriken Huuma#
-//4211,526,10,522,10,525,5,0,0,0,0,0,0	// NJ_ZENYNAGE#Chuva de Moedas#
-//4211,527,5,0,0,0,0,0,0,0,0,0,0		// NJ_TATAMIGAESHI#Virar Tatami#
-//4211,528,10,529,1,0,0,0,0,0,0,0,0		// NJ_KASUMIKIRI#Corte da Névoa#
-//4211,529,5,527,1,0,0,0,0,0,0,0,0		// NJ_SHADOWJUMP#Salto das Sombras#
-//4211,530,5,528,5,0,0,0,0,0,0,0,0		// NJ_KIRIKAGE#Corte das Sombras#
-//4211,531,5,529,5,0,0,0,0,0,0,0,0		// NJ_UTSUSEMI#Troca de Pele#
-//4211,532,10,531,4,530,3,543,1,0,0,0,0	// NJ_BUNSINJYUTSU#Imagem Falsa#
-//4211,533,10,0,0,0,0,0,0,0,0,0,0		// NJ_NINPOU#Perícia Ninja#
-//4211,534,10,533,1,0,0,0,0,0,0,0,0		// NJ_KOUENKA#Pétalas Flamejantes#
-//4211,535,10,534,5,0,0,0,0,0,0,0,0		// NJ_KAENSIN#Escudo de Chamas#
-//4211,536,5,533,10,535,7,0,0,0,0,0,0	// NJ_BAKUENRYU#Dragão Explosivo#
-//4211,537,10,533,1,0,0,0,0,0,0,0,0		// NJ_HYOUSENSOU#Lança Congelante#
-//4211,538,10,537,5,0,0,0,0,0,0,0,0		// NJ_SUITON#Evasão Aquática#
-//4211,539,5,533,10,538,7,0,0,0,0,0,0	// NJ_HYOUSYOURAKU#Grande Floco de Neve#
-//4211,540,10,533,1,0,0,0,0,0,0,0,0		// NJ_HUUJIN#Lâmina de Vento#
-//4211,541,5,540,5,0,0,0,0,0,0,0,0		// NJ_RAIGEKISAI#Descarga Elétrica#
-//4211,542,5,533,10,541,5,0,0,0,0,0,0	// NJ_KAMAITACHI#Brisa Cortante#
-//4211,543,5,533,5,0,0,0,0,0,0,0,0		// NJ_NEN#Aura Ninja#
-//4211,544,10,522,7,530,5,543,1,0,0,0,0	// NJ_ISSEN#Ataque Mortal#
-//4211,3001,0,0,0,0,0,0,0,0,0,0,0		//KO_YAMIKUMO#Yamikumo#
-//4211,3002,0,0,0,0,0,0,0,0,0,0,0		//KO_RIGHT#Right Hand Mastery#
-//4211,3003,0,0,0,0,0,0,0,0,0,0,0		//KO_LEFT#Left Hand Mastery#
-//4211,3004,0,0,0,0,0,0,0,0,0,0,0		//KO_JYUMONJIKIRI#Juumonjigiri#
-//4211,3500,0,0,0,0,0,0,0,0,0,0,0   	//KO_SETSUDAN#Tamashii Setsudan#
-//4211,3006,0,0,0,0,0,0,0,0,0,0,0		//KO_BAKURETSU#Bakuretsu Kunai#
-//4211,3007,0,0,0,0,0,0,0,0,0,0,0		//KO_HAPPOKUNAI#Happo Kunai#
-//4211,3008,0,0,0,0,0,0,0,0,0,0,0		//KO_MUCHANAGE#Mucha Nage#
-//4211,3009,0,0,0,0,0,0,0,0,0,0,0		//KO_HUUMARANKA#Fuuma Shuriken Ranka#
-//4211,3010,0,0,0,0,0,0,0,0,0,0,0		//KO_MAKIBISHI#Makibishi#
-//4211,3011,0,0,0,0,0,0,0,0,0,0,0		//KO_MEIKYOUSISUI#MeiKyouShiSui#
-//4211,3012,0,0,0,0,0,0,0,0,0,0,0		//KO_ZANZOU#Zanzou#
-//4211,3013,0,0,0,0,0,0,0,0,0,0,0		//KO_KYOUGAKU#Kyougaku#
-//4211,3014,0,0,0,0,0,0,0,0,0,0,0		//KO_JYUSATSU#Juusatsu#
-//4211,3015,0,0,0,0,0,0,0,0,0,0,0		//KO_KAHU_ENTEN#Enten#
-//4211,3016,0,0,0,0,0,0,0,0,0,0,0		//KO_HYOUHU_HUBUKI#Fubuki#
-//4211,3017,0,0,0,0,0,0,0,0,0,0,0		//KO_KAZEHU_SEIRAN#Seiran#
-//4211,3018,0,0,0,0,0,0,0,0,0,0,0		//KO_DOHU_KOUKAI#Koukai#
-//4211,3019,0,0,0,0,0,0,0,0,0,0,0		//KO_KAIHOU#Jutsushiki Kaihou#
-//4211,3020,0,0,0,0,0,0,0,0,0,0,0		//KO_ZENKAI#Jutsushiki Zenkai#
-//4211,3021,0,0,0,0,0,0,0,0,0,0,0		//KO_GENWAKU#Genwaku#
-//4211,3022,0,0,0,0,0,0,0,0,0,0,0		//KO_IZAYOI#Izayoi#
-//4211,3023,0,0,0,0,0,0,0,0,0,0,0		//KG_KAGEHUMI#Kagefumi#
-//4211,3024,0,0,0,0,0,0,0,0,0,0,0		//KG_KYOMU#Komu no Kage#
-//4211,3025,0,0,0,0,0,0,0,0,0,0,0		//KG_KAGEMUSYA#Kagemusha#
+4211,1,9,0,0,0,0,0,0,0,0,0,0				// NV_BASIC#Habilidades Básicas#
+4211,142,1,0,0,0,0,0,0,0,0,0,0				// NV_FIRSTAID#Primeiros Socorros#
+4211,522,10,0,0,0,0,0,0,0,0,0,0				// NJ_TOBIDOUGU#Prática de Arremesso de Shuriken#
+4211,523,10,522,1,0,0,0,0,0,0,0,0			// NJ_SYURIKEN#Arremessar Shuriken#
+4211,524,5,523,5,0,0,0,0,0,0,0,0			// NJ_KUNAI#Arremessar Kunai#
+4211,525,5,522,5,524,5,0,0,0,0,0,0			// NJ_HUUMA#Arremessar Shuriken Huuma#
+4211,526,10,522,10,525,5,0,0,0,0,0,0		// NJ_ZENYNAGE#Chuva de Moedas#
+4211,527,5,0,0,0,0,0,0,0,0,0,0				// NJ_TATAMIGAESHI#Virar Tatami#
+4211,528,10,529,1,0,0,0,0,0,0,0,0			// NJ_KASUMIKIRI#Corte da Névoa#
+4211,529,5,527,1,0,0,0,0,0,0,0,0			// NJ_SHADOWJUMP#Salto das Sombras#
+4211,530,5,528,5,0,0,0,0,0,0,0,0			// NJ_KIRIKAGE#Corte das Sombras#
+4211,531,5,529,5,0,0,0,0,0,0,0,0			// NJ_UTSUSEMI#Troca de Pele#
+4211,532,10,531,4,530,3,543,1,0,0,0,0		// NJ_BUNSINJYUTSU#Imagem Falsa#
+4211,533,10,0,0,0,0,0,0,0,0,0,0				// NJ_NINPOU#Perícia Ninja#
+4211,534,10,533,1,0,0,0,0,0,0,0,0			// NJ_KOUENKA#Pétalas Flamejantes#
+4211,535,10,534,5,0,0,0,0,0,0,0,0			// NJ_KAENSIN#Escudo de Chamas#
+4211,536,5,533,10,535,7,0,0,0,0,0,0			// NJ_BAKUENRYU#Dragão Explosivo#
+4211,537,10,533,1,0,0,0,0,0,0,0,0			// NJ_HYOUSENSOU#Lança Congelante#
+4211,538,10,537,5,0,0,0,0,0,0,0,0			// NJ_SUITON#Evasão Aquática#
+4211,539,5,533,10,538,7,0,0,0,0,0,0			// NJ_HYOUSYOURAKU#Grande Floco de Neve#
+4211,540,10,533,1,0,0,0,0,0,0,0,0			// NJ_HUUJIN#Lâmina de Vento#
+4211,541,5,540,5,0,0,0,0,0,0,0,0			// NJ_RAIGEKISAI#Descarga Elétrica#
+4211,542,5,533,10,541,5,0,0,0,0,0,0			// NJ_KAMAITACHI#Brisa Cortante#
+4211,543,5,533,5,0,0,0,0,0,0,0,0			// NJ_NEN#Aura Ninja#
+4211,544,10,522,7,530,5,543,1,0,0,0,0		// NJ_ISSEN#Ataque Mortal#
+4211,3001,1,530,5,0,0,0,0,0,0,0,0,0			//KO_YAMIKUMO#Yamikumo#
+4211,3002,5,0,0,0,0,0,0,0,0,0,0				//KO_RIGHT#Right Hand Mastery#
+4211,3003,5,0,0,0,0,0,0,0,0,0,0				//KO_LEFT#Left Hand Mastery#
+4211,3004,5,3001,1,0,0,0,0,0,0,0,0			//KO_JYUMONJIKIRI#Juumonjigiri#
+4211,3500,5,3004,2,0,0,0,0,0,0,0,0   		//KO_SETSUDAN#Tamashii Setsudan#
+4211,3006,5,524,5,0,0,0,0,0,0,0,0			//KO_BAKURETSU#Bakuretsu Kunai#
+4211,3007,5,3006,1,0,0,0,0,0,0,0,0			//KO_HAPPOKUNAI#Happo Kunai#
+4211,3008,10,3010,3,0,0,0,0,0,0,0,0			//KO_MUCHANAGE#Mucha Nage#
+4211,3009,5,525,5,0,0,0,0,0,0,0,0			//KO_HUUMARANKA#Fuuma Shuriken Ranka#
+4211,3010,5,526,1,0,0,0,0,0,0,0,0			//KO_MAKIBISHI#Makibishi#
+4211,3011,5,533,10,0,0,0,0,0,0,0,0			//KO_MEIKYOUSISUI#MeiKyouShiSui#
+4211,3012,5,531,1,0,0,0,0,0,0,0,0			//KO_ZANZOU#Zanzou#
+4211,3013,5,3021,2,0,0,0,0,0,0,0,0			//KO_KYOUGAKU#Kyougaku#
+4211,3014,5,3013,3,0,0,0,0,0,0,0,0			//KO_JYUSATSU#Juusatsu#
+4211,3015,1,0,0,0,0,0,0,0,0,0,0				//KO_KAHU_ENTEN#Enten#
+4211,3016,1,0,0,0,0,0,0,0,0,0,0				//KO_HYOUHU_HUBUKI#Fubuki#
+4211,3017,1,0,0,0,0,0,0,0,0,0,0				//KO_KAZEHU_SEIRAN#Seiran#
+4211,3018,1,0,0,0,0,0,0,0,0,0,0				//KO_DOHU_KOUKAI#Koukai#
+4211,3019,1,3015,1,3016,1,3017,1,3018,1,0,0	//KO_KAIHOU#Jutsushiki Kaihou#
+4211,3020,1,3022,1,3019,1,0,0,0,0,0,0		//KO_ZENKAI#Jutsushiki Zenkai#
+4211,3021,5,531,1,0,0,0,0,0,0,0,0			//KO_GENWAKU#Genwaku#
+4211,3022,5,533,5,0,0,0,0,0,0,0,0			//KO_IZAYOI#Izayoi#
+4211,3023,5,3012,1,0,0,0,0,0,0,0,0			//KG_KAGEHUMI#Kagefumi#
+4211,3024,5,3023,2,0,0,0,0,0,0,0,0			//KG_KYOMU#Komu no Kage#
+4211,3025,5,3024,2,0,0,0,0,0,0,0,0			//KG_KAGEMUSYA#Kagemusha#
 //========================================================================================================
 // Oboro
 //========================================================================================================
-//4212,1,9,0,0,0,0,0,0,0,0,0,0			// NV_BASIC#Habilidades Básicas#
-//4212,142,1,0,0,0,0,0,0,0,0,0,0		// NV_FIRSTAID#Primeiros Socorros#
-//4212,522,10,0,0,0,0,0,0,0,0,0,0		// NJ_TOBIDOUGU#Prática de Arremesso de Shuriken#
-//4212,523,10,522,1,0,0,0,0,0,0,0,0		// NJ_SYURIKEN#Arremessar Shuriken#
-//4212,524,5,523,5,0,0,0,0,0,0,0,0		// NJ_KUNAI#Arremessar Kunai#
-//4212,525,5,522,5,524,5,0,0,0,0,0,0	// NJ_HUUMA#Arremessar Shuriken Huuma#
-//4212,526,10,522,10,525,5,0,0,0,0,0,0	// NJ_ZENYNAGE#Chuva de Moedas#
-//4212,527,5,0,0,0,0,0,0,0,0,0,0		// NJ_TATAMIGAESHI#Virar Tatami#
-//4212,528,10,529,1,0,0,0,0,0,0,0,0		// NJ_KASUMIKIRI#Corte da Névoa#
-//4212,529,5,527,1,0,0,0,0,0,0,0,0		// NJ_SHADOWJUMP#Salto das Sombras#
-//4212,530,5,528,5,0,0,0,0,0,0,0,0		// NJ_KIRIKAGE#Corte das Sombras#
-//4212,531,5,529,5,0,0,0,0,0,0,0,0		// NJ_UTSUSEMI#Troca de Pele#
-//4212,532,10,531,4,530,3,543,1,0,0,0,0	// NJ_BUNSINJYUTSU#Imagem Falsa#
-//4212,533,10,0,0,0,0,0,0,0,0,0,0		// NJ_NINPOU#Perícia Ninja#
-//4212,534,10,533,1,0,0,0,0,0,0,0,0		// NJ_KOUENKA#Pétalas Flamejantes#
-//4212,535,10,534,5,0,0,0,0,0,0,0,0		// NJ_KAENSIN#Escudo de Chamas#
-//4212,536,5,533,10,535,7,0,0,0,0,0,0	// NJ_BAKUENRYU#Dragão Explosivo#
-//4212,537,10,533,1,0,0,0,0,0,0,0,0		// NJ_HYOUSENSOU#Lança Congelante#
-//4212,538,10,537,5,0,0,0,0,0,0,0,0		// NJ_SUITON#Evasão Aquática#
-//4212,539,5,533,10,538,7,0,0,0,0,0,0	// NJ_HYOUSYOURAKU#Grande Floco de Neve#
-//4212,540,10,533,1,0,0,0,0,0,0,0,0		// NJ_HUUJIN#Lâmina de Vento#
-//4212,541,5,540,5,0,0,0,0,0,0,0,0		// NJ_RAIGEKISAI#Descarga Elétrica#
-//4212,542,5,533,10,541,5,0,0,0,0,0,0	// NJ_KAMAITACHI#Brisa Cortante#
-//4212,543,5,533,5,0,0,0,0,0,0,0,0		// NJ_NEN#Aura Ninja#
-//4212,544,10,522,7,530,5,543,1,0,0,0,0	// NJ_ISSEN#Ataque Mortal#
-//4212,3001,0,0,0,0,0,0,0,0,0,0,0		//KO_YAMIKUMO#Yamikumo#
-//4212,3002,0,0,0,0,0,0,0,0,0,0,0		//KO_RIGHT#Right Hand Mastery#
-//4212,3003,0,0,0,0,0,0,0,0,0,0,0		//KO_LEFT#Left Hand Mastery#
-//4212,3004,0,0,0,0,0,0,0,0,0,0,0		//KO_JYUMONJIKIRI#Juumonjigiri#
-//4212,3500,0,0,0,0,0,0,0,0,0,0,0   	//KO_SETSUDAN#Tamashii Setsudan#
-//4212,3006,0,0,0,0,0,0,0,0,0,0,0		//KO_BAKURETSU#Bakuretsu Kunai#
-//4212,3007,0,0,0,0,0,0,0,0,0,0,0		//KO_HAPPOKUNAI#Happo Kunai#
-//4212,3008,0,0,0,0,0,0,0,0,0,0,0		//KO_MUCHANAGE#Mucha Nage#
-//4212,3009,0,0,0,0,0,0,0,0,0,0,0		//KO_HUUMARANKA#Fuuma Shuriken Ranka#
-//4212,3010,0,0,0,0,0,0,0,0,0,0,0		//KO_MAKIBISHI#Makibishi#
-//4212,3011,0,0,0,0,0,0,0,0,0,0,0		//KO_MEIKYOUSISUI#MeiKyouShiSui#
-//4212,3012,0,0,0,0,0,0,0,0,0,0,0		//KO_ZANZOU#Zanzou#
-//4212,3013,0,0,0,0,0,0,0,0,0,0,0		//KO_KYOUGAKU#Kyougaku#
-//4212,3014,0,0,0,0,0,0,0,0,0,0,0		//KO_JYUSATSU#Juusatsu#
-//4212,3015,0,0,0,0,0,0,0,0,0,0,0		//KO_KAHU_ENTEN#Enten#
-//4212,3016,0,0,0,0,0,0,0,0,0,0,0		//KO_HYOUHU_HUBUKI#Fubuki#
-//4212,3017,0,0,0,0,0,0,0,0,0,0,0		//KO_KAZEHU_SEIRAN#Seiran#
-//4212,3018,0,0,0,0,0,0,0,0,0,0,0		//KO_DOHU_KOUKAI#Koukai#
-//4212,3019,0,0,0,0,0,0,0,0,0,0,0		//KO_KAIHOU#Jutsushiki Kaihou#
-//4212,3020,0,0,0,0,0,0,0,0,0,0,0		//KO_ZENKAI#Jutsushiki Zenkai#
-//4212,3021,0,0,0,0,0,0,0,0,0,0,0		//KO_GENWAKU#Genwaku#
-//4212,3022,0,0,0,0,0,0,0,0,0,0,0		//KO_IZAYOI#Izayoi#
-//4212,3026,0,0,0,0,0,0,0,0,0,0,0		//OB_ZANGETSU#Zangetsu#
-//4212,3027,0,0,0,0,0,0,0,0,0,0,0		//OB_OBOROGENSOU#Oboro Gensou#
-//4212,3028,0,0,0,0,0,0,0,0,0,0,0		//OB_OBOROGENSOU_TRANSITION_ATK#Oboro Gensou#
-//4212,3029,0,0,0,0,0,0,0,0,0,0,0		//OB_AKAITSUKI#Akaitsuki#
+4212,1,9,0,0,0,0,0,0,0,0,0,0				// NV_BASIC#Habilidades Básicas#
+4212,142,1,0,0,0,0,0,0,0,0,0,0				// NV_FIRSTAID#Primeiros Socorros#
+4212,522,10,0,0,0,0,0,0,0,0,0,0				// NJ_TOBIDOUGU#Prática de Arremesso de Shuriken#
+4212,523,10,522,1,0,0,0,0,0,0,0,0			// NJ_SYURIKEN#Arremessar Shuriken#
+4212,524,5,523,5,0,0,0,0,0,0,0,0			// NJ_KUNAI#Arremessar Kunai#
+4212,525,5,522,5,524,5,0,0,0,0,0,0			// NJ_HUUMA#Arremessar Shuriken Huuma#
+4212,526,10,522,10,525,5,0,0,0,0,0,0		// NJ_ZENYNAGE#Chuva de Moedas#
+4212,527,5,0,0,0,0,0,0,0,0,0,0				// NJ_TATAMIGAESHI#Virar Tatami#
+4212,528,10,529,1,0,0,0,0,0,0,0,0			// NJ_KASUMIKIRI#Corte da Névoa#
+4212,529,5,527,1,0,0,0,0,0,0,0,0			// NJ_SHADOWJUMP#Salto das Sombras#
+4212,530,5,528,5,0,0,0,0,0,0,0,0			// NJ_KIRIKAGE#Corte das Sombras#
+4212,531,5,529,5,0,0,0,0,0,0,0,0			// NJ_UTSUSEMI#Troca de Pele#
+4212,532,10,531,4,530,3,543,1,0,0,0,0		// NJ_BUNSINJYUTSU#Imagem Falsa#
+4212,533,10,0,0,0,0,0,0,0,0,0,0				// NJ_NINPOU#Perícia Ninja#
+4212,534,10,533,1,0,0,0,0,0,0,0,0			// NJ_KOUENKA#Pétalas Flamejantes#
+4212,535,10,534,5,0,0,0,0,0,0,0,0			// NJ_KAENSIN#Escudo de Chamas#
+4212,536,5,533,10,535,7,0,0,0,0,0,0			// NJ_BAKUENRYU#Dragão Explosivo#
+4212,537,10,533,1,0,0,0,0,0,0,0,0			// NJ_HYOUSENSOU#Lança Congelante#
+4212,538,10,537,5,0,0,0,0,0,0,0,0			// NJ_SUITON#Evasão Aquática#
+4212,539,5,533,10,538,7,0,0,0,0,0,0			// NJ_HYOUSYOURAKU#Grande Floco de Neve#
+4212,540,10,533,1,0,0,0,0,0,0,0,0			// NJ_HUUJIN#Lâmina de Vento#
+4212,541,5,540,5,0,0,0,0,0,0,0,0			// NJ_RAIGEKISAI#Descarga Elétrica#
+4212,542,5,533,10,541,5,0,0,0,0,0,0			// NJ_KAMAITACHI#Brisa Cortante#
+4212,543,5,533,5,0,0,0,0,0,0,0,0			// NJ_NEN#Aura Ninja#
+4212,544,10,522,7,530,5,543,1,0,0,0,0		// NJ_ISSEN#Ataque Mortal#
+4212,3001,1,530,5,0,0,0,0,0,0,0,0,0			//KO_YAMIKUMO#Yamikumo#
+4212,3002,5,0,0,0,0,0,0,0,0,0,0				//KO_RIGHT#Right Hand Mastery#
+4212,3003,5,0,0,0,0,0,0,0,0,0,0				//KO_LEFT#Left Hand Mastery#
+4212,3004,5,3001,1,0,0,0,0,0,0,0,0			//KO_JYUMONJIKIRI#Juumonjigiri#
+4212,3500,5,3004,2,0,0,0,0,0,0,0,0   		//KO_SETSUDAN#Tamashii Setsudan#
+4212,3006,5,524,5,0,0,0,0,0,0,0,0			//KO_BAKURETSU#Bakuretsu Kunai#
+4212,3007,5,3006,1,0,0,0,0,0,0,0,0			//KO_HAPPOKUNAI#Happo Kunai#
+4212,3008,10,3010,3,0,0,0,0,0,0,0,0			//KO_MUCHANAGE#Mucha Nage#
+4212,3009,5,525,5,0,0,0,0,0,0,0,0			//KO_HUUMARANKA#Fuuma Shuriken Ranka#
+4212,3010,5,526,1,0,0,0,0,0,0,0,0			//KO_MAKIBISHI#Makibishi#
+4212,3011,5,533,10,0,0,0,0,0,0,0,0			//KO_MEIKYOUSISUI#MeiKyouShiSui#
+4212,3012,5,531,1,0,0,0,0,0,0,0,0			//KO_ZANZOU#Zanzou#
+4212,3013,5,3021,2,0,0,0,0,0,0,0,0			//KO_KYOUGAKU#Kyougaku#
+4212,3014,5,3013,3,0,0,0,0,0,0,0,0			//KO_JYUSATSU#Juusatsu#
+4212,3015,1,0,0,0,0,0,0,0,0,0,0				//KO_KAHU_ENTEN#Enten#
+4212,3016,1,0,0,0,0,0,0,0,0,0,0				//KO_HYOUHU_HUBUKI#Fubuki#
+4212,3017,1,0,0,0,0,0,0,0,0,0,0				//KO_KAZEHU_SEIRAN#Seiran#
+4212,3018,1,0,0,0,0,0,0,0,0,0,0				//KO_DOHU_KOUKAI#Koukai#
+4212,3019,1,3015,1,3016,1,3017,1,3018,1,0,0	//KO_KAIHOU#Jutsushiki Kaihou#
+4212,3020,1,3022,1,3019,1,0,0,0,0,0,0		//KO_ZENKAI#Jutsushiki Zenkai#
+4212,3021,5,531,1,0,0,0,0,0,0,0,0			//KO_GENWAKU#Genwaku#
+4212,3022,5,533,5,0,0,0,0,0,0,0,0			//KO_IZAYOI#Izayoi#
+4212,3026,5,3021,1,0,0,0,0,0,0,0,0			//OB_ZANGETSU#Zangetsu#
+4212,3027,5,3029,3,0,0,0,0,0,0,0,0			//OB_OBOROGENSOU#Oboro Gensou#
+4212,3028,5,3029,3,0,0,0,0,0,0,0,0			//OB_OBOROGENSOU_TRANSITION_ATK#Oboro Gensou#
+4212,3029,5,3026,2,0,0,0,0,0,0,0,0			//OB_AKAITSUKI#Akaitsuki#
 //========================================================================================================
