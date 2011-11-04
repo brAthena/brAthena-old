@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0911 - 04/11/2011 [Mark]
+	* Corrigidas classes Super Aprendiz T. e Super Aprendiz T. Baby.
+	- Classes prontas para o uso (desde que utilizada em conjunto com uma pasta data adequada).
+
 	r0910 - 03/11/2011 [Mark]
 	* Corrigido problema com Árvore de Habilidades.
 	- Estava podendo colocar habilidades de 3rd sem antes colocar habilidades de trans.
