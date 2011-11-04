@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0913 - 04/11/2011 [Mark]
+	* Corrigido Warnings acusados no map-server em relação às habilidades de Kagero e Oboro.
+
 	r0912 - 04/11/2011 [Protimus]
 	* Adicionados novos SI's do Kagero e Oboro.
 	- Todos foram revisados e estão de acordo kRO.
