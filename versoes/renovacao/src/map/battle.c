@@ -2327,6 +2327,15 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case EL_ROCK_CRUSHER:
 					skillratio += 700;
 					break;
+				case KO_HUUMARANKA:
+					skillratio += 15*skill_lv;
+					break;
+				case KO_BAKURETSU:
+					skillratio += 15*skill_lv;
+					break;
+				case KO_HAPPOKUNAI:
+					skillratio += 30*skill_lv;
+					break;
 
 			}
 

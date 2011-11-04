@@ -3516,6 +3516,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case SR_RIDEINLIGHTNING:
 	case SR_TIGERCANNON:
 	case SO_VARETYR_SPEAR:
+	case KO_HAPPOKUNAI:
 		if( flag&1 )
 		{	//Recursive invocation
 			// skill_area_temp[0] holds number of targets in area
@@ -3609,6 +3610,30 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 			}
 			//Weirdo dual-hit property, two attacks for 500%
 			skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,0);
+			skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,0);
+		}
+		break;
+		
+	case KO_HUUMARANKA:
+	case KO_BAKURETSU:
+		if(flag&1){
+			if(bl->id==skill_area_temp[1])
+				break;
+			skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,SD_ANIMATION);
+		} else {
+			int i,c;
+			c = skill_get_blewcount(skillid,skilllv);
+			for(i=0;i<c;i++){
+//				if (!skill_blown(src,bl,1,(unit_getdir(src)+4)%8,0x1, false))
+					break; 
+				skill_area_temp[0] = map_foreachinrange(skill_area_sub, bl, skill_get_splash(skillid, skilllv), BL_CHAR, src, skillid, skilllv, tick, flag|BCT_ENEMY, skill_area_sub_count);
+				if( skill_area_temp[0] > 1 ) break;
+			}
+			clif_blown(bl); 
+			if (i!=c) { 
+				skill_area_temp[1] = bl->id;
+				map_foreachinrange(skill_area_sub, bl, skill_get_splash(skillid, skilllv), splash_target(src), src, skillid, skilllv, tick, flag|BCT_ENEMY|1, skill_castend_damage_id);
+			}
 			skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,0);
 		}
 		break;
@@ -4857,6 +4882,13 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		//Initiate 10% of your damage becomes fire element.
 		sc_start4(src,SC_WATK_ELEMENT,100,3,20,0,0,skill_get_time2(skillid, skilllv));
 		if (sd) skill_blockpc_start (sd, skillid, skill_get_time(skillid, skilllv));
+		break;
+		
+	case KO_HAPPOKUNAI:
+		skill_area_temp[1] = 0;
+		map_foreachinrange(skill_area_sub, src, skill_get_splash(skillid, skilllv), BL_SKILL|BL_CHAR,
+			src,skillid,skilllv,tick, flag|BCT_ENEMY|1, skill_castend_damage_id);
+		clif_skill_nodamage (src,src,skillid,skilllv,1);
 		break;
 
 	case AL_INCAGI:

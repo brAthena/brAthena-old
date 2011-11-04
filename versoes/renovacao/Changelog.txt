@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0914 - 04/11/2011 [Protimus]
+	* Adicionadas as habilidades:
+	- Bakuretsu Kunai (KO_BAKURETSU).
+	- Happo Kunai (KO_HAPPOKUNAI).
+	- Fuuma Shuriken Ranka (KO_HUUMARANKA).
+	
 	r0913 - 04/11/2011 [Mark]
 	* Corrigido Warnings acusados no map-server em relação às habilidades de Kagero e Oboro.
 
