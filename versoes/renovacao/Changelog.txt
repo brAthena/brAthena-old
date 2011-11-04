@@ -9,6 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0912 - 04/11/2011 [Protimus]
+	* Adicionados novos SI's do Kagero e Oboro.
+	- Todos foram revisados e estão de acordo kRO.
+	* Comentados novos SC's de Kagero e Oboro.
+	- Ainda não foi descoberto todos os IDs e seus números.
+	* Revertida alteração no valor de packet_ver de r903.
+	- Será adicionado assim que as classes Kagerou e Oboro estiverem prontas, junto com os novos pacotes.
+
 	r0911 - 04/11/2011 [Mark]
 	* Corrigidas classes Super Aprendiz T. e Super Aprendiz T. Baby.
 	- Classes prontas para o uso (desde que utilizada em conjunto com uma pasta data adequada).
