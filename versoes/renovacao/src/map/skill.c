@@ -3613,7 +3613,10 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 			skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,0);
 		}
 		break;
-		
+
+
+
+		//Kagerou
 	case KO_HUUMARANKA:
 	case KO_BAKURETSU:
 		if(flag&1){
@@ -3637,7 +3640,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 			skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,0);
 		}
 		break;
-
+		
 	case KN_SPEARSTAB:
 		if(flag&1) {
 			if (bl->id==skill_area_temp[1])
@@ -4884,11 +4887,12 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		sc_start4(src,SC_WATK_ELEMENT,100,3,20,0,0,skill_get_time2(skillid, skilllv));
 		if (sd) skill_blockpc_start (sd, skillid, skill_get_time(skillid, skilllv));
 		break;
-		
-	case KO_HAPPOKUNAI:
+
+
+		case KO_HAPPOKUNAI:
 		skill_area_temp[1] = 0;
 		map_foreachinrange(skill_area_sub, src, skill_get_splash(skillid, skilllv), BL_SKILL|BL_CHAR,
-			src,skillid,skilllv,tick, flag|BCT_ENEMY|1, skill_castend_damage_id);
+		src,skillid,skilllv,tick, flag|BCT_ENEMY|1, skill_castend_damage_id);
 		clif_skill_nodamage (src,src,skillid,skilllv,1);
 		break;
 
@@ -5441,6 +5445,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		clif_skill_nodamage(src,bl,skillid,skilllv,i);
 		break;
 	case TF_HIDING:
+	case KO_YAMIKUMO:
 	case ST_CHASEWALK:
 	case ALL_RIDING:
 		if (tsce)
@@ -11717,7 +11722,7 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 	case BS_MAXIMIZE:		case NV_TRICKDEAD:	case TF_HIDING:			case AS_CLOAKING:		case CR_AUTOGUARD:
 	case ML_AUTOGUARD:		case CR_DEFENDER:	case ML_DEFENDER:		case ST_CHASEWALK:		case PA_GOSPEL:
 	case CR_SHRINK:			case TK_RUN:		case GS_GATLINGFEVER:	case TK_READYCOUNTER:	case TK_READYDOWN:
-	case TK_READYSTORM:		case TK_READYTURN:	case SG_FUSION:			case ALL_RIDING:
+	case TK_READYSTORM:		case TK_READYTURN:	case SG_FUSION:			case ALL_RIDING:		case KO_YAMIKUMO:
 		if( sc && sc->data[status_skill2sc(skill)] )
 			return 1;
 	}
@@ -12621,7 +12626,7 @@ struct skill_condition skill_get_requirement(struct map_session_data* sd, short 
 	case BS_MAXIMIZE:		case NV_TRICKDEAD:	case TF_HIDING:			case AS_CLOAKING:		case CR_AUTOGUARD:
 	case ML_AUTOGUARD:		case CR_DEFENDER:	case ML_DEFENDER:		case ST_CHASEWALK:		case PA_GOSPEL:
 	case CR_SHRINK:			case TK_RUN:		case GS_GATLINGFEVER:	case TK_READYCOUNTER:	case TK_READYDOWN:
-	case TK_READYSTORM:		case TK_READYTURN:	case SG_FUSION:			case ALL_RIDING:
+	case TK_READYSTORM:		case TK_READYTURN:	case SG_FUSION:			case ALL_RIDING:		case KO_YAMIKUMO:
 		if( sc && sc->data[status_skill2sc(skill)] )
 			return req;
 	}
@@ -16496,7 +16501,7 @@ int skill_stasis_check(struct block_list *bl, int src_id, int skillid)
 		case SO_FIREWALK:		case SO_ELECTRICWALK:	case SO_SPELLFIST:		case SO_EARTHGRAVE:
 		case SO_DIAMONDDUST:	case SO_POISON_BUSTER:	case SO_PSYCHIC_WAVE:	case SO_CLOUD_KILL:
 		case SO_STRIKING:		case SO_WARMER:			case SO_VACUUM_EXTREME:	case SO_VARETYR_SPEAR:
-		case SO_ARRULLO:
+		case SO_ARRULLO:		case KO_YAMIKUMO:
 			return 1;
 
 		default:

@@ -564,6 +564,7 @@ typedef enum sc_type {
 	SC_WATER_INSIGNIA,
 	SC_WIND_INSIGNIA,
 	SC_EARTH_INSIGNIA,
+	SC_YAMIKUMO,
 /*	SC_KG_KAGEHUMI, // 770 
 	SC_KG_KAGEHUMI = 771, 
 	SC_KYOMU = 772, 
@@ -1235,6 +1236,7 @@ enum si_type {
 	SI_GM_BATTLE = 662,
 	SI_GM_BATTLE2 = 663,
 	SI_2011RWC_SCROLL = 644,
+	SI_YAMIKUMO = 645,
 };
 
 enum wl_spheres {

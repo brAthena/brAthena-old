@@ -551,7 +551,7 @@ void initChangeTables(void)
 	set_sc( SO_EARTH_INSIGNIA    , SC_EARTH_INSIGNIA  , SI_EARTH_INSIGNIA  , SCB_MDEF|SCB_DEF|SCB_MAXHP|SCB_MAXSP|SCB_WATK );
 	
 	// Kagerou & Oboro - brA Exclusive
-	set_sc( KO_YAMIKUMO     , SC_HIDING   , SI_HIDING   , SCB_NONE );
+	set_sc( KO_YAMIKUMO     , SC_YAMIKUMO   , SI_YAMIKUMO   , SCB_NONE );
 	// -------------
 	
 	set_sc( ALL_RIDING			 , SC_ALL_RIDING      , SI_ALL_RIDING      , SCB_SPEED );
@@ -1028,6 +1028,7 @@ int status_damage(struct block_list *src,struct block_list *target,int hp, int s
 			status_change_end(target, SC_CHASEWALK, INVALID_TIMER);
 			status_change_end(target,SC_CAMOUFLAGE, INVALID_TIMER);
 			status_change_end(target,SC__INVISIBILITY, INVALID_TIMER);
+			status_change_end(target, SC_YAMIKUMO, INVALID_TIMER);
 			if ((sce=sc->data[SC_ENDURE]) && !sce->val4) {
 				//Endure count is only reduced by non-players on non-gvg maps.
 				//val4 signals infinite endure. [Skotlex]
@@ -6036,6 +6037,10 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		if( sc->data[SC_BITE] )
 			return 0; 
 	break;
+	case SC_YAMIKUMO:
+		if( sc->data[SC_BITE] )
+			return 0; 
+	break;
 	case SC_MODECHANGE:
 	{
 		int mode;
@@ -6858,6 +6863,14 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			tick = 1000;
 			val3 = 0; // unused, previously speed adjustment
 			val4 = val1+3; //Seconds before SP substraction happen.
+			break;
+		case SC_YAMIKUMO:
+			val2 = tick>0?tick:10000; //Interval at which SP is drained.
+			val3 = 35 - 5 * val1; //Speed adjustment.
+			if (sc->data[SC_SPIRIT] && sc->data[SC_SPIRIT]->val2 == SL_ROGUE)
+				val3 -= 40;
+			val4 = 10+val1*2; //SP cost.
+			if (map_flag_gvg(bl->m) || map[bl->m].flag.battleground) val4 *= 5;
 			break;
 		case SC_CHASEWALK:
 			val2 = tick>0?tick:10000; //Interval at which SP is drained.
@@ -7922,6 +7935,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			unit_stop_walking(bl,1);
 		break;
 		case SC_HIDING:
+		case SC_YAMIKUMO:
 		case SC_CLOAKING:
 		case SC_CHASEWALK:
 		case SC_WEIGHT90:
@@ -8052,6 +8066,10 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			opt_flag = 0;
 			break;
 		case SC_HIDING:
+			sc->option |= OPTION_HIDE;
+			opt_flag = 2;
+			break;
+		case SC_YAMIKUMO:
 			sc->option |= OPTION_HIDE;
 			opt_flag = 2;
 			break;
@@ -8755,6 +8773,10 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 		sc->option &= ~OPTION_HIDE;
 		opt_flag|= 2|4; //Check for warp trigger + AoE trigger
 		break;
+	case SC_YAMIKUMO:
+		sc->option &= ~OPTION_HIDE;
+		opt_flag|= 2|4; //Check for warp trigger + AoE trigger
+		break;
 	case SC_CLOAKING:
 	case SC_CLOAKINGEXCEED:
 	case SC__INVISIBILITY:
@@ -9019,6 +9041,17 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 		break;
 
 	case SC_HIDING:
+		if(--(sce->val2)>0){
+
+			if(sce->val2 % sce->val4 == 0 && !status_charge(bl, 0, 1))
+				break; //Fail if it's time to substract SP and there isn't.
+
+			sc_timer_next(1000+tick, status_change_timer,bl->id, data);
+			return 0;
+		}
+	break;
+	
+	case SC_YAMIKUMO:
 		if(--(sce->val2)>0){
 
 			if(sce->val2 % sce->val4 == 0 && !status_charge(bl, 0, 1))
@@ -9710,6 +9743,7 @@ int status_change_timer_sub(struct block_list* bl, va_list ap)
 	case SC_SIGHT:	/* サイト */
 	case SC_CONCENTRATE:
 		status_change_end(bl, SC_HIDING, INVALID_TIMER);
+		status_change_end(bl, SC_YAMIKUMO, INVALID_TIMER);
 		status_change_end(bl, SC_CLOAKING, INVALID_TIMER);
 		status_change_end(bl, SC_CAMOUFLAGE, INVALID_TIMER);
 		status_change_end(bl, SC_CLOAKINGEXCEED, INVALID_TIMER);
@@ -9717,9 +9751,10 @@ int status_change_timer_sub(struct block_list* bl, va_list ap)
 		status_change_end(bl, SC__SHADOWFORM, INVALID_TIMER);
 		break;
 	case SC_RUWACH:	/* ルアフ */
-		if (tsc && (tsc->data[SC_HIDING] || tsc->data[SC_CLOAKING] || tsc->data[SC_CAMOUFLAGE] ||
+		if (tsc && (tsc->data[SC_HIDING] || tsc->data[SC_YAMIKUMO] || tsc->data[SC_CLOAKING] || tsc->data[SC_CAMOUFLAGE] ||
 		tsc->data[SC_CLOAKINGEXCEED] || tsc->data[SC__INVISIBILITY] || tsc->data[SC__SHADOWFORM])) {
 			status_change_end(bl, SC_HIDING, INVALID_TIMER);
+			status_change_end(bl, SC_YAMIKUMO, INVALID_TIMER);
 			status_change_end(bl, SC_CLOAKING, INVALID_TIMER);
 			status_change_end(bl, SC_CAMOUFLAGE, INVALID_TIMER);
 			status_change_end(bl, SC_CLOAKINGEXCEED, INVALID_TIMER);

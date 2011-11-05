@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0916 - 05/11/2011 [insidemybrain!]
+	* Adicionada a habilidade:
+	- Yamikumo (KO_YAMIKUMO)
+	- Valores de gasto fixo de SP retirados da habilidade Hide (TF_HIDE)
+	- Precisamos buscar maiores informações sobre o SP gasto, enquanto a habilidade está ativa
+
 	r0915 - 05/11/2011 [Protimus]
 	* Adicionada a habilidade:
 	- Mucha Nage (KO_MUCHANAGE).
