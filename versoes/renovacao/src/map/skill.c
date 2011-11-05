@@ -3804,6 +3804,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case GN_THORNS_TRAP:
 	case GN_BLOOD_SUCKER:
 	case GN_HELLS_PLANT_ATK:
+	case KO_MUCHANAGE:
 		skill_attack(BF_MISC,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 
@@ -11994,6 +11995,7 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 		break;
 
 	case NJ_ZENYNAGE:
+	case KO_MUCHANAGE:
 		if(sd->status.zeny < require.zeny) {
 			clif_skill_fail(sd,skill,5,0,0);
 			return 0;
@@ -12562,7 +12564,7 @@ int skill_consume_requirement( struct map_session_data *sd, short skill, short l
 
 		if(req.zeny > 0)
 		{
-			if( skill == NJ_ZENYNAGE )
+			if( skill == NJ_ZENYNAGE || skill == KO_MUCHANAGE)
 				req.zeny = 0; //Zeny is reduced on skill_attack.
 			if( sd->status.zeny < req.zeny )
 				req.zeny = sd->status.zeny;

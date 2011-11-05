@@ -804,6 +804,7 @@ int battle_calc_bg_damage(struct block_list *src, struct block_list *bl, int dam
 		case PA_PRESSURE:
 		case HW_GRAVITATION:
 		case NJ_ZENYNAGE:
+		case KO_MUCHANAGE:
 			break;
 		default:
 			if( flag&BF_SKILL )
@@ -869,6 +870,7 @@ int battle_calc_gvg_damage(struct block_list *src,struct block_list *bl,int dama
 	case PA_PRESSURE:
 	case HW_GRAVITATION:
 	case NJ_ZENYNAGE:
+	case KO_MUCHANAGE:
 		break;
 	default:
 		/* Uncomment if you want god-mode Emperiums at 100 defense. [Kisuka]
@@ -3780,6 +3782,15 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 			md.damage=md.damage/3;
 		else if (tsd)
 			md.damage=md.damage/2;
+		break;
+	case KO_MUCHANAGE:
+		md.damage = skill_get_zeny(skill_num ,skill_lv);
+		if (!md.damage) md.damage = 2;
+		md.damage = md.damage + rand()%md.damage;
+		if (is_boss(target))
+			md.damage=md.damage/2;
+		else if (tsd)
+			md.damage=md.damage;
 		break;
 	case GS_FLING:
 		md.damage = sd?sd->status.job_level:status_get_lv(src);

@@ -1252,7 +1252,7 @@
 //3005,1,6,4,0,1,0,10,1,no,0,0,0,none,0,		KO_SETSUDAN,Tamashii Setsudan
 3006,11,6,1,-1,0x2,7,10,1,no,33,0,0,weapon,1,			KO_BAKURETSU,Bakuretsu Kunai
 3007,0,6,4,3,0x2,2,10,1,no,0,0,0,weapon,2,			KO_HAPPOKUNAI,Happo Kunai
-//3008,1,6,4,0,1,0,10,1,no,0,0,0,none,0,		KO_MUCHANAGE,Mucha Nage
+3008,11,6,1,0,0x50,0,10,1,no,0,0,0,misc,0,		KO_MUCHANAGE,Mucha Nage
 3009,11,6,1,-1,0x2,7,10,1,no,33,0,0,weapon,1,		KO_HUUMARANKA,Fuuma Shuriken Ranka
 //3010,1,6,4,0,1,0,10,1,no,0,0,0,none,0,		KO_MAKIBISHI,Makibishi
 //3011,1,6,4,0,1,0,10,1,no,0,0,0,none,0,		KO_MEIKYOUSISUI,MeiKyouShiSui

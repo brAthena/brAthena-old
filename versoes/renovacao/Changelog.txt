@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0915 - 05/11/2011 [Protimus]
+	* Adicionada a habilidade:
+	- Mucha Nage (KO_MUCHANAGE).
+
 	r0914 - 04/11/2011 [Protimus]
 	* Adicionadas as habilidades:
 	- Bakuretsu Kunai (KO_BAKURETSU).
