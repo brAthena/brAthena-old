@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0917 - 06/11/2011 [Protimus]
+	* Correção para o sistema de classes de Kagerou e Oboro.
+	- Não estava verificando de forma correta quando o personagem é masculino/feminino.
+	* Alteradas coodenadas de Dewata conforme originais do kRO.
+
 	r0916 - 05/11/2011 [insidemybrain!]
 	* Adicionada a habilidade:
 	- Yamikumo (KO_YAMIKUMO)

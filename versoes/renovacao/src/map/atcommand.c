@@ -1439,8 +1439,8 @@ ACMD_FUNC(jobchange)
 			{ "mini renegada",			4108 },
 			{ "super aprendiz t",		4190 },
 			{ "mini super aprendiz t",	4191 },
-			{ "oboro",					4211 },
-			{ "kagerou",				4212 },
+			{ "kagerou",			    4211 },
+			{ "oboro",				    4212 },
 		};
 
 		for (i=0; i < ARRAYLENGTH(jobs); i++) {
@@ -1474,7 +1474,7 @@ ACMD_FUNC(jobchange)
 			clif_displaymessage(fd, "4047 Mestre Taekwon          4049 Espiritualista");
 			clif_displaymessage(fd, "4047 Mestre Taekwon		  4049 Espiritualista    		4050 Gangsi         4051 Death Knight");
 			clif_displaymessage(fd, "4052 Dark Collector 		  4090 Super Aprendiz T.  	    4191 Mini Super Aprendiz T.");
-			clif_displaymessage(fd, "4211 Oboro 		  		  4212 Kagerou");
+			clif_displaymessage(fd, "4211 Kagerou 		  		  4212 Oboro");
 			clif_displaymessage(fd, "---- Classes Mini ----");
 			clif_displaymessage(fd, "4023 Mini Aprendiz           4024 Mini Espadachim          4025 Mini Mago      4026 Mini Arqueiro");
 			clif_displaymessage(fd, "4027 Mini Noviço             4028 Mini Mercador            4029 Mini Gatuno    4030 Mini Cavaleiro");
@@ -1541,7 +1541,7 @@ ACMD_FUNC(jobchange)
 		clif_displaymessage(fd, "23 Super Aprendiz            24 Justiceiro                 25 Ninja           4046 Taekwon");
 		clif_displaymessage(fd, "4047 Mestre Taekwon		  4049 Espiritualista    		4050 Gangsi         4051 Death Knight");
 		clif_displaymessage(fd, "4052 Dark Collector 		  4090 Super Aprendiz T.  	    4191 Mini Super Aprendiz T.");
-		clif_displaymessage(fd, "4211 Oboro 		  		  4212 Kagerou");
+		clif_displaymessage(fd, "4211 Kagerou 		  		  4212 Oboro");
 		clif_displaymessage(fd, "---- Classes Mini ----");
 		clif_displaymessage(fd, "4023 Mini Aprendiz           4024 Mini Espadachim          4025 Mini Mago      4026 Mini Arqueiro");
 		clif_displaymessage(fd, "4027 Mini Noviço             4028 Mini Mercador            4029 Mini Gatuno    4030 Mini Cavaleiro");
@@ -2360,7 +2360,7 @@ ACMD_FUNC(go)
 		{ MAP_SPLENDIDE,   202,	150	}, // 28=Splendide
 		{ MAP_DICASTES,	   198, 192	}, // 29=Dicastes
 		{ MAP_MORA,		   120, 110 }, // 30=Mora
-		{ MAP_DEWATA,	   200, 199	}, // 31=Dewata
+		{ MAP_DEWATA,	   200, 178	}, // 31=Dewata
 		{ MAP_MALANGDO,    208, 118 }, // 32=Malangdo
 	};
 
