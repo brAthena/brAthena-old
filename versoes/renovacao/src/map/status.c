@@ -6032,12 +6032,9 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		if( sd && pc_checkskill(sd, AS_CLOAKING) < 3 && !skill_check_cloaking(bl,NULL) )
 			return 0;
 	break;
+	case SC_YAMIKUMO:
 	case SC_CLOAKINGEXCEED:
 	case SC_HIDING:
-		if( sc->data[SC_BITE] )
-			return 0; 
-	break;
-	case SC_YAMIKUMO:
 		if( sc->data[SC_BITE] )
 			return 0; 
 	break;
@@ -6865,12 +6862,8 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			val4 = val1+3; //Seconds before SP substraction happen.
 			break;
 		case SC_YAMIKUMO:
-			val2 = tick>0?tick:10000; //Interval at which SP is drained.
-			val3 = 35 - 5 * val1; //Speed adjustment.
-			if (sc->data[SC_SPIRIT] && sc->data[SC_SPIRIT]->val2 == SL_ROGUE)
-				val3 -= 40;
-			val4 = 10+val1*2; //SP cost.
-			if (map_flag_gvg(bl->m) || map[bl->m].flag.battleground) val4 *= 5;
+			val2 = tick>0?tick:10000; // Intervaulo em que o SP é drenado.
+			val4 = 20+val1*2; // Custo de SP. NOTA: Esse valor está certo?
 			break;
 		case SC_CHASEWALK:
 			val2 = tick>0?tick:10000; //Interval at which SP is drained.
@@ -8769,11 +8762,8 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 		sc->opt2 &= ~OPT2_SIGNUMCRUCIS;
 		break;
 
-	case SC_HIDING:
-		sc->option &= ~OPTION_HIDE;
-		opt_flag|= 2|4; //Check for warp trigger + AoE trigger
-		break;
 	case SC_YAMIKUMO:
+	case SC_HIDING:
 		sc->option &= ~OPTION_HIDE;
 		opt_flag|= 2|4; //Check for warp trigger + AoE trigger
 		break;
@@ -9040,18 +9030,18 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 		}
 		break;
 
-	case SC_HIDING:
+	case SC_YAMIKUMO:
+		if(!status_charge(bl, 0, 10 - sce->val1))
+			break;
 		if(--(sce->val2)>0){
 
 			if(sce->val2 % sce->val4 == 0 && !status_charge(bl, 0, 1))
-				break; //Fail if it's time to substract SP and there isn't.
-
-			sc_timer_next(1000+tick, status_change_timer,bl->id, data);
-			return 0;
+				break; 
+		sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
+		return 0;
 		}
 	break;
-	
-	case SC_YAMIKUMO:
+	case SC_HIDING:
 		if(--(sce->val2)>0){
 
 			if(sce->val2 % sce->val4 == 0 && !status_charge(bl, 0, 1))

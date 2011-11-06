@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0919 - 06/11/2011 [Protimus]
+	* Corrigida habilidade Yamikumo (KO_YAMIKUMO).
+	- Limpeza de códigos inutilizáveis de r916.
+	- O consumo de SP não estava sendo realizado depois de executada.
+	- Adição de valor custom para o consumo de SP.
+
 	r0918 - 06/11/2011 [Protimus]
 	* Adicionados valores de fatores específicos para Kagerou e Oboro (job_db.txt).
 	* Adicionada tabela de bonificações de status para Kagerou e Oboro (job_db2.txt).
