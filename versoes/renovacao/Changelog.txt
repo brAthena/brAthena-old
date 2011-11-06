@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0918 - 06/11/2011 [Protimus]
+	* Adicionados valores de fatores específicos para Kagerou e Oboro (job_db.txt).
+	* Adicionada tabela de bonificações de status para Kagerou e Oboro (job_db2.txt).
+
 	r0917 - 06/11/2011 [Protimus]
 	* Correção para o sistema de classes de Kagerou e Oboro.
 	- Não estava verificando de forma correta quando o personagem é masculino/feminino.
