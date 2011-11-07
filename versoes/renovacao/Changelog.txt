@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0924 - 07/11/2011 [insidemybrain!]
+	* Corrigido bug com relação aos acentos do NPC do envio anterior.
+
 	r0923 - 07/11/2011 [insidemybrain!]
 	* Corrigido pequeno bug na habilidade Yamikumo (KO_YAMIKUMO)
 	* Enviada a tradução do Campo de Aprendizes, necessita revisão:
