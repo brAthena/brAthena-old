@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0920 - 06/11/2011 [Protimus]
+	* Adicionadas habilidades de Kagerou e Oboro no banco de dados de conjurações.
+	- Até o momento foi adicionado apenas a duração das habilidades, falta o tempo de conjuração em si.
+	- Algumas habilidades estão desabilitadas até descobrirmos se precisam mesmo estarem no banco de dados.
+
 	r0919 - 06/11/2011 [Protimus]
 	* Corrigida habilidade Yamikumo (KO_YAMIKUMO).
 	- Limpeza de códigos inutilizáveis de r916.
