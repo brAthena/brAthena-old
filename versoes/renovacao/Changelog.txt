@@ -8,8 +8,12 @@
 //  * Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
+	
+	r0921 - 07/11/2011 [Protimus]
+	* Adicionada a habilidade:
+	- Tamashii Setsudan (KO_SETSUDAN).
 
-	r0920 - 06/11/2011 [Protimus]
+	r0920 - 07/11/2011 [Protimus]
 	* Adicionadas habilidades de Kagerou e Oboro no banco de dados de conjurações.
 	- Até o momento foi adicionado apenas a duração das habilidades, falta o tempo de conjuração em si.
 	- Algumas habilidades estão desabilitadas até descobrirmos se precisam mesmo estarem no banco de dados.

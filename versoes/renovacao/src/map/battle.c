@@ -3809,6 +3809,9 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 	case NPC_EVILLAND:
 		md.damage = skill_calc_heal(src,target,skill_num,skill_lv,false);
 		break;
+	case KO_SETSUDAN:
+		md.damage = 100 * skill_lv;
+		break;
 	case RK_DRAGONBREATH:
 		md.damage = ((status_get_hp(src) / 50) + (status_get_max_sp(src) / 4)) * skill_lv;
 		if (sd) md.damage = md.damage * (100 + 5 * (pc_checkskill(sd,RK_DRAGONTRAINING) - 1)) / 100;
