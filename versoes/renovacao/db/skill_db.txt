@@ -1245,7 +1245,7 @@
 //========================================================================================================
 // Habilidades de Kagerou & Oboro.  [brAthena]
 //========================================================================================================
-3001,1,6,4,0,0x1,0,0,1,no,0,0x1,0,none,0,		KO_YAMIKUMO,Yamikumo
+3001,1,6,4,0,1,0,10,1,no,0,0,0,none,0,		KO_YAMIKUMO,Yamikumo
 3002,0,0,0,0,0,0,5,0,no,0,0,0,weapon,0,		KO_RIGHT,Perícia com a Mão Direita
 3003,0,0,0,0,0,0,5,0,no,0,0,0,weapon,0,		KO_LEFT,Perícia com a Mão Esquerda
 //3004,1,6,4,0,1,0,10,1,no,0,0,0,none,0,		KO_JYUMONJIKIRI,Juumonjigiri

@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0923 - 07/11/2011 [insidemybrain!]
+	* Corrigido pequeno bug na habilidade Yamikumo (KO_YAMIKUMO)
+	* Enviada a tradução do Campo de Aprendizes, necessita revisão:
+	- npc/classes/aprendiz/aprendiz.txt
+
 	r0922 - 07/11/2011 [Mark]
 	* Adicionadas habilidades Perícia com a mão direita (KO_RIGHT) e Perícia com a mão esquerda (KO_LEFT).
 	* Adicionada possibilidade de uso de armas com as duas mãos para Kagerou e Oboro.
