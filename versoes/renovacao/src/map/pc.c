@@ -663,7 +663,8 @@ int pc_equippoint(struct map_session_data *sd,int n)
 	if(sd->inventory_data[n]->look == W_DAGGER	||
 		sd->inventory_data[n]->look == W_1HSWORD ||
 		sd->inventory_data[n]->look == W_1HAXE) {
-		if(ep == EQP_HAND_R && (pc_checkskill(sd,AS_LEFT) > 0 || (sd->class_&MAPID_UPPERMASK) == MAPID_ASSASSIN))
+		if(ep == EQP_HAND_R && (pc_checkskill(sd,AS_LEFT) > 0 || (sd->class_&MAPID_UPPERMASK) == MAPID_ASSASSIN) ||
+		(pc_checkskill(sd,KO_LEFT) > 0 || (sd->class_&MAPID_UPPERMASK) == MAPID_KAGEROUOBORO))
 			return EQP_ARMS;
 	}
 	return ep;
@@ -1191,7 +1192,8 @@ int pc_reg_received(struct map_session_data *sd)
 {
 	int i,j;
 
-	sd->change_level = pc_readglobalreg(sd,"jobchange_level");
+	sd->change_level[0] = pc_readglobalreg(sd,"jobchange_level");
+	sd->change_level[1] = pc_readglobalreg(sd,"jobchange_level2");
 	sd->die_counter = pc_readglobalreg(sd,"PC_DIE_COUNTER");
 
 	// Cash shop
@@ -1559,23 +1561,31 @@ int pc_calc_skilltree_normalize_job(struct map_session_data *sd)
 		c = MAPID_NOVICE;
 	else
 	//Do not send S. Novices to first class (Novice)
-	if ((sd->class_&JOBL_THIRD) && sd->status.skill_point >= sd->status.job_level) {
-		if (skill_point < 58)
+	if ((sd->class_&JOBL_THIRD) && sd->status.skill_point >= sd->status.job_level && (sd->class_&MAPID_UPPERMASK) != MAPID_SUPER_NOVICE && (sd->class_&MAPID_UPPERMASK) != MAPID_SUPER_BABY) {
+		
+		if ( (sd->change_level[0] >= 40 && skill_point < (sd->change_level[0] + 8) ) || (sd->change_level[0] <= 0 && skill_point < 58))
 			c &= MAPID_BASEMASK;
 		else
-		if (skill_point < 107)
+		if ( (sd->change_level[0] >= 40 && sd->change_level[1] >= 50 && skill_point < (sd->change_level[0] + sd->change_level[1] + 7) )
+			|| (sd->change_level[1] >= 50 && skill_point < (sd->change_level[1] + 57) )
+			|| (sd->change_level[1] <= 0 && skill_point < 107) )
 			c &= MAPID_UPPERMASK;
 		else
-		if ((sd->class_&JOBL_UPPER) && skill_point < 127)
+		if ( (sd->class_&JOBL_UPPER) && ((sd->change_level[0] >= 40 && sd->change_level[1] >= 60 && skill_point < (sd->change_level[0] + sd->change_level[1] + 7))
+			|| (sd->change_level[1] >= 60 && skill_point < (sd->change_level[1] + 57) )
+			|| (sd->change_level[1] <= 0 && skill_point < 127)) )
 			c &= MAPID_UPPERMASK;
 		
 	} else
-	if ((sd->class_&JOBL_2) && (sd->class_&MAPID_UPPERMASK) != MAPID_SUPER_NOVICE &&
+	if ((sd->class_&JOBL_2) && (sd->class_&MAPID_UPPERMASK) != MAPID_SUPER_NOVICE && (sd->class_&MAPID_UPPERMASK) != MAPID_SUPER_BABY &&
 		sd->status.skill_point >= sd->status.job_level &&
-		((sd->change_level > 0 && skill_point < sd->change_level+8) || skill_point < 58)) {
+		((sd->change_level[0] > 0 && skill_point < sd->change_level[0]+8) || skill_point < 58)) {
 		//Send it to first class.
 		c &= MAPID_BASEMASK;
-	}
+	} else
+	if ( ((sd->class_&MAPID_UPPERMASK) == MAPID_SUPER_NOVICE || (sd->class_&MAPID_UPPERMASK) == MAPID_SUPER_BABY) && skill_point < 106)
+		c &= MAPID_UPPERMASK;
+		
 	if (sd->class_&JOBL_UPPER) //Convert to Upper
 		c |= JOBL_UPPER;
 	else if (sd->class_&JOBL_BABY) //Convert to Baby
@@ -6933,12 +6943,26 @@ int pc_jobchange(struct map_session_data *sd,int job, int upper)
 	if ((unsigned short)b_class == sd->class_)
 		return 1; //Nothing to change.
 	// check if we are changing from 1st to 2nd job
-	if (b_class&JOBL_2) {
-		if (!(sd->class_&JOBL_2))
-			sd->change_level = sd->status.job_level;
-		else if (!sd->change_level)
-			sd->change_level = 40; //Assume 40?
-		pc_setglobalreg (sd, "jobchange_level", sd->change_level);
+	if ((b_class&MAPID_UPPERMASK) == MAPID_SUPER_NOVICE || (sd->class_&MAPID_UPPERMASK) == MAPID_SUPER_BABY){
+		sd->change_level[0] = 9;
+		sd->change_level[1] = 99;
+		pc_setglobalreg(sd, "jobchange_level", sd->change_level[0]);
+		pc_setglobalreg(sd, "jobchange_level2", sd->change_level[1]);
+	}
+	else if (b_class&JOBL_THIRD) {
+		if (!(sd->class_&JOBL_THIRD) ) {
+			if ( (b_class&JOBL_UPPER && sd->status.job_level >=  60) || (!(b_class&JOBL_UPPER) && sd->status.job_level >=  50))
+				sd->change_level[1] = sd->status.job_level;
+		} else if (!sd->change_level[1] || sd->change_level[1] < 50 || sd->change_level[1] > 70)
+			sd->change_level[1] = (b_class&JOBL_UPPER)?70:50;
+		pc_setglobalreg(sd, "jobchange_level2", sd->change_level[1]);
+	}
+	else if (b_class&JOBL_2) {
+		if (!(sd->class_&JOBL_2) && sd->status.job_level >=  40)
+			sd->change_level[0] = sd->status.job_level;
+		else if (!sd->change_level[0] || sd->change_level[0] < 40 || sd->change_level[0] > 70)
+			sd->change_level[0] = 50;
+		pc_setglobalreg (sd, "jobchange_level", sd->change_level[0]);
 	}
 
 	if(sd->cloneskill_id) {

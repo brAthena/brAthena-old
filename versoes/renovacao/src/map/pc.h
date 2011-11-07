@@ -398,7 +398,7 @@ struct map_session_data {
 	int eventtimer[MAX_EVENTTIMER];
 	unsigned short eventcount; // [celest]
 
-	unsigned char change_level; // [celest]
+	unsigned char change_level[2]; // [celest]
 
 	char fakename[NAME_LENGTH]; // fake names [Valaris]
 

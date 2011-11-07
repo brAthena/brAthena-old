@@ -2892,14 +2892,20 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 	{
 		if (wd.damage2)
 		{
-			skill = pc_checkskill(sd,AS_LEFT);
-			wd.damage2 = wd.damage2 * (3 + skill)/10;
+			if (skill = pc_checkskill(sd,AS_LEFT))
+				wd.damage2 = wd.damage2 * (3 + skill)/10;
+			else
+			if (skill = pc_checkskill(sd,KO_LEFT))
+				wd.damage2 = wd.damage2 * (5 + skill)/10;
 			if(wd.damage2 < 1) wd.damage2 = 1;
 		}
 		if(flag.rh && flag.lh && wd.damage)
 		{
-			skill = pc_checkskill(sd,AS_RIGHT);
-			wd.damage = wd.damage * (5 + skill)/10;
+			if (skill = pc_checkskill(sd,AS_RIGHT))
+				wd.damage = wd.damage * (5 + skill)/10;
+			else
+			if (skill = pc_checkskill(sd,KO_RIGHT))
+				wd.damage = wd.damage * (7 + skill)/10;
 			if(wd.damage < 1) wd.damage = 1;
 		} else if(sd->status.weapon == W_KATAR && !skill_num)
 		{ //Katars (offhand damage only applies to normal attacks, tested on Aegis 10.2)

@@ -8,7 +8,14 @@
 //  * Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
-	
+
+	r0922 - 07/11/2011 [Mark]
+	* Adicionadas habilidades Perícia com a mão direita (KO_RIGHT) e Perícia com a mão esquerda (KO_LEFT).
+	* Adicionada possibilidade de uso de armas com as duas mãos para Kagerou e Oboro.
+	* Corrigido problema com Árvore de Habilidades.
+	- Classes que não viraram em job máximo estavam sendo requeridas como se fosse.
+	- Adicionados casos para Super Aprendiz T.
+
 	r0921 - 07/11/2011 [Protimus]
 	* Adicionada a habilidade:
 	- Tamashii Setsudan (KO_SETSUDAN).

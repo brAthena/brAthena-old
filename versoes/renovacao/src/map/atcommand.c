@@ -1473,7 +1473,7 @@ ACMD_FUNC(jobchange)
 			clif_displaymessage(fd, "23 Super Aprendiz            24 Justiceiro                 25 Ninja           4046 Taekwon");
 			clif_displaymessage(fd, "4047 Mestre Taekwon          4049 Espiritualista");
 			clif_displaymessage(fd, "4047 Mestre Taekwon		  4049 Espiritualista    		4050 Gangsi         4051 Death Knight");
-			clif_displaymessage(fd, "4052 Dark Collector 		  4090 Super Aprendiz T.  	    4191 Mini Super Aprendiz T.");
+			clif_displaymessage(fd, "4052 Dark Collector 		  4091 Super Aprendiz T.  	    4191 Mini Super Aprendiz T.");
 			clif_displaymessage(fd, "4211 Kagerou 		  		  4212 Oboro");
 			clif_displaymessage(fd, "---- Classes Mini ----");
 			clif_displaymessage(fd, "4023 Mini Aprendiz           4024 Mini Espadachim          4025 Mini Mago      4026 Mini Arqueiro");
@@ -8692,7 +8692,8 @@ ACMD_FUNC(stats)
 		{ "Sor - %3d", 0 },
 		{ "Zeny - %d", 0 },
 		{ "Pontos de Habilidade Livres - %d", 0 },
-		{ "Nivel de Troca de Classe - %d", 0 },
+		{ "Nivel de Troca de Classe 1->2 - %d", 0 },
+		{ "Nivel de Troca de Classe 2->3 - %d", 0 },
 		{ NULL, 0 }
 	};
 
@@ -8715,7 +8716,8 @@ ACMD_FUNC(stats)
 	output_table[11].value = sd->status.luk;
 	output_table[12].value = sd->status.zeny;
 	output_table[13].value = sd->status.skill_point;
-	output_table[14].value = sd->change_level;
+	output_table[14].value = sd->change_level[0];
+	output_table[15].value = sd->change_level[1];
 
 	sprintf(job_jobname, "Classe - %s %s", job_name(sd->status.class_), "(nível %d)");
 	sprintf(output, msg_txt(53), sd->status.name); // '%s' stats:
