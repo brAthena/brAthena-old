@@ -552,6 +552,7 @@ void initChangeTables(void)
 	
 	// Kagerou & Oboro - brA Exclusive
 	set_sc( KO_YAMIKUMO     , SC_YAMIKUMO   , SI_YAMIKUMO   , SCB_NONE );
+	set_sc( KO_IZAYOI       , SC_IZAYOI     , SI_IZAYOI     , SCB_MATK );
 	// -------------
 	
 	set_sc( ALL_RIDING			 , SC_ALL_RIDING      , SI_ALL_RIDING      , SCB_SPEED );
@@ -4286,6 +4287,8 @@ static unsigned short status_calc_matk(struct block_list *bl, struct status_chan
 		matk -= sc->data[SC_WATER_BARRIER]->val3;
 	if(sc->data[SC_FIRE_INSIGNIA] && sc->data[SC_FIRE_INSIGNIA]->val1 == 3)
 		matk += 50;
+	if(sc->data[SC_IZAYOI])
+		matk += matk * sc->data[SC_IZAYOI]->val3;
 		
 
 	return (unsigned short)cap_value(matk,0,USHRT_MAX);
@@ -7346,6 +7349,11 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_INCFLEE2:
 		case SC_INCCRI:
 			val2 = val1*10; //Actual boost (since 100% = 1000)
+			break;
+		case SC_IZAYOI:
+			val2 = 20 * val1; // Redução do tempo de conjuração variável.
+			if(sd)
+				val3 = 50 *	val1; // Adição de matk.
 			break;
 		case SC_SUFFRAGIUM:
 			val2 = 15 * val1; //Speed cast decrease

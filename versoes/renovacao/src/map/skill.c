@@ -4970,6 +4970,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case SR_GENTLETOUCH_ENERGYGAIN:
 	case SR_GENTLETOUCH_CHANGE:
 	case SR_GENTLETOUCH_REVITALIZE:
+	case KO_IZAYOI:
 		clif_skill_nodamage(src,bl,skillid,skilllv,
 			sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv)));
 	case SO_STRIKING:
@@ -12888,6 +12889,8 @@ int skill_castfix (struct block_list *bl, int skill_id, int skill_lv)
 			cast_fixo_reduct -= 50;
 		if(sc->data[SC__LAZINESS])
 			cast_fixo_reduct -= cast_fixo_reduct*sc->data[SC__LAZINESS]->val2;
+		if(sc->data[SC_IZAYOI])
+			cast_fixo_reduct -= cast_fixo_reduct*sc->data[SC_IZAYOI]->val3;
 	}
 
 	if(sd && pc_checkskill(sd, WL_RADIUS) && skill_id >= WL_WHITEIMPRISON && skill_id <= WL_FREEZE_SP)
@@ -12916,6 +12919,9 @@ int skill_castfix (struct block_list *bl, int skill_id, int skill_lv)
 int skill_castfix_sc (struct block_list *bl, int time)
 {
 	struct status_change *sc = status_get_sc(bl);
+	struct map_session_data *tsd;
+	
+	nullpo_ret(tsd=(struct map_session_data*)bl);
 
 	if (sc && sc->count) {
 		if (sc->data[SC_SLOWCAST])
@@ -12931,6 +12937,10 @@ int skill_castfix_sc (struct block_list *bl, int time)
 		}
 		if (sc->data[SC_POEMBRAGI])
 			time -= time * sc->data[SC_POEMBRAGI]->val1 / 100;
+		if (sc->data[SC_IZAYOI] && (tsd->class_&MAPID_UPPERMASK) == MAPID_NINJA){
+			time -= time * sc->data[SC_IZAYOI]->val2 / 100;
+			status_change_end(bl, SC_IZAYOI, INVALID_TIMER);
+		}
 	}
 	return (time > 0) ? time : 0;
 }

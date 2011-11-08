@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0926 - 08/11/2011 [Protimus]
+	* Adicionada a habilidade:
+	- Izayoi (KO_IZAYOI).
+	- Necessários testes e revisão do número do SC.
+
 	r0925 - 08/11/2011 [Mark]
 	* Corrigido bug relacionado a criação de poções e armas por Bioquímicos e Mecânicos.
 	* Corrigido script do envio anterior.
