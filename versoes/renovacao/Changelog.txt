@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0927 - 08/11/2011 [Protimus]
+	* Correções para o sistema de montarias de aluguel.
+	- Visualização das classes com montarias corrigidas.
+	- Adicionado delay ao item de montarias de alguel.
+
 	r0926 - 08/11/2011 [Protimus]
 	* Adicionada a habilidade:
 	- Izayoi (KO_IZAYOI).

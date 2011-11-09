@@ -32,6 +32,7 @@
 14586,180000	//Doce Hiper Açucarado -> 180 segundos (3 minutos)
 607,5000 // Fruto de Yggdrasil -> (5 segundos)
 608,3000 // Semente de Yggdrasil -> (3 segundos)
+12622,10000 // Montarias de Aluguel -> (10 segundos)
 //
 //========================================================================================================
 // Items de Bifrost
