@@ -1276,7 +1276,7 @@
 //=========================================================================================================
 // Habilidades exclusivas de Oboro. [brAthena]
 //=========================================================================================================
-//3026,1,6,4,0,1,0,10,1,no,0,0,0,none,0,		OB_ZANGETSU,Zangetsu
+3026,9,6,16,0,0x1,0,5,1,yes,0,0,0,magic,0,	OB_ZANGETSU,Zangetsu
 //3027,1,6,4,0,1,0,10,1,no,0,0,0,none,0,		OB_OBOROGENSOU,Oboro Gensou
 //3028,1,6,4,0,1,0,10,1,no,0,0,0,none,0,		OB_OBOROGENSOU_TRANSITION_ATK,Oboro Gensou
 //3039,1,6,4,0,1,0,10,1,no,0,0,0,none,0,		OB_AKAITSUKI,Akaitsuki

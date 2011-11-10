@@ -553,6 +553,7 @@ void initChangeTables(void)
 	// Kagerou & Oboro - brA Exclusive
 	set_sc( KO_YAMIKUMO     , SC_YAMIKUMO   , SI_YAMIKUMO   , SCB_NONE );
 	set_sc( KO_IZAYOI       , SC_IZAYOI     , SI_IZAYOI     , SCB_MATK );
+	set_sc( OB_ZANGETSU     , SC_ZANGETSU   , SI_ZANGETSU   , SCB_BATK|SCB_MATK );
 	// -------------
 	
 	set_sc( ALL_RIDING			 , SC_ALL_RIDING      , SI_ALL_RIDING      , SCB_SPEED );
@@ -4179,6 +4180,8 @@ static unsigned short status_calc_batk(struct block_list *bl, struct status_chan
 		|| (sc->data[SC_EARTH_INSIGNIA] && sc->data[SC_EARTH_INSIGNIA]->val1 == 1))
 		)
 		batk += batk / 5;
+	if(sc->data[SC_ZANGETSU])
+		batk += batk * sc->data[SC_ZANGETSU]->val2 / 100;
 		
 	return (unsigned short)cap_value(batk,0,USHRT_MAX);
 }
@@ -4289,7 +4292,8 @@ static unsigned short status_calc_matk(struct block_list *bl, struct status_chan
 		matk += 50;
 	if(sc->data[SC_IZAYOI])
 		matk += matk * sc->data[SC_IZAYOI]->val3;
-		
+	if(sc->data[SC_ZANGETSU])
+		matk += matk * sc->data[SC_ZANGETSU]->val1/100;
 
 	return (unsigned short)cap_value(matk,0,USHRT_MAX);
 }
@@ -7354,6 +7358,9 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			val2 = 20 * val1; // Redução do tempo de conjuração variável.
 			if(sd)
 				val3 = 50 *	val1; // Adição de matk.
+			break;
+		case SC_ZANGETSU:
+			val2 += 20 * (sd ? sd->status.base_level:50) + 100; // Adição de ATK & Matk
 			break;
 		case SC_SUFFRAGIUM:
 			val2 = 15 * val1; //Speed cast decrease

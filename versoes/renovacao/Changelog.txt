@@ -9,7 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
-	r0927 - 08/11/2011 [Protimus]
+	r0928 - 10/11/2011 [Protimus]
+	* Adicionada a habilidade:
+	- Zangetsu (OB_ZANGETSU).
+	- Necessário testar o debuff em inimigos.
+
+	r0927 - 09/11/2011 [Protimus]
 	* Correções para o sistema de montarias de aluguel.
 	- Visualização das classes com montarias corrigidas.
 	- Adicionado delay ao item de montarias de alguel.
