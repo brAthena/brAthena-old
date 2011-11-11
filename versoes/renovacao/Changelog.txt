@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0929 - 11/11/2011 [Mark]
+	* Adicionado Sistema de Túmulos de MvP.
+	- Ao matar um MvP que possui um respawn é criado um túmulo no lugar dele com as informações do MvP, do horário e do jogador que matou.
+	- No momento em que o MvP volta ao mapa o túmulo some até que alguém mate o MvP.
+
 	r0928 - 10/11/2011 [Protimus]
 	* Adicionada a habilidade:
 	- Zangetsu (OB_ZANGETSU).

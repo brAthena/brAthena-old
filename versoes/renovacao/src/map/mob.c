@@ -769,8 +769,10 @@ int mob_linksearch(struct block_list *bl,va_list ap)
  *------------------------------------------*/
 int mob_delayspawn(int tid, unsigned int tick, int id, intptr_t data)
 {
+	static char tombnpc[10];
 	struct block_list* bl = map_id2bl(id);
 	struct mob_data* md = BL_CAST(BL_MOB, bl);
+	struct mob_data *boss_md = map_getmob_boss(md->bl.m);
 
 	if( md )
 	{
@@ -780,6 +782,10 @@ int mob_delayspawn(int tid, unsigned int tick, int id, intptr_t data)
 			return 0;
 		}
 		md->spawn_timer = INVALID_TIMER;
+		if( md->spawn && boss_md->class_ == md->class_){
+			snprintf(tombnpc, sizeof(tombnpc), "%d%d", md->killer, md->bl.m);
+			npc_tombstoneremove(tombnpc); // Sistema de Túmulos de MvP [Mark]
+		}
 		mob_spawn(md);
 	}
 	return 0;
@@ -2467,8 +2473,14 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 		}
 		else if( mvp_sd && !md->state.npc_killmonster )
 		{
+			struct mob_data *boss_md = map_getmob_boss(md->bl.m);
 			pc_setparam(mvp_sd, SP_KILLEDRID, md->class_);
 			npc_script_event(mvp_sd, NPCE_KILLNPC); // PCKillNPC [Lance]
+			if( status->mode&MD_BOSS && md->spawn && boss_md->class_ == md->class_) 
+			{ // Sistema de Túmulos de MvP [Mark]
+				md->killer = mvp_sd->status.char_id;
+				npc_duplicatetombstone( md->bl.m, md->bl.x, md->bl.y, md->class_, mvp_sd->status.char_id);
+			}
 		}
 
 		md->status.hp = 1;

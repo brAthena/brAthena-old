@@ -150,7 +150,8 @@ int npc_script_event(struct map_session_data* sd, enum npce_event type);
 
 int npc_duplicate4instance(struct npc_data *snd, int m);
 int npc_cashshop_buy(struct map_session_data *sd, int nameid, int amount, int points);
-
+int npc_duplicatetombstone( int m, int x, int y, int mvpid, int killerid); // Sistema de Túmulos de MvP (Tombstone) [Mark]
+int npc_tombstoneremove( const char* name); // Sistema de Túmulos de MvP (Tombstone) [Mark]
 extern struct npc_data* fake_nd;
 
 #endif /* _NPC_H_ */

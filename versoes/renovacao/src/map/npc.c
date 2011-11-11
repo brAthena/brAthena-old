@@ -2523,6 +2523,50 @@ int npc_duplicate4instance(struct npc_data *snd, int m)
 	return 0;
 }
 
+/*============================================
+ * Sistema de Túmulos de MvP (Tombstone). [Mark]
+ *-------------------------------------------*/
+int npc_duplicatetombstone( int m, int x, int y, int mvpid, int killerid)
+{
+	char newname[NPC_NAME_LENGTH];
+	static char w1[50], w2[50], w3[50], w4[50], event[50];
+	const char* stat_buf = "- sistema de tumulos -\n";
+
+	if( map[m].instance_id )
+		return 1;
+
+	snprintf(newname, ARRAYLENGTH(newname), "%d%d", killerid, m);
+	if( npc_name2id(newname) != NULL )
+	{ // Nome do npc em uso.
+		ShowError("npc_duplicatetombstone: o nome de npc (%s) ja esta em uso para o MvP %d no mapa %s.\n", newname, mvpid, map[m].name);
+		return 1;
+	}
+
+		snprintf(w1, sizeof(w1), "%s,%d,%d,4", map[m].name, x, y);
+		snprintf(w2, sizeof(w2), "duplicate(TOMBSTONE)");
+		snprintf(w3, sizeof(w3), "Túmulo#%d::%s", mvpid, newname);
+		snprintf(w4, sizeof(w4), "-1");
+		snprintf(event, sizeof(event), "%s::OnTombstone", newname);
+		npc_parse_duplicate(w1, w2, w3, w4, stat_buf, stat_buf, "TOMBSTONE");
+		npc_event_do(event);
+	return 0;
+}
+
+/*============================================
+ * Sistema de Túmulos de MvP (Tombstone). [Mark]
+ *-------------------------------------------*/
+int npc_tombstoneremove( const char* name)
+{
+	struct npc_data *nd = npc_name2id(name);
+	if(nd == NULL)
+	{
+		ShowError("getnpcgid: NPC não encontrado: %s\n", name);
+		return 0;
+	}
+	npc_unload(nd);
+	return 0;
+}
+
 void npc_setcells(struct npc_data* nd)
 {
 	int m = nd->bl.m, x = nd->bl.x, y = nd->bl.y, xs, ys;

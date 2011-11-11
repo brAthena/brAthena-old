@@ -112,6 +112,7 @@ struct mob_data {
 	struct status_change sc;
 	struct mob_db *db;	//For quick data access (saves doing mob_db(md->class_) all the time) [Skotlex]
 	char name[NAME_LENGTH];
+	unsigned int killer; // Sistema de Túmulos de MvP (Tombstone) [Mark]
 	struct {
 		unsigned int size : 2; //Small/Big monsters.
 		unsigned int ai : 2; //Special ai for summoned monsters.
