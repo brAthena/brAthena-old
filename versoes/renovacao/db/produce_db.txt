@@ -635,5 +635,5 @@
 //-- Bloodsucker Seed <-- GN_S_PHARMACY & Plant Genetic Cultivation Guide & 10 Maneater Root
 6211,29,2497,1,6284,0,1033,10
 //-- Bomb Mushroom Seed <-- GN_S_PHARMACY & Plant Genetic Cultivation Guide & 10 Mushroom Spore, 5 Poison Mushroom Spore, 2 Black Powder
-6212,29,2497,1,6284,0,921,10,7033,5,6245,2
+6212,29,2497,1,6284,0,921,10,7033,5,6244,2
 //========================================================================================================

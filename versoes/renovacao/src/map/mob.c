@@ -782,7 +782,7 @@ int mob_delayspawn(int tid, unsigned int tick, int id, intptr_t data)
 			return 0;
 		}
 		md->spawn_timer = INVALID_TIMER;
-		if( md->tombstone && battle_config.active_mvp_tombstone){
+		if( md->killer && md->tombstone && battle_config.active_mvp_tombstone){
 			snprintf(tombnpc, sizeof(tombnpc), "%d%d", md->killer, md->bl.m);
 			npc_tombstoneremove(tombnpc); // Sistema de Túmulos de MvP [Mark]
 		}

@@ -9,6 +9,16 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0932 - 12/11/2011 [Mark]
+	* Revisada e Corrigida tabela de Exp relacionada às terceiras classes.
+	* Corrigido Sistema de Túmulos de MvP para casos do uso de killmonster.
+	* Corrigido ID na criação do item Esporo Explosivo por Bioquímicos.
+	* Corrigidas algumas quests do Grupo do Éden.
+	- Estava sendo possível obter exp infinito.
+	* Atualizado db/item_buyingstore.txt de acordo com atualização do kRO em 02/11/2011.
+	* Adicionados alguns itens no db/item_db.txt
+	- Alguns com pendência de script.
+
 	r0931 - 12/11/2011 [Mark]
 	* Corrigido Sistema de Túmulos de MvP.
 	* Adicionada flag (active_mvp_tombstone) para ativar ou desativar o Sistema de Túmulos.

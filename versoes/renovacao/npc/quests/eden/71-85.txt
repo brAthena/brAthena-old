@@ -259,7 +259,13 @@ morocc,35,174,5	script	Meidi#para	729,{
 		switch(select("Requiem:Marduk:Pasana")) {
 		case 1:
 			set .@chk_req,checkquest(10107,HUNTING);
-			if (.@chk_req == 2) {
+			if (meidipara&1) {
+				mes "[Meidi]";
+				mes "Perhaps you can eliminate others also.";
+				mes "I will wait for you here.";
+				close;
+			}
+			else if (.@chk_req == 2) {
 				mes "[Meidi]";
 				mes "You hunted all 10 Requiem.";
 				mes "Thank you very much.";
@@ -268,6 +274,7 @@ morocc,35,174,5	script	Meidi#para	729,{
 				mes "I know it isn't much but here's a small gift.";
 				mes "I hope that it helps you at least a little bit.";
 				next;
+				set meidipara,meidipara|1;
 				completequest 10107;
 				getexp 48000,0;
 				mes "[Meidi]";
@@ -285,7 +292,13 @@ morocc,35,174,5	script	Meidi#para	729,{
 			break;
 		case 2:
 			set .@chk_mar,checkquest(10108,HUNTING);
-			if (.@chk_mar == 2) {
+			if (meidipara&2) {
+				mes "[Meidi]";
+				mes "Perhaps you can eliminate others also.";
+				mes "I will wait for you here.";
+				close;
+			}
+			else if (.@chk_mar == 2) {
 				mes "[Meidi]";
 				mes "You hunted all 10 Marduk.";
 				mes "Thank you very much.";
@@ -294,6 +307,7 @@ morocc,35,174,5	script	Meidi#para	729,{
 				mes "I know it isn't much but here's a small gift.";
 				mes "I hope that it helps you at least a little bit.";
 				next;
+				set meidipara,meidipara|2;
 				completequest 10108;
 				getexp 48000,0;
 				mes "[Meidi]";
@@ -311,7 +325,13 @@ morocc,35,174,5	script	Meidi#para	729,{
 			break;
 		case 3:
 			set .@chk_pas,checkquest(10109,HUNTING);
-			if (.@chk_pas == 2) {
+			if (meidipara&4) {
+				mes "[Meidi]";
+				mes "Perhaps you can eliminate others also.";
+				mes "I will wait for you here.";
+				close;
+			}
+			else if (.@chk_pas == 2) {
 				mes "[Meidi]";
 				mes "Wow, you hunted 10 Pasana.";
 				mes "Cool.";
@@ -321,6 +341,7 @@ morocc,35,174,5	script	Meidi#para	729,{
 				mes "I know it isn't much but here's a small gift.";
 				mes "I hope that it helps you at least a little bit.";
 				next;
+				set meidipara,meidipara|4;
 				completequest 10109;
 				getexp 48000,0;
 				mes "[Meidi]";
@@ -426,12 +447,19 @@ geffen,146,132,3	script	Ancellia#para	906,{
 		switch(select("Dark Frame:Evil Druid:Wraith:Raydric Archer")) {
 		case 1:
 			set .@chk_dar,checkquest(10110,HUNTING);
-			if (.@chk_dar == 2) {
+			if (ancelliapara&1) {
+				mes "[Ancellia]";
+				mes "Perhaps you can eliminate others also.";
+				mes "I will wait for you here.";
+				close;
+			}
+			else if (.@chk_dar == 2) {
 				mes "[Ancellia]";
 				mes "Eliminate 10 Dark Frame.";
 				mes "That was pretty difficult!";
 				mes "Thank you very much.";
 				next;
+				set ancelliapara,ancelliapara|1;
 				completequest 10110;
 				getexp 48000,0;
 				mes "[Ancellia]";
@@ -449,12 +477,19 @@ geffen,146,132,3	script	Ancellia#para	906,{
 			break;
 		case 2:
 			set .@chk_eve,checkquest(10111,HUNTING);
-			if (.@chk_eve == 2) {
+			if (ancelliapara&2) {
+				mes "[Ancellia]";
+				mes "Perhaps you can eliminate others also.";
+				mes "I will wait for you here.";
+				close;
+			}
+			else if (.@chk_eve == 2) {
 				mes "[Ancellia]";
 				mes "Eliminate 10 Evil Druids.";
 				mes "That was pretty difficult!";
 				mes "Thank you very much.";
 				next;
+				set ancelliapara,ancelliapara|2;
 				completequest 10111;
 				getexp 48000,0;
 				mes "[Ancellia]";
@@ -472,12 +507,19 @@ geffen,146,132,3	script	Ancellia#para	906,{
 			break;
 		case 3:
 			set .@chk_wra,checkquest(10112,HUNTING);
-			if (.@chk_wra == 2) {
+			if (ancelliapara&4) {
+				mes "[Ancellia]";
+				mes "Perhaps you can eliminate others also.";
+				mes "I will wait for you here.";
+				close;
+			}
+			else if (.@chk_wra == 2) {
 				mes "[Ancellia]";
 				mes "Eliminate 10 Wraith.";
 				mes "That was pretty difficult!";
 				mes "Thank you very much.";
 				next;
+				set ancelliapara,ancelliapara|4;
 				completequest 10112;
 				getexp 48000,0;
 				mes "[Ancellia]";
@@ -495,12 +537,19 @@ geffen,146,132,3	script	Ancellia#para	906,{
 			break;
 		case 4:
 			set .@chk_red,checkquest(10113,HUNTING);
-			if (.@chk_red == 2) {
+			if (ancelliapara&8) {
+				mes "[Ancellia]";
+				mes "Perhaps you can eliminate others also.";
+				mes "I will wait for you here.";
+				close;
+			}
+			else if (.@chk_red == 2) {
 				mes "[Ancellia]";
 				mes "Eliminate 10 Raydric Archers.";
 				mes "That was pretty difficult!";
 				mes "Thank you very much.";
 				next;
+				set ancelliapara,ancelliapara|8;
 				completequest 10113;
 				getexp 48000,0;
 				mes "[Ancellia]";
@@ -604,11 +653,18 @@ aldebaran,144,230,3	script	Jeanbai#para	900,{
 		switch(select("Grand Peco:Sleeper:Goat:Harpy")) {
 		case 1:
 			set .@chk_gra,checkquest(10114,HUNTING);
-			if (.@chk_gra == 2) {
+			if (jeanbaipara&1) {
+				mes "[Jeanbai]";
+				mes "Please hunt the others as soon as possible.";
+				mes "I believe in you!";
+				close;
+			}
+			else if (.@chk_gra == 2) {
 				mes "[Jeanbai]";
 				mes "20 Grand Pecos. Perfect!";
 				mes "Thanks a lot.";
 				next;
+				set jeanbaipara,jeanbaipara|1;
 				completequest 10114;
 				getexp 48000,0;
 				mes "[Jeanbai]";
@@ -626,11 +682,18 @@ aldebaran,144,230,3	script	Jeanbai#para	900,{
 			break;
 		case 2:
 			set .@chk_sle,checkquest(10115,HUNTING);
-			if (.@chk_sle == 2) {
+			if (jeanbaipara&2) {
+				mes "[Jeanbai]";
+				mes "Please hunt the others as soon as possible.";
+				mes "I believe in you!";
+				close;
+			}
+			else if (.@chk_sle == 2) {
 				mes "[Jeanbai]";
 				mes "20 Sleepers!";
 				mes "Thanks a lot.";
 				next;
+				set jeanbaipara,jeanbaipara|2;
 				completequest 10115;
 				getexp 48000,0;
 				mes "[Jeanbai]";
@@ -648,12 +711,19 @@ aldebaran,144,230,3	script	Jeanbai#para	900,{
 			break;
 		case 3:
 			set .@chk_goa,checkquest(10116,HUNTING);
-			if (.@chk_goa == 2) {
+			if (jeanbaipara&4) {
+				mes "[Jeanbai]";
+				mes "Please hunt the others as soon as possible.";
+				mes "I believe in you!";
+				close;
+			}
+			else if (.@chk_goa == 2) {
 				mes "[Jeanbai]";
 				mes "20 Goats. Perfect!";
 				mes "I checked the amount and it was exact.";
 				mes "Thanks a lot.";
 				next;
+				set jeanbaipara,jeanbaipara|4;
 				completequest 10116;
 				getexp 48000,0;
 				mes "[Jeanbai]";
@@ -671,11 +741,18 @@ aldebaran,144,230,3	script	Jeanbai#para	900,{
 			break;
 		case 4:
 			set .@chk_har,checkquest(10117,HUNTING);
-			if (.@chk_har == 2) {
+			if (jeanbaipara&8) {
+				mes "[Jeanbai]";
+				mes "Please hunt the others as soon as possible.";
+				mes "I believe in you!";
+				close;
+			}
+			else if (.@chk_har == 2) {
 				mes "[Jeanbai]";
 				mes "20 Harpies. Perfect!!";
 				mes "Thanks a lot.";
 				next;
+				set jeanbaipara,jeanbaipara|8;
 				completequest 10117;
 				getexp 48000,0;
 				mes "[Jeanbai]";
@@ -780,13 +857,20 @@ aldebaran,105,116,3	script	Lizingshetter#para	869,{
 		switch(select("Clock:Punk:Rideword")) {
 		case 1:
 			set .@chk_clk,checkquest(10118,HUNTING);
-			if (.@chk_clk == 2) {
+			if (lizingpara&1) {
+				mes "[Lizingshetter]";
+				mes "I hope you can hunt others as well.";
+				mes "Go as soon as you can!";
+				close;
+			}
+			else if (.@chk_clk == 2) {
 				mes "[Lizingshetter]";
 				mes "Good! You hunted 15 Clocks.";
 				mes "Exactly! Ah, now";
 				mes "I can clearly hear the clock sound...";
 				mes "tic toc tic toc.";
 				next;
+				set lizingpara,lizingpara|1;
 				completequest 10118;
 				getexp 48000,0;
 				mes "[Lizingshetter]";
@@ -805,13 +889,20 @@ aldebaran,105,116,3	script	Lizingshetter#para	869,{
 			break;
 		case 2:
 			set .@chk_pun,checkquest(10119,HUNTING);
-			if (.@chk_pun == 2) {
+			if (lizingpara&2) {
+				mes "[Lizingshetter]";
+				mes "I hope you can hunt others as well.";
+				mes "Go as soon as you can!";
+				close;
+			}
+			else if (.@chk_pun == 2) {
 				mes "[Lizingshetter]";
 				mes "Good! You hunted 15 Punks.";
 				mes "Exactly! Ah, now";
 				mes "I can clearly hear the clock sound...";
 				mes "tic toc tic toc.";
 				next;
+				set lizingpara,lizingpara|2;
 				completequest 10119;
 				getexp 48000,0;
 				mes "[Lizingshetter]";
@@ -829,13 +920,20 @@ aldebaran,105,116,3	script	Lizingshetter#para	869,{
 			break;
 		case 3:
 			set .@chk_rid,checkquest(10120,HUNTING);
-			if (.@chk_rid == 2) {
+			if (lizingpara&4) {
+				mes "[Lizingshetter]";
+				mes "I hope you can hunt others as well.";
+				mes "Go as soon as you can!";
+				close;
+			}
+			else if (.@chk_rid == 2) {
 				mes "[Lizingshetter]";
 				mes "Good! You hunted 15 Ridewords.";
 				mes "Exactly! Ah, now";
 				mes "I can clearly hear the clock sound...";
 				mes "tic!! toc!! tic!! toc!!...";
 				next;
+				set lizingpara,lizingpara|4;
 				completequest 10120;
 				getexp 48000,0;
 				mes "[Lizingshetter]";
@@ -923,7 +1021,7 @@ alberta,215,111,5	script	Funfi#para	828,{
 		mes "Hahahaha...";
 		close;
 	}
-	if ((.@chk_roc1 == 0) || (.@chk_roc2 == 0) || (.@chk_roc3 == 0) | (.@chk_roc1 == 1) || (.@chk_roc2 == 1) || (.@chk_roc3 == 1)) {
+	if ((.@chk_roc1 == 0) || (.@chk_roc2 == 0) || (.@chk_roc3 == 0) || (.@chk_roc1 == 1) || (.@chk_roc2 == 1) || (.@chk_roc3 == 1)) {
 		mes "[Funfi]";
 		mes "Unbeilivable~! So fast~!";
 		mes "Which monster did you hunt?";
@@ -931,11 +1029,18 @@ alberta,215,111,5	script	Funfi#para	828,{
 		switch(select("Uzhas:Miyabi Doll:Mi Gao")) {
 		case 1:
 			set .@chk_uzh,checkquest(10121,HUNTING);
-			if (.@chk_uzh == 2) {
+			if (funfipara&1) {
+				mes "[Funfi]";
+				mes "Please hunt the others as well.";
+				mes "I trust you!";
+				close;
+			}
+			else if (.@chk_uzh == 2) {
 				mes "[Funfi]";
 				mes "Ok! 15 Uzhas!";
 				mes "Completed! Perfect!";
 				next;
+				set funfipara,funfipara|1;
 				completequest 10121;
 				getexp 48000,0;
 				mes "[Funfi]";
@@ -952,11 +1057,18 @@ alberta,215,111,5	script	Funfi#para	828,{
 			break;
 		case 2:
 			set .@chk_miy,checkquest(10122,HUNTING);
-			if (.@chk_miy == 2) {
+			if (funfipara&2) {
+				mes "[Funfi]";
+				mes "Please hunt the others as well.";
+				mes "I trust you!";
+				close;
+			}
+			else if (.@chk_miy == 2) {
 				mes "[Funfi]";
 				mes "Ok! 15 Miyabi Dolls!";
 				mes "Perfect!";
 				next;
+				set funfipara,funfipara|2;
 				completequest 10122;
 				getexp 48000,0;
 				mes "[Funfi]";
@@ -973,11 +1085,18 @@ alberta,215,111,5	script	Funfi#para	828,{
 			break;
 		case 3:
 			set .@chk_sik,checkquest(10123,HUNTING);
-			if (.@chk_sik == 2) {
+			if (funfipara&4) {
+				mes "[Funfi]";
+				mes "Please hunt the others as well.";
+				mes "I trust you!";
+				close;
+			}
+			else if (.@chk_sik == 2) {
 				mes "[Funfi]";
 				mes "Ok! 15 Mi Gaos!";
 				mes "Perfect!";
 				next;
+				set funfipara,funfipara|4;
 				completequest 10123;
 				getexp 48000,0;
 				mes "[Funfi]";
