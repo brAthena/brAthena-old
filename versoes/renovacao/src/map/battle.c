@@ -5290,6 +5290,7 @@ static const struct _battle_data {
 	{ "max_level_classe",                   &battle_config.max_level_classe,                100,    0,      INT_MAX,        },
 	{ "block_relocation_trapped",           &battle_config.block_relocation,                  1,    0,      1,              },
 	{ "metallicsound_spburn_rate",          &battle_config.metallicsound_spburn_rate,        100,   0,      INT_MAX,        },
+	{ "active_mvp_tombstone",               &battle_config.active_mvp_tombstone,              1,    0,      1,              },
 };
 
 

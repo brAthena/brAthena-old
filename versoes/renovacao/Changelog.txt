@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0931 - 12/11/2011 [Mark]
+	* Corrigido Sistema de Túmulos de MvP.
+	* Adicionada flag (active_mvp_tombstone) para ativar ou desativar o Sistema de Túmulos.
+
 	r0930 - 11/11/2011 [Protimus]
 	* Adicionadas algumas traduções para a source.
 	- Será feita uma revisão de tudo que foi feito e realizadas mais traduções.
