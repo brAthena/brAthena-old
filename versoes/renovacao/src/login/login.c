@@ -219,7 +219,7 @@ void chrif_server_reset(int id)
 /// Called when the connection to Char Server is disconnected.
 void chrif_on_disconnect(int id)
 {
-	ShowStatus("Char-server '%s' has disconnected.\n", server[id].name);
+	ShowStatus("O servidor de personagens '%s' foi desconectado.\n", server[id].name);
 	chrif_server_reset(id);
 }
 
@@ -402,7 +402,7 @@ int parse_fromchar(int fd)
 	ARR_FIND( 0, ARRAYLENGTH(server), id, server[id].fd == fd );
 	if( id == ARRAYLENGTH(server) )
 	{// not a char server
-		ShowDebug("parse_fromchar: Disconnecting invalid session #%d (is not a char-server)\n", fd);
+		ShowDebug("parse_fromchar: Desconectando entrada invalida #%d (nao e um servidor de personagens)\n", fd);
 		set_eof(fd);
 		do_close(fd);
 		return 0;
@@ -744,12 +744,12 @@ int parse_fromchar(int fd)
 			int account_id = RFIFOL(fd,4);
 
 			if( !accounts->load_num(accounts, &acc, account_id) )
-				ShowStatus("Servidor de personagens '%s': recebendo (do char-server) de account_reg2 (conta: %d nao encontrada, ip: %s).\n", server[id].name, account_id, ip);
+				ShowStatus("Servidor de personagens '%s': recebendo de account_reg2 (conta: %d nao encontrada, ip: %s).\n", server[id].name, account_id, ip);
 			else
 			{
 				int len;
 				int p;
-				ShowNotice("char-server '%s': recebendo (do char-server) de account_reg2 (conta: %d, ip: %s).\n", server[id].name, account_id, ip);
+				ShowNotice("Servidor de personagens '%s': recebendo de account_reg2 (conta: %d, ip: %s).\n", server[id].name, account_id, ip);
 				for( j = 0, p = 13; j < ACCOUNT_REG2_NUM && p < RFIFOW(fd,2); ++j )
 				{
 					sscanf((char*)RFIFOP(fd,p), "%31c%n", acc.account_reg2[j].str, &len);
@@ -878,13 +878,13 @@ int parse_fromchar(int fd)
 		break;
 
 		case 0x2737: //Request to set all offline.
-			ShowInfo("Marcando contas do char-server %d como offline.\n", id);
+			ShowInfo("Marcando contas do servidor de personagens %d como offline.\n", id);
 			online_db->foreach(online_db, online_db_setoffline, id);
 			RFIFOSKIP(fd,2);
 		break;
 
 		default:
-			ShowError("parse_fromchar: packet desconhecido 0x%x de um char-server! Desconectando!\n", command);
+			ShowError("parse_fromchar: pacote desconhecido 0x%x de uma entrada no servidor de personagens! Desconectando!\n", command);
 			set_eof(fd);
 			return 0;
 		} // switch
@@ -1103,7 +1103,7 @@ void login_auth_ok(struct login_session_data* sd)
 
 	if( server_num == 0 )
 	{// if no char-server, don't send void list of servers, just disconnect the player with proper message
-		ShowStatus("Conexao recusada: nao ha um char-server online (conta: %s).\n", sd->userid);
+		ShowStatus("Conexao recusada: nao ha um servidor de personagens online (conta: %s).\n", sd->userid);
 		WFIFOHEAD(fd,3);
 		WFIFOW(fd,0) = 0x81;
 		WFIFOB(fd,2) = 1; // 01 = Server closed
@@ -1448,7 +1448,7 @@ int parse_login(int fd)
 			new_ = RFIFOW(fd,84);
 			RFIFOSKIP(fd,86);
 
-			ShowInfo("Conexao do char-server '%s' @ %u.%u.%u.%u:%u requisitada (conta: '%s', senha: '%s', ip: '%s')\n", server_name, CONVIP(server_ip), server_port, sd->userid, sd->passwd, ip);
+			ShowInfo("Conexao do servidor de personagens '%s' @ %u.%u.%u.%u:%u requisitada (conta: '%s', senha: '%s', ip: '%s')\n", server_name, CONVIP(server_ip), server_port, sd->userid, sd->passwd, ip);
 			sprintf(message, "charserver - %s@%u.%u.%u.%u:%u", server_name, CONVIP(server_ip), server_port);
 			login_log(session[fd]->client_addr, sd->userid, 100, message);
 
@@ -1459,7 +1459,7 @@ int parse_login(int fd)
 				sd->account_id >= 0 && sd->account_id < ARRAYLENGTH(server) &&
 				!session_isValid(server[sd->account_id].fd) )
 			{
-				ShowStatus("Conexao do char-server '%s' aceita.\n", server_name);
+				ShowStatus("Conexao do servidor de personagens '%s' aceita.\n", server_name);
 				safestrncpy(server[sd->account_id].name, server_name, sizeof(server[sd->account_id].name));
 				server[sd->account_id].fd = fd;
 				server[sd->account_id].ip = server_ip;
@@ -1480,7 +1480,7 @@ int parse_login(int fd)
 			}
 			else
 			{
-				ShowNotice("Conexao do char-server '%s' RECUSADA.\n", server_name);
+				ShowNotice("Conexao do servidor de personagens '%s' RECUSADA.\n", server_name);
 				WFIFOHEAD(fd,3);
 				WFIFOW(fd,0) = 0x2711;
 				WFIFOB(fd,2) = 3;
@@ -1490,7 +1490,7 @@ int parse_login(int fd)
 		return 0; // processing will continue elsewhere
 
 		default:
-			ShowNotice("Fim de conexao anormal (ip: %s): Packet desconhecido 0x%x\n", ip, command);
+			ShowNotice("Fim de conexao anormal (ip: %s): Pacote desconhecido 0x%x\n", ip, command);
 			set_eof(fd);
 			return 0;
 		}

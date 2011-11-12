@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0930 - 11/11/2011 [Protimus]
+	* Adicionadas algumas traduções para a source.
+	- Será feita uma revisão de tudo que foi feito e realizadas mais traduções.
+
 	r0929 - 11/11/2011 [Mark]
 	* Adicionado Sistema de Túmulos de MvP.
 	- Ao matar um MvP que possui um respawn é criado um túmulo no lugar dele com as informações do MvP, do horário e do jogador que matou.

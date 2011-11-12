@@ -1852,7 +1852,7 @@ void loginif_check_shutdown(void)
 /// Called when the connection to Login Server is disconnected.
 void loginif_on_disconnect(void)
 {
-	ShowWarning("Connection to Login Server lost.\n\n");
+	ShowWarning("A conexao com o servidor de login foi perdida.\n\n");
 }
 
 
@@ -1869,7 +1869,7 @@ void loginif_on_ready(void)
 	// if no map-server already connected, display a message...
 	ARR_FIND( 0, ARRAYLENGTH(server), i, server[i].fd > 0 && server[i].map[0] );
 	if( i == ARRAYLENGTH(server) )
-		ShowStatus("Awaiting maps from map-server.\n");
+		ShowStatus("Aguardando leitura do servidor de mapas.\n");
 }
 
 
@@ -1881,7 +1881,7 @@ int parse_fromlogin(int fd)
 	// only process data from the login-server
 	if( fd != login_fd )
 	{
-		ShowDebug("parse_fromlogin: Disconnecting invalid session #%d (is not the login-server)\n", fd);
+		ShowDebug("parse_fromlogin: Desconectando entrada invalida #%d (nao e um servidor de personagens)\n", fd);
 		do_close(fd);
 		return 0;
 	}
@@ -4503,9 +4503,9 @@ int do_init(int argc, char **argv)
 	sql_config_read(SQL_CONF_NAME);
 
 	if (strcmp(userid, "s1")==0 && strcmp(passwd, "p1")==0) {
-		ShowError("Utilizar o usuario/senha padrao s1/p1 NAO E RECOMENDADO.\n");
+		ShowError("Utilizar o usuario/senha padrao 's1/p1' NAO E RECOMENDADO.\n");
 		ShowNotice("Por favor edite sua tabela 'login' para criar usuario/senha corretos para o inter-server (sexo 'S')\n");
-		ShowNotice("e entao modifique usuario/senha utilizados no conf/char_athena.conf (ou conf/import/char_conf.txt)\n");
+		ShowNotice("Apos isso, modifique usuario/senha utilizados no conf/char_athena.conf (ou conf/import/char_conf.txt)\n");
 	}
 
 	ShowInfo("Carregamento das configuracoes do servidor de personagens terminado.\n");
