@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0933 - 12/11/2011 [Protimus]
+	* Enviadas algumas revisões da pasta CONF.
+	- Ajustes na estética e erros ortográficos.
+	- Será enviada a segunda parte em outro envio.
+
 	r0932 - 12/11/2011 [Mark]
 	* Revisada e Corrigida tabela de Exp relacionada às terceiras classes.
 	* Corrigido Sistema de Túmulos de MvP para casos do uso de killmonster.

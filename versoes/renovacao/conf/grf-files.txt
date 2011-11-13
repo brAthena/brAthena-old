@@ -16,6 +16,7 @@
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Modificação [brAthena]                             |
+// | 1.1 Traduções revisadas [Protimus]				    	|
 // | - Anotações                                            |
 // | "Comentários" devem ser adicionados com // no início   |
 // | da frase, senão você causará problemas de conf, pois o |
@@ -27,11 +28,11 @@
 
 // grf: C:\caminho\da\pasta\RO\data.grf
 // grf: C:\caminho\da\pasta\RO\sdata.grf
-// Você deve adicionar o caminho de sua GRF do Ragnarök, conforme exemplos acima.
+// Você deve adicionar o caminho de sua GRF do Ragnarök conforme os exemplos acima.
 //grf: <diretório do grf>
 
 //----- Servidor -----
 
 // Diretório da pasta data (Pasta data do seu servidor)
-// Como exemplo "C:\caminho\da\pasta\RO\data\", ficaria:
+// Exemplo: "C:\caminho\da\pasta\RO\data\", ficaria:
 //data_dir: C:\caminho\da\pasta\RO\
