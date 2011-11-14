@@ -4786,6 +4786,32 @@ ACMD_FUNC(mount)
 }
 
 /*==========================================
+ * Montarias de Aluguel para qualquer classe.
+ *------------------------------------------*/
+ACMD_FUNC(allriding)
+{
+	struct status_change* sc = status_get_sc(&sd->bl);
+	nullpo_retr(-1, sd);
+	if ( sc->data[SC_ALL_RIDING] )
+	{
+		status_change_end(&sd->bl, SC_ALL_RIDING, -1);
+		clif_displaymessage(fd, "Sua montaria foi retirada.");
+		return 0;
+	}
+	else if (pc_isriding(sd,OPTION_RIDING|OPTION_RIDING_DRAGON|OPTION_RIDING_WUG|OPTION_MADO))
+	{
+		clif_displaymessage(fd, "Você já está em uma montaria.");
+		return 0;
+	}
+	else
+	{
+		clif_skill_nodamage(&sd->bl,&sd->bl,ALL_RIDING,-1,sc_start(&sd->bl,SC_ALL_RIDING,100,1,skill_get_time(ALL_RIDING,1)));
+		clif_displaymessage(fd, "Você está montando.");
+		return 0;
+	}
+}
+
+/*==========================================
  *Spy Commands by Syrus22
  *------------------------------------------*/
 ACMD_FUNC(guildspy)
@@ -9203,6 +9229,7 @@ AtCommandInfo atcommand_info[] = {
 // brAthena Modificações
 	{ "whosell",            1,1,      atcommand_whosell },
 	{ "mount",             20,20,     atcommand_mount },
+	{ "allriding",         20,20,     atcommand_allriding },
 
 };
 

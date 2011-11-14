@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0934 - 14/11/2011 [Mark]
+	* Criado comando @allriding.
+	- Ativa e Desativa as Montarias de Aluguel no personagem.
+
 	r0933 - 12/11/2011 [Protimus]
 	* Enviadas algumas revisões da pasta CONF.
 	- Ajustes na estética e erros ortográficos.
