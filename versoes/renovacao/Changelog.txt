@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0935 - 14/11/2011 [brn0]
+	* Correção no MAPID de Kagerou e Oboro.
+
 	r0934 - 14/11/2011 [Mark]
 	* Criado comando @allriding.
 	- Ativa e Desativa as Montarias de Aluguel no personagem.

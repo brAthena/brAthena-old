@@ -12,7 +12,7 @@
 // |--------------------------------------------------------|
 // | Criado por: brA Dev. Team                              |
 // |--------------------------------------------------------|
-// | Versões brA: 1.0                                       |
+// | Versão brA: 1.0                                        |
 // |--------------------------------------------------------|
 // | Descrição: NPCs de Dewata.                             |
 // |--------------------------------------------------------|
@@ -34,8 +34,8 @@ alberta,240,47,4	script	Marinheiro de Dewata	536,{
 		mes "quando quiser viajar.";
 		close;
 	}
+	mes "[Marinheiro de Dewata]";
 	if(Zeny < 10000) {
-		mes "[Marinheiro de Dewata]";
 		mes "Eu lamentos, mas você";
 		mes "não tem dinheiro suficiente agora.";
 		mes "Você precisa de 10000 zeny";
@@ -43,7 +43,6 @@ alberta,240,47,4	script	Marinheiro de Dewata	536,{
 		mes "Muito obrigado!";
 		close;
 	}
-	mes "[Marinheiro de Dewata]";
 	mes "^8C4210Dewata^000000 é";
 	mes "um belo e pacífico";
 	mes "país insular.";
