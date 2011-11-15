@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0936 - 15/11/2011 [brn0]
+	* Adicionados os guias de Dewata.
+	- npc/guias/guias_dewata.txt
+
 	r0935 - 14/11/2011 [brn0]
 	* Correção no MAPID de Kagerou e Oboro.
 
