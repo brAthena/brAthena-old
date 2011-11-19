@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0937 - 19/11/2011 [insidemybrain!]
+	* Corrigido tempo de conjuração da Habilidade ALL_RIDING
+	- De acordo com o Sakray do bRO, a habilidade é de instant cast tendo apenas delay no uso do item.
+
 	r0936 - 15/11/2011 [brn0]
 	* Adicionados os guias de Dewata.
 	- npc/guias/guias_dewata.txt
@@ -153,11 +157,11 @@
 	* Adicionados valores de pré-requesitos para árvore de habilidades.
 	- Liberado uso da árvore de habilidades conforme kRO.
 
-	r0908 - 03/11/2011 [insidemybrain]
+	r0908 - 03/11/2011 [insidemybrain!]
 	* Adicionado mais partes do esqueleto das Habilidades de Kagerou e Oboro na db.
 	- Adição na skill_db e correção na skill_require_db;
 
-	r0907 - 03/11/2011 [insidemybrain]
+	r0907 - 03/11/2011 [insidemybrain!]
 	* Corrigido o script do tem Rondel (Ice Pick)
 	- Não estava ignorando a defesa de monstros tipo Chefe e normais, conforme está na Renovação.
 	- Agora o dano é o mesmo ou está na mesma faixa de dano;
@@ -165,7 +169,7 @@
 	- Todos apresentaram danos na faixa de 460~700, o que no caso está certo.
 	- Caso ainda esteja errado, favor reportar no Tracker
 
-	r0906 - 02/11/2011 [insidemybrain]
+	r0906 - 02/11/2011 [insidemybrain!]
 	* Enviado esqueleto dos itens das classes Kagerou e Oboro
 	- Todos os itens ainda terão seus efeitos adicionados e ainda não estão prontos para a utilização.
 	- AVISO: Não tentem usá-los poderá causar bug.
@@ -3794,7 +3798,7 @@
 	* Corrigido um pequeno bug com relação ao "killmonsterall". Report por: xMaickx
 	- classes/2-1/cacador.txt
 
-	r0107 - 17/01/2011 [insidemybrain]
+	r0107 - 17/01/2011 [insidemybrain!]
 	* Adicionados novos npc's traduzidos, cada um com sua respectiva pasta abaixo:
 	- classes/valquíria.txt (REVISADO/CONCLUÍDO)
 	- eventos/pascoa.txt (REVISADO/CONCLUÍDO)
@@ -3802,7 +3806,7 @@
 	- quests/doomed_swords.txt (APENAS TRADUZIDO)
 	- quests/habilidades/habilidades_cavaleiro.txt (APENAS TRADUZIDO)
 
-	r0106 - 17/01/2011 [insidemybrain]
+	r0106 - 17/01/2011 [insidemybrain!]
 	* Adicionadas as traduções de todos npcs da pasta outros/turbotrack.
 
 	r0105 - 17/01/2011 [Protimus]
