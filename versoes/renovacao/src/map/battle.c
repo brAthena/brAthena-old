@@ -3952,7 +3952,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		wd = battle_calc_weapon_attack(src,target,skill_num,skill_lv,mflag);
 		md.damage += wd.damage;
 		if (skill_num != RA_CLUSTERBOMB) {
-			if (src != target && md.damage > 0) {
+			if (sd && src != target && md.damage > 0) {
 				if (battle_config.left_cardfix_to_right)
 					battle_drain(sd, target, md.damage, md.damage, tstatus->race, is_boss(target));
 				else

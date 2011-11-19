@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0938 - 19/11/2011 [brn0]
+	* Corrigidos alguns alertas no map-server.
+	* Corrigido problema com armadilhas de clones.
+	* Corrigido o problema de queda do map-server quando pets usavam habilidades.
+
 	r0937 - 19/11/2011 [insidemybrain!]
 	* Corrigido tempo de conjuração da Habilidade ALL_RIDING
 	- De acordo com o Sakray do bRO, a habilidade é de instant cast tendo apenas delay no uso do item.

@@ -1184,9 +1184,6 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 		sc_start(bl,SC_FREEZING,20+10*skilllv,skilllv,skill_get_time2(skillid,skilllv));
 		sc_start(bl,SC_FREEZE,10*skilllv,skilllv,skill_get_time2(skillid,skilllv));
 		break;
-	case NC_MAGNETICFIELD:
-		sc_start2(bl,SC_MAGNETICFIELD,100,skilllv,src->id,skill_get_time(skillid,skilllv));
-		break;
 	case LG_MOONSLASHER:
 		rate = 32 + 8 * skilllv;
 		if( rand()%100 < rate && dstsd ) // Uses skill_addtimerskill to avoid damage and setsit packet overlaping. Officially clif_setsit is received about 500 ms after damage packet.
@@ -4106,6 +4103,10 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 			clif_skill_damage(src,src,tick, status_get_amotion(src), 0, -30000, 1, skillid, skilllv, 6);
 			if( sd ) pc_overheat(sd,1);
 		}
+		break;
+
+	case NC_MAGNETICFIELD:
+		sc_start2(bl,SC_MAGNETICFIELD,100,skilllv,src->id,skill_get_time(skillid,skilllv));
 		break;
 
 	case WL_FROSTMISTY:
@@ -8213,7 +8214,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			if ( rand()%100 < rate && clif_skill_nodamage(bl, src, skillid, skilllv,
 				sc_start(bl, type, 100, skilllv, skill_get_time(skillid, skilllv))) )
 				status_zap(bl, 0, status_get_max_sp(bl) / 100 * (25 + 5 * skilllv));
-			else
+			else if(sd)
 				clif_skill_fail(sd,skillid,0,0,0);
 		}
 		else
@@ -9597,7 +9598,8 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 		break;
 
 	case NC_MAGICDECOY:
-		clif_magicdecoy_list(sd,skilllv,x,y);
+		if(sd)
+			clif_magicdecoy_list(sd,skilllv,x,y);
 		break;
 
 	case NC_NEUTRALBARRIER:
@@ -12892,13 +12894,11 @@ int skill_castfix (struct block_list *bl, int skill_id, int skill_lv)
 			cast_fixo_reduct -= cast_fixo_reduct*sc->data[SC__LAZINESS]->val2;
 		if(sc->data[SC_IZAYOI])
 			cast_fixo_reduct -= cast_fixo_reduct*sc->data[SC_IZAYOI]->val3;
+		if(sd && pc_checkskill(sd, WL_RADIUS) && skill_id >= WL_WHITEIMPRISON && skill_id <= WL_FREEZE_SP)
+			cast_fixo_reduct = max(cast_fixo_reduct,5+5*pc_checkskill(sd,WL_RADIUS));
+		if(sc->data[SC_SECRAMENT] && sc->data[SC_SECRAMENT]->val2 > cast_fixo_reduct )
+			cast_fixo_reduct = sc->data[SC_SECRAMENT]->val2;
 	}
-
-	if(sd && pc_checkskill(sd, WL_RADIUS) && skill_id >= WL_WHITEIMPRISON && skill_id <= WL_FREEZE_SP)
-		cast_fixo_reduct = max(cast_fixo_reduct,5+5*pc_checkskill(sd,WL_RADIUS));
-
-	if( sc->data[SC_SECRAMENT] && sc->data[SC_SECRAMENT]->val2 > cast_fixo_reduct )
-	cast_fixo_reduct = sc->data[SC_SECRAMENT]->val2;
 
 	time += base_cast*(100-cast_fixo_reduct)/500;
 

@@ -4707,7 +4707,7 @@ int clif_skill_fail(struct map_session_data *sd,int skill_id,int type,int btype,
 	int fd;
 
 	if (!sd) {	//Since this is the most common nullpo....
-		ShowDebug("clif_skill_fail: Erro, NULL sd revebido para habilidade %d\n", skill_id);
+		ShowDebug("clif_skill_fail: Erro, NULL sd recebido para habilidade %d\n", skill_id);
 		return 0;
 	}
 
