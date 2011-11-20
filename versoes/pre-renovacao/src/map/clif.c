@@ -3881,6 +3881,7 @@ int clif_damage(struct block_list* src, struct block_list* dst, unsigned int tic
 	WBUFL(buf,14)=sdelay;
 	WBUFL(buf,18)=ddelay;
 #if PACKETVER < 20071113
+	if (battle_config.hide_woe_damage && map_flag_gvg(src->m)) {
 		WBUFW(buf,22)=damage?div:0;
 		WBUFW(buf,27)=damage2?div:0;
 	} else {
@@ -3911,11 +3912,12 @@ int clif_damage(struct block_list* src, struct block_list* dst, unsigned int tic
 		WBUFL(buf,2) = -src->id;
 		if (disguised(dst))
 			WBUFL(buf,6) = dst->id;
-		if(damage > 0) WBUFW(buf,22) = -1;
 #if PACKETVER < 20071113
+		if(damage > 0) WBUFW(buf,22) = -1;
 		if(damage2 > 0) WBUFW(buf,27) = -1;
 #else
-		if(damage2 > 0) WBUFW(buf,29) = -1;
+		if(damage > 0) WBUFL(buf,22) = -1;
+		if(damage2 > 0) WBUFL(buf,29) = -1;
 #endif
 		clif_send(buf,packet_len(cmd),src,SELF);
 	}
@@ -4256,7 +4258,7 @@ int clif_skillinfoblock(struct map_session_data *sd)
 		if( (id = sd->status.skill[i].id) != 0 )
 		{
 			WFIFOW(fd,len)   = id;
-			WFIFOW(fd,4) = skill_get_inf(id);
+			WFIFOW(fd,len+2) = skill_get_inf(id);
 			WFIFOW(fd,len+4) = 0;
 			WFIFOW(fd,len+6) = sd->status.skill[i].lv;
 			WFIFOW(fd,len+8) = skill_get_sp(id,sd->status.skill[i].lv);
@@ -13119,6 +13121,12 @@ void clif_Auction_results(struct map_session_data *sd, short count, short pages,
 	WFIFOSET(fd,WFIFOW(fd,2));
 }
 
+
+/// Result from request to add an item (ZC_ACK_AUCTION_ADD_ITEM)
+/// 0256 <index>.W <result>.B
+/// result:
+///     0 = success
+///     1 = failure
 static void clif_Auction_setitem(int fd, int index, bool fail)
 {
 	WFIFOHEAD(fd,packet_len(0x256));
@@ -13128,6 +13136,13 @@ static void clif_Auction_setitem(int fd, int index, bool fail)
 	WFIFOSET(fd,packet_len(0x256));
 }
 
+
+/// Request to initialize 'new auction' data (CZ_AUCTION_CREATE)
+/// 024b <type>.W
+/// type:
+///     0 = create (any other action in auction window)
+///     1 = cancel (cancel pressed on register tab)
+///     ? = junk, uninitialized value (ex. when switching between list filters)
 void clif_parse_Auction_cancelreg(int fd, struct map_session_data *sd)
 {
 	if( sd->auction.amount > 0 )
@@ -13136,6 +13151,9 @@ void clif_parse_Auction_cancelreg(int fd, struct map_session_data *sd)
 	sd->auction.amount = 0;
 }
 
+
+/// Request to add an item to the action (CZ_AUCTION_ADD_ITEM)
+/// 024c <index>.W <count>.L
 void clif_parse_Auction_setitem(int fd, struct map_session_data *sd)
 {
 	int idx = RFIFOW(fd,2) - 2;
@@ -13200,7 +13218,7 @@ void clif_Auction_message(int fd, unsigned char flag)
 /// result:
 ///     0 = You have ended the auction
 ///     1 = You cannot end the auction
-///     2 = Bid number is incorrect
+///     2 = Auction ID is incorrect
 void clif_Auction_close(int fd, unsigned char flag)
 {
 	WFIFOHEAD(fd,packet_len(0x25e));
@@ -13209,6 +13227,9 @@ void clif_Auction_close(int fd, unsigned char flag)
 	WFIFOSET(fd,packet_len(0x25e));
 }
 
+
+/// Request to add an auction (CZ_AUCTION_ADD)
+/// 024d <now money>.L <max money>.L <delete hour>.W
 void clif_parse_Auction_register(int fd, struct map_session_data *sd)
 {
 	struct auction_data auction;
@@ -13285,6 +13306,9 @@ void clif_parse_Auction_register(int fd, struct map_session_data *sd)
 	}
 }
 
+
+/// Cancels an auction (CZ_AUCTION_ADD_CANCEL)
+/// 024e <auction id>.L
 void clif_parse_Auction_cancel(int fd, struct map_session_data *sd)
 {
 	unsigned int auction_id = RFIFOL(fd,2);
@@ -13292,6 +13316,9 @@ void clif_parse_Auction_cancel(int fd, struct map_session_data *sd)
 	intif_Auction_cancel(sd->status.char_id, auction_id);
 }
 
+
+/// Closes an auction (CZ_AUCTION_REQ_MY_SELL_STOP)
+/// 025d <auction id>.L
 void clif_parse_Auction_close(int fd, struct map_session_data *sd)
 {
 	unsigned int auction_id = RFIFOL(fd,2);
@@ -13299,6 +13326,9 @@ void clif_parse_Auction_close(int fd, struct map_session_data *sd)
 	intif_Auction_close(sd->status.char_id, auction_id);
 }
 
+
+/// Places a bid on an auction (CZ_AUCTION_BUY)
+/// 024f <auction id>.L <money>.L
 void clif_parse_Auction_bid(int fd, struct map_session_data *sd)
 {
 	unsigned int auction_id = RFIFOL(fd,2);
@@ -13321,23 +13351,34 @@ void clif_parse_Auction_bid(int fd, struct map_session_data *sd)
 	}
 }
 
-/*------------------------------------------
- * Auction Search
- * S 0251 <search type>.w <search price>.l <search text>.24B <page number>.w
- * Search Type: 0 Armor 1 Weapon 2 Card 3 Misc 4 By Text 5 By Price 6 Sell 7 Buy
- *------------------------------------------*/
+
+/// Auction Search (CZ_AUCTION_ITEM_SEARCH)
+/// 0251 <search type>.W <auction id>.L <search text>.24B <page number>.W
+/// search type:
+///     0 = armor
+///     1 = weapon
+///     2 = card
+///     3 = misc
+///     4 = name search
+///     5 = auction id search
 void clif_parse_Auction_search(int fd, struct map_session_data* sd)
 {
 	char search_text[NAME_LENGTH];
 	short type = RFIFOW(fd,2), page = RFIFOW(fd,32);
-	int price = RFIFOL(fd,4);
+	int price = RFIFOL(fd,4);  // FIXME: bug #5071
 
 	clif_parse_Auction_cancelreg(fd, sd);
-
-	safestrncpy(search_text, (char*)RFIFOP(fd,8), NAME_LENGTH);
+	
+	safestrncpy(search_text, (char*)RFIFOP(fd,8), sizeof(search_text));
 	intif_Auction_requestlist(sd->status.char_id, type, price, search_text, page);
 }
 
+
+/// Requests list of own currently active bids or auctions (CZ_AUCTION_REQ_MY_INFO)
+/// 025c <type>.W
+/// type:
+///     0 = sell (own auctions)
+///     1 = buy (own bids)
 void clif_parse_Auction_buysell(int fd, struct map_session_data* sd)
 {
 	short type = RFIFOW(fd,2) + 6;
@@ -15537,6 +15578,13 @@ static int packetdb_readdb(void)
 			if(p2) *p2++=0;
 			k = atoi(str2[j]);
 			// if (packet_db[packet_ver][cmd].pos[j] != k && clif_config.prefer_packet_db)	// not used for now
+
+			if( j >= MAX_PACKET_POS )
+			{
+				ShowError("Too many positions found for packet 0x%04x (max=%d).\n", cmd, MAX_PACKET_POS);
+				break;
+			}
+
 			packet_db[packet_ver][cmd].pos[j] = k;
 		}
 	}

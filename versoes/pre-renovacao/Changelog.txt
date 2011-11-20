@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0939 - 20/11/2011 [Protimus]
+	* Corrigido problema com habilidades.
+	- Não estava sendo possível executá-las com clientes de versões anteriores à 2011.
+	* Correções de envios anteriores.
+	- Readicionado comentários do eAthena para certas funções.
+
 	r901 - 26/10/2011 [Feanor]
 	* Correções em frases, remoção de condição do if, e remoção corrigido uma tabulação incorreta.
 	- npc/eventos/god_se_festival.txt

@@ -2171,7 +2171,7 @@ int map_removemobs_timer(int tid, unsigned int tick, int id, intptr_t data)
 
 void map_removemobs(int m)
 {
-	if (map[m].mob_delete_timer != -1) // should never happen
+	if (map[m].mob_delete_timer != INVALID_TIMER) // should never happen
 		return; //Mobs are already scheduled for removal
 
 	map[m].mob_delete_timer = add_timer(gettick()+battle_config.mob_remove_delay, map_removemobs_timer, m, 0);

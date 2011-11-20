@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0939 - 20/11/2011 [Protimus]
+	* Correções de envios anteriores.
+	- Readicionado comentários do eAthena para certas funções.
+
 	r0938 - 19/11/2011 [brn0]
 	* Corrigidos alguns alertas no map-server.
 	* Corrigido problema com armadilhas de clones.
