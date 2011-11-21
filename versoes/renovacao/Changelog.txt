@@ -9,6 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0940 - 20/11/2011 [Protimus]
+	* Corrigida a habilidade Gênese (AB_CLEARANCE).
+	- Afeta apenas membros do grupo e não todos da tela.
+	* Corrigida a habilidade Curatio (AB_HIGHNESSHEAL).
+	- Tempo de reuso da habilidade ajustado conforme o nível.
+	* Corrigida a habilidade Impacto de Tyr (KN_BOWLINGBASH).
+	- Removido tempo de reuso.
+
 	r0939 - 20/11/2011 [Protimus]
 	* Correções de envios anteriores.
 	- Readicionado comentários do eAthena para certas funções.
