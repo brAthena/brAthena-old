@@ -2209,7 +2209,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 						skillratio += -100 + (sstatus->batk + sstatus->watk) * sd->rageball_old * 2 * s_base_level/100 + ((sstatus->max_hp - sstatus->hp)/33);
 					break;
 				case GN_CART_TORNADO:
-					skillratio += 50 * skill_lv + pc_checkskill(sd, GN_REMODELING_CART) * 100 - 100;
+					skillratio += (50 * skill_lv) + (sd->cart_weight / (150 - sstatus->str)) + (pc_checkskill(sd, GN_REMODELING_CART) * 50);
 					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
 					if( sc && sc->data[SC_GN_CARTBOOST] )
 						skillratio += 10 * sc->data[SC_GN_CARTBOOST]->val1;

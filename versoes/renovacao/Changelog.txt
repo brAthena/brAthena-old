@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0941 - 22/11/2011 [Protimus]
+	* Corrigida a habilidade Kaizel (SL_KAIZEL).
+	- Estava sendo possível usar na WoE em jogadores aliados e ressucitando-os automáticamente.
+	* Corrigida a habilidade Tornado de Carrinho (GN_CART_TORNADO).
+	- Atualizada a fórmula de dano.
+
 	r0940 - 20/11/2011 [Protimus]
 	* Corrigida a habilidade Gênese (AB_CLEARANCE).
 	- Afeta apenas membros do grupo e não todos da tela.

@@ -1122,7 +1122,7 @@ int status_damage(struct block_list *src,struct block_list *target,int hp, int s
 		}
 	}
 
-	if( sc && sc->data[SC_KAIZEL] )
+	if( !(flag&8) && sc && sc->data[SC_KAIZEL] )
 	{ //flag&8 = dVITALITYACTIVATIONble Kaizel
 		int time = skill_get_time2(SL_KAIZEL,sc->data[SC_KAIZEL]->val1);
 		//Look for Osiris Card's bonus effect on the character and revive 100% or revive normally
