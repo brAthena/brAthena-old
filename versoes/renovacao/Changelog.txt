@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0942 - 22/11/2011 [Protimus]
+	* Corrigida divisão de experiência para famílias.
+	- Adicionada checagem para dividir apenas com filho.
+	- Adicionada checagem para dividir experiência apenas se o pai e a mãe tiverem uma diferença de 70 níveis.
+
 	r0941 - 22/11/2011 [Protimus]
 	* Corrigida a habilidade Kaizel (SL_KAIZEL).
 	- Estava sendo possível usar na WoE em jogadores aliados e ressucitando-os automáticamente.

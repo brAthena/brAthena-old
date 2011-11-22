@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0942 - 22/11/2011 [Protimus]
+	* Corrigida divisão de experiência para famílias.
+	- Adicionada checagem para dividir apenas com filho.
+	- Adicionada checagem para dividir experiência apenas se o pai e a mãe tiverem uma diferença de 70 níveis.
+
 	r0939 - 20/11/2011 [Protimus]
 	* Corrigido problema com habilidades.
 	- Não estava sendo possível executá-las com clientes de versões anteriores à 2011.

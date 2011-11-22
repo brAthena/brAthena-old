@@ -41,6 +41,7 @@ char default_codepage[32] = ""; //Feature by irmin.
 
 static struct accreg *accreg_pt;
 unsigned int party_share_level = 10;
+unsigned int party_family_share_level = 70;
 char main_chat_nick[16] = "Main";
 
 // recv. packet list
@@ -232,6 +233,8 @@ static int inter_config_read(const char* cfgName)
 #ifndef TXT_SQL_CONVERT
 		else if(!strcmpi(w1,"party_share_level"))
 			party_share_level = atoi(w2);
+		else if(!strcmpi(w1,"party_family_share_level"))
+			party_family_share_level = atoi(w2);
 		else if(!strcmpi(w1,"log_inter"))
 			log_inter = atoi(w2);
 		else if(!strcmpi(w1,"main_chat_nick"))

@@ -83,6 +83,15 @@ static void int_party_calc_state(struct party_data *p)
 			p->party.member[2].char_id
 		);
 	}
+   if(p->size == 2) {
+        if(char_child(p->party.member[0].char_id,p->party.member[1].char_id) || char_child(p->party.member[1].char_id,p->party.member[2].char_id)) 
+		{
+            if(p->party.member[0].class_&0x2000)
+                p->family = p->party.member[0].char_id;
+            else
+                p->family = p->party.member[1].char_id;
+		}
+	}
 	//max/min levels.
 	for(i=0;i<MAX_PARTY;i++){
 		lv=p->party.member[i].lv;
@@ -315,7 +324,11 @@ struct party_data* search_partyname(char* str)
 // Returns whether this party can keep having exp share or not.
 int party_check_exp_share(struct party_data *p)
 {
-	return (p->party.count < 2 || p->max_lv - p->min_lv <= party_share_level);
+    if(p->max_lv - p->min_lv <= party_family_share_level || p->party.count == 3 && char_family(p->party.member[0].char_id,p->party.member[1].char_id,p->party.member[2].char_id) >= 1)
+        return 1;
+    else if(p->party.count < 2 || p->max_lv - p->min_lv >= party_share_level || char_family(p->party.member[0].char_id,p->party.member[1].char_id,p->party.member[2].char_id) == 0)
+        return 0;
+    return 0;
 }
 
 // Is there any member in the party?
@@ -550,7 +563,7 @@ int mapif_parse_PartyAddMember(int fd, int party_id, struct party_member *member
 	p->party.member[i].leader = 0;
 	if (p->party.member[i].online) p->party.count++;
 	p->size++;
-	if (p->size == 3) //Check family state.
+	if (p->size == 2 || p->size == 3) //Check family state.
 		int_party_calc_state(p);
 	else //Check even share range.
 	if (member->lv < p->min_lv || member->lv > p->max_lv || p->family) {
