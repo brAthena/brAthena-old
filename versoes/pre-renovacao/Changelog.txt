@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0943 - 25/11/2011 [Protimus]
+	* Corrigida a habilidade Passo Etéreo (MO_BODYRELOCATION).
+	- Não pode ultrapassar armadilhas e habilidades que prendem.
+	* Corrigida tradução dos NPCs das campais de tierra.
+	- Alguns nomes não estavam traduzidos.
+
 	r0942 - 22/11/2011 [Protimus]
 	* Corrigida divisão de experiência para famílias.
 	- Adicionada checagem para dividir apenas com filho.

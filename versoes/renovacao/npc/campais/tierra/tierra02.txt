@@ -142,8 +142,8 @@ OnReadyCheck:
 	else if( .@Guillaume < 10 || .@Croix < 10 )
 		end;
 	set $@TierraBG2,1;
-	donpcevent "Lieutenant Rundel::OnEnterBG";
-	donpcevent "Lieutenant Guerrit::OnEnterBG";
+	donpcevent "Tenente Rundel::OnEnterBG";
+	donpcevent "Tenente Guerrit::OnEnterBG";
 	donpcevent "start#bat_a02::onEnable";
 	bg_warp $@TierraBG2_id1,"bat_a02",352,342;
 	bg_warp $@TierraBG2_id2,"bat_a02",353,52;
@@ -595,7 +595,7 @@ OnTimer26000:
 	end;
 
 OnTimer26500:
-	donpcevent "Valley Ghost#bat_a02_n::OnEnable";
+	donpcevent "Fantasma do Vale#bat_a02_n::OnEnable";
 	end;
 }
 
