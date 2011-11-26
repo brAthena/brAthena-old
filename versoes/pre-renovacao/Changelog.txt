@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0945 - 26/11/2011 [Protimus]
+	* Corrigida a habilidade Tiro Bombinha(GS_CRACKER).
+	- Não estava funcionando o efeito de atordoar em jogadores.
+	* Corrigida a habilidade Passo Etéreo (MO_BODYRELOCATION).
+	- Pode ser usada em batalhas campais.
+
 	r0943 - 25/11/2011 [Protimus]
 	* Corrigida a habilidade Passo Etéreo (MO_BODYRELOCATION).
 	- Não pode ultrapassar armadilhas e habilidades que prendem.
