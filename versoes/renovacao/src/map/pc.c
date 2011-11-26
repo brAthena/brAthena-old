@@ -5444,8 +5444,6 @@ int pc_gainexp(struct map_session_data *sd, struct block_list *src, unsigned int
 	unsigned int nextb=0, nextj=0;
 	int diferenca=0, diferenca_exp = 0;
 	nullpo_ret(sd);
-	if(src && !status_get_mexp(src))
-			diferenca = status_get_lv(src) - sd->status.base_level;
 
 	if(sd->bl.prev == NULL || pc_isdead(sd))
 		return 0;
@@ -5453,25 +5451,26 @@ int pc_gainexp(struct map_session_data *sd, struct block_list *src, unsigned int
 	if(!battle_config.pvp_exp && map[sd->bl.m].flag.pvp)  // [MouseJstr]
 		return 0; // no exp on pvp maps
 
-	if(diferenca >= 16)
-		diferenca_exp = 40;
-	else if(diferenca <= 15 && diferenca >= 10)
-		diferenca_exp = 140-((diferenca-10)*5);
-	else if(diferenca <= 9 && diferenca >= 3)
-		diferenca_exp = 105+((diferenca-3)*5);
-	else if(diferenca <= 2 && diferenca >= -5)
-		diferenca_exp = 100;
-	else if(diferenca <= -6 && diferenca >= -20)
-		diferenca_exp = 100+((int)((diferenca+1)/5))*5;
-	else if(diferenca <= -21 && diferenca >= -25)
-		diferenca_exp = 60;
-	else if(diferenca <= -26 && diferenca >= -30)
-		diferenca_exp = 35;
-	else if(diferenca <= -30)
-		diferenca_exp = 10;
+	if(src && !status_get_mexp(src)) {
+		diferenca = status_get_lv(src) - sd->status.base_level;
+		if(diferenca >= 16)
+			diferenca_exp = 40;
+		else if(diferenca >= 3)
+			diferenca_exp = 140 - 5*abs(diferenca-10);
+		else if(diferenca >= -5)
+			diferenca_exp = 100;
+		else if(diferenca >= -20)
+			diferenca_exp = 100+(diferenca+1)/5*5;
+		else if(diferenca >= -25)
+			diferenca_exp = 60;
+		else if(diferenca >= -30)
+			diferenca_exp = 35;
+		else
+			diferenca_exp = 10;
 
-	if(base_exp) base_exp = base_exp*diferenca_exp/100;
-	if(job_exp) job_exp = job_exp*diferenca_exp/100;
+		if(base_exp) base_exp = (unsigned int)(diferenca_exp/100.*base_exp);
+		if(job_exp) job_exp =  (unsigned int)(diferenca_exp/100.*job_exp);
+	}
 
 	if(sd->status.guild_id>0)
 		base_exp-=guild_payexp(sd,base_exp);
@@ -7983,28 +7982,28 @@ int pc_equipitem(struct map_session_data *sd,int n,int req_pos)
 	}
 	//Added check to prevent sending the same look on multiple slots ->
 	//causes client to redraw item on top of itself. (suggested by Lupus)
-	if(pos&(EQP_HEAD_LOW|EQP_COS_LOW_TOP)) {
+	if(pos&EQP_HEAD_LOW && pc_checkequip(sd,EQP_COS_LOW_TOP) < 0 || pos&EQP_COS_LOW_TOP) {
 		if(id && !(pos&(EQP_HEAD_TOP|EQP_HEAD_MID|EQP_COS_MID_TOP|EQP_COS_HEAD_TOP)))
 			sd->status.head_bottom = id->look;
 		else
 			sd->status.head_bottom = 0;
-		if((pos&EQP_HEAD_LOW && (pc_checkequip(sd,EQP_COS_LOW_TOP)) < 0) || pos&EQP_COS_LOW_TOP)
+
 			clif_changelook(&sd->bl,LOOK_HEAD_BOTTOM,sd->status.head_bottom);
 	}
-	if(pos&(EQP_HEAD_TOP|EQP_COS_HEAD_TOP)) { 
+	if(pos&EQP_HEAD_TOP && pc_checkequip(sd,EQP_COS_HEAD_TOP) < 0 || pos&EQP_COS_HEAD_TOP) { 
 		if(id) 
 			sd->status.head_top = id->look; 
 		else 
 			sd->status.head_top = 0;
-		if((pos&EQP_HEAD_TOP && (pc_checkequip(sd,EQP_COS_HEAD_TOP)) < 0) || pos&EQP_COS_HEAD_TOP)
+
 			clif_changelook(&sd->bl,LOOK_HEAD_TOP,sd->status.head_top);
 	}
-	if(pos&(EQP_HEAD_MID|EQP_COS_MID_TOP)) {
+	if(pos&EQP_HEAD_MID && pc_checkequip(sd,EQP_COS_MID_TOP) < 0 || pos&EQP_COS_MID_TOP) {
 		if(id && !(pos&(EQP_HEAD_TOP|EQP_COS_HEAD_TOP)))
 			sd->status.head_mid = id->look;
 		else
 			sd->status.head_mid = 0;
-		if((pos&EQP_HEAD_MID && (pc_checkequip(sd,EQP_COS_MID_TOP)) < 0) || pos&EQP_COS_MID_TOP)
+
 			clif_changelook(&sd->bl,LOOK_HEAD_MID,sd->status.head_mid);
 	}
 	if(pos & EQP_SHOES)

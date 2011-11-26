@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0944 - 26/11/2011 [brn0]
+	* Corrigida a fórmula de penalidades por diferença de nível entre jogador e monstro.
+	- Estava causando problemas com valores altos.
+	* Corrigido erro no sistema de costumes.
+	- Em alguns casos, a visualização do costume era trocada pela visualização do equipamento normal.
+
 	r0943 - 25/11/2011 [Protimus]
 	* Corrigida a habilidade Passo Etéreo (MO_BODYRELOCATION).
 	- Não pode ultrapassar armadilhas e habilidades que prendem.
