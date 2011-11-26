@@ -6105,9 +6105,12 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_CONFUSION:
 		case SC_CLOSECONFINE:
 		case SC_CLOSECONFINE2:
+			unit_stop_walking(bl,1);
+		break;
 		case SC_ANKLE:
 		case SC_SPIDERWEB:
-			unit_stop_walking(bl,1);
+			if(!map_flag_gvg(bl->m))
+				unit_stop_walking(bl,1);
 		break;
 		case SC_HIDING:
 		case SC_CLOAKING:

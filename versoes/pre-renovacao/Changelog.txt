@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0946 - 26/11/2011 [Protimus]
+	* Corrigida a habilidade Chamado Urgente (GD_EMERGENCYCALL) 
+	- Adicionada restrição que impede uso em pessoas que estão com vendas abertas ou na prisão.
+	* Corrigidas as habilidades Instalar Armadilha (HT_ANKLESNARE) & Prisão da Teia (PF_SPIDERWEB).
+	- Durante a WoE haviam condições que bloqueavam o movimento de forma incorreta.
+
 	r0945 - 26/11/2011 [Protimus]
 	* Corrigida a habilidade Tiro Bombinha(GS_CRACKER).
 	- Não estava funcionando o efeito de atordoar em jogadores.

@@ -6963,7 +6963,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			clif_skill_nodamage(src,bl,skillid,skilllv,1);
 			for(i = 0; i < g->max_member; i++, j++) {
 				if (j>8) j=0;
-				if ((dstsd = g->member[i].sd) != NULL && sd != dstsd && !dstsd->state.autotrade) {
+				if ((dstsd = g->member[i].sd) != NULL && sd != dstsd && !dstsd->state.autotrade && !dstsd->state.buyingstore || dstsd->sc.data[SC_JAILED]) {
 					if (map[dstsd->bl.m].flag.nowarp && !map_flag_gvg2(dstsd->bl.m))
 						continue;
 					if(map_getcell(src->m,src->x+dx[j],src->y+dy[j],CELL_CHKNOREACH))
@@ -10360,8 +10360,10 @@ static int skill_unit_onplace (struct skill_unit *src, struct block_list *bl, un
 				const struct TimerData* td = sc->data[type]?get_timer(sc->data[type]->timer):NULL;
 				if( td )
 					sec = DIFF_TICK(td->tick, tick);
-				map_moveblock(bl, src->bl.x, src->bl.y, tick);
-				clif_fixpos(bl);
+				if(!map_flag_gvg(bl->m)) {
+					map_moveblock(bl, src->bl.x, src->bl.y, tick);
+					clif_fixpos(bl);
+				}
 				sg->val2 = bl->id;
 			}
 			else
@@ -10732,8 +10734,10 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 					const struct TimerData* td = tsc->data[type]?get_timer(tsc->data[type]->timer):NULL;
 					if( td )
 						sec = DIFF_TICK(td->tick, tick);
-					unit_movepos(bl, src->bl.x, src->bl.y, 0, 0);
-					clif_fixpos(bl);
+					if(!map_flag_gvg(bl->m)) {
+						unit_movepos(bl, src->bl.x, src->bl.y, 0, 0);
+						clif_fixpos(bl);
+					}
 					sg->val2 = bl->id;
 				}
 				else
