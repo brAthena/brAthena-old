@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0947 - 04/12/2011 [Protimus]
+	* Adicionado suporte para clientes 2011-11-02 ou superiores.
+	- Créditos: Protimus, Drake & Judas.
+	- Funcional para novas classes, Kagerou e Oboro. 
+	- Necessárias mais algumas mudanças para outras funcionalidades que serão enviadas posteriormente.
+
 	r0946 - 26/11/2011 [Protimus]
 	* Corrigida a habilidade Chamado Urgente (GD_EMERGENCYCALL) 
 	- Adicionada restrição que impede uso em pessoas que estão com vendas abertas ou na prisão.

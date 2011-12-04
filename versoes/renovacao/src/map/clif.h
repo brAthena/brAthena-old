@@ -31,7 +31,7 @@ struct party_booking_ad_info;
 enum
 {// packet DB
 	MAX_PACKET_DB  = 0x900,
-	MAX_PACKET_VER = 26,
+	MAX_PACKET_VER = 28,
 	MAX_PACKET_POS = 20,
 };
 
