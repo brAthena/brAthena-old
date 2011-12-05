@@ -8012,7 +8012,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		break;
 	case SR_CURSEDCIRCLE:
 		if(flag&1) {
-			if( is_boss(bl) )
+			if( is_boss(bl) && map_getcell(bl->m, bl->x, bl->y, CELL_CHKLANDPROTECTOR) )
 				break;
 			if( sc_start2(bl, type, 100, skilllv, src->id, skill_get_time(skillid, skilllv)) ) {
 				unit_stop_attack(bl);

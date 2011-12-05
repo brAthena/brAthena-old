@@ -1453,7 +1453,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			flee = tstatus->flee,
 			hitrate=0; //Default hitrate
 
-		if( tsc && tsc->data[SC_NEUTRALBARRIER] && (wd.flag&(BF_MAGIC|BF_LONG)) == BF_LONG)
+		if( tsc && tsc->data[SC_NEUTRALBARRIER] && (wd.flag&(BF_MAGIC|BF_SHORT)) == BF_SHORT)
 			wd.dmg_lv = ATK_BLOCK;
 		else
 		{

@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r949 - 05/12/2011 [Protimus]
+	* Corrigida a habilidade Campo Protetor (NC_NEUTRALBARRIER).
+	- Não ignora danos de longa distância, apenas de curta.
+	* Corrigida a habilidade Campo Amaldiçoado (SR_CURSEDCIRCLE).
+	- Não funciona em cima da habilidade Proteger Terreno.
+
 	r0948 - 05/12/2011 [brn0]
 	* Corrigido problema na habilidade Chamado Urgente (GD_EMERGENCYCALL).
 	- Estava causando erro em alguns casos.
