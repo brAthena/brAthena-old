@@ -2817,7 +2817,7 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 		sd->max_weight += 2000*skill;
 	if(pc_isriding(sd,OPTION_RIDING) && pc_checkskill(sd,KN_RIDING)>0)
 		sd->max_weight += 10000;
-	if(pc_isriding(sd,OPTION_RIDING_DRAGON) && pc_checkskill(sd,RK_DRAGONTRAINING)>0)
+	if(pc_isriding(sd,OPTION_RIDING_DRAGON) && (skill=pc_checkskill(sd,RK_DRAGONTRAINING)) > 0)
 		sd->max_weight += 2000*skill;
 	if(sd->sc.option&OPTION_MADO)
 		sd->max_weight += 20000;

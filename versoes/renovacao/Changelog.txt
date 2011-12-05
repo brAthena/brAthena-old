@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0948 - 05/12/2011 [brn0]
+	* Corrigido problema na habilidade Chamado Urgente (GD_EMERGENCYCALL).
+	- Estava causando erro em alguns casos.
+	* Corrigido problema na habilidade Adestrar Dragão (RK_DRAGONTRAINING).
+	- Não estava aumentando a capacidade de carga.
+
 	r0947 - 04/12/2011 [Protimus]
 	* Adicionado suporte para clientes 2011-11-02 ou superiores.
 	- Créditos: Protimus, Drake & Judas.
