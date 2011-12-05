@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0951 - 05/11/2011 [Protimus]
+	* Corrigida taxa de limites para o superaquecimento.
+	* Corrigida a habilidade Reforçar Estrutura (NC_MAINFRAME).
+	- Valores de aumento da vit_def estavam incorretos.
+
 	r0950 - 05/11/2011 [Protimus]
 	* Corrigido problema com NPC de troca de itens KvM.
 	* Corrigida a habilidade Sopro do Dragão (RK_DRAGONBREATH).

@@ -6881,7 +6881,7 @@ int pc_percentheal(struct map_session_data *sd,int hp,int sp)
 int pc_overheat(struct map_session_data *sd, int val)
 {
 	int heat = val, skill,
-		limit[] = { 10, 20, 28, 46, 66 };
+		limit[] = { 10, 18, 36, 54 };
 
 	if( !sd || !pc_isriding(sd,OPTION_MADO) || sd->sc.data[SC_OVERHEAT] )
 		return 0;

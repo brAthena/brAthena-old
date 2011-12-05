@@ -2543,7 +2543,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					src->type == BL_MOB && (skill=pc_checkskill(tsd,AB_EUCHARISTICA)) > 0)
 					vit_def += def2 * (skill/100);
 				if((skill = pc_checkskill(tsd, NC_MAINFRAME)) > 0 && pc_isriding(tsd,OPTION_MADO))
-					vit_def += skill > 2 ? (7 + skill * 4) : ( 1 + skill * 3 );
+					vit_def += skill > 2 ? (4 * skill - 1) : ( 1 + skill * 3 );
 			}
 			if (battle_config.weapon_defense_type) {
 				vit_def += def2*battle_config.weapon_defense_type;
