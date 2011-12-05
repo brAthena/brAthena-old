@@ -185,7 +185,7 @@ bat_room,151,144,3	script	Lojista Oficial do KVM#a	734,{
 				mes "Você selecionou a categoria 'Arcos/Katares/Instrumentos Musicais/Chicotes'.";
 				mes "Por favor selecione agora uma sub-categoria.";
 				next;
-				switch(select("Arcos/Katares/Instrumentos Musicais/Chicotes")) {
+				switch(select("Arcos:Katares:Instrumentos Musicais:Chicotes")) {
 				case 1:
 					//mes "[Negociante do KvM]";
 					//mes "Você selecionou a categoria 'Arcos'.";

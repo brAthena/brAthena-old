@@ -3800,7 +3800,6 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case NPC_SMOKING:
 	case GS_FLING:
 	case NJ_ZENYNAGE:
-	case RK_DRAGONBREATH:
 	case GN_THORNS_TRAP:
 	case GN_BLOOD_SUCKER:
 	case GN_HELLS_PLANT_ATK:
@@ -3808,6 +3807,13 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 		skill_attack(BF_MISC,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 
+	case RK_DRAGONBREATH:
+		if( tsc && (tsc->data[SC_HIDING] )) {
+			clif_skill_nodamage(src,src,skillid,skilllv,1);
+		} else 
+			skill_attack(BF_MISC,src,src,bl,skillid,skilllv,tick,flag);
+		break;
+		
 	case HVAN_EXPLOSION:
 	case NPC_SELFDESTRUCTION:
 		if (src != bl)
