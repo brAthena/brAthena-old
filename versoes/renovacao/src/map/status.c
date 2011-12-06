@@ -298,7 +298,7 @@ void initChangeTables(void)
 	set_sc( PA_GOSPEL            , SC_GOSPEL          , SI_BLANK           , SCB_SPEED|SCB_ASPD );
 	add_sc( PA_GOSPEL            , SC_SCRESIST        );
 	add_sc( CH_TIGERFIST         , SC_STOP            );
-	set_sc( ASC_EDP              , SC_EDP             , SI_EDP             , SCB_NONE );
+	set_sc( ASC_EDP              , SC_EDP             , SI_EDP             , SCB_BATK|SCB_WATK );
 	set_sc( SN_SIGHT             , SC_TRUESIGHT       , SI_TRUESIGHT       , SCB_STR|SCB_AGI|SCB_VIT|SCB_INT|SCB_DEX|SCB_LUK|SCB_CRI|SCB_HIT );
 	set_sc( SN_WINDWALK          , SC_WINDWALK        , SI_WINDWALK        , SCB_FLEE|SCB_SPEED );
 	set_sc( WS_MELTDOWN          , SC_MELTDOWN        , SI_MELTDOWN        , SCB_NONE );
@@ -830,7 +830,8 @@ void initChangeTables(void)
 	StatusChangeFlagTable[SC_STEALTHFIELD_MASTER] |= SCB_SPEED;
 
 	StatusChangeFlagTable[SC_HALLUCINATIONWALK_POSTDELAY] |= SCB_ASPD|SCB_SPEED;
-
+	
+	StatusChangeFlagTable[SC_EDP] |= SCB_BATK|SCB_WATK; 
 	StatusChangeFlagTable[SC_PARALYSE] |= SCB_SPEED|SCB_ASPD|SCB_FLEE;
 	StatusChangeFlagTable[SC_VENOMBLEED] |= SCB_MAXHP;
 	StatusChangeFlagTable[SC_MAGICMUSHROOM] |= SCB_REGEN;
@@ -4182,6 +4183,9 @@ static unsigned short status_calc_batk(struct block_list *bl, struct status_chan
 		batk += batk / 5;
 	if(sc->data[SC_ZANGETSU])
 		batk += batk * sc->data[SC_ZANGETSU]->val2 / 100;
+	if( sc->data[SC_EDP] && sc->data[SC_EDP]->val1 > 1 )
+		batk = batk * (sc->data[SC_EDP]->val1 - 1);
+		
 		
 	return (unsigned short)cap_value(batk,0,USHRT_MAX);
 }
@@ -4255,6 +4259,8 @@ static unsigned short status_calc_watk(struct block_list *bl, struct status_chan
 		|| (sc->data[SC_EARTH_INSIGNIA] && sc->data[SC_EARTH_INSIGNIA]->val1 == 2)
 		)
 		watk += watk / 10;
+	if( sc->data[SC_EDP] ); 
+		watk = watk * sc->data[SC_EDP]->val1;
 	
 	return (unsigned short)cap_value(watk,0,USHRT_MAX);
 }
@@ -6624,6 +6630,8 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_EDP:	// [Celest]
 			val2 = val1 + 2; //Chance to Poison enemies.
 			val3 = 35 * val1;
+			if( sd )
+				tick += pc_checkskill(sd,GC_RESEARCHNEWPOISON) * 3000;
 			break;
 		case SC_POISONREACT:
 			val2=(val1+1)/2 + val1/10; // Number of counters [Skotlex]

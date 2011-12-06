@@ -9,7 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
-
+	r0954 - 06/11/2011 [Protimus]
+	* Corrigida a habilidade Encantar com Veneno Mortal (ASC_EDP).
+	- A habilidade Criar Toxina aumenta a duração da EDP.
+	- Multiplica o ataque físico e com armas de acordo com nível da habilidade.
+	- Não pode ser removida por Desencantar.
+	* Corrigida a habilidade Vínculo Sombrio (SC_SHADOWFORM).
+	- Não pode ser removida por Desencantar.
 
 	r0953 - 06/11/2011 [brn0]
 	* Corrigida divisão de experiência.
@@ -17,9 +23,7 @@
 	- Corrigida flag de limite de diferença entre os níveis para divisão em família.
 
 	r0952 - 06/11/2011 [Protimus]
-
 	* Adicionado suporte para uso de itens do Ninja com Kagerou e Oboro.
-
 	* Adicionadas áreas das habilidades de Kagerou e Oboro no banco de dados.
 	- Necessárias mais informações.
 	* Modificada versão do packetver para 20111102.
