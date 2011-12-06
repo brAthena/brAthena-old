@@ -9,6 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0953 - 06/11/2011 [brn0]
+	* Corrigida divisão de experiência.
+	- Corrigida divisão entre pai ou mãe e filho.
+	- Corrigida flag de limite de diferença entre os níveis para divisão em família.
+	* Corrigido problema na habilidade Chamado Urgente (GD_EMERGENCYCALL).
+	- Estava causando erro em alguns casos.
+
 	r0950 - 05/11/2011 [Protimus]
 	* Corrigido problema com NPC de troca de itens KvM.
 

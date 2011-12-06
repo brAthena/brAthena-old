@@ -41,14 +41,12 @@ static int int_party_check_lv(struct party_data *p) {
 	unsigned int lv;
 	p->min_lv = UINT_MAX;
 	p->max_lv = 0;
-	for(i=0;i<MAX_PARTY;i++){
-		if(!p->party.member[i].online)
-			continue;
-
-		lv=p->party.member[i].lv;
-		if (lv < p->min_lv) p->min_lv = lv;
-		if (lv > p->max_lv) p->max_lv = lv;
-	}
+	for(i=0;i<MAX_PARTY;i++)
+		if(p->party.member[i].online && p->family != p->party.member[i].char_id) {
+			lv=p->party.member[i].lv;
+			if (lv < p->min_lv) p->min_lv = lv;
+			if (lv > p->max_lv) p->max_lv = lv;
+		}
 
 	if (p->party.exp && !party_check_exp_share(p)) {
 		p->party.exp = 0;
@@ -75,22 +73,19 @@ static void int_party_calc_state(struct party_data *p)
 		if(p->party.member[i].online)
 			p->party.count++;
 	}
-	if(p->size == 3) {
-		//Check Family State.
+	//Check Family State.
+	if(p->size == 2) {
+		if(char_child(p->party.member[0].char_id,p->party.member[1].char_id))
+			p->family = p->party.member[1].char_id;
+		else if(char_child(p->party.member[1].char_id,p->party.member[0].char_id))
+			p->family = p->party.member[0].char_id;
+	}
+	else if(p->size == 3) {
 		p->family = char_family(
 			p->party.member[0].char_id,
 			p->party.member[1].char_id,
 			p->party.member[2].char_id
 		);
-	}
-   if(p->size == 2) {
-        if(char_child(p->party.member[0].char_id,p->party.member[1].char_id) || char_child(p->party.member[1].char_id,p->party.member[2].char_id)) 
-		{
-            if(p->party.member[0].class_&0x2000)
-                p->family = p->party.member[0].char_id;
-            else
-                p->family = p->party.member[1].char_id;
-		}
 	}
 	//max/min levels.
 	for(i=0;i<MAX_PARTY;i++){
@@ -324,11 +319,19 @@ struct party_data* search_partyname(char* str)
 // Returns whether this party can keep having exp share or not.
 int party_check_exp_share(struct party_data *p)
 {
-    if(p->max_lv - p->min_lv <= party_family_share_level || p->party.count == 3 && char_family(p->party.member[0].char_id,p->party.member[1].char_id,p->party.member[2].char_id) >= 1)
-        return 1;
-    else if(p->party.count < 2 || p->max_lv - p->min_lv >= party_share_level || char_family(p->party.member[0].char_id,p->party.member[1].char_id,p->party.member[2].char_id) == 0)
-        return 0;
-    return 0;
+	if(p->family) {
+		unsigned int lv_baby;
+		if(p->party.member[0].char_id == p->family)
+			lv_baby = p->party.member[0].lv;
+		else if(p->party.member[1].char_id == p->family)
+			lv_baby = p->party.member[1].lv;
+		else
+			lv_baby = p->party.member[2].lv;
+
+		if(lv_baby + party_family_share_level < p->max_lv || p->min_lv + party_family_share_level < lv_baby)
+			return 0;
+	}
+	return (p->party.count < 2 || p->max_lv - p->min_lv <= party_share_level);
 }
 
 // Is there any member in the party?
@@ -640,7 +643,7 @@ int mapif_parse_PartyLeave(int fd, int party_id, int account_id, int char_id)
 		p->size--;
 		if (j == p->min_lv || j == p->max_lv || p->family)
 		{
-			if(p->family) p->family = 0; //Family state broken.
+			if(p->family && (p->size == 1 || p->family == p->party.member[i].char_id)) p->family = 0; //Family state broken.
 			int_party_check_lv(p);
 		}
 	}
@@ -688,9 +691,7 @@ int mapif_parse_PartyChangeMap(int fd, int party_id, int account_id, int char_id
 	}
 
 	if (p->party.member[i].lv != lv) {
-		if(p->party.member[i].lv == p->min_lv ||
-			p->party.member[i].lv == p->max_lv)
-		{
+		if(p->party.member[i].lv == p->min_lv || p->party.member[i].lv == p->max_lv || p->family) {
 			p->party.member[i].lv = lv;
 			int_party_check_lv(p);
 		} else
