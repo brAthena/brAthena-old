@@ -21,7 +21,7 @@
 // Definição do valor de pacote padrão para leitura do cliente.
 // Versão 23 é do último Sakexe (versões acima são da Renovação)
 //packet_db_ver: 23
-packet_db_ver: 28
+packet_db_ver: default
 
 packet_ver: 5
 0x0064,55

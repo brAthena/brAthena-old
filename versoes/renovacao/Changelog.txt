@@ -9,6 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0952 - 06/11/2011 [Protimus]
+	* Adicionado suporte para uso de itens do Ninja com Kagerou e Oboro.
+	* Adicionadas áreas das habilidades de Kagerou e Oboro no banco de dados.
+	- Necessárias mais informações.
+	* Modificada versão do packetver para 20111102.
+	- Suporta clientes maiores, porém é com esse que testamos os pacotes.
+	- Quem quiser usar clientes inferiores como 20110609, deve mudar no packet_db o valor da versão para 26.
+
 	r0951 - 05/11/2011 [Protimus]
 	* Corrigida taxa de limites para o superaquecimento.
 	* Corrigida a habilidade Reforçar Estrutura (NC_MAINFRAME).
