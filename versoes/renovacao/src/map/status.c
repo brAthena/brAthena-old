@@ -4259,7 +4259,7 @@ static unsigned short status_calc_watk(struct block_list *bl, struct status_chan
 		|| (sc->data[SC_EARTH_INSIGNIA] && sc->data[SC_EARTH_INSIGNIA]->val1 == 2)
 		)
 		watk += watk / 10;
-	if( sc->data[SC_EDP] ); 
+	if( sc->data[SC_EDP] )
 		watk = watk * sc->data[SC_EDP]->val1;
 	
 	return (unsigned short)cap_value(watk,0,USHRT_MAX);

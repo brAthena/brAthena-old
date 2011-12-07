@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0955 - 07/11/2011 [Protimus]
+	* Corrigido pequeno erro de r954.
+
 	r0954 - 06/11/2011 [Protimus]
 	* Corrigida a habilidade Encantar com Veneno Mortal (ASC_EDP).
 	- A habilidade Criar Toxina aumenta a duração da EDP.
