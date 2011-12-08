@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0958 - 08/12/2011 [Protimus]
+	* Atualizado tamanho no nome de mapas salvos na janela do personagem.
+	- Funional para clientes superiores à 2011-11-02.
+	* Corrigida a habilidade Lâminas de Loki (GC_ROLLINGCUTTER).
+	- Modificado alcance da habilidade conforme renovação.
+
 	r0957 - 08/12/2011 [insidemybrain!]
 	* Corrigido pequenos erros de cabeçalho na revisão anterior - r0956
 
