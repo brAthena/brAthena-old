@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0956 - 08/12/2011 [insidemybrain!]
+	* Corrigido erro na packet_db
+	- Faltavam alguns valores que eram essenciais para a utilização de hexeds 2011-06-09
+	- Estavam causando crash ao tentar atacar monstros, de acordo com os testes realizados por mim
+	- Nesta versão já está também o suporte praticamente total às classes Kagerou e Oboro (para hexeds 2011-11-02 ou maiores)
+
 	r0955 - 07/11/2011 [Protimus]
 	* Corrigido pequeno erro de r954.
 

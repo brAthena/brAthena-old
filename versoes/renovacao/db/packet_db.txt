@@ -1,27 +1,43 @@
-//  _____________________________________________________________
-// /                                                             \
-// |          _           _   _   _                              |
-// |         | |__  _ __ / \ | |_| |__   ___ _ __   __ _         |
-// |         | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |        |
-// |         | |_) | | / ___ \ |_| | | |  __/ | | | (_| |        |
-// |         |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|        |
-// |                                                             |
-// |                       brAthena Script                       |
-// |-------------------------------------------------------------|
-// | Nome do Database: packet_db.txt                             |
-// |-------------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team                                |
-// |-------------------------------------------------------------|
-// | Descrição: Database packet para suporte de clients de       |
-// | acesso.                                                     |
-// \_____________________________________________________________/
+// Client<->Map Packet Database
 //
+// Structure of Database:
+// PacketType,PacketLength[,Name,FieldIndex1:FieldIndex2:FieldIndex3:...]
 //
-//========================================================================================================
-// Definição do valor de pacote padrão para leitura do cliente.
-// Versão 23 é do último Sakexe (versões acima são da Renovação)
+// 01. PacketType       ID of the packet.
+// 02. PacketLength     Length of the packet. If 0, packet is disabled in current packet version. If -1, packet has variable size.
+// 03. Name             Name of the packet parser function (optional, for incoming packets only).
+// 04. FieldIndex       Specifies the offset of a packet field in bytes from the begin of the packet (only specified when Name is given).
+//                      Can be 0, when the layout is not known.
+// ...
+//
+// NOTE: Up to MAX_PACKET_POS (typically 20) field indexes may be used.
+//
+
+// The packet database allows you to add support for new clients,
+// because packets change every release.
+//
+// Note: Every packet version needs a wanttoconnection specification, since
+// that is the packet used to identify a client's version.
+// If multiple versions have the same connection packet, the higher version
+// will be used (unless the lower one is specified as the default)
+//
+// Incoming packets have their parser function and layout specified, which enables
+// them for the current and all higher versions, unless explicitely disabled.
+//
+// Outgoing packets must be specified in order to enable them for the current
+// and all higher versions, unless explocitely disabled. Packets that are not
+// enabled for a packet version are silently discarded when sent as multicast.
+//
+// Every packet version inherits packet definitions from the previous (lower)
+// packet version.
+//
+
+// Main packet version of the DB to use (default = max available version)
+// Client detection is faster when all clients use this version.
+// Version 23 is the latest Sakexe (above versions are for Renewal clients)
 //packet_db_ver: 23
-packet_db_ver: default
+packet_db_ver: 28
+
 
 packet_ver: 5
 0x0064,55
@@ -1619,34 +1635,6 @@ packet_ver: 26
 
 //2011-10-05aRagexeRE
 packet_ver: 27
-0x0436,19,wanttoconnection,2:6:10:14:18
-0x0367,6,ticksend,2
-0x0437,5,walktoxy,2
-0x07ec,7,actionrequest,2:6
-0x0001,2,npcclicked,2
-0x0002,-1,npcselectmenu,2:4
-0x0887,6
-
-// 2011-11-02aRagexe
-packet_ver: 28
-
-0x0436,26,friendslistadd,2
-0x0898,5,hommenu,4
-0x0281,36,storagepassword,0
-0x088d,26,partyinvite2,2
-0x083c,19,wanttoconnection,2:6:10:14:18
-0x08aa,7,actionrequest,2:6
-0x02c4,10,useskilltoid,2:4:6
-0x0811,-1,itemlistwindowselected,2:4:8
-//0x890,8
-0x08a5,18,bookingregreq,2:4:6
-0x0835,-1,reqopenbuyingstore,2:4:8:9:89
-0x089b,2,reqclosebuyingstore,0
-0x08a1,6,reqclickbuyingstore,2
-0x089e,-1,reqtradebuyingstore,2:4:8:12
-0x08ab,-1,searchstoreinfo,2:4:5:9:13:14:15
-0x088b,2,searchstoreinfonextpage,0
-0x08a2,12,searchstoreinfolistitemclick,2:6:10
 
 0x0364,5,walktoxy,2
 0x0817,6,ticksend,2
@@ -1662,6 +1650,27 @@ packet_ver: 28
 
 0x0439,8,useitem,2:4
 
-// Adicione novos pacotes aqui.
-//packet_ver: 29
-//========================================================================================================
+// 2011-11-02aRagexe
+packet_ver: 28
+
+0x0436,26,friendslistadd,2
+0x0898,5,hommenu,4
+0x0281,36,storagepassword,0
+0x088d,26,partyinvite2,2
+0x083c,19,wanttoconnection,2:6:10:14:18
+0x08aa,7,actionrequest,2:6
+0x02c4,10,useskilltoid,2:4:6
+0x0811,-1,itemlistwindowselected,2:4:8
+0x890,8
+0x08a5,18,bookingregreq,2:4:6
+0x0835,-1,reqopenbuyingstore,2:4:8:9:89
+0x089b,2,reqclosebuyingstore,0
+0x08a1,6,reqclickbuyingstore,2
+0x089e,-1,reqtradebuyingstore,2:4:8:12
+0x08ab,-1,searchstoreinfo,2:4:5:9:13:14:15
+0x088b,2,searchstoreinfonextpage,0
+0x08a2,12,searchstoreinfolistitemclick,2:6:10
+
+
+//Add new packets here
+//packet_ver: 28
