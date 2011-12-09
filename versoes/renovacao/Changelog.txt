@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0960 - 09/12/2011 [Protimus]
+	* Removido comando @whosell.
+	- Com o novo catálogos de vendas, o comando torna-se desnecessário.
+
 	r0959 - 09/12/2011 [Mark]
 	* Adicionado Catálogos de Venda ao item_db.
 	- Sistema funciona tanto para compras quanto para vendas de itens.
