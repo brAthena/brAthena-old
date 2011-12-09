@@ -5419,10 +5419,9 @@
 12575,Elven_Arrow_Quiver,Elven Arrow Quiver,2,2,,250,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 1773,500; },{},{}
 12576,Hunter_Arrow_Quiver,Hunter Arrow Quiver,2,2,,250,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem 1774,500; },{},{}
 
-12580,Universal_Catalog_Silver,Universal Catalog Silver,2,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
-12581,Universal_Catalog_Gold,Universal Catalog Gold,2,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
-
-12581,Universal_Catalog_Bronze,Universal Catalog Bronze,2,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+12580,Vending_Search_Scroll,Catálogo de Vendas de Prata,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ searchstores 10,0; },{},{}
+12581,Vending_Search_Scroll2,Catálogo de Vendas de Ouro,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ searchstores 10,1; },{},{}
+12591,Vending_Search_Scroll3,Catálogo de Vendas de Bronze,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ searchstores 10,1; },{},{}
 
 //12596,Magic_Candy
 

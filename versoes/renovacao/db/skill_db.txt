@@ -1175,7 +1175,7 @@
 2447,9,6,2,1,0x2,3:3:3:4:4,5,-5,yes,0,0,0,magic,0,		SO_DIAMONDDUST,Pó de Diamante
 2448,9,6,1,5,0x2,1:1:1:1:2,5,1,yes,0,0,0,magic,0,		SO_POISON_BUSTER,Implosão Tóxica
 2449,9,6,2,0,0,0,5,1,yes,0,0,0,magic,0,		SO_PSYCHIC_WAVE,Onda Psíquica
-2450,9,6,2,0,0x1,3,5,-1,yes,0,0,0,magic,0,		SO_CLOUD_KILL,Maldição de Jormungand
+2450,9,6,2,5,0x1,3,5,-1,yes,0,0,0,magic,0,		SO_CLOUD_KILL,Maldição de Jormungand
 2451,9,6,16,0,0x1,0,5,1,yes,0,0,0,none,0,		SO_STRIKING,Encanto de Órion
 2452,9,6,2,0,0x1,-1,5,1,yes,0,0,0,magic,0,		SO_WARMER,Aquecer Terreno
 2453,9,6,2,0,0x1,1:1:2:2:3,5,1,yes,0,0,0,magic,0,	SO_VACUUM_EXTREME,Tornado

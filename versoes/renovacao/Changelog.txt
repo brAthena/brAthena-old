@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0959 - 09/12/2011 [Mark]
+	* Adicionado Catálogos de Venda ao item_db.
+	- Sistema funciona tanto para compras quanto para vendas de itens.
+	* Corrigido elemento da habilidade Maldição de Jormungand (SO_CLOUD_KILL).
+
 	r0958 - 08/12/2011 [Protimus]
 	* Atualizado tamanho no nome de mapas salvos na janela do personagem.
 	- Funional para clientes superiores à 2011-11-02.
