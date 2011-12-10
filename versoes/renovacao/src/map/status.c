@@ -2716,11 +2716,8 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 	// Absolute modifiers from passive skills
 	if((skill=pc_checkskill(sd,BS_WEAPONRESEARCH))>0)
 		status->hit += skill*2;
-	if((skill=pc_checkskill(sd,AC_VULTURE))>0){
-		status->hit += skill;
-		if(sd->status.weapon == W_BOW)
+	if((skill=pc_checkskill(sd,AC_VULTURE))>0 && sd->status.weapon == W_BOW)
 			status->rhw.range += skill;
-	}
 	if(sd->status.weapon >= W_REVOLVER && sd->status.weapon <= W_GRENADE)
   	{
 		if((skill=pc_checkskill(sd,GS_SINGLEACTION))>0)

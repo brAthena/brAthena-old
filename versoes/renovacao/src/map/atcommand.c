@@ -1471,10 +1471,9 @@ ACMD_FUNC(jobchange)
 			clif_displaymessage(fd, "4021 Cigana");
 			clif_displaymessage(fd, "----- Classes Expandidas -----");
 			clif_displaymessage(fd, "23 Super Aprendiz            24 Justiceiro                 25 Ninja           4046 Taekwon");
-			clif_displaymessage(fd, "4047 Mestre Taekwon          4049 Espiritualista");
-			clif_displaymessage(fd, "4047 Mestre Taekwon		  4049 Espiritualista    		4050 Gangsi         4051 Death Knight");
-			clif_displaymessage(fd, "4052 Dark Collector 		  4091 Super Aprendiz T.  	    4191 Mini Super Aprendiz T.");
-			clif_displaymessage(fd, "4211 Kagerou 		  		  4212 Oboro");
+			clif_displaymessage(fd, "4047 Mestre Taekwon          4049 Espiritualista           4050 Gangsi        4051 Death Knight");
+			clif_displaymessage(fd, "4052 Dark Collector          4190 Super Aprendiz T.        4191 Mini Super Aprendiz T.");
+			clif_displaymessage(fd, "4211 Kagerou                 4212 Oboro");
 			clif_displaymessage(fd, "---- Classes Mini ----");
 			clif_displaymessage(fd, "4023 Mini Aprendiz           4024 Mini Espadachim          4025 Mini Mago      4026 Mini Arqueiro");
 			clif_displaymessage(fd, "4027 Mini Noviço             4028 Mini Mercador            4029 Mini Gatuno    4030 Mini Cavaleiro");
@@ -1539,9 +1538,9 @@ ACMD_FUNC(jobchange)
 		clif_displaymessage(fd, "4021 Cigana");
 		clif_displaymessage(fd, "----- Classes Expandidas -----");
 		clif_displaymessage(fd, "23 Super Aprendiz            24 Justiceiro                 25 Ninja           4046 Taekwon");
-		clif_displaymessage(fd, "4047 Mestre Taekwon		  4049 Espiritualista    		4050 Gangsi         4051 Death Knight");
-		clif_displaymessage(fd, "4052 Dark Collector 		  4090 Super Aprendiz T.  	    4191 Mini Super Aprendiz T.");
-		clif_displaymessage(fd, "4211 Kagerou 		  		  4212 Oboro");
+		clif_displaymessage(fd, "4047 Mestre Taekwon          4049 Espiritualista           4050 Gangsi        4051 Death Knight");
+		clif_displaymessage(fd, "4052 Dark Collector          4190 Super Aprendiz T.        4191 Mini Super Aprendiz T.");
+		clif_displaymessage(fd, "4211 Kagerou                 4212 Oboro");
 		clif_displaymessage(fd, "---- Classes Mini ----");
 		clif_displaymessage(fd, "4023 Mini Aprendiz           4024 Mini Espadachim          4025 Mini Mago      4026 Mini Arqueiro");
 		clif_displaymessage(fd, "4027 Mini Noviço             4028 Mini Mercador            4029 Mini Gatuno    4030 Mini Cavaleiro");

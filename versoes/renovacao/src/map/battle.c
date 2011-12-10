@@ -466,7 +466,6 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 
 		if( sd && (sce = sc->data[SC_MILLENNIUMSHIELD]) && sce->val2 > 0 && damage > 0 )
 		{
-			clif_skill_nodamage(bl, bl, RK_MILLENNIUMSHIELD, 1, 1);
 			sce->val3 -= damage;
 			d->dmg_lv = ATK_BLOCK;
 			sc_start(bl,SC_STUN,15,0,skill_get_time2(RK_MILLENNIUMSHIELD,sce->val1));
@@ -1528,12 +1527,14 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			}
 
 			// Weaponry Research hidden bonus
-			if (sd && (skill = pc_checkskill(sd,BS_WEAPONRESEARCH)) > 0)
-				hitrate += hitrate * ( 2 * skill ) / 100;
-	
-			if( sd && (sd->status.weapon == W_1HSWORD || sd->status.weapon == W_DAGGER) &&
-				(skill = pc_checkskill(sd, GN_TRAINING_SWORD))>0 )
-				hitrate += 3 * skill;
+			if(sd) {
+				if((skill = pc_checkskill(sd,BS_WEAPONRESEARCH)) > 0)
+					hitrate += hitrate * 2 * skill / 100;
+				if((sd->status.weapon == W_1HSWORD || sd->status.weapon == W_DAGGER) &&	(skill = pc_checkskill(sd, GN_TRAINING_SWORD)) > 0)
+					hitrate += 3 * skill;
+				if((skill=pc_checkskill(sd,AC_VULTURE)) > 0)
+					hitrate += skill;
+			}
 		}
 		hitrate = cap_value(hitrate, battle_config.min_hitrate, battle_config.max_hitrate);
 
