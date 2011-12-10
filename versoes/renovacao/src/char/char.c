@@ -1666,6 +1666,10 @@ int mmo_char_tobuf(uint8* buffer, struct mmo_charstatus* p)
 	WBUFL(buf,132) = 0;  // change slot feature (0 = disabled, otherwise enabled)
 	offset += 4;
 #endif
+#if PACKETVER >= 20111025
+	WBUFL(buf,136) = 0;
+	offset += 4;
+#endif
 	return 106+offset;
 }
 

@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0963 - 10/12/2011 [Protimus]
+	* Corrigido valor de buffer para conexão com slots de personagens.
+	- Necessário para funcionamento correto de clientes superiores à 2011-10-25.
+	- Erros ocasionados com novos clientes corrigidos.
+
 	r0962 - 10/12/2011 [brn0]
 	* Adicionado o NPC de venda do Catálogo de Vendas Prata.
 	- npc/comerciantes/catalogador_magico.txt
