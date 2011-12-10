@@ -711,6 +711,7 @@ moc_para01,25,35,4	script	Instructor Boya#para01	469,{
 						mes "Anyway...";
 						mes "that place is pretty close to here so, come back quickly.";
 						mes "Ok, blessing you~!!";
+						set para_suv01,17;
 						setquest 7142;
 						close;
 					}

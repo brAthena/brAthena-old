@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0961 - 10/12/2011 [Mark]
+	* Correção para Habilidade Loja de Compras (ALL_BUYING_STORE).
+	* Correção para criação de algumas Comidas e Poções de Bioquímico.
+	* Pequena correção para Quest do Grupo Éden.
+	* Corrigida Árvore de Habilidades de Super Aprendiz T.
+
 	r0960 - 09/12/2011 [Protimus]
 	* Removido comando @whosell.
 	- Com o novo catálogos de vendas, o comando torna-se desnecessário.
