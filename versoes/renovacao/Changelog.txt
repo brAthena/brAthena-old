@@ -9,9 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0969 - 11/12/2011 [Protimus]
+	* Adicionada lista de IDs das habilidades de homunculus transmutados no código fonte.
+	* Removida flag do whosell do arquivo de configurações de comando.
+
 	r0968 - 11/12/2011 [Protimus]
-	* Adicionados novos homunculus mutantes de bioquímico.
-	* Adicionada árvore de habilidades para os homunculus mutantes.
+	* Adicionados novos homunculus transmutados de bioquímico.
+	* Adicionada árvore de habilidades para os homunculus transmutados.
 	* Corrigidas especificações máximas para homunculus.
 	- Necessários valores maiores para suporte de novos homunculus.
 	* Corrigido valor de pacote máximo para o database.
