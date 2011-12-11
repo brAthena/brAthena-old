@@ -9,6 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0968 - 11/12/2011 [Protimus]
+	* Adicionados novos homunculus mutantes de bioquímico.
+	* Adicionada árvore de habilidades para os homunculus mutantes.
+	* Corrigidas especificações máximas para homunculus.
+	- Necessários valores maiores para suporte de novos homunculus.
+	* Corrigido valor de pacote máximo para o database.
+	- Necessário para pegar todos os valores corretamente.
+
 	r0967 - 11/12/2011 [Protimus]
 	* Corrigida a habilidade Bomba Ácida (CR_ACIDDEMONSTRATION).
 	- Fórmula atualizada conforme renovação.
