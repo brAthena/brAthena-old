@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0967 - 11/12/2011 [Protimus]
+	* Corrigida a habilidade Bomba Ácida (CR_ACIDDEMONSTRATION).
+	- Fórmula atualizada conforme renovação.
+	- Necessário revisar se existem reduções raciais.
+
 	r0966 - 11/12/2011 [brn0]
 	* Corrigido um pequeno erro na revisão anterior, que fazia o client um dano incorreto.
 	* Corrigida a habilidade Tornado de Carrinho (GN_CART_TORNADO).

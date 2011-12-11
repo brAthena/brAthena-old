@@ -3664,8 +3664,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *target,int skill_num,int skill_lv,int mflag)
 {
 	int skill, s_base_level;
-	short i, nk;
-	short s_ele;
+	short i, nk, s_ele, atk, matk, wsize_penalty;
 
 	struct map_session_data *sd, *tsd;
 	struct Damage md; //DO NOT CONFUSE with md of mob_data!
@@ -3760,12 +3759,16 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 	case PA_GOSPEL:
 		md.damage = 1+rand()%9999;
 		break;
-	case CR_ACIDDEMONSTRATION: // updated the formula based on a Japanese formula found to be exact [Reddozen]
-		if(tstatus->vit+sstatus->int_) //crash fix
-			md.damage = (int)((int64)7*tstatus->vit*sstatus->int_*sstatus->int_ / (10*(tstatus->vit+sstatus->int_)));
+	case CR_ACIDDEMONSTRATION: //Fórmula = (ATK*0.07*VIT) * WpnSizePnlty + (MATK*0.07*VIT)
+		atk = max((sstatus->batk + sstatus->rhw.atk),0);
+		matk = max((sstatus->matk_max + sstatus->matk_min),0);
+		wsize_penalty = sd ? sd->right_weapon.atkmods[tstatus->size] : 100;
+		
+		if ((atk && wsize_penalty) || matk)
+				md.damage = (int)(((7 * atk * tstatus->vit) * wsize_penalty / 100 + (7 * matk * tstatus->vit)) / 100);	
 		else
 			md.damage = 0;
-		if (tsd) md.damage>>=1;
+		if (tsd || is_boss(target)) md.damage>>=1;
 		if (md.damage < 0 || md.damage > INT_MAX>>1)
 	  	//Overflow prevention, will anyone whine if I cap it to a few billion?
 		//Not capped to INT_MAX to give some room for further damage increase.
