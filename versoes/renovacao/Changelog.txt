@@ -9,6 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0965 - 11/12/2011 [Protimus]
+	* Removido suporte para clientes inferiores à versões de 2010+.
+	- Limpeza para condições de checagem das versões.
+	- Pequena restruturação em alguns códigos.
+	- A limpeza foi realizada para que não exista lixo na source, sendo que versões inferiores são inutilizáveis.
+	- Necessárias possíveis revisões ou remoções de mais códigos, caso existam.
+
 	r0964 - 10/12/2011 [brn0]
 	* Ativado o NPC Catalogador Mágico.
 	* Corrigida a mensagem do comando @job.

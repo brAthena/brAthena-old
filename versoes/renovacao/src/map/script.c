@@ -14860,7 +14860,6 @@ BUILDIN_FUNC(areamobuseskill)
 
 BUILDIN_FUNC(progressbar)
 {
-#if PACKETVER >= 20080318
 	struct map_session_data * sd = script_rid2sd(st);
 	const char * color;
 	unsigned int second;
@@ -14877,7 +14876,6 @@ BUILDIN_FUNC(progressbar)
 	sd->progressbar.timeout = gettick() + second*1000;
 
 	clif_progressbar(sd, strtol(color, (char **)NULL, 0), second);
-#endif
     return 0;
 }
 
