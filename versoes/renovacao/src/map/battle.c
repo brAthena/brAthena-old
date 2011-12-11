@@ -1519,11 +1519,6 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case SC_FATALMENACE:
 					hitrate -= (35 - skill_lv * 5);
 					break;
-				case GN_CART_TORNADO:
-				case GN_CARTCANNON:
-				if( sd && pc_checkskill(sd, GN_REMODELING_CART) )
-					hitrate += pc_checkskill(sd, GN_REMODELING_CART) * 4;
-					break;
 			}
 
 			// Weaponry Research hidden bonus
@@ -2210,15 +2205,10 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 						skillratio += -100 + (sstatus->batk + sstatus->watk) * sd->rageball_old * 2 * s_base_level/100 + ((sstatus->max_hp - sstatus->hp)/33);
 					break;
 				case GN_CART_TORNADO:
-					skillratio += (50 * skill_lv) + (sd->cart_weight / (150 - sstatus->str)) + (pc_checkskill(sd, GN_REMODELING_CART) * 50);
-					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
-					if( sc && sc->data[SC_GN_CARTBOOST] )
-						skillratio += 10 * sc->data[SC_GN_CARTBOOST]->val1;
+					skillratio += 50*skill_lv + sd->cart_weight/max(10,(1500 - 10*sd->status.str)) + 50*pc_checkskill(sd, GN_REMODELING_CART) - 100;
 					break;
 				case GN_CARTCANNON:
 					skillratio += 250 + 50 * skill_lv + pc_checkskill(sd, GN_REMODELING_CART) * (sstatus->int_ / 2);
-					if( sc && sc->data[SC_GN_CARTBOOST] )
-						skillratio += 10 * sc->data[SC_GN_CARTBOOST]->val1;
 					break;
 				case GN_SPORE_EXPLOSION:
 					skillratio += 200 + 100 * skill_lv;

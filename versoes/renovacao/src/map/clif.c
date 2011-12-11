@@ -3875,14 +3875,14 @@ int clif_damage(struct block_list* src, struct block_list* dst, unsigned int tic
 	WBUFL(buf,18)=ddelay;
 
 	if (battle_config.hide_woe_damage && map_flag_gvg(src->m)) {
-		WBUFL(buf,22  ) = damage?div:0;
-		WBUFL(buf,27) = damage2?div:0;
+		WBUFL(buf,22)=damage?div:0;
+		WBUFL(buf,29)=damage2?div:0;
 	} else {
-		WBUFL(buf,22  ) = damage;
-		WBUFL(buf,27) = damage2;
+		WBUFL(buf,22)=damage;
+		WBUFL(buf,29)=damage2;
 	}
-	WBUFW(buf,24) = div;
-	WBUFB(buf,26) = type;
+	WBUFW(buf,26)=div;
+	WBUFB(buf,28)=type;
 	if(disguised(dst)) {
 		clif_send(buf,packet_len(cmd),dst,AREA_WOS);
 		WBUFL(buf,6) = -dst->id;
