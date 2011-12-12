@@ -2205,7 +2205,11 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 						skillratio += -100 + (sstatus->batk + sstatus->watk) * sd->rageball_old * 2 * s_base_level/100 + ((sstatus->max_hp - sstatus->hp)/33);
 					break;
 				case GN_CART_TORNADO:
-					skillratio += 50*skill_lv + sd->cart_weight/max(10,(1500 - 10*sd->status.str)) + 50*pc_checkskill(sd, GN_REMODELING_CART) - 100;
+					skillratio += 50*skill_lv - 100;
+					if(sd)
+						skillratio += sd->cart_weight/max(10,(1500 - 10*sd->status.str)) + 50*pc_checkskill(sd, GN_REMODELING_CART);
+					else
+						skillratio += battle_config.max_cart_weight/max(10,(1500 - 10*sstatus->str)) + 250;
 					break;
 				case GN_CARTCANNON:
 					skillratio += 250 + 50 * skill_lv + pc_checkskill(sd, GN_REMODELING_CART) * (sstatus->int_ / 2);
@@ -2496,7 +2500,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			short vit_def;
 			signed short def2 = status_get_def2(target); //Don't use tstatus->def2 due to skill timer reductions.
 			short def1 = (short)tstatus->def;
-			float def_rate;
+			double def_rate;
 
 			if( sc && sc->data[SC_EXPIATIO] )
 			{
@@ -2543,8 +2547,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				vit_def += def2*battle_config.weapon_defense_type;
 				def2 = 0;
 			}
-			if (def2 > 835) def2 = 835;
-			def_rate = (float)580/(def2 + 580);
+			def_rate = (4000+def2)/(4000+10.*def2);
 
 			ATK_ADD2(flag.pdef ? def2/2:0, flag.pdef2 ? def2/2:0);
 

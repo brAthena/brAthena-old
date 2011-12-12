@@ -9,6 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0973 - 12/12/2011 [brn0]
+	* Atualizado o bônus de experiência em grupo.
+	- Agora é de 20% por cada membro acima de 2.
+	* Corrigida a fórmula da defesa.
+	- Estava dando pequenas diferenças em relação à fórmula oficial.
+	* Corrigida a fórmula da habilidade Tornado de Carrinho (GN_CART_TORNADO).
+	- Podia causar erros devido à falta de uma verificação.
+
 	r0972 - 12/12/2011 [Protimus]
 	* Adicionada a habilidade Modo de Ataque (MH_ANGRIFFS_MODUS).
 

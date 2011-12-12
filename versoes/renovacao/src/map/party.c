@@ -924,12 +924,12 @@ int party_exp_share(struct party_data* p, struct block_list* src, unsigned int b
 	if (c < 1)
 		return 0;
 
-	if(c > 2)
-		xp += (c-2)*10;
+	if(c >= 2)
+		xp += 20*(c-1);
 
 	if(p->party.exp){
-		base_exp = base_exp*xp/c/100;
-		job_exp = job_exp*xp/c/100;
+		base_exp = (int)(base_exp*(xp/100.)/c);
+		job_exp = (int)(job_exp*(xp/100.)/c);
 	}
 
 	if (battle_config.party_even_share_bonus && c > 1)
