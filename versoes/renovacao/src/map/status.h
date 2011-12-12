@@ -430,6 +430,7 @@ typedef enum sc_type {
 	SC_EARTHDRIVE,
 	SC_INSPIRATION,// 550
 	
+	SC_ALL_RIDING = 557,
 
 	SC_SPELLFIST = 570,
 	SC_CRYSTALIZE,
@@ -438,9 +439,7 @@ typedef enum sc_type {
 	SC_VACUUM_EXTREME,
 	SC_PROPERTYWALK,
 	
-	SC_ALL_RIDING = 557,
-	
-	SC_STAHL_HORN = 560,
+	// Homunculus S = 576 +
 
 	SC_SWINGDANCE = 600,
 	SC_SYMPHONYOFLOVER,

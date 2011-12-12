@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0971 - 12/12/2011 [Protimus]
+	* Corrigido envio anterior.
+	- A habilidade estava sem condições para seleção do alvo.
+	- Efeito de status desnecessário.
+
 	r0970 - 12/12/2011 [Protimus]
 	* Adicionada a habilidade Chifre de Aço (MH_STAHL_HORN).
 

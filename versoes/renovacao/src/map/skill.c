@@ -3286,6 +3286,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case SR_SKYNETBLOW:
 	case SR_FALLENEMPIRE:
 	case SR_GATEOFHELL:
+	case MH_STAHL_HORN:
 		skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 
