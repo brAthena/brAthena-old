@@ -1262,6 +1262,9 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 	case EL_TYPOON_MIS:
 		sc_start(bl,SC_SILENCE,10*skilllv,skilllv,skill_get_time(skillid,skilllv));
 		break;
+	case MH_STAHL_HORN:
+		sc_start(bl,SC_STUN,(20 + 4 * skilllv),skilllv,skill_get_time2(skillid,skilllv));
+		break;
 
 	}
 

@@ -439,6 +439,8 @@ typedef enum sc_type {
 	SC_PROPERTYWALK,
 	
 	SC_ALL_RIDING = 557,
+	
+	SC_STAHL_HORN = 560,
 
 	SC_SWINGDANCE = 600,
 	SC_SYMPHONYOFLOVER,
@@ -564,17 +566,16 @@ typedef enum sc_type {
 	SC_WATER_INSIGNIA,
 	SC_WIND_INSIGNIA,
 	SC_EARTH_INSIGNIA,
-	SC_YAMIKUMO,
+	
+	SC_YAMIKUMO = 771,
 	SC_IZAYOI,
 	SC_ZANGETSU, 
-/*	SC_KG_KAGEHUMI, // 770 
-	SC_KG_KAGEHUMI = 771, 
-	SC_KYOMU = 772, 
-	SC_KAGEMUSYA = 773, 
-	SC_ZANGETSU = 774, 
-	SC_PHI_DEMON = 775, 
-	SC_GENSOU = 776, 
-	SC_AKAITSUKI = 777, */
+	SC_KG_KAGEHUMI, 
+	SC_KYOMU, 
+	SC_KAGEMUSYA,  
+	SC_PHI_DEMON, 
+	SC_GENSOU, 
+	SC_AKAITSUK,
 
 	SC_MAX, //Automatically updated max, used in for's to check we are within bounds.
 } sc_type;

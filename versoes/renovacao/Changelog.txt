@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0970 - 12/12/2011 [Protimus]
+	* Adicionada a habilidade Chifre de Aço (MH_STAHL_HORN).
+
 	r0969 - 11/12/2011 [Protimus]
 	* Adicionada lista de IDs das habilidades de homunculus transmutados no código fonte.
 	* Removida flag do whosell do arquivo de configurações de comando.

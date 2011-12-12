@@ -550,7 +550,10 @@ void initChangeTables(void)
 	set_sc( SO_WIND_INSIGNIA     , SC_WIND_INSIGNIA   , SI_WIND_INSIGNIA   , SCB_NONE );
 	set_sc( SO_EARTH_INSIGNIA    , SC_EARTH_INSIGNIA  , SI_EARTH_INSIGNIA  , SCB_MDEF|SCB_DEF|SCB_MAXHP|SCB_MAXSP|SCB_WATK );
 	
-	// Kagerou & Oboro - brA Exclusive
+	// Homunculus S - brAthena
+	add_sc( MH_STAHL_HORN		 , SC_STUN            );
+	
+	// Kagerou & Oboro - brA Exclusividade
 	set_sc( KO_YAMIKUMO     , SC_YAMIKUMO   , SI_YAMIKUMO   , SCB_NONE );
 	set_sc( KO_IZAYOI       , SC_IZAYOI     , SI_IZAYOI     , SCB_MATK );
 	set_sc( OB_ZANGETSU     , SC_ZANGETSU   , SI_ZANGETSU   , SCB_BATK|SCB_MATK );
