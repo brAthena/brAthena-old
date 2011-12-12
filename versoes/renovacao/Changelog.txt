@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0972 - 12/12/2011 [Protimus]
+	* Adicionada a habilidade Modo de Ataque (MH_ANGRIFFS_MODUS).
+
 	r0971 - 12/12/2011 [Protimus]
 	* Corrigido envio anterior.
 	- A habilidade estava sem condições para seleção do alvo.

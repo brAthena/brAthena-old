@@ -552,6 +552,7 @@ void initChangeTables(void)
 	
 	// Homunculus S - brAthena
 	add_sc( MH_STAHL_HORN		 , SC_STUN            );
+	set_sc( MH_ANGRIFFS_MODUS	 , SC_ANGRIFFS_MODUS  , SI_ANGRIFFS_MODUS	, SCB_BATK|SCB_WATK|SCB_DEF|SCB_FLEE );
 	
 	// Kagerou & Oboro - brA Exclusividade
 	set_sc( KO_YAMIKUMO     , SC_YAMIKUMO   , SI_YAMIKUMO   , SCB_NONE );
@@ -4141,6 +4142,8 @@ static unsigned short status_calc_batk(struct block_list *bl, struct status_chan
 		batk += batk * 3;
 	if(sc->data[SC_BLOODLUST])
 		batk += batk * sc->data[SC_BLOODLUST]->val2/100;
+	if(sc->data[SC_ANGRIFFS_MODUS])
+		batk += batk * sc->data[SC_ANGRIFFS_MODUS]->val2/100;
 	if(sc->data[SC_JOINTBEAT] && sc->data[SC_JOINTBEAT]->val2&BREAK_WAIST)
 		batk -= batk * 25/100;
 	if(sc->data[SC_CURSE])
@@ -4221,6 +4224,8 @@ static unsigned short status_calc_watk(struct block_list *bl, struct status_chan
 	}
 	if(sc->data[SC_BLOODLUST])
 		watk += watk * sc->data[SC_BLOODLUST]->val2/100;
+	if(sc->data[SC_ANGRIFFS_MODUS])
+		watk += watk * sc->data[SC_ANGRIFFS_MODUS]->val2/100;
 	if(sc->data[SC_FLEET])
 		watk += watk * sc->data[SC_FLEET]->val3/100;
 	if(sc->data[SC_CURSE])
@@ -4440,6 +4445,8 @@ static signed short status_calc_flee(struct block_list *bl, struct status_change
 		flee -= flee * sc->data[SC_GLOOMYDAY_SK]->val2/100;
 	if(sc->data[SC_PARALYSE])
 		flee -= flee * 10 / 100; 
+	if( sc->data[SC_ANGRIFFS_MODUS] )
+		flee -= flee * 50 + sc->data[SC_ANGRIFFS_MODUS]->val3 / 100;
 
 	return (short)cap_value(flee,0,SHRT_MAX);
 }
@@ -4520,6 +4527,8 @@ static signed short status_calc_def(struct block_list *bl, struct status_change 
 		def -= def * 3 / 10;
 	if(sc->data[SC_EARTH_INSIGNIA] && sc->data[SC_EARTH_INSIGNIA]->val1 == 2)
 		def += 50;
+	if( sc->data[SC_ANGRIFFS_MODUS] )
+		def -= def * 60 + sc->data[SC_ANGRIFFS_MODUS]->val3 / 100;
 		
 	return (short)cap_value(def,SHRT_MIN,SHRT_MAX);
 }
@@ -7263,6 +7272,10 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			val2 = 20+10*val1; //Atk rate change.
 			val3 = 3*val1; //Leech chance
 			val4 = 20; //Leech percent
+			break;
+		case SC_ANGRIFFS_MODUS:
+			val2 = 70 + 30*val1; //Bônus de ataque.
+			val3 = 20 *val1; //Bônus de defesa e esquiva.
 			break;
 		case SC_FLEET:
 			val2 = 30*val1; //Aspd change

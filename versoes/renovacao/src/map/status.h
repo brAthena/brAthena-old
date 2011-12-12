@@ -439,7 +439,7 @@ typedef enum sc_type {
 	SC_VACUUM_EXTREME,
 	SC_PROPERTYWALK,
 	
-	// Homunculus S = 576 +
+	SC_ANGRIFFS_MODUS = 576,
 
 	SC_SWINGDANCE = 600,
 	SC_SYMPHONYOFLOVER,
