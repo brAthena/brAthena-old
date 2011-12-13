@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0975 - 12/12/2011 [Protimus]
+	* Adicionada a habilidade Deslizamento de Lava (MH_LAVA_SLIDE).
+	* Correção do envio anterior.
+	- O bônus de chance para ataque sagrado não estava com a chance randômica e funcional.
+
 	r0974 - 12/12/2011 [Protimus]
 	* Adicionada a habilidade Ferraduras de Ouro (MH_GOLDENE_FERSE).
 	* Melhorada organização do cálculo de bônus de r972.

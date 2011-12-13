@@ -1065,6 +1065,9 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 	case RK_DRAGONBREATH:
 		sc_start4(bl,SC_BURNING,5+5*skilllv,skilllv,1000,src->id,0,skill_get_time(skillid,skilllv));
 		break;
+	case MH_LAVA_SLIDE:
+		sc_start4(bl,SC_BURNING,10*skilllv,skilllv,1000,src->id,0,skill_get_time(skillid,skilllv));
+		break;
 	case AB_ADORAMUS:
 		if( tsc && !tsc->data[SC_DECREASEAGI] )
 			sc_start(bl, SC_ADORAMUS, 100, skilllv, skill_get_time(skillid, skilllv));
@@ -3518,6 +3521,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case SR_TIGERCANNON:
 	case SO_VARETYR_SPEAR:
 	case KO_HAPPOKUNAI:
+	case MH_LAVA_SLIDE:
 		if( flag&1 )
 		{	//Recursive invocation
 			// skill_area_temp[0] holds number of targets in area
@@ -7181,6 +7185,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		break;
 	case RK_IGNITIONBREAK:
 	case LG_EARTHDRIVE:
+	case MH_LAVA_SLIDE:
 		clif_skill_damage(src,bl,tick, status_get_amotion(src), 0, -30000, 1, skillid, skilllv, 6);
 		if( skillid == LG_EARTHDRIVE )
 		{

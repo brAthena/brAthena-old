@@ -554,6 +554,7 @@ void initChangeTables(void)
 	add_sc( MH_STAHL_HORN		 , SC_STUN            );
 	set_sc( MH_ANGRIFFS_MODUS	 , SC_ANGRIFFS_MODUS  , SI_ANGRIFFS_MODUS	, SCB_BATK|SCB_WATK|SCB_DEF|SCB_FLEE );
 	set_sc( MH_GOLDENE_FERSE	 , SC_GOLDENE_FERSE   , SI_GOLDENE_FERSE	, SCB_SPEED|SCB_FLEE|SCB_ATK_ELE );
+	add_sc( MH_LAVA_SLIDE		 , SC_BURNING         );
 	
 	// Kagerou & Oboro - brA Exclusividade
 	set_sc( KO_YAMIKUMO     , SC_YAMIKUMO   , SI_YAMIKUMO   , SCB_NONE );
@@ -5137,7 +5138,7 @@ unsigned char status_calc_attack_element(struct block_list *bl, struct status_ch
 		return ELE_GHOST;
 	if(sc->data[SC_EXPIATIO])
 		return ELE_HOLY;
-	if(sc->data[SC_GOLDENE_FERSE] && sc->data[SC_GOLDENE_FERSE]->val4)
+	if(sc->data[SC_GOLDENE_FERSE] && rand()%100 < sc->data[SC_GOLDENE_FERSE]->val4)
 		return ELE_HOLY;
 		
 	return (unsigned char)cap_value(element,0,UCHAR_MAX);
@@ -7289,7 +7290,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_GOLDENE_FERSE:
 			val2 = 20 + 10*val1; //Bônus de esquiva.
 			val3 = 10 + 4*val1; //Bônus de velocidade de ataque.
-			val4 = rand()%(4 + 2*val1); //Chance de ataque sagrado.
+			val4 = 2 + 2*val1; //Chance de ataque sagrado.
 			break;
 		case SC_FLEET:
 			val2 = 30*val1; //Aspd change

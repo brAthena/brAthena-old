@@ -2327,6 +2327,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case MH_STAHL_HORN:
 					skillratio += 500 + 100 * skill_lv;
 					break;
+				case MH_LAVA_SLIDE:
+					skillratio = 70 * skill_lv;
+					break;
 				case KO_HUUMARANKA:
 					skillratio += 15*skill_lv;
 					break;
