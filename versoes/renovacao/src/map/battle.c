@@ -3033,7 +3033,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 		s_job_level = sd->status.job_level;
 
 	//Initial Values
-	ad.damage = 1;
+	ad.damage = 0;
 	ad.amotion=skill_get_inf(skill_num)&INF_GROUND_SKILL?0:sstatus->amotion; //Amotion should be 0 for ground skills.
 	ad.dmotion=tstatus->dmotion;
 	ad.flag=BF_MAGIC|BF_SKILL;
@@ -3445,8 +3445,8 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 							skillratio += skillratio * sc->data[SC_BLAST_OPTION]->val2 / 100;
 						break;
 					case SO_PSYCHIC_WAVE:
-						skillratio += -100 + skill_lv * 70 + (sstatus->int_ * 3);
-						if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
+						skillratio += 70*skill_lv + 3*sstatus->int_ - 100;
+						if(s_base_level > 100) skillratio += skillratio*(s_base_level-100)/100;
 						if( sc )
 						{
 							if( sc->data[SC_HEATER_OPTION] )
@@ -3519,7 +3519,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 				flag.imdef = 1;
 		}
 		if(!flag.imdef){
-			float mdef_rate;
+			double mdef_rate;
 			short mdef = tstatus->mdef;
 			short mdef2 = tstatus->mdef2;
 
@@ -3532,7 +3532,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 					mdef2 -= mdef2 * i/100;
 				}
 			}
-			mdef_rate = (float)(111.5/(111.5 + mdef2));
+			mdef_rate = (1000+mdef2)/(1000 + 10.*mdef2);
 			if(battle_config.magic_defense_type)
 				ad.damage = (int)(ad.damage - 100*mdef_rate*battle_config.magic_defense_type - mdef);
 			else
@@ -5289,8 +5289,8 @@ static const struct _battle_data {
 	{ "use_statpoint2_table",               &battle_config.use_statpoint2_table,              1,    0,      1,              },
 	{ "max_3rd_parameter",                  &battle_config.max_3rd_parameter,               120,   10,      10000,          },
 	{ "max_baby_3rd_parameter",             &battle_config.max_baby_3rd_parameter,          108,   10,      10000,          },
-	{ "max_level_base",                     &battle_config.max_level_base,               	100,    0,      INT_MAX,        },
-	{ "max_level_classe",                   &battle_config.max_level_classe,                100,    0,      INT_MAX,        },
+	{ "max_level_base",                     &battle_config.max_level_base,               	150,    1,      INT_MAX,        },
+	{ "max_level_classe",                   &battle_config.max_level_classe,                 70,    1,      INT_MAX,        },
 	{ "block_relocation_trapped",           &battle_config.block_relocation,                  1,    0,      1,              },
 	{ "metallicsound_spburn_rate",          &battle_config.metallicsound_spburn_rate,        100,   0,      INT_MAX,        },
 	{ "active_mvp_tombstone",               &battle_config.active_mvp_tombstone,              1,    0,      1,              },
