@@ -9,7 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
-	r0975 - 12/12/2011 [Protimus]
+	r0976 - 13/12/2011 [Mark]
+	* Correção para os Itens Visuais.
+	- Vários não estavam sendo considerados como Itens Visuais.
+	* Ativado Npc para Quest da habilidade Loja de Compras.
+
+	r0975 - 13/12/2011 [Protimus]
 	* Adicionada a habilidade Deslizamento de Lava (MH_LAVA_SLIDE).
 	* Correção do envio anterior.
 	- O bônus de chance para ataque sagrado não estava com a chance randômica e funcional.
