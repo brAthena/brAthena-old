@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0974 - 12/12/2011 [Protimus]
+	* Adicionada a habilidade Ferraduras de Ouro (MH_GOLDENE_FERSE).
+	* Melhorada organização do cálculo de bônus de r972.
+
 	r0973 - 12/12/2011 [brn0]
 	* Atualizado o bônus de experiência em grupo.
 	- Agora é de 20% por cada membro acima de 2.

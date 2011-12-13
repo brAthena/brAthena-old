@@ -7034,6 +7034,14 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 				clif_skill_fail(sd,skillid,0,0,0);
 		}
 		break;
+		
+	case MH_STAHL_HORN:
+		if (sd)
+		{
+			if( skillid == MH_GOLDENE_FERSE )
+				clif_skill_fail(sd,skillid,0,0,0);
+		}
+		break;
 
 	case HAMI_CASTLE:	//[orn]
 		if(rand()%100 < 20*skilllv && src != bl)
@@ -7090,6 +7098,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case HFLI_SPEED:
 	case HLIF_CHANGE:
 	case MH_ANGRIFFS_MODUS:
+	case MH_GOLDENE_FERSE:
 		clif_skill_nodamage(src,bl,skillid,skilllv,
 			sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv)));
 		if (hd)
