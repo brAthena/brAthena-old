@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0977 - 13/12/2011 [Mark]
+	* Correção da Carta Mosca Caçadora para a habilidade Sopro do Dragão.
+	* Correção de script de alguns itens.
+	* Corrigida a habilidade Curatio (AB_HIGHNESSHEAL).
+	- Tempo de reuso da habilidade ajustado conforme renovação. 
+
 	r0976 - 13/12/2011 [Mark]
 	* Correção para os Itens Visuais.
 	- Vários não estavam sendo considerados como Itens Visuais.

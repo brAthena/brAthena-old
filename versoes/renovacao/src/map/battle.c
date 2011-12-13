@@ -3950,7 +3950,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 	else if( map[target->m].flag.battleground )
 		md.damage=battle_calc_bg_damage(src,target,md.damage,md.div_,skill_num,skill_lv,md.flag);
 
-	if (skill_num == RA_CLUSTERBOMB || skill_num == RA_FIRINGTRAP || skill_num == RA_ICEBOUNDTRAP) {
+	if (skill_num == RA_CLUSTERBOMB || skill_num == RA_FIRINGTRAP || skill_num == RA_ICEBOUNDTRAP || skill_num == RK_DRAGONBREATH) {
 		struct Damage wd;
 		wd = battle_calc_weapon_attack(src,target,skill_num,skill_lv,mflag);
 		md.damage += wd.damage;

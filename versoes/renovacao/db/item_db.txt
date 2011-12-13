@@ -5260,7 +5260,7 @@
 12372,Hell_Contract,Hell Contract,2,0,,50,,,,,0xFFFFFFFF,7,2,,,,,,{ pet 1379; },{},{}
 12373,Boy's_Naivety,Coração Puro,2,0,,50,,,,,0xFFFFFFFF,7,2,,,,,,{ pet 1370; },{},{}
 12374,Flaming_Ice,Chama Azulada,2,0,,50,,,,,0xFFFFFFFF,7,2,,,,,,{ pet 1837; },{},{}
-12375,Acaraje,Acarajé,2,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ specialeffect2 EF_STEAL; sc_start SC_INCHITRATE,120000,5; },{},{}
+12375,Acaraje,Acarajé,2,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_INCASPDRATE,1200000,10; sc_start SC_HITFOOD,1200000,5; },{},{}
 12376,Mysterious_Can2,Mysterious Can2,2,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
 12377,Mysterious_PET_Bottle2,Mysterious PET Bottle2,2,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
 12378,2009_Rice_Cake_Soup,Rice Cake Soup,2,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
@@ -5455,7 +5455,7 @@
 12707,Lucky_Cookie02,Biscoito da Sorte: Magnificat,11,0,,100,,,,,0xFFFFFFFF,7,2,,,,,,{ itemskill "PR_MAGNIFICAT",1; },{},{}
 12708,Lucky_Cookie03,Biscoito da Sorte: Impositio Manus,11,0,,100,,,,,0xFFFFFFFF,7,2,,,,,,{ itemskill "PR_IMPOSITIO",3; },{},{}
 12709,Guyak_Candy,Doce de Guyak,2,0,,150,,,,,0xFFFFFFFF,7,2,,,,,,{ percentheal 30,30; },{},{}
-12710,Guyak_Pudding,Pudim de Guyak,2,0,,200,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+12710,Guyak_Pudding,Pudim de Guyak,2,0,,200,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_SPEEDUP1,300000,0; },{},{}
 12711,Pretzel,Pretzel,2,2,,100,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
 12712,Green_Beer,Green Beer,2,2,,100,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
 12713,Monster_Extract,Monster Extract,2,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
@@ -6734,7 +6734,7 @@
 14583,WOB_Schwaltz,Green Butterfly Wing,2,,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ callfunc "F_CashCity",2; },{},{}
 14584,WOB_Rachel,Red Butterfly Wing,2,,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ callfunc "F_CashCity",3; },{},{}
 14585,WOB_Local,Blue Butterfly Wing,2,,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ callfunc "F_CashCity",4; },{},{}
-14586,Spark_Candy,Doce Hiper Açucarado,2,2,,10,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+14586,Spark_Candy,Doce Hiper Açucarado,2,2,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_INCBASEATK,60000,20; sc_start SC_INCASPDRATE,60000,25; sc_start SC_ENDURE,60000,10; specialeffect2 EF_HASTEUP; },{},{}
 14587,Repair_Scroll_,Pergaminho de Reparar Arma,11,2,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ itemskill "BS_REPAIRWEAPON",1; },{},{}
 14588,Pty_Blessing_Scroll,Pergaminho Bênção em Grupo,11,2,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ itemskill "CASH_BLESSING",10; },{},{}
 14589,Pty_Inc_Agi_Scroll,Pergaminho Agilidade em Grupo,11,2,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ itemskill "CASH_INCAGI",10; },{},{}
@@ -6748,7 +6748,7 @@
 14597,PhreeoniS,Phreeoni Scroll,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_ITEMSCRIPT,180000,4121; },{},{}
 14598,GhostringS,Pergaminho de Ghostring,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_ITEMSCRIPT,60000,4047; },{},{}
 14599,Greed_Scroll_C,Greed Scroll,2,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
-14600,Mental_Potion,Poção Mental,2,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
+14600,Mental_Potion,Poção Mental,2,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_INCMSPRATE,1800000,(8+rand(3)); sc_start SC_SPCOST_RATE,1800000,(8+rand(3)); },{},{}
 14601,Tyr's_Blessing,Bênção de Tyr,2,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_INCFLEE,300000,30; sc_start SC_INCHIT,300000,30; sc_start SC_ATKPOTION,300000,20; sc_start SC_MATKPOTION,300000,20; },{},{}
 14602,TaogunkaS,Pergaminho Tao Gunka,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_ITEMSCRIPT,180000,4302; },{},{}
 14603,MistressS,Pergaminho de Abelha Rainha,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_ITEMSCRIPT,180000,4132; },{},{}
