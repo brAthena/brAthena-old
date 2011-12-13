@@ -399,7 +399,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 			}
 		}
 
-		if( sc->data[SC_SAFETYWALL] && (flag&(BF_SHORT|BF_MAGIC))==BF_SHORT )
+		if( sc->data[SC_SAFETYWALL] && ((flag&(BF_SHORT|BF_MAGIC))==BF_SHORT || skill_num == RA_FIRINGTRAP || skill_num == RA_ICEBOUNDTRAP || skill_num == RA_CLUSTERBOMB))
 		{
 			struct skill_unit_group* group = skill_id2group(sc->data[SC_SAFETYWALL]->val3);
 			if (group) {
@@ -418,7 +418,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 			status_change_end(bl,SC_SAFETYWALL,-1);
 		}
 
-		if( (sc->data[SC_PNEUMA] && (flag&(BF_MAGIC|BF_LONG)) == BF_LONG) || sc->data[SC__MANHOLE] )
+		if( (sc->data[SC_PNEUMA] && (flag&(BF_MAGIC|BF_LONG)) == BF_LONG && skill_num != RA_FIRINGTRAP && skill_num != RA_ICEBOUNDTRAP && skill_num != RA_CLUSTERBOMB) || sc->data[SC__MANHOLE] )
 		{
 			d->dmg_lv = ATK_BLOCK;
 			return 0;

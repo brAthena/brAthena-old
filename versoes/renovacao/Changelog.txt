@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0978 - 13/12/2011 [Mark]
+	* Corrigidas armadilhas de Sentinela.
+	- Estavam sendo bloqueadas por Escudo Sagrado e não por Escudo Mágico.
+
 	r0977 - 13/12/2011 [Mark]
 	* Correção da Carta Mosca Caçadora para a habilidade Sopro do Dragão.
 	* Correção de script de alguns itens.
