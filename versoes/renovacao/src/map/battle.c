@@ -3316,25 +3316,25 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						break;
 					case AB_JUDEX:
 						skillratio += ((skill_lv < 5)?180 + 20 * skill_lv:300);
-					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level / 100);
+						if( s_base_level > 100 ) skillratio += skillratio * (s_base_level / 100);
 						break;
 					case AB_ADORAMUS:
 						skillratio += 400 + 100 * skill_lv;
-					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level / 100);
+						if( s_base_level > 100 ) skillratio += skillratio * (s_base_level / 100);
 						break;
 					case AB_DUPLELIGHT_MAGIC:
 						skillratio += 100 + 20 * skill_lv;
 						break;
-				case WL_SOULEXPANSION:
+					case WL_SOULEXPANSION:
 						skillratio += 300 + 100 * skill_lv + sstatus->int_;
 						if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;	
 						break;
 					case WL_FROSTMISTY:
-						skillratio += 100+100*skill_lv;
+						skillratio += 100*skill_lv + 100;
 						if(s_base_level > 100)
-							skillratio += skillratio*(s_base_level-100)/200;
+							skillratio += skillratio*(s_base_level-100)/100;
 						break;
-				case WL_JACKFROST:
+					case WL_JACKFROST:
 						{
 							struct status_change *tsc = status_get_sc(target);
 							if( tsc && tsc->data[SC_FREEZING] )
@@ -3378,9 +3378,9 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 							skillratio += skillratio*(s_base_level-100)/200;
 						break;
 					case WL_EARTHSTRAIN:
-						skillratio += 1900+100*skill_lv;
+						skillratio += 1900 + 100*skill_lv;
 						if(s_base_level > 100)
-							skillratio += skillratio*(s_base_level-100)/200;
+							skillratio += skillratio*(s_base_level-100)/100;
 						break;
 					case WL_TETRAVORTEX_FIRE:
 					case WL_TETRAVORTEX_WATER:
@@ -3423,6 +3423,8 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 					case SO_EARTHGRAVE:
 						skillratio = skill_lv*sstatus->int_ + 200*(sd ? pc_checkskill(sd, SA_SEISMICWEAPON):5);
 						if(s_base_level > 100) skillratio += skillratio*(s_base_level-100)/100;
+						if( sc && sc->data[SC_CURSED_SOIL_OPTION] ) 
+							skillratio += skillratio * sc->data[SC_CURSED_SOIL_OPTION]->val2 / 100; 
 						break;
 					case SO_DIAMONDDUST:
 						skillratio = ( 200 * pc_checkskill(sd, SA_FROSTWEAPON) + sstatus->int_ * skill_lv );
