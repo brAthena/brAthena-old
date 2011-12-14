@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0980 - 14/12/2011 [Protimus]
+	* Adicionada a habilidade Névoa Venenosa (MH_POISON_MIST).
+
 	r0979 - 13/12/2011 [brn0]
 	* Corrigida a fórmula da defesa mágica.
 	- Estava dando pequenas diferenças em relação à fórmula oficial.

@@ -555,6 +555,7 @@ void initChangeTables(void)
 	set_sc( MH_ANGRIFFS_MODUS	 , SC_ANGRIFFS_MODUS  , SI_ANGRIFFS_MODUS	, SCB_BATK|SCB_WATK|SCB_DEF|SCB_FLEE );
 	set_sc( MH_GOLDENE_FERSE	 , SC_GOLDENE_FERSE   , SI_GOLDENE_FERSE	, SCB_SPEED|SCB_FLEE|SCB_ATK_ELE );
 	add_sc( MH_LAVA_SLIDE		 , SC_BURNING         );
+	add_sc( MH_POISON_MIST		 , SC_BLIND			  );
 	
 	// Kagerou & Oboro - brA Exclusividade
 	set_sc( KO_YAMIKUMO     , SC_YAMIKUMO   , SI_YAMIKUMO   , SCB_NONE );
