@@ -3337,14 +3337,13 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 					case WL_JACKFROST:
 						{
 							struct status_change *tsc = status_get_sc(target);
-							if( tsc && tsc->data[SC_FREEZING] )
-							{
-								skillratio += 900 + 300 * skill_lv;
-								if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
+							if(tsc && tsc->data[SC_FREEZING]) {
+								skillratio += 900 + 300*skill_lv;
+								if(s_base_level > 100) skillratio += skillratio*(s_base_level - 100)/100;
+							} else {
+								skillratio += 400 + 100*skill_lv;
+								if(s_base_level > 100) skillratio = skillratio*s_base_level/150;
 							}
-							else
-								skillratio += 400 + 100 * skill_lv;
-								if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
 						}
 						break;
 					case WL_DRAINLIFE:

@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0984 - 14/12/2011 [brn0]
+	* Atualizada a fórmula da habilidade Esquife de Gelo (WL_JACKFROST).
+	* Atualizada a fórmula da habilidade Encantar Lâmina (RK_ENCHANTBLADE).
+
 	r0983 - 14/12/2011 [brn0]
 	* Corrigido um erro no envio anterior, com relação a habilidade Castigo de Nerthus (SO_EARTHGRAVE).
 	* Atualizada a fórmula da habilidade Zero Absoluto (WL_FROSTMISTY).
