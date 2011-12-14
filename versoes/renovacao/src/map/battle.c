@@ -3494,7 +3494,12 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 							skillratio += (sd) ? sd->shieldmdef * 113 : 1000;
 						skillratio += 250;
 						break;
-
+					case MH_ERASER_CUTTER:
+						if (skill_lv >= 3)
+							skillratio += 800 + 200 * skill_lv ;
+						else
+							skillratio += 500 + 400 * skill_lv;
+						break;
 				}
 
 				MATK_RATE(skillratio);
@@ -3662,6 +3667,11 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 	{
 		struct Damage wd = battle_calc_weapon_attack(src,target,skill_num,skill_lv,mflag);
 		ad.damage += wd.damage;
+	}
+	
+	if(skill_num == MH_ERASER_CUTTER){
+		struct Damage md = battle_calc_magic_attack(src,target,skill_num,-skill_lv,mflag);
+		ad.damage += md.damage;
 	}
 
 	return ad;

@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0981 - 14/12/2011 [Protimus]
+	* Adicionada a habilidade Corte Ilusório (MH_ERASER_CUTTER).
+
 	r0980 - 14/12/2011 [Protimus]
 	* Adicionada a habilidade Névoa Venenosa (MH_POISON_MIST).
 
