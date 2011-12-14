@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0982 - 14/12/2011 [brn0]
+	* Atualizada a fórmula da habilidade Castigo de Nerthus (SO_EARTHGRAVE).
+	* Atualizada a fórmula da habilidade Meteoro Escarlate (WL_CRIMSONROCK).
+
 	r0981 - 14/12/2011 [Protimus]
 	* Adicionada a habilidade Corte Ilusório (MH_ERASER_CUTTER).
 

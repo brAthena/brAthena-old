@@ -3353,8 +3353,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 							skillratio += skillratio*(s_base_level-100)/200;
 						break;
 					case WL_CRIMSONROCK:
-						skillratio += 1200+300*skill_lv;
-						if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
+						skillratio += 300*skill_lv*max(s_base_level,100)/100 + 1200;
 						break;
 					case WL_HELLINFERNO:
 						if( s_ele == ELE_FIRE )
@@ -3422,10 +3421,8 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 							skillratio += skillratio * sc->data[SC_BLAST_OPTION]->val2 / 100;
 						break;
 					case SO_EARTHGRAVE:
-						skillratio = ( 200 * pc_checkskill(sd, SA_SEISMICWEAPON) + sstatus->int_ * skill_lv );
-						if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
-						if( sc && sc->data[SC_CURSED_SOIL_OPTION] )
-							skillratio += skillratio * sc->data[SC_CURSED_SOIL_OPTION]->val2 / 100;
+						skillratio = skill_lv*sstatus->int_ + 200*(sd ? pc_checkskill(sd, SA_SEISMICWEAPON):5);
+						if(s_base_level > 100) skillratio += skillratio*(s_base_level-100)/100;
 						break;
 					case SO_DIAMONDDUST:
 						skillratio = ( 200 * pc_checkskill(sd, SA_FROSTWEAPON) + sstatus->int_ * skill_lv );
