@@ -2048,7 +2048,8 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio += 10 * skill_lv;
 					break;
 				case GC_CROSSIMPACT:
-					skillratio += 1050 + 50 * skill_lv;
+					skillratio += 100*skill_lv + 900;
+					if(s_base_level > 100) skillratio = skillratio*s_base_level/120;
 					break;
 				case GC_COUNTERSLASH:
 					skillratio += 300 + (100 * skill_lv) + status_get_agi(src);
@@ -2212,7 +2213,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 						skillratio += battle_config.max_cart_weight/max(10,(1500 - 10*sstatus->str)) + 250;
 					break;
 				case GN_CARTCANNON:
-					skillratio += 250 + 50 * skill_lv + pc_checkskill(sd, GN_REMODELING_CART) * (sstatus->int_ / 2);
+					skillratio += 60*skill_lv + 5*pc_checkskill(sd, GN_REMODELING_CART)*sstatus->int_/4 - 100;
 					break;
 				case GN_SPORE_EXPLOSION:
 					skillratio += 200 + 100 * skill_lv;

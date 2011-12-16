@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0986 - 16/12/2011 [brn0]
+	* Atualizada a fórmula da habilidade Lâminas Retalhadoras (GC_CROSSIMPACT).
+	* Atualizada a fórmula da habilidade Canhão de Prótons (GN_CARTCANNON).
+
 	r0985 - 15/12/2011 [brn0]
 	* Atualizada a fórmula da habilidade Adoramus (AB_ADORAMUS).
 	* Atualizada a fórmula da habilidade Judex (AB_JUDEX).
