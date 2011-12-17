@@ -2141,7 +2141,8 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio += 400;
 					break;
 				case SC_FATALMENACE:
-					skillratio += 100 * skill_lv;
+					skillratio += 100*skill_lv;
+					if(s_base_level > 100) skillratio += skillratio*(s_base_level-100)/100;
 					break;
 				case SC_TRIANGLESHOT:
 					skillratio += 270 + 30 * skill_lv;
