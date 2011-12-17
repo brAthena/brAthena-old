@@ -1,0 +1,20 @@
+//  Estrutura para o Changelog.
+//
+//	r0000 - Dia/Mês/Ano [Autor(es)]
+//	* Notação
+//	- Comentário (opcional)
+//  * Dica: Para encontrar atualizações de uma revisão específica pressione Ctrl+F
+//	e digite rxxxx onde "xxxx" refere-se a revisão desejada. 
+//  * Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
+//	Acesse o link: http://trac.brathena.org/timeline
+// ===========================================================================================================
+
+	r0989 - 17/12/2011 [Protimus]
+	* Adicionado arquivo de Licença GNU para o emulador.
+	* Adicionado arquivo de Termos de Uso.
+	- Necessário estar de acordo com os termos para o uso dos códigos do emulador.
+	
+	r0987 - 17/12/2011 [Protimus]
+	* Iniciado projeto brAthena ++, cujo tem como objetivo a reestruturação do emulador brAthena em C++. 
+	  Inicialmente serão trabalhadas apenas códigos que não são modificados constantemente no emulador atual. 
+	  Iremos realizar uma conversão total quando finalizarmos o emulador atual.
