@@ -9,6 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0991 - 18/12/2011 [brn0]
+	* Atualizado o tempo de duração das habilidades:
+	- Invocar Esfera de Fogo (WL_SUMMONFB).
+	- Invocar Esfera de Vento (WL_SUMMONBL).
+	- Invocar Esfera de Água (WL_SUMMONWB).
+	- Invocar Esfera de Terra (WL_SUMMONSTONE).
+	* Corrigida a habilidade Lâminas de Loki (GC_ROLLINGCUTTER).
+
 	r0988 - 17/12/2011 [brn0]
 	* Atualizada a fórmula da habilidade Acerto de Contas (SC_FATALMENACE).
 	* Alterado o elemento da Armadilha Incendiária (RA_FIRINGTRAP) para Fogo.

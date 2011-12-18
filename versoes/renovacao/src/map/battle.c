@@ -2055,7 +2055,8 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio += 300 + (100 * skill_lv) + status_get_agi(src);
 					break;
 				case GC_ROLLINGCUTTER:
-					skillratio += 20 * skill_lv;
+					skillratio += 50*skill_lv - 50;
+					if(s_base_level > 100) skillratio += skillratio*(s_base_level - 100)/100;
 					break;
 				case GC_PHANTOMMENACE:
 					skillratio += 200;
