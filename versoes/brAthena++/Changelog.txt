@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ===========================================================================================================
 
+	r0990 - 17/12/2011 [Protimus]
+	* Adicionada estrutura inicial de pastas para NPCs.
+	- Nova organização contará com merge de alguns arquivos que existiam separados.
+	
 	r0989 - 17/12/2011 [Protimus]
 	* Adicionado arquivo de Licença GNU para o emulador.
 	* Adicionado arquivo de Termos de Uso.
