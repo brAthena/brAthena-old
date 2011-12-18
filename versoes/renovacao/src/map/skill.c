@@ -12901,20 +12901,27 @@ int skill_castfix (struct block_list *bl, int skill_id, int skill_lv)
 	sc = status_get_sc(bl);
 
 	if(!(skill_get_castnodex(skill_id, skill_lv)&1))
-		stat_reduct = (float)sqrt((float)(status_get_dex(bl)*2 + status_get_int(bl))/battle_config.castrate_dex_scale);
-	time=max((int)((float)(1 - stat_reduct)*base_cast*4/5),0);
+		stat_reduct = (float)(1 - sqrt((status_get_dex(bl)*2. + status_get_int(bl))/battle_config.castrate_dex_scale));
+
+	time=(int)max(stat_reduct*base_cast*0.8,0);
 
 	// Tempo de cast para itens, cartas e bônus.
 	if(sd && !(skill_get_castnodex(skill_id, skill_lv)&4)) {
 		int i;
 		if( sd->castrate != 100 )
-			time = time*sd->castrate / 100;
+			time = time*sd->castrate/100;
 		for(i=0; i < ARRAYLENGTH(sd->skillcast) && sd->skillcast[i].id; i++)
 			if(sd->skillcast[i].id == skill_id) {
-				time += time*sd->skillcast[i].val/100;
-				if(time < 0) time = 0;
+				time += max(time*sd->skillcast[i].val/100,-time);
 				break;
 			}
+		if(sd->fixedcastrate)
+			cast_fixo_reduct -= sd->fixedcastrate;
+		for(i=0;i < ARRAYLENGTH(sd->fixedskillcast);i++)
+			if(sd->fixedskillcast[i].id == skill_id) {
+				cast_fixo_reduct -= sd->fixedskillcast[i].val;
+				break;
+		}
 	}
 
 	if(sc && !(skill_get_castnodex(skill_id, skill_lv)&2)){
@@ -12934,11 +12941,11 @@ int skill_castfix (struct block_list *bl, int skill_id, int skill_lv)
 
 	// Battleconfig para multiplicador do tempo de conjuração.
 	if (battle_config.cast_rate != 100)
-		time = time * battle_config.cast_rate / 100;
+		time = time*battle_config.cast_rate/100;
 	if(time < 0)
 		time = 0;
 	if( sc && sc->data[SC_MANDRAGORA] && (skill_id >= SM_BASH && skill_id <= RETURN_TO_ELDICASTES) )
-			time += 2000;
+		time += 2000;
 	// Retorno do tempo de conjuração final.
 	return time;
 }

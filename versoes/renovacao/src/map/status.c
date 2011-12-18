@@ -2176,6 +2176,7 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 	sd->hprate=100;
 	sd->sprate=100;
 	sd->castrate=100;
+	sd->fixedcastrate=0;
 	sd->delayrate=100;
 	sd->dsprate=100;
 	sd->hprecov_rate = 100;

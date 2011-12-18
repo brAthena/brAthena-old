@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0992 - 18/12/2011 [brn0]
+	* Adicionado o bônus bFixedCastRate.
+	- Reduz uma taxa do Cast Fixo.
+
 	r0991 - 18/12/2011 [brn0]
 	* Atualizado o tempo de duração das habilidades:
 	- Invocar Esfera de Fogo (WL_SUMMONFB).
