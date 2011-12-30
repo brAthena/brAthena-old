@@ -1796,18 +1796,19 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int lev
 	status->batk = status_base_atk(bl, status, level);
 
 	status->hit += level + status->dex + status->luk/3 + 175;
-    status->flee += level + status->agi + status->luk/5 + 100;
-    status->def += (int)(((float)level + status->vit)/2 + ((float)status->agi/5));
-    status->mdef += (int)(status->int_ + ((float)level/4) + ((float)status->dex/5) + ((float)status->vit/5));
+	status->flee += level + status->agi + status->luk/5 + 100;
+	status->def += ((bl->type == BL_PC ? status->agi<<1:0) + 5*(level + status->vit))/10;
+	if(bl->type == BL_PC)
+		status->mdef += status->int_ + (5*level + 4*(status->dex + status->vit))/20;
+	else
+		status->mdef += (level + status->int_)/4;
 
 	status->matk_min = status_base_status_matk(status, level);
-	if (bl->type == BL_PC )
+	if(bl->type == BL_PC)
 		status->matk_max += ((TBL_PC*)bl)->matk_bonus + status->rhw.atk2 + status->lhw.atk2;
 
 	if( bl->type&battle_config.enable_critical )
-		status->cri += 10 + (status->luk*10/3);
-	else
-		status->cri = 0;
+		status->cri += 10 + status->luk*10/3;
 
 	if (bl->type&battle_config.enable_perfect_flee)
 		status->flee2 += status->luk + 10;
