@@ -9,8 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0994 - 30/12/2011 [insidemybrain]
+	* Enviado novo script do quests_brasilis.txt
+	- O antigo estava com bug's e faltavam muitas falas nos NPC's
+	- O principal bug visto foi na quest da Bala de Guaraná
+
 	r0993 - 30/12/2011 [brn0]
-	* Corrigidas as fórmulas de defesa e defese mágica de monstros.
+	* Corrigidas as fórmulas de defesa e defesa mágica de monstros.
 
 	r0992 - 18/12/2011 [brn0]
 	* Adicionado o bônus bFixedCastRate.
