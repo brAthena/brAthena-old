@@ -3411,22 +3411,24 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
 						break;
 					case SO_FIREWALK:
-						skillratio = 300;
-						if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
-						if( sc && sc->data[SC_HEATER_OPTION] )
-							skillratio += skillratio * sc->data[SC_HEATER_OPTION]->val3 / 100;
+						skillratio += 60*skill_lv - 100;
+						if(s_base_level > 100)
+							skillratio += skillratio*(s_base_level - 100)/100;
+						if(sc && sc->data[SC_HEATER_OPTION])
+							skillratio += skillratio*sc->data[SC_HEATER_OPTION]->val3/100;
 						break;
 					case SO_ELECTRICWALK:
-						skillratio = 300;
-						if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;
-						if( sc && sc->data[SC_BLAST_OPTION] )
-							skillratio += skillratio * sc->data[SC_BLAST_OPTION]->val2 / 100;
+						skillratio += 60*skill_lv - 100;
+						if(s_base_level > 100)
+							skillratio += skillratio*(s_base_level - 100)/100;
+						if(sc && sc->data[SC_BLAST_OPTION])
+							skillratio += skillratio*sc->data[SC_BLAST_OPTION]->val2/100;
 						break;
 					case SO_EARTHGRAVE:
 						skillratio = skill_lv*sstatus->int_ + 200*(sd ? pc_checkskill(sd, SA_SEISMICWEAPON):5);
 						if(s_base_level > 100) skillratio += skillratio*(s_base_level-100)/100;
-						if( sc && sc->data[SC_CURSED_SOIL_OPTION] ) 
-							skillratio += skillratio * sc->data[SC_CURSED_SOIL_OPTION]->val2 / 100; 
+						if( sc && sc->data[SC_CURSED_SOIL_OPTION] )
+							skillratio += skillratio * sc->data[SC_CURSED_SOIL_OPTION]->val2 / 100;
 						break;
 					case SO_DIAMONDDUST:
 						skillratio = ( 200 * pc_checkskill(sd, SA_FROSTWEAPON) + sstatus->int_ * skill_lv );

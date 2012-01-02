@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0995 - 02/01/2012 [brn0]
+	* Atualizada a fórmula da habilidade Passos da Salamandra (SO_FIREWALK).
+	* Atualizada a fórmula da habilidade Passos da Sílfide (SO_ELECTRICWALK).
+
 	r0994 - 30/12/2011 [insidemybrain]
 	* Enviado novo script do quests_brasilis.txt
 	- O antigo estava com bug's e faltavam muitas falas nos NPC's
