@@ -1434,12 +1434,9 @@ int unit_skilluse_pos2( struct block_list *src, short skill_x, short skill_y, sh
 
 	unit_stop_attack(src);
 
-	if( !(skill_get_castnodex(skill_num, skill_lv)&2) && sc )
-	{
-		status_change_end(src, SC_SUFFRAGIUM, -1);
-		if (sc->data[SC_MEMORIZE] && (--sc->data[SC_MEMORIZE]->val2) <= 0)
-			status_change_end(src, SC_MEMORIZE, -1);
-	}
+	// moved here to prevent Suffragium from ending if skill fails
+	if (!(skill_get_castnodex(skill_num, skill_lv)&2))
+		casttime = skill_castfix_sc(src, casttime);
 
 	if( sc && sc->data[SC_MAGICMUSHROOM] )
 	{

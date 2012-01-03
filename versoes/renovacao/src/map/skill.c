@@ -12961,7 +12961,7 @@ int skill_castfix_sc (struct block_list *bl, int time)
 				status_change_end(bl, SC_MEMORIZE, INVALID_TIMER);
 		}
 		if (sc->data[SC_POEMBRAGI])
-			time -= time * sc->data[SC_POEMBRAGI]->val1 / 100;
+			time -= time * sc->data[SC_POEMBRAGI]->val2 / 100;
 		if (sc->data[SC_IZAYOI] && (tsd->class_&MAPID_UPPERMASK) == MAPID_NINJA){
 			time -= time * sc->data[SC_IZAYOI]->val2 / 100;
 			status_change_end(bl, SC_IZAYOI, INVALID_TIMER);
@@ -13045,7 +13045,7 @@ int skill_delayfix (struct block_list *bl, int skill_id, int skill_lv)
 	{
 		if (sc && sc->count) {
 			if (sc->data[SC_POEMBRAGI])
-				time -= time * sc->data[SC_POEMBRAGI]->val2 / 100;
+				time -= time * sc->data[SC_POEMBRAGI]->val3 / 100;
 		}
 	}
 
