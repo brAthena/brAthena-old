@@ -18,6 +18,14 @@
 // | Estrutura do Database:                                      |
 // | Item ID, TradeMask, Nível de GM mínimo para que a           |
 // | regra não seja aplicada.                                    |
+// | Valores para TradeMask:                                     |
+// | 1:Item não pode ser dropado                                 |
+// | 2:Item não pode ser colocado no Trade (nem vendido)         |
+// | 4:Casados podem ignorar a restrição 2.                      |
+// | 8:Item não pode ser vendido em npc.                         |
+// | 16:Item não pode ser colocado no carrinho.                  |
+// | 32:Item não pode ser colocado no Armazém                    |
+// | 64:Item não pode ser colocado no Armazém do Clã.            |
 // \_____________________________________________________________/
 
 // Wedding Related items

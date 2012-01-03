@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0999 - 03/01/2012 [Mark]
+	* Adicionados portais de brasilis que faltavam em npc\portais\cidades\brasilis.txt
+	* Modificado arquivo db\item_trade.txt
+	- Adicionados valores para TradeMask.
+
 	r0998 - 03/01/2012 [Mark]
 	* Corrigida habilidade Poema de Bragi (BA_POEMBRAGI).
 	- Não diminuia cast nem delay.
