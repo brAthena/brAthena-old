@@ -949,8 +949,7 @@ int guild_send_message(struct map_session_data *sd,const char *mes,int len)
 	guild_recv_message(sd->status.guild_id,sd->status.account_id,mes,len);
 
 	// Chat logging type 'G' / Guild Chat
-	if( log_config.chat&1 || (log_config.chat&16 && !((agit_flag || agit2_flag) && log_config.chat&64)) )
-		log_chat("G", sd->status.guild_id, sd->status.char_id, sd->status.account_id, mapindex_id2name(sd->mapindex), sd->bl.x, sd->bl.y, NULL, mes);
+	log_chat(LOG_CHAT_GUILD, sd->status.guild_id, sd->status.char_id, sd->status.account_id, mapindex_id2name(sd->mapindex), sd->bl.x, sd->bl.y, NULL, mes);
 
 	return 0;
 }
@@ -1151,7 +1150,7 @@ unsigned int guild_payexp(struct map_session_data *sd,unsigned int exp)
 		exp = exp * per / 100;
 	//Otherwise tax everything.
 
-	c = (struct guild_expcache*)guild_expcache_db->ensure(guild_expcache_db, i2key(sd->status.char_id), create_expcache, sd);
+	c = (struct guild_expcache*)guild_expcache_db->ensure(guild_expcache_db, db_i2key(sd->status.char_id), create_expcache, sd);
 
 	if (c->exp > UINT64_MAX - exp)
 		c->exp = UINT64_MAX;
@@ -1170,7 +1169,7 @@ int guild_getexp(struct map_session_data *sd,int exp)
 	if (sd->status.guild_id == 0 || guild_search(sd->status.guild_id) == NULL)
 		return 0;
 
-	c = (struct guild_expcache*)guild_expcache_db->ensure(guild_expcache_db, i2key(sd->status.char_id), create_expcache, sd);
+	c = (struct guild_expcache*)guild_expcache_db->ensure(guild_expcache_db, db_i2key(sd->status.char_id), create_expcache, sd);
 	if (c->exp > UINT64_MAX - exp)
 		c->exp = UINT64_MAX;
 	else

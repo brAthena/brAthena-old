@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r0996 - 03/01/2012 [Protimus]
+	* Atualizado conforme eAthena 15055.
+	* Corrigido problema para compilar com CMake.
+
 	r0995 - 02/01/2012 [brn0]
 	* Atualizada a fórmula da habilidade Passos da Salamandra (SO_FIREWALK).
 	* Atualizada a fórmula da habilidade Passos da Sílfide (SO_ELECTRICWALK).

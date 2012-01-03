@@ -196,31 +196,6 @@ endif()
 
 
 #
-# Test typecast to union
-#
-message( STATUS "Check for typecast to union" )
-set( SOURCECODE
-	"typedef union Foonion{\n"
-	"  int i;\n"
-	"  unsigned int ui;\n"
-	"  const char* s;\n"
-	"} Foonion;\n"
-	"int get_i(Foonion onion){ return onion.i; }\n"
-	"int main(int argc, char** argv){\n"
-	"  int i = 0;\n"
-	"  return get_i(((Foonion)(int)i));\n"
-	"}\n"
-	)
-CHECK_C_SOURCE_COMPILES( "${SOURCECODE}" HAVE_TYPECAST_TO_UNION )
-if( HAVE_TYPECAST_TO_UNION )
-	message( STATUS "Check for typecast to union - yes" )
-else()
-	message( STATUS "Check for typecast to union - no" )
-	set_property( CACHE GLOBAL_DEFINITIONS  PROPERTY VALUE "${GLOBAL_DEFINITIONS} -DDB_MANUAL_CAST_TO_UNION" )
-endif()
-
-
-#
 # Test monotonic clock
 #
 # CLOCK_MONOTONIC clock for clock_gettime
@@ -462,37 +437,55 @@ set( DEVELOPMENT_FILES
 	"${CMAKE_CURRENT_SOURCE_DIR}/CMakeLists.txt"
 	"${CMAKE_CURRENT_SOURCE_DIR}/configure"
 	"${CMAKE_CURRENT_SOURCE_DIR}/configure.in"
-	"${CMAKE_CURRENT_SOURCE_DIR}/brAthena-9.sln"
-	"${CMAKE_CURRENT_SOURCE_DIR}/brAthena-10.sln"
+	"${CMAKE_CURRENT_SOURCE_DIR}/eAthena-6.dsw"
+	"${CMAKE_CURRENT_SOURCE_DIR}/eAthena-7.1.sln"
+	"${CMAKE_CURRENT_SOURCE_DIR}/eAthena-8.sln"
+	"${CMAKE_CURRENT_SOURCE_DIR}/eAthena-9.sln"
+	"${CMAKE_CURRENT_SOURCE_DIR}/eAthena-10.sln"
 	)
 set( DEVELOPMENT_DIRECTORIES
 	"3rdparty"
 	"conf/import-tmpl"
 	"save-tmpl"
 	"src"
+	"vcproj-6"
+	"vcproj-7.1"
+	"vcproj-8"
 	"vcproj-9"
 	"vcproj-10"
 	)
 set( RUNTIME_FILES
-	"${CMAKE_CURRENT_SOURCE_DIR}/brathena-admin"
-	"${CMAKE_CURRENT_SOURCE_DIR}/brathena-start"
-	"${CMAKE_CURRENT_SOURCE_DIR}/Changelog.txt"
+	"${CMAKE_CURRENT_SOURCE_DIR}/athena-start"
+	"${CMAKE_CURRENT_SOURCE_DIR}/Changelog-Trunk.txt"
+	"${CMAKE_CURRENT_SOURCE_DIR}/char-server.sh"
 	"${CMAKE_CURRENT_SOURCE_DIR}/charserv-sql.bat"
+	"${CMAKE_CURRENT_SOURCE_DIR}/charserv.bat"
 	"${CMAKE_CURRENT_SOURCE_DIR}/dbghelp.dll"
 	"${CMAKE_CURRENT_SOURCE_DIR}/libmysql.dll"
 	"${CMAKE_CURRENT_SOURCE_DIR}/LICENSE"
+	"${CMAKE_CURRENT_SOURCE_DIR}/login-server.sh"
 	"${CMAKE_CURRENT_SOURCE_DIR}/logserv-sql.bat"
+	"${CMAKE_CURRENT_SOURCE_DIR}/logserv.bat"
+	"${CMAKE_CURRENT_SOURCE_DIR}/map-server.sh"
 	"${CMAKE_CURRENT_SOURCE_DIR}/mapserv-sql.bat"
+	"${CMAKE_CURRENT_SOURCE_DIR}/mapserv.bat"
+	"${CMAKE_CURRENT_SOURCE_DIR}/notice.txt"
 	"${CMAKE_CURRENT_SOURCE_DIR}/pcre3.dll"
+	"${CMAKE_CURRENT_SOURCE_DIR}/readme.html"
 	"${CMAKE_CURRENT_SOURCE_DIR}/runserver-sql.bat"
+	"${CMAKE_CURRENT_SOURCE_DIR}/runserver.bat"
+	"${CMAKE_CURRENT_SOURCE_DIR}/serv.bat"
 	"${CMAKE_CURRENT_SOURCE_DIR}/start"
 	"${CMAKE_CURRENT_SOURCE_DIR}/zlib1.dll"
 	)
 set( RUNTIME_DIRECTORIES
 	"conf"
 	"db"
+	"doc"
+	"log"
 	"npc"
 	"plugins"
+	"readme"
 	"sql-files"
 	"tools"
 	)
@@ -522,6 +515,44 @@ else()
 		endforeach()
 	endif( INSTALL_COMPONENT_DEVELOPMENT )
 endif()
+if( INSTALL_COMPONENT_RUNTIME )
+	# templates
+	set( _TEMPLATES
+		"save-tmpl" "save"
+		"conf/import-tmpl" "conf/import"
+		)
+	set( INSTALL_TEMPLATES_FILE "${CMAKE_CURRENT_BINARY_DIR}/InstallTemplates.cmake" )
+	file( WRITE "${INSTALL_TEMPLATES_FILE}"
+		"macro( INSTALL_TEMPLATE _SRC _DST )\n"
+		"  set( SRC \"${CMAKE_CURRENT_SOURCE_DIR}/\${_SRC}\" )\n"
+		"  set( DST \"\${CMAKE_INSTALL_PREFIX}/\${_DST}\" )\n"
+		"  if( EXISTS \"\${DST}\" )\n"
+		"    message( \"-- Already exists: \${DST}\" )\n"
+		"  else()\n"
+		"    message( \"-- Installing template: \${DST}\" )\n"
+		"    execute_process( COMMAND \"${CMAKE_COMMAND}\" -E copy \"\${SRC}\" \"\${DST}\" )\n"
+		"  endif()\n"
+		"endmacro()\n"
+		)
+	while( _TEMPLATES )
+		list( GET _TEMPLATES 0 _SRC )
+		list( GET _TEMPLATES 1 _DST )
+		list( REMOVE_AT _TEMPLATES 0 1 )
+		if( IS_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}/${_SRC}" )
+			file( GLOB _PATHS "${CMAKE_CURRENT_SOURCE_DIR}/${_SRC}/*" )
+			foreach( _PATH IN ITEMS ${_PATHS} )
+				string( REPLACE "${CMAKE_CURRENT_SOURCE_DIR}/${_SRC}/" "" _PATH "${_PATH}" )
+				if( NOT "${_PATH}" MATCHES "${SVN_FOLDER_PATTERN}" )
+					list( APPEND _TEMPLATES "${_SRC}/${_PATH}" "${_DST}/${_PATH}" )
+				endif()
+			endforeach()
+		else()
+			file( APPEND "${INSTALL_TEMPLATES_FILE}" "INSTALL_TEMPLATE( \"${_SRC}\" \"${_DST}\" )\n" )
+		endif()
+	endwhile()
+	install( SCRIPT "${INSTALL_TEMPLATES_FILE}"
+		COMPONENT Runtime_templates )
+endif( INSTALL_COMPONENT_RUNTIME )
 
 
 #

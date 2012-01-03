@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="map-server_sql"
 	ProjectGUID="{D356871D-58E1-450B-967A-E6E9646175AF}"
 	RootNamespace="map-server_sql"
@@ -40,11 +40,11 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\3rdparty\mysql\include;..\3rdparty\zlib\include;..\3rdparty\pcre\include;..\3rdparty\msinttypes\include;..\3rdparty\mt19937ar"
-				PreprocessorDefinitions="WIN32;_WIN32;__WIN32;_DEBUG;PCRE_SUPPORT;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;FD_SETSIZE=4096;DB_MANUAL_CAST_TO_UNION"
+				PreprocessorDefinitions="WIN32;_WIN32;__WIN32;_DEBUG;PCRE_SUPPORT;FD_SETSIZE=4096"
 				GeneratePreprocessedFile="0"
-				MinimalRebuild="true"
 				ExceptionHandling="0"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
@@ -54,7 +54,7 @@
 				WarningLevel="3"
 				DebugInformationFormat="4"
 				CompileAs="1"
-				DisableSpecificWarnings="4018;4100;4800"
+				DisableSpecificWarnings="4018;4100;4800;4996"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -128,6 +128,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="2"
 				InlineFunctionExpansion="2"
 				EnableIntrinsicFunctions="true"
@@ -136,7 +137,7 @@
 				EnableFiberSafeOptimizations="true"
 				WholeProgramOptimization="true"
 				AdditionalIncludeDirectories="..\3rdparty\mysql\include;..\3rdparty\zlib\include;..\3rdparty\pcre\include;..\3rdparty\msinttypes\include;..\3rdparty\mt19937ar"
-				PreprocessorDefinitions="WIN32;_WIN32;__WIN32;NDEBUG;PCRE_SUPPORT;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;FD_SETSIZE=4096;DB_MANUAL_CAST_TO_UNION"
+				PreprocessorDefinitions="WIN32;_WIN32;__WIN32;NDEBUG;PCRE_SUPPORT;FD_SETSIZE=4096"
 				StringPooling="true"
 				RuntimeLibrary="0"
 				DefaultCharIsUnsigned="false"
@@ -144,7 +145,7 @@
 				WarningLevel="3"
 				DebugInformationFormat="3"
 				CompileAs="1"
-				DisableSpecificWarnings="4018;4100;4800"
+				DisableSpecificWarnings="4018;4100;4800;4996"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -232,6 +233,14 @@
 			</File>
 			<File
 				RelativePath="..\src\common\db.h"
+				>
+			</File>
+			<File
+				RelativePath="..\src\common\des.c"
+				>
+			</File>
+			<File
+				RelativePath="..\src\common\des.h"
 				>
 			</File>
 			<File
@@ -387,19 +396,19 @@
 				>
 			</File>
 			<File
-				RelativePath="..\src\map\battleground.h"
-				>
-			</File>
-			<File
 				RelativePath="..\src\map\battleground.c"
 				>
 			</File>
 			<File
-				RelativePath="..\src\map\buyingstore.h"
+				RelativePath="..\src\map\battleground.h"
 				>
 			</File>
 			<File
 				RelativePath="..\src\map\buyingstore.c"
+				>
+			</File>
+			<File
+				RelativePath="..\src\map\buyingstore.h"
 				>
 			</File>
 			<File
@@ -451,6 +460,22 @@
 				>
 			</File>
 			<File
+				RelativePath="..\src\map\homunculus.c"
+				>
+			</File>
+			<File
+				RelativePath="..\src\map\homunculus.h"
+				>
+			</File>
+			<File
+				RelativePath="..\src\map\instance.c"
+				>
+			</File>
+			<File
+				RelativePath="..\src\map\instance.h"
+				>
+			</File>
+			<File
 				RelativePath="..\src\map\intif.c"
 				>
 			</File>
@@ -496,22 +521,6 @@
 			</File>
 			<File
 				RelativePath="..\src\map\mapreg.c"
-				>
-			</File>
-			<File
-				RelativePath="..\src\map\homunculus.c"
-				>
-			</File>
-			<File
-				RelativePath="..\src\map\homunculus.h"
-				>
-			</File>
-			<File
-				RelativePath="..\src\map\instance.c"
-				>
-			</File>
-			<File
-				RelativePath="..\src\map\instance.h"
 				>
 			</File>
 			<File

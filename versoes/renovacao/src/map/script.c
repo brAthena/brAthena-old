@@ -5658,8 +5658,7 @@ BUILDIN_FUNC(getitem)
         }
 
 	//Logs items, got from (N)PC scripts [Lupus]
-	if(log_config.enable_logs&LOG_SCRIPT_TRANSACTIONS)
-		log_pick_pc(sd, "N", nameid, amount, NULL);
+	log_pick_pc(sd, LOG_TYPE_SCRIPT, nameid, amount, NULL);
 
 	return 0;
 }
@@ -5760,8 +5759,7 @@ BUILDIN_FUNC(getitem2)
 		}
 
 		//Logs items, got from (N)PC scripts [Lupus]
-		if(log_config.enable_logs&0x40)
-			log_pick_pc(sd, "N", nameid, amount, &item_tmp);
+		log_pick_pc(sd, LOG_TYPE_SCRIPT, nameid, amount, &item_tmp);
 	}
 
 	return 0;
@@ -5826,9 +5824,8 @@ BUILDIN_FUNC(rentitem)
 	clif_rental_time(sd->fd, nameid, seconds);
 	pc_inventory_rental_add(sd, seconds);
 
-	if( log_config.enable_logs&LOG_SCRIPT_TRANSACTIONS )
-		log_pick_pc(sd, "N", nameid, 1, NULL);
-
+	log_pick_pc(sd, LOG_TYPE_SCRIPT, nameid, 1, NULL);
+	
 	return 0;
 }
 
@@ -5898,8 +5895,7 @@ BUILDIN_FUNC(getnameditem)
 	}
 
 	//Logs items, got from (N)PC scripts [Lupus]
-	if(log_config.enable_logs&0x40)
-		log_pick_pc(sd, "N", item_tmp.nameid, item_tmp.amount, &item_tmp);
+	log_pick_pc(sd, LOG_TYPE_SCRIPT, item_tmp.nameid, item_tmp.amount, &item_tmp);
 
 	script_pushint(st,1);
 	return 0;
@@ -5993,10 +5989,7 @@ static void buildin_delitem_delete(struct map_session_data* sd, int idx, int* am
 		}
 
 		//Logs items, got from (N)PC scripts [Lupus]
-		if( log_config.enable_logs&0x40 )
-		{
-			log_pick_pc(sd, "N", inv->nameid, -delamount, inv);
-		}
+		log_pick_pc(sd, LOG_TYPE_SCRIPT, inv->nameid, -delamount, inv);
 		//Logs
 
 		pc_delitem(sd, idx, delamount, 0, 0);
@@ -6892,8 +6885,7 @@ BUILDIN_FUNC(successrefitem)
 		ep=sd->status.inventory[i].equip;
 
 		//Logs items, got from (N)PC scripts [Lupus]
-		if(log_config.enable_logs&0x40)
-			log_pick_pc(sd, "N", sd->status.inventory[i].nameid, -1, &sd->status.inventory[i]);
+		log_pick_pc(sd, LOG_TYPE_SCRIPT, sd->status.inventory[i].nameid, -1, &sd->status.inventory[i]);
 
 		sd->status.inventory[i].refine++;
 		pc_unequipitem(sd,i,2); // status calc will happen in pc_equipitem() below
@@ -6902,8 +6894,7 @@ BUILDIN_FUNC(successrefitem)
 		clif_delitem(sd,i,1,3);
 
 		//Logs items, got from (N)PC scripts [Lupus]
-		if(log_config.enable_logs&0x40)
-			log_pick_pc(sd, "N", sd->status.inventory[i].nameid, 1, &sd->status.inventory[i]);
+		log_pick_pc(sd, LOG_TYPE_SCRIPT, sd->status.inventory[i].nameid, 1, &sd->status.inventory[i]);
 
 		clif_additem(sd,i,1,0);
 		pc_equipitem(sd,i,ep);
@@ -6946,8 +6937,7 @@ BUILDIN_FUNC(failedrefitem)
 		i=pc_checkequip(sd,equip[num-1]);
 	if(i >= 0) {
 		//Logs items, got from (N)PC scripts [Lupus]
-		if(log_config.enable_logs&0x40)
-			log_pick_pc(sd, "N", sd->status.inventory[i].nameid, -1, &sd->status.inventory[i]);
+		log_pick_pc(sd, LOG_TYPE_SCRIPT, sd->status.inventory[i].nameid, -1, &sd->status.inventory[i]);
 
 		sd->status.inventory[i].refine = 0;
 		pc_unequipitem(sd,i,3);
@@ -6980,7 +6970,7 @@ BUILDIN_FUNC(failedrefitem2)
 	if(i >= 0) {
 
 		if(log_config.enable_logs&0x40)
-		log_pick_pc(sd, "N", sd->status.inventory[i].nameid, -1, &sd->status.inventory[i]);
+		log_pick_pc(sd, LOG_TYPE_SCRIPT, sd->status.inventory[i].nameid, -1, &sd->status.inventory[i]);
 
 		sd->status.inventory[i].refine = sd->status.inventory[i].refine - 3;
 		pc_unequipitem(sd,i,2);
@@ -6989,7 +6979,7 @@ BUILDIN_FUNC(failedrefitem2)
 		clif_delitem(sd,i,1,2);
 
 		if(log_config.enable_logs&0x40)
-		log_pick_pc(sd, "N", sd->status.inventory[i].nameid, 1, &sd->status.inventory[i]);
+		log_pick_pc(sd, LOG_TYPE_SCRIPT, sd->status.inventory[i].nameid, -1, &sd->status.inventory[i]);
 		clif_additem(sd,i,1,0);
 		clif_misceffect(&sd->bl,2);
 	}
@@ -10272,8 +10262,7 @@ BUILDIN_FUNC(successremovecards)
 				item_tmp.card[j]=0;
 
 			//Logs items, got from (N)PC scripts [Lupus]
-			if(log_config.enable_logs&0x40)
-				log_pick_pc(sd, "N", item_tmp.nameid, 1, NULL);
+			log_pick_pc(sd, LOG_TYPE_SCRIPT, item_tmp.nameid, 1, NULL);
 
 			if((flag=pc_additem(sd,&item_tmp,1))){	// 持てないならドロップ
 				clif_additem(sd,0,0,flag);
@@ -10295,14 +10284,12 @@ BUILDIN_FUNC(successremovecards)
 			item_tmp.card[j]=sd->status.inventory[i].card[j];
 
 		//Logs items, got from (N)PC scripts [Lupus]
-		if(log_config.enable_logs&0x40)
-			log_pick_pc(sd, "N", sd->status.inventory[i].nameid, -1, &sd->status.inventory[i]);
+		log_pick_pc(sd, LOG_TYPE_SCRIPT, sd->status.inventory[i].nameid, -1, &sd->status.inventory[i]);
 
 		pc_delitem(sd,i,1,0,3);
 
 		//Logs items, got from (N)PC scripts [Lupus]
-		if(log_config.enable_logs&0x40)
-			log_pick_pc(sd, "N", item_tmp.nameid, 1, &item_tmp);
+		log_pick_pc(sd, LOG_TYPE_SCRIPT, item_tmp.nameid, 1, &item_tmp);
 
 		if((flag=pc_additem(sd,&item_tmp,1))){	// もてないならドロップ
 			clif_additem(sd,0,0,flag);
@@ -10354,8 +10341,7 @@ BUILDIN_FUNC(failedremovecards)
 					item_tmp.card[j]=0;
 
 				//Logs items, got from (N)PC scripts [Lupus]
-				if(log_config.enable_logs&0x40)
-					log_pick_pc(sd, "N", item_tmp.nameid, 1, NULL);
+				log_pick_pc(sd, LOG_TYPE_SCRIPT, item_tmp.nameid, 1, NULL);
 
 				if((flag=pc_additem(sd,&item_tmp,1))){
 					clif_additem(sd,0,0,flag);
@@ -10369,8 +10355,7 @@ BUILDIN_FUNC(failedremovecards)
 	{
 		if(typefail == 0 || typefail == 2){	// 武具損失
 			//Logs items, got from (N)PC scripts [Lupus]
-			if(log_config.enable_logs&0x40)
-				log_pick_pc(sd, "N", sd->status.inventory[i].nameid, -1, &sd->status.inventory[i]);
+			log_pick_pc(sd, LOG_TYPE_SCRIPT, sd->status.inventory[i].nameid, -1, &sd->status.inventory[i]);
 
 			pc_delitem(sd,i,1,0,2);
 		}
@@ -10382,8 +10367,7 @@ BUILDIN_FUNC(failedremovecards)
 			item_tmp.attribute=sd->status.inventory[i].attribute,item_tmp.expire_time=sd->status.inventory[i].expire_time;
 
 			//Logs items, got from (N)PC scripts [Lupus]
-			if(log_config.enable_logs&0x40)
-				log_pick_pc(sd, "N", sd->status.inventory[i].nameid, -1, &sd->status.inventory[i]);
+			log_pick_pc(sd, LOG_TYPE_SCRIPT, sd->status.inventory[i].nameid, -1, &sd->status.inventory[i]);
 
 			for (j = 0; j < sd->inventory_data[i]->slot; j++)
 				item_tmp.card[j]=0;
@@ -10392,8 +10376,7 @@ BUILDIN_FUNC(failedremovecards)
 			pc_delitem(sd,i,1,0,2);
 
 			//Logs items, got from (N)PC scripts [Lupus]
-			if(log_config.enable_logs&0x40)
-				log_pick_pc(sd, "N", item_tmp.nameid, 1, &item_tmp);
+			log_pick_pc(sd, LOG_TYPE_SCRIPT, item_tmp.nameid, 1, &item_tmp);
 
 			if((flag=pc_additem(sd,&item_tmp,1))){
 				clif_additem(sd,0,0,flag);
@@ -11062,8 +11045,7 @@ BUILDIN_FUNC(clearitem)
 		if (sd->status.inventory[i].amount) {
 
 			//Logs items, got from (N)PC scripts [Lupus]
-			if(log_config.enable_logs&0x40)
-				log_pick_pc(sd, "N", sd->status.inventory[i].nameid, -sd->status.inventory[i].amount, &sd->status.inventory[i]);
+			log_pick_pc(sd, LOG_TYPE_SCRIPT, sd->status.inventory[i].nameid, -sd->status.inventory[i].amount, &sd->status.inventory[i]);
 
 			pc_delitem(sd, i, sd->status.inventory[i].amount, 0, 0);
 		}
@@ -12195,9 +12177,6 @@ BUILDIN_FUNC(logmes)
 	const char *str;
 	TBL_PC* sd;
 
-	if( log_config.npc <= 0 )
-		return 0;
-
 	sd = script_rid2sd(st);
 	if( sd == NULL )
 		return 1;
@@ -13100,7 +13079,7 @@ BUILDIN_FUNC(setitemscript)
 		n=script_getnum(st,4);
 	i_data = itemdb_exists(item_id);
 
-	if (!i_data || script==NULL || script[0]!='{') {
+	if (!i_data || script==NULL || ( script[0] && script[0]!='{' )) {
 		script_pushint(st,0);
 		return 0;
 	}
@@ -13118,7 +13097,7 @@ BUILDIN_FUNC(setitemscript)
 	if(*dstscript)
 		script_free_code(*dstscript);
 
-	*dstscript = parse_script(script, "script_setitemscript", 0, 0);
+	*dstscript = script[0] ? parse_script(script, "script_setitemscript", 0, 0) : NULL;
 	script_pushint(st,1);
 	return 0;
 }
@@ -13950,6 +13929,7 @@ BUILDIN_FUNC(setcell)
  *------------------------------------------*/
 BUILDIN_FUNC(mercenary_create)
 {
+#ifndef TXT_ONLY
 	struct map_session_data *sd;
 	int class_, contract_time;
 
@@ -13966,7 +13946,7 @@ BUILDIN_FUNC(mercenary_create)
 
 	contract_time = script_getnum(st,3);
 	merc_create(sd, class_, contract_time);
-
+#endif
 	return 0;
 }
 
@@ -14998,6 +14978,37 @@ BUILDIN_FUNC(searchstores)
 	return 0;
 }
 
+/// Displays a number as large digital clock.
+/// showdigit <value>[,<type>];
+BUILDIN_FUNC(showdigit)
+{
+	unsigned int type = 0;
+	int value;
+	struct map_session_data* sd;
+
+	if( ( sd = script_rid2sd(st) ) == NULL )
+	{
+		return 0;
+	}
+
+	value = script_getnum(st,2);
+
+	if( script_hasdata(st,3) )
+	{
+		type = script_getnum(st,3);
+
+		if( type > 3 )
+		{
+			ShowError("buildin_showdigit: Invalid type %u.\n", type);
+			return 1;
+		}
+	}
+
+	clif_showdigit(sd, (unsigned char)type, value);
+	return 0;
+}
+
+
 // declarations that were supposed to be exported from npc_chat.c
 #ifdef PCRE_SUPPORT
 BUILDIN_FUNC(defpattern);
@@ -15363,6 +15374,7 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(pushpc,"ii"),
 	BUILDIN_DEF(buyingstore,"i"),
 	BUILDIN_DEF(searchstores,"ii"),
+	BUILDIN_DEF(showdigit,"i?"),
 	// WoE SE
 	BUILDIN_DEF(agitstart2,""),
 	BUILDIN_DEF(agitend2,""),

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="9,00"
+	Version="9.00"
 	Name="mapcache"
 	ProjectGUID="{D356871D-58E1-450B-967A-E7E9646175AF}"
 	RootNamespace="mapcache"
@@ -40,11 +40,11 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="0"
 				AdditionalIncludeDirectories="..\3rdparty\zlib\include;..\3rdparty\msinttypes\include"
-				PreprocessorDefinitions="WIN32;_WIN32;__WIN32;_DEBUG;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;MINICORE"
+				PreprocessorDefinitions="WIN32;_WIN32;__WIN32;_DEBUG;MINICORE"
 				GeneratePreprocessedFile="0"
-				MinimalRebuild="true"
 				ExceptionHandling="0"
 				BasicRuntimeChecks="3"
 				RuntimeLibrary="1"
@@ -54,6 +54,7 @@
 				WarningLevel="3"
 				DebugInformationFormat="4"
 				CompileAs="1"
+				DisableSpecificWarnings="4996"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -126,6 +127,7 @@
 			/>
 			<Tool
 				Name="VCCLCompilerTool"
+				AdditionalOptions="/MP"
 				Optimization="2"
 				InlineFunctionExpansion="2"
 				EnableIntrinsicFunctions="true"
@@ -134,7 +136,7 @@
 				EnableFiberSafeOptimizations="true"
 				WholeProgramOptimization="true"
 				AdditionalIncludeDirectories="..\3rdparty\zlib\include;..\3rdparty\msinttypes\include"
-				PreprocessorDefinitions="WIN32;_WIN32;__WIN32;NDEBUG;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;MINICORE"
+				PreprocessorDefinitions="WIN32;_WIN32;__WIN32;NDEBUG;MINICORE"
 				StringPooling="true"
 				RuntimeLibrary="0"
 				EnableFunctionLevelLinking="false"
@@ -143,6 +145,7 @@
 				WarningLevel="3"
 				DebugInformationFormat="3"
 				CompileAs="1"
+				DisableSpecificWarnings="4996"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -209,6 +212,14 @@
 			</File>
 			<File
 				RelativePath="..\src\common\core.h"
+				>
+			</File>
+			<File
+				RelativePath="..\src\common\des.c"
+				>
+			</File>
+			<File
+				RelativePath="..\src\common\des.h"
 				>
 			</File>
 			<File

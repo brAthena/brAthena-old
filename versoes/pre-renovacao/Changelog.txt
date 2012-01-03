@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r0996 - 03/01/2012 [Protimus]
+	* Atualizado conforme eAthena 15055.
+	* Corrigido problema para compilar com CMake.
+
 	r0953 - 06/11/2011 [brn0]
 	* Corrigida divisão de experiência.
 	- Corrigida divisão entre pai ou mãe e filho.

@@ -123,7 +123,7 @@
 19,526,5	// Geléia Real -> 0,05%
 19,12042,10	// Palmípede Temperado -> 0,10%
 19,12057,10	// Macarrão Liso -> 0,10%
-19,12068,10	// Batata-Doce Frita -> 0,10%
+19,12053,10 
 19,12062,10	// Bolo-Mousse de Chocolate -> 0,10%
 19,12068,10	// Batata-Doce Frita -> 0,10%
 19,12047,10	// Chá Vermelho de Outono -> 0,10%

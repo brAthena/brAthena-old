@@ -33,6 +33,7 @@
 #include "party.h"
 #include "guild.h"
 #include "script.h"
+#include "storage.h"
 #include "trade.h"
 #include "unit.h"
 #include "mail.h"
@@ -1779,8 +1780,7 @@ ACMD_FUNC(item)
 	}
 
 	//Logs (A)dmins items [Lupus]
-	if(log_config.enable_logs&0x400)
-		log_pick_pc(sd, "A", item_id, number, NULL);
+	log_pick_pc(sd, LOG_TYPE_COMMAND, item_id, number, NULL);
 
 	clif_displaymessage(fd, msg_txt(18)); // Item created.
 	return 0;
@@ -1854,8 +1854,7 @@ ACMD_FUNC(item2)
 		}
 
 		//Logs (A)dmins items [Lupus]
-		if(log_config.enable_logs&0x400)
-			log_pick_pc(sd, "A", item_tmp.nameid, number, &item_tmp);
+		log_pick_pc(sd, LOG_TYPE_COMMAND, item_tmp.nameid, number, &item_tmp);
 
 		clif_displaymessage(fd, msg_txt(18)); // Item created.
 	} else {
@@ -1878,8 +1877,7 @@ ACMD_FUNC(itemreset)
 		if (sd->status.inventory[i].amount && sd->status.inventory[i].equip == 0) {
 
 			//Logs (A)dmins items [Lupus]
-			if(log_config.enable_logs&0x400)
-				log_pick_pc(sd, "A", sd->status.inventory[i].nameid, -sd->status.inventory[i].amount, &sd->status.inventory[i]);
+			log_pick_pc(sd, LOG_TYPE_COMMAND, sd->status.inventory[i].nameid, -sd->status.inventory[i].amount, &sd->status.inventory[i]);
 
 			pc_delitem(sd, i, sd->status.inventory[i].amount, 0, 0);
 		}
@@ -2932,8 +2930,7 @@ ACMD_FUNC(produce)
 		clif_misceffect(&sd->bl, 3);
 
 		//Logs (A)dmins items [Lupus]
-		if(log_config.enable_logs&0x400)
-			log_pick_pc(sd, "A", tmp_item.nameid, 1, &tmp_item);
+		log_pick_pc(sd, LOG_TYPE_COMMAND, tmp_item.nameid, 1, &tmp_item);
 
 		if ((flag = pc_additem(sd, &tmp_item, 1)))
 			clif_additem(sd, 0, 0, flag);
@@ -6083,8 +6080,7 @@ void getring (struct map_session_data* sd)
 	item_tmp.card[3] = sd->status.partner_id >> 16;
 
 	//Logs (A)dmins items [Lupus]
-	if(log_config.enable_logs&0x400)
-		log_pick_pc(sd, "A", item_id, 1, &item_tmp);
+	log_pick_pc(sd, LOG_TYPE_COMMAND, item_id, 1, &item_tmp);
 
 	if((flag = pc_additem(sd,&item_tmp,1))) {
 		clif_additem(sd,0,0,flag);
@@ -8382,8 +8378,7 @@ ACMD_FUNC(main)
 			intif_broadcast2(atcmd_output, strlen(atcmd_output) + 1, 0xFE000000, 0, 0, 0, 0);
 
 			// Chat logging type 'M' / Main Chat
-			if( log_config.chat&1 || (log_config.chat&32 && !((agit_flag || agit2_flag) && log_config.chat&64)) )
-				log_chat("M", 0, sd->status.char_id, sd->status.account_id, mapindex_id2name(sd->mapindex), sd->bl.x, sd->bl.y, NULL, message);
+			log_chat(LOG_CHAT_MAINCHAT, 0, sd->status.char_id, sd->status.account_id, mapindex_id2name(sd->mapindex), sd->bl.x, sd->bl.y, NULL, message);
 		}
 
 	} else {
@@ -8794,10 +8789,7 @@ ACMD_FUNC(delitem)
 		}
 
 		//Logs (A)dmins items [Lupus]
-		if( log_config.enable_logs&0x400 )
-		{
-			log_pick_pc(sd, "A", nameid, -delamount, &sd->status.inventory[idx]);
-		}
+		log_pick_pc(sd, LOG_TYPE_COMMAND, nameid, -delamount, &sd->status.inventory[idx]);
 
 		pc_delitem(sd, idx, delamount, 0, 0);
 
@@ -9323,12 +9315,12 @@ bool is_atcommand(const int fd, struct map_session_data* sd, const char* message
 	if( strcmpi("adjgmlvl",command+1) && ssd ) ssd->gmlevel = lv;
 
 	//Log atcommands
-	if( log_config.gm && info->level >= log_config.gm && *atcmd_msg == atcommand_symbol )
-		log_atcommand(sd, atcmd_msg);
+	if( *atcmd_msg == atcommand_symbol )
+		log_atcommand(sd, info->level, atcmd_msg);
 
 	//Log Charcommands
-	if( log_config.gm && info->level2 >= log_config.gm && *atcmd_msg == charcommand_symbol && ssd != NULL )
-		log_atcommand(sd, message);
+	if( *atcmd_msg == charcommand_symbol && ssd != NULL )
+		log_atcommand(sd, info->level2, message);
 
 	return true;
 }

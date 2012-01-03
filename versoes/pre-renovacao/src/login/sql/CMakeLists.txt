@@ -11,10 +11,10 @@ set( SQL_LOGIN_HEADERS
 	"${SQL_LOGIN_SOURCE_DIR}/loginlog.h"
 	)
 set( SQL_LOGIN_SOURCES
-	"${SQL_LOGIN_SOURCE_DIR}/account.c"
-	"${SQL_LOGIN_SOURCE_DIR}/ipban.c"
+	"${SQL_LOGIN_SOURCE_DIR}/account_sql.c"
+	"${SQL_LOGIN_SOURCE_DIR}/ipban_sql.c"
 	"${SQL_LOGIN_SOURCE_DIR}/login.c"
-	"${SQL_LOGIN_SOURCE_DIR}/loginlog.c"
+	"${SQL_LOGIN_SOURCE_DIR}/loginlog_sql.c"
 	)
 set( DEPENDENCIES common_sql )
 set( LIBRARIES ${GLOBAL_LIBRARIES} )

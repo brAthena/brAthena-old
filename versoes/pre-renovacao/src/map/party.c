@@ -796,8 +796,7 @@ int party_send_message(struct map_session_data *sd,const char *mes,int len)
 	party_recv_message(sd->status.party_id,sd->status.account_id,mes,len);
 
 	// Chat logging type 'P' / Party Chat
-	if( log_config.chat&1 || (log_config.chat&8 && !((agit_flag || agit2_flag) && log_config.chat&64)) )
-		log_chat("P", sd->status.party_id, sd->status.char_id, sd->status.account_id, mapindex_id2name(sd->mapindex), sd->bl.x, sd->bl.y, NULL, mes);
+	log_chat(LOG_CHAT_PARTY, sd->status.party_id, sd->status.char_id, sd->status.account_id, mapindex_id2name(sd->mapindex), sd->bl.x, sd->bl.y, NULL, mes);
 
 	return 0;
 }
@@ -1012,9 +1011,9 @@ int party_share_loot(struct party_data* p, struct map_session_data* sd, struct i
 			return i;
 	}
 
-	if(log_config.enable_logs&0x8) //Logs items, taken by (P)layers [Lupus]
-		log_pick_pc(target, "P", item_data->nameid, item_data->amount, item_data);
-
+	//Logs items, taken by (P)layers [Lupus]
+	log_pick_pc(target, LOG_TYPE_PICKDROP_PLAYER, item_data->nameid, item_data->amount, item_data);
+	
 	if( p && battle_config.party_show_share_picker && battle_config.show_picker_item_type&(1<<itemdb_type(item_data->nameid)) )
 		clif_party_show_picker(target, item_data);
 

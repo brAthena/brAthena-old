@@ -30,6 +30,7 @@
 #include "intif.h"
 #include "chrif.h"
 #include "script.h"
+#include "storage.h"
 #include "elemental.h"
 
 #include <stdio.h>
@@ -191,8 +192,15 @@ static int unit_walktoxy_timer(int tid, unsigned int tick, int id, intptr_t data
 			if ((skill = guild_checkskill(g, GD_SOULCOLD)) > 0) agidex |= (skill&0xFFFF)<<16;
 			if ((skill = guild_checkskill(g, GD_HAWKEYES)) > 0) agidex |= skill&0xFFFF;
 			if (strvit || agidex)
-				map_foreachinrange(skill_guildaura_sub, bl,2, BL_PC,
-					bl->id, sd->status.guild_id, strvit, agidex);
+			{// replaced redundant foreachinrange call with smaller and much more efficient iteration
+				for( i = 0; i < g->max_member; i++ )
+				{
+					if( g->member[i].online && g->member[i].sd && sd->bl.m == g->member[i].sd->bl.m && check_distance_bl(&sd->bl, &g->member[i].sd->bl, 2) )
+					{// perform the aura on the member as appropriate
+						skill_guildaura_sub(g->member[i].sd, sd->bl.id, strvit, agidex);
+					}
+				}
+			}
 		}
 	} else if (md) {
 		if( map_getcell(bl->m,x,y,CELL_CHKNPC) ) {
@@ -701,10 +709,7 @@ int unit_blown(struct block_list* bl, int dx, int dy, int count, int flag)
 				}
 			}
 		}
-		else
-		{// could not knockback
-			count = 0;
-		}
+		count = distance(dx, dy);
 	}
 	return count;  // return amount of knocked back cells
 }

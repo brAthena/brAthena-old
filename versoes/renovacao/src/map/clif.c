@@ -3894,8 +3894,8 @@ int clif_damage(struct block_list* src, struct block_list* dst, unsigned int tic
 		WBUFL(buf,2) = -src->id;
 		if (disguised(dst))
 			WBUFL(buf,6) = dst->id;
-		if(damage > 0) WBUFW(buf,22) = -1;
-		if(damage2 > 0) WBUFW(buf,27) = -1;
+		if(damage > 0) WBUFL(buf,22) = -1;
+		if(damage2 > 0) WBUFL(buf,29) = -1;
 		clif_send(buf,packet_len(cmd),src,SELF);
 	}
 	//Return adjusted can't walk delay for further processing.
@@ -9001,8 +9001,7 @@ void clif_parse_GlobalMessage(int fd, struct map_session_data* sd)
 #endif
 
 	// Chat logging type 'O' / Global Chat
-	if( log_config.chat&1 || (log_config.chat&2 && !((agit_flag || agit2_flag) && log_config.chat&64)) )
-		log_chat("O", 0, sd->status.char_id, sd->status.account_id, mapindex_id2name(sd->mapindex), sd->bl.x, sd->bl.y, NULL, message);
+	log_chat(LOG_CHAT_GLOBAL, 0, sd->status.char_id, sd->status.account_id, mapindex_id2name(sd->mapindex), sd->bl.x, sd->bl.y, NULL, message);
 
 	return;
 }
@@ -9025,12 +9024,8 @@ void clif_parse_MapMove(int fd, struct map_session_data *sd)
 	map_name[MAP_NAME_LENGTH_EXT-1]='\0';
 	sprintf(output, "%s %d %d", map_name, RFIFOW(fd,18), RFIFOW(fd,20));
 	atcommand_mapmove(fd, sd, "@mapmove", output);
-	if( log_config.gm && get_atcommand_level(atcommand_mapmove) >= log_config.gm )
-	{
-		sprintf(message, "/mm %s", output);
-		log_atcommand(sd, message);
-	}
-	return;
+	sprintf(message, "/mm %s", output);
+	log_atcommand(sd, get_atcommand_level(atcommand_mapmove), message);
 }
 
 /*==========================================
@@ -9282,8 +9277,7 @@ void clif_parse_WisMessage(int fd, struct map_session_data* sd)
 	}
 
 	// Chat logging type 'W' / Whisper
-	if( log_config.chat&1 || (log_config.chat&4 && !((agit_flag || agit2_flag) && log_config.chat&64)) )
-		log_chat("W", 0, sd->status.char_id, sd->status.account_id, mapindex_id2name(sd->mapindex), sd->bl.x, sd->bl.y, target, message);
+	log_chat(LOG_CHAT_WHISPER, 0, sd->status.char_id, sd->status.account_id, mapindex_id2name(sd->mapindex), sd->bl.x, sd->bl.y, target, message);
 
 	//-------------------------------------------------------//
 	//   Lordalfa - Paperboy - To whisper NPC commands       //
@@ -9342,8 +9336,7 @@ void clif_parse_WisMessage(int fd, struct map_session_data* sd)
 		}
 
 		// Chat logging type 'M' / Main Chat
-		if( log_config.chat&1 || (log_config.chat&32 && !((agit_flag || agit2_flag) && log_config.chat&64)) )
-			log_chat("M", 0, sd->status.char_id, sd->status.account_id, mapindex_id2name(sd->mapindex), sd->bl.x, sd->bl.y, NULL, message);
+		log_chat(LOG_CHAT_MAINCHAT, 0, sd->status.char_id, sd->status.account_id, mapindex_id2name(sd->mapindex), sd->bl.x, sd->bl.y, NULL, message);
 
 		return;
 	}
@@ -9416,10 +9409,10 @@ void clif_parse_Broadcast(int fd, struct map_session_data* sd)
 
 	intif_broadcast(msg, len, 0);
 
-	if(log_config.gm && lv >= log_config.gm) {
+	{
 		char logmsg[CHAT_SIZE_MAX+4];
 		sprintf(logmsg, "/b %s", msg);
-		log_atcommand(sd, logmsg);
+		log_atcommand(sd, lv, logmsg);
 	}
 }
 
@@ -10546,8 +10539,7 @@ void clif_parse_ResetChar(int fd, struct map_session_data *sd)
 	else
 		pc_resetstate(sd);
 
-	if( log_config.gm && get_atcommand_level(atcommand_reset) >= log_config.gm )
-		log_atcommand(sd, RFIFOW(fd,2) ? "/resetskill" : "/resetstate");
+	log_atcommand(sd, get_atcommand_level(atcommand_reset), RFIFOW(fd,2) ? "/resetskill" : "/resetstate");
 }
 
 /*==========================================
@@ -10571,10 +10563,10 @@ void clif_parse_LocalBroadcast(int fd, struct map_session_data* sd)
 
 	clif_broadcast(&sd->bl, msg, len, 0, ALL_SAMEMAP);
 
-	if( log_config.gm && lv >= log_config.gm ) {
+	{
 		char logmsg[CHAT_SIZE_MAX+5];
 		sprintf(logmsg, "/lb %s", msg);
-		log_atcommand(sd, logmsg);
+		log_atcommand(sd, lv, logmsg);
 	}
 }
 
@@ -11080,8 +11072,12 @@ void clif_parse_OpenVending(int fd, struct map_session_data* sd)
 
 	if( sd->sc.data[SC_NOCHAT] && sd->sc.data[SC_NOCHAT]->val1&MANNER_NOROOM )
 		return;
-	if( map[sd->bl.m].flag.novending || map_getcell(sd->bl.m,sd->bl.x,sd->bl.y,CELL_CHKNOVENDING) ) {
+	if( map[sd->bl.m].flag.novending ) {
 		clif_displaymessage (sd->fd, msg_txt(276)); // "You can't open a shop on this map"
+		return;
+	}
+	if( map_getcell(sd->bl.m,sd->bl.x,sd->bl.y,CELL_CHKNOVENDING) ) {
+		clif_displaymessage (sd->fd, msg_txt(204)); // "You can't open a shop on this cell."
 		return;
 	}
 	if( message[0] == '\0' ) // invalid input
@@ -11515,10 +11511,10 @@ void clif_parse_GMKick(int fd, struct map_session_data *sd)
 			return;
 		}
 
-		if(log_config.gm && lv >= log_config.gm) {
+		{
 			char message[256];
 			sprintf(message, "/kick %s (%d)", tsd->status.name, tsd->status.char_id);
-			log_atcommand(sd, message);
+			log_atcommand(sd, lv, message);
 		}
 
 		clif_GM_kick(sd, tsd);
@@ -11533,10 +11529,10 @@ void clif_parse_GMKick(int fd, struct map_session_data *sd)
 			return;
 		}
 
-		if(log_config.gm && lv >= log_config.gm) {
+		{
 			char message[256];
 			sprintf(message, "/kick %s (%d)", status_get_name(target), status_get_class(target));
-			log_atcommand(sd, message);
+			log_atcommand(sd, lv, message);
 		}
 
 		status_percent_damage(&sd->bl, target, 100, 0, true); // can invalidate 'target'
@@ -11552,10 +11548,10 @@ void clif_parse_GMKick(int fd, struct map_session_data *sd)
 			return;
 		}
 
-		if( log_config.gm && lv >= log_config.gm ) {
+		{
 			char message[256];
 			sprintf(message, "/kick %s (%d)", status_get_name(target), status_get_class(target));
-			log_atcommand(sd, message);
+			log_atcommand(sd, lv, message);
 		}
 
 		// copy-pasted from atcommand_unloadnpc
@@ -11594,10 +11590,10 @@ void clif_parse_GMShift(int fd, struct map_session_data *sd)
 	player_name = (char*)RFIFOP(fd,2);
 	player_name[NAME_LENGTH-1] = '\0';
 	atcommand_jumpto(fd, sd, "@jumpto", player_name); // as @jumpto
-	if( log_config.gm && lv >= log_config.gm ) {
+	{
 		char message[NAME_LENGTH+7];
 		sprintf(message, "/shift %s", player_name);
-		log_atcommand(sd, message);
+		log_atcommand(sd, lv, message);
 	}
 }
 
@@ -11626,12 +11622,11 @@ void clif_parse_GMRemove2(int fd, struct map_session_data* sd)
 		pc_warpto(sd, pl_sd);
 	}
 
-	if( log_config.gm && lv >= log_config.gm )
 	{
 		char message[32];
 
 		sprintf(message, "/remove %d", account_id);
-		log_atcommand(sd, message);
+		log_atcommand(sd, lv, message);
 	}
 }
 
@@ -11654,10 +11649,10 @@ void clif_parse_GMRecall(int fd, struct map_session_data *sd)
 	player_name = (char*)RFIFOP(fd,2);
 	player_name[NAME_LENGTH-1] = '\0';
 	atcommand_recall(fd, sd, "@recall", player_name); // as @recall
-	if( log_config.gm && lv >= log_config.gm ) {
+	{
 		char message[NAME_LENGTH+8];
 		sprintf(message, "/recall %s", player_name);
-		log_atcommand(sd, message);
+		log_atcommand(sd, lv, message);
 	}
 }
 
@@ -11686,12 +11681,11 @@ void clif_parse_GMRecall2(int fd, struct map_session_data* sd)
 		pc_recall(sd, pl_sd);
 	}
 
-	if( log_config.gm && lv >= log_config.gm )
 	{
 		char message[32];
 
 		sprintf(message, "/recall %d", account_id);
-		log_atcommand(sd, message);
+		log_atcommand(sd, lv, message);
 	}
 }
 
@@ -11716,10 +11710,9 @@ void clif_parse_GM_Monster_Item(int fd, struct map_session_data *sd)
 		if( pc_isGM(sd) < (level=get_atcommand_level(atcommand_monster)) )
 			return;
 		atcommand_monster(fd, sd, "@monster", monster_item_name); // as @monster
-		if( log_config.gm && level >= log_config.gm )
 		{	//Log action. [Skotlex]
 			snprintf(message, sizeof(message)-1, "@spawn %s", monster_item_name);
-			log_atcommand(sd, message);
+			log_atcommand(sd, level, message);
 		}
 		return;
 	}
@@ -11728,10 +11721,9 @@ void clif_parse_GM_Monster_Item(int fd, struct map_session_data *sd)
 	if( pc_isGM(sd) < (level = get_atcommand_level(atcommand_item)) )
 		return;
 	atcommand_item(fd, sd, "@item", monster_item_name); // as @item
-	if( log_config.gm && level >= log_config.gm )
 	{	//Log action. [Skotlex]
 		sprintf(message, "@item %s", monster_item_name);
-		log_atcommand(sd, message);
+		log_atcommand(sd, level, message);
 	}
 }
 
@@ -11757,8 +11749,7 @@ void clif_parse_GMHide(int fd, struct map_session_data *sd)
 		sd->sc.option |= OPTION_INVISIBLE;
 		sd->vd.class_ = INVISIBLE_CLASS;
 		clif_displaymessage(fd, "Invisibilidade: On.");
-		if( log_config.gm && get_atcommand_level(atcommand_hide) >= log_config.gm )
-			log_atcommand(sd, "/hide");
+		log_atcommand(sd, get_atcommand_level(atcommand_hide), "/hide");
 	}
 	clif_changeoption(&sd->bl);
 }
@@ -13187,8 +13178,8 @@ void clif_parse_Auction_setitem(int fd, struct map_session_data *sd)
 		return;
 	}
 
-	if( amount != 1 || amount < 0 || amount > sd->status.inventory[idx].amount )
-	{ // By client, amount is allways set to 1. Maybe this is a future implementation.
+	if( amount != 1 || amount > sd->status.inventory[idx].amount )
+	{ // By client, amount is always set to 1. Maybe this is a future implementation.
 		ShowWarning("Personagem %s tentando colocar quantidade invalida no leilao.\n", sd->status.name);
 		return;
 	}
@@ -13291,9 +13282,9 @@ void clif_parse_Auction_register(int fd, struct map_session_data *sd)
 
 	auction.auction_id = 0;
 	auction.seller_id = sd->status.char_id;
-	safestrncpy(auction.seller_name, sd->status.name, NAME_LENGTH);
+	safestrncpy(auction.seller_name, sd->status.name, sizeof(auction.seller_name));
 	auction.buyer_id = 0;
-	memset(&auction.buyer_name, '\0', NAME_LENGTH);
+	memset(auction.buyer_name, '\0', sizeof(auction.buyer_name));
 
 	if( sd->status.inventory[sd->auction.index].nameid == 0 || sd->status.inventory[sd->auction.index].amount < sd->auction.amount )
 	{
@@ -13307,7 +13298,7 @@ void clif_parse_Auction_register(int fd, struct map_session_data *sd)
 		return;
 	}
 
-	safestrncpy(auction.item_name, item->jname, ITEM_NAME_LENGTH);
+	safestrncpy(auction.item_name, item->jname, sizeof(auction.item_name));
 	auction.type = item->type;
 	memcpy(&auction.item, &sd->status.inventory[sd->auction.index], sizeof(struct item));
 	auction.item.amount = 1;
@@ -14333,8 +14324,8 @@ void clif_showdigit(struct map_session_data* sd, unsigned char type, int value)
 {
 	WFIFOHEAD(sd->fd, packet_len(0x1b1));
 	WFIFOW(sd->fd,0) = 0x1b1;
-	WFIFOB(sd->fd,0) = type;
-	WFIFOL(sd->fd,0) = value;
+	WFIFOB(sd->fd,2) = type;
+	WFIFOL(sd->fd,3) = value;
 	WFIFOSET(sd->fd, packet_len(0x1b1));
 }
 

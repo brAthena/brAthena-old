@@ -322,7 +322,7 @@ struct spawn_data {
 	signed short xs,ys;
 	unsigned short num; //Number of mobs using this structure
 	unsigned short active; //Number of mobs that are already spawned (for mob_remove_damaged: no)
-	unsigned int delay1,delay2; //Min delay before respawning after spawn/death
+	unsigned int delay1,delay2; //Spawn delay (fixed base + random variance)
 	unsigned int tombstone; // Sistema de Túmulos de MvP (Tombstone) [Mark]
 	struct {
 		unsigned int size :2; //Holds if mob has to be tiny/large
@@ -701,7 +701,6 @@ int map_random_dir(struct block_list *bl, short *x, short *y); // [Skotlex]
 
 int cleanup_sub(struct block_list *bl, va_list ap);
 
-void map_helpscreen(int flag); // [Valaris]
 int map_delmap(char* mapname);
 void map_flags_init(void);
 
@@ -724,8 +723,6 @@ extern char *ATCOMMAND_CONF_FILENAME;
 extern char *SCRIPT_CONF_NAME;
 extern char *MSG_CONF_NAME;
 extern char *GRF_PATH_FILENAME;
-
-extern char *map_server_dns;
 
 //Useful typedefs from jA [Skotlex]
 typedef struct map_session_data TBL_PC;
