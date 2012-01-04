@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1000 - 03/01/2012 [Mark]
+	* Atualizada item_db.
+	- Adicionadas novas cartas e alguns outros itens, além de vários scripts.
+
 	r0999 - 03/01/2012 [Mark]
 	* Adicionados portais de brasilis que faltavam em npc\portais\cidades\brasilis.txt
 	* Modificado arquivo db\item_trade.txt
