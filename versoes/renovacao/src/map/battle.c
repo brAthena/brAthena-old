@@ -2029,8 +2029,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio += 50*skill_lv;
 					break;
 				case RA_ARROWSTORM:
-					skillratio += 100 + 50*skill_lv;
-					if(s_base_level > 99) skillratio += skillratio*(s_base_level - 99)/ 20;
+					skillratio += 80*skill_lv + 900;
+					if(s_base_level > 100)
+						skillratio += skillratio*(s_base_level - 100)/100;
 					break;
 				case RA_AIMEDBOLT:
 					skillratio += 100 + 20*skill_lv;
@@ -3329,8 +3330,9 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						skillratio += 100 + 20 * skill_lv;
 						break;
 					case WL_SOULEXPANSION:
-						skillratio += 300 + 100 * skill_lv + sstatus->int_;
-						if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 200;	
+						skillratio += 300 + 100*skill_lv + sstatus->int_;
+						if(s_base_level > 100)
+							skillratio += skillratio*(s_base_level - 100)/100;
 						break;
 					case WL_FROSTMISTY:
 						skillratio += 100*skill_lv + 100;
