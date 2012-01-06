@@ -9,6 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ===========================================================================================================
 
+	r1003 - 06/01/2012 [Protimus]
+	* Adicionada estrutura oficial para o brAthena++
+	- Discutida e padronizada de acordo com novos planejamentos.
+	- Ramificações serão adicionadas posteriormente, conforme criação.
+	* Adicionada tradução em inglês para os termos de uso.
+	* Removido temporáriamente o brAthena-admin.
+	- Até que seja concluído os compiladores e os métodos do mesmo.
+
 	r0990 - 17/12/2011 [Protimus]
 	* Adicionada estrutura inicial de pastas para NPCs.
 	- Nova organização contará com merge de alguns arquivos que existiam separados.
