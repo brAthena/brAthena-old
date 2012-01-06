@@ -9,7 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
-	r0998 - 04/01/2012 [brn0]
+	r1002 - 06/01/2012 [RenatoUtsch]
+	* Corrigido problema com logs ao utilizar MySQL após r996.
+	* Corrigido bug no item Bastão de Lágrimas
+	* Corrigido erro no changelog
+	- A última revisão estava com o número errado.
+
+	r1001 - 04/01/2012 [brn0]
 	* Atualizada a fórmula da habilidade Tempestade de Flechas (RA_ARROWSTORM).
 	* Atualizada a fórmula da habilidade Impacto Espiritual (WL_SOULEXPANSION).
 

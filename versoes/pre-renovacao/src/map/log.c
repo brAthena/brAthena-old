@@ -574,20 +574,76 @@ int log_config_read(const char* cfgName)
 				log_config.mvpdrop = config_switch(w2);
 			else if( strcmpi(w1, "log_chat_woe_disable") == 0 )
 				log_config.log_chat_woe_disable = (bool)config_switch(w2);
-			else if( strcmpi(w1, "log_branch_db") == 0 )
-				safestrncpy(log_config.log_branch, w2, sizeof(log_config.log_branch));
+						else if( strcmpi(w1, "log_branch_db") == 0 )
+				// If not using sql logging, needs to add the path to the log folder.
+				if( log_config.sql_logs )
+					safestrncpy(log_config.log_branch, w2, sizeof(log_config.log_branch));
+				else
+				{
+					strncat(log_config.log_branch, "log/", sizeof(log_config.log_branch));
+					strncat(log_config.log_branch, w2, sizeof(log_config.log_branch));
+					strncat(log_config.log_branch, ".log", sizeof(log_config.log_branch));
+				}
 			else if( strcmpi(w1, "log_pick_db") == 0 )
-				safestrncpy(log_config.log_pick, w2, sizeof(log_config.log_pick));
+				// If not using sql logging, needs to add the path to the log folder.
+				if( log_config.sql_logs )
+					safestrncpy(log_config.log_pick, w2, sizeof(log_config.log_pick));
+				else
+				{
+					strncat(log_config.log_pick, "log/", sizeof(log_config.log_pick));
+					strncat(log_config.log_pick, w2, sizeof(log_config.log_pick));
+					strncat(log_config.log_pick, ".log", sizeof(log_config.log_pick));
+				}
 			else if( strcmpi(w1, "log_zeny_db") == 0 )
-				safestrncpy(log_config.log_zeny, w2, sizeof(log_config.log_zeny));
+				// If not using sql logging, needs to add the path to the log folder.
+				if( log_config.sql_logs )
+					safestrncpy(log_config.log_zeny, w2, sizeof(log_config.log_zeny));
+				else
+				{
+					strncat(log_config.log_zeny, "log/", sizeof(log_config.log_zeny));
+					strncat(log_config.log_zeny, w2, sizeof(log_config.log_zeny));
+					strncat(log_config.log_zeny, ".log", sizeof(log_config.log_zeny));
+				}
 			else if( strcmpi(w1, "log_mvpdrop_db") == 0 )
-				safestrncpy(log_config.log_mvpdrop, w2, sizeof(log_config.log_mvpdrop));
+				// If not using sql logging, needs to add the path to the log folder.
+				if( log_config.sql_logs )
+					safestrncpy(log_config.log_mvpdrop, w2, sizeof(log_config.log_mvpdrop));
+				else
+				{
+					strncat(log_config.log_mvpdrop, "log/", sizeof(log_config.log_mvpdrop));
+					strncat(log_config.log_mvpdrop, w2, sizeof(log_config.log_mvpdrop));
+					strncat(log_config.log_mvpdrop, ".log", sizeof(log_config.log_mvpdrop));
+				}
 			else if( strcmpi(w1, "log_gm_db") == 0 )
-				safestrncpy(log_config.log_gm, w2, sizeof(log_config.log_gm));
+				// If not using sql logging, needs to add the path to the log folder.
+				if( log_config.sql_logs )
+					safestrncpy(log_config.log_gm, w2, sizeof(log_config.log_gm));
+				else
+				{
+					strncat(log_config.log_gm, "log/", sizeof(log_config.log_gm));
+					strncat(log_config.log_gm, w2, sizeof(log_config.log_gm));
+					strncat(log_config.log_gm, ".log", sizeof(log_config.log_gm));
+				}
 			else if( strcmpi(w1, "log_npc_db") == 0 )
-				safestrncpy(log_config.log_npc, w2, sizeof(log_config.log_npc));
+				// If not using sql logging, needs to add the path to the log folder.
+				if( log_config.sql_logs )
+					safestrncpy(log_config.log_npc, w2, sizeof(log_config.log_npc));
+				else
+				{
+					strncat(log_config.log_npc, "log/", sizeof(log_config.log_npc));
+					strncat(log_config.log_npc, w2, sizeof(log_config.log_npc));
+					strncat(log_config.log_npc, ".log", sizeof(log_config.log_npc));
+				}
 			else if( strcmpi(w1, "log_chat_db") == 0 )
-				safestrncpy(log_config.log_chat, w2, sizeof(log_config.log_chat));
+				// If not using sql logging, needs to add the path to the log folder.
+				if( log_config.sql_logs )
+					safestrncpy(log_config.log_chat, w2, sizeof(log_config.log_chat));
+				else
+				{
+					strncat(log_config.log_chat, "log/", sizeof(log_config.log_chat));
+					strncat(log_config.log_chat, w2, sizeof(log_config.log_chat));
+					strncat(log_config.log_chat, ".log", sizeof(log_config.log_chat));
+				}
 			//support the import command, just like any other config
 			else if( strcmpi(w1,"import") == 0 )
 				log_config_read(w2);

@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r1002 - 06/01/2012 [RenatoUtsch]
+	* Corrigido problema com logs ao utilizar MySQL após r996.
+
 	r0996 - 03/01/2012 [Protimus]
 	* Atualizado conforme eAthena 15055.
 	* Corrigido problema para compilar com CMake.
