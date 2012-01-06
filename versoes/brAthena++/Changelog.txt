@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ===========================================================================================================
 
+	r1004 - 06/01/2012 [RenatoUtsch]
+	* Renomeados alguns nomes de pastas
+
 	r1003 - 06/01/2012 [Protimus]
 	* Adicionada estrutura oficial para o brAthena++
 	- Discutida e padronizada de acordo com novos planejamentos.

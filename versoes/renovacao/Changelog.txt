@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1004 - 06/01/2012 [RenatoUtsch]
+	* Corrigido bug no item Knight Of Honor Badge
+
 	r1002 - 06/01/2012 [RenatoUtsch]
 	* Corrigido problema com logs ao utilizar MySQL após r996.
 	* Corrigido bug no item Bastão de Lágrimas

@@ -3317,7 +3317,7 @@
 5822,Chicken_Of_Love_Hat,Chapéu de Pintinho Avermelhado,5,20,,100,,2,,0,0xFFFFFFFF,7,2,256,,0,1,500,{ bonus bLuk,4; bonus bMaxHP,100; bonus bMaxSP,100; },{},{}
 5823,Arrow_Of_Love,Arrow Of Love,5,20,,100,,1,,0,0xFFFFFFFF,7,2,136,,0,0,0,{ bonus bDex,5; bonus bAgi,5; },{},{}
 5824,Dress_Hat_,Chapéu do Mentiroso,5,20,,300,,5,,0,0xFFFFFFFF,7,2,1,,30,0,265,{},{},{}
-5825,Knight_Of_Honor_Badge,Knight Of Honor Badge,5,20,,0,,5,,0,0xFFFFFFFF,7,2,136,,75,0,0,{ bonus bAtkRate,10; bonus bMatkRate,10; bonus bMaxHP,1500; bonus bMdef,1; } },{},{}
+5825,Knight_Of_Honor_Badge,Knight Of Honor Badge,5,20,,0,,5,,0,0xFFFFFFFF,7,2,136,,75,0,0,{ bonus bAtkRate,10; bonus bMatkRate,10; bonus bMaxHP,1500; bonus bMdef,1; },{},{}
 5826,Helm_Of_Valkyrie,Valkyrie Helm,5,20,,500,,5,,0,0xFFFFFFFF,7,2,256,,0,1,225,{ bonus bStr,2; bonus bAgi,2; bonus bInt,2; bonus bDex,2; bonus bAspdRate,3; bonus bCastrate,-3; bonus bMdef,5; },{},{}
 5827,Stack_of_Books,Pilha de Livros,5,20,,100,,1,,0,0xFFFFFFFF,7,2,1,,0,0,423,{},{},{}
 5828,Gold_Ring_Of_Honor,Gold Ring Of Honor,5,20,,50,,0,,0,0xFFFFFFFF,7,2,136,,0,0,0,{},{},{}
