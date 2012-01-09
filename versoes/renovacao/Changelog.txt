@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1007 - 09/01/2012 [RenatoUtsch]
+	* Corrigido um bug no CMake ao compilar em Linux x64.
+
 	r1006 - 08/01/2012 [RenatoUtsch]
 	* Reescrito o sistema de compilação pelo CMake (agora está 100%).
 

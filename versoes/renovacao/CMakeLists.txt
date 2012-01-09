@@ -110,7 +110,7 @@ if( MSVC )
 endif()
 
 # -----------------------------------------------------------------------------
-# Set some initial global definitions for win32 systems
+# Set some initial global definitions for disabling some compiler warnings
 if( WIN32 )
 	set_property( CACHE GLOBAL_DEFINITIONS PROPERTY VALUE
 		"${GLOBAL_DEFINITIONS} -DFD_SETSIZE=4096"
@@ -122,6 +122,12 @@ if( WIN32 )
 			"${GLOBAL_DEFINITIONS} -D_CRT_SECURE_NO_DEPRECATE -D_CRT_NONSTDC_NO_DEPRECATE /wd4100 /wd4800 /wd4018"
 		)
 	endif()
+endif()
+
+if( "${CMAKE_C_COMPILER_ID}" STREQUAL "GNU" )
+	set_property( CACHE GLOBAL_DEFINITIONS PROPERTY VALUE
+		"${GLOBAL_DEFINITIONS} -Wno-int-to-pointer-cast -Wno-pointer-to-int-cast"
+	)
 endif()
 
 ###############################################################################
