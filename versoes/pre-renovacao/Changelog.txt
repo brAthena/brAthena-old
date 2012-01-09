@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r1006 - 08/01/2012 [RenatoUtsch]
+	* Reescrito o sistema de compilação pelo CMake (agora está 100%).
+	* Corrigido problema com a compilação do emulator.
+
 	r1002 - 06/01/2012 [RenatoUtsch]
 	* Corrigido problema com logs ao utilizar MySQL após r996.
 

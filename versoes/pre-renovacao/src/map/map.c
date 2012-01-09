@@ -3515,7 +3515,7 @@ void do_abort(void)
 /*======================================================
  * Map-Server Version Screen [MC Cameri]
  *------------------------------------------------------*/
-static void map_helpscreen(bool do_exit)
+void map_helpscreen(int do_exit)
 {
 	ShowInfo("Usage: %s [options]\n", SERVER_NAME);
 	ShowInfo("\n");

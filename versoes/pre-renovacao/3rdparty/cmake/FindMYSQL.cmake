@@ -15,7 +15,7 @@ find_path( MYSQL_INCLUDE_DIRS "mysql.h"
 		"$ENV{SYSTEMDRIVE}/MySQL/*/include" )
 
 find_library( MYSQL_LIBRARIES
-	NAMES "mysqlclient" "mysqlclient_r"
+	NAMES "mysqlclient" "mysqlclient_r" "mysql" "libmysql"
 	PATHS
 		"/usr/lib/mysql"
 		"/usr/local/lib/mysql"

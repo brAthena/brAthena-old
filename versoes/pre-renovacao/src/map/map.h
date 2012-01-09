@@ -643,7 +643,7 @@ int map_random_dir(struct block_list *bl, short *x, short *y); // [Skotlex]
 
 int cleanup_sub(struct block_list *bl, va_list ap);
 
-void map_helpscreen(int flag); // [Valaris]
+void map_helpscreen(int do_exit); // [Valaris]
 int map_delmap(char* mapname);
 void map_flags_init(void);
 

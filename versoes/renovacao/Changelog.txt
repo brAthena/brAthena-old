@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1006 - 08/01/2012 [RenatoUtsch]
+	* Reescrito o sistema de compilação pelo CMake (agora está 100%).
+
 	r1004 - 06/01/2012 [RenatoUtsch]
 	* Corrigido bug no item Knight Of Honor Badge
 

@@ -9,7 +9,7 @@
 find_path( PCRE_INCLUDE_DIR pcre.h
 	PATHS
 		"/usr/include/pcre" )
-set( PCRE_NAMES pcre )
+set( PCRE_NAMES pcre libpcre )
 find_library( PCRE_LIBRARY NAMES ${PCRE_NAMES} )
 mark_as_advanced( PCRE_LIBRARY PCRE_INCLUDE_DIR )
 
