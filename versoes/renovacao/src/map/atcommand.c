@@ -1254,7 +1254,7 @@ ACMD_FUNC(jobchange)
 	if (!message || !*message || sscanf(message, "%d %d", &job, &upper) < 1)
 	{
 		int i, found = 0;
-		const struct { char name[21]; int id; } jobs[] = {
+		const struct { char name[23]; int id; } jobs[] = {
 			{ "aprendiz",				   0 },
 			{ "espadachim",				   1 },
 			{ "mago",					   2 },

@@ -12879,7 +12879,7 @@ struct skill_condition skill_get_requirement(struct map_session_data* sd, short 
 int skill_castfix (struct block_list *bl, int skill_id, int skill_lv)
 {
 	int time = 0, cast_fixo_reduct=0, base_cast = skill_get_cast(skill_id, skill_lv);
-	float stat_reduct=0;
+	float stat_reduct=1.0;
 	struct map_session_data *sd;
 	struct status_change *sc;
 

@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1008 - 10/01/2012 [brn0]
+	* Corrigido um problema no cast de algumas habilidades.
+	* Corrigido um erro no nome de algumas classes no comando @job.
+
 	r1007 - 09/01/2012 [RenatoUtsch]
 	* Corrigido um bug no CMake ao compilar em Linux x64.
 
