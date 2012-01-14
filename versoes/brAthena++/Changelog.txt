@@ -9,13 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ===========================================================================================================
 
-	r1006 - 08/01/2012 [RenatoUtsch]
-	* Corrigido o Changelog.txt, no commit anterior o Bruno esqueceu de modificar ele.
+	r1009 - 14/01/2012 [Protimus]
+	* Adicionados códigos para encriptação com SHA256 e SHA512.
 
-	r1005 - 08/01/2012 [BrunoAlano]
-	* Adicionados os módulos restantes
-
-	r1004 - 06/01/2012 [RenatoUtsch]
+	r1004 & 1005 - 06/01/2012 [RenatoUtsch]
 	* Renomeados alguns nomes de pastas
 
 	r1003 - 06/01/2012 [Protimus]
