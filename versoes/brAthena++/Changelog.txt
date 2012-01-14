@@ -3,11 +3,20 @@
 //	r0000 - Dia/Mês/Ano [Autor(es)]
 //	* Notação
 //	- Comentário (opcional)
+//  + Comentário Adicional (referente ao comentário inicial)
 //  * Dica: Para encontrar atualizações de uma revisão específica pressione Ctrl+F
 //	e digite rxxxx onde "xxxx" refere-se a revisão desejada. 
 //  * Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://trac.brathena.org/timeline
 // ===========================================================================================================
+
+	r1010 - 14/01/2012 [Protimus]
+	* Adicionados códigos para comunicação com as contas do servidor.
+	- Estrutura inicial para realização de ações nas contas pelo database.
+	 + Verificação de autenticidade.
+	 + Mudanças de senha e usuário.
+	 + Remoção de contas.
+	* Removido excesso de linhas nos códigos do último envio.
 
 	r1009 - 14/01/2012 [Protimus]
 	* Adicionados códigos para encriptação com SHA256 e SHA512.
