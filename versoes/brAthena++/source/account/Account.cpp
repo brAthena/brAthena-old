@@ -1,91 +1,125 @@
-/*========================================================================*
- *               _           _   _   _                                    *
- *              | |__  _ __ / \ | |_| |__   ___ _ __   __ _               *
- *              | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |              *
- *              | |_) | | / ___ \ |_| | | |  __/ | | | (_| |              *
- *              |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|              *
- *                                                                        *
- *------------------------------------------------------------------------*
- * Copyright (c) 2012 brAthena Dev Team - <http://www.brathena.org/>      *
- * Account Database Connectors - Initial structure created by Protimus.   *
- *                                                                        *
- *========================================================================*/   
+/**
+ * @file source/account/Account.h
+ * @author Bruno Alano
+ *
+ * brAthena++ Account Model
+ *
+ * This file creates the object model accounts on the server. He is responsible for all control
+ * of the data contained therein, such as CRUD operations and some details that are necessary to 
+ * more complex.
+ *
+ * This model works only with the MySQL, but the other datas are in a NoSQL type
+ * database.
+ *
+ * The password uses SHA2 512 Bits, but receive a MD5 password from Hexed. This encrypt the
+ * MD5 password in SHA2.
+ *
+ * @todo Add more usual functions, like: getGmLevel, getLastLogin and more
+ */
+ 
+// ----------------------------------------------------------------------------
+// -                                                                          -
+// -                                Headers                                   -
+// -                                                                          -
+// ----------------------------------------------------------------------------
+// Standard Library (STD)
+// --------------------------------------------------------
+#include <string>
+#include <ctime>
+#include <iostream>
+#include <sstream>
 
-#include "Account.h"
-//#include "database/??.h"
-//#include "inter/??.h"
-//#include "sha512.h"
+// brAthena++ Headers
+// --------------------------------------------------------
+#include <brathenapp.h>
+#include <account/Account.h>
 
+// Sundry Framework Headers
+// --------------------------------------------------------
+#include <sundry/posix/stdint.h>
 
-/* Checks for get account ID in database. */
+// MySQL C API
+// --------------------------------------------------------
+#include <mysql.h>
 
-uint32 Account::ID(std::string username)
+// ----------------------------------------------------------------------------
+// -                                                                          -
+// -                             Source Code                                  -
+// -                                                                          -
+// ----------------------------------------------------------------------------
+
+/**
+ * Account Class Constructor
+ *
+ * Stores the all data about the accounts. Create functions to get
+ * friendly informations
+ *
+ * @ingroup account
+ * @param username Account username
+ * @param password Account password
+ * @param userIp   Account current ip address
+ */
+brathenapp::account::Account::Account ( std::string username, std::string password, ip userIp )
 {
-    accountDatabase.escape_string(username);
-
-    QueryResult *result = accountDatabase.Query("SELECT `id` FROM `account` WHERE UPPER(`username`)=UPPER('%s')", username.c_str());
-    if(!result)
-        return 0;
-    else
-    {
-        uint32 id = (*result)[0].GetUInt32();
-        delete result;
-        return id;
-    }
+	// Send the paramters to the class fields
+	this->username = username;
+	this->password = password;
+	this->userIp = userIp;
 }
 
-/* Create an accoun and checks your authenticity.
- MAX Characteres:
- Encryption in databases with SHA512 */
-
-int Account::Create(std::string username, std::string password)
+bool brathenapp::account::Account::verifyData ( void )
 {
-    if(username.length() > 10) // Check if the username is too long.
-        return 1;                                          
-
-    accountDatabase.escape_string(username);
-    QueryResult *result = accountDatabase.Query("SELECT 1 FROM `account` WHERE `username`='%s'", username.c_str());
-    if(result)  // Check if the username already exists.
-    {
-        delete result;
-        return 2;                                         
-    }
-
-    accountDatabase.escape_string(password);
-
-    if(!accountDatabase.Execute("INSERT INTO `account`(`username`,`I`,`joindate`) VALUES('%s',SHA512(CONCAT(UPPER('%s'),':',UPPER('%s'))),NOW())", username.c_str(), username.c_str(), password.c_str()))
-        return -1;                                         
-
-    return 0;                                              
+	if ( this->username >= MINIMAL_USERNAME_LENGTH && this->password >= MINIMAL_PASSWORD_LENGTH )
+		return true;
+		
+	return false;
 }
 
-/* Change usernamed and password of an account. */
-
-int Account::ChangeUsername(uint32 account_id, std::string new_username, std::string new_passwd)
+bool brathenapp::account::Account::verifyUser ( void )
 {
-    QueryResult *result = accountDatabase.Query("SELECT 1 FROM `account` WHERE `id`='%d'", account_id);
-    if(!result) // Check if the account exist
-        return 1;                                           
-    delete result;
-
-    accountDatabase.escape_string(new_username);
-    accountDatabase.escape_string(new_password);
-    if(!accountDatabase.Execute("UPDATE `account` SET `username`='%s',`I`=SHA512(CONCAT(UPPER('%s'),':',UPPER('%s'))) WHERE `id`='%d'", new_username.c_str(), new_username.c_str(), new_password.c_str(), account_id))
-        return -1;                                          
-
-    return 0;
-}
-
-int Account::ChangePassword(uint32 account_id, std::string new_password)
-{
-    QueryResult *result = accountDatabase.Query("SELECT 1 FROM `account` WHERE `id`='%d'", account_id);
-    if(!result) // Check if the account exist
-    delete result;
-        return 1;                                           
-
-    accountDatabase.escape_string(new_password);
-    if(!accountDatabase.Execute("UPDATE `account` SET `I`=SHA512(CONCAT(UPPER(`username`),':',UPPER('%s'))) WHERE `id`='%d'", new_password.c_str(), account_id))
-        return -1;                                         
-
-    return 0;
-}
+	// Initialize the MySQL Connection
+	this->connection = mysql_init ( NULL );
+	
+	// Check for errors
+	if ( this->connection == NULL )
+	{
+		std::cerr << "[ERROR] MySQL out of memory. #3021" << std::endl;
+		exit ( 1 );
+	}
+	
+	// Create the connection configuration
+	// and verify
+	if ( mysql_real_connect (
+		this->conn,
+		MYSQL_SERVER,
+		MYSQL_USERNAME,
+		MYSQL_PASSWORD,
+		MYSQL_DATABASE,
+		MYSQL_PORT,
+		NULL,
+		0
+	) == NULL )
+	{
+		std::cerr << "[ERROR] Cannot connect with the MySQL server. #3022" << std::endl;
+		exit ( 1 );
+	}
+	
+	// Build the query
+	std::ostringstream queryBuild;
+	queryBuild << "SELECT id, username, password FROM users WHERE "
+			<< "username = '" << this->username
+			<< "' AND "
+			<< "password = '" << this->password
+			<< "' LIMIT 1";
+			
+	std::string query ( queryBuild.str() );
+	
+	// Run the query
+	if ( mysql_query ( this->connection, query.c_str() ) != 0 )
+		return false;
+		
+	return true;
+	
+	// Closes the connection
+	mysql_close ( this->connection );
+	

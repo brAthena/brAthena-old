@@ -9,6 +9,10 @@
 //  * Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://trac.brathena.org/timeline
 // ===========================================================================================================
+	r1011 - 19/01/2012 [BrunoAlano]
+	* Adicionada a configuração básica da source
+	* Recriado o módulo Accounts, de acordo com um padrão de Modelo
+	* Removido código anterior relacionado ao módulo de Accounts
 
 	r1010 - 14/01/2012 [Protimus]
 	* Adicionados códigos para comunicação com as contas do servidor.
