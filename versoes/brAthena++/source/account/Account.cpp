@@ -35,7 +35,7 @@
 
 // brAthena++ Headers
 // --------------------------------------------------------
-#include <brathenapp.h>
+#include <common/brathenapp.h>
 #include <account/Account.h>
 
 // Sundry Framework Headers

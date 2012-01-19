@@ -10,10 +10,15 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ===========================================================================================================
 
+	r01013 - 19/01/2012 [Protimus]
+	* Movido arquivo de configurações padrão do source para common.
+	* Removido código para encriptação com SHA2.
+	- Será usado um método mais dinâmico com OpenSSL.
+
 	r1011 - 19/01/2012 [BrunoAlano]
-	* Adicionada a configuração básica da source
-	* Recriado o módulo Accounts, de acordo com um padrão de Modelo
-	* Removido código anterior relacionado ao módulo de Accounts
+	* Adicionada a configuração básica da source.
+	* Recriado o módulo accounts, de acordo com um padrão de modelo
+	* Removido código anterior relacionado ao módulo de accounts
 
 	r1010 - 14/01/2012 [Protimus]
 	* Adicionados códigos para comunicação com as contas do servidor.

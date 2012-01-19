@@ -25,7 +25,7 @@
 
 // brAthena++ Headers
 // --------------------------------------------------------
-#include <brathenapp.h>
+#include <common/brathenapp.h>
 
 // Sundry Framework Headers
 // --------------------------------------------------------
