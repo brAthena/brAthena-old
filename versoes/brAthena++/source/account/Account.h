@@ -1,27 +1,23 @@
-/**
- * @file source/account/Account.h
- * @author Bruno Alano
- *
- * brAthena++ Account Model
- *
- * This file creates the object model accounts on the server. He is responsible for all control
- * of the data contained therein, such as CRUD operations and some details that are necessary to 
- * more complex.
- *
- * This model works only with the MySQL, but the other datas are in a NoSQL type
- * database.
- *
- * The password uses SHA2 512 Bits, but receive a MD5 password from Hexed. This encrypt the
- * MD5 password in SHA2.
- *
- * @todo Add more usual functions, like: getGmLevel, getLastLogin and more
- */
+/**=======================================================================*
+ *               _           _   _   _                                    *
+ *              | |__  _ __ / \ | |_| |__   ___ _ __   __ _               *
+ *              | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |              *
+ *              | |_) | | / ___ \ |_| | | |  __/ | | | (_| |              *
+ *              |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|              *
+ *                                                                        *
+ *------------------------------------------------------------------------*
+ * Copyright (c) 2012 brAthena Dev Team - <http://www.brathena.org/>      *
+ * Account Database Headers - Initial structure created by Bruno Alano.   *
+ *                                                                        *
+ * Description: Account headers for operation of account codes.           *
+ *=======================================================================**/
  
-// ----------------------------------------------------------------------------
-// -                                                                          -
-// -                                Headers                                   -
-// -                                                                          -
-// ----------------------------------------------------------------------------
+/*========================================================================*
+ *                                                                        *
+ *                                Headers                                 *
+ *                                                                        *
+ *========================================================================*/
+ 
 // Standard Library (STD)
 // --------------------------------------------------------
 #include <string>

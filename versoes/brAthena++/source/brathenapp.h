@@ -1,19 +1,26 @@
-/**
- * @file source/brathenapp.h
- * @author Bruno Alano
- *
- * brAthena++ Source Configuration
- * Please, see the documentation to change any value here
- */
+/**=======================================================================*
+ *               _           _   _   _                                    *
+ *              | |__  _ __ / \ | |_| |__   ___ _ __   __ _               *
+ *              | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |              *
+ *              | |_) | | / ___ \ |_| | | |  __/ | | | (_| |              *
+ *              |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|              *
+ *                                                                        *
+ *------------------------------------------------------------------------*
+ * Copyright (c) 2012 brAthena Dev Team - <http://www.brathena.org/>      *
+ *                   brAthena Source Configuration                        *
+ *                                                                        *
+ * Description: Common standard configurations of source code values.     *
+ *=======================================================================**/
 
 #ifndef BRATHENAPP_H
 #define BRATHENAPP_H
 
-// ===========================================================================
-//
-//                      brAthena++ General Configuration
-//
-// ===========================================================================
+/*========================================================================*
+ *                                                                        *
+ *                brAthena++ General Configurations                       *
+ *                                                                        *
+ *========================================================================*/
+ 
 // Enable use the NoSQL Databases?
 // Tip: Enable this if you want increase perfomance on your server,
 // because they are faster then (R)SGBDs databases, like MySQL and PostgreSQL
@@ -27,11 +34,11 @@
 #define BRATHENAPP_USE_SHA2 1
 
 
-// ===========================================================================
-//
-//                      brAthena++ Account Module
-//
-// ===========================================================================
+/*========================================================================*
+ *                                                                        *
+ *                brAthena++ Account Modules                              *
+ *                                                                        *
+ *========================================================================*/
 // Minimal username length
 // If value 4, means: username >= 4 to be valid
 // ATT: You need check your hexed too
@@ -43,12 +50,9 @@
 #define MINIMAL_PASSWORD_LENGTH 4
 
 
-// ===========================================================================
-//
-//                       Remove this configuration
-//              because need be loaded by configuration files
-//
-// ===========================================================================
+/*  TEMPORARY SOURCE CODE FOR ACCOUNT INFORMATIONS
+  PLEASE: Hereafter remove this configuration, because need be loaded by configuration files
+*/
 #define MYSQL_SERVER 'localhost'
 #define MYSQL_USERNAME 'root'
 #define MYSQL_PASSWORD 'root'
