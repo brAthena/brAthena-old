@@ -5325,7 +5325,7 @@
 12400,Water_Of_Blessing,Water Of Blessing,2,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
 12402,29Truth,29Truth,2,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ percentheal 5,5; },{},{}
 12403,Good_Fortune_Egg,Good Fortune Egg,2,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
-12404,Activation_Potion,Poção Energizante,2,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_INCATKRATE,120000,5; sc_start INCMATKRATE,120000,5; },{},{}
+12404,Activation_Potion,Poção Energizante,2,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_INCATKRATE,120000,5; sc_start SC_INCMATKRATE,120000,5; },{},{}
 //12405,,Semente de Yggdrasil Abençoada,
 12408,Leaf_Cat_Ball,Esfera de Captura,2,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
 12409,First_Rating_Pork,Carne de Porco 1a Classe,2,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}

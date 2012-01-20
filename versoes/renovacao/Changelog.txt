@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1015 - 20/01/2012 [Protimus]
+	* Corrigida a habilidade Campo Amaldiçoado (SR_CURSEDCIRCLE).
+	- Estava sendo possível seu uso em MvPs.
+	* Corrigido o item Poção Energizante.
+	- Não estava dando bônus de ataque mágico.
+
 	r1008 - 10/01/2012 [brn0]
 	* Corrigido um problema no cast de algumas habilidades.
 	* Corrigido um erro no nome de algumas classes no comando @job.
