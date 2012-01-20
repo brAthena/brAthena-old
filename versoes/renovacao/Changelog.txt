@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1017 - 20/01/2012 [insidemybrain!]
+	* Corrigida a habilidade Disparo Certeiro (RA_AIMEDBOLT).
+	- Modificadas dano conforme porcentagem por nível.
+	- Modificados danos conforme tamanhos de alvo.
+
 	r01016 - 20/01/2012 [Protimus]
 	* Corrigida a habilidade Gás Criogênico (NC_COLDSLOWER).
 	- Estava sendo possível seu uso sem um Combustível Diferenciado Leve.

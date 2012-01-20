@@ -2034,10 +2034,31 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 						skillratio += skillratio*(s_base_level - 100)/100;
 					break;
 				case RA_AIMEDBOLT:
-					skillratio += 100 + 20*skill_lv;
-					if(s_base_level > 99) skillratio += skillratio * (s_base_level - 99) / 20;
+					skillratio += 400 + skill_lv*50;
+					if(s_base_level > 100)
+						skillratio += skillratio*(s_base_level - 100)/100;
 					if(tsc && (tsc->data[SC_BITE] || tsc->data[SC_ANKLE] || tsc->data[SC_ELECTRICSHOCKER]) )
-						wd.div_ = tstatus->size+2;
+					switch(tstatus->size)
+					{
+						case 1://Médio
+						if(rand()%100 >= 60)
+							wd.div_ = 3;
+						else
+							wd.div_ = 4;
+							break;
+						case 2://Grande
+						if(rand()%100 >= 70)
+							wd.div_ = 4;
+						else
+							wd.div_ = 5;
+							break;
+						default://Pequeno e outros
+						if(rand()%100 < 50)
+							wd.div_ = 2;
+						else
+							wd.div_ = 3;
+							break;
+					}
 					break;
 				case RA_SENSITIVEKEEN:
 					skillratio += 50*skill_lv;
