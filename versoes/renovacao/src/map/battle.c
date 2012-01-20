@@ -2100,7 +2100,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					}
 					break;
 				case NC_AXEBOOMERANG:
-					skillratio += 60 + 40 * skill_lv;
+					skillratio += 150 + 50 * skill_lv;
 					if( sd )
 					{
 						short index = sd->equip_index[EQI_HAND_R];
@@ -2110,7 +2110,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 99) / 20;
 					break;
 				case NC_POWERSWING:
-					skillratio += (180 + (skill_lv * 20) + sstatus->dex + sstatus->str );
+					skillratio += (200 + (skill_lv * 100) + sstatus->dex + sstatus->str );
 					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 99) / 20;
 					break;
 				case NC_BOOSTKNUCKLE:

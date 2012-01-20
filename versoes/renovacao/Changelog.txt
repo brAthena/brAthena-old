@@ -9,6 +9,16 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1019 - 20/01/2012 [Protimus]
+	* Corrigida a habilidade Arremesso de Machado (NC_AXEBOOMERANG).
+	- Modificado dano conforme porcentagem por nível.
+	- Modificado tempo de reuso da habilidade conforme nível.
+	* Corrigida a habilidade Brandir Machado (NC_POWERSWING).
+	- Modificado dano conforme porcentagem por nível.
+	- Modificada chance de causar atordoamento.
+	- Modificada chance de de atividade Arremesso de Machado automáticamente.
+	- Modificada duração da habilidade para efeitos como atordoamento.
+
 	r1018 - 20/01/2012 [Protimus]
 	* Corrigida a habilidade Maestria com Machados (NC_TRAININGAXE).
 	- Modificada bonificação de ataque conforme uso de Maças.
@@ -16,7 +26,7 @@
 
 	r1017 - 20/01/2012 [insidemybrain!]
 	* Corrigida a habilidade Disparo Certeiro (RA_AIMEDBOLT).
-	- Modificadas dano conforme porcentagem por nível.
+	- Modificado dano conforme porcentagem por nível.
 	- Modificados danos conforme tamanhos de alvo.
 
 	r1016 - 20/01/2012 [Protimus]

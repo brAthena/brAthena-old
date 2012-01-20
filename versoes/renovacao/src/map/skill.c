@@ -1166,8 +1166,8 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 		break;
 
 	case NC_POWERSWING:
-		sc_start(bl, SC_STUN, 5*skilllv, skilllv, skill_get_time(skillid, skilllv));
-		if( rand()%100 < (5 + 15 * skilllv) )
+		sc_start(bl, SC_STUN, 10*skilllv, skilllv, skill_get_time(skillid, skilllv));
+		if( rand()%100 < (5 * skilllv) )
 			skill_castend_damage_id(src, bl, NC_AXEBOOMERANG, pc_checkskill(sd, NC_AXEBOOMERANG), tick, 1);
 		break;
 	case NC_PILEBUNKER:
