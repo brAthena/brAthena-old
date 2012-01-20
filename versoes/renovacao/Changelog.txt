@@ -9,6 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r01016 - 20/01/2012 [Protimus]
+	* Corrigida a habilidade Gás Criogênico (NC_COLDSLOWER).
+	- Estava sendo possível seu uso sem um Combustível Diferenciado Leve.
+	* Corrigida a habilidade Onda Psíquica (SO_PSYCHIC_WAVE).
+	- Valores de conjuração alterados conforme oficial.
+	* Corrigida a habilidade Serenata ao Luar (WA_MOONLIT_SERENADE).
+	- Não estava dando o dobro da bonificação de ataque mágico correta.
+
 	r1015 - 20/01/2012 [Protimus]
 	* Corrigida a habilidade Campo Amaldiçoado (SR_CURSEDCIRCLE).
 	- Estava sendo possível seu uso em MvPs.

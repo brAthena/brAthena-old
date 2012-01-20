@@ -7555,7 +7555,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			val2 = 4 * val1;
 			break;
 		case SC_MOONLITSERENADE:
-			val2 = 20 * val1; // Adição de matk.
+			val2 = 10 * val1; // Adição de matk.
 			break;
 		case SC_SITDOWN_FORCE:
 		case SC_BANANA_BOMB_SITDOWN:
