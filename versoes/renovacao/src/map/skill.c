@@ -15573,7 +15573,6 @@ int skill_magicdecoy(struct map_session_data *sd, int nameid){
 		if( md->deletetimer != INVALID_TIMER )
 			delete_timer(md->deletetimer, mob_timer_delete);
 		md->deletetimer = add_timer (gettick() + skill_get_time(NC_MAGICDECOY,skill), mob_timer_delete, md->bl.id, 0);
-		md->status.matk_min = md->status.matk_max = 250 + 50 * skill;
 		mob_spawn(md); // Sumona o mob
 	}
 

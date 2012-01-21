@@ -1906,8 +1906,12 @@ int status_calc_mob_(struct mob_data* md, bool first)
 				status->mode|= MD_CANATTACK|MD_AGGRESSIVE;
 			}
 			if (ud->skillid == NC_SILVERSNIPER) {
-				status->max_hp = (status->max_hp / 3) + (1000 * ud->skilllv) + status_get_lv(mbl);
+				status->max_hp = (status->max_hp / 3) + (1000 * ud->skilllv) + 12 * status_get_lv(mbl);
 				status->rhw.atk = status->rhw.atk2 = 200 + 100 * ud->skilllv;
+			}
+			if (ud->skillid == NC_MAGICDECOY) {
+				status->max_hp = (status->max_sp * 4) + (1000 * ud->skilllv) + 12 * status_get_lv(mbl);
+				status->matk_min = status->matk_max = 250 + 50 * ud->skilllv;
 			}
 			status->hp = status->max_hp;
 		}

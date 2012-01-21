@@ -9,6 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1023 - 21/01/2012 [Protimus]
+	* Corrigida a habilidade Artilharia Arcana (NC_MAGICDECOY).
+	- Adicionada fórmula de HP máximo do monstro.
+	- Corrigida fórmula de MATK do monstro.
+	- Atualizados tempos de atraso e duração da habilidade.
+	- Necessário chegar se a fórmula de MATK está funcionando corretamente.
+	* Atualizada fórmula de status dos monstros de Artilharia Arcana.
+
 	r1022 - 21/01/2012 [Protimus]
 	* Corrigida a habilidade Artilharia Caçadora (NC_SILVERSNIPER).
 	- Corrigida fórmula de ATK do monstro.
