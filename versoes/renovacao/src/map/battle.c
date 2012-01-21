@@ -964,6 +964,8 @@ int battle_addmastery(struct map_session_data *sd,struct block_list *target,int 
 		case W_DAGGER:
 			if((skill = pc_checkskill(sd,SM_SWORD)) > 0)
 				damage += (skill * 4);
+			if((skill = pc_checkskill(sd,GN_TRAINING_SWORD)) > 0)
+				damage += 10*skill;
 			break;
 		case W_2HSWORD:
 			if((skill = pc_checkskill(sd,SM_TWOHAND)) > 0)
@@ -2168,7 +2170,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					if(s_base_level > 100) skillratio += skillratio*(s_base_level-100)/100;
 					break;
 				case SC_TRIANGLESHOT:
-					skillratio += 270 + 30 * skill_lv;
+					skillratio += (skill_lv - 1)*sstatus->agi/2 + 200;
+					if(s_base_level > 100)
+						skillratio = skillratio*s_base_level/120;
 					break;
 				case SC_FEINTBOMB:
 					skillratio += 100 + 100 * skill_lv;

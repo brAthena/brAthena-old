@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1024 - 21/01/2012 [brn0]
+	* Atualizada a fórmula da habilidade Disparo Triplo (SC_TRIANGLESHOT).
+	* Corrigida a habilidade Perícia em Esgrima (GN_TRAINING_SWORD).
+	- Não estava aplicando o bônus em adagas.
+
 	r1023 - 21/01/2012 [Protimus]
 	* Corrigida a habilidade Artilharia Arcana (NC_MAGICDECOY).
 	- Adicionada fórmula de HP máximo do monstro.
