@@ -9,6 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1022 - 21/01/2012 [Protimus]
+	* Corrigida a habilidade Artilharia Caçadora (NC_SILVERSNIPER).
+	- Corrigida fórmula de ATK do monstro.
+	- Corrigida fórmula de HP máximo do monstro.
+	- Atualizados tempos de atraso e duração da habilidade.
+	* Atualizada fórmula de status do monstro Arqueiro de Prata.
+	- Conforme novos padrões da habilidade Artilharia Caçadora.
+
 	r1021 - 21/01/2012 [Protimus]
 	* Corrigida a habilidade Fúria do Furacão (NC_AXETORNADO).
 	- Modificada fórmula de dano conforme porcentagem por nível.

@@ -9599,7 +9599,6 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 				if( md->deletetimer != INVALID_TIMER )
 					delete_timer(md->deletetimer, mob_timer_delete);
 				md->deletetimer = add_timer (gettick() + skill_get_time(skillid,skilllv), mob_timer_delete, md->bl.id, 0);
-				md->status.atk_bonus = skilllv * 100 - 100 ; // Ataque inicial é 300 + 100 de bonus para cada level
 				mob_spawn (md); //Sumona o mob
 			}
 		}
