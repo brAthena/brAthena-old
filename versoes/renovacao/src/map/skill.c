@@ -1176,8 +1176,14 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 				status_change_end( bl, SC_KYRIE, INVALID_TIMER );
 				status_change_end( bl, SC_ASSUMPTIO, INVALID_TIMER );
 				status_change_end( bl, SC_STEELBODY, INVALID_TIMER );
+				status_change_end( bl, SC_GT_CHANGE, INVALID_TIMER );
+				status_change_end( bl, SC_GT_REVITALIZE, INVALID_TIMER );
 				status_change_end( bl, SC_AUTOGUARD, INVALID_TIMER );
-				status_change_end( bl, SC_MILLENNIUMSHIELD, INVALID_TIMER );
+				status_change_end( bl, SC_REFLECTSHIELD, INVALID_TIMER );
+				status_change_end( bl, SC_DEFENDER, INVALID_TIMER );
+				status_change_end( bl, SC_REFLECTDAMAGE, INVALID_TIMER );
+				status_change_end( bl, SC_PRESTIGE, INVALID_TIMER );
+				status_change_end( bl, SC_BANDING, INVALID_TIMER );
 			}
 		break;
 	case NC_FLAMELAUNCHER:

@@ -2102,14 +2102,14 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					}
 					break;
 				case NC_AXEBOOMERANG:
-					skillratio += 150 + 50 * skill_lv;
+					skillratio += 250 + 45 * skill_lv;
 					if( sd )
 					{
 						short index = sd->equip_index[EQI_HAND_R];
 						if( index >= 0 && sd->inventory_data[index] && sd->inventory_data[index]->type == IT_WEAPON )
 						skillratio += sd->inventory_data[index]->weight / 10;
 					}
-					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 99) / 20;
+					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 99) / 100;
 					break;
 				case NC_POWERSWING:
 					skillratio += (200 + (skill_lv * 100) + sstatus->dex + sstatus->str );
