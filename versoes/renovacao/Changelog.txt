@@ -9,6 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1025 - 21/01/2012 [Protimus]
+	* Corrigida a habilidade Punho Foguete (NC_BOOSTKNUCKLE).
+	- Modificado dano conforme porcentagem por nível.
+	* Corrigida a habilidade Metralhadora (NC_VULCANARM).
+	- Modificada área de efeito.
+	* Correção de r1020.
+	- Área de efeito estava na lacuna errada.
+
 	r1024 - 21/01/2012 [brn0]
 	* Atualizada a fórmula da habilidade Disparo Triplo (SC_TRIANGLESHOT).
 	* Corrigida a habilidade Perícia em Esgrima (GN_TRAINING_SWORD).
