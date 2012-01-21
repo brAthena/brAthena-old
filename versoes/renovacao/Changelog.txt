@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1026 - 21/01/2012 [Protimus]
+	* Removidos arquivos protótipos de sqlite.
+	- Não será mais usado devido falta de compatibilidade com certas funções e a redundância de necessidade.
+
 	r1025 - 21/01/2012 [Protimus]
 	* Corrigida a habilidade Punho Foguete (NC_BOOSTKNUCKLE).
 	- Modificado dano conforme porcentagem por nível.
