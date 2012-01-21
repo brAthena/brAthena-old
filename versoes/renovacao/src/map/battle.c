@@ -2090,7 +2090,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					break;
 				case NC_AXETORNADO:
 					i = distance_bl(src,target);
-					skillratio += ( 200 + (100 * skill_lv) + sstatus->vit );
+					skillratio += ( 100 + (100 * skill_lv) + sstatus->vit );
 					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 99) / 20;
 					if( i > 5 ){
 						if(skill_lv <= 2)
@@ -2454,7 +2454,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				break;
 			case NC_AXETORNADO:
 				if( (sstatus->rhw.ele) == ELE_WIND || (sstatus->lhw.ele) == ELE_WIND )
-					ATK_ADDRATE(50);
+					ATK_ADDRATE(25);
 				break;
 			case SR_RIDEINLIGHTNING:
 				if((sstatus->rhw.ele) == ELE_WIND || (sstatus->lhw.ele) == ELE_WIND)
