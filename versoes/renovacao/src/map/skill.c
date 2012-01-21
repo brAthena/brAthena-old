@@ -1171,7 +1171,7 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 			skill_castend_damage_id(src, bl, NC_AXEBOOMERANG, pc_checkskill(sd, NC_AXEBOOMERANG), tick, 1);
 		break;
 	case NC_PILEBUNKER:
-		if(rand()%100 < 5 + 15 *skilllv)
+		if(rand()%100 < 25 + 15 *skilllv)
 			{
 				status_change_end( bl, SC_KYRIE, INVALID_TIMER );
 				status_change_end( bl, SC_ASSUMPTIO, INVALID_TIMER );

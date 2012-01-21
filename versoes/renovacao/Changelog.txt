@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1027 - 21/01/2012 [Protimus]
+	* Corrigida a habilidade Bate Estaca (NC_PILEBUNKER).
+	- Modificado dano conforme porcentagem por nível.
+	- Modificada chance de sucesso para remoção de alguns efeitos de habilidades no alvo.
+
 	r1026 - 21/01/2012 [Protimus]
 	* Removidos arquivos protótipos de sqlite.
 	- Não será mais usado devido falta de compatibilidade com certas funções e a redundância de necessidade.

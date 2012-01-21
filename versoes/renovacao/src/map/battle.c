@@ -2120,7 +2120,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 99) / 20;
 					break;
 				case NC_PILEBUNKER:
-					skillratio += ( 150 + 50 * skill_lv + sstatus->str );
+					skillratio += 200 + 100 * skill_lv + sstatus->str );
 					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 99) / 20;
 					break;
 				case NC_VULCANARM:
