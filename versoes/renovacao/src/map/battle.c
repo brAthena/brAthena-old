@@ -2020,7 +2020,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio = 100 * (sd ? pc_checkskill(sd,RK_RUNEMASTERY) : 1) +  100 * (sstatus->int_ / 4);
 					break;
 				case RA_CLUSTERBOMB:
-					skillratio += 100 + 100*skill_lv;
+					skillratio += (unsigned int)((float)((skill_lv * sstatus->dex) + (sstatus->int_ * 5)) * (1.5 +((s_base_level - 100) / 100)) * ((pc_checkskill(sd,RA_RESEARCHTRAP) * 20) / 50));
 					break;
 				case RA_WUGSTRIKE:
 					skillratio = 120*skill_lv;

@@ -1006,7 +1006,7 @@
 2236,9,8,1,-1,0,0,10,1,yes,0,0,0,weapon,0,	RA_AIMEDBOLT,Disparo Certeiro
 2237,9,6,2,0,0x3,3,1,1,no,0,0,0,none,0,		RA_DETONATOR,Detonador
 2238,3,6,2,0,0x3,2,5,1,no,0,0x80,3,misc,0,	RA_ELECTRICSHOCKER,Armadilha Energizada
-2239,3,6,2,0,0x42,3,5,1,no,0,0x80,3,misc,0,	RA_CLUSTERBOMB,Bomba Relógio
+2239,7,6,2,0,0x42,3,5,1,no,0,0x80,3,misc,0,	RA_CLUSTERBOMB,Bomba Relógio
 2240,0,6,4,0,0,0,1,1,no,0,0,0,none,0,		RA_WUGMASTERY,Adestrar Lobo
 2241,0,6,4,0,0,0,3,1,no,0,0,0,none,0,		RA_WUGRIDER,Montaria em Lobo
 2242,0,6,4,-1,0x2,1,1,0,no,0,0,0,weapon,0,	RA_WUGDASH,Corrida em Lobo
