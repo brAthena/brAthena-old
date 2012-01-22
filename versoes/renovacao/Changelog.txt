@@ -9,10 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1032 - 22/01/2012 [insidemybrain!]
+	* Atualizada chances de mudança de status respectivamente nas habilidades Armadilha Incendiária(RA_FIRINGTRAP) e Armadilha Glacial(RA_ICEBOUNDTRAP)
+	- Novas chances de mudança de status conforme valores oficiais.
+
 	r1031 - 22/01/2012 [insidemybrain!]
-	* Atualizada fórmula da habilidade Armadilha Incendiária
+	* Atualizada fórmula da habilidade Armadilha Incendiária (RA_FIRINGTRAP)
 	- Nova fórmula de ATK conforme valores oficiais.
-	* Atualizada fórmula da habilidade Armadilha Glacial
+	* Atualizada fórmula da habilidade Armadilha Glacial (RA_ICEBOUNDTRAP)
 	- Nova fórmula de ATK conforme valores oficiais.
 	
 	r1030 - 22/01/2012 [insidemybrain!]
@@ -165,7 +169,7 @@
 	* Atualizada a fórmula da habilidade Passos da Salamandra (SO_FIREWALK).
 	* Atualizada a fórmula da habilidade Passos da Sílfide (SO_ELECTRICWALK).
 
-	r0994 - 30/12/2011 [insidemybrain]
+	r0994 - 30/12/2011 [insidemybrain!]
 	* Enviado novo script do quests_brasilis.txt
 	- O antigo estava com bug's e faltavam muitas falas nos NPC's
 	- O principal bug visto foi na quest da Bala de Guaraná
