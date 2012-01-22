@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1031 - 22/01/2012 [insidemybrain!]
+	* Atualizada fórmula da habilidade Armadilha Incendiária
+	- Nova fórmula de ATK conforme valores oficiais.
+	* Atualizada fórmula da habilidade Armadilha Glacial
+	- Nova fórmula de ATK conforme valores oficiais.
+	
 	r1030 - 22/01/2012 [insidemybrain!]
 	* Nova correção na habilidade Bomba Relógio (RA_CLUSTERBOMB).
 	- A fórmula se encontrava no local errado e estava havendo uma grande diferença de dano por conta disso.
