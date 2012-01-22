@@ -2022,7 +2022,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio = 100 * (sd ? pc_checkskill(sd,RK_RUNEMASTERY) : 1) +  100 * (sstatus->int_ / 4);
 					break;
 				case RA_CLUSTERBOMB:
-					skillratio = (((skill_lv*sstatus->dex) + (5*sstatus->int_))*((150 + (s_base_level - 100))/200)*(20*pc_checkskill(sd,RA_RESEARCHTRAP)/50));
+					skillratio += 200*skill_lv - 21;
 					break;
 				case RA_WUGSTRIKE:
 					skillratio = 120*skill_lv;
@@ -3867,6 +3867,8 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		if (status_get_lv(src) > 100) md.damage = md.damage * s_base_level / 150;
 		break;
 	case RA_CLUSTERBOMB:
+		md.damage += (int)((float)((skill_lv*sstatus->dex) + (5*sstatus->int_))*(1.5 + s_base_level/100)*(20*pc_checkskill(sd,RA_RESEARCHTRAP)/50));
+		break;
 	case RA_FIRINGTRAP:
  	case RA_ICEBOUNDTRAP:
 		md.damage = (s_base_level*2 + (s_base_level/50 + 3)*sstatus->dex + 300)*skill_lv + sstatus->int_*5 + pc_checkskill(sd,RA_RESEARCHTRAP)*40;
