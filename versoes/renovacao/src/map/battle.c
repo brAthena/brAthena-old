@@ -2022,7 +2022,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio = 100 * (sd ? pc_checkskill(sd,RK_RUNEMASTERY) : 1) +  100 * (sstatus->int_ / 4);
 					break;
 				case RA_CLUSTERBOMB:
-					skillratio += (unsigned int)((float)((skill_lv * sstatus->dex) + (sstatus->int_ * 5)) * (1.5 +((s_base_level - 100) / 100)) * ((pc_checkskill(sd,RA_RESEARCHTRAP) * 20) / 50));
+					skillratio = (((skill_lv*sstatus->dex) + (5*sstatus->int_))*((150 + (s_base_level - 100))/200)*(20*pc_checkskill(sd,RA_RESEARCHTRAP)/50));
 					break;
 				case RA_WUGSTRIKE:
 					skillratio = 120*skill_lv;
@@ -2092,8 +2092,8 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					break;
 				case NC_AXETORNADO:
 					i = distance_bl(src,target);
-					skillratio += ( 100 + (100 * skill_lv) + sstatus->vit );
-					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 99) / 20;
+					skillratio += ( 200 + (100 * skill_lv) + sstatus->vit );
+					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 99) / 100;
 					if( i > 5 ){
 						if(skill_lv <= 2)
 							skillratio = 0;
@@ -2102,8 +2102,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					}
 					break;
 				case NC_AXEBOOMERANG:
-					skillratio += 250 + 45 * skill_lv;
-					if( sd )
+					skillratio += 225 + 50 * skill_lv;					if( sd )
 					{
 						short index = sd->equip_index[EQI_HAND_R];
 						if( index >= 0 && sd->inventory_data[index] && sd->inventory_data[index]->type == IT_WEAPON )
@@ -2120,7 +2119,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 99) / 20;
 					break;
 				case NC_PILEBUNKER:
-					skillratio += 200 + 100 * skill_lv + sstatus->str );
+					skillratio += (200 + 100 * skill_lv + sstatus->str );
 					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 99) / 20;
 					break;
 				case NC_VULCANARM:

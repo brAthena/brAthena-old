@@ -9,7 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
-	r01028 - 21/01/2012 [Protimus]
+	r1029 - 22/01/2012 [insidemybrain!]
+	* Corrigida a habilidade Bomba Relógio (RA_CLUSTERBOMB).
+	- Danos corrigidos conforme ditos na nova fórmula.
+	* Corrigida a habilidade Fúria do Furacão (NC_AXETORNADO).
+	- Danos corrigidos conforme ditos na nova fórmula.
+	
+	r1028 - 21/01/2012 [Protimus]
 	* Corrigida a habilidade Bate Estaca (NC_PILEBUNKER).
 	- Adicionados novos status de habilidades que são cancelados no alvo.
 	- Conforme dados do kRO.
