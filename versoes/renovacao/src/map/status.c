@@ -474,6 +474,7 @@ void initChangeTables(void)
 	set_sc( NC_MAGNETICFIELD     , SC_MAGNETICFIELD    , SI_MAGNETICFIELD   , SCB_NONE );
 	set_sc( NC_NEUTRALBARRIER    , SC_NEUTRALBARRIER   , SI_NEUTRALBARRIER  , SCB_NONE );
 	set_sc( NC_STEALTHFIELD      , SC_STEALTHFIELD     , SI_STEALTHFIELD    , SCB_NONE );
+	set_sc( NC_ARMSCANNON        , SC_ARMSCANNON       , SI_ARMSCANNON		, SCB_NONE );
 
 	set_sc( SC_REPRODUCE         , SC__REPRODUCE         , SI_REPRODUCE         , SCB_NONE );
 	set_sc( SC_AUTOSHADOWSPELL   , SC__AUTOSHADOWSPELL   , SI_AUTOSHADOWSPELL   , SCB_NONE );
@@ -7414,6 +7415,9 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			break;
 		case SC_SUFFRAGIUM:
 			val2 = 15 * val1; //Speed cast decrease
+			break;
+		case SC_ARMSCANNON:
+			val2 = 8 - 2 * val1;
 			break;
 		case SC_INCHEALRATE:
 			if (val1 < 1)

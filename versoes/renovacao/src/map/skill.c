@@ -12927,6 +12927,8 @@ int skill_castfix (struct block_list *bl, int skill_id, int skill_lv)
 			cast_fixo_reduct = max(cast_fixo_reduct,5+5*pc_checkskill(sd,WL_RADIUS));
 		if(sc->data[SC_SECRAMENT] && sc->data[SC_SECRAMENT]->val2 > cast_fixo_reduct )
 			cast_fixo_reduct = sc->data[SC_SECRAMENT]->val2;
+		if(sc->data[SC_ARMSCANNON])
+			cast_fixo_reduct -= cast_fixo_reduct*sc->data[SC_SECRAMENT]->val2;
 	}
 
 	time += base_cast*(100-cast_fixo_reduct)/500;

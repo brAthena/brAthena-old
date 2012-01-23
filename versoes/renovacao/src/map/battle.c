@@ -2141,13 +2141,13 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					switch(tstatus->size)
 					{
 						case 1://Medio
-							skillratio += 100 + 400*skill_lv;
+							skillratio += 200 + 350*skill_lv;
 							break;
 						case 2://Grande
-							skillratio += 300 + (skill_lv == 1 ? 100 : (200*skill_lv));
+							skillratio += 200 + (skill_lv == 1 ? 100 : (300*skill_lv));
 							break;
 						default://Pequeno ou outros
-							skillratio += 500 + (skill_lv == 1 ? 100 : (300*skill_lv));
+							skillratio += 300 + (skill_lv == 1 ? 100 : (400*skill_lv));
 							break;
 					}
 					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 99) / 20;

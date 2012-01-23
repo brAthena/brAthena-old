@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1033 - 23/01/2012 [Protimus]
+	* Corrigida a habilidade Canhão (NC_ARMSCANNON).
+	- Modificado dano conforme porcentagem por nível.
+	- Modificada área de efeito.
+	- Adicionado tempo de conjuração fixo.
+
 	r1032 - 22/01/2012 [insidemybrain!]
 	* Atualizada chances de mudança de status respectivamente nas habilidades Armadilha Incendiária(RA_FIRINGTRAP) e Armadilha Glacial(RA_ICEBOUNDTRAP)
 	- Novas chances de mudança de status conforme valores oficiais.
