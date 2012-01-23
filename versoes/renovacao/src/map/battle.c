@@ -2150,7 +2150,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 							skillratio += 300 + (skill_lv == 1 ? 100 : (400*skill_lv));
 							break;
 					}
-					if( s_base_level > 99 ) skillratio += skillratio * (s_base_level - 99) / 20;
+					if( s_base_level > 100 ) skillratio += skillratio * (s_base_level - 100) / 130;
 					break;
 
 				case WM_REVERBERATION_MELEE:

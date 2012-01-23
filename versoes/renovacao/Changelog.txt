@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1034 - 23/01/2012 [insidemybrain!]
+	* Corrigida a habilidade Canhão (NC_ARMSCANNON).
+	- Modificado dano conforme valores oficiais.
+
 	r1033 - 23/01/2012 [Protimus]
 	* Corrigida a habilidade Canhão (NC_ARMSCANNON).
 	- Modificado dano conforme porcentagem por nível.
