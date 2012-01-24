@@ -9,6 +9,19 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1035 - 23/01/2012 [Mark]
+	* Corrigidas algumas formulas e cast's de algumas habilidades:
+	- Meteoro Escarlate (WL_CRIMSONROCK)
+	- Cometa (WL_COMET)
+	- Drenar Vida (WL_DRAINLIFE)
+	- Zero Absoluto (WL_FROSTMISTY)
+	- Pântano de Nifflheim (WL_MARSHOFABYSS)
+	- Maestria Arcana (WL_RECOGNIZEDSPELL)
+	- Distorção Arcana (WL_STASIS)
+	- Chamas de Hela (WL_HELLINFERNO)
+	- Corrente Elétrica (WL_CHAINLIGHTNING)
+	- Tetra Vortex (WL_TETRAVORTEX)
+
 	r1034 - 23/01/2012 [insidemybrain!]
 	* Corrigida a habilidade Canhão (NC_ARMSCANNON).
 	- Modificado dano conforme valores oficiais.

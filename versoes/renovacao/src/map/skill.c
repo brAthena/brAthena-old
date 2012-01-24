@@ -292,7 +292,6 @@ int skill_get_range2 (struct block_list *bl, int id, int lv)
 
 		case WL_WHITEIMPRISON:
 		case WL_SOULEXPANSION:
-		case WL_FROSTMISTY:
 		case WL_JACKFROST:
 		case WL_MARSHOFABYSS:
 		case WL_SIENNAEXECRATE:
@@ -3942,8 +3941,10 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case WL_DRAINLIFE:
 		{
 				int heal =  skill_attack( BF_MAGIC, src, src, bl, skillid, skilllv, tick, flag);
-				int rate = 70 + 4 * skilllv + s_job_level / 5;
-				heal = heal*(1+skilllv)/20;
+				int rate = 70 + 5 * skilllv;
+				heal = heal * (5 + 5 * skilllv) / 100;
+				if( bl->type == BL_SKILL )
+					heal = 0;
 				if(heal && rand()%100 < rate && bl->type != BL_SKILL){
 					clif_skill_nodamage(NULL, src, AL_HEAL, heal, 1);
 					status_heal(src, heal, 0, 0);
@@ -4120,7 +4121,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case WL_FROSTMISTY:
 		if( tsc && (tsc->option&(OPTION_HIDE|OPTION_CLOAK|OPTION_CHASEWALK) || tsc->data[SC__INVISIBILITY]) )
 			break;
-		sc_start(bl,status_skill2sc(skillid),20+12*skilllv+s_job_level/5,skilllv,skill_get_time(skillid,skilllv));
+		sc_start(bl,status_skill2sc(skillid),25+5*skilllv,skilllv,skill_get_time(skillid,skilllv));
 		if( path_search(NULL,src->m,src->x,src->y,bl->x,bl->y,1,CELL_CHKWALL) )
 			skill_attack(BF_MAGIC,src,src,bl,skillid,skilllv,tick,flag);
 		break;
@@ -12917,8 +12918,6 @@ int skill_castfix (struct block_list *bl, int skill_id, int skill_lv)
 	}
 
 	if(sc && !(skill_get_castnodex(skill_id, skill_lv)&2)){
-		if(sc->data[SC_FREEZING])
-			cast_fixo_reduct -= 50;
 		if(sc->data[SC__LAZINESS])
 			cast_fixo_reduct -= cast_fixo_reduct*sc->data[SC__LAZINESS]->val2;
 		if(sc->data[SC_IZAYOI])
@@ -12956,6 +12955,8 @@ int skill_castfix_sc (struct block_list *bl, int time)
 	nullpo_ret(tsd=(struct map_session_data*)bl);
 
 	if (sc && sc->count) {
+		if(sc->data[SC_FREEZING])
+			time += time * 15 / 100;
 		if (sc->data[SC_SLOWCAST])
 			time += time * sc->data[SC_SLOWCAST]->val2 / 100;
 		if (sc->data[SC_SUFFRAGIUM]) {

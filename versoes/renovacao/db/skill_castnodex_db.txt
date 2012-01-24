@@ -72,8 +72,6 @@
 2014,1	// RK_GIANTGROWTH#Força Titânica#
 2015,1	// RK_STONEHARDSKIN#Escamas Rochosas#
 2032,1	// GC_POISONSMOKE#Nevoeiro Tóxico#
-2205,1	// WL_MARSHOFABYSS#Pântano de Nifflheim#
-2206,1	// WL_RECOGNIZEDSPELL#Maestria Arcana#
 2234,1	// RA_FEARBREEZE#Disparo Selvagem#
 2267,1	// NC_SELFDESTRUCTION#Autodestruicão#
 2268,1	// NC_SHAPESHIFT#Reconfigurar Elemento#
