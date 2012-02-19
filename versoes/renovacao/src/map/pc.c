@@ -4690,10 +4690,16 @@ int pc_memo(struct map_session_data* sd, int pos)
 int pc_checkskill(struct map_session_data *sd,int skill_id)
 {
 	if(sd == NULL) return 0;
-	if( skill_id>=GD_SKILLBASE){
+	if( skill_id >= GD_SKILLBASE && skill_id < GD_MAX )
+	{
 		struct guild *g;
 		if( sd->status.guild_id>0 && (g=guild_search(sd->status.guild_id))!=NULL)
 			return guild_checkskill(g,skill_id);
+		return 0;
+	}
+	else if( skill_id < 0 || skill_id >= ARRAYLENGTH(sd->status.skill) )
+	{
+		ShowError("pc_checkskill: Invalid skill id %d (char_id=%d).\n", skill_id, sd->status.char_id);
 		return 0;
 	}
 
@@ -5541,9 +5547,9 @@ int pc_gainexp(struct map_session_data *sd, struct block_list *src, unsigned int
 	}
 
 	if(base_exp)
-		clif_displayexp(sd, base_exp, 1, quest);
+		clif_displayexp(sd, base_exp, SP_BASEEXP, quest);
 	if(job_exp)
-		clif_displayexp(sd, job_exp,  2, quest);
+		clif_displayexp(sd, job_exp,  SP_JOBEXP, quest);
 		
 	if(sd->state.showexp) {
 		char output[256];
@@ -7915,6 +7921,7 @@ int pc_equipitem(struct map_session_data *sd,int n,int req_pos)
 	if(battle_config.battle_log)
 		ShowInfo("equip %d(%d) %x:%x\n",sd->status.inventory[n].nameid,n,id?id->equip:0,req_pos);
 	if(!pc_isequip(sd,n) || !(pos&req_pos) || sd->status.inventory[n].equip != 0 || sd->status.inventory[n].attribute==1 ) { // [Valaris]
+		// FIXME: pc_isequip: equip level failure uses 2 instead of 0
 		clif_equipitemack(sd,n,0,0);	// fail
 		return 0;
 	}

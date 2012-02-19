@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1036 - 18/02/2012 [Protimus]
+	* Atualizado conforme eAthena 15074.
+
 	r1035 - 23/01/2012 [Mark]
 	* Corrigidas algumas formulas e cast's de algumas habilidades:
 	- Meteoro Escarlate (WL_CRIMSONROCK)

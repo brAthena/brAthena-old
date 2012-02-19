@@ -13,17 +13,21 @@
 
 #define MAX_SEARCH	5  //Designed for search functions, species max number of matches to display.
 
-#define ITEMID_EMPERIUM 714
-#define ITEMID_YELLOW_GEMSTONE 715
-#define ITEMID_RED_GEMSTONE 716
-#define ITEMID_BLUE_GEMSTONE 717
-#define ITEMID_ANCILLA 12333
+enum item_itemid
+{
+	ITEMID_EMPERIUM = 714,
+	ITEMID_YELLOW_GEMSTONE = 715,
+	ITEMID_RED_GEMSTONE = 716,
+	ITEMID_BLUE_GEMSTONE = 717,
+	ITEMID_TRAP = 1065,
+	ITEMID_STONE = 7049,
+	ITEMID_SKULL_ = 7420,
+	ITEMID_TOKEN_OF_SIEGFRIED = 7621,
+	ITEMID_TRAP_ALLOY = 7940,
+	ITEMID_ANCILLA = 12333,
+	ITEMID_REIN_OF_MOUTS = 12622,
+};
 #define itemid_isgemstone(id) ( (id) >= ITEMID_YELLOW_GEMSTONE && (id) <= ITEMID_BLUE_GEMSTONE )
-#define ITEMID_TRAP 1065
-#define ITEMID_TRAP_ALLOY 7940
-#define ITEMID_STONE 7049
-#define ITEMID_SKULL_ 7420
-#define ITEMID_REIN_OF_MOUTS 12622
 #define itemdb_iscashfood(id) ( (id) >= 12202 && (id) <= 12207 )
 
 //The only item group required by the code to be known. See const.txt for the full list.

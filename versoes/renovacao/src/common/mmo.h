@@ -389,7 +389,7 @@ typedef enum mail_status {
 } mail_status;
 
 struct mail_message {
-	unsigned int id;
+	int id;
 	int send_id;
 	char send_name[NAME_LENGTH];
 	int dest_id;
@@ -574,6 +574,7 @@ enum {
 	GD_RESTORE=10012,
 	GD_EMERGENCYCALL=10013,
 	GD_DEVELOPMENT=10014,
+	GD_MAX,
 };
 
 

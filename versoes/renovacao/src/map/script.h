@@ -3,6 +3,7 @@
 
 #ifndef _SCRIPT_H_
 #define _SCRIPT_H_
+#define NUM_WHISPER_VAR 10
 
 struct map_session_data;
 
