@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1037 - 19/02/2012 [Protimus]
+	* Melhorias para o brathena-start (script de inicialização).
+	- Adicionado ao console a imagem de inicialização das instâncias.
+	- Adicionada pausa para reiniciar os servidores, evitando conflitos com a quebra de processos.
+
 	r1036 - 18/02/2012 [Protimus]
 	* Atualizado conforme eAthena 15074.
 

@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/trac/timeline
 // ==============================================================================
 
+	r1037 - 19/02/2012 [Protimus]
+	* Melhorias para o brathena-start (script de inicialização).
+	- Adicionado ao console a imagem de inicialização das instâncias.
+	- Adicionada pausa para reiniciar os servidores, evitando conflitos com a quebra de processos.
+
 	r1026 - 21/01/2012 [Protimus]
 	* Removidos arquivos protótipos de sqlite.
 	- Não será mais usado devido falta de compatibilidade com certas funções e a redundância de necessidade.
