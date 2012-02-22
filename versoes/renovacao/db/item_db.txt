@@ -3740,19 +3740,17 @@
 6394,Golden_Hair2,Golden Hair,3,650,,10,,,,,,,,,,,,,{},{},{}
 6395,Magic_Fairy_Dust,Magic Fairy Dust,3,820,,10,,,,,,,,,,,,,{},{},{}
 6396,Spiritual_Auger,Perfurador Descartável,3,20,,10,,,,,,,,,,,,,{},{},{}
-
 6401,Palm_Oil,Óleo de Palmeira,3,20,,500,,,,,,,,,,,,,{},{},{}
 6402,Coconut_Oil,Fruto da Palmeira,3,20,,50,,,,,,,,,,,,,{},{},{}
 6403,Comodo_Leather,Couro de Comodo,3,4,,10,,,,,,,,,,,,,{},{},{}
-6404,Ceres_Hilt,Punho do Afago,3,20,,100,,,,,,,,,,,,,{},{},{}
+6404,Ceres_Hilt,Afago,3,20,,100,,,,,,,,,,,,,{},{},{}
 6405,Cendrawasih_Feather,Pena de Cendrawish,3,2,,10,,,,,,,,,,,,,{},{},{}
 6406,Shining_Cendrawasih_Feather,Pena Reluzente de Cendrawasih,3,10,,100,,,,,,,,,,,,,{},{},{}
 6407,Raw_Crystal_Stone_Fragment,Raw Crystal Stone Fragment,3,820,,10,,,,,,,,,,,,,{},{},{}
 6408,Raw_Crystal_Stone,Raw Crystal Stone,3,820,,10,,,,,,,,,,,,,{},{},{}
 6409,Raw_Crystal_Stone_Mass,Raw Crystal Stone Mass,3,820,,10,,,,,,,,,,,,,{},{},{}
-
 6411,Ripe_Watermelon,Ripe Watermelon,3,20,,10,,,,,,,,,,,,,{},{},{}
-
+6414,Ragunta_Card,Ragunta Card,3,20,,10,,,,,,,,,,,,,{},{},{}
 6417,Garderie_Fruit,Garderie Fruit,3,20,,0,,,,,,,,,,,,,{},{},{}
 6418,A_Grade_Coin,A Grade Coin,3,20,,0,,,,,,,,,,,,,{},{},{}
 6419,B_Grade_Coin,B Grade Coin,3,20,,0,,,,,,,,,,,,,{},{},{}
@@ -4902,9 +4900,9 @@
 11529,MAAMOUL_,Maamoul,0,500,,100,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal 120,60; },{},{}
 11530,Jujube,Jujube,0,10,,100,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal 30,0; },{},{}
 11531,Coffee,Coffee,0,10,,100,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal 0,10; },{},{}
-11532,Nasi_Goreng,Nasi_Goreng,0,14,,20,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal 10,0; },{},{}
+11532,Nasi_Goreng,Nasi Goreng,0,14,,20,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal 10,0; },{},{}
 11533,Satay,Saté,0,14,,20,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal 10,0; },{},{}
-//11534,,Água de Coco,
+11534,Coconut_Juice,Água de Coco,0,14,,20,,,,,0xFFFFFFFF,7,2,,,,,,{ itemheal 3,3; },{},{}
 
 11538,Fresh_Octopus_Legs,Fresh Octopus Legs,0,20,,30,,,,,,,,,,,,,{ itemheal 100,50; },{},{}
 
