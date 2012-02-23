@@ -9,7 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
-	r1038 - 23/02/2012 [Protimus]
+	r1039 - 22/02/2012 [Protimus]
+	* Adicionada kafra de dewata.
+	* Revisão dos monstros de dewata.
+
+	r1038 - 22/02/2012 [Protimus]
 	* Adicionados mapflags para cidades de brasilis e dewata.
 	* Revisão dos itens de dewata.
 	* Revisão dos spawns de dewata conforme o oficial.
