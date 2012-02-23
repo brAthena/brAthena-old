@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1040 - 23/02/2012 [Protimus]
+	* Revertida parcialmente r1037.
+	- Será estipulado um método melhor e talvez imbutido em um único arquivo de gerenciamento.
+
 	r1039 - 22/02/2012 [Protimus]
 	* Adicionada kafra de dewata.
 	* Revisão dos monstros de dewata.

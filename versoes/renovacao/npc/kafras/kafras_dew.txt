@@ -18,6 +18,7 @@
 // |--------------------------------------------------------|
 // | Changelog:                                             |
 // | 1.0 Script Criado [Protimus]                           |
+// | 1.1 Corre誽o de tradu誽o. [Protimus]					|
 // \________________________________________________________/
 
 dewata,202,184,5	script	Funcion嫫ia Kafra::kaf_dew	117,{
@@ -29,5 +30,5 @@ dewata,202,184,5	script	Funcion嫫ia Kafra::kaf_dew	117,{
 
 	M_Save:
 		savepoint "dewata",200,178;
-		callfunc "F_KafEnd",7,1,"在德瓦他城內";
+		callfunc "F_KafEnd",7,1,"na cidade de Dewata";
 }

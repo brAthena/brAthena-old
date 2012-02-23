@@ -43,10 +43,9 @@ case $1 in
         print_start
         check_files
 		
-	    exec screen -d -m -S login ./${L_SRV}&
-	    exec screen -d -m -S char ./${C_SRV}&
-	    exec screen -d -m -S map ./${M_SRV}&
-
+		exec ./${L_SRV}& 
+		exec ./${C_SRV}& 
+		exec ./${M_SRV}& 
         echo "O brAthena foi Iniciado!"
 ;;
     'stop')
@@ -54,11 +53,6 @@ case $1 in
 ;;
 	'restart')
         $0 stop
-        sleep "$5"s
-        while [ -z "${M_SRV}" ]
-        do
-                sleep 5s
-        done
         $0 start
 ;;
     *)
