@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1041 - 25/02/2012 [Protimus]
+	* Adicionado novos suportes em atualizações do eAthena.
+	- Ainda não haviam sido adicionados devido ao desenvolvimento da renovação.
+	* Correções de envios anteriores.
+	- Recomendada atualização imediata.
+	
 	r1040 - 23/02/2012 [Protimus]
 	* Revertida parcialmente r1037.
 	- Será estipulado um método melhor e talvez imbutido em um único arquivo de gerenciamento.

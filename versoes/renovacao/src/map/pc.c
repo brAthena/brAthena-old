@@ -1392,7 +1392,7 @@ int pc_calc_skilltree(struct map_session_data *sd)
 				for(j = 0; j < MAX_PC_SKILL_REQUIRE; j++) {
 					if((k=skill_tree[c][i].need[j].id))
 					{
-						if(!sd->status.skill[k].id || sd->status.skill[k].flag == 13)
+						if (sd->status.skill[k].id == 0 || sd->status.skill[k].flag == SKILL_FLAG_TEMPORARY || sd->status.skill[k].flag == SKILL_FLAG_PLAGIARIZED)
 							k = 0; //Not learned.
 						else
 						if (sd->status.skill[k].flag >= SKILL_FLAG_REPLACED_LV_0) //Real lerned level
@@ -1493,7 +1493,7 @@ static void pc_check_skilltree(struct map_session_data *sd, int skill)
 			{
 				if( (k = skill_tree[c][i].need[j].id) )
 				{
-					if(!sd->status.skill[k].id || sd->status.skill[k].flag == 13)
+					if( sd->status.skill[k].id == 0 || sd->status.skill[k].flag == SKILL_FLAG_TEMPORARY || sd->status.skill[k].flag == SKILL_FLAG_PLAGIARIZED )
 						k = 0; //Not learned.
 					else
 					if( sd->status.skill[k].flag >= SKILL_FLAG_REPLACED_LV_0) //Real lerned level
@@ -1532,7 +1532,7 @@ int pc_clean_skilltree(struct map_session_data *sd)
 {
 	int i;
 	for (i = 0; i < MAX_SKILL; i++){
-		if (sd->status.skill[i].flag == SKILL_FLAG_TEMPORARY || sd->status.skill[i].flag == 13)
+		if (sd->status.skill[i].flag == SKILL_FLAG_TEMPORARY || sd->status.skill[i].flag == SKILL_FLAG_PLAGIARIZED)
 		{
 			sd->status.skill[i].id = 0;
 			sd->status.skill[i].lv = 0;
@@ -4081,12 +4081,12 @@ int pc_useitem(struct map_session_data *sd,int n)
 
 	//Check if the item is to be consumed immediately [Skotlex]
 	if( sd->inventory_data[n]->flag.delay_consume )
-		clif_useitemack(sd,n,amount,1);
+		clif_useitemack(sd,n,amount,true);
 	else
 	{
 		if( sd->status.inventory[n].expire_time == 0 )
 		{
-			clif_useitemack(sd,n,amount-1,1);
+			clif_useitemack(sd,n,amount-1,true);
 
 			//Logs (C)onsumable items [Lupus]
 			log_pick_pc(sd, LOG_TYPE_CONSUME, sd->status.inventory[n].nameid, -1, &sd->status.inventory[n]);
@@ -4094,7 +4094,7 @@ int pc_useitem(struct map_session_data *sd,int n)
 			pc_delitem(sd,n,1,1,0); // Rental Usable Items are not deleted until expiration
 		}
 		else
-			clif_useitemack(sd,n,0,0);
+			clif_useitemack(sd,n,0,false);
 	}
 	if(sd->status.inventory[n].card[0]==CARD0_CREATE &&
 		pc_famerank(MakeDWord(sd->status.inventory[n].card[2],sd->status.inventory[n].card[3]), MAPID_ALCHEMIST))
@@ -6089,8 +6089,8 @@ int pc_resetskill(struct map_session_data* sd, int flag)
 		if( sd->status.skill[i].flag == SKILL_FLAG_PERMANENT )
 			skill_point += lv;
 		else
-		if(sd->status.skill[i].flag >= SKILL_FLAG_REPLACED_LV_0 && sd->status.skill[i].flag != 13)
-			skill_point += sd->status.skill[i].flag - 2;
+		if( sd->status.skill[i].flag >= SKILL_FLAG_REPLACED_LV_0 )
+			skill_point += (sd->status.skill[i].flag - SKILL_FLAG_REPLACED_LV_0);
 
 		if( !(flag&2) )
 		{// reset
@@ -6987,6 +6987,12 @@ int pc_jobchange(struct map_session_data *sd,int job, int upper)
 	}
 
 	if(sd->cloneskill_id) {
+		if( sd->status.skill[sd->cloneskill_id].flag == SKILL_FLAG_PLAGIARIZED ) {
+			sd->status.skill[sd->cloneskill_id].id = 0;
+			sd->status.skill[sd->cloneskill_id].lv = 0;
+			sd->status.skill[sd->cloneskill_id].flag = 0;
+			clif_deleteskill(sd,sd->cloneskill_id);
+		}
 		sd->cloneskill_id = 0;
 		pc_setglobalreg(sd, "CLONE_SKILL", 0);
 		pc_setglobalreg(sd, "CLONE_SKILL_LV", 0);
@@ -7061,7 +7067,7 @@ int pc_jobchange(struct map_session_data *sd,int job, int upper)
 		merc_hom_vaporize(sd, 0);
 
 	if(sd->status.manner < 0)
-		clif_changestatus(&sd->bl,SP_MANNER,sd->status.manner);
+		clif_changestatus(sd,SP_MANNER,sd->status.manner);
 
 	status_calc_pc(sd,0);
 	pc_checkallowskill(sd);
