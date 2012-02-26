@@ -424,7 +424,7 @@ int clif_skillupdateinfo(struct map_session_data *sd,int skillid,int type,int ra
 
 void clif_skillcasting(struct block_list* bl, int src_id, int dst_id, int dst_x, int dst_y, int skill_num, int property, int casttime);
 void clif_skillcastcancel(struct block_list* bl);
-void clif_skill_fail(struct map_session_data *sd,int skill_id,enum useskill_fail_cause cause,int btype);
+int clif_skill_fail(struct map_session_data *sd,int skill_id,enum useskill_fail_cause cause,int btype, int val);
 void clif_skill_cooldown(struct map_session_data *sd, int skillid, unsigned int tick);
 int clif_skill_damage(struct block_list *src,struct block_list *dst,unsigned int tick,int sdelay,int ddelay,int damage,int div,int skill_id,int skill_lv,int type);
 //int clif_skill_damage2(struct block_list *src,struct block_list *dst,unsigned int tick,int sdelay,int ddelay,int damage,int div,int skill_id,int skill_lv,int type);
@@ -436,6 +436,7 @@ void clif_skill_memomessage(struct map_session_data* sd, int type);
 void clif_skill_teleportmessage(struct map_session_data *sd, int type);
 int clif_skill_produce_mix_list(struct map_session_data *sd, int skill_num, int trigger);
 void clif_cooking_list(struct map_session_data *sd, int trigger, int skill_id, int qty, int list_type);
+void clif_skill_msg(struct map_session_data *sd, int skill_id, int msg);
 
 void clif_produceeffect(struct map_session_data* sd,int flag,int nameid);
 

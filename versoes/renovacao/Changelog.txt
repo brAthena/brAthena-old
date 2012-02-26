@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1042 - 26/02/2012 [Protimus]
+	* Correções para argumentos do novo padrão de clif_skill_fail.
+	* Correções de envios anteriores.
+
 	r1041 - 25/02/2012 [Protimus]
 	* Adicionado novos suportes em atualizações do eAthena.
 	- Ainda não haviam sido adicionados devido ao desenvolvimento da renovação.

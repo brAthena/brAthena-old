@@ -6836,7 +6836,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			val1 = battle_config.manner_system; //Mute filters.
 			if (sd)
 			{
-				clif_changestatus(&sd->bl,SP_MANNER,sd->status.manner);
+				clif_changestatus(sd,SP_MANNER,sd->status.manner);
 				clif_updatestatus(sd,SP_MANNER);
 			}
 			break;
@@ -7007,7 +7007,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_TENSIONRELAX:
 			if (sd) {
 				pc_setsit(sd);
-				clif_sitting(&sd->bl,true);
+				clif_sitting(&sd->bl);
 			}
 			val2 = 12; //SP cost
 			val4 = 10000; //Decrease at 10secs intervals.
@@ -7579,7 +7579,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			{
 				pc_setsit(sd);
 				skill_sit(sd,1);
-				clif_sitting(bl,true);
+				clif_sitting(bl);
 			}
 			break;
 		case SC_DANCEWITHWUG:
@@ -8293,7 +8293,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			if( sd && pc_issit(sd) )
 			{
 				pc_setstand(sd);
-				clif_standing(bl,true);
+				clif_standing(bl);
 			}
 			break;
 	}
@@ -8603,7 +8603,7 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 				sd->status.manner = 0;
 			if (sd && tid == INVALID_TIMER)
 			{
-				clif_changestatus(&sd->bl,SP_MANNER,sd->status.manner);
+				clif_changestatus(sd,SP_MANNER,sd->status.manner);
 				clif_updatestatus(sd,SP_MANNER);
 			}
 			break;
@@ -9307,7 +9307,7 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 	case SC_NOCHAT:
 		if(sd){
 			sd->status.manner++;
-			clif_changestatus(bl,SP_MANNER,sd->status.manner);
+			clif_changestatus(sd,SP_MANNER,sd->status.manner);
 			clif_updatestatus(sd,SP_MANNER);
 			if (sd->status.manner < 0)
 			{	//Every 60 seconds your manner goes up by 1 until it gets back to 0.
@@ -9764,7 +9764,7 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 				pc_stop_walking(sd,1|4);
 				pc_stop_attack(sd);
 				pc_setsit(sd);
-				clif_sitting(bl,true);
+				clif_sitting(bl);
 			}
 			sc_timer_next(10000 + tick, status_change_timer, bl->id, data);
 		}
