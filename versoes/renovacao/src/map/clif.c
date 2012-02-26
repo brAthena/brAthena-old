@@ -640,25 +640,23 @@ int clif_send(const uint8* buf, int len, struct block_list* bl, enum send_target
 /// Notifies the client, that it's connection attempt was accepted.
 /// 0073 <start time>.L <position>.3B <x size>.B <y size>.B (ZC_ACCEPT_ENTER)
 /// 02eb <start time>.L <position>.3B <x size>.B <y size>.B <font>.W (ZC_ACCEPT_ENTER2)
-void clif_authok(struct map_session_data *sd)
+int clif_authok(struct map_session_data *sd)
 {
-#if PACKETVER < 20080102
-	const int cmd = 0x73;
-#else
-	const int cmd = 0x2eb;
-#endif
-	int fd = sd->fd;
+	int fd;
 
-	WFIFOHEAD(fd,packet_len(cmd));
-	WFIFOW(fd, 0) = cmd;
+	if (!sd->fd)
+		return 0;
+	fd = sd->fd;
+
+	WFIFOHEAD(fd, packet_len(0x73));
+	WFIFOW(fd, 0) = 0x73;
 	WFIFOL(fd, 2) = gettick();
 	WFIFOPOS(fd, 6, sd->bl.x, sd->bl.y, sd->ud.dir);
 	WFIFOB(fd, 9) = 5; // ignored
 	WFIFOB(fd,10) = 5; // ignored
-#if PACKETVER >= 20080102
-	WFIFOW(fd,11) = sd->user_font;  // FIXME: Font is currently not saved.
-#endif
-	WFIFOSET(fd,packet_len(cmd));
+	WFIFOSET(fd,packet_len(0x73));
+
+	return 0;
 }
 
 /// Notifies the client, that it's connection attempt was refused (ZC_REFUSE_ENTER).
@@ -2068,6 +2066,7 @@ void clif_additem(struct map_session_data *sd, int n, int amount, int fail)
 		WFIFOB(fd,21)=0;
 		WFIFOB(fd,22)=fail;
 		WFIFOL(fd,23)=0;
+		WFIFOW(fd,25)=0;
 		WFIFOW(fd,27)=0;  // unknown
 	}
 	else
@@ -7538,24 +7537,6 @@ void clif_callpartner(struct map_session_data *sd)
 	}
 }
 
-
-/// Initiates the partner "taming" process [DracoRPG] (ZC_START_COUPLE).
-/// 01e4
-/// This packet while still implemented by the client is no longer being officially used.
-/*
-void clif_marriage_process(struct map_session_data *sd)
-{
-	int fd;
-	nullpo_retv(sd);
-
-	fd=sd->fd;
-	WFIFOHEAD(fd,packet_len(0x1e4));
-	WFIFOW(fd,0)=0x1e4;
-	WFIFOSET(fd,packet_len(0x1e4));
-}
-*/
-
-
 /// Notice of divorce (ZC_DIVORCE).
 /// 0205 <partner name>.24B
 void clif_divorced(struct map_session_data* sd, const char* name)
@@ -7568,23 +7549,6 @@ void clif_divorced(struct map_session_data* sd, const char* name)
 	WFIFOW(fd,0)=0x205;
 	memcpy(WFIFOP(fd,2), name, NAME_LENGTH);
 	WFIFOSET(fd, packet_len(0x205));
-}
-
-
-/// Marriage proposal (ZC_REQ_COUPLE).
-/// 01e2 <account id>.L <char id>.L <char name>.24B
-/// This packet while still implemented by the client is no longer being officially used.
-/*
-void clif_marriage_proposal(int fd, struct map_session_data *sd, struct map_session_data* ssd)
-{
-	nullpo_retv(sd);
-
-	WFIFOHEAD(fd,packet_len(0x1e2));
-	WFIFOW(fd,0) = 0x1e2;
-	WFIFOL(fd,2) = ssd->status.account_id;
-	WFIFOL(fd,6) = ssd->status.char_id;
-	safestrncpy((char*)WFIFOP(fd,10), ssd->status.name, NAME_LENGTH);
-	WFIFOSET(fd, packet_len(0x1e2));
 }
 
 /*==========================================
@@ -15802,9 +15766,10 @@ static int packetdb_readdb(void)
 	    0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 	   85, -1, -1,107,  6, -1,  7,  7, 22,191,  0,  8,  0,  0,  0,  0,
 	//#0x02C0
-	    0, -1,  0,  0,  0, 30, 30,  0,  0,  3,  0, 65,  4, 71, 10,  0,
-	   -1, -1, -1,  0, 29,  0,  6, -1, 10, 10,  3,  0, -1, 32,  6, 36,
-	   34, 33,  0,  0,  0,  0,  0,  0, -1, -1, -1, 13, 67, 59, 60,  8,
+	    0,  0,  0,  0,  0, 30, 30,  0,  0,  3,  0, 65,  4, 71, 10,  0, 
+	  -1, -1,  0,  0, 29,  0,  6, -1, 10, 10,  3,  0, -1, 32,  6,  0,
+	   0, 33,  0,  0,  0,  0,  0,  0,  -1,  0,  -1,  0, 67, 59, 60,  8,
+	   10,  2,  2,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  8,  0,  0,
 	//#0x0300
 	    0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 	    0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
