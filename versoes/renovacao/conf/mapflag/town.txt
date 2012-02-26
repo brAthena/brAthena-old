@@ -40,5 +40,5 @@ louyang	mapflag	town
 hugel	mapflag	town
 rachel	mapflag	town
 veins	mapflag	town
-brasilis mapflag town
-dewata 	mapflag town
+brasilis	mapflag	town
+dewata	mapflag	town

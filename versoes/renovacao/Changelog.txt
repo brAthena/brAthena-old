@@ -9,6 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1043 - 26/02/2012 [Protimus]  
+	* Corrigida leitura do nome de mapa salvo no servidor de personagens.
+	- Erro causado devido aos novos clientes.
+	* Correção de erros apontados no servidor de mapas.
+	* Modificação do core banner.
+	- Alterada data e adição de link do brAthena.
+
 	r1042 - 26/02/2012 [Protimus]
 	* Correções para argumentos do novo padrão de clif_skill_fail.
 	* Correções de envios anteriores.

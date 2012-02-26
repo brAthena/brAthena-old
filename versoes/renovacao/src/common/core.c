@@ -193,7 +193,8 @@ static void display_title(void)
 	ShowMessage(""CL_XXBL"           ("CL_BOLD" |_.__/|_|  \\_| |_/\\__|_| |_|\\___|_| |_|\\__,_| "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
     if(!ATHENA_RELEASE_FLAG && !ATHENA_OFFICIAL_FLAG) ShowMessage(""CL_XXBL"           "CL_BOLD"                v.%d.%d.%d"CL_XXBL""CL_CLL""CL_NORMAL"\n", ATHENA_MAJOR_VERSION, ATHENA_MINOR_VERSION, ATHENA_REVISION);
 	ShowMessage(""CL_XXBL"           ("CL_BOLD"                                               "CL_XXBL""CL_CLL")"CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"           ("CL_BT_GREEN"       Projeto brAthena (c) 2008 - 2011        "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
+	ShowMessage(""CL_XXBL"           ("CL_BT_GREEN"       Projeto brAthena (c) 2008 - 2012        "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
+	ShowMessage(""CL_XXBL"           ("CL_BT_GREEN"               www.brathena.org                "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
 	ShowMessage(""CL_WTBL"           (=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=)"CL_CLL""CL_NORMAL"\n\n");
 
 	ShowInfo("Revisao do SVN: '"CL_WHITE"%s"CL_RESET"'.\n", get_svn_revision());
