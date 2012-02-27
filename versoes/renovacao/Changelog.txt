@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1045 - 26/02/2012 [brn0]
+	* Corrigido um pequeno erro na chance de empurrar o alvo da habilidade Disparo Triplo (SC_TRIANGLESHOT).
+	* Corrigida a fórmula da habilidade Bomba Ácida (CR_ACIDDEMONSTRATION).
+
 	r1044 - 26/02/2012 [Protimus]
 	* Corrigido pequeno problema na leitura de pacotes.
 	* Removida funções de pacote clif_marriage_proposal e clif_marriage_process.

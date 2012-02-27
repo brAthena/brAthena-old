@@ -1293,6 +1293,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					wd.div_ = (sc->data[SC_BUNSINJYUTSU] && sc->data[SC_BUNSINJYUTSU]->val2 > 0)? 
 							-(sc->data[SC_BUNSINJYUTSU]->val2 +1):1;
 				break;
+			case CR_ACIDDEMONSTRATION:
+				wd.div_ = 1;
+				break;
 		}
 	} else //Range for normal attacks.
 		wd.flag |= flag.arrow?BF_LONG:BF_SHORT;
@@ -1856,6 +1859,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					// Although not clear, it's being assumed that the 2x damage is only for the break neck ailment.
 					if (wflag&BREAK_NECK) i*=2;
 					skillratio += i;
+					break;
+				case CR_ACIDDEMONSTRATION:
+					skillratio += 7*tstatus->vit - 100;
 					break;
 				case ASC_METEORASSAULT:
 					skillratio += 40*skill_lv-60;
@@ -3495,7 +3501,10 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 								skillratio += skillratio * sc->data[SC_CURSED_SOIL_OPTION]->val3 / 100;
 						}
 						break;
-
+					case CR_ACIDDEMONSTRATION:
+						ad.div_ = 1;
+						skillratio += 7*tstatus->vit - 100;
+						break;
 					case GN_DEMONIC_FIRE:
 						if( skill_lv > 20)
 						{
@@ -3719,7 +3728,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *target,int skill_num,int skill_lv,int mflag)
 {
 	int skill, s_base_level;
-	short i, nk, s_ele, atk, matk, wsize_penalty;
+	short i, nk, s_ele;
 
 	struct map_session_data *sd, *tsd;
 	struct Damage md; //DO NOT CONFUSE with md of mob_data!
@@ -3815,20 +3824,21 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		md.damage = 1+rand()%9999;
 		break;
 	case CR_ACIDDEMONSTRATION: //Fórmula = (ATK*0.07*VIT) * WpnSizePnlty + (MATK*0.07*VIT)
-		atk = max((sstatus->batk + sstatus->rhw.atk),0);
-		matk = max((sstatus->matk_max + sstatus->matk_min),0);
-		wsize_penalty = sd ? sd->right_weapon.atkmods[tstatus->size] : 100;
-		
-		if ((atk && wsize_penalty) || matk)
-				md.damage = (int)(((7 * atk * tstatus->vit) * wsize_penalty / 100 + (7 * matk * tstatus->vit)) / 100);	
-		else
-			md.damage = 0;
-		if (tsd || is_boss(target)) md.damage>>=1;
-		if (md.damage < 0 || md.damage > INT_MAX>>1)
-	  	//Overflow prevention, will anyone whine if I cap it to a few billion?
-		//Not capped to INT_MAX to give some room for further damage increase.
-			md.damage = INT_MAX>>1;
-		break;
+		{
+			struct Damage wd = battle_calc_weapon_attack(src,target,skill_num,skill_lv,mflag);
+			md.damage = wd.damage;
+			wd = battle_calc_magic_attack(src,target,skill_num,skill_lv,mflag);
+			md.damage += wd.damage;
+			md.damage -= min((tstatus->def + tstatus->def2 + tstatus->mdef + tstatus->mdef2)/20,md.damage);
+
+			if(tsd || is_boss(target))
+				md.damage >>= 1;
+			if (md.damage < 0 || md.damage > INT_MAX>>1)
+	  		//Overflow prevention, will anyone whine if I cap it to a few billion?
+			//Not capped to INT_MAX to give some room for further damage increase.
+				md.damage = INT_MAX>>1;
+			break;
+		}
 	case NJ_ZENYNAGE:
 		md.damage = skill_get_zeny(skill_num ,skill_lv);
 		if (!md.damage) md.damage = 2;

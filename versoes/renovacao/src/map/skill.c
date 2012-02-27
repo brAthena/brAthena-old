@@ -2356,7 +2356,7 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 	if( skillid == WL_HELLINFERNO && dmg.damage > 0 )
 		sc_start4(bl,SC_BURNING,55+5*skilllv,skilllv,1000,src->id,0,5000*skilllv);
 
-	if( skillid == SC_TRIANGLESHOT && rand()%100 > (1 + skilllv) )
+	if(skillid == SC_TRIANGLESHOT && rand()%100 >= skilllv + 1)
 		dmg.blewcount = 0;
 
 	//Only knockback if it's still alive, otherwise a "ghost" is left behind. [Skotlex]
