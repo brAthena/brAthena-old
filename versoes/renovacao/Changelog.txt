@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1047 - 27/02/2012 [Protimus]
+	* Atualizado conforme eAthena 15075.
+
 	r1046 - 27/02/2012 [Protimus]
 	* Atualizados pacotes para homunculus.
 	- Estava com problemas ao alimentar e deletar.
