@@ -18,8 +18,9 @@
 //========================================================================================================
 // Definição do valor de pacote padrão para leitura do cliente.
 // Versão 23 é do último Sakexe (versões acima são da Renovação)
+packet_db_ver: default
+
 //packet_db_ver: 23
-packet_db_ver: 28
 packet_ver: 5
 0x0064,55
 0x0065,17
@@ -179,7 +180,7 @@ packet_ver: 5
 0x00ff,10,replypartyinvite,2:6
 0x0100,2,leaveparty,0
 0x0101,6
-0x0102,6,partychangeoption,2:4
+0x0102,6,partychangeoption,2
 0x0103,30,removepartymember,2:6
 0x0104,79
 0x0105,31
@@ -674,10 +675,10 @@ packet_ver: 15
 0x022c,64
 
 //2005-04-25aSakexe
-0x022d,5,hommenu,4
-0x0232,9,hommoveto,6
-0x0233,11,homattack,0
-0x0234,6,hommovetomaster,0
+0x022d,5,hommenu,2:4
+0x0232,9,hommoveto,2:6
+0x0233,11,homattack,2:6:10
+0x0234,6,hommovetomaster,2
 
 //2005-05-09aSakexe
 packet_ver: 16
@@ -718,7 +719,7 @@ packet_ver: 16
 0x022f,5
 0x0231,26,changehomunculusname,0
 0x023a,4
-0x023b,24,storagepassword,0
+0x023b,36,storagepassword,2:4:20
 0x023c,6
 
 //2005-06-22aSakexe
@@ -776,10 +777,10 @@ packet_ver: 18
 0x0249,3
 0x024a,70
 0x024b,4,auctioncancelreg,0
-0x024c,8,auctionsetitem,2:4
+0x024c,8,auctionsetitem,0
 0x024d,14
-0x024e,6,auctioncancel,2
-0x024f,10,auctionbid,2:6
+0x024e,6,auctioncancel,0
+0x024f,10,auctionbid,0
 0x0250,3
 0x0251,2
 0x0252,-1
@@ -834,7 +835,7 @@ packet_ver: 19
 //2005-10-13aSakexe
 0x007a,6
 0x0251,32
-0x025c,4,auctionbuysell,2
+0x025c,4,auctionbuysell,0
 
 //2005-10-17aSakexe
 0x007a,58
@@ -846,7 +847,8 @@ packet_ver: 19
 0x0260,6
 
 //2005-11-07aSakexe
-0x0251,34,auctionsearch,2:4:8:32
+0x024e,6,auctioncancel,0
+0x0251,34,auctionsearch,0
 
 //2006-01-09aSakexe
 0x0261,11
@@ -1369,7 +1371,7 @@ packet_ver: 25
 //0x0447,2
 
 //2009-06-03aRagexeRE
-0x07d7,8,partychangeoption,2:6
+0x07d7,8,partychangeoption,2:6:7
 0x07d8,8
 0x07d9,254
 0x07da,6,partychangeleader,2
@@ -1455,7 +1457,7 @@ packet_ver: 25
 //0x07ff,-1
 
 //2009-12-15aRagexeRE
-//0x0800,-1
+0x0800,-1
 //0x0801,-1
 
 //2009-12-22aRagexeRE
@@ -1615,7 +1617,6 @@ packet_ver: 26
 
 //2011-10-05aRagexeRE
 packet_ver: 27
-
 0x0364,5,walktoxy,2
 0x0817,6,ticksend,2
 0x0366,5,changedir,2:4
@@ -1627,12 +1628,10 @@ packet_ver: 27
 0x08ad,90,useskilltoposinfo,2:4:6:8:10
 0x088a,6,getcharnamerequest,2
 0x0838,6,solvecharname,2
-
 0x0439,8,useitem,2:4
 
 // 2011-11-02aRagexe
 packet_ver: 28
-
 0x0436,26,friendslistadd,2
 0x0898,5,hommenu,4
 0x0281,36,storagepassword,0

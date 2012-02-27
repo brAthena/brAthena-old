@@ -9,7 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
-	r1045 - 26/02/2012 [brn0]
+	r1046 - 27/02/2012 [Protimus]
+	* Atualizados pacotes para homunculus.
+	- Estava com problemas ao alimentar e deletar.
+
+	r1045 - 27/02/2012 [brn0]
 	* Corrigido um pequeno erro na chance de empurrar o alvo da habilidade Disparo Triplo (SC_TRIANGLESHOT).
 	* Corrigida a fórmula da habilidade Bomba Ácida (CR_ACIDDEMONSTRATION).
 
