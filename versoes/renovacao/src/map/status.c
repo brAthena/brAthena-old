@@ -1625,7 +1625,7 @@ int status_check_skilluse(struct block_list *src, struct block_list *target, int
 				return 0;
 			if ( tsc->data[SC_CAMOUFLAGE] && !skill_num && !(status->mode&MD_BOSS) && !(status->mode&MD_DETECTOR) )
 				return 0;
-			if ( tsc->data[SC_CLOAKINGEXCEED] && !(status->mode&MD_BOSS) )
+			if( tsc->data[SC_CLOAKINGEXCEED] && !(status->mode&MD_BOSS) && (((TBL_PC*)target)->special_state.perfect_hiding || (status->mode&MD_DETECTOR)))
 				return 0;
 			if (sc && sc->data[SC_CURSEDCIRCLE_TARGET])
 				return 0;
@@ -1692,7 +1692,8 @@ int status_check_visibility(struct block_list *src, struct block_list *target)
 				!(status->mode&MD_DETECTOR) || (tsc->data[SC_CAMOUFLAGE])
 			))
 			return 0;
-		if ( tsc->data[SC_CLOAKINGEXCEED] && !(status->mode&MD_BOSS) )
+		if( tsc->data[SC_CLOAKINGEXCEED] && !(status->mode&MD_BOSS) && (((TBL_PC*)target)->special_state.perfect_hiding || (status->mode&MD_DETECTOR)))
+			return 0;
 		if( (tsc->option&(OPTION_HIDE|OPTION_CLOAK|OPTION_CHASEWALK) || tsc->data[SC__INVISIBILITY] || tsc->data[SC_CAMOUFLAGE]) && !(status->mode&MD_BOSS) &&
 			( ((TBL_PC*)target)->special_state.perfect_hiding || !(status->mode&MD_DETECTOR) ) )
 				return 0;

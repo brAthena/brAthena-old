@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1048 - 27/02/2012 [Protimus]
+	* Corrigida a habilidade Impacto Sísmico (SR_EARTHSHAKER).
+	- Bonificação de dano em casos de alvos escondidos não estava adicionada.
+	* Corrigida a habilidade Ocultação (GC_CLOAKINGEXCEED).
+	- Problemas com revelação do alvo resolvidos.
+
 	r1047 - 27/02/2012 [Protimus]
 	* Atualizado conforme eAthena 15075.
 

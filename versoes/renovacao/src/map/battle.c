@@ -2471,6 +2471,10 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				if( (sstatus->rhw.ele) == ELE_WIND || (sstatus->lhw.ele) == ELE_WIND )
 					ATK_ADDRATE(25);
 				break;
+			case SR_EARTHSHAKER:
+				if( tsc && (tsc->data[SC_HIDING] || tsc->data[SC_CLOAKING] || tsc->data[SC_CHASEWALK] || tsc->data[SC_CLOAKINGEXCEED]) )
+					ATK_ADDRATE(150+150*skill_lv);
+				break;
 			case SR_RIDEINLIGHTNING:
 				if((sstatus->rhw.ele) == ELE_WIND || (sstatus->lhw.ele) == ELE_WIND)
 					ATK_ADDRATE(20);
@@ -4275,7 +4279,7 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 		status_change_end(src,SC_CAMOUFLAGE, INVALID_TIMER);
 
 	if (sc && sc->data[SC_CLOAKINGEXCEED] && !(sc->data[SC_CLOAKINGEXCEED]->val4&2))
-		status_change_end(src,SC_CLOAKINGEXCEED,-1);
+		status_change_end(src,SC_CLOAKINGEXCEED, INVALID_TIMER);
 
 	if( tsc && tsc->data[SC_AUTOCOUNTER] && status_check_skilluse(target, src, KN_AUTOCOUNTER, tsc->data[SC_AUTOCOUNTER]->val1, 1) )
 	{
