@@ -9,6 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1049 - 28/02/2012 [Protimus]
+	* Corrigido problema que causava inconsistência em pc_rageball_timer.
+	* Correção para o item Broche de Bradium.
+	- Não estava bonificando ASPD.
+	* Revertida parcialmente r946.
+	- Funcionamento inválido conforme o oficial.
+
 	r1048 - 27/02/2012 [Protimus]
 	* Corrigida a habilidade Impacto Sísmico (SR_EARTHSHAKER).
 	- Bonificação de dano em casos de alvos escondidos não estava adicionada.

@@ -10379,13 +10379,10 @@ static int skill_unit_onplace (struct skill_unit *src, struct block_list *bl, un
 				const struct TimerData* td = sc->data[type]?get_timer(sc->data[type]->timer):NULL;
 				if( td )
 					sec = DIFF_TICK(td->tick, tick);
-				if(!map_flag_gvg(bl->m)) {
 					map_moveblock(bl, src->bl.x, src->bl.y, tick);
 					clif_fixpos(bl);
-				}
-				sg->val2 = bl->id;
-			}
-			else
+					sg->val2 = bl->id;
+			} else
 				sec = 3000; //Couldn't trap it?
 			sg->limit = DIFF_TICK(tick,sg->tick)+sec;
 		}
@@ -10753,13 +10750,10 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 					const struct TimerData* td = tsc->data[type]?get_timer(tsc->data[type]->timer):NULL;
 					if( td )
 						sec = DIFF_TICK(td->tick, tick);
-					if(!map_flag_gvg(bl->m)) {
 						unit_movepos(bl, src->bl.x, src->bl.y, 0, 0);
 						clif_fixpos(bl);
-					}
-					sg->val2 = bl->id;
-				}
-				else
+						sg->val2 = bl->id;
+				} else
 					sec = 3000; //Couldn't trap it?
 				clif_skillunit_update(&src->bl);
 				sg->limit = DIFF_TICK(tick,sg->tick)+sec;

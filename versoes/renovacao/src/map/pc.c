@@ -232,7 +232,7 @@ static int pc_rageball_timer(int tid, unsigned int tick, int id, intptr data)
 	if( (sd = (struct map_session_data *)map_id2sd(id)) == NULL || sd->bl.type != BL_PC )
 		return 1;
 
-	if( sd->rageball <= 0 )
+	if( sd->rageball < 0 )
 	{
 		ShowError("pc_rageball_timer: %d rageball's available. (aid=%d cid=%d tid=%d)\n", sd->rageball, sd->status.account_id, sd->status.char_id, tid);
 		sd->rageball = 0;
