@@ -4948,7 +4948,7 @@
 12025,Egg_Boy,Ovo do Festival de Dano,2,1000,,200,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem groupranditem(IG_EggBoy),1; },{},{}
 12026,Egg_Girl,Ovo do Festival de Dano,2,1000,,200,,,,,0xFFFFFFFF,7,2,,,,,,{ getitem groupranditem(IG_EggGirl),1; },{},{}
 12027,Giggling_Box,Caixa Risonha,2,1000,,200,,,,,0xFFFFFFFF,7,2,,,,,,{ percentheal 9,0; if(rand(1000)<300) sc_start SC_Curse,30000,0; },{},{}
-12028,Box_Of_Thunder,Caixa do Trovão,2,1000,,200,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_SpeedUp0,20000,0; },{},{}
+12028,Box_Of_Thunder,Caixa do Trovão,2,1000,,200,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_SpeedUp1,20000,0; },{},{}
 12029,Gloomy_Box,Caixa da Escuridão,11,1000,,200,,,,,0xFFFFFFFF,7,2,,,,,,{ itemskill "AC_CONCENTRATION",1; },{},{}
 12030,Box_Of_Grudge,Caixa do Ressentimento,2,1000,,200,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_ATKPOTION,60000,20; },{},{}
 12031,Sleepy_Box,Caixa da Sonolência,2,1000,,200,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_MATKPOTION,60000,20; },{},{}
