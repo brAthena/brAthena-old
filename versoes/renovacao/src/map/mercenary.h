@@ -7,6 +7,9 @@
 #include "status.h" // struct status_data, struct status_change
 #include "unit.h" // struct unit_data
 
+// number of cells that a mercenary can walk to from it's master before being warped
+#define MAX_MER_DISTANCE 15
+
 enum {
 	ARCH_MERC_GUILD,
 	SPEAR_MERC_GUILD,
@@ -68,6 +71,12 @@ int mercenary_set_calls(struct mercenary_data *md, int value);
 int mercenary_kills(struct mercenary_data *md);
 
 int mercenary_checkskill(struct mercenary_data *md, int skill_id);
+
+/**
+ * atcommand.c required
+ **/
+int read_mercenarydb(void);
+int read_mercenary_skilldb(void);
 
 int do_init_mercenary(void);
 

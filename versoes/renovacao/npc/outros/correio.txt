@@ -37,7 +37,8 @@ prontera,146,86,0	script	Correio#prt::MailBox	888,{
 	mes "Você deseja usar";
 	mes "sua caixa de correio agora?";
 	next;
-	if (select("Sim.:Não.") == 1) {
+	switch(select("Sim.","Não.")) {
+	case 1:
 		if (Zeny < 130) {
 			mes "[Correio]";
 			mes "Lamento, mas você";
@@ -45,20 +46,23 @@ prontera,146,86,0	script	Correio#prt::MailBox	888,{
 			mes "dinheiro novamente? Você não";
 			mes "possui dinheiro suficiente para pagar";
 			mes "os 130 zeny solicitados.";
+			break;
+		} else {
+			mes "[Correio]";
+			mes "Muito obrigado por";
+			mes "estar aqui. Por favor";
+			mes "volte novamente para usar";
+			mes "o nosso serviço de correio~";
+			set Zeny,Zeny-130;
+			openmail;
 			close;
 		}
+	case 2:
 		mes "[Correio]";
-		mes "Muito obrigado por";
-		mes "estar aqui. Por favor";
-		mes "volte novamente para usar";
-		mes "o nosso serviço de correio~";
-		set Zeny,Zeny-130;
-		openmail;
-		close;
+		mes "Obrigado e volte novamente.";
+		break;
 	}
-	mes "[Correio]";
-	mes "Obrigado e volte novamente.";
-	close;
+close;
 }
 
 prontera,275,213,0	duplicate(MailBox)	Correio#2prt	888

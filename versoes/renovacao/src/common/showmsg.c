@@ -4,12 +4,15 @@
 #include "../common/cbasetypes.h"
 #include "../common/strlib.h" // StringBuf
 #include "showmsg.h"
+#include "core.h" //[Ind] - For SERVER_TYPE
 
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
 #include <time.h>
 #include <stdlib.h> // atexit
+
+#include <libconfig.h>
 
 #ifdef WIN32
 	#define WIN32_LEAN_AND_MEAN
@@ -50,6 +53,8 @@
 int stdout_with_ansisequence = 0;
 
 int msg_silent = 0; //Specifies how silent the console is.
+
+int console_msg_log = 0;//[Ind] msg error logging
 
 ///////////////////////////////////////////////////////////////////////////////
 /// static/dynamic buffer for the messages
@@ -242,7 +247,7 @@ int	VFPRINTF(HANDLE handle, const char *fmt, va_list argptr)
 			q=q+2;
 			for(;;)
 			{
-				if( ISDIGIT(*q) )
+				if( ISDIGIT(*q) ) 
 				{	// add number to number array, only accept 2digits, shift out the rest
 					// so // \033[123456789m will become \033[89m
 					numbers[numpoint] = (numbers[numpoint]<<4) | (*q-'0');
@@ -359,12 +364,12 @@ int	VFPRINTF(HANDLE handle, const char *fmt, va_list argptr)
 					else if(num==2)
 					{	// Number of chars on screen.
 						cnt = info.dwSize.X * info.dwSize.Y;
-						SetConsoleCursorPosition(handle, origin);
+						SetConsoleCursorPosition(handle, origin); 
 					}
 					else// 0 and default
 					{	// number of chars from cursor to end
 						origin = info.dwCursorPosition;
-						cnt = info.dwSize.X * (info.dwSize.Y - info.dwCursorPosition.Y) - info.dwCursorPosition.X;
+						cnt = info.dwSize.X * (info.dwSize.Y - info.dwCursorPosition.Y) - info.dwCursorPosition.X; 
 					}
 					FillConsoleOutputAttribute(handle, info.wAttributes, cnt, origin, &tmp);
 					FillConsoleOutputCharacter(handle, ' ',              cnt, origin, &tmp);
@@ -564,7 +569,7 @@ int	VFPRINTF(FILE *file, const char *fmt, va_list argptr)
 			q=q+2;
 			while(1)
 			{
-				if( ISDIGIT(*q) )
+				if( ISDIGIT(*q) ) 
 				{
 					++q;
 					// and next character
@@ -682,6 +687,39 @@ int _vShowMessage(enum msg_type flag, const char *string, va_list ap)
 	if (!string || *string == '\0') {
 		ShowError("Texto vazio passado ao _vShowMessage().\n");
 		return 1;
+	}
+	/**
+	 * For the buildbot, these result in a EXIT_FAILURE from core.c when done reading the params.
+	 **/
+#if defined(BUILDBOT)
+	if( flag == MSG_WARNING ||
+	    flag == MSG_ERROR ||
+	    flag == MSG_SQL ) {
+		buildbotflag = 1;
+	}
+#endif
+	if(
+		( flag == MSG_WARNING && console_msg_log&1 ) ||
+		( ( flag == MSG_ERROR || flag == MSG_SQL ) && console_msg_log&2 ) ||
+		( flag == MSG_DEBUG && console_msg_log&4 ) ) {//[Ind]
+		FILE *log = NULL;
+		if( (log = fopen(SERVER_TYPE == ATHENA_SERVER_MAP ? "./log/map-msg_log.log" : "./log/unknown.log","a+")) ) {
+			char timestring[255];
+			time_t curtime;
+			time(&curtime);
+			strftime(timestring, 254, "%m/%d/%Y %H:%M:%S", localtime(&curtime));
+			fprintf(log,"(%s) [ %s ] : ",
+				timestring,
+				flag == MSG_WARNING ? "Warning" :
+				flag == MSG_ERROR ? "Error" :
+				flag == MSG_SQL ? "SQL Error" :
+				flag == MSG_DEBUG ? "Debug" :
+				"Unknown");
+			va_copy(apcopy, ap);
+			vfprintf(log,string,apcopy);
+			va_end(apcopy);
+			fclose(log);
+		}
 	}
 	if(
 	    (flag == MSG_INFORMATION && msg_silent&1) ||
@@ -833,6 +871,20 @@ int ShowWarning(const char *string, ...) {
 	va_start(ap, string);
 	ret = _vShowMessage(MSG_WARNING, string, ap);
 	va_end(ap);
+	return ret;
+}
+int ShowConfigWarning(config_setting_t *config, const char *string, ...)
+{
+	StringBuf buf;
+	int ret;
+	va_list ap;
+	StringBuf_Init(&buf);
+	StringBuf_AppendStr(&buf, string);
+	StringBuf_Printf(&buf, " (%s:%d)\n", config_setting_source_file(config), config_setting_source_line(config));
+	va_start(ap, string);
+	ret = _vShowMessage(MSG_WARNING, StringBuf_Value(&buf), ap);
+	va_end(ap);
+	StringBuf_Destroy(&buf);
 	return ret;
 }
 int ShowDebug(const char *string, ...) {

@@ -129,9 +129,9 @@ static void rdtsc_calibrate(){
 		RDTSC_CLOCK += (t2 - t1) / 1000;
 	}
 	RDTSC_CLOCK /= 5;
-
+	
 	RDTSC_BEGINTICK = _rdtsc();
-
+	
 	ShowMessage(" pronto. (Frequencia: %u Mhz)\n", (uint32)(RDTSC_CLOCK/1000) );
 }
 

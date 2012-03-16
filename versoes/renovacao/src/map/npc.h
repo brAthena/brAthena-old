@@ -158,4 +158,13 @@ int npc_duplicatetombstone( int m, int x, int y, int mvpid, int killerid); // Si
 int npc_tombstoneremove( const char* name); // Sistema de Túmulos de MvP (Tombstone) [Mark]
 extern struct npc_data* fake_nd;
 
+int npc_cashshop_buylist(struct map_session_data *sd, int points, int count, unsigned short* item_list);
+
+/**
+ * For the Secure NPC Timeout option (check config/Secure.h) [RR]
+ **/
+#if SECURE_NPCTIMEOUT
+int npc_rr_secure_timeout_timer(int tid, unsigned int tick, int id, intptr_t data);
+#endif
+
 #endif /* _NPC_H_ */

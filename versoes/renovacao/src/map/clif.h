@@ -317,7 +317,7 @@ void clif_clearflooritem(struct flooritem_data *fitem, int fd);
 
 void clif_clearunit_single(int id, clr_type type, int fd);
 void clif_clearunit_area(struct block_list* bl, clr_type type);
-void clif_clearunit_delayed(struct block_list* bl, unsigned int tick);
+void clif_clearunit_delayed(struct block_list* bl, clr_type type, unsigned int tick);
 int clif_spawn(struct block_list *bl);	//area
 void clif_walkok(struct map_session_data *sd);	// self
 void clif_move(struct unit_data *ud); //area

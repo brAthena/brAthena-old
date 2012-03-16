@@ -2690,13 +2690,13 @@ lighthalzen,337,232,3	script	Maku	870,{
 		delitem 7351,1; //Friend's_Diary
 		set friendship,14;
 		if (BaseLevel > 90) {
-			getexp 700000,0;
+			getexp 70000,0;
 		}
 		else if (BaseLevel > 75) {
-			getexp 400000,0;
+			getexp 40000,0;
 		}
 		else {
-			getexp 200000,0;
+			getexp 20000,0;
 		}
 		cutin "lhz_macu04",2;
 		mes "[Maku]";
@@ -3134,13 +3134,13 @@ yuno_in04,96,106,5	script	Estudante Entusiasmado	754,{
 		next;
 		set friendship,16;
 		if (BaseLevel > 90) {
-			getexp 700000,0;
+			getexp 70000,0;
 		}
 		else if (BaseLevel > 75) {
-			getexp 400000,0;
+			getexp 40000,0;
 		}
 		else {
-			getexp 200000,0;
+			getexp 20000,0;
 		}
 		getitem 7350,1; //Pass
 		mes "[Benkaistein]";
@@ -6838,7 +6838,7 @@ lighthalzen,179,170,4	script	Homem Comum	98,{
 		mes "que queríamos fazer. Ainda assim...";
 		set lhz_boss,44;
 		getitem 617,1;
-		getexp 1800000,0;
+		getexp 180000,0;
 		next;
 		mes "[Ghalstein]";
 		mes "[Ghalstein]";
@@ -8389,7 +8389,7 @@ L_Mission:
 		mes "Agora, deixe-me começar a mover os pauzinhos e dar início ao plano.";
 		set hg_tre,57;
 		delitem 7342,1;
-		getexp 2000000,0;
+		getexp 200000,0;
 		getitem 617,1;
 		close2;
 		cutin "",255;
@@ -10278,7 +10278,7 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "Lyozien. Isto é porque";
 		mes "você me faz sentir culpado...";
 		set lhz_rekenber,22;
-		getexp 550000,0;
+		getexp 55000,0;
 		close;
 	}
 	else if(lhz_rekenber > 16)
@@ -10350,7 +10350,7 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "causar problemas para ele e";
 		mes "garanta que ele esteja seguro.";
 		set lhz_rekenber,17;
-		getexp 450000,0;
+		getexp 45000,0;
 		close;
 	}
 	else if(lhz_rekenber > 11)
@@ -10427,7 +10427,7 @@ lhz_in01,174,258,3	script	Young Man#reken	868,{
 		mes "Reino de Rune-Midgard.";
 		next;
 		set lhz_rekenber,12;
-		getexp 400000,0;
+		getexp 40000,0;
 		mes "[Kazien]";
 		mes "Certo, eu vejo você mais";
 		mes "tarde. O mais importante";

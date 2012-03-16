@@ -58,6 +58,9 @@ static struct chat_data* chat_createchat(struct block_list* bl, const char* titl
 
 	map_addiddb(&cd->bl);
 
+	if( bl->type != BL_NPC )
+		cd->kick_list = idb_alloc(DB_OPT_BASE);
+	
 	return cd;
 }
 
@@ -122,14 +125,13 @@ int chat_joinchat(struct map_session_data* sd, int chatid, const char* pass)
 		return 0;
 	}
 
-	if( !cd->pub && strncmp(pass, cd->pass, sizeof(cd->pass)) != 0 && !(battle_config.gm_join_chat && pc_isGM(sd) >= battle_config.gm_join_chat) )
+	if( !cd->pub && strncmp(pass, cd->pass, sizeof(cd->pass)) != 0 && !pc_has_permission(sd, PC_PERM_JOIN_ALL_CHAT) )
 	{
 		clif_joinchatfail(sd,1);
 		return 0;
 	}
 
-	if( sd->status.base_level < cd->minLvl || sd->status.base_level > cd->maxLvl )
-	{
+	if( sd->status.base_level < cd->minLvl || sd->status.base_level > cd->maxLvl ) {
 		if(sd->status.base_level < cd->minLvl)
 			clif_joinchatfail(sd,5);
 		else
@@ -138,9 +140,13 @@ int chat_joinchat(struct map_session_data* sd, int chatid, const char* pass)
 		return 0;
 	}
 
-	if( sd->status.zeny < cd->zeny )
-	{
+	if( sd->status.zeny < cd->zeny ) {
 		clif_joinchatfail(sd,4);
+		return 0;
+	}
+
+	if( cd->owner->type != BL_NPC && idb_exists(cd->kick_list,sd->status.char_id) ) {
+		clif_joinchatfail(sd,2);//You have been kicked out of the room.
 		return 0;
 	}
 
@@ -195,9 +201,9 @@ int chat_leavechat(struct map_session_data* sd, bool kicked)
 		cd->usersd[i] = cd->usersd[i+1];
 
 
-	if( cd->users == 0 && cd->owner->type == BL_PC )
-	{	// Delete empty chatroom
+	if( cd->users == 0 && cd->owner->type == BL_PC ) { // Delete empty chatroom
 		clif_clearchat(cd, 0);
+		db_destroy(cd->kick_list);
 		map_deliddb(&cd->bl);
 		map_delblock(&cd->bl);
 		map_freeblock(&cd->bl);
@@ -302,7 +308,7 @@ int chat_kickchat(struct map_session_data* sd, const char* kickusername)
 	nullpo_retr(1, sd);
 
 	cd = (struct chat_data *)map_id2bl(sd->chatID);
-
+	
 	if( cd==NULL || (struct block_list *)sd != cd->owner )
 		return -1;
 
@@ -310,8 +316,10 @@ int chat_kickchat(struct map_session_data* sd, const char* kickusername)
 	if( i == cd->users )
 		return -1;
 
-	if( battle_config.gm_kick_chat && pc_isGM(cd->usersd[i]) >= battle_config.gm_kick_chat )
+	if (pc_has_permission(cd->usersd[i], PC_PERM_NO_CHAT_KICK))
 		return 0; //gm kick protection [Valaris]
+	
+	idb_put(cd->kick_list,cd->usersd[i]->status.char_id,(void*)1);
 
 	chat_leavechat(cd->usersd[i],1);
 	return 0;
@@ -323,22 +331,19 @@ int chat_createnpcchat(struct npc_data* nd, const char* title, int limit, bool p
 	struct chat_data* cd;
 	nullpo_ret(nd);
 
-	if( nd->chat_id )
-	{
+	if( nd->chat_id ) {
 		ShowError("chat_createnpcchat: npc '%s' already has a chatroom, cannot create new one!\n", nd->exname);
 		return 0;
 	}
 
-	if( zeny > MAX_ZENY || maxLvl > MAX_LEVEL )
-	{
+	if( zeny > MAX_ZENY || maxLvl > MAX_LEVEL ) {
 		ShowError("chat_createnpcchat: npc '%s' has a required lvl or amount of zeny over the max limit!\n", nd->exname);
 		return 0;
 	}
 
 	cd = chat_createchat(&nd->bl, title, "", limit, pub, trigger, ev, zeny, minLvl, maxLvl);
 
-	if( cd )
-	{
+	if( cd ) {
 		nd->chat_id = cd->bl.id;
 		clif_dispchat(cd,0);
 	}

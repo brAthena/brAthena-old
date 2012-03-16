@@ -1,39 +1,50 @@
-//  ________________________________________________________
-// /                                                        \
-// |       _           _   _   _                            |
-// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
-// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
-// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
-// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |                                                        |
-// |                    brAthena Script                     |
-// |--------------------------------------------------------|
-// | Nome do Script: Collection of episode 13.2 quests.     |
-// |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team                           |
-// |--------------------------------------------------------|
-// | Versões eA/brA: 2.2/1.0                                |
-// |--------------------------------------------------------|
-// | Descrição: Cat Hand Addition. (Leads to 13.2 areas)    |
-// | Two Tribes                                             |
-// | Monster Suppression                                    |
-// | Daily Quests:                                          |
-// | - Bradium Collection                                   |
-// | - Laphine Craftsman                                    |
-// | - Drago Egg Collection (npc includes 'Wanted' quest)   |
-// | Otherworld language                                    |
-// | Daily Quests:                                          |
-// | - Midgard Ore                                          |
-// | - Alfheim Perfume                                      |
-// | Yggdrasil Dungeon Floor 2 puzzle.                      |
-// |--------------------------------------------------------|
-// | Changelog:                                             |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações                                            |
-// \________________________________________________________/
+//===== rAthena Script =======================================
+//= Collection of episode 13.2 quests.
+//===== By: ==================================================
+//= L0ne_W0lf
+//===== Current Version: =====================================
+//= 2.2
+//===== Compatible With: =====================================
+//= rAthena SVN
+//===== Description: =========================================
+//= [Aegis Conversion]
+//= Cat Hand Addition. (Leads to 13.2 areas)
+//= Two Tribes
+//= Monster Suppression
+//= Daily Quests:
+//= - Bradium Collection
+//= - Laphine Craftsman
+//= - Drago Egg Collection (npc includes 'Wanted' quest)
+//= Otherworld language
+//= Daily Quests:
+//= - Midgard Ore
+//= - Alfheim Perfume
+//= Secret note of Bazett
+//= Yggdrasil Dungeon Floor 2 puzzle.
+//===== Additional Comments: =================================
+//= 1.0 First version
+//= 1.1 Fixed unidentified_coin -> unidentified_mineral. (bugreport:4086)
+//= 1.2 Fixed Half-buried Gem#1 not re-enabling. (bugreport:4129)
+//= 1.3 Moved misc NPCs to the their respective city file. [L0ne_W0lf]
+//= 1.3 Added the "Two Tribes" quest. [L0ne_W0lf]
+//= 1.4 Corrected issues with Otherworld Language. (Bugreport:4147)
+//= 1.5 Added daily quests: Midgard Ore, and Alfheim Perfume.
+//= 1.6 Added the Yggdrasil Dungeon floor 2 puzzle.
+//= 1.7 Added daily quest 'Dragon Egg collection.'
+//= 1.7a Fixed a translation typo. Tabb -> Taab.
+//= 1.8 Added a missing " in the GM only NPC.
+//= 1.9 Added Monster Suppression, Bradium Collection, and 
+//=     Laphine Craftsman quests.
+//= 2.0 Added missing global var check in Yggdrasil Dungeon
+//=     floor 2 puzzle. Fixed a typo. Commented out untranslated
+//=     line. [Gepard]
+//= 2.1 Fixed Myterious Rock 31, and Cart Hand Agents.
+//= 2.2 Added a missing close. (bugreport:4520) [L0ne_W0lf]
+//= 2.3 Fixed EF_Wind not showing. (bugreport:5149) [Masao]
+//============================================================ 
 
 // Cat Hand Addition.
-//============================================================
+//============================================================ 
 spl_fild02,25,211,4	script	Cat Hand Agent#spl	421,{
 	if (ep13_yong1 < 3) {
 		mes "[Cat Hand Agent]";
@@ -3530,7 +3541,7 @@ manuk,278,177,5	script	Villager#ep13_11	454,{
 		mes "[Villager]";
 		mes "Das?";
 		mes "idh sd!";
-		mes "Dh apa sd¡­is Das idh.";
+		mes "Dh apa sdï¿½ï¿½is Das idh.";
 		close;
 	}
 }
@@ -4551,7 +4562,7 @@ spl_in02,239,93,3	script	Terra#ep13md_l03	441,{
 			mes "I'm sorry this is all I can give you for now.";
 			set ep13_mdrama,27;
 			getitem 6081,25; //Splendide_Coin
-			getexp 1200000,100000;
+			getexp 120000,10000;
 			completequest 7071;
 			close;
 		}
@@ -4693,7 +4704,7 @@ spl_in02,236,92,5	script	Arc#ep13md_l02	447,{
 			mes "I'm sorry this is all I can give you for now.";
 			set ep13_mdrama,27;
 			getitem 6081,25; //Splendide_Coin
-			getexp 1200000,100000;
+			getexp 120000,10000;
 			completequest 7071;
 			close;
 		}
@@ -4982,7 +4993,7 @@ manuk,252,116,3	script	Manuk Galtun#ep13_2day	450,{
 				completequest 7074;
 				completequest 7075;
 				set ep13_2_days01,2;
-				getexp 500000,300000;
+				getexp 50000,30000;
 				getitem 6080,10; //Manuk_Coin
 				close;
 			}
@@ -5056,7 +5067,7 @@ man_in01,378,276,3	script	Manuk Engineer#ep13_2	453,{
 					delitem 6090,20; //Purified_Bradium
 					erasequest 7079;
 					setquest 7080;
-					getexp 40000,40000;
+					getexp 4000,4000;
 					getitem 6080,3; //Manuk_Coin
 					close;
 				}
@@ -5077,7 +5088,7 @@ man_in01,378,276,3	script	Manuk Engineer#ep13_2	453,{
 					mes "[Manuk Engineer]";
 					mes "To prevent our bodies from becoming numb, we need Bradium.";
 					mes "From the Bradium we can extract a special element that we need to survive.";
-					//mes "Ìá?ÌØÊâµ???¬²¢¾­³£'Óá£";
+					//mes "ï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½???ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½'ï¿½ï¿½";
 					next;
 					mes "[Manuk Engineer]";
 					mes "The mining industry is primary here since our lives depend on it.";
@@ -5166,7 +5177,7 @@ spl_in01,97,313,3	script	Laphine Craftsman#ep13	446,{
 						delitem 6075,15; //Crystalized_Teardrop
 						erasequest 7081;
 						setquest 7082;
-						getexp 30000,30000;
+						getexp 3000,3000;
 						getitem 6081,3; //Splendide_Coin
 						close;
 					}
@@ -5371,7 +5382,7 @@ mid_camp,146,306,3	script	Pet Breeder#ep13_eden01	982,{
 					erasequest 7077;
 					setquest 7078;
 					set ep13_2_dayegg,2;
-					getexp 40000,40000;
+					getexp 4000,4000;
 					getitem 6081,1; //Splendide_Coin
 					getitem 6080,1; //Manuk_Coin
 					close;
@@ -5503,7 +5514,7 @@ mid_camp,192,239,4	script	Wanted Sign#ep13_2ect01	857,{
 				set ep13_2_wanted,1;
 				setquest 7076;
 				close;
-
+			
 			case 2:
 				mes "No, I won't get involved in it.";
 				close;
@@ -6014,7 +6025,7 @@ OnTimer300000:
 }
 
 // Otherworld language
-//============================================================
+//============================================================ 
 mid_camp,197,237,3	script	Schwartzvalt Mechanic#1	869,{
 	if (ep13_1_edq > 2) {
 		if (ep13_2_rhea < 1) {
@@ -6203,7 +6214,7 @@ mid_camp,197,237,3	script	Schwartzvalt Mechanic#1	869,{
 				mes "I hope this ring would be a big help for your journey through the other world.";
 				completequest 8253;
 				set ep13_2_rhea,100;
-				getexp 1000000,300000;
+				getexp 100000,30000;
 				getitem 2782,1; //Ring_Of_Wise_King
 				close;
 			}
@@ -7203,7 +7214,7 @@ mid_camp,7,3,0	script	Translator Preparation#1	708,{
 // Daily Quests
 // - Midgard Ore
 // - Alfheim Perfume
-//============================================================
+//============================================================ 
 man_in01,372,221,5	script	Scientist#lifeguard	449,{
 	if ((isequipped(2782) == 1) && (ep13_2_rhea == 100)) {
 		if (ep13_2_tre == 0) {
@@ -7275,7 +7286,7 @@ man_in01,372,221,5	script	Scientist#lifeguard	449,{
 				mes "Why not put some of your items in storage and come back?";
 				close;
 			}
-
+			
 			set .@dayq_chk,checkquest(2182,PLAYTIME);
 			if ((.@dayq_chk == 0) || (.@dayq_chk == 1)) {
 				mes "[Dr. Lifeguard]";
@@ -7416,7 +7427,7 @@ man_in01,372,221,5	script	Scientist#lifeguard	449,{
 					close;
 				}
 			}
-
+		
 		}
 		else if (ep13_2_tre == 2) {
 			if (countitem(6077) > 9) {
@@ -7441,7 +7452,7 @@ man_in01,372,221,5	script	Scientist#lifeguard	449,{
 				delitem 6076,1; //Portable_Toolbox
 				set ep13_2_tre,100;
 				getitem 6080,2; //Manuk_Coin
-				getexp 0,700000;
+				getexp 0,70000;
 				changequest 2179,2182;
 				close;
 			}
@@ -7475,7 +7486,7 @@ man_in01,372,221,5	script	Scientist#lifeguard	449,{
 				delitem 6076,1; //Portable_Toolbox
 				set ep13_2_tre,100;
 				getitem 6080,2; //Manuk_Coin
-				getexp 0,700000;
+				getexp 0,70000;
 				changequest 2180,2182;
 				close;
 			}
@@ -7509,7 +7520,7 @@ man_in01,372,221,5	script	Scientist#lifeguard	449,{
 				delitem 6076,1; //Portable_Toolbox
 				set ep13_2_tre,100;
 				getitem 6080,2; //Manuk_Coin
-				getexp 0,700000;
+				getexp 0,70000;
 				changequest 2181,2182;
 				close;
 			}
@@ -7571,8 +7582,8 @@ mjolnir_01,32,309,3	script	#mj01_01	111,7,7,{
 			switch(select("Mine minerals.:Do nothing.")) {
 			case 1:
 				mes "Clang! Clang! Clang! Clang!";
+				close2;
 				progressbar "ffff00",4;
-				next;
 				set .@get_stone,rand(1,6);
 				if (.@get_stone < 4) {
 					mes "- You failed to mine minerals. -";
@@ -7616,7 +7627,7 @@ OnInit:
 OnTouch:
 	if ((ep13_2_tre == 2) && (countitem(6076) == 1)) {
 		if (countitem(6077) < 10) {
-			specialeffect EF_COUPLECASTING;
+			specialeffect EF_COUPLECASTING; 
 		}
 	}
 	end;
@@ -7635,7 +7646,7 @@ OnTimer60000:
 	end;
 }
 
-mjolnir_01,32,309,3	script	#mj01_02	111,7,7,{
+mjolnir_01,217,34,3	script	#mj01_02	111,7,7,{
 	if ((ep13_2_tre == 2) && (countitem(6076) == 1)) {
 		if (countitem(6077) < 10) {
 			mes "- I can see some different colored minerals where the detector pointed to. This must be the mineral that Mr. Lifeguard told me about. -";
@@ -7643,8 +7654,8 @@ mjolnir_01,32,309,3	script	#mj01_02	111,7,7,{
 			switch(select("Mine minerals.:Do nothing.")) {
 			case 1:
 				mes "Clang! Clang! Clang! Clang!";
+				close2;
 				progressbar "ffff00",4;
-				next;
 				set .@get_stone,rand(1,6);
 				if (.@get_stone < 4) {
 					mes "- You failed to mine minerals. -";
@@ -7765,8 +7776,8 @@ mjolnir_02,90,195,3	script	#mj02_01	111,5,10,{
 			switch(select("Mine minerals.:Do nothing.")) {
 			case 1:
 				mes "Clang! Clang! Clang! Clang!";
+				close2;
 				progressbar "ffff00",4;
-				next;
 				set .@get_stone,rand(1,6);
 				if (.@get_stone < 4) {
 					mes "- You failed to mine minerals. -";
@@ -7835,8 +7846,8 @@ mjolnir_02,206,187,3	script	#mj02_02	111,7,7,{
 			switch(select("Mine minerals.:Do nothing.")) {
 			case 1:
 				mes "Clang! Clang! Clang! Clang!";
+				close2;
 				progressbar "ffff00",4;
-				next;
 				set .@get_stone,rand(1,6);
 				if (.@get_stone < 4) {
 					mes "- You failed to mine minerals. -";
@@ -8035,8 +8046,8 @@ mjolnir_04,125,380,3	script	#mj04_01	111,7,7,{
 			switch(select("Mine minerals.:Do nothing.")) {
 			case 1:
 				mes "Clang! Clang! Clang! Clang!";
+				close2;
 				progressbar "ffff00",4;
-				next;
 				set .@get_stone,rand(1,6);
 				if (.@get_stone < 4) {
 					mes "- You failed to mine minerals. -";
@@ -8105,8 +8116,8 @@ mjolnir_04,220,130,3	script	#mj04_02	111,7,7,{
 				switch(select("Mine minerals.:Do nothing.")) {
 				case 1:
 					mes "Clang! Clang! Clang! Clang!";
+					close2;
 					progressbar "ffff00",4;
-					next;
 					set .@get_stone,rand(1,6);
 					if (.@get_stone < 4) {
 						mes "- You failed to mine minerals. -";
@@ -8717,8 +8728,8 @@ mjolnir_09,229,214,3	script	#mj09_01	111,10,10,{
 			switch(select("Mine minerals.:Do nothing.")) {
 			case 1:
 				mes "Clang! Clang! Clang! Clang!";
+				close2;
 				progressbar "ffff00",4;
-				next;
 				set .@get_stone,rand(1,6);
 				if (.@get_stone < 4) {
 					mes "- You failed to mine minerals. -";
@@ -8912,8 +8923,8 @@ mjolnir_10,188,260,3	script	#mj10_01	111,10,10,{
 				switch(select("Mine minerals.:Do nothing.")) {
 				case 1:
 					mes "Clang! Clang! Clang! Clang!";
+					close2;
 					progressbar "ffff00",4;
-					next;
 					set .@get_stone,rand(1,6);
 					if (.@get_stone < 4) {
 						mes "- You failed to mine minerals. -";
@@ -8932,7 +8943,7 @@ mjolnir_10,188,260,3	script	#mj10_01	111,10,10,{
 						else {
 							getitem 6077,2; //Rough_Mineral
 						}
-
+						
 						close2;
 						donpcevent "#mj10_01_t::OnEnable";
 						disablenpc "#mj10_01";
@@ -9226,8 +9237,8 @@ hu_fild05,251,345,3	script	#hu_01	111,10,10,{
 			switch(select("Mine minerals.:Do nothing.")) {
 			case 1:
 				mes "Clang! Clang! Clang! Clang!";
+				close2;
 				progressbar "ffff00",4;
-				next;
 				set .@get_stone,rand(1,6);
 				if (.@get_stone < 4) {
 					mes "- You failed to mine minerals. -";
@@ -9294,8 +9305,8 @@ hu_fild05,134,322,3	script	#hu_02	111,10,10,{
 			switch(select("Mine minerals.:Do nothing.")) {
 			case 1:
 				mes "Clang! Clang! Clang! Clang!";
+				close2;
 				progressbar "ffff00",4;
-				next;
 				set .@get_stone,rand(1,6);
 				if (.@get_stone < 4) {
 					mes "- You failed to mine minerals. -";
@@ -9364,8 +9375,8 @@ hu_fild05,72,104,3	script	#hu_03	111,10,10,{
 			switch(select("Mine minerals.:Do nothing.")) {
 			case 1:
 				mes "Clang! Clang! Clang! Clang!";
+				close2;
 				progressbar "ffff00",4;
-				next;
 				set .@get_stone,rand(1,6);
 				if (.@get_stone < 4) {
 					mes "- You failed to mine minerals. -";
@@ -9433,8 +9444,8 @@ hu_fild05,65,99,3	script	#hu_04	111,10,10,{
 			switch(select("Mine minerals.:Do nothing.")) {
 			case 1:
 				mes "Clang! Clang! Clang! Clang!";
+				close2;
 				progressbar "ffff00",4;
-				next;
 				set .@get_stone,rand(1,6);
 				if (.@get_stone < 4) {
 					mes "- You failed to mine minerals. -";
@@ -9500,8 +9511,8 @@ hu_fild05,323,84,3	script	#hu_05	111,10,10,{
 			switch(select("Mine minerals.:Do nothing.")) {
 			case 1:
 				mes "Clang! Clang! Clang! Clang!";
+				close2;
 				progressbar "ffff00",4;
-				next;
 				set .@get_stone,rand(1,6);
 				if (.@get_stone < 4) {
 					mes "- You failed to mine minerals. -";
@@ -9625,8 +9636,8 @@ ve_fild03,152,134,3	script	#ve_01	111,10,10,{
 			switch(select("Mine minerals.:Do nothing.")) {
 			case 1:
 				mes "Clang! Clang! Clang! Clang!";
+				close2;
 				progressbar "ffff00",4;
-				next;
 				set .@get_stone,rand(1,6);
 				if (.@get_stone < 4) {
 					mes "- You failed to mine minerals. -";
@@ -9694,8 +9705,8 @@ ve_fild03,256,228,3	script	#ve_02	111,10,10,{
 			switch(select("Mine minerals.:Do nothing.")) {
 			case 1:
 				mes "Clang! Clang! Clang! Clang!";
+				close2;
 				progressbar "ffff00",4;
-				next;
 				set .@get_stone,rand(1,6);
 				if (.@get_stone < 4) {
 					mes "- You failed to mine minerals. -";
@@ -9763,8 +9774,8 @@ ve_fild03,85,189,3	script	#ve_03	111,10,10,{
 			switch(select("Mine minerals.:Do nothing.")) {
 			case 1:
 				mes "Clang! Clang! Clang! Clang!";
+				close2;
 				progressbar "ffff00",4;
-				next;
 				set .@get_stone,rand(1,6);
 				if (.@get_stone < 4) {
 					mes "- You failed to mine minerals. -";
@@ -9832,8 +9843,8 @@ ve_fild03,282,268,3	script	#ve_04	111,10,10,{
 			switch(select("Mine minerals.:Do nothing.")) {
 			case 1:
 				mes "Clang! Clang! Clang! Clang!";
+				close2;
 				progressbar "ffff00",4;
-				next;
 				set .@get_stone,rand(1,6);
 				if (.@get_stone < 4) {
 					mes "- You failed to mine minerals. -";
@@ -9987,7 +9998,7 @@ spl_in01,30,324,3	script	High Laphine#grenouille	446,{
 				setquest 2183;
 				close;
 			}
-			else if ((ep13_2_tre1 == 1) && (ep13_2_tre1 == 2)) {
+			else if ((ep13_2_tre1 == 1) || (ep13_2_tre1 == 2)) {
 				mes "[Grenouille]";
 				mes "Get a seed from Flowery,";
 				mes "and then use a Purifier";
@@ -10095,7 +10106,7 @@ spl_in01,30,324,3	script	High Laphine#grenouille	446,{
 					set ep13_2_tre1,6;
 					changequest 2185,2186;
 					getitem 6081,2; //Splendide_Coin
-					getexp 0,700000;
+					getexp 0,70000;
 					close;
 				}
 				else {
@@ -10194,7 +10205,7 @@ spl_in02,139,65,3	script	Middle-Ranked Laphine#la	438,{
 			mes "Can you believe that right in front of us is a battle field? Though it's very silent and peaceful at the moment. So do I~";
 			close;
 		}
-
+		
 	}
 	else {
 		mes "[Middle-Ranked Laphine]";
@@ -10784,7 +10795,7 @@ OnTimer60000:
 }
 
 // Secret note of Bazett
-//============================================================
+//============================================================ 
 mid_camp,283,198,5	script	Bazett Teablack#ep13bs	883,{
 	if (checkweight(1201,1) == 0) {
 		mes " - Hold on!! -";
@@ -11450,7 +11461,7 @@ manuk,193,135,0	script	Worker#ep13bs	454,{
 }
 
 // Yggdrasil Dungeon Floor 2 puzzle.
-//============================================================
+//============================================================ 
 nyd_dun02,178,255,0	script	Strange Device#ep13_out	844,3,3,{
 	mes "There's something strange here.";
 	mes "Maybe that device can be controlled from here.";
@@ -11532,12 +11543,13 @@ nyd_dun02,143,272,0	script	ep13_warp_s1	139,1,1,{
 
 OnEnable:
 	enablenpc "ep13_warp_s1";
+	specialeffect EF_WIND;
+	initnpctimer;
 	end;
 
 OnDisable:
-	disablenpc "ep13_warp_s1";
-	initnpctimer;
 	specialeffect EF_WIND;
+	disablenpc "ep13_warp_s1";
 	end;
 
 OnTouch:
@@ -11561,7 +11573,7 @@ OnTimer8000:
 	end;
 
 OnTimer10000:
-	enablenpc "ep13_warp_s1";
+	disablenpc "ep13_warp_s1";
 	end;
 }
 
@@ -11575,12 +11587,13 @@ nyd_dun02,143,266,0	script	ep13_warp_s3	139,1,1,{
 
 OnEnable:
 	enablenpc "ep13_warp_s3";
+	specialeffect EF_WIND;
+	initnpctimer;
 	end;
 
 OnDisable:
-	disablenpc "ep13_warp_s3";
-	initnpctimer;
 	specialeffect EF_WIND;
+	disablenpc "ep13_warp_s3";
 	end;
 
 OnTouch:
@@ -11604,7 +11617,7 @@ OnTimer8000:
 	end;
 
 OnTimer10000:
-	enablenpc "ep13_warp_s3";
+	disablenpc "ep13_warp_s3";
 	end;
 }
 
@@ -11618,12 +11631,13 @@ nyd_dun02,146,272,0	script	ep13_warp_11	139,1,1,{
 
 OnEnable:
 	enablenpc "ep13_warp_11";
+	specialeffect EF_WIND;
+	initnpctimer;
 	end;
 
 OnDisable:
-	disablenpc "ep13_warp_11";
-	initnpctimer;
 	specialeffect EF_WIND;
+	disablenpc "ep13_warp_11";
 	end;
 
 OnTouch:
@@ -11647,7 +11661,7 @@ OnTimer8000:
 	end;
 
 OnTimer10000:
-	enablenpc "ep13_warp_11";
+	disablenpc "ep13_warp_11";
 	end;
 }
 
@@ -11661,12 +11675,13 @@ nyd_dun02,146,266,0	script	ep13_warp_13	139,1,1,{
 
 OnEnable:
 	enablenpc "ep13_warp_13";
+	specialeffect EF_WIND;
+	initnpctimer;
 	end;
 
 OnDisable:
-	disablenpc "ep13_warp_13";
-	initnpctimer;
 	specialeffect EF_WIND;
+	disablenpc "ep13_warp_13";
 	end;
 
 OnTouch:
@@ -11690,7 +11705,7 @@ OnTimer8000:
 	end;
 
 OnTimer10000:
-	enablenpc "ep13_warp_13";
+	disablenpc "ep13_warp_13";
 	end;
 }
 
@@ -11698,12 +11713,13 @@ nyd_dun02,146,263,0	script	ep13_warp_14	139,1,1,{
 
 OnEnable:
 	enablenpc "ep13_warp_14";
+	specialeffect EF_WIND;
+	initnpctimer;
 	end;
 
 OnDisable:
-	disablenpc "ep13_warp_14";
-	initnpctimer;
 	specialeffect EF_WIND;
+	disablenpc "ep13_warp_14";
 	end;
 
 OnTouch:
@@ -11731,7 +11747,7 @@ OnTimer10000:
 	end;
 
 OnTimer12000:
-	enablenpc "ep13_warp_14";
+	disablenpc "ep13_warp_14";
 	end;
 }
 
@@ -11745,12 +11761,13 @@ nyd_dun02,149,272,0	script	ep13_warp_21	139,1,1,{
 
 OnEnable:
 	enablenpc "ep13_warp_21";
+	specialeffect EF_WIND;
+	initnpctimer;
 	end;
 
 OnDisable:
-	disablenpc "ep13_warp_21";
-	initnpctimer;
 	specialeffect EF_WIND;
+	disablenpc "ep13_warp_21";
 	end;
 
 OnTouch:
@@ -11778,7 +11795,7 @@ OnTimer10000:
 	end;
 
 OnTimer12000:
-	enablenpc "ep13_warp_21";
+	disablenpc "ep13_warp_21";
 	end;
 }
 
@@ -11786,12 +11803,13 @@ nyd_dun02,149,269,0	script	ep13_warp_22	139,1,1,{
 
 OnEnable:
 	enablenpc "ep13_warp_22";
+	specialeffect EF_WIND;
+	initnpctimer;
 	end;
 
 OnDisable:
-	disablenpc "ep13_warp_22";
-	initnpctimer;
 	specialeffect EF_WIND;
+	disablenpc "ep13_warp_22";
 	end;
 
 OnTouch:
@@ -11823,7 +11841,7 @@ OnTimer12000:
 	end;
 
 OnTimer15000:
-	enablenpc "ep13_warp_22";
+	disablenpc "ep13_warp_22";
 	end;
 }
 
@@ -11861,12 +11879,13 @@ nyd_dun02,149,263,0	script	ep13_warp_24	139,1,1,{
 
 OnEnable:
 	enablenpc "ep13_warp_24";
+	specialeffect EF_WIND;
+	initnpctimer;
 	end;
 
 OnDisable:
-	disablenpc "ep13_warp_24";
-	initnpctimer;
 	specialeffect EF_WIND;
+	disablenpc "ep13_warp_24";
 	end;
 
 OnTouch:
@@ -11898,7 +11917,7 @@ OnTimer12000:
 	end;
 
 OnTimer15000:
-	enablenpc "ep13_warp_24";
+	disablenpc "ep13_warp_24";
 	end;
 }
 

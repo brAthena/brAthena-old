@@ -6,6 +6,7 @@
 
 #include "../common/mmo.h" // JOB_*, MAX_FAME_LIST, struct fame_list, struct mmo_charstatus
 #include "../common/timer.h" // INVALID_TIMER
+#include "atcommand.h" // AtCommandType
 #include "battle.h" // battle_config
 #include "buyingstore.h"  // struct s_buyingstore
 #include "itemdb.h" // MAX_ITEMGROUP
@@ -16,6 +17,7 @@
 #include "unit.h" // unit_stop_attack(), unit_stop_walking()
 #include "vending.h" // struct s_vending
 #include "mob.h"
+#include "log.h"
 
 #define MAX_RAGE 15
 #define MAX_RUNE 20
@@ -23,6 +25,7 @@
 #define MAX_PC_SKILL_REQUIRE 5
 #define MAX_PC_FEELHATE 3
 #define MAX_SPELLBOOK 10
+#define AUTOLOOTITEM_SIZE 10 //Max number of items on @autolootid list 
 
 struct weapon_data {
 	int atkmods[3];
@@ -74,7 +77,7 @@ struct s_addeffectonskill {
 	unsigned char target;
 };
 
-struct s_add_drop {
+struct s_add_drop { 
 	short id, group;
 	int race, rate;
 };
@@ -140,11 +143,14 @@ struct map_session_data {
 		unsigned int vending : 1;
 		unsigned int noks : 3; // [Zeph Kill Steal Protection]
 		unsigned int changemap : 1;
+		unsigned int callshop : 1; // flag to indicate that a script used callshop; on a shop
 		short pmap; // Previous map on Map Change
 		unsigned short autoloot;
-		unsigned short autolootid; // [Zephyrus]
+		unsigned short autolootid[AUTOLOOTITEM_SIZE]; // [Zephyrus]
+		unsigned int autolooting : 1; //performance-saver, autolooting state for @alootid
 		unsigned short autobonus; //flag to indicate if an autobonus is activated. [Inkfish]
 		struct guild *gmaster_flag;
+		unsigned int prevend : 1;//used to flag wheather you've spent 40sp to open the vending or not.
 		unsigned no_gemstone : 1;
 		unsigned improv_flag : 1;
 		unsigned magicmushroom_flag : 1; 
@@ -165,7 +171,7 @@ struct map_session_data {
 	} special_state;
 	int login_id1, login_id2;
 	unsigned short class_;	//This is the internal job ID used by the map server to simplify comparisons/queries/etc. [Skotlex]
-	int gmlevel;
+	int group_id;
 
 	int packet_ver;  // 5: old, 6: 7july04, 7: 13july04, 8: 26july04, 9: 9aug04/16aug04/17aug04, 10: 6sept04, 11: 21sept04, 12: 18oct04, 13: 25oct04 ... 18
 	struct mmo_charstatus status;
@@ -218,6 +224,7 @@ struct map_session_data {
 	unsigned int canusecashfood_tick;
 	unsigned int canequip_tick;	// [Inkfish]
 	unsigned int cantalk_tick;
+	unsigned int canskill_tick; // used to prevent abuse from no-delay ACT files
 	unsigned int cansendmail_tick; // [Mail System Flood Protection]
 	unsigned int ks_floodprotect_tick; // [Kill Steal Protection]
 
@@ -254,6 +261,8 @@ struct map_session_data {
 	int ignore_def[RC_MAX];
 	int itemgrouphealrate[MAX_ITEMGROUP];
 	short sp_gain_race[RC_MAX];
+	short sp_gain_race_attack[RC_MAX];
+	short hp_gain_race_attack[RC_MAX];
 	// zeroed arrays end here.
 	// zeroed structures start here
 	struct s_autospell autospell[15], autospell2[15], autospell3[15];
@@ -316,6 +325,7 @@ struct map_session_data {
 	short sp_gain_value, hp_gain_value, magic_sp_gain_value, magic_hp_gain_value;
 	short sp_vanish_rate;
 	short sp_vanish_per;
+	short sp_weapon_matk,sp_base_matk;
 	unsigned short unbreakable;	// chance to prevent ANY equipment breaking [celest]
 	unsigned short unbreakable_equip; //100% break resistance on certain equipment
 	unsigned short unstripable_equip;
@@ -398,7 +408,7 @@ struct map_session_data {
 	int eventtimer[MAX_EVENTTIMER];
 	unsigned short eventcount; // [celest]
 
-	unsigned char change_level[2]; // [celest]
+	unsigned char change_level[1]; // [celest]
 
 	char fakename[NAME_LENGTH]; // fake names [Valaris]
 
@@ -446,12 +456,37 @@ struct map_session_data {
 	unsigned int bg_id;
 	unsigned short user_font;
 
+	/**
+	 * For the Secure NPC Timeout option (check config/Secure.h) [RR]
+	 **/
+#if SECURE_NPCTIMEOUT
+	/**
+	 * ID of the timer
+	 * @info
+	 * - value is -1 (INVALID_TIMER constant) when not being used
+	 * - timer is cancelled upon closure of the current npc's instance
+	 **/
+	int npc_idle_timer;
+	/**
+	 * Tick on the last recorded NPC iteration (next/menu/whatever)
+	 * @info
+	 * - It is updated on every NPC iteration as mentioned above
+	 **/
+	unsigned int npc_idle_tick;
+#endif
+
+	/**
+	 * Guarantees your friend request is legit (for bugreport:4629)
+	 **/
+	int friend_req;
+
 	// temporary debugging of bug #3504
 	const char* delunit_prevfile;
 	int delunit_prevline;
 };
 
 //Update this max as necessary. 55 is the value needed for Super Baby currently
+//Raised to 75 due to 3rds
 #define MAX_SKILL_TREE 100
 //Total number of classes (for data storage)
 #define CLASS_COUNT (JOB_MAX - JOB_NOVICE_T + JOB_MAX_BASIC)
@@ -505,7 +540,7 @@ enum ammo_type {
 
 //Equip position constants
 enum equip_pos {
-	EQP_HEAD_LOW = 0x0001,
+	EQP_HEAD_LOW = 0x0001, 
 	EQP_HEAD_MID = 0x0200, //512
 	EQP_HEAD_TOP = 0x0100, //256
 	EQP_HAND_R   = 0x0002,
@@ -515,16 +550,16 @@ enum equip_pos {
 	EQP_GARMENT  = 0x0004,
 	EQP_ACC_L    = 0x0008,
 	EQP_ACC_R    = 0x0080, //128
+	EQP_COSTUME_HEAD_TOP = 0x0400,
+	EQP_COSTUME_HEAD_MID = 0x0800,
+	EQP_COSTUME_HEAD_LOW = 0x1000,
 	EQP_AMMO     = 0x8000, //32768
-	EQP_COS_HEAD_TOP = 0x0400, // 1024
-	EQP_COS_MID_TOP = 0x0800, // 2048
-	EQP_COS_LOW_TOP = 0x1000, // 4096
 };
 
 #define EQP_WEAPON EQP_HAND_R
 #define EQP_SHIELD EQP_HAND_L
 #define EQP_ARMS (EQP_HAND_R|EQP_HAND_L)
-#define EQP_HELM (EQP_HEAD_LOW|EQP_HEAD_MID|EQP_HEAD_TOP|EQP_COS_HEAD_TOP|EQP_COS_MID_TOP|EQP_COS_LOW_TOP)
+#define EQP_HELM (EQP_HEAD_LOW|EQP_HEAD_MID|EQP_HEAD_TOP)
 #define EQP_ACC (EQP_ACC_L|EQP_ACC_R)
 
 /// Equip positions that use a visible sprite
@@ -547,11 +582,32 @@ enum equip_index {
 	EQI_ARMOR,
 	EQI_HAND_L,
 	EQI_HAND_R,
+	EQI_COSTUME_TOP,
+	EQI_COSTUME_MID,
+	EQI_COSTUME_LOW,
 	EQI_AMMO,
-	EQI_COS_HEAD_TOP,
-	EQI_COS_MID_TOP,
-	EQI_COS_LOW_TOP,
 	EQI_MAX
+};
+
+enum e_pc_permission {
+	PC_PERM_NONE                = 0,
+	PC_PERM_TRADE               = 0x00001,
+	PC_PERM_PARTY               = 0x00002,
+	PC_PERM_ALL_SKILL           = 0x00004,
+	PC_PERM_USE_ALL_EQUIPMENT   = 0x00008,
+	PC_PERM_SKILL_UNCONDITIONAL = 0x00010,
+	PC_PERM_JOIN_ALL_CHAT       = 0x00020,
+	PC_PERM_NO_CHAT_KICK        = 0x00040,
+	PC_PERM_HIDE_SESSION        = 0x00080,
+	PC_PERM_WHO_DISPLAY_AID     = 0x00100,
+	PC_PERM_RECEIVE_HACK_INFO   = 0x00200,
+	PC_PERM_WARP_ANYWHERE       = 0x00400,
+	PC_PERM_VIEW_HPMETER        = 0x00800,
+	PC_PERM_VIEW_EQUIPMENT      = 0x01000,
+	PC_PERM_USE_CHECK           = 0x02000,
+	PC_PERM_USE_CHANGEMAPTYPE   = 0x04000,
+	PC_PERM_USE_ALL_COMMANDS    = 0x08000,
+	PC_PERM_RECEIVE_REQUESTS    = 0x10000,
 };
 
 #define pc_setdead(sd)        ( (sd)->state.dead_sit = (sd)->vd.dead_sit = 1 )
@@ -584,15 +640,20 @@ enum equip_index {
 #define pcdb_checkid(class_) (class_ < JOB_MAX_BASIC || (class_ >= JOB_NOVICE_T && class_ <= JOB_DARK_COLLECTOR) || (class_ >= JOB_RUNE_KNIGHT && class_ <= JOB_MECHANIC_MADO_T) || (class_ >= JOB_BABY_RUNE && class_ <= JOB_BABY_MECHANIC_MADO) || (class_ >= JOB_SUPER_NOVICE_E && class_ <= JOB_SUPER_BABY_E) || (class_ >= JOB_KAGEROU && class_ < JOB_MAX))
 
 int pc_class2idx(int class_);
-int pc_isGM(struct map_session_data *sd);
+int pc_get_group_level(struct map_session_data *sd);
+int pc_get_group_id(struct map_session_data *sd);
 int pc_getrefinebonus(int lv,int type);
-bool pc_can_give_items(int level);
+bool pc_can_give_items(struct map_session_data *sd);
+
+bool pc_can_use_command(struct map_session_data *sd, const char *command, AtCommandType type);
+bool pc_has_permission(struct map_session_data *sd, int permission);
+bool pc_should_log_commands(struct map_session_data *sd);
 
 int pc_setrestartvalue(struct map_session_data *sd,int type);
 int pc_makesavestatus(struct map_session_data *);
 void pc_respawn(struct map_session_data* sd, clr_type clrtype);
 int pc_setnewpc(struct map_session_data*,int,int,int,unsigned int,int,int);
-bool pc_authok(struct map_session_data* sd, int, time_t, int gmlevel, struct mmo_charstatus* status);
+bool pc_authok(struct map_session_data *sd, int login_id2, time_t expiration_time, int group_id, struct mmo_charstatus *st, bool changing_mapservers);
 void pc_authfail(struct map_session_data *);
 int pc_reg_received(struct map_session_data *sd);
 
@@ -614,17 +675,15 @@ int pc_clean_skilltree(struct map_session_data *sd);
 int pc_setpos(struct map_session_data* sd, unsigned short mapindex, int x, int y, clr_type clrtype);
 int pc_setsavepoint(struct map_session_data*,short,int,int);
 int pc_randomwarp(struct map_session_data *sd,clr_type type);
-int pc_warpto(struct map_session_data* sd, struct map_session_data* pl_sd);
-int pc_recall(struct map_session_data* sd, struct map_session_data* pl_sd);
 int pc_memo(struct map_session_data* sd, int pos);
 
 int pc_checkadditem(struct map_session_data*,int,int);
 int pc_inventoryblank(struct map_session_data*);
 int pc_search_inventory(struct map_session_data *sd,int item_id);
 int pc_payzeny(struct map_session_data*,int);
-int pc_additem(struct map_session_data*,struct item*,int);
+int pc_additem(struct map_session_data*,struct item*,int,e_log_pick_type);
 int pc_getzeny(struct map_session_data*,int);
-int pc_delitem(struct map_session_data*,int,int,int,short);
+int pc_delitem(struct map_session_data*,int,int,int,short,e_log_pick_type);
 
 bool pc_isriding( struct map_session_data *sd, int flag );
 
@@ -632,8 +691,8 @@ bool pc_isriding( struct map_session_data *sd, int flag );
 void pc_paycash(struct map_session_data *sd, int price, int points);
 void pc_getcash(struct map_session_data *sd, int cash, int points);
 
-int pc_cart_additem(struct map_session_data *sd,struct item *item_data,int amount);
-int pc_cart_delitem(struct map_session_data *sd,int n,int amount,int type);
+int pc_cart_additem(struct map_session_data *sd,struct item *item_data,int amount,e_log_pick_type log_type);
+int pc_cart_delitem(struct map_session_data *sd,int n,int amount,int type,e_log_pick_type log_type);
 int pc_putitemtocart(struct map_session_data *sd,int idx,int amount);
 int pc_getitemfromcart(struct map_session_data *sd,int idx,int amount);
 int pc_cartitem_amount(struct map_session_data *sd,int idx,int amount);
@@ -649,7 +708,7 @@ int pc_updateweightstatus(struct map_session_data *sd);
 
 int pc_addautobonus(struct s_autobonus *bonus,char max,const char *script,short rate,unsigned int dur,short atk_type,const char *o_script,unsigned short pos,bool onskill);
 int pc_exeautobonus(struct map_session_data* sd,struct s_autobonus *bonus);
-int pc_endautobonus(int tid, unsigned int tick, int id, intptr data);
+int pc_endautobonus(int tid, unsigned int tick, int id, intptr_t data);
 int pc_delautobonus(struct map_session_data* sd,struct s_autobonus *bonus,char max,bool restore);
 
 int pc_bonus(struct map_session_data*,int,int);
@@ -746,7 +805,7 @@ int pc_cleareventtimer(struct map_session_data *sd);
 int pc_addeventtimercount(struct map_session_data *sd,const char *name,int tick);
 
 int pc_calc_pvprank(struct map_session_data *sd);
-int pc_calc_pvprank_timer(int tid, unsigned int tick, int id, intptr data);
+int pc_calc_pvprank_timer(int tid, unsigned int tick, int id, intptr_t data);
 
 int pc_ismarried(struct map_session_data *sd);
 int pc_marriage(struct map_session_data *sd,struct map_session_data *dstsd);
@@ -814,8 +873,8 @@ enum {ADDITEM_EXIST,ADDITEM_NEW,ADDITEM_OVERAMOUNT};
 // timer for night.day
 extern int day_timer_tid;
 extern int night_timer_tid;
-int map_day_timer(int tid, unsigned int tick, int id, intptr data); // by [yor]
-int map_night_timer(int tid, unsigned int tick, int id, intptr data); // by [yor]
+int map_day_timer(int tid, unsigned int tick, int id, intptr_t data); // by [yor]
+int map_night_timer(int tid, unsigned int tick, int id, intptr_t data); // by [yor]
 
 // Rental System
 void pc_inventory_rentals(struct map_session_data *sd);
@@ -824,7 +883,7 @@ void pc_inventory_rental_add(struct map_session_data *sd, int seconds);
 
 int pc_read_motd(void); // [Valaris]
 int pc_disguise(struct map_session_data *sd, int class_);
-
+bool pc_isautolooting(struct map_session_data *sd, int nameid);
 int pc_banding(struct map_session_data *sd, short skill_lv);
 
 #endif /* _PC_H_ */

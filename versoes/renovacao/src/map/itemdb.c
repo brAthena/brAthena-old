@@ -3,6 +3,7 @@
 
 #include "../common/nullpo.h"
 #include "../common/malloc.h"
+#include "../common/random.h"
 #include "../common/showmsg.h"
 #include "../common/strlib.h"
 #include "itemdb.h"
@@ -14,11 +15,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-
-// 32k array entries (the rest goes to the db)
-#define MAX_ITEMDB 0x8000
-
-
 
 static struct item_data* itemdb_array[MAX_ITEMDB];
 static DBMap*            itemdb_other;// int nameid -> struct item_data*
@@ -144,8 +140,8 @@ int itemdb_searchrandomid(int group)
 		return UNKNOWN_ITEM_ID;
 	}
 	if (itemgroup_db[group].qty)
-		return itemgroup_db[group].nameid[rand()%itemgroup_db[group].qty];
-
+		return itemgroup_db[group].nameid[rnd()%itemgroup_db[group].qty];
+	
 	ShowError("itemdb_searchrandomid: No item entries for group id %d\n", group);
 	return UNKNOWN_ITEM_ID;
 }
@@ -202,7 +198,7 @@ const char* itemdb_typename(int type)
 }
 
 /*==========================================
- * Converts the jobid from the format in itemdb
+ * Converts the jobid from the format in itemdb 
  * to the format used by the map server. [Skotlex]
  *------------------------------------------*/
 static void itemdb_jobid2mapid(unsigned int *bclass, unsigned int jobmask)
@@ -407,39 +403,40 @@ int itemdb_isstackable2(struct item_data *data)
 /*==========================================
  * Trade Restriction functions [Skotlex]
  *------------------------------------------*/
-int itemdb_isdropable_sub(struct item_data *item, int gmlv, int unused)
-{
+int itemdb_isdropable_sub(struct item_data *item, int gmlv, int unused) {
 	return (item && (!(item->flag.trade_restriction&1) || gmlv >= item->gm_lv_trade_override));
 }
 
-int itemdb_cantrade_sub(struct item_data* item, int gmlv, int gmlv2)
-{
+int itemdb_cantrade_sub(struct item_data* item, int gmlv, int gmlv2) {
 	return (item && (!(item->flag.trade_restriction&2) || gmlv >= item->gm_lv_trade_override || gmlv2 >= item->gm_lv_trade_override));
 }
 
-int itemdb_canpartnertrade_sub(struct item_data* item, int gmlv, int gmlv2)
-{
+int itemdb_canpartnertrade_sub(struct item_data* item, int gmlv, int gmlv2) {
 	return (item && (item->flag.trade_restriction&4 || gmlv >= item->gm_lv_trade_override || gmlv2 >= item->gm_lv_trade_override));
 }
 
-int itemdb_cansell_sub(struct item_data* item, int gmlv, int unused)
-{
+int itemdb_cansell_sub(struct item_data* item, int gmlv, int unused) {
 	return (item && (!(item->flag.trade_restriction&8) || gmlv >= item->gm_lv_trade_override));
 }
 
-int itemdb_cancartstore_sub(struct item_data* item, int gmlv, int unused)
-{
+int itemdb_cancartstore_sub(struct item_data* item, int gmlv, int unused) {
 	return (item && (!(item->flag.trade_restriction&16) || gmlv >= item->gm_lv_trade_override));
 }
 
-int itemdb_canstore_sub(struct item_data* item, int gmlv, int unused)
-{
+int itemdb_canstore_sub(struct item_data* item, int gmlv, int unused) {
 	return (item && (!(item->flag.trade_restriction&32) || gmlv >= item->gm_lv_trade_override));
 }
 
-int itemdb_canguildstore_sub(struct item_data* item, int gmlv, int unused)
-{
+int itemdb_canguildstore_sub(struct item_data* item, int gmlv, int unused) {
 	return (item && (!(item->flag.trade_restriction&64) || gmlv >= item->gm_lv_trade_override));
+}
+
+int itemdb_canmail_sub(struct item_data* item, int gmlv, int unused) {
+	return (item && (!(item->flag.trade_restriction&128) || gmlv >= item->gm_lv_trade_override));
+}
+
+int itemdb_canauction_sub(struct item_data* item, int gmlv, int unused) {
+	return (item && (!(item->flag.trade_restriction&256) || gmlv >= item->gm_lv_trade_override));
 }
 
 int itemdb_isrestricted(struct item* item, int gmlv, int gmlv2, int (*func)(struct item_data*, int, int))
@@ -449,10 +446,10 @@ int itemdb_isrestricted(struct item* item, int gmlv, int gmlv2, int (*func)(stru
 
 	if (!func(item_data, gmlv, gmlv2))
 		return 0;
-
+	
 	if(item_data->slot == 0 || itemdb_isspecial(item->card[0]))
 		return 1;
-
+	
 	for(i = 0; i < item_data->slot; i++) {
 		if (!item->card[i]) continue;
 		if (!func(itemdb_search(item->card[i]), gmlv, gmlv2))
@@ -625,8 +622,7 @@ static bool itemdb_read_itemtrade(char* str[], int columns, int current)
 	flag = atoi(str[1]);
 	gmlv = atoi(str[2]);
 
-	if( flag < 0 || flag >= 128 )
-	{//Check range
+	if( flag < 0 || flag > 511 ) {//Check range
 		ShowWarning("itemdb_read_itemtrade: Invalid trading mask %d for item id %d.\n", flag, nameid);
 		return false;
 	}
@@ -767,9 +763,9 @@ static bool itemdb_parse_dbrow(char** str, const char* source, int line, int scr
 		id->value_sell = atoi(str[5]);
 	else
 		id->value_sell = id->value_buy / 2;
-	/*
+	/* 
 	if ( !str[4][0] && !str[5][0])
-	{
+	{  
 		ShowWarning("itemdb_parse_dbrow: No buying/selling price defined for item %d (%s), using 20/10z\n",       nameid, id->jname);
 		id->value_buy = 20;
 		id->value_sell = 10;
@@ -1052,8 +1048,8 @@ void itemdb_reload(void)
 	struct s_mapiterator* iter;
 	struct map_session_data* sd;
 
-	int i;
-
+	int i,d,k;
+	
 	// clear the previous itemdb data
 	for( i = 0; i < ARRAYLENGTH(itemdb_array); ++i )
 		if( itemdb_array[i] )
@@ -1065,6 +1061,34 @@ void itemdb_reload(void)
 
 	// read new data
 	itemdb_read();
+	
+	//Epoque's awesome @reloaditemdb fix - thanks! [Ind]
+	//- Fixes the need of a @reloadmobdb after a @reloaditemdb to re-link monster drop data
+	for( i = 0; i < MAX_MOB_DB; i++ ) {
+		struct mob_db *entry;
+		if( !((i < 1324 || i > 1363) && (i < 1938 || i > 1946)) )
+			continue;
+		entry = mob_db(i);
+		for(d = 0; d < MAX_MOB_DROP; d++) {
+			struct item_data *id;
+			if( !entry->dropitem[d].nameid )
+				continue;
+			id = itemdb_search(entry->dropitem[d].nameid);
+
+			for (k = 0; k < MAX_SEARCH; k++) {
+				if (id->mob[k].chance <= entry->dropitem[d].p)
+					break;
+			}
+
+			if (k == MAX_SEARCH)
+				continue;
+			
+			if (id->mob[k].id != i)
+				memmove(&id->mob[k+1], &id->mob[k], (MAX_SEARCH-k-1)*sizeof(id->mob[0]));
+			id->mob[k].chance = entry->dropitem[d].p;
+			id->mob[k].id = i;
+		}
+	}
 
 	// readjust itemdb pointer cache for each player
 	iter = mapit_geteachpc();
@@ -1091,7 +1115,7 @@ void do_final_itemdb(void)
 int do_init_itemdb(void)
 {
 	memset(itemdb_array, 0, sizeof(itemdb_array));
-	itemdb_other = idb_alloc(DB_OPT_BASE);
+	itemdb_other = idb_alloc(DB_OPT_BASE); 
 	create_dummy_data(); //Dummy data item.
 	itemdb_read();
 

@@ -1,45 +1,53 @@
-//  ________________________________________________________
-// /                                                        \
-// |       _           _   _   _                            |
-// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
-// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
-// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
-// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |                                                        |
-// |                    brAthena Script                     |
-// |--------------------------------------------------------|
-// | Nome do Script: Veins Quests				    		|
-// |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    			|
-// |--------------------------------------------------------|
-// | Versões eA/brA: 2.0/1.0				    			|
-// |--------------------------------------------------------|
-// | Descrição: Collection of Veins Quests 					|
-// | Stone Quest:											|
-// | - Help an Old Man with his job.						|
-// | - Dialog obtained from iRO.							|
-// | - Variable in use: veins_stone (max 8)					|
-// | Spy Quest:												|
-// | - Help prove (or disprove) a bard's innocence.			|
-// | - Dialog obtained from iRO.							|
-// | - Variable in use: que_sch (max 26)					|
-// | Siblings Quest:										|
-// | - Help a boy save his little sister.					|
-// | - Dialog partially obtained from iRO.					|
-// | - Variable in use: rachel_camel (max 25)				|
-// | Thor Volcano Base Quest:								|
-// | - Missing addition to High Priest Zhed to start quest.	|
-// | - Infiltrate Thor Volcano Base. What is 				|
-// | 		Arunafeltz up to?								|
-// | - Variable in use: rachel_camel (max 27)				|
-// |--------------------------------------------------------|
-// | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
-// | - Anotações					    					|
-// \________________________________________________________/
+//===== rAthena Script ======================================= 
+//= Veins Quests
+//===== By: ================================================== 
+//= L0ne_W0lf
+//===== Current Version: ===================================== 
+//= 2.0
+//===== Compatible With: ===================================== 
+//= rAthena SVN
+//===== Description: ========================================= 
+//= [Aegis Conversion]
+//= Collection of Veins Quests 
+//= Stone Quest:
+//= - Help an Old Man with his job.
+//= - Dialog obtained from iRO.
+//= - Variable in use: veins_stone (max 8)
+//= Spy Quest:
+//= - Help prove (or disprove) a bard's innocence.
+//= - Dialog obtained from iRO.
+//= - Variable in use: que_sch (max 26)
+//= Siblings Quest:
+//= - Help a boy save his little sister.
+//= - Dialog partially obtained from iRO.
+//= - Variable in use: rachel_camel (max 25)
+//= Thor Volcano Base Quest:
+//= - Missing addition to High Priest Zhed to start quest.
+//= - Infiltrate Thor Volcano Base. What is Arunafeltz up to?
+//= - Variable in use: rachel_camel (max 27)
+//===== Additional Comments: ================================= 
+//= 1.0 First version, Added Veins Stone quest. [L0ne_W0lf]
+//= 1.1 Added Veins Spy Quest. [L0ne_W0lf]
+//= 1.2 Added Veins Siblings Quest. [L0ne_W0lf]
+//=	Added Veins Thor Volcano Base Quest NPC. [L0ne_W0lf]
+//=	Start NPC is missing, but will be added when I get it.
+//= 1.3 Fixed two typos small in Asbar. [L0ne_W0lf]
+//= 1.3a More fixes to some of the Base quest NPCs. [L0ne_W0lf]
+//= 1.4 Added missing checkweights. [L0ne_W0lf]
+//= 1.4a Corrected a typo error ";;". [Toms]
+//= 1.5 Added Nameless Island quest addition. [L0ne_W0lf]
+//= 1.5a Corrected a couple typos in Nameless Addition. [L0ne_W0lf]
+//= 1.6 Replaced effect numerics with constants. [L0ne_W0lf]
+//= 1.7 Moved a couple NPCs related to the Spy quest. [L0ne_W0lf]
+//= 1.8 Fixed some typos and confusing condition checks. [L0ne_W0lf]
+//= 1.9 Added quest log entries for:
+//=     - Siblings Quest
+//=     - Thor Volcano Base Quest
+//= 2.0 Removed lvel requirement. (bugreport:4678) [L0ne_W0lf]
+//============================================================ 
 
 // Stone Quest
-//============================================================
+//============================================================ 
 ve_fild05,257,130,4	script	Wincing Old Man#ve	945,{
 	if ((MaxWeight - Weight) < 2000 || checkweight(1201,1) == 0) {
 		mes "- Wait a moment! -";
@@ -280,7 +288,7 @@ ve_fild05,257,130,4	script	Wincing Old Man#ve	945,{
 		mes "find these useful. Anyway,";
 		mes "I hope you like these rocks...";
 		set veins_stone,8;
-		getexp 300000,0;
+		getexp 30000,0;
 		getitem 985,3; //Elunium
 		close;
 	}
@@ -631,7 +639,7 @@ ve_in02,68,39,7	script	Factory Worker#ve2	943,{
 }
 
 // Spy Quest
-//============================================================
+//============================================================ 
 prontera,202,122,0	script	Kid#sch	703,{
 	if (que_sch == 0) {
 		mes "[Rooney]";
@@ -972,7 +980,7 @@ prt_church,89,108,6	script	Bard#sch	741,{
 		mes "reward with our sincere thanks.";
 		set que_sch,26;
 		getitem 12106,1; //Accessory_Box
-		getexp 600000,0;
+		getexp 60000,0;
 		close;
 	}
 	else {
@@ -2019,7 +2027,7 @@ ein_in01,166,282,4	script	Employee#sch	904,{
 	close;
 }
 
-ein_in01,176,285,0	script	°ÍµÂ ÌØÀæ¸ê#sch	-1,1,1,{
+ein_in01,176,285,0	script	Bard Trigger#sch	-1,1,1,{
 OnTouch:
 	if (que_sch == 15) {
 		disablenpc "Corporate Figure#sch";
@@ -2646,7 +2654,7 @@ comodo,135,299,0	script	Young Man#sch2	809,{
 }
 
 // Siblings Quest
-//============================================================
+//============================================================ 
 veins,327,185,3	script	Kid#camelcamel	944,{
 	if (MISC_QUEST & 8192) {
 		if (rachel_camel == 0) {
@@ -2827,13 +2835,28 @@ veins,327,185,3	script	Kid#camelcamel	944,{
 			set rachel_camel,3;
 			close;
 		}
-		else if (rachel_camel <= 5) {
-			mes "["+strcharinfo(0)+"]";
+		else if (rachel_camel == 3) {
+			mes "[Kid Karyn]";
 			mes "Let's see...";
 			mes "I'd better find the";
 			mes "locksmith in the market";
 			mes "street, and ask him to help";
 			mes "me unlock Curdie's shackles.";
+			close;
+		}
+		else if (rachel_camel == 4) {
+			mes "[Kid Karyn]";
+			mes "Huh... I'd better talk";
+			mes "to Mr. Lockenlock first, the";
+			mes "locksmith in the market street.";
+			close;
+		}
+		else if (rachel_camel == 5) {
+			mes "["+strcharinfo(0)+"]";
+			mes "Hmm... I'd better talk";
+			mes "to Ms. Ivory, the organic";
+			mes "soap maker if I want to help";
+			mes "Karyn free his sister Curdie.";
 			close;
 		}
 		else if (rachel_camel == 6) {
@@ -2902,7 +2925,7 @@ veins,327,185,3	script	Kid#camelcamel	944,{
 			mes "if I want to free Curdie.";
 			close;
 		}
-		else if ((rachel_camel >= 12) && (rachel_camel <= 16)) {
+		else if (rachel_camel > 11 && rachel_camel < 17) {
 			mes "["+strcharinfo(0)+"]";
 			mes "Well... I found the";
 			mes "camel. Now I need to get";
@@ -3026,12 +3049,22 @@ veins,327,185,3	script	Kid#camelcamel	944,{
 			completequest 3083;
 			set rachel_camel,25;
 			specialeffect2 EF_ABSORBSPIRITS;
-			getexp 1000000,700000;
+			getexp 100000,70000;
 			close;
 		}
 		else {
 // Start Nameless Island Access Quest Addition
-			if (aru_monas == 15) {
+			if (aru_monas < 15) {
+				mes "[Kid Karyn]";
+				mes "Oh, hello! Thank you";
+				mes "so much for helping me";
+				mes "last time! When I get";
+				mes "older, I'm gonna do my";
+				mes "best to help you the same";
+				mes "way that you helped me!";
+				close;
+			}
+			else if (aru_monas == 15) {
 				mes "[Kid Karyn]";
 				mes "Hi! It's good to see";
 				mes "you again! Kurdi just came";
@@ -3102,21 +3135,22 @@ veins,327,185,3	script	Kid#camelcamel	944,{
 				set aru_monas,16;
 				close;
 			}
-			else if (aru_monas > 15) {
+			else if (aru_monas < 26) {
 				mes "[Kid Karyn]";
 				mes "Hi! How do you like";
 				mes "fishing on my dad's boat?";
 				mes "Oh, and Kurdi says hi!";
 				close;
 			}
+			else {
+				mes "[Kid Karyn]";
+				mes "Dad says that he'll";
+				mes "be able to go fishing";
+				mes "again soon! I hope that";
+				mes "he'll catch a lot of fish!";
+				close;
+			}
 // End Nameless Island Access Quest Addition.
-			mes "[Kid Karyn]";
-			mes "Hello, hello!";
-			mes "Hey, did you need";
-			mes "me to help you? No...?";
-			mes "Awww, there must be";
-			mes "something I can do...";
-			close;
 		}
 	}
 	else {
@@ -3222,7 +3256,7 @@ que_thor,36,66,5	script	Little Curdie	941,{
 		mes "from these chains.^000000";
 		close;
 	}
-	else if (rachel_camel == 3) {
+	else if (rachel_camel == 3 || rachel_camel == 6 || rachel_camel == 8 || rachel_camel == 22) {
 		mes "^3355FFCurdie is lying";
 		mes "feebly on the ground.^000000";
 		close;
@@ -3247,20 +3281,10 @@ que_thor,36,66,5	script	Little Curdie	941,{
 		mes "the Rachel soldiers.^000000";
 		close;
 	}
-	else if (rachel_camel == 6) {
-		mes "^3355FFCurdie is lying";
-		mes "feebly on the ground.^000000";
-		close;
-	}
 	else if (rachel_camel == 7) {
 		mes "^3355FFIt seems that someone";
 		mes "has come by to give";
 		mes "Curdie food and water.^000000";
-		close;
-	}
-	else if (rachel_camel == 8) {
-		mes "^3355FFCurdie is lying";
-		mes "feebly on the ground.^000000";
 		close;
 	}
 	else if (rachel_camel == 9) {
@@ -3289,7 +3313,7 @@ que_thor,36,66,5	script	Little Curdie	941,{
 		mes "if I want to free Curdie.";
 		close;
 	}
-	else if (rachel_camel <= 16) {
+	else if (rachel_camel > 11 && rachel_camel < 17) {
 		mes "^3355FFYou already found the";
 		mes "camel, so you need to collect";
 		mes "the soap ingredients if you";
@@ -3414,11 +3438,6 @@ que_thor,36,66,5	script	Little Curdie	941,{
 		mes "to unlock Curdie's shackles.^000000";
 		close;
 	}
-	else if (rachel_camel == 22) {
-		mes "^3355FFCurdie is lying";
-		mes "feebly on the ground.^000000";
-		close;
-	}
 	else if (rachel_camel == 23) {
 		mes "[Little Curdie]";
 		mes "Y-you...";
@@ -3478,13 +3497,21 @@ que_thor,36,66,5	script	Little Curdie	941,{
 	}
 	else {
 		mes "[Little Curdie]";
-		mes " .......";
+		mes " ...Wah....";
 		close;
 	}
 }
 
 veins,181,166,3	script	Lockenlock	900,{
-	if (rachel_camel == 4) {
+	if (rachel_camel && rachel_camel < 4) {
+		mes "^3355FFIt's a drunkard...";
+		mes "The scent of pure";
+		mes "alcohol wafts around him.";
+		mes "There's a certain beauty";
+		mes "to his disheveled misery.^000000";
+		close;
+	}
+	else if (rachel_camel == 4) {
 		if (countitem(503) > 0) {
 			mes "["+strcharinfo(0)+"]";
 			mes "Excuse me...?";
@@ -3629,14 +3656,6 @@ veins,181,166,3	script	Lockenlock	900,{
 			close;
 		}
 	}
-	else if (rachel_camel <= 3) {
-		mes "^3355FFIt's a drunkard...";
-		mes "The scent of pure";
-		mes "alcohol wafts around him.";
-		mes "There's a certain beauty";
-		mes "to his disheveled misery.^000000";
-		close;
-	}
 	else if (rachel_camel == 5) {
 		mes "[Locksmith Lockenlock]";
 		mes "Go to the market and";
@@ -3734,7 +3753,7 @@ veins,181,166,3	script	Lockenlock	900,{
 		mes "sooner I can help Curdie.";
 		close;
 	}
-	else if (rachel_camel <= 16) {
+	else if (rachel_camel > 12 && rachel_camel < 17) {
 		mes "^3355FFYou already found the";
 		mes "camel, so you need to collect";
 		mes "the soap ingredients if you";
@@ -4041,7 +4060,17 @@ veins,181,166,3	script	Lockenlock	900,{
 }
 
 veins,227,127,5	script	Ivory	940,{
-	if (rachel_camel == 5) {
+	if (rachel_camel && rachel_camel < 5) {
+		mes "[Organic Soap Maker Ivory]";
+		mes "I need to make more of";
+		mes "my soap, but I've run out";
+		mes "of ingredients. Well, there's";
+		mes "not much I can do without them,";
+		mes "so maybe it'd be better if";
+		mes "I just close up shop today...";
+		close;
+	}
+	else if (rachel_camel == 5) {
 		mes "["+strcharinfo(0)+"]";
 		mes "Excuse me...?";
 		next;
@@ -4186,23 +4215,11 @@ veins,227,127,5	script	Ivory	940,{
 			close;
 		}
 	}
-	else if (rachel_camel <= 4) {
-		mes "[Organic Soap Maker Ivory]";
-		mes "I need to make more of";
-		mes "my soap, but I've run out";
-		mes "of ingredients. Well, there's";
-		mes "not much I can do without them,";
-		mes "so maybe it'd be better if";
-		mes "I just close up shop today...";
-		close;
-	}
 	else if (rachel_camel == 7) {
-		mes "[Beautiful Lady]";
-		mes "Hm? Did you need";
-		mes "something? I'm still";
-		mes "setting up shop now";
-		mes "so I'm not really ready";
-		mes "to sell anything yet.";
+		mes "["+strcharinfo(0)+"]";
+		mes "I need to talk to";
+		mes "someone named Saraman";
+		mes "to get the soap ingredients...";
 		close;
 	}
 	else if (rachel_camel == 8) {
@@ -4258,7 +4275,7 @@ veins,227,127,5	script	Ivory	940,{
 		mes "sooner I can help Curdie.";
 		close;
 	}
-	else if (rachel_camel <= 16) {
+	else if (rachel_camel > 12 && rachel_camel < 17) {
 		mes "^3355FFYou already found the";
 		mes "camel, so you need to collect";
 		mes "the soap ingredients if you";
@@ -4347,7 +4364,7 @@ veins,227,127,5	script	Ivory	940,{
 		mes "to Mr. Lockenlock.^000000";
 		close;
 	}
-	else if (rachel_camel <= 25) {
+	else if (rachel_camel > 19 && rachel_camel < 26) {
 		mes "[Organic Soap Maker Ivory]";
 		mes "^333333*Phew!*^000000 It's been";
 		mes "a long day. I think";
@@ -4366,7 +4383,7 @@ veins,227,127,5	script	Ivory	940,{
 }
 
 veins,115,59,5	script	Saraman	847,{
-	if (rachel_camel < 7) {
+	if (rachel_camel && rachel_camel < 7) {
 		mes "[Saraman]";
 		mes "Zzzzz...";
 		mes "Zzz... Zzzzzz...";
@@ -4637,7 +4654,7 @@ veins,115,59,5	script	Saraman	847,{
 		mes "sooner I can help Curdie.";
 		close;
 	}
-	else if (rachel_camel <= 16) {
+	else if (rachel_camel > 12 && rachel_camel < 17) {
 		mes "^3355FFYou already found the";
 		mes "camel, so you need to collect";
 		mes "the soap ingredients if you";
@@ -4692,7 +4709,7 @@ veins,115,59,5	script	Saraman	847,{
 		mes "to see Ms. Ivory now?";
 		close;
 	}
-	else if (rachel_camel <= 23) {
+	else if (rachel_camel > 18 && rachel_camel < 24) {
 		mes "[Camel Farm Owner Saraman]";
 		mes "Thank you for finding my";
 		mes "precious Silk Sand Camel";
@@ -4775,20 +4792,20 @@ ve_fild07,235,42,3	script	Silk Sand Camel	938,{
 		set rachel_camel,12;
 		close;
 	}
-	else if (rachel_camel >= 12 && rachel_camel <= 16) {
+	else if (rachel_camel > 11 && rachel_camel < 17) {
 		if (countitem(519) > 1 && countitem(511) > 19 && countitem(909) > 9 && countitem(713) > 0) {
 			mes "^3355FFThe camel can smell";
 			mes "that you have food for";
 			mes "it, and started salivating.";
 			mes "You may as well just feed it.^000000";
 			next;
-			mes "[Silk Sand Camel]";
-			mes "^333333*Chew Chew~*^000000";
-			mes "^333333*Smacks lips*^000000";
-			next;
-			switch(rand(1,7)) {
+			switch(rand(3)) {
 			case 1:
 				if (rachel_camel == 12) {
+					mes "[Silk Sand Camel]";
+					mes "^333333*Chew Chew~*^000000";
+					mes "^333333*Smacks lips*^000000";
+					next;
 					mes "^3355FFThe camel ate everything,";
 					mes "but it doesn't seem like";
 					mes "it'll go through any bowel";
@@ -4808,69 +4825,10 @@ ve_fild07,235,42,3	script	Silk Sand Camel	938,{
 				delitem 909,10; //Jellopy
 				close;
 			case 2:
-				mes "^3355FFThe camel grimaced";
-				mes "as if it were suffering";
-				mes "from a stomachache...";
-				mes "And... Out pops a Sweet";
-				mes "Potato. It's probably";
-				mes "safe to eat... Maybe.^000000";
-				delitem 519,2; //Milk
-				delitem 511,20; //Green_Herb
-				delitem 909,10; //Jellopy
-				getitem 516,1; //Sweet_Potato
-				close;
-			case 3:
-				mes "^3355FFThe camel grimaced";
-				mes "as if it were suffering";
-				mes "from a stomachache...";
-				if (rachel_camel == 12) {
-					mes "And... Out pops 3 Sweet";
-					mes "Potatoes. They're probably";
-				}
-				else {
-					mes "And... Out pops a Sweet";
-					mes "Potato. It's probably";
-				}
-				mes "safe to eat... Hopefully.^000000";
-				delitem 519,2; //Milk
-				delitem 511,20; //Green_Herb
-				delitem 909,10; //Jellopy
-				if (rachel_camel == 12) {
-					getitem 516,3; //Sweet_Potato
-				}
-				else {
-					getitem 516,1; //Sweet_Potato
-				}
-				close;
-			case 4:
 				mes "[Silk Sand Camel]";
 				mes "^333333*Chew Chew~*^000000";
 				mes "^333333*Smacks lips*^000000";
 				next;
-				mes "^3355FFThe camel grimaced";
-				mes "as if it were suffering";
-				mes "from a stomachache...";
-				if (rachel_camel == 12) {
-					mes "And... Out pops 7 Sweet";
-					mes "Potatoes. They're probably";
-				}
-				else {
-					mes "And... Out pops a Sweet";
-					mes "Potato. It's probably";
-				}
-				mes "safe to eat... Hopefully.^000000";
-				delitem 519,2; //Milk
-				delitem 511,20; //Green_Herb
-				delitem 909,10; //Jellopy
-				if (rachel_camel == 12) {
-					getitem 516,7; //Sweet_Potato
-				}
-				else {
-					getitem 516,1; //Sweet_Potato
-				}
-
-				close;
-			case 5:
 				mes "^3355FFThe camel grimaced";
 				mes "as if it were suffering";
 				mes "from a stomachache...";
@@ -4878,28 +4836,32 @@ ve_fild07,235,42,3	script	Silk Sand Camel	938,{
 				mes "of steaming camel dung!";
 				mes "This is cause for celebration!^000000";
 				next;
-				mes "["+strcharinfo(0)+"]";
+				mes "[" + strcharinfo(0) + "]";
 				if (rachel_camel == 12) {
 					mes "Now all I need is";
 					mes "just 4 more lumps";
 					mes "of this nasty old dung.";
+					set rachel_camel, 13;
 				}
 				else if (rachel_camel == 13) {
 					mes "Awesome! I got";
 					mes "2 glorious camel dung";
 					mes "lumps! Only 3 more to go!";
+					set rachel_camel, 14;
 				}
 				else if (rachel_camel == 14) {
 					mes "Yes! Now I have";
 					mes "3 camel dung lumps.";
 					mes "Just 2 more... I'm more";
 					mes "than halfway done!";
+					set rachel_camel, 15;
 				}
 				else if (rachel_camel == 15) {
 					mes "4 lumps of camel dung...";
 					mes "Heh heh! This is going";
 					mes "better than I thought!";
 					mes "Only 1 more to go!";
+					set rachel_camel, 16;
 				}
 				else if (rachel_camel == 16) {
 					mes "In my hands...";
@@ -4907,7 +4869,7 @@ ve_fild07,235,42,3	script	Silk Sand Camel	938,{
 					mes "5 lumps of camel dung.";
 					mes "This is my finest moment.";
 					next;
-					mes "["+strcharinfo(0)+"]";
+					mes "[" + strcharinfo(0) + "]";
 					mes "Never, in all my years";
 					mes "of adventuring, saving the";
 					mes "oppressed, protecting the";
@@ -4915,41 +4877,24 @@ ve_fild07,235,42,3	script	Silk Sand Camel	938,{
 					mes "that I'd accomplish such";
 					mes "a magnificent feat.";
 					next;
-					mes "["+strcharinfo(0)+"]";
+					mes "[" + strcharinfo(0) + "]";
 					mes "I am so happy--nay--";
 					mes "^4D4DFFproud^000000 that my strength, my";
 					mes "valor, and my determination";
 					mes "was up to this task. May the";
 					mes "annals of history never forget";
-					mes "this day! Long live "+strcharinfo(0)+"!";
+					mes "this day! Long live "+username+"!";
 					next;
 					mes "^3355FFIt's time for you to";
 					mes "return to Mr. Saraman.^000000";
+					set rachel_camel, 17;
 				}
 				delitem 519,2; //Milk
 				delitem 511,20; //Green_Herb
 				delitem 909,10; //Jellopy
 				delitem 713,1; //Empty_Bottle
-				changequest 3059+rachel_camel,3060+rachel_camel;
-				set rachel_camel,rachel_camel+1;
 				close;
-			case 6:
-				mes "[Silk Sand Camel]";
-				mes "^333333*Chew Chew~*^000000";
-				mes "^333333*Smacks lips*^000000";
-				next;
-				mes "^3355FFThe camel grimaced";
-				mes "as if it were suffering";
-				mes "from a stomachache...";
-				mes "And... Out pops a Sweet";
-				mes "Potato. It's probably";
-				mes "safe to eat... Maybe.^000000";
-				delitem 519,2; //Milk
-				delitem 511,20; //Green_Herb
-				delitem 909,10; //Jellopy
-				getitem 516,1; //Sweet_Potato
-				close;
-			case 7:
+			default:
 				mes "[Silk Sand Camel]";
 				mes "^333333*Chew Chew~*^000000";
 				mes "^333333*Smacks lips*^000000";
@@ -4969,18 +4914,26 @@ ve_fild07,235,42,3	script	Silk Sand Camel	938,{
 		}
 		else {
 			mes "["+strcharinfo(0)+"]";
-			mes "I need to feed this camel if";
-			mes "I ever want to get any dung";
-			mes "from it. Let's see, Mr. Saraman";
-			mes "mentioned that the items I got";
-			mes "for Ms. Ivory were actually";
-			mes "camel feed. I need to have...";
+			if (rachel_camel == 12) {
+				mes "I need to feed this camel if";
+				mes "I ever want to get any dung";
+				mes "from it. Let's see, Mr. Saraman";
+				mes "mentioned that the items I got";
+				mes "for Ms. Ivory were actually";
+				mes "camel feed. I need to have...";
+			}
+			else {
+				mes "Did I run out of feed";
+				mes "already? Nuts, if I want";
+				mes "to feed this camel again,";
+				mes "then I need to bring it...";
+			}
 			next;
 			mes "["+strcharinfo(0)+"]";
-			mes "^4D4DFF10 Milk^000000,";
-			mes "^4D4DFF100 Green Herbs^000000,";
-			mes "^4D4DFF50 Jellopies^000000, and";
-			mes "^4D4DFF5 Empty Bottles^000000.";
+			mes "^4D4DFF2 Milk^000000,";
+			mes "^4D4DFF20 Green Herbs^000000,";
+			mes "^4D4DFF10 Jellopies^000000, and";
+			mes "^4D4DFF1 Empty Bottles^000000.";
 			next;
 			mes "[Silk Sand Camel]";
 			mes "*Chew Chew*";
@@ -5101,7 +5054,7 @@ veins,221,120,5	script	Young Town Native	943,{
 }
 
 // Thor Volcano Base Quest
-//============================================================
+//============================================================ 
 
 ra_temin,87,133,1	script	Rachel Guard#vol1	934,5,2,{
 	if (aru_vol == 2) {
@@ -6132,7 +6085,7 @@ ve_in,281,214,3	script	Bookshelf#vol	111,{
 		else {
 			getitem 12103,1; //Bloody_Dead_Branch
 		}
-		getexp 800000,0;
+		getexp 80000,0;
 		mes "^3355FFWell, you've done all";
 		mes "that you could here.";
 		mes "Now would be a good time";
@@ -7276,7 +7229,7 @@ thor_camp,98,213,5	script	Thor Volcano Soldier#vo8	939,{
 	close;
 }
 
-thor_camp,98,213,5	script	Thor Volcano Soldier#vo9	939,{
+thor_camp,98,209,5	script	Thor Volcano Soldier#vo9	939,{
 	mes "[Soldier]";
 	mes "Why am I always";
 	mes "stationed here?!";

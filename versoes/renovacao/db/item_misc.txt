@@ -37,7 +37,7 @@
 8,656,5		// Poção do Despertar -> 0,05%
 8,657,5		// Poção da Fúria Selvagem -> 0,05%
 8,678,1		// Garrafa de Veneno -> 0,01%
-8,12016,4	// Poção do Vento -> 0,04%
+8,12016,5	// Poção do Vento -> 0,05%
 8,12017,5	// Poção da Lentidão -> 0,05%
 8,12020,5	// Água Amaldiçoada -> 0,05%
 //========================================================================================================
@@ -123,7 +123,7 @@
 19,526,5	// Geléia Real -> 0,05%
 19,12042,10	// Palmípede Temperado -> 0,10%
 19,12057,10	// Macarrão Liso -> 0,10%
-19,12053,10 
+19,12053,10 // Sopa de Ostra -> 0,10%
 19,12062,10	// Bolo-Mousse de Chocolate -> 0,10%
 19,12068,10	// Batata-Doce Frita -> 0,10%
 19,12047,10	// Chá Vermelho de Outono -> 0,10%
@@ -687,3 +687,238 @@
 54,573,9	// Chocolate Quente -> 0,09%
 54,5136,6	// Gorro de Natal do Antonio -> 0,06%
 //========================================================================================================
+//========================================================================================================
+// Fruit Basket [SEM TRADUÇÃO]  - brAthena
+//========================================================================================================
+55,512,6	// Maçã -> 0,06%
+55,513,5	// Banana -> 0,05%
+55,514,4	// Uva -> 0,04%
+55,522,3	// Mastela -> 0,03%
+55,535,2	// Abóbora -> 0,02%
+55,568,6	// Limão -> 0,02%
+55,576,2	// Fruta Espinhosa -> 0,02%
+55,578,4	// Morango -> 0,04%
+55,582,3	// Laranja -> 0,03%
+55,587,2	// Fruta Espinhosa Escarlate 0> 0,02%
+55,607,1	// Fruto de Yggdrasil -> 0,01%
+55,608,1	// Semente de Yggdrasil -> 0,01%
+55,7164,5	// Pêssego Petrificado -> 0,05%
+55,7182,4	// Cacau -> 0,04%
+55,11520,5	// Mora Mandarin [SEM TRADUÇÃO] -> 0,05%
+55,12574,4	// Mora Berry [SEM TRADUÇÃO] -> 0,04%
+//========================================================================================================
+// Improved Coin Bag [SEM TRADUÇÃO]  - brAthena
+//========================================================================================================
+56,6080,5	// Moeda Manuk -> 0,05%
+56,6081,5	// Moeda Esplendor -> 0,05%
+56,6304,5	// Proof Of Sapha's Honor [SEM TRADUÇÃO] -> 0,05%
+56,6380,5	// Mora Village Coin [SEM TRADUÇÃO] -> 0,05%
+56,6418,1	// A Grade Coin [SEM TRADUÇÃO] -> 0,01%
+56,6419,2	// B Grade Coin [SEM TRADUÇÃO] -> 0,02%
+56,6420,1	// C Grade Coin [SEM TRADUÇÃO] -> 0,01%
+56,12636,8	// Malangdo Canned Specialties [SEM TRADUÇÃO] -> 0,08%
+//========================================================================================================
+// Intermediate Coin Bag [SEM TRADUÇÃO]  - brAthena
+//========================================================================================================
+57,6080,4	// Moeda Manuk -> 0,04%
+57,6081,4	// Moeda Esplendor -> 0,04%
+57,6304,4	// Proof Of Sapha's Honor [SEM TRADUÇÃO] -> 0,04%
+57,6380,4	// Mora Village Coin [SEM TRADUÇÃO] -> 0,04%
+57,6419,1	// B Grade Coin [SEM TRADUÇÃO] -> 0,01%
+57,6420,2	// C Grade Coin [SEM TRADUÇÃO] -> 0,02%
+57,6421,1	// D Grade Coin [SEM TRADUÇÃO] -> 0,01%
+57,12636,9	// Malangdo Canned Specialties [SEM TRADUÇÃO] -> 0,09%
+//========================================================================================================
+// Minor Coin Bag [SEM TRADUÇÃO]  - brAthena
+//========================================================================================================
+58,6080,3	// Moeda Manuk -> 0,03%
+58,6081,3	// Moeda Esplendor -> 0,03%
+58,6304,3	// Proof Of Sapha's Honor [SEM TRADUÇÃO] -> 0,03%
+58,6380,3	// Mora Village Coin [SEM TRADUÇÃO] -> 0,03%
+58,6420,1	// C Grade Coin [SEM TRADUÇÃO] -> 0,01%
+58,6421,2	// D Grade Coin [SEM TRADUÇÃO] -> 0,02%
+58,6422,1	// E Grade Coin [SEM TRADUÇÃO] -> 0,01%
+58,12636,10	// Malangdo Canned Specialties [SEM TRADUÇÃO] -> 0,10%
+//========================================================================================================
+// S Grade Coin Bag [SEM TRADUÇÃO]  - brAthena
+//========================================================================================================
+59,6423,3	// Sea God's Wrath [SEM TRADUÇÃO] -> 0,03%
+59,6418,2	// A Grade Coin [SEM TRADUÇÃO] -> 0,02%
+59,6419,1	// B Grade Coin [SEM TRADUÇÃO] -> 0,01%
+//========================================================================================================
+// A Grade Coin Bag [SEM TRADUÇÃO]  - brAthena
+//========================================================================================================
+60,6418,3	// A Grade Coin [SEM TRADUÇÃO] -> 0,03%
+60,6419,2	// B Grade Coin [SEM TRADUÇÃO] -> 0,02%
+60,6420,1	// C Grade Coin [SEM TRADUÇÃO] -> 0,01%
+//========================================================================================================
+// Advanced Weapons Box [SEM TRADUÇÃO]  - brAthena
+//========================================================================================================
+61,1130,1	// Nagan -> 0,01%
+61,1131,1	// Alfanje de Gelo -> 0,01%
+61,1132,1	// Lâmina Turca -> 0,01%
+61,1133,1	// Língua de Fogo -> 0,01%
+61,1134,1	// Espada de César -> 0,01%
+61,1135,1	// Cutelo -> 0,01%
+61,1136,1	// Espada Solar -> 0,01%
+61,1137,1	// Excalibur -> 0,01%
+61,1138,1	// Mysteltainn -> 0,01%
+61,1139,1	// Talefing -> 0,01%
+61,1140,1	// Byeollungum -> 0,01%
+61,1141,1	// Espada Imaterial -> 0,01%
+61,1148,1	// Lâmina de Poeira Estelar -> 0,01%
+61,1164,1	// Muramasa -> 0,01%
+61,1165,1	// Masamune -> 0,01%
+61,1166,1	// Caçadora de Dragões -> 0,01%
+61,1167,1	// Schweizersabel -> 0,01%
+61,1168,1	// Zweihander -> 0,01%
+61,1169,1	// Executora -> 0,01%
+61,1170,1	// Katzbalger -> 0,01%
+61,1171,1	// Zweihander [1] -> 0,01%
+61,1175,1	// Zanbatô -> 0,01%
+61,1176,1	// Dilaceradora -> 0,01%
+61,1178,1	// Schweizersabel [1] -> 0,01%
+61,1179,1	// Executioner [1] -> 0,01%
+61,1180,1	// Caçadora de Dragões [1] -> 0,01%
+61,1181,1	// Tae Goo Lyeon -> 0,01%
+61,1182,1	// Comedor Sangrento -> 0,01%
+61,1185,1	// Terror Violeta -> 0,01%
+61,1186,1	// Guia da Morte -> 0,01%
+61,1188,1	// Espada Veterana -> 0,01%
+61,1189,1	// Krasnaya -> 0,01%
+61,1196,1	// Chrome Metal Two-Hand Sword [SEM TRADUÇÃO] -> 0,01%
+61,1223,1	// Adaga da Boa Ventura -> 0,01%
+61,1224,1	// Destruidor de Espada -> 0,01%
+61,1225,1	// Destruidor de Malha -> 0,01%
+61,1227,1	// Faca de Capina -> 0,01%
+61,1228,1	// Faca de Combate -> 0,01%
+61,1229,1	// Faca da Mamãe -> 0,01%
+61,1230,1	// Rondel -> 0,01%
+61,1231,1	// Bazerald -> 0,01%
+61,1232,1	// Adaga do Algoz -> 0,01%
+61,1233,1	// Adaga Exorcista -> 0,01%
+61,1234,1	// Walgwanggum -> 0,01%
+61,1235,1	// Azoth -> 0,01%
+61,1236,1	// Sucsamad -> 0,01%
+61,1237,1	// Adaga Sinistra -> 0,01%
+61,1240,1	// Adaga Real -> 0,01%
+61,1241,1	// Adaga Profana -> 0,01%
+61,1242,1	// Adaga Certeira -> 0,01%
+61,1244,1	// Adaga Sagrada -> 0,01%
+61,1261,1	// Infiltrador -> 0,01%
+61,1263,1	// Toque Profano -> 0,01%
+61,1265,1	// Rugido Sangrento -> 0,01%
+61,1266,1	// Infiltrador [1] -> 0,01%
+61,1268,1	// Garra da Fera Selvagem -> 0,01%
+61,1269,1	// Escama Invertida -> 0,01%
+61,1270,1	// Katar Perfurante -> 0,01%
+61,1271,1	// Lágrimas Sangrentas -> 0,01%
+61,1284,1	// Krishna -> 0,01%
+61,1285,1	// Chakram -> 0,01%
+61,1305,1	// Talhador -> 0,01%
+61,1311,1	// Machado Vecer -> 0,01%
+61,1363,1	// Machado Sangrento -> 0,01%
+61,1364,1	// Machado Impetuoso -> 0,01%
+61,1365,1	// Sabbath -> 0,01%
+61,1366,1	// Cruz Impiedosa -> 0,01%
+61,1367,1	// Carniceiro -> 0,01%
+61,1368,1	// Tacape -> 0,01%
+61,1369,1	// Guilhotina -> 0,01%
+61,1370,1	// Machado do Apocalipse -> 0,01%
+61,1371,1	// Machado do Apocalipse [1] -> 0,01%
+61,1376,1	// Desolador -> 0,01%
+61,1377,1	// Fúria do Furacão -> 0,01%
+61,1385,1	// Martelo Quebra-Pedra de Bradium -> 0,01%
+61,1387,1	// Machado Gigante -> 0,01%
+61,1413,1	// Gungnir -> 0,01%
+61,1414,1	// Gelerdria -> 0,01%
+61,1415,1	// Broca -> 0,01%
+61,1416,1	// Tjungkuletti -> 0,01%
+61,1418,1	// Gungnir_ -> 0,01%
+61,1420,1	// Lança Longa -> 0,01%
+61,1421,1	// Lança de Gancho -> 0,01%
+61,1422,1	// Lança de Caça -> 0,01%
+61,1433,1	// Imperial Spear [SEM TRADUÇÃO] -> 0,01%
+61,1466,1	// Foice -> 0,01%
+61,1467,1	// Guisarme-Bico -> 0,01%
+61,1468,1	// Zéfiro -> 0,01%
+61,1469,1	// Lança de Longiness -> 0,01%
+61,1470,1	// Brionac -> 0,01%
+61,1471,1	// Fogo Infernal -> 0,01%
+61,1473,1	// Cajado Esfíngico -> 0,01%
+61,1474,1	// Gae Bolg -> 0,01%
+61,1477,1	// Lança Espectral -> 0,01%
+61,1478,1	// Ahlspiess -> 0,01%
+61,1479,1	// Lança Espectral [1] -> 0,01%
+61,1480,1	// Gae Bolg [1] -> 0,01%
+61,1481,1	// Zéfiro [1] -> 0,01%
+61,1484,1	// Pilares -> 0,01%
+61,1523,1	// Clava com Espetos -> 0,01%
+61,1524,1	// Maça de Ouro -> 0,01%
+61,1525,1	// Maça Longa -> 0,01%
+61,1527,1	// Quatrilho -> 0,01%
+61,1528,1	// Grande Cruz -> 0,01%
+61,1538,1	// Clava com Espetos [2] -> 0,01%
+61,1539,1	// Maça de Ouro [2] -> 0,01%
+61,1540,1	// Crux Magnum [1] -> 0,01%
+61,1541,1	// Nêmesis -> 0,01%
+61,1557,1	// Livro do Apocalipse -> 0,01%
+61,1558,1	// Diário de Menina -> 0,01%
+61,1559,1	// Herança do Dragão -> 0,01%
+61,1561,1	// Livro Capa Dura -> 0,01%
+61,1562,1	// Battlefield Textbook [SEM TRADUÇÃO] -> 0,01%
+61,1565,1	// Death Note -> 0,01%
+61,1616,1	// Cajado do Vento -> 0,01%
+61,1629,1	// Cajado do Cavalheiro -> 0,01%
+61,1631,1	// Vara Sagrada -> 0,01%
+61,1636,1	// Cajado de Espinhos da Escuridão -> 0,01%
+61,1637,1	// Apaga-Mentes -> 0,01%
+61,1643,1	// Cajado da Árvore Morta -> 0,01%
+61,1654,1	// Mental Stick [SEM TRADUÇÃO] -> 0,01%
+61,1719,1	// Arco Voraz -> 0,01%
+61,1720,1	// Arco de Rudra -> 0,01%
+61,1722,1	// Balista -> 0,01%
+61,1724,1	// Asa de Dragão -> 0,01%
+61,1725,1	// Arco do Menestrel -> 0,01%
+61,1727,1	// Balista [1] -> 0,01%
+61,1737,1	// Asas de Ixion -> 0,01%
+61,1740,1	// Arco de Nepenthes -> 0,01%
+61,1741,1	// Mentiroso Maldito -> 0,01%
+61,1745,1	// Assalto do Falcão -> 0,01%
+61,1813,1	// Punho do Kaiser -> 0,01%
+61,1814,1	// Fúria Insana -> 0,01%
+61,1815,1	// Garra de Hatii -> 0,01%
+61,1816,1	// Fúria Insana [1] -> 0,01%
+61,1830,1	// Great King's Dance [SEM TRADUÇÃO] -> 0,01%
+61,1913,1	// Guitarra Elétrica -> 0,01%
+61,1918,1	// Alaúde Oriental -> 0,01%
+61,1920,1	// Guitarra Frenética -> 0,01%
+61,1922,1	// Alaúde Oriental [2] -> 0,01%
+61,1926,1	// Harpa de Nepenthes -> 0,01%
+61,1930,1	// Green Whistle [SEM TRADUÇÃO] -> 0,01%
+61,1962,1	// Serpente -> 0,01%
+61,1963,1	// Rosa Fustigante -> 0,01%
+61,1964,1	// Chemeti -> 0,01%
+61,1969,1	// Chicote Lâmina -> 0,01%
+61,1970,1	// Chicote da Rainha -> 0,01%
+61,1972,1	// Enguia Elétrica -> 0,01%
+61,1973,1	// Botas da Bruxa do Mar -> 0,01%
+61,1974,1	// Chicote de Cenoura -> 0,01%
+61,1976,1	// Chicote da Rainha [2] -> 0,01%
+61,1979,1	// Caule de Nepenthes -> 0,01%
+61,1984,1	// Stem Whip [SEM TRADUÇÃO] -> 0,01%
+61,1985,1	// Rose Vine [SEM TRADUÇÃO] -> 0,01%
+61,2000,1	// Bastão da Destruição -> 0,01%
+61,2001,1	// Cruz Divina -> 0,01%
+61,2004,1	// Kronos -> 0,01%
+61,2005,1	// Cajado Dea -> 0,01%
+61,13046,1	// Krieg -> 0,01%
+61,13047,1	// Weihna -> 0,01%
+61,13061,1	// Black Wing [SEM TRADUÇÃO] -> 0,01%
+61,13062,1	// Ancient Dagger [SEM TRADUÇÃO] -> 0,01%
+61,13421,1	// Roubel -> 0,01%
+61,13431,1	// Chrome Metal Sword [SEM TRADUÇÃO] -> 0,01%
+61,16000,1	// Erde -> 0,01%
+61,16001,1	// Bolsa Quadrada Vermelha -> 0,01%
+61,16010,1	// Red Ether Bag [SEM TRADUÇÃO] -> 0,01%
+61,18103,1	// Mystic Bow [SEM TRADUÇÃO] -> 0,01%

@@ -1,14 +1,14 @@
-//===== eAthena Script =======================================
+//===== rAthena Script ======================================= 
 // Eden Group Quests - Common NPCs
-//===== By: ==================================================
+//===== By: ================================================== 
 //= L0ne_W0lf
-//===== Current Version: =====================================
+//===== Current Version: ===================================== 
 //= 1.1
-//===== Compatible With: =====================================
-//= eAthena SVN
-//===== Description: =========================================
+//===== Compatible With: ===================================== 
+//= rAthena SVN
+//===== Description: ========================================= 
 //= [AEGIS Conversion]
-//===== Additional Comments: =================================
+//===== Additional Comments: ================================= 
 //= 1.0 First Version.
 //= 1.1 Removed showevent use, and use of duplicates.
 //=     Commented out warps that should not be active.
@@ -489,7 +489,6 @@ payon,177,111,3	script	Eden Teleport Officer#12	729,{
 		mes "[Eden Teleport Officer]";
 		mes "Let's go to our secret base!";
 		set nak_warp,12;
-		close;
 		close2;
 		warp "moc_para01",31,14;
 		end;

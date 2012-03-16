@@ -59,6 +59,21 @@ static struct eri *skill_timer_ers = NULL; //For handling skill_timerskills [Sko
 DBMap* skillunit_db = NULL; // int id -> struct skill_unit*
 
 DBMap* skilldb_name2id = NULL;
+
+/**
+ * Skill Cool Down Delay Saving
+ * Struct skill_cd is not a member of struct map_session_data
+ * to keep cooldowns in memory between player log-ins.
+ * All cooldowns are reset when server is restarted.
+ **/
+DBMap* skillcd_db = NULL; // char_id -> struct skill_cd
+struct skill_cd {
+	int duration[MAX_SKILL_TREE];//milliseconds
+	short skidx[MAX_SKILL_TREE];//the skill index entries belong to
+	short nameid[MAX_SKILL_TREE];//skill id
+	unsigned char cursor;
+};
+
 struct s_skill_db skill_db[MAX_SKILL_DB];
 struct s_skill_produce_db skill_produce_db[MAX_SKILL_PRODUCE_DB];
 struct s_skill_arrow_db skill_arrow_db[MAX_SKILL_ARROW_DB];
@@ -444,7 +459,7 @@ int skillnotok (int skillid, struct map_session_data *sd)
 	if (i == 0)
 		return 1; // invalid skill id
 
-	if (battle_config.gm_skilluncond && pc_isGM(sd) >= battle_config.gm_skilluncond)
+	if (pc_has_permission(sd, PC_PERM_SKILL_UNCONDITIONAL))
 		return 0; // GMs can do any damn thing they want
 
 	if( skillid == AL_TELEPORT && sd->skillitem == skillid && sd->skillitemlv > 2 )
@@ -2011,7 +2026,7 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 			{	//Consume one Fragment per hit of the casted skill? [Skotlex]
 			  	type = tsd?pc_search_inventory (tsd, 7321):0;
 				if (type >= 0) {
-					if ( tsd ) pc_delitem(tsd, type, 1, 0, 1);
+					if ( tsd ) pc_delitem(tsd, type, 1, 0, 1, LOG_TYPE_CONSUME);
 					dmg.damage = dmg.damage2 = 0;
 					dmg.dmg_lv = ATK_MISS;
 					sc->data[SC_SPIRIT]->val3 = skillid;
@@ -2805,7 +2820,7 @@ static int skill_check_condition_mercenary(struct block_list *bl, int skill, int
 	// Consume items
 	for( i = 0; i < ARRAYLENGTH(itemid); i++ )
 	{
-		if( index[i] >= 0 ) pc_delitem(sd, index[i], amount[i], 0, 1);
+		if( index[i] >= 0 ) pc_delitem(sd, index[i], amount[i], 0, 1, LOG_TYPE_CONSUME);
 	}
 
 	if( type&2 )
@@ -5728,7 +5743,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case MC_VENDING:
 		if(sd)
 		{	//Prevent vending of GMs with unnecessary Level to trade/drop. [Skotlex]
-			if ( !pc_can_give_items(pc_isGM(sd)) )
+			if ( !pc_can_give_items(sd) )
 				clif_skill_fail(sd,skillid,USESKILL_FAIL_LEVEL,0,0);
 			else
 				clif_openvendingreq(sd,2+skilllv);
@@ -5797,7 +5812,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			item_tmp.identify = 1;
 			tbl.id = 0;
 			clif_takeitem(&sd->bl,&tbl);
-			eflag = pc_additem(sd,&item_tmp,1);
+			eflag = pc_additem(sd,&item_tmp,1,LOG_TYPE_PRODUCE);
 			if(eflag) {
 				clif_additem(sd,0,0,eflag);
 				map_addflooritem(&item_tmp,1,sd->bl.m,sd->bl.x,sd->bl.y,0,0,0,0);
@@ -6565,7 +6580,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 								memset(&item_tmp,0,sizeof(item_tmp));
 								item_tmp.nameid = skill_db[su->group->skill_id].itemid[i];
 								item_tmp.identify = 1;
-								if( item_tmp.nameid && (flag=pc_additem(sd,&item_tmp,skill_db[su->group->skill_id].amount[i])) )
+								if( item_tmp.nameid && (flag=pc_additem(sd,&item_tmp,skill_db[su->group->skill_id].amount[i],LOG_TYPE_OTHER)) )
 								{
 									clif_additem(sd,0,0,flag);
 									map_addflooritem(&item_tmp,skill_db[su->group->skill_id].amount[i],sd->bl.m,sd->bl.x,sd->bl.y,0,0,0,0);
@@ -6579,7 +6594,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 						memset(&item_tmp,0,sizeof(item_tmp));
 						item_tmp.nameid = ITEMID_TRAP;
 						item_tmp.identify = 1;
-						if( item_tmp.nameid && (flag=pc_additem(sd,&item_tmp,1)) )
+						if( item_tmp.nameid && (flag=pc_additem(sd,&item_tmp,1,LOG_TYPE_OTHER)) )
 						{
 							clif_additem(sd,0,0,flag);
 							map_addflooritem(&item_tmp,1,sd->bl.m,sd->bl.x,sd->bl.y,0,0,0,0);
@@ -8472,21 +8487,32 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			}
 		}
 		break;
-
 	case RETURN_TO_ELDICASTES:
+	case ALL_GUARDIAN_RECALL:
 		if( sd )
 		{
-			short x = 198, y = 187;
+			short x, y; 
 			unsigned short mapindex;
 
-			mapindex  = mapindex_name2id(MAP_ERISCASTLE);
+			if( skillid == RETURN_TO_ELDICASTES)
+			{
+				x = 198;
+				y = 187;
+				mapindex  = mapindex_name2id(MAP_DICASTES);
+			}
+			else
+			{
+				x = 44;
+				y = 151;
+				mapindex  = mapindex_name2id(MAP_MORA);
+			}
 
 			if(!mapindex)
-			{
-				clif_skill_fail(sd,skillid,0,0,0);
+			{ 
+				clif_skill_fail(sd,skillid,USESKILL_FAIL_LEVEL,0,0);
 				return 0;
 			}
-			pc_setpos(sd, mapindex, x, y, 3);
+			pc_setpos(sd, mapindex, x, y, CLR_TELEPORT);
 		}
 		break;
 
@@ -11542,7 +11568,7 @@ int skill_check_pc_partner(struct map_session_data *sd, short skill_id, short* s
 
 	nullpo_ret(sd);
 
-	if( !battle_config.player_skill_partner_check || (battle_config.gm_skilluncond && pc_isGM(sd) >= battle_config.gm_skilluncond) )
+	if (!battle_config.player_skill_partner_check || pc_has_permission(sd, PC_PERM_SKILL_UNCONDITIONAL))
 	{
 		if( skill_get_inf2(skill_id)&INF2_CHORUS_SKILL )
 			return MAX_PARTY;
@@ -11662,7 +11688,7 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 
 	if (lv <= 0 || sd->chatID) return 0;
 
-	if( battle_config.gm_skilluncond && pc_isGM(sd)>= battle_config.gm_skilluncond && sd->skillitem != skill )
+	if( pc_has_permission(sd, PC_PERM_SKILL_UNCONDITIONAL) && sd->skillitem != skill )
 	{	//GMs don't override the skillItem check, otherwise they can use items without them being consumed! [Skotlex]
 		sd->state.arrow_atk = skill_get_ammotype(skill)?1:0; //Need to do arrow state check.
 		sd->spiritball_old = sd->spiritball; //Need to do Spiritball check.
@@ -11724,7 +11750,7 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 				if( skill == WZ_EARTHSPIKE && sc && sc->data[SC_EARTHSCROLL] && rand()%100 > sc->data[SC_EARTHSCROLL]->val2 ) // [marquis007]
 					; //Do not consume item.
 				else if( sd->status.inventory[i].expire_time == 0 )
-					pc_delitem(sd,i,1,0,0); // Rental usable items are not consumed until expiration
+					pc_delitem(sd,i,1,0,0,LOG_TYPE_CONSUME); // Rental usable items are not consumed until expiration
 			}
 		}
 		return 1;
@@ -12394,7 +12420,7 @@ int skill_check_condition_castend(struct map_session_data* sd, short skill, shor
 	if( lv <= 0 || sd->chatID )
 		return 0;
 
-	if( battle_config.gm_skilluncond && pc_isGM(sd) >= battle_config.gm_skilluncond && sd->skillitem != skill )
+	if( pc_has_permission(sd, PC_PERM_SKILL_UNCONDITIONAL) && sd->skillitem != skill )
 	{	//GMs don't override the skillItem check, otherwise they can use items without them being consumed! [Skotlex]
 		sd->state.arrow_atk = skill_get_ammotype(skill)?1:0; //Need to do arrow state check.
 		sd->spiritball_old = sd->spiritball; //Need to do Spiritball check.
@@ -12620,7 +12646,7 @@ int skill_consume_requirement( struct map_session_data *sd, short skill, short l
 				continue; //Gemstones are checked, but not substracted from inventory.
 
 			if( (n = pc_search_inventory(sd,req.itemid[i])) >= 0 )
-				pc_delitem(sd,n,req.amount[i],0,1);
+				pc_delitem(sd,n,req.amount[i],0,1,LOG_TYPE_CONSUME);
 		}
 
 		sd->state.no_gemstone = 0;
@@ -13281,7 +13307,7 @@ void skill_repairweapon (struct map_session_data *sd, int idx)
 	clif_skill_nodamage(&sd->bl,&target_sd->bl,sd->menuskill_id,1,1);
 	item->attribute=0;
 	clif_equiplist(target_sd);
-	pc_delitem(sd,pc_search_inventory(sd,material),1,0,0);
+	pc_delitem(sd,pc_search_inventory(sd,material),1,0,0,LOG_TYPE_CONSUME);
 	clif_item_repaireffect(sd,item->nameid,0);
 	if(sd!=target_sd)
 		clif_item_repaireffect(target_sd,item->nameid,0);
@@ -13335,7 +13361,7 @@ void skill_weaponrefine (struct map_session_data *sd, int idx)
 			per = percentrefinery [ditem->wlv][(int)item->refine];
 			per += (((signed int)sd->status.job_level)-50)/2; //Updated per the new kro descriptions. [Skotlex]
 
-			pc_delitem(sd, i, 1, 0, 0);
+			pc_delitem(sd, i, 1, 0, 0, LOG_TYPE_OTHER);
 			if (per > rand() % 100) {
 				item->refine++;
 				if(item->equip) {
@@ -13369,7 +13395,7 @@ void skill_weaponrefine (struct map_session_data *sd, int idx)
 				if(item->equip)
 					pc_unequipitem(sd,idx,3);
 				clif_refine(sd->fd,1,idx,item->refine);
-				pc_delitem(sd,idx,1,0,2);
+				pc_delitem(sd,idx,1,0,2, LOG_TYPE_OTHER);
 				clif_misceffect(&sd->bl,2);
 				clif_emotion(&sd->bl, E_OMG);
 			}
@@ -14999,13 +15025,13 @@ int skill_produce_mix(struct map_session_data *sd, int skill_id, int nameid, int
 			continue;
 		if( slot[i] == 1000 )
 		{	/* Star Crumb */
-			pc_delitem(sd,j,1,1,0);
+			pc_delitem(sd,j,1,1,0,LOG_TYPE_PRODUCE);
 			sc++;
 		}
 		if( slot[i] >= 994 && slot[i] <= 997 && ele == 0 )
 		{	/* Flame Heart . . . Great Nature */
 			static const int ele_table[4]={3,1,4,2};
-			pc_delitem(sd,j,1,1,0);
+			pc_delitem(sd,j,1,1,0,LOG_TYPE_PRODUCE);
 			ele=ele_table[slot[i]-994];
 		}
 	}
@@ -15042,7 +15068,7 @@ int skill_produce_mix(struct map_session_data *sd, int skill_id, int nameid, int
 			if(j >= 0){
 				y = sd->status.inventory[j].amount;
 				if(y>x)y=x;
-				pc_delitem(sd,j,y,0,0);
+				pc_delitem(sd,j,y,0,0,LOG_TYPE_PRODUCE);
 			} else
 				ShowError("skill_produce_mix: erro na producao de item\n");
 
@@ -15393,7 +15419,7 @@ int skill_produce_mix(struct map_session_data *sd, int skill_id, int nameid, int
 			}
 		}
 		if (tmp_item.amount) { //Success
-			if((flag = pc_additem(sd,&tmp_item,tmp_item.amount))) {
+			if((flag = pc_additem(sd,&tmp_item,tmp_item.amount,LOG_TYPE_PRODUCE))) {
 				clif_additem(sd,0,0,flag);
 				map_addflooritem(&tmp_item,tmp_item.amount,sd->bl.m,sd->bl.x,sd->bl.y,0,0,0,0);
 			}
@@ -15445,7 +15471,7 @@ int skill_produce_mix(struct map_session_data *sd, int skill_id, int nameid, int
 					while( rand()%10000 >= products[i][1] );
 					tmp_item.amount = (temp_qty > 1 )? 5 + rand()%5 : 1;
 					tmp_item.identify = 1;
-					if( pc_additem(sd,&tmp_item,tmp_item.amount) )
+					if( pc_additem(sd,&tmp_item,tmp_item.amount,LOG_TYPE_CONSUME) )
 					{
 						clif_additem(sd,0,0,flag);
 						map_addflooritem(&tmp_item,tmp_item.amount,sd->bl.m,sd->bl.x,sd->bl.y,0,0,0,0);
@@ -15489,7 +15515,7 @@ int skill_arrow_create (struct map_session_data *sd, int nameid)
 	if(index < 0 || (j = pc_search_inventory(sd,nameid)) < 0)
 		return 1;
 
-	pc_delitem(sd,j,1,0,0);
+	pc_delitem(sd,j,1,0,0,LOG_TYPE_PRODUCE);
 	for(i=0;i<MAX_ARROW_RESOURCE;i++) {
 		memset(&tmp_item,0,sizeof(tmp_item));
 		tmp_item.identify = 1;
@@ -15503,7 +15529,7 @@ int skill_arrow_create (struct map_session_data *sd, int nameid)
 		}
 		if(tmp_item.nameid <= 0 || tmp_item.amount <= 0)
 			continue;
-		if((flag = pc_additem(sd,&tmp_item,tmp_item.amount))) {
+		if((flag = pc_additem(sd,&tmp_item,tmp_item.amount,LOG_TYPE_PRODUCE))) {
 			clif_additem(sd,0,0,flag);
 			map_addflooritem(&tmp_item,tmp_item.amount,sd->bl.m,sd->bl.x,sd->bl.y,0,0,0,0);
 		}
@@ -15512,19 +15538,16 @@ int skill_arrow_create (struct map_session_data *sd, int nameid)
 	return 0;
 }
 
-int skill_poisoningweapon( struct map_session_data *sd, int nameid)
-{
+int skill_poisoningweapon( struct map_session_data *sd, int nameid) {
 	sc_type type;
 	int t_lv = 0, chance, i;
 	nullpo_ret(sd);
-	if( nameid <= 0 || (i = pc_search_inventory(sd,nameid)) < 0 )
-	{
-		clif_skill_fail(sd,GC_POISONINGWEAPON,0,0,0);
+	if( nameid <= 0 || (i = pc_search_inventory(sd,nameid)) < 0 || pc_delitem(sd,i,1,0,0,LOG_TYPE_CONSUME) ) {
+		clif_skill_fail(sd,GC_POISONINGWEAPON,USESKILL_FAIL_LEVEL,0,0);
 		return 0;
 	}
-	pc_delitem(sd,i,1,0,0);
 	switch( nameid )
-	{
+	{ // t_lv used to take duration from skill_get_time2
 		case PO_PARALYSE:      type = SC_PARALYSE;      t_lv = 1; break;
 		case PO_PYREXIA:       type = SC_PYREXIA;       t_lv = 2; break;
 		case PO_DEATHHURT:     type = SC_DEATHHURT;     t_lv = 3; break;
@@ -15534,13 +15557,12 @@ int skill_poisoningweapon( struct map_session_data *sd, int nameid)
 		case PO_MAGICMUSHROOM: type = SC_MAGICMUSHROOM; t_lv = 8; break;
 		case PO_OBLIVIONCURSE: type = SC_OBLIVIONCURSE; t_lv = 9; break;
 		default:
-			clif_skill_fail(sd,GC_POISONINGWEAPON,0,0,0);
+			clif_skill_fail(sd,GC_POISONINGWEAPON,USESKILL_FAIL_LEVEL,0,0);
 			return 0;
 	}
 
-	chance = 2 + 2 * sd->menuskill_itemused;
-	sc_start4(&sd->bl,SC_POISONINGWEAPON,100,t_lv,type,chance,0,skill_get_time(GC_POISONINGWEAPON,sd->menuskill_itemused));
-	sd->menuskill_itemused = 0;
+	chance = 2 + 2 * sd->menuskill_val; // 2 + 2 * skill_lv
+	sc_start4(&sd->bl,SC_POISONINGWEAPON,100,t_lv,type,chance,0,skill_get_time(GC_POISONINGWEAPON,sd->menuskill_val));
 
 	return 0;
 }
@@ -15558,7 +15580,7 @@ int skill_magicdecoy(struct map_session_data *sd, int nameid){
 		return 0;
 	}
 
-	pc_delitem(sd,i,1,0,0); // Deleta o item
+	pc_delitem(sd,i,1,0,0,LOG_TYPE_CONSUME); // Deleta o item
 
 	//Recupera posição
 	x = sd->menuskill_itemused>>16;
@@ -15705,7 +15727,7 @@ int skill_elementalanalysis(struct map_session_data* sd, int n, int skill_lv, un
 				return 1;
 		}
 
-		if( pc_delitem(sd,idx,del_amount,0,0) )
+		if( pc_delitem(sd,idx,del_amount,0,0,LOG_TYPE_CONSUME) )
 		{
 			clif_skill_fail(sd,SO_EL_ANALYSIS,0,0,0);
 			return 1;
@@ -15725,7 +15747,7 @@ int skill_elementalanalysis(struct map_session_data* sd, int n, int skill_lv, un
 
 		if( tmp_item.amount )
 		{
-			if( (flag = pc_additem(sd,&tmp_item,tmp_item.amount)) )
+			if( (flag = pc_additem(sd,&tmp_item,tmp_item.amount,LOG_TYPE_CONSUME)) )
 			{
 				clif_additem(sd,0,0,flag);
 				map_addflooritem(&tmp_item,tmp_item.amount,sd->bl.m,sd->bl.x,sd->bl.y,0,0,0,0);

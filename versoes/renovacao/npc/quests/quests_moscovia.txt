@@ -1,27 +1,27 @@
-//  ________________________________________________________
-// /                                                        \
-// |       _           _   _   _                            |
-// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
-// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
-// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
-// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |                                                        |
-// |                    brAthena Script                     |
-// |--------------------------------------------------------|
-// | Nome do Script: Moscovia Quests			    		|
-// |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    			|
-// |--------------------------------------------------------|
-// | Versões eA/brA: 1.9/1.0				    			|
-// |--------------------------------------------------------|
-// | Descrição: Quests for Moscovia.						|
-// | The Moving Island, Help Mikhail, Acorn Exchange,		|
-// | Banish Winter, Shafka Hat, Koshei the Immortal.		|
-// |--------------------------------------------------------|
-// | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
-// | - Anotações					    					|
-// \________________________________________________________/
+//===== rAthena Script ======================================= 
+//= Moscovia Quests
+//===== By: ================================================== 
+//= Kisuka
+//===== Current Version: ===================================== 
+//= 1.9
+//===== Compatible With: ===================================== 
+//= rAthena SVN
+//===== Description: ========================================= 
+//= Quests for Moscovia.
+//= The Moving Island, Help Mikhail, Acorn Exchange,
+//= Banish Winter, Shafka Hat, Koshei the Immortal.
+//===== Additional Comments: ================================= 
+//= 1.0 First version. [Kisuka]
+//= 1.1 Small fixes on The Moving Island. [Kisuka]
+//= 1.2 Fixed a "player not attached" error. [brianluau]
+//= 1.3 Replaced occurrences of PcName. [brianluau]
+//= 1.4 Added 'Koshei the Immortal' quest. [Kisuka]
+//= 1.5 Fixes to 'Koshei the Immortal' quest. [Kisuka]
+//= 1.6 Added 'tides' to Ibanoff & Fixed time check for Marozka. [Kisuka]
+//= 1.7 Fixes on donpcevents and fixed some left over aegis stuff. [Kisuka]
+//= 1.8 Fixed some condition checks. [Gepard]
+//= 1.9 Corrected NPC counting mobs for the wrong NPC. (bugreport:4736) [L0ne_W0lf]
+//============================================================ 
 
 //============================================================================
 // The Moving Island
@@ -4566,7 +4566,7 @@ mosk_in,131,92,3	script	Csar Alexsay III#npc	965,{
 					mes "[Prime Minister Dmitree]";
 					mes "Even though I regard as your effort for the time so, award you. Take it and go out.";
 					getitem 12702,1;
-					getexp 500000,0;
+					getexp 50000,0;
 					set mos_whale_edq,39;
 					close;
 				}
@@ -4594,7 +4594,7 @@ mosk_in,131,92,3	script	Csar Alexsay III#npc	965,{
 				mes "[Prime Minister Dmitree]";
 				mes "Even though I regard as your effort for the time so, award you. Take it.";
 				getitem 12702,1;
-				getexp 700000,0;
+				getexp 70000,0;
 				set mos_whale_edq,40;
 				close;
 			}else{
@@ -4678,7 +4678,7 @@ mosk_in,131,92,3	script	Csar Alexsay III#npc	965,{
 				mes "in his palace. I will reward your";
 				mes "efforts, in the name of the Csar.";
 				getitem 617,1;
-				getexp 1200000,0;
+				getexp 120000,0;
 				set mos_whale_edq,41;
 				close;
 			}else{
@@ -4872,7 +4872,7 @@ mosk_in,127,89,3	script	Prime Minister Dmitree#m	967,{
 //----------------------------------------------------------------------------
 moscovia,136,46,4	script	Find#ship	844,4,4,{
 	end;
-
+	
 OnTouch:
 	if (mos_whale_edq > 34) {
 		mes "-Watching the sea from the docks,";
@@ -4984,7 +4984,7 @@ OnInit:
 	disablenpc "Baehideun1#ship";
 	stopnpctimer;
 	end;
-
+	
 OnEnable:
 	enablenpc "Baehideun1#ship";
 	monster "mosk_ship",89,112,"Sea Monster",1425,1,"Baehideun1#ship::OnMyMobDead";
@@ -5267,7 +5267,7 @@ mosk_in,144,279,5	script	Gallina#mos	959,{
 		mes "Well, now I have to get to work!";
 		mes "I'll make you my hotcakes someday. Please visit me later";
 		set mos_swan,100;
-		getexp 1000000,0;
+		getexp 100000,0;
 		close;
 	}else{
 		mes "[Gallina]";
@@ -5777,7 +5777,7 @@ mosk_in,202,269,5	script	Mikhail#mos	962,{
 OnInit:
 	hideonnpc "Mikhail#mos";
 	end;
-
+	
 OnEnable:
 	hideoffnpc "Mikhail#mos";
 	end;
@@ -6419,7 +6419,7 @@ mosk_in,147,202,3	script	Victor#mos	968,{
 
 mosk_in,215,181,0	script	#swan_inn	-1,1,1,{
 	end;
-
+	
 OnTouch:
 	if (mos_swan == 4) {
 		mes "..................";
@@ -6757,7 +6757,7 @@ moscovia,208,182,7	script	Acorn Dealer#mos	967,{
 			mes "You can't buy more than 500.";
 			next;
 		}
-
+		
 	}
 	if (!checkweight(1026, .@input)) {
 		mes "[Acorn Dealer]";
@@ -7108,7 +7108,7 @@ mosk_fild01,113,108,3	script	Big Squirrel#mos	111,{
 
 mosk_fild01,113,108,5	script	#mos_sq	1104,2,2,{
 	end;
-
+	
 OnTouch:
 	if (checkweight(1201,1) == 0 ) {
 		mes "- Please stop here !! -";
@@ -7437,7 +7437,7 @@ OnTouch:
 //----------------------------------------------------------------------------
 mosk_in,215,46,5	script	#babayaga	-1,7,7,{
 	end;
-
+	
 OnTouch:
 	if (mos_nowinter == 0) {
 		if (countitem(7762) > 39 && BaseLevel > 59) {
@@ -8706,8 +8706,8 @@ mosk_in,221,43,0	script	#bowl	111,{
 				set mos_nowinter,17;
 				close;
 			}
-		if (.@nankai == 3) {
-			}
+			if (.@nankai == 3)
+				break;
 		}
 		specialeffect EF_BUBBLE;
 		mes "-The liquid has been changed";
@@ -8865,8 +8865,8 @@ mosk_in,221,43,0	script	#bowl	111,{
 				specialeffect EF_POISONATTACK;
 				close;
 			}
-		if (.@nankai == 7) {
-			}
+			if (.@nankai == 7)
+				break;
 		}
 		mes "-I am sure that the book told me";
 		mes "to wait for some time.-";
@@ -10018,7 +10018,7 @@ mosk_dun03,225,233,0	script	Pile of skeletons#mosk	111,{
 
 mosk_dun03,225,233,0	script	#Magic_Bottle	-1,5,5,{
 	end;
-
+	
 OnTouch:
 	if (mos_nowinter == 8) {
 		mes "-She said that the Magic Gourd Bottle that";
@@ -11043,31 +11043,31 @@ mosk_dun01,45,259,0	script	Wall#rus04	111,{
 				getitem 12098,1;
 			}
 			if (BaseLevel < 56) {
-				getexp 13000,3500;
+				getexp 1300,350;
 			}
 			else if (BaseLevel > 55 && BaseLevel < 61) {
-				getexp 24600,6150;
+				getexp 2460,615;
 			}
 			else if (BaseLevel > 60 && BaseLevel < 66) {
-				getexp 42420,10605;
+				getexp 4242,1061;
 			}
 			else if (BaseLevel > 65 && BaseLevel < 71) {
-				getexp 64892,16223;
+				getexp 6489,1622;
 			}
 			else if (BaseLevel > 70 && BaseLevel < 76) {
-				getexp 164908,41227;
+				getexp 16491,4123;
 			}
 			else if (BaseLevel > 75 && BaseLevel < 81) {
-				getexp 276292,69073;
+				getexp 27629,6907;
 			}
 			else if (BaseLevel > 80 && BaseLevel < 86) {
-				getexp 340408,85102;
+				getexp 34041,8510;
 			}
 			else if (BaseLevel > 85 && BaseLevel < 91) {
-				getexp 418460,104615;
+				getexp 41846,10462;
 			}
-			else if (BaseLevel > 90 && BaseLevel < 99) {
-				getexp 888140,222035;
+			else if (BaseLevel > 90 && BaseLevel < 150) {
+				getexp 88814,22204;
 			}
 			else {
 				getitem 617,1;
@@ -11346,7 +11346,7 @@ moscovia,178,127,0	script	The Blacksmith#rus06	63,{
 			mes "And don't forget to wear these!";
 			delitem 999,25;
 			set rhea_rus_main,8;
-			if (BaseClass == Job_Merchant || BaseClass == Job_Swordman || BaseClass == Job_Thief || BaseClass == Job_Archer) {
+			if (BaseClass == Job_Merchant || BaseClass == Job_Swordman || BaseClass == Job_Thief || BaseClass == Job_Archer || BaseClass == Job_Ninja || BaseClass == Job_Gunslinger) {
 				getitem 2429,1;
 				close;
 			}else {
@@ -11781,31 +11781,31 @@ moscovia,206,81,0	script	Vassili Grandpapa#rus07	712,{
 				set rhea_rus_ring,10;
 				getitem 7877,1;
 				if (BaseLevel < 56) {
-					getexp 4700,0;
+					getexp 470,0;
 				}
 				else if (BaseLevel > 55 && BaseLevel < 61) {
-					getexp 6150,0;
+					getexp 615,0;
 				}
 				else if (BaseLevel > 60 && BaseLevel < 66) {
-					getexp 10605,0;
+					getexp 1061,0;
 				}
 				else if (BaseLevel > 65 && BaseLevel < 71) {
-					getexp 16223,0;
+					getexp 1622,0;
 				}
 				else if (BaseLevel > 70 && BaseLevel < 76) {
-					getexp 41227,0;
+					getexp 4123,0;
 				}
 				else if (BaseLevel > 75 && BaseLevel < 81) {
-					getexp 69073,0;
+					getexp 6907,0;
 				}
 				else if (BaseLevel > 80 && BaseLevel < 86) {
-					getexp 85102,0;
+					getexp 8510,0;
 				}
 				else if (BaseLevel > 85 && BaseLevel < 91) {
-					getexp 104615,0;
+					getexp 10462,0;
 				}
 				else if (BaseLevel > 90 && BaseLevel < 99) {
-					getexp 222035,0;
+					getexp 22204,0;
 				}
 				else {
 					getitem 607,1;
@@ -12138,31 +12138,31 @@ moscovia,213,216,3	script	Ryubaba#rus08	960,{
 				set rhea_rus_ring,9;
 				getitem 7877,1;
 				if (BaseLevel < 56) {
-					getexp 4700,0;
+					getexp 470,0;
 				}
 				else if (BaseLevel > 55 && BaseLevel < 61) {
-					getexp 6150,0;
+					getexp 615,0;
 				}
 				else if (BaseLevel > 60 && BaseLevel < 66) {
-					getexp 10605,0;
+					getexp 1061,0;
 				}
 				else if (BaseLevel > 65 && BaseLevel < 71) {
-					getexp 16223,0;
+					getexp 1622,0;
 				}
 				else if (BaseLevel > 70 && BaseLevel < 76) {
-					getexp 41227,0;
+					getexp 4123,0;
 				}
 				else if (BaseLevel > 75 && BaseLevel < 81) {
-					getexp 69073,0;
+					getexp 6907,0;
 				}
 				else if (BaseLevel > 80 && BaseLevel < 86) {
-					getexp 85102,0;
+					getexp 8510,0;
 				}
 				else if (BaseLevel > 85 && BaseLevel < 91) {
-					getexp 104615,0;
+					getexp 10462,0;
 				}
 				else if (BaseLevel > 90 && BaseLevel < 99) {
-					getexp 222035,0;
+					getexp 22204,0;
 				}
 				else{
 					getitem 607,1;
@@ -15898,7 +15898,7 @@ mosk_dun02,57,220,0	script	House Ghost Jar#rus43	111,{
 				mes "One! Two! Three!!";
 				next;
 				if (.@rucard_game01 == 1) {
-					cutin "Æ÷¸µÄ«µå",4;
+					cutin "ï¿½ï¿½ï¿½ï¿½Ä«ï¿½ï¿½",4;
 					emotion 0;
 					emotion 5,1;
 					next;
@@ -15911,13 +15911,13 @@ mosk_dun02,57,220,0	script	House Ghost Jar#rus43	111,{
 					next;
 				}else{
 					if (.@rucard_game01 == 1) {
-						cutin "Æ÷¸µÄ«µå",4;
+						cutin "ï¿½ï¿½ï¿½ï¿½Ä«ï¿½ï¿½",4;
 					}
 					else if (.@rucard_game01 == 2) {
-						cutin "¿£Á©¸µÄ«µå",4;
+						cutin "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä«ï¿½ï¿½",4;
 					}
 					else if (.@rucard_game01 == 3) {
-						cutin "°í½ºÆ®¸µÄ«µå",4;
+						cutin "ï¿½ï¿½ï¿½Æ®ï¿½ï¿½Ä«ï¿½ï¿½",4;
 					}
 					emotion 0;
 					emotion 23,1;
@@ -15939,7 +15939,7 @@ mosk_dun02,57,220,0	script	House Ghost Jar#rus43	111,{
 				mes "One! Two! Three!!";
 				next;
 				if (.@rucard_game01 == 2) {
-					cutin "¿£Á©¸µÄ«µå",4;
+					cutin "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä«ï¿½ï¿½",4;
 					emotion 0;
 					emotion 5,1;
 					next;
@@ -15952,13 +15952,13 @@ mosk_dun02,57,220,0	script	House Ghost Jar#rus43	111,{
 					next;
 				}else{
 					if (.@rucard_game01 == 1) {
-						cutin "Æ÷¸µÄ«µå",4;
+						cutin "ï¿½ï¿½ï¿½ï¿½Ä«ï¿½ï¿½",4;
 					}
 					else if (.@rucard_game01 == 2) {
-						cutin "¿£Á©¸µÄ«µå",4;
+						cutin "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä«ï¿½ï¿½",4;
 					}
 					else if (.@rucard_game01 == 3) {
-						cutin "°í½ºÆ®¸µÄ«µå",4;
+						cutin "ï¿½ï¿½ï¿½Æ®ï¿½ï¿½Ä«ï¿½ï¿½",4;
 					}
 					emotion 0;
 					emotion 23,1;
@@ -15980,7 +15980,7 @@ mosk_dun02,57,220,0	script	House Ghost Jar#rus43	111,{
 				mes "One! Two! Three!!";
 				next;
 				if (.@rucard_game01 == 3) {
-					cutin "°í½ºÆ®¸µÄ«µå",4;
+					cutin "ï¿½ï¿½ï¿½Æ®ï¿½ï¿½Ä«ï¿½ï¿½",4;
 					emotion 0;
 					emotion 5,1;
 					next;
@@ -15993,13 +15993,13 @@ mosk_dun02,57,220,0	script	House Ghost Jar#rus43	111,{
 					next;
 				}else{
 					if (.@rucard_game01 == 1) {
-						cutin "Æ÷¸µÄ«µå",4;
+						cutin "ï¿½ï¿½ï¿½ï¿½Ä«ï¿½ï¿½",4;
 					}
 					else if (.@rucard_game01 == 2) {
-						cutin "¿£Á©¸µÄ«µå",4;
+						cutin "ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä«ï¿½ï¿½",4;
 					}
 					else if (.@rucard_game01 == 3) {
-						cutin "°í½ºÆ®¸µÄ«µå",4;
+						cutin "ï¿½ï¿½ï¿½Æ®ï¿½ï¿½Ä«ï¿½ï¿½",4;
 					}
 					emotion 0;
 					emotion 23,1;

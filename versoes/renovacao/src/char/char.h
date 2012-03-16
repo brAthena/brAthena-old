@@ -6,14 +6,12 @@
 
 #include "../common/core.h" // CORE_ST_LAST
 
-#ifndef TXT_SQL_CONVERT
 enum E_CHARSERVER_ST
 {
 	CHARSERVER_ST_RUNNING = CORE_ST_LAST,
 	CHARSERVER_ST_SHUTDOWN,
 	CHARSERVER_ST_LAST
 };
-#endif
 
 struct mmo_charstatus;
 
@@ -70,14 +68,15 @@ extern char pet_db[256];
 extern char mail_db[256];
 extern char auction_db[256];
 extern char quest_db[256];
+extern char homunculus_db[256];
+extern char skill_homunculus_db[256];
+extern char mercenary_db[256];
+extern char mercenary_owner_db[256];
+extern char ragsrvinfo_db[256];
 
 extern int db_use_sqldbs; // added for sql item_db read for char server [Valaris]
 
 extern int guild_exp_rate;
 extern int log_inter;
-
-//Exported for use in the TXT-SQL converter.
-int mmo_char_tosql(int char_id, struct mmo_charstatus *p);
-void sql_config_read(const char *cfgName);
 
 #endif /* _CHAR_SQL_H_ */

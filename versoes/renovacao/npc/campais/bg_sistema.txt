@@ -23,8 +23,8 @@
 // | - Negociador de Medalhas (Tierra e Flavius)            |
 // |--------------------------------------------------------|
 // | Changelog:               	                            |
-// | 1.0 Script Traduzido [Tyler]			    |
-// | 1.1 Correção conforme track #26 [cleyton]		    |
+// | 1.0 Script Traduzido [Tyler]			                |
+// | 1.1 Correção conforme track #26 [cleyton]		        |
 // | - Anotações                                            |
 // \________________________________________________________/
 
@@ -328,7 +328,7 @@ bat_room,148,147,4	script	Assistente Kafra::kaf_bat	861,{
 
 // Reparador
 //============================================================
-bat_room,138,144,5	script	Reparador#bg	86,{
+bat_room,138,144,4	script	Reparador#bg	86,{
 	callfunc "repairmain","Reparador";
 	end;
 }

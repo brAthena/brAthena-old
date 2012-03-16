@@ -498,4 +498,26 @@
 3,4475,3	// Carta Cobalto -> 0,03%
 3,4476,3	// Carta Pinguicula -> 0,03%
 3,4477,3	// Carta Apocalipse Infernal -> 0,03%
+// Novas Cartas [brAthena]
+3,4505,1	// Carta Rainha Scaraba -> 0,01%
+3,4506,1	// Carta Dolomedes -> 0,01%
+3,4508,1	// Gold Scaraba Card
+3,4510,1	// Carta Mímica -> 0,01%
+3,4511,2	// Carta Pequeno Fatum -> 0,02%
+3,4512,1	// Carta Parus -> 0,01%
+3,4513,1	// Carta Angra Matis -> 0,01%
+3,4514,2	// Carta Aranha -> 0,02%
+3,4515,2	// Carta Alnoldi -> 0,02%
+3,4516,1	// Carta Comodo -> 0,01%
+3,4517,1	// Carta Cendrawasih -> 0,01%
+3,4518,1	// Carta Banaspaty -> 0,01%
+3,4519,2	// Carta Butoijo -> 0,02%
+3,4521,1	// Carta Sedora -> 0,01%
+3,4522,1	// Carta Sropho -> 0,01%
+3,4523,1	// Carta Pote de Dofle -> 0,01%
+3,4524,1	// Carta Rei Dramoh -> 0,01%
+3,4530,1	// Carta Siorava -> 0,01%
+3,4531,2	// Carta Eruma Vermelha -> 0,02%
+3,4532,1	// Carta Motoqueiro Selvagem -> 0,01%
+3,4533,2	// Carta Polvo -> 0,02%
 //========================================================================================================

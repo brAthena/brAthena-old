@@ -1100,7 +1100,7 @@ void battle_consume_ammo(TBL_PC*sd, int skill, int lv)
 	}
 
 	if(sd->equip_index[EQI_AMMO]>=0) //Qty check should have been done in skill_check_condition
-		pc_delitem(sd,sd->equip_index[EQI_AMMO],qty,0,1);
+		pc_delitem(sd,sd->equip_index[EQI_AMMO],qty,0,1,LOG_TYPE_CONSUME);
 
 	sd->state.arrow_atk = 0;
 }
@@ -4376,7 +4376,7 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 		wd.damage *= 3;
 
 	if( sc && sc->data[SC_FEARBREEZE] && sc->data[SC_FEARBREEZE]->val4 > 0 && sd->status.inventory[sd->equip_index[EQI_AMMO]].amount >= sc->data[SC_FEARBREEZE]->val4 && battle_config.arrow_decrement){
-		pc_delitem(sd,sd->equip_index[EQI_AMMO],sc->data[SC_FEARBREEZE]->val4,0,1);
+		pc_delitem(sd,sd->equip_index[EQI_AMMO],sc->data[SC_FEARBREEZE]->val4,0,1,LOG_TYPE_CONSUME);
 		sc->data[SC_FEARBREEZE]->val4 = 0;
 	}
 
@@ -5356,6 +5356,8 @@ static const struct _battle_data {
 	{ "block_relocation_trapped",           &battle_config.block_relocation,                  1,    0,      1,              },
 	{ "metallicsound_spburn_rate",          &battle_config.metallicsound_spburn_rate,        100,   0,      INT_MAX,        },
 	{ "active_mvp_tombstone",               &battle_config.active_mvp_tombstone,              1,    0,      1,              },
+	{ "atcommand_max_stat_bypass",          &battle_config.atcommand_max_stat_bypass,         0,    0,      100,            },          
+	{ "skill_amotion_leniency",             &battle_config.skill_amotion_leniency,            90,   0,      100				},
 };
 
 

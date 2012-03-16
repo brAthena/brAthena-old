@@ -6,6 +6,7 @@
 #include "../common/socket.h" // last_tick
 #include "../common/nullpo.h"
 #include "../common/malloc.h"
+#include "../common/random.h"
 #include "../common/showmsg.h"
 #include "../common/utils.h"
 #include "../common/strlib.h"
@@ -340,13 +341,9 @@ int party_invite(struct map_session_data *sd,struct map_session_data *tsd)
 		clif_party_inviteack(sd, "", 7);
 		return 0;
 	}
-
-	if ( (pc_isGM(sd) >= battle_config.lowest_gm_level && pc_isGM(tsd) < battle_config.lowest_gm_level && !battle_config.gm_can_party && pc_isGM(sd) < battle_config.gm_cant_party_min_lv)
-		|| ( pc_isGM(sd) < battle_config.lowest_gm_level && pc_isGM(tsd) >= battle_config.lowest_gm_level && !battle_config.gm_can_party && pc_isGM(tsd) < battle_config.gm_cant_party_min_lv) )
-	{
-		//GMs can't invite non GMs to the party if not above the invite trust level
-		//Likewise, as long as gm_can_party is off, players can't invite GMs.
-		clif_displaymessage(sd->fd, msg_txt(81));
+	
+	if (!pc_has_permission(sd, PC_PERM_PARTY) || !pc_has_permission(tsd, PC_PERM_PARTY)) {
+		clif_displaymessage(sd->fd, msg_txt(81)); // "Your GM level doesn't authorize you to preform this action on the specified player."
 		return 0;
 	}
 
@@ -557,14 +554,14 @@ int party_member_withdraw(int party_id, int account_id, int char_id)
 {
 	struct map_session_data* sd = map_id2sd(account_id);
 	struct party_data* p = party_search(party_id);
-	int i;
 
 	if( p )
 	{
+		int i;
 		ARR_FIND( 0, MAX_PARTY, i, p->party.member[i].account_id == account_id && p->party.member[i].char_id == char_id );
 		if( i < MAX_PARTY )
 		{
-			clif_party_withdraw(p,sd,account_id,p->party.member[i].name,0x00);
+			clif_party_withdraw(p,sd,account_id,p->party.member[i].name,0x0);
 			memset(&p->party.member[i], 0, sizeof(p->party.member[0]));
 			memset(&p->data[i], 0, sizeof(p->data[0]));
 			p->party.count--;
@@ -866,11 +863,16 @@ int party_send_xy_timer(int tid, unsigned int tick, int id, intptr_t data)
 	for( p = (struct party_data*)iter->first(iter,NULL); iter->exists(iter); p = (struct party_data*)iter->next(iter,NULL) )
 	{
 		int i;
+
+		if( !p->party.count )
+		{// no online party members so do not iterate
+			continue;
+		}
+
 		// for each member of this party,
 		for( i = 0; i < MAX_PARTY; i++ )
 		{
-			//struct map_session_data* sd = p->data[i].sd;
-			struct map_session_data* sd = map_charid2sd(p->party.member[i].char_id); //temporary crashfix
+			struct map_session_data* sd = p->data[i].sd;
 			if( !sd ) continue;
 
 			if( p->data[i].x != sd->bl.x || p->data[i].y != sd->bl.y )
@@ -970,8 +972,8 @@ int party_share_loot(struct party_data* p, struct map_session_data* sd, struct i
 
 				if( (psd = p->data[i].sd) == NULL || sd->bl.m != psd->bl.m || pc_isdead(psd) || (battle_config.idle_no_share && pc_isidle(psd)) )
 					continue;
-
-				if (pc_additem(psd,item_data,item_data->amount))
+				
+				if (pc_additem(psd,item_data,item_data->amount,LOG_TYPE_PICKDROP_PLAYER))
 					continue; //Chosen char can't pick up loot.
 
 				//Successful pick.
@@ -992,8 +994,8 @@ int party_share_loot(struct party_data* p, struct map_session_data* sd, struct i
 				count++;
 			}
 			while (count > 0) { //Pick a random member.
-				i = rand()%count;
-				if (pc_additem(psd[i],item_data,item_data->amount))
+				i = rnd()%count;
+				if (pc_additem(psd[i],item_data,item_data->amount,LOG_TYPE_PICKDROP_PLAYER))
 				{	//Discard this receiver.
 					psd[i] = psd[count-1];
 					count--;
@@ -1005,15 +1007,12 @@ int party_share_loot(struct party_data* p, struct map_session_data* sd, struct i
 		}
 	}
 
-	if (!target) {
+	if (!target) { 
 		target = sd; //Give it to the char that picked it up
-		if ((i=pc_additem(sd,item_data,item_data->amount)))
+		if ((i=pc_additem(sd,item_data,item_data->amount,LOG_TYPE_PICKDROP_PLAYER)))
 			return i;
 	}
 
-	//Logs items, taken by (P)layers [Lupus]
-	log_pick_pc(target, LOG_TYPE_PICKDROP_PLAYER, item_data->nameid, item_data->amount, item_data);
-	
 	if( p && battle_config.party_show_share_picker && battle_config.show_picker_item_type&(1<<itemdb_type(item_data->nameid)) )
 		clif_party_show_picker(target, item_data);
 
@@ -1073,7 +1072,7 @@ int party_foreachsamemap(int (*func)(struct block_list*,va_list),struct map_sess
 			(psd->bl.x<x0 || psd->bl.y<y0 ||
 			 psd->bl.x>x1 || psd->bl.y>y1 ) )
 			continue;
-		list[blockcount++]=&psd->bl;
+		list[blockcount++]=&psd->bl; 
 	}
 
 	map_freeblock_lock();

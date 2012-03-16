@@ -69,13 +69,13 @@ int npc_get_new_npc_id(void)
 				return npc_id++;// available
 		}
 		// full loop, nothing available
-		ShowFatalError("npc_get_new_npc_id: Todos os ids estao sendo utilizado. Saindo...");
+		ShowFatalError("npc_get_new_npc_id: All ids are taken. Exiting...");
 		exit(1);
 	}
 }
 
 static DBMap* ev_db; // const char* event_name -> struct event_data*
-DBMap* npcname_db; // const char* npc_name -> struct npc_data*
+static DBMap* npcname_db; // const char* npc_name -> struct npc_data*
 
 struct event_data {
 	struct npc_data *nd;
@@ -169,13 +169,19 @@ int npc_enable(const char* name, int flag)
 	}
 
 	if (flag&1)
+	{
 		nd->sc.option&=~OPTION_INVISIBLE;
+		clif_spawn(&nd->bl);
+	}
 	else if (flag&2)
 		nd->sc.option&=~OPTION_HIDE;
 	else if (flag&4)
 		nd->sc.option|= OPTION_HIDE;
 	else	//Can't change the view_data to invisible class because the view_data for all npcs is shared! [Skotlex]
+	{
 		nd->sc.option|= OPTION_INVISIBLE;
+		clif_clearunit_area(&nd->bl,CLR_OUTSIGHT);  // Hack to trick maya purple card [Xazax]
+	}
 
 	if (nd->class_ == WARP_CLASS || nd->class_ == FLAG_CLASS)
 	{	//Client won't display option changes for these classes [Toms]
@@ -200,6 +206,34 @@ struct npc_data* npc_name2id(const char* name)
 	return (struct npc_data *) strdb_get(npcname_db, name);
 }
 
+ /** For the Secure NPC Timeout option (check config/Secure.h) [RR]
+ **/
+#if SECURE_NPCTIMEOUT
+/**
+ * Timer to check for idle time and timeout the dialog if necessary
+ **/
+int npc_rr_secure_timeout_timer(int tid, unsigned int tick, int id, intptr_t data) {
+	struct map_session_data* sd = NULL;
+	if( (sd = map_id2sd(id)) == NULL || !sd->npc_id ) {
+		if( sd ) sd->npc_idle_timer = INVALID_TIMER;
+		return 0;//Not logged in anymore OR no longer attached to a npc
+	}
+	if( DIFF_TICK(tick,sd->npc_idle_tick) > (SECURE_NPCTIMEOUT*1000) ) {
+		/**
+		 * If we still have the NPC script attached, tell it to stop.
+		 **/
+		if( sd->st )
+			sd->st->state = END;
+		/**
+		 * This guy's been idle for longer than allowed, close him.
+		 **/
+		clif_scriptclose(sd,sd->npc_id);
+		sd->npc_idle_timer = INVALID_TIMER;
+	} else //Create a new instance of ourselves to continue
+		sd->npc_idle_timer = add_timer(gettick() + (SECURE_NPCTIMEOUT_INTERVAL*1000),npc_rr_secure_timeout_timer,sd->bl.id,0);
+	return 0;
+}
+#endif
 /*==========================================
  * イベントキューのイベント処理
  *------------------------------------------*/
@@ -236,33 +270,22 @@ int npc_event_dequeue(struct map_session_data* sd)
 
 /*==========================================
  * exports a npc event label
- * npc_parse_script->strdb_foreachから呼ばれる
+ * called from npc_parse_script
  *------------------------------------------*/
-int npc_event_export(char* lname, void* data, va_list ap)
+static int npc_event_export(struct npc_data *nd, int i)
 {
-	int pos = (int)data;
-	struct npc_data* nd = va_arg(ap, struct npc_data *);
-
-	if ((lname[0]=='O' || lname[0]=='o')&&(lname[1]=='N' || lname[1]=='n')) {
+	char* lname = nd->u.scr.label_list[i].name;
+	int pos = nd->u.scr.label_list[i].pos;
+	if ((lname[0] == 'O' || lname[0] == 'o') && (lname[1] == 'N' || lname[1] == 'n')) {
 		struct event_data *ev;
 		char buf[EVENT_NAME_LENGTH];
-		char* p = strchr(lname, ':');
-		// エクスポートされる
-		ev = (struct event_data *) aMalloc(sizeof(struct event_data));
-		if (ev==NULL) {
-			ShowFatalError("npc_event_export: sem memoria !\n");
-			exit(EXIT_FAILURE);
-		}else if (p==NULL || (p-lname)>NPC_NAME_LENGTH) {
-			ShowFatalError("npc_event_export: erro no nome da label !\n");
-			exit(EXIT_FAILURE);
-		}else{
-			ev->nd = nd;
-			ev->pos = pos;
-			*p = '\0';
-			snprintf(buf, ARRAYLENGTH(buf), "%s::%s", nd->exname, lname);
-			*p = ':';
-			strdb_put(ev_db, buf, ev);
-		}
+		snprintf(buf, ARRAYLENGTH(buf), "%s::%s", nd->exname, lname);
+		// generate the data and insert it
+		CREATE(ev, struct event_data, 1);
+		ev->nd = nd;
+		ev->pos = pos;
+		if (strdb_put(ev_db, buf, ev) != NULL) // There was already another event of the same name?
+			return 1;
 	}
 	return 0;
 }
@@ -410,33 +433,27 @@ void npc_event_do_oninit(void)
 
 /*==========================================
  * タイマーイベント用ラベルの取り込み
- * npc_parse_script->strdb_foreachから呼ばれる
+ * called from npc_parse_script
  *------------------------------------------*/
-int npc_timerevent_import(char* lname, void* data, va_list ap)
+int npc_timerevent_export(struct npc_data *nd, int i)
 {
-	int pos = (int)data;
-	struct npc_data *nd = va_arg(ap,struct npc_data *);
-	int t = 0, i = 0;
-
-	if( sscanf(lname,"OnTimer%d%n",&t,&i)==1 && lname[i]==':' )
-	{
-		struct npc_timerevent_list *te= nd->u.scr.timer_event;
-		int j, i = nd->u.scr.timeramount;
-
-		if( te == NULL )
-			te = (struct npc_timerevent_list*)aMallocA( sizeof(struct npc_timerevent_list) );
+	int t = 0, k = 0;
+	char *lname = nd->u.scr.label_list[i].name;
+	int pos = nd->u.scr.label_list[i].pos;
+	if (sscanf(lname, "OnTimer%d%n", &t, &k) == 1 && lname[k] == '\0') {
+		// タイマーイベント
+		struct npc_timerevent_list *te = nd->u.scr.timer_event;
+		int j, k = nd->u.scr.timeramount;
+		if (te == NULL)
+			te = (struct npc_timerevent_list *)aMalloc(sizeof(struct npc_timerevent_list));
 		else
-			te = (struct npc_timerevent_list*)aRealloc( te, sizeof(struct npc_timerevent_list) * (i+1) );
-
-		if( te == NULL )
-		{
-			ShowFatalError("npc_timerevent_import: sem memoria !\n");
-			exit(EXIT_FAILURE);
+			te = (struct npc_timerevent_list *)aRealloc( te, sizeof(struct npc_timerevent_list) * (k+1) );
+		for (j = 0; j < k; j++) {
+			if (te[j].timer > t) {
+				memmove(te+j+1, te+j, sizeof(struct npc_timerevent_list)*(k-j));
+				break;
+			}
 		}
-
-		ARR_FIND( 0, i, j, te[j].timer > t );
-		if( j < i )
-			memmove(te+j+1,te+j,sizeof(struct npc_timerevent_list)*(i-j));
 		te[j].timer = t;
 		te[j].pos = pos;
 		nd->u.scr.timer_event = te;
@@ -1100,9 +1117,9 @@ int npc_scriptcont(struct map_session_data* sd, int id)
 	if( id != sd->npc_id ){
 		TBL_NPC* nd_sd=(TBL_NPC*)map_id2bl(sd->npc_id);
 		TBL_NPC* nd=(TBL_NPC*)map_id2bl(id);
-		ShowDebug("npc_scriptcont: %s (sd->npc_id=%d) nao e %s (id=%d).\n",
-			nd_sd?(char*)nd_sd->name:"'NPC Desconhecido'", (int)sd->npc_id,
-		  	nd?(char*)nd->name:"'NPC Desconhecido'", (int)id);
+		ShowDebug("npc_scriptcont: %s (sd->npc_id=%d) is not %s (id=%d).\n",
+			nd_sd?(char*)nd_sd->name:"'Unknown NPC'", (int)sd->npc_id,
+		  	nd?(char*)nd->name:"'Unknown NPC'", (int)id);
 		return 1;
 	}
 
@@ -1112,6 +1129,22 @@ int npc_scriptcont(struct map_session_data* sd, int id)
 			return 1;
 		}
 	}
+	/**
+	 * For the Secure NPC Timeout option (check config/Secure.h) [RR]
+	 **/
+#if SECURE_NPCTIMEOUT
+	/**
+	 * Update the last NPC iteration
+	 **/
+	sd->npc_idle_tick = gettick();
+#endif
+
+	/**
+	 * WPE can get to this point with a progressbar; we deny it.
+	 **/
+	if( sd->progressbar.npc_id && DIFF_TICK(sd->progressbar.timeout,gettick()) > 0 )
+		return 1;
+
 	run_script_main(sd->st);
 
 	return 0;
@@ -1137,8 +1170,15 @@ int npc_buysellsel(struct map_session_data* sd, int id, int type)
 	}
 	if (nd->sc.option&OPTION_INVISIBLE)	// 無効化されている
 		return 1;
+	if( nd->class_ < 0 && !sd->state.callshop )
+	{// not called through a script and is not a visible NPC so an invalid call
+		return 1;
+	}
 
-	sd->npc_shopid=id;
+	// reset the callshop state for future calls
+	sd->state.callshop = 0;
+	sd->npc_shopid = id;
+
 	if (type==0) {
 		clif_buylist(sd,nd);
 	} else {
@@ -1146,7 +1186,87 @@ int npc_buysellsel(struct map_session_data* sd, int id, int type)
 	}
 	return 0;
 }
+/*==========================================
+* Cash Shop Buy List
+*------------------------------------------*/
+int npc_cashshop_buylist(struct map_session_data *sd, int points, int count, unsigned short* item_list)
+{
+    int i, j, nameid, amount, new_, w, vt;
+    struct npc_data *nd = (struct npc_data *)map_id2bl(sd->npc_shopid);
 
+    if( !nd || nd->subtype != CASHSHOP )
+        return 1;
+
+    if( sd->state.trading )
+        return 4;
+
+    new_ = 0;
+    w = 0;
+    vt = 0; // Global Value
+
+    // Validating Process ----------------------------------------------------
+    for( i = 0; i < count; i++ )
+    {
+        nameid = item_list[i*2+1];
+        amount = item_list[i*2+0];
+
+        if( !itemdb_exists(nameid) || amount <= 0 )
+            return 5;
+
+        ARR_FIND(0,nd->u.shop.count,j,nd->u.shop.shop_item[j].nameid == nameid);
+        if( j == nd->u.shop.count || nd->u.shop.shop_item[j].value <= 0 )
+            return 5;
+
+        if( !itemdb_isstackable(nameid) && amount > 1 )
+        {
+            ShowWarning("Player %s (%d:%d) sent a hexed packet trying to buy %d of nonstackable item %d!\n", sd->status.name, sd->status.account_id, sd->status.char_id, amount, nameid);
+            amount = item_list[i*2+0] = 1;
+        }
+
+        switch( pc_checkadditem(sd,nameid,amount) )
+        {
+            case ADDITEM_NEW:
+                new_++;
+                break;
+            case ADDITEM_OVERAMOUNT:
+                return 3;
+        }
+
+        vt += nd->u.shop.shop_item[j].value * amount;
+        w += itemdb_weight(nameid) * amount;
+    }
+
+    if( w + sd->weight > sd->max_weight )
+        return 3;
+    if( pc_inventoryblank(sd) < new_ )
+        return 3;
+    if( points > vt ) points = vt;
+
+    // Payment Process ----------------------------------------------------
+    if( sd->kafraPoints < points || sd->cashPoints < (vt - points) )
+        return 6;
+    pc_paycash(sd,vt,points);
+
+    // Delivery Process ----------------------------------------------------
+    for( i = 0; i < count; i++ )
+    {
+        struct item item_tmp;
+
+        nameid = item_list[i*2+1];
+        amount = item_list[i*2+0];
+
+        memset(&item_tmp,0,sizeof(item_tmp));
+
+        if( !pet_create_egg(sd,nameid) )
+        {
+            item_tmp.nameid = nameid;
+            item_tmp.identify = 1;
+            pc_additem(sd,&item_tmp,amount,LOG_TYPE_NPC);
+        }
+    }
+
+    return 0;
+}
 //npc_buylist for script-controlled shops.
 static int npc_buylist_sub(struct map_session_data* sd, int n, unsigned short* item_list, struct npc_data* nd)
 {
@@ -1246,10 +1366,8 @@ int npc_cashshop_buy(struct map_session_data *sd, int nameid, int amount, int po
 		item_tmp.nameid = nameid;
 		item_tmp.identify = 1;
 
-		pc_additem(sd,&item_tmp, amount);
+		pc_additem(sd,&item_tmp, amount, LOG_TYPE_NPC);
 	}
-
-	log_pick_pc(sd, LOG_TYPE_NPC, nameid, amount, NULL);
 
 	return 0;
 }
@@ -1282,7 +1400,7 @@ int npc_buylist(struct map_session_data* sd, int n, unsigned short* item_list)
 		int nameid, amount, value;
 
 		// find this entry in the shop's sell list
-		ARR_FIND( 0, nd->u.shop.count, j,
+		ARR_FIND( 0, nd->u.shop.count, j, 
 			item_list[i*2+1] == nd->u.shop.shop_item[j].nameid || //Normal items
 			item_list[i*2+1] == itemdb_viewid(nd->u.shop.shop_item[j].nameid) //item_avail replacement
 		);
@@ -1354,11 +1472,7 @@ int npc_buylist(struct map_session_data* sd, int n, unsigned short* item_list)
 		item_tmp.nameid = nameid;
 		item_tmp.identify = 1;
 
-		pc_additem(sd,&item_tmp,amount);
-
-		//Logs items, Bought in NPC (S)hop [Lupus]
-		log_pick_pc(sd, LOG_TYPE_NPC, item_tmp.nameid, amount, NULL);
-		//Logs
+		pc_additem(sd,&item_tmp,amount,LOG_TYPE_NPC);
 	}
 
 	// custom merchant shop exp bonus
@@ -1384,14 +1498,28 @@ int npc_buylist(struct map_session_data* sd, int n, unsigned short* item_list)
 static int npc_selllist_sub(struct map_session_data* sd, int n, unsigned short* item_list, struct npc_data* nd)
 {
 	char npc_ev[EVENT_NAME_LENGTH];
-	int i, idx;
+	char card_slot[NAME_LENGTH];
+	int i, j, idx;
 	int key_nameid = 0;
 	int key_amount = 0;
+	int key_refine = 0;
+	int key_attribute = 0;
+	int key_identify = 0;
+	int key_card = 0;
 
 	// discard old contents
 	script_cleararray_pc(sd, "@sold_nameid", (void*)0);
 	script_cleararray_pc(sd, "@sold_quantity", (void*)0);
+	script_cleararray_pc(sd, "@sold_refine", (void*)0);
+	script_cleararray_pc(sd, "@sold_attribute", (void*)0);
+	script_cleararray_pc(sd, "@sold_identify", (void*)0);
 
+	for( j = 0; MAX_SLOTS > j; j++ )
+	{// clear each of the card slot entries
+		snprintf(card_slot, sizeof(card_slot), "@sold_card%d", j + 1);
+		script_cleararray_pc(sd, card_slot, (void*)0);
+	}
+	
 	// save list of to be sold items
 	for( i = 0; i < n; i++ )
 	{
@@ -1399,6 +1527,19 @@ static int npc_selllist_sub(struct map_session_data* sd, int n, unsigned short* 
 
 		script_setarray_pc(sd, "@sold_nameid", i, (void*)(intptr_t)sd->status.inventory[idx].nameid, &key_nameid);
 		script_setarray_pc(sd, "@sold_quantity", i, (void*)(intptr_t)item_list[i*2+1], &key_amount);
+
+		if( itemdb_isequip(sd->status.inventory[idx].nameid) )
+		{// process equipment based information into the arrays
+			script_setarray_pc(sd, "@sold_refine", i, (void*)(intptr_t)sd->status.inventory[idx].refine, &key_refine);
+			script_setarray_pc(sd, "@sold_attribute", i, (void*)(intptr_t)sd->status.inventory[idx].attribute, &key_attribute);
+			script_setarray_pc(sd, "@sold_identify", i, (void*)(intptr_t)sd->status.inventory[idx].identify, &key_identify);
+		
+			for( j = 0; MAX_SLOTS > j; j++ )
+			{// store each of the cards from the equipment in the array
+				snprintf(card_slot, sizeof(card_slot), "@sold_card%d", j + 1);
+				script_setarray_pc(sd, card_slot, i, (void*)(intptr_t)sd->status.inventory[idx].card[j], &key_card);
+			}
+		}
 	}
 
 	// invoke event
@@ -1472,10 +1613,6 @@ int npc_selllist(struct map_session_data* sd, int n, unsigned short* item_list)
 		amount = item_list[i*2+1];
 		nameid = sd->status.inventory[idx].nameid;
 
-		//Logs items, Sold to NPC (S)hop [Lupus]
-		log_pick_pc(sd, LOG_TYPE_NPC, nameid, -amount, &sd->status.inventory[idx]);
-		//Logs
-
 		if( sd->inventory_data[idx]->type == IT_PETEGG && sd->status.inventory[idx].card[0] == CARD0_PET )
 		{
 			if( search_petDB_index(sd->status.inventory[idx].nameid, PET_EGG) >= 0 )
@@ -1484,7 +1621,7 @@ int npc_selllist(struct map_session_data* sd, int n, unsigned short* item_list)
 			}
 		}
 
-		pc_delitem(sd, idx, amount, 0, 6);
+		pc_delitem(sd, idx, amount, 0, 6, LOG_TYPE_NPC);
 	}
 
 	if( z > MAX_ZENY )
@@ -1588,8 +1725,8 @@ int npc_unload(struct npc_data* nd)
 
 		ev_db->foreach(ev_db,npc_unload_ev,nd->exname); //Clean up all events related
 
-		iter = mapit_geteachpc();
-		for( bl = (struct block_list*)mapit_first(iter); mapit_exists(iter); bl = (struct block_list*)mapit_next(iter) )
+		iter = mapit_geteachpc();  
+		for( bl = (struct block_list*)mapit_first(iter); mapit_exists(iter); bl = (struct block_list*)mapit_next(iter) )  
 		{
 			struct map_session_data *sd = map_id2sd(bl->id);
 			if( sd && sd->npc_timer_id != INVALID_TIMER )
@@ -1739,14 +1876,14 @@ static void npc_parsename(struct npc_data* nd, const char* name, const char* sta
 		}
 		len = strlen(p+2);
 		if( len > NPC_NAME_LENGTH )
-			ShowWarning("npc_parsename: Nome unico de '%s' muito longo (comp=%u) no arquivo '%s', linha'%d'. Diminuindo para %u caracteres.\n", name, (unsigned int)len, filepath, strline(buffer,start-buffer), NAME_LENGTH);
+			ShowWarning("npc_parsename: Unique name of '%s' is too long (len=%u) in file '%s', line'%d'. Truncating to %u characters.\n", name, (unsigned int)len, filepath, strline(buffer,start-buffer), NAME_LENGTH);
 		safestrncpy(nd->exname, p+2, sizeof(nd->exname));
 	}
 	else
 	{// <Display name>
 		size_t len = strlen(name);
 		if( len > NPC_NAME_LENGTH )
-			ShowWarning("npc_parsename: Nome '%s' muito longo (comp=%u) no arquivo '%s', linha'%d'. Diminuindo para %u caracteres.\n", name, (unsigned int)len, filepath, strline(buffer,start-buffer), NAME_LENGTH);
+			ShowWarning("npc_parsename: Name '%s' is too long (len=%u) in file '%s', line'%d'. Truncating to %u characters.\n", name, (unsigned int)len, filepath, strline(buffer,start-buffer), NAME_LENGTH);
 		safestrncpy(nd->name, name, sizeof(nd->name));
 		safestrncpy(nd->exname, name, sizeof(nd->exname));
 	}
@@ -1771,12 +1908,12 @@ static void npc_parsename(struct npc_data* nd, const char* name, const char* sta
 		}
 		while( npc_name2id(newname) != NULL );
 
-		strcpy(this_mapname, (nd->bl.m==-1?"(nao em um mapa)":mapindex_id2name(map[nd->bl.m].index)));
-		strcpy(other_mapname, (dnd->bl.m==-1?"(nao em um mapa)":mapindex_id2name(map[dnd->bl.m].index)));
+		strcpy(this_mapname, (nd->bl.m==-1?"(not on a map)":mapindex_id2name(map[nd->bl.m].index)));
+		strcpy(other_mapname, (dnd->bl.m==-1?"(not on a map)":mapindex_id2name(map[dnd->bl.m].index)));
 
-		ShowWarning("npc_parsename: Nome unico duplicado no arquivo '%s', linha'%d'. Renomeando '%s' para '%s'.\n", filepath, strline(buffer,start-buffer), nd->exname, newname);
-		ShowDebug("esse npc:\n   nome '%s'\n   nome unico '%s'\n   mapa=%s, x=%d, y=%d\n", nd->name, nd->exname, this_mapname, nd->bl.x, nd->bl.y);
-		ShowDebug("outro npc:\n   nome '%s'\n   nome unico '%s'\n   mapa=%s, x=%d, y=%d\n", dnd->name, dnd->exname, other_mapname, dnd->bl.x, dnd->bl.y);
+		ShowWarning("npc_parsename: Duplicate unique name in file '%s', line'%d'. Renaming '%s' to '%s'.\n", filepath, strline(buffer,start-buffer), nd->exname, newname);
+		ShowDebug("this npc:\n   display name '%s'\n   unique name '%s'\n   map=%s, x=%d, y=%d\n", nd->name, nd->exname, this_mapname, nd->bl.x, nd->bl.y);
+		ShowDebug("other npc:\n   display name '%s'\n   unique name '%s'\n   map=%s, x=%d, y=%d\n", dnd->name, dnd->exname, other_mapname, dnd->bl.x, dnd->bl.y);
 		safestrncpy(nd->exname, newname, sizeof(nd->exname));
 	}
 }
@@ -1793,10 +1930,10 @@ struct npc_data* npc_add_warp(short from_mapid, short from_x, short from_y, shor
 	nd->bl.m = from_mapid;
 	nd->bl.x = from_x;
 	nd->bl.y = from_y;
-	safestrncpy(nd->name, "", ARRAYLENGTH(nd->name));// empty display name
 	snprintf(nd->exname, ARRAYLENGTH(nd->exname), "warp_%d_%d_%d", from_mapid, from_x, from_y);
 	for( i = 0; npc_name2id(nd->exname) != NULL; ++i )
 		snprintf(nd->exname, ARRAYLENGTH(nd->exname), "warp%d_%d_%d_%d", i, from_mapid, from_x, from_y);
+	safestrncpy(nd->name, nd->exname, ARRAYLENGTH(nd->name));
 
 	if( battle_config.warp_point_debug )
 		nd->class_ = WARP_DEBUG_CLASS;
@@ -2026,7 +2163,7 @@ int npc_convertlabel_db(DBKey key, void* data, va_list ap)
 
 	if( *label_list == NULL )
 	{
-		*label_list = (struct npc_label_list *) aCallocA (1, sizeof(struct npc_label_list));
+		*label_list = (struct npc_label_list *) aCalloc (1, sizeof(struct npc_label_list));
 		*label_list_num = 0;
 	} else
 		*label_list = (struct npc_label_list *) aRealloc (*label_list, sizeof(struct npc_label_list)*(*label_list_num+1));
@@ -2206,52 +2343,18 @@ static const char* npc_parse_script(char* w1, char* w2, char* w3, char* w4, cons
 
 	//-----------------------------------------
 	// イベント用ラベルデータのエクスポート
-	for (i = 0; i < nd->u.scr.label_list_num; i++)
-	{
-		char* lname = nd->u.scr.label_list[i].name;
-		int pos = nd->u.scr.label_list[i].pos;
-
-		if ((lname[0] == 'O' || lname[0] == 'o') && (lname[1] == 'N' || lname[1] == 'n'))
-		{
-			struct event_data* ev;
-			char buf[EVENT_NAME_LENGTH];
-			snprintf(buf, ARRAYLENGTH(buf), "%s::%s", nd->exname, lname);
-
-			// generate the data and insert it
-			CREATE(ev, struct event_data, 1);
-			ev->nd = nd;
-			ev->pos = pos;
-			if( strdb_put(ev_db, buf, ev) != NULL )// There was already another event of the same name?
-				ShowWarning("npc_parse_script : evento duplicado %s (%s)\n", buf, filepath);
+	for (i = 0; i < nd->u.scr.label_list_num; i++) {
+		if (npc_event_export(nd, i)) {
+			ShowWarning("npc_parse_script : duplicate event %s::%s (%s)\n",
+			             nd->exname, nd->u.scr.label_list[i].name, filepath);
 		}
 	}
 
 	//-----------------------------------------
 	// ラベルデータからタイマーイベント取り込み
-	for (i = 0; i < nd->u.scr.label_list_num; i++){
-		int t = 0, k = 0;
-		char *lname = nd->u.scr.label_list[i].name;
-		int pos = nd->u.scr.label_list[i].pos;
-		if (sscanf(lname, "OnTimer%d%n", &t, &k) == 1 && lname[k] == '\0') {
-			// タイマーイベント
-			struct npc_timerevent_list *te = nd->u.scr.timer_event;
-			int j, k = nd->u.scr.timeramount;
-			if (te == NULL)
-				te = (struct npc_timerevent_list *)aMallocA(sizeof(struct npc_timerevent_list));
-			else
-				te = (struct npc_timerevent_list *)aRealloc( te, sizeof(struct npc_timerevent_list) * (k+1) );
-			for (j = 0; j < k; j++){
-				if (te[j].timer > t){
-					memmove(te+j+1, te+j, sizeof(struct npc_timerevent_list)*(k-j));
-					break;
-				}
-			}
-			te[j].timer = t;
-			te[j].pos = pos;
-			nd->u.scr.timer_event = te;
-			nd->u.scr.timeramount++;
-		}
-	}
+	for (i = 0; i < nd->u.scr.label_list_num; i++)
+		npc_timerevent_export(nd, i);
+
 	nd->u.scr.timerid = INVALID_TIMER;
 
 	return end;
@@ -2394,52 +2497,18 @@ const char* npc_parse_duplicate(char* w1, char* w2, char* w3, char* w4, const ch
 	//Handle labels
 	//-----------------------------------------
 	// イベント用ラベルデータのエクスポート
-	for (i = 0; i < nd->u.scr.label_list_num; i++)
-	{
-		char* lname = nd->u.scr.label_list[i].name;
-		int pos = nd->u.scr.label_list[i].pos;
-
-		if ((lname[0] == 'O' || lname[0] == 'o') && (lname[1] == 'N' || lname[1] == 'n'))
-		{
-			struct event_data* ev;
-			char buf[EVENT_NAME_LENGTH];
-			snprintf(buf, ARRAYLENGTH(buf), "%s::%s", nd->exname, lname);
-
-			// generate the data and insert it
-			CREATE(ev, struct event_data, 1);
-			ev->nd = nd;
-			ev->pos = pos;
-			if( strdb_put(ev_db, buf, ev) != NULL )// There was already another event of the same name?
-				ShowWarning("npc_parse_duplicate : evento duplicado %s (%s)\n", buf, filepath);
+	for (i = 0; i < nd->u.scr.label_list_num; i++) {
+		if (npc_event_export(nd, i)) {
+			ShowWarning("npc_parse_duplicate : duplicate event %s::%s (%s)\n",
+			             nd->exname, nd->u.scr.label_list[i].name, filepath);
 		}
 	}
 
 	//-----------------------------------------
 	// ラベルデータからタイマーイベント取り込み
-	for (i = 0; i < nd->u.scr.label_list_num; i++){
-		int t = 0, k = 0;
-		char *lname = nd->u.scr.label_list[i].name;
-		int pos = nd->u.scr.label_list[i].pos;
-		if (sscanf(lname, "OnTimer%d%n", &t, &k) == 1 && lname[k] == '\0') {
-			// タイマーイベント
-			struct npc_timerevent_list *te = nd->u.scr.timer_event;
-			int j, k = nd->u.scr.timeramount;
-			if (te == NULL)
-				te = (struct npc_timerevent_list *)aMallocA(sizeof(struct npc_timerevent_list));
-			else
-				te = (struct npc_timerevent_list *)aRealloc( te, sizeof(struct npc_timerevent_list) * (k+1) );
-			for (j = 0; j < k; j++){
-				if (te[j].timer > t){
-					memmove(te+j+1, te+j, sizeof(struct npc_timerevent_list)*(k-j));
-					break;
-				}
-			}
-			te[j].timer = t;
-			te[j].pos = pos;
-			nd->u.scr.timer_event = te;
-			nd->u.scr.timeramount++;
-		}
-	}
+	for (i = 0; i < nd->u.scr.label_list_num; i++)
+		npc_timerevent_export(nd, i);
+
 	nd->u.scr.timerid = INVALID_TIMER;
 
 	return end;
@@ -2501,7 +2570,7 @@ int npc_duplicate4instance(struct npc_data *snd, int m)
 	else
 	{
 		static char w1[50], w2[50], w3[50], w4[50];
-		const char* stat_buf = "- chamada do subsistema de instacias -\n";
+		const char* stat_buf = "- call from instancing subsystem -\n";
 
 		snprintf(w1, sizeof(w1), "%s,%d,%d,%d", map[m].name, snd->bl.x, snd->bl.y, snd->ud.dir);
 		snprintf(w2, sizeof(w2), "duplicate(%s)", snd->exname);
@@ -3095,8 +3164,11 @@ static const char* npc_parse_mapflag(char* w1, char* w2, char* w3, char* w4, con
 		map[m].flag.sakura=state;
 	else if (!strcmpi(w3,"leaves"))
 		map[m].flag.leaves=state;
-	else if (!strcmpi(w3,"rain"))
-		map[m].flag.rain=state;
+	/**
+	 * No longer available, keeping here just in case it's back someday. [Ind]
+	 **/
+	//else if (!strcmpi(w3,"rain"))
+	//	map[m].flag.rain=state;
 	else if (!strcmpi(w3,"nightenabled"))
 		map[m].flag.nightenabled=state;
 	else if (!strcmpi(w3,"nogo"))
@@ -3544,7 +3616,7 @@ int do_init_npc(void)
 	//Stock view data for normal npcs.
 	memset(&npc_viewdb, 0, sizeof(npc_viewdb));
 	npc_viewdb[0].class_ = INVISIBLE_CLASS; //Invisible class is stored here.
-	for( i = 1; i < MAX_NPC_CLASS; i++ )
+	for( i = 1; i < MAX_NPC_CLASS; i++ ) 
 		npc_viewdb[i].class_ = i;
 
 	ev_db = strdb_alloc((DBOptions)(DB_OPT_DUP_KEY|DB_OPT_RELEASE_DATA),2*NPC_NAME_LENGTH+2+1);

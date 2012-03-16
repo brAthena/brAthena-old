@@ -1,27 +1,25 @@
-//  ________________________________________________________
-// /                                                        \
-// |       _           _   _   _                            |
-// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
-// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
-// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
-// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |                                                        |
-// |                    brAthena Script                     |
-// |--------------------------------------------------------|
-// | Nome do Script: Quest do Arcebispo                 	|
-// |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team                           |
-// |--------------------------------------------------------|
-// | Versões eA/brA: 1.0/1.0                                |
-// |--------------------------------------------------------|
-// | Descrição: Mudança de Classe para Arcebispo            |
-// |--------------------------------------------------------|
-// | Changelog:               	                            |
-// \________________________________________________________/
+//===== rAthena Script =======================================
+//= Arch Bishop Job Quest
+//===== By: ==================================================
+//= L0ne_W0lf
+//= Credits: Gepard
+//===== Current Version: =====================================
+//= 1.1
+//===== Compatible With: =====================================
+//= rAthena SVN
+//===== Description: =========================================
+//= [Aegis Conversion]
+//= Job change script fr Third class (Arch Bishop)
+//= Does not entirely support changing to Baby Third Class.
+//===== Additional Comments: =================================
+//= 1.0 First version.
+//= 1.1 Fixed class checks for arch bishops.
+//= 1.2 Fixed Job tags typos.
+//============================================================
 
 prt_church,103,88,3	script	Praying Minister#arch	60,{
 	if (BaseJob != Job_Priest) {
-		if (Class == Job_Archbishop || Class == Job_Archbishop_H || Class == Job_Baby_Bishop) {
+		if (Class == Job_Arch_Bishop || Class == Job_Arch_Bishop_T || Class == Job_Baby_Bishop) {
 			mes "[Praying Minister]";
 			mes "Ah! An Archbishop.";
 			mes "You have reached the state of light.";
@@ -840,7 +838,7 @@ job3_arch01,29,34,3	script	Valkyrie#arch	403,{
 		end;
 	}
 	else {
-		if (Class != Job_Archbishop || Class != Job_Archbishop_H || Class != Job_Baby_Bishop) {
+		if (Class != Job_Arch_Bishop || Class != Job_Arch_Bishop_T || Class != Job_Baby_Bishop) {
 			if (job_arch < 5) {
 				warp "odin_tem02",282,263;
 				end;
@@ -1661,7 +1659,7 @@ OnTouch:
 	completequest 2191;
 	getitem 5747,1; //Mitra
 	getitem 2795,1; //Green_Apple_Ring
-	jobchange Job_Archbishop,Upper;
+	jobchange Job_Arch_Bishop,Upper;
 	close;
 }
 

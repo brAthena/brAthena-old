@@ -1,27 +1,35 @@
-//  ________________________________________________________
-// /                                                        \
-// |       _           _   _   _                            |
-// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
-// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
-// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
-// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |                                                        |
-// |                    brAthena Script                     |
-// |--------------------------------------------------------|
-// | Nome do Script: Quest NPCs related to Ayothaya   		|
-// |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team			    			|
-// |--------------------------------------------------------|
-// | Versões eA/brA: 2.3/1.0				    			|
-// |--------------------------------------------------------|
-// | Descrição: Ayothaya Ring Quest							|
-// | Ayothaya Dungeon Quest									|
-// | Tom Yum Goong Quest									|
-// |--------------------------------------------------------|
-// | Changelog:						    					|
-// | 1.0 Modificação [Autor]				    			|
-// | - Anotações					    					|
-// \________________________________________________________/
+//===== rAthena Script =======================================
+//= Quest NPCs related to Ayothaya
+//===== By ===================================================
+//= Fredzilla, MasterOfMuppets
+//===== Version ==============================================
+//= 2.3
+//===== Compatible With ======================================
+//= rAthena SVN
+//===== Description ==========================================
+//= [Aegis Conversion]
+//= Ayothaya Ring Quest
+//= Ayothaya Dungeon Quest
+//= Tom Yum Goong Quest
+//===== Comments =============================================
+//= 1.0 First Release, made with infomation from RagnaInfo
+//= 1.1 Added anti-novice protection [Lupus]
+//= 1.3 Fixed exploit [Lupus]
+//= 1.4 Updated, more close to the official. Thanks to birkiczd
+//=	Also optimized it again, remove unused global variable [Lupus]
+//= 1.5 Removed Duplicates [Silent]
+//= 1.6 Moved quests from cities/ to here:
+//= Shrimp, Dungeon, Tom Yum Goong [Evera]
+//= 1.7 Updated the Ayothaya Ring quest to the official one [MasterOfMuppets]
+//= 1.8 Fixed experience gains to match upcoming rate adjustments. [SinSloth]
+//= 1.9 Corrected NPC names to fall within proper restrictions. [L0ne_W0lf]
+//= 2.0 Rescripted Tom Yum Goong and Dungeon quest to Aegis [L0ne_W0lf]
+//=	10.3 standards.
+//= 2.0a Corrected a Typo error ";;". [Samuray22]
+//= 2.1 Added missing checkweights. [L0ne_W0lf]
+//= 2.2 Replaced effect numerics with constants. [L0ne_W0lf]
+//= 2.3 Replaced effect numerics with constants. [Samuray22]
+//============================================================
 
 // Ayothaya Ring Quest
 //============================================================
@@ -443,9 +451,9 @@ OnTouch:
 		mes "Haven't you ever seen a delicate damsel sigh before? Leave me the hell alone!";
 		close;
 	}
-
+	
 }
-
+	
 ayo_dun02,91,263,0	script	#Annonblood	111,2,3,{
 
 if(!$annonactive)
@@ -604,9 +612,9 @@ if(!$annonactive)
 	}
 
 }
-
+	
 }
-
+	
 ayo_dun02,91,264,3	script	Haggard Man	841,{
 
 	if(thai_find == 13)
@@ -738,23 +746,23 @@ ayo_dun02,91,264,3	script	Haggard Man	841,{
 					mes "realigned every bone in your skeleton, placing them in the right spots. Strangely, you feel intense relaxation and refreshment instead of excruciating pain.";
 					set thai_find,14;
 					if(BaseLevel < 56)
-						getexp 9000,0;
+						getexp 900,0;
 					else if(BaseLevel > 55 && BaseLevel < 61)
-						getexp 10500,0;
+						getexp 1050,0;
 					else if(BaseLevel > 60 && BaseLevel < 66)
-						getexp 18684,0;
+						getexp 1868,0;
 					else if(BaseLevel > 65 && BaseLevel < 71)
-						getexp 27411,0;
+						getexp 2741,0;
 					else if(BaseLevel > 70 && BaseLevel < 76)
-						getexp 70757,0;
+						getexp 7076,0;
 					else if(BaseLevel > 75 && BaseLevel < 81)
-						getexp 130246,0;
+						getexp 13025,0;
 					else if(BaseLevel > 80 && BaseLevel < 86)
-						getexp 150340,0;
+						getexp 15034,0;
 					else if(BaseLevel > 85 && BaseLevel < 91)
-						getexp 182052,0;
+						getexp 18205,0;
 					else if(BaseLevel > 90)
-						getexp 406786,0;
+						getexp 40679,0;
 					next;
 					mes "[" +strcharinfo(0)+ "]";
 					mes "Whoa...?";
@@ -814,23 +822,23 @@ ayo_dun02,91,264,3	script	Haggard Man	841,{
 					mes "realigned every bone in your skeleton, placing them in the right spots. Strangely, you feel intense relaxation and refreshment instead of excruciating pain.";
 					set thai_find,14;
 					if(BaseLevel < 56)
-						getexp 9000,0;
+						getexp 900,0;
 					else if(BaseLevel > 55 && BaseLevel < 61)
-						getexp 10500,0;
+						getexp 1050,0;
 					else if(BaseLevel > 60 && BaseLevel < 66)
-						getexp 18684,0;
+						getexp 1868,0;
 					else if(BaseLevel > 65 && BaseLevel < 71)
-						getexp 27411,0;
+						getexp 2741,0;
 					else if(BaseLevel > 70 && BaseLevel < 76)
-						getexp 70757,0;
+						getexp 7076,0;
 					else if(BaseLevel > 75 && BaseLevel < 81)
-						getexp 130246,0;
+						getexp 13025,0;
 					else if(BaseLevel > 80 && BaseLevel < 86)
-						getexp 150340,0;
+						getexp 15034,0;
 					else if(BaseLevel > 85 && BaseLevel < 91)
-						getexp 182052,0;
+						getexp 18205,0;
 					else if(BaseLevel > 90)
-						getexp 406786,0;
+						getexp 40679,0;
 					next;
 					mes "[" +strcharinfo(0)+ "]";
 					mes "Whoa...?";
@@ -931,14 +939,14 @@ ayo_dun02,91,264,3	script	Haggard Man	841,{
 		disablenpc "Haggard Man";
 		end;
 	}
-
+	
 OnInit:
 	set $annonactive,0;
 	disablenpc "Haggard Man";
 	end;
-
+	
 }
-
+		
 ayothaya,253,99,3	script	Fisherman	843,{
 
 	if(thai_find == 1)
@@ -1092,9 +1100,9 @@ ayothaya,253,99,3	script	Fisherman	843,{
 		mes "own fortunes.";
 		close;
 	}
-
+	
 }
-
+	
 ayo_dun01,255,62,0	script	AyoFootprint1	139,2,0,{
 OnTouch:
 	if(thai_find == 4)
@@ -1107,9 +1115,9 @@ OnTouch:
 			close;
 		}
 	}
-
+	
 }
-
+	
 ayo_dun01,74,142,0	script	AyoFootprint2	139,2,0,{
 OnTouch:
 	if(thai_find == 5)
@@ -1123,9 +1131,9 @@ OnTouch:
 			close;
 		}
 	}
-
+	
 }
-
+	
 ayo_dun01,244,256,2	script	AyoFootprint3	139,2,0,{
 OnTouch:
 	if(thai_find == 6)
@@ -1139,9 +1147,9 @@ OnTouch:
 			close;
 		}
 	}
-
+	
 }
-
+	
 ayo_dun01,17,257,0	script	AyoFootprint4	139,2,0,{
 OnTouch:
 	if(thai_find == 7)
@@ -1155,9 +1163,9 @@ OnTouch:
 			close;
 		}
 	}
-
+	
 }
-
+	
 ayo_dun02,145,120,0	script	AyoFootprint5	139,2,0,{
 OnTouch:
 	if(thai_find == 8)
@@ -1174,10 +1182,10 @@ OnTouch:
 			close;
 		}
 	}
-
+	
 }
-
-
+	
+	
 ayo_dun02,135,168,0	script	AyoFootprint6	139,0,2,{
 OnTouch:
 	if(thai_find == 9)
@@ -1259,9 +1267,9 @@ OnTouch:
 			close;
 		}
 	}
-
+	
 }
-
+	
 ayo_dun02,77,213,0	script	AyoFootprint7	139,1,1,{
 OnTouch:
 	if(thai_find == 10)
@@ -1278,9 +1286,9 @@ OnTouch:
 			close;
 		}
 	}
-
+	
 }
-
+	
 ayo_dun02,86,254,0	script	AyoFootprint8	139,1,1,{
 OnTouch:
 	if(thai_find == 11)
@@ -1293,9 +1301,9 @@ OnTouch:
 			close;
 		}
 	}
-
+	
 }
-
+	
 ayothaya,193,171,3	script	Old Man#02	842,{
 
 	if(thai_find == 3)
@@ -1386,7 +1394,7 @@ ayothaya,193,171,3	script	Old Man#02	842,{
 			close;
 		}
 	}
-
+	
 }
 
 // Ayothaya Dungeon Quest
@@ -2332,7 +2340,7 @@ ayothaya,196,265,3	script	Einon#ayo	842,{
 	mes "Wouldn't you agree with me?";
 	close;
 }
-
+	
 ayo_in01,145,163,3	script	Cook#ayo	839,{
 	if (tomyumgoong < 2) {
 		mes "[Mali the Spicy]";
@@ -2678,7 +2686,7 @@ ayo_in01,145,163,3	script	Cook#ayo	839,{
 	mes "Heh heh heh~!";
 	close;
 }
-
+	
 ayothaya,153,86,5	script	Thongpool#ayo	843,{
 	if ((MaxWeight-Weight) < 2000 || checkweight(1201,1) == 0) {
 		mes "- Wait a minute! -";
@@ -2794,7 +2802,7 @@ ayothaya,153,86,5	script	Thongpool#ayo	843,{
 	mes "I've got the best Shrimp caught in the cleanest waters in the world~!";
 	close;
 }
-
+	
 ayothaya,121,240,7	script	Mr. Jun#ayo	842,1,1,{
 	if ((MaxWeight-Weight) < 2000 || checkweight(1201,1) == 0) {
 		mes "- Wait a minute! -";
@@ -2921,15 +2929,15 @@ OnTouch:
 					mes "As you kids say,";
 					mes "^990000Let's get eXtreme!^000000";
 					next;
-					set user_score,0;
-					set pc_score,0;
+					set @user_score,0;
+					set @pc_score,0;
 					mes "[Mr. Jun]";
 					mes "Rock!";
 					mes "Paper!";
 					mes "Scissors!";
 					next;
 					while(1) {
-						if (.@pc_score == 5 || .@user_score == 3) {
+						if (@pc_score == 5 || @user_score == 3) {
 							break;
 						}
 						else {
@@ -2950,7 +2958,7 @@ OnTouch:
 								else if (.@jun_mark == 2) {
 									emotion e_rock;
 									emotion e_scissors,1;
-									set .@pc_score,.@pc_score + 1;
+									set @pc_score,@pc_score + 1;
 									mes "[Mr. Jun]";
 									mes "Yes...!";
 									mes "Oh my God, yes!";
@@ -2959,8 +2967,8 @@ OnTouch:
 								else {
 									emotion e_paper;
 									emotion e_scissors,1;
-									set .@pc_score,.@pc_score + 1;
-									set .@user_score,.@user_score + 1;
+									set @pc_score,@pc_score + 1;
+									set @user_score,@user_score + 1;
 									mes "[Mr. Jun]";
 									mes "What...?";
 									mes "I don't believe it!";
@@ -2972,8 +2980,8 @@ OnTouch:
 								if (.@jun_mark == 1) {
 									emotion e_scissors;
 									emotion e_rock,1;
-									set .@pc_score,.@pc_score + 1;
-									set .@user_score,.@user_score + 1;
+									set @pc_score,@pc_score + 1;
+									set @user_score,@user_score + 1;
 									mes "[Mr. Jun]";
 									mes "No...!";
 									mes "Sacrilege!";
@@ -2993,7 +3001,7 @@ OnTouch:
 								else {
 									emotion e_paper;
 									emotion e_rock,1;
-									set .@pc_score,.@pc_score + 1;
+									set @pc_score,@pc_score + 1;
 									mes "[Mr. Jun]";
 									mes "Bwahahaha!";
 									mes "You lose, kid!";
@@ -3004,7 +3012,7 @@ OnTouch:
 								if (.@jun_mark == 1) {
 									emotion e_scissors;
 									emotion e_paper,1;
-									set .@pc_score,.@pc_score + 1;
+									set @pc_score,@pc_score + 1;
 									mes "[Mr. Jun]";
 									mes "Heh heh~";
 									mes "Young fool!";
@@ -3013,8 +3021,8 @@ OnTouch:
 								else if (.@jun_mark == 2) {
 									emotion e_rock;
 									emotion e_paper,1;
-									set .@user_score,.@user_score + 1;
-									set .@pc_score,.@pc_score + 1;
+									set @user_score,@user_score + 1;
+									set @pc_score,@pc_score + 1;
 									mes "[Mr. Jun]";
 									mes "Noooo...!";
 									mes "This cannot be!";
@@ -3035,7 +3043,7 @@ OnTouch:
 							}
 						}
 					}
-					if (.@user_score == 3) {
+					if (@user_score == 3) {
 						emotion e_pif;
 						mes "[Mr. Jun]";
 						mes "You... won.";

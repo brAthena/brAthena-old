@@ -68,6 +68,122 @@ prontera,55,350,5	script	Criador de Peco Peco#knt	105,{
 	}
 }
 
+// Dragon Breeder on the Rune Knight job change map, couldn't find NPC on iRO.
+/*
+job3_rune01,88,62,5	script	Dragon Breeder	105,{
+	mes "[Dragon Breeder]";
+	if (Class == Job_Rune_Knight || Class == Job_Rune_Knight_T || Class == Job_Baby_Rune) {
+		mes "Welcome. Would you like to rent a Dragon?";
+		next;
+		switch(select("Yes:No")) {
+		case 1:
+			//if (!getskilllv("RK_DRAGONTRAINING")) {
+			if (!getskilllv("KN_RIDING")) {
+				mes "[Dragon Breeder]";
+				mes "Please learn how to ride a Dragon first.";
+				close;
+			}
+			if (checkriding()) {
+				mes "[Dragon Breeder]";
+				mes "You already have a Dragon.";
+				close;
+			}
+			setdragon;
+			close;
+		case 2:
+			mes "[Dragon Breeder]";
+			mes "I see. Then have a great day.";
+			close;
+		}
+	}
+	else {
+		mes "What are you doing here?";
+		mes "Only Rune Knights can rent a Dragon.";
+		close;
+	}
+}
+*/
+
+prontera,130,213,5	script	Domador de Criaturas	105,{
+	mes "[Domador de Criaturas]";
+	if((Class == Job_Rune_Knight || Class == Job_Rune_Knight_T || Class == Job_Baby_Rune) && getskilllv("RK_DRAGONTRAINING") > 0)
+		set .@montaria$,"Dragão";
+	else if((Class == Job_Royal_Guard || Class == Job_Royal_Guard_T || Class == Job_Baby_Guard) && getskilllv("KN_RIDING") > 0)
+		set .@montaria$,"Grifo";
+	else {
+		mes "Estou aqui para fornecer montarias para Cavaleiros Rúnicos e Guardiões Reais.";
+		close;
+	}
+	mes "Você gostaria de obter um "+.@montaria$+"?";
+	next;
+	if (select("Sim:Não")==1) {
+		if(checkriding()) {
+			mes "[Domador de Criaturas]";
+			mes "Você já tem um "+.@montaria$+".";
+		}else
+			setriding;
+		close;
+	} else {
+		mes "[Domador de Criaturas]";
+		mes "Certo, tenha um bom dia.";
+		close;
+	}
+}
+
+prontera,163,178,3	script	Artilheiro Mágico	105,{
+	mes "[Artilheiro Mágico]";
+	if((Class == Job_Mechanic || Class == Job_Mechanic_T || Class == Job_Baby_Mechanic) && getskilllv("NC_MADOLICENCE")) {
+		mes "Bem-vindo.";
+		mes "Você gostaria de obter um Robô?";
+		next;
+		if(select("Sim:Não")==1) {
+			if(checkriding()) {
+				mes "[Artilheiro Mágico]";
+				mes "Você já tem um Robô.";
+			} else
+				setriding;
+			close;
+		}
+		mes "[Artilheiro Mágico]";
+		mes "Volte quando precisar de meus serviços.";
+		close;
+	}
+	mes "Em que posso ajudar?";
+	mes "Robôs só estão disponíveis para Mecânicos.";
+	close;
+}
+
+// Peco removing NPC
+prontera,125,208,5	script	Soldado	105,{
+	mes "[Soldado]";
+	mes "Se não conseguir desmontar de um PecoPeco";
+	mes "por algum motivo desconhecido,";
+	mes "sinta-se à vontade para usar os";
+	mes "meus serviços.";
+	if (checkriding()) {
+		next;
+		mes "[Soldier]";
+		mes "You're riding a Peco Peco.";
+		mes "Would you like to dismount?";
+		next;
+		switch(select("Yes:No")) {
+		case 1:
+			setriding 0;
+			mes "[Soldier]";
+			mes "Say, how does it feel to";
+			mes "step on the ground on your own";
+			mes "feet again?";
+			close;
+		case 2:
+			mes "[Soldier]";
+			mes "I see. Please feel free to ask me";
+			mes "if you change your mind.";
+			close;
+		}
+	}
+	close;
+}
+
 // Criador de Peco Peco (Para Templários)-------------------------------------------
 prontera,232,318,3	script	Criador de Peco Peco#cru	105,{
 	if(Upper==0) set .@price,3500; //Normal Peco - default price

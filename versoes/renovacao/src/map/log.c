@@ -2,6 +2,7 @@
 // For more information, see LICENCE in the main folder
 
 #include "../common/cbasetypes.h"
+#include "../common/sql.h" // SQL_INNODB
 #include "../common/strlib.h"
 #include "../common/nullpo.h"
 #include "../common/showmsg.h"
@@ -41,6 +42,15 @@ e_log_filter;
 struct Log_Config log_config;
 
 
+#ifdef SQL_INNODB
+// database is using an InnoDB engine so do not use DELAYED
+#define LOG_QUERY "INSERT"
+#else
+// database is using a MyISAM engine so use DELAYED
+#define LOG_QUERY "INSERT DELAYED"
+#endif
+
+
 /// obtain log type character for item/zeny logs
 static char log_picktype2char(e_log_pick_type type)
 {
@@ -52,22 +62,23 @@ static char log_picktype2char(e_log_pick_type type)
 		case LOG_TYPE_PICKDROP_MONSTER: return 'M';  // (M)onster
 		case LOG_TYPE_NPC:              return 'S';  // NPC (S)hop
 		case LOG_TYPE_SCRIPT:           return 'N';  // (N)PC Script
-		//case LOG_TYPE_STEAL:            return 'D';  // Steal/Snatcher
+		case LOG_TYPE_STEAL:            return 'D';  // Steal/Snatcher
 		case LOG_TYPE_CONSUME:          return 'C';  // (C)onsumed
-		//case LOG_TYPE_PRODUCE:          return 'O';  // Pr(O)duced/Ingredients
-		//case LOG_TYPE_MVP:              return 'U';  // MVP Rewards
+		case LOG_TYPE_PRODUCE:          return 'O';  // Pr(O)duced/Ingredients
+		case LOG_TYPE_MVP:              return 'U';  // MVP Rewards
 		case LOG_TYPE_COMMAND:          return 'A';  // (A)dmin command
 		case LOG_TYPE_STORAGE:          return 'R';  // Sto(R)age
 		case LOG_TYPE_GSTORAGE:         return 'G';  // (G)uild storage
 		case LOG_TYPE_MAIL:             return 'E';  // (E)mail attachment
-		//case LOG_TYPE_AUCTION:          return 'I';  // Auct(I)on
+		case LOG_TYPE_AUCTION:          return 'I';  // Auct(I)on
 		case LOG_TYPE_BUYING_STORE:     return 'B';  // (B)uying Store
 		case LOG_TYPE_LOOT:             return 'L';  // (L)oot (consumed monster pick/drop)
+		case LOG_TYPE_OTHER:			return 'X';  // Other
 	}
 
 	// should not get here, fallback
 	ShowDebug("log_picktype2char: Unknown pick type %d.\n", type);
-	return 'S';
+	return 'X';
 }
 
 
@@ -125,12 +136,11 @@ void log_branch(struct map_session_data* sd)
 	if( !log_config.branch )
 		return;
 
-#ifndef TXT_ONLY
 	if( log_config.sql_logs )
 	{
 		SqlStmt* stmt;
 		stmt = SqlStmt_Malloc(logmysql_handle);
-		if( SQL_SUCCESS != SqlStmt_Prepare(stmt, "INSERT DELAYED INTO `%s` (`branch_date`, `account_id`, `char_id`, `char_name`, `map`) VALUES (NOW(), '%d', '%d', ?, '%s')", log_config.log_branch, sd->status.account_id, sd->status.char_id, mapindex_id2name(sd->mapindex) )
+		if( SQL_SUCCESS != SqlStmt_Prepare(stmt, LOG_QUERY " INTO `%s` (`branch_date`, `account_id`, `char_id`, `char_name`, `map`) VALUES (NOW(), '%d', '%d', ?, '%s')", log_config.log_branch, sd->status.account_id, sd->status.char_id, mapindex_id2name(sd->mapindex) )
 		||  SQL_SUCCESS != SqlStmt_BindParam(stmt, 0, SQLDT_STRING, sd->status.name, strnlen(sd->status.name, NAME_LENGTH))
 		||  SQL_SUCCESS != SqlStmt_Execute(stmt) )
 		{
@@ -141,7 +151,6 @@ void log_branch(struct map_session_data* sd)
 		SqlStmt_Free(stmt);
 	}
 	else
-#endif
 	{
 		char timestring[255];
 		time_t curtime;
@@ -156,44 +165,28 @@ void log_branch(struct map_session_data* sd)
 	}
 }
 
-
-/// logs item transactions (players)
-void log_pick_pc(struct map_session_data* sd, e_log_pick_type type, int nameid, int amount, struct item* itm)
+/// logs item transactions (generic)
+void log_pick(int id, int m, e_log_pick_type type, int amount, struct item* itm)
 {
-	nullpo_retv(sd);
-
+	nullpo_retv(itm);
 	if( ( log_config.enable_logs&type ) == 0 )
 	{// disabled
 		return;
 	}
 
-	if( !should_log_item(nameid, amount, itm ? itm->refine : 0) )
+	if( !should_log_item(itm->nameid, amount, itm->refine) )
 		return; //we skip logging this item set - it doesn't meet our logging conditions [Lupus]
 
-#ifndef TXT_ONLY
 	if( log_config.sql_logs )
 	{
-		if( itm == NULL )
-		{//We log common item
-			if( SQL_ERROR == Sql_Query(logmysql_handle, "INSERT DELAYED INTO `%s` (`time`, `char_id`, `type`, `nameid`, `amount`, `map`) VALUES (NOW(), '%d', '%c', '%d', '%d', '%s')",
-				log_config.log_pick, sd->status.char_id, log_picktype2char(type), nameid, amount, mapindex_id2name(sd->mapindex)) )
-			{
-				Sql_ShowDebug(logmysql_handle);
-				return;
-			}
-		}
-		else
-		{//We log Extended item
-			if( SQL_ERROR == Sql_Query(logmysql_handle, "INSERT DELAYED INTO `%s` (`time`, `char_id`, `type`, `nameid`, `amount`, `refine`, `card0`, `card1`, `card2`, `card3`, `map`) VALUES (NOW(), '%d', '%c', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%s')",
-				log_config.log_pick, sd->status.char_id, log_picktype2char(type), itm->nameid, amount, itm->refine, itm->card[0], itm->card[1], itm->card[2], itm->card[3], mapindex_id2name(sd->mapindex)) )
-			{
-				Sql_ShowDebug(logmysql_handle);
-				return;
-			}
+		if( SQL_ERROR == Sql_Query(logmysql_handle, LOG_QUERY " INTO `%s` (`time`, `char_id`, `type`, `nameid`, `amount`, `refine`, `card0`, `card1`, `card2`, `card3`, `map`) VALUES (NOW(), '%d', '%c', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%s')",
+			log_config.log_pick, id, log_picktype2char(type), itm->nameid, amount, itm->refine, itm->card[0], itm->card[1], itm->card[2], itm->card[3], map[m].name?map[m].name:"") )
+		{
+			Sql_ShowDebug(logmysql_handle);
+			return;
 		}
 	}
 	else
-#endif
 	{
 		char timestring[255];
 		time_t curtime;
@@ -203,101 +196,24 @@ void log_pick_pc(struct map_session_data* sd, e_log_pick_type type, int nameid, 
 			return;
 		time(&curtime);
 		strftime(timestring, sizeof(timestring), "%m/%d/%Y %H:%M:%S", localtime(&curtime));
-
-		if( itm == NULL )
-		{//We log common item
-			fprintf(logfp,"%s - %d\t%c\t%d,%d,%s\n", timestring, sd->status.char_id, log_picktype2char(type), nameid, amount, mapindex_id2name(sd->mapindex));
-		}
-		else
-		{//We log Extended item
-			fprintf(logfp,"%s - %d\t%c\t%d,%d,%d,%d,%d,%d,%d,%s\n", timestring, sd->status.char_id, log_picktype2char(type), itm->nameid, amount, itm->refine, itm->card[0], itm->card[1], itm->card[2], itm->card[3], mapindex_id2name(sd->mapindex));
-		}
+		fprintf(logfp,"%s - %d\t%c\t%d,%d,%d,%d,%d,%d,%d,%s\n", timestring, id, log_picktype2char(type), itm->nameid, amount, itm->refine, itm->card[0], itm->card[1], itm->card[2], itm->card[3], map[m].name?map[m].name:"");
 		fclose(logfp);
 	}
+}
+
+/// logs item transactions (players)
+void log_pick_pc(struct map_session_data* sd, e_log_pick_type type, int amount, struct item* itm)
+{
+	nullpo_retv(sd);
+	log_pick(sd->status.char_id, sd->bl.m, type, amount, itm);
 }
 
 
 /// logs item transactions (monsters)
-void log_pick_mob(struct mob_data* md, e_log_pick_type type, int nameid, int amount, struct item* itm)
+void log_pick_mob(struct mob_data* md, e_log_pick_type type, int amount, struct item* itm)
 {
-	char* mapname;
-
 	nullpo_retv(md);
-
-	if( ( log_config.enable_logs&type ) == 0 )
-	{// disabled
-		return;
-	}
-
-	if( !should_log_item(nameid, amount, itm ? itm->refine : 0) )
-		return; //we skip logging this item set - it doesn't meet our logging conditions [Lupus]
-
-	//either PLAYER or MOB (here we get map name and objects ID)
-	mapname = map[md->bl.m].name;
-	if( mapname == NULL )
-		mapname="";
-
-#ifndef TXT_ONLY
-	if( log_config.sql_logs )
-	{
-		if( itm == NULL )
-		{//We log common item
-			if( SQL_ERROR == Sql_Query(logmysql_handle, "INSERT DELAYED INTO `%s` (`time`, `char_id`, `type`, `nameid`, `amount`, `map`) VALUES (NOW(), '%d', '%c', '%d', '%d', '%s')",
-				log_config.log_pick, md->class_, log_picktype2char(type), nameid, amount, mapname) )
-			{
-				Sql_ShowDebug(logmysql_handle);
-				return;
-			}
-		}
-		else
-		{//We log Extended item
-			if( SQL_ERROR == Sql_Query(logmysql_handle, "INSERT DELAYED INTO `%s` (`time`, `char_id`, `type`, `nameid`, `amount`, `refine`, `card0`, `card1`, `card2`, `card3`, `map`) VALUES (NOW(), '%d', '%c', '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%s')",
-				log_config.log_pick, md->class_, log_picktype2char(type), itm->nameid, amount, itm->refine, itm->card[0], itm->card[1], itm->card[2], itm->card[3], mapname) )
-			{
-				Sql_ShowDebug(logmysql_handle);
-				return;
-			}
-		}
-	}
-	else
-#endif
-	{
-		char timestring[255];
-		time_t curtime;
-		FILE *logfp;
-
-		if( ( logfp = fopen(log_config.log_pick, "a") ) == NULL )
-			return;
-		time(&curtime);
-		strftime(timestring, sizeof(timestring), "%m/%d/%Y %H:%M:%S", localtime(&curtime));
-
-		if( itm == NULL )
-		{//We log common item
-			fprintf(logfp,"%s - %d\t%c\t%d,%d,%s\n", timestring, md->class_, log_picktype2char(type), nameid, amount, mapname);
-		}
-		else
-		{//We log Extended item
-			fprintf(logfp,"%s - %d\t%c\t%d,%d,%d,%d,%d,%d,%d,%s\n", timestring, md->class_, log_picktype2char(type), itm->nameid, amount, itm->refine, itm->card[0], itm->card[1], itm->card[2], itm->card[3], mapname);
-		}
-		fclose(logfp);
-	}
-}
-
-
-/// logs item transactions
-void log_pick(struct block_list* bl, e_log_pick_type type, int nameid, int amount, struct item* itm)
-{
-	if( bl == NULL )
-	{
-		ShowError("log_pick: bl == NULL\n");
-	}
-	else switch( bl->type )
-	{
-		case BL_PC:  log_pick_pc((TBL_PC*)bl, type, nameid, amount, itm);   break;
-		case BL_MOB: log_pick_mob((TBL_MOB*)bl, type, nameid, amount, itm); break;
-		default:
-			ShowDebug("log_pick: Unhandled bl type %d.\n", bl->type);
-	}
+	log_pick(md->class_, md->bl.m, type, amount, itm);
 }
 
 
@@ -309,10 +225,9 @@ void log_zeny(struct map_session_data* sd, e_log_pick_type type, struct map_sess
 	if( !log_config.zeny || ( log_config.zeny != 1 && abs(amount) < log_config.zeny ) )
 		return;
 
-#ifndef TXT_ONLY
 	if( log_config.sql_logs )
 	{
-		if( SQL_ERROR == Sql_Query(logmysql_handle, "INSERT DELAYED INTO `%s` (`time`, `char_id`, `src_id`, `type`, `amount`, `map`) VALUES (NOW(), '%d', '%d', '%c', '%d', '%s')",
+		if( SQL_ERROR == Sql_Query(logmysql_handle, LOG_QUERY " INTO `%s` (`time`, `char_id`, `src_id`, `type`, `amount`, `map`) VALUES (NOW(), '%d', '%d', '%c', '%d', '%s')",
 			log_config.log_zeny, sd->status.char_id, src_sd->status.char_id, log_picktype2char(type), amount, mapindex_id2name(sd->mapindex)) )
 		{
 			Sql_ShowDebug(logmysql_handle);
@@ -320,7 +235,6 @@ void log_zeny(struct map_session_data* sd, e_log_pick_type type, struct map_sess
 		}
 	}
 	else
-#endif
 	{
 		char timestring[255];
 		time_t curtime;
@@ -344,10 +258,9 @@ void log_mvpdrop(struct map_session_data* sd, int monster_id, int* log_mvp)
 	if( !log_config.mvpdrop )
 		return;
 
-#ifndef TXT_ONLY
 	if( log_config.sql_logs )
 	{
-		if( SQL_ERROR == Sql_Query(logmysql_handle, "INSERT DELAYED INTO `%s` (`mvp_date`, `kill_char_id`, `monster_id`, `prize`, `mvpexp`, `map`) VALUES (NOW(), '%d', '%d', '%d', '%d', '%s') ",
+		if( SQL_ERROR == Sql_Query(logmysql_handle, LOG_QUERY " INTO `%s` (`mvp_date`, `kill_char_id`, `monster_id`, `prize`, `mvpexp`, `map`) VALUES (NOW(), '%d', '%d', '%d', '%d', '%s') ",
 			log_config.log_mvpdrop, sd->status.char_id, monster_id, log_mvp[0], log_mvp[1], mapindex_id2name(sd->mapindex)) )
 		{
 			Sql_ShowDebug(logmysql_handle);
@@ -355,7 +268,6 @@ void log_mvpdrop(struct map_session_data* sd, int monster_id, int* log_mvp)
 		}
 	}
 	else
-#endif
 	{
 		char timestring[255];
 		time_t curtime;
@@ -371,21 +283,21 @@ void log_mvpdrop(struct map_session_data* sd, int monster_id, int* log_mvp)
 }
 
 
-/// logs used GM commands
-void log_atcommand(struct map_session_data* sd, int cmdlvl, const char* message)
+/// logs used atcommands
+void log_atcommand(struct map_session_data* sd, const char* message)
 {
 	nullpo_retv(sd);
 
-	if( cmdlvl < log_config.gm )
+	if( !log_config.commands ||
+	    !pc_should_log_commands(sd) )
 		return;
 
-#ifndef TXT_ONLY
 	if( log_config.sql_logs )
 	{
 		SqlStmt* stmt;
 
 		stmt = SqlStmt_Malloc(logmysql_handle);
-		if( SQL_SUCCESS != SqlStmt_Prepare(stmt, "INSERT DELAYED INTO `%s` (`atcommand_date`, `account_id`, `char_id`, `char_name`, `map`, `command`) VALUES (NOW(), '%d', '%d', ?, '%s', ?)", log_config.log_gm, sd->status.account_id, sd->status.char_id, mapindex_id2name(sd->mapindex) )
+		if( SQL_SUCCESS != SqlStmt_Prepare(stmt, LOG_QUERY " INTO `%s` (`atcommand_date`, `account_id`, `char_id`, `char_name`, `map`, `command`) VALUES (NOW(), '%d', '%d', ?, '%s', ?)", log_config.log_gm, sd->status.account_id, sd->status.char_id, mapindex_id2name(sd->mapindex) )
 		||  SQL_SUCCESS != SqlStmt_BindParam(stmt, 0, SQLDT_STRING, sd->status.name, strnlen(sd->status.name, NAME_LENGTH))
 		||  SQL_SUCCESS != SqlStmt_BindParam(stmt, 1, SQLDT_STRING, (char*)message, safestrnlen(message, 255))
 		||  SQL_SUCCESS != SqlStmt_Execute(stmt) )
@@ -397,7 +309,6 @@ void log_atcommand(struct map_session_data* sd, int cmdlvl, const char* message)
 		SqlStmt_Free(stmt);
 	}
 	else
-#endif
 	{
 		char timestring[255];
 		time_t curtime;
@@ -421,12 +332,11 @@ void log_npc(struct map_session_data* sd, const char* message)
 	if( !log_config.npc )
 		return;
 
-#ifndef TXT_ONLY
 	if( log_config.sql_logs )
 	{
 		SqlStmt* stmt;
 		stmt = SqlStmt_Malloc(logmysql_handle);
-		if( SQL_SUCCESS != SqlStmt_Prepare(stmt, "INSERT DELAYED INTO `%s` (`npc_date`, `account_id`, `char_id`, `char_name`, `map`, `mes`) VALUES (NOW(), '%d', '%d', ?, '%s', ?)", log_config.log_npc, sd->status.account_id, sd->status.char_id, mapindex_id2name(sd->mapindex) )
+		if( SQL_SUCCESS != SqlStmt_Prepare(stmt, LOG_QUERY " INTO `%s` (`npc_date`, `account_id`, `char_id`, `char_name`, `map`, `mes`) VALUES (NOW(), '%d', '%d', ?, '%s', ?)", log_config.log_npc, sd->status.account_id, sd->status.char_id, mapindex_id2name(sd->mapindex) )
 		||  SQL_SUCCESS != SqlStmt_BindParam(stmt, 0, SQLDT_STRING, sd->status.name, strnlen(sd->status.name, NAME_LENGTH))
 		||  SQL_SUCCESS != SqlStmt_BindParam(stmt, 1, SQLDT_STRING, (char*)message, safestrnlen(message, 255))
 		||  SQL_SUCCESS != SqlStmt_Execute(stmt) )
@@ -438,7 +348,6 @@ void log_npc(struct map_session_data* sd, const char* message)
 		SqlStmt_Free(stmt);
 	}
 	else
-#endif
 	{
 		char timestring[255];
 		time_t curtime;
@@ -467,13 +376,12 @@ void log_chat(e_log_chat_type type, int type_id, int src_charid, int src_accid, 
 		return;
 	}
 
-#ifndef TXT_ONLY
 	if( log_config.sql_logs )
 	{
 		SqlStmt* stmt;
 
 		stmt = SqlStmt_Malloc(logmysql_handle);
-		if( SQL_SUCCESS != SqlStmt_Prepare(stmt, "INSERT DELAYED INTO `%s` (`time`, `type`, `type_id`, `src_charid`, `src_accountid`, `src_map`, `src_map_x`, `src_map_y`, `dst_charname`, `message`) VALUES (NOW(), '%c', '%d', '%d', '%d', '%s', '%d', '%d', ?, ?)", log_config.log_chat, log_chattype2char(type), type_id, src_charid, src_accid, map, x, y)
+		if( SQL_SUCCESS != SqlStmt_Prepare(stmt, LOG_QUERY " INTO `%s` (`time`, `type`, `type_id`, `src_charid`, `src_accountid`, `src_map`, `src_map_x`, `src_map_y`, `dst_charname`, `message`) VALUES (NOW(), '%c', '%d', '%d', '%d', '%s', '%d', '%d', ?, ?)", log_config.log_chat, log_chattype2char(type), type_id, src_charid, src_accid, map, x, y)
 		||  SQL_SUCCESS != SqlStmt_BindParam(stmt, 0, SQLDT_STRING, (char*)dst_charname, safestrnlen(dst_charname, NAME_LENGTH))
 		||  SQL_SUCCESS != SqlStmt_BindParam(stmt, 1, SQLDT_STRING, (char*)message, safestrnlen(message, CHAT_SIZE_MAX))
 		||  SQL_SUCCESS != SqlStmt_Execute(stmt) )
@@ -485,7 +393,6 @@ void log_chat(e_log_chat_type type, int type_id, int src_charid, int src_accid, 
 		SqlStmt_Free(stmt);
 	}
 	else
-#endif
 	{
 		char timestring[255];
 		time_t curtime;
@@ -538,16 +445,7 @@ int log_config_read(const char* cfgName)
 			if( strcmpi(w1, "enable_logs") == 0 )
 				log_config.enable_logs = (e_log_pick_type)config_switch(w2);
 			else if( strcmpi(w1, "sql_logs") == 0 )
-			{
 				log_config.sql_logs = (bool)config_switch(w2);
-#ifdef TXT_ONLY
-				if( log_config.sql_logs )
-				{
-					ShowWarning("log_config_read: SQL logging is not supported on this server.\n");
-					log_config.sql_logs = false;
-				}
-#endif
-			}
 //start of common filter settings
 			else if( strcmpi(w1, "rare_items_log") == 0 )
 				log_config.rare_items_log = atoi(w2);
@@ -564,8 +462,8 @@ int log_config_read(const char* cfgName)
 				log_config.filter = config_switch(w2);
 			else if( strcmpi(w1, "log_zeny") == 0 )
 				log_config.zeny = config_switch(w2);
-			else if( strcmpi(w1, "log_gm") == 0 )
-				log_config.gm = config_switch(w2);
+			else if( strcmpi(w1, "log_commands") == 0 )
+				log_config.commands = config_switch(w2);
 			else if( strcmpi(w1, "log_npc") == 0 )
 				log_config.npc = config_switch(w2);
 			else if( strcmpi(w1, "log_chat") == 0 )
@@ -612,9 +510,9 @@ int log_config_read(const char* cfgName)
 		{
 			ShowInfo("Logging chat to %s '%s'.\n", target, log_config.log_chat);
 		}
-		if( log_config.gm )
+		if( log_config.commands )
 		{
-			ShowInfo("Logging gm commands to %s '%s'.\n", target, log_config.log_gm);
+			ShowInfo("Logging commands to %s '%s'.\n", target, log_config.log_gm);
 		}
 		if( log_config.mvpdrop )
 		{

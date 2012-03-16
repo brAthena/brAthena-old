@@ -9,6 +9,16 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1051 - 16/03/2012 [Protimus]
+	* Atualizado conforme rAthena.
+	- NPCs & Database até 15688.
+	- Código Fonte até 15651.
+	- Recomendada atualização imediata, vários problemas antigos do eAthena foram solucionados, inclusive de segurança.
+	- Os updates de habilidades não foram realizados devido haver redundância no conteúdo, sendo necessário checagem de um por um.
+	- Alguns scripts sofreram reajustes e com isso torna-se necessário uma retradução, isso deve-se ao novo padrão da renovação.
+	- O sistema de comandos para GM sofreu uma modificação brusca, para saber mais sobre o funcionamento procure a área de notícias do fórum.
+	- Possíveis modificações de itens não foram efetuadas por já termos as mesmas em melhores condições, apenas adições foram realizadas.
+
 	r1050 - 28/02/2012 [Protimus]
 	* Corrigido erro da revisão anterior.
 	* Correção para o item Caixa de Trovão.

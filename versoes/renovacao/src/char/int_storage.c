@@ -24,7 +24,6 @@ int storage_tosql(int account_id, struct storage_data* p)
 	return 0;
 }
 
-#ifndef TXT_SQL_CONVERT
 /// Load storage data to mem
 int storage_fromsql(int account_id, struct storage_data* p)
 {
@@ -71,7 +70,6 @@ int storage_fromsql(int account_id, struct storage_data* p)
 	ShowInfo("Armazem carregado pelo BD - id: %d (total: %d)\n", account_id, p->storage_amount);
 	return 1;
 }
-#endif //TXT_SQL_CONVERT
 
 /// Save guild_storage data to sql
 int guild_storage_tosql(int guild_id, struct guild_storage* p)
@@ -81,7 +79,6 @@ int guild_storage_tosql(int guild_id, struct guild_storage* p)
 	return 0;
 }
 
-#ifndef TXT_SQL_CONVERT
 /// Load guild_storage data to mem
 int guild_storage_fromsql(int guild_id, struct guild_storage* p)
 {
@@ -165,7 +162,6 @@ int mapif_load_guild_storage(int fd,int account_id,int guild_id)
 		Sql_ShowDebug(sql_handle);
 	else if( Sql_NumRows(sql_handle) > 0 )
 	{// guild exists
-		Sql_FreeResult(sql_handle);
 		WFIFOHEAD(fd, sizeof(struct guild_storage)+12);
 		WFIFOW(fd,0) = 0x3818;
 		WFIFOW(fd,2) = sizeof(struct guild_storage)+12;
@@ -248,4 +244,3 @@ int inter_storage_parse_frommap(int fd)
 	}
 	return 1;
 }
-#endif //TXT_SQL_CONVERT

@@ -8,8 +8,8 @@
 #include "../common/malloc.h"
 #include "../common/socket.h" // WFIFO*()
 #include "../common/showmsg.h"
-#include "../common/version.h"
 #include "../common/nullpo.h"
+#include "../common/random.h"
 #include "../common/strlib.h"
 #include "../common/utils.h"
 
@@ -68,6 +68,8 @@ char item_db_db[32] = "item_db";
 char item_db2_db[32] = "item_db2";
 char mob_db_db[32] = "mob_db";
 char mob_db2_db[32] = "mob_db2";
+char mob_skill_db_db[32] = "mob_skill_db";
+char mob_skill_db2_db[32] = "mob_skill_db2";
 
 // log database
 char log_db_ip[32] = "127.0.0.1";
@@ -103,6 +105,7 @@ static DBMap* regen_db=NULL; // int id -> struct block_list* (status_natural_hea
 
 static int map_users=0;
 
+#define BLOCK_SIZE 8
 #define block_free_max 1048576
 struct block_list *block_free[block_free_max];
 static int block_free_count = 0, block_free_lock = 0;
@@ -1058,19 +1061,19 @@ int map_foreachinpath(int (*func)(struct block_list*,va_list),int m,int x0,int y
 //   x
 //  S
 //////////////////////////////////////////////////////////////
-// Methodology:
-// My trigonometrics and math are a little rusty... so the approach I am writing
-// here is basicly do a double for to check for all targets in the square that
-// contains the initial and final positions (area range increased to match the
-// radius given), then for each object to test, calculate the distance to the
+// Methodology: 
+// My trigonometrics and math are a little rusty... so the approach I am writing 
+// here is basicly do a double for to check for all targets in the square that 
+// contains the initial and final positions (area range increased to match the 
+// radius given), then for each object to test, calculate the distance to the 
 // path and include it if the range fits and the target is in the line (0<k<1,
 // as they call it).
-// The implementation I took as reference is found at
-// http://astronomy.swin.edu.au/~pbourke/geometry/pointline/
+// The implementation I took as reference is found at 
+// http://astronomy.swin.edu.au/~pbourke/geometry/pointline/ 
 // (they have a link to a C implementation, too)
-// This approach is a lot like #2 commented on this function, which I have no
+// This approach is a lot like #2 commented on this function, which I have no 
 // idea why it was commented. I won't use doubles/floats, but pure int math for
-// speed purposes. The range considered is always the same no matter how
+// speed purposes. The range considered is always the same no matter how 
 // close/far the target is because that's how SharpShooting works currently in
 // kRO.
 
@@ -1364,7 +1367,7 @@ int map_searchrandfreecell(int m,int *x,int *y,int stack)
 	}
 	if(free_cell==0)
 		return 0;
-	free_cell = rand()%free_cell;
+	free_cell = rnd()%free_cell;
 	*x = free_cells[free_cell][0];
 	*y = free_cells[free_cell][1];
 	return 1;
@@ -1377,8 +1380,8 @@ static int map_count_sub(struct block_list *bl,va_list ap)
 }
 
 /*==========================================
- * Locates a random spare cell around the object given, using range as max
- * distance from that spot. Used for warping functions. Use range < 0 for
+ * Locates a random spare cell around the object given, using range as max 
+ * distance from that spot. Used for warping functions. Use range < 0 for 
  * whole map range.
  * Returns 1 on success. when it fails and src is available, x/y are set to src's
  * src can be null as long as flag&1
@@ -1425,9 +1428,9 @@ int map_search_freecell(struct block_list *src, int m, short *x,short *y, int rx
 	}
 
 	while(tries--) {
-		*x = (rx >= 0)?(rand()%rx2-rx+bx):(rand()%(map[m].xs-2)+1);
-		*y = (ry >= 0)?(rand()%ry2-ry+by):(rand()%(map[m].ys-2)+1);
-
+		*x = (rx >= 0)?(rnd()%rx2-rx+bx):(rnd()%(map[m].xs-2)+1);
+		*y = (ry >= 0)?(rnd()%ry2-ry+by):(rnd()%(map[m].ys-2)+1);
+		
 		if (*x == bx && *y == by)
 			continue; //Avoid picking the same target tile.
 
@@ -1467,7 +1470,7 @@ int map_addflooritem(struct item *item_data,int amount,int m,int x,int y,int fir
 
 	if(!map_searchrandfreecell(m,&x,&y,flags&2?1:0))
 		return 0;
-	r=rand();
+	r=rnd();
 
 	CREATE(fitem, struct flooritem_data, 1);
 	fitem->bl.type=BL_ITEM;
@@ -1662,9 +1665,11 @@ int map_quit(struct map_session_data *sd)
 	if (sd->npc_id)
 		npc_event_dequeue(sd);
 
+	if( sd->bg_id )
+		bg_team_leave(sd,1);
 	npc_script_event(sd, NPCE_LOGOUT);
 
-	//Unit_free handles clearing the player related data,
+	//Unit_free handles clearing the player related data, 
 	//map_quit handles extra specific data which is related to quitting normally
 	//(changing map-servers invokes unit_free but bypasses map_quit)
 	if( sd->sc.count )
@@ -2394,7 +2399,7 @@ uint8 map_calc_dir(struct block_list* src, int x, int y)
 }
 
 /*==========================================
- * Randomizes target cell x,y to a random walkable cell that
+ * Randomizes target cell x,y to a random walkable cell that 
  * has the same distance from object as given coordinates do. [Skotlex]
  *------------------------------------------*/
 int map_random_dir(struct block_list *bl, short *x, short *y)
@@ -2409,8 +2414,8 @@ int map_random_dir(struct block_list *bl, short *x, short *y)
 	if (dist < 1) dist =1;
 
 	do {
-		j = 1 + 2*(rand()%4); //Pick a random diagonal direction
-		segment = 1+(rand()%dist); //Pick a random interval from the whole vector in that direction
+		j = 1 + 2*(rnd()%4); //Pick a random diagonal direction
+		segment = 1+(rnd()%dist); //Pick a random interval from the whole vector in that direction
 		xi = bl->x + segment*dirx[j];
 		segment = (short)sqrt((float)(dist2 - segment*segment)); //The complement of the previously picked segment
 		yi = bl->y + segment*diry[j];
@@ -3146,7 +3151,7 @@ int parse_console(const char* buf)
 			return 0;
 		}
 		sd.bl.m = m;
-		map_search_freecell(&sd.bl, m, &sd.bl.x, &sd.bl.y, -1, -1, 0);
+		map_search_freecell(&sd.bl, m, &sd.bl.x, &sd.bl.y, -1, -1, 0); 
 		if( x > 0 )
 			sd.bl.x = x;
 		if( y > 0 )
@@ -3170,12 +3175,12 @@ int parse_console(const char* buf)
 	}
 	else if( n == 2 && strcmpi("server", type) == 0 )
 	{
-		if( strcmpi("desligar",command) == 0 || strcmpi("sair",command) == 0 || strcmpi("fechar",command) == 0 )
+		if( strcmpi("shutdown", command) == 0 || strcmpi("exit", command) == 0 || strcmpi("quit", command) == 0 )
 		{
 			runflag = 0;
 		}
 	}
-	else if( strcmpi("ajuda",type) == 0 )
+	else if( strcmpi("help", type) == 0 )
 	{
 		ShowInfo("Para utilizar comandos GM:\n");
 		ShowInfo("  admin:<comando gm>:<mapa do \"gm\"> <x> <y>\n");
@@ -3301,7 +3306,7 @@ int map_config_read(char *cfgName)
 		if (strcmpi(w1, "console") == 0) {
 			console = config_switch(w2);
 			if (console)
-				ShowNotice("Comandos de console habilitados.\n");
+				ShowNotice("Console Commands are enabled.\n");
 		} else
 		if (strcmpi(w1, "enable_spy") == 0)
 			enable_spy = config_switch(w2);
@@ -3312,7 +3317,10 @@ int map_config_read(char *cfgName)
 		if (strcmpi(w1, "import") == 0)
 			map_config_read(w2);
 		else
-			ShowWarning("Configuracao desconhecida '%s' no arquivo %s\n", w1, cfgName);
+		if (strcmpi(w1, "console_msg_log") == 0)
+			console_msg_log = atoi(w2);//[Ind]
+		else
+			ShowWarning("Unknown setting '%s' in file %s\n", w1, cfgName);
 	}
 
 	fclose(fp);
@@ -3571,6 +3579,8 @@ void do_final(void)
 		if(map[i].block) aFree(map[i].block);
 		if(map[i].block_mob) aFree(map[i].block_mob);
 		if(battle_config.dynamic_mobs) { //Dynamic mobs flag by [random]
+			if(map[i].mob_delete_timer != INVALID_TIMER)
+				delete_timer(map[i].mob_delete_timer, map_removemobs_timer);
 			for (j=0; j<MAX_MOB_LIST_PER_MAP; j++)
 				if (map[i].moblist[j]) aFree(map[i].moblist[j]);
 		}
@@ -3652,12 +3662,8 @@ static void map_helpscreen(bool do_exit)
  *------------------------------------------------------*/
 static void map_versionscreen(bool do_exit)
 {
-	ShowInfo(CL_WHITE"eAthena version %d.%02d.%02d, Athena Mod version %d" CL_RESET"\n", ATHENA_MAJOR_VERSION, ATHENA_MINOR_VERSION, ATHENA_REVISION, ATHENA_MOD_VERSION);
-	ShowInfo(CL_GREEN"Website/Forum:"CL_RESET"\thttp://eathena.ws/\n");
-	ShowInfo(CL_GREEN"IRC Channel:"CL_RESET"\tirc://irc.deltaanime.net/#athena\n");
-	ShowInfo("Open "CL_WHITE"readme.html"CL_RESET" for more information.\n");
-	if(ATHENA_RELEASE_FLAG)
-		ShowNotice("This version is not for release.\n");
+	ShowInfo(CL_WHITE"brAthena Revisao: %s" CL_RESET"\n", get_svn_revision());
+	ShowInfo(CL_GREEN"Acesse:"CL_RESET"\thttp://brathena.org/\n");
 	if( do_exit )
 		exit(EXIT_SUCCESS);
 }
@@ -3718,7 +3724,7 @@ int do_init(int argc, char *argv[])
 	MSG_CONF_NAME = "conf/msg_athena.conf";
 	GRF_PATH_FILENAME = "conf/grf-files.txt";
 
-	srand(gettick());
+	rnd_init();
 
 	for( i = 1; i < argc ; i++ )
 	{
@@ -3830,7 +3836,6 @@ int do_init(int argc, char *argv[])
 
 	battle_config_read(BATTLE_CONF_FILENAME);
 	msg_config_read(MSG_CONF_NAME);
-	atcommand_config_read(ATCOMMAND_CONF_FILENAME);
 	script_config_read(SCRIPT_CONF_NAME);
 	inter_config_read(INTER_CONF_NAME);
 	log_config_read(LOG_CONF_NAME);
@@ -3902,6 +3907,10 @@ int do_init(int argc, char *argv[])
 		shutdown_callback = do_shutdown;
 		runflag = MAPSERVER_ST_RUNNING;
 	}
+#if defined(BUILDBOT)
+	if( buildbotflag )
+		exit(EXIT_FAILURE);
+#endif
 
 	return 0;
 }

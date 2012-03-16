@@ -21,7 +21,7 @@
 // | - Anotações		   			    					|
 // \________________________________________________________/
 
-que_ng,187,156,3	script	Negociador de Projéteis Tony	86,{
+alberta,118,160,3	script	Negociador de Projéteis Tony#alb::bdt	86,{
 	if (BaseJob == Job_Gunslinger) {
 		mes "[Tony]";
 		mes "Eu sou Tony, o negociador de projéteis.";
@@ -93,3 +93,5 @@ function	script	Bullet_Trade	{
 		close;
 	}
 }
+
+izlude,171,133,3	duplicate(bdt)	Negociador de Projéteis Tony#iz	86

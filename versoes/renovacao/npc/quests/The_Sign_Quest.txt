@@ -770,6 +770,12 @@ prt_in,227,45,0	script	Arqueólogo#Sign	804,{
 		mes "aceite isso como uma prova";
 		mes "da minha gratidão. Boa sorte";
 		mes "em suas viagens.";
+		if (checkweight(7178,1) == 0) {
+				next;
+				mes "^3355FFWait a second! Right now,";
+				mes "you have too many items in your inventory. Please come back after you've freed up more inventory space.^000000";
+				close;
+		}
 		delitem 7178,1; //Star's_Sob
 		set sign_q,202;
 		getexp 10000,0;

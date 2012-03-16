@@ -12,7 +12,6 @@
 #include "../common/strlib.h"
 #include "../common/timer.h"
 #include "../common/utils.h"
-#include "../common/version.h"
 #include "inter.h"
 #include "int_guild.h"
 #include "int_homun.h"
@@ -60,17 +59,15 @@ char auction_db[256] = "auction"; // Auctions System
 char friend_db[256] = "friends";
 char hotkey_db[256] = "hotkey";
 char quest_db[256] = "quest";
+char homunculus_db[256] = "homunculus";
+char skill_homunculus_db[256] = "skill_homunculus";
+char mercenary_db[256] = "mercenary";
+char mercenary_owner_db[256] = "mercenary_owner";
+char ragsrvinfo_db[256] = "ragsrvinfo";
 
 // show loading/saving messages
-#ifdef TXT_SQL_CONVERT
-int save_log = 0; //Have the logs be off by default when converting
-#else
 int save_log = 1;
-#endif
 
-//If your code editor is having problems syntax highlighting this file, uncomment this and RECOMMENT IT BEFORE COMPILING
-//#undef TXT_SQL_CONVERT
-#ifndef TXT_SQL_CONVERT
 static DBMap* char_db_; // int char_id -> struct mmo_charstatus*
 
 char db_path[1024] = "db";
@@ -105,7 +102,7 @@ int char_new_display = 0;
 bool name_ignoring_case = false; // Allow or not identical name for characters but with a different case by [Yor]
 int char_name_option = 0; // Option to know which letters/symbols are authorised in the name of a character (0: all, 1: only those in char_name_letters, 2: all EXCEPT those in char_name_letters) by [Yor]
 char unknown_char_name[NAME_LENGTH] = "Desconhecido"; // Name to use when the requested name cannot be determined
-#define TRIM_CHARS "\032\t\x0A\x0D " //The following characters are trimmed regardless because they cause confusion and problems on the servers. [Skotlex]
+#define TRIM_CHARS "\255\xA0\032\t\x0A\x0D " //The following characters are trimmed regardless because they cause confusion and problems on the servers. [Skotlex]
 char char_name_letters[1024] = ""; // list of letters/symbols allowed (or not) in a character name. by [Yor]
 
 int char_per_account = 0; //Maximum charas per account (default unlimited) [Sirius]
@@ -129,7 +126,7 @@ struct char_session_data {
 	int found_char[MAX_CHARS]; // ids of chars on this account
 	char email[40]; // e-mail (default: a@a.com) by [Yor]
 	time_t expiration_time; // # of seconds 1/1/1970 (timestamp): Validity limit of the account (0 = unlimited)
-	int gmlevel;
+	int group_id;
 	uint32 version;
 	uint8 clienttype;
 	char new_name[NAME_LENGTH];
@@ -137,7 +134,7 @@ struct char_session_data {
 };
 
 int max_connect_user = 0;
-int gm_allow_level = 99;
+int gm_allow_group = -1;
 int autosave_interval = DEFAULT_AUTOSAVE_INTERVAL;
 int start_zeny = 0;
 int start_weapon = 1201;
@@ -177,7 +174,8 @@ struct auth_node {
 	uint32 ip;
 	int sex;
 	time_t expiration_time; // # of seconds 1/1/1970 (timestamp): Validity limit of the account (0 = unlimited)
-	int gmlevel;
+	int group_id;
+	unsigned changing_mapservers : 1;
 };
 
 static DBMap* auth_db; // int account_id -> struct auth_node*
@@ -196,6 +194,7 @@ struct online_char_data {
 
 static DBMap* online_char_db; // int account_id -> struct online_char_data*
 static int chardb_waiting_disconnect(int tid, unsigned int tick, int id, intptr_t data);
+int delete_char_sql(int char_id);
 
 static void* create_online_char_data(DBKey key, va_list args)
 {
@@ -243,7 +242,7 @@ void set_char_online(int map_id, int char_id, int account_id)
 	struct mmo_charstatus *cp;
 
 	//Update DB
-	if( SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `online`='1' WHERE `char_id`='%d'", char_db, char_id) )
+	if( SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `online`='1' WHERE `char_id`='%d' LIMIT 1", char_db, char_id) )
 		Sql_ShowDebug(sql_handle);
 
 	//Check to see for online conflicts
@@ -298,7 +297,7 @@ void set_char_offline(int char_id, int account_id)
 		if (cp)
 			idb_remove(char_db_,char_id);
 
-		if( SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `online`='0' WHERE `char_id`='%d'", char_db, char_id) )
+		if( SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `online`='0' WHERE `char_id`='%d' LIMIT 1", char_db, char_id) )
 			Sql_ShowDebug(sql_handle);
 	}
 
@@ -401,7 +400,6 @@ static void* create_charstatus(DBKey key, va_list args)
 	cp->char_id = key.i;
 	return cp;
 }
-#endif //TXT_SQL_CONVERT
 
 int mmo_char_tosql(int char_id, struct mmo_charstatus* p)
 {
@@ -415,11 +413,7 @@ int mmo_char_tosql(int char_id, struct mmo_charstatus* p)
 
 	if (char_id!=p->char_id) return 0;
 
-#ifndef TXT_SQL_CONVERT
 	cp = (struct mmo_charstatus*)idb_ensure(char_db_, char_id, create_charstatus);
-#else
-	cp = (struct mmo_charstatus*)aCalloc(1, sizeof(struct mmo_charstatus));
-#endif
 
 	StringBuf_Init(&buf);
 	memset(save_status, 0, sizeof(save_status));
@@ -450,21 +444,6 @@ int mmo_char_tosql(int char_id, struct mmo_charstatus* p)
 		else
 			errors++;
 	}
-
-#ifdef TXT_SQL_CONVERT
-{	//Insert the barebones to then update the rest.
-	char esc_name[NAME_LENGTH*2+1];
-
-	Sql_EscapeStringLen(sql_handle, esc_name, p->name, strnlen(p->name, NAME_LENGTH));
-	if( SQL_ERROR == Sql_Query(sql_handle, "REPLACE INTO `%s` (`char_id`, `account_id`, `char_num`, `name`)  VALUES ('%d', '%d', '%d', '%s')",
-		char_db, p->char_id, p->account_id, p->slot, esc_name) )
-	{
-		Sql_ShowDebug(sql_handle);
-		errors++;
-	} else
-		strcat(save_status, " creation");
-}
-#endif
 
 	if (
 		(p->base_exp != cp->base_exp) || (p->base_level != cp->base_level) ||
@@ -610,8 +589,12 @@ int mmo_char_tosql(int char_id, struct mmo_charstatus* p)
 		//insert here.
 		for( i = 0, count = 0; i < MAX_SKILL; ++i )
 		{
-			if(p->skill[i].id != 0 && p->skill[i].flag != SKILL_FLAG_TEMPORARY)
+			if( p->skill[i].id != 0 && p->skill[i].flag != SKILL_FLAG_TEMPORARY )
 			{
+				if( p->skill[i].flag == SKILL_FLAG_PERMANENT && p->skill[i].lv == 0 )
+					continue;
+				if( p->skill[i].flag != SKILL_FLAG_PERMANENT && (p->skill[i].flag - SKILL_FLAG_REPLACED_LV_0) == 0 )
+					continue;
 				if( count )
 					StringBuf_AppendStr(&buf, ",");
 				StringBuf_Printf(&buf, "('%d','%d','%d')", char_id, p->skill[i].id, (p->skill[i].flag == SKILL_FLAG_PERMANENT ? p->skill[i].lv : p->skill[i].flag - SKILL_FLAG_REPLACED_LV_0));
@@ -696,12 +679,8 @@ int mmo_char_tosql(int char_id, struct mmo_charstatus* p)
 	StringBuf_Destroy(&buf);
 	if (save_status[0]!='\0' && save_log)
 		ShowInfo("Saved char %d - %s:%s.\n", char_id, p->name, save_status);
-#ifndef TXT_SQL_CONVERT
 	if (!errors)
 		memcpy(cp, p, sizeof(struct mmo_charstatus));
-#else
-	aFree(cp);
-#endif
 	return 0;
 }
 
@@ -763,7 +742,7 @@ int memitemdata_to_sql(const struct item items[], int max, int id, int tableswit
 		SqlStmt_BindColumn(stmt, 8+j, SQLDT_SHORT, &item.card[j], 0, NULL, NULL);
 
 	// bit array indicating which inventory items have already been matched
-	flag = (bool*) aCallocA(max, sizeof(bool));
+	flag = (bool*) aCalloc(max, sizeof(bool));
 
 	while( SQL_SUCCESS == SqlStmt_NextRow(stmt) )
 	{
@@ -812,7 +791,7 @@ int memitemdata_to_sql(const struct item items[], int max, int id, int tableswit
 		}
 		if( !found )
 		{// Item not present in inventory, remove it.
-			if( SQL_ERROR == Sql_Query(sql_handle, "DELETE from `%s` where `id`='%d'", tablename, item.id) )
+			if( SQL_ERROR == Sql_Query(sql_handle, "DELETE from `%s` where `id`='%d' LIMIT 1", tablename, item.id) )
 			{
 				Sql_ShowDebug(sql_handle);
 				errors++;
@@ -861,7 +840,6 @@ int memitemdata_to_sql(const struct item items[], int max, int id, int tableswit
 
 int mmo_char_tobuf(uint8* buf, struct mmo_charstatus* p);
 
-#ifndef TXT_SQL_CONVERT
 //=====================================================================================================
 // Loads the basic character rooster for the given account. Returns total buffer used.
 int mmo_chars_fromsql(struct char_session_data* sd, uint8* buf)
@@ -932,6 +910,11 @@ int mmo_chars_fromsql(struct char_session_data* sd, uint8* buf)
 	}
 	for( i = 0; i < MAX_CHARS && SQL_SUCCESS == SqlStmt_NextRow(stmt); i++ )
 	{
+		if( p.delete_date && p.delete_date < time(NULL) ) {
+			delete_char_sql(p.char_id);
+			i--;
+			continue;
+		}
 		p.last_point.map = mapindex_name2id(last_map);
 		sd->found_char[i] = p.char_id;
 		j += mmo_char_tobuf(WBUFP(buf, j), &p);
@@ -1254,7 +1237,7 @@ int rename_char_sql(struct char_session_data *sd, int char_id)
 	Sql_EscapeStringLen(sql_handle, esc_name, sd->new_name, strnlen(sd->new_name, NAME_LENGTH));
 
 	// check if the char exist
-	if( SQL_ERROR == Sql_Query(sql_handle, "SELECT 1 FROM `%s` WHERE `name` LIKE '%s'", char_db, esc_name) )
+	if( SQL_ERROR == Sql_Query(sql_handle, "SELECT 1 FROM `%s` WHERE `name` LIKE '%s' LIMIT 1", char_db, esc_name) )
 	{
 		Sql_ShowDebug(sql_handle);
 		return 4;
@@ -1293,6 +1276,12 @@ int check_char_name(char * name, char * esc_name)
 	if( name[0] == '\0' )
 		return -2; // empty character name
 
+	/**
+	 * The client does not allow you to create names with less than 4 characters, however,
+	 * the use of WPE can bypass this, and this fixes the exploit.
+	 **/
+	if( strlen( name ) < 4 )
+		return -2;
 	// check content of character name
 	if( remove_control_chars(name) )
 		return -2; // control chars in name
@@ -1315,11 +1304,16 @@ int check_char_name(char * name, char * esc_name)
 				return -2;
 	}
 
-	// check name (already in use?)
-	if( SQL_ERROR == Sql_Query(sql_handle, "SELECT 1 FROM `%s` WHERE `name` = '%s'", char_db, esc_name) )
-	{
-		Sql_ShowDebug(sql_handle);
-		return -2;
+	if( name_ignoring_case ) {
+		if( SQL_ERROR == Sql_Query(sql_handle, "SELECT 1 FROM `%s` WHERE BINARY `name` = '%s' LIMIT 1", char_db, esc_name) ) {
+			Sql_ShowDebug(sql_handle);
+			return -2;
+		}
+	} else {
+		if( SQL_ERROR == Sql_Query(sql_handle, "SELECT 1 FROM `%s` WHERE `name` = '%s' LIMIT 1", char_db, esc_name) ) {
+			Sql_ShowDebug(sql_handle);
+			return -2;
+		}
 	}
 	if( Sql_NumRows(sql_handle) > 0 )
 		return -1; // name already exists
@@ -1360,7 +1354,7 @@ int make_new_char_sql(struct char_session_data* sd, char* name_, int str, int ag
 	}
 
 	// check char slot
-	if( SQL_ERROR == Sql_Query(sql_handle, "SELECT 1 FROM `%s` WHERE `account_id` = '%d' AND `char_num` = '%d'", char_db, sd->account_id, slot) )
+	if( SQL_ERROR == Sql_Query(sql_handle, "SELECT 1 FROM `%s` WHERE `account_id` = '%d' AND `char_num` = '%d' LIMIT 1", char_db, sd->account_id, slot) )
 		Sql_ShowDebug(sql_handle);
 	if( Sql_NumRows(sql_handle) > 0 )
 		return -2; // slot already in use
@@ -1407,9 +1401,9 @@ int divorce_char_sql(int partner_id1, int partner_id2)
 {
 	unsigned char buf[64];
 
-	if( SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `partner_id`='0' WHERE `char_id`='%d' OR `char_id`='%d'", char_db, partner_id1, partner_id2) )
+	if( SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `partner_id`='0' WHERE `char_id`='%d' OR `char_id`='%d' LIMIT 2", char_db, partner_id1, partner_id2) )
 		Sql_ShowDebug(sql_handle);
-	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE (`nameid`='%d' OR `nameid`='%d') AND (`char_id`='%d' OR `char_id`='%d')", inventory_db, WEDDING_RING_M, WEDDING_RING_F, partner_id1, partner_id2) )
+	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE (`nameid`='%d' OR `nameid`='%d') AND (`char_id`='%d' OR `char_id`='%d') LIMIT 2", inventory_db, WEDDING_RING_M, WEDDING_RING_F, partner_id1, partner_id2) )
 		Sql_ShowDebug(sql_handle);
 
 	WBUFW(buf,0) = 0x2b12;
@@ -1619,7 +1613,6 @@ int mmo_char_tobuf(uint8* buffer, struct mmo_charstatus* p)
 	WBUFL(buf,46) = p->max_hp;
 	offset+=4;
 	buf = WBUFP(buffer,offset);
-#endif
 	WBUFW(buf,46) = min(p->sp, INT16_MAX);
 	WBUFW(buf,48) = min(p->max_sp, INT16_MAX);
 	WBUFW(buf,50) = DEFAULT_WALK_SPEED; // p->speed;
@@ -1656,9 +1649,15 @@ int mmo_char_tobuf(uint8* buffer, struct mmo_charstatus* p)
 	WBUFL(buf,128) = p->robe;
 	offset += 4;
 #endif
-#if PACKETVER >= 20110928
-	WBUFL(buf,132) = 0;  // change slot feature (0 = disabled, otherwise enabled)
-	offset += 4;
+#if PACKETVER != 20111116 //2011-11-16 wants 136, ask gravity.
+	#if PACKETVER >= 20110928
+		WBUFL(buf,132) = 0;  // change slot feature (0 = disabled, otherwise enabled)
+		offset += 4;
+	#endif
+	#if PACKETVER >= 20111025
+		WBUFL(buf,136) = 0;  // unknown purpose (0 = disabled, otherwise displays "Add-Ons" sidebar)
+		offset += 4;
+	#endif
 #endif
 #if PACKETVER >= 20111025
 	WBUFL(buf,136) = 0;
@@ -1966,22 +1965,22 @@ int parse_fromlogin(int fd)
 			ARR_FIND( 0, fd_max, i, session[i] && (sd = (struct char_session_data*)session[i]->session_data) && sd->auth && sd->account_id == RFIFOL(fd,2) );
 			if( i < fd_max )
 			{
+				int server_id;
 				memcpy(sd->email, RFIFOP(fd,6), 40);
 				sd->expiration_time = (time_t)RFIFOL(fd,46);
-				sd->gmlevel = RFIFOB(fd,50);
+				sd->group_id = RFIFOB(fd,50);
 				safestrncpy(sd->birthdate, RFIFOP(fd,51), sizeof(sd->birthdate));
 
+				ARR_FIND( 0, ARRAYLENGTH(server), server_id, server[server_id].fd > 0 && server[server_id].map[0] );
 				// continued from char_auth_ok...
-				if( max_connect_user && count_users() >= max_connect_user && sd->gmlevel < gm_allow_level )
-				{
+				if( server_id == ARRAYLENGTH(server) || //server not online, bugreport:2359
+					( max_connect_user && count_users() >= max_connect_user && sd->group_id != gm_allow_group ) ) {
 					// refuse connection (over populated)
 					WFIFOHEAD(i,3);
 					WFIFOW(i,0) = 0x6c;
 					WFIFOW(i,2) = 0;
 					WFIFOSET(i,3);
-				}
-				else
-				{
+				} else {
 					// send characters to player
 					mmo_char_send006b(i, sd);
 #if PACKETVER >=  20110309
@@ -2424,7 +2423,7 @@ void mapif_server_reset(int id)
 		WBUFW(buf,2) = j * 4 + 10;
 		mapif_sendallwos(fd, buf, WBUFW(buf,2));
 	}
-	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `ragsrvinfo` WHERE `index`='%d'", server[id].fd) )
+	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `index`='%d'", ragsrvinfo_db, server[id].fd) )
 		Sql_ShowDebug(sql_handle);
 	online_char_db->foreach(online_char_db,char_db_setoffline,id); //Tag relevant chars as 'in disconnected' server.
 	mapif_server_destroy(id);
@@ -2701,7 +2700,7 @@ int parse_frommap(int fd)
 		break;
 
 		case 0x2b05: // request "change map server"
-			if (RFIFOREST(fd) < 35)
+			if (RFIFOREST(fd) < 39)
 				return 0;
 		{
 			int map_id, map_fd = -1;
@@ -2714,8 +2713,7 @@ int parse_frommap(int fd)
 				map_fd = server[map_id].fd;
 			//Char should just had been saved before this packet, so this should be safe. [Skotlex]
 			char_data = (struct mmo_charstatus*)uidb_get(char_db_,RFIFOL(fd,14));
-			if (char_data == NULL)
-			{	//Really shouldn't happen.
+			if (char_data == NULL) {	//Really shouldn't happen.
 				mmo_char_fromsql(RFIFOL(fd,14), &char_dat, true);
 				char_data = (struct mmo_charstatus*)uidb_get(char_db_,RFIFOL(fd,14));
 			}
@@ -2739,8 +2737,10 @@ int parse_frommap(int fd)
 				node->login_id1 = RFIFOL(fd,6);
 				node->login_id2 = RFIFOL(fd,10);
 				node->sex = RFIFOB(fd,30);
-				node->expiration_time = 0; // FIXME
+				node->expiration_time = 0; // FIXME (this thing isn't really supported we could as well purge it instead of fixing)
 				node->ip = ntohl(RFIFOL(fd,31));
+				node->group_id = RFIFOL(fd,35);
+				node->changing_mapservers = 1;
 				idb_put(auth_db, RFIFOL(fd,2), node);
 
 				data = (struct online_char_data*)idb_ensure(online_char_db, RFIFOL(fd,2), create_online_char_data);
@@ -2759,8 +2759,24 @@ int parse_frommap(int fd)
 				WFIFOL(fd,6) = 0; //Set login1 to 0.
 				WFIFOSET(fd,30);
 			}
-			RFIFOSKIP(fd,35);
+			RFIFOSKIP(fd,39);
 		}
+		break;
+		
+		case 0x2b07: // Remove RFIFOL(fd,6) (friend_id) from RFIFOL(fd,2) (char_id) friend list [Ind]
+			if (RFIFOREST(fd) < 10)
+				return 0;
+			{
+				int char_id, friend_id;
+				char_id = RFIFOL(fd,2);
+				friend_id = RFIFOL(fd,6);
+				if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `char_id`='%d' AND `friend_id`='%d' LIMIT 1",
+					friend_db, char_id, friend_id) ) {
+					Sql_ShowDebug(sql_handle);
+					break;
+				}
+				RFIFOSKIP(fd,10);
+			}
 		break;
 
 		case 0x2b08: // char name request
@@ -2961,8 +2977,8 @@ int parse_frommap(int fd)
 
 			Sql_EscapeString(sql_handle, esc_server_name, server_name);
 
-			if( SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `ragsrvinfo` SET `index`='%d',`name`='%s',`exp`='%d',`jexp`='%d',`drop`='%d'",
-				fd, esc_server_name, RFIFOL(fd,2), RFIFOL(fd,6), RFIFOL(fd,10)) )
+			if( SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s` SET `index`='%d',`name`='%s',`exp`='%d',`jexp`='%d',`drop`='%d'",
+				ragsrvinfo_db, fd, esc_server_name, RFIFOL(fd,2), RFIFOL(fd,6), RFIFOL(fd,10)) )
 				Sql_ShowDebug(sql_handle);
 			RFIFOSKIP(fd,14);
 		}
@@ -3077,15 +3093,16 @@ int parse_frommap(int fd)
 			{// auth ok
 				cd->sex = sex;
 
-				WFIFOHEAD(fd,24 + sizeof(struct mmo_charstatus));
+				WFIFOHEAD(fd,25 + sizeof(struct mmo_charstatus));
 				WFIFOW(fd,0) = 0x2afd;
-				WFIFOW(fd,2) = 24 + sizeof(struct mmo_charstatus);
+				WFIFOW(fd,2) = 25 + sizeof(struct mmo_charstatus);
 				WFIFOL(fd,4) = account_id;
 				WFIFOL(fd,8) = node->login_id1;
 				WFIFOL(fd,12) = node->login_id2;
 				WFIFOL(fd,16) = (uint32)node->expiration_time; // FIXME: will wrap to negative after "19-Jan-2038, 03:14:07 AM GMT"
-				WFIFOL(fd,20) = node->gmlevel;
-				memcpy(WFIFOP(fd,24), cd, sizeof(struct mmo_charstatus));
+				WFIFOL(fd,20) = node->group_id;
+				WFIFOB(fd,24) = node->changing_mapservers;
+				memcpy(WFIFOP(fd,25), cd, sizeof(struct mmo_charstatus));
 				WFIFOSET(fd, WFIFOW(fd,2));
 
 				// only use the auth once and mark user online
@@ -3645,7 +3662,7 @@ int parse_char(int fd)
 			node->login_id2 = sd->login_id2;
 			node->sex = sd->sex;
 			node->expiration_time = sd->expiration_time;
-			node->gmlevel = sd->gmlevel;
+			node->group_id = sd->group_id;
 			node->ip = ipl;
 			idb_put(auth_db, sd->account_id, node);
 
@@ -4260,6 +4277,14 @@ void sql_config_read(const char* cfgName)
 			safestrncpy(hotkey_db, w2, sizeof(hotkey_db));
 		else if(!strcmpi(w1,"quest_db"))
 			safestrncpy(quest_db,w2,sizeof(quest_db));
+		else if(!strcmpi(w1,"homunculus_db"))
+			safestrncpy(homunculus_db,w2,sizeof(homunculus_db));
+		else if(!strcmpi(w1,"skill_homunculus_db"))
+			safestrncpy(skill_homunculus_db,w2,sizeof(skill_homunculus_db));
+		else if(!strcmpi(w1,"mercenary_db"))
+			safestrncpy(mercenary_db,w2,sizeof(mercenary_db));
+		else if(!strcmpi(w1,"mercenary_owner_db"))
+			safestrncpy(mercenary_owner_db,w2,sizeof(mercenary_owner_db));
 		//support the import command, just like any other config
 		else if(!strcmpi(w1,"import"))
 			sql_config_read(w2);
@@ -4267,7 +4292,6 @@ void sql_config_read(const char* cfgName)
 	fclose(fp);
 	ShowInfo("Carregamento de %s terminado.\n", cfgName);
 }
-#ifndef TXT_SQL_CONVERT
 
 int char_config_read(const char* cfgName)
 {
@@ -4343,10 +4367,8 @@ int char_config_read(const char* cfgName)
 			max_connect_user = atoi(w2);
 			if (max_connect_user < 0)
 				max_connect_user = 0; // unlimited online players
-		} else if(strcmpi(w1, "gm_allow_level") == 0) {
-			gm_allow_level = atoi(w2);
-			if(gm_allow_level < 0)
-				gm_allow_level = 99;
+		} else if(strcmpi(w1, "gm_allow_group") == 0) {
+			gm_allow_group = atoi(w2);
 		} else if (strcmpi(w1, "autosave_time") == 0) {
 			autosave_interval = atoi(w2)*1000;
 			if (autosave_interval <= 0)
@@ -4440,7 +4462,7 @@ void do_final(void)
 	do_final_mapif();
 	do_final_loginif();
 
-	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `ragsrvinfo`") )
+	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s`", ragsrvinfo_db) )
 		Sql_ShowDebug(sql_handle);
 
 	char_db_->destroy(char_db_, NULL);
@@ -4588,5 +4610,3 @@ int do_init(int argc, char **argv)
 
 	return 0;
 }
-
-#endif //TXT_SQL_CONVERT

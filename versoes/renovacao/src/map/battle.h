@@ -120,6 +120,7 @@ extern struct Battle_Config
 	int left_cardfix_to_right;
 	int skill_add_range;
 	int skill_out_range_consume;
+	int skill_amotion_leniency;
 	int skillrange_by_distance; //[Skotlex]
 	int use_weapon_skill_range; //[Skotlex]
 	int pc_damage_delay_rate;
@@ -504,6 +505,7 @@ extern struct Battle_Config
 
 	// brAthena Modificações
 	int use_statpoint2_table; // [Protimus]
+	int atcommand_max_stat_bypass;
 	int max_3rd_parameter;
 	int max_baby_3rd_parameter;
 	int max_level_base;

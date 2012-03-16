@@ -22,20 +22,8 @@ enum E_MAPSERVER_ST
 	MAPSERVER_ST_LAST
 };
 
-//Uncomment to enable the Cell Stack Limit mod.
-//It's only config is the battle_config cell_stack_limit.
-//Only chars affected are those defined in BL_CHAR (mobs and players currently)
-//#define CELL_NOSTACK
-
-//Uncomment to enable circular area checks.
-//By default, all range checks in Aegis are of Square shapes, so a weapon range
-//  of 10 allows you to attack from anywhere within a 21x21 area.
-//Enabling this changes such checks to circular checks, which is more realistic,
-//  but is not the official behaviour.
-//#define CIRCULAR_AREA
 
 #define MAX_NPC_PER_MAP 512
-#define BLOCK_SIZE 8
 #define AREA_SIZE battle_config.area_size
 #define DAMAGELOG_SIZE 30
 #define LOOTITEM_SIZE 10
@@ -390,7 +378,7 @@ enum _sp {
 	SP_WEAPON_ATK,SP_WEAPON_ATK_RATE, // 1081-1082
 	SP_DELAYRATE,SP_HP_DRAIN_RATE_RACE,SP_SP_DRAIN_RATE_RACE, // 1083-1085
 	SP_IGNORE_MDEF_RATE,SP_IGNORE_DEF_RATE,SP_SKILL_HEAL2,SP_ADDEFF_ONSKILL, //1086-1089
-	SP_ADD_HEAL_RATE,SP_ADD_HEAL2_RATE, SP_FIXEDCASTRATE, //1090-1092
+	SP_ADD_HEAL_RATE,SP_ADD_HEAL2_RATE, SP_FIXEDCASTRATE, SP_SP_GAIN_RACE_ATTACK, SP_HP_GAIN_RACE_ATTACK, //1090-1094
 
 	SP_RESTART_FULL_RECOVER=2000,SP_NO_CASTCANCEL,SP_NO_SIZEFIX,SP_NO_MAGIC_DAMAGE,SP_NO_WEAPON_DAMAGE,SP_NO_GEMSTONE, // 2000-2005
 	SP_NO_CASTCANCEL2,SP_NO_MISC_DAMAGE,SP_UNBREAKABLE_WEAPON,SP_UNBREAKABLE_ARMOR, SP_UNBREAKABLE_HELM, // 2006-2010
@@ -498,6 +486,7 @@ struct map_data {
 	short bgscore_lion, bgscore_eagle; // Battleground ScoreBoard
 	int npc_num;
 	int users;
+	int users_pvp;
 	int iwall_num; // Total of invisible walls in this map
 	struct map_flag {
 		unsigned town : 1; // [Suggestion to protect Mail System]
@@ -533,7 +522,10 @@ struct map_data {
 		unsigned fireworks : 1;
 		unsigned sakura : 1; // [Valaris]
 		unsigned leaves : 1; // [Valaris]
-		unsigned rain : 1; // [Valaris]
+		/**
+		 * No longer available, keeping here just in case it's back someday. [Ind]
+		 **/
+		//unsigned rain : 1; // [Valaris]
 		unsigned nogo : 1; // [Valaris]
 		unsigned nobaseexp	: 1; // [Lorky] added by Lupus
 		unsigned nojobexp	: 1; // [Lorky]
@@ -753,6 +745,8 @@ extern char item_db_db[32];
 extern char item_db2_db[32];
 extern char mob_db_db[32];
 extern char mob_db2_db[32];
+extern char mob_skill_db_db[32];
+extern char mob_skill_db2_db[32];
 
 void do_shutdown(void);
 

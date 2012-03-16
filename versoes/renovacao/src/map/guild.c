@@ -77,7 +77,7 @@ static TBL_PC* guild_sd_check(int guild_id, int account_id, int char_id)
 
 	if (sd->status.guild_id != guild_id)
 	{	//If player belongs to a different guild, kick him out.
- 		intif_guild_leave(guild_id,account_id,char_id,0,"** Guilda Incompativel **");
+ 		intif_guild_leave(guild_id,account_id,char_id,0,"** Guild Mismatch **");
 		return NULL;
 	}
 
@@ -323,10 +323,14 @@ int guild_send_xy_timer_sub(DBKey key,void *data,va_list ap)
 
 	nullpo_ret(g);
 
+	if( !g->connect_member )
+	{// no members connected to this guild so do not iterate
+		return 0;
+	}
+
 	for(i=0;i<g->max_member;i++){
-		//struct map_session_data* sd = g->member[i].sd;
-		struct map_session_data* sd = map_charid2sd(g->member[i].char_id); // temporary crashfix
-		if( sd != NULL && (sd->guild_x != sd->bl.x || sd->guild_y != sd->bl.y) && !sd->bg_id )
+		struct map_session_data* sd = g->member[i].sd;
+		if( sd != NULL && sd->fd && (sd->guild_x != sd->bl.x || sd->guild_y != sd->bl.y) && !sd->bg_id )
 		{
 			clif_guild_xy(sd);
 			sd->guild_x = sd->bl.x;
@@ -395,7 +399,7 @@ int guild_created(int account_id,int guild_id)
 	sd->status.guild_id=guild_id;
 	clif_guild_created(sd,0);
 	if(battle_config.guild_emperium_check)
-		pc_delitem(sd,pc_search_inventory(sd,714),1,0,0);	// エンペリウム消耗
+		pc_delitem(sd,pc_search_inventory(sd,714),1,0,0,LOG_TYPE_CONSUME);	// エンペリウム消耗
 	return 0;
 }
 
@@ -918,7 +922,7 @@ int guild_recv_memberinfoshort(int guild_id,int account_id,int char_id,int onlin
 	//Ensure validity of pointer (ie: player logs in/out, changes map-server)
 	g->member[idx].sd = guild_sd_check(guild_id, account_id, char_id);
 
-	if(oldonline!=online)
+	if(oldonline!=online) 
 		clif_guild_memberlogin_notice(g, idx, online);
 
 	if(!g->member[idx].sd)
@@ -1727,17 +1731,12 @@ int guild_castledataloadack(int castle_id,int index,int value)
 	case 7: gc->payTime = value; break;
 	case 8: gc->createTime = value; break;
 	case 9: gc->visibleC = value; break;
-	case 10:
-	case 11:
-	case 12:
-	case 13:
-	case 14:
-	case 15:
-	case 16:
-	case 17:
-		gc->guardian[index-10].visible = value; break;
 	default:
-		ShowError("guild_castledataloadack ERRO!! (Nao encontrado castle_id=%d index=%d)\n", castle_id, index);
+		if (index > 9 && index <= 9+MAX_GUARDIANS) {
+			gc->guardian[index-10].visible = value;
+			break;
+		}
+		ShowError("guild_castledataloadack ERROR!! (Not found castle_id=%d index=%d)\n", castle_id, index);
 		return 0;
 	}
 
@@ -1797,17 +1796,12 @@ int guild_castledatasaveack(int castle_id,int index,int value)
 	case 7: gc->payTime = value; break;
 	case 8: gc->createTime = value; break;
 	case 9: gc->visibleC = value; break;
-	case 10:
-	case 11:
-	case 12:
-	case 13:
-	case 14:
-	case 15:
-	case 16:
-	case 17:
-		gc->guardian[index-10].visible = value; break;
 	default:
-		ShowError("guild_castledatasaveack ERRO!! (Nao encontrado index=%d)\n", index);
+		if (index > 9 && index <= 9+MAX_GUARDIANS) {
+			gc->guardian[index-10].visible = value;
+			break;
+		}
+		ShowError("guild_castledatasaveack ERROR!! (Not found index=%d)\n", index);
 		return 0;
 	}
 	return 1;
@@ -1910,9 +1904,15 @@ bool guild_isallied(int guild_id, int guild_id2)
 	return( i < MAX_GUILDALLIANCE && g->alliance[i].opposition == 0 );
 }
 
-static int guild_infoevent_db_final(DBKey key,void *data,va_list ap)
+static int eventlist_db_final(DBKey key,void *data,va_list ap)
 {
-	aFree(data);
+	struct eventlist *next = NULL;
+	struct eventlist *current = data;
+	while (current != NULL) {
+		next = current->next;
+		aFree(current);
+		current = next;
+	}
 	return 0;
 }
 
@@ -1937,7 +1937,7 @@ void do_init_guild(void)
 	castle_db=idb_alloc(DB_OPT_BASE);
 	guild_expcache_db=idb_alloc(DB_OPT_BASE);
 	guild_infoevent_db=idb_alloc(DB_OPT_BASE);
-	expcache_ers = ers_new(sizeof(struct guild_expcache));
+	expcache_ers = ers_new(sizeof(struct guild_expcache)); 
 	guild_castleinfoevent_db=idb_alloc(DB_OPT_BASE);
 
 	sv_readdb(db_path, "castle_db.txt", ',', 4, 5, -1, &guild_read_castledb);
@@ -1953,10 +1953,10 @@ void do_init_guild(void)
 
 void do_final_guild(void)
 {
-	guild_db->destroy(guild_db,NULL);
+	db_destroy(guild_db);
 	castle_db->destroy(castle_db,guild_castle_db_final);
 	guild_expcache_db->destroy(guild_expcache_db,guild_expcache_db_final);
-	guild_infoevent_db->destroy(guild_infoevent_db,guild_infoevent_db_final);
-	guild_castleinfoevent_db->destroy(guild_castleinfoevent_db,guild_infoevent_db_final);
+	guild_infoevent_db->destroy(guild_infoevent_db,eventlist_db_final);
+	guild_castleinfoevent_db->destroy(guild_castleinfoevent_db,eventlist_db_final);
 	ers_destroy(expcache_ers);
 }

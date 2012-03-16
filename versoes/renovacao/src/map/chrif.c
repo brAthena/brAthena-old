@@ -40,7 +40,7 @@ static DBMap* auth_db; // int id -> struct auth_node*
 
 static const int packet_len_table[0x3d] = { // U - used, F - free
 	60, 3,-1,27,10,-1, 6,-1,	// 2af8-2aff: U->2af8, U->2af9, U->2afa, U->2afb, U->2afc, U->2afd, U->2afe, U->2aff
-	 6,-1,18, 7,-1,35,30, 0,	// 2b00-2b07: U->2b00, U->2b01, U->2b02, U->2b03, U->2b04, U->2b05, U->2b06, F->2b07
+	 6,-1,18, 7,-1,39,30, 10,	// 2b00-2b07: U->2b00, U->2b01, U->2b02, U->2b03, U->2b04, U->2b05, U->2b06, U->2b07
 	 6,30, 0, 0,86, 7,44,34,	// 2b08-2b0f: U->2b08, U->2b09, F->2b0a, F->2b0b, U->2b0c, U->2b0d, U->2b0e, U->2b0f
 	11,10,10, 0,11, 0,266,10,	// 2b10-2b17: U->2b10, U->2b11, U->2b12, F->2b13, U->2b14, F->2b15, U->2b16, U->2b17
 	 2,10, 2,-1,-1,-1, 2, 7,	// 2b18-2b1f: U->2b18, U->2b19, U->2b1a, U->2b1b, U->2b1c, U->2b1d, U->2b1e, U->2b1f
@@ -63,7 +63,7 @@ static const int packet_len_table[0x3d] = { // U - used, F - free
 //2b04: Incoming, chrif_recvmap -> 'getting maps from charserver of other mapserver's'
 //2b05: Outgoing, chrif_changemapserver -> 'Tell the charserver the mapchange / quest for ok...'
 //2b06: Incoming, chrif_changemapserverack -> 'awnser of 2b05, ok/fail, data: dunno^^'
-//2b07: FREE
+//2b07: Outgoing, chrif_removefriend -> 'Tell charserver to remove friend_id from char_id friend list'
 //2b08: Outgoing, chrif_searchcharid -> '...'
 //2b09: Incoming, map_addchariddb -> 'Adds a name to the nick db'
 //2b0a: FREE
@@ -276,8 +276,7 @@ int chrif_save(struct map_session_data *sd, int flag)
 			ShowError("chrif_save: Falha ao configurar jogador %d:%d para sair corretamente!\n", sd->status.account_id, sd->status.char_id);
 	}
 
-	if(!chrif_isconnected())
-		return -1; //Character is saved on reconnect.
+	chrif_check(-1); //Character is saved on reconnect.
 
 	//For data sync
 	if (sd->state.storage_flag == 2)
@@ -417,7 +416,8 @@ int chrif_changemapserver(struct map_session_data* sd, uint32 ip, uint16 port)
 	WFIFOW(char_fd,28) = htons(port);
 	WFIFOB(char_fd,30) = sd->status.sex;
 	WFIFOL(char_fd,31) = htonl(session[sd->fd]->client_addr);
-	WFIFOSET(char_fd,35);
+	WFIFOL(char_fd,35) = sd->group_id;
+	WFIFOSET(char_fd,39);
 	return 0;
 }
 
@@ -570,8 +570,7 @@ void chrif_authreq(struct map_session_data *sd)
 {
 	struct auth_node *node= chrif_search(sd->bl.id);
 
-	if( node != NULL )
-	{
+	if( node != NULL || !chrif_isconnected() ) {
 		set_eof(sd->fd);
 		return;
 	}
@@ -596,16 +595,16 @@ void chrif_authok(int fd)
 	uint32 login_id1;
 	uint32 login_id2;
 	time_t expiration_time;
-	int gmlevel;
+	int group_id;
 	struct mmo_charstatus* status;
 	int char_id;
 	struct auth_node *node;
+	bool changing_mapservers;
 	TBL_PC* sd;
 
 	//Check if both servers agree on the struct's size
-	if( RFIFOW(fd,2) - 24 != sizeof(struct mmo_charstatus) )
-	{
-		ShowError("chrif_authok: Tamanho de dados incompatível! %d != %d\n", RFIFOW(fd,2) - 24, sizeof(struct mmo_charstatus));
+	if( RFIFOW(fd,2) - 25 != sizeof(struct mmo_charstatus) ) {
+		ShowError("chrif_authok: Data size mismatch! %d != %d\n", RFIFOW(fd,2) - 25, sizeof(struct mmo_charstatus));
 		return;
 	}
 
@@ -613,9 +612,9 @@ void chrif_authok(int fd)
 	login_id1 = RFIFOL(fd,8);
 	login_id2 = RFIFOL(fd,12);
 	expiration_time = (time_t)(int32)RFIFOL(fd,16);
-	gmlevel = RFIFOL(fd,20);
-	status = (struct mmo_charstatus*)RFIFOP(fd,24);
-
+	group_id = RFIFOL(fd,20);
+	changing_mapservers = (RFIFOB(fd,24));
+	status = (struct mmo_charstatus*)RFIFOP(fd,25);
 	char_id = status->char_id;
 
 	//Check if we don't already have player data in our server
@@ -646,7 +645,7 @@ void chrif_authok(int fd)
 		node->char_id == char_id &&
 		node->login_id1 == login_id1 )
 	{ //Auth Ok
-		if (pc_authok(sd, login_id2, expiration_time, gmlevel, status))
+		if (pc_authok(sd, login_id2, expiration_time, group_id, status, changing_mapservers))
 			return;
 	} else { //Auth Failed
 		pc_authfail(sd);
@@ -710,9 +709,8 @@ int auth_db_cleanup_sub(DBKey key,void *data,va_list ap)
 	return 0;
 }
 
-int auth_db_cleanup(int tid, unsigned int tick, int id, intptr_t data)
-{
-	if(!chrif_isconnected()) return 0;
+int auth_db_cleanup(int tid, unsigned int tick, int id, intptr_t data) {
+	chrif_check(0);
 	auth_db->foreach(auth_db, auth_db_cleanup_sub);
 	return 0;
 }
@@ -951,7 +949,7 @@ int chrif_divorceack(int char_id, int partner_id)
 		sd->status.partner_id = 0;
 		for(i = 0; i < MAX_INVENTORY; i++)
 			if (sd->status.inventory[i].nameid == WEDDING_RING_M || sd->status.inventory[i].nameid == WEDDING_RING_F)
-				pc_delitem(sd, i, 1, 0, 0);
+				pc_delitem(sd, i, 1, 0, 0, LOG_TYPE_OTHER);
 	}
 
 	if( (sd = map_charid2sd(partner_id)) != NULL && sd->status.partner_id == char_id )
@@ -959,7 +957,7 @@ int chrif_divorceack(int char_id, int partner_id)
 		sd->status.partner_id = 0;
 		for(i = 0; i < MAX_INVENTORY; i++)
 			if (sd->status.inventory[i].nameid == WEDDING_RING_M || sd->status.inventory[i].nameid == WEDDING_RING_F)
-				pc_delitem(sd, i, 1, 0, 0);
+				pc_delitem(sd, i, 1, 0, 0, LOG_TYPE_OTHER);
 	}
 
 	return 0;
@@ -1629,6 +1627,23 @@ static int check_connect_char_server(int tid, unsigned int tick, int id, intptr_
 	if (chrif_isconnected()) displayed = 0;
 	return 0;
 }
+
+/*==========================================
+ * Asks char server to remove friend_id from the friend list of char_id
+ *------------------------------------------*/
+int chrif_removefriend(int char_id, int friend_id) {
+
+	chrif_check(-1);
+
+	WFIFOHEAD(char_fd,10);
+	WFIFOW(char_fd,0) = 0x2b07;
+	WFIFOL(char_fd,2) = char_id;
+	WFIFOL(char_fd,6) = friend_id;
+	WFIFOSET(char_fd,10);
+	
+	return 0;
+}
+
 
 int auth_db_final(DBKey k,void *d,va_list ap)
 {

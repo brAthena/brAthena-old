@@ -1,43 +1,46 @@
-//  ________________________________________________________
-// /                                                        \
-// |       _           _   _   _                            |
-// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
-// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
-// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
-// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |                                                        |
-// |                    brAthena Script                     |
-// |--------------------------------------------------------|
-// | Nome do Script: Quest NPCs related to Ash-Vacuum       |
-// |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team                           |
-// |--------------------------------------------------------|
-// | Versões eA/brA: 1.7/1.0                                |
-// |--------------------------------------------------------|
-// | Descrição: Contains Quests:                            |
-// | Onward to the Other World                              |
-// | - Will differ from iRO wiki's version as iRO changed it|
-// |  I may mimic the change later for those who want it.   |
-// | New Surroundings                                       |
-// | Attitude to the New                                    |
-// | Finding a Fairy & Finding a Giant Tree                 |
-// | The Tripartite Union's Feud                            |
-// | Cat Hand Agent                                         |
-// | - Contains untranslated dialog.                        |
-// | Part Time Work                                         |
-// | - Contains Custom translated dialog.                   |
-// | Report from the New World                              |
-// | - Contains Custom translated dialog.                   |
-// | Persuing Rayan Moore                                   |
-// | - Contains Custom translated dialog.                   |
-// |--------------------------------------------------------|
-// | Changelog:                                             |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações                                            |
-// \________________________________________________________/
+//===== rAthena Script ======================================= 
+//= Quest NPCs related to Ash-Vacuum
+//===== By: ================================================== 
+//= L0ne_W0lf
+//===== Current Version: ===================================== 
+//= 2.0
+//===== Compatible With: ===================================== 
+//= rAthena SVN
+//===== Description: ========================================= 
+//= [Aegis Conversion]
+//= Contains Quests:
+//= Onward to the Other World
+//= - Will differ from iRO wiki's version as iRO changed it.
+//=   I may mimic the change later for those who want it.
+//= New Surroundings
+//= Attitude to the New
+//= Finding a Fairy & Finding a Giant Tree
+//= The Tripartite Union's Feud
+//= Cat Hand Agent
+//= - Contains untranslated dialog.
+//= Part Time Work
+//= - Contains Custom translated dialog.
+//= Report from the New World
+//= - Contains Custom translated dialog.
+// Persuing Rayan Moore
+//= - Contains Custom translated dialog.
+//===== Additional Comments: ================================= 
+//= 1.0 First Version. [L0ne_W0lf]
+//= 1.1 I missed an end in one of the lhz guards. [L0ne_W0lf]
+//= 1.2 Fixed missing ends, wrong label and some typos [Gepard]
+//= 1.3 Added the two remaining 13.1 quests. [L0ne_W0lf]
+//=     Cat Hand Agents no longer ignore you with 300+ points.
+//= 1.4 Changed killmonsterall -> killmonster. (bugreport:4131)
+//= 1.5 Removed a 'close;' which should have been 'close2'. (bugreport:4276)
+//= 1.6 Fixed check in cat hand agent.
+//= 1.7 Moved the close in Cat Hand Service Warps. (bugreport:4079) [L0ne_W0lf]
+//= 1.8 Added 13.2 Additions to Report from the New World NPCs
+//= 1.9 Upped success rates for Report from the New World drops.
+//= 2.0 Added Mid Camp Warper, translated from the Official [Slim]
+//============================================================ 
 
 // Onward to the New World
-//============================================================
+//============================================================ 
 prontera,163,53,3	script	Promotional Staff#prt	100,{
 	mes "[Promotional Staff]";
 	mes "We are looking for adventurers who are super curious and extremely brave.";
@@ -284,7 +287,7 @@ prt_castle,83,67,5	script	Recruiter for the Brave	109,{
 			next;
 			changequest 10064,10065;
 			set ep13_ryu,9;
-			getexp 660000,210000;
+			getexp 66000,21000;
 			mes "[Recruiter]";
 			mes "Just go there!";
 			mes "And listen carefully";
@@ -2284,6 +2287,66 @@ moc_fild22b,230,197,5	script	Munkenro#2	967,{
 			close;
 		}
 	}
+	if (ep13_ryu == 20) {
+		mes "[Munkenro]";
+		mes "I am the head of the Three Kingdoms Alliance. You've come here for the discovery of the dimensional rift. Am I right?";
+		next;
+		mes "[Munkenro]";
+		mes "Um. You're the one that";
+		mes "did some favors before...";
+		mes "Your name is " + strcharinfo(0) + "?";
+		mes "I remember you.";
+		next;
+		mes "[Munkenro]";
+		mes "Sikaiz retired from his position urgently. I am his replacement.";
+		next;
+		mes "[Munkenro]";
+		mes "You don't need to know in detail all about it now. That's not important to you. Is it?";
+		next;
+		mes "[Munkenro]";
+		mes "You are here for the discovery of the dimensional rift. I can't send you there right away. I know that you've passed your tests, but that's the past. You have not been tested by me. ~";
+		next;
+		mes "[Munkenro]";
+		mes "So you need to be tested again. I don't have too much time to test you now. So let's just do a short test.";
+		next;
+		mes "[Munkenro]";
+		mes "Now the soldiers here will start to attack you... If you survive, I will approve of you. Just do it in good time.";
+		next;
+		mes "[Munkenro]";
+		mes "This can prove that you're strong enough. That's the minimum test I can perform.";
+		next;
+		changequest 10076,10077;
+		set ep13_ryu,21;
+		mes "[Munkenro]";
+		mes "Once you get ready,";
+		mes "just let me know.";
+		close;
+	}
+	if (ep13_ryu == 21) {
+		mes "[Munkenro]";
+		mes "Are you ready??";
+		mes "Let's start!";
+		next;
+		switch(select("Ready!!:Please, wait...")) {
+		case 1:
+			mes "[Munkenro]";
+			mes "Ok, just have a good adventure.";
+			next;
+			mes "[Munkenro]";
+			mes "If you are too late,";
+			mes "it will be considered as a failure, so come back soon.";
+			donpcevent "Head of the Alliance#moo::OnEnable";
+			changequest 10077,10078;
+			set ep13_ryu,22;
+			close;
+		case 2:
+			mes "[Munkenro]";
+			mes "If you hesitate,";
+			mes "it means you fail.";
+			mes "I will give you one more chance. Go ahead.";
+			close;
+		}
+	}
 	if ($@ep13_test == 2) {
 		mes "[Munkenro]";
 		mes "You're quite shrewd...";
@@ -2325,70 +2388,10 @@ moc_fild22b,230,197,5	script	Munkenro#2	967,{
 		next;
 		completequest 10078;
 		set ep13_ryu,100;
-		getexp 660000,210000;
+		getexp 66000,21000;
 		mes "[Munkenro]";
 		mes "I will let you go there.";
 		mes "Let me know once you are ready.";
-		close;
-	}
-	if (ep13_ryu == 21) {
-		mes "[Munkenro]";
-		mes "Are you ready??";
-		mes "Let's start!";
-		next;
-		switch(select("Ready!!:Please, wait...")) {
-		case 1:
-			mes "[Munkenro]";
-			mes "Ok, just have a good adventure.";
-			next;
-			mes "[Munkenro]";
-			mes "If you are too late,";
-			mes "it will be considered as a failure, so come back soon.";
-			donpcevent "Head of the Alliance#moo::OnEnable";
-			changequest 10077,10078;
-			set ep13_ryu,22;
-			close;
-		case 2:
-			mes "[Munkenro]";
-			mes "If you hesitate,";
-			mes "it means you fail.";
-			mes "I will give you one more chance. Go ahead.";
-			close;
-		}
-	}
-	if (ep13_ryu == 20) {
-		mes "[Munkenro]";
-		mes "I am the head of the Three Kingdoms Alliance. You've come here for the discovery of the dimensional rift. Am I right?";
-		next;
-		mes "[Munkenro]";
-		mes "Um. You're the one that";
-		mes "did some favors before...";
-		mes "Your name is " + strcharinfo(0) + "?";
-		mes "I remember you.";
-		next;
-		mes "[Munkenro]";
-		mes "Sikaiz retired from his position urgently. I am his replacement.";
-		next;
-		mes "[Munkenro]";
-		mes "You don't need to know in detail all about it now. That's not important to you. Is it?";
-		next;
-		mes "[Munkenro]";
-		mes "You are here for the discovery of the dimensional rift. I can't send you there right away. I know that you've passed your tests, but that's the past. You have not been tested by me. ~";
-		next;
-		mes "[Munkenro]";
-		mes "So you need to be tested again. I don't have too much time to test you now. So let's just do a short test.";
-		next;
-		mes "[Munkenro]";
-		mes "Now the soldiers here will start to attack you... If you survive, I will approve of you. Just do it in good time.";
-		next;
-		mes "[Munkenro]";
-		mes "This can prove that you're strong enough. That's the minimum test I can perform.";
-		next;
-		changequest 10076,10077;
-		set ep13_ryu,21;
-		mes "[Munkenro]";
-		mes "Once you get ready,";
-		mes "just let me know.";
 		close;
 	}
 }
@@ -2561,7 +2564,7 @@ moc_fild22b,370,370,3	script	Allied Manager#gm	100,{
 */
 
 // New Surroundings
-//============================================================
+//============================================================ 
 mid_camp,222,283,4	script	Marian#ep13bs	727,{
 	if (checkweight(1201,1) == 0) {
 		mes "[Marian]";
@@ -3321,7 +3324,7 @@ mid_camp,261,284,4	script	Instructor#ep13bs	405,{
 			set ep13_newbs,100;
 			getitem 617,1; //Old_Violet_Box
 			getitem 12322,5; //Chocolate_Pie
-			getexp 1000000,100000;
+			getexp 100000,10000;
 			completequest 11100;
 			close;
 		}
@@ -4295,7 +4298,7 @@ mid_camp,267,258,0	script	Post#ep13bs2	111,{
 }
 
 // Attitude to the New
-//============================================================
+//============================================================ 
 mid_camp,188,254,3	script	Monster Scholar#ep13	883,{
 	if (ep13_ryu < 100) {
 		mes "[Monster Scholar]";
@@ -4858,7 +4861,7 @@ mid_camp,188,254,3	script	Monster Scholar#ep13	883,{
 				mes "I hope you'll make yourself known in Ash Vacuum with your great accomplishments.";
 				set ep13_animal,15;
 				completequest 2157;
-				getexp 1500000,0;
+				getexp 150000,0;
 				close;
 			}
 			else {
@@ -4956,7 +4959,7 @@ mid_camp,188,254,3	script	Monster Scholar#ep13	883,{
 				mes "- You pat his shoulder gently, it's worrying that Rumis is not able to return to his country. -";
 				set ep13_animal,100;
 				delitem 6033,1; //Horn_Of_Tendrilion
-				getexp 1000000,0;
+				getexp 100000,0;
 				close;
 			}
 			else {
@@ -6005,7 +6008,7 @@ man_fild01,92,230,3	script	Frozen Tree#evt_lumis	111,1,1,{
 }
 
 // Finding a Fairy & Finding a Giant Tree
-//============================================================
+//============================================================ 
 spl_fild02,34,223,5	script	Small Fairy#spl	442,{
 	if (BaseLevel > 69) {
 		if (checkquest(2158) == -1) {
@@ -6118,7 +6121,7 @@ mid_camp,212,237,5	script	Camp Guard Captain#man1	852,{
 			mes "I'll discuss this more with the expedition management.";
 			mes "Thank you for your valuable information.";
 			completequest 2158;
-			getexp 700000,0;
+			getexp 70000,0;
 			close;
 		}
 		else if (checkquest(2158) == -1) {
@@ -6139,7 +6142,7 @@ mid_camp,212,237,5	script	Camp Guard Captain#man1	852,{
 				mes "I'll discuss this more with the expedition management.";
 				mes "Thank you for your valuable information.";
 				completequest 2159;
-				getexp 700000,0;
+				getexp 70000,0;
 				close;
 			}
 			else {
@@ -6161,7 +6164,7 @@ mid_camp,212,237,5	script	Camp Guard Captain#man1	852,{
 				mes "I'll discuss this more with the expedition management.";
 				mes "Thank you for your valuable information.";
 				completequest 2159;
-				getexp 700000,0;
+				getexp 70000,0;
 				close;
 			}
 			else {
@@ -6175,7 +6178,7 @@ mid_camp,212,237,5	script	Camp Guard Captain#man1	852,{
 }
 
 // The Tripartite Union's Feud
-//============================================================
+//============================================================ 
 mid_campin,376,120,0	script	Research Official#ep131	754,3,3,{
 	mes "[United Research Official]";
 	mes "Hmm? What did you just say?";
@@ -6629,7 +6632,7 @@ OnTouch:
 			mes "- You feel so refreshed and light, as you drink the tea that the Official offered. -";
 			specialeffect2 EF_ABSORBSPIRITS;
 			set ep13_1_rhea,100;
-			getexp 300000,100000;
+			getexp 30000,10000;
 			completequest 8210;
 			next;
 			mes "[United Research Official]";
@@ -8175,7 +8178,7 @@ OnTimer300000:
 }
 
 // Part Time Work
-//============================================================
+//============================================================ 
 mid_camp,1,1,0	script	#timer_alba01	844,{
 	/*
 	mes "Please enter the password";
@@ -8455,7 +8458,7 @@ mid_camp,143,306,5	script	Breeder Taab#ep13_alba	946,{
 				mes "and 30000 JEXP.^000000.";
 				delitem 579,50; //Delicious_Fish
 				set ep13_alba,6;
-				getexp 80000,30000;
+				getexp 8000,3000;
 				erasequest 7042;
 				setquest 7047;
 				close;
@@ -8488,7 +8491,7 @@ mid_camp,143,306,5	script	Breeder Taab#ep13_alba	946,{
 				delitem 7198,30; //Great_Leaf
 				delitem 7188,30; //Browny_Root
 				set ep13_alba,6;
-				getexp 90000,40000;
+				getexp 9000,4000;
 				erasequest 7043;
 				setquest 7047;
 				close;
@@ -8526,7 +8529,7 @@ mid_camp,143,306,5	script	Breeder Taab#ep13_alba	946,{
 				delitem 528,20; //Monster's_Feed
 				delitem 537,30; //Pet_Food
 				set ep13_alba,6;
-				getexp 80000,30000;
+				getexp 8000,3000;
 				erasequest 7044;
 				setquest 7047;
 				close;
@@ -8561,7 +8564,7 @@ mid_camp,143,306,5	script	Breeder Taab#ep13_alba	946,{
 				delitem 517,50; //Meat
 				delitem 537,30; //Pet_Food
 				set ep13_alba,6;
-				getexp 80000,30000;
+				getexp 8000,3000;
 				erasequest 7045;
 				setquest 7047;
 				close;
@@ -8593,7 +8596,7 @@ mid_camp,143,306,5	script	Breeder Taab#ep13_alba	946,{
 				mes "and 30000 JEXP.^000000.";
 				delitem 6020,30; //Fur
 				set ep13_alba,6;
-				getexp 80000,30000;
+				getexp 8000,3000;
 				erasequest 7046;
 				setquest 7047;
 				close;
@@ -8767,7 +8770,7 @@ OnMyMobDead:
 }
 
 // Cat Hand Trading Post
-//============================================================
+//============================================================ 
 mid_camp,62,125,4	script	Cat Hand Agent	421,{
 	if (ep13_yong1 < 1) {
 		mes "[Cat Hand Agent]";
@@ -9909,7 +9912,7 @@ mid_camp,69,144,0	script	Ferocious Gorurug	421,{
 				mes "You've brough Pieces of Fish!";
 				mes "GOOD JOB!";
 				delitem 6039,10; //Piece_Of_Fish
-				getexp 30000,0;
+				getexp 3000,0;
 				set ep13_yong1,10;
 				setquest 12060;
 				next;
@@ -9929,7 +9932,7 @@ mid_camp,69,144,0	script	Ferocious Gorurug	421,{
 				mes "You've brough Pieces of Fish!";
 				mes "GOOD JOB!";
 				delitem 6039,10; //Piece_Of_Fish
-				getexp 15000,0;
+				getexp 1500,0;
 				setquest 12060;
 				set ep13_yong1,ep13_yong1+1;
 				next;
@@ -9950,7 +9953,7 @@ mid_camp,69,144,0	script	Ferocious Gorurug	421,{
 				mes "You've brough Pieces of Fish!";
 				mes "GOOD JOB!";
 				delitem 6039,10; //Piece_Of_Fish
-				getexp 15000,0;
+				getexp 1500,0;
 				setquest 12060;
 				set ep13_yong1,ep13_yong1+1;
 				next;
@@ -9970,7 +9973,7 @@ mid_camp,69,144,0	script	Ferocious Gorurug	421,{
 				mes "You've brough Pieces of Fish!";
 				mes "GOOD JOB!";
 				delitem 6039,10; //Piece_Of_Fish
-				getexp 15000,0;
+				getexp 1500,0;
 				setquest 12060;
 				set ep13_yong1,ep13_yong1+1;
 				next;
@@ -9993,7 +9996,7 @@ mid_camp,69,144,0	script	Ferocious Gorurug	421,{
 				mes "You've brough Pieces of Fish!";
 				mes "GOOD JOB!";
 				delitem 6039,10; //Piece_Of_Fish
-				getexp 15000,0;
+				getexp 1500,0;
 				setquest 12060;
 				set ep13_yong1,ep13_yong1+1;
 				next;
@@ -10274,7 +10277,7 @@ mid_camp,88,100,55	script	Cat Hand Mining Agent	876,{
 			mes "Thank you for collecting minerals for me.";
 			next;
 			delitem 6048,3; //Unidentified_Mineral
-			getexp 30000,0;
+			getexp 3000,0;
 			setquest 12062;
 			set ep13_yong1,ep13_yong1+1;
 			select("I'm freezing! Take them quickly.");
@@ -11038,7 +11041,7 @@ OnTimer120000:
 }
 
 // Report from the New World
-//============================================================
+//============================================================ 
 mid_campin,90,121,5	script	Hibba Agip	459,{
 	cutin "ep13_captin_edq",2;
 	set .@start,(ep13_newbs + ep13_ryu + mao_morocc2 + ep13_1_rhea + ep13_animal);
@@ -11464,7 +11467,7 @@ mid_campin,90,121,5	script	Hibba Agip	459,{
 		mes "And please take this small reward.";
 		mes "Thank you for your help so far.";
 		next;
-		getexp 2500000,0;
+		getexp 250000,0;
 		getitem 12110,3; //First_Aid_Kit
 		set ep13_1_edq,14;
 		completequest 3094;
@@ -11931,7 +11934,7 @@ mid_campin,94,118,3	script	Staff Officer Abidal	755,{
 	}
 	else if (ep13_1_edq == 61) {
 		mes "[Staff Officer Abidal]";
-		mes "It's as what the commander said. I still remmeber the contents of the report, even though it might not all be accurate without any references.";
+		mes "It's as what the commander said. I still remember the contents of the report, even though it might not all be accurate without any references.";
 		next;
 		mes "[Staff Officer Abidal]";
 		mes "If you bring me the pages of the lost report, I'll fill the missing parts and be able to complete the report again.";
@@ -11946,14 +11949,14 @@ mid_campin,94,118,3	script	Staff Officer Abidal	755,{
 		mes "I'm thinking this because the report contains information about the ecology of the otherworldly creatures. It's also made of paper and ink, materials from the mainland that might seem interesting to those creatures.";
 		next;
 		mes "[Staff Officer Abidal]";
-		mes "Anyways, please bring the pages of the report in 0000FFincrements of 10^000000 whenever you find them. I'll try to put them in order.";
+		mes "Anyways, please bring the pages of the report in ^0000FFincrements of 10^000000 whenever you find them. I'll try to put them in order.";
 		set ep13_1_edq,71;
 		changequest 3089,3090;
 		close;
 	}
 	else if (ep13_1_edq == 62) {
 		mes "[Staff Officer Abidal]";
-		mes "It's as what the commander said. I still remmeber the contents of the report, even though it might not all be accurate without any references.";
+		mes "It's as what the commander said. I still remember the contents of the report, even though it might not all be accurate without any references.";
 		next;
 		mes "[Staff Officer Abidal]";
 		mes "If you bring me the pages of the lost report, I'll fill the missing parts and be able to complete the report again.";
@@ -12658,7 +12661,7 @@ man_fild01,315,95,3	script	Expedition Scout#1	707,{
 				mes "Well then, keep up the good work!";
 				close;
 			}
-			else if ((.@ep13_search_lotto == 1) && (.@ep13_search_lotto == 6)) {
+			else if ((.@ep13_search_lotto == 1) || (.@ep13_search_lotto == 6)) {
 				mes "[Expedition Scout]";
 				mes "Oh, you must be" + strcharinfo(0) + ". I heard that you'll be delivering the report.";
 				next;
@@ -12727,7 +12730,7 @@ man_fild01,315,95,3	script	Expedition Scout#1	707,{
 				mes "Well then, keep up the good work!";
 				close;
 			}
-			else if ((.@ep13_search_lotto == 1) && (.@ep13_search_lotto == 6)) {
+			else if ((.@ep13_search_lotto == 1) || (.@ep13_search_lotto == 6)) {
 				mes "[Expedition Scout]";
 				mes "Oh, you must be" + strcharinfo(0) + ". I heard that you'll be delivering the report.";
 				next;
@@ -12833,7 +12836,7 @@ man_fild03,202,251,3	script	Expedition Scout#2	707,{
 				mes "Well then, keep up the good work!";
 				close;
 			}
-			else if ((.@ep13_search_lotto == 1) && (.@ep13_search_lotto == 6)) {
+			else if ((.@ep13_search_lotto == 1) || (.@ep13_search_lotto == 6)) {
 				mes "[Expedition Scout]";
 				mes "Oh, you must be" + strcharinfo(0) + ". I heard that you'll be delivering the report.";
 				next;
@@ -12902,7 +12905,7 @@ man_fild03,202,251,3	script	Expedition Scout#2	707,{
 				mes "Well then, keep up the good work!";
 				close;
 			}
-			else if ((.@ep13_search_lotto == 1) && (.@ep13_search_lotto == 6)) {
+			else if ((.@ep13_search_lotto == 1) || (.@ep13_search_lotto == 6)) {
 				mes "[Expedition Scout]";
 				mes "Oh, you must be" + strcharinfo(0) + ". I heard that you'll be delivering the report.";
 				next;
@@ -12998,7 +13001,7 @@ spl_fild02,295,368,3	script	Expedition Scout#3	707,{
 				mes "Well then, keep up the good work!";
 				close;
 			}
-			else if ((.@ep13_search_lotto == 1) && (.@ep13_search_lotto == 6)) {
+			else if ((.@ep13_search_lotto == 1) || (.@ep13_search_lotto == 6)) {
 				mes "[Expedition Scout]";
 				mes "Oh, you must be" + strcharinfo(0) + ". I heard that you'll be delivering the report.";
 				next;
@@ -13067,7 +13070,7 @@ spl_fild02,295,368,3	script	Expedition Scout#3	707,{
 				mes "Well then, keep up the good work!";
 				close;
 			}
-			else if ((.@ep13_search_lotto == 1) && (.@ep13_search_lotto == 6)) {
+			else if ((.@ep13_search_lotto == 1) || (.@ep13_search_lotto == 6)) {
 				mes "[Expedition Scout]";
 				mes "Oh, you must be" + strcharinfo(0) + ". I heard that you'll be delivering the report.";
 				next;
@@ -13173,7 +13176,7 @@ spl_fild03,172,71,3	script	Expedition Scout#4	707,{
 				mes "Well then, keep up the good work!";
 				close;
 			}
-			else if ((.@ep13_search_lotto == 1) && (.@ep13_search_lotto == 6)) {
+			else if ((.@ep13_search_lotto == 1) || (.@ep13_search_lotto == 6)) {
 				mes "[Expedition Scout]";
 				mes "Oh, you must be" + strcharinfo(0) + ". I heard that you'll be delivering the report.";
 				next;
@@ -13242,7 +13245,7 @@ spl_fild03,172,71,3	script	Expedition Scout#4	707,{
 				mes "Well then, keep up the good work!";
 				close;
 			}
-			else if ((.@ep13_search_lotto == 1) && (.@ep13_search_lotto == 6)) {
+			else if ((.@ep13_search_lotto == 1) || (.@ep13_search_lotto == 6)) {
 				mes "[Expedition Scout]";
 				mes "Oh, you must be" + strcharinfo(0) + ". I heard that you'll be delivering the report.";
 				next;
@@ -14148,7 +14151,7 @@ OnMyMobDead:
 }
 
 // Persuing Rayan Moore
-//============================================================
+//============================================================ 
 mid_campin,68,185,3	script	Pursuit Party Leader#1	803,{
 	if (checkweight(714,1) == 0) {
 		mes "- You cannot proceed with the quest when you're carrying too many items with you. -";
@@ -14592,7 +14595,7 @@ mid_campin,68,185,3	script	Pursuit Party Leader#1	803,{
 		mes "[Echinacea]";
 		mes "Keep up the good work assisting the explorers in this camp.";
 		set mao_morocc2,100;
-		getexp 1200000,200000;
+		getexp 120000,20000;
 		getitem 617,1; //Old_Violet_Box
 		completequest 7036;
 		close;
@@ -14973,7 +14976,7 @@ mid_camp,199,311,7	script	Mr. Kidd#ep13_dan01	884,{
 			delitem 6029,1; //Morocc_Tracing_Log
 			delitem 6027,1; //Crystal_Of_Feardoom
 			set mao_morocc2,10;
-			getexp 200000,10000;
+			getexp 20000,1000;
 			changequest 7018,7019;
 			close2;
 		}
@@ -18059,4 +18062,34 @@ que_dan02,102,42,3	script	Disfigured Corpse#moc2	457,{
 	mes "You find a horribly disfigured corpse.";
 	mes "... . . . . . !!!";
 	close;
+}
+
+//Mid Camp Warper (gogoash), Translated from the Official [Slim]
+prontera,161,192,5	script	Ash Vacuum Warper	707,{
+	mes "[Warp Soldier]";
+	mes "For a limited period.";
+	mes "I can send you to Ash-Vacuum without any fee.";
+	next;
+	mes "[Warp Soldier]";
+	mes "Do you want to go to Ash-Vacuum right now?";
+	next;
+	switch(select("Yes, please","Not yet")) {
+
+		case 1:
+			mes "[Warp Soldier]";
+			mes "Ok. I hope you";
+			mes "enjoy your trip.";
+			close2;
+			set ep13_ryu,100;
+			warp "mid_camp",210,291;
+			break;
+		case 2:
+			mes "[Warp Soldier]";
+			mes "No problem. I understand.";
+			mes "Tell me when you change your mind.";
+			mes "See you.";
+			close;
+			break;
+	}
+	end;
 }

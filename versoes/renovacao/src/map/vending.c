@@ -54,7 +54,7 @@ void vending_vendinglistreq(struct map_session_data* sd, int id)
 	if( !vsd->state.vending )
 		return; // not vending
 
-	if ( !pc_can_give_items(pc_isGM(sd)) || !pc_can_give_items(pc_isGM(vsd)) ) //check if both GMs are allowed to trade
+	if (!pc_can_give_items(sd) || !pc_can_give_items(vsd)) //check if both GMs are allowed to trade
 	{	// GM is not allowed to trade
 		clif_displaymessage(sd->fd, msg_txt(246));
 		return;
@@ -181,14 +181,10 @@ void vending_purchasereq(struct map_session_data* sd, int aid, int uid, const ui
 		short idx    = *(uint16*)(data + 4*i + 2);
 		idx -= 2;
 
-		//Logs sold (V)ending items [Lupus]
-		log_pick_pc(vsd, LOG_TYPE_VENDING, vsd->status.cart[idx].nameid, -amount, &vsd->status.cart[idx]);
-		log_pick_pc( sd, LOG_TYPE_VENDING, vsd->status.cart[idx].nameid,  amount, &vsd->status.cart[idx]);
-
 		// vending item
-		pc_additem(sd, &vsd->status.cart[idx], amount);
+		pc_additem(sd, &vsd->status.cart[idx], amount, LOG_TYPE_VENDING);
 		vsd->vending[vend_list[i]].amount -= amount;
-		pc_cart_delitem(vsd, idx, amount, 0);
+		pc_cart_delitem(vsd, idx, amount, 0, LOG_TYPE_VENDING);
 		clif_vendingreport(vsd, idx, amount);
 
 		//print buyer's name
@@ -251,8 +247,8 @@ void vending_openvending(struct map_session_data* sd, const char* message, bool 
 	if( !flag ) // cancelled
 		return; // nothing to do
 
-	if (pc_istrading(sd))
-		return; // can't have 2 shops at once
+	if ( pc_isdead(sd) || !sd->state.prevend || pc_istrading(sd))
+		return; // can't open vendings lying dead || didn't use via the skill (wpe/hack) || can't have 2 shops at once
 
 	vending_skill_lvl = pc_checkskill(sd, MC_VENDING);
 	// skill level and cart check
@@ -285,7 +281,7 @@ void vending_openvending(struct map_session_data* sd, const char* message, bool 
 		||  !sd->status.cart[index].identify // unidentified item
 		||  sd->status.cart[index].attribute == 1 // broken item
 		||  sd->status.cart[index].expire_time // It should not be in the cart but just in case
-		||  !itemdb_cantrade(&sd->status.cart[index], pc_isGM(sd), pc_isGM(sd)) ) // untradeable item
+		||  !itemdb_cantrade(&sd->status.cart[index], pc_get_group_level(sd), pc_get_group_level(sd)) ) // untradeable item
 			continue;
 
 		sd->vending[i].index = index;
@@ -303,7 +299,7 @@ void vending_openvending(struct map_session_data* sd, const char* message, bool 
 		clif_skill_fail(sd, MC_VENDING, 0, 0, 0); // custom reply packet
 		return;
 	}
-
+	sd->state.prevend = 0;
 	sd->state.vending = true;
 	sd->vender_id = vending_getuid();
 	sd->vend_num = i;

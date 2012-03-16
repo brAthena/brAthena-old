@@ -2,7 +2,6 @@
 // For more information, see LICENCE in the main folder
 
 #include "../common/mmo.h"
-#include "../common/version.h"
 #include "../common/showmsg.h"
 #include "../common/malloc.h"
 #include "core.h"
@@ -11,9 +10,6 @@
 #include "../common/socket.h"
 #include "../common/timer.h"
 #include "../common/plugins.h"
-#endif
-#ifndef _WIN32
-#include "svnversion.h"
 #endif
 
 #include <stdio.h>
@@ -28,6 +24,9 @@
 /// Called when a terminate signal is received.
 void (*shutdown_callback)(void) = NULL;
 
+#if defined(BUILDBOT)
+	int buildbotflag = 0;
+#endif
 
 int runflag = CORE_ST_RUN;
 int arg_c = 0;
@@ -35,9 +34,7 @@ char **arg_v = NULL;
 
 char *SERVER_NAME = NULL;
 char SERVER_TYPE = ATHENA_SERVER_NONE;
-#ifndef SVNVERSION
-	static char eA_svn_version[10] = "";
-#endif
+static char brA_svn_version[10] = "";
 
 #ifndef MINICORE	// minimalist Core
 // Added by Gabuzomeu
@@ -126,20 +123,12 @@ void signals_init (void)
 }
 #endif
 
-#ifdef SVNVERSION
-	#define xstringify(x) stringify(x)
-	#define stringify(x) #x
-	const char *get_svn_revision(void)
-	{
-		return xstringify(SVNVERSION);
-	}
-#else// not SVNVERSION
 const char* get_svn_revision(void)
 {
 	FILE *fp;
 
-	if(*eA_svn_version)
-		return eA_svn_version;
+	if(*brA_svn_version)
+		return brA_svn_version;
 
 	if ((fp = fopen(".svn/entries", "r")) != NULL)
 	{
@@ -154,29 +143,52 @@ const char* get_svn_revision(void)
 				while (fgets(line,sizeof(line),fp))
 					if (strstr(line,"revision=")) break;
 				if (sscanf(line," %*[^\"]\"%d%*[^\n]", &rev) == 1) {
-					snprintf(eA_svn_version, sizeof(eA_svn_version), "%d", rev);
+					snprintf(brA_svn_version, sizeof(brA_svn_version), "%d", rev);
 				}
 			}
 			else
 			{
 				// Bin File format
-				fgets(line, sizeof(line), fp); // Get the name
-				fgets(line, sizeof(line), fp); // Get the entries kind
+				bool fgresult;
+				fgresult = ( fgets(line, sizeof(line), fp) != NULL ); // Get the name
+				fgresult = ( fgets(line, sizeof(line), fp) != NULL ); // Get the entries kind
 				if(fgets(line, sizeof(line), fp)) // Get the rev numver
 				{
-					snprintf(eA_svn_version, sizeof(eA_svn_version), "%d", atoi(line));
+					snprintf(brA_svn_version, sizeof(brA_svn_version), "%d", atoi(line));
 				}
 			}
 		}
 		fclose(fp);
 	}
 
-	if(!(*eA_svn_version))
-		snprintf(eA_svn_version, sizeof(eA_svn_version), "Desconhecida");
+	/**
+	 * subversion 1.7 introduces the use of a .db file to store it, and we go through it
+	 * TODO: In some cases it may be not accurate
+	 **/
+	if(!(*brA_svn_version) && ((fp = fopen(".svn/wc.db", "rb")) != NULL || (fp = fopen("../.svn/wc.db", "rb")) != NULL)) {
+		char lines[64];
+		int revision,last_known = 0;
+		while(fread(lines, sizeof(char), sizeof(lines), fp)) {
+			if( strstr(lines,"!svn/ver/") ) {
+				if (sscanf(strstr(lines,"!svn/ver/"),"!svn/ver/%d/%*s", &revision) == 1) {
+					if( revision > last_known ) {
+						last_known = revision;
+					}
+				}
+			}
+		}
+		fclose(fp);
+		if( last_known != 0 )
+			snprintf(brA_svn_version, sizeof(brA_svn_version), "%d", last_known);
+	}
+	/**
+	 * we definitely didn't find it.
+	 **/
+	if(!(*brA_svn_version))
+		snprintf(brA_svn_version, sizeof(brA_svn_version), "Unknown");
 
-	return eA_svn_version;
+	return brA_svn_version;
 }
-#endif
 
 /*======================================
  *	CORE : Display title
@@ -191,7 +203,6 @@ static void display_title(void)
 	ShowMessage(""CL_XXBL"           ("CL_BOLD" | '_ \\| '__|  _  | __| '_ \\ / _ \\ '_ \\ / _` | "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
 	ShowMessage(""CL_XXBL"           ("CL_BOLD" | |_) | |  | | | | |_| | | |  __/ | | | (_| | "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
 	ShowMessage(""CL_XXBL"           ("CL_BOLD" |_.__/|_|  \\_| |_/\\__|_| |_|\\___|_| |_|\\__,_| "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-    if(!ATHENA_RELEASE_FLAG && !ATHENA_OFFICIAL_FLAG) ShowMessage(""CL_XXBL"           "CL_BOLD"                v.%d.%d.%d"CL_XXBL""CL_CLL""CL_NORMAL"\n", ATHENA_MAJOR_VERSION, ATHENA_MINOR_VERSION, ATHENA_REVISION);
 	ShowMessage(""CL_XXBL"           ("CL_BOLD"                                               "CL_XXBL""CL_CLL")"CL_NORMAL"\n");
 	ShowMessage(""CL_XXBL"           ("CL_BT_GREEN"       Projeto brAthena (c) 2008 - 2012        "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
 	ShowMessage(""CL_XXBL"           ("CL_BT_GREEN"               www.brathena.org                "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
@@ -204,10 +215,8 @@ static void display_title(void)
 void usercheck(void)
 {
 #ifndef _WIN32
-    if ((getuid() == 0) && (getgid() == 0)) {
-	ShowWarning ("Voce esta executando o brAthena como root superuser.\n");
-	ShowWarning ("E desnecessario e inseguro executar o brAthena com privilegios root.\n");
-	sleep(3);
+    if (geteuid() == 0) {
+	ShowWarning ("Voce esta executando o brAthena como root, isto nao e necessario.\n");
     }
 #endif
 }

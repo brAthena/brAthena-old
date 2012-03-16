@@ -44,7 +44,7 @@
 // 20110928 - 2011-09-28aRagexeRE+ - 0x6b, 0x6d
 
 #ifndef PACKETVER
-	#define PACKETVER 20111102
+	#define PACKETVER 20110315
 #endif
 
 //Remove/Comment this line to disable sc_data saving. [Skotlex]

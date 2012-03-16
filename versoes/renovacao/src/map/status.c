@@ -2351,10 +2351,6 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 			continue;
 		if(i == EQI_HEAD_TOP && (sd->equip_index[EQI_HEAD_MID] == index || sd->equip_index[EQI_HEAD_LOW] == index))
 			continue;
-		if(i == EQI_COS_MID_TOP && sd->equip_index[EQI_COS_LOW_TOP] == index)
-			continue;
-		if(i == EQI_COS_HEAD_TOP && (sd->equip_index[EQI_COS_MID_TOP] == index || sd->equip_index[EQI_COS_LOW_TOP] == index))
-			continue;
 		if(!sd->inventory_data[index])
 			continue;
 
@@ -2460,10 +2456,6 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 		if(i == EQI_HEAD_MID && sd->equip_index[EQI_HEAD_LOW] == index)
 			continue;
 		if(i == EQI_HEAD_TOP && (sd->equip_index[EQI_HEAD_MID] == index || sd->equip_index[EQI_HEAD_LOW] == index))
-			continue;
-		if(i == EQI_COS_MID_TOP && sd->equip_index[EQI_COS_LOW_TOP] == index)
-			continue;
-		if(i == EQI_COS_HEAD_TOP && (sd->equip_index[EQI_COS_MID_TOP] == index || sd->equip_index[EQI_COS_LOW_TOP] == index))
 			continue;
 
 		if(sd->inventory_data[index]) {

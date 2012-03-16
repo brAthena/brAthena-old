@@ -30,7 +30,7 @@ bat_room,57,227,5	script	Tenente Kalos	418,{
 	end;
 
 OnInit:
-	waitingroom "Estação de Batalha",10,"start#bat_a01::OnReadyCheck",1,0,80,150;
+	waitingroom "Estação de Batalha",10,"start#bat_a01::OnReadyCheck",1,0,80;
 	end;
 
 OnEnterBG:
@@ -42,7 +42,7 @@ bat_room,58,204,1	script	Tenente Eyor	414,{
 	end;
 
 OnInit:
-	waitingroom "Estação de Batalha",10,"start#bat_a01::OnReadyCheck",1,0,80,150;
+	waitingroom "Estação de Batalha",10,"start#bat_a01::OnReadyCheck",1,0,80;
 	end;
 
 OnEnterBG:

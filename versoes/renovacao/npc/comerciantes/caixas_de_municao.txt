@@ -22,7 +22,7 @@
 // | - Anotações		   			    					|
 // \________________________________________________________/
 
-que_ng,187,149,3	script	Negociador de Carregadores Kenny	83,{
+izlude,171,127,3	script	Negociador de Carregadores Kenny::mdk	83,{
 	if(BaseJob == Job_Gunslinger) {
 		mes "[Kenny]";
 		mes "Bem-vindo à minha loja de carregadores.";
@@ -107,3 +107,5 @@ function	script	Func_Casing	{
 		close;
 	}
 }
+
+alberta,118,157,3	duplicate(mdk)	Negociador de Carregadores Kenny	83,{

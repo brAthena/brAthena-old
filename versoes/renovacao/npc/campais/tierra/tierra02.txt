@@ -30,7 +30,7 @@ bat_room,114,227,5	script	Tenente Rundel	418,{
 	end;
 
 OnInit:
-	waitingroom "Estação de Batalha",10,"start#bat_a02::OnReadyCheck",1,0,80,150;
+	waitingroom "Estação de Batalha",10,"start#bat_a02::OnReadyCheck",1,0,80;
 	end;
 
 OnEnterBG:
@@ -42,7 +42,7 @@ bat_room,114,204,1	script	Tenente Guerrit	414,{
 	end;
 
 OnInit:
-	waitingroom "Estação de Batalha",10,"start#bat_a02::OnReadyCheck",1,0,80,150;
+	waitingroom "Estação de Batalha",10,"start#bat_a02::OnReadyCheck",1,0,80;
 	end;
 
 OnEnterBG:

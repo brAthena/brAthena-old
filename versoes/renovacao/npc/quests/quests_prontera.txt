@@ -1,31 +1,56 @@
-//  ________________________________________________________
-// /                                                        \
-// |       _           _   _   _                            |
-// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
-// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
-// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
-// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |                                                        |
-// |                    brAthena Script                     |
-// |--------------------------------------------------------|
-// | Nome do Script: Quest NPCs related to Prontera         |
-// |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team                           |
-// |--------------------------------------------------------|
-// | Versões eA/brA: 2.7/1.0                                |
-// |--------------------------------------------------------|
-// | Descrição: ollection of Prontera-based quests.         |
-// | * Culvert Access                                       |
-// | * Ph.D Hat Quest                                       |
-// | * Gaebolg Family Curse                                 |
-// |--------------------------------------------------------|
-// | Changelog:                                             |
-// | 1.0 Modificação [Autor]                                |
-// | - Anotações                                            |
-// \________________________________________________________/
+//===== rAthena Script ======================================= 
+//= Quest NPCs related to Prontera
+//===== By: ================================================== 
+//= kobra_k88; L0ne_W0lf
+//===== Current Version: ===================================== 
+//= 2.7
+//===== Compatible With: ===================================== 
+//= rAthena SVN
+//===== Description: ========================================= 
+//= Collection of Prontera-based quests.
+//= * Culvert Access
+//= * Ph.D Hat Quest
+//= * Gaebolg Family Curse
+//===== Comments: ============================================
+//= Culvert Access:
+//= - [Aegis Conversion]
+//= - Variable in use: MISC_QUEST (bit 8)
+//= Ph.D Hat Quest:
+//= - [Aegis Conversion]
+//= - n/a
+//= Gaebolg Family Curse:
+//= - [Aegis Conversion]
+//= - Variable in use: prt_curse (max 61)
+//===== Additional Comments: ================================= 
+//= Fixed flower name Dreamy -> Illusion
+//= 1.2 Fixed exploit [Lupus]
+//= 1.3 Removed Duplicates [Silent]
+//= 1.4 Moved Culvert from cities/prontera.txt [Evera]
+//= 1.5 Culvert has been rescripted from the ground up. [L0ne_W0lf]
+//= 1.6 Added Gaebolg Family Curse quest. [L0ne_W0lf]
+//= 1.6a Fixed a couple spelling mistakes. [L0ne_W0lf]
+//= 1.7 Updated "Ph.D Quest" Dialogs. [Samuray22]
+//= 1.7b Fixed some minor typos. [SinSloth]
+//= 1.7c replaced item "names" with item id. [Lupus]
+//= 1.8 Fixed experience gains to match upcoming rate adjustments. [SinSloth]
+//= 1.9 Fixed "him" -> "her" in Ph.D hat quest. THansk to yyCC. [L0ne_W0lf]
+//= 2.0 Corrected NPC names to fall within proper restrictions. [L0ne_W0lf]
+//= 2.0a Corrected a Typo error ";;". [Samuray22]
+//= 2.0b Corrected a Typo error. (bugreport:950) [Samuray22]
+//= 2.1 Added missing checkweights. [L0ne_W0lf]
+//= 2.2 Added Nameless Island quest addition. [L0ne_W0lf]
+//= 2.3 Bamph will now talk to those who failed the Gaebolg quest. [L0ne_W0lf]
+//= 2.3a Touch up to Bamph fo other fail-points. [L0ne_W0lf]
+//= 2.3b Hopefully the last change needed for Nameless quest. [L0ne_W0lf]
+//= 2.4 Updated Headgear Quest. [L0ne_W0lf]
+//= 2.5 Fixed requirements for PH D. Hat. [L0ne_W0lf]
+//= 2.5a Fixed requirements for PH D. Hat agian lol. [L0ne_W0lf]
+//= 2.6 Replaced effect numerics with constants. [L0ne_W0lf]
+//= 2.7 Corrected 'IProntera' typo. (bugreport:4522) [L0ne_W0lf]
+//============================================================ 
 
 // Prontera Culvert
-//============================================================
+//============================================================ 
 prt_in,88,105,2	script	Recruiter	105,{
 	if (MISC_QUEST & 8) {
 		mes "[Recruiter]";
@@ -140,7 +165,7 @@ prt_fild05,270,212,5	script	Culvert Guardian	105,{
 }
 
 // Ph.D Hat Quest
-//============================================================
+//============================================================ 
 prt_in,38,108,4	script	Teacher	53,{
 	if ((countitem(710) > 0) && (countitem(703) > 0) && (countitem(704) > 0) && (countitem(708) > 0)) {
 		mes "[Teacher]";
@@ -224,7 +249,7 @@ prt_in,38,108,4	script	Teacher	53,{
 }
 
 // Gaebolg Family Curse
-//============================================================
+//============================================================ 
 prontera,248,212,3	script	Busy Boy#prt	706,3,3,{
 	callsub S_CheckWeight; //Check Player's weight
 	if (BaseLevel > 59) {
@@ -1225,9 +1250,9 @@ morocc_in,45,126,3	script	Historian#prt02	702,{
 			mes "that she might spread around!";
 			mes "Oh well, I guess I better head";
 			mes "back to the priests...)^000000";
-			if (prt_curse == 30)
+			if (prt_curse == 30) 
 				set prt_curse,31;
-			else
+			else 
 				set prt_curse,60;
 			close;
 		}
@@ -2637,7 +2662,7 @@ prt_church,185,106,3	script	Father Bamph	60,{
 		mes "adventurer. May safety accompany you on all of your journeys.";
 		if (prt_curse == 43) set prt_curse,44;
 		else set prt_curse,54;
-		getexp 1600000,0;
+		getexp 160000,0;
 		close;
 	}
 	else if (prt_curse > 43 && prt_curse < 50 && !aru_monas) {
@@ -2968,7 +2993,7 @@ prt_church,184,110,3	script	Father Biscuss	60,{
 		mes "Church, I want to thank";
 		mes "you for all of your help.";
 		set prt_curse,36;
-		getexp 1600000,0;
+		getexp 160000,0;
 		close;
 	}
 	else if (prt_curse == 36) {

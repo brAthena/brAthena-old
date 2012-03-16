@@ -4,6 +4,8 @@
 #ifndef _SHOWMSG_H_
 #define _SHOWMSG_H_
 
+#include <libconfig.h>
+
 // for help with the console colors look here:
 // http://www.edoceo.com/liberum/?doc=printf-with-color
 // some code explanation (used here):
@@ -67,6 +69,7 @@
 
 extern int stdout_with_ansisequence; //If the color ansi sequences are to be used. [flaviojs]
 extern int msg_silent; //Specifies how silent the console is. [Skotlex]
+extern int console_msg_log; //Specifies what error messages to log. [Ind]
 extern char timestamp_format[20]; //For displaying Timestamps [Skotlex]
 
 enum msg_type {
@@ -91,5 +94,6 @@ extern int ShowWarning(const char *, ...);
 extern int ShowDebug(const char *, ...);
 extern int ShowError(const char *, ...);
 extern int ShowFatalError(const char *, ...);
+extern int ShowConfigWarning(config_setting_t *config, const char *string, ...);
 
 #endif /* _SHOWMSG_H_ */
