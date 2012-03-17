@@ -578,26 +578,3 @@ if( NOT BUILD_RELEASE )
 		"Attention: The BUILD_RELEASE should be checked unless you are a developer, because unchecking it will make the emulator to run SLOWER."
 	)
 endif()
-
-
-#####################################################################
-# final checks and warnings
-#
-if( CMAKE_SIZEOF_VOID_P EQUAL 8 )
-	message( WARNING "64bit should work, but is not recommended." )
-elseif( NOT CMAKE_SIZEOF_VOID_P EQUAL 4 )
-	message( FATAL_ERROR "unexpected architecture (CMAKE_SIZEOF_VOID_P is ${CMAKE_SIZEOF_VOID_P})" )
-endif()
-list( LENGTH  TARGET_LIST  _LEN )
-if( _LEN EQUAL 0 )
-	message( FATAL_ERROR "no targets available" )
-endif()
-message( STATUS "Available targets:" )
-foreach( _TARGET IN ITEMS ${TARGET_LIST} )
-	message( STATUS "\t${_TARGET}" )
-endforeach()
-
-
-if( ENABLE_DASHBOARD_REPORTs )
-	#TODO show extra info here
-endif()
