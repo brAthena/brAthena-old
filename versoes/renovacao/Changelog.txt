@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1056 - 17/03/2012 [Protimus]
+	* Correção de r1051.
+	- Corrigidos warnings no Ubuntu.
+
 	r1055 - 17/03/2012 [Protimus]
 	* Atualizado conforme eAthena 15079.
 
