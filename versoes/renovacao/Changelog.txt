@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1058 - 17/03/2012 [Protimus]
+	* Correção de r758.
+	- Resistência à habilidades que curam para o Emperium.
+
 	r1057 - 17/03/2012 [RenatoUtsch]
 	* Revertida parcialmente a r1055
 	- Favor não atualizar a CMakeLists conforme o eA ou o rA porque eu modifiquei completamente e essa atualização quebrou o funcionamento do cmake ;)
