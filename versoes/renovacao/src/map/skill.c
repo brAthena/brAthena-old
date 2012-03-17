@@ -483,6 +483,7 @@ int skillnotok (int skillid, struct map_session_data *sd)
 	switch (skillid) {
 		case AL_WARP:
 		case RETURN_TO_ELDICASTES:
+		case ALL_GUARDIAN_RECALL:
 			if(map[m].flag.nowarp) {
 				clif_skill_teleportmessage(sd,0);
 				return 1;

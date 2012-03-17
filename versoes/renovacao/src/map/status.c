@@ -570,6 +570,7 @@ void initChangeTables(void)
 	// -------------
 	
 	set_sc( ALL_RIDING			 , SC_ALL_RIDING      , SI_ALL_RIDING      , SCB_SPEED );
+	set_sc( ALL_ODINS_POWER		 , SC_ODINS_POWER 	  , SI_ODINS_POWER 	   , SCB_MATK|SCB_BATK|SCB_MDEF|SCB_DEF );
 
 	set_sc( HLIF_AVOID           , SC_AVOID           , SI_BLANK           , SCB_SPEED );
 	set_sc( HLIF_CHANGE          , SC_CHANGE          , SI_BLANK           , SCB_VIT|SCB_INT );
@@ -4205,6 +4206,8 @@ static unsigned short status_calc_batk(struct block_list *bl, struct status_chan
 		batk += batk * sc->data[SC_ZANGETSU]->val2 / 100;
 	if( sc->data[SC_EDP] && sc->data[SC_EDP]->val1 > 1 )
 		batk = batk * (sc->data[SC_EDP]->val1 - 1);
+	if(sc->data[SC_ODINS_POWER])
+		batk += 70;
 		
 		
 	return (unsigned short)cap_value(batk,0,USHRT_MAX);
@@ -4324,6 +4327,8 @@ static unsigned short status_calc_matk(struct block_list *bl, struct status_chan
 		matk += matk * sc->data[SC_IZAYOI]->val3;
 	if(sc->data[SC_ZANGETSU])
 		matk += matk * sc->data[SC_ZANGETSU]->val1/100;
+	if(sc->data[SC_ODINS_POWER])
+		matk += 70;
 
 	return (unsigned short)cap_value(matk,0,USHRT_MAX);
 }
@@ -4550,6 +4555,8 @@ static signed short status_calc_def(struct block_list *bl, struct status_change 
 		def += 50;
 	if( sc->data[SC_ANGRIFFS_MODUS] )
 		def -= def * sc->data[SC_ANGRIFFS_MODUS]->val4 / 100;
+	if(sc->data[SC_ODINS_POWER])
+		def -= 20;
 		
 	return (short)cap_value(def,SHRT_MIN,SHRT_MAX);
 }
@@ -4631,6 +4638,8 @@ static signed short status_calc_mdef(struct block_list *bl, struct status_change
 		mdef += mdef*sc->data[SC_SYMPHONYOFLOVER]->val1/100;
 	if(sc->data[SC_EARTH_INSIGNIA] && sc->data[SC_EARTH_INSIGNIA]->val1 == 3)
 		mdef += 50;
+	if(sc->data[SC_ODINS_POWER])
+		mdef -= 20;
 		
 	return (short)cap_value(mdef,SHRT_MIN,SHRT_MAX);
 }
