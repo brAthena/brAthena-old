@@ -137,7 +137,7 @@
 1385,DELETER_,Deletério,14572,9035,0,7822,80,60,20,100,250,20,800,150,0,0,300,300,800,{ petskillattack "SM_MAGNUM",5,5,5; },{}
 1382,DIABOLIC,Diabolik,14573,9036,0,7823,80,60,10,100,250,20,800,150,0,0,300,300,800,{ petskillattack "WZ_METEOR",2,5,5; },{}
 1519,CHUNG_E,Chung E,12395,9030,0,6115,80,60,50,100,250,20,2000,150,0,0,300,300,800,{ petskillattack "CR_SHIELDCHARGE",5,5,5; },{ bonus bDef,1; bonus2 bSubRace,RC_DemiHuman,1; }
-1879,ECLIPSE_P,Coelho,0,9031,0,7766,80,60,50,100,250,20,2000,150,0,0,300,300,800,{ petskillattack "TF_THROWSTONE",1,5,5; },{}
+1322,SPRING_RABBIT,Coelho,0,9031,0,7766,80,60,50,100,250,20,2000,150,0,0,300,300,800,{ petskillattack "TF_THROWSTONE",1,5,5; },{}
 1963,P_CHUNG_E,Boneca do Ano Novo,0,9038,0,554,80,60,30,100,250,20,800,150,0,0,300,300,800,{ petskillattack "CR_SHIELDCHARGE",5,5,5; },{}
 //============================================================
 // Novos Bichinhos de Estimação do JapanRO Mobile

@@ -3041,7 +3041,7 @@
 5528,King_Frog_Hat,Chapéu do Rei Sapo,5,,,500,,4,,1,0xFFFFFFFE,7,2,256,,30,1,522,{ bonus bAgi,1; },{},{}
 5529,Evil's_Bone_Hat,Elmo do Rei Youkai,5,20,,600,,12,,1,0xFFFFFFFF,7,2,256,,70,1,523,{ bonus bDex,3; bonus2 bSubEle,Ele_Neutral,5; skill "WZ_FROSTNOVA",1; },{},{}
 5530,Raven_Cap,Chapéu de Corvo,5,20,,300,,6,,1,0xFFFFFFFF,7,2,256,,30,1,524,{},{},{}
-5531,B_Dragon_Hat,Chapéu de Bebê Dragão,5,20,,100,,6,,1,0xFFFFFFFF,7,2,256,,0,1,525,{ bonus bDes,2; },{},{}
+5531,B_Dragon_Hat,Chapéu de Bebê Dragão,5,20,,100,,6,,1,0xFFFFFFFF,7,2,256,,0,1,525,{ bonus bDex, 2; skill "TF_DOUBLE", 5; },{},{}
 5532,Pirate_Dagger_J,Adaga de Pirata,5,,,100,,0,,0,0xFFFFFFFF,7,2,1,,0,1,327,{ bonus bShortWeaponDamageReturn,1; },{},{}
 5533,Emperor_Wreath_J,Louros do Imperador,5,,,800,,6,,1,0xFFFFFFFF,7,2,256,,80,1,261,{ bonus bAllStats,1; },{},{}
 5534,Fox_Hat_J,Máscara Kitsune 2.0,5,20,,100,,1,,0,0xFFFFFFFF,7,0,769,,70,1,403,{ bonus bAgi,1; bonus bFlee2,2; },{},{}
@@ -5527,7 +5527,7 @@
 12619,C_Grade_Coin_Bag,C Grade Coin Bag,2,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
 12620,D_Grade_Coin_Bag,D Grade Coin Bag,2,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
 12621,E_Grade_Coin_Bag,E Grade Coin Bag,2,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
-12622,Reins_Of_Mounts,Montarias de Aluguel,11,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ itemskill "ALL_RIDING",1; },{},{}
+12622,Reins_Of_Mounts,Sela,11,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ itemskill "ALL_RIDING",1; },{},{}
 12623,Advanced_Weapons_Box,Advanced Weapons Box,2,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
 12624,Delicious_Jelly,Delicious_Jelly,0,20,,50,,,,,0xFFFFFFFF,7,2,,,,,,{ percentheal 3,3; },{},{}
 
@@ -6852,9 +6852,9 @@
 14608,Luxurious_Dinner_E,Manchu-Han Imperial Feast,2,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ sc_start SC_INCALLSTATUS,3600000,6; },{},{}
 14609,Spoiled_Cuisine,Spoiled Cuisine,2,0,,0,,,,,0xFFFFFFFF,7,2,,,,,,{ percentheal 10,10; },{},{}
 // More Armors
-15000,Bone_Plate,Armadura de Placas de Ossos,5,20,,1000,,60,,1,0x000654E2,2,2,16,,1,1,0,{ bonus bStr,1; bonus bMDef,3; bonus2 bIgnoreDefRate,RC_DemiHuman,10; bonus2 bIgnoreDefRate,RC_Brute,10; bonus3 bAutoSpellWhenHit,"NPC_WIDEBLEEDING",1,10; },{},{}
+15000,Bone_Plate,Armadura de Placas de Ossos,5,20,,1000,,60,,1,0x00021040,2,2,16,,1,1,0,{ bonus bStr,1; bonus bMDef,3; bonus2 bIgnoreDefRate,RC_DemiHuman,10; bonus2 bIgnoreDefRate,RC_Brute,10; bonus3 bAutoSpellWhenHit,"NPC_WIDEBLEEDING",1,10; },{},{}
 15001,Odin's_Blessing_I,Odin's Blessing,5,20,,0,,10,,0,0xFFFFFFFE,7,2,16,,0,0,0,{},{},{}
-15002,Rune_Plate,Armadura Rúnica,5,0,,0,,95,,1,0xFFFFFFFE,2,2,16,,99,1,0,{},{},{}
+15002,Rune_Plate,Armadura Rúnica,5,0,,0,,95,,1,0x00000080,7,2,16,,99,1,0,{},{},{}
 15003,Freya_Soul_Robe1,Freya Soul Robe,5,0,,300,,7,,0,0xFFFFFFFE,7,2,16,,20,1,0,{ bonus bMaxHP,700; },{},{}
 15004,Freya_Soul_Robe2,Freya Soul Robe,5,0,,300,,7,,0,0xFFFFFFFE,7,2,16,,20,1,0,{ bonus bMaxHP,700; },{},{}
 15005,Freya_Soul_Robe3,Freya Soul Robe,5,0,,300,,7,,0,0xFFFFFFFE,7,2,16,,20,1,0,{ bonus bMaxHP,700; },{},{}
