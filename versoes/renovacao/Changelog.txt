@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1061 - 17/03/2012 [Protimus]
+	* Corrigida a habilidade Provocar (SM_SELFPROVOKE).
+	- Não estava dando bonificação de ataque, a mudança na renovação foi revertida faz um tempo.
+
 	r1059 - 17/03/2012 [brn0]
 	* Corrigido um problema com clones da classe justiceiro, que causava queda do map-server.
 	* Corrigida a área de uso da habilidade Tempestade de Flechas (RA_ARROWSTORM).

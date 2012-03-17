@@ -348,7 +348,7 @@ void initChangeTables(void)
 	set_sc( SL_SKE               , SC_SKE             , SI_BLANK           , SCB_BATK|SCB_WATK|SCB_DEF|SCB_DEF2 );
 	set_sc( SL_SKA               , SC_SKA             , SI_BLANK           , SCB_DEF|SCB_MDEF|SCB_ASPD );
 	set_sc( SL_SMA               , SC_SMA             , SI_SMA             , SCB_NONE );
-	set_sc( SM_SELFPROVOKE       , SC_PROVOKE         , SI_PROVOKE         , SCB_DEF|SCB_DEF2 );
+	set_sc( SM_SELFPROVOKE       , SC_PROVOKE         , SI_PROVOKE         , SCB_DEF|SCB_DEF2|SCB_BATK|SCB_WATK );
 	set_sc( ST_PRESERVE          , SC_PRESERVE        , SI_PRESERVE        , SCB_NONE );
 	set_sc( PF_DOUBLECASTING     , SC_DOUBLECAST      , SI_DOUBLECAST      , SCB_NONE );
 	set_sc( HW_GRAVITATION       , SC_GRAVITATION     , SI_BLANK           , SCB_ASPD );
@@ -4151,6 +4151,8 @@ static unsigned short status_calc_batk(struct block_list *bl, struct status_chan
 		batk += sc->data[SC_BATKFOOD]->val1;
 	if(sc->data[SC_INCATKRATE])
 		batk += batk * sc->data[SC_INCATKRATE]->val1/100;
+	if(sc->data[SC_PROVOKE])
+		batk += batk * sc->data[SC_PROVOKE]->val3/100;
 	if(sc->data[SC_CONCENTRATION])
 		batk += batk * sc->data[SC_CONCENTRATION]->val2/100;
 	if(sc->data[SC_SKE])
@@ -4223,6 +4225,8 @@ static unsigned short status_calc_watk(struct block_list *bl, struct status_chan
 		watk += sc->data[SC_VOLCANO]->val2;
 	if(sc->data[SC_INCATKRATE])
 		watk += watk * sc->data[SC_INCATKRATE]->val1/100;
+	if(sc->data[SC_PROVOKE])
+		watk += watk * sc->data[SC_PROVOKE]->val3/100;
 	if(sc->data[SC_CONCENTRATION])
 		watk += watk * sc->data[SC_CONCENTRATION]->val2/100;
 	if(sc->data[SC_SKE])
@@ -7282,6 +7286,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			break;
 		case SC_PROVOKE:
 			//val2 signals autoprovoke.
+			val3 = 2+3*val1; //Bônus de ataque.
 			val4 = 5+5*val1; //Def reduction.
 			break;
 		case SC_AVOID:
