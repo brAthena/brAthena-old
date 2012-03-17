@@ -9,7 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
-	r1053 - 16/03/2012 [Protimus]
+	r1054 - 17/03/2012 [Protimus]
+	* Removido suporte ao VC++ 2009.
+	- Está para sair outras versões mais novas que o 2010, não tem motivos manter algo arcaico.
+
+	r1053 - 17/03/2012 [Protimus]
 	* Corrigidos warnings que ocorreriam em Linux.
 	- Só foi testado no CentOS, necessário em outras distros.
 	- As correções foram apenas em sistemas 32bits.
