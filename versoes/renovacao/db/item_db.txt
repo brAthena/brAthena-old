@@ -5527,7 +5527,7 @@
 12619,C_Grade_Coin_Bag,C Grade Coin Bag,2,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
 12620,D_Grade_Coin_Bag,D Grade Coin Bag,2,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
 12621,E_Grade_Coin_Bag,E Grade Coin Bag,2,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
-12622,Reins_Of_Mounts,Sela,11,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ itemskill "ALL_RIDING",1; },{},{}
+12622,Reins_Of_Mounts,Rédea,11,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ itemskill "ALL_RIDING",1; },{},{}
 12623,Advanced_Weapons_Box,Advanced Weapons Box,2,20,,10,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
 12624,Delicious_Jelly,Delicious_Jelly,0,20,,50,,,,,0xFFFFFFFF,7,2,,,,,,{ percentheal 3,3; },{},{}
 
@@ -6999,6 +6999,7 @@
 //16589,Thoughtful_Hat_Box
 //16590,Thoughtful_Hat_Box
 //16653,,Caixa de Compêndio de Batalha,
+16682,Caixa_de_Sela,Caixa de Sela,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ rentitem 12622,604800 },{},{}
 16740,The_Sea_God's_Call_23_Hour_Box,The Sea God's Call 23 Hour Box,2,20,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
 16763,The_Sea_God's_Call_7_Day_Box,The Sea God's Call 7 Day Box,2,20,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
 16764,The_Sea_God's_Call_15_Day_Box,The Sea God's Call 15 Day Box,2,20,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}

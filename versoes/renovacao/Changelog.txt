@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1063 - 17/03/2012 [Protimus]
+	* Corrigido problema com alcance de visão dos elementais.
+	* Adicionado o item: Caixa de Sela.
+
 	r1062 - 17/03/2012 [Protimus]
 	* Corrigidos bônus e utilização dos itens: Chapéu de Bebê Dragão, Armadura de Placas de Ossos e Armadura Rúnica.
 	* Corrigido nome do bichinho de estimação: Coelho.
