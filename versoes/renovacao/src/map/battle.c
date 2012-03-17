@@ -1930,7 +1930,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio += 100 *(skill_lv+1);
 					break;
 				case GS_PIERCINGSHOT:
-					skillratio += ((20+(sd->status.weapon == W_RIFLE ? 5 : 0))*skill_lv);
+					skillratio += skill_lv*(sd && sd->status.weapon == W_RIFLE ? 25:20);
 					break;
 				case GS_RAPIDSHOWER:
 					skillratio += 10*skill_lv;
@@ -2110,7 +2110,8 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					}
 					break;
 				case NC_AXEBOOMERANG:
-					skillratio += 225 + 50 * skill_lv;					if( sd )
+					skillratio += 225 + 50 * skill_lv;
+					if( sd )
 					{
 						short index = sd->equip_index[EQI_HAND_R];
 						if( index >= 0 && sd->inventory_data[index] && sd->inventory_data[index]->type == IT_WEAPON )

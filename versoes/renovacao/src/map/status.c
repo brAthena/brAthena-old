@@ -8264,6 +8264,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 						clif_skillinfo(sd,TK_JUMPKICK, INF_SELF_SKILL);
 					break;
 			}
+			break;
 		case SC_WUGDASH:
 			{
 				struct unit_data *ud = unit_bl2ud(bl);

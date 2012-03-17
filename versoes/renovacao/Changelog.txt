@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1059 - 17/03/2012 [brn0]
+	* Corrigido um problema com clones da classe justiceiro, que causava queda do map-server.
+	* Corrigida a área de uso da habilidade Tempestade de Flechas (RA_ARROWSTORM).
+	* Corrigido um pequeno problema nos combos de habilidades.
+
 	r1058 - 17/03/2012 [Protimus]
 	* Correção de r758.
 	- Resistência à habilidades que curam para o Emperium.
