@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1053 - 16/03/2012 [Protimus]
+	* Corrigidos warnings que ocorreriam em Linux.
+	- Só foi testado no CentOS, necessário em outras distros.
+	- As correções foram apenas em sistemas 32bits.
+
 	r1052 - 16/03/2012 [Protimus]
 	* Adicionado bônus que faltava no código fonte, para leitura do item: Doce Hiper Açucarado.
 
