@@ -8799,8 +8799,6 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 				map_foreachinrange(status_change_timer_sub, bl, skill_get_splash(SR_CURSEDCIRCLE, sce->val1),BL_CHAR, bl, sce, SC_CURSEDCIRCLE_TARGET, gettick());
 			break;
 		case SC_WHITEIMPRISON:
-			if( tid == -1 )
-				break;
 			clif_damage(bl,bl,0,0,0,400*sce->val1,0,0,0);
 			status_zap(bl,400*sce->val1,0);
 			break;

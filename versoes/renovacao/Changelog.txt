@@ -9,6 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1067 - 17/03/2012 [brn0]
+	* Corrigido a habilidade Exílio (WL_WHITEIMPRISON).
+	- Não estava dobrando o dano da Impacto Espiritual (WL_SOULEXPANSION).
+	- Não estava causando o dano que deveria ao ser cancelada por outras habilidades.
+	* Corrigido o dano de habilidades mágicas em plantas.
+	- Plantas não estavam recebendo danos mágico.
+
 	r1066 - 17/03/2012 [Protimus]
 	* Corrigidos itens que usam a habilidade ALL_ODINS_POWER.
 	- O nível da habilidade não passa do 1.

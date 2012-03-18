@@ -391,9 +391,11 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 		}
 
 		if(sc->data[SC_WHITEIMPRISON] && skill_num != HW_GRAVITATION && skill_num != PA_PRESSURE){
-			if(skill_num == MG_NAPALMBEAT || skill_num == MG_SOULSTRIKE || skill_num == WL_SOULEXPANSION || element == ELE_GHOST)
+			if(skill_num == MG_NAPALMBEAT || skill_num == MG_SOULSTRIKE || skill_num == WL_SOULEXPANSION || element == ELE_GHOST) {
+				if(skill_num == WL_SOULEXPANSION)
+					damage *= 2;
 				status_change_end(bl,SC_WHITEIMPRISON,-1);
-			else{
+			} else{
 				d->dmg_lv = ATK_BLOCK;
 				return 0;
 			}
@@ -3138,7 +3140,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 
 	//Skill Range Criteria
 	ad.flag |= battle_range_type(src, target, skill_num, skill_lv);
-	flag.infdef=(tstatus->mode&MD_PLANT?1:0);
+	flag.infdef=(tstatus->mode&MD_PLANT ? (ad.damage=1):0);
 	if( !flag.infdef && (target->type == BL_SKILL && ((TBL_SKILL*)target)->group->unit_id == UNT_REVERBERATION) )
 		flag.infdef = 1;
 
