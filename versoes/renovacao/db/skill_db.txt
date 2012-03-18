@@ -1206,14 +1206,14 @@
 2480,11,6,1,0,0x1,0,5,1,yes,0,0,3,misc,0,		GN_BLOOD_SUCKER,Planta Sanguessuga
 2481,11,6,1,-1,0x2,1:2:3:4:5,5,1,yes,0,0,0,weapon,0,	GN_SPORE_EXPLOSION,Esporo Explosivo
 2482,11,6,16,0,0x1,0,5,-1,yes,0,0,1,weapon,2,	GN_WALLOFTHORN,Muralha de Espinhos
-2483,11,6,2,0,0x2,3,10,1,yes,0,0,0,weapon,0,	GN_CRAZYWEED,Erva Daninha
-2484,0,6,2,2,0x2,2,10,1,no,0,0,0,weapon,0,	GN_CRAZYWEED_ATK,Erva Daninha
+2483,11,8,2,0,0x2,3,10,8,yes,0,0,0,weapon,0,	GN_CRAZYWEED,Erva Daninha
+2484,0,8,2,2,0x2,2,10,8,no,0,0,0,weapon,0,	GN_CRAZYWEED_ATK,Erva Daninha
 2485,9,6,2,3,0,0,5,1,yes,0,0,0,magic,0,		GN_DEMONIC_FIRE,Bomba Napalm
 2486,9,6,2,0,0,0,5,1,yes,0,0,0,none,0,	GN_FIRE_EXPANSION,Catalisador Alquímico
 2487,9,6,2,0,0,0,1,1,no,0,0,0,none,0,	GN_FIRE_EXPANSION_SMOKE_POWDER,Catalisador Alquímico - Cortina de Fumaça em Pó
 2488,9,6,2,0,0,0,1,1,no,0,0,0,none,0,	GN_FIRE_EXPANSION_TEAR_GAS,Catalisador Alquímico - Gás Lacrimogêneo
 2489,11,6,1,0,0,0,10,1:2:3:4:5:6:7:8:9:10,no,0,0,0,weapon,0,	GN_FIRE_EXPANSION_ACID,Catalisador Alquímico - Garrafa de Ácido
-2490,9,6,2,0,0x3,1,5,1,yes,0,0x80,2:3:4:5:6,none,0,	GN_HELLS_PLANT,Planta Infernal
+2490,9,6,2,0,0x3,2,5,1,yes,0,0x80,2:3:4:5:6,none,0,	GN_HELLS_PLANT,Planta Infernal
 2491,0,6,1,0,0x90,0,5,1,no,0,0,0,misc,0,		GN_HELLS_PLANT_ATK,Planta Infernal
 2492,0,6,4,0,0x3,6:7:8:9:10,5,1,yes,0,0,0,none,0,		GN_MANDRAGORA,Grito da Mandrágora
 2493,11,6,16,0,0x1,0,1,1,yes,0,0x200,0,none,0,		GN_SLINGITEM,Arremessar Item

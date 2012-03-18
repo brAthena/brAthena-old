@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1068 - 18/03/2012 [Protimus]
+	* Corrigida a habilidade Erva Daninha (GN_CRAZYWEED).
+	- Aumentado número de hits.
+	* Corrigida a habilidade Planta Infernal (GN_HELLS_PLANT).
+	- Área de efeito alterada.
+
 	r1067 - 17/03/2012 [brn0]
 	* Corrigido a habilidade Exílio (WL_WHITEIMPRISON).
 	- Não estava dobrando o dano da Impacto Espiritual (WL_SOULEXPANSION).
