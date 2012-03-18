@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1074 - 18/03/2012 [Protimus]
+	* Corrigidos Venenos do Sicário.
+	- Estavam com alguns bônus e funcionamento incorreto.
+	- Necessário verificar se existe status negativo "Cegueira" para Waraitake (SC_MAGICMUSHROOM).
+
 	r1073 - 18/03/2012 [Protimus]
 	* Correção de r1066.
 	- Tempo de conjuração conforme o oficial.

@@ -3350,6 +3350,8 @@ void status_calc_regen_rate(struct block_list *bl, struct regen_data *regen, str
 		regen->rate.hp += regen->rate.hp * sc->data[SC_EXTRACT_WHITE_POTION_Z]->val1/100;
 	if(sc->data[SC_VITATA_500])
 		regen->rate.sp += regen->rate.sp * sc->data[SC_VITATA_500]->val1/100;
+	if(sc->data[SC_DEATHHURT])
+		regen->rate.hp -= regen->rate.hp * sc->data[SC_DEATHHURT]->val2/100;
 }
 
 /// Recalculates parts of an object's battle status according to the specified flags.
@@ -4716,9 +4718,6 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 			else
 			if( sc->data[SC_GATLINGFEVER] )
 				val = 25;
-
-			if( sc->data[SC_PARALYSE] )
-				val = val/2;
 				
 			speed_rate -= val;
 		}
@@ -4783,8 +4782,6 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 					val = max( val, 50 );
 				if( sc->data[SC_MELON_BOMB] )
 					val = max( val, 2 * sc->data[SC_MELON_BOMB]->val1 );
-				if( sc->data[SC_PARALYSE] )
-					val = max( val, 50 );
 
 				if( sd && sd->speed_rate + sd->speed_add_rate > 0 ) // permanent item-based speedup
 					val = max( val, sd->speed_rate + sd->speed_add_rate );
@@ -4864,6 +4861,8 @@ static unsigned short status_calc_speed(struct block_list *bl, struct status_cha
 			else
 				speed += speed * 50 / 100;
 		}
+		if( sc->data[SC_PARALYSE] )
+			speed += speed * 50 / 100;
 	}
 
 	return (short)cap_value(speed,10,USHRT_MAX);
@@ -7570,6 +7569,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_PARALYSE:
 		case SC_DEATHHURT:
 			val2 = 20 * val1;
+			val4 = tick / 3000;
 			tick = 3000;
 			break;
 		case SC_ELECTRICSHOCKER:
@@ -9462,18 +9462,15 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 	case SC_PYREXIA:
 		if( --(sce->val4) >= 0 )
 		{
-			bool flag;
 			map_freeblock_lock();
 			clif_damage(bl,bl,tick,status_get_amotion(bl),0,100,0,0,0);
 			status_fix_damage(NULL,bl,100,0);
-			flag = !sc->data[type];
-			map_freeblock_unlock();
-			if( !flag )
-			{
+			if( sc->data[type] ) {
 				if( sce->val4 == 10 )
-					sc_start(bl,SC_BLIND,100,sce->val1,30000);
 				sc_timer_next(3000+tick,status_change_timer,bl->id,data);
+				sc_start(bl,SC_STUN,100,sce->val1,300000);
 			}
+			map_freeblock_unlock();
 			return 0;
 		}
 		break;
@@ -9494,7 +9491,7 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 			flag = !sc->data[type];
 			map_freeblock_unlock();
 			if( !flag )
-				sc_timer_next(1000 + tick, status_change_timer, bl->id, data );
+				sc_timer_next(3000 + tick, status_change_timer, bl->id, data );
 			return 0;
 		}
 		break;
@@ -9550,15 +9547,15 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 		break;
 	case SC_TOXIN:
 		if( --(sce->val4) >= 0 )
-		{
-			bool flag;
+		{ 
+		
 			map_freeblock_lock();
 			clif_damage(bl,bl,tick,status_get_amotion(bl),1,1,0,0,0);
 			status_damage(NULL,bl,1,status->max_sp*3/100,0,16);
-			flag = !sc->data[type];
-			map_freeblock_unlock();
-			if( !flag )
+			if( sc->data[type] ) {
 				sc_timer_next(10000 + tick, status_change_timer, bl->id, data );
+			}
+			map_freeblock_unlock();
 			return 0;
 		}
 		break;
@@ -9567,6 +9564,31 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 		{
 			clif_emotion(bl,1);
 			sc_timer_next(3000 + tick, status_change_timer, bl->id, data );
+			sc_start(bl,SC_BLEEDING,100,sce->val1,30000);
+			return 0;
+		}
+		break;
+	case SC_DEATHHURT:
+		if( --(sce->val4) >= 0 )
+		{
+			sc_timer_next(3000 + tick, status_change_timer, bl->id, data );
+			sc_start(bl,SC_SLEEP,100,sce->val1,30000);
+			return 0;
+		}
+		break;
+	case SC_VENOMBLEED:
+		if( --(sce->val4) >= 0 )
+		{
+			sc_timer_next(3000 + tick, status_change_timer, bl->id, data );
+			sc_start(bl,SC_SILENCE,100,sce->val1,30000);
+			return 0;
+		}
+		break;
+	case SC_PARALYSE:
+		if( --(sce->val4) >= 0 )
+		{
+			sc_timer_next(3000 + tick, status_change_timer, bl->id, data );
+			sc_start(bl,SC_FREEZING,100,sce->val1,30000);
 			return 0;
 		}
 		break;
