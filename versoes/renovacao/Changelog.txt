@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1070 - 18/03/2012 [Protimus]
+	* Corrigida a habilidade Campo Protetor (NC_NEUTRALBARRIER).
+	- Bloqueia apenas ataques de longa distância.
+
 	r1069 - 18/03/2012 [Protimus]
 	* Corrigida a habilidade Pestilência (SC_DEADLYINFECT).
 	- Agora o seu efeito só funciona com ataques de curta distância.

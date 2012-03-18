@@ -501,7 +501,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 			return 0;
 		}
 
-		if((sc->data[SC_HERMODE] || sc->data[SC_NEUTRALBARRIER] || sc->data[SC_HOVERING]) && flag&BF_MAGIC)
+		if((sc->data[SC_HERMODE] || sc->data[SC_HOVERING]) && flag&BF_MAGIC)
 			return 0;
 
 		if(sc->data[SC_TATAMIGAESHI] && (flag&(BF_MAGIC|BF_LONG)) == BF_LONG)
@@ -1455,7 +1455,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			flee = tstatus->flee,
 			hitrate=0; //Default hitrate
 
-		if( tsc && tsc->data[SC_NEUTRALBARRIER] && (wd.flag&(BF_MAGIC|BF_SHORT)) == BF_SHORT)
+		if( tsc && tsc->data[SC_NEUTRALBARRIER] && (wd.flag&(BF_LONG)))
 			wd.dmg_lv = ATK_BLOCK;
 		else
 		{
