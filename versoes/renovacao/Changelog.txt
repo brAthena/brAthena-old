@@ -9,6 +9,15 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1073 - 18/03/2012 [Protimus]
+	* Correção de r1066.
+	- Tempo de conjuração conforme o oficial.
+
+	r1072 - 18/03/2012 [RenatoUtsch]
+	* Corrigido parcialmente bug com o CMake.
+	- O MinGW ainda está acusando alguns warnings, mas tudo está compilando normal.
+	- Todos os que usam linux vão ter que baixar a libconfig também para compilar.
+	
 	r1070 - 18/03/2012 [Protimus]
 	* Corrigida a habilidade Campo Protetor (NC_NEUTRALBARRIER).
 	- Bloqueia apenas ataques de longa distância.
