@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1075 - 18/03/2012 [Protimus]
+	* Corrigido problema de verificação de trajeto para os elementais.
+
 	r1074 - 18/03/2012 [Protimus]
 	* Corrigidos Venenos do Sicário.
 	- Estavam com alguns bônus e funcionamento incorreto.
