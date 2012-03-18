@@ -37,6 +37,7 @@ set( MAP_SOURCES
 	"${MAP_DIR}/party.c"
 	"${MAP_DIR}/path.c"
 	"${MAP_DIR}/pc.c"
+	"${MAP_DIR}/pc_groups.c"
 	"${MAP_DIR}/pet.c"
 	"${MAP_DIR}/quest.c"
 	"${MAP_DIR}/script.c"

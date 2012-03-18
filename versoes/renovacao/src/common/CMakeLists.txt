@@ -17,12 +17,15 @@ message( STATUS "Creating svnversion.h - done" )
 
 # -----------------------------------------------------------------------------
 # Configure the normal core build
-if( ZLIB_FOUND AND MYSQL_FOUND )
+
+if( ZLIB_FOUND AND LIBCONFIG_FOUND AND MYSQL_FOUND )
 	message( STATUS "Creating target common" )
 
 	set( COMMON_SOURCES
 		${MT19937AR_SOURCES}
+		${LIBCONFIG_SOURCES}
 		"${COMMON_DIR}/core.c"
+		"${COMMON_DIR}/conf.c"
 		"${COMMON_DIR}/db.c"
 		"${COMMON_DIR}/des.c"
 		"${COMMON_DIR}/ers.c"
@@ -40,22 +43,22 @@ if( ZLIB_FOUND AND MYSQL_FOUND )
 		"${COMMON_DIR}/strlib.c"
 		"${COMMON_DIR}/timer.c"
 		"${COMMON_DIR}/utils.c"
-		"${COMMON_DIR}/conf.c"
 		CACHE INTERNAL "" FORCE
 	)
 	set( COMMON_LIBRARIES ${MYSQL_LIBRARIES}
 						  ${ZLIB_LIBRARIES}
+						  ${LIBCONFIG_LIBRARIES}
 		CACHE INTERNAL "" FORCE
 	)
 	set( COMMON_INCLUDE_DIRS ${MYSQL_INCLUDE_DIRS}
-					  ${ZLIB_INCLUDE_DIRS}
-					  ${MT19937AR_INCLUDE_DIRS}
-					  ${LIBCONFIG_INCLUDE_DIRS}
+					  		 ${ZLIB_INCLUDE_DIRS}
+					  		 ${MT19937AR_INCLUDE_DIRS}
+					  		 ${LIBCONFIG_INCLUDE_DIRS}
 		CACHE INTERNAL "" FORCE
 	)
 
 	message( STATUS "Creating target common - done" )
 else()
 	message( STATUS "Creating target common - failed" )
-	message( FATAL_ERROR "Failed to create target common (requires ZLIB and MYSQL)" )
+	message( FATAL_ERROR "Failed to create target common (requires ZLIB, LIBCONFIG and MYSQL)" )
 endif()

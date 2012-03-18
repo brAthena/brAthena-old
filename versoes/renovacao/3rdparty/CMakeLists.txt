@@ -2,6 +2,22 @@
 # For more information, see LICENSE in the main folder
 
 # -----------------------------------------------------------------------------
+# Look for libconfig
+
+# If on windows, compile it, but if on linux, look for the dependency.
+if( WIN32 )
+	# Add the libconfig headers and compile them
+	add_subdirectory( libconfig )
+else( WIN32 )
+	find_package( LIBCONFIG REQUIRED )
+	# Now, add libconfig to the global namespace...
+	set( LIBCONFIG_FOUND ${LIBCONFIG_FOUND} CACHE INTERNAL "" FORCE )
+	set( LIBCONFIG_INCLUDE_DIRS ${LIBCONFIG_INCLUDE_DIRS} CACHE INTERNAL "" FORCE )
+	set( LIBCONFIG_LIBRARIES ${LIBCONFIG_LIBRARIES} CACHE INTERNAL "" FORCE )
+endif()
+
+
+# -----------------------------------------------------------------------------
 # Configure the msinttypes
 #
 # The microsoft Visual C++ doesn't support the stdint.h and inttypes.h, so we
@@ -29,9 +45,9 @@ set( CMAKE_PREFIX_PATH ${CMAKE_CURRENT_SOURCE_DIR}/mysql
 					   ${CMAKE_PREFIX_PATH}
 )
 
-# Then, search for PCRE
-find_package( MYSQL REQUIRED ) # REMOVE THE REQUIRED WHEN ADDING SQLITE SUPPORT
-
+# Then, search for MYSQL
+find_package( MYSQL REQUIRED )
+message( STATUS "${MYSQL_FOUND}" )
 # Now, add zlib to the global namespace...
 set( MYSQL_FOUND ${MYSQL_FOUND} CACHE INTERNAL "" FORCE )
 set( MYSQL_INCLUDE_DIRS ${MYSQL_INCLUDE_DIRS} CACHE INTERNAL "" FORCE )
@@ -66,7 +82,7 @@ set( CMAKE_PREFIX_PATH ${CMAKE_CURRENT_SOURCE_DIR}/zlib
 )
 
 # Then, search for zlib
-find_package( ZLIB )
+find_package( ZLIB REQUIRED )
 
 # Now, add zlib to the global namespace...
 set( ZLIB_FOUND ${ZLIB_FOUND} CACHE INTERNAL "" FORCE )

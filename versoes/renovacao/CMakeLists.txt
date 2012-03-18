@@ -113,7 +113,7 @@ endif()
 # Set some initial global definitions for disabling some compiler warnings
 if( WIN32 )
 	set_property( CACHE GLOBAL_DEFINITIONS PROPERTY VALUE
-		"${GLOBAL_DEFINITIONS} -DFD_SETSIZE=4096"
+		"${GLOBAL_DEFINITIONS} -DFD_SETSIZE=4096 -DLIBCONFIG_STATIC -DYY_USE_CONST "
 	)
 
 	# MSVC has some initial defines too
