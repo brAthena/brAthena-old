@@ -1192,7 +1192,7 @@
 2157,Insecticide,Insecticide,5,500,,300,,20,,0,0xFFFFFFFF,7,2,32,,0,1,1,{},{},{}
 2160,Giant_Shield,Giant Shield,5,20,,2800,,130,,1,0x00004082,7,2,32,,100,1,1,{ bonus2 bSubSize,2,5; if(getrefine()>=9){ bonus2 bSubSize,2,5; } },{},{}
 2161,Geffenia_Tomb_of_Water,Geffenia Tomb of Water,5,20,,1000,,30,,0,0x00000200,7,2,32,,100,1,1,{ bonus bMdef,2; bonus bInt,1; if(readparam(bInt)>=120){ bonus bMatk,10; bonus bMaxHP,800; } },{},{}
-2162,Holy_Scripture_Vol2,Holy Scripture Vol2,5,20,,500,,20,,1,0x00000100,7,2,32,,140,1,1,{ bonus bMdef,5; bonus bHealPower,5; skill "ALL_ODINS_POWER",2; },{},{}
+2162,Holy_Scripture_Vol2,Holy Scripture Vol2,5,20,,500,,20,,1,0x00000100,7,2,32,,140,1,1,{ bonus bMdef,5; bonus bHealPower,5; skill "ALL_ODINS_POWER",1; },{},{}
 // Headgears
 //==============================================================================================================
 2201,Sunglasses,Óculos Escuros,5,5000,,100,,0,,0,0xFFFFFFFF,7,2,512,,0,0,12,{ bonus2 bResEff,Eff_Blind,500; },{},{}
@@ -6999,7 +6999,7 @@
 //16589,Thoughtful_Hat_Box
 //16590,Thoughtful_Hat_Box
 //16653,,Caixa de Compêndio de Batalha,
-16682,Caixa_de_Sela,Caixa de Sela,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ rentitem 12622,604800 },{},{}
+16682,Caixa_de_Sela,Caixa de Sela,2,0,,10,,,,,0xFFFFFFFF,7,2,,,,,,{ rentitem 12622,604800; },{},{}
 16740,The_Sea_God's_Call_23_Hour_Box,The Sea God's Call 23 Hour Box,2,20,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
 16763,The_Sea_God's_Call_7_Day_Box,The Sea God's Call 7 Day Box,2,20,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}
 16764,The_Sea_God's_Call_15_Day_Box,The Sea God's Call 15 Day Box,2,20,,0,,,,,0xFFFFFFFF,7,2,,,,,,{},{},{}

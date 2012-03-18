@@ -196,17 +196,17 @@ const char* get_svn_revision(void)
 static void display_title(void)
 {
 	//ClearScreen(); // clear screen and go up/left (0, 0 position in text)
-	ShowMessage(""CL_WTBL"           (=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=)"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"           ("CL_BOLD"  _           ___  _   _			   "CL_XXBL""CL_CLL")"CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"           ("CL_BOLD" | |         / _ \\| | | |	  		   "CL_XXBL""CL_CLL")"CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"           ("CL_BOLD" | |__  _ __/ /_\\ \\ |_| |__   ___ _ __   __ _  "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"           ("CL_BOLD" | '_ \\| '__|  _  | __| '_ \\ / _ \\ '_ \\ / _` | "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"           ("CL_BOLD" | |_) | |  | | | | |_| | | |  __/ | | | (_| | "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"           ("CL_BOLD" |_.__/|_|  \\_| |_/\\__|_| |_|\\___|_| |_|\\__,_| "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"           ("CL_BOLD"                                               "CL_XXBL""CL_CLL")"CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"           ("CL_BT_GREEN"       Projeto brAthena (c) 2008 - 2012        "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_XXBL"           ("CL_BT_GREEN"               www.brathena.org                "CL_XXBL")"CL_CLL""CL_NORMAL"\n");
-	ShowMessage(""CL_WTBL"           (=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=)"CL_CLL""CL_NORMAL"\n\n");
+	ShowMessage(""CL_PASS"           (=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=)"CL_CLL""CL_NORMAL"\n");
+	ShowMessage(""CL_PASS"           ("CL_BT_WHITE"  _           ___  _   _			   "CL_PASS""CL_CLL")"CL_NORMAL"\n");
+	ShowMessage(""CL_PASS"           ("CL_BT_WHITE" | |         / _ \\| | | |	  		   "CL_PASS""CL_CLL")"CL_NORMAL"\n");
+	ShowMessage(""CL_PASS"           ("CL_BT_WHITE" | |__  _ __/ /_\\ \\ |_| |__   ___ _ __   __ _  "CL_PASS")"CL_CLL""CL_NORMAL"\n");
+	ShowMessage(""CL_PASS"           ("CL_BT_WHITE" | '_ \\| '__|  _  | __| '_ \\ / _ \\ '_ \\ / _` | "CL_PASS")"CL_CLL""CL_NORMAL"\n");
+	ShowMessage(""CL_PASS"           ("CL_BT_WHITE" | |_) | |  | | | | |_| | | |  __/ | | | (_| | "CL_PASS")"CL_CLL""CL_NORMAL"\n");
+	ShowMessage(""CL_PASS"           ("CL_BT_WHITE" |_.__/|_|  \\_| |_/\\__|_| |_|\\___|_| |_|\\__,_| "CL_PASS")"CL_CLL""CL_NORMAL"\n");
+	ShowMessage(""CL_PASS"           ("CL_BT_WHITE"                                               "CL_PASS""CL_CLL")"CL_NORMAL"\n");
+	ShowMessage(""CL_PASS"           ("CL_BT_GREEN"       Projeto brAthena (c) 2008 - 2012        "CL_PASS")"CL_CLL""CL_NORMAL"\n");
+	ShowMessage(""CL_PASS"           ("CL_BT_GREEN"               www.brathena.org                "CL_PASS")"CL_CLL""CL_NORMAL"\n");
+	ShowMessage(""CL_PASS"           (=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=)"CL_CLL""CL_NORMAL"\n\n");
 
 	ShowInfo("Revisao do SVN: '"CL_WHITE"%s"CL_RESET"'.\n", get_svn_revision());
 }

@@ -9,6 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1066 - 17/03/2012 [Protimus]
+	* Corrigidos itens que usam a habilidade ALL_ODINS_POWER.
+	- O nível da habilidade não passa do 1.
+	* Alterado core banner para nova visualização.
+	- Cores diferentes.
+	* Correções de linhas saltadas no map-server.
+
 	r1064 - 17/03/2012 [Protimus]
 	* Adicionadas habilidades de novos episódios:
 	- ALL_GUARDIAN_RECALL.
