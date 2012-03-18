@@ -672,7 +672,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 		if( sd && (sce = sc->data[SC_FORCEOFVANGUARD]) && flag&BF_WEAPON && rand()%100 < sce->val2 )
 			pc_addrageball(sd,skill_get_time(LG_FORCEOFVANGUARD,sce->val1),sce->val3);
 
-		if( sc->data[SC__DEADLYINFECT] && damage > 0 && rand()%100 < 65 + 5 * sc->data[SC__DEADLYINFECT]->val1 )
+		if( sc->data[SC__DEADLYINFECT] && flag&BF_SHORT && damage > 0 && rand()%100 < 45 + 5 * sc->data[SC__DEADLYINFECT]->val1 )
 			status_change_spread(bl, src);
 
 		//Reduzindo 90% de dano do corpo fechado
@@ -743,7 +743,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 		{
 		if( tsc->data[SC_POISONINGWEAPON] && skill_num != GC_VENOMPRESSURE && (flag&BF_WEAPON) && damage > 0 && rand()%100 < tsc->data[SC_POISONINGWEAPON]->val3 )
 			sc_start(bl,tsc->data[SC_POISONINGWEAPON]->val2,100,tsc->data[SC_POISONINGWEAPON]->val1,skill_get_time2(GC_POISONINGWEAPON,tsc->data[SC_POISONINGWEAPON]->val1));
-		if( tsc->data[SC__DEADLYINFECT] && damage > 0 && rand()%100 < 65 + 5 * tsc->data[SC__DEADLYINFECT]->val1 )
+		if( tsc->data[SC__DEADLYINFECT] && flag&BF_SHORT && damage > 0 && rand()%100 < 40 + 5 * tsc->data[SC__DEADLYINFECT]->val1 )
 			status_change_spread(src, bl);
 		}
 

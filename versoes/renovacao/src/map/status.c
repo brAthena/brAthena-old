@@ -298,7 +298,7 @@ void initChangeTables(void)
 	set_sc( PA_GOSPEL            , SC_GOSPEL          , SI_BLANK           , SCB_SPEED|SCB_ASPD );
 	add_sc( PA_GOSPEL            , SC_SCRESIST        );
 	add_sc( CH_TIGERFIST         , SC_STOP            );
-	set_sc( ASC_EDP              , SC_EDP             , SI_EDP             , SCB_BATK|SCB_WATK );
+	set_sc( ASC_EDP              , SC_EDP             , SI_EDP             , SCB_NONE );
 	set_sc( SN_SIGHT             , SC_TRUESIGHT       , SI_TRUESIGHT       , SCB_STR|SCB_AGI|SCB_VIT|SCB_INT|SCB_DEX|SCB_LUK|SCB_CRI|SCB_HIT );
 	set_sc( SN_WINDWALK          , SC_WINDWALK        , SI_WINDWALK        , SCB_FLEE|SCB_SPEED );
 	set_sc( WS_MELTDOWN          , SC_MELTDOWN        , SI_MELTDOWN        , SCB_NONE );
@@ -881,6 +881,8 @@ void initChangeTables(void)
 	
 	// Montarias de Aluguel
 	StatusChangeFlagTable[SC_ALL_RIDING] = SCB_SPEED;
+	
+	StatusChangeFlagTable[SC_EDP] |= SCB_BATK|SCB_WATK;
 
 	if( !battle_config.display_hallucination ) 
 		StatusIconChangeTable[SC_HALLUCINATION] = SI_BLANK;
@@ -4205,7 +4207,7 @@ static unsigned short status_calc_batk(struct block_list *bl, struct status_chan
 	if(sc->data[SC_ZANGETSU])
 		batk += batk * sc->data[SC_ZANGETSU]->val2 / 100;
 	if( sc->data[SC_EDP] && sc->data[SC_EDP]->val1 > 1 )
-		batk = batk * (sc->data[SC_EDP]->val1 - 1);
+		batk = batk * sc->data[SC_EDP]->val1;
 	if(sc->data[SC_ODINS_POWER])
 		batk += 70;
 		
@@ -4287,7 +4289,7 @@ static unsigned short status_calc_watk(struct block_list *bl, struct status_chan
 		)
 		watk += watk / 10;
 	if( sc->data[SC_EDP] )
-		watk = watk * sc->data[SC_EDP]->val1;
+		watk = watk * (sc->data[SC_EDP]->val1 - 1);
 	
 	return (unsigned short)cap_value(watk,0,USHRT_MAX);
 }
