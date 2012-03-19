@@ -2100,7 +2100,8 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 			  	{	//Extend combo time.
 					sce->val1 = skillid; //Update combo-skill
 					sce->val3 = skillid;
-					delete_timer(sce->timer, status_change_timer);
+					if( sce->timer != INVALID_TIMER )
+						delete_timer(sce->timer, status_change_timer);
 					sce->timer = add_timer(tick+sce->val4, status_change_timer, src->id, SC_COMBO);
 					break;
 				}
@@ -2361,14 +2362,13 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 
 	if( !dmg.amotion )
 	{ //Instant damage
-		if( !sc || !sc->data[SC_DEVOTION] )
+		if( !sc || (!sc->data[SC_DEVOTION] && skillid != CR_REFLECTSHIELD) )
 			status_fix_damage(src,bl,damage,dmg.dmotion); //Deal damage before knockback to allow stuff like firewall+storm gust combo.
 		if( !status_isdead(bl) )
 			skill_additional_effect(src,bl,skillid,skilllv,dmg.flag,dmg.dmg_lv,tick);
 		if( damage > 0 ) //Counter status effects [Skotlex]
 			skill_counter_additional_effect(src,bl,skillid,skilllv,dmg.flag,tick);
 	}
-
 	if( skillid == WL_HELLINFERNO && dmg.damage > 0 )
 		sc_start4(bl,SC_BURNING,55+5*skilllv,skilllv,1000,src->id,0,5000*skilllv);
 
@@ -2439,8 +2439,11 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 			clif_damage(d_bl, d_bl, gettick(), 0, 0, damage, 0, 0, 0);
 			status_fix_damage(NULL, d_bl, damage, 0);
 		}
-		else
+		else {
 			status_change_end(bl, SC_DEVOTION, INVALID_TIMER);
+			if( !dmg.amotion )
+				status_fix_damage(src,bl,damage,dmg.dmotion);
+		}
 	}
 
 	if( damage > 0 && !(tstatus->mode&MD_BOSS) )
@@ -5165,7 +5168,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			if( !dstsd || (!sd && !mer) )
 			{ // Only players can be devoted
 				if( sd )
-					clif_skill_fail(sd, skillid, USESKILL_FAIL_LEVEL, 0,0);
+					clif_skill_fail(sd, skillid, USESKILL_FAIL_LEVEL, 0, 0);
 				break;
 			}
 
@@ -5193,7 +5196,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 					ARR_FIND(0, count, i, sd->devotion[i] == 0 );
 					if( i == count )
 					{ // No free slots, skill Fail
-						clif_skill_fail(sd, skillid, USESKILL_FAIL_LEVEL, 0,0);
+						clif_skill_fail(sd, skillid, USESKILL_FAIL_LEVEL, 0, 0);
 						map_freeblock_unlock();
 						return 1;
 					}
@@ -10786,6 +10789,7 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 				} else
 					sec = 3000; //Couldn't trap it?
 				clif_skillunit_update(&src->bl);
+				clif_changetraplook(&src->bl, UNT_ANKLESNARE);
 				sg->limit = DIFF_TICK(tick,sg->tick)+sec;
 				sg->interval = -1;
 				src->range = 0;

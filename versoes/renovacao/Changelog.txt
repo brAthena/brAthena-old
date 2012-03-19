@@ -9,6 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1078 - 19/03/2012 [Protimus]
+	* Corrigida a habilidade Redenção (CR_DEVOTION).
+	- Problema com reflexão do dano aos membros rendidos.
+	* Corrigida a habilidade HT_ANKLESNARE (Instalar Armadilha).
+	- Problema de visualização na adição de armadilhas.
+	* Corrigido código para tempo de chutes de algumas habilidades do Taekwon, cujo causava erro.
+
 	r1077 - 19/03/2012 [Protimus]
 	* Corrigida a habilidade Crepúsculo Sangrento (BA_ASSASSINCROSS).
 	- Bônus de velocidade de ataque estava sendo calculado incorretamente.

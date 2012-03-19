@@ -212,8 +212,7 @@ int battle_delay_damage (unsigned int tick, int amotion, struct block_list *src,
 	nullpo_ret(target);
 
 	sc = status_get_sc(target);
-    if( sc && sc->data[SC_DEVOTION] && damage > 0
-            && attack_type > 0 && skill_id != PA_PRESSURE )
+	if( sc && sc->data[SC_DEVOTION] && damage > 0 && skill_id != PA_PRESSURE && skill_id != CR_REFLECTSHIELD )
 		damage = 0;
 
 	if (!battle_config.delay_battle_damage) {
