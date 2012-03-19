@@ -5148,6 +5148,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			if( tsc->data[SC_STONE] && tsc->opt1 == OPT1_STONE )
 				status_change_end(bl, SC_STONE, INVALID_TIMER);
 			status_change_end(bl, SC_SLEEP, INVALID_TIMER);
+			status_change_end(bl, SC_TRICKDEAD, INVALID_TIMER);
 		}
 
 		if( dstmd )
@@ -5659,7 +5660,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			status_change_start(bl, SC_BLIND,
 				100*(100-(tstatus->int_/2+tstatus->vit/3+tstatus->luk/10)),
 				1,0,0,0,
-				skill_get_time2(skillid, skilllv) * (100-(tstatus->int_+tstatus->vit)/2)/100,10);
+				skill_get_time2(skillid, skilllv) * (100-(tstatus->int_+tstatus->vit)/2)/100,0);
 		}
 		clif_skill_nodamage(src,bl,skillid,skilllv,1);
 		if(dstmd)
@@ -10107,7 +10108,7 @@ struct skill_unit_group* skill_unitsetting (struct block_list *src, short skilli
 		}
 		break;
 	case BA_ASSASSINCROSS:
-		val1 = 100+10*skilllv+status->agi; // ASPD increase
+		val1 = 100+(10*skilllv)+(status->agi/10); // ASPD increase
 		if(sd)
 			val1 += 5*pc_checkskill(sd,BA_MUSICALLESSON);
 		break;

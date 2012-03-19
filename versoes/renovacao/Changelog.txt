@@ -9,6 +9,14 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1077 - 19/03/2012 [Protimus]
+	* Corrigida a habilidade Crepúsculo Sangrento (BA_ASSASSINCROSS).
+	- Bônus de velocidade de ataque estava sendo calculado incorretamente.
+	* Corrigida a habilidade Fingir de Morto (NV_TRICKDEAD).
+	- É cancelada ao usar a habilidade Provocar.
+	* Corrigida a habilidade Graça Divina (PR_STRECOVERY).
+	- Era possível causar Cegueira em quem estava com Druída Maligno equipado.
+
 	r1076 - 19/03/2012 [Protimus]
 	* Corrigidas as habilidades Chuva de Flechas (AC_SHOWER) & Tempestade de Flechas (RA_ARROWSTORM).
 	- Adicionada constante de identificação para possibilidade de uso em cima de certas habilidades, como: Proteger Terreno.
