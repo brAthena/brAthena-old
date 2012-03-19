@@ -813,6 +813,11 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 
 	case WZ_STORMGUST:
 		sc_start(bl,SC_FREEZE,65-skilllv*5,skilllv,skill_get_time2(skillid,skilllv));
+		if(tsc->sg_counter >= 3 &&
+			sc_start(bl,SC_FREEZE,300,skilllv,skill_get_time2(skillid,skilllv)))
+			tsc->sg_counter = 0;
+		else if( tsc->sg_counter > 250 )
+			tsc->sg_counter = 0;
 		break;
 
 	case WZ_METEOR:
@@ -5750,8 +5755,10 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		{	//Prevent vending of GMs with unnecessary Level to trade/drop. [Skotlex]
 			if ( !pc_can_give_items(sd) )
 				clif_skill_fail(sd,skillid,USESKILL_FAIL_LEVEL,0,0);
-			else
+			else {
+				sd->state.prevend = 1;
 				clif_openvendingreq(sd,2+skilllv);
+			}
 		}
 		break;
 		

@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1080 - 19/03/2012 [Protimus]
+	* Corrigida a habilidade Nevasca (WZ_STORMGUST).
+	- Adicionado código para verificação de valores que eventualmente possam causar problemas com MvPs.
+	* Corrigido problema com a habilidade Comércio (MC_VENDING).
+	- Apenas uma correção do que ainda não havia sido feito nos update de r1051.
+
 	r1079 - 19/03/2012 [Protimus]
 	* Corrigido problema com a lista de conversores elementais.
 
