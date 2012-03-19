@@ -715,6 +715,7 @@ void clif_buyingstore_trade_failed_seller(struct map_session_data* sd, short res
 
 void clif_msgtable(int fd, int line);
 void clif_msgtable_num(int fd, int line, int num);
+int clif_elementalconverter_list(struct map_session_data *sd);
 
 /// Search Store System
 void clif_search_store_info_ack(struct map_session_data* sd);
