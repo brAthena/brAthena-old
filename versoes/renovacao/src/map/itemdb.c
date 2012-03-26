@@ -23,13 +23,14 @@ static struct item_group itemgroup_db[MAX_ITEMGROUP];
 
 struct item_data dummy_item; //This is the default dummy item used for non-existant items. [Skotlex]
 
-/*==========================================
+/**
  * –¼‘O‚ÅŒŸõ—p
- *------------------------------------------*/
-// name = item alias, so we should find items aliases first. if not found then look for "jname" (full name)
-static int itemdb_searchname_sub(DBKey key,void *data,va_list ap)
+ * name = item alias, so we should find items aliases first. if not found then look for "jname" (full name)
+ * @see DBApply
+ */
+static int itemdb_searchname_sub(DBKey key, DBData *data, va_list ap)
 {
-	struct item_data *item=(struct item_data *)data,**dst,**dst2;
+	struct item_data *item = db_data2ptr(data), **dst, **dst2;
 	char *str;
 	str=va_arg(ap,char *);
 	dst=va_arg(ap,struct item_data **);
@@ -77,9 +78,12 @@ struct item_data* itemdb_searchname(const char *str)
 	return item?item:item2;
 }
 
-static int itemdb_searchname_array_sub(DBKey key,void * data,va_list ap)
+/**
+ * @see DBMatcher
+ */
+static int itemdb_searchname_array_sub(DBKey key, DBData data, va_list ap)
 {
-	struct item_data *item=(struct item_data *)data;
+	struct item_data *item = db_data2ptr(&data);
 	char *str;
 	str=va_arg(ap,char *);
 	if (item == &dummy_item)
@@ -116,17 +120,17 @@ int itemdb_searchname_array(struct item_data** data, int size, const char *str)
 	}
 
 	// search in the db
-	if( count >= size )
+	if( count < size )
 	{
-		data = NULL;
-		size = 0;
-	}
-	else
-	{
-		data -= count;
+		DBData *db_data[MAX_SEARCH];
+		int db_count = 0;
 		size -= count;
+		db_count = itemdb_other->getall(itemdb_other, (DBData**)&db_data, size, itemdb_searchname_array_sub, str);
+		for (i = 0; i < db_count; i++)
+			data[count++] = db_data2ptr(db_data[i]);
+		count += db_count;
 	}
-	return count + itemdb_other->getall(itemdb_other,(void**)data,size,itemdb_searchname_array_sub,str);
+	return count;
 }
 
 
@@ -573,7 +577,6 @@ static void itemdb_read_itemgroup(void)
 {
 	char path[256];
 	snprintf(path, 255, "%s/item_group_db.txt", db_path);
-
 	memset(&itemgroup_db, 0, sizeof(itemgroup_db));
 	itemdb_read_itemgroup_sub(path);
 	ShowStatus("Leitura de '"CL_WHITE"%s"CL_RESET"' finalizada.\n", "item_group_db.txt");
@@ -1003,8 +1006,8 @@ static void itemdb_read(void)
 	itemdb_read_itemgroup();
 	sv_readdb(db_path, "item_avail.txt",   ',', 2, 2, -1,             &itemdb_read_itemavail);
 	sv_readdb(db_path, "item_noequip.txt", ',', 2, 2, -1,             &itemdb_read_noequip);
-	sv_readdb(db_path, "item_trade.txt",   ',', 3, 3, -1,             &itemdb_read_itemtrade);
-	sv_readdb(db_path, "item_delay.txt",   ',', 2, 2, MAX_ITEMDELAYS, &itemdb_read_itemdelay);
+	sv_readdb(db_path, "item_trade.txt",   ',', 3, 3, -1,       &itemdb_read_itemtrade);
+	sv_readdb(db_path, "item_delay.txt",   ',', 2, 2, -1, &itemdb_read_itemdelay);
 	sv_readdb(db_path, "item_buyingstore.txt", ',', 1, 1, -1,         &itemdb_read_buyingstore);
 }
 
@@ -1033,9 +1036,12 @@ static void destroy_item_data(struct item_data* self, int free_self)
 		aFree(self);
 }
 
-static int itemdb_final_sub(DBKey key,void *data,va_list ap)
+/**
+ * @see DBApply
+ */
+static int itemdb_final_sub(DBKey key, DBData *data, va_list ap)
 {
-	struct item_data *id = (struct item_data *)data;
+	struct item_data *id = db_data2ptr(data);
 
 	if( id != &dummy_item )
 		destroy_item_data(id, 1);

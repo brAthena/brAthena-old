@@ -67,7 +67,8 @@ enum e_skill_inf2
 	INF2_PARTY_ONLY     = 0x0400,
 	INF2_GUILD_ONLY     = 0x0800,
 	INF2_NO_ENEMY       = 0x1000,
-	INF2_CHORUS_SKILL 	= 0x2000,
+	INF2_CHORUS_SKILL	= 0x2000, // Chorus skill 
+	INF2_NOLP           = 0x4000, // Spells that can ignore Land Protector
 };
 
 //Walk intervals at which chase-skills are attempted to be triggered.
@@ -163,6 +164,7 @@ struct skill_unit_group {
 		unsigned ammo_consume : 1;
 		unsigned magic_power : 1;
 		unsigned song_dance : 2; //0x1 Song/Dance, 0x2 Ensemble
+		unsigned guildaura : 1;
 	} state;
 };
 
@@ -1662,9 +1664,19 @@ enum {
 	UNT_EARTH_INSIGNIA, //TODO
 	UNT_VOLCANIC_ASH,
 	UNT_POISON_MIST,
+	UNT_GD_LEADERSHIP = 0xc1,
+	UNT_GD_GLORYWOUNDS = 0xc2,
+	UNT_GD_SOULCOLD = 0xc3,
+	UNT_GD_HAWKEYES = 0xc4,
 	
 	UNT_MAX = 0x190
 };
+
+/**
+ * Skill Unit Save
+ **/
+void skill_usave_add(struct map_session_data * sd, int skill_num, int skill_lv);
+void skill_usave_trigger(struct map_session_data *sd);
 
 enum gx_poison {
 	PO_PARALYSE = 12717,

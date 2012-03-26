@@ -17,6 +17,17 @@ struct status_change;
 
 extern unsigned long StatusChangeFlagTable[];
 
+enum refine_type {
+	REFINE_TYPE_ARMOR   = 0,
+	REFINE_TYPE_WEAPON1 = 1,
+	REFINE_TYPE_WEAPON2 = 2,
+	REFINE_TYPE_WEAPON3 = 3,
+	REFINE_TYPE_WEAPON4 = 4,
+
+	REFINE_TYPE_MAX     = 5
+};
+
+int status_get_refine_chance(enum refine_type wlv, int refine);
 
 // Status changes listing. These code are for use by the server.
 typedef enum sc_type {
@@ -433,6 +444,10 @@ typedef enum sc_type {
 	
 	SC_ODINS_POWER = 556,
 	SC_ALL_RIDING,
+	SC_LEADERSHIP,
+	SC_GLORYWOUNDS,
+	SC_SOULCOLD, //560
+	SC_HAWKEYES,
 
 	SC_SPELLFIST = 570,
 	SC_CRYSTALIZE,
@@ -440,8 +455,7 @@ typedef enum sc_type {
 	SC_WARMER,
 	SC_VACUUM_EXTREME,
 	SC_PROPERTYWALK,
-	
-	SC_ANGRIFFS_MODUS = 576,
+	SC_ANGRIFFS_MODUS,
 	SC_GOLDENE_FERSE,
 	SC_ERASER_CUTTER,
 

@@ -37,10 +37,10 @@ static const int packet_len_table[]={
 	 0, 0, 0, 0,  0, 0, 0, 0, -1,11, 0, 0,  0, 0,  0, 0, //0x3810
 	39,-1,15,15, 14,19, 7,-1,  0, 0, 0, 0,  0, 0,  0, 0, //0x3820
 	10,-1,15, 0, 79,19, 7,-1,  0,-1,-1,-1, 14,67,186,-1, //0x3830
-	 9, 9,-1,14,  0, 0, 0, 0, -1,74,-1,11, 11,-1,  0, 0, //0x3840
+	-1, 0, 0,14,  0, 0, 0, 0, -1,74,-1,11, 11,-1,  0, 0, //0x3840
 	-1,-1, 7, 7,  7,11, 0, 0,  0, 0, 0, 0,  0, 0,  0, 0, //0x3850  Auctions [Zephyrus]
 	-1, 7, 0, 0,  0, 0, 0, 0,  0, 0, 0, 0,  0, 0,  0, 0, //0x3860  Quests [Kevin] [Inkfish]
-	-1, 3, 3, 0,  0, 0, 0, 0,  0, 0, 0, 0, -1, 3,  3, 0, //0x3870  Mercenaries [Zephyrus] Elementals [pakpil]
+	-1, 3, 3, 0,  0, 0, 0, 0,  0, 0, 0, 0,  0, 0,  0, 0, //0x3870  Mercenaries [Zephyrus]
 	11,-1, 7, 3,  0, 0, 0, 0,  0, 0, 0, 0,  0, 0,  0, 0, //0x3880
 	-1,-1, 7, 3,  0, 0, 0, 0,  0, 0, 0, 0,  0, 0,  0, 0, //0x3890  Homunculus [albator]
 };
@@ -721,17 +721,22 @@ int intif_guild_emblem(int guild_id,int len,const char *data)
 	WFIFOSET(inter_fd,len+12);
 	return 0;
 }
-//現在のギルド城占領ギルドを調べる
-int intif_guild_castle_dataload(int castle_id,int index)
+
+/**
+ * Requests guild castles data from char-server.
+ * @param num Number of castles, size of castle_ids array.
+ * @param castle_ids Pointer to array of castle IDs.
+ */
+int intif_guild_castle_dataload(int num, int *castle_ids)
 {
 	if (CheckForCharServer())
 		return 0;
-	WFIFOHEAD(inter_fd,5);
-	WFIFOW(inter_fd,0)=0x3040;
-	WFIFOW(inter_fd,2)=castle_id;
-	WFIFOB(inter_fd,4)=index;
-	WFIFOSET(inter_fd,5);
-	return 0;
+	WFIFOHEAD(inter_fd, 4 + num * sizeof(int));
+	WFIFOW(inter_fd, 0) = 0x3040;
+	WFIFOW(inter_fd, 2) = 4 + num * sizeof(int);
+	memcpy(WFIFOP(inter_fd, 4), castle_ids, num * sizeof(int));
+	WFIFOSET(inter_fd, WFIFOW(inter_fd, 2));
+	return 1;
 }
 
 //ギルド城占領ギルド変更要求
@@ -745,7 +750,7 @@ int intif_guild_castle_datasave(int castle_id,int index, int value)
 	WFIFOB(inter_fd,4)=index;
 	WFIFOL(inter_fd,5)=value;
 	WFIFOSET(inter_fd,9);
-	return 0;
+	return 1;
 }
 
 //-----------------------------------------------------------------
@@ -1204,18 +1209,7 @@ int intif_parse_GuildMessage(int fd)
 // ギルド城データ要求返信
 int intif_parse_GuildCastleDataLoad(int fd)
 {
-	return guild_castledataloadack(RFIFOW(fd,2),RFIFOB(fd,4),RFIFOL(fd,5));
-}
-// ギルド城データ変更通知
-int intif_parse_GuildCastleDataSave(int fd)
-{
-	return guild_castledatasaveack(RFIFOW(fd,2),RFIFOB(fd,4),RFIFOL(fd,5));
-}
-
-// ギルド城データ一括受信(初期化時)
-int intif_parse_GuildCastleAllDataLoad(int fd)
-{
-	return guild_castlealldataload(RFIFOW(fd,2),(struct guild_castle *)RFIFOP(fd,4));
+	return guild_castledataloadack(RFIFOW(fd,2), (struct guild_castle *)RFIFOP(fd,4));
 }
 
 int intif_parse_GuildMasterChanged(int fd)
@@ -1670,17 +1664,6 @@ static void intif_parse_Mail_send(int fd)
 				chrif_save(sd, 0);
 		}
 	}
-
-	if( fail )
-		return;
-
-	// notify recipient (if online)
-	sd = map_charid2sd(msg.dest_id);
-	if( sd != NULL )
-	{
-		sd->mail.changed = true;
-		clif_Mail_new(sd->fd, msg.id, msg.send_name, msg.title);
-	}
 }
 
 static void intif_parse_Mail_new(int fd)
@@ -2129,8 +2112,6 @@ int intif_parse(int fd)
 	case 0x383e:	intif_parse_GuildNotice(fd); break;
 	case 0x383f:	intif_parse_GuildEmblem(fd); break;
 	case 0x3840:	intif_parse_GuildCastleDataLoad(fd); break;
-	case 0x3841:	intif_parse_GuildCastleDataSave(fd); break;
-	case 0x3842:	intif_parse_GuildCastleAllDataLoad(fd); break;
 	case 0x3843:	intif_parse_GuildMasterChanged(fd); break;
 
 	//Quest system

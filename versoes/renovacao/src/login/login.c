@@ -29,8 +29,21 @@ static struct{
 	AccountDB* (*constructor)(void);
 	AccountDB* db;
 } account_engines[] = {
-#ifdef WITH_SQL
 	{account_db_sql, NULL},
+#ifdef ACCOUNTDB_ENGINE_0
+	{ACCOUNTDB_CONSTRUCTOR(ACCOUNTDB_ENGINE_0), NULL},
+#endif
+#ifdef ACCOUNTDB_ENGINE_1
+	{ACCOUNTDB_CONSTRUCTOR(ACCOUNTDB_ENGINE_1), NULL},
+#endif
+#ifdef ACCOUNTDB_ENGINE_2
+	{ACCOUNTDB_CONSTRUCTOR(ACCOUNTDB_ENGINE_2), NULL},
+#endif
+#ifdef ACCOUNTDB_ENGINE_3
+	{ACCOUNTDB_CONSTRUCTOR(ACCOUNTDB_ENGINE_3), NULL},
+#endif
+#ifdef ACCOUNTDB_ENGINE_4
+	{ACCOUNTDB_CONSTRUCTOR(ACCOUNTDB_ENGINE_4), NULL},
 #endif
 	// end of structure
 	{NULL, NULL}
@@ -85,20 +98,23 @@ struct online_login_data {
 static DBMap* online_db; // int account_id -> struct online_login_data*
 static int waiting_disconnect_timer(int tid, unsigned int tick, int id, intptr_t data);
 
-static void* create_online_user(DBKey key, va_list args)
+/**
+ * @see DBCreateData
+ */
+static DBData create_online_user(DBKey key, va_list args)
 {
 	struct online_login_data* p;
 	CREATE(p, struct online_login_data, 1);
 	p->account_id = key.i;
 	p->char_server = -1;
 	p->waiting_disconnect = INVALID_TIMER;
-	return p;
+	return db_ptr2data(p);
 }
 
 struct online_login_data* add_online_user(int char_server, int account_id)
 {
 	struct online_login_data* p;
-	p = (struct online_login_data*)idb_ensure(online_db, account_id, create_online_user);
+	p = idb_ensure(online_db, account_id, create_online_user);
 	p->char_server = char_server;
 	if( p->waiting_disconnect != INVALID_TIMER )
 	{
@@ -132,9 +148,12 @@ static int waiting_disconnect_timer(int tid, unsigned int tick, int id, intptr_t
 	return 0;
 }
 
-static int online_db_setoffline(DBKey key, void* data, va_list ap)
+/**
+ * @see DBApply
+ */
+static int online_db_setoffline(DBKey key, DBData *data, va_list ap)
 {
-	struct online_login_data* p = (struct online_login_data*)data;
+	struct online_login_data* p = db_data2ptr(data);
 	int server = va_arg(ap, int);
 	if( server == -1 )
 	{
@@ -150,9 +169,12 @@ static int online_db_setoffline(DBKey key, void* data, va_list ap)
 	return 0;
 }
 
-static int online_data_cleanup_sub(DBKey key, void *data, va_list ap)
+/**
+ * @see DBApply
+ */
+static int online_data_cleanup_sub(DBKey key, DBData *data, va_list ap)
 {
-	struct online_login_data *character= (struct online_login_data*)data;
+	struct online_login_data *character= db_data2ptr(data);
 	if (character->char_server == -2) //Unknown server.. set them offline
 		remove_online_user(character->account_id);
 	return 0;
@@ -822,7 +844,7 @@ int parse_fromchar(int fd)
 				users = RFIFOW(fd,4);
 				for (i = 0; i < users; i++) {
 					aid = RFIFOL(fd,6+i*4);
-					p = (struct online_login_data*)idb_ensure(online_db, aid, create_online_user);
+					p = idb_ensure(online_db, aid, create_online_user);
 					p->char_server = id;
 					if (p->waiting_disconnect != INVALID_TIMER)
 					{
@@ -1082,9 +1104,10 @@ void login_auth_ok(struct login_session_data* sd)
 	
 	if( runflag != LOGINSERVER_ST_RUNNING )
 	{
+		// players can only login while running
 		WFIFOHEAD(fd,3);
 		WFIFOW(fd,0) = 0x81;
-		WFIFOB(fd,2) = 1;
+		WFIFOB(fd,2) = 1;// server closed
 		WFIFOSET(fd,3);
 		return;
 	}
@@ -1125,7 +1148,7 @@ void login_auth_ok(struct login_session_data* sd)
 				WBUFW(buf,0) = 0x2734;
 				WBUFL(buf,2) = sd->account_id;
 				charif_sendallwos(-1, buf, 6);
-				if( data->waiting_disconnect == -1 )
+				if( data->waiting_disconnect == INVALID_TIMER )
 					data->waiting_disconnect = add_timer(gettick()+AUTH_TIMEOUT, waiting_disconnect_timer, sd->account_id, 0);
 
 				WFIFOHEAD(fd,3);
@@ -1319,93 +1342,71 @@ int parse_login(int fd)
 		// request client login (md5-hashed password)
 		case 0x01dd: // S 01dd <version>.L <username>.24B <password hash>.16B <clienttype>.B
 		case 0x01fa: // S 01fa <version>.L <username>.24B <password hash>.16B <clienttype>.B <?>.B(index of the connection in the clientinfo file (+10 if the command-line contains "pc"))
-		case 0x0825: // S 0825 <size>.W <version>.L <clienttype>.B <userid>.24B <password>.27B <mac>.17B <ip>.15B <token>.(packetsize - 0x5C)B
+		case 0x027c: // S 027c <version>.L <username>.24B <password hash>.16B <clienttype>.B <?>.13B(junk)
+		{
+			size_t packet_len = RFIFOREST(fd);
+
+			if( (command == 0x0064 && packet_len < 55)
+			||  (command == 0x0277 && packet_len < 84)
+			||  (command == 0x02b0 && packet_len < 85)
+			||  (command == 0x01dd && packet_len < 47)
+			||  (command == 0x01fa && packet_len < 48)
+			||  (command == 0x027c && packet_len < 60) )
+				return 0;
+		}
+		{
+			uint32 version;
+			char username[NAME_LENGTH];
+			char password[NAME_LENGTH];
+			unsigned char passhash[16];
+			uint8 clienttype;
+			bool israwpass = (command==0x0064 || command==0x0277 || command==0x02b0);
+
+			version = RFIFOL(fd,2);
+			safestrncpy(username, (const char*)RFIFOP(fd,6), NAME_LENGTH);
+			if( israwpass )
 			{
-				size_t packet_len = RFIFOREST(fd);		
-				unsigned int version;
-				char username[NAME_LENGTH];
-				char password[NAME_LENGTH];
-				unsigned char passhash[16];
-				uint8 clienttype;
-				bool israwpass = (command==0x0064 || command==0x0277 || command==0x02b0 || command == 0x0825);
-
-				if( (command == 0x0064 && packet_len < 55)
-					||  (command == 0x0277 && packet_len < 84)
-					||  (command == 0x02b0 && packet_len < 85)
-					||  (command == 0x01dd && packet_len < 47)
-					||  (command == 0x01fa && packet_len < 48)
-					||  (command == 0x027c && packet_len < 60) 
-					||  (command == 0x0825 && (packet_len < 4 || packet_len < RFIFOW(fd, 2)))
-					)
-					return 0;
-
-				if(command == 0x0825)
-				{	
-					char *accname = (char *)RFIFOP(fd, 9);
-					char *token = (char *)RFIFOP(fd, 0x5C);
-					size_t uAccLen = strlen(accname);
-					size_t uTokenLen = packet_len - 0x5C;
-
-					version = RFIFOL(fd,4);
-
-					if(uAccLen > NAME_LENGTH - 1 || uAccLen <= 0 || uTokenLen > NAME_LENGTH - 1  || uTokenLen <= 0)
-					{
-						login_auth_failed(sd, 3);
-						return 0;
-					}
-
-					safestrncpy(username, accname, uAccLen + 1);
-					safestrncpy(password, token, uTokenLen + 1);
-					clienttype = RFIFOB(fd, 8);
-				}
-				else
-				{
-					version = RFIFOL(fd,2);
-					safestrncpy(username, (const char*)RFIFOP(fd,6), NAME_LENGTH);
-					if( israwpass )
-					{
-						safestrncpy(password, (const char*)RFIFOP(fd,30), NAME_LENGTH);
-						clienttype = RFIFOB(fd,54);
-					}
-					else
-					{
-						memcpy(passhash, RFIFOP(fd,30), 16);
-						clienttype = RFIFOB(fd,46);
-					}
-				}			
-				RFIFOSKIP(fd,RFIFOREST(fd)); 
-
-				sd->clienttype = clienttype;
-				sd->version = version;
-				safestrncpy(sd->userid, username, NAME_LENGTH);
-				if( israwpass )
-				{
-					ShowStatus("Request for connection of %s (ip: %s).\n", sd->userid, ip);
-					safestrncpy(sd->passwd, password, NAME_LENGTH);
-					if( login_config.use_md5_passwds )
-						MD5_String(sd->passwd, sd->passwd);
-					sd->passwdenc = 0;
-				}
-				else
-				{
-					ShowStatus("Request for connection (passwdenc mode) of %s (ip: %s).\n", sd->userid, ip);
-					bin2hex(sd->passwd, passhash, 16); // raw binary data here!
-					sd->passwdenc = PASSWORDENC;
-				}
-
-				if( sd->passwdenc != 0 && login_config.use_md5_passwds )
-				{
-					login_auth_failed(sd, 3); // send "rejected from server"
-					return 0;
-				}
-
-				result = mmo_auth(sd);
-
-				if( result == -1 )
-					login_auth_ok(sd);
-				else
-					login_auth_failed(sd, result);
+				safestrncpy(password, (const char*)RFIFOP(fd,30), NAME_LENGTH);
+				clienttype = RFIFOB(fd,54);
 			}
+			else
+			{
+				memcpy(passhash, RFIFOP(fd,30), 16);
+				clienttype = RFIFOB(fd,46);
+			}
+			RFIFOSKIP(fd,RFIFOREST(fd)); // assume no other packet was sent
+
+			sd->clienttype = clienttype;
+			sd->version = version;
+			safestrncpy(sd->userid, username, NAME_LENGTH);
+			if( israwpass )
+			{
+				ShowStatus("Request for connection of %s (ip: %s).\n", sd->userid, ip);
+				safestrncpy(sd->passwd, password, NAME_LENGTH);
+				if( login_config.use_md5_passwds )
+					MD5_String(sd->passwd, sd->passwd);
+				sd->passwdenc = 0;
+			}
+			else
+			{
+				ShowStatus("Request for connection (passwdenc mode) of %s (ip: %s).\n", sd->userid, ip);
+				bin2hex(sd->passwd, passhash, 16); // raw binary data here!
+				sd->passwdenc = PASSWORDENC;
+			}
+
+			if( sd->passwdenc != 0 && login_config.use_md5_passwds )
+			{
+				login_auth_failed(sd, 3); // send "rejected from server"
+				return 0;
+			}
+
+			result = mmo_auth(sd);
+
+			if( result == -1 )
+				login_auth_ok(sd);
+			else
+				login_auth_failed(sd, result);
+		}
 		break;
 
 		case 0x01db:	// Sending request of the coding key

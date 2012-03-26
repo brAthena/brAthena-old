@@ -1695,7 +1695,7 @@ ACMD_FUNC(help)
 				has_aliases = true;
 			}
 		}
-		iter->destroy(iter);
+		dbi_destroy(iter);
 		if (has_aliases)
 			clif_displaymessage(fd, StringBuf_Value(&buf));
 		StringBuf_Destroy(&buf);
@@ -6553,6 +6553,7 @@ ACMD_FUNC(uptime)
 ACMD_FUNC(changesex)
 {
 	nullpo_retr(-1, sd);
+	pc_resetskill(sd,4);
 	chrif_changesex(sd);
 	return 0;
 }
@@ -8139,7 +8140,7 @@ ACMD_FUNC(itemlist)
 		const struct item* it = &items[i];
 		struct item_data* itd;
 
-		if( it->nameid == 0 || (itd = itemdb_search(it->nameid)) == NULL )
+		if( it->nameid == 0 || (itd = itemdb_exists(it->nameid)) == NULL )
 			continue;
 
 		counter += it->amount;
@@ -8429,7 +8430,7 @@ static void atcommand_commands_sub(struct map_session_data* sd, const int fd, At
 	char line_buff[CHATBOX_SIZE];
 	char* cur = line_buff;
 	AtCommandInfo* cmd;
-	DBIterator* iter = atcommand_db->iterator(atcommand_db);
+	DBIterator *iter = db_iterator(atcommand_db);
 	int count = 0;
 
 	memset(line_buff,' ',CHATBOX_SIZE);
@@ -8437,7 +8438,7 @@ static void atcommand_commands_sub(struct map_session_data* sd, const int fd, At
 
 	clif_displaymessage(fd, msg_txt(273)); // "Commands available:"
 
-	for (cmd = (AtCommandInfo*)iter->first(iter, NULL); iter->exists(iter); cmd = (AtCommandInfo*)iter->next(iter, NULL)) {
+	for (cmd = dbi_first(iter); dbi_exists(iter); cmd = dbi_next(iter)) {
 		unsigned int slen = 0;
 
 		if (!pc_can_use_command(sd, cmd->command, type))
@@ -8459,7 +8460,7 @@ static void atcommand_commands_sub(struct map_session_data* sd, const int fd, At
 
 		count++;
 	}
-	iter->destroy(iter);
+	dbi_destroy(iter);
 	clif_displaymessage(fd,line_buff);
 
 	sprintf(atcmd_output, msg_txt(274), count); // "%d commands found."
@@ -8795,7 +8796,7 @@ bool is_atcommand(const int fd, struct map_session_data* sd, const char* message
 		return true;
 
 	// skip 10/11-langtype's codepage indicator, if detected
-	if( message[0] == '|' && strlen(message) >= 4 && (message[3] == atcommand_symbol || message[3] == charcommand_symbol) )
+	if ( message[0] == '|' && strlen(message) >= 4 && (message[3] == atcommand_symbol || message[3] == charcommand_symbol) )
 		message += 3;
 
 	//Should display as a normal message

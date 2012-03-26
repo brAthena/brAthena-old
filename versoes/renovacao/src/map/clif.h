@@ -728,4 +728,14 @@ void clif_status_change_single(struct block_list *dst, struct block_list *bl, in
 void clif_elemental_info(struct map_session_data *sd);
 void clif_elemental_updatestatus(struct map_session_data *sd, int type);
 
+/**
+ * Color Table
+ **/
+enum clif_colors {
+	COLOR_RED,
+
+	COLOR_MAX
+};
+unsigned long color_table[COLOR_MAX];
+int clif_colormes(struct map_session_data * sd, enum clif_colors color, const char* msg);
 #endif /* _CLIF_H_ */

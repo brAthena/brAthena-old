@@ -214,8 +214,8 @@ int str_hash[SCRIPT_HASH_SIZE];
 static DBMap* scriptlabel_db=NULL; // const char* label_name -> int script_pos
 static DBMap* userfunc_db=NULL; // const char* func_name -> struct script_code*
 static int parse_options=0;
-DBMap* script_get_label_db(){ return scriptlabel_db; }
-DBMap* script_get_userfunc_db(){ return userfunc_db; }
+DBMap* script_get_label_db(void){ return scriptlabel_db; }
+DBMap* script_get_userfunc_db(void){ return userfunc_db; }
 
 // Caches compiled autoscript item code. 
 // Note: This is not cleared when reloading itemdb.
@@ -2097,7 +2097,7 @@ struct script_code* parse_script(const char *src,const char *file,int line,int o
 
 	// who called parse_script is responsible for clearing the database after using it, but just in case... lets clear it here
 	if( options&SCRIPT_USE_LABEL_DB )
-		scriptlabel_db->clear(scriptlabel_db, NULL);
+		db_clear(scriptlabel_db);
 	parse_options = options;
 
 	if( setjmp( error_jump ) != 0 ) {
@@ -2171,7 +2171,7 @@ struct script_code* parse_script(const char *src,const char *file,int line,int o
 			i=add_word(p);
 			set_label(i,script_pos,p);
 			if( parse_options&SCRIPT_USE_LABEL_DB )
-				strdb_put(scriptlabel_db, get_str(i), (void*)script_pos);
+				strdb_iput(scriptlabel_db, get_str(i), script_pos);
 			p=tmpp+1;
 			p=skip_space(p);
 			continue;
@@ -3635,10 +3635,14 @@ int script_config_read(char *cfgName)
 	return 0;
 }
 
-static int db_script_free_code_sub(DBKey key, void *data, va_list ap)
+/**
+ * @see DBApply
+ */
+static int db_script_free_code_sub(DBKey key, DBData *data, va_list ap)
 {
-	if (data)
-		script_free_code(data);
+	struct script_code *code = db_data2ptr(data);
+	if (code)
+		script_free_code(code);
 	return 0;
 }
 
@@ -3820,7 +3824,7 @@ int do_final_script()
 int do_init_script()
 {
 	userfunc_db=strdb_alloc(DB_OPT_DUP_KEY,0);
-	scriptlabel_db=strdb_alloc(DB_OPT_DUP_KEY|DB_OPT_ALLOW_NULL_DATA,50);
+	scriptlabel_db=strdb_alloc(DB_OPT_DUP_KEY,50);
 	autobonus_db = strdb_alloc(DB_OPT_DUP_KEY,0);
 
 	mapreg_init();
@@ -6869,7 +6873,7 @@ BUILDIN_FUNC(getequippercentrefinery)
 	if (num > 0 && num <= ARRAYLENGTH(equip))
 		i=pc_checkequip(sd,equip[num-1]);
 	if(i >= 0 && sd->status.inventory[i].nameid && sd->status.inventory[i].refine < MAX_REFINE)
-		script_pushint(st,percentrefinery[itemdb_wlv(sd->status.inventory[i].nameid)][(int)sd->status.inventory[i].refine]);
+		script_pushint(st,status_get_refine_chance(itemdb_wlv(sd->status.inventory[i].nameid), (int)sd->status.inventory[i].refine));
 	else
 		script_pushint(st,0);
 
@@ -9360,6 +9364,7 @@ BUILDIN_FUNC(changesex)
 	TBL_PC *sd = NULL;
 	sd = script_rid2sd(st);
 
+	pc_resetskill(sd,4);
 	chrif_changesex(sd);
 	return 0;
 }
@@ -10177,93 +10182,65 @@ BUILDIN_FUNC(getcastlename)
 
 BUILDIN_FUNC(getcastledata)
 {
-	const char* mapname = mapindex_getmapname(script_getstr(st,2),NULL);
+	const char *mapname = mapindex_getmapname(script_getstr(st,2),NULL);
 	int index = script_getnum(st,3);
+	struct guild_castle *gc = guild_mapname2gc(mapname);
 
-	struct guild_castle* gc = guild_mapname2gc(mapname);
-
-	if(script_hasdata(st,4) && index==0 && gc) {
-		const char* event = script_getstr(st,4);
-		check_event(st, event);
-		guild_addcastleinfoevent(gc->castle_id, 9+MAX_GUARDIANS, event);
+	if (gc == NULL) {
+		script_pushint(st,0);
+		ShowWarning("buildin_setcastledata: guild castle for map '%s' not found\n", mapname);
+		return 1;
 	}
 
-	if(gc){
-		switch(index){
-			case 0: {
-				int i;
-				for (i = 1; i <= 9+MAX_GUARDIANS; i++) // Initialize[AgitInit]
-					guild_castledataload(gc->castle_id,i);
-				} break;
-			case 1:
-				script_pushint(st,gc->guild_id); break;
-			case 2:
-				script_pushint(st,gc->economy); break;
-			case 3:
-				script_pushint(st,gc->defense); break;
-			case 4:
-				script_pushint(st,gc->triggerE); break;
-			case 5:
-				script_pushint(st,gc->triggerD); break;
-			case 6:
-				script_pushint(st,gc->nextTime); break;
-			case 7:
-				script_pushint(st,gc->payTime); break;
-			case 8:
-				script_pushint(st,gc->createTime); break;
-			case 9:
-				script_pushint(st,gc->visibleC); break;
-			default:
-				if (index > 9 && index <= 9+MAX_GUARDIANS)
-					script_pushint(st,gc->guardian[index-10].visible);
-				else
-					script_pushint(st,0);
+	switch (index) {
+		case 1:
+			script_pushint(st,gc->guild_id); break;
+		case 2:
+			script_pushint(st,gc->economy); break;
+		case 3:
+			script_pushint(st,gc->defense); break;
+		case 4:
+			script_pushint(st,gc->triggerE); break;
+		case 5:
+			script_pushint(st,gc->triggerD); break;
+		case 6:
+			script_pushint(st,gc->nextTime); break;
+		case 7:
+			script_pushint(st,gc->payTime); break;
+		case 8:
+			script_pushint(st,gc->createTime); break;
+		case 9:
+			script_pushint(st,gc->visibleC); break;
+		default:
+			if (index > 9 && index <= 9+MAX_GUARDIANS) {
+				script_pushint(st,gc->guardian[index-10].visible);
 				break;
-		}
-		return 0;
+			}
+			script_pushint(st,0);
+			ShowWarning("buildin_setcastledata: index = '%d' is out of allowed range\n", index);
+			return 1;
 	}
-	script_pushint(st,0);
 	return 0;
 }
 
 BUILDIN_FUNC(setcastledata)
 {
-	const char* mapname = mapindex_getmapname(script_getstr(st,2),NULL);
+	const char *mapname = mapindex_getmapname(script_getstr(st,2),NULL);
 	int index = script_getnum(st,3);
 	int value = script_getnum(st,4);
+	struct guild_castle *gc = guild_mapname2gc(mapname);
 
-	struct guild_castle* gc = guild_mapname2gc(mapname);
-
-	if(gc) {
-		// Save Data byself First
-		switch(index){
-			case 1:
-				gc->guild_id = value; break;
-			case 2:
-				gc->economy = value; break;
-			case 3:
-				gc->defense = value; break;
-			case 4:
-				gc->triggerE = value; break;
-			case 5:
-				gc->triggerD = value; break;
-			case 6:
-				gc->nextTime = value; break;
-			case 7:
-				gc->payTime = value; break;
-			case 8:
-				gc->createTime = value; break;
-			case 9:
-				gc->visibleC = value; break;
-			default:
-				if (index > 9 && index <= 9+MAX_GUARDIANS) {
-					gc->guardian[index-10].visible = value;
-					break;
-				}
-				return 0;
-		}
-		guild_castledatasave(gc->castle_id,index,value);
+	if (gc == NULL) {
+		ShowWarning("buildin_setcastledata: guild castle for map '%s' not found\n", mapname);
+		return 1;
 	}
+
+	if (index <= 0 || index > 9+MAX_GUARDIANS) {
+		ShowWarning("buildin_setcastledata: index = '%d' is out of allowed range\n", index);
+		return 1;
+	}
+
+	guild_castledatasave(gc->castle_id, index, value);
 	return 0;
 }
 
@@ -16035,7 +16012,7 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(agitcheck,""),   // <Agitcheck>
 	BUILDIN_DEF(flagemblem,"i"),	// Flag Emblem
 	BUILDIN_DEF(getcastlename,"s"),
-	BUILDIN_DEF(getcastledata,"si?"),
+	BUILDIN_DEF(getcastledata,"si"),
 	BUILDIN_DEF(setcastledata,"sii"),
 	BUILDIN_DEF(requestguildinfo,"i?"),
 	BUILDIN_DEF(getequipcardcnt,"i"),

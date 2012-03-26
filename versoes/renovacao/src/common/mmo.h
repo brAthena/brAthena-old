@@ -42,6 +42,8 @@
 // 20101124 - 2010-11-24aRagexeRE+ - 0x856, 0x857, 0x858
 // 20110111 - 2011-01-11aRagexeRE+ - 0x6b, 0x6d
 // 20110928 - 2011-09-28aRagexeRE+ - 0x6b, 0x6d
+// 20111025 - 2011-10-25aRagexeRE+ - 0x6b, 0x6d
+// 20120307 - 2012-03-07aRagexeRE+ - 0x970
 
 #ifndef PACKETVER
 	#define PACKETVER 20110315
@@ -86,7 +88,6 @@
 #define MAX_GUILDEXPULSION 32
 #define MAX_GUILDALLIANCE 16
 #define MAX_GUILDSKILL	15 // increased max guild skills because of new skills [Sara-chan]
-#define MAX_GUILDCASTLE 34	// Updated to include new entries for WoE:SE. [L0ne_W0lf]
 #define MAX_GUILDLEVEL 50
 #define MAX_GUARDIANS 8	//Local max per castle. [Skotlex]
 #define MAX_QUEST_DB 2000 //Max quests that the server will load

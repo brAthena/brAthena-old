@@ -74,6 +74,14 @@ struct skill_cd {
 	unsigned char cursor;
 };
 
+/**
+ * Skill Unit Persistency during endack routes (mostly for songs see bugreport:4574)
+ **/
+DBMap* skillusave_db = NULL; // char_id -> struct skill_usave
+struct skill_usave {
+	int skill_num, skill_lv;
+};
+
 struct s_skill_db skill_db[MAX_SKILL_DB];
 struct s_skill_produce_db skill_produce_db[MAX_SKILL_PRODUCE_DB];
 struct s_skill_arrow_db skill_arrow_db[MAX_SKILL_ARROW_DB];
@@ -11392,6 +11400,13 @@ static int skill_unit_onleft (int skill_id, struct block_list *bl, unsigned int 
 				}
 			}
 			break;
+		case GD_LEADERSHIP:
+		case GD_GLORYWOUNDS:
+		case GD_SOULCOLD:
+		case GD_HAWKEYES:
+			if( !(sce && sce->val4) )
+				status_change_end(bl, type, INVALID_TIMER);
+			break;
 	}
 
 	return skill_id;
@@ -14472,7 +14487,7 @@ int skill_unit_timer_sub_onplace (struct block_list* bl, va_list ap)
 
 	nullpo_ret(group);
 
-	if( !(skill_get_inf2(group->skill_id)&(INF2_SONG_DANCE|INF2_TRAP|INF2_CHORUS_SKILL )) && map_getcell(bl->m, bl->x, bl->y, CELL_CHKLANDPROTECTOR) )
+	if( !(skill_get_inf2(group->skill_id)&(INF2_SONG_DANCE|INF2_TRAP|INF2_NOLP )) && map_getcell(bl->m, bl->x, bl->y, CELL_CHKLANDPROTECTOR) )
 		return 0; //AoE skills are ineffective. [Skotlex]
 
 	if( battle_check_target(&unit->bl,bl,group->target_flag) <= 0 )
@@ -15955,9 +15970,41 @@ int skill_blockmerc_start(struct mercenary_data *md, int skillid, int tick)
 	return add_timer(gettick() + tick, skill_blockmerc_end, md->bl.id, skillid);
 }
 
+/**
+ * Adds a new skill unit entry for this player to recast after map load
+ **/
+void skill_usave_add(struct map_session_data * sd, int skill_num, int skill_lv) {
+	struct skill_usave * sus = NULL;
+
+	if( idb_exists(skillusave_db,sd->status.char_id) ) {
+		idb_remove(skillusave_db,sd->status.char_id);
+	}
+	
+	CREATE( sus, struct skill_usave, 1 );
+	idb_put( skillusave_db, sd->status.char_id, sus );
+
+	sus->skill_num = skill_num;
+	sus->skill_lv = skill_lv;
+	
+	return;
+}
+void skill_usave_trigger(struct map_session_data *sd) {
+	struct skill_usave * sus = NULL;
+
+	if( ! (sus = idb_get(skillusave_db,sd->status.char_id)) ) {
+		return;
+	}
+	
+	skill_unitsetting(&sd->bl,sus->skill_num,sus->skill_lv,sd->bl.x,sd->bl.y,0);
+
+	idb_remove(skillusave_db,sd->status.char_id);
+	
+	return;
+}
 /*
  *
  */
+ 
 int skill_split_str (char *str, char **val, int num)
 {
 	int i;
@@ -17034,6 +17081,8 @@ int do_init_skill (void)
 
 	group_db = idb_alloc(DB_OPT_BASE);
 	skillunit_db = idb_alloc(DB_OPT_BASE);
+	skillcd_db = idb_alloc(DB_OPT_RELEASE_DATA);
+	skillusave_db = idb_alloc(DB_OPT_RELEASE_DATA);
 	skill_unit_ers = ers_new(sizeof(struct skill_unit_group));
 	skill_timer_ers  = ers_new(sizeof(struct skill_timerskill));
 
@@ -17053,6 +17102,8 @@ int do_final_skill(void)
 	db_destroy(skilldb_name2id);
 	db_destroy(group_db);
 	db_destroy(skillunit_db);
+	db_destroy(skillcd_db);
+	db_destroy(skillusave_db);
 	ers_destroy(skill_unit_ers);
 	ers_destroy(skill_timer_ers);
 	return 0;

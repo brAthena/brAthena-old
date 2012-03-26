@@ -59,6 +59,13 @@ int percentrefinery[5][MAX_REFINE+1];	// ¸˜B¬Œ÷—¦(refine_db.txt)
 static int atkmods[3][MAX_WEAPON_TYPE];	// •ŠíATKƒTƒCƒYC³(size_fix.txt)
 static char job_bonus[CLASS_COUNT][MAX_LEVEL];
 
+// bonus values and upgrade chances for refining equipment
+static struct {
+	int chance[MAX_REFINE]; // success chance
+	int bonus[MAX_REFINE]; // cumulative fixed bonus damage
+	int randombonus_max[MAX_REFINE]; // cumulative maximum random bonus damage
+} refine_info[REFINE_TYPE_MAX];
+
 static struct eri *sc_data_ers; //For sc_data entries
 static struct status_data dummy_status;
 
@@ -2372,8 +2379,8 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 			struct weapon_data *wd;
 			struct weapon_atk *wa;
 
-			if (wlv >= MAX_REFINE_BONUS)
-				wlv = MAX_REFINE_BONUS - 1;
+			if (wlv >= REFINE_TYPE_MAX)
+				wlv = REFINE_TYPE_MAX - 1;
 			if(i == EQI_HAND_L && sd->status.inventory[index].equip == EQP_HAND_L) {
 				wd = &sd->left_weapon; // Left-hand weapon
 				wa = &status->lhw;
@@ -2412,19 +2419,17 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 					wa->ele = (sd->status.inventory[index].card[1]&0x0f);
 			}
 		}
-		else if(sd->inventory_data[index]->type == IT_ARMOR)
-		{
-			int r=sd->status.inventory[index].refine;
-			while(r > 0){
-				refinedef += r*refinebonus[0][0];
-				r -= 4;
-			}
-			if( sd->inventory_data[index]->script )
-			{
-				if( sd->status.inventory[index].equip == EQP_SHIELD )
-					sd->special_state.checkshieldmdef = 1;
+		else if(sd->inventory_data[index]->type == IT_ARMOR) {
+			int r;
+			if ( (r = sd->status.inventory[index].refine) )
+				refinedef += refine_info[REFINE_TYPE_ARMOR].bonus[r-1];
+			if(sd->inventory_data[index]->script) {
+				if( i == EQI_HAND_L ) //Shield
+					sd->state.lr_flag = 3;
 				run_script(sd->inventory_data[index]->script,0,sd->bl.id,0);
-				if( !calculating ) //Abort, run_script retriggered this. [Skotlex]
+				if( i == EQI_HAND_L ) //Shield
+					sd->state.lr_flag = 0;
+				if (!calculating) //Abort, run_script retriggered this. [Skotlex]
 					return 1;
 			}
 		}
@@ -10298,6 +10303,20 @@ static int status_natural_heal_timer(int tid, unsigned int tick, int id, intptr_
 	map_foreachregen(status_natural_heal);
 	natural_heal_prev_tick = tick;
 	return 0;
+}
+
+/**
+ * Get the chance to upgrade a piece of equipment.
+ * @param wlv The weapon type of the item to refine (see see enum refine_type)
+ * @param refine The target refine level
+ * @return The chance to refine the item, in percent (0~100)
+ **/
+int status_get_refine_chance(enum refine_type wlv, int refine)
+{
+	 if (wlv < 0 || wlv > REFINE_TYPE_MAX || refine < 0 || refine >= MAX_REFINE)
+		return 0;
+
+	return refine_info[wlv].chance[refine];
 }
 
 /*==========================================

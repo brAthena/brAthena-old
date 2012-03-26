@@ -1013,8 +1013,9 @@ static int clif_set_unit_idle(struct block_list* bl, unsigned char* buffer, bool
 
 	if( bl->type == BL_NPC && vd->class_ == FLAG_CLASS )
 	{	//The hell, why flags work like this?
-		WBUFL(buf,22) = status_get_emblem_id(bl);
-		WBUFL(buf,26) = status_get_guild_id(bl);
+		WBUFW(buf,22) = status_get_emblem_id(bl);
+		WBUFW(buf,24) = GetWord(status_get_guild_id(bl), 1);
+		WBUFW(buf,26) = GetWord(status_get_guild_id(bl), 0);
 	}
 
 	WBUFW(buf,28) = vd->hair_color;
@@ -1267,7 +1268,7 @@ int clif_spawn(struct block_list *bl)
 		return 0;
 		
 	/**
-	* Hide NPC from maya puprle card.
+	* Hide NPC from maya purple card.
 	**/
 	if(bl->type == BL_NPC && !((TBL_NPC*)bl)->chat_id && (((TBL_NPC*)bl)->sc.option&OPTION_INVISIBLE))
 		return 0;
@@ -1569,7 +1570,7 @@ void clif_move(struct unit_data *ud)
 		return; //This performance check is needed to keep GM-hidden objects from being notified to bots.
 		
 	/**
-	* Hide NPC from maya puprle card.
+	* Hide NPC from maya purple card.
 	**/
 	if(bl->type == BL_NPC && !((TBL_NPC*)bl)->chat_id && (((TBL_NPC*)bl)->sc.option&OPTION_INVISIBLE))
 		return;
@@ -4236,6 +4237,9 @@ static void clif_getareachar_skillunit(struct map_session_data *sd, struct skill
 {
 	int fd = sd->fd;
 
+	if( unit->group->state.guildaura )
+		return;
+
 	if(unit->group->unit_id==UNT_GRAFFITI)	{ // Graffiti [Valaris]
 		WFIFOHEAD(fd,packet_len(0x1c9));
 		WFIFOW(fd, 0)=0x1c9;
@@ -4881,6 +4885,8 @@ void clif_skill_setunit(struct skill_unit *unit)
 
 	nullpo_retv(unit);
 
+	if( unit->group->state.guildaura )
+		return;
 
 	if(unit->group->unit_id==UNT_GRAFFITI)	{ // Graffiti [Valaris]
 		WBUFW(buf, 0)=0x1c9;
@@ -6921,11 +6927,9 @@ void clif_guild_masterormember(struct map_session_data *sd)
 /// Guild basic information (Territories [Valaris])
 /// 0150 <guild id>.L <level>.L <member num>.L <member max>.L <exp>.L <max exp>.L <points>.L <honor>.L <virtue>.L <emblem id>.L <name>.24B <master name>.24B <manage land>.16B (ZC_GUILD_INFO)
 /// 01b6 <guild id>.L <level>.L <member num>.L <member max>.L <exp>.L <max exp>.L <points>.L <honor>.L <virtue>.L <emblem id>.L <name>.24B <master name>.24B <manage land>.16B <zeny>.L (ZC_GUILD_INFO2)
-void clif_guild_basicinfo(struct map_session_data *sd)
-{
-	int fd,i,t;
+void clif_guild_basicinfo(struct map_session_data *sd) {
+	int fd;
 	struct guild *g;
-	struct guild_castle *gc = NULL;
 
 	nullpo_retv(sd);
 	fd = sd->fd;
@@ -6949,13 +6953,7 @@ void clif_guild_basicinfo(struct map_session_data *sd)
 	memcpy(WFIFOP(fd,46),g->name, NAME_LENGTH);
 	memcpy(WFIFOP(fd,70),g->master, NAME_LENGTH);
 
-	for(i = 0, t = 0; i < MAX_GUILDCASTLE; i++)
-	{
-		gc = guild_castle_search(i);
-		if(gc && g->guild_id == gc->guild_id)
-			t++;
-	}
-	safestrncpy((char*)WFIFOP(fd,94),msg_txt(300+t),16); // "'N' castles"
+	safestrncpy((char*)WFIFOP(fd,94),msg_txt(300+guild_checkcastles(g)),16); // "'N' castles"
 	WFIFOL(fd,110) = 0;  // zeny
 
 	WFIFOSET(fd,packet_len(0x1b6));
@@ -7918,12 +7916,25 @@ void clif_specialeffect_value(struct block_list* bl, int effect_id, int num, sen
 		clif_send(buf, packet_len(0x284), bl, SELF);
 	}
 }
+// Modification of clif_messagecolor to send colored messages to players to chat log only (doesn't display overhead)
+/// 02c1 <packet len>.W <id>.L <color>.L <message>.?B
+int clif_colormes(struct map_session_data * sd, enum clif_colors color, const char* msg) {
+	unsigned short msg_len = strlen(msg) + 1;
 
+	WFIFOHEAD(sd->fd,msg_len + 12);
+	WFIFOW(sd->fd,0) = 0x2C1;
+	WFIFOW(sd->fd,2) = msg_len + 12;
+	WFIFOL(sd->fd,4) = 0;
+	WFIFOL(sd->fd,8) = color_table[color];
+	safestrncpy((char*)WFIFOP(sd->fd,12), msg, msg_len);
+	clif_send(WFIFOP(sd->fd,0), WFIFOW(sd->fd,2), &sd->bl, SELF);
+
+	return 0;
+}
 
 /// Monster/NPC color chat [SnakeDrak] (ZC_NPC_CHAT).
 /// 02c1 <packet len>.W <id>.L <color>.L <message>.?B
-void clif_messagecolor(struct block_list* bl, unsigned long color, const char* msg)
-{
+void clif_messagecolor(struct block_list* bl, unsigned long color, const char* msg) {
 	unsigned short msg_len = strlen(msg) + 1;
 	uint8 buf[256];
 	color = (color & 0x0000FF) << 16 | (color & 0x00FF00) | (color & 0xFF0000) >> 16; // RGB to BGR
@@ -8839,6 +8850,8 @@ void clif_parse_LoadEndAck(int fd,struct map_session_data *sd)
 		clif_changemap(sd, sd->mapindex, sd->bl.x, sd->bl.y);
 		return;
 	}
+	
+	sd->state.warping = 0;
 
 	// look
 	clif_changelook(&sd->bl,LOOK_WEAPON,0);
@@ -9076,6 +9089,14 @@ void clif_parse_LoadEndAck(int fd,struct map_session_data *sd)
 
 	mail_clear(sd);
 
+	/* Guild Aura Init */
+	if( sd->state.gmaster_flag ) {
+		guild_guildaura_refresh(sd,GD_LEADERSHIP,guild_checkskill(sd->state.gmaster_flag,GD_LEADERSHIP));
+		guild_guildaura_refresh(sd,GD_GLORYWOUNDS,guild_checkskill(sd->state.gmaster_flag,GD_GLORYWOUNDS));
+		guild_guildaura_refresh(sd,GD_SOULCOLD,guild_checkskill(sd->state.gmaster_flag,GD_SOULCOLD));
+		guild_guildaura_refresh(sd,GD_HAWKEYES,guild_checkskill(sd->state.gmaster_flag,GD_HAWKEYES));
+	}
+
 	if(map[sd->bl.m].flag.loadevent) // Lance
 		npc_script_event(sd, NPCE_LOADMAP);
 
@@ -9093,12 +9114,15 @@ void clif_parse_LoadEndAck(int fd,struct map_session_data *sd)
 	else
 		sd->areanpc_id = 0;
 
-  	// If player is dead, and is spawned (such as @refresh) send death packet. [Valaris]
+	// If player is dead, and is spawned (such as @refresh) send death packet. [Valaris]
 	if(pc_isdead(sd))
 		clif_clearunit_area(&sd->bl, CLR_DEAD);
+	else {
+		skill_usave_trigger(sd);
 // Uncomment if you want to make player face in the same direction he was facing right before warping. [Skotlex]
 //	else
 //		clif_changed_dir(&sd->bl, SELF);
+	}
 
 //	Trigger skill effects if you appear standing on them
 	if(!battle_config.pc_invincible_time)
@@ -12449,12 +12473,12 @@ void clif_parse_NoviceExplosionSpirits(int fd, struct map_session_data *sd)
 	if( ( sd->class_&MAPID_UPPERMASK ) == MAPID_SUPER_NOVICE )
 	{
 		unsigned int next = pc_nextbaseexp(sd);
-
-		if( next || sd->status.base_level >= 99)
+		if( next == 0 ) next = pc_thisbaseexp(sd);
+		if( next )
 		{
 			int percent = (int)( ( (float)sd->status.base_exp/(float)next )*1000. );
 
-			if( (percent && ( percent%100 ) == 0) || sd->status.base_level >= 99 )
+			if( percent && ( percent%100 ) == 0 )
 			{// 10.0%, 20.0%, ..., 90.0%
 				sc_start(&sd->bl, status_skill2sc(MO_EXPLOSIONSPIRITS), 100, 17, skill_get_time(MO_EXPLOSIONSPIRITS, 5)); //Lv17-> +50 critical (noted by Poki) [Skotlex]
 				clif_skill_nodamage(&sd->bl, &sd->bl, MO_EXPLOSIONSPIRITS, 5, 1);  // prayer always shows successful Lv5 cast and disregards noskill restrictions
@@ -12567,6 +12591,14 @@ void clif_parse_FriendsListAdd(int fd, struct map_session_data *sd)
 
 	f_sd = map_nick2sd((char*)RFIFOP(fd,2));
 
+	// ensure that the request player's friend list is not full
+	ARR_FIND(0, MAX_FRIENDS, i, sd->status.friends[i].char_id == 0);
+
+	if( i == MAX_FRIENDS ) {
+		clif_friendslist_reqack(sd, f_sd, 2);
+		return;
+	}
+
 	// Friend doesn't exist (no player with this name)
 	if (f_sd == NULL) {
 		clif_displaymessage(fd, msg_txt(3));
@@ -12590,12 +12622,6 @@ void clif_parse_FriendsListAdd(int fd, struct map_session_data *sd)
 			clif_displaymessage(fd, "Amigo j· existe.");
 			return;
 		}
-	}
-
-	if (i == MAX_FRIENDS) {
-		//No space, list full.
-		clif_friendslist_reqack(sd, f_sd, 2);
-		return;
 	}
 
 	f_sd->friend_req = sd->status.char_id;
@@ -12988,17 +13014,16 @@ void clif_parse_HomMoveTo(int fd, struct map_session_data *sd)
 {
 	int id = RFIFOL(fd,2); // Mercenary or Homunculus
 	struct block_list *bl = NULL;
-	short x, y, cmd;
+	short x, y;
 
-	cmd = RFIFOW(fd,0);
-	x = RFIFOB(fd,packet_db[sd->packet_ver][cmd].pos[0]) * 4 + (RFIFOB(fd,packet_db[sd->packet_ver][cmd].pos[0] + 1) >> 6);
-	y = ((RFIFOB(fd,packet_db[sd->packet_ver][cmd].pos[0]+1) & 0x3f) << 4) + (RFIFOB(fd,packet_db[sd->packet_ver][cmd].pos[0] + 2) >> 4);
+	RFIFOPOS(fd, packet_db[sd->packet_ver][RFIFOW(fd,0)].pos[1], &x, &y, NULL);
 
 	if( sd->md && sd->md->bl.id == id )
 		bl = &sd->md->bl; // Moving Mercenary
 	else if( merc_is_hom_active(sd->hd) && sd->hd->bl.id == id )
 		bl = &sd->hd->bl; // Moving Homunculus
-	else return;
+	else
+		return;
 
 	unit_walktoxy(bl, x, y, 4);
 }
@@ -13115,9 +13140,7 @@ void clif_parse_Check(int fd, struct map_session_data *sd)
 	struct map_session_data* pl_sd;
 
 	if(!pc_has_permission(sd, PC_PERM_USE_CHECK))
-	{
 		return;
-	}
 
 	safestrncpy(charname, (const char*)RFIFOP(fd,packet_db[sd->packet_ver][RFIFOW(fd,0)].pos[0]), sizeof(charname));
 
@@ -13129,7 +13152,7 @@ void clif_parse_Check(int fd, struct map_session_data *sd)
 	clif_check(fd, pl_sd);
 }
 
-#ifndef TXT_ONLY
+
 
 /// MAIL SYSTEM
 /// By Zephyrus
@@ -13890,7 +13913,6 @@ void clif_parse_Auction_buysell(int fd, struct map_session_data* sd)
 	intif_Auction_requestlist(sd->status.char_id, type, 0, "", 1);
 }
 
-#endif
 
 /// CASH/POINT SHOP
 ///
@@ -15693,7 +15715,7 @@ static int clif_parse(int fd)
 }
 
 /*==========================================
- * ÉpÉPÉbÉgÉfÅ[É^ÉxÅ[ÉXì«Ç›çûÇ›
+ * Reads packet_db.txt and setups its array reference
  *------------------------------------------*/
 static int packetdb_readdb(void)
 {
@@ -16039,7 +16061,6 @@ static int packetdb_readdb(void)
 		{clif_parse_Check,"check"},
 		{clif_parse_Adopt_request,"adoptrequest"},
 		{clif_parse_Adopt_reply,"adoptreply"},
-#ifndef TXT_ONLY
 		// MAIL SYSTEM
 		{clif_parse_Mail_refreshinbox,"mailrefresh"},
 		{clif_parse_Mail_read,"mailread"},
@@ -16060,7 +16081,6 @@ static int packetdb_readdb(void)
 		{clif_parse_Auction_bid,"auctionbid"},
 		// Quest Log System
 		{clif_parse_questStateAck,"queststate"},
-#endif
 		{clif_parse_cashshop_buy,"cashshopbuy"},
 		{clif_parse_ViewPlayerEquip,"viewplayerequip"},
 		{clif_parse_EquipTick,"equiptickbox"},
@@ -16235,8 +16255,17 @@ static int packetdb_readdb(void)
 /*==========================================
  *
  *------------------------------------------*/
-int do_init_clif(void)
-{
+int do_init_clif(void) {
+	const char* colors[COLOR_MAX] = { "0xFF0000" };
+	int i;
+	/**
+	 * Setup Color Table (saves unnecessary load of strtoul on every call)
+	 **/
+	for(i = 0; i < COLOR_MAX; i++) {
+		color_table[i] = strtoul(colors[i],NULL,0);
+		color_table[i] = (color_table[i] & 0x0000FF) << 16 | (color_table[i] & 0x00FF00) | (color_table[i] & 0xFF0000) >> 16;//RGB to BGR
+	}
+
 	clif_config.packet_db_ver = -1; // the main packet version of the DB
 	memset(clif_config.connect_cmd, 0, sizeof(clif_config.connect_cmd)); //The default connect command will be determined after reading the packet_db [Skotlex]
 
@@ -16245,9 +16274,8 @@ int do_init_clif(void)
 	packetdb_readdb();
 
 	set_defaultparse(clif_parse);
-	if( make_listen_bind(bind_ip,map_port) == -1 )
-	{
-		ShowFatalError("impossivel vincular a porta do jogo\n");
+	if( make_listen_bind(bind_ip,map_port) == -1 ) {
+		ShowFatalError("can't bind game port\n");
 		exit(EXIT_FAILURE);
 	}
 

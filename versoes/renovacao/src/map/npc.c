@@ -205,8 +205,8 @@ struct npc_data* npc_name2id(const char* name)
 {
 	return (struct npc_data *) strdb_get(npcname_db, name);
 }
-
- /** For the Secure NPC Timeout option (check config/Secure.h) [RR]
+/**
+ * For the Secure NPC Timeout option (check config/Secure.h) [RR]
  **/
 #if SECURE_NPCTIMEOUT
 /**
@@ -284,17 +284,19 @@ static int npc_event_export(struct npc_data *nd, int i)
 		CREATE(ev, struct event_data, 1);
 		ev->nd = nd;
 		ev->pos = pos;
-		if (strdb_put(ev_db, buf, ev) != NULL) // There was already another event of the same name?
+		if (strdb_put(ev_db, buf, ev)) // There was already another event of the same name?
 			return 1;
 	}
 	return 0;
 }
 
 int npc_event_sub(struct map_session_data* sd, struct event_data* ev, const char* eventname); //[Lance]
-/*==========================================
+
+/**
  * 全てのNPCのOn*イベント実行
- *------------------------------------------*/
-int npc_event_doall_sub(DBKey key, void* data, va_list ap)
+ * @see DBApply
+ */
+int npc_event_doall_sub(DBKey key, DBData *data, va_list ap)
 {
 	const char* p = key.str;
 	struct event_data* ev;
@@ -302,7 +304,7 @@ int npc_event_doall_sub(DBKey key, void* data, va_list ap)
 	const char* name;
 	int rid;
 
-	nullpo_ret(ev = (struct event_data *)data);
+	nullpo_ret(ev = db_data2ptr(data));
 	nullpo_ret(c = va_arg(ap, int *));
 	nullpo_ret(name = va_arg(ap, const char *));
 	rid = va_arg(ap, int);
@@ -320,14 +322,17 @@ int npc_event_doall_sub(DBKey key, void* data, va_list ap)
 	return 0;
 }
 
-static int npc_event_do_sub(DBKey key, void* data, va_list ap)
+/**
+ * @see DBApply
+ */
+static int npc_event_do_sub(DBKey key, DBData *data, va_list ap)
 {
 	const char* p = key.str;
 	struct event_data* ev;
 	int* c;
 	const char* name;
 
-	nullpo_ret(ev = (struct event_data *)data);
+	nullpo_ret(ev = db_data2ptr(data));
 	nullpo_ret(c = va_arg(ap, int *));
 	nullpo_ret(name = va_arg(ap, const char *));
 
@@ -1672,9 +1677,12 @@ int npc_remove_map(struct npc_data* nd)
 	return 0;
 }
 
-static int npc_unload_ev(DBKey key, void* data, va_list ap)
+/**
+ * @see DBApply
+ */
+static int npc_unload_ev(DBKey key, DBData *data, va_list ap)
 {
-	struct event_data* ev = (struct event_data *)data;
+	struct event_data* ev = db_data2ptr(data);
 	char* npcname = va_arg(ap, char *);
 
 	if(strcmp(ev->nd->exname,npcname)==0){
@@ -2130,13 +2138,14 @@ static const char* npc_parse_shop(char* w1, char* w2, char* w3, char* w4, const 
 	return strchr(start,'\n');// continue
 }
 
-/*==========================================
+/**
  * NPCのラベルデータコンバート
- *------------------------------------------*/
-int npc_convertlabel_db(DBKey key, void* data, va_list ap)
+ * @see DBApply
+ */
+int npc_convertlabel_db(DBKey key, DBData *data, va_list ap)
 {
 	const char* lname = (const char*)key.str;
-	int lpos = (int)data;
+	int lpos = db_data2i(data);
 	struct npc_label_list** label_list;
 	int* label_list_num;
 	const char* filepath;
@@ -2287,7 +2296,7 @@ static const char* npc_parse_script(char* w1, char* w2, char* w3, char* w4, cons
 	{
 		DBMap* label_db = script_get_label_db();
 		label_db->foreach(label_db, npc_convertlabel_db, &label_list, &label_list_num, filepath);
-		label_db->clear(label_db, NULL); // not needed anymore, so clear the db
+		db_clear(label_db); // not needed anymore, so clear the db
 	}
 
 	CREATE(nd, struct npc_data, 1);
@@ -2750,8 +2759,8 @@ void npc_setclass(struct npc_data* nd, short class_)
 static const char* npc_parse_function(char* w1, char* w2, char* w3, char* w4, const char* start, const char* buffer, const char* filepath)
 {
 	DBMap* func_db;
+	DBData old_data;
 	struct script_code *script;
-	struct script_code *oldscript;
 	const char* end;
 	const char* script_start;
 
@@ -2773,10 +2782,10 @@ static const char* npc_parse_function(char* w1, char* w2, char* w3, char* w4, co
 		return end;
 
 	func_db = script_get_userfunc_db();
-	oldscript = (struct script_code*)strdb_put(func_db, w3, script);
-	if( oldscript != NULL )
+	if (func_db->put(func_db, db_str2key(w3), db_ptr2data(script), &old_data))
 	{
-		ShowInfo("npc_parse_function: Sobrepondo funcao do usuario [%s] (%s:%d)\n", w3, filepath, strline(buffer,start-buffer));
+		struct script_code *oldscript = db_data2ptr(&old_data);
+		ShowInfo("npc_parse_function: Overwriting user function [%s] (%s:%d)\n", w3, filepath, strline(buffer,start-buffer));
 		script_free_vars(&oldscript->script_vars);
 		aFree(oldscript->script_buf);
 		aFree(oldscript);
@@ -2914,6 +2923,7 @@ static const char* npc_parse_mob(char* w1, char* w2, char* w3, char* w4, const c
 	}
 
 	//Update mob spawn lookup database
+	db = mob_db(class_);
 	for( i = 0; i < ARRAYLENGTH(db->spawn); ++i )
 	{
 		if (map[mob.m].index == db->spawn[i].mapindex)
@@ -3420,17 +3430,17 @@ void npc_read_event_script(void)
 	{
 		DBIterator* iter;
 		DBKey key;
-		void* data;
+		DBData *data;
 
 		char name[64]="::";
 		strncpy(name+2,config[i].event_name,62);
 
 		script_event[i].event_count = 0;
-		iter = ev_db->iterator(ev_db);
+		iter = db_iterator(ev_db);
 		for( data = iter->first(iter,&key); iter->exists(iter); data = iter->next(iter,&key) )
 		{
 			const char* p = key.str;
-			struct event_data* ed = (struct event_data*) data;
+			struct event_data* ed = db_data2ptr(data);
 			unsigned char count = script_event[i].event_count;
 
 			if( count >= ARRAYLENGTH(script_event[i].event) )
@@ -3446,7 +3456,7 @@ void npc_read_event_script(void)
 				script_event[i].event_count++;
 			}
 		}
-		iter->destroy(iter);
+		dbi_destroy(iter);
 	}
 
 	if (battle_config.etc_log) {
@@ -3619,8 +3629,8 @@ int do_init_npc(void)
 	for( i = 1; i < MAX_NPC_CLASS; i++ ) 
 		npc_viewdb[i].class_ = i;
 
-	ev_db = strdb_alloc((DBOptions)(DB_OPT_DUP_KEY|DB_OPT_RELEASE_DATA),2*NPC_NAME_LENGTH+2+1);
-	npcname_db = strdb_alloc(DB_OPT_BASE,NPC_NAME_LENGTH);
+	ev_db = strdb_alloc((DBOptions)(DB_OPT_DUP_KEY|DB_OPT_RELEASE_DATA),2*NAME_LENGTH+2+1);
+	npcname_db = strdb_alloc(DB_OPT_BASE,NAME_LENGTH);
 
 	timer_event_ers = ers_new(sizeof(struct timer_event_data));
 

@@ -49,7 +49,7 @@ int inter_recv_packet_length[] = {
 	 6,-1, 0, 0,  0, 0, 0, 0, 10,-1, 0, 0,  0, 0,  0, 0,	// 3010-
 	-1,10,-1,14, 14,19, 6,-1, 14,14, 0, 0,  0, 0,  0, 0,	// 3020- Party
 	-1, 6,-1,-1, 55,19, 6,-1, 14,-1,-1,-1, 18,19,186,-1,	// 3030-
-	 5, 9, 0, 0,  0, 0, 0, 0,  7, 6,10,10, 10,-1,  0, 0,	// 3040-
+	-1, 9, 0, 0,  0, 0, 0, 0,  7, 6,10,10, 10,-1,  0, 0,	// 3040-
 	-1,-1,10,10,  0,-1, 0, 0,  0, 0, 0, 0,  0, 0,  0, 0,	// 3050-  Auction System [Zephyrus]
 	 6,-1, 0, 0,  0, 0, 0, 0,  0, 0, 0, 0,  0, 0,  0, 0,	// 3060-  Quest system [Kevin] [Inkfish]
 	-1,10, 6,-1,  0, 0, 0, 0,  0, 0, 0, 0, -1,10,  6,-1,	// 3070-  Mercenary packets [Zephyrus], Elemental packets [pakpil]
@@ -70,7 +70,7 @@ static int wis_dellist[WISDELLIST_MAX], wis_delnum;
 int inter_accreg_tosql(int account_id, int char_id, struct accreg* reg, int type)
 {
 	struct global_reg* r;
-	SqlStmt* stmt;
+	StringBuf buf;
 	int i;
 
 	if( account_id <= 0 )
@@ -92,34 +92,41 @@ int inter_accreg_tosql(int account_id, int char_id, struct accreg* reg, int type
 		char_id = 0;
 		break;
 	case 1: //Account2 Reg
-		ShowError("inter_accreg_tosql: Servidor de personagens nao deveria manusear valores de registro tipo 1 (##). Isso e trabalho do servidor de login!\n");
+		ShowError("inter_accreg_tosql: Char server shouldn't handle type 1 registry values (##). That is the login server's work!\n");
 		return 0;
 	default:
-		ShowError("inter_accreg_tosql: Tipo invalido %d\n", type);
+		ShowError("inter_accreg_tosql: Invalid type %d\n", type);
 		return 0;
 	}
 
 	if( reg->reg_num <= 0 )
 		return 0;
 
-	stmt = SqlStmt_Malloc(sql_handle);
-	if( SQL_ERROR == SqlStmt_Prepare(stmt, "INSERT INTO `%s` (`type`, `account_id`, `char_id`, `str`, `value`) VALUES ('%d','%d','%d',?,?)", reg_db, type, account_id, char_id) )
-		SqlStmt_ShowDebug(stmt);
-	for( i = 0; i < reg->reg_num; ++i )
-	{
+	StringBuf_Init(&buf);
+	StringBuf_Printf(&buf, "INSERT INTO `%s` (`type`,`account_id`,`char_id`,`str`,`value`) VALUES ", reg_db);
+		
+	for( i = 0; i < reg->reg_num; ++i ) {
 		r = &reg->reg[i];
-		if( r->str[0] != '\0' && r->value != '\0' )
-		{
-			// str
-			SqlStmt_BindParam(stmt, 0, SQLDT_STRING, r->str, strnlen(r->str, sizeof(r->str)));
-			// value
-			SqlStmt_BindParam(stmt, 1, SQLDT_STRING, r->value, strnlen(r->value, sizeof(r->value)));
+		if( r->str[0] != '\0' && r->value[0] != '\0' ) {
+			char str[32];
+			char val[256];
 
-			if( SQL_ERROR == SqlStmt_Execute(stmt) )
-				SqlStmt_ShowDebug(stmt);
+			if( i > 0 )
+				StringBuf_AppendStr(&buf, ",");
+
+			Sql_EscapeString(sql_handle, str, r->str);
+			Sql_EscapeString(sql_handle, val, r->value);
+
+			StringBuf_Printf(&buf, "('%d','%d','%d','%s','%s')", type, account_id, char_id, str, val);
 		}
 	}
-	SqlStmt_Free(stmt);
+
+	if( SQL_ERROR == Sql_QueryStr(sql_handle, StringBuf_Value(&buf)) ) {
+		Sql_ShowDebug(sql_handle);
+	}
+
+	StringBuf_Destroy(&buf);
+
 	return 1;
 }
 
@@ -323,8 +330,6 @@ void inter_final(void)
 
 int inter_mapif_init(int fd)
 {
-	inter_guild_mapif_init(fd);
-
 	return 0;
 }
 
@@ -431,11 +436,14 @@ int mapif_disconnectplayer(int fd, int account_id, int char_id, int reason)
 
 //--------------------------------------------------------
 
-// Existence check of WISP data
-int check_ttl_wisdata_sub(DBKey key, void *data, va_list ap)
+
+/** Existence check of WISP data
+ * @see DBApply
+ */
+int check_ttl_wisdata_sub(DBKey key, DBData *data, va_list ap)
 {
 	unsigned long tick;
-	struct WisData *wd = (struct WisData *)data;
+	struct WisData *wd = db_data2ptr(data);
 	tick = va_arg(ap, unsigned long);
 
 	if (DIFF_TICK(tick, wd->tick) > WISDATA_TTL && wis_delnum < WISDELLIST_MAX)

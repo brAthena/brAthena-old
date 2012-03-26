@@ -155,6 +155,7 @@ struct map_session_data {
 		unsigned improv_flag : 1;
 		unsigned magicmushroom_flag : 1; 
 		unsigned fearbreeze : 4;
+		unsigned int warping : 1;
 	} state;
 	struct {
 		unsigned char no_weapon_damage, no_magic_damage, no_misc_damage;
@@ -229,7 +230,7 @@ struct map_session_data {
 	unsigned int ks_floodprotect_tick; // [Kill Steal Protection]
 
 	struct {
-		int nameid;
+		short nameid;
 		unsigned int tick;
 	} item_delay[MAX_ITEMDELAYS]; // [Paradox924X]
 
@@ -887,4 +888,8 @@ int pc_disguise(struct map_session_data *sd, int class_);
 bool pc_isautolooting(struct map_session_data *sd, int nameid);
 int pc_banding(struct map_session_data *sd, short skill_lv);
 
+/**
+ * Item Cooldown persistency
+ **/
+void pc_itemcd_do(struct map_session_data *sd, bool load);
 #endif /* _PC_H_ */

@@ -5,6 +5,7 @@
 #define _ITEMDB_H_
 
 #include "../common/mmo.h" // ITEM_NAME_LENGTH
+#include "map.h" //REMODE
 
 // 32k array entries in array (the rest goes to the db)
 #define MAX_ITEMDB 0x8000
