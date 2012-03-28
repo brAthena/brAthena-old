@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1084 - 27/03/2012 [Protimus]
+	* Corrigido problema com mensagens do comando @who.
+	* Corrigida escrita do NPC: Campo de Treinamento dos Aprendizes.
+	* Adicionados portais que faltavam para o mapa de s_atelier.
+
 	r1083 - 27/03/2012 [Protimus]
 	* Corrigido erros de envios anteriores.
 	- Apontamentos no map-server devido funções de script desatualizadas, corrigidos.

@@ -2246,7 +2246,7 @@ new_5-3,103,50,4	duplicate(NvBrutus)	Level 5 Trainer#nv5	84
 //============================================================================
 new_1-1,66,114,4	script	Quadro de avisos#nv	111,{
 	mes "^FF0000=================================^000000";
-	mes "^FF0000 ^000000 ^E40CAA[Bem-vindo]^CC0000 ao ^FF9000Campo de^7FFF00 Treinamento de ^00FF00Aprendizes^E40CAA[Bem-vindo]^FF0000^000000";
+	mes "^FF0000 ^000000 ^E40CAA[Bem-vindo]^CC0000 ao ^FF9000Campo de^7FFF00 Treinamento de ^00FF00Aprendizes^E40CAA ^000000";
 	mes "^FF0000=================================^000000";
 	close;
 }

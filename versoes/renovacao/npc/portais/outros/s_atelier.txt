@@ -19,6 +19,7 @@
 // | Changelog:                                             |
 // | 1.0 Script Criado [Protimus]                           |
 // | 1.1 Corrigido um erro de tabulação em um dos portais.  |
+// | 1.2 Adicionados portais que faltavam.					|
 // \________________________________________________________/
 
 rachel,180,115,0	warp	s_atelier0001	1,1,s_atelier,131,72
@@ -33,3 +34,8 @@ s_atelier,106,123,0	warp	s_atelier0009	1,1,yuno,275,66
 s_atelier,18,79,0	warp	s_atelier0010	1,1,lighthalzen,41,55
 yuno,278,66,0	warp	s_atelier0011	1,1,s_atelier,109,123
 lighthalzen,41,52	warp	s_atelier0012	1,1,s_atelier,18,75
+s_atelier,76,129,0	warp	s_atelier0013	1,1,s_atelier,27,128
+s_atelier,110,128,0	warp	s_atelier0014	1,1,s_atelier,160,128
+s_atelier,160,131,0	warp	s_atelier0015	1,1,s_atelier,112,130
+s_atelier,32,65,0	warp	s_atelier0016	1,1,s_atelier,80,64
+s_atelier,80,67,0	warp	s_atelier0017	1,1,s_atelier,32,62
