@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1082 - 26/03/2012 [Protimus]
+	* Atualizado conforme rAthena 15805.
+	- Updates do eAthena agora serão diretamente adicionados juntos com do rAthena.
+
 	r1081 - 26/03/2012 [Protimus]
 	* Atualizado conforme rAthena 15751.
 	

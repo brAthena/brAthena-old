@@ -26,7 +26,7 @@
 //============================================================
 // O Sinal(Parte 1)
 //============================================================
-prontera,147,305,0	script	Sinal#prontera::TheSign	111,{
+script	Sinal::TheSign	111,{
 	callfunc "F_UpdateSignVars";
 	cutin "sign_01",4;
 	mes "^3355FFPróximo^000000";
@@ -58,6 +58,7 @@ OnInit:
 	end;
 }
 
+prontera,147,305,0	duplicate(TheSign)	Sinal#prontera	111
 geffen,168,175,0	duplicate(TheSign)	Sinal#geffen	111
 morocc,168,265,0	duplicate(TheSign)	Sinal#morroc	111
 payon,160,183,0	duplicate(TheSign)	Sinal#payon	111
@@ -5193,7 +5194,7 @@ cmd_in01,33,33,1	script	Sala de Espera#Sign	66,{
 	end;
 
 OnInit:
-	waitingroom "DANCE~ DANCE~",20,"Sala de Espera#Sign::OnStartArena",1,0,44,150;
+	waitingroom "DANCE~ DANCE~",20,"Sala de Espera#sign::OnStartArena",1,0,50;
 	//SetReqLevel 44 150
 	enablewaitingroomevent;
 	end;

@@ -333,6 +333,8 @@ que_ng,30,65,3	script	Cougar#nq	730,{
 			mes "como as sombras.";
 			callfunc "Job_Change",Job_Ninja;
 			set NINJ_Q,5;
+			delitem 7053,5; // Cyfar
+			delitem 1010,1; // Phracon
 			getitem 13010,1;	// Asura
 			completequest 6018;
 			close;

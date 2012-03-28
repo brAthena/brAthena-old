@@ -422,6 +422,7 @@ typedef enum {
 	CELL_NOVENDING,
 	CELL_NOCHAT,
 	CELL_MAELSTROM,
+	CELL_ICEWALL,
 } cell_t;
 
 // used by map_getcell()
@@ -444,6 +445,7 @@ typedef enum {
 	CELL_CHKNOVENDING,
 	CELL_CHKNOCHAT,
 	CELL_CHKMAELSTROM,
+	CELL_CHKICEWALL,
 } cell_chk;
 
 struct mapcell
@@ -461,7 +463,8 @@ struct mapcell
 		landprotector : 1,
 		novending : 1,
 		nochat : 1,
-		maelstrom : 1;
+		maelstrom : 1,
+		icewall : 1;
 
 #ifdef CELL_NOSTACK
 	unsigned char cell_bl; //Holds amount of bls in this cell.
@@ -556,6 +559,13 @@ struct map_data {
 	int jexp;	// map experience multiplicator
 	int bexp;	// map experience multiplicator
 	int nocommand; //Blocks @/# commands for non-gms. [Skotlex]
+	/**
+	 * Ice wall reference counter for bugreport:3574
+	 * - since there are a thounsand mobs out there in a lot of maps checking on,
+	 * - every targetting for icewall on attack path would just be a waste, so,
+	 * - this counter allows icewall checking be only run when there is a actual ice wall on the map
+	 **/
+	int icewall_num;
 	// Instance Variables
 	int instance_id;
 	int instance_src_map;

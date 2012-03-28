@@ -1367,7 +1367,7 @@ int map_searchrandfreecell(int m,int *x,int *y,int stack)
 		for(j=-1;j<=1;j++){
 			if(j+*x<0 || j+*x>=map[m].xs)
 				continue;
-			if(map_getcell(m,j+*x,i+*y,CELL_CHKNOPASS))
+			if(map_getcell(m,j+*x,i+*y,CELL_CHKNOPASS) && !map_getcell(m,j+*x,i+*y,CELL_CHKICEWALL))
 				continue;
 			//Avoid item stacking to prevent against exploits. [Skotlex]
 			if(stack && map_count_oncell(m,j+*x,i+*y, BL_ITEM) > stack)
@@ -2511,13 +2511,10 @@ int map_getcellp(struct map_data* m,int x,int y,cell_chk cellchk)
 		// base gat type checks
 		case CELL_CHKWALL:
 			return (!cell.walkable && !cell.shootable);
-			//return (map_cell2gat(cell) == 1);
 		case CELL_CHKWATER:
 			return (cell.water);
-			//return (map_cell2gat(cell) == 3);
 		case CELL_CHKCLIFF:
 			return (!cell.walkable && cell.shootable);
-			//return (map_cell2gat(cell) == 5);
 
 		// base cell type checks
 		case CELL_CHKNPC:
@@ -2532,6 +2529,8 @@ int map_getcellp(struct map_data* m,int x,int y,cell_chk cellchk)
 			return (cell.nochat);
 		case CELL_CHKMAELSTROM:
 			return (cell.maelstrom);
+		case CELL_CHKICEWALL:
+			return (cell.icewall);
 
 		// special checks
 		case CELL_CHKPASS:
@@ -2585,6 +2584,7 @@ void map_setcell(int m, int x, int y, cell_t cell, bool flag)
 		case CELL_NOVENDING:     map[m].cell[j].novending = flag;     break;
 		case CELL_NOCHAT:        map[m].cell[j].nochat = flag;        break;
 		case CELL_MAELSTROM:	 map[m].cell[j].maelstrom = flag;	  break;
+		case CELL_ICEWALL:		 map[m].cell[j].icewall = flag;		  break;
 		default:
 			ShowWarning("map_setcell: tipo de celula '%d' invalido\n", (int)cell);
 			break;

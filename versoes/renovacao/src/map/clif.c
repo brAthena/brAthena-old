@@ -2159,13 +2159,6 @@ void clif_delitem(struct map_session_data *sd,int n,int amount, short reason)
 	int fd;
 
 	nullpo_retv(sd);
-	
-	if (reason == 7)
-	{
-		clif_dropitem(sd,n,amount);
-		return;
-	}
-
 	fd=sd->fd;
 
 	WFIFOHEAD(fd, packet_len(0x7fa));
@@ -9119,9 +9112,7 @@ void clif_parse_LoadEndAck(int fd,struct map_session_data *sd)
 		clif_clearunit_area(&sd->bl, CLR_DEAD);
 	else {
 		skill_usave_trigger(sd);
-// Uncomment if you want to make player face in the same direction he was facing right before warping. [Skotlex]
-//	else
-//		clif_changed_dir(&sd->bl, SELF);
+		clif_changed_dir(&sd->bl, SELF);
 	}
 
 //	Trigger skill effects if you appear standing on them
@@ -12688,11 +12679,6 @@ void clif_parse_FriendsListReply(int fd, struct map_session_data *sd)
 				if (sd->status.friends[i].char_id == 0)
 					break;
 			}
-			if (i == MAX_FRIENDS) {
-				clif_friendslist_reqack(sd, f_sd, 2);
-				return;
-			}
-
 			sd->status.friends[i].account_id = f_sd->status.account_id;
 			sd->status.friends[i].char_id = f_sd->status.char_id;
 			memcpy(sd->status.friends[i].name, f_sd->status.name, NAME_LENGTH);

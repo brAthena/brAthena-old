@@ -22,7 +22,7 @@
 // | - Anotações                                            |
 // \________________________________________________________/
 
-prontera,157,187,4	script	Dona Risadinha#prt::SmileHelper	92,{
+script	Dona Risadinha#prt::SmileHelper	92,{
 	mes "[Dona Risadinha]";
 	mes "Hi ~ Hi ~";
 	mes "Eu sou a Assistente da Máscara Feliz.";
@@ -105,9 +105,10 @@ prontera,157,187,4	script	Dona Risadinha#prt::SmileHelper	92,{
 }
 
 // Assistentes do Evento Adicionais
-moc_ruins,59,154,3	duplicate(SmileHelper)	Dona Risadinha#moc	92
+alberta,113,53,4	duplicate(SmileHelper)	Dona Risadinha#alb	92
 aldebaran,136,135,4	duplicate(SmileHelper)	Dona Risadinha#alde	92
 geffen,119,107,4	duplicate(SmileHelper)	Dona Risadinha#gef	92
-alberta,113,53,4	duplicate(SmileHelper)	Dona Risadinha#alb	92
-payon,186,104,5	duplicate(SmileHelper)	Dona Risadinha#pay	92
 izlude,129,118,4	duplicate(SmileHelper)	Dona Risadinha#iz	92
+moc_ruins,59,154,3	duplicate(SmileHelper)	Dona Risadinha#moc	92
+payon,186,104,5	duplicate(SmileHelper)	Dona Risadinha#pay	92
+prontera,157,187,4	duplicate(SmileHelper)	Dona Risadinha#prt	92
