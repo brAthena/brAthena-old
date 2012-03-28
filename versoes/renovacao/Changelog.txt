@@ -9,7 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
-	r1082 - 26/03/2012 [Protimus]
+	r1083 - 27/03/2012 [Protimus]
+	* Corrigido erros de envios anteriores.
+	- Apontamentos no map-server devido funções de script desatualizadas, corrigidos.
+
+	r1082 - 27/03/2012 [Protimus]
 	* Atualizado conforme rAthena 15805.
 	- Updates do eAthena agora serão diretamente adicionados juntos com do rAthena.
 

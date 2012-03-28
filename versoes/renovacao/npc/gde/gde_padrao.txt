@@ -29,12 +29,6 @@
 -	script	Gld_Agit_Manager::Gld_Agit_Manager	-1,{
 	end;
 
-// Leitura das informações dos castelos.
-OnInterIfInitOnce:
-	if (strnpcinfo(0) == "Gld_Agit_Manager") end;
-	GetCastleData strnpcinfo(2),0,strnpcinfo(0) + "::OnRecvCastle";
-	end;
-
 // Início da Guerra do Emperium.
 OnAgitStart:
 	if (strnpcinfo(0) == "Gld_Agit_Manager") end;
@@ -99,7 +93,7 @@ OnAgitBreak:
 	MapRespawnGuildID strnpcinfo(2),.@GID,2;
 
 	// Repara os dados do Castelo, Desabilita a Kafra e Investimentos do Castelo.
-	GetCastleData strnpcinfo(2),0,strnpcinfo(0)+"::OnRecvCastle";
+	donpcevent strnpcinfo(0)+"::OnRecvCastle";
 	disablenpc "Assistente Kafra#"+strnpcinfo(2);
 	for( set .@i, 4; .@i <= 9; set .@i, .@i+1 ) {
 		SetCastleData strnpcinfo(2), .@i, 0;
@@ -114,7 +108,7 @@ OnAgitBreak:
 	sleep 500;
 	if ( agitcheck() )
 		donpcevent "Agit#"+strnpcinfo(2)+"::OnStartArena";
-	sleep getbattleflag("gvg_eliminate_time");
+	sleep 7000;
 	announce "O castelo [" + getcastlename(strnpcinfo(2)) + "] foi conquistado pelo Clã [" + getguildName(.@GID) + "].",bc_all|bc_woe;
 	end;
 
@@ -135,14 +129,15 @@ OnGuildBreak:
 	killmonster strnpcinfo(2),"Guardian#"+strnpcinfo(2)+"::OnGuardianDied";
 	disablenpc "Assistente Kafra#"+strnpcinfo(2);
 	SetCastleData strnpcinfo(2),0,0;
-	sleep getbattleflag("gvg_eliminate_time");
+	sleep 7000;
 	Announce "O castelo [" + GetCastleName(strnpcinfo(2)) + "] foi abandonado.",0;
-	GetCastleData strnpcinfo(2),0,strnpcinfo(0)+"::OnRecvCastle";
+	donpcevent strnpcinfo(0)+"::OnRecvCastle";
 	end;
 
+OnAgitInit:
 OnRecvCastle:
-	RequestGuildInfo GetCastleData(strnpcinfo(2),1);
 
+	if (strnpcinfo(0) == "Gld_Agit_Manager") end;
 	// Cria o Spawn de Monstros caso o castelo esteja sem ocupantes (vazio).
 	set .@GID, GetCastleData(strnpcinfo(2),1);
 	if (.@GID == 0) {
@@ -1055,7 +1050,7 @@ OnTouch:
 	// Armazena a ID da Clã no Castelo.
 	set .@GID, GetCastleData(strnpcinfo(2),1);
 
-	if (strcharinfo(0) != getguildmaster(.@GID)) {
+	if (getcharid(2) != .@GID) {
 		if (compare(strnpcinfo(2),"aldeg")) {
 			warp "aldebaran",132,103;
 		}

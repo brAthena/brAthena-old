@@ -3629,8 +3629,8 @@ int do_init_npc(void)
 	for( i = 1; i < MAX_NPC_CLASS; i++ ) 
 		npc_viewdb[i].class_ = i;
 
-	ev_db = strdb_alloc((DBOptions)(DB_OPT_DUP_KEY|DB_OPT_RELEASE_DATA),2*NAME_LENGTH+2+1);
-	npcname_db = strdb_alloc(DB_OPT_BASE,NAME_LENGTH);
+	ev_db = strdb_alloc((DBOptions)(DB_OPT_DUP_KEY|DB_OPT_RELEASE_DATA),2*NPC_NAME_LENGTH+2+1);
+	npcname_db = strdb_alloc(DB_OPT_BASE,NPC_NAME_LENGTH);
 
 	timer_event_ers = ers_new(sizeof(struct timer_event_data));
 

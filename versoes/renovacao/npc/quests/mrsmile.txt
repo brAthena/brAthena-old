@@ -22,7 +22,7 @@
 // | - Anotações                                            |
 // \________________________________________________________/
 
-script	Dona Risadinha#prt::SmileHelper	92,{
+-	script	Dona Risadinha::SmileHelper	92,{
 	mes "[Dona Risadinha]";
 	mes "Hi ~ Hi ~";
 	mes "Eu sou a Assistente da Máscara Feliz.";

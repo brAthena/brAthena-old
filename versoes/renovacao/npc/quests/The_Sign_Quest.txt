@@ -26,7 +26,7 @@
 //============================================================
 // O Sinal(Parte 1)
 //============================================================
-script	Sinal::TheSign	111,{
+-	script	Sinal::TheSign	111,{
 	callfunc "F_UpdateSignVars";
 	cutin "sign_01",4;
 	mes "^3355FFPróximo^000000";
