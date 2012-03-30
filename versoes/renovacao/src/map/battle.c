@@ -2196,7 +2196,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio += (50 * skill_lv + (pc_checkskill(sd,SM_BASH) * 30)) * s_base_level / 100;
 					break;
 				case LG_PINPOINTATTACK:
-					skillratio += (150 * skill_lv + (10 * status_get_agi(src))) * s_base_level / 100;
+					skillratio += (100 * skill_lv + (5 * status_get_agi(src))) * s_base_level / 120;
 					break;
 				case LG_RAYOFGENESIS:
 					skillratio += 300 + 300 * skill_lv;
