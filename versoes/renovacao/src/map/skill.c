@@ -14487,7 +14487,7 @@ int skill_unit_timer_sub_onplace (struct block_list* bl, va_list ap)
 
 	nullpo_ret(group);
 
-	if( !(skill_get_inf2(group->skill_id)&(INF2_SONG_DANCE|INF2_TRAP|INF2_NOLP )) && map_getcell(bl->m, bl->x, bl->y, CELL_CHKLANDPROTECTOR) )
+	if( !(skill_get_inf2(group->skill_id)&(INF2_SONG_DANCE|INF2_TRAP|INF2_NOLP)) && map_getcell(bl->m, bl->x, bl->y, CELL_CHKLANDPROTECTOR) )
 		return 0; //AoE skills are ineffective. [Skotlex]
 
 	if( battle_check_target(&unit->bl,bl,group->target_flag) <= 0 )
@@ -14498,12 +14498,12 @@ int skill_unit_timer_sub_onplace (struct block_list* bl, va_list ap)
 	return 1;
 }
 
-/*==========================================
- *
- *------------------------------------------*/
-static int skill_unit_timer_sub (DBKey key, void* data, va_list ap)
+/**
+ * @see DBApply
+ */
+static int skill_unit_timer_sub(DBKey key, DBData *data, va_list ap)
 {
-	struct skill_unit* unit = (struct skill_unit*)data;
+	struct skill_unit* unit = db_data2ptr(data);
 	struct skill_unit_group* group = unit->group;
 	unsigned int tick = va_arg(ap,unsigned int);
   	bool dissonance;
@@ -14515,7 +14515,7 @@ static int skill_unit_timer_sub (DBKey key, void* data, va_list ap)
 	nullpo_ret(group);
 
 	// check for expiration
-	if( (DIFF_TICK(tick,group->tick) >= group->limit || DIFF_TICK(tick,group->tick) >= unit->limit) )
+	if( !group->state.guildaura && (DIFF_TICK(tick,group->tick) >= group->limit || DIFF_TICK(tick,group->tick) >= unit->limit) )
 	{// skill unit expired (inlined from skill_unit_onlimit())
 		switch( group->unit_id )
 		{
