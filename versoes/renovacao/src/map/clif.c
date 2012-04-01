@@ -7913,7 +7913,7 @@ void clif_specialeffect_value(struct block_list* bl, int effect_id, int num, sen
 /// 02c1 <packet len>.W <id>.L <color>.L <message>.?B
 int clif_colormes(struct map_session_data * sd, enum clif_colors color, const char* msg) {
 	unsigned short msg_len = strlen(msg) + 1;
-
+ 
 	WFIFOHEAD(sd->fd,msg_len + 12);
 	WFIFOW(sd->fd,0) = 0x2C1;
 	WFIFOW(sd->fd,2) = msg_len + 12;
@@ -7921,7 +7921,7 @@ int clif_colormes(struct map_session_data * sd, enum clif_colors color, const ch
 	WFIFOL(sd->fd,8) = color_table[color];
 	safestrncpy((char*)WFIFOP(sd->fd,12), msg, msg_len);
 	clif_send(WFIFOP(sd->fd,0), WFIFOW(sd->fd,2), &sd->bl, SELF);
-
+ 
 	return 0;
 }
 
@@ -9724,13 +9724,9 @@ void clif_parse_WisMessage(int fd, struct map_session_data* sd)
 		if(!sd->state.mainchat)
 			clif_displaymessage(fd, msg_txt(388)); // You should enable main chat with "@main on" command.
 		else {
-			char output[256];
-			snprintf(output, ARRAYLENGTH(output), msg_txt(386), sd->status.name, message);
-			intif_broadcast2(output, strlen(output) + 1, 0xFE000000, 0, 0, 0, 0);
+			// send the main message using inter-server system
+			intif_main_message( sd, message );
 		}
-
-		// Chat logging type 'M' / Main Chat
-		log_chat(LOG_CHAT_MAINCHAT, 0, sd->status.char_id, sd->status.account_id, mapindex_id2name(sd->mapindex), sd->bl.x, sd->bl.y, NULL, message);
 
 		return;
 	}
@@ -13817,9 +13813,11 @@ void clif_parse_Auction_register(int fd, struct map_session_data *sd)
 		clif_Auction_message(fd, 4); // No Char Server? lets say something to the client
 	else
 	{
+		int zeny = auction.hours*battle_config.auction_feeperhour;
 		pc_delitem(sd, sd->auction.index, sd->auction.amount, 1, 6, LOG_TYPE_AUCTION);
 		sd->auction.amount = 0;
-		pc_payzeny(sd, auction.hours * battle_config.auction_feeperhour);
+		log_zeny(sd, LOG_TYPE_AUCTION, sd, -zeny);
+		pc_payzeny(sd, zeny);
 	}
 }
 
@@ -13860,6 +13858,7 @@ void clif_parse_Auction_bid(int fd, struct map_session_data *sd)
 	else if ( CheckForCharServer() ) // char server is down (bugreport:1138)
 		clif_Auction_message(fd, 0); // You have failed to bid into the auction
 	else {
+		log_zeny(sd, LOG_TYPE_AUCTION, sd, -bid);
 		pc_payzeny(sd, bid);
 		intif_Auction_bid(sd->status.char_id, sd->status.name, auction_id, bid);
 	}

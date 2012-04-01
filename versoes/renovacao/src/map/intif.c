@@ -13,6 +13,7 @@
 #include "clif.h"
 #include "pc.h"
 #include "intif.h"
+#include "log.h"
 #include "storage.h"
 #include "party.h"
 #include "guild.h"
@@ -190,6 +191,27 @@ int intif_broadcast2(const char* mes, int len, unsigned long fontColor, short fo
 	WFIFOW(inter_fd,14) = fontY;
 	memcpy(WFIFOP(inter_fd,16), mes, len);
 	WFIFOSET(inter_fd, WFIFOW(inter_fd,2));
+	return 0;
+}
+
+/// send a message using the main chat system
+/// <sd>         the source of message
+/// <message>    the message that was sent
+int intif_main_message(struct map_session_data* sd, const char* message)
+{
+	char output[256];
+
+	nullpo_ret(sd);
+
+	// format the message for main broadcasting
+	snprintf( output, sizeof(output), msg_txt(386), sd->status.name, message );
+
+	// send the message using the inter-server broadcast service
+	intif_broadcast2( output, strlen(output) + 1, 0xFE000000, 0, 0, 0, 0 );
+
+	// log the chat message
+	log_chat( LOG_CHAT_MAINCHAT, 0, sd->status.char_id, sd->status.account_id, mapindex_id2name(sd->mapindex), sd->bl.x, sd->bl.y, NULL, message );
+
 	return 0;
 }
 
@@ -1756,9 +1778,11 @@ static void intif_parse_Auction_register(int fd)
 	}
 	else
 	{
+		int zeny = auction.hours*battle_config.auction_feeperhour;
 		clif_Auction_message(sd->fd, 4);
 		pc_additem(sd, &auction.item, auction.item.amount, LOG_TYPE_AUCTION);
-		pc_getzeny(sd, auction.hours * battle_config.auction_feeperhour);
+		log_zeny(sd, LOG_TYPE_AUCTION, sd, zeny);
+		pc_getzeny(sd, zeny);
 	}
 }
 
@@ -1853,7 +1877,10 @@ static void intif_parse_Auction_bid(int fd)
 
 	clif_Auction_message(sd->fd, result);
 	if( bid > 0 )
+	{
+		log_zeny(sd, LOG_TYPE_AUCTION, sd, bid);
 		pc_getzeny(sd, bid);
+	}
 	if( result == 1 )
 	{ // To update the list, display your buy list
 		clif_parse_Auction_cancelreg(fd, sd);

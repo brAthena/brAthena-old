@@ -94,25 +94,6 @@ hugel,169,112,5	script	Velho Nikki	892,{
 	close;
 }
 
-hugel,168,183,5	script	Bismarc	118,{
-	mes "[Bismarc]";
-	mes "^808080*Ghyklk*";
-	mes "*Huk Hukk*^000000";
-	mes "Quando que o meu";
-	mes "pe-pedido chegará...?";
-	next;
-	mes "[Bismarc]";
-	mes "O veneno no meu";
-	mes "corpo... a dor...";
-	mes "insuportável... Se-senhor...";
-	next;
-	mes "[Bismarc]";
-	mes "Quando o";
-	mes "antídoto";
-	mes "chegará aqui?";
-	close;
-}
-
 hugel,175,115,5	script	Marius	897,{
 	mes "[Marius]";
 	mes "Posso ser um velho, mas eu";

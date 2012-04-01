@@ -6057,10 +6057,14 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		break;
 	case AM_TWILIGHT3:
 		if (sd) {
+			int ebottle = pc_search_inventory(sd,713);
+			if( ebottle >= 0 )
+				ebottle = sd->status.inventory[ebottle].amount;
 			//check if you can produce all three, if not, then fail:
 			if (!skill_can_produce_mix(sd,970,-1, 100) //100 Alcohol
 				|| !skill_can_produce_mix(sd,7136,-1, 50) //50 Acid Bottle
 				|| !skill_can_produce_mix(sd,7135,-1, 50) //50 Flame Bottle
+				|| ebottle < 200 //200 empty bottle are required at total.
 			) {
 				clif_skill_fail(sd,skillid,USESKILL_FAIL_LEVEL,0,0);
 				break;
@@ -9945,6 +9949,28 @@ static bool skill_dance_switch(struct skill_unit* unit, int flag)
 	return true;
 }
 
+/**
+ * Upon Ice Wall cast it checks all nearby mobs to find any who may be blocked by the IW
+ **/
+static int skill_icewall_block(struct block_list *bl,va_list ap) {
+	struct block_list *target = NULL;
+	struct mob_data *md = ((TBL_MOB*)bl);
+ 
+	nullpo_ret(bl);
+	nullpo_ret(md);
+	if( !md->target_id )
+		return 0;
+	nullpo_ret( ( target = map_id2bl(md->target_id) ) );
+
+	if( path_search_long(NULL,bl->m,bl->x,bl->y,target->x,target->y,CELL_CHKICEWALL) )
+		return 0;
+
+	if( !check_distance_bl(bl, target, status_get_range(bl) ) )
+		mob_unlocktarget(md,gettick());
+
+	return 0;
+}
+
 /*==========================================
  * Initializes and sets a ground skill.
  * flag&1 is used to determine when the skill 'morphs' (Warp portal becomes active, or Fire Pillar becomes active)
@@ -12587,6 +12613,14 @@ int skill_check_condition_castend(struct map_session_data* sd, short skill, shor
 			sd->status.inventory[i].amount < require.ammo_qty
 		) {
 			clif_arrow_fail(sd,0);
+			return 0;
+		} else if( sd->status.inventory[i].amount < require.ammo_qty ) {
+			char e_msg[100];
+			sprintf(e_msg,"Skill Failed. [%s] requires %dx %s.",
+						skill_get_desc(skill),
+						require.ammo_qty,
+						itemdb_jname(sd->status.inventory[i].nameid));
+			clif_colormes(sd,COLOR_RED,e_msg);
 			return 0;
 		}
 		if (!(require.ammo&1<<sd->inventory_data[i]->look))
