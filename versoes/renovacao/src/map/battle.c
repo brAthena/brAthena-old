@@ -2227,13 +2227,13 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					}
 					break;
 				case LG_OVERBRAND:
-					skillratio = (400 * skill_lv + (pc_checkskill(sd,CR_SPEARQUICKEN) * 30)) * s_base_level /100;
+					skillratio = (100 * skill_lv + (pc_checkskill(sd,CR_SPEARQUICKEN) * 50)) * s_base_level /100;
 					break;
 				case LG_OVERBRAND_BRANDISH:
-					skillratio = (300 * skill_lv + (2 * (sstatus->str + sstatus->dex) / 3)) * s_base_level /100;
+					skillratio = (100 * skill_lv + (sstatus->str + sstatus->dex)) * s_base_level /100;
 					break;
 				case LG_OVERBRAND_PLUSATK:
-					skillratio = 160 * skill_lv * s_base_level / 100;
+					skillratio = 100 * skill_lv + rand()%100;
 					break;
 				case LG_HESPERUSLIT:
 					skillratio += 120 * skill_lv;

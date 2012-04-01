@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1088 - 31/03/2012 [Protimus]
+	* Corrigida a habilidade Lança do Destino (LG_OVERBRAND).
+	- Fórmula atualizada conforme a oficial.
+
 	r1087 - 31/03/2012 [Protimus]
 	* Corrigida visualização do item: Diadema de Câncer.
 	* Corrigida visualização e bônus do item: Olhos de Falcão.
