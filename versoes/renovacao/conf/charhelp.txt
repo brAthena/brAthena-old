@@ -1,29 +1,30 @@
-//  ________________________________________________________
-// /                                                        \
-// |       _           _   _   _                            |
-// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
-// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
-// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
-// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |                                                        |
-// |                    brAthena Script                     |
-// |--------------------------------------------------------|
-// | Nome do Script: charhelp.conf                          |
-// |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team                           |
-// |--------------------------------------------------------|
-// | Descrição: Ajuda aos comandos de personagens @help.    |
-// |--------------------------------------------------------|
-// | Changelog:                                             |
-// | 1.0 Modificação [brAthena]                             |
-// | 1.1 Traduções revisadas [Constantini]                  |
-// | 1.2 Traduções revisadas [Protimus]	     				|
-// | - Anotações                                            |
-// | "Comentários" devem ser adicionados com // no início   |
-// | da frase, senão você causará problemas de conf, pois o |
-// | texto será inválido conforme a source.                 |
-// | Lembre-se que "NOTAS" dão recomendações importantes.   |
-// \________________________________________________________/
+//  _____________________________________________________________
+// /                                                             \
+// |          _           _   _   _                              |
+// |         | |__  _ __ / \ | |_| |__   ___ _ __   __ _         |
+// |         | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |        |
+// |         | |_) | | / ___ \ |_| | | |  __/ | | | (_| |        |
+// |         |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|        |
+// |                                                             |
+// |                       brAthena Script                       |
+// |-------------------------------------------------------------|
+// | Nome da Configuração: charhelp.conf                         |
+// |-------------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                                |
+// |-------------------------------------------------------------|
+// | Descrição: Mensagens de ajuda do comando @help.             |
+// |-------------------------------------------------------------|
+// | Changelog:                                                  |
+// | 1.0 Modificação [brAthena]                                  |
+// | 1.1 Traduções revisadas [Constantini]                       |
+// | 1.2 Traduções revisadas [Protimus]	     				     |
+// |-------------------------------------------------------------|
+// | - Anotações                                                 |
+// | "Comentários" devem ser adicionados com // no início da     |
+// | frase, senão você causará problemas de conf, pois o texto   |
+// | será inválido conforme o código fonte.                      |
+// | Lembre-se que "NOTAS" são recomendações importantes.        |
+// \_____________________________________________________________/
 
  40:--- COMANDOS DE PERSONAGENS ---
  40:#statsall <nome do personagem> - Dá todos os status para um personagem.

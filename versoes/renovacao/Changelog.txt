@@ -9,6 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1091 - 01/04/2012 [Protimus]
+	* Realizada reorganização dos cabeçalhos da pasta CONF & DB.
+	- Foram feitas traduções de alguns arquivos que estavam ainda em inglês.
+	- Foram feitas remoções de conteúdos à fim de evitar excesso de cabeçalho.
+	- Algumas notificações de como funcionam determinadas lacunas serão adicionadas em documentos apropriados.
+	- Falta uma revisão dos nomes de lacunas dos arquivos da pasta DB, alguns ainda estão em inglês.
+	
 	r1090 - 01/04/2012 [Protimus]
 	* Atualizado conforme rAthena 15820.
 

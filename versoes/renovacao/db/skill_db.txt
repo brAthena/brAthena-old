@@ -18,64 +18,6 @@
 // | id,alcance,hit,inf,elemento,nk,splash,max,list num,         |
 // | castcancel,cast_defence_rate,inf2,maxcount,                 |
 // | tipo de ataque,blow count,nome,descrição                    |
-// | 01 ID                                                       |
-// | 02 alcance (skills de combo não checam o alcance quando     |
-// | usadas, se o alcance for menor do que 5, será               |
-// | considerado curto-alcance)                                  |
-// | 03 hit (8 - vários hits, 6 - hit único)                     |
-// | 04 inf (0- passivo, 1- enemy, 2- place, 4- self,            |
-// | 16- friend, 32- trap)                                       |
-// | 05 elemento (0 - neutro, 1 - água, 2 - terra, 3 - fogo,     |
-// | 4 - vento, 5 - veneno, 6 - sagrado, 7 - sombrio,            |
-// | 8 - fantasma, 9 - morto-vivo,  -1 - elemento da arma,       |
-// | -2 - elemento adquirido, -3 - elemento aleatório.)          |
-// | 06 nk (propriedades de dano da habilidade):                 |
-// |    0x01 - Habilidade sem dano                               |
-// |    0x02 - Tem área de 'splash'                              |
-// |    0x04 - Dano dividido entre os alvos                      |
-// |    0x08 - Cartas de dano do usuário ignoradas               |
-// |    (tipo 'misc' sempre ignora)                              |
-// |    0x10 - Ajustes elementais do alvo ignorados              |
-// |    0x20 - Defesa do alvo ignorada                           |
-// |    (tipo 'misc' sempre ignora)                              |
-// |    0x40 - Flee do alvo ignorado                             |
-// |    (tipo 'magic' sempre ignora)                             |
-// |    0x80 - Cartas de defesa do alvo ignoradas                |
-// | 07 splash/alcance do efeito (-1 para tela inteira)          |
-// | 08 MaxLv - Level máximo da habilidade                       |
-// | 09 Número de hits (se positivo, o dano será aumentado       |
-// | por hit, se negativo, o número de hits será mostrado        |
-// | sem modificar o dano)                                       |
-// | 10 Habilidade interrompida ao ser atacado?                  |
-// | 11 rate de redução da defesa durante o uso da skill         | 
-// | 12 inf2 (informação da habilidade 2):                       | 
-// |    0x0001 - Habilidade de quest                             |
-// |    0x0002 - Habilidade de NPCs                              |
-// |    0x0004 - Habilidade de casamento                         |
-// |    0x0008 - Habilidade do tipo 'Spirit'                     |
-// |    0x0010 - Habilidade de Guild                             |
-// |    0x0020 - Música ou dança                                 |
-// |    0x0040 - Habilidade do tipo 'ensemble' (em conjunto)     |
-// |    0x0080 - Armadilha                                       |
-// |    0x0100 - Habilidade de dano/alvo ao utilizador           |
-// |    0x0200 - Não pode ser utilizado em si                    |
-// |   (inf = 4 => Alvo automático)                              |
-// |    0x0400 - Usável apenas em membros do grupo               |
-// |   (e inimigos se for ofensiva)                              |
-// |    0x0800 - Usável apenas em membros da guild               |
-// |   (e inimigos se for ofensiva)                              |
-// |    0x1000 - Não usável em inimigos                          |
-// |   (para habilidades não ofensivas)                          |
-// | 13 Maxcount: Número máximo de unidades da habilidade        |
-// | colocadas no terreno quando player_land_skill_limit/        |
-// | monster_land_skill_limit for ativado.                       |
-// | Para habilidades que atacam em caminho, esse será o         |
-// | tamanho do caminho                                          |
-// | 14 Tipo de ataque (none, weapon, magic, misc)               |
-// | 15 Blowcount                                                |
-// |   (numero de tiles que a habilidade empurrará)              |
-// | 16 Nome                                                     |
-// | 17 Descrição                                                |
 // \_____________________________________________________________/
 //
 //
