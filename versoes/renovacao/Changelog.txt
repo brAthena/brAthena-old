@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1089 - 31/03/2012 [Protimus]
+	* Corrigida a habilidade Typhoon Missile (EL_TYPOON_MIS).
+	- Forma de atacar adequada ao oficial.
+	* Adicionado SC_INCASPDRATE ao const.
+
 	r1088 - 31/03/2012 [Protimus]
 	* Corrigida a habilidade Lança do Destino (LG_OVERBRAND).
 	- Fórmula atualizada conforme a oficial.

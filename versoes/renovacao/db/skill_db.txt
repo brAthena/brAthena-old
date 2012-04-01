@@ -1414,7 +1414,7 @@
 8434,11,6,16,4,0x1,0,1,1,no,0,0,0,weapon,0,	EL_WIND_SLASH,Wind Slasher
 8435,11,6,16,4,0x1,1,1,1,no,0,0,0,weapon,0,	EL_HURRICANE,Hurricane Rage
 8436,7,6,1,4,0,0,1,1,no,0,0,0,magic,0,		EL_HURRICANE_ATK,Hurricane Rage Attack
-8437,11,6,16,4,0x1,1,1,1,no,0,0,0,weapon,0,	EL_TYPOON_MIS,Typhoon Missile
+8437,6,8,1,4,0,1,1,-3,no,0,0,0,weapon,0,	EL_TYPOON_MIS,Typhoon Missile
 8438,11,6,1,4,0,1,1,1,no,0,0,0,magic,0,		EL_TYPOON_MIS_ATK,Typhoon Missile Attack
 8439,5,6,16,2,0x1,0,1,1,no,0,0,0,weapon,0,	EL_STONE_HAMMER,Stone Hammer
 8440,3,6,16,2,0x1,1,1,1,no,0,0,0,weapon,0,	EL_ROCK_CRUSHER,Rock Launcher
