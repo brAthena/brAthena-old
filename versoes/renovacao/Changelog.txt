@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1087 - 31/03/2012 [Protimus]
+	* Corrigida visualização do item: Diadema de Câncer.
+	* Corrigida visualização e bônus do item: Olhos de Falcão.
+
 	r1086 - 30/03/2012 [Protimus]
 	* Corrigida a habilidade Estocada Precisa (LG_PINPOINTATTACK).
 	- Fórmula atualizada conforme a oficial.

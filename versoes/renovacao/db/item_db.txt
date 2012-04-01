@@ -3026,8 +3026,8 @@
 5513,Aquarius_Crown,Coroa de Aquário,5,20,,300,,6,,0,0xFFFFFFFF,7,2,256,,70,1,510,{ bonus bStr,2; bonus bFlee,10; bonus2 bSubEle,Ele_Wind,5; if(getrefine()>6) { bonus bDef,1; bonus bBaseAtk,15; } },{},{}
 5514,Pisces_Diadem,Diadema de Peixes,5,20,,300,,6,,0,0xFFFFFFFF,7,2,256,,70,1,511,{ bonus bInt,1; bonus bMdef,3; bonus2 bSubEle,Ele_Water,5; if (getrefine() >= 7) { bonus bMdef,1; bonus bAtkRate,2; } },{},{}
 5515,Pisces_Crown,Coroa de Peixes,5,20,,300,,6,,0,0xFFFFFFFF,7,2,256,,70,1,512,{ bonus bStr,1; bonus2 bSubEle,Ele_Water,5; if (getrefine() >= 7) { bonus bDef,1; bonus bAtkRate,2; } },{},{}
-5516,Hawk_Eyes01,Olhos de Falcão 1,5,20,,800,,0,,0,0xFFFFFFFF,7,2,256,,0,1,497,{},{},{}
-5517,Hawk_Eyes02,Olhos de Falcão 2,5,20,,800,,0,,0,0xFFFFFFFF,7,2,256,,0,1,497,{},{},{}
+5516,Hawk_Eyes01,Olhos de Falcão 1,5,10,,100,,0,,0,0x00000800,2,2,512,,60,0,23,{ bonus bDex,1; },{},{}
+5517,Hawk_Eyes02,Olhos de Falcão 2,5,10,,100,,0,,0,0x00080808,7,2,512,,60,0,23,{ bonus bDex,1; },{},{}
 5518,L_Magestic_Goat2,Chifres Místicos de Bafomé,5,20,,800,,10,,0,0xFFFFFFFF,7,2,256,,50,1,513,{ bonus2 bSubRace,RC_DemiHuman,12; bonus bBaseAtk,(JobLevel*2)/7; },{},{}
 5519,Peacock_Feather,Chapéu de Pavão,5,20,,800,,4,,1,0xFFFFFFFF,7,2,256,,0,1,514,{ bonus bInt,2; },{},{}
 5520,Rabbit_Earplug,Rabbit Earplugs,5,,,400,,0,,1,0xFFFFFFFF,7,2,768,,1,1,515,{ bonus2 bAddRace,RC_NonBoss,4; bonus2 bAddRace,RC_Boss,4; bonus bMatkRate,4; },{},{}
@@ -3091,7 +3091,7 @@
 5578,Voyage_Hat,Voyage_Hat,5,20,,100,,1,,0,0xFFFFFFFF,7,2,256,,0,1,236,{},{},{}
 5579,Satgat,Chapéu Chinês do Andarilho,5,20,,300,,2,,0,0xFFFFFFFF,7,2,768,,70,1,558,{ bonus bAgi,2; },{},{}
 //5580,Red_Beret,Red Beret,5,20,,100,,3,,0,0xFFFFFFFF,7,2,256,,0,1,559,{},{},{}
-5581,Cancer_Diadem,Diadema de Câncer,5,20,,300,,3,,0,0xFFFFFFFF,7,2,256,,70,1,561,{ bonus bInt,2; bonus2 bSubEle,Ele_water,5; if(getrefine()>6) { bonus bMDef,1; bonus bHealPower,3; bonus bMatkRate,2; } },{},{}
+5581,Cancer_Diadem,Diadema de Câncer,5,20,,300,,3,,0,0xFFFFFFFF,7,2,256,,70,1,560,{ bonus bInt,2; bonus2 bSubEle,Ele_water,5; if(getrefine()>6) { bonus bMDef,1; bonus bHealPower,3; bonus bMatkRate,2; } },{},{}
 5582,Cancer_Crown,Coroa de Câncer,5,20,,300,,3,,0,0xFFFFFFFF,7,2,256,,70,1,561,{ bonus bStr, 2; bonus2 bSubEle, Ele_Water, 5; if(getrefine() >= 7) { bonus bDef,1; bonus bAtk,15; bonus bFlee, 7; } },{},{}
 5583,Para_Team_Hat,Chapéu Valhalla,5,20,,100,,5,,0,0xFFFFFFFF,7,2,256,,0,1,465,{},{},{}
 5584,Majestic_Evil_Horn,Chifres Majestosos Malignos,5,20,,100,,2,,0,0xFFFFFFFF,7,2,256,,0,1,562,{ bonus2 bSubRace,RC_Demon,3; bonus2 bHPDrainRate,3,15; bonus2 bSPDrainRate,1,7; },{},{}
