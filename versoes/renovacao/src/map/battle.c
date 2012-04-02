@@ -1044,9 +1044,9 @@ static int battle_calc_base_damage(struct status_data *status, struct weapon_atk
 			atkmax = wa->atk2;
 		}
 		if(atkmin >= atkmax)
-			damage += atkmax;
+			damage = atkmax;
 		else
-			damage += atkmin + rand()%(atkmax-atkmin);
+			damage += atkmin + rand()%(atkmax+atkmin);
 	}else{
 		if(flag&2)
 			str = status->dex;

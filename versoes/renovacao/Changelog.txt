@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1092 - 02/04/2012 [Protimus]
+	* Corrigida fórmula do ataque para homunculus.
+	- O ataque máximo é somado e não diminuído, resultando em um dano final maior.
+
 	r1091 - 01/04/2012 [Protimus]
 	* Realizada reorganização dos cabeçalhos da pasta CONF & DB.
 	- Foram feitas traduções de alguns arquivos que estavam ainda em inglês.
