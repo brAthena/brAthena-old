@@ -33,6 +33,6 @@ include_directories( ${INCLUDE_DIRS} )
 
 add_executable( char-server_sql ${CHAR_SOURCES} )
 set_target_properties( char-server_sql PROPERTIES COMPILE_FLAGS "${DEFINITIONS}" )
-target_link_libraries( char-server_sql ${LIBRARIES} )
+target_link_libraries( char-server_sql ${GLOBAL_LINK_DEFINITIONS} ${LIBRARIES} )
 
 message( STATUS "Creating target char-server_sql - done" )

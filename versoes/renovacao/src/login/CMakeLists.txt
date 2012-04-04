@@ -26,6 +26,6 @@ include_directories( ${INCLUDE_DIRS} )
 
 add_executable( login-server_sql ${LOGIN_SOURCES} )
 set_target_properties( login-server_sql PROPERTIES COMPILE_FLAGS "${DEFINITIONS}" )
-target_link_libraries( login-server_sql ${LIBRARIES} )
+target_link_libraries( login-server_sql ${GLOBAL_LINK_DEFINITIONS} ${LIBRARIES} )
 
 message( STATUS "Creating target login-server_sql - done" )

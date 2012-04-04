@@ -24,6 +24,7 @@ mark_as_advanced( CMAKE_INSTALL_PREFIX CMAKE_BUILD_TYPE )
 set( GLOBAL_LIBRARIES "" CACHE INTERNAL "Global libraries" FORCE )
 set( GLOBAL_INCLUDE_DIRS "" CACHE INTERNAL "Global include directories" FORCE )
 set( GLOBAL_DEFINITIONS "" CACHE INTERNAL "Global compiler definitions" FORCE )
+set( GLOBAL_LINK_DEFINITIONS "" CACHE INTERNAL "Global linker definitions" FORCE )
 
 # -----------------------------------------------------------------------------
 # Configure the output path
@@ -154,6 +155,13 @@ else()
 	set_property( CACHE GLOBAL_DEFINITIONS PROPERTY VALUE
 		"${GLOBAL_DEFINITIONS} -DDEBUG"
 	)
+	
+	# Programming tests using MinGW and GCC...
+	if( "${CMAKE_C_COMPILER_ID}" STREQUAL "GNU" )
+		set_property( CACHE GLOBAL_DEFINITIONS PROPERTY VALUE
+			"${GLOBAL_DEFINITIONS} -Wall -Wextra -Werror -pedantic -std=c89 -ansi -Wint-to-pointer-cast -Wpointer-to-int-cast"
+		)
+	endif()
 endif()
 
 # -----------------------------------------------------------------------------

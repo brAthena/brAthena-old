@@ -51,7 +51,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>..\3rdparty\libconfig;..\3rdparty\mysql\include;..\3rdparty\msinttypes\include;..\3rdparty\mt19937ar;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\3rdparty\libconfig\include;..\3rdparty\mysql\include;..\3rdparty\msinttypes\include;..\3rdparty\mt19937ar;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_WIN32;__WIN32;_DEBUG;_CRT_SECURE_NO_DEPRECATE;_CRT_NONSTDC_NO_DEPRECATE;FD_SETSIZE=4096;WITH_SQL;LIBCONFIG_STATIC;YY_USE_CONST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <PreprocessToFile>false</PreprocessToFile>
       <PreprocessSuppressLineNumbers>false</PreprocessSuppressLineNumbers>
@@ -71,9 +71,9 @@
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
-      <AdditionalDependencies>libcmtd.lib;oldnames.lib;ws2_32.lib;libmysql.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libcmtd.lib;oldnames.lib;ws2_32.lib;libmysql.lib;libconfig.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(OutDir)$(ProjectName).exe</OutputFile>
-      <AdditionalLibraryDirectories>..\3rdparty\mysql\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>..\3rdparty\mysql\lib;..\3rdparty\libconfig\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <IgnoreAllDefaultLibraries>true</IgnoreAllDefaultLibraries>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -131,13 +131,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\3rdparty\libconfig\grammar.h" />
-    <ClInclude Include="..\3rdparty\libconfig\libconfig.h" />
-    <ClInclude Include="..\3rdparty\libconfig\parsectx.h" />
-    <ClInclude Include="..\3rdparty\libconfig\scanctx.h" />
-    <ClInclude Include="..\3rdparty\libconfig\scanner.h" />
-    <ClInclude Include="..\3rdparty\libconfig\strbuf.h" />
-    <ClInclude Include="..\3rdparty\libconfig\wincompat.h" />
     <ClInclude Include="..\src\login\account.h" />
     <ClInclude Include="..\src\login\ipban.h" />
     <ClInclude Include="..\src\login\login.h" />
@@ -163,11 +156,6 @@
     <ClInclude Include="..\3rdparty\mt19937ar\mt19937ar.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\3rdparty\libconfig\grammar.c" />
-    <ClCompile Include="..\3rdparty\libconfig\libconfig.c" />
-    <ClCompile Include="..\3rdparty\libconfig\scanctx.c" />
-    <ClCompile Include="..\3rdparty\libconfig\scanner.c" />
-    <ClCompile Include="..\3rdparty\libconfig\strbuf.c" />
     <ClCompile Include="..\src\login\account.c" />
     <ClCompile Include="..\src\login\ipban.c" />
     <ClCompile Include="..\src\login\login.c" />

@@ -79,21 +79,7 @@
     <ClCompile Include="..\3rdparty\mt19937ar\mt19937ar.c">
       <Filter>3rdparty\mt19937ar</Filter>
     </ClCompile>
-    <ClCompile Include="..\3rdparty\libconfig\grammar.c">
-      <Filter>3rdparty\libconfig</Filter>
-    </ClCompile>
-    <ClCompile Include="..\3rdparty\libconfig\libconfig.c">
-      <Filter>3rdparty\libconfig</Filter>
-    </ClCompile>
-    <ClCompile Include="..\3rdparty\libconfig\scanctx.c">
-      <Filter>3rdparty\libconfig</Filter>
-    </ClCompile>
-    <ClCompile Include="..\3rdparty\libconfig\scanner.c">
-      <Filter>3rdparty\libconfig</Filter>
-    </ClCompile>
-    <ClCompile Include="..\3rdparty\libconfig\strbuf.c">
-      <Filter>3rdparty\libconfig</Filter>
-    </ClCompile>
+    <ClCompile Include="..\src\char\int_elemental.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\common\cbasetypes.h">
@@ -183,27 +169,6 @@
     <ClInclude Include="..\3rdparty\mt19937ar\mt19937ar.h">
       <Filter>3rdparty\mt19937ar</Filter>
     </ClInclude>
-    <ClInclude Include="..\3rdparty\libconfig\grammar.h">
-      <Filter>3rdparty\libconfig</Filter>
-    </ClInclude>
-    <ClInclude Include="..\3rdparty\libconfig\libconfig.h">
-      <Filter>3rdparty\libconfig</Filter>
-    </ClInclude>
-    <ClInclude Include="..\3rdparty\libconfig\parsectx.h">
-      <Filter>3rdparty\libconfig</Filter>
-    </ClInclude>
-    <ClInclude Include="..\3rdparty\libconfig\scanctx.h">
-      <Filter>3rdparty\libconfig</Filter>
-    </ClInclude>
-    <ClInclude Include="..\3rdparty\libconfig\scanner.h">
-      <Filter>3rdparty\libconfig</Filter>
-    </ClInclude>
-    <ClInclude Include="..\3rdparty\libconfig\strbuf.h">
-      <Filter>3rdparty\libconfig</Filter>
-    </ClInclude>
-    <ClInclude Include="..\3rdparty\libconfig\wincompat.h">
-      <Filter>3rdparty\libconfig</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="common">
@@ -217,9 +182,6 @@
     </Filter>
     <Filter Include="3rdparty\mt19937ar">
       <UniqueIdentifier>{847768ab-8c4b-431b-8667-00f8ae3b915c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="3rdparty\libconfig">
-      <UniqueIdentifier>{9e8badd7-548f-4eb4-9e87-613e87e772ff}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

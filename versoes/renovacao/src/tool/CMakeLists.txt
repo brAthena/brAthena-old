@@ -11,7 +11,6 @@ message( STATUS "Creating target mapcache" )
 
 if( ZLIB_FOUND )
 	set( MAPCACHE_SOURCES
-		"${LIBCONFIG_SOURCES}"
 		"${COMMON_DIR}/conf.c"
 		"${COMMON_DIR}/core.c"
 		"${COMMON_DIR}/malloc.c"
@@ -31,7 +30,7 @@ if( ZLIB_FOUND )
 	
 	add_executable( mapcache ${MAPCACHE_SOURCES} )
 	set_target_properties( mapcache PROPERTIES COMPILE_FLAGS "${DEFINITIONS}" )
-	target_link_libraries( mapcache ${LIBRARIES} )
+	target_link_libraries( mapcache ${GLOBAL_LINK_DEFINITIONS} ${LIBRARIES} )
 	
 message( STATUS "Creating target mapcache - done" )
 	

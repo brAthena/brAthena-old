@@ -66,6 +66,6 @@ include_directories( ${INCLUDE_DIRS} )
 
 add_executable( map-server_sql ${MAP_SOURCES} )
 set_target_properties( map-server_sql PROPERTIES COMPILE_FLAGS "${DEFINITIONS}" )
-target_link_libraries( map-server_sql ${LIBRARIES} )
+target_link_libraries( map-server_sql ${GLOBAL_LINK_DEFINITIONS} ${LIBRARIES} )
 
 message( STATUS "Creating target map-server_sql - done" )

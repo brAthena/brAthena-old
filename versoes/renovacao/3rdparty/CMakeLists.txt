@@ -4,18 +4,20 @@
 # -----------------------------------------------------------------------------
 # Look for libconfig
 
-# If on windows, compile it, but if on linux, look for the dependency.
-if( WIN32 )
-	# Add the libconfig headers and compile them
-	add_subdirectory( libconfig )
-else( WIN32 )
-	find_package( LIBCONFIG REQUIRED )
-	# Now, add libconfig to the global namespace...
-	set( LIBCONFIG_FOUND ${LIBCONFIG_FOUND} CACHE INTERNAL "" FORCE )
-	set( LIBCONFIG_INCLUDE_DIRS ${LIBCONFIG_INCLUDE_DIRS} CACHE INTERNAL "" FORCE )
-	set( LIBCONFIG_LIBRARIES ${LIBCONFIG_LIBRARIES} CACHE INTERNAL "" FORCE )
-endif()
+# Configure the prefix path to search first in our dependency folder
+set( CMAKE_PREFIX_PATH ${CMAKE_CURRENT_SOURCE_DIR}/libconfig
+					   ${CMAKE_CURRENT_SOURCE_DIR}/libconfig/lib
+					   ${CMAKE_CURRENT_SOURCE_DIR}/libconfig/include
+					   ${CMAKE_PREFIX_PATH}
+)
 
+# Then, search for libconfig.
+find_package( LIBCONFIG REQUIRED )
+
+# Now, add libconfig to the global namespace...
+set( LIBCONFIG_FOUND ${LIBCONFIG_FOUND} CACHE INTERNAL "" FORCE )
+set( LIBCONFIG_INCLUDE_DIRS ${LIBCONFIG_INCLUDE_DIRS} CACHE INTERNAL "" FORCE )
+set( LIBCONFIG_LIBRARIES ${LIBCONFIG_LIBRARIES} CACHE INTERNAL "" FORCE )
 
 # -----------------------------------------------------------------------------
 # Configure the msinttypes
@@ -27,7 +29,6 @@ if( MSVC )
 		${CMAKE_CURRENT_SOURCE_DIR}/msinttypes/include
 	)
 endif()
-
 
 # -----------------------------------------------------------------------------
 # Look for mt19937ar
@@ -47,7 +48,7 @@ set( CMAKE_PREFIX_PATH ${CMAKE_CURRENT_SOURCE_DIR}/mysql
 
 # Then, search for MYSQL
 find_package( MYSQL REQUIRED )
-message( STATUS "${MYSQL_FOUND}" )
+
 # Now, add zlib to the global namespace...
 set( MYSQL_FOUND ${MYSQL_FOUND} CACHE INTERNAL "" FORCE )
 set( MYSQL_INCLUDE_DIRS ${MYSQL_INCLUDE_DIRS} CACHE INTERNAL "" FORCE )

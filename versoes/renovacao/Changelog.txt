@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1096 - 04/04/2012 [RenatoUtsch]
+	* Corrigidos bugs da libConfig no windows
+	- Necessários testes no linux para ver se algum bug apareceu com o autotools, mas com o CMake funfa 100%...
+
 	r1095 - 04/04/2012 [Protimus]
 	* Atualizado conforme rAthena 15832.
 
