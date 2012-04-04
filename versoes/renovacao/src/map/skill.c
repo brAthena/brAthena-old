@@ -13589,6 +13589,12 @@ int skill_sit (struct map_session_data *sd, int type)
 		flag|=2;
 		range = skill_get_splash(TK_SPTIME, lv);
 	}
+	
+	if( type ) {
+		clif_status_load(&sd->bl,SI_SITTING,1);
+	} else {
+		clif_status_load(&sd->bl,SI_SITTING,0);
+	}
 
 	if (!flag) return 0;
 

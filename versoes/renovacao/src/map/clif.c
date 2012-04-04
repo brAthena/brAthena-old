@@ -649,24 +649,21 @@ int clif_send(const uint8* buf, int len, struct block_list* bl, enum send_target
 /// Notifies the client, that it's connection attempt was accepted.
 /// 0073 <start time>.L <position>.3B <x size>.B <y size>.B (ZC_ACCEPT_ENTER)
 /// 02eb <start time>.L <position>.3B <x size>.B <y size>.B <font>.W (ZC_ACCEPT_ENTER2)
-int clif_authok(struct map_session_data *sd)
+void clif_authok(struct map_session_data *sd)
 {
-	int fd;
+	const int cmd = 0x2eb;
+	int fd = sd->fd;
 
-	if (!sd->fd)
-		return 0;
-	fd = sd->fd;
-
-	WFIFOHEAD(fd, packet_len(0x73));
-	WFIFOW(fd, 0) = 0x73;
+	WFIFOHEAD(fd,packet_len(cmd));
+	WFIFOW(fd, 0) = cmd;
 	WFIFOL(fd, 2) = gettick();
 	WFIFOPOS(fd, 6, sd->bl.x, sd->bl.y, sd->ud.dir);
 	WFIFOB(fd, 9) = 5; // ignored
 	WFIFOB(fd,10) = 5; // ignored
-	WFIFOSET(fd,packet_len(0x73));
-
-	return 0;
+	WFIFOW(fd,11) = sd->user_font;  // FIXME: Font is currently not saved.
+	WFIFOSET(fd,packet_len(cmd));
 }
+
 
 /// Notifies the client, that it's connection attempt was refused (ZC_REFUSE_ENTER).
 /// 0074 <error code>.B
@@ -1158,10 +1155,12 @@ static void clif_setdisguise(struct block_list *bl, unsigned char *buf,int len)
 {
 	WBUFB(buf,4)= pcdb_checkid(status_get_viewdata(bl)->class_) ? 0x0 : 0x5; //PC_TYPE : NPC_MOB_TYPE
 	WBUFL(buf,5)=-bl->id;
-
+	WBUFB(buf,2)= pcdb_checkid(status_get_viewdata(bl)->class_) ? 0x0 : 0x5; //PC_TYPE : NPC_MOB_TYPE
+	WBUFL(buf,3)=-bl->id;
 	clif_send(buf, len, bl, SELF);
 }
 
+/// Changes sprite of an NPC object (ZC_NPCSPRITE_CHANGE).
 /// Changes sprite of an NPC object (ZC_NPCSPRITE_CHANGE).
 /// 01b0 <id>.L <type>.B <value>.L
 /// type:
@@ -12675,6 +12674,11 @@ void clif_parse_FriendsListReply(int fd, struct map_session_data *sd)
 				if (sd->status.friends[i].char_id == 0)
 					break;
 			}
+			if (i == MAX_FRIENDS) {
+				clif_friendslist_reqack(sd, f_sd, 2);
+				return;
+			}
+
 			sd->status.friends[i].account_id = f_sd->status.account_id;
 			sd->status.friends[i].char_id = f_sd->status.char_id;
 			memcpy(sd->status.friends[i].name, f_sd->status.name, NAME_LENGTH);

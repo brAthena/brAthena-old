@@ -308,7 +308,7 @@ uint32 clif_getip(void);
 uint32 clif_refresh_ip(void);
 uint16 clif_getport(void);
 
-int clif_authok(struct map_session_data *sd); 
+void clif_authok(struct map_session_data *sd);
 void clif_authrefuse(int fd, uint8 error_code);
 void clif_authfail_fd(int fd, int type);
 void clif_charselectok(int id, uint8 ok);
