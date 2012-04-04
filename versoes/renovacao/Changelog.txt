@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1095 - 04/04/2012 [Protimus]
+	* Atualizado conforme rAthena 15832.
+
 	r1094 - 03/04/2012 [Protimus]
 	* Correções referentes à r965.
 	* Correções de envios anteriores, adição de códigos esquecidos.
