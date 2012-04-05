@@ -5801,12 +5801,7 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 		break;
 	case SC_ELECTRICSHOCKER:
 	case SC_BITE:
-		{
-			if( bl->type == BL_MOB )
-				tick -= 100*status->agi;
-			if( sd && type != SC_ELECTRICSHOCKER )
-				tick >>= 1;
-		}
+		tick -= 700 * (status->agi + status->vit) / 10;
 		break;
 	case SC_CRYSTALIZE:
 		tick -= (1000*(status->vit/10))+(status_get_lv(bl)/50);
@@ -9445,7 +9440,7 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 	case SC_ELECTRICSHOCKER:
 		if( --(sce->val4) >= 0 )
 		{
-			status_charge(bl, 0, status->max_sp/100 * sce->val1 );
+			status_charge(bl, 0, status->max_sp/20 * sce->val1 );
 			sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
 			return 0;
 		}

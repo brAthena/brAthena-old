@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1102 - 05/04/2012 [Protimus]
+	* Corrigida a habilidade Armadilha Energizada (RA_ELECTRICSHOCKER).
+	- A duração é reduzida por uma fórmula de status diferente.
+	- A drenagem de SP por segundos foi modificada.
+
 	r1101 - 05/04/2012 [Protimus]
 	* Corrigida a habilidade Cópia Explosiva (SC_FEINTBOMB).
 	- Fórmula atualizada conforme a oficial.

@@ -10313,7 +10313,6 @@ struct skill_unit_group* skill_unitsetting (struct block_list *src, short skilli
 		case HT_TALKIEBOX:
 		case HT_SKIDTRAP:
 		case MA_SKIDTRAP:
-		case RA_ELECTRICSHOCKER:
 		case RA_CLUSTERBOMB:
 		case RA_MAGENTATRAP:
 		case RA_COBALTTRAP:
@@ -10323,6 +10322,8 @@ struct skill_unit_group* skill_unitsetting (struct block_list *src, short skilli
 		case RA_ICEBOUNDTRAP:
 			val1 = 3500;
 			break;
+		case RA_ELECTRICSHOCKER:
+			val1 = 1000*skilllv;
 		case GS_DESPERADO:
 			val1 = abs(layout->dx[i]);
 			val2 = abs(layout->dy[i]);
