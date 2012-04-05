@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1098 - 04/04/2012 [RenatoUtsch]
+	* Corrigido bug gerado pela r1096 quando compilado com o Visual Studio no modo Release.
+	- Odeio mexer com .sln, sempre esqueço de fazer algo =P
+
 	r1097 - 04/04/2012 [RenatoUtsch]
 	* Otimizações no geral
 	- Limpeza de códigos não usados e otimizações quanto a gasto de memória
