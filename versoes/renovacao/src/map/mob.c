@@ -1083,14 +1083,13 @@ static int mob_ai_sub_hard_lootsearch(struct block_list *bl,va_list ap)
 
 static int mob_warpchase_sub(struct block_list *bl,va_list ap)
 {
-	struct mob_data* md;
 	struct block_list *target;
 	struct npc_data **target_nd;
 	struct npc_data *nd;
 	int *min_distance;
 	int cur_distance;
 
-	md=va_arg(ap,struct mob_data *);
+	va_arg(ap,struct mob_data *);
 	target= va_arg(ap, struct block_list*);
 	target_nd= va_arg(ap, struct npc_data**);
 	min_distance= va_arg(ap, int*);
@@ -1395,7 +1394,7 @@ static bool mob_ai_sub_hard(struct mob_data *md, unsigned int tick)
 			}
 		}
 		else
-		if( (abl = map_id2bl(md->attacked_id)) && (!tbl || mob_can_changetarget(md, abl, mode)) || (md->sc.count && md->sc.data[SC_CHAOS]) )
+		if( ((abl = map_id2bl(md->attacked_id)) && (!tbl || mob_can_changetarget(md, abl, mode))) || (md->sc.count && md->sc.data[SC_CHAOS]) )
 		{
 			if( md->bl.m != abl->m || abl->prev == NULL
 				|| (dist = distance_bl(&md->bl, abl)) >= MAX_MINCHASE // Attacker longer than visual area

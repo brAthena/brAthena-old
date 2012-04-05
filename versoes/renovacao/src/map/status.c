@@ -3322,10 +3322,13 @@ void status_calc_regen_rate(struct block_list *bl, struct regen_data *regen, str
 			)
 		|| sc->data[SC_MAXIMIZEPOWER] || sc->data[SC_OBLIVIONCURSE]
 	)
+	{
 		if(sc->data[SC_EXTREMITYFIST] && !sc->data[SC_DANCING] && !sc->data[SC_EXPLOSIONSPIRITS])
 			regen->rate.sp *= 50/100;
-	else //No natural SP regen
-		regen->flag &=~RGN_SP;
+		/// TODO: VER SE ESSE ELSE É DO IF(SC->DATA[SC_DANCING] OU SE É DO IF(SC->DATA[SC_EXTREMITYFIST. Coloquei os brackets em volta do 1º if temporariamente.
+		else //Sem regen de SP natural.
+			regen->flag &=~RGN_SP;
+	}
 
 	if(
 		sc->data[SC_TENSIONRELAX]
@@ -9417,7 +9420,9 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 			flag = !sc->data[type];
 			map_freeblock_unlock();
 			if( !flag )
+			{
 				sc_timer_next(3000 + tick, status_change_timer, bl->id, data);
+			}
 			return 0;
 		}
 		break;
@@ -9471,8 +9476,9 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 			clif_damage(bl,bl,tick,status_get_amotion(bl),0,100,0,0,0);
 			status_fix_damage(NULL,bl,100,0);
 			if( sc->data[type] ) {
-				if( sce->val4 == 10 )
-				sc_timer_next(3000+tick,status_change_timer,bl->id,data);
+				if( sce->val4 == 10 ) {
+					sc_timer_next(3000+tick,status_change_timer,bl->id,data);
+				}
 				sc_start(bl,SC_STUN,100,sce->val1,300000);
 			}
 			map_freeblock_unlock();
@@ -9495,8 +9501,9 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 			status_zap(bl,damage,0);
 			flag = !sc->data[type];
 			map_freeblock_unlock();
-			if( !flag )
+			if( !flag ) {
 				sc_timer_next(3000 + tick, status_change_timer, bl->id, data );
+			}
 			return 0;
 		}
 		break;
@@ -9712,7 +9719,9 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 			map_freeblock_unlock();
 			status_heal(src, damage, 0, 0);
 			clif_skill_nodamage(src, bl, GN_BLOOD_SUCKER, 0, 1);
-			if (!flag) sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
+			if (!flag) {
+				sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
+			}
 			return 0;
 		}
 		break;

@@ -3267,7 +3267,7 @@ void char_delete2_cancel_ack(int fd, int char_id, uint32 result)
 
 static void char_delete2_req(int fd, struct char_session_data* sd)
 {// CH: <0827>.W <char id>.L
-	int char_id, i, guild_id, party_id;
+	int char_id, i;
 	char* data;
 	time_t delete_date;
 
@@ -3287,8 +3287,8 @@ static void char_delete2_req(int fd, struct char_session_data* sd)
 		return;
 	}
 
-	Sql_GetData(sql_handle, 0, &data, NULL); guild_id = atoi(data);
-	Sql_GetData(sql_handle, 1, &data, NULL); party_id = atoi(data);
+	Sql_GetData(sql_handle, 0, &data, NULL); //guild_id = atoi(data);
+	Sql_GetData(sql_handle, 1, &data, NULL); //party_id = atoi(data);
 	Sql_GetData(sql_handle, 2, &data, NULL); delete_date = strtoul(data, NULL, 10);
 
 	if( delete_date )

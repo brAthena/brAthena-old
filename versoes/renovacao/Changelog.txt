@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1097 - 04/04/2012 [RenatoUtsch]
+	* Otimizações no geral
+	- Limpeza de códigos não usados e otimizações quanto a gasto de memória
+	- Melhorada um pouco a baixa performance com as funções a*() do malloc.h...
+
 	r1096 - 04/04/2012 [RenatoUtsch]
 	* Corrigidos bugs da libConfig no windows
 	- Necessários testes no linux para ver se algum bug apareceu com o autotools, mas com o CMake funfa 100%...

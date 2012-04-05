@@ -12,6 +12,10 @@
 
 ////////////// Memory Libraries //////////////////
 
+#if (defined(MEMWATCH) || defined(DMALLOC) || defined(GCOLLECT)) && !defined(USE_MEMMGR)
+#	define USE_MEMMGR
+#endif
+
 #if defined(MEMWATCH)
 
 #	include <string.h> 
@@ -56,65 +60,145 @@
 #	define MEMORY_VERIFY(ptr)	(GC_base(ptr) != NULL)
 #	define MEMORY_CHECK()	GC_gcollect()
 
-#else
+#elif defined(USE_MEMMGR) // global memory manager
 
-#	define MALLOC(n,file,line,func)	malloc(n)
+#	include <string.h>
+#	include <stdlib.h>
+#	define MALLOC(n,file,line,func)		malloc((n))
 #	define CALLOC(m,n,file,line,func)	calloc((m),(n))
 #	define REALLOC(p,n,file,line,func)	realloc((p),(n))
-#	define STRDUP(p,file,line,func)	strdup(p)
-#	define FREE(p,file,line,func)		free(p)
+#	define STRDUP(p,file,line,func)		strdup((p))
+#	define FREE(p,file,line,func)		free((p))
 #	define MEMORY_USAGE()	0
-#	define MEMORY_VERIFY(ptr)	true
+#	define MEMORY_VERIFY(ptr)	ptr ? true : true // Com isso o gcc não vai lançar warnings sobre variável não usada.
+#	define MEMORY_CHECK()
+
+#else
+
+#	define MALLOC(n)	malloc((n))
+#	define CALLOC(m,n)	calloc((m),(n))
+#	define REALLOC(p,n)	realloc((p),(n))
+#	define STRDUP(p)	strdup((p))
+#	define FREE(p)		free((p))
+#	define MEMORY_USAGE()	0
+#	define MEMORY_VERIFY(ptr)	ptr ? true : true // Com isso o gcc não vai lançar warnings sobre variável não usada.
 #	define MEMORY_CHECK()
 
 #endif
 
+#ifdef USE_MEMMGR
 void* aMalloc_(size_t size, const char *file, int line, const char *func)
+#else
+void* aMalloc_(size_t size)
+#endif
 {
+#ifdef USE_MEMMGR
 	void *ret = MALLOC(size, file, line, func);
+#else
+	void *ret = MALLOC(size);
+#endif
+	
 	// ShowMessage("%s:%d: in func %s: aMalloc %d\n",file,line,func,size);
 	if (ret == NULL){
+#ifdef USE_MEMMGR
 		ShowFatalError("%s:%d: na funcao %s: erro aMalloc sem memoria!\n",file,line,func);
+#else
+		ShowFatalError("aMalloc sem memoria!\n");
+#endif
 		exit(EXIT_FAILURE);
 	}
 
 	return ret;
 }
+
+#ifdef USE_MEMMGR
 void* aCalloc_(size_t num, size_t size, const char *file, int line, const char *func)
+#else
+void* aCalloc_(size_t num, size_t size)
+#endif
 {
+#ifdef USE_MEMMGR
 	void *ret = CALLOC(num, size, file, line, func);
+#else
+	void *ret = CALLOC(num, size);
+#endif
+
 	// ShowMessage("%s:%d: in func %s: aCalloc %d %d\n",file,line,func,num,size);
-	if (ret == NULL){
+	if (ret == NULL)
+	{
+#ifdef USE_MEMMGR
 		ShowFatalError("%s:%d: na funcao %s: erro aCalloc sem memoria!\n", file, line, func);
+#else
+		ShowFatalError("aCalloc sem memoria!\n");
+#endif
 		exit(EXIT_FAILURE);
 	}
 	return ret;
 }
+
+#ifdef USE_MEMMGR
 void* aRealloc_(void *p, size_t size, const char *file, int line, const char *func)
+#else
+void* aRealloc_(void *p, size_t size)
+#endif
 {
+#ifdef USE_MEMMGR
 	void *ret = REALLOC(p, size, file, line, func);
+#else
+	void *ret = REALLOC(p, size);
+#endif
+	
 	// ShowMessage("%s:%d: in func %s: aRealloc %p %d\n",file,line,func,p,size);
-	if (ret == NULL){
+	if (ret == NULL)
+	{
+#ifdef USE_MEMMGR
 		ShowFatalError("%s:%d: na funcao %s: erro aRealloc sem memoria!\n",file,line,func);
+#else
+		ShowFatalError("aRealloc sem memoria!\n");
+#endif
 		exit(EXIT_FAILURE);
 	}
 	return ret;
 }
+
+#ifdef USE_MEMMGR
 char* aStrdup_(const char *p, const char *file, int line, const char *func)
+#else
+char* aStrdup_(const char *p)
+#endif
 {
+#ifdef USE_MEMMGR
 	char *ret = STRDUP(p, file, line, func);
+#else
+	char *ret = STRDUP(p);
+#endif
+
 	// ShowMessage("%s:%d: in func %s: aStrdup %p\n",file,line,func,p);
-	if (ret == NULL){
+	if (ret == NULL)
+	{
+#ifdef USE_MEMMGR
 		ShowFatalError("%s:%d: na funcao %s: erro aStrdup sem memoria!\n", file, line, func);
+#else
+		ShowFatalError("aStrdup sem memória!\n");
+#endif
 		exit(EXIT_FAILURE);
 	}
 	return ret;
 }
+
+#ifdef USE_MEMMGR
 void aFree_(void *p, const char *file, int line, const char *func)
+#else
+void aFree_(void *p)
+#endif
 {
 	// ShowMessage("%s:%d: in func %s: aFree %p\n",file,line,func,p);
-	if (p)
+	if(p)
+#ifdef USE_MEMMGR
 		FREE(p, file, line, func);
+#else
+		FREE(p);
+#endif
 
 	p = NULL;
 }

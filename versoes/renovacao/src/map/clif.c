@@ -12632,11 +12632,10 @@ void clif_parse_FriendsListAdd(int fd, struct map_session_data *sd)
 void clif_parse_FriendsListReply(int fd, struct map_session_data *sd)
 {
 	struct map_session_data *f_sd;
-	int char_id, account_id;
+	int account_id;
 	char reply;
 
 	account_id = RFIFOL(fd,2);
-	char_id = RFIFOL(fd,6);
 	reply = RFIFOB(fd,10);
 
 	if( sd->bl.id == account_id )

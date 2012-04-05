@@ -96,12 +96,12 @@ int pc_class2idx(int class_) {
 	return class_;
 }
 
-int inline pc_get_group_id(struct map_session_data *sd)
+inline int pc_get_group_id(struct map_session_data *sd)
 {
 	return sd->group_id;
 }
 
-int inline pc_get_group_level(struct map_session_data *sd)
+inline int pc_get_group_level(struct map_session_data *sd)
 {
 	return pc_group_id2level(pc_get_group_id(sd));
 }
@@ -682,7 +682,7 @@ int pc_equippoint(struct map_session_data *sd,int n)
 	if(sd->inventory_data[n]->look == W_DAGGER	||
 		sd->inventory_data[n]->look == W_1HSWORD ||
 		sd->inventory_data[n]->look == W_1HAXE) {
-		if(ep == EQP_HAND_R && (pc_checkskill(sd,AS_LEFT) > 0 || (sd->class_&MAPID_UPPERMASK) == MAPID_ASSASSIN) ||
+		if((ep == EQP_HAND_R && (pc_checkskill(sd,AS_LEFT) > 0 || (sd->class_&MAPID_UPPERMASK) == MAPID_ASSASSIN)) ||
 		(pc_checkskill(sd,KO_LEFT) > 0 || (sd->class_&MAPID_UPPERMASK) == MAPID_KAGEROUOBORO))
 			return EQP_ARMS;
 	}
@@ -3937,7 +3937,7 @@ int pc_isUseitem(struct map_session_data *sd,int n)
 	if( !item->script ) //if it has no script, you can't really consume it!
 		return 0;
 
-	if( (sd->status.class_ != 4054 && sd->status.class_ != 4060 && sd->status.class_ != 4096) && (nameid >= 12388 && nameid <= 12390 || nameid >= 12725 && nameid <= 12738) )
+	if( (sd->status.class_ != 4054 && sd->status.class_ != 4060 && sd->status.class_ != 4096) && ((nameid >= 12388 && nameid <= 12390) || (nameid >= 12725 && nameid <= 12738)) )
 		return 0;
 
 	switch( nameid )
@@ -7245,10 +7245,8 @@ int pc_changelook(struct map_session_data *sd,int type,int val)
 int pc_setoption(struct map_session_data *sd,int type)
 {
 	int p_type, new_look = 0;
-	struct status_data *status;
 	nullpo_retr(0, sd);
 	p_type = sd->sc.option;
-	status = status_get_status_data(&sd->bl);
 
 	if( p_type&OPTION_MADO && p_type&OPTION_CART)
 		type |= (p_type&OPTION_CART);

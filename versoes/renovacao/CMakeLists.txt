@@ -128,6 +128,7 @@ endif()
 if( "${CMAKE_C_COMPILER_ID}" STREQUAL "GNU" )
 	set_property( CACHE GLOBAL_DEFINITIONS PROPERTY VALUE
 		"${GLOBAL_DEFINITIONS} -Wno-int-to-pointer-cast -Wno-pointer-to-int-cast"
+		#"${GLOBAL_DEFINITIONS} -Wall -Wextra -Werror -Wint-to-pointer-cast -Wpointer-to-int-cast -Wno-type-limits -Wno-sign-compare -Wno-unused-parameter -Wno-pointer-sign -Wno-switch"
 	)
 endif()
 
@@ -152,9 +153,9 @@ else()
 	# Debug version
 	message( STATUS "Checking the build configuration to use - Debug" )
 	set( CMAKE_BUILD_TYPE "Debug" )
-	set_property( CACHE GLOBAL_DEFINITIONS PROPERTY VALUE
-		"${GLOBAL_DEFINITIONS} -DDEBUG"
-	)
+	#set_property( CACHE GLOBAL_DEFINITIONS PROPERTY VALUE
+	#	"${GLOBAL_DEFINITIONS} -DDEBUG"
+	#)
 	
 	# Programming tests using MinGW and GCC...
 	if( "${CMAKE_C_COMPILER_ID}" STREQUAL "GNU" )

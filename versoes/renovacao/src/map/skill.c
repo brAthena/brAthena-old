@@ -141,8 +141,6 @@ int skill_get_index( int id )
 	else
 	if( id >= HM_SKILLBASE )
 		id = HM_SKILLRANGEMIN + id - HM_SKILLBASE;
-	else
-		; // identity
 
 	// validate result
 	if( id <= 0 || id >= MAX_SKILL_DB )
@@ -352,7 +350,6 @@ int skill_calc_heal(struct block_list *src, struct block_list *target, int skill
 	struct map_session_data *sd = BL_CAST(BL_PC, src);
 	struct map_session_data *tsd = BL_CAST(BL_PC, target);
 	struct status_change* sc = status_get_sc(target);
-	struct status_data *status = status_get_status_data(src);
 
 	skill = 0;
 	if( sd && ((temp_skill = pc_checkskill(sd, HP_MEDITATIO)) > 0) )
@@ -3163,7 +3160,6 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	struct map_session_data *sd = NULL, *tsd = NULL;
 	struct status_data *tstatus;
 	struct status_change *sc, *tsc;
-	int s_job_level = 50;
 
 	if (skillid > 0 && skilllv <= 0) return 0;
 
@@ -8797,7 +8793,7 @@ int skill_castend_id(int tid, unsigned int tick, int id, intptr_t data)
 
 		map_freeblock_lock();
 
-		if(sc=status_get_sc(src)){
+		if((sc = status_get_sc(src))){
 			if(sc->data[SC_CAMOUFLAGE])
 				status_change_end(src,SC_CAMOUFLAGE,-1);
 			if(sc->data[SC_CURSEDCIRCLE_ATKER]) {
@@ -9495,7 +9491,7 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 		break;
 
 	case AB_EPICLESIS:
-		if( sg = skill_unitsetting(src, skillid, skilllv, x, y, 0) )
+		if( (sg = skill_unitsetting(src, skillid, skilllv, x, y, 0)) )
 		{
 			i = sg->unit->range;
 			map_foreachinarea(skill_area_sub, src->m, x - i, y - i, x + i, y + i, BL_CHAR, src, ALL_RESURRECTION, 1, tick, flag|BCT_NOENEMY|1,skill_castend_nodamage_id);
@@ -9743,7 +9739,7 @@ int skill_castend_map (struct map_session_data *sd, short skill_num, const char 
 		sd->sc.data[SC_BERSERK] ||
 		sd->sc.data[SC_BASILICA] ||
 		sd->sc.data[SC_DEATHBOUND] ||
-		sd->sc.data[SC_DANCING] && skill_num < RK_ENCHANTBLADE && !pc_checkskill(sd, WM_LESSON) ||
+		(sd->sc.data[SC_DANCING] && skill_num < RK_ENCHANTBLADE && !pc_checkskill(sd, WM_LESSON)) ||
 		sd->sc.data[SC_WHITEIMPRISON] ||
 		(sd->sc.data[SC_STASIS] && skill_stasis_check(&sd->bl, sd->sc.data[SC_STASIS]->val2, skill_num)) ||
 		sd->sc.data[SC_MARIONETTE] ||
@@ -9947,28 +9943,6 @@ static bool skill_dance_switch(struct skill_unit* unit, int flag)
 	}
 
 	return true;
-}
-
-/**
- * Upon Ice Wall cast it checks all nearby mobs to find any who may be blocked by the IW
- **/
-static int skill_icewall_block(struct block_list *bl,va_list ap) {
-	struct block_list *target = NULL;
-	struct mob_data *md = ((TBL_MOB*)bl);
- 
-	nullpo_ret(bl);
-	nullpo_ret(md);
-	if( !md->target_id )
-		return 0;
-	nullpo_ret( ( target = map_id2bl(md->target_id) ) );
-
-	if( path_search_long(NULL,bl->m,bl->x,bl->y,target->x,target->y,CELL_CHKICEWALL) )
-		return 0;
-
-	if( !check_distance_bl(bl, target, status_get_range(bl) ) )
-		mob_unlocktarget(md,gettick());
-
-	return 0;
 }
 
 /*==========================================
@@ -12680,10 +12654,12 @@ int skill_consume_requirement( struct map_session_data *sd, short skill, short l
 			status_zap(&sd->bl, req.hp, req.sp);
 
 		if(req.spiritball > 0)
+		{
 			if( skill == LG_RAGEBURST )
 				pc_delrageball(sd,req.spiritball);
 			else
 				pc_delspiritball(sd,req.spiritball,0);
+		}
 
 		if(req.zeny > 0)
 		{
@@ -12909,7 +12885,7 @@ struct skill_condition skill_get_requirement(struct map_session_data* sd, short 
 				req.sp -= req.sp*25/100; //FIXME: Need real data. this is a custom value.
 			break;
 		case MO_BODYRELOCATION:
-			if(sc && (sc->data[SC_EXPLOSIONSPIRITS] || sc->data[SC_ANKLE] && battle_config.block_relocation))
+			if((sc && sc->data[SC_EXPLOSIONSPIRITS]) || (sc->data[SC_ANKLE] && battle_config.block_relocation))
 				req.spiritball = 0;
 			break;
 		case MO_EXTREMITYFIST:
@@ -13848,11 +13824,10 @@ static int skill_cell_overlap(struct block_list *bl, va_list ap)
 	int skillid;
 	int *alive;
 	struct skill_unit *unit;
-	struct block_list *src;
 
 	skillid = va_arg(ap,int);
 	alive = va_arg(ap,int *);
-	src = va_arg(ap,struct block_list *);
+	va_arg(ap,struct block_list *);
 	unit = (struct skill_unit *)bl;
 
 	if (unit == NULL || unit->group == NULL || (*alive) == 0)
@@ -14109,6 +14084,7 @@ bool skill_check_camouflage(struct block_list *bl, struct status_change_entry *s
 	}
 
 	if( sce && !wall )
+	{
 			if( sce->val1 < 3 )
 				status_change_end(bl, SC_CAMOUFLAGE, -1);
 			else if( sce->val3&1 )
@@ -14116,6 +14092,7 @@ bool skill_check_camouflage(struct block_list *bl, struct status_change_entry *s
 				sce->val3&=~1;
 				status_calc_bl(bl,SCB_SPEED);
 			}
+	}
 
 	return wall;
 }

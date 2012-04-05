@@ -254,9 +254,9 @@ const char* error_msg(void)
 	return buf;
 }
 
-/*======================================
- *	CORE : Default processing functions
- *--------------------------------------*/
+/*=========================================
+ *	CORE : Processamento das funções padrão
+ *-----------------------------------------*/
 int null_recv(int fd) { return 0; }
 int null_send(int fd) { return 0; }
 int null_parse(int fd) { return 0; }
@@ -270,7 +270,7 @@ void set_defaultparse(ParseFunc defaultparse)
 
 
 /*======================================
- *	CORE : Socket options
+ *	CORE : Opções de socket
  *--------------------------------------*/
 void set_nonblocking(int fd, unsigned long yes)
 {
@@ -1386,7 +1386,7 @@ void send_shortlist_add_fd(int fd)
 
 	if( send_shortlist_count >= ARRAYLENGTH(send_shortlist_array) )
 	{
-		ShowDebug("send_shortlist_add_fd: shortlist is full, ignoring... (fd=%d shortlist.count=%d shortlist.length=%d)\n", fd, send_shortlist_count, ARRAYLENGTH(send_shortlist_array));
+		ShowDebug("send_shortlist_add_fd: shortlist está cheio, ignorando... (fd=%d shortlist.count=%d shortlist.length=%d)\n", fd, send_shortlist_count, ARRAYLENGTH(send_shortlist_array));
 		return;
 	}
 

@@ -2949,19 +2949,19 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 	{
 		if (wd.damage2)
 		{
-			if (skill = pc_checkskill(sd,AS_LEFT))
+			if ((skill = pc_checkskill(sd,AS_LEFT)))
 				wd.damage2 = wd.damage2 * (3 + skill)/10;
 			else
-			if (skill = pc_checkskill(sd,KO_LEFT))
+			if ((skill = pc_checkskill(sd,KO_LEFT)))
 				wd.damage2 = wd.damage2 * (5 + skill)/10;
 			if(wd.damage2 < 1) wd.damage2 = 1;
 		}
 		if(flag.rh && flag.lh && wd.damage)
 		{
-			if (skill = pc_checkskill(sd,AS_RIGHT))
+			if ((skill = pc_checkskill(sd,AS_RIGHT)))
 				wd.damage = wd.damage * (5 + skill)/10;
 			else
-			if (skill = pc_checkskill(sd,KO_RIGHT))
+			if ((skill = pc_checkskill(sd,KO_RIGHT)))
 				wd.damage = wd.damage * (7 + skill)/10;
 			if(wd.damage < 1) wd.damage = 1;
 		} else if(sd->status.weapon == W_KATAR && !skill_num)
@@ -4100,8 +4100,7 @@ int battle_calc_return_damage(struct block_list *src, struct block_list *bl, int
 		}
 		if( sc && sc->data[SC_DEATHBOUND] && !is_boss(src) )
 		{
-			int dir = map_calc_dir(bl,src->x,src->y),
-				t_dir = unit_getdir(bl), rd1 = 0;
+			int rd1 = 0;
 			rd1 = min((*damage),max_damage) * sc->data[SC_DEATHBOUND]->val2 / 100;
 			(*damage) = rd1 / 2;
 			clif_skill_damage(src,bl,gettick(), status_get_amotion(src), 0, -30000, 1, RK_DEATHBOUND, sc->data[SC_DEATHBOUND]->val1,6);
@@ -4354,15 +4353,19 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 		if (sc->data[SC_MAGICALATTACK])
 			//FIXME: invalid return type!
 			return (damage_lv)skill_attack(BF_MAGIC,src,src,target,NPC_MAGICALATTACK,sc->data[SC_MAGICALATTACK]->val1,tick,0);
-		if(sc->data[SC_GT_ENERGYGAIN]) {
+		if(sc->data[SC_GT_ENERGYGAIN])
+		{
 			int duration = skill_get_time(MO_CALLSPIRITS, sc->data[SC_GT_ENERGYGAIN]->val1);
 			if( sd && rand()%100 < 10 + 5 * sc->data[SC_GT_ENERGYGAIN]->val1)
+			{
 				if(!sd->sc.data[SC_RAISINGDRAGON])
 					pc_addspiritball(sd, duration, sc->data[SC_GT_ENERGYGAIN]->val1);
-				else {
+				else
+				{
 					short rd_lvl=sd->sc.data[SC_RAISINGDRAGON]->val1;
 					pc_addspiritball(sd, duration, sc->data[SC_GT_ENERGYGAIN]->val1 + rd_lvl);
 				}
+			}
 		}
 	}
 

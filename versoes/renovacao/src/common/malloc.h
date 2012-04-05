@@ -33,11 +33,11 @@
 #undef LOG_MEMMGR
 #endif
 
-#	define aMalloc(n)		_mmalloc(n,ALC_MARK)
-#	define aCalloc(m,n)		_mcalloc(m,n,ALC_MARK)
-#	define aRealloc(p,n)	_mrealloc(p,n,ALC_MARK)
-#	define aStrdup(p)		_mstrdup(p,ALC_MARK)
-#	define aFree(p)			_mfree(p,ALC_MARK)
+#	define aMalloc(n)		_mmalloc((n),ALC_MARK)
+#	define aCalloc(m,n)		_mcalloc((m),(n),ALC_MARK)
+#	define aRealloc(p,n)	_mrealloc((p),(n),ALC_MARK)
+#	define aStrdup(p)		_mstrdup((p),ALC_MARK)
+#	define aFree(p)			_mfree((p),ALC_MARK)
 
 	void* _mmalloc	(size_t size, const char *file, int line, const char *func);
 	void* _mcalloc	(size_t num, size_t size, const char *file, int line, const char *func);
@@ -47,17 +47,17 @@
 
 #else
 
-#	define aMalloc(n)		aMalloc_((n),ALC_MARK)
-#	define aCalloc(m,n)		aCalloc_((m),(n),ALC_MARK)
-#	define aRealloc(p,n)	aRealloc_(p,n,ALC_MARK)
-#	define aStrdup(p)		aStrdup_(p,ALC_MARK)
-#	define aFree(p)			aFree_(p,ALC_MARK)
+#	define aMalloc(n)		aMalloc_((n))
+#	define aCalloc(m,n)		aCalloc_((m),(n))
+#	define aRealloc(p,n)	aRealloc_((p),(n))
+#	define aStrdup(p)		aStrdup_((p))
+#	define aFree(p)			aFree_((p))
 
-	void* aMalloc_	(size_t size, const char *file, int line, const char *func);
-	void* aCalloc_	(size_t num, size_t size, const char *file, int line, const char *func);
-	void* aRealloc_	(void *p, size_t size, const char *file, int line, const char *func);
-	char* aStrdup_	(const char *p, const char *file, int line, const char *func);
-	void  aFree_	(void *p, const char *file, int line, const char *func);
+	void* aMalloc_	(size_t size);
+	void* aCalloc_	(size_t num, size_t size);
+	void* aRealloc_	(void *p, size_t size);
+	char* aStrdup_	(const char *p);
+	void  aFree_	(void *p);
 
 #endif
 

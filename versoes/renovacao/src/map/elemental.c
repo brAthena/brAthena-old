@@ -566,7 +566,7 @@ static int elemental_ai_sub_timer_activesearch(struct block_list *bl, va_list ap
 static int elemental_ai_sub_timer(struct elemental_data *ed, struct map_session_data *sd, unsigned int tick)
 {
 	struct block_list *target = NULL;
-	int master_dist, view_range, mode;
+	int master_dist, mode;
 
 	nullpo_ret(ed);
 	nullpo_ret(sd);
@@ -587,11 +587,6 @@ static int elemental_ai_sub_timer(struct elemental_data *ed, struct map_session_
 
 	if(ed->ud.walkpath.path_pos < ed->ud.walkpath.path_len && ed->ud.target == sd->bl.id)
 		return 0;
-
-	if( ed->sc.count && ed->sc.data[SC_BLIND] )
-		view_range = 3;
-	else
-		view_range = ed->db->range2;
 
 	mode = status_get_mode(&ed->bl);
 
