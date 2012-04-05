@@ -2037,7 +2037,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio = 120*skill_lv;
 					break;
 				case RA_WUGBITE:
-					skillratio += 50*skill_lv;
+					skillratio += 300 + 200*skill_lv;
+					if(skill_lv > 4)
+						skillratio += skillratio + 100;
 					break;
 				case RA_ARROWSTORM:
 					skillratio += 80*skill_lv + 900;

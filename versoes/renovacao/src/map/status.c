@@ -5800,7 +5800,6 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 		sc_def = status->int_*4/5;
 		break;
 	case SC_ELECTRICSHOCKER:
-	case SC_BITE:
 		tick -= 700 * (status->agi + status->vit) / 10;
 		break;
 	case SC_CRYSTALIZE:

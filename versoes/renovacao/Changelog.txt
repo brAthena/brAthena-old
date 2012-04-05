@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1103 - 05/04/2012 [Protimus]
+	* Corrigida a habilidade Mordida Feroz (RA_WUGBITE).
+	- Fórmula atualizada conforme a oficial.
+	- A duração não é mais reduzida por status.
+	- Necessário trabalhar no código de sucesso da imobilização.
+
 	r1102 - 05/04/2012 [Protimus]
 	* Corrigida a habilidade Armadilha Energizada (RA_ELECTRICSHOCKER).
 	- A duração é reduzida por uma fórmula de status diferente.
