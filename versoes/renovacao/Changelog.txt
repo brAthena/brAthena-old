@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1099 - 05/04/2012 [RenatoUtsch]
+	* Corrigido vazamento de memória que criei sem querer na r1097.
+
 	r1098 - 04/04/2012 [RenatoUtsch]
 	* Corrigido bug gerado pela r1096 quando compilado com o Visual Studio no modo Release.
 	- Odeio mexer com .sln, sempre esqueço de fazer algo =P
