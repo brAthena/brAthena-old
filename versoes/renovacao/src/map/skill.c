@@ -6125,6 +6125,13 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 				case SC_STEALTHFIELD:			case SC_GIANTGROWTH:			case SC_MILLENNIUMSHIELD:
 				case SC_REFRESH:				case SC_STONEHARDSKIN:			case SC_VITALITYACTIVATION:
 				case SC_FIGHTINGSPIRIT:			case SC_ABUNDANCE:				case SC_READING_SB:
+				case SC_EDP:					case SC_SEVENWIND:				case SC_MADNESSCANCEL:
+				case SC_ADJUSTMENT:				case SC_GATLINGFEVER:			case SC_INCREASING:
+				case SC_DUPLELIGHT:				case SC_EXPIATIO:				case SC_LAUDAAGNUS:
+				case SC_LAUDARAMUS:				case SC_REFLECTDAMAGE:			case SC_INSPIRATION:
+				case SC_EXEEDBREAK:				case SC_FORCEOFVANGUARD:		case SC_BANDING:
+				case SC_RAISINGDRAGON:			case SC_GT_ENERGYGAIN:			case SC_GT_CHANGE:
+				case SC_GT_REVITALIZE:			case SC__SHADOWFORM:
 					continue;
 				case SC_ASSUMPTIO:
 					if( bl->type == BL_MOB )

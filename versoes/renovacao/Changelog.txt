@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1100 - 05/04/2012 [Protimus]
+	* Corrigido problema com elemento de ataque de algumas habilidades do Sábio.
+	* Corrigida a habilidade Desencantar (SA_DISPELL).
+	- Adicionada lista de habilidades que não devem ser removidas com seu uso.
+
 	r1099 - 05/04/2012 [RenatoUtsch]
 	* Corrigido vazamento de memória que criei sem querer na r1097.
 
