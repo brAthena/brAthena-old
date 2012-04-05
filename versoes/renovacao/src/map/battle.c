@@ -2184,7 +2184,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 						skillratio = skillratio*s_base_level/120;
 					break;
 				case SC_FEINTBOMB:
-					skillratio += 100 + 100 * skill_lv;
+					skillratio += (skill_lv + 1) * (sstatus->dex / 2) * (sd->status.job_level / 10) * (s_base_level / 120);
 					break;
 				case LG_MOONSLASHER:
 					skillratio += (120 * skill_lv + (pc_checkskill(sd,LG_OVERBRAND) * 80)) * s_base_level / 100;

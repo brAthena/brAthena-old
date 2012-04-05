@@ -9559,13 +9559,14 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 		flag|=1;
 		map_foreachinrange(skill_area_sub, src, skill_get_splash(skillid,skilllv),BL_CHAR, src, skillid, skilllv, tick, flag|BCT_ENEMY, skill_castend_damage_id);
 		break;
-
+		
 	case SC_FEINTBOMB:
 		clif_skill_nodamage(src,src,skillid,skilllv,1);
 		skill_unitsetting(src,skillid,skilllv,x,y,0);
-		skill_blown(src,src,6,unit_getdir(src),0);
+		skill_blown(src,src,skilllv*3,unit_getdir(src),0);
+		sc_start(src,SC_HIDING,100,pc_checkskill(sd,TF_HIDING),pc_checkskill(sd,TF_HIDING)*30000);
 		break;
-
+		
 	case LG_BANDING:
 		if( sc && sc->data[SC_BANDING] )
 			status_change_end(src,SC_BANDING,-1);

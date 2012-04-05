@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1101 - 05/04/2012 [Protimus]
+	* Corrigida a habilidade Cópia Explosiva (SC_FEINTBOMB).
+	- Fórmula atualizada conforme a oficial.
+	- Agora existe a chance de executar a habilidade Esconderijo (TF_HIDING).
+	- As células para empurrar para trás são de acordo com nível da habilidade.
+
 	r1100 - 05/04/2012 [Protimus]
 	* Corrigido problema com elemento de ataque de algumas habilidades do Sábio.
 	* Corrigida a habilidade Desencantar (SA_DISPELL).
