@@ -2242,7 +2242,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					break;
 				case LG_RAGEBURST:
 					if( sd && sd->rageball_old )
-						skillratio += -100 + (sstatus->batk + sstatus->watk) * sd->rageball_old * 2 * s_base_level/100 + ((sstatus->max_hp - sstatus->hp)/33);
+						skillratio = ((sd->rageball_old * 200) + (sstatus->max_hp - sstatus->hp)) * s_base_level /100;
 					break;
 				case GN_CART_TORNADO:
 					skillratio += 50*skill_lv - 100;

@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1107 - 06/04/2012 [Protimus]
+	* Corrigida a habilidade Retribuição da Vanguarda (LG_RAGEBURST).
+	- Fórmula atualizada conforme a oficial.
+	* Corrigido ataque do Sentinela ao estar com um Warg.
+
 	r1106 - 06/04/2012 [Protimus]
 	* Corrigidas habilidades de guilda.
 	* Corrigido erro do envio anterior.
