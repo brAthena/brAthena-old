@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1109 - 06/04/2012 [Protimus]
+	* Atualizado arquivos de configuração conforme autoconf 2.63.
+
 	r1108 - 06/04/2012 [Protimus]
 	* Corrigida a habilidade Forma Etérea (SC_INVISIBILITY).
 	- Não pode ser revelada por habilidades, apenas danos.
