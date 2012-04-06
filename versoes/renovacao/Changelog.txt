@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1108 - 06/04/2012 [Protimus]
+	* Corrigida a habilidade Forma Etérea (SC_INVISIBILITY).
+	- Não pode ser revelada por habilidades, apenas danos.
+
 	r1107 - 06/04/2012 [Protimus]
 	* Corrigida a habilidade Retribuição da Vanguarda (LG_RAGEBURST).
 	- Fórmula atualizada conforme a oficial.

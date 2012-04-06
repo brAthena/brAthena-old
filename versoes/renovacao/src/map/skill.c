@@ -7925,13 +7925,12 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case SC_BODYPAINT:
 		if( flag&1 )
 		{
-			if( tsc && (tsc->data[SC_HIDING] || tsc->data[SC_CLOAKING] || tsc->data[SC_CHASEWALK] || tsc->data[SC_CLOAKINGEXCEED] || tsc->data[SC__INVISIBILITY]) )
+			if( tsc && (tsc->data[SC_HIDING] || tsc->data[SC_CLOAKING] || tsc->data[SC_CHASEWALK] || tsc->data[SC_CLOAKINGEXCEED]) )
 			{
 				status_change_end(bl, SC_HIDING, -1);
 				status_change_end(bl, SC_CLOAKING, -1);
 				status_change_end(bl, SC_CHASEWALK, -1);
 				status_change_end(bl, SC_CLOAKINGEXCEED, -1);
-				status_change_end(bl, SC__INVISIBILITY, -1);
 
 				sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv));
 				sc_start(bl,SC_BLIND,53 + 2 * skilllv,skilllv,skill_get_time(skillid,skilllv));

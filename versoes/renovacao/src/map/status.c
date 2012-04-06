@@ -9852,18 +9852,16 @@ int status_change_timer_sub(struct block_list* bl, va_list ap)
 		status_change_end(bl, SC_CLOAKING, INVALID_TIMER);
 		status_change_end(bl, SC_CAMOUFLAGE, INVALID_TIMER);
 		status_change_end(bl, SC_CLOAKINGEXCEED, INVALID_TIMER);
-		status_change_end(bl, SC__INVISIBILITY, INVALID_TIMER);
 		status_change_end(bl, SC__SHADOWFORM, INVALID_TIMER);
 		break;
 	case SC_RUWACH:	/* ƒ‹ƒAƒt */
 		if (tsc && (tsc->data[SC_HIDING] || tsc->data[SC_YAMIKUMO] || tsc->data[SC_CLOAKING] || tsc->data[SC_CAMOUFLAGE] ||
-		tsc->data[SC_CLOAKINGEXCEED] || tsc->data[SC__INVISIBILITY] || tsc->data[SC__SHADOWFORM])) {
+		tsc->data[SC_CLOAKINGEXCEED] || tsc->data[SC__SHADOWFORM])) {
 			status_change_end(bl, SC_HIDING, INVALID_TIMER);
 			status_change_end(bl, SC_YAMIKUMO, INVALID_TIMER);
 			status_change_end(bl, SC_CLOAKING, INVALID_TIMER);
 			status_change_end(bl, SC_CAMOUFLAGE, INVALID_TIMER);
 			status_change_end(bl, SC_CLOAKINGEXCEED, INVALID_TIMER);
-			status_change_end(bl, SC__INVISIBILITY, INVALID_TIMER);
 			status_change_end(bl, SC__SHADOWFORM, INVALID_TIMER);
 			if(battle_check_target( src, bl, BCT_ENEMY ) > 0)
 				skill_attack(BF_MAGIC,src,src,bl,AL_RUWACH,1,tick,0);
