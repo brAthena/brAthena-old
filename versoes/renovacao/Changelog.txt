@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1106 - 06/04/2012 [Protimus]
+	* Corrigidas habilidades de guilda.
+	* Corrigido erro do envio anterior.
+
 	r1105 - 05/04/2012 [Protimus]
 	* Corrigido problema ao utilizar logs em SQL.
 
