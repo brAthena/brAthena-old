@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1105 - 05/04/2012 [Protimus]
+	* Corrigido problema ao utilizar logs em SQL.
+
 	r1104 - 05/04/2012 [Protimus]
 	* Corrigida a habilidade Passo Etéreo (MO_BODYRELOCATION).
 	- Estava causando problemas com a posição de efeito em clientes superiores à 2011-11-02.
