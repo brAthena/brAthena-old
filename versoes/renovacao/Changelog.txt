@@ -9,6 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1104 - 05/04/2012 [Protimus]
+	* Corrigida a habilidade Passo Etéreo (MO_BODYRELOCATION).
+	- Estava causando problemas com a posição de efeito em clientes superiores à 2011-11-02.
+	- Problema causava crash devido à configuração de batalha: block_relocation.
+	* Corrigido problema com buffers para servidor de personagens.
+	- Ocasionado por limpeza de condições de clientes antigos.
+
 	r1103 - 05/04/2012 [Protimus]
 	* Corrigida a habilidade Mordida Feroz (RA_WUGBITE).
 	- Fórmula atualizada conforme a oficial.

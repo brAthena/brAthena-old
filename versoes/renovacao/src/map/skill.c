@@ -9304,7 +9304,9 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 		}
 		if (unit_movepos(src, x, y, 1, 1)) {
 			clif_skill_poseffect(src,skillid,skilllv,src->x,src->y,tick);
-//			clif_slide(src, src->x, src->y); //Poseffect is the one that makes the char snap on the client...
+#if PACKETVER >= 20111102
+			clif_slide(src, src->x, src->y); // Precisa de realocação da posição de efeito do personagem.
+#endif
 			if (sd) skill_blockpc_start (sd, MO_EXTREMITYFIST, 2000);
 		}
 		break;
@@ -12894,7 +12896,7 @@ struct skill_condition skill_get_requirement(struct map_session_data* sd, short 
 				req.sp -= req.sp*25/100; //FIXME: Need real data. this is a custom value.
 			break;
 		case MO_BODYRELOCATION:
-			if((sc && sc->data[SC_EXPLOSIONSPIRITS]) || (sc->data[SC_ANKLE] && battle_config.block_relocation))
+			if(sc && sc->data[SC_EXPLOSIONSPIRITS])
 				req.spiritball = 0;
 			break;
 		case MO_EXTREMITYFIST:
