@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1110 - 07/04/2012 [Protimus]
+	* Removida libconfig do processo de compilação dos makefiles.
+	- Para dar suporte, não necessita compilar os módulos.
+
 	r1109 - 06/04/2012 [Protimus]
 	* Atualizado arquivos de configuração conforme autoconf 2.63.
 

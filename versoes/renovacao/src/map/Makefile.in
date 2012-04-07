@@ -19,13 +19,6 @@ MT19937AR_OBJ = ../../3rdparty/mt19937ar/mt19937ar.o
 MT19937AR_H = ../../3rdparty/mt19937ar/mt19937ar.h
 MT19937AR_INCLUDE = -I../../3rdparty/mt19937ar
 
-LIBCONFIG_OBJ = ../../3rdparty/libconfig/libconfig.o ../../3rdparty/libconfig/grammar.o \
-	../../3rdparty/libconfig/scanctx.o ../../3rdparty/libconfig/scanner.o ../../3rdparty/libconfig/strbuf.o
-LIBCONFIG_H = ../../3rdparty/libconfig/libconfig.h ../../3rdparty/libconfig/grammar.h \
-	../../3rdparty/libconfig/parsectx.h ../../3rdparty/libconfig/scanctx.h ../../3rdparty/libconfig/scanner.h \
-	../../3rdparty/libconfig/strbuf.h ../../3rdparty/libconfig/wincompat.h
-LIBCONFIG_INCLUDE = -I../../3rdparty/libconfig
-
 MAP_OBJ = map.o chrif.o clif.o pc.o status.o npc.o \
 	npc_chat.o chat.o path.o itemdb.o mob.o script.o \
 	storage.o skill.o atcommand.o battle.o battleground.o \
@@ -97,12 +90,12 @@ obj_sql:
 	-mkdir obj_sql
 
 map-server_sql: obj_sql $(MAP_SQL_OBJ) $(COMMON_OBJ) $(COMMON_SQL_OBJ)
-	@CC@ @LDFLAGS@ -o ../../map-server_sql@EXEEXT@ $(MAP_SQL_OBJ) $(COMMON_OBJ) $(COMMON_SQL_OBJ) $(MT19937AR_OBJ) $(LIBCONFIG_OBJ) @LIBS@ @PCRE_LIBS@ @MYSQL_LIBS@
+	@CC@ @LDFLAGS@ -o ../../map-server_sql@EXEEXT@ $(MAP_SQL_OBJ) $(COMMON_OBJ) $(COMMON_SQL_OBJ) $(MT19937AR_OBJ) @LIBS@ @PCRE_LIBS@ @MYSQL_LIBS@
 
 # map object files
 
-obj_sql/%.o: %.c $(MAP_H) $(COMMON_H) $(COMMON_SQL_H) $(MT19937AR_H) $(LIBCONFIG_H)
-	@CC@ @CFLAGS@ $(MT19937AR_INCLUDE) $(LIBCONFIG_INCLUDE) $(PCRE_CFLAGS) @MYSQL_CFLAGS@ @CPPFLAGS@ -c $(OUTPUT_OPTION) $<
+obj_sql/%.o: %.c $(MAP_H) $(COMMON_H) $(COMMON_SQL_H) $(MT19937AR_H) 
+	@CC@ @CFLAGS@ $(MT19937AR_INCLUDE) $(PCRE_CFLAGS) @MYSQL_CFLAGS@ @CPPFLAGS@ -c $(OUTPUT_OPTION) $<
 
 # missing object files
 ../common/obj_all/%.o:
@@ -113,6 +106,3 @@ obj_sql/%.o: %.c $(MAP_H) $(COMMON_H) $(COMMON_SQL_H) $(MT19937AR_H) $(LIBCONFIG
 
 MT19937AR_OBJ:
 	@$(MAKE) -C ../../3rdparty/mt19937ar
-
-LIBCONFIG_OBJ:
-	@$(MAKE) -C ../../3rdparty/libconfig
