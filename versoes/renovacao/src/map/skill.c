@@ -12910,7 +12910,7 @@ struct skill_condition skill_get_requirement(struct map_session_data* sd, short 
 				req.sp -= req.sp*25/100; //FIXME: Need real data. this is a custom value.
 			break;
 		case MO_BODYRELOCATION:
-			if(sc && sc->data[SC_EXPLOSIONSPIRITS])
+			if(sc && (sc->data[SC_EXPLOSIONSPIRITS] || sc->data[SC_ANKLE] && battle_config.block_relocation)) 
 				req.spiritball = 0;
 			break;
 		case MO_EXTREMITYFIST:

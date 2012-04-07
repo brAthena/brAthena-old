@@ -3314,22 +3314,15 @@ void status_calc_regen_rate(struct block_list *bl, struct regen_data *regen, str
 		|| sc->data[SC_SATURDAYNIGHTFEVER]
 	)	//No regen
 		regen->flag = 0;
-
+		
 	if (
-		sc->data[SC_DANCING]
+		sc->data[SC_DANCING] || sc->data[SC_OBLIVIONCURSE] || sc->data[SC_MAXIMIZEPOWER]
 		|| (
 			(bl->type == BL_PC && ((TBL_PC*)bl)->class_&MAPID_UPPERMASK) == MAPID_MONK &&
 			(sc->data[SC_EXTREMITYFIST] || (sc->data[SC_EXPLOSIONSPIRITS] && (!sc->data[SC_SPIRIT] || sc->data[SC_SPIRIT]->val2 != SL_MONK)))
 			)
-		|| sc->data[SC_MAXIMIZEPOWER] || sc->data[SC_OBLIVIONCURSE]
-	)
-	{
-		if(sc->data[SC_EXTREMITYFIST] && !sc->data[SC_DANCING] && !sc->data[SC_EXPLOSIONSPIRITS])
-			regen->rate.sp *= 50/100;
-		/// TODO: VER SE ESSE ELSE É DO IF(SC->DATA[SC_DANCING] OU SE É DO IF(SC->DATA[SC_EXTREMITYFIST. Coloquei os brackets em volta do 1º if temporariamente.
-		else //Sem regen de SP natural.
-			regen->flag &=~RGN_SP;
-	}
+	)	//No natural SP regen
+		regen->flag &=~RGN_SP;
 
 	if(
 		sc->data[SC_TENSIONRELAX]

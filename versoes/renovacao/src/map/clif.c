@@ -862,10 +862,6 @@ void clif_get_weapon_view(struct map_session_data* sd, unsigned short *rhand, un
 		return;
 	}
 
-#if PACKETVER < 4
-	*rhand = sd->status.weapon;
-	*lhand = sd->status.shield;
-#else
 	if (sd->equip_index[EQI_HAND_R] >= 0 &&
 		sd->inventory_data[sd->equip_index[EQI_HAND_R]]) 
 	{
@@ -888,7 +884,6 @@ void clif_get_weapon_view(struct map_session_data* sd, unsigned short *rhand, un
 			*lhand = id->nameid;
 	} else
 		*lhand = 0;
-#endif
 }
 
 //To make the assignation of the level based on limits clearer/easier. [Skotlex]
@@ -934,9 +929,8 @@ static int clif_set_unit_idle(struct block_list* bl, unsigned char* buffer, bool
 	struct status_change* sc = status_get_sc(bl);
 	struct view_data* vd = status_get_viewdata(bl);
 	unsigned char *buf = WBUFP(buffer,0);
-#if PACKETVER >= 7
 	unsigned short offset = 0;
-#endif
+
 	const char *name;
 	sd = BL_CAST(BL_PC, bl);
 
@@ -967,17 +961,6 @@ static int clif_set_unit_idle(struct block_list* bl, unsigned char* buffer, bool
 	WBUFW(buf, 6) = status_get_speed(bl);
 	WBUFW(buf, 8) = (sc)? sc->opt1 : 0;
 	WBUFW(buf,10) = (sc)? sc->opt2 : 0;
-	
-#if PACKETVER < 20091103
-	if (type&&spawn) { //uses an older and different packet structure
-		WBUFW(buf,12) = (sc)? sc->option : 0;
-		WBUFW(buf,14) = vd->hair_style;
-		WBUFW(buf,16) = vd->weapon;
-		WBUFW(buf,18) = vd->head_bottom;
-		WBUFW(buf,20) = vd->class_; //Pet armor (ignored by client)
-		WBUFW(buf,22) = vd->shield;
-	} else {
-#endif
 #if PACKETVER >= 20091103
 		WBUFL(buf,12) = (sc)? sc->option : 0;
 		offset+=2;
@@ -995,18 +978,10 @@ static int clif_set_unit_idle(struct block_list* bl, unsigned char* buffer, bool
 		WBUFW(buf,14) = vd->class_;
 		WBUFW(buf,16) = vd->hair_style;
 		WBUFW(buf,18) = vd->weapon;
-#if PACKETVER < 4
-		WBUFW(buf,20) = vd->head_bottom;
-		WBUFW(buf,22) = vd->shield;
-#else
 		WBUFW(buf,20) = vd->shield;
 		WBUFW(buf,22) = vd->head_bottom;
-#endif
-#if PACKETVER < 20091103
-	}
-#endif
-	WBUFW(buf,24) = vd->head_top;
-	WBUFW(buf,26) = vd->head_mid;
+		WBUFW(buf,24) = vd->head_top;
+		WBUFW(buf,26) = vd->head_mid;
 
 	if( bl->type == BL_NPC && vd->class_ == FLAG_CLASS )
 	{	//The hell, why flags work like this?
@@ -1018,16 +993,7 @@ static int clif_set_unit_idle(struct block_list* bl, unsigned char* buffer, bool
 	WBUFW(buf,28) = vd->hair_color;
 	WBUFW(buf,30) = vd->cloth_color;
 	WBUFW(buf,32) = (sd)? sd->head_dir : 0;
-#if PACKETVER < 20091103
-	if (type&&spawn) { //End of packet 0x7c
-		WBUFB(buf,34) = (sd)?sd->status.karma:0; // karma
-		WBUFB(buf,35) = vd->sex;
-		WBUFPOS(buf,36,bl->x,bl->y,unit_getdir(bl));
-		WBUFB(buf,39) = 0;
-		WBUFB(buf,40) = 0;
-		return packet_len(0x7c);
-	}
-#endif
+	
 #if PACKETVER >= 20110111
 	WBUFW(buf,34) = vd->robe;
 	offset+= 2;
@@ -1061,19 +1027,9 @@ static int clif_set_unit_idle(struct block_list* bl, unsigned char* buffer, bool
 		buf = WBUFP(buffer,offset);
 	}
 	WBUFW(buf,51) = clif_setlevel(bl);
-#if PACKETVER < 20091103
-	if (type) //End for non-player packet
-		return packet_len(WBUFW(buffer,0));
-#endif
-#if PACKETVER >= 20080102
 	WBUFW(buf,53) = sd?sd->user_font:0;
-#endif
-#if PACKETVER >= 20091103
 	memcpy((char*)WBUFP(buf,55), name, NAME_LENGTH);
 	return WBUFW(buffer,2);
-#else
-	return packet_len(WBUFW(buffer,0));
-#endif
 }
 
 /*==========================================
@@ -1155,8 +1111,6 @@ static void clif_setdisguise(struct block_list *bl, unsigned char *buf,int len)
 {
 	WBUFB(buf,4)= pcdb_checkid(status_get_viewdata(bl)->class_) ? 0x0 : 0x5; //PC_TYPE : NPC_MOB_TYPE
 	WBUFL(buf,5)=-bl->id;
-	WBUFB(buf,2)= pcdb_checkid(status_get_viewdata(bl)->class_) ? 0x0 : 0x5; //PC_TYPE : NPC_MOB_TYPE
-	WBUFL(buf,3)=-bl->id;
 	clif_send(buf, len, bl, SELF);
 }
 
@@ -4679,10 +4633,9 @@ int clif_skill_fail(struct map_session_data *sd,int skill_id,enum useskill_fail_
 	return 1;
 }
 
-/*==========================================
- * skill cooldown display icon
- * R 043d <skill ID>.w <tick>.l
- *------------------------------------------*/
+
+/// Skill cooldown display icon (ZC_SKILL_POSTDELAY).
+/// 043d <skill ID>.W <tick>.L
 void clif_skill_cooldown(struct map_session_data *sd, int skillid, unsigned int tick)
 {
 	int fd;
@@ -4690,11 +4643,11 @@ void clif_skill_cooldown(struct map_session_data *sd, int skillid, unsigned int 
 	nullpo_retv(sd);
 
 	fd=sd->fd;
-	WFIFOHEAD(fd,packet_len(0x043d));
-	WFIFOW(fd,0) = 0x043d;
+	WFIFOHEAD(fd,packet_len(0x43d));
+	WFIFOW(fd,0) = 0x43d;
 	WFIFOW(fd,2) = skillid;
 	WFIFOL(fd,4) = tick;
-	WFIFOSET(fd,packet_len(0x043d));
+	WFIFOSET(fd,packet_len(0x43d));
 }
 
 
@@ -12632,11 +12585,12 @@ void clif_parse_FriendsListAdd(int fd, struct map_session_data *sd)
 void clif_parse_FriendsListReply(int fd, struct map_session_data *sd)
 {
 	struct map_session_data *f_sd;
-	int account_id;
+	int char_id, account_id; 
 	char reply;
 
 	account_id = RFIFOL(fd,2);
-	reply = RFIFOB(fd,10);
+	char_id = RFIFOL(fd,6); 
+	reply = RFIFOL(fd,10);
 
 	if( sd->bl.id == account_id )
 	{// adding oneself as friend
@@ -13571,13 +13525,12 @@ void clif_parse_Mail_send(int fd, struct map_session_data *sd)
 	sd->cansendmail_tick = gettick() + 1000; // 1 Second flood Protection
 }
 
-/*==========================================
- * AUCTION SYSTEM
- * By Zephyrus
- *==========================================*/
 
+/// AUCTION SYSTEM
+/// By Zephyrus
+///
 
-/// Opens/closes the auction window (ZC_AUCTION_WINDOWS)
+/// Opens/closes the auction window (ZC_AUCTION_WINDOWS).
 /// 025f <type>.L
 /// type:
 ///     0 = open
@@ -13595,7 +13548,8 @@ void clif_Auction_openwindow(struct map_session_data *sd)
 	WFIFOSET(fd,packet_len(0x25f));
 }
 
-/// Returns auction item search results (ZC_AUCTION_ITEM_REQ_SEARCH)
+
+/// Returns auction item search results (ZC_AUCTION_ITEM_REQ_SEARCH).
 /// 0252 <packet len>.W <pages>.L <count>.L { <auction id>.L <seller name>.24B <name id>.W <type>.L <amount>.W <identified>.B <damaged>.B <refine>.B <card1>.W <card2>.W <card3>.W <card4>.W <now price>.L <max price>.L <buyer name>.24B <delete time>.L }*
 void clif_Auction_results(struct map_session_data *sd, short count, short pages, uint8 *buf)
 {
@@ -13640,7 +13594,8 @@ void clif_Auction_results(struct map_session_data *sd, short count, short pages,
 	WFIFOSET(fd,WFIFOW(fd,2));
 }
 
-/// Result from request to add an item (ZC_ACK_AUCTION_ADD_ITEM)
+
+/// Result from request to add an item (ZC_ACK_AUCTION_ADD_ITEM).
 /// 0256 <index>.W <result>.B
 /// result:
 ///     0 = success
@@ -13654,7 +13609,8 @@ static void clif_Auction_setitem(int fd, int index, bool fail)
 	WFIFOSET(fd,packet_len(0x256));
 }
 
-/// Request to initialize 'new auction' data (CZ_AUCTION_CREATE)
+
+/// Request to initialize 'new auction' data (CZ_AUCTION_CREATE).
 /// 024b <type>.W
 /// type:
 ///     0 = create (any other action in auction window)
@@ -13668,7 +13624,8 @@ void clif_parse_Auction_cancelreg(int fd, struct map_session_data *sd)
 	sd->auction.amount = 0;
 }
 
-/// Request to add an item to the action (CZ_AUCTION_ADD_ITEM)
+
+/// Request to add an item to the action (CZ_AUCTION_ADD_ITEM).
 /// 024c <index>.W <count>.L
 void clif_parse_Auction_setitem(int fd, struct map_session_data *sd)
 {
@@ -13709,7 +13666,7 @@ void clif_parse_Auction_setitem(int fd, struct map_session_data *sd)
 	clif_Auction_setitem(fd, idx + 2, false);
 }
 
-/// Result from an auction action (ZC_AUCTION_RESULT)
+/// Result from an auction action (ZC_AUCTION_RESULT).
 /// 0250 <result>.B
 /// result:
 ///     0 = You have failed to bid into the auction
@@ -15774,9 +15731,9 @@ static int packetdb_readdb(void)
 	    0,  0,  0,  0,  8,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 	//#0x0280
 	    0,  0,  0,  6, 14,  0,  0, -1, 10, 12, 18,  0,  0,  0,  0,  0, // 0x288, 0x289 increase by 4 (kafra points)
-	    0,  4,  0, 70,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-	    0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
-	   85, -1, -1,107,  6, -1,  7,  7, 22,191,  0,  8,  0,  0,  0,  0,
+	    0,  4,  0, 70, 10,  0,  0,  0,  8,  6, 27, 80,  0, -1,  0,  0,
+	    0,  0,  8,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
+	   85, -1, -1,107,  6, -1,  7,  7, 22,191,  0,  0,  0,  0,  0,  0,
 	//#0x02C0
 	    0, -1,  0,  0,  0, 30, 30,  0,  0,  3,  0, 65,  4, 71, 10,  0,
 	   -1, -1, -1,  0, 29,  0,  6, -1, 10, 10,  3,  0, -1, 32,  6, 36,
@@ -15881,7 +15838,7 @@ static int packetdb_readdb(void)
 	    0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,  0,
 	// 0x7d9 changed
 	    6,  2, -1,  4,  4,  4,  4,  8,  8,268,  6,  8,  6, 54, 30, 54,
-	    0, 15,  8,  6,  -1,  8,  8, 32, -1,  5,  0,  0,  0,  0,  0,  0,
+	    0, 15,  8,  0,  0,  8,  8, 32, -1,  5,  0,  0,  0,  0,  0,  0,
 	    0,  0,  0,  0,  0,  0, 14, -1, -1, -1,  8, 25,  0,  0, 26,  0,
 	//#0x0800
 	// for Party booking ( PACKETVER >= 20091229 )

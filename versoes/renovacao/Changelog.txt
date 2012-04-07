@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1111 - 07/04/2012 [Protimus]
+	* Mais limpezas relacionadas a clientes antigos.
+	- Algumas correções de outros envios.
+	* Revertidas algumas mudanças de r1097.
+	- Necessários códigos para funcionamento adequado.
+
 	r1110 - 07/04/2012 [Protimus]
 	* Removida libconfig do processo de compilação dos makefiles.
 	- Para dar suporte, não necessita compilar os módulos.
