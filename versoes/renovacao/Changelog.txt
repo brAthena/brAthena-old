@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1112 - 07/04/2012 [Protimus]
+	* Corrigida a habilidade Zen (CH_SOULCOLLECT).
+	- Ocasionado por r1093.
+	* Corrigida a habilidade Presas Afiadas (RA_TOOTHOFWUG).
+	- Atualizada fórmula de bônus do ataque.
+
 	r1111 - 07/04/2012 [Protimus]
 	* Mais limpezas relacionadas a clientes antigos.
 	- Algumas correções de outros envios.

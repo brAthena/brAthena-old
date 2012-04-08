@@ -2412,7 +2412,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case RA_WUGSTRIKE:
 				case RA_WUGBITE:
 					if(sd)
-						ATK_ADD(6*pc_checkskill(sd, RA_TOOTHOFWUG));
+						ATK_ADD(30*pc_checkskill(sd, RA_TOOTHOFWUG));
 					break;
 				case LG_RAYOFGENESIS:
 					if( sc && sc->data[SC_BANDING] )
