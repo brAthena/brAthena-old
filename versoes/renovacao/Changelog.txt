@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1113 - 08/04/2012 [Protimus]
+	* Corrigidas as habilidades Lauda Agnus (AB_LAUDAAGNUS) & Lauda Ramus (AB_LAUDARAMUS).
+	- Adicionada remoção de novos efeitos.
+	- Atualizada chance de sucesso.
+	
 	r1112 - 07/04/2012 [Protimus]
 	* Corrigida a habilidade Zen (CH_SOULCOLLECT).
 	- Ocasionado por r1093.

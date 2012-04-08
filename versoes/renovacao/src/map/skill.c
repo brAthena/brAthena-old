@@ -7340,12 +7340,14 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case AB_LAUDAAGNUS:
 		if( flag&1 || sd == NULL )
 		{
-			if( (tsc && (tsc->data[SC_FREEZE] || tsc->data[SC_STONE] ||
-				tsc->data[SC_BLIND]))&& (rand()%100 < 50+5*skilllv) )
+			if( (tsc && (tsc->data[SC_FREEZE] || tsc->data[SC_STONE] || tsc->data[SC_BURNING] || tsc->data[SC_COOLER_OPTION] ||
+				tsc->data[SC_BLIND]))&& (rand()%100 < 40+10*skilllv) )
 			{
-				status_change_end(bl, SC_FREEZE, -1);
-				status_change_end(bl, SC_STONE, -1);
-				status_change_end(bl, SC_BLIND, -1);
+				status_change_end(bl, SC_FREEZE, INVALID_TIMER);
+				status_change_end(bl, SC_STONE, INVALID_TIMER);
+				status_change_end(bl, SC_BLIND, INVALID_TIMER);
+				status_change_end(bl, SC_BURNING, INVALID_TIMER);
+				status_change_end(bl, SC_COOLER_OPTION, INVALID_TIMER);
 			}
 			clif_skill_nodamage(bl, bl, skillid, skilllv,
 				sc_start(bl, type, 100, skilllv, skill_get_time(skillid, skilllv)));
@@ -7358,12 +7360,14 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case AB_LAUDARAMUS:
 		if( (flag&1) || sd == NULL || sd->status.party_id == 0 )
 		{
-			if( (tsc && (tsc->data[SC_SLEEP] || tsc->data[SC_STUN] ||
-				tsc->data[SC_SILENCE]))&& (rand()%100 < 50+5*skilllv) )
+			if( (tsc && (tsc->data[SC_SLEEP] || tsc->data[SC_STUN] || tsc->data[SC_MANDRAGORA] || tsc->data[SC_DEEPSLEEP] ||
+				tsc->data[SC_SILENCE]))&& (rand()%100 < 40+10*skilllv) )
 			{
-				status_change_end(bl, SC_SLEEP, -1);
-				status_change_end(bl, SC_STUN, -1);
-				status_change_end(bl, SC_SILENCE, -1);
+				status_change_end(bl, SC_SLEEP, INVALID_TIMER);
+				status_change_end(bl, SC_STUN, INVALID_TIMER);
+				status_change_end(bl, SC_SILENCE, INVALID_TIMER);
+				status_change_end(bl, SC_MANDRAGORA, INVALID_TIMER);
+				status_change_end(bl, SC_DEEPSLEEP, INVALID_TIMER);
 			}
 			clif_skill_nodamage(bl, bl, skillid, skilllv,
 				sc_start(bl, type, 100, skilllv, skill_get_time(skillid, skilllv)));
