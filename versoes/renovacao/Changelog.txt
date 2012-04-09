@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1115 - 08/04/2012 [Protimus]
+	* Corrigida a habilidade Mordida Feroz (RA_WUGBITE).
+	- Atualizada chance de sucesso.
+
 	r1114 - 08/04/2012 [Protimus]
 	* Corrigidas as habilidades Investida de Warg (RA_WUGSTRIKE) &  Avanço Warg (RA_WUGDASH).
 	- Atualizada fórmula de dano.
