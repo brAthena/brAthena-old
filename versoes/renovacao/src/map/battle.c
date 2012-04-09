@@ -3496,7 +3496,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 							skillratio += skillratio*sc->data[SC_COOLER_OPTION]->val3/100;
 						break;
 					case SO_POISON_BUSTER:
-						skillratio += 276 + 165 * ( sstatus->int_ / 10 + sstatus->matk_max * skill_lv / 50);
+						skillratio = ((300 * skill_lv) + 900) * (s_base_level / 120);
 						if( sc && sc->data[SC_CURSED_SOIL_OPTION] )
 							skillratio += skillratio * sc->data[SC_CURSED_SOIL_OPTION]->val2 / 100;
 						break;

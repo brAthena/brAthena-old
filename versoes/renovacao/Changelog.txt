@@ -9,9 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1117 - 09/04/2012 [Protimus]
+	* Corrigida a habilidade Implosão Tóxica (SO_POISON_BUSTER).
+	- Atualizada fórmula de dano.
+
 	r1116 - 09/04/2012 [RenatoUtsch]
-	* Corrigido problema para compilar no linux com o automake...
-	- Agora é necessário instalar a libconfig no linux para compilar...
+	* Corrigido problema para compilar no linux com o automake.
+	- Agora é necessário instalar a libconfig no linux para compilar.
 
 	r1115 - 08/04/2012 [Protimus]
 	* Corrigida a habilidade Mordida Feroz (RA_WUGBITE).
