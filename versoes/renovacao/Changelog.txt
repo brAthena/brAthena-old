@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1114 - 08/04/2012 [Protimus]
+	* Corrigidas as habilidades Investida de Warg (RA_WUGSTRIKE) &  Avanço Warg (RA_WUGDASH).
+	- Atualizada fórmula de dano.
+
 	r1113 - 08/04/2012 [Protimus]
 	* Corrigidas as habilidades Lauda Agnus (AB_LAUDAAGNUS) & Lauda Ramus (AB_LAUDARAMUS).
 	- Adicionada remoção de novos efeitos.

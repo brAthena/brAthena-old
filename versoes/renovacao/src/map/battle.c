@@ -2034,7 +2034,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio += 200*skill_lv - 21;
 					break;
 				case RA_WUGSTRIKE:
-					skillratio = 120*skill_lv;
+					skillratio = 200*skill_lv;
 					break;
 				case RA_WUGBITE:
 					skillratio += 300 + 200*skill_lv;
@@ -2077,7 +2077,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio += 50*skill_lv;
 					break;
 				case RA_WUGDASH:
-					skillratio += 500;
+					skillratio = 200*skill_lv;
 					break;
 				case AB_DUPLELIGHT_MELEE:
 					skillratio += 10 * skill_lv;
@@ -2408,12 +2408,13 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case NJ_SYURIKEN:
 					ATK_ADD(4*skill_lv);
 					break;
-				case RA_WUGDASH:
 				case RA_WUGSTRIKE:
 				case RA_WUGBITE:
 					if(sd)
 						ATK_ADD(30*pc_checkskill(sd, RA_TOOTHOFWUG));
 					break;
+				case RA_WUGDASH:
+					ATK_ADD((30*pc_checkskill(sd, RA_TOOTHOFWUG)) + (sd->weight * 10/8));
 				case LG_RAYOFGENESIS:
 					if( sc && sc->data[SC_BANDING] )
 					{
