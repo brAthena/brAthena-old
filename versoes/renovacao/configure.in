@@ -266,6 +266,26 @@ AC_ARG_WITH(
 )
 
 
+#
+# Specify the path of the libconfig library (required library)
+#
+AC_ARG_WITH(
+	[libconfig],
+	AC_HELP_STRING(
+		[--with-libconfig=DIR],
+		[root directory path of libconfig installation (defaults to /usr/local or /usr if not found in /usr/local).
+		 Assumes that the header files are in DIR/include and the library files are in DIR/lib]
+	),
+	[
+		test -n "$withval" && LIBCONFIG_HOME="$withval"
+	],
+	[
+		LIBCONFIG_HOME=/usr/local
+		test ! -f "${LIBCONFIG_HOME}/include/libconfig.h" && LIBCONFIG_HOME=/usr
+	]
+)
+
+
 
 ###############################################################################
 # Check for programs and types.
@@ -469,12 +489,6 @@ AC_CHECK_FUNC([setrlimit],[CFLAGS="$CFLAGS -DHAVE_SETRLIMIT"])
 #
 AC_CHECK_FUNC([strnlen],[CFLAGS="$CFLAGS -DHAVE_STRNLEN"])
 
-# libconfig
-AC_CHECK_FUNCS([uselocale])
-AC_CHECK_FUNCS([newlocale])
-AC_CHECK_FUNCS([freelocale])
-AC_CHECK_HEADERS([xlocale.h])
-
 #
 # Memory manager
 #
@@ -577,6 +591,16 @@ if test -n "${ZLIB_HOME}" ; then
 fi
 AC_CHECK_LIB([z], [inflateEnd], [],[AC_MSG_ERROR([zlib library not found or incompatible, please specify the correct path with --with-zlib=DIR... stopping])])
 AC_CHECK_HEADER([zlib.h], [], [AC_MSG_ERROR([zlib header not found, please specify the correct path with --with-zlib=DIR... stopping])])
+
+#
+# libconfig library (required)
+#
+if test -n "${LIBCONFIG_HOME}" ; then
+	LDFLAGS="$LDFLAGS -L${LIBCONFIG_HOME}/lib"
+	CPPFLAGS="$CPPFLAGS -I${LIBCONFIG_HOME}/include"
+fi
+AC_CHECK_LIB([config], [config_read], [],[AC_MSG_ERROR([libconfig library not found or incompatible, please specify the correct path with --with-libconfig=DIR... stopping])])
+AC_CHECK_HEADER([libconfig.h], [], [AC_MSG_ERROR([libconfig header not found, please specify the correct path with --with-libconfig=DIR... stopping])])
 
 
 #
