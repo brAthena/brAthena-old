@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1118 - 11/04/2012 [Protimus]
+	* Corrigidos alertas gerados em linux.
+
 	r1117 - 09/04/2012 [Protimus]
 	* Corrigida a habilidade Implosão Tóxica (SO_POISON_BUSTER).
 	- Atualizada fórmula de dano.
