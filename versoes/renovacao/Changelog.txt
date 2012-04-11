@@ -9,10 +9,8 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
-	r1119 - 11/04/2012 [RenatoUtsch]
-	* Corrigido problema de falta de newline no fim do char.c
-	* Continuada otimização do emulator.
-	* Melhorado suporte a sistemas de 64bits.
+	r1120 - 11/04/2012 [RenatoUtsch]
+	* Corrigido problema de texto do envio anterior.
 
 	r1118 - 11/04/2012 [Protimus]
 	* Corrigidos alertas gerados em linux.

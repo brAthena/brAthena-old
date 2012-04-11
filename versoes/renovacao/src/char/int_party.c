@@ -348,9 +348,8 @@ int party_check_empty(struct party_data *p)
 }
 
 //-------------------------------------------------------------------
-// map server\82ւ̒ʐM
+// map server
 
-// \83p\81[\83e\83B\8D쐬\89\DB
 int mapif_party_created(int fd,int account_id,int char_id,struct party *p)
 {
 	WFIFOHEAD(fd, 39);
@@ -372,7 +371,6 @@ int mapif_party_created(int fd,int account_id,int char_id,struct party *p)
 	return 0;
 }
 
-// \83p\81[\83e\83B\8F\EE\95񌩂\A9\82炸
 static void mapif_party_noinfo(int fd, int party_id, int char_id)
 {
 	WFIFOHEAD(fd, 12);
@@ -384,7 +382,6 @@ static void mapif_party_noinfo(int fd, int party_id, int char_id)
 	ShowWarning("int_party: informacao nao encontrada (party_id=%d char_id=%d)\n", party_id, char_id);
 }
 
-// \83p\81[\83e\83B\8F\EE\95\F1\82܂Ƃߑ\97\82\E8
 static void mapif_party_info(int fd, struct party* p, int char_id)
 {
 	unsigned char buf[8 + sizeof(struct party)];
@@ -398,7 +395,7 @@ static void mapif_party_info(int fd, struct party* p, int char_id)
 	else
 		mapif_send(fd,buf,WBUFW(buf,2));
 }
-// \83p\81[\83e\83B\83\81\83\93\83o\92ǉ\C1\89\DB
+
 int mapif_party_memberadded(int fd, int party_id, int account_id, int char_id, int flag) {
 	WFIFOHEAD(fd, 15);
 	WFIFOW(fd,0) = 0x3822;
@@ -411,7 +408,6 @@ int mapif_party_memberadded(int fd, int party_id, int account_id, int char_id, i
 	return 0;
 }
 
-// \83p\81[\83e\83B\90ݒ\E8\95ύX\92ʒm
 int mapif_party_optionchanged(int fd,struct party *p,int account_id,int flag)
 {
 	unsigned char buf[16];
@@ -428,7 +424,6 @@ int mapif_party_optionchanged(int fd,struct party *p,int account_id,int flag)
 	return 0;
 }
 
-// \83p\81[\83e\83B\92E\91ޒʒm
 int mapif_party_withdraw(int party_id,int account_id, int char_id) {
 	unsigned char buf[16];
 
@@ -440,7 +435,6 @@ int mapif_party_withdraw(int party_id,int account_id, int char_id) {
 	return 0;
 }
 
-// \83p\81[\83e\83B\83}\83b\83v\8DX\90V\92ʒm
 int mapif_party_membermoved(struct party *p,int idx)
 {
 	unsigned char buf[20];
@@ -456,7 +450,6 @@ int mapif_party_membermoved(struct party *p,int idx)
 	return 0;
 }
 
-// \83p\81[\83e\83B\89\F0\8EU\92ʒm
 int mapif_party_broken(int party_id,int flag)
 {
 	unsigned char buf[16];
@@ -467,7 +460,7 @@ int mapif_party_broken(int party_id,int flag)
 	//printf("int_party: broken %d\n",party_id);
 	return 0;
 }
-// \83p\81[\83e\83B\93\E0\94\AD\8C\BE
+
 int mapif_party_message(int party_id,int account_id,char *mes,int len, int sfd)
 {
 	unsigned char buf[512];
@@ -481,7 +474,7 @@ int mapif_party_message(int party_id,int account_id,char *mes,int len, int sfd)
 }
 
 //-------------------------------------------------------------------
-// map server\82\A9\82\E7\82̒ʐM
+// map server
 
 
 // Create Party
@@ -532,7 +525,7 @@ int mapif_parse_CreateParty(int fd, char *name, int item, int item2, struct part
 
 	return 0;
 }
-// \83p\81[\83e\83B\8F\EE\95\F1\97v\8B\81
+
 static void mapif_parse_PartyInfo(int fd, int party_id, int char_id)
 {
 	struct party_data *p;
@@ -543,7 +536,7 @@ static void mapif_parse_PartyInfo(int fd, int party_id, int char_id)
 	else
 		mapif_party_noinfo(fd, party_id, char_id);
 }
-// \83p\81[\83e\83B\92ǉ\C1\97v\8B\81
+
 int mapif_parse_PartyAddMember(int fd, int party_id, struct party_member *member)
 {
 	struct party_data *p;
@@ -581,7 +574,6 @@ int mapif_parse_PartyAddMember(int fd, int party_id, struct party_member *member
 	return 0;
 }
 
-// \83p\81[\83e\83B\81[\90ݒ\E8\95ύX\97v\8B\81
 int mapif_parse_PartyChangeOption(int fd,int party_id,int account_id,int exp,int item)
 {
 	struct party_data *p;
@@ -601,7 +593,7 @@ int mapif_parse_PartyChangeOption(int fd,int party_id,int account_id,int exp,int
 	inter_party_tosql(&p->party, PS_BASIC, 0);
 	return 0;
 }
-// \83p\81[\83e\83B\92E\91ޗv\8B\81
+
 int mapif_parse_PartyLeave(int fd, int party_id, int account_id, int char_id)
 {
 	struct party_data *p;
@@ -653,6 +645,7 @@ int mapif_parse_PartyLeave(int fd, int party_id, int account_id, int char_id)
 		mapif_party_info(-1, &p->party, 0);
 	return 0;
 }
+
 // When member goes to other map or levels up.
 int mapif_parse_PartyChangeMap(int fd, int party_id, int account_id, int char_id, unsigned short map, int online, unsigned int lv)
 {
@@ -708,7 +701,6 @@ int mapif_parse_PartyChangeMap(int fd, int party_id, int account_id, int char_id
 	return 0;
 }
 
-// \83p\81[\83e\83B\89\F0\8EU\97v\8B\81
 int mapif_parse_BreakParty(int fd,int party_id)
 {
 	struct party_data *p;
@@ -721,7 +713,7 @@ int mapif_parse_BreakParty(int fd,int party_id)
 	mapif_party_broken(fd,party_id);
 	return 0;
 }
-// \83p\81[\83e\83B\83\81\83b\83Z\81[\83W\91\97\90M
+
 int mapif_parse_PartyMessage(int fd,int party_id,int account_id,char *mes,int len)
 {
 	return mapif_party_message(party_id,account_id,mes,len, fd);
@@ -751,11 +743,6 @@ int mapif_parse_PartyLeaderChange(int fd,int party_id,int account_id,int char_id
 	return 1;
 }
 
-// map server \82\A9\82\E7\82̒ʐM
-// \81E\82P\83p\83P\83b\83g\82̂݉\F0\90͂\B7\82邱\82\C6
-// \81E\83p\83P\83b\83g\92\B7\83f\81[\83^\82\CDinter.c\82ɃZ\83b\83g\82\B5\82Ă\A8\82\AD\82\B1\82\C6
-// \81E\83p\83P\83b\83g\92\B7\83`\83F\83b\83N\82\E2\81ARFIFOSKIP\82͌Ăяo\82\B5\8C\B3\82ōs\82\ED\82\EA\82\E9\82̂ōs\82\C1\82Ă͂Ȃ\E7\82Ȃ\A2
-// \81E\83G\83\89\81[\82Ȃ\E70(false)\81A\82\BB\82\A4\82łȂ\A2\82Ȃ\E71(true)\82\F0\82\A9\82\A6\82\B3\82Ȃ\AF\82\EA\82΂Ȃ\E7\82Ȃ\A2
 int inter_party_parse_frommap(int fd)
 {
 	RFIFOHEAD(fd);
@@ -775,7 +762,6 @@ int inter_party_parse_frommap(int fd)
 	return 1;
 }
 
-// \83T\81[\83o\81[\82\A9\82\E7\92E\91ޗv\8B\81\81i\83L\83\83\83\89\8D폜\97p\81j
 int inter_party_leave(int party_id,int account_id, int char_id)
 {
 	return mapif_parse_PartyLeave(-1,party_id,account_id, char_id);

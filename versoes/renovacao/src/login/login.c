@@ -1248,7 +1248,7 @@ void login_auth_failed(struct login_session_data* sd, int result)
 		case  14: error = "Grupo nao permitido"; break; // 14 = MSI_REFUSE_NOT_PERMITTED_GROUP
 		case  15: error = "Grupo nao permitido"; break; // 15 = MSI_REFUSE_NOT_PERMITTED_GROUP
 		case  99: error = "Conta removida."; break; // 99 = This ID has been totally erased
-		case 100: error = "Informa\E7ao de login permanecente."; break; // 100 = Login information remains at %s
+		case 100: error = "Informaçao de login permanecente."; break; // 100 = Login information remains at %s
 		case 101: error = "Investigacao de Hackeamento."; break; // 101 = Account has been locked for a hacking investigation. Please contact the GM Team for more information
 		case 102: error = "Investigacao de Bugs."; break; // 102 = This account has been temporarily prohibited from login due to a bug-related investigation
 		case 103: error = "Deletando personagem."; break; // 103 = This character is being deleted. Login is temporarily unavailable for the time being

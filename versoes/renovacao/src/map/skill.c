@@ -2542,12 +2542,12 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 }
 
 /*==========================================
- * \83X\83L\83\8B\94\CD??U?\97p(map_foreachinarea\82\A9\82\E7\8CÄ‚Î‚\EA\82\E9)
- * flag\82É‚Â‚\A2\82\C4?F16?i?\82\F0\8Am\94F
+ * ƒXƒLƒ‹”Í??U?—p(map_foreachinarea‚©‚çŒÄ‚Î‚ê‚é)
+ * flag‚É‚Â‚¢‚Ä?F16?i?‚ðŠm”F
  * MSB <- 00fTffff ->LSB
- *	T	=\83^?\83Q\83b\83g\91I?\97p(BCT_*)
- *  ffff=\8E\A9\97R\82ÉŽg\97p\89Â”\
- *  0	=\97\\96\F1?B0\82ÉŒÅ’\E8
+ *	T	=ƒ^?ƒQƒbƒg‘I?—p(BCT_*)
+ *  ffff=Ž©—R‚ÉŽg—p‰Â”\
+ *  0	=—\–ñ?B0‚ÉŒÅ’è
  *------------------------------------------*/
 static int skill_area_temp[8];
 typedef int (*SkillFunc)(struct block_list *, struct block_list *, int, int, unsigned int, int);
@@ -3315,7 +3315,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 		skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 
-	//Chamda diferenciada para lan\E7ar o superaquecimento
+	//Chamda diferenciada para lançar o superaquecimento
 	case NC_BOOSTKNUCKLE:
 	case NC_PILEBUNKER:
 	case NC_VULCANARM:
@@ -4189,7 +4189,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 		skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 	case LG_SHIELDSPELL:
-		// flag&1: Ataque F\EDsico, flag&2: Ataque M\E1gico
+		// flag&1: Ataque Físico, flag&2: Ataque Mágico
 		skill_attack((flag&1)?BF_WEAPON:BF_MAGIC,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 	case LG_OVERBRAND:
@@ -4873,7 +4873,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			if (sd)
 				clif_skill_fail(sd,skillid,USESKILL_FAIL_LEVEL,0,0);
 			if (skill_break_equip(bl, EQP_WEAPON, 10000, BCT_PARTY) && sd && sd != dstsd)
-				clif_displaymessage(sd->fd,"Voc\EA quebrou a arma do alvo");
+				clif_displaymessage(sd->fd,"Você quebrou a arma do alvo");
 		}
 		break;
 
@@ -5780,7 +5780,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 				break;
 			}
 			if(!battle_config.duel_allow_teleport && sd->duel_group && skilllv <= 2) { // duel restriction [LuzZza]
-				clif_displaymessage(sd->fd, "Duelo: Teleporte n\E3o pode ser usado em duelo.");
+				clif_displaymessage(sd->fd, "Duelo: Teleporte não pode ser usado em duelo.");
 				break;
 			}
 
@@ -9312,7 +9312,7 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 		if (unit_movepos(src, x, y, 1, 1)) {
 			clif_skill_poseffect(src,skillid,skilllv,src->x,src->y,tick);
 #if PACKETVER >= 20111102
-			clif_slide(src, src->x, src->y); // Precisa de realoca\E7\E3o da posi\E7\E3o de efeito do personagem.
+			clif_slide(src, src->x, src->y); // Precisa de realocação da posição de efeito do personagem.
 #endif
 			if (sd) skill_blockpc_start (sd, MO_EXTREMITYFIST, 2000);
 		}
@@ -10112,8 +10112,8 @@ struct skill_unit_group* skill_unitsetting (struct block_list *src, short skilli
 			val1 += pc_checkskill(sd,DC_DANCINGLESSON);
 		break;
 	case BA_POEMBRAGI:
-		val1 = 3*skilllv+status->dex/10; // Redu\E7\E3o do Cast Time
-		val2 = (skilllv<10?3*skilllv:50)+status->int_/5; // Redu\E7\E3o do Delay
+		val1 = 3*skilllv+status->dex/10; // Redução do Cast Time
+		val2 = (skilllv<10?3*skilllv:50)+status->int_/5; // Redução do Delay
 		if(sd){
 			val1 += pc_checkskill(sd,BA_MUSICALLESSON);
 			val2 += 2*pc_checkskill(sd,BA_MUSICALLESSON);
@@ -11862,7 +11862,7 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 		break;
 	case AL_WARP:
 		if(!battle_config.duel_allow_teleport && sd->duel_group) { // duel restriction [LuzZza]
-			clif_displaymessage(sd->fd, "Duelo: N\E3o \E9 poss\EDvel usar portal em duelo.");
+			clif_displaymessage(sd->fd, "Duelo: Não é possível usar portal em duelo.");
 			return 0;
 		}
 		break;
@@ -12916,7 +12916,7 @@ struct skill_condition skill_get_requirement(struct map_session_data* sd, short 
 				req.sp -= req.sp*25/100; //FIXME: Need real data. this is a custom value.
 			break;
 		case MO_BODYRELOCATION:
-			if(sc && ((sc->data[SC_EXPLOSIONSPIRITS] || sc->data[SC_ANKLE]) && battle_config.block_relocation)) 
+			if(sc && (sc->data[SC_EXPLOSIONSPIRITS] || sc->data[SC_ANKLE] && battle_config.block_relocation)) 
 				req.spiritball = 0;
 			break;
 		case MO_EXTREMITYFIST:
@@ -12972,7 +12972,7 @@ struct skill_condition skill_get_requirement(struct map_session_data* sd, short 
 }
 
 /*============================================================================
- * Tempo de conjura\E7\E3o fixo e vari\E1vel com base na renova\E7\E3o [Protimus & brn0]
+ * Tempo de conjuração fixo e variável com base na renovação [Protimus & brn0]
  *--------------------------------------------------------------------------*/
 int skill_castfix (struct block_list *bl, int skill_id, int skill_lv)
 {
@@ -12990,7 +12990,7 @@ int skill_castfix (struct block_list *bl, int skill_id, int skill_lv)
 
 	time=(int)max(stat_reduct*base_cast*0.8,0);
 
-	// Tempo de cast para itens, cartas e b\F4nus.
+	// Tempo de cast para itens, cartas e bônus.
 	if(sd && !(skill_get_castnodex(skill_id, skill_lv)&4)) {
 		int i;
 		if( sd->castrate != 100 )
@@ -13024,20 +13024,20 @@ int skill_castfix (struct block_list *bl, int skill_id, int skill_lv)
 
 	time += base_cast*(100-cast_fixo_reduct)/500;
 
-	// Battleconfig para multiplicador do tempo de conjura\E7\E3o.
+	// Battleconfig para multiplicador do tempo de conjuração.
 	if (battle_config.cast_rate != 100)
 		time = time*battle_config.cast_rate/100;
 	if(time < 0)
 		time = 0;
 	if( sc && sc->data[SC_MANDRAGORA] && (skill_id >= SM_BASH && skill_id <= RETURN_TO_ELDICASTES) )
 		time += 2000;
-	// Retorno do tempo de conjura\E7\E3o final.
+	// Retorno do tempo de conjuração final.
 	return time;
 }
 
 
 /*====================================================================
- * Tempo de cast vari\E1vel atrav\E9s de SC's (status changes). [Protimus]
+ * Tempo de cast variável através de SC's (status changes). [Protimus]
  *------------------------------------------------------------------*/
 int skill_castfix_sc (struct block_list *bl, int time)
 {
@@ -15661,14 +15661,14 @@ int skill_magicdecoy(struct map_session_data *sd, int nameid){
 
 	pc_delitem(sd,i,1,0,0,LOG_TYPE_CONSUME); // Deleta o item
 
-	//Recupera posi\E7\E3o
+	//Recupera posição
 	x = sd->menuskill_itemused>>16;
 	y = sd->menuskill_itemused&0xffff;
 	sd->menuskill_itemused = sd->menuskill_val = 0;
 
 	class_ = (nameid == 990 || nameid == 991) ? 2043 + nameid - 990 : (nameid == 992) ? 2046 : 2045;
 
-	//Constr\F3i struct mob
+	//Constrói struct mob
 	md =  mob_once_spawn_sub(&sd->bl, sd->bl.m, x, y, sd->status.name, class_, "");
 	if( md )
 	{
@@ -17006,7 +17006,7 @@ static bool skill_parse_row_spellbookdb(char* split[], int columns, int current)
 	if( !skill_get_index(skillid) || !skill_get_max(skillid) )
 		ShowError("spellbook_db: ID de habilidade %d invalido\n", skillid);
 	if ( !skill_get_inf(skillid) )
-		ShowError("spellbook_db: Habilidades passivas n\E3o podem ser memorizadas (%d/%s)\n", skillid, skill_get_name(skillid));
+		ShowError("spellbook_db: Habilidades passivas não podem ser memorizadas (%d/%s)\n", skillid, skill_get_name(skillid));
 	if( points < 1 )
 		ShowError("spellbook_db: Slots Requeridos deve ser 1 ou maior! (%d/%s)\n", skillid, skill_get_name(skillid));
 	else

@@ -3205,7 +3205,7 @@ int search_mapserver(unsigned short map, uint32 ip, uint16 port)
 	return -1;
 }
 
-// char_mapif\82̏\89\8A\FA\89\BB\8F\88\97\9D\81i\8C\BB\8D݂\CDinter_mapif\8F\89\8A\FA\89\BB\82̂݁j
+// char_mapifÌú»i»ÝÍinter_mapifú»ÌÝj 
 static int char_mapif_init(int fd)
 {
 	return inter_mapif_init(fd);
@@ -4574,7 +4574,7 @@ int do_init(int argc, char **argv)
 
 	ShowInfo("Carregamento das configuracoes do servidor de personagens terminado.\n");
 
-	inter_init_sql((argc > 2) ? argv[2] : inter_cfgName); // inter server \C3ʱ\E2ȭ
+	inter_init_sql((argc > 2) ? argv[2] : inter_cfgName); // inter server ÃÊ±âÈ­ 
 	ShowInfo("Carregamento das configuracoes do inter-server terminado.\n");
 
 	ShowInfo("Inicializando servidor de personagens.\n");

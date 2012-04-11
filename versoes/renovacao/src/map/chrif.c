@@ -747,7 +747,7 @@ int chrif_charselectreq(struct map_session_data* sd, uint32 s_ip)
 }
 
 /*==========================================
- * \83L\83\83\83\89\96\BC\96₢\8D\87\82킹
+ *
  *------------------------------------------*/
 int chrif_searchcharid(int char_id)
 {
@@ -873,7 +873,7 @@ static void chrif_char_ask_name_answer(int acc, const char* player_name, uint16 
 }
 
 /*==========================================
- * \90\AB\95ʕω\BB\8FI\97\B9 (modified by Yor)
+ *
  *------------------------------------------*/
 int chrif_changedsex(int fd)
 {
@@ -1021,17 +1021,17 @@ int chrif_accountban(int fd)
 	if (RFIFOB(fd,6) == 0) // 0: change of statut, 1: ban
 	{
 		switch (RFIFOL(fd,7)) { // status or final date of a banishment
-		case 1: clif_displaymessage(sd->fd, "Sua conta n\E3o est\E1 'registrada'."); break;
+		case 1: clif_displaymessage(sd->fd, "Sua conta não está 'registrada'."); break;
 		case 2: clif_displaymessage(sd->fd, "Sua conta possui 'Senha incorreta'..."); break;
 		case 3: clif_displaymessage(sd->fd, "Sua conta expirou."); break;
 		case 4: clif_displaymessage(sd->fd, "Sua conta foi rejeitada pelo servidor."); break;
 		case 5: clif_displaymessage(sd->fd, "Sua conta foi bloqueada pela equipe GM."); break;
-		case 6: clif_displaymessage(sd->fd, "Seu EXE do jogo est\E1 desatualizado."); break;
+		case 6: clif_displaymessage(sd->fd, "Seu EXE do jogo está desatualizado."); break;
 		case 7: clif_displaymessage(sd->fd, "O login em sua conta foi proibido."); break;
 		case 8: clif_displaymessage(sd->fd, "Servidor lotado."); break;
-		case 9: clif_displaymessage(sd->fd, "Sua conta n\E3o possui autoriza\E7\E3o."); break;
+		case 9: clif_displaymessage(sd->fd, "Sua conta não possui autorização."); break;
 		case 100: clif_displaymessage(sd->fd, "Sua conta foi totalmente removida."); break;
-		default:  clif_displaymessage(sd->fd, "Sua conta n\E3o possui autoriza\E7\E3o."); break;
+		default:  clif_displaymessage(sd->fd, "Sua conta não possui autorização."); break;
 		}
 	}
 	else if (RFIFOB(fd,6) == 1) // 0: change of statut, 1: ban
@@ -1039,7 +1039,7 @@ int chrif_accountban(int fd)
 		time_t timestamp;
 		char tmpstr[2048];
 		timestamp = (time_t)RFIFOL(fd,7); // status or final date of a banishment
-		strcpy(tmpstr, "Sua conta foi banida at\E9 ");
+		strcpy(tmpstr, "Sua conta foi banida até ");
 		strftime(tmpstr + strlen(tmpstr), 24, "%d-%m-%Y %H:%M:%S", localtime(&timestamp));
 		clif_displaymessage(sd->fd, tmpstr);
 	}
@@ -1489,10 +1489,10 @@ int chrif_parse(int fd)
 		cmd = RFIFOW(fd,0);
 		if (cmd < 0x2af8 || cmd >= 0x2af8 + ARRAYLENGTH(packet_len_table) || packet_len_table[cmd-0x2af8] == 0)
 		{
-			int r = intif_parse(fd); // intif\82ɓn\82\B7
+			int r = intif_parse(fd); // intif
 
-			if (r == 1) continue;	// intif\82ŏ\88\97\9D\82\B5\82\BD
-			if (r == 2) return 0;	// intif\82ŏ\88\97\9D\82\B5\82\BD\82\AA\81A\83f\81[\83^\82\AA\91\AB\82\E8\82Ȃ\A2
+			if (r == 1) continue;	// intif
+			if (r == 2) return 0;	// intif
 
 			ShowWarning("chrif_parse: sessao #%d, intif_parse falhou (comando nao reconhecido 0x%.4x).\n", fd, cmd);
 			set_eof(fd);
@@ -1569,8 +1569,8 @@ int send_usercount_tochar(int tid, unsigned int tick, int id, intptr_t data)
 }
 
 /*==========================================
- * timer\8A֐\94
- * \8D\A1\82\B1\82\CCmap\8EI\82Ɍq\82\AA\82\C1\82Ă\A2\82\E9\83N\83\89\83C\83A\83\93\83g\90l\90\94\82\F0char\8EI\82֑\97\82\E9
+ * timer
+ *
  *------------------------------------------*/
 int send_users_tochar(void)
 {
@@ -1599,8 +1599,8 @@ int send_users_tochar(void)
 }
 
 /*==========================================
- * timer\8A֐\94
- * char\8EI\82Ƃ̐ڑ\B1\82\F0\8Am\94F\82\B5\81A\82\E0\82\B5\90؂\EA\82Ă\A2\82\BD\82\E7\8Dēx\90ڑ\B1\82\B7\82\E9
+ * timer
+ * char
  *------------------------------------------*/
 static int check_connect_char_server(int tid, unsigned int tick, int id, intptr_t data)
 {
@@ -1669,7 +1669,7 @@ int auth_db_final(DBKey key, DBData *data, va_list ap)
 }
 
 /*==========================================
- * \8FI\97\B9
+ *
  *------------------------------------------*/
 int do_final_chrif(void)
 {

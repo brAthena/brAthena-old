@@ -1164,7 +1164,6 @@ int mapif_guild_castle_dataload(int fd, int sz, int *castle_ids)
 // Packet received from map server
 
 
-// \83M\83\8B\83h\8D쐬\97v\8B\81
 int mapif_parse_CreateGuild(int fd,int account_id,char *name,struct guild_member *master)
 {
 	struct guild *g;
@@ -1206,7 +1205,7 @@ int mapif_parse_CreateGuild(int fd,int account_id,char *name,struct guild_member
 	strcpy(g->position[MAX_GUILDPOSITION-1].name,"Novato");
 	g->position[0].modified = g->position[MAX_GUILDPOSITION-1].modified = GS_POSITION_MODIFIED;
 	for(i=1;i<MAX_GUILDPOSITION-1;i++) {
-		sprintf(g->position[i].name,"Posi\E7\E3o %d",i+1);
+		sprintf(g->position[i].name,"Posição %d",i+1);
 		g->position[i].modified = GS_POSITION_MODIFIED;
 	}
 
@@ -1859,11 +1858,6 @@ int mapif_parse_GuildMasterChange(int fd, int guild_id, const char* name, int le
 	return mapif_guild_master_changed(g, g->member[0].account_id, g->member[0].char_id);
 }
 
-// map server \82\A9\82\E7\82̒ʐM
-// \81E\82P\83p\83P\83b\83g\82̂݉\F0\90͂\B7\82邱\82\C6
-// \81E\83p\83P\83b\83g\92\B7\83f\81[\83^\82\CDinter.c\82ɃZ\83b\83g\82\B5\82Ă\A8\82\AD\82\B1\82\C6
-// \81E\83p\83P\83b\83g\92\B7\83`\83F\83b\83N\82\E2\81ARFIFOSKIP\82͌Ăяo\82\B5\8C\B3\82ōs\82\ED\82\EA\82\E9\82̂ōs\82\C1\82Ă͂Ȃ\E7\82Ȃ\A2
-// \81E\83G\83\89\81[\82Ȃ\E70(false)\81A\82\BB\82\A4\82łȂ\A2\82Ȃ\E71(true)\82\F0\82\A9\82\A6\82\B3\82Ȃ\AF\82\EA\82΂Ȃ\E7\82Ȃ\A2
 int inter_guild_parse_frommap(int fd)
 {
 	RFIFOHEAD(fd);
@@ -1893,7 +1887,6 @@ int inter_guild_parse_frommap(int fd)
 	return 1;
 }
 
-// \83T\81[\83o\81[\82\A9\82\E7\92E\91ޗv\8B\81\81i\83L\83\83\83\89\8D폜\97p\81j
 int inter_guild_leave(int guild_id, int account_id, int char_id)
 {
 	return mapif_parse_GuildLeave(-1, guild_id, account_id, char_id, 0, "** Personagem Removido **");
