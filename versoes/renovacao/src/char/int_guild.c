@@ -1164,7 +1164,7 @@ int mapif_guild_castle_dataload(int fd, int sz, int *castle_ids)
 // Packet received from map server
 
 
-// ƒMƒ‹ƒhì¬—v‹
+// \83M\83\8B\83h\8Dì¬\97v\8B\81
 int mapif_parse_CreateGuild(int fd,int account_id,char *name,struct guild_member *master)
 {
 	struct guild *g;
@@ -1206,7 +1206,7 @@ int mapif_parse_CreateGuild(int fd,int account_id,char *name,struct guild_member
 	strcpy(g->position[MAX_GUILDPOSITION-1].name,"Novato");
 	g->position[0].modified = g->position[MAX_GUILDPOSITION-1].modified = GS_POSITION_MODIFIED;
 	for(i=1;i<MAX_GUILDPOSITION-1;i++) {
-		sprintf(g->position[i].name,"Posição %d",i+1);
+		sprintf(g->position[i].name,"Posi\E7\E3o %d",i+1);
 		g->position[i].modified = GS_POSITION_MODIFIED;
 	}
 
@@ -1768,7 +1768,7 @@ int mapif_parse_GuildEmblem(int fd,int len,int guild_id,int dummy,const char *da
 	if(g==NULL)
 		return 0;
 
-	if (len > sizeof(g->emblem_data))
+	if ((unsigned) len > sizeof(g->emblem_data))
 		len = sizeof(g->emblem_data);
 
 	memcpy(g->emblem_data,data,len);
@@ -1859,11 +1859,11 @@ int mapif_parse_GuildMasterChange(int fd, int guild_id, const char* name, int le
 	return mapif_guild_master_changed(g, g->member[0].account_id, g->member[0].char_id);
 }
 
-// map server ‚©‚ç‚Ì’ÊM
-// E‚PƒpƒPƒbƒg‚Ì‚İ‰ğÍ‚·‚é‚±‚Æ
-// EƒpƒPƒbƒg’·ƒf[ƒ^‚Íinter.c‚ÉƒZƒbƒg‚µ‚Ä‚¨‚­‚±‚Æ
-// EƒpƒPƒbƒg’·ƒ`ƒFƒbƒN‚âARFIFOSKIP‚ÍŒÄ‚Ño‚µŒ³‚Ås‚í‚ê‚é‚Ì‚Ås‚Á‚Ä‚Í‚È‚ç‚È‚¢
-// EƒGƒ‰[‚È‚ç0(false)A‚»‚¤‚Å‚È‚¢‚È‚ç1(true)‚ğ‚©‚¦‚³‚È‚¯‚ê‚Î‚È‚ç‚È‚¢
+// map server \82\A9\82\E7\82Ì’ÊM
+// \81E\82P\83p\83P\83b\83g\82Ì‚İ‰\F0\90Í‚\B7\82é‚±\82\C6
+// \81E\83p\83P\83b\83g\92\B7\83f\81[\83^\82\CDinter.c\82ÉƒZ\83b\83g\82\B5\82Ä‚\A8\82\AD\82\B1\82\C6
+// \81E\83p\83P\83b\83g\92\B7\83`\83F\83b\83N\82\E2\81ARFIFOSKIP\82ÍŒÄ‚Ño\82\B5\8C\B3\82Ås\82\ED\82\EA\82\E9\82Ì‚Ås\82\C1\82Ä‚Í‚È‚\E7\82È‚\A2
+// \81E\83G\83\89\81[\82È‚\E70(false)\81A\82\BB\82\A4\82Å‚È‚\A2\82È‚\E71(true)\82\F0\82\A9\82\A6\82\B3\82È‚\AF\82\EA\82Î‚È‚\E7\82È‚\A2
 int inter_guild_parse_frommap(int fd)
 {
 	RFIFOHEAD(fd);
@@ -1893,7 +1893,7 @@ int inter_guild_parse_frommap(int fd)
 	return 1;
 }
 
-// ƒT[ƒo[‚©‚ç’E‘Ş—v‹iƒLƒƒƒ‰íœ—pj
+// \83T\81[\83o\81[\82\A9\82\E7\92E\91Ş—v\8B\81\81i\83L\83\83\83\89\8Díœ\97p\81j
 int inter_guild_leave(int guild_id, int account_id, int char_id)
 {
 	return mapif_parse_GuildLeave(-1, guild_id, account_id, char_id, 0, "** Personagem Removido **");

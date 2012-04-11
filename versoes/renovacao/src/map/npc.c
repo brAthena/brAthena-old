@@ -805,14 +805,14 @@ int npc_event(struct map_session_data* sd, const char* eventname, int ontouch)
 int npc_touch_areanpc_sub(struct block_list *bl, va_list ap)
 {
 	struct map_session_data *sd;
-	int pc_id,npc_id;
+	int pc_id;
 	char *name;
 
 	nullpo_ret(bl);
 	nullpo_ret((sd = map_id2sd(bl->id)));
 
 	pc_id = va_arg(ap,int);
-	npc_id = va_arg(ap,int); 
+	va_arg(ap,int); 
 	name = va_arg(ap,char*);
 
 	if( pc_ishiding(sd) )
@@ -1612,11 +1612,10 @@ int npc_selllist(struct map_session_data* sd, int n, unsigned short* item_list)
 	// delete items
 	for( i = 0; i < n; i++ )
 	{
-		int nameid, amount, idx;
+		int amount, idx;
 
 		idx    = item_list[i*2]-2;
 		amount = item_list[i*2+1];
-		nameid = sd->status.inventory[idx].nameid;
 
 		if( sd->inventory_data[idx]->type == IT_PETEGG && sd->status.inventory[idx].card[0] == CARD0_PET )
 		{

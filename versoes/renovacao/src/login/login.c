@@ -192,7 +192,8 @@ static int online_data_cleanup(int tid, unsigned int tick, int id, intptr_t data
 //--------------------------------------------------------------------
 int charif_sendallwos(int sfd, uint8* buf, size_t len)
 {
-	int i, c;
+	int c;
+	unsigned int i;
 
 	for( i = 0, c = 0; i < ARRAYLENGTH(server); ++i )
 	{
@@ -417,7 +418,8 @@ int parse_console(const char* command)
 //--------------------------------
 int parse_fromchar(int fd)
 {
-	int j, id;
+	int j;
+	unsigned int id;
 	uint32 ipl;
 	char ip[16];
 
@@ -1100,7 +1102,7 @@ void login_auth_ok(struct login_session_data* sd)
 	uint8 server_num, n;
 	uint32 subnet_char_ip;
 	struct auth_node* node;
-	int i;
+	unsigned int i;
 	
 	if( runflag != LOGINSERVER_ST_RUNNING )
 	{
@@ -1246,7 +1248,7 @@ void login_auth_failed(struct login_session_data* sd, int result)
 		case  14: error = "Grupo nao permitido"; break; // 14 = MSI_REFUSE_NOT_PERMITTED_GROUP
 		case  15: error = "Grupo nao permitido"; break; // 15 = MSI_REFUSE_NOT_PERMITTED_GROUP
 		case  99: error = "Conta removida."; break; // 99 = This ID has been totally erased
-		case 100: error = "Informaçao de login permanecente."; break; // 100 = Login information remains at %s
+		case 100: error = "Informa\E7ao de login permanecente."; break; // 100 = Login information remains at %s
 		case 101: error = "Investigacao de Hackeamento."; break; // 101 = Account has been locked for a hacking investigation. Please contact the GM Team for more information
 		case 102: error = "Investigacao de Bugs."; break; // 102 = This account has been temporarily prohibited from login due to a bug-related investigation
 		case 103: error = "Deletando personagem."; break; // 103 = This character is being deleted. Login is temporarily unavailable for the time being
@@ -1456,7 +1458,7 @@ int parse_login(int fd)
 			if( runflag == LOGINSERVER_ST_RUNNING &&
 				result == -1 &&
 				sd->sex == 'S' &&
-				sd->account_id >= 0 && sd->account_id < ARRAYLENGTH(server) &&
+				sd->account_id >= 0 && (unsigned) sd->account_id < ARRAYLENGTH(server) &&
 				!session_isValid(server[sd->account_id].fd) )
 			{
 				ShowStatus("Conexao do servidor de personagens '%s' aceita.\n", server_name);
@@ -1648,7 +1650,7 @@ static AccountDB* get_account_engine(void)
 //--------------------------------------
 void do_final(void)
 {
-	int i;
+	unsigned int i;
 
 	login_log(0, "login server", 100, "login server finalizado");
 	ShowStatus("Finalizando...\n");
@@ -1702,7 +1704,7 @@ void do_shutdown(void)
 {
 	if( runflag != LOGINSERVER_ST_SHUTDOWN )
 	{
-		int id;
+		unsigned int id;
 		runflag = LOGINSERVER_ST_SHUTDOWN;
 		ShowStatus("Shutting down...\n");
 		// TODO proper shutdown procedure; kick all characters, wait for acks, ...  [FlavioJS]
@@ -1719,7 +1721,7 @@ void do_shutdown(void)
 //------------------------------
 int do_init(int argc, char** argv)
 {
-	int i;
+	unsigned int i;
 
 	// intialize engines (to accept config settings)
 	for( i = 0; account_engines[i].constructor; ++i )

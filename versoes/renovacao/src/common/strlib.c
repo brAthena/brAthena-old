@@ -674,7 +674,8 @@ int sv_parse(const char* str, int len, int startoff, char delim, int* out_pos, i
 int sv_split(char* str, int len, int startoff, char delim, char** out_fields, int nfields, enum e_svopt opt)
 {
 	int pos[1024];
-	int i;
+	unsigned int i;
+	int j;
 	int done;
 	char* end;
 	int ret = sv_parse(str, len, startoff, delim, pos, ARRAYLENGTH(pos), opt);
@@ -737,8 +738,8 @@ int sv_split(char* str, int len, int startoff, char delim, char** out_fields, in
 		}
 	}
 	// remaining fields
-	for( i = 0; i < nfields; ++i )
-		out_fields[i] = end;
+	for( j = 0; j < nfields; ++j )
+		out_fields[j] = end;
 	return ret;
 }
 

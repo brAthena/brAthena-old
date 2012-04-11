@@ -105,7 +105,7 @@ char unknown_char_name[NAME_LENGTH] = "Desconhecido"; // Name to use when the re
 #define TRIM_CHARS "\255\xA0\032\t\x0A\x0D " //The following characters are trimmed regardless because they cause confusion and problems on the servers. [Skotlex]
 char char_name_letters[1024] = ""; // list of letters/symbols allowed (or not) in a character name. by [Yor]
 
-int char_per_account = 0; //Maximum charas per account (default unlimited) [Sirius]
+unsigned int char_per_account = 0; //Maximum charas per account (default unlimited) [Sirius]
 int char_del_level = 0; //From which level u can delete character [Lupus]
 int char_del_delay = 86400;
 
@@ -670,13 +670,17 @@ int mmo_char_tosql(int char_id, struct mmo_charstatus* p)
 	StringBuf_Clear(&buf);
 	StringBuf_Printf(&buf, "REPLACE INTO `%s` (`char_id`, `hotkey`, `type`, `itemskill_id`, `skill_lvl`) VALUES ", hotkey_db);
 	diff = 0;
-	for(i = 0; i < ARRAYLENGTH(p->hotkeys); i++){
-		if(memcmp(&p->hotkeys[i], &cp->hotkeys[i], sizeof(struct hotkey)))
+	{
+		unsigned int j;
+		for(j = 0; j < ARRAYLENGTH(p->hotkeys); j++)
 		{
-			if( diff )
-				StringBuf_AppendStr(&buf, ",");// not the first hotkey
-			StringBuf_Printf(&buf, "('%d','%u','%u','%u','%u')", char_id, (unsigned int)i, (unsigned int)p->hotkeys[i].type, p->hotkeys[i].id , (unsigned int)p->hotkeys[i].lv);
-			diff = 1;
+			if(memcmp(&p->hotkeys[j], &cp->hotkeys[j], sizeof(struct hotkey)))
+			{
+				if( diff )
+					StringBuf_AppendStr(&buf, ",");// not the first hotkey
+				StringBuf_Printf(&buf, "('%d','%u','%u','%u','%u')", char_id, (unsigned int)j, (unsigned int)p->hotkeys[j].type, p->hotkeys[j].id , (unsigned int)p->hotkeys[j].lv);
+				diff = 1;
+			}
 		}
 	}
 	if(diff) {
@@ -1591,7 +1595,8 @@ int delete_char_sql(int char_id)
 //---------------------------------------------------------------------
 int count_users(void)
 {
-	int i, users;
+	unsigned int i;
+	int users;
 
 	users = 0;
 	for(i = 0; i < ARRAYLENGTH(server); i++) {
@@ -1850,7 +1855,7 @@ void mapif_server_reset(int id);
 /// Resets all the data.
 void loginif_reset(void)
 {
-	int id;
+	unsigned int id;
 	// TODO kick everyone out and reset everything or wait for connect and try to reaquire locks [FlavioJS]
 	for( id = 0; id < ARRAYLENGTH(server); ++id )
 		mapif_server_reset(id);
@@ -1880,7 +1885,7 @@ void loginif_on_disconnect(void)
 /// Called when all the connection steps are completed.
 void loginif_on_ready(void)
 {
-	int i;
+	unsigned int i;
 
 	loginif_check_shutdown();
 
@@ -1950,8 +1955,8 @@ int parse_fromlogin(int fd)
 				return 0;
 		{
 			int account_id = RFIFOL(fd,2);
-			uint32 login_id1 = RFIFOL(fd,6);
-			uint32 login_id2 = RFIFOL(fd,10);
+			int32 login_id1 = RFIFOL(fd,6);
+			int32 login_id2 = RFIFOL(fd,10);
 			uint8 sex = RFIFOB(fd,14);
 			uint8 result = RFIFOB(fd,15);
 			int request_id = RFIFOL(fd,16);
@@ -1986,14 +1991,14 @@ int parse_fromlogin(int fd)
 				return 0;
 
 			// find the authenticated session with this account id
-			ARR_FIND( 0, fd_max, i, session[i] && (sd = (struct char_session_data*)session[i]->session_data) && sd->auth && sd->account_id == RFIFOL(fd,2) );
+			ARR_FIND( 0, fd_max, i, session[i] && (sd = (struct char_session_data*)session[i]->session_data) && sd->auth && (unsigned) sd->account_id == RFIFOL(fd,2) );
 			if( i < fd_max )
 			{
-				int server_id;
+				unsigned int server_id;
 				memcpy(sd->email, RFIFOP(fd,6), 40);
 				sd->expiration_time = (time_t)RFIFOL(fd,46);
 				sd->group_id = RFIFOB(fd,50);
-				safestrncpy(sd->birthdate, RFIFOP(fd,51), sizeof(sd->birthdate));
+				safestrncpy(sd->birthdate, (char *) RFIFOP(fd,51), sizeof(sd->birthdate));
 
 				ARR_FIND( 0, ARRAYLENGTH(server), server_id, server[server_id].fd > 0 && server[server_id].map[0] );
 				// continued from char_auth_ok...
@@ -2458,7 +2463,7 @@ void mapif_on_disconnect(int id)
 int parse_frommap(int fd)
 {
 	int i, j;
-	int id;
+	unsigned int id;
 
 	ARR_FIND( 0, ARRAYLENGTH(server), id, server[id].fd == fd );
 	if( id == ARRAYLENGTH(server) )
@@ -2506,7 +2511,7 @@ int parse_frommap(int fd)
 
 			{
 			unsigned char buf[16384];
-			int x;
+			unsigned int x;
 			if (j == 0) {
 				ShowWarning("Servidor de mapas %d nao possui NENHUM mapa.\n", id);
 			} else {
@@ -2520,15 +2525,16 @@ int parse_frommap(int fd)
 			}
 			// Transmitting the maps of the other map-servers to the new map-server
 			for(x = 0; x < ARRAYLENGTH(server); x++) {
+				unsigned int k;
 				if (server[x].fd > 0 && x != id) {
 					WFIFOHEAD(fd,10 +4*ARRAYLENGTH(server[x].map));
 					WFIFOW(fd,0) = 0x2b04;
 					WFIFOL(fd,4) = htonl(server[x].ip);
 					WFIFOW(fd,8) = htons(server[x].port);
 					j = 0;
-					for(i = 0; i < ARRAYLENGTH(server[x].map); i++)
-						if (server[x].map[i])
-							WFIFOW(fd,10+(j++)*4) = server[x].map[i];
+					for(k = 0; k < ARRAYLENGTH(server[x].map); k++)
+						if (server[x].map[k])
+							WFIFOW(fd,10+(j++)*4) = server[x].map[k];
 					if (j > 0) {
 						WFIFOW(fd,2) = j * 4 + 10;
 						WFIFOSET(fd,WFIFOW(fd,2));
@@ -2616,7 +2622,7 @@ int parse_frommap(int fd)
 				aid = RFIFOL(fd,6+i*8);
 				cid = RFIFOL(fd,6+i*8+4);
 				character = idb_ensure(online_char_db, aid, create_online_char_data);
-				if( character->server > -1 && character->server != id )
+				if( character->server > -1 && character->server != (int) id )
 				{
 					ShowNotice("Set map user: Personagem (%d:%d) marcado no servidor de mapas %d, mas o servidor de mapas %d diz ter (%d:%d) online!\n",
 						character->account_id, character->char_id, character->server, id, aid, cid);
@@ -3077,7 +3083,7 @@ int parse_frommap(int fd)
 		{
 			int account_id;
 			int char_id;
-			int login_id1;
+			unsigned int login_id1;
 			char sex;
 			uint32 ip;
 			struct auth_node* node;
@@ -3166,14 +3172,14 @@ int parse_frommap(int fd)
 
 void do_init_mapif(void)
 {
-	int i;
+	unsigned int i;
 	for( i = 0; i < ARRAYLENGTH(server); ++i )
 		mapif_server_init(i);
 }
 
 void do_final_mapif(void)
 {
-	int i;
+	unsigned int i;
 	for( i = 0; i < ARRAYLENGTH(server); ++i )
 		mapif_server_destroy(i);
 }
@@ -3182,7 +3188,7 @@ void do_final_mapif(void)
 // If found, returns the server's index in the 'server' array (otherwise returns -1).
 int search_mapserver(unsigned short map, uint32 ip, uint16 port)
 {
-	int i, j;
+	unsigned int i, j;
 
 	for(i = 0; i < ARRAYLENGTH(server); i++)
 	{
@@ -3199,7 +3205,7 @@ int search_mapserver(unsigned short map, uint32 ip, uint16 port)
 	return -1;
 }
 
-// char_mapifの初期化処理（現在はinter_mapif初期化のみ）
+// char_mapif\82ﾌ十89\8A\FA\89\BB\8F\88\97\9D\81i\8C\BB\8Dﾝ�\CDinter_mapif\8F\89\8A\FA\89\BB\82ﾌみ）
 static int char_mapif_init(int fd)
 {
 	return inter_mapif_init(fd);
@@ -3920,11 +3926,12 @@ int parse_char(int fd)
 		{
 			char* l_user = (char*)RFIFOP(fd,2);
 			char* l_pass = (char*)RFIFOP(fd,26);
+			unsigned int j;
 			l_user[23] = '\0';
 			l_pass[23] = '\0';
-			ARR_FIND( 0, ARRAYLENGTH(server), i, server[i].fd <= 0 );
+			ARR_FIND( 0, ARRAYLENGTH(server), j, server[j].fd <= 0 );
 			if( runflag != CHARSERVER_ST_RUNNING ||
-				i == ARRAYLENGTH(server) ||
+				j == ARRAYLENGTH(server) ||
 				strcmp(l_user, userid) != 0 ||
 				strcmp(l_pass, passwd) != 0 )
 			{
@@ -3938,11 +3945,11 @@ int parse_char(int fd)
 				WFIFOB(fd,2) = 0;
 				WFIFOSET(fd,3);
 
-				server[i].fd = fd;
-				server[i].ip = ntohl(RFIFOL(fd,54));
-				server[i].port = ntohs(RFIFOW(fd,58));
-				server[i].users = 0;
-				memset(server[i].map, 0, sizeof(server[i].map));
+				server[j].fd = fd;
+				server[j].ip = ntohl(RFIFOL(fd,54));
+				server[j].port = ntohs(RFIFOW(fd,58));
+				server[j].users = 0;
+				memset(server[j].map, 0, sizeof(server[j].map));
 				session[fd]->func_parse = parse_frommap;
 				session[fd]->flag.server = 1;
 				realloc_fifo(fd, FIFOSIZE_SERVERLINK, FIFOSIZE_SERVERLINK);
@@ -3987,7 +3994,8 @@ int parse_console(const char* command)
 
 int mapif_sendall(unsigned char *buf, unsigned int len)
 {
-	int i, c;
+	unsigned int i;
+	int c;
 
 	c = 0;
 	for(i = 0; i < ARRAYLENGTH(server); i++) {
@@ -4005,7 +4013,8 @@ int mapif_sendall(unsigned char *buf, unsigned int len)
 
 int mapif_sendallwos(int sfd, unsigned char *buf, unsigned int len)
 {
-	int i, c;
+	unsigned int i;
+	int c;
 
 	c = 0;
 	for(i = 0; i < ARRAYLENGTH(server); i++) {
@@ -4023,7 +4032,7 @@ int mapif_sendallwos(int sfd, unsigned char *buf, unsigned int len)
 
 int mapif_send(int fd, unsigned char *buf, unsigned int len)
 {
-	int i;
+	unsigned int i;
 
 	if (fd >= 0) {
 		ARR_FIND( 0, ARRAYLENGTH(server), i, fd == server[i].fd );
@@ -4534,7 +4543,7 @@ void do_shutdown(void)
 {
 	if( runflag != CHARSERVER_ST_SHUTDOWN )
 	{
-		int id;
+		unsigned int id;
 		runflag = CHARSERVER_ST_SHUTDOWN;
 		ShowStatus("Shutting down...\n");
 		// TODO proper shutdown procedure; wait for acks?, kick all characters, ... [FlavoJS]
@@ -4565,7 +4574,7 @@ int do_init(int argc, char **argv)
 
 	ShowInfo("Carregamento das configuracoes do servidor de personagens terminado.\n");
 
-	inter_init_sql((argc > 2) ? argv[2] : inter_cfgName); // inter server ﾃﾊｱ篳ｭ
+	inter_init_sql((argc > 2) ? argv[2] : inter_cfgName); // inter server \C3ﾊｱ\E2ﾈｭ
 	ShowInfo("Carregamento das configuracoes do inter-server terminado.\n");
 
 	ShowInfo("Inicializando servidor de personagens.\n");
@@ -4644,3 +4653,4 @@ int do_init(int argc, char **argv)
 
 	return 0;
 }
+

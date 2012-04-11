@@ -128,7 +128,7 @@ endif()
 if( "${CMAKE_C_COMPILER_ID}" STREQUAL "GNU" )
 	set_property( CACHE GLOBAL_DEFINITIONS PROPERTY VALUE
 		"${GLOBAL_DEFINITIONS} -Wno-int-to-pointer-cast -Wno-pointer-to-int-cast"
-		#"${GLOBAL_DEFINITIONS} -Wall -Wextra -Werror -Wint-to-pointer-cast -Wpointer-to-int-cast -Wno-type-limits -Wno-sign-compare -Wno-unused-parameter -Wno-pointer-sign -Wno-switch"
+		#"${GLOBAL_DEFINITIONS} -Wall -Wextra -Werror -Wno-int-to-pointer-cast -Wpointer-to-int-cast -Wno-unused-parameter -Wno-switch -Wno-strict-aliasing -Wno-unused-function -Wno-clobbered -Wno-pointer-sign"
 	)
 endif()
 

@@ -495,7 +495,7 @@ int mapif_parse_WisRequest(int fd)
 
 	if ( fd <= 0 ) {return 0;} // check if we have a valid fd
 
-	if (RFIFOW(fd,2)-52 >= sizeof(wd->msg)) {
+	if ((unsigned) (RFIFOW(fd,2)-52) >= sizeof(wd->msg)) {
 		ShowWarning("inter: Tamanho da mensagem Wis muito grande.\n");
 		return 0;
 	} else if (RFIFOW(fd,2)-52 <= 0) { // normaly, impossible, but who knows...
@@ -706,7 +706,7 @@ int inter_check_length(int fd, int length)
 
 int inter_parse_frommap(int fd)
 {
-	int cmd;
+	unsigned int cmd;
 	int len = 0;
 	cmd = RFIFOW(fd,0);
 	// interŽIŠÇŠ‚©‚ð’²‚×‚é

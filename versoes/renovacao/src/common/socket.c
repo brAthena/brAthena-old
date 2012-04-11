@@ -235,7 +235,7 @@ struct socket_data* session[FD_SETSIZE];
 
 #ifdef SEND_SHORTLIST
 int send_shortlist_array[FD_SETSIZE];// we only support FD_SETSIZE sockets, limit the array to that
-int send_shortlist_count = 0;// how many fd's are in the shortlist
+unsigned int send_shortlist_count = 0;// how many fd's are in the shortlist
 uint32 send_shortlist_set[(FD_SETSIZE+31)/32];// to know if specific fd's are already in the shortlist
 #endif
 

@@ -936,7 +936,8 @@ ACMD_FUNC(jobchange)
 
 	if (!message || !*message || sscanf(message, "%d %d", &job, &upper) < 1)
 	{
-		int i, found = 0;
+		int found = 0;
+		unsigned int i;
 		const struct { char name[23]; int id; } jobs[] = {
 			{ "aprendiz",				   0 },
 			{ "espadachim",				   1 },
@@ -1532,7 +1533,8 @@ ACMD_FUNC(itemreset)
  *------------------------------------------*/
 ACMD_FUNC(baselevelup)
 {
-	int level=0, i=0, status_point=0;
+	int level=0, i=0;
+	unsigned int status_point=0;
 	nullpo_retr(-1, sd);
 	level = atoi(message);
 
@@ -1591,7 +1593,7 @@ ACMD_FUNC(baselevelup)
  *------------------------------------------*/
 ACMD_FUNC(joblevelup)
 {
-	int level=0;
+	unsigned int level=0;
 	nullpo_retr(-1, sd);
 
 	level = atoi(message);
@@ -2009,7 +2011,7 @@ ACMD_FUNC(go)
 	town = atoi(message);
 
 	// if no value, display all value
-	if (!message || !*message || sscanf(message, "%11s", map_name) < 1 || town < 0 || town >= ARRAYLENGTH(data)) {
+	if (!message || !*message || sscanf(message, "%11s", map_name) < 1 || town < 0 || (unsigned) town >= ARRAYLENGTH(data)) {
 		clif_displaymessage(fd, msg_txt(38)); // Invalid location number, or name.
 		clif_displaymessage(fd, msg_txt(82)); // Please provide a name or number from the list provided:
 		clif_displaymessage(fd, " 0=Prontera         1=Morroc       2=Geffen");
@@ -2119,7 +2121,7 @@ ACMD_FUNC(go)
 		town = 35;
 	}
 
-	if (town >= 0 && town < ARRAYLENGTH(data))
+	if (town >= 0 && (unsigned)town < ARRAYLENGTH(data))
 	{
 		m = map_mapname2mapid(data[town].map);
 		if (m >= 0 && map[m].flag.nowarpto && !pc_has_permission(sd, PC_PERM_WARP_ANYWHERE)) {
@@ -2651,7 +2653,8 @@ ACMD_FUNC(zeny)
  *------------------------------------------*/
 ACMD_FUNC(param)
 {
-	int i, value = 0, new_value, max;
+	int value = 0, new_value, max;
+	unsigned int i;
 	const char* param[] = { "str", "agi", "vit", "int", "dex", "luk" };
 	short* status[6];
  	//we don't use direct initialization because it isn't part of the c standard.
@@ -2715,7 +2718,8 @@ ACMD_FUNC(param)
  *------------------------------------------*/
 ACMD_FUNC(stat_all)
 {
-	int index, count, value, max, new_value;
+	int count, value, max, new_value;
+	unsigned int index;
 	short* status[6];
  	//we don't use direct initialization because it isn't part of the c standard.
 	nullpo_retr(-1, sd);
@@ -6295,7 +6299,8 @@ ACMD_FUNC(pettalk)
 			"/shy", "/pat", "/mp", "/slur", "/com", "/yawn", "/grat", "/hp", "/philippines", "/usa",
 			"/indonesia", "/brazil", "/fsh", "/spin", "/sigh", "/dum", "/crwd", "/desp", "/dice"
 		};
-		int i;
+		unsigned int i;
+		
 		ARR_FIND( 0, ARRAYLENGTH(emo), i, stricmp(message, emo[i]) == 0 );
 		if( i < ARRAYLENGTH(emo) )
 		{
@@ -7259,7 +7264,8 @@ ACMD_FUNC(whereis)
 {
 	struct mob_db *mob, *mob_array[MAX_SEARCH];
 	int count;
-	int i, j, k;
+	int j, k;
+	unsigned int i;
 
 	if (!message || !*message) {
 		clif_displaymessage(fd, "Favor digitar o nome/ID do monstro (uso: @whereis<nome/ID do monstro>).");
@@ -7708,7 +7714,8 @@ ACMD_FUNC(invite)
 ACMD_FUNC(duel)
 {
 	char output[CHAT_SIZE_MAX];
-	unsigned int maxpl=0, newduel;
+	unsigned int maxpl=0;
+	int newduel;
 	struct map_session_data *target_sd;
 
 	if(sd->duel_group > 0) {
@@ -8726,7 +8733,7 @@ void atcommand_basecommands(void) {
 		ACMD_DEF(allriding),
 	};
 	AtCommandInfo* atcommand;
-	int i;
+	unsigned int i;
 
 	for( i = 0; i < ARRAYLENGTH(atcommand_base); i++ ) {
 		if(atcommand_exists(atcommand_base[i].command)) { // Should not happen if atcommand_base[] array is OK

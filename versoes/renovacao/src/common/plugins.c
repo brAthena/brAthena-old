@@ -125,10 +125,6 @@ int export_symbol(void* var, size_t offset)
 {
 	//ShowDebug("export_symbol(0x%x,%d)\n", var,offset);
 
-	// add to the end of the list
-	if( offset < 0 )
-		offset = call_table_size;
-
 	if( offset >= max_call_table )
 	{// realloc if not large enough
 		max_call_table = 1 + offset;
@@ -315,7 +311,7 @@ static int plugins_config_read(const char *cfgName)
 		if( strcmpi(w1,"auto_search") == 0 ){
 			if( strcmpi(w2,"yes") == 0 || strcmpi(w2,"sim") == 0 )
 				auto_search = 1;
-			else if( strcmpi(w2,"no") == 0 || strcmpi(w2,"nao") == 0 || strcmpi(w2,"não") == 0 )
+			else if( strcmpi(w2,"no") == 0 || strcmpi(w2,"nao") == 0 || strcmpi(w2,"n\E3o") == 0 )
 				auto_search = 0;
 			else
 				auto_search = atoi(w2);

@@ -1823,8 +1823,8 @@ int guild_castledatasave(int castle_id, int index, int value)
 
 void guild_castle_reconnect_sub(void *key, void *data, va_list ap)
 {
-	int castle_id = GetWord((int)key, 0);
-	int index = GetWord((int)key, 1);
+	int castle_id = GetWord((unsigned long)key, 0);
+	int index = GetWord((unsigned long)key, 1);
 	intif_guild_castle_datasave(castle_id, index, *(int *)data);
 	aFree(data);
 }

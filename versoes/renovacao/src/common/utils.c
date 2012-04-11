@@ -13,6 +13,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <math.h> // floor()
+#include <limits.h>
 
 #ifdef WIN32
 	#include <io.h>
@@ -45,14 +46,14 @@ void WriteDump(FILE* fp, const void* buffer, size_t length)
 
 		if( (i%16) == 15 )
 		{
-			fprintf(fp, "%03X %s  %s\n", i/16, hex, ascii);
+			fprintf(fp, "%03lX %s  %s\n", (unsigned long) i/16, hex, ascii);
 		}
 	}
 
 	if( (i%16) != 0 )
 	{
 		ascii[i%16] = 0;
-		fprintf(fp, "%03X %-48s  %-16s\n", i/16, hex, ascii);
+		fprintf(fp, "%03lX %-48s  %-16s\n", (unsigned long) i/16, hex, ascii);
 	}
 }
 
