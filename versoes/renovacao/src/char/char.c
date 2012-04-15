@@ -3205,7 +3205,7 @@ int search_mapserver(unsigned short map, uint32 ip, uint16 port)
 	return -1;
 }
 
-// char_mapifÌú»i»ÝÍinter_mapifú»ÌÝj 
+// char_mapif
 static int char_mapif_init(int fd)
 {
 	return inter_mapif_init(fd);
@@ -4574,7 +4574,7 @@ int do_init(int argc, char **argv)
 
 	ShowInfo("Carregamento das configuracoes do servidor de personagens terminado.\n");
 
-	inter_init_sql((argc > 2) ? argv[2] : inter_cfgName); // inter server ÃÊ±âÈ­ 
+	inter_init_sql((argc > 2) ? argv[2] : inter_cfgName); // inter server
 	ShowInfo("Carregamento das configuracoes do inter-server terminado.\n");
 
 	ShowInfo("Inicializando servidor de personagens.\n");

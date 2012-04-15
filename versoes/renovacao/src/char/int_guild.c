@@ -1205,7 +1205,7 @@ int mapif_parse_CreateGuild(int fd,int account_id,char *name,struct guild_member
 	strcpy(g->position[MAX_GUILDPOSITION-1].name,"Novato");
 	g->position[0].modified = g->position[MAX_GUILDPOSITION-1].modified = GS_POSITION_MODIFIED;
 	for(i=1;i<MAX_GUILDPOSITION-1;i++) {
-		sprintf(g->position[i].name,"PosiÃ§Ã£o %d",i+1);
+		sprintf(g->position[i].name,"Posição %d",i+1);
 		g->position[i].modified = GS_POSITION_MODIFIED;
 	}
 

@@ -269,9 +269,9 @@ static struct {
 		int count;
 		int flag;
 		struct linkdb_node *case_label;
-	} curly[256];		// 右カッコの情報
-	int curly_count;	// 右カッコの数
-	int index;			// スクリプト内で使用した構文の数
+	} curly[256];
+	int curly_count;
+	int index;
 } syntax;
 
 const char* parse_curly_close(const char* p);
@@ -300,7 +300,7 @@ extern script_function buildin_func[];
 static struct linkdb_node* sleep_db;// int oid -> struct script_state*
 
 /*==========================================
- * ローカルプロトタイプ宣言 (必要な物のみ)
+ *
  *------------------------------------------*/
 const char* parse_subexpr(const char* p,int limit);
 int run_func(struct script_state *st);

@@ -1021,17 +1021,17 @@ int chrif_accountban(int fd)
 	if (RFIFOB(fd,6) == 0) // 0: change of statut, 1: ban
 	{
 		switch (RFIFOL(fd,7)) { // status or final date of a banishment
-		case 1: clif_displaymessage(sd->fd, "Sua conta nÃ£o estÃ¡ 'registrada'."); break;
+		case 1: clif_displaymessage(sd->fd, "Sua conta não está 'registrada'."); break;
 		case 2: clif_displaymessage(sd->fd, "Sua conta possui 'Senha incorreta'..."); break;
 		case 3: clif_displaymessage(sd->fd, "Sua conta expirou."); break;
 		case 4: clif_displaymessage(sd->fd, "Sua conta foi rejeitada pelo servidor."); break;
 		case 5: clif_displaymessage(sd->fd, "Sua conta foi bloqueada pela equipe GM."); break;
-		case 6: clif_displaymessage(sd->fd, "Seu EXE do jogo estÃ¡ desatualizado."); break;
+		case 6: clif_displaymessage(sd->fd, "Seu EXE do jogo está desatualizado."); break;
 		case 7: clif_displaymessage(sd->fd, "O login em sua conta foi proibido."); break;
 		case 8: clif_displaymessage(sd->fd, "Servidor lotado."); break;
-		case 9: clif_displaymessage(sd->fd, "Sua conta nÃ£o possui autorizaÃ§Ã£o."); break;
+		case 9: clif_displaymessage(sd->fd, "Sua conta não possui autorização."); break;
 		case 100: clif_displaymessage(sd->fd, "Sua conta foi totalmente removida."); break;
-		default:  clif_displaymessage(sd->fd, "Sua conta nÃ£o possui autorizaÃ§Ã£o."); break;
+		default:  clif_displaymessage(sd->fd, "Sua conta não possui autorização."); break;
 		}
 	}
 	else if (RFIFOB(fd,6) == 1) // 0: change of statut, 1: ban
@@ -1039,7 +1039,7 @@ int chrif_accountban(int fd)
 		time_t timestamp;
 		char tmpstr[2048];
 		timestamp = (time_t)RFIFOL(fd,7); // status or final date of a banishment
-		strcpy(tmpstr, "Sua conta foi banida atÃ© ");
+		strcpy(tmpstr, "Sua conta foi banida até ");
 		strftime(tmpstr + strlen(tmpstr), 24, "%d-%m-%Y %H:%M:%S", localtime(&timestamp));
 		clif_displaymessage(sd->fd, tmpstr);
 	}

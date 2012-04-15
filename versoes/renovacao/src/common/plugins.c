@@ -311,7 +311,7 @@ static int plugins_config_read(const char *cfgName)
 		if( strcmpi(w1,"auto_search") == 0 ){
 			if( strcmpi(w2,"yes") == 0 || strcmpi(w2,"sim") == 0 )
 				auto_search = 1;
-			else if( strcmpi(w2,"no") == 0 || strcmpi(w2,"nao") == 0 || strcmpi(w2,"n√£o") == 0 )
+			else if( strcmpi(w2,"no") == 0 || strcmpi(w2,"nao") == 0 || strcmpi(w2,"n„o") == 0 )
 				auto_search = 0;
 			else
 				auto_search = atoi(w2);
