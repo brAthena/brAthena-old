@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1122 - 16/04/2012 [Protimus]
+	* Atualizada libmysql para 6.0.2.
+
 	r1121 - 15/04/2012 [RenatoUtsch]
 	* Recorrigido problema de texto do envio anterior.
 
