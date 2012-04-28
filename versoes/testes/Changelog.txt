@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1126 - 28/04/2012 [Protimus]
+	* Adicionada leitura de arquivos do banco de dados em diretórios próprios.
+	- Apenas arquivos que realmente não possam vir a ter problemas de conflitos estão fora da pasta.
+	- Outro motivo da reorganização duplicar os mesmos é para facilitar o desenvolvimento de outro projeto que estamos fazendo.
+
 	r1125 - 28/04/2012 [Protimus]
 	* Corrigida leitura de arquivos do banco de dados em que não estavam sendo lidos.
 	- Ainda falta uma revisão e remoção de arquivos duplicados inúteis.

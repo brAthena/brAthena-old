@@ -304,7 +304,7 @@ int quest_read_db(void)
 	int i,j,k = 0;
 	char *str[20],*p,*np;
 
-	sprintf(line, "%s/quest_db.txt", db_path);
+	sprintf(line, "%s/%s", db_path, DBPATH"quest_db.txt");
 	if( (fp=fopen(line,"r"))==NULL ){
 		ShowError("can't read %s\n", line);
 		return -1;

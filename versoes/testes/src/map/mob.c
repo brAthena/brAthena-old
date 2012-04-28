@@ -3879,9 +3879,9 @@ static int mob_read_randommonster(void)
 
 	const char* mobfile[] = {
 		DBPATH"mob_branch.txt",
-		"mob_poring.txt",
+		DBPATH"mob_poring.txt",
 		DBPATH"mob_boss.txt",
-		"mob_pouch.txt"};
+		DBPATH"mob_pouch.txt"};
 
 	memset(&summon, 0, sizeof(summon));
 
@@ -3997,7 +3997,7 @@ static bool mob_parse_row_chatdb(char** str, const char* source, int line, int* 
  *-------------------------------------------------------------------------*/
 static void mob_readchatdb(void)
 {
-	char arc[]="mob_chat_db.txt";
+	char arc[]= DBPATH"mob_chat_db.txt";
 	uint32 lines=0, count=0;
 	char line[1024], path[256];
 	int i, tmp=0;
@@ -4458,7 +4458,7 @@ static bool mob_readdb_itemratio(char* str[], int columns, int current)
  */
 static void mob_load(void)
 {
-	sv_readdb(db_path, "mob_item_ratio.txt", ',', 2, 2+MAX_ITEMRATIO_MOBS, -1, &mob_readdb_itemratio); // must be read before mobdb
+	sv_readdb(db_path, DBPATH"mob_item_ratio.txt", ',', 2, 2+MAX_ITEMRATIO_MOBS, -1, &mob_readdb_itemratio); // must be read before mobdb
 	if (db_use_sqldbs)
 	{
 		mob_read_sqldb();
@@ -4469,7 +4469,7 @@ static void mob_load(void)
 		mob_readdb();
 		mob_readskilldb();
 	}
-	sv_readdb(db_path, "mob_avail.txt", ',', 2, 12, -1, &mob_readdb_mobavail);
+	sv_readdb(db_path, DBPATH"mob_avail.txt", ',', 2, 12, -1, &mob_readdb_mobavail);
 	mob_read_randommonster();
 	mob_readchatdb();
 	sv_readdb(db_path, DBPATH"mob_race2_db.txt", ',', 2, 20, -1, &mob_readdb_race2);
