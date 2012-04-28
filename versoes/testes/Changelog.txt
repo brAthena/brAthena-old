@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1125 - 28/04/2012 [Protimus]
+	* Corrigida leitura de arquivos do banco de dados em que não estavam sendo lidos.
+	- Ainda falta uma revisão e remoção de arquivos duplicados inúteis.
+
 	r1124 - 28/04/2012 [Protimus]
 	* Revertida temporáriamente r1122.
 	- Devido incompatibilidades.

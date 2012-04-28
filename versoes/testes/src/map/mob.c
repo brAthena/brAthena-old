@@ -3877,7 +3877,11 @@ static int mob_read_randommonster(void)
 	char *str[10],*p;
 	int i,j;
 
-	const char* mobfile[] = { DBPATH"mob_branch.txt","mob_poring.txt","mob_boss.txt","mob_pouch.txt"};
+	const char* mobfile[] = {
+		DBPATH"mob_branch.txt",
+		"mob_poring.txt",
+		DBPATH"mob_boss.txt",
+		"mob_pouch.txt"};
 
 	memset(&summon, 0, sizeof(summon));
 
