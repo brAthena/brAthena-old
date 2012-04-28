@@ -1,0 +1,145 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Kafras da Cidade de Aldebaran          |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 2.3a/1.1                               |
+// |--------------------------------------------------------|
+// | Descrição: Configurações callfunc "F_Kafra".           |
+// | arg(0):                                                |
+// |  Setando em 0 a mensagem padrão da Kafra é exibida     |
+// |  Setando em 1 a mensagem da Kafra de Niflheim é exibida|
+// |  Setando em 2 a mensagem da Kafra de Clã é exibida     |
+// | arg(1): 1 para desabilitar o menu "Teleporte"          |
+// |  0 para exibi-lo                                       |
+// | arg(2): 1 para desabilitar o menu "Informações"        |
+// |  0 para exibi-lo                                       |
+// | arg(3): Custo do serviço de "Armazém"                  |
+// | arg(4): Custo do serviço "Alugar Carrinho"             |
+// |--------------------------------------------------------|
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [cleyton]                         |
+// | 1.1 Script Revisado [Tyler]                            |
+// | Anotações:                                             |
+// | - Corrigidas as tabulações no cabeçalho.               |
+// \________________________________________________________/
+
+// Escritório das Kafras (Kafra Leila)
+//============================================================
+aldeba_in,96,181,4	script	Kafra Serviços	113,{
+	cutin "kafra_05",2;
+	mes "[Kafra Leila]";
+	mes "Hm...?";
+	mes "Oh, seja bem-vindo";
+	mes "à sede da Corporação Kafra.";
+	mes "Precisa de";
+	mes "alguma coisa?";
+	next;
+	switch(select("Salvar Ponto de Retorno.:Usar armazém.:Alugar Carrinho.:Cancelar.")) {
+	case 1:
+		mes "[Kafra Leila]";
+		mes "Seu ponto de retorno";
+		mes "foi salvo aqui na";
+		mes "sede da Corporação Kafra.";
+		mes "Muito obrigado!";
+		next;
+		savepoint "aldeba_in",96,179;
+		mes "[Kafra Leila]";
+		mes "Por favor, faça";
+		mes "uso dos serviços da Kafra que estão";
+		mes "disponíveis em toda a";
+		mes "Rune Midgard. Muito obrigado por visitar";
+		mes "a sede da Corporação Kafra.";
+		close2;
+		break;
+	case 2:
+		if (zeny < 20) {
+			mes "[Kafra Leila]";
+			mes "Com licença, mas";
+			mes "parece que você não possui";
+			mes "20 zenys para pagar a taxa";
+			mes "de acesso...";
+		}
+		mes "[Kafra Leila]";
+		mes "Embora esta facilidade seja";
+		mes "exclusivamente destinada";
+		mes "a formação das funcionárias Kafra";
+		mes "e também funções administrativas,";
+		mes "Eu vou acessar seu armazém para você.";
+		next;
+		set zeny,zeny-20;
+		set RESRVPTS, RESRVPTS + (20/5);
+		mes "[Kafra Leila]";
+		mes "Na próxima vez, favor";
+		mes "pergunte a qualquer funcinário";
+		mes "da Corporação Kafra";
+		mes "sobre qualquer um de nossos serviços.";
+		mes "Obrigado por usar nossos serviços.";
+		callfunc("F_CheckKafCode");    //check your storage password, if set
+		close2;
+		openstorage;
+		break;
+	case 3:
+		mes "[Kafra Leila]";
+		mes "Minhas desculpas, mas";
+		mes "mas eu estou de plantão, se eu pudesse";
+		mes "eu te ajudaria, mas infelizmente";
+		mes "não possuo carrinhos de mão disponíveis.";
+		mes "Porque não procura outro funcionário";
+		mes "da Corporação Kafra?";
+		next;
+		mes "[Kafra Leila]";
+		mes "Os funcionários da Corporação Kafra";
+		mes "estão por todo o";
+		mes "continente de Rune Midgard";
+		mes "e você pode encontrá-los em ambudância";
+		mes "fora de Aldebaran.";
+		close2;
+		break;
+	case 4:
+		mes "[Kafra Leila]";
+		mes "^666666*Ufa...*^000000";
+		mes "Ótimo, porque eu";
+		mes "atualmente, estou descansando.";
+		mes "Agora a escolha da opção";
+		mes "''Cancelar'' foi um bom";
+		mes "movimento vindo de sua parte.";
+		close2;
+		break;
+	}
+	cutin "",255;
+	end;
+}
+
+// Central
+//============================================================
+aldebaran,143,119,4	script	Funcionária Kafra::kaf_aldebaran	113,{
+	cutin "kafra_05",2;
+	cleararray @wrpC$[0],"",getarraysize(@wrpC$);
+	setarray @wrpP[0], 1200, 1200, 1800, 1700;
+	setarray @wrpD$[0], "Geffen", "Juno" , "Izlude", "Mina Abandonada de Mjolnir";
+	set @wrpC$[0], @wrpD$[0]+" -> "+@wrpP[0];
+	set @wrpC$[1], @wrpD$[1]+" -> "+@wrpP[1];
+	set @wrpC$[2], @wrpD$[2]+" -> "+@wrpP[2];
+	set @wrpC$[3], @wrpD$[3]+" -> "+@wrpP[3];
+	set @wrpC$[4], "Cancelar";
+	mes "[Funcionária Kafra]";
+	mes "A Corporação Kafra";
+	mes "está trabalhando para providenciar";
+	mes "serviços excelentes para você.";
+	mes "Em que posso ajudar você?";
+	callfunc "F_Kafra",5,0,1,20,600;
+
+	M_Save:
+		savepoint "aldebaran",143,109;
+		callfunc "F_KafEnd",0,1," salvo na cidade de Al De Baran";
+}

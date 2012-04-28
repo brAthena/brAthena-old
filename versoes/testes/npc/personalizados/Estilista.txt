@@ -1,0 +1,56 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                     brAthena Script                    |
+// |--------------------------------------------------------|
+// | Nome do Script: Estilista                              |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões brA: 1.0                                       |
+// |--------------------------------------------------------|
+// | Descrição: Estilista com opções básicas, para pintar   |
+// | roupa e cabelo e para trocar penteado. O npc informa   |
+// | o número da cor ou do penteado, conforme a opção       |
+// | selecionada pela pessoa.                               |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Criado [Equipe brAthena]                    |
+// | - Anotações                                            |
+// \________________________________________________________/
+prontera,170,180,1	script	Estilista#Prontera	122,{
+	mes "[Estilista]";
+	mes "Olá, eu sou o estilista de "+strnpcinfo(2)+".";
+	mes "Vejo que está usando um estilo bem interessante...";
+	mes "Número do penteado: ^0000ff"+getlook(1)+"^000000.";
+	mes "Número da cor de cabelo: ^0000ff"+getlook(6)+"^000000.";
+	mes "Número da cor de roupa: ^0000ff"+getlook(7)+"^000000.";
+	mes "O que deseja fazer?";
+	next;
+	setarray .@tipo$,"hair_style","hair_color","cloth_color";
+	if(select("Trocar o penteado.:Pintar o cabelo.:Pintar a roupa.:Nada.")==4) close;
+	setarray .@minmax,(@menu==1 ? 1:@menu+4),getbattleflag("min_"+.@tipo$[@menu-1]),getbattleflag("max_"+.@tipo$[@menu-1]);
+	mes "[Estilista]";
+	mes "Escolha "+(!@menu ? "o penteado":"a cor")+" que mais lhe agrada.";
+	mes "Você pode escolher entre os números "+.@minmax[1]+" e "+.@minmax[2];
+	while(1){
+		if(select("Próximo.:Anterior.:Digitar número.:Ficar desse jeito.")==4) close;
+		set @num,getlook(.@minmax)+(@menu==1 ? 1:-1);
+		if(@menu==3) if(input(@num,.@minmax[1],.@minmax[2])){ dispbottom "Este não é um número inválido."; continue; }
+		if(@num > .@minmax[2]) set @num,.@minmax[1];
+		if(@num < .@minmax[1]) set @num,.@minmax[2];
+		setlook .@minmax,@num;
+		dispbottom "O número atual é: "+@num;
+	}
+}
+
+//Duplicatas
+geffen,127,64,3	duplicate(Estilista#Prontera)	Estilista#Geffen	122
+payon,180,111,1	duplicate(Estilista#Prontera)	Estilista#Payon	122
+morocc,167,87,1	duplicate(Estilista#Prontera)	Estilista#Morroc	122
+izlude,122,120,5	duplicate(Estilista#Prontera)	Estilista#Izlude	122

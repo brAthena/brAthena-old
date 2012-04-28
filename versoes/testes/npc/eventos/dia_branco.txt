@@ -1,0 +1,137 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: White Day Event Script                 |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.0a/1.0                               |
+// |--------------------------------------------------------|
+// | Descrição:                                             |
+// | Sells candy, candy cane and well baked cookie.         |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [Wolf]                            |
+// | - Anotações		   			   						|
+// \________________________________________________________/
+
+
+alberta,188,64,4	script	Sugar	91,{
+	set @maplenum,0;
+	set @mapleItemID,0;
+	set @maplePrice,0;
+	set @maplePriceT,0;
+	mes "[Sugar]";
+	mes "Bem-vindo!";
+	mes "Como são deliciosos os doces, não?";
+	mes "Meu professor.........";
+	mes "o doceiro de ARUBERUTA";
+	mes "Há doces difíceis de serem feitos.";
+	next;
+	mes "[Sugar]";
+	mes "Isso foi dado a uma pessoa querida.";
+	mes "Em troca do presente ....";
+	mes "sincero como a doçura";
+	mes "de alguns presentes.";
+	next;
+	menu "Por favor me dê!!",-,"Eu não preciso disso.",M_END,"O professor.",M_L1;
+
+	mes "[Sugar]";
+	mes "Sim!";
+	mes "Selecione no menu abaixo.";
+	mes "Uma vez que existe uma limitação,";
+	mes "não escola mais do que ^ff0000 5 pedaços^000000.";
+	mes "Qual vai querer?";
+	next;
+	menu "Bala",-,"Bengala Doce",L0_2,"Biscoito de Gengibre",L0_3;
+
+	set @maplePrice,3000;
+	set @mapleItemID,529;
+	mes "[Sugar]";
+	mes "O preço é de";
+	mes "3000 Zeny cada um.";
+	mes "Quantos você deseja comprar?";
+	next;
+	goto L_INPUT;
+L0_2:
+	set @maplePrice,4000;
+	set @mapleItemID,530;
+	mes "[Sugar]";
+	mes "Essa é a bengala doce, e o preço é de";
+	mes "4000 Zeny cada uma.";
+	mes "Quantos você deseja comprar?";
+	next;
+	goto L_INPUT;
+L0_3:
+	set @maplePrice,2000;
+	set @mapleItemID,538;
+	mes "[Sugar]";
+	mes "Esse é o biscoito de gengibre, e o preço é de";
+	mes "2000 Zeny cada uma.";
+	mes "Quantos você deseja comprar?";
+	next;
+
+L_INPUT:
+	input @maplenum;
+	if (@maplenum > 5) goto L_ERROR;
+	if (@maplenum == 0) goto M_END;
+	set @maplePriceT,@maplePrice*@maplenum;
+	if (Zeny < @maplePriceT) goto L_ERROR2;
+	set Zeny,Zeny- @maplePriceT;
+	getitem @mapleItemID,@maplenum;
+	mes "[Sugar]";
+	mes "Obrigado!!!";
+	mes "Estes doces são realmente deliciosos.";
+	mes "Uma vez que meu professor de doces é o Nº 1 do mundo!";
+	mes "Embora você possa comer sozinho";
+	mes "não coma muito ou ficará gordo.";
+	mes "Por favor, tome cuidado!!!";
+	close;
+
+M_L1:
+	mes "[Sugar]";
+	mes "Sim";
+	mes "O meu professor é";
+	mes "o Sr. Kuberu, um doceiro.";
+	mes "Ele cria doce com mais duas pessoas.";
+	mes "que estão lá para aprender.";
+	next;
+	mes "[Sugar]";
+	mes "Although selling is seemingly to carried out ....";
+	mes "Onde ele está agora?";
+	mes "Eu não sei.";
+	close;
+
+L_ERROR:
+	mes "[Sugar]";
+	mes "???";
+	mes "Você só pode ser surdo.";
+	mes "Vou te dizer mais uma vez!";
+	mes "você só pode comprar";
+	mes "^ff0000 5 pedaços^000000 de cada vez.";
+	next;
+	goto L_INPUT;
+
+L_ERROR2:
+	mes "[Sugar]";
+	mes "???";
+	mes "Hmmm me parece que você não tem dinheiro";
+	mes "o suficiente para fazer a compra.";
+	mes "Veja novamente se você tem dinheiro.";
+	close;
+
+M_END:
+	mes "[Sugar]";
+	mes "Realmente .... Você pode recusar..";
+	mes "Se você mudar de idéia,";
+	mes "eu estarei aqui.";
+	mes "Tenha um bom dia!";
+	close;
+}

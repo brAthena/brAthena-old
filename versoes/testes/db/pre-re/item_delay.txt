@@ -1,0 +1,38 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Database: item_delay.txt                       |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Descrição: Database contendo Delay para Itens.         |
+// |--------------------------------------------------------|
+// | O número máx. de entradas é definido na source:        |
+// | itemdb.h, MAX_ITEMDELAYS.                              |
+// |--------------------------------------------------------|
+// | Estrutura do Banco de Dados:                           |
+// | ID do Item,Delay(milisegundos)                         |
+// |--------------------------------------------------------|
+// | Conversão de segundos para milisegundos:               |
+// | Para um item que terá efeito por 60 segundos (1 minuto)|
+// | basta multiplicar os segundos por 1000 (mil)           |
+// | 60 * 1000 = 60000                                      |
+// \________________________________________________________/
+//
+//12202,60000	//Língua no Vapor -> 60 segundos (1 minutos)
+//12203,60000	//Escorpião no Vapor -> 60 segundos (1 minutos)
+//12204,60000	//Coquetel Sopro do Dragão -> 60 segundos (1 minutos)
+//12205,60000	//Tônico de Hwergelmir -> 60 segundos (1 minutos)
+//12206,60000	//Nove Caudas Cozidas -> 60 segundos (1 minutos)
+//12207,60000	//Sopa da Imortalidade -> 60 segundos (1 minutos)
+12208,60000	//Manual de Combate -> 60 segundos (1 minutos)
+12210,60000	//Goma de Mascar -> 60 segundos (1 minutos)
+14538,300000	//Cálice da Ilusão -> 300 segundos (5 minutos)
+14586,180000	//Doce Hiper Açucarado -> 180 segundos (3 minutos)

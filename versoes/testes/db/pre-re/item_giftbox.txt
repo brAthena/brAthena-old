@@ -1,0 +1,688 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Database: item_giftbox.txt                     |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Descrição: Banco de Dados dos itens obtidos pelas      |
+// | Caixas de Presente.                                    |
+// |--------------------------------------------------------|
+// | Estrutura do Banco de Dados:                           |
+// | ID do Grupo de Itens, ID do Item, Taxa                 |
+// \________________________________________________________/
+//
+4,501,1 	// Poção Vermelha -> 0,01%
+4,502,1		// Poção Laranja -> 0,01%
+4,503,1		// Poção Amarela -> 0,01%
+4,504,1		// Poção Branca -> 0,01%
+4,505,1		// Poção Azul -> 0,01%
+4,506,1		// Poção Verde -> 0,01%
+4,526,1		// Geléia Real -> 0,01%
+4,529,1		// Bala -> 0,01%
+4,530,1		// Bengala Doce -> 0,01%
+4,537,1		// Ração para Bichinho -> 0,01%
+4,538,1		// Biscoito de Gengibre -> 0,01%
+4,539,1		// Pedaço de Bolo -> 0,01%
+4,603,1		// Velha Caixa Azul -> 0,01%
+4,617,1		// Velha Caixa Roxa -> 0,01%
+4,644,19	// Caixa de Presente -> 0,19%
+4,706,1		// Trevo de Quatro Folhas -> 0,01%
+4,714,1		// Emperium -> 0,01%
+4,718,1		// Granada -> 0,01%
+4,719,1		// Ametista -> 0,01%
+4,720,1		// Aquamarina -> 0,01%
+4,721,1		// Esmeralda -> 0,01%
+4,722,1		// Pérola -> 0,01%
+4,723,1		// Rubi -> 0,01%
+4,724,1		// Rubi Amaldiçoado -> 0,01%
+4,725,1		// Peridoto -> 0,01%
+4,726,1		// Safira -> 0,01%
+4,727,1		// Opala -> 0,01%
+4,728,1		// Topázio -> 0,01%
+4,729,1		// Zircônio -> 0,01%
+4,730,1		// Diamante de 1 quilate -> 0,01%
+4,731,1		// Diamante de 2 quilates -> 0,01%
+4,732,1		// Diamante de 3 quilates -> 0,01%
+4,733,1		// Diamante Rachado -> 0,01%
+4,734,1		// Moldura Vermelha -> 0,01%
+4,735,1		// Chung Jah -> 0,01%
+4,736,1		// Prato de Porcelana -> 0,01%
+4,737,1		// Concha Preta -> 0,01%
+4,738,1		// Estojo de Lápis -> 0,01%
+4,739,1		// Batom -> 0,01%
+4,740,1		// Boneco de Pelúcia -> 0,01%
+4,741,1		// Boneco de Poring -> 0,01%
+4,742,1		// Boneco de Chonchon -> 0,01%
+4,743,1		// Boneco de Esporo -> 0,01%
+4,744,1		// Buquê -> 0,01%
+4,745,1		// Buquê de Casamento -> 0,01%
+4,746,1		// Bolinha de Gude -> 0,01%
+4,747,1		// Espelho de Cristal -> 0,01%
+4,748,1		// Rosa Eterna -> 0,01%
+4,749,1		// Rosa de Gelo -> 0,01%
+4,750,1		// Boneco de Bafomé -> 0,01%
+4,751,1		// Boneco de Osíris -> 0,01%
+4,752,1		// Boneco de Rocker -> 0,01%
+4,753,1		// Boneco de Yoyo -> 0,01%
+4,754,1		// Boneco de Fumacento -> 0,01%
+4,756,5		// Minério de Oridecon -> 0,05%
+4,757,2		// Minério de Elunium -> 0,02%
+4,969,1		// Ouro -> 0,01%
+4,975,1		// Tintura Vermelha -> 0,01%
+4,976,1		// Tintura Amarela -> 0,01%
+4,978,1		// Tintura Azul -> 0,01%
+4,979,1		// Tintura Verde -> 0,01%
+4,980,1		// Tintura Laranja -> 0,01%
+4,981,1		// Tintura Violeta -> 0,01%
+4,982,1		// Tintura Branca -> 0,01%
+4,983,1		// Tintura Preta -> 0,01%
+4,984,2		// Oridecon -> 0,02%
+4,985,1		// Elunium -> 0,01%
+4,994,1		// Coração Flamejante -> 0,01%
+4,995,1		// Gelo Místico -> 0,01%
+4,996,1		// Vento Bruto -> 0,01%
+4,997,1		// Natureza Grandiosa -> 0,01%
+4,999,1		// Aço -> 0,01%
+4,1000,1	// Fragmento Estelar -> 0,01%
+4,1558,1	// Diário de Menina -> 0,01%
+4,4005,1	// Carta Poring Noel -> 0,01%
+4,7034,1	// Meia Furada -> 0,01%
+//==========================================================
+// Caixa de Presente 1
+//==========================================================
+28,501,1	// Poção Vermelha -> 0,01%
+28,502,1	// Poção Laranja -> 0,01%
+28,503,1	// Poção Amarela -> 0,01%
+28,504,1	// Poção Branca -> 0,01%
+28,505,1	// Poção Azul -> 0,01%
+28,506,1	// Poção Verde -> 0,01%
+28,526,1	// Geléia Real -> 0,01%
+28,529,1	// Bala -> 0,01%
+28,530,1	// Bengala Doce -> 0,01%
+28,537,1	// Ração para Bichinho -> 0,01%
+28,538,1	// Biscoito de Gengibre -> 0,01%
+28,539,1	// Pedaço de Bolo -> 0,01%
+28,603,1	// Velha Caixa Azul -> 0,01%
+28,617,1	// Velha Caixa Roxa -> 0,01%
+28,644,19	// Caixa de Presente -> 0,19%
+28,706,1	// Trevo de Quatro Folhas -> 0,01%
+28,714,1	// Emperium -> 0,01%
+28,718,1	// Granada -> 0,01%
+28,719,1	// Ametista -> 0,01%
+28,720,1	// Aquamarina -> 0,01%
+28,721,1	// Esmeralda -> 0,01%
+28,722,1	// Pérola -> 0,01%
+28,723,1	// Rubi -> 0,01%
+28,724,1	// Rubi Amaldiçoado -> 0,01%
+28,725,1	// Peridoto -> 0,01%
+28,726,1	// Safira -> 0,01%
+28,727,1	// Opala -> 0,01%
+28,728,1	// Topázio -> 0,01%
+28,729,1	// Zircônio -> 0,01%
+28,730,1	// Diamante de 1 quilate -> 0,01%
+28,731,1	// Diamante de 2 quilates -> 0,01%
+28,732,1	// Diamante de 3 quilates -> 0,01%
+28,733,1	// Diamante Rachado -> 0,01%
+28,734,1	// Moldura Vermelha -> 0,01%
+28,735,1	// Chung Jah -> 0,01%
+28,736,1	// Prato de Porcelana -> 0,01%
+28,737,1	// Concha Preta -> 0,01%
+28,738,1	// Estojo de Lápis -> 0,01%
+28,739,1	// Batom -> 0,01%
+28,740,1	// Boneco de Pelúcia -> 0,01%
+28,741,1	// Boneco de Poring -> 0,01%
+28,742,1	// Boneco de Chonchon -> 0,01%
+28,743,1	// Boneco de Esporo -> 0,01%
+28,744,1	// Buquê -> 0,01%
+28,745,1	// Buquê de Casamento -> 0,01%
+28,746,1	// Bolinha de Gude -> 0,01%
+28,747,1	// Espelho de Cristal -> 0,01%
+28,748,1	// Rosa Eterna -> 0,01%
+28,749,1	// Rosa de Gelo -> 0,01%
+28,750,1	// Boneco de Bafomé -> 0,01%
+28,751,1	// Boneco de Osíris -> 0,01%
+28,752,1	// Boneco de Rocker -> 0,01%
+28,753,1	// Boneco de Yoyo -> 0,01%
+28,754,1	// Boneco de Fumacento -> 0,01%
+28,756,5	// Minério de Oridecon -> 0,05%
+28,757,2	// Minério de Elunium -> 0,02%
+28,969,1	// Ouro -> 0,01%
+28,975,1	// Tintura Vermelha -> 0,01%
+28,976,1	// Tintura Amarela -> 0,01%
+28,978,1	// Tintura Azul -> 0,01%
+28,979,1	// Tintura Verde -> 0,01%
+28,980,1	// Tintura Laranja -> 0,01%
+28,981,1	// Tintura Violeta -> 0,01%
+28,982,1	// Tintura Branca -> 0,01%
+28,983,1	// Tintura Preta -> 0,01%
+28,984,2	// Oridecon -> 0,02%
+28,985,1	// Elunium -> 0,01%
+28,994,1	// Coração Flamejante -> 0,01%
+28,995,1	// Gelo Místico -> 0,01%
+28,996,1	// Vento Bruto -> 0,01%
+28,997,1	// Natureza Grandiosa -> 0,01%
+28,999,1	// Aço -> 0,01%
+28,1000,1	// Fragmento Estelar -> 0,01%
+28,1558,1	// Diário de Menina -> 0,01%
+28,4005,1	// Carta Poring Noel -> 0,01%
+28,7034,1	// Meia Furada -> 0,01%
+//==========================================================
+// Caixa de Presente 2
+//==========================================================
+29,501,1	// Poção Vermelha -> 0,01%
+29,502,1	// Poção Laranja -> 0,01%
+29,503,1	// Poção Amarela -> 0,01%
+29,504,1	// Poção Branca -> 0,01%
+29,505,1	// Poção Azul -> 0,01%
+29,506,1	// Poção Verde -> 0,01%
+29,526,1	// Geléia Real -> 0,01%
+29,529,1	// Bala -> 0,01%
+29,530,1	// Bengala Doce -> 0,01%
+29,537,1	// Ração para Bichinho -> 0,01%
+29,538,1	// Biscoito de Gengibre -> 0,01%
+29,539,1	// Pedaço de Bolo -> 0,01%
+29,603,1	// Velha Caixa Azul -> 0,01%
+29,617,1	// Velha Caixa Roxa -> 0,01%
+29,644,19	// Caixa de Presente -> 0,19%
+29,706,1	// Trevo de Quatro Folhas -> 0,01%
+29,714,1	// Emperium -> 0,01%
+29,718,1	// Granada -> 0,01%
+29,719,1	// Ametista -> 0,01%
+29,720,1	// Aquamarina -> 0,01%
+29,721,1	// Esmeralda -> 0,01%
+29,722,1	// Pérola -> 0,01%
+29,723,1	// Rubi -> 0,01%
+29,724,1	// Rubi Amaldiçoado -> 0,01%
+29,725,1	// Peridoto -> 0,01%
+29,726,1	// Safira -> 0,01%
+29,727,1	// Opala -> 0,01%
+29,728,1	// Topázio -> 0,01%
+29,729,1	// Zircônio -> 0,01%
+29,730,1	// Diamante de 1 quilate -> 0,01%
+29,731,1	// Diamante de 2 quilates -> 0,01%
+29,732,1	// Diamante de 3 quilates -> 0,01%
+29,733,1	// Diamante Rachado -> 0,01%
+29,734,1	// Moldura Vermelha -> 0,01%
+29,735,1	// Chung Jah -> 0,01%
+29,736,1	// Prato de Porcelana -> 0,01%
+29,737,1	// Concha Preta -> 0,01%
+29,738,1	// Estojo de Lápis -> 0,01%
+29,739,1	// Batom -> 0,01%
+29,740,1	// Boneco de Pelúcia -> 0,01%
+29,741,1	// Boneco de Poring -> 0,01%
+29,742,1	// Boneco de Chonchon -> 0,01%
+29,743,1	// Boneco de Esporo -> 0,01%
+29,744,1	// Buquê -> 0,01%
+29,745,1	// Buquê de Casamento -> 0,01%
+29,746,1	// Bolinha de Gude -> 0,01%
+29,747,1	// Espelho de Cristal -> 0,01%
+29,748,1	// Rosa Eterna -> 0,01%
+29,749,1	// Rosa de Gelo -> 0,01%
+29,750,1	// Boneco de Bafomé -> 0,01%
+29,751,1	// Boneco de Osíris -> 0,01%
+29,752,1	// Boneco de Rocker -> 0,01%
+29,753,1	// Boneco de Yoyo -> 0,01%
+29,754,1	// Boneco de Fumacento -> 0,01%
+29,756,5	// Minério de Oridecon -> 0,05%
+29,757,2	// Minério de Elunium -> 0,02%
+29,969,1	// Ouro -> 0,01%
+29,975,1	// Tintura Vermelha -> 0,01%
+29,976,1	// Tintura Amarela -> 0,01%
+29,978,1	// Tintura Azul -> 0,01%
+29,979,1	// Tintura Verde -> 0,01%
+29,980,1	// Tintura Laranja -> 0,01%
+29,981,1	// Tintura Violeta -> 0,01%
+29,982,1	// Tintura Branca -> 0,01%
+29,983,1	// Tintura Preta -> 0,01%
+29,984,2	// Oridecon -> 0,02%
+29,985,1	// Elunium -> 0,01%
+29,994,1	// Coração Flamejante -> 0,01%
+29,995,1	// Gelo Místico -> 0,01%
+29,996,1	// Vento Bruto -> 0,01%
+29,997,1	// Natureza Grandiosa -> 0,01%
+29,999,1	// Aço -> 0,01%
+29,1000,1	// Fragmento Estelar -> 0,01%
+29,1558,1	// Diário de Menina -> 0,01%
+29,4005,1	// Carta Poring Noel -> 0,01%
+29,7034,1	// Meia Furada -> 0,01%
+//==========================================================
+// Caixa de Presente 3
+//==========================================================
+30,501,1	// Poção Vermelha -> 0,01%
+30,502,1	// Poção Laranja -> 0,01%
+30,503,1	// Poção Amarela -> 0,01%
+30,504,1	// Poção Branca -> 0,01%
+30,505,1	// Poção Azul -> 0,01%
+30,506,1	// Poção Verde -> 0,01%
+30,526,1	// Geléia Real -> 0,01%
+30,529,1	// Bala -> 0,01%
+30,530,1	// Bengala Doce -> 0,01%
+30,537,1	// Ração para Bichinho -> 0,01%
+30,538,1	// Biscoito de Gengibre -> 0,01%
+30,539,1	// Pedaço de Bolo -> 0,01%
+30,603,1	// Velha Caixa Azul -> 0,01%
+30,617,1	// Velha Caixa Roxa -> 0,01%
+30,644,19	// Caixa de Presente -> 0,19%
+30,706,1	// Trevo de Quatro Folhas -> 0,01%
+30,714,1	// Emperium -> 0,01%
+30,718,1	// Granada -> 0,01%
+30,719,1	// Ametista -> 0,01%
+30,720,1	// Aquamarina -> 0,01%
+30,721,1	// Esmeralda -> 0,01%
+30,722,1	// Pérola -> 0,01%
+30,723,1	// Rubi -> 0,01%
+30,724,1	// Rubi Amaldiçoado -> 0,01%
+30,725,1	// Peridoto -> 0,01%
+30,726,1	// Safira -> 0,01%
+30,727,1	// Opala -> 0,01%
+30,728,1	// Topázio -> 0,01%
+30,729,1	// Zircônio -> 0,01%
+30,730,1	// Diamante de 1 quilate -> 0,01%
+30,731,1	// Diamante de 2 quilates -> 0,01%
+30,732,1	// Diamante de 3 quilates -> 0,01%
+30,733,1	// Diamante Rachado -> 0,01%
+30,734,1	// Moldura Vermelha -> 0,01%
+30,735,1	// Chung Jah -> 0,01%
+30,736,1	// Prato de Porcelana -> 0,01%
+30,737,1	// Concha Preta -> 0,01%
+30,738,1	// Estojo de Lápis -> 0,01%
+30,739,1	// Batom -> 0,01%
+30,740,1	// Boneco de Pelúcia -> 0,01%
+30,741,1	// Boneco de Poring -> 0,01%
+30,742,1	// Boneco de Chonchon -> 0,01%
+30,743,1	// Boneco de Esporo -> 0,01%
+30,744,1	// Buquê -> 0,01%
+30,745,1	// Buquê de Casamento -> 0,01%
+30,746,1	// Bolinha de Gude -> 0,01%
+30,747,1	// Espelho de Cristal -> 0,01%
+30,748,1	// Rosa Eterna -> 0,01%
+30,749,1	// Rosa de Gelo -> 0,01%
+30,750,1	// Boneco de Bafomé -> 0,01%
+30,751,1	// Boneco de Osíris -> 0,01%
+30,752,1	// Boneco de Rocker -> 0,01%
+30,753,1	// Boneco de Yoyo -> 0,01%
+30,754,1	// Boneco de Fumacento -> 0,01%
+30,756,5	// Minério de Oridecon -> 0,05%
+30,757,2	// Minério de Elunium -> 0,02%
+30,969,1	// Ouro -> 0,01%
+30,975,1	// Tintura Vermelha -> 0,01%
+30,976,1	// Tintura Amarela -> 0,01%
+30,978,1	// Tintura Azul -> 0,01%
+30,979,1	// Tintura Verde -> 0,01%
+30,980,1	// Tintura Laranja -> 0,01%
+30,981,1	// Tintura Violeta -> 0,01%
+30,982,1	// Tintura Branca -> 0,01%
+30,983,1	// Tintura Preta -> 0,01%
+30,984,2	// Oridecon -> 0,02%
+30,985,1	// Elunium -> 0,01%
+30,994,1	// Coração Flamejante -> 0,01%
+30,995,1	// Gelo Místico -> 0,01%
+30,996,1	// Vento Bruto -> 0,01%
+30,997,1	// Natureza Grandiosa -> 0,01%
+30,999,1	// Aço -> 0,01%
+30,1000,1	// Fragmento Estelar -> 0,01%
+30,1558,1	// Diário de Menina -> 0,01%
+30,4005,1	// Carta Poring Noel -> 0,01%
+30,7034,1	// Meia Furada -> 0,01%
+//==========================================================
+// Caixa de Presente 4
+//==========================================================
+31,501,1	// Poção Vermelha -> 0,01%
+31,502,1	// Poção Laranja -> 0,01%
+31,503,1	// Poção Amarela -> 0,01%
+31,504,1	// Poção Branca -> 0,01%
+31,505,1	// Poção Azul -> 0,01%
+31,506,1	// Poção Verde -> 0,01%
+31,526,1	// Geléia Real -> 0,01%
+31,529,1	// Bala -> 0,01%
+31,530,1	// Bengala Doce -> 0,01%
+31,537,1	// Ração para Bichinho -> 0,01%
+31,538,1	// Biscoito de Gengibre -> 0,01%
+31,539,1	// Pedaço de Bolo -> 0,01%
+31,603,1	// Velha Caixa Azul -> 0,01%
+31,617,1	// Velha Caixa Roxa -> 0,01%
+31,644,19	// Caixa de Presente -> 0,19%
+31,706,1	// Trevo de Quatro Folhas -> 0,01%
+31,714,1	// Emperium -> 0,01%
+31,718,1	// Granada -> 0,01%
+31,719,1	// Ametista -> 0,01%
+31,720,1	// Aquamarina -> 0,01%
+31,721,1	// Esmeralda -> 0,01%
+31,722,1	// Pérola -> 0,01%
+31,723,1	// Rubi -> 0,01%
+31,724,1	// Rubi Amaldiçoado -> 0,01%
+31,725,1	// Peridoto -> 0,01%
+31,726,1	// Safira -> 0,01%
+31,727,1	// Opala -> 0,01%
+31,728,1	// Topázio -> 0,01%
+31,729,1	// Zircônio -> 0,01%
+31,730,1	// Diamante de 1 quilate -> 0,01%
+31,731,1	// Diamante de 2 quilates -> 0,01%
+31,732,1	// Diamante de 3 quilates -> 0,01%
+31,733,1	// Diamante Rachado -> 0,01%
+31,734,1	// Moldura Vermelha -> 0,01%
+31,735,1	// Chung Jah -> 0,01%
+31,736,1	// Prato de Porcelana -> 0,01%
+31,737,1	// Concha Preta -> 0,01%
+31,738,1	// Estojo de Lápis -> 0,01%
+31,739,1	// Batom -> 0,01%
+31,740,1	// Boneco de Pelúcia -> 0,01%
+31,741,1	// Boneco de Poring -> 0,01%
+31,742,1	// Boneco de Chonchon -> 0,01%
+31,743,1	// Boneco de Esporo -> 0,01%
+31,744,1	// Buquê -> 0,01%
+31,745,1	// Buquê de Casamento -> 0,01%
+31,746,1	// Bolinha de Gude -> 0,01%
+31,747,1	// Espelho de Cristal -> 0,01%
+31,748,1	// Rosa Eterna -> 0,01%
+31,749,1	// Rosa de Gelo -> 0,01%
+31,750,1	// Boneco de Bafomé -> 0,01%
+31,751,1	// Boneco de Osíris -> 0,01%
+31,752,1	// Boneco de Rocker -> 0,01%
+31,753,1	// Boneco de Yoyo -> 0,01%
+31,754,1	// Boneco de Fumacento -> 0,01%
+31,756,5	// Minério de Oridecon -> 0,05%
+31,757,2	// Minério de Elunium -> 0,02%
+31,969,1	// Ouro -> 0,01%
+31,975,1	// Tintura Vermelha -> 0,01%
+31,976,1	// Tintura Amarela -> 0,01%
+31,978,1	// Tintura Azul -> 0,01%
+31,979,1	// Tintura Verde -> 0,01%
+31,980,1	// Tintura Laranja -> 0,01%
+31,981,1	// Tintura Violeta -> 0,01%
+31,982,1	// Tintura Branca -> 0,01%
+31,983,1	// Tintura Preta -> 0,01%
+31,984,2	// Oridecon -> 0,02%
+31,985,1	// Elunium -> 0,01%
+31,994,1	// Coração Flamejante -> 0,01%
+31,995,1	// Gelo Místico -> 0,01%
+31,996,1	// Vento Bruto -> 0,01%
+31,997,1	// Natureza Grandiosa -> 0,01%
+31,999,1	// Aço -> 0,01%
+31,1000,1	// Fragmento Estelar -> 0,01%
+31,1558,1	// Diário de Menina -> 0,01%
+31,4005,1	// Carta Poring Noel -> 0,01%
+31,7034,1	// Meia Furada -> 0,01%
+//==========================================================
+// Caixa de Presente
+//==========================================================
+34,501,1	// Poção Vermelha -> 0,01%
+34,502,1	// Poção Laranja -> 0,01%
+34,503,1	// Poção Amarela -> 0,01%
+34,504,1	// Poção Branca -> 0,01%
+34,505,1	// Poção Azul -> 0,01%
+34,506,1	// Poção Verde -> 0,01%
+34,518,1	// Mel -> 0,01%
+34,520,1	// Folha de Hinalle -> 0,01%
+34,521,2	// Folha de Aloe -> 0,02%
+34,525,1	// Panacéia -> 0,01%
+34,526,1	// Geléia Real -> 0,01%
+34,529,1	// Bala -> 0,01%
+34,530,1	// Bengala Doce -> 0,01%
+34,603,40	// Velha Caixa Azul -> 0,40%
+34,604,9	// Galho Seco -> 0,09%
+34,605,1	// Analgésico -> 0,01%
+34,606,1	// Aloe Vera -> 0,01%
+34,607,1	// Fruto de Yggdrasil -> 0,01%
+34,608,1	// Semente de Yggdrasil -> 0,01%
+34,610,1	// Folha de Yggdrasil -> 0,01%
+34,612,5	// Mini-Fornalha -> 0,05%
+34,613,1	// Martelo de Ferro -> 0,01%
+34,614,1	// Martelo de Ouro -> 0,01%
+34,615,1	// Martelo de Oridecon -> 0,01%
+34,701,1	// Armadilha para Insetos -> 0,01%
+34,702,1	// Sangue de Animal -> 0,01%
+34,703,1	// Hinalle -> 0,01%
+34,704,1	// Aloés -> 0,01%
+34,706,1	// Trevo de Quatro Folhas -> 0,01%
+34,707,1	// Planta da Melodia -> 0,01%
+34,708,1	// Menta -> 0,01%
+34,710,1	// Flor das Ilusões -> 0,01%
+34,714,1	// Emperium -> 0,01%
+34,715,1	// Gema Amarela -> 0,01%
+34,716,1	// Gema Vermelha -> 0,01%
+34,717,1	// Gema Azul -> 0,01%
+34,718,1	// Granada -> 0,01%
+34,719,1	// Ametista -> 0,01%
+34,720,1	// Aquamarina -> 0,01%
+34,721,1	// Esmeralda -> 0,01%
+34,722,1	// Pérola -> 0,01%
+34,723,1	// Rubi -> 0,01%
+34,724,1	// Rubi Amaldiçoado -> 0,01%
+34,725,1	// Peridoto -> 0,01%
+34,726,1	// Safira -> 0,01%
+34,727,1	// Opala -> 0,01%
+34,728,1	// Topázio -> 0,01%
+34,729,1	// Zircônio -> 0,01%
+34,730,1	// Diamante de 1 quilate -> 0,01%
+34,731,1	// Diamante de 2 quilates -> 0,01%
+34,732,1	// Diamante de 3 quilates -> 0,01%
+34,733,1	// Diamante Rachado -> 0,01%
+34,734,1	// Moldura Vermelha -> 0,01%
+34,735,1	// Chung Jah -> 0,01%
+34,736,1	// Prato de Porcelana -> 0,01%
+34,737,1	// Concha Preta -> 0,01%
+34,738,1	// Estojo de Lápis -> 0,01%
+34,740,1	// Boneco de Pelúcia -> 0,01%
+34,741,1	// Boneco de Poring -> 0,01%
+34,742,1	// Boneco de Chonchon -> 0,01%
+34,743,1	// Boneco de Esporo -> 0,01%
+34,745,1	// Buquê de Casamento -> 0,01%
+34,747,1	// Espelho de Cristal -> 0,01%
+34,748,1	// Rosa Eterna -> 0,01%
+34,749,1	// Rosa de Gelo -> 0,01%
+34,752,1	// Boneco de Rocker -> 0,01%
+34,753,1	// Boneco de Yoyo -> 0,01%
+34,754,1	// Boneco de Fumacento -> 0,01%
+34,756,1	// Minério de Oridecon -> 0,01%
+34,757,1	// Minério de Elunium -> 0,01%
+34,909,1	// Jellopy -> 0,01%
+34,910,1	// Garleta -> 0,01%
+34,911,1	// Scell -> 0,01%
+34,912,1	// Zargônio -> 0,01%
+34,931,1	// Amuleto dos Orcs -> 0,01%
+34,934,1	// Espólio -> 0,01%
+34,968,1	// Insígnia do Herói -> 0,01%
+34,969,1	// Ouro -> 0,01%
+34,970,1	// Álcool -> 0,01%
+34,971,1	// Detrimindexta -> 0,01%
+34,972,1	// Karvodailnirol -> 0,01%
+34,973,1	// Antígeno -> 0,01%
+34,974,1	// Mistura -> 0,01%
+34,975,1	// Tintura Vermelha -> 0,01%
+34,976,1	// Tintura Amarela -> 0,01%
+34,978,1	// Tintura Azul -> 0,01%
+34,979,1	// Tintura Verde -> 0,01%
+34,980,1	// Tintura Laranja -> 0,01%
+34,981,1	// Tintura Violeta -> 0,01%
+34,982,1	// Tintura Branca -> 0,01%
+34,983,1	// Tintura Preta -> 0,01%
+34,984,1	// Oridecon -> 0,01%
+34,985,1	// Elunium -> 0,01%
+34,986,1	// Bigorna -> 0,01%
+34,987,1	// Bigorna de Oridecon -> 0,01%
+34,988,1	// Bigorna de Ouro -> 0,01%
+34,989,1	// Bigorna de Emperium -> 0,01%
+34,990,1	// Sangue Escarlate -> 0,01%
+34,991,1	// Cristal Azul -> 0,01%
+34,992,1	// Frescor do Vento -> 0,01%
+34,993,1	// Vida Verdejante -> 0,01%
+34,994,1	// Coração Flamejante -> 0,01%
+34,995,1	// Gelo Místico -> 0,01%
+34,996,1	// Vento Bruto -> 0,01%
+34,997,1	// Natureza Grandiosa -> 0,01%
+34,998,1	// Ferro -> 0,01%
+34,999,1	// Aço -> 0,01%
+34,1000,1	// Fragmento Estelar -> 0,01%
+34,1001,1	// Poeira Estelar -> 0,01%
+34,1002,1	// Minério de Ferro -> 0,01%
+34,1003,1	// Carvão -> 0,01%
+34,1004,1	// Insígnia da Cavalaria -> 0,01%
+34,1005,1	// Martelo de Ferreiro -> 0,01%
+34,1006,1	// Grimório Antigo -> 0,01%
+34,1007,1	// Colar da Sabedoria -> 0,01%
+34,1008,1	// Colar do Oblívio -> 0,01%
+34,1009,1	// Mão Divina -> 0,01%
+34,1010,1	// Fracon -> 0,01%
+34,1011,1	// Emveretarcon -> 0,01%
+34,1065,1	// Armadilha -> 0,01%
+34,1102,1	// Espada -> 0,01%
+34,1105,1	// Alfanje -> 0,01%
+34,1108,1	// Lâmina -> 0,01%
+34,1111,1	// Florete -> 0,01%
+34,1114,1	// Cimitarra -> 0,01%
+34,1117,1	// Kataná -> 0,01%
+34,1120,1	// Tsurugi -> 0,01%
+34,1125,1	// Sabre de Impacto -> 0,01%
+34,1127,1	// Sabre -> 0,01%
+34,1128,1	// Haedonggum -> 0,01%
+34,1129,1	// Flamberge -> 0,01%
+34,1152,1	// Espada Matadora -> 0,01%
+34,1155,1	// Espada Bastarda -> 0,01%
+34,1158,1	// Espada de Duas Mãos -> 0,01%
+34,1162,1	// Espada Larga -> 0,01%
+34,1163,1	// Claymore -> 0,01%
+34,1202,1	// Faca -> 0,01%
+34,1205,1	// Punhal -> 0,01%
+34,1208,1	// Main Gauche -> 0,01%
+34,1211,1	// Punhal -> 0,01%
+34,1214,1	// Adaga -> 0,01%
+34,1217,1	// Stiletto -> 0,01%
+34,1220,1	// Gladius -> 0,01%
+34,1226,1	// Damascus -> 0,01%
+34,1251,1	// Jur -> 0,01%
+34,1253,1	// Katar -> 0,01%
+34,1255,1	// Jamadhar -> 0,01%
+34,1302,1	// Machado -> 0,01%
+34,1352,1	// Machado de Batalha -> 0,01%
+34,1355,1	// Marreta -> 0,01%
+34,1358,1	// Demolidor -> 0,01%
+34,1361,1	// Machado de Duas Mãos -> 0,01%
+34,1402,1	// Azagaia -> 0,01%
+34,1405,1	// Ranseur -> 0,01%
+34,1408,1	// Pique -> 0,01%
+34,1410,1	// Lança -> 0,01%
+34,1452,1	// Guisarme -> 0,01%
+34,1455,1	// Glaive -> 0,01%
+34,1458,1	// Guerrilheira -> 0,01%
+34,1461,1	// Tridente -> 0,01%
+34,1464,1	// Alabarda -> 0,01%
+34,1502,1	// Clava -> 0,01%
+34,1505,1	// Maça -> 0,01%
+34,1508,1	// Esmagador -> 0,01%
+34,1511,1	// Mangual -> 0,01%
+34,1514,1	// Maça de Guerra -> 0,01%
+34,1517,1	// Maça Espada -> 0,01%
+34,1520,1	// Mangual Pesado -> 0,01%
+34,1550,1	// Livro -> 0,01%
+34,1551,1	// Bíblia -> 0,01%
+34,1602,1	// Bastão -> 0,01%
+34,1605,1	// Vareta -> 0,01%
+34,1608,1	// Cajado -> 0,01%
+34,1611,1	// Cetro -> 0,01%
+34,1613,1	// Cajado do Poder -> 0,01%
+34,1702,1	// Arco -> 0,01%
+34,1705,1	// Arco Composto -> 0,01%
+34,1711,1	// Besta -> 0,01%
+34,1713,1	// Arbaleste -> 0,01%
+34,1714,1	// Gakkung -> 0,01%
+34,1718,1	// Arco de Caça -> 0,01%
+34,1719,1	// Arco Voraz -> 0,01%
+34,2102,1	// Vembrassa -> 0,01%
+34,2104,1	// Broquel -> 0,01%
+34,2106,1	// Escudo -> 0,01%
+34,2108,1	// Escudo Espelhado -> 0,01%
+34,2207,1	// Florzinha -> 0,01%
+34,2209,1	// Laço -> 0,01%
+34,2213,1	// Orelha de Gato -> 0,01%
+34,2215,1	// Chapéu Florido -> 0,01%
+34,2217,1	// Solidéu -> 0,01%
+34,2221,1	// Chapéu -> 0,01%
+34,2223,1	// Turbante -> 0,01%
+34,2225,1	// Óculos de Proteção -> 0,01%
+34,2227,1	// Barrete -> 0,01%
+34,2229,1	// Elmo -> 0,01%
+34,2231,1	// Capacete de Schallern -> 0,01%
+34,2233,1	// Tiara -> 0,01%
+34,2236,1	// Gorro de Natal -> 0,01%
+34,2244,1	// Laço Grande -> 0,01%
+34,2249,1	// Coroa Menor -> 0,01%
+34,2250,1	// Laço Meigo -> 0,01%
+34,2257,1	// Chifre de Unicórnio -> 0,01%
+34,2258,1	// Chifres Pontudos -> 0,01%
+34,2262,1	// Nariz de Palhaço -> 0,01%
+34,2263,1	// Máscara de Bandido -> 0,01%
+34,2265,1	// Máscara X -> 0,01%
+34,2269,1	// Flor Romântica -> 0,01%
+34,2270,1	// Folha Romântica -> 0,01%
+34,2271,1	// Óculos Charmoso -> 0,01%
+34,2272,1	// Placa de PARE -> 0,01%
+34,2273,1	// Espelho de Médico -> 0,01%
+34,2275,1	// Faixa Marrom -> 0,01%
+34,2276,1	// Óculos de Gatinho -> 0,01%
+34,2279,1	// Pavio -> 0,01%
+34,2284,1	// Chifre de Alce -> 0,01%
+34,2287,1	// Bandana Pirata -> 0,01%
+34,2289,1	// Chapéu Fedorento -> 0,01%
+34,2290,1	// Chapéu Funebre -> 0,01%
+34,2291,1	// Disfarce -> 0,01%
+34,2293,1	// Faca Falsa -> 0,01%
+34,2294,1	// Presilha de Estrela -> 0,01%
+34,2295,1	// Venda -> 0,01%
+34,2296,1	// Binóculos -> 0,01%
+34,2298,1	// Antenas Verdes -> 0,01%
+34,2299,1	// Capacete de Orc -> 0,01%
+34,2302,1	// Camisa de Algodão -> 0,01%
+34,2304,1	// Gibão -> 0,01%
+34,2306,1	// Túnica -> 0,01%
+34,2308,1	// Capote -> 0,01%
+34,2310,1	// Casaco -> 0,01%
+34,2311,1	// Casaco de Pele -> 0,01%
+34,2313,1	// Armadura Acolchoada -> 0,01%
+34,2315,1	// Cota de Malha -> 0,01%
+34,2317,1	// Armadura Metálica -> 0,01%
+34,2322,1	// Manto de Seda -> 0,01%
+34,2324,1	// Escapulário -> 0,01%
+34,2326,1	// Manto Sagrado -> 0,01%
+34,2329,1	// Armadura de Madeira -> 0,01%
+34,2331,1	// Malha -> 0,01%
+34,2333,1	// Manto Prateado -> 0,01%
+34,2336,1	// Traje de Gatuno -> 0,01%
+34,2337,1	// Indumentária Ninja -> 0,01%
+34,2338,1	// Vestido de Casamento -> 0,01%
+34,2339,1	// Roupa de Baixo -> 0,01%
+34,2402,1	// Sandálias -> 0,01%
+34,2404,1	// Sapatos -> 0,01%
+34,2407,1	// Sapatilha de Cristal -> 0,01%
+34,2408,1	// Grilhões -> 0,01%
+34,2409,1	// Salto Alto -> 0,01%
+34,2502,1	// Capuz -> 0,01%
+34,2504,1	// Sobrepeliz -> 0,01%
+34,2506,1	// Manteau -> 0,01%
+34,2507,1	// Capa do Marquês -> 0,01%
+34,2508,1	// Capa Velha -> 0,01%
+34,2601,1	// Anel -> 0,01%
+34,2602,1	// Brinco -> 0,01%
+34,2603,1	// Colar -> 0,01%
+34,2604,1	// Luvas -> 0,01%
+34,2605,1	// Broche -> 0,01%
+34,2607,1	// Presilha -> 0,01%
+34,2608,1	// Rosário -> 0,01%
+34,2609,1	// Anel de Caveira -> 0,01%
+34,2610,1	// Anel de Ouro -> 0,01%
+34,2611,1	// Anel de Prata -> 0,01%
+34,2612,1	// Anel de Flor -> 0,01%
+34,2613,1	// Anel de Diamante -> 0,01%
+34,5008,1	// Grinalda -> 0,01%
+34,5009,1	// Capacete de Segurança -> 0,01%
+34,5010,1	// Penacho -> 0,01%
+34,5014,1	// Barbatanas -> 0,01%
+34,5015,1	// Casca de Ovo -> 0,01%

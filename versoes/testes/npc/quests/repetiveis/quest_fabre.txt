@@ -1,0 +1,233 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nãome do Script: Quests Repetíveis - Fabre		   		|
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team			   				|
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.0/1.1				    			|
+// |--------------------------------------------------------|
+// | Descrição: Quests repetíveis para ganho de EXP 		|
+// |--------------------------------------------------------|
+// | Changelog:               	                        	|
+// | 1.0 Script Traduzido [insidemybrain]					|
+// | 1.1 Script Revisado [Protimus]							|
+// \_______________________________________________________/
+
+gef_fild07,321,193,4	script	Langry#Fabre_Hunt	754,{
+	if (checkquest(60107) != -1) {
+		if (checkquest(60107,HUNTING) != 2 ) {
+			mes "[Langry]";
+			mes "Você terminou de caçar os 50 Fabres?";
+			next;
+			switch(select("Sim.:Não.:Quero desistir.")) {
+			case 1:
+				mes "[Langry]";
+				mes "Hm... Acho que você não terminou de caçar os 50 Fabres";
+				close;
+			case 2:
+				mes "[Langry]";
+				mes "Lembre-se, eu preciso de ajuda para caçar os 50 Fabres.";
+				close;
+			case 3:
+				mes "[Langry]";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
+				next;
+				switch(select("Sim.:Não.")) {
+				case 1:
+					mes "[Langry]";
+					mes "Tudo bem então, volte quando mudar de idéia.";
+					erasequest 60107;
+					close;
+				case 2:
+					mes "[Langry]";
+					mes "Por favor mate 50 Fabres.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Langry]";
+			mes "Impressionante! Você conseguiu completar a quest com facilidade.";
+			getexp 385,30;
+			erasequest 60107;
+			close;
+		}
+	}
+	if (checkquest(60108) != -1) {
+		if (checkquest(60108,HUNTING) != 2 ) {
+			mes "[Langry]";
+			mes "Você terminou de caçar os 100 Fabres?";
+			next;
+			switch(select("Sim.:Não.:Quero desistir.")) {
+			case 1:
+				mes "[Langry]";
+				mes "Hm... Acho que você não terminou de caçar os 100 Fabres...";
+				close;
+			case 2:
+				mes "[Langry]";
+				mes "Lembre-se, eu preciso de ajuda para caçar os 100 Fabres.";
+				close;
+			case 3:
+				mes "[Langry]";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
+				next;
+				switch(select("Sim.:Não.")) {
+				case 1:
+					mes "[Langry]";
+					mes "Tudo bem então, volte quando mudar de idéia.";
+					erasequest 60108;
+					close;
+				case 2:
+					mes "[Langry]";
+					mes "Por favor mate 100 Fabres.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Langry]";
+			mes "Impressionante! Você conseguiu completar a quest com facilidade.";
+			getexp 385,30;
+			getexp 385,30;
+			erasequest 60108;
+			close;
+		}
+	}
+	if (checkquest(60109) != -1) {
+		if (checkquest(60109,HUNTING) != 2 ) {
+			mes "[Langry]";
+			mes "Você terminou de caçar os 150 Fabres?";
+			next;
+			switch(select("Sim.:Não.:Quero desistir.")) {
+			case 1:
+				mes "[Langry]";
+				mes "Hm... Acho que você não terminou de caçar os 150 Fabres...";
+				close;
+			case 2:
+				mes "[Langry]";
+				mes "Lembre-se, eu preciso de ajuda para caçar os 150 Fabres.";
+				close;
+			case 3:
+				mes "[Langry]";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
+				next;
+				switch(select("Sim.:Não.")) {
+				case 1:
+					mes "[Langry]";
+					mes "Tudo bem então, volte quando mudar de idéia.";
+					erasequest 60109;
+					close;
+				case 2:
+					mes "[Langry]";
+					mes "Por favor mate 150 Fabres.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Langry]";
+			mes "Impressionante! Você conseguiu completar a quest com facilidade.";
+			getexp 385,30;
+			getexp 385,30;
+			getexp 385,30;
+			erasequest 60109;
+			close;
+		}
+	}
+	//Para level mínimo
+	if (BaseLevel > 1) {
+		//Para level máximo
+		if (BaseLevel < 21) {
+			mes "[Langry]";
+			mes "Acha que poderia me ajudar?";
+			next;
+			switch(select("Claro.:Não.")) {
+			case 1:
+				mes "[Langry]";
+				mes "SÉRIO?!";
+				mes "Que ótimo!";
+				next;
+				switch(select("Pegar Itens.:Caçar Fabres.:Cancelar.")) {
+				case 1:
+					mes "[Langry]";
+					mes "Eu preciso juntar ^0000CC25 Felpas^000000 para completar este projeto do serviço comunitário.";
+					mes "E sabe o que mais? Ainda posso dar a você uma recompensa por me ajudar.";
+					next;
+					switch(select("Eu tenho algumas Felpas.:O que você precisava mesmo?")) {
+					case 1:
+						if (countitem(914) > 24) {
+							mes "[Langry]";
+							mes "Obrigada pelas Felpas. Foi de grande ajuda.";
+							mes "Ah, e aqui está, isto vai ajudar você a ficar mais forte, mais rápido!";
+							delitem 914,25; //Felpas
+							getexp 385,30;
+							close;
+						}
+						else {
+							mes "[Langry]";
+							mes "Não vejo felpa nenhuma. Ah sim, estou vendo, são as mentiras saindo da sua boca.";
+							close;
+						}
+					case 2:
+						mes "[Langry]";
+						mes "Eu preciso de ^00CE0025 Felpas^000000.";
+						close;
+					}
+				case 2:
+					// Matar Fabres
+					mes "[Langry]";
+					mes "Ah sim, então você quer caçar alguns Fabres.";
+					mes "Quantos gostaria de caçar?";
+					next;
+					switch(select("50 Fabres.:100 Fabres.:150 Fabres.")) {
+					case 1:
+						mes "[Langry]";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
+						setquest 60107;
+						close;
+					case 2:
+						mes "[Langry]";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
+						setquest 60108;
+						close;
+					case 3:
+						mes "[Langry]";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
+						setquest 60109;
+						close;
+					}
+				case 3:
+					mes "[Langry]";
+					mes "Caso mude de idéia, venha falar comigo novamente.";
+					close;
+				}
+			case 2:
+				mes "[Langry]";
+				mes "Caso mude de idéia, venha falar comigo novamente.";
+				close;
+			}
+		}
+		else {
+			mes "[Langry]";
+			mes "Olá, meu nome é Langry.";
+			mes "Eu preciso completar este serviço comunitário, mas estou com preguiça.";
+			close;
+		}
+	}
+	else {
+		mes "[Langry]";
+		mes "Você deve ser a pessoa mais azarada da história, vá reciclar alguns Fabres e depois volte.";
+		close;
+	}
+}

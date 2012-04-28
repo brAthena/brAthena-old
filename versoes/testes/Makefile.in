@@ -1,0 +1,145 @@
+@SET_MAKE@
+
+HAVE_MYSQL=@HAVE_MYSQL@
+ifeq ($(HAVE_MYSQL),yes)
+	ALL_DEPENDS=common_sql login_sql char_sql map_sql tools import
+	SQL_DEPENDS=common_sql login_sql char_sql map_sql import
+	COMMON_SQL_DEPENDS=mt19937ar
+	LOGIN_SQL_DEPENDS=mt19937ar common_sql
+	CHAR_SQL_DEPENDS=mt19937ar common_sql
+	MAP_SQL_DEPENDS=mt19937ar common_sql
+	CONVERTERS_DEPENDS=common_sql
+else
+	ALL_DEPENDS=needs_mysql
+	SQL_DEPENDS=needs_mysql
+	COMMON_SQL_DEPENDS=needs_mysql
+	LOGIN_SQL_DEPENDS=needs_mysql
+	CHAR_SQL_DEPENDS=needs_mysql
+	MAP_SQL_DEPENDS=needs_mysql
+endif
+
+WITH_PLUGINS=@WITH_PLUGINS@
+ifeq ($(WITH_PLUGINS),yes)
+	ALL_DEPENDS+=plugins
+	PLUGIN_DEPENDS=common_sql
+else
+	PLUGIN_DEPENDS=no_plugins
+endif
+
+#####################################################################
+.PHONY: sql  \
+	common_sql \
+	mt19937ar \
+	login_sql \
+	char_sql \
+	map_sql \
+	tools plugins addons \
+	import \
+	clean help
+
+all: $(ALL_DEPENDS)
+
+sql: $(SQL_DEPENDS)
+
+common_sql: $(COMMON_SQL_DEPENDS)
+	@$(MAKE) -C src/common sql
+
+mt19937ar:
+	@$(MAKE) -C 3rdparty/mt19937ar
+
+login_sql: $(LOGIN_SQL_DEPENDS)
+	@$(MAKE) -C src/login sql
+
+char_sql: $(CHAR_SQL_DEPENDS)
+	@$(MAKE) -C src/char
+
+map_sql: $(MAP_SQL_DEPENDS)
+	@$(MAKE) -C src/map sql
+
+tools:
+	@$(MAKE) -C src/tool
+
+plugins addons: $(PLUGIN_DEPENDS)
+	@$(MAKE) -C src/plugins
+	
+import:
+# 1) create conf/import folder
+# 2) add missing files
+# 3) remove remaining .svn folder
+	@echo "building conf/import folder..."
+	@if test ! -d conf/import ; then mkdir conf/import ; fi
+	@for f in $$(ls conf/import-tmpl) ; do if test ! -e conf/import/$$f ; then cp conf/import-tmpl/$$f conf/import ; fi ; done
+	@rm -rf conf/import/.svn
+
+clean:
+	@$(MAKE) -C src/common $@
+	@$(MAKE) -C 3rdparty/mt19937ar $@
+	@$(MAKE) -C src/login $@
+	@$(MAKE) -C src/char $@
+	@$(MAKE) -C src/map $@
+	@$(MAKE) -C src/plugins $@
+	@$(MAKE) -C src/tool $@
+
+help:
+	@echo "most common targets are 'all' 'sql' 'conf' 'clean' 'help'"
+	@echo "possible targets are:"
+	@echo "'common_sql'  - builds object files used in SQL servers"
+	@echo "'mt19937ar'   - builds object file of Mersenne Twister MT19937"
+	@echo "'login_sql'   - builds login server (SQL version)"
+	@echo "'char_sql'    - builds char server (SQL version)"
+	@echo "'map_sql'     - builds map server (SQL version)"
+	@echo "'tools'       - builds all the tools in src/tools"
+	@echo "'plugins'     - builds all the plugins in src/plugins"
+	@echo "'addons'"
+	@echo "'import'      - builds conf/import folder from the template conf/import-tmpl"
+	@echo "'all'         - builds all the above targets"
+	@echo "'sql'         - builds sql servers (targets 'common_sql' 'login_sql' 'char_sql'"
+	@echo "                'map_sql' and 'import')"
+	@echo "'clean'       - cleans builds and objects"
+	@echo "'help'        - outputs this message"
+
+#####################################################################
+
+needs_mysql:
+	@echo "MySQL not found or disabled by the configure script"
+	@exit 1
+
+no_plugins:
+	@echo "Plugins disabled by the configure script"
+	@exit 1
+
+#####################################################################
+# TODO
+
+install:	conf/%.conf conf/%.txt
+	$(shell read -p "WARNING: This target does not work properly yet. Press Ctrl+C to cancel or Enter to continue.")
+	$(shell mkdir -p /opt/brathena/bin/)
+	$(shell mkdir -p /opt/brathena/etc/brathena/)
+	$(shell mkdir -p /opt/brathena/var/log/brathena/)
+	$(shell mv save /opt/brathena/etc/brathena/save)
+	$(shell mv db /opt/brathena/etc/brathena/db)
+	$(shell mv conf /opt/brathena/etc/brathena/conf)
+	$(shell mv npc /opt/brathena/etc/brathena/npc)
+	$(shell mv log/* /opt/brathena/var/log/brathena/)
+	$(shell cp *-server* /opt/brathena/bin/)
+	$(shell ln -s /opt/brathena/etc/brathena/save/ /opt/brathena/bin/)
+	$(shell ln -s /opt/brathena/etc/brathena/db/ /opt/brathena/bin/)
+	$(shell ln -s /opt/brathena/etc/brathena/conf/ /opt/brathena/bin/)
+	$(shell ln -s /opt/brathena/etc/brathena/npc/ /opt/brathena/bin/)
+	$(shell ln -s /opt/brathena/var/log/brathena/ /opt/brathena/bin/log)
+
+bin-clean:
+	$(shell rm /opt/brathena/bin/login-server*)
+	$(shell rm /opt/brathena/bin/char-server*)
+	$(shell rm /opt/brathena/bin/map-server*)
+
+uninstall:
+	$(shell read -p "WARNING: This target does not work properly yet. Press Ctrl+C to cancel or Enter to continue.")
+	bin-clean
+	$(shell rm /opt/brathena/bin/save)
+	$(shell rm /opt/brathena/bin/db)
+	$(shell rm /opt/brathena/bin/conf)
+	$(shell rm /opt/brathena/bin/npc)
+	$(shell rm /opt/brathena/bin/log)
+	$(shell rm -rf /opt/brathena/etc/brathena)
+	$(shell rm -rf /opt/brathena/var/log/brathena)

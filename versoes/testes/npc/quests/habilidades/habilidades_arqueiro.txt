@@ -1,0 +1,288 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Archer Skill Quest				    	|
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team			    			|
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.5/1.0				   				|
+// |--------------------------------------------------------|
+// | Descrição: Quest for skills: Arrow Crafting, 			|
+// | Arrow Repel											|
+// |--------------------------------------------------------|
+// | Changelog:						    					|
+// | 1.0 Script Traduzido [Wolf]                            |
+// | - Anotações					    					|
+// \________________________________________________________/
+
+moc_ruins,118,99,5	script	Roberto#qsk_ac	88,{
+	if (BaseClass == Job_Archer) {
+		if (getskilllv("AC_MAKINGARROW") == 1) {
+			mes "[Roberto]";
+			mes "Ooh, você é da minha cidade natal!";
+			mes "Que bom te ver.!";
+			mes "Como você está?";
+			mes "Ah! Esta flecha!";
+			mes "Você conseguiu.";
+			next;
+			mes "[Roberto]";
+			mes "Haha...!";
+			mes "Você acha quu é bom né?";
+			mes "Haha... de qualquer maneira, estou feliz.";
+			mes "Volte de vez enquando com";
+			mes "notícias da cidade.";
+			mes "Tchau~";
+			close;
+		}
+		else if ((Basejob == Job_Archer && JobLevel >= 30) || BaseJob == Job_Hunter || BaseJob == Job_Dancer || BaseJob == Job_Bard) {
+			mes "[Roberto]";
+			mes "Eh!";
+			mes " ";
+			mes "Você é...";
+			next;
+			if (countitem(907) > 19 && countitem(921) > 6 && countitem(7012) > 40 && countitem(1019) > 12 && countitem(501) > 0) {
+				mes "[Roberto]";
+				mes "Você trouxe os itens.";
+				mes "Muito obrigado.";
+				mes "Então, como prometido, vou te ensinar a habilidade.";
+				next;
+				delitem 907,20; //Resin
+				delitem 921,7; //Mushroom_Spore
+				delitem 7012,41; //Tough_Scalelike_Stem
+				delitem 1019,13; //Wooden_Block
+				delitem 501,1; //Red_Potion
+				skill 147,1,0;
+				mes "[Roberto]";
+				mes "Não precisa se preocupar com as flexas agora.";
+				mes "Ah, e se você ver alguém";
+				mes "chamado Jason em Payon?";
+				mes "Cuidado. Ele é";
+				mes "feroz.";
+				next;
+				mes "[Roberto]";
+				mes "Você tem que ter cuidado com o Jason.";
+				mes "Não esqueça.";
+				mes "Até mais~ Obrigado pela presença~";
+				close;
+			}
+			else {
+				mes "[Roberto]";
+				mes "Um arqueiro em Morroc!?";
+				mes "Prazer em vê-lo! Encontrar um";
+				mes "arqueiro companheiro em um lugar como esse! *chorochoro*!";
+				mes "Eu vim para Morroc sózinho..";
+				mes "mas eu era um recém-chegado, e a pressão... aaah~";
+				mes "Eu era muito solitário~";
+				next;
+				if (select("Deve ser difícil. Ok, tenha fé.:Tentarei suportar.") == 1) {
+					mes "[Roberto]";
+					mes "Sim. Obrigado...";
+					mes "Você deve estar passando por um";
+					mes "momento difícil em um lugar como este.";
+					mes "É difícil encontrar as flexas?";
+					mes "É por isso que eu faço as minhas própias.";
+					next;
+					select("Sério, verdade?!");
+					mes "[Roberto]";
+					mes "Sim! Eu recolho itens antigos";
+					mes "e os uso para criar minhas flexas.";
+					mes "É uma habilidade que me ajuda muito";
+					mes "para sobreviver em um lugar como esse.";
+					mes "Se você gostar, eu posso te ensinar.";
+					next;
+					select("Isso seria maravilhoso.");
+					mes "[Roberto]";
+					mes "Mas.. eu não posso fazer sem nada em troca.";
+					mes "Nada é de graça nesse mundo~";
+					mes "Mmm... Que tal?";
+					mes "Você me traz o que eu pedir.";
+					mes "E após isso eu te ensino a habilidade.";
+					next;
+					mes "[Roberto]";
+					mes "Eu fui muito solitário desde que deixei minha cidade natal.";
+					mes "Gostaria de tratar minhas saudades";
+					mes "com as coisas de lá.";
+					mes "Traga-me 20 Resinas dos Salgueiros ";
+					mes "da floresta de Payon, e 1 Poção Vermelha";
+					mes "que é vendida na loja.";
+					next;
+					mes "[Roberto]";
+					mes "E também, 13 troncos dos Salgueiros que";
+					mes "vivem na floresta de Payon,";
+					mes "41 Pedaços de Escama Dura,";
+					mes "7 Esporos de Cogumelo.";
+					mes "Se você me trazer todos esses itens.";
+					next;
+					mes "[Roberto]";
+					mes "Eu te ensinarei a habilidade.";
+					mes "Então.. Estou no aguardo.";
+					mes "Pelas novidades da minha cidade.";
+					close;
+				}
+				mes "[Roberto]";
+				if (Sex)
+					mes "...ei senhorita.";
+				else
+					mes "...ei senhor.";
+				mes "...tenha cuidado durante a noite.";
+				close;
+			}
+		}
+		else {
+			mes "[Roberto]";
+			mes "Hmm... Você?";
+			mes "Tem algo pra falar?";
+			mes "Eu,";
+			mes "não tenho.";
+			mes "Diferença de níveis";
+			mes "interrompe conversas.";
+			close;
+		}
+	}
+	else {
+		mes "[?]";
+		mes "Eh... Sua primeira vez de arqueiro, ou algo do tipo?";
+		mes "Basta ir para onde estava indo.";
+		mes "Eu só falo com arqueiros de nível alto.";
+		mes "Não fale comigo novamente!";
+		close;
+	}
+}
+
+payon,103,63,3	script	Jason#qsk_ac	88,3,3,{
+	if (BaseClass == Job_Archer) {
+		if (getskilllv("AC_CHARGEARROW") == 1) {
+			mes "[Jason]";
+			mes "Eh, nos encontramos novamente.";
+			mes "Ehhhh tão estranho.";
+			mes "Sempre que vejo alguém novamente";
+			mes "eu começo a falar muito 'Ehh'.";
+			mes "Ehhh... de qualquer forma é bom te ver denovo.";
+			mes "Ehhhh... não venha mais aqui ehhh...";
+			close;
+		}
+		else if ((Basejob == Job_Archer && JobLevel >= 35) || BaseJob == Job_Hunter || BaseJob == Job_Dancer || BaseJob == Job_Bard) {
+			mes "[Jason]";
+			mes "Caramba... a minha ferida não cicatriza.";
+			mes "Droga.. Eu era muito descuidado... ";
+			mes "para acontecer isso.. err...";
+			mes "Mas, ainda assim, tenho me prejudicado";
+			mes "bastante com tantas lesões...";
+			next;
+			mes "O que devo fazer em relação a Roberto.";
+			mes "Mmmm... Ah!";
+			mes "Você? Há quanto tempo você esteve lá?";
+			mes "Mmm... nível bem alto.";
+			mes "Alguém como você seria capaz de saber";
+			mes "como usar Disparo Violento.";
+			next;
+			switch(select("O que é isso?:Me ensine.")) {
+			case 1:
+				mes "[Jason]";
+				mes "...você tá de brincadeira, né?";
+				mes "Oh meu, você não sabe o que é";
+				mes "Disparo Violento nesse level?";
+				mes "Você é estranho.";
+				next;
+				mes "[Jason]";
+				mes "(Jason estava na terra.)";
+				next;
+				mes "[Jason]";
+				mes "Bem, ok. Vou te falar o que é";
+				mes "Disparo Violento.";
+				next;
+				mes "[Jason]";
+				mes "Disparo Violento é uma habilidade que após o ataque, ";
+				mes "o oponente é empurrado para longe, logo após o ataque.";
+				mes "Você só pode usá-la quando você aponta exatamente";
+				mes "em seu alvo. Caso contrário não ";
+				mes "funcionará a mágia.";
+				next;
+				mes "[Jason]";
+				mes "É muito útil para um arqueiro,";
+				mes "que não é bom nos ataques próximos.";
+				mes "If you would like to learn,";
+				mes "Se você quiser aprender,";
+				mes "traga-me os materiais necessários.";
+				next;
+				mes "[Jason]";
+				mes "Primeiro, você deve modificar um arco, e";
+				mes "trazer uma besta que você não use.";
+				mes "10 Tentáculos, 10 Bicos de Ave,";
+				mes "3 Caudas de Yoyo.. elas são bem elásticas.";
+				mes "E também, 2 Esmeraldas. And last but not least...";
+				mes "36 frascos de Sucos de Banana que eu amo!";
+				next;
+				mes "[Jason]";
+				mes "......Ehem!";
+				mes "Se você me trouxer essas coisas,";
+				mes "eu vou te ensinar o Disparo Violento.";
+				mes "Então, vejo você depois.";
+				mes "(Ficarei louco se você não trouxer os fracos de Sucos de Banana.)";
+				close;
+			case 2:
+				if (countitem(721) > 1 && countitem(942) > 2 && countitem(962) > 9 && countitem(925) > 9 && countitem(532) > 35) {
+					mes "[Jason]";
+					mes "Ok! Perfeito!";
+					mes "Vou te ensinar a famosa habilidade";
+					mes "Disparo Violento!";
+					next;
+					delitem 721,2; //Azure_Jewel
+					delitem 942,3; //Yoyo_Tail
+					delitem 962,10; //Tentacle
+					delitem 925,10; //Bill_Of_Birds
+					delitem 532,36; //Banana_Juice
+					skill 148,1,0;
+					mes "[Jason]";
+					mes "Ah, foi melhor do que eu esperava!";
+					mes "Não será a necessário modificar o arco!";
+					mes "Você pode pegar isso de volta~";
+					mes "E divirta-se com sua nova habilidade";
+					mes "nos campos e cavernas!";
+					mes "He~heh~!";
+					close;
+				}
+				else {
+					mes "[Jason]";
+					mes "Mmm ... que estranhoEstá faltando certas coisas..";
+					mes "You are missing some things.";
+					mes "Mais uma vez, você precisa de 2 Esmeraldas,";
+					mes "3 Caudas de Yoyo, 10 Tentáculos,";
+					mes "10 Bicos de Ave, e o mais importante,";
+					mes "não se esqueça, 36 frascos de Sucos de Banana!";
+					next;
+					mes "[Jason]";
+					mes "Quando você estiver com todos eles volte aqui novamente";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Jason]";
+			mes "Ooh ... você é um arqueiro.";
+			mes "Se você se esforçar um";
+			mes "pouco mais você vai ter";
+			mes "uma grande reputação como arqueiro!";
+			mes "Esforce-se!";
+			close;
+		}
+	}
+	else {
+		mes "[?]";
+		mes "O que é necessário a vida de";
+		mes "um rapaz solitário como eu?";
+		close;
+	}
+
+OnTouch:
+	mes "[???]";
+	mes "Errrrrrr...";
+	close;
+}

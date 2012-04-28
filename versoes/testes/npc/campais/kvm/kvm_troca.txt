@@ -1,0 +1,500 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                     brAthena Script                    |
+// |--------------------------------------------------------|
+// | Nome do Script: Batalhas Campais - KvM Trocas          |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.0/1.0                                |
+// |--------------------------------------------------------|
+// | Descrição: NPC's de Troca de Pontos por Itens KvM.     |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// |  1.0 Script Traduzido [Tyler]                          |
+// | - Atualizado o banco de dados de cada uma das armas    |
+// | para especificar melhor cada uma delas na hora da      |
+// | compra (DESATIVADO por padrão).                        |
+// \________________________________________________________/
+
+bat_room,151,144,3	script	Lojista Oficial do KVM#a	734,{
+	if (countitem(7773)) {
+		set .@pointstoadd,countitem(7773);
+		delitem 7773,.@pointstoadd;
+		set kvm_point,kvm_point+.@pointstoadd;
+		mes "[Negociante do KvM]";
+		mes "O que eu vejo aqui, estes são os "+getitemname(7773)+"(ões)?";
+		mes "Já não aceitamos mais este tipo de moeda,";
+		mes "mas eu posso trocá-los para você,";
+		mes "Então você possui "+.@pointstoadd+" "+getitemname(7773)+"(s)?";
+		mes "Então tá, tudo certo! Agora você possui ^580080"+ kvm_point +"^000000 Pontos do KvM.";
+		next;
+	}
+	if (checkweight(1201,1) == 0) {
+		mes "- Espere aí um minuto! -";
+		mes "- Atualmente você está -";
+		mes "- carregando itens demais. -";
+		mes "- Por favor tente novamente após -";
+		mes "- você descarregar um pouco do peso. -";
+		close;
+	}
+	mes "[Negociante do KvM]";
+	mes "Olá!";
+	mes "Eu sou o encarregado de distribuir";
+	mes "as recompensas por troca com os Pontos do KvM.";
+	mes "Qualquer seleção errada do item que você o fizer";
+	mes "não será revertida, ou seja, não aceitamos devoluções.";
+	mes "Por favor tenha cuidado. Selecione o próximo passo por gentileza.";
+	next;
+	set .@name$,strcharinfo(0);
+	switch(select("Ler o Catálogo do KvM.:Comprar os Itens do KvM.:Confirmar Pontos do KvM.:Explicação sobre os Itens do KvM.:Explicação sobre os Pontos do KvM.")) {
+	case 1:
+		mes "[Negociante do KvM]";
+		mes "Aqui está o Catálogo dos itens do KvM.";
+		mes "Cada arma pode ser comprada por 2.000 pontos";
+		mes "e cada Equipamento sai entre 10 a 1.200 pontos.";
+		mes "Então tome cuidado ao escolher entre";
+		mes "todas as recompensas.";
+		close2;
+		ReadBook 11017,1;
+		end;
+	case 2:
+		mes "[Negociante do KvM]";
+		mes "Quais itens você deseja saber mais?";
+		mes "Para uma detalhada especificação de cada";
+		mes "um dos itens, por favor consulte o nosso";
+		mes "^3131FFCatálogo^000000.";
+		next;
+		switch(select("Armas:Equipamentos/Acessórios:Equipamentos Industrializados/Acessórios Industrializados:Equipamentos Baratos/Acessórios Baratos")) {
+		case 1:
+			mes "[Negociante do KvM]";
+			mes "Você selecionou a categoria das 'Armas'.";
+			mes "Por favor selecione agora uma sub-categoria.";
+			next;
+			switch(select("Adagas/Espadas/Lanças:Cajados/Maças/Machados/Huumas:Arcos/Katares/Instrumentos Musicais/Chicotes:Livros/Soqueiras:Revólveres/Rifles/Metralhadoras/Espingardas/Lança-Granadas")) {
+			case 1:
+				mes "[Negociante do KvM]";
+				mes "Você selecionou a categoria 'Adagas/Espadas/Lanças'.";
+				mes "Por favor selecione agora uma sub-categoria.";
+				next;
+				switch(select("Adagas:Espadas de Uma Mão:Espadas de Duas Mãos:Lanças:Lanças de Duas Mãos")) {
+				case 1:
+					//mes "[Negociante do KvM]";
+					//mes "Você selecionou a categoria 'Adagas'.";
+					//mes "Nós temos esta única Adaga: Gládio Glorioso.";
+					//mes "Se você quiser os detalhes dela, por favor consulte o Catálogo do KvM.";
+					//mes "Aqui está ela, pegue-a!"
+					callsub PurchaseItem,13042,0,1; //Krieger_Dagger1
+					//end;
+				case 2:
+					mes "[Negociante do KvM]";
+					mes "Você selecionou a categoria 'Espadas de Uma Mão'.";
+					mes "Nós temos estas três Espadas de Uma Mão: Flamberge Gloriosa, Florete Glorioso e a Vingadora Sagrada Gloriosa.";
+					mes "Se você quiser os detalhes de cada uma, por favor consulte o Catálogo do KvM.";
+					mes "Por favor selecione uma delas.";
+					next;
+					switch(select("Flamberge Gloriosa.:Florete Glorioso.:Vingadora Sagrada Gloriosa.")) {
+					case 1: callsub PurchaseItem,13416,0,0; //Krieger_Onehand_Sword1
+					case 2: callsub PurchaseItem,13417,0,0; //Krieger_Onehand_Sword2
+					case 3: callsub PurchaseItem,13418,0,0; //Krieger_Onehand_Sword3
+					}
+				case 3:
+					//mes "[Negociante do KvM]";
+					//mes "Você selecionou a categoria 'Espadas de Duas Mãos'.";
+					//mes "Nós temos esta única Espada de Duas Mãos: Claymore Gloriosa.";
+					//mes "Se você quiser os detalhes dela, por favor consulte o Catálogo do KvM.";
+					//mes "Aqui está ela, pegue-a!"
+					callsub PurchaseItem,1187,0,1; //Krieger_Twohand_Sword1
+					//end;
+				case 4:
+					//mes "[Negociante do KvM]";
+					//mes "Você selecionou a categoria 'Lanças'.";
+					//mes "Nós temos esta única Lança: Lança Gloriosa.";
+					//mes "Se você quiser os detalhes dela, por favor consulte o Catálogo do KvM.";
+					//mes "Aqui está ela, pegue-a!"
+					callsub PurchaseItem,1426,0,1; //Krieger_Onehand_Spear1
+					//end;
+				case 5:
+					//mes "[Negociante do KvM]";
+					//mes "Você selecionou a categoria 'Lanças de Duas Mãos'.";
+					//mes "Nós temos esta única Lança de Duas Mãos: Lança de Duas Mãos Gloriosa.";
+					//mes "Se você quiser os detalhes dela, por favor consulte o Catálogo do KvM.";
+					//mes "Aqui está ela, pegue-a!"
+					callsub PurchaseItem,1486,0,1; //Krieger_Twohand_Spear1
+					//end;
+				}
+			case 2:
+				mes "[Negociante do KvM]";
+				mes "Você selecionou a categoria 'Cajados/Maças/Machados/Huumas'.";
+				mes "Por favor selecione agora uma sub-categoria.";
+				next;
+				switch(select("Cajados:Maças:Machados:Machados de Duas Mãos:Huumas")) {
+				case 1:
+					mes "[Negociante do KvM]";
+					mes "Você selecionou a categoria 'Cajados'.";
+					mes "Nós temos estes três Cajados: Cajado Glorioso da Destruição, o Cetro Glorioso e a Varinha Gloriosa de Cura.";
+					mes "Se você quiser os detalhes de cada uma, por favor consulte o Catálogo do KvM.";
+					mes "Por favor selecione um deles.";
+					next;
+					switch(select("Cajado Glorioso da Destruição.:Cetro Glorioso.:Varinha Gloriosa de Cura.")) {
+					case 1: callsub PurchaseItem,2002,0,0; //Krieger_Twohand_Staff1
+					case 2: callsub PurchaseItem,1640,0,0; //Krieger_Onehand_Staff1
+					case 3: callsub PurchaseItem,1641,0,0; //Krieger_Onehand_Staff2
+					}
+				case 2:
+				//mes "[Negociante do KvM]";
+				//mes "Você selecionou a categoria 'Maças'.";
+				//mes "Nós temos esta única Maça: Maça de Guerra Gloriosa.";
+				//mes "Se você quiser os detalhes dela, por favor consulte o Catálogo do KvM.";
+				//mes "Aqui está ela, pegue-a!"
+				callsub PurchaseItem,1546,0,1; //Krieger_Onehand_Mace1
+				//end;
+				case 3:
+				//mes "[Negociante do KvM]";
+				//mes "Você selecionou a categoria 'Machados'.";
+				//mes "Nós temos este único Machado: Retalhador Glorioso.";
+				//mes "Se você quiser os detalhes dele, por favor consulte o Catálogo do KvM.";
+				//mes "Aqui está ele, pegue-o!"
+				callsub PurchaseItem,1310,0,1; //Krieger_Onehand_Axe1
+				//end;
+				case 4:
+				//mes "[Negociante do KvM]";
+				//mes "Você selecionou a categoria 'Machados de Duas Mãos'.";
+				//mes "Nós temos este único Machado de Duas Mãos: Machado de Duas Mãos Glorioso.";
+				//mes "Se você quiser os detalhes dele, por favor consulte o Catálogo do KvM.";
+				//mes "Aqui está ele, pegue-o!"
+				callsub PurchaseItem,1382,0,1; //Krieger_Twohand_Axe1
+				//end;
+				case 5:
+				//mes "[Negociante do KvM]";
+				//mes "Você selecionou a categoria 'Machados de Duas Mãos'.";
+				//mes "Nós temos este único Shuriken Huuma: Shuriken Fuuma Glorioso.";
+				//mes "Se você quiser os detalhes dele, por favor consulte o Catálogo do KvM.";
+				//mes "Aqui está ele, pegue-o!"
+				callsub PurchaseItem,13307,0,1; //Krieger_Huuma_Shuriken1
+				//end;
+				}
+			case 3:
+				mes "[Negociante do KvM]";
+				mes "Você selecionou a categoria 'Arcos/Katares/Instrumentos Musicais/Chicotes'.";
+				mes "Por favor selecione agora uma sub-categoria.";
+				next;
+				switch(select("Arcos:Katares:Instrumentos Musicais:Chicotes")) {
+				case 1:
+					//mes "[Negociante do KvM]";
+					//mes "Você selecionou a categoria 'Arcos'.";
+					//mes "Nós temos este único Arco: Arco de Caça Glorioso.";
+					//mes "Se você quiser os detalhes dele, por favor consulte o Catálogo do KvM.";
+					//mes "Aqui está ele, pegue-o!"
+					callsub PurchaseItem,1743,0,1; //Krieger_Bow1
+					//end;
+				case 2:
+					mes "[Negociante do KvM]";
+					mes "Você selecionou a categoria 'Katares'.";
+					mes "Nós temos estas duas Katares: Rugido Sangrento Glorioso e o Jamadhar Glorioso.";
+					mes "Se você quiser os detalhes delas, por favor consulte o Catálogo do KvM.";
+					mes "Por favor selecione um delas.";
+					next;
+					switch(select("Rugido Sangrento Glorioso.:Jamadhar Glorioso.")) {
+					case 1: callsub PurchaseItem,1281,0,0; //Krieger_Katar1
+					case 2: callsub PurchaseItem,1282,0,0; //Krieger_Katar2
+					}
+				case 3:
+					//mes "[Negociante do KvM]";
+					//mes "Você selecionou a categoria 'Instrumentos Musicais'.";
+					//mes "Nós temos este único Instrumento Musical: Guitarra Gloriosa.";
+					//mes "Se você quiser os detalhes dele, por favor consulte o Catálogo do KvM.";
+					//mes "Aqui está ele, pegue-o!"
+					callsub PurchaseItem,1927,0,1; //Krieger_Instrument1
+					//end;
+				case 4:
+					//mes "[Negociante do KvM]";
+					//mes "Você selecionou a categoria 'Chicotes'.";
+					//mes "Nós temos este único Chicote: Chicote Glorioso.";
+					//mes "Se você quiser os detalhes dele, por favor consulte o Catálogo do KvM.";
+					//mes "Aqui está ele, pegue-o!"
+					callsub PurchaseItem,1981,0,1; //Krieger_Whip1
+					//end;
+				}
+			case 4:
+				mes "[Negociante do KvM]";
+				mes "Você selecionou a categoria 'Livros/Soqueiras'.";
+				mes "Por favor selecione agora uma sub-categoria.";
+				next;
+				switch(select("Livros:Soqueiras")) {
+				case 1:
+					mes "[Negociante do KvM]";
+					mes "Você selecionou a categoria 'Livros'.";
+					mes "Nós temos estes dois Livros: Tábula Gloriosa e o Livro do Apocalipse Glorioso.";
+					mes "Se você quiser os detalhes deles, por favor consulte o Catálogo do KvM.";
+					mes "Por favor selecione um deles.";
+					next;
+					switch(select("Tábula Gloriosa.:Livro do Apocalipse Glorioso.")) {
+					case 1: callsub PurchaseItem,1576,0,0; //Krieger_Book1
+					case 2: callsub PurchaseItem,1577,0,0; //Krieger_Book2
+					}
+				case 2:
+					mes "[Negociante do KvM]";
+					mes "Você selecionou a categoria 'Soqueiras'.";
+					mes "Nós temos estas duas Soqueiras: Garra Gloriosa e o Punho Glorioso.";
+					mes "Se você quiser os detalhes delas, por favor consulte o Catálogo do KvM.";
+					mes "Por favor selecione um delas.";
+					next;
+					switch(select("Garra Gloriosa.:Punho Glorioso.")) {
+					case 1: callsub PurchaseItem,1826,0,0; //Krieger_Knuckle1
+					case 2: callsub PurchaseItem,1827,0,0; //Krieger_Knuckle2
+					}
+				}
+			case 5:
+				mes "[Negociante do KvM]";
+				mes "Você selecionou a categoria 'Revólveres/Rifles/Metralhadoras/Espingardas/Lança-Granadas'.";
+				mes "Por favor selecione agora uma sub-categoria.";
+				next;
+				switch(select("Revólveres:Rifles:Metralhadoras:Espingardas:Lança-Granadas")) {
+				case 1:
+					//mes "[Negociante do KvM]";
+					//mes "Você selecionou a categoria 'Revólveres'.";
+					//mes "Nós temos este único Revólver: Pistola Gloriosa.";
+					//mes "Se você quiser os detalhes dele, por favor consulte o Catálogo do KvM.";
+					//mes "Aqui está ele, pegue-o!"
+					callsub PurchaseItem,13110,0,1; //Krieger_Pistol1
+					//end;
+				case 2:
+					//mes "[Negociante do KvM]";
+					//mes "Você selecionou a categoria 'Rifles'.";
+					//mes "Nós temos este único Rifle: Rifle Glorioso.";
+					//mes "Se você quiser os detalhes dele, por favor consulte o Catálogo do KvM.";
+					//mes "Aqui está ele, pegue-o!"
+					callsub PurchaseItem,13176,0,1; //Krieger_Rifle1
+					//end;
+				case 3:
+					//mes "[Negociante do KvM]";
+					//mes "Você selecionou a categoria 'Metralhadoras'.";
+					//mes "Nós temos esta única Metralhadora: Metralhadora Gatling Gloriosa.";
+					//mes "Se você quiser os detalhes dela, por favor consulte o Catálogo do KvM.";
+					//mes "Aqui está ela, pegue-a!"
+					callsub PurchaseItem,13177,0,1; //Krieger_Gatling1
+					//end;
+				case 4:
+					//mes "[Negociante do KvM]";
+					//mes "Você selecionou a categoria 'Espingardas'.";
+					//mes "Nós temos esta única Espingarda: Espingarda Gloriosa.";
+					//mes "Se você quiser os detalhes dela, por favor consulte o Catálogo do KvM.";
+					//mes "Aqui está ela, pegue-a!"
+					callsub PurchaseItem,13178,0,1; //Krieger_Shotgun1
+					//end;
+				case 5:
+					//mes "[Negociante do KvM]";
+					//mes "Você selecionou a categoria 'Lança-Granadas'.";
+					//mes "Nós temos este único Lança-Granadas: Lança-Granadas Glorioso.";
+					//mes "Se você quiser os detalhes dele, por favor consulte o Catálogo do KvM.";
+					//mes "Aqui está ele, pegue-o!"
+					callsub PurchaseItem,13179,0,1; //Krieger_Launcher1
+					//end;
+				}
+			}
+		case 2:
+			mes "[Negociante do KvM]";
+			mes "Você selecionou a categoria 'Equipamentos/Acessórios'.";
+			mes "Por favor selecione agora uma sub-categoria.";
+			next;
+			switch(select("Vestimentas:Capas:Calçados:Acessórios")) {
+			case 1:
+				//mes "[Negociante do KvM]";
+				//mes "Você selecionou a categoria 'Vestimentas'.";
+				//mes "Nós temos esta única Vestimenta: Túnica Gloriosa.";
+				//mes "Se você quiser os detalhes dela, por favor consulte o Catálogo do KvM.";
+				//mes "Aqui está ela, pegue-a!"
+				callsub PurchaseItem,2394,1,2; //Krieger_Suit1
+				//end;
+			case 2:
+				//mes "[Negociante do KvM]";
+				//mes "Você selecionou a categoria 'Capas'.";
+				//mes "Nós temos esta única Capa: Sobrepeliz Gloriosa.";
+				//mes "Se você quiser os detalhes dela, por favor consulte o Catálogo do KvM.";
+				//mes "Aqui está ela, pegue-a!"
+				callsub PurchaseItem,2549,2,2; //Krieger_Muffler1
+				//end;
+			case 3:
+				//mes "[Negociante do KvM]";
+				//mes "Você selecionou a categoria 'Calçados'.";
+				//mes "Nós temos esta único Calçado: Sapatos Gloriosos.";
+				//mes "Se você quiser os detalhes dele, por favor consulte o Catálogo do KvM.";
+				//mes "Aqui está ele, pegue-o!"
+				callsub PurchaseItem,2444,3,2; //Krieger_Shoes1
+				//end;
+			case 4:
+				//mes "[Negociante do KvM]";
+				//mes "Você selecionou a categoria 'Acessórios'.";
+				//mes "Nós temos este único Acessório: Anel Glorioso.";
+				//mes "Se você quiser os detalhes dele, por favor consulte o Catálogo do KvM.";
+				//mes "Aqui está ele, pegue-o!"
+				callsub PurchaseItem,2772,4,2; //Krieger_Ring1
+				//end;
+			}
+		case 3:
+			mes "[Negociante do KvM]";
+			mes "Você selecionou a categoria 'Equipamentos Industrializados/Acessórios Industrializados'.";
+			mes "Por favor selecione agora uma sub-categoria.";
+			next;
+			switch(select("Vestimentas Industrializadas:Calçados Industrializados:Acessórios Industrializados")) {
+			case 1:
+				//mes "[Negociante do KvM]";
+				//mes "Você selecionou a categoria 'Vestimentas de Industrializadas'.";
+				//mes "Nós temos esta única Vestimenta Industrializada: Túnica Gloriosa Industrializada.";
+				//mes "Se você quiser os detalhes dela, por favor consulte o Catálogo do KvM.";
+				//mes "Aqui está ela, pegue-a!"
+				callsub PurchaseItem,2395,5,3; //Krieger_Suit2
+				//end;
+			case 2:
+				//mes "[Negociante do KvM]";
+				//mes "Você selecionou a categoria 'Calçados Industrializados'.";
+				//mes "Nós temos este único Calçado Industrializado: Sapatos Gloriosos Industrializados.";
+				//mes "Se você quiser os detalhes dele, por favor consulte o Catálogo do KvM.";
+				//mes "Aqui está ele, pegue-o!"
+				callsub PurchaseItem,2445,6,3; //Krieger_Shoes2
+				//end;
+			case 3:
+				//mes "[Negociante do KvM]";
+				//mes "Você selecionou a categoria 'Acessórios Industrializados'.";
+				//mes "Nós temos este único Acessório Industrializado: Anel Glorioso Industrializado.";
+				//mes "Se você quiser os detalhes dele, por favor consulte o Catálogo do KvM.";
+				//mes "Aqui está ele, pegue-o!"
+				callsub PurchaseItem,2773,7,3; //Krieger_Ring2
+				//end;
+			}
+		case 4:
+			mes "[Negociante do KvM]";
+			mes "Você selecionou a categoria 'Equipamentos Baratos/Acessórios Baratos'.";
+			mes "Por favor selecione agora uma sub-categoria.";
+			next;
+			switch(select("Vestimentas Baratas:Calçados Baratos:Acessórios Baratos")) {
+			case 1:
+				//mes "[Negociante do KvM]";
+				//mes "Você selecionou a categoria 'Vestimentas Baratas'.";
+				//mes "Nós temos este única Vestimenta Barata: Túnica Gloriosa Barata.";
+				//mes "Se você quiser os detalhes dela, por favor consulte o Catálogo do KvM.";
+				//mes "Aqui está ela, pegue-a!"
+				callsub PurchaseItem,2396,8,4; //Krieger_Suit3
+				//end;
+			case 2:
+				//mes "[Negociante do KvM]";
+				//mes "Você selecionou a categoria 'Calçados Baratos'.";
+				//mes "Nós temos este único Calçado Barato: Sapatos Gloriosos Baratos.";
+				//mes "Se você quiser os detalhes dele, por favor consulte o Catálogo do KvM.";
+				//mes "Aqui está ele, pegue-o!"
+				callsub PurchaseItem,2446,9,4; //Krieger_Shoes3
+				//end;
+			case 3:
+				//mes "[Negociante do KvM]";
+				//mes "Você selecionou a categoria 'Acessórios Baratos'.";
+				//mes "Nós temos este único Acessório Barato: Anel Glorioso Barato.";
+				//mes "Se você quiser os detalhes dele, por favor consulte o Catálogo do KvM.";
+				//mes "Aqui está ele, pegue-o!"
+				callsub PurchaseItem,2774,10,4; //Krieger_Ring3
+				//end;
+			}
+		}
+	case 3:
+		mes "[Negociante do KvM]";
+		mes ""+ .@name$ +", no momento você tem ^580080"+ kvm_point +"^000000 Pontos KvM.";
+		close;
+	case 4:
+		mes "[Negociante do KvM]";
+		mes "Existem 3 categorias nas recompensas do KvM: Armas/Equipamentos/Acessórios.";
+		next;
+		mes "[Negociante do KvM]";
+		mes "Cada uma das Armas como recompensa custam 2.000 Ponto do KvM.";
+		mes "Existem 3 tipos de Equipamentos como recompensa e eles custam 840/630/580 Pontos do KvM, nesta ordem.";
+		mes "As recompensas do tipo Acessórios custam 1.200 Pontos do KvM cada uma.";
+		next;
+		mes "[Negociante do KvM]";
+		mes "As Armas Krieger são armas LV 4, então elas podem ser melhoradas e oferecerão certos efeitos especiais, são eles: Carniceiro, Destruição e Benção.";
+		next;
+		mes "[Negociante do KvM]";
+		mes "Quando você puder equipar os três tipos de Equipamentos, você poderá obter bônus e habilidades extras.";
+		mes "Assim como, quando você equipar os Acessórios do Krieger junto com alguma Medalha de Classe você receberá bônus e habilidades extras.";
+		next;
+		mes "[Negociante do KvM]";
+		mes "Finalmente, temos os Equipamentos Industrializados e os Acessórios Industrializados como recompensas.";
+		mes "Os jogadores no qual o lvl ultrapassa a casa dos 60 poderão equipar os itens Industrializados e, assim como, nós temos também um limite de lvl para os equipamentos Baratos.";
+		close;
+	case 5:
+		mes "[Negociante do KvM]";
+		mes "Os Pontos do KvM são entregues a você durante sua vitória, derrota ou até mesmo empate no Krieger Von Midgard (KvM).";
+		mes "Você pode obter recompensas especiais através destes Pontos.";
+		close;
+	}
+
+PurchaseItem:
+	// Pricing for Weapon, Suit1, Muffler1, Shoes1, Ring1m Suit2, Shoes2, Ring2, Suit3, Shoes3, Ring3
+	setarray .@prices[0],2000,840,630,580,1200,120,70,200,15,10,30;
+
+	mes "[Negociante do KvM]";
+
+	if (!getarg(2))
+		mes "Você escolheu o item ^ff0000"+getitemname(getarg(0))+"^000000.";
+	else if (getarg(2) == 1)
+		mes "Existe somente um "+callfunc("F_GetWeaponType",getarg(0))+": "+getitemname(getarg(0))+".";
+	else if (getarg(2) == 2) {
+		mes "Você escolheu o item '"+callfunc("F_GetArmorType",getarg(0))+"'.";
+		mes "O equipamento para aqueles com lvl maior que 80 é: ^ff0000"+getitemname(getarg(0))+"^000000.";
+	}
+	else if (getarg(2) == 3) {
+		mes "Você escolheu o tipo 'Industrializado "+callfunc("F_GetArmorType",getarg(0))+"'.";
+		mes "Existe somente um item Industrializado "+callfunc("F_GetArmorType",getarg(0))+": ^ff0000"+getitemname(getarg(0))+"^000000.";
+	}
+	else if (getarg(2) == 4) {
+		mes "Você escolheu o tipo 'Barato "+callfunc("F_GetArmorType",getarg(0))+"'.";
+		mes "Existe somente um item Barato "+callfunc("F_GetArmorType",getarg(0))+": ^ff0000"+getitemname(getarg(0))+"^000000.";
+	}
+
+	if (!getarg(1))
+		mes "Ele custa ^0000ff2.000^000000 Pontos do KvM, e "+ .@name$ +", seus pontos são: ^580080"+ kvm_point +"^000000.";
+	else if (getarg(1) == 4)
+		mes "Ele custa ^0000ff1.200^000000 Pontos do KvM, e "+ .@name$ +", seus pontos são: ^580080"+ kvm_point +"^000000.";
+	else
+		mes "Ele custa ^0000ff"+.@prices[getarg(1)]+"^000000 Pontos do KvM, e "+ .@name$ +",seus pontos são: ^580080"+ kvm_point +"^000000.";
+
+	mes "Você tem certeza que quer mesmo este item?";
+	next;
+	switch(select("Não, eu não vou comprá-lo.:Sim, eu vou comprá-lo.")) {
+	case 1:
+		mes "[Negociante do KvM]";
+		mes "Você escolheu a opção 'Não, eu não vou comprá-lo'.";
+		mes "Quando você comprar um item, por favor tenha cuidado pois não há devoluções.";
+		break;
+	case 2:
+		if (kvm_point >= .@prices[getarg(1)]) {
+			set kvm_point,kvm_point-.@prices[getarg(1)];
+			getitem getarg(0),1;
+			mes "[Negociante do KvM]";
+			mes "Você comprou o item "+getitemname(getarg(0))+".";
+			if (!getarg(1))
+				mes "Seus Pontos do KvM foram reduzidos em ^0000ff"+getarg(1)+"^000000 pontos, seus Pontos do KvM agora são ^580080"+kvm_point+"^000000.";
+			if (getarg(1) == 4)
+				mes "Seus Pontos do KvM foram reduzidos em ^0000ff1.200^000000 pontos, seus Pontos do KvM agora são ^580080"+kvm_point+"^000000.";
+			else
+				mes "Seus Pontos do KvM foram reduzidos em ^0000ff"+.@prices[getarg(1)]+"^000000 pontos, seus Pontos do KvM agora são ^580080"+kvm_point+"^000000.";
+		}
+		else {
+			mes "[Negociante do KvM]";
+			if (!getarg(1))
+				mes "Você precisa de ^0000ff2.000^000000 Pontos do KvM para comprar este item.";
+			else if (getarg(1) == 4)
+				mes "Você precisa de ^0000ff1.200^000000 Pontos do KvM para comprar este item.";
+			else
+				mes "Você precisa de ^0000ff"+.@prices[getarg(1)]+"^000000 Pontos do KvM para comprar este item.";
+			mes "Porém, seus Pontos do KvM agora são ^580080"+ kvm_point +"^000000.";
+			mes "Que não são suficientes para comprar este item.";
+			mes "Quando você conseguir pontos suficientes, por favor retorne aqui.";
+		}
+	}
+	close;
+}

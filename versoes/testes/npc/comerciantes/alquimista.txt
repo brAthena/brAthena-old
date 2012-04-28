@@ -1,0 +1,263 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Loja de Alquimista						|
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.6/1.1                                |
+// |--------------------------------------------------------|
+// | Descrição:	Vende materiais e manuais de Alquimia		|
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [Mark]	                        |
+// | 1.1 Script Otimizado [Mark]	                        |
+// | - Anotações		   			    					|
+// \________________________________________________________/
+
+alde_alche,31,186,3	script	Craft Book Salesman#alde	883,{
+
+	mes "[Craft Book Salesman]";
+	mes "Welcome.";
+	mes "I'm here to sell";
+	mes "^0000FFspecial craft books^000000 for Geneticists.";
+	next;
+	mes "[Craft Book Salesman]";
+	mes "Geneticists have some skills";
+	mes "that require craft books to activate.";
+	next;
+	mes "[Craft Book Salesman]";
+	mes "The more craft books you have,";
+	mes "the more skills you can use.";
+	next;
+	mes "[Craft Book Salesman]";
+	mes "Please understand that";
+	mes "I specialize in the sale of these special books and";
+	mes "I ^FF0000don't sell other items^000000.";
+	next;
+	mes "[Craft Book Salesman]";
+	mes "Okay then, here's the list of available craft books.";
+	next;
+	switch(select("[Apple Bomb Craft Book] 100,000 zeny:[Pineapple Bomb Craft Book] 100,000 zeny:[Coconut Bomb Craft Book] 100,000 zeny:[Melon Bomb Craft Book] 100,000 zeny:[Banana Bomb Craft Book] 100,000 zeny:[Plant Gene Cultivation Method] 100,000 zeny:[Superior Potion Craft Manual] 100,000 zeny:[Mix Cooking Book] 100,000 zeny:[Health Improvement Research Book] 100,000 zeny:[Vigor Drink Recipe] 100,000 zeny:Close")){
+	case 1:
+		callsub S_SellManual,6279,100000;
+		break;
+	case 2:
+		callsub S_SellManual,6280,100000;
+		break;
+	case 3:
+		callsub S_SellManual,6281,100000;
+		break;
+	case 4:
+		callsub S_SellManual,6282,100000;
+		break;
+	case 5:
+		callsub S_SellManual,6283,100000;
+		break;
+	case 6:
+		callsub S_SellManual,6284,100000;
+		break;
+	case 7:
+		callsub S_SellManual,6285,100000;
+		break;
+	case 8:
+		callsub S_SellManual,11022,100000;
+		break;
+	case 9:
+		callsub S_SellManual,11023,100000;
+		break;
+	case 10:
+		callsub S_SellManual,11024,100000;
+		break;
+	case 11:
+		mes "[Craft Book Salesman]";
+		mes "Thank you for your patronage.";
+		mes "Please come again.";
+		close;
+	}
+
+S_SellManual:
+	mes "[Craft Book Salesman]";
+	mes ""+getitemname(getarg(0))+"?";
+	mes "That'll be "+getarg(1)+" zeny ea.";
+	mes "How many of these books would you like to purchase?";
+	next;
+	input .@amount;
+	if (.@amount == 0) {
+		mes "[Craft Book Salesman]";
+		mes "Would you like to see some different books?";
+		close;
+	}
+	if (.@amount < 1 || .@amount > 99 ){
+		mes "[Craft Book Salesman]";
+		mes "You cannot purchase more than 100 at a time.";
+		close;
+	}
+	mes "[Craft Book Salesman]";
+	mes "You've entered "+.@amount+"x "+getitemname(getarg(0))+".";
+	mes "That'll be "+getarg(1) * .@amount+" Zeny.";
+	mes "Would you like to continue?";
+	next;
+	if (select("Yes:No") == 1) {
+		if (Zeny < getarg(1) * .@amount) {
+			mes "[Craft Book Salesman]";
+			mes "You don't";
+			mes "have enough zeny.";
+			mes "Check how much zeny";
+			mes "you have first.";
+			close;
+		}
+		if (checkweight(getarg(0),.@amount) == 0){
+			mes "[Craft Book Salesman]";
+			mes "It doesn't seem like you can carry everything.";
+			mes "Please check the space in your inventory.";
+			close;
+		}
+		mes "[Craft Book Salesman]";
+		mes "Thank you for your patronage.";
+		set Zeny,Zeny - getarg(1) * .@amount;
+		getitem getarg(0),.@amount;
+		close;
+	}
+	mes "[Craft Book Salesman]";
+	mes "Please take your time";
+	mes "before you make your decision.";
+	close;
+}
+
+alde_alche,24,188,3	script	Comerciante da Guilda	740,{
+	if (checkweight(1201,1) == 0) {
+		mes "- Espere um pouco! -";
+		mes "- Você está carregando -";
+		mes "- muitos itens com você. -";
+		mes "- Por favor, volte novamente -";
+		mes "- depois que você guardar alguns itens no Armazém da Kafra. -";
+		close;
+	}
+	mes "[Gever Al Sharp]";
+	mes "Bem-vindo à União dos Alquimistas.";
+	mes "Como posso ajudá-lo hoje?";
+	next;
+	switch(select("Comprar materiais.:Comprar manuais de produção.:Sair.")) {
+	case 1:
+		mes "[Gever Al Sharp]";
+		mes "O que você gostaria de comprar?";
+		next;
+		if (select("Vasilha de Mistura - 8 Zeny:Cancelar.") == 1) {
+			mes "[Gever Al Sharp]";
+			mes "De quantas você precisa?";
+			mes "Digite '0' se você deseja cancelar.";
+			next;
+			while(1) {
+				input .@input,0,2001;
+				if (.@input == 0) {
+					mes "[Gever Al Sharp]";
+					mes "A negociação foi cancelada.";
+					mes "Volte sempre.";
+					close;
+				}
+				else if (.@input < 1 || .@input > 2000) {
+					mes "[Gever Al Sharp]";
+					mes "O número deve";
+					mes "ser menor que 2000.";
+					next;
+				}
+				else {
+					break;
+				}
+			}
+			set .@sell,.@input * 8;
+			set .@item_weight,.@input * 10;
+			if (Zeny < .@sell) {
+				mes "[Gever Al Sharp]";
+				mes "Você não possui zeny o suficiente.";
+				mes "Cheque quanto de Zeny você possui primeiramente.";
+				close;
+			}
+			if ((MaxWeight - Weight) < .@item_weight) {
+				mes "[Gever Al Sharp]";
+				mes "Me parece que você não pode carregar tudo.";
+				mes "Por favor, verifique o espaço em seu inventário.";
+				close;
+			}
+			set zeny,zeny-.@sell;
+			getitem 7134,.@input; //Medicine_Bowl
+			mes "[Gever Al Sharp]";
+			mes "Obrigado.";
+			mes "Volte Sempre.";
+			close;
+		}
+		mes "[Gever Al Sharp]";
+		mes "Pois bem, volte novamente quando precisar comprar mais materiais relacionados a Alquimia, certo?";
+		close;
+	case 2:
+		mes "[Gever Al Sharp]";
+		mes "Do que você precisa?";
+		mes "Os manuais custam geralmente 100.000 zeny. Mas há alguns outros manuais que custarão bem mais caro.";
+		next;
+		switch(select("Manual de Criação de Poções:Manual de Criação de Álcool:Manual de Criação de Fogo Grego:Manual de Criação de Frasco de Ácido:Manual de Criação de Plantas:Manual de Criação de Esferas-Marinhas:Manual de Criação de Revestimentos:Manual de Criação de Poções Condensadas:Cancelar Negociação.")) {
+		case 1:
+			callsub S_SellManual,7144,100000; //Normal_Potion_Book
+			break;
+		case 2:
+			callsub S_SellManual,7127,100000; //Alcol_Create_Book
+			break;
+		case 3:
+			callsub S_SellManual,7128,100000; //FireBottle_Create_Book
+			break;
+		case 4:
+			callsub S_SellManual,7129,100000; //Acid_Create_Book
+			break;
+		case 5:
+			callsub S_SellManual,7130,100000; //Plant_Create_Book
+			break;
+		case 6:
+			callsub S_SellManual,7131,100000; //Mine_Create_Book
+			break;
+		case 7:
+			callsub S_SellManual,7132,100000; //Coating_Create_Book
+			break;
+		case 8:
+			callsub S_SellManual,7133,240000; //Slim_Potion_Create_Book
+			break;
+		case 9:
+			mes "[Gever Al Sharp]";
+			mes "Pois bem...";
+			mes "Volte caso você tenha nescessidade de comprar um manual de produção.";
+			close;
+		}
+	case 3:
+		mes "[Gever Al Sharp]";
+		mes "Certo, então tenha um bom dia.";
+		close;
+	}
+
+S_SellManual:
+	if (Zeny < getarg(1)) {
+		mes "[Gever Al Sharp]";
+		mes "Você não possui zeny o suficiente.";
+		mes "Cheque quanto de zeny você possui primeiramente.";
+		close;
+	}
+	mes "[Gever Al Sharp]";
+	mes getitemname(getarg(0))+"?";
+	mes "Isso vai custar "+getarg(1)+" zeny.";
+	next;
+	if (select("Comprar.:Sair.") == 1) {
+		set zeny,zeny-getarg(1);
+		getitem getarg(0),1;
+		mes "[Gever Al Sharp]";
+		mes "Obrigado pela sua fidelidade.";
+		close;
+	}
+	mes "[Gever Al Sharp]";
+	mes "Volte Sempre!";
+	close;
+}

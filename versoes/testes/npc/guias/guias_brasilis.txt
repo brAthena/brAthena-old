@@ -1,0 +1,111 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Guias de Brasilis			  			|
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.0/1.1                                |
+// |--------------------------------------------------------|
+// | Descrição: Guias da Cidade de Brasilis                 |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [Protimus]                        |
+// | 1.1 Script Revisado [Protimus]							|
+// \________________________________________________________/
+
+
+brasilis,219,97,3	script	Guia	478,{
+	mes "[Guia]";
+	mes "Boas-vindas a todos que vieram a Brasilis, uma terra apaixonada e quente como o sol que nos banha.";
+	mes "Se tiver alguma pergunta, é só falar.";
+	switch(select("Localizações.:Limpar as indicações do minimapa.:Cancelar.")) {
+	case 1:
+		set .@compass_check,0;
+		mes "[Guia]";
+		mes "No que você quer que eu lhe guie?";
+		if (.@compass_check == 0) {
+			mes "Você gostaria de limpar suas indicações do minimapa?";
+			next;
+			switch(select("Sim.:Não.")) {
+			case 1:
+				set .@compass_check,1;
+				break;
+			case 2:
+				set .@compass_check,2;
+				break;
+			}
+		}
+		next;
+		switch(select("Pousada.:Teleférico da Selva.:Museu de Arte.:Feirinha de Brasilis.:Cancelar.")) {
+		case 1:
+			mes "[Guia]";
+			mes "A pousada está logo aqui em frente, em ^00FF00+^000000.";
+			if (.@compass_check == 1) {
+				viewpoint 1,273,149,2,0xFF0000;
+			}
+			else {
+				viewpoint 0,273,149,2,0xFF0000;
+			}
+			break;
+		case 2:
+			mes "[Guia]";
+			mes "Quer passear pela selva? Você pode pegar o teleférico em ^0xCC6600+^000000.";
+			if (.@compass_check == 1) {
+				viewpoint 1,308,333,3,0xCC6600;
+			}
+			else {
+				viewpoint 0,308,333,3,0xCC6600;
+			}
+			break;
+		case 3:
+			mes "[Guia]";
+			mes "O Museu de Arte, o orgulho de Brasilis, está em ^00FF00+^000000.";
+			if (.@compass_check == 1) {
+				viewpoint 1,133,167,4,0x00FF00;
+			}
+			else {
+				viewpoint 0,133,167,4,0x00FF00;
+			}
+			break;
+		case 4:
+			mes "[Guia]";
+			mes "Você pode comprar itens diversos em ^00FF00+^000000.";
+			if (.@compass_check == 1) {
+				viewpoint 1,238,248,5,0x00FF00;
+			}
+			else {
+				viewpoint 0,238,248,5,0x00FF00;
+			}
+			break;
+		case 5:
+			mes "[Guia]";
+			mes "Se quiser remover as marcações de local do seu minimapa, selecione 'Limpar as indicações do minimapa'.";
+			close;
+		}
+		close;
+		break;
+	case 2:
+		viewpoint 2,273,149,2,0xFF0000;
+		viewpoint 2,308,333,3,0xCC6600;
+		viewpoint 0,133,167,4,0x00FF00;
+		viewpoint 0,238,248,5,0x00FF00;
+		set .@compass_check,0;
+		mes "[Guia]";
+		mes "Apaguei todas as marcações do mini-mapa.";
+		mes "Se quiser as marcas denovo, é só pedir.";
+		close;
+	case 3:
+		mes "[Guia]";
+		mes "Saber sobre a cidade por conta própria também pode ser divertivo...";
+		mes "De qualquer forma, se cuide.";
+		close;
+	}
+}

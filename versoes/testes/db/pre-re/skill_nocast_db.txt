@@ -1,0 +1,170 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Database: skill_nocast_db.txt                  |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Descrição: Database das habilidades em áreas controlada|
+// |--------------------------------------------------------|
+// | Estrutura do Banco de Dados:                           |
+// | SkillID,Flag                                           |
+// |                                                        |
+// | Legend for 'Flag' field (bitmask):                     |
+// |  1 = Cannot be used in normal maps                     |
+// |  2 = Cannot be used in PvP maps                        |
+// |  4 = Cannot be used in GvG maps                        |
+// |  8 = Cannot be used in Battleground maps               |
+// |  16 = Cannot be cloned (clones will not copy this skill|
+// |  Restricted zones - they're configured by              |
+// | 'restricted <number>' mapflag                          |
+// |  32 = Cannot be used in zone 1 maps                    |
+// |  64 = Cannot be used in zone 2 maps                    |
+// |  128 = Cannot be used in zone 3 maps                   |
+// |  256 = Cannot be used in zone 4 maps                   |
+// |  512 = Cannot be used in zone 5 maps                   |
+// |  1024 = Cannot be used in zone 6 maps                  |
+// |  2048 = Cannot be used in zone 7 maps                  |
+// | Example:                                               |
+// | 8,6 = Endure cannot be used in PvP and GvG maps (2+64) |
+// \________________________________________________________/
+//
+//
+//============================================================
+// PvP
+//============================================================
+1013,2048       //BS_GREED
+//============================================================
+//
+//============================================================
+// GvG
+//============================================================
+26,4	// AL_TELEPORT#Teleporte#
+27,4	// AL_WARP#Portal#
+87,4	// WZ_ICEWALL#Barreira de Gelo#
+150,4	// TF_BACKSLIDING#Recuar#
+219,4   //RG_INTIMIDATE
+336,4   //WE_CALLPARTNER
+361,4	// HP_ASSUMPTIO#Assumptio#
+362,4	// HP_BASILICA#Basílica#
+395,4	// CG_MOONLIT#Bênção Protetora#
+409,4   //WE_CALLPARENT
+410,4   //WE_CALLBABY
+491,4	// CR_CULTIVATION#Cultivar Planta#
+530,4	// NJ_KIRIKAGE#Corte das Sombras#
+691,4	// CASH_ASSUMPTIO#Assumptio em Grupo#
+1013,2048       //BS_GREED
+//
+//============================================================
+// Batalha Campal
+//============================================================
+26,8	// AL_TELEPORT#Teleporte#
+27,8	// AL_WARP#Portal#
+87,8	// WZ_ICEWALL#Barreira de Gelo#
+150,8	// TF_BACKSLIDING#Recuar#
+219,8   //RG_INTIMIDATE
+336,8   //WE_CALLPARTNER
+361,8	// HP_ASSUMPTIO#Assumptio#
+362,8	// HP_BASILICA#Basílica#
+395,8	// CG_MOONLIT#Bênção Protetora#
+409,8   //WE_CALLPARENT
+410,8   //WE_CALLBABY
+491,8	// CR_CULTIVATION#Cultivar Planta#
+411,8	// TK_RUN#Corrida#
+426,8	// TK_HIGHJUMP#Salto#
+427,8	// SG_FEEL#Percepção Solar, Lunar e Estelar#
+428,8	// SG_SUN_WARM#Calor Solar#
+429,8	// SG_MOON_WARM#Calor Lunar#
+430,8	// SG_STAR_WARM#Calor Estelar#
+431,8	// SG_SUN_COMFORT#Proteção Solar#
+432,8	// SG_MOON_COMFORT#Proteção Lunar#
+433,8	// SG_STAR_COMFORT#Proteção Estelar#
+434,8	// SG_HATE#Oposição Solar, Lunar e Estelar#
+435,8	// SG_SUN_ANGER#Fúria Solar#
+436,8	// SG_MOON_ANGER#Fúria Lunar#
+437,8	// SG_STAR_ANGER#Fúria Estelar#
+438,8	// SG_SUN_BLESS#Bênção Solar#
+439,8	// SG_MOON_BLESS#Bênção Lunar#
+440,8	// SG_STAR_BLESS#Bênção Estelar#
+530,8	// NJ_KIRIKAGE
+691,8	// CASH_ASSUMPTIO#Assumptio em Grupo#
+//
+//============================================================
+// Mixadas
+//============================================================
+488,3	// CG_HERMODE#Bastão de Hermod#
+//
+//============================================================
+// Habilidades Proibidas aos Clones/Importante
+//============================================================
+77,16	// PR_TURNUNDEAD#Esconjurar#
+79,16	// PR_MAGNUS#Magnus Exorcismus#
+//
+//============================================================
+// Zona 1 - Aldebaran Turbo Track
+//============================================================
+8,32    //SM_ENDURE
+26,32   //AL_TELEPORT
+27,32   //AL_WARP
+35,32   //AL_CURE
+51,32   //TF_HIDING
+87,32   //WZ_ICEWALL
+135,32  //AS_CLOAKING
+219,32  //RG_INTIMIDATE
+264,32  //MO_BODYRELOCATION
+357,32  //LK_CONCENTRATION
+359,32  //LK_BERSERK
+362,32  //HP_BASILICA
+389,32  //ST_CHASEWALK
+395,32  //CG_MOONLIT
+//
+//============================================================
+// Zona 2 - Prisão
+//============================================================
+421,64	// TK_JUMPKICK#Chute Aéreo#
+290,256 //SA_ABRACADABRA
+//
+//============================================================
+// Zona 3 - Arena de Batalha de Izlude
+//============================================================
+219,128 // RG_INTIMIDATE#Rapto#
+26,128	// AL_TELEPORT#Teleporte#
+//
+//============================================================
+// Zona 4 - WoE:SE 2.0
+//============================================================
+426,256 // TK_HIGHJUMP#Salto#
+//
+//============================================================
+// Zona 5 - Santuário Selado
+//============================================================
+12,512	// MG_SAFETYWALL#Escudo Mágico#
+26,512	// AL_TELEPORT#Teleporte#
+219,512	// RG_INTIMIDATE#Rapto#
+361,512	// HP_ASSUMPTIO#Assumptio#
+691,512	// CASH_ASSUMPTIO#Assumptio em Grupo#
+
+//============================================================
+// Zona 6 - Torre sem Fim
+//============================================================
+26,1024	// AL_TELEPORT
+87,1024	// WZ_ICEWALL
+219,1024	// RG_INTIMIDATE
+405,1024	// PF_SPIDERWEB
+674,1024	// NPC_EXPULSION
+
+//============================================================
+//Zone 7 - Towns
+//============================================================
+232,2048        //AM_CANNIBALIZE
+233,2048        //AM_SPHEREMINE
+491,2048        //CR_CULTIVATION
+1013,2      //BS_GREED
+//============================================================

@@ -1,0 +1,384 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Quest do Justiceiro	       	   		|
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 2.2/1.1                                |
+// |--------------------------------------------------------|
+// | Descrição: Mudança de Classe para Justiceiro           |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Otimizações no npc [Wolf]                          |
+// | 1.0a Pequenas otimizações [Lord]                       |
+// | 1.1 Script Traduzido [Wolf]                            |
+// \________________________________________________________/
+
+que_ng,152,167,3	script	Senhor Miller	901,{
+	mes "[Senhor Miller]";
+	if (Upper == 2) {
+		mes "Bem, você não é";
+		mes "uma criança tão adorável~";
+		mes "Onde está sua mãe?";
+		mes "Esse lugar é perigoso, portanto,";
+		mes "vá logo para sua casa, ok?";
+		close;
+	}
+	if (Class == Job_Novice) {
+		if (JobLevel < 10 || getskilllv("NV_BASIC") < 9) {
+			mes "Interessado em se tornar";
+			mes "um Justiceiro, é? Você";
+			mes "tem potencial, mas você";
+			mes "ainda não é experiente o suficiente.";
+			mes "Apenas treine um pouco mais,";
+			mes "e depois volte, tudo bem?";
+			close;
+		}
+		if (GUNS_Q == 0) {
+			mes "Sou Miller, um";
+			mes "Justiceiro, e um protetor";
+			mes "da senhora Selena.";
+			mes "Então, o que você";
+			mes "quer? Se não for importante, não poderei fazer nada por você.";
+			next;
+			if(select("Nada.:Quero me tornar um Justiceiro.") == 1) {
+				mes "[Senhor Miller]";
+				mes "Não desperdice meu tempo.";
+				mes "Se você quiser se tornar";
+				mes "um Justiceiro, volte aqui";
+				mes "e fale comigo.";
+				close;
+			}
+			mes "[Senhor Miller]";
+			mes "Hm. Você é muito jovem, mas";
+			mes "em seu olhar eu posso sentir que você";
+			mes "é muito ambicioso. Você precisa passar em nossa entrevista e em";
+			mes "nosso teste de ensino para se tornar um Justiceiro. Você quer se candidatar a mudança de classe?";
+			next;
+			if(select("Me dê um tempo para pensar.:Quero!") == 1) {
+				mes "[Senhor Miller]";
+				mes "Tudo bem.";
+				mes "Se você decidir";
+				mes "se tornar um Justiceiro,";
+				mes "volte aqui, e fale";
+				mes "imediatamente comigo.";
+				mes "Para que você comece o teste.";
+				close;
+			}
+			mes "[Senhor Miller]";
+			mes "Ótimo, ótimo. Certo, então,";
+			mes "vamos começar. Leve esta";
+			mes "carta para o Sábio Chifre";
+			mes "de Búfalo em payon. Ele é um xamã";
+			mes "que decidirá se você tem ou não";
+			mes "qualidade para ser um Justiceiro.";
+			set GUNS_Q,1;
+			setquest 6020;
+			close;
+		} else if(GUNS_Q == 1) {
+			mes "Leve esta carta que";
+			mes "eu escrevi sobre você";
+			mes "ao Sábio Chifre";
+			mes "de Búfalo em payon. Ele";
+			mes "decidirá se você tem ou não";
+			mes "qualidade para ser um Justiceiro.";
+			close;
+		} else if(GUNS_Q == 2) {
+			mes "Hmm... O Sábio Chife de Búfalo";
+			mes "pediu-lhe para recolher os";
+			mes "itens para que você possa pegar";
+			mes "a certidão para mudança de classe?";
+			mes "Hm. Hm, eu acho que é uma parte do seu teste.";
+			close;
+		} else if(GUNS_Q == 3) {
+			mes "Sábio Chife de Búfalo pediu-lhe";
+			mes "para trazer algum Leite?";
+			mes "Ele deve provavelmente";
+			mes "gostou de você, pois já está";
+			mes "pedindo favores. Boa sorte, amigo.";
+			close;
+		} else if(GUNS_Q == 4) {
+			mes "Eu espero ouvir boas";
+			mes "notícias. Você sabe,";
+			mes "eu não tenho dúvidas que";
+			mes "você se tornará um Justiceiro.";
+			close;
+		} else if(GUNS_Q == 5) {
+			if (Skillpoint) {
+				mes "Ei, você ainda tem";
+				mes "Pontos de Habilidade. Use";
+				mes "todos os seus pontos de";
+				mes "habilidade e depois volte.";
+				close;
+			}
+			mes "Ah, você trouxe uma";
+			mes "certidão do Sábio Chifre de Búfalo?";
+			mes "Tem tempo que ele não";
+			mes "tem dado certidões, estou";
+			mes "muito orgulhoso de você!";
+			next;
+			mes "[Senhor Miller]";
+			mes "Se o Sábio Chifre de Búfalo aprovou,";
+			mes "então eu não tenho porque rejeitar";
+			mes "você. Certo, então irei";
+			mes "te transformar em um Justiceiro.";
+			mes "Antes disso, deixe-me explicar";
+			mes "os detalhes de nossa classe.";
+			next;
+			mes "[Senhor Miller]";
+			mes "Como um Justiceiro, você";
+			mes "deve manter sua arma com você";
+			mes "em todos os momentos. A Guilda";
+			mes "dos Justiceiros mantém o registro";
+			mes "de cada arma, então você só";
+			mes "pode pegar dos membros da guilda.";
+			next;
+			mes "[Senhor Miller]";
+			mes "Fique tranquilo, o Justiceiro";
+			mes "da Guilda pode ser encontrado em";
+			mes "qualquer lugar nestes dias. Enfim,";
+			mes "tem que ser desta maneira por ordem da nossa líder, Lady Selena.";
+			next;
+			mes "[Senhor Miller]";
+			mes "Você poderá ter a chance";
+			mes "de conhecê-la qualquer dia.";
+			mes "Enfim, agora nós temos que nos";
+			mes "regular para mantermos as vendas das armas";
+			mes "fora do alcance de pessoas más ou irresponsáveis.";
+			next;
+			mes "[Senhor Miller]";
+			mes "Em qualquer caso, é sempre";
+			mes "um prazer pra mim falar com";
+			mes "outro Justiceiro, então vamos";
+			mes "manter contato. Que o poder";
+			mes "da terra te proteja em todas";
+			mes "as suas aventuras~";
+			callfunc "Job_Change",Job_Gunslinger;
+			set GUNS_Q,6;
+			completequest 6024;
+			if (rand(1,2) == 1) getitem 13100,1;	// Six_Shooter
+			else getitem 13150,1;	// Branch
+			close;
+		}
+	}else{
+		if (Class == Job_Gunslinger) {
+			mes "Opa! Há quanto tempo,";
+			mes "amigo. Como você está?";
+			mes "Eu espero que sua arma";
+			mes "esteja bem conservada.";
+			mes "Tenha cuidado com ela, ela";
+			mes "que te protege. Não se esqueça.";
+			close;
+		} else{
+			mes "Se você não tem nada";
+			mes "comigo, siga seu caminho.";
+			close;
+		}
+	}
+}
+
+payon,184,65,3	script	Sábio Chifre de Búfalo	866,{
+	mes "[Sábio Chifre de Búfalo]";
+	if (GUNS_Q == 1) {
+		mes "Olá, jovem lobo.";
+		mes "O negócio trouxe-o";
+		mes "diante de mim?";
+		next;
+		mes "["+strcharinfo(0)+"]";
+		mes "Sr. Miller me mandou entregar";
+		mes "essa carta para você.";
+		mes "Na verdade, meu interesse é";
+		mes "se tornar um Justiceiro...";
+		next;
+		mes "[Sábio Chifre de Búfalo]";
+		mes "Você disse, Miller?";
+		mes "Hm, o senhor não dá";
+		mes "instruções para alguém que";
+		mes "ele acredita que não será um";
+		mes "bom Justiceiro. Sim, eu sei";
+		mes "por que ele te enviou até mim.";
+		next;
+		mes "[Sábio Chifre de Búfalo]";
+		mes "Eu posso ver nos seus olhos:";
+		mes "você tem um coração caloroso";
+		mes "e um forte sentido de responsabilidade.";
+		mes "Tudo que você precisa é de";
+		mes "uma bênção da terra para";
+		mes "protegê-lo como um Justiceiro.";
+		next;
+		mes "[Sábio Chifre de Búfalo]";
+		mes "Eu posso fazer uma certidão";
+		mes "de que irá demonstrar o seu";
+		mes "desejo de se tornar um";
+		mes "guerreiro da terra para você";
+		mes "apresentar ao Sr. Miller.";
+		mes "Vou precisar alguns itens ...";
+		next;
+		mes "[Sábio Chifre de Búfalo]";
+		mes "^3355FF1 Tronco^000000,";
+		mes "^3355FF3 Felpas^000000,";
+		mes "^3355FF3 Zargônios^000000,";
+		mes "^3355FF10 Cascas^000000,";
+		mes "^3355FF3 Ervas Verde^000000, and";
+		mes "^3355FF3 Cascos de Arco-Íris^000000.";
+		next;
+		mes "[Sábio Chifre de Búfalo]";
+		mes "Depois que eu terminar a";
+		mes "certidão, você pode levar";
+		mes "ao chefe, e então ele";
+		mes "vai te ajudar a atingir";
+		mes "sua meta de se tornar";
+		mes "um Justiceiro.";
+		set GUNS_Q,2;
+		changequest 6020,6021;
+		close;
+	} else if(GUNS_Q == 2) {
+		if (countitem(912) < 3 || countitem(914) < 3 || countitem(1019) < 1 || countitem(935) < 10 || countitem(511) < 3 || countitem(1013) < 3) {
+			mes "Eu posso fazer uma certidão";
+			mes "de que irá demonstrar o seu";
+			mes "desejo de se tornar um";
+			mes "guerreiro da terra para você";
+			mes "apresentar ao Sr. Miller.";
+			mes "Vou precisar alguns itens ...";
+			next;
+			mes "[Sábio Chifre de Búfalo]";
+			mes "^3355FF1 Tronco^000000,";
+			mes "^3355FF3 Felpas^000000,";
+			mes "^3355FF3 Zargônios^000000,";
+			mes "^3355FF10 Cascas^000000,";
+			mes "^3355FF3 Ervas Verde^000000, and";
+			mes "^3355FF3 Cascos de Arco-Íris^000000.";
+			next;
+			mes "[Sábio Chifre de Búfalo]";
+			mes "Depois que eu terminar a";
+			mes "certidão, você pode levar";
+			mes "ao chefe, e então ele";
+			mes "vai te ajudar a atingir";
+			mes "sua meta de se tornar";
+			mes "um Justiceiro.";
+			close;
+		}
+		delitem 912,3;	// Zargon
+		delitem 914,3;	// Fluff
+		delitem 1019,1;	// Wooden_Block
+		delitem 935,10;	// Shell
+		delitem 511,3;	// Green_Herb
+		delitem 1013,3;	// Colorful_Shell
+		set GUNS_Q,3;
+		changequest 6021,6022;
+		mes "Opa, você voltou";
+		mes "com tudo que preciso.";
+		mes "Por favor, me dê um tempo";
+		mes "para criar a certidão. Se você";
+		mes "voltar daqui a pouco,";
+		mes "eu já devo ter terminado.";
+		close;
+	} else if(GUNS_Q == 3) {
+		mes "Opa, você chegou na";
+		mes "hora certo. Tem bastante tempo";
+		mes "que eu não fazia uma dessas certidões, então posso estar um pouco";
+		mes "enferrujado. Isso me lembra meus tempos de jovem.";
+		next;
+		mes "[Sábio Chifre de Búfalo]";
+		mes "Eu tenho servido nesta";
+		mes "posição de escolher os";
+		mes "preferidos para se tornar";
+		mes "um Justiceiro à algumas";
+		mes "decadas. Mas antes disso, eu era";
+		mes "um jovem aventureiro como você.";
+		next;
+		mes "[Sábio Chifre de Búfalo]";
+		mes "Parece que foi ontem quando";
+		mes "eu tinha minha própia certidão";
+		mes "como um Justiceiro, um guerreiro";
+		mes "da terra. Foi quando";
+		mes "eu conheci o pai da Selena...";
+		mes "Como o tempo pode passar tão rapidamente?";
+		next;
+		mes "[Sábio Chifre de Búfalo]";
+		mes "E...O que realmente admiro";
+		mes "em Selena e Black Fox é por";
+		mes "me conceder todos os tipos de ajuda";
+		mes "no recrutamento dos jovens Justiceiros. Estou";
+		mes "muito velho, não posso mais fazer tudo sózinho. *Suspiro...*Essa é a vida.";
+		next;
+		mes "[Sábio Chifre de Búfalo]";
+		mes "Antes de sair, posso te";
+		mes "pedir um pequeno favor?";
+		mes "Estou com sede, e gostaria";
+		mes "de um copo de Leite frio. Será";
+		mes "que você pode me trazer?";
+		set GUNS_Q,4;
+		changequest 6022,6023;
+		close;
+	} else if(GUNS_Q == 4) {
+		if (countitem(519) < 1) {
+			mes "Eu sou um velho homem que";
+			mes "em breve estará reunido com";
+			mes "a mãe da terra. Você poderia por";
+			mes "favor trazer um copo de Leite gelado";
+			mes "à um velho Justiceiro, por favor?";
+			close;
+		}
+		delitem 519,1;	// Milk
+		set GUNS_Q,5;
+		changequest 6023,6024;
+		mes "Oh, muito obrigado pela sua!";
+		mes "gentileza--Você me trouxe";
+		mes "um pouco de Leite.";
+		mes "Huuumm, que delicia~";
+		next;
+		mes "[Sábio Chifre de Búfalo]";
+		mes "Eu admiro a paciência,";
+		mes "gentileza e carinho que";
+		mes "você me provou ao trazer";
+		mes "isso para mim. Sim, essas são as principais características que nós queremos de um Justiceiro.";
+		next;
+		mes "[Sábio Chifre de Búfalo]";
+		mes "Agora, por favor, leve essa certidão";
+		mes "para o Miller, o Black Fox, com";
+		mes "minha aprovação de coração.";
+		mes "Eu espero que você use a sua";
+		mes "arma para combater a injustiça";
+		mes "como um nobre guerreiro da terra.";
+		next;
+		mes "[Sábio Chifre de Búfalo]";
+		mes "Eeh~Yeah~Eeh~Hooom";
+		mes "Eeh~Yeah~Eeh~Hooom";
+		mes "Maaaaarrraaa Neeey~";
+		mes "Yippee Yippee Yai Yocaiyay~";
+		close;
+	} else if(GUNS_Q == 5) {
+		mes "Agora, por favor, leve essa certidão";
+		mes "para o Miller, o Black Fox, com";
+		mes "minha aprovação de coração.";
+		mes "Eu espero que você use a sua";
+		mes "arma para combater a injustiça";
+		mes "como um nobre guerreiro da terra.";
+		next;
+		mes "[Sábio Chifre de Búfalo]";
+		mes "Eeh~Yeah~Eeh~Hooom";
+		mes "Eeh~Yeah~Eeh~Hooom";
+		mes "Maaaaarrraaa Neeey~";
+		mes "Yippee Yippee Yai Yocaiyay~";
+		close;
+	} else if(GUNS_Q == 6) {
+		mes "AAh, quanto tempo sem te ver.";
+		mes "Eu espero que você se torne";
+		mes "um animal esperto, e use";
+		mes "seus poderes como Justiceiro para proteger o que é bom e justo.";
+		close;
+	} else {
+		mes "Zzzzzz~";
+		mes "^333333*Aborrecido*^000000";
+		close;
+	}
+}

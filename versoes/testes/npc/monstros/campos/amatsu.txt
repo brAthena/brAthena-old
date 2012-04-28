@@ -1,0 +1,52 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Monstros dos Campos de Amatsu          |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.3/1.2a                               |
+// |--------------------------------------------------------|
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [K2X]                             |
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// | 1.2a Spawns do Renewal [Dani]                          |
+// | - Revisado                                             |
+// | - Anotações:                                           |
+// | 1. Aegis diz que esse mapa possui 14 Hidra, e possui   |
+// | 15 Pé Grande, a DB do irowiki confirma as 14 Hidra mas |
+// | não fala nos Pé Grande, e o RODE-R diz que possui      |
+// | 5 Hidra e também não fala nos Pé Grande                |
+// | Links:                                                 |
+// | http://db.irowiki.org/db/map-info/ama_fild01/          |
+// | http://rode-r.doddlercon.com/maps/view/ama_fild01/     |
+// \________________________________________________________/
+
+//==================================================
+// ama_fild01 - Campo de Amatsu
+//==================================================
+ama_fild01,0,0,0,0	monster	Karakasa	1400,50,0,0,0
+ama_fild01,0,0,0,0	monster	Kapha	1406,40,0,0,0
+ama_fild01,173,313,0,0	monster	Hidra	1068,1,60000,30000,0
+ama_fild01,173,314,0,0	monster	Hidra	1068,1,60000,30000,0
+ama_fild01,173,310,0,0	monster	Hidra	1068,1,60000,30000,0
+ama_fild01,177,315,0,0	monster	Hidra	1068,1,60000,30000,0
+ama_fild01,175,315,0,0	monster	Hidra	1068,1,63000,31500,0
+ama_fild01,169,314,0,0	monster	Hidra	1068,1,63000,31500,0
+ama_fild01,177,314,0,0	monster	Hidra	1068,1,66000,33000,0
+ama_fild01,175,313,0,0	monster	Hidra	1068,1,66000,33000,0
+ama_fild01,173,315,0,0	monster	Hidra	1068,1,66000,33000,0
+ama_fild01,171,313,0,0	monster	Hidra	1068,1,66000,33000,0
+ama_fild01,171,314,0,0	monster	Hidra	1068,1,69000,34500,0
+ama_fild01,171,315,0,0	monster	Hidra	1068,1,69000,34500,0
+ama_fild01,175,314,0,0	monster	Hidra	1068,1,72000,39000,0
+ama_fild01,169,315,0,0	monster	Hidra	1068,1,72000,39000,0
+ama_fild01,0,0,0,0	monster	Boneco de Miyabi	1404,2,180000,90000,0
+ama_fild01,0,0,0,0	monster	Sapo Venenoso	1402,1,180000,90000,0

@@ -1,0 +1,141 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Guerra do Emperium (Al De Baran)       |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.2/1.2                                |
+// |--------------------------------------------------------|
+// | Descrição: NPCs relacionados ao castelo Astrum.        |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [cleyton]                         |
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// | 1.2 Correção de Tradução [Protimus]                    |
+// | - Corrigido erro de concordância nominal               |
+// \________________________________________________________/
+
+// Bandeira do Castelo (Cidade)
+//============================================================
+aldebaran,149,97,4	script	Astrum#a2-1::Astrum	722,{
+	end;
+
+OnRecvCastleA02:
+	FlagEmblem GetCastleData("aldeg_cas02",1);
+	end;
+}
+
+// Bandeira do Castelo (Fora do Castelo)
+//============================================================
+alde_gld,99,251,4	script	Astrum#a2-2::Astrum2	722,{
+	set .@GID, GetCastleData("aldeg_cas02",1);
+	if (.@GID == 0) {
+		mes " [ Decreto do Reino de Midgard ]";
+		mes " ";
+		mes "1. Conforme o pacto do Reino de Midgard e o Feudo de Luina, declaro que este Castelo não possui um Senhor.";
+		mes " ";
+		mes "2. Aquele que superar terríveis desafios e destruir o Emperium, receberá a posse do castelo com o apoio do nosso rei.";
+	}
+	else {
+		if (getcharid(2) == .@GID) {
+			mes "Bravo guerreiro...";
+			mes "Você deseja retornar ao seu lugar de honra?";
+			next;
+			if (select("Retornar para o castelo do Clã.:Não.") == 1) {
+				if (getcharid(2) == GetCastleData("aldeg_cas02",1)) {
+					warp "aldeg_cas02",84,74;
+					//warp "aldeg_cas02",220,190;
+					end;
+				}
+			}
+			close;
+		}
+		mes "[ Decreto do Reino de Midgard ]";
+		mes " ";
+		mes "1. Seguindo o decreto do Reino de Midgard.";
+		mes "Nós declaramos que esse castelo pertence ao clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
+		mes " ";
+		mes "2. O líder do clã ^ff0000"+ GetGuildName(.@GID) + "^000000 se chama ^FF0000" + GetGuildMaster(.@GID) + "^000000.";
+		mes "Se alguém se opõe a esse decreto, que prove sua força e honra com uma espada em suas mãos.";
+	}
+	close;
+
+OnRecvCastleA02:
+	FlagEmblem GetCastleData("aldeg_cas02",1);
+	end;
+}
+
+alde_gld,99,244,4	duplicate(Astrum2)	Astrum#a2-3	722
+
+// Bandeira do Castelo (Dentro do Castelo)
+//============================================================
+aldeg_cas02,82,71,2	script	Astrum#a2-4::Astrum3	722,{
+	end;
+
+OnRecvCastleA02:
+	FlagEmblem GetCastleData("aldeg_cas02",1);
+	end;
+}
+
+aldeg_cas02,67,30,2	duplicate(Astrum3)	Astrum#a2-5	722
+aldeg_cas02,183,140,2	duplicate(Astrum3)	Astrum#a2-6	722
+aldeg_cas02,212,152,2	duplicate(Astrum3)	Astrum#a2-7	722
+aldeg_cas02,108,39,2	duplicate(Astrum3)	Astrum#a2-8	722
+aldeg_cas02,57,213,2	duplicate(Astrum3)	Astrum#a2-9	722
+aldeg_cas02,91,181,2	duplicate(Astrum3)	Astrum#a2-10	722
+aldeg_cas02,103,53,2	duplicate(Astrum3)	Astrum#a2-11	722
+aldeg_cas02,73,53,2	duplicate(Astrum3)	Astrum#a2-12	722
+aldeg_cas02,63,41,2	duplicate(Astrum3)	Astrum#a2-13	722
+aldeg_cas02,229,6,2	duplicate(Astrum3)	Astrum#a2-14	722
+aldeg_cas02,230,40,2	duplicate(Astrum3)	Astrum#a2-15	722
+aldeg_cas02,197,40,2	duplicate(Astrum3)	Astrum#a2-16	722
+aldeg_cas02,32,213,2	duplicate(Astrum3)	Astrum#a2-17	722
+aldeg_cas02,121,29,2	duplicate(Astrum3)	Astrum#a2-18	722
+
+// Gerenciador Automático
+//============================================================
+aldeg_cas02,214,24,0	duplicate(Gld_Agit_Manager)	Agit#aldeg_cas02	-1
+
+// Administração
+//============================================================
+aldeg_cas02,78,74,0	duplicate(Gld_Mngr_Template)	Chenchenlie#aldeg_cas02	55
+
+// Guardiões
+//============================================================
+aldeg_cas02,78,74,0	duplicate(Gld_Guard_Template)	Guardian#aldeg_cas02	-1
+
+// Kafras
+//============================================================
+aldeg_cas02,84,74,0	duplicate(Gld_Kafra_Template)	Assistente Kafra#aldeg_cas02	117
+
+// Saída da Sala do Mestre
+//============================================================
+aldeg_cas02,139,235,0	script	#switch_A02	111,{
+	mes " ";
+	mes "Há uma pequena alavanca aqui.";
+	mes "Você deseja puxar ela?";
+	next;
+	if(select("Puxar.:Não puxar.") == 2) close;
+	warp "aldeg_cas02",78,75;
+	end;
+}
+
+// Proteção de Tesouros
+//============================================================
+aldeg_cas02,135,230,0	duplicate(Gld_Trea_Protect)	ban_warp#aldeg_cas02	-1,8,8
+
+// Spawns de Tesouros
+//============================================================
+aldeg_cas02,135,230,0	duplicate(Gld_Trea_Spawn)	Treasure#aldeg_cas02	-1
+
+// Mudanças de Cavernas
+//============================================================
+aldeg_cas02,194,136,0	duplicate(Gld_Dun_Template)	#aldeg_cas02	111

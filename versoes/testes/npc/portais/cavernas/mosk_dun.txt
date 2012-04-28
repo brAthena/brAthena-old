@@ -1,0 +1,297 @@
+//  ________________________________________________________
+// /							    						\
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |							    						|
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Portais da Caverna de Moscovia         |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team			    			|
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.4/1.1				    			|
+// |--------------------------------------------------------|
+// | Descrição: Portais da Abadia Amaldiçoada de Moscovia.  |
+// |--------------------------------------------------------|
+// | Changelog:						    					|
+// | 1.0 Script Traduzido [Lord]                            |
+// | 1.1 Script Revisado [insidemybrain]                    |
+// | - Anotações					    					|
+// \________________________________________________________/
+
+mosk_fild02,190,257,0	warp	moscoviawarp0401	1,1,mosk_dun01,189,45
+mosk_dun01,189,42,0	warp	moscoviawarp0501	1,1,mosk_fild02,190,254
+mosk_in,215,36,0	warp	babayagaout		1,1,mosk_dun02,53,217
+
+mosk_dun02,53,220,4	script	#babayagain	45,1,1,{
+	end;
+OnTouch:
+	if (mos_nowinter == 11) {
+		donpcevent "Soldier1#mos::OnEnable";
+		donpcevent "Soldier2#mos::OnEnable";
+		donpcevent "Soldier3#mos::OnEnable";
+		mes "[Soldado]";
+		mes "Parado aí!";
+		next;
+		mes "[Soldado]";
+		mes "Temos informações";
+		mes "de que você está se comunicando";
+		mes "secretamenta com a";
+		mes "Baba Yaga, a Horrível.";
+		next;
+		mes "[Soldado]";
+		mes "Se você tem algo a dizer,";
+		mes "fale com o Csar.";
+		mes "Venha conosco.";
+		close2;
+		donpcevent "Soldier1#mos::OnInit";
+		donpcevent "Soldier2#mos::OnInit";
+		donpcevent "Soldier3#mos::OnInit";
+		set mos_nowinter,12;
+		warp "mosk_in",125,92;
+		end;
+	}
+	else if (mos_nowinter == 12) {
+		donpcevent "Soldier1#mos::OnEnable";
+		donpcevent "Soldier2#mos::OnEnable";
+		donpcevent "Soldier3#mos::OnEnable";
+		mes "[Soldado]";
+		mes "Esperávamos que";
+		mes "você poderia aparecer denovo.";
+		mes "Qual é o seu negócio com Csar?";
+		next;
+		if(select("Sair correndo.:Explicar a situação.") == 1) {
+			mes "["+strcharinfo(0)+"]";
+			mes "Eu devo sair daqui...";
+			close2;
+			warp "mosk_dun02",100,100;
+			donpcevent "Soldier1#mos::OnInit";
+			donpcevent "Soldier2#mos::OnInit";
+			donpcevent "Soldier3#mos::OnInit";
+			end;
+		}
+		mes "-Eu explico o que aconteceu até agora.-";
+		next;
+		mes "[Soldado]";
+		mes "Se você tem algo a dizer,";
+		mes "fale com Csar.";
+		mes "Se você sair deste lugar,";
+		mes "você será considerado nosso inimigo.";
+		close2;
+		donpcevent "Soldier1#mos::OnInit";
+		donpcevent "Soldier2#mos::OnInit";
+		donpcevent "Soldier3#mos::OnInit";
+		end;
+	}
+	else if (mos_nowinter == 13) {
+		donpcevent "Soldier1#mos::OnEnable";
+		donpcevent "Soldier2#mos::OnEnable";
+		donpcevent "Soldier3#mos::OnEnable";
+		mes "[Soldado]";
+		mes "Esperávamos que";
+		mes "você poderia aparecer denovo.";
+		mes "Qual é o seu negócio com Csar?";
+		next;
+		if(select("Sair correndo.:Explicar a situação.") == 1) {
+			mes "["+strcharinfo(0)+"]";
+			mes "Eu devo sair daqui...";
+			close2;
+			warp "mosk_dun02",100,100;
+			donpcevent "Soldier1#mos::OnInit";
+			donpcevent "Soldier2#mos::OnInit";
+			donpcevent "Soldier3#mos::OnInit";
+			end;
+		}
+		mes "-Eu explico o que aconteceu até agora.-";
+		next;
+		mes "[Soldado]";
+		mes "Se você tem algo a dizer,";
+		mes "fale com Csar.";
+		mes "Se você sair deste lugar,";
+		mes "você será considerado nosso inimigo.";
+		close2;
+		donpcevent "Soldier1#mos::OnInit";
+		donpcevent "Soldier2#mos::OnInit";
+		donpcevent "Soldier3#mos::OnInit";
+		end;
+	}
+	else {
+		warp "mosk_in",215,41;
+		end;
+	}
+}
+
+mosk_dun02,53,215,3	script	Soldier1#mos	966,{
+	mes "[Soldado]";
+	mes "Nós somos os soldados de Csar.";
+	mes "Nós somos chamados para emergências,";
+	mes "não nos pertube mais.";
+	close;
+
+OnInit:
+	hideonnpc "Soldier1#mos";
+	end;
+
+OnEnable:
+	hideoffnpc "Soldier1#mos";
+	end;
+}
+
+mosk_dun02,50,217,3	script	Soldier2#mos	966,{
+	mes "[Soldado]";
+	mes "Nós somos os soldados de Csar.";
+	mes "Nós somos chamados para emergências,";
+	mes "não nos pertube mais.";
+	close;
+
+OnInit:
+	hideonnpc "Soldier2#mos";
+	end;
+
+OnEnable:
+	hideoffnpc "Soldier2#mos";
+	end;
+}
+
+
+mosk_dun02,56,217,5	script	Soldier3#mos	966,{
+	mes "[Soldado]";
+	mes "Nós somos os soldados de Csar.";
+	mes "Nós somos chamados para emergências,";
+	mes "não nos pertube mais.";
+	close;
+
+OnInit:
+	hideonnpc "Soldier3#mos";
+	end;
+
+OnEnable:
+	hideoffnpc "Soldier3#mos";
+	end;
+}
+
+mosk_dun01,170,164,3	script	Rocha#1	111,{
+	mes "- Há escrito sobre uma grande rocha. -";
+	next;
+	mes "^3131FF- Aqueles que servem ao sol irão morrer, Vá para o Norte. -^000000";
+	close;
+}
+
+mosk_dun01,207,276,3	script	Rocha#1-2	111,{
+	mes "- Há escrito sobre uma grande rocha. -";
+	next;
+	mes "^3131FF- Aqueles que avançarem podem se machucar mas serão corajosos de coração e aqueles que ficarem permanecerão seguros.";
+	mes "Se você tem coragem , vá em frente. Caso contrário, volte. -^000000";
+	next;
+	if(select("Ir em frente.:Ficar.") == 1) {
+		mes "- Você segue o caminho diante de você. -";
+		close2;
+		warp "mosk_dun02",165,30;
+		end;
+	}
+	mes "- Você não vai avançar. -";
+	close;
+}
+
+mosk_dun01,264,191,3	script	Rocha#1-3	111,{
+	mes "- Há escrito sobre uma grande rocha. -";
+	next;
+	mes "^3131FF- Aqueles que avançarem podem se machucar mas serão corajosos de coração e aqueles que voltarem permanecerão seguros.";
+	mes "Se você for corajoso , então siga em frente. Caso contrário, volte. -^000000";
+	next;
+	if(select("Ir em frente.:Ficar.") == 1) {
+		mes "- Você segue o caminho diante de você. -";
+		close2;
+		warp "mosk_dun03",117,36;
+		end;
+	}
+	mes "- Você decidiu ficar. -";
+	close;
+}
+
+mosk_dun02,168,28,3	script	Rocha#2-1	111,{
+	mes "- Há escrito sobre uma grande rocha. -";
+	next;
+	mes "^3131FF- Aqueles que avançarem podem se machucar mas serão valentes de coração e aqueles que voltarem permanecerão seguros.";
+	mes "Se você for valente , então siga em frente. Caso contrário, volte. -^000000";
+	next;
+	if(select("Voltar.:Stay.") == 1) {
+		mes "- Você sentiu medo e decidiu voltar -";
+		close2;
+		warp "mosk_dun01",201,269;
+		end;
+	}
+	mes "- Você dicidiu ficar. -";
+	close;
+}
+
+mosk_dun02,268,117,3	script	Rocha#2-3	111,{
+	mes "- Há escrito sobre uma grande rocha. -";
+	next;
+	mes "^3131FF- Aqueles que avançarem irão ganhar honra mas porderão morrer, e aqueles que voltarem ganharão coragem mas ainda podem se machucar.";
+	mes "Se você é realmente corajoso , siga em frente. Caso contrário, volte. -^000000";
+	next;
+	if(select("Ir em frente.:Ficar.") == 1) {
+		mes "- Você corajosamente seguiu em frente. -";
+		close2;
+		warp "mosk_dun03",32,135;
+		end;
+	}
+	mes "- Você dicidiu ficar. -";
+	close;
+}
+
+mosk_dun03,27,131,3	script	Rocha#3-2	111,{
+	mes "- Há escrito sobre uma grande rocha. -";
+	next;
+	mes "^3131FF- Aqueles que ficarem poderão morrer mas irão ganhar honra. e aqueles que voltarem poderam se machucar mas ganharão coragem.";
+	mes "Aqueles que têm coragem irão voltar, caso contrário vá em frente e fique. -^000000";
+	next;
+	if(select("Voltar.:Ficar.") == 1) {
+		mes "- Você sentiu medo e decidiu voltar -";
+		close2;
+		warp "mosk_dun02",262,118;
+		end;
+	}
+	mes "- Você dicidiu ficar. -";
+	close;
+}
+
+mosk_dun03,119,46,3	script	Rocha#3-1	111,{
+	mes "- Há escrito sobre uma grande rocha. -";
+	next;
+	mes "^3131FF- Aqueles que ficarem poderão morrer mas irão ganhar honra. e aqueles que voltarem poderam se machucar mas ganharão coragem.";
+	mes "Aqueles que têm medo da morte irão voltar, caso contrário vá em frente e fique. -^000000";
+	next;
+	if(select("Voltar.:Ficar.") == 1) {
+		mes "- Você sentiu medo e decidiu voltar -";
+		close2;
+		warp "mosk_dun01",257,190;
+		end;
+	}
+	mes "- Você decidiu ficar. -";
+	close;
+}
+
+mosk_dun01,194,43,3	script	Rocha#1-1	111,{
+	mes "- Há escrito sobre uma grande rocha. -";
+	next;
+	mes "- Se você quer proteger sua vida, volte. -";
+	close;
+}
+
+mosk_fild02,198,53,3	script	Navio#mos_dun	111,{
+	mes "- Você encontra um navio ancorado. -";
+	next;
+	if(select("Pegue o navio e volte para a aldeia.:Explorar mais.") == 1) {
+		mes "- Você entrou no navio e começou a puxar os remos. -";
+		close2;
+		warp "moscovia",140,54;
+		end;
+	}
+	mes "- Esta área desconhecida desperta seu interesse. -";
+	close;
+}

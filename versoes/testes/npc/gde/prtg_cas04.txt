@@ -1,0 +1,137 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Guerra do Emperium (Prontera)          |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.2/1.2                                |
+// |--------------------------------------------------------|
+// | Descrição: NPCs relacionados ao castelo Skoegul.       |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [cleyton]                         |
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// | 1.2 Correção de Tradução [Protimus]                    |
+// | - Corrigido erro de concordância nominal               |
+// \________________________________________________________/
+
+// Bandeira do Castelo (Cidade)
+//============================================================
+prontera,167,203,6	script	Skoegul#p4-1::Skoegul	722,{
+	end;
+
+OnRecvCastlePt04:
+	FlagEmblem GetCastleData("prtg_cas04",1);
+	end;
+}
+
+// Bandeira do Castelo (Fora do Castelo)
+//============================================================
+prt_gld,120,243,6	script	Skoegul#p4-2::Skoegul2	722,{
+	set .@GID, GetCastleData("prtg_cas04",1);
+	if (.@GID == 0) {
+		mes " [ Decreto do Reino de Midgard ]";
+		mes " ";
+		mes "1. Conforme o pacto do Reino de Midgard e o Feudo das Valquírias, declaro que este Castelo não possui um Senhor.";
+		mes " ";
+		mes "2. Aquele que superar terríveis desafios e destruir o Emperium, receberá a posse do castelo com o apoio do nosso rei.";
+	}
+	else {
+		if (getcharid(2) == .@GID) {
+			mes "Bravo guerreiro...";
+			mes "Você deseja retornar ao seu lugar de honra?";
+			next;
+			if (select("Retornar para o castelo do Clã.:Não.") == 1) {
+				if (getcharid(2) == GetCastleData("prtg_cas04",1)) {
+					warp "prtg_cas04",258,247;
+					end;
+				}
+			}
+			close;
+		}
+		mes "[ Decreto do Reino de Midgard ]";
+		mes " ";
+		mes "1. Seguindo o decreto do Reino de Midgard.";
+		mes "Nós declaramos que esse castelo pertence ao clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
+		mes " ";
+		mes "2. O líder do clã ^ff0000"+ GetGuildName(.@GID) + "^000000 se chama ^FF0000" + GetGuildMaster(.@GID) + "^000000.";
+		mes "Se alguém se opõe a esse decreto, que prove sua força e honra com uma espada em suas mãos.";
+	}
+	close;
+
+OnRecvCastlePt04:
+	FlagEmblem GetCastleData("prtg_cas04",1);
+	end;
+}
+
+prt_gld,120,236,6	duplicate(Skoegul2)	Skoegul#p4-3	722
+prt_gld,122,243,6	duplicate(Skoegul2)	Skoegul#p4-4	722
+prt_gld,122,236,6	duplicate(Skoegul2)	Skoegul#p4-5	722
+
+// Bandeira do Castelo (Dentro do Castelo)
+//============================================================
+prtg_cas04,82,29,4	script	Skoegul#p4-6::Skoegul3	722,{
+	end;
+
+OnRecvCastlePt04:
+	FlagEmblem GetCastleData("prtg_cas04",1);
+	end;
+}
+
+prtg_cas04,75,29,4	duplicate(Skoegul3)	Skoegul#p4-7	722
+prtg_cas04,75,27,4	duplicate(Skoegul3)	Skoegul#p4-8	722
+prtg_cas04,82,27,4	duplicate(Skoegul3)	Skoegul#p4-9	722
+prtg_cas04,59,29,4	duplicate(Skoegul3)	Skoegul#p4-10	722
+prtg_cas04,67,29,4	duplicate(Skoegul3)	Skoegul#p4-11	722
+prtg_cas04,258,25,4	duplicate(Skoegul3)	Skoegul#p4-12	722
+prtg_cas04,258,20,4	duplicate(Skoegul3)	Skoegul#p4-13	722
+prtg_cas04,263,20,4	duplicate(Skoegul3)	Skoegul#p4-14	722
+prtg_cas04,263,27,4	duplicate(Skoegul3)	Skoegul#p4-15	722
+
+// Gerenciador Automático
+//============================================================
+prtg_cas04,292,14,0	duplicate(Gld_Agit_Manager)	Agit#prtg_cas04	-1
+
+// Administração
+//============================================================
+prtg_cas04,259,265,4	duplicate(Gld_Mngr_Template)	Van Dreth#prtg_cas04	55
+
+// Guardiões
+//============================================================
+prtg_cas04,259,265,4	duplicate(Gld_Guard_Template)	Guardian#prtg_cas04	-1
+
+// Kafras
+//============================================================
+prtg_cas04,258,247,4	duplicate(Gld_Kafra_Template)	Assistente Kafra#prtg_cas04	117
+
+// Saída da Sala do Mestre
+//============================================================
+prtg_cas04,275,160,0	script	#switch_Pt04	111,{
+	mes " ";
+	mes "Há uma pequena alavanca aqui.";
+	mes "Você deseja puxar ela?";
+	next;
+	if(select("Puxar.:Não puxar.") == 2) close;
+	warp "prtg_cas04",259,265;
+	end;
+}
+
+// Proteção de Tesouros
+//============================================================
+prtg_cas04,271,162,0	duplicate(Gld_Trea_Protect)	ban_warp#prtg_cas04	-1,6,6
+
+// Spawns de Tesouros
+//============================================================
+prtg_cas04,271,162,0	duplicate(Gld_Trea_Spawn)	Treasure#prtg_cas04	-1
+
+// Mudanças de Cavernas
+//============================================================
+prtg_cas04,56,283,0	duplicate(Gld_Dun_Template)	#prtg_cas04	111

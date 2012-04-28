@@ -1,0 +1,66 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                     brAthena Script                    |
+// |--------------------------------------------------------|
+// | Nome do Script: Garota Negociante                      |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões brA: 1.0                                       |
+// |--------------------------------------------------------|
+// | Descrição: NPC para alugar PecoPeco, Carrinho e Falcão,|
+// | podendo configurar um preço para cada uma das ações.   |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Criado [Equipe brAthena]                    |
+// | - Anotações                                            |
+// \________________________________________________________/
+
+prontera,128,194,7	script	Garota Negociante	899,{
+	mes "[ Garota Negociante ]";
+	mes "Aqui você pode alugar Falcões, PecoPecos ou Carrinhos.";
+	if(getarraysize(.preco)){
+		mes "Falcões: ^0000FF"+.preco[1]+"z^000000";
+		mes "PecoPeco: ^0000FF"+.preco[2]+"z^000000";
+		mes "Carrinho: ^0000FF"+.preco[3]+"z^000000";
+	}
+	next;
+	if(select("Pegar Falcão:Pegar PecoPeco:Pegar Carrinho:Nada por enquanto.")==4) close;
+	mes "[ Garota Negociante ]";
+	if(!getskilllv(.skillid[@menu-1])){
+		mes "Você não tem a habilidade necessária para isso.";
+		close;
+	}
+	if(zeny<.preco[@menu]){
+		mes "Você não possui Zeny suficiente.";
+		close;
+	}
+	switch(@menu){
+	case 1:
+		if(checkfalcon()){ mes "Você já possui um Falcão."; close; }
+		setfalcon();
+		break;
+	case 2:
+		if(checkriding()){ mes "Você já possui um PecoPeco."; close; }
+		setriding();
+		break;
+	case 3:
+		if(checkcart()){ mes "Você já possui um Carrinho."; close; }
+		setcart();
+	}
+	set Zeny,Zeny-.preco[@menu];
+	mes "Aqui está.";
+	mes "Faça bom uso dele.";
+	close;
+
+OnInit:
+	setarray .preco[1],1500,2000,2000; //preço: Falcão, peco-peco, carrinho
+	setarray .skillid,127,63,39;
+	end;
+}

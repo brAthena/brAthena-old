@@ -1,0 +1,130 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                     brAthena Script                    |
+// |--------------------------------------------------------|
+// | Nome do Script: Enquetes Oficiais                      |
+// |--------------------------------------------------------|
+// | Criado por: brAthena Dev. Team                         |
+// |--------------------------------------------------------|
+// | Versões brA: 1.0                                       |
+// |--------------------------------------------------------|
+// | Descrição: NPC para realizar pesquisas oficiais com os |
+// | jogadores, que só podem votar uma vez por conta. As    |
+// | perguntas e Opções são configuradas dentro do jogo e   |
+// | o próprio script faz anúncios sobre a votação.         |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Criado [Equipe brAthena]                    |
+// \________________________________________________________/
+
+prontera,156,183,4	script	Pesquisas Oficiais	831,{
+	mes "[ Enquete ]";
+	mes "Olá, "+strcharinfo(0);
+	mes "Eu faço as pesquisas de opinião oficiais do servidor.";
+	mes "E seria muito bom saber a sua opinião.";
+	mes "Esta é a "+$enquetes+"a. enquete oficial feita pelo servidor.";
+	mes "O que deseja?";
+	next;
+	switch(select("Votar na enquete.:Ver resultado da enquete.:"+(getgmlevel()>50 ? "Recomeçar contagem dos votos.:Fazer outra pesquisa.":":")+":Nada.")){
+	if(@menu < 5) mes "[ Enquete ]";
+	if(@menu <= 3 && ($pergunta$=="" || !getarraysize($opicoes$))){
+		mes "No momento não há uma enquete definida.";
+		mes "Mas é muito importante sabermos a opinião dos players.";
+		mes "Por isso, volte mais tarde, para dar sua opinião.";
+		close;
+	}
+		case 1:
+			if(#voto==$enquetes){
+				mes "Você já votou nessa enquete";
+				mes "Aguarde uma nova enquete oficil ser feita, para poder votar novamente.";
+				close;
+			}
+			mes $pergunta$;
+			next;
+			for(set @i,0;@i<getarraysize($opicoes$);set @i,@i+1)
+				set .@menu$,.@menu$+$opicoes$[@i]+":";
+			set @selecionado,select(.@menu$)-1;
+			mes "[ Enquete ]";
+			mes "Tem certeza que deseja votar em:";
+			mes $opicoes$[@selecionado]+" ?";
+			next;
+			if(select("Sim.:Não.")==2) close;
+			mes "[ Enquete ]";
+			set #voto,$enquetes;
+			set $votos[@selecionado],$votos[@selecionado]+1;
+			set $total,$total+1;
+			mes "Seu voto foi computado.";
+			mes "Deseja ver o resultado parcial da enquete?";
+			next;
+			if(select("Sim.:Não.")==2) close;
+			mes "[ Enquete ]";
+		case 2:
+			if(!$total){
+				mes "A enquete ainda não teve nenhum voto.";
+				mes "Seja o primeiro a votar.";
+				close;
+			}
+			mes "A pergunta: \""+$pergunta$+"\" teve "+$total+" votos.";
+			mes "E o resultado parcial é:";
+			for(set @o,0;@o<getarraysize($opicoes$);set @o,@o+1){
+				set @indicador,($votos[@o]*20)/$total;
+				set @indicador$,"";
+				for(set @i,0;@i<@indicador;set @i,@i+1)
+					set @indicador$,@indicador$+"|";
+				mes $opicoes$[@o]+" ["+$votos[@o]+"] ^00ff00"+@indicador$+"^000000";
+			}
+			close;
+		case 3:
+			mes "Tem certeza que deseja recomeçar a contagem dos votos da pesquisa";
+			mes "\""+$pergunta$+"\" ?";
+			next;
+			if(select("Sim.:Não.")==2) close;
+			mes "[ Enquete ]";
+			set $enquetes,$enquetes+1;
+			for(set @i,0;@i<getarraysize($votos);set @i,@i+1)
+				set $votos[@i],0;
+			set $total,0;
+			mes "Votos apagados.";
+			close;
+		case 4:
+			mes "Digite a nova pergunta para a enquete.";
+			next;
+			input $pergunta$;
+			for(set @i,0;@i<getarraysize($opicoes$);set @i,@i+1)
+				set $opicoes$[@i],"";
+			mes "[ Enquete ]";
+			for(set @i,0;@i<126;set @i,@i+1){
+				mes "Digite a "+(@i+1)+"a. opção";
+				next;
+				input $opicoes$[@i];
+				mes "[ Enquete ]";
+				mes "Deseja adicionar mais uma opção?";
+				if(select("Sim:Não")==2) break;
+			}
+			set $enquetes,$enquetes+1;
+			for(set @i,0;@i<getarraysize($votos);set @i,@i+1)
+				set $votos[@i],0;
+			set $total,0;
+			mes "Nova enquete adicionada.";
+			close2;
+			announce "Uma nova Enquete Oficial foi feita.",bc_all|bc_yellow;
+			sleep 2500;
+			announce "Para votar, basta ir ao NPC de Pesquisas Oficiais, no centro de Prontera",bc_all|bc_yellow;
+			end;
+		case 5:
+			close;
+	}
+
+	OnMinute46:
+		if(rand(3)) end;
+		announce "[Pesquisas Oficiais] "+$pergunta$,bc_all|bc_yellow;
+		sleep 2500;
+		announce "[pesquisas Oficiais] Para votar na enquete, basta falar com o NPC de Pesquisas Oficiais, no centro de prontera.",bc_all|bc_yellow;
+		end;
+}

@@ -1,0 +1,247 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nãome do Script: Quests Repetíveis - Bodes             |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.0/1.1                                |
+// |--------------------------------------------------------|
+// | Descrição: Quests repetíveis para ganho de EXP.        |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [insidemybrain]                   |
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// \_______________________________________________________/
+
+ein_fild06,82,171,0	script	Fazendeiro#Bodes	919,{
+	if (checkquest(60137) != -1) {
+		if (checkquest(60137,HUNTING) != 2 ) {
+			mes "[Fazendeiro]";
+			mes "Você terminou de caçar os 50 Bodes?";
+			next;
+			switch(select("Sim.:Não.:Quero desistir.")) {
+			case 1:
+				mes "[Fazendeiro]";
+				mes "Hm... Acho que você não terminou de caçar os 50 Bodes.";
+				close;
+			case 2:
+				mes "[Fazendeiro]";
+				mes "Lembre-se, eu preciso de ajuda para caçar os 50 Bodes.";
+				close;
+			case 3:
+				mes "[Fazendeiro]";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
+				next;
+				switch(select("Sim.:Não.")) {
+				case 1:
+					mes "[Fazendeiro]";
+					mes "Tudo bem então, volte quando mudar de idéia.";
+					erasequest 60137;
+					close;
+				case 2:
+					mes "[Fazendeiro]";
+					mes "Por favor mate 50 Bodes.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Fazendeiro]";
+			mes "Impressionante! Você conseguiu completar a quest com facilidade.";
+			getexp 258489,155155;
+			erasequest 60137;
+			close;
+		}
+	}
+	if (checkquest(60138) != -1) {
+		if (checkquest(60138,HUNTING) != 2) {
+			mes "[Fazendeiro]";
+			mes "Você terminou de caçar os 100 Bodes?";
+			next;
+			switch(select("Sim.:Não.:Quero desistir.")) {
+			case 1:
+				mes "[Fazendeiro]";
+				mes "Hm... Acho que você não terminou de caçar os 100 Bodes.";
+				close;
+			case 2:
+				mes "[Fazendeiro]";
+				mes "Lembre-se, eu preciso de ajuda para caçar os 100 Bodes.";
+				close;
+			case 3:
+				mes "[Fazendeiro]";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
+				next;
+				switch(select("Sim.:Não.")) {
+				case 1:
+					mes "[Fazendeiro]";
+					mes "Tudo bem então, volte quando mudar de idéia.";
+					erasequest 60138;
+					close;
+				case 2:
+					mes "[Fazendeiro]";
+					mes "Por favor mate 100 Bodes.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Fazendeiro]";
+			mes "Impressionante! Você conseguiu completar a quest com facilidade.";
+			getexp 258489,155155;
+			getexp 258489,155155;
+			erasequest 60138;
+			close;
+		}
+	}
+	if (checkquest(60139) != -1) {
+		if (checkquest(60139,HUNTING) != 2) {
+			mes "[Fazendeiro]";
+			mes "Você terminou de caçar os 150 Bodes?";
+			next;
+			switch(select("Sim.:Não.:Quero desistir.")) {
+			case 1:
+				mes "[Fazendeiro]";
+				mes "Hm... Acho que você não terminou de caçar os 150 Bodes.";
+				close;
+			case 2:
+				mes "[Fazendeiro]";
+				mes "Lembre-se, eu preciso de ajuda para caçar os 150 Bodes.";
+				close;
+			case 3:
+				mes "[Fazendeiro]";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
+				next;
+				switch(select("Sim.:Não.")) {
+				case 1:
+					mes "[Fazendeiro]";
+					mes "Tudo bem então, volte quando mudar de idéia.";
+					erasequest 60139;
+					close;
+				case 2:
+					mes "[Fazendeiro]";
+					mes "Por favor mate 150 Bodes.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Fazendeiro]";
+			mes "Impressionante! Você conseguiu completar a quest com facilidade.";
+			getexp 258489,155155;
+			getexp 258489,155155;
+			getexp 258489,155155;
+			erasequest 60139;
+			close;
+		}
+	}
+	// Para level mínimo
+	if (BaseLevel > 69) {
+		// Para level máximo
+		if (BaseLevel < 85) {
+			mes "[Fazendeiro]";
+			mes "Ah ótimo!";
+			mes "Está aqui para me ajudar, certo?";
+			mes "Se não, então eu estou perdido.";
+			next;
+			switch(select("Claro.:Não.")) {
+			case 1:
+				mes "[Fazendeiro]";
+				mes "Esses Bodes não param de comer meus legumes.";
+				mes "Você pode fazer algo para me ajudar?";
+				next;
+				switch(select("Pegar Itens.:Caçar Bodes.:Cancelar.")) {
+				case 1:
+					mes "[Fazendeiro]";
+					mes "Eu preciso de ^00CC0050 Chifres de Bode^000000, como prova do seu trabalho duro, para depois recompensá-lo.";
+					next;
+					switch(select("Eu tenho os Chifres de Bode.:O que precisava mesmo?")) {
+					case 1:
+						/*
+						if (checkweight(504,10) == 0) {
+							mes "[Fazendeiro]";
+							mes "Ei, parece que você vai ser esmagado pelo peso nas suas costas.";
+							mes "Volte quando não estiver carregando tanta coisa.";
+							close;
+						}
+						*/
+						if (countitem(7106) > 49) {
+							mes "[Fazendeiro]";
+							mes "Impressionante, e com incrível rapidez.";
+							mes "Eu agradeço muito mesmo.";
+							delitem 7106,50; // Chifres de Bode
+							getexp 258489,155155;
+							//getitem 504,10; // Poção Branca
+							close;
+						}
+						else {
+							mes "[Fazendeiro]";
+							mes "Parece que você não tem o suficiente.";
+							next;
+							close;
+						}
+					case 2:
+						mes "[Fazendeiro]";
+						mes "Eu preciso de ^FF000050 Chifres de Bode^000000, antes de dar a sua recompensa.";
+						close;
+					}
+				case 2:
+					// Matar Bodes
+					mes "[Fazendeiro]";
+					mes "Obrigado.";
+					mes "Quantos Bodes gostaria de caçar?";
+					next;
+					switch(select("50 Bodes.:100 Bodes.:150 Bodes.")) {
+					case 1:
+						mes "[Fazendeiro]";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
+						setquest 60137;
+						close;
+					case 2:
+						mes "[Fazendeiro]";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
+						setquest 60138;
+						close;
+					case 3:
+						mes "[Fazendeiro]";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
+						setquest 60139;
+						close;
+					}
+				case 3:
+					mes "[Fazendeiro]";
+					mes "Caso mude de idéia, venha falar comigo novamente.";
+					close;
+				}
+			case 2:
+				mes "[Fazendeiro]";
+				mes "Caso mude de idéia, venha falar comigo novamente.";
+				close;
+			}
+		}
+		else {
+			mes "[Fazendeiro]";
+			mes "Opa, Opa!";
+			next;
+			mes "[Fazendeiro]";
+			mes "Desculpe não poder falar direito, mas essas porcarias desses Bodes vão acabar me matando.";
+			close;
+		}
+	}
+	else {
+		mes "[Fazendeiro]";
+		mes "Meus legumes... AONDE ELES FORAM!?";
+		mes "Ah, não... não!!!";
+		close;
+	}
+}

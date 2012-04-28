@@ -1,0 +1,184 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Inn Npcs								|
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 3.0/1.1                                |
+// |--------------------------------------------------------|
+// | Descrição: Inn Npcs, Save and Heal						|
+// | variables:												|
+// | arg0 - name of npc										|
+// | arg1 - name of the inn									|
+// | arg2 - map to save at									|
+// | arg3, arg4 - x and y cord. to save at					|
+// | @cost - cost of renting a room							|
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [Wolf]                            |
+// | 1.1 Script Otimizado [Mark]                            |
+// | - Anotações		   			    					|
+// \________________________________________________________/
+
+//======================== Prontera ===================================
+// West Side Inn -------------------
+prt_in,244,135,2	script	Funcionária Sammy#Sammy	53,{
+
+	callfunc "F_InnMaid","[Funcionária Sammy]","Nenkaras","prt_in",238,130;
+	warp "prt_in",247,104; end;
+}
+// East Side Inn ------------------
+prt_in,61,141,2	script	Funcionária Ahlma#Ahlma	53,{
+
+	callfunc "F_InnMaid","[Funcionária Ahlma]","Nenkaras","prt_in",64,136;
+	warp "prt_in",60,166; end;
+}
+
+//======================== Alberta ====================================
+alberta_in,32,142,3	script	Funcionária Jennie#Jennie	53,{
+
+	callfunc "F_InnMaid","[Funcionária Jennie]","'Fisherman Inn'!","alberta_in",26,142;
+	warp "alberta_in",18,188; end;
+}
+
+//====================== Geffen ======================================
+geffen_in,70,64,5	script	Funcionária Cena#Cena	53,{
+
+	callfunc "F_InnMaid","[Funcionária Cena]","'Ifrit,' the only Inn in the city of Geffen.","geffen_in",70,59;
+	warp "geffen_in",31,31; end;
+}
+
+//======================= Payon ======================================
+payon_in01,132,62,5	script	Funcionária Ahee#Ahee	53,{
+
+	callfunc "F_InnMaid","[Funcionária Ahee]","Payon Inn","payon_in01",136,61;
+	warp "payon_in01",132,11; end;
+}
+
+//======================== Morocc ====================================
+// North East --------------------------
+/*
+morocc_in,147,141,3	script	Funcionária Hasna#Hasna	53,{
+
+	callfunc "F_InnMaid","[Funcionária Hasna]","Morroc Inn","morocc_in",142,140;
+	warp "morocc_in",173,135; end;
+}
+// South --------------------------------
+morocc_in,80,100,5	script	Funcionária Manar#Manar	53,{
+
+	callfunc "F_InnMaid","[Funcionária Manar]","Morroc Inn","morocc_in",78,95;
+	warp "morocc_in",79,123; end;
+}
+*/
+
+//====================== Aldebaran ===================================
+aldeba_in,92,58,5	script	Funcionária Rilim#Rilim	53,{
+
+	callfunc "F_InnMaid","[Funcionária Rilim]","Al De Baran Inn","aldeba_in",92,50;
+	warp "aldeba_in",92,112; end;
+}
+
+//======================== Rachel ====================================
+ra_in01,376,69,4	script	Funcionária Annie#Annie	931,{
+
+	callfunc "F_InnMaid","[Funcionária Annie]","Rachel Inn","ra_in01",375,58;
+	warp "ra_in01",384,128; end;
+}
+
+//====================== Lighthalzen =================================
+lhz_in02,230,284,4	script	Funcionário do Hotel#01	86,{
+
+	callfunc "F_InnMaid","[Funcionário do Hotel]","Royal Dragon","lhz_in02",209,275;
+	warp "lhz_in02",219,150;
+}
+
+//======================== Hugel ====================================
+hu_in01,246,107,3	script	Inn Maid#Receptionist	53,{
+
+	callfunc "F_InnMaid","[Recepcionista]","Hugel Inn","hu_in01",263,95;
+	warp "hu_in01",267,5; end;
+}
+
+//======================== Veins ====================================
+ve_in,157,219,5	script	Recepcionista#Receptionist	709,{
+
+	callfunc "F_InnMaid","[Recepcionista]","hotel mais confortavel de Veins","ve_in",157,209;
+	warp "ve_in",184,228;
+}
+
+//======================== Brasilis =================================
+bra_in01,27,24,3	script	Hotel Keeper#bra1	478,{
+	mes "[Hotel Keeper]";
+	mes "Welcome to the beautiful Brasilis Hotel.";
+	next;
+	switch(select("Save:Rest -5000 zeny")) {
+	case 1:
+		mes "[Hotel Keeper]";
+		mes "Do you want to save here at the Brasilis Hotel?";
+		next;
+		switch(select("No thank you.:Absolutely.")) {
+		case 1:
+			mes "[Hotel Keeper]";
+			mes "Ok then, enjoy your stay.";
+			close;
+		case 2:
+			mes "[Hotel Keeper]";
+			mes "Your respawn has been saved here at the hotel. I hope that you enjoy your stay here in Brasilis.";
+			savepoint "bra_in01",144,69;
+			close;
+		}
+	case 2:
+		if (Zeny > 4999) {
+			mes "[Hotel Keeper]";
+			mes "I will show you a great room.";
+			close2;
+			set zeny,zeny-5000;
+			percentheal 100,100;
+			warp "bra_in01",144,69;
+			end;
+		}
+		else {
+			mes "[Hotel Keeper]";
+			mes "I'm sorry, but the service charge is 5,000 zeny per night.";
+			close;
+		}
+	}
+}
+
+//======================= Inn Function ==============================
+function	script	F_InnMaid	{
+	mes getarg(0);
+	mes "Bem vindo ao "+getarg(1)+".";
+	mes "Como posso ajudá-lo?";
+	next;
+	switch(select("Salvar:Descansar - 5,000 zeny:Sair")) {
+	case 1:
+		mes getarg(0);
+		mes "Seu ponto de retorno foi salvo com êxito.";
+		mes "Obrigado, e volte sempre.";
+		savepoint getarg(2),getarg(3),getarg(4);
+		close;
+	case 2:
+		mes getarg(0);
+		if(Zeny < 5000){
+			mes "Sinto muito, mas o preço do serviço é de 5.000 zeny. Por favor, da próxima vez verifique se você tem o zeny para o serviço, ok?";
+			close;
+		}
+		mes "Obrigado.";
+		mes "Espero que você aproveite seu descanso~";
+		close2;
+		set Zeny,Zeny - 5000;
+		percentheal 100,100;
+		return;
+	case 3:
+		close;
+	}
+}

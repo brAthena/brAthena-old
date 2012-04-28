@@ -1,0 +1,78 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: NGuild - Kafras                        |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.2/1.1                                |
+// |--------------------------------------------------------|
+// | Descrição: Serviços Kafra da NGuild.                   |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [cleyton]          	            |
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// | - Anotações                                            |
+// \________________________________________________________/
+
+function	script	F_GKafra	{
+	cutin "kafra_01",2;
+	set @GID, GetCastleData(getarg(0),1);
+	if (getcharid(2) == @GID && getgdskilllv(@GID,10001)) goto L_StartG;
+
+	mes "[Kafra]";
+	mes "Eu estou instruída para oferecer meus serviços somente para o Clã ^ff0000" + GetGuildName(@GID) + "^000000.";
+	mes "Por favor, procure outra Kafra na cidade mais próxima. Lamentamos pelo inconveniente.";
+	cutin "",255;
+	close;
+L_StartG:
+	set @wrpP[0], 200;
+	set @wrpD$[0], getarg(1);
+	setarray @wrpC$[0], @wrpD$[0]+" ^880000"+@wrpP[0]+"^000000 z", "Cancelar.", "", "", "","";
+	callfunc "F_Kafra",2,0,0,0,800;
+	end;
+}
+
+// 1° Castelo ===============================================
+nguild_alde,218,170,0	script	Kafra#N01	117,{
+	callfunc "F_GKafra", "nguild_alde", "Prontera";
+	end;
+OnRecvCastleN01:
+	if (GetCastleData("nguild_alde",9) < 1) disablenpc "Kafra#N01";
+	end;
+}
+
+// 2° Castelo ===============================================
+//nguild_gef,96,173,0	script	Kafra#N02	117,{
+nguild_gef,35,37,0	script	Kafra#N02	117,{
+	callfunc "F_GKafra", "nguild_gef", "Prontera";
+	end;
+OnRecvCastleN02:
+	if (GetCastleData("nguild_gef",9) < 1) disablenpc "Kafra#N02";
+	end;
+}
+
+// 3° Castelo ===============================================
+nguild_pay,128,58,3	script	Kafra#N03	117,{
+	callfunc "F_GKafra", "nguild_pay", "Prontera";
+	end;
+OnRecvCastleN03:
+	if (GetCastleData("nguild_pay",9) < 1) disablenpc "Kafra#N03";
+	end;
+}
+
+// 4° Castelo ===============================================
+nguild_prt,96,173,0	script	Kafra#N04	117,{
+	callfunc "F_GKafra", "nguild_prt", "Prontera";
+	end;
+OnRecvCastleN04:
+	if (GetCastleData("nguild_prt",9) < 1) disablenpc "Kafra#N04";
+	end;
+}

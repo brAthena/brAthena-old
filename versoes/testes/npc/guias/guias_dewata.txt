@@ -1,0 +1,84 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Guias de Dewata                        |
+// |--------------------------------------------------------|
+// | Criado por: brA Dev. Team                              |
+// |--------------------------------------------------------|
+// | Versão brA: 1.0                                        |
+// |--------------------------------------------------------|
+// | Descrição: Guias da Cidade de Dewata                   |
+// |--------------------------------------------------------|
+// | Changelog:                                             |
+// | 1.0 Script Criado [brn0]                               |
+// \________________________________________________________/
+
+dewata,197,184,4	script	Guia de Dewata#01	537,{
+	mes "[Guia de Dewata]";
+	mes "Ondas lindas e maravilhosas.";
+	mes "Relaxe...";
+	mes "Bem-vindo a ^8C4210Dewata^000000.";
+	mes "Serei sua guia, se estiver";
+	mes "procurando alguma coisa.";
+	while(1) {
+		next;
+		switch(select("[   Funcionária Kafra   ]:[   Vendedor de armas    ]:[   Vendedor de Armaduras   ]:[   Vendedor de ferramentas    ]:[   Dono do restaurante    ]:[   Vulcão Krakatau  ]:[   Marinheiro de Alberta  ]:Apagar todos os pontos marcados do minimapa.:Cancelar")) {
+			mes "[Guia de Dewata]";
+			case 1:
+				mes "^0000FFFuncionária Kafra^000000 está";
+				viewpoint 1,202,184,1,0x0A82FF;
+				break;
+			case 2:
+				mes "^008484Vendedor de armas^000000 está";
+				viewpoint 1,218,164,2,0x008080;
+				break;
+			case 3:
+				mes "^008484Vendedor de armaduras^000000 está";
+				viewpoint 1,158,182,3,0x8B4513;
+				break;
+			case 4:
+				mes "^FF1094Vendedor de ferramentas^000000 está";
+				viewpoint 1,182,164,4,0xFF1493;
+				break;
+			case 5:
+				mes "^FF1094Dono do Restaurante^000000 está";
+				viewpoint 1,146,109,5,0x006400;
+				break;
+			case 6:
+				mes "^8C29E7Vulcão Krakatau^000000 está";
+				viewpoint 1,235,56,6,0x8A2BE2;
+				break;
+			case 7:
+				mes "^00BDFFMarinheiro de Alberta^000000 está";
+				viewpoint 1,229,49,7,0x00BFFF;
+				break;
+			case 8:
+				mes "Todas as marcações selecionadas serão apagadas.";
+				mes "Você precisa de mais alguma coisa?";
+				viewpoint 2,202,184,1,0x0A82FF;
+				viewpoint 2,218,164,2,0x008080;
+				viewpoint 2,158,182,3,0x8B4513;
+				viewpoint 2,158,182,3,0x8B4513;
+				viewpoint 2,182,164,4,0xFF1493;
+				viewpoint 2,146,109,5,0x006400;
+				viewpoint 2,235,56,6,0x8A2BE2;
+				viewpoint 2,229,49,7,0x00BFFF;
+				continue;
+			case 9:
+				mes "Aproveite a sua viagem!!";
+				close;
+		}
+		mes "marcado no minimapa.";
+		mes "Verifique o seu minimapa.";
+		mes "Você precisa de mais alguma coisa?";
+	}
+}
+
+dewata,202,106,4	duplicate(Guia de Dewata#01)	Guia de Dewata#02	537

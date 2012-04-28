@@ -1,0 +1,168 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Elemental Stone Trader					|
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.0/1.0                                |
+// |--------------------------------------------------------|
+// | Descrição:	Trade impure types of elemental stones for 	|
+// | pure ones.												|
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido e Otimizado [Mark]				|
+// | - Anotações		   			    					|
+// \________________________________________________________/
+
+// Elemental Stone Trader
+//============================================================
+ama_in02,61,27,7	script	Alquimista#ama	749,{
+	mes "[Laspuchin Gregory]";
+	mes "KeekeekeeKeheheh.";
+	mes "Isso é incrível!";
+	mes "O resultado é extraordinário!!";
+	next;
+	mes "[Laspuchin Gregory]";
+	mes "Usando minhas habilidades nesta distância isso era inesperado...";
+	mes "Keheheh... O lorde do palácio foi bastante acomodado.";
+	next;
+	mes "[Laspuchin Gregory]";
+	mes "Oops, Melhor eu tomar cuidado...";
+	mes "Se o clã descobre minha localização, o Senhor estúpido vai ficar bravo comigo.";
+	mes "Kehehehkeh...";
+	next;
+	mes "[Laspuchin Gregory]";
+	mes "O que? Deseja dizer algo?";
+	mes "Se está aqui para turismo, divirta-se do seu dia de folga, e então volte para sua cidade natal.";
+	mes "Keekeekee... Ou então, vou deixar você esperimentar meu Frasco de Ácido...!";
+	next;
+	if (select("Por favor, com licensa.:Você precisa de ajuda?") == 1) {
+		mes "[Laspuchin Gregory]";
+		mes "Keheheh... Você escutou o que eu disse?";
+		mes "Seria melhor se você esquecesse...";
+		mes "Keekeekeekeekee...";
+		close;
+	}
+	mes "[Laspuchin Gregory]";
+	mes "Ajuda, é?...";
+	mes "Agora que penso sobre isso...";
+	mes "Preciso de alguns itens...";
+	mes "Keeheeheekeehee...";
+	next;
+	mes "[Laspuchin Gregory]";
+	mes "Sr Laspuchin precisa de algumas pedras encantadas para um experimento.";
+	mes "Eu vou usar isso eficientemente...";
+	mes "Você tem elas em mãos?";
+	next;
+	if (select("Não:Tenho algumas") == 1) {
+		mes "[Laspuchin Gregory]";
+		mes "Então, encontre 8 pedras de um tipo.";
+		mes "Se você me trouxer 8 de um tipo de pedras encantadas, vou trocá-las por uma melhor...";
+		next;
+		mes "[Laspuchin Gregory]";
+		mes "Não as gemas, mas as pedras encantadas.";
+		mes "Se você me trouxer a pedra errada, eu vou lhe jogar um Frasco de Fogo Grego!";
+		next;
+		mes "[Laspuchin Gregory]";
+		mes "Traga-me as pedras, escravo~!!";
+		mes "E mantenha sua promessa! Kehehehkehkeh...";
+		close;
+	}
+	mes "[Laspuchin Gregory]";
+	mes "Uh-huh, o que você trouxe?";
+	next;
+	switch(select("Gelo Místico:Natureza Grandiosa:Coração Flamejante:Vento Bruto")) {
+		case 1: callsub L_TradeStone,995;
+		case 2: callsub L_TradeStone,997;
+		case 3: callsub L_TradeStone,994;
+		case 4: callsub L_TradeStone,996;
+	}
+
+L_TradeStone:
+	if(getarg(0) == 995) setarray .@stone[0],997,994,996;
+	else if(getarg(0) == 997) setarray .@stone[0],995,994,996;
+	else if(getarg(0) == 994) setarray .@stone[0],995,997,996;
+	else if(getarg(0) == 996) setarray .@stone[0],995,997,994;
+	if (countitem(getarg(0)) > 7) {
+		mes "[Laspuchin Gregory]";
+		mes "Irei pegar 8 delas e lhe dar uma pedra encantada.";
+		mes "O que acha?";
+		mes "Keheheh.....";
+		next;
+		mes "[Laspuchin Gregory]";
+		mes "HeeHee, o que deseja? Escolha uma!";
+		next;
+		switch(select((getarg(0) == 995 ? "":"Gelo Místico:")+(getarg(0) == 997 ? "":"Natureza Grandiosa:")+(getarg(0) == 994 ? "":"Coração Flamejante:")+(getarg(0) == 996 ? "":"Vento Bruto:")+"Cancelar Negociação")){
+		case 1:
+			delitem getarg(0),8;
+			getitem .@stone[0],1;
+			mes "[Laspuchin Gregory]";
+			mes "Keheheh! Você escolheu a melhor!";
+			mes "Use-a bem...";
+			mes "Traga-me outras pedras caso tenha!";
+			close;
+		case 2:
+			delitem getarg(0),8;
+			getitem .@stone[1],1;
+			mes "[Laspuchin Gregory]";
+			mes "Keheheh! Você escolheu a melhor!";
+			mes "Use-a bem...";
+			mes "Traga-me outras pedras caso tenha!";
+			close;
+		case 3:
+			if (countitem(getarg(0)) > 11) {
+				delitem getarg(0),12;
+				getitem .@stone[2],1;
+				mes "[Laspuchin Gregory]";
+				mes "Kehhehheh, Você sabia de uma coisa?";
+				mes "Não tenho muitas dessa pedra então vou pegar ^0000FF12^000000 das suas, ok?";
+				mes "É claro, que está bem.";
+				mes "Sei que é uma honra ajudar Laspuchin!";
+				close;
+			}
+			mes "[Laspuchin Gregory]";
+			mes "Keheheh, Você sabe de uma coisa?";
+			mes "Não tenho muitas dessa pedra.";
+			mes "Eu não posso pegar apenas 8 das suas.";
+			mes "Se você quiser trocar elas por um "+getitemname(.@stone[2])+", traga-me mais 4 pedras. 8 + 4 = 12...";
+			mes "Preciso de ^0000FF12^000000 pedras.";
+			next;
+			mes "[Laspuchin Gregory]";
+			mes "Traga-me as pedras, escravo~!!";
+			mes "E mantenha sua promessa! Kehheheheheh...";
+			close;
+		case 4:
+			mes "[Laspuchin Gregory]";
+			mes "Oh, bem.";
+			mes "Não conte à ninguém sobre minha localização...";
+			mes "Keheheh...afinal, você prometeu~";
+			close;
+		}
+	}
+	else if (countitem(getarg(0)) > 0) {
+		mes "[Laspuchin Gregory]";
+		mes "Você não pode ajudar Laspuchin com apenas um par de pedras encantadas...";
+		mes "Eu disse 8! Traga-me apenas 8 pedras!";
+		mes "Keheheh.....";
+		next;
+		mes "[Laspuchin Gregory]";
+		mes "Traga-me as pedras, escravo~!!";
+		mes "E mantenha sua promessa! Keheheheheh...";
+		close;
+	}
+	mes "[Laspuchin Gregory]";
+	mes "Keheheh~ Verifique seus bolsos antes de me dizer que você é tolo....";
+	next;
+	mes "[Laspuchin Gregory]";
+	mes "Traga-me pedras! Você disse que estava me ajudando!";
+	mes "Cumpra suas promessas! Kehehehkehkeh...";
+	close;
+}

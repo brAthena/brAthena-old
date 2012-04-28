@@ -1,0 +1,143 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Kafras da Cidade de Prontera           |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 2.7/1.1                                |
+// |--------------------------------------------------------|
+// | Descrição: Configurações callfunc "F_Kafra".           |
+// | arg(0):                                                |
+// |  Setando em 0 a mensagem padrão da Kafra é exibida     |
+// |  Setando em 1 a mensagem da Kafra de Niflheim é exibida|
+// |  Setando em 2 a mensagem da Kafra de Clã é exibida     |
+// | arg(1): 1 para desabilitar o menu "Teleporte"          |
+// |  0 para exibi-lo                                       |
+// | arg(2): 1 para desabilitar o menu "Informações"        |
+// |  0 para exibi-lo                                       |
+// | arg(3): Custo do serviço de "Armazém"                  |
+// | arg(4): Custo do serviço "Alugar Carrinho"             |
+// |--------------------------------------------------------|
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [cleyton]                         |
+// | 1.1 Script Revisado [Tyler]                            |
+// | Anotações:                                             |
+// | - Corrigidas as tabulações no cabeçalho.               |
+// \________________________________________________________/
+
+// Norte
+//============================================================
+prontera,152,326,3	script	Funcionária Kafra::kaf_prontera	112,{
+	cutin "kafra_06",2;
+	callfunc "F_KafSetPront";
+	mes "[Funcionária Kafra]";
+	mes "Bem-vindo à ";
+	mes "Corporação Kafra.";
+	mes "Os serviços da corporação estão aqui";
+	mes "para dar suporte a você.";
+	mes "Como posso ser";
+	mes "útil hoje?";
+	callfunc "F_Kafra",5,0,0,40,800;
+
+M_Save:
+	savepoint "prontera",157,327;
+	callfunc "F_KafEnd",0,1," na cidade de Prontera";
+}
+
+// Sul
+//============================================================
+prontera,151,29,0	script	Funcionária Kafra::kaf_prontera2	115,{
+	cutin "kafra_03",2;
+	callfunc "F_KafSetPront";
+	mes "[Funcionária Kafra]";
+	mes "Bem-vindo!";
+	mes "Os serviços da Corporação Kafra";
+	mes "estão sempre ao seu lado.";
+	mes "Então como posso ajudar?";
+	callfunc "F_Kafra",5,0,0,40,800;
+
+	M_Save:
+		savepoint "prontera",150,33;
+		callfunc "F_KafEnd",0,1," na cidade de Prontera";
+}
+
+// Oeste
+//============================================================
+prontera,29,207,6	script	Funcionária Kafra::kaf_prontera3	113,{
+	cutin "kafra_05",2;
+	callfunc "F_KafSetPront";
+	mes "[Funcionária Kafra]";
+	mes "A Corporação Kafra";
+	mes "está sempre trabalhando para fornecer";
+	mes "serviços convenientes.";
+	mes "Como posso lhe ser útil?";
+	callfunc "F_Kafra",5,0,0,40,800;
+
+	M_Save:
+		savepoint "prontera",33,208;
+		callfunc "F_KafEnd",0,1," na cidade de Prontera";
+}
+
+// Leste
+//============================================================
+prontera,282,200,2	script	Funcionária Kafra::kaf_prontera4	114,{
+	cutin "kafra_04",2;
+	callfunc "F_KafSetPront";
+	mes "[Funcionária Kafra]";
+	mes "Bem-vindo à";
+	mes "Corporação Kafra.";
+	mes "que sempre apoiará os aventureiros";
+	mes "de Rune-Midgard";
+	mes "com excelentes serviços.";
+	mes "O que posso fazer por você hoje?";
+	callfunc "F_Kafra",5,0,0,40,800;
+
+	M_Save:
+		savepoint "prontera",281,203;
+		callfunc "F_KafEnd",0,1," na cidade de Prontera";
+}
+
+// Centro
+//============================================================
+prontera,146,89,6	script	Funcionária Kafra::kaf_prontera5	117,{
+	cutin "kafra_01",2;
+	callfunc "F_KafSetPront";
+	mes "[Funcionária Kafra]";
+	mes "Bem-vindo à";
+	mes "Corporação Kafra.";
+	mes "Os serviços da Corporação Kafra";
+	mes "sempre estarão ao seu lado.";
+	mes "Em que posso ajudar?";
+	callfunc "F_Kafra",5,0,0,40,800;
+
+M_Save:
+	savepoint "prontera",116,73;
+	callfunc "F_KafEnd",0,1," na cidade de Prontera";
+}
+
+
+// Função: Seta as variáveis para as Kafras de Prontera
+//============================================================
+function	script	F_KafSetPront	{
+	cleararray @wrpC$[0],"",getarraysize(@wrpC$);
+	setarray @wrpD$[0], "Izlude", "Geffen", "Payon", "Morroc", "Calabouço dos Orcs", "Alberta";
+	setarray @wrpP[0], 600, 1200, 1200, 1200, 1200, 1800;
+	set @wrpC$[0], @wrpD$[0]+" -> "+@wrpP[0];
+	set @wrpC$[1], @wrpD$[1]+" -> "+@wrpP[1];
+	set @wrpC$[2], @wrpD$[2]+" -> "+@wrpP[2];
+	set @wrpC$[3], @wrpD$[3]+" -> "+@wrpP[3];
+	set @wrpC$[4], @wrpD$[4]+" -> "+@wrpP[4];
+	set @wrpC$[5], @wrpD$[5]+" -> "+@wrpP[5];
+	set @wrpC$[6], "Cancelar";
+	setarray @viewpX[0], 151, 29, 282, 152;
+	setarray @viewpY[0], 29, 207, 200, 326;
+	return;
+}

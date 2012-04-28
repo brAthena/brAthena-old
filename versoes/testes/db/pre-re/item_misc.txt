@@ -1,0 +1,688 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Database: item_misc.txt                        |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Descrição: Banco de Dados contendo os drops de itens   |
+// | de Caixas.                                             |
+// |--------------------------------------------------------|
+// | Estrutura do Banco de Dados:                           |
+// | ID do Grupo de Itens, ID do Item, Taxa                 |
+// \________________________________________________________/
+//
+//=============================================================
+// Kit de Primeiros Socorros
+//=============================================================
+8,501,5		// Poção Vermelha -> 0,05%
+8,502,5		// Poção Laranja -> 0,05%
+8,503,5		// Poção Amarela -> 0,05%
+8,504,5		// Poção Branca -> 0,05%
+8,505,5		// Poção Azul -> 0,05%
+8,506,5		// Poção Verde -> 0,05%
+8,545,5		// Poção Vermelha Compacta -> 0,05%
+8,546,5		// Poção Amarela Compacta -> 0,05%
+8,547,5		// Poção Branca Compacta -> 0,05%
+8,569,5		// Poção de Aprendiz -> 0,05%
+8,605,5		// Analgésico -> 0,05%
+8,645,5		// Poção da Concentração -> 0,05%
+8,656,5		// Poção do Despertar -> 0,05%
+8,657,5		// Poção da Fúria Selvagem -> 0,05%
+8,678,1		// Garrafa de Veneno -> 0,01%
+8,12016,4	// Poção do Vento -> 0,04%
+8,12017,5	// Poção da Lentidão -> 0,05%
+8,12020,5	// Água Amaldiçoada -> 0,05%
+//=============================================================
+// Ervas
+//=============================================================
+9,507,1		// Erva Vermelha -> 0,01%
+9,508,1		// Erva Amarela -> 0,01%
+9,509,1		// Erva Branca -> 0,01%
+//=============================================================
+// Frutas
+//=============================================================
+10,512,1	// Maçã -> 0,01%
+10,513,1	// Banana -> 0,01%
+10,514,1	// Uvas -> 0,01%
+10,515,1	// Cenoura -> 0,01%
+10,516,1	// Batata Doce -> 0,01%
+//=============================================================
+// Carne
+//=============================================================
+11,517,1	// Carne -> 0,01%
+11,528,1	// Ração para Monstros -> 0,01%
+//=============================================================
+// Doce
+//=============================================================
+12,529,1	// Bala -> 0,01%
+12,530,1	// Bengala Doce -> 0,01%
+//=============================================================
+// Suco
+//=============================================================
+13,531,1	// Suco de Maçã -> 0,01%
+13,532,1	// Suco de Banana -> 0,01%
+13,534,1	// Suco de Cenoura -> 0,01%
+//=============================================================
+// Peixe
+//=============================================================
+14,544,1	// Peixe Cru -> 0,01%
+14,551,1	// Sushi -> 0,01%
+//=============================================================
+// Caixas
+//=============================================================
+15,603,1	// Velha Caixa Azul -> 0,01%
+15,617,1	// Velha Caixa Roxa -> 0,01%
+15,644,1	// Caixa de Presente -> 0,01%
+//=============================================================
+// Gemas
+//=============================================================
+16,715,1	// Gema Amarela -> 0,01%
+16,716,1	// Gema Vermelha -> 0,01%
+16,717,1	// Gema Azul -> 0,01%
+//=============================================================
+// Poções de Resistência Elemental
+//=============================================================
+17,12118,1	// Poção Anti-Fogo -> 0,01%
+17,12119,1	// Poção Anti-Água -> 0,01%
+17,12120,1	// Poção Anti-Terra -> 0,01%
+17,12121,1	// Poção Anti-Vento -> 0,01%
+//=============================================================
+// Minérios
+//=============================================================
+18,1002,30	// Minério de Ferro -> 0,30%
+18,998,28	// Ferro -> 0,28%
+18,993,26	// Vida Verdejante -> 0,26%
+18,1003,24	// Carvão -> 0,24%
+18,992,22	// Frescor do Vento -> 0,22%
+18,1010,20	// Fracon -> 0,20%
+18,991,18	// Cristal Azul -> 0,18%
+18,990,16	// Sangue Escarlate -> 0,16%
+18,999,14	// Aço -> 0,14%
+18,1011,12	// Emveretarcon -> 0,12%
+18,757,10	// Minério de Elunium -> 0,10%
+18,756,9	// Minério de Oridecon -> 0,09%
+18,997,8	// Natureza Grandiosa -> 0,08%
+18,996,7	// Vento Bruto -> 0,07%
+18,995,6	// Gelo Místico -> 0,06%
+18,994,5	// Coração Flamejante -> 0,05%
+18,985,4	// Elunium -> 0,04%
+18,984,3	// Oridecon -> 0,03%
+18,969,2	// Ouro -> 0,02%
+18,714,1	// Emperium -> 0,01%
+//=============================================================
+// Tipos de Comida
+//=============================================================
+19,526,5	// Geléia Real -> 0,05%
+19,12042,10	// Palmípede Temperado -> 0,10%
+19,12057,10	// Macarrão Liso -> 0,10%
+19,12053,10 
+19,12062,10	// Bolo-Mousse de Chocolate -> 0,10%
+19,12068,10	// Batata-Doce Frita -> 0,10%
+19,12047,10	// Chá Vermelho de Outono -> 0,10%
+19,531,30	// Suco de Maçã -> 0,30%
+19,532,30	// Suco de Banana -> 0,30%
+19,533,30	// Suco de Uva -> 0,30%
+19,534,30	// Suco de Cenoura -> 0,30%
+19,538,30	// Biscoito de Gengibre -> 0,30%
+19,536,50	// Sorvete -> 0,50%
+19,544,50	// Peixe Cru -> 0,50%
+19,548,50	// Queijo -> 0,50%
+19,551,50	// Sushi -> 0,50%
+19,553,50	// Pão de Carne -> 0,50%
+19,554,50	// Mochi -> 0,50%
+19,535,50	// Abóbora -> 0,50%
+19,516,100	// Batata Doce -> 1,00%
+19,513,100	// Banana -> 1,00%
+19,512,600	// Maçã -> 6,00%
+//=============================================================
+// Itens de Recuperação
+//=============================================================
+20,522,5	// Mastela -> 0,05%
+20,521,5	// Folha de Aloe -> 0,05%
+20,520,10	// Folha de Hinalle -> 0,10%
+20,545,10	// Poção Vermelha Compacta -> 0,10%
+20,12118,10	// Poção Anti-Fogo -> 0,10%
+20,508,20	// Erva Amarela -> 0,20%
+20,501,20	// Poção Vermelha -> 0,20%
+20,511,30	// Erva Verde -> 0,30%
+20,507,30	// Erva Vermelha -> 0,30%
+20,569,50	// Poção de Aprendiz -> 0,50%
+20,549,50	// Batata Doce Assada -> 0,50%
+20,529,100	// Bala -> 1,00%
+20,528,200	// Ração para Monstros -> 2,00%
+20,550,600	// Bolinhos de Arroz -> 6,00%
+//=============================================================
+// Minerais - Não utilizados
+//=============================================================
+21,714,1	// Emperium -> 0,01%
+21,756,1	// Minério de Oridecon -> 0,01%
+21,757,1	// Minério de Elunium -> 0,01%
+21,969,1	// Ouro -> 0,01%
+21,984,1	// Oridecon -> 0,01%
+21,985,1	// Elunium -> 0,01%
+21,990,1	// Sangue Escarlate -> 0,01%
+21,991,1	// Cristal Azul -> 0,01%
+21,992,1	// Frescor do Vento -> 0,01%
+21,993,1	// Vida Verdejante -> 0,01%
+21,994,1	// Coração Flamejante -> 0,01%
+21,995,1	// Gelo Místico -> 0,01%
+21,996,1	// Vento Bruto -> 0,01%
+21,997,1	// Natureza Grandiosa -> 0,01%
+21,998,1	// Ferro -> 0,01%
+21,999,1	// Aço -> 0,01%
+21,1002,1	// Minério de Ferro -> 0,01%
+21,1003,1	// Carvão -> 0,01%
+21,1010,1	// Fracon -> 0,01%
+21,1011,1	// Emveretarcon -> 0,01%
+//=============================================================
+// Itens de Captura
+//=============================================================
+22,619,1	// Maçã Verde -> 0,01%
+22,620,1	// Suco de Laranja -> 0,01%
+22,621,1	// Erva Amarga -> 0,01%
+22,622,1	// Cenoura Arco-Íris -> 0,01%
+22,623,1	// Minhoca Boa-Pinta -> 0,01%
+22,624,1	// Peixe Podre -> 0,01%
+22,625,1	// Ferro Enferrujado -> 0,01%
+22,626,1	// Suco de Monstro -> 0,01%
+22,627,1	// Leite Doce -> 0,01%
+22,628,1	// Osso Seco -> 0,01%
+22,629,1	// Flor Cantante -> 0,01%
+22,630,1	// Musgo Encharcado -> 0,01%
+22,631,1	// Erva Letal -> 0,01%
+22,632,1	// Minhoca Gorducha -> 0,01%
+22,633,1	// Batata Assada -> 0,01%
+22,634,1	// Banana Tropical -> 0,01%
+22,635,1	// Horror da Tribo -> 0,01%
+22,636,1	// Sem Destinatário -> 0,01%
+22,637,1	// Vassoura Velha -> 0,01%
+22,638,1	// Faca de Prata da Castidade -> 0,01%
+22,639,1	// Bracelete da Obediência -> 0,01%
+22,640,1	// Pedra Brilhante -> 0,01%
+22,641,1	// Contratos das Sombras -> 0,01%
+22,642,1	// Livro do Diabo -> 0,01%
+22,659,1	// Coração Apaixonado -> 0,01%
+22,660,1	// Vela do Marquês de Sade -> 0,01%
+22,661,1	// Avental Elegante -> 0,01%
+22,10001,1	// Elmo de Crânio -> 0,01%
+22,10002,1	// Máscara de Oxigênio para Bichinhos -> 0,01%
+22,10003,1	// Capacete Espacial -> 0,01%
+22,10004,1	// Chupeta -> 0,01%
+22,10005,1	// Peruca -> 0,01%
+22,10006,1	// Ornamento da Rainha -> 0,01%
+22,10007,1	// Laço de Seda -> 0,01%
+22,10008,1	// Pavana -> 0,01%
+22,10009,1	// Flor Selvagem -> 0,01%
+22,10010,1	// Panela Velha -> 0,01%
+22,10011,1	// Ornato Estelar -> 0,01%
+22,10012,1	// Casca de Ovo Minúscula -> 0,01%
+22,10013,1	// Mochila -> 0,01%
+22,10014,1	// Óculos de Rocker -> 0,01%
+22,10015,1	// Laço Verde -> 0,01%
+22,10016,1	// Sino de Ouro -> 0,01%
+22,10017,1	// Saia Havaiana -> 0,01%
+22,10018,1	// Coroa de Macaco -> 0,01%
+22,10019,1	// Pano Vermelho -> 0,01%
+22,10020,1	// Espada chinesa -> 0,01%
+22,12373,1	// Coração Puro -> 0,01%
+22,12374,1	// Chama Azulada -> 0,01%
+22,12395,1	// Guloseima Recheada -> 0,01%
+//=============================================================
+// Pacotes de Pergaminhos de Magia
+//=============================================================
+23,686,1	// Coluna de Pedra Nível 3 -> 0,01%
+23,687,1	// Coluna de Pedra Nível 5 -> 0,01%
+23,688,1	// Lanças de Gelo Nível 3 -> 0,01%
+23,689,1	// Lanças de Gelo Nível 5 -> 0,01%
+23,690,1	// Lanças de Fogo Nível 3 -> 0,01%
+23,691,1	// Lanças de Fogo Nível 5 -> 0,01%
+23,692,1	// Relâmpago Nível 3 -> 0,01%
+23,693,1	// Relâmpago Nível 5 -> 0,01%
+23,694,1	// Espíritos Anciões Nível 3 -> 0,01%
+23,695,1	// Espíritos Anciões Nível 5 -> 0,01%
+23,696,1	// Bolas de Fogo Nível 1 -> 0,01%
+23,697,1	// Bolas de Fogo Nível 5 -> 0,01%
+23,698,1	// Barreira de Fogo Nível 1 -> 0,01%
+23,699,1	// Barreira de Fogo Nível 5 -> 0,01%
+23,700,1	// Rajada Congelante Nível 1 -> 0,01%
+23,12000,1	// Rajada Congelante Nível 5 -> 0,01%
+23,12001,1	// Cura Nível 3 -> 0,01%
+23,12002,1	// Cura Nível 5 -> 0,01%
+//=============================================================
+// Aljaves
+//=============================================================
+24,12004,1	// Aljave -> 0,01%
+24,12005,1	// Aljave de Flechas de Ferro -> 0,01%
+24,12006,1	// Aljave de Flechas de Aço -> 0,01%
+24,12007,1	// Aljave de Flechas de Oridecon -> 0,01%
+24,12008,1	// Aljave de Flechas de Fogo -> 0,01%
+24,12009,1	// Aljave de Flechas de Prata -> 0,01%
+24,12010,1	// Aljave de Flechas de Vento -> 0,01%
+24,12011,1	// Aljave de Flechas de Pedra -> 0,01%
+24,12012,1	// Aljave de Flechas de Cristal -> 0,01%
+24,12013,1	// Aljave de Flechas de Sombra -> 0,01%
+24,12014,1	// Aljave de Flechas Imateriais -> 0,01%
+24,12015,1	// Aljave de Flechas Enferrujadas -> 0,01%
+24,12183,1	// Aljave de Flechas Sagradas -> 0,01%
+//=============================================================
+// Máscaras
+//=============================================================
+25,2278,10	// Máscara Feliz -> 0,10%
+25,2281,10	// Máscara do Fantasma -> 0,10%
+25,2288,10	// Máscara Assustadora -> 0,10%
+25,2292,10	// Máscara de Solda -> 0,10%
+25,2297,10	// Máscara de Goblin -> 0,10%
+25,5005,10	// Máscara de Gás -> 0,10%
+25,5086,10	// Máscara de Alarme -> 0,10%
+25,5087,10	// Máscara sem Expressão -> 0,10%
+25,5088,10	// Máscara Surpresa -> 0,10%
+25,5089,10	// Máscara Aflita -> 0,10%
+25,5090,10	// Máscara de Líder Goblin -> 0,10%
+25,5121,1	// Máscara de Jirtas -> 0,01%
+25,5176,2	// Máscara Hahoe -> 0,02%
+//=============================================================
+// Caixa de Acessórios
+//=============================================================
+26,2601,10	// Anel -> 0,10%
+26,2602,11	// Brinco -> 0,11%
+26,2603,12	// Colar -> 0,12%
+26,2604,12	// Luvas -> 0,12%
+26,2605,12	// Broche -> 0,12%
+26,2607,12	// Presilha -> 0,12%
+26,2608,14	// Rosário -> 0,14%
+26,2609,14	// Anel de Caveira -> 0,14%
+26,2610,14	// Anel de Ouro -> 0,14%
+26,2611,14	// Anel de Prata -> 0,14%
+26,2612,14	// Anel de Flor -> 0,14%
+26,2613,12	// Anel de Diamante -> 0,12%
+26,2615,1	// Anel de Defesa -> 0,01%
+26,2616,1	// Anel Certeiro -> 0,01%
+26,2617,10	// Luva Sacra -> 0,10%
+26,2618,11	// Coleira de Matyr -> 0,11%
+26,2619,10	// Luva de Puxada -> 0,10%
+26,2621,1	// Anel -> 0,01%
+26,2622,1	// Brinco -> 0,01%
+26,2623,10	// Colar -> 0,10%
+26,2624,1	// Luva -> 0,01%
+26,2625,1	// Broche -> 0,01%
+26,2626,1	// Rosário -> 0,01%
+26,2627,10	// Cinto -> 0,10%
+26,2628,14	// Bracelete de Aprendiz -> 0,14%
+26,2654,1	// Cinto Shinobi -> 0,01%
+26,2656,1	// Talismã da Armadura -> 0,01%
+26,2658,10	// Rosa do Nilo -> 0,10%
+26,2659,2	// Núcleo Vesper 01 -> 0,02%
+26,2660,2	// Núcleo Vesper 02 -> 0,02%
+26,2661,2	// Núcleo Vesper 03 -> 0,02%
+26,2662,2	// Núcleo Vesper 04 -> 0,02%
+26,2671,1	// Luva de Puxada -> 0,01%
+26,2700,2	// Brasão de Seda Vermelha -> 0,02%
+26,2701,1	// Luvas de Orleans -> 0,01%
+26,2677,1	// Anel Espiritual -> 0,01%
+26,2680,9	// Anel Elemental Menor -> 0,09%
+26,2703,1	// Anel do Especialista -> 0,01%
+26,2716,1	// Luva de Bibliotecário -> 0,01%
+26,2717,1	// Relógio de Bolso -> 0,01%
+26,2718,1	// Broche Lunático -> 0,01%
+26,2719,1	// Pulso de Ferro -> 0,01%
+//=============================================================
+// Jóias
+//=============================================================
+27,715,100	// Gema Amarela -> 1,00%
+27,716,100	// Gema Vermelha -> 1,00%
+27,717,100	// Gema Azul -> 1,00%
+27,718,10	// Granada -> 0,10%
+27,719,10	// Ametista -> 0,10%
+27,720,10	// Aquamarina -> 0,10%
+27,721,10	// Esmeralda -> 0,10%
+27,722,10	// Pérola -> 0,10%
+27,723,10	// Rubi -> 0,10%
+27,724,10	// Rubi Amaldiçoado -> 0,10%
+27,725,10	// Peridoto -> 0,10%
+27,726,10	// Safira -> 0,10%
+27,727,10	// Opala -> 0,10%
+27,728,10	// Topázio -> 0,10%
+27,729,10	// Zircônio -> 0,10%
+27,730,5	// Diamante de 1 quilate -> 0,05%
+27,731,4	// Diamante de 2 quilates -> 0,04%
+27,732,3	// Diamante de 3 quilates -> 0,03%
+27,733,27	// Diamante Rachado -> 0,27%
+27,746,50	// Bolinha de Gude -> 0,50%
+//=============================================================
+// Ovo do Festival de Dano
+//=============================================================
+32,514,300	// Uvas -> 3,00%
+32,564,522	// Bolinho de Arroz -> 5,22%
+32,660,20	// Vela do Marquês de Sade -> 0,20%
+32,682,100	// Bebida de Realgar -> 1,00%
+32,683,50	// Erva de Exorcismo -> 0,50%
+32,2235,2	// Coroa -> 0,02%
+32,2274,5	// Faixa de Fantasma -> 0,05%
+32,5072,1	// Chifre de Incubus -> 0,01%
+//=============================================================
+// Ovo do Festival de Dano
+//=============================================================
+33,514,300	// Uvas -> 3,00%
+33,564,522	// Bolinho de Arroz -> 5,22%
+33,661,20	// Avental Elegante -> 0,20%
+33,682,100	// Bebida de Realgar -> 1,00%
+33,683,50	// Erva de Exorcismo -> 0,50%
+33,2234,2	// Diadema -> 0,02%
+33,5042,5	// Bao-Bao -> 0,05%
+33,5066,1	// Chifre de Succubus -> 0,01%
+//=============================================================
+// Lotto Box
+//=============================================================
+35,7391,1	// Lotto Ball 31 -> 0,01%
+35,7392,1	// Lotto Ball 32 -> 0,01%
+35,7393,1	// Lotto Ball 33 -> 0,01%
+35,7394,1	// Lotto Ball 34 -> 0,01%
+35,7395,1	// Lotto Ball 35 -> 0,01%
+35,7396,1	// Lotto Ball 36 -> 0,01%
+35,7397,1	// Lotto Ball 37 -> 0,01%
+35,7398,1	// Lotto Ball 38 -> 0,01%
+35,7540,1	// Lotto Ball 39 -> 0,01%
+35,7541,1	// Lotto Ball 40 -> 0,01%
+//=============================================================
+// Pacote de Comida
+//=============================================================
+36,512,1	// Maçã -> 0,01%
+36,513,1	// Banana -> 0,01%
+36,514,1	// Uvas -> 0,01%
+36,515,1	// Cenoura -> 0,01%
+36,516,1	// Batata Doce -> 0,01%
+36,517,1	// Carne -> 0,01%
+36,518,1	// Mel -> 0,01%
+36,519,1	// Leite -> 0,01%
+36,520,1	// Folha de Hinalle -> 0,01%
+36,521,1	// Folha de Aloe -> 0,01%
+36,522,1	// Mastela -> 0,01%
+36,526,1	// Geléia Real -> 0,01%
+36,529,1	// Bala -> 0,01%
+36,530,1	// Bengala Doce -> 0,01%
+36,531,1	// Suco de Maçã -> 0,01%
+36,532,1	// Suco de Banana -> 0,01%
+36,533,1	// Suco de Uva -> 0,01%
+36,534,1	// Suco de Cenoura -> 0,01%
+36,536,1	// Sorvete -> 0,01%
+36,538,1	// Biscoito de Gengibre -> 0,01%
+36,539,1	// Pedaço de Bolo -> 0,01%
+36,544,1	// Peixe Cru -> 0,01%
+36,548,1	// Queijo -> 0,01%
+36,549,1	// Batata Doce Assada -> 0,01%
+36,550,1	// Bolinhos de Arroz -> 0,01%
+36,551,1	// Sushi -> 0,01%
+36,553,1	// Pão de Carne -> 0,01%
+36,554,1	// Mochi -> 0,01%
+36,555,1	// Bolinho de Arroz -> 0,01%
+36,556,1	// Bolinho de Arroz no Palito -> 0,01%
+36,557,1	// Fatia de Bolo de Arroz -> 0,01%
+36,558,1	// Chocolate -> 0,01%
+36,559,1	// Chocolate Caseiro -> 0,01%
+36,560,1	// Chocolate Branco feito a mão -> 0,01%
+36,561,1	// Chocolate Branco -> 0,01%
+36,564,1	// Bolinho de Arroz -> 0,01%
+36,566,1	// Sopa Tailandesa -> 0,01%
+36,567,1	// Camarão -> 0,01%
+36,568,1	// Limão -> 0,01%
+36,576,1	// Fruta Espinhosa -> 0,01%
+36,607,1	// Fruto de Yggdrasil -> 0,01%
+36,608,1	// Semente de Yggdrasil -> 0,01%
+36,663,1	// Ovos de Chocolate Branco -> 0,01%
+36,669,1	// Sopa de Arroz -> 0,01%
+//=============================================================
+// Poções
+//=============================================================
+37,501,1	// Poção Vermelha -> 0,01%
+37,502,1	// Poção Laranja -> 0,01%
+37,503,1	// Poção Amarela -> 0,01%
+37,504,1	// Poção Branca -> 0,01%
+//=============================================================
+// Caixa Vermelha
+//=============================================================
+38,5137,1	// Boneca de Alice -> 0,01%
+38,5138,9	// Chapéu do Olho Mágico -> 0,09%
+38,5139,10	// Hibiscus -> 0,10%
+38,5140,10	// Lacinho Meigo -> 0,0%
+//=============================================================
+// Velha Caixa Azul
+//=============================================================
+39,687,1	// Coluna de Pedra Nível 5 -> 0,01%
+39,689,1	// Lanças de Gelo Nível 5 -> 0,01%
+39,691,1	// Lanças de Fogo Nível 5 -> 0,01%
+39,693,1	// Relâmpago Nível 5 -> 0,01%
+39,697,1	// Bolas de Fogo Nível 5 -> 0,01%
+39,699,1	// Barreira de Fogo Nível 5 -> 0,01%
+39,12002,1	// Cura Nível 5 -> 0,01%
+39,12000,1	// Rajada Congelante Nível 5 -> 0,01%
+39,644,1	// Caixa de Presente -> 0,01%
+39,519,1	// Leite -> 0,01%
+39,538,1	// Biscoito de Gengibre -> 0,01%
+//=============================================================
+// Caixa Vermelha
+//=============================================================
+40,5187,10	// Lacinhos Floridos -> 0,10%
+40,5181,11	// Máscara do Senhor das Trevas -> 0,11%
+40,5182,1	// Chapéu de Cachorrinho -> 0,01%
+40,5186,11	// Tiara de Planta Carnívora -> 0,11%
+40,5185,11	// Grinalda de Flores -> 0,11%
+40,5183,11	// Chapéu de Ninho -> 0,11%
+40,5137,11	// Boneca de Alice -> 0,11%
+40,5139,11	// Hibiscus -> 0,11%
+40,5138,11	// Chapéu do Olho Mágico -> 0,11%
+40,5140,11	// Lacinho Meigo -> 0,11%
+40,5152,1	// Coroa Chinesa -> 0,01%
+40,5142,11	// Elmo de Samurai -> 0,11%
+40,5143,12	// Máscara de Kabuki -> 0,12%
+40,5099,12	// Chapéu de Gatinho -> 0,12%
+//=============================================================
+// Caixa Verde
+//=============================================================
+41,12075,100	// Língua no Vapor -> 1,00%
+41,12080,100	// Coquetel Sopro do Dragão -> 1,00%
+41,12085,100	// Cozido Imortal -> 1,00%
+41,12090,100	// Escorpiões do Deserto no Vapor -> 1,00%
+41,12095,100	// Tônico de Hwergelmir -> 1,00%
+41,12100,100	// Nove Caudas Cozidas -> 1,00%
+41,607,100	// Fruto de Yggdrasil -> 1,00%
+41,608,100	// Semente de Yggdrasil -> 1,00%
+41,12018,100	// Fogo de Artifício -> 1,00%
+41,573,100	// Chocolate Quente -> 1,00%
+41,5182,1	// Chapéu de Cachorrinho -> 0,01%
+//=============================================================
+// Velha Caixa Amarela
+//=============================================================
+42,5259,1	// Chapéu de Elefante 2.0 -> 0,01%
+42,5260,1	// Cookie Hat -> 0,01%
+42,5261,1	// Diadema Prateada -> 0,01%
+42,5262,1	// Diadema Dourada -> 0,01%
+//=============================================================
+// Velha Caixa de Presente
+//=============================================================
+43,5271,15	// Coroa Chique -> 0,15%
+43,5272,40	// Máscara Juvenil -> 0,40%
+43,5270,45	// Folhas de Outono -> 0,45%
+//=============================================================
+// Album de Carta Mágico
+//=============================================================
+44,4040,10	// Carta Creamy -> 0,10%
+44,4047,1	// Carta Ghostring -> 0,01%
+44,4054,1	// Carta Angeling -> 0,01%
+44,4155,1	// Carta Líder Goblin -> 0,01%
+44,4163,1	// Carta Grifo -> 0,01%
+44,4169,1	// Carta Ilusão das Trevas -> 0,01%
+44,4174,1	// Carta Deviling -> 0,01%
+44,4179,10	// Carta Libélula -> 0,10%
+44,4183,10	// Carta Lobo Errante -> 0,10%
+44,4197,10	// Carta Mastering -> 0,10%
+44,4198,1	// Carta Maya Macho -> 0,01%
+44,4203,10	// Carta Dragão Mutante -> 0,10%
+44,4207,1	// Carta Mysteltainn -> 0,01%
+44,4211,1	// Carta Vocal -> 0,01%
+44,4237,5	// Carta Duque Coruja -> 0,05%
+44,4238,5	// Carta Barão Coruja -> 0,05%
+44,4241,1	// Carta ArchAngeling -> 0,01%
+44,4243,1	// Carta Antonio -> 0,01%
+44,4250,1	// Carta Executor -> 0,01%
+44,4254,1	// Carta Tirfing -> 0,01%
+44,4266,10	// Carta Eclipse -> 0,10%
+44,4284,10	// Carta Chepet -> 0,10%
+44,4285,10	// Carta Choco -> 0,10%
+44,4290,5	// Carta Gato de Nove Caudas -> 0,05%
+44,4291,10	// Carta Líder Cobold -> 0,10%
+44,4300,10	// Carta Quimera -> 0,10%
+44,4303,10	// Carta Cochicho -> 0,10%
+44,4306,10	// Carta Sapo-Cururu -> 0,10%
+44,4320,1	// Carta Cavaleiro Sanguinário -> 0,01%
+44,4336,1	// Carta Ungoliant -> 0,01%
+44,4354,1	// Carta Gemini-S58 -> 0,01%
+44,4384,1	// Carta Hydrolancer -> 0,01%
+44,4395,3	// Carta Maero de Thanatos -> 0,03%
+44,4396,3	// Carta Odium de Thanatos -> 0,03%
+44,4397,3	// Carta Despero de Thanatos -> 0,03%
+44,4398,3	// Carta Pesar de Thanatos -> 0,03%
+//=============================================================
+// Hometown Gift
+//=============================================================
+45,12195,1	// Plain Rice Cake -> 0,01%
+45,12196,1	// Hearty Rice Cake -> 0,01%
+45,12197,1	// Salty Rice Cake -> 0,01%
+45,12198,1	// Lucky Rice Cake -> 0,01%
+45,12122,1	// Ovinhos Coloridos -> 0,01%
+45,12123,1	// Biscoito de Mel -> 0,01%
+45,12124,1	// Bolo Arco-Íris -> 0,01%
+45,663,1	// Ovos de Chocolate Branco -> 0,01%
+//=============================================================
+// Masquerade Ball Box
+//=============================================================
+46,5296,10	// Drooping Nine Tail -> 0,10%
+46,5297,1	// Soul Wing -> 0,01%
+46,5298,10	// Dokebi's Wig -> 0,10%
+46,5299,10	// Cocar -> 0,10%
+//=============================================================
+// Tresure Box WoE
+//=============================================================
+47,12010,24	// Aljave de Flechas de Vento -> 0,24%
+47,12011,25	// Aljave de Flechas de Pedra -> 0,25%
+47,12012,26	// Aljave de Flechas de Cristal -> 0,26%
+47,12183,7	// Aljave de Flechas Sagradas -> 0,07%
+47,12149,27	// Carregador -> 0,27%
+47,12150,27	// Carregador Sanguinário -> 0,27%
+47,12151,27	// Carregador de Prata -> 0,27%
+47,12105,12	// Kit de Domesticação -> 0,12%
+47,12110,8	// Kit de Primeiros Socorros -> 0,08%
+47,12111,36	// Trouxa de Comida -> 0,36%
+47,12108,9	// Pacote de Pergaminho -> 0,09%
+47,12702,8	// Nova Velha Caixa Azul -> 0,08%
+47,12130,48	// Sacola de Biscoitos -> 0,48%
+47,12194,6	// Present from Home -> 0,06%
+47,12260,22	// Roupas de Praia -> 0,22%
+47,658,6	// União da Tribo -> 0,06%
+47,12107,2	// Máscara Embrulhada -> 0,02%
+47,678,3	// Garrafa de Veneno -> 0,03%
+47,603,6	// Velha Caixa Azul -> 0,06%
+47,732,8	// Diamante de 3 quilates -> 0,08%
+//=============================================================
+// Masquerade Ball Box2
+//=============================================================
+48,5213,13	// Orelhas de Coelho Pretas -> 0,13%
+48,5289,10	// Chapéu de Vanilmirth -> 0,10%
+48,5304,9	// Capuz da Escuridão -> 0,09%
+48,5211,1	// Chapéu de Donzela -> 0,01%
+//=============================================================
+// Easter Scroll
+//=============================================================
+49,638,110	// Faca de Prata da Castidade -> 1,10%
+49,659,110	// Coração Apaixonado -> 1,10%
+49,636,110	// Sem Destinatário -> 1,10%
+49,637,110	// Vassoura Velha -> 1,10%
+49,639,110	// Bracelete da Obediência -> 1,10%
+49,640,110	// Pedra Brilhante -> 1,10%
+49,641,110	// Contratos das Sombras -> 1,10%
+49,642,110	// Livro do Diabo -> 1,10%
+49,643,205	// Incubadora -> 2,05%
+49,2264,1	// Chapéu de Munak -> 0,01%
+49,5046,1	// Chapéu de Bongun -> 0,01%
+49,5167,1	// Chapéu de Munak -> 0,01%
+49,5168,1	// Chapéu de Bongun -> 0,01%
+49,2274,1	// Faixa de Fantasma -> 0,01%
+//=============================================================
+// Caixa do Tesouro de Pierre
+//=============================================================
+50,12018,2	// Fogo de Artifício -> 0,02%
+50,975,3	// Tintura Vermelha -> 0,03%
+50,976,3	// Tintura Amarela -> 0,03%
+50,978,3	// Tintura Azul -> 0,03%
+50,979,3	// Tintura Verde -> 0,03%
+50,980,3	// Tintura Laranja -> 0,03%
+50,981,3	// Tintura Violeta -> 0,03%
+50,982,3	// Tintura Branca -> 0,03%
+50,983,3	// Tintura Preta -> 0,03%
+50,7289,3	// Cristal de Peridoto -> 0,03%
+50,7290,3	// Flogopita -> 0,03%
+50,7291,3	// Ágata -> 0,03%
+50,7292,3	// Moscovita -> 0,03%
+50,7293,3	// Quartzo Rosa -> 0,03%
+50,7294,3	// Turquesa -> 0,03%
+50,7295,3	// Citrina -> 0,03%
+50,7296,3	// Piroxênio -> 0,03%
+50,7297,3	// Biotita -> 0,03%
+50,12075,3	// Língua no Vapor -> 0,03%
+50,12090,3	// Escorpiões do Deserto no Vapor -> 0,03%
+50,12085,3	// Cozido Imortal -> 0,03%
+50,12100,3	// Nove Caudas Cozidas -> 0,03%
+50,12095,3	// Tônico de Hwergelmir -> 0,03%
+50,604,3	// Galho Seco -> 0,03%
+50,617,4	// Velha Caixa Roxa -> 0,04%
+50,644,3	// Caixa de Presente -> 0,03%
+50,603,11	// Velha Caixa Azul -> 0,11%
+50,12103,1	// Galho Sangrento -> 0,01%
+//=============================================================
+// Cherish Box
+//=============================================================
+51,5454,1	// Boneco de Cachorrinho -> 0,01%
+51,5455,4	// Decorative Geographer -> 0,04%
+51,5456,4	// Summer Hat -> 0,04%
+//=============================================================
+// Cherish Box Ori
+//=============================================================
+52,5256,1	// Penacho da Valquíria -> 0,01%
+52,5212,2	// Chapéu de Satélite -> 0,02%
+52,5305,2	// Adaga de Arremesso -> 0,02%
+52,5332,2	// Máscara de Loki -> 0,02%
+52,2712,2	// Collector's Edition Book -> 0,02%
+//=============================================================
+// Caixa de Fantasia da Louise
+//=============================================================
+53,12132,9	// Bolsa de Papai Noel -> 0,09%
+53,12260,1	// Roupas de Praia -> 0,01%
+//=============================================================
+// Presente de Natal
+//=============================================================
+54,14550,3	// Fogos de Artifício: Natal -> 0,03%
+54,14546,3	// Fogos de Artifício: Dia dos Namorados 1 -> 0,03%
+54,644,33	// Caixa de Presente -> 0,33%
+54,12702,18	// Nova Velha Caixa Azul -> 0,18%
+54,12105,3	// Kit de Domesticação -> 0,03%
+54,12107,3	// Máscara Embrulhada -> 0,03%
+54,603,12	// Velha Caixa Azul -> 0,12%
+54,12108,6	// Pacote de Pergaminho -> 0,06%
+54,12354,21	// Sobremesa de Noel -> 0,21%
+54,12016,6	// Poção do Vento -> 0,06%
+54,12017,6	// Poção da Lentidão -> 0,06%
+54,12130,6	// Sacola de Biscoitos -> 0,06%
+54,12132,3	// Bolsa de Papai Noel -> 0,03%
+54,12110,6	// Kit de Primeiros Socorros -> 0,06%
+54,732,6	// Diamante de 3 quilates -> 0,06%
+54,559,9	// Chocolate Caseiro -> 0,09%
+54,560,9	// Chocolate Branco feito a mão -> 0,09%
+54,573,9	// Chocolate Quente -> 0,09%
+54,5136,6	// Gorro de Natal do Antonio -> 0,06%

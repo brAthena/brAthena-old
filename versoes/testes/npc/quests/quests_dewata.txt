@@ -1,0 +1,164 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Quests de Dewata                       |
+// |--------------------------------------------------------|
+// | Criado por: brA Dev. Team                              |
+// |--------------------------------------------------------|
+// | Versões brA: 1.1                                       |
+// |--------------------------------------------------------|
+// | Descrição: Quests de Dewata.                           |
+// |--------------------------------------------------------|
+// | Changelog:                                             |
+// | 1.0 Script Criado [Protimus]                           |
+// | 1.1 Script Otimizado [brn0]                            |
+// \________________________________________________________/
+
+dew_in01,15,49,5	script	Cacique de Dewata	540,{
+	if (!checkweight(1101,2)) {
+		mes "^3355FFEspere!!";
+		mes "Você está carregando muitos itens consigo.";
+		mes "Por favor, volte depois que guardar seus itens.^000000";
+		close;
+	}
+	mes "[Cacique de Dewata]";
+	if (dewdungeon < 1) {
+		mes "Olá estrangeiro, você veio para visitar a ilha vulcânica de Krakatoa?";
+		next;
+		if(select("Sim.:Não.")==2) {
+			mes "[Cacique de Dewata]";
+			mes "Então vá embora, estrangeiros nos causam problemas.";
+			close;
+		}
+		mes "[Cacique de Dewata]";
+		mes "Primeiro você precisa me ajudar.";
+		next;
+		set dewdungeon,1;
+		mes "[Cacique de Dewata]";
+		mes "Traga-me ^0000FF15 Cendrawasih Feathers^000000, precisamos deles para fazer chápeus para nossa tribo.";
+		close;
+	}
+	if (dewdungeon == 1){
+		if(countitem(6405) < 15) {
+			mes "Onde estão os ^0000FF15 Cendrawasih Feathers^000000 que eu pedi?";
+			close;
+		}
+		mes "Você provou o seu valor, agora você pode viajar para a ilha vulcânica de Krakatoa.";
+		next;
+		mes "[Cacique de Dewata]";
+		mes "Guarde este ^0000FFShining Cendrawasih Feather^000000 como prova de que você faz parte de nossa tribo.";
+		next;
+		delitem 6405,15;
+		getitem 6406,1;
+		getitem 18520,1;
+		set dewdungeon,2;
+		mes "[Cacique de Dewata]";
+		mes "Você também pode ter um dos nossos chápeus lutando com os monstros do lado de fora da nossa aldeia.";
+		close;
+	}
+	mes "Agora você pode viajar para a ilha vulcânica de Krakatoa.";
+	next;
+	mes "[Cacique de Dewata]";
+	mes "Fale com o Ferreiro que está nos arredores da aldeia, talvez ele tenha uma arma especial para você.";
+	close;
+}
+
+dew_fild01,127,240,4	script	Ferreiro#dew01	813,{
+	if (!checkweight(13067,1)) {
+		mes "^3355FFEspere!!";
+		mes "Você está carregando muitos itens consigo.";
+		mes "Por favor, volte depois que guardar seus itens.^000000";
+		close;
+	}
+	mes "[Ferreiro]";
+	if (dewdungeon < 2) {
+		mes "O dia hoje está ótimo.";
+		next;
+		mes "[Ferreiro]";
+		mes "Não se preocupe comigo, estes monstros não são páreos para mim enquanto eu tiver esse punhal!";
+		close;
+	}
+	if (dewdungeon == 2) {
+		mes "Ah, você quer este punhal também?";
+		next;
+		mes "[Ferreiro]";
+		mes "É muito chato fazê-lo mas irei abrir uma excessão para você.";
+		next;
+		set dewdungeon,3;
+		mes "[Ferreiro]";
+		mes "Vá para a ilha vulcânica e pegue ^0000FF100 Comodo Leathers^000000 para mim.";
+		close;
+	}
+	if ((dewdungeon == 3 || dewdungeon == 4) && countitem(6403) < 100) {
+		mes "Onde estão as ^0000FF100 Comodo Leathers^000000 que eu pedi?";
+		close;
+	}
+	if (dewdungeon == 3) {
+		mes "Ótimo, você já tem os 100.";
+		mes "Deixe-me forjar o item necessário para o punhal!";
+		next;
+		delitem 6403,100;
+		getitem 6404,1;
+		set dewdungeon,4;
+		mes "[Ferreiro]";
+		mes "Tudo pronto! Agora para fazer o resto do punhal eu vou precisar de mais ^0000FF100 Comodo Leathers^000000.";
+		mes "Não me deixe esperando!";
+		close;
+	}
+	if (dewdungeon == 4) {
+		mes "Certo, você trouxe todos os 100!  Deixe-me fazer o punhal para você.";
+		next;
+		delitem 6403,100;
+		delitem 6404,1;
+		getitem 13067,1;
+		set dewdungeon,5;
+		mes "[Ferreiro]";
+		mes "Pronto! Esse punhal pode curá-lo em pequenas quantias enquanto você ataca um inimigo, faça bom uso!";
+		close;
+	}
+	mes "Está gostando do meu punhal?";
+	close;
+}
+
+dewata,234,64,4	script	Sailor#dew01	540,{
+	mes "[Sailor]";
+	if (dewdungeon < 2) {
+		mes "Você não pode ir para a ilha sem a permissão do Cacique.";
+		close;
+	}
+	mes "O Cacique disse que você pode ir até a ilha, você quer ir?";
+	next;
+	if(select("Sim.:Não.")==2) {
+		mes "[Sailor]";
+		mes "Ok, faça como quiser.";
+		close;
+	}
+	mes "[Sailor]";
+	mes "Ok, então irei te teleportar.";
+	close2;
+	warp "dew_dun01",291,160;
+	end;
+}
+
+dew_dun01,291,164,4	script	Sailor#dew02	540,{
+	mes "[Sailor]";
+	mes "Você quer voltar?";
+	next;
+	if(select("Sim.:Não.")==2) {
+		mes "[Sailor]";
+		mes "Ok, faça como quiser.";
+		close;
+	}
+	mes "[Sailor]";
+	mes "Ok, então irei te teleportar.";
+	close2;
+	warp "dewata",234,60;
+	end;
+}

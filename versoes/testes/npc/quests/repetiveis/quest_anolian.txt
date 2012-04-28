@@ -1,0 +1,247 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nãome do Script: Quests Repetíveis - Anolian           |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.0/1.1                                |
+// |--------------------------------------------------------|
+// | Descrição: Quests repetíveis para ganho de EXP.        |
+// |--------------------------------------------------------|
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [insidemybrain]                   |
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// \_______________________________________________________/
+
+cmd_fild01,362,256,3	script	Cuir#Gator_Hunt	106,{
+	if (checkquest(60119) != -1) {
+		if (checkquest(60119,HUNTING) != 2 ) {
+			mes "[Cuir]";
+			mes "Você terminou de caçar os 50 Anolians?";
+			next;
+			switch(select("Sim.:Não.:Quero desistir.")) {
+			case 1:
+				mes "[Cuir]";
+				mes "Hm... Acho que você não terminou de caçar os 50 Anolians.";
+				close;
+			case 2:
+				mes "[Cuir]";
+				mes "Lembre-se, eu preciso de ajuda para caçar os 50 Anolians.";
+				close;
+			case 3:
+				mes "[Cuir]";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
+				next;
+				switch(select("Sim.:Não.")) {
+				case 1:
+					mes "[Cuir]";
+					mes "Tudo bem então, volte quando mudar de idéia.";
+					erasequest 60119;
+					close;
+				case 2:
+					mes "[Cuir]";
+					mes "Por favor mate 50 Anolians.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Cuir]";
+			mes "Impressionante! Você conseguiu completar a quest com facilidade.";
+			getexp 68950,43300;
+			erasequest 60119;
+			close;
+		}
+	}
+	if (checkquest(60120) != -1) {
+		if (checkquest(60120,HUNTING) != 2 ) {
+			mes "[Cuir]";
+			mes "Você terminou de caçar os 100 Anolians?";
+			next;
+			switch(select("Sim.:Não.:Quero desistir.")) {
+			case 1:
+				mes "[Cuir]";
+				mes "Hm... Acho que você não terminou de caçar os 100 Anolians.";
+				close;
+			case 2:
+				mes "[Cuir]";
+				mes "Lembre-se, eu preciso de ajuda para caçar os 100 Anolians.";
+				close;
+			case 3:
+				mes "[Cuir]";
+				mes "Você tem certeza que deseja parar de caçar?";
+				mes "Tudo o que você já fez será inválidado.";
+				next;
+				switch(select("Sim.:Não.")) {
+				case 1:
+					mes "[Cuir]";
+					mes "Tudo bem então, volte quando mudar de idéia.";
+					erasequest 60120;
+					close;
+				case 2:
+					mes "[Cuir]";
+					mes "Por favor mate 100 Anolians.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Cuir]";
+			mes "Impressionante! Você conseguiu completar a quest com facilidade.";
+			getexp 68950,43300;
+			getexp 68950,43300;
+			erasequest 60120;
+			close;
+		}
+	}
+	if (checkquest(60121) != -1) {
+		if (checkquest(60121,HUNTING) != 2 ) {
+			mes "[Cuir]";
+			mes "Você terminou de caçar os 150 Anolians?";
+			next;
+			switch(select("Sim.:Não.:Quero desistir.")) {
+			case 1:
+				mes "[Cuir]";
+				mes "Hm... Acho que você não terminou de caçar os 150 Anolians.";
+				close;
+			case 2:
+				mes "[Cuir]";
+				mes "Lembre-se, eu preciso de ajuda para caçar os 150 Anolians.";
+				close;
+			case 3:
+				mes "[Cuir]";
+				mes "Você tem certeza que deseja parar a caça?";
+				mes "Tudo o que você já fez será inválidado.";
+				next;
+				switch(select("Sim.:Não.")) {
+				case 1:
+					mes "[Cuir]";
+					mes "Tudo bem então, volte quando mudar de idéia.";
+					erasequest 60121;
+					close;
+				case 2:
+					mes "[Cuir]";
+					mes "Por favor mate 150 Anolians.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Cuir]";
+			mes "Impressionante! Você conseguiu completar a quest com facilidade.";
+			getexp 68950,43300;
+			getexp 68950,43300;
+			getexp 68950,43300;
+			erasequest 60121;
+			close;
+		}
+	}
+	// Para level mínimo
+	if (BaseLevel > 44) {
+		// Para level máximo
+		if (BaseLevel < 81) {
+			mes "[Cuir]";
+			mes "Você parece um aventureiro resistente!";
+			next;
+			mes "[Cuir]";
+			mes "Vim para cá porque existem muitos Anolians para minha pesquisa, mas essa tarefa é difícil de se realizar sozinho.";
+			mes "Você gostaria de me ajudar?";
+			next;
+			switch(select("Claro.:Não.")) {
+			case 1:
+				mes "[Cuir]";
+				mes "Você pode me ajudar caçando Anolians ou pegando a pele deles.";
+				mes "O que você deseja fazer?";
+				next;
+				switch(select("Pegar peles.:Caçar os Anolians.:Cancelar.")) {
+				case 1:
+					mes "[Cuir]";
+					mes "Se você me trouxer ^00CC0020 Peles de Anolian^000000, eu posso ajudar você a ficar mais forte.";
+					next;
+					switch(select("Eu tenho as Peles de Anolian.:Mas jacarés mordem!")) {
+					case 1:
+						/*
+						if (checkweight(503,10) == 0) {
+							mes "[Cuir]";
+							mes "Ei, parece que você vai ser esmagado pelo peso nas suas costas.";
+							mes "Volte quando não estiver carregando tanta coisa.";
+							close;
+						}
+						*/
+						if (countitem(7003) > 19) {
+							mes "[Cuir]";
+							mes "Agradeço pelas ^FF000020 Peles de Anolian^000000!";
+							mes "Espero que continue me ajudando a juntar essas peles.";
+							mes "Os fabricantes de armaduras do mundo inteiro estão atrás delas.";
+							delitem 7003,20; // Pele de Anolian
+							getexp 68950,43300;
+							//getitem 503,10; // Poção Amarela
+							close;
+						}
+						else {
+							mes "[Cuir]";
+							mes "Eu reconheço uma pele de jacaré quando a vejo e isso não são ^FF000020 Peles de Anolian^000000.";
+							close;
+						}
+					case 2:
+						mes "[Cuir]";
+						mes "Eu preciso de ^FF000020 Peles de Anolian^000000.";
+						close;
+					}
+				case 2:
+					// Matar Anolians
+					mes "[Cuir]";
+					mes "Então gostaria de caçar Anolians, não é?";
+					mes "Quantos gostaria de caçar?";
+					next;
+					switch(select("50 Anolians.:100 Anolians.:150 Anolians.")) {
+					case 1:
+						mes "[Cuir]";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
+						setquest 60119;
+						close;
+					case 2:
+						mes "[Cuir]";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
+						setquest 60120;
+						close;
+					case 3:
+						mes "[Cuir]";
+						mes "Volte quando terminar o serviço e darei-lhe uma pequena recompensa.";
+						setquest 60121;
+						close;
+					}
+				case 3:
+					mes "[Cuir]";
+					mes "Caso mude de idéia, venha falar comigo novamente.";
+					close;
+				}
+			case 2:
+				mes "[Cuir]";
+				mes "Caso mude de idéia, venha falar comigo novamente.";
+				close;
+			}
+		}
+		else {
+			mes "[Cuir]";
+			mes "Você é poderoso demais para esta tarefa, e eu preciso das peles em boas condições, não destruídas!";
+			next;
+			close;
+		}
+	}
+	else {
+		mes "[Cuir]";
+		mes "Você certamente é corajoso, mas a coragem se torna loucura se você continuar a ir para o Leste.";
+		mes "Talvez quando ficar mais forte você e eu possamos fazer negócios.";
+		close;
+	}
+}

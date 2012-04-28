@@ -1,0 +1,84 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Database: skill_castnodex_db.txt               |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Descrição: Database das habilidades que dispensam      |
+// | tempo de conjuração.                                   |
+// |--------------------------------------------------------|
+// | Estrutura do Banco de Dados:                           |
+// | <Skill id>,<Cast>,<Delay (optional)>                   |
+// |                                                        |
+// | Cast: 0 - everything affects the skill's cast time     |
+// |       1 - skill's cast time is not affected by dex     |
+// |       2 - skill's cast time is not affected by         |
+// |       statuses (Suffragium, etc)                       |
+// |       4 - skill's cast time is not affected by item    |
+// |       bonuses (equip, cards)                           |
+// |                                                        |
+// | Delay: 0 - everything affects the skill's delay        |
+// |        1 - skill's delay is not affected by dex        |
+// |        2 - skill's delay is not affected by            |
+// |        Magic Strings / Bragi                           |
+// |        4 - skill's delay is not affected by item       |
+// |        bonuses (equip, cards)                          |
+// |                                                        |
+// | Note: Values are bit fields, add them up to combine    |
+// | their effects.                                         |
+// | Note: Delay setting 1 only makes sense when            |
+// | delay_dependon_dex is enabled.                         |
+// | Ex.: 46,1,1 = Double Strafe's cast time and delay is   |
+// | not affected by dex.                                   |
+// \________________________________________________________/
+//
+//============================================================
+// Habilidades das Classes
+//============================================================
+136,0,2	// AS_SONICBLOW#Lâminas Destruidoras#
+263,0,2	// MO_TRIPLEATTACK#Combo Triplo#
+272,0,2	// MO_CHAINCOMBO#Combo Quádruplo#
+273,0,2	// MO_COMBOFINISH#O Último Dragão#
+336,1	// WE_CALLPARTNER#Saudades de Você#
+366,1	// HW_MAGICPOWER#Amplificação Mística#
+370,1	// CH_PALMSTRIKE#Golpe da Palma em Fúria#
+371,0,2	// CH_TIGERFIST#Punho do Tigre#
+372,0,2	// CH_CHAINCRUSH#Combo Esmagador#
+394,0,2	// CG_ARROWVULCAN#Vulcão de Flechas#
+403,3	// PF_MEMORIZE#Presciência#
+408,1	// WE_BABY#Mãe Pai amo vocês!#
+409,1	// WE_CALLPARENT#Mãe Pai cadê vocês?#
+410,1	// WE_CALLBABY#Vem cá filhote!#
+482,1	// PF_DOUBLECASTING#Lanças Duplas#
+462,1	// SL_KAIZEL#Kaizel#
+496,1	// AM_TWILIGHT1#Criação Espiritual de Poções#
+497,1	// AM_TWILIGHT2#Criação Espiritual de Poções#
+498,1	// AM_TWILIGHT3#Criação Espiritual de Poções#
+512,3	// GS_TRACKING#Rastrear o Alvo#
+1014,1	// PR_REDEMPTIO#Martírio#
+10010,3	// GD_BATTLEORDER#Comando de Batalha#
+10011,3	// GD_REGENERATION#Regeneração#
+10012,6	// GD_RESTORE#Restauração#
+10013,7	// GD_DEVELOPMENT#Desenvolvimento Permanente#
+//============================================================
+// Habilidades dos Assistentes
+//============================================================
+8214,7	// MA_CHARGEARROW#Carregar Flechas#
+8215,7	// MA_SHARPSHOOTING#Tiro Preciso#
+8217,7	// ML_BRANDISH#Brandir Lança#
+8218,7	// ML_SPIRALPIERCE#Perfurar em Espiral#
+8221,7	// ML_DEVOTION#Redenção#
+8222,7	// MER_MAGNIFICAT#Magnificat#
+8225,7	// MER_CRASH#Impacto#
+8234,7	// MER_DECAGI#Diminuir Agilidade#
+8235,7	// MER_SCAPEGOAT#Bode Expiatório#
+8238,7	// MER_KYRIE#Kyrie Eleison#
+8240,7	// MER_INCAGI#Aumentar Agilidade#

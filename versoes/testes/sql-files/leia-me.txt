@@ -1,0 +1,20 @@
+ ___________________________________________________________________________
+/                                                                           \
+|                 _           _   _   _                                      |
+|                | |__  _ __ / \ | |_| |__   ___ _ __   __ _                 |
+|                | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                |
+|                | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                |
+|                |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                |
+|                                                                            |
+|                            brAthena Leia-me                                |
+|----------------------------------------------------------------------------|
+|                                                                            |
+| Os arquivos de atualização do Banco de Dados contidos nesta pasta fazem    |
+| referência às revisões do próprio SVN do brAthena.                         |
+| Caso você esteja migrando do eAthena para o brAthena, certifique-se de ter |
+| aplicado em seu Banco de Dados todos os patchs de 'upgrade' do eAthena     |
+| referente a sua versão (se necessário).                                    |
+|                                                                            |
+| Toda e qualquer dúvida pode ser esclarecida em nosso fórum de suporte.     |
+|                                                                            |
+\___________________________________________________________________________/

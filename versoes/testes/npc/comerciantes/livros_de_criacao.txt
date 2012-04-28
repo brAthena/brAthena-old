@@ -1,0 +1,106 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                     brAthena Script                    |
+// |--------------------------------------------------------|
+// | Nome do Script: Livros de Criação                      |
+// |--------------------------------------------------------|
+// | Criado por: brA Dev. Team                              |
+// |--------------------------------------------------------|
+// | Versão brA: 1.1                                        |
+// |--------------------------------------------------------|
+// | Descrição: NPCs de venda de livros de criação para 	|
+// | habilidades do Bioquímico.                             |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Criado [Protimus]                           |
+// | 1.1 Script Otimizado [Architect]						|
+// \________________________________________________________/
+
+alde_alche,31,186,3	script	Vendedor de Livros	883,{
+	mes "[Vendedor de Livros]";
+	mes "Bem-vindo.";
+	mes "Estou aqui para vender";
+	mes "^0000FFlivros especiais de criação^000000 para Bioquímicos.";
+	next;
+	mes "[Vendedor de Livros]";
+	mes "Os Bioquímicos tem algumas habilidades";
+	mes "que precisam dos livros de criação";
+	mes "para serem ativadas.";
+	next;
+	mes "[Vendedor de Livros]";
+	mes "Quanto mais livros de criação você tiver,";
+	mes "mais habilidades você poderá usar.";
+	next;
+	mes "[Vendedor de Livros]";
+	mes "Por favor, entenda que";
+	mes "sou especialista na venda desses";
+	mes "livros especiais e";
+	mes "^FF0000não vendo outros itens^000000.";
+	next;
+	mes "[Vendedor de Livros]";
+	mes "Gostaria de ver os meus livros de criação?";
+	next;
+	if(select("Claro:Não")==2) {
+		mes "[Vendedor de Livros]";
+		mes "Obrigado por vir à minha loja.";
+		mes "Tenha cuidado em sua viagem.";
+		close;
+	}
+	mes "[Vendedor de Livros]";
+	mes "Aqui está a lista dos";
+	mes "livros criação disponíveis.";
+	next;
+	while(1) {
+		set .@sel,select(.menu$);
+		mes "[Vendedor de Livros]";
+		if (.@sel == 11) {
+			mes "Obrigado por sua preferência.";
+			mes "Volte sempre.";
+			close;
+		}
+		mes "^0000FF["+getitemname(.item[.@sel])+"]^000000 custa";
+		mes "100,000 Zenys.";
+		mes "Quantos deles você";
+		mes "gostaria de comprar?";
+		next;
+		input .@craftbook;
+		mes "[Vendedor de Livros]";
+		if (.@craftbook) {
+			mes "Você requisitou "+.@craftbook+" ^0000FF["+getitemname(.item[.@sel])+"]^000000, que custa "+.@craftbook*100000+".";
+			mes "Gostaria de prosseguir?";
+			next;
+			if (select("Sim:Não")==1) {
+				mes "[Vendedor de Livros]";
+				if (Zeny < .@craftbook*100000) {
+					mes "Desculpe-me mas você não tem os";
+					mes "zenys necessários para negociar.";
+				} else {
+					set Zeny,Zeny-.@craftbook*100000;
+					getitem .item[.@sel],.@craftbook;
+					mes "Obrigado por sua preferência.";
+				}
+				close;
+			}
+			mes "[Vendedor de Livros]";
+			mes "Por favor, leve o tempo que for necessário";
+			mes "antes de se decidir.";
+		} else {
+			mes "Gostaria de ver outros livros?";
+		}
+		close2;
+	}
+
+OnInit:
+	setarray .item[1],6279,6280,6281,6282,6283,6284,6285,11022,11023,11024;
+	for(set .@i,1; .@i < getarraysize(.item); set .@i,.@i+1) {
+		set .menu$,.menu$+getitemname(.item[.@i])+":";
+	}
+	set .menu$,.menu$+":Sair";
+	end;
+}

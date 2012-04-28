@@ -1,0 +1,42 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Database: guild_skill_tree.txt                 |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Descrição: Banco de Dados da Árvore de                 |
+// | Habilidades da Clã.                                    |
+// |--------------------------------------------------------|
+// | Estrutura do Banco de Dados:                           |
+// | Skill-ID,MaxLV,Prerequisite Skill-ID-1,                |
+// | Prerequisite Skill-ID-1-Lv,PrereqSkill-ID-2,           |
+// | PrereqSkill-ID-2-Lv,PrereqSkill-ID-3,                  |
+// | PrereqSkill-ID-3-Lv,PrereqSkill-ID-4,                  |
+// | PrereqSkill-ID-4-Lv,PrereqSkill-ID-5,                  |
+// | PrereqSkill-ID-5-Lv                                    |
+// | //GUILD SKILLNAME#Skill Name#                          |
+// \________________________________________________________/
+//
+10000,1,0,0,0,0,0,0,0,0,0,0			// GD_APPROVAL#Autorização Oficial#
+10001,1,10000,1,0,0,0,0,0,0,0,0			// GD_KAFRACONTRACT#Contrato com Kafra#
+10002,1,10000,1,0,0,0,0,0,0,0,0			// GD_GUARDRESEARCH#Comandar Guardiões#
+10003,3,0,0,0,0,0,0,0,0,0,0			// GD_GUARDUP#Fortalecer Guardiões#
+10004,10,0,0,0,0,0,0,0,0,0,0			// GD_EXTENSION#Expandir Clã#
+10005,0,0,0,0,0,0,0,0,0,0,0			// GD_GLORYGUILD#Glória da Guilda#
+10006,5,0,0,0,0,0,0,0,0,0,0			// GD_LEADERSHIP#Grande Liderança#
+10007,5,0,0,0,0,0,0,0,0,0,0			// GD_GLORYWOUNDS#Ferimentos de Glória#
+10008,5,10007,1,0,0,0,0,0,0,0,0			// GD_SOULCOLD#Coração de Frio#
+10009,5,10006,1,0,0,0,0,0,0,0,0			// GD_HAWKEYES#Olhar Apurado#
+10010,1,10000,1,10004,2,0,0,0,0,0,0		// GD_BATTLEORDER#Comando de Batalha#
+10011,3,10000,1,10004,5,10010,1,0,0,0,0		// GD_REGENERATION#Regeneração#
+10012,1,10011,1,0,0,0,0,0,0,0,0			// GD_RESTORE#Restauração#
+10013,1,10000,1,10002,1,10004,5,10010,1,10011,1	// GD_EMERGENCYCALL#Chamado Urgente#
+10014,1,0,0,0,0,0,0,0,0,0,0			// GD_DEVELOPMENT#Desenvolvimento Permanente#

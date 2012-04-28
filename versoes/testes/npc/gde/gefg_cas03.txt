@@ -1,0 +1,138 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Guerra do Emperium (Geffen)            |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.1/1.2                                |
+// |--------------------------------------------------------|
+// | Descrição: NPCs relacionados ao castelo Ruaden.        |
+// |--------------------------------------------------------|
+// | Changelog:               	                            |
+// | 1.0 Script Traduzido [cleyton]                         |
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// | 1.2 Correção de Tradução [Protimus]                    |
+// | - Corrigido erro de concordância nominal               |
+// \________________________________________________________/
+
+// Bandeira do Castelo (Cidade)
+//============================================================
+geffen,120,132,8	script	Ruaden#g3-1::Ruaden	722,{
+	end;
+
+OnRecvCastleG03:
+	FlagEmblem GetCastleData("gefg_cas03",1);
+	end;
+}
+
+// Bandeira do Castelo (Fora do Castelo)
+//============================================================
+gef_fild13,78,182,4	script	Ruaden#g3-2::Ruaden2	722,{
+	set .@GID, GetCastleData("gefg_cas03",1);
+	if (.@GID == 0) {
+		mes " [ Decreto do Reino de Midgard ]";
+		mes " ";
+		mes "1. Conforme o pacto do Reino de Midgard e o Feudo de Britoniah, declaro que este Castelo não possui um Senhor.";
+		mes " ";
+		mes "2. Aquele que superar terríveis desafios e destruir o Emperium, receberá a posse do castelo com o apoio do nosso rei.";
+	}
+	else {
+		if (getcharid(2) == .@GID) {
+			mes "Bravo guerreiro...";
+			mes "Você deseja retornar ao seu lugar de honra?";
+			next;
+			if (select("Retornar para o castelo do Clã.:Não.") == 1) {
+				if (getcharid(2) == GetCastleData("gefg_cas03",1)) {
+					warp "gefg_cas03",116,89;
+					//warp "gefg_cas03",221,30;
+					end;
+				}
+			}
+			close;
+		}
+		mes "[ Decreto do Reino de Midgard ]";
+		mes " ";
+		mes "1. Seguindo o decreto do Reino de Midgard.";
+		mes "Nós declaramos que esse castelo pertence ao clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
+		mes " ";
+		mes "2. O líder do clã ^ff0000"+ GetGuildName(.@GID) + "^000000 se chama ^FF0000" + GetGuildMaster(.@GID) + "^000000.";
+		mes "Se alguém se opõe a esse decreto, que prove sua força e honra com uma espada em suas mãos.";
+	}
+	close;
+
+OnRecvCastleG03:
+	FlagEmblem GetCastleData("gefg_cas03",1);
+	end;
+}
+
+gef_fild13,87,182,4	duplicate(Ruaden2)	Ruaden#g3-3	722
+gef_fild13,73,295,7	duplicate(Ruaden2)	Ruaden#g3-4	722
+gef_fild13,113,274,7	duplicate(Ruaden2)	Ruaden#g3-5	722
+gef_fild13,144,235,6	duplicate(Ruaden2)	Ruaden#g3-6	722
+gef_fild13,144,244,4	duplicate(Ruaden2)	Ruaden#g3-7	722
+
+// Bandeira do Castelo (Dentro do Castelo)
+//============================================================
+gefg_cas03,122,220,6	script	Ruaden#g3-8::Ruaden3	722,{
+	end;
+
+OnRecvCastleG03:
+	FlagEmblem GetCastleData("gefg_cas03",1);
+	end;
+}
+
+gefg_cas03,122,229,6	duplicate(Ruaden3)	Ruaden#g3-9	722
+gefg_cas03,91,257,7	duplicate(Ruaden3)	Ruaden#g3-10	722
+gefg_cas03,52,276,7	duplicate(Ruaden3)	Ruaden#g3-11	722
+gefg_cas03,56,164,4	duplicate(Ruaden3)	Ruaden#g3-12	722
+gefg_cas03,65,164,4	duplicate(Ruaden3)	Ruaden#g3-13	722
+gefg_cas03,37,214,1	duplicate(Ruaden3)	Ruaden#g3-14	722
+gefg_cas03,34,208,1	duplicate(Ruaden3)	Ruaden#g3-15	722
+
+// Gerenciador Automático
+//============================================================
+gefg_cas03,245,167,0	duplicate(Gld_Agit_Manager)	Agit#gefg_cas03	-1
+
+// Administração
+//============================================================
+gefg_cas03,106,23,5	duplicate(Gld_Mngr_Template)	Jean#gefg_cas03	55
+
+// Guardiões
+//============================================================
+gefg_cas03,106,23,5	duplicate(Gld_Guard_Template)	Guardian#gefg_cas03	-1
+
+// Kafras
+//============================================================
+gefg_cas03,116,89,5	duplicate(Gld_Kafra_Template)	Assistente Kafra#gefg_cas03	117
+
+// Saída da Sala do Mestre
+//============================================================
+gefg_cas03,275,289,0	script	#switch_G03	111,{
+	mes " ";
+	mes "Há uma pequena alavanca aqui.";
+	mes "Você deseja puxar ela?";
+	next;
+	if(select("Puxar.:Não puxar.") == 2) close;
+	warp "gefg_cas03",106,24;
+	end;
+}
+
+// Proteção de Tesouros
+//============================================================
+gefg_cas03,271,290,0	duplicate(Gld_Trea_Protect)	ban_warp#gefg_cas03	-1,6,6
+
+// Spawns de Tesouros
+//============================================================
+gefg_cas03,271,290,0	duplicate(Gld_Trea_Spawn)	Treasure#gefg_cas03	-1
+
+// Mudanças de Cavernas
+//============================================================
+gefg_cas03,221,43,0	duplicate(Gld_Dun_Template)	#gefg_cas03	111

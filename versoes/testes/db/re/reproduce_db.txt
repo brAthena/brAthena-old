@@ -1,0 +1,220 @@
+//  _____________________________________________________________
+// /                                                             \
+// |          _           _   _   _                              |
+// |         | |__  _ __ / \ | |_| |__   ___ _ __   __ _         |
+// |         | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |        |
+// |         | |_) | | / ___ \ |_| | | |  __/ | | | (_| |        |
+// |         |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|        |
+// |                                                             |
+// |                       brAthena Script                       |
+// |-------------------------------------------------------------|
+// | Nome do Database: skill_reproduce_db.txt                    |
+// |-------------------------------------------------------------|
+// | Criado por: brA Dev. Team                                   |
+// |-------------------------------------------------------------|
+// | Descrição: Database contendo habilidades randômicas         |
+// | para status de reprodução de: SC_REPRODUCE (Mimetismo).     |
+// |-------------------------------------------------------------|
+// | Estrutura do Banco de Dados:                                |
+// | ID da Habilidade //Nome                                     | 
+// \_____________________________________________________________/
+//
+//
+//========================================================================================================
+// Espadachim
+5,1		// Golpe Fuminante
+7,1		// Impacto Explosivo
+
+// Mago
+11,1	// Ataque Espiritual
+13,1	// Espíritos Anciões
+14,1	// Lanças de Gelo
+15,1	// Rajada Congelante
+17,1	// Bolas de Fogo
+18,1	// Barreira de Fogo
+19,1	// Lanças de Fogo
+20,1	// Relâmpago
+21,1	// Tempestade de Raios
+
+// Noviço
+24,1	// Revelação
+28,1	// Curar
+
+// Mercador
+42,1	// Mammonita
+
+// Arqueiro
+46,1	// Double Strafe
+47,1	// Arrow Shower
+
+// Gatuno
+52,1	// Envenenar
+
+// Compartilhadas
+54,1	// Ressucitar
+
+// Cavaleiro
+62,1	// Impacto de Tyr
+
+// Sacerdote
+68,1	// Aspersio
+69,1	// B.S Sacramenti
+70,1	// Santuário
+77,1	// Esconjurar
+79,1	// Magnus Exorcismus
+
+// Bruxo
+80,1	// Coluna de Fogo
+81,1	// Supernova
+83,1	// Chuva de Meteoros
+84,1	// Trovão de Júpiter
+85,1	// Ira de Thor
+86,1	// Esfera d'Água
+88,1	// Congelar
+89,1	// Nevasca
+90,1	// Coluna de Pedra
+91,1	// Fúria da Terra
+
+// Caçador
+116,1	// Armadilha Atordoante
+121,1	// Armadilha Congelante
+122,1	// Instalar Mina
+123,1	// Armadilha Explosiva
+
+// Mercenário
+141,1	// Explosão Tóxica
+
+// Habilidades de Platina
+148,1	// Disparo Violento
+152,1	// Arremessar Pedra
+156,1	// Luz Divina
+
+// Arruaceiro
+212,1	// Apunhalar
+
+// Alquimista
+229,1	// Fogo Grego
+230,1	// Terror Ácido
+
+// Templário
+250,1	// Punição Divina
+251,1	// Escudo Bumerangue
+253,1	// Crux Divinum
+254,1	// Crux Magnun
+
+// Monge
+263,1	// Combo Triplo
+266,1	// Impacto Psíquico
+267,1	// Disparo de Esferas Espirituais
+271,1	// Punho Supremo de Asura
+272,1	// Combo Quádruplo
+
+// Habilidades de NPC, Casamento e Itens
+337,1	// Arremessar Tomahawk
+
+// Taekwon
+421,1	// Chute Aéreo
+
+// Ninja
+526,1	// Chuva de Moedas
+527,1	// Virar Tatami
+528,1	// Corte da Névoa
+529,1	// Salto das Sombras
+531,1	// Troca de Pele
+534,1	// Pétalas Flamejantes
+536,1	// Dragão Explosivo
+537,1	// Lança Congelante
+539,1	// Grande Floco de Neve
+540,1	// Lâmina de Vento
+541,1	// Descarga Elétrica
+542,1	// Brisa Cortante
+
+// Habilidades Extras das Classes Transcedentais
+1001,1	// Avanço Ofensivo
+1004,1	// Faca Envenenada
+1006,1	// Explosão Protetora
+1009,1	// Flecha Fantasma
+1015,1	// Concessão Espiritual
+
+// Cavaleiro Rúnico
+2002,1	// Onda de Choque
+2005,1	// Vento Cortante
+2006,1	// Impacto Flamejante
+
+// Sicário
+2022,1	// Lâminas Retalhadoras
+2023,1	// Passo Sombrio
+2034,1	// Ameaça Fantasma
+
+// Arcebispo
+2038,1	// Judex
+2040,1	// Adoramus
+2051,1	// Curatio
+2054,1	// Gemini Lumen
+
+// Arcano
+2202,1	// Impacto Espiritual
+2203,1	// Zero Absoluto
+2204,1	// Esquife de Gelo
+2210,1	// Drenar Vida
+2211,1	// Meteoro Escarlate
+2212,1	// Chamas de Hela
+2213,1	// Cometa
+2214,1	// Corrente Elétrica
+2216,1	// Abalo Sísmico
+
+// Sentinela
+2233,1	// Tempestade de Flechas
+2236,1	// Disparo Certeiro
+2239,1	// Bomba Relógio
+2253,1	// Armadilha Incendiária
+2254,1	// Armadilha Glacial
+
+// Renegado
+2284,1	// Acerto de Contas
+2288,1	// Disparo Triplo
+2304,1	// Cópia Explosiva
+
+// Guardião Real
+2310,1	// Escudo Compressor
+2315,1	// Aegis Domini
+2316,1	// Exceder Limite
+2320,1	// Espiral Lunar
+2323,1	// Aegis Inferi
+
+// Shura
+2326,1	// Punho do Dragão
+2327,1	// Soco Furação
+2328,1	// Impacto Sísmico
+2330,1	// Garra de Tigre
+2332,1	// Explosão Espiritual
+2336,1	// Investida de Shura
+2337,1	// Rasteira
+2343,1	// Portões do Inferno
+2344,1	// Chakra do Silêncio
+2517,1	// Rugido do Leão
+2518,1	// Tempestade Espiritual
+
+// Trovador & Musa
+2413,1	// Ruído Estridente
+2414,1	// Ressonância
+2418,1	// Temporal de Mil Flechas
+
+// Feiticeiro
+2443,1	// Passos da Salamandra
+2444,1	// Passos da Sílfide
+2446,1	// Castigo de Nerthus
+2447,1	// Pó de Diamante
+2448,1	// Implosão Tóxica
+2449,1	// Onda Psíquica
+2450,1	// Maldição de Jormungand
+2454,1	// Lanças de Aesir
+
+// Bioquímico
+2479,1	// Armadilha de Espinhos
+2480,1	// Planta Sanguessuga
+2481,1	// Esporo Explosivo
+2482,1	// Muralha de Espinhos
+2483,1	// Erva Daninha
+2490,1	// Planta Infernal
+//========================================================================================================

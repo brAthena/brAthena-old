@@ -1,0 +1,106 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Monstros dos Campos de Einbroch        |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.6/1.2a                               |
+// |--------------------------------------------------------|
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [K2X]                             |
+// | 1.1 Script Revisado [Protimus & Tyler]                 |
+// | 1.2a Spawns do Renewal [Dani]                          |
+// | - Revisado                                             |
+// \________________________________________________________/
+
+//==================================================
+// ein_fild01 - Campo de Einbroch
+//==================================================
+// Sem Spawns/Mapa Desabilitado - 13.3
+
+//==================================================
+// ein_fild02 - Campo de Einbroch
+//==================================================
+// Sem Spawns/Mapa Desabilitado - 13.3
+
+//==================================================
+// ein_fild03 - Campo de Einbroch
+//==================================================
+ein_fild03,0,0,0,0	monster	Ursinho	1622,100,0,0,0
+ein_fild03,0,0,0,0	monster	Minérios	1616,20,0,0,0
+ein_fild03,0,0,0,0	monster	Nuvem Tóxica	1620,20,0,0,0
+ein_fild03,0,0,0,0	monster	Nuvem Venenosa	1621,20,0,0,0
+ein_fild03,0,0,0,0	monster	Planta Amarela	1081,15,60000,30000,0
+ein_fild03,0,0,0,0	monster	Planta Verde	1080,15,60000,30000,0
+
+//==================================================
+// ein_fild04 - Campo de Einbroch
+//==================================================
+ein_fild04,0,0,0,0	monster	Nuvem Venenosa	1621,100,0,0,0
+ein_fild04,0,0,0,0	monster	Nuvem Tóxica	1620,30,0,0,0
+ein_fild04,0,0,0,0	monster	Ursinho	1622,20,0,0,0
+ein_fild04,0,0,0,0	monster	Pungus	1378,15,0,0,0
+ein_fild04,0,0,0,0	monster	Minérios	1616,10,0,0,0
+ein_fild04,0,0,0,0	monster	Planta Vermelha	1078,10,60000,30000,0
+ein_fild04,0,0,0,0	monster	Planta Amarela	1081,10,60000,30000,0
+ein_fild04,0,0,0,0	monster	Planta Verde	1080,10,60000,30000,0
+
+//==================================================
+// ein_fild05 - Campo de Einbroch
+//==================================================
+ein_fild05,0,0,0,0	monster	Nuvem Tóxica	1620,100,0,0,0
+ein_fild05,0,0,0,0	monster	Nuvem Venenosa	1621,30,0,0,0
+ein_fild05,0,0,0,0	monster	Ursinho	1622,20,0,0,0
+ein_fild05,0,0,0,0	monster	Pungus	1378,15,0,0,0
+ein_fild05,0,0,0,0	monster	Minérios	1616,10,0,0,0
+
+//==================================================
+// ein_fild06 - Campo de Einbroch
+//==================================================
+ein_fild06,0,0,0,0	monster	Holden	1628,100,0,0,0
+ein_fild06,0,0,0,0	monster	Metaling	1613,30,0,0,0
+ein_fild06,0,0,0,0	monster	Planta Vermelha	1078,10,120000,60000,0
+ein_fild06,0,0,0,0	monster	Planta Amarela	1081,10,120000,60000,0
+ein_fild06,0,0,0,0	monster	Cogumelo Negro	1084,5,120000,60000,0
+
+//==================================================
+// ein_fild07 - Campo de Einbroch
+//==================================================
+ein_fild07,0,0,0,0	monster	Metaling	1613,90,0,0,0
+ein_fild07,0,0,0,0	monster	Porcellio	1619,30,0,0,0
+ein_fild07,0,0,0,0	monster	Holden	1628,10,0,0,0
+ein_fild07,0,0,0,0	monster	Ungoliant	1618,1,86400000,86000000,0
+ein_fild07,0,0,0,0	monster	Planta Vermelha	1078,10,120000,60000,0
+ein_fild07,0,0,0,0	monster	Planta Amarela	1081,10,120000,60000,0
+ein_fild07,0,0,0,0	monster	Cogumelo Vermelho	1085,10,120000,60000,0
+
+//==================================================
+// ein_fild08 - Campo de Einbroch
+//==================================================
+ein_fild08,0,0,0,0	monster	Metaling	1613,100,0,0,0
+ein_fild08,0,0,0,0	monster	Porcellio	1619,30,0,0,0
+ein_fild08,0,0,0,0	monster	Planta Vermelha	1078,10,120000,60000,0
+ein_fild08,0,0,0,0	monster	Planta Amarela	1081,10,120000,60000,0
+ein_fild08,0,0,0,0	monster	Cogumelo Vermelho	1085,10,120000,60000,0
+
+//==================================================
+// ein_fild09 - Campo de Einbroch
+//==================================================
+ein_fild09,0,0,0,0	monster	Porcellio	1619,70,0,0,0
+ein_fild09,0,0,0,0	monster	Metaling	1613,30,0,0,0
+ein_fild09,0,0,0,0	monster	Planta Vermelha	1078,10,120000,60000,0
+ein_fild09,0,0,0,0	monster	Planta Amarela	1081,10,120000,60000,0
+ein_fild09,0,0,0,0	monster	Cogumelo Vermelho	1085,10,120000,60000,0
+
+//==================================================
+// ein_fild10 - Campo de Einbroch
+//==================================================
+// Sem Spawns/Mapa Desabilitado - 13.3

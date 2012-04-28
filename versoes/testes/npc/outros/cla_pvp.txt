@@ -1,0 +1,61 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: Batalha de Clãs                        |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.0/1.2                                |
+// |--------------------------------------------------------|
+// | Descrição:  Batalha de clãs com mecânica de PvP.       |
+// |--------------------------------------------------------|
+// | Changelog:                                             |
+// | 1.0 Script Traduzido[cleyton]                          |
+// | 1.1 Script Revisado[cleyton]                           |
+// | 1.2 Script Otimizado. [brn0]                           |
+// |                                                        |
+// \________________________________________________________/
+
+pvp_y_room,77,85,4	script	Guia de Batalha dos Clãs	105,{
+	mes "[Guia de Batalha dos Clãs]";
+	mes "Como você está?";
+	mes "Eu sou o Guia de Batalha dos Clãs";
+	mes "para os novos mapas de PvP.";
+	mes "Deixe-me mostrar as opções";
+	mes "de mapas que você pode escolher.";
+	next;
+	set @map,select("Mapa 1:Mapa 2:Mapa 3:Mapa 4:Mapa 5");
+	mes "[Guia de Batalha dos Clãs]";
+	mes "Você escolheu o mapa "+@map+".";
+	mes "Agora, em time você";
+	mes "está? Você pode escolher";
+	mes "entre o Time 1 ou Time 2.";
+	next;
+	setarray .@x,7,9,16,8,20,91,90,83,91,79;
+	set @x,.@x[@map + (select("Time 1:Time 2")==1 ? -1:4)];
+	mes "[Guia de Batalha dos Clãs]";
+	mes "Está certo, eu levarei você";
+	mes "para o Mapa "+@map+", como membro";
+	mes "do Time "+@menu+", você está pronto";
+	mes "para ser teleportado para o mapa agora?";
+	next;
+	if(select("Sim:Não")==1){
+		mes "[Guia de Batalha dos Clãs]";
+		mes "Excelente! Tenha uma boa batalha!";
+		close2;
+		warp "guild_vs"+@map,@x,49+(@map%2 && @map!=1);
+		end;
+	}
+	mes "[Guia de Batalha dos Clãs]";
+	mes "Certo, eu espero";
+	mes "ver você novamente";
+	mes "nos mapas de PvP!";
+	close;
+}

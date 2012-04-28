@@ -1,0 +1,33 @@
+//  _____________________________________________________________
+// /                                                             \
+// |          _           _   _   _                              |
+// |         | |__  _ __ / \ | |_| |__   ___ _ __   __ _         |
+// |         | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |        |
+// |         | |_) | | / ___ \ |_| | | |  __/ | | | (_| |        |
+// |         |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|        |
+// |                                                             |
+// |                       brAthena Script                       |
+// |-------------------------------------------------------------|
+// | Nome da Configuração: motd.conf                             |
+// |-------------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                                |
+// |-------------------------------------------------------------|
+// | Descrição: Mensagem de Boas-vindas.                         | 
+// |-------------------------------------------------------------|
+// | Changelog:                                                  |
+// | 1.0 Modificação [brAthena]                                  |
+// | 1.1 Traduções revisadas [Constantini]                       |
+// | 1.2 Traduções revisadas [Protimus]						     |
+// |-------------------------------------------------------------|
+// | - Anotações                                                 |
+// | "Comentários" devem ser adicionados com // no início da     |
+// | frase, senão você causará problemas de conf, pois o texto   |
+// | será inválido conforme o código fonte.                      |
+// | Lembre-se que "NOTAS" são recomendações importantes.        |
+// \_____________________________________________________________/
+
+// O motd serve para informar notícias aos personagens que logarem no servidor.
+// O limite de linhas é de 128, se você precisar de mais linhas precisará modificar 
+// o MOTD_LINE_SIZE na pasta: source/map no arquivo pc.c e recompilar o emulador.
+
+Bem-vindo ao brAthena! Favor reportar problemas do emulador no fórum: http://forum.brathena.org/tracker/!

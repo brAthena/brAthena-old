@@ -1,0 +1,60 @@
+//  ________________________________________________________
+// /                                                        \
+// |       _           _   _   _                            |
+// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+// |                                                        |
+// |                    brAthena Script                     |
+// |--------------------------------------------------------|
+// | Nome do Script: War of Emperium SE - Auto-Start        |
+// |--------------------------------------------------------|
+// | Criado por: eA/brA Dev. Team                           |
+// |--------------------------------------------------------|
+// | Versões eA/brA: 1.0/1.0                                |
+// |--------------------------------------------------------|
+// | Descrição: Inicia automaticamente a Guerra do Emperium |
+// | Informações sobre horário de WoE, ler                  |
+// | doc\woe_time_explanation.txt                           |
+// |                                                        |
+// | gettime(3): Informa hora (Formato 24h)                 |
+// | gettime(4): Informa dia da semana 0=Domingo,           |
+// | 1=Segunda, 2=Terça, 3=Quarta, etc.                     |
+// |--------------------------------------------------------|
+// | Changelog:                                             |
+// | 1.0 Script Traduzido [Mark]                            |
+// \________________________________________________________/
+
+// Inicio/Término WoE
+//============================================================
+-	script	Agit2_Event	-1,{
+	end;
+
+OnClock1800:	//Início para Terça(2), Quinta(4)
+OnClock2000:	//Termino para Terça(2), Quinta(4)
+OnClock2100:	//Início para Sábado(6)
+OnClock2300:	//Término para Sábado(6)
+
+OnAgitInit2:
+	// Checando início da WoE
+	if((gettime(4)==2) && (gettime(3)>=18 && gettime(3)<21) ||
+	   (gettime(4)==4) && (gettime(3)>=18 && gettime(3)<21) ||
+	   (gettime(4)==6) && (gettime(3)>=22 && gettime(3)<23)) {
+		if (!agitcheck2()) {
+			AgitStart2;
+		}
+		end;
+	}
+
+	// Checando final da WoE
+	if ((gettime(4)==2) && (gettime(3)==21) ||
+	    (gettime(4)==4) && (gettime(3)==21) ||
+	    (gettime(4)==6) && (gettime(3)==23)) {
+		if (agitcheck2()) {
+			AgitEnd2;
+		}
+		end;
+	}
+	end;
+}
