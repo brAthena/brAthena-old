@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1124 - 28/04/2012 [Protimus]
+	* Revertida temporáriamente r1122.
+	- Devido incompatibilidades.
+
 	r1122 - 16/04/2012 [Protimus]
 	* Atualizada libmysql para 6.0.2.
 

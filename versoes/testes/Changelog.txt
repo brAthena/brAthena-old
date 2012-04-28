@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1124 - 28/04/2012 [Protimus]
+	* Revertida temporáriamente r1122.
+	- Devido incompatibilidades.
+
 	r1123 - 28/04/2012 [Protimus]
 	* Adicionada flag para renovação, pré-renovação e oldtimes.
 	* Atualizado conforme rAthena 15900.
