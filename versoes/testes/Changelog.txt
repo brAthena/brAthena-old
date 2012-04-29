@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1127 - 29/04/2012 [Protimus]
+	* Iniciado processo de conversão do banco de dados para SQL.
+	- Adicionados: abra_db, castle_db, guild_skill_tree e create_arrow_db.
+
 	r1126 - 28/04/2012 [Protimus]
 	* Adicionada leitura de arquivos do banco de dados em diretórios próprios.
 	- Apenas arquivos que realmente não possam vir a ter problemas de conflitos estão fora da pasta.
