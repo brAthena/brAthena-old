@@ -9,9 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1128 - 29/04/2012 [Protimus]
+	* Adicionado: elemental_skill_db.sql, 
+	* Corrigidos erros de cabeçalho nos arquivos do envio anterior.
+
 	r1127 - 29/04/2012 [Protimus]
 	* Iniciado processo de conversão do banco de dados para SQL.
-	- Adicionados: abra_db, castle_db, guild_skill_tree e create_arrow_db.
+	- Adicionados: abra_db.sql, castle_db.sql, guild_skill_tree.sql e create_arrow_db.sql.
 
 	r1126 - 28/04/2012 [Protimus]
 	* Adicionada leitura de arquivos do banco de dados em diretórios próprios.

@@ -21,7 +21,7 @@ CREATE TABLE `guild_skill_tree` (
 #
 # Requerimentos de Habilidades da Guilda.
 # Descrição: Responsável pelos requerimentos necessários para ter uma habilidade de guilda.
-# Cabeçalho: REPLACE INTO `abra_db` VALUES ('ID da Hab','Level Max','Pré-Requesito da Habilidade de ID-1','Level de ID-1',
+# Cabeçalho: REPLACE INTO `guild_skill_tree` VALUES ('ID da Hab','Level Max','Pré-Requesito da Habilidade de ID-1','Level de ID-1',
 # 'Pré-Requesito da Habilidade de ID-2','Level de ID-2','etc...');
 # 
 

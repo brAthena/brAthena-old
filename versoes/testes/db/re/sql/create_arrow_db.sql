@@ -20,7 +20,7 @@ CREATE TABLE `create_arrow_db` (
 #
 # Flechas.
 # Descrição: Responsável pela produção de flechas através de itens.
-# Cabeçalho: REPLACE INTO `abra_db` VALUES ('Item','Item para Criação1','Quantidade1','Item para Criação2','Quantidade2');
+# Cabeçalho: REPLACE INTO `create_arrow_db` VALUES ('Item','Item para Criação1','Quantidade1','Item para Criação2','Quantidade2');
 # 
 
 REPLACE INTO `create_arrow_db` VALUES (603,1764,50,1768,50);				#'Velha Caixa Azul --> 50 Flechas Afiadas e 50 Flechas Soníferas'

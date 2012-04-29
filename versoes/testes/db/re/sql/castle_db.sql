@@ -14,7 +14,7 @@ CREATE TABLE `castle_db` (
 #
 # Castelos.
 # Descrição: Responsável pelo banco de dados dos castelos e seus chamamentos.
-# Cabeçalho: REPLACE INTO `abra_db` VALUES ('ID do Castelo','Nome do Mapa','Nome do Castelo','Nome do Evento','Flag');
+# Cabeçalho: REPLACE INTO `castle_db` VALUES ('ID do Castelo','Nome do Mapa','Nome do Castelo','Nome do Evento','Flag');
 # 
 
 REPLACE INTO `castle_db` VALUES (0,'aldeg_cas01','Sirius','Agit#aldeg_cas01',1);
