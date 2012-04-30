@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1131 - 29/04/2012 [Protimus]
+	* Adicionados: homunculus_db.sql, homunculus_skill_tree.sql e mercenary_db.sql.
+
 	r1130 - 29/04/2012 [Protimus]
 	* Adicionados: speelbook_db.sql, reproduce_db.sql e statpoint.sql.
 	
