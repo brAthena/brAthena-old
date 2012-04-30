@@ -54,7 +54,7 @@ CREATE TABLE `homunculus_db` (
 	`enLUK` smallint(5) unsigned NOT NULL default '0',
 	`exLUK` smallint(5) unsigned NOT NULL default '0',
 	PRIMARY KEY (`Class`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 #
 # Homuncuus.

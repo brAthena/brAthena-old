@@ -16,7 +16,7 @@ CREATE TABLE `guild_skill_tree` (
 	`PrereqSkillID5` smallint(6) unsigned NOT NULL default '0',
 	`PrereqSkillLv5` smallint(6) unsigned NOT NULL default '0',
 	PRIMARY KEY (`SkillID`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 #
 # Requerimentos de Habilidades da Guilda.

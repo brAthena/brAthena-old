@@ -5,7 +5,7 @@
 CREATE TABLE `reproduce_db` (
 	`SkillID` int(11) unsigned NOT NULL default '0',
 	PRIMARY KEY (`SkillID`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 #
 # Habilidade Mimetismo.

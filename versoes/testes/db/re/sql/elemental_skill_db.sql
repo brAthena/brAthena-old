@@ -8,7 +8,7 @@ CREATE TABLE `elemental_skill_db` (
 	`SkillLevel` tinyint(4) unsigned NOT NULL default '0',
 	`ReqMode` tinyint(4) unsigned NOT NULL default '0',
 	PRIMARY KEY (`ElementalID`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 #
 # Habilidades dos Elementais

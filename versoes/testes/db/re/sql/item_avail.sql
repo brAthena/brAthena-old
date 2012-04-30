@@ -6,7 +6,7 @@ CREATE TABLE `item_avail` (
    `ItemID` smallint(6) unsigned NOT NULL default '0',
    `SpriteID` smallint(6) unsigned NOT NULL default '0',
    PRIMARY KEY (`SourceID`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 #
 # Aparência de Itens.

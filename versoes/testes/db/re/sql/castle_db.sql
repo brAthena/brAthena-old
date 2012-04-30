@@ -9,7 +9,7 @@ CREATE TABLE `castle_db` (
    `OnGuildBreakEventName` text NOT NULL,
    `Flag` tinyint(1) unsigned NOT NULL default '1',
    PRIMARY KEY (`ID`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 #
 # Castelos.

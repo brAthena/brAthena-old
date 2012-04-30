@@ -15,7 +15,7 @@ CREATE TABLE `create_arrow_db` (
    `MakeID5` smallint(6) unsigned,
    `MakeAmount5` smallint(6) unsigned,
    PRIMARY KEY (`SourceID`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 #
 # Flechas.

@@ -1,6 +1,6 @@
-#
-# Table structure for table `mercenary_db`
-#
+--
+-- Estrutura para a tabela `mercenary_db`
+-- 
 
 CREATE TABLE `mercenary_db` (
 	`ID` mediumint(9) unsigned NOT NULL default '0',
@@ -30,7 +30,7 @@ CREATE TABLE `mercenary_db` (
 	`aMotion` smallint(6) unsigned NOT NULL default '0',
 	`dMotion` smallint(6) unsigned NOT NULL default '0',
 	PRIMARY KEY (`ID`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 #
 # Homuncuus.

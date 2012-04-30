@@ -17,7 +17,7 @@ CREATE TABLE `homun_skill_tree` (
 	`PrereqSkillID5` smallint(6) unsigned NOT NULL default '0',
 	`PrereqSkillLv5` smallint(6) unsigned NOT NULL default '0',
 	PRIMARY KEY (`Class`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 #
 # Habilidades de Homunculus.

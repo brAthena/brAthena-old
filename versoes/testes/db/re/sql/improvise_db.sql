@@ -6,7 +6,7 @@ CREATE TABLE `improvise_db` (
 	`SkillID` int(11) unsigned NOT NULL default '0',
 	`Rate` mediumint(9) unsigned NOT NULL default '0',
 	PRIMARY KEY (`SkillID`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 #
 # Habilidade improvisar.

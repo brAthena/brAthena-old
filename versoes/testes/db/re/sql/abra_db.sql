@@ -8,7 +8,7 @@ CREATE TABLE `abra_db` (
    `RequiredHocusPocusLevel` smallint(6) unsigned NOT NULL default '0',
    `Rate` smallint(6) unsigned NOT NULL default '0',
    PRIMARY KEY (`skillid`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 #
 # Habilidade abracadabra.

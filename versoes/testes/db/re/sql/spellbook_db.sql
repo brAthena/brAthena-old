@@ -7,7 +7,7 @@ CREATE TABLE `spellbook_db` (
 	`PreservePoints` smallint(6) unsigned NOT NULL default '0',
 	`BookID` smallint(6) unsigned NOT NULl default '0',
 	PRIMARY KEY (`SkillID`)
-) ENGINE=MyISAM;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 #
 # Habilidade Estudo Arcano.
