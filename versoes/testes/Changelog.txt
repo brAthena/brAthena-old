@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1135 - 01/05/2012 [Protimus]
+	* Adicionados: item_cardalbum.sql, item_findingore.sql, item_giftbox.sql, item_misc.sql, item_trade.sql e item_violetbox.sql.
+
 	r1134 - 01/05/2012 [Protimus]
 	* Adicionados: item_cookie_bag.sql, item_delay.sql, item_noequip.sql e item_buyingstore.sql.
 
