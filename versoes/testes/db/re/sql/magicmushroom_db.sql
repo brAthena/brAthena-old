@@ -2,7 +2,7 @@
 -- Estrutura para a tabela `magicmushroom_db`
 -- 
 
-CREATE TABLE `magicmushroom_db` (
+CREATE TABLE IF NOT EXISTS `magicmushroom_db` (
 	`SkillID` int(11) unsigned NOT NULL default '0',
 	PRIMARY KEY (`SkillID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;

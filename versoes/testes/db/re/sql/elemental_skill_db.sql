@@ -2,7 +2,7 @@
 -- Estrutura para a tabela `elemental_skill_db`
 --
 
-CREATE TABLE `elemental_skill_db` (
+CREATE TABLE IF NOT EXISTS `elemental_skill_db` (
 	`ElementalID` mediumint(9) unsigned NOT NULL default '0',
 	`SkillID` mediumint(9) unsigned NOT NULL default '0',
 	`SkillLevel` tinyint(4) unsigned NOT NULL default '0',

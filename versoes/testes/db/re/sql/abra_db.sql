@@ -2,7 +2,7 @@
 -- Estrutura para a tabela `abra_db`
 --                                 
 
-CREATE TABLE `abra_db` (
+CREATE TABLE IF NOT EXISTS `abra_db` (
    `SkillID` int(11) unsigned NOT NULL default '0',
    `DummyName` text NOT NULL,
    `RequiredHocusPocusLevel` smallint(6) unsigned NOT NULL default '0',

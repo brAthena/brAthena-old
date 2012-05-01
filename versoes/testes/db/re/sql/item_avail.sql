@@ -2,7 +2,7 @@
 -- Estrutura para a tabela `item_avail`
 --         
 
-CREATE TABLE `item_avail` (
+CREATE TABLE IF NOT EXISTS `item_avail` (
    `ItemID` smallint(6) unsigned NOT NULL default '0',
    `SpriteID` smallint(6) unsigned NOT NULL default '0',
    PRIMARY KEY (`SourceID`)

@@ -2,7 +2,7 @@
 -- Estrutura para a tabela `castle_db`
 --         
 
-CREATE TABLE `castle_db` (
+CREATE TABLE IF NOT EXISTS `castle_db` (
    `CastleID` smallint(6) unsigned NOT NULL default '0',
    `MapName` text NOT NULL,
    `CastleName` text NOT NULL,

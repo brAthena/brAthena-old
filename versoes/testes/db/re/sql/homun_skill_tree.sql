@@ -2,7 +2,7 @@
 -- Estrutura para a tabela `homun_skill_tree`
 --         
 
-CREATE TABLE `homun_skill_tree` (
+CREATE TABLE IF NOT EXISTS `homun_skill_tree` (
 	`Class` smallint(6) unsigned NOT NULL default '0',
 	`SkillID` smallint(6) unsigned NOT NULL default '0',
 	`MaxLv` tinyint(2) unsigned NOT NULL default '0',

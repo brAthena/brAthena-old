@@ -2,7 +2,7 @@
 -- Estrutura para a tabela `improvise_db`
 -- 
 
-CREATE TABLE `improvise_db` (
+CREATE TABLE IF NOT EXISTS `improvise_db` (
 	`SkillID` int(11) unsigned NOT NULL default '0',
 	`Rate` mediumint(9) unsigned NOT NULL default '0',
 	PRIMARY KEY (`SkillID`)

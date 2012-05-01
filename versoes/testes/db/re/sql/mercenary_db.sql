@@ -2,7 +2,7 @@
 -- Estrutura para a tabela `mercenary_db`
 -- 
 
-CREATE TABLE `mercenary_db` (
+CREATE TABLE IF NOT EXISTS `mercenary_db` (
 	`ID` mediumint(9) unsigned NOT NULL default '0',
 	`Sprite` text NOT NULL,
 	`Name` text NOT NULL,

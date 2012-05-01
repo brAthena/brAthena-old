@@ -2,7 +2,7 @@
 -- Estrutura para a tabela `guild_skill_tree`
 --
 
-CREATE TABLE `guild_skill_tree` (
+CREATE TABLE IF NOT EXISTS `guild_skill_tree` (
 	`SkillID` smallint(6) unsigned NOT NULL default '0',
 	`MaxLv` tinyint(2) unsigned NOT NULL default '0',
 	`PrereqSkillID1` smallint(6) unsigned NOT NULL default '0',

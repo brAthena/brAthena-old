@@ -2,7 +2,7 @@
 -- Estrutura para a tabela `mercenary_skill_db`
 --    
 
-CREATE TABLE `mercenary_skill_db` (
+CREATE TABLE IF NOT EXISTS `mercenary_skill_db` (
 	`MercenaryID` mediumint(9) unsigned NOT NULL default '0',
 	`SkillID` mediumint(9) unsigned NOT NULL default '0',
 	`SkillLevel` tinyint(4) unsigned NOT NULL default '0',

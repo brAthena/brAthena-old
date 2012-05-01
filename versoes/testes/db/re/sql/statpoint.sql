@@ -2,7 +2,7 @@
 -- Estrutura para a tabela `statpoint`
 -- 
 
-CREATE TABLE `statpoint` (
+CREATE TABLE IF NOT EXISTS `statpoint` (
 	`StatPoint` int(11) unsigned NOT NULL default '0',
 	PRIMARY KEY (`StatPoint`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;

@@ -2,7 +2,7 @@
 -- Estrutura para a tabela `homunculus_db`
 --         
 
-CREATE TABLE `homunculus_db` (
+CREATE TABLE IF NOT EXISTS `homunculus_db` (
 	`Class` smallint(6) unsigned NOT NULL default '0',
 	`EvoClass` smallint(6) unsigned NOT NULL default '0',
 	`Name` varchar(24) NOT NULL default '',

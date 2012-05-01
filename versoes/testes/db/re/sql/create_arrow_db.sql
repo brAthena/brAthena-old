@@ -2,7 +2,7 @@
 -- Estrutura para a tabela `create_arrow_db`
 --         
 
-CREATE TABLE `create_arrow_db` (
+CREATE TABLE IF NOT EXISTS `create_arrow_db` (
    `SourceID` smallint(6) unsigned NOT NULL default '0',
    `MakeID1` smallint(6) unsigned NOT NULL default '0',
    `MakeAmount1` smallint(6) unsigned NOT NULL default '0',

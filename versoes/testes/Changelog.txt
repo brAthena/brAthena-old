@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1136 - 01/05/2012 [Protimus]
+	* Adicionada segurança para criação das tabelas SQL.
+	- Caso já exista alguma tabela no banco de dados, ao importar uma nova ela não é criada e não sobrepoem a já criada.
+
 	r1135 - 01/05/2012 [Protimus]
 	* Adicionados: item_cardalbum.sql, item_findingore.sql, item_giftbox.sql, item_misc.sql, item_trade.sql e item_violetbox.sql.
 

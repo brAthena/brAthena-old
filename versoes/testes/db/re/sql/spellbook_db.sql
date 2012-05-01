@@ -2,7 +2,7 @@
 -- Estrutura para a tabela `spellbook_db`
 -- 
 
-CREATE TABLE `spellbook_db` (
+CREATE TABLE IF NOT EXISTS `spellbook_db` (
 	`SkillID` int(11) unsigned NOT NULL default '0',
 	`PreservePoints` smallint(6) unsigned NOT NULL default '0',
 	`BookID` smallint(6) unsigned NOT NULl default '0',

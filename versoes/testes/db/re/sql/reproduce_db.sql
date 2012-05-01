@@ -2,7 +2,7 @@
 -- Estrutura para a tabela `reproduce_db`
 -- 
 
-CREATE TABLE `reproduce_db` (
+CREATE TABLE IF NOT EXISTS `reproduce_db` (
 	`SkillID` int(11) unsigned NOT NULL default '0',
 	PRIMARY KEY (`SkillID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
