@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1133 - 01/05/2012 [Protimus]
+	* Adicionados: mercenary_skill_db.sql, item_bluebox.sql e item_scroll.sql.
+
 	r1132 - 29/04/2012 [Protimus]
 	* Corrigido problema com acentos em todas as tabelas, adicionado CHARSET para latin1.
 
