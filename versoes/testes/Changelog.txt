@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1137 - 01/05/2012 [Protimus]
+	* Removida pasta sql-files.
+	* Movidos arquivos de sql-files para pasta db em seus devidos ramos.
+	- A organização ainda não está concluída.
+
 	r1136 - 01/05/2012 [Protimus]
 	* Adicionada segurança para criação das tabelas SQL.
 	- Caso já exista alguma tabela no banco de dados, ao importar uma nova ela não é criada e não sobrepoem a já criada.

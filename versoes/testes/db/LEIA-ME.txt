@@ -1,0 +1,32 @@
+ ____________________________________________________________________________
+/                                                                            \
+|                 _           _   _   _                                      |
+|                | |__  _ __ / \ | |_| |__   ___ _ __   __ _                 |
+|                | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                |
+|                | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                |
+|                |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                |
+|                                                                            |
+|                 Atualização & Instalação do Banco de Dados                 |
+\____________________________________________________________________________/
+
+
+== Primeiros Passos ==
+
+1. Instalando um banco de dados do zero.
+
+- Saiba qual a versão deseja utilizar, sendo elas (OT = Oldtimes), (Pre-RE = Pré-Renovação), (RE = Renovação), em suas devidas pastas.
+- Entre em seu gerenciador de banco de dados e importe todos os arquivos da pasta da versão em que deseja utilizar, exceto conversores.
+- Dica: Importe o arquivo logs.sql em um segundo banco de dados, assim você evitará sobrepesar seu banco de dados original (necessário para execução).
+
+
+2. Atualizações do banco de dados.
+
+- Toda vez em que o emulador é iniciado é recebido um alerta de novas atualizações do banco de dados que possívelmente você deva fazer.
+- Certifique-se de que as atualizações foram feitas, caso contrário vá até a pasta "upgrades" referente a sua versão e atualize o arquivo pedido.
+
+
+3. Migrando de emulador.
+
+- Antes de iniciar o processo, faça um backup de seu banco de dados.
+- Faça a importação de todas as atualizações da pasta "upgrades" referente a versão em que deseja utilizar.
+- Caso tenha erros, contate o suporte do fórum.
