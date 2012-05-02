@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1138 - 01/05/2012 [Protimus]
+	* Adicionados: mob_boss.sql, mob_poring.sql e mob_pouch.sql.
+
 	r1137 - 01/05/2012 [Protimus]
 	* Removida pasta sql-files.
 	* Movidos arquivos de sql-files para pasta db em seus devidos ramos.
