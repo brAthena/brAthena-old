@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1139 - 01/05/2012 [Protimus]
+	* Adicionados: mob_chat_db.sql, mob_penalty_db.sql, mob_race2_db.sql e refine_db.sql.
+
 	r1138 - 01/05/2012 [Protimus]
 	* Adicionados: mob_boss.sql, mob_poring.sql e mob_pouch.sql.
 
