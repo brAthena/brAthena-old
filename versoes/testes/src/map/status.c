@@ -536,7 +536,7 @@ void initChangeTables(void)
 	set_sc( NC_INFRAREDSCAN      , SC_INFRAREDSCAN     , SI_INFRAREDSCAN    , SCB_FLEE );
 	set_sc( NC_ANALYZE           , SC_ANALYZE          , SI_ANALYZE         , SCB_DEF|SCB_DEF2|SCB_MDEF|SCB_MDEF2 );
 	set_sc( NC_MAGNETICFIELD     , SC_MAGNETICFIELD    , SI_MAGNETICFIELD   , SCB_NONE );
-	set_sc( NC_NEUTRALBARRIER    , SC_NEUTRALBARRIER   , SI_NEUTRALBARRIER  , SCB_NONE );
+	set_sc( NC_NEUTRALBARRIER    , SC_NEUTRALBARRIER   , SI_NEUTRALBARRIER  , SCB_DEF|SCB_MDEF );
 	set_sc( NC_STEALTHFIELD      , SC_STEALTHFIELD     , SI_STEALTHFIELD    , SCB_NONE );
 	set_sc( NC_ARMSCANNON        , SC_ARMSCANNON       , SI_BLANK			, SCB_NONE );
 
@@ -4651,6 +4651,8 @@ static signed short status_calc_def(struct block_list *bl, struct status_change 
 		def -= def * sc->data[SC_ANGRIFFS_MODUS]->val4 / 100;
 	if(sc->data[SC_ODINS_POWER])
 		def -= 20;
+	if(sc->data[SC_NEUTRALBARRIER])
+		def += def * sc->data[SC_NEUTRALBARRIER]->val3/100;
 		
 	return (short)cap_value(def,SHRT_MIN,SHRT_MAX);
 }
@@ -4734,6 +4736,8 @@ static signed short status_calc_mdef(struct block_list *bl, struct status_change
 		mdef += 50;
 	if(sc->data[SC_ODINS_POWER])
 		mdef -= 20;
+	if(sc->data[SC_NEUTRALBARRIER])
+		mdef += mdef * sc->data[SC_NEUTRALBARRIER]->val3/100;
 		
 	return (short)cap_value(mdef,SHRT_MIN,SHRT_MAX);
 }
@@ -7486,6 +7490,10 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			//Attack requirements to be blocked:
 			val3 = BF_LONG; //Range
 			val4 = BF_WEAPON|BF_MISC; //Type
+			break;
+		case SC_NEUTRALBARRIER:
+		case SC_NEUTRALBARRIER_MASTER:
+			val3 = 10 + 5 * val1;
 			break;
 		case SC_ENCHANTARMS:
 			//end previous enchants

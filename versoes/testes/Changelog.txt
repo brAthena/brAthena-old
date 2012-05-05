@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1141 - 05/05/2012 [Henrybk]
+	* Corrigida a habilidade Campo Protetor (NC_NEUTRALBARRIER).
+	- Adicionado bônus de defesa e defesa mágica.
+
 	r1139 - 01/05/2012 [Protimus]
 	* Adicionados: mob_chat_db.sql, mob_penalty_db.sql, mob_race2_db.sql e refine_db.sql.
 
