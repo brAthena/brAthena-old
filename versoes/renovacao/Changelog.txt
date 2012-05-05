@@ -8,7 +8,11 @@
 //  * Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
-
+	
+	r1140 - 05/05/2012 [Henrybk]
+	* Corrigida a habilidade Mordida Feroz (RA_WUGBITE).
+	- Atualizada chance de sucesso.
+	
 	r1124 - 28/04/2012 [Protimus]
 	* Revertida temporáriamente r1122.
 	- Devido incompatibilidades.

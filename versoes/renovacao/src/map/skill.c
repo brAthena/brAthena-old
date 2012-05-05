@@ -1122,10 +1122,11 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 		sc_start(bl, (skillid == RA_FIRINGTRAP) ? SC_BURNING:SC_FREEZING, 50 + 10 * skilllv, skilllv, skill_get_time2(skillid, skilllv));
 		break;
 	case RA_WUGBITE:
-		rate = (50 + 10 * skilllv) - (status_get_agi(bl) / 4) + (pc_checkskill(sd,RA_TOOTHOFWUG)*2);
-		if( rand()%100 > 50)
-			sc_start(bl, SC_BITE, rate, skilllv, skill_get_time(skillid, skilllv) + (sd ? pc_checkskill(sd,RA_TOOTHOFWUG)*1000:0));
-		break;
+	rate = (50 + 10 * skilllv) - (status_get_agi(bl) / 4) + (pc_checkskill(sd,RA_TOOTHOFWUG)*2);
+	if (rate < 50)
+		rate = 50;
+	sc_start(bl, SC_BITE, rate, skilllv, skill_get_time(skillid, skilllv) + (sd ? pc_checkskill(sd,RA_TOOTHOFWUG)*1000:0));
+	break;
 	case RA_SENSITIVEKEEN:
 		if(rand()%100 < 8*skilllv)
 			skill_castend_damage_id(src, bl, RA_WUGBITE,(sd ? pc_checkskill(sd,RA_WUGBITE):skilllv), tick, SD_ANIMATION);
