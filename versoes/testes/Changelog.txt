@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1145 - 06/05/2012 [Henrybk]
+	* Corrigida a habilidade Fúria da Medusa (WL_SIENNAEXECRATE).
+	- Modificado chance de sucesso conforme valores oficiais.
+	* Corrigida a habilidade Congelar (WZ_FROSTNOVA).
+	- Modificado chance de congelamento conforme valores oficiais.
+
 	r1144 - 06/05/2012 [Henrybk]
 	* Corrigida a habilidade Fúria do Furacão (NC_AXETORNADO).
 	- Modificado dano conforme valores oficiais.

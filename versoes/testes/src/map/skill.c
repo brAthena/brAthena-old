@@ -845,8 +845,11 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 		break;
 
 	case MG_FROSTDIVER:
-	case WZ_FROSTNOVA:
 		sc_start(bl,SC_FREEZE,skilllv*3+35,skilllv,skill_get_time2(skillid,skilllv));
+		break;
+		
+	case WZ_FROSTNOVA:
+		sc_start(bl,SC_FREEZE,skilllv*5+33,skilllv,skill_get_time2(skillid,skilllv));
 		break;
 
 	case WZ_STORMGUST:
@@ -7722,7 +7725,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			else
 				status_change_start(bl,SC_STONE,10000,skilllv,0,0,1000,(8+2*skilllv)*1000,2);
 		}else{
-			int rate = 40 + 8 * skilllv + s_job_level / 4;
+			int rate = 45 + 5 * skilllv;
 			if(rand()%100 < rate){
 				rate = 0;
 				if(!tsc->data[SC_STONE])
