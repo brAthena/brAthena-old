@@ -4427,14 +4427,19 @@ int battle_calc_return_damage(struct block_list *src, struct block_list *bl, int
 	int rdamage = 0, max_damage = status_get_max_hp(bl);
 	struct status_change *sc = status_get_sc(bl);
 	struct status_change *ssc = status_get_sc(src);
+	struct status_change_entry *sce;
 
 	sd = BL_CAST(BL_PC, bl);
 
-	if( sc && sc->data[SC_REFLECTDAMAGE] )
+	if( sc && (sce = sc->data[SC_REFLECTDAMAGE]) && flag&BF_SHORT && sc->data[SC_REFLECTDAMAGE] && rand()%100 < 30 + 10 * sc->data[SC_REFLECTDAMAGE]->val1 )
 	{
 		max_damage = max_damage * status_get_lv(bl) / 100;
-		rdamage = (*damage) * sc->data[SC_REFLECTDAMAGE]->val2 / 100;
+		rdamage = (*damage) * (15 + 5 * sc->data[SC_REFLECTDAMAGE]->val1) / 100;
 		if( rdamage > max_damage ) rdamage = max_damage;
+		if (sce && --(sce->val2) <= 0)
+		{
+			status_change_end(bl,SC_REFLECTDAMAGE, INVALID_TIMER);
+		}
 	}
 	else if( (flag&(BF_SHORT|BF_MAGIC)) == BF_SHORT )
 	{

@@ -7866,8 +7866,8 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 				val2 = 100;
 			break;
 		case SC_REFLECTDAMAGE:
-			val2 = 15 + 5 * val1;
-			val3 = (val1==5)?20:(val1+4)*2; 
+			val2 = 25 + 5 * val1;
+			val3 = 10; 
 			val4 = tick/10000;
 			tick = 10000;
 			break;
@@ -9801,7 +9801,7 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 		if( --(sce->val4) >= 0 ) {
 			if( !status_charge(bl,0,sce->val3) )
 				break;
-			sc_timer_next(10000 + tick, status_change_timer, bl->id, data);
+			sc_timer_next(1000+tick, status_change_timer, bl->id, data);
 			return 0;
 		}
 		break;

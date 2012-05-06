@@ -9,6 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1146 - 06/05/2012 [Henrybk]
+	* Corrigida a habilidade Reflexão Amplificada (LG_REFLECTDAMAGE).
+	- Modificado chance de reflexão conforme valores oficiais.
+	- Modificado porcentagem de dano refletido conforme valores oficiais.
+	- Modificado número máximo de ataques refletidos conforme valores oficiais.
+	- Modificado gasto de sp conforme valores oficiais.
+
 	r1145 - 06/05/2012 [Henrybk]
 	* Corrigida a habilidade Fúria da Medusa (WL_SIENNAEXECRATE).
 	- Modificado chance de sucesso conforme valores oficiais.
