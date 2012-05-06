@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1143 - 05/05/2012 [Henrybk]
+	* Corrigida Runa Wyrd (RK_STORMBLAST).
+	- Modificado dano conforme valores oficiais.
+
 	r1142 - 05/05/2012 [brn0]
 	* Corrigida a fórmula do ataque base.
 	* Corrigida a fórmula da defesa de atributos.
