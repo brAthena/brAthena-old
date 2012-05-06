@@ -1832,10 +1832,18 @@ static unsigned short status_base_atk(const struct block_list *bl, const struct 
 	//Normally only players have base-atk, but homunc have a different batk
 	// equation, hinting that perhaps non-players should use this for batk.
 	// [Skotlex]
+	if (bl->type == BL_PC)
+#ifdef RENEWAL // renewal attack bonus formula
+		str += (int)(dex/5. + status->luk/3. + ((TBL_PC*)bl)->status.base_level/4.); //(every 3 luk = + 1ATK) + (every 4 base level = +1 ATK)
+	else {
+		dstr = str/10;
+		str += dstr*dstr;
+	}
+#else
+		str += dex/5 + status->luk/5;
 	dstr = str/10;
 	str += dstr*dstr;
-	if (bl->type == BL_PC)
-		str+= dex/5 + status->luk/5;
+#endif
 	return cap_value(str, 0, USHRT_MAX);
 }
 
@@ -1852,20 +1860,25 @@ static inline unsigned short status_base_status_matk(const struct status_data* s
 void status_calc_misc(struct block_list *bl, struct status_data *status, int level)
 {
 	//Non players get the value set, players need to stack with previous bonuses.
+#ifdef RENEWAL
 	if( bl->type != BL_PC)
-		status->batk = 
+		status->batk =
 		status->hit = status->flee =
-		status->def2 = status->mdef =
-		status->cri = status->flee2 = 0;
-#ifdef RENEWAL	
+		status->cri = status->flee2 =
+		status->mdef = status->def = 0;
 	status->hit += level + status->dex + status->luk/3 + 175;
 	status->flee += level + status->agi + status->luk/5 + 100;
-	status->def2 += ((bl->type == BL_PC ? status->agi<<1:0) + 5*(level + status->vit))/10;
+	status->def += ((bl->type == BL_PC ? status->agi<<1:0) + 5*(level + status->vit))/10;
 	if(bl->type == BL_PC)
 		status->mdef += status->int_ + (5*level + 4*(status->dex + status->vit))/20;
 	else
 		status->mdef += (level + status->int_)/4;
 #else
+	if(bl->type != BL_PC)
+		status->batk =
+		status->hit = status->flee =
+		status->def2 = status->mdef2 =
+		status->cri = status->flee2 = 0;
 	status->hit += level + status->dex;
 	status->flee += level + status->agi;
 	status->def2 += status->vit;
@@ -1895,10 +1908,6 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int lev
 		status->batk = cap_value(temp, 0, USHRT_MAX);
 	} else
 		status->batk = status_base_atk(bl, status);
-		
-#ifdef RENEWAL // renewal attack bonus formula
-	status->batk += (int)((float)status->luk/3 + (float)level/4); //(every 3 luk = + 1ATK) + (every 4 base level = +1 ATK)
-#endif
 
 	if (status->cri)
 	switch (bl->type) {

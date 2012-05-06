@@ -9,6 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1142 - 05/05/2012 [brn0]
+	* Corrigida a fórmula do ataque base.
+	* Corrigida a fórmula da defesa de atributos.
+	* Retirada a permissão de uso de todas as habilidades no grupo ID 99.
+	- Feito para diminuir a lentidão e algumas incompatibilidades.
+
 	r1141 - 05/05/2012 [Henrybk]
 	* Corrigida a habilidade Campo Protetor (NC_NEUTRALBARRIER).
 	- Adicionado bônus de defesa e defesa mágica.
