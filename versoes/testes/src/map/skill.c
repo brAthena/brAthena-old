@@ -1176,8 +1176,9 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, int 
 		break;
 	case RA_WUGBITE:
 		rate = (50 + 10 * skilllv) - (status_get_agi(bl) / 4) + (pc_checkskill(sd,RA_TOOTHOFWUG)*2);
-		if( rand()%100 > 50)
-			sc_start(bl, SC_BITE, rate, skilllv, skill_get_time(skillid, skilllv) + (sd ? pc_checkskill(sd,RA_TOOTHOFWUG)*1000:0));
+		if (rate < 50)
+			rate = 50;
+		sc_start(bl, SC_BITE, rate, skilllv, skill_get_time(skillid, skilllv) + (sd ? pc_checkskill(sd,RA_TOOTHOFWUG)*1000:0));
 		break;
 	case RA_SENSITIVEKEEN:
 		if(rand()%100 < 8*skilllv)
@@ -11490,7 +11491,8 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 			break;
 			
 		case UNT_VACUUM_EXTREME:
-			sc_start(bl, SC_VACUUM_EXTREME, 100, sg->skill_lv, sg->limit);
+			if( battle_check_target(ss,bl,BCT_ENEMY) > 0 && !(tsc && tsc->data[SC_HALLUCINATIONWALK]) )
+				sc_start(bl, SC_VACUUM_EXTREME, 100, sg->skill_lv, sg->limit);
 			break;
 
 		case UNT_FIRE_MANTLE:

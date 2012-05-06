@@ -9,6 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1144 - 06/05/2012 [Henrybk]
+	* Corrigida a habilidade Fúria do Furacão (NC_AXETORNADO).
+	- Modificado dano conforme valores oficiais.
+	* Corrigida a habilidade Passos da Ilusão (GC_HALLUCINATIONWALK).
+	- Agora deixa imune a habilidade Tornado.
+	* Corrigida erro da r1140 na habilidade Mordida Feroz (RA_WUGBITE).
+
 	r1143 - 05/05/2012 [Henrybk]
 	* Corrigida Runa Wyrd (RK_STORMBLAST).
 	- Modificado dano conforme valores oficiais.

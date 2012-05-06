@@ -2298,7 +2298,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 						if(skill_lv <= 2)
 							skillratio = 0;
 						else
-							skillratio -= 100 + (25 * ( skill_lv - 1 ));
+							skillratio -= skillratio / 4;
 					}
 					break;
 				case NC_AXEBOOMERANG:
