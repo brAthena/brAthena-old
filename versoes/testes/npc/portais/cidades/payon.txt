@@ -25,8 +25,6 @@
 // == Portais Oficiais baseados em ScreenShots do kRO ==
 
 //= Entrada/Saída
-payon,16,142,0	warp	payonwarp001	1,1,pay_gld,370,149
-pay_gld,374,149,0	warp	payonwarp002	1,1,payon,20,142
 payon,122,27,0	warp	payonwarp003	5,3,pay_fild01,333,356
 pay_fild01,333,360,0	warp	payonwarp004	5,3,payon,122,31
 payon,267,89,0	warp	payonwarp005	1,1,pay_fild08,20,74

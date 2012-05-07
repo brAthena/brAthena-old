@@ -28,6 +28,9 @@
     <ClCompile Include="..\src\map\duel.c">
       <Filter>map_sql</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\map\elemental.c">
+      <Filter>map_sql</Filter>
+    </ClCompile>
     <ClCompile Include="..\src\map\guild.c">
       <Filter>map_sql</Filter>
     </ClCompile>
@@ -50,6 +53,9 @@
       <Filter>map_sql</Filter>
     </ClCompile>
     <ClCompile Include="..\src\map\map.c">
+      <Filter>map_sql</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\map\mapreg.c">
       <Filter>map_sql</Filter>
     </ClCompile>
     <ClCompile Include="..\src\map\mercenary.c">
@@ -163,8 +169,6 @@
     <ClCompile Include="..\3rdparty\mt19937ar\mt19937ar.c">
       <Filter>3rdparty\mt19937ar</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\map\elemental.c" />
-    <ClCompile Include="..\src\map\mapreg.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\map\atcommand.h">
@@ -192,6 +196,9 @@
       <Filter>map_sql</Filter>
     </ClInclude>
     <ClInclude Include="..\src\map\duel.h">
+      <Filter>map_sql</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\map\elemental.h">
       <Filter>map_sql</Filter>
     </ClInclude>
     <ClInclude Include="..\src\map\guild.h">

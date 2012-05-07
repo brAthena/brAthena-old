@@ -327,9 +327,6 @@ extern struct Battle_Config
 	int manner_system; // end additions [Valaris]
 	int show_mob_info;
 
-	int agi_penalty_count_lv;
-	int vit_penalty_count_lv;
-
 	int gx_allhit;
 	int gx_disptype;
 	int devotion_level_difference;
@@ -502,6 +499,9 @@ extern struct Battle_Config
 	int bg_magic_damage_rate;
 	int bg_misc_damage_rate;
 	int bg_flee_penalty;
+	
+	// rAthena Modificações
+	int atcommand_suggestions_enabled;
 
 	// brAthena Modificações
 	int use_statpoint2_table; // [Protimus]

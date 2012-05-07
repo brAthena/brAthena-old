@@ -79,6 +79,7 @@ static char atcmd_player_name[NAME_LENGTH];
 
 static AtCommandInfo* get_atcommandinfo_byname(const char *name); // @help
 static const char* atcommand_checkalias(const char *aliasname); // @help
+static void atcommand_get_suggestions(struct map_session_data* sd, const char *name, bool atcommand); // @help
 
 //-----------------------------------------------------------
 // Return the message string of the specified number by [Yor]
@@ -157,7 +158,7 @@ static const char* atcommand_help_string(const char* name)
 {
 	const char* str = NULL;
 	config_setting_t* info;
-
+ 
 	if( *name == atcommand_symbol || *name == charcommand_symbol )
 	{// remove the prefix symbol for the raw name of the command
 		name ++;
@@ -1711,11 +1712,13 @@ ACMD_FUNC(help)
 	if (!pc_can_use_command(sd, command_name, COMMAND_ATCOMMAND)) {
 		sprintf(atcmd_output, msg_txt(153), message); // "%s is Unknown Command"
 		clif_displaymessage(fd, atcmd_output);
+		atcommand_get_suggestions(sd, command_name, true);
 		return -1;
 	}
 	
 	if (!config_setting_lookup_string(help, command_name, &text)) {
 		clif_displaymessage(fd, "There is no help for this command_name.");
+		atcommand_get_suggestions(sd, command_name, true);
 		return -1;
 	}
 
@@ -1733,7 +1736,7 @@ ACMD_FUNC(help)
 		StringBuf_AppendStr(&buf, "Available aliases:");
 		command_info = get_atcommandinfo_byname(command_name);
 		iter = db_iterator(atcommand_alias_db);
-		for (alias_info = (AliasInfo*)dbi_first(iter); dbi_exists(iter); alias_info = (AliasInfo*)dbi_next(iter)) {
+		for (alias_info = dbi_first(iter); dbi_exists(iter); alias_info = dbi_next(iter)) {
 			if (alias_info->command == command_info) {
 				StringBuf_Printf(&buf, " %s", alias_info->alias);
 				has_aliases = true;
@@ -2051,23 +2054,22 @@ ACMD_FUNC(go)
 
 	// get the number
 	town = atoi(message);
+ 
+	if (!message || !*message || sscanf(message, "%11s", map_name) < 1 || town < 0 || town >= ARRAYLENGTH(data))
+	{// no value matched so send the list of locations
+		const char* text;
 
-	// if no value, display all value
-	if (!message || !*message || sscanf(message, "%11s", map_name) < 1 || town < 0 || (unsigned) town >= ARRAYLENGTH(data)) {
-		clif_displaymessage(fd, msg_txt(38)); // Invalid location number, or name.
-		clif_displaymessage(fd, msg_txt(82)); // Please provide a name or number from the list provided:
-		clif_displaymessage(fd, " 0=Prontera         1=Morroc       2=Geffen");
-		clif_displaymessage(fd, " 3=Payon            4=Alberta      5=Izlude");
-		clif_displaymessage(fd, " 6=Al De Baran      7=Lutie        8=Comodo");
-		clif_displaymessage(fd, " 9=Yuno             10=Amatsu      11=Gonryun");
-		clif_displaymessage(fd, " 12=Umbala          13=Niflheim    14=Louyang");
-		clif_displaymessage(fd, " 15=Novice Grounds  16=Prison      17=Jawaii");
-		clif_displaymessage(fd, " 18=Ayothaya        19=Einbroch    20=Lighthalzen");
-		clif_displaymessage(fd, " 21=Einbech         22=Hugel       23=Rachel");
-		clif_displaymessage(fd, " 24=Veins        25=Moscovia    26=Midgard Camp");
-		clif_displaymessage(fd, " 27=Manuk        28=Splendide    29=Brasilis");
-		clif_displaymessage(fd, " 30=El Dicastes     31=Mora      32=Dewata");
-		clif_displaymessage(fd, " 33=Malangdo Island  34=Malaya Port  35=Eclage");
+		// attempt to find the text help string
+		text = atcommand_help_string( command );
+
+		// Invalid location number, or name.
+		clif_displaymessage(fd, msg_txt(38));
+
+		if( text )
+		{// send the text to the client
+			clif_displaymessage( fd, text );
+		}
+		
 		return -1;
 	}
 
@@ -4664,7 +4666,7 @@ ACMD_FUNC(unloadnpc)
 	}
 
 	npc_unload_duplicates(nd);
-	npc_unload(nd);
+	npc_unload(nd,true);
 	npc_read_event_script();
 	clif_displaymessage(fd, msg_txt(112)); // Npc Disabled.
 	return 0;
@@ -6362,17 +6364,20 @@ ACMD_FUNC(pettalk)
 			"/!", "/?", "/ho", "/lv", "/swt", "/ic", "/an", "/ag", "/$", "/...",
 			"/scissors", "/rock", "/paper", "/korea", "/lv2", "/thx", "/wah", "/sry", "/heh", "/swt2",
 			"/hmm", "/no1", "/??", "/omg", "/O", "/X", "/hlp", "/go", "/sob", "/gg",
-			"/kis", "/kis2", "/pif", "/ok", "-?-", "-?-", "/bzz", "/rice", "/awsm", "/meh",
-			"/shy", "/pat", "/mp", "/slur", "/com", "/yawn", "/grat", "/hp", "/philippines", "/usa",
-			"/indonesia", "/brazil", "/fsh", "/spin", "/sigh", "/dum", "/crwd", "/desp", "/dice"
+			"/kis", "/kis2", "/pif", "/ok", "-?-", "/indonesia", "/bzz", "/rice", "/awsm", "/meh",
+			"/shy", "/pat", "/mp", "/slur", "/com", "/yawn", "/grat", "/hp", "/philippines", "/malaysia",
+			"/singapore", "/brazil", "/fsh", "/spin", "/sigh", "/dum", "/crwd", "/desp", "/dice", "-dice2",
+			"-dice3", "-dice4", "-dice5", "-dice6", "/india", "/love", "/russia", "-?-", "/mobile", "/mail",
+			"/chinese", "/antenna1", "/antenna2", "/antenna3", "/hum", "/abs", "/oops", "/spit", "/ene", "/panic",
+			"/whisp"
 		};
 		int i;
 		ARR_FIND( 0, ARRAYLENGTH(emo), i, stricmp(message, emo[i]) == 0 );
+		if( i == E_DICE1 ) i = rnd()%6 + E_DICE1; // randomize /dice
 		if( i < ARRAYLENGTH(emo) )
 		{
 			if (sd->emotionlasttime + 1 >= time(NULL)) { // not more than 1 per second
 					sd->emotionlasttime = time(NULL);
-					clif_skill_fail(sd, 1, 0, 1);
 					return 0;
 			}
 			sd->emotionlasttime = time(NULL);
@@ -8842,6 +8847,83 @@ static const char* atcommand_checkalias(const char *aliasname)
 	return aliasname;
 }
 
+/// AtCommand suggestion
+static void atcommand_get_suggestions(struct map_session_data* sd, const char *name, bool atcommand) {
+	DBIterator* atcommand_iter;
+	DBIterator* alias_iter;
+	AtCommandInfo* command_info = NULL;
+	AliasInfo* alias_info = NULL;
+	AtCommandType type;
+	char* suggestions[MAX_SUGGESTIONS];
+	int count = 0;
+	
+	if (!battle_config.atcommand_suggestions_enabled)
+		return;
+
+	atcommand_iter = db_iterator(atcommand_db);
+	alias_iter = db_iterator(atcommand_alias_db);	
+	
+	if (atcommand)
+		type = COMMAND_ATCOMMAND;
+	else
+		type = COMMAND_CHARCOMMAND;
+
+	
+	// First match the beginnings of the commands
+	for (command_info = dbi_first(atcommand_iter); dbi_exists(atcommand_iter) && count < MAX_SUGGESTIONS; command_info = dbi_next(atcommand_iter)) {
+		if ( strstr(command_info->command, name) == command_info->command && pc_can_use_command(sd, command_info->command, type) )
+		{
+			suggestions[count] = command_info->command;
+			++count;
+		}
+	}
+
+	for (alias_info = dbi_first(alias_iter); dbi_exists(alias_iter) && count < MAX_SUGGESTIONS; alias_info = dbi_next(alias_iter)) {
+		if ( strstr(alias_info->alias, name) == alias_info->alias && pc_can_use_command(sd, alias_info->command->command, type) )
+		{
+			suggestions[count] = alias_info->alias;
+			++count;
+		}
+	}
+	
+	// Fill up the space left, with full matches
+	for (command_info = dbi_first(atcommand_iter); dbi_exists(atcommand_iter) && count < MAX_SUGGESTIONS; command_info = dbi_next(atcommand_iter)) {
+		if ( strstr(command_info->command, name) != NULL && pc_can_use_command(sd, command_info->command, type) )
+		{
+			suggestions[count] = command_info->command;
+			++count;
+		}
+	}
+
+	for (alias_info = dbi_first(alias_iter); dbi_exists(alias_iter) && count < MAX_SUGGESTIONS; alias_info = dbi_next(alias_iter)) {
+		if ( strstr(alias_info->alias, name) != NULL && pc_can_use_command(sd, alias_info->command->command, type) )
+		{
+			suggestions[count] = alias_info->alias;
+			++count;
+		}
+	}
+
+	if (count > 0)
+	{
+		char buffer[512];
+		int i;
+
+		strcpy(buffer, msg_txt(205));
+		strcat(buffer,"\n");
+		
+		for(i=0; i < count; ++i)
+		{
+			strcat(buffer,suggestions[i]);
+			strcat(buffer," ");
+		}
+
+		clif_displaymessage(sd->fd, buffer);
+	}
+
+	dbi_destroy(atcommand_iter);
+	dbi_destroy(alias_iter);
+}
+
 /// Executes an at-command.
 bool is_atcommand(const int fd, struct map_session_data* sd, const char* message, int type)
 {
@@ -8941,6 +9023,7 @@ bool is_atcommand(const int fd, struct map_session_data* sd, const char* message
 		if( pc_get_group_level(sd) ) { // TODO: remove or replace with proper permission
 			sprintf(output, msg_txt(153), command); // "%s is Unknown Command."
 			clif_displaymessage(fd, output);
+			atcommand_get_suggestions(sd, command + 1, *message == atcommand_symbol);
 			return true;
 		} else
 			return false;

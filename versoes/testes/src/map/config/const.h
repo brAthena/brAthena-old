@@ -61,6 +61,16 @@
 #else
 	#define __64BPRTSIZE(y) y
 #endif
+
+/* ATCMD_FUNC(mobinfo) HIT and FLEE calculations */
+#ifdef RENEWAL
+	#define MOB_FLEE(mob) ( mob->lv + mob->status.dex + mob->status.luk/3 + 175 )
+	#define MOB_HIT(mob)  ( mob->lv + mob->status.agi + mob->status.luk/5 + 100 )
+#else
+	#define MOB_FLEE(mob) ( mob->lv + mob->status.dex )
+	#define MOB_HIT(mob)  ( mob->lv + mob->status.agi )
+#endif
+
 /**
  * End of File
  **/

@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1147 - 07/05/2012 [Protimus]
+	* Atualizado conforme rAthena 16084.
+	- Updates relacionados à quests/habilidades não foram feitos, necessário revisar melhor.
+	- Foi revertida a tradução de gde/gde2, necessária retradução.
+
 	r1146 - 06/05/2012 [Henrybk]
 	* Corrigida a habilidade Reflexão Amplificada (LG_REFLECTDAMAGE).
 	- Modificado chance de reflexão conforme valores oficiais.

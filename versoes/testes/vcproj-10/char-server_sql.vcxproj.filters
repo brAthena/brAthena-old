@@ -49,6 +49,9 @@
     <ClCompile Include="..\src\char\int_auction.c">
       <Filter>char_sql</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\char\int_elemental.c">
+      <Filter>char_sql</Filter>
+    </ClCompile>
     <ClCompile Include="..\src\char\int_guild.c">
       <Filter>char_sql</Filter>
     </ClCompile>
@@ -79,7 +82,6 @@
     <ClCompile Include="..\3rdparty\mt19937ar\mt19937ar.c">
       <Filter>3rdparty\mt19937ar</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\char\int_elemental.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\common\cbasetypes.h">
@@ -140,6 +142,9 @@
       <Filter>char_sql</Filter>
     </ClInclude>
     <ClInclude Include="..\src\char\int_auction.h">
+      <Filter>char_sql</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\char\int_elemental.h">
       <Filter>char_sql</Filter>
     </ClInclude>
     <ClInclude Include="..\src\char\int_guild.h">

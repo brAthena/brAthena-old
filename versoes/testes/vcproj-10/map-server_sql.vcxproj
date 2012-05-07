@@ -157,6 +157,7 @@
     <ClInclude Include="..\src\map\clif.h" />
     <ClInclude Include="..\src\map\date.h" />
     <ClInclude Include="..\src\map\duel.h" />
+    <ClInclude Include="..\src\map\elemental.h" />
     <ClInclude Include="..\src\map\guild.h" />
     <ClInclude Include="..\src\map\intif.h" />
     <ClInclude Include="..\src\map\itemdb.h" />

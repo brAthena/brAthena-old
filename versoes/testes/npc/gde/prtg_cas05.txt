@@ -1,70 +1,66 @@
-//  ________________________________________________________
-// /                                                        \
-// |       _           _   _   _                            |
-// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
-// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
-// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
-// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |                                                        |
-// |                    brAthena Script                     |
-// |--------------------------------------------------------|
-// | Nome do Script: Guerra do Emperium (Prontera)          |
-// |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team                           |
-// |--------------------------------------------------------|
-// | Versões eA/brA: 1.3/1.2                                |
-// |--------------------------------------------------------|
-// | Descrição: NPCs relacionados ao castelo Gondul.        |
-// |--------------------------------------------------------|
-// | Changelog:               	                            |
-// | 1.0 Script Traduzido [cleyton]                         |
-// | 1.1 Script Revisado [Protimus & Tyler]                 |
-// | 1.2 Correção de Tradução [Protimus]                    |
-// | - Corrigido erro de concordância nominal               |
-// \________________________________________________________/
-
-// Bandeira do Castelo (Cidade)
+//===== rAthena Script =======================================
+//= War of Emperium (Prontera)
+//===== By: ==================================================
+//= L0ne_W0lf
+//===== Current Version: =====================================
+//= 1.4
+//===== Compatible With: =====================================
+//= rAthena SVN
+//===== Description: =========================================
+//= NPCs that relate to Prontera Guild Castle 5
+//===== Additional Comments: =================================
+//= 1.0 First Version. No longer uses functions. [L0ne_W0lf]
+//= 1.1 Corrected flag-in spawn point. [L0ne_W0lf]
+//= 1.2 Corrected treasure room switch coordinates. [L0ne_W0lf]
+//= 1.3 Removed dialog from interior flags. [L0ne_W0lf]
+//= 1.4 Partially rewrote Script. [Masao]
 //============================================================
-prontera,165,194,5	script	Gondul#p5-1::Gondul	722,{
-	end;
 
-OnRecvCastlePt05:
-	FlagEmblem GetCastleData("prtg_cas05",1);
-	end;
-}
-
-// Bandeira do Castelo (Fora do Castelo)
+// Guild Flags (Outside Castle)
 //============================================================
-prt_gld,199,243,2	script	Gondul#p5-2::Gondul2	722,{
+-	script	Gondul#1::OutsideFlagsPR5	722,{
+
 	set .@GID, GetCastleData("prtg_cas05",1);
+
 	if (.@GID == 0) {
-		mes " [ Decreto do Reino de Midgard ]";
+		mes "[ Edict of the Divine Rune-Midgarts Kingdom ]";
 		mes " ";
-		mes "1. Conforme o pacto do Reino de Midgard e o Feudo das Valquírias, declaro que este Castelo não possui um Senhor.";
+		mes "1. Follow the ordinance of The Divine Rune-Midgarts Kingdom, ";
+		mes "We declare that";
+		mes "there is no formal master of this castle.";
 		mes " ";
-		mes "2. Aquele que superar terríveis desafios e destruir o Emperium, receberá a posse do castelo com o apoio do nosso rei.";
+		mes "2. To the one who can ";
+		mes "overcome all trials";
+		mes "and destroy the Emperium,";
+		mes "the king will endow the one with";
+		mes "ownership of this castle.";
+		close;
 	}
-	else {
-		if (getcharid(2) == .@GID) {
-			mes "Bravo guerreiro...";
-			mes "Você deseja retornar ao seu lugar de honra?";
-			next;
-			if (select("Retornar para o castelo do Clã.:Não.") == 1) {
-				if (getcharid(2) == GetCastleData("prtg_cas05",1)) {
-					warp "prtg_cas05",52,41;
-					end;
-				}
+	if (getcharid(2) == .@GID) {
+		mes "[ Echoing Voice ]";
+		mes "Brave ones...";
+		mes "Do you wish to return to your honorable place?";
+		next;
+		if(select("Return to the guild castle.:Quit.") == 1) {
+			close2;
+			if (getcharid(2) == GetCastleData("prtg_cas05",1)) {
+				warp "prtg_cas05",52,41;
+				end;
 			}
-			close;
+			end;
 		}
-		mes "[ Decreto do Reino de Midgard ]";
-		mes " ";
-		mes "1. Seguindo o decreto do Reino de Midgard.";
-		mes "Nós declaramos que esse castelo pertence ao clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
-		mes " ";
-		mes "2. O líder do clã ^ff0000"+ GetGuildName(.@GID) + "^000000 se chama ^FF0000" + GetGuildMaster(.@GID) + "^000000.";
-		mes "Se alguém se opõe a esse decreto, que prove sua força e honra com uma espada em suas mãos.";
+		close;
 	}
+	mes "[ Edict of the Divine Rune-Midgarts Kingdom ]";
+	mes " ";
+	mes "1. Follow the ordinance of The Divine Rune-Midgarts Kingdom, ";
+	mes "we approve that this place is in";
+	mes "the private prossession of ^ff0000"+GetGuildName(.@GID)+"^000000 Guild.";
+	mes " ";
+	mes "2. The guild Master of ^ff0000"+GetGuildName(.@GID)+"^000000 Guild is";
+	mes "^ff0000"+GetGuildMaster(.@GID)+"^000000";
+	mes "If there is anyone who objects to this,";
+	mes "prove your strength and honor with a steel blade in your hand.";
 	close;
 
 OnRecvCastlePt05:
@@ -72,13 +68,14 @@ OnRecvCastlePt05:
 	end;
 }
 
-prt_gld,199,236,2	duplicate(Gondul2)	Gondul#p5-3	722
-prt_gld,197,243,2	duplicate(Gondul2)	Gondul#p5-4	722
-prt_gld,197,236,2	duplicate(Gondul2)	Gondul#p5-5	722
+prt_gld,199,243,2	duplicate(OutsideFlagsPR5)	Gondul#1-2	722
+prt_gld,199,236,2	duplicate(OutsideFlagsPR5)	Gondul#2	722
+prt_gld,197,243,2	duplicate(OutsideFlagsPR5)	Gondul#3	722
+prt_gld,197,236,2	duplicate(OutsideFlagsPR5)	Gondul#4	722
 
-// Bandeira do Castelo (Dentro do Castelo)
+// Guild Flags (Inside Castle)
 //============================================================
-prtg_cas05,19,247,4	script	Gondul#p5-6::Gondul3	722,{
+-	script	Gondul#5::InsideFlagsPR5	722,{
 	end;
 
 OnRecvCastlePt05:
@@ -86,50 +83,54 @@ OnRecvCastlePt05:
 	end;
 }
 
-prtg_cas05,19,243,4	duplicate(Gondul3)	Gondul#p5-7	722
-prtg_cas05,26,247,4	duplicate(Gondul3)	Gondul#p5-8	722
-prtg_cas05,26,243,4	duplicate(Gondul3)	Gondul#p5-9	722
-prtg_cas05,249,289,4	duplicate(Gondul3)	Gondul#p5-10	722
-prtg_cas05,256,289,4	duplicate(Gondul3)	Gondul#p5-11	722
-prtg_cas05,253,271,4	duplicate(Gondul3)	Gondul#p5-12	722
-prtg_cas05,273,257,4	duplicate(Gondul3)	Gondul#p5-13	722
+prtg_cas05,19,247,4	duplicate(InsideFlagsPR5)	Gondul#5-2	722
+prtg_cas05,19,243,4	duplicate(InsideFlagsPR5)	Gondul#6	722
+prtg_cas05,26,247,4	duplicate(InsideFlagsPR5)	Gondul#7	722
+prtg_cas05,26,243,4	duplicate(InsideFlagsPR5)	Gondul#8	722
+prtg_cas05,249,289,4	duplicate(InsideFlagsPR5)	Gondul#9	722
+prtg_cas05,256,289,4	duplicate(InsideFlagsPR5)	Gondul#10	722
+prtg_cas05,253,271,4	duplicate(InsideFlagsPR5)	Gondul#11	722
+prtg_cas05,273,257,4	duplicate(InsideFlagsPR5)	Gondul#12	722
 
-// Gerenciador Automático
+// Guild Flag (Town)
 //============================================================
-prtg_cas05,266,266,0	duplicate(Gld_Agit_Manager)	Agit#prtg_cas05	-1
+prontera,165,194,5	duplicate(InsideFlagsPR5)	Gondul#13	722
 
-// Administração
+// Kafra Employee
 //============================================================
-prtg_cas05,36,37,4	duplicate(Gld_Mngr_Template)	Raynor#prtg_cas05	55
+prtg_cas05,52,41,4	duplicate(guildkafra)	Kafra Staff#prtg_cas05	117
 
-// Guardiões
+// Steward
 //============================================================
-prtg_cas05,36,37,4	duplicate(Gld_Guard_Template)	Guardian#prtg_cas05	-1
+prtg_cas05,36,37,4	duplicate(cm)	Raynor#prtg_cas05	55
 
-// Kafras
+// Treasure Room Exit
 //============================================================
-prtg_cas05,52,41,4	duplicate(Gld_Kafra_Template)	Assistente Kafra#prtg_cas05	117
+prtg_cas05,281,176,0	script	#Lever_PR05	111,{
 
-// Saída da Sala do Mestre
-//============================================================
-prtg_cas05,281,176,0	script	#switch_Pt05	111,{
 	mes " ";
-	mes "Há uma pequena alavanca aqui.";
-	mes "Você deseja puxar ela?";
+	mes "There's a small lever. Will you pull it?";
 	next;
-	if(select("Puxar.:Não puxar.") == 2) close;
-	warp "prtg_cas05",36,38;
-	end;
+	if(select("Pull.:Do not.") == 1) {
+		close2;
+		warp "prtg_cas05",36,38;
+		end;
+	}
+	close;
 }
 
-// Proteção de Tesouros
+// Guild Dungeon Switch
 //============================================================
-prtg_cas05,276,178,0	duplicate(Gld_Trea_Protect)	ban_warp#prtg_cas05	-1,6,6
+prtg_cas05,212,95,0	duplicate(gdlever)	#prtg_cas05	111
 
-// Spawns de Tesouros
+// Guild Treasure Spawns
 //============================================================
 prtg_cas05,276,178,0	duplicate(Gld_Trea_Spawn)	Treasure#prtg_cas05	-1
 
-// Mudanças de Cavernas
+// AGIT Manager
 //============================================================
-prtg_cas05,212,94,0	duplicate(Gld_Dun_Template)	#prtg_cas05	111
+prtg_cas05,266,266,0	duplicate(Gld_Agit_Manager)	Agit#prtg_cas05	-1
+
+// Guardians
+//============================================================
+prtg_cas05,36,37,4	duplicate(Gld_Guard_Template)	Guardian#prtg_cas05	-1

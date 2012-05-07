@@ -4,8 +4,8 @@
 #ifndef _ELEMENTAL_H_
 #define _ELEMENTAL_H_
 
-#include "status.h"
-#include "unit.h"
+#include "status.h" // struct status_data, struct status_change
+#include "unit.h" // struct unit_data
 
 #define MIN_ELETHINKTIME 100
 #define MIN_ELEDISTANCE 2
@@ -43,15 +43,15 @@ struct elemental_data {
 	struct status_data base_status, battle_status;
 	struct status_change sc;
 	struct regen_data regen;
-
+	
 	struct s_elemental_db *db;
 	struct s_elemental elemental;
 	char blockskill[MAX_SKILL];
-
+	
 	struct map_session_data *master;
 	int summon_timer;
 	int skill_timer;
-
+	
 	unsigned last_thinktime, last_linktime;
 	short min_chase;
 	int target_id, attacked_id;

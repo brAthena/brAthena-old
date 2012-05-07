@@ -1376,9 +1376,9 @@ int clif_spawn(struct block_list *bl)
 	case BL_NPC:
 		{
 			TBL_NPC *nd = ((TBL_NPC*)bl);
-			if( nd->size == 2 )
+			if( nd->size == SZ_BIG )
 				clif_specialeffect(&nd->bl,423,AREA);
-			else if( nd->size == 1 )
+			else if( nd->size == SZ_MEDIUM )
 				clif_specialeffect(&nd->bl,421,AREA);
 		}
 		break;
@@ -2743,25 +2743,24 @@ void clif_updatestatus(struct map_session_data *sd,int type)
 		WFIFOL(fd,4)=pc_leftside_atk(sd);
 		break;
 	case SP_DEF1:
-		WFIFOL(fd,4)=sd->battle_status.def;
+		WFIFOL(fd,4)=pc_leftside_def(sd);
 		break;
 	case SP_MDEF1:
-		WFIFOL(fd,4)=sd->battle_status.mdef;
+		WFIFOL(fd,4)=pc_leftside_mdef(sd);
 		break;
 	case SP_ATK2:
 		WFIFOL(fd,4)=pc_rightside_atk(sd);
 		break;
 	case SP_DEF2:
-		WFIFOL(fd,4)=sd->battle_status.def2;
+		WFIFOL(fd,4)=pc_rightside_def(sd);
 		break;
-	case SP_MDEF2:
+	case SP_MDEF2: 
 	{
-		//negative check (in case you have something like Berserk active)
-		int mdef2 = sd->battle_status.mdef2 - (sd->battle_status.vit>>1);
-
-		WFIFOL(fd,4)= ( mdef2 < 0 ) ? 0 : mdef2;
+			//negative check (in case you have something like Berserk active)
+			int mdef2 = pc_rightside_mdef(sd);
+			WFIFOL(fd,4)= ( mdef2 < 0 ) ? 0 : mdef2;
+		}
 		break;
-	}
 	case SP_CRITICAL:
 		WFIFOL(fd,4)=sd->battle_status.cri/10;
 		break;
@@ -2864,8 +2863,7 @@ void clif_updatestatus(struct map_session_data *sd,int type)
 		WFIFOW(fd,0)=0x121;
 		WFIFOW(fd,2)=sd->cart_num;
 		WFIFOW(fd,4)=MAX_CART;
-		WFIFOL(fd,6)=sd->cart_weight;
-		WFIFOL(fd,10)=battle_config.max_cart_weight + (pc_checkskill(sd,GN_REMODELING_CART)*5000);
+		WFIFOL(fd,10)=sd->cart_weight_max;
 		len=14;
 		break;
 
@@ -3098,10 +3096,10 @@ void clif_initialstatus(struct map_session_data *sd)
 	WBUFW(buf,18) = pc_rightside_atk(sd);
 	WBUFW(buf,20) = sd->battle_status.matk_max;
 	WBUFW(buf,22) = sd->battle_status.matk_min;
-	WBUFW(buf,24) = sd->battle_status.def; // def
-	WBUFW(buf,26) = sd->battle_status.def2;
-	WBUFW(buf,28) = sd->battle_status.mdef; // mdef
-	mdef2 = sd->battle_status.mdef2 - (sd->battle_status.vit>>1);
+	WBUFW(buf,24) = pc_leftside_def(sd);
+	WBUFW(buf,26) = pc_rightside_def(sd);
+	WBUFW(buf,28) = pc_leftside_mdef(sd);
+	mdef2 = pc_rightside_mdef(sd);
 	WBUFW(buf,30) = ( mdef2 < 0 ) ? 0 : mdef2;  //Negative check for Frenzy'ed characters.
 	WBUFW(buf,32) = sd->battle_status.hit;
 	WBUFW(buf,34) = sd->battle_status.flee;
@@ -3221,7 +3219,7 @@ int clif_spellbook_list(struct map_session_data *sd){
 		sd->menuskill_id = WL_READING_SB;
 		sd->menuskill_val = c;
 	}else
-		status_change_end(&sd->bl,SC_STOP,-1);
+		status_change_end(&sd->bl,SC_STOP,INVALID_TIMER);
 
 	return 1;
 }
@@ -3359,7 +3357,7 @@ int clif_skill_select_request(struct map_session_data *sd)
 	else
 	{
 		status_change_end(&sd->bl,SC_STOP,INVALID_TIMER);
-		clif_skill_fail(sd,SC_AUTOSHADOWSPELL,USESKILL_FAIL_DUPLICATE_RANGEIN,0);
+		clif_skill_fail(sd,SC_AUTOSHADOWSPELL,USESKILL_FAIL_IMITATION_SKILL_NONE,0);
 	}
 
 	return 1;
@@ -4194,18 +4192,18 @@ void clif_getareachar_unit(struct map_session_data* sd,struct block_list *bl)
 			TBL_NPC* nd = (TBL_NPC*)bl;
 			if( nd->chat_id )
 				clif_dispchat((struct chat_data*)map_id2bl(nd->chat_id),sd->fd);
-			if( nd->size == 2 )
+			if( nd->size == SZ_BIG )
 				clif_specialeffect_single(bl,423,sd->fd);
-			else if( nd->size == 1 )
+			else if( nd->size == SZ_MEDIUM )
 				clif_specialeffect_single(bl,421,sd->fd);
 		}
 		break;
 	case BL_MOB:
 		{
 			TBL_MOB* md = (TBL_MOB*)bl;
-			if(md->special_state.size==2) // tiny/big mobs [Valaris]
+			if(md->special_state.size==SZ_BIG) // tiny/big mobs [Valaris]
 				clif_specialeffect_single(bl,423,sd->fd);
-			else if(md->special_state.size==1)
+			else if(md->special_state.size==SZ_MEDIUM)
 				clif_specialeffect_single(bl,421,sd->fd);
 		}
 		break;
@@ -9846,6 +9844,7 @@ void clif_parse_ActionRequest_sub(struct map_session_data *sd, int action_type, 
 	 	sd->sc.data[SC_AUTOCOUNTER] ||
 		sd->sc.data[SC_DEATHBOUND] ||
 		sd->sc.data[SC_BLADESTOP] ||
+		sd->sc.data[SC__MANHOLE] ||
 		sd->sc.data[SC_CURSEDCIRCLE_ATKER] ||
 		sd->sc.data[SC_CURSEDCIRCLE_TARGET]))
 		return;

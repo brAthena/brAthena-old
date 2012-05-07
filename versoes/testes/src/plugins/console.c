@@ -156,15 +156,15 @@ WORKER_FUNC_DECLARE(getinput); // worker for the input buffer
 //
 // On windows a thread is used (both threads have access to the same data).
 // The worker threads starts suspended and is resumed when data is required.
-// After getting the data, the worker thread updates the state variable and
+// After getting the data, the worker thread updates the state variable and 
 // suspends itself.
 //
-// A mutex is used to synchronize access to the state variable between the
-// threads. Access and updates to state are probably already atomic so the
+// A mutex is used to synchronize access to the state variable between the 
+// threads. Access and updates to state are probably already atomic so the 
 // mutex shouldn't be needed, but using it is more correct so it stays.
 //
-// Note: The Worker thread only starts to get input data when further data is
-//    requested. This is a design choise and brings no real advantage or
+// Note: The Worker thread only starts to get input data when further data is 
+//    requested. This is a design choise and brings no real advantage or 
 //    disadvantage I can think of.
 //
 
@@ -259,13 +259,13 @@ int input_final(void)
 // --=== Asynchronous console input ===--
 //
 // On the other systems a process is used and pipes are used to comunicate.
-// The worker process receives status updates through one of the pipes either
+// The worker process receives status updates through one of the pipes either 
 // requesting data or ending the worker.
-// The other pipe is used by the worker to send the input data and is checked
+// The other pipe is used by the worker to send the input data and is checked 
 // for data by the main thread in the timer function.
 //
-// Note: The Worker thread only starts to get input data when further data is
-//    requested. This is a design choise and brings no real advantage or
+// Note: The Worker thread only starts to get input data when further data is 
+//    requested. This is a design choise and brings no real advantage or 
 //    disadvantage I can think of.
 //
 
@@ -273,31 +273,27 @@ int input_final(void)
 #define input_getstate() buf.state
 
 /// Sets the state of the input
-void input_setstate(char state)
-{
-	if( state == INPUT_READY && input_getstate() == INPUT_READING )
-	{// send data from the worker to the main process
-		write(buf.data_pipe[PIPE_WRITE], &buf.len, sizeof(buf.len));
-		write(buf.data_pipe[PIPE_WRITE], &buf.arr, buf.len);
-	} else if( state == INPUT_WAITING ){
-		if( buf.close_unused_flag == 0 )
-		{// close unused pipe sides in the main process
+void input_setstate(char state) {
+	size_t fileReadCount = 0;
+	if( state == INPUT_READY && input_getstate() == INPUT_READING ) {// send data from the worker to the main process
+		fileReadCount = write(buf.data_pipe[PIPE_WRITE], &buf.len, sizeof(buf.len));
+		fileReadCount = write(buf.data_pipe[PIPE_WRITE], &buf.arr, buf.len);
+	} else if( state == INPUT_WAITING ) {
+		if( buf.close_unused_flag == 0 ) {// close unused pipe sides in the main process
 			close(buf.data_pipe[PIPE_WRITE]);
 			close(buf.state_pipe[PIPE_READ]);
 			buf.close_unused_flag = 1;
 		}
 		// send the next state
-		write(buf.state_pipe[PIPE_WRITE], &state, sizeof(state));
-	} else if( state == INPUT_READING ){
-		if( buf.close_unused_flag == 0 )
-		{// close unused pipe sides in the worker process
+		fileReadCount = write(buf.state_pipe[PIPE_WRITE], &state, sizeof(state));
+	} else if( state == INPUT_READING ) {
+		if( buf.close_unused_flag == 0 ) {// close unused pipe sides in the worker process
 			close(buf.data_pipe[PIPE_READ]);
 			close(buf.state_pipe[PIPE_WRITE]);
 			buf.close_unused_flag = 1;
 		}
-	} else if( state == INPUT_CLOSED )
-	{// send next state to the worker and close the pipes
-		write(buf.state_pipe[PIPE_WRITE], &state, sizeof(state));
+	} else if( state == INPUT_CLOSED ) {// send next state to the worker and close the pipes
+		fileReadCount = write(buf.state_pipe[PIPE_WRITE], &state, sizeof(state));
 		close(buf.data_pipe[PIPE_WRITE]);
 		close(buf.data_pipe[PIPE_READ]);
 		close(buf.state_pipe[PIPE_WRITE]);
@@ -327,9 +323,10 @@ int input_hasdata()
 {
 	struct pollfd fds;
 	int hasData;
-
-	if( input_getstate() == INPUT_READY )
-	{// start getting data
+	size_t fileReadCount;
+	
+	
+	if( input_getstate() == INPUT_READY ) {// start getting data
 		input_setstate(INPUT_WAITING);
 		return 0;
 	}
@@ -337,10 +334,9 @@ int input_hasdata()
 	fds.fd = buf.data_pipe[PIPE_READ];
 	fds.events = POLLRDNORM;
 	hasData = ( poll(&fds,1,0) > 0 );
-	if( hasData )
-	{// read the data from the pipe
-		read(buf.data_pipe[PIPE_READ], &buf.len, sizeof(buf.len));
-		read(buf.data_pipe[PIPE_READ], buf.arr, buf.len);
+	if( hasData ) {// read the data from the pipe
+		fileReadCount = read(buf.data_pipe[PIPE_READ], &buf.len, sizeof(buf.len));
+		fileReadCount = read(buf.data_pipe[PIPE_READ], buf.arr, buf.len);
 		input_setstate(INPUT_READY);
 	}
 
@@ -405,8 +401,8 @@ WORKER_FUNC_START(getinput)
 	{// get input
 		input_setstate(INPUT_READING);
 		buf.arr[0] = '\0';
-		fgets(buf.arr, INPUT_BUFSIZE, stdin);
-		buf.len = strlen(buf.arr);
+		if( fgets(buf.arr, INPUT_BUFSIZE, stdin) != NULL )
+			buf.len = strlen(buf.arr);
 		input_setstate(INPUT_READY);
 	}
 WORKER_FUNC_END(getinput)

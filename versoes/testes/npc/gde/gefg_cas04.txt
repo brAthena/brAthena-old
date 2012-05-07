@@ -1,71 +1,64 @@
-//  ________________________________________________________
-// /                                                        \
-// |       _           _   _   _                            |
-// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
-// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
-// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
-// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |                                                        |
-// |                    brAthena Script                     |
-// |--------------------------------------------------------|
-// | Nome do Script: Guerra do Emperium (Geffen)            |
-// |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team                           |
-// |--------------------------------------------------------|
-// | Versões eA/brA: 1.2/1.2                                |
-// |--------------------------------------------------------|
-// | Descrição: NPCs relacionados ao castelo Saffran.       |
-// |--------------------------------------------------------|
-// | Changelog:               	                            |
-// | 1.0 Script Traduzido [cleyton]                         |
-// | 1.1 Script Revisado [Protimus & Tyler]                 |
-// | 1.2 Correção de Tradução [Protimus]                    |
-// | - Corrigido erro de concordância nominal               |
-// \________________________________________________________/
-
-// Bandeira do Castelo (Cidade)
+//===== rAthena Script =======================================
+//= War of Emperium (Geffen)
+//===== By: ==================================================
+//= L0ne_W0lf
+//===== Current Version: =====================================
+//= 1.2
+//===== Compatible With: =====================================
+//= rAthena SVN
+//===== Description: =========================================
+//= NPCs that relate to Geffen Guild Castle 4
+//===== Additional Comments: =================================
+//= 1.0 First Version. No longer uses functions. [L0ne_W0lf]
+//= 1.1 Removed dialog from interior flags. [L0ne_W0lf]
+//= 1.2 Partially rewrote Script. [Masao]
 //============================================================
-geffen,127,130,7	script	Saffran#g4-1::Saffran	722,{
-	end;
 
-OnRecvCastleG04:
-	FlagEmblem GetCastleData("gefg_cas04",1);
-	end;
-}
-
-// Bandeira do Castelo (Fora do Castelo)
+// Guild Flag (Outside Castle)
 //============================================================
-gef_fild13,190,283,3	script	Saffran#g4-2::Saffran2	722,{
+-	script	Bergel#1::OutsideFlagsG4	722,{
+
 	set .@GID, GetCastleData("gefg_cas04",1);
+
 	if (.@GID == 0) {
-		mes " [ Decreto do Reino de Midgard ]";
+		mes "[ Edict of the Divine Rune-Midgarts Kingdom ]";
 		mes " ";
-		mes "1. Conforme o pacto do Reino de Midgard e o Feudo de Britoniah, declaro que este Castelo não possui um Senhor.";
+		mes "1. Follow the ordinance of The Divine Rune-Midgarts Kingdom, ";
+		mes "We declare that";
+		mes "there is no formal master of this castle.";
 		mes " ";
-		mes "2. Aquele que superar terríveis desafios e destruir o Emperium, receberá a posse do castelo com o apoio do nosso rei.";
+		mes "2. To the one who can ";
+		mes "overcome all trials";
+		mes "and destroy the Emperium,";
+		mes "the king will endow the one with";
+		mes "ownership of this castle.";
+		close;
 	}
-	else {
-		if (getcharid(2) == .@GID) {
-			mes "Bravo guerreiro...";
-			mes "Você deseja retornar ao seu lugar de honra?";
-			next;
-			if (select("Retornar para o castelo do Clã.:Não.") == 1) {
-				if (getcharid(2) == GetCastleData("gefg_cas04",1)) {
-					warp "gefg_cas04",59,70;
-					//warp "gefg_cas04",168 43;
-					end;
-				}
+	if (getcharid(2) == .@GID) {
+		mes "[ Echoing Voice ]";
+		mes "Brave ones...";
+		mes "Do you wish to return to your honorable place?";
+		next;
+		if(select("Return to the guild castle.:Quit.") == 1) {
+			close2;
+			if (getcharid(2) == GetCastleData("gefg_cas04",1)) {
+				warp "gefg_cas04",168,43;
+				end;
 			}
-			close;
+			end;
 		}
-		mes "[ Decreto do Reino de Midgard ]";
-		mes " ";
-		mes "1. Seguindo o decreto do Reino de Midgard.";
-		mes "Nós declaramos que esse castelo pertence ao clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
-		mes " ";
-		mes "2. O líder do clã ^ff0000"+ GetGuildName(.@GID) + "^000000 se chama ^FF0000" + GetGuildMaster(.@GID) + "^000000.";
-		mes "Se alguém se opõe a esse decreto, que prove sua força e honra com uma espada em suas mãos.";
+		close;
 	}
+	mes "[ Edict of the Divine Rune-Midgarts Kingdom ]";
+	mes " ";
+	mes "1. Follow the ordinance of The Divine Rune-Midgarts Kingdom, ";
+	mes "we approve that this place is in";
+	mes "the private prossession of ^ff0000"+GetGuildName(.@GID)+"^000000 Guild.";
+	mes " ";
+	mes "2. The guild Master of ^ff0000"+GetGuildName(.@GID)+"^000000 Guild is";
+	mes "^ff0000"+GetGuildMaster(.@GID)+"^000000";
+	mes "If there is anyone who objects to this,";
+	mes "prove your strength and honor with a steel blade in your hand.";
 	close;
 
 OnRecvCastleG04:
@@ -73,11 +66,12 @@ OnRecvCastleG04:
 	end;
 }
 
-gef_fild13,199,274,3	duplicate(Saffran2)	Saffran#g4-3	722
+gef_fild13,190,283,3	duplicate(OutsideFlagsG4)	Bergel#1-2	722
+gef_fild13,199,274,3	duplicate(OutsideFlagsG4)	Bergel#2	722
 
-// Bandeira do Castelo (Dentro do Castelo)
+// Guild Flag (Inside Castle)
 //============================================================
-gefg_cas04,24,157,4	script	Saffran#g4-4::Saffran3	722,{
+-	script	Bergel#3::InsideFlagsG4	722,{
 	end;
 
 OnRecvCastleG04:
@@ -85,50 +79,54 @@ OnRecvCastleG04:
 	end;
 }
 
-gefg_cas04,35,158,4	duplicate(Saffran3)	Saffran#g4-5	722
-gefg_cas04,44,184,4	duplicate(Saffran3)	Saffran#g4-6	722
-gefg_cas04,51,184,4	duplicate(Saffran3)	Saffran#g4-7	722
-gefg_cas04,39,212,7	duplicate(Saffran3)	Saffran#g4-8	722
-gefg_cas04,29,212,1	duplicate(Saffran3)	Saffran#g4-9	722
-gefg_cas04,24,73,1	duplicate(Saffran3)	Saffran#g4-10	722
-gefg_cas04,35,73,4	duplicate(Saffran3)	Saffran#g4-11	722
+gefg_cas04,24,157,4	duplicate(InsideFlagsG4)	Bergel#3-2	722
+gefg_cas04,35,158,4	duplicate(InsideFlagsG4)	Bergel#4	722
+gefg_cas04,44,184,4	duplicate(InsideFlagsG4)	Bergel#5	722
+gefg_cas04,51,184,4	duplicate(InsideFlagsG4)	Bergel#6	722
+gefg_cas04,39,212,7	duplicate(InsideFlagsG4)	Bergel#7	722
+gefg_cas04,29,212,1	duplicate(InsideFlagsG4)	Bergel#8	722
+gefg_cas04,24,73,1	duplicate(InsideFlagsG4)	Bergel#9	722
+gefg_cas04,35,73,4	duplicate(InsideFlagsG4)	Bergel#10	722
 
-// Gerenciador Automático
+// Guild Flag (Town)
 //============================================================
-gefg_cas04,174,178,0	duplicate(Gld_Agit_Manager)	Agit#gefg_cas04	-1
+geffen,127,130,7	duplicate(InsideFlagsG4)	Bergel#11	722
 
-// Administração
+// Kafra Employee
 //============================================================
-gefg_cas04,73,46,3	duplicate(Gld_Mngr_Template)	Kellvahni#gefg_cas04	55
+gefg_cas04,59,70,3	duplicate(guildkafra)	Kafra Staff#gefg_cas04	117
 
-// Guardiões
+// Steward
 //============================================================
-gefg_cas04,73,46,3	duplicate(Gld_Guard_Template)	Guardian#gefg_cas04	-1
+gefg_cas04,73,46,3	duplicate(cm)	Kellvahni#gefg_cas04	55
 
-// Kafras
+// Treasure Room Exit
 //============================================================
-gefg_cas04,59,70,3	duplicate(Gld_Kafra_Template)	Assistente Kafra#gefg_cas04	117
+gefg_cas04,116,123,0	script	#lever_G04	111,{
 
-// Saída da Sala do Mestre
-//============================================================
-gefg_cas04,117,123,0	script	#switch_G04	111,{
 	mes " ";
-	mes "Há uma pequena alavanca aqui.";
-	mes "Você deseja puxar ela?";
+	mes "There's a small lever. Will you pull it?";
 	next;
-	if(select("Puxar.:Não puxar.") == 2) close;
-	warp "gefg_cas04",73,47;
-	end;
+	if(select("Pull.:Do not.") == 1) {
+		close2;
+		warp "gefg_cas04",73,47;
+		end;
+	}
+	close;
 }
 
-// Proteção de Tesouros
+// Guild Dungeon Switch
 //============================================================
-gefg_cas04,116,119,0	duplicate(Gld_Trea_Protect)	ban_warp#gefg_cas04	-1,6,6
+gefg_cas04,58,75,0	duplicate(gdlever)	#gefg_cas04	111
 
-// Spawns de Tesouros
+// Guild Treasure Spawns
 //============================================================
 gefg_cas04,116,119,0	duplicate(Gld_Trea_Spawn)	Treasure#gefg_cas04	-1
 
-// Mudanças de Cavernas
+// AGIT Manager
 //============================================================
-gefg_cas04,58,75,0	duplicate(Gld_Dun_Template)	#gefg_cas04	111
+gefg_cas04,174,178,0	duplicate(Gld_Agit_Manager)	Agit#gefg_cas04	-1
+
+// Guardians
+//============================================================
+gefg_cas04,73,46,3	duplicate(Gld_Guard_Template)	Guardian#gefg_cas04	-1

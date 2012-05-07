@@ -176,7 +176,7 @@ struct map_session_data {
 	struct item_data* inventory_data[MAX_INVENTORY]; // direct pointers to itemdb entries (faster than doing item_id lookups)
 	short equip_index[14];
 	unsigned int weight,max_weight;
-	int cart_weight,cart_num;
+	int cart_weight,cart_num,cart_weight_max;
 	int fd;
 	unsigned short mapindex;
 	unsigned char head_dir; //0: Look forward. 1: Look right, 2: Look left.
@@ -638,9 +638,17 @@ enum e_pc_permission {
 #ifdef RENEWAL
 #define pc_leftside_atk(sd) ((sd)->battle_status.batk)
 #define pc_rightside_atk(sd) ((sd)->battle_status.rhw.atk + (sd)->battle_status.lhw.atk + (sd)->battle_status.rhw.atk2 + (sd)->battle_status.lhw.atk2)
+#define pc_leftside_def(sd) ((sd)->battle_status.def2)
+#define pc_rightside_def(sd) ((sd)->battle_status.def)
+#define pc_leftside_mdef(sd) ( (sd)->battle_status.mdef2 - ((sd)->battle_status.vit>>1) )
+#define pc_rightside_mdef(sd) ((sd)->battle_status.mdef)
 #else
 #define pc_leftside_atk(sd) ((sd)->battle_status.batk + (sd)->battle_status.rhw.atk + (sd)->battle_status.lhw.atk)
 #define pc_rightside_atk(sd) ((sd)->battle_status.rhw.atk2 + (sd)->battle_status.lhw.atk2)
+#define pc_leftside_def(sd) ((sd)->battle_status.def)
+#define pc_rightside_def(sd) ((sd)->battle_status.def2)	
+#define pc_leftside_mdef(sd) ((sd)->battle_status.mdef)
+#define pc_rightside_mdef(sd) ( (sd)->battle_status.mdef2 - ((sd)->battle_status.vit>>1) )
 #endif
 
 int pc_class2idx(int class_);

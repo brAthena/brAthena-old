@@ -72,8 +72,8 @@ int unit_walktoxy_sub(struct block_list *bl)
 		return 0;
 
 	memcpy(&ud->walkpath,&wpd,sizeof(wpd));
-
-	if (ud->target && ud->chaserange>1) {
+	
+	if (ud->target_to && ud->chaserange>1) {
 		//Generally speaking, the walk path is already to an adjacent tile
 		//so we only need to shorten the path if the range is greater than 1.
 		int dir;
@@ -229,21 +229,22 @@ static int unit_walktoxy_timer(int tid, unsigned int tick, int id, intptr_t data
 
 	if(i > 0) {
 		ud->walktimer = add_timer(tick+i,unit_walktoxy_timer,id,i);
-		if( md )
+		if( md && DIFF_TICK(tick,md->dmgtick) < 3000 )//not required not damaged recently
 			clif_move(ud);
 	} else if(ud->state.running) {
 		//Keep trying to run.
 		if ( !(unit_run(bl) || unit_wugdash(bl,sd)) )
 			ud->state.running = 0;
 	}
-	else if (ud->target) {
+	else if (ud->target_to) {
 		//Update target trajectory.
-		struct block_list *tbl = map_id2bl(ud->target);
+		struct block_list *tbl = map_id2bl(ud->target_to);
 		if (!tbl || !status_check_visibility(bl, tbl)) {	//Cancel chase.
 			ud->to_x = bl->x;
 			ud->to_y = bl->y;
-			if (tbl && bl->type == BL_MOB) //See if the mob can do a warp chase.
-				mob_warpchase((TBL_MOB*)bl, tbl);
+			if (tbl && bl->type == BL_MOB && mob_warpchase((TBL_MOB*)bl, tbl) )
+				return 0;
+			ud->target_to = 0;
 			return 0;
 		}
 		if (tbl->m == bl->m && check_distance_bl(bl, tbl, ud->chaserange))
@@ -251,6 +252,7 @@ static int unit_walktoxy_timer(int tid, unsigned int tick, int id, intptr_t data
 			if (ud->state.attack_continue)
 			{	//Aegis uses one before every attack, we should
 				//only need this one for syncing purposes. [Skotlex]
+				ud->target_to = 0;
 				clif_fixpos(bl);
 				unit_attack(bl, tbl->id, ud->state.attack_continue);
 			}
@@ -262,6 +264,7 @@ static int unit_walktoxy_timer(int tid, unsigned int tick, int id, intptr_t data
 	else {	//Stopped walking. Update to_x and to_y to current location [Skotlex]
 		ud->to_x = bl->x;
 		ud->to_y = bl->y;
+		ud->target_to = 0;
 	}
 	return 0;
 }
@@ -286,9 +289,9 @@ int unit_walktoxy( struct block_list *bl, short x, short y, int flag)
 	struct status_change* sc = NULL;
 
 	nullpo_ret(bl);
-
+	
 	ud = unit_bl2ud(bl);
-
+	
 	if( ud == NULL) return 0;
 
 	if (flag&4 && DIFF_TICK(ud->canmove_tick, gettick()) > 0 &&
@@ -300,12 +303,12 @@ int unit_walktoxy( struct block_list *bl, short x, short y, int flag)
 
 	if(!(flag&2) && (!(status_get_mode(bl)&MD_CANMOVE) || !unit_can_move(bl)))
 		return 0;
-
+	
 	ud->state.walk_easy = flag&1;
-	ud->target = 0;
 	ud->to_x = x;
 	ud->to_y = y;
-
+	unit_set_target(ud, 0);
+	
 	sc = status_get_sc(bl);
 	if (sc && (sc->data[SC_CONFUSION] || sc->data[SC_CHAOS]) ) //Randomize the target position
 		map_random_dir(bl, &ud->to_x, &ud->to_y);
@@ -370,13 +373,15 @@ int unit_walktobl(struct block_list *bl, struct block_list *tbl, int range, int 
 	if (!unit_can_reach_bl(bl, tbl, distance_bl(bl, tbl)+1, flag&1, &ud->to_x, &ud->to_y)) {
 		ud->to_x = bl->x;
 		ud->to_y = bl->y;
+		ud->target_to = 0;
 		return 0;
 	}
 
 	ud->state.walk_easy = flag&1;
-	ud->target = tbl->id;
+	ud->target_to = tbl->id;
 	ud->chaserange = range; //Note that if flag&2, this SHOULD be attack-range
 	ud->state.attack_continue = flag&2?1:0; //Chase to attack.
+	unit_set_target(ud, 0);
 
 	sc = status_get_sc(bl);
 	if (sc && (sc->data[SC_CONFUSION] || sc->data[SC_CHAOS]) ) //Randomize the target position
@@ -492,7 +497,7 @@ int unit_wugdash(struct block_list *bl, struct map_session_data *sd)
 	if (!(sc && sc->data[SC_WUGDASH]))
 		return 0;
 	if (!unit_can_move(bl)) {
-		status_change_end(bl,SC_WUGDASH,-1);
+		status_change_end(bl,SC_WUGDASH,INVALID_TIMER);
 		return 0;
 	}
 
@@ -514,8 +519,9 @@ int unit_wugdash(struct block_list *bl, struct map_session_data *sd)
 	}
 
 	if(to_x == bl->x && to_y == bl->y) {
+
 		unit_bl2ud(bl)->state.running = 0;
-		status_change_end(bl,SC_WUGDASH,-1);
+		status_change_end(bl,SC_WUGDASH,INVALID_TIMER);
 
 		if( sd ){
 			clif_fixpos(bl);
@@ -529,11 +535,12 @@ int unit_wugdash(struct block_list *bl, struct map_session_data *sd)
 		to_x -= dir_x;
 		to_y -= dir_y;
 	} while (--i > 0 && !unit_walktoxy(bl, to_x, to_y, 1));
-	if(!i) {
-		unit_bl2ud(bl)->state.running = 0;
-		status_change_end(bl,SC_WUGDASH,-1);
+	if (i==0) {
 
-		if(sd) {
+		unit_bl2ud(bl)->state.running = 0;
+		status_change_end(bl,SC_WUGDASH,INVALID_TIMER);
+		
+		if( sd ){
 			clif_fixpos(bl);
 			skill_castend_damage_id(bl, &sd->bl, RA_WUGDASH, lv, gettick(), SD_LEVEL);
 		}
@@ -1105,6 +1112,9 @@ int unit_skilluse_id2(struct block_list *src, int target_id, short skill_num, sh
 
 	if( !target || src->m != target->m || !src->prev || !target->prev )
 		return 0;
+		
+	if( battle_config.ksprotection && sd && mob_ksprotected(src, target) )
+		return 0;
 
 	tsc = status_get_sc(target);
 
@@ -1165,9 +1175,8 @@ int unit_skilluse_id2(struct block_list *src, int target_id, short skill_num, sh
 			}
 			break;
 		case WL_WHITEIMPRISON:
-			if( battle_check_target(src,target,BCT_SELF|BCT_ENEMY) < 0 )
-			{
-				clif_skill_fail(sd,skill_num,0xb,0);
+			if( battle_check_target(src,target,BCT_SELF|BCT_ENEMY) < 0 ) {
+				clif_skill_fail(sd,skill_num,USESKILL_FAIL_TOTARGET,0);
 				return 0;
 			}
 			break;
@@ -1492,6 +1501,27 @@ int unit_skilluse_pos2( struct block_list *src, short skill_x, short skill_y, sh
 	return 1;
 }
 
+/*========================================
+ * update a block's attack target
+ *----------------------------------------*/
+int unit_set_target(struct unit_data* ud, int target_id)
+{
+	struct unit_data * ux;
+	struct block_list* target;
+
+	nullpo_ret(ud);
+
+	if( ud->target != target_id ) {
+		if( ud->target && (target = map_id2bl(ud->target)) && (ux = unit_bl2ud(target)) && ux->target_count > 0 )
+			ux->target_count --;
+		if( target_id && (target = map_id2bl(target_id)) && (ux = unit_bl2ud(target)) )
+			ux->target_count ++;
+	}
+
+	ud->target = target_id;
+	return 0;
+}
+
 int unit_stop_attack(struct block_list *bl)
 {
 	struct unit_data *ud = unit_bl2ud(bl);
@@ -1502,7 +1532,7 @@ int unit_stop_attack(struct block_list *bl)
 
 	delete_timer( ud->attacktimer, unit_attack_timer );
 	ud->attacktimer = INVALID_TIMER;
-	ud->target = 0;
+	unit_set_target(ud, 0);
 	return 0;
 }
 
@@ -1511,10 +1541,10 @@ int unit_unattackable(struct block_list *bl)
 {
 	struct unit_data *ud = unit_bl2ud(bl);
 	if (ud) {
-		ud->target = 0;
 		ud->state.attack_continue = 0;
+		unit_set_target(ud, 0);
 	}
-
+	
 	if(bl->type == BL_MOB)
 		mob_unlocktarget((struct mob_data*)bl, gettick()) ;
 	else if(bl->type == BL_PET)
@@ -1548,21 +1578,18 @@ int unit_attack(struct block_list *src,int target_id,int continuous)
 			npc_click(sd,(TBL_NPC*)target); // submitted by leinsirk10 [Celest]
 			return 0;
 		}
-		if( pc_is90overweight(sd) )
-		{ // overweight - stop attacking
+		if( pc_is90overweight(sd) || pc_iswarg(sd) ) { // overweight or mounted on warg - stop attacking
 			unit_stop_attack(src);
 			return 0;
 		}
 	}
-
-	if( battle_check_target(src,target,BCT_ENEMY) <= 0 || !status_check_skilluse(src, target, 0, 0) )
-	{
+	if( battle_check_target(src,target,BCT_ENEMY) <= 0 || !status_check_skilluse(src, target, 0, 0) ) {
 		unit_unattackable(src);
 		return 1;
 	}
-
-	ud->target = target_id;
 	ud->state.attack_continue = continuous;
+	unit_set_target(ud, target_id);
+
 	if (continuous) //If you're to attack continously, set to auto-case character
 		ud->chaserange = status_get_range(src);
 
@@ -1583,7 +1610,7 @@ int unit_attack(struct block_list *src,int target_id,int continuous)
 	return 0;
 }
 
-//Cancels an ongoing combo, resets attackable time and restarts the
+//Cancels an ongoing combo, resets attackable time and restarts the 
 //attack timer to resume attacking after amotion time. [Skotlex]
 int unit_cancel_combo(struct block_list *bl)
 {
@@ -1599,7 +1626,7 @@ int unit_cancel_combo(struct block_list *bl)
 
 	if (ud->attacktimer == INVALID_TIMER)
 		return 1; //Nothing more to do.
-
+	
 	delete_timer(ud->attacktimer, unit_attack_timer);
 	ud->attacktimer=add_timer(ud->attackabletime,unit_attack_timer,bl->id,0);
 	return 1;
@@ -1772,32 +1799,25 @@ static int unit_attack_timer_sub(struct block_list* src, int tid, unsigned int t
 	}
 
 	sstatus = status_get_status_data(src);
-	range = sstatus->rhw.range;
+	range = sstatus->rhw.range + 1;
 
-	if( !sd || sd->status.weapon != W_BOW )
-		range++; //Dunno why everyone but bows gets this extra range...
 	if( unit_is_walking(target) )
 		range++; //Extra range when chasing
-
-	if( !check_distance_bl(src,target,range) )
-	{ //Chase if required.
+	if( !check_distance_bl(src,target,range) ) { //Chase if required.
 		if(sd)
 			clif_movetoattack(sd,target);
 		else if(ud->state.attack_continue)
 			unit_walktobl(src,target,ud->chaserange,ud->state.walk_easy|2);
 		return 1;
 	}
-	if( !battle_check_range(src,target,range) )
-	{
+	if( !battle_check_range(src,target,range) ) {
 	  	//Within range, but no direct line of attack
-		if( ud->state.attack_continue )
-		{
+		if( ud->state.attack_continue ) {
 			if(ud->chaserange > 2) ud->chaserange-=2;
 			unit_walktobl(src,target,ud->chaserange,ud->state.walk_easy|2);
 		}
 		return 1;
 	}
-
 	//Sync packet only for players.
 	//Non-players use the sync packet on the walk timer. [Skotlex]
 	if (tid == INVALID_TIMER && sd) clif_fixpos(src);
@@ -1959,10 +1979,12 @@ static int unit_counttargeted_sub(struct block_list* bl, va_list ap)
 /*==========================================
  * Counts the number of units attacking 'bl'
  *------------------------------------------*/
-int unit_counttargeted(struct block_list* bl, int target_lv)
+int unit_counttargeted(struct block_list* bl)
 {
-	nullpo_ret(bl);
-	return (map_foreachinrange(unit_counttargeted_sub, bl, AREA_SIZE, BL_CHAR, bl->id, target_lv));
+	struct unit_data* ud;
+	if( bl && (ud = unit_bl2ud(bl)) )
+		return ud->target_count;
+	return 0;
 }
 
 /*==========================================

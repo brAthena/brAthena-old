@@ -174,10 +174,10 @@ int mob_parse_dataset(struct spawn_data *data)
 
 	//FIXME: This implementation is not stable, npc scripts will stop working once MAX_MOB_DB changes value! [Skotlex]
 	if(data->class_ > 2*MAX_MOB_DB){ // large/tiny mobs [Valaris]
-		data->state.size=2;
+		data->state.size=SZ_BIG;
 		data->class_ -= 2*MAX_MOB_DB;
 	} else if (data->class_ > MAX_MOB_DB) {
-		data->state.size=1;
+		data->state.size=SZ_MEDIUM;
 		data->class_ -= MAX_MOB_DB;
 	}
 
@@ -191,9 +191,9 @@ int mob_parse_dataset(struct spawn_data *data)
 		if( i )
 		{
 			if( i&2 )
-				data->state.size = 1;
+				data->state.size = SZ_MEDIUM;
 			else if( i&4 )
-				data->state.size = 2;
+				data->state.size = SZ_BIG;
 			if( i&8 )
 				data->state.ai = 1;
 		}
@@ -2140,9 +2140,9 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 		}
 
 		// change experience for different sized monsters [Valaris]
-		if(md->special_state.size==1)
+		if(md->special_state.size==SZ_MEDIUM)
 			per /=2.;
-		else if(md->special_state.size==2)
+		else if(md->special_state.size==SZ_BIG)
 			per *=2.;
 
 		if( md->dmglog[i].flag == MDLF_PET )
@@ -2246,9 +2246,9 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 			}
 
 			// change drops depending on monsters size [Valaris]
-			if(md->special_state.size==1 && drop_rate >= 2)
+			if(md->special_state.size==SZ_MEDIUM && drop_rate >= 2)
 				drop_rate/=2;
-			else if(md->special_state.size==2)
+			else if(md->special_state.size==SZ_BIG)
 				drop_rate*=2;
 			if (src) {
 				//Drops affected by luk as a fixed increase [Valaris]
@@ -3025,11 +3025,11 @@ int mobskill_use(struct mob_data *md, unsigned int tick, int event)
 				case MSC_SLAVELT:		// slave < num
 					flag = (mob_countslave(&md->bl) < c2 ); break;
 				case MSC_ATTACKPCGT:	// attack pc > num
-					flag = (unit_counttargeted(&md->bl, 0) > c2); break;
+					flag = (unit_counttargeted(&md->bl) > c2); break;
 				case MSC_SLAVELE:		// slave <= num
 					flag = (mob_countslave(&md->bl) <= c2 ); break;
 				case MSC_ATTACKPCGE:	// attack pc >= num
-					flag = (unit_counttargeted(&md->bl, 0) >= c2); break;
+					flag = (unit_counttargeted(&md->bl) >= c2); break;
 				case MSC_AFTERSKILL:
 					flag = (md->ud.skillid == c2); break;
 				case MSC_RUDEATTACKED:
@@ -3039,7 +3039,7 @@ int mobskill_use(struct mob_data *md, unsigned int tick, int event)
 				case MSC_MASTERHPLTMAXRATE:
 					flag = ((fbl = mob_getmasterhpltmaxrate(md, ms[i].cond2)) != NULL); break;
 				case MSC_MASTERATTACKED:
-					flag = (md->master_id > 0 && (fbl=map_id2bl(md->master_id)) && unit_counttargeted(fbl, 0) > 0); break;
+					flag = (md->master_id > 0 && (fbl=map_id2bl(md->master_id)) && unit_counttargeted(fbl) > 0); break;
 				case MSC_ALCHEMIST:
 					flag = (md->state.alchemist);
 					break;

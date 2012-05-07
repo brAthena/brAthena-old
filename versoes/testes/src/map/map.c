@@ -394,6 +394,8 @@ int map_moveblock(struct block_list *bl, int x1, int y1, unsigned int tick)
 
 	//TODO: Perhaps some outs of bounds checking should be placed here?
 	if (bl->type&BL_CHAR) {
+		sc = status_get_sc(bl);
+		
 		skill_unit_move(bl,tick,2);
 		status_change_end(bl, SC_CLOSECONFINE, INVALID_TIMER);
 		status_change_end(bl, SC_CLOSECONFINE2, INVALID_TIMER);
@@ -401,6 +403,9 @@ int map_moveblock(struct block_list *bl, int x1, int y1, unsigned int tick)
 		status_change_end(bl, SC_TATAMIGAESHI, INVALID_TIMER);
 		status_change_end(bl, SC_MAGICROD, INVALID_TIMER);
 		status_change_end(bl, SC_ROLLINGCUTTER, INVALID_TIMER);
+		if (sc->data[SC_PROPERTYWALK] &&
+			sc->data[SC_PROPERTYWALK]->val3 >= skill_get_maxcount(sc->data[SC_PROPERTYWALK]->val1,sc->data[SC_PROPERTYWALK]->val2) )
+			status_change_end(bl,SC_PROPERTYWALK,INVALID_TIMER);
 	} else
 	if (bl->type == BL_NPC)
 		npc_unsetcells((TBL_NPC*)bl);
@@ -507,10 +512,10 @@ int map_count_oncell(int m, int x, int y, int type)
 	return count;
 }
 /*
- * ｫｻｫ・ｾｪﾎｪﾋﾌｸｪﾄｪｱｪｿｫｹｫｭｫ・讚ﾋｫﾃｫﾈｪ?
+ * Looks for a skill unit on a given cell
+ * flag&1: runs battle_check_target check based on unit->group->target_flag
  */
-struct skill_unit* map_find_skill_unit_oncell(struct block_list* target,int x,int y,int skill_id,struct skill_unit* out_unit,int flag)
-{
+struct skill_unit* map_find_skill_unit_oncell(struct block_list* target,int x,int y,int skill_id,struct skill_unit* out_unit, int flag) {
 	int m,bx,by;
 	struct block_list *bl;
 	struct skill_unit *unit;
@@ -1298,12 +1303,11 @@ int map_get_new_object_id(void)
 
 	// find a free id
 	i = last_object_id + 1;
-	while( i != last_object_id )
-	{
+	while( i != last_object_id ){
 		if( i == MAX_FLOORITEM )
 			i = MIN_FLOORITEM;
 
-		if( idb_get(id_db, i) == NULL )
+		if( !idb_exists(id_db, i) )
 			break;
 
 		++i;
@@ -1890,12 +1894,17 @@ struct map_session_data * map_nick2sd(const char *nick)
 }
 
 /*==========================================
- * id番?の物を探す
- * 一三bjectの場合は配列を引くのみ
+ * Looksup id_db DBMap and returns BL pointer of 'id' or NULL if not found
  *------------------------------------------*/
-struct block_list * map_id2bl(int id)
-{
+struct block_list * map_id2bl(int id) {
 	return (struct block_list*)idb_get(id_db,id);
+}
+
+/**
+ * Same as map_id2bl except it only checks for its existence
+ **/
+bool map_blid_exists( int id ) {
+	return (idb_exists(id_db,id));
 }
 
 /*==========================================
@@ -3340,11 +3349,11 @@ int map_config_read(char *cfgName)
 		if (strcmpi(w1, "use_grf") == 0)
 			enable_grf = config_switch(w2);
 		else
-		if (strcmpi(w1, "import") == 0)
-			map_config_read(w2);
-		else
 		if (strcmpi(w1, "console_msg_log") == 0)
 			console_msg_log = atoi(w2);//[Ind]
+		else
+		if (strcmpi(w1, "import") == 0)
+			map_config_read(w2);
 		else
 			ShowWarning("Unknown setting '%s' in file %s\n", w1, cfgName);
 	}
@@ -3360,7 +3369,7 @@ int inter_config_read(char *cfgName)
 
 	fp=fopen(cfgName,"r");
 	if(fp==NULL){
-		ShowError("Arquivo nao encontrado: '%s'.\n",cfgName);
+		ShowError("Arquivo nao encontrado: %s\n",cfgName);
 		return 1;
 	}
 	while(fgets(line, sizeof(line), fp))
@@ -3532,7 +3541,7 @@ int cleanup_sub(struct block_list *bl, va_list ap)
 			map_quit((struct map_session_data *) bl);
 			break;
 		case BL_NPC:
-			npc_unload((struct npc_data *)bl);
+			npc_unload((struct npc_data *)bl,false);
 			break;
 		case BL_MOB:
 			unit_free(bl,CLR_OUTSIGHT);
@@ -3569,21 +3578,23 @@ void do_final(void)
 	struct s_mapiterator* iter;
 
 	ShowStatus("Finalizando...\n");
+	
+	//Ladies and babies first.
+	iter = mapit_getallusers();
+	for( sd = (TBL_PC*)mapit_first(iter); mapit_exists(iter); sd = (TBL_PC*)mapit_next(iter) )
+		map_quit(sd);
+	mapit_free(iter);
+	
+	/* prepares npcs for a faster shutdown process */
+	do_clear_npc();
 
 	// remove all objects on maps
-	for (i = 0; i < map_num; i++)
-	{
+	for (i = 0; i < map_num; i++) {
 		ShowStatus("Limpando mapas [%d/%d]: %s..."CL_CLL"\r", i+1, map_num, map[i].name);
 		if (map[i].m >= 0)
 			map_foreachinmap(cleanup_sub, i, BL_ALL);
 	}
 	ShowStatus("%d mapas foram limpos."CL_CLL"\n", map_num);
-
-	//Scan any remaining players (between maps?) to kick them out. [Skotlex]
-	iter = mapit_getallusers();
-	for( sd = (TBL_PC*)mapit_first(iter); mapit_exists(iter); sd = (TBL_PC*)mapit_next(iter) )
-		map_quit(sd);
-	mapit_free(iter);
 
 	id_db->foreach(id_db,cleanup_db_sub);
 	chrif_char_reset_offline();
@@ -3927,12 +3938,12 @@ int do_init(int argc, char *argv[])
 	do_init_pet();
 	do_init_merc();
 	do_init_mercenary();
+	do_init_elemental();
 	do_init_quest();
 	do_init_npc();
 	do_init_unit();
 	do_init_battleground();
 	do_init_duel();
-	do_init_elemental();
 
 	npc_event_do_oninit();	// npcのOnInitイベント?行
 

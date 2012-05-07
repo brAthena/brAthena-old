@@ -63,6 +63,12 @@ enum MobDamageLogFlag
 	MDLF_PET,
 };
 
+enum size {
+	SZ_SMALL = 0,
+	SZ_MEDIUM,
+	SZ_BIG,
+};
+
 struct mob_skill {
 	enum MobSkillState state;
 	short skill_id,skill_lv;
@@ -153,7 +159,7 @@ struct mob_data {
 	int areanpc_id; //Required in OnTouchNPC (to avoid multiple area touchs)
 	unsigned int bg_id; // BattleGround System
 
-	unsigned int next_walktime,last_thinktime,last_linktime,last_pcneartime;
+	unsigned int next_walktime,last_thinktime,last_linktime,last_pcneartime,dmgtick;
 	short move_fail_count;
 	short lootitem_count;
 	short min_chase;

@@ -4458,8 +4458,12 @@ int pc_steal_coin(struct map_session_data *sd,struct block_list *target)
 
 	skill = pc_checkskill(sd,RG_STEALCOIN)*10;
 	rate = skill + (sd->status.base_level - md->level)*3 + sd->battle_status.dex*2 + sd->battle_status.luk*2;
-	if(rnd()%1000 < rate) {
-		pc_getzeny(sd,md->level*10 + rnd()%100);
+	if(rnd()%1000 < rate)
+	{
+		int amount = md->level*10 + rnd()%100;
+
+		log_zeny(sd, LOG_TYPE_STEAL, sd, amount);
+		pc_getzeny(sd, amount);
 		md->state.steal_coin_flag = 1;
 		return 1;
 	}
@@ -4536,15 +4540,15 @@ int pc_setpos(struct map_session_data* sd, unsigned short mapindex, int x, int y
 				struct map_session_data *s_sd = map_id2sd(sd->sc.data[SC__SHADOWFORM]->val2);
 				if( s_sd )
 					s_sd->shadowform_id = 0;
-				status_change_end(&sd->bl,SC__SHADOWFORM,-1);
+				status_change_end(&sd->bl,SC__SHADOWFORM,INVALID_TIMER);
 			}
 			if (sd->sc.data[SC_CURSEDCIRCLE_ATKER])
-				status_change_end(&sd->bl,SC_CURSEDCIRCLE_ATKER,-1);
+				status_change_end(&sd->bl,SC_CURSEDCIRCLE_ATKER,INVALID_TIMER);
  		}
 		if( sd->shadowform_id )
 		{
 			struct block_list *s_bl = map_id2bl(sd->shadowform_id);
-			if( s_bl ) status_change_end(s_bl,SC__SHADOWFORM,-1);
+			if( s_bl ) status_change_end(s_bl,SC__SHADOWFORM,INVALID_TIMER);
 			sd->shadowform_id = 0;
 		}
 		if (battle_config.clear_unit_onwarp&BL_PC)
@@ -5712,6 +5716,10 @@ int pc_need_status_point(struct map_session_data* sd, int type, int val)
 		return 0;
 
 	low = pc_getstat(sd,type);
+	
+	if ( low >= pc_maxparameter(sd) && val > 0 )
+		return 0; // Official servers show '0' when max is reached
+
 	high = low + val;
 
 	if ( val < 0 )
@@ -6305,7 +6313,7 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 	if( sd->shadowform_id )
 	{
 		struct block_list *s_bl = map_id2bl(sd->shadowform_id);
-		if( s_bl ) status_change_end(s_bl,SC__SHADOWFORM,-1);
+		if( s_bl ) status_change_end(s_bl,SC__SHADOWFORM,INVALID_TIMER);
 		sd->shadowform_id = 0;
 	}
 
@@ -6965,7 +6973,7 @@ int pc_overheat(struct map_session_data *sd, int val)
 	if( sd->sc.data[SC_OVERHEAT_LIMITPOINT] )
 	{
 		heat += sd->sc.data[SC_OVERHEAT_LIMITPOINT]->val1;
-		status_change_end(&sd->bl,SC_OVERHEAT_LIMITPOINT,-1);
+		status_change_end(&sd->bl,SC_OVERHEAT_LIMITPOINT,INVALID_TIMER);
 	}
 
 	heat = max(0,heat);
@@ -7283,22 +7291,22 @@ int pc_setoption(struct map_session_data *sd,int type)
 			if( type&OPTION_MADO && !(p_type&OPTION_MADO) )
 			{
 				status_calc_pc(sd, 0);
-				status_change_end(&sd->bl,SC_MAXIMIZEPOWER,-1);
-				status_change_end(&sd->bl,SC_OVERTHRUST,-1);
-				status_change_end(&sd->bl,SC_WEAPONPERFECTION,-1);
-				status_change_end(&sd->bl,SC_ADRENALINE,-1);
-				status_change_end(&sd->bl,SC_CARTBOOST,-1);
-				status_change_end(&sd->bl,SC_MELTDOWN,-1);
-				status_change_end(&sd->bl,SC_MAXOVERTHRUST,-1);
+				status_change_end(&sd->bl,SC_MAXIMIZEPOWER,INVALID_TIMER);
+				status_change_end(&sd->bl,SC_OVERTHRUST,INVALID_TIMER);
+				status_change_end(&sd->bl,SC_WEAPONPERFECTION,INVALID_TIMER);
+				status_change_end(&sd->bl,SC_ADRENALINE,INVALID_TIMER);
+				status_change_end(&sd->bl,SC_CARTBOOST,INVALID_TIMER);
+				status_change_end(&sd->bl,SC_MELTDOWN,INVALID_TIMER);
+				status_change_end(&sd->bl,SC_MAXOVERTHRUST,INVALID_TIMER);
 			}
 			else if( !(type&OPTION_MADO) && p_type&OPTION_MADO )
 			{
 				status_calc_pc(sd, 0);
-				status_change_end(&sd->bl,SC_SHAPESHIFT,-1);
-				status_change_end(&sd->bl,SC_HOVERING,-1);
-				status_change_end(&sd->bl,SC_ACCELERATION,-1);
-				status_change_end(&sd->bl,SC_OVERHEAT_LIMITPOINT,-1);
-				status_change_end(&sd->bl,SC_OVERHEAT,-1);
+				status_change_end(&sd->bl,SC_SHAPESHIFT,INVALID_TIMER);
+				status_change_end(&sd->bl,SC_HOVERING,INVALID_TIMER);
+				status_change_end(&sd->bl,SC_ACCELERATION,INVALID_TIMER);
+				status_change_end(&sd->bl,SC_OVERHEAT_LIMITPOINT,INVALID_TIMER);
+				status_change_end(&sd->bl,SC_OVERHEAT,INVALID_TIMER);
 			}
 		}
 	}

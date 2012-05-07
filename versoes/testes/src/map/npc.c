@@ -55,17 +55,15 @@ static int npc_cache_mob=0;
 
 /// Returns a new npc id that isn't being used in id_db.
 /// Fatal error if nothing is available.
-int npc_get_new_npc_id(void)
-{
-	if( npc_id >= START_NPC_NUM && map_id2bl(npc_id) == NULL )
+int npc_get_new_npc_id(void) {
+	if( npc_id >= START_NPC_NUM && !map_blid_exists(npc_id) )
 		return npc_id++;// available
-	{// find next id
+	else {// find next id
 		int base_id = npc_id;
-		while( base_id != ++npc_id )
-		{
+		while( base_id != ++npc_id ) {
 			if( npc_id < START_NPC_NUM )
 				npc_id = START_NPC_NUM;
-			if( map_id2bl(npc_id) == NULL )
+			if( !map_blid_exists(npc_id) )
 				return npc_id++;// available
 		}
 		// full loop, nothing available
@@ -168,17 +166,14 @@ int npc_enable(const char* name, int flag)
 		return 0;
 	}
 
-	if (flag&1)
-	{
+	if (flag&1) {
 		nd->sc.option&=~OPTION_INVISIBLE;
 		clif_spawn(&nd->bl);
-	}
-	else if (flag&2)
+	} else if (flag&2)
 		nd->sc.option&=~OPTION_HIDE;
 	else if (flag&4)
 		nd->sc.option|= OPTION_HIDE;
-	else	//Can't change the view_data to invisible class because the view_data for all npcs is shared! [Skotlex]
-	{
+	else {	//Can't change the view_data to invisible class because the view_data for all npcs is shared! [Skotlex]
 		nd->sc.option|= OPTION_INVISIBLE;
 		clif_clearunit_area(&nd->bl,CLR_OUTSIGHT);  // Hack to trick maya purple card [Xazax]
 	}
@@ -191,7 +186,7 @@ int npc_enable(const char* name, int flag)
 			clif_spawn(&nd->bl);
 	} else
 		clif_changeoption(&nd->bl);
-
+		
 	if( flag&3 && (nd->u.scr.xs >= 0 || nd->u.scr.ys >= 0) )
 		map_foreachinarea( npc_enable_sub, nd->bl.m, nd->bl.x-nd->u.scr.xs, nd->bl.y-nd->u.scr.ys, nd->bl.x+nd->u.scr.xs, nd->bl.y+nd->u.scr.ys, BL_PC, nd );
 
@@ -805,14 +800,14 @@ int npc_event(struct map_session_data* sd, const char* eventname, int ontouch)
 int npc_touch_areanpc_sub(struct block_list *bl, va_list ap)
 {
 	struct map_session_data *sd;
-	int pc_id;
+	int pc_id,npc_id;
 	char *name;
 
 	nullpo_ret(bl);
 	nullpo_ret((sd = map_id2sd(bl->id)));
 
 	pc_id = va_arg(ap,int);
-	va_arg(ap,int); 
+	npc_id = va_arg(ap,int);
 	name = va_arg(ap,char*);
 
 	if( pc_ishiding(sd) )
@@ -896,7 +891,7 @@ int npc_touch_areanpc(struct map_session_data* sd, int m, int x, int y)
 	}
 	switch(map[m].npc[i]->subtype) {
 		case WARP:
-			if( pc_ishiding(sd) )
+			if( pc_ishiding(sd) || (sd->sc.count && sd->sc.data[SC_CAMOUFLAGE]) )
 				break; // hidden chars cannot use warps
 			pc_setpos(sd,map[m].npc[i]->u.warp.mapindex,map[m].npc[i]->u.warp.x,map[m].npc[i]->u.warp.y,CLR_OUTSIGHT);
 			break;
@@ -1612,10 +1607,11 @@ int npc_selllist(struct map_session_data* sd, int n, unsigned short* item_list)
 	// delete items
 	for( i = 0; i < n; i++ )
 	{
-		int amount, idx;
+		int nameid, amount, idx;
 
 		idx    = item_list[i*2]-2;
 		amount = item_list[i*2+1];
+		nameid = sd->status.inventory[idx].nameid;
 
 		if( sd->inventory_data[idx]->type == IT_PETEGG && sd->status.inventory[idx].card[0] == CARD0_PET )
 		{
@@ -1697,7 +1693,7 @@ static int npc_unload_dup_sub(struct npc_data* nd, va_list args)
 
 	src_id = va_arg(args, int);
 	if (nd->src_id == src_id)
-		npc_unload(nd);
+		npc_unload(nd, true);
 	return 0;
 }
 
@@ -1707,12 +1703,12 @@ void npc_unload_duplicates(struct npc_data* nd)
 	map_foreachnpc(npc_unload_dup_sub,nd->bl.id);
 }
 
-int npc_unload(struct npc_data* nd)
-{
+int npc_unload(struct npc_data* nd, bool single) {
 	nullpo_ret(nd);
 
 	npc_remove_map(nd);
 	map_deliddb(&nd->bl);
+	if( single )
 	strdb_remove(npcname_db, nd->exname);
 
 	if (nd->chat_id) // remove npc chatroom object and kick users
@@ -1724,20 +1720,17 @@ int npc_unload(struct npc_data* nd)
 
 	if( (nd->subtype == SHOP || nd->subtype == CASHSHOP) && nd->src_id == 0) //src check for duplicate shops [Orcao]
 		aFree(nd->u.shop.shop_item);
-	else
-	if( nd->subtype == SCRIPT )
-	{
+	else if( nd->subtype == SCRIPT ) {
 		struct s_mapiterator* iter;
 		struct block_list* bl;
 
-		ev_db->foreach(ev_db,npc_unload_ev,nd->exname); //Clean up all events related
+		if( single )
+			ev_db->foreach(ev_db,npc_unload_ev,nd->exname); //Clean up all events related
 
 		iter = mapit_geteachpc();  
-		for( bl = (struct block_list*)mapit_first(iter); mapit_exists(iter); bl = (struct block_list*)mapit_next(iter) )  
-		{
-			struct map_session_data *sd = map_id2sd(bl->id);
-			if( sd && sd->npc_timer_id != INVALID_TIMER )
-			{
+		for( bl = (struct block_list*)mapit_first(iter); mapit_exists(iter); bl = (struct block_list*)mapit_next(iter) ) {
+			struct map_session_data *sd = ((TBL_PC*)bl);
+			if( sd && sd->npc_timer_id != INVALID_TIMER ) {
 				const struct TimerData *td = get_timer(sd->npc_timer_id);
 
 				if( td && td->id != nd->bl.id )
@@ -1960,7 +1953,8 @@ struct npc_data* npc_add_warp(short from_mapid, short from_x, short from_y, shor
 	status_set_viewdata(&nd->bl, nd->class_);
 	status_change_init(&nd->bl);
 	unit_dataset(&nd->bl);
-	clif_spawn(&nd->bl);
+	if( map[nd->bl.m].users )
+		clif_spawn(&nd->bl);
 	strdb_put(npcname_db, nd->exname, nd);
 
 	return nd;
@@ -2020,7 +2014,8 @@ static const char* npc_parse_warp(char* w1, char* w2, char* w3, char* w4, const 
 	status_set_viewdata(&nd->bl, nd->class_);
 	status_change_init(&nd->bl);
 	unit_dataset(&nd->bl);
-	clif_spawn(&nd->bl);
+	if( map[nd->bl.m].users )
+		clif_spawn(&nd->bl);
 	strdb_put(npcname_db, nd->exname, nd);
 
 	return strchr(start,'\n');// continue
@@ -2127,7 +2122,8 @@ static const char* npc_parse_shop(char* w1, char* w2, char* w3, char* w4, const 
 		status_change_init(&nd->bl);
 		unit_dataset(&nd->bl);
 		nd->ud.dir = dir;
-		clif_spawn(&nd->bl);
+		if( map[nd->bl.m].users )
+			clif_spawn(&nd->bl);
 	} else
 	{// 'floating' shop?
 		map_addiddb(&nd->bl);
@@ -2339,7 +2335,8 @@ static const char* npc_parse_script(char* w1, char* w2, char* w3, char* w4, cons
 		if( class_ >= 0 )
 		{
 			status_set_viewdata(&nd->bl, nd->class_);
-			clif_spawn(&nd->bl);
+			if( map[nd->bl.m].users )
+				clif_spawn(&nd->bl);
 		}
 	}
 	else
@@ -2350,18 +2347,14 @@ static const char* npc_parse_script(char* w1, char* w2, char* w3, char* w4, cons
 	strdb_put(npcname_db, nd->exname, nd);
 
 	//-----------------------------------------
-	// イベント用ラベルデータのエクスポート
+	// Loop through labels to export them as necessary
 	for (i = 0; i < nd->u.scr.label_list_num; i++) {
 		if (npc_event_export(nd, i)) {
 			ShowWarning("npc_parse_script : duplicate event %s::%s (%s)\n",
 			             nd->exname, nd->u.scr.label_list[i].name, filepath);
 		}
-	}
-
-	//-----------------------------------------
-	// ラベルデータからタイマーイベント取り込み
-	for (i = 0; i < nd->u.scr.label_list_num; i++)
 		npc_timerevent_export(nd, i);
+	}
 
 	nd->u.scr.timerid = INVALID_TIMER;
 
@@ -2489,7 +2482,8 @@ const char* npc_parse_duplicate(char* w1, char* w2, char* w3, char* w4, const ch
 		if( class_ >= 0 )
 		{
 			status_set_viewdata(&nd->bl, nd->class_);
-			clif_spawn(&nd->bl);
+			if( map[nd->bl.m].users )
+				clif_spawn(&nd->bl);
 		}
 	}
 	else
@@ -2502,20 +2496,15 @@ const char* npc_parse_duplicate(char* w1, char* w2, char* w3, char* w4, const ch
 	if( type != SCRIPT )
 		return end;
 
-	//Handle labels
 	//-----------------------------------------
-	// イベント用ラベルデータのエクスポート
+	// Loop through labels to export them as necessary
 	for (i = 0; i < nd->u.scr.label_list_num; i++) {
 		if (npc_event_export(nd, i)) {
 			ShowWarning("npc_parse_duplicate : duplicate event %s::%s (%s)\n",
 			             nd->exname, nd->u.scr.label_list[i].name, filepath);
 		}
-	}
-
-	//-----------------------------------------
-	// ラベルデータからタイマーイベント取り込み
-	for (i = 0; i < nd->u.scr.label_list_num; i++)
 		npc_timerevent_export(nd, i);
+	}
 
 	nd->u.scr.timerid = INVALID_TIMER;
 
@@ -2572,7 +2561,8 @@ int npc_duplicate4instance(struct npc_data *snd, int m)
 		status_set_viewdata(&wnd->bl, wnd->class_);
 		status_change_init(&wnd->bl);
 		unit_dataset(&wnd->bl);
-		clif_spawn(&wnd->bl);
+		if( map[wnd->bl.m].users )
+			clif_spawn(&wnd->bl);
 		strdb_put(npcname_db, wnd->exname, wnd);
 	}
 	else
@@ -2635,7 +2625,7 @@ int npc_tombstoneremove( const char* name)
 		ShowError("getnpcgid: NPC n縊 encontrado: %s\n", name);
 		return 0;
 	}
-	npc_unload(nd);
+	npc_unload(nd,true);
 	return 0;
 }
 
@@ -2733,7 +2723,8 @@ void npc_setdisplayname(struct npc_data* nd, const char* newname)
 	nullpo_retv(nd);
 
 	safestrncpy(nd->name, newname, sizeof(nd->name));
-	clif_charnameack(0, &nd->bl);
+	if( map[nd->bl.m].users )
+		clif_charnameack(0, &nd->bl);
 }
 
 /// Changes the display class of the npc.
@@ -2747,10 +2738,12 @@ void npc_setclass(struct npc_data* nd, short class_)
 	if( nd->class_ == class_ )
 		return;
 
-	clif_clearunit_area(&nd->bl, CLR_OUTSIGHT);// fade out
+	if( map[nd->bl.m].users )
+		clif_clearunit_area(&nd->bl, CLR_OUTSIGHT);// fade out
 	nd->class_ = class_;
 	status_set_viewdata(&nd->bl, class_);
-	clif_spawn(&nd->bl);// fade in
+	if( map[nd->bl.m].users )
+		clif_spawn(&nd->bl);// fade in
 }
 
 /// Parses a function.
@@ -2783,9 +2776,9 @@ static const char* npc_parse_function(char* w1, char* w2, char* w3, char* w4, co
 	func_db = script_get_userfunc_db();
 	if (func_db->put(func_db, db_str2key(w3), db_ptr2data(script), &old_data))
 	{
-		struct script_code *oldscript = db_data2ptr(&old_data);
+		struct script_code *oldscript = (struct script_code*)db_data2ptr(&old_data);
 		ShowInfo("npc_parse_function: Overwriting user function [%s] (%s:%d)\n", w3, filepath, strline(buffer,start-buffer));
-		script_free_vars(&oldscript->script_vars);
+		script_free_vars(oldscript->script_vars);
 		aFree(oldscript->script_buf);
 		aFree(oldscript);
 	}
@@ -2814,7 +2807,7 @@ void npc_parse_mob2(struct spawn_data* mob)
 
 static const char* npc_parse_mob(char* w1, char* w2, char* w3, char* w4, const char* start, const char* buffer, const char* filepath)
 {
-	int num, class_, mode, m,x,y,xs,ys, i,j;
+	int num, class_, m,x,y,xs,ys, i,j;
 	char mapname[32];
 	struct spawn_data mob, *data;
 	struct mob_db* db;
@@ -2877,28 +2870,6 @@ static const char* npc_parse_mob(char* w1, char* w2, char* w3, char* w4, const c
 	{	//Force a random spawn anywhere on the map.
 		mob.x = mob.y = 0;
 		mob.xs = mob.ys = -1;
-	}
-
-	db = mob_db(class_);
-	//Apply the spawn delay fix [Skotlex]
-	mode = db->status.mode;
-	if (mode & MD_BOSS) {	//Bosses
-		if (battle_config.boss_spawn_delay != 100)
-		{	// Divide by 100 first to prevent overflows
-			//(precision loss is minimal as duration is in ms already)
-			mob.delay1 = mob.delay1/100*battle_config.boss_spawn_delay;
-			mob.delay2 = mob.delay2/100*battle_config.boss_spawn_delay;
-		}
-	} else if (mode&MD_PLANT) {	//Plants
-		if (battle_config.plant_spawn_delay != 100)
-		{
-			mob.delay1 = mob.delay1/100*battle_config.plant_spawn_delay;
-			mob.delay2 = mob.delay2/100*battle_config.plant_spawn_delay;
-		}
-	} else if (battle_config.mob_spawn_delay != 100)
-	{	//Normal mobs
-		mob.delay1 = mob.delay1/100*battle_config.mob_spawn_delay;
-		mob.delay2 = mob.delay2/100*battle_config.mob_spawn_delay;
 	}
 
 	if(mob.delay1>0xfffffff || mob.delay2>0xfffffff) {
@@ -3473,14 +3444,17 @@ int npc_reload(void)
 	struct s_mapiterator* iter;
 	struct block_list* bl;
 
+	db_clear(npcname_db);
+	db_clear(ev_db);
+
 	//Remove all npcs/mobs. [Skotlex]
+
 	iter = mapit_geteachiddb();
-	for( bl = (struct block_list*)mapit_first(iter); mapit_exists(iter); bl = (struct block_list*)mapit_next(iter) )
-	{
+	for( bl = (struct block_list*)mapit_first(iter); mapit_exists(iter); bl = (struct block_list*)mapit_next(iter) ) {
 		switch(bl->type) {
 		case BL_NPC:
 			if( bl->id != fake_nd->bl.id )// don't remove fake_nd
-				npc_unload((struct npc_data *)bl);
+				npc_unload((struct npc_data *)bl, false);
 			break;
 		case BL_MOB:
 			unit_free(bl,CLR_OUTSIGHT);
@@ -3511,9 +3485,6 @@ int npc_reload(void)
 	// clear mob spawn lookup index
 	mob_clear_spawninfo();
 
-	// clear npc-related data structures
-	ev_db->clear(ev_db,NULL);
-	npcname_db->clear(npcname_db,NULL);
 	npc_warp = npc_shop = npc_script = 0;
 	npc_mob = npc_cache_mob = npc_delay_mob = 0;
 
@@ -3552,27 +3523,16 @@ int npc_reload(void)
 	}
 	return 0;
 }
-
+void do_clear_npc(void) {
+	db_clear(npcname_db);
+	db_clear(ev_db);
+}
 /*==========================================
  * 終了
  *------------------------------------------*/
-int do_final_npc(void)
-{
-	int i;
-	struct block_list *bl;
-
-	for (i = START_NPC_NUM; i < npc_id; i++){
-		if ((bl = map_id2bl(i))){
-			if (bl->type == BL_NPC)
-				npc_unload((struct npc_data *)bl);
-			else if (bl->type&(BL_MOB|BL_PET|BL_HOM|BL_MER))
-				unit_free(bl, CLR_OUTSIGHT);
-		}
-	}
+int do_final_npc(void) {
 
 	ev_db->destroy(ev_db, NULL);
-	//There is no free function for npcname_db because at this point there shouldn't be any npcs left!
-	//So if there is anything remaining, let the memory manager catch it and report it.
 	npcname_db->destroy(npcname_db, NULL);
 	ers_destroy(timer_event_ers);
 	npc_clearsrcfile();

@@ -123,7 +123,7 @@ int read_map(char *name, struct map_data *m)
 	rsw = (unsigned char *)grfio_read(filename);
 
 	// Read water height
-	if (rsw) {
+	if (rsw) { 
 		water_height = (int)GetFloat(rsw+166);
 		aFree(rsw);
 	} else
@@ -197,11 +197,12 @@ int find_map(char *name)
 {
 	int i;
 	struct map_info info;
-
+	size_t fileReadCount;
+	
 	fseek(map_cache_fp, sizeof(struct main_header), SEEK_SET);
 
 	for(i = 0; i < header.map_count; i++) {
-		fread(&info, sizeof(info), 1, map_cache_fp);
+		fileReadCount = fread(&info, sizeof(info), 1, map_cache_fp);
 		if(strcmp(name, info.name) == 0) // Map found
 			return 1;
 		else // Map not found, jump to the beginning of the next map info header
@@ -256,15 +257,15 @@ int do_init(int argc, char** argv)
 	// Process the command-line arguments
 	process_args(argc, argv);
 
-	ShowStatus("Inicializando grfio com %s\n", grf_list_file);
+	ShowStatus("Initializing grfio with %s\n", grf_list_file);
 	grfio_init(grf_list_file);
 
 	// Attempt to open the map cache file and force rebuild if not found
-	ShowStatus("Abrindo cache de mapas: %s\n", map_cache_file);
+	ShowStatus("Opening map cache: %s\n", map_cache_file);
 	if(!rebuild) {
 		map_cache_fp = fopen(map_cache_file, "rb");
 		if(map_cache_fp == NULL) {
-			ShowNotice("Cache de mapas nao encontrado, forcando modo rebuild\n");
+			ShowNotice("Existing map cache not found, forcing rebuild mode\n");
 			rebuild = 1;
 		} else
 			fclose(map_cache_fp);
@@ -274,15 +275,15 @@ int do_init(int argc, char** argv)
 	else
 		map_cache_fp = fopen(map_cache_file, "r+b");
 	if(map_cache_fp == NULL) {
-		ShowError("Falha ao abrir arquivo de cache de mapas %s\n", map_cache_file);
+		ShowError("Failure when opening map cache file %s\n", map_cache_file);
 		exit(EXIT_FAILURE);
 	}
 
 	// Open the map list
-	ShowStatus("Abrindo lista de mapas: %s\n", map_list_file);
+	ShowStatus("Opening map list: %s\n", map_list_file);
 	list = fopen(map_list_file, "r");
 	if(list == NULL) {
-		ShowError("Falha ao abrir arquivo da lista de mapas %s\n", map_list_file);
+		ShowError("Failure when opening maps list file %s\n", map_list_file);
 		exit(EXIT_FAILURE);
 	}
 
@@ -291,7 +292,8 @@ int do_init(int argc, char** argv)
 		header.file_size = sizeof(struct main_header);
 		header.map_count = 0;
 	} else {
-		fread(&header, sizeof(struct main_header), 1, map_cache_fp);
+		size_t fileReadCount;
+		fileReadCount = fread(&header, sizeof(struct main_header), 1, map_cache_fp);
 		header.file_size = GetULong((unsigned char *)&(header.file_size));
 		header.map_count = GetUShort((unsigned char *)&(header.map_count));
 	}
@@ -305,34 +307,34 @@ int do_init(int argc, char** argv)
 		if(sscanf(line, "%15s", name) < 1)
 			continue;
 
-		if(strcmp("mapa:", name) == 0 && sscanf(line, "%*s %15s", name) < 1)
+		if(strcmp("map:", name) == 0 && sscanf(line, "%*s %15s", name) < 1)
 			continue;
 
 		name[MAP_NAME_LENGTH_EXT-1] = '\0';
 		remove_extension(name);
 		if(find_map(name))
-			ShowInfo("Mapa '"CL_WHITE"%s"CL_RESET"' ja existente no cache.\n", name);
+			ShowInfo("Map '"CL_WHITE"%s"CL_RESET"' already in cache.\n", name);
 		else if(read_map(name, &map)) {
 			cache_map(name, &map);
-			ShowInfo("Mapa '"CL_WHITE"%s"CL_RESET"' salvo no cache.\n", name);
+			ShowInfo("Map '"CL_WHITE"%s"CL_RESET"' successfully cached.\n", name);
 		} else
-			ShowError("Mapa '"CL_WHITE"%s"CL_RESET"' não encontrado!\n", name);
+			ShowError("Map '"CL_WHITE"%s"CL_RESET"' not found!\n", name);
 
 	}
 
-	ShowStatus("Fechando lista de mapas: %s\n", map_list_file);
+	ShowStatus("Closing map list: %s\n", map_list_file);
 	fclose(list);
 
 	// Write the main header and close the map cache
-	ShowStatus("Fechando cache de mapas: %s\n", map_cache_file);
+	ShowStatus("Closing map cache: %s\n", map_cache_file);
 	fseek(map_cache_fp, 0, SEEK_SET);
 	fwrite(&header, sizeof(struct main_header), 1, map_cache_fp);
 	fclose(map_cache_fp);
 
-	ShowStatus("Finalizando grfio\n");
+	ShowStatus("Finalizing grfio\n");
 	grfio_final();
 
-	ShowInfo("%d mapas agora no cache\n", header.map_count);
+	ShowInfo("%d maps now in cache\n", header.map_count);
 
 	return 0;
 }

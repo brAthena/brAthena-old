@@ -1,71 +1,64 @@
-//  ________________________________________________________
-// /                                                        \
-// |       _           _   _   _                            |
-// |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
-// |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
-// |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
-// |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
-// |                                                        |
-// |                    brAthena Script                     |
-// |--------------------------------------------------------|
-// | Nome do Script: Guerra do Emperium (Aldebaran)         |
-// |--------------------------------------------------------|
-// | Criado por: eA/brA Dev. Team                           |
-// |--------------------------------------------------------|
-// | Versões eA/brA: 1.2/1.2                                |
-// |--------------------------------------------------------|
-// | Descrição: NPCs relacionados ao castelo Acrux.         |
-// |--------------------------------------------------------|
-// | Changelog:               	                            |
-// | 1.0 Script Traduzido [cleyton]                         |
-// | 1.1 Script Revisado [Protimus & Tyler]                 |
-// | 1.2 Correção de Tradução [Protimus]                    |
-// | - Corrigido erro de concordância nominal               |
-// \________________________________________________________/
-
-// Bandeira do Castelo (Cidade)
+//===== rAthena Script =======================================
+//= War of Emperium (Al De Baran)
+//===== By: ==================================================
+//= L0ne_W0lf
+//===== Current Version: =====================================
+//= 1.2
+//===== Compatible With: =====================================
+//= rAthena SVN
+//===== Description: =========================================
+//= NPCs that relate to Al De Baran Guild Castle 5
+//===== Additional Comments: =================================
+//= 1.0 First Version. No longer uses functions. [L0ne_W0lf]
+//= 1.1 Removed dialog from interior flags. [L0ne_W0lf]
+//= 1.2 Partially rewrote Script. [Masao]
 //============================================================
-aldebaran,128,97,4	script	Acrux#a5-1::Acrux	722,{
-	end;
 
-OnRecvCastleA05:
-	FlagEmblem GetCastleData("aldeg_cas05",1);
-	end;
-}
-
-// Bandeira do Castelo (Fora do Castelo)
+// Guild Flag (Outside Castle)
 //============================================================
-alde_gld,265,93,6	script	Acrux#a5-2::Acrux2	722,{
+-	script	Rothenburg#1::OutsideFlagsA5	722,{
+
 	set .@GID, GetCastleData("aldeg_cas05",1);
+
 	if (.@GID == 0) {
-		mes " [ Decreto do Reino de Midgard ]";
+		mes "[ Edict of the Divine Rune-Midgarts Kingdom ]";
 		mes " ";
-		mes "1. Conforme o pacto do Reino de Midgard e o Feudo de Luina, declaro que este Castelo não possui um Senhor.";
+		mes "1. Follow the ordinance of The Divine Rune-Midgarts Kingdom, ";
+		mes "We declare that";
+		mes "there is no formal master of this castle.";
 		mes " ";
-		mes "2. Aquele que superar terríveis desafios e destruir o Emperium, receberá a posse do castelo com o apoio do nosso rei.";
+		mes "2. To the one who can ";
+		mes "overcome all trials";
+		mes "and destroy the Emperium,";
+		mes "the king will endow the one with";
+		mes "ownership of this castle.";
+		close;
 	}
-	else {
-		if (getcharid(2) == .@GID) {
-			mes "Bravo guerreiro...";
-			mes "Você deseja retornar ao seu lugar de honra?";
-			next;
-			if (select("Retornar para o castelo do Clã.:Não.") == 1) {
-				if (getcharid(2) == GetCastleData("aldeg_cas05",1)) {
-					warp "aldeg_cas05",31,190;
-					//warp "aldeg_cas05",167,225;
-					end;
-				}
+	if (getcharid(2) == .@GID) {
+		mes "[ Echoing Voice ]";
+		mes "Brave ones...";
+		mes "Do you wish to return to your honorable place?";
+		next;
+		if(select("Return to the guild castle.:Quit.") == 1) {
+			close2;
+			if (getcharid(2) == GetCastleData("aldeg_cas05",1)) {
+				warp "aldeg_cas05",167,225;
+				end;
 			}
-			close;
+			end;
 		}
-		mes "[ Decreto do Reino de Midgard ]";
-		mes " ";
-		mes "1. Seguindo o decreto do Reino de Midgard.";
-		mes "Nós declaramos que esse castelo pertence ao clã ^ff0000" + GetGuildName(.@GID) + "^000000.";
-		mes " ";
-		mes "2. O líder do clã ^ff0000"+ GetGuildName(.@GID) + "^000000 se chama ^FF0000" + GetGuildMaster(.@GID) + "^000000.";
-		mes "Se alguém se opõe a esse decreto, que prove sua força e honra com uma espada em suas mãos.";
+		close;
 	}
+	mes "[ Edict of the Divine Rune-Midgarts Kingdom ]";
+	mes " ";
+	mes "1. Follow the ordinance of The Divine Rune-Midgarts Kingdom, ";
+	mes "we approve that this place is in";
+	mes "the private prossession of ^ff0000"+GetGuildName(.@GID)+"^000000 Guild.";
+	mes " ";
+	mes "2. The guild Master of ^ff0000"+GetGuildName(.@GID)+"^000000 Guild is";
+	mes "^ff0000"+GetGuildMaster(.@GID)+"^000000";
+	mes "If there is anyone who objects to this,";
+	mes "prove your strength and honor with a steel blade in your hand.";
 	close;
 
 OnRecvCastleA05:
@@ -73,11 +66,12 @@ OnRecvCastleA05:
 	end;
 }
 
-alde_gld,265,87,6	duplicate(Acrux2)	Acrux#a5-3	722
+alde_gld,265,93,6	duplicate(OutsideFlagsA5)	Rothenburg#1-2	722
+alde_gld,265,87,6	duplicate(OutsideFlagsA5)	Rothenburg#2	722
 
-// Bandeira do Castelo (Dentro do Castelo)
+// Guild Flag (Inside Castle)
 //============================================================
-aldeg_cas05,170,85,2	script	Acrux#a5-4::Acrux3	722,{
+-	script	Rothenburg#3::InsideFlagsA5	722,{
 	end;
 
 OnRecvCastleA05:
@@ -85,57 +79,62 @@ OnRecvCastleA05:
 	end;
 }
 
-aldeg_cas05,142,212,2	duplicate(Acrux3)	Acrux#a5-5	722
-aldeg_cas05,149,196,2	duplicate(Acrux3)	Acrux#a5-6	722
-aldeg_cas05,41,180,2	duplicate(Acrux3)	Acrux#a5-7	722
-aldeg_cas05,38,201,2	duplicate(Acrux3)	Acrux#a5-8	722
-aldeg_cas05,65,182,2	duplicate(Acrux3)	Acrux#a5-9	722
-aldeg_cas05,65,205,2	duplicate(Acrux3)	Acrux#a5-10	722
-aldeg_cas05,10,218,2	duplicate(Acrux3)	Acrux#a5-11	722
-aldeg_cas05,164,201,2	duplicate(Acrux3)	Acrux#a5-12	722
-aldeg_cas05,14,117,2	duplicate(Acrux3)	Acrux#a5-14	722
-aldeg_cas05,10,225,2	duplicate(Acrux3)	Acrux#a5-15	722
-aldeg_cas05,187,59,2	duplicate(Acrux3)	Acrux#a5-16	722
-aldeg_cas05,154,51,2	duplicate(Acrux3)	Acrux#a5-17	722
-aldeg_cas05,22,211,2	duplicate(Acrux3)	Acrux#a5-18	722
-aldeg_cas05,150,202,2	duplicate(Acrux3)	Acrux#a5-19	722
+aldeg_cas05,170,85,2	duplicate(InsideFlagsA5)	Rothenburg#3-2	722
+aldeg_cas05,142,212,2	duplicate(InsideFlagsA5)	Rothenburg#4	722
+aldeg_cas05,149,196,2	duplicate(InsideFlagsA5)	Rothenburg#5	722
+aldeg_cas05,41,180,2	duplicate(InsideFlagsA5)	Rothenburg#6	722
+aldeg_cas05,38,201,2	duplicate(InsideFlagsA5)	Rothenburg#7	722
+aldeg_cas05,65,182,2	duplicate(InsideFlagsA5)	Rothenburg#8	722
+aldeg_cas05,65,205,2	duplicate(InsideFlagsA5)	Rothenburg#9	722
+aldeg_cas05,10,218,2	duplicate(InsideFlagsA5)	Rothenburg#10	722
+aldeg_cas05,10,218,2	duplicate(InsideFlagsA5)	Rothenburg#11	722
+aldeg_cas05,164,201,2	duplicate(InsideFlagsA5)	Rothenburg#12	722
+aldeg_cas05,14,117,2	duplicate(InsideFlagsA5)	Rothenburg#13	722
+aldeg_cas05,10,225,2	duplicate(InsideFlagsA5)	Rothenburg#14	722
+aldeg_cas05,187,59,2	duplicate(InsideFlagsA5)	Rothenburg#15	722
+aldeg_cas05,154,51,2	duplicate(InsideFlagsA5)	Rothenburg#16	722
+aldeg_cas05,22,211,2	duplicate(InsideFlagsA5)	Rothenburg#17	722
+aldeg_cas05,150,202,2	duplicate(InsideFlagsA5)	Rothenburg#18	722
 
-// Gerenciador Automático
+// Guild Flag (Town)
 //============================================================
-aldeg_cas05,28,102,0	duplicate(Gld_Agit_Manager)	Agit#aldeg_cas05	-1
+aldebaran,128,97,4	duplicate(InsideFlagsA5)	Rothenburg#19	722
 
-// Administração
+// Kafra Employee
 //============================================================
-aldeg_cas05,52,179,0	duplicate(Gld_Mngr_Template)	Blemhemsen#aldeg_cas05	55
+aldeg_cas05,31,190,0	duplicate(guildkafra)	Kafra Staff#aldeg_cas05	117
 
-// Guardiões
+// Steward
 //============================================================
-aldeg_cas05,52,179,0	duplicate(Gld_Guard_Template)	Guardian#aldeg_cas05	-1
+aldeg_cas05,51,179,0	duplicate(cm)	Esmarehk#aldeg_cas05	55
 
-// Kafras
+// Treasure Room Exit
 //============================================================
-aldeg_cas05,31,190,0	duplicate(Gld_Kafra_Template)	Assistente Kafra#aldeg_cas05	117
+aldeg_cas05,64,8,0	script	#lever_A05	111,{
 
-// Saída da Sala do Mestre
-//============================================================
-aldeg_cas05,64,8,0	script	#switch_A05	111,{
 	mes " ";
-	mes "Há uma pequena alavanca aqui.";
-	mes "Você deseja puxar ela?";
+	mes "There's a small lever. Will you pull it?";
 	next;
-	if(select("Puxar.:Não puxar.") == 2) close;
-	warp "aldeg_cas05",51,179;
-	end;
+	if(select("Pull.:Do not.") == 1) {
+		close2;
+		warp "aldeg_cas05",51,179;
+		end;
+	}
+	close;
 }
 
-// Proteção de Tesouros
+// Guild Dungeon Switch
 //============================================================
-aldeg_cas05,62,12,0	duplicate(Gld_Trea_Protect)	ban_warp#aldeg_cas05	-1,8,8
+aldeg_cas05,22,205,0	duplicate(gdlever)	#aldeg_cas05	111
 
-// Spawns de Tesouros
+// Guild Treasure Spawns
 //============================================================
 aldeg_cas05,62,12,0	duplicate(Gld_Trea_Spawn)	Treasure#aldeg_cas05	-1
 
-// Mudança de Cavernas
+// AGIT Manager
 //============================================================
-aldeg_cas05,22,205,0	duplicate(Gld_Dun_Template)	#aldeg_cas05	111
+aldeg_cas05,28,102,0	duplicate(Gld_Agit_Manager)	Agit#aldeg_cas05	-1
+
+// Guardians
+//============================================================
+aldeg_cas05,52,179,0	duplicate(Gld_Guard_Template)	Guardian#aldeg_cas05	-1
