@@ -1551,7 +1551,8 @@ int status_check_skilluse(struct block_list *src, struct block_list *target, int
 				sc->data[SC_CRYSTALIZE] ||
 				sc->data[SC_OBLIVIONCURSE] ||
 				sc->data[SC_CURSEDCIRCLE_TARGET] ||
-				sc->data[SC_ALL_RIDING]
+				sc->data[SC_ALL_RIDING] ||
+				sc->data[SC__SHADOWFORM]
 			))
 				return 0;
 

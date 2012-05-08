@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1148 - 08/05/2012 [Protimus]
+	* Corrigida a habilidade Vínculo Sombrio (SC__SHADOWFORM).
+	- A habilidade não estava proibindo o uso de habilidades pelo usuário que estivesse no estado do Vínculo Sombrio.
+
 	r1147 - 07/05/2012 [Protimus]
 	* Atualizado conforme rAthena 16084.
 	- Updates relacionados à quests/habilidades não foram feitos, necessário revisar melhor.
