@@ -4010,7 +4010,7 @@ static unsigned short status_calc_str(struct block_list *bl, struct status_chang
 	if(sc->data[SC_GIANTGROWTH])
 		str += 30;
 	if(sc->data[SC_HARMONIZE])
-		str += sc->data[SC_HARMONIZE]->val2;
+		str -= sc->data[SC_HARMONIZE]->val2;
 	if(sc->data[SC_INSPIRATION])
 		str += sc->data[SC_INSPIRATION]->val3;
 	if(sc->data[SC_SAVAGE_STEAK])
@@ -4059,7 +4059,7 @@ static unsigned short status_calc_agi(struct block_list *bl, struct status_chang
 	if(sc->data[SC_ADORAMUS])
 		agi -= sc->data[SC_ADORAMUS]->val2;
 	if(sc->data[SC_HARMONIZE])
-		agi += sc->data[SC_HARMONIZE]->val2;
+		agi -= sc->data[SC_HARMONIZE]->val2;
 	if(sc->data[SC_INSPIRATION])
 		agi += sc->data[SC_INSPIRATION]->val3;
 	if(sc->data[SC_DROCERA_HERB_STEAMED])
@@ -4100,7 +4100,7 @@ static unsigned short status_calc_vit(struct block_list *bl, struct status_chang
 	if(sc->data[SC_LAUDAAGNUS])
 		vit += 4 + sc->data[SC_LAUDAAGNUS]->val1;
 	if(sc->data[SC_HARMONIZE])
-		vit += sc->data[SC_HARMONIZE]->val2;
+		vit -= sc->data[SC_HARMONIZE]->val2;
 	if(sc->data[SC_INSPIRATION])
 		vit += sc->data[SC_INSPIRATION]->val3;
 	if(sc->data[SC_MINOR_BBQ])
@@ -4149,7 +4149,7 @@ static unsigned short status_calc_int(struct block_list *bl, struct status_chang
 	if(sc->data[SC_SPIRIT] && sc->data[SC_SPIRIT]->val2 == SL_HIGH && int_ < 50)
 		int_ = 50;
 	if(sc->data[SC_HARMONIZE])
-		int_ += sc->data[SC_HARMONIZE]->val2;
+		int_ -= sc->data[SC_HARMONIZE]->val2;
 	if(sc->data[SC_INSPIRATION])
 		int_ += sc->data[SC_INSPIRATION]->val3;
 	if(sc->data[SC_MANDRAGORA])
@@ -4203,7 +4203,7 @@ static unsigned short status_calc_dex(struct block_list *bl, struct status_chang
 	if(sc->data[SC_SPIRIT] && sc->data[SC_SPIRIT]->val2 == SL_HIGH && dex < 50)
 		dex  = 50;
 	if(sc->data[SC_HARMONIZE])
-		dex += sc->data[SC_HARMONIZE]->val2;
+		dex -= sc->data[SC_HARMONIZE]->val2;
 	if(sc->data[SC_INSPIRATION])
 		dex += sc->data[SC_INSPIRATION]->val3;
 	if(sc->data[SC__STRIPACCESSORY])
@@ -4244,7 +4244,7 @@ static unsigned short status_calc_luk(struct block_list *bl, struct status_chang
 	if(sc->data[SC_LAUDARAMUS])
 		luk += 4 + sc->data[SC_LAUDARAMUS]->val1;
 	if(sc->data[SC_HARMONIZE])
-		luk += sc->data[SC_HARMONIZE]->val2;
+		luk -= sc->data[SC_HARMONIZE]->val2;
 	if(sc->data[SC_INSPIRATION])
 		luk += sc->data[SC_INSPIRATION]->val3;
 	if(sc->data[SC__STRIPACCESSORY])
@@ -7762,7 +7762,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_SYMPHONYOFLOVER:
 			val2 = 20 + 20 * val1;
 		case SC_HARMONIZE:
-			val2 = 3 + 2 * val1;
+			val2 = 5 + 5 * val1;
 			break;
 		case SC_VOICEOFSIREN:
 			val4 = tick / 2000;

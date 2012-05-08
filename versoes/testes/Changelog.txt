@@ -9,8 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1149 - 08/05/2012 [Protimus]
+	* Corrigida a habilidade Harmonizar (SC_HARMONIZE).
+	- Habilidade transformada de buff para debuff (remove atributos).
+	- Atualizada fórmula de bonificação.
+
 	r1148 - 08/05/2012 [Protimus]
-	* Corrigida a habilidade Vínculo Sombrio (SC__SHADOWFORM).
+	* Corrigida a habilidade Vínculo Sombrio (SC_SHADOWFORM).
 	- A habilidade não estava proibindo o uso de habilidades pelo usuário que estivesse no estado do Vínculo Sombrio.
 
 	r1147 - 07/05/2012 [Protimus]
