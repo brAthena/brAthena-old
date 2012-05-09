@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1150 - 09/05/2012 [Henrybk]
+	* Corrigida a habilidade Punho Arcano (SO_SPELLFIST).
+	- Modificado dano conforme valores oficiais.
+
 	r1149 - 08/05/2012 [Protimus]
 	* Corrigida a habilidade Harmonizar (SC_HARMONIZE).
 	- Habilidade transformada de buff para debuff (remove atributos).

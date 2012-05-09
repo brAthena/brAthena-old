@@ -3509,7 +3509,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 							struct status_change *sc = status_get_sc(src);
 							if ( sc && sc->count ) {
 								if ( sc->data[SC_SPELLFIST] && (!sd || !sd->state.autocast) )  {
-									skillratio += (sc->data[SC_SPELLFIST]->val4 * 100) + (sc->data[SC_SPELLFIST]->val2 * 100) - 100;// val4 = used bolt level, val2 = used spellfist level. [Rytech]
+									skillratio += (sc->data[SC_SPELLFIST]->val4 * 100) + (sc->data[SC_SPELLFIST]->val2 * 50) - 100;// val4 = used bolt level, val2 = used spellfist level. [Rytech]
 									ad.div_ = 1;// ad mods, to make it work similar to regular hits [Xazax]
 									ad.flag = BF_WEAPON|BF_SHORT;
 									ad.type = 0;
@@ -3528,7 +3528,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 							struct status_change *sc = status_get_sc(src);
 							if ( sc && sc->count ) {
 								if ( sc->data[SC_SPELLFIST] && (!sd || !sd->state.autocast) ) {
-									skillratio += (sc->data[SC_SPELLFIST]->val4 * 100) + (sc->data[SC_SPELLFIST]->val2 * 100) - 100;
+									skillratio += (sc->data[SC_SPELLFIST]->val4 * 100) + (sc->data[SC_SPELLFIST]->val2 * 50) - 100;
 									ad.div_ = 1;
 									ad.flag = BF_WEAPON|BF_SHORT;
 									ad.type = 0;
@@ -3542,7 +3542,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 							struct status_change *sc = status_get_sc(src);
 							if ( sc && sc->count ) {
 								if ( sc->data[SC_SPELLFIST] && (!sd || !sd->state.autocast) ) {
-									skillratio += (sc->data[SC_SPELLFIST]->val4 * 100) + (sc->data[SC_SPELLFIST]->val2 * 100) - 100;
+									skillratio += (sc->data[SC_SPELLFIST]->val4 * 100) + (sc->data[SC_SPELLFIST]->val2 * 50) - 100;
 									ad.div_ = 1;
 									ad.flag = BF_WEAPON|BF_SHORT;
 									ad.type = 0;
