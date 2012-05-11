@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1151 - 11/05/2012 [Protimus]
+	* Atualizado conforme rAthena 16098.
+
 	r1150 - 09/05/2012 [Henrybk]
 	* Corrigida a habilidade Punho Arcano (SO_SPELLFIST).
 	- Modificado dano conforme valores oficiais.

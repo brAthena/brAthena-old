@@ -527,7 +527,6 @@ typedef enum sc_type {
 	SC__WEAKNESS,
 	SC__STRIPACCESSORY,
 	SC__MANHOLE,
-	SC_CHAOS,
 	//SC__MAELSTROM,
 	SC__BLOODYLUST = 706,
 

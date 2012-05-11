@@ -554,7 +554,7 @@ void initChangeTables(void)
 	set_sc( SC_WEAKNESS          , SC__WEAKNESS          , SI_WEAKNESS          , SCB_FLEE2|SCB_MAXHP );
 	set_sc( SC_STRIPACCESSARY    , SC__STRIPACCESSORY    , SI_STRIPACCESSARY    , SCB_DEX|SCB_INT|SCB_LUK );
 	set_sc( SC_MANHOLE           , SC__MANHOLE           , SI_MANHOLE           , SCB_NONE );
-	add_sc( SC_CHAOSPANIC        , SC_CHAOS );
+	add_sc( SC_CHAOSPANIC        , SC_CONFUSION );
 	set_sc( SC_BLOODYLUST        , SC__BLOODYLUST        , SI_BLOODYLUST        , SCB_DEF|SCB_DEF2|SCB_BATK|SCB_WATK );
 
 	set_sc( LG_REFLECTDAMAGE     , SC_REFLECTDAMAGE      , SI_LG_REFLECTDAMAGE	, SCB_NONE  );
@@ -565,6 +565,8 @@ void initChangeTables(void)
 	set_sc( LG_PIETY             , SC_BENEDICTIO      , SI_BENEDICTIO      , SCB_DEF_ELE );
 	set_sc( LG_EARTHDRIVE        , SC_EARTHDRIVE         , SI_EARTHDRIVE        , SCB_DEF|SCB_ASPD );
 	set_sc( LG_INSPIRATION       , SC_INSPIRATION     , SI_INSPIRATION     , SCB_MAXHP|SCB_WATK|SCB_HIT|SCB_VIT|SCB_AGI|SCB_STR|SCB_DEX|SCB_INT|SCB_LUK);
+	set_sc( LG_SHIELDSPELL       , SC_SHIELDSPELL_DEF , SI_SHIELDSPELL_DEF , SCB_WATK );
+	set_sc( LG_SHIELDSPELL       , SC_SHIELDSPELL_REF , SI_SHIELDSPELL_REF , SCB_DEF );
 
 	set_sc( SR_CRESCENTELBOW            , SC_CRESCENTELBOW        , SI_CRESCENTELBOW            , SCB_NONE );
 	set_sc( SR_CURSEDCIRCLE             , SC_CURSEDCIRCLE_TARGET  , SI_CURSEDCIRCLE_TARGET      , SCB_NONE );
@@ -5098,35 +5100,35 @@ static short status_calc_aspd_rate(struct block_list *bl, struct status_change *
 	if( sc->data[SC_FIGHTINGSPIRIT] && sc->data[SC_FIGHTINGSPIRIT]->val2 )
 		aspd_rate -= sc->data[SC_FIGHTINGSPIRIT]->val2;
 	if( sc->data[SC_PARALYSE] )
-		aspd_rate += aspd_rate * 10 / 100;
+		aspd_rate += 100;
 	if( sc->data[SC__BODYPAINT] )
-		aspd_rate += aspd_rate * (20 + 5 * sc->data[SC__BODYPAINT]->val1) / 100;
+		aspd_rate +=  200 + 50 * sc->data[SC__BODYPAINT]->val1;
 	if( sc->data[SC__INVISIBILITY] )
-		aspd_rate += aspd_rate * sc->data[SC__INVISIBILITY]->val2 / 100;
+		aspd_rate += sc->data[SC__INVISIBILITY]->val2 * 10 ;
 	if( sc->data[SC__GROOMY] )
-		aspd_rate += aspd_rate * sc->data[SC__GROOMY]->val2 / 100;
+		aspd_rate += sc->data[SC__GROOMY]->val2 * 10;
 	if( sc->data[SC_SWINGDANCE] )
-		aspd_rate -= aspd_rate * sc->data[SC_SWINGDANCE]->val2 / 100;
+		aspd_rate -= sc->data[SC_SWINGDANCE]->val2 * 10;
 	if( sc->data[SC_DANCEWITHWUG] )
-		aspd_rate -= aspd_rate * sc->data[SC_DANCEWITHWUG]->val3 / 100;	
+		aspd_rate -= sc->data[SC_DANCEWITHWUG]->val3 * 10;
 	if( sc->data[SC_GLOOMYDAY] )
-		aspd_rate += aspd_rate * sc->data[SC_GLOOMYDAY]->val3 / 100;
+		aspd_rate += sc->data[SC_GLOOMYDAY]->val3 * 10;
 	if( sc->data[SC_EARTHDRIVE] )
-		aspd_rate += aspd_rate * 25 / 100;
+		aspd_rate += 250;
 	if( sc->data[SC_RAISINGDRAGON] )
 		aspd_rate -= 100; 
 	if( sc->data[SC_GT_CHANGE] )
-		aspd_rate -= aspd_rate * (sc->data[SC_GT_CHANGE]->val2/200) / 100;
+		aspd_rate -= (sc->data[SC_GT_CHANGE]->val2/200) * 10;
 	if( sc->data[SC_GT_REVITALIZE] )
-		aspd_rate -= aspd_rate * sc->data[SC_GT_REVITALIZE]->val2 / 100;
+		aspd_rate -= sc->data[SC_GT_REVITALIZE]->val2 * 10;
 	if( sc->data[SC_MELON_BOMB] )
-		aspd_rate += aspd_rate * sc->data[SC_MELON_BOMB]->val1 / 100;
+		aspd_rate += sc->data[SC_MELON_BOMB]->val1 * 10;
 	if( sc->data[SC_BOOST500] )
-		aspd_rate -= aspd_rate * sc->data[SC_BOOST500]->val1/100;
+		aspd_rate -= sc->data[SC_BOOST500]->val1 *10;
 	if(sc->data[SC_EXTRACT_SALAMINE_JUICE])
-		aspd_rate -= aspd_rate * sc->data[SC_EXTRACT_SALAMINE_JUICE]->val1/100;
+		aspd_rate -= sc->data[SC_EXTRACT_SALAMINE_JUICE]->val1 * 10;
 	if( sc->data[SC_INCASPDRATE] )
-		aspd_rate -= aspd_rate * sc->data[SC_INCASPDRATE]->val1 / 100;
+		aspd_rate -= sc->data[SC_INCASPDRATE]->val1 * 10;
 	if( sc->data[SC_GLOOMYDAY] )
 		aspd_rate += aspd_rate * sc->data[SC_GLOOMYDAY]->val3 / 100;
 
@@ -6059,7 +6061,6 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		switch( type )
 		{
 		case SC_DEEPSLEEP:
-		case SC_CHAOS:
 		case SC_BURNING:
 		case SC_FEAR:
 		case SC_WHITEIMPRISON:
@@ -6698,7 +6699,6 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			case SC__LAZINESS:
 			case SC__WEAKNESS:
 			case SC__UNLUCKY:
-			case SC_CHAOS:
 				return 0;
 			case SC_COMBO:
 			case SC_DANCING:
@@ -8153,7 +8153,6 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_ELECTRICSHOCKER:
 		case SC_BITE:
 		case SC__MANHOLE:
-		case SC_CHAOS:
 		case SC_CURSEDCIRCLE_ATKER:
 		case SC_CURSEDCIRCLE_TARGET:
 		case SC_MAGNETICFIELD:
@@ -8194,7 +8193,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_POISON:       sc->opt2 |= OPT2_POISON;       break;
 		case SC_CURSE:        sc->opt2 |= OPT2_CURSE;        break;
 		case SC_SILENCE:      sc->opt2 |= OPT2_SILENCE;      break;
-		case SC_SIGNUMCRUCIS: case SC_CHAOS: sc->opt2 |= OPT2_SIGNUMCRUCIS; break;
+		case SC_SIGNUMCRUCIS: sc->opt2 |= OPT2_SIGNUMCRUCIS; break;
 		case SC_BLIND:        sc->opt2 |= OPT2_BLIND;        break;
 		case SC_ANGELUS:      sc->opt2 |= OPT2_ANGELUS;      break;
 		case SC_BLEEDING:     sc->opt2 |= OPT2_BLEEDING;     break;
@@ -8995,7 +8994,6 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 		sc->opt2 &= ~OPT2_DPOISON;
 		break;
 	case SC_SIGNUMCRUCIS:
-	case SC_CHAOS:
 		sc->opt2 &= ~OPT2_SIGNUMCRUCIS;
 		break;
 
