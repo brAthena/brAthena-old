@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1152 - 11/05/212 [Protimus]
+	* Desabilitada temporáriamente a leitura da pasta de scripts para oltimes.
+	- Até que as outras versões estejam prontas, não podemos dar inicio a essa.
+	* Corrigido problema na leitura de arquivos do Makefile, causando problemas ao compilar.
+
 	r1151 - 11/05/2012 [Protimus]
 	* Atualizado conforme rAthena 16098.
 
