@@ -460,6 +460,12 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 			return 0;
 		}
 
+		if( sc->data[SC_MEIKYOUSISUI] && rand()%100 < sc->data[SC_MEIKYOUSISUI]->val2)
+		{
+			d->dmg_lv = ATK_BLOCK;
+			return 0;
+		}
+
 		if( sc->data[SC_ZEPHYR] && ((flag&BF_LONG) || rand()%100 < 10) )
 		{
 			d->dmg_lv = ATK_BLOCK;

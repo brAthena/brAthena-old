@@ -1199,9 +1199,9 @@
 3008,11,6,1,0,0x50,0,10,1,no,0,0,0,misc,0,		KO_MUCHANAGE,Mucha Nage
 3009,9:10:11:12:13,6,1,-1,0x2,7,10,1,no,33,0,0,weapon,1,	KO_HUUMARANKA,Fuuma Shuriken Ranka
 //3010,7,6,4,0,1,0,10,1,no,0,0,0,none,0,		KO_MAKIBISHI,Makibishi
-//3011,1,6,4,0,1,0,10,1,no,0,0,0,none,0,		KO_MEIKYOUSISUI,MeiKyouShiSui
+3011,1,6,4,0,0x1,0,5,1,no,0,0,0,none,0,		KO_MEIKYOUSISUI,MeiKyouShiSui
 //3012,1,6,4,0,1,0,10,1,no,0,0,0,none,0,		KO_ZANZOU,Zanzou
-//3013,5,6,4,0,1,0,10,1,no,0,0,0,none,0,		KO_KYOUGAKU,Kyougaku
+3013,2,6,1,0,1,0,5,1,no,0,0,0,none,0,		KO_KYOUGAKU,Kyougaku
 //3014,5,6,4,0,1,0,10,1,no,0,0,0,none,0,		KO_JYUSATSU,Juusatsu
 //3015,1,6,4,0,1,0,10,1,no,0,0,0,none,0,		KO_KAHU_ENTEN,Enten
 //3016,1,6,4,0,1,0,10,1,no,0,0,0,none,0,		KO_HYOUHU_HUBUKI,Fubuki
@@ -1209,8 +1209,8 @@
 //3018,1,6,4,0,1,0,10,1,no,0,0,0,none,0,		KO_DOHU_KOUKAI,Koukai
 //3019,1,6,4,0,1,0,10,1,no,0,0,0,none,0,		KO_KAIHOU,Jutsushiki Kaihou
 //3020,1,6,4,0,1,0,10,1,no,0,0,0,none,0,		KO_ZENKAI,Jutsushiki Zenkai
-//3021,5;6:7:8:9,6,4,0,1,0,10,1,no,0,0,0,none,0,		KO_GENWAKU,Genwaku
-//3022,1,6,4,0,1,0,10,1,no,0,0,0,none,0,		KO_IZAYOI,Izayoi
+3021,5:6:7:8:9,6,1,0,1,0,5,1,no,0,0,0,none,0,		KO_GENWAKU,Genwaku
+3022,1,6,4,0,1,0,5,1,no,0,0,0,none,0,		KO_IZAYOI,Izayoi
 //=========================================================================================================
 // Habilidades exclusivas de Kagerou. [brAthena]
 //=========================================================================================================

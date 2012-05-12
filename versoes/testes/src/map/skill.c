@@ -3169,6 +3169,15 @@ static int skill_timerskill(int tid, unsigned int tick, int id, intptr_t data)
 				case LG_OVERBRAND_PLUSATK:
 					skill_attack(BF_WEAPON, src, src, target, skl->skill_id, skl->skill_lv, tick, skl->flag|SD_LEVEL);
 					break;
+				case KO_KYOUGAKU: 
+					if( target->type == BL_PC ) 
+					{ 
+						struct map_session_data *tsd = BL_CAST(BL_PC,target); 
+						if (tsd->disguise) { 
+							pc_disguise(tsd, 0); 
+						} 
+					} 
+					break;
 				default:
 					skill_attack(skl->type,src,src,target,skl->skill_id,skl->skill_lv,tick,skl->flag);
 					break;
@@ -5952,6 +5961,55 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			status_change_end(bl, SC_SPIRIT, INVALID_TIMER);
 			break;
 		}
+	break;
+	
+	case KO_KYOUGAKU:
+		if ( tsc && !tsc->data[SC_KYOUGAKU]){ 
+			int mobtid = 0, i; 
+			if( dstmd ){ 
+				clif_skill_fail(sd,skillid,0,0,0); 
+				break; 
+			} 
+			clif_skill_nodamage(src,bl,skillid,skilllv, 
+				sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv)));
+			
+			mobtid = mob_get_random_id(0,0x4, dstsd->status.base_level); 
+			if( mobtid <= 0 ){ 
+				clif_skill_fail(sd,skillid,0,0,0); 
+				break;
+			} 
+   
+			pc_disguise(dstsd, mobtid); 
+			skill_addtimerskill(src, gettick() + skill_get_time(skillid, skilllv), bl->id, 0, 0, skillid, skilllv, 0, 0); 
+			break; 
+		}else{ 
+			clif_skill_fail(sd,skillid,0,0,0); 
+			break; 
+		}
+
+	case KO_MEIKYOUSISUI:
+		clif_skill_nodamage(src,bl,skillid,skilllv,
+			sc_start(bl,status_skill2sc(skillid),100,skilllv,skill_get_time(skillid,skilllv)));
+		break;
+		
+	case KO_GENWAKU:
+		if(bl && src){
+			int x1,y1,x2,y2;
+			x1 = src->x;
+			y1 = src->y;
+			x2 = bl->x;
+			y2 = bl->y;
+
+			unit_movepos(src, x2, y2, 1, 1);
+			unit_movepos(bl, x1, y1, 1, 1);
+			clif_fixpos(src);
+			clif_fixpos(bl);
+
+			sc_start(src,SC_CONFUSION,20,skilllv,skill_get_time(skillid,skilllv));
+			sc_start(bl,SC_CONFUSION,20,skilllv,skill_get_time(skillid,skilllv));
+		}
+		clif_skill_nodamage(src,bl,skillid,skilllv,1);
+		break;
 
 	case AL_TELEPORT:
 		if(sd)

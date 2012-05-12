@@ -9,6 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1153 - 12/05/212 [Splack]
+	* Adicionada habilidade Kyougaku.
+	* Adicionada habilidade MeiKyouShiSui.
+	* Adicionada habilidade Genwaku.
+	* Ajustado Bônus da habilidade izayoi.
+	- Estava Multiplicando o bônus, dando um aumento enorme de matk.
+
 	r1152 - 11/05/212 [Protimus]
 	* Desabilitada temporáriamente a leitura da pasta de scripts para oltimes.
 	- Até que as outras versões estejam prontas, não podemos dar inicio a essa.

@@ -6357,6 +6357,13 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 			duel_reject(sd->duel_invite, sd);
 	}
 
+	//Kyougaku limpeza (undisguise) [Splack] 
+	if( sd && sd->sc.data[SC_KYOUGAKU] ){ 
+		if (sd->disguise){ 
+			pc_disguise(sd, 0);
+		} 
+	}
+
 	pc_setglobalreg(sd,"PC_DIE_COUNTER",sd->die_counter+1);
 	pc_setparam(sd, SP_KILLERRID, src?src->id:0);
 	if( sd->bg_id )
@@ -7981,7 +7988,7 @@ int pc_equipitem(struct map_session_data *sd,int n,int req_pos)
 		return 0;
 	}
 
-	if( sd->sc.data[SC_BERSERK] )
+	if( sd->sc.data[SC_BERSERK] || sd->sc.data[SC_KYOUGAKU] )
 	{
 		clif_equipitemack(sd,n,0,0);	// fail
 		return 0;

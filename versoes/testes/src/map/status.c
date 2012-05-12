@@ -628,6 +628,8 @@ void initChangeTables(void)
 	// Kagerou & Oboro - brA Exclusividade
 	set_sc( KO_YAMIKUMO     , SC_YAMIKUMO   , SI_BLANK   , SCB_NONE );
 	set_sc( KO_IZAYOI       , SC_IZAYOI     , SI_BLANK     , SCB_MATK );
+	set_sc( KO_KYOUGAKU        , SC_KYOUGAKU          , SI_BLANK            , SCB_STR|SCB_AGI|SCB_VIT|SCB_INT|SCB_DEX|SCB_LUK );
+	set_sc( KO_MEIKYOUSISUI    , SC_MEIKYOUSISUI      , SI_MEIKYOUSISUI     , SCB_NONE );
 	set_sc( OB_ZANGETSU     , SC_ZANGETSU   , SI_BLANK   , SCB_BATK|SCB_MATK );
 	// -------------
 	
@@ -4019,6 +4021,8 @@ static unsigned short status_calc_str(struct block_list *bl, struct status_chang
 		str += sc->data[SC_SAVAGE_STEAK]->val1;
 	if(sc->data[SC_STOMACHACHE])
 		str -= sc->data[SC_STOMACHACHE]->val1;
+	if(sc->data[SC_KYOUGAKU]) 
+		str -= ( 5 * sc->data[SC_KYOUGAKU]->val1 ) + ( sc->data[SC_KYOUGAKU]->val2 );
 
 	return (unsigned short)cap_value(str,0,USHRT_MAX);
 }
@@ -4068,6 +4072,8 @@ static unsigned short status_calc_agi(struct block_list *bl, struct status_chang
 		agi += sc->data[SC_DROCERA_HERB_STEAMED]->val1;
 	if(sc->data[SC_STOMACHACHE])
 		agi -= sc->data[SC_STOMACHACHE]->val1;
+	if(sc->data[SC_KYOUGAKU]) 
+		agi -= ( 5 * sc->data[SC_KYOUGAKU]->val1 ) + ( sc->data[SC_KYOUGAKU]->val2 );
 
 	return (unsigned short)cap_value(agi,0,USHRT_MAX);
 }
@@ -4111,6 +4117,8 @@ static unsigned short status_calc_vit(struct block_list *bl, struct status_chang
 		vit -= sc->data[SC_STOMACHACHE]->val1;
 	if(sc->data[SC_DEFENCE])
 		vit += sc->data[SC_DEFENCE]->val2;
+	if(sc->data[SC_KYOUGAKU]) 
+		vit -= ( 5 * sc->data[SC_KYOUGAKU]->val1 ) + ( sc->data[SC_KYOUGAKU]->val2 );
 
 	return (unsigned short)cap_value(vit,0,USHRT_MAX);
 }
@@ -4162,6 +4170,8 @@ static unsigned short status_calc_int(struct block_list *bl, struct status_chang
 		int_ += sc->data[SC_COCKTAIL_WARG_BLOOD]->val1;
 	if(sc->data[SC_STOMACHACHE])
 		int_ -= sc->data[SC_STOMACHACHE]->val1;
+	if(sc->data[SC_KYOUGAKU]) 
+		int_ -= ( 5 * sc->data[SC_KYOUGAKU]->val1 ) + ( sc->data[SC_KYOUGAKU]->val2 );
 
 	return (unsigned short)cap_value(int_,0,USHRT_MAX);
 }
@@ -4214,6 +4224,8 @@ static unsigned short status_calc_dex(struct block_list *bl, struct status_chang
 		dex += sc->data[SC_SIROMA_ICE_TEA]->val1;
 	if(sc->data[SC_STOMACHACHE])
 		dex -= sc->data[SC_STOMACHACHE]->val1;
+	if(sc->data[SC_KYOUGAKU]) 
+		dex -= ( 5 * sc->data[SC_KYOUGAKU]->val1 ) + ( sc->data[SC_KYOUGAKU]->val2 );
 
 	return (unsigned short)cap_value(dex,0,USHRT_MAX);
 }
@@ -4257,6 +4269,8 @@ static unsigned short status_calc_luk(struct block_list *bl, struct status_chang
 		luk -= sc->data[SC_STOMACHACHE]->val1;
 	if(sc->data[SC_BANANA_BOMB])
 		luk -= luk * sc->data[SC_BANANA_BOMB]->val1 / 100;
+	if(sc->data[SC_KYOUGAKU]) 
+		luk -= ( 5 * sc->data[SC_KYOUGAKU]->val1 ) + ( sc->data[SC_KYOUGAKU]->val2 );
 
 	return (unsigned short)cap_value(luk,0,USHRT_MAX);
 }
@@ -4447,7 +4461,7 @@ static unsigned short status_calc_matk(struct block_list *bl, struct status_chan
 	if(sc->data[SC_FIRE_INSIGNIA] && sc->data[SC_FIRE_INSIGNIA]->val1 == 3)
 		matk += 50;
 	if(sc->data[SC_IZAYOI])
-		matk += matk * sc->data[SC_IZAYOI]->val3;
+		matk += sc->data[SC_IZAYOI]->val3;
 	if(sc->data[SC_ZANGETSU])
 		matk += matk * sc->data[SC_ZANGETSU]->val1/100;
 	if(sc->data[SC_ODINS_POWER])
@@ -7574,6 +7588,14 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			if(sd)
 				val3 = 50 *	val1; // Adição de matk.
 			break;
+		case SC_KYOUGAKU:
+			val2 = rand()%5 * val1;
+			break;
+		case SC_MEIKYOUSISUI:
+			val2 = 10 + val1*3; // Chance de não sofrer dano. NOTA: Valor não oficial.
+			val4 = tick / 1000; // Tempo de recuperação, valor oficial a cada segundo.
+			tick = 1000;
+			break;
 		case SC_ZANGETSU:
 			val2 += 20 * (sd ? sd->status.base_level:50) + 100; // Adição de ATK & Matk
 			break;
@@ -8159,6 +8181,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_VACUUM_EXTREME:
 		case SC_THORNSTRAP:
 		case SC_CRYSTALIZE:
+		case SC_MEIKYOUSISUI:
 			unit_stop_walking(bl,1);
 		break;
 		case SC_HIDING:
@@ -9962,6 +9985,15 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 			return 0;
 		}
 		break;
+	case SC_MEIKYOUSISUI:
+		if( --(sce->val4) >= 0 )
+		{
+			status_heal(bl, sce->val1 * 2 * status->max_hp / 100, sce->val1 * status->max_sp / 100, 2);
+			sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
+			return 0;
+		}
+		break;
+	}
 	case SC_LEADERSHIP:
 	case SC_GLORYWOUNDS:
 	case SC_SOULCOLD:
