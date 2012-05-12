@@ -9993,7 +9993,6 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 			return 0;
 		}
 		break;
-	}
 	case SC_LEADERSHIP:
 	case SC_GLORYWOUNDS:
 	case SC_SOULCOLD:

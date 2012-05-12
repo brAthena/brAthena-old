@@ -9,14 +9,17 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
-	r1153 - 12/05/212 [Splack]
-	* Adicionada habilidade Kyougaku.
-	* Adicionada habilidade MeiKyouShiSui.
-	* Adicionada habilidade Genwaku.
-	* Ajustado Bônus da habilidade izayoi.
-	- Estava Multiplicando o bônus, dando um aumento enorme de matk.
+	r1154 - 12/05/2012 [Protimus]
+	* Corrigidos erros da r1153.
+	* Corrigidos erros apontados no map-server.
+	- Ainda faltam algumas coisas que não foram modificadas pois iremos reverter fórmulas e adicionar outras novas.
 
-	r1152 - 11/05/212 [Protimus]
+	r1153 - 12/05/212 [Splack]
+	* Adicionadas as habilidades Kyougaku (KO_KYOUGAKU), MeiKyouShiSui (KO_MEIKYOUSISUI) & Genwaku (KO_GENWAKU).
+	* Ajustado bônus da habilidade Izayoi (KO_IZAYOI).
+	- Estava múltiplicando o bônus, dando um aumento enorme de ataque mágico.
+
+	r1152 - 11/05/2012 [Protimus]
 	* Desabilitada temporáriamente a leitura da pasta de scripts para oltimes.
 	- Até que as outras versões estejam prontas, não podemos dar inicio a essa.
 	* Corrigido problema na leitura de arquivos do Makefile, causando problemas ao compilar.
