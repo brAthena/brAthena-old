@@ -5693,7 +5693,8 @@ static const struct _battle_data {
 	/**
 	 * rAthena
 	 **/
-	{ "atcommand_max_stat_bypass",          &battle_config.atcommand_max_stat_bypass,         0,    0,      100,            },          
+	{ "atcommand_max_stat_bypass",          &battle_config.atcommand_max_stat_bypass,         0,    0,      100,            }, 
+	{ "feature.atcommand_suggestions",		&battle_config.atcommand_suggestions_enabled,     0,      0,      1				},	
 	/** 
 	* brAthena
 	**/

@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1155 - 14/05/2012 [Protimus]
+	* Corrigida leitura dos arquivos de banco de dados dos elementais.
+	* Corrigido problema com a leitura de algumas configurações.
+
 	r1154 - 12/05/2012 [Protimus]
 	* Corrigidos erros da r1153.
 	* Corrigidos erros apontados no map-server.

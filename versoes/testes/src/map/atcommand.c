@@ -8564,6 +8564,23 @@ ACMD_FUNC(charcommands)
 	return 0;
 }
 
+ACMD_FUNC(accinfo) {
+	char query[NAME_LENGTH];
+	
+	if (!message || !*message || strlen(message) > NAME_LENGTH ) {
+		clif_displaymessage(fd, "(usage: @accinfo/@accountinfo <account_id/char name>).");
+		clif_displaymessage(fd, "You may search partial name by making use of '%' in the search, \"@accinfo %Mario%\" lists all characters whose name contain \"Mario\"");
+		return -1;
+	}
+	
+	//remove const type
+	safestrncpy(query, message, NAME_LENGTH);
+	
+	intif_request_accinfo( sd->fd, sd->bl.id, sd->group_id, query );
+	
+	return 0;
+}
+
 /**
  * Fills the reference of available commands in atcommand DBMap
  **/
@@ -8806,6 +8823,7 @@ void atcommand_basecommands(void) {
 		ACMD_DEF(stats),
 		ACMD_DEF(delitem),
 		ACMD_DEF(charcommands),
+		ACMD_DEF(accinfo),
 		ACMD_DEF(allriding),
 	};
 	AtCommandInfo* atcommand;

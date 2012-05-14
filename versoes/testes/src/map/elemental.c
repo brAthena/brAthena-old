@@ -657,7 +657,7 @@ int read_elementaldb(void) {
 	struct s_elemental_db *db;
 	struct status_data *status;
 	
-	sprintf(line, "%s/%s", db_path, "elemental_db.txt");
+	sprintf(line, "%s/%s", db_path, DBPATH"elemental_db.txt");
 	memset(elemental_db,0,sizeof(elemental_db));
 	
 	fp = fopen(line, "r");
@@ -744,7 +744,7 @@ int read_elemental_skilldb(void) {
 	int i, j = 0, k = 0, class_;
 	int skillid, skilllv, skillmode;
 	
-	sprintf(line, "%s/%s", db_path, "elemental_skill_db.txt");
+	sprintf(line, "%s/%s", db_path, DBPATH"elemental_skill_db.txt");
 	fp = fopen(line, "r");
 	if( !fp ) {
 		ShowError("read_elemental_skilldb : can't read elemental_skill_db.txt\n");
