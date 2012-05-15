@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1156 - 15/05/2012 [Protimus]
+	* Corrigido problema com leitura de max_lv.
+	* Renomeada pasta import-tmpl para import.
+	- Removido processo de cópia da pasta do autoconf, não há necessidade.
+
 	r1155 - 14/05/2012 [Protimus]
 	* Corrigida leitura dos arquivos de banco de dados dos elementais.
 	* Corrigido problema com a leitura de algumas configurações.

@@ -68,7 +68,6 @@ import:
 # 3) remove remaining .svn folder
 	@echo "building conf/import folder..."
 	@if test ! -d conf/import ; then mkdir conf/import ; fi
-	@for f in $$(ls conf/import-tmpl) ; do if test ! -e conf/import/$$f ; then cp conf/import-tmpl/$$f conf/import ; fi ; done
 	@rm -rf conf/import/.svn
 
 clean:
