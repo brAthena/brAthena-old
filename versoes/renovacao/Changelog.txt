@@ -8,6 +8,10 @@
 //  * Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
+
+	r1156 - 17/05/2012 [RenatoUtsch]
+	* Portado o script de compilação do CMake para o CMake 2.6.
+	- Agora o CMake funciona até em computadores com CMake 2.6 (exemplo: CentOS 5/6, Ubuntu, etc)
 	
 	r1140 - 05/05/2012 [Henrybk]
 	* Corrigida a habilidade Mordida Feroz (RA_WUGBITE).

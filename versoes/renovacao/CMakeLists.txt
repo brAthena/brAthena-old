@@ -9,7 +9,7 @@
 
 # -----------------------------------------------------------------------------
 # Required commands
-cmake_minimum_required( VERSION 2.8.4 )
+cmake_minimum_required( VERSION 2.6 FATAL_ERROR )
 project( brAthena C )
 set( CMAKE_MODULE_PATH
 	"${CMAKE_SOURCE_DIR}/3rdparty/cmake;${CMAKE_MODULE_PATH}"
@@ -113,22 +113,25 @@ endif()
 # -----------------------------------------------------------------------------
 # Set some initial global definitions for disabling some compiler warnings
 if( WIN32 )
-	set_property( CACHE GLOBAL_DEFINITIONS PROPERTY VALUE
-		"${GLOBAL_DEFINITIONS} -DFD_SETSIZE=4096 -DLIBCONFIG_STATIC -DYY_USE_CONST "
+	set( GLOBAL_DEFINITIONS
+		"${GLOBAL_DEFINITIONS} -DFD_SETSIZE=4096 -DLIBCONFIG_STATIC -DYY_USE_CONST" CACHE INTERNAL
+		"" FORCE
 	)
 
 	# MSVC has some initial defines too
 	if( MSVC )
-		set_property( CACHE GLOBAL_DEFINITIONS PROPERTY VALUE
+		set( GLOBAL_DEFINITIONS
 			"${GLOBAL_DEFINITIONS} -D_CRT_SECURE_NO_DEPRECATE -D_CRT_NONSTDC_NO_DEPRECATE /wd4100 /wd4800 /wd4018"
+			CACHE INTERNAL "" FORCE
 		)
 	endif()
 endif()
 
 if( "${CMAKE_C_COMPILER_ID}" STREQUAL "GNU" )
-	set_property( CACHE GLOBAL_DEFINITIONS PROPERTY VALUE
+	set( GLOBAL_DEFINITIONS
 		"${GLOBAL_DEFINITIONS} -Wno-int-to-pointer-cast -Wno-pointer-to-int-cast"
 		#"${GLOBAL_DEFINITIONS} -Wall -Wextra -Werror -Wno-int-to-pointer-cast -Wpointer-to-int-cast -Wno-unused-parameter -Wno-switch -Wno-strict-aliasing -Wno-unused-function -Wno-clobbered -Wno-pointer-sign"
+		CACHE INTERNAL "" FORCE
 	)
 endif()
 
@@ -159,8 +162,9 @@ else()
 	
 	# Programming tests using MinGW and GCC...
 	if( "${CMAKE_C_COMPILER_ID}" STREQUAL "GNU" )
-		set_property( CACHE GLOBAL_DEFINITIONS PROPERTY VALUE
+		set( GLOBAL_DEFINITIONS
 			"${GLOBAL_DEFINITIONS} -Wall -Wextra -Werror -pedantic -std=c89 -ansi -Wint-to-pointer-cast -Wpointer-to-int-cast"
+			CACHE INTERNAL "" FORCE
 		)
 	endif()
 endif()
@@ -178,8 +182,8 @@ message( STATUS "Checking if is to enable RDTSC" )
 option( ENABLE_RDTSC "Enable RDTSC instruction as timing source (default = OFF)" OFF )
 
 if( ENABLE_RDTSC )
-	set_property( CACHE GLOBAL_DEFINITIONS PROPERTY VALUE
-		"${GLOBAL_DEFINITIONS} -DENABLE_RDTSC"
+	set( GLOBAL_DEFINITIONS
+		"${GLOBAL_DEFINITIONS} -DENABLE_RDTSC" CACHE INTERNAL "" FORCE
 	)
 	message( STATUS "Checking if is to enable RDTSC - yes" )
 else()
@@ -192,13 +196,13 @@ message( STATUS "Checking if is to enable the memory manager" )
 option( ENABLE_MEMMGR "Enable the memory manager (default = OFF)" OFF )
 
 if( ENABLE_MEMMGR )
-	set_property( CACHE GLOBAL_DEFINITIONS PROPERTY VALUE
-		"${GLOBAL_DEFINITIONS} -DUSE_MEMMGR"
+	set( GLOBAL_DEFINITIONS
+		"${GLOBAL_DEFINITIONS} -DUSE_MEMMGR" CACHE INTERNAL "" FORCE
 	)
 	message( STATUS "Checking if is to enable the memory manager - yes" )
 else()
-	set_property( CACHE GLOBAL_DEFINITIONS PROPERTY VALUE
-		"${GLOBAL_DEFINITIONS} -DNO_MEMMGR"
+	set( GLOBAL_DEFINITIONS
+		"${GLOBAL_DEFINITIONS} -DNO_MEMMGR" CACHE INTERNAL "" FORCE
 	)
 	message( STATUS "Checking if is to enable the memory manager - no" )
 endif()
@@ -226,8 +230,8 @@ if( MSVC )
 	mark_as_advanced( OLDNAMES_LIBRARY )
 
 	if( OLDNAMES_LIBRARY )
-		set_property( CACHE GLOBAL_LIBRARIES APPEND PROPERTY VALUE
-			${OLDNAMES_LIBRARY}
+		set( GLOBAL_LIBRARIES
+			${GLOBAL_LIBRARIES} ${OLDNAMES_LIBRARY} CACHE INTERNAL "" FORCE
 		)
 		message( STATUS "Looking for oldnames library - found" )
 	else()
@@ -246,8 +250,8 @@ if( NOT WIN32 )
 
 	if( M_LIBRARY )
 		message( STATUS "Looking for libm - found" )
-		set_property( CACHE GLOBAL_LIBRARIES APPEND PROPERTY VALUE
-			${M_LIBRARY}
+		set( GLOBAL_LIBRARIES
+			${GLOBAL_LIBRARIES} ${M_LIBRARY} CACHE INTERNAL "" FORCE
 		)
 	else()
 		message( STATUS "Looking for libm - not found" )
@@ -265,8 +269,8 @@ if( NOT WIN32 )
 
 	if( DL_LIBRARY )
 		message( STATUS "Looking for libdl - found" )
-		set_property( CACHE GLOBAL_LIBRARIES APPEND PROPERTY VALUE
-			${DL_LIBRARY}
+		set( GLOBAL_LIBRARIES
+			${GLOBAL_LIBRARIES} ${DL_LIBRARY} CACHE INTERNAL "" FORCE
 		)
 	else()
 		message( STATUS "Looking for libdl - not found" )
@@ -283,8 +287,8 @@ if( MSVC )
 	mark_as_advanced( CMTD_LIBRARY )
 
 	if( CMTD_LIBRARY )
-		#set_property( CACHE GLOBAL_LIBRARIES APPEND PROPERTY VALUE
-		#	${CMTD_LIBRARY}
+		#set( GLOBAL_LIBRARIES
+		#	${GLOBAL_LIBRARIES} ${CMTD_LIBRARY} CACHE INTERNAL "" FORCE
 		#)
 		message( STATUS "Looking for cmtd library - found" )
 	else()
@@ -304,8 +308,8 @@ if( WIN32 )
 	mark_as_advanced( WS2_32_LIBRARY )
 
 	if( WS2_32_LIBRARY )
-		set_property( CACHE GLOBAL_LIBRARIES APPEND PROPERTY VALUE
-			${WS2_32_LIBRARY}
+		set( GLOBAL_LIBRARIES
+			${GLOBAL_LIBRARIES} ${WS2_32_LIBRARY} CACHE INTERNAL "" FORCE
 		)
 		message( STATUS "Looking for networking library - found (ws2_32)" )
 	else()
@@ -326,8 +330,8 @@ else()
 		mark_as_advanced( SOCKET_LIBRARY NSL_LIBRARY )
 
 		if( SOCKET_LIBRARY AND NSL_LIBRARY )
-			set_property( CACHE GLOBAL_LIBRARIES APPEND PROPERTY VALUE
-				${SOCKET_LIBRARY} ${NSL_LIBRARY}
+			set( GLOBAL_LIBRARIES
+				${GLOBAL_LIBRARIES} ${SOCKET_LIBRARY} ${NSL_LIBRARY} CACHE INTERNAL "" FORCE
 			)
 			message( STATUS "Looking for networking library - found (socket/nsl)" )
 		else()
@@ -356,9 +360,9 @@ find_library( RT_LIBRARY rt )
 mark_as_advanced( RT_LIBRARY )
 
 if( RT_LIBRARY )
-	set_property( CACHE GLOBAL_LIBRARIES APPEND PROPERTY VALUE
-		"${RT_LIBRARY}"
-	)
+		set( GLOBAL_LIBRARIES
+			${GLOBAL_LIBRARIES} ${RT_LIBRARY} CACHE INTERNAL "" FORCE
+		)
 	message( STATUS "Looking for rt library - found" )
 else()
 	message( STATUS "Looking for rt library - not found" )
@@ -381,11 +385,11 @@ elseif( "${MEMORY_LIBRARY}" STREQUAL "memwatch" )
 	mark_as_advanced( HAVE_MEMWATCH_H MEMWATCH_LIBRARY )
 
 	if( HAVE_MEMWATCH_H AND MEMWATCH_LIBRARY )
-		set_property( CACHE GLOBAL_LIBRARIES APPEND PROPERTY VALUE
-			${MEMWATCH_LIBRARY}
+		set( GLOBAL_LIBRARIES
+			${GLOBAL_LIBRARIES} ${MEMWATCH_LIBRARY} CACHE INTERNAL "" FORCE
 		)
-		set_property( CACHE GLOBAL_DEFINITIONS PROPERTY VALUE
-			"${GLOBAL_DEFINITIONS} -DMEMWATCH"
+		set( GLOBAL_DEFINITIONS
+			"${GLOBAL_DEFINITIONS} -DMEMWATCH" CACHE INTERNAL "" FORCE
 		)
 		message( STATUS "Looking for memwatch - found" )
 		message( STATUS "Enabled memwatch memory library" )
@@ -400,11 +404,11 @@ elseif( "${MEMORY_LIBRARY}" STREQUAL "dmalloc" )
 	mark_as_advanced( HAVE_DMALLOC_H DMALLOC_LIBRARY )
 
 	if( HAVE_DMALLOC_H AND DMALLOC_LIBRARY )
-		set_property( CACHE GLOBAL_LIBRARIES APPEND PROPERTY VALUE
-			"${DMALLOC_LIBRARY}"
+		set( GLOBAL_LIBRARIES
+			${GLOBAL_LIBRARIES} ${DMALLOC_LIBRARY} CACHE INTERNAL "" FORCE
 		)
-		set_property( CACHE GLOBAL_DEFINITIONS PROPERTY VALUE
-			"${GLOBAL_DEFINITIONS} -DDMALLOC -DDMALLOC_FUNC_CHECK"
+		set( GLOBAL_DEFINITIONS
+			"${GLOBAL_DEFINITIONS} -DDMALLOC -DDMALLOC_FUNC_CHECK" CACHE INTERNAL "" FORCE
 		)
 		message( STATUS "Looking for dmalloc - found" )
 		message( STATUS "Enabled dmalloc memory library" )
@@ -419,11 +423,11 @@ elseif( "${MEMORY_LIBRARY}" STREQUAL "gcollect" )
 	mark_as_advanced( HAVE_GC_H GC_LIBRARY )
 
 	if( HAVE_GC_H AND GC_LIBRARY )
-		set_property( CACHE GLOBAL_LIBRARIES APPEND PROPERTY VALUE
-			"${GC_LIBRARY}"
+		set( GLOBAL_LIBRARIES
+			${GLOBAL_LIBRARIES} ${GC_LIBRARY} CACHE INTERNAL "" FORCE
 		)
-		set_property( CACHE GLOBAL_DEFINITIONS PROPERTY VALUE
-			"${GLOBAL_DEFINITIONS} -DGCOLLECT"
+		set( GLOBAL_DEFINITIONS
+			"${GLOBAL_DEFINITIONS} -DGCOLLECT" CACHE INTERNAL "" FORCE
 		)
 		message( STATUS "Looking for gcollect - found" )
 		message( STATUS "Enabled gcollect memory library" )
@@ -448,12 +452,8 @@ if( "${PROFILER_LIBRARY}" STREQUAL "none" )
 elseif( "${PROFILER_LIBRARY}" STREQUAL "gprof" )
 	if( "${CMAKE_C_COMPILER_ID}" STREQUAL "GNU" )
 		if( NOT HAVE_GPROF_FLAGS )
-			set_property( CACHE CMAKE_C_FLAGS APPEND_STRING PROPERTY VALUE
-				"-pg"
-			)
-			set_property( CACHE CMAKE_EXE_LINKER_FLAGS APPEND_STRING PROPERTY
-				VALUE "-pg"
-			)
+			set( CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -pg" CACHE INTERNAL "" FORCE )
+			set( CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -pg" CACHE INTERNAL "" FORCE )
 			set( HAVE_GPROF_FLAGS ON CACHE INTERNAL "" )
 		endif()
 
@@ -525,8 +525,8 @@ try_run( MONOTONIC_CLOCK_CHECK_C_RUN_RESULT
 )
 
 if( MONOTONIC_CLOCK_CHECK_C_RUN_RESULT )
-	set_property( CACHE GLOBAL_DEFINITIONS PROPERTY VALUE
-		"${GLOBAL_DEFINITIONS} -DHAVE_MONOTONIC_CLOCK"
+	set( GLOBAL_DEFINITIONS
+		"${GLOBAL_DEFINITIONS} -DHAVE_MONOTONIC_CLOCK" CACHE INTERNAL "" FORCE
 	)
 	message( STATUS "Check for monotonic clock - yes" )
 else()
@@ -545,8 +545,8 @@ foreach( DEFINE_MACRO HAVE_STRLIMIT HAVE_STRNLEN HAVE_GETPID HAVE_GETTID
 	HAVE_INET_PTON
 )
 	if( ${DEFINE_MACRO} )
-		set_property( CACHE GLOBAL_DEFINITIONS PROPERTY VALUE
-			"${GLOBAL_DEFINITIONS} -D${DEFINE_MACRO}"
+		set( GLOBAL_DEFINITIONS
+			"${GLOBAL_DEFINITIONS} -D${DEFINE_MACRO}" CACHE INTERNAL "" FORCE
 		)
 	endif()
 endforeach()
