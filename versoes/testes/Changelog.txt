@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1158 - 18/05/2012 [Protimus]
+	* Adicionada r1157 à versão de testes.
+
 	r1156 - 15/05/2012 [Protimus]
 	* Corrigido problema com leitura de max_lv.
 	* Renomeada pasta import-tmpl para import.
