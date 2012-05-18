@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1159 - 18/05/2012 [Protimus]
+	* Adicionados: attr_fix.sql, exp_guild.sql, exp_homun.sql.
+
 	r1158 - 18/05/2012 [Protimus]
 	* Adicionada r1157 à versão de testes.
 
