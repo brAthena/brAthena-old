@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1162 - 19/05/2012 [RenatoUtsch]
+	* Removido suporte ao autoconf.
+	* Reescrito suporte ao CMake.
+	- Logo teremos suporte ao CTest e CDash também.
+
 	r1161 - 19/05/2012 [Protimus]
 	* Adicionado elemental_db.sql.
 	* Removidos todos os arquivos em *txt que já foram convertidos para *sql.
