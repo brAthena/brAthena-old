@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1163 - 19/05/2012 [RenatoUtsch]
+	* Enviados os arquivos que faltaram na rev anterior.
+	* Removidos os arquivos que faltaram na rev anterior.
+
 	r1162 - 19/05/2012 [RenatoUtsch]
 	* Removido suporte ao autoconf.
 	* Reescrito suporte ao CMake.

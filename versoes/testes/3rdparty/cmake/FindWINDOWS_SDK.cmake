@@ -1,0 +1,83 @@
+# Copyright (c) brAthena Dev Team - Licensed under GNU GPL
+# For more information, see LICENSE in the main folder
+#
+# - Try to find the Windows SDK libraries and include paths.
+# Once done, this will define:
+# WINDOWS_SDK_FOUND		- Do not try to add WINDOWS_SDK_* if this is false.
+# WINDOWS_SDK_INCLUDE_DIRS 	- The include directories of Windows SDK.
+# WINDOWS_SDK_LIBRARY_PATHS 	- The library directories of Windows SDK.
+#
+# Add them to ${CMAKE_INCLUDE_PATH} and ${CMAKE_LIBRARY_PATH}, respectively.
+
+get_filename_component( WINDOWS_SDK6_PATH
+	"[HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Microsoft SDKs\\Windows\\v6.0A;InstallationFolder]"
+	REALPATH CACHE )
+get_filename_component( WINDOWS_SDK7_PATH
+	"[HKEY_LOCAL_MACHINE\\SOFTWARE\\Microsoft\\Microsoft SDKs\\Windows\\v7.0A;InstallationFolder]"
+	REALPATH CACHE )
+
+if( WINDOWS_SDK6_PATH )
+	set( WINDOWS_SDK6_INCLUDE_DIR "${WINDOWS_SDK6_PATH}/Include" )
+	set( WINDOWS_SDK6_LIBRARY_DIR "${WINDOWS_SDK6_PATH}/Lib" )
+endif()
+
+if( WINDOWS_SDK7_PATH )
+	set( WINDOWS_SDK7_INCLUDE_DIR "${WINDOWS_SDK7_PATH}/Include" )
+	set( WINDOWS_SDK7_LIBRARY_DIR "${WINDOWS_SDK7_PATH}/Lib" )
+endif()
+
+if( NOT WINDOWS_SDK6_PATH AND NOT WINDOWS_SDK7_PATH )
+	message( SEND_ERROR "Could not find the Windows SDK." )
+endif()
+
+set( WINDOWS_SDK_INCLUDE_DIR "" )
+set( WINDOWS_SDK_LIBRARY_DIR "" )
+
+set( WINDOWS_SDK_INCLUDE_DIR_EXISTS "" )
+set( WINDOWS_SDK_LIBRARY_DIR_EXISTS "" )
+
+if( EXISTS ${WINDOWS_SDK7_INCLUDE_DIR} )
+	set( WINDOWS_SDK_INCLUDE_DIR ${WINDOWS_SDK_INCLUDE_DIR} ${WINDOWS_SDK7_INCLUDE_DIR} )
+	set( WINDOWS_SDK_INCLUDE_DIR_EXISTS TRUE )
+
+	# To not search for SDK6.
+	set( WINDOWS_SDK6_INCLUDE_DIR "" )
+endif()
+
+if( EXISTS ${WINDOWS_SDK7_LIBRARY_DIR} )
+	set( WINDOWS_SDK_LIBRARY_DIR ${WINDOWS_SDK_LIBRARY_DIR} ${WINDOWS_SDK7_LIBRARY_DIR} )
+	set( WINDOWS_SDK_LIBRARY_DIR_EXISTS TRUE )
+endif()
+
+if( EXISTS ${WINDOWS_SDK6_INCLUDE_DIR} )
+	set( WINDOWS_SDK_INCLUDE_DIR${WINDOWS_SDK_INCLUDE_DIR}  ${WINDOWS_SDK6_INCLUDE_DIR} )
+	set( WINDOWS_SDK_INCLUDE_DIR_EXISTS TRUE )
+endif()
+
+if( EXISTS ${WINDOWS_SDK6_LIBRARY_DIR} )
+	set( WINDOWS_SDK_LIBRARY_DIR ${WINDOWS_SDK_LIBRARY_DIR} ${WINDOWS_SDK6_LIBRARY_DIR} )
+	set( WINDOWS_SDK_LIBRARY_DIR_EXISTS TRUE )
+endif()
+
+include( FindPackageHandleStandardArgs )
+# Handle the QUIETLY and REQUIRED arguments and set WINDOWS_SDK_FOUND to TRUE
+# if all listed variables are TRUE.
+find_package_handle_standard_args( WINDOWS_SDK DEFAULT_MSG
+								   WINDOWS_SDK_INCLUDE_DIR_EXISTS
+								   WINDOWS_SDK_LIBRARY_DIR_EXISTS )
+
+set( WINDOWS_SDK_INCLUDE_DIRS ${WINDOWS_SDK_INCLUDE_DIR} )
+set( WINDOWS_SDK_LIBRARY_DIRS ${WINDOWS_SDK_LIBRARY_DIR} )
+
+mark_as_advanced( WINDOWS_SDK_INCLUDE_DIR
+				  WINDOWS_SDK_LIBRARY_DIR
+				  WINDOWS_SDK_INCLUDE_DIR_EXISTS
+				  WINDOWS_SDK_LIBRARY_DIR_EXISTS
+				  WINDOWS_SDK_INCLUDE_DIRS
+				  WINDOWS_SDK_LIBRARY_DIRS
+				  WINDOWS_SDK6_PATH
+				  WINDOWS_SDK7_PATH
+				  WINDOWS_SDK6_INCLUDE_DIR
+				  WINDOWS_SDK6_LIBRARY_DIR
+				  WINDOWS_SDK7_INCLUDE_DIR
+				  WINDOWS_SDK7_LIBRARY_DIR )
