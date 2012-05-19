@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1160 - 19/05/2012 [Protimus]
+	* Adicionados: size_fix.sql, skill_nocast_db.sql, skill_castnodex_db.sql.
+
 	r1159 - 18/05/2012 [Protimus]
 	* Adicionados: attr_fix.sql, exp_guild.sql, exp_homun.sql.
 
