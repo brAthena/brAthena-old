@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1161 - 19/05/2012 [Protimus]
+	* Adicionado elemental_db.sql.
+	* Removidos todos os arquivos em *txt que já foram convertidos para *sql.
+
 	r1160 - 19/05/2012 [Protimus]
 	* Adicionados: size_fix.sql, skill_nocast_db.sql, skill_castnodex_db.sql.
 
