@@ -2,7 +2,7 @@
 -- Estrutura para a tabela `attr_fix`
 --                                 
 
-CREATE TABLE `attr_fix` (
+CREATE TABLE IF NOT EXISTS `attr_fix` (
 	`Level` tinyint(4) NOT NULL default '0',
 	`None` tinyint(4) NOT NULL default '0',
 	`Water` tinyint(4) NOT NULL default '0',

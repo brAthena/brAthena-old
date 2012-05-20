@@ -2,7 +2,7 @@
 -- Estrutura para a tabela `size_fix`
 --   
 
-CREATE TABLE `size_fix` (
+CREATE TABLE IF NOT EXISTS `size_fix` (
 	`Unarmed` tinyint(4) NOT NULL default '0',
 	`Knife` tinyint(4) NOT NULL default '0',
 	`Sword` tinyint(4) NOT NULL default '0',

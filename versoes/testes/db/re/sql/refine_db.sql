@@ -2,7 +2,7 @@
 -- Estrutura para a tabela `refine_db`
 -- 
 
-CREATE TABLE `refine_db` (
+CREATE TABLE IF NOT EXISTS `refine_db` (
   `Types` tinyint(4) NOT NULL default '0',
   `StartsPerLvl` smallint(6) unsigned NOT NULL default '0',
   `StartBonusPerLvl` tinyint(4) NOT NULL default '0',

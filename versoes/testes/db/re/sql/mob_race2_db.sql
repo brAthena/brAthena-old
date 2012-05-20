@@ -2,7 +2,7 @@
 -- Estrutura para a tabela `mob_race2_db`
 -- 
 
-CREATE TABLE `mob_race2_db` (
+CREATE TABLE IF NOT EXISTS `mob_race2_db` (
   `Race2ID` tinyint(2) unsigned NOT NULL default '0',
   `MobID1` smallint(6) unsigned NOT NULL default '0',
   `MobID2` smallint(6) unsigned NOT NULL default '0',

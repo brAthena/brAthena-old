@@ -2,7 +2,7 @@
 -- Estrutura para a tabela `mob_branch`
 -- 
 
-CREATE TABLE `mob_branch` (
+CREATE TABLE IF NOT EXISTS `mob_branch` (
   `MobID` mediumint(9) NOT NULL default '0',
   `MobName` text NOT NULL,
   `Rate` int(11) NOT NULL default '0',

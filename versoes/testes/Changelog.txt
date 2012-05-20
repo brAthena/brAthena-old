@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1165 - 20/05/2012 [Protimus]
+	* Adicionada condição de existencia para tabelas em que ainda não haviam.
+
 	r1164 - 20/05/2012 [Protimus]
 	* Adicionados: mob_branch.sql, mob_avail.sql e mob_item_ratio.sql.
 

@@ -2,7 +2,7 @@
 -- Estrutura para a tabela `exp_guild`
 --    
  
-CREATE TABLE `exp_guild` (
+CREATE TABLE IF NOT EXISTS `exp_guild` (
 	`EXP` int(11) NOT NULL default '0',
 	PRIMARY KEY (`EXP`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
