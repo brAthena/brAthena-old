@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1164 - 20/05/2012 [Protimus]
+	* Adicionados: mob_branch.sql, mob_avail.sql e mob_item_ratio.sql.
+
 	r1163 - 19/05/2012 [RenatoUtsch]
 	* Enviados os arquivos que faltaram na rev anterior.
 	* Removidos os arquivos que faltaram na rev anterior.
