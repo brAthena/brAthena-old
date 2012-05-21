@@ -9,6 +9,13 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1166 - 21/05/2012 [Protimus]
+	* Adicionados: job_db1.sql e job_db2.sql.
+	- Necessário revisar job_db2.sql.
+	* Movidos main.sql e logs.sql para pasta sql, temporáriamente.
+	* Removido job_db_extra.txt.
+	- A penalidade de ASPD para escudos será aplicada em job_db1.sql, como sempre foi antes.
+
 	r1165 - 20/05/2012 [Protimus]
 	* Adicionada condição de existencia para tabelas em que ainda não haviam.
 
