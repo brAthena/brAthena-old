@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1167 - 21/05/2012 [Protimus]
+	* Adicionados: statpoint_high.sql e pet_db.sql.
+	* Removido item_group_db.txt, não será mais necessário pois a leitura é feita pelo SQL.
+
 	r1166 - 21/05/2012 [Protimus]
 	* Adicionados: job_db1.sql e job_db2.sql.
 	- Necessário revisar job_db2.sql.

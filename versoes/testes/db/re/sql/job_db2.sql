@@ -1,4 +1,4 @@
-CREATE TABLE `job_db2` (
+CREATE TABLE IF NOT EXISTS `job_db2` (
 	`JobID` tinyint(4) NOT NULL default '0',
 	PRIMARY KEY (`JobID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -6,7 +6,7 @@ CREATE TABLE `job_db2` (
 #
 # Classes.
 # Descrição: Responsável pelos fatores de bônus das classes.
-# Cabeçalho: REPLACE INTO `job_db2` VALUES ('
+# Cabeçalho: REPLACE INTO `job_db2` VALUES (
 #
 
 REPLACE INTO `job_db2` VALUES (0,0,0,0,0,0,0,0,0,0);	#'Aprendiz'
