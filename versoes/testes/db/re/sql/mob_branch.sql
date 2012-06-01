@@ -9,10 +9,11 @@ CREATE TABLE IF NOT EXISTS `mob_branch` (
   PRIMARY KEY (`MobID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-#
-# Galho Seco.
-# Descrição: Responsável pelo banco de dados de monstros invocáveis por Galho Seco.
-# Cabeçalho: REPLACE INTO `mob_branch` VALUES ('ID do Monstro,Nome do Monstro,Chance de Sucesso');
+/*
+ Galho Seco.
+ Descrição: Responsável pelo banco de dados de monstros invocáveis por Galho Seco.
+ Cabeçalho: REPLACE INTO `mob_branch` VALUES ('ID do Monstro,Nome do Monstro,Chance de Sucesso');
+*/
 
 REPLACE INTO mob_branch VALUES (0,'Escorpião',1001);
 REPLACE INTO mob_branch VALUES (1001,'Escorpião',214285);

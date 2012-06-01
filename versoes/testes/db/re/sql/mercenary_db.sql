@@ -32,11 +32,12 @@ CREATE TABLE IF NOT EXISTS `mercenary_db` (
 	PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-#
-# Homuncuus.
-# Descrição: Responsável pelo banco de dados de mercenários.
-# Cabeçalho: REPLACE INTO `mercenary_db` VALUES ('ID','Nome da Sprite','Nome do Mercenário','LV','HP','SP','Range1','ATK1','ATK2','DEF','MDEF','STR','AGI',
-# 'VIT','INT','DEX','LUK','Range2','Range3','Scale','Race','Element','Speed','aDelay','aMotion','dMotion');
+/*
+ Homuncuus.
+ Descrição: Responsável pelo banco de dados de mercenários.
+ Cabeçalho: REPLACE INTO `mercenary_db` VALUES ('ID','Nome da Sprite','Nome do Mercenário','LV','HP','SP','Range1','ATK1','ATK2','DEF','MDEF','STR','AGI',
+ 'VIT','INT','DEX','LUK','Range2','Range3','Scale','Race','Element','Speed','aDelay','aMotion','dMotion');
+*/
 
 REPLACE INTO `mercenary_db` VALUES (1191,'MIMIC','Mímico',51,6120,187,2,150,900,10,40,44,121,1,60,75,110,10,12,1,0,60,100,972,500,288);
 REPLACE INTO `mercenary_db` VALUES (1506,'DISGUISE','Mascarado',55,7543,180,2,279,546,18,29,0,72,45,35,48,65,10,12,1,6,82,147,516,768,384);

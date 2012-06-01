@@ -56,14 +56,14 @@ CREATE TABLE IF NOT EXISTS `homunculus_db` (
 	PRIMARY KEY (`Class`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-#
-# Homuncuus.
-# Descrição: Responsável pelo banco de dados de homunculus.
-# Cabeçalho: REPLACE INTO `homunculus_db` VALUES ('Classe','Classe Evoluído','Nome','ID da Comida','Delay de Fome','Base Evoluído','Tamanho Evoluído',
-# 'Raça','Elemento','bASPD','bHP','bSP','bFOR','bAGI','bVIT','bINT','bDES','bSOR','gnHP','gxHP','gnSP','gxSP','gnFOR','gnFOR','gnAGI','gxAGI','gnVIT','gxVIT',
-#'gnINT','gxINT','gnDES','gxDES','gnSOR','gxSOR','enHP','exHP','enSP','exSP','enFOR','exFOR','enAGI','exAGI','enVIT','exVIT','enINT','exINT','enDES','exDES',
-#'enSOR','exSOR');
-# 
+/*
+ Homuncuus.
+ Descrição: Responsável pelo banco de dados de homunculus.
+ Cabeçalho: REPLACE INTO `homunculus_db` VALUES ('Classe','Classe Evoluído','Nome','ID da Comida','Delay de Fome','Base Evoluído','Tamanho Evoluído',
+ 'Raça','Elemento','bASPD','bHP','bSP','bFOR','bAGI','bVIT','bINT','bDES','bSOR','gnHP','gxHP','gnSP','gxSP','gnFOR','gnFOR','gnAGI','gxAGI','gnVIT','gxVIT',
+ 'gnINT','gxINT','gnDES','gxDES','gnSOR','gxSOR','enHP','exHP','enSP','exSP','enFOR','exFOR','enAGI','exAGI','enVIT','exVIT','enINT','exINT','enDES','exDES',
+ 'enSOR','exSOR');
+*/ 
 
 REPLACE INTO `homunculus_db` VALUES (6001,6009,'Lif',537,60000,0,1,7,0,700,150,40,17,20,15,35,24,12,60,100,4,9,5,19,5,19,5,19,4,20,6,20,6,20,1,10,10,20,1,5,1,4,1,5,4,10,1,10,1,3);
 REPLACE INTO `homunculus_db` VALUES (6002,6010,'Amistr',912,60000,0,1,2,0,700,320,10,20,17,35,11,24,12,80,130,1,4,8,20,4,20,4,20,1,10,3,19,3,19,10,20,1,10,1,10,1,5,4,10,1,3,1,4,1,5);

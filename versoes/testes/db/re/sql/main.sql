@@ -1,5 +1,5 @@
 --
--- Table structure for table `auction`
+-- Estrutura para a tabela `auction`
 --
 
 CREATE TABLE IF NOT EXISTS `auction` (
@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `auction` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `cart_inventory`
+-- Estrutura para a tabela `cart_inventory`
 --
 
 CREATE TABLE IF NOT EXISTS `cart_inventory` (
@@ -47,7 +47,7 @@ CREATE TABLE IF NOT EXISTS `cart_inventory` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `char`
+-- Estrutura para a tabela `char`
 --
 
 CREATE TABLE IF NOT EXISTS `char` (
@@ -113,7 +113,7 @@ CREATE TABLE IF NOT EXISTS `char` (
 ) ENGINE=MyISAM AUTO_INCREMENT=150000;
 
 --
--- Table structure for table `charlog`
+-- Estrutura para a tabela `charlog`
 --
 
 CREATE TABLE IF NOT EXISTS `charlog` (
@@ -133,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `charlog` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `friends`
+-- Estrutura para a tabela `friends`
 --
 
 CREATE TABLE IF NOT EXISTS `friends` (
@@ -144,7 +144,7 @@ CREATE TABLE IF NOT EXISTS `friends` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `hotkey`
+-- Estrutura para a tabela `hotkey`
 --
 
 CREATE TABLE IF NOT EXISTS `hotkey` (
@@ -158,7 +158,7 @@ CREATE TABLE IF NOT EXISTS `hotkey` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `global_reg_value`
+-- Estrutura para a tabela `global_reg_value`
 --
 
 CREATE TABLE IF NOT EXISTS `global_reg_value` (
@@ -173,7 +173,7 @@ CREATE TABLE IF NOT EXISTS `global_reg_value` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `guild`
+-- Estrutura para a tabela `guild`
 --
 
 CREATE TABLE IF NOT EXISTS `guild` (
@@ -199,7 +199,7 @@ CREATE TABLE IF NOT EXISTS `guild` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `guild_alliance`
+-- Estrutura para a tabela `guild_alliance`
 --
 
 CREATE TABLE IF NOT EXISTS `guild_alliance` (
@@ -212,7 +212,7 @@ CREATE TABLE IF NOT EXISTS `guild_alliance` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `guild_castle`
+-- Estrutura para a tabela `guild_castle`
 --
 
 CREATE TABLE IF NOT EXISTS `guild_castle` (
@@ -239,7 +239,7 @@ CREATE TABLE IF NOT EXISTS `guild_castle` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `guild_expulsion`
+-- Estrutura para a tabela `guild_expulsion`
 --
 
 CREATE TABLE IF NOT EXISTS `guild_expulsion` (
@@ -251,7 +251,7 @@ CREATE TABLE IF NOT EXISTS `guild_expulsion` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `guild_member`
+-- Estrutura para a tabela `guild_member`
 --
 
 CREATE TABLE IF NOT EXISTS `guild_member` (
@@ -273,7 +273,7 @@ CREATE TABLE IF NOT EXISTS `guild_member` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `guild_position`
+-- Estrutura para a tabela `guild_position`
 --
 
 CREATE TABLE IF NOT EXISTS `guild_position` (
@@ -287,7 +287,7 @@ CREATE TABLE IF NOT EXISTS `guild_position` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `guild_skill`
+-- Estrutura para a tabela `guild_skill`
 --
 
 CREATE TABLE IF NOT EXISTS `guild_skill` (
@@ -298,7 +298,7 @@ CREATE TABLE IF NOT EXISTS `guild_skill` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `guild_storage`
+-- Estrutura para a tabela `guild_storage`
 --
 
 CREATE TABLE IF NOT EXISTS `guild_storage` (
@@ -320,7 +320,7 @@ CREATE TABLE IF NOT EXISTS `guild_storage` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `homunculus`
+-- Estrutura para a tabela `homunculus`
 --
 
 CREATE TABLE IF NOT EXISTS `homunculus` (
@@ -350,7 +350,7 @@ CREATE TABLE IF NOT EXISTS `homunculus` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `interlog`
+-- Estrutura para a tabela `interlog`
 --
 
 CREATE TABLE IF NOT EXISTS `interlog` (
@@ -359,7 +359,7 @@ CREATE TABLE IF NOT EXISTS `interlog` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `inventory`
+-- Estrutura para a tabela `inventory`
 --
 
 CREATE TABLE IF NOT EXISTS `inventory` (
@@ -381,7 +381,7 @@ CREATE TABLE IF NOT EXISTS `inventory` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `ipbanlist`
+-- Estrutura para a tabela `ipbanlist`
 --
 
 CREATE TABLE IF NOT EXISTS `ipbanlist` (
@@ -393,7 +393,7 @@ CREATE TABLE IF NOT EXISTS `ipbanlist` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `login`
+-- Estrutura para a tabela `login`
 --
 
 CREATE TABLE IF NOT EXISTS `login` (
@@ -420,7 +420,7 @@ CREATE TABLE IF NOT EXISTS `login` (
 INSERT INTO `login` (`account_id`, `userid`, `user_pass`, `sex`, `email`) VALUES ('1', 's1', 'p1', 'S','athena@athena.com');
 
 --
--- Table structure for table `mapreg`
+-- Estrutura para a tabela `mapreg`
 --
 
 CREATE TABLE IF NOT EXISTS `mapreg` (
@@ -432,7 +432,7 @@ CREATE TABLE IF NOT EXISTS `mapreg` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `sc_data`
+-- Estrutura para a tabela `sc_data`
 --
 
 CREATE TABLE IF NOT EXISTS `sc_data` (
@@ -449,7 +449,7 @@ CREATE TABLE IF NOT EXISTS `sc_data` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `skill_reuse`
+-- Estrutura para a tabela `skill_reuse`
 --
 
 CREATE TABLE IF NOT EXISTS `skill_reuse` (
@@ -462,7 +462,7 @@ CREATE TABLE IF NOT EXISTS `skill_reuse` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `mail`
+-- Estrutura para a tabela `mail`
 --
 
 CREATE TABLE IF NOT EXISTS `mail` (
@@ -489,7 +489,7 @@ CREATE TABLE IF NOT EXISTS `mail` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `memo`
+-- Estrutura para a tabela `memo`
 --
 
 CREATE TABLE IF NOT EXISTS `memo` (
@@ -503,7 +503,7 @@ CREATE TABLE IF NOT EXISTS `memo` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `mercenary`
+-- Estrutura para a tabela `mercenary`
 --
 
 CREATE TABLE IF NOT EXISTS `mercenary` (
@@ -518,7 +518,7 @@ CREATE TABLE IF NOT EXISTS `mercenary` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `mercenary_owner`
+-- Estrutura para a tabela `mercenary_owner`
 --
 
 CREATE TABLE IF NOT EXISTS `mercenary_owner` (
@@ -534,7 +534,7 @@ CREATE TABLE IF NOT EXISTS `mercenary_owner` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `party`
+-- Estrutura para a tabela `party`
 --
 
 CREATE TABLE IF NOT EXISTS `party` (
@@ -548,7 +548,7 @@ CREATE TABLE IF NOT EXISTS `party` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `pet`
+-- Estrutura para a tabela `pet`
 --
 
 CREATE TABLE IF NOT EXISTS `pet` (
@@ -568,7 +568,7 @@ CREATE TABLE IF NOT EXISTS `pet` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `elemental`
+-- Estrutura para a tabela `elemental`
 --
 
 CREATE TABLE IF NOT EXISTS `elemental` (
@@ -591,7 +591,7 @@ CREATE TABLE IF NOT EXISTS `elemental` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `quest`
+-- Estrutura para a tabela `quest`
 --
 
 CREATE TABLE IF NOT EXISTS `quest` (
@@ -606,7 +606,7 @@ CREATE TABLE IF NOT EXISTS `quest` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `ragsrvinfo`
+-- Estrutura para a tabela `ragsrvinfo`
 --
 
 CREATE TABLE IF NOT EXISTS `ragsrvinfo` (
@@ -618,7 +618,7 @@ CREATE TABLE IF NOT EXISTS `ragsrvinfo` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `skill`
+-- Estrutura para a tabela `skill`
 --
 
 CREATE TABLE IF NOT EXISTS `skill` (
@@ -630,7 +630,7 @@ CREATE TABLE IF NOT EXISTS `skill` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `skill_homunculus`
+-- Estrutura para a tabela `skill_homunculus`
 --
 
 CREATE TABLE IF NOT EXISTS `skill_homunculus` (
@@ -642,7 +642,7 @@ CREATE TABLE IF NOT EXISTS `skill_homunculus` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `sstatus`
+-- Estrutura para a tabela `sstatus`
 --
 
 CREATE TABLE IF NOT EXISTS `sstatus` (
@@ -652,7 +652,7 @@ CREATE TABLE IF NOT EXISTS `sstatus` (
 ) ENGINE=MyISAM;
 
 --
--- Table structure for table `storage`
+-- Estrutura para a tabela `storage`
 --
 
 CREATE TABLE IF NOT EXISTS `storage` (

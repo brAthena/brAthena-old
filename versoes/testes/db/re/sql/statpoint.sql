@@ -7,11 +7,11 @@ CREATE TABLE IF NOT EXISTS `statpoint` (
 	PRIMARY KEY (`StatPoint`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-#
-# Pontos de Atributos.
-# Descrição: Responsável ganho de pontos para atributos por nível (cada linha = 1 Lv).
-# Cabeçalho: REPLACE INTO `statpoint` VALUES ('Pontos');
-# 
+/*
+ Pontos de Atributos.
+ Descrição: Responsável ganho de pontos para atributos por nível (cada linha = 1 Lv).
+ Cabeçalho: REPLACE INTO `statpoint` VALUES ('Pontos');
+*/ 
 
 REPLACE INTO `statpoint` VALUES (48);
 REPLACE INTO `statpoint` VALUES (51);

@@ -28,14 +28,15 @@ CREATE TABLE IF NOT EXISTS `pet_db` (
 	PRIMARY KEY (`MobID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
  
-#
-# Bichinhos de Estimação
-# Descrição: Responsável banco de dados de bichinhos de estimação.
-# Cabeçalho: REPLACE INTO `pet_db` VALUES ('MobID,Name,JName,LureID,EggID,EquipID,FoodID,Fullness,HungryDelay,R_Hungry,R_Full,Intimate,Die,Capture,Speed,         
-# S_Performance,talk_convert_class,attack_rate,defence_attack_rate,change_target_rate,pet_script,loyal_script');                                                    
+/*
+ Bichinhos de Estimação
+ Descrição: Responsável banco de dados de bichinhos de estimação.
+ Cabeçalho: REPLACE INTO `pet_db` VALUES ('MobID,Name,JName,LureID,EggID,EquipID,FoodID,Fullness,HungryDelay,R_Hungry,R_Full,Intimate,Die,Capture,Speed,         
+ S_Performance,talk_convert_class,attack_rate,defence_attack_rate,change_target_rate,pet_script,loyal_script');             
+*/ 
 
 
-# 'Bichinhos de Estimação'
+-- 'Bichinhos de Estimação'
 REPLACE INTO `pet_db` VALUES (1002,'PORING','Poring',619,9001,10013,531,80,60,50,100,250,20,2000,150,1,0,350,400,800,'{ petloot 10; },{ bonus bLuk,2; bonus bCritical,1; }');
 REPLACE INTO `pet_db` VALUES (1011,'CHONCHON','ChonChon',624,9006,10002,537,80,60,30,100,250,20,1500,150,1,0,500,500,250,'{ petskillbonus bAgi,4,10,50; },{ bonus bAgi,1; bonus bFlee,2; }');
 REPLACE INTO `pet_db` VALUES (1014,'SPORE','Esporo',630,9012,10017,537,80,60,30,100,250,20,1500,150,0,0,350,500,500,'{ petrecovery SC_Poison,60; },{ bonus bHit,5; bonus bAtk,-2; }');
@@ -92,6 +93,6 @@ REPLACE INTO `pet_db` VALUES (1513,'CIVIL_SERVANT','Mao Guai',12358,9040,10022,6
 REPLACE INTO `pet_db` VALUES (1586,'LEAF_CAT','Gato de Folha',12359,9041,10023,6096,80,60,20,100,250,20,200,150,0,0,300,300,800,{},'{ bonus2 bSubRace,RC_Brute,3; }');
 REPLACE INTO `pet_db` VALUES (1630,'BACSOJIN_','Lady Branca',12357,9039,10021,6094,80,60,10,100,250,20,2000,150,0,0,300,300,800,{},{});
 REPLACE INTO `pet_db` VALUES (1837,'IMP','Fire Imp',12374,9056,10038,6114,80,60,10,100,250,20,200,150,0,0,300,300,800,{},'{ bonus2 bSubEle,Ele_Fire,2; bonus2 bAddEle,Ele_Fire,2; }');
-# 'Brasilis Quest'
+-- 'Brasilis Quest'
 REPLACE INTO `pet_db` VALUES (2057,'E_CRAMP','Strange Cramp',12408,6221,0,0,0,0,0,0,0,0,50,0,0,0,350,400,800,{},{}); 
 REPLACE INTO `pet_db` VALUES (2081,'E_HYDRA','Strange Hydra',12408,6221,0,0,0,0,0,0,0,0,50,0,0,0,350,400,800,{},{}); 

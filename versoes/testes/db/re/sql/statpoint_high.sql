@@ -7,11 +7,11 @@ CREATE TABLE IF NOT EXISTS `statpoint_high` (
 	PRIMARY KEY (`StatPoint_High`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-#
-# Pontos de Atributos High.
-# Descrição: Responsável ganho de pontos para atributos por nível (cada linha = 1 Lv), apenas para servidores de rate alta.
-# Cabeçalho: REPLACE INTO `statpoint_high` VALUES ('Pontos');
-# 
+/*
+ Pontos de Atributos High.
+ Descrição: Responsável ganho de pontos para atributos por nível (cada linha = 1 Lv), apenas para servidores de rate alta.
+ Cabeçalho: REPLACE INTO `statpoint_high` VALUES ('Pontos');
+*/ 
 
 REPLACE INTO `statpoint_high` VALUES (48);
 REPLACE INTO `statpoint_high` VALUES (66);

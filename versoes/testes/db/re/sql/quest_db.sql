@@ -16,11 +16,11 @@ CREATE TABLE IF NOT EXISTS `quest_db` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 
-#
-# Quests.
-# Descrição: Banco de dados de quests.
-# Cabeçalho: REPLACE INTO `quest_db` VALUES ('QuestID','Time_Limit','Target1','Val1','Target2','Val2','Target3','Val3','Name');
-# 
+/*
+ Quests.
+ Descrição: Banco de dados de quests.
+ Cabeçalho: REPLACE INTO `quest_db` VALUES ('QuestID','Time_Limit','Target1','Val1','Target2','Val2','Target3','Val3','Name');
+*/ 
 
 REPLACE INTO quest_db VALUES (1000,0,0,0,0,0,0,0,'Transclasse');
 REPLACE INTO quest_db VALUES (1001,0,0,0,0,0,0,0,'Mudança de Classe: Noviço');

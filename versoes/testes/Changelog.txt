@@ -9,6 +9,9 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1169 - 01/06/2012 [Protimus]
+	* Adicionados comentários nos bancos de dados em formato Transact-SQL.
+
 	r1168 - 01/06/2012 [Protimus]
 	* Adicionado: quest_db.sql
 	* Removido mob_db2.txt, é desnecessário.

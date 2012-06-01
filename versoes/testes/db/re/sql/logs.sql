@@ -1,10 +1,28 @@
-#PickLog types (M)onsters Drop, (P)layers Drop/Take, Mobs Drop (L)oot Drop/Take,
-# Players (T)rade Give/Take, Players (V)ending Sell/Take, (S)hop Sell/Take, (N)PC Give/Take,
-# (C)onsumable Items, (A)dministrators Create/Delete, Sto(R)age, (G)uild Storage,
-# (E)mail attachment,(B)uying Store
+/* Tipos de logs gerais:
+ (M) = Monsters Drop
+ (P) = Players Drop/Take
+ (L) = Mobs Drop Loot Drop/Take
+ (T) = Players Trade Give/Take
+ (V) = Players Vending Sell/Take
+ (S) = Shop Sell/Take 
+ (N) = NPC Give/Take
+ (C) = Consumable Items
+ (A) = Administrators Create/Delete
+ (R) = Storage
+ (G) = Guild Storage
+ (E) = Email attachment
+ (B) = Buying Store
+  
+ Tipos de logs para chat:
+ (O) = Global
+ (W) = Whisper
+ (P) = Party
+ (G) = Guild
+ (M) = Main Chat
+*/
 
-#Database: log
-#Table: picklog
+
+-- Estrutura para a tabela `picklog`
 CREATE TABLE `picklog` (
   `id` int(11) NOT NULL auto_increment,
   `time` datetime NOT NULL default '0000-00-00 00:00:00',
@@ -22,9 +40,7 @@ CREATE TABLE `picklog` (
   INDEX (`type`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 ;
 
-#ZenyLog types (M)onsters,(T)rade,(V)ending Sell/Buy,(S)hop Sell/Buy,(N)PC Change amount,(A)dministrators,(E)Mail,(B)uying Store
-#Database: log
-#Table: zenylog
+-- Estrutura para a tabela `zenylog`
 CREATE TABLE `zenylog` (
   `id` int(11) NOT NULL auto_increment,
   `time` datetime NOT NULL default '0000-00-00 00:00:00',
@@ -37,8 +53,8 @@ CREATE TABLE `zenylog` (
   INDEX (`type`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 ;
 
-#Database: log
-#Table: branchlog
+
+-- Estrutura para a tabela `branchlog`
 CREATE TABLE `branchlog` (
   `branch_id` mediumint(9) unsigned NOT NULL auto_increment,
   `branch_date` datetime NOT NULL default '0000-00-00 00:00:00',
@@ -51,8 +67,8 @@ CREATE TABLE `branchlog` (
   INDEX (`char_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 ;
 
-#Database: log
-#Table: mvplog
+
+-- Estrutura para a tabela `mvplog`
 CREATE TABLE `mvplog` (
   `mvp_id` mediumint(9) unsigned NOT NULL auto_increment,
   `mvp_date` datetime NOT NULL default '0000-00-00 00:00:00',
@@ -64,8 +80,8 @@ CREATE TABLE `mvplog` (
   PRIMARY KEY  (`mvp_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 ;
 
-#Database: log
-#Table: atcommandlog
+
+-- Estrutura para a tabela `atcommandlog`
 CREATE TABLE `atcommandlog` (
   `atcommand_id` mediumint(9) unsigned NOT NULL auto_increment,
   `atcommand_date` datetime NOT NULL default '0000-00-00 00:00:00',
@@ -79,8 +95,8 @@ CREATE TABLE `atcommandlog` (
   INDEX (`char_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 ;
 
-#Database: log
-#Table: npclog
+
+-- Estrutura para a tabela `npclog`
 CREATE TABLE `npclog` (
   `npc_id` mediumint(9) unsigned NOT NULL auto_increment,
   `npc_date` datetime NOT NULL default '0000-00-00 00:00:00',
@@ -94,9 +110,7 @@ CREATE TABLE `npclog` (
   INDEX (`char_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 ;
 
-#ChatLog types Gl(O)bal,(W)hisper,(P)arty,(G)uild,(M)ain chat
-#Database: log
-#Table: chatlog
+-- Estrutura para a tabela `chatlog`
 CREATE TABLE `chatlog` (
   `id` bigint(20) NOT NULL auto_increment,
   `time` datetime NOT NULL default '0000-00-00 00:00:00',
@@ -114,8 +128,8 @@ CREATE TABLE `chatlog` (
   INDEX (`src_charid`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 ;
 
-#Database: log
-#Table: loginlog
+
+-- Estrutura para a tabela `loginlog`
 CREATE TABLE `loginlog` (
   `time` datetime NOT NULL default '0000-00-00 00:00:00',
   `ip` varchar(15) NOT NULL default '',

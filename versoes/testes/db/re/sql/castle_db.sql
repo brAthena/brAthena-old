@@ -11,11 +11,11 @@ CREATE TABLE IF NOT EXISTS `castle_db` (
    PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-#
-# Castelos.
-# Descrição: Responsável pelo banco de dados dos castelos e seus chamamentos.
-# Cabeçalho: REPLACE INTO `castle_db` VALUES ('ID do Castelo','Nome do Mapa','Nome do Castelo','Nome do Evento','Flag');
-# 
+/*
+ Castelos.
+ Descrição: Responsável pelo banco de dados dos castelos e seus chamamentos.
+ Cabeçalho: REPLACE INTO `castle_db` VALUES ('ID do Castelo','Nome do Mapa','Nome do Castelo','Nome do Evento','Flag');
+*/ 
 
 REPLACE INTO `castle_db` VALUES (0,'aldeg_cas01','Sirius','Agit#aldeg_cas01',1);
 REPLACE INTO `castle_db` VALUES (1,'aldeg_cas02','Astrum','Agit#aldeg_cas02',1);

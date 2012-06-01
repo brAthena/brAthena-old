@@ -10,11 +10,11 @@ CREATE TABLE IF NOT EXISTS `elemental_skill_db` (
 	PRIMARY KEY (`ElementalID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-#
-# Habilidades dos Elementais
-# Descrição: Responsável pelo banco de dados de habilidades dos elementais.
-# Cabeçalho: REPLACE INTO `elemental_skill_db` VALUES ('ID do Elemental','ID da Habilidade','Nível da Habilidade','Modo');          
-# 
+/*
+ Habilidades dos Elementais
+ Descrição: Responsável pelo banco de dados de habilidades dos elementais.
+ Cabeçalho: REPLACE INTO `elemental_skill_db` VALUES ('ID do Elemental','ID da Habilidade','Nível da Habilidade','Modo');          
+*/ 
 
 REPLACE INTO `elemental_skill_db` VALUES (2114,8413,1,1);
 REPLACE INTO `elemental_skill_db` VALUES (2114,8401,1,2);

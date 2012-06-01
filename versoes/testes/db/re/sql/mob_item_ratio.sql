@@ -9,7 +9,8 @@ CREATE TABLE IF NOT EXISTS `mob_item_ratio` (
   PRIMARY KEY (`ItemID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-#
-# Queda de itens.
-# Descrição: Taxa de queda de itens especifica para determinados monstros e condições.
-# Cabeçalho: REPLACE INTO `mob_penalty_db` VALUES ('ItemID,Rate,MobID');
+/*
+ Queda de itens.
+ Descrição: Taxa de queda de itens especifica para determinados monstros e condições.
+ Cabeçalho: REPLACE INTO `mob_penalty_db` VALUES ('ItemID,Rate,MobID');
+*/

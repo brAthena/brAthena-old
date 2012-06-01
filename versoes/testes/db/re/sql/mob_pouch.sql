@@ -9,10 +9,11 @@ CREATE TABLE IF NOT EXISTS `mob_pouch` (
   PRIMARY KEY (`MobID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-#
-# Galho Sangrento.
-# Descrição: Responsável pelo banco de dados de monstros invocáveis pelo Galho Sangrento.
-# Cabeçalho: REPLACE INTO `mob_pouch` VALUES ('ID do Monstro,Nome do Monstro,Chance de Sucesso');
+/*
+ Galho Sangrento.
+ Descrição: Responsável pelo banco de dados de monstros invocáveis pelo Galho Sangrento.
+ Cabeçalho: REPLACE INTO `mob_pouch` VALUES ('ID do Monstro,Nome do Monstro,Chance de Sucesso');
+*/
 
 REPLACE INTO `mob_poring` VALUES (0,'Poring',1002);
 REPLACE INTO `mob_poring` VALUES (1002,'Poring',1000000);
@@ -27,8 +28,8 @@ REPLACE INTO `mob_poring` VALUES (1388,'ArchAngeling',200000);
 REPLACE INTO `mob_poring` VALUES (1520,'Bolinho de Massa',800000);
 REPLACE INTO `mob_poring` VALUES (1582,'Deviling',200000);
 REPLACE INTO `mob_poring` VALUES (1613,'Metaling',1000000);
-#'1754,Skeggiold,100000'
-#'1755,Skeggiold,100000'
+--'1754,Skeggiold,100000'
+--'1755,Skeggiold,100000'
 REPLACE INTO `mob_poring` VALUES (1784,'Stapo',800000);
 REPLACE INTO `mob_poring` VALUES (1836,'Magmaring',800000);
 REPLACE INTO `mob_poring` VALUES (1894,'Pouring',800000);

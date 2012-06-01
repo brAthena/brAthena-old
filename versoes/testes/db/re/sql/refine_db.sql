@@ -20,17 +20,18 @@ CREATE TABLE IF NOT EXISTS `refine_db` (
   PRIMARY KEY (`RefineBonus`)	
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-#
-# Refinamentos.
-# Descrição: Responsável pelo banco de dados de refinamentos.
-# Cabeçalho: REPLACE INTO `refine_db` VALUES ('Type,Stats per level,Random bonus start level,Random bonus value,Chance+1:Bonus+1,Chance+2:Bonus+2,Chance+3:Bonus+3,...');
+/*
+ Refinamentos.
+ Descrição: Responsável pelo banco de dados de refinamentos.
+ Cabeçalho: REPLACE INTO `refine_db` VALUES ('Type,Stats per level,Random bonus start level,Random bonus value,Chance+1:Bonus+1,Chance+2:Bonus+2,Chance+3:Bonus+3,...');
+*/
 
 REPLACE INTO `refine_db` VALUES (0,0,0,0,100:100,100:100,100:100,100:100,60:200,40:200,40:200,20:200,20:300,10:300,10:300,10:300,10:400,10:400,10:400,10:400,10:500,10:500,10:500,10:500);
-#'Armas de Nível 1'
+-- 'Armas de Nível 1'
 REPLACE INTO `refine_db` VALUES (1,200,8,300,100:0,100:0,100:0,100:0,100:0,100:0,100:0,60:0,40:0,20:0,10:0,10:0,10:0,10:0,10:0,10:300,10:300,10:300,10:300,10:300);
-#'Armas de Nível 2'
+-- 'Armas de Nível 2'
 REPLACE INTO `refine_db` VALUES (2,300,7,500,100:0,100:0,100:0,100:0,100:0,100:0,60:0,40:0,20:0,20:0,10:0,10:0,10:0,10:0,10:0,10:600,10:600,10:600,10:600,10:600);
-#'Armas de Nível 3'
+-- 'Armas de Nível 3'
 REPLACE INTO `refine_db` VALUES (3,500,6,800,100:0,100:0,100:0,100:0,100:0,60:0,50:0,20:0,20:0,20:0,10:0,10:0,10:0,10:0,10:0,10:900,10:900,10:900,10:900,10:900);
-#'Armas de Nível 4'
+-- 'Armas de Nível 4'
 REPLACE INTO `refine_db` VALUES (4,700,5,1400,100:0,100:0,100:0,100:0,60:0,40:0,40:0,20:0,20:0,10:0,10:0,10:0,10:0,10:0,10:0,10:1200,10:1200,10:1200,10:1200,10:1200);

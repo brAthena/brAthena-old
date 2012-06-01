@@ -9,10 +9,11 @@ CREATE TABLE IF NOT EXISTS `mob_chat_db` (
   PRIMARY KEY (`Line`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-#
-# Monstros MvPs.
-# Descrição: Responsável pelo banco de dados de monstros mvps.
-# Cabeçalho: REPLACE INTO `mob_chat_db` VALUES ('Linha,Cor,Diálogo');
+/*
+ Monstros MvPs.
+ Descrição: Responsável pelo banco de dados de monstros mvps.
+ Cabeçalho: REPLACE INTO `mob_chat_db` VALUES ('Linha,Cor,Diálogo');
+*/
 
 REPLACE INTO `mob_chat_db` VALUES (1,0xFF0000,'Fraco! Me desafie se tiver alguma coragem!');
 REPLACE INTO `mob_chat_db` VALUES (2,0xFF0000,'Impressionante! Eu me pergunto até onde sua imprudencia irá levá-lo.');

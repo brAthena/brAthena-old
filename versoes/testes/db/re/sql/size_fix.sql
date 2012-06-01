@@ -30,13 +30,13 @@ CREATE TABLE IF NOT EXISTS `size_fix` (
 	PRIMARY KEY (`Unarmed`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-#
-# Tamanho de Armas.
-# Descrição: Responsável pela correção de tamanho para o dano das armas.
-# Cabeçalho: REPLACE INTO `size_fix` VALUES ('Desarmado, Faca, 1M Espada, 2M Espada, 1M Lança, 2M Lança, 1M Machado, 2M Machado, Maça, 2M Maça, Cetro, Arco, Soqueira, Instrumento Musical, Chicote, Livro, Katar, Revólver, Rifle, Pistola, Gatling Gun, Grenade Launcher, Fuuma Shuriken, 2M Centro');
-# Linhas: Tamanho.
-#
+/*
+ Tamanho de Armas.
+ Descrição: Responsável pela correção de tamanho para o dano das armas.
+ Cabeçalho: REPLACE INTO `size_fix` VALUES ('Desarmado, Faca, 1M Espada, 2M Espada, 1M Lança, 2M Lança, 1M Machado, 2M Machado, Maça, 2M Maça, Cetro, Arco, Soqueira, Instrumento Musical, Chicote, Livro, Katar, Revólver, Rifle, Pistola, Gatling Gun, Grenade Launcher, Fuuma Shuriken, 2M Centro');
+ Linhas: Tamanho.
+*/
 
-REPLACE INTO size_fix VALUES (100,100,75,75,75,75,50,50,75,100,100,100,100,75,75,100,75,100,100,100,100,100,100,100);	# 'Tamanho: Pequeno'
-REPLACE INTO size_fix VALUES (100,75,100,75,75,75,75,75,100,100,100,100,75,100,100,100,100,100,100,100,100,100,100,100);	# 'Tamanho: Médio'
-REPLACE INTO size_fix VALUES (100,50,75,100,100,100,100,100,100,100,100,75,50,75,50,50,75,100,100,100,100,100,100,100);	# 'Tamanho: Grande'
+REPLACE INTO size_fix VALUES (100,100,75,75,75,75,50,50,75,100,100,100,100,75,75,100,75,100,100,100,100,100,100,100);	-- 'Tamanho: Pequeno'
+REPLACE INTO size_fix VALUES (100,75,100,75,75,75,75,75,100,100,100,100,75,100,100,100,100,100,100,100,100,100,100,100);	-- 'Tamanho: Médio'
+REPLACE INTO size_fix VALUES (100,50,75,100,100,100,100,100,100,100,100,75,50,75,50,50,75,100,100,100,100,100,100,100);	-- 'Tamanho: Grande'

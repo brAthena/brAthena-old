@@ -32,12 +32,12 @@ CREATE TABLE IF NOT EXISTS `elemental_db` (
 	PRIMARY KEY (`ElementalID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-#
-# Elementais.
-# Descrição: Responsável pelo banco de dados de elementais.
-# Cabeçalho: REPLACE INTO `homunculus_db` VALUES ('ID','Nome_do_Sprite','Nome,Level','HP','SP','Área1','ATK1','ATK2','DEF','MDEF',
-# 'FOR','AGI','VIT','INT','DES','SOR','Área2','Área3','Tamanho','Raça','Elemento','Velocidade','aDelay','aMotion','dMotion');
-# 
+/*
+ Elementais.
+ Descrição: Responsável pelo banco de dados de elementais.
+ Cabeçalho: REPLACE INTO `homunculus_db` VALUES ('ID','Nome_do_Sprite','Nome,Level','HP','SP','Área1','ATK1','ATK2','DEF','MDEF',
+ 'FOR','AGI','VIT','INT','DES','SOR','Área2','Área3','Tamanho','Raça','Elemento','Velocidade','aDelay','aMotion','dMotion');
+*/ 
 
 REPLACE INTO `elemental_db` VALUES (2114,EL_AGNI_S,Agni,100,5000,1,1,100,100,10,10,1,1,1,1,1,1,5,12,0,0,83,200,504,1020,360);
 REPLACE INTO `elemental_db` VALUES (2115,EL_AGNI_M,Agni,100,7500,1,1,250,250,25,25,1,1,1,1,1,1,5,12,1,0,83,200,504,1020,360);
