@@ -1,12 +1,11 @@
 CREATE TABLE IF NOT EXISTS `skill_cast_db` (
-	`SkillID` mediumint(9) unsigned NOT NULL default '0',
-	`Cast` tinyint(4) unsigned NOT NULL default '0',
-	`AfterCastDelay` tinyint(4) unsigned NOT NULL default '0',
-	`Cooldown` mediumint(9) unsigned NOT NULL default '0',
-	`AfterCastWalkDelay` mediumint(9) unsigned NOT NULL default '0',
-	`Duration` mediumint(9) unsigned NOT NULL default '0',
-	`Duration2` mediumint(9) unsigned NOT NULL default '0',
-	
+	`SkillID` smallint(2) unsigned NOT NULL default '0',
+	`Cast` smallint(2) unsigned NOT NULL default '0',
+	`AfterCastDelay` smallint(2) unsigned NOT NULL default '0',
+	`Cooldown` mediumint(3) unsigned NOT NULL default '0',
+	`AfterCastWalkDelay` mediumint(3) unsigned NOT NULL default '0',
+	`Duration` mediumint(3) unsigned NOT NULL default '0',
+	`Duration2` mediumint(3) unsigned NOT NULL default '0',
 	PRIMARY KEY (`SkillID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 

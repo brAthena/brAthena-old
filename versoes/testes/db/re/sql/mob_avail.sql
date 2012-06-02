@@ -3,9 +3,9 @@
 -- 
 
 CREATE TABLE IF NOT EXISTS `mob_avail` (
-  `MobID` smallint(6) NOT NULL default '0',
-  `SpriteID` smallint(6) NOT NULL default '0',
-  `Equip` smallint(6) NOT NULL default '0',
+  `MobID` smallint(2) unsigned NOT NULL default '0',
+  `SpriteID` smallint(2) unsigned NOT NULL default '0',
+  `Equip` smallint(2) unsigned NOT NULL default '0',
   PRIMARY KEY (`MobID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 

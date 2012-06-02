@@ -3,12 +3,12 @@
 --         
 
 CREATE TABLE IF NOT EXISTS `castle_db` (
-   `CastleID` smallint(6) unsigned NOT NULL default '0',
+   `CastleID` tinyint(1) unsigned NOT NULL default '0',
    `MapName` text NOT NULL,
    `CastleName` text NOT NULL,
    `OnGuildBreakEventName` text NOT NULL,
    `Flag` tinyint(1) unsigned NOT NULL default '1',
-   PRIMARY KEY (`ID`)
+   PRIMARY KEY (`CastleID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 /*

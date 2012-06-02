@@ -3,19 +3,19 @@
 --         
 
 CREATE TABLE IF NOT EXISTS `homun_skill_tree` (
-	`Class` smallint(6) unsigned NOT NULL default '0',
-	`SkillID` smallint(6) unsigned NOT NULL default '0',
-	`MaxLv` tinyint(2) unsigned NOT NULL default '0',
-	`PrereqSkillID1` smallint(6) unsigned NOT NULL default '0',
-	`PrereqSkillLv1` smallint(6) unsigned NOT NULL default '0',
-	`PrereqSkillID2` smallint(6) unsigned NOT NULL default '0',
-	`PrereqSkillLv2` smallint(6) unsigned NOT NULL default '0',
-	`PrereqSkillID3` smallint(6) unsigned NOT NULL default '0',
-	`PrereqSkillLv3` smallint(6) unsigned NOT NULL default '0',
-	`PrereqSkillID4` smallint(6) unsigned NOT NULL default '0',
-	`PrereqSkillLv4` smallint(6) unsigned NOT NULL default '0',
-	`PrereqSkillID5` smallint(6) unsigned NOT NULL default '0',
-	`PrereqSkillLv5` smallint(6) unsigned NOT NULL default '0',
+	`Class` smallint(2) unsigned NOT NULL default '0',
+	`SkillID` smallint(2) unsigned NOT NULL default '0',
+	`MaxLv` tinyint(1) unsigned NOT NULL default '0',
+	`PrereqSkillID1` smallint(2) unsigned NOT NULL default '0',
+	`PrereqSkillLv1` smallint(2) unsigned NOT NULL default '0',
+	`PrereqSkillID2` smallint(2) unsigned NOT NULL default '0',
+	`PrereqSkillLv2` smallint(2) unsigned NOT NULL default '0',
+	`PrereqSkillID3` smallint(2) unsigned NOT NULL default '0',
+	`PrereqSkillLv3` smallint(2) unsigned NOT NULL default '0',
+	`PrereqSkillID4` smallint(2) unsigned NOT NULL default '0',
+	`PrereqSkillLv4` smallint(2) unsigned NOT NULL default '0',
+	`PrereqSkillID5` smallint(2) unsigned NOT NULL default '0',
+	`PrereqSkillLv5` smallint(2) unsigned NOT NULL default '0',
 	PRIMARY KEY (`Class`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 

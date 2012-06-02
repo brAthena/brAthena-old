@@ -4,15 +4,15 @@
 
 CREATE TABLE IF NOT EXISTS `mob_race2_db` (
   `Race2ID` tinyint(2) unsigned NOT NULL default '0',
-  `MobID1` smallint(6) unsigned NOT NULL default '0',
-  `MobID2` smallint(6) unsigned NOT NULL default '0',
-  `MobID3` smallint(6) unsigned NOT NULL default '0',
-  `MobID4` smallint(6) unsigned NOT NULL default '0',
-  `MobID5` smallint(6) unsigned NOT NULL default '0',
-  `MobID6` smallint(6) unsigned NOT NULL default '0',
-  `MobID7` smallint(6) unsigned NOT NULL default '0',
-  `MobID8` smallint(6) unsigned NOT NULL default '0',
-  `MobID9` smallint(6) unsigned NOT NULL default '0',
+  `MobID1` smallint(2) unsigned NOT NULL default '0',
+  `MobID2` smallint(2) unsigned NOT NULL default '0',
+  `MobID3` smallint(2) unsigned NOT NULL default '0',
+  `MobID4` smallint(2) unsigned NOT NULL default '0',
+  `MobID5` smallint(2) unsigned NOT NULL default '0',
+  `MobID6` smallint(2) unsigned NOT NULL default '0',
+  `MobID7` smallint(2) unsigned NOT NULL default '0',
+  `MobID8` smallint(2) unsigned NOT NULL default '0',
+  `MobID9` smallint(2) unsigned NOT NULL default '0',
   PRIMARY KEY (`Race2ID`)	
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 

@@ -3,7 +3,7 @@
 --    
  
 CREATE TABLE IF NOT EXISTS `exp_guild` (
-	`EXP` int(11) NOT NULL default '0',
+	`EXP` int(4) unsigned NOT NULL default '0',
 	PRIMARY KEY (`EXP`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 

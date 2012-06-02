@@ -3,11 +3,11 @@
 --    
 
 CREATE TABLE IF NOT EXISTS `skill_castnodex_db` (
-	`SkillID` mediumint(9) unsigned NOT NULL default '0',
-	`Cast` tinyint(4) unsigned NOT NULL default '0',
-	`Delay` tinyint(4) unsigned NOT NULL default '0',
+	`SkillID` smallint(2) unsigned NOT NULL default '0',
+	`Cast` tinyint(1) unsigned NOT NULL default '0',
+	`Delay` tinyint(1) unsigned NOT NULL default '0',
 	PRIMARY KEY (`SkillID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;;
 
 
 /*

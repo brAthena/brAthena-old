@@ -3,7 +3,7 @@
 -- 
 
 CREATE TABLE IF NOT EXISTS `statpoint` (
-	`StatPoint` int(11) unsigned NOT NULL default '0',
+	`StatPoint` smallint(2) unsigned NOT NULL default '0',
 	PRIMARY KEY (`StatPoint`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 

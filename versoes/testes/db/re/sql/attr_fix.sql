@@ -3,17 +3,17 @@
 --                                 
 
 CREATE TABLE IF NOT EXISTS `attr_fix` (
-	`Level` tinyint(4) NOT NULL default '0',
-	`None` tinyint(4) NOT NULL default '0',
-	`Water` tinyint(4) NOT NULL default '0',
-	`Earth` tinyint(4) NOT NULL default '0',
-	`Fire` tinyint(4) NOT NULL default '0',
-	`Wind` tinyint(4) NOT NULL default '0',
-	`Poison` tinyint(4) NOT NULL default '0',
-	`Saint` tinyint(4) NOT NULL default '0',
-	`Darkness` tinyint(4) NOT NULL default '0',
-	`Sense` tinyint(4) NOT NULL default '0',
-	`Immortality` tinyint(4) NOT NULL default '0',
+	`Level` tinyint(1) unsigned NOT NULL default '0',
+	`None` tinyint(1) unsigned NOT NULL default '0',
+	`Water` tinyint(1) NOT NULL default '0',
+	`Earth` tinyint(1) NOT NULL default '0',
+	`Fire` tinyint(1) NOT NULL default '0',
+	`Wind` tinyint(1) NOT NULL default '0',
+	`Poison` tinyint(1) NOT NULL default '0',
+	`Saint` tinyint(1) NOT NULL default '0',
+	`Darkness` tinyint(1) NOT NULL default '0',
+	`Sense` tinyint(1) NOT NULL default '0',
+	`Immortality` tinyint(1) NOT NULL default '0',
 	PRIMARY KEY (`Level`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 

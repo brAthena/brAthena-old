@@ -3,9 +3,9 @@
 -- 
 
 CREATE TABLE IF NOT EXISTS `mob_item_ratio` (
-  `ItemID` smallint(6) NOT NULL default '0',
-  `Rate` int(11) NOT NULL default '0',
-  `MobID` smallint(6) NOT NULL default '0',
+  `ItemID` smallint(2) unsigned NOT NULL default '0',
+  `Rate` mediumint(3) unsigned NOT NULL default '0',
+  `MobID` smallint(2) unsigned NOT NULL default '0',
   PRIMARY KEY (`ItemID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 

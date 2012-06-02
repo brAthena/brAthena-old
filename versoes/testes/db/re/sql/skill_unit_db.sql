@@ -1,13 +1,12 @@
 CREATE TABLE IF NOT EXISTS `skill_unit_db` (
-	`ID` tinyint(4) unsigned NOT NULL default '0',
-	`UnitID` tinyint(4) unsigned NOT NULL default '0',
-	`UnitID2` tinyint(4) unsigned NOT NULL default '0',
-	`Layout` tinyint(4) unsigned NOT NULL default '0',
-	`Range` tinyint(4) unsigned NOT NULL default '0',
-	`Interval` tinyint(4) unsigned NOT NULL default '0',
-	`Target` tinyint(4) unsigned NOT NULL default '0',
-	`Flag` tinyint(4) unsigned NOT NULL default '0',
-	
+	`ID` smallint(2) unsigned NOT NULL default '0',
+	`UnitID` smallint(2) unsigned NOT NULL default '0',
+	`UnitID2` smallint(2) unsigned NOT NULL default '0',
+	`Layout` tinyint(1) signed NOT NULL default '0',
+	`Range` tinyint(1) signed NOT NULL default '0',
+	`Interval` smallint(2) signed NOT NULL default '0',
+	`Target` text NOT NULL,
+	`Flag` smallint(2) unsigned NOT NULL default '0',
 	PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 

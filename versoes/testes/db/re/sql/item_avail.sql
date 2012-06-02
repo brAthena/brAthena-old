@@ -3,8 +3,8 @@
 --         
 
 CREATE TABLE IF NOT EXISTS `item_avail` (
-   `ItemID` smallint(6) unsigned NOT NULL default '0',
-   `SpriteID` smallint(6) unsigned NOT NULL default '0',
+   `ItemID` mediumint(3) unsigned NOT NULL default '0',
+   `SpriteID` smallint(2) unsigned NOT NULL default '0',
    PRIMARY KEY (`SourceID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 

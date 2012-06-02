@@ -7,11 +7,13 @@
 //	e digite rxxxx onde "xxxx" refere-se a revisão desejada. 
 //  * Dica2: Consulte o Histórico (Timeline) para mais detalhes sobre as modificações
 //	Acesse o link: http://trac.brathena.org/timeline
-
 // ==============================================================================
 
+	r1171 - 02/06/2012 [Protimus]
+	* Otimização nos valores de integer types dos banco de dados.
+
 	r1170 - 01/06/2012 [Protimus]
-	* Adicionado skill_cast_db.sql e skill_unit_db.sql.
+	* Adicionados skill_cast_db.sql e skill_unit_db.sql.
 
 	r1169 - 01/06/2012 [Protimus]
 	* Adicionados comentários nos bancos de dados em formato Transact-SQL.

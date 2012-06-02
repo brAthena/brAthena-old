@@ -3,9 +3,9 @@
 -- 
 
 CREATE TABLE IF NOT EXISTS `spellbook_db` (
-	`SkillID` int(11) unsigned NOT NULL default '0',
-	`PreservePoints` smallint(6) unsigned NOT NULL default '0',
-	`BookID` smallint(6) unsigned NOT NULl default '0',
+	`SkillID` smallint(2) unsigned NOT NULL default '0',
+	`PreservePoints` tinyint(1) unsigned NOT NULL default '0',
+	`BookID` smallint(2) unsigned NOT NULl default '0',
 	PRIMARY KEY (`SkillID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 

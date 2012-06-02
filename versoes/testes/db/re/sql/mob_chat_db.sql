@@ -3,8 +3,8 @@
 -- 
 
 CREATE TABLE IF NOT EXISTS `mob_chat_db` (
-  `Line` smallint(6) NOT NULL default '0',
-  `Color` smallint(6) NOT NULL default '0',
+  `Line` tinyint(1) unsigned NOT NULL default '0',
+  `Color` smallint(2) unsigned NOT NULL default '0',
   `Dialog` text NOT NULL,
   PRIMARY KEY (`Line`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;

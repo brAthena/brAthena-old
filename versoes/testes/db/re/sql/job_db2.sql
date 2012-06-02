@@ -3,7 +3,7 @@
 --  
 
 CREATE TABLE IF NOT EXISTS `job_db2` (
-	`JobID` tinyint(4) NOT NULL default '0',
+	`JobID` tinyint(1) unsigned NOT NULL default '0',
 	PRIMARY KEY (`JobID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 

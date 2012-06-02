@@ -3,8 +3,8 @@
 -- 
 
 CREATE TABLE IF NOT EXISTS `mob_penalty_db` (
-  `Mode` smallint(6) NOT NULL default '0',
-  `DiferenceLvl` smallint(6) NOT NULL default '0',
+  `Mode` tinyint(1) unsigned NOT NULL default '0',
+  `DiferenceLvl` smallint(2) signed NOT NULL default '0',
   PRIMARY KEY (`Mode`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 

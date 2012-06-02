@@ -3,8 +3,8 @@
 --  
 
 CREATE TABLE IF NOT EXISTS `item_delay` (
-  `ItemID` int(11) unsigned NOT NULL default '0',
-  `Delay` int(11) unsigned NOT NULL default '0',
+  `ItemID` mediumint(3) unsigned NOT NULL default '0',
+  `Delay` mediumint(3) unsigned NOT NULL default '0',
    PRIMARY KEY (`ItemID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -21,4 +21,3 @@ REPLACE INTO item_delay VALUES (14586,180000);	-- 'Doce Hiper Açucarado -> 180 s
 REPLACE INTO item_delay VALUES (607,5000); -- 'Fruto de Yggdrasil -> (5 segundos)'
 REPLACE INTO item_delay VALUES (608,3000); -- 'Semente de Yggdrasil -> (3 segundos)'
 REPLACE INTO item_delay VALUES (12622,10000); -- 'Montarias de Aluguel -> (10 segundos)'
-

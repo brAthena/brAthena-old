@@ -3,10 +3,10 @@
 --
 
 CREATE TABLE IF NOT EXISTS `elemental_skill_db` (
-	`ElementalID` mediumint(9) unsigned NOT NULL default '0',
-	`SkillID` mediumint(9) unsigned NOT NULL default '0',
-	`SkillLevel` tinyint(4) unsigned NOT NULL default '0',
-	`ReqMode` tinyint(4) unsigned NOT NULL default '0',
+	`ElementalID` smallint(2) unsigned NOT NULL default '0',
+	`SkillID` smallint(2) unsigned NOT NULL default '0',
+	`SkillLevel` tinyint(1) unsigned NOT NULL default '0',
+	`ReqMode` tinyint(1) unsigned NOT NULL default '0',
 	PRIMARY KEY (`ElementalID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 

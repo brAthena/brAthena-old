@@ -3,9 +3,9 @@
 -- 
 
 CREATE TABLE IF NOT EXISTS `mob_boss` (
-  `MobID` mediumint(9) NOT NULL default '0',
+  `MobID` smallint(2) unsigned NOT NULL default '0',
   `MobName` text NOT NULL,
-  `Rate` int(11) NOT NULL default '0',
+  `Rate` mediumint(3) unsigned NOT NULL default '0',
   PRIMARY KEY (`MobID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 

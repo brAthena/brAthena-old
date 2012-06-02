@@ -3,10 +3,10 @@
 --                                  
 
 CREATE TABLE IF NOT EXISTS `abra_db` (
-   `SkillID` int(11) unsigned NOT NULL default '0',
+   `SkillID` smallint(2) unsigned NOT NULL default '0',
    `DummyName` text NOT NULL,
-   `RequiredHocusPocusLevel` smallint(6) unsigned NOT NULL default '0',
-   `Rate` smallint(6) unsigned NOT NULL default '0',
+   `RequiredHocusPocusLevel` tinyint(1) unsigned NOT NULL default '0',
+   `Rate` smallint(2) unsigned NOT NULL default '0',
    PRIMARY KEY (`skillid`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 

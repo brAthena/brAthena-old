@@ -3,20 +3,20 @@
 -- 
 
 CREATE TABLE IF NOT EXISTS `refine_db` (
-  `Types` tinyint(4) NOT NULL default '0',
-  `StartsPerLvl` smallint(6) unsigned NOT NULL default '0',
-  `StartBonusPerLvl` tinyint(4) NOT NULL default '0',
-  `BonusPerLvl` smallint(6) unsigned NOT NULL default '0',
-  `RefineChance1` smallint(6) unsigned NOT NULL default '0',
-  `RefineChance2` smallint(6) unsigned NOT NULL default '0',
-  `RefineChance3` smallint(6) unsigned NOT NULL default '0',
-  `RefineChance4` smallint(6) unsigned NOT NULL default '0',
-  `RefineChance5` smallint(6) unsigned NOT NULL default '0',
-  `RefineChance6` smallint(6) unsigned NOT NULL default '0',
-  `RefineChance7` smallint(6) unsigned NOT NULL default '0',
-  `RefineChance8` smallint(6) unsigned NOT NULL default '0',
-  `RefineChance9` smallint(6) unsigned NOT NULL default '0',
-  `RefineChance10` smallint(6) unsigned NOT NULL default '0',
+  `Types` tinyint(1) unsigned NOT NULL default '0',
+  `StartsPerLvl` smallint(2) unsigned NOT NULL default '0',
+  `StartBonusPerLvl` tinyint(1) unsigned NOT NULL default '0',
+  `BonusPerLvl` smallint(2) unsigned NOT NULL default '0',
+  `RefineChance1` smallint(2) unsigned NOT NULL default '0',
+  `RefineChance2` smallint(2) unsigned NOT NULL default '0',
+  `RefineChance3` smallint(2) unsigned NOT NULL default '0',
+  `RefineChance4` smallint(2) unsigned NOT NULL default '0',
+  `RefineChance5` smallint(2) unsigned NOT NULL default '0',
+  `RefineChance6` smallint(2) unsigned NOT NULL default '0',
+  `RefineChance7` smallint(2) unsigned NOT NULL default '0',
+  `RefineChance8` smallint(2) unsigned NOT NULL default '0',
+  `RefineChance9` smallint(2) unsigned NOT NULL default '0',
+  `RefineChance10` smallint(2) unsigned NOT NULL default '0',
   PRIMARY KEY (`RefineBonus`)	
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 

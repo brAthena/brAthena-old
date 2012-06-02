@@ -3,7 +3,7 @@
 --    
 
 CREATE TABLE IF NOT EXISTS `skill_nocast_db` (
-	`SkillID` mediumint(9) unsigned NOT NULL default '0',
+	`SkillID` smallint(2) unsigned NOT NULL default '0',
 	`Flag` smallint(2) unsigned NOT NULL default '0',
 	PRIMARY KEY (`SkillID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;

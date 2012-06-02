@@ -3,9 +3,9 @@
 --    
 
 CREATE TABLE IF NOT EXISTS `mercenary_skill_db` (
-	`MercenaryID` mediumint(9) unsigned NOT NULL default '0',
-	`SkillID` mediumint(9) unsigned NOT NULL default '0',
-	`SkillLevel` tinyint(4) unsigned NOT NULL default '0',
+	`MercenaryID` smallint(2) unsigned NOT NULL default '0',
+	`SkillID` smallint(2) unsigned NOT NULL default '0',
+	`SkillLevel` tinyint(1) unsigned NOT NULL default '0',
 	PRIMARY KEY (`SkillID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 

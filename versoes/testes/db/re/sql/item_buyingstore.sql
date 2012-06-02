@@ -3,7 +3,7 @@
 --  
 
 CREATE TABLE IF NOT EXISTS `item_buyingstore` (
-  `ItemID` int(11) unsigned NOT NULL default '0',
+  `ItemID` mediumint(3) unsigned NOT NULL default '0',
    PRIMARY KEY (`ItemID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 

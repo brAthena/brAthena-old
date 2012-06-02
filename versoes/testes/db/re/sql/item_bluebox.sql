@@ -3,9 +3,9 @@
 --  
 
 CREATE TABLE IF NOT EXISTS `item_bluebox` (
-  `GroupID` smallint(6) NOT NULL default '0',
-  `ItemID` int(11) unsigned NOT NULL default '0',
-  `Rate` mediumint(9) NOT NULL default '0',
+  `GroupID` tinyint(1) NOT NULL default '0',
+  `ItemID` mediumt(3) unsigned NOT NULL default '0',
+  `Rate` smallint(2) unsigned NOT NULL default '0',
    PRIMARY KEY (`GroupID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 

@@ -3,15 +3,15 @@
 --    
 
 CREATE TABLE IF NOT EXISTS `quest_db` (
-	`QuestID` mediumint(9) unsigned NOT NULL default '0',
-	`Time_Limit` mediumint(9) unsigned NOT NULL default '0',
-	`Target1` smallint(6) NOT NULL default '0',
-	`Val1` smallint(6) NOT NULL default '0',
-	`Target2` smallint(6) NOT NULL default '0',
-	`Val2` smallint(6) NOT NULL default '0',
-	`Target3` smallint(6) NOT NULL default '0',
-	`Val3` smallint(6) NOT NULL default '0',
-	`Name` varchar(24) NOT NULL default '',
+	`QuestID` smallint(2) unsigned NOT NULL default '0',
+	`Time_Limit` mediumint(3) unsigned NOT NULL default '0',
+	`Target1` smallint(2) unsigned NOT NULL default '0',
+	`Val1` smallint(2) unsigned NOT NULL default '0',
+	`Target2` smallint(2) unsigned NOT NULL default '0',
+	`Val2` smallint(2) unsigned NOT NULL default '0',
+	`Target3` smallint(2) unsigned NOT NULL default '0',
+	`Val3` smallint(2) unsigned NOT NULL default '0',
+	`Name` text NOT NULL,
 	PRIMARY KEY (`QuestID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
