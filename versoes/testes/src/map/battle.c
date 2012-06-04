@@ -2586,14 +2586,32 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				/**
 				 * Kagerou & Oboro
 				 **/
+				case KO_JYUMONJIKIRI:
+					skillratio = 150 * skill_lv;
+					if( sc && sc->data[SC_JYUMONJIKIRI] )
+						skillratio += skillratio * s_base_level / 100;
+					break;
+				case KO_SETSUDAN:
+					skillratio = 100 * skill_lv;
+					if( tsc && tsc->data[SC_SPIRIT] )
+						skillratio += skillratio * tsc->data[SC_SPIRIT]->val1 / 2;
+					break;
 				case KO_HUUMARANKA:
-					skillratio += 15*skill_lv;
+					skillratio = pc_checkskill(sd, NJ_HUUMA) * (sstatus->agi + sstatus->dex) + 150 * skill_lv;
 					break;
 				case KO_BAKURETSU:
-					skillratio += 15*skill_lv;
+					skillratio = pc_checkskill(sd, NJ_TOBIDOUGU) * (15 * skill_lv);
 					break;
 				case KO_HAPPOKUNAI:
-					skillratio += 30*skill_lv;
+					if( sd )
+					{
+						short index = sd->equip_index[EQI_AMMO];
+						if( index >= 0 && sd->inventory_data[index] && sd->inventory_data[index]->type == IT_AMMO )
+							skillratio = sd->inventory_data[index]->atk * (50 + 10 * skill_lv);
+					}
+					break;
+				case KG_KAGEMUSYA:
+					skillratio = 200;
 					break;
 			}
 
@@ -4209,13 +4227,11 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 			md.damage=md.damage/2;
 		break;
 	case KO_MUCHANAGE:
-		md.damage = skill_get_zeny(skill_num ,skill_lv);
-		if (!md.damage) md.damage = 2;
-		md.damage = md.damage + rand()%md.damage;
-		if (is_boss(target))
-			md.damage=md.damage/2;
-		else if (tsd)
-			md.damage=md.damage;
+		md.damage = skill_get_zeny(skill_num ,skill_lv) / 2;
+		if (!md.damage) md.damage = 10;
+			md.damage =  md.damage + rand()%md.damage;
+		if (is_boss(target) || (tsd))
+			md.damage = md.damage / 2;
 		break;
 	case GS_FLING:
 		md.damage = sd?sd->status.job_level:status_get_lv(src);
@@ -4237,9 +4253,6 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		break;
 	case NPC_EVILLAND:
 		md.damage = skill_calc_heal(src,target,skill_num,skill_lv,false);
-		break;
-	case KO_SETSUDAN:
-		md.damage = 100 * skill_lv;
 		break;
 	case RK_DRAGONBREATH:
 		md.damage = ((status_get_hp(src) / 50) + (status_get_max_sp(src) / 4)) * skill_lv;
@@ -4436,6 +4449,10 @@ int battle_calc_return_damage(struct block_list *src, struct block_list *bl, int
 	struct status_change_entry *sce;
 
 	sd = BL_CAST(BL_PC, bl);
+
+	if( sc && sc->data[SC_KYOMU]){
+		return rdamage = 0;
+	}
 
 	if( sc && (sce = sc->data[SC_REFLECTDAMAGE]) && flag&BF_SHORT && sc->data[SC_REFLECTDAMAGE] && rand()%100 < 30 + 10 * sc->data[SC_REFLECTDAMAGE]->val1 )
 	{
@@ -4694,6 +4711,18 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 			return ATK_MISS;
 		}
 	}
+	
+	if( sc && sc->data[SC_KAGEMUSYA]){
+		int skilllv = sc->data[SC_KAGEMUSYA]->val1;
+		int chance = 5 * skilllv;
+
+		if( rand()%100 < chance ){
+			if( skill_attack(BF_WEAPON,src,src,target,KG_KAGEMUSYA,skillv,tick,0) )
+				return ATK_DEF;
+			return ATK_MISS;
+		}
+	}
+
 
 	if (sc) {
 		if (sc->data[SC_SACRIFICE]) {

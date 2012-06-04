@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1172 - 03/06/2012 [Splack]
+	* Adicionadas as habilidades Juumonjigiri (KO_JYUMONJIKIRI), Tamashii Setsudan (KO_SETSUDAN), Zanzou (KO_ZANZOU), Juusatsu (KO_JYUSATSU).
+	* Corrigida habilidade Mucha Nage (KO_MUCHANAGE), estava funcionando igual a NJ_ZENYNAGE e não o correto dela.
+	
 	r1171 - 02/06/2012 [Protimus]
 	* Otimização nos valores de integer types dos banco de dados.
 

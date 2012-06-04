@@ -8478,7 +8478,7 @@ BUILDIN_FUNC(clone)
 			master_id = 0;
 	}
 	if (sd) //Return ID of newly crafted clone.
-		script_pushint(st,mob_clone_spawn(sd, m, x, y, event, master_id, mode, flag, 1000*duration));
+		script_pushint(st,mob_clone_spawn(sd, m, x, y, event, master_id, mode, flag, 1000*duration,0));
 	else //Failed to create clone.
 		script_pushint(st,0);
 

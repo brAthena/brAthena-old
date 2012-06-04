@@ -1189,41 +1189,41 @@
 //========================================================================================================
 // Habilidades de Kagerou & Oboro.  [brAthena]
 //========================================================================================================
-3001,1,6,4,0,1,0,10,1,no,0,0,0,none,0,		KO_YAMIKUMO,Yamikumo
+3001,1,6,4,0,1,0,1,1,no,0,0,0,none,0,		KO_YAMIKUMO,Yamikumo
 3002,0,0,0,0,0,0,5,0,no,0,0,0,weapon,0,		KO_RIGHT,Perícia com a Mão Direita
 3003,0,0,0,0,0,0,5,0,no,0,0,0,weapon,0,		KO_LEFT,Perícia com a Mão Esquerda
-//3004,3:4:5:6:7,6,4,0,1,0,10,1,no,0,0,0,none,0,		KO_JYUMONJIKIRI,Juumonjigiri
-3005,2,6,4,0,1,0,10,1,no,0,0,0,none,0,			KO_SETSUDAN,Tamashii Setsudan
-3006,7:8:9:10:11,6,1,-1,0x2,7,10,1,no,33,0,0,weapon,1,	KO_BAKURETSU,Bakuretsu Kunai
-3007,1,6,4,3,0x2,2,10,1,no,0,0,0,weapon,2,		KO_HAPPOKUNAI,Happo Kunai
-3008,11,6,1,0,0x50,0,10,1,no,0,0,0,misc,0,		KO_MUCHANAGE,Mucha Nage
-3009,9:10:11:12:13,6,1,-1,0x2,7,10,1,no,33,0,0,weapon,1,	KO_HUUMARANKA,Fuuma Shuriken Ranka
-//3010,7,6,4,0,1,0,10,1,no,0,0,0,none,0,		KO_MAKIBISHI,Makibishi
+3004,3:4:5:6:7,8,1,-1,0,0,5,-2,no,0,0,0,weapon,0,		KO_JYUMONJIKIRI,Juumonjigiri
+3005,2,6,1,-1,0,0,5,1,no,0,0,0,weapon,0,			KO_SETSUDAN,Tamashii Setsudan
+3006,7:8:9:10:11,6,1,-1,0x2,7,5,1,no,33,0,0,weapon,1,	KO_BAKURETSU,Bakuretsu Kunai
+3007,1,6,4,3,0x2,2,5,1,no,0,0,0,weapon,2,		KO_HAPPOKUNAI,Happo Kunai
+3008,11,8,1,0,0,0,10,-10,no,0,0x60,0,misc,0,		KO_MUCHANAGE,Mucha Nage
+3009,9:10:11:12:13,6,1,-1,0x2,7,5,1,no,33,0,0,weapon,1,	KO_HUUMARANKA,Fuuma Shuriken Ranka
+3010,7,6,4,0,1,0,5,1,no,0,0,0,none,0,		KO_MAKIBISHI,Makibishi
 3011,1,6,4,0,0x1,0,5,1,no,0,0,0,none,0,		KO_MEIKYOUSISUI,MeiKyouShiSui
-//3012,1,6,4,0,1,0,10,1,no,0,0,0,none,0,		KO_ZANZOU,Zanzou
+3012,1,6,4,0,1,0,5,1,no,0,0,0,none,0,		KO_ZANZOU,Zanzou
 3013,2,6,1,0,1,0,5,1,no,0,0,0,none,0,		KO_KYOUGAKU,Kyougaku
-//3014,5,6,4,0,1,0,10,1,no,0,0,0,none,0,		KO_JYUSATSU,Juusatsu
-//3015,1,6,4,0,1,0,10,1,no,0,0,0,none,0,		KO_KAHU_ENTEN,Enten
-//3016,1,6,4,0,1,0,10,1,no,0,0,0,none,0,		KO_HYOUHU_HUBUKI,Fubuki
-//3017,1,6,4,0,1,0,10,1,no,0,0,0,none,0,		KO_KAZEHU_SEIRAN,Seiran
-//3018,1,6,4,0,1,0,10,1,no,0,0,0,none,0,		KO_DOHU_KOUKAI,Koukai
-//3019,1,6,4,0,1,0,10,1,no,0,0,0,none,0,		KO_KAIHOU,Jutsushiki Kaihou
-//3020,1,6,4,0,1,0,10,1,no,0,0,0,none,0,		KO_ZENKAI,Jutsushiki Zenkai
+3014,5,6,1,0,1,0,5,1,no,0,0,0,none,0,		KO_JYUSATSU,Juusatsu
+3015,1,6,0,0,1,0,1,1,no,0,0,0,none,0,		KO_KAHU_ENTEN,Enten
+3016,1,6,0,0,1,0,1,1,no,0,0,0,none,0,		KO_HYOUHU_HUBUKI,Fubuki
+3017,1,6,0,0,1,0,1,1,no,0,0,0,none,0,		KO_KAZEHU_SEIRAN,Seiran
+3018,1,6,0,0,1,0,1,1,no,0,0,0,none,0,		KO_DOHU_KOUKAI,Koukai
+3019,1,6,0,0,1,0,1,1,no,0,0,0,none,0,		KO_KAIHOU,Jutsushiki Kaihou
+3020,1,6,0,0,1,0,1,1,no,0,0,0,none,0,		KO_ZENKAI,Jutsushiki Zenkai
 3021,5:6:7:8:9,6,1,0,1,0,5,1,no,0,0,0,none,0,		KO_GENWAKU,Genwaku
 3022,1,6,4,0,1,0,5,1,no,0,0,0,none,0,		KO_IZAYOI,Izayoi
 //=========================================================================================================
 // Habilidades exclusivas de Kagerou. [brAthena]
 //=========================================================================================================
-//3023,5:7:9:11:13,6,4,0,1,0,10,1,no,0,0,0,none,0,		KG_KAGEHUMI,Kagefumi
-//3024,1,6,4,0,1,0,10,1,no,0,0,0,none,0,		KG_KYOMU,Komu no Kage
-//3025,1,6,4,0,1,0,10,1,no,0,0,0,none,0,		KG_KAGEMUSYA,Kagemusha
+3023,0,6,4,0,0x3,2:3:4:5:6,5,1,yes,0,0,0,none,0,		KG_KAGEHUMI,Kagefumi
+3024,1,6,1,0,1,0,5,1,no,0,0,0,none,0,		KG_KYOMU,Komu no Kage
+3025,1,8,4,0,1,0,5,-2,no,0,0,0,none,0,		KG_KAGEMUSYA,Kagemusha
 //=========================================================================================================
 // Habilidades exclusivas de Oboro. [brAthena]
 //=========================================================================================================
 3026,7,6,16,0,0x1,0,5,1,yes,0,0,0,magic,0,	OB_ZANGETSU,Zangetsu
-//3027,7,6,4,0,1,0,10,1,no,0,0,0,none,0,		OB_OBOROGENSOU,Oboro Gensou
-//3028,7,6,4,0,1,0,10,1,no,0,0,0,none,0,		OB_OBOROGENSOU_TRANSITION_ATK,Oboro Gensou
-//3039,7,6,4,0,1,0,10,1,no,0,0,0,none,0,		OB_AKAITSUKI,Akaitsuki
+3027,7,6,4,0,1,0,5,1,no,0,0,0,none,0,		OB_OBOROGENSOU,Oboro Gensou
+3028,7,6,4,0,1,0,5,1,no,0,0,0,none,0,		OB_OBOROGENSOU_TRANSITION_ATK,Oboro Gensou
+3029,7,6,1,0,1,0,5,1,no,0,0,0,none,0,		OB_AKAITSUKI,Akaitsuki
 
 //========================================================================================================
 // Habilidades dos Homunculus

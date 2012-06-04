@@ -501,6 +501,12 @@ int skillnotok (int skillid, struct map_session_data *sd)
 		return 1;
 	if(map[m].flag.restricted && map[m].zone && skill_get_nocast (skillid) & (8*map[m].zone))
 		return 1;
+		
+	if( sd->sc.data[SC_KYOMU] && ( rand()%100 < sd->sc.data[SC_KYOMU]->val2) ){
+		clif_skill_fail(sd,skillid,USESKILL_FAIL_LEVEL,0); 
+		return 1;
+	}
+
 
 	switch (skillid) {
 		case AL_WARP:
@@ -3487,6 +3493,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case SR_FALLENEMPIRE:
 	case SR_GATEOFHELL:
 	case MH_STAHL_HORN:
+	case KG_KAGEMUSYA:
 		skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag);
 		break;
 
@@ -4541,6 +4548,20 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 			clif_skill_nodamage(src,src,skillid,skilllv,1);
 		}
 		break;
+		
+	case KO_JYUMONJIKIRI:
+		if (skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag) > 0)
+			sc_start(src,SC_JYUMONJIKIRI,100,skilllv,skill_get_time(skillid,skilllv));
+		break;
+		
+	case KO_SETSUDAN:
+		if ( skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag) > 0 ){
+			if( tsc && tsc->data[SC_SPIRIT] ){
+				status_change_end(bl, SC_SPIRIT, INVALID_TIMER);
+				break;
+			}
+		}
+		break;
 
 	case 0:
 		if(sd) {
@@ -4637,8 +4658,8 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		case AB_RENOVATIO:
 		case AB_HIGHNESSHEAL:
 			//Apparently only player casted skills can be offensive like this.
-			if (sd && battle_check_undead(tstatus->race,tstatus->def_ele)) {
-				if (battle_check_target(src, bl, BCT_ENEMY) < 1) {
+			if ( sd && battle_check_undead(tstatus->race,tstatus->def_ele) || ( dstsd && dstsd->sc.data[SC_AKAITSUK] ) || ( dstmd && dstmd->sc.data[SC_AKAITSUK] ) ) {
+				if (battle_check_target(src, bl, BCT_ENEMY) < 1 && ( sd && !sd->sc.data[SC_AKAITSUK] ) ) {
 				  	//Offensive heal does not works on non-enemies. [Skotlex]
 					clif_skill_fail(sd,skillid,USESKILL_FAIL_LEVEL,0);
 					return 0;
@@ -5106,7 +5127,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		break;
 
 
-		case KO_HAPPOKUNAI:
+	case KO_HAPPOKUNAI:
 		skill_area_temp[1] = 0;
 		map_foreachinrange(skill_area_sub, src, skill_get_splash(skillid, skilllv), BL_SKILL|BL_CHAR,
 		src,skillid,skilllv,tick, flag|BCT_ENEMY|1, skill_castend_damage_id);
@@ -5188,7 +5209,8 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 	case SR_GENTLETOUCH_CHANGE:
 	case SR_GENTLETOUCH_REVITALIZE:
 	case KO_IZAYOI:
-	case OB_ZANGETSU:
+	case KG_KYOMU:
+	case KG_KAGEMUSYA:
 		clif_skill_nodamage(src,bl,skillid,skilllv,
 			sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv)));
 	case SO_STRIKING:
@@ -5955,13 +5977,6 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			}
 		}
 		break;
-		
-	case KO_SETSUDAN:
-		if (tsc->data[SC_SPIRIT]) {
-			status_change_end(bl, SC_SPIRIT, INVALID_TIMER);
-			break;
-		}
-	break;
 	
 	case KO_KYOUGAKU:
 		if ( tsc && !tsc->data[SC_KYOUGAKU]){ 
@@ -5975,7 +5990,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			
 			mobtid = mob_get_random_id(0,0x4, dstsd->status.base_level); 
 			if( mobtid <= 0 ){ 
-				clif_skill_fail(sd,skillid,USESKILL_FAIL_LEVEL,0); 
+				clif_skill_fail(sd,skillid,USESKILL_FAIL_LEVEL,0);  
 				break;
 			} 
    
@@ -5992,6 +6007,14 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			sc_start(bl,status_skill2sc(skillid),100,skilllv,skill_get_time(skillid,skilllv)));
 		break;
 		
+	case KO_JYUSATSU:
+		sc_start(bl,type,100,skilllv,skill_get_time(skillid,skilllv));
+		if(sd && dstsd && sd->status.base_level > dstsd->status.base_level){
+			sc_start(bl,SC_COMA,(skilllv * 8),skilllv,skill_get_time(skillid,skilllv));
+		}
+		clif_skill_nodamage(src,bl,skillid,skilllv,1);
+		break;
+
 	case KO_GENWAKU:
 		if(bl && src){
 			int x1,y1,x2,y2;
@@ -8359,6 +8382,59 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			clif_skill_nodamage(src, src, skillid, skilllv,
 				sc_start2(src, SC_CURSEDCIRCLE_ATKER, 100, skilllv, count, skill_get_time(skillid,skilllv)));
 		}
+		break;
+
+	case KO_ZANZOU:
+		if(sd){
+			int hpclone = 0;
+			if (mob_countslave(&sd->bl) > 0) {
+				clif_skill_fail(sd,skillid,USESKILL_FAIL_LEVEL,0); 
+				break; 
+			}
+			hpclone = (skilllv > 3) ? 8500 + ((skilllv - 4) * 1500) : (skilllv + 1) * 1500;
+			mob_clone_spawn(sd, sd->bl.m, sd->bl.x, sd->bl.y, "", sd->bl.id, 0, 2?1:0, 0,hpclone);
+			clif_skill_nodamage(src,bl,skillid,skilllv,1);
+      	} 
+		break;
+		
+	case KG_KAGEHUMI:
+		if( flag&1 )
+		{
+			if( is_boss(bl) )
+				break;
+			if( sc_start2(bl, type, 100, skilllv, src->id, skill_get_time(skillid, skilllv)) ) {
+				unit_stop_attack(bl);
+				clif_bladestop(src, bl->id, 1);
+				map_freeblock_unlock();
+				return 1;
+			}
+		}
+		else
+			map_foreachinrange(skill_area_sub, bl, skill_get_splash(skillid, skilllv), BL_CHAR,
+				src, skillid, skilllv, tick, flag|BCT_ENEMY|1, skill_castend_nodamage_id);
+		break;
+		
+	case OB_ZANGETSU:
+		if ( battle_check_target(src, bl, BCT_PARTY) > 0 || battle_check_target(src, bl, BCT_GUILD) > 0 || battle_check_target(src, bl, BCT_SELF) > 0 ) {
+			clif_skill_nodamage(bl,src,skillid,skilllv,sc_start(bl, SC_ZANGETSU_ALIADO, 100, skilllv, skill_get_time(skillid, skilllv)));
+		}else{
+			clif_skill_nodamage(bl,src,skillid,skilllv,sc_start(bl, SC_ZANGETSU_INIMIGO, 100, skilllv, skill_get_time(skillid, skilllv)));
+		}
+		break;
+		
+	case OB_AKAITSUKI:
+		if( flag&1 )
+		{
+			if( is_boss(bl) || (dstsd && !map_flag_vs(bl->m)) ){
+				clif_skill_fail(sd,skillid,USESKILL_FAIL_LEVEL,0); 
+				break;
+			}
+			clif_skill_nodamage(bl,src,skillid,skilllv,
+				sc_start(bl, type, 100, skilllv, skill_get_time(skillid, skilllv)));
+		}
+		else
+			map_foreachinrange(skill_area_sub, bl, skill_get_splash(skillid, skilllv), BL_CHAR,
+				src, skillid, skilllv, tick, flag|BCT_ENEMY|1, skill_castend_nodamage_id);
 		break;
 
 	case LG_INSPIRATION:
@@ -13002,7 +13078,7 @@ int skill_consume_requirement( struct map_session_data *sd, short skill, short l
 
 		if(req.zeny > 0)
 		{
-			if( skill == NJ_ZENYNAGE || skill == KO_MUCHANAGE)
+			if( skill == NJ_ZENYNAGE )
 				req.zeny = 0; //Zeny is reduced on skill_attack.
 			if( sd->status.zeny < req.zeny )
 				req.zeny = sd->status.zeny;

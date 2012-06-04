@@ -130,6 +130,7 @@ REPLACE INTO skill_unit_db VALUES (2485,0xe7,'',0,3,1000,'enemy',0x098);		--  'G
 REPLACE INTO skill_unit_db VALUES (2487,0xe8,'',0,3,1000,'enemy',0x000);		--  'GN_FIRE_EXPANSION_SMOKE_POWDER'
 REPLACE INTO skill_unit_db VALUES (2488,0xe9,'',0,3,1000,'enemy',0x000);		--  'GN_FIRE_EXPANSION_TEAR_GAS'
 REPLACE INTO skill_unit_db VALUES (2490,0xea,'',0,1,1000,'enemy',0x000);		--  'GN_HELLS_PLANT'
+REPLACE INTO skill_unit_db VALUES (3009,0x86,'',0,3,1000,'enemy',0x018);		--  'KO_HUUMARANKA'
 REPLACE INTO skill_unit_db VALUES (8020,0xf5,'',0,3,'2300:2100:1900:1700:1500','enemy',0x018);	--  'MH_POISON_MIST'
 REPLACE INTO skill_unit_db VALUES (8033,0x7e,'',0,0,'-1','all',0x003);			--  'MH_STEINWAND'
 REPLACE INTO skill_unit_db VALUES (8025,0x86,'',0,'2:2:3:3:4',1000,'enemy',0x018);	--  'MH_XENO_SLASHER'

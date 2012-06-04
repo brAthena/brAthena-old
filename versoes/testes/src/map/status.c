@@ -626,11 +626,18 @@ void initChangeTables(void)
 	set_sc( MH_ERASER_CUTTER	 , SC_ERASER_CUTTER   , SI_BLANK			, SCB_NONE );
 	
 	// Kagerou & Oboro - brA Exclusividade
-	set_sc( KO_YAMIKUMO     , SC_YAMIKUMO   , SI_BLANK   , SCB_NONE );
-	set_sc( KO_IZAYOI       , SC_IZAYOI     , SI_BLANK     , SCB_MATK );
-	set_sc( KO_KYOUGAKU        , SC_KYOUGAKU          , SI_BLANK            , SCB_STR|SCB_AGI|SCB_VIT|SCB_INT|SCB_DEX|SCB_LUK );
+	set_sc( KO_YAMIKUMO        , SC_YAMIKUMO          , SI_YAMIKUMO         , SCB_NONE );
+	set_sc( KO_JYUMONJIKIRI    , SC_JYUMONJIKIRI      , SI_JYUMONJIKIRI     , SCB_NONE );
+	set_sc( KO_JYUSATSU        , SC_JYUSATSU          , SI_ZENKAI           , SCB_MAXHP );
+	set_sc( KO_IZAYOI          , SC_IZAYOI            , SI_IZAYOI           , SCB_MATK );
 	set_sc( KO_MEIKYOUSISUI    , SC_MEIKYOUSISUI      , SI_MEIKYOUSISUI     , SCB_NONE );
-	set_sc( OB_ZANGETSU     , SC_ZANGETSU   , SI_BLANK   , SCB_BATK|SCB_MATK );
+	set_sc( KO_KYOUGAKU        , SC_KYOUGAKU          , SI_BLANK            , SCB_STR|SCB_AGI|SCB_VIT|SCB_INT|SCB_DEX|SCB_LUK );
+	set_sc( OB_ZANGETSU        , SC_ZANGETSU_ALIADO   , SI_ZANGETSU         , SCB_BATK|SCB_MATK );
+	set_sc( OB_ZANGETSU        , SC_ZANGETSU_INIMIGO  , SI_ZANGETSU         , SCB_BATK|SCB_MATK );
+	set_sc( OB_AKAITSUKI       , SC_AKAITSUK          , SI_AKAITSUKI        , SCB_NONE );
+	set_sc( KG_KAGEHUMI        , SC_KAGEHUMI          , SI_KAGEHUMI         , SCB_NONE );
+	set_sc( KG_KYOMU           , SC_KYOMU             , SI_KYOMU            , SCB_NONE );
+	set_sc( KG_KAGEMUSYA       , SC_KAGEMUSYA         , SI_KAGEMUSYA        , SCB_NONE );
 	// -------------
 	
 	set_sc( ALL_RIDING			 , SC_ALL_RIDING      , SI_ALL_RIDING      , SCB_SPEED );
@@ -4336,8 +4343,10 @@ static unsigned short status_calc_batk(struct block_list *bl, struct status_chan
 		|| (sc->data[SC_EARTH_INSIGNIA] && sc->data[SC_EARTH_INSIGNIA]->val1 == 1))
 		)
 		batk += batk / 5;
-	if(sc->data[SC_ZANGETSU])
-		batk += batk * sc->data[SC_ZANGETSU]->val2 / 100;
+	if(sc->data[SC_ZANGETSU_ALIADO])
+		batk += sc->data[SC_ZANGETSU_ALIADO]->val2;
+	if(sc->data[SC_ZANGETSU_INIMIGO])
+		batk -= sc->data[SC_ZANGETSU_INIMIGO]->val2;
 	if( sc->data[SC_EDP] && sc->data[SC_EDP]->val1 > 1 )
 		batk = batk * sc->data[SC_EDP]->val1;
 	if(sc->data[SC_ODINS_POWER])
@@ -4462,8 +4471,10 @@ static unsigned short status_calc_matk(struct block_list *bl, struct status_chan
 		matk += 50;
 	if(sc->data[SC_IZAYOI])
 		matk += sc->data[SC_IZAYOI]->val3;
-	if(sc->data[SC_ZANGETSU])
-		matk += matk * sc->data[SC_ZANGETSU]->val1/100;
+	if(sc->data[SC_ZANGETSU_ALIADO])
+		matk += sc->data[SC_ZANGETSU_ALIADO]->val2;
+	if(sc->data[SC_ZANGETSU_INIMIGO])
+		matk -= sc->data[SC_ZANGETSU_INIMIGO]->val2;
 	if(sc->data[SC_ODINS_POWER])
 		matk += 70;
 
@@ -5216,7 +5227,8 @@ static unsigned int status_calc_maxhp(struct block_list *bl, struct status_chang
 		maxhp -= maxhp * 15 / 100;
 	if(sc->data[SC_EARTH_INSIGNIA] && sc->data[SC_EARTH_INSIGNIA]->val1 == 2)
 		maxhp += 500;
-		
+	if(sc->data[SC_JYUSATSU])
+		maxhp -= maxhp * (sc->data[SC_JYUSATSU]->val1 * 5) / 100;	
 		
 	return cap_value(maxhp,1,UINT_MAX);
 }
@@ -6665,6 +6677,15 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		status_change_end(bl, SC_GT_ENERGYGAIN, INVALID_TIMER);
 		status_change_end(bl, SC_GT_CHANGE, INVALID_TIMER);
 		break;
+	case SC_KAGEHUMI:
+		status_change_end(bl, SC_HIDING, INVALID_TIMER);
+		status_change_end(bl, SC_YAMIKUMO, INVALID_TIMER);
+		status_change_end(bl, SC_CLOAKING, INVALID_TIMER);
+		status_change_end(bl, SC_CAMOUFLAGE, INVALID_TIMER);
+		status_change_end(bl, SC_CLOAKINGEXCEED, INVALID_TIMER);
+		status_change_end(bl, SC__INVISIBILITY, INVALID_TIMER);
+		status_change_end(bl, SC__SHADOWFORM, INVALID_TIMER);
+		break;
 	}
 
 	//Check for overlapping fails
@@ -7596,8 +7617,18 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			val4 = tick / 1000; // Tempo de recuperação, valor oficial a cada segundo.
 			tick = 1000;
 			break;
-		case SC_ZANGETSU:
-			val2 += 20 * (sd ? sd->status.base_level:50) + 100; // Adição de ATK & Matk
+		case SC_KYOMU:
+			val2 = 10 + val1*2; //Chance das habilidades Falharem. NOTA: Valor não oficial.
+			break;
+		case SC_KAGEMUSYA:
+			val4 = tick / 1000; // Tempo para consumir sp.
+			tick = 1000;
+			break;
+		case SC_ZANGETSU_ALIADO:
+			val2 = (5 * (sd ? sd->status.base_level:50)) + 100; // Adição de ATK & Matk. NOTA: Valor não oficial.
+			break;
+		case SC_ZANGETSU_INIMIGO:
+			val2 = (2 * (sd ? sd->status.base_level:50)) + 50; // Adição de ATK & Matk. NOTA: Valor não oficial.
 			break;
 		case SC_SUFFRAGIUM:
 			val2 = 15 * val1; //Speed cast decrease
@@ -8182,6 +8213,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_THORNSTRAP:
 		case SC_CRYSTALIZE:
 		case SC_MEIKYOUSISUI:
+		case SC_KAGEHUMI:
 			unit_stop_walking(bl,1);
 		break;
 		case SC_HIDING:
@@ -8728,6 +8760,15 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 				clif_bladestop(bl, tid, 0);
 			}
 			break;
+						
+		case SC_KAGEHUMI:
+			{
+				struct block_list *src = sce->val2?map_id2bl(sce->val2):NULL;
+				status_change_end(bl, SC_KAGEHUMI, INVALID_TIMER);
+				clif_bladestop(src, bl->id, 0);
+			}
+			break;
+			
 		case SC_DANCING:
 			{
 				const char* prevfile = "<unknown>";
@@ -9985,6 +10026,15 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 			return 0;
 		}
 		break;
+	case SC_KAGEMUSYA:
+		if( --(sce->val4) >= 0 )
+		{
+			if( !status_charge(bl, 0, 1) )
+				break;
+			sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
+			return 0;
+		}
+		break;
 	case SC_MEIKYOUSISUI:
 		if( --(sce->val4) >= 0 )
 		{
@@ -10167,6 +10217,7 @@ int status_change_clear_buffs (struct block_list* bl, int type)
 			case SC_EXTRACT_WHITE_POTION_Z:
 			case SC_VITATA_500:
 			case SC_EXTRACT_SALAMINE_JUICE:
+			case SC_KAGEHUMI:
 				continue;
 
 			//Debuffs that can be removed.

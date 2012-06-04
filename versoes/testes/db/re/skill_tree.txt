@@ -5653,7 +5653,7 @@
 4211,3002,5,0,0,0,0,0,0,0,0,0,0				//KO_RIGHT#Right Hand Mastery#
 4211,3003,5,0,0,0,0,0,0,0,0,0,0				//KO_LEFT#Left Hand Mastery#
 4211,3004,5,3001,1,0,0,0,0,0,0,0,0			//KO_JYUMONJIKIRI#Juumonjigiri#
-4211,3500,5,3004,2,0,0,0,0,0,0,0,0   		//KO_SETSUDAN#Tamashii Setsudan#
+4211,3005,5,3004,2,0,0,0,0,0,0,0,0   		//KO_SETSUDAN#Tamashii Setsudan#
 4211,3006,5,524,5,0,0,0,0,0,0,0,0			//KO_BAKURETSU#Bakuretsu Kunai#
 4211,3007,5,3006,1,0,0,0,0,0,0,0,0			//KO_HAPPOKUNAI#Happo Kunai#
 4211,3008,10,3010,3,0,0,0,0,0,0,0,0			//KO_MUCHANAGE#Mucha Nage#
@@ -5706,7 +5706,7 @@
 4212,3002,5,0,0,0,0,0,0,0,0,0,0				//KO_RIGHT#Right Hand Mastery#
 4212,3003,5,0,0,0,0,0,0,0,0,0,0				//KO_LEFT#Left Hand Mastery#
 4212,3004,5,3001,1,0,0,0,0,0,0,0,0			//KO_JYUMONJIKIRI#Juumonjigiri#
-4212,3500,5,3004,2,0,0,0,0,0,0,0,0   		//KO_SETSUDAN#Tamashii Setsudan#
+4212,3005,5,3004,2,0,0,0,0,0,0,0,0   		//KO_SETSUDAN#Tamashii Setsudan#
 4212,3006,5,524,5,0,0,0,0,0,0,0,0			//KO_BAKURETSU#Bakuretsu Kunai#
 4212,3007,5,3006,1,0,0,0,0,0,0,0,0			//KO_HAPPOKUNAI#Happo Kunai#
 4212,3008,10,3010,3,0,0,0,0,0,0,0,0			//KO_MUCHANAGE#Mucha Nage#

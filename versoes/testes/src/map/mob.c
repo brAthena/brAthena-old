@@ -3207,7 +3207,7 @@ int mob_is_clone(int class_)
 //If mode is not passed, a default aggressive mode is used.
 //If master_id is passed, clone is attached to him.
 //Returns: ID of newly crafted copy.
-int mob_clone_spawn(struct map_session_data *sd, int m, int x, int y, const char *event, int master_id, int mode, int flag, unsigned int duration)
+int mob_clone_spawn(struct map_session_data *sd, int m, int x, int y, const char *event, int master_id, int mode, int flag, unsigned int duration, int defina_hp)
 {
 	int class_;
 	int i,j,inf,skill_id, fd;
@@ -3239,7 +3239,12 @@ int mob_clone_spawn(struct map_session_data *sd, int m, int x, int y, const char
 		status->mode = mode; 
 	else if (flag&1) //Friendly Character, remove looting.
 		status->mode &= ~MD_LOOTER; 
-	status->hp = status->max_hp;
+		
+	if(defina_hp){
+		status->hp = defina_hp;
+		status->max_hp = defina_hp;
+	}else status->hp = status->max_hp;
+	
 	status->sp = status->max_sp;
 	memcpy(&db->vd, &sd->vd, sizeof(struct view_data));
 	db->base_exp=1;
