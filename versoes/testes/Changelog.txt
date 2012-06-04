@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1174 - 04/06/2012 [Protimus]
+	* Renomeados banco de dados conforme novo modelo.
+	* Criado banco de dados brathena.sql, onde conterá a fusão de todos os arquivos convertidos de txt para sql.
+
 	r1173 - 04/06/2012 [Protimus]
 	* Correções do envio anterior.
 
