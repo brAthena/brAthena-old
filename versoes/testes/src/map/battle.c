@@ -4229,7 +4229,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 	case KO_MUCHANAGE:
 		md.damage = skill_get_zeny(skill_num ,skill_lv) / 2;
 		if (!md.damage) md.damage = 10;
-			md.damage =  md.damage + rand()%md.damage;
+			md.damage =  md.damage + rnd()%md.damage;
 		if (is_boss(target) || (tsd))
 			md.damage = md.damage / 2;
 		break;
@@ -4716,7 +4716,7 @@ enum damage_lv battle_weapon_attack(struct block_list* src, struct block_list* t
 		int skilllv = sc->data[SC_KAGEMUSYA]->val1;
 		int chance = 5 * skilllv;
 
-		if( rand()%100 < chance ){
+		if( rnd()%100 < chance ){
 			if( skill_attack(BF_WEAPON,src,src,target,KG_KAGEMUSYA,skillv,tick,0) )
 				return ATK_DEF;
 			return ATK_MISS;

@@ -626,7 +626,7 @@ void initChangeTables(void)
 	set_sc( MH_ERASER_CUTTER	 , SC_ERASER_CUTTER   , SI_BLANK			, SCB_NONE );
 	
 	// Kagerou & Oboro - brA Exclusividade
-	set_sc( KO_YAMIKUMO        , SC_YAMIKUMO          , SI_YAMIKUMO         , SCB_NONE );
+	set_sc( KO_YAMIKUMO        , SC_YAMIKUMO          , SI_BLANK            , SCB_NONE );
 	set_sc( KO_JYUMONJIKIRI    , SC_JYUMONJIKIRI      , SI_JYUMONJIKIRI     , SCB_NONE );
 	set_sc( KO_JYUSATSU        , SC_JYUSATSU          , SI_ZENKAI           , SCB_MAXHP );
 	set_sc( KO_IZAYOI          , SC_IZAYOI            , SI_IZAYOI           , SCB_MATK );

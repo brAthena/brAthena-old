@@ -502,7 +502,7 @@ int skillnotok (int skillid, struct map_session_data *sd)
 	if(map[m].flag.restricted && map[m].zone && skill_get_nocast (skillid) & (8*map[m].zone))
 		return 1;
 		
-	if( sd->sc.data[SC_KYOMU] && ( rand()%100 < sd->sc.data[SC_KYOMU]->val2) ){
+	if( sd->sc.data[SC_KYOMU] && ( rnd()%100 < sd->sc.data[SC_KYOMU]->val2) ){
 		clif_skill_fail(sd,skillid,USESKILL_FAIL_LEVEL,0); 
 		return 1;
 	}
