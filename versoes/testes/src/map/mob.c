@@ -4464,16 +4464,8 @@ static bool mob_readdb_itemratio(char* str[], int columns, int current)
 static void mob_load(void)
 {
 	sv_readdb(db_path, DBPATH"mob_item_ratio.txt", ',', 2, 2+MAX_ITEMRATIO_MOBS, -1, &mob_readdb_itemratio); // must be read before mobdb
-	if (db_use_sqldbs)
-	{
-		mob_read_sqldb();
-		mob_read_sqlskilldb();
-	}
-	else
-	{
-		mob_readdb();
-		mob_readskilldb();
-	}
+	mob_read_sqldb();
+	mob_read_sqlskilldb();
 	sv_readdb(db_path, DBPATH"mob_avail.txt", ',', 2, 12, -1, &mob_readdb_mobavail);
 	mob_read_randommonster();
 	mob_readchatdb();

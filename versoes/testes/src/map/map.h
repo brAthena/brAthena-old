@@ -752,8 +752,6 @@ extern char main_chat_nick[16];
 
 #include "../common/sql.h"
 
-extern int db_use_sqldbs;
-
 extern Sql* mmysql_handle;
 extern Sql* logmysql_handle;
 

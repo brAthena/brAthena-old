@@ -1042,11 +1042,7 @@ static int itemdb_read_sqldb(void)
  *------------------------------------*/
 static void itemdb_read(void)
 {
-	if (db_use_sqldbs)
-		itemdb_read_sqldb();
-	else
-		itemdb_readdb();
-
+	itemdb_read_sqldb();
 	itemdb_read_itemgroup();
 	sv_readdb(db_path, DBPATH"item_avail.txt",   ',', 2, 2, -1,             &itemdb_read_itemavail);
 	sv_readdb(db_path, DBPATH"item_noequip.txt", ',', 2, 2, -1,             &itemdb_read_noequip);

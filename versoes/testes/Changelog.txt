@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1175 - 05/06/2012 [Protimus]
+	* Removida configuração de use_sql_db, para selecionar o uso ou não uso de tabelas em SQL.
+	* Algumas tabelas de itens e mobs agoram já são lidas apenas em SQL, removida leitura de txt.
+
 	r1174 - 04/06/2012 [Protimus]
 	* Renomeados banco de dados conforme novo modelo.
 	* Criado banco de dados brathena.sql, onde conterá a fusão de todos os arquivos convertidos de txt para sql.
