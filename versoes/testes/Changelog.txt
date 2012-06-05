@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1177 - 05/06/2012 [Protimus]
+	* Realizada fusão de abra_db.sql e castle_db.sql em brathena.sql.
+	* Adicionada leitura para a tabela: castle_db.
+
 	r1176 - 05/06/2012 [Protimus]
 	* Adicionada função sv_readsqldb para leitura das tabelas em SQL.
 	* Adicionada leitura para a tabela: abra_db.
