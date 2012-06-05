@@ -17566,7 +17566,7 @@ static void skill_readdb(void)
 	skill_init_nounit_layout();
 	sv_readdb(db_path, DBPATH"produce_db.txt"        , ',',   4,  4+2*MAX_PRODUCE_RESOURCE, MAX_SKILL_PRODUCE_DB, skill_parse_row_producedb);
 	sv_readdb(db_path, DBPATH"create_arrow_db.txt"   , ',', 1+2,  1+2*MAX_ARROW_RESOURCE, MAX_SKILL_ARROW_DB, skill_parse_row_createarrowdb);
-	sv_readdb(db_path, DBPATH"abra_db.txt"           , ',',   4,  4, MAX_SKILL_ABRA_DB, skill_parse_row_abradb);
+	sv_readsqldb(abra_db_db, NULL, 4, MAX_SKILL_ABRA_DB, &skill_parse_row_abradb);
 	sv_readdb(db_path, DBPATH"spellbook_db.txt"      , ',',   3,  3, MAX_SKILL_SPELLBOOK_DB, skill_parse_row_spellbookdb);
 	sv_readdb(db_path, DBPATH"magicmushroom_db.txt"  , ',',   1,  1, MAX_SKILL_MAGICMUSHROOM_DB, skill_parse_row_magicmushroomdb);
 	sv_readdb(db_path, DBPATH"reproduce_db.txt", ',',   2,  2, MAX_SKILL_DB, skill_parse_row_reproducedb);

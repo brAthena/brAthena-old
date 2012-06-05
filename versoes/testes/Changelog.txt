@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1176 - 05/06/2012 [Protimus]
+	* Adicionada função sv_readsqldb para leitura das tabelas em SQL.
+	* Adicionada leitura para a tabela: abra_db.
+
 	r1175 - 05/06/2012 [Protimus]
 	* Removida configuração de use_sql_db, para selecionar o uso ou não uso de tabelas em SQL.
 	* Algumas tabelas de itens e mobs agoram já são lidas apenas em SQL, removida leitura de txt.
