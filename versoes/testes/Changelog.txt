@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1184 - 10/06/2012 [Protimus]
+	* Reaizada fusão de item_avail.sql, item_noequip.sql, item_trade.sql, item_delay.sql, item_buyingstore.sql em brathena.sql.
+	* Adicionada leitura para as tabelas: item_avail, item_noequip, item_trade, item_delay e item_buyingstore.
+
 	r1183 - 10/06/2012 [Protimus]
 	* Criadas funções read_elementaldb_sub e read_elemental_skilldb_sub para otimização na leitura dos arquivos de elementais.
 	* Realizada fusão de elemental_db.sql e elemental_skill_db.sql em brathena.sql.
