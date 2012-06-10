@@ -3,16 +3,16 @@
 --         
 
 CREATE TABLE IF NOT EXISTS `create_arrow_db` (
-   `SourceID` mediumt(3) unsigned NOT NULL default '0',
-   `MakeID1` mediumt(3) unsigned NOT NULL default '0',
+   `SourceID` mediumint(3) unsigned NOT NULL default '0',
+   `MakeID1` mediumint(3) unsigned NOT NULL default '0',
    `MakeAmount1` smallint(2) unsigned NOT NULL default '0',
-   `MakeID2` mediumt(3) unsigned,
+   `MakeID2` mediumint(3) unsigned,
    `MakeAmount2` smallint(2) unsigned,
-   `MakeID3` mediumt(3) unsigned,
+   `MakeID3` mediumint(3) unsigned,
    `MakeAmount3` smallint(2) unsigned,
-   `MakeID4` mediumt(3) unsigned,
+   `MakeID4` mediumint(3) unsigned,
    `MakeAmount4` smallint(2) unsigned,
-   `MakeID5` mediumt(3) unsigned,
+   `MakeID5` mediumint(3) unsigned,
    `MakeAmount5` smallint(2) unsigned,
    PRIMARY KEY (`SourceID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
