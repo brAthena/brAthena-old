@@ -9,6 +9,11 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1183 - 10/06/2012 [Protimus]
+	* Criadas funções read_elementaldb_sub e read_elemental_skilldb_sub para otimização na leitura dos arquivos de elementais.
+	* Realizada fusão de elemental_db.sql e elemental_skill_db.sql em brathena.sql.
+	* Adicionada leitura para as tabelas: elemental_db e elemental_skill_db.
+
 	r1182 - 10/06/2012 [insidemybrain!]
 	* Realizada correções em alguns arquivos *.sql, mas ainda necessitam revisão
 	- Erros encontrandos na leitura das tabelas pelo PhpMyAdmin

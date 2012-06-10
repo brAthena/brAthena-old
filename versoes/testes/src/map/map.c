@@ -81,6 +81,8 @@ char mercenary_db_db[32] = "mercenary_db";
 char mercenary_skill_db_db[32] = "mercenary_skill_db";
 char homunculus_db_db[32] = "homunculus_db";
 char homunculus_skill_tree_db[32] = "homunculus_skill_tree_db";
+char elemental_db_db[32] = "elemental_db";
+char elemental_skill_db_db[32] = "elemental_skill_db";
 
 // log database
 char log_db_ip[32] = "127.0.0.1";
