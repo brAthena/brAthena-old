@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1180 - 10/06/2012 [Protimus]
+	* Realizada fusão de mercenary_db.sql e mercenary_skill_db.sql em brathena.sql
+	* Adicionada leitura para as tabelas: mercenary_db e mercenary_skill_db.
+
 	r1179 - 10/06/2012 [Protimus]
 	* Realizada fusão de spellbook_db.sql, magicmushroom_db.sql, improvise_db.sql e reproduce_db.sql em brathena.sql.
 	* Adicionada leitura para as tabelas: spellbook_db, magicmushroom_db, improvise_db e reproduce_db.
