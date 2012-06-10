@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1181 - 10/06/2012 [Protimus]
+	* Realizada fusão de homunculus_db.sql e homun_skill_tree.sql em brathena.sql.
+	* Adicionada leitura para as tabelas: homunculus_db e homunculus_skill_tree.
+
 	r1180 - 10/06/2012 [Protimus]
 	* Realizada fusão de mercenary_db.sql e mercenary_skill_db.sql em brathena.sql
 	* Adicionada leitura para as tabelas: mercenary_db e mercenary_skill_db.

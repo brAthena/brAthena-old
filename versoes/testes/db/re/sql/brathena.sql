@@ -980,3 +980,200 @@ REPLACE INTO `mercenary_skill_db` VALUES (2060,8232,5);			-- 'MER_PROVOKE = Prov
 REPLACE INTO `mercenary_skill_db` VALUES (2060,8202,5);			-- 'MS_MAGNUM = Impacto Explosivo'
 REPLACE INTO `mercenary_skill_db` VALUES (2060,8217,5);			-- 'ML_BRANDISH = Brandir Lança'
 REPLACE INTO `mercenary_skill_db` VALUES (2060,8226,1);			-- 'MER_REGAIN = Recompor'
+
+
+
+--
+-- Estrutura para a tabela `homunculus_db`
+--         
+
+CREATE TABLE IF NOT EXISTS `homunculus_db` (
+	`Class` smallint(2) unsigned NOT NULL default '0',
+	`EvoClass` smallint(2) unsigned NOT NULL default '0',
+	`Name` text NOT NULL default '',
+	`FoodID` mediumint(3) unsigned NOT NULL default '0',
+	`FoodDelay` int(4) unsigned NOT NULL default '0',
+	`BaseSize` tinyint(1) unsigned NOT NULL default '0',
+	`EvoSize` tinyint(1) unsigned NOT NULL default '0',
+	`Race` tinyint(1) unsigned NOT NULL default '0',
+	`Element` tinyint(1) unsigned NOT NULL default '0',
+	`bASPD` smallint(2) unsigned NOT NULL default '0',
+	`bHP` smallint(2) unsigned NOT NULL default '0',
+	`bSP` smallint(2) unsigned NOT NULL default '0',
+	`bSTR` smallint(2) unsigned NOT NULL default '0',
+	`bAGI` smallint(2) unsigned NOT NULL default '0',
+	`bVIT` smallint(2) unsigned NOT NULL default '0',
+	`bINT` smallint(2) unsigned NOT NULL default '0',
+	`bDEX` smallint(2) unsigned NOT NULL default '0',
+	`bLUK` smallint(2) unsigned NOT NULL default '0',
+	`gnHP` smallint(2) unsigned NOT NULL default '0',
+	`gxHP` smallint(2) unsigned NOT NULL default '0',
+	`gnSP` smallint(2) unsigned NOT NULL default '0',
+	`gxSP` smallint(2) unsigned NOT NULL default '0',
+	`gnSTR` smallint(2) unsigned NOT NULL default '0',
+	`gxSTR` smallint(2) unsigned NOT NULL default '0',
+	`gnAGI` smallint(2) unsigned NOT NULL default '0',
+	`gxAGI` smallint(2) unsigned NOT NULL default '0',
+	`gnVIT` smallint(2) unsigned NOT NULL default '0',
+	`gxVIT` smallint(2) unsigned NOT NULL default '0',
+	`gnINT` smallint(2) unsigned NOT NULL default '0',
+	`gxINT` smallint(2) unsigned NOT NULL default '0',
+	`gnDEX` smallint(2) unsigned NOT NULL default '0',
+	`gxDEX` smallint(2) unsigned NOT NULL default '0',
+	`gnLUK` smallint(2) unsigned NOT NULL default '0',
+	`gxLUK` smallint(2) unsigned NOT NULL default '0',
+	`enHP` smallint(2) unsigned NOT NULL default '0',
+	`exHP` smallint(2) unsigned NOT NULL default '0',
+	`enSP` smallint(2) unsigned NOT NULL default '0',
+	`exSP` smallint(2) unsigned NOT NULL default '0',
+	`enSTR` smallint(2) unsigned NOT NULL default '0',
+	`exSTR` smallint(2) unsigned NOT NULL default '0',
+	`enAGI` smallint(2) unsigned NOT NULL default '0',
+	`exAGI` smallint(2) unsigned NOT NULL default '0',
+	`enVIT` smallint(2) unsigned NOT NULL default '0',
+	`exVIT` smallint(2) unsigned NOT NULL default '0',
+	`enINT` smallint(2) unsigned NOT NULL default '0',
+	`exINT` smallint(2) unsigned NOT NULL default '0',
+	`enDEX` smallint(2) unsigned NOT NULL default '0',
+	`exDEX` smallint(2) unsigned NOT NULL default '0',
+	`enLUK` smallint(2) unsigned NOT NULL default '0',
+	`exLUK` smallint(2) unsigned NOT NULL default '0',
+	PRIMARY KEY (`Class`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+/*
+ Homuncuus.
+ Descrição: Responsável pelo banco de dados de homunculus.
+ Cabeçalho: REPLACE INTO `homunculus_db` VALUES ('Classe','Classe Evoluído','Nome','ID da Comida','Delay de Fome','Base Evoluído','Tamanho Evoluído',
+ 'Raça','Elemento','bASPD','bHP','bSP','bFOR','bAGI','bVIT','bINT','bDES','bSOR','gnHP','gxHP','gnSP','gxSP','gnFOR','gnFOR','gnAGI','gxAGI','gnVIT','gxVIT',
+ 'gnINT','gxINT','gnDES','gxDES','gnSOR','gxSOR','enHP','exHP','enSP','exSP','enFOR','exFOR','enAGI','exAGI','enVIT','exVIT','enINT','exINT','enDES','exDES',
+ 'enSOR','exSOR');
+*/ 
+
+REPLACE INTO `homunculus_db` VALUES (6001,6009,'Lif',537,60000,0,1,7,0,700,150,40,17,20,15,35,24,12,60,100,4,9,5,19,5,19,5,19,4,20,6,20,6,20,1,10,10,20,1,5,1,4,1,5,4,10,1,10,1,3);
+REPLACE INTO `homunculus_db` VALUES (6002,6010,'Amistr',912,60000,0,1,2,0,700,320,10,20,17,35,11,24,12,80,130,1,4,8,20,4,20,4,20,1,10,3,19,3,19,10,20,1,10,1,10,1,5,4,10,1,3,1,4,1,5);
+REPLACE INTO `homunculus_db` VALUES (6003,6011,'Filir',910,60000,0,1,2,0,700,90,25,29,35,9,8,30,9,45,75,3,6,4,20,8,20,1,10,3,19,4,20,3,19,5,15,5,15,4,10,1,10,1,3,1,4,1,5,1,5);
+REPLACE INTO `homunculus_db` VALUES (6004,6012,'Vanilmirth',911,60000,0,1,0,0,700,80,11,11,11,11,11,11,11,30,150,0,7,1,30,1,30,1,30,1,30,1,30,1,30,1,30,1,30,1,10,1,10,1,10,1,10,1,10,1,10);
+REPLACE INTO `homunculus_db` VALUES (6005,6013,'Lif',537,60000,0,1,7,0,700,150,40,17,20,15,35,24,12,60,100,4,9,5,19,5,19,5,19,4,20,6,20,6,20,1,10,10,20,1,5,1,4,1,5,4,10,1,10,1,3);
+REPLACE INTO `homunculus_db` VALUES (6006,6014,'Amistr',912,60000,0,1,2,0,700,320,10,20,17,35,11,24,12,80,130,1,4,8,20,4,20,4,20,1,10,3,19,3,19,10,20,1,10,1,10,1,5,4,10,1,3,1,4,1,5);
+REPLACE INTO `homunculus_db` VALUES (6007,6015,'Filir',910,60000,0,1,2,0,700,90,25,29,35,9,8,30,9,45,75,3,6,4,20,8,20,1,10,3,19,4,20,3,19,5,15,5,15,4,10,1,10,1,3,1,4,1,5,1,5);
+REPLACE INTO `homunculus_db` VALUES (6008,6016,'Vanilmirth',911,60000,0,1,0,0,700,80,11,11,11,11,11,11,11,30,150,0,7,1,30,1,30,1,30,1,30,1,30,1,30,1,30,1,30,1,10,1,10,1,10,1,10,1,10,1,10);
+REPLACE INTO `homunculus_db` VALUES (6048,6048,'Eira',6098,60000,1,1,7,0,700,150,40,17,20,15,35,24,12,60,100,4,9,5,19,5,19,5,19,4,20,6,20,6,20,1,10,10,20,1,5,1,4,1,5,4,10,1,10,1,3);
+REPLACE INTO `homunculus_db` VALUES (6049,6049,'Bayeri',6112,60000,1,1,2,0,700,320,10,20,17,35,11,24,12,80,130,1,4,8,20,4,20,4,20,1,10,3,19,3,19,10,20,1,10,1,10,1,5,4,10,1,3,1,4,1,5);
+REPLACE INTO `homunculus_db` VALUES (6050,6050,'Sera',6108,60000,1,1,4,0,700,90,25,29,35,9,8,30,9,45,75,3,6,4,20,8,20,1,10,3,19,4,20,3,19,5,15,5,15,4,10,1,10,1,3,1,4,1,5,1,5);
+REPLACE INTO `homunculus_db` VALUES (6051,6051,'Dieter',6104,60000,1,1,0,0,700,80,11,11,11,11,11,11,11,30,150,0,7,1,30,1,30,1,30,1,30,1,30,1,30,1,30,1,30,1,10,1,10,1,10,1,10,1,10,1,10);
+REPLACE INTO `homunculus_db` VALUES (6052,6052,'Elanor',6094,60000,1,1,2,0,700,320,10,20,17,35,11,24,12,80,130,1,4,8,20,4,20,4,20,1,10,3,19,3,19,10,20,1,10,1,10,1,5,4,10,1,3,1,4,1,5);
+
+
+
+--
+-- Estrutura para a tabela `homunculus_skill_tree`
+--         
+
+CREATE TABLE IF NOT EXISTS `homunculus_skill_tree` (
+	`Class` smallint(2) unsigned NOT NULL default '0',
+	`SkillID` smallint(2) unsigned NOT NULL default '0',
+	`MaxLv` tinyint(1) unsigned NOT NULL default '0',
+	`PrereqSkillID1` smallint(2) unsigned NOT NULL default '0',
+	`PrereqSkillLv1` smallint(2) unsigned NOT NULL default '0',
+	`PrereqSkillID2` smallint(2) unsigned NOT NULL default '0',
+	`PrereqSkillLv2` smallint(2) unsigned NOT NULL default '0',
+	`PrereqSkillID3` smallint(2) unsigned NOT NULL default '0',
+	`PrereqSkillLv3` smallint(2) unsigned NOT NULL default '0',
+	`PrereqSkillID4` smallint(2) unsigned NOT NULL default '0',
+	`PrereqSkillLv4` smallint(2) unsigned NOT NULL default '0',
+	`PrereqSkillID5` smallint(2) unsigned NOT NULL default '0',
+	`PrereqSkillLv5` smallint(2) unsigned NOT NULL default '0',
+	PRIMARY KEY (`Class`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+/*
+ Habilidades de Homunculus.
+ Descrição: Responsável pelos requesitos de habilidades dos homunculus.
+ Cabeçalho: REPLACE INTO `homunculus_skill_tree` VALUES ('ID da Habilidade','Nível Máximo','Pré-Requesito da Habilidade de ID-1',Level de ID-1,
+ 'Pré-Requesito da Habilidade de ID-2','Level de ID-2','Pré-Requesito da Habilidade de ID-3','Level de ID-3','Pré-Requesito da Habilidade de ID-4',
+ 'Level de ID-4','Pré-Requesito da Habilidade de ID-5','Level de ID-5');
+*/ 
+
+REPLACE INTO `homunculus_skill_tree` VALUES (6001,8001,5,0,0,0,0,0,0,0,0,0,0);		-- 'HLIF_HEAL = Cura pelas Mãos'
+REPLACE INTO `homunculus_skill_tree` VALUES (6001,8002,5,8001,3,0,0,0,0,0,0,0,0); 	-- 'HLIF_AVOID = Bater em Retirada'
+REPLACE INTO `homunculus_skill_tree` VALUES (6001,8003,5,8001,5,0,0,0,0,0,0,0,0); 	-- 'HLIF_BRAIN = Cirurgia Cerebral'
+REPLACE INTO `homunculus_skill_tree` VALUES (6002,8005,5,0,0,0,0,0,0,0,0,0,0);  		-- 'HAMI_CASTLE = Fortaleza'
+REPLACE INTO `homunculus_skill_tree` VALUES (6002,8006,5,8005,5,0,0,0,0,0,0,0,0);  	-- 'HAMI_DEFENCE = Trocar de Lugar'
+REPLACE INTO `homunculus_skill_tree` VALUES (6002,8007,5,8006,3,0,0,0,0,0,0,0,0); 	-- 'HAMI_SKIN = Pele de Adamantiun'
+REPLACE INTO `homunculus_skill_tree` VALUES (6003,8009,5,0,0,0,0,0,0,0,0,0,0); 		-- 'HFLI_MOON = Pica-Pau'
+REPLACE INTO `homunculus_skill_tree` VALUES (6003,8010,5,8009,3,0,0,0,0,0,0,0,0); 	-- 'HFLI_FLEET = Vôo Acelerado'
+REPLACE INTO `homunculus_skill_tree` VALUES (6003,8011,5,8010,3,0,0,0,0,0,0,0,0); 	-- 'HFLI_SPEED = Frenético'
+REPLACE INTO `homunculus_skill_tree` VALUES (6004,8013,5,0,0,0,0,0,0,0,0,0,0); 		-- 'HVAN_CAPRICE = Capricho'
+REPLACE INTO `homunculus_skill_tree` VALUES (6004,8014,5,8013,3,0,0,0,0,0,0,0,0); 	-- 'HVAN_CHAOTIC = Benção Caótica'
+REPLACE INTO `homunculus_skill_tree` VALUES (6004,8015,5,8013,5,0,0,0,0,0,0,0,0); 	-- 'HVAN_INSTRUCT = Mudança de Planos'
+REPLACE INTO `homunculus_skill_tree` VALUES (6005,8001,5,0,0,0,0,0,0,0,0,0,0); 		-- 'HLIF_HEAL = Cura pelas Mãos'
+REPLACE INTO `homunculus_skill_tree` VALUES (6005,8002,5,8001,3,0,0,0,0,0,0,0,0); 	-- 'HLIF_AVOID = Bater em Retirada'
+REPLACE INTO `homunculus_skill_tree` VALUES (6005,8003,5,8001,5,0,0,0,0,0,0,0,0 );	-- 'HLIF_BRAIN = Cirurgia Cerebral'
+REPLACE INTO `homunculus_skill_tree` VALUES (6006,8005,5,0,0,0,0,0,0,0,0,0,0); 		-- 'HAMI_CASTLE = Fortaleza'
+REPLACE INTO `homunculus_skill_tree` VALUES (6006,8006,5,8005,5,0,0,0,0,0,0,0,0); 	-- 'HAMI_DEFENCE = Trocar de Lugar'
+REPLACE INTO `homunculus_skill_tree` VALUES (6006,8007,5,8006,3,0,0,0,0,0,0,0,0); 	-- 'HAMI_SKIN = Pele de Adamantiun'
+REPLACE INTO `homunculus_skill_tree` VALUES (6007,8009,5,0,0,0,0,0,0,0,0,0,0);		-- 'HFLI_MOON = Pica-Pau'
+REPLACE INTO `homunculus_skill_tree` VALUES (6007,8010,5,8009,3,0,0,0,0,0,0,0,0); 	-- 'HFLI_FLEET = Vôo Acelerado'
+REPLACE INTO `homunculus_skill_tree` VALUES (6007,8011,5,8010,3,0,0,0,0,0,0,0,0 );	-- 'HFLI_SPEED = Frenético'
+REPLACE INTO `homunculus_skill_tree` VALUES (6008,8013,5,0,0,0,0,0,0,0,0,0,0); 		-- 'HVAN_CAPRICE = Capricho'
+REPLACE INTO `homunculus_skill_tree` VALUES (6008,8014,5,8013,3,0,0,0,0,0,0,0,0); 	-- 'HVAN_CHAOTIC = Benção Caótica'
+REPLACE INTO `homunculus_skill_tree` VALUES (6008,8015,5,8013,5,0,0,0,0,0,0,0,0); 	-- 'HVAN_INSTRUCT = Mudança de Planos'
+REPLACE INTO `homunculus_skill_tree` VALUES (6009,8001,5,0,0,0,0,0,0,0,0,0,0);		-- 'HLIF_HEAL = Cura pelas Mãos'
+REPLACE INTO `homunculus_skill_tree` VALUES (6009,8002,5,8001,3,0,0,0,0,0,0,0,0); 	-- 'HLIF_AVOID = Bater em Retirada'
+REPLACE INTO `homunculus_skill_tree` VALUES (6009,8003,5,8001,5,0,0,0,0,0,0,0,0); 	-- 'HLIF_BRAIN = Cirurgia Cerebral'
+REPLACE INTO `homunculus_skill_tree` VALUES (6009,8004,3,0,0,0,0,0,0,0,0,0,0); 		-- 'HLIF_CHANGE = Esforço Mental'
+REPLACE INTO `homunculus_skill_tree` VALUES (6010,8005,5,0,0,0,0,0,0,0,0,0,0); 		-- 'HAMI_CASTLE = Trocar de Lugar'
+REPLACE INTO `homunculus_skill_tree` VALUES (6010,8006,5,8005,5,0,0,0,0,0,0,0,0); 	-- 'HAMI_DEFENCE = Fortaleza'
+REPLACE INTO `homunculus_skill_tree` VALUES (6010,8007,5,8006,3,0,0,0,0,0,0,0,0); 	-- 'HAMI_SKIN = Pele de Adamantiun'
+REPLACE INTO `homunculus_skill_tree` VALUES (6010,8008,3,0,0,0,0,0,0,0,0,0,0); 		-- 'HAMI_BLOODLUST = Desejo Sangrento'
+REPLACE INTO `homunculus_skill_tree` VALUES (6011,8009,5,0,0,0,0,0,0,0,0,0,0); 		-- 'HFLI_MOON = Pica-Pau'
+REPLACE INTO `homunculus_skill_tree` VALUES (6011,8010,5,8009,3,0,0,0,0,0,0,0,0);	-- 'HFLI_FLEET = Vôo Acelerado'
+REPLACE INTO `homunculus_skill_tree` VALUES (6011,8011,5,8010,3,0,0,0,0,0,0,0,0); 	-- 'HFLI_SPEED = Frenético'
+REPLACE INTO `homunculus_skill_tree` VALUES (6011,8012,3,0,0,0,0,0,0,0,0,0,0); 		-- 'HFLI_SBR44 = S.B.R.44'
+REPLACE INTO `homunculus_skill_tree` VALUES (6012,8013,5,0,0,0,0,0,0,0,0,0,0); 		-- 'HVAN_CAPRICE = Capricho'
+REPLACE INTO `homunculus_skill_tree` VALUES (6012,8014,5,8013,3,0,0,0,0,0,0,0,0); 	-- 'HVAN_CHAOTIC = Benção Caótica'
+REPLACE INTO `homunculus_skill_tree` VALUES (6012,8015,5,8013,5,0,0,0,0,0,0,0,0); 	-- 'HVAN_INSTRUCT = Mudança de Planos'
+REPLACE INTO `homunculus_skill_tree` VALUES (6012,8016,3,0,0,0,0,0,0,0,0,0,0); 		-- 'HVAN_EXPLOSION = Auto-Destruição'
+REPLACE INTO `homunculus_skill_tree` VALUES (6013,8001,5,0,0,0,0,0,0,0,0,0,0); 		-- 'HLIF_HEAL = Cura pelas Mãos'
+REPLACE INTO `homunculus_skill_tree` VALUES (6013,8002,5,8001,3,0,0,0,0,0,0,0,0); 	-- 'HLIF_AVOID = Bater em Retirada'
+REPLACE INTO `homunculus_skill_tree` VALUES (6013,8003,5,8001,5,0,0,0,0,0,0,0,0); 	-- 'HLIF_BRAIN = Cirurgia Cerebral'
+REPLACE INTO `homunculus_skill_tree` VALUES (6013,8004,3,0,0,0,0,0,0,0,0,0,0); 		-- 'HLIF_CHANGE = Esforço Mental'
+REPLACE INTO `homunculus_skill_tree` VALUES (6014,8005,5,0,0,0,0,0,0,0,0,0,0);		-- 'HAMI_CASTLE = Fortaleza'
+REPLACE INTO `homunculus_skill_tree` VALUES (6014,8006,5,8005,5,0,0,0,0,0,0,0,0); 	-- 'HAMI_DEFENCE = Trocar de Lugar'
+REPLACE INTO `homunculus_skill_tree` VALUES (6014,8007,5,8006,3,0,0,0,0,0,0,0,0); 	-- 'HAMI_SKIN = Pele de Adamantiun'
+REPLACE INTO `homunculus_skill_tree` VALUES (6014,8008,3,0,0,0,0,0,0,0,0,0,0); 		-- 'HAMI_BLOODLUST = Desejo Sangrento'
+REPLACE INTO `homunculus_skill_tree` VALUES (6015,8009,5,0,0,0,0,0,0,0,0,0,0); 		-- 'HFLI_MOON = Pica-Pau'
+REPLACE INTO `homunculus_skill_tree` VALUES (6015,8010,5,8009,3,0,0,0,0,0,0,0,0); 	-- 'HFLI_FLEET = Vôo Acelerado'
+REPLACE INTO `homunculus_skill_tree` VALUES (6015,8011,5,8010,3,0,0,0,0,0,0,0,0);	-- 'HFLI_SPEED = Frenético'
+REPLACE INTO `homunculus_skill_tree` VALUES (6015,8012,3,0,0,0,0,0,0,0,0,0,0); 		-- 'HFLI_SBR44 = S.B.R.44'
+REPLACE INTO `homunculus_skill_tree` VALUES (6016,8013,5,0,0,0,0,0,0,0,0,0,0); 		-- 'HVAN_CAPRICE = Capricho'
+REPLACE INTO `homunculus_skill_tree` VALUES (6016,8014,5,8013,3,0,0,0,0,0,0,0,0); 	-- 'HVAN_CHAOTIC = Benção Caótica'
+REPLACE INTO `homunculus_skill_tree` VALUES (6016,8015,5,8013,5,0,0,0,0,0,0,0,0); 	-- 'HVAN_INSTRUCT = Mudança de Planos'
+REPLACE INTO `homunculus_skill_tree` VALUES (6016,8016,3,0,0,0,0,0,0,0,0,0,0); 		-- 'HVAN_EXPLOSION = Auto-Destruição'
+REPLACE INTO `homunculus_skill_tree` VALUES (6048,8022,5,0,0,0,0,0,0,0,0,0,0); 		-- 'MH_LIGHT_OF_REGENE'
+REPLACE INTO `homunculus_skill_tree` VALUES (6048,8023,5,0,0,0,0,0,0,0,0,0,0); 		-- 'MH_OVERED_BOOST'
+REPLACE INTO `homunculus_skill_tree` VALUES (6048,8024,5,0,0,0,0,0,0,0,0,0,0); 		-- 'MH_ERASER_CUTTER'
+REPLACE INTO `homunculus_skill_tree` VALUES (6048,8025,5,0,0,0,0,0,0,0,0,0,0); 		-- 'MH_XENO_SLASHER'
+REPLACE INTO `homunculus_skill_tree` VALUES (6048,8026,5,0,0,0,0,0,0,0,0,0,0); 		-- 'MH_SILENT_BREEZE'
+REPLACE INTO `homunculus_skill_tree` VALUES (6049,8031,5,0,0,0,0,0,0,0,0,0,0); 		-- 'MH_STAHL_HORN'
+REPLACE INTO `homunculus_skill_tree` VALUES (6049,8032,5,0,0,0,0,0,0,0,0,0,0); 		-- 'MH_GOLDENE_FERSE'
+REPLACE INTO `homunculus_skill_tree` VALUES (6049,8033,5,0,0,0,0,0,0,0,0,0,0); 		-- 'MH_STEINWAND'
+REPLACE INTO `homunculus_skill_tree` VALUES (6050,8018,5,0,0,0,0,0,0,0,0,0,0); 		-- 'MH_SUMMON_LEGION'
+REPLACE INTO `homunculus_skill_tree` VALUES (6050,8019,5,0,0,0,0,0,0,0,0,0,0); 		-- 'MH_NEEDLE_OF_PARALYZE'
+REPLACE INTO `homunculus_skill_tree` VALUES (6050,8020,5,0,0,0,0,0,0,0,0,0,0); 		-- 'MH_POISON_MIST'
+REPLACE INTO `homunculus_skill_tree` VALUES (6050,8021,5,0,0,0,0,0,0,0,0,0,0); 		-- 'MH_PAIN_KILLER'
+REPLACE INTO `homunculus_skill_tree` VALUES (6051,8039,5,0,0,0,0,0,0,0,0,0,0); 		-- 'MH_MAGMA_FLOW'
+REPLACE INTO `homunculus_skill_tree` VALUES (6051,8040,5,0,0,0,0,0,0,0,0,0,0);		-- 'MH_GRANITIC_ARMOR'
+REPLACE INTO `homunculus_skill_tree` VALUES (6051,8041,5,0,0,0,0,0,0,0,0,0,0); 		-- 'MH_LAVA_SLIDE'
+REPLACE INTO `homunculus_skill_tree` VALUES (6051,8042,5,0,0,0,0,0,0,0,0,0,0); 		-- 'MH_PYROCLASTIC'
+REPLACE INTO `homunculus_skill_tree` VALUES (6051,8043,5,0,0,0,0,0,0,0,0,0,0); 		-- 'MH_VOLCANIC_ASH'
+REPLACE INTO `homunculus_skill_tree` VALUES (6052,8027,1,0,0,0,0,0,0,0,0,0,0); 		-- 'MH_STYLE_CHANGE'
+REPLACE INTO `homunculus_skill_tree` VALUES (6052,8028,5,0,0,0,0,0,0,0,0,0,0); 		-- 'MH_SONIC_CRAW'
+REPLACE INTO `homunculus_skill_tree` VALUES (6052,8029,5,0,0,0,0,0,0,0,0,0,0); 		-- 'MH_SILVERVEIN_RUSH'
+REPLACE INTO `homunculus_skill_tree` VALUES (6052,8030,5,0,0,0,0,0,0,0,0,0,0); 		-- 'MH_MIDNIGHT_FRENZY'
+REPLACE INTO `homunculus_skill_tree` VALUES (6052,8034,5,0,0,0,0,0,0,0,0,0,0); 		-- 'MH_HEILIGE_STANGE'
+REPLACE INTO `homunculus_skill_tree` VALUES (6052,8035,5,0,0,0,0,0,0,0,0,0,0); 		-- 'MH_ANGRIFFS_MODUS'
+REPLACE INTO `homunculus_skill_tree` VALUES (6052,8036,5,0,0,0,0,0,0,0,0,0,0); 		-- 'MH_TINDER_BREAKER'
+REPLACE INTO `homunculus_skill_tree` VALUES (6052,8037,5,0,0,0,0,0,0,0,0,0,0); 		-- 'MH_CBC'
+REPLACE INTO `homunculus_skill_tree` VALUES (6052,8038,5,0,0,0,0,0,0,0,0,0,0); 		-- 'MH_EQC'
