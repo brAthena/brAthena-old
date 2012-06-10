@@ -73,6 +73,10 @@ char mob_skill_db2_db[32] = "mob_skill_db2";
 char abra_db_db[32] = "abra_db";
 char castle_db_db[32] = "castle_db";
 char guild_skill_tree_db[32] = "guild_skill_tree_db";
+char spellbook_db_db[32] = "spellbook_db";
+char magicmushroom_db_db[32] = "magicmushroom_db";
+char reproduce_db_db[32] = "reproduce_db";
+char improvise_db_db[32] = "improvise_db";
 
 // log database
 char log_db_ip[32] = "127.0.0.1";

@@ -9,8 +9,12 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1179 - 10/06/2012 [Protimus]
+	* Realizada fusão de spellbook_db.sql, magicmushroom_db.sql, improvise_db.sql e reproduce_db.sql em brathena.sql.
+	* Adicionada leitura para as tabelas: spellbook_db, magicmushroom_db, improvise_db e reproduce_db.
+
 	r1178 - 10/06/2012 [Protimus]
-	* Realizada fusão de guild_skill_tree.sql para brathena.sql.
+	* Realizada fusão de guild_skill_tree.sql em brathena.sql.
 	* Adicionada leitura para a tabela: guild_skill_tree.
 	* Algumas correções em create_arrow_db.sql.
 
