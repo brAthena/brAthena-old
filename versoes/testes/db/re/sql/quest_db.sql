@@ -589,7 +589,7 @@ REPLACE INTO quest_db VALUES (7154,0,1152,20,0,0,0,0,'The training course conque
 REPLACE INTO quest_db VALUES (7155,0,0,0,0,0,0,0,'The training course conquer the orc dungeon - complete a quest');
 REPLACE INTO quest_db VALUES (7156,0,0,0,0,0,0,0,'The training course conquer an undersea city - start');
 REPLACE INTO quest_db VALUES (7157,0,1264,15,0,0,0,0,'The training course conquer an undersea city - A real battle 1');
-REPLACE INTO quest_db VALUES (7158,0,1065,10,0,0,0,0,0,'The training course conquer an undersea city - A real battle 2');
+REPLACE INTO quest_db VALUES (7158,0,1065,10,0,0,0,0,'The training course conquer an undersea city - A real battle 2');
 REPLACE INTO quest_db VALUES (7159,0,0,0,0,0,0,0,'The training course conquer an undersea city - Complete a quest');
 REPLACE INTO quest_db VALUES (7160,0,0,0,0,0,0,0,'Mysterious Cryptogram');
 REPLACE INTO quest_db VALUES (7161,0,0,0,0,0,0,0,'Mysterious Cryptogram - 2nd');

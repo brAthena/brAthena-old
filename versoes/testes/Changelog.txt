@@ -9,6 +9,10 @@
 //	Acesse o link: http://trac.brathena.org/timeline
 // ==============================================================================
 
+	r1182 - 10/06/2012 [insidemybrain!]
+	* Realizada correções em alguns arquivos *.sql, mas ainda necessitam revisão
+	- Erros encontrandos na leitura das tabelas pelo PhpMyAdmin
+
 	r1181 - 10/06/2012 [Protimus]
 	* Realizada fusão de homunculus_db.sql e homun_skill_tree.sql em brathena.sql.
 	* Adicionada leitura para as tabelas: homunculus_db e homunculus_skill_tree.

@@ -4,8 +4,8 @@
 
 CREATE TABLE IF NOT EXISTS `refine_db` (
   `Types` tinyint(1) unsigned NOT NULL default '0',
-  `StartsPerLvl` smallint(2) unsigned NOT NULL default '0',
-  `StartBonusPerLvl` tinyint(1) unsigned NOT NULL default '0',
+  `StatsPerLvl` smallint(2) unsigned NOT NULL default '0',
+  `StatBonusPerLvl` tinyint(1) unsigned NOT NULL default '0',
   `BonusPerLvl` smallint(2) unsigned NOT NULL default '0',
   `RefineChance1` smallint(2) unsigned NOT NULL default '0',
   `RefineChance2` smallint(2) unsigned NOT NULL default '0',
@@ -17,7 +17,7 @@ CREATE TABLE IF NOT EXISTS `refine_db` (
   `RefineChance8` smallint(2) unsigned NOT NULL default '0',
   `RefineChance9` smallint(2) unsigned NOT NULL default '0',
   `RefineChance10` smallint(2) unsigned NOT NULL default '0',
-  PRIMARY KEY (`RefineBonus`)	
+  PRIMARY KEY (`StatBonusPerLvl`)	
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 /*

@@ -28,8 +28,8 @@ REPLACE INTO `mob_poring` VALUES (1388,'ArchAngeling',200000);
 REPLACE INTO `mob_poring` VALUES (1520,'Bolinho de Massa',800000);
 REPLACE INTO `mob_poring` VALUES (1582,'Deviling',200000);
 REPLACE INTO `mob_poring` VALUES (1613,'Metaling',1000000);
---'1754,Skeggiold,100000'
---'1755,Skeggiold,100000'
+-- '1754,Skeggiold,100000'
+-- '1755,Skeggiold,100000'
 REPLACE INTO `mob_poring` VALUES (1784,'Stapo',800000);
 REPLACE INTO `mob_poring` VALUES (1836,'Magmaring',800000);
 REPLACE INTO `mob_poring` VALUES (1894,'Pouring',800000);

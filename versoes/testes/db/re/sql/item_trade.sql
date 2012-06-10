@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS `item_trade` (
   `ItemID` smallint(2) unsigned NOT NULL default '0',
   `TradeMask` tinyint(1) unsigned NOT NULL default '0',
   `GMLvl` tinyint(1) unsigned NOT NULL default '0',
-   PRIMARY KEY (`GroupID`)
+   PRIMARY KEY (`ItemID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 /*

@@ -4,7 +4,7 @@
 
 CREATE TABLE IF NOT EXISTS `item_bluebox` (
   `GroupID` tinyint(1) NOT NULL default '0',
-  `ItemID` mediumt(3) unsigned NOT NULL default '0',
+  `ItemID` mediumint(3) unsigned NOT NULL default '0',
   `Rate` smallint(2) unsigned NOT NULL default '0',
    PRIMARY KEY (`GroupID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;

@@ -5,7 +5,7 @@
 CREATE TABLE IF NOT EXISTS `item_avail` (
    `ItemID` mediumint(3) unsigned NOT NULL default '0',
    `SpriteID` smallint(2) unsigned NOT NULL default '0',
-   PRIMARY KEY (`SourceID`)
+   PRIMARY KEY (`ItemID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 /*
@@ -18,12 +18,12 @@ CREATE TABLE IF NOT EXISTS `item_avail` (
 REPLACE INTO `item_avail` VALUES (2240,2241);
 
 -- 'Quest - Caça ao Tesouro de Geffenia'
---REPLACE INTO `item_avail` VALUES (7950,7021);
---REPLACE INTO `item_avail` VALUES (7951,7042);
---REPLACE INTO `item_avail` VALUES (1998,1250);
---REPLACE INTO `item_avail` VALUES (1999,1472);
+-- REPLACE INTO `item_avail` VALUES (7950,7021);
+-- REPLACE INTO `item_avail` VALUES (7951,7042);
+-- REPLACE INTO `item_avail` VALUES (1998,1250);
+-- REPLACE INTO `item_avail` VALUES (1999,1472);
 
 -- 'Quest - St. Patrics (2008)'
---REPLACE INTO `item_avail` VALUES (12715,7721);
---REPLACE INTO `item_avail` VALUES (7915,673);
---REPLACE INTO `item_avail` VALUES (7916,675);
+-- REPLACE INTO `item_avail` VALUES (12715,7721);
+-- REPLACE INTO `item_avail` VALUES (7915,673);
+-- REPLACE INTO `item_avail` VALUES (7916,675);
