@@ -9,59 +9,7 @@
 // Dica2: Consulte o Histórico (Linha do Tempo) acessando o endereço: http://trac.brathena.org/timeline
 // ============================================================================================================================================
 
-	r0881 - 14/10/2011 [Protimus]
-	-> Renovação
-	* Adicionados xmls necessários para leitura de falas dos bichinhos de estimação e entrada no servidor.
-	- É necessário atualizar as falas de monstros no emulador.
-	OBS: Término da Clean Data - Início dos arquivos LUA, necessário apenas revisões.
 
-	r0880 - 14/10/2011 [Protimus]
-	-> Renovação
-	* Adicionados txts para leitura de habilidades.
-	- Atualizado conforme kRO 2011-10-x.
-	- Necessária tradução de algumas habilidades.
-	* Adicionados txts para leitura de itens.
-	- Atualizado conforme bRO  2011-10-x.
-	- Necessária revisão e adição dos itens do kRO.
-
-	r0875 - 12/10/2011 [Protimus]
-	-> Renovação
-	* Adicionado novo msgstringtable.txt & tipofday.txt
-	- Contendo mensagens necessárias de informações do jogo.
-
-	r0873 - 11/10/2011 [Protimus]
-	-> Renovação
-	* Adicionados txts para leitura de nomes de mapas e suas texturas.
-	- Necessária revisão do arquivo mapnametable.txt conforme kRO: Tradução dos novos mapas de Bifrost, El Dicastes e Testes das 3rd.
-	* Adicionados txts referente a localização de músicas que rodam à partir da pasta BGM.
-	* Adicionados txts que fazem a leitura de diferentes outras funcionalidades, como lista de classes, etc...
-	* Adicionado txt com descrição de quests por ID.
-	- Necessária revisão do arquivo questid2display.txt conforme kRO: Pode ser que tenha faltado algum ID e muitos precisam ser traduzidos.
-	* Adicionado txt de manner, que faz o bloqueio do uso de certas palavras no jogo.
-
-	r0870 - 10/10/2011 [Protimus]
-	-> Renovação
-	* Adicionados txts para recibo de informações do nome de cartas.
-	- Necessária tradução dos  novos prefixos para itens equipados com determinada carta. (4456:4479)
-	* Adicionado txt para leitura do nome de livros.
-	* Adicionados txts para leitura de mensagens da habilidade BA_FROSTJOKER (Piada Infame).
-	* Adicionados txts que fazem leituras para gráfico, mapas e efeitos como FOG (Neblina).
-	* Adicionado txt que faz leitura dos itens do sistema de buyingstore.
-
-	r0869 - 10/10/2011 [Protimus]
-	-> Renovação
-	* Adicionados txts de informações de livros de váriados tipos.
-	- Atualizada conforme kRO 2011-10-x.
-
-	r0868 - 10/10/2011 [Protimus]
-	-> Renovação 
-	* Adicionada pasta de texturas.
-	- Atualizada conforme kRO 2011-10-x.
-	- Algumas imagens estão com nome em inglês pelo fato de ainda não existirem em português. 
-	  É preferível uma linguagem global neste caso, porém não se restringe à uma possível tradução dos botões futuramente.
-	- Necessário alterar o scr_logo, background e loadings para originais do projeto.
-	- Precisa de uma segunda revisão para arquivos repetidos ou que possam ser ignorados, sem serventia para tradução e funcionalidade.
-
-	r0863 - 01/10/2011 [Protimus]
-	* Adicionado LEIA-ME.txt contendo as informações do projeto.
-	* Criada estrutura de ramos para o projeto.
+	r1185 - 11/06/2012 [Filippe França]
+	* Projeto reiniciado.
+	* Adicionada parcialmente pasta admin.
