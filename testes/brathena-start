@@ -1,0 +1,61 @@
+#!/bin/sh
+# Script de inicialização feito por Rowla
+# e modificado por Protimus e Shazeya.
+
+PATH=./:$PATH
+
+L_SRV=login-server_sql
+C_SRV=char-server_sql
+M_SRV=map-server_sql
+
+print_start() {
+#    more << EOF
+echo "brAthena Iniciando..."
+echo "            brAthena (c) 2009 ~ 2012"
+echo "              modificado por Protimus"
+echo ""
+#echo "Informações de Debug (Depuração) aparecerão,"
+#echo "visto que essa é uma versão de testes."
+#echo ""
+echo "checando..."
+#EOF
+}
+
+check_files() {
+
+    for i in ${L_SRV} ${C_SRV} ${M_SRV}
+    do
+        if [ ! -f ./$i ]; then
+            echo "$i Não existe ou não pode ser executado."
+            echo "Desligado! Verifique seu compilador."
+            exit 1;
+        fi
+    done
+
+#    more << EOF
+echo "Checagem completa."
+#EOF
+}
+    
+
+case $1 in
+    'start')
+        print_start
+        check_files
+		
+		exec ./${L_SRV}& 
+		exec ./${C_SRV}& 
+		exec ./${M_SRV}& 
+        echo "O brAthena foi Iniciado!"
+;;
+    'stop')
+        ps ax | grep -E "${L_SRV}|${C_SRV}|${M_SRV}" | awk '{print $1}' | xargs kill
+;;
+	'restart')
+        $0 stop
+        $0 start
+;;
+    *)
+        echo "Modo de usar: brathena-start { start | stop | restart }"
+;;
+esac
