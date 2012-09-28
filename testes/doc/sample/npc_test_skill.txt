@@ -1,0 +1,24 @@
+// Giving skills to characters via an NPC
+
+// skill <skill id>,<level>{,<flag>};
+//	flag=0 Grants the skill permanently
+//	flag=1 Grants the skill temporarily
+//	flag=2 Level bonus, stackable
+// If flag is undefined, it defaults to 1
+// View db/(pre-)re/skill_db.txt for skill IDs
+
+prontera,157,182,0	script	Skills	116,{
+	mes "What skill would you like?";
+	menu "First Aid",L_GETSKILL142,"Play Dead",L_GETSKILL143,"Heal",L_GETSKILL28,"None",L_YAME;
+L_GETSKILL142:
+	skill 142,1,0; // Permanently gives player level 1 First Aid
+	close;
+L_GETSKILL143:
+	skill 143,1,0; // Permanently gives player level 1 Play Dead
+	close;
+L_GETSKILL28:
+	skill 28,3,1; // Temporarily gives player level 3 Heal
+	close;
+L_YAME:
+	close;
+}

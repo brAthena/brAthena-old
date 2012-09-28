@@ -1,0 +1,15 @@
+//===== rAthena Script ======================================= 
+//= Quest NPCs located in Lighthalzen
+//===== By: ================================================== 
+//= Daegaladh, Masao
+//===== Current Version: ===================================== 
+//= 1.0
+//===== Compatible With: ===================================== 
+//= rAthena SVN
+//===== Description: ========================================= 
+//= Quests related to Lighthalzen City.
+//===== Additional Comments: ================================= 
+//= 1.0 Updated to match the new Izlude Map. [Masao]
+//============================================================ 
+
+izlude,171,73,6	duplicate(Scamp)	Scamp#2	853
