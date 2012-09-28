@@ -19,7 +19,7 @@
 //   | Changelog:                                             |
 //   | 1.0 Criação [Protimus]                                 |
 //   | - Anotações                                            |
-//   \________________________________________________________/ */
+//   \________________________________________________________/
 
 // O motd serve para informar notícias aos personagens que logarem no servidor.
 // O limite de linhas é de 128, se você precisar de mais linhas precisará modificar 
