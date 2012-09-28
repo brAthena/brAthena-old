@@ -1,23 +1,29 @@
-//===== rAthena Script ======================================= 
-// BattleGround System - KvM 80-99
-//===== By: ================================================== 
-//= ???, L0ne_W0lf
-//===== Current Version: ===================================== 
-//= 1.2
-//===== Compatible With: ===================================== 
-//= rAthena 1.0
-//===== Description: ========================================= 
-//= [AEGIS Conversion]
-//= Kreiger Von Midgard Battleground for levels 80 to 99
-//= - Winning Team: 5 points
-//= - Losing Team: 1 point
-//===== Additional Comments: ================================= 
-//= 1.0 First Version.
-//= 1.1 Updated using official Aegis files. [L0ne_W0lf]
-//= 1.2 Upated some announces and dialogs from iRO.
-//=     Changed how the scoreboard works slightly.
-//=     Removed the areapercentheals, and minor things.
-//============================================================
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: kvm01.txt                              |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.2/1.1/1.0                         |
+//   |--------------------------------------------------------|
+//   | Descrição: NPCs do KvM 80-99.                          |
+//   | - NPC's da Sala de Espera                              |
+//   | - Mecanismo de Início                                  |
+//   | - Engine do Campo de Batalha do KvM                    |
+//   | - Recompensas do Campo de Batalha                      |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Shiraz]                          |
+//   | - Anotações                                            |
+//   \________________________________________________________/
 
 // Waiting Room NPCs
 //============================================================
