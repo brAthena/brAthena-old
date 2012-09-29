@@ -1,19 +1,27 @@
-//===== rAthena Script =======================================
-//= Yuno Field Warp Script
-//===== By: ==================================================
-//= Nana (1.0), Sara
-//===== Current Version: =====================================
-//= 1.2
-//===== Compatible With: =====================================
-//= Any Athena Version; RO Episode 5+
-//===== Description: =========================================
-//= Warp Points for Yuno Field
-//===== Additional Comments: =================================
-//= 1.1 - Updated for the new Yuno Fields
-//= 1.2 New field update - Hugel Field by Sara - Version 1
-//============================================================
+//    ________________________________________________________	
+//   /                                                        \	
+//   |       _           _   _   _                            |	
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |	
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |	
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |	
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |	
+//   |                                                        |	
+//   |                    brAthena Script                     |	
+//   |--------------------------------------------------------|	
+//   | Nome do Script: yuno_fild.txt                          |	
+//   |--------------------------------------------------------|	
+//   | Criado por: eA/rA/brA Dev. Team                        |	
+//   |--------------------------------------------------------|	
+//   | Versões eA/rA/brA: 1.1/1.0                             |	
+//   |--------------------------------------------------------|	
+//   | Descrição: Portais dos Campos de Juno.                 |	
+//   |--------------------------------------------------------|	
+//   | Changelog:                                             |	
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |	
+//   | - Anotações                                            |	
+//   \________________________________________________________/	
 
-//= Yuno Field ===============================================
+//= Campos de Juno ===============================================
 //yuno_fild01,286,368,0	warp	yunfild01	1,1,yuno_fild02,294,26
 //yuno_fild02,294,24,0	warp	yunfild01-1	1,1,yuno_fild01,286,366
 //yuno_fild01,70,378,0	warp	yunfild02	1,1,yuno_fild02,70,25
@@ -28,7 +36,7 @@ yuno_fild04,375,150,0	warp	yunfild05-1	1,1,yuno_fild03,22,155
 yuno_fild04,231,288,0	warp	yunfild-yun	1,1,yuno,158,17
 yuno_fild03,32,139,0	warp	yunfild-mag01	1,1,mag_dun01,126,68
 
-//= New Yuno Fields ==========================================
+//= Novos campos de Yuno ==========================================
 yuno_fild01,26,246,0	warp	newjun01	1,1,yuno_fild12,373,239
 yuno_fild12,375,239,0	warp	newjun01a	1,1,yuno_fild01,28,246
 yuno_fild12,23,338,0	warp	newjun02	1,1,yuno_fild11,366,361
@@ -50,7 +58,7 @@ yuno_fild07,354,291,0	warp	newjun09a	1,1,yuno_fild08,22,278
 yuno_fild08,31,58,0	warp	newjun10	1,1,yuno_fild07,358,72
 yuno_fild07,360,72,0	warp	newjun10a	1,1,yuno_fild08,33,58
 
-//= (By speculation only) ====================================
+//= (Pela especulação apenas) ====================================
 yuno_fild07,179,354,0	warp	newjun11	1,1,yuno_fild03,179,17
 yuno_fild03,179,15,0	warp	newjun11a	1,1,yuno_fild07,179,352
 yuno_fild08,74,376,0	warp	newjun12	1,1,yuno_fild02,70,25
@@ -61,12 +69,12 @@ yuno_fild04,42,369,0	warp	newjun14	1,1,yuno_fild05,59,30
 yuno_fild05,59,28,0	warp	newjun14a	1,1,yuno_fild04,42,367
 
 
-//= Al de Baran <-> Yuno Connection ==========================
+//= Conexão Al de Baran <-> Yuno ==========================
 aldebaran,140,244,0	warp	alde-yunfild	1,1,yuno_fild01,208,19
 yuno_fild01,208,17,0	warp	yunfild-alde	1,1,aldebaran,140,242
 
-//= Hugel Field
-//= Version 1
+//= Campos de Hugel
+//= Versão 1
 yuno_fild05,372,325,0	warp	hu001	1,1,yuno_fild06,42,319
 yuno_fild06,40,319,0	warp	hu001a	1,1,yuno_fild05,370,325
 yuno_fild06,217,27,0	warp	hu002	1,1,yuno_fild03,214,381

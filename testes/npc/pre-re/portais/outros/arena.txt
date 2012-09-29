@@ -1,18 +1,26 @@
-//===== rAthena Script =======================================
-//= Arena Warps
-//===== By: ==================================================
-//= SinSloth
-//===== Current Version: =====================================
-//= 1.2
-//===== Compatible With: =====================================
-//= Any Athena Version
-//===== Description: =========================================
-//= Warp Points related to Izlude Arena && Control Panel
-//===== Additional Comments: =================================
-//= 1.0 First version, done by SinSloth. [MasterOfMuppets]
-//= 1.1 updated welcome_arena warp coords (was 128,126) [Lupus]
-//= 1.2 Made some updates due to Izlude Battle Arena release. [SinSloth]
-//============================================================
+//    ________________________________________________________	
+//   /                                                        \	
+//   |       _           _   _   _                            |	
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |	
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |	
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |	
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |	
+//   |                                                        |	
+//   |                    brAthena Script                     |	
+//   |--------------------------------------------------------|	
+//   | Nome do Script: arena.txt                              |	
+//   |--------------------------------------------------------|	
+//   | Criado por: eA/rA/brA Dev. Team                        |	
+//   |--------------------------------------------------------|	
+//   | Versões eA/rA/brA: 1.1/1.0                             |	
+//   |--------------------------------------------------------|	
+//   | Descrição: Portais da Arena de Batalha de Izlude e     |
+//   | do Painel de Controle.                                 |	
+//   |--------------------------------------------------------|	
+//   | Changelog:                                             |	
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |	
+//   | - Anotações                                            |	
+//   \________________________________________________________/	
 
 izlude,128,226,0	warp	welcome_arena	1,1,arena_room,100,30
 arena_room,99,24,0	warp	bye_arena	2,2,izlude,128,220
