@@ -1,0 +1,435 @@
+﻿//===== rAthena Script ======================================= 
+//= Clothes Dyer
+//===== By: ================================================== 
+//= Usnul
+//===== Current Version: ===================================== 
+//= 2.5
+//===== Compatible With: ===================================== 
+//= rAthena 1.0+
+//===== Description: ========================================= 
+//= Clothes dyer with standard palletes
+//===== Additional Comments: ================================= 
+//= Fully working
+//= 2.1 Shortened some labels to make this script loading,
+//= Added Black+White Colors desc [Lupus]
+//= 2.1a - added adv classes + baby class support [Lupus]
+//= 2.2 - Spell checked. [Nexon]
+//= 2.3 - Fixed dis $hit! [Poki#3]
+//= 2.4 - Disabled cloth dyeing since it's not implemented
+//	  on official servers and cause your client to crash
+//	  [Playtester]
+//= 2.5 - Optimized. [Euphy]
+//============================================================
+
+// Criador de Tinturas
+morocc_in,146,99,3	script	Java Dullihan	58,{
+	if ((MaxWeight-Weight) < 200 || checkweight(1201,1) == 0) {
+		mes "- Wait a moment! -";
+		mes "- Currently you're carrying -";
+		mes "- too many items with you. -";
+		mes "- Please come back later -";
+		mes "- after you put some items into kafra storage. -";
+		close;
+	}
+	mes "[Dye Maker Java Dullihan]";
+	mes "Wow...";
+	mes "Such a nice day. Days like this are perfect to make dyes.";
+	next;
+	switch(select("Talk:Make Dyestuffs:Cancel")) {
+	case 1:
+		mes "[Dye Maker Java Dullihan]";
+		mes "Erm, I don't really have much to say to you. But, if you would like me to tell you about my life, I can do that. It's a little long and boring, but would you like to listen?";
+		next;
+		if (select("Listen:Don't Listen") == 1) {
+			mes "[Dye Maker Java Dullihan]";
+			mes "As long as I can remember, my father has been making dyes. He used to spend countless hours making dyes of different colors. Even when my mother passed away, he never stopped.";
+			next;
+			mes "[Dye Maker Java Dullihan]";
+			mes "At one point in my life, I became rebellious and ran away from home. I didn't want to be stuck to the family business and wanted to try other things.";
+			next;
+			mes "[Dye Maker Java Dullihan]";
+			mes "Anyways...";
+			mes "I eventually wound up back home to carry on the family tradition, making dyes for 15 years already. I guess it was really in my blood.";
+			next;
+			mes "[Dye Maker Java Dullihan]";
+			mes "Something I realized these days is that now I can understand my father. Why my father devoted everything to making dyes...";
+			next;
+			mes "[Dye Maker Java Dullihan]";
+			mes "In the middle of all that tedious and hard work, he probably felt the magic of those colors passing on so many dreams for other people.";
+			next;
+			mes "[Dye Maker Java Dullihan]";
+			mes "It was probably for those dreams that he tried so hard to make dyes for his customers...";
+			next;
+			mes "[Dye Maker Java Dullihan]";
+			mes "Heh... How do I know this? Well, that's the way I feel right now. Since a couple years ago, I've been able to hear what the colors were saying...";
+			next;
+			mes "[Dye Maker Java Dullian]";
+			mes "Just watch. Someday, I'm going to succeed in making the color my father wanted to, but never got the chance to make.";
+			close;
+		}
+		mes "[Dye Maker Java Dullihan]";
+		mes "Ahahahaha...";
+		mes "Well, I guess no one would want to listen to a measly dyemaker's story anyway. Hahaha....";
+		close;
+
+	case 2:
+		mes "[Dye Maker Java Dullihan]";
+		mes "Great! If you want it, I'll make it for you. I promise I'll make you the color you want. But what color dye would you like to make? The fee is different depending on the color.";
+		next;
+		mes "[Dye Maker Java Dullihan]";
+		mes "Why, do you ask? Just remember that there are colors that are easy to make, and those that require more effort and work. Please don't think the fee is too expensive.";
+		next;
+		mes "[Dye Maker Java Dullihan]";
+		mes "The color of the dye is special, made with all my heart and soul.";
+		next;
+		switch(select("Scarlet Dyestuffs:Lemon Dyestuffs:Cobaltblue Dyestuffs:Darkgreen Dyestuffs:Orange Dyestuffs:Violet Dyestuffs:White Dyestuffs:Black Dyestuffs:Cancel")) {
+		case 1: callsub S_MakeDye,1,1; break;
+		case 2: callsub S_MakeDye,2,1; break;
+		case 3: callsub S_MakeDye,3,2; break;
+		case 4: callsub S_MakeDye,4,3; break;
+		case 5: callsub S_MakeDye,5,4; break;
+		case 6: callsub S_MakeDye,6,4; break;
+		case 7: callsub S_MakeDye,7,4; break;
+		case 8: callsub S_MakeDye,8,4; break;
+		case 9:
+			mes "[Dye Maker Java Dullihan]";
+			mes "Eeeehhhh!! What's this? You change your mind now!? So disappointing...";
+			close;
+		}
+
+	case 3:
+		mes "[Dye Maker Java Dullihan]";
+		mes "I'm not bragging or anything. But I have the skills to make dyestuff. If you ever need dyestuff, please come to me. I'll make them for you at a reasonable price.";
+		close;
+	}
+
+S_MakeDye:
+	mes "[Dye Maker Java Dullihan]";
+	switch(getarg(0)) {
+	case 1:
+		mes "Mmm... I need 30 Red Herbs, 1 Counteragent, and 1 Empty Bottle to make Red Dyestuffs. The fee is only 3000 zeny to make it.";
+		setarray .@item[0], 507, 973, 713;
+		setarray .@count[0], 30,   1,   1;
+		set .@cost,3000;
+		set .@dyestuff,975;
+		break;
+	case 2:
+		mes "Mmm... I need 30 Yellow Herbs, 1 Couneragent, and 1 Empty Bottle to make Lemon Dyestuffs. The fee is only 3000 zeny to make it.";
+		setarray .@item[0], 508, 973, 713;
+		setarray .@count[0], 30,   1,   1;
+		set .@cost,3000;
+		set .@dyestuff,976;
+		break;
+	case 3:
+		mes "Mmm... I need 20 Blue Herbs, 1 Counteragent, and 1 Empty Bottle to make Cobaltblue Dyestuff. It's hard to use the Blue Herb, so the fee is going to be 3500 zeny.";
+		setarray .@item[0], 510, 973, 713;
+		setarray .@count[0], 20,   1,   1;
+		set .@cost,3500;
+		set .@dyestuff,978;
+		break;
+	case 4:
+		mes "Mmm... I need 5 Blue Herbs, 20 Green Herbs, 20 Yellow Herbs, 1 Counteragent, 1 Mixture, and 1 Empty Bottle to make Darkgreen Dyestuffs. Don't get all of the materials confused. The fee is only 5000 zeny.";
+		setarray .@item[0], 510, 511, 508, 974, 973, 713;
+		setarray .@count[0],  5,  20,  20,   1,   1,   1;
+		set .@cost,5000;
+		set .@dyestuff,979;
+		break;
+	case 5:
+		mes "Mmm... I need 20 Red Herbs, 20 Yellow Herbs, 1 Counteragent, 1 Mixture, and 1 Empty Bottle to make Orange Dyestuff. The fee is going to be 5000 zeny.";
+		setarray .@item[0], 507, 508, 974, 973, 713;
+		setarray .@count[0], 20,  20,   1,   1,   1;
+		set .@cost,5000;
+		set .@dyestuff,980;
+		break;
+	case 6:
+		mes "Mmm... I need 10 Blue Herbs, 30 Red Herbs, 1 Counteragent, 1 Mixture, and 1 Empty Bottle to make Violet Dyestuffs. The fee will be 5000 zeny.";
+		setarray .@item[0], 510, 507, 974, 973, 713;
+		setarray .@count[0], 10,  30,   1,   1,   1;
+		set .@cost,5000;
+		set .@dyestuff,981;
+		break;
+	case 7:
+		mes "Mmm... I need 30 White Herbs, 1 Counteragent, and 1 Empty bottle to make White Dyestuffs. The fee will be 3000 zeny.";
+		setarray .@item[0], 509, 973, 713;
+		setarray .@count[0], 30,   1,   1; 
+		set .@cost,3000;
+		set .@dyestuff,982;
+		break;
+	case 8:
+		mes "Mmm... I need 30 of each Red, Yellow, and Green Herb, 5 Blue Herbs, 1 Counteragent, 1 Mixture, and 1 Empty Bottle. The process takes longer and more effort than the others, so it is going to be 7000 zeny.";
+		setarray .@item[0], 507, 508, 511, 510, 974, 973, 713;
+		setarray .@count[0], 30,  30,  30,   5,   1,   1,   1;
+		set .@cost,7000;
+		set .@dyestuff,983;
+		break;
+	}
+	next;
+	mes "[Dye Maker Java Dullihan]";
+	switch(getarg(1)) {
+	case 1: mes "Ah! I think you would have everything ready. Would you like to start the process?"; break;
+	case 2: mes "Okay! I believe you would have everything ready. Would you like to start the process?"; break;
+	case 3: mes "Okay! I believe you would have everything ready. Shall we begin the process?"; break;
+	case 4: mes "Okay! I believe you would have everything prepared. Would you like to start the process?"; break;
+	}
+	next;
+	if (select("Make Dyestuffs:Cancel") == 1) {
+		set .@size, getarraysize(.@item);
+		// check requirements
+		for( set .@i,0 ; .@i < .@size ; set .@i,.@i+1 )
+			if( countitem(.@item[.@i]) < .@count[.@i] )
+				break;
+		if( .@i < .@size || Zeny < .@cost ) {
+			mes "[Dye Maker Java Dullihan]";
+			mes "Hmmm. Not enough...";
+			mes "I don't think I'll be able to make the color you want with those materials. Why don't you go get some more materials...?";
+			close;
+		}
+		// delete items
+		for (set .@i, 0; .@i < .@size ; set .@i, .@i+1)
+			delitem .@item[.@i], .@count[.@i];
+		set zeny,zeny-.@cost;
+		// get dyestuff
+		getitem .@dyestuff,1;
+		
+		mes "[Dye Maker Java Dullihan]";
+		mes "Hmm... It came out pretty well. A very rich color. Of course I'll be trying harder to make a more charming color...";
+		next;
+		mes "[Dye Maker Java Dullihan]";
+		mes "Well, then. Stop by whenever you need more dyes.";
+		close;
+	}
+	mes "[Dye Maker Java Dullihan]";
+	mes "Eeeehhhh!! What's this?";
+	mes "You change your mind now!? So disappointing...";
+	return;
+}
+
+
+// Tintureiro de Roupas
+prt_in,284,168,2	script	Dyer Ginedin Rephere	55,{
+function Dyes;
+
+	set .@EnableDyes,1;	// Disable (set to 0) if palettes cause errors [see note v2.4]
+
+	set .n$,"[Dyer Ginedin Rephere]";
+	mes .n$;
+	mes "11... 12... Mmm... good. I think I'll be able to finish before tonight's party. Oh! I didn't notice you were here!";
+	while(1) {
+		next;
+		mes .n$;
+		mes "How may I assist you?";
+		next;
+		switch(select("- Talk:- Dye Clothing:- Price List:- ^777777Cancel^000000")) {
+			case 1:
+				mes .n$;
+				mes "Life may have gotten a bit better, but when I look at all of the orders I've received... Whew!";
+				mes "It seems that the young women of Rune Midgard must be very well off these days.";
+				next;
+				mes .n$;
+				mes "Not that I think that they are indulging in anything luxurious, mind you.";
+				mes "I don't think there is anything wrong with the pursuit of beauty and being fashionable.";
+				next;
+				mes .n$;
+				mes "For us humans, who have no colorful fur or decorative scales, clothes are one of the few ways we have to display our personality, style, and beauty.";
+				next;
+				mes .n$;
+				mes "Haha... When I think about it, I really feel that my job is worthwhile.  I believe that I provide a service that the people desire.";
+				next;
+				mes .n$;
+				mes "Can you feel it too? The energy that is released when rough fabric and leather are brought to life with color?.....";
+				next;
+				mes .n$;
+				mes "Although the process is very tedious and time consuming, the joy and happiness I feel when a dress is finished more than makes up for all of the hard work!!";
+				break;
+			case 2:
+				mes .n$;
+				if (!.@EnableDyes) {
+					mes "Sorry, I'm too busy with other jobs to dye your clothes."; break; }
+				mes "Oh... you need my work? Well... okay, sounds good.";
+				next;
+				mes .n$;
+				mes "Please choose a color";
+				mes "that suits you.";
+				next;
+				set .@eac, eaclass();
+				switch(roclass(eaclass()&EAJ_UPPERMASK)) {
+
+				// Dyes(<color value>,<dye number>{,...});
+				// Colors: [1]Orange, [2]Violet, [3]Red, [4]Black, [5]Green, [6]Blue, [7]White, [8]Yellow
+
+					case Job_Novice: if (Sex) Dyes(4,1,6,2,5,3); else Dyes(6,1,3,2,5,3,4,4);
+					case Job_Swordman: if (Sex) Dyes(4,1,6,2,5,3); else Dyes(3,1,5,3,4,4);
+					case Job_Mage: if (Sex) Dyes(3,1,2,2,1,3,7,4); else Dyes(3,1,2,2,7,3,4,4);
+					case Job_Archer: if (Sex) Dyes(4,1,2,2,5,3); else Dyes(3,1,5,2,7,3,4,4);
+					case Job_Acolyte: if (Sex) Dyes(6,1,3,2,7,3,4,4); else Dyes(3,1,5,3,4,4);
+					case Job_Merchant: if (Sex) Dyes(4,1,6,2,5,3); else Dyes(2,1,5,3,4,4);
+					case Job_Thief: if (Sex) Dyes(5,1,3,2,7,4); else Dyes(3,1,7,3,4,4);
+					case Job_Knight: case Job_Crusader: if (Sex) Dyes(2,1,3,3,4,4); else Dyes(6,1,7,3,4,4);
+					case Job_Priest: case Job_Monk: if (Sex) Dyes(6,1,5,2,3,3,7,4); else Dyes(3,1,5,2,7,3,4,4);
+					case Job_Wizard: case Job_Sage: if (Sex) Dyes(6,1,5,3,4,4); else Dyes(3,1,6,2,7,3,5,4);
+					case Job_Blacksmith: case Job_Alchemist: if (Sex) Dyes(4,4,5,2,7,3); else Dyes(3,1,5,2,2,3,4,4);
+					case Job_Hunter: case Job_Bard: case Job_Dancer: if (Sex) Dyes(4,1,6,2,5,3); else Dyes(6,1,5,3,2,4);
+					case Job_Assassin: case Job_Rogue: if (Sex) Dyes(6,1); else Dyes(4,1,8,2,7,3);
+					case Job_SuperNovice: if (Sex) Dyes(2,1,6,2,5,3,4,4); else Dyes(6,1,3,2,5,3,4,4);
+					default: 
+						mes "Wow, I've never seen clothes like that before! I'm sorry, but I don't think I can paint it.";
+						close; }
+			case 3:
+				mes .n$;
+				mes "Each color costs 10000z and 1 dye:";
+				mes " ";
+				mes " - ^FF4422Red^000000: Scarlet Dyestuffs";
+				mes " - ^D5A500Yellow^000000: Lemon Dyestuffs";
+				mes " - ^AA00AAViolet^000000: Violet Dyestuffs";
+				mes " - ^FF8800Orange^000000: Orange Dyestuffs";
+				mes " - ^4422FFBlue^000000: CobaltBlue Dyestuffs";
+				mes " - ^009500Green^000000: DarkGreen Dyestuffs";
+				mes " - Black: Black Dyestuffs";
+				mes " - White: White Dyestuffs";
+				break;
+			case 4:
+				goto L_End; } }
+L_End:
+	mes .n$;
+	mes "Make yourself at home. Even though I don't have time for you.";
+	close;
+
+function Dyes {
+	setarray .@DyeName$[0],"the default color","Orange","Violet","Red","Black","Green","Blue","White","Yellow";
+	setarray .@DyeItems[0],0,980,981,975,983,979,978,982,976;
+	set .@menu$,"- Default:";
+	for(set .@i,0; 1; set .@i,.@i+2) {
+		if (!getarg(.@i,0)) break;
+		set .@menu$, .@menu$+"- "+.@DyeName$[getarg(.@i)]+":"; }
+	set .@menu$, .@menu$+"- ^777777Cancel^000000";
+	set .@s, select(.@menu$)-1;
+	if (.@s==.@i-2) goto L_End;
+	mes .n$;
+	if (!.@s) {
+		mes "I can change your dye to";
+		mes "the default for free.";
+		mes "Are you sure?";
+		next;
+		if(select("Yes:No")==2) goto L_End;
+		mes .n$;
+		setlook 7,0;
+		mes "Your clothes have been dyed "+.@DyeName$[0]+".";
+		close; }
+	if (!countitem(.@DyeItems[getarg((.@s-1)*2)])) {
+		mes "For me to dye your clothes, I'll need the appropriate Dyestuffs. Please check my price list for the information.";
+		close; }
+	if (Zeny < 10000) {
+		mes "I'm sorry, but you don't have enough money.";
+		close; }
+	delitem .@DyeItems[getarg((.@s-1)*2)],1;
+	set Zeny, Zeny-10000;
+	setlook 7, ((.@s)?(getarg((.@s-1)*2+1)):0);
+	mes "Your clothes have been dyed "+((.@s)?.@DyeName$[getarg((.@s-1)*2)]:.@DyeName$[0])+".";
+	close; }
+}
+
+// Tintureiro de Chapéus.
+
+prt_in,253,168,4	script	Alora	862,{
+
+// Mysterious Dyestuff
+	set .@dyeID, 6220;
+// Headgear Choices
+	setarray .@hgn$[1], "Mage Hat","Beanie","Drooping Cat","Deviruchi Hat","Wig","Ribbon","Magestic Goat";
+// Mage Hats - Normal, Yellow, Blue, Brown, Gray, Red
+	setarray .@hg_1[1], 5027, 5242, 5241, 5240, 5239, 5238;
+// Beanies - Normal, Pink, Blue, Brown
+	setarray .@hg_2[1], 5076, 5237, 5236, 5235;
+// Drooping Cats - Normal, Blue, Brown, Gray, Pink, Yellow
+	setarray .@hg_3[1], 5058, 5233, 5231, 5230, 5232, 5234;
+// Deviruchi Hats - Normal, Red, Gray, Brown
+	setarray .@hg_4[1], 5038, 5227, 5228, 5229;
+// Wigs - Happy, Shiny, Marvelous, Fantastic
+	setarray .@hg_5[1], 5273, 5274, 5275, 5276;
+// Ribbons - Normal, Black, Yellow, Green, Pink, Red, Orange, White
+	setarray .@hg_6[1], 2208, 5191, 5192, 5193, 5194, 5195, 5196, 5197;
+// Magestic Goats - Normal, Evolved
+	setarray .@hg_7[1], 2256, 5217;
+
+	mes "[Alora]";
+	mes "Hello, I can change your headgear's color if you bring me a Mysterious Dyestuff.";
+	next;
+	mes "[Alora]";
+	mes "Do you have a headgear that you would like to dye?";
+	next;
+	for(set .@i,1; .@i < getarraysize(.@hgn$); set .@i,.@i+1) {
+		if(.@i == 1)    set .@menu$, .@hgn$[.@i];
+		else            set .@menu$, .@menu$ +":"+ .@hgn$[.@i];
+	}
+	set .@menu$, .@menu$ +":Cancel";
+	set .@t, select(.@menu$);
+	if(.@t == getarraysize(.@hgn$)) {
+		mes "[Alora]";
+		mes "Have a good journey adventurer!";
+		mes "If you ever are curious to try a new color on your Kafra headgear or the ones you found on your adventures please come to me!";
+		close;
+	}
+	mes "[Alora]";
+	mes "Okay, what color do you want to change it to?";
+	next;
+	for(set .@i,1; .@i < getarraysize(getd(".@hg_"+.@t+"")); set .@i,.@i+1) {
+		if(.@i == 1 && .@t != 5)
+			set .@menu$, "Normal";
+		else if(.@i == 1 && .@t == 5)
+			set .@menu$, getitemname(getd(".@hg_"+.@t+"["+.@i+"]"));
+		else {
+			sscanf(getitemname(getd(".@hg_"+.@t+"["+.@i+"]")),"%s "+ .@hgn$[.@t],.@colour$);
+			set .@menu$, .@menu$ +":"+ .@colour$;
+		}
+	}
+	set .@menu$, .@menu$ +":Cancel";
+	set .@c, select(.@menu$);
+	if(.@c == getarraysize(getd(".@hg_"+.@t+""))) {
+		mes "[Alora]";
+		mes "Oh, okay no problem!";
+		close;
+	}
+	set .@dyHG, getd(".@hg_"+.@t+"["+.@c+"]");
+	mes "[Alora]";
+	mes "Oh I'm so excited aren't you?";
+	mes "And just to be sure, what color is the "+ .@hgn$[.@t] +" you want me to use?";
+	next;
+	mes "[Alora]";
+	mes "Please understand that I'm going to use the ^FF00001st "+ .@hgn$[.@t] +" of that color in your inventory!^000000";
+	next;
+	mes "[Alora]";
+	mes "Any upgrades and cards will be dissolved by the mysterious dye, so be sure you are ok with having a ^0000FF+0 "+ getitemname(.@dyHG) +" without any cards.^000000";
+	next;
+	mes "["+ strcharinfo(0) +"]";
+	mes "Ok, thanks for the warning, I think I'll give you my";
+	next;
+	set .@menu$, "Nevermind";
+	for(set .@i,1; .@i < getarraysize(getd(".@hg_"+.@t+"")); set .@i,.@i+1) {
+		if(.@i == 1)    set .@menu$, .@menu$ +":Normal "+ getitemname(getd(".@hg_"+.@t+"["+.@i+"]"));
+		else            set .@menu$, .@menu$ +":"+ getitemname(getd(".@hg_"+.@t+"["+.@i+"]"));
+	}
+	set .@mine, select(.@menu$) - 1;
+	if(!.@mine) {
+		mes "[Alora]";
+		mes "It's best to be very sure, have a safe journey.";
+		close;
+	}
+	set .@myHG, getd(".@hg_"+.@t+"["+.@mine+"]");
+	if(.@dyHG == .@myHG) {
+		mes "[Alora]";
+		mes "Woah what happened?";
+		close;
+	}
+	if(!countitem(.@dyeID) || !countitem(.@myHG)) {
+		mes "[Alora]";
+		mes "Oh my, you seem to be missing something.";
+		close;
+	}
+	mes "[Alora]";
+	mes "Looks great doesn't it?!";
+	mes "I hope you'll come back to dye more pretty headgears!";
+	delitem .@dyeID,1; // Dyestuff
+	delitem .@myHG,1;  // Your headgear
+	getitem .@dyHG,1;  // Dyed headgear
+	close;
+}
