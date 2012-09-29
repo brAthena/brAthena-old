@@ -40,17 +40,13 @@ static int int_party_check_lv(struct party_data *p) {
 	unsigned int lv;
 	p->min_lv = UINT_MAX;
 	p->max_lv = 0;
-	for(i=0;i<MAX_PARTY;i++){
-		/**
-		 * - If not online OR if it's a family party and this is the child (doesn't affect exp range)
-		 **/
-		if(!p->party.member[i].online || p->party.member[i].char_id == p->family )
-			continue;
-
-		lv=p->party.member[i].lv;
-		if (lv < p->min_lv) p->min_lv = lv;
-		if (lv > p->max_lv) p->max_lv = lv;
-	}
+	for(i=0;i<MAX_PARTY;i++)
+		if(p->party.member[i].online && p->family != p->party.member[i].char_id) {
+			lv=p->party.member[i].lv;
+			if (lv < p->min_lv) p->min_lv = lv;
+			if (lv > p->max_lv) p->max_lv = lv;
+	
+		}
 
 	if (p->party.exp && !party_check_exp_share(p)) {
 		p->party.exp = 0;
@@ -77,14 +73,14 @@ static void int_party_calc_state(struct party_data *p)
 		if(p->party.member[i].online)
 			p->party.count++;
 	}
-	if( p->size == 2 && ( char_child(p->party.member[0].char_id,p->party.member[1].char_id) || char_child(p->party.member[1].char_id,p->party.member[0].char_id) ) ) {
-		//Child should be able to share with either of their parents  [RoM]
-		if(p->party.member[0].class_&0x2000) //first slot is the child?
-			p->family = p->party.member[0].char_id;
-		else
+	//Check Family State.
+	if(p->size == 2) {
+		if(char_child(p->party.member[0].char_id,p->party.member[1].char_id))
 			p->family = p->party.member[1].char_id;
-	} else if( p->size == 3 ) {
-		//Check Family State.
+		else if(char_child(p->party.member[1].char_id,p->party.member[0].char_id))
+			p->family = p->party.member[0].char_id;
+	}
+	else if(p->size == 3) {
 		p->family = char_family(
 			p->party.member[0].char_id,
 			p->party.member[1].char_id,
@@ -307,6 +303,18 @@ struct party_data* search_partyname(char* str)
 // Returns whether this party can keep having exp share or not.
 int party_check_exp_share(struct party_data *p)
 {
+	if(p->family) {
+		unsigned int lv_baby;
+		if(p->party.member[0].char_id == p->family)
+			lv_baby = p->party.member[0].lv;
+		else if(p->party.member[1].char_id == p->family)
+			lv_baby = p->party.member[1].lv;
+		else
+			lv_baby = p->party.member[2].lv;
+
+		if(lv_baby + party_family_share_level < p->max_lv || p->min_lv + party_family_share_level < lv_baby)
+			return 0;
+	}
 	return (p->party.count < 2 || p->max_lv - p->min_lv <= party_share_level);
 }
 
@@ -541,7 +549,7 @@ int mapif_parse_PartyAddMember(int fd, int party_id, struct party_member *member
 	p->party.member[i].leader = 0;
 	if (p->party.member[i].online) p->party.count++;
 	p->size++;
-	if (p->size == 2 || p->size == 3) // Check family state. And also accept either of their Parents. [RoM]
+	if (p->size == 2 || p->size == 3) //Check family state.
 		int_party_calc_state(p);
 	else //Check even share range.
 	if (member->lv < p->min_lv || member->lv > p->max_lv || p->family) {
@@ -618,7 +626,7 @@ int mapif_parse_PartyLeave(int fd, int party_id, int account_id, int char_id)
 		p->size--;
 		if (j == p->min_lv || j == p->max_lv || p->family)
 		{
-			if(p->family) p->family = 0; //Family state broken.
+			if(p->family && (p->size == 1 || p->family == p->party.member[i].char_id)) p->family = 0; //Family state broken.
 			int_party_check_lv(p);
 		}
 	}
@@ -666,9 +674,7 @@ int mapif_parse_PartyChangeMap(int fd, int party_id, int account_id, int char_id
 	}
 
 	if (p->party.member[i].lv != lv) {
-		if(p->party.member[i].lv == p->min_lv ||
-			p->party.member[i].lv == p->max_lv)
-		{
+		if(p->party.member[i].lv == p->min_lv || p->party.member[i].lv == p->max_lv || p->family) {
 			p->party.member[i].lv = lv;
 			int_party_check_lv(p);
 		} else
