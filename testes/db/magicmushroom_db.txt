@@ -1,26 +1,44 @@
-// Magic Mushroom DB.
-// Database for skills that are randomly used through Magic Mushroom status change.
-// Format: SkillID
+//  _____________________________________________________________
+// /                                                             \
+// |          _           _   _   _                              |
+// |         | |__  _ __ / \ | |_| |__   ___ _ __   __ _         |
+// |         | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |        |
+// |         | |_) | | / ___ \ |_| | | |  __/ | | | (_| |        |
+// |         |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|        |
+// |                                                             |
+// |                       brAthena Script                       |
+// |-------------------------------------------------------------|
+// | Nome do Database: magicmushroom_db.txt                      |
+// |-------------------------------------------------------------|
+// | Criado por: eA/rA/brA Dev. Team                             |
+// |-------------------------------------------------------------|
+// | Descrição: Database dados para as habilidades que são       |
+// | utilizadas aleatoriamente através da mudança de status do   | 
+// | Cogumelo Mágico.                                            |
+// |-------------------------------------------------------------|
+// | Estrutura do Database:                                      |
+// | ID da Habilidade                                            |
+// \_____________________________________________________________/
 
-7	//SM_MAGNUM
-8	//SM_ENDURE
-10	//MG_SIGHT
-24	//AL_RUWACH
-32	//AL_CRUCIS
-33	//AL_ANGELUS
-45	//AC_CONCENTRATION
-61	//KN_AUTOCOUNTER
-74	//PR_MAGNIFICAT
-110	//BS_HAMMERFALL
-114	//BS_MAXIMIZE
-142	//NV_FIRSTAID
-150	//TF_BACKSLIDING
-151	//TF_PICKSTONE
-157	//MG_ENERGYCOAT
-249	//CR_AUTOGUARD
-261	//MO_CALLSPIRITS
-256	//CR_PROVIDENCE
-318	//BA_FROSTJOKER
-500	//GS_GLITTERING
-527	//NJ_TATAMIGAESHI
-531	//NJ_UTSUSEMI
+7	  // -> Impacto Explosivo
+8	  // -> Vigor
+10	// -> Chama Reveladora
+24	// -> Revelação
+32	// -> Signum Crucis
+33	// -> Angelus
+45	// -> Concentração
+61	// -> Contra-Ataque
+74	// -> Magnificat
+110	// -> Martelo de Thor
+114	// -> Amplificar Poder
+142	// -> Primeiros Socorros
+150	// -> Recuar
+151	// -> Procurar Pedras
+157	// -> Proteção Arcana
+249	// -> Bloqueio
+256	// -> Divina Providência
+261	// -> Invocar Esfera Espiritual
+318	// -> Piada Infame
+500	// -> Cara ou Coroa
+527	// -> Virar Tatami
+531	// -> Troca de Pele

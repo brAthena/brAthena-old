@@ -1,27 +1,33 @@
-// Item Stacking Restriction File
-// Prevents an item to be stacked more than x times in given
-// inventory types. Generally used by 3rd class related skill items.
-// Format: <item id>,<stack limit amount>,<type>
-// Type mask values:
-//  &1: Character inventory restriction
-//  &2: Character cart restriction
-//  &4: Account storage restriction
-//  &8: Guild storage restriction
-// Example:
-//  512,4,12  // Will not allow more than 4 Apples in storages.
-// Note:
-//  Stack limit of 0 will disable a restriction.
+//  _____________________________________________________________
+// /                                                             \
+// |          _           _   _   _                              |
+// |         | |__  _ __ / \ | |_| |__   ___ _ __   __ _         |
+// |         | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |        |
+// |         | |_) | | / ___ \ |_| | | |  __/ | | | (_| |        |
+// |         |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|        |
+// |                                                             |
+// |                       brAthena Script                       |
+// |-------------------------------------------------------------|
+// | Nome do Database: item_stack.txt                            |
+// |-------------------------------------------------------------|
+// | Criado por: eA/rA/brA Dev. Team                             |
+// |-------------------------------------------------------------|
+// | Descrição: Database da Restrição de itens acumulados.       |
+// |-------------------------------------------------------------|
+// | Estrutura do Database:                                      |
+// | ID do Item,Quantidade limite,Tipo                           | 
+// \_____________________________________________________________/
+//
+// Cavaleiro Rúnico
+12725,20,1  // Runa Nauthiz
+12726,20,1  // Runa Raido
+12727,20,1  // Runa Berkana
+12728,20,1  // Runa Isa
+12729,20,1  // Runa Othila
+12730,20,1  // Runa Uruz
+12731,20,1  // Runa Thurisaz
+12732,20,1  // Runa Wyrd
+12733,20,1  // Runa Hagalaz
 
-// Rune Knight
-12725,20,1  // Nauthiz Rune
-12726,20,1  // Raido Rune
-12727,20,1  // Berkana Rune
-12728,20,1  // Isa Rune
-12729,20,1  // Othila Rune
-12730,20,1  // Uruz Rune
-12731,20,1  // Thurisaz Rune
-12732,20,1  // Wyrd Rune
-12733,20,1  // Hagalaz Rune
-
-// Arch Bishop
+// Arcebispo
 12333,3,1  // Ancilla

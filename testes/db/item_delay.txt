@@ -1,24 +1,42 @@
-// Item Delay Database
-// There is a max concurrent number of entries modifiable in src/map/itemdb.h as MAX_ITEMDELAYS
+//  _____________________________________________________________
+// /                                                             \
+// |          _           _   _   _                              |
+// |         | |__  _ __ / \ | |_| |__   ___ _ __   __ _         |
+// |         | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |        |
+// |         | |_) | | / ___ \ |_| | | |  __/ | | | (_| |        |
+// |         |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|        |
+// |                                                             |
+// |                       brAthena Script                       |
+// |-------------------------------------------------------------|
+// | Nome do Database: item_delay.txt                            |
+// |-------------------------------------------------------------|
+// | Criado por: eA/rA/brA Dev. Team                             |
+// |-------------------------------------------------------------|
+// | Descrição: Database de Delay para Itens.                    |
+// |-------------------------------------------------------------|
+// | Estrutura do Database:                                      |
+// | ID do Item,Delay(milisegundos)                              |
+// \_____________________________________________________________/
 //
-// Structure:
-// Item ID,Delay in Milliseconds
+//========================================================================================================
+//12202,60000	//Língua no Vapor -> 60 segundos (1 minutos)
+//12203,60000	//Escorpião no Vapor -> 60 segundos (1 minutos)
+//12204,60000	//Coquetel Sopro do Dragão -> 60 segundos (1 minutos)
+//12205,60000	//Tônico de Hwergelmir -> 60 segundos (1 minutos)
+//12206,60000	//Nove Caudas Cozidas -> 60 segundos (1 minutos)
+//12207,60000	//Sopa da Imortalidade -> 60 segundos (1 minutos)
+12208,60000	  //Manual de Combate -> 60 segundos (1 minutos)
+12210,60000	  //Goma de Mascar -> 60 segundos (1 minutos)
+14538,300000	//Cálice da Ilusão -> 300 segundos (5 minutos)
+14586,180000	//Doce Hiper Açucarado -> 180 segundos (3 minutos)
+607,5000      // Fruto de Yggdrasil -> (5 segundos)
+608,3000      // Semente de Yggdrasil -> (3 segundos)
+12622,10000   // Montarias de Aluguel -> (10 segundos)
 
-//12202,60000	//Str_Dish10_
-//12203,60000	//Agi_Dish10_
-//12204,60000	//Int_Dish10_
-//12205,60000	//Dex_Dish10_
-//12206,60000	//Luk_Dish10_
-//12207,60000	//Vit_Dish10_
-12208,60000	//Battle_Manual
-12210,60000	//Bubble_Gum
-14538,300000	//Glass_Of_Illusion
-14586,180000	//Spark_Candy
-607,5000	// Yggdrasil_Berry
-608,3000	// Yggdrasil_Seed
-
-// Bifrost Items
-11522,1000	// Red_Raffle_Sap
-11523,2000	// Yellow_Raffle_Sap
-11524,3000	// White_Raffle_Sap
-11525,5000	// Mora_Hip_Tea
+//========================================================================================================
+// Items de Bifrost
+//========================================================================================================
+11522,1000	  // Místura Vermelha de Laphine
+11523,2000	  // Místura Amarela de Laphine
+11524,3000	  // Místura Branca de Laphine
+11525,5000	  // Chá de Mora
