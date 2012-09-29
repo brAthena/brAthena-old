@@ -1,31 +1,25 @@
-//===== rAthena Script ======================================= 
-//= Sealed Shrine
-//===== By: ================================================== 
-//= L0ne_W0lf
-//===== Current Version: ===================================== 
-//= 2.1
-//===== Compatible With: ===================================== 
-//= rAthena SVN
-//===== Description: ========================================= 
-//= [Official Conversion]
-//= Seal away the Great Demon Baphomet.
-//===== Additional Comments: ================================= 
-//= 1.0 First version. [L0ne_W0lf]
-//= 1.1 Added setquest for instance cooldown. [L0ne_W0lf]
-//= 1.2 Fixed Torch#12 not being disabled. (bugreport:4044) [L0ne_w0lf]
-//= 1.3 Fixed cutins not being removed. (bugreport:4117) [L0ne_w0lf]
-//= 1.4 Fixed some typos. [Gepard]
-//= 1.5 Fixed not being able to enter dungeon for the first two hours.
-//= 1.6 Players should be able to re-take the quest after 12 hours now.
-//=     Changed quest 3046 to 3040. This is the correct quest id.
-//=     Removed checking quest 3045, unofficial check.
-//= 1.7 Fixed a checkquest condition never setting quest. [L0ne_W0lf]
-//= 1.8 Added 'instance_check_party' command to the script for proper checking if
-//=		the invoking party meets the requirements to join the Memorial Dungeon.
-//= 1.9 Fixed broken else/if chaining. [Joseph]
-//= 2.0 Some optimization. [Euphy]
-//= 2.1 Fixed quest being removed before the 12 hours cool down. [Joseph]
-//============================================================ 
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: santuario_selado.txt                   |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.7/2.1/1.0                         |
+//   |--------------------------------------------------------|
+//   | Descrição:                                             |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Protimus]                        |
+//   | - Anotações                                            |
+//   \________________________________________________________/ 
 
 // Sealed Catacomb Entrance
 //============================================================
