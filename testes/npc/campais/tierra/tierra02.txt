@@ -15,8 +15,8 @@
 //   | Versões eA/rA/brA: 1.2/1.1/1.0                         |
 //   |--------------------------------------------------------|
 //   | Descrição: NPC's de Tierra.                            |
-//   | NPC's da Sala de Espera                                |
-//   | Engine do Campo de Batalha do Desfiladeiro Tierra      |
+//   | - NPC's da Sala de Espera                              |
+//   | - Campo de Batalha do Desfiladeiro Tierra              |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |

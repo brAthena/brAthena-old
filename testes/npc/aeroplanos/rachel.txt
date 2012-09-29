@@ -14,7 +14,7 @@
 //   |--------------------------------------------------------|
 //   | Versões eA/rA/brA: ??/1.0/1.0                          |
 //   |--------------------------------------------------------|
-//   | Descrição:  Equipe do aeroplano de Rachel.             |
+//   | Descrição: Equipe do aeroplano de Rachel.              |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Protimus]                        |

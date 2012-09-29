@@ -14,7 +14,7 @@
 //   |--------------------------------------------------------|
 //   | Versões eA/rA/brA: ??/1.0/1.0                          |
 //   |--------------------------------------------------------|
-//   | Descrição:  Equipe do aeroplano de Hugel.              |
+//   | Descrição: Equipe do aeroplano de Hugel.               |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Protimus]                        |

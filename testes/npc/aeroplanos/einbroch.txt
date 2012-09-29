@@ -14,7 +14,7 @@
 //   |--------------------------------------------------------|
 //   | Versões eA/rA/brA: 1.4/1.0/1.0                         |
 //   |--------------------------------------------------------|
-//   | Descrição:  Equipe do aeroplano de Einbroch.           |
+//   | Descrição: Equipe do aeroplano de Einbroch.            |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Protimus]                        |

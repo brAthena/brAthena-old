@@ -16,7 +16,7 @@
 //   |--------------------------------------------------------|
 //   | Descrição: NPC's de Flavius.                           |
 //   | - NPCs da Sala de Espera                               |
-//   | - Engine do Campo de Batalha Flavius                   |
+//   | - Campo de Batalha Flavius                             |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |

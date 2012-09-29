@@ -17,7 +17,7 @@
 //   | Descrição: NPCs do KvM 80-99.                          |
 //   | - NPC's da Sala de Espera                              |
 //   | - Mecanismo de Início                                  |
-//   | - Engine do Campo de Batalha do KvM                    |
+//   | - Campo de Batalha do KvM                              |
 //   | - Recompensas do Campo de Batalha                      |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
