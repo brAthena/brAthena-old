@@ -23,7 +23,7 @@
 //========================================================================================================
 // Feudo de Luina (Al De Baran)
 //========================================================================================================
-0,aldeg_cas01,Sirius,Agit#aldeg_cas01,1          		   // kRO : Noisyubantian | iRO: Neuschwanstein
+0,aldeg_cas01,Sirius,Agit#aldeg_cas01,1                    // kRO : Noisyubantian | iRO: Neuschwanstein
 1,aldeg_cas02,Astrum,Agit#aldeg_cas02,1                    // kRO : Hohensyubangawoo | iRO: Hohenschwangau
 2,aldeg_cas03,Canopus,Agit#aldeg_cas03,1                   // kRO : Nyirenverk | iRO: Nuenberg
 3,aldeg_cas04,Rigel,Agit#aldeg_cas04,1                     // kRO : Byirtsburi | iRO: Wuerzburg

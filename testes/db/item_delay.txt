@@ -19,16 +19,16 @@
 // \_____________________________________________________________/
 //
 //========================================================================================================
-//12202,60000	//Língua no Vapor -> 60 segundos (1 minutos)
-//12203,60000	//Escorpião no Vapor -> 60 segundos (1 minutos)
-//12204,60000	//Coquetel Sopro do Dragão -> 60 segundos (1 minutos)
-//12205,60000	//Tônico de Hwergelmir -> 60 segundos (1 minutos)
-//12206,60000	//Nove Caudas Cozidas -> 60 segundos (1 minutos)
-//12207,60000	//Sopa da Imortalidade -> 60 segundos (1 minutos)
-12208,60000	  //Manual de Combate -> 60 segundos (1 minutos)
-12210,60000	  //Goma de Mascar -> 60 segundos (1 minutos)
-14538,300000	//Cálice da Ilusão -> 300 segundos (5 minutos)
-14586,180000	//Doce Hiper Açucarado -> 180 segundos (3 minutos)
+//12202,60000 //Língua no Vapor -> 60 segundos (1 minutos)
+//12203,60000 //Escorpião no Vapor -> 60 segundos (1 minutos)
+//12204,60000 //Coquetel Sopro do Dragão -> 60 segundos (1 minutos)
+//12205,60000 //Tônico de Hwergelmir -> 60 segundos (1 minutos)
+//12206,60000 //Nove Caudas Cozidas -> 60 segundos (1 minutos)
+//12207,60000 //Sopa da Imortalidade -> 60 segundos (1 minutos)
+12208,60000   //Manual de Combate -> 60 segundos (1 minutos)
+12210,60000   //Goma de Mascar -> 60 segundos (1 minutos)
+14538,300000  //Cálice da Ilusão -> 300 segundos (5 minutos)
+14586,180000  //Doce Hiper Açucarado -> 180 segundos (3 minutos)
 607,5000      // Fruto de Yggdrasil -> (5 segundos)
 608,3000      // Semente de Yggdrasil -> (3 segundos)
 12622,10000   // Montarias de Aluguel -> (10 segundos)
@@ -36,7 +36,7 @@
 //========================================================================================================
 // Items de Bifrost
 //========================================================================================================
-11522,1000	  // Místura Vermelha de Laphine
-11523,2000	  // Místura Amarela de Laphine
-11524,3000	  // Místura Branca de Laphine
-11525,5000	  // Chá de Mora
+11522,1000    // Místura Vermelha de Laphine
+11523,2000    // Místura Amarela de Laphine
+11524,3000    // Místura Branca de Laphine
+11525,5000    // Chá de Mora

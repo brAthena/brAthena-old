@@ -27,9 +27,9 @@
 703,4,800,2,200		            // Hinalle 
 958,800,9,1000		            // Mandíbula Horrenda
 959,800,7,1000		            // Escama Fétida
-960,1000,6,800,9,200	        // Garra de Crustáceo
+960,1000,6,800,9,200          // Garra de Crustáceo
 961,800,3,1000		            // Concha
-962,1000,4,800,6,200	        // Tentáculo
+962,1000,4,800,6,200          // Tentáculo
 963,800,3,1000		            // Escama Aquática
 964,800,8,1000		            // Casco de Carangueijo
 967,800,4,1000		            // Casco de Tartaruga
@@ -37,9 +37,9 @@
 970,800,9,1000		            // Álcool
 971,800,5,1000		            // Detrimindexta
 973,800,4,1000		            // Antígeno
-974,1000,4,800,6,200	        // Místura 
-991,1000,1,500,1,500	        // Cristal Azul
-992,1000,1,500,1,500	        // Frescor do Vento
+974,1000,4,800,6,200          // Místura 
+991,1000,1,500,1,500          // Cristal Azul
+992,1000,1,500,1,500          // Frescor do Vento
 999,1000,10,1000	            // Aço
 1003,500,1,1000		            // Carvão
 1008,800,6,1000		            // Colar do Oblívio
@@ -49,21 +49,21 @@
 1012,800,3,1000		            // Brasão
 1013,9,800,13,200	            // Casco Arco-íris
 1014,4,800,6,200	            // Mandíbula de Formiga
-1016,1000,7,800,10,200	      // Cauda de Rato
+1016,1000,7,800,10,200        // Cauda de Rato
 1019,800,2,1000		            // Tronco
-1020,1000,4,800,6,200	        // Cabelos Morenos
+1020,1000,4,800,6,200         // Cabelos Morenos
 1021,800,4,1000		            // Chifre de Dokebi
-1022,1000,2,800,3,200	        // Nove-Caudas
+1022,1000,2,800,3,200         // Nove-Caudas
 1024,800,4,1000		            // Tinta de Polvo
 1025,800,8,1000		            // Teia de Aranha
 1026,800,4,1000		            // Avelã
 1030,800,2,1000		            // Pata de Tigre
-1033,1000,4,800,6,200	        // Raíz de Planta Carnívora
-1034,1000,6,800,9,200	        // Cabelo Azul
-1035,1000,8,800,12,200	      // Canino de Dragão
+1033,1000,4,800,6,200         // Raíz de Planta Carnívora
+1034,1000,6,800,9,200         // Cabelo Azul
+1035,1000,8,800,12,200        // Canino de Dragão
 1037,800,6,1000		            // Cauda de Dragão
 1038,1000,1,1000	            // Pequeno Chifre Maligno 
-1040,1000,8,800,12,200	      // Bigode de Anão Ancião
+1040,1000,8,800,12,200        // Bigode de Anão Ancião
 1041,800,3,1000		            // Lampião
 1042,800,6,1000		            // Pata de Inseto
 1043,800,6,1000		            // Garra de Orc
@@ -72,7 +72,7 @@
 1049,800,6,1000		            // Saia Virginal
 1050,800,3,1000		            // Tendões
 1051,800,7,1000		            // Neurônio
-1053,1000,6,800,9,200	        // Dente Fossilizado
+1053,1000,6,800,9,200         // Dente Fossilizado
 1056,800,8,1000		            // Torrão de Areia
 1058,800,5,1000		            // Asas de Traça
 1059,1000,5,1000	            // Tecido
@@ -82,14 +82,14 @@
 1615,200,1,1000		            // Bastão Arcano
 2267,1000,1,1000	            // Cigarro
 2267,1000,1,1000	            // Cigarro
-7063,1000,1,200,1,200,1,100	  // Pena Macia
+7063,1000,1,200,1,200,1,100   // Pena Macia
 7166,1000,2,1000	            // Seda Macia
-13269,1000,5,500,2,250,1,100	// Atirador Veloz
-13270,1000,5,500,2,250,1,100	// Atirador
-13271,1000,5,500,2,250,1,100	// Atirador Mágico
-13272,1000,5,500,2,250,1,100	// Poção de Recuperação
-13273,1000,5,500,2,250,1,100	// Poção de HP
-13274,1000,5,500,2,250,1,100	// Poção de SP
+13269,1000,5,500,2,250,1,100  // Atirador Veloz
+13270,1000,5,500,2,250,1,100  // Atirador
+13271,1000,5,500,2,250,1,100  // Atirador Mágico
+13272,1000,5,500,2,250,1,100  // Poção de Recuperação
+13273,1000,5,500,2,250,1,100  // Poção de HP
+13274,1000,5,500,2,250,1,100  // Poção de SP
 13275,1000,10,1000	          // Poção Pequena de HP
 13276,1000,10,1000	          // Poção Média de HP
 13277,1000,10,1000	          // Poção Grande de HP

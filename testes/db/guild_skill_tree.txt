@@ -15,29 +15,28 @@
 // | Descrição: Database de Habilidades para Guildas.            |
 // |-------------------------------------------------------------|
 // | Estrutura do Database:                                      |
-// | ID da Hab,Level Max,Pré-Requisitos da Habilidade de ID-1,   |
-// | Level de ID-1,Pré-Requisitos da Habilidade de ID-2,         |
-// | Level de ID-2,Pré-Requisitos da Habilidade de ID-3,         |
-// | Level de ID-3,Pré-Requisitos da Habilidade de ID-4,         |
-// | Level de ID-4,Pré-Requisitos da Habilidade de ID-5,         |
-// | Level de ID-5                                               |
-// | //GUILD SKILLNAME#Nome da Habilidade#                       |
+// | ID da Hab,Nível Max,Pré-Requisitos da Habilidade de ID-1,   |
+// | Nível de ID-1,Pré-Requisitos da Habilidade de ID-2,         |
+// | Nível de ID-2,Pré-Requisitos da Habilidade de ID-3,         |
+// | Nível de ID-3,Pré-Requisitos da Habilidade de ID-4,         |
+// | Nível de ID-4,Pré-Requisitos da Habilidade de ID-5,         |
+// | Nível de ID-5                                               |
 // \_____________________________________________________________/
 //
 //========================================================================================================
-10000,1,0,0,0,0,0,0,0,0,0,0			                // GD_APPROVAL#Autorização Oficial#
-10001,1,10000,1,0,0,0,0,0,0,0,0			            // GD_KAFRACONTRACT#Contrato com Kafra#
-10002,1,10000,1,0,0,0,0,0,0,0,0			            // GD_GUARDRESEARCH#Comandar Guardiões#
-10003,3,0,0,0,0,0,0,0,0,0,0			                // GD_GUARDUP#Fortalecer Guardiões#
-10004,10,0,0,0,0,0,0,0,0,0,0			              // GD_EXTENSION#Expandir Clã#
-10005,0,0,0,0,0,0,0,0,0,0,0			                // GD_GLORYGUILD#Glória da Guilda#
-10006,5,0,0,0,0,0,0,0,0,0,0			                // GD_LEADERSHIP#Grande Liderança#
-10007,5,0,0,0,0,0,0,0,0,0,0			                // GD_GLORYWOUNDS#Ferimentos de Glória#
-10008,5,10007,1,0,0,0,0,0,0,0,0			            // GD_SOULCOLD#Coração de Frio#
-10009,5,10006,1,0,0,0,0,0,0,0,0			            // GD_HAWKEYES#Olhar Apurado#
-10010,1,10000,1,10004,2,0,0,0,0,0,0		          // GD_BATTLEORDER#Comando de Batalha#
-10011,3,10000,1,10004,5,10010,1,0,0,0,0		      // GD_REGENERATION#Regeneração#
-10012,1,10011,1,0,0,0,0,0,0,0,0			            // GD_RESTORE#Restauração#
-10013,1,10000,1,10002,1,10004,5,10010,1,10011,1	// GD_EMERGENCYCALL#Chamado Urgente#
-10014,1,0,0,0,0,0,0,0,0,0,0			                // GD_DEVELOPMENT#Desenvolvimento Permanente#
+10000,1,0,0,0,0,0,0,0,0,0,0                     // Autorização Oficial
+10001,1,10000,1,0,0,0,0,0,0,0,0                 // Contrato com Kafra
+10002,1,10000,1,0,0,0,0,0,0,0,0                 // Comandar Guardiões
+10003,3,0,0,0,0,0,0,0,0,0,0                     // Fortalecer Guardiões
+10004,10,0,0,0,0,0,0,0,0,0,0                    // Expandir Clã
+10005,0,0,0,0,0,0,0,0,0,0,0                     // Glória da Guilda
+10006,5,0,0,0,0,0,0,0,0,0,0                     // Grande Liderança
+10007,5,0,0,0,0,0,0,0,0,0,0                     // Ferimentos de Glória
+10008,5,10007,1,0,0,0,0,0,0,0,0                 // Coração de Frio
+10009,5,10006,1,0,0,0,0,0,0,0,0                 // Olhar Apurado
+10010,1,10000,1,10004,2,0,0,0,0,0,0             // Comando de Batalha
+10011,3,10000,1,10004,5,10010,1,0,0,0,0         // Regeneração
+10012,1,10011,1,0,0,0,0,0,0,0,0                 // Restauração
+10013,1,10000,1,10002,1,10004,5,10010,1,10011,1 // Chamado Urgente
+10014,1,0,0,0,0,0,0,0,0,0,0                     // Desenvolvimento Permanente
 //========================================================================================================

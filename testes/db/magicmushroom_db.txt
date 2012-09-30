@@ -20,8 +20,8 @@
 // | ID da Habilidade                                            |
 // \_____________________________________________________________/
 
-7	  // -> Impacto Explosivo
-8	  // -> Vigor
+7	// -> Impacto Explosivo
+8	// -> Vigor
 10	// -> Chama Reveladora
 24	// -> Revelação
 32	// -> Signum Crucis

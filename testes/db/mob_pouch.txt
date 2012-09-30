@@ -13,7 +13,7 @@
 // | Criado por: eA/rA/brA Dev. Team                             |
 // |-------------------------------------------------------------|
 // | Descrição: Database dos monstros invocáveis por             |
-// | 'Galha Sangrento'.                                          |
+// | 'Galho Sangrento'.                                          |
 // |-------------------------------------------------------------|
 // | Estrutura do Database:                                      |
 // | ID do Mob, Nome, Chance de Sucesso                          |

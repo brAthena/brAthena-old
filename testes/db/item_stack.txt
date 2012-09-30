@@ -30,4 +30,4 @@
 12733,20,1  // Runa Hagalaz
 
 // Arcebispo
-12333,3,1  // Ancilla
+12333,3,1   // Ancilla

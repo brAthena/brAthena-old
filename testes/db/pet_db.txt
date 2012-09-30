@@ -15,8 +15,8 @@
 // | Descrição: Banco de Dados dos Bichinhos de Estimação            |
 // |-----------------------------------------------------------------|
 // | Estrutura do Banco de Dados:                                    |
-// | Id do Monstro,Nome,JNome,ID do Item para Domesticar,ID do Ovo,  |
-// | Id do Equipamento,Id da Comida,Taxa de Satisfação,              |
+// | ID do Monstro,Nome,JNome,ID do Item para Domesticar,ID do Ovo,  |
+// | ID do Equipamento,Id da Comida,Taxa de Satisfação,              |
 // | Intervalo de Fome,R_Faminto,R_Cheio,Intimidade,Morte,           |
 // | Taxa de Captura,Velocidade de Movimento,Performance Especial,   |
 // | Tipo de Diálogo,taxa_de_ataque,taxa_de_defesa_a_ataques,        |

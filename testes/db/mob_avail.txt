@@ -15,13 +15,11 @@
 // | Descrição: Database de uso compartilhado de sprites.        |
 // |-------------------------------------------------------------|
 // | Estrutura do Database:                                      |
-// | mob_id,sprite_id,equip <- Utiliza como sprite a mesma       |
-// | de outro mob.                                               |
-// | sprite_id = 0 <- desativa o mob                             |
-// | O equipamento deve ser o mesmo usado pelo mob como pet      |
-// | MobID,SpriteID,Sex,Hair,Hair_Color,WeaponId,ShieldId,       |
-// | Head_Top,Head_Middle,Head_Bottom,Option,Dye_Color           |
-// | <- Utiliza sprite de um jogador para o mob                  |
+// | ID da Sprite = 0 <- desativa o mob                          |
+// | O equipamento deve ser o mesmo usado pelo mob como pet;     |
+// | ID do Monstro,ID da Sprite,Sexo,Estilo de Cabelo,Cor do     | 
+// | Cabelo,ID da Arma,ID do Escudo,Topo,Meio,Baixo, Opção, Cor  |
+// | da Roupa.  <- Utiliza sprite de um jogador para o mob       |
 // \_____________________________________________________________/
 //
 //========================================================================================================

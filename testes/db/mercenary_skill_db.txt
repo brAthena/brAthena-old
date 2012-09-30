@@ -127,10 +127,10 @@
 6045,8225,3	  // -> Impacto
 6045,8205,5	  // -> Escudo Refletor
 // Espadachim Mercenário Level 90-99.
-6046,8223,10	// -> Rapidez com Arma
-6046,8203,10	// -> Impacto de Tyr
-6046,8201,10	// -> Golpe Fulminante
-6046,8206,1	  // -> Fúria Insana
+6046,8223,10  // -> Rapidez com Arma
+6046,8203,10  // -> Impacto de Tyr
+6046,8201,10  // -> Golpe Fulminante
+6046,8206,1  // -> Fúria Insana
 
 // Monstros Mercenários
 

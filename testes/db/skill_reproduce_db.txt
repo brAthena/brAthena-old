@@ -21,7 +21,7 @@
 
 // Espadachim
 5   	// Golpe Fuminante
-7 		// Impacto Explosivo
+7   	// Impacto Explosivo
 
 // Mago
 11  	// Ataque Espiritual
@@ -42,17 +42,17 @@
 42  	// Mammonita
 
 // Arqueiro
-46  	  // Rajada de Flechas
-47  	  // Chuva de Flechas
+46    // Rajada de Flechas
+47    // Chuva de Flechas
 
 // Gatuno
-52  	  // Envenenar
+52    // Envenenar
 
 // Compartilhadas
-54  	  // Ressucitar
+54    // Ressucitar
 
 // Cavaleiro
-62  	  // Impacto de Tyr
+62    // Impacto de Tyr
 
 // Sacerdote
 68  	  // Aspersio
@@ -84,7 +84,7 @@
 
 // Habilidades de Platina
 148  	  // Disparo Violento
-152     // Arremessar Pedra
+152  	  // Arremessar Pedra
 156  	  // Luz Divina
 
 // Arruaceiro
@@ -95,10 +95,10 @@
 230  	  // Terror Ácido
 
 // Templário
-250    	// Punição Divina
-251    	// Escudo Bumerangue
-253    	// Crux Divinum
-254 	  // Crux Magnun
+250  	  // Punição Divina
+251  	  // Escudo Bumerangue
+253  	  // Crux Divinum
+254  	  // Crux Magnun
 
 // Monge
 263  	  // Combo Triplo
@@ -117,7 +117,7 @@
 526  	  // Chuva de Moedas
 527  	  // Virar Tatami
 528  	  // Corte da Névoa
-529    	// Salto das Sombras
+529  	  // Salto das Sombras
 531 	  // Troca de Pele
 534 	  // Pétalas Flamejantes
 536 	  // Dragão Explosivo
@@ -128,7 +128,7 @@
 542 	  // Brisa Cortante
 
 // Habilidades Extras das Classes Transcedentais
-1001 	  // Avanço Ofensivo
+1001  	// Avanço Ofensivo
 1004  	// Faca Envenenada
 1006  	// Explosão Protetora
 1009  	// Flecha Fantasma
@@ -189,8 +189,8 @@
 2336  	// Investida de Shura
 2337  	// Rasteira
 2343  	// Portões do Inferno
-2344	  // Chakra do Silêncio
-2517	  // Rugido do Leão
+2344  	// Chakra do Silêncio
+2517  	// Rugido do Leão
 2518  	// Tempestade Espiritual
 
 // Trovador & Musa

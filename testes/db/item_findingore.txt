@@ -35,7 +35,7 @@
 6,997,15	  // Natureza Grandiosa -> 0,15%
 6,998,80	  // Ferro -> 0,80%
 6,999,50	  // Aço -> 0,50%
-6,1002,100	// Minério de Ferro -> 1,00%
+6,1002,100  // Minério de Ferro -> 1,00%
 6,1003,60	  // Carvão -> 0,60%
 6,1010,95	  // Fracon -> 0,95%
 6,1011,55	  // Emveretarcon -> 0,55%
