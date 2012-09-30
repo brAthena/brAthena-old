@@ -74,4 +74,4 @@
 //#define RENEWAL_ASPD_KRO
 
 #endif // _CONFIG_RENEWAL_H_
-#endif // _RENEWAL_ENABLE_
+#endif // _RENEWAL
