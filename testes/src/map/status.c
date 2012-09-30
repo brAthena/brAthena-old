@@ -1813,8 +1813,13 @@ int status_base_amotion_pc(struct map_session_data* sd, struct status_data* stat
 	 ? (aspd_base[pc_class2idx(sd->status.class_)][sd->status.weapon]) // single weapon
 	 : (aspd_base[pc_class2idx(sd->status.class_)][sd->weapontype1] + aspd_base[pc_class2idx(sd->status.class_)][sd->weapontype2])*7/10; // dual-wield
 	
-	// percentual delay reduction from stats
-	amotion -= amotion * (4*status->agi + status->dex)/1000;
+	#ifdef RENEWAL_ASPD_KRO	
+		// percentual delay reduction from stats of kRO formula
+		amotion -= (int)(((float)sqrt((float)((float)pow((float)status->agi,2)/2) + ((float)pow((float)status->dex,2)/5) )/4)*10 + (bonus*status->agi/200));
+	#else
+		// percentual delay reduction from stats of iRO/bRO formula
+		amotion -= amotion * (4*status->agi + status->dex)/1000;
+	#endif
 #endif
 	// raw delay adjustment from bAspd bonus
 	amotion += sd->bonus.aspd_add;

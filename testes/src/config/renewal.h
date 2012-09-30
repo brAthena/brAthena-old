@@ -68,4 +68,7 @@
 /// - some skill/item ASPD bonuses won't stack
 #define RENEWAL_ASPD
 
+/// renewal kRO ASPD [Protimus]
+//#define RENEWAL_ASPD_KRO
+
 #endif // _CONFIG_RENEWAL_H_
