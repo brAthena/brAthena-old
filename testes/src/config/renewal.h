@@ -1,5 +1,7 @@
 // Copyright (c) rAthena Dev Teams - Licensed under GNU GPL
 // For more information, see LICENCE in the main folder
+#ifndef _RENEWAL
+#define _RENEWAL
 #ifndef _CONFIG_RENEWAL_H_
 #define _CONFIG_RENEWAL_H_
 
@@ -72,3 +74,4 @@
 //#define RENEWAL_ASPD_KRO
 
 #endif // _CONFIG_RENEWAL_H_
+#endif // _RENEWAL_ENABLE_

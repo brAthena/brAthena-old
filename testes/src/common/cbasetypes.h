@@ -56,6 +56,11 @@
 #define DEBUG
 #endif
 
+// renewal mode
+#if defined(RENEWAL) && !defined(_RENEWAL)
+#define _RENEWAL
+#endif
+
 // debug function name
 #ifndef __NETBSD__
 #if __STDC_VERSION__ < 199901L
