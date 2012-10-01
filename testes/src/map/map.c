@@ -3540,6 +3540,33 @@ void sv_readsqldb (char* name, char* next_name, int param_size, int max_allowed,
 	}
 }
 
+/* Função para identificação das databases [brAthena] */
+
+char* get_database_name(int database_id)
+{
+	char* db_name = "";
+
+	switch(database_id)
+	{
+		case 0: db_name = "skill_db"; break;
+		case 1: db_name = "skill_require_db"; break;
+		case 2: db_name = "skill_cast_db"; break;
+		case 3: db_name = "skill_castnodex_db"; break;
+		case 4: db_name = "skill_unit_db"; break;
+		case 5: db_name = "skill_nocast_db"; break;
+		case 6: db_name = "produce_db"; break;
+		case 7: db_name = "create_arrow_db"; break;
+		case 8: db_name = "abra_db"; break;
+		case 9: db_name = "spellbook_db"; break;
+		case 10: db_name = "magicmushroom_db"; break;
+		case 11: db_name = "skill_reproduce_db"; break;
+		case 12: db_name = "skill_improvise_db"; break;
+		case 13: db_name = "skill_changematerial_db"; break;
+	}
+	
+	return db_name;
+}
+
 /*=======================================
  *  MySQL Init
  *---------------------------------------*/

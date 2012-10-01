@@ -789,6 +789,7 @@ extern char homunculus_db_db[32];
 extern char homunculus_skill_tree_db[32];
 
 void sv_readsqldb (char* name, char* next_name, int param_size, int max_allowed, bool (*sub_parse_row)(char* string[], int columns, int current));
+char* get_database_name(int database_id);
 void do_shutdown(void);
 
 #endif /* _MAP_H_ */
