@@ -6,9 +6,7 @@
  |                 | |_) | | / ___ \ |_| | | |  __/ | | | (_| |            |
  |                 |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|            |
  |                                                                         |
- |                       brAthena © 2012 - Banco de Dados                  |
- |                  Converte senhas para encriptação com md5               |
+ |                       brAthena © 2012 - Database                        |
+ |            Contains tables for skills, itens and monsters.              |
  \_________________________________________________________________________/
 */
-
-UPDATE `login` SET `user_pass`=MD5(`user_pass`);

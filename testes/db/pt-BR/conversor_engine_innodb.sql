@@ -1,6 +1,15 @@
---
--- Conversor de Banco de Dados brAthena ( MyISAM -> InnoDB )
---
+/*_________________________________________________________________________
+ /                                                                         \
+ |                  _           _   _   _                                  |
+ |                 | |__  _ __ / \ | |_| |__   ___ _ __   __ _             |
+ |                 | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |            |
+ |                 | |_) | | / ___ \ |_| | | |  __/ | | | (_| |            |
+ |                 |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|            |
+ |                                                                         |
+ |                       brAthena © 2012 - Banco de Dados                  |
+ |                  Converte as tabelas de MyISAM para InnoDB              |
+ \_________________________________________________________________________/
+*/
 
 ALTER TABLE `auction` ENGINE = InnoDB;
 ALTER TABLE `cart_inventory` ENGINE = InnoDB;

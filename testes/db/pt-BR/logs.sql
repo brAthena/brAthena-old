@@ -1,3 +1,17 @@
+/*_________________________________________________________________________
+ /                                                                         \
+ |                  _           _   _   _                                  |
+ |                 | |__  _ __ / \ | |_| |__   ___ _ __   __ _             |
+ |                 | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |            |
+ |                 | |_) | | / ___ \ |_| | | |  __/ | | | (_| |            |
+ |                 |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|            |
+ |                                                                         |
+ |                       brAthena © 2012 - Banco de Dados                  |
+ |             Contém as tabelas de logs para ações no emulador            |
+ \_________________________________________________________________________/
+*/
+
+
 #PickLog types (M)onsters Drop, (P)layers Drop/Take, Mobs Drop (L)oot Drop/Take,
 # Players (T)rade Give/Take, Players (V)ending Sell/Take, (S)hop Sell/Take, (N)PC Give/Take,
 # (C)onsumable Items, (A)dministrators Create/Delete, Sto(R)age, (G)uild Storage,
