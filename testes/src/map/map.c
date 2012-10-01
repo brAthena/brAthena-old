@@ -72,6 +72,8 @@ char mob_db2_db[32] = "mob_db2";
 char mob_skill_db_db[32] = "mob_skill_db";
 char mob_skill_db2_db[32] = "mob_skill_db2";
 char castle_db_db[32] = "castle_db";
+char homunculus_db_db[32] = "homunculus_db";
+char homunculus_skill_tree_db[32] = "homunculus_skill_tree_db";
 
 // log database
 char log_db_ip[32] = "127.0.0.1";
