@@ -71,6 +71,7 @@ char mob_db_db[32] = "mob_db";
 char mob_db2_db[32] = "mob_db2";
 char mob_skill_db_db[32] = "mob_skill_db";
 char mob_skill_db2_db[32] = "mob_skill_db2";
+char castle_db_db[32] = "castle_db";
 
 // log database
 char log_db_ip[32] = "127.0.0.1";
@@ -3475,6 +3476,66 @@ int inter_config_read(char *cfgName)
 	fclose(fp);
 
 	return 0;
+}
+
+/* Função destinada a leitura dos banco de dados em formato SQL */
+	
+void sv_readsqldb (char* name, char* next_name, int param_size, int max_allowed, bool (*sub_parse_row)(char* string[], int columns, int current))
+{
+	const char* db_name[] = { name, next_name };	
+	int8 i;
+	for (i = 0; i < 2; ++i){
+		uint8 lines = 0;	
+		uint16 count = 0;
+
+		if (db_name[i] == NULL){
+			if (i != 1)
+				continue;
+			else
+				break;
+		}
+		if (SQL_ERROR == Sql_Query(mmysql_handle, "SELECT * FROM `%s`", db_name[i])){
+			Sql_ShowDebug(mmysql_handle);
+			if (i != 1)
+				continue;
+			else
+				break;
+		}
+	
+		if (Sql_NumRows(mmysql_handle) <= 0){
+			ShowSQL("A tabela '"CL_WHITE"%s"CL_RESET"' nao foi lida, por insuficiencia de entradas.\n", db_name[i]);
+			if (i != 1)
+				continue;
+			else
+				break;
+		}
+
+		while (SQL_SUCCESS == Sql_NextRow(mmysql_handle)){
+			char *str[64];
+			int8 j;
+			++lines;
+
+			if (count == max_allowed){
+				ShowError("sv_readsqldb: Ultrapassado o limite de entradas (%d) na tabela \"%s\".\n", max_allowed, db_name[i]);
+				break;
+			}
+
+			str[(param_size + 1)] = '\0';
+			for (j = 0; j < param_size; ++j){
+				Sql_GetData(mmysql_handle, j, &str[j], NULL);
+				if (str[j] == NULL)
+					str[j] = "";
+			}
+	
+			if (!sub_parse_row(str, param_size, count))	
+				continue;
+			count++;
+		}
+		
+		if (count)
+			ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", count, db_name[i]);
+		count = 0;
+	}
 }
 
 /*=======================================
