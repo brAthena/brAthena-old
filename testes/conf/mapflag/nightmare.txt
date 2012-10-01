@@ -1,20 +1,28 @@
-//===== rAthena Script =======================================
-//= Mapflag: Nightmare mode.
-//===== By: ==================================================
-//= rAthena Dev Team
-//===== Current Version: =====================================
-//= 1.0
-//===== Compatible With: =====================================
-//= rAthena SVN
-//===== Description: ========================================= 
-//= Players drop items/equipment on death.
-//= pvp_nightmaredrop	id,type,percent
-//=   id: Drop a specific item ID or "random"
-//=   type: "inventory", "equip", or "all"
-//=   percent: Rate of item drop.
-//===== Additional Comments: ================================= 
-//= 1.0 - Initial script.
-//============================================================
+//    ________________________________________________________ 
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: nightmare.txt                          |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.1/1.0                             |
+//   |--------------------------------------------------------|
+//   | Descrição: Configuração Mapflag que permite o modo     |
+//   | pesadelo de pvp, permitindo o drop de itens quando     |
+//   | o joagador morre no mapa.                              |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
 
 pvp_n_1-1	mapflag	pvp_nightmaredrop	random,equip,300
 pvp_n_2-1	mapflag	pvp_nightmaredrop	random,equip,300

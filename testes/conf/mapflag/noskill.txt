@@ -1,30 +1,42 @@
-//===== rAthena Script =======================================
-//= Mapflag: Disable skill use.
-//===== By: ==================================================
-//= rAthena Dev Team
-//===== Current Version: =====================================
-//= 1.1
-//===== Compatible With: =====================================
-//= rAthena SVN
-//===== Description: ========================================= 
-//= Disables all skills on the map.
-//===== Additional Comments: ================================= 
-//= 1.1 - Added additional maps. [L0ne_W0lf]
-//============================================================
+//    ________________________________________________________ 
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: noskill.txt                            |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.1/1.0                             |
+//   |--------------------------------------------------------|
+//   | Descrição: Configuração Mapflag que desabilita o       |
+//   | uso de habilidades.                                    |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Cabeçalho e Tradução [Megasantos]                  |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
 
-//Prontera Arena ===============
+
+//Arena de Prontera ===============
 prt_are_in	mapflag	noskill
 
-//The Sign Quest ===============
+// Quest o Sinal ===============
 himinn	mapflag	noskill
 
-// Quiz Maps ===================
+// Mapas Quiz ===================
 quiz_00	mapflag	noskill
 quiz_01	mapflag	noskill
 quiz_02	mapflag	noskill
 quiz_test	mapflag	noskill
 
-//Hugel Minigames ==============
+//Mini jogos de Hugel ==============
 que_bingo	mapflag	noskill
 p_track01	mapflag	noskill
 p_track02	mapflag	noskill
