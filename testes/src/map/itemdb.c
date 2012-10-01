@@ -1243,21 +1243,17 @@ static int itemdb_read_sqldb(void) {
 /*====================================
  * read all item-related databases
  *------------------------------------*/
-static void itemdb_read(void) {
-	
-	if (db_use_sqldbs)
-		itemdb_read_sqldb();
-	else
-		itemdb_readdb();
-	
+static void itemdb_read(void) 
+{	
+	itemdb_read_sqldb();
 	itemdb_read_combos();
-	itemdb_read_itemgroup();
-	sv_readdb(db_path, "item_avail.txt",         ',', 2, 2, -1, &itemdb_read_itemavail);
-	sv_readdb(db_path, DBPATH"item_noequip.txt", ',', 2, 2, -1, &itemdb_read_noequip);
-	sv_readdb(db_path, DBPATH"item_trade.txt",   ',', 3, 3, -1, &itemdb_read_itemtrade);
-	sv_readdb(db_path, "item_delay.txt",         ',', 2, 2, -1, &itemdb_read_itemdelay);
-	sv_readdb(db_path, "item_stack.txt",         ',', 3, 3, -1, &itemdb_read_stack);
-	sv_readdb(db_path, DBPATH"item_buyingstore.txt",   ',', 1, 1, -1, &itemdb_read_buyingstore);	
+	itemdb_read_itemgroup();	
+	sv_readsqldb(get_database_name(20), NULL, 2, -1, &itemdb_read_itemavail); 
+	sv_readsqldb(get_database_name(21), NULL, 2, -1, &itemdb_read_noequip); 
+	sv_readsqldb(get_database_name(22), NULL, 3, -1, &itemdb_read_itemtrade);
+	sv_readsqldb(get_database_name(23), NULL, 2, -1, &itemdb_read_itemdelay);
+	sv_readsqldb(get_database_name(24), NULL, 3, -1, &itemdb_read_stack);
+	sv_readsqldb(get_database_name(25), NULL, 1, -1, &itemdb_read_buyingstore);
 }
 
 /*==========================================

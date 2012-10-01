@@ -3565,6 +3565,12 @@ char* get_database_name(int database_id)
 		case 17: db_name = "mercenary_db_db"; break;
 		case 18: db_name = "mercenary_skill_db_db"; break;
 		case 19: db_name = "guildskill_tree_db"; break;
+		case 20: db_name = "item_avail_db"; break;
+		case 21: db_name = "item_noequip_db"; break;
+		case 22: db_name = "item_trade_db"; break;
+		case 23: db_name = "item_delay_db"; break;
+		case 24: db_name = "item_stack_db"; break;
+		case 25: db_name = "item_buyingstore_db"; break;
 	}
 	
 	return db_name;
