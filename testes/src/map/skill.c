@@ -17499,7 +17499,7 @@ static void skill_readdb(void)
 	sv_readsqldb(get_database_name(0), NULL, 17, MAX_SKILL_DB, &skill_parse_row_skilldb);
 	sv_readsqldb(get_database_name(1), NULL, 32, MAX_SKILL_DB, &skill_parse_row_requiredb);
 	sv_readsqldb(get_database_name(2), NULL, 8,  MAX_SKILL_DB, &skill_parse_row_castdb);
-	sv_readsqldb(get_database_name(3), NULL, 2,  MAX_SKILL_DB, &skill_parse_row_castnodexdb);
+	sv_readsqldb(get_database_name(3), NULL, 3,  MAX_SKILL_DB, &skill_parse_row_castnodexdb);
 	sv_readsqldb(get_database_name(4), NULL, 8,  MAX_SKILL_DB, &skill_parse_row_unitdb);
 	sv_readsqldb(get_database_name(5), NULL, 2,  MAX_SKILL_DB, &skill_parse_row_nocastdb);
 
