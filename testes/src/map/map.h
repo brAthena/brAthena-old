@@ -781,12 +781,9 @@ extern char item_db_db[32];
 extern char item_db2_db[32];
 extern char item_db_re_db[32];
 extern char mob_db_db[32];
-extern char mob_db2_db[32];
 extern char mob_skill_db_db[32];
+extern char mob_db2_db[32];
 extern char mob_skill_db2_db[32];
-extern char castle_db_db[32];
-extern char homunculus_db_db[32];
-extern char homunculus_skill_tree_db[32];
 
 void sv_readsqldb (char* name, char* next_name, int param_size, int max_allowed, bool (*sub_parse_row)(char* string[], int columns, int current));
 char* get_database_name(int database_id);

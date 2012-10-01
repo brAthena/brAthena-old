@@ -1992,7 +1992,7 @@ void do_init_guild(void)
 	guild_infoevent_db=idb_alloc(DB_OPT_BASE);
 	expcache_ers = ers_new(sizeof(struct guild_expcache),"guild.c::expcache_ers",ERS_OPT_NONE);
 
-	sv_readsqldb (castle_db_db, NULL, 5, -1, &guild_read_castledb);
+	sv_readsqldb (get_database_name(14), NULL, 5, -1, &guild_read_castledb);
 
 	memset(guild_skill_tree,0,sizeof(guild_skill_tree));
 	sv_readdb(db_path, "guild_skill_tree.txt", ',', 2+MAX_GUILD_SKILL_REQUIRE*2, 2+MAX_GUILD_SKILL_REQUIRE*2, -1, &guild_read_guildskill_tree_db); //guild skill tree [Komurka]

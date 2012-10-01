@@ -71,9 +71,6 @@ char mob_db_db[32] = "mob_db";
 char mob_db2_db[32] = "mob_db2";
 char mob_skill_db_db[32] = "mob_skill_db";
 char mob_skill_db2_db[32] = "mob_skill_db2";
-char castle_db_db[32] = "castle_db";
-char homunculus_db_db[32] = "homunculus_db";
-char homunculus_skill_tree_db[32] = "homunculus_skill_tree_db";
 
 // log database
 char log_db_ip[32] = "127.0.0.1";
@@ -3562,6 +3559,9 @@ char* get_database_name(int database_id)
 		case 11: db_name = "skill_reproduce_db"; break;
 		case 12: db_name = "skill_improvise_db"; break;
 		case 13: db_name = "skill_changematerial_db"; break;
+		case 14: db_name = "castle_db_db"; break;
+		case 15: db_name = "homunculus_db_db"; break;
+		case 16: db_name = "homunculus_skill_tree_db"; break;
 	}
 	
 	return db_name;
