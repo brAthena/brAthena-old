@@ -10930,13 +10930,13 @@ int status_readdb(void)
 
 	
 #ifdef RENEWAL_ASPD
-	sv_readdb(db_path, "re/job_db1.txt",   ',',	6+MAX_WEAPON_TYPE, 6+MAX_WEAPON_TYPE,	-1,		&status_readdb_job1);
+	sv_readsqldb(get_database_name(34), NULL, 6+MAX_WEAPON_TYPE, 6+MAX_WEAPON_TYPE, -1, &status_readdb_job1);
 #else
-	sv_readdb(db_path, "pre-re/job_db1.txt",   ',',	5+MAX_WEAPON_TYPE, 5+MAX_WEAPON_TYPE,	-1,		&status_readdb_job1);
+	sv_readsqldb(get_database_name(34), NULL, 5+MAX_WEAPON_TYPE, 5+MAX_WEAPON_TYPE, -1, &status_readdb_job1);
 #endif
-	sv_readdb(db_path, "job_db2.txt",   ',', 1,                 1+MAX_LEVEL,       -1,                            &status_readdb_job2);
-	sv_readdb(db_path, "size_fix.txt",  ',', MAX_WEAPON_TYPE,   MAX_WEAPON_TYPE,    ARRAYLENGTH(atkmods),         &status_readdb_sizefix);
-	sv_readdb(db_path, DBPATH"refine_db.txt", ',', 4+MAX_REFINE, 4+MAX_REFINE, ARRAYLENGTH(refine_info), &status_readdb_refine);
+	sv_readsqldb(get_database_name(35), NULL, 1, 1+MAX_LEVEL, -1, &status_readdb_job2);
+	sv_readdb(db_path, "size_fix.txt", ',', MAX_WEAPON_TYPE, MAX_WEAPON_TYPE, ARRAYLENGTH(atkmods), &status_readdb_sizefix);
+	sv_readsqldb(get_database_name(33), NULL, 4+MAX_REFINE, 4+MAX_REFINE, ARRAYLENGTH(refine_info), &status_readdb_refine);
 
 	return 0;
 }
