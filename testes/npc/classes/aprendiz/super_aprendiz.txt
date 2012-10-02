@@ -1,24 +1,26 @@
-//===== rAthena Script ======================================= 
-//= Super Novice Script
-//===== By: ================================================== 
-//= Darkchild
-//===== Current Version: ===================================== 
-//= 2.4
-//===== Compatible With: ===================================== 
-//= rAthena SVN r15340+
-//===== Description: ========================================= 
-//= [Aegis Conversion]
-//= Super Novice Job Change Npc
-//= Super Novice Cart Rental Npc
-//= Some Other Useless Super Novice Npc
-//===== Additional Comments: ================================= 
-//= 1.9 Rescripted to the Aegis 10.3 Standars. [Samuray22]
-//= 2.0 Rescripted again, this time using an iRO base. [L0ne_W0lf]
-//= 2.1 Swapped use of baseclass for basejob. [L0ne_W0lf]
-//= 2.2 Added Quest Log commands. [Kisuka]
-//= 2.3 NPC "Esseray" calls Ex. Super Novice script when enabled. [Euphy]
-//= 2.4 Added an Ex. Super Novice dialog check. [Euphy]
-//============================================================ 
+//    ________________________________________________________ 
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: super_aprendiz.txt                     |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 2.4/1.0                             |
+//   |--------------------------------------------------------|
+//   | Descrição: Mudança de Classe para Super Aprendiz.      |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
 
 aldeba_in,223,167,3	script	Tzerero#sn	709,{
 	if (BaseJob == Job_SuperNovice) {
@@ -468,14 +470,3 @@ aldebaran,54,238,5	script	Kafra Employee#sn	117,{
 	close;
 }
 
-//============================================================ 
-// Old changelog
-//============================================================ 
-//= Dialogs From Some Other Scripts (Most Of It)
-//= 1.3-1.5 Added Baby class support (and to the Kafta SN Cart
-//= renter, too) [Lupus]
-//= 1.6 Added a fix which prevent High Novices passing
-//= this Job Quests again. [Lupus]
-//= 1.7 Fixed Baby Class Support. [Lupus]
-//= 1.8 Now a Baby can become a Super Baby [Lupus]
-//============================================================ 

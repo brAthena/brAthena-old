@@ -1,26 +1,32 @@
-//===== rAthena Script =======================================
-//= War of Emperium Managers for N Guild Castles
-//===== By: ==================================================
-//= kobra_k88
-//===== Current Version: =====================================
-//= 1.2
-//===== Compatible With: =====================================
-//= rAthena 0.1+; RO Episode 4+
-//===== Description: =========================================
-//=
-//==============================================
-//= Break down of arguments used in the function:
-//=   arg(0): name of Castle Manager
-//=   arg(1): name of guild castle.
-//=   arg(2): x1 coordinate for warp to treasure room
-//=   arg(3): y1 coordinate for warp to treasure room
-//=   arg(4): guild script suffix for kafra, etc.
-//===== Additional Comments: =================================
-//= 1.0 Based off existing guild scripts.  Do not know if it is accurate.[kobra_k88]
-//= 1.1 Added modified guild manager function. [L0ne_W0lf]
-//= 	Removed guardian summoning.
-//= 1.2 Corrected function name. (bugreport:1728) [L0ne_W0lf]
-//============================================================
+//    ________________________________________________________ 
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: nguild_gerenciadores.txt               |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.2/1.0                             |
+//   |--------------------------------------------------------|
+//   | Descrição:                                             |
+//   | Argumentos usados nas funções:                         |
+//   |   arg(0): Nome do Gerenciador do Castelo.              |
+//   |   arg(1): Nome do Clã do Castelo.                      |
+//   |   arg(2): Coordenada x1 para ir para Sala do Tesouro.  |
+//   |   arg(3): Coordenada y1 para ir para Sala do Tesouro.  |
+//   |   arg(4): Sufixos, como para Kafra por exemplo.        |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
 
 //==============================================
 function	script	F_GldManager	{

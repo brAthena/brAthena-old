@@ -1,19 +1,27 @@
-//===== rAthena Script =======================================
-//= War of Emperium Kafras for N Guild Castles
-//===== By: ==================================================
-//= kobra_k88
-//===== Current Version: =====================================
-//= 1.2
-//===== Compatible With: =====================================
-//= rAthena 0.1+; RO Episode 5+
-//===== Description: =========================================
-//= Provides Kafra services for guild members of NGuild Castles.
-//= Used in conjuction with function F_Kafra.
-//===== Additional Comments: =================================
-//= Based off existing guild scripts.  Do not know if it is accurate.[kobra_k88]
-//= 1.1 All N Guild Kafras teleport to Prontera only! [Lupus]
-//= 1.2 Added Kafra function. [L0ne_W0lf]
-//============================================================
+//    ________________________________________________________ 
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: nguild_kafras.txt                      |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.2/1.0                             |
+//   |--------------------------------------------------------|
+//   | Descrição: Serviços Kafra da NGuild.                   |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
 
 
 function	script	F_GKafra	{

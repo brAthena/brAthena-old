@@ -1,26 +1,26 @@
-//===== rAthena Script ======================================= 
-//= Dancer Job Quest
-//===== By: ==================================================
-//= Kalen - Original jAthena
-//= Fredzilla - Converted, Lupus
-//===== Current Version: ===================================== 
-//= 3.7
-//===== Compatible With: ===================================== 
-//= rAthena SVN
-//===== Description: ========================================= 
-//= [Aegis Conversion]
-//= Job quest for Dancer classes
-//===== Additional Comments: ================================= 
-//= 3.2 Rescripted to Aegis 10.3 stadards. [L0ne_W0lf]
-//=	No longer uses function "F_BlockHigh"
-//= 3.2a Deleted unused variables. [Samuray22]
-//= 3.3 Updated waiting room. (Removes global var) [L0ne_W0lf]
-//= 3.4 Fixed bad variables, bugreport:1685 [Brainstorm]
-//= 3.5 Minor corrections to script. (bugreport:1766) [L0ne_W0lf]
-//= 3.6 Applied Correction bug with for loop. [L0ne_W0lf]
-//= 3.6a Fixed a little Exploit to bug the quest with a timeout. (bugreport:2252) [Samuray22]
-//= 3.7 Added Quest Log commands. [Kisuka]
-//============================================================
+//    ________________________________________________________ 
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: odalisca.txt                           |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 3.7/1.0                             |
+//   |--------------------------------------------------------|
+//   | Descrição: Mudança de Classe para Odalisca.            |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
 
 comodo,180,153,4	script	Sonotora#1	90,{
 	mes "[Athena Sonotora]";
@@ -1376,27 +1376,3 @@ OnOmg:
 	Emotion e_omg;
 	end;
 }
-
-//============================================================ 
-// Old changelog
-//============================================================ 
-//= 1.1 Removed the warp I left here my accident, added a check for using 
-//=     Improved Concentration and arrow shower, people could get away with it
-//=     [Fredzilla]
-//= 1.0 I tried to keep as much the same from the Jap version as possible
-//=     this turned out to be quite hard, but on the whole it is the same script
-//=     I have added some new things, and changed some of the used commands,
-//=     along with some optimization. [Fredzilla]
-//= 1.5 Added Baby Class Support [Fredzilla]
-//= 1.6 Added a func which prevent advanced classes passing
-//= 2nd Job Quests again. It also guides adv classes where
-//= to go. [Lupus]
-//= 2.0 Changed numbers to constants. [Vicious]
-//= 2.1 Script check #1. [Lance]
-//= 2.2 Fixed unpassable part, thx2 Alis [Lupus]
-//= 2.3 Updated initnpctimer to attach player to jobDq script [Skotlex]
-//= 2.4 Attached chrid to be able obtain player's SP on mobs death, optimized a bit [Lupus]
-//= 2.5 Final fix of chrid issues, changed 'Improved
-//=	Concentration' to 'Attention Concentrate' [Lupus]
-//= 3.0 Some optimization, typos, added missing dialogues (4Kb lighter) [Lupus]
-//= 3.1 Implemented JOBLVL as in other quests [Lupus]

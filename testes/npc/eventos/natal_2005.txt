@@ -1,29 +1,29 @@
-//===== rAthena Script =======================================
-//= 2005 ChristMas Event
-//===== By: ==================================================
-//= Brainstorm
-//===== Current Version: =====================================
-//= 1.2
-//===== Compatible With: =====================================
-//= rAthena SVN
-//===== Description: =========================================
-//= [Aegis Conversion]
-//= Event 1: Louise's Kim creates Louise's Santa Hat.
-//= Event 2: Enjoy Happymerry Chistmas Event summons monsters.
-//= Event 3: Oholy requires you to hunt Deviruchi NPCs.
-//==========================================
-//= Break down of arguments used in the function:
-//=	arg(0) Originating NPC (disable)
-//=	arg(1) Next NPC to be enabled
-//=	arg(2) Map name of originating NPC
-//=	arg(3) Coordinate X to be teleported to
-//=	arg(4) Coordinate Y to be teleported to
-//===== Additional Comments: =================================
-//= 1.0 First semi-working conversion. [Brainstorm]
-//= 1.1 Refined Brainstorm's conversion. [L0ne_W0lf]
-//= 1.2 Replaced effect numerics with constants. [L0ne_W0lf]
-//= 1.2a Small update to the checkweight. (bugreport:2553). [Paradox924X]
-//============================================================
+//    ___________________________________________________________ 
+//   /                                                           \
+//   |       _           _   _   _                               |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _          |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |         |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |         |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|         |
+//   |                                                           |
+//   |                    brAthena Script                        |
+//   |-----------------------------------------------------------|
+//   | Nome do Script: natal_2005.txt                            |
+//   |-----------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                           |
+//   |-----------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.2/1.0                                |
+//   |-----------------------------------------------------------|
+//   | Descrição: Evento de Natal. (2005)                        |
+//   | Event 1: Louise's Kim creates Louise's Santa Hat.         |
+//   | Event 2: Enjoy Happymerry Chistmas Event summons monsters.|
+//   | Event 3: Oholy requires you to hunt Deviruchi NPCs.       |
+//   |-----------------------------------------------------------|
+//   | Changelog:                                                |
+//   | 1.0 Criado Cabeçalho [Megasantos]                         |
+//   |-----------------------------------------------------------|
+//   | - Anotações                                               |
+//   \___________________________________________________________/
 
 // Louise's Santa Hat (Event 1)
 xmas_in,89,92,5	script	Louise Kim#designer	714,{

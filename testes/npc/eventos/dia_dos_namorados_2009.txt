@@ -1,27 +1,33 @@
-//===== rAthena Script =======================================
-//= iRO Valentine's Day Event (2009)
-//===== By: ==================================================
-//= Kisuka
-//===== Current Version: =====================================
-//= 1.3
-//===== Compatible With: =====================================
-//= rAthena SVN
-//===== Description: =========================================
-//= iRO Valentine's Day Event. (2009)
-//= Make Chocolate/Chocolate Boxes/Home-Made Chocolate.
-//= Make Valentine's Rings/Boxes.
-//= Trade rings to those of opposite gender.
-//= Register rings you have gotten for votes.
-//=
-//= The male and female with the most votes at the end of
-//= the event will receive item (14466) from GM team.
-//=
-//= Must enable the event items in item_db2 and item_trade!
-//===== Additional Comments: =================================
-//= 1.0 First version. [Kisuka]
-//= 1.1-1.2 Fixed exploits with unlimited rings and non deleting choco [Lupus]
-//= 1.3 Some Changes. [Kisuka]
-//============================================================
+//    ______________________________________________________________ 
+//   /                                                              \
+//   |       _           _   _   _                                  |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _             |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |            |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |            |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|            |
+//   |                                                              |
+//   |                    brAthena Script                           |
+//   |--------------------------------------------------------------|
+//   | Nome do Script: dia_dos_namorados_2009.txt                   |
+//   |--------------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                              |
+//   |--------------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.3/1.0                                   |
+//   |--------------------------------------------------------------|
+//   | Descrição: iRO Evento do Dia dos Namorados. (2009)           |
+//   | - Cria Chocolate/Caixa de Chocolate/Chocolate feito em casa. |
+//   | - Cria Anéis/Caixas do Dia dos Namorados.                    |
+//   | - Troca de anéis com o sexo oposto.                          |
+//   | - Registra anéis para obter votos.                           |
+//   | - O homem e a mulher com a maioria dos votos no final do     |
+//   | - evento receberá o item (14466) da equipe de GM.            |
+//   | - Deve permitir os itens do evento no item_db2 e item_trade! |
+//   |--------------------------------------------------------------|
+//   | Changelog:                                                   |
+//   | 1.0 Criado Cabeçalho [Megasantos]                            |
+//   |--------------------------------------------------------------|
+//   | - Anotações                                                  |
+//   \______________________________________________________________/
 
 // Marco Bassinio (Chocolate/Chocolate Box maker)
 //============================================================

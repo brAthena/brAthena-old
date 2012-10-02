@@ -1,36 +1,39 @@
-//===== rAthena Script =======================================
-//= St. Patrick's Day (2008)
-//===== By: ==================================================
-//= Kisuka
-//===== Current Version: =====================================
-//= 1.5
-//===== Compatible With: =====================================
-//= rAthena SVN
-//===== Description: =========================================
-//= iRO St. Patrick's Day. (2008)
-//= Find O'Riley's treasure for him, then hunt down coinds from
-//= the snakes to get Green Ale in return for them.
-//=
-//= Mobs 1841 through 1844 have been modified for this event
-//= you must use the mob edits provided for this quest.
-//= Enable in mob_db2.txt
-//=
-//= The item 12715 Black_Treasure_Chest contains a script 
-//= that relies explicitly on this script being loaded.
-//= Remove the "end" from the item script to enable.
-//= In addition to that, you must enable the item_avail
-//= entries if you are using a kRO client, as the items
-//= were removed from the client between testing and this
-//= updated.
-//===== Additional Comments: =================================
-//= 1.0 First version. [Kisuka]
-//= 1.1 Fixed checkitems for ale, fixed ale prize(gives the correct one now). [Kisuka]
-//= 1.2 Optimized. Uses only one variable now. [L0ne_W0lf]
-//=	Corrected EXP rewards, and some typos.
-//= 1.3 Corrected random in item function. [L0ne_W0lf]
-//= 1.4 Replaced effect numerics with constants. [Samuray22]
-//= 1.5 Revamped the script. [Kisuka]
-//============================================================
+//    ________________________________________________________ 
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: são_patricio_2008.txt                  |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.5/1.0                             |
+//   |--------------------------------------------------------|
+//   | iRO St. Patrick's Day. (2008)						  |
+//   | Find O'Riley's treasure for him, then hunt down coinds |
+//   | from the snakes to get Green Ale in return for them.	  |
+//   | 														  |
+//   | Mobs 1841 through 1844 have been modified for this	  |
+//   | event you must use the mob edits provided for this 	  |
+//   | quest. Enable in mob_db2.txt							  |
+//   | 														  |
+//   | The item 12715 Black_Treasure_Chest contains a script  |
+//   | that relies explicitly on this script being loaded.	  |
+//   | Remove the "end" from the item script to enable.		  |
+//   | In addition to that, you must enable the item_avail	  |
+//   | entries if you are using a kRO client, as the items	  |
+//   | were removed from the client between testing and this  |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
 
 prt_fild05,170,286,4	script	Anxious Leprechaun#8pday	954,{
 	if (StPatrick2008 < 1) {

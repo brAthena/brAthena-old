@@ -1,27 +1,26 @@
-//===== rAthena Script ======================================= 
-//= Rogue Job Quest
-//===== By: ================================================== 
-//= kobra_k88
-//===== Current Version: ===================================== 
-//= 2.9
-//===== Compatible With: ===================================== 
-//= rAthena SVN
-//===== Description: ========================================= 
-//= [Aegis Conversion]
-//= Job quest for Rogue classes
-//===== Additional Comments: ================================= 
-//= 2.4 Rescripted to Aegis 10.3 stadards. [L0ne_W0lf]
-//=	No longer uses function "F_BlockHigh"
-//= 2.4a Deleted unused variables. [Samuray22]
-//= 2.4b Changed a Problem with JobLevel what made 
-//=	impossible get a Gladius [3]. (bugreport:481) [Samuray22]
-//= 2.4c Corrected a Typo error ";;" and a typo error with "rouge". (bugreport:909) [Samuray22]
-//= 2.5 Added dummy "OnMyMobDead" labels. (bugreport:1100) [L0ne_W0lf]
-//= 2.6 Fixed a few bugs in the Rogue Guildsman. [L0ne_W0lf]
-//= 2.7 Fixed a bug on Markie question 5, bugreport:1600 [Brainstorm]
-//= 2.8 Moved "Thug" to Morroc Ruins. [L0ne_W0lf]
-//= 2.9 Added Quest Log commands. [Kisuka]
-//============================================================ 
+//    ________________________________________________________ 
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: arruaceiro.txt                         |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 2.9/1.0                             |
+//   |--------------------------------------------------------|
+//   | Descrição: Mudança de Classe para Arruaceiro.          |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
 
 moc_ruins,86,103,1	script	Thug#rg	118,{
 	mes "[Thug]";
@@ -2012,19 +2011,3 @@ in_rogue,399,286,1	script	switch#rogreset	88,{
 	close;
 }
 
-//============================================================ 
-// Old changelog
-//============================================================ 
-//= 1.1 fixed 3 wrong questions, added missing lines [Lupus]
-//= 1.3 Baby Class Support + 40/50 JobLevel Item fix [Lupus]
-//= 1.5 Fixed possible EXP abuse [Lupus]
-//= 1.6 Added a func which prevent advanced classes passing
-//= 2nd Job Quests again. It also guides adv classes where
-//= to go. [Lupus]
-//= 2.0 Changed numbers to constants. [Vicious]
-//= 2.1 Removed Duplicates [Silent]
-//= 2.2 Merged JFunc [Lupus]
-//= 2.3 Added a possibility for players doing Meginjyard quest
-//= to enter Rogue guild as there's a NPC inside [SinSloth]
-//= 2.3a fixed test4 person interaction, let BABY thieves pass
-//=	the test, too [Lupus]
