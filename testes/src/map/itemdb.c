@@ -513,75 +513,45 @@ static bool itemdb_read_itemavail(char* str[], int columns, int current)
 /*==========================================
  * read item group data
  *------------------------------------------*/
-static void itemdb_read_itemgroup_sub(const char* filename)
-{
-	FILE *fp;
-	char line[1024];
-	int ln=0;
-	int groupid,j,k,nameid;
-	char *str[3],*p;
-	char w1[1024], w2[1024];
-	
-	if( (fp=fopen(filename,"r"))==NULL ){
-		ShowError("can't read %s\n", filename);
-		return;
-	}
+static bool itemdb_read_itemgroup_sub(char* str[], int columns, int current)
+{// <groupid>,<itemid>,<rate>
+	int groupid, itemid, rate;
+	struct item_data *id;
 
-	while(fgets(line, sizeof(line), fp))
-	{
-		ln++;
-		if(line[0]=='/' && line[1]=='/')
-			continue;
-		if(strstr(line,"import")) {
-			if (sscanf(line, "%[^:]: %[^\r\n]", w1, w2) == 2 &&
-				strcmpi(w1, "import") == 0) {
-				itemdb_read_itemgroup_sub(w2);
-				continue;
-			}
-		}
-		memset(str,0,sizeof(str));
-		for(j=0,p=line;j<3 && p;j++){
-			str[j]=p;
-			p=strchr(p,',');
-			if(p) *p++=0;
-		}
-		if(str[0]==NULL)
-			continue;
-		if (j<3) {
-			if (j>1) //Or else it barks on blank lines...
-				ShowWarning("itemdb_read_itemgroup: Insufficient fields for entry at %s:%d\n", filename, ln);
-			continue;
-		}
 		groupid = atoi(str[0]);
 		if (groupid < 0 || groupid >= MAX_ITEMGROUP) {
-			ShowWarning("itemdb_read_itemgroup: Invalid group %d in %s:%d\n", groupid, filename, ln);
-			continue;
+			ShowWarning("itemdb_read_itemgroup: Invalid group %d in %s:%d\n", groupid);
+			return true;
 		}
-		nameid = atoi(str[1]);
-		if (!itemdb_exists(nameid)) {
-			ShowWarning("itemdb_read_itemgroup: Non-existant item %d in %s:%d\n", nameid, filename, ln);
-			continue;
+		itemid = atoi(str[1]);
+		if (!itemdb_exists(itemid)) {
+			ShowWarning("itemdb_read_itemgroup: Non-existant item %d in %s:%d\n", itemid);
+			return true;
 		}
-		k = atoi(str[2]);
-		if (itemgroup_db[groupid].qty+k >= MAX_RANDITEM) {
-			ShowWarning("itemdb_read_itemgroup: Group %d is full (%d entries) in %s:%d\n", groupid, MAX_RANDITEM, filename, ln);
-			continue;
+		rate = atoi(str[2]);
+		if (itemgroup_db[groupid].qty+rate >= MAX_RANDITEM) {
+			ShowWarning("itemdb_read_itemgroup: Group %d is full (%d entries) in %s:%d\n", groupid, MAX_RANDITEM);
+			return true;
 		}
-		for(j=0;j<k;j++)
-			itemgroup_db[groupid].nameid[itemgroup_db[groupid].qty++] = nameid;
+		
+	if( ( id = itemdb_exists(itemid) ) == NULL )
+	{
+		ShowWarning("itemdb_read_itemavail: Invalid item id %d.\n", itemid);
+		return false;
 	}
-	fclose(fp);
-	return;
+
+	return true;
 }
 
 static void itemdb_read_itemgroup(void)
 {
-	char path[256];
-	snprintf(path, 255, "%s/"DBPATH"item_group_db.txt", db_path);
-	memset(&itemgroup_db, 0, sizeof(itemgroup_db));
-	itemdb_read_itemgroup_sub(path);
-	ShowStatus("Done reading '"CL_WHITE"%s"CL_RESET"'.\n", "item_group_db.txt");
-	return;
+	itemdb_read_sqldb();
+	sv_readsqldb(get_database_name(26), NULL, 2, -1, &itemdb_read_itemgroup_sub); 	
+	sv_readsqldb(get_database_name(27), NULL, 2, -1, &itemdb_read_itemgroup_sub); 
+	sv_readsqldb(get_database_name(28), NULL, 3, -1, &itemdb_read_itemgroup_sub);
+	sv_readsqldb(get_database_name(29), NULL, 2, -1, &itemdb_read_itemgroup_sub);
+	sv_readsqldb(get_database_name(30), NULL, 3, -1, &itemdb_read_itemgroup_sub);
+	sv_readsqldb(get_database_name(31), NULL, 1, -1, &itemdb_read_itemgroup_sub);
 }
 
 /*==========================================

@@ -3571,6 +3571,12 @@ char* get_database_name(int database_id)
 		case 23: db_name = "item_delay_db"; break;
 		case 24: db_name = "item_stack_db"; break;
 		case 25: db_name = "item_buyingstore_db"; break;
+		case 26: db_name = "item_bluebox_db"; break;
+		case 27: db_name = "item_violetbox_db"; break;
+		case 28: db_name = "item_cardalbum_db"; break;
+		case 29: db_name = "item_findingore_db"; break;
+		case 30: db_name = "item_giftbox_db"; break;
+		case 31: db_name = "item_misc_db"; break;
 	}
 	
 	return db_name;
