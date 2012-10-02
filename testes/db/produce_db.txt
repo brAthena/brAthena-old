@@ -160,6 +160,30 @@
 12061,11,0,0,7472,0,518,1,514,2,501,1
 //-- Caudas de Macaco Fritas <-- 5 Cauda de Yoyo, 1 Frigideira Velha, 1 Óleo de Cozinha
 12066,11,0,0,7472,0,942,5,7031,1,7457,1
+//-- Rotten Scale <-- GN_CHANGEMATERIAL Lv1, 20 Shell, 50 Thin N' Long Tongue
+959,26,2494,1,935,20,1015,50
+//-- Conch <-- GN_CHANGEMATERIAL Lv1, 5 Gill, 25 Immortal Heart
+961,26,2494,1,956,5,929,25
+//-- Sharp Scale <-- GN_CHANGEMATERIAL Lv1, 10 Horseshoe, 20 Clam Shell
+963,26,2494,1,944,10,965,20
+//-- Emveretarcon <-- GN_CHANGEMATERIAL Lv1, 5 Heart Of Mermaid, 40 Grasshopper Doll
+1011,26,2494,1,950,5,752,40
+//-- Short Leg <-- GN_CHANGEMATERIAL Lv1, 20 Claw Of Wolves, 45 Scell
+1042,26,2494,1,920,20,911,45
+//-- Bone Wand <-- GN_CHANGEMATERIAL Lv1, 100 Clattering Skull, 100 Broken Farming Utensil
+1615,26,2494,1,7752,100,7753,100
+//-- Boost500 To Throw <-- GN_CHANGEMATERIAL Lv1, 10 Empty Potion, 10 Boost500, 10 Flexible String
+13269,26,2494,1,1093,10,12417,10,7200,10
+//-- Full SwingK To Throw <-- GN_CHANGEMATERIAL Lv1, 10 Empty Potion, 10 Full SwingK, 10 Flexible String
+13270,26,2494,1,1093,10,12418,10,7200,10
+//-- Mana Plus To Throw <-- GN_CHANGEMATERIAL Lv1, 10 Empty Potion, 10 Mana Plus, 10 Flexible String
+13271,26,2494,1,1093,10,12419,10,7200,10
+//-- Cure Free To Throw <-- GN_CHANGEMATERIAL Lv1, 10 Empty Potion, 10 Cure Free, 10 Flexible String
+13272,26,2494,1,1093,10,12475,10,7200,10
+//-- Stamina Up M To Throw <-- GN_CHANGEMATERIAL Lv1, 10 Empty Potion, 10 Stamina Up M, 10 Flexible String
+13273,26,2494,1,1093,10,12420,10,7200,10
+//-- Digestive F To Throw <-- GN_CHANGEMATERIAL Lv1, 10 Empty Potion, 10 Digestive F, 10 Flexible String
+13274,26,2494,1,1093,10,12421,10,7200,10
 
 //------------- LEVEL 2 --------------
 
