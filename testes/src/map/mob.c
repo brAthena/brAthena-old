@@ -3874,38 +3874,6 @@ static bool mob_parse_dbrow(char** str)
 }
 
 /*==========================================
- * mob_db.txt reading
- *------------------------------------------*/
-static bool mob_readdb_sub(char* fields[], int columns, int current)
-{
-	return mob_parse_dbrow(fields);
-}
-
-static void mob_readdb(void)
-{
-	const char* filename[] = {
-		DBPATH"mob_db.txt",
-		"mob_db2.txt" };
-	int fi;
-	
-	for( fi = 0; fi < ARRAYLENGTH(filename); ++fi )
-	{
-		char path[256];
-
-		if(fi > 0)
-		{
-			sprintf(path, "%s/%s", db_path, filename[fi]);
-			if(!exists(path))
-			{
-				continue;
-			}
-		}
-
-		sv_readdb(db_path, filename[fi], ',', 31+2*MAX_MVP_DROP+2*MAX_MOB_DROP, 31+2*MAX_MVP_DROP+2*MAX_MOB_DROP, -1, &mob_readdb_sub);
-	}
-}
-
-/*==========================================
  * mob_db table reading
  *------------------------------------------*/
 static int mob_read_sqldb(void)
@@ -4546,7 +4514,7 @@ static void mob_load(void)
 	}
 	else
 	{
-		mob_readdb();
+		mob_read_sqldb();
 		mob_readskilldb();
 	}
 	sv_readdb(db_path, "mob_avail.txt", ',', 2, 12, -1, &mob_readdb_mobavail);
