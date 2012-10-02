@@ -177,7 +177,7 @@ const char* get_svn_revision(void)
 	{
 	#ifndef SVNNODEPATH
 		//not sure how to handle branches, so i'll leave this overridable define until a better solution comes up
-		#define SVNNODEPATH trunk
+		#define SVNNODEPATH testes
 	#endif
 		const char* prefix = "!svn/ver/";
 		const char* postfix = "/"EXPAND_AND_QUOTE(SVNNODEPATH)")"; // there should exist only 1 entry like this
