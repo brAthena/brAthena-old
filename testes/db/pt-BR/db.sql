@@ -1035,10 +1035,6 @@ CREATE TABLE IF NOT EXISTS `spellbook_db` (
   PRIMARY KEY (`skill_id`)
 ) ENGINE=MyISAM;
 
---
--- Extraindo dados da tabela `spellbook_db`
---
-
 REPLACE INTO `spellbook_db` VALUES(14, 7, 6190);
 REPLACE INTO `spellbook_db` VALUES(19, 7, 6189);
 REPLACE INTO `spellbook_db` VALUES(20, 7, 6191);
