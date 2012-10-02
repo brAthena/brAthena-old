@@ -17496,23 +17496,23 @@ static void skill_readdb(void)
 	safestrncpy(skill_db[0].name, "UNKNOWN_SKILL", sizeof(skill_db[0].name));
 	safestrncpy(skill_db[0].desc, "Habilidade desconhecida", sizeof(skill_db[0].desc));
 
-	sv_readsqldb(get_database_name(0), NULL, 17, MAX_SKILL_DB, &skill_parse_row_skilldb);
-	sv_readsqldb(get_database_name(1), NULL, 32, MAX_SKILL_DB, &skill_parse_row_requiredb);
-	sv_readsqldb(get_database_name(2), NULL, 8,  MAX_SKILL_DB, &skill_parse_row_castdb);
-	sv_readsqldb(get_database_name(3), NULL, 3,  MAX_SKILL_DB, &skill_parse_row_castnodexdb);
-	sv_readsqldb(get_database_name(4), NULL, 8,  MAX_SKILL_DB, &skill_parse_row_unitdb);
-	sv_readsqldb(get_database_name(5), NULL, 2,  MAX_SKILL_DB, &skill_parse_row_nocastdb);
+	sv_readsqldb(get_database_name(0), NULL, 17, MAX_SKILL_DB, skill_parse_row_skilldb);
+	sv_readsqldb(get_database_name(1), NULL, 32, MAX_SKILL_DB, skill_parse_row_requiredb);
+	sv_readsqldb(get_database_name(2), NULL, 8,  MAX_SKILL_DB, skill_parse_row_castdb);
+	sv_readsqldb(get_database_name(3), NULL, 3,  MAX_SKILL_DB, skill_parse_row_castnodexdb);
+	sv_readsqldb(get_database_name(4), NULL, 8,  MAX_SKILL_DB, skill_parse_row_unitdb);
+	sv_readdb(db_path,DBPATH"skill_nocast_db.txt",',',2,2,MAX_SKILL_DB,skill_parse_row_nocastdb); /* temp */
 
 	skill_init_unit_layout();
 	
-	sv_readsqldb(get_database_name(6),  NULL, 4,  MAX_SKILL_PRODUCE_DB,       &skill_parse_row_producedb);
-	sv_readsqldb(get_database_name(7),  NULL, 3,  MAX_SKILL_ARROW_DB,         &skill_parse_row_createarrowdb);
-	sv_readsqldb(get_database_name(8),  NULL, 4,  MAX_SKILL_ABRA_DB,          &skill_parse_row_abradb);
-	sv_readsqldb(get_database_name(9),  NULL, 3,  MAX_SKILL_SPELLBOOK_DB,     &skill_parse_row_spellbookdb);
-	sv_readsqldb(get_database_name(10), NULL, 1,  MAX_SKILL_MAGICMUSHROOM_DB, &skill_parse_row_magicmushroomdb);
-	sv_readsqldb(get_database_name(11), NULL, 1,  MAX_SKILL_DB,               &skill_parse_row_reproducedb);
-	sv_readsqldb(get_database_name(12), NULL, 2,  MAX_SKILL_IMPROVISE_DB,     &skill_parse_row_improvisedb);
-	sv_readsqldb(get_database_name(13), NULL, 2,  MAX_SKILL_PRODUCE_DB,       &skill_parse_row_changematerialdb);
+	sv_readdb(db_path,"produce_db.txt",',',4,4+2*MAX_PRODUCE_RESOURCE,MAX_SKILL_PRODUCE_DB,skill_parse_row_producedb); /* temp */
+	sv_readsqldb(get_database_name(7),  NULL, 3,  MAX_SKILL_ARROW_DB,         skill_parse_row_createarrowdb);
+	sv_readsqldb(get_database_name(8),  NULL, 4,  MAX_SKILL_ABRA_DB,          skill_parse_row_abradb);
+	sv_readsqldb(get_database_name(9),  NULL, 3,  MAX_SKILL_SPELLBOOK_DB,     skill_parse_row_spellbookdb);
+	sv_readsqldb(get_database_name(10), NULL, 1,  MAX_SKILL_MAGICMUSHROOM_DB, skill_parse_row_magicmushroomdb);
+	sv_readsqldb(get_database_name(11), NULL, 1,  MAX_SKILL_DB,               skill_parse_row_reproducedb);
+	sv_readsqldb(get_database_name(12), NULL, 2,  MAX_SKILL_IMPROVISE_DB,     skill_parse_row_improvisedb);
+	sv_readsqldb(get_database_name(13), NULL, 5,  MAX_SKILL_PRODUCE_DB,       skill_parse_row_changematerialdb);
 
 }
 

@@ -1100,7 +1100,7 @@ static bool read_homunculusdb_sub(char* str[], int columns, int current)
 int read_homunculusdb(void)
 {
 	memset(homunculus_db,0,sizeof(homunculus_db));
-	sv_readsqldb(get_database_name(16), NULL, 50, MAX_HOMUNCULUS_CLASS, &read_homunculusdb_sub);
+	sv_readsqldb(get_database_name(15), NULL, 50, MAX_HOMUNCULUS_CLASS, &read_homunculusdb_sub);
 	return 0;
 }
 
@@ -1147,7 +1147,7 @@ static bool read_homunculus_skilldb_sub(char* split[], int columns, int current)
 int read_homunculus_skilldb(void)
 {
 	memset(hskill_tree,0,sizeof(hskill_tree));
-	sv_readsqldb(get_database_name(17), NULL, 13, -1, &read_homunculus_skilldb_sub);
+	sv_readdb(db_path, "homun_skill_tree.txt", ',', 13, 14, -1, &read_homunculus_skilldb_sub);
 
 	return 0;
 }

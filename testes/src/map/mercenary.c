@@ -501,7 +501,7 @@ static bool read_mercenary_skilldb_sub(char* str[], int columns, int current)
 
 int read_mercenary_skilldb(void)
 {
-	sv_readsqldb(get_database_name(18), NULL, 3, -1, &read_mercenary_skilldb_sub);
+	sv_readdb(db_path, "mercenary_skill_db.txt", ',', 3, 3, -1, &read_mercenary_skilldb_sub);
 
 	return 0;
 }
