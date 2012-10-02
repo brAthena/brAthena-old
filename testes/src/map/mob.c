@@ -4067,7 +4067,7 @@ static int mob_read_randommonster(void)
  * processes one mob_chat_db entry [SnakeDrak]
  * @param last_msg_id ensures that only one error message per mob id is printed
  *------------------------------------------*/
-static bool mob_parse_row_chatdb(char** str, const char* source, int line, int* last_msg_id)
+static bool mob_parse_row_chatdb(char* str[], int columns, int current)
 {
 	char* msg;
 	struct mob_chat *ms;
@@ -4078,9 +4078,9 @@ static bool mob_parse_row_chatdb(char** str, const char* source, int line, int* 
 
 	if (msg_id <= 0 || msg_id > MAX_MOB_CHAT)
 	{
-		if (msg_id != *last_msg_id) {
-			ShowError("mob_chat: Invalid chat ID: %d at %s, line %d\n", msg_id, source, line);
-			*last_msg_id = msg_id;
+		if (msg_id != current) {
+			ShowError("mob_parse_row_chatdb: Chat inválido ID: %d\n", msg_id);
+			current = msg_id;
 		}
 		return false;
 	}
@@ -4104,15 +4104,15 @@ static bool mob_parse_row_chatdb(char** str, const char* source, int line, int* 
 
 	if(len>(CHAT_SIZE_MAX-1))
 	{
-		if (msg_id != *last_msg_id) {
-			ShowError("mob_chat: readdb: Message too long! Line %d, id: %d\n", line, msg_id);
-			*last_msg_id = msg_id;
+		if (msg_id != current) {
+			ShowError("mob_parse_row_chatdb: Mensagem muito longa! Row %d\n", current);
+			current = msg_id;
 		}
 		return false;
 	}
 	else if( !len )
 	{
-		ShowWarning("mob_parse_row_chatdb: Empty message for id %d.\n", msg_id);
+		ShowWarning("mob_parse_row_chatdb: Mensagem vazia! Chat ID: %d.\n", msg_id);
 		return false;
 	}
 
@@ -4127,55 +4127,7 @@ static bool mob_parse_row_chatdb(char** str, const char* source, int line, int* 
  *-------------------------------------------------------------------------*/
 static void mob_readchatdb(void)
 {
-	char arc[]="mob_chat_db.txt";
-	uint32 lines=0, count=0;
-	char line[1024], path[256];
-	int i, tmp=0;
-	FILE *fp;
-	sprintf(path, "%s/%s", db_path, arc); 
-	fp=fopen(path, "r");
-	if(fp == NULL)
-	{
-		ShowWarning("mob_readchatdb: File not found \"%s\", skipping.\n", path);
-		return;
-	}
-	
-	while(fgets(line, sizeof(line), fp))
-	{
-		char *str[3], *p, *np;
-		int j=0;
-
-		lines++;
-		if(line[0] == '/' && line[1] == '/')
-			continue;
-		memset(str, 0, sizeof(str));
-
-		p=line;
-		while(ISSPACE(*p))
-			++p;
-		if(*p == '\0')
-			continue;// empty line
-		for(i = 0; i <= 2; i++)
-		{
-			str[i] = p;
-			if(i<2 && (np = strchr(p, ',')) != NULL) {
-				*np = '\0'; p = np + 1; j++;
-			}
-		}
-
-		if( j < 2 || str[2]==NULL)
-		{
-			ShowError("mob_readchatdb: Insufficient number of fields for skill at %s, line %d\n", arc, lines);
-			continue;
-		}
-
-		if( !mob_parse_row_chatdb(str, path, lines, &tmp) )
-			continue;
-
-		count++;
-	}
-	fclose(fp);
-	ShowStatus("Done reading '"CL_WHITE"%s"CL_RESET"'.\n", arc);
+	sv_readsqldb(get_database_name(32), NULL, 3, MAX_MOB_CHAT, &mob_parse_row_chatdb);
 }
 
 /*==========================================

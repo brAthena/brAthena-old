@@ -230,6 +230,58 @@ REPLACE INTO `abra_db` VALUES(329, 'Beijo da Sorte', 1, 0);
 REPLACE INTO `abra_db` VALUES(330, 'Dança Cigana', 1, 0);
 
 --
+-- Estrutura da tabela `mob_chat_db`
+--
+
+CREATE TABLE IF NOT EXISTS `mob_chat_db` (
+  `msg_id` smallint(2) unsigned NOT NULL DEFAULT '0',
+  `color` text NOT NULL,
+  `message` text NOT NULL,
+  PRIMARY KEY (`msg_id`)
+) ENGINE=MyISAM;
+
+REPLACE INTO `mob_chat_db` VALUES(1, '0xFF0000', 'Fraco! Me desafie se tiver alguma coragem!\r\n');
+REPLACE INTO `mob_chat_db` VALUES(2, '0xFF0000', 'Impressionante! Eu me pergunto até onde sua imprudencia irá levá-lo.\r\n');
+REPLACE INTO `mob_chat_db` VALUES(3, '0xFF0000', 'Tenho pena de você estar contra mim. Agora se prepare para meu ataque!\r\n');
+REPLACE INTO `mob_chat_db` VALUES(4, '0xFF0000', 'Meus servos fiéis! O recebram com uma morte dolorosa!\r\n');
+REPLACE INTO `mob_chat_db` VALUES(5, '0xFF0000', 'Não fuja!\r\n');
+REPLACE INTO `mob_chat_db` VALUES(6, '0xFF0000', 'Vocês');
+REPLACE INTO `mob_chat_db` VALUES(7, '0xFF0000', 'Subalternos inúteis!... Tudo bem');
+REPLACE INTO `mob_chat_db` VALUES(8, '0xFF0000', 'Reze para seus deuses!\r\n');
+REPLACE INTO `mob_chat_db` VALUES(9, '0xFF0000', 'Você ainda acha que é um jogo para mim?\r\n');
+REPLACE INTO `mob_chat_db` VALUES(10, '0xFF0000', 'Vanish!\r\n');
+REPLACE INTO `mob_chat_db` VALUES(11, '0xFF0000', 'Vamos ver por quanto tempo você pode agüentar meu poder!\r\n');
+REPLACE INTO `mob_chat_db` VALUES(12, '0xFF0000', 'Isso é tudo que você tem?\r\n');
+REPLACE INTO `mob_chat_db` VALUES(13, '0xFF0000', 'Você está me fazendo cócegas!\r\n');
+REPLACE INTO `mob_chat_db` VALUES(14, '0xFF0000', 'Chama isso de ataque? Assista e aprenda');
+REPLACE INTO `mob_chat_db` VALUES(15, '0xFF0000', 'É hora de terminar o jogo!\r\n');
+REPLACE INTO `mob_chat_db` VALUES(16, '0xFF0000', 'Ha! Você é mais forte do que eu pensava!\r\n');
+REPLACE INTO `mob_chat_db` VALUES(17, '0xFF0000', 'Não! Isso não poder estar acontecendo! Eu sou Satan Morroc');
+REPLACE INTO `mob_chat_db` VALUES(18, '0xFF0000', 'Eu nunca morrei! Sempre estarei voltando para lhe pegar!\r\n');
+REPLACE INTO `mob_chat_db` VALUES(19, '0xFF0000', 'Eu nasci para conquistar este mundo! Nada poderá me impedir!\r\n');
+REPLACE INTO `mob_chat_db` VALUES(20, '0xFF0000', 'Seus dias estão contados!\r\n');
+REPLACE INTO `mob_chat_db` VALUES(21, '0xFF0000', 'Strike! Meus dedos dilaceradores de aço!\r\n');
+REPLACE INTO `mob_chat_db` VALUES(22, '0xFF0000', 'Hahaha! Me diga quem sou! Eo sou Bafomé! O herdeiro do inferno!\r\n');
+REPLACE INTO `mob_chat_db` VALUES(23, '0xFF0000', 'Aproveite sua vida enquanto pode! Sua esperança em breve irá se transformar em desespero!\r\n');
+REPLACE INTO `mob_chat_db` VALUES(24, '0xFF0000', 'Quando você aprenderá a lição? Quando morrer?\r\n');
+REPLACE INTO `mob_chat_db` VALUES(25, '0xFF0000', 'Não... Eu não posso perder! Não vou implorar por minha vida! Eu não estou fugindo! Eu não aceito isso como derrota!\r\n');
+REPLACE INTO `mob_chat_db` VALUES(26, '0xFF0000', 'Argh... Eu... Eu');
+REPLACE INTO `mob_chat_db` VALUES(27, '0xFF0000', 'O que você quer de mim?\r\n');
+REPLACE INTO `mob_chat_db` VALUES(28, '0xFF0000', 'Não! Eu não fiz isso! Ele é quem planejou tudo isso!\r\n');
+REPLACE INTO `mob_chat_db` VALUES(29, '0xFF0000', 'Eu só queria encontrar a paz..!  É por isso que eu estava fugindo!\r\n');
+REPLACE INTO `mob_chat_db` VALUES(30, '0xFF0000', 'Ahhhh!!! Agora');
+REPLACE INTO `mob_chat_db` VALUES(31, '0xFF0000', 'Moscas irritantes!! Saiam de mim!\r\n');
+REPLACE INTO `mob_chat_db` VALUES(32, '0xFF0000', 'Sofra no Inferno!\r\n');
+REPLACE INTO `mob_chat_db` VALUES(33, '0xFF0000', 'Muahahaha! Sinta a fúria da terra!!!\r\n');
+REPLACE INTO `mob_chat_db` VALUES(34, '0xFF0000', 'Não... Eu não irei aceitar esta derrota!\r\n');
+REPLACE INTO `mob_chat_db` VALUES(35, '0xFF0000', 'Será que me bater irá aliviar a sua solidão? Por que você não fica aqui comigo para sempre');
+REPLACE INTO `mob_chat_db` VALUES(36, '0xFF0000', 'Você esqueceu o significado do tempo. Eu me pergunto quanto tempo você poderá durar aqui...\r\n');
+REPLACE INTO `mob_chat_db` VALUES(37, '0xFF0000', 'Existe alguém esperando por você? Desista de tudo');
+REPLACE INTO `mob_chat_db` VALUES(38, '0xFF0000', 'Esqueça sua vida e fique confinado aqui. Você vai desejar a liberdade preso em cativeiro cativeiro !!\r\n');
+REPLACE INTO `mob_chat_db` VALUES(39, '0xFF0000', 'Quais serão as mudanças no mundo exterior');
+REPLACE INTO `mob_chat_db` VALUES(40, '0xFF0000', 'Sim! Desejar a sua liberdade neste local confinado');
+
+--
 -- Estrutura da tabela `castle_db`
 --
 
