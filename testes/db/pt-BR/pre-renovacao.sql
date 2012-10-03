@@ -230,6 +230,291 @@ REPLACE INTO `abra_db` VALUES(329, 'Beijo da Sorte', 1, 0);
 REPLACE INTO `abra_db` VALUES(330, 'Dança Cigana', 1, 0);
 
 --
+-- Estrutura da tabela `produce_db`
+--
+
+CREATE TABLE IF NOT EXISTS `produce_db` (
+  `item_id` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `item_lvl` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `skill_id` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `skill_lvl` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `itemreq1` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `itemamout1` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `itemreq2` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `itemamout2` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `itemreq3` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `itemamout3` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `itemreq4` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `itemamout4` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `itemreq5` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `itemamout5` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `itemreq6` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `itemamout6` smallint(6) unsigned NOT NULL DEFAULT '0'
+) ENGINE=MyISAM;
+
+REPLACE INTO `produce_db` VALUES(1101, 1, 99, 1, 998, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1104, 1, 99, 1, 998, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1107, 1, 99, 1, 998, 45, 913, 25, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1110, 2, 99, 2, 999, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1113, 2, 99, 2, 999, 35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1122, 2, 99, 2, 999, 40, 920, 50, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1126, 3, 99, 3, 999, 5, 984, 8, 727, 1, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1123, 3, 99, 3, 984, 8, 999, 10, 728, 1, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1119, 3, 99, 3, 984, 8, 999, 15, 718, 1, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1129, 3, 99, 3, 984, 16, 724, 1, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1201, 1, 98, 1, 998, 1, 909, 10, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1204, 1, 98, 1, 998, 25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1207, 1, 98, 1, 998, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1210, 2, 98, 2, 999, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1213, 2, 98, 2, 999, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1216, 2, 98, 2, 999, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1219, 3, 98, 3, 984, 4, 999, 40, 726, 1, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1222, 3, 98, 3, 984, 4, 999, 60, 729, 1, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1116, 1, 100, 1, 998, 35, 958, 15, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1151, 2, 100, 2, 999, 25, 957, 20, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1154, 2, 100, 2, 999, 45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1157, 3, 100, 3, 984, 12, 999, 10, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1160, 3, 100, 3, 984, 12, 999, 20, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1163, 3, 100, 3, 984, 16, 999, 20, 733, 1, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1301, 1, 101, 1, 998, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1351, 1, 101, 1, 998, 110, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1354, 2, 101, 2, 999, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1357, 3, 101, 3, 984, 4, 999, 20, 922, 30, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1360, 3, 101, 3, 984, 8, 999, 10, 719, 1, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1501, 1, 102, 1, 998, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1504, 1, 102, 1, 998, 30, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1507, 2, 102, 2, 999, 20, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1510, 2, 102, 2, 999, 33, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1519, 2, 102, 2, 999, 45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1513, 3, 102, 3, 999, 85, 730, 1, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1516, 3, 102, 3, 999, 100, 963, 20, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1522, 3, 102, 3, 999, 120, 968, 1, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1801, 1, 103, 1, 998, 160, 722, 1, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1803, 2, 103, 2, 999, 50, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1805, 2, 103, 2, 999, 65, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1807, 3, 103, 3, 984, 4, 723, 10, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1809, 3, 103, 3, 984, 8, 728, 10, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1811, 3, 103, 3, 984, 4, 727, 10, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1401, 1, 104, 1, 998, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1404, 1, 104, 1, 998, 35, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1407, 1, 104, 1, 998, 70, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1451, 2, 104, 2, 999, 25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1454, 2, 104, 2, 999, 40, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1457, 2, 104, 2, 999, 55, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1460, 3, 104, 3, 984, 8, 999, 10, 720, 5, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1463, 3, 104, 3, 984, 12, 999, 10, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1410, 3, 104, 3, 984, 12, 723, 3, 923, 2, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12041, 11, 0, 0, 7472, 0, 940, 5, 7031, 1, 7457, 1, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12046, 11, 0, 0, 7472, 0, 514, 3, 501, 2, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12051, 11, 0, 0, 7472, 0, 960, 10, 511, 10, 503, 1, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12056, 11, 0, 0, 7472, 0, 577, 1, 908, 10, 1024, 1, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12061, 11, 0, 0, 7472, 0, 518, 1, 514, 2, 501, 1, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12066, 11, 0, 0, 7472, 0, 942, 5, 7031, 1, 7457, 1, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(959, 26, 2494, 1, 935, 20, 1015, 50, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(961, 26, 2494, 1, 956, 5, 929, 25, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(963, 26, 2494, 1, 944, 10, 965, 20, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1011, 26, 2494, 1, 950, 5, 752, 40, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1042, 26, 2494, 1, 920, 20, 911, 45, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1615, 26, 2494, 1, 7752, 100, 7753, 100, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(13269, 26, 2494, 1, 1093, 10, 12417, 10, 7200, 10, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(13270, 26, 2494, 1, 1093, 10, 12418, 10, 7200, 10, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(13271, 26, 2494, 1, 1093, 10, 12419, 10, 7200, 10, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(13272, 26, 2494, 1, 1093, 10, 12475, 10, 7200, 10, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(13273, 26, 2494, 1, 1093, 10, 12420, 10, 7200, 10, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(13274, 26, 2494, 1, 1093, 10, 12421, 10, 7200, 10, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12042, 12, 0, 0, 7473, 0, 918, 20, 511, 10, 508, 10, 7454, 1, 0, 0);
+REPLACE INTO `produce_db` VALUES(12052, 12, 0, 0, 7473, 0, 966, 10, 956, 5, 951, 5, 579, 1, 0, 0);
+REPLACE INTO `produce_db` VALUES(12047, 12, 0, 0, 7473, 0, 510, 5, 507, 10, 508, 10, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12057, 12, 0, 0, 7473, 0, 577, 1, 7454, 1, 1062, 5, 515, 3, 0, 0);
+REPLACE INTO `produce_db` VALUES(12062, 12, 0, 0, 7473, 0, 7182, 10, 539, 1, 519, 1, 736, 1, 0, 0);
+REPLACE INTO `produce_db` VALUES(12067, 12, 0, 0, 7473, 0, 531, 3, 534, 2, 533, 1, 620, 2, 0, 0);
+REPLACE INTO `produce_db` VALUES(12063, 13, 0, 0, 7474, 0, 512, 5, 513, 5, 582, 5, 578, 5, 7452, 1);
+REPLACE INTO `produce_db` VALUES(12048, 13, 0, 0, 7474, 0, 518, 2, 509, 10, 7452, 1, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12043, 13, 0, 0, 7474, 0, 517, 4, 7031, 1, 511, 10, 7286, 5, 7455, 1);
+REPLACE INTO `produce_db` VALUES(12053, 13, 0, 0, 7474, 0, 966, 20, 961, 10, 518, 1, 7453, 1, 0, 0);
+REPLACE INTO `produce_db` VALUES(12058, 13, 0, 0, 7474, 0, 962, 10, 548, 10, 549, 5, 7453, 1, 0, 0);
+REPLACE INTO `produce_db` VALUES(12068, 13, 0, 0, 7474, 0, 516, 10, 549, 10, 633, 1, 7453, 1, 0, 0);
+REPLACE INTO `produce_db` VALUES(12049, 14, 0, 0, 7475, 0, 578, 10, 568, 4, 582, 10, 970, 2, 514, 5);
+REPLACE INTO `produce_db` VALUES(12054, 14, 0, 0, 7475, 0, 962, 30, 509, 10, 7194, 10, 7031, 1, 1024, 20);
+REPLACE INTO `produce_db` VALUES(12044, 14, 0, 0, 7475, 0, 517, 5, 507, 3, 508, 2, 511, 3, 7453, 1);
+REPLACE INTO `produce_db` VALUES(12064, 14, 0, 0, 7475, 0, 580, 5, 519, 15, 548, 10, 508, 10, 517, 1);
+REPLACE INTO `produce_db` VALUES(12059, 14, 0, 0, 7475, 0, 577, 3, 7455, 1, 7066, 10, 515, 10, 1062, 10);
+REPLACE INTO `produce_db` VALUES(12069, 14, 0, 0, 7475, 0, 1054, 10, 945, 10, 509, 10, 579, 5, 7453, 2);
+REPLACE INTO `produce_db` VALUES(12050, 15, 0, 0, 7476, 0, 522, 4, 505, 1, 970, 2, 568, 2, 7452, 1);
+REPLACE INTO `produce_db` VALUES(12045, 15, 0, 0, 7476, 0, 516, 10, 518, 2, 7457, 1, 515, 3, 577, 1);
+REPLACE INTO `produce_db` VALUES(12065, 15, 0, 0, 7476, 0, 520, 2, 521, 3, 7100, 10, 7198, 6, 7453, 1);
+REPLACE INTO `produce_db` VALUES(12060, 15, 0, 0, 7476, 0, 7006, 20, 1062, 20, 7482, 1, 520, 10, 507, 10);
+REPLACE INTO `produce_db` VALUES(12055, 15, 0, 0, 7476, 0, 553, 20, 508, 10, 7455, 1, 7456, 1, 511, 20);
+REPLACE INTO `produce_db` VALUES(12070, 15, 0, 0, 7476, 0, 904, 20, 1042, 10, 7198, 10, 7031, 2, 7457, 1);
+REPLACE INTO `produce_db` VALUES(12071, 16, 0, 0, 7477, 0, 517, 10, 518, 2, 508, 1, 522, 1, 954, 20);
+REPLACE INTO `produce_db` VALUES(12076, 16, 0, 0, 7477, 0, 581, 3, 533, 3, 921, 20, 970, 1, 7456, 1);
+REPLACE INTO `produce_db` VALUES(12091, 16, 0, 0, 7477, 0, 7164, 20, 539, 10, 548, 10, 519, 10, 620, 5);
+REPLACE INTO `produce_db` VALUES(12086, 16, 0, 0, 7477, 0, 7286, 20, 567, 20, 7453, 1, 568, 20, 0, 0);
+REPLACE INTO `produce_db` VALUES(12081, 16, 0, 0, 7477, 0, 7188, 20, 1033, 10, 921, 20, 581, 1, 518, 2);
+REPLACE INTO `produce_db` VALUES(12096, 16, 0, 0, 7477, 0, 903, 5, 1015, 5, 705, 10, 1061, 10, 704, 1);
+REPLACE INTO `produce_db` VALUES(12072, 17, 0, 0, 7478, 0, 517, 10, 7098, 1, 1003, 2, 7455, 1, 1019, 15);
+REPLACE INTO `produce_db` VALUES(12077, 17, 0, 0, 7478, 0, 526, 4, 518, 2, 509, 5, 520, 10, 7452, 1);
+REPLACE INTO `produce_db` VALUES(12092, 17, 0, 0, 7478, 0, 580, 10, 522, 5, 7453, 1, 708, 5, 609, 5);
+REPLACE INTO `produce_db` VALUES(12087, 17, 0, 0, 7478, 0, 7003, 10, 1062, 10, 515, 10, 521, 10, 508, 10);
+REPLACE INTO `produce_db` VALUES(12082, 17, 0, 0, 7478, 0, 1023, 10, 521, 5, 1028, 10, 579, 2, 537, 10);
+REPLACE INTO `produce_db` VALUES(12097, 17, 0, 0, 7478, 0, 936, 10, 956, 5, 7194, 10, 517, 5, 581, 10);
+REPLACE INTO `produce_db` VALUES(12073, 18, 0, 0, 7479, 0, 948, 20, 515, 10, 1062, 10, 521, 2, 520, 1);
+REPLACE INTO `produce_db` VALUES(12078, 18, 0, 0, 7479, 0, 576, 4, 520, 10, 610, 3, 521, 10, 526, 6);
+REPLACE INTO `produce_db` VALUES(12093, 18, 0, 0, 7479, 0, 580, 10, 526, 2, 517, 5, 578, 10, 7455, 1);
+REPLACE INTO `produce_db` VALUES(12088, 18, 0, 0, 7479, 0, 606, 1, 7455, 1, 517, 10, 520, 10, 1062, 10);
+REPLACE INTO `produce_db` VALUES(12083, 18, 0, 0, 7479, 0, 7298, 20, 517, 20, 622, 5, 1062, 10, 7454, 1);
+REPLACE INTO `produce_db` VALUES(12098, 18, 0, 0, 7479, 0, 578, 10, 577, 5, 7298, 10, 7452, 1, 7456, 2);
+REPLACE INTO `produce_db` VALUES(12074, 19, 0, 0, 7480, 0, 1050, 40, 7482, 1, 548, 10, 7455, 1, 1003, 2);
+REPLACE INTO `produce_db` VALUES(12079, 19, 0, 0, 7480, 0, 610, 10, 582, 10, 970, 5, 526, 4, 505, 2);
+REPLACE INTO `produce_db` VALUES(12094, 19, 0, 0, 7480, 0, 619, 5, 582, 10, 578, 10, 7456, 1, 634, 1);
+REPLACE INTO `produce_db` VALUES(12089, 19, 0, 0, 7480, 0, 517, 10, 526, 5, 711, 20, 7454, 4, 508, 5);
+REPLACE INTO `produce_db` VALUES(12084, 19, 0, 0, 7480, 0, 7123, 10, 1037, 20, 610, 3, 526, 6, 7455, 1);
+REPLACE INTO `produce_db` VALUES(12099, 19, 0, 0, 7480, 0, 702, 1, 605, 2, 606, 2, 970, 2, 526, 6);
+REPLACE INTO `produce_db` VALUES(12075, 20, 0, 0, 7481, 0, 1015, 20, 7482, 1, 970, 1, 606, 2, 7455, 1);
+REPLACE INTO `produce_db` VALUES(12080, 20, 0, 0, 7481, 0, 1033, 10, 707, 1, 521, 5, 526, 5, 568, 5);
+REPLACE INTO `produce_db` VALUES(12095, 20, 0, 0, 7481, 0, 607, 1, 7066, 10, 7119, 10, 526, 4, 645, 3);
+REPLACE INTO `produce_db` VALUES(12090, 20, 0, 0, 7481, 0, 904, 20, 7125, 20, 606, 2, 610, 3, 621, 3);
+REPLACE INTO `produce_db` VALUES(12085, 20, 0, 0, 7481, 0, 929, 20, 934, 10, 608, 1, 605, 2, 950, 10);
+REPLACE INTO `produce_db` VALUES(12100, 20, 0, 0, 7481, 0, 1022, 10, 706, 2, 1033, 10, 7100, 10, 610, 4);
+REPLACE INTO `produce_db` VALUES(998, 21, 94, 1, 1002, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(999, 21, 95, 1, 998, 5, 1003, 1, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1000, 21, 96, 1, 1001, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(994, 21, 96, 1, 990, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(995, 21, 96, 1, 991, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(996, 21, 96, 1, 992, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(997, 21, 96, 1, 993, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(501, 22, 228, 1, 7144, 0, 507, 1, 1093, 1, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(503, 22, 228, 1, 7144, 0, 508, 1, 1093, 1, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(504, 22, 228, 1, 7144, 0, 509, 1, 1093, 1, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(505, 22, 228, 1, 7144, 0, 510, 1, 911, 1, 1093, 1, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(545, 22, 228, 1, 7133, 0, 501, 1, 1092, 1, 952, 1, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(546, 22, 228, 1, 7133, 0, 503, 1, 1092, 1, 1017, 1, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(547, 22, 228, 1, 7133, 0, 504, 1, 1092, 1, 1061, 1, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(523, 22, 31, 1, 713, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(678, 22, 407, 1, 937, 1, 952, 1, 939, 1, 7033, 1, 972, 1, 657, 1);
+REPLACE INTO `produce_db` VALUES(7135, 22, 228, 1, 7128, 0, 970, 1, 1059, 1, 713, 1, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(7136, 22, 228, 1, 7129, 0, 713, 1, 929, 1, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(7137, 22, 228, 1, 7130, 0, 713, 1, 1032, 2, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(7138, 22, 228, 1, 7131, 0, 713, 1, 1050, 1, 1051, 1, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(7139, 22, 228, 1, 7132, 0, 970, 1, 950, 1, 1044, 1, 713, 1, 0, 0);
+REPLACE INTO `produce_db` VALUES(12333, 22, 2039, 1, 717, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12118, 22, 228, 1, 7434, 0, 1012, 2, 716, 1, 1093, 1, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12119, 22, 228, 1, 7434, 0, 950, 3, 717, 1, 1093, 1, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12120, 22, 228, 1, 7434, 0, 7126, 2, 715, 1, 1093, 1, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12121, 22, 228, 1, 7434, 0, 1057, 3, 717, 1, 1093, 1, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(605, 22, 228, 1, 7144, 0, 708, 1, 970, 1, 713, 1, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(606, 22, 228, 1, 7144, 0, 704, 1, 518, 1, 713, 1, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(970, 22, 228, 1, 7127, 0, 713, 1, 7033, 5, 905, 5, 1092, 1, 0, 0);
+REPLACE INTO `produce_db` VALUES(7142, 22, 228, 1, 7144, 0, 7140, 1, 7141, 1, 7143, 1, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12114, 23, 1007, 1, 7433, 1, 904, 3, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12115, 23, 1007, 1, 7433, 1, 946, 3, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12116, 23, 1007, 1, 7433, 1, 947, 3, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12117, 23, 1007, 1, 7433, 1, 1013, 3, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12731, 24, 2010, 1, 1034, 1, 7030, 1, 7939, 1, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12728, 24, 2010, 2, 7097, 1, 7939, 1, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12732, 24, 2010, 3, 1035, 1, 7221, 1, 7938, 1, 7939, 1, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12733, 24, 2010, 4, 1096, 1, 7123, 1, 7939, 1, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12729, 24, 2010, 5, 7002, 1, 7938, 1, 7939, 1, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12730, 24, 2010, 6, 518, 1, 1048, 1, 7939, 1, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12726, 24, 2010, 7, 716, 1, 7938, 1, 7939, 1, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12725, 24, 2010, 8, 7069, 1, 7099, 1, 7938, 1, 7939, 1, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12727, 24, 2010, 9, 7210, 1, 7939, 1, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(6128, 25, 2024, 5, 509, 1, 510, 1, 511, 2, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12717, 25, 2024, 1, 7134, 1, 7155, 20, 7931, 1, 7937, 1, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12718, 25, 2024, 4, 7134, 1, 7931, 1, 7932, 1, 7936, 1, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12719, 25, 2024, 9, 709, 1, 950, 10, 7134, 1, 7931, 1, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12720, 25, 2024, 3, 957, 25, 7134, 1, 7931, 1, 7935, 1, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12721, 25, 2024, 8, 7134, 1, 7565, 10, 7931, 1, 7932, 1, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12722, 25, 2024, 2, 7003, 20, 7134, 1, 7931, 1, 7933, 1, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12723, 25, 2024, 7, 7033, 10, 7134, 1, 7931, 1, 7934, 1, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12724, 25, 2024, 6, 709, 1, 7134, 1, 7565, 10, 7931, 1, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1010, 26, 2494, 1, 908, 40, 746, 40, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(971, 26, 2494, 1, 915, 40, 966, 10, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1051, 26, 2494, 1, 1098, 45, 916, 25, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1033, 26, 2494, 1, 917, 25, 1044, 20, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(974, 26, 2494, 1, 937, 15, 924, 30, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1056, 26, 2494, 1, 747, 35, 1031, 50, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1061, 26, 2494, 1, 928, 10, 735, 15, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(703, 26, 2494, 1, 744, 45, 1017, 40, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1003, 26, 2494, 1, 2101, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(999, 26, 2494, 1, 1119, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(7166, 26, 2494, 1, 1059, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1059, 26, 2494, 1, 7166, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(2267, 26, 2494, 1, 1309, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(992, 26, 2494, 1, 7066, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(968, 26, 2494, 1, 902, 5, 1018, 45, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1030, 26, 2494, 1, 906, 5, 736, 20, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1008, 26, 2494, 1, 754, 25, 1057, 35, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1064, 26, 2494, 1, 742, 30, 740, 50, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1009, 26, 2494, 1, 904, 10, 1062, 30, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(970, 26, 2494, 1, 931, 50, 932, 40, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(7063, 26, 2494, 1, 949, 30, 916, 30, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(973, 26, 2494, 1, 923, 15, 934, 30, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1038, 26, 2494, 1, 953, 5, 907, 10, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1046, 26, 2494, 1, 955, 40, 753, 5, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1045, 26, 2494, 1, 940, 45, 942, 35, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1020, 26, 2494, 1, 738, 40, 1029, 5, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1041, 26, 2494, 1, 943, 10, 1032, 30, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1026, 26, 2494, 1, 952, 30, 946, 10, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(958, 26, 2494, 1, 905, 45, 1036, 45, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1040, 26, 2494, 1, 939, 35, 1039, 45, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1012, 26, 2494, 1, 926, 20, 972, 15, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1024, 26, 2494, 1, 948, 20, 737, 25, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1025, 26, 2494, 1, 951, 50, 1048, 35, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1019, 26, 2494, 1, 930, 10, 1052, 10, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(962, 26, 2494, 1, 957, 40, 1028, 5, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1013, 26, 2494, 1, 947, 50, 912, 45, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1058, 26, 2494, 1, 749, 20, 903, 30, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(960, 26, 2494, 1, 938, 25, 1055, 45, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(967, 26, 2494, 1, 914, 5, 741, 40, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1043, 26, 2494, 1, 945, 50, 910, 10, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1035, 26, 2494, 1, 751, 50, 918, 35, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1049, 26, 2494, 1, 936, 30, 1047, 35, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1037, 26, 2494, 1, 913, 25, 1063, 35, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1021, 26, 2494, 1, 954, 15, 1053, 25, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1022, 26, 2494, 1, 919, 10, 739, 15, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1034, 26, 2494, 1, 909, 45, 745, 20, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1014, 26, 2494, 1, 743, 20, 748, 20, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(964, 26, 2494, 1, 750, 50, 1023, 30, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1050, 26, 2494, 1, 922, 25, 949, 5, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1053, 26, 2494, 1, 925, 35, 1059, 30, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(1016, 26, 2494, 1, 921, 35, 1060, 40, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(991, 26, 2494, 1, 920, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(13275, 26, 2494, 1, 6297, 10, 12422, 10, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(13276, 26, 2494, 1, 6297, 10, 12423, 10, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(13277, 26, 2494, 1, 6297, 10, 12424, 10, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(13278, 26, 2494, 1, 6297, 10, 12425, 10, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(13279, 26, 2494, 1, 6297, 10, 12426, 10, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(13280, 26, 2494, 1, 6297, 10, 12427, 10, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(13283, 26, 2494, 1, 6297, 10, 12437, 10, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(13282, 26, 2494, 1, 6297, 10, 12436, 10, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(13281, 26, 2494, 1, 6297, 10, 12428, 10, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12429, 27, 2495, 1, 11022, 0, 6248, 1, 6249, 1, 6250, 1, 6251, 1, 0, 0);
+REPLACE INTO `produce_db` VALUES(12430, 27, 2495, 1, 11022, 0, 6248, 1, 6252, 3, 6253, 2, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12431, 27, 2495, 1, 11022, 0, 6248, 1, 6254, 2, 6255, 1, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12432, 27, 2495, 1, 11022, 0, 6248, 1, 6256, 3, 6257, 2, 6258, 1, 0, 0);
+REPLACE INTO `produce_db` VALUES(12433, 27, 2495, 1, 11022, 0, 507, 3, 509, 3, 510, 3, 6248, 1, 6255, 1);
+REPLACE INTO `produce_db` VALUES(12434, 27, 2495, 1, 11022, 0, 6248, 1, 6260, 2, 6261, 1, 6262, 1, 0, 0);
+REPLACE INTO `produce_db` VALUES(13260, 28, 2496, 1, 6279, 0, 512, 1, 911, 1, 1051, 1, 6244, 1, 0, 0);
+REPLACE INTO `produce_db` VALUES(13261, 28, 2496, 1, 6281, 0, 1051, 1, 6263, 1, 6244, 2, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(13262, 28, 2496, 1, 6282, 0, 938, 1, 1051, 1, 6244, 2, 6264, 1, 0, 0);
+REPLACE INTO `produce_db` VALUES(13263, 28, 2496, 1, 6280, 0, 952, 1, 1051, 1, 6244, 3, 6265, 1, 0, 0);
+REPLACE INTO `produce_db` VALUES(13264, 28, 2496, 1, 6283, 0, 513, 1, 1051, 1, 6244, 4, 7001, 1, 0, 0);
+REPLACE INTO `produce_db` VALUES(6210, 29, 2497, 1, 6284, 0, 576, 10, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(6211, 29, 2497, 1, 6284, 0, 1033, 10, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(6212, 29, 2497, 1, 6284, 0, 921, 10, 6244, 2, 7033, 5, 0, 0, 0, 0);
+REPLACE INTO `produce_db` VALUES(12422, 29, 2497, 1, 11023, 0, 509, 10, 528, 5, 713, 10, 7455, 1, 0, 0);
+REPLACE INTO `produce_db` VALUES(12423, 29, 2497, 1, 11023, 0, 508, 10, 509, 10, 713, 10, 7455, 1, 0, 0);
+REPLACE INTO `produce_db` VALUES(12424, 29, 2497, 1, 11023, 0, 509, 15, 522, 3, 523, 1, 713, 10, 7455, 1);
+REPLACE INTO `produce_db` VALUES(12425, 29, 2497, 1, 11024, 0, 514, 10, 568, 10, 713, 10, 7453, 1, 0, 0);
+REPLACE INTO `produce_db` VALUES(12426, 29, 2497, 1, 11024, 0, 510, 10, 518, 10, 713, 10, 7453, 1, 0, 0);
+REPLACE INTO `produce_db` VALUES(12427, 29, 2497, 1, 11024, 0, 510, 15, 526, 10, 713, 10, 7453, 1, 0, 0);
+REPLACE INTO `produce_db` VALUES(12428, 29, 2497, 1, 6285, 0, 504, 20, 509, 10, 970, 1, 1092, 10, 0, 0);
+REPLACE INTO `produce_db` VALUES(12436, 29, 2497, 1, 6285, 0, 510, 10, 514, 10, 518, 10, 1092, 10, 0, 0);
+REPLACE INTO `produce_db` VALUES(12437, 29, 2497, 1, 6285, 0, 645, 5, 656, 5, 1092, 10, 7455, 5, 0, 0);
+REPLACE INTO `produce_db` VALUES(12475, 29, 2497, 1, 6285, 0, 511, 20, 522, 1, 525, 5, 610, 1, 1092, 10);
+
+--
 -- Estrutura da tabela `mob_chat_db`
 --
 
@@ -529,6 +814,54 @@ REPLACE INTO `elemental_db` VALUES(2124, 'EL_TERA_M', 'Tera', 100, 7500, 1, 1, 2
 REPLACE INTO `elemental_db` VALUES(2125, 'EL_TERA_L', 'Tera', 100, 10000, 1, 1, 500, 500, 50, 50, 1, 1, 1, 1, 1, 1, 5, 12, 2, 0, 82, 200, 504, 1020, 360);
 
 --
+-- Estrutura da tabela `elemental_skill_db`
+--
+
+CREATE TABLE IF NOT EXISTS `elemental_skill_db` (
+  `elemental_id` smallint(4) unsigned NOT NULL DEFAULT '0',
+  `skill_id` smallint(4) unsigned NOT NULL DEFAULT '0',
+  `skill_lvl` smallint(4) unsigned NOT NULL DEFAULT '0',
+  `mode` smallint(4) unsigned NOT NULL DEFAULT '0'
+) ENGINE=MyISAM;
+
+REPLACE INTO `elemental_skill_db` VALUES(2114, 8413, 1, 1);
+REPLACE INTO `elemental_skill_db` VALUES(2114, 8401, 1, 2);
+REPLACE INTO `elemental_skill_db` VALUES(2114, 8425, 1, 4);
+REPLACE INTO `elemental_skill_db` VALUES(2115, 8414, 1, 1);
+REPLACE INTO `elemental_skill_db` VALUES(2115, 8402, 1, 2);
+REPLACE INTO `elemental_skill_db` VALUES(2115, 8426, 1, 4);
+REPLACE INTO `elemental_skill_db` VALUES(2116, 8415, 1, 1);
+REPLACE INTO `elemental_skill_db` VALUES(2116, 8403, 1, 2);
+REPLACE INTO `elemental_skill_db` VALUES(2116, 8428, 1, 4);
+REPLACE INTO `elemental_skill_db` VALUES(2117, 8416, 1, 1);
+REPLACE INTO `elemental_skill_db` VALUES(2117, 8404, 1, 2);
+REPLACE INTO `elemental_skill_db` VALUES(2117, 8430, 1, 4);
+REPLACE INTO `elemental_skill_db` VALUES(2118, 8417, 1, 1);
+REPLACE INTO `elemental_skill_db` VALUES(2118, 8405, 1, 2);
+REPLACE INTO `elemental_skill_db` VALUES(2118, 8431, 1, 4);
+REPLACE INTO `elemental_skill_db` VALUES(2119, 8418, 1, 1);
+REPLACE INTO `elemental_skill_db` VALUES(2119, 8406, 1, 2);
+REPLACE INTO `elemental_skill_db` VALUES(2119, 8433, 1, 4);
+REPLACE INTO `elemental_skill_db` VALUES(2120, 8419, 1, 1);
+REPLACE INTO `elemental_skill_db` VALUES(2120, 8407, 1, 2);
+REPLACE INTO `elemental_skill_db` VALUES(2120, 8434, 1, 4);
+REPLACE INTO `elemental_skill_db` VALUES(2121, 8420, 1, 1);
+REPLACE INTO `elemental_skill_db` VALUES(2121, 8408, 1, 2);
+REPLACE INTO `elemental_skill_db` VALUES(2121, 8435, 1, 4);
+REPLACE INTO `elemental_skill_db` VALUES(2122, 8421, 1, 1);
+REPLACE INTO `elemental_skill_db` VALUES(2122, 8409, 1, 2);
+REPLACE INTO `elemental_skill_db` VALUES(2122, 8437, 1, 4);
+REPLACE INTO `elemental_skill_db` VALUES(2123, 8422, 1, 1);
+REPLACE INTO `elemental_skill_db` VALUES(2123, 8410, 1, 2);
+REPLACE INTO `elemental_skill_db` VALUES(2123, 8439, 1, 4);
+REPLACE INTO `elemental_skill_db` VALUES(2124, 8423, 1, 1);
+REPLACE INTO `elemental_skill_db` VALUES(2124, 8411, 1, 2);
+REPLACE INTO `elemental_skill_db` VALUES(2124, 8440, 1, 4);
+REPLACE INTO `elemental_skill_db` VALUES(2125, 8424, 1, 1);
+REPLACE INTO `elemental_skill_db` VALUES(2125, 8412, 1, 2);
+REPLACE INTO `elemental_skill_db` VALUES(2125, 8442, 1, 4);
+
+--
 -- Estrutura da tabela `guild_skill_tree_db`
 --
 
@@ -635,6 +968,109 @@ REPLACE INTO `homunculus_db` VALUES(6049, 6049, 'Bayeri', 6112, 60000, 1, 1, 2, 
 REPLACE INTO `homunculus_db` VALUES(6050, 6050, 'Sera', 6108, 60000, 1, 1, 4, 0, 700, 90, 25, 29, 35, 9, 8, 30, 9, 45, 75, 3, 6, 4, 20, 8, 20, 1, 10, 3, 19, 4, 20, 3, 19, 5, 15, 5, 15, 4, 10, 1, 10, 1, 3, 1, 4, 1, 5, 1, 5);
 REPLACE INTO `homunculus_db` VALUES(6051, 6051, 'Dieter', 6104, 60000, 1, 1, 0, 0, 700, 80, 11, 11, 11, 11, 11, 11, 11, 30, 150, 0, 7, 1, 30, 1, 30, 1, 30, 1, 30, 1, 30, 1, 30, 1, 30, 1, 30, 1, 10, 1, 10, 1, 10, 1, 10, 1, 10, 1, 10);
 REPLACE INTO `homunculus_db` VALUES(6052, 6052, 'Eleanor', 6115, 60000, 1, 1, 2, 0, 700, 320, 10, 20, 17, 35, 11, 24, 12, 80, 130, 1, 4, 8, 20, 4, 20, 4, 20, 1, 10, 3, 19, 3, 19, 10, 20, 1, 10, 1, 10, 1, 5, 4, 10, 1, 3, 1, 4, 1, 5);
+
+--
+-- Estrutura da tabela `homun_skill_tree_db`
+--
+
+CREATE TABLE IF NOT EXISTS `homun_skill_tree_db` (
+  `homun_id` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `skill_id` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `maxlvl` smallint(4) unsigned NOT NULL DEFAULT '0',
+  `skillreq1` smallint(4) unsigned NOT NULL DEFAULT '0',
+  `skilllvl1` smallint(4) unsigned NOT NULL DEFAULT '0',
+  `skillreq2` smallint(4) unsigned NOT NULL DEFAULT '0',
+  `skilllvl2` smallint(4) unsigned NOT NULL DEFAULT '0',
+  `skillreq3` smallint(4) unsigned NOT NULL DEFAULT '0',
+  `skilllvl3` smallint(4) unsigned NOT NULL DEFAULT '0',
+  `skillreq4` smallint(4) unsigned NOT NULL DEFAULT '0',
+  `skilllvl4` smallint(4) unsigned NOT NULL DEFAULT '0',
+  `skillreq5` smallint(4) unsigned NOT NULL DEFAULT '0',
+  `skilllvl5` smallint(4) unsigned NOT NULL DEFAULT '0'
+) ENGINE=MyISAM;
+
+REPLACE INTO `homun_skill_tree_db` VALUES(6001, 8001, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6001, 8002, 5, 8001, 3, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6001, 8003, 5, 8001, 5, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6002, 8005, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6002, 8006, 5, 8005, 5, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6002, 8007, 5, 8006, 3, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6003, 8009, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6003, 8010, 5, 8009, 3, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6003, 8011, 5, 8010, 3, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6004, 8013, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6004, 8014, 5, 8013, 3, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6004, 8015, 5, 8013, 5, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6005, 8001, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6005, 8002, 5, 8001, 3, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6005, 8003, 5, 8001, 5, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6006, 8005, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6006, 8006, 5, 8005, 5, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6006, 8007, 5, 8006, 3, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6007, 8009, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6007, 8010, 5, 8009, 3, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6007, 8011, 5, 8010, 3, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6008, 8013, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6008, 8014, 5, 8013, 3, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6008, 8015, 5, 8013, 5, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6009, 8001, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6009, 8002, 5, 8001, 3, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6009, 8003, 5, 8001, 5, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6009, 8004, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6010, 8005, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6010, 8006, 5, 8005, 5, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6010, 8007, 5, 8006, 3, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6010, 8008, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6011, 8009, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6011, 8010, 5, 8009, 3, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6011, 8011, 5, 8010, 3, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6011, 8012, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6012, 8013, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6012, 8014, 5, 8013, 3, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6012, 8015, 5, 8013, 5, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6012, 8016, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6013, 8001, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6013, 8002, 5, 8001, 3, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6013, 8003, 5, 8001, 5, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6013, 8004, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6014, 8005, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6014, 8006, 5, 8005, 5, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6014, 8007, 5, 8006, 3, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6014, 8008, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6015, 8009, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6015, 8010, 5, 8009, 3, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6015, 8011, 5, 8010, 3, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6015, 8012, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6016, 8013, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6016, 8014, 5, 8013, 3, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6016, 8015, 5, 8013, 5, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6016, 8016, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6048, 8022, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6048, 8023, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6048, 8024, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6048, 8025, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6048, 8026, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6049, 8031, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6049, 8032, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6049, 8033, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6050, 8018, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6050, 8019, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6050, 8020, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6050, 8021, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6051, 8039, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6051, 8040, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6051, 8041, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6051, 8042, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6051, 8043, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6052, 8027, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6052, 8028, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6052, 8029, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6052, 8030, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6052, 8034, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6052, 8035, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6052, 8036, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6052, 8037, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6052, 8038, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 --
 -- Estrutura da tabela `item_avail_db`
@@ -802,6 +1238,135 @@ REPLACE INTO `mercenary_db` VALUES(6043, 'MER_SWORDMAN07', 'Ben', 80, 5889, 279,
 REPLACE INTO `mercenary_db` VALUES(6044, 'MER_SWORDMAN08', 'Pinaka', 90, 7520, 325, 2, 500, 250, 49, 18, 70, 95, 12, 18, 60, 15, 10, 0, 0, 7, 20, 150, 450, 432, 300);
 REPLACE INTO `mercenary_db` VALUES(6045, 'MER_SWORDMAN09', 'Kuhlmann', 95, 9052, 348, 2, 524, 262, 51, 22, 80, 95, 18, 18, 60, 15, 10, 0, 0, 7, 20, 150, 450, 432, 300);
 REPLACE INTO `mercenary_db` VALUES(6046, 'MER_SWORDMAN10', 'Roux', 99, 12355, 451, 2, 760, 280, 64, 30, 99, 105, 30, 30, 60, 30, 10, 0, 0, 7, 20, 150, 450, 432, 300);
+
+--
+-- Estrutura da tabela `mercenary_skill_db`
+--
+
+CREATE TABLE IF NOT EXISTS `mercenary_skill_db` (
+  `merc_id` int(6) unsigned NOT NULL DEFAULT '0',
+  `skill_id` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `skill_lvl` smallint(6) unsigned NOT NULL DEFAULT '0'
+) ENGINE=MyISAM;
+
+REPLACE INTO `mercenary_skill_db` VALUES(6017, 8207, 2);
+REPLACE INTO `mercenary_skill_db` VALUES(6017, 8233, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(6018, 8208, 2);
+REPLACE INTO `mercenary_skill_db` VALUES(6018, 8224, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(6019, 8214, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(6019, 8223, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(6020, 8237, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(6020, 8222, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(6020, 8227, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(6021, 8207, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(6021, 8232, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(6021, 8213, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(6022, 8207, 7);
+REPLACE INTO `mercenary_skill_db` VALUES(6022, 8209, 3);
+REPLACE INTO `mercenary_skill_db` VALUES(6022, 8234, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(6023, 8208, 10);
+REPLACE INTO `mercenary_skill_db` VALUES(6023, 8230, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(6023, 8212, 2);
+REPLACE INTO `mercenary_skill_db` VALUES(6024, 8223, 2);
+REPLACE INTO `mercenary_skill_db` VALUES(6024, 8232, 3);
+REPLACE INTO `mercenary_skill_db` VALUES(6024, 8211, 3);
+REPLACE INTO `mercenary_skill_db` VALUES(6025, 8207, 10);
+REPLACE INTO `mercenary_skill_db` VALUES(6025, 8214, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(6025, 8210, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(6026, 8214, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(6026, 8215, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(6026, 8223, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(6026, 8233, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(6027, 8216, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(6027, 8226, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(6028, 8217, 2);
+REPLACE INTO `mercenary_skill_db` VALUES(6028, 8236, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(6029, 8216, 2);
+REPLACE INTO `mercenary_skill_db` VALUES(6029, 8221, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(6029, 8229, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(6030, 8219, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(6030, 8225, 4);
+REPLACE INTO `mercenary_skill_db` VALUES(6031, 8216, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(6031, 8220, 3);
+REPLACE INTO `mercenary_skill_db` VALUES(6032, 8223, 2);
+REPLACE INTO `mercenary_skill_db` VALUES(6032, 8217, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(6033, 8221, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(6033, 8233, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(6034, 8235, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(6034, 8216, 10);
+REPLACE INTO `mercenary_skill_db` VALUES(6034, 8232, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(6035, 8217, 10);
+REPLACE INTO `mercenary_skill_db` VALUES(6035, 8220, 7);
+REPLACE INTO `mercenary_skill_db` VALUES(6035, 8219, 3);
+REPLACE INTO `mercenary_skill_db` VALUES(6036, 8223, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(6036, 8220, 10);
+REPLACE INTO `mercenary_skill_db` VALUES(6036, 8221, 3);
+REPLACE INTO `mercenary_skill_db` VALUES(6036, 8218, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(6037, 8201, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(6037, 8234, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(6038, 8232, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(6038, 8202, 3);
+REPLACE INTO `mercenary_skill_db` VALUES(6039, 8223, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(6039, 8228, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(6040, 8225, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(6040, 8202, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(6041, 8201, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(6041, 8225, 4);
+REPLACE INTO `mercenary_skill_db` VALUES(6041, 8228, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(6042, 8223, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(6042, 8237, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(6042, 8234, 3);
+REPLACE INTO `mercenary_skill_db` VALUES(6043, 8201, 10);
+REPLACE INTO `mercenary_skill_db` VALUES(6043, 8233, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(6043, 8235, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(6044, 8223, 10);
+REPLACE INTO `mercenary_skill_db` VALUES(6044, 8203, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(6044, 8231, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(6044, 8204, 4);
+REPLACE INTO `mercenary_skill_db` VALUES(6045, 8203, 8);
+REPLACE INTO `mercenary_skill_db` VALUES(6045, 8225, 3);
+REPLACE INTO `mercenary_skill_db` VALUES(6045, 8205, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(6046, 8223, 10);
+REPLACE INTO `mercenary_skill_db` VALUES(6046, 8203, 10);
+REPLACE INTO `mercenary_skill_db` VALUES(6046, 8201, 10);
+REPLACE INTO `mercenary_skill_db` VALUES(6046, 8206, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(1191, 8233, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(1191, 8220, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(1191, 8201, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(1506, 8223, 2);
+REPLACE INTO `mercenary_skill_db` VALUES(1506, 8225, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(1506, 8236, 3);
+REPLACE INTO `mercenary_skill_db` VALUES(1275, 8232, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(1275, 8202, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(1275, 8217, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(1275, 8226, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(1965, 8201, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(1966, 8223, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(1966, 8201, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(1966, 8221, 3);
+REPLACE INTO `mercenary_skill_db` VALUES(1967, 8223, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(1967, 8201, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(1967, 8221, 3);
+REPLACE INTO `mercenary_skill_db` VALUES(2000, 8226, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(2000, 8227, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(2000, 8238, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(2000, 8239, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(2000, 8240, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(2001, 8226, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(2001, 8227, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(2001, 8238, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(2001, 8239, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(2001, 8240, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(2058, 8233, 1);
+REPLACE INTO `mercenary_skill_db` VALUES(2058, 8220, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(2058, 8201, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(2059, 8223, 2);
+REPLACE INTO `mercenary_skill_db` VALUES(2059, 8225, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(2059, 8236, 3);
+REPLACE INTO `mercenary_skill_db` VALUES(2060, 8232, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(2060, 8202, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(2060, 8217, 5);
+REPLACE INTO `mercenary_skill_db` VALUES(2060, 8226, 1);
 
 --
 -- Estrutura da tabela `skill_changematerial_db`
@@ -1104,3 +1669,4 @@ REPLACE INTO `spellbook_db` VALUES(2213, 22, 6195);
 REPLACE INTO `spellbook_db` VALUES(2214, 12, 6203);
 REPLACE INTO `spellbook_db` VALUES(2216, 12, 6202);
 REPLACE INTO `spellbook_db` VALUES(2217, 22, 6196);
+
