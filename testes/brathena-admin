@@ -100,11 +100,13 @@ instalar() {
 		echo -e -n "Escreva o modo de compilação que você deseja efetuar\n(NOMES: normal ou depuração)\n> "
 		read modo
 		if [ $modo = "normal"] ; then		
-			sh ./configure --enable-debug=gdb
+			sh ./configure
 			make sql
 			estado=1
 		else [$modo = "depuração"] ; then
-			sh ./configure
+			sh ./configure --enable-debug=gdb
+			make sql
+			estado=1
 		fi
 	done
 }
