@@ -59,12 +59,14 @@ rhel(){
 	sudo yum update -y
 	sudo yum groupinstall 'Development Tools' -y
 	sudo yum install subversion -y
+	sudo yum install gdb
 }
 
 debian(){
 	sudo apt-get update -y
 	sudo apt-get install build-essential -y
 	sudo apt-get install subversion -y
+	sudo apt-get install gdb
 }
 
 instalar() {
@@ -91,12 +93,18 @@ instalar() {
 			echo "Conectando-se ao servidor..."
 			svn co http://svn.brathena.org/brAthena/$branch/ $diretorio/$branch/
 			cd $diretorio/$branch
-			sh ./configure
-			make sql
-			estado=1
 		else
 			echo "Opção inválida."
 			estado=0
+		fi
+		echo -e -n "Escreva o modo de compilação que você deseja efetuar\n(NOMES: normal ou depuração)\n> "
+		read modo
+		if [ $modo = "normal"] ; then		
+			sh ./configure --enable-debug=gdb
+			make sql
+			estado=1
+		else [$modo = "depuração"] ; then
+			sh ./configure
 		fi
 	done
 }
@@ -122,7 +130,7 @@ gerencia() {
 	fi
 	
 	if $result ; then
-		echo -e -n "Selecione a opção desejada (iniciar, desligar e reiniciar)\n> "
+		echo -e -n "Selecione a opção desejada (iniciar, desligar, reiniciar e depuração)\n> "
 		read opcao
 		case $opcao in
 			"iniciar")
@@ -132,6 +140,8 @@ gerencia() {
 				sh ./$bralauncher stop ;;
 			"reiniciar")
 				sh ./$bralauncher restart ;;
+			"depuração")
+				sh ./$bralauncher gdb ;;
 		esac
 	fi
 }
