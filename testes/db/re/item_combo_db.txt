@@ -1,8 +1,23 @@
-// Item Combos Database
-//
-// Structure of Database:
-// ID:ID:ID:ID,{ Script }
-
+//  _____________________________________________________________
+// /                                                             \
+// |          _           _   _   _                              |
+// |         | |__  _ __ / \ | |_| |__   ___ _ __   __ _         |
+// |         | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |        |
+// |         | |_) | | / ___ \ |_| | | |  __/ | | | (_| |        |
+// |         |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|        |
+// |                                                             |
+// |                       brAthena Script                       |
+// |-------------------------------------------------------------|
+// | Nome do Database: item_combo.txt                            |
+// |-------------------------------------------------------------|
+// | Criado por: eA/rA/brA Dev. Team                             |
+// |-------------------------------------------------------------|
+// | Descrição: Database contendo os Combos de Itens             |
+// |                                                             |
+// | Estrutura do Database:                                      |
+// | ID do Item 1:ID do Item 2:ID do Item 3:ID do Item 4,{Script}|
+// \_____________________________________________________________/
+//========================================================================================================
 1166:2527,{ bonus2 bAddRace,RC_Dragon,5; }
 1284:2892,{ bonus bBaseAtk,50; bonus2 bSkillAtk,"AS_SONICBLOW",50; bonus bFlee,-30; }
 1285:2892,{ bonus bCritAtkRate,40; bonus bCritical,4; bonus bMaxHPRate,-10; }
@@ -197,3 +212,4 @@
 13027:15044,{ bonus3 bAddMonsterDropItem,929,RC_Brute,100+(getrefine()*10); bonus3 bAddMonsterDropItem,929,RC_DemiHuman,100+(getrefine()*10); bonus3 bAddMonsterDropItem,970,RC_Brute,20+(getrefine()*2); bonus3 bAddMonsterDropItem,970,RC_DemiHuman,20+(getrefine()*2); }
 13034:13035,{ bonus bMaxSP,20; bonus bMaxHPRate,5; bonus bHit,10; bonus2 bAddSize,2,30; autobonus "{ bonus bAspdRate,100; }",1,7000,0,"{ specialeffect2 EF_POTION_BERSERK; }"; }
 18507:18539,{ bonus bUseSPrate,-3; }
+//========================================================================================================
