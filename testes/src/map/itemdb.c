@@ -1131,8 +1131,8 @@ static void itemdb_read(void)
 	itemdb_read_sqldb();
 	itemdb_read_combos();
 	itemdb_read_itemgroup();	
-	sv_readsqldb(get_database_name(20), NULL, 2, -1, &itemdb_read_itemavail); 
-	sv_readdb(db_path, DBPATH"item_noequip.txt", ',', 2, 2, -1, &itemdb_read_noequip); /* temp */ 
+	sv_readsqldb(get_database_name(20), NULL, 2, -1, &itemdb_read_itemavail);
+	sv_readsqldb(get_database_name(21), NULL, 2, -1, &itemdb_read_noequip);
 	sv_readsqldb(get_database_name(22), NULL, 3, -1, &itemdb_read_itemtrade);
 	sv_readsqldb(get_database_name(23), NULL, 2, -1, &itemdb_read_itemdelay);
 	sv_readsqldb(get_database_name(24), NULL, 3, -1, &itemdb_read_stack);

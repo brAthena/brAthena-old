@@ -4451,6 +4451,35 @@ REPLACE INTO `item_trade_db` VALUES(15007, 467, 100);
 REPLACE INTO `item_trade_db` VALUES(16006, 499, 100);
 
 --
+-- Estrutura da tabela `item_noequip_db`
+--
+
+CREATE TABLE IF NOT EXISTS `item_noequip_db` (
+  `item_id` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `flag` smallint(4) unsigned NOT NULL DEFAULT '0'
+) ENGINE=MyISAM;
+
+REPLACE INTO `item_noequip_db` VALUES(14529, 2);
+REPLACE INTO `item_noequip_db` VALUES(12218, 4);
+REPLACE INTO `item_noequip_db` VALUES(14529, 4);
+REPLACE INTO `item_noequip_db` VALUES(14590, 4);
+REPLACE INTO `item_noequip_db` VALUES(12218, 8);
+REPLACE INTO `item_noequip_db` VALUES(14590, 8);
+REPLACE INTO `item_noequip_db` VALUES(601, 32);
+REPLACE INTO `item_noequip_db` VALUES(605, 32);
+REPLACE INTO `item_noequip_db` VALUES(506, 32);
+REPLACE INTO `item_noequip_db` VALUES(525, 32);
+REPLACE INTO `item_noequip_db` VALUES(601, 64);
+REPLACE INTO `item_noequip_db` VALUES(602, 64);
+REPLACE INTO `item_noequip_db` VALUES(12212, 64);
+REPLACE INTO `item_noequip_db` VALUES(14582, 64);
+REPLACE INTO `item_noequip_db` VALUES(14583, 64);
+REPLACE INTO `item_noequip_db` VALUES(14584, 64);
+REPLACE INTO `item_noequip_db` VALUES(14585, 64);
+REPLACE INTO `item_noequip_db` VALUES(601, 128);
+REPLACE INTO `item_noequip_db` VALUES(14529, 2048);
+
+--
 -- Estrutura da tabela `skill_castnodex_db`
 --
 
