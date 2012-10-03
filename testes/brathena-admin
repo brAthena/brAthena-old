@@ -85,11 +85,11 @@ instalar() {
 	
 	estado=0
 	while [ $estado -eq 0 ] ; do
-		echo -e -n "Escreva o nome da branch do brAthena que você deseja baixar\n(NOMES: pre-renovacao ou renovacao)\n> "
+		echo -e -n "Escreva o nome da branch do brAthena que você deseja baixar\n(NOMES: brathena ou testes)\n> "
 		read branch
-		if [ $branch = "pre-renovacao" -o $branch = "renovacao"] ; then
+		if [ $branch = "brathena" -o $branch = "testes"] ; then
 			echo "Conectando-se ao servidor..."
-			svn co http://svn.brathena.org/versoes/$branch/ $diretorio/$branch/
+			svn co http://svn.brathena.org/brAthena/$branch/ $diretorio/$branch/
 			cd $diretorio/$branch
 			sh ./configure
 			make sql
@@ -139,5 +139,5 @@ gerencia() {
 # Deve ficar no final do arquivo, depois das declarações de funções
 arquivoconf="brainstall.log"
 bradir=~/.brathena
-bralauncher="brathena-start"
+bralauncher="start-linux"
 comecar
