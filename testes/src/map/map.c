@@ -3447,10 +3447,6 @@ int inter_config_read(char *cfgName)
 		if(strcmpi(w1,"default_codepage")==0)
 			strcpy(default_codepage, w2);
 		else
-		if(strcmpi(w1,"use_sql_db")==0) {
-			db_use_sqldbs = config_switch(w2);
-			ShowStatus ("Using SQL dbs: %s\n",w2);
-		} else
 		if(strcmpi(w1,"log_db_ip")==0)
 			strcpy(log_db_ip, w2);
 		else
