@@ -91,6 +91,7 @@ char *BATTLE_CONF_FILENAME;
 char *ATCOMMAND_CONF_FILENAME;
 char *SCRIPT_CONF_NAME;
 char *MSG_CONF_NAME;
+char *LANG_FILENAME;
 char *GRF_PATH_FILENAME;
 
 // ã…óÕ staticÇ≈Éç?ÉJÉãÇ…?ÇﬂÇÈ
@@ -3916,6 +3917,7 @@ int do_init(int argc, char *argv[])
 	ATCOMMAND_CONF_FILENAME = "conf/atcommand_athena.conf";
 	SCRIPT_CONF_NAME = "conf/script_athena.conf";
 	MSG_CONF_NAME = "conf/msg_athena.conf";
+	LANG_FILENAME = (!battle_config.server_lang ? "lang/pt-br.conf" : "lang/eng.conf");
 	GRF_PATH_FILENAME = "conf/grf-files.txt";
 
 	rnd_init();
@@ -3965,6 +3967,11 @@ int do_init(int argc, char *argv[])
 			{
 				if( map_arg_next_value(arg, i, argc) )
 					MSG_CONF_NAME = argv[++i];
+			}
+			else if( strcmp(arg, "lang-file") == 0)
+			{
+				if( map_arg_next_value(arg, i, argc) )
+					LANG_FILENAME = argv[++i];
 			}
 			else if( strcmp(arg, "grf-path-file") == 0 )
 			{
@@ -4035,6 +4042,7 @@ int do_init(int argc, char *argv[])
 
 	battle_config_read(BATTLE_CONF_FILENAME);
 	msg_config_read(MSG_CONF_NAME);
+	//lang_config_read(LANG_FILENAME);
 	script_config_read(SCRIPT_CONF_NAME);
 	inter_config_read(INTER_CONF_NAME);
 	log_config_read(LOG_CONF_NAME);

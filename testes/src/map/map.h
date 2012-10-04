@@ -733,6 +733,7 @@ extern char *BATTLE_CONF_FILENAME;
 extern char *ATCOMMAND_CONF_FILENAME;
 extern char *SCRIPT_CONF_NAME;
 extern char *MSG_CONF_NAME;
+extern char *LANG_FILENAME;
 extern char *GRF_PATH_FILENAME;
 
 //Useful typedefs from jA [Skotlex]
