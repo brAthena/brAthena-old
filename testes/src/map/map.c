@@ -3917,7 +3917,7 @@ int do_init(int argc, char *argv[])
 	ATCOMMAND_CONF_FILENAME = "conf/atcommand_athena.conf";
 	SCRIPT_CONF_NAME = "conf/script_athena.conf";
 	MSG_CONF_NAME = "conf/msg_athena.conf";
-	LANG_FILENAME = (!battle_config.server_lang ? "lang/pt-br.conf" : "lang/eng.conf");
+	LANG_FILENAME = (!battle_config.server_lang ? "conf/lang/pt_br.conf" : "conf/lang/en.conf");
 	GRF_PATH_FILENAME = "conf/grf-files.txt";
 
 	rnd_init();
