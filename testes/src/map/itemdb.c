@@ -1028,13 +1028,7 @@ static bool itemdb_parse_dbrow(char** str, const char* source, int line, int scr
  *======================================*/
 static int itemdb_read_sqldb(void) {
 
-	const char* item_db_name[] = {
-								#ifdef RENEWAL
-									item_db_re_db,
-								#else
-									item_db_db,
-								#endif
-									item_db2_db };
+	const char* item_db_name[] = { item_db_db, item_db2_db };
 	int fi;
 	
 	for( fi = 0; fi < ARRAYLENGTH(item_db_name); ++fi ) {
