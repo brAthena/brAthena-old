@@ -3580,6 +3580,7 @@ char* get_database_name(int database_id)
 		case 35: db_name = "job_db2"; break;
 		case 36: db_name = "elemental_db"; break;
 		case 37: db_name = "elemental_skill_db"; break;
+		case 38: db_name = "item_combo_db"; break;
 	}
 	
 	return db_name;

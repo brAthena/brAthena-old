@@ -787,6 +787,7 @@ int read_elemental_skilldb(void) {
 	}
 	
 	ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", j, get_database_name(37));
+	Sql_FreeResult(mmysql_handle);
 	return 0;
 }
 
