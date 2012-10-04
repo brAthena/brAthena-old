@@ -6704,6 +6704,15 @@ REPLACE INTO `item_combo_db` VALUES('13034:13035', '{ bonus bMaxSP,20; bonus bMa
 REPLACE INTO `item_combo_db` VALUES('18507:18539', '{ bonus bUseSPrate,-3; }\r\n');
 
 --
+-- Estrutura da tabela `mob_item_ratio_db`
+--
+
+CREATE TABLE IF NOT EXISTS `mob_item_ratio_db` (
+  `item_id` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `rate` smallint(4) unsigned NOT NULL DEFAULT '0'
+) ENGINE=MyISAM;
+
+--
 -- Estrutura da tabela `skill_castnodex_db`
 --
 

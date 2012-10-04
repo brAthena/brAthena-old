@@ -5829,9 +5829,6 @@ void rAthena_report(char* date, char *time_c) {
 #if SECURE_NPCTIMEOUT
 	config |= C_SECURE_NPCTIMEOUT;
 #endif
-	/* non-define part */
-	if( db_use_sqldbs )
-		config |= C_SQL_DBS;
 	
 	if( log_config.sql_logs )
 		config |= C_SQL_LOGS;

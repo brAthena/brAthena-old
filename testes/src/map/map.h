@@ -773,8 +773,6 @@ extern char log_db_db[32];
 
 #include "../common/sql.h"
 
-extern int db_use_sqldbs;
-
 extern Sql* mmysql_handle;
 extern Sql* logmysql_handle;
 

@@ -72,8 +72,6 @@ static DBMap* char_db_; // int char_id -> struct mmo_charstatus*
 
 char db_path[1024] = "db";
 
-int db_use_sqldbs;
-
 struct mmo_map_server {
 	int fd;
 	uint32 ip;

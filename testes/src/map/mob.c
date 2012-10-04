@@ -3918,8 +3918,8 @@ static int mob_read_sqldb(void)
 		
 		// free the query result
 		Sql_FreeResult(mmysql_handle);
-		
-		ShowStatus("Done reading '"CL_WHITE"%lu"CL_RESET"' entries in '"CL_WHITE"%s"CL_RESET"'.\n", count, mob_db_name[fi]);
+
+		ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", count, mob_db_name[fi]);
 	}
 	return 0;
 }
@@ -4438,8 +4438,8 @@ static int mob_read_sqlskilldb(void)
 		
 		// free the query result
 		Sql_FreeResult(mmysql_handle);
-		
-		ShowStatus("Done reading '"CL_WHITE"%lu"CL_RESET"' entries in '"CL_WHITE"%s"CL_RESET"'.\n", count, mob_skill_db_name[fi]);
+
+		ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", count, mob_skill_db_name[fi]);
 	}
 	return 0;
 }
@@ -4505,18 +4505,10 @@ static bool mob_readdb_itemratio(char* str[], int columns, int current)
  */
 static void mob_load(void)
 {
-	sv_readdb(db_path, "mob_item_ratio.txt", ',', 2, 2+MAX_ITEMRATIO_MOBS, -1, &mob_readdb_itemratio); // must be read before mobdb
+	sv_readsqldb(get_database_name(39), NULL, 2, -1, &mob_readdb_itemratio);
 	mob_readchatdb();
-	if (db_use_sqldbs)
-	{
-		mob_read_sqldb();
-		mob_read_sqlskilldb();
-	}
-	else
-	{
-		mob_read_sqldb();
-		mob_readskilldb();
-	}
+	mob_read_sqldb();
+	mob_read_sqlskilldb();
 	sv_readdb(db_path, "mob_avail.txt", ',', 2, 12, -1, &mob_readdb_mobavail);
 	mob_read_randommonster();
 	sv_readdb(db_path, DBPATH"mob_race2_db.txt", ',', 2, 20, -1, &mob_readdb_race2);

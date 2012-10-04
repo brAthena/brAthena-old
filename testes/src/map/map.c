@@ -63,7 +63,6 @@ char map_server_pw[32] = "ragnarok";
 char map_server_db[32] = "ragnarok";
 Sql* mmysql_handle;
 
-int db_use_sqldbs = 0;
 char item_db_db[32] = "item_db";
 char item_db2_db[32] = "item_db2";
 char mob_db_db[32] = "mob_db";
@@ -3494,14 +3493,12 @@ void sv_readsqldb (char* name, char* next_name, int param_size, int max_allowed,
 				break;
 		}
 	
-		if (Sql_NumRows(mmysql_handle) <= 0){
-			ShowSQL("A tabela '"CL_WHITE"%s"CL_RESET"' nao foi lida, por insuficiencia de entradas.\n", db_name[i]);
-			if (i != 1)
-				continue;
-			else
-				break;
+		if (!Sql_NumRows(mmysql_handle))
+		{ /* Tabelas sem valores devem retornar 0 */
+			count = 0;
+			break;
 		}
-
+		
 		while (SQL_SUCCESS == Sql_NextRow(mmysql_handle)){
 			char *str[64];
 			int8 j;
@@ -3524,9 +3521,8 @@ void sv_readsqldb (char* name, char* next_name, int param_size, int max_allowed,
 			count++;
 		}
 		
-		if (count)
-			ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", count, db_name[i]);
-		count = 0;
+		ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", count, db_name[i]);
+		Sql_FreeResult(mmysql_handle);
 	}
 }
 
@@ -3577,6 +3573,7 @@ char* get_database_name(int database_id)
 		case 36: db_name = "elemental_db"; break;
 		case 37: db_name = "elemental_skill_db"; break;
 		case 38: db_name = "item_combo_db"; break;
+		case 39: db_name = "mob_item_ratio_db"; break;
 	}
 	
 	return db_name;
