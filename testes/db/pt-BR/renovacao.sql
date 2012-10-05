@@ -242,21 +242,21 @@ CREATE TABLE IF NOT EXISTS `castle_db` (
   PRIMARY KEY (`CastleID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-REPLACE INTO `castle_db` VALUES(4, 'aldeg_cas05', 'Acrux', 'Agit#aldeg_cas05', 1);
-REPLACE INTO `castle_db` VALUES(3, 'aldeg_cas04', 'Rigel', 'Agit#aldeg_cas04', 1);
-REPLACE INTO `castle_db` VALUES(2, 'aldeg_cas03', 'Canopus', 'Agit#aldeg_cas03', 1);
-REPLACE INTO `castle_db` VALUES(1, 'aldeg_cas02', 'Astrum', 'Agit#aldeg_cas02', 1);
 REPLACE INTO `castle_db` VALUES(0, 'aldeg_cas01', 'Sirius', 'Agit#aldeg_cas01', 1);
+REPLACE INTO `castle_db` VALUES(1, 'aldeg_cas02', 'Astrum', 'Agit#aldeg_cas02', 1);
+REPLACE INTO `castle_db` VALUES(2, 'aldeg_cas03', 'Canopus', 'Agit#aldeg_cas03', 1);
+REPLACE INTO `castle_db` VALUES(3, 'aldeg_cas04', 'Rigel', 'Agit#aldeg_cas04', 1);
+REPLACE INTO `castle_db` VALUES(4, 'aldeg_cas05', 'Acrux', 'Agit#aldeg_cas05', 1);
 REPLACE INTO `castle_db` VALUES(5, 'gefg_cas01', 'Arsulf', 'Agit#gefg_cas01', 1);
 REPLACE INTO `castle_db` VALUES(6, 'gefg_cas02', 'Trapesac', 'Agit#gefg_cas02', 1);
 REPLACE INTO `castle_db` VALUES(7, 'gefg_cas03', 'Ruaden', 'Agit#gefg_cas03', 1);
 REPLACE INTO `castle_db` VALUES(8, 'gefg_cas04', 'Saffran', 'Agit#gefg_cas04', 1);
 REPLACE INTO `castle_db` VALUES(9, 'gefg_cas05', 'Arima', 'Agit#gefg_cas05', 1);
-REPLACE INTO `castle_db` VALUES(10, 'payg_cas01', 'Pal?cio do Sol', 'Agit#payg_cas01', 1);
-REPLACE INTO `castle_db` VALUES(11, 'payg_cas02', 'Pal?cio do Lago Sagrado', 'Agit#payg_cas02', 1);
-REPLACE INTO `castle_db` VALUES(12, 'payg_cas03', 'Pal?cio da Sombra', 'Agit#payg_cas03', 1);
-REPLACE INTO `castle_db` VALUES(13, 'payg_cas04', 'Pal?cio Escarlate', 'Agit#payg_cas04', 1);
-REPLACE INTO `castle_db` VALUES(14, 'payg_cas05', 'Pal?cio da Colina', 'Agit#payg_cas05', 1);
+REPLACE INTO `castle_db` VALUES(10, 'payg_cas01', 'Palácio do Sol', 'Agit#payg_cas01', 1);
+REPLACE INTO `castle_db` VALUES(11, 'payg_cas02', 'Palácio do Lago Sagrado', 'Agit#payg_cas02', 1);
+REPLACE INTO `castle_db` VALUES(12, 'payg_cas03', 'Palácio da Sombra', 'Agit#payg_cas03', 1);
+REPLACE INTO `castle_db` VALUES(13, 'payg_cas04', 'Palácio Escarlate', 'Agit#payg_cas04', 1);
+REPLACE INTO `castle_db` VALUES(14, 'payg_cas05', 'Palácio da Colina', 'Agit#payg_cas05', 1);
 REPLACE INTO `castle_db` VALUES(15, 'prtg_cas01', 'Kriemhild', 'Agit#prtg_cas01', 1);
 REPLACE INTO `castle_db` VALUES(16, 'prtg_cas02', 'Hrist', 'Agit#prtg_cas02', 1);
 REPLACE INTO `castle_db` VALUES(17, 'prtg_cas03', 'Brynhildr', 'Agit#prtg_cas03', 1);
@@ -264,7 +264,7 @@ REPLACE INTO `castle_db` VALUES(18, 'prtg_cas04', 'Skoegul', 'Agit#prtg_cas04', 
 REPLACE INTO `castle_db` VALUES(19, 'prtg_cas05', 'Gondul', 'Agit#prtg_cas05', 1);
 REPLACE INTO `castle_db` VALUES(20, 'nguild_alde', 'Terra', 'Agit_N01', 2);
 REPLACE INTO `castle_db` VALUES(21, 'nguild_gef', 'Vento', 'Agit_N02', 2);
-REPLACE INTO `castle_db` VALUES(22, 'nguild_pay', '?gua', 'Agit_N03', 2);
+REPLACE INTO `castle_db` VALUES(22, 'nguild_pay', 'Água', 'Agit_N03', 2);
 REPLACE INTO `castle_db` VALUES(23, 'nguild_prt', 'Fogo', 'Agit_N04', 2);
 REPLACE INTO `castle_db` VALUES(24, 'schg_cas01', 'Himinn', 'Agit_Sc01', 1);
 REPLACE INTO `castle_db` VALUES(25, 'schg_cas02', 'Andlangr', 'Agit_Sc02', 1);
