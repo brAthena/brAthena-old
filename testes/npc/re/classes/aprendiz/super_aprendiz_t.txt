@@ -1,19 +1,27 @@
-//===== rAthena Script ======================================= 
-//= Expanded Super Novice Job Quest
-//===== By: ================================================== 
-//= Euphy
-//===== Current Version: ===================================== 
-//= 1.1a
-//===== Compatible With: ===================================== 
-//= rAthena SVN
-//===== Description: ========================================= 
-//= Job Change quest for Expanded Super Novice class.
-//===== Additional Comments: ================================= 
-//= 1.0 All dialogue is custom, contains some incorrect behaviors.
-//= 1.1 Switched to a translated copy of the official script
-//=     by Gennosuke Kouga, but vastly edited its content. [Euphy]
-//= 1.1a Replaced effect numerics with constants. [Euphy]
-//============================================================ 
+//    ________________________________________________________ 
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: super_aprendiz_t.txt                   |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: ??/1.1a/1.0                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Mudança de Classe para Super Aprendiz T.    |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+ 
 
 function	script	Esseray_Ex	{
 	if (BaseLevel > 98 && JobLevel > 98) {

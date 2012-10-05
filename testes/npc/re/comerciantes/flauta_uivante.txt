@@ -1,20 +1,28 @@
-//===== rAthena Script ======================================= 
-//= Falcon Flute Trader
-//===== By: ================================================== 
-//= Masao
-//= Credits to Muad_Dib for the translation & Ziu for the
-//= Item ID of the Falcon Flute.
-//===== Current Version: ===================================== 
-//= 1.0
-//===== Compatible With: ===================================== 
-//= rAthena
-//===== Description: ========================================= 
-//= An NPC which sells you a Falcon Flute so you're able to
-//= summon a Falcon wherever you are.
-//===== Additional Comments: ================================= 
-//= 1.0 First Version. [Masao]
-//= 1.1 Added Baby Hunter and Baby Ranger check. bugreport:5728 [Masao]
-//============================================================ 
+//    ________________________________________________________ 
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: flauta_uivante.txt                     |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: ??/1.1/1.0                          |
+//   |--------------------------------------------------------|
+//   | Descrição: Um NPC que vende uma flauta Uivante,        |
+//   | assim que você é capaz de convocar um falcão,          |
+//   | onde quer que esteja.                                  |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
 
 -	script	Falcon Flute Trader::fflute	-1,{
 
