@@ -3624,6 +3624,30 @@ REPLACE INTO `mob_pouch_db` VALUES(1621, 'Nuvem Venenosa', 71428);
 REPLACE INTO `mob_pouch_db` VALUES(1622, 'Ursinho', 71428);
 
 --
+-- Estrutura da tabela `mob_race2_db`
+--
+
+CREATE TABLE IF NOT EXISTS `mob_race2_db` (
+  `raceid` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `mobid1` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `mobid2` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `mobid3` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `mobid4` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `mobid5` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `mobid6` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `mobid7` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `mobid8` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `mobid9` smallint(6) unsigned NOT NULL DEFAULT '0'
+) ENGINE=MyISAM;
+
+REPLACE INTO `mob_race2_db` VALUES(1, 1122, 1123, 1124, 1125, 1126, 1258, 1299, 0, 0);
+REPLACE INTO `mob_race2_db` VALUES(2, 1133, 1134, 1135, 1282, 1296, 0, 0, 0, 0);
+REPLACE INTO `mob_race2_db` VALUES(3, 1023, 1152, 1153, 1189, 1213, 1273, 0, 0, 0);
+REPLACE INTO `mob_race2_db` VALUES(4, 1040, 1278, 1366, 1497, 2024, 0, 0, 0, 0);
+REPLACE INTO `mob_race2_db` VALUES(5, 1285, 1286, 1287, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `mob_race2_db` VALUES(6, 1315, 1364, 1401, 1560, 0, 0, 0, 0, 0);
+
+--
 -- Estrutura da tabela `create_arrow_db`
 --
 

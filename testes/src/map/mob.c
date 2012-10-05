@@ -3988,7 +3988,7 @@ static int mob_read_randommonster(void)
 		while(SQL_SUCCESS == Sql_NextRow(mmysql_handle))
 		{
 			int class_, k = 0;
-			char* row[26];
+			char* row[3];
 			rows++;
 			
 			for(; k < 3; ++k)
@@ -4470,7 +4470,7 @@ static void mob_load(void)
 	mob_read_sqlskilldb();
 	sv_readsqldb(get_database_name(40), NULL, 2, -1, &mob_readdb_mobavail);
 	mob_read_randommonster();
-	sv_readdb(db_path, DBPATH"mob_race2_db.txt", ',', 2, 20, -1, &mob_readdb_race2);
+	sv_readsqldb(get_database_name(46), NULL, 2, -1, &mob_readdb_race2);
 }
 
 void mob_reload(void) {
