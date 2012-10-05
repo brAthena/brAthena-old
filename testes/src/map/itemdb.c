@@ -513,74 +513,63 @@ static bool itemdb_read_itemavail(char* str[], int columns, int current)
 /*==========================================
  * read item group data
  *------------------------------------------*/
-static void itemdb_read_itemgroup_sub(const char* filename)
+int itemdb_read_itemgroup_sub()
 {
-	FILE *fp;
-	char line[1024];
-	int ln=0;
-	int groupid,j,k,nameid;
-	char *str[3],*p;
-	char w1[1024], w2[1024];
+	const char* db[] = { get_database_name(26), get_database_name(27), get_database_name(28), get_database_name(29), get_database_name(30), get_database_name(31) };
+	int dbQuery, dbRows, groupid, nameid, k, j, i;
 	
-	if( (fp=fopen(filename,"r"))==NULL ){
-		ShowError("can't read %s\n", filename);
-		return;
-	}
-
-	while(fgets(line, sizeof(line), fp))
+	for(i = 0; i < ARRAYLENGTH(db); ++i)
 	{
-		ln++;
-		if(line[0]=='/' && line[1]=='/')
+		dbRows = 0;
+		if(SQL_ERROR == Sql_Query(mmysql_handle, "SELECT * FROM `%s`", db[i]))
+		{
+			Sql_ShowDebug(mmysql_handle);
 			continue;
-		if(strstr(line,"import")) {
-			if (sscanf(line, "%[^:]: %[^\r\n]", w1, w2) == 2 &&
-				strcmpi(w1, "import") == 0) {
-				itemdb_read_itemgroup_sub(w2);
+		}
+		
+		while(SQL_SUCCESS == Sql_NextRow(mmysql_handle))
+		{
+			char* row[3];
+			dbRows++;
+			
+			for(dbQuery = 0; dbQuery < 3; ++dbQuery)
+				Sql_GetData(mmysql_handle, dbQuery, &row[dbQuery], NULL);
+
+			groupid = atoi(row[0]);
+			if(groupid < 0 || groupid >= MAX_ITEMGROUP)
+			{
+				ShowWarning("itemdb_read_itemgroup: Grupo inválido %d em %s\n", groupid, db[i]);
 				continue;
 			}
+			
+			nameid = atoi(row[1]);
+			if(!itemdb_exists(nameid))
+			{
+				ShowWarning("itemdb_read_itemgroup: Inexistente item %d em %s\n", nameid, db[i]);
+				continue;
+			}
+			
+			k = atoi(row[2]);
+			if(itemgroup_db[groupid].qty+k >= MAX_RANDITEM)
+			{
+				ShowWarning("itemdb_read_itemgroup: Group %d está cheio (%d entradas) em %s\n", groupid, MAX_RANDITEM, db[i]);
+				continue;
+			}
+			
+			for(j = 0; j < k; j++)
+				itemgroup_db[groupid].nameid[itemgroup_db[groupid].qty++] = nameid;
 		}
-		memset(str,0,sizeof(str));
-		for(j=0,p=line;j<3 && p;j++){
-			str[j]=p;
-			p=strchr(p,',');
-			if(p) *p++=0;
-		}
-		if(str[0]==NULL)
-			continue;
-		if (j<3) {
-			if (j>1) //Or else it barks on blank lines...
-				ShowWarning("itemdb_read_itemgroup: Insufficient fields for entry at %s:%d\n", filename, ln);
-			continue;
-		}
-		groupid = atoi(str[0]);
-		if (groupid < 0 || groupid >= MAX_ITEMGROUP) {
-			ShowWarning("itemdb_read_itemgroup: Invalid group %d in %s:%d\n", groupid, filename, ln);
-			continue;
-		}
-		nameid = atoi(str[1]);
-		if (!itemdb_exists(nameid)) {
-			ShowWarning("itemdb_read_itemgroup: Non-existant item %d in %s:%d\n", nameid, filename, ln);
-			continue;
-		}
-		k = atoi(str[2]);
-		if (itemgroup_db[groupid].qty+k >= MAX_RANDITEM) {
-			ShowWarning("itemdb_read_itemgroup: Group %d is full (%d entries) in %s:%d\n", groupid, MAX_RANDITEM, filename, ln);
-			continue;
-		}
-		for(j=0;j<k;j++)
-			itemgroup_db[groupid].nameid[itemgroup_db[groupid].qty++] = nameid;
+		
+		ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", dbRows, db[i]);
 	}
-	fclose(fp);
-	return;
+	
+	Sql_FreeResult(mmysql_handle);
+	return 0;
 }
 
 static void itemdb_read_itemgroup(void)
 {
-	char path[256];
-	snprintf(path, 255, "%s/"DBPATH"item_group_db.txt", db_path);
-	memset(&itemgroup_db, 0, sizeof(itemgroup_db));
-	itemdb_read_itemgroup_sub(path);
-	ShowStatus("Done reading '"CL_WHITE"%s"CL_RESET"'.\n", "item_group_db.txt");
+	itemdb_read_itemgroup_sub();
 	return;
 }
 
