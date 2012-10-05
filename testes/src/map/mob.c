@@ -3970,64 +3970,55 @@ static bool mob_readdb_mobavail(char* str[], int columns, int current)
  *------------------------------------------*/
 static int mob_read_randommonster(void)
 {
-	FILE *fp;
-	char line[1024];
-	char *str[10],*p;
-	int i,j;
-	const char* mobfile[] = {
-		DBPATH"mob_branch.txt",
-		DBPATH"mob_poring.txt",
-		DBPATH"mob_boss.txt",
-		"mob_pouch.txt",
-		"mob_classchange.txt"};
+	const char* mobfile[] = { get_database_name(41), get_database_name(42), get_database_name(43), get_database_name(44), get_database_name(45) };
+	int i, rows = 0;
 
 	memset(&summon, 0, sizeof(summon));
 
 	for( i = 0; i < ARRAYLENGTH(mobfile) && i < MAX_RANDOMMONSTER; i++ )
 	{
 		mob_db_data[0]->summonper[i] = 1002;	// Default fallback value, in case the database does not provide one
-		sprintf(line, "%s/%s", db_path, mobfile[i]);
-		fp=fopen(line,"r");
-		if(fp==NULL){
-			ShowError("can't read %s\n",line);
-			return -1;
-		}
-		while(fgets(line, sizeof(line), fp))
+
+		if(SQL_ERROR == Sql_Query(mmysql_handle, "SELECT * FROM `%s`", mobfile[i]))
 		{
-			int class_;
-			if(line[0] == '/' && line[1] == '/')
-				continue;
-			memset(str,0,sizeof(str));
-			for(j=0,p=line;j<3 && p;j++){
-				str[j]=p;
-				p=strchr(p,',');
-				if(p) *p++=0;
-			}
+			Sql_ShowDebug(mmysql_handle);
+			return -1;
+		}		
+		
+		while(SQL_SUCCESS == Sql_NextRow(mmysql_handle))
+		{
+			int class_, k = 0;
+			char* row[26];
+			rows++;
+			
+			for(; k < 3; ++k)
+				Sql_GetData(mmysql_handle, k, &row[k], NULL);
 
-			if(str[0]==NULL || str[2]==NULL)
-				continue;
-
-			class_ = atoi(str[0]);
+			class_ = atoi(row[0]);
 			if(mob_db(class_) == mob_dummy)
 				continue;
-			mob_db_data[class_]->summonper[i]=atoi(str[2]);
+			mob_db_data[class_]->summonper[i]=atoi(row[2]);
 			if (i) {
 				if( summon[i].qty < ARRAYLENGTH(summon[i].class_) ) //MvPs
 					summon[i].class_[summon[i].qty++] = class_;
 				else {
-					ShowDebug("Can't store more random mobs from %s, increase size of mob.c:summon variable!\n", mobfile[i]);
+					ShowDebug("Não foi possível armazenar mais mobs aleatórios de %s!\n", mobfile[i]);
 					break;
 				}
 			}
 		}
-		if (i && !summon[i].qty)
+		
+		if(i && !summon[i].qty)
 		{ //At least have the default here.
 			summon[i].class_[0] = mob_db_data[0]->summonper[i];
 			summon[i].qty = 1;
 		}
-		fclose(fp);
-		ShowStatus("Done reading '"CL_WHITE"%s"CL_RESET"'.\n",mobfile[i]);
+		
+		ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", rows, mobfile[i]);
+		rows = 0;
 	}
+	
+	Sql_FreeResult(mmysql_handle);
 	return 0;
 }
 
@@ -4360,38 +4351,6 @@ static bool mob_parse_row_mobskilldb(char** str, int columns, int current)
 	return true;
 }
 
-/*==========================================
- * mob_skill_db.txt reading
- *------------------------------------------*/
-static void mob_readskilldb(void) {
-	const char* filename[] = {
-		DBPATH"mob_skill_db.txt",
-		"mob_skill_db2.txt" };
-	int fi;
-
-	if( battle_config.mob_skill_rate == 0 )
-	{
-		ShowStatus("Mob skill use disabled. Not reading mob skills.\n");
-		return;
-	}
-
-	for( fi = 0; fi < ARRAYLENGTH(filename); ++fi )
-	{
-		char path[256];
-
-		if(fi > 0)
-		{
-			sprintf(path, "%s/%s", db_path, filename[fi]);
-			if(!exists(path))
-			{
-				continue;
-			}
-		}
-
-		sv_readdb(db_path, filename[fi], ',', 19, 19, -1, &mob_parse_row_mobskilldb);
-	}
-}
-
 /**
  * mob_skill_db table reading [CalciumKid]
  * not overly sure if this is all correct
@@ -4509,7 +4468,7 @@ static void mob_load(void)
 	mob_readchatdb();
 	mob_read_sqldb();
 	mob_read_sqlskilldb();
-	sv_readdb(db_path, "mob_avail.txt", ',', 2, 12, -1, &mob_readdb_mobavail);
+	sv_readsqldb(get_database_name(40), NULL, 2, -1, &mob_readdb_mobavail);
 	mob_read_randommonster();
 	sv_readdb(db_path, DBPATH"mob_race2_db.txt", ',', 2, 20, -1, &mob_readdb_race2);
 }

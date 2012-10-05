@@ -3493,12 +3493,6 @@ void sv_readsqldb (char* name, char* next_name, int param_size, int max_allowed,
 				break;
 		}
 	
-		if (!Sql_NumRows(mmysql_handle))
-		{ /* Tabelas sem valores devem retornar 0 */
-			count = 0;
-			break;
-		}
-		
 		while (SQL_SUCCESS == Sql_NextRow(mmysql_handle)){
 			char *str[64];
 			int8 j;
@@ -3574,6 +3568,12 @@ char* get_database_name(int database_id)
 		case 37: db_name = "elemental_skill_db"; break;
 		case 38: db_name = "item_combo_db"; break;
 		case 39: db_name = "mob_item_ratio_db"; break;
+		case 40: db_name = "mob_avail_db"; break;
+		case 41: db_name = "mob_branch_db"; break;
+		case 42: db_name = "mob_poring_db"; break;
+		case 43: db_name = "mob_boss_db"; break;
+		case 44: db_name = "mob_pouch_db"; break;
+		case 45: db_name = "mob_classchange_db"; break;
 	}
 	
 	return db_name;
