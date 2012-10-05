@@ -3982,7 +3982,7 @@ static int mob_read_randommonster(void)
 		if(SQL_ERROR == Sql_Query(mmysql_handle, "SELECT * FROM `%s`", mobfile[i]))
 		{
 			Sql_ShowDebug(mmysql_handle);
-			return -1;
+			continue;
 		}		
 		
 		while(SQL_SUCCESS == Sql_NextRow(mmysql_handle))
