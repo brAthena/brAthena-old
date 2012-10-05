@@ -17498,7 +17498,11 @@ static void skill_readdb(void)
 
 	sv_readsqldb(get_database_name(0), NULL, 17, -1, skill_parse_row_skilldb);
 	sv_readsqldb(get_database_name(1), NULL, 32, -1, skill_parse_row_requiredb);
+	#ifdef RENEWAL_CAST
 	sv_readsqldb(get_database_name(2), NULL, 8,  -1, skill_parse_row_castdb);
+	#else
+	sv_readsqldb(get_database_name(2), NULL, 7,  -1, skill_parse_row_castdb);
+	#endif
 	sv_readsqldb(get_database_name(3), NULL, 3,  -1, skill_parse_row_castnodexdb);
 	sv_readsqldb(get_database_name(4), NULL, 8,  -1, skill_parse_row_unitdb);
 	sv_readsqldb(get_database_name(5), NULL, 2,  -1, skill_parse_row_nocastdb);

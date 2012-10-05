@@ -9210,12 +9210,12 @@ int pc_readdb(void)
 		if (!max_level[j][1])
 			ShowWarning("Class %s (%d) does not has a job exp table.\n", job_name(i), i);
 	}
-	ShowStatus("Done reading '"CL_WHITE"%s"CL_RESET"'.\n","exp.txt");
+	ShowStatus("Leitura de '"CL_WHITE"%s"CL_RESET"' completa.\n","exp.txt");
 
 	// スキルツリ?
 	memset(skill_tree,0,sizeof(skill_tree));
-
-	sv_readdb(db_path, DBPATH"skill_tree.txt", ',', 3+MAX_PC_SKILL_REQUIRE*2, 4+MAX_PC_SKILL_REQUIRE*2, -1, &pc_readdb_skilltree);
+	
+	sv_readsqldb(get_database_name(47), NULL, 13, -1, &pc_readdb_skilltree);
 
 	// ?性修正テ?ブル
 	for(i=0;i<4;i++)
@@ -9267,7 +9267,7 @@ int pc_readdb(void)
 		}
 	}
 	fclose(fp);
-	ShowStatus("Done reading '"CL_WHITE"%s"CL_RESET"'.\n","attr_fix.txt");
+	ShowStatus("Leitura de '"CL_WHITE"%s"CL_RESET"' completa.\n","attr_fix.txt");
 
 	// スキルツリ?
 	memset(statp,0,sizeof(statp));
