@@ -3983,7 +3983,7 @@ static int mob_read_randommonster(void)
 		{
 			Sql_ShowDebug(mmysql_handle);
 			continue;
-		}		
+		}
 		
 		while(SQL_SUCCESS == Sql_NextRow(mmysql_handle))
 		{

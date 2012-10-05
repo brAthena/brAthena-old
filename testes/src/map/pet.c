@@ -1199,9 +1199,8 @@ int pet_skill_support_timer(int tid, unsigned int tick, int id, intptr_t data)
  *------------------------------------------*/ 
 int read_petdb()
 {
-	char* filename[] = {"pet_db.txt","pet_db2.txt"};
-	FILE *fp;
-	int nameid,i,j,k; 
+	char* filename[] = { get_database_name(48), get_database_name(49) };
+	int nameid,i,j; 
 
 	// Remove any previous scripts in case reloaddb was invoked.
 	for( j = 0; j < MAX_PET_DB; j++ )
@@ -1224,79 +1223,29 @@ int read_petdb()
 	j = 0; // entry counter
 	for( i = 0; i < ARRAYLENGTH(filename); i++ )
 	{
-		char line[1024];
-		int lines, entries;
-
-		sprintf(line, "%s/%s", db_path, filename[i]);
-		fp=fopen(line,"r");
-		if( fp == NULL )
+		int rows = 0;
+		
+		if(SQL_ERROR == Sql_Query(mmysql_handle, "SELECT * FROM `%s`", filename[i]))
 		{
-			if( i == 0 )
-				ShowError("can't read %s\n",line);
+			Sql_ShowDebug(mmysql_handle);
 			continue;
 		}
-
-		lines = entries = 0;
-		while( fgets(line, sizeof(line), fp) && j < MAX_PET_DB )
+		
+		while(SQL_SUCCESS == Sql_NextRow(mmysql_handle))
 		{
-			char *str[22], *p;
-			lines++;
-
-			if(line[0] == '/' && line[1] == '/')
-				continue;
-			memset(str, 0, sizeof(str));
-			p = line;
-			while( ISSPACE(*p) )
-				++p;
-			if( *p == '\0' )
-				continue; // empty line
-			for( k = 0; k < 20; ++k )
-			{
-				str[k] = p;
-				p = strchr(p,',');
-				if( p == NULL )
-					break; // comma not found
-				*p = '\0';
-				++p;
-			}
-
-			if( p == NULL )
-			{
-				ShowError("read_petdb: Insufficient columns in line %d, skipping.\n", lines);
-				continue;
-			}
-
-			// Pet Script
-			if( *p != '{' )
-			{
-				ShowError("read_petdb: Invalid format (Pet Script column) in line %d, skipping.\n", lines);
-				continue;
-			}
-
-			str[20] = p;
-			p = strstr(p+1,"},");
-			if( p == NULL )
-			{
-				ShowError("read_petdb: Invalid format (Pet Script column) in line %d, skipping.\n", lines);
-				continue;
-			}
-			p[1] = '\0';
-			p += 2;
-
-			// Equip Script
-			if( *p != '{' )
-			{
-				ShowError("read_petdb: Invalid format (Equip Script column) in line %d, skipping.\n", lines);
-				continue;
-			}
-			str[21] = p;
+			char *str[22];
+			int q = 0;
+			rows++;
+			
+			for(; q < 22; ++q)
+				Sql_GetData(mmysql_handle, q, &str[q], NULL);
 
 			if( (nameid = atoi(str[0])) <= 0 )
 				continue;
 
 			if( !mobdb_checkid(nameid) )
 			{
-				ShowWarning("pet_db reading: Invalid mob-class %d, pet not read.\n", nameid);
+				ShowWarning("pet_db reading: Mob inválido %d, pet não carregado!.\n", nameid);
 				continue;
 			}
 
@@ -1326,18 +1275,17 @@ int read_petdb()
 			pet_db[j].equip_script = NULL;
 
 			if( *str[20] )
-				pet_db[j].pet_script = parse_script(str[20], filename[i], lines, 0);
+				pet_db[j].pet_script = parse_script(str[20], filename[i], rows, 0);
 			if( *str[21] )
-				pet_db[j].equip_script = parse_script(str[21], filename[i], lines, 0);
-
+				pet_db[j].equip_script = parse_script(str[21], filename[i], rows, 0);	
 			j++;
-			entries++;
 		}
 
 		if( j >= MAX_PET_DB )
-			ShowWarning("read_petdb: Reached max number of pets [%d]. Remaining pets were not read.\n ", MAX_PET_DB);
-		fclose(fp);
-		ShowStatus("Done reading '"CL_WHITE"%d"CL_RESET"' pets in '"CL_WHITE"%s"CL_RESET"'.\n", entries, filename[i]);
+			ShowWarning("petdb: Número máximo de pets atingido [%d].\n ", MAX_PET_DB);
+			
+		ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", rows, filename[i]);
+		Sql_FreeResult(mmysql_handle);
 	}
 	return 0;
 }
