@@ -287,64 +287,43 @@ int quest_check(TBL_PC * sd, int quest_id, quest_check_type type) {
 	return -1;
 }
 
-int quest_read_db(void) {
-	FILE *fp;
-	char line[1024];
-	int i,j,k = 0;
-	char *str[20],*p,*np;
-
-	sprintf(line, "%s/quest_db.txt", db_path);
-	if( (fp=fopen(line,"r"))==NULL ){
-		ShowError("can't read %s\n", line);
+int quest_read_db(void)
+{
+	int QuestLoop, QueryLoop, MaxQuestLoop = 0;
+	
+	if(SQL_ERROR == Sql_Query(mmysql_handle, "SELECT * FROM `%s`", get_database_name(50)))
+	{
+		Sql_ShowDebug(mmysql_handle);
 		return -1;
 	}
 	
-	while(fgets(line, sizeof(line), fp)) {
+	while(SQL_SUCCESS == Sql_NextRow(mmysql_handle) && MaxQuestLoop < MAX_QUEST_DB)
+	{
+		char* row[9];
 		
-		if (k == MAX_QUEST_DB) {
-			ShowError("quest_read_db: Too many entries specified in %s/quest_db.txt!\n", db_path);
-			break;
-		}
+		for(QueryLoop = 0; QueryLoop < 9; ++QueryLoop)
+			Sql_GetData(mmysql_handle, QueryLoop, &row[QueryLoop], NULL);		
+
+		memset(&quest_db[MaxQuestLoop], 0, sizeof(quest_db[0]));
+
+		quest_db[MaxQuestLoop].id = atoi(row[0]);
+		quest_db[MaxQuestLoop].time = atoi(row[1]);
 		
-		if(line[0]=='/' && line[1]=='/')
-			continue;
-		memset(str,0,sizeof(str));
+		for(QuestLoop = 0; QuestLoop < MAX_QUEST_OBJECTIVES; QuestLoop++)
+		{
+			quest_db[MaxQuestLoop].mob[QuestLoop] = atoi(row[2*QuestLoop+2]);
+			quest_db[MaxQuestLoop].count[QuestLoop] = atoi(row[2*QuestLoop+3]);
 
-		for( j = 0, p = line; j < 8; j++ ) {
-			if( ( np = strchr(p,',') ) != NULL ) {
-				str[j] = p;
-				*np = 0;
-				p = np + 1;
-			}
-			else if (str[0] == NULL)
-				continue;
-			else {
-				ShowError("quest_read_db: insufficient columns in line %s\n", line);
-				continue;
-			}
-		}
-		if(str[0]==NULL)
-			continue;
-
-		memset(&quest_db[k], 0, sizeof(quest_db[0]));
-
-		quest_db[k].id = atoi(str[0]);
-		quest_db[k].time = atoi(str[1]);
-		
-		for( i = 0; i < MAX_QUEST_OBJECTIVES; i++ ) {
-			quest_db[k].mob[i] = atoi(str[2*i+2]);
-			quest_db[k].count[i] = atoi(str[2*i+3]);
-
-			if( !quest_db[k].mob[i] || !quest_db[k].count[i] )
+			if(!quest_db[MaxQuestLoop].mob[QuestLoop] || !quest_db[MaxQuestLoop].count[QuestLoop])
 				break;
 		}
 		
-		quest_db[k].num_objectives = i;
-
-		k++;
+		quest_db[MaxQuestLoop].num_objectives = QuestLoop;
+		MaxQuestLoop++;
 	}
-	fclose(fp);
-	ShowStatus("Done reading '"CL_WHITE"%d"CL_RESET"' entries in '"CL_WHITE"%s"CL_RESET"'.\n", k, "quest_db.txt");
+
+	ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", MaxQuestLoop, get_database_name(50));
+	Sql_FreeResult(mmysql_handle);
 	return 0;
 }
 
