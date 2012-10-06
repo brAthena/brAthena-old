@@ -10935,7 +10935,7 @@ int status_readdb(void)
 	sv_readdb(db_path, "pre-re/job_db1.txt",   ',',	5+MAX_WEAPON_TYPE, 5+MAX_WEAPON_TYPE,	                    -1,		 &status_readdb_job1);
 #endif
 	sv_readdb(db_path, "job_db2.txt",          ',',                 1,       1+MAX_LEVEL,                       -1,      &status_readdb_job2);
-	sv_readdb(db_path, "size_fix.txt",         ',',   MAX_WEAPON_TYPE,   MAX_WEAPON_TYPE,     ARRAYLENGTH(atkmods),      &status_readdb_sizefix);
+	sv_readsqldb(get_database_name(51), NULL, MAX_WEAPON_TYPE, -1, &status_readdb_sizefix);
 	sv_readdb(db_path, DBPATH"refine_db.txt",  ',',      4+MAX_REFINE,      4+MAX_REFINE, ARRAYLENGTH(refine_info),      &status_readdb_refine);
 
 	return 0;

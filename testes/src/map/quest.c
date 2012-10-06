@@ -302,7 +302,7 @@ int quest_read_db(void)
 		char* row[9];
 		
 		for(QueryLoop = 0; QueryLoop < 9; ++QueryLoop)
-			Sql_GetData(mmysql_handle, QueryLoop, &row[QueryLoop], NULL);		
+			Sql_GetData(mmysql_handle, QueryLoop, &row[QueryLoop], NULL);
 
 		memset(&quest_db[MaxQuestLoop], 0, sizeof(quest_db[0]));
 

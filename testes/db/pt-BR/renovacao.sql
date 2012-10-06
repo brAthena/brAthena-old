@@ -4195,6 +4195,41 @@ REPLACE INTO `quest_db` VALUES(60354, 0, 0, 0, 0, 0, 0, 0, '"Loira do Banheiro"\
 REPLACE INTO `quest_db` VALUES(60355, 0, 0, 0, 0, 0, 0, 0, '"Loira do Banheiro"\r\n');
 
 --
+-- Estrutura da tabela `size_fix_db`
+--
+
+CREATE TABLE IF NOT EXISTS `size_fix_db` (
+  `Unarmed` int(6) unsigned NOT NULL DEFAULT '0',
+  `Knife` int(6) unsigned NOT NULL DEFAULT '0',
+  `1HSword` int(6) unsigned NOT NULL DEFAULT '0',
+  `2HSword` int(6) unsigned NOT NULL DEFAULT '0',
+  `1HSpear` int(6) unsigned NOT NULL DEFAULT '0',
+  `2HSpears` int(6) unsigned NOT NULL DEFAULT '0',
+  `1HAxe` int(6) unsigned NOT NULL DEFAULT '0',
+  `2HAxe` int(6) unsigned NOT NULL DEFAULT '0',
+  `Mace` int(6) unsigned NOT NULL DEFAULT '0',
+  `2HMace` int(6) unsigned NOT NULL DEFAULT '0',
+  `Staff` int(6) unsigned NOT NULL DEFAULT '0',
+  `Bow` int(6) unsigned NOT NULL DEFAULT '0',
+  `Knuckle` int(6) unsigned NOT NULL DEFAULT '0',
+  `MusicalInstrument` int(6) unsigned NOT NULL DEFAULT '0',
+  `Whip` int(6) unsigned NOT NULL DEFAULT '0',
+  `Book` int(6) unsigned NOT NULL DEFAULT '0',
+  `Katar` int(6) unsigned NOT NULL DEFAULT '0',
+  `Revolver` int(6) unsigned NOT NULL DEFAULT '0',
+  `Rifle` int(6) unsigned NOT NULL DEFAULT '0',
+  `Shotgun` int(6) unsigned NOT NULL DEFAULT '0',
+  `GatlingGun` int(6) unsigned NOT NULL DEFAULT '0',
+  `GrenadeLauncher` int(6) unsigned NOT NULL DEFAULT '0',
+  `FuumaShuriken` int(6) unsigned NOT NULL DEFAULT '0',
+  `2HStaff` int(6) unsigned NOT NULL DEFAULT '0'
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+REPLACE INTO `size_fix_db` VALUES(100, 100, 75, 75, 75, 75, 50, 50, 75, 100, 100, 100, 100, 75, 75, 100, 75, 100, 100, 100, 100, 100, 100, 100);
+REPLACE INTO `size_fix_db` VALUES(100, 75, 100, 75, 75, 75, 75, 75, 100, 100, 100, 100, 75, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100);
+REPLACE INTO `size_fix_db` VALUES(100, 50, 75, 100, 100, 100, 100, 100, 100, 100, 100, 75, 50, 75, 50, 50, 75, 100, 100, 100, 100, 100, 100, 100);
+
+--
 -- Estrutura da tabela `item_bluebox_db`
 --
 
