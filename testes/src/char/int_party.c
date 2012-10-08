@@ -588,6 +588,7 @@ int mapif_parse_PartyChangeOption(int fd,int party_id,int account_id,int exp,int
 int mapif_parse_PartyLeave(int fd, int party_id, int account_id, int char_id)
 {
 	struct party_data *p;
+	unsigned int lv;
 	int i,j=-1;
 
 	p = inter_party_fromsql(party_id);
@@ -620,11 +621,11 @@ int mapif_parse_PartyLeave(int fd, int party_id, int account_id, int char_id)
 		//Party gets deleted on the check_empty call below.
 	} else {
 		inter_party_tosql(&p->party,PS_DELMEMBER,i);
-		j = p->party.member[i].lv;
+		lv = p->party.member[i].lv;
 		if(p->party.member[i].online) p->party.count--;
 		memset(&p->party.member[i], 0, sizeof(struct party_member));
 		p->size--;
-		if (j == p->min_lv || j == p->max_lv || p->family)
+		if (lv == p->min_lv || lv == p->max_lv || p->family) 
 		{
 			if(p->family && (p->size == 1 || p->family == p->party.member[i].char_id)) p->family = 0; //Family state broken.
 			int_party_check_lv(p);
@@ -636,7 +637,7 @@ int mapif_parse_PartyLeave(int fd, int party_id, int account_id, int char_id)
 	return 0;
 }
 // When member goes to other map or levels up.
-int mapif_parse_PartyChangeMap(int fd, int party_id, int account_id, int char_id, unsigned short map, int online, unsigned int lv)
+int mapif_parse_PartyChangeMap(int fd, int party_id, int account_id, int char_id, unsigned short map, unsigned int online, unsigned int lv) 
 {
 	struct party_data *p;
 	int i;
