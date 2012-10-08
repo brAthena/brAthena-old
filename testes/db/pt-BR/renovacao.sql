@@ -13103,6 +13103,15 @@ REPLACE INTO `skill_db` VALUES(690, 0, 6, 4, 0, '0x3', 0, 10, 1, 0, 0, '0x2', 0,
 REPLACE INTO `skill_db` VALUES(691, 0, 6, 4, 0, '0x3', 0, 5, 1, 0, 0, '0x2', 0, 'magic', 0, '	CASH_ASSUMPTIO', 'Party Assumptio\r\n');
 REPLACE INTO `skill_db` VALUES(693, 0, 6, 4, 0, '0x3', 0, 1, 1, 0, 0, '0x2', 0, 'magic', 0, '	ALL_PARTYFLEE', 'Esquiva em Grupo\r\n');
 REPLACE INTO `skill_db` VALUES(698, 0, 6, 4, 0, '0x01', 0, 1, 1, 0, 0, '0x2', 0, 'none', 0, '		ALL_WEWISH', 'Noite Feliz!\r\n');
+-- REPLACE INTO `skill_db` VALUES(700, 0, 0, 0, 0, '0x00', 0, ?, 0, no, 0, 0, 0, none, 0 ,	'	NPC_WIDEHEALTHFEAR', 'Wide Health Fear\r\n');
+-- REPLACE INTO `skill_db` VALUES(701, 0, 0, 0, 0, '0x00', 0, ?, 0, no, 0, 0, 0, none, 0 ,	'	NPC_WIDEBODYBURNNING', 'Wide Body Burnning\r\n');
+-- REPLACE INTO `skill_db` VALUES(702, 0, 0, 0, 0, '0x00', 0, ?, 0, no, 0, 0, 0, none, 0 ,	'	NPC_WIDEFROSTMISTY', 'Wide Freezing\r\n');
+-- REPLACE INTO `skill_db` VALUES(703, 0, 0, 0, 0, '0x00', 0, ?, 0, no, 0, 0, 0, none, 0 ,	'	NPC_WIDECOLD',	'Wide Crystalize\r\n');
+-- REPLACE INTO `skill_db` VALUES(704, 0, 0, 0, 0, '0x00', 0, ?, 0, no, 0, 0, 0, none, 0 ,	'	NPC_WIDE_DEEP_SLEEP', 'Wide Deep Sleep\r\n');
+-- REPLACE INTO `skill_db` VALUES(705, 0, 0, 0, 0, '0x00', 0, ?, 0, no, 0, 0, 0, none, 0 ,	'	NPC_WIDESIREN', 'Wide Sirens Voice\r\n');
+-- REPLACE INTO `skill_db` VALUES(706, 0, 0, 0, 0, '0x00', 0, ?, 0, no, 0, 0, 0, none, 0 ,	'	NPC_VENOMFOG', 'Venom Fog\r\n');
+-- REPLACE INTO `skill_db` VALUES(707, 0, 0, 0, 0, '0x00', 0, ?, 0, no, 0, 0, 0, none, 0 ,	'	NPC_MILLENNIUMSHIELD', 'Millenium Shield 2\r\n');
+-- REPLACE INTO `skill_db` VALUES(708, 0, 0, 0, 0, '0x00', 0, ?, 0, no, 0, 0, 0, none, 0 ,	'	NPC_COMET',	'Comet 2\r\n');
 REPLACE INTO `skill_db` VALUES(1001, 9, 6, 1, 0, '0', 0, 1, 1, 0, 0, '0x1', 0, 'weapon', 0, '	KN_CHARGEATK', 'Avan?o Ofensivo\r\n');
 REPLACE INTO `skill_db` VALUES(1002, 0, 6, 4, 0, '0x1', 0, 1, 0, 0, 0, '0x1', 0, 'weapon', 2, '	CR_SHRINK', 'Submiss?o\r\n');
 REPLACE INTO `skill_db` VALUES(1003, 0, 0, 0, 0, '0', 0, 1, 0, 0, 0, '0x1', 0, 'weapon', 0, '	AS_SONICACCEL', 'L?minas Aceleradas\r\n');
@@ -13413,6 +13422,13 @@ REPLACE INTO `skill_db` VALUES(2534, 0, 0, 4, 0, '0x1', 0, 1, 0, 0, 0, '0', 0, '
 REPLACE INTO `skill_db` VALUES(2535, 0, 0, 4, 0, '0x1', 0, 1, 0, 0, 0, '0x1', 0, 'none', 0, '	ALL_BUYING_STORE', 'Abrir Venda\r\n');
 REPLACE INTO `skill_db` VALUES(2536, 0, 0, 4, 0, '0x1', 0, 1, 0, 0, 0, '0', 0, 'none', 0, '	ALL_GUARDIAN_RECALL', 'Chamar Guardi?es\r\n');
 REPLACE INTO `skill_db` VALUES(2537, 9, 6, 16, 0, '0x1', 0, 2, 1, 0, 0, '0', 0, 'magic', 0, '	ALL_ODINS_POWER', 'Poder de Odin\r\n');
+-- REPLACE INTO `skill_db` VALUES(2538, 0, 0, 0, 0, '0x0', 0, ??, 0, no, 0, 0, 0, none, 0, ' BEER_BOTTLE_CAP', 'Beer Bottle Cap\r\n');
+-- REPLACE INTO `skill_db` VALUES(2539, 0, 0, 0, 0, '0x0', 0, ??, 0, no, 0, 0, 0, none, 0, ' NPC_ASSASSINCROSS', 'Assassin Cross of Sunset 2\r\n');
+-- REPLACE INTO `skill_db` VALUES(2540, 0, 0, 0, 0, '0x0', 0, ??, 0, no, 0, 0, 0, none, 0, ' NPC_DISSONANCE', 'Dissonance 2\r\n');
+-- REPLACE INTO `skill_db` VALUES(2541, 0, 0, 0, 0, '0x0', 0, ??, 0, no, 0, 0, 0, none, 0, ' NPC_UGLYDANCE', 'Ugly Dance 2\r\n');
+-- REPLACE INTO `skill_db` VALUES(2542, 0, 0, 0, 0, '0x0', 0, ??, 0, no, 0, 0, 0, none, 0, ' ALL_TETANY', 'Tetany\r\n');
+-- REPLACE INTO `skill_db` VALUES(2543, 0, 0, 0, 0, '0x0', 0, ??, 0, no, 0, 0, 0, none, 0, ' ALL_RAY_OF_PROTECTION', 'Ray of Protection\r\n');
+-- REPLACE INTO `skill_db` VALUES(2544, 0, 0, 0, 0, '0x0', 0, ??, 0, no, 0, 0, 0, none, 0, ' MC_CARTDECORATE', 'Decorate Cart\r\n');
 REPLACE INTO `skill_db` VALUES(3001, 0, 6, 4, 0, '0', 0, 1, 1, 0, 0, '0', 0, 'none', 0, '		KO_YAMIKUMO', 'Yamikumo\r\n');
 REPLACE INTO `skill_db` VALUES(3002, 0, 0, 0, 0, '0', 0, 5, 0, 0, 0, '0', 0, 'weapon', 0, '		KO_RIGHT', 'Per?cia com a M?o Direita\r\n');
 REPLACE INTO `skill_db` VALUES(3003, 0, 0, 0, 0, '0', 0, 5, 0, 0, 0, '0', 0, 'weapon', 0, '		KO_LEFT', 'Per?cia com a M?o Esquerda\r\n');
@@ -14438,6 +14454,10 @@ REPLACE INTO `skill_require_db` VALUES(2498, '0', '0', '1', '0', '0', 0, '99', 0
 REPLACE INTO `skill_require_db` VALUES(2534, '0', '0', '1', '0', '0', 0, '99', 0, '0', 'none', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 REPLACE INTO `skill_require_db` VALUES(2535, '0', '0', '1', '0', '0', 0, '99', 0, '0', 'none', 0, 6377, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 REPLACE INTO `skill_require_db` VALUES(2536, '0', '0', '1', '0', '0', 0, '99', 0, '0', 'none', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+-- REPLACE INTO `skill_require_db` VALUES(2538, '0', '0', '1', '0', '0', 0, '99', 0, '0', 'none', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+-- REPLACE INTO `skill_require_db` VALUES(2542, '0', '0', '1', '0', '0', 0, '99', 0, '0', 'none', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+-- REPLACE INTO `skill_require_db` VALUES(2543, '0', '0', '1', '0', '0', 0, '99', 0, '0', 'none', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+-- REPLACE INTO `skill_require_db` VALUES(2544, '0', '0', '1', '0', '0', 0, '99', 0, '0', 'none', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 REPLACE INTO `skill_require_db` VALUES(3001, '0', '0', '10', '0', '0', 0, '99', 0, '0', 'none', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 REPLACE INTO `skill_require_db` VALUES(3004, '0', '0', '10:12:14:16:18', '0', '0', 0, '25:26:28', 0, '0', 'none', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 REPLACE INTO `skill_require_db` VALUES(3005, '0', '0', '12:16:20:24:28', '0', '0', 0, '99', 0, '0', 'none', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
@@ -20024,6 +20044,7 @@ REPLACE INTO `skill_unit_db` VALUES(535, '0xbd', '', '-1', '0', 20, 'enemy', '0x
 REPLACE INTO `skill_unit_db` VALUES(538, '0xbb', '', '1:1:1:2:2:2:3:3:3:4', '0', 0, 'all', '0x010\r\n');
 REPLACE INTO `skill_unit_db` VALUES(541, '0x86', '', '0', '3:3:4:4:5', 100, 'enemy', '0x018\r\n');
 REPLACE INTO `skill_unit_db` VALUES(670, '0xc7', '', '1', '4:7:10:13:16:19:22:25:28:31', 1000, 'all', '0x008\r\n');
+-- REPLACE INTO `skill_unit_db` VALUES(706, '0xfd', '', '0', '0', 1000, 'all', '0x000\r\n');
 REPLACE INTO `skill_unit_db` VALUES(2044, '0xca', '', '0', '3', 1000, 'all', '0x018\r\n');
 REPLACE INTO `skill_unit_db` VALUES(2032, '0xe1', '', '2', '0', 1000, 'enemy', '0x018\r\n');
 REPLACE INTO `skill_unit_db` VALUES(2214, '0x86', '', '0', '5', 100, 'enemy', '0x080\r\n');
