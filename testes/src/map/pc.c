@@ -9132,7 +9132,7 @@ int pc_readdb(void)
 	memset(exp_table,0,sizeof(exp_table));
 	memset(max_level,0,sizeof(max_level));
 
-	sprintf(line, "%s/"DBPATH"exp.txt", db_path);
+	sprintf(line, "%s/exp"DBPATH"", db_path);
 
 	fp=fopen(line, "r");
 	if(fp==NULL){
@@ -9211,7 +9211,7 @@ int pc_readdb(void)
 		if (!max_level[j][1])
 			ShowWarning("Class %s (%d) does not has a job exp table.\n", job_name(i), i);
 	}
-	ShowStatus("Leitura de '"CL_WHITE"%s"CL_RESET"' completa.\n","exp.txt");
+	ShowStatus("Leitura de '"CL_WHITE"%s"CL_RESET"' completa.\n","exp"DBPATH"");
 
 	// スキルツリ?
 	memset(skill_tree,0,sizeof(skill_tree));
@@ -9224,7 +9224,7 @@ int pc_readdb(void)
 			for(k=0;k<ELE_MAX;k++)
 				attr_fix_table[i][j][k]=100;
 
-	sprintf(line, "%s/"DBPATH"attr_fix.txt", db_path);
+	sprintf(line, "%s/attr_fix"DBPATH"", db_path);
 	
 	fp=fopen(line,"r");
 	if(fp==NULL){
@@ -9268,7 +9268,7 @@ int pc_readdb(void)
 		}
 	}
 	fclose(fp);
-	ShowStatus("Leitura de '"CL_WHITE"%s"CL_RESET"' completa.\n","attr_fix.txt");
+	ShowStatus("Leitura de '"CL_WHITE"%s"CL_RESET"' completa.\n","attr_fix"DBPATH"");
 
 	// スキルツリ?
 	memset(statp,0,sizeof(statp));

@@ -26,9 +26,9 @@
  * Path within the /db folder to (non-)renewal specific db files
  **/
 #ifdef RENEWAL
-	#define DBPATH "re/"
+	#define DBPATH "_re.txt"
 #else
-	#define DBPATH "pre-re/"
+	#define DBPATH "_pre-re.txt"
 #endif
 
 /**
