@@ -1,22 +1,25 @@
-//===== rAthena Script =======================================
-//= Monster Tamers
-//===== By: ==================================================
-//= kobra_k88, Darkchild, x[tsk]
-//===== Current Version: =====================================
-//= 1.4b
-//===== Compatible With: =====================================
-//= rAthena 1.0
-//===== Description: =========================================
-//= Cute pet quest items
-//===== Additional Comments: =================================
-//= May not have all of the Monster Tamers, but the ones here are fully working.
-//= 1.1 Fixed exploits [Lupus]
-//= 1.2 Removed Duplicates [Silent]
-//= 1.3 Added Bongun's taming item quest. Credits to Lone_Wolf. [SinSloth]
-//= 1.4 Updated Monster taming item quests. [L0ne_W0lf]
-//= 1.4a FIXED item requirement for stellar hairpin. [L0ne_W0lf]
-//= 1.4b Fixed the delitem assosiated with the last uptate. [L0ne_W0lf]
-//============================================================
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: Quest de Itens para Pets               |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.4/1.4/1.0                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Quests de Itens para Pets.                  |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Cabeçalho Criado [Holy]                            |
+//   | - Anotações                                            |
+//   \________________________________________________________/
 
 alberta_in,173,76,4	script	Monster Tamer#alb	125,{
 	mes "[Iwado]";

@@ -1,27 +1,25 @@
-//===== rAthena Script =======================================
-//= Gunslinger quests
-//===== By: ==================================================
-//= Playtester
-//===== Current Version: =====================================
-//= 1.6c
-//===== Compatible With: =====================================
-//= rAthena SVN
-//===== Description: =========================================
-//= Gunslinger guns and bullet quests
-//===== Additional Comments: =================================
-//= 1.0 Only Garrison Gun done yet [Playtester]
-//= 1.1 Added Garrison[2] [Playtester]
-//= 1.2 Added Drifter, Destroyer and Inferno [Playtester]
-//= 1.3 Added official Gatling quests [Playtester]
-//= 1.4 Updated Destroyer Quest - Credits to Sinoco for first
-//= official version. [SinSloth]
-//= 1.5 Updated Inferno Quest to official version [SinSloth]
-//= 1.6 Updated Garrison Quest - Credits to Lazarus^ for
-//= making the first official version. [SinSloth]
-//= 1.6a Removed .GATs [Lupus]
-//= 1.6b Changed item names to item IDs on some scripts. [Samuray22]
-//= 1.6c Corrected a bad delitem. (bugreport:763) [Samuray22]
-//============================================================
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: Quests Justiceiro                      |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.6c/1.6c/1.0                       |
+//   |--------------------------------------------------------|
+//   | Descrição: Quests de Armas e Munições de Justiceiro.   |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Cabeçalho Criado [Holy]                            |
+//   | - Anotações                                            |
+//   \________________________________________________________/
 
 que_ng,182,85,3	script	Garrison	109,{
 
