@@ -1154,40 +1154,31 @@ int read_homunculus_skilldb(void)
 
 void read_homunculus_expdb(void)
 {
-	FILE *fp;
-	char line[1024];
-	int i, j=0;
-	char *filename[]={
-		DBPATH"exp_homun.txt",
-		"exp_homun2.txt"};
+	int HomunLoop = 0;
+	char *row;
 
-	memset(hexptbl,0,sizeof(hexptbl));
-	for(i=0; i<2; i++){
-		sprintf(line, "%s/%s", db_path, filename[i]);
-		fp=fopen(line,"r");
-		if(fp == NULL){
-			if(i != 0)
-				continue;
-			ShowError("can't read %s\n",line);
-			return;
-		}
-		while(fgets(line, sizeof(line), fp) && j < MAX_LEVEL)
-		{
-			if(line[0] == '/' && line[1] == '/')
-				continue;
+	memset(hexptbl, 0, sizeof(hexptbl));
+	
+	if(SQL_ERROR == Sql_Query(mmysql_handle, "SELECT * FROM `%s`", get_database_name(52)))
+		Sql_ShowDebug(mmysql_handle);
+	
+	while(SQL_SUCCESS == Sql_NextRow(mmysql_handle) && HomunLoop < MAX_LEVEL)
+	{
+		Sql_GetData(mmysql_handle, 0, &row, NULL);
+		hexptbl[HomunLoop] = atoi(row);
 
-			hexptbl[j] = strtoul(line, NULL, 10);
-			if (!hexptbl[j++])
-				break;
-		}
-		if (hexptbl[MAX_LEVEL - 1]) // Last permitted level have to be 0!
+		if(hexptbl[HomunLoop++] == 9999999)
+			break;
+	
+		if(hexptbl[MAX_LEVEL - 1]) // Last permitted level have to be 0!
 		{
-			ShowWarning("read_hexptbl: Reached max level in exp_homun [%d]. Remaining lines were not read.\n ", MAX_LEVEL);
+			ShowWarning("read_hexptbl: Nível máximo alcançado em exp_homun_db [%d].\n ", MAX_LEVEL);
 			hexptbl[MAX_LEVEL - 1] = 0;
 		}
-		fclose(fp);
-		ShowStatus("Done reading '"CL_WHITE"%d"CL_RESET"' levels in '"CL_WHITE"%s"CL_RESET"'.\n", j, filename[i]);
 	}
+		
+	ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", HomunLoop, get_database_name(52));
+	Sql_FreeResult(mmysql_handle);
 }
 
 void merc_reload(void)

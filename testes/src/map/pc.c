@@ -9123,6 +9123,7 @@ static bool pc_readdb_skilltree(char* fields[], int columns, int current)
 
 int pc_readdb(void)
 {
+	char *row;
 	int i,j,k;
 	FILE *fp;
 	char line[24000],*p;
@@ -9272,29 +9273,27 @@ int pc_readdb(void)
 	// ƒXƒLƒ‹ƒcƒŠ?
 	memset(statp,0,sizeof(statp));
 	i=1;
-
-	sprintf(line, "%s/"DBPATH"statpoint.txt", db_path);
-	fp=fopen(line,"r");
-	if(fp == NULL){
-		ShowWarning("Can't read '"CL_WHITE"%s"CL_RESET"'... Generating DB.\n",line);
-		//return 1;
-	} else {
-		while(fgets(line, sizeof(line), fp))
-		{
-			int stat;
-			if(line[0]=='/' && line[1]=='/')
-				continue;
-			if ((stat=strtoul(line,NULL,10))<0)
-				stat=0;
-			if (i > MAX_LEVEL)
-				break;
-			statp[i]=stat;
-			i++;
-		}
-		fclose(fp);
-
-		ShowStatus("Done reading '"CL_WHITE"%s"CL_RESET"'.\n","statpoint.txt");
+	
+	if(SQL_ERROR == Sql_Query(mmysql_handle, "SELECT * FROM `%s`", get_database_name(53)))
+		Sql_ShowDebug(mmysql_handle);
+	
+	while(SQL_SUCCESS == Sql_NextRow(mmysql_handle))
+	{
+		int stat;
+		Sql_GetData(mmysql_handle, 0, &row, NULL);
+			
+		if(!(stat=atoi(row)))
+			stat = 0;
+				
+		if(i > MAX_LEVEL)
+			break;
+			
+		statp[i] = stat;
+		i++;
 	}
+	ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", (i > 1 ? i-1 : 0), get_database_name(53));
+	Sql_FreeResult(mmysql_handle);
+
 	// generate the remaining parts of the db if necessary
 	k = battle_config.use_statpoint_table; //save setting
 	battle_config.use_statpoint_table = 0; //temporarily disable to force pc_gets_status_point use default values

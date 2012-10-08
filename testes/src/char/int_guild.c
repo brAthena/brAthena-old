@@ -598,30 +598,29 @@ static struct guild_castle* inter_guildcastle_fromsql(int castle_id)
 }
 
 
-// Read exp_guild.txt
+// Read exp_guild_db
 int inter_guild_ReadEXP(void)
 {
-	int i;
-	FILE *fp;
-	char line[1024];
-	for (i=0;i<100;i++) guild_exp[i]=0;
-	//this is going to be discussed, temp fix
-	sprintf(line, "%s/pre-re/exp_guild.txt", db_path);
-	fp=fopen(line,"r");
-	if(fp==NULL){
-		ShowError("can't read %s\n", line);
-		return 1;
-	}
-	i=0;
-	while(fgets(line, sizeof(line), fp) && i < 100)
-	{
-		if(line[0]=='/' && line[1]=='/')
-			continue;
-		guild_exp[i]=(unsigned int)atof(line);
-		i++;
-	}
-	fclose(fp);
+	int expGuild = 0;
+	char *row;
+	
+	memset(guild_exp, 0, sizeof(guild_exp));
 
+	if(SQL_ERROR == Sql_Query(sql_handle, "SELECT * FROM `%s`", "exp_guild_db"))
+	{
+		Sql_ShowDebug(sql_handle);
+		return -1;
+	}
+	
+	while(SQL_SUCCESS == Sql_NextRow(sql_handle))
+	{
+		Sql_GetData(sql_handle, 0, &row, NULL);
+		guild_exp[expGuild]=(unsigned int)atof(row);
+		expGuild++;
+	}
+	
+	ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", expGuild, "exp_guild_db");
+	Sql_FreeResult(sql_handle);
 	return 0;
 }
 
