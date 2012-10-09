@@ -1,18 +1,16 @@
 //===== rAthena Script =======================================
-//= Sample: Class Constants
+//= Sample: Getequipid
 //===== By: ==================================================
 //= rAthena Dev Team
 //===== Current Version: =====================================
-//= 20110123
+//= 20121003
 //===== Description: ========================================= 
-//= Outputs the values of class constants.
+//= Demonstrates the 'getequipid' command.
 //============================================================
 
-prontera,155,177,1	script	Tell Me	725,{
-	mes "[Tell Me]";
-	mes "Class: " + Class;
-	mes "BaseClass: " + BaseClass;
-	mes "BaseJob: " + BaseJob;
-	mes "Upper: " + Upper;
+prontera,161,181,6	script	GetEquipID Sample	105,{
+	mes "[GetEquipID Sample]";
+	for(set .@i,1; .@i<11; set .@i,.@i+1)
+		mes "GetEquipID(" + .@i + ") : " + getequipid(1);
 	close;
 }
