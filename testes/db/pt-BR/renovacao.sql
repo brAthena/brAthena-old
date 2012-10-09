@@ -20594,3 +20594,40 @@ REPLACE INTO `statpoint_db` VALUES(5944);
 REPLACE INTO `statpoint_db` VALUES(5982);
 REPLACE INTO `statpoint_db` VALUES(6020);
 REPLACE INTO `statpoint_db` VALUES(6058);
+
+--
+-- Estrutura da tabela `refine_db`
+--
+
+CREATE TABLE IF NOT EXISTS `refine_db` (
+  `Type` int(11) unsigned NOT NULL DEFAULT '0',
+  `StatsPerLevel` int(11) unsigned NOT NULL DEFAULT '0',
+  `RandomBonusStartLevel` int(11) unsigned NOT NULL DEFAULT '0',
+  `RandomBonusValue` int(11) unsigned NOT NULL DEFAULT '0',
+  `Chance1` text NOT NULL,
+  `Chance2` text NOT NULL,
+  `Chance3` text NOT NULL,
+  `Chance4` text NOT NULL,
+  `Chance5` text NOT NULL,
+  `Chance6` text NOT NULL,
+  `Chance7` text NOT NULL,
+  `Chance8` text NOT NULL,
+  `Chance9` text NOT NULL,
+  `Chance10` text NOT NULL,
+  `Chance11` text NOT NULL,
+  `Chance12` text NOT NULL,
+  `Chance13` text NOT NULL,
+  `Chance14` text NOT NULL,
+  `Chance15` text NOT NULL,
+  `Chance16` text NOT NULL,
+  `Chance17` text NOT NULL,
+  `Chance18` text NOT NULL,
+  `Chance19` text NOT NULL,
+  `Chance20` text NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+REPLACE INTO `refine_db` VALUES(0, 0, 0, 0, '100:100', '100:100', '100:100', '100:100', '60:200', '40:200', '40:200', '20:200', '20:300', '10:300', '50:300', '30:300', '30:400', '20:400', '10:400', '10:400', '10:500', '10:500', '10:500', '10:500\r\n');
+REPLACE INTO `refine_db` VALUES(1, 200, 8, 300, '100:0', '100:0', '100:0', '100:0', '100:0', '100:0', '100:0', '60:0', '40:0', '20:0', '70:0', '70:0', '50:0', '50:0', '30:0', '30:300', '20:300', '20:300', '10:300', '10:300\r\n');
+REPLACE INTO `refine_db` VALUES(2, 300, 7, 500, '100:0', '100:0', '100:0', '100:0', '100:0', '100:0', '60:0', '40:0', '20:0', '20:0', '70:0', '50:0', '50:0', '30:0', '30:0', '20:600', '20:600', '10:600', '10:600', '10:600\r\n');
+REPLACE INTO `refine_db` VALUES(3, 500, 6, 800, '100:0', '100:0', '100:0', '100:0', '100:0', '60:0', '50:0', '20:0', '20:0', '20:0', '50:0', '50:0', '30:0', '30:0', '20:0', '20:900', '10:900', '10:900', '10:900', '10:900\r\n');
+REPLACE INTO `refine_db` VALUES(4, 700, 5, 1400, '100:0', '100:0', '100:0', '100:0', '60:0', '40:0', '40:0', '20:0', '20:0', '10:0', '50:0', '30:0', '30:0', '20:0', '20:0', '10:1200', '10:1200', '10:1200', '10:1200', '10:1200\r\n');

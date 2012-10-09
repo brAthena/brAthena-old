@@ -10936,7 +10936,7 @@ int status_readdb(void)
 #endif
 	sv_readdb(db_path, "job_db2.txt",          ',',                 1,       1+MAX_LEVEL,                       -1,      &status_readdb_job2);
 	sv_readsqldb(get_database_name(51), NULL, MAX_WEAPON_TYPE, -1, &status_readdb_sizefix);
-	sv_readdb(db_path, "refine_db"DBPATH"",  ',',      4+MAX_REFINE,      4+MAX_REFINE, ARRAYLENGTH(refine_info),      &status_readdb_refine);
+	sv_readsqldb(get_database_name(33), NULL,    4+MAX_REFINE, -1, &status_readdb_refine);
 
 	return 0;
 }
