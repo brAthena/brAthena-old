@@ -12,48 +12,49 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.1/1.0                             |
+//   | Versões eA/rA/brA: 1.1/1.1/1.1                         |
 //   |--------------------------------------------------------|
 //   | Descrição: NPC Oficial do servidor idRO.               |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [Holy]                              |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
 prontera,146,92,3	script	Cellerb	58,{
-	mes "[Staff Idul Fitri]";
+	mes "[Membro da Equipe Idul Fitri]";
 	if((gettime(6)==10 && (gettime(5)==24 || gettime(5)==25))==0) {
-		mes "Congratulation! Celebrate Feast Day Of Ramadan Idul Fitri 1427 H.";
+		mes "Parabéns! Comemore a Festa do dia de Idul Filtri 1427 H.";
 		specialeffect EF_SANDMAN;
 		close;
 	}
-	mes "Haii......^FF8800"+strcharinfo(0)+"^000000!!";
-	mes "First day of Idul Fitri has arrived.";
-	mes "Congratulation celebrate him.";
-	mes "There is event special today.";
+	mes "Ei......^FF8800"+strcharinfo(0)+"^000000!!";
+	mes "O primeiro dia de Idul Fitri começou.";
+	mes "Vamos celebrar a data.";
+	mes "Hoje existe um evento especial.";
 	next;
-	mes "[Staff Idul Fitri]";
-	mes "Event today.....^009500Idul Fitri Quest!^000000";
+	mes "[Membro da Equipe Idul Fitri]";
+	mes "Evento do dia.....^009500Quest Idul Fitri!^000000";
 	next;
-	mes "[Staff Idul Fitri]";
-	mes "If you interest to follow this event, I will cook it to you.";
+	mes "[Membro da Equipe Idul Fitri]";
+	mes "Se você tem interesse em participar desse evento, eu vou cozinhar para você.";
 	next;
-	switch(select("Allright. I like that!!","Next time.... Thanks.")){
+	switch(select("Cero. Eu gostaria!!","Numa próxima.... Obrigado.")){
 	case 1:
-		mes "[Staff Idul Fitri]";
-		mes "I have something that might interest you.";
-		mes "I need all of the following items:";
-		mes "^D5A500Ketupat Sayur Ingredient :^000000";
-		mes "^00B6FF~5 Ketupat, 5 Carrot~,^000000";
-		mes "^CC6633~5 Sweet Potato, 10 Meat~,^000000";
-		mes "^000088~2 Green Herb, 5 Stem~.^000000";
+		mes "[Membro da Equipe Idul Fitri]";
+		mes "Eu tenho algo que lhe interessa.";
+		mes "Preciso de todos os seguintes itens:";
+		mes "^D5A500Ingredientes:^000000";
+		mes "^00B6FF~5 Ketupat, 5 Cenoura~,^000000";
+		mes "^CC6633~5 Batatas Doces, 10 Carne~,^000000";
+		mes "^000088~2 Ervas Verde, 5 Caule~.^000000";
 		next;
-		mes "[Staff Idul Fitri]";
-		if ( (countitem(552)<5 || countitem(515)<5 ||countitem(516)<5 || countitem(517)<10 || countitem(511)<2 || countitem(905)<5) ) { 
-			mes "You don't have enough items.";
-			mes "Come back when you have them all.";
+		mes "[Membro da Equipe Idul Fitri]";
+		if ( (countitem(552) < 5 || countitem(515) < 5 ||countitem(516) < 5 || countitem(517) < 10 || countitem(511) < 2 || countitem(905) < 5) ) { 
+			mes "Você não possui todos os itens necessários.";
+			mes "Volte quando possuir todos.";
 			close;
 		}
 		delitem 552,5;
@@ -62,21 +63,21 @@ prontera,146,92,3	script	Cellerb	58,{
 		delitem 517,10;
 		delitem 511,2;
 		delitem 905,5;
-		mes "I see you already have all the items you need.";
-		mes "Just a moment, please!!";
+		mes "Eu vejo que você está com todos os itens necessários.";
+		mes "Espere um momento, por favor!!";
 		next;
-		mes "^009500-Plupping snapping bubbling~^000000";
-		mes "^009500-Clinking clingking~^000000";
-		mes "^009500-Clang clang~^000000";
+		mes "^009500-Mexendo estalando borbulhando~^000000";
+		mes "^009500-Mexendo rápido~^000000";
+		mes "^009500-Barulho~^000000";
 		getitem 583,1;
 		next;
-		mes "[Staff Idul Fitri]";
-		mes "We appreciate your participation in this special event.";
+		mes "[Membro da Equipe Idul Fitri]";
+		mes "Nós agradecemos a sua participação nesse evento especial.";
 		emotion e_thx;
 		close;
 	case 2:
-		mes "[Staff Idul Fitri]";
-		mes "Oh well, maybe you will participate in tommorow's quest.";
+		mes "[Membro da Equipe Idul Fitri]";
+		mes "Bem, talvez você possa participar da quest de amanhã.";
 		emotion e_hmm;
 		close;
 	}
