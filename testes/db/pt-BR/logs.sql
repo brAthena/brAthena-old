@@ -12,11 +12,11 @@
 */
 
 
-#PickLog types (M)onsters Drop, (P)layers Drop/Take, Mobs Drop (L)oot Drop/Take,
-# Players (T)rade Give/Take, Players (V)ending Sell/Take, (S)hop Sell/Take, (N)PC Give/Take,
-# (C)onsumable Items, (A)dministrators Create/Delete, Sto(R)age, (G)uild Storage,
-# (E)mail attachment,(B)uying Store, Pr(O)duced Items/Ingredients, Auct(I)oned Items,
-# (X) Other, (D) Stolen from mobs, (U) MVP Prizes
+# PickLog tipos (M)onstros - Itens Derrubados, Jogador - Itens Derrubados (P) / Obtidos, Monstros Ladrões Itens (L) - Dropados / Obtidos,
+# Jogadores (N)egociações Recebidos / Entregues, (V) Jogadores Venda / Compra, (S) Loja de NPCs Venda / Compra, (N)PC Compra / Venda,
+# (C)onsumíveis, (A)dministrador Criado/Deletado,(R) Armazém, (G) Armazém do Clã, 
+# Itens E-mail (E),(B) Comércio,(O) Itens Produzidos / Engredientes, (I) Itens Leilão,
+# (X) Outros, (D) Itens roubados de Monstros, (U) MVP Prêmios
 
 #Database: ragnarok
 #Table: picklog
@@ -37,7 +37,7 @@ CREATE TABLE `picklog` (
   INDEX (`type`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 ;
 
-#ZenyLog types (M)onsters,(T)rade,(V)ending Sell/Buy,(S)hop Sell/Buy,(N)PC Change amount,(A)dministrators,(E)Mail,(B)uying Store
+#ZenyLog tipos (M)onstros,(T)roca,(V) Venda / Compra,(S)hop Venda / Compra,(N)PC Quantidade,(A)dministradores,(E)Mail,(B)Comércio
 #Database: ragnarok
 #Table: zenylog
 CREATE TABLE `zenylog` (
@@ -109,7 +109,7 @@ CREATE TABLE `npclog` (
   INDEX (`char_id`)
 ) ENGINE=MyISAM AUTO_INCREMENT=1 ;
 
-#ChatLog types Gl(O)bal,(W)hisper,(P)arty,(G)uild,(M)ain chat
+#ChatLog tipos (O) Global,(W)hisper / PM,Grupo (P),(G) Clã,(M) Chat Público
 #Database: ragnarok
 #Table: chatlog
 CREATE TABLE `chatlog` (
