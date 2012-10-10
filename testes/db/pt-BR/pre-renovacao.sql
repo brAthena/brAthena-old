@@ -1939,7 +1939,7 @@ CREATE TABLE IF NOT EXISTS `skill_changematerial_db` (
   `MakeAmountRate4` smallint(6) unsigned NOT NULL DEFAULT '0',
   `MakeAmount5` smallint(6) unsigned NOT NULL DEFAULT '0',
   `MakeAmountRate5` smallint(6) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`item_id`)
+  PRIMARY KEY (`ProductID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 REPLACE INTO `skill_changematerial_db` VALUES(703, 4, 800, 2, 200, 0, 0, 0, 0, 0, 0, 0);
@@ -2023,7 +2023,7 @@ REPLACE INTO `skill_changematerial_db` VALUES(13283, 1000, 10, 1000, 0, 0, 0, 0,
 CREATE TABLE IF NOT EXISTS `skill_improvise_db` (
   `SkillID` int(6) unsigned NOT NULL DEFAULT '0',
   `Rate` int(11) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`skill_id`)
+  PRIMARY KEY (`SkillID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 REPLACE INTO `skill_improvise_db` VALUES(85, 2500);
@@ -2058,7 +2058,7 @@ REPLACE INTO `skill_improvise_db` VALUES(93, 2500);
 
 CREATE TABLE IF NOT EXISTS `skill_reproduce_db` (
   `SkillID` int(6) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`skill_id`)
+  PRIMARY KEY (`SkillID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 REPLACE INTO `skill_reproduce_db` VALUES(5);
@@ -2203,7 +2203,7 @@ CREATE TABLE IF NOT EXISTS `spellbook_db` (
   `SkillID` int(6) unsigned NOT NULL DEFAULT '0',
   `PreservePoints` int(6) unsigned NOT NULL DEFAULT '0',
   `RequiredBook` int(6) unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`skill_id`)
+  PRIMARY KEY (`SkillID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 INSERT INTO `spellbook_db` VALUES(14, 7, 6190);
