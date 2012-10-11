@@ -8,27 +8,32 @@
 //   |                                                        |	
 //   |                    brAthena Script                     |	
 //   |--------------------------------------------------------|	
-//   | Nome do Script: spl_fild.txt                           |	
+//   | Nome do Script: umbala.txt                             |	
 //   |--------------------------------------------------------|	
 //   | Criado por: eA/rA/brA Dev. Team                        |	
 //   |--------------------------------------------------------|	
-//   | Versões eA/rA/brA: 1.1/1.0                             |	
+//   | Versões eA/rA/brA: 1.1/1.1/1.0                         |	
 //   |--------------------------------------------------------|	
-//   | Descrição:  Portais dos Campos de Splendide.           |	
+//   | Descrição: Portais dos Campos de Umbala.               |	
 //   |--------------------------------------------------------|	
 //   | Changelog:                                             |	
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |	
 //   | - Anotações                                            |	
 //   \________________________________________________________/	
 
-spl_fild02,382,143,0	warp	spl_fild02-2	1,1,mid_camp,16,143
-spl_fild02,383,216,0	warp	spl_fild02-4	1,1,mid_camp,12,215
-spl_fild02,310,10,0	warp	spl_fild02-5	1,1,spl_fild03,306,376
-spl_fild03,99,373,0	warp	spl_fild02-6	1,1,spl_fild02,102,32
-spl_fild03,306,379,0	warp	spl_fild03-1	1,1,spl_fild02,311,12
-spl_fild02,103,30,0	warp	spl_fild03-2	1,1,spl_fild03,99,370
-
-spl_fild01,289,28,0	warp	spl_fild01-1	1,1,spl_fild02,292,377
-spl_fild02,6,241,0	warp	spl_fild02-7	1,1,splendide,386,251
-splendide,388,252,0	warp	spl_fild02-8	1,1,spl_fild02,8,241
-spl_fild02,293,379,0	warp	spl_fild02-9	1,1,spl_fild01,289,30
+cmd_fild01,77,366,0	warp	um-1	1,1,um_fild03,114,53
+cmd_fild01,178,370,0	warp	um1-2	1,1,um_fild03,243,29
+um_fild01,31,274,0	warp	um1-3	1,1,beach_dun2,254,244
+beach_dun2,258,244,0	warp	um1-4	1,1,um_fild01,35,276
+um_fild01,369,277,0	warp	um1-5	1,1,um_fild02,25,272
+um_fild02,22,272,0	warp	um2-1	1,1,um_fild01,366,277
+um_fild02,188,374,0	warp	um2-2	1,1,um_fild04,182,16
+um_fild02,373,329,0	warp	um2-3	1,1,um_fild03,23,334
+um_fild02,373,148,0	warp	um2-4	1,1,um_fild03,36,145
+um_fild03,19,334,0	warp	um3-1	1,1,um_fild02,370,329
+um_fild03,32,145,0	warp	um3-2	1,1,um_fild02,370,148
+um_fild03,114,50,0	warp	um3-3	1,1,cmd_fild01,74,363
+um_fild03,243,26,0	warp	um3-4	1,1,cmd_fild01,176,367
+um_fild04,182,13,0	warp	um4-1	1,1,um_fild02,190,371
+um_fild04,215,339,0	warp	um4-2	1,1,umbala,130,82
+umbala,130,79,0	warp	um4-3	1,1,um_fild04,215,336

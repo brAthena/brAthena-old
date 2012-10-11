@@ -8,21 +8,22 @@
 //   |                                                        |	
 //   |                    brAthena Script                     |	
 //   |--------------------------------------------------------|	
-//   | Nome do Script: lhalzen_fild.txt                       |	
+//   | Nome do Script: amatsu.txt                             |	
 //   |--------------------------------------------------------|	
 //   | Criado por: eA/rA/brA Dev. Team                        |	
 //   |--------------------------------------------------------|	
-//   | Versões eA/rA/brA: 1.1/1.0                             |	
+//   | Versões eA/rA/brA: 1.1/1.1/1.0                         |	
 //   |--------------------------------------------------------|	
-//   | Descrição: Portais dos Campos de Lighthalzen.          |	
+//   | Descrição: Portais do Campo de Amatsu.                 |	
 //   |--------------------------------------------------------|	
 //   | Changelog:                                             |	
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |	
 //   | - Anotações                                            |	
 //   \________________________________________________________/	
 
-lhz_fild01,210,18,0	warp	lhz043-1	1,1,lighthalzen,214,324
-lighthalzen,214,329,0	warp	lhz043a-1	1,1,lhz_fild01,210,23
-
-lhz_fild01,367,222,0	warp	lhz044-1	1,1,lhz_fild02,36,221
-lhz_fild02,29,219,0	warp	lhz044a-1	1,1,lhz_fild01,361,222
+amatsu,248,292,0	warp	amatsu1-1	1,1,ama_fild01,75,33
+ama_fild01,75,30,0	warp	amatsu1-2	1,1,amatsu,248,289
+ama_fild01,174,331,0	warp	ama_sh1-1	1,1,ama_in01,175,174
+ama_in01,175,171,0	warp	ama_sh1.2	1,1,ama_fild01,174,328
+ama_fild01,330,141,0	warp	ama_cr1-1	1,1,ama_in01,174,124
+ama_in01,174,121,0	warp	ama_cr1.2	1,1,ama_fild01,330,138

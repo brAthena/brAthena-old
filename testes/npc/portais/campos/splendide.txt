@@ -8,22 +8,27 @@
 //   |                                                        |	
 //   |                    brAthena Script                     |	
 //   |--------------------------------------------------------|	
-//   | Nome do Script: amatsu_fild.txt                        |	
+//   | Nome do Script: splendide.txt                          |	
 //   |--------------------------------------------------------|	
 //   | Criado por: eA/rA/brA Dev. Team                        |	
 //   |--------------------------------------------------------|	
-//   | Versões eA/rA/brA: 1.1/1.0                             |	
+//   | Versões eA/rA/brA: 1.1/1.1/1.0                         |	
 //   |--------------------------------------------------------|	
-//   | Descrição: Portais do Campo de Amatsu.                 |	
+//   | Descrição:  Portais dos Campos de Splendide.           |	
 //   |--------------------------------------------------------|	
 //   | Changelog:                                             |	
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |	
 //   | - Anotações                                            |	
 //   \________________________________________________________/	
 
-amatsu,248,292,0	warp	ama_fild1-1	1,1,ama_fild01,75,33
-ama_fild01,75,30,0	warp	ama_fild1-2	1,1,amatsu,248,289
-ama_fild01,174,331,0	warp	ama_shrine1-1	1,1,ama_in01,175,174
-ama_in01,175,171,0	warp	ama_shrine1.2	1,1,ama_fild01,174,328
-ama_fild01,330,141,0	warp	ama_craftsman1-1	1,1,ama_in01,174,124
-ama_in01,174,121,0	warp	ama_craftsman1.2	1,1,ama_fild01,330,138
+spl_fild02,382,143,0	warp	spl02-2	1,1,mid_camp,16,143
+spl_fild02,383,216,0	warp	spl02-4	1,1,mid_camp,12,215
+spl_fild02,310,10,0	warp	spl02-5	1,1,spl_fild03,306,376
+spl_fild03,99,373,0	warp	spl02-6	1,1,spl_fild02,102,32
+spl_fild03,306,379,0	warp	spl03-1	1,1,spl_fild02,311,12
+spl_fild02,103,30,0	warp	spl03-2	1,1,spl_fild03,99,370
+
+spl_fild01,289,28,0	warp	spl01-1	1,1,spl_fild02,292,377
+spl_fild02,6,241,0	warp	spl02-7	1,1,splendide,386,251
+splendide,388,252,0	warp	spl02-8	1,1,spl_fild02,8,241
+spl_fild02,293,379,0	warp	spl02-9	1,1,spl_fild01,289,30

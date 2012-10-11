@@ -8,19 +8,24 @@
 //   |                                                        |	
 //   |                    brAthena Script                     |	
 //   |--------------------------------------------------------|	
-//   | Nome do Script: lutie_fild.txt                         |	
+//   | Nome do Script: manuk.txt                              |	
 //   |--------------------------------------------------------|	
 //   | Criado por: eA/rA/brA Dev. Team                        |	
 //   |--------------------------------------------------------|	
-//   | Versões eA/rA/brA: 1.1/1.0                             |	
+//   | Versões eA/rA/brA: 1.1/1.1/1.0                         |	
 //   |--------------------------------------------------------|	
-//   | Descrição: Portais dos Campos de Lutie.                |	
+//   | Descrição: Portais dos Campos de Manuk.                |	
 //   |--------------------------------------------------------|	
 //   | Changelog:                                             |	
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |	
 //   | - Anotações                                            |	
 //   \________________________________________________________/	
 
-xmas_fild01,69,252,0	warp	xmas_fild1-1	10,2,xmas,149,44
-xmas_fild01,90,252,0	warp	xmax_fild1-2	10,2,xmas,149,44
-xmas_fild01,84,48,0	warp	xmas_fild2	10,2,aldebaran,140,234
+man_fild01,35,232,0	warp	man01-2	1,1,mid_camp,341,176
+man_fild01,103,55,0	warp	man01-3	1,1,man_fild03,84,366
+man_fild03,84,369,0	warp	man03-1	1,1,man_fild01,103,58
+
+man_fild01,372,230,0	warp	man01-4	1,1,man_fild02,34,261
+man_fild02,32,261,0	warp	man02-1	1,1,man_fild01,369,230
+man_fild02,139,41,0	warp	man02-2	1,1,manuk,112,356
+manuk,114,357,0	warp	man02-3	1,1,man_fild02,138,43
