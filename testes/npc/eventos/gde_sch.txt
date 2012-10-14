@@ -12,14 +12,14 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | VersÃµes eA/rA/brA: 1.1/1.0                             |
+//   | Versões eA/rA/brA: 1.1/1.0                             |
 //   |--------------------------------------------------------|
-//   | DescriÃ§Ã£o: Evento de ClÃ£. (Schwaltzvalt)               |
+//   | Descrição: Evento de Clã. (Schwaltzvalt)               |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
-//   | 1.0 Criado CabeÃ§alho [Megasantos]                      |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   |--------------------------------------------------------|
-//   | - AnotaÃ§Ãµes                                            |
+//   | - Anotações                                            |
 //   \________________________________________________________/
 
 schg_dun01,1,1,1	script	Monster Controler#sch_gd	81,{
@@ -992,8 +992,8 @@ schg_que01,100,81,3	script	Pierrot Pier#sch_gd	715,{
 		}
 		else {
 			mes "[Pierrot Pier]";
-			mes "Vocï¿½ encontrou o tesouro?";
-			mes "Mostre-me o que vocï¿½ tem nas mï¿½os agora.";
+			mes "Voc? encontrou o tesouro?";
+			mes "Mostre-me o que voc? tem nas m?os agora.";
 			next;
 			mes "[Pierrot Pier]";
 			mes "Deixe-me ver...";

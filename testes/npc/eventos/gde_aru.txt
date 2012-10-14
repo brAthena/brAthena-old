@@ -1,4 +1,4 @@
-ï»¿//    ________________________________________________________ 
+//    ________________________________________________________ 
 //   /                                                        \
 //   |       _           _   _   _                            |
 //   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
@@ -12,14 +12,14 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | VersÃµes eA/rA/brA: 1.1/1.0                             |
+//   | Versões eA/rA/brA: 1.1/1.0                             |
 //   |--------------------------------------------------------|
-//   | DescriÃ§Ã£o: Evento de ClÃ£. (Arunafeltz)                 |
+//   | Descrição: Evento de Clã. (Arunafeltz)                 |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
-//   | 1.0 Criado CabeÃ§alho [Megasantos]                      |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   |--------------------------------------------------------|
-//   | - AnotaÃ§Ãµes                                            |
+//   | - Anotações                                            |
 //   \________________________________________________________/
 
 arug_dun01,1,1,1	script	Monster Controler#aru_gd	81,{
@@ -993,8 +993,8 @@ arug_que01,100,81,3	script	Pierrot Pier#aru_gd	715,{
 		}
 		else {
 			mes "[Pierrot Pier]";
-			mes "Vocï¿½ encontrou o tesouro?";
-			mes "Mostre-me o que vocï¿½ tem nas mï¿½os agora.";
+			mes "Voc? encontrou o tesouro?";
+			mes "Mostre-me o que voc? tem nas m?os agora.";
 			next;
 			mes "[Pierrot Pier]";
 			mes "Deixe-me ver...";

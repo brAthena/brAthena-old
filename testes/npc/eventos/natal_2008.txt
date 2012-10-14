@@ -12,17 +12,17 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | VersÃµes eA/rA/brA: 1.1/1.0                             |
+//   | Versões eA/rA/brA: 1.1/1.0                             |
 //   |--------------------------------------------------------|
-//   | DescriÃ§Ã£o: iRO Christmas Event. (2008)                 |
-//   | - Crie Caixa de mÃºsica e Bolo.                         |
+//   | Descrição: iRO Christmas Event. (2008)                 |
+//   | - Crie Caixa de música e Bolo.                         |
 //   | - Jogar jogo de cartas.                                |
 //   | - Crie ternos.                                         |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
-//   | 1.0 Criado CabeÃ§alho [Megasantos]                      |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   |--------------------------------------------------------|
-//   | - AnotaÃ§Ãµes                                            |
+//   | - Anotações                                            |
 //   \________________________________________________________/
 
 // Caroller - Music Box
@@ -590,13 +590,13 @@ prontera,226,306,4	script	Caroller#iROxmas08	79,{
 			mes "Let's see!!";
 			mes "One! Two! Three!";
 			if (.@SantaCardNpc == 1) {
-				cutin "Ã†Ã·Â¸ÂµÃ„Â«ÂµÃ¥",4;
+				cutin "Æ÷¸µÄ«µå",4;
 			}
 			else if (.@SantaCardNpc == 2) {
-				cutin "Â¿Â£ÃÂ©Â¸ÂµÃ„Â«ÂµÃ¥",4;
+				cutin "¿£Á©¸µÄ«µå",4;
 			}
 			else if (.@SantaCardNpc == 3) {
-				cutin "Â°Ã­Â½ÂºÃ†Â®Â¸ÂµÃ„Â«ÂµÃ¥",4;
+				cutin "°í½ºÆ®¸µÄ«µå",4;
 			}
 			next;
 			set .@SantaCardTurn,.@SantaCardTurn+1;
