@@ -4473,35 +4473,6 @@ static void mob_load(void)
 	sv_readsqldb(get_database_name(46), NULL, 2, -1, &mob_readdb_race2);
 }
 
-void mob_reload(void) {
-	int i;
-
-	//Mob skills need to be cleared before re-reading them. [Skotlex]
-	for (i = 0; i < MAX_MOB_DB; i++)
-		if (mob_db_data[i]) {
-			memset(&mob_db_data[i]->skill,0,sizeof(mob_db_data[i]->skill));
-			mob_db_data[i]->maxskill=0;
-		}
-
-	// Clear item_drop_ratio_db
-	for (i = 0; i < MAX_ITEMDB; i++) {
-		if (item_drop_ratio_db[i]) {
-			aFree(item_drop_ratio_db[i]);
-			item_drop_ratio_db[i] = NULL;
-		}
-	}
-
-	mob_load();
-}
-
-void mob_clear_spawninfo()
-{	//Clears spawn related information for a script reload.
-	int i;
-	for (i = 0; i < MAX_MOB_DB; i++)
-		if (mob_db_data[i])
-			memset(&mob_db_data[i]->spawn,0,sizeof(mob_db_data[i]->spawn));
-}
-
 /*==========================================
  * Circumference initialization of mob
  *------------------------------------------*/

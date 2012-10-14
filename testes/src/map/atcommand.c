@@ -3795,50 +3795,6 @@ ACMD_FUNC(partyrecall)
 }
 
 /*==========================================
- *
- *------------------------------------------*/
-ACMD_FUNC(reloaditemdb)
-{
-	nullpo_retr(-1, sd);
-	itemdb_reload();
-	clif_displaymessage(fd, msg_txt(97)); // Item database has been reloaded.
-
-	return 0;
-}
-
-/*==========================================
- *
- *------------------------------------------*/
-ACMD_FUNC(reloadmobdb)
-{
-	nullpo_retr(-1, sd);
-	mob_reload();
-	read_petdb();
-	merc_reload();
-	read_mercenarydb();
-	read_mercenary_skilldb();
-	reload_elementaldb();
-	clif_displaymessage(fd, msg_txt(98)); // Monster database has been reloaded.
-
-	return 0;
-}
-
-/*==========================================
- *
- *------------------------------------------*/
-ACMD_FUNC(reloadskilldb)
-{
-	nullpo_retr(-1, sd);
-	skill_reload();
-	merc_skill_reload();
-	reload_elemental_skilldb();
-	read_mercenary_skilldb();
-	clif_displaymessage(fd, msg_txt(99)); // Skill database has been reloaded.
-
-	return 0;
-}
-
-/*==========================================
  * @reloadatcommand - reloads atcommand_athena.conf groups.conf
  *------------------------------------------*/
 void atcommand_doload();
@@ -3906,7 +3862,6 @@ ACMD_FUNC(reloadbattleconf)
 	||  prev_config.job_exp_rate           != battle_config.job_exp_rate
 	)
   	{	// Exp or Drop rates changed.
-		mob_reload(); //Needed as well so rate changes take effect.
 		chrif_ragsrvinfo(battle_config.base_exp_rate, battle_config.job_exp_rate, battle_config.item_rate_common);
 	}
 	clif_displaymessage(fd, msg_txt(255));
@@ -8755,11 +8710,6 @@ ACMD_FUNC(set) {
 	
 	return 0;
 }
-ACMD_FUNC(reloadquestdb) {
-	do_reload_quest();
-	clif_displaymessage(fd, msg_txt(1377)); // Quest database has been reloaded.
-	return 0;
-}
 ACMD_FUNC(addperm) {
 	int perm_size = ARRAYLENGTH(pc_g_permission_name);
 	bool add = (strcmpi(command+1, "addperm") == 0) ? true : false;
@@ -8970,9 +8920,6 @@ void atcommand_basecommands(void) {
 		ACMD_DEF(broadcast), // + /b and /nb
 		ACMD_DEF(localbroadcast), // + /lb and /nlb
 		ACMD_DEF(recallall),
-		ACMD_DEF(reloaditemdb),
-		ACMD_DEF(reloadmobdb),
-		ACMD_DEF(reloadskilldb),
 		ACMD_DEF(reloadscript),
 		ACMD_DEF(reloadatcommand),
 		ACMD_DEF(reloadbattleconf),
@@ -9120,7 +9067,6 @@ void atcommand_basecommands(void) {
 		ACMD_DEF(font),
 		ACMD_DEF(accinfo),
 		ACMD_DEF(set),
-		ACMD_DEF(reloadquestdb),
 		ACMD_DEF(undisguiseguild),
 		ACMD_DEF(disguiseguild),
 		ACMD_DEF(sizeall),

@@ -3600,9 +3600,6 @@ int npc_reload(void) {
 			ShowWarning("npc_reload: %d npcs weren't removed at map %s!\n", map[m].npc_num, map[m].name);
 	}
 
-	// clear mob spawn lookup index
-	mob_clear_spawninfo();
-
 	npc_warp = npc_shop = npc_script = 0;
 	npc_mob = npc_cache_mob = npc_delay_mob = 0;
 
