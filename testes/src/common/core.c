@@ -95,7 +95,7 @@ static BOOL WINAPI console_handler(DWORD c_event)
 static void cevents_init()
 {
 	if (SetConsoleCtrlHandler(console_handler,TRUE)==FALSE)
-		ShowWarning ("Unable to install the console handler!\n");
+		ShowWarning ("Não é possível instalar o manipulador do console!\n");
 }
 #endif
 
@@ -126,7 +126,7 @@ static void sig_proc(int sn)
 #ifndef _WIN32
 	case SIGXFSZ:
 		// ignore and allow it to set errno to EFBIG
-		ShowWarning ("Max file size reached!\n");
+		ShowWarning ("Tamanho maximo do arquivo alcancado!\n");
 		//run_flag = 0;	// should we quit?
 		break;
 	case SIGPIPE:
@@ -229,7 +229,7 @@ const char* get_svn_revision(void)
 			{
 				// XML File format
 				while (fgets(line,sizeof(line),fp))
-					if (strstr(line,"revision=")) break;
+					if (strstr(line,"revisao=")) break;
 				if (sscanf(line," %*[^\"]\"%d%*[^\n]", &rev) == 1) {
 					snprintf(svn_version_buffer, sizeof(svn_version_buffer), "%d", rev);
 				}
@@ -252,7 +252,7 @@ const char* get_svn_revision(void)
 	}
 
 	// fallback
-	snprintf(svn_version_buffer, sizeof(svn_version_buffer), "Unknown");
+	snprintf(svn_version_buffer, sizeof(svn_version_buffer), "Desconhecida");
 	return svn_version_buffer;
 }
 #endif
@@ -284,7 +284,7 @@ void usercheck(void)
 {
 #ifndef _WIN32
     if (geteuid() == 0) {
-		ShowWarning ("You are running rAthena with root privileges, it is not necessary.\n");
+		ShowWarning ("Voce esta executando o brAthena com privilégios root.\n");
     }
 #endif
 }
