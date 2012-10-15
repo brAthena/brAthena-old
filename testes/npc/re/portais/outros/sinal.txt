@@ -8,11 +8,11 @@
 //   |                                                        |	
 //   |                    brAthena Script                     |	
 //   |--------------------------------------------------------|	
-//   | Nome do Script: sign.txt                               |	
+//   | Nome do Script: sinal.txt                              |	
 //   |--------------------------------------------------------|	
 //   | Criado por: eA/rA/brA Dev. Team                        |	
 //   |--------------------------------------------------------|	
-//   | Versões eA/rA/brA: 1.1/1.0                             |	
+//   | Versões eA/rA/brA: 1.1/1.1/1.0                         |	
 //   |--------------------------------------------------------|	
 //   | Descrição: Portais da Quest do Sinal.                  |	
 //   |--------------------------------------------------------|	
@@ -21,24 +21,21 @@
 //   | - Anotações                                            |	
 //   \________________________________________________________/	
 
-cmd_in01,17,34,0	warp	sign01	1,1,comodo,187,164
+cmd_in01,17,34,0	warp	sinal01	1,1,comodo,187,164
 
-geffen,140,99,0	warp	sign02	1,1,geffen_in,165,50
-geffen_in,165,54,0	warp	sign02a	1,1,geffen,138,104
+geffen,140,99,0	warp	sinal02	1,1,geffen_in,165,50
+geffen_in,165,54,0	warp	sinal02a	1,1,geffen,138,104
 
-himinn,49,6,0	warp	sign03	1,1,gef_fild07,179,241
+himinn,49,6,0	warp	sinal03	1,1,gef_fild07,179,241
+himinn,49,67,0	warp	sinal04	1,1,himinn,49,75
+himinn,49,72,0	warp	sinal04a	1,1,himinn,49,63
 
-himinn,49,67,0	warp	sign04	1,1,himinn,49,75
-himinn,49,72,0	warp	sign04a	1,1,himinn,49,63
+um_in,33,18,0	warp	sinal05	1,1,um_in,89,11
+um_in,89,9,0	warp	sinal05a	1,1,um_in,33,16
 
-um_in,33,18,0	warp	sign05	1,1,um_in,89,11
-um_in,89,9,0	warp	sign05a	1,1,um_in,33,16
+umbala,107,118,0	warp	sinal06	1,1,um_in,15,20
+um_in,11,18,0	warp	sinal06a	1,1,umbala,111,121
 
-umbala,107,118,0	warp	sign06	1,1,um_in,15,20
-um_in,11,18,0	warp	sign06a	1,1,umbala,111,121
-
-que_sign01,113,132,0	warp	sign07	1,1,nif_in,117,173
-
-que_sign01,45,15,0	warp	sign08	1,1,niflheim,146,245
-
-que_sign02,22,313,0	warp	sign09	1,1,niflheim,30,156
+que_sign01,113,132,0	warp	sinal07	1,1,nif_in,117,173
+que_sign01,45,15,0	warp	sinal08	1,1,niflheim,146,245
+que_sign02,22,313,0	warp	sinal09	1,1,niflheim,30,156
