@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 3.2/1.0                             |
+//   | Versões eA/rA/brA: 3.3/1.1                             |
 //   |--------------------------------------------------------|
 //   | Descrição: Mudança de Classe para Cavaleiro.           |
 //   |--------------------------------------------------------|
@@ -2390,6 +2390,7 @@ prt_in,87,92,4	script	Sir Gray#knt	119,{
 		next;
 		if (.@knight_t == 0) {
 			set KNIGHT_Q,14;
+			changequest 9011,9012;
 			mes "[Sir Gray]";
 			mes "I enjoyed talking with you. You remind me of myself as a young recruit. Shall we talk to the captain and decide on your";
 			mes "job change?";
@@ -2403,6 +2404,7 @@ prt_in,87,92,4	script	Sir Gray#knt	119,{
 		}
 		else if (.@knight_t == 5) {
 			set KNIGHT_Q,14;
+			changequest 9011,9012;
 			mes "[Sir Gray]";
 			mes "I enjoyed speaking with you. You can think about the principles of Knighthood more once you become a Knight.";
 			next;
