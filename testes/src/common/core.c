@@ -95,7 +95,7 @@ static BOOL WINAPI console_handler(DWORD c_event)
 static void cevents_init()
 {
 	if (SetConsoleCtrlHandler(console_handler,TRUE)==FALSE)
-		ShowWarning ("Não é possível instalar o manipulador do console!\n");
+		ShowWarning ("Nao e possivel instalar o manipulador do console!\n");
 }
 #endif
 
@@ -284,7 +284,7 @@ void usercheck(void)
 {
 #ifndef _WIN32
     if (geteuid() == 0) {
-		ShowWarning ("Voce esta executando o brAthena com privilégios root.\n");
+		ShowWarning ("Voce esta executando o brAthena com privilegios root.\n");
     }
 #endif
 }

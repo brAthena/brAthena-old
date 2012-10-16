@@ -2069,7 +2069,7 @@ int parse_fromlogin(int fd)
 				//printf("connect login server error : %d\n", RFIFOB(fd,2));
 				ShowError("Nao foi possivel conectar ao servidor de login.\n");
 				ShowError("As senhas de comunicacao do servidor (padrao s1/p1) estao provavelmente invalidas.\n");
-				ShowError("Tambem certifique-se de que seu BD de login tem usuario/senha de comunicacao corretos e o sexo da conta e S.\n");
+				ShowError("Tambem certifique-se de que seu DB de login tem usuario/senha de comunicacao corretos e o sexo da conta e S.\n");
 				ShowError("As senhas de comunicacao sao definidas em map_athena.conf e char_athena.conf\n");
 				set_eof(fd);
 				return 0;

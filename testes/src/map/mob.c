@@ -4002,7 +4002,7 @@ static int mob_read_randommonster(void)
 				if( summon[i].qty < ARRAYLENGTH(summon[i].class_) ) //MvPs
 					summon[i].class_[summon[i].qty++] = class_;
 				else {
-					ShowDebug("Não foi possível armazenar mais mobs aleatórios de %s!\n", mobfile[i]);
+					ShowDebug("Nao foi possivel armazenar mais mobs aleatorios de %s!\n", mobfile[i]);
 					break;
 				}
 			}
@@ -4038,7 +4038,7 @@ static bool mob_parse_row_chatdb(char* str[], int columns, int current)
 	if (msg_id <= 0 || msg_id > MAX_MOB_CHAT)
 	{
 		if (msg_id != current) {
-			ShowError("mob_parse_row_chatdb: Chat inválido ID: %d\n", msg_id);
+			ShowError("mob_parse_row_chatdb: Chat invalido ID: %d\n", msg_id);
 			current = msg_id;
 		}
 		return false;
