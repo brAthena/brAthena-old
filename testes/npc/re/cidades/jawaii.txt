@@ -23,4 +23,4 @@
 //   \________________________________________________________/
 
 
-izlude,102,150,6	duplicate(Honeymoon_Helper_Izlude)	Honeymoon Helper#Izlude	71
+izlude,102,150,6	duplicate(Auxiliar Lua de Mel)	Honeymoon Helper#Izlude	71
