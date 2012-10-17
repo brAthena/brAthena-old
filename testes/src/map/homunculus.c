@@ -264,7 +264,7 @@ int merc_hom_levelup(struct homun_data *hd)
 	int m_class;
 
 	if((m_class = hom_class2mapid(hd->homunculus.class_)) == -1) {
-		ShowError("merc_hom_levelup: Invalid class %d. \n", hd->homunculus.class_);
+		ShowError("merc_hom_levelup: Classe invalida %d. \n", hd->homunculus.class_);
 		return 0;
 	}
 
@@ -349,7 +349,7 @@ int merc_hom_evolution(struct homun_data *hd)
 		return 0;
 	
 	if (!merc_hom_change_class(hd, hd->homunculusDB->evo_class)) {
-		ShowError("merc_hom_evolution: Can't evolve homunc from %d to %d", hd->homunculus.class_, hd->homunculusDB->evo_class);
+		ShowError("merc_hom_evolution: Nao foi possivel evoluir homunculo de %d para %d", hd->homunculus.class_, hd->homunculusDB->evo_class);
 		return 0;
 	}
 
@@ -407,7 +407,7 @@ int hom_mutate(struct homun_data *hd, int homun_id)
 	prev_class = hd->homunculus.class_;
 	
 	if (!merc_hom_change_class(hd, homun_id)) {
-		ShowError("hom_mutate: Can't evolve homunc from %d to %d", hd->homunculus.class_, homun_id);
+		ShowError("hom_mutate: Nao foi possivel evoluir homunculo de %d para %d", hd->homunculus.class_, homun_id);
 		return 0;
 	}
 
@@ -440,7 +440,7 @@ int merc_hom_gainexp(struct homun_data *hd,int exp)
 		return 1;
 
 	if((m_class = hom_class2mapid(hd->homunculus.class_)) == -1) {
-		ShowError("merc_hom_gainexp: Invalid class %d. \n", hd->homunculus.class_);
+		ShowError("merc_hom_gainexp: Classe invalida %d. \n", hd->homunculus.class_);
 		return 0;
 	}
 	
@@ -530,7 +530,7 @@ int merc_menu(struct map_session_data *sd,int menunum)
 			merc_hom_delete(sd->hd, -1);
 			break;
 		default:
-			ShowError("merc_menu : unknown menu choice : %d\n", menunum) ;
+			ShowError("merc_menu : escolha do menu desconhecida : %d\n", menunum) ;
 			break;
 	}
 	return 0;
@@ -709,7 +709,7 @@ int merc_hom_alloc(struct map_session_data *sd, struct s_homunculus *hom)
 
 	i = search_homunculusDB_index(hom->class_,HOMUNCULUS_CLASS);
 	if(i < 0) {
-		ShowError("merc_hom_alloc: unknown class [%d] for homunculus '%s', requesting deletion.\n", hom->class_, hom->name);
+		ShowError("merc_hom_alloc: classe desconhecida [%d] para homunculo '%s', requisitando remocao.\n", hom->class_, hom->name);
 		sd->status.hom_id = 0;
 		intif_homunculus_requestdelete(hom->hom_id);
 		return 1;
@@ -993,7 +993,7 @@ static bool read_homunculusdb_sub(char* str[], int columns, int current)
 	classid = atoi(str[0]);
 	if (classid < HM_CLASS_BASE || classid > HM_CLASS_MAX)
 	{
-		ShowError("read_homunculusdb : Invalid class %d\n", classid);
+		ShowError("read_homunculusdb : Classe invalida %d\n", classid);
 		return false;
 	}
 	db = &homunculus_db[current];
@@ -1002,7 +1002,7 @@ static bool read_homunculusdb_sub(char* str[], int columns, int current)
 	if (classid < HM_CLASS_BASE || classid > HM_CLASS_MAX)
 	{
 		db->base_class = 0;
-		ShowError("read_homunculusdb : Invalid class %d\n", classid);
+		ShowError("read_homunculusdb : Classe invalida %d\n", classid);
 		return false;
 	}
 	db->evo_class = classid;
@@ -1117,7 +1117,7 @@ static bool read_homunculus_skilldb_sub(char* split[], int columns, int current)
 	classid = atoi(split[0]) - HM_CLASS_BASE;
 	if ( classid >= MAX_HOMUNCULUS_CLASS )
 	{
-		ShowWarning("read_homunculus_skilldb: Invalud homunculus class %d.\n", atoi(split[0]));
+		ShowWarning("read_homunculus_skilldb: Classe de homunculo invalida %d.\n", atoi(split[0]));
 		return false;
 	}
 
@@ -1126,7 +1126,7 @@ static bool read_homunculus_skilldb_sub(char* split[], int columns, int current)
 	ARR_FIND( 0, MAX_SKILL_TREE, j, !hskill_tree[classid][j].id || hskill_tree[classid][j].id == k );
 	if (j == MAX_SKILL_TREE)
 	{
-		ShowWarning("Unable to load skill %d into homunculus %d's tree. Maximum number of skills per class has been reached.\n", k, classid);
+		ShowWarning("Nao e possivel adicionar habilidade %d na arvore de habilidades do homunculo %d. Numero maximo de habilidades por classe alcancado.\n", k, classid);
 		return false;
 	}
 

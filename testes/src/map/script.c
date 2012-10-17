@@ -446,7 +446,7 @@ const char* script_op2name(int op)
 	RETURN_OP_NAME(C_L_SHIFT);
 
 	default:
-		ShowDebug("script_op2name: unexpected op=%d\n", op);
+		ShowDebug("script_op2name: inesperado op=%d\n", op);
 		return "???";
 	}
 #undef RETURN_OP_NAME
@@ -456,8 +456,8 @@ const char* script_op2name(int op)
 static void script_dump_stack(struct script_state* st)
 {
 	int i;
-	ShowMessage("\tstart = %d\n", st->start);
-	ShowMessage("\tend   = %d\n", st->end);
+	ShowMessage("\tcomeço = %d\n", st->start);
+	ShowMessage("\tfim   = %d\n", st->end);
 	ShowMessage("\tdefsp = %d\n", st->stack->defsp);
 	ShowMessage("\tsp    = %d\n", st->stack->sp);
 	for( i = 0; i < st->stack->sp; ++i )
@@ -477,7 +477,7 @@ static void script_dump_stack(struct script_state* st)
 			break;
 
 		case C_NAME:
-			ShowMessage(" \"%s\" (id=%d ref=%p subtype=%s)\n", reference_getname(data), data->u.num, data->ref, script_op2name(str_data[data->u.num].type));
+			ShowMessage(" \"%s\" (id=%d ref=%p subtipo=%s)\n", reference_getname(data), data->u.num, data->ref, script_op2name(str_data[data->u.num].type));
 			break;
 
 		case C_RETINFO:
@@ -510,15 +510,15 @@ static void script_reportsrc(struct script_state *st)
 	{
 	case BL_NPC:
 		if( bl->m >= 0 )
-			ShowDebug("Source (NPC): %s at %s (%d,%d)\n", ((struct npc_data *)bl)->name, map[bl->m].name, bl->x, bl->y);
+			ShowDebug("Source (NPC): %s em %s (%d,%d)\n", ((struct npc_data *)bl)->name, map[bl->m].name, bl->x, bl->y);
 		else
-			ShowDebug("Source (NPC): %s (invisible/not on a map)\n", ((struct npc_data *)bl)->name);
+			ShowDebug("Source (NPC): %s (invisivel/nao em uma mapa)\n", ((struct npc_data *)bl)->name);
 		break;
 	default:
 		if( bl->m >= 0 )
-			ShowDebug("Source (Non-NPC type %d): name %s at %s (%d,%d)\n", bl->type, status_get_name(bl), map[bl->m].name, bl->x, bl->y);
+			ShowDebug("Source (Non-NPC type %d): nome %s em %s (%d,%d)\n", bl->type, status_get_name(bl), map[bl->m].name, bl->x, bl->y);
 		else
-			ShowDebug("Source (Non-NPC type %d): name %s (invisible/not on a map)\n", bl->type, status_get_name(bl));
+			ShowDebug("Source (Non-NPC type %d): nome %s (invisivel/nao em uma mapa)\n", bl->type, status_get_name(bl));
 		break;
 	}
 }
@@ -531,20 +531,20 @@ static void script_reportdata(struct script_data* data)
 	switch( data->type )
 	{
 	case C_NOP:// no value
-		ShowDebug("Data: nothing (nil)\n");
+		ShowDebug("Dado: nada (zero)\n");
 		break;
 	case C_INT:// number
-		ShowDebug("Data: number value=%d\n", data->u.num);
+		ShowDebug("Dado: numero valor=%d\n", data->u.num);
 		break;
 	case C_STR:
 	case C_CONSTSTR:// string
 		if( data->u.str )
 		{
-			ShowDebug("Data: string value=\"%s\"\n", data->u.str);
+			ShowDebug("Dado: texto valor=\"%s\"\n", data->u.str);
 		}
 		else
 		{
-			ShowDebug("Data: string value=NULL\n");
+			ShowDebug("Dado: texto valor=NULL\n");
 		}
 		break;
 	case C_NAME:// reference
@@ -552,29 +552,29 @@ static void script_reportdata(struct script_data* data)
 		{// variable
 			const char* name = reference_getname(data);
 			if( not_array_variable(*name) )
-				ShowDebug("Data: variable name='%s'\n", name);
+				ShowDebug("Dado: variable nome='%s'\n", name);
 			else
-				ShowDebug("Data: variable name='%s' index=%d\n", name, reference_getindex(data));
+				ShowDebug("Dado: variable nome='%s' indice=%d\n", name, reference_getindex(data));
 		}
 		else if( reference_toconstant(data) )
 		{// constant
-			ShowDebug("Data: constant name='%s' value=%d\n", reference_getname(data), reference_getconstant(data));
+			ShowDebug("Dado: constante nome='%s' valor=%d\n", reference_getname(data), reference_getconstant(data));
 		}
 		else if( reference_toparam(data) )
 		{// param
-			ShowDebug("Data: param name='%s' type=%d\n", reference_getname(data), reference_getparamtype(data));
+			ShowDebug("Data: parametro nome='%s' tipo=%d\n", reference_getname(data), reference_getparamtype(data));
 		}
 		else
 		{// ???
-			ShowDebug("Data: reference name='%s' type=%s\n", reference_getname(data), script_op2name(data->type));
-			ShowDebug("Please report this!!! - str_data.type=%s\n", script_op2name(str_data[reference_getid(data)].type));
+			ShowDebug("Dado: referencia nome='%s' tipo=%s\n", reference_getname(data), script_op2name(data->type));
+			ShowDebug("Favor reportar isso!!! - str_data.type=%s\n", script_op2name(str_data[reference_getid(data)].type));
 		}
 		break;
 	case C_POS:// label
-		ShowDebug("Data: label pos=%d\n", data->u.num);
+		ShowDebug("Dado: label pos=%d\n", data->u.num);
 		break;
 	default:
-		ShowDebug("Data: %s\n", script_op2name(data->type));
+		ShowDebug("Dado: %s\n", script_op2name(data->type));
 		break;
 	}
 }
@@ -603,7 +603,7 @@ static void script_reportfunc(struct script_state* st)
 
 	if( params > 0 )
 	{
-		ShowDebug("Function: %s (%d parameter%s):\n", get_str(id), params, ( params == 1 ) ? "" : "s");
+		ShowDebug("Funcao: %s (%d parametro%s):\n", get_str(id), params, ( params == 1 ) ? "" : "s");
 
 		for( i = 2; i <= script_lastdata(st); i++ )
 		{
@@ -612,7 +612,7 @@ static void script_reportfunc(struct script_state* st)
 	}
 	else
 	{
-		ShowDebug("Function: %s (no parameters)\n", get_str(id));
+		ShowDebug("Funcao: %s (nao ha parametros)\n", get_str(id));
 	}
 }
 
@@ -640,7 +640,7 @@ static void check_event(struct script_state *st, const char *evt)
 		}
 		else
 		{
-			ShowWarning("NPC event parameter deprecated! Please use 'NPCNAME::OnEVENT' instead of '%s'.\n", evt);
+			ShowWarning("Parametro de evento de NPC obsoleto! Favor usar 'NPCNAME::OnEVENT' ao inves de '%s'.\n", evt);
 			script_reportsrc(st);
 		}
 	}
@@ -853,11 +853,11 @@ void set_label(int l,int pos, const char* script_pos)
 
 	if(str_data[l].type==C_INT || str_data[l].type==C_PARAM || str_data[l].type==C_FUNC)
 	{	//Prevent overwriting constants values, parameters and built-in functions [Skotlex]
-		disp_error_message("set_label: invalid label name",script_pos);
+		disp_error_message("set_label: nome de label invalido",script_pos);
 		return;
 	}
 	if(str_data[l].label!=-1){
-		disp_error_message("set_label: dup label ",script_pos);
+		disp_error_message("set_label: label duplicada ",script_pos);
 		return;
 	}
 	str_data[l].type=(str_data[l].type == C_USERFUNC ? C_USERFUNC_POS : C_POS);
@@ -949,7 +949,7 @@ int add_word(const char* p)
 	// Check for a word
 	len = skip_word(p) - p;
 	if( len == 0 )
-		disp_error_message("script:add_word: invalid word. A word consists of undercores and/or alfanumeric characters, and valid variable prefixes/postfixes.", p);
+		disp_error_message("script:add_word: palavra invalida. Uma palavra consiste de caracteres alfanumericos, e prefixos/sufixos de variavel validos.", p);
 
 	// Duplicate the word
 	word = (char*)aMalloc(len+1);
@@ -985,7 +985,7 @@ const char* parse_callfunc(const char* p, int require_paren, int is_custom)
 		add_scriptl(func);
 		arg = buildin_func[str_data[buildin_callsub_ref].val].arg;
 		if( *arg == 0 )
-			disp_error_message("parse_callfunc: callsub has no arguments, please review it's definition",p);
+			disp_error_message("parse_callfunc: callsub sem argumento, favor rever sua definicao",p);
 		if( *arg != '*' )
 			++arg; // count func as argument
 	} else {
@@ -993,7 +993,7 @@ const char* parse_callfunc(const char* p, int require_paren, int is_custom)
 		const char* name = get_str(func);
 		if( !is_custom && strdb_get(userfunc_db, name) == NULL ) {
 #endif
-			disp_error_message("parse_line: expect command, missing function name or calling undeclared function",p);
+			disp_error_message("parse_line: comando esperado, faltando nome de funcao ou chamando funcao nao declarada",p);
 #ifdef SCRIPT_CALLFUNC_CHECK
 		} else {;
 			add_scriptl(buildin_callfunc_ref);
@@ -1027,7 +1027,7 @@ const char* parse_callfunc(const char* p, int require_paren, int is_custom)
 	{// <func name> <arg list>
 		if( require_paren ){
 			if( *p != '(' )
-				disp_error_message("need '('",p);
+				disp_error_message("necessario '('",p);
 			++p; // skip '('
 			syntax.curly[syntax.curly_count].flag = ARGLIST_PAREN;
 		} else if( *p == '(' ){
@@ -1051,12 +1051,12 @@ const char* parse_callfunc(const char* p, int require_paren, int is_custom)
 		--syntax.curly_count;
 	}
 	if( *arg && *arg != '?' && *arg != '*' )
-		disp_error_message2("parse_callfunc: not enough arguments, expected ','", p, script_config.warn_func_mismatch_paramnum);
+		disp_error_message2("parse_callfunc: argumentos insuficientes, ',' esperado", p, script_config.warn_func_mismatch_paramnum);
 	if( syntax.curly[syntax.curly_count].type != TYPE_ARGLIST )
-		disp_error_message("parse_callfunc: DEBUG last curly is not an argument list",p);
+		disp_error_message("parse_callfunc: DEBUG ultima virgula nao e uma lista de argumentos",p);
 	if( syntax.curly[syntax.curly_count].flag == ARGLIST_PAREN ){
 		if( *p != ')' )
-			disp_error_message("parse_callfunc: expected ')' to close argument list",p);
+			disp_error_message("parse_callfunc: ')' esperado para fechar lista de argumentos",p);
 		++p;
 	}
 	add_scriptc(C_FUNC);
@@ -1166,7 +1166,7 @@ const char* parse_variable(const char* p) {
 
 	if( str_data[word].type == C_FUNC || str_data[word].type == C_USERFUNC || str_data[word].type == C_USERFUNC_POS )
 	{// cannot assign a variable which exists as a function or label
-		disp_error_message("Cannot modify a variable which has the same name as a function or label.", p);
+		disp_error_message("Não é possível modificar uma variável que tem o mesmo nome de uma função ou um label.", p);
 	}
 
 	if( p2 ) {// process the variable index
@@ -1182,7 +1182,7 @@ const char* parse_variable(const char* p) {
 		p3 = skip_space(p3);
 
 		if( *p3 != ']' ) {// closing parenthesis is required for this script
-			disp_error_message("Missing closing ']' parenthesis for the variable assignment.", p3);
+			disp_error_message("Falta de fechamento ']' parêntese para a atribuição de variável.", p3);
 		}
 
 		// push the closing function stack operator onto the stack
@@ -1226,7 +1226,7 @@ const char* parse_simpleexpr(const char *p)
 	p=skip_space(p);
 
 	if(*p==';' || *p==',')
-		disp_error_message("parse_simpleexpr: unexpected expr end",p);
+		disp_error_message("parse_simpleexpr: fim de expr inesperado",p);
 	if(*p=='('){
 		if( (i=syntax.curly_count-1) >= 0 && syntax.curly[i].type == TYPE_ARGLIST )
 			++syntax.curly[i].count;
@@ -1242,7 +1242,7 @@ const char* parse_simpleexpr(const char *p)
 				syntax.curly[i].flag = ARGLIST_NO_PAREN;
 		}
 		if( *p != ')' )
-			disp_error_message("parse_simpleexpr: unmatch ')'",p);
+			disp_error_message("parse_simpleexpr: ')' incompativel",p);
 		++p;
 	} else if(ISDIGIT(*p) || ((*p=='-' || *p=='+') && ISDIGIT(p[1]))){
 		char *np;
@@ -1259,17 +1259,17 @@ const char* parse_simpleexpr(const char *p)
 				size_t len = skip_escaped_c(p) - p;
 				size_t n = sv_unescape_c(buf, p, len);
 				if( n != 1 )
-					ShowDebug("parse_simpleexpr: unexpected length %d after unescape (\"%.*s\" -> %.*s)\n", (int)n, (int)len, p, (int)n, buf);
+					ShowDebug("parse_simpleexpr: comprimento %d inesperado (\"%.*s\" -> %.*s)\n", (int)n, (int)len, p, (int)n, buf);
 				p += len;
 				add_scriptb(*buf);
 				continue;
 			}
 			else if( *p == '\n' )
-				disp_error_message("parse_simpleexpr: unexpected newline @ string",p);
+				disp_error_message("parse_simpleexpr: quebra de linha inesperada",p);
 			add_scriptb(*p++);
 		}
 		if(!*p)
-			disp_error_message("parse_simpleexpr: unexpected eof @ string",p);
+			disp_error_message("parse_simpleexpr: fim de arquivo inesperado",p);
 		add_scriptb(0);
 		p++;	//'"'
 	} else {
@@ -1278,7 +1278,7 @@ const char* parse_simpleexpr(const char *p)
 
 		// label , register , function etc
 		if(skip_word(p)==p)
-			disp_error_message("parse_simpleexpr: unexpected character",p);
+			disp_error_message("parse_simpleexpr: caractere inesperado",p);
 
 		l=add_word(p);
 		if( str_data[l].type == C_FUNC || str_data[l].type == C_USERFUNC || str_data[l].type == C_USERFUNC_POS)
@@ -1307,7 +1307,7 @@ const char* parse_simpleexpr(const char *p)
 			p=parse_subexpr(p+1,-1);
 			p=skip_space(p);
 			if( *p != ']' )
-				disp_error_message("parse_simpleexpr: unmatch ']'",p);
+				disp_error_message("parse_simpleexpr: ']' incompativel",p);
 			++p;
 			add_scriptc(C_FUNC);
 		}else
@@ -1368,7 +1368,7 @@ const char* parse_subexpr(const char* p,int limit)
 			p=parse_subexpr(p,-1);
 			p=skip_space(p);
 			if( *(p++) != ':')
-				disp_error_message("parse_subexpr: need ':'", p-1);
+				disp_error_message("parse_subexpr: ':' necessario", p-1);
 			p=parse_subexpr(p,-1);
 		} else {
 			p=parse_subexpr(p,opl);
@@ -1388,7 +1388,7 @@ const char* parse_expr(const char *p)
 	switch(*p){
 	case ')': case ';': case ':': case '[': case ']':
 	case '}':
-		disp_error_message("parse_expr: unexpected char",p);
+		disp_error_message("parse_expr: caractere inesperado",p);
 	}
 	p=parse_subexpr(p,-1);
 	return p;
@@ -1439,10 +1439,10 @@ const char* parse_line(const char* p)
 	
 	if(parse_syntax_for_flag) {
 		if( *p != ')' )
-			disp_error_message("parse_line: need ')'",p);
+			disp_error_message("parse_line: ')' necessario",p);
 	} else {
 		if( *p != ';' )
-			disp_error_message("parse_line: need ';'",p);
+			disp_error_message("parse_line: ';' necessario",p);
 	}
 
 	// if, for , while ‚Ì•Â‚¶”»’è
@@ -1455,7 +1455,7 @@ const char* parse_line(const char* p)
 const char* parse_curly_close(const char* p)
 {
 	if(syntax.curly_count <= 0) {
-		disp_error_message("parse_curly_close: unexpected string",p);
+		disp_error_message("parse_curly_close: linha inesperada",p);
 		return p + 1;
 	} else if(syntax.curly[syntax.curly_count-1].type == TYPE_NULL) {
 		syntax.curly_count--;
@@ -1502,7 +1502,7 @@ const char* parse_curly_close(const char* p)
 		p = parse_syntax_close(p + 1);
 		return p;
 	} else {
-		disp_error_message("parse_curly_close: unexpected string",p);
+		disp_error_message("parse_curly_close: linha inesperada",p);
 		return p + 1;
 	}
 }
@@ -1538,7 +1538,7 @@ const char* parse_syntax(const char* p)
 				pos--;
 			}
 			if(pos < 0) {
-				disp_error_message("parse_syntax: unexpected 'break'",p);
+				disp_error_message("parse_syntax: 'break' inesperado",p);
 			} else {
 				syntax.curly[syntax.curly_count++].type = TYPE_NULL;
 				parse_line(label);
@@ -1546,7 +1546,7 @@ const char* parse_syntax(const char* p)
 			}
 			p = skip_space(p2);
 			if(*p != ';')
-				disp_error_message("parse_syntax: need ';'",p);
+				disp_error_message("parse_syntax: ';' necessario",p);
 			// if, for , while ‚Ì•Â‚¶”»’è
 			p = parse_syntax_close(p + 1);
 			return p;
@@ -1558,7 +1558,7 @@ const char* parse_syntax(const char* p)
 			// case ‚Ìˆ—
 			int pos = syntax.curly_count-1;
 			if(pos < 0 || syntax.curly[pos].type != TYPE_SWITCH) {
-				disp_error_message("parse_syntax: unexpected 'case' ",p);
+				disp_error_message("parse_syntax: 'case' inesperado",p);
 				return p+1;
 			} else {
 				char label[256];
@@ -1579,7 +1579,7 @@ const char* parse_syntax(const char* p)
 				// switch ”»’è•¶
 				p = skip_space(p2);
 				if(p == p2) {
-					disp_error_message("parse_syntax: expect space ' '",p);
+					disp_error_message("parse_syntax: espaco esperado ' '",p);
 				}
 				// check whether case label is integer or not
 				v = strtol(p,&np,0);
@@ -1589,18 +1589,18 @@ const char* parse_syntax(const char* p)
 					memcpy(label,p,v);
 					label[v]='\0';
 					if( !script_get_constant(label, &v) )
-						disp_error_message("parse_syntax: 'case' label not integer",p);
+						disp_error_message("parse_syntax: label 'case' nao numerico",p);
 					p = skip_word(p);
 				} else { //Numeric value
 					if((*p == '-' || *p == '+') && ISDIGIT(p[1]))	// pre-skip because '-' can not skip_word
 						p++;
 					p = skip_word(p);
 					if(np != p)
-						disp_error_message("parse_syntax: 'case' label not integer",np);
+						disp_error_message("parse_syntax: label 'case' nao numerico",np);
 				}
 				p = skip_space(p);
 				if(*p != ':')
-					disp_error_message("parse_syntax: expect ':'",p);
+					disp_error_message("parse_syntax: ':' esperado",p);
 				sprintf(label,"if(%d != $@__SW%x_VAL) goto __SW%x_%x;",
 					v,syntax.curly[pos].index,syntax.curly[pos].index,syntax.curly[pos].count+1);
 				syntax.curly[syntax.curly_count++].type = TYPE_NULL;
@@ -1646,7 +1646,7 @@ const char* parse_syntax(const char* p)
 				pos--;
 			}
 			if(pos < 0) {
-				disp_error_message("parse_syntax: unexpected 'continue'",p);
+				disp_error_message("parse_syntax: 'continue' inesperado",p);
 			} else {
 				syntax.curly[syntax.curly_count++].type = TYPE_NULL;
 				parse_line(label);
@@ -1654,7 +1654,7 @@ const char* parse_syntax(const char* p)
 			}
 			p = skip_space(p2);
 			if(*p != ';')
-				disp_error_message("parse_syntax: need ';'",p);
+				disp_error_message("parse_syntax: ';' necessario",p);
 			// if, for , while ‚Ì•Â‚¶”»’è
 			p = parse_syntax_close(p + 1);
 			return p;
@@ -1666,16 +1666,16 @@ const char* parse_syntax(const char* p)
 			// switch - default ‚Ìˆ—
 			int pos = syntax.curly_count-1;
 			if(pos < 0 || syntax.curly[pos].type != TYPE_SWITCH) {
-				disp_error_message("parse_syntax: unexpected 'default'",p);
+				disp_error_message("parse_syntax: 'default' inesperado",p);
 			} else if(syntax.curly[pos].flag) {
-				disp_error_message("parse_syntax: dup 'default'",p);
+				disp_error_message("parse_syntax: 'default' duplicado",p);
 			} else {
 				char label[256];
 				int l;
 				// Œ»Ý’n‚Ìƒ‰ƒxƒ‹‚ð•t‚¯‚é
 				p = skip_space(p2);
 				if(*p != ':') {
-					disp_error_message("parse_syntax: need ':'",p);
+					disp_error_message("parse_syntax: ':' necessario",p);
 				}
 				sprintf(label,"__SW%x_%x",syntax.curly[pos].index,syntax.curly[pos].count);
 				l=add_str(label);
@@ -1728,7 +1728,7 @@ const char* parse_syntax(const char* p)
 			p=skip_space(p2);
 
 			if(*p != '(')
-				disp_error_message("parse_syntax: need '('",p);
+				disp_error_message("parse_syntax: '(' necessario",p);
 			p++;
 
 			// ‰Šú‰»•¶‚ðŽÀs‚·‚é
@@ -1756,7 +1756,7 @@ const char* parse_syntax(const char* p)
 				add_scriptc(C_FUNC);
 			}
 			if(*p != ';')
-				disp_error_message("parse_syntax: need ';'",p);
+				disp_error_message("parse_syntax: ';' necessario",p);
 			p++;
 			
 			// ƒ‹[ƒvŠJŽn‚É”ò‚Î‚·
@@ -1797,7 +1797,7 @@ const char* parse_syntax(const char* p)
 			func_name = skip_space(p2);
 			p = skip_word(func_name);
 			if( p == func_name )
-				disp_error_message("parse_syntax:function: function name is missing or invalid", p);
+				disp_error_message("parse_syntax:function: nome da funcao faltando ou invalido", p);
 			p2 = skip_space(p);
 			if( *p2 == ';' )
 			{// function <name> ;
@@ -1849,7 +1849,7 @@ const char* parse_syntax(const char* p)
 			}
 			else
 			{
-				disp_error_message("expect ';' or '{' at function syntax",p);
+				disp_error_message("esperado ';' ou '{' na sintaxe da funcao",p);
 			}
 		}
 		break;
@@ -1860,7 +1860,7 @@ const char* parse_syntax(const char* p)
 			char label[256];
 			p=skip_space(p2);
 			if(*p != '(') { //Prevent if this {} non-c syntax. from Rayce (jA)
-				disp_error_message("need '('",p);
+				disp_error_message("'(' necessario",p);
 			}
 			syntax.curly[syntax.curly_count].type  = TYPE_IF;
 			syntax.curly[syntax.curly_count].count = 1;
@@ -1884,7 +1884,7 @@ const char* parse_syntax(const char* p)
 			char label[256];
 			p=skip_space(p2);
 			if(*p != '(') {
-				disp_error_message("need '('",p);
+				disp_error_message("'(' necessario",p);
 			}
 			syntax.curly[syntax.curly_count].type  = TYPE_SWITCH;
 			syntax.curly[syntax.curly_count].count = 1;
@@ -1898,7 +1898,7 @@ const char* parse_syntax(const char* p)
 			p=parse_expr(p);
 			p=skip_space(p);
 			if(*p != '{') {
-				disp_error_message("parse_syntax: need '{'",p);
+				disp_error_message("parse_syntax: '{' necessario",p);
 			}
 			add_scriptc(C_FUNC);
 			return p + 1;
@@ -1911,7 +1911,7 @@ const char* parse_syntax(const char* p)
 			char label[256];
 			p=skip_space(p2);
 			if(*p != '(') {
-				disp_error_message("need '('",p);
+				disp_error_message("'(' necessario",p);
 			}
 			syntax.curly[syntax.curly_count].type  = TYPE_WHILE;
 			syntax.curly[syntax.curly_count].count = 1;
@@ -1990,7 +1990,7 @@ const char* parse_syntax_close_sub(const char* p,int* flag)
 				// else - if
 				p=skip_space(p2);
 				if(*p != '(') {
-					disp_error_message("need '('",p);
+					disp_error_message("'(' necessario",p);
 				}
 				sprintf(label,"__IF%x_%x",syntax.curly[pos].index,syntax.curly[pos].count);
 				add_scriptl(add_str("jump_zero"));
@@ -2037,11 +2037,11 @@ const char* parse_syntax_close_sub(const char* p,int* flag)
 		p = skip_space(p);
 		p2 = skip_word(p);
 		if(p2 - p != 5 || strncasecmp(p,"while",5))
-			disp_error_message("parse_syntax: need 'while'",p);
+			disp_error_message("parse_syntax: 'while' necessario",p);
 
 		p = skip_space(p2);
 		if(*p != '(') {
-			disp_error_message("need '('",p);
+			disp_error_message("'(' necessario",p);
 		}
 
 		// do-block end is a new line
@@ -2067,7 +2067,7 @@ const char* parse_syntax_close_sub(const char* p,int* flag)
 		set_label(l,script_pos,p);
 		p = skip_space(p);
 		if(*p != ';') {
-			disp_error_message("parse_syntax: need ';'",p);
+			disp_error_message("parse_syntax:';' necessario",p);
 			return p+1;
 		}
 		p++;
@@ -2149,9 +2149,9 @@ static void add_buildin_func(void)
 		while( *p == '?' ) ++p;
 		if( *p == '*' ) ++p;
 		if( *p != 0){
-			ShowWarning("add_buildin_func: ignoring function \"%s\" with invalid arg \"%s\".\n", buildin_func[i].name, buildin_func[i].arg);
+			ShowWarning("add_buildin_func: ignorando funcao \"%s\" com argumento invalido \"%s\".\n", buildin_func[i].name, buildin_func[i].arg);
 		} else if( *skip_word(buildin_func[i].name) != 0 ){
-			ShowWarning("add_buildin_func: ignoring function with invalid name \"%s\" (must be a word).\n", buildin_func[i].name);
+			ShowWarning("add_buildin_func: ignorando funcao com nome invalido \"%s\" (deve ser uma palavra).\n", buildin_func[i].name);
 		} else {
 			n = add_str(buildin_func[i].name);
 			str_data[n].type = C_FUNC;
@@ -2212,7 +2212,7 @@ static void read_constdb(void)
 	sprintf(line, "%s/const.txt", db_path);
 	fp=fopen(line, "r");
 	if(fp==NULL){
-		ShowError("can't read %s\n", line);
+		ShowError("nao foi possivel ler %s\n", line);
 		return ;
 	}
 	while(fgets(line, sizeof(line), fp))
@@ -2272,7 +2272,7 @@ void script_error(const char* src, const char* file, int start_line, const char*
 
 	StringBuf_Init(&buf);
 	StringBuf_AppendStr(&buf, "\a\n");
-	StringBuf_Printf(&buf, "script error on %s line %d\n", file, line);
+	StringBuf_Printf(&buf, "erro no script %s linha %d\n", file, line);
 	StringBuf_Printf(&buf, "    %s\n", error_msg);
 	for(j = 0; j < 5; j++ ) {
 		script_print_line(&buf, linestart[j], NULL, line + j - 5);
@@ -2353,7 +2353,7 @@ struct script_code* parse_script(const char *src,const char *file,int line,int o
 	else
 	{// requires brackets around the script
 		if( *p != '{' )
-			disp_error_message("not found '{'",p);
+			disp_error_message("'{' nao encontrado",p);
 		p = skip_space(p+1);
 		if( *p == '}' && !(options&SCRIPT_RETURN_EMPTY_SCRIPT) )
 		{// empty script and can return NULL
@@ -2381,7 +2381,7 @@ struct script_code* parse_script(const char *src,const char *file,int line,int o
 	while( syntax.curly_count != 0 || *p != end )
 	{
 		if( *p == '\0' )
-			disp_error_message("unexpected end of script",p);
+			disp_error_message("fim de script inesperado",p);
 		// label‚¾‚¯“ÁŽêˆ—
 		tmpp=skip_space(skip_word(p));
 		if(*tmpp==':' && !(!strncasecmp(p,"default:",8) && p + 7 == tmpp)){
@@ -2457,7 +2457,7 @@ struct script_code* parse_script(const char *src,const char *file,int line,int o
 				break;
 			case C_NAME:
 				j = (*(int*)(script_buf+i)&0xffffff);
-				ShowMessage(" %s", ( j == 0xffffff ) ? "?? unknown ??" : get_str(j));
+				ShowMessage(" %s", ( j == 0xffffff ) ? "?? desconhecido ??" : get_str(j));
 				i += 3;
 				break;
 			case C_STR:
@@ -2484,7 +2484,7 @@ TBL_PC *script_rid2sd(struct script_state *st)
 {
 	TBL_PC *sd=map_id2sd(st->rid);
 	if(!sd){
-		ShowError("script_rid2sd: fatal error ! player not attached!\n");
+		ShowError("script_rid2sd: erro fatal! nenhum jogador anexado!\n");
 		script_reportfunc(st);
 		script_reportsrc(st);
 		st->state = END;
@@ -2706,7 +2706,7 @@ static int set_reg(struct script_state* st, TBL_PC* sd, int num, const char* nam
 			{
 				if( st != NULL )
 				{
-					ShowError("script:set_reg: failed to set param '%s' to %d.\n", name, val);
+					ShowError("script:set_reg: falha ao definir parametro '%s' para %d.\n", name, val);
 					script_reportsrc(st);
 					st->state = END;
 				}
@@ -2783,7 +2783,7 @@ const char* conv_str(struct script_state* st, struct script_data* data)
 	}
 	else
 	{// unsupported data type
-		ShowError("script:conv_str: cannot convert to string, defaulting to \"\"\n");
+		ShowError("script:conv_str: nao foi possivel converter em texto, padronizando para \"\"\n");
 		script_reportdata(data);
 		script_reportsrc(st);
 		data->type = C_CONSTSTR;
@@ -2838,7 +2838,7 @@ int conv_num(struct script_state* st, struct script_data* data)
 	// probably other stuff [FlavioJS]
 	else
 	{// unsupported data type
-		ShowError("script:conv_num: cannot convert to number, defaulting to 0\n");
+		ShowError("script:conv_num: nao foi possivel converter em numero, padronizando para 0\n");
 		script_reportdata(data);
 		script_reportsrc(st);
 		data->type = C_INT;

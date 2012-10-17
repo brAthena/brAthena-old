@@ -5909,7 +5909,7 @@ ACMD_FUNC(autolootitem)
 				if (sd->state.autolootid[i] == 0)
 					continue;
 				if (!(item_data = itemdb_exists(sd->state.autolootid[i]))) {
-					ShowDebug("Non-existant item %d on autolootitem list (account_id: %d, char_id: %d)", sd->state.autolootid[i], sd->status.account_id, sd->status.char_id);
+					ShowDebug("Nao existe item %d na lista de autolootitem (account_id: %d, char_id: %d)", sd->state.autolootid[i], sd->status.account_id, sd->status.char_id);
 					continue;
 				}
 				sprintf(atcmd_output, "'%s'/'%s' {%d}", item_data->name, item_data->jname, item_data->nameid);
