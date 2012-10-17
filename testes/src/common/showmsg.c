@@ -750,7 +750,7 @@ int _vShowMessage(enum msg_type flag, const char *string, va_list ap)
 			strcat(prefix,CL_WHITE"[Info]"CL_RESET":");
 			break;
 		case MSG_NOTICE: //Bright White (Less than a warning)
-			strcat(prefix,CL_WHITE"[Notícia]"CL_RESET":");
+			sprintf(prefix, CL_WHITE"[Not%ccia]"CL_RESET":", 161);
 			break;
 		case MSG_WARNING: //Bright Yellow
 			strcat(prefix,CL_YELLOW"[Aviso]"CL_RESET":");
