@@ -276,7 +276,7 @@ static void display_title(void)
 	ShowMessage(""CL_PASS"           ("CL_BT_GREEN"               www.brathena.org                "CL_PASS")"CL_CLL""CL_NORMAL"\n");
 	ShowMessage(""CL_PASS"           (=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=)"CL_CLL""CL_NORMAL"\n\n");
 
-	ShowInfo("Revisao do SVN: '"CL_WHITE"%s"CL_RESET"'.\n", get_svn_revision());
+	ShowInfo("Revis%co do SVN: '"CL_WHITE"%s"CL_RESET"'.\n", 198, get_svn_revision());
 }
 
 // Warning if executed as superuser (root)

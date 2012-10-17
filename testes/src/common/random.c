@@ -30,7 +30,7 @@ void rnd_init(void)
 	seed += (uint32)gettid();
 #endif // HAVE_GETTID
 #endif
-	ShowInfo("Initializing random number generator.\n");
+	ShowInfo("Inicializando gerador de n%cmeros aleat%crios.\n", 163, 162);
 	init_genrand(seed);
 }
 

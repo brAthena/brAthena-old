@@ -709,10 +709,10 @@ int _vShowMessage(enum msg_type flag, const char *string, va_list ap)
 			strftime(timestring, 254, "%m/%d/%Y %H:%M:%S", localtime(&curtime));
 			fprintf(log,"(%s) [ %s ] : ",
 				timestring,
-				flag == MSG_WARNING ? "Warning" :
-				flag == MSG_ERROR ? "Error" :
-				flag == MSG_SQL ? "SQL Error" :
-				flag == MSG_DEBUG ? "Debug" :
+				flag == MSG_WARNING ? "Aviso" :
+				flag == MSG_ERROR ? "Erro" :
+				flag == MSG_SQL ? "SQL Erro" :
+				flag == MSG_DEBUG ? "Depurar" :
 				"Unknown");
 			va_copy(apcopy, ap);
 			vfprintf(log,string,apcopy);
@@ -750,22 +750,22 @@ int _vShowMessage(enum msg_type flag, const char *string, va_list ap)
 			strcat(prefix,CL_WHITE"[Info]"CL_RESET":");
 			break;
 		case MSG_NOTICE: //Bright White (Less than a warning)
-			strcat(prefix,CL_WHITE"[Notice]"CL_RESET":");
+			strcat(prefix,CL_WHITE"[Notícia]"CL_RESET":");
 			break;
 		case MSG_WARNING: //Bright Yellow
-			strcat(prefix,CL_YELLOW"[Warning]"CL_RESET":");
+			strcat(prefix,CL_YELLOW"[Aviso]"CL_RESET":");
 			break;
 		case MSG_DEBUG: //Bright Cyan, important stuff!
-			strcat(prefix,CL_CYAN"[Debug]"CL_RESET":");
+			strcat(prefix,CL_CYAN"[Depurar]"CL_RESET":");
 			break;
 		case MSG_ERROR: //Bright Red  (Regular errors)
-			strcat(prefix,CL_RED"[Error]"CL_RESET":");
+			strcat(prefix,CL_RED"[Erro]"CL_RESET":");
 			break;
 		case MSG_FATALERROR: //Bright Red (Fatal errors, abort(); if possible)
-			strcat(prefix,CL_RED"[Fatal Error]"CL_RESET":");
+			strcat(prefix,CL_RED"[Erro Crítico]"CL_RESET":");
 			break;
 		default:
-			ShowError("In function _vShowMessage() -> Invalid flag passed.\n");
+			ShowError("Função _vShowMessage() -> flag inválido.\n", 135, 198, 160);
 			return 1;
 	}
 

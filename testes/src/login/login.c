@@ -320,11 +320,11 @@ int login_lan_config_read(const char *lancfgName)
 	char line[1024], w1[64], w2[64], w3[64], w4[64];
 
 	if((fp = fopen(lancfgName, "r")) == NULL) {
-		ShowWarning("LAN Support configuration file is not found: %s\n", lancfgName);
+		ShowWarning("LAN arquivo de configura%c%co n%co encontrado: %s\n", 135, 198, 198, lancfgName);
 		return 1;
 	}
 
-	ShowInfo("Reading the configuration file %s...\n", lancfgName);
+	ShowInfo("Lendo o arquivo de configura%c%co %s...\n", 135, 198, lancfgName);
 
 	while(fgets(line, sizeof(line), fp))
 	{
@@ -354,7 +354,7 @@ int login_lan_config_read(const char *lancfgName)
 		}
 	}
 
-	ShowStatus("Read information about %d subnetworks.\n", subnet_count);
+	ShowStatus("Leu %d informa%c%ce(s) sub-rede(s).\n", subnet_count, 135, 228);
 
 	fclose(fp);
 	return 0;
@@ -1615,10 +1615,10 @@ int login_config_read(const char* cfgName)
 	char line[1024], w1[1024], w2[1024];
 	FILE* fp = fopen(cfgName, "r");
 	if (fp == NULL) {
-		ShowError("Configuration file (%s) not found.\n", cfgName);
+		ShowError("Arquivo de configura%c%co (%s) n%co encontrado.\n", 135, 198, cfgName, 198);
 		return 1;
 	}
-	ShowInfo("Reading configuration file %s...\n", cfgName);
+	ShowInfo("Lendo arquivo de configura%c%co %s...\n", 135, 198, cfgName);
 	while(fgets(line, sizeof(line), fp))
 	{
 		if (line[0] == '/' && line[1] == '/')
@@ -1632,7 +1632,7 @@ int login_config_read(const char* cfgName)
 		else if(!strcmpi(w1,"stdout_with_ansisequence"))
 			stdout_with_ansisequence = config_switch(w2);
 		else if(!strcmpi(w1,"console_silent")) {
-			ShowInfo("Console Silent Setting: %d\n", atoi(w2));
+			ShowInfo("Console Modo Silencioso: %d\n", atoi(w2));
 			msg_silent = atoi(w2);
 		}
 		else if( !strcmpi(w1, "bind_ip") ) {
@@ -1643,7 +1643,7 @@ int login_config_read(const char* cfgName)
 		}
 		else if( !strcmpi(w1, "login_port") ) {
 			login_config.login_port = (uint16)atoi(w2);
-			ShowStatus("set login_port : %s\n",w2);
+			ShowStatus("Porta de login: %s\n",w2);
 		}
 		else if(!strcmpi(w1, "log_login"))
 			login_config.log_login = (bool)config_switch(w2);
@@ -1728,7 +1728,7 @@ int login_config_read(const char* cfgName)
 		}
 	}
 	fclose(fp);
-	ShowInfo("Finished reading %s.\n", cfgName);
+	ShowInfo("Leitura completa %s.\n", cfgName);
 	return 0;
 }
 
@@ -1890,7 +1890,7 @@ int do_init(int argc, char** argv)
 	}
 	else
 	{
-		ShowInfo("Using account engine '%s'.\n", login_config.account_engine);
+		ShowInfo("Utilizando '%s'.\n", login_config.account_engine);
 
 		if(!accounts->init(accounts))
 		{
@@ -1913,7 +1913,7 @@ int do_init(int argc, char** argv)
 		runflag = LOGINSERVER_ST_RUNNING;
 	}
 
-	ShowStatus("The login-server is "CL_GREEN"ready"CL_RESET" (Server is listening on the port %u).\n\n", login_config.login_port);
+	ShowStatus("O servidor de login est%c "CL_GREEN"pronto"CL_RESET" (Escutando na porta %u).\n\n", 160, login_config.login_port);
 	login_log(0, "login server", 100, "login server started");
 
 	return 0;
