@@ -1021,7 +1021,7 @@ pay_arche,77,131,2	script	Arqueiro Joe#payon	88,{
 				close;
 			case 4:
 				mes "[Arqueiro Joe]";
-				mes "Okay!";
+				mes "Ok!";
 				mes "Tchau!";
 				mes "Até logo!";
 				close;
