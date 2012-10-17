@@ -14,8 +14,8 @@
 //   |--------------------------------------------------------|
 //   | Versões eA/rA/brA: 1.0/1.0/1.1                         |
 //   |--------------------------------------------------------|
-//   | Descrição: Quests Repetíveis de Experiência            |
-//   |                    (Zhu Po Long)                       |                     
+//   | Descrição: Quests Repetíveis de Experiência.           |
+//   |                    (Louva-a-Deus)                      |                 
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Cabeçalho Criado [Holy]                            |
@@ -23,86 +23,86 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-lou_dun02,161,264,4	script	Caçador de Dragões	732,{
+lou_fild01,240,354,4	script	Pesquisador Louva-a-Deus	878,{
 
-	if (checkquest(60182) != -1) {
-		if (checkquest(60182,HUNTING) != 2 ) {
-			mes "[Caçador de Dragões]";
-			mes "Você terminou de caçar os 50 Zhu Po Long?";
+	if (checkquest(60179) != -1) {
+		if (checkquest(60179,HUNTING) != 2 ) {
+			mes "[Pesquisador Louva-a-Deus]";
+			mes "Você terminou de caçar os 50 Louva-a-Deus?";
 			next;
 			switch(select("Sim:Não:Eu quero sair")) {
 			case 1:
-				mes "[Caçador de Dragões]";
+				mes "[Pesquisador Louva-a-Deus]";
 				mes "Hum, Eu acho que você não caçou os 50 ainda...";
 				close;
 			case 2:
-				mes "[Caçador de Dragões]";
-				mes "Lembre-se, eu preciso de ajuda para caçar Zhu Po Long preciso caçar 50 deles.";
+				mes "[Pesquisador Louva-a-Deus]";
+				mes "Lembre-se, eu preciso de ajuda para caçar Louva-a-Deus preciso caçar 50 deles.";
 				close;
 			case 3:
-				mes "[Caçador de Dragões]";
+				mes "[Pesquisador Louva-a-Deus]";
 				mes "Tem certeza de que deseja parar de caçar?";
 				mes "Qualquer progresso que você tenha feito será apagado";
 				next;
 				switch(select("Sim:Não")) {
 				case 1:
-					mes "[Caçador de Dragões]";
+					mes "[Pesquisador Louva-a-Deus]";
 					mes "Ok então, bem volte aqui se você mudar de idéia.";
-					erasequest 60182;
+					erasequest 60179;
 					close;
 				case 2:
-					mes "[Caçador de Dragões]";
+					mes "[Pesquisador Louva-a-Deus]";
 					mes "Por favor mate 50 Louva-Deus para tornar esse lugar um pouco mais populoso.";
 					close;
 				}
 			}
 		}
-		mes "[Caçador de Dragões]";
+		mes "[Pesquisador Louva-a-Deus]";
     mes "Incrível, você foi rápido.";
-		getexp 151300,60520;
-		erasequest 60182;
+		getexp 18818,7527;
+		erasequest 60179;
 		close;
 	}
-	if ((BaseLevel > 49) && (BaseLevel < 91)) {
-		mes "[Caçador de Dragões]";
+	if ((BaseLevel > 34) && (BaseLevel < 71)) {
+		mes "[Pesquisador Louva-a-Deus]";
 		mes "Ah ótimo!";
 		mes "Você está aqui para me ajudar certo?";
 		mes "Se não, eu não sei o que farei com os Monstros deste lugar!";
 		next;
 		switch(select("Claro:Não")) {
 		case 1:
-			mes "[Caçador de Dragões]";
+			mes "[Pesquisador Louva-a-Deus]";
 			mes "Ótimo! Eu sabia desde o momento que eu o vi que poderia contar com você!";
 			mes "Eu preciso de você para reduzir a quantidade de monstros que estão furiosos neste Mapa!";
-			mes "Há muitos Zhu Po Long, isso torna impossível para os jogadores de nível mais baixo frequentarem esse lugar.";
+			mes "Há muitos Louva-a-Deus, isso torna impossível para os jogadores de nível mais baixo frequentarem esse lugar.";
 			next;
-			mes "[Caçador de Dragões]";
+			mes "[Pesquisador Louva-a-Deus]";
 			mes "Então, você pode me ajudar?";
 			next;
 			switch(select("Claro:Cancelar")) {
 			case 1:
 				if(BaseLevel > 70){
-					mes "[Caçador de Dragões]";
-					mes "Obrigado por sua grande ajuda com o Zhu Po Long!";
+					mes "[Pesquisador Louva-a-Deus]";
+					mes "Obrigado por sua grande ajuda com o Louva-a-Deus!";
 					mes "Atualmente a situação é estável e eu não estou precisando de sua ajuda para matá-los.";
 					close;
 				}
-				mes "[Caçador de Dragões]";
-				mes "Mate 50 Zhu Po Long e me avise quando terminar. Vou recompensá-lo por seus esforços.";
-				setquest 60182;
+				mes "[Pesquisador Louva-a-Deus]";
+				mes "Mate 50 Louva-a-Deus e me avise quando terminar. Vou recompensá-lo por seus esforços.";
+				setquest 60179;
 				close;
 			case 2:
-				mes "[Caçador de Dragões]";
+				mes "[Pesquisador Louva-a-Deus]";
 				mes "Se você mudar de idéia, por favor volte.";
 				close;
 			}
 		case 2:
-			mes "[Caçador de Dragões]";
+			mes "[Pesquisador Louva-a-Deus]";
       mes "Se você mudar de idéia, por favor volte.";
 			close;
 		}
 	}
-	mes "[Caçador de Dragões]";
+	mes "[Pesquisador Louva-a-Deus]";
 	mes "Que pena!";
 	next;
 	mes "[Homem Morto]";

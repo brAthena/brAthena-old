@@ -1,0 +1,160 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: Quests Repetíveis de Experiência       |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.0/1.0/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Quests Repetíveis de Experiência            |
+//   |               (Mascarado e Loli Ruri)                  |                     
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Cabeçalho Criado [Holy]                            |
+//   | 1.1 Tradução PT-BR [Holy]                              |
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+nif_fild02,332,327,4	script	Homem Morto	795,{
+
+	if (checkquest(60173) != -1) {
+		if (checkquest(60173,HUNTING) != 2 ) {
+			mes "[Homem Morto]";
+			mes "Você terminou de caçar os 50 Mascarados?";
+			next;
+			switch(select("Sim:Não:Eu quero sair")) {
+			case 1:
+				mes "[Homem Morto]";
+				mes "Hum, Eu acho que você não caçou os 50 ainda...";
+				close;
+			case 2:
+				mes "[Homem Morto]";
+				mes "Lembre-se, eu preciso de ajuda para caçar Mascarados preciso caçar 50 deles.";
+				close;
+			case 3:
+				mes "[Homem Morto]";
+				mes "Tem certeza de que deseja parar de caçar?";
+				mes "Qualquer progresso que você tenha feito será apagado";
+				next;
+				switch(select("Sim:Não")) {
+				case 1:
+					mes "[Homem Morto]";
+					mes "Ok então, bem volte aqui se você mudar de idéia.";
+					erasequest 60173;
+					close;
+				case 2:
+					mes "[Homem Morto]";
+					mes "Por favor mate 50 Mascarados em ordem para que esse lugar se torne um lugar para obter experiência.";
+					close;
+				}
+			}
+		}
+		mes "[Homem Morto]";
+		mes "Incrível, você foi rápido.";
+		getexp 140600,95800;
+		erasequest 60173;
+		close;
+	}
+	if (checkquest(60176) != -1) {
+		if (checkquest(60176,HUNTING) != 2 ) {
+			mes "[Homem Morto]";
+			mes "Você terminou de caçar as 50 Loli Ruri?";
+			next;
+			switch(select("Sim:Não:Eu quero sair")) {
+			case 1:
+				mes "[Homem Morto]";
+				mes "Hum, Eu acho que você não caçou as 50 ainda...";
+				close;
+			case 2:
+				mes "[Homem Morto]";
+				mes "Lembre-se, eu preciso de ajuda para caçar Loli Ruri preciso caçar 50 delas.";
+				close;
+			case 3:
+				mes "[Homem Morto]";
+				mes "Tem certeza de que deseja parar de caçar?";
+				mes "Qualquer progresso que você tenha feito será apagado";
+				next;
+				switch(select("Sim:Não")) {
+				case 1:
+					mes "[Homem Morto]";
+					mes "Ok então, bem volte aqui se você mudar de idéia.";
+					erasequest 60176;
+					close;
+				case 2:
+					mes "[Homem Morto]";
+					mes "Por favor mate 50 Loli Ruri em ordem para que esse lugar se torne um lugar para obter experiência.";
+					close;
+				}
+			}
+		}
+		mes "[Homem Morto]";
+		mes "Incrível, você foi rápido.";
+		getexp 332000,239500;
+		erasequest 60176;
+		close;
+	}
+	if ((BaseLevel > 59) && (BaseLevel < 99)) {
+		mes "[Homem Morto]";
+		mes "Que ótimo!";
+		mes "Você está aqui para me ajudar certo?";
+		mes "Se não, eu não sei o que fazer com os Monstros deste lugar!";
+		next;
+		switch(select("Claro:Não")) {
+		case 1:
+			mes "[Homem Morto]";
+			mes "Ótimo! Eu sabia desde o momento que eu o vi que poderia contar com você!";
+			mes "Eu preciso de você para reduzir a quantidade de monstros que estão furiosos neste Mapa!";
+			mes "Há muitos Mascarados e Loli Ruris por aqui, isso torna impossível para os jogadores de nível mais baixo frequentarem esse lugar.";
+			next;
+			mes "[Homem Morto]";
+			mes "Então, qual desses monstros que você gostaria de caçar para mim?";
+			next;
+			switch(select("Mascarado:Loli Ruri:Cancelar")) {
+			case 1:
+				if(BaseLevel > 90){
+					mes "[Homem Morto]";
+					mes "Obrigado por sua grande ajuda com o Mascarado!";
+					mes "Atualmente a situação é estável e eu não estou precisando de sua ajuda para matá-los.";
+					close;
+				}
+				mes "[Homem Morto]";
+				mes "Mate 50 Mascarados e me avise quando terminar. Vou recompensá-lo por seus esforços.";
+				setquest 60173;
+				close;
+			case 2:
+				if(BaseLevel > 98){
+					mes "[Homem Morto]";
+					mes "Obrigado por sua grande ajuda com a Loli Ruri!";
+					mes "Atualmente a situação é estável e eu não estou precisando de sua ajuda para matá-los.";
+					close;
+				}
+				mes "[Homem Morto]";
+				mes "Mate 50 Loli Ruris e me avise quando terminar. Vou recompensá-lo por seus esforços.";
+				setquest 60176;
+				close;
+			case 3:
+				mes "[Homem Morto]";
+				mes "Se você mudar de idéia, por favor volte.";
+				close;
+			}
+		case 2:
+			mes "[Homem Morto]";
+			mes "Se você mudar de idéia, por favor volte.";
+			close;
+		}
+	}
+	mes "[Homem Morto]";
+	mes "Que pena!";
+	next;
+	mes "[Homem Morto]";
+	mes "Desculpe não posso falar agora estou com muita dor, esses Mascarados e Loli Ruris vão me matar.";
+	close;
+}

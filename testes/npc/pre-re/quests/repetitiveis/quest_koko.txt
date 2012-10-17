@@ -15,7 +15,7 @@
 //   | Versões eA/rA/brA: 1.0/1.0/1.1                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Quests Repetíveis de Experiência            |
-//   |                 (Pele de Minhoca)                      |                     
+//   |                      (Avelãs)                          |                     
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Cabeçalho Criado [Holy]                            |
@@ -23,224 +23,226 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-moc_fild17,208,346,5	script	Shone#Hode_Caça	707,{
-	if (checkquest(60104) != -1) {
-		if (checkquest(60104,HUNTING) != 2 ) {
-			mes "[Shone]";
-			mes "Você terminou de caçar os 50 Hodes?";
+mjolnir_01,293,20,3	script	Nutters#Koko_Caça	779,{
+	if (checkquest(60113) != -1) {
+		if (checkquest(60113,HUNTING) != 2 ) {
+			mes "[Nutters]";
+			mes "Você terminou de caçar os 50 Kokos?";
 			next;
 			switch(select("Sim:Não:Eu quero sair")) {
 			case 1:
-				mes "[Shone]";
+				mes "[Nutters]";
 				mes "Hum, Eu acho que você não caçou os 50 ainda...";
 				close;
 			case 2:
-				mes "[Shone]";
-				mes "Lembre-se, eu preciso de ajuda para caçar Hodes preciso caçar 50 deles.";
+				mes "[Nutters]";
+				mes "Lembre-se, eu preciso de ajuda para caçar Kokos preciso caçar 50 deles.";
 				close;
 			case 3:
-				mes "[Shone]";
+				mes "[Nutters]";
 				mes "Tem certeza de que deseja parar de caçar?";
 				mes "Qualquer progresso que você tenha feito será apagado";
 				next;
 				switch(select("Sim:Não")) {
 				case 1:
-					mes "[Shone]";
+					mes "[Nutters]";
 					mes "Ok então, bem volte aqui se você mudar de idéia.";
-					erasequest 60104;
+					erasequest 60113;
 					close;
 				case 2:
-					mes "[Shone]";
-					mes "Por favor mate 50 Hodes.";
+					mes "[Nutters]";
+					mes "Por favor mate 50 Kokos.";
 					close;
 				}
 			}
 		}
 		else {
-			mes "[Shone]";
+			mes "[Nutters]";
 			mes "Incrível, você foi rápido.";
-			getexp 15775,1125;
-			erasequest 60104;
+			getexp 3600,3905;
+			erasequest 60113;
 			close;
 		}
 	}
-	if (checkquest(60105) != -1) {
-		if (checkquest(60105,HUNTING) != 2 ) {
-			mes "[Shone]";
-			mes "Você terminou de caçar os 100 Hodes?";
+	if (checkquest(60114) != -1) {
+		if (checkquest(60114,HUNTING) != 2 ) {
+			mes "[Nutters]";
+			mes "Você terminou de caçar os 100 Kokos?";
 			next;
 			switch(select("Sim:Não:Eu quero sair")) {
 			case 1:
-				mes "[Shone]";
+				mes "[Nutters]";
 				mes "Hum, Eu acho que você não caçou os 100 ainda...";
 				close;
 			case 2:
-				mes "[Shone]";
-				mes "Lembre-se, eu preciso de ajuda para caçar Hodes preciso caçar 100 deles.";
+				mes "[Nutters]";
+				mes "Lembre-se, eu preciso de ajuda para caçar Kokos preciso caçar 100 deles.";
 				close;
 			case 3:
-				mes "[Shone]";
+				mes "[Nutters]";
 				mes "Tem certeza de que deseja parar de caçar?";
 				mes "Qualquer progresso que você tenha feito será apagado";
 				next;
 				switch(select("Sim:Não")) {
 				case 1:
-					mes "[Shone]";
+					mes "[Nutters]";
 					mes "Ok então, bem volte aqui se você mudar de idéia.";
-					erasequest 60105;
+					erasequest 60114;
 					close;
 				case 2:
-					mes "[Shone]";
-					mes "Por favor mate 100 Hodes.";
+					mes "[Nutters]";
+					mes "Por favor mate 100 Kokos.";
 					close;
 				}
 			}
 		}
 		else {
-			mes "[Shone]";
+			mes "[Nutters]";
 			mes "Incrível, você foi rápido.";
-			getexp 15775,1125;
-			getexp 15775,1125;
-			erasequest 60105;
+			getexp 3600,3905;
+			getexp 3600,3905;
+			erasequest 60114;
 			close;
 		}
 	}
-	if (checkquest(60106) != -1) {
-		if (checkquest(60106,HUNTING) != 2 ) {
-			mes "[Shone]";
-			mes "Você terminou de caçar os 150 Hodes?";
+	if (checkquest(60115) != -1) {
+		if (checkquest(60115,HUNTING) != 2 ) {
+			mes "[Nutters]";
+			mes "Você terminou de caçar os 150 Kokos?";
 			next;
 			switch(select("Sim:Não:Eu quero sair")) {
 			case 1:
-				mes "[Shone]";
+				mes "[Nutters]";
 				mes "Hum, Eu acho que você não caçou os 150 ainda...";
 				close;
 			case 2:
-				mes "[Shone]";
-				mes "Lembre-se, eu preciso de ajuda para caçar Hodes preciso caçar 150 deles.";
+				mes "[Nutters]";
+				mes "Lembre-se, eu preciso de ajuda para caçar Kokos preciso caçar 150 deles.";
 				close;
 			case 3:
-				mes "[Shone]";
+				mes "[Nutters]";
 				mes "Tem certeza de que deseja parar de caçar?";
 				mes "Qualquer progresso que você tenha feito será apagado";
 				next;
 				switch(select("Sim:Não")) {
 				case 1:
-					mes "[Shone]";
+					mes "[Nutters]";
 					mes "Ok então, bem volte aqui se você mudar de idéia.";
-					erasequest 60106;
+					erasequest 60115;
 					close;
 				case 2:
-					mes "[Shone]";
-					mes "Por favor mate 150 Hodes.";
+					mes "[Nutters]";
+					mes "Por favor mate 150 Kokos.";
 					close;
 				}
 			}
 		}
 		else {
-			mes "[Shone]";
+			mes "[Nutters]";
 			mes "Incrível, você foi rápido.";
-			getexp 15775,1125;
-			getexp 15775,1125;
-			getexp 15775,1125;
-			erasequest 60106;
+			getexp 3600,3905;
+			getexp 3600,3905;
+			getexp 3600,3905;
+			erasequest 60115;
 			close;
 		}
 	}
-	if (BaseLevel > 24) {
-		if (BaseLevel < 61) {
-			mes "[Shone]";
-			mes "Espere! Você pode me ver?";
-			mes "Oh, bem eu ainda não domino as minhas habilidades.";
-			next;
-			mes "[Shone]";
-			mes "Ei você gostaria de me ajudar?";
+	if (BaseLevel > 17) {
+		if (BaseLevel < 60) {
+			mes "[Nutters]";
+			mes "Eu..Eu simplesmente não consigo encontrar nenhum.";
+			mes "Os Kokos esconderam todos os Avelãs.";
+			mes "Você acha que você poderia me ajudar?";
 			next;
 			switch(select("Claro:Não")) {
 			case 1:
-				mes "[Shone]";
-				mes "Muito obrigado!";
+				mes "[Nutters]";
+				mes "Ah, que ótimo! Eu sabia que podia contar com você, só de olhar para você!";
 				next;
-				switch(select("Reunir Itens:Caçar Hodes:Cancelar")) {
+				switch(select("Reunir Itens:Caçar Kokos:Cancelar")) {
 				case 1:
-					mes "[Shone]";
-					mes "Eu estou tentando recolher ^00CE0025 Peles de Minhoca^000000.";
-					mes "Eu irei premiá-lo se você me ajudar.";
+					mes "[Nutters]";
+					mes "Você pode me ajudar a encontrar ^00CE0025 Avelãs^000000.";
+					mes "Eu vou recompensá-lo com muito se você puder.";
 					next;
-					switch(select("Eu possuo 25 Peles de Minhoca:O que é?")) {
+					switch(select("Eu tenho 25 Avelãs:Por favor, venha novamente?")) {
 					case 1:
 						/*
-						if (checkweight(502,10) == 0) {
-							mes "[Shone]";
+						if (checkweight(502,5) == 0) {
+							mes "[Nutters]";
 							mes "Ei, parece que você está carregando";
 							mes "um peso bastante pesado. Volte após";
 							mes "reduzir sua quantidade de peso.";
 							close;
 						}
 						*/
-						if (countitem(1055) > 24) {
-							mes "Obrigado por me trazer 25 Peles";
-							mes "de Minhoca!";
-							mes "Aqui está a recompensa eu prometi, espero aproveitar essa sabedoria que passaram para você e compartilhar com os outros.";
-							delitem 1055,25; // Peles de Minhoca
-							getexp 15775,1125;
-							//getitem 502,10; // Poção Laranja
+						if (countitem(1026) > 24) {
+							mes "[Nutters]";
+							mes "Que maravilha você descobriu onde eles as esconderam.";
+							mes "Me dá, me dá!!!";
+							next;
+							mes "[Nutters]";
+							mes "Está certo, desculpe, eu adoro assar Avelãs. Hum.";
+							mes "Aqui está o que eu prometi.";
+							delitem 1026,25; // Avelã
+							getexp 3600,3905;
+							//getitem 502,5; // Poção Laranja
 							close;
 						}
 						else {
-							mes "[Shone]";
-							mes "Eu não vejo nenhuma ^00CE00Pele de Minhoca^000000.";
-							mes "Você está tentando me enganar?";
+							mes "[Nutters]";
+							mes "Onde estão as minhas ^00CE00Avelãs^000000?";
+							mes "Ei, eu não estou brincando, é melhor não provocar.";
 							close;
 						}
 					case 2:
-						mes "[Shone]";
-						mes "Eu preciso de ^00CE0025 Peles de Minhoca^000000.";
+						mes "[Nutters]";
+						mes "Eu preciso de ^00CE0025 Avelãs^000000.";
 						close;
 					}
 				case 2:
-					mes "[Shone]";
-					mes "Ah, ok acho que você pode me ajudar a caçar alguns Hodes.";
-					mes "Quantos você gostaria de caçar?";
+					mes "[Nutters]";
+					mes "Ah, ok eu acho que você pode me ajudar a caçar alguns Kokos.";
+					mes "Quantos você gostaria de Caçar?";
 					next;
-					switch(select("50 Hodes:100 Hodes:150 Hodes")) {
+					switch(select("50 Kokos:100 Kokos:150 Kokos")) {
 					case 1:
-						mes "[Shone]";
+						mes "[Nutters]";
 						mes "Volte quando tiver terminado sua tarefa e eu vou te dar uma pequena recompensa.";
-						setquest 60104;
+						setquest 60113;
 						close;
 					case 2:
-						mes "[Shone]";
+						mes "[Nutters]";
 						mes "Volte quando tiver terminado sua tarefa e eu vou te dar uma pequena recompensa.";
-						setquest 60105;
+						setquest 60114;
 						close;
 					case 3:
-						mes "[Shone]";
+						mes "[Nutters]";
 						mes "Volte quando tiver terminado sua tarefa e eu vou te dar uma pequena recompensa.";
-						setquest 60106;
+						setquest 60115;
 						close;
 					}
 				case 3:
-					mes "[Shone]";
+					mes "[Nutters]";
 					mes "Se você mudar de idéia, por favor volte.";
 					close;
 				}
 			case 2:
-				mes "[Shone]";
-				mes "Se você mudar de idéia, por favor volte.";
+				mes "[Nutters]";
+        mes "Se você mudar de idéia, por favor volte.";
 				close;
 			}
 		}
 		else {
-			mes "[Shone]";
-			mes "Você é muito forte para lutar essas coisas!";
+			mes "[Nutters]";
+			mes "Você é muito forte para estar combatendo essas coisas!";
 			close;
 		}
 	}
 	else {
-		mes "[Shone]";
-		mes "Você precisa de alguma ajuda, mas eu não posso fazer isso para você.";
-		mes "Volte quando você estiver mais forte e ganhar muito mais sabedoria.";
+		mes "[Nutters]";
+		mes "Você é muito forte para estar combatendo essas coisas por mim.";
+		mes "Você pode ficar um pouco maior, retornar?";
 		close;
 	}
 }

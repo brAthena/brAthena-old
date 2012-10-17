@@ -1,55 +1,64 @@
-//===== rAthena Script =======================================
-//= iRO Repeatable EXP Quests.
-//===== By: ==================================================
-//= L0ne_W0lf
-//===== Current Version: =====================================
-//= 1.0
-//===== Compatible With: =====================================
-//= rAthena SVN
-//===== Description: =========================================
-//= [Aegis Conversion]
-//= Added Monster Killing quests.
-//= Repeatable EXP Quest (Stone Hearts)
-//===== Additional Comments: =================================
-//= 1.0 First version.
-//============================================================
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: Quests Repetíveis de Experiência       |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.0/1.0/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Quests Repetíveis de Experiência            |
+//   |                  (Coração de Pedra)                    |                     
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Cabeçalho Criado [Holy]                            |
+//   | 1.1 Tradução PT-BR [Holy]                              |
+//   | - Anotações                                            |
+//   \________________________________________________________/
 
-moc_fild11,57,138,0	script	Private Jeremy#hunt	707,{
+moc_fild11,57,138,0	script	Jeremy#Caça_G	707,{
 	if (checkquest(60140) != -1) {
 		if (checkquest(60140,HUNTING) != 2 ) {
-			mes "[Private Jeremy]";
-			mes "Have you finished hunting the 50 Golems?";
+			mes "[Jeremy]";
+			mes "Você terminou de caçar os 50 Golens?";
 			next;
-			switch(select("Yes:No:I want to quit")) {
+			switch(select("Sim:Não:Eu quero sair")) {
 			case 1:
-				mes "[Private Jeremy]";
-				mes "Hmm, I don't think you've hunted 50 yet...";
+				mes "[Jeremy]";
+				mes "Hum, Eu acho que você não caçou os 50 ainda...";
 				close;
 			case 2:
-				mes "[Private Jeremy]";
-				mes "Remember, I need help hunting Golems so go and hunt 50 of them.";
+				mes "[Jeremy]";
+				mes "Lembre-se, eu preciso de ajuda para caçar Golens preciso caçar 50 deles.";
 				close;
 			case 3:
-				mes "[Private Jeremy]";
-				mes "Are you sure that you want to stop hunting?";
-				mes "Any progress that you've made will be erased";
+				mes "[Jeremy]";
+				mes "Tem certeza de que deseja parar de caçar?";
+				mes "Qualquer progresso que você tenha feito será apagado";
 				next;
-				switch(select("Yes:No")) {
+				switch(select("Sim:Não")) {
 				case 1:
-					mes "[Private Jeremy]";
-					mes "Ok then, well come back here if you change your mind.";
+					mes "[Jeremy]";
+					mes "Ok então, bem volte aqui se você mudar de idéia.";
 					erasequest 60140;
 					close;
 				case 2:
-					mes "[Private Jeremy]";
-					mes "Please kill 50 Golems.";
+					mes "[Jeremy]";
+					mes "Por favor mate 50 Golens.";
 					close;
 				}
 			}
 		}
 		else {
-			mes "[Private Jeremy]";
-			mes "Amazing, you did that with speed.";
+			mes "[Jeremy]";
+			mes "Incrível, você foi rápido.";
 			getexp 14000,9000;
 			erasequest 60140;
 			close;
@@ -57,39 +66,39 @@ moc_fild11,57,138,0	script	Private Jeremy#hunt	707,{
 	}
 	if (checkquest(60141) != -1) {
 		if (checkquest(60141,HUNTING) != 2 ) {
-			mes "[Private Jeremy]";
-			mes "Have you finished hunting the 50 Golems?";
+			mes "[Jeremy]";
+			mes "Você terminou de caçar os 100 Golens?";
 			next;
-			switch(select("Yes:No:I want to quit")) {
+			switch(select("Sim:Não:Eu quero sair")) {
 			case 1:
-				mes "[Private Jeremy]";
-				mes "Hmm, I don't think you've hunted 100 yet...";
+				mes "[Jeremy]";
+				mes "Hum, Eu acho que você não caçou os 100 ainda...";
 				close;
 			case 2:
-				mes "[Private Jeremy]";
-				mes "Remember, I need help hunting Golems so go and hunt 100 of them.";
+				mes "[Jeremy]";
+				mes "Lembre-se, eu preciso de ajuda para caçar Golens preciso caçar 100 deles.";
 				close;
 			case 3:
-				mes "[Private Jeremy]";
-				mes "Are you sure that you want to stop hunting?";
-				mes "Any progress that you've made will be erased";
+				mes "[Jeremy]";
+				mes "Tem certeza de que deseja parar de caçar?";
+				mes "Qualquer progresso que você tenha feito será apagado";
 				next;
-				switch(select("Yes:No")) {
+				switch(select("Sim:Não")) {
 				case 1:
-					mes "[Private Jeremy]";
-					mes "Ok then, well come back here if you change your mind.";
+					mes "[Jeremy]";
+					mes "Ok então, bem volte aqui se você mudar de idéia.";
 					erasequest 60141;
 					close;
 				case 2:
-					mes "[Private Jeremy]";
-					mes "Please kill 100 Golems.";
+					mes "[Jeremy]";
+					mes "Por favor mate 100 Golens.";
 					close;
 				}
 			}
 		}
 		else {
-			mes "[Private Jeremy]";
-			mes "Amazing, you did that with speed.";
+			mes "[Jeremy]";
+			mes "Incrível, você foi rápido.";
 			getexp 14000,9000;
 			getexp 14000,9000;
 			erasequest 60141;
@@ -98,39 +107,39 @@ moc_fild11,57,138,0	script	Private Jeremy#hunt	707,{
 	}
 	if (checkquest(60142) != -1) {
 		if (checkquest(60142,HUNTING) != 2 ) {
-			mes "[Private Jeremy]";
-			mes "Have you finished hunting the 150 Golems?";
+			mes "[Jeremy]";
+			mes "Você terminou de caçar os 150 Golens?";
 			next;
-			switch(select("Yes:No:I want to quit")) {
+			switch(select("Sim:Não:Eu quero sair")) {
 			case 1:
-				mes "[Private Jeremy]";
-				mes "Hmm, I don't think you've hunted 150 yet...";
+				mes "[Jeremy]";
+				mes "Hum, Eu acho que você não caçou os 150 ainda...";
 				close;
 			case 2:
-				mes "[Private Jeremy]";
-				mes "Remember, I need help hunting Golems so go and hunt 150 of them.";
+				mes "[Jeremy]";
+				mes "Lembre-se, eu preciso de ajuda para caçar Golens preciso caçar 150 deles.";
 				close;
 			case 3:
-				mes "[Private Jeremy]";
-				mes "Are you sure that you want to stop hunting?";
-				mes "Any progress that you've made will be erased";
+				mes "[Jeremy]";
+				mes "Tem certeza de que deseja parar de caçar?";
+				mes "Qualquer progresso que você tenha feito será apagado";
 				next;
-				switch(select("Yes:No")) {
+				switch(select("Sim:Não")) {
 				case 1:
-					mes "[Private Jeremy]";
-					mes "Ok then, well come back here if you change your mind.";
+					mes "[Jeremy]";
+					mes "Ok então, bem volte aqui se você mudar de idéia.";
 					erasequest 60142;
 					close;
 				case 2:
-					mes "[Private Jeremy]";
-					mes "Please kill 150 Golems.";
+					mes "[Jeremy]";
+					mes "Por favor mate 150 Golens.";
 					close;
 				}
 			}
 		}
 		else {
-			mes "[Private Jeremy]";
-			mes "Amazing, you did that with speed.";
+			mes "[Jeremy]";
+			mes "Incrível, você foi rápido.";
 			getexp 14000,9000;
 			getexp 14000,9000;
 			getexp 14000,9000;
@@ -138,95 +147,89 @@ moc_fild11,57,138,0	script	Private Jeremy#hunt	707,{
 			close;
 		}
 	}
-	//for minimum level
 	if (BaseLevel > 24) {
-		//for maximum level
 		if (BaseLevel < 61) {
-			mes "[Private Jeremy]";
-			mes "Greetings citizen!";
-			mes "Say, how would you like to help me?";
+			mes "[Jeremy]";
+			mes "Saudações cidadão!";
+			mes "Diga, como você gostaria de me ajudar?";
 			next;
-			switch(select("Sure:No")) {
+			switch(select("Claro:Não")) {
 			case 1:
-				mes "[Private Jeremy]";
-				mes "Thanks! I really appreciate it.";
+				mes "[Jeremy]";
+				mes "Obrigado! Eu realmente sou muito grato.";
 				next;
-				switch(select("Gather Items:Hunt Golems:Cancel")) {
+				switch(select("Reunir Itens:Caçar Golens:Cancelar")) {
 				case 1:
-					// Item turn in
-					mes "[Private Jeremy]";
-					mes "The Morroc Guard needs ^FF0000Stone Hearts^000000 for our training regimen.";
+					mes "[Jeremy]";
+					mes "A Guarda de Morroc precisa de ^FF0000Corações de Pedra^000000 para o seu regime de treinamento.";
 					next;
-					switch(select("I have Stone Hearts:What did you need?")) {
+					switch(select("Eu possu Corações de Pedra:O que você precisa?")) {
 					case 1:
 						if (countitem(953) > 24) {
-							mes "[Private Jeremy]";
-							mes "The Morroc Guard thanks you, citizen.";
-							delitem 953,25; //Stone_Heart
+							mes "[Jeremy]";
+							mes "A Guarda de Morroc agradece, cidadão.";
+							delitem 953,25; // Coração de Pedra
 							getexp 14000,9000;
 							close;
 						}
 						else {
-							mes "[Private Jeremy]";
-							mes "It doesn't look like you have enough.";
+							mes "[Jeremy]";
+							mes "Me parece que você não possui a quantidade suficiente.";
 							next;
-							mes "[Private Jeremy]";
-							mes "The Morroc Guard needs ^FF000025 Stone Hearts^000000, for our training regimen.";
+							mes "[Jeremy]";
+							mes "A Guarda de Morroc precisa de ^FF000025 Corações de Pedra^000000, para o seu regime de treinamento.";
 							close;
 						}
 					case 2:
-						mes "[Private Jeremy]";
-						mes "The Morroc Guard needs ^FF000025 Stone Hearts^000000, for our training regimen.";
+						mes "[Jeremy]";
+						mes "A Guarda de Morroc precisa de ^FF000025 Corações de Pedra^000000, para o seu regime de treinamento.";
 						close;
 					}
 				case 2:
-					// Kill Count Quest
-					mes "[Private Jeremy]";
-					mes "Ah, ok I think you can help me out by hunting some Golems.";
-					mes "How many would you like to hunt?";
+					mes "[Jeremy]";
+					mes "Ah, ok, eu acho que você pode me ajudar a caçar alguns Golens.";
+					mes "Quantos você gostaria de caçar?";
 					next;
-					switch(select("50 Golems:100 Golems:150 Golems")) {
+					switch(select("50 Golens:100 Golens:150 Golens")) {
 					case 1:
-						mes "[Private Jeremy]";
-						mes "Come back when you've finished your task and I will give you a small reward.";
+						mes "[Jeremy]";
+						mes "Volte quando tiver terminado sua tarefa e eu vou te dar uma pequena recompensa.";
 						setquest 60140;
 						close;
 					case 2:
-						mes "[Private Jeremy]";
-						mes "Come back when you've finished your task and I will give you a small reward.";
+						mes "[Jeremy]";
+						mes "Volte quando tiver terminado sua tarefa e eu vou te dar uma pequena recompensa.";
 						setquest 60141;
 						close;
 					case 3:
-						mes "[Private Jeremy]";
-						mes "Come back when you've finished your task and I will give you a small reward.";
+						mes "[Jeremy]";
+						mes "Volte quando tiver terminado sua tarefa e eu vou te dar uma pequena recompensa.";
 						setquest 60142;
 						close;
 					}
 				case 3:
-					mes "[Private Jeremy]";
-					mes "If you change your mind, please come back.";
+					mes "[Jeremy]";
+					mes "Se você mudar de idéia, por favor volte.";
 					close;
 				}
 			case 2:
-				mes "[Private Jeremy]";
-				mes "If you change your mind, please come back.";
+				mes "[Jeremy]";
+				mes "Se você mudar de idéia, por favor volte.";
 				close;
 			}
 		}
 		else {
-			mes "[Private Jeremy]";
-			mes "Greetings citizen!";
+			mes "[Jeremy]";
+			mes "Saudações cidadão!";
 			next;
-			mes "[Private Jeremy]";
-			mes "Please do not interrupt my mission for the Morroc Guard.";
+			mes "[Jeremy]";
+			mes "Por favor não interrompa a minha missão.";
 			close;
 		}
 	}
 	else {
-		mes "[Private Jeremy]";
-		mes "It is dangerous here citizen.";
+		mes "[Jeremy]";
+		mes "É perigoso viver aqui.";
 		close;
 	}
 }
-
-

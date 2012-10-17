@@ -1,0 +1,246 @@
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: Quests Repetíveis de Experiência       |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.0/1.0/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Quests Repetíveis de Experiência            |
+//   |                   (Chifre de Bode)                     |                     
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Cabeçalho Criado [Holy]                            |
+//   | 1.1 Tradução PT-BR [Holy]                              |
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+ein_fild06,82,171,0	script	Agricultor Vegetal#Bodes	919,{
+	if (checkquest(60137) != -1) {
+		if (checkquest(60137,HUNTING) != 2 ) {
+			mes "[Agricultor Vegetal]";
+			mes "Você terminou de caçar os 50 Bodes?";
+			next;
+			switch(select("Sim:Não:Eu quero sair")) {
+			case 1:
+				mes "[Agricultor Vegetal]";
+				mes "Hum, Eu acho que você não caçou os 50 ainda...";
+				close;
+			case 2:
+				mes "[Agricultor Vegetal]";
+				mes "Lembre-se, eu preciso de ajuda para caçar Bodes preciso caçar 50 deles.";
+				close;
+			case 3:
+				mes "[Agricultor Vegetal]";
+				mes "Tem certeza de que deseja parar de caçar?";
+				mes "Qualquer progresso que você tenha feito será apagado";
+				next;
+				switch(select("Sim:Não")) {
+				case 1:
+					mes "[Agricultor Vegetal]";
+					mes "Ok então, bem volte aqui se você mudar de idéia.";
+					erasequest 60137;
+					close;
+				case 2:
+					mes "[Agricultor Vegetal]";
+					mes "Por favor mate 50 Bodes para que eu possa cultivar meus legumes sem quaisquer preocupação.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Agricultor Vegetal]";
+			mes "Incrível, você foi rápido.";
+			getexp 258489,155155;
+			erasequest 60137;
+			close;
+		}
+	}
+	if (checkquest(60138) != -1) {
+		if (checkquest(60138,HUNTING) != 2) {
+			mes "[Agricultor Vegetal]";
+			mes "Você terminou de caçar os 100 Bodes?";
+			next;
+			switch(select("Sim:Não:Eu quero sair")) {
+			case 1:
+				mes "[Agricultor Vegetal]";
+				mes "Hum, Eu acho que você não caçou os 100 ainda...";
+				close;
+			case 2:
+				mes "[Agricultor Vegetal]";
+				mes "Lembre-se, eu preciso de ajuda para caçar Bodes preciso caçar 50 deles.";
+				close;
+			case 3:
+				mes "[Agricultor Vegetal]";
+				mes "Tem certeza de que deseja parar de caçar?";
+				mes "Qualquer progresso que você tenha feito será apagado";
+				next;
+				switch(select("Sim:Não")) {
+				case 1:
+					mes "[Agricultor Vegetal]";
+					mes "Ok então, bem volte aqui se você mudar de idéia.";
+					erasequest 60138;
+					close;
+				case 2:
+					mes "[Agricultor Vegetal]";
+					mes "Por favor mate 100 Bodes para que eu possa cultivar meus legumes sem quaisquer preocupação.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Agricultor Vegetal]";
+			mes "Incrível, você foi rápido.";
+			getexp 258489,155155;
+			getexp 258489,155155;
+			erasequest 60138;
+			close;
+		}
+	}
+	if (checkquest(60139) != -1) {
+		if (checkquest(60139,HUNTING) != 2) {
+			mes "[Agricultor Vegetal]";
+			mes "Você terminou de caçar os 150 Bodes?";
+			next;
+			switch(select("Sim:Não:Eu quero sair")) {
+			case 1:
+				mes "[Agricultor Vegetal]";
+				mes "Hum, Eu acho que você não caçou os 150 ainda...";
+				close;
+			case 2:
+				mes "[Agricultor Vegetal]";
+				mes "Lembre-se, eu preciso de ajuda para caçar Bodes preciso caçar 50 deles.";
+				close;
+			case 3:
+				mes "[Agricultor Vegetal]";
+				mes "Tem certeza de que deseja parar de caçar?";
+				mes "Qualquer progresso que você tenha feito será apagado";
+				next;
+				switch(select("Sim:Não")) {
+				case 1:
+					mes "[Agricultor Vegetal]";
+					mes "Ok então, bem volte aqui se você mudar de idéia.";
+					erasequest 60139;
+					close;
+				case 2:
+					mes "[Agricultor Vegetal]";
+					mes "Por favor mate 150 Bodes para que eu possa cultivar meus legumes sem quaisquer preocupação.";
+					close;
+				}
+			}
+		}
+		else {
+			mes "[Agricultor Vegetal]";
+			mes "Incrível, você foi rápido.";
+			getexp 258489,155155;
+			getexp 258489,155155;
+			getexp 258489,155155;
+			erasequest 60139;
+			close;
+		}
+	}
+	if (BaseLevel > 69) {
+		if (BaseLevel < 85) {
+			mes "[Agricultor Vegetal]";
+			mes "Ah ótimo!";
+			mes "Você pode me ajudar?";
+			mes "Se não, então eu estou em um mundo de dor.";
+			next;
+			switch(select("Claro:Não")) {
+			case 1:
+				mes "[Agricultor Vegetal]";
+				mes "Esses cabras continuam comendo minhas verduras.";
+				mes "Você pode fazer o que quiser para me ajudar?";
+				next;
+				switch(select("Reunir Itens:Caçar Bodes:Cancelar")) {
+				case 1:
+					mes "[Agricultor Vegetal]";
+					mes "Eu preciso de ^FF0000Antelope Horns^000000 para recompensar seu trabalho duro, eu irei recompensá-lo.";
+					next;
+					switch(select("Eu tenho Antelope Horns:O que você precisa?")) {
+					case 1:
+						/*
+						if (checkweight(504,10) == 0) {
+							mes "[Agricultor Vegetal]";
+							mes "Ei, parece que você está carregando";
+							mes "um peso bastante pesado. Volte após";
+							mes "reduzir sua quantidade de peso.";
+							close;
+						}
+						*/
+						if (countitem(7106) > 49) {
+							mes "[Agricultor Vegetal]";
+							mes "Excelente, você foi bastante rápido.";
+							mes "Sou realmente grato.";
+							delitem 7106,50; // Chifre de Bode
+							getexp 258489,155155;
+							//getitem 504,10; // Poção Branca
+							close;
+						}
+						else {
+							mes "[Agricultor Vegetal]";
+							mes "Me parece que você não possui a quantidade necessária.";
+							next;
+							mes "[Agricultor Vegetal]";
+							mes "Preciso que você reuna ^FF000050 Antelope Horns^000000, e então eu poderei te recompensar.";
+							close;
+						}
+					case 2:
+						mes "[Agricultor Vegetal]";
+						mes "Preciso de ^FF000050 Antelope Horns^000000, e então eu poderei te recompensar.";
+						close;
+					}
+				case 2:
+					mes "[Agricultor Vegetal]";
+					mes "Obrigado.";
+					mes "Quantos Bodes gostaria de caçar?";
+					next;
+					switch(select("50 Bodes:100 Bodes:150 Bodes")) {
+					case 1:
+						mes "[Agricultor Vegetal]";
+						mes "Mate 50 desses Bodes e me avise quando terminar. Eu irei premiá-lo pelos seus esforços.";
+						setquest 60137;
+						close;
+					case 2:
+						mes "[Agricultor Vegetal]";
+						mes "Mate 100 desses Bodes e me avise quando terminar. Eu irei premiá-lo pelos seus esforços.";
+						setquest 60138;
+						close;
+					case 3:
+						mes "[Agricultor Vegetal]";
+						mes "Mate 150 desses Bodes e me avise quando terminar. Eu irei premiá-lo pelos seus esforços.";
+						setquest 60139;
+						close;
+					}
+				case 3:
+					mes "[Agricultor Vegetal]";
+					mes "Se você mudar de idéia, por favor volte.";
+					close;
+				}
+			case 2:
+				mes "[Agricultor Vegetal]";
+				mes "Se você mudar de idéia, por favor volte.";
+				close;
+			}
+		}
+		else {
+			mes "[Agricultor Vegetal]";
+			mes "Desculpe, eu não posso falar agora estou com muita dor, esses malditos Bodes vão me matar.";
+			close;
+		}
+	}
+	else {
+		mes "[Agricultor Vegetal]";
+		mes "Meus vegetais, onde é que todos vão?";
+		mes "Oh, não..não!!!";
+		close;
+	}
+}

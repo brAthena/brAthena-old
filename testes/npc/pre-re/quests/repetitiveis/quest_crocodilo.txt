@@ -15,7 +15,7 @@
 //   | Versões eA/rA/brA: 1.0/1.0/1.1                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Quests Repetíveis de Experiência            |
-//   |                 (Pele de Minhoca)                      |                     
+//   |                  (Pele de Anolian)                     |                     
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Cabeçalho Criado [Holy]                            |
@@ -23,224 +23,225 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-moc_fild17,208,346,5	script	Shone#Hode_Caça	707,{
-	if (checkquest(60104) != -1) {
-		if (checkquest(60104,HUNTING) != 2 ) {
-			mes "[Shone]";
-			mes "Você terminou de caçar os 50 Hodes?";
+cmd_fild01,362,256,3	script	Cuir#Crocodilos	106,{
+	if (checkquest(60119) != -1) {
+		if (checkquest(60119,HUNTING) != 2 ) {
+			mes "[Cuir]";
+			mes "Você terminou de caçar os 50 Crocodilos?";
 			next;
 			switch(select("Sim:Não:Eu quero sair")) {
 			case 1:
-				mes "[Shone]";
+				mes "[Cuir]";
 				mes "Hum, Eu acho que você não caçou os 50 ainda...";
 				close;
 			case 2:
-				mes "[Shone]";
-				mes "Lembre-se, eu preciso de ajuda para caçar Hodes preciso caçar 50 deles.";
+				mes "[Cuir]";
+				mes "Lembre-se, eu preciso de ajuda para caçar Crocodilos preciso caçar 50 deles.";
 				close;
 			case 3:
-				mes "[Shone]";
+				mes "[Cuir]";
 				mes "Tem certeza de que deseja parar de caçar?";
 				mes "Qualquer progresso que você tenha feito será apagado";
 				next;
 				switch(select("Sim:Não")) {
 				case 1:
-					mes "[Shone]";
+					mes "[Cuir]";
 					mes "Ok então, bem volte aqui se você mudar de idéia.";
-					erasequest 60104;
+					erasequest 60119;
 					close;
 				case 2:
-					mes "[Shone]";
-					mes "Por favor mate 50 Hodes.";
+					mes "[Cuir]";
+					mes "Por favor mate 50 Crocodilos.";
 					close;
 				}
 			}
 		}
 		else {
-			mes "[Shone]";
+			mes "[Cuir]";
 			mes "Incrível, você foi rápido.";
-			getexp 15775,1125;
-			erasequest 60104;
+			getexp 68950,43300;
+			erasequest 60119;
 			close;
 		}
 	}
-	if (checkquest(60105) != -1) {
-		if (checkquest(60105,HUNTING) != 2 ) {
-			mes "[Shone]";
-			mes "Você terminou de caçar os 100 Hodes?";
+	if (checkquest(60120) != -1) {
+		if (checkquest(60120,HUNTING) != 2 ) {
+			mes "[Cuir]";
+			mes "Você terminou de caçar os 100 Crocodilos?";
 			next;
 			switch(select("Sim:Não:Eu quero sair")) {
 			case 1:
-				mes "[Shone]";
+				mes "[Cuir]";
 				mes "Hum, Eu acho que você não caçou os 100 ainda...";
 				close;
 			case 2:
-				mes "[Shone]";
-				mes "Lembre-se, eu preciso de ajuda para caçar Hodes preciso caçar 100 deles.";
+				mes "[Cuir]";
+				mes "Lembre-se, eu preciso de ajuda para caçar Crocodilos preciso caçar 100 deles.";
 				close;
 			case 3:
-				mes "[Shone]";
+				mes "[Cuir]";
 				mes "Tem certeza de que deseja parar de caçar?";
 				mes "Qualquer progresso que você tenha feito será apagado";
 				next;
 				switch(select("Sim:Não")) {
 				case 1:
-					mes "[Shone]";
+					mes "[Cuir]";
 					mes "Ok então, bem volte aqui se você mudar de idéia.";
-					erasequest 60105;
+					erasequest 60120;
 					close;
 				case 2:
-					mes "[Shone]";
-					mes "Por favor mate 100 Hodes.";
+					mes "[Cuir]";
+					mes "Por favor mate 100 Crocodilos.";
 					close;
 				}
 			}
 		}
 		else {
-			mes "[Shone]";
+			mes "[Cuir]";
 			mes "Incrível, você foi rápido.";
-			getexp 15775,1125;
-			getexp 15775,1125;
-			erasequest 60105;
+			getexp 68950,43300;
+			getexp 68950,43300;
+			erasequest 60120;
 			close;
 		}
 	}
-	if (checkquest(60106) != -1) {
-		if (checkquest(60106,HUNTING) != 2 ) {
-			mes "[Shone]";
-			mes "Você terminou de caçar os 150 Hodes?";
+	if (checkquest(60121) != -1) {
+		if (checkquest(60121,HUNTING) != 2 ) {
+			mes "[Cuir]";
+			mes "Você terminou de caçar os 150 Crocodilos?";
 			next;
 			switch(select("Sim:Não:Eu quero sair")) {
 			case 1:
-				mes "[Shone]";
+				mes "[Cuir]";
 				mes "Hum, Eu acho que você não caçou os 150 ainda...";
 				close;
 			case 2:
-				mes "[Shone]";
-				mes "Lembre-se, eu preciso de ajuda para caçar Hodes preciso caçar 150 deles.";
+				mes "[Cuir]";
+				mes "Lembre-se, eu preciso de ajuda para caçar Crocodilos preciso caçar 150 deles.";
 				close;
 			case 3:
-				mes "[Shone]";
+				mes "[Cuir]";
 				mes "Tem certeza de que deseja parar de caçar?";
 				mes "Qualquer progresso que você tenha feito será apagado";
 				next;
 				switch(select("Sim:Não")) {
 				case 1:
-					mes "[Shone]";
+					mes "[Cuir]";
 					mes "Ok então, bem volte aqui se você mudar de idéia.";
-					erasequest 60106;
+					erasequest 60121;
 					close;
 				case 2:
-					mes "[Shone]";
-					mes "Por favor mate 150 Hodes.";
+					mes "[Cuir]";
+					mes "Por favor mate 150 Crocodilos.";
 					close;
 				}
 			}
 		}
 		else {
-			mes "[Shone]";
+			mes "[Cuir]";
 			mes "Incrível, você foi rápido.";
-			getexp 15775,1125;
-			getexp 15775,1125;
-			getexp 15775,1125;
-			erasequest 60106;
+			getexp 68950,43300;
+			getexp 68950,43300;
+			getexp 68950,43300;
+			erasequest 60121;
 			close;
 		}
 	}
-	if (BaseLevel > 24) {
-		if (BaseLevel < 61) {
-			mes "[Shone]";
-			mes "Espere! Você pode me ver?";
-			mes "Oh, bem eu ainda não domino as minhas habilidades.";
+	if (BaseLevel > 44) {
+		if (BaseLevel < 81) {
+			mes "[Cuir]";
+			mes "Você parece um aventureiro resistente!";
 			next;
-			mes "[Shone]";
-			mes "Ei você gostaria de me ajudar?";
+			mes "[Cuir]";
+			mes "Eu fui enviado aqui para reduzir a população de Crocodilos, mas a tarefa está sendo bastante difícil para completá-la sozinho.";
+			mes "Você gostaria de ajudar?";
 			next;
 			switch(select("Claro:Não")) {
 			case 1:
-				mes "[Shone]";
-				mes "Muito obrigado!";
+				mes "[Cuir]";
+				mes "Você pode me ajudar caçando crocodilos ou reunindo itens para mim.";
+				mes "O que você gostaria de fazer?";
 				next;
-				switch(select("Reunir Itens:Caçar Hodes:Cancelar")) {
+				switch(select("Reunir Itens:Caçar Crocodilos:Cancelar")) {
 				case 1:
-					mes "[Shone]";
-					mes "Eu estou tentando recolher ^00CE0025 Peles de Minhoca^000000.";
-					mes "Eu irei premiá-lo se você me ajudar.";
+					mes "[Cuir]";
+					mes "Se você me trouxe ^00CC0020 Peles de Anolian^000000. Eu irei ajudá-lo a se tornar mais forte.";
 					next;
-					switch(select("Eu possuo 25 Peles de Minhoca:O que é?")) {
+					switch(select("Eu possuo peles de Anolian:Mordidas de Crocodilo!")) {
 					case 1:
 						/*
-						if (checkweight(502,10) == 0) {
-							mes "[Shone]";
+						if (checkweight(503,10) == 0) {
+							mes "[Cuir]";
 							mes "Ei, parece que você está carregando";
 							mes "um peso bastante pesado. Volte após";
 							mes "reduzir sua quantidade de peso.";
 							close;
 						}
 						*/
-						if (countitem(1055) > 24) {
-							mes "Obrigado por me trazer 25 Peles";
-							mes "de Minhoca!";
-							mes "Aqui está a recompensa eu prometi, espero aproveitar essa sabedoria que passaram para você e compartilhar com os outros.";
-							delitem 1055,25; // Peles de Minhoca
-							getexp 15775,1125;
-							//getitem 502,10; // Poção Laranja
+						if (countitem(7003) > 19) {
+							mes "[Cuir]";
+							mes "Obrigado pelas ^00CE0020 Peles de Anolian^000000!";
+							mes "Espero que você possa continuar a ajudar-me a recolher estas peles.";
+							mes "Os criadores de armaduras ao redor do mundo estão clamando por elas.";
+							delitem 7003,20; // Pele de Anolian
+							getexp 68950,43300;
+							//getitem 503,10; // Poção Amarela
 							close;
 						}
 						else {
-							mes "[Shone]";
-							mes "Eu não vejo nenhuma ^00CE00Pele de Minhoca^000000.";
-							mes "Você está tentando me enganar?";
+							mes "[Cuir]";
+							mes "Eu conheço uma pele de Crocodilo quando a vejo e não estou vendo ^00CE0020 Anolian Skins^000000.";
 							close;
 						}
 					case 2:
-						mes "[Shone]";
-						mes "Eu preciso de ^00CE0025 Peles de Minhoca^000000.";
+						mes "[Cuir]";
+						mes "Eu preciso de ^00CE0020 Peles de Anolian^000000.";
 						close;
 					}
 				case 2:
-					mes "[Shone]";
-					mes "Ah, ok acho que você pode me ajudar a caçar alguns Hodes.";
-					mes "Quantos você gostaria de caçar?";
+					mes "[Cuir]";
+					mes "Ah, ok eu acho que você pode me ajudar a caçar alguns Crocodilos.";
+					mes "Quantos você gostaria de Caçar?";
 					next;
-					switch(select("50 Hodes:100 Hodes:150 Hodes")) {
+					switch(select("50 Crocodilos:100 Crocodilos:150 Crocodilos")) {
 					case 1:
-						mes "[Shone]";
+						mes "[Cuir]";
 						mes "Volte quando tiver terminado sua tarefa e eu vou te dar uma pequena recompensa.";
-						setquest 60104;
+						setquest 60119;
 						close;
 					case 2:
-						mes "[Shone]";
+						mes "[Cuir]";
 						mes "Volte quando tiver terminado sua tarefa e eu vou te dar uma pequena recompensa.";
-						setquest 60105;
+						setquest 60120;
 						close;
 					case 3:
-						mes "[Shone]";
+						mes "[Cuir]";
 						mes "Volte quando tiver terminado sua tarefa e eu vou te dar uma pequena recompensa.";
-						setquest 60106;
+						setquest 60121;
 						close;
 					}
 				case 3:
-					mes "[Shone]";
+					mes "[Cuir]";
 					mes "Se você mudar de idéia, por favor volte.";
 					close;
 				}
 			case 2:
-				mes "[Shone]";
-				mes "Se você mudar de idéia, por favor volte.";
+				mes "[Cuir]";
+        mes "Se você mudar de idéia, por favor volte.";
 				close;
 			}
 		}
 		else {
-			mes "[Shone]";
-			mes "Você é muito forte para lutar essas coisas!";
+			mes "[Cuir]";
+			mes "Você é muito poderoso para essa tarefa, eu preciso de peles em boas condições, não totalmente destruidas!";
+			next;
 			close;
 		}
 	}
 	else {
-		mes "[Shone]";
-		mes "Você precisa de alguma ajuda, mas eu não posso fazer isso para você.";
-		mes "Volte quando você estiver mais forte e ganhar muito mais sabedoria.";
+		mes "[Cuir]";
+		mes "Você certamente é corajoso, mas coragem vira loucura se você continuar indo para o Leste.";
+		mes "Talvez quando você se tornar mais forte você poderemos fazer negócio.";
 		close;
 	}
 }

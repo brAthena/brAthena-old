@@ -15,7 +15,7 @@
 //   | Versões eA/rA/brA: 1.0/1.0/1.1                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Quests Repetíveis de Experiência            |
-//   |                 (Pele de Minhoca)                      |                     
+//   |                   (Folha Afiada)                       |                     
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Cabeçalho Criado [Holy]                            |
@@ -23,224 +23,225 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-moc_fild17,208,346,5	script	Shone#Hode_Caça	707,{
-	if (checkquest(60104) != -1) {
-		if (checkquest(60104,HUNTING) != 2 ) {
-			mes "[Shone]";
-			mes "Você terminou de caçar os 50 Hodes?";
+um_fild01,34,281,5	script	Lilla#Driade_Caça	724,{
+	if (checkquest(60131) != -1) {
+		if (checkquest(60131,HUNTING) != 2 ) {
+			mes "[Lilla]";
+			mes "Você terminou de caçar os 50 Dríades?";
 			next;
 			switch(select("Sim:Não:Eu quero sair")) {
 			case 1:
-				mes "[Shone]";
+				mes "[Lilla]";
 				mes "Hum, Eu acho que você não caçou os 50 ainda...";
 				close;
 			case 2:
-				mes "[Shone]";
-				mes "Lembre-se, eu preciso de ajuda para caçar Hodes preciso caçar 50 deles.";
+				mes "[Lilla]";
+				mes "Lembre-se, eu preciso de ajuda para caçar Dríades preciso caçar 50 deles.";
 				close;
 			case 3:
-				mes "[Shone]";
+				mes "[Lilla]";
 				mes "Tem certeza de que deseja parar de caçar?";
 				mes "Qualquer progresso que você tenha feito será apagado";
 				next;
 				switch(select("Sim:Não")) {
 				case 1:
-					mes "[Shone]";
+					mes "[Lilla]";
 					mes "Ok então, bem volte aqui se você mudar de idéia.";
-					erasequest 60104;
+					erasequest 60131;
 					close;
 				case 2:
-					mes "[Shone]";
-					mes "Por favor mate 50 Hodes.";
+					mes "[Lilla]";
+					mes "Por favor mate 50 Dríade.";
 					close;
 				}
 			}
 		}
 		else {
-			mes "[Shone]";
+			mes "[Lilla]";
 			mes "Incrível, você foi rápido.";
-			getexp 15775,1125;
-			erasequest 60104;
+			getexp 262485,141835;
+			erasequest 60131;
 			close;
 		}
 	}
-	if (checkquest(60105) != -1) {
-		if (checkquest(60105,HUNTING) != 2 ) {
-			mes "[Shone]";
-			mes "Você terminou de caçar os 100 Hodes?";
+	if (checkquest(60132) != -1) {
+		if (checkquest(60132,HUNTING) != 2 ) {
+			mes "[Lilla]";
+			mes "Você terminou de caçar os 100 Dríades?";
 			next;
 			switch(select("Sim:Não:Eu quero sair")) {
 			case 1:
-				mes "[Shone]";
+				mes "[Lilla]";
 				mes "Hum, Eu acho que você não caçou os 100 ainda...";
 				close;
 			case 2:
-				mes "[Shone]";
-				mes "Lembre-se, eu preciso de ajuda para caçar Hodes preciso caçar 100 deles.";
+				mes "[Lilla]";
+				mes "Lembre-se, eu preciso de ajuda para caçar Dríades preciso caçar 100 deles.";
 				close;
 			case 3:
-				mes "[Shone]";
+				mes "[Lilla]";
 				mes "Tem certeza de que deseja parar de caçar?";
 				mes "Qualquer progresso que você tenha feito será apagado";
 				next;
 				switch(select("Sim:Não")) {
 				case 1:
-					mes "[Shone]";
+					mes "[Lilla]";
 					mes "Ok então, bem volte aqui se você mudar de idéia.";
-					erasequest 60105;
+					erasequest 60132;
 					close;
 				case 2:
-					mes "[Shone]";
-					mes "Por favor mate 100 Hodes.";
+					mes "[Lilla]";
+					mes "Por favor mate 100 Dríade.";
 					close;
 				}
 			}
 		}
 		else {
-			mes "[Shone]";
+			mes "[Lilla]";
 			mes "Incrível, você foi rápido.";
-			getexp 15775,1125;
-			getexp 15775,1125;
-			erasequest 60105;
+			getexp 262485,141835;
+			getexp 262485,141835;
+			erasequest 60132;
 			close;
 		}
 	}
-	if (checkquest(60106) != -1) {
-		if (checkquest(60106,HUNTING) != 2 ) {
-			mes "[Shone]";
-			mes "Você terminou de caçar os 150 Hodes?";
+	if (checkquest(60133) != -1) {
+		if (checkquest(60133,HUNTING) != 2 ) {
+			mes "[Lilla]";
+			mes "Você terminou de caçar os 150 Dríade?";
 			next;
 			switch(select("Sim:Não:Eu quero sair")) {
 			case 1:
-				mes "[Shone]";
+				mes "[Lilla]";
 				mes "Hum, Eu acho que você não caçou os 150 ainda...";
 				close;
 			case 2:
-				mes "[Shone]";
-				mes "Lembre-se, eu preciso de ajuda para caçar Hodes preciso caçar 150 deles.";
+				mes "[Lilla]";
+				mes "Lembre-se, eu preciso de ajuda para caçar Dríades preciso caçar 150 deles.";
 				close;
 			case 3:
-				mes "[Shone]";
+				mes "[Lilla]";
 				mes "Tem certeza de que deseja parar de caçar?";
 				mes "Qualquer progresso que você tenha feito será apagado";
 				next;
 				switch(select("Sim:Não")) {
 				case 1:
-					mes "[Shone]";
+					mes "[Lilla]";
 					mes "Ok então, bem volte aqui se você mudar de idéia.";
-					erasequest 60106;
+					erasequest 60133;
 					close;
 				case 2:
-					mes "[Shone]";
-					mes "Por favor mate 150 Hodes.";
+					mes "[Lilla]";
+					mes "Por favor mate 150 Dríades.";
 					close;
 				}
 			}
 		}
 		else {
-			mes "[Shone]";
+			mes "[Lilla]";
 			mes "Incrível, você foi rápido.";
-			getexp 15775,1125;
-			getexp 15775,1125;
-			getexp 15775,1125;
-			erasequest 60106;
+			getexp 262485,141835;
+			getexp 262485,141835;
+			getexp 262485,141835;
+			erasequest 60133;
 			close;
 		}
 	}
-	if (BaseLevel > 24) {
-		if (BaseLevel < 61) {
-			mes "[Shone]";
-			mes "Espere! Você pode me ver?";
-			mes "Oh, bem eu ainda não domino as minhas habilidades.";
-			next;
-			mes "[Shone]";
-			mes "Ei você gostaria de me ajudar?";
+	if (BaseLevel > 59) {
+		if (BaseLevel < 86) {
+			mes "[Lilla]";
+			mes "Olá!";
+			mes "Você parece que está disposto a me ajudar.";
 			next;
 			switch(select("Claro:Não")) {
 			case 1:
-				mes "[Shone]";
-				mes "Muito obrigado!";
+				mes "[Lilla]";
+				mes "Sério?!";
+				mes "É ótimo!";
 				next;
-				switch(select("Reunir Itens:Caçar Hodes:Cancelar")) {
+				switch(select("Reunir Itens:Caçar Dríades:Cancelar")) {
 				case 1:
-					mes "[Shone]";
-					mes "Eu estou tentando recolher ^00CE0025 Peles de Minhoca^000000.";
-					mes "Eu irei premiá-lo se você me ajudar.";
+					mes "[Lilla]";
+					mes "Eu realmente preciso de ^00CE0050 Folhas Afiadas^000000 para o meu chá no jardim.";
+					mes "Você tem algumas?";
 					next;
-					switch(select("Eu possuo 25 Peles de Minhoca:O que é?")) {
+					switch(select("Eu possuo Folhas Afiadas:O que você precisa?")) {
 					case 1:
 						/*
-						if (checkweight(502,10) == 0) {
-							mes "[Shone]";
+						if (checkweight(504,10) == 0) {
+							mes "[Lilla]";
 							mes "Ei, parece que você está carregando";
 							mes "um peso bastante pesado. Volte após";
 							mes "reduzir sua quantidade de peso.";
 							close;
 						}
 						*/
-						if (countitem(1055) > 24) {
-							mes "Obrigado por me trazer 25 Peles";
-							mes "de Minhoca!";
-							mes "Aqui está a recompensa eu prometi, espero aproveitar essa sabedoria que passaram para você e compartilhar com os outros.";
-							delitem 1055,25; // Peles de Minhoca
-							getexp 15775,1125;
-							//getitem 502,10; // Poção Laranja
+						if (countitem(7100) > 49) {
+							mes "[Lilla]";
+							mes "Ei, você parece muito doce.";
+							mes "Muito obrigado por me ajudar!";
+							next;
+							mes "[Lilla]";
+							mes "Ah, Eu quase me esqueci. Eu tenho algo para você ^_^";
+							mes "Obrigado por me ajudar novamente.";
+							delitem 7100,50; // Folha Afiada
+							getexp 262485,141835;
+							//getitem 504,10; // Poção Branca
 							close;
 						}
 						else {
-							mes "[Shone]";
-							mes "Eu não vejo nenhuma ^00CE00Pele de Minhoca^000000.";
-							mes "Você está tentando me enganar?";
+							mes "[Lilla]";
+							mes "Por que, eu posso parecer bonita e boba, mas por favor, não brinque comigo.";
 							close;
 						}
 					case 2:
-						mes "[Shone]";
-						mes "Eu preciso de ^00CE0025 Peles de Minhoca^000000.";
+						mes "[Lilla]";
+						mes "Eu preciso de ^00CE0050 Folhas Afiadas^000000.";
 						close;
 					}
 				case 2:
-					mes "[Shone]";
-					mes "Ah, ok acho que você pode me ajudar a caçar alguns Hodes.";
+					mes "[Lilla]";
+					mes "Ah, ok eu acho que você pode me ajudar a caçar alguns Dríade.";
 					mes "Quantos você gostaria de caçar?";
 					next;
-					switch(select("50 Hodes:100 Hodes:150 Hodes")) {
+					switch(select("50 Dríade:100 Dríade:150 Dríade")) {
 					case 1:
-						mes "[Shone]";
+						mes "[Lilla]";
 						mes "Volte quando tiver terminado sua tarefa e eu vou te dar uma pequena recompensa.";
-						setquest 60104;
+						setquest 60131;
 						close;
 					case 2:
-						mes "[Shone]";
+						mes "[Lilla]";
 						mes "Volte quando tiver terminado sua tarefa e eu vou te dar uma pequena recompensa.";
-						setquest 60105;
+						setquest 60132;
 						close;
 					case 3:
-						mes "[Shone]";
+						mes "[Lilla]";
 						mes "Volte quando tiver terminado sua tarefa e eu vou te dar uma pequena recompensa.";
-						setquest 60106;
+						setquest 60133;
 						close;
 					}
 				case 3:
-					mes "[Shone]";
+					mes "[Lilla]";
 					mes "Se você mudar de idéia, por favor volte.";
 					close;
 				}
 			case 2:
-				mes "[Shone]";
+				mes "[Lilla]";
 				mes "Se você mudar de idéia, por favor volte.";
 				close;
 			}
 		}
 		else {
-			mes "[Shone]";
-			mes "Você é muito forte para lutar essas coisas!";
+			mes "[Lilla]";
+			mes "Desculpe, mas você é um pouco velho e assustador para conversar!";
 			close;
 		}
 	}
 	else {
-		mes "[Shone]";
-		mes "Você precisa de alguma ajuda, mas eu não posso fazer isso para você.";
-		mes "Volte quando você estiver mais forte e ganhar muito mais sabedoria.";
+		mes "[Lilla]";
+		mes "Está querendo me ajudar de uma forma muito pequena.";
+		mes "Obrigado por sua oferta.";
 		close;
 	}
 }
