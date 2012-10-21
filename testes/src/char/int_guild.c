@@ -518,7 +518,7 @@ struct guild * inter_guild_fromsql(int guild_id)
 	g->save_flag |= GS_REMOVE; //But set it to be removed, in case it is not needed for long.
 	
 	if (save_log)
-		ShowInfo("Guild loaded (%d - %s)\n", guild_id, g->name);
+		ShowInfo("Cl%c carregado: (%d - %s)\n", 198, guild_id, g->name);
 
 	return g;
 }
@@ -591,8 +591,10 @@ static struct guild_castle* inter_guildcastle_fromsql(int castle_id)
 
 	idb_put(castle_db, castle_id, gc);
 
-	if (save_log)
-		ShowInfo("Loaded guild castle (%d - guild %d)\n", castle_id, gc->guild_id);
+	if (save_log && gc->guild_id)
+		ShowInfo("Castelo (ID: "CL_WHITE"%d"CL_RESET") carregado (Cl%c: "CL_WHITE"%d"CL_RESET").\n", castle_id, 198, gc->guild_id);
+	else if(save_log && !gc->guild_id)
+		ShowInfo("Castelo (ID: "CL_WHITE"%d"CL_RESET") carregado.\n", castle_id);
 
 	return gc;
 }

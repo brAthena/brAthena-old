@@ -90,7 +90,7 @@ int msg_config_read(const char* cfgName) {
 	static int called = 1;
 	
 	if ((fp = fopen(cfgName, "r")) == NULL) {
-		ShowError("Mensagens de arquivo nao encontrado: %s\n", cfgName);
+		ShowError("Mensagens de arquivo n%co encontrado: %s\n", 198, cfgName);
 		return 1;
 	}
 	
@@ -693,7 +693,7 @@ static int inter_config_read(const char* cfgName)
 
 	fp = fopen(cfgName, "r");
 	if(fp == NULL) {
-		ShowError("Arquivo nao encontrado: %s\n", cfgName);
+		ShowError("Arquivo n%co encontrado: %s\n", 198, cfgName);
 		return 1;
 	}
 
@@ -742,7 +742,7 @@ static int inter_config_read(const char* cfgName)
 	}
 	fclose(fp);
 
-	ShowInfo ("Carregamento de %s terminado.\n", cfgName);
+	ShowInfo ("Carregamento de %s conclu%cdo.\n", cfgName, 214);
 
 	return 0;
 }

@@ -1352,7 +1352,7 @@ int mmo_char_sql_init(void)
 	// (useful when servers crashs and don't clean the database)
 	set_all_offline_sql();
 
-	ShowInfo("Inicializacao terminada.......\n");
+	ShowInfo("Inicializa%c%co conclu%cda.....\n", 135, 198, 214);
 
 	return 0;
 }
@@ -4357,11 +4357,11 @@ int char_lan_config_read(const char *lancfgName)
 	char line[1024], w1[64], w2[64], w3[64], w4[64];
 	
 	if((fp = fopen(lancfgName, "r")) == NULL) {
-		ShowWarning("Arquivo de configuracao do LAN Support nao encontrado: %s\n", lancfgName);
+		ShowWarning("Arquivo de configura%c%co do LAN Support n%co encontrado: %s\n", 135, 198, 198, lancfgName);
 		return 1;
 	}
 
-	ShowInfo("Carregando arquivo de configuracao %s...\n", lancfgName);
+	ShowInfo("Carregando arquivo de configura%c%co %s...\n", 135, 198, lancfgName);
 
 	while(fgets(line, sizeof(line), fp))
 	{
@@ -4371,7 +4371,7 @@ int char_lan_config_read(const char *lancfgName)
 
 		if(sscanf(line,"%[^:]: %[^:]:%[^:]:%[^\r\n]", w1, w2, w3, w4) != 4) {
 	
-			ShowWarning("Erro de sintaxe no arquivo de configuracao %s na linha %d.\n", lancfgName, line_num);
+			ShowWarning("Erro de sintaxe no arquivo de configura%c%co %s na linha %d.\n", 135, 198, lancfgName, line_num);
 			continue;
 		}
 
@@ -4388,7 +4388,7 @@ int char_lan_config_read(const char *lancfgName)
 
 			if( (subnet[subnet_count].char_ip & subnet[subnet_count].mask) != (subnet[subnet_count].map_ip & subnet[subnet_count].mask) )
 			{
-				ShowError("%s: Erro de configuracao: O servidor de personagens (%s) e servidor de mapas (%s) pertencem a sub-redes diferentes!\n", lancfgName, w3, w4);
+				ShowError("%s: Erro de configura%c%co: O servidor de personagens (%s) e servidor de mapas (%s) pertencem a sub-redes diferentes!\n", lancfgName, 135, 198, w3, w4);
 				continue;
 			}
 				
@@ -4396,7 +4396,7 @@ int char_lan_config_read(const char *lancfgName)
 		}
 	}
 
-	ShowStatus("Carregada informacao sobre %d sub-redes.\n", subnet_count);
+	ShowStatus("Carregada informa%c%co sobre %d sub-redes.\n", 135, 198, subnet_count);
 
 	fclose(fp);
 	return 0;
@@ -4410,7 +4410,7 @@ void sql_config_read(const char* cfgName)
 	ShowInfo("Carregando arquivo %s...\n", cfgName);
 
 	if ((fp = fopen(cfgName, "r")) == NULL) {
-		ShowError("Arquivo nao encontrado: %s\n", cfgName);
+		ShowError("Arquivo n%co encontrado: %s\n", 198, cfgName);
 		return;
 	}
 
@@ -4494,11 +4494,11 @@ int char_config_read(const char* cfgName)
 	FILE* fp = fopen(cfgName, "r");
 
 	if (fp == NULL) {
-		ShowError("Arquivo de configuracao nao encontrado: %s.\n", cfgName);
+		ShowError("Arquivo de configura%c%co nao encontrado: %s.\n", 135, 198, cfgName);
 		return 1;
 	}
 
-	ShowInfo("Carregando arquivo de configuracao %s...\n", cfgName);
+	ShowInfo("Carregando arquivo de configura%c%co %s...\n", 135, 198, cfgName);
 	while(fgets(line, sizeof(line), fp))
 	{
 		if (line[0] == '/' && line[1] == '/')
@@ -4512,7 +4512,7 @@ int char_config_read(const char* cfgName)
 		if(strcmpi(w1,"timestamp_format") == 0) {
 			safestrncpy(timestamp_format, w2, sizeof(timestamp_format));
 		} else if(strcmpi(w1,"console_silent")==0){
-			ShowInfo("Console Silent Setting: %d\n", atoi(w2));
+			ShowInfo("Console Modo Silencioso: %d\n", atoi(w2));
 			msg_silent = atoi(w2);
 		} else if(strcmpi(w1,"stdout_with_ansisequence")==0){
 			stdout_with_ansisequence = config_switch(w2);
@@ -4522,7 +4522,7 @@ int char_config_read(const char* cfgName)
 			safestrncpy(passwd, w2, sizeof(passwd));
 		} else if (strcmpi(w1, "server_name") == 0) {
 			safestrncpy(server_name, w2, sizeof(server_name));
-			ShowStatus("%s server has been initialized\n", w2);
+			ShowStatus("%s servidor foi inicializado.\n", w2);
 		} else if (strcmpi(w1, "wisp_server_name") == 0) {
 			if (strlen(w2) >= 4) {
 				safestrncpy(wisp_server_name, w2, sizeof(wisp_server_name));
@@ -4532,7 +4532,7 @@ int char_config_read(const char* cfgName)
 			login_ip = host2ip(w2);
 			if (login_ip) {
 				safestrncpy(login_ip_str, w2, sizeof(login_ip_str));
-				ShowStatus("Endereco de IP do servidor de login : %s -> %s\n", w2, ip2str(login_ip, ip_str));
+				ShowStatus("Endere%co de IP do servidor de login : %s -> %s\n", 135, w2, ip2str(login_ip, ip_str));
 			}
 		} else if (strcmpi(w1, "login_port") == 0) {
 			login_port = atoi(w2);
@@ -4541,14 +4541,14 @@ int char_config_read(const char* cfgName)
 			char_ip = host2ip(w2);
 			if (char_ip){
 				safestrncpy(char_ip_str, w2, sizeof(char_ip_str));
-				ShowStatus("Endereco de IP do servidor de personagens : %s -> %s\n", w2, ip2str(char_ip, ip_str));
+				ShowStatus("Endere%co de IP do servidor de personagens : %s -> %s\n", 135, w2, ip2str(char_ip, ip_str));
 			}
 		} else if (strcmpi(w1, "bind_ip") == 0) {
 			char ip_str[16];
 			bind_ip = host2ip(w2);
 			if (bind_ip) {
 				safestrncpy(bind_ip_str, w2, sizeof(bind_ip_str));
-				ShowStatus("Endereco de IP vinculado ao servidor de login : %s -> %s\n", w2, ip2str(bind_ip, ip_str));
+				ShowStatus("Endere%co de IP vinculado ao servidor de login : %s -> %s\n", 135, w2, ip2str(bind_ip, ip_str));
 			}
 		} else if (strcmpi(w1, "char_port") == 0) {
 			char_port = atoi(w2);
@@ -4577,7 +4577,7 @@ int char_config_read(const char* cfgName)
 				continue;
 			start_point.map = mapindex_name2id(map);
 			if (!start_point.map)
-				ShowError("start_point especificado %s nao encontrado no cache do map-index.\n", map);
+				ShowError("start_point especificado %s n%co encontrado no cache do map-index.\n", 198, map);
 			start_point.x = x;
 			start_point.y = y;
 		} else if (strcmpi(w1, "start_zeny") == 0) {
@@ -4616,19 +4616,19 @@ int char_config_read(const char* cfgName)
 		} else if (strcmpi(w1, "fame_list_alchemist") == 0) {
 			fame_list_size_chemist = atoi(w2);
 			if (fame_list_size_chemist > MAX_FAME_LIST) {
-				ShowWarning("Tamanho maximo da fame list e %d (fame_list_alchemist)\n", MAX_FAME_LIST);
+				ShowWarning("Tamanho m%cximo da fame list e %d (fame_list_alchemist)\n", 160, MAX_FAME_LIST);
 				fame_list_size_chemist = MAX_FAME_LIST;
 			}
 		} else if (strcmpi(w1, "fame_list_blacksmith") == 0) {
 			fame_list_size_smith = atoi(w2);
 			if (fame_list_size_smith > MAX_FAME_LIST) {
-				ShowWarning("Tamanho maximo da fame list e %d (fame_list_blacksmith)\n", MAX_FAME_LIST);
+				ShowWarning("Tamanho m%cximo da fame list e %d (fame_list_blacksmith)\n", 160, MAX_FAME_LIST);
 				fame_list_size_smith = MAX_FAME_LIST;
 			}
 		} else if (strcmpi(w1, "fame_list_taekwon") == 0) {
 			fame_list_size_taekwon = atoi(w2);
 			if (fame_list_size_taekwon > MAX_FAME_LIST) {
-				ShowWarning("Tamanho maximo da fame list e %d (fame_list_taekwon)\n", MAX_FAME_LIST);
+				ShowWarning("Tamanho m%cximo da fame list e %d (fame_list_taekwon)\n", 160, MAX_FAME_LIST);
 				fame_list_size_taekwon = MAX_FAME_LIST;
 			}
 		} else if (strcmpi(w1, "guild_exp_rate") == 0) {
@@ -4719,15 +4719,15 @@ int do_init(int argc, char **argv)
 	sql_config_read(SQL_CONF_NAME);
 
 	if (strcmp(userid, "s1")==0 && strcmp(passwd, "p1")==0) {
-		ShowError("Utilizar o usuario/senha padrao 's1/p1' NAO E RECOMENDADO.\n");
-		ShowNotice("Por favor edite sua tabela 'login' para criar usuario/senha corretos para o inter-server (sexo 'S')\n");
-		ShowNotice("Apos isso, modifique usuario/senha utilizados no conf/char_athena.conf (ou conf/import/char_conf.txt)\n");
+		ShowError("Utilizar o usu%crio/senha padr%co 's1/p1' n%co %c recomendado.\n", 160, 198, 198, 130);
+		ShowNotice("Por favor edite sua tabela 'login' para criar usu%crio/senha corretos para o inter-server (sexo 'S')\n", 160);
+		ShowNotice("Ap%cs isso, modifique usu%crio/senha utilizados no conf/char_athena.conf (ou conf/import/char_conf.txt)\n", 162, 160);
 	}
 
-	ShowInfo("Carregamento das configuracoes do servidor de personagens terminado.\n");
+	ShowInfo("Carregamento das configura%c%ces do servidor de personagens conclu%cdo.\n", 135, 228, 214);
 
 	inter_init_sql((argc > 2) ? argv[2] : inter_cfgName); // inter server ÃÊ±âÈ­
-	ShowInfo("Carregamento das configuracoes do inter-server terminado.\n");
+	ShowInfo("Carregamento das configura%c%ces do inter-server conclu%cdo.\n", 135, 228, 214);
 	
 	ShowInfo("Inicializando servidor de personagens.\n");
 	auth_db = idb_alloc(DB_OPT_RELEASE_DATA);
@@ -4742,9 +4742,9 @@ int do_init(int argc, char **argv)
 		ip2str(addr_[0], ip_str);
 
 		if (naddr_ > 1)
-			ShowStatus("Multiplas interfaces detectadas..  usando %s como nosso endereco de IP\n", ip_str);
+			ShowStatus("M%cltiplas interfaces detectadas..  usando %s como nosso endere%co de IP.\n", 163, ip_str, 135);
 		else
-			ShowStatus("Padronizando %s como nosso endereco de IP\n", ip_str);
+			ShowStatus("Padronizando %s como nosso endere%co de IP.\n", ip_str, 135);
 		if (!login_ip) {
 			safestrncpy(login_ip_str, ip_str, sizeof(login_ip_str));
 			login_ip = str2ip(login_ip_str);
@@ -4790,7 +4790,7 @@ int do_init(int argc, char **argv)
 	if( SQL_ERROR == Sql_Query(sql_handle, "DELETE FROM `%s` WHERE `guild_id` = '0' AND `account_id` = '0' AND `char_id` = '0'", guild_member_db) )
 		Sql_ShowDebug(sql_handle);
 
-	ShowInfo("Fim da funcao de inicializacao do servidor de personagens.\n");
+	ShowInfo("Fim da fun%c%co de inicializa%c%co do servidor de personagens.\n", 135, 198, 135, 198);
 
 	set_defaultparse(parse_char);
 	ShowInfo("Abrindo porta %d.....\n",char_port);
