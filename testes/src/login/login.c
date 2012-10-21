@@ -241,7 +241,7 @@ void chrif_server_reset(int id)
 /// Called when the connection to Char Server is disconnected.
 void chrif_on_disconnect(int id)
 {
-	ShowStatus("Char-server '%s' has disconnected.\n", server[id].name);
+	ShowStatus("Char-server '%s' foi desconectado.\n", server[id].name);
 	chrif_server_reset(id);
 }
 
@@ -252,7 +252,7 @@ void chrif_on_disconnect(int id)
 static int sync_ip_addresses(int tid, unsigned int tick, int id, intptr_t data)
 {
 	uint8 buf[2];
-	ShowInfo("IP Sync in progress...\n");
+	ShowInfo("IP Sync em progresso...\n");
 	WBUFW(buf,0) = 0x2735;
 	charif_sendallwos(-1, buf, 2);
 	return 0;
@@ -354,7 +354,10 @@ int login_lan_config_read(const char *lancfgName)
 		}
 	}
 
-	ShowStatus("Leu %d informa%c%ce(s) sub-rede(s).\n", subnet_count, 135, 228);
+	if(subnet_count > 1)
+		ShowStatus("Leu %d informa%c%ces sub-redes.\n", subnet_count, 135, 228);
+	else
+		ShowStatus("Leu %d informa%c%co sub-rede.\n", subnet_count, 135, 198);
 
 	fclose(fp);
 	return 0;
@@ -1057,7 +1060,7 @@ int mmo_auth(struct login_session_data* sd, bool isServer)
 
 	if( acc.expiration_time != 0 && acc.expiration_time < time(NULL) )
 	{
-		ShowNotice("Connection refused (account: %s, pass: %s, expired ID, ip: %s)\n", sd->userid, sd->passwd, ip);
+		ShowNotice("Conex%co recusada (login: %s, senha: %s, ip: %s)\n", 198, sd->userid, sd->passwd, ip);
 		return 2; // 2 = This ID is expired
 	}
 
@@ -1065,13 +1068,13 @@ int mmo_auth(struct login_session_data* sd, bool isServer)
 	{
 		char tmpstr[24];
 		timestamp2string(tmpstr, sizeof(tmpstr), acc.unban_time, login_config.date_format);
-		ShowNotice("Connection refused (account: %s, pass: %s, banned until %s, ip: %s)\n", sd->userid, sd->passwd, tmpstr, ip);
+		ShowNotice("Conex%co recusada (login: %s, senha: %s, banido at%c %s, ip: %s)\n", 198, sd->userid, sd->passwd, 130, tmpstr, ip);
 		return 6; // 6 = Your are Prohibited to log in until %s
 	}
 
 	if( acc.state != 0 )
 	{
-		ShowNotice("Connection refused (account: %s, pass: %s, state: %d, ip: %s)\n", sd->userid, sd->passwd, acc.state, ip);
+		ShowNotice("Conex%co recusada (login: %s, senha: %s, estado: %d, ip: %s)\n", 198, sd->userid, sd->passwd, acc.state, ip);
 		return acc.state - 1;
 	}
 	
@@ -1110,7 +1113,7 @@ int mmo_auth(struct login_session_data* sd, bool isServer)
 		}
 	}
 
-	ShowNotice("Authentication accepted (account: %s, id: %d, ip: %s)\n", sd->userid, acc.account_id, ip);
+	ShowNotice("Autentica%c%co aceita (login: %s, acc id: %d, ip: %s)\n", 135, 198, sd->userid, acc.account_id, ip);
 
 	// update session data
 	sd->account_id = acc.account_id;
@@ -1217,7 +1220,7 @@ void login_auth_ok(struct login_session_data* sd)
 	}
 
 	login_log(ip, sd->userid, 100, "login ok");
-	ShowStatus("Connection of the account '%s' accepted.\n", sd->userid);
+	ShowStatus("Conex%co da conta '%s' aceita.\n", 198, sd->userid);
 
 	WFIFOHEAD(fd,47+32*server_num);
 	WFIFOW(fd,0) = 0x69;
@@ -1337,7 +1340,7 @@ int parse_login(int fd)
 
 	if( session[fd]->flag.eof )
 	{
-		ShowInfo("Closed connection from '"CL_WHITE"%s"CL_RESET"'.\n", ip);
+		ShowInfo("Conex%co fechada de '"CL_WHITE"%s"CL_RESET"'.\n", 198, ip);
 		do_close(fd);
 		return 0;
 	}
@@ -1347,7 +1350,7 @@ int parse_login(int fd)
 		// Perform ip-ban check
 		if( login_config.ipban && ipban_check(ipl) )
 		{
-			ShowStatus("Connection refused: IP isn't authorised (deny/allow, ip: %s).\n", ip);
+			ShowStatus("Conex%co recusada: IP n%co est%c autorizado (deny/allow, ip: %s).\n", 198, 198, 160, ip);
 			login_log(ipl, "unknown", -3, "ip banned");
 			WFIFOHEAD(fd,23);
 			WFIFOW(fd,0) = 0x6a;
@@ -1458,7 +1461,7 @@ int parse_login(int fd)
 			safestrncpy(sd->userid, username, NAME_LENGTH);
 			if( israwpass )
 			{
-				ShowStatus("Request for connection of %s (ip: %s).\n", sd->userid, ip);
+				ShowStatus("Pedido de conex%co de %s (ip: %s).\n", 198, sd->userid, ip);
 				safestrncpy(sd->passwd, password, NAME_LENGTH);
 				if( login_config.use_md5_passwds )
 					MD5_String(sd->passwd, sd->passwd);
@@ -1466,7 +1469,7 @@ int parse_login(int fd)
 			}
 			else
 			{
-				ShowStatus("Request for connection (passwdenc mode) of %s (ip: %s).\n", sd->userid, ip);
+				ShowStatus("Pedido de conex%co (passwdenc mode) de %s (ip: %s).\n", 198, sd->userid, ip);
 				bin2hex(sd->passwd, passhash, 16); // raw binary data here!
 				sd->passwdenc = PASSWORDENC;
 			}
@@ -1525,7 +1528,7 @@ int parse_login(int fd)
 			new_ = RFIFOW(fd,84);
 			RFIFOSKIP(fd,86);
 
-			ShowInfo("Connection request of the char-server '%s' @ %u.%u.%u.%u:%u (account: '%s', pass: '%s', ip: '%s')\n", server_name, CONVIP(server_ip), server_port, sd->userid, sd->passwd, ip);
+			ShowInfo("Pedido de conex%co do char-server '%s' @ %u.%u.%u.%u:%u (login: '%s', senha: '%s', ip: '%s')\n", 198, server_name, CONVIP(server_ip), server_port, sd->userid, sd->passwd, ip);
 			sprintf(message, "charserver - %s@%u.%u.%u.%u:%u", server_name, CONVIP(server_ip), server_port);
 			login_log(session[fd]->client_addr, sd->userid, 100, message);
 
@@ -1536,7 +1539,7 @@ int parse_login(int fd)
 				sd->account_id >= 0 && sd->account_id < ARRAYLENGTH(server) &&
 				!session_isValid(server[sd->account_id].fd) )
 			{
-				ShowStatus("Connection of the char-server '%s' accepted.\n", server_name);
+				ShowStatus("Conex%co do char-server '%s' aceita.\n", 198, server_name);
 				safestrncpy(server[sd->account_id].name, server_name, sizeof(server[sd->account_id].name));
 				server[sd->account_id].fd = fd;
 				server[sd->account_id].ip = server_ip;
@@ -1557,7 +1560,7 @@ int parse_login(int fd)
 			}
 			else
 			{
-				ShowNotice("Connection of the char-server '%s' REFUSED.\n", server_name);
+				ShowNotice("Conex%co do char-server '%s' recusada.\n", 198, server_name);
 				WFIFOHEAD(fd,3);
 				WFIFOW(fd,0) = 0x2711;
 				WFIFOB(fd,2) = 3;
@@ -1567,7 +1570,7 @@ int parse_login(int fd)
 		return 0; // processing will continue elsewhere
 
 		default:
-			ShowNotice("Abnormal end of connection (ip: %s): Unknown packet 0x%x\n", ip, command);
+			ShowNotice("Um erro finalizou a conex%co (ip: %s): Pacote desconhecido 0x%x\n", 198, ip, command);
 			set_eof(fd);
 			return 0;
 		}
@@ -1823,7 +1826,7 @@ void do_shutdown(void)
 	{
 		int id;
 		runflag = LOGINSERVER_ST_SHUTDOWN;
-		ShowStatus("Shutting down...\n");
+		ShowStatus("Desligando...\n");
 		// TODO proper shutdown procedure; kick all characters, wait for acks, ...  [FlavioJS]
 		for( id = 0; id < ARRAYLENGTH(server); ++id )
 			chrif_server_reset(id);

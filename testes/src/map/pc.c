@@ -9356,11 +9356,11 @@ int pc_read_motd(void)
 		}
 		fclose(fp);
 
-		ShowStatus("Done reading '"CL_WHITE"%u"CL_RESET"' entries in '"CL_WHITE"%s"CL_RESET"'.\n", entries, motd_txt);
+		ShowStatus("Leitura de '"CL_WHITE"%u"CL_RESET"' entradas em '"CL_WHITE"%s"CL_RESET"'.\n", entries, motd_txt);
 	}
 	else
 	{
-		ShowWarning("File '"CL_WHITE"%s"CL_RESET"' not found.\n", motd_txt);
+		ShowWarning("Arquivo '"CL_WHITE"%s"CL_RESET"' n%co encontrado.\n", motd_txt, 198);
 	}
 
 	return 0;

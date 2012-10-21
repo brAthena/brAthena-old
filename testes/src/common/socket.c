@@ -533,12 +533,12 @@ int make_connection(uint32 ip, uint16 port, bool silent) {
 	remote_address.sin_port        = htons(port);
 
 	if( !silent )
-		ShowStatus("Connecting to %d.%d.%d.%d:%i\n", CONVIP(ip), port);
+		ShowStatus("Conectando-se a %d.%d.%d.%d:%i\n", CONVIP(ip), port);
 
 	result = sConnect(fd, (struct sockaddr *)(&remote_address), sizeof(struct sockaddr_in));
 	if( result == SOCKET_ERROR ) {
 		if( !silent )
-			ShowError("make_connection: connect failed (socket #%d, %s)!\n", fd, error_msg());
+			ShowError("Falha na conex%co (socket #%d, %s)!\n", 198, fd, error_msg());
 		do_close(fd);
 		return -1;
 	}

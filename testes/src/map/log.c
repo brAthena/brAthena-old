@@ -480,7 +480,7 @@ int log_config_read(const char* cfgName)
 
 	if( ( fp = fopen(cfgName, "r") ) == NULL )
 	{
-		ShowError("Log configuration file not found at: %s\n", cfgName);
+		ShowError("Arquivo n%co encontrado: %s\n", 198, cfgName);
 		return 1;
 	}
 

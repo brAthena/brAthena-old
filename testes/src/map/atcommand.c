@@ -123,7 +123,7 @@ int msg_config_read(const char* cfgName)
 	static int called = 1;
 
 	if ((fp = fopen(cfgName, "r")) == NULL) {
-		ShowError("Messages file not found: %s\n", cfgName);
+		ShowError("Arquivo n%co encontrado: %s\n", 198, cfgName);
 		return 1;
 	}
 
@@ -9453,7 +9453,7 @@ static void atcommand_config_read(const char* config_filename)
 		}
 	}
 
-	ShowStatus("Done reading '"CL_WHITE"%d"CL_RESET"' command aliases in '"CL_WHITE"%s"CL_RESET"'.\n", num_aliases, config_filename);
+	ShowStatus("Leitura finalizada '"CL_WHITE"%d"CL_RESET"' aliases de comandos em '"CL_WHITE"%s"CL_RESET"'.\n", num_aliases, config_filename);
 	return;
 }
 void atcommand_db_load_groups(int* group_ids) {

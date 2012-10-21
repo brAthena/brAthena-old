@@ -1750,7 +1750,7 @@ void guild_castle_map_init(void)
 		}
 		dbi_destroy(iter);
 		if (intif_guild_castle_dataload(num, castle_ids))
-			ShowStatus("Requested '"CL_WHITE"%d"CL_RESET"' guild castles from char-server...\n", num);
+			ShowStatus("Requisitados '"CL_WHITE"%d"CL_RESET"' castelos do char-server...\n", num);
 		aFree(castle_ids);
 	}
 }
@@ -1889,7 +1889,7 @@ int guild_castledataloadack(int len, struct guild_castle *gc)
 			}
 		}
 	}
-	ShowStatus("Received '"CL_WHITE"%d"CL_RESET"' guild castles from char-server.\n", n);
+	ShowStatus("Recebeu '"CL_WHITE"%d"CL_RESET"' castelos do char-server.\n", n);
 	return 0;
 }
 

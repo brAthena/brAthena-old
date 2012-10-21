@@ -2913,7 +2913,7 @@ int map_addmap(char* mapname)
 
 static void map_delmapid(int id)
 {
-	ShowNotice("Removing map [ %s ] from maplist"CL_CLL"\n",map[id].name);
+	ShowNotice("Removendo mapa [ %s ] da lista de mapas."CL_CLL"\n",map[id].name);
 	memmove(map+id, map+id+1, sizeof(map[0])*(map_num-id-1));
 	map_num--;
 }
@@ -3060,27 +3060,27 @@ int map_readallmaps (void)
 	char map_cache_decode_buffer[MAX_MAP_SIZE];
 
 	if( enable_grf )
-		ShowStatus("Loading maps (using GRF files)...\n");
+		ShowStatus("Carregando mapas (usando arquivos GRF)...\n");
 	else
 	{
-		ShowStatus("Loading maps (using %s as map cache)...\n", map_cache_file);
+		ShowStatus("Carregando mapas (usando %s como map cache)...\n", map_cache_file);
 		if( (fp = fopen(map_cache_file, "rb")) == NULL )
 		{
-			ShowFatalError("Unable to open map cache file "CL_WHITE"%s"CL_RESET"\n", map_cache_file);
+			ShowFatalError("N%co foi poss%cvel abrir o arquivo "CL_WHITE"%s"CL_RESET"\n", 198, 161, map_cache_file);
 			exit(EXIT_FAILURE); //No use launching server if maps can't be read.
 		}
 
 		// Init mapcache data.. [Shinryo]
 		map_cache_buffer = map_init_mapcache(fp);
 		if(!map_cache_buffer) {
-			ShowFatalError("Failed to initialize mapcache data (%s)..\n", map_cache_file);
+			ShowFatalError("Falha ao inicializar mapcache (%s)..\n", map_cache_file);
 			exit(EXIT_FAILURE);
 		}
 	}
 
 	// Mapcache reading is now fast enough, the progress info will just slow it down so don't use it anymore [Shinryo]
 	if(!enable_grf)
-		ShowStatus("Loading maps (%d)..\n", map_num);
+		ShowStatus("Carregando mapas (%d)..\n", map_num);
 
 	for(i = 0; i < map_num; i++)
 	{
@@ -3088,7 +3088,7 @@ int map_readallmaps (void)
 
 		// show progress
 		if(enable_grf)
-			ShowStatus("Loading maps [%i/%i]: %s"CL_CLL"\r", i, map_num, map[i].name);
+			ShowStatus("Carregando mapas [%i/%i]: %s"CL_CLL"\r", i, map_num, map[i].name);
 
 		// try to load the map
 		if( !
@@ -3106,7 +3106,7 @@ int map_readallmaps (void)
 
 		if (uidb_get(map_db,(unsigned int)map[i].index) != NULL)
 		{
-			ShowWarning("Map %s already loaded!"CL_CLL"\n", map[i].name);
+			ShowWarning("Mapa %s j%c est%c carregado!"CL_CLL"\n", 160, 160, map[i].name);
 			if (map[i].cell) {
 				aFree(map[i].cell);
 				map[i].cell = NULL;
@@ -3142,11 +3142,11 @@ int map_readallmaps (void)
 	}
 
 	// finished map loading
-	ShowInfo("Successfully loaded '"CL_WHITE"%d"CL_RESET"' maps."CL_CLL"\n",map_num);
+	ShowInfo("Sucesso ao carregar '"CL_WHITE"%d"CL_RESET"' mapas."CL_CLL"\n",map_num);
 	instance_start = map_num; // Next Map Index will be instances
 
 	if (maps_removed)
-		ShowNotice("Maps removed: '"CL_WHITE"%d"CL_RESET"'\n",maps_removed);
+		ShowNotice("Mapas removidos: '"CL_WHITE"%d"CL_RESET"'\n",maps_removed);
 
 	return 0;
 }
@@ -3244,7 +3244,7 @@ int map_config_read(char *cfgName)
 	fp = fopen(cfgName,"r");
 	if( fp == NULL )
 	{
-		ShowError("Map configuration file not found at: %s\n", cfgName);
+		ShowError("Arquivo de configura%c%co n%co encontrado: %s\n", 135, 198, 198, cfgName);
 		return 1;
 	}
 
@@ -3270,7 +3270,7 @@ int map_config_read(char *cfgName)
 		else if(strcmpi(w1,"stdout_with_ansisequence")==0)
 			stdout_with_ansisequence = config_switch(w2);
 		else if(strcmpi(w1,"console_silent")==0) {
-			ShowInfo("Console Silent Setting: %d\n", atoi(w2));
+			ShowInfo("Console Modo Silencioso: %d\n", atoi(w2));
 			msg_silent = atoi(w2);
 		} else if (strcmpi(w1, "userid")==0)
 			chrif_setuserid(w2);
@@ -3347,7 +3347,7 @@ void map_reloadnpc_sub(char *cfgName)
 	fp = fopen(cfgName,"r");
 	if( fp == NULL )
 	{
-		ShowError("Map configuration file not found at: %s\n", cfgName);
+		ShowError("Arquivo de configura%c%co n%co encontrado: %s\n", 135, 198, 198, cfgName);
 		return;
 	}
 
@@ -3398,7 +3398,7 @@ int inter_config_read(char *cfgName)
 
 	fp=fopen(cfgName,"r");
 	if(fp==NULL){
-		ShowError("File not found: %s\n",cfgName);
+		ShowError("Arquivo n%co encontrado: %s\n", 198, cfgName);
 		return 1;
 	}
 	while(fgets(line, sizeof(line), fp))
@@ -3595,10 +3595,10 @@ int map_sql_init(void)
 	// main db connection
 	mmysql_handle = Sql_Malloc();
 
-	ShowInfo("Connecting to the Map DB Server....\n");
+	ShowInfo("Conectando com o banco de dados do map-server....\n");
 	if( SQL_ERROR == Sql_Connect(mmysql_handle, map_server_id, map_server_pw, map_server_ip, map_server_port, map_server_db) )
 		exit(EXIT_FAILURE);
-	ShowStatus("connect success! (Map Server Connection)\n");
+	ShowStatus("Conex%co efetuada com sucesso! (map-server)\n", 198);
 
 	if( strlen(default_codepage) > 0 )
 		if ( SQL_ERROR == Sql_SetEncoding(mmysql_handle, default_codepage) )
@@ -3609,13 +3609,13 @@ int map_sql_init(void)
 
 int map_sql_close(void)
 {
-	ShowStatus("Close Map DB Connection....\n");
+	ShowStatus("Fechada conex%co com banco de dados do map-server....\n", 198);
 	Sql_Free(mmysql_handle);
 	mmysql_handle = NULL;
 #ifndef BETA_THREAD_TEST
 	if (log_config.sql_logs)
 	{
-		ShowStatus("Close Log DB Connection....\n");
+		ShowStatus("Fechada conex%co com banco de dados de logs....\n", 198);
 		Sql_Free(logmysql_handle);
 		logmysql_handle = NULL;
 	}
@@ -3629,10 +3629,10 @@ int log_sql_init(void)
 	// log db connection
 	logmysql_handle = Sql_Malloc();
 
-	ShowInfo(""CL_WHITE"[SQL]"CL_RESET": Connecting to the Log Database "CL_WHITE"%s"CL_RESET" At "CL_WHITE"%s"CL_RESET"...\n",log_db_db,log_db_ip);
+	ShowInfo("Conectando com o banco de dados de logs "CL_WHITE"%s"CL_RESET" em "CL_WHITE"%s"CL_RESET"...\n",log_db_db,log_db_ip);
 	if ( SQL_ERROR == Sql_Connect(logmysql_handle, log_db_id, log_db_pw, log_db_ip, log_db_port, log_db_db) )
 		exit(EXIT_FAILURE);
-	ShowStatus(""CL_WHITE"[SQL]"CL_RESET": Successfully '"CL_GREEN"connected"CL_RESET"' to Database '"CL_WHITE"%s"CL_RESET"'.\n", log_db_db);
+	ShowStatus("Conex%co efetuada com sucesso no banco de dados '"CL_WHITE"%s"CL_RESET"'.\n", 198, log_db_db);
 
 	if( strlen(default_codepage) > 0 )
 		if ( SQL_ERROR == Sql_SetEncoding(logmysql_handle, default_codepage) )
@@ -3853,10 +3853,9 @@ static void map_helpscreen(bool do_exit)
  *------------------------------------------------------*/
 static void map_versionscreen(bool do_exit)
 {
-	ShowInfo(CL_WHITE"rAthena SVN version: %s" CL_RESET"\n", get_svn_revision());
-	ShowInfo(CL_GREEN"Website/Forum:"CL_RESET"\thttp://rathena.org/\n");
-	ShowInfo(CL_GREEN"IRC Channel:"CL_RESET"\tirc://irc.rathena.net/#rathena\n");
-	ShowInfo("Open "CL_WHITE"readme.html"CL_RESET" for more information.\n");
+	ShowInfo(CL_WHITE"brAthena vers%co do SVN: %s" CL_RESET"\n", 198, get_svn_revision());
+	ShowInfo(CL_GREEN"Website/Forum:"CL_RESET"\thttp://brathena.org\n");
+	ShowInfo(CL_GREEN"SVN:"CL_RESET"\thttp://svn.brathena.org\n");
 	if( do_exit )
 		exit(EXIT_SUCCESS);
 }
@@ -3876,7 +3875,7 @@ void do_shutdown(void)
 	if( runflag != MAPSERVER_ST_SHUTDOWN )
 	{
 		runflag = MAPSERVER_ST_SHUTDOWN;
-		ShowStatus("Shutting down...\n");
+		ShowStatus("Desligando...\n");
 		{
 			struct map_session_data* sd;
 			struct s_mapiterator* iter = mapit_getallusers();
@@ -3893,7 +3892,7 @@ static bool map_arg_next_value(const char* option, int i, int argc)
 {
 	if( i >= argc-1 )
 	{
-		ShowWarning("Missing value for option '%s'.\n", option);
+		ShowWarning("Valor em falta para a op%c%co '%s'.\n", 135, 198, option);
 		return false;
 	}
 
@@ -3992,7 +3991,7 @@ int do_init(int argc, char *argv[])
 			}
 			else
 			{
-				ShowError("Unknown option '%s'.\n", argv[i]);
+				ShowError("Op%c%co desconhecida '%s'.\n", 135, 198, argv[i]);
 				exit(EXIT_FAILURE);
 			}
 		}
@@ -4006,7 +4005,7 @@ int do_init(int argc, char *argv[])
 				map_versionscreen(true);
 				break;
 			default:
-				ShowError("Unknown option '%s'.\n", argv[i]);
+				ShowError("Op%c%co desconhecida '%s'.\n", 135, 198, argv[i]);
 				exit(EXIT_FAILURE);
 		}
 	}
@@ -4023,14 +4022,14 @@ int do_init(int argc, char *argv[])
 		char ip_str[16];
 		ip2str(addr_[0], ip_str);
 
-		ShowWarning("Not all IP addresses in map_athena.conf configured, autodetecting...\n");
+		ShowWarning("IPs em map_athena.conf n%co est%co configurados, autodetectando...\n", 198, 198);
 
 		if (naddr_ == 0)
-			ShowError("Unable to determine your IP address...\n");
+			ShowError("N%co foi poss%cvel determinar o endere%co de IP...\n", 198, 161, 135);
 		else if (naddr_ > 1)
-			ShowNotice("Multiple interfaces detected...\n");
+			ShowNotice("M%cltiplas interfaces detectadas...\n", 163);
 
-		ShowInfo("Defaulting to %s as our IP address\n", ip_str);
+		ShowInfo("Definindo "CL_WHITE"%s"CL_RESET" como o endere%co IP padr%co.\n", ip_str, 135, 198);
 
 		if (!map_ip_set)
 			clif_setip(ip_str);
@@ -4103,9 +4102,9 @@ int do_init(int argc, char *argv[])
 	}
 
 	if (battle_config.pk_mode)
-		ShowNotice("Server is running on '"CL_WHITE"PK Mode"CL_RESET"'.\n");
+		ShowNotice("Servidor iniciado em "CL_WHITE"Modo PK"CL_RESET".\n");
 
-	ShowStatus("Server is '"CL_GREEN"ready"CL_RESET"' and listening on port '"CL_WHITE"%d"CL_RESET"'.\n\n", map_port);
+	ShowStatus("Servidor est%c "CL_GREEN"pronto"CL_RESET" (Porta "CL_GREEN"%d"CL_RESET").\n\n", 160, map_port);
 	
 	if( runflag != CORE_ST_STOP )
 	{

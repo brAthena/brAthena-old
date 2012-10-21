@@ -225,9 +225,9 @@ void chrif_setpasswd(char *pwd)
 void chrif_checkdefaultlogin(void)
 {
 	if (strcmp(userid, "s1")==0 && strcmp(passwd, "p1")==0) {
-		ShowWarning("Using the default user/password s1/p1 is NOT RECOMMENDED.\n");
-		ShowNotice("Please edit your 'login' table to create a proper inter-server user/password (gender 'S')\n");
-		ShowNotice("and then edit your user/password in conf/map_athena.conf (or conf/import/map_conf.txt)\n");
+		ShowWarning("Utilizar o usu%crio/senha padr%co 's1/p1' n%co %c recomendado.\n", 160, 198, 198, 130);
+		ShowNotice("Por favor edite sua tabela 'login' para criar usu%crio/senha corretos para o inter-server (sexo 'S')\n", 160);
+		ShowNotice("Ap%cs isso, modifique usu%crio/senha utilizados no conf/map_athena.conf (ou conf/import/map_conf.txt)\n", 162, 160);
 	}
 }
 
@@ -237,11 +237,11 @@ int chrif_setip(const char* ip)
 	char ip_str[16];
 	char_ip = host2ip(ip);
 	if (!char_ip) {
-		ShowWarning("Failed to Resolve Char Server Address! (%s)\n", ip);
+		ShowWarning("Falha ao resolver endere%co do char-server! (%s)\n", 135, ip);
 		return 0;
 	}
 	strncpy(char_ip_str, ip, sizeof(char_ip_str));
-	ShowInfo("Char Server IP Address : '"CL_WHITE"%s"CL_RESET"' -> '"CL_WHITE"%s"CL_RESET"'.\n", ip, ip2str(char_ip, ip_str));
+	ShowInfo("Endere%co de IP do char-server: '"CL_WHITE"%s"CL_RESET"' -> '"CL_WHITE"%s"CL_RESET"'.\n", 135, ip, ip2str(char_ip, ip_str));
 	return 1;
 }
 
@@ -319,7 +319,7 @@ int chrif_save(struct map_session_data *sd, int flag)
 // connects to char-server (plaintext)
 int chrif_connect(int fd)
 {
-	ShowStatus("Logging in to char server...\n", char_fd);
+	ShowStatus("Logando em char-server...\n", char_fd);
 	WFIFOHEAD(fd,60);
 	WFIFOW(fd,0) = 0x2af8;
 	memcpy(WFIFOP(fd,2), userid, NAME_LENGTH);
@@ -336,7 +336,7 @@ int chrif_connect(int fd)
 int chrif_sendmap(int fd)
 {
 	int i;
-	ShowStatus("Sending maps to char server...\n");
+	ShowStatus("Enviando mapas para char-server...\n");
 	// Sending normal maps, not instances
 	WFIFOHEAD(fd, 4 + instance_start * 4);
 	WFIFOW(fd,0) = 0x2afa;
@@ -359,7 +359,7 @@ int chrif_recvmap(int fd)
 		map_setipport(RFIFOW(fd,i), ip, port);
 	}
 	if (battle_config.etc_log)
-		ShowStatus("Received maps from %d.%d.%d.%d:%d (%d maps)\n", CONVIP(ip), port, j);
+		ShowStatus("Mapas recebidos de %d.%d.%d.%d:%d (%d mapas)\n", CONVIP(ip), port, j);
 
 	other_mapserver_count++;
 	return 0;
@@ -447,20 +447,20 @@ int chrif_connectack(int fd)
 	static bool char_init_done = false;
 
 	if (RFIFOB(fd,2)) {
-		ShowFatalError("Connection to char-server failed %d.\n", RFIFOB(fd,2));
+		ShowFatalError("Conex%co com o char-server falhou %d.\n", 198, RFIFOB(fd,2));
 		exit(EXIT_FAILURE);
 	}
 
-	ShowStatus("Successfully logged on to Char Server (Connection: '"CL_WHITE"%d"CL_RESET"').\n",fd);
+	ShowStatus("Conex%co em char-server efetuada com sucesso (ID: '"CL_WHITE"%d"CL_RESET"').\n", 198, fd);
 	chrif_state = 1;
 	chrif_connected = 1;
 
 	chrif_sendmap(fd);
 
-	ShowStatus("Event '"CL_WHITE"OnInterIfInit"CL_RESET"' executed with '"CL_WHITE"%d"CL_RESET"' NPCs.\n", npc_event_doall("OnInterIfInit"));
+	ShowStatus("Evento '"CL_WHITE"OnInterIfInit"CL_RESET"' executado em '"CL_WHITE"%d"CL_RESET"' NPCs.\n", npc_event_doall("OnInterIfInit"));
 	if( !char_init_done ) {
 		char_init_done = true;
-		ShowStatus("Event '"CL_WHITE"OnInterIfInitOnce"CL_RESET"' executed with '"CL_WHITE"%d"CL_RESET"' NPCs.\n", npc_event_doall("OnInterIfInitOnce"));
+		ShowStatus("Evento '"CL_WHITE"OnInterIfInitOnce"CL_RESET"' executado em '"CL_WHITE"%d"CL_RESET"' NPCs.\n", npc_event_doall("OnInterIfInitOnce"));
 		guild_castle_map_init();
 	}
 
@@ -505,7 +505,7 @@ static int chrif_reconnect(DBKey key, DBData *data, va_list ap)
 /// Called when all the connection steps are completed.
 void chrif_on_ready(void)
 {
-	ShowStatus("Map Server is now online.\n");
+	ShowStatus("Map-server est%c online.\n", 160);
 	chrif_state = 2;
 	chrif_check_shutdown();
 
@@ -1137,7 +1137,7 @@ int chrif_recvfamelist(int fd)
 	}
 	total += num;
 
-	ShowInfo("Received Fame List of '"CL_WHITE"%d"CL_RESET"' characters.\n", total);
+	ShowInfo("Lista de fama recebeu '"CL_WHITE"%d"CL_RESET"' personagens.\n", total);
 
 	return 0;
 }
@@ -1518,7 +1518,7 @@ static int check_connect_char_server(int tid, unsigned int tick, int id, intptr_
 	{
 		if (!displayed)
 		{
-			ShowStatus("Attempting to connect to Char Server. Please wait.\n");
+			ShowStatus("Tentando se conectar ao char-server. Por favor, aguarde.\n");
 			displayed = 1;
 		}
 

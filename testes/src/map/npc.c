@@ -439,7 +439,7 @@ int npc_event_do_clock(int tid, unsigned int tick, int id, intptr_t data)
  *------------------------------------------*/
 void npc_event_do_oninit(void)
 {
-	ShowStatus("Event '"CL_WHITE"OnInit"CL_RESET"' executed with '"CL_WHITE"%d"CL_RESET"' NPCs."CL_CLL"\n", npc_event_doall("OnInit"));
+	ShowStatus("Evento '"CL_WHITE"OnInit"CL_RESET"' executado em '"CL_WHITE"%d"CL_RESET"' NPCs."CL_CLL"\n", npc_event_doall("OnInit"));
 
 	add_timer_interval(gettick()+100,npc_event_do_clock,0,0,1000);
 }
@@ -3329,7 +3329,7 @@ void npc_parsesrcfile(const char* filepath, bool runOnInit)
 	fp = fopen(filepath, "rb");
 	if( fp == NULL )
 	{
-		ShowError("npc_parsesrcfile: File not found '%s'.\n", filepath);
+		ShowError("Arquivo n%co encontrado '%s'.\n", 198, filepath);
 		return;
 	}
 	fseek(fp, 0, SEEK_END);
@@ -3340,7 +3340,7 @@ void npc_parsesrcfile(const char* filepath, bool runOnInit)
 	buffer[len] = '\0';
 	if( ferror(fp) )
 	{
-		ShowError("npc_parsesrcfile: Failed to read file '%s' - %s\n", filepath, strerror(errno));
+		ShowError("Falha ao carregar o arquivo '%s' - %s\n", filepath, strerror(errno));
 		aFree(buffer);
 		fclose(fp);
 		return;
@@ -3394,7 +3394,7 @@ void npc_parsesrcfile(const char* filepath, bool runOnInit)
 
 		if( count < 3 )
 		{// Unknown syntax
-			ShowError("npc_parsesrcfile: Unknown syntax in file '%s', line '%d'. Stopping...\n * w1=%s\n * w2=%s\n * w3=%s\n * w4=%s\n", filepath, strline(buffer,p-buffer), w1, w2, w3, w4);
+			ShowError("Sintaxe desconhecida no arquivo '%s', linha '%d'. Parando leitura...\n * w1=%s\n * w2=%s\n * w3=%s\n * w4=%s\n", filepath, strline(buffer,p-buffer), w1, w2, w3, w4);
 			break;
 		}
 
@@ -3404,7 +3404,7 @@ void npc_parsesrcfile(const char* filepath, bool runOnInit)
 			sscanf(w1,"%[^,]",mapname);
 			if( !mapindex_name2id(mapname) )
 			{// Incorrect map, we must skip the script info...
-				ShowError("npc_parsesrcfile: Unknown map '%s' in file '%s', line '%d'. Skipping line...\n", mapname, filepath, strline(buffer,p-buffer));
+				ShowError("Mapa desconhecido '%s' no arquivo '%s', linha '%d'. Ignorando linha...\n", mapname, filepath, strline(buffer,p-buffer));
 				if( strcasecmp(w2,"script") == 0 && count > 3 )
 				{
 					if((p = npc_skip_script(p,buffer,filepath)) == NULL)
@@ -3609,16 +3609,16 @@ int npc_reload(void) {
 	//TODO: the following code is copy-pasted from do_init_npc(); clean it up
 	// Reloading npcs now
 	for (nsl = npc_src_files; nsl; nsl = nsl->next) {
-		ShowStatus("Loading NPC file: %s"CL_CLL"\r", nsl->name);
+		ShowStatus("Carregando arquivo de NPC: %s"CL_CLL"\r", nsl->name);
 		npc_parsesrcfile(nsl->name,false);
 	}
-	ShowInfo ("Done loading '"CL_WHITE"%d"CL_RESET"' NPCs:"CL_CLL"\n"
-		"\t-'"CL_WHITE"%d"CL_RESET"' Warps\n"
-		"\t-'"CL_WHITE"%d"CL_RESET"' Shops\n"
+	ShowInfo ("Finalizada leitura de '"CL_WHITE"%d"CL_RESET"' NPCs:"CL_CLL"\n"
+		"\t-'"CL_WHITE"%d"CL_RESET"' Portais\n"
+		"\t-'"CL_WHITE"%d"CL_RESET"' Lojas\n"
 		"\t-'"CL_WHITE"%d"CL_RESET"' Scripts\n"
-		"\t-'"CL_WHITE"%d"CL_RESET"' Spawn sets\n"
-		"\t-'"CL_WHITE"%d"CL_RESET"' Mobs Cached\n"
-		"\t-'"CL_WHITE"%d"CL_RESET"' Mobs Not Cached\n",
+		"\t-'"CL_WHITE"%d"CL_RESET"' Monstros\n"
+		"\t-'"CL_WHITE"%d"CL_RESET"' Monstros em cache\n"
+		"\t-'"CL_WHITE"%d"CL_RESET"' Monstros fora de cache\n",
 		npc_id - npc_new_min, npc_warp, npc_shop, npc_script, npc_mob, npc_cache_mob, npc_delay_mob);
 
 	do_final_instance();
@@ -3634,12 +3634,12 @@ int npc_reload(void) {
 	npc_event_doall("OnAgitInit2");
 	
 	//Execute the OnInit event for freshly loaded npcs. [Skotlex]
-	ShowStatus("Event '"CL_WHITE"OnInit"CL_RESET"' executed with '"CL_WHITE"%d"CL_RESET"' NPCs.\n",npc_event_doall("OnInit"));
+	ShowStatus("Evento '"CL_WHITE"OnInit"CL_RESET"' executado em '"CL_WHITE"%d"CL_RESET"' NPCs.\n",npc_event_doall("OnInit"));
 	
 	// Execute rest of the startup events if connected to char-server. [Lance]
 	if(!CheckForCharServer()){
-		ShowStatus("Event '"CL_WHITE"OnInterIfInit"CL_RESET"' executed with '"CL_WHITE"%d"CL_RESET"' NPCs.\n", npc_event_doall("OnInterIfInit"));
-		ShowStatus("Event '"CL_WHITE"OnInterIfInitOnce"CL_RESET"' executed with '"CL_WHITE"%d"CL_RESET"' NPCs.\n", npc_event_doall("OnInterIfInitOnce"));
+		ShowStatus("Evento '"CL_WHITE"OnInterIfInit"CL_RESET"' executado em '"CL_WHITE"%d"CL_RESET"' NPCs.\n", npc_event_doall("OnInterIfInit"));
+		ShowStatus("Evento '"CL_WHITE"OnInterIfInitOnce"CL_RESET"' executado em '"CL_WHITE"%d"CL_RESET"' NPCs.\n", npc_event_doall("OnInterIfInitOnce"));
 	}
 	return 0;
 }
@@ -3736,18 +3736,18 @@ int do_init_npc(void)
 	timer_event_ers = ers_new(sizeof(struct timer_event_data),"clif.c::timer_event_ers",ERS_OPT_NONE);
 	
 	// process all npc files
-	ShowStatus("Loading NPCs...\r");
+	ShowStatus("Carregando NPCs...\r");
 	for( file = npc_src_files; file != NULL; file = file->next ) {
-		ShowStatus("Loading NPC file: %s"CL_CLL"\r", file->name);
+		ShowStatus("Carregando arquivo de NPC: %s"CL_CLL"\r", file->name);
 		npc_parsesrcfile(file->name,false);
 	}
-	ShowInfo ("Done loading '"CL_WHITE"%d"CL_RESET"' NPCs:"CL_CLL"\n"
-		"\t-'"CL_WHITE"%d"CL_RESET"' Warps\n"
-		"\t-'"CL_WHITE"%d"CL_RESET"' Shops\n"
+	ShowInfo ("Finalizada leitura de '"CL_WHITE"%d"CL_RESET"' NPCs:"CL_CLL"\n"
+		"\t-'"CL_WHITE"%d"CL_RESET"' Portais\n"
+		"\t-'"CL_WHITE"%d"CL_RESET"' Lojas\n"
 		"\t-'"CL_WHITE"%d"CL_RESET"' Scripts\n"
-		"\t-'"CL_WHITE"%d"CL_RESET"' Spawn sets\n"
-		"\t-'"CL_WHITE"%d"CL_RESET"' Mobs Cached\n"
-		"\t-'"CL_WHITE"%d"CL_RESET"' Mobs Not Cached\n",
+		"\t-'"CL_WHITE"%d"CL_RESET"' Monstros\n"
+		"\t-'"CL_WHITE"%d"CL_RESET"' Monstros em cache\n"
+		"\t-'"CL_WHITE"%d"CL_RESET"' Monstros fora de cache\n",
 		npc_id - START_NPC_NUM, npc_warp, npc_shop, npc_script, npc_mob, npc_cache_mob, npc_delay_mob);
 
 	// set up the events cache

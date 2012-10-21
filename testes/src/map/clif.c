@@ -198,12 +198,12 @@ int clif_setip(const char* ip)
 	char ip_str[16];
 	map_ip = host2ip(ip);
 	if (!map_ip) {
-		ShowWarning("Failed to Resolve Map Server Address! (%s)\n", ip);
+		ShowWarning("Falha ao resolver endere%co do map-server! (%s)\n", 135, ip);
 		return 0;
 	}
 
 	strncpy(map_ip_str, ip, sizeof(map_ip_str));
-	ShowInfo("Map Server IP Address : '"CL_WHITE"%s"CL_RESET"' -> '"CL_WHITE"%s"CL_RESET"'.\n", ip, ip2str(map_ip, ip_str));
+	ShowInfo("Endere%co de IP do map-server: '"CL_WHITE"%s"CL_RESET"' -> '"CL_WHITE"%s"CL_RESET"'.\n", 135, ip, ip2str(map_ip, ip_str));
 	return 1;
 }
 
@@ -212,9 +212,9 @@ void clif_setbindip(const char* ip)
 	char ip_str[16];
 	bind_ip = host2ip(ip);
 	if (bind_ip) {
-		ShowInfo("Map Server Bind IP Address : '"CL_WHITE"%s"CL_RESET"' -> '"CL_WHITE"%s"CL_RESET"'.\n", ip, ip2str(bind_ip, ip_str));
+		ShowInfo("Endere%co bind IP do map-server: '"CL_WHITE"%s"CL_RESET"' -> '"CL_WHITE"%s"CL_RESET"'.\n", 135, ip, ip2str(bind_ip, ip_str));
 	} else {
-		ShowWarning("Failed to Resolve Map Server Address! (%s)\n", ip);
+		ShowWarning("Falha ao resolver endere%co do map-server! (%s)\n", 135, ip);
 	}
 }
 
@@ -16976,7 +16976,7 @@ static int packetdb_readdb(void)
 		
 		clif_config.packet_db_ver = j?j:MAX_PACKET_VER;
 	}
-	ShowStatus("Done reading packet database from '"CL_WHITE"%s"CL_RESET"'. Using default packet version: "CL_WHITE"%d"CL_RESET".\n", "packet_db.txt", clif_config.packet_db_ver);
+	ShowStatus("Finalizada leitura do banco de pacotes em '"CL_WHITE"%s"CL_RESET"'. Usando vers%co de pacotes: "CL_WHITE"%d"CL_RESET".\n", "packet_db.txt", 198, clif_config.packet_db_ver);
 	return 0;
 }
 

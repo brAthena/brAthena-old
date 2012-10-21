@@ -5963,7 +5963,7 @@ int battle_config_read(const char* cfgName)
 
 	fp = fopen(cfgName,"r");
 	if (fp == NULL)
-		ShowError("File not found: %s\n", cfgName);
+		ShowError("Arquivo n%co encontrado: %s\n", 198, cfgName);
 	else
 	{
 		while(fgets(line, sizeof(line), fp))
@@ -5976,7 +5976,7 @@ int battle_config_read(const char* cfgName)
 				battle_config_read(w2);
 			else
 			if (battle_set_value(w1, w2) == 0)
-				ShowWarning("Unknown setting '%s' in file %s\n", w1, cfgName);
+				ShowWarning("Configura%c%co desconhecida '%s' no arquivo %s\n", 135, 198, w1, cfgName);
 		}
 
 		fclose(fp);
