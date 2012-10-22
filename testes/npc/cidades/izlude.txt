@@ -24,9 +24,30 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
+
+-	script	Cidade_Izlude	-1,{
+
+OnInit:
+if( !checkre(0) ) { 
+movenpc "Marinheiro#izlude", 201,181;
+movenpc "Bonne#izlude", 55,74; 
+movenpc "Charfri#izlude", 135,78; 
+movenpc "Cuskoal#izlude", 119,121; 
+movenpc "Dega#izlude", 150,118;
+movenpc "Kylick#izlude", 150,143;
+movenpc "Red#izlude", 56,126;
+movenpc "Cebalis#izlude", 58,126;
+movenpc "Bullet Dealer Tony#iz", 171,133;
+movenpc "Magazine Dealer Tony#iz", 171,127;
+disablenpc "Guarda#izlude";
+disablenpc "Ferreiro#izlude";
+end; 
+}
+}
+
 // Izlude
 //============================================================
--	script	::Sailor_izlude	-1,{
+izlude,197,205,2	script	Marinheiro#izlude	100,{
 	mes "[Marinheiro]";
 	mes "Ei todo mundo!";
 	mes "Atenção, atenção!";
@@ -60,7 +81,7 @@
 	}
 }
 
--	script	::Bonne_izlude	-1,{
+izlude,71,92,2	script	Bonne#izlude	90,{
 	mes "[Bonne]";
 	mes "Saudações!";
 	mes "Os habitantes de Izlude lhe dão boas vindas.";
@@ -83,7 +104,7 @@
 	close;
 }
 
--	script	::Charfri_izlude	-1,{
+izlude,172,215,2	script	Charfri#izlude	91,{
 	mes "[Charfri]";
 	if (rand(2)) {
 		mes "Algumas pessoas podem pensar Izlude é apenas a cidade satélite de Prontera, e não vêem sua verdadeira beleza...";
@@ -112,7 +133,7 @@
 	close;
 }
 
--	script	::Cuskoal_izlude	-1,{
+izlude,127,175,5	script	Cuskoal#izlude	124,{
 	mes "[Cuskoal]";
 	if (rand(2)) {
 		mes "A Arena é o lugar perfeito para pessoas jovens de todas as partes do Reino de Rune-Midgard desafiarem e testarem suas habilidades.";
@@ -134,7 +155,7 @@
 	close;
 }
 
--	script	::Dega_izlude	-1,{
+izlude,85,103,2	script	Dega#izlude	84,{
 	mes "[Dega]";
 	switch(rand(3)) {
 	case 1:
@@ -210,7 +231,7 @@
 	}
 }
 
--	script	::Kylick_izlude	-1,{
+izlude,85,103,3	script	Kylick#izlude	97,{
 	mes "[Kylick]";
 	if (rand(2)) {
 		mes "Você não acha o Binóculos";
@@ -239,7 +260,7 @@
 	close;
 }
 
--	script	::Red_izlude	-1,{
+izlude,56,156,2	script	Red#izlude	85,{
 	mes "[Red]";
 	mes "A única habilidade que um espadachim precisa é ^FF2400Golpe Fulminante^000000! Golpe Fulminante, Golpe Fulminante, SOMENTE ^FF2400Golpe Fulminante^000000! Não há necessidade de gastar tempo e esforço com habilidades menores... todo o resto é para covardes, frangotes!";
 	next;
@@ -309,7 +330,7 @@
 	close;
 }
 
--	script	::Cebalis_izlude	-1,{
+izlude,58,156,2	script	Cebalis#izlude	98,{
 	mes "[Red]";
 	mes "A única habilidade que um espadachim precisa é ^FF2400Golpe Fulminante^000000! Golpe Fulminante, Golpe Fulminante, SOMENTE ^FF2400Golpe Fulminante^000000! Não há necessidade de gastar tempo e esforço com habilidades menores... todo o resto é para covardes, frangotes!";
 	next;
@@ -386,7 +407,7 @@
 	close;
 }
 
--	script	::Soldier_izlude	-1,{
+izlude,165,156,2	script	Soldado#izlude	105,{
 	mes "[Soldado]";
 	mes "HeHeHeHe.. HaHaHaHa";
 	mes "Como? Por que estou tão feliz?";
@@ -496,4 +517,15 @@ izlu2dun,108,27,0	script	Marinheiro#2izlude	100,{
 		else
 			warp "izlude",176,182;
 		end;
+}
+
+izlude,147,131,6	script	Ferreiro#izlude	726,{
+	end;
+}
+
+prt_fild08,350,219,4	script	Guarda#izlude	105,{
+
+	mes "[Guarda de Izlude]";
+	mes "Bem-vindo a Izlude.";
+	close;
 }

@@ -1,3 +1,4 @@
+
 //    ________________________________________________________
 //   /                                                        \
 //   |       _           _   _   _                            |
@@ -21,7 +22,13 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/ 
 
--	script	::Airship_Staff_izlude	-1,{
+-	script	AirIzlude	-1,{
+
+OnInit:
+if( !checkre(0) ){ movenpc "Airship_Staff_izlude", 206,55; } }
+
+izlude,204,75,3	script	Airship_Staff_izlude	90,{
+
 	mes "[Airship Staff]";
 	mes "Welcome! Would you like";
 	mes "to board the Airship that";

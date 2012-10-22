@@ -22,6 +22,7 @@
 //   \________________________________________________________/
 
 alberta,118,160,3	script	Bullet Dealer Tony#alb::bdt	86,{
+
 	if (BaseJob == Job_Gunslinger) {
 		mes "[Tony]";
 		mes "I'm Tony, the Bullet Dealer.";
@@ -246,3 +247,6 @@ function	script	Func_Casing	{
 		close;
 	}
 }
+
+izlude,158,130,3	duplicate(bdt)	Bullet Dealer Tony#iz	86
+izlude,155,132,3	duplicate(mdk)	Magazine Dealer Tony#iz	83
