@@ -29,14 +29,15 @@
 
 OnInit:
 if( !checkre(0) ) { 
-movenpc "Marinheiro#izlude", 201,181;
+movenpc "Marinheiro#izlude", 201,181,2;
 movenpc "Bonne#izlude", 55,74; 
-movenpc "Charfri#izlude", 135,78; 
-movenpc "Cuskoal#izlude", 119,121; 
-movenpc "Dega#izlude", 150,118;
-movenpc "Kylick#izlude", 150,143;
+movenpc "Charfri#izlude", 135,78,2; 
+movenpc "Cuskoal#izlude", 119,121,2; 
+movenpc "Dega#izlude", 150,118,2;
+movenpc "Kylick#izlude", 150,143,2;
 movenpc "Red#izlude", 56,126;
 movenpc "Cebalis#izlude", 58,126;
+movenpc "Soldado#izlude", 124,178;
 movenpc "Bullet Dealer Tony#iz", 171,133;
 movenpc "Magazine Dealer Tony#iz", 171,127;
 disablenpc "Guarda#izlude";
@@ -47,7 +48,7 @@ end;
 
 // Izlude
 //============================================================
-izlude,197,205,2	script	Marinheiro#izlude	100,{
+izlude,197,205,1	script	Marinheiro#izlude	100,{
 	mes "[Marinheiro]";
 	mes "Ei todo mundo!";
 	mes "Atenção, atenção!";
@@ -104,7 +105,7 @@ izlude,71,92,2	script	Bonne#izlude	90,{
 	close;
 }
 
-izlude,172,215,2	script	Charfri#izlude	91,{
+izlude,172,215,4	script	Charfri#izlude	91,{
 	mes "[Charfri]";
 	if (rand(2)) {
 		mes "Algumas pessoas podem pensar Izlude é apenas a cidade satélite de Prontera, e não vêem sua verdadeira beleza...";
@@ -133,7 +134,7 @@ izlude,172,215,2	script	Charfri#izlude	91,{
 	close;
 }
 
-izlude,127,175,5	script	Cuskoal#izlude	124,{
+izlude,127,175,4	script	Cuskoal#izlude	124,{
 	mes "[Cuskoal]";
 	if (rand(2)) {
 		mes "A Arena é o lugar perfeito para pessoas jovens de todas as partes do Reino de Rune-Midgard desafiarem e testarem suas habilidades.";
@@ -155,7 +156,7 @@ izlude,127,175,5	script	Cuskoal#izlude	124,{
 	close;
 }
 
-izlude,85,103,2	script	Dega#izlude	84,{
+izlude,85,103,4	script	Dega#izlude	84,{
 	mes "[Dega]";
 	switch(rand(3)) {
 	case 1:
@@ -231,7 +232,7 @@ izlude,85,103,2	script	Dega#izlude	84,{
 	}
 }
 
-izlude,85,103,3	script	Kylick#izlude	97,{
+izlude,85,103,4	script	Kylick#izlude	97,{
 	mes "[Kylick]";
 	if (rand(2)) {
 		mes "Você não acha o Binóculos";
