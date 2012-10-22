@@ -688,7 +688,6 @@ enable_option_checking
 enable_manager
 enable_packetver
 enable_debug
-enable_renewal
 enable_buildbot
 enable_rdtsc
 enable_profiler
@@ -1323,7 +1322,6 @@ Optional Features:
                           src/map/clif.h)
   --enable-debug[=ARG]    Compiles extra debug code. (disabled by default)
                           (available options: yes, no, gdb)
-  --enable-renewal[=ARG]  (available options: yes, no)
   --enable-buildbot[=ARG] (available options: yes, no)
   --enable-rdtsc          Uses rdtsc as timing source (disabled by default)
                           Enable it when you've timing issues. (For example:
@@ -3468,25 +3466,6 @@ fi
 
 
 #
-# Renewal
-#
-# Check whether --enable-renewal was given.
-if test "${enable_renewal+set}" = set; then :
-  enableval=$enable_renewal;
-		enable_renewal="$enableval"
-		case $enableval in
-			"no");;
-			"yes");;
-			*) as_fn_error $? "invalid argument --enable-renewal=$enableval... stopping" "$LINENO" 5;;
-		esac
-
-else
-  enable_renewal="no"
-
-fi
-
-
-#
 # Buildbot
 #
 # Check whether --enable-buildbot was given.
@@ -5161,18 +5140,6 @@ case $enable_debug in
 		;;
 	"gdb")
 		CFLAGS="$CFLAGS -ggdb -DDEBUG"
-		;;
-esac
-
-#
-# Renewal
-#
-case $enable_renewal in
-	"no")
-		# default value
-		;;
-	"yes")
-		CFLAGS="$CFLAGS -DRENEWAL"
 		;;
 esac
 
