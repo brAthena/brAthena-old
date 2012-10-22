@@ -33,6 +33,16 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
+-	script	Kafra_Izlude	-1,{
+
+OnInit:
+if( !checkre(0) ) { 
+movenpc "Funcionária Kafra#izlude", 134,87,3;
+disablenpc "Funcionária Kafra#brasilis";
+end;
+}
+}
+
 // Aldebaran
 //============================================================
 aldeba_in,96,181,4	script	Kafra Service	113,{
@@ -337,6 +347,17 @@ alberta,113,60,6	script	Funcionária Kafra::kaf_alberta2	112,{
 	callfunc "F_KafEnd",0,1,"na cidade de Alberta";
 }
 
+// Brasilis
+//============================================================
+brasilis,197,221,4	script	Funcionária Kafra#brasilis	117,{
+	cutin "kafra_01",2;
+	callfunc "F_Kafra",0,3,0,80,700;
+
+	M_Save:
+		savepoint "brasilis",195,259;
+		callfunc "F_KafEnd",0,1,"in the city of Brasilis";
+}
+
 // Comodo
 //============================================================
 comodo,195,150,4	script	Funcionária Kafra::kaf_comodo	721,{
@@ -365,7 +386,7 @@ cmd_fild07,136,134,4	script	Funcionária Kafra::kaf_cmd_fild07	721,{
 
 // Izlude
 //============================================================
--	script	kaf_izlude	-1,{
+izlude,128,148,6	script	Funcionária Kafra#izlude	117,{
 	cutin "kafra_01",2;
 	callfunc "F_KafSet";
 	mes "[Funcionária Kafra]";

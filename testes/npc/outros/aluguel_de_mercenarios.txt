@@ -8,7 +8,7 @@
 //   |                                                        |
 //   |                    brAthena Script                     |
 //   |--------------------------------------------------------|
-//   | Nome do Script: aluguel_de_assistentes.txt             |
+//   | Nome do Script: aluguel_de_mercenarios.txt             |
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
@@ -23,6 +23,15 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
+-	script	Aluguel_Mercenarios	-1,{
+
+OnInit:
+if( !checkre(0) ) { 
+movenpc "Mercenary_Manager_Sword", 47,139;
+movenpc "Mercenary Merchant#Sword", 56,139; 
+end;
+}
+}
 
 prontera,41,337,5	script	Mercenary Manager#Spear	105,{
 	set .@faith_lancer, mercenary_get_faith(SPEAR_MERC_GUILD);
@@ -235,7 +244,7 @@ prontera,41,337,5	script	Mercenary Manager#Spear	105,{
 	}
 }
 
--	script	::Mercenary_Manager_Sword	-1,{
+izlude,47,169,5	script	Mercenary_Manager_Sword	734,{
 	set .@faith_sword, mercenary_get_faith(SWORD_MERC_GUILD);
 	mes "[Mercenary Manager]";
 	mes "Welcome to the";
@@ -661,7 +670,7 @@ pay_arche,99,167,4	script	Mercenary Manager#Bow	732,{
 
 // Mercenary Merchant NPCs
 //============================================================
--	script	Mercenary Merchant#dummy::MercMerchant	-1,{
+izlude,56,169,4	script	Mercenary Merchant#Sword	892,{
 	mes "[Mercenary Goods Merchant]";
 	mes "Hello, I sell goods";
 	mes "that Mercenaries can";
