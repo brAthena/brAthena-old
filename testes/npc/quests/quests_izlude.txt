@@ -21,9 +21,18 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
+-	script	Quest_Izlude	-1,{
+
+OnInit:
+if( !checkre(0) ) { 
+movenpc "Edgar#izlude", 182,186,2;
+end;
+}
+}
+
 // Edgar's Offer
 //============================================================
--	script	::Edgar_izlude	-1,{
+izlude,179,219,4	script	Edgar#izlude	-1,{
 	if (MISC_QUEST & 16) {
 		mes "[Edgar]";
 		mes "So are you heading to Alberta again? Let me give you the same discount and only charge 250 Zeny, just like the last time.";
