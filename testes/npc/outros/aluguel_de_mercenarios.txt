@@ -718,8 +718,8 @@ izlude,56,169,4	script	Mercenary Merchant#Sword	892,{
 	close;
 }
 
-prontera,30,337,4	duplicate(MercMerchant)	Mercenary Merchant#Spear	700
-pay_arche,102,167,5	duplicate(MercMerchant)	Mercenary Merchant#Bow	879
+prontera,30,337,4	duplicate(Mercenary Merchant#Sword)	Mercenary Merchant#Spear	700
+pay_arche,102,167,5	duplicate(Mercenary Merchant#Sword)	Mercenary Merchant#Bow	879
 
 // Function for selling items.
 //============================================================

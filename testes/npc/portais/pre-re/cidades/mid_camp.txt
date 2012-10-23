@@ -39,7 +39,7 @@ mid_campin,94,141,0	warp	mid_meeting6-1	1,1,mid_campin,117,181
 mid_campin,117,178,0	warp	mid_meeting6-2	1,1,mid_campin,94,138
 mid_campin,111,128,0	warp	mid_meeting7-1	1,1,mid_campin,165,170
 mid_campin,162,170,0	warp	mid_meeting7-2	1,1,mid_campin,108,128
-mid_campin,162,126,0    warp    mid_meeting8-1  1,1,mid_campin,110,120
+mid_campin,162,126,0	warp	mid_meeting8-1	1,1,mid_campin,110,120
 mid_campin,113,114,0	warp	mid_meeting9-1	1,1,mid_campin,165,82
 mid_campin,162,82,0	warp	mid_meeting9-2	1,1,mid_campin,110,114
 mid_camp,266,260,0	warp	mid_house1-1	1,1,mid_campin,284,124
