@@ -1,19 +1,11 @@
 // Copyright (c) rAthena Dev Teams - Licensed under GNU GPL
 // For more information, see LICENCE in the main folder
+
 #ifndef _RRCONFIGS_CONST_
 #define _RRCONFIGS_CONST_
 
 /**
- * rAthena configuration file (http://rathena.org)
- * For detailed guidance on these check http://rathena.org/wiki/SRC/config/
- **/
-
-/**
- * @INFO: This file holds constants that aims at making code smoother and more efficient
- */
-
-/**
- * "Sane Checks" to save you from compiling with cool bugs 
+ * Checagens de segurança para tempo de intervalo nos diálogos com npcs.
  **/
 #if SECURE_NPCTIMEOUT_INTERVAL <= 0
 	#error SECURE_NPCTIMEOUT_INTERVAL should be at least 1 (1s)
@@ -23,7 +15,7 @@
 #endif
 
 /**
- * Path within the /db folder to (non-)renewal specific db files
+ * Sufixo para arquivos no banco de dados da renovação/pré-renovação
  **/
 #ifdef RENEWAL
 	#define DBPATH "_re.txt"
@@ -44,14 +36,14 @@
 	#define DEFTYPE_MAX CHAR_MAX
 #endif
 
-/* pointer size fix which fixes several gcc warnings */
+/* Definições para corrigir vários gcc warnings */
 #ifdef __64BIT__
 	#define __64BPRTSIZE(y) (intptr)y
 #else
 	#define __64BPRTSIZE(y) y
 #endif
 
-/* ATCMD_FUNC(mobinfo) HIT and FLEE calculations */
+/* Cálculos de ATCMD_FUNC(mobinfo) HIT e FLEE */
 #ifdef RENEWAL
 	#define MOB_FLEE(mob) ( mob->lv + mob->status.agi + mob->status.luk/5 + 100 )
 	#define MOB_HIT(mob)  ( mob->lv + mob->status.dex + mob->status.luk/3 + 175 )
@@ -60,7 +52,7 @@
 	#define MOB_HIT(mob)  ( mob->lv + mob->status.dex )
 #endif
 
-/* Renewal's dmg level modifier, used as a macro for a easy way to turn off. */
+/* Modo de renovação para modificações de dano conforme o nível */
 #ifdef RENEWAL_LVDMG
 	#define RE_LVL_DMOD(val) \
 		if( status_get_lv(src) > 100 && val > 0 ) \
@@ -68,7 +60,6 @@
 	#define RE_LVL_MDMOD(val) \
 		if( status_get_lv(src) > 100 && val > 0) \
 			md.damage = md.damage * status_get_lv(src) / val;
-	/* ranger traps special */
 	#define RE_LVL_TMDMOD() \
 		if( status_get_lv(src) > 100 ) \
 			md.damage = md.damage * 150 / 100 + md.damage * status_get_lv(src) / 100;
@@ -78,7 +69,7 @@
 	#define RE_LVL_TMDMOD()
 #endif
 
-/* Feb 1st 2012 */
+/* Número máximo de carrinhos para clientes de 2012 */
 #if PACKETVER >= 20120201
 	#define NEW_CARTS
 	#define MAX_CARTS 9
@@ -86,14 +77,11 @@
 	#define MAX_CARTS 5
 #endif
 
-// Renewal variable cast time reduction
+// Redução do tempo de conjuração variável da renovação.
 #ifdef RENEWAL_CAST
 	#define VARCAST_REDUCTION(val){ \
 		if( (varcast_r += val) != 0 && varcast_r >= 0 ) \
 			time = time * (1 - (float)min(val, 100) / 100); \
 	}
 #endif
-/**
- * End of File
- **/
 #endif

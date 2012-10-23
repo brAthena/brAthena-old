@@ -4,8 +4,12 @@
 
 
 [2.1] 14/10/2012
-	* Banco de dados convertido para SQL.
-	- Alguns arquivos importantes permanecem em TXT, para maior facilidade em alterações.
+	* Banco de dados convertido para sql.
+	- Alguns arquivos importantes permanecem em txt, para maior facilidade em alterações.
+	- Um banco de dados em inglês está disponível para usuários de outros países.
+	* Alterado esquema de scripts da renovação e pré-renovação.
+	- Removida pasta npc/re e npc/pre-re.
+	- Fundidos arquivos da re e pre-re através da condição "checkre".
 	* Atualizações para suporte de clientes 2012.
 	* Atualizado métodos de compilação.
 	- Removido cmake.
@@ -20,7 +24,9 @@
 	- Inicialização para mac foi adicionada.
 	* Adicionada opção de depuração para o brathena-admin.
 	* Adicionadas algumas traduções dos arquivos da pasta npc.
-	* Adicionadas traduções dos arquivos da pasta conf, battle e db.
+	* Adicionadas traduções iniciais do console com acentuações conforme lista de ASCII do C.
+	- Futuramente serão readicionadas as mensagens em inglês, para a versão multilinguagem.
+	* Adicionadas traduções de todos os arquivos das pastas conf, battle e db.
 
 <Revisões: 1190:y>
 

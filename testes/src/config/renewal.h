@@ -1,76 +1,51 @@
 // Copyright (c) rAthena Dev Teams - Licensed under GNU GPL
 // For more information, see LICENCE in the main folder
+
 #ifndef _RENEWAL
 #define _RENEWAL
 #ifndef _CONFIG_RENEWAL_H_
 #define _CONFIG_RENEWAL_H_
 
 /**
- * rAthena configuration file (http://rathena.org)
- * For detailed guidance on these check http://rathena.org/wiki/SRC/config/
+ * @INFO: Este arquivo tem o proposito de definir configurações apenas da renovação.
+ * Para desabilitar uma configuração, comente a linha que contém o #define com //
  **/
 
-/**
- * @INFO: This file holds general-purpose renewal settings, for class-specific ones check /src/config/classes folder
- **/
-
-/// game renewal server mode
-/// (disable by commenting the line)
-///
-/// leave this line to enable renewal specific support such as renewal formulas
+/// Modo renovação
 #define RENEWAL
 
-/// renewal cast time
-/// (disable by commenting the line)
-///
-/// leave this line to enable renewal casting time algorithms
-/// cast time is decreased by DEX * 2 + INT while 20% of the cast time is not reduced by stats.
-/// example:
-///  on a skill whos cast time is 10s, only 8s may be reduced. the other 2s are part of a
-///  "fixed cast time" which can only be reduced by specialist items and skills
+/// Tempo de conjuração de habilidades, da renovação
+/// Dentro dos padrões da renovação, a conjuração:
+///  - Tem sua fórmula reduzida por DEX * 2 + INT
+///  - O tempo de conjuração se divide em fórmula e fixo, cujo o fixo será adicionado por habilidades e itens.
 #define RENEWAL_CAST
 
-/// renewal drop rate algorithms
-/// (disable by commenting the line)
-///
-/// leave this line to enable renewal item drop rate algorithms
-/// while enabled a special modified based on the difference between the player and monster level is applied
-/// based on the http://irowiki.org/wiki/Drop_System#Level_Factor table
+/// Taxa de drop da renovação
+/// A tabela de drops pode ser analisada em: 
 #define RENEWAL_DROP
 
-/// renewal exp rate algorithms
-/// (disable by commenting the line)
-///
-/// leave this line to enable renewal item exp rate algorithms
-/// while enabled a special modified based on the difference between the player and monster level is applied
+/// Taxa de experiência da renovação
+/// A tabela de experiência pode ser analisada em: 
 #define RENEWAL_EXP
 
-/// renewal level modifier on damage
-/// (disable by commenting the line)
-/// 
-// leave this line to enable renewal base level modifier on skill damage (selected skills only)
+/// Taxa de modificação do dano conforme o nível
 #define RENEWAL_LVDMG
 
-/// renewal enchant deadly poison algorithm
-///
-/// leave this line to enable the renewed EDP algorithm
-/// under renewal mode:
-///  - damage is NOT increased by 400%
-///  - it does NOT affect grimtooth
-///  - weapon and status ATK are increased
+/// Habilidade "encantar com veneno mortal" da renovação
+/// Fora dos padrões da renovação a habilidade:
+///  - Não terá o dano reduzido por 400%
+///  - Não terá efeito de amplificação com a habilidade grimtooth
+///  - Ataque com armas e status STR (força) serão aumentados.
 #define RENEWAL_EDP
 
-/// renewal ASPD [malufett]
-/// (disable by commenting the line)
-/// 
-/// leave this line to enable renewal ASPD
-/// - shield penalty is applied
-/// - AGI has a greater factor in ASPD increase
-/// - there is a change in how skills/items give ASPD
-/// - some skill/item ASPD bonuses won't stack
+/// Velocidade de ataque da renovação
+/// Dentro dos parâmetros da renovação a velocidade de ataque:
+/// - Terá penalidade e redução de velocidade de ataque conforme escudos utilizados.
+/// - O status de AGI (agilidade) terão grande influência no cálculo da fórmula.
+/// - Algumas habilidades e itens mudam a fórmula de bonificar velocidade de ataque, para valores fixos.
 #define RENEWAL_ASPD
 
-/// renewal kRO ASPD [Protimus]
+/// Velocidade de ataque da renovação, conforme kRO [Protimus]
 //#define RENEWAL_ASPD_KRO
 
 #endif // _CONFIG_RENEWAL_H_

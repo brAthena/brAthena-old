@@ -3,15 +3,10 @@
 #ifndef _CONFIG_CORE_H_
 #define _CONFIG_CORE_H_
 
-/**
- * rAthena configuration file (http://rathena.org)
- * For detailed guidance on these check http://rathena.org/wiki/SRC/config/
- **/
-
-/// Max number of items on @autolootid list
+/// Número máximo de itens a serem exibidos quando se usa @autolootid list
 #define AUTOLOOTITEM_SIZE 10
 
-/// The maximum number of atcommand suggestions
+/// Número máximo de comandos de sugestão
 #define MAX_SUGGESTIONS 10
 
 /// Comment to disable the official walk path
@@ -27,37 +22,26 @@
 /// your map-server using more resources while this is active, comment the line
 #define SCRIPT_CALLFUNC_CHECK
 
-/// Uncomment to disable rAthena's anonymous stat report
-/// We kindly ask you to consider keeping it enabled, it helps us improve rAthena.
+/// Reporte anônimamente
+/// Descomente para não enviar mais reports automáticos.
 //#define STATS_OPT_OUT
 
-/// uncomment to enable query_sql script command and mysql logs to function on it's own thread
-/// be aware this feature is under tests and you should use at your own risk, we however
-/// welcome any feedback you may have regarding this feature, please send us all bug reports.
+/// Descomente para habilitar o script de comando query_sql e mysql logs em modo thread.
+/// Ainda não é indicado usá-lo, tenha cuidado ao habilitar.
 //#define BETA_THREAD_TEST
 
-/// Uncomment to enable the Cell Stack Limit mod.
-/// It's only config is the battle_config cell_stack_limit.
-/// Only chars affected are those defined in BL_CHAR (mobs and players currently)
+/// Descomente para habilitar o modo limite de células
 //#define CELL_NOSTACK
 
-/// Uncomment to enable circular area checks.
-/// By default, all range checks in Aegis are of Square shapes, so a weapon range
-/// - of 10 allows you to attack from anywhere within a 21x21 area.
-/// Enabling this changes such checks to circular checks, which is more realistic,
-/// - but is not the official behaviour.
+/// Descomente para habilitar o modo de checagem de área circular.
+/// Habilitando este modo, a área de ataque fica mais realistica conforme servidores oficiais.
+/// Ainda não é indicado usá-lo, tenha cuidado ao habilitar.
 //#define CIRCULAR_AREA
 
-/**
- * No settings past this point
- **/
+
 #include "./renewal.h"
 #include "./secure.h"
 #include "./classes/general.h"
-
-/**
- * Constants come last; so they process anything that could've been modified in early includes
- **/
 #include "./const.h"
 
 #endif // _CONFIG_CORE_H_
