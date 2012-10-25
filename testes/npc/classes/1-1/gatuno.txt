@@ -1,0 +1,958 @@
+//    ________________________________________________________ 
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: gatuno.txt                             |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.8/1.0/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Mudança de Classe para Gatuno.              |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [Holy]                              |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
+
+-	script	Classe#gatuno	-1,{
+
+OnInit:
+if( !checkre(1) ) {
+disablenpc "Brad#gatuno";
+disablenpc "Mr. Irrelevant";
+end;
+}
+}
+
+moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
+	if (Upper == 1) {
+		if (ADVJOB == Job_Assassin_Cross || ADVJOB == Job_Stalker) {
+			if (Class == Job_Novice_High) {
+				mes "[Gatuna Ajudante]";
+				mes "Hã? Eu te conheço? É assustador que você parece tão familiar. Você não tem um irmão gêmeo, que pareça com você?";
+				next;
+				if (getskilllv("NV_BASIC") < 9) {
+					mes "[Gatuna Ajudante]";
+					mes "O que, você quer ser um gatuno? Sinto muito, mas parece que você precisa de mais treinamento.";
+					next;
+					mes "[Gatuna Ajudante]";
+					mes "Gaste seu tempo e aprenda todas as habilidades básicas, certo? Bem, então vejo você mais tarde~!";
+					close;
+				}
+				mes "[Gatuna Ajudante]";
+				mes "Bem, eu tenho essa sensação de que você já passou por uma vida inteira de lutas, então eu estou promovendo-o a um Gatuno neste minuto. É melhor eu deixar caras Durões cuidando de você...";
+				next;
+				skill 143,0,0;
+				jobchange Job_Thief_High;
+				skill 149,1,0;
+				skill 150,1,0;
+				skill 151,1,0;
+				skill 152,1,0;
+				mes "[Gatuna Ajudante]";
+				mes "Ao se tornar um gatuno, irá viver como um Gatuno. Agora, vá em frente! Próximo~";
+				close;
+			}else{
+				mes "[Gatuna Ajudante]";
+				if (sex)
+					mes "Ei, cara.";
+				else
+					mes "Ei, moça~";
+				close;
+			}
+		}else{
+			mes "[Gatuna Ajudante]";
+			if (sex)
+				mes "Ei, cara.";
+			else
+				mes "Ei, moça.";
+			mes "...Ei! Você parece muito uma boa pessoa para querer ser um gatuno! Agora suma, estou ocupado. Próximo!";
+			close;
+		}
+	}
+	if ( !checkre(1) ) {
+	if(q_job_thief == 1) {
+		mes "[Gatuna Ajudante]";
+		mes "É... Parece que você é "+(Sex?"filho":"filha")+" de uma família rica, mas por que você está aqui neste lugar sujo?";
+		next;
+		mes "[Gatuna Ajudante]";
+		mes "Bem, eu não sou o encarregado de te tornar um gatuno. Eu só aceito pedidos, entendeu?";
+		mes "Se você quer se tornar um gatuno, fale com esse cara ao meu lado.";
+		close;
+	}
+	else if ( !checkre(0) ) {
+		if (BaseJob != Job_Novice && BaseJob != Job_Thief) {
+		mes "[Thief Guide]";
+		mes "What the heck...?";
+		switch(Class) {
+		case 1:
+			mes "Huh.";
+			mes "Now, that's";
+			mes "a big sword.";
+			next;
+			mes "[Thief Guide]";
+			mes "So...";
+			mes "Trying to make";
+			mes "up for something";
+			mes "...Buddy?";
+			break;
+		case 2:
+			mes "What's a Mage doin' here? Shouldn't you be doing card tricks elsewhere? Oh well, it's a free country...";
+			next;
+			mes "[Thief Guide]";
+			mes "Oh wait,";
+			mes "it's not...";
+			mes "Get outta here!";
+			break;
+		case 3:
+			mes "Man, shouldn't you";
+			mes "Archers be playing";
+			mes "in the forest";
+			mes "or something?";
+			break;
+		case 4:
+			mes "You know we all steal for a living, right? What are you doing in this kinda place, Acolyte?";
+			break;
+		case 5:
+			mes "You're a Merchant,";
+			mes "right? Why are you";
+			mes "walking into a den";
+			mes "of Thieves?!";
+			next;
+			mes "[Thief Guide]";
+			mes "It's like you're begging";
+			mes "us to steal from you!";
+			mes "Come on, hurry and";
+			mes "get outta here~";
+			break;
+		case 8:
+			mes "Oh my God...";
+			mes "Am I dying?";
+			next;
+			mes "[Thief Guide]";
+			mes "Why else would a Priest come here? I guess I better start confessing all of my misdeeds.";
+			close;
+		case 12:
+			mes "Didn't you use to be one of us?! Man, you changed. You seem real dangerous now...";
+			close;
+		case 17:
+			mes "Man, you got real cool all of a sudden! You must have some skills I can only dream of!";
+			close;
+		}
+		next;
+		mes "[Thief Guide]";
+		mes "*Sigh* Look, there's really no need for you to be in this kind of place. You oughta go where you ought to go.";
+		close;
+	}
+	if (job_thief_q == 3 && countitem(1069) > 0 || countitem(1070) > 0) {
+		mes "[Thief Guide]";
+		mes "Hmmm?";
+		mes "You gathered Mushrooms for";
+		mes "the Thief test, right?";
+		next;
+		mes "[Thief Guide]";
+		mes "Here, talk to the other guy right next to me. He's the one in charge of checking your Mushrooms.";
+		close;
+	}
+	else if (job_thief_q == 3) {
+		mes "[Thief Guide]";
+		mes "So how was the";
+		mes "Mushroom Farm?";
+		mes "Have any fun?";
+		next;
+		if (select("Yeah, kinda Cool.:It was horrible.") == 1) {
+			mes "[Thief Guide]";
+			mes "Heh heh! That's a good attitude. In our line of work, you gotta enjoy getting your hands dirty, one way or another.";
+			close;
+		}
+		mes "[Thief Guide]";
+		mes "Yeah? I've been there too, so I can see why that place isn't everyone's cup of tea. Still, being a Thief isn't all glamour and trendy night life.";
+		close;
+	}
+	if (job_thief_q == 2) {
+		mes "[Thief Guide]";
+		mes "Hey, whaddya doin' here? Aren't you supposed to be gathering Mushrooms? Or did you need it explained to you again?";
+		next;
+		if  (select("Yes.:No, that's okay.") == 1) {
+			mes "[Thief Guide]";
+			mes "*Sigh* Well, there's always one in the bunch. Alright, listen carefully.";
+			next;
+			mes "[Thief Guide]";
+			mes "Alright, for your test, you gotta steal Mushrooms from a farm. Don't worry, the guy who owns the farm deserves to be robbed.";
+			next;
+			mes "[Thief Guide]";
+			mes "Anyway, you gotta gather two kinds of Mushrooms: ^0000FFOrange Net Mushrooms^000000 and ^0000FFOrange Gooey Mushrooms^000000.";
+			next;
+			mes "[Thief Guide]";
+			mes "Be careful, since there are monsters are the farm that are there to protect the Mushrooms. So this will be no walk in the park.";
+			next;
+			mes "[Thief Guide]";
+			mes "When you come back here after gathering Mushrooms, you'll be graded on the Mushrooms you've collected.";
+			next;
+			mes "[Thief Guide]";
+			mes "Each Orange Net Mushroom gets you 3 points, and you get 1 point for each Orange Gooey Mushroom. You need a total of 25 points to pass the test.";
+			next;
+			mes "[Thief Guide]";
+			mes "Go outside and keep going ahead toward the Eastern Field of the Pyramids. Then you will see one of our comrades between two columns.";
+			next;
+			mes "[Thief Guide]";
+			mes "Speak to that guy, and he'll take you to the farm through the backdoor.";
+			next;
+			mes "[Thief Guide]";
+			mes "On that field, I think his coordinates are '^FF0000141, 125^000000.' Just type ^3355FF/where^000000 in the right side of your chat box to check your present coordinates.";
+			close;
+		}
+		mes "[Thief Guide]";
+		mes "Huh. For a second there, I thought you had something really important to tell me.";
+		close;
+	}
+	mes "[Thief Guide]";
+	if (job_thief_q == 0) {
+		mes "What brings you down";
+		mes "here to this rathole?";
+	}
+	else {
+		mes "Ah...";
+		mes "You came back.";
+		mes "Are you sure you're";
+		mes "ready to try again?";
+	}
+	next;
+	if (select("Hey, I came here to be a Thief!:Nah, I'm just looking around.") == 1) {
+		if (job_thief_q == 0) {
+			mes "[Thief Guide]";
+			mes "Heh, I like your confidence. Still, you know being a Thief isn't all what it's cracked up to be.";
+			next;
+			mes "[Thief Guide]";
+			mes "Still...";
+			mes "Do you really";
+			mes "want to be";
+			mes "a Thief?";
+			next;
+			switch(select("Yeah.:No, just wasting your time.:Why did you become a Thief?")) {
+			case 1:
+				mes "[Thief Guide]";
+				mes "Really...";
+				break;
+			case 2:
+				mes "[Thief Guide]";
+				mes "Yeah...";
+				mes "I can see that.";
+				break;
+			case 3:
+				mes "[Thief Guide]";
+				mes "Me...?";
+				mes "I had no choice at the time. It was either steal or starve. But it's not like I need to give you my life story.";
+				break;
+			}
+			next;
+			mes "[Thief Guide]";
+			mes "So do you want to";
+			mes "apply to become";
+			mes "a Thief or not?";
+			next;
+			switch(select("Yes, I will.:I'm too scared to be a Thief!")) {
+			case 1:
+				mes "[Thief Guide]";
+				mes "Alright, tell";
+				mes "me your name.";
+				next;
+				mes "[Thief Guide]";
+				mes "" + strcharinfo(0) + "?";
+				mes "What kind of name is " + strcharinfo(0) + "? Anyway, give me a second.";
+				set job_thief_q,1;
+				next;
+				mes "[Thief Guide]";
+				mes "Alright, your registration has been processed. Okay, you can begin your test if you're ready.";
+				next;
+				switch(select("Yeah, I'm ready.:No, I'm not ready yet.")) {
+				case 1:
+					break;
+				case 2:
+					mes "[Thief Guide]";
+					mes "Not ready?";
+					mes "How can you";
+					mes "not be ready?!";
+					close;
+				}
+				break;
+			case 2:
+				mes "[Thief Guide]";
+				mes "Too scared?!?";
+				mes "Hahahahahahah!";
+				mes "Oh, please...!";
+				mes "That's hilarious!";
+				close;
+			}
+		}
+		else {
+			mes "[Thief Guide]";
+			mes "Okay...";
+			mes "Give me";
+			mes "one second.";
+			next;
+		}
+		mes "[Thief Guide]";
+		mes "Your name is...";
+		mes strcharinfo(0) + "? Um, where is it? Ah, here it is. Let's see...";
+		next;
+		mes "[Thief Guide]";
+		if (getskilllv("NV_BASIC") < 9) {
+			mes "Isn't that cute? I can see you're ambitious, but you gotta learn all of the Basic Skills before you can become a Thief.";
+			close;
+		}
+		mes "Alright. I looked at your Felony Record, and you seem to have a very interesting history. You might have what it takes to be a Thief.";
+		next;
+		mes "[Thief Guide]";
+		mes "Because I feel like it, I now decree that you have passed this interview. Good work!";
+		set job_thief_q,2;
+		setquest 1013;
+		next;
+		mes "[Thief Guide]";
+		mes "Now, your actual abilities will need to be tested. Do you know anything about the test?";
+		next;
+		switch(select("Yes, I do.:Sorry, I don't.")) {
+		case 1:
+			mes "[Thief Guide]";
+			mes "Oh yeah? Well, this makes things a lot easier.";
+			break;
+		case 2:
+			mes "[Thief Guide]";
+			mes "Alright, let me inform you then. Listen carefully. This test decides if you are worthy of becoming a Thief.";
+			next;
+			mes "[Thief Guide]";
+			mes "You will be sneaking to Shibu's Farm. He is the worst Merchant, in terms of character, in Morroc.";
+			next;
+			mes "[Thief Guide]";
+			mes "Alright, for your test, you gotta steal Mushrooms from his farm. Don't worry, that guy deserves to be robbed.";
+			next;
+			mes "[Thief Guide]";
+			mes "Anyway, you gotta gather two kinds of Mushrooms: ^0000FFOrange Net Mushrooms^000000 and ^0000FFOrange Gooey Mushrooms^000000.";
+			next;
+			mes "[Thief Guide]";
+			mes "Be careful, since there are monsters are the farm that are there to protect the Mushrooms. So this will be no walk in the park.";
+			next;
+			mes "[Thief Guide]";
+			mes "When you come back here after gathering Mushrooms, you'll be graded on the Mushrooms you've collected.";
+			next;
+			mes "[Thief Guide]";
+			mes "Each Orange Net Mushroom gets you 3 points, and you get 1 point for each Orange Gooey Mushroom. You need a total of 25 points to pass the test.";
+			next;
+			mes "[Thief Guide]";
+			mes "Go outside and keep going ahead toward the Eastern Field of the Pyramids. Then you will see one of our comrades between two columns.";
+			next;
+			mes "[Thief Guide]";
+			mes "Speak to that guy, and he'll take you to the farm through the backdoor.";
+			next;
+			mes "[Thief Guide]";
+			mes "On that field, I think his coordinates are '^FF0000141, 125^000000.' Just type ^3355FF/where^000000 in the right side of your chat box to check your present coordinates.";
+		}
+		next;
+		mes "[Thief Guide]";
+		mes "Don't forget to make plans and prepare yourself before you go inside the Mushroom Farm. Move as quickly as you can and try not to get killed, alright?";
+		close;
+	}
+	close;
+} 
+	if(Class != Job_Novice) {
+		if(Class == Job_Thief) {
+			mes "[Gatuna Ajudante]";
+			mes "Ei~ Se você tiver algum problema, fale quando quiser, tudo bem?";
+			close;
+		}else{
+			if(Sex) {
+				mes "[Gatuna Ajudante]";
+				mes "O que é...?";
+				mes "Hum.. você é um "+jobname(Class)+" tolo...!";
+				next;
+				mes "[Gatuna Ajudante]";
+				mes "Ei, irmão.";
+				mes "Por que você está aqui? Volte para o seu lugar ~~";
+				close;
+			}else{
+				mes "[Gatuna Ajudante]";
+				mes "O que é...?";
+				next;
+				mes "[Gatuno da Guilda]";
+				mes "Por que você está aqui? Volte para o seu lugar ~~";
+				close;
+			}
+		}
+	}
+	mes "[Gatuna Ajudante]";
+	mes "Ehh... Parece que você é "+(Sex?"filho":"filha")+" de uma família rica, mas por que você está aqui neste lugar sujo?";
+	next;
+	if(select("Eu quero me tornar um Gatuno.:Nada.") == 2) {
+		mes "[Gatuno da Guilda]";
+		mes "Você sabe que não pode ser um gatuno sem uma aplicação.....";
+		mes "O que está pensando..?";
+		close;
+	}
+	mes "[Gatuna Ajudante]";
+	mes "Bem, você é o orgulho deles?";
+	mes "Você está me dizendo que quer se tornar um gatuno! Por que você não vai a todas as aldeias e anuncia que é um  gatuno?";
+	mes "'Hahaha! Vá colocar uma bandeira que diz: Eu vou ser um ladrão que rouba orgulhoso coisas de outras pessoas.'";
+	next;
+	mes "[Gatuna Ajudante]";
+	mes "Você quer ser um gatuno do mal?";
+	next;
+	switch(select("Sim.:Não.:O que acha?")) {
+	case 1:
+		mes "[Gatuna Ajudante]";
+		mes "Ah, você...? Hum.. bem... Eu vivo e aprendo a ver pessoas estranhas como você.";
+		next;
+		break;
+	case 2:
+		mes "[Gatuna Ajudante]";
+		mes "Então, por que você está aqui? Você acha que pode se tornar um gatuno tão facilmente?";
+		next;
+		break;
+	case 3:
+		mes "[Gatuna Ajudante]";
+		mes "Hã..? Eu? Eu?";
+		mes "Bem... Eu só tenho vocação para ser um gatuno... caracteristicamente... Eu não me importo com assuntos bobos.";
+		next;
+		break;
+	}
+	mes "[Gatuna Ajudante]";
+	mes "Enfim, no mundo exterior nunca diga que você quer ser um gatuno!!";
+	next;
+	mes "[Gatuna Ajudante]";
+	mes "Então, você quer se candidatar a ser um Gatuno?";
+	next;
+	if(select("Sim, eu quero.:Não.") == 2) {
+		mes "[Gatuna Ajudante]";
+		mes "Bem... faça o que quiser, siga seu caminho~";
+		close;
+	}
+	mes "[Gatuna Ajudante]";
+	mes "Certo, me diga seu nome. Hã? O que?";
+	mes ""+strcharinfo(0)+". Então é "+strcharinfo(0)+", certo...?";
+	next;
+	if (getskilllv("NV_BASIC") < 9) {
+		mes "[Gatuna Ajudante]";
+		mes "Eu posso ver a sua forte vontade de se tornar um Gatuno......";
+		mes "Mas só com a sua vontade, você não pode vencer em uma luta real, não é?";
+		mes "Então, vá e atinja pelo menos o Nível de Habilidades Básicas 9.";
+		close;
+	}
+	mes "[Gatuna Ajudante]";
+	mes "Hum.... Eu encontrei seus interessantes registros criminais a partir dos dados da agência de detetives. Bem parece que você tem o que é preciso para ser um bom gatuno.";
+	mes ""+strcharinfo(0)+". Eu agora declaro que você passou na entrevista de classe!";
+	next;
+	mes "[Gatuna Ajudante]";
+	mes "Bem, Eu não sou o responsável por torná-lo um Gatuno. Eu só aceito pedidos, entendeu?";
+	mes "Se você quer se tornar um gatuno, fale com o cara próximo a mim.";
+	set q_job_thief,1;
+	close;
+}
+}
+
+moc_prydb1,42,133,2	script	Brad#gatuno	118,{
+	if(q_job_thief == 1) {
+		mes "[Brad]";
+		mes "Certo. Você conseguiu passar na entrevista, correto?";
+		mes "Bom. Eu irei aceitá-lo.";
+		mes "Vamos começar a cerimônia de mudança de classe da nossa Guilda!";
+		next;
+		mes "[Brad]";
+		mes "'"+strcharinfo(0)+".'";
+		mes "'Para aqueles que estão prontos, o luar deve abrir o caminho. Agora você está totalmente pronto, oficialmente permitem que você se torne um membro da Guilda dos Gatunos.'";
+		jobchange Job_Thief;
+		set q_job_thief,0;
+		getitem 13041,1; // Main Gauche de Iniciante
+		next;
+		mes "[Brad]";
+		mes "'Parabéns por se tornar um Gatuno.'";
+		mes "'A partir de agora, manter as regras da nossa aliança e ser um membro honorário.'";
+		mes "'Se você nos trazer desgraça por violarem as nossas regras, é melhor você assistir a sua volta.'";
+		mes "'De qualquer forma, eu espero que você seja um grande Gatuno.'";
+		next;
+		mes "[Brad]";
+		mes "Heee~Yaaaa~! Parabéns! Meu amigo.";
+		mes "Meu nome é 'Brad'. Eu sou responsável de recursos humanos aqui.";
+		mes "Eu não tenho certeza por agora, mas você vai ter mais chances de me ver mais tarde.";
+		next;
+		mes "[Brad]";
+		mes "Ok, eu fiz o que eu posso fazer para você, para ir em seu caminho. Eu sou um homem bastante ocupado.";
+		mes "Vejamos novamente.";
+		close;
+	}
+	if(Class != Job_Novice) {
+		if(Class == Job_Thief) {
+			mes "[Brad]";
+			mes "Eu não tenho quaisquer eventos especiais agora. Então, vá no seu caminho e voltar mais tarde.";
+		}else{
+			mes "[Brad]";
+			mes "Ei~ Ei~ Você não é um Aprendiz ou um Gatuno!";
+			mes "O que você está fazendo aqui? Você não é bem-vindo para este lugar de sua casa~ Hweeeee~ Saia daqui~";
+		}
+		close;
+	}
+	mes "[Brad]";
+	mes "Hã? Porque é que um novato como você visitando aqui?";
+	mes "Se você está aqui para se tornar um Gatuno, pergunte a senhora que está perto de mim.";
+	close;
+}
+
+moc_prydb1,42,133,2	script	Comrade	118,{
+	if (BaseJob == Job_Thief) {
+		mes "[Brad]";
+		mes "We don't have any special events yet. Come some other time when there's news, alright?";
+		close;
+	}
+	else if (BaseJob != Job_Novice && BaseJob != Job_Thief) {
+		mes "[Comrade]";
+		mes "Um...";
+		mes "You don't look";
+		mes "like a Thief.";
+		next;
+		mes "[Comrade]";
+		mes "What the heck are";
+		mes "you doing here anyway?";
+		close;
+	}
+	if (job_thief_q == 0 || job_thief_q == 1) {
+		mes "[Comrade]";
+		mes "What's the matter? If you want to be a Thief, speak to the girl beside me.";
+		close;
+	}
+	else if (job_thief_q == 2) {
+		mes "[Comrade]";
+		mes "Did you pass the interview?";
+		mes "Then what are you waiting for?";
+		close;
+	}
+	else if (job_thief_q == 3) {
+		mes "[Comrade]";
+		mes "Ah, the guide told me about you. So, let me check your mushrooms...";
+		if (countitem(1069) == 0 && countitem(1070) == 0) {
+			next;
+			mes "[Comrade]";
+			mes "What the hell...";
+			mes "You don't have any Mushrooms at all! Go back and get them. Otherwise, you won't pass the test and become a Thief!";
+			close;
+		}
+		next;
+		set .@thief_item1,countitem(1069) * 3;
+		set .@thief_item2,countitem(1070);
+		set .@total_thief,.@thief_item1 + .@thief_item2;
+		set .@money_thief,((.@thief_item1 * 5) + (.@thief_item2 * 2)) + 200;
+		mes "[Comrade]";
+		if (countitem(1069) != 0) {
+			mes "First, let me check the Orange Net Mushrooms you got.";
+			mes "Huh, " + countitem(1069) + " of them.";
+		}
+		if (countitem(1070) != 0)
+			mes "Now I'll just check your Orange Gooey Mushrooms. That's " + countitem(1070) + " you gathered.";
+		next;
+		mes "[Comrade]";
+		mes "So that would";
+		mes "bring your total to...";
+		next;
+		mes "[Comrade]";
+		mes "Hmmm. " + .@total_thief + " degrees, multiplied by the speed of light, divided by the integral of pi times height plus the absolute value of politics...";
+		next;
+		mes "[Comrade]";
+		mes "Okay!";
+		mes "I got it.";
+		next;
+		mes "[Comrade]";
+		if (.@total_thief > 25) {
+			mes "You got more";
+			mes "than 25 points!";
+			mes "Awesome!";
+		}
+		else if (.@total_thief == 25) {
+			mes "Exactly 25 points!";
+			mes "You did it! Badass!";
+		}
+		else {
+			mes "Definitely less than the 25 points you need to pass. Go out there and get me more Mushrooms!";
+			close;
+		}
+		next;
+		mes "[Comrade]";
+		mes strcharinfo(0) + "...";
+		mes "You have passed the official Thief Test. You are now one of us.";
+		if (countitem(1069) != 0) delitem 1069,countitem(1069); //Mushroom_Of_Thief_1
+		if (countitem(1070) != 0) delitem 1070,countitem(1070); //Mushroom_Of_Thief_2
+		callfunc "Job_Change",Job_Thief;
+		callfunc "F_ClearJobVar";
+		completequest 1013;
+		next;
+		mes "[Comrade]";
+		mes "Congratulations on becoming a Thief! From now, be an honorable representative of the Thief's Guild.";
+		next;
+		mes "[Comrade]";
+		mes "If you bring disgrace to our guild, you will be killed. I expect you to bring our comrades pride.";
+		next;
+		mes "[Brad]";
+		mes "*Ahem* Welcome to the Guild, comrade! I'm Brad, and I'm in charge of human resources here.";
+		next;
+		mes "[Brad]";
+		mes "Here is a small subsidy for a Newbie like you. Spend it whereever you want. Alright then, I'll see you around~";
+		set zeny,zeny+.@money_thief;
+		close;
+	}
+}
+
+moc_ruins,141,125,3	script	Mr. Irrelevant	83,{
+	if (BaseJob == Job_Thief) {
+		mes "[Mr. Irrelevant]";
+		mes "Ah, I see that you are now a Thief. I always knew you'd join us.";
+		next;
+		mes "[Mr. Irrelevant]";
+		mes "Stealing from a Mushroom farm is too easy for you now. You should build up your skills and master our craft.";
+		close;
+	}
+	else if (BaseJob != Job_Novice && BaseJob != Job_Thief) {
+		mes "[Mr. Irrelevant]";
+		switch(rand(4)) {
+		case 1:
+			mes "I could use a good, hard drink.";
+			close;
+		case 2:
+			mes "Gimme your money.";
+			next;
+			mes "[Mr. Irrelevant]";
+			mes "Kidding, I'm off the clock.";
+			close;
+		case 3:
+			mes "WHO YOU CALLING A PSYCHO?!?!";
+			close;
+		case 4:
+			mes "I've got nothing to say to you. Would you mind leaving me alone?";
+			close;
+		default:
+			mes "Today looks like a good day to go to the pyramids and hunt with some of my friends.";
+			close;
+		}
+	}
+	if (job_thief_q == 3) {
+		mes "[Mr. Irrelevant]";
+		mes "Hahahahaha~!";
+		mes "You haven't";
+		mes "passed the test yet?";
+		mes "Alright, I'll let you in...";
+		close2;
+		switch(rand(5)) {
+		case 1: warp "job_thief1",228,106; end;
+		case 2: warp "job_thief1",38,50; end;
+		case 3: warp "job_thief1",66,331; end;
+		case 4: warp "job_thief1",196,331; end;
+		default: warp "job_thief1",309,234; end;
+		}
+	}
+	else if (job_thief_q == 2) {
+		mes "[Mr. Irrelevant]";
+		mes "Hmm...";
+		mes "You've come to take the test, right? I can see in your eyes that you know something.";
+		next;
+		mes "[Mr. Irrelevant]";
+		mes "Your name is " + strcharinfo(0) + "? Ah, it's on the list. Alright, I'll let you into the Mushroom Farm , but I can't guarantee your safety...";
+		close2;
+		set job_thief_q,3;
+		switch(rand(5)) {
+		case 1: warp "job_thief1",228,106; end;
+		case 2: warp "job_thief1",38,50; end;
+		case 3: warp "job_thief1",66,331; end;
+		case 4: warp "job_thief1",196,331; end;
+		default: warp "job_thief1",309,234; end;
+		}
+	}
+	else if (job_thief_q == 1) {
+		mes "[Mr. Irrelevant]";
+		mes "There is this strange smell coming from... You. Now why would that be?";
+		close;
+	}
+	mes "[Mr. Irrelevant]";
+	mes "Hey Novice! Why don't you join the ranks of the Thief Guild? You newbies are always welcome to join us and our selfish cause.";
+	next;
+	mes "[Mr. Irrelevant]";
+	mes "You can get more information in the Underground Room in the Pyramid 1 BF.";
+	close;
+}
+
+function	script	Teste_Gatuno	{
+	if (BaseJob != Job_Novice && BaseJob != Job_Thief) {
+		mes "[Thief Guide]";
+		mes "What the heck...?";
+		switch(Class) {
+		case 1:
+			mes "Huh.";
+			mes "Now, that's";
+			mes "a big sword.";
+			next;
+			mes "[Thief Guide]";
+			mes "So...";
+			mes "Trying to make";
+			mes "up for something";
+			mes "...Buddy?";
+			break;
+		case 2:
+			mes "What's a Mage doin' here? Shouldn't you be doing card tricks elsewhere? Oh well, it's a free country...";
+			next;
+			mes "[Thief Guide]";
+			mes "Oh wait,";
+			mes "it's not...";
+			mes "Get outta here!";
+			break;
+		case 3:
+			mes "Man, shouldn't you";
+			mes "Archers be playing";
+			mes "in the forest";
+			mes "or something?";
+			break;
+		case 4:
+			mes "You know we all steal for a living, right? What are you doing in this kinda place, Acolyte?";
+			break;
+		case 5:
+			mes "You're a Merchant,";
+			mes "right? Why are you";
+			mes "walking into a den";
+			mes "of Thieves?!";
+			next;
+			mes "[Thief Guide]";
+			mes "It's like you're begging";
+			mes "us to steal from you!";
+			mes "Come on, hurry and";
+			mes "get outta here~";
+			break;
+		case 8:
+			mes "Oh my God...";
+			mes "Am I dying?";
+			next;
+			mes "[Thief Guide]";
+			mes "Why else would a Priest come here? I guess I better start confessing all of my misdeeds.";
+			close;
+		case 12:
+			mes "Didn't you use to be one of us?! Man, you changed. You seem real dangerous now...";
+			close;
+		case 17:
+			mes "Man, you got real cool all of a sudden! You must have some skills I can only dream of!";
+			close;
+		}
+		next;
+		mes "[Thief Guide]";
+		mes "*Sigh* Look, there's really no need for you to be in this kind of place. You oughta go where you ought to go.";
+		close;
+	}
+	if (job_thief_q == 3 && countitem(1069) > 0 || countitem(1070) > 0) {
+		mes "[Thief Guide]";
+		mes "Hmmm?";
+		mes "You gathered Mushrooms for";
+		mes "the Thief test, right?";
+		next;
+		mes "[Thief Guide]";
+		mes "Here, talk to the other guy right next to me. He's the one in charge of checking your Mushrooms.";
+		close;
+	}
+	else if (job_thief_q == 3) {
+		mes "[Thief Guide]";
+		mes "So how was the";
+		mes "Mushroom Farm?";
+		mes "Have any fun?";
+		next;
+		if (select("Yeah, kinda Cool.:It was horrible.") == 1) {
+			mes "[Thief Guide]";
+			mes "Heh heh! That's a good attitude. In our line of work, you gotta enjoy getting your hands dirty, one way or another.";
+			close;
+		}
+		mes "[Thief Guide]";
+		mes "Yeah? I've been there too, so I can see why that place isn't everyone's cup of tea. Still, being a Thief isn't all glamour and trendy night life.";
+		close;
+	}
+	if (job_thief_q == 2) {
+		mes "[Thief Guide]";
+		mes "Hey, whaddya doin' here? Aren't you supposed to be gathering Mushrooms? Or did you need it explained to you again?";
+		next;
+		if  (select("Yes.:No, that's okay.") == 1) {
+			mes "[Thief Guide]";
+			mes "*Sigh* Well, there's always one in the bunch. Alright, listen carefully.";
+			next;
+			mes "[Thief Guide]";
+			mes "Alright, for your test, you gotta steal Mushrooms from a farm. Don't worry, the guy who owns the farm deserves to be robbed.";
+			next;
+			mes "[Thief Guide]";
+			mes "Anyway, you gotta gather two kinds of Mushrooms: ^0000FFOrange Net Mushrooms^000000 and ^0000FFOrange Gooey Mushrooms^000000.";
+			next;
+			mes "[Thief Guide]";
+			mes "Be careful, since there are monsters are the farm that are there to protect the Mushrooms. So this will be no walk in the park.";
+			next;
+			mes "[Thief Guide]";
+			mes "When you come back here after gathering Mushrooms, you'll be graded on the Mushrooms you've collected.";
+			next;
+			mes "[Thief Guide]";
+			mes "Each Orange Net Mushroom gets you 3 points, and you get 1 point for each Orange Gooey Mushroom. You need a total of 25 points to pass the test.";
+			next;
+			mes "[Thief Guide]";
+			mes "Go outside and keep going ahead toward the Eastern Field of the Pyramids. Then you will see one of our comrades between two columns.";
+			next;
+			mes "[Thief Guide]";
+			mes "Speak to that guy, and he'll take you to the farm through the backdoor.";
+			next;
+			mes "[Thief Guide]";
+			mes "On that field, I think his coordinates are '^FF0000141, 125^000000.' Just type ^3355FF/where^000000 in the right side of your chat box to check your present coordinates.";
+			close;
+		}
+		mes "[Thief Guide]";
+		mes "Huh. For a second there, I thought you had something really important to tell me.";
+		close;
+	}
+	mes "[Thief Guide]";
+	if (job_thief_q == 0) {
+		mes "What brings you down";
+		mes "here to this rathole?";
+	}
+	else {
+		mes "Ah...";
+		mes "You came back.";
+		mes "Are you sure you're";
+		mes "ready to try again?";
+	}
+	next;
+	if (select("Hey, I came here to be a Thief!:Nah, I'm just looking around.") == 1) {
+		if (job_thief_q == 0) {
+			mes "[Thief Guide]";
+			mes "Heh, I like your confidence. Still, you know being a Thief isn't all what it's cracked up to be.";
+			next;
+			mes "[Thief Guide]";
+			mes "Still...";
+			mes "Do you really";
+			mes "want to be";
+			mes "a Thief?";
+			next;
+			switch(select("Yeah.:No, just wasting your time.:Why did you become a Thief?")) {
+			case 1:
+				mes "[Thief Guide]";
+				mes "Really...";
+				break;
+			case 2:
+				mes "[Thief Guide]";
+				mes "Yeah...";
+				mes "I can see that.";
+				break;
+			case 3:
+				mes "[Thief Guide]";
+				mes "Me...?";
+				mes "I had no choice at the time. It was either steal or starve. But it's not like I need to give you my life story.";
+				break;
+			}
+			next;
+			mes "[Thief Guide]";
+			mes "So do you want to";
+			mes "apply to become";
+			mes "a Thief or not?";
+			next;
+			switch(select("Yes, I will.:I'm too scared to be a Thief!")) {
+			case 1:
+				mes "[Thief Guide]";
+				mes "Alright, tell";
+				mes "me your name.";
+				next;
+				mes "[Thief Guide]";
+				mes "" + strcharinfo(0) + "?";
+				mes "What kind of name is " + strcharinfo(0) + "? Anyway, give me a second.";
+				set job_thief_q,1;
+				next;
+				mes "[Thief Guide]";
+				mes "Alright, your registration has been processed. Okay, you can begin your test if you're ready.";
+				next;
+				switch(select("Yeah, I'm ready.:No, I'm not ready yet.")) {
+				case 1:
+					break;
+				case 2:
+					mes "[Thief Guide]";
+					mes "Not ready?";
+					mes "How can you";
+					mes "not be ready?!";
+					close;
+				}
+				break;
+			case 2:
+				mes "[Thief Guide]";
+				mes "Too scared?!?";
+				mes "Hahahahahahah!";
+				mes "Oh, please...!";
+				mes "That's hilarious!";
+				close;
+			}
+		}
+		else {
+			mes "[Thief Guide]";
+			mes "Okay...";
+			mes "Give me";
+			mes "one second.";
+			next;
+		}
+		mes "[Thief Guide]";
+		mes "Your name is...";
+		mes strcharinfo(0) + "? Um, where is it? Ah, here it is. Let's see...";
+		next;
+		mes "[Thief Guide]";
+		if (getskilllv("NV_BASIC") < 9) {
+			mes "Isn't that cute? I can see you're ambitious, but you gotta learn all of the Basic Skills before you can become a Thief.";
+			close;
+		}
+		mes "Alright. I looked at your Felony Record, and you seem to have a very interesting history. You might have what it takes to be a Thief.";
+		next;
+		mes "[Thief Guide]";
+		mes "Because I feel like it, I now decree that you have passed this interview. Good work!";
+		set job_thief_q,2;
+		setquest 1013;
+		next;
+		mes "[Thief Guide]";
+		mes "Now, your actual abilities will need to be tested. Do you know anything about the test?";
+		next;
+		switch(select("Yes, I do.:Sorry, I don't.")) {
+		case 1:
+			mes "[Thief Guide]";
+			mes "Oh yeah? Well, this makes things a lot easier.";
+			break;
+		case 2:
+			mes "[Thief Guide]";
+			mes "Alright, let me inform you then. Listen carefully. This test decides if you are worthy of becoming a Thief.";
+			next;
+			mes "[Thief Guide]";
+			mes "You will be sneaking to Shibu's Farm. He is the worst Merchant, in terms of character, in Morroc.";
+			next;
+			mes "[Thief Guide]";
+			mes "Alright, for your test, you gotta steal Mushrooms from his farm. Don't worry, that guy deserves to be robbed.";
+			next;
+			mes "[Thief Guide]";
+			mes "Anyway, you gotta gather two kinds of Mushrooms: ^0000FFOrange Net Mushrooms^000000 and ^0000FFOrange Gooey Mushrooms^000000.";
+			next;
+			mes "[Thief Guide]";
+			mes "Be careful, since there are monsters are the farm that are there to protect the Mushrooms. So this will be no walk in the park.";
+			next;
+			mes "[Thief Guide]";
+			mes "When you come back here after gathering Mushrooms, you'll be graded on the Mushrooms you've collected.";
+			next;
+			mes "[Thief Guide]";
+			mes "Each Orange Net Mushroom gets you 3 points, and you get 1 point for each Orange Gooey Mushroom. You need a total of 25 points to pass the test.";
+			next;
+			mes "[Thief Guide]";
+			mes "Go outside and keep going ahead toward the Eastern Field of the Pyramids. Then you will see one of our comrades between two columns.";
+			next;
+			mes "[Thief Guide]";
+			mes "Speak to that guy, and he'll take you to the farm through the backdoor.";
+			next;
+			mes "[Thief Guide]";
+			mes "On that field, I think his coordinates are '^FF0000141, 125^000000.' Just type ^3355FF/where^000000 in the right side of your chat box to check your present coordinates.";
+		}
+		next;
+		mes "[Thief Guide]";
+		mes "Don't forget to make plans and prepare yourself before you go inside the Mushroom Farm. Move as quickly as you can and try not to get killed, alright?";
+		close;
+	}
+	close;
+}
