@@ -355,7 +355,7 @@ brasilis,197,221,4	script	Funcionária Kafra#brasilis	117,{
 
 	M_Save:
 		savepoint "brasilis",195,259;
-		callfunc "F_KafEnd",0,1,"in the city of Brasilis";
+		callfunc "F_KafEnd",0,1,"na cidade de Brasilis";
 }
 
 // Comodo
