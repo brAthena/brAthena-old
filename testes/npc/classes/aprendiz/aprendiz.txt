@@ -25,18 +25,20 @@
 -	script	Classe#aprendiz	-1,{
 
 OnInit:
-if( !checkre(1) ) {
-setarray  .@unloadList$[0] , "Receptionist#nv1", "Shion#nv1", "Swordman#swd_2", "Guide Soldier#nv1", "Helper#nv", "Entrance Guard#nv", "Trainer#nv1::NovHoffman", "Test Examiner#nv1::NovKeyman", "Potato Merchant", "Hanson#nv", "Bruce#nv";
+if( checkre(0) ) {
+setarray  .@unloadList$[0] , "Receptionist#nv1", "Shion#nv1", "Swordman#swd_2", "Guide Soldier#nv1", "Helper#nv", "Entrance Guard#nv","Trainer#nv1", "Test Examiner#nv1", "Potato Merchant", "Hanson#nv", "Bruce#nv";
 
-for(set(.@i,0); .@i < getarraysize(.@unloadList$); set(.@i,.@i+1))
-disablenpc(.@unloadList$[.@i]);
+for(set(.@i,0); .@i < getarraysize(.@unloadList$); set .@i,.@i+1) 
+disablenpc .@unloadList$[.@i];
 end;
 }
-setarray  .@unloadList2$[0] , "Merchant_re#nv", "Sprakki#nv1", "Brade#nv", "Jinha#nv", "Chocolat#nv", "Kafra#nv", "Cool Event Staff#nv", "Soldier#nv", "Brade_re#nv", "Swordman Guide_re#nv", "Mage Guide_re#nv", "Thief Guide_re#nv", "Merchant Guide_re#nv", "Archer Guide_re#nv", "Acolyte Guide_re#nv", "Bruce_re#nv", "Eden Group Officer_re#nv", "Level 1 Trainer_re#nv", "Bruce_re#nv";
+else if( !checkre(0) ) {
+setarray  .@unloadList2$[0] , "Sprakki#nv1", "Brade#nv", "Jinha#nv", "Chocolat#nv", "Kafra#nv", "Cool Event Staff#nv", "Soldier#nv", "Brade#nvs", "Swordman Guide#nv", "Mage Guide#nv", "Thief Guide#nv", "Merchant Guide#nvs", "Archer Guide#nv", "Acolyte Guide#nv", "Bruce#nv", "Eden Group Officer#nv", "Level 1 Trainer#nv", "Bruce#nvs";
 
 for(set(.@i,0); .@i < getarraysize(.@unloadList2$); set(.@i,.@i+1))
-disablenpc(.@unloadList2$[.@i]);
+disablenpc .@unloadList2$[.@i];
 end;
+} 
 }
 
 // Sprakki (Stard of Novice Training Ground, Outside Castle)
@@ -903,7 +905,7 @@ new_1-2,121,101,2	script	Guide Soldier#nv1	105,{
 
 // Instructor Brade (Real Combat Training)
 //============================================================
--	script	Brade_re#nv	733,{
+new_1-3,96,30,4	script	Brade#nvs	733,{
 	if(job_novice_q < 14) {
 		mes "[Brade]";
 		mes "How did you get here?";
@@ -1006,11 +1008,10 @@ new_1-2,121,101,2	script	Guide Soldier#nv1	105,{
 	}
 }
 
-new_1-3,96,30,4	duplicate(Brade_re#nv)	Brade#nv1	733
-new_2-3,96,30,4	duplicate(Brade_re#nv)	Brade#nv2	733
-new_3-3,96,30,4	duplicate(Brade_re#nv)	Brade#nv3	733
-new_4-3,96,30,4	duplicate(Brade_re#nv)	Brade#nv4	733
-new_5-3,96,30,4	duplicate(Brade_re#nv)	Brade#nv5	733
+new_2-3,96,30,4	duplicate(Brade#nvs)	Brade#nv2	733
+new_3-3,96,30,4	duplicate(Brade#nvs)	Brade#nv3	733
+new_4-3,96,30,4	duplicate(Brade#nvs)	Brade#nv4	733
+new_5-3,96,30,4	duplicate(Brade#nvs)	Brade#nv5	733
 
 // Job Guides (Real Combat Training)
 //============================================================
@@ -1033,7 +1034,7 @@ function	script	F_NvErase	{
 }
 
 // ---------------------------- Swordman Guide -------------------------------
--	script	Swordman Guide_re#nv	728,{
+new_1-3,97,41,4	script	Swordman Guide#nv	728,{
 	if(job_novice_q < 16) {
 		mes "[Swordman Guildsman]";
 		mes "I won't help you until you finish Brade's instructions.";
@@ -1182,14 +1183,13 @@ function	script	F_NvErase	{
 	}
 }
 
-new_1-3,97,41,4	duplicate(Swordman Guide_re#nv)	Swordman Guide#nv1	728
-new_2-3,97,41,4	duplicate(Swordman Guide_re#nv)	Swordman Guide#nv2	728
-new_3-3,97,41,4	duplicate(Swordman Guide_re#nv)	Swordman Guide#nv3	728
-new_4-3,97,41,4	duplicate(Swordman Guide_re#nv)	Swordman Guide#nv4	728
-new_5-3,97,41,4	duplicate(Swordman Guide_re#nv)	Swordman Guide#nv5	728
+new_2-3,97,41,4	duplicate(Swordman Guide#nv)	Swordman Guide#nv2	728
+new_3-3,97,41,4	duplicate(Swordman Guide#nv)	Swordman Guide#nv3	728
+new_4-3,97,41,4	duplicate(Swordman Guide#nv)	Swordman Guide#nv4	728
+new_5-3,97,41,4	duplicate(Swordman Guide#nv)	Swordman Guide#nv5	728
 
 // ---------------------------- Mage Guide ----------------------------------
--	script	Mage Guide_re#nv	123,{
+new_1-3,101,41,4	script	Mage Guide#nv	123,{
 	if(job_novice_q < 16) {
 		mes "[Mage Guide]";
 		mes "You are still in the process of training with Instructor Brade.";
@@ -1329,14 +1329,13 @@ new_5-3,97,41,4	duplicate(Swordman Guide_re#nv)	Swordman Guide#nv5	728
 	}
 }
 
-new_1-3,101,41,4	duplicate(Mage Guide_re#nv)	Mage Guide#nv1	123
-new_2-3,101,41,4	duplicate(Mage Guide_re#nv)	Mage Guide#nv2	123
-new_3-3,101,41,4	duplicate(Mage Guide_re#nv)	Mage Guide#nv3	123
-new_4-3,101,41,4	duplicate(Mage Guide_re#nv)	Mage Guide#nv4	123
-new_5-3,101,41,4	duplicate(Mage Guide_re#nv)	Mage Guide#nv5	123
+new_2-3,101,41,4	duplicate(Mage Guide#nv)	Mage Guide#nv2	123
+new_3-3,101,41,4	duplicate(Mage Guide#nv)	Mage Guide#nv3	123
+new_4-3,101,41,4	duplicate(Mage Guide#nv)	Mage Guide#nv4	123
+new_5-3,101,41,4	duplicate(Mage Guide#nv)	Mage Guide#nv5	123
 
 // ---------------------------- Thief Guide ---------------------------------
--	script	Thief Guide_re#nv	118,{
+new_1-3,105,41,4	script	Thief Guide#nv	118,{
 	if(job_novice_q < 16) {
 		mes "[Thief Guild Member]";
 		mes "You look like you are not done with Instructor Brade's lessons.";
@@ -1464,14 +1463,13 @@ new_5-3,101,41,4	duplicate(Mage Guide_re#nv)	Mage Guide#nv5	123
 	}
 }
 
-new_1-3,105,41,4	duplicate(Thief Guide_re#nv)	Thief Guide#nv1	118
-new_2-3,105,41,4	duplicate(Thief Guide_re#nv)	Thief Guide#nv2	118
-new_3-3,105,41,4	duplicate(Thief Guide_re#nv)	Thief Guide#nv3	118
-new_4-3,105,41,4	duplicate(Thief Guide_re#nv)	Thief Guide#nv4	118
-new_5-3,105,41,4	duplicate(Thief Guide_re#nv)	Thief Guide#nv5	118
+new_2-3,105,41,4	duplicate(Thief Guide#nv)	Thief Guide#nv2	118
+new_3-3,105,41,4	duplicate(Thief Guide#nv)	Thief Guide#nv3	118
+new_4-3,105,41,4	duplicate(Thief Guide#nv)	Thief Guide#nv4	118
+new_5-3,105,41,4	duplicate(Thief Guide#nv)	Thief Guide#nv5	118
 
 // ---------------------------- Merchant Guide ------------------------------
--	script	Merchant Guide_re#nv	97,{
+new_1-3,109,41,4	script	Merchant Guide#nvs	97,{
 	if(job_novice_q < 16) {
 		mes "[Merchant Guide]";
 		mes "You are still in the process of training with sir Brade.";
@@ -1631,14 +1629,13 @@ new_5-3,105,41,4	duplicate(Thief Guide_re#nv)	Thief Guide#nv5	118
 	}
 }
 
-new_1-3,109,41,4	duplicate(Merchant Guide_re#nv)	Merchant Guide#nv1	97
-new_2-3,109,41,4	duplicate(Merchant Guide_re#nv)	Merchant Guide#nv2	97
-new_3-3,109,41,4	duplicate(Merchant Guide_re#nv)	Merchant Guide#nv3	97
-new_4-3,109,41,4	duplicate(Merchant Guide_re#nv)	Merchant Guide#nv4	97
-new_5-3,109,41,4	duplicate(Merchant Guide_re#nv)	Merchant Guide#nv5	97
+new_2-3,109,41,4	duplicate(Merchant Guide#nvs)	Merchant Guide#nv2	97
+new_3-3,109,41,4	duplicate(Merchant Guide#nvs)	Merchant Guide#nv3	97
+new_4-3,109,41,4	duplicate(Merchant Guide#nvs)	Merchant Guide#nv4	97
+new_5-3,109,41,4	duplicate(Merchant Guide#nvs)	Merchant Guide#nv5	97
 
 // ---------------------------- Archer Guide --------------------------------
--	script	Archer Guide_re#nv	727,{
+new_1-3,113,41,4	script	Archer Guide#nv	727,{
 	if(job_novice_q < 16) {
 		mes "[Archer Guide]";
 		mes "You are still in the process of training with sir Brade.";
@@ -1722,14 +1719,13 @@ new_5-3,109,41,4	duplicate(Merchant Guide_re#nv)	Merchant Guide#nv5	97
 	}
 }
 
-new_1-3,113,41,4	duplicate(Archer Guide_re#nv)	Archer Guide#nv1	727
-new_2-3,113,41,4	duplicate(Archer Guide_re#nv)	Archer Guide#nv2	727
-new_3-3,113,41,4	duplicate(Archer Guide_re#nv)	Archer Guide#nv3	727
-new_4-3,113,41,4	duplicate(Archer Guide_re#nv)	Archer Guide#nv4	727
-new_5-3,113,41,4	duplicate(Archer Guide_re#nv)	Archer Guide#nv5	727
+new_2-3,113,41,4	duplicate(Archer Guide#nv)	Archer Guide#nv2	727
+new_3-3,113,41,4	duplicate(Archer Guide#nv)	Archer Guide#nv3	727
+new_4-3,113,41,4	duplicate(Archer Guide#nv)	Archer Guide#nv4	727
+new_5-3,113,41,4	duplicate(Archer Guide#nv)	Archer Guide#nv5	727
 
 // ---------------------------- Acolyte Guide -------------------------------
--	script	Acolyte Guide_re#nv	95,{
+new_1-3,117,41,4	script	Acolyte Guide#nv	95,{
 	if(job_novice_q < 16) {
 		mes "[Prontera Acolyte]";
 		mes "You look like you are not done with Instructor Brade's lessons.";
@@ -1807,14 +1803,13 @@ new_5-3,113,41,4	duplicate(Archer Guide_re#nv)	Archer Guide#nv5	727
 	}
 }
 
-new_1-3,117,41,4	duplicate(Acolyte Guide_re#nv)	Acolyte Guide#nv1	95
-new_2-3,117,41,4	duplicate(Acolyte Guide_re#nv)	Acolyte Guide#nv2	95
-new_3-3,117,41,4	duplicate(Acolyte Guide_re#nv)	Acolyte Guide#nv3	95
-new_4-3,117,41,4	duplicate(Acolyte Guide_re#nv)	Acolyte Guide#nv4	95
-new_5-3,117,41,4	duplicate(Acolyte Guide_re#nv)	Acolyte Guide#nv5	95
+new_2-3,117,41,4	duplicate(Acolyte Guide#nv)	Acolyte Guide#nv2	95
+new_3-3,117,41,4	duplicate(Acolyte Guide#nv)	Acolyte Guide#nv3	95
+new_4-3,117,41,4	duplicate(Acolyte Guide#nv)	Acolyte Guide#nv4	95
+new_5-3,117,41,4	duplicate(Acolyte Guide#nv)	Acolyte Guide#nv5	95
 
 // ---------------------------- Bruce (Extended Jobs) -----------------------
--	script	Bruce_re#nv	57,{
+new_1-3,121,41,4	script	Bruce#nvs	57,{
 	mes "[Bruce]";
 	mes "Hello?";
 	mes "I'm here to guide you about extra jobs and special classes.";
@@ -1872,11 +1867,10 @@ new_5-3,117,41,4	duplicate(Acolyte Guide_re#nv)	Acolyte Guide#nv5	95
 	}
 }
 
-new_1-3,121,41,4	duplicate(Bruce_re#nv)	Bruce#nv1	57
-new_2-3,121,41,4	duplicate(Bruce_re#nv)	Bruce#nv2	57
-new_3-3,121,41,4	duplicate(Bruce_re#nv)	Bruce#nv3	57
-new_4-3,121,41,4	duplicate(Bruce_re#nv)	Bruce#nv4	57
-new_5-3,121,41,4	duplicate(Bruce_re#nv)	Bruce#nv5	57
+new_2-3,121,41,4	duplicate(Bruce#nvs)	Bruce#nv2	57
+new_3-3,121,41,4	duplicate(Bruce#nvs)	Bruce#nv3	57
+new_4-3,121,41,4	duplicate(Bruce#nvs)	Bruce#nv4	57
+new_5-3,121,41,4	duplicate(Bruce#nvs)	Bruce#nv5	57
 
 new_1-4,91,22,4	script	Bruce#nv	57,{
 	if (Class == Job_Novice) {
@@ -2624,7 +2618,7 @@ new_1-2,38,182,3	script	Entrance Guard#nv	92,{
 //============================================================================
 // Eden Group Officer (Real Combat Training)
 //============================================================================
--	script	Eden Group Officer_re#nv	-1,{
+new_1-3,97,50,4	script	Eden Group Officer#nv	729,5,5,{
 	if(BaseLevel < 10) {
 		mes "[Eden Group Officer]";
 		mes "Hello, I am a representative of the Eden Group.";
@@ -2727,28 +2721,26 @@ OnTouch:
 	end;
 }
 
-new_1-3,97,50,4	duplicate(Eden Group Officer_re#nv)	Eden Group Officer#nv1	729,5,5
-new_2-3,97,50,4	duplicate(Eden Group Officer_re#nv)	Eden Group Officer#nv2	729,5,5
-new_3-3,97,50,4	duplicate(Eden Group Officer_re#nv)	Eden Group Officer#nv3	729,5,5
-new_4-3,97,50,4	duplicate(Eden Group Officer_re#nv)	Eden Group Officer#nv4	729,5,5
-new_5-3,97,50,4	duplicate(Eden Group Officer_re#nv)	Eden Group Officer#nv5	729,5,5
+new_2-3,97,50,4	duplicate(Eden Group Officer#nv)	Eden Group Officer#nv2	729,5,5
+new_3-3,97,50,4	duplicate(Eden Group Officer#nv)	Eden Group Officer#nv3	729,5,5
+new_4-3,97,50,4	duplicate(Eden Group Officer#nv)	Eden Group Officer#nv4	729,5,5
+new_5-3,97,50,4	duplicate(Eden Group Officer#nv)	Eden Group Officer#nv5	729,5,5
 
 // Merchant (Real Combat Training)
 
 new_1-2,28,185,4	shop	Potato Merchant	90,516:15
 //============================================================
--	shop	Merchant_re#nv	93,516:15
+new_1-3,100,50,4	shop	Merchant#nvs	93,516:15
 
 
-new_1-3,100,50,4	duplicate(Merchant_re#nv)	Merchant#nv1	93
-new_2-3,100,50,4	duplicate(Merchant_re#nv)	Merchant#nv2	93
-new_3-3,100,50,4	duplicate(Merchant_re#nv)	Merchant#nv3	93
-new_4-3,100,50,4	duplicate(Merchant_re#nv)	Merchant#nv4	93
-new_5-3,100,50,4	duplicate(Merchant_re#nv)	Merchant#nv5	93
+new_2-3,100,50,4	duplicate(Merchant#nvs)	Merchant#nv2	93
+new_3-3,100,50,4	duplicate(Merchant#nvs)	Merchant#nv3	93
+new_4-3,100,50,4	duplicate(Merchant#nvs)	Merchant#nv4	93
+new_5-3,100,50,4	duplicate(Merchant#nvs)	Merchant#nv5	93
 
 // Trainer (Real Combat Training)
 //============================================================
--	script	Level 1 Trainer_re#nv	84,{
+new_1-3,103,50,4	script	Level 1 Trainer#nv	84,{
 	mes "[Trainer Brutus]";
 	mes "These monsters are all weak and easy to kill. But be careful, a lot of them are aggressive and out for blood!";
 	next;
@@ -2804,11 +2796,10 @@ new_5-3,100,50,4	duplicate(Merchant_re#nv)	Merchant#nv5	93
 	}
 }
 
-new_1-3,103,50,4	duplicate(Level 1 Trainer_re#nv)	Level 1 Trainer#nv1	84
-new_2-3,103,50,4	duplicate(Level 1 Trainer_re#nv)	Level 2 Trainer#nv2	84
-new_3-3,103,50,4	duplicate(Level 1 Trainer_re#nv)	Level 3 Trainer#nv3	84
-new_4-3,103,50,4	duplicate(Level 1 Trainer_re#nv)	Level 4 Trainer#nv4	84
-new_5-3,103,50,4	duplicate(Level 1 Trainer_re#nv)	Level 5 Trainer#nv5	84
+new_2-3,103,50,4	duplicate(Level 1 Trainer#nv)	Level 2 Trainer#nv2	84
+new_3-3,103,50,4	duplicate(Level 1 Trainer#nv)	Level 3 Trainer#nv3	84
+new_4-3,103,50,4	duplicate(Level 1 Trainer#nv)	Level 4 Trainer#nv4	84
+new_5-3,103,50,4	duplicate(Level 1 Trainer#nv)	Level 5 Trainer#nv5	84
 
 new_1-4,100,29,1	script	Hanson#nv	46,{
 	if (checkweight(909,400) == 0) {
@@ -4042,7 +4033,7 @@ S_UserJobchoice:
 }
 
 //Teleport NPC
-new_1-3,95,30,4	script	Trainer#nv1::NovHoffman	84,{
+new_1-3,95,30,4	script	Trainer#nv1	84,{
 	mes "[Hoffman]";
 	mes "Hey there~";
 	mes "I'm here to provide";
@@ -4115,12 +4106,12 @@ new_1-3,95,30,4	script	Trainer#nv1::NovHoffman	84,{
 	}
 }
 
-new_2-3,95,30,4	duplicate(NovHoffman)	Trainer#nv2	84
-new_3-3,95,30,4	duplicate(NovHoffman)	Trainer#nv3	84
-new_4-3,95,30,4	duplicate(NovHoffman)	Trainer#nv4	84
-new_5-3,95,30,4	duplicate(NovHoffman)	Trainer#nv5	84
+new_2-3,95,30,4	duplicate(Trainer#nv1)	Trainer#nv2	84
+new_3-3,95,30,4	duplicate(Trainer#nv1)	Trainer#nv3	84
+new_4-3,95,30,4	duplicate(Trainer#nv1)	Trainer#nv4	84
+new_5-3,95,30,4	duplicate(Trainer#nv1)	Trainer#nv5	84
 
-new_1-3,96,174,3	script	Test Examiner#nv1::NovKeyman	85,{
+new_1-3,96,174,3	script	Test Examiner#nv1	85,{
 	mes "[Keyman]";
 	mes "Good!!";
 	mes "Now you know how to fight";
@@ -4146,10 +4137,10 @@ new_1-3,96,174,3	script	Test Examiner#nv1::NovKeyman	85,{
 	}
 }
 
-new_2-3,96,174,3	duplicate(NovKeyman)	Test Examiner#nv2	85
-new_3-3,96,174,3	duplicate(NovKeyman)	Test Examiner#nv3	85
-new_4-3,96,174,3	duplicate(NovKeyman)	Test Examiner#nv4	85
-new_5-3,96,174,3	duplicate(NovKeyman)	Test Examiner#nv5	85
+new_2-3,96,174,3	duplicate(Test Examiner#nv1)	Test Examiner#nv2	85
+new_3-3,96,174,3	duplicate(Test Examiner#nv1)	Test Examiner#nv3	85
+new_4-3,96,174,3	duplicate(Test Examiner#nv1)	Test Examiner#nv4	85
+new_5-3,96,174,3	duplicate(Test Examiner#nv1)	Test Examiner#nv5	85
 
 // Random Stuff (Guards & Bulletin Board)
 //============================================================
@@ -4185,7 +4176,7 @@ new_1-1,144,107,2	script	Guard#nv2	105,{
 
 new_1-2,161,182,5	script	Instructor#nv	92,{
 	mes "[Edwin]";
-if( !checkre(1)) {	
+if( checkre(1)) {	
   mes "Eh? Why are you still here?";
 	mes "There are no more courses that you need to take.";
 	next;
