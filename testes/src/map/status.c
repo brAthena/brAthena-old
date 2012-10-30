@@ -1163,6 +1163,22 @@ int status_damage(struct block_list *src,struct block_list *target,int hp, int s
 	if( hp && !(flag&1) ) {
 		if( sc ) {
 			struct status_change_entry *sce;
+			
+			if((sce = sc->data[SC_DEVOTION]) && src && battle_config.devotion_rdamage)
+			{
+				struct block_list *d_bl = map_id2bl(sce->val1);
+
+				if(d_bl &&((d_bl->type == BL_MER && ((TBL_MER*)d_bl)->master && ((TBL_MER*)d_bl)->master->bl.id == target->id) 
+				|| (d_bl->type == BL_PC && ((TBL_PC*)d_bl)->devotion[sce->val2] == target->id)) && check_distance_bl(target, d_bl, sce->val3))
+				{
+					clif_damage(d_bl, d_bl, gettick(), 0, 0, hp, 0, 0, 0);
+					status_fix_damage(NULL, d_bl, hp, 0);
+					return 0;
+				}
+
+				status_change_end(target, SC_DEVOTION, -1);
+			}
+			
 			if (sc->data[SC_STONE] && sc->opt1 == OPT1_STONE)
 				status_change_end(target, SC_STONE, INVALID_TIMER);
 			status_change_end(target, SC_FREEZE, INVALID_TIMER);

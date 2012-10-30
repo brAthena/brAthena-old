@@ -5749,6 +5749,8 @@ static const struct _battle_data {
 	{ "atcommand_mobinfo_type",             &battle_config.atcommand_mobinfo_type,          0,      0,      1               },
 	{ "homunculus_max_level",               &battle_config.hom_max_level,                   99,     0,      MAX_LEVEL,      },
 	{ "homunculus_S_max_level",             &battle_config.hom_S_max_level,                 150,    0,      MAX_LEVEL,      },
+	//brAthena
+	{ "devotion_rdamage",                   &battle_config.devotion_rdamage,                  0,    0,              1,      },
 };
 #ifndef STATS_OPT_OUT
 /**

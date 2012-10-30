@@ -469,7 +469,7 @@ extern struct Battle_Config
 	int bg_flee_penalty;
 	
 	// brAthena
-	int server_lang;
+	int server_lang, devotion_rdamage;
 	
 	// rAthena
 	int max_third_parameter;
