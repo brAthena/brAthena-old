@@ -1,9 +1,9 @@
-// This is help file that contains help messages for atcommands/charcommands.
+// Este é um arquivo de ajuda que contém mensagens de ajuda para atcommands/charcommands.
 
-// Format:
-// <command>: "<help message>"
+// Formato:
+// <comando>: "<mensagem de ajuda >"
 
-// This file uses libconfig syntax.
+// Esse arquivo usa sintaxe libconfig.
 
 help: "Params: <comando> \n" "Mostra ajuda para o comando especificado."
 main: "Params: [on|off|<mensagem>]\n" "Ativa ou desativa o chat de principal. Envia mensagem para chat principal."
@@ -40,23 +40,26 @@ guildspy: "Params: <nome do clã|id> - Você receberá todas as mensagens do canal 
 partyspy: "@partyspy <nome do grupo|id> - Você receberá todas as mensagens do canal do grupo (Chat log deve ser habilitado)"
 mapinfo: "Params: [<0-3> [mapa]] - Mostra informações sobre um mapa (Informação geral +: 0: sem mais, 1: jogadores, 2: NPC, 3: lojas/chat)."
 go: "Params: <nome da cidade|número>\n" "Teleporta você para uma cidade.\n"
-	"  -3: (Memo ponto 2)     14: louyang          31: mora\n"
-	"  -2: (Memo ponto 1)     15: start point       32: dewata\n"
-	"  -1: (Memo ponto 0)     16: prison/jail       33: malangdo island\n"
-	"   0: prontera               17: jawaii             34: malaya port\n"
-	"   1: morocc                 18: ayothaya        35: eclage\n"
-	"   2: geffen                  19: einbroch\n"
-	"   3: payon                  20: lighthalzen\n"
-	"   4: alberta                 21: einbech\n"
-	"   5: izlude                  22: hugel\n"
-	"   6: aldebaran            23: rachel\n"
-	"   7: xmas (lutie)         24: veins\n"
-	"   8: comodo               25: moscovia\n"
-	"   9: yuno                   26: midgard camp\n"
-	"  10: amatsu               27: manuk\n"
-	"  11: Kulun                  28: splendide\n"
-	"  12: umbala               29: brasilis\n"
-	"  13: niflheim              30: el dicastes\n"
+	"  -3: (Memo ponto 2)                  17: Jawaii\n"         
+	"  -2: (Memo ponto 1)                  18: Ayothaya\n"       
+	"  -1: (Memo ponto 0)                  19: Einbroch\n"      
+	"   0: Prontera                             20: Lighthalzen\n"               
+	"   1: Morocc                               21: Einbech\n"          
+	"   2: Geffen                               22: Hugel\n"     
+	"   3: Payon                                23: Rachel\n"     
+	"   4: Alberta                               24: Veins\n"     
+	"   5: Izlude                                25: Moscovia\n"    
+	"   6: Aldebaran                           26: Campo de Midgard\n"  
+	"   7: Xmas (Lutie)                       27: Manuk\n"  
+	"   8: Comodo                             28: Splendide\n"  
+	"   9: Yuno                                  29: Brasilis\n"    
+	"  10: Amatsu                              30: El Dicastes\n"  
+	"  11: Gonryun (Kulun)                 31: Mora\n"  
+	"  12: Umbala                              32: Dewata\n"  
+	"  13: Niflheim                             33: Ilha de Malangdo\n"   
+	"  14: Louyang	                             34: Porto de Malaya\n" 
+    "  15: Campo de Treinamento       35: Eclage\n"   
+    "  16: Prisão\n"                                            
 jumpto: "Params: <nome do personagem>\n" "Você é teleportado para o personagem selecionado."
 follow: "Params: <nome do personagem>\n" "Segue um jogador."
 mount: "Adiciona/remove  você de um peco (Classe é requerido, mas não a habilidade)"
