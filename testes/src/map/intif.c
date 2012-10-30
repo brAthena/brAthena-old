@@ -46,11 +46,11 @@ static const int packet_len_table[]={
 	-1,-1, 7, 3,  0, 0, 0, 0,  0, 0, 0, 0,  0, 0,  0, 0, //0x3890  Homunculus [albator]
 };
 
-extern int char_fd;		// inter server‚Ìfd‚Íchar_fd‚ğg‚¤
-#define inter_fd char_fd	// ƒGƒCƒŠƒAƒX
+extern int char_fd; // inter server Fd used for char_fd
+#define inter_fd char_fd	// alias
 
 //-----------------------------------------------------------------
-// inter server‚Ö‚Ì‘—M
+// Send to inter server 
 
 int CheckForCharServer(void)
 {
@@ -136,7 +136,7 @@ int intif_rename(struct map_session_data *sd, int type, char *name)
 	return 0;
 }
 
-// GMƒƒbƒZ[ƒW‚ğ‘—M
+// GM Send a message
 int intif_broadcast(const char* mes, int len, int type)
 {
 	int lp = type ? 4 : 0;
@@ -386,7 +386,7 @@ int intif_send_guild_storage(int account_id,struct guild_storage *gstor)
 	return 0;
 }
 
-// ƒp[ƒeƒBì¬—v‹
+// Party creation request
 int intif_create_party(struct party_member *member,char *name,int item,int item2)
 {
 	if (CheckForCharServer())
@@ -403,7 +403,8 @@ int intif_create_party(struct party_member *member,char *name,int item,int item2
 	WFIFOSET(inter_fd,WFIFOW(inter_fd, 2));
 	return 0;
 }
-// ƒp[ƒeƒBî•ñ—v‹
+
+// Party information request
 int intif_request_partyinfo(int party_id, int char_id)
 {
 	if (CheckForCharServer())
@@ -415,7 +416,8 @@ int intif_request_partyinfo(int party_id, int char_id)
 	WFIFOSET(inter_fd,10);
 	return 0;
 }
-// ƒp[ƒeƒB’Ç‰Á—v‹
+
+// Request to add a member to party 
 int intif_party_addmember(int party_id,struct party_member *member)
 {
 	if (CheckForCharServer())
@@ -428,7 +430,8 @@ int intif_party_addmember(int party_id,struct party_member *member)
 	WFIFOSET(inter_fd,WFIFOW(inter_fd, 2));
 	return 1;
 }
-// ƒp[ƒeƒBİ’è•ÏX
+
+// Request to change party configuration (exp,item share)
 int intif_party_changeoption(int party_id,int account_id,int exp,int item)
 {
 	if (CheckForCharServer())
@@ -442,7 +445,8 @@ int intif_party_changeoption(int party_id,int account_id,int exp,int item)
 	WFIFOSET(inter_fd,14);
 	return 0;
 }
-// ƒp[ƒeƒB’E‘Ş—v‹
+
+// Request to leave party
 int intif_party_leave(int party_id,int account_id, int char_id)
 {
 	if (CheckForCharServer())
@@ -455,7 +459,8 @@ int intif_party_leave(int party_id,int account_id, int char_id)
 	WFIFOSET(inter_fd,14);
 	return 0;
 }
-// ƒp[ƒeƒBˆÚ“®—v‹
+
+// Request keeping party for new map ?? 
 int intif_party_changemap(struct map_session_data *sd,int online)
 {
 	int m, mapindex;
@@ -481,7 +486,8 @@ int intif_party_changemap(struct map_session_data *sd,int online)
 	WFIFOSET(inter_fd,19);
 	return 1;
 }
-// ƒp[ƒeƒB[‰ğU—v‹
+
+// Request breaking party 
 int intif_break_party(int party_id)
 {
 	if (CheckForCharServer())
@@ -492,7 +498,8 @@ int intif_break_party(int party_id)
 	WFIFOSET(inter_fd,6);
 	return 0;
 }
-// ƒp[ƒeƒB‰ï˜b‘—M
+
+// Sending party chat
 int intif_party_message(int party_id,int account_id,const char *mes,int len)
 {
 	if (CheckForCharServer())
@@ -511,6 +518,7 @@ int intif_party_message(int party_id,int account_id,const char *mes,int len)
 	return 0;
 }
 
+// Request a new leader for party
 int intif_party_leaderchange(int party_id,int account_id,int char_id)
 {
 	if (CheckForCharServer())
@@ -524,8 +532,7 @@ int intif_party_leaderchange(int party_id,int account_id,int char_id)
 	return 0;
 }
 
-
-// ƒMƒ‹ƒhì¬—v‹
+// Request a Guild creation
 int intif_guild_create(const char *name,const struct guild_member *master)
 {
 	if (CheckForCharServer())
@@ -541,7 +548,8 @@ int intif_guild_create(const char *name,const struct guild_member *master)
 	WFIFOSET(inter_fd,WFIFOW(inter_fd,2));
 	return 0;
 }
-// ƒMƒ‹ƒhî•ñ—v‹
+
+// Request Guild information
 int intif_guild_request_info(int guild_id)
 {
 	if (CheckForCharServer())
@@ -552,7 +560,8 @@ int intif_guild_request_info(int guild_id)
 	WFIFOSET(inter_fd,6);
 	return 0;
 }
-// ƒMƒ‹ƒhƒƒ“ƒo’Ç‰Á—v‹
+
+// Request to add member to the guild
 int intif_guild_addmember(int guild_id,struct guild_member *m)
 {
 	if (CheckForCharServer())
@@ -566,6 +575,7 @@ int intif_guild_addmember(int guild_id,struct guild_member *m)
 	return 0;
 }
 
+// Request a new leader for guild
 int intif_guild_change_gm(int guild_id, const char* name, int len)
 {
 	if (CheckForCharServer())
@@ -579,7 +589,7 @@ int intif_guild_change_gm(int guild_id, const char* name, int len)
 	return 0;
 }
 
-// ƒMƒ‹ƒhƒƒ“ƒo’E‘Ş/’Ç•ú—v‹
+// Request to leave guild
 int intif_guild_leave(int guild_id,int account_id,int char_id,int flag,const char *mes)
 {
 	if (CheckForCharServer())
@@ -594,7 +604,8 @@ int intif_guild_leave(int guild_id,int account_id,int char_id,int flag,const cha
 	WFIFOSET(inter_fd,55);
 	return 0;
 }
-// ƒMƒ‹ƒhƒƒ“ƒo‚ÌƒIƒ“ƒ‰ƒCƒ“ó‹µ/LvXV—v‹
+
+//Update request / Lv online status of the guild members
 int intif_guild_memberinfoshort(int guild_id,int account_id,int char_id,int online,int lv,int class_)
 {
 	if (CheckForCharServer())
@@ -610,7 +621,8 @@ int intif_guild_memberinfoshort(int guild_id,int account_id,int char_id,int onli
 	WFIFOSET(inter_fd,19);
 	return 0;
 }
-// ƒMƒ‹ƒh‰ğU’Ê’m
+
+//Guild disbanded notification
 int intif_guild_break(int guild_id)
 {
 	if (CheckForCharServer())
@@ -621,7 +633,8 @@ int intif_guild_break(int guild_id)
 	WFIFOSET(inter_fd,6);
 	return 0;
 }
-// ƒMƒ‹ƒh‰ï˜b‘—M
+
+// Send a guild message
 int intif_guild_message(int guild_id,int account_id,const char *mes,int len)
 {
 	if (CheckForCharServer())
@@ -640,7 +653,8 @@ int intif_guild_message(int guild_id,int account_id,const char *mes,int len)
 
 	return 0;
 }
-// ƒMƒ‹ƒhŠî–{î•ñ•ÏX—v‹
+
+// Request a change of Guild basic information
 int intif_guild_change_basicinfo(int guild_id,int type,const void *data,int len)
 {
 	if (CheckForCharServer())
@@ -654,7 +668,8 @@ int intif_guild_change_basicinfo(int guild_id,int type,const void *data,int len)
 	WFIFOSET(inter_fd,len+10);
 	return 0;
 }
-// ƒMƒ‹ƒhƒƒ“ƒoî•ñ•ÏX—v‹
+
+// Request a change of Guild member information
 int intif_guild_change_memberinfo(int guild_id,int account_id,int char_id,
 	int type,const void *data,int len)
 {
@@ -671,7 +686,8 @@ int intif_guild_change_memberinfo(int guild_id,int account_id,int char_id,
 	WFIFOSET(inter_fd,len+18);
 	return 0;
 }
-// ƒMƒ‹ƒh–ğE•ÏX—v‹
+
+// Request a change of Guild title 
 int intif_guild_position(int guild_id,int idx,struct guild_position *p)
 {
 	if (CheckForCharServer())
@@ -685,7 +701,8 @@ int intif_guild_position(int guild_id,int idx,struct guild_position *p)
 	WFIFOSET(inter_fd,WFIFOW(inter_fd,2));
 	return 0;
 }
-// ƒMƒ‹ƒhƒXƒLƒ‹ƒAƒbƒv—v‹
+
+// Request an update of Guildskill skillnum 
 int intif_guild_skillup(int guild_id, int skill_num, int account_id, int max)
 {
 	if( CheckForCharServer() )
@@ -699,7 +716,8 @@ int intif_guild_skillup(int guild_id, int skill_num, int account_id, int max)
 	WFIFOSET(inter_fd, 18);
 	return 0;
 }
-// ƒMƒ‹ƒh“¯–¿/“G‘Î—v‹
+
+// Request a new guild relationship
 int intif_guild_alliance(int guild_id1,int guild_id2,int account_id1,int account_id2,int flag)
 {
 	if (CheckForCharServer())
@@ -714,7 +732,8 @@ int intif_guild_alliance(int guild_id1,int guild_id2,int account_id1,int account
 	WFIFOSET(inter_fd,19);
 	return 0;
 }
-// ƒMƒ‹ƒh’m•ÏX—v‹
+
+// Request to change guild notice
 int intif_guild_notice(int guild_id,const char *mes1,const char *mes2)
 {
 	if (CheckForCharServer())
@@ -727,7 +746,8 @@ int intif_guild_notice(int guild_id,const char *mes1,const char *mes2)
 	WFIFOSET(inter_fd,186);
 	return 0;
 }
-// ƒMƒ‹ƒhƒGƒ“ƒuƒŒƒ€•ÏX—v‹
+
+// Request to change guild emblem
 int intif_guild_emblem(int guild_id,int len,const char *data)
 {
 	if (CheckForCharServer())
@@ -761,7 +781,7 @@ int intif_guild_castle_dataload(int num, int *castle_ids)
 	return 1;
 }
 
-//ƒMƒ‹ƒhéè—ÌƒMƒ‹ƒh•ÏX—v‹
+// Request change castle guild owner and save data
 int intif_guild_castle_datasave(int castle_id,int index, int value)
 {
 	if (CheckForCharServer())
@@ -868,7 +888,7 @@ int intif_parse_WisMessage(int fd)
 	}
 	//Success to send whisper.
 	clif_wis_message(sd->fd, wisp_source, (char*)RFIFOP(fd,56),RFIFOW(fd,2)-56);
-	intif_wis_replay(id,0);   // ‘—M¬Œ÷
+	intif_wis_replay(id,0);   // succes
 	return 0;
 }
 
@@ -925,7 +945,7 @@ int mapif_parse_WisToGM(int fd)
 	return 0;
 }
 
-// ƒAƒJƒEƒ“ƒg•Ï”’Ê’m
+// Request player registre
 int intif_parse_Registers(int fd)
 {
 	int j,p,len,max, flag;
@@ -1017,13 +1037,15 @@ int intif_parse_LoadGuildStorage(int fd)
 	storage_guild_storageopen(sd);
 	return 0;
 }
+
+// ACK guild_storage saved
 int intif_parse_SaveGuildStorage(int fd)
 {
 	storage_guild_storagesaved(/*RFIFOL(fd,2), */RFIFOL(fd,6));
 	return 0;
 }
 
-// ƒp[ƒeƒBì¬‰Â”Û
+// ACK party creation
 int intif_parse_PartyCreated(int fd)
 {
 	if(battle_config.etc_log)
@@ -1031,7 +1053,8 @@ int intif_parse_PartyCreated(int fd)
 	party_created(RFIFOL(fd,2), RFIFOL(fd,6),RFIFOB(fd,10),RFIFOL(fd,11), (char *)RFIFOP(fd,15));
 	return 0;
 }
-// ƒp[ƒeƒBî•ñ
+
+// Receive party info
 int intif_parse_PartyInfo(int fd)
 {
 	if( RFIFOW(fd,2) == 12 ){
@@ -1045,7 +1068,8 @@ int intif_parse_PartyInfo(int fd)
 	party_recv_info((struct party *)RFIFOP(fd,8), RFIFOL(fd,4));
 	return 0;
 }
-// ƒp[ƒeƒB’Ç‰Á’Ê’m
+
+// ACK adding party member
 int intif_parse_PartyMemberAdded(int fd)
 {
 	if(battle_config.etc_log)
@@ -1053,13 +1077,15 @@ int intif_parse_PartyMemberAdded(int fd)
 	party_member_added(RFIFOL(fd,2),RFIFOL(fd,6),RFIFOL(fd,10), RFIFOB(fd, 14));
 	return 0;
 }
-// ƒp[ƒeƒBİ’è•ÏX’Ê’m
+
+// ACK changing party option
 int intif_parse_PartyOptionChanged(int fd)
 {
 	party_optionchanged(RFIFOL(fd,2),RFIFOL(fd,6),RFIFOW(fd,10),RFIFOW(fd,12),RFIFOB(fd,14));
 	return 0;
 }
-// ƒp[ƒeƒB’E‘Ş’Ê’m
+
+// ACK member leaving party
 int intif_parse_PartyMemberWithdraw(int fd)
 {
 	if(battle_config.etc_log)
@@ -1067,32 +1093,36 @@ int intif_parse_PartyMemberWithdraw(int fd)
 	party_member_withdraw(RFIFOL(fd,2),RFIFOL(fd,6),RFIFOL(fd,10));
 	return 0;
 }
-// ƒp[ƒeƒB‰ğU’Ê’m
+
+// ACK party break
 int intif_parse_PartyBroken(int fd)
 {
 	party_broken(RFIFOL(fd,2));
 	return 0;
 }
-// ƒp[ƒeƒBˆÚ“®’Ê’m
+
+// ACK party on new map
 int intif_parse_PartyMove(int fd)
 {
 	party_recv_movemap(RFIFOL(fd,2),RFIFOL(fd,6),RFIFOL(fd,10),RFIFOW(fd,14),RFIFOB(fd,16),RFIFOW(fd,17));
 	return 0;
 }
-// ƒp[ƒeƒBƒƒbƒZ[ƒW
+
+// ACK party messages
 int intif_parse_PartyMessage(int fd)
 {
 	party_recv_message(RFIFOL(fd,4),RFIFOL(fd,8),(char *) RFIFOP(fd,12),RFIFOW(fd,2)-12);
 	return 0;
 }
 
-// ƒMƒ‹ƒhì¬‰Â”Û
+// ACK guild creation
 int intif_parse_GuildCreated(int fd)
 {
 	guild_created(RFIFOL(fd,2),RFIFOL(fd,6));
 	return 0;
 }
-// ƒMƒ‹ƒhî•ñ
+
+// ACK guild infos
 int intif_parse_GuildInfo(int fd)
 {
 	if(RFIFOW(fd,2) == 8) {
@@ -1105,7 +1135,8 @@ int intif_parse_GuildInfo(int fd)
 	guild_recv_info((struct guild *)RFIFOP(fd,4));
 	return 0;
 }
-// ƒMƒ‹ƒhƒƒ“ƒo’Ç‰Á’Ê’m
+
+// ACK adding guild member
 int intif_parse_GuildMemberAdded(int fd)
 {
 	if(battle_config.etc_log)
@@ -1113,20 +1144,22 @@ int intif_parse_GuildMemberAdded(int fd)
 	guild_member_added(RFIFOL(fd,2),RFIFOL(fd,6),RFIFOL(fd,10),RFIFOB(fd,14));
 	return 0;
 }
-// ƒMƒ‹ƒhƒƒ“ƒo’E‘Ş/’Ç•ú’Ê’m
+
+// ACK member leaving guild
 int intif_parse_GuildMemberWithdraw(int fd)
 {
 	guild_member_withdraw(RFIFOL(fd,2),RFIFOL(fd,6),RFIFOL(fd,10),RFIFOB(fd,14),(char *)RFIFOP(fd,55),(char *)RFIFOP(fd,15));
 	return 0;
 }
 
-// ƒMƒ‹ƒhƒƒ“ƒoƒIƒ“ƒ‰ƒCƒ“ó‘Ô/Lv•ÏX’Ê’m
+// ACK guild member basic info
 int intif_parse_GuildMemberInfoShort(int fd)
 {
 	guild_recv_memberinfoshort(RFIFOL(fd,2),RFIFOL(fd,6),RFIFOL(fd,10),RFIFOB(fd,14),RFIFOW(fd,15),RFIFOW(fd,17));
 	return 0;
 }
-// ƒMƒ‹ƒh‰ğU’Ê’m
+
+// ACK guild break
 int intif_parse_GuildBroken(int fd)
 {
 	guild_broken(RFIFOL(fd,2),RFIFOB(fd,6));
@@ -1189,7 +1222,7 @@ int intif_parse_GuildMemberInfoChanged(int fd)
 	return 0;
 }
 
-// ƒMƒ‹ƒh–ğE•ÏX’Ê’m
+// ACK change of guild title
 int intif_parse_GuildPosition(int fd)
 {
 	if( RFIFOW(fd,2)!=sizeof(struct guild_position)+12 )
@@ -1197,54 +1230,62 @@ int intif_parse_GuildPosition(int fd)
 	guild_position_changed(RFIFOL(fd,4),RFIFOL(fd,8),(struct guild_position *)RFIFOP(fd,12));
 	return 0;
 }
-// ƒMƒ‹ƒhƒXƒLƒ‹Š„‚èU‚è’Ê’m
+
+// ACK change of guild skill update
 int intif_parse_GuildSkillUp(int fd)
 {
 	guild_skillupack(RFIFOL(fd,2),RFIFOL(fd,6),RFIFOL(fd,10));
 	return 0;
 }
-// ƒMƒ‹ƒh“¯–¿/“G‘Î’Ê’m
+
+// ACK change of guild relationship
 int intif_parse_GuildAlliance(int fd)
 {
 	guild_allianceack(RFIFOL(fd,2),RFIFOL(fd,6),RFIFOL(fd,10),RFIFOL(fd,14),RFIFOB(fd,18),(char *) RFIFOP(fd,19),(char *) RFIFOP(fd,43));
 	return 0;
 }
-// ƒMƒ‹ƒh’m•ÏX’Ê’m
+
+// ACK change of guild notice
 int intif_parse_GuildNotice(int fd)
 {
 	guild_notice_changed(RFIFOL(fd,2),(char *) RFIFOP(fd,6),(char *) RFIFOP(fd,66));
 	return 0;
 }
-// ƒMƒ‹ƒhƒGƒ“ƒuƒŒƒ€•ÏX’Ê’m
+
+// ACK change of guild emblem
 int intif_parse_GuildEmblem(int fd)
 {
 	guild_emblem_changed(RFIFOW(fd,2)-12,RFIFOL(fd,4),RFIFOL(fd,8), (char *)RFIFOP(fd,12));
 	return 0;
 }
-// ƒMƒ‹ƒh‰ï˜bóM
+
+// ACK guild message
 int intif_parse_GuildMessage(int fd)
 {
 	guild_recv_message(RFIFOL(fd,4),RFIFOL(fd,8),(char *) RFIFOP(fd,12),RFIFOW(fd,2)-12);
 	return 0;
 }
-// ƒMƒ‹ƒhéƒf[ƒ^—v‹•ÔM
+
+// Reply guild castle data request
 int intif_parse_GuildCastleDataLoad(int fd)
 {
 	return guild_castledataloadack(RFIFOW(fd,2), (struct guild_castle *)RFIFOP(fd,4));
 }
 
+// ACK change of guildmaster
 int intif_parse_GuildMasterChanged(int fd)
 {
 	return guild_gm_changed(RFIFOL(fd,2),RFIFOL(fd,6),RFIFOL(fd,10));
 }
 
-// pet
+// Request pet creation
 int intif_parse_CreatePet(int fd)
 {
 	pet_get_egg(RFIFOL(fd,2),RFIFOL(fd,7),RFIFOB(fd,6));
 	return 0;
 }
 
+// ACK pet data
 int intif_parse_RecvPetData(int fd)
 {
 	struct s_pet p;
@@ -1261,6 +1302,8 @@ int intif_parse_RecvPetData(int fd)
 
 	return 0;
 }
+
+// ACK pet save data
 int intif_parse_SavePetOk(int fd)
 {
 	if(RFIFOB(fd,6) == 1)
@@ -1269,6 +1312,7 @@ int intif_parse_SavePetOk(int fd)
 	return 0;
 }
 
+// ACK deleting pet
 int intif_parse_DeletePetOk(int fd)
 {
 	if(RFIFOB(fd,2) == 1)
@@ -1277,6 +1321,7 @@ int intif_parse_DeletePetOk(int fd)
 	return 0;
 }
 
+// ACK changing name resquest, players,pets,hommon
 int intif_parse_ChangeNameOk(int fd)
 {
 	struct map_session_data *sd = NULL;
@@ -2112,19 +2157,19 @@ void intif_parse_MessageToFD(int fd) {
 }
 
 //-----------------------------------------------------------------
-// inter server‚©‚ç‚Ì’ÊM
-// ƒGƒ‰[‚ª‚ ‚ê‚Î0(false)‚ğ•Ô‚·‚±‚Æ
-// ƒpƒPƒbƒg‚ªˆ—‚Å‚«‚ê‚Î1,ƒpƒPƒbƒg’·‚ª‘«‚è‚È‚¯‚ê‚Î2‚ğ•Ô‚·‚±‚Æ
+// Communication from the inter server
+// Return a 0 (false) if there were any errors.
+// 1, 2 if there are not enough to return the length of the packet if the packet processing
 int intif_parse(int fd)
 {
 	int packet_len, cmd;
 	cmd = RFIFOW(fd,0);
-	// ƒpƒPƒbƒg‚ÌIDŠm”F
+	// Verify ID of the packet
 	if(cmd<0x3800 || cmd>=0x3800+(sizeof(packet_len_table)/sizeof(packet_len_table[0])) ||
 	   packet_len_table[cmd-0x3800]==0){
 	   	return 0;
 	}
-	// ƒpƒPƒbƒg‚Ì’·‚³Šm”F
+	// Check the length of the packet
 	packet_len = packet_len_table[cmd-0x3800];
 	if(packet_len==-1){
 		if(RFIFOREST(fd)<4)
@@ -2134,7 +2179,7 @@ int intif_parse(int fd)
 	if((int)RFIFOREST(fd)<packet_len){
 		return 2;
 	}
-	// ˆ—•ªŠò
+	// Processing branch
 	switch(cmd){
 	case 0x3800:
 		if (RFIFOL(fd,4) == 0xFF000000) //Normal announce.
@@ -2217,7 +2262,7 @@ int intif_parse(int fd)
 		ShowError("intif_parse : unknown packet %d %x\n",fd,RFIFOW(fd,0));
 		return 0;
 	}
-	// ƒpƒPƒbƒg“Ç‚İ”ò‚Î‚µ
+	// Skip packet
 	RFIFOSKIP(fd,packet_len);
 	return 1;
 }

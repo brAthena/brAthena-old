@@ -332,9 +332,9 @@ int party_check_empty(struct party_data *p)
 }
 
 //-------------------------------------------------------------------
-// map server‚Ö‚Ì’ÊM
+// Communication to the map server 
 
-// ƒp[ƒeƒBì¬‰Â”Û
+// Create a party whether or not 
 int mapif_party_created(int fd,int account_id,int char_id,struct party *p)
 {
 	WFIFOHEAD(fd, 39);
@@ -356,7 +356,7 @@ int mapif_party_created(int fd,int account_id,int char_id,struct party *p)
 	return 0;
 }
 
-// ƒp[ƒeƒBî•ñŒ©‚Â‚©‚ç‚¸
+// Party information not found 
 static void mapif_party_noinfo(int fd, int party_id, int char_id)
 {
 	WFIFOHEAD(fd, 12);
@@ -367,7 +367,7 @@ static void mapif_party_noinfo(int fd, int party_id, int char_id)
 	WFIFOSET(fd,12);
 	ShowWarning("int_party: info not found (party_id=%d char_id=%d)\n", party_id, char_id);
 }
-// ƒp[ƒeƒBî•ñ‚Ü‚Æ‚ß‘—‚è
+// Digest party information 
 static void mapif_party_info(int fd, struct party* p, int char_id)
 {
 	unsigned char buf[8 + sizeof(struct party)];
@@ -381,7 +381,7 @@ static void mapif_party_info(int fd, struct party* p, int char_id)
 	else
 		mapif_send(fd,buf,WBUFW(buf,2));
 }
-// ƒp[ƒeƒBƒƒ“ƒo’Ç‰Á‰Â”Û
+// Whether or not additional party members
 int mapif_party_memberadded(int fd, int party_id, int account_id, int char_id, int flag) {
 	WFIFOHEAD(fd, 15);
 	WFIFOW(fd,0) = 0x3822;
@@ -394,7 +394,7 @@ int mapif_party_memberadded(int fd, int party_id, int account_id, int char_id, i
 	return 0;
 }
 
-// ƒp[ƒeƒBİ’è•ÏX’Ê’m
+// Party setting change notification
 int mapif_party_optionchanged(int fd,struct party *p,int account_id,int flag)
 {
 	unsigned char buf[16];
@@ -411,7 +411,7 @@ int mapif_party_optionchanged(int fd,struct party *p,int account_id,int flag)
 	return 0;
 }
 
-// ƒp[ƒeƒB’E‘Ş’Ê’m
+// Withdrawal notification party
 int mapif_party_withdraw(int party_id,int account_id, int char_id) {
 	unsigned char buf[16];
 
@@ -423,7 +423,7 @@ int mapif_party_withdraw(int party_id,int account_id, int char_id) {
 	return 0;
 }
 
-// ƒp[ƒeƒBƒ}ƒbƒvXV’Ê’m
+// Party map update notification
 int mapif_party_membermoved(struct party *p,int idx)
 {
 	unsigned char buf[20];
@@ -439,7 +439,7 @@ int mapif_party_membermoved(struct party *p,int idx)
 	return 0;
 }
 
-// ƒp[ƒeƒB‰ğU’Ê’m
+// Dissolution party notification
 int mapif_party_broken(int party_id,int flag)
 {
 	unsigned char buf[16];
@@ -450,7 +450,7 @@ int mapif_party_broken(int party_id,int flag)
 	//printf("int_party: broken %d\n",party_id);
 	return 0;
 }
-// ƒp[ƒeƒB“à”­Œ¾
+// Remarks in the party
 int mapif_party_message(int party_id,int account_id,char *mes,int len, int sfd)
 {
 	unsigned char buf[512];
@@ -464,7 +464,7 @@ int mapif_party_message(int party_id,int account_id,char *mes,int len, int sfd)
 }
 
 //-------------------------------------------------------------------
-// map server‚©‚ç‚Ì’ÊM
+// Communication from the map server
 
 
 // Create Party
@@ -515,7 +515,7 @@ int mapif_parse_CreateParty(int fd, char *name, int item, int item2, struct part
 
 	return 0;
 }
-// ƒp[ƒeƒBî•ñ—v‹
+// Party information request
 static void mapif_parse_PartyInfo(int fd, int party_id, int char_id)
 {
 	struct party_data *p;
@@ -526,7 +526,7 @@ static void mapif_parse_PartyInfo(int fd, int party_id, int char_id)
 	else
 		mapif_party_noinfo(fd, party_id, char_id);
 }
-// ƒp[ƒeƒB’Ç‰Á—v‹
+// Add a player to party request
 int mapif_parse_PartyAddMember(int fd, int party_id, struct party_member *member)
 {
 	struct party_data *p;
@@ -564,7 +564,7 @@ int mapif_parse_PartyAddMember(int fd, int party_id, struct party_member *member
 	return 0;
 }
 
-// ƒp[ƒeƒB[İ’è•ÏX—v‹
+// Party setting change request
 int mapif_parse_PartyChangeOption(int fd,int party_id,int account_id,int exp,int item)
 {
 	struct party_data *p;
@@ -584,7 +584,7 @@ int mapif_parse_PartyChangeOption(int fd,int party_id,int account_id,int exp,int
 	inter_party_tosql(&p->party, PS_BASIC, 0);
 	return 0;
 }
-// ƒp[ƒeƒB’E‘Ş—v‹
+// Request leave party
 int mapif_parse_PartyLeave(int fd, int party_id, int account_id, int char_id)
 {
 	struct party_data *p;
@@ -691,7 +691,7 @@ int mapif_parse_PartyChangeMap(int fd, int party_id, int account_id, int char_id
 	return 0;
 }
 
-// ƒp[ƒeƒB‰ğU—v‹
+// Request party dissolution
 int mapif_parse_BreakParty(int fd,int party_id)
 {
 	struct party_data *p;
@@ -704,7 +704,7 @@ int mapif_parse_BreakParty(int fd,int party_id)
 	mapif_party_broken(fd,party_id);
 	return 0;
 }
-// ƒp[ƒeƒBƒƒbƒZ[ƒW‘—M
+// Party sending the message
 int mapif_parse_PartyMessage(int fd,int party_id,int account_id,char *mes,int len)
 {
 	return mapif_party_message(party_id,account_id,mes,len, fd);
@@ -734,11 +734,13 @@ int mapif_parse_PartyLeaderChange(int fd,int party_id,int account_id,int char_id
 	return 1;
 }
 
-// map server ‚©‚ç‚Ì’ÊM
-// E‚PƒpƒPƒbƒg‚Ì‚İ‰ğÍ‚·‚é‚±‚Æ
-// EƒpƒPƒbƒg’·ƒf[ƒ^‚Íinter.c‚ÉƒZƒbƒg‚µ‚Ä‚¨‚­‚±‚Æ
-// EƒpƒPƒbƒg’·ƒ`ƒFƒbƒN‚âARFIFOSKIP‚ÍŒÄ‚Ño‚µŒ³‚Ås‚í‚ê‚é‚Ì‚Ås‚Á‚Ä‚Í‚È‚ç‚È‚¢
-// EƒGƒ‰[‚È‚ç0(false)A‚»‚¤‚Å‚È‚¢‚È‚ç1(true)‚ğ‚©‚¦‚³‚È‚¯‚ê‚Î‚È‚ç‚È‚¢
+// Communication from the map server 
+//-Analysis that only one packet 
+// Data packet length is set to inter.c that you 
+// Do NOT go and check the packet length, RFIFOSKIP is done by the caller 
+// Return : 
+//      0 : error 
+//      1 : ok 
 int inter_party_parse_frommap(int fd)
 {
 	RFIFOHEAD(fd);
@@ -758,7 +760,7 @@ int inter_party_parse_frommap(int fd)
 	return 1;
 }
 
-// ƒT[ƒo[‚©‚ç’E‘Ş—v‹iƒLƒƒƒ‰íœ—pj
+// Leave request from the server (for delete character)
 int inter_party_leave(int party_id,int account_id, int char_id)
 {
 	return mapif_parse_PartyLeave(-1,party_id,account_id, char_id);

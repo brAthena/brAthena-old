@@ -51,6 +51,9 @@
 static unsigned int exp_table[CLASS_COUNT][2][MAX_LEVEL];
 static unsigned int max_level[CLASS_COUNT][2];
 static unsigned int statp[MAX_LEVEL+1];
+#if defined(RENEWAL_DROP) || defined(RENEWAL_EXP)
+static unsigned int level_penalty[3][RC_MAX][MAX_LEVEL*2+1];
+#endif
 
 // h-files are for declarations, not for implementations... [Shinomori]
 struct skill_tree_entry skill_tree[CLASS_COUNT][MAX_SKILL_TREE];
@@ -85,7 +88,6 @@ struct item_cd {
 	unsigned int tick[MAX_ITEMDELAYS];//tick
 	short nameid[MAX_ITEMDELAYS];//skill id
 };
-
 
 //Converts a class to its array index for CLASS_COUNT defined arrays.
 //Note that it does not do a validity check for speed purposes, where parsing
@@ -8864,7 +8866,7 @@ void pc_overheat(struct map_session_data *sd, int val) {
 	skill = cap_value(pc_checkskill(sd,NC_MAINFRAME),0,4);
 	if( sd->sc.data[SC_OVERHEAT_LIMITPOINT] ) {
 		heat += sd->sc.data[SC_OVERHEAT_LIMITPOINT]->val1;
-		status_change_end(&sd->bl,SC_OVERHEAT_LIMITPOINT,-1);
+		status_change_end(&sd->bl,SC_OVERHEAT_LIMITPOINT,INVALID_TIMER);
 	}
 
 	heat = max(0,heat); // Avoid negative HEAT
@@ -9008,7 +9010,42 @@ int pc_del_talisman(struct map_session_data *sd,int count,int type)
 	clif_talisman(sd, type);
 	return 0;
 }
+#if defined(RENEWAL_DROP) || defined(RENEWAL_EXP)
+/*==========================================
+ * Renewal EXP/Itemdrop rate modifier base on level penalty
+ * 1=exp 2=itemdrop
+ *------------------------------------------*/
+int pc_level_penalty_mod(struct map_session_data *sd, struct mob_data *md, int type)
+{
+	int diff, rate = 100, i;
 
+	nullpo_ret(sd);
+	nullpo_ret(md);
+
+	diff = md->level - sd->status.base_level;
+
+	if( diff < 0 )
+		diff = MAX_LEVEL + ( ~diff + 1 );
+
+	for(i=0; i<RC_MAX; i++){
+		int tmp;
+
+		if( md->status.race != i ){
+			if( md->status.mode&MD_BOSS && i < RC_BOSS )
+				i = RC_BOSS;
+			else if( i <= RC_BOSS )
+				continue;
+		}
+		
+		if( (tmp=level_penalty[type][i][diff]) > 0 ){
+			rate = tmp;
+			break;
+		}
+	}
+
+	return rate;
+}
+#endif
 int pc_split_str(char *str,char **val,int num)
 {
 	int i;
@@ -9121,14 +9158,50 @@ static bool pc_readdb_skilltree(char* fields[], int columns, int current)
 	return true;
 }
 
+#if defined(RENEWAL_DROP) || defined(RENEWAL_EXP)
+static bool pc_readdb_levelpenalty(char* fields[], int columns, int current)
+{
+	int type, race, diff;
+
+	type = atoi(fields[0]);	
+	race = atoi(fields[1]);
+	diff = atoi(fields[2]);
+
+	if( type != 1 && type != 2 ){
+		ShowWarning("pc_readdb_levelpenalty: Invalid type %d specified.\n", type);
+		return false;
+	}
+
+	if( race < 0 && race > RC_MAX ){
+		ShowWarning("pc_readdb_levelpenalty: Invalid race %d specified.\n", race);
+		return false;
+	}
+
+	diff = min(diff, MAX_LEVEL);
+
+	if( diff < 0 )
+		diff = min(MAX_LEVEL + ( ~(diff) + 1 ), MAX_LEVEL*2);
+
+	level_penalty[type][race][diff] = atoi(fields[3]);
+
+	return true;
+}
+#endif
+
+/*==========================================
+ * pc DB reading.
+ * exp.txt        - required experience values
+ * skill_tree.txt - skill tree for every class
+ * attr_fix.txt   - elemental adjustment table
+ *------------------------------------------*/
 int pc_readdb(void)
 {
 	char *row;
-	int i,j,k;
+	int i,j,k,tmp=0;
 	FILE *fp;
 	char line[24000],*p;
 
-	// 必要??値?み?み
+	//reset
 	memset(exp_table,0,sizeof(exp_table));
 	memset(max_level,0,sizeof(max_level));
 
@@ -9213,12 +9286,29 @@ int pc_readdb(void)
 	}
 	ShowStatus("Leitura de '"CL_WHITE"%s"CL_RESET"' completa.\n","exp"DBPATH"");
 
-	// スキルツリ?
+	// Reset and read skilltree
 	memset(skill_tree,0,sizeof(skill_tree));
 	
 	sv_readsqldb(get_database_name(47), NULL, 13, -1, &pc_readdb_skilltree);
 
-	// ?性修正テ?ブル
+#if defined(RENEWAL_DROP) || defined(RENEWAL_EXP)
+	sv_readsqldb(get_database_name(54), NULL, 4, -1, &pc_readdb_levelpenalty);
+	for( k=1; k < 3; k++ ){ // fill in the blanks
+		for( j = 0; j < RC_MAX; j++ ){
+			tmp = 0;
+			for( i = 0; i < MAX_LEVEL*2; i++ ){
+				if( i == MAX_LEVEL+1 )
+					tmp = level_penalty[k][j][0];// reset
+				if( level_penalty[k][j][i] > 0 )
+					tmp = level_penalty[k][j][i];
+				else
+					level_penalty[k][j][i] = tmp;
+			}
+		}
+	}
+#endif
+
+	// Reset then read attr_fix
 	for(i=0;i<4;i++)
 		for(j=0;j<ELE_MAX;j++)
 			for(k=0;k<ELE_MAX;k++)
@@ -9270,7 +9360,7 @@ int pc_readdb(void)
 	fclose(fp);
 	ShowStatus("Leitura de '"CL_WHITE"%s"CL_RESET"' completa.\n","attr_fix"DBPATH"");
 
-	// スキルツリ?
+	// reset then read statspoint
 	memset(statp,0,sizeof(statp));
 	i=1;
 	
@@ -9399,7 +9489,7 @@ void pc_itemcd_do(struct map_session_data *sd, bool load) {
 	return;
 }
 /*==========================================
- * pc? 係初期化
+ * pc Init/Terminate
  *------------------------------------------*/
 void do_final_pc(void) {
 

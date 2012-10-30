@@ -5960,7 +5960,8 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 				break;
 			}
 			if(!battle_config.duel_allow_teleport && sd->duel_group && skilllv <= 2) { // duel restriction [LuzZza]
-				clif_displaymessage(sd->fd, "Duel: Can't use teleport in duel.");
+				char output[128]; sprintf(output, msg_txt(365), skill_get_name(AL_TELEPORT));
+				clif_displaymessage(sd->fd, output); //"Duel: Can't use %s in duel."
 				break;
 			}
 
@@ -7862,7 +7863,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 
 	case RA_WUGDASH:
 		if( tsce ) {
-			clif_skill_nodamage(src,bl,skillid,skilllv,status_change_end(bl, type, -1));
+			clif_skill_nodamage(src,bl,skillid,skilllv,status_change_end(bl, type, INVALID_TIMER));
 			map_freeblock_unlock();
 			return 0;
 		}
@@ -9890,7 +9891,8 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 	case SC_FEINTBOMB:
 		clif_skill_nodamage(src,src,skillid,skilllv,1);
 		skill_unitsetting(src,skillid,skilllv,x,y,0); // Set bomb on current Position
-		skill_blown(src,src,6,unit_getdir(src),0);
+		if( skill_blown(src,src,6,unit_getdir(src),0) )
+			skill_castend_nodamage_id(src,src,TF_HIDING,1,tick,0);
 		break;
 
 	case LG_OVERBRAND:
@@ -12208,7 +12210,8 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 			break;
 		case AL_WARP:
 			if(!battle_config.duel_allow_teleport && sd->duel_group) { // duel restriction [LuzZza]
-				clif_displaymessage(sd->fd, "Duel: Can't use warp in duel.");
+				char output[128]; sprintf(output, msg_txt(365), skill_get_name(AL_WARP));
+				clif_displaymessage(sd->fd, output); //"Duel: Can't use %s in duel."
 				return 0;
 			}
 			break;
@@ -13402,12 +13405,12 @@ int skill_castfix_sc (struct block_list *bl, int time)
 			time += time * sc->data[SC_SLOWCAST]->val2 / 100;
 		if (sc->data[SC_SUFFRAGIUM]) {
 			time -= time * sc->data[SC_SUFFRAGIUM]->val2 / 100;
-			status_change_end(bl, SC_SUFFRAGIUM, -1);
+			status_change_end(bl, SC_SUFFRAGIUM, INVALID_TIMER);
 		}
 		if (sc->data[SC_MEMORIZE]) {
 			time>>=1;
 			if ((--sc->data[SC_MEMORIZE]->val2) <= 0)
-				status_change_end(bl, SC_MEMORIZE, -1);
+				status_change_end(bl, SC_MEMORIZE, INVALID_TIMER);
 		}
 		if (sc->data[SC_POEMBRAGI])
 			time -= time * sc->data[SC_POEMBRAGI]->val2 / 100;		
@@ -15139,7 +15142,7 @@ static int skill_unit_timer_sub(DBKey key, DBData *data, va_list ap)
 			case UNT_FEINTBOMB: {
 				struct block_list *src =  map_id2bl(group->src_id);
 				if( src )
-					map_foreachinrange(skill_area_sub, &group->unit->bl, unit->range, splash_target(src), src, SC_FEINTBOMB, group->skill_lv, tick, BCT_ENEMY|1, skill_castend_damage_id);
+					map_foreachinrange(skill_area_sub, &group->unit->bl, unit->range, splash_target(src), src, SC_FEINTBOMB, group->skill_lv, tick, BCT_ENEMY|SD_ANIMATION|1, skill_castend_damage_id);
 				skill_delunit(unit);
 				break;
 			}

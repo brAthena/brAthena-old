@@ -92,7 +92,7 @@ char *MSG_CONF_NAME;
 char *LANG_FILENAME;
 char *GRF_PATH_FILENAME;
 
-// 極力 staticでロ?カルに?める
+// DBMap declaartion 
 static DBMap* id_db=NULL; // int id -> struct block_list*
 static DBMap* pc_db=NULL; // int id -> struct map_session_data*
 static DBMap* mobid_db=NULL; // int id -> struct mob_data*
@@ -181,13 +181,9 @@ int map_usercount(void)
 	return pc_db->size(pc_db);
 }
 
-//
-// block削除の安全性確保?理
-//
 
 /*==========================================
- * blockをfreeするときfreeの?わりに呼ぶ
- * ロックされているときはバッファにためる
+ * Attempt to free a map blocklist
  *------------------------------------------*/
 int map_freeblock (struct block_list *bl)
 {
@@ -203,8 +199,9 @@ int map_freeblock (struct block_list *bl)
 
 	return block_free_lock;
 }
-/*==========================================
- * blockのfreeを一市Iに禁止する
+/*==
+========================================
+ * Lock blocklist, (prevent map_freeblock usage)
  *------------------------------------------*/
 int map_freeblock_lock (void)
 {
@@ -212,9 +209,7 @@ int map_freeblock_lock (void)
 }
 
 /*==========================================
- * blockのfreeのロックを解除する
- * このとき、ロックが完全になくなると
- * バッファにたまっていたblockを全部削除
+ * Remove the lock on map_bl
  *------------------------------------------*/
 int map_freeblock_unlock (void)
 {
@@ -234,11 +229,8 @@ int map_freeblock_unlock (void)
 	return block_free_lock;
 }
 
-// map_freeblock_lock() を呼んで map_freeblock_unlock() を呼ばない
-// 関数があったので、定期的にblock_free_lockをリセットするようにする。
-// この関数は、do_timer() のトップレベルから呼ばれるので、
-// block_free_lock を直接いじっても支障無いはず。
-
+// Timer function to check if there some remaining lock and remove them if so.
+// Called each 1s
 int map_freeblock_timer(int tid, unsigned int tick, int id, intptr_t data)
 {
 	if (block_free_lock > 0) {
@@ -338,10 +330,10 @@ int map_delblock(struct block_list* bl)
 	int pos;
 	nullpo_ret(bl);
 
-	// ?にblocklistから?けている
+	// blocklist (2ways chainlist) 
 	if (bl->prev == NULL) {
 		if (bl->next != NULL) {
-			// prevがNULLでnextがNULLでないのは有ってはならない
+			// can't delete block (already at the begining of the chain)
 			ShowError("map_delblock error : bl->next!=NULL\n");
 		}
 		return 0;
@@ -356,7 +348,6 @@ int map_delblock(struct block_list* bl)
 	if (bl->next)
 		bl->next->prev = bl->prev;
 	if (bl->prev == &bl_head) {
-		// リストの頭なので、map[]のblock_listを更新する
 		if (bl->type == BL_MOB) {
 			map[bl->m].block_mob[pos] = bl->next;
 		} else {
@@ -423,7 +414,7 @@ int map_moveblock(struct block_list *bl, int x1, int y1, unsigned int tick)
 
 		if( bl->type == BL_PC && ((TBL_PC*)bl)->shadowform_id ) {//Shadow Form Target Moving
 			struct block_list *d_bl;
-			if( (d_bl = map_id2bl(((TBL_PC*)bl)->shadowform_id)) == NULL || bl->m != d_bl->m || !check_distance_bl(bl,d_bl,skill_get_range(SC_SHADOWFORM,1)) ) {
+			if( (d_bl = map_id2bl(((TBL_PC*)bl)->shadowform_id)) == NULL || bl->m != d_bl->m || !check_distance_bl(bl,d_bl,10) ) {
 				if( d_bl )
 					status_change_end(d_bl,SC__SHADOWFORM,INVALID_TIMER);
 				((TBL_PC*)bl)->shadowform_id = 0;
@@ -448,7 +439,7 @@ int map_moveblock(struct block_list *bl, int x1, int y1, unsigned int tick)
 				
 				if( sc->data[SC__SHADOWFORM] ) {//Shadow Form Caster Moving
 					struct block_list *d_bl;
-					if( (d_bl = map_id2bl(sc->data[SC__SHADOWFORM]->val2)) == NULL || bl->m != d_bl->m || !check_distance_bl(bl,d_bl,skill_get_range(SC_SHADOWFORM,1)) )
+					if( (d_bl = map_id2bl(sc->data[SC__SHADOWFORM]->val2)) == NULL || bl->m != d_bl->m || !check_distance_bl(bl,d_bl,10) )
 						status_change_end(bl,SC__SHADOWFORM,INVALID_TIMER);	
 				}
 				
@@ -1001,7 +992,7 @@ int map_foreachinmovearea(int (*func)(struct block_list*,va_list), struct block_
 			va_end(ap);
 		}
 
-	map_freeblock_unlock();	// 解放を許可する
+	map_freeblock_unlock();	// Prohibit the release from memory 
 
 	bl_list_count = blockcount;
 	return returnCount;
@@ -1036,10 +1027,10 @@ int map_foreachincell(int (*func)(struct block_list*,va_list), int m, int x, int
 	if(bl_list_count>=BL_LIST_MAX)
 		ShowWarning("map_foreachincell: block count too many!\n");
 
-	map_freeblock_lock();	// メモリからの解放を禁止する
+	map_freeblock_lock();
 
 	for(i=blockcount;i<bl_list_count;i++)
-		if(bl_list[i]->prev)	// 有?かどうかチェック
+		if(bl_list[i]->prev)
 		{
 			va_list ap;
 			va_start(ap, type);
@@ -1047,7 +1038,7 @@ int map_foreachincell(int (*func)(struct block_list*,va_list), int m, int x, int
 			va_end(ap);
 		}
 
-	map_freeblock_unlock();	// 解放を許可する
+	map_freeblock_unlock();
 
 	bl_list_count = blockcount;
 	return returnCount;
@@ -1468,10 +1459,13 @@ int map_search_freecell(struct block_list *src, int m, short *x,short *y, int rx
 }
 
 /*==========================================
- * (m,x,y)を中心に3x3以?に床アイテム設置
- *
- * item_dataはamount以外をcopyする
- * type flag: &1 MVP item. &2 do stacking check.
+ * Add an item to location (m,x,y)
+ * Parameters 
+ * @item_data item attributes
+ * @amount quantity
+ * @m, @x, @y mapid,x,y
+ * @first_charid, @second_charid, @third_charid, looting priority
+ * @flag: &1 MVP item. &2 do stacking check.
  *------------------------------------------*/
 int map_addflooritem(struct item *item_data,int amount,int m,int x,int y,int first_charid,int second_charid,int third_charid,int flags)
 {
@@ -2496,7 +2490,7 @@ static int map_cell2gat(struct mapcell cell)
 }
 
 /*==========================================
- * (m,x,y)の状態を調べる
+ * Confirm if celltype in (m,x,y) match the one given in cellchk
  *------------------------------------------*/
 int map_getcell(int m,int x,int y,cell_chk cellchk)
 {
@@ -3582,6 +3576,7 @@ char* get_database_name(int database_id)
 		case 51: db_name = "size_fix_db"; break;
 		case 52: db_name = "exp_homun_db"; break;
 		case 53: db_name = "statpoint_db"; break;
+		case 54: db_name = "level_penalty"; break;
 	}
 	
 	return db_name;
@@ -4094,7 +4089,7 @@ int do_init(int argc, char *argv[])
 	do_init_battleground();
 	do_init_duel();
 	
-	npc_event_do_oninit();	// npcのOnInitイベント?行
+	npc_event_do_oninit();	// Init npcs (OnInit)
 
 	if( console )
 	{

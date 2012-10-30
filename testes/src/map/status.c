@@ -2064,7 +2064,7 @@ int status_calc_mob_(struct mob_data* md, bool first)
 
 	if (flag&2)
 	{	// change for sized monsters [Valaris]
-		if (md->special_state.size==1) {
+		if (md->special_state.size==SZ_MEDIUM) {
 			status->max_hp>>=1;
 			status->max_sp>>=1;
 			if (!status->max_hp) status->max_hp = 1;
@@ -2083,7 +2083,7 @@ int status_calc_mob_(struct mob_data* md, bool first)
 			if (!status->int_) status->int_ = 1;
 			if (!status->dex) status->dex = 1;
 			if (!status->luk) status->luk = 1;
-		} else if (md->special_state.size==2) {
+		} else if (md->special_state.size==SZ_BIG) {
 			status->max_hp<<=1;
 			status->max_sp<<=1;
 			status->hp=status->max_hp;
