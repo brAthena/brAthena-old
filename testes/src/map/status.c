@@ -1176,7 +1176,7 @@ int status_damage(struct block_list *src,struct block_list *target,int hp, int s
 					return 0;
 				}
 
-				status_change_end(target, SC_DEVOTION, -1);
+				status_change_end(target, SC_DEVOTION, INVALID_TIMER);
 			}
 			
 			if (sc->data[SC_STONE] && sc->opt1 == OPT1_STONE)

@@ -1057,11 +1057,11 @@ bool pc_authok(struct map_session_data *sd, int login_id2, time_t expiration_tim
 	sd->die_counter=-1;
 
 	//display login notice
-	ShowInfo("'"CL_WHITE"%s"CL_RESET"' logged in."
+	ShowInfo("'"CL_WHITE"%s"CL_RESET"' logado."
 	         " (AID/CID: '"CL_WHITE"%d/%d"CL_RESET"',"
-	         " Packet Ver: '"CL_WHITE"%d"CL_RESET"', IP: '"CL_WHITE"%d.%d.%d.%d"CL_RESET"',"
-	         " Group '"CL_WHITE"%d"CL_RESET"').\n",
-	         sd->status.name, sd->status.account_id, sd->status.char_id,
+	         " Vers%co de Pacotes: '"CL_WHITE"%d"CL_RESET"', IP: '"CL_WHITE"%d.%d.%d.%d"CL_RESET"',"
+	         " Grupo '"CL_WHITE"%d"CL_RESET"').\n",
+	         sd->status.name, sd->status.account_id, sd->status.char_id, 198,
 	         sd->packet_ver, CONVIP(ip), sd->group_id);	
 	// Send friends list
 	clif_friendslist_send(sd);
@@ -1070,7 +1070,7 @@ bool pc_authok(struct map_session_data *sd, int login_id2, time_t expiration_tim
 
 		if (battle_config.display_version == 1){
 			char buf[256];
-			sprintf(buf, "SVN version: %s", get_svn_revision());
+			sprintf(buf, "SVN vers%co: %s", 198, get_svn_revision());
 			clif_displaymessage(sd->fd, buf);
 		}
 
@@ -4552,7 +4552,7 @@ int pc_setpos(struct map_session_data* sd, unsigned short mapindex, int x, int y
 		return 1;
 	}
 
-	if( pc_isdead(sd) )
+	if(pc_isdead(sd) && !battle_config.warp_no_ress)
 	{ //Revive dead people before warping them
 		pc_setstand(sd);
 		pc_setrestartvalue(sd,1);
