@@ -393,6 +393,8 @@ enum {
 	ST_RIDINGWUG,
 	ST_MADO,
 	ST_ELEMENTALSPIRIT,
+	ST_POISONINGWEAPON,
+	ST_ROLLINGCUTTER,
 };
 
 enum e_skill {
@@ -1843,7 +1845,7 @@ enum gx_poison {
 /**
  * Auto Shadow Spell (Shadow Chaser)
  **/
-int skill_select_menu(struct map_session_data *sd,int flag,int skill_id);
+int skill_select_menu(struct map_session_data *sd,int skill_id);
 
 int skill_elementalanalysis(struct map_session_data *sd, int n, int type, unsigned short *item_list); // Sorcerer Four Elemental Analisys.
 int skill_changematerial(struct map_session_data *sd, int n, unsigned short *item_list);	// Genetic Change Material.
