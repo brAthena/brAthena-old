@@ -3470,6 +3470,7 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case NPC_HELLPOWER:
 	case RK_SONICWAVE:
 	case RK_HUNDREDSPEAR:
+	case RK_WINDCUTTER:
 	case AB_DUPLELIGHT_MELEE:
 	case RA_AIMEDBOLT:
 	case NC_AXEBOOMERANG:
@@ -3506,8 +3507,6 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 	case NC_COLDSLOWER:
 	case NC_ARMSCANNON:
 		if (sd) pc_overheat(sd,1);
-	case RK_WINDCUTTER:
-		skill_attack(BF_WEAPON,src,src,bl,skillid,skilllv,tick,flag|SD_ANIMATION);
 		break;
 
 	case LK_JOINTBEAT: // decide the ailment first (affects attack damage and effect)
