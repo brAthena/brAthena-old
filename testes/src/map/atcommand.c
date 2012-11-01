@@ -1212,21 +1212,22 @@ ACMD_FUNC(jobchange)
 		{clif_displaymessage(fd, msg_txt(923)); //"You can not change to this job by command."
 		return 0;}
 
-	if (pcdb_checkid(job))
-	{
-		if (pc_jobchange(sd, job, upper) == 0)
-			clif_displaymessage(fd, msg_txt(12)); // Your job has been changed.
-		else {
-			clif_displaymessage(fd, msg_txt(155)); // You are unable to change your job.
-			return -1;
-		}
+	if (pcdb_checkid(job)) {
+		if ( pc_jobchange(sd, job, upper) == 0 )
+ 			clif_displaymessage(fd, msg_txt(12)); // Your job has been changed.
+	    else {
+ 			clif_displaymessage(fd, msg_txt(155)); // You are unable to change your job.
+ 			return -1;
+			}
 	} else {
 		text = atcommand_help_string(command);
 		if (text) clif_displaymessage(fd, text);
 		return -1;
 	}
-
-	return 0;
+	if(pc_jobchange(sd, job, upper) == 0 && !pc_isriding(sd) || !pc_isridingdragon(sd) && job != 7 && job != 14 && job != 4008 && job != 4015 )
+	clif_status_load(&sd->bl,SI_RIDING,0);
+ 	return 0;
+ }
 }
 
 /*==========================================
@@ -4187,12 +4188,12 @@ ACMD_FUNC(mount_peco)
 	}
 
 	if( (sd->class_&MAPID_THIRDMASK) == MAPID_RUNE_KNIGHT && pc_checkskill(sd,RK_DRAGONTRAINING) > 0 ) {
-		if( !(sd->sc.option&OPTION_DRAGON1) ) {
+		if( !pc_isridingdragon(sd) ) {
 			clif_displaymessage(sd->fd,msg_txt(1119)); // You have mounted your Dragon.
-			pc_setoption(sd, sd->sc.option|OPTION_DRAGON1);
+			pc_setoption(sd, sd->sc.option|OPTION_DRAGON);
 		} else {
 			clif_displaymessage(sd->fd,msg_txt(1120)); // You have released your Dragon.
-			pc_setoption(sd, sd->sc.option&~OPTION_DRAGON1);
+			pc_setoption(sd, sd->sc.option&~OPTION_DRAGON);
 		}
 		return 0;
 	}
@@ -4219,15 +4220,15 @@ ACMD_FUNC(mount_peco)
 	if (!pc_isriding(sd)) { // if actually no peco
 
 		if (!pc_checkskill(sd, KN_RIDING)) {
-			clif_displaymessage(fd, msg_txt(213)); // You can not mount a Peco Peco with your current job.
+			clif_displaymessage(sd->fd, msg_txt(213)); // You can not mount a Peco Peco with your current job.
 			return -1;
 		}
 
 		pc_setoption(sd, sd->sc.option | OPTION_RIDING);
-		clif_displaymessage(fd, msg_txt(102)); // You have mounted a Peco Peco.
+		clif_displaymessage(sd->fd, msg_txt(102)); // You have mounted a Peco Peco.
 	} else {//Dismount
 		pc_setoption(sd, sd->sc.option & ~OPTION_RIDING);
-		clif_displaymessage(fd, msg_txt(214)); // You have released your Peco Peco.
+		clif_displaymessage(sd->fd, msg_txt(214)); // You have released your Peco Peco.
 	}
 
 	return 0;

@@ -12777,7 +12777,7 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
 		}
 		break;
 	case ST_RIDING:
-		if(!pc_isriding(sd)) {
+		if( !pc_isriding(sd) && !pc_isridingdragon(sd) ) {
 			clif_skill_fail(sd,skill,USESKILL_FAIL_LEVEL,0);
 			return 0;
 		}
