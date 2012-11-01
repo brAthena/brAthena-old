@@ -193,6 +193,7 @@ enum {
 	UF_ENSEMBLE      = 0x0200,	// Duet
 	UF_SONG          = 0x0400,	// Song
 	UF_DUALMODE      = 0x0800,	// Spells should trigger both ontimer and onplace/onout/onleft effects.
+	UF_RANGEDSINGLEUNIT = 0x2000 // hack for ranged layout, only display center
 };
 
 // アイテム作成デ?タベ?ス

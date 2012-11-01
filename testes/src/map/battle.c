@@ -915,7 +915,7 @@ int battle_calc_bg_damage(struct block_list *src, struct block_list *bl, int dam
 	if( bl->type == BL_MOB )
 	{
 		struct mob_data* md = BL_CAST(BL_MOB, bl);
-		if( map[bl->m].flag.battleground && (md->class_ == 1914 || md->class_ == 1915) && flag&BF_SKILL )
+		if( map[bl->m].flag.battleground && (md->class_ == MOBID_BLUE_CRYST || md->class_ == MOBID_PINK_CRYST) && flag&BF_SKILL )
 			return 0; // Crystal cannot receive skill damage on battlegrounds
 	}
 
@@ -1821,7 +1821,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				skillratio += sc->data[SC_OVERTHRUST]->val3;
 			if(sc->data[SC_MAXOVERTHRUST])
 				skillratio += sc->data[SC_MAXOVERTHRUST]->val2;
-			if(sc->data[SC_BERSERK])
+			if(sc->data[SC_BERSERK] || sc->data[SC__BLOODYLUST])
 				skillratio += 100;
 			if(sc->data[SC_ZENKAI] && sstatus->rhw.ele == sc->data[SC_ZENKAI]->val2 )
 				skillratio += sc->data[SC_ZENKAI]->val1 * 2;

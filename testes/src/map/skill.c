@@ -589,8 +589,11 @@ int skillnotok (int skillid, struct map_session_data *sd)
 				return 1;
 			}
 			break;
-		case WM_LULLABY_DEEPSLEEP:
+			
 		case WM_SIRCLEOFNATURE:
+		case WM_SOUND_OF_DESTRUCTION:
+		case SC_MANHOLE:
+		case WM_LULLABY_DEEPSLEEP:
 		case WM_SATURDAY_NIGHT_FEVER:
 			if( !map_flag_vs(m) ) {
 				clif_skill_teleportmessage(sd,2); // This skill uses this msg instead of skill fails.
@@ -2827,6 +2830,7 @@ static int skill_check_unit_range_sub (struct block_list *bl, va_list ap)
 		case RA_FIRINGTRAP:
 		case RA_ICEBOUNDTRAP:
 		case SC_DIMENSIONDOOR:
+		case SC_BLOODYLUST:
 			//Non stackable on themselves and traps (including venom dust which does not has the trap inf2 set)
 			if (skillid != g_skillid && !(skill_get_inf2(g_skillid)&INF2_TRAP) && g_skillid != AS_VENOMDUST && g_skillid != MH_POISON_MIST)
 				return 0;
@@ -4720,8 +4724,8 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 						bl = src;
 						dstsd = sd;
 					}
-				} else
-				if (tsc->data[SC_BERSERK])
+				}
+				else if (tsc->data[SC_BERSERK] || tsc->data[SC_SATURDAYNIGHTFEVER] || tsc->data[SC__BLOODYLUST])
 					heal = 0; //Needed so that it actually displays 0 when healing.
 			}
 			clif_skill_nodamage (src, bl, skillid, heal, 1);
@@ -6321,7 +6325,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 						continue;
 					break;
 				}
-				if(i==SC_BERSERK) tsc->data[i]->val2=0; //Mark a dispelled berserk to avoid setting hp to 100 by setting hp penalty to 0.
+				if(i==SC_BERSERK || i==SC_SATURDAYNIGHTFEVER) tsc->data[i]->val2=0; //Mark a dispelled berserk to avoid setting hp to 100 by setting hp penalty to 0.
 				status_change_end(bl, (sc_type)i, INVALID_TIMER);
 			}
 			break;
@@ -7552,13 +7556,13 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			{
 				i = skill_calc_heal(src, bl, AL_HEAL, pc_checkskill(sd, AL_HEAL), true);
 
-				if( (dstsd && pc_ismadogear(dstsd)) || status_isimmune(bl) || (tsc && tsc->data[SC_BERSERK]))
+				if( (dstsd && pc_ismadogear(dstsd)) || status_isimmune(bl))
 						i = 0; // Should heal by 0 or won't do anything?? in iRO it breaks the healing to members.. [malufett]
 
 				clif_skill_nodamage(bl, bl, skillid, i, 1);
 				if( tsc && tsc->data[SC_AKAITSUKI] && i )
 					i = ~i + 1;
-				status_heal(bl, i, 0, 1);
+				status_heal(bl, i, 0, 0);
 			}
 		}
 		else if( sd )
@@ -7675,7 +7679,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 						continue;
 					break;
 				}
-				if(i==SC_BERSERK /*|| i==SC_SATURDAYNIGHTFEVER*/) tsc->data[i]->val2=0; //Mark a dispelled berserk to avoid setting hp to 100 by setting hp penalty to 0.
+				if(i==SC_BERSERK || i==SC_SATURDAYNIGHTFEVER) tsc->data[i]->val2=0; //Mark a dispelled berserk to avoid setting hp to 100 by setting hp penalty to 0.
 				status_change_end(bl,(sc_type)i,INVALID_TIMER);
 			}
 			break;
@@ -7941,7 +7945,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 		{
 			if( bl->type != BL_MOB ) break;
 			md = map_id2md(bl->id);
-			if( md && md->class_ >= 2042 && md->class_ <= 2046 )
+			if( md && md->class_ >= MOBID_SILVERSNIPER && md->class_ <= MOBID_MAGICDECOY_WIND )
 				status_kill(bl);
 			clif_skill_nodamage(src, bl, skillid, skilllv, 1);
 		}
@@ -9512,7 +9516,6 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 	case SC_MANHOLE:
 	case SC_DIMENSIONDOOR:
 	case SC_CHAOSPANIC:
-	case SC_BLOODYLUST:
 	case SC_MAELSTROM:
 	case WM_REVERBERATION:
 	case WM_SEVERE_RAINSTORM:
@@ -9991,6 +9994,10 @@ int skill_castend_pos2(struct block_list* src, int x, int y, int skillid, int sk
 							sc_start2(src, type, 100, skillid, skilllv, skill_get_time(skillid, skilllv)));
 		break;
 
+	case SC_BLOODYLUST: //set in another group so instance will move if recasted
+            flag |= 33;
+            skill_unitsetting(src, skillid, skilllv, x, y, 0);
+            break;	
 	default:
 		if( skillid >= HM_SKILLBASE && skillid <= HM_SKILLBASE + MAX_HOMUNSKILL ) {
 			if( src->type == BL_HOM && ((TBL_HOM*)src)->master->fd )
@@ -10046,7 +10053,7 @@ int skill_castend_map (struct map_session_data *sd, short skill_num, const char 
 		sd->sc.data[SC_AUTOCOUNTER] ||
 		sd->sc.data[SC_STEELBODY] ||
 		(sd->sc.data[SC_DANCING] && skill_num < RK_ENCHANTBLADE && !pc_checkskill(sd, WM_LESSON)) ||
-		sd->sc.data[SC_BERSERK] ||
+		sd->sc.data[SC_BERSERK] || sd->sc.data[SC__BLOODYLUST] ||
 		sd->sc.data[SC_BASILICA] ||
 		sd->sc.data[SC_MARIONETTE] ||
 		sd->sc.data[SC_WHITEIMPRISON] ||
@@ -10576,6 +10583,9 @@ struct skill_unit_group* skill_unitsetting (struct block_list *src, short skilli
 	case SO_VACUUM_EXTREME:
 		range++;
 		break;
+	case SC_BLOODYLUST:
+		skill_clear_group(src, 32);
+		break;	
 	case GN_WALLOFTHORN:
 		if( flag&1 )
 			limit = 3000;
@@ -10705,7 +10715,9 @@ struct skill_unit_group* skill_unitsetting (struct block_list *src, short skilli
 				val2 = unit_flag&(UF_DANCE|UF_SONG); //Store whether this is a song/dance
 			break;
 		}
-
+		if (skill_get_unit_flag(skillid) & UF_RANGEDSINGLEUNIT && i == (layout->count / 2))
+			val2 |= UF_RANGEDSINGLEUNIT; // center.
+			
 		if( range <= 0 )
 			map_foreachincell(skill_cell_overlap,src->m,ux,uy,BL_SKILL,skillid, &alive, src);
 		if( !alive )
@@ -10813,7 +10825,21 @@ static int skill_unit_onplace (struct skill_unit *src, struct block_list *bl, un
 		if (!sce)
 			sc_start4(bl,type,100,sg->skill_lv,sg->group_id,0,0,sg->limit);
 		break;
-
+		
+	case UNT_BLOODYLUST:
+            if (sg->src_id == bl->id)
+                break; //Does not affect the caster.
+            if (!sce) {
+                TBL_PC *sd = BL_CAST(BL_PC, bl); //prevent fullheal exploit
+                if (sd && sd->bloodylust_tick && DIFF_TICK(gettick(), sd->bloodylust_tick) < skill_get_time2(SC_BLOODYLUST, 1))
+                    sc_start4(bl, type, 100, sg->skill_lv, 1, 0, 0, skill_get_time(LK_BERSERK, sg->skill_lv)); //do not refull heal
+                else {
+                    if (sd) sd->bloodylust_tick = gettick();
+                    sc_start4(bl, type, 100, sg->skill_lv, 0, 0, 0, skill_get_time(LK_BERSERK, sg->skill_lv));
+                }
+            }
+            break;
+			
 	case UNT_WARP_WAITING: {
 		int working = sg->val1&0xffff;
 
@@ -11569,23 +11595,22 @@ int skill_unit_onplace_timer (struct skill_unit *src, struct block_list *bl, uns
 		case UNT_EARTH_INSIGNIA:
 		case UNT_ZEPHYR:
 			sc_start(bl,type, 100, sg->skill_lv, sg->interval);
-			if (!battle_check_undead(tstatus->race, tstatus->def_ele)) {
-                int hp = tstatus->max_hp / 100; //+1% each 5s
-                if ((sg->val3) % 5) { //each 5s
-                    if (tstatus->def_ele == skill_get_ele(sg->skill_id,sg->skill_lv)){
-                        status_heal(bl, hp, 0, 2);
-                    } else if((sg->unit_id ==  UNT_FIRE_INSIGNIA && tstatus->def_ele == ELE_EARTH)
-                            ||(sg->unit_id ==  UNT_WATER_INSIGNIA && tstatus->def_ele == ELE_FIRE)
-                            ||(sg->unit_id ==  UNT_WIND_INSIGNIA && tstatus->def_ele == ELE_WATER)
-                            ||(sg->unit_id ==  UNT_EARTH_INSIGNIA && tstatus->def_ele == ELE_WIND)
-                    ){
-                        status_heal(bl, -hp, 0, 0);
-                    }
-                }
-            }
-            sg->val3++; //timer
-            if (sg->val3 > 5)
-                sg->val3 = 0;			
+			if (sg->unit_id != UNT_ZEPHYR && !battle_check_undead(tstatus->race, tstatus->def_ele)) {
+				int hp = tstatus->max_hp / 100; //+1% each 5s
+				if ((sg->val3) % 5) { //each 5s
+					if (tstatus->def_ele == skill_get_ele(sg->skill_id,sg->skill_lv)){
+						status_heal(bl, hp, 0, 2);
+					} else if((sg->unit_id ==  UNT_FIRE_INSIGNIA && tstatus->def_ele == ELE_EARTH)
+						||(sg->unit_id ==  UNT_WATER_INSIGNIA && tstatus->def_ele == ELE_FIRE)
+						||(sg->unit_id ==  UNT_WIND_INSIGNIA && tstatus->def_ele == ELE_WATER)
+						||(sg->unit_id ==  UNT_EARTH_INSIGNIA && tstatus->def_ele == ELE_WIND)
+					){
+						status_heal(bl, -hp, 0, 0);
+					}
+				}
+				sg->val3++; //timer
+				if (sg->val3 > 5) sg->val3 = 0;
+			}
 			break;			
 			
 		case UNT_VACUUM_EXTREME:
@@ -11763,7 +11788,6 @@ static int skill_unit_onleft (int skill_id, struct block_list *bl, unsigned int 
 		case HW_GRAVITATION:
 		case NJ_SUITON:
 		case SC_MAELSTROM:
-		case SC_BLOODYLUST:
 		case EL_WATER_BARRIER:
 		case EL_ZEPHYR:
 		case EL_POWER_OF_GAIA:		
@@ -11774,6 +11798,12 @@ static int skill_unit_onleft (int skill_id, struct block_list *bl, unsigned int 
 			if (sce)
 				status_change_end(bl, type, INVALID_TIMER);
 			break;
+		case SC_BLOODYLUST:
+			if (sce) {
+				status_change_end(bl, type, INVALID_TIMER);
+				status_set_sp(bl, 0, 0); //set sp to 0 when quitting zone
+			}
+			break;	
 
 		case BA_POEMBRAGI:
 		case BA_WHISTLE:
@@ -14215,7 +14245,11 @@ int skill_clear_group (struct block_list *bl, int flag)
 			case SO_WARMER:
 				if( flag&8 )
 					group[count++]= ud->skillunit[i];
-				break;				
+				break;
+			case SC_BLOODYLUST:
+				if (flag & 32)
+					group[count++] = ud->skillunit[i];
+				break;	
 			default:
 				if (flag&2 && skill_get_inf2(ud->skillunit[i]->skill_id)&INF2_TRAP)
 					group[count++]= ud->skillunit[i];
@@ -14246,7 +14280,8 @@ struct skill_unit_group *skill_locate_element_field(struct block_list *bl)
 			case SA_LANDPROTECTOR:
 			case NJ_SUITON:
 			case SO_WARMER:
-			case SO_CLOUD_KILL:				
+			case SO_CLOUD_KILL:
+			case SC_BLOODYLUST:
 				return ud->skillunit[i];
 		}
 	}

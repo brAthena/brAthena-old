@@ -4422,6 +4422,8 @@ static void clif_getareachar_skillunit(struct map_session_data *sd, struct skill
 	WFIFOW(fd,12)=unit->bl.y;
 	if (battle_config.traps_setting&1 && skill_get_inf2(unit->group->skill_id)&INF2_TRAP)
 		WFIFOB(fd,14)=UNT_DUMMYSKILL; //Use invisible unit id for traps.
+    else if (skill_get_unit_flag(unit->group->skill_id) & UF_RANGEDSINGLEUNIT && !(unit->val2 & UF_RANGEDSINGLEUNIT))
+		WFIFOB(fd,14)=UNT_DUMMYSKILL; //Use invisible unit id for traps.
 	else
 		WFIFOB(fd,14)=unit->group->unit_id;
 	WFIFOB(fd,15)=1; // ignored by client (always gets set to 1)
@@ -5116,6 +5118,8 @@ void clif_skill_setunit(struct skill_unit *unit)
 	WBUFW(buf,12)=unit->bl.y;
 	if (unit->group->state.song_dance&0x1 && unit->val2&UF_ENSEMBLE)
 		WBUFB(buf,14)=unit->val2&UF_SONG?UNT_DISSONANCE:UNT_UGLYDANCE;
+    else if (skill_get_unit_flag(unit->group->skill_id) & UF_RANGEDSINGLEUNIT && !(unit->val2 & UF_RANGEDSINGLEUNIT))
+        WBUFB(buf, 14) = UNT_DUMMYSKILL; // Only display the unit at center.
 	else
 		WBUFB(buf,14)=unit->group->unit_id;
 	WBUFB(buf,15)=1; // ignored by client (always gets set to 1)
@@ -9623,7 +9627,7 @@ void clif_parse_GlobalMessage(int fd, struct map_session_data* sd)
 	if( is_atcommand(fd, sd, message, 1)  )
 		return;
 
-	if( sd->sc.data[SC_BERSERK] || (sd->sc.data[SC_NOCHAT] && sd->sc.data[SC_NOCHAT]->val1&MANNER_NOCHAT) )
+	if( sd->sc.data[SC_BERSERK] || sd->sc.data[SC__BLOODYLUST] || (sd->sc.data[SC_NOCHAT] && sd->sc.data[SC_NOCHAT]->val1&MANNER_NOCHAT) )
 		return;
 
 	if( battle_config.min_chat_delay )
@@ -9934,7 +9938,7 @@ void clif_parse_WisMessage(int fd, struct map_session_data* sd)
 	if ( is_atcommand(fd, sd, message, 1) )
 		return;
 
-	if (sd->sc.data[SC_BERSERK] || (sd->sc.data[SC_NOCHAT] && sd->sc.data[SC_NOCHAT]->val1&MANNER_NOCHAT))
+		if( sd->sc.data[SC_BERSERK] || sd->sc.data[SC__BLOODYLUST] || (sd->sc.data[SC_NOCHAT] && sd->sc.data[SC_NOCHAT]->val1&MANNER_NOCHAT) )
 		return;
 
 	if (battle_config.min_chat_delay) { //[Skotlex]
@@ -11578,7 +11582,7 @@ void clif_parse_PartyMessage(int fd, struct map_session_data* sd)
 	if( is_atcommand(fd, sd, message, 1)  )
 		return;
 
-	if( sd->sc.data[SC_BERSERK] || (sd->sc.data[SC_NOCHAT] && sd->sc.data[SC_NOCHAT]->val1&MANNER_NOCHAT) )
+	if( sd->sc.data[SC_BERSERK] || sd->sc.data[SC__BLOODYLUST] || (sd->sc.data[SC_NOCHAT] && sd->sc.data[SC_NOCHAT]->val1&MANNER_NOCHAT) )
 		return;
 
 	if( battle_config.min_chat_delay )
@@ -11904,22 +11908,22 @@ void clif_parse_GuildRequestInfo(int fd, struct map_session_data *sd)
 
 	switch( RFIFOL(fd,2) )
 	{
-	case 0:	// ギルド基本情報、同盟敵対情報
+	case 0:	// Basic Information Guild, hostile alliance information
 		clif_guild_basicinfo(sd);
 		clif_guild_allianceinfo(sd);
 		break;
-	case 1:	// メンバーリスト、役職名リスト
+	case 1:	// Members list, list job title
 		clif_guild_positionnamelist(sd);
 		clif_guild_memberlist(sd);
 		break;
-	case 2:	// 役職名リスト、役職情報リスト
+	case 2:	// List job title, title information list
 		clif_guild_positionnamelist(sd);
 		clif_guild_positioninfolist(sd);
 		break;
-	case 3:	// スキルリスト
+	case 3:	// Skill list
 		clif_guild_skillinfo(sd);
 		break;
-	case 4:	// 追放リスト
+	case 4:	// Expulsion list
 		clif_guild_expulsionlist(sd);
 		break;
 	default:
@@ -12113,7 +12117,7 @@ void clif_parse_GuildMessage(int fd, struct map_session_data* sd)
 	if( is_atcommand(fd, sd, message, 1) )
 		return;
 
-	if( sd->sc.data[SC_BERSERK] || (sd->sc.data[SC_NOCHAT] && sd->sc.data[SC_NOCHAT]->val1&MANNER_NOCHAT) )
+	if( sd->sc.data[SC_BERSERK] || sd->sc.data[SC__BLOODYLUST] || (sd->sc.data[SC_NOCHAT] && sd->sc.data[SC_NOCHAT]->val1&MANNER_NOCHAT) )
 		return;
 
 	if( battle_config.min_chat_delay )
@@ -14978,7 +14982,7 @@ void clif_parse_BattleChat(int fd, struct map_session_data* sd)
 	if( is_atcommand(fd, sd, message, 1) )
 		return;
 
-	if( sd->sc.data[SC_BERSERK] || (sd->sc.data[SC_NOCHAT] && sd->sc.data[SC_NOCHAT]->val1&MANNER_NOCHAT) )
+	if( sd->sc.data[SC_BERSERK] || sd->sc.data[SC__BLOODYLUST] || (sd->sc.data[SC_NOCHAT] && sd->sc.data[SC_NOCHAT]->val1&MANNER_NOCHAT) )
 		return;
 
 	if( battle_config.min_chat_delay )
@@ -16422,7 +16426,7 @@ static int packetdb_readdb(void)
 #endif
 #if PACKETVER < 2
 	    3, 28, 19, 11,  3, -1,  9,  5, 52, 51, 56, 58, 41,  2,  6,  6,
-#elif PACKETVER < 20071106	// 78-7b 亀島以降 lv99エフェクト用
+#elif PACKETVER < 20071106	// 78-7b Lv99 effect for later Kameshima
 	    3, 28, 19, 11,  3, -1,  9,  5, 54, 53, 58, 60, 41,  2,  6,  6,
 #elif PACKETVER <= 20081217 // change in 0x78 and 0x7c
 	    3, 28, 19, 11,  3, -1,  9,  5, 55, 53, 58, 60, 42,  2,  6,  6,
@@ -16457,7 +16461,7 @@ static int packetdb_readdb(void)
 	    6,  3,106, 10, 10, 34,  0,  6,  8,  4,  4,  4, 29, -1, 10,  6,
 #if PACKETVER < 1
 	   90, 86, 24,  6, 30,102,  8,  4,  8,  4, 14, 10, -1,  6,  2,  6,
-#else	// 196 comodo以降 状態表示アイコン用
+#else	// 196 comodo icon status display for later
 	   90, 86, 24,  6, 30,102,  9,  4,  8,  4, 14, 10, -1,  6,  2,  6,
 #endif
 #if PACKETVER < 20081126

@@ -4045,7 +4045,7 @@ int pc_isUseitem(struct map_session_data *sd,int n)
 		case 12243: // Mercenary's Berserk Potion
 			if( sd->md == NULL || sd->md->db == NULL )
 				return 0;
-			if( sd->md->sc.data[SC_BERSERK] )
+			if (sd->md->sc.data[SC_BERSERK] || sd->md->sc.data[SC_SATURDAYNIGHTFEVER] || sd->md->sc.data[SC__BLOODYLUST])
 				return 0;
 			if( nameid == 12242 && sd->md->db->lv < 40 )
 				return 0;
@@ -4142,7 +4142,7 @@ int pc_useitem(struct map_session_data *sd,int n)
 		return 0;
 
 	if( sd->sc.count && (
-		sd->sc.data[SC_BERSERK] ||
+		sd->sc.data[SC_BERSERK] || sd->sc.data[SC__BLOODYLUST] ||
 		(sd->sc.data[SC_GRAVITATION] && sd->sc.data[SC_GRAVITATION]->val3 == BCT_SELF) ||
 		sd->sc.data[SC_TRICKDEAD] ||
 		sd->sc.data[SC_HIDING] ||
@@ -4441,9 +4441,7 @@ int pc_steal_item(struct map_session_data *sd,struct block_list *bl, int lv)
 	sd_status= status_get_status_data(&sd->bl);
 	md_status= status_get_status_data(bl);
 
-	if( md->master_id || md_status->mode&MD_BOSS ||
-		(md->class_ >= 1324 && md->class_ < 1364) || // Treasure Boxes WoE
-		(md->class_ >= 1938 && md->class_ < 1946) || // Treasure Boxes WoE SE
+	if( md->master_id || md_status->mode&MD_BOSS || mob_is_treasure(md) ||
 		map[bl->m].flag.nomobloot || // check noloot map flag [Lorky]
 		(battle_config.skill_steal_max_tries && //Reached limit of steal attempts. [Lupus]
 			md->state.steal_flag++ >= battle_config.skill_steal_max_tries)
@@ -4514,7 +4512,7 @@ int pc_steal_coin(struct map_session_data *sd,struct block_list *target)
 	if( md->state.steal_coin_flag || md->sc.data[SC_STONE] || md->sc.data[SC_FREEZE] || md->status.mode&MD_BOSS )
 		return 0;
 
-	if( (md->class_ >= 1324 && md->class_ < 1364) || (md->class_ >= 1938 && md->class_ < 1946) )
+	if( mob_is_treasure(md) )
 		return 0;
 
 	// FIXME: This formula is either custom or outdated.
@@ -8101,7 +8099,7 @@ int pc_equipitem(struct map_session_data *sd,int n,int req_pos)
 		return 0;
 	}
 
-	if( sd->sc.data[SC_BERSERK] )
+if (sd->sc.data[SC_BERSERK] || sd->sc.data[SC_SATURDAYNIGHTFEVER] || sd->sc.data[SC__BLOODYLUST])
 	{
 		clif_equipitemack(sd,n,0,0);	// fail
 		return 0;
@@ -8288,7 +8286,7 @@ int pc_unequipitem(struct map_session_data *sd,int n,int flag) {
 	}
 
 	// if player is berserk then cannot unequip
-	if( !(flag&2) && sd->sc.count && sd->sc.data[SC_BERSERK] )
+	if (!(flag & 2) && sd->sc.count && (sd->sc.data[SC_BERSERK] || sd->sc.data[SC_SATURDAYNIGHTFEVER] || sd->sc.data[SC__BLOODYLUST]))
 	{
 		clif_unequipitemack(sd,n,0,0);
 		return 0;

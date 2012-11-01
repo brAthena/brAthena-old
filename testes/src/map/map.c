@@ -246,8 +246,8 @@ int map_freeblock_timer(int tid, unsigned int tick, int id, intptr_t data)
 // block化?理
 //
 /*==========================================
- * map[]のblock_listから?がっている場合に
- * bl->prevにbl_headのアドレスを入れておく
+ * Handling of map_bl[]
+ * The adresse of bl_heal is set in bl->prev
  *------------------------------------------*/
 static struct block_list bl_head;
 
@@ -863,11 +863,9 @@ int map_forcountinarea(int (*func)(struct block_list*,va_list), int m, int x0, i
 }
 
 /*==========================================
- * 矩形(x0,y0)-(x1,y1)が(dx,dy)移動した暫?
- * 領域外になる領域(矩形かL字形)?のobjに
- * ?してfuncを呼ぶ
- *
- * dx,dyは-1,0,1のみとする（どんな値でもいいっぽい？）
+ * For what I get
+ * Move bl and do func* with va_list while moving.
+ * Mouvement is set by dx dy wich are distance in x and y
  *------------------------------------------*/
 int map_foreachinmovearea(int (*func)(struct block_list*,va_list), struct block_list* center, int range, int dx, int dy, int type, ...)
 {
@@ -1601,7 +1599,7 @@ void map_reqnickdb(struct map_session_data * sd, int charid)
 }
 
 /*==========================================
- * id_dbへblを追加
+ * add bl to id_db
  *------------------------------------------*/
 void map_addiddb(struct block_list *bl)
 {
@@ -1629,7 +1627,7 @@ void map_addiddb(struct block_list *bl)
 }
 
 /*==========================================
- * id_dbからblを削除
+ * remove bl from id_db 
  *------------------------------------------*/
 void map_deliddb(struct block_list *bl)
 {
@@ -1691,6 +1689,7 @@ int map_quit(struct map_session_data *sd) {
 		status_change_end(&sd->bl, SC_AUTOTRADE, INVALID_TIMER);
 		status_change_end(&sd->bl, SC_SPURT, INVALID_TIMER);
 		status_change_end(&sd->bl, SC_BERSERK, INVALID_TIMER);
+		status_change_end(&sd->bl, SC__BLOODYLUST, INVALID_TIMER);
 		status_change_end(&sd->bl, SC_TRICKDEAD, INVALID_TIMER);
 		status_change_end(&sd->bl, SC_LEADERSHIP, INVALID_TIMER);
 		status_change_end(&sd->bl, SC_GLORYWOUNDS, INVALID_TIMER);
@@ -1700,6 +1699,7 @@ int map_quit(struct map_session_data *sd) {
 			status_change_end(&sd->bl, SC_ENDURE, INVALID_TIMER); //No need to save infinite endure.
 		status_change_end(&sd->bl, SC_WEIGHT50, INVALID_TIMER);
 		status_change_end(&sd->bl, SC_WEIGHT90, INVALID_TIMER);
+		status_change_end(&sd->bl, SC_SATURDAYNIGHTFEVER, INVALID_TIMER);
 		status_change_end(&sd->bl, SC_KYOUGAKU, INVALID_TIMER);
 		if (battle_config.debuff_on_logout&1) {
 			status_change_end(&sd->bl, SC_ORCISH, INVALID_TIMER);
@@ -2193,7 +2193,7 @@ bool mapit_exists(struct s_mapiterator* mapit)
 }
 
 /*==========================================
- * map.npcへ追加 (warp等の領域持ちのみ)
+ * Add npc-bl to id_db, basically register npc to map
  *------------------------------------------*/
 bool map_addnpc(int m,struct npc_data *nd)
 {
@@ -2316,7 +2316,7 @@ void map_removemobs(int m)
 }
 
 /*==========================================
- * map名からmap番?へ?換
+ * Hookup, get map_id from map_name
  *------------------------------------------*/
 int map_mapname2mapid(const char* name)
 {
@@ -2344,7 +2344,7 @@ int map_mapindex2mapid(unsigned short mapindex)
 }
 
 /*==========================================
- * 他鯖map名からip,port?換
+ * Switching Ip, port ? (like changing map_server) get ip/port from map_name
  *------------------------------------------*/
 int map_mapname2ipport(unsigned short name, uint32* ip, uint16* port)
 {
@@ -2456,7 +2456,7 @@ int map_random_dir(struct block_list *bl, short *x, short *y)
 	return 0;
 }
 
-// gat系
+// gat system
 inline static struct mapcell map_gat2cell(int gat) {
 	struct mapcell cell;
 	
@@ -2744,7 +2744,7 @@ static DBData create_map_data_other_server(DBKey key, va_list args)
 }
 
 /*==========================================
- * 他鯖管理のマップをdbに追加
+ * Add mapindex to db of another map server
  *------------------------------------------*/
 int map_setipport(unsigned short mapindex, uint32 ip, uint16 port)
 {
