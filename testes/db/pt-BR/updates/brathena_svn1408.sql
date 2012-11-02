@@ -28,3 +28,9 @@ REPLACE INTO `skill_nocast_db` VALUES(3013, 3);
 --
 
 REPLACE INTO `skill_unit_db` VALUES(3010, '0xfc', '', '0', '1', '1000', 'enemy', '0x020\r\n');
+
+--
+-- Atualização da tabela `level_penalty`
+--
+
+REPLACE INTO `level_penalty` VALUES (1, 11 ,'-1',100);
