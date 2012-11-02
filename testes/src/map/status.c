@@ -728,9 +728,9 @@ void initChangeTables(void) {
 	set_sc_with_vfx( OB_AKAITSUKI		, SC_AKAITSUKI			 , SI_AKAITSUKI			   , SCB_NONE );
 	set_sc( OB_OBOROGENSOU		, SC_GENSOU				 , SI_GENSOU			   , SCB_NONE );
 	
-	add_sc( MH_STAHL_HORN		 , SC_STUN            );
+	add_sc( MH_STAHL_HORN		 , SC_STUN	);
 	set_sc( MH_ANGRIFFS_MODUS	 , SC_ANGRIFFS_MODUS  , SI_ANGRIFFS_MODUS	, SCB_BATK|SCB_WATK|SCB_DEF|SCB_FLEE );
-	set_sc( MH_GOLDENE_FERSE	 , SC_GOLDENE_FERSE   , SI_GOLDENE_FERSE	, SCB_SPEED|SCB_FLEE|SCB_ATK_ELE );
+	set_sc( MH_GOLDENE_FERSE	 , SC_GOLDENE_FERSE   , SI_GOLDENE_FERSE	, SCB_SPEED|SCB_MAXHP|SCB_ATK_ELE );
 	add_sc( MH_LAVA_SLIDE		 , SC_BURNING         );
 	add_sc( MH_POISON_MIST		 , SC_BLIND			  );
 	set_sc( MH_ERASER_CUTTER	 , SC_ERASER_CUTTER   , SI_BLANK			, SCB_NONE );
@@ -4691,8 +4691,6 @@ static signed short status_calc_flee(struct block_list *bl, struct status_change
 		flee -= (9 * sc->data[SC_MARSHOFABYSS]->val3 / 10 + sc->data[SC_MARSHOFABYSS]->val2 / 10) * (bl->type == BL_MOB ? 2 : 1);
 	if( sc->data[SC_ANGRIFFS_MODUS] )
 		flee -= flee * sc->data[SC_ANGRIFFS_MODUS]->val3 / 100;
-	if( sc->data[SC_GOLDENE_FERSE ] )
-		flee -= flee * sc->data[SC_GOLDENE_FERSE ]->val2 / 100;
 #ifdef RENEWAL
 	if( sc->data[SC_SPEARQUICKEN] )
 		flee += 2 * sc->data[SC_SPEARQUICKEN]->val1;
@@ -5437,6 +5435,8 @@ static unsigned int status_calc_maxhp(struct block_list *bl, struct status_chang
 		maxhp -= sc->data[SC_MYSTERIOUS_POWDER]->val1 / 100;
 	if(sc->data[SC_EARTH_INSIGNIA] && sc->data[SC_EARTH_INSIGNIA]->val1 == 2)
 		maxhp += 500;
+	if( sc->data[SC_GOLDENE_FERSE ] )
+		maxhp += maxhp * sc->data[SC_GOLDENE_FERSE ]->val2 / 100;
 	
 	return cap_value(maxhp,1,UINT_MAX);
 }
@@ -5511,6 +5511,8 @@ static unsigned char status_calc_element_lv(struct block_list *bl, struct status
 
 unsigned char status_calc_attack_element(struct block_list *bl, struct status_change *sc, int element)
 {
+	//struct unit_data *ud;
+	
 	if(!sc || !sc->count)
 		return element;
 	if(sc->data[SC_ENCHANTARMS])
@@ -5537,6 +5539,8 @@ unsigned char status_calc_attack_element(struct block_list *bl, struct status_ch
 		return ELE_GHOST;
 	if(sc->data[SC_TIDAL_WEAPON_OPTION] || sc->data[SC_TIDAL_WEAPON] )
 		return ELE_WATER;
+	/*if(sc->data[SC_GOLDENE_FERSE] && ud->skillid == MH_STAHL_HORN) 
+		return ELE_HOLY;*/
 	if(sc->data[SC_GOLDENE_FERSE] && rand()%100 < sc->data[SC_GOLDENE_FERSE]->val4)
 		return ELE_HOLY;
 	return (unsigned char)cap_value(element,0,UCHAR_MAX);
@@ -7681,7 +7685,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			val4 = 60 + 20*val1; //def
 			break;
 		case SC_GOLDENE_FERSE:
-			val2 = 20 + 10*val1; //flee
+			val2 = 20 + 10*val1; //maxhp
 			val3 = 10 + 4*val1; //aspd
 			val4 = 2 + 2*val1; //chance to issue holy-ele attack
 			break;			
