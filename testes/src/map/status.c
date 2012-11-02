@@ -714,7 +714,7 @@ void initChangeTables(void) {
 	set_sc( EL_ROCK_CRUSHER_ATK, SC_ROCK_CRUSHER_ATK     , SI_ROCK_CRUSHER_ATK     , SCB_SPEED );
 
 	add_sc( KO_YAMIKUMO			, SC_HIDING		  );
-	set_sc( KO_JYUMONJIKIRI		, SC_JYUMONJIKIRI		 , SI_KO_JYUMONJIKIRI	   , SCB_NONE );
+	set_sc_with_vfx( KO_JYUMONJIKIRI		, SC_JYUMONJIKIRI		 , SI_KO_JYUMONJIKIRI	   , SCB_NONE );
 	add_sc( KO_MAKIBISHI	    , SC_STUN		  );
 	set_sc( KO_MEIKYOUSISUI		, SC_MEIKYOUSISUI		 , SI_MEIKYOUSISUI		   , SCB_NONE );
 	set_sc( KO_KYOUGAKU			, SC_KYOUGAKU			 , SI_KYOUGAKU			   , SCB_STR|SCB_AGI|SCB_VIT|SCB_INT|SCB_DEX|SCB_LUK );
@@ -1004,6 +1004,7 @@ void initChangeTables(void) {
 	StatusChangeStateTable[SC_CAMOUFLAGE]          |= SCS_NOMOVE|SCS_NOMOVECOND;
 	StatusChangeStateTable[SC_MEIKYOUSISUI]		   |= SCS_NOMOVE;
 	StatusChangeStateTable[SC_KAGEHUMI]            |= SCS_NOMOVE;
+	StatusChangeStateTable[SC_KYOUGAKU]			   |= SCS_NOMOVE;
 		
 	/* StatusChangeState (SCS_) NOPICKUPITEMS */
 	StatusChangeStateTable[SC_HIDING]              |= SCS_NOPICKITEM;
@@ -5586,8 +5587,10 @@ int status_get_class(struct block_list *bl) {
 	return 0;
 }
 /*==========================================
- * 対象のレベルを返す(汎用)
- * 戻りは整数で0以上
+ * Get the base level of the current bl
+ * return
+ *	1 = fail
+ *	level = success
  *------------------------------------------*/
 int status_get_lv(struct block_list *bl) {
 	nullpo_ret(bl);
@@ -7231,7 +7234,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			status_zap(bl, diff, 0);
 		}
 		// fall through
-		case SC_POISON:				/* 毒 */
+		case SC_POISON:
 		val3 = tick/1000; //Damage iterations
 		if(val3 < 1) val3 = 1;
 		tick_time = 1000; // [GodLesZ] tick time
@@ -8336,7 +8339,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			break;
 		case SC_KYOUGAKU:
 			val2 = 2*val1 + rand()%val1;
-			clif_status_change(bl,SI_ACTIVE_MONSTER_TRANSFORM,1,0,1002,0,0); // Temporarily shows Poring need official [malufett]
+			clif_status_change(bl,SI_ACTIVE_MONSTER_TRANSFORM,1,0,1002,0,0); 
 			break;
 		case SC_KAGEMUSYA:
 			val3 = val1 * 2;
@@ -8345,13 +8348,29 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			tick_time = 1000;
 			break;
 		case SC_ZANGETSU:
-			val2 = status_get_lv(bl) / 2 + 50;
+			if( (status_get_hp(bl)+status_get_sp(bl)) % 2 == 0)
+				val2 = status_get_lv(bl) / 2 + 50;
+			else
+				val2 -= 50;
 			break;
 		case SC_GENSOU:
-			if( rand()%100 < 50) // needs more info
-				status_zap(bl, 500, 500);
-			else
-				status_heal(bl, 500, 500, 0);
+			{
+				int hp = status_get_hp(bl), lv = 5;
+				short per = 100 / (status_get_max_hp(bl) / hp);
+
+				if( per <= 15 )
+					lv = 1;
+				else if( per <= 30 )
+					lv = 2;
+				else if( per <= 50 )
+					lv = 3;
+				else if( per <= 75 )
+					lv = 4;
+				if( hp % 2 == 0)
+					status_heal(bl, hp * (6-lv) * 4 / 100, status_get_sp(bl) * (6-lv) * 3 / 100, 1);
+				else
+					status_zap(bl, hp * (lv*4) / 100, status_get_sp(bl) * (lv*3) / 100);
+			}
 			break;
 		default:
 			if( calc_flag == SCB_NONE && StatusSkillChangeTable[type] == 0 && StatusIconChangeTable[type] == 0 )
@@ -8408,6 +8427,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_FEAR:
 		case SC_NETHERWORLD:
 		case SC_MEIKYOUSISUI:
+		case SC_KYOUGAKU:
 			unit_stop_walking(bl,1);
 		break;
 		case SC_HIDING:
@@ -8815,7 +8835,7 @@ int status_change_clear(struct block_list* bl, int type)
 }
 
 /*==========================================
- * ステータス異常終了
+ * Special condition we want to effectuate, check before ending a status.
  *------------------------------------------*/
 int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const char* file, int line)
 {
@@ -10927,6 +10947,13 @@ static bool status_readdb_refine(char* fields[], int columns, int current)
 	return true;
 }
 
+/*
+* Read status db
+* job1.txt
+* job2.txt
+* size_fixe.txt
+* refine_db.txt
+*/
 int status_readdb(void)
 {
 	int i, j;
@@ -10934,13 +10961,13 @@ int status_readdb(void)
 	// initialize databases to default
 	//
 
-	// job_db1.txt
+	// reset job_db1.txt data
 	memset(max_weight_base, 0, sizeof(max_weight_base));
 	memset(hp_coefficient, 0, sizeof(hp_coefficient));
 	memset(hp_coefficient2, 0, sizeof(hp_coefficient2));
 	memset(sp_coefficient, 0, sizeof(sp_coefficient));
 	memset(aspd_base, 0, sizeof(aspd_base));
-	// job_db2.txt
+	// reset job_db2.txt data
 	memset(job_bonus,0,sizeof(job_bonus)); // Job-specific stats bonus
 
 	// size_fix.txt
@@ -10976,7 +11003,7 @@ int status_readdb(void)
 }
 
 /*==========================================
- * スキル関係初期化処理
+ * Status db init and destroy.
  *------------------------------------------*/
 int do_init_status(void)
 {

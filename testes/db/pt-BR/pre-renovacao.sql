@@ -13439,6 +13439,7 @@ REPLACE INTO `skill_db` VALUES(3006, 7, 6, 2, 0, '0x2', 2, 5, 0, 0, 0, '0', 0, '
 REPLACE INTO `skill_db` VALUES(3007, 0, 6, 4, 0, '0x42', 4, 5, 0, 0, 0, '0', 0, 'misc', 0, '	KO_HAPPOKUNAI', 'Happo Kunai\r\n');
 REPLACE INTO `skill_db` VALUES(3008, 9, 8, 2, 0, '0x52', 2, 10, 0, 0, 0, '0', 0, 'misc', 0, '	KO_MUCHANAGE', 'Mucha Nage\r\n');
 REPLACE INTO `skill_db` VALUES(3009, 9, 8, 2, 0, '0x2', 3, 5, 2, 0, 0, '0', 0, 'weapon', 0, '	KO_HUUMARANKA', 'Huuma Shuriken Ranka \r\n');
+REPLACE INTO `skill_db` VALUES(3010, 3, 6, 4, 0, '0x43', 0, 5, 1, 0, 0, '0x80', 0, 'misc', 0, '	KO_MAKIBISHI', 'Makibishi \r\n');
 REPLACE INTO `skill_db` VALUES(3011, 0, 6, 4, 0, '0x1', 0, 5, 0, 0, 0, '0', 0, 'none', 0, '	KO_MEIKYOUSISUI', 'Meikyo Shisui\r\n');
 REPLACE INTO `skill_db` VALUES(3012, 0, 6, 4, 0, '0x1', 0, 5, 0, 0, 0, '0', 1, 'none', 7, '		KO_ZANZOU', 'Zanzou\r\n');
 REPLACE INTO `skill_db` VALUES(3013, 5, 6, 1, 0, '0x1', 0, 5, 0, 0, 0, '0', 0, 'none', 0, '		KO_KYOUGAKU', 'Kyougaku\r\n');
@@ -13679,6 +13680,8 @@ REPLACE INTO `skill_nocast_db` VALUES(405, 1024);
 REPLACE INTO `skill_nocast_db` VALUES(674, 1024);
 REPLACE INTO `skill_nocast_db` VALUES(2284, 1024);
 REPLACE INTO `skill_nocast_db` VALUES(2300, 1024);
+REPLACE INTO `skill_nocast_db` VALUES(488, 3);
+REPLACE INTO `skill_nocast_db` VALUES(3013, 3);
 REPLACE INTO `skill_nocast_db` VALUES(232, 2048);
 REPLACE INTO `skill_nocast_db` VALUES(233, 2048);
 REPLACE INTO `skill_nocast_db` VALUES(491, 2048);
@@ -19999,6 +20002,7 @@ REPLACE INTO `skill_unit_db` VALUES(3006, '0x86', '', '0', '2', 100, 'enemy', '0
 REPLACE INTO `skill_unit_db` VALUES(3008, '0x86', '', '0', '2', 100, 'enemy', '0x018\r\n');
 REPLACE INTO `skill_unit_db` VALUES(3009, '0x86', '', '0', '3', 500, 'enemy', '0x018\r\n');
 REPLACE INTO `skill_unit_db` VALUES(3020, '0xf8', '', '0', '3', 100, 'all', '0x018\r\n');
+REPLACE INTO `skill_unit_db` VALUES(3010, '0xfc', '', '0', '1', 1000, 'enemy', '0x020\r\n');
 REPLACE INTO `skill_unit_db` VALUES(8208, '0x86', '', '0', '2', 1000, 'enemy', '0x080\r\n');
 REPLACE INTO `skill_unit_db` VALUES(8209, '0x90', '', '0', '1', 1000, 'enemy', '0x006\r\n');
 REPLACE INTO `skill_unit_db` VALUES(8210, '0x93', '', '0', '0', 1000, 'enemy', '0x006\r\n');
