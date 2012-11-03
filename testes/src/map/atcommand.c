@@ -1215,9 +1215,10 @@ ACMD_FUNC(jobchange)
 	if (pcdb_checkid(job)) {
 		if ( pc_jobchange(sd, job, upper) == 0 )
  			clif_displaymessage(fd, msg_txt(12)); // Your job has been changed.
-	    else 
+	    else {
  			clif_displaymessage(fd, msg_txt(155)); // You are unable to change your job.
  			return -1;
+ 		  }
 	} else {
 		text = atcommand_help_string(command);
 		if (text) clif_displaymessage(fd, text);

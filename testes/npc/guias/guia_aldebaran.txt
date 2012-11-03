@@ -14,7 +14,7 @@
 //   |--------------------------------------------------------|	
 //   | Versões eA/rA/brA: 1.1/1.0                             |	
 //   |--------------------------------------------------------|	
-//   | Descrição: Guias da Cidade de Aldebaran.(renovação)    |	
+//   | Descrição: Guias da Cidade de Aldebaran.               |	
 //   |--------------------------------------------------------|	
 //   | Changelog:                                             |	
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |	
