@@ -10995,9 +10995,9 @@ int status_readdb(void)
 
 	
 #ifdef RENEWAL_ASPD
-	sv_readdb(db_path, "job_db1"DBPATH"",       ',',	6+MAX_WEAPON_TYPE, 6+MAX_WEAPON_TYPE,	                    -1,		 &status_readdb_job1);
+	sv_readdb(db_path, "job_db1_re.txt",       ',',	6+MAX_WEAPON_TYPE, 6+MAX_WEAPON_TYPE,	                    -1,		 &status_readdb_job1);
 #else
-	sv_readdb(db_path, "job_db1"DBPATH"",   ',',	5+MAX_WEAPON_TYPE, 5+MAX_WEAPON_TYPE,	                    -1,		 &status_readdb_job1);
+	sv_readdb(db_path, "job_db1_pre-re.txt",   ',',	5+MAX_WEAPON_TYPE, 5+MAX_WEAPON_TYPE,	                    -1,		 &status_readdb_job1);
 #endif
 	sv_readdb(db_path, "job_db2.txt",          ',',                 1,       1+MAX_LEVEL,                       -1,      &status_readdb_job2);
 	sv_readsqldb(get_database_name(51), NULL, MAX_WEAPON_TYPE, -1, &status_readdb_sizefix);
