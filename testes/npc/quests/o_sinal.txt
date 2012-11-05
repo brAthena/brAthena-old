@@ -1,31 +1,28 @@
-//===== rAthena Script ======================================= 
-//= The Sign Quest
-//===== By: ================================================== 
-//= SinSloth(Most of the NPCs), MasterOfMuppets(Some of the NPCs + bug fixes) & Kargha(The quiz NPCs)
-//===== Current Version: ===================================== 
-//= 3.7
-//===== Compatible With: ===================================== 
-//= rAthena SVN
-//===== Description: ========================================= 
-//= [Aegis Conversion]
-//= Quest for opening the doors to Geffenia.
-//= This script uses sign_01.bmp - sign_04.bmp, these will be
-//= found in the language of your client.
-//===== Additional Comments: ================================= 
-//= 3.0 Rewritten based on most recent Aegis script. [L0ne_W0lf]
-//=     Due to the incompatabity of the old script with this
-//=     version, variables will attmept to be translated to the
-//=     new version, however it is untested.
-//= 3.1 Corrected time check for Sir Jore. [L0ne_W0lf]
-//= 3.2 Removed mapannounce used while debugging. [L0ne_W0lf]
-//=     Moved the disablewaitingroomevent in dancing portion.
-//= 3.3 Applied Kazukin's fix for the dancing portion. (bugreport:3966) [L0ne_W0lf]
-//= 3.4 Added Renewal Changes. [Kisuka]
-//= 3.4 Updated 'waitingroom' to support required zeny/lvl. [Kisuka]
-//= 3.5 Fixed two bugs. 4230 & 4404 [CalciumKid]
-//= 3.6 Corrected the Level Requirements for 'Standby Room' [tr0n]
-//= 3.7 Massive cleaning/optimization (more can still be done). [Euphy]
-//============================================================ 
+//    ________________________________________________________ 
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: o_sinal.txt                            |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: ??/3.7/1.0                          |
+//   |--------------------------------------------------------|
+//   | Descrição: Quest para abrir as portas para Geffenia.   |
+//   | Este script usa sign_01.bmp - sign_04.bmp, estes serão |
+//   | encontrados na língua do seu cliente.                  |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
 
 //============================================================ 
 // The Sign (Part 1)

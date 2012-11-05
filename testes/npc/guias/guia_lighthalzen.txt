@@ -28,7 +28,7 @@ if( !checkre(0) ) {
 disablenpc "Lighthalzen Guide#lhz01";
 end;
 }
-else if( checkre(1) ) {
+else if( checkre(0) ) {
 disablenpc "Guide#lhz";
 end;
 }

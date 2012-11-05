@@ -28,7 +28,7 @@ if( !checkre(0) ) {
 disablenpc "Moscovia Guide#02mosc";
 end;
 }
-else if( checkre(1) ) {
+else if( checkre(0) ) {
 disablenpc "Moscovia Guide#mosk";
 end;
 }

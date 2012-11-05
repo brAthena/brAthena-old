@@ -4176,7 +4176,7 @@ new_1-1,144,107,2	script	Guard#nv2	105,{
 
 new_1-2,161,182,5	script	Instructor#nv	92,{
 	mes "[Edwin]";
-if( checkre(1)) {	
+if( checkre(0)) {	
   mes "Eh? Why are you still here?";
 	mes "There are no more courses that you need to take.";
 	next;

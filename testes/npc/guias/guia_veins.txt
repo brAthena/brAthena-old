@@ -28,7 +28,7 @@ if( !checkre(0) ) {
 disablenpc "Veins Guide#veins01";
 end;
 }
-else if( checkre(1) ) {
+else if( checkre(0) ) {
 disablenpc "Veins Guide#1";
 end;
 }

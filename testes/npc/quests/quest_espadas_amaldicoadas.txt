@@ -1,22 +1,31 @@
-//===== rAthena Script =======================================
-//= Doomed Swords Quest Part 3
-//===== By: ==================================================
-//= L0ne_W0lf
-//===== Current Version: =====================================
-//= 1.0
-//===== Compatible With: =====================================
-//= rAthena SVN
-//===== Description: =========================================
-//= [Aegis Conversion]
-//= - Creation of Doomed Swords: Grimtooth, Mysteltain, and
-//=   Executioner.
-//= - Continuation of the Comodo Quest
-//= - Part 1: Found in Quests_Comodo.txt
-//= - Part 2: Found in Quests_Yuno.txt
-//= - Variable in use: dmdswrd_Q (Max 45)
-//===== Additional Comments: =================================
-//= 1.0 First version. [L0ne_W0lf]
-//============================================================
+//    ________________________________________________________ 
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: quests_espada_amaldicoadas.txt         |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: ??/1.0/1.0                          |
+//   |--------------------------------------------------------|
+//   | Descrição: Criação de espadas amaldiçoadas: Grimtooth, |
+//   | Mysteltain, e Executioner.                             |
+//   | - Continuação da Quest Comodo.                         |
+//   | - Parte 1: encontrado em Quests_Comodo.txt             |
+//   | - Parte 2: encontrados em Quests_Yuno.txt              |
+//   | - Variável em uso: dmdswrd_Q (Max 45)                  |                       
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
 
 mjolnir_02,186,193,4	script	Middle-Aged Man#magum1	57,{
 	if (dmdswrd_Q > 30) {

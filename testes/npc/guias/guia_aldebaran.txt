@@ -28,7 +28,7 @@ if( !checkre(0) ) {
 disablenpc "Guide#01aldebaran";
 end;
 }
-else if( checkre(1) ) {
+else if( checkre(0) ) {
 disablenpc "Soldier#alde";
 disablenpc "Soldier#2alde";
 end;
