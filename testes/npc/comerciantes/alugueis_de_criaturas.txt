@@ -21,18 +21,6 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
--	script	Checagem_Alugueis	-1,{
-
-OnInit:
-if ( !checkre(0) ) {
-disablenpc "Dragon Breeder";
-disablenpc "Riding Creature Master";
-disablenpc "Peco Peco Remover";
-disablenpc "Magic Gear Master";
-end;
-}
-}
-
 // PecoPeco Breeder (for Knights)-------------------------------------------
 prontera,55,350,5	script	Peco Peco Breeder#knt	105,{
 	if(Upper==0) set .@price,2500; //Normal Peco - default price

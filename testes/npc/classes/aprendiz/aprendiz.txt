@@ -22,25 +22,6 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
--	script	Classe#aprendiz	-1,{
-
-OnInit:
-if( checkre(0) ) {
-setarray  .@unloadList$[0] , "Receptionist#nv1", "Shion#nv1", "Swordman#swd_2", "Guide Soldier#nv1", "Helper#nv", "Entrance Guard#nv","Trainer#nv1", "Test Examiner#nv1", "Potato Merchant", "Hanson#nv", "Bruce#nv";
-
-for(set(.@i,0); .@i < getarraysize(.@unloadList$); set .@i,.@i+1) 
-disablenpc .@unloadList$[.@i];
-end;
-}
-else if( !checkre(0) ) {
-setarray  .@unloadList2$[0] , "Sprakki#nv1", "Brade#nv", "Jinha#nv", "Chocolat#nv", "Kafra#nv", "Cool Event Staff#nv", "Soldier#nv", "Brade#nvs", "Swordman Guide#nv", "Mage Guide#nv", "Thief Guide#nv", "Merchant Guide#nvs", "Archer Guide#nv", "Acolyte Guide#nv", "Bruce#nv", "Eden Group Officer#nv", "Level 1 Trainer#nv", "Bruce#nvs";
-
-for(set(.@i,0); .@i < getarraysize(.@unloadList2$); set(.@i,.@i+1))
-disablenpc .@unloadList2$[.@i];
-end;
-} 
-}
-
 // Sprakki (Stard of Novice Training Ground, Outside Castle)
 //============================================================
 new_1-1,53,114,4	script	Sprakki#nv1	90,{

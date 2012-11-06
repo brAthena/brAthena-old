@@ -23,16 +23,6 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
--	script	Classe#gatuno	-1,{
-
-OnInit:
-if( !checkre(0) ) {
-disablenpc "Brad#gatuno";
-disablenpc "Mr. Irrelevant";
-end;
-}
-}
-
 moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 	if (Upper == 1) {
 		if (ADVJOB == Job_Assassin_Cross || ADVJOB == Job_Stalker) {

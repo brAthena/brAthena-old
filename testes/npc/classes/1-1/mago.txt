@@ -23,18 +23,6 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
--	script	Classe#mago	-1,{
-
-OnInit:
-if( !checkre(0) ) {
-disablenpc "Mixing Machine";
-disablenpc "Dollshoi";
-disablenpc "Ponka-Hontas";
-disablenpc "Bookshelf";
-end;
-}
-}
-
 geffen_in,164,124,4	script	Maga Guardiã#maga	123,{
 	if (Upper == 1) {
 		if (ADVJOB == Job_High_Wizard || ADVJOB == Job_Professor) {

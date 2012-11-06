@@ -21,19 +21,6 @@
 //   | - Anotações                                            |	
 //   \________________________________________________________/
 
--	script	Guias#umb	-1,{
-
-OnInit:
-if( !checkre(0) ) {
-disablenpc "Umbala Guide#01umbala";
-end;
-}
-else if( checkre(0) ) {
-disablenpc "Adventurer#um";
-end;
-}
-}
-
 umbala,128,94,3	script	Umbala Guide#01umbala	702,{
 	mes "Welcome to ^8B4513Umbala^000000,";
 	mes "the Village of the Utan Tribe.";

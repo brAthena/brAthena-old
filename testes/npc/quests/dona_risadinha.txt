@@ -21,15 +21,6 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
--	script	Quest_Feliz	-1,{
-
-OnInit:
-if( !checkre(0) ) { 
-movenpc "Smile Assistance#iz", 129,118;
-end;
-}
-}
-
 izlude,125,175,4	script	Smile Assistance#iz	92,{
 	mes "[Smile Girl]";
 	mes "Hi ~ Hi ~";

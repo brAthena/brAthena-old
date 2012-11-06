@@ -23,16 +23,6 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
--	script	Aluguel_Mercenarios	-1,{
-
-OnInit:
-if( !checkre(0) ) { 
-movenpc "Mercenary_Manager_Sword", 47,139;
-movenpc "Mercenary Merchant#Sword", 56,139; 
-end;
-}
-}
-
 prontera,41,337,5	script	Mercenary Manager#Spear	105,{
 	set .@faith_lancer, mercenary_get_faith(SPEAR_MERC_GUILD);
 	mes "[Mercenary Manager]";

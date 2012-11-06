@@ -16980,6 +16980,22 @@ BUILDIN_FUNC(getrandgroupitem) {
 	return 0;
 }
 
+/*================================
+   [brAthena] unloadnpc <name>;
+  ================================ */
+BUILDIN_FUNC(unloadnpc)
+{
+  struct npc_data *nd = npc_name2id(script_getstr(st, 2));
+  
+  if( ( nd = npc_name2id(script_getstr(st,2)) ) == NULL ) {
+  return 1;
+  }
+  
+  npc_unload_duplicates(nd);
+  npc_unload(nd,true);
+  return 0;
+}
+
 
 // declarations that were supposed to be exported from npc_chat.c
 #ifdef PCRE_SUPPORT
@@ -17433,5 +17449,8 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(checkquest, "i?"),
 	BUILDIN_DEF(changequest, "ii"),
 	BUILDIN_DEF(showevent, "ii"),
+	
+	// brAthena
+  BUILDIN_DEF(unloadnpc,"s"),  // [Holy]
 	{NULL,NULL,NULL},
 };

@@ -21,16 +21,6 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
--	script	Checagem_Estalagens	-1,{
-
-OnInit:
-if( !checkre(0) ) {
-disablenpc "Hotel Keeper#bra1";
-end;
-}
-} 
-
-
 //======================== Prontera ===================================
 // West Side Inn -------------------
 prt_in,244,135,2	script	Inn Employee#Sammy	53,{

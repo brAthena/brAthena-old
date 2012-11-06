@@ -21,21 +21,6 @@
 //   | - Anotações                                            |	
 //   \________________________________________________________/	 
 
--	script	Guias#com	-1,{
-
-OnInit:
-if( !checkre(0) ) {
-disablenpc "Comodo Guide#01comodo";
-end;
-}
-else if( checkre(0) ) {
-disablenpc "Comodo Guide#cmd";
-disablenpc "Comodo Guide#2cmd";
-disablenpc "Guide#2cmd";
-end;
-}
-}
-
 comodo,322,178,4	script	Comodo Guide#01comodo	700,{
 	mes "[Comodo Guide]";
 	mes "Welcome to ^8B4513Comodo^000000,";

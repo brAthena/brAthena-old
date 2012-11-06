@@ -21,19 +21,6 @@
 //   | - Anotações                                            |	
 //   \________________________________________________________/	
 
--	script	Guias#gon	-1,{
-
-OnInit:
-if( !checkre(0) ) {
-disablenpc "Kunlun Guide#01gonryun";
-end;
-}
-else if( checkre(0) ) {
-disablenpc "Kunlun Guide#gon";
-end;
-}
-}
-
 gonryun,163,60,4	script	Kunlun Guide#01gonryun	780,{
 	mes "[He Yuen Zhe]";
 	mes "Ni Hao!";

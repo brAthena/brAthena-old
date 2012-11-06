@@ -21,20 +21,6 @@
 //   | - Anotações                                            |	
 //   \________________________________________________________/	
 
--	script	Guias#lou	-1,{
-
-OnInit:
-if( !checkre(0) ) {
-disablenpc "Louyang Guide#01louyang";
-end;
-}
-else if( checkre(0) ) {
-disablenpc "Soldier#Lou";
-disablenpc "Representative#lou";
-end;
-}
-}
-
 louyang,224,104,4	script	Louyang Guide#01louyang	818,{
 	mes "[Representative]";
 	mes "Welcome to ^8B4513Louyang^000000,";

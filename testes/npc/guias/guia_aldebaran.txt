@@ -21,20 +21,6 @@
 //   | - Anotações                                            |	
 //   \________________________________________________________/	
 
--	script	Guias#alde	-1,{
-
-OnInit:
-if( !checkre(0) ) {
-disablenpc "Guide#01aldebaran";
-end;
-}
-else if( checkre(0) ) {
-disablenpc "Soldier#alde";
-disablenpc "Soldier#2alde";
-end;
-}
-}
-
 aldebaran,139,63,4	script	Guide#01aldebaran	105,{
 	cutin "prt_soldier",2;
 	mes "[Al De Baran Guide]";

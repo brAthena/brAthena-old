@@ -21,20 +21,6 @@
 //   | - Anotações                                            |	
 //   \________________________________________________________/	
 
--	script	Guias#ama	-1,{
-
-OnInit:
-if( !checkre(0) ) {
-disablenpc "Amatsu Guide#amatsu";
-end;
-}
-else if( checkre(0) ) {
-disablenpc "Amatsu Guide#ama";
-disablenpc "Guide Man#2ama";
-end;
-}
-}
-
 amatsu,202,91,3	script	Amatsu Guide#amatsu	758,{
 	mes "[Amachang]";
 	mes "Welcome to ^8B4513Amatsu^000000,";

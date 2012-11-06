@@ -21,19 +21,6 @@
 //   | - Anotações                                            |	
 //   \________________________________________________________/	
 
--	script	Guias#nif	-1,{
-
-OnInit:
-if( !checkre(0) ) {
-disablenpc "Niflheim Guide#01nif";
-end;
-}
-else if( checkre(0) ) {
-disablenpc "Roaming Man#nif";
-end;
-}
-}
-
 niflheim,201,187,3	script	Niflheim Guide#01nif	849,{
 	mes "[Niflheim Guide]";
 	mes "Welcome to.. ^8B4513Niflheim^000000...";

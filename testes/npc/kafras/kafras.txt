@@ -33,16 +33,6 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
--	script	Kafra_Izlude	-1,{
-
-OnInit:
-if( !checkre(0) ) { 
-movenpc "Funcionária Kafra#izlude", 134,87,3;
-disablenpc "Funcionária Kafra#brasilis";
-end;
-}
-}
-
 // Aldebaran
 //============================================================
 aldeba_in,96,181,4	script	Kafra Service	113,{

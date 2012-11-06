@@ -21,15 +21,6 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
--	script	Quest_Lighthalzen	-1,{
-
-OnInit:
-if( !checkre(0) ) { 
-movenpc "Scamp#2", 186,57,5;
-end;
-}
-}
-
 lighthalzen,1,1,0	script	Law Enforcement	-1,{
 	end;
 

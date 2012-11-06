@@ -21,19 +21,6 @@
 //   | - Anotações                                            |	
 //   \________________________________________________________/	
 
--	script	Guias#alb	-1,{
-
-OnInit:
-if( !checkre(0) ) {
-disablenpc "Guide#01alberta";
-end;
-}
-else if( checkre(0) ) {
-disablenpc "Guialberta";
-end;
-}
-}
-
 alberta,23,238,4	script	Guide#01alberta	105,{
 	cutin "prt_soldier",2;
 	mes "[Alberta Guide]";

@@ -21,19 +21,6 @@
 //   | - Anotações                                            |	
 //   \________________________________________________________/	
 
--	script	Guias#gef	-1,{
-
-OnInit:
-if( !checkre(0) ) {
-disablenpc "Guide#01geffen";
-end;
-}
-else if( checkre(0) ) {
-disablenpc "Guide#gef";
-end;
-}
-}
-
 geffen,203,116,4	script	Guide#01geffen	705,{
 	cutin "gef_soldier",2;
 	mes "[Geffen Guide]";

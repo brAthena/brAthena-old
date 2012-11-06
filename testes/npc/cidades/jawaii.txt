@@ -24,15 +24,6 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
--	script	Cidade_Jawaii	-1,{
-
-OnInit:
-if( !checkre(0) ) { 
-movenpc "Auxiliar Lua de Mel", 171,185,3;
-end; 
-}
-}
-
 // Jawaii
 //============================================================
 jawaii,239,112,7	script	Marinheiro#toizu	100,{

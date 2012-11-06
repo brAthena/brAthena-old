@@ -21,19 +21,6 @@
 //   | - Anotações                                            |	
 //   \________________________________________________________/	
 
--	script	Guias#mos	-1,{
-
-OnInit:
-if( !checkre(0) ) {
-disablenpc "Moscovia Guide#02mosc";
-end;
-}
-else if( checkre(0) ) {
-disablenpc "Moscovia Guide#mosk";
-end;
-}
-}
-
 moscovia,226,191,4	script	Moscovia Guide#02mosc	959,{
 	mes "[Moscovia Guide]";
 	mes "A paradise on the sea";

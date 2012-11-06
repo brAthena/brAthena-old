@@ -21,19 +21,6 @@
 //   | - Anotações                                            |	
 //   \________________________________________________________/	
 
--	script	Guias#juno	-1,{
-
-OnInit:
-if( !checkre(0) ) {
-disablenpc "Juno Guide#yuno01";
-end;
-}
-else if( checkre(0) ) {
-disablenpc "Juno Guide#yuno";
-end;
-}
-}
-
 yuno,59,212,4	script	Juno Guide#yuno01	700,{
 	mes "[Juno Guide]";
 	mes "A place that takes the vision of the future, and gives it form in the present. Welcome to";

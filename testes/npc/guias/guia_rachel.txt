@@ -21,19 +21,6 @@
 //   | - Anotações                                            |	
 //   \________________________________________________________/ 
 
--	script	Guias#rac	-1,{
-
-OnInit:
-if( !checkre(0) ) {
-disablenpc "Rachel Guide#rachel";
-end;
-}
-else if( checkre(0) ) {
-disablenpc "Rachel Guide";
-end;
-}
-}
-
 rachel,138,146,5	script	Rachel Guide#rachel	934,{
 	mes "[Rachel Guide]";
 	mes "Welcome to the capital of Arunafeltz, ^8B4513Rachel^000000 where the warm breath of the goddess Freya reaches.";

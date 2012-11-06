@@ -21,19 +21,6 @@
 //   | - Anotações                                            |	
 //   \________________________________________________________/	
 
--	script	Guias#lig	-1,{
-
-OnInit:
-if( !checkre(0) ) {
-disablenpc "Lighthalzen Guide#lhz01";
-end;
-}
-else if( checkre(0) ) {
-disablenpc "Guide#lhz";
-end;
-}
-}
-
 lighthalzen,207,310,5	script	Lighthalzen Guide#lhz01	852,{
 	cutin "ein_soldier",2;
 	mes "[Lighthalzen Guide]";

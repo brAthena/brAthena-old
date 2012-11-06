@@ -21,19 +21,6 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
--	script	Checagem_Lojas	-1,{
-
-OnInit:
-if( !checkre(0) ) {
-movenpc "Butcher#iz",105,99;
-movenpc "Fruit Gardener#iz",94,98;
-movenpc "Vendor from Milk Ranch#i",105,92,7;
-movenpc "Pet Groomer#iz",164,138;
-disablenpc "Black Marketeer#ein";
-end;
-}
-} 
-
 //=======================================================
 // Alberta
 //=======================================================

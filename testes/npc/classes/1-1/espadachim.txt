@@ -23,37 +23,6 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
--	script	Classe#espadachim	-1,{
-
-OnInit:
-if( checkre(0) ) { 
-disablenpc "Swordman#swd_2";
-disablenpc "Swordman#swd_3";
-disablenpc "Test Hall Staff#swd_1";
-disablenpc "Medic#swd_1";
-disablenpc "Test Hall Staff#swd_2";
-disablenpc "Test Hall Staff#2swd_3";
-disablenpc "Mae#swd_1_success";
-disablenpc "checkp1-2#swd_1";
-disablenpc "checkp2-3#swd_1";
-disablenpc "Test Hall Staff#swd_4";
-disablenpc "Test Hall Staff#swd_5";
-disablenpc "Test Hall Staff#swd_6";
-disablenpc "Test Hall Staff#swd_7";
-disablenpc "Test Hall Staff#swd_8";
-disablenpc "Test Hall Staff#swd_9";
-disablenpc "pitfall01-01";
-disablenpc "pitfall02-01";
-disablenpc "pitfall02-02";
-disablenpc "pitfall03-01";
-disablenpc "SwdTrap1";
-disablenpc "SwdTrap2";
-disablenpc "SwdTrap3";
-end;
-}
-}
-
-
 izlude_in,74,172,4	script	Chefe Espadachim#swd	119,{
 	if (Upper == 1) {
 		if (Class == Job_Novice_High && (ADVJOB == Job_Lord_Knight || ADVJOB == Job_Paladin)) {

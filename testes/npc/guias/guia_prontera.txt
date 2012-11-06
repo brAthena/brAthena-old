@@ -21,19 +21,6 @@
 //   | - Anotações                                            |	
 //   \________________________________________________________/	
 
--	script	Guias#pro	-1,{
-
-OnInit:
-if( !checkre(0) ) {
-disablenpc "Guide#01prontera";
-end;
-}
-else if( checkre(0) ) {
-disablenpc "Guide#prt";
-end;
-}
-}
-
 prontera,154,187,4	script	Guide#01prontera	105,{
 	cutin "prt_soldier",2;
 	mes "[Prontera Guide]";

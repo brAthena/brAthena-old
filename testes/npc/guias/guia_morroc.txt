@@ -21,20 +21,6 @@
 //   | - Anotações                                            |	
 //   \________________________________________________________/	
 
--	script	Guias#mor	-1,{
-
-OnInit:
-if( !checkre(0) ) {
-disablenpc "Guide#01morocc";
-disablenpc "Guide#01ruins";
-end;
-}
-else if( checkre(0) ) {
-disablenpc "Guide#moc";
-end;
-}
-}
-
 morocc,153,286,6	script	Guide#01morocc	707,{
 	cutin "moc_soldier",2;
 	mes "[Morroc Guide]";

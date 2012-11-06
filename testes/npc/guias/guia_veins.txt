@@ -21,19 +21,6 @@
 //   | - Anotações                                            |	
 //   \________________________________________________________/	
 
--	script	Guias#vei	-1,{
-
-OnInit:
-if( !checkre(0) ) {
-disablenpc "Veins Guide#veins01";
-end;
-}
-else if( checkre(0) ) {
-disablenpc "Veins Guide#1";
-end;
-}
-}
-
 veins,210,345,5	script	Veins Guide#veins01	934,{
 	mes "[Veins Guide]";
 	mes "Thank you for coming through the rough sand storms. Welcome to ^8B4513Veins^000000, the Canyon Village.";

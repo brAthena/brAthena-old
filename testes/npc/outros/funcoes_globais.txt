@@ -22,6 +22,55 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
+-	script	NPCS#brA	-1,{
+ 
+OnInit:
+ 
+// ------------------------------ Renovação ------------------------------
+ 
+if( checkre(0) ) {
+
+setarray  .@REListaNPCs$[0] , "Swordman#swd_2", "Swordman#swd_3", "Test Hall Staff#swd_1", "Medic#swd_1", "Test Hall Staff#swd_2", "Test Hall Staff#2swd_3","Mae#swd_1_success", "checkp1-2#swd_1", "checkp2-3#swd_1", "Test Hall Staff#swd_4", "Test Hall Staff#swd_5", "Test Hall Staff#swd_6", "Test Hall Staff#swd_7", "Test Hall Staff#swd_8", "Test Hall Staff#swd_9", "pitfall01-01", "pitfall02-01", "pitfall02-02", "pitfall03-01", "SwdTrap1", "SwdTrap2", "SwdTrap3", "Brad#gatuno", "Mr. Irrelevant", "Mixing Machine", "Dollshoi", "Ponka-Hontas", "Bookshelf", "Kafra Employee#mer", "Merchant Guildsman#mer", "Student#mer", "Guild Staff#mer", "Guarda#izlude", "Ferreiro#izlude", "Receptionist#nv1", "Shion#nv1", "Guide Soldier#nv1", "Helper#nv", "Entrance Guard#nv","Trainer#nv1", "Test Examiner#nv1", "Potato Merchant", "Hanson#nv", "Bruce#nv", "Guialberta", "Soldier#alde", "Soldier#2alde", "Amatsu Guide#ama", "Guide Man#2ama", "Noi#ayo", "Comodo Guide#cmd", "Comodo Guide#2cmd", "Guide#2cmd", "Guide#ein", "Guide#4ein", "Guide#gef", "Kunlun Guide#gon", "Hugel Guide Granny#huge", "Guide#iz", "Juno Guide#yuno", "Guide#lhz", "Soldier#Lou", "Representative#lou", "Guide#moc", "Moscovia Guide#mosk", "Roaming Man#nif", "Guide#pay", "Guide#2pay", "Guide#prt", "Rachel Guide", "Adventurer#um", "Veins Guide#1";
+ 
+for(set(.@i,0); .@i < getarraysize(.@REListaNPCs$[0]); set .@i,.@i+1) 
+unloadnpc .@REListaNPCs$[.@i];
+end;
+}
+ 
+// ---------------------------- Pré-Renovação ------------------------------
+ 
+else if( !checkre(0) ) {
+ 
+setarray  .@PREListaNPCs$[0] , "Sprakki#nv1", "Brade#nv", "Jinha#nv", "Chocolat#nv", "Kafra#nv", "Cool Event Staff#nv", "Soldier#nv", "Brade#nvs", "Swordman Guide#nv", "Mage Guide#nv", "Thief Guide#nv", "Merchant Guide#nvs", "Archer Guide#nv", "Acolyte Guide#nv", "Eden Group Officer#nv", "Level 1 Trainer#nv", "Bruce#nvs", "Dragon Breeder", "Riding Creature Master", "Peco Peco Remover", "Magic Gear Master", "Hotel Keeper#bra1", "Black Marketeer#ein", "Guide#01alberta", "Guide#01aldebaran", "Amatsu Guide#amatsu", "Ayothaya Guide Noi#01ay", "Ayothaya Guide Noa#01ay", "Comodo Guide#01comodo", "Einbroch Guide#ein01", "Einbech Guide#einbech01", "Guide#01geffen", "Kunlun Guide#01gonryun", "Hugel Guide Granny#hugel", "Guide Rich King#hugel", "Guide#01izlude", "Juno Guide#yuno01", "Lighthalzen Guide#lhz01", "Louyang Guide#01louyang", "Guide#01morocc", "Guide#01ruins", "Moscovia Guide#02mosc", "Niflheim Guide#01nif", "Guide#01payon", "Guide#05payon", "Guide#01prontera", "Rachel Guide#rachel", "Umbala Guide#01umbala", "Veins Guide#veins01", "Funcionária Kafra#brasilis";
+ 
+movenpc "Airship_Staff_izlude", 206,55;
+movenpc "Marinheiro#izlude", 201,181,2;
+movenpc "Bonne#izlude", 55,74; 
+movenpc "Charfri#izlude", 135,78,2; 
+movenpc "Cuskoal#izlude", 119,121,2; 
+movenpc "Dega#izlude", 150,118,2;
+movenpc "Kylick#izlude", 150,143,2;
+movenpc "Red#izlude", 56,126;
+movenpc "Cebalis#izlude", 58,126;
+movenpc "Soldado#izlude", 124,178;
+movenpc "Bullet Dealer Tony#iz", 171,133;
+movenpc "Magazine Dealer Tony#iz", 171,127;
+movenpc "Auxiliar Lua de Mel", 171,185,3;
+movenpc "Butcher#iz",105,99;
+movenpc "Fruit Gardener#iz",94,98;
+movenpc "Vendor from Milk Ranch#i",105,92,7;
+movenpc "Pet Groomer#iz",164,138;
+movenpc "Edgar#izlude", 182,186,2;
+movenpc "Scamp#2", 186,57,5;
+movenpc "Smile Assistance#iz", 129,118;
+movenpc "Funcionária Kafra#izlude", 134,87,3;
+movenpc "Mercenary_Manager_Sword", 47,139;
+movenpc "Mercenary Merchant#Sword", 56,139; 
+for(set(.@i,0); .@i < getarraysize(.@PREListaNPCs$[0]); set .@i,.@i+1) 
+unloadnpc .@PREListaNPCs$[.@i];
+end;
+}
+}
 
 //////////////////////////////////////////////////////////////////////////////////
 // Function that clears job quest variables

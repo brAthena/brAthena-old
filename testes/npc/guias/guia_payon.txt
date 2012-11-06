@@ -21,21 +21,6 @@
 //   | - Anotações                                            |	
 //   \________________________________________________________/	
 
--	script	Guias#pay	-1,{
-
-OnInit:
-if( !checkre(0) ) {
-disablenpc "Guide#01payon";
-disablenpc "Guide#05payon";
-end;
-}
-else if( checkre(0) ) {
-disablenpc "Guide#pay";
-disablenpc "Guide#2pay";
-end;
-}
-}
-
 payon,163,64,3	script	Guide#01payon	708,{
 	cutin "pay_soldier",2;
 	mes "[Payon Guide]";

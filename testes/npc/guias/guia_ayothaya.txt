@@ -21,20 +21,6 @@
 //   | - Anotações                                            |	
 //   \________________________________________________________/	
 
--	script	Guias#ayo	-1,{
-
-OnInit:
-if( !checkre(0) ) {
-disablenpc "Ayothaya Guide Noi#01ay";
-disablenpc "Ayothaya Guide Noa#01ay";
-end;
-}
-else if( checkre(0) ) {
-disablenpc "Noi#ayo";
-end;
-}
-}
-
 ayothaya,203,169,4	script	Ayothaya Guide Noi#01ay	839,{
 	mes "[Noi]";
 	mes "Hello~";

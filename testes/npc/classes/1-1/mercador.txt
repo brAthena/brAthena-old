@@ -23,19 +23,6 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
--	script	Classe#mercador	-1,{
-
-OnInit:
-if( !checkre(0) ) { 
-disablenpc "Kafra Employee#mer";
-disablenpc "Merchant Guildsman#mer";
-disablenpc "Student#mer";
-disablenpc "Guild Staff#mer";
-end;
-}
-}
-
-
 alberta_in,53,43,6	script	Mercador#mer	86,{
 	if (Upper == 1) {
 		if (Class == Job_Novice_High && (ADVJOB == Job_Whitesmith || ADVJOB == Job_Creator)) {

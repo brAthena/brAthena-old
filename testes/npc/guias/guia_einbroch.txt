@@ -21,21 +21,6 @@
 //   | - Anotações                                            |	
 //   \________________________________________________________/	
 
--	script	Guias#ein	-1,{
-
-OnInit:
-if( !checkre(0) ) {
-disablenpc "Einbroch Guide#ein01";
-disablenpc "Einbech Guide#einbech01";
-end;
-}
-else if( checkre(0) ) {
-disablenpc "Guide#ein";
-disablenpc "Guide#4ein";
-end;
-}
-}
-
 einbroch,72,202,4	script	Einbroch Guide#ein01	852,{
 	cutin "ein_soldier",2;
 	mes "[Einbroch Guide]";
