@@ -104,6 +104,9 @@ static DBMap* regen_db=NULL; // int id -> struct block_list* (status_natural_hea
 
 static int map_users=0;
 
+// brAthena
+#define MAX_QUERY_ROWS 64
+
 #define BLOCK_SIZE 8
 #define block_free_max 1048576
 struct block_list *block_free[block_free_max];
@@ -3488,7 +3491,7 @@ void sv_readsqldb (char* name, char* next_name, int param_size, int max_allowed,
 		}
 	
 		while (SQL_SUCCESS == Sql_NextRow(mmysql_handle)){
-			char *str[64];
+			char *str[MAX_QUERY_ROWS];
 			int8 j;
 			++lines;
 
