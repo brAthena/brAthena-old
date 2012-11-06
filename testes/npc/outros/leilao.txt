@@ -18,44 +18,45 @@
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [cleyton/Holy]                      |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
 
-// Auction House warpers
+// Leilão - Portais
 //============================================================
-moc_ruins,78,173,6	script	Auction Hall Guide#moc	98,{
-	callfunc "F_AuctionWarper",1;
+moc_ruins,78,173,6	script	Guia do Leilão#moc	98,{
+	callfunc "F_LeilãoTeleporte",1;
 }
 
-prontera,218,120,4	script	Auction Hall Guide#prt	117,{
-	callfunc "F_AuctionWarper",2;
+prontera,218,120,4	script	Guia do Leilãoprt	117,{
+	callfunc "F_LeilãoTeleporte",2;
 }
 
-yuno,129,116,0	script	Auction Hall Guide#yuno	90,{
-	callfunc "F_AuctionWarper",3;
+yuno,129,116,0	script	Guia do Leilão#yuno	90,{
+	callfunc "F_LeilãoTeleporte",3;
 }
 
-lighthalzen,205,169,6	script	Auction Hall Guide#lhz	833,{
-	callfunc "F_AuctionWarper",4;
+lighthalzen,205,169,6	script	Guia do Leilão#lhz	833,{
+	callfunc "F_LeilãoTeleporte",4;
 }
 
-function	script	F_AuctionWarper	{
-	mes "[Auction Hall Guide]";
-	mes "Hello, would you";
-	mes "like to enter the";
-	mes "Auction Hall?";
+function	script	F_LeilãoTeleporte	{
+	mes "[Guia do Leilão]";
+	mes "Olá, você gostaria";
+	mes "de entrar na sala do";
+	mes "Leilão?";
 	next;
-	if (select("Yes:No") == 1) {
+	if (select("Sim:Não") == 1) {
 		if (getarg(0) == 1 || getarg(0) == 4) {
-			mes "[Auction Hall Guide]";
-			mes "Great! Well then,";
-			mes "I hope you have fun";
-			mes "and enjoy the auction~";
+			mes "[Guia do Leilão]";
+			mes "Certo! Espero que você";
+			mes "se divirta muito e";
+			mes "aproveite o leilão~";
 		}else{
-			mes "[Auction Hall Guide]";
-			mes "Enjoy your auction.";
+			mes "[Guia do Leilão]";
+			mes "Tenha um bom proveito no leilão.";
 		}
 		close2;
 		switch(getarg(0)) {
@@ -69,71 +70,69 @@ function	script	F_AuctionWarper	{
 			warp "auction_02",43,24; end;
 		}
 	}
-	mes "[Auction Hall Guide]";
-	mes "Alright then,";
-	mes "see you later.";
-	mes "If you change your";
-	mes "mind, please come";
-	mes "and enjoy the auctions~";
+	mes "[Guia do Leilão]";
+	mes "Tudo bem, mas se";
+	mes "depois você";
+	mes "mudar de idéia";
+	mes "por favor, venha";
+	mes "e aproveite o leilão~";
 	close;
 }
 
-// Sign posts
 //============================================================
--	script	Information Post#dum::AuctionSign	-1,{
-	mes "[Information]";
-	mes "Auction Warp Guide";
+-	script	Mural de Informações#dum::LeilãoMural	-1,{
+	mes "[Informação]";
+	mes "Guia de Teleporte do Leilão.";
 	close;
 }
 
-moc_ruins,76,176,6	duplicate(AuctionSign)	Information Post#moc	837
-prontera,216,120,4	duplicate(AuctionSign)	Information Post#prt	837
-yuno,131,116,0	duplicate(AuctionSign)	Information Post#yuno	837
-lighthalzen,207,169,6	duplicate(AuctionSign)	Information Post#lhz	837
+moc_ruins,76,176,6	duplicate(LeilãoMural)	Mural de Informações#moc	837
+prontera,216,120,4	duplicate(LeilãoMural)	Mural de Informações#prt	837
+yuno,131,116,0	duplicate(LeilãoMural)	Mural de Informações#yuno	837
+lighthalzen,207,169,6	duplicate(LeilãoMural)	Mural de Informações#lhz	837
 
-// Warps
+// Portais
 //============================================================
-auction_01,180,49,0	warp	auction_entrance_moc	1,1,moc_ruins,78,171
-auction_01,22,37,0	warp	auction_entrance_prt	1,1,prontera,214,120
-auction_02,151,17,0	warp	auction_enterance_juno	1,1,yuno,132,119
-auction_02,43,17,0	warp	auction_enterance_lhz	1,1,lighthalzen,209,169
+auction_01,180,49,0	warp	entrada_moc	1,1,moc_ruins,78,171
+auction_01,22,37,0	warp	entrada_prt	1,1,prontera,214,120
+auction_02,151,17,0	warp	entrada_juno	1,1,yuno,132,119
+auction_02,43,17,0	warp	entrada_lhz	1,1,lighthalzen,209,169
 
-// Auction House NPCs
+// NPCs Casas de Leilão
 //============================================================
--	script	Auction Broker#dum::AuctionBroker	-1,{
-	mes "[Auction Broker]";
-	mes "Welcome to the Auction Hall.";
-	mes "Would you like to view the goods?";
+-	script	Corretor#dum::CorretorLeilão	-1,{
+	mes "[Corretor]";
+	mes "Bem vindo a sala de leilão.";
+	mes "Você gostaria de ver as ofertas?";
 	next;
-	if (select("Yes:No") == 1) {
-		mes "[Auction Broker]";
-		mes "Very well.";
-		mes "Please take";
-		mes "a look, and see";
-		mes "What's being offered~";
+	if (select("Sim:Não") == 1) {
+		mes "[Corretor]";
+		mes "Ótimo.";
+		mes "Por favor";
+		mes "dê uma olhada, e veja";
+		mes "o que está sendo oferecido~";
 		OpenAuction;
 		close;
 	}
-	mes "[Auction Broker]";
-	mes "Very well, then.";
-	mes "If you change your";
-	mes "mind, then please";
-	mes "come and check";
-	mes "out the auctions~";
+	mes "[Corretor]";
+	mes "Certo, se você";
+	mes "mudar de idéia,";
+	mes "por favor volte";
+	mes "e confira os leilões~";
 	close;
 }
 
-auction_01,182,68,6	duplicate(AuctionBroker)	Auction Broker#moc1	98
-auction_01,182,75,0	duplicate(AuctionBroker)	Auction Broker#moc2	99
-auction_01,177,75,2	duplicate(AuctionBroker)	Auction Broker#moc3	98
-auction_01,177,68,4	duplicate(AuctionBroker)	Auction Broker#moc4	99
-auction_01,21,74,4	duplicate(AuctionBroker)	Auction Broker#prt1	117
-auction_01,27,78,4	duplicate(AuctionBroker)	Auction Broker#prt2	116
-auction_01,16,78,4	duplicate(AuctionBroker)	Auction Broker#prt3	115
-auction_02,158,47,6	duplicate(AuctionBroker)	Auction Broker#yuno1	90
-auction_02,145,47,2	duplicate(AuctionBroker)	Auction Broker#yuno2	90
-auction_02,151,54,0	duplicate(AuctionBroker)	Auction Broker#yuno3	90
-auction_02,152,41,4	duplicate(AuctionBroker)	Auction Broker#yuno4	90
-auction_02,57,46,2	duplicate(AuctionBroker)	Auction Broker#lhz1	874
-auction_02,31,46,6	duplicate(AuctionBroker)	Auction Broker#lhz2	874
-auction_02,43,65,4	duplicate(AuctionBroker)	Auction Broker#lhz3	833
+auction_01,182,68,6	duplicate(CorretorLeilão)	Corretor#moc1	98
+auction_01,182,75,0	duplicate(CorretorLeilão)	Corretor#moc2	99
+auction_01,177,75,2	duplicate(CorretorLeilão)	Corretor#moc3	98
+auction_01,177,68,4	duplicate(CorretorLeilão)	Corretor#moc4	99
+auction_01,21,74,4	duplicate(CorretorLeilão)	Corretor#prt1	117
+auction_01,27,78,4	duplicate(CorretorLeilão)	Corretor#prt2	116
+auction_01,16,78,4	duplicate(CorretorLeilão)	Corretor#prt3	115
+auction_02,158,47,6	duplicate(CorretorLeilão)	Corretor#yuno1	90
+auction_02,145,47,2	duplicate(CorretorLeilão)	Corretor#yuno2	90
+auction_02,151,54,0	duplicate(CorretorLeilão)	Corretor#yuno3	90
+auction_02,152,41,4	duplicate(CorretorLeilão)	Corretor#yuno4	90
+auction_02,57,46,2	duplicate(CorretorLeilão)	Corretor#lhz1	874
+auction_02,31,46,6	duplicate(CorretorLeilão)	Corretor#lhz2	874
+auction_02,43,65,4	duplicate(CorretorLeilão)	Corretor#lhz3	833
