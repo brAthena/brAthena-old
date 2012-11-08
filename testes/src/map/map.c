@@ -150,7 +150,6 @@ struct map_cache_map_info {
 	int32 len;
 };
 
-char map_cache_file[256]="db/map_cache.dat";
 char db_path[256] = "db";
 char motd_txt[256] = "conf/motd.txt";
 char help_txt[256] = "conf/help.txt";
@@ -202,8 +201,7 @@ int map_freeblock (struct block_list *bl)
 
 	return block_free_lock;
 }
-/*==
-========================================
+/*==========================================
  * Lock blocklist, (prevent map_freeblock usage)
  *------------------------------------------*/
 int map_freeblock_lock (void)
@@ -3058,19 +3056,23 @@ int map_readallmaps (void)
 
 	if( enable_grf )
 		ShowStatus("Carregando mapas (usando arquivos GRF)...\n");
-	else
-	{
-		ShowStatus("Carregando mapas (usando %s como map cache)...\n", map_cache_file);
-		if( (fp = fopen(map_cache_file, "rb")) == NULL )
-		{
-			ShowFatalError("N%co foi poss%cvel abrir o arquivo "CL_WHITE"%s"CL_RESET"\n", 198, 161, map_cache_file);
+	else {
+		char mapcachefilepath[254];
+#ifdef RENEWAL			
+		sprintf(mapcachefilepath,"%s/%s",db_path,"map_cache_re.dat");
+#else
+		sprintf(mapcachefilepath,"%s/%s",db_path,"map_cache_pre-re.dat");
+#endif
+		ShowStatus("Carregando mapas (usando %s como map cache)...\n", mapcachefilepath);
+		if( (fp = fopen(mapcachefilepath, "rb")) == NULL ) {
+			ShowFatalError("N%co foi poss%cvel abrir o arquivo "CL_WHITE"%s"CL_RESET"\n", 198, 161, mapcachefilepath);
 			exit(EXIT_FAILURE); //No use launching server if maps can't be read.
 		}
 
 		// Init mapcache data.. [Shinryo]
 		map_cache_buffer = map_init_mapcache(fp);
 		if(!map_cache_buffer) {
-			ShowFatalError("Falha ao inicializar mapcache (%s)..\n", map_cache_file);
+			ShowFatalError("Falha ao inicializar mapcache (%s)..\n", mapcachefilepath);
 			exit(EXIT_FAILURE);
 		}
 	}
@@ -3312,8 +3314,6 @@ int map_config_read(char *cfgName)
 			strcpy(help2_txt, w2);
 		else if (strcmpi(w1, "charhelp_txt") == 0)
 			strcpy(charhelp_txt, w2);
-		else if(strcmpi(w1,"map_cache_file") == 0)
-			strncpy(map_cache_file,w2,255);
 		else if(strcmpi(w1,"db_path") == 0)
 			strncpy(db_path,w2,255);
 		else if (strcmpi(w1, "console") == 0) {
