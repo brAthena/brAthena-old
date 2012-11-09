@@ -6,6 +6,7 @@
 #include "../common/malloc.h"
 #include "../common/mmo.h"
 #include "../common/showmsg.h"
+#include "../config/renewal.h"
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,7 +20,7 @@
 
 char grf_list_file[256] = "conf/grf-files.txt";
 char map_list_file[256] = "db/map_index.txt";
-char map_cache_file[256] = "db/map_cache.dat";
+char map_cache_file[256];
 int rebuild = 0;
 
 FILE *map_cache_fp;
@@ -254,6 +255,13 @@ int do_init(int argc, char** argv)
 	struct map_data map;
 	char name[MAP_NAME_LENGTH_EXT];
 
+	/* setup pre-defined, #define-dependant */
+#ifdef RENEWAL
+	sprintf(map_cache_file,"db/map_cache_re.dat");
+#else
+	sprintf(map_cache_file,"db/map_cache_pre-re.dat");
+#endif
+			
 	// Process the command-line arguments
 	process_args(argc, argv);
 
