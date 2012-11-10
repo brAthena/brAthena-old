@@ -1447,9 +1447,9 @@ OnTimer68100:
 	donpcevent "Mr. Doppel#wop_team_a::OnDisable";
 	donpcevent "Mr. Doppel#wop_team_d::OnDisable";
 	donpcevent "#wop_warp_rtry::OnDisable";
-	donpcevent "Poring#wop_door_a::OnReset";
-	donpcevent "Poring#wop_door_d::OnReset";
-	donpcevent "Poring#wop_door_all::OnReset";
+	donpcevent "Poring#wop_door_a::OnEnable";
+	donpcevent "Poring#wop_door_d::OnEnable";
+	donpcevent "Poring#wop_door_all::OnEnable";
 	stopnpctimer;
 	end;
 }

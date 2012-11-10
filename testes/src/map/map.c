@@ -1296,34 +1296,41 @@ int map_get_new_object_id(void)
 }
 
 /*==========================================
- * °ƒAƒCƒeƒ€‚ðÁ‚·
- *
- * data==0‚ÌŽbÍtimer‚ÅÁ‚¦‚½Žê * data!=0‚ÌŽbÍE‚¤“™‚ÅÁ‚¦‚½ŽbÆ‚µ‚Ä“®?
- *
- * ŒãŽÒ‚ÍAmap_clearflooritem(id)‚Ö
- * map.h?‚Å#define‚µ‚Ä‚ ‚é
+ * Timered function to clear the floor (remove remaining item)
+ * Called each flooritem_lifetime ms
  *------------------------------------------*/
 int map_clearflooritem_timer(int tid, unsigned int tick, int id, intptr_t data)
 {
 	struct flooritem_data* fitem = (struct flooritem_data*)idb_get(id_db, id);
-	if( fitem==NULL || fitem->bl.type!=BL_ITEM || (!data && fitem->cleartimer != tid) )
-	{
+	if (fitem == NULL || fitem->bl.type != BL_ITEM || (fitem->cleartimer != tid)) {
 		ShowError("map_clearflooritem_timer : error\n");
 		return 1;
 	}
 
-	if(data)
-		delete_timer(fitem->cleartimer,map_clearflooritem_timer);
-	else
-	if(fitem->item_data.card[0] == CARD0_PET) // pet egg
-		intif_delete_petdata( MakeDWord(fitem->item_data.card[1],fitem->item_data.card[2]) );
+	
+	if (search_petDB_index(fitem->item_data.nameid, PET_EGG) >= 0)
+		intif_delete_petdata(MakeDWord(fitem->item_data.card[1], fitem->item_data.card[2]));
 
-	clif_clearflooritem(fitem,0);
+	clif_clearflooritem(fitem, 0);
 	map_deliddb(&fitem->bl);
 	map_delblock(&fitem->bl);
 	map_freeblock(&fitem->bl);
-
 	return 0;
+}
+
+/* 
+ * clears a single bl item out of the bazooonga.
+ */
+void map_clearflooritem(struct block_list *bl) {
+	struct flooritem_data* fitem = (struct flooritem_data*)bl;
+	
+	if( fitem->cleartimer )
+		delete_timer(fitem->cleartimer,map_clearflooritem_timer);
+	
+	clif_clearflooritem(fitem, 0);
+	map_deliddb(&fitem->bl);
+	map_delblock(&fitem->bl);
+	map_freeblock(&fitem->bl);
 }
 
 /*==========================================
@@ -3060,12 +3067,7 @@ int map_readallmaps (void)
 		}
 	}
 
-	// Mapcache reading is now fast enough, the progress info will just slow it down so don't use it anymore [Shinryo]
-	if(!enable_grf)
-		ShowStatus("Carregando mapas (%d)..\n", map_num);
-
-	for(i = 0; i < map_num; i++)
-	{
+	for(i = 0; i < map_num; i++) {
 		size_t size;
 
 		// show progress
@@ -3671,7 +3673,7 @@ int cleanup_sub(struct block_list *bl, va_list ap)
 		//There is no need for this, the pet is removed together with the player. [Skotlex]
 			break;
 		case BL_ITEM:
-			map_clearflooritem(bl->id);
+			map_clearflooritem(bl);
 			break;
 		case BL_SKILL:
 			skill_delunit((struct skill_unit *) bl);
