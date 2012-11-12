@@ -283,12 +283,12 @@ REPLACE INTO `castle_db` VALUES(33, 'arug_cas05', 'Bandis', 'Agit_Ar05', 1);
 
 CREATE TABLE IF NOT EXISTS `create_arrow_db` (
   `SourceID` smallint(2) unsigned NOT NULL DEFAULT '0',
-  `MakeID1` smallint(2) unsigned NOT NULL DEFAULT '0',
-  `MakeAmount1` smallint(2) unsigned NOT NULL DEFAULT '0',
-  `MakeID2` smallint(2) unsigned NOT NULL DEFAULT '0',
-  `MakeAmount2` smallint(2) unsigned NOT NULL DEFAULT '0',
-  `MakeID3` smallint(2) unsigned NOT NULL DEFAULT '0',
-  `MakeAmount3` smallint(2) unsigned NOT NULL DEFAULT '0',
+  `MakeID1` smallint(2) unsigned DEFAULT NULL,
+  `MakeAmount1` smallint(2) unsigned DEFAULT NULL,
+  `MakeID2` smallint(2) unsigned DEFAULT NULL,
+  `MakeAmount2` smallint(2) unsigned DEFAULT NULL,
+  `MakeID3` smallint(2) unsigned DEFAULT NULL,
+  `MakeAmount3` smallint(2) unsigned DEFAULT NULL,
   PRIMARY KEY (`SourceID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 

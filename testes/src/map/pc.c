@@ -1070,7 +1070,7 @@ bool pc_authok(struct map_session_data *sd, int login_id2, time_t expiration_tim
 
 		if (battle_config.display_version == 1){
 			char buf[256];
-			sprintf(buf, "SVN vers%co: %s", 198, get_svn_revision());
+			sprintf(buf, "SVN versão: %s", get_svn_revision());
 			clif_displaymessage(sd->fd, buf);
 		}
 
