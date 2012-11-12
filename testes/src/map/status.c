@@ -491,6 +491,25 @@ void initChangeTables(void) {
 	set_sc( HAMI_DEFENCE         , SC_DEFENCE         , SI_BLANK           , SCB_DEF );
 	set_sc( HAMI_BLOODLUST       , SC_BLOODLUST       , SI_BLANK           , SCB_BATK|SCB_WATK );
 
+	// Homunculus S
+	add_sc(MH_STAHL_HORN, SC_STUN);
+	set_sc(MH_ANGRIFFS_MODUS, SC_ANGRIFFS_MODUS, SI_ANGRIFFS_MODUS, SCB_BATK | SCB_DEF | SCB_FLEE | SCB_MAXHP);
+	set_sc(MH_GOLDENE_FERSE, SC_GOLDENE_FERSE, SI_GOLDENE_FERSE,  SCB_ASPD|SCB_MAXHP);
+	add_sc( MH_STEINWAND, SC_SAFETYWALL );
+	add_sc(MH_ERASER_CUTTER, SC_ERASER_CUTTER);
+	set_sc(MH_OVERED_BOOST, SC_OVERED_BOOST, SI_BLANK, SCB_FLEE|SCB_ASPD);
+	add_sc(MH_LIGHT_OF_REGENE, SC_LIGHT_OF_REGENE);
+	set_sc(MH_VOLCANIC_ASH, SC_ASH, SI_VOLCANIC_ASH, SCB_DEF|SCB_DEF2|SCB_HIT|SCB_BATK|SCB_FLEE);
+	set_sc(MH_GRANITIC_ARMOR, SC_GRANITIC_ARMOR, SI_GRANITIC_ARMOR, SCB_NONE);
+	set_sc(MH_MAGMA_FLOW, SC_MAGMA_FLOW, SI_MAGMA_FLOW, SCB_NONE);
+	set_sc(MH_PYROCLASTIC, SC_PYROCLASTIC, SI_PYROCLASTIC, SCB_BATK|SCB_ATK_ELE);
+	add_sc(MH_LAVA_SLIDE, SC_BURNING);
+	set_sc(MH_NEEDLE_OF_PARALYZE, SC_PARALYSIS, SI_NEEDLE_OF_PARALYZE, SCB_DEF2);
+	add_sc(MH_POISON_MIST, SC_BLIND);
+	set_sc(MH_PAIN_KILLER, SC_PAIN_KILLER, SI_PAIN_KILLER, SCB_ASPD);
+
+	add_sc(MH_STYLE_CHANGE, SC_STYLE_CHANGE);
+	
 	add_sc( MER_CRASH            , SC_STUN            );
 	set_sc( MER_PROVOKE          , SC_PROVOKE         , SI_PROVOKE         , SCB_DEF|SCB_DEF2|SCB_BATK|SCB_WATK );
 	add_sc( MS_MAGNUM            , SC_WATK_ELEMENT    );
@@ -665,7 +684,7 @@ void initChangeTables(void) {
 	set_sc( SO_ELECTRICWALK      , SC_PROPERTYWALK    , SI_PROPERTYWALK    , SCB_NONE );
 	set_sc( SO_SPELLFIST         , SC_SPELLFIST       , SI_SPELLFIST       , SCB_NONE );
 	set_sc_with_vfx( SO_DIAMONDDUST       , SC_CRYSTALIZE      , SI_COLD   , SCB_NONE ); // it does show the snow icon on mobs but doesn't affect it.
-	set_sc( SO_CLOUD_KILL        , SC_POISON          , SI_CLOUDKILL       , SCB_NONE );
+	add_sc( SO_CLOUD_KILL            , SC_POISON );
 	set_sc( SO_STRIKING          , SC_STRIKING        , SI_STRIKING        , SCB_WATK|SCB_CRI );
 	set_sc( SO_WARMER            , SC_WARMER          , SI_WARMER          , SCB_NONE );
 	set_sc( SO_VACUUM_EXTREME    , SC_VACUUM_EXTREME  , SI_VACUUM_EXTREME  , SCB_NONE );
@@ -727,14 +746,7 @@ void initChangeTables(void) {
 	set_sc( OB_ZANGETSU			, SC_ZANGETSU			 , SI_ZANGETSU			   , SCB_MATK|SCB_BATK );
 	set_sc_with_vfx( OB_AKAITSUKI		, SC_AKAITSUKI			 , SI_AKAITSUKI			   , SCB_NONE );
 	set_sc( OB_OBOROGENSOU		, SC_GENSOU				 , SI_GENSOU			   , SCB_NONE );
-	
-	add_sc( MH_STAHL_HORN		 , SC_STUN	);
-	set_sc( MH_ANGRIFFS_MODUS	 , SC_ANGRIFFS_MODUS  , SI_ANGRIFFS_MODUS	, SCB_BATK|SCB_WATK|SCB_DEF|SCB_FLEE );
-	set_sc( MH_GOLDENE_FERSE	 , SC_GOLDENE_FERSE   , SI_GOLDENE_FERSE	, SCB_SPEED|SCB_MAXHP|SCB_ATK_ELE );
-	add_sc( MH_LAVA_SLIDE		 , SC_BURNING         );
-	add_sc( MH_POISON_MIST		 , SC_BLIND			  );
-	set_sc( MH_ERASER_CUTTER	 , SC_ERASER_CUTTER   , SI_BLANK			, SCB_NONE );
-	
+
 	// Storing the target job rather than simply SC_SPIRIT simplifies code later on.
 	SkillStatusChangeTable[SL_ALCHEMIST]   = (sc_type)MAPID_ALCHEMIST,
 	SkillStatusChangeTable[SL_MONK]        = (sc_type)MAPID_MONK,
@@ -1034,6 +1046,9 @@ void initChangeTables(void) {
 	StatusChangeStateTable[SC_CURSEDCIRCLE_TARGET] |= SCS_NOCAST;
 	StatusChangeStateTable[SC_SILENCE]             |= SCS_NOCAST;
 	
+	//Homon S
+	StatusChangeStateTable[SC_PARALYSIS]               |= SCS_NOMOVE;
+	
 }
 
 static void initDummyData(void)
@@ -1311,9 +1326,18 @@ int status_damage(struct block_list *src,struct block_list *target,int hp, int s
 		return hp+sp;
 	}
 
-	if( target->type == BL_MOB && sc && sc->data[SC_REBIRTH] && !((TBL_MOB*)target)->state.rebirth )
-	{// Ensure the monster has not already rebirthed before doing so.
-		status_revive(target, sc->data[SC_REBIRTH]->val2, 0);
+	if(target->type == BL_PC){
+        TBL_PC *sd = BL_CAST(BL_PC,target);
+        TBL_HOM *hd = sd->hd;
+        if(hd && hd->sc.data[SC_LIGHT_OF_REGENE]){
+            clif_skillcasting(&hd->bl, hd->bl.id, target->id, 0,0, MH_LIGHT_OF_REGENE, skill_get_ele(MH_LIGHT_OF_REGENE, 1), 10); //just to display usage
+            clif_skill_nodamage(&sd->bl, target, ALL_RESURRECTION, 1, status_revive(&sd->bl,10*hd->sc.data[SC_LIGHT_OF_REGENE]->val1,0));
+            status_change_end(&sd->hd->bl,SC_LIGHT_OF_REGENE,INVALID_TIMER);
+            return hp + sp;
+        }
+    }
+    if (target->type == BL_MOB && sc && sc->data[SC_REBIRTH] && !((TBL_MOB*) target)->state.rebirth) {// Ensure the monster has not already rebirthed before doing so.
+        status_revive(target, sc->data[SC_REBIRTH]->val2, 0);
 		status_change_clear(target,0);
 		((TBL_MOB*)target)->state.rebirth = 1;
 
@@ -2377,7 +2401,7 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 	memset (&sd->right_weapon.overrefine, 0, sizeof(sd->right_weapon) - sizeof(sd->right_weapon.atkmods));
 	memset (&sd->left_weapon.overrefine, 0, sizeof(sd->left_weapon) - sizeof(sd->left_weapon.atkmods));
 
-	if (sd->special_state.intravision) //Clear status change.
+	if (sd->special_state.intravision && !sd->sc.data[SC_INTRAVISION]) //Clear intravision as long as nothing else is using it
 		clif_status_load(&sd->bl, SI_INTRAVISION, 0);
 
 	memset(&sd->special_state,0,sizeof(sd->special_state));
@@ -3275,6 +3299,7 @@ static unsigned short status_calc_dmotion(struct block_list *bl, struct status_c
 #ifdef RENEWAL_ASPD
 static short status_calc_aspd(struct block_list *bl, struct status_change *sc, short flag);
 #endif
+static short status_calc_fix_aspd(struct block_list *bl, struct status_change *sc, int);
 static unsigned int status_calc_maxhp(struct block_list *,struct status_change *,unsigned int);
 static unsigned int status_calc_maxsp(struct block_list *,struct status_change *,unsigned int);
 static unsigned char status_calc_element(struct block_list *bl, struct status_change *sc, int element);
@@ -3830,12 +3855,12 @@ void status_calc_bl_main(struct block_list *bl, /*enum scb_flag*/int flag)
 			if(status->aspd_rate != 1000) // absolute percentage modifier
 				amotion = ( 200 - (200-amotion/10) * status->aspd_rate / 1000 ) * 10;
 #endif			
-			//fixed value added
+			//@TODO move FIGHTINGSPIRIT in fix_aspd
 			if( sc && sc->data[SC_FIGHTINGSPIRIT] && sc->data[SC_FIGHTINGSPIRIT]->val2 )
 				amotion -= (sd?pc_checkskill(sd, RK_RUNEMASTERY):10) / 10 * 40;
-
+				amotion = status_calc_fix_aspd(bl, sc, amotion);
 			status->amotion = cap_value(amotion,((sd->class_&JOBL_THIRD) ? battle_config.max_third_aspd : battle_config.max_aspd),2000);
-			
+
 			status->adelay = 2*status->amotion;
 		}
 		else
@@ -3847,6 +3872,7 @@ void status_calc_bl_main(struct block_list *bl, /*enum scb_flag*/int flag)
 			if(status->aspd_rate != 1000)
 				amotion = amotion*status->aspd_rate/1000;
 			
+			amotion = status_calc_fix_aspd(bl, sc, amotion);
 			status->amotion = cap_value(amotion,battle_config.max_aspd,2000);
 			
 			status->adelay = status->amotion;
@@ -3859,6 +3885,7 @@ void status_calc_bl_main(struct block_list *bl, /*enum scb_flag*/int flag)
 			if(status->aspd_rate != 1000)
 				amotion = amotion*status->aspd_rate/1000;
 			
+			amotion = status_calc_fix_aspd(bl, sc, amotion);
 			status->amotion = cap_value(amotion, battle_config.monster_max_aspd, 2000);
 			
 			temp = b_status->adelay*status->aspd_rate/1000;
@@ -4428,10 +4455,17 @@ static unsigned short status_calc_batk(struct block_list *bl, struct status_chan
 		batk += sc->data[SC_FULL_SWING_K]->val1;
 	if(sc->data[SC_ODINS_POWER])
 		batk += 70;
-	if(sc->data[SC_ANGRIFFS_MODUS])
-		batk += batk * sc->data[SC_ANGRIFFS_MODUS]->val2/100;
 	if( sc->data[SC_ZANGETSU] )
 		batk += batk * sc->data[SC_ZANGETSU]->val2 / 100;
+	if(sc->data[SC_ASH] && (bl->type==BL_MOB)){
+		if(status_get_element(bl) == ELE_WATER) //water type
+			batk /= 2;
+	}
+	if(sc->data[SC_PYROCLASTIC])
+		batk += sc->data[SC_PYROCLASTIC]->val2;
+	if (sc->data[SC_ANGRIFFS_MODUS])
+		batk += sc->data[SC_ANGRIFFS_MODUS]->val2;
+		
 	return (unsigned short)cap_value(batk,0,USHRT_MAX);
 }
 
@@ -4548,7 +4582,7 @@ static unsigned short status_calc_matk(struct block_list *bl, struct status_chan
 	if(sc->data[SC_FIRE_INSIGNIA] && sc->data[SC_FIRE_INSIGNIA]->val1 == 3)
 		matk += 50;	
 	if(sc->data[SC_ODINS_POWER])
-		matk += 70;	
+		matk += 40 + 30 * sc->data[SC_ODINS_POWER]->val1; //70 lvl1, 100lvl2
 	if(sc->data[SC_IZAYOI])
 		matk += 50 * sc->data[SC_IZAYOI]->val1;
 	if( sc->data[SC_ZANGETSU] )
@@ -4618,6 +4652,8 @@ static signed short status_calc_hit(struct block_list *bl, struct status_change 
 		hit -= hit * 20 / 100;
 	if(sc->data[SC_INSPIRATION])
 		hit += 5 * sc->data[SC_INSPIRATION]->val1;
+	if (sc->data[SC_ASH])
+		hit /= 2;	
 
 	return (short)cap_value(hit,1,SHRT_MAX);
 }
@@ -4689,13 +4725,19 @@ static signed short status_calc_flee(struct block_list *bl, struct status_change
 		flee += flee * sc->data[SC_ZEPHYR]->val2 / 100;
 	if( sc->data[SC_MARSHOFABYSS] )
 		flee -= (9 * sc->data[SC_MARSHOFABYSS]->val3 / 10 + sc->data[SC_MARSHOFABYSS]->val2 / 10) * (bl->type == BL_MOB ? 2 : 1);
-	if( sc->data[SC_ANGRIFFS_MODUS] )
-		flee -= flee * sc->data[SC_ANGRIFFS_MODUS]->val3 / 100;
 #ifdef RENEWAL
 	if( sc->data[SC_SPEARQUICKEN] )
 		flee += 2 * sc->data[SC_SPEARQUICKEN]->val1;
 #endif
-
+	if (sc->data[SC_ANGRIFFS_MODUS])
+		flee -= sc->data[SC_ANGRIFFS_MODUS]->val3;
+	if (sc->data[SC_OVERED_BOOST])
+		flee = max(flee,sc->data[SC_OVERED_BOOST]->val2);
+	if(sc->data[SC_ASH] && (bl->type==BL_MOB)){ //mob
+		if(status_get_element(bl) == ELE_WATER) //water type
+			flee /= 2;
+	}
+	
 	return (short)cap_value(flee,1,SHRT_MAX);
 }
 
@@ -4784,7 +4826,11 @@ static defType status_calc_def(struct block_list *bl, struct status_change *sc, 
 	if(sc->data[SC_ODINS_POWER])
 		def -= 20;
 	if( sc->data[SC_ANGRIFFS_MODUS] )
-		def -= def * sc->data[SC_ANGRIFFS_MODUS]->val4 / 100;
+		def -= 30 + 20 * sc->data[SC_ANGRIFFS_MODUS]->val1;
+	if(sc->data[SC_ASH] && (bl->type==BL_MOB)){
+		if(status_get_race(bl)==RC_PLANT)
+			def /= 2;
+	}
 	
 	return (defType)cap_value(def,DEFTYPE_MIN,DEFTYPE_MAX);;
 }
@@ -4840,8 +4886,14 @@ static signed short status_calc_def2(struct block_list *bl, struct status_change
 		def2 += sc->data[SC_SHIELDSPELL_REF]->val2;
 	if( sc->data[SC_BANDING] && sc->data[SC_BANDING]->val2 > 0 )
 		def2 += (5 + sc->data[SC_BANDING]->val1) * (sc->data[SC_BANDING]->val2);
-	if( sc->data[SC_GT_REVITALIZE] && sc->data[SC_GT_REVITALIZE]->val4)
+		if( sc->data[SC_GT_REVITALIZE] && sc->data[SC_GT_REVITALIZE]->val4)
 		def2 += def2 * sc->data[SC_GT_REVITALIZE]->val4 / 100;
+	if(sc->data[SC_ASH] && (bl->type==BL_MOB)){
+		if(status_get_race(bl)==RC_PLANT)
+			def2 /= 2;
+	}
+	if (sc->data[SC_PARALYSIS])
+		def2 -= def2 * sc->data[SC_PARALYSIS]->val2 / 100;
 
 #ifdef RENEWAL
 	return (short)cap_value(def2,SHRT_MIN,SHRT_MAX);
@@ -4892,10 +4944,10 @@ static defType status_calc_mdef(struct block_list *bl, struct status_change *sc,
 		mdef -= mdef * sc->data[SC_GT_CHANGE]->val4 / 100;
 	if(sc->data[SC_WATER_BARRIER])
 		mdef += sc->data[SC_WATER_BARRIER]->val2;
+	if (sc->data[SC_ODINS_POWER])
+		mdef -= 20 * sc->data[SC_ODINS_POWER]->val1;
 	if(sc->data[SC_EARTH_INSIGNIA] && sc->data[SC_EARTH_INSIGNIA]->val1 == 3)
-		mdef += 50;	
-	if(sc->data[SC_ODINS_POWER])
-		mdef -= 20;
+		mdef += 50;
 
 	return (defType)cap_value(mdef,DEFTYPE_MIN,DEFTYPE_MAX);
 }
@@ -5231,6 +5283,28 @@ static short status_calc_aspd(struct block_list *bl, struct status_change *sc, s
 }
 #endif
 
+static short status_calc_fix_aspd(struct block_list *bl, struct status_change *sc, int aspd) {
+    if (!sc || !sc->count)
+        return cap_value(aspd, 0, 2000);
+
+    if (!sc->data[SC_QUAGMIRE]) {
+        if (sc->data[SC_FIGHTINGSPIRIT])
+            aspd += sc->data[SC_FIGHTINGSPIRIT]->val3;
+        if ((sc->data[SC_GUST_OPTION]
+                || sc->data[SC_BLAST_OPTION]
+                || sc->data[SC_WILD_STORM_OPTION])
+                )
+            aspd -= 50; // ventus passive = +5 ASPD
+        if (sc->data[SC_OVERED_BOOST]){
+	    aspd = 2000 - sc->data[SC_OVERED_BOOST]->val3*10;
+        }
+//	if(sc->data[SC_FIGHTINGSPIRIT] && sc->data[SC_FIGHTINGSPIRIT]->val2 )
+//	    aspd -= (sd?pc_checkskill(sd, RK_RUNEMASTERY):10) * 4;
+    }
+
+    return cap_value(aspd, 0, 2000); // will be recap for proper bl anyway
+}
+
 /// Calculates an object's ASPD modifier (alters the base amotion value).
 /// Note that the scale of aspd_rate is 1000 = 100%.
 static short status_calc_aspd_rate(struct block_list *bl, struct status_change *sc, int aspd_rate)
@@ -5276,10 +5350,7 @@ static short status_calc_aspd_rate(struct block_list *bl, struct status_change *
 		if(sc->data[SC_FLEET] &&
 			max < sc->data[SC_FLEET]->val2)
 			max = sc->data[SC_FLEET]->val2;
-		
-		if( sc->data[SC_GOLDENE_FERSE] && max < sc->data[SC_GOLDENE_FERSE]->val3 )
-			max = sc->data[SC_GOLDENE_FERSE]->val3;
-		
+
 		if(sc->data[SC_ASSNCROS] &&
 			max < sc->data[SC_ASSNCROS]->val2)
 		{
@@ -5365,6 +5436,10 @@ static short status_calc_aspd_rate(struct block_list *bl, struct status_change *
 		aspd_rate -= sc->data[SC_EXTRACT_SALAMINE_JUICE]->val1 * 10;
 	if( sc->data[SC_INCASPDRATE] )
 		aspd_rate -= sc->data[SC_INCASPDRATE]->val1 * 10;
+	if( sc->data[SC_PAIN_KILLER])
+		aspd_rate += sc->data[SC_PAIN_KILLER]->val2 * 10;
+	if( sc->data[SC_GOLDENE_FERSE])
+		aspd_rate -= sc->data[SC_GOLDENE_FERSE]->val3 * 10;	
 
 	return (short)cap_value(aspd_rate,0,SHRT_MAX);
 }
@@ -5435,8 +5510,10 @@ static unsigned int status_calc_maxhp(struct block_list *bl, struct status_chang
 		maxhp -= sc->data[SC_MYSTERIOUS_POWDER]->val1 / 100;
 	if(sc->data[SC_EARTH_INSIGNIA] && sc->data[SC_EARTH_INSIGNIA]->val1 == 2)
 		maxhp += 500;
-	if( sc->data[SC_GOLDENE_FERSE ] )
-		maxhp += maxhp * sc->data[SC_GOLDENE_FERSE ]->val2 / 100;
+	if (sc->data[SC_ANGRIFFS_MODUS])
+		maxhp += maxhp * 5 * sc->data[SC_ANGRIFFS_MODUS]->val1 /100;
+	if (sc->data[SC_GOLDENE_FERSE])
+		maxhp += (maxhp * sc->data[SC_GOLDENE_FERSE]->val2) / 100;
 	
 	return cap_value(maxhp,1,UINT_MAX);
 }
@@ -5541,8 +5618,8 @@ unsigned char status_calc_attack_element(struct block_list *bl, struct status_ch
 		return ELE_WATER;
 	/*if(sc->data[SC_GOLDENE_FERSE] && ud->skillid == MH_STAHL_HORN) 
 		return ELE_HOLY;*/
-	if(sc->data[SC_GOLDENE_FERSE] && rand()%100 < sc->data[SC_GOLDENE_FERSE]->val4)
-		return ELE_HOLY;
+	if(sc->data[SC_PYROCLASTIC])
+        return ELE_FIRE;	
 	return (unsigned char)cap_value(element,0,UCHAR_MAX);
 }
 
@@ -6141,6 +6218,9 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 	case SC_KYOUGAKU:
 		tick -= 30*status->int_;
 		break;
+	case SC_PARALYSIS:
+		tick -= 50 * (status->vit + status->luk); //(1000/20);
+		break;
 	default:
 		//Effect that cannot be reduced? Likely a buff.
 		if (!(rnd()%10000 < rate))
@@ -6329,6 +6409,12 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 	undead_flag = battle_check_undead(status->race,status->def_ele);
 	//Check for inmunities / sc fails
 	switch (type) {
+	case SC_ANGRIFFS_MODUS:
+	case SC_GOLDENE_FERSE:
+		if ((type==SC_GOLDENE_FERSE && sc->data[SC_ANGRIFFS_MODUS])
+			|| (type==SC_ANGRIFFS_MODUS && sc->data[SC_GOLDENE_FERSE])
+			)
+			return 0;
 	case SC_STONE:
 		if(sc->data[SC_POWER_OF_GAIA])
 			return 0;
@@ -6605,15 +6691,11 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 				if(sc->data[i])	return 0;
 		}
 	break;
-	
+
 	case SC_SATURDAYNIGHTFEVER:
 		if (sc->data[SC_BERSERK] || sc->data[SC_INSPIRATION] || sc->data[SC__BLOODYLUST])
 			return 0;
 		break;
-		
-	case SC_INTRAVISION:
-        if(sd && sd->special_state.intravision) return 0; //we already have the status by maya P
-        break;
 	}
 
 	//Check for BOSS resistances
@@ -6634,6 +6716,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			case SC_BURNING: // Place here until we have info about its behavior on Boss-monsters. [pakpil]
 			case SC_MARSHOFABYSS:
 			case SC_ADORAMUS:
+			case SC_PARALYSIS:
 
 			// Exploit prevention - kRO Fix
 			case SC_PYREXIA:
@@ -6809,36 +6892,42 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 	case SC_MOONLITSERENADE:
 	case SC_RUSHWINDMILL:
 	case SC_ECHOSONG:
-	case SC_HARMONIZE:
+	case SC_HARMONIZE: //group A doesn't overlap
+		if (type != SC_SWINGDANCE) status_change_end(bl, SC_SWINGDANCE, INVALID_TIMER);
+		if (type != SC_SYMPHONYOFLOVER) status_change_end(bl, SC_SYMPHONYOFLOVER, INVALID_TIMER);
+		if (type != SC_MOONLITSERENADE) status_change_end(bl, SC_MOONLITSERENADE, INVALID_TIMER);
+		if (type != SC_RUSHWINDMILL) status_change_end(bl, SC_RUSHWINDMILL, INVALID_TIMER);
+		if (type != SC_ECHOSONG) status_change_end(bl, SC_ECHOSONG, INVALID_TIMER);
+		if (type != SC_HARMONIZE) status_change_end(bl, SC_HARMONIZE, INVALID_TIMER);
+		break;
 	case SC_VOICEOFSIREN:
 	case SC_DEEPSLEEP:
-	case SC_SIRCLEOFNATURE:
-		if( sc->data[type] ) // Don't remove same sc.
-			break;
-		status_change_end(bl, SC_SWINGDANCE, INVALID_TIMER);
-		status_change_end(bl, SC_SYMPHONYOFLOVER, INVALID_TIMER);
-		status_change_end(bl, SC_MOONLITSERENADE, INVALID_TIMER);
-		status_change_end(bl, SC_RUSHWINDMILL, INVALID_TIMER);
-		status_change_end(bl, SC_ECHOSONG, INVALID_TIMER);
-		status_change_end(bl, SC_HARMONIZE, INVALID_TIMER);
-		status_change_end(bl, SC_VOICEOFSIREN, INVALID_TIMER);
-		status_change_end(bl, SC_DEEPSLEEP, INVALID_TIMER);
-		status_change_end(bl, SC_SIRCLEOFNATURE, INVALID_TIMER);
-			break;
+	case SC_GLOOMYDAY:
 	case SC_SONGOFMANA:
 	case SC_DANCEWITHWUG:
+	case SC_SATURDAYNIGHTFEVER:
 	case SC_LERADSDEW:
 	case SC_MELODYOFSINK:
 	case SC_BEYONDOFWARCRY:
-	case SC_UNLIMITEDHUMMINGVOICE:
-		if( sc->data[type] ) // Don't remove same sc.
-			break; //FIXME this is wrong as it'll prevent other being remove as well 
-		status_change_end(bl, SC_SONGOFMANA, INVALID_TIMER);
-		status_change_end(bl, SC_DANCEWITHWUG, INVALID_TIMER);
-		status_change_end(bl, SC_LERADSDEW, INVALID_TIMER);
-		status_change_end(bl, SC_MELODYOFSINK, INVALID_TIMER);
-		status_change_end(bl, SC_BEYONDOFWARCRY, INVALID_TIMER);
-		status_change_end(bl, SC_UNLIMITEDHUMMINGVOICE, INVALID_TIMER);
+	case SC_UNLIMITEDHUMMINGVOICE: //group B
+		if (type != SC_VOICEOFSIREN) status_change_end(bl, SC_VOICEOFSIREN, INVALID_TIMER);
+		if (type != SC_DEEPSLEEP) status_change_end(bl, SC_DEEPSLEEP, INVALID_TIMER);
+		if (type != SC_LERADSDEW) status_change_end(bl, SC_LERADSDEW, INVALID_TIMER);
+		if (type != SC_MELODYOFSINK) status_change_end(bl, SC_MELODYOFSINK, INVALID_TIMER);
+		if (type != SC_BEYONDOFWARCRY) status_change_end(bl, SC_BEYONDOFWARCRY, INVALID_TIMER);
+		if (type != SC_UNLIMITEDHUMMINGVOICE) status_change_end(bl, SC_UNLIMITEDHUMMINGVOICE, INVALID_TIMER);
+		if (type != SC_GLOOMYDAY) {
+			status_change_end(bl, SC_GLOOMYDAY, INVALID_TIMER);
+			status_change_end(bl, SC_GLOOMYDAY_SK, INVALID_TIMER);
+            }
+		if (type != SC_SONGOFMANA) status_change_end(bl, SC_SONGOFMANA, INVALID_TIMER);
+		if (type != SC_DANCEWITHWUG) status_change_end(bl, SC_DANCEWITHWUG, INVALID_TIMER);
+		if (type != SC_SATURDAYNIGHTFEVER) {
+		if (sc->data[SC_SATURDAYNIGHTFEVER]) {
+			sc->data[SC_SATURDAYNIGHTFEVER]->val2 = 0; //mark to not lose hp
+			status_change_end(bl, SC_SATURDAYNIGHTFEVER, INVALID_TIMER);
+                }
+            }
 		break;
 	case SC_REFLECTSHIELD:
 		status_change_end(bl, SC_REFLECTDAMAGE, INVALID_TIMER);
@@ -7678,16 +7767,6 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			val2 = 20+10*val1; //Atk rate change.
 			val3 = 3*val1; //Leech chance
 			val4 = 20; //Leech percent
-			break;
-		case SC_ANGRIFFS_MODUS:
-			val2 = 70 + 30*val1; //atk
-			val3 = 50 + 20*val1; //flee
-			val4 = 60 + 20*val1; //def
-			break;
-		case SC_GOLDENE_FERSE:
-			val2 = 20 + 10*val1; //maxhp
-			val3 = 10 + 4*val1; //aspd
-			val4 = 2 + 2*val1; //chance to issue holy-ele attack
 			break;			
 		case SC_FLEET:
 			val2 = 30*val1; //Aspd change
@@ -8376,6 +8455,41 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 					status_zap(bl, hp * (lv*4) / 100, status_get_sp(bl) * (lv*3) / 100);
 			}
 			break;
+			case SC_ANGRIFFS_MODUS:
+			    val2 = 50 + 20 * val1; //atk bonus
+			    val3 = 40 + 20 * val1; // Flee reduction.
+			    val4 = tick/1000; // hp/sp reduction timer
+			    tick_time = 1000;
+			    break;
+			case SC_GOLDENE_FERSE:
+			    val2 = 10 + 10*val1; //max hp bonus
+			    val3 = 6 + 4 * val1; // Aspd Bonus
+			    val4 = 2 + 2 * val1; // Chance of holy attack
+			    break;
+			case SC_OVERED_BOOST:
+			    val2 = 300 + 40*val1; //flee bonus
+			    val3 = 179 + 2*val1; //aspd bonus
+			    break;
+			case SC_GRANITIC_ARMOR:
+			    val2 = 2*val1; //dmg reduction
+			    val3 = 6*val1; //dmg on status end
+			    break;
+			case SC_MAGMA_FLOW:
+			    val2 = 3*val1; //activation chance
+			    break;
+			case SC_PYROCLASTIC:
+			    val2 += 10*val1; //atk bonus
+			    break;
+			case SC_PARALYSIS: //[Lighta] need real info
+			    val2 = 2*val1; //def reduction
+			    val3 = 500*val1; //varcast augmentation
+			    break;
+			case SC_PAIN_KILLER: //[Lighta] need real info
+			    val2 = 2*val1; //aspd reduction %
+			    val3 = 2*val1; //dmg reduction %
+			    if(sc->data[SC_PARALYSIS])
+				sc_start(bl, SC_ENDURE, 100, val1, tick); //start endure for same duration
+			    break;
 		default:
 			if( calc_flag == SCB_NONE && StatusSkillChangeTable[type] == 0 && StatusIconChangeTable[type] == 0 )
 			{	//Status change with no calc, no icon, and no skill associated...? 
@@ -8432,6 +8546,7 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_NETHERWORLD:
 		case SC_MEIKYOUSISUI:
 		case SC_KYOUGAKU:
+		case SC_PARALYSIS:
 			unit_stop_walking(bl,1);
 		break;
 		case SC_HIDING:
@@ -8900,6 +9015,17 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 	vd = status_get_viewdata(bl);
 	calc_flag = StatusChangeFlagTable[type];
 	switch(type){
+		case SC_GRANITIC_ARMOR:{
+            int dammage = status->max_hp*sce->val3/100;
+            if(status->hp < dammage) //to not kill him
+                dammage = status->hp-1;
+            status_damage(NULL, bl, dammage,0,0,1);
+            break;
+        }
+        case SC_PYROCLASTIC:
+            if(bl->type == BL_PC)
+                skill_break_equip(bl,EQP_WEAPON,10000,BCT_SELF);
+            break;
 		case SC_WEDDING:
 		case SC_XMAS:
 		case SC_SUMMER:
@@ -9313,6 +9439,9 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 			clif_status_load(bl, SI_KYOUGAKU, 0); // Avoid client crash
 			clif_status_load(bl, SI_ACTIVE_MONSTER_TRANSFORM, 0);
 			break;
+		case SC_INTRAVISION:
+			calc_flag = SCB_ALL;/* required for overlapping */
+			break;	
 		}
 
 	opt_flag = 1;
@@ -10296,8 +10425,7 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 	case SC_WIND_STEP:
 	case SC_STONE_SHIELD:
 	case SC_SOLID_SKIN:
-		if( !status_charge(bl,0,sce->val2) )
-		{
+		if( !status_charge(bl,0,sce->val2) ){
 			struct block_list *s_bl = battle_get_master(bl);
 			if( s_bl )
 				status_change_end(s_bl,type+1,INVALID_TIMER);
@@ -10308,8 +10436,7 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 		return 0;
 
 	case SC_STOMACHACHE:
-		if( --(sce->val4) > 0 )
-		{
+		if( --(sce->val4) > 0 ){
 			status_charge(bl,0,sce->val2);	// Reduce 8 every 10 seconds.
 			if( sd && !pc_issit(sd) )	// Force to sit every 10 seconds.
 			{
@@ -10330,8 +10457,7 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 		sc_timer_next(600000 + tick, status_change_timer, bl->id, data);
 		return 0;
 	case SC_MEIKYOUSISUI:
-		if( --(sce->val4) > 0 )
-		{ 
+		if( --(sce->val4) > 0 ){
 			status_heal(bl, status->max_hp * (sce->val1+1) / 100, status->max_sp * sce->val1 / 100, 0);
 			sc_timer_next(1000 + tick, status_change_timer, bl->id, data);
 			return 0;
@@ -10339,11 +10465,16 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 		break;
 	case SC_IZAYOI:
 	case SC_KAGEMUSYA:
-		if( --(sce->val2) > 0 )
-		{ 
-			if(!status_charge(bl, 0, 1))
-				break;
+		if( --(sce->val2) > 0 ){
+			if(!status_charge(bl, 0, 1)) break;
 			sc_timer_next(1000+tick, status_change_timer, bl->id, data);
+			return 0;
+		}
+		break;
+	case SC_ANGRIFFS_MODUS:
+		if(--(sce->val4) >= 0) { //drain hp/sp
+			if( !status_charge(bl,100,20) ) break;
+			sc_timer_next(1000+tick,status_change_timer,bl->id, data);
 			return 0;
 		}
 		break;

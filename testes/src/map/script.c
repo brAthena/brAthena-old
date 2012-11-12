@@ -2151,10 +2151,10 @@ static void add_buildin_func(void)
 			str_data[n].val = i;
 			str_data[n].func = buildin_func[i].func;
 
-			if( !strcmp(buildin_func[i].name, "set") ) buildin_set_ref = n; else
-			if( !strcmp(buildin_func[i].name, "callsub") ) buildin_callsub_ref = n; else
-			if( !strcmp(buildin_func[i].name, "callfunc") ) buildin_callfunc_ref = n; else
-			if( !strcmp(buildin_func[i].name, "getelementofarray") ) buildin_getelementofarray_ref = n;
+			if (!strcmp(buildin_func[i].name, "set")) buildin_set_ref = n;
+            else if (!strcmp(buildin_func[i].name, "callsub")) buildin_callsub_ref = n;
+            else if (!strcmp(buildin_func[i].name, "callfunc")) buildin_callfunc_ref = n;
+            else if( !strcmp(buildin_func[i].name, "getelementofarray") ) buildin_getelementofarray_ref = n;
 		}
 	}
 }
@@ -10384,7 +10384,7 @@ BUILDIN_FUNC(warpwaitingpc)
 			{// no zeny to cover set fee
 				break;
 			}
-			pc_payzeny(sd, cd->zeny);
+			pc_payzeny(sd, cd->zeny, LOG_TYPE_NPC, NULL);
 		}
 
 		mapreg_setreg(reference_uid(add_str("$@warpwaitingpc"), i), sd->bl.id);

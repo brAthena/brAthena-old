@@ -716,6 +716,8 @@ REPLACE INTO `homun_skill_tree_db` VALUES(6048, 8026, 5, 0, 0, 0, 0, 0, 0, 0, 0,
 REPLACE INTO `homun_skill_tree_db` VALUES(6049, 8031, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 REPLACE INTO `homun_skill_tree_db` VALUES(6049, 8032, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 REPLACE INTO `homun_skill_tree_db` VALUES(6049, 8033, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6049, 8034, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `homun_skill_tree_db` VALUES(6049, 8035, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 REPLACE INTO `homun_skill_tree_db` VALUES(6050, 8018, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 REPLACE INTO `homun_skill_tree_db` VALUES(6050, 8019, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 REPLACE INTO `homun_skill_tree_db` VALUES(6050, 8020, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
@@ -729,8 +731,6 @@ REPLACE INTO `homun_skill_tree_db` VALUES(6052, 8027, 1, 0, 0, 0, 0, 0, 0, 0, 0,
 REPLACE INTO `homun_skill_tree_db` VALUES(6052, 8028, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 REPLACE INTO `homun_skill_tree_db` VALUES(6052, 8029, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 REPLACE INTO `homun_skill_tree_db` VALUES(6052, 8030, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-REPLACE INTO `homun_skill_tree_db` VALUES(6052, 8034, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-REPLACE INTO `homun_skill_tree_db` VALUES(6052, 8035, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 REPLACE INTO `homun_skill_tree_db` VALUES(6052, 8036, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 REPLACE INTO `homun_skill_tree_db` VALUES(6052, 8037, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 REPLACE INTO `homun_skill_tree_db` VALUES(6052, 8038, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
@@ -14312,10 +14312,10 @@ REPLACE INTO `skill_require_db` VALUES(2341, '0', '0', '50', '0', '0', 0, '99', 
 REPLACE INTO `skill_require_db` VALUES(2342, '0', '0', '1', '0', '0', 0, '99', 0, '0', 'none', '0', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 REPLACE INTO `skill_require_db` VALUES(2343, '0', '0', '11:12:13:14:15:16:17:18:19:20', '0', '-11:-12:-13:-14:-15:-16:-17:-18:-19:-20', 0, '99', 0, '0', 'none', '5', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 REPLACE INTO `skill_require_db` VALUES(2344, '0', '0', '20:25:30:35:40', '0', '0', 0, '99', 0, '0', 'none', '0', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-REPLACE INTO `skill_require_db` VALUES(2345, '0', '0', '40:50:60:70:80', '0', '0', 0, '99', 0, '0', 'none', '1', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `skill_require_db` VALUES(2345, '0', '0', '40:50:60:70:80', '0', '0', 0, '99', 0, '0', 'none', '1:2:3:4:5', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 REPLACE INTO `skill_require_db` VALUES(2346, '0', '0', '40:50:60:70:80', '-1:-2:-3:-4:-5', '0', 0, '99', 0, '0', 'none', '0', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-REPLACE INTO `skill_require_db` VALUES(2347, '0', '0', '40:50:60:70:80', '-2:-4:-6:-8:-10', '0', 0, '99', 0, '0', 'none', '2', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
-REPLACE INTO `skill_require_db` VALUES(2348, '0', '0', '40:50:60:70:80', '0', '0', 0, '99', 0, '0', 'none', '2', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `skill_require_db` VALUES(2347, '0', '0', '40:50:60:70:80', '-2:-4:-6:-8:-10', '0', 0, '99', 0, '0', 'none', '1:2:3:4:5', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+REPLACE INTO `skill_require_db` VALUES(2348, '0', '0', '40:50:60:70:80', '0', '0', 0, '99', 0, '0', 'none', '1:2:3:4:5', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 REPLACE INTO `skill_require_db` VALUES(2517, '0', '0', '40:45:50:55:60', '0', '0', 0, '99', 0, '0', 'none', '1:2:3:4:5', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 REPLACE INTO `skill_require_db` VALUES(2518, '0', '0', '40:50:60:70:80', '0', '0', 0, '99', 0, '0', 'none', '1:2:3:4:5', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 REPLACE INTO `skill_require_db` VALUES(2350, '0', '0', '96:112:128:144:160', '0', '0', 0, '13:14', 0, '0', 'none', '0', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
@@ -19984,7 +19984,7 @@ REPLACE INTO `skill_unit_db` VALUES(2444, '0xdd', '', '0', '0', 1000, 'enemy', '
 REPLACE INTO `skill_unit_db` VALUES(2446, '0x86', '', '0', '3:3:3:4:4', 1000, 'enemy', '0x018\r\n');
 REPLACE INTO `skill_unit_db` VALUES(2447, '0x86', '', '0', '3:3:3:4:4', 1000, 'enemy', '0x018\r\n');
 REPLACE INTO `skill_unit_db` VALUES(2449, '0xdf', '', '0', '3:3:4:4:5', 500, 'enemy', '0x018\r\n');
-REPLACE INTO `skill_unit_db` VALUES(2450, '0xe0', '', '3', '0', 500, 'enemy', '0x010\r\n');
+REPLACE INTO `skill_unit_db` VALUES(2450, '0xe0', '', '0', '3', 500, 'enemy', '0x010\r\n');
 REPLACE INTO `skill_unit_db` VALUES(2452, '0xe4', '', '0', '3', 3000, 'all', '0x010\r\n');
 REPLACE INTO `skill_unit_db` VALUES(2453, '0xeb', '', '0', '1:1:2:2:3', 1000, 'enemy', '0x010\r\n');
 REPLACE INTO `skill_unit_db` VALUES(2465, '0xf1', '', '0', '2', 1000, 'all', '0x010\r\n');

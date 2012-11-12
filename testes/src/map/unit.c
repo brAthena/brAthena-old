@@ -1250,6 +1250,7 @@ int unit_skilluse_id2(struct block_list *src, int target_id, short skill_num, sh
 	case RA_WUGDASH:
 		if (sc && sc->data[SC_WUGDASH])
 			casttime = -1;
+		break;	
 	}
 	
 	// moved here to prevent Suffragium from ending if skill fails
@@ -1260,12 +1261,11 @@ int unit_skilluse_id2(struct block_list *src, int target_id, short skill_num, sh
 	casttime = skill_vfcastfix(src, casttime, skill_num, skill_lv); 
 #endif
 	
+	unit_stop_walking(src,1);// eventhough this is not how official works but this will do the trick. bugreport:6829
 	// in official this is triggered even if no cast time.
 	clif_skillcasting(src, src->id, target_id, 0,0, skill_num, skill_get_ele(skill_num, skill_lv), casttime);
 	if( casttime > 0 || temp )
 	{ 
-		unit_stop_walking(src,1);
-
 		if (sd && target->type == BL_MOB)
 		{
 			TBL_MOB *md = (TBL_MOB*)target;
@@ -1453,11 +1453,12 @@ int unit_skilluse_pos2( struct block_list *src, short skill_x, short skill_y, sh
 			if (!src->prev) return 0;
 		}
 	}
+	
+	unit_stop_walking(src,1);
 	// in official this is triggered even if no cast time.
 	clif_skillcasting(src, src->id, 0, skill_x, skill_y, skill_num, skill_get_ele(skill_num, skill_lv), casttime);
 	if( casttime > 0 )
 	{
-		unit_stop_walking(src,1);
 		ud->skilltimer = add_timer( tick+casttime, skill_castend_pos, src->id, 0 );
 		if( (sd && pc_checkskill(sd,SA_FREECAST) > 0) || skill_num == LG_EXEEDBREAK)
 			status_calc_bl(&sd->bl, SCB_SPEED);
@@ -1869,7 +1870,7 @@ int unit_skillcastcancel(struct block_list *bl,int type)
 			return 0;
 
 		if (sd && (sd->special_state.no_castcancel2 ||
-			(sd->special_state.no_castcancel && !map_flag_gvg(bl->m) && !map[bl->m].flag.battleground))) //fixed flags being read the wrong way around [blackhole89]
+                ((sd->sc.data[SC_UNLIMITEDHUMMINGVOICE] || sd->special_state.no_castcancel) && !map_flag_gvg(bl->m) && !map[bl->m].flag.battleground))) //fixed flags being read the wrong way around [blackhole89]
 			return 0;
 	}
 	
@@ -2024,9 +2025,11 @@ int unit_remove_map_(struct block_list *bl, clr_type clrtype, const char* file, 
 		status_change_end(bl, SC_CHANGE, INVALID_TIMER);
 		status_change_end(bl, SC_STOP, INVALID_TIMER);
 		status_change_end(bl, SC_WUGDASH, INVALID_TIMER);
+		status_change_end(bl, SC_CAMOUFLAGE, INVALID_TIMER);
 		status_change_end(bl, SC__SHADOWFORM, INVALID_TIMER);
 		status_change_end(bl, SC__MANHOLE, INVALID_TIMER);
-
+		status_change_end(bl, SC_VACUUM_EXTREME, INVALID_TIMER);
+		status_change_end(bl, SC_CURSEDCIRCLE_ATKER, INVALID_TIMER); //callme before warp
 	}
 
 	if (bl->type&(BL_CHAR|BL_PET)) {

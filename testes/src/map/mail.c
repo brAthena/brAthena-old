@@ -48,9 +48,7 @@ int mail_removezeny(struct map_session_data *sd, short flag)
 
 	if (flag && sd->mail.zeny > 0)
 	{  //Zeny send
-		log_zeny(sd, LOG_TYPE_MAIL, sd, -sd->mail.zeny);
-
-		sd->status.zeny -= sd->mail.zeny;
+		pc_payzeny(sd,sd->mail.zeny,LOG_TYPE_MAIL, NULL);
 	}
 	sd->mail.zeny = 0;
 	clif_updatestatus(sd, SP_ZENY);
@@ -140,8 +138,7 @@ void mail_getattachment(struct map_session_data* sd, int zeny, struct item* item
 
 	if( zeny > 0 )
 	{  //Zeny receive
-		log_zeny(sd, LOG_TYPE_MAIL, sd, zeny);
-		pc_getzeny(sd, zeny);
+		pc_getzeny(sd, zeny,LOG_TYPE_MAIL, NULL);
 	}
 }
 
@@ -170,13 +167,9 @@ void mail_deliveryfail(struct map_session_data *sd, struct mail_message *msg)
 
 	if( msg->zeny > 0 )
 	{
-		//Zeny receive (due to failure)
-		log_zeny(sd, LOG_TYPE_MAIL, sd, msg->zeny);
-
-		sd->status.zeny += msg->zeny;
-		clif_updatestatus(sd, SP_ZENY);
+		pc_getzeny(sd,msg->zeny,LOG_TYPE_MAIL, NULL); //Zeny receive (due to failure)
 	}
-	
+
 	clif_Mail_send(sd->fd, true);
 }
 

@@ -1826,8 +1826,7 @@ static void intif_parse_Auction_register(int fd)
 		clif_Auction_message(sd->fd, 4);
 		pc_additem(sd, &auction.item, auction.item.amount, LOG_TYPE_AUCTION);
 
-		log_zeny(sd, LOG_TYPE_AUCTION, sd, zeny);
-		pc_getzeny(sd, zeny);
+		pc_getzeny(sd, zeny, LOG_TYPE_AUCTION,NULL);
 	}
 }
 
@@ -1924,8 +1923,7 @@ static void intif_parse_Auction_bid(int fd)
 	clif_Auction_message(sd->fd, result);
 	if( bid > 0 )
 	{
-		log_zeny(sd, LOG_TYPE_AUCTION, sd, bid);
-		pc_getzeny(sd, bid);
+		pc_getzeny(sd, bid, LOG_TYPE_AUCTION,NULL);
 	}
 	if( result == 1 )
 	{ // To update the list, display your buy list

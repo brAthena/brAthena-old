@@ -1515,11 +1515,7 @@ int npc_buylist(struct map_session_data* sd, int n, unsigned short* item_list)
 	if( pc_inventoryblank(sd) < new_ )
 		return 3;	// Not enough space to store items
 
-	//Logs (S)hopping Zeny [Lupus]
-	log_zeny(sd, LOG_TYPE_NPC, sd, -(int)z);
-	//Logs
-
-	pc_payzeny(sd,(int)z);
+	pc_payzeny(sd,(int)z,LOG_TYPE_NPC, NULL);
 
 	for( i = 0; i < n; ++i )
 	{
@@ -1691,11 +1687,7 @@ int npc_selllist(struct map_session_data* sd, int n, unsigned short* item_list)
 	if( z > MAX_ZENY )
 		z = MAX_ZENY;
 
-	//Logs (S)hopping Zeny [Lupus]
-	log_zeny(sd, LOG_TYPE_NPC, sd, (int)z);
-	//Logs
-
-	pc_getzeny(sd, (int)z);
+	pc_getzeny(sd, (int)z, LOG_TYPE_NPC, NULL);
 
 	// custom merchant shop exp bonus
 	if( battle_config.shop_exp > 0 && z > 0 && ( skill = pc_checkskill(sd,MC_OVERCHARGE) ) > 0)
@@ -2016,9 +2008,9 @@ static void npc_parsename(struct npc_data* nd, const char* name, const char* sta
 }
 
 //Add then display an npc warp on map
-struct npc_data* npc_add_warp(short from_mapid, short from_x, short from_y, short xs, short ys, unsigned short to_mapindex, short to_x, short to_y)
+struct npc_data* npc_add_warp(char* name, short from_mapid, short from_x, short from_y, short xs, short ys, unsigned short to_mapindex, short to_x, short to_y)
 {
-	int i;
+	int i, flag = 0;
 	struct npc_data *nd;
 
 	CREATE(nd, struct npc_data, 1);
@@ -2028,7 +2020,17 @@ struct npc_data* npc_add_warp(short from_mapid, short from_x, short from_y, shor
 	nd->bl.m = from_mapid;
 	nd->bl.x = from_x;
 	nd->bl.y = from_y;
-	snprintf(nd->exname, ARRAYLENGTH(nd->exname), "warp_%d_%d_%d", from_mapid, from_x, from_y);
+	
+	if (name)
+	{
+		safestrncpy(nd->exname, name, ARRAYLENGTH(nd->exname));
+		if (npc_name2id(nd->exname) != NULL)
+			flag = 1;
+	}
+	
+	if (name[0] == '\0' || flag == 1)
+		snprintf(nd->exname, ARRAYLENGTH(nd->exname), "warp_%d_%d_%d", from_mapid, from_x, from_y);
+
 	for( i = 0; npc_name2id(nd->exname) != NULL; ++i )
 		snprintf(nd->exname, ARRAYLENGTH(nd->exname), "warp%d_%d_%d_%d", i, from_mapid, from_x, from_y);
 	safestrncpy(nd->name, nd->exname, ARRAYLENGTH(nd->name));

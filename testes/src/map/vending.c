@@ -168,13 +168,10 @@ void vending_purchasereq(struct map_session_data* sd, int aid, int uid, const ui
 		}
 	}
 
-	//Logs (V)ending Zeny [Lupus]
-	log_zeny(vsd, LOG_TYPE_VENDING, sd, (int)z);
-
-	pc_payzeny(sd, (int)z);
+	pc_payzeny(sd, (int)z, LOG_TYPE_VENDING, vsd);
 	if( battle_config.vending_tax )
 		z -= z * (battle_config.vending_tax/10000.);
-	pc_getzeny(vsd, (int)z);
+	pc_getzeny(vsd, (int)z, LOG_TYPE_VENDING, sd);
 
 	for( i = 0; i < count; i++ )
 	{

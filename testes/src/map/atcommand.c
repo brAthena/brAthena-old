@@ -2586,32 +2586,14 @@ ACMD_FUNC(skillpoint)
  *------------------------------------------*/
 ACMD_FUNC(zeny)
 {
-	int zeny, new_zeny;
+	int zeny;
 	nullpo_retr(-1, sd);
 
 	if (!message || !*message || (zeny = atoi(message)) == 0) {
 		clif_displaymessage(fd, msg_txt(1012)); // Please enter an amount (usage: @zeny <amount>).
 		return -1;
 	}
-
-	new_zeny = sd->status.zeny + zeny;
-	if (zeny > 0 && (zeny > MAX_ZENY || new_zeny > MAX_ZENY)) // fix positiv overflow
-		new_zeny = MAX_ZENY;
-	else if (zeny < 0 && (zeny < -MAX_ZENY || new_zeny < 0)) // fix negativ overflow
-		new_zeny = 0;
-
-	if (new_zeny != sd->status.zeny) {
-		sd->status.zeny = new_zeny;
-		clif_updatestatus(sd, SP_ZENY);
-		clif_displaymessage(fd, msg_txt(176)); // Current amount of zeny changed.
-	} else {
-		if (zeny < 0)
-			clif_displaymessage(fd, msg_txt(41)); // Unable to decrease the number/value.
-		else
-			clif_displaymessage(fd, msg_txt(149)); // Unable to increase the number/value.
-		return -1;
-	}
-
+	pc_getzeny(sd,zeny,LOG_TYPE_COMMAND,NULL);
 	return 0;
 }
 
@@ -3453,7 +3435,7 @@ ACMD_FUNC(spiritball)
 	if( sd->spiritball > 0 )
 		pc_delspiritball(sd, sd->spiritball, 1);
 	sd->spiritball = number;
-	clif_spiritball(sd);
+	clif_spiritball(&sd->bl);
 	// no message, player can look the difference
 
 	return 0;
@@ -5292,15 +5274,16 @@ ACMD_FUNC(npcmove)
  *------------------------------------------*/
 ACMD_FUNC(addwarp)
 {
-	char mapname[32];
+	char mapname[32], warpname[NAME_LENGTH+1];
 	int x,y;
 	unsigned short m;
 	struct npc_data* nd;
 
 	nullpo_retr(-1, sd);
+	memset(warpname, '\0', sizeof(warpname));
 
-	if (!message || !*message || sscanf(message, "%31s %d %d", mapname, &x, &y) < 3) {
-		clif_displaymessage(fd, msg_txt(1156)); // Usage: @addwarp <mapname> <X> <Y>
+	if (!message || !*message || sscanf(message, "%31s %d %d %23[^\n]", mapname, &x, &y, warpname) < 3) {
+		clif_displaymessage(fd, msg_txt(1156)); // Usage: @addwarp <mapname> <X> <Y> {<npc name>}
 		return -1;
 	}
 
@@ -5312,7 +5295,7 @@ ACMD_FUNC(addwarp)
 		return -1;
 	}
 
-	nd = npc_add_warp(sd->bl.m, sd->bl.x, sd->bl.y, 2, 2, m, x, y);
+	nd = npc_add_warp(warpname, sd->bl.m, sd->bl.x, sd->bl.y, 2, 2, m, x, y);
 	if( nd == NULL )
 		return -1;
 

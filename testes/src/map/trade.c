@@ -580,20 +580,11 @@ void trade_tradecommit(struct map_session_data *sd)
 
 	if( sd->deal.zeny || tsd->deal.zeny )
 	{
-		sd->status.zeny += tsd->deal.zeny - sd->deal.zeny;
-		tsd->status.zeny += sd->deal.zeny - tsd->deal.zeny;
-
-		//Logs Zeny (T)rade [Lupus]
-		if( sd->deal.zeny )
-			log_zeny(tsd, LOG_TYPE_TRADE, sd, sd->deal.zeny);
-		if( tsd->deal.zeny )
-			log_zeny(sd, LOG_TYPE_TRADE, tsd, tsd->deal.zeny);
+		pc_getzeny(sd,tsd->deal.zeny - sd->deal.zeny,LOG_TYPE_TRADE, tsd);
+		pc_getzeny(tsd,sd->deal.zeny - tsd->deal.zeny,LOG_TYPE_TRADE, sd);
 
 		sd->deal.zeny = 0;
 		tsd->deal.zeny = 0;
-
-		clif_updatestatus(sd, SP_ZENY);
-		clif_updatestatus(tsd, SP_ZENY);
 	}
 	
 	sd->state.deal_locked = 0;
