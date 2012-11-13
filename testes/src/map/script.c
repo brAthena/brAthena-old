@@ -17032,9 +17032,8 @@ BUILDIN_FUNC(unloadnpc)
 {
   struct npc_data *nd = npc_name2id(script_getstr(st, 2));
   
-  if( ( nd = npc_name2id(script_getstr(st,2)) ) == NULL ) {
+  if( ( nd = npc_name2id(script_getstr(st,2)) ) == NULL )
   return 1;
-  }
   
   npc_unload_duplicates(nd);
   npc_unload(nd,true);
