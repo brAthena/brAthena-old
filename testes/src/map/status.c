@@ -2931,6 +2931,9 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 	}
 #endif
 
+	if( sc->option&OPTION_MADOGEAR && (skill = pc_checkskill(sd,NC_MAINFRAME)) > 0 )
+	status->def2 += skill * 4 - ((skill>=2)? 1:0);
+
 // ----- EQUIPMENT-MDEF CALCULATION -----
 
 	// Apply relative modifiers from equipment
