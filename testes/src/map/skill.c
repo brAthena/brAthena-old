@@ -4693,7 +4693,7 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, in
 			return skill_castend_damage_id (src, bl, skillid, skilllv, tick, flag);
 		case MH_STEINWAND: {
 			struct block_list *s_src = battle_get_master(src);
-			short ret;
+			short ret = 0;
 			if(!skill_check_unit_range(src, src->x, src->y, skillid, skilllv))  //prevent reiteration
 			    ret = skill_castend_pos2(src,src->x,src->y,skillid,skilllv,tick,flag); //cast on homon
 			if(s_src && !skill_check_unit_range(s_src, s_src->x, s_src->y, skillid, skilllv))
@@ -17775,9 +17775,16 @@ static void skill_readdb(void)
 
 }
 
-void skill_reload (void)
-{
+void skill_reload (void) {
+	struct s_mapiterator *iter;
+	struct map_session_data *sd;
 	skill_readdb();
+	/* lets update all players skill tree : so that if any skill modes were changed they're properly updated */
+	iter = mapit_getallusers();
+	for( sd = (TBL_PC*)mapit_first(iter); mapit_exists(iter); sd = (TBL_PC*)mapit_next(iter) )
+		clif_skillinfoblock(sd);
+	mapit_free(iter);
+	
 }
 
 /*==========================================

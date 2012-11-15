@@ -9444,7 +9444,7 @@ int status_change_end_(struct block_list* bl, enum sc_type type, int tid, const 
 			break;
 		case SC_INTRAVISION:
 			calc_flag = SCB_ALL;/* required for overlapping */
-			break;	
+			break;
 		}
 
 	opt_flag = 1;
