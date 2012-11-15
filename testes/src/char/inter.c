@@ -46,6 +46,8 @@ unsigned int party_share_level = 10;
 unsigned int party_family_share_level = 150;
 char main_chat_nick[16] = "Main";
 
+char tmp_db_name[32] = "db";
+
 // recv. packet list
 int inter_recv_packet_length[] = {
 	-1,-1, 7,-1, -1,13,36, (2 + 4 + 4 + 4 + NAME_LENGTH),  0, 0, 0, 0,  0, 0,  0, 0,	// 3000-
@@ -739,6 +741,8 @@ static int inter_config_read(const char* cfgName)
 			log_inter = atoi(w2);
 		else if(!strcmpi(w1,"main_chat_nick"))
 			safestrncpy(main_chat_nick, w2, sizeof(main_chat_nick));
+		else if(!strcmpi(w1,"db_name"))
+			safestrncpy(tmp_db_name, w2, sizeof(tmp_db_name));
 		else if(!strcmpi(w1,"import"))
 			inter_config_read(w2);
 	}

@@ -784,17 +784,17 @@ extern char log_db_db[32];
 
 #endif
 
+extern char db_ip[32];
+extern int db_port;
+extern char db_id[32];
+extern char db_pw[32];
+extern char db_db2name[32];
+
 #include "../common/sql.h"
 
 extern Sql* mmysql_handle;
 extern Sql* logmysql_handle;
-
-extern char item_db_db[32];
-extern char item_db2_db[32];
-extern char mob_db_db[32];
-extern char mob_skill_db_db[32];
-extern char mob_db2_db[32];
-extern char mob_skill_db2_db[32];
+extern Sql* dbmysql_handle;
 
 void sv_readsqldb (char* name, char* next_name, int param_size, int max_allowed, bool (*sub_parse_row)(char* string[], int columns, int current));
 char* get_database_name(int database_id);

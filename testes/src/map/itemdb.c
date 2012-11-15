@@ -522,19 +522,19 @@ int itemdb_read_itemgroup_sub()
 	for(i = 0; i < ARRAYLENGTH(db); ++i)
 	{
 		dbRows = 0;
-		if(SQL_ERROR == Sql_Query(mmysql_handle, "SELECT * FROM `%s`", db[i]))
+		if(SQL_ERROR == Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", db[i]))
 		{
-			Sql_ShowDebug(mmysql_handle);
+			Sql_ShowDebug(dbmysql_handle);
 			continue;
 		}
 		
-		while(SQL_SUCCESS == Sql_NextRow(mmysql_handle))
+		while(SQL_SUCCESS == Sql_NextRow(dbmysql_handle))
 		{
 			char* row[3];
 			dbRows++;
 			
 			for(dbQuery = 0; dbQuery < 3; ++dbQuery)
-				Sql_GetData(mmysql_handle, dbQuery, &row[dbQuery], NULL);
+				Sql_GetData(dbmysql_handle, dbQuery, &row[dbQuery], NULL);
 
 			groupid = atoi(row[0]);
 			if(groupid < 0 || groupid >= MAX_ITEMGROUP)
@@ -564,7 +564,7 @@ int itemdb_read_itemgroup_sub()
 		ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", dbRows, db[i]);
 	}
 	
-	Sql_FreeResult(mmysql_handle);
+	Sql_FreeResult(dbmysql_handle);
 	return 0;
 }
 
@@ -756,18 +756,18 @@ void itemdb_read_combos()
 	int items[MAX_ITEMS_PER_COMBO], v = 0, retcount = 0, idx = 0, rows = 0, i;
 	struct item_data * id = NULL;
 
-	if(SQL_ERROR == Sql_Query(mmysql_handle, "SELECT * FROM `%s`", get_database_name(38)))
+	if(SQL_ERROR == Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", get_database_name(38)))
 	{
-		Sql_ShowDebug(mmysql_handle);
+		Sql_ShowDebug(dbmysql_handle);
 		return;
 	}
 	
-	while(SQL_SUCCESS == Sql_NextRow(mmysql_handle))
+	while(SQL_SUCCESS == Sql_NextRow(dbmysql_handle))
 	{
 		char* row[2];
 		
 		for(i = 0; i < 2; ++i)
-			Sql_GetData(mmysql_handle, i, &row[i], NULL);
+			Sql_GetData(dbmysql_handle, i, &row[i], NULL);
 	
 		if((retcount = itemdb_combo_split_atoi(row[0], items)) < 2)
 		{
@@ -835,7 +835,7 @@ void itemdb_read_combos()
 	}
 	
 	ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", rows, get_database_name(38));
-	Sql_FreeResult(mmysql_handle);
+	Sql_FreeResult(dbmysql_handle);
 	return;
 }
 
@@ -1018,26 +1018,26 @@ static bool itemdb_parse_dbrow(char** str, const char* source, int line, int scr
  *======================================*/
 static int itemdb_read_sqldb(void) {
 
-	const char* item_db_name[] = { item_db_db, item_db2_db };
+	const char* item_db_name[] = { "item_db", "item_db2" };
 	int fi;
 	
 	for( fi = 0; fi < ARRAYLENGTH(item_db_name); ++fi ) {
 		uint32 lines = 0, count = 0;
 
 		// retrieve all rows from the item database
-		if( SQL_ERROR == Sql_Query(mmysql_handle, "SELECT * FROM `%s`", item_db_name[fi]) ) {
-			Sql_ShowDebug(mmysql_handle);
+		if( SQL_ERROR == Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", item_db_name[fi]) ) {
+			Sql_ShowDebug(dbmysql_handle);
 			continue;
 		}
 
 		// process rows one by one
-		while( SQL_SUCCESS == Sql_NextRow(mmysql_handle) ) {// wrap the result into a TXT-compatible format
+		while( SQL_SUCCESS == Sql_NextRow(dbmysql_handle) ) {// wrap the result into a TXT-compatible format
 			char* str[22];
 			char* dummy = "";
 			int i;
 			++lines;
 			for( i = 0; i < 22; ++i ) {
-				Sql_GetData(mmysql_handle, i, &str[i], NULL);
+				Sql_GetData(dbmysql_handle, i, &str[i], NULL);
 				if( str[i] == NULL )
 					str[i] = dummy; // get rid of NULL columns
 			}
@@ -1048,7 +1048,7 @@ static int itemdb_read_sqldb(void) {
 		}
 
 		// free the query result
-		Sql_FreeResult(mmysql_handle);
+		Sql_FreeResult(dbmysql_handle);
 
 		ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", count, item_db_name[fi]);
 	}

@@ -3875,20 +3875,20 @@ static bool mob_parse_dbrow(char** str)
  *------------------------------------------*/
 static int mob_read_sqldb(void)
 {
-	const char* mob_db_name[] = { mob_db_db, mob_db2_db };
+	const char* mob_db_name[] = { "mob_db", "mob_db2" };
 	int fi;
 	
 	for( fi = 0; fi < ARRAYLENGTH(mob_db_name); ++fi ) {
 		uint32 lines = 0, count = 0;
 		
 		// retrieve all rows from the mob database
-		if( SQL_ERROR == Sql_Query(mmysql_handle, "SELECT * FROM `%s`", mob_db_name[fi]) ) {
-			Sql_ShowDebug(mmysql_handle);
+		if( SQL_ERROR == Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", mob_db_name[fi]) ) {
+			Sql_ShowDebug(dbmysql_handle);
 			continue;
 		}
 		
 		// process rows one by one
-		while( SQL_SUCCESS == Sql_NextRow(mmysql_handle) ) {
+		while( SQL_SUCCESS == Sql_NextRow(dbmysql_handle) ) {
 			// wrap the result into a TXT-compatible format
 			char line[1024];
 			char* str[31+2*MAX_MVP_DROP+2*MAX_MOB_DROP];
@@ -3900,7 +3900,7 @@ static int mob_read_sqldb(void)
 			{
 				char* data;
 				size_t len;
-				Sql_GetData(mmysql_handle, i, &data, &len);
+				Sql_GetData(dbmysql_handle, i, &data, &len);
 				
 				strcpy(p, data);
 				str[i] = p;
@@ -3914,7 +3914,7 @@ static int mob_read_sqldb(void)
 		}
 		
 		// free the query result
-		Sql_FreeResult(mmysql_handle);
+		Sql_FreeResult(dbmysql_handle);
 
 		ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", count, mob_db_name[fi]);
 	}
@@ -3976,20 +3976,20 @@ static int mob_read_randommonster(void)
 	{
 		mob_db_data[0]->summonper[i] = 1002;	// Default fallback value, in case the database does not provide one
 
-		if(SQL_ERROR == Sql_Query(mmysql_handle, "SELECT * FROM `%s`", mobfile[i]))
+		if(SQL_ERROR == Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", mobfile[i]))
 		{
-			Sql_ShowDebug(mmysql_handle);
+			Sql_ShowDebug(dbmysql_handle);
 			continue;
 		}
 		
-		while(SQL_SUCCESS == Sql_NextRow(mmysql_handle))
+		while(SQL_SUCCESS == Sql_NextRow(dbmysql_handle))
 		{
 			int class_, k = 0;
 			char* row[3];
 			rows++;
 			
 			for(; k < 3; ++k)
-				Sql_GetData(mmysql_handle, k, &row[k], NULL);
+				Sql_GetData(dbmysql_handle, k, &row[k], NULL);
 
 			class_ = atoi(row[0]);
 			if(mob_db(class_) == mob_dummy)
@@ -4015,7 +4015,7 @@ static int mob_read_randommonster(void)
 		rows = 0;
 	}
 	
-	Sql_FreeResult(mmysql_handle);
+	Sql_FreeResult(dbmysql_handle);
 	return 0;
 }
 
@@ -4355,7 +4355,7 @@ static bool mob_parse_row_mobskilldb(char** str, int columns, int current)
  */
 static int mob_read_sqlskilldb(void)
 {
-	const char* mob_skill_db_name[] = { mob_skill_db_db, mob_skill_db2_db };
+	const char* mob_skill_db_name[] = { "mob_skill_db", "mob_skill_db2" };
 	int fi;
 	
 	if( battle_config.mob_skill_rate == 0 ) {
@@ -4368,13 +4368,13 @@ static int mob_read_sqlskilldb(void)
 		uint32 lines = 0, count = 0;
 		
 		// retrieve all rows from the mob skill database
-		if( SQL_ERROR == Sql_Query(mmysql_handle, "SELECT * FROM `%s`", mob_skill_db_name[fi]) ) {
-			Sql_ShowDebug(mmysql_handle);
+		if( SQL_ERROR == Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", mob_skill_db_name[fi]) ) {
+			Sql_ShowDebug(dbmysql_handle);
 			continue;
 		}
 		
 		// process rows one by one
-		while( SQL_SUCCESS == Sql_NextRow(mmysql_handle) ) {
+		while( SQL_SUCCESS == Sql_NextRow(dbmysql_handle) ) {
 			// wrap the result into a TXT-compatible format
 			char* str[19];
 			char* dummy = "";
@@ -4382,7 +4382,7 @@ static int mob_read_sqlskilldb(void)
 			++lines;
 			for( i = 0; i < 19; ++i )
 			{
-				Sql_GetData(mmysql_handle, i, &str[i], NULL);
+				Sql_GetData(dbmysql_handle, i, &str[i], NULL);
 				if( str[i] == NULL ) str[i] = dummy; // get rid of NULL columns
 			}
 			
@@ -4393,7 +4393,7 @@ static int mob_read_sqlskilldb(void)
 		}
 		
 		// free the query result
-		Sql_FreeResult(mmysql_handle);
+		Sql_FreeResult(dbmysql_handle);
 
 		ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", count, mob_skill_db_name[fi]);
 	}

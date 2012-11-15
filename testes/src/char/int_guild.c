@@ -599,7 +599,6 @@ static struct guild_castle* inter_guildcastle_fromsql(int castle_id)
 	return gc;
 }
 
-
 // Read exp_guild_db
 int inter_guild_ReadEXP(void)
 {
@@ -608,7 +607,7 @@ int inter_guild_ReadEXP(void)
 	
 	memset(guild_exp, 0, sizeof(guild_exp));
 
-	if(SQL_ERROR == Sql_Query(sql_handle, "SELECT * FROM `%s`", "exp_guild_db"))
+	if(SQL_ERROR == Sql_Query(sql_handle, "SELECT * FROM `%s`.`%s`", tmp_db_name, "exp_guild_db"))
 	{
 		Sql_ShowDebug(sql_handle);
 		return -1;

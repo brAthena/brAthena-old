@@ -1199,12 +1199,12 @@ void read_homunculus_expdb(void)
 
 	memset(hexptbl, 0, sizeof(hexptbl));
 	
-	if(SQL_ERROR == Sql_Query(mmysql_handle, "SELECT * FROM `%s`", get_database_name(52)))
-		Sql_ShowDebug(mmysql_handle);
+	if(SQL_ERROR == Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", get_database_name(52)))
+		Sql_ShowDebug(dbmysql_handle);
 	
-	while(SQL_SUCCESS == Sql_NextRow(mmysql_handle) && HomunLoop < MAX_LEVEL)
+	while(SQL_SUCCESS == Sql_NextRow(dbmysql_handle) && HomunLoop < MAX_LEVEL)
 	{
-		Sql_GetData(mmysql_handle, 0, &row, NULL);
+		Sql_GetData(dbmysql_handle, 0, &row, NULL);
 		hexptbl[HomunLoop] = atoi(row);
 
 		if(hexptbl[HomunLoop++] == 9999999)
@@ -1218,7 +1218,7 @@ void read_homunculus_expdb(void)
 	}
 		
 	ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", HomunLoop, get_database_name(52));
-	Sql_FreeResult(mmysql_handle);
+	Sql_FreeResult(dbmysql_handle);
 }
 
 void merc_reload(void)

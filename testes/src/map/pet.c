@@ -1225,20 +1225,20 @@ int read_petdb()
 	{
 		int rows = 0;
 		
-		if(SQL_ERROR == Sql_Query(mmysql_handle, "SELECT * FROM `%s`", filename[i]))
+		if(SQL_ERROR == Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", filename[i]))
 		{
-			Sql_ShowDebug(mmysql_handle);
+			Sql_ShowDebug(dbmysql_handle);
 			continue;
 		}
 		
-		while(SQL_SUCCESS == Sql_NextRow(mmysql_handle))
+		while(SQL_SUCCESS == Sql_NextRow(dbmysql_handle))
 		{
 			char *str[22];
 			int q = 0;
 			rows++;
 			
 			for(; q < 22; ++q)
-				Sql_GetData(mmysql_handle, q, &str[q], NULL);
+				Sql_GetData(dbmysql_handle, q, &str[q], NULL);
 
 			if( (nameid = atoi(str[0])) <= 0 )
 				continue;
@@ -1285,7 +1285,7 @@ int read_petdb()
 			ShowWarning("petdb: Número máximo de pets atingido [%d].\n ", MAX_PET_DB);
 			
 		ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", rows, filename[i]);
-		Sql_FreeResult(mmysql_handle);
+		Sql_FreeResult(dbmysql_handle);
 	}
 	return 0;
 }

@@ -646,19 +646,19 @@ int read_elementaldb(void)
 	
 	memset(elemental_db,0,sizeof(elemental_db));
 
-	if(SQL_ERROR == Sql_Query(mmysql_handle, "SELECT * FROM `%s`", get_database_name(36)))
+	if(SQL_ERROR == Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", get_database_name(36)))
 	{
-		Sql_ShowDebug(mmysql_handle);
+		Sql_ShowDebug(dbmysql_handle);
 		return -1;
 	}
 	
-	while(SQL_SUCCESS == Sql_NextRow(mmysql_handle) && count < MAX_ELEMENTAL_CLASS)
+	while(SQL_SUCCESS == Sql_NextRow(dbmysql_handle) && count < MAX_ELEMENTAL_CLASS)
 	{
 		char* row[26];
 		int i;
 		
 		for(i = 0; i != 26; ++i)
-			Sql_GetData(mmysql_handle, i, &row[i], NULL);
+			Sql_GetData(dbmysql_handle, i, &row[i], NULL);
 		
 		db = &elemental_db[count];
 		db->class_ = atoi(row[0]);
@@ -713,7 +713,7 @@ int read_elementaldb(void)
 	}
 	
 	ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", count, get_database_name(36));
-	Sql_FreeResult(mmysql_handle);
+	Sql_FreeResult(dbmysql_handle);
 	return 0;
 }
 
@@ -722,19 +722,19 @@ int read_elemental_skilldb(void) {
 	struct s_elemental_db *db;
 	int i, j = 0, k = 0, class_, skillid, skilllv, skillmode;
 
-	if(SQL_ERROR == Sql_Query(mmysql_handle, "SELECT * FROM `%s`", get_database_name(37)))
+	if(SQL_ERROR == Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", get_database_name(37)))
 	{
-		Sql_ShowDebug(mmysql_handle);
+		Sql_ShowDebug(dbmysql_handle);
 		return -1;
 	}
 	
-	while(SQL_SUCCESS == Sql_NextRow(mmysql_handle))
+	while(SQL_SUCCESS == Sql_NextRow(dbmysql_handle))
 	{
 		char* row[4];
 		k++;
 		
 		for(i = 0; i != 4; ++i)
-			Sql_GetData(mmysql_handle, i, &row[i], NULL);
+			Sql_GetData(dbmysql_handle, i, &row[i], NULL);
 		
 		class_ = atoi(row[0]);
 		ARR_FIND(0, MAX_ELEMENTAL_CLASS, i, class_ == elemental_db[i].class_);
@@ -776,7 +776,7 @@ int read_elemental_skilldb(void) {
 	}
 	
 	ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", j, get_database_name(37));
-	Sql_FreeResult(mmysql_handle);
+	Sql_FreeResult(dbmysql_handle);
 	return 0;
 }
 

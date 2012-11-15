@@ -63,13 +63,6 @@ char map_server_pw[32] = "ragnarok";
 char map_server_db[32] = "ragnarok";
 Sql* mmysql_handle;
 
-char item_db_db[32] = "item_db";
-char item_db2_db[32] = "item_db2";
-char mob_db_db[32] = "mob_db";
-char mob_db2_db[32] = "mob_db2";
-char mob_skill_db_db[32] = "mob_skill_db";
-char mob_skill_db2_db[32] = "mob_skill_db2";
-
 // log database
 char log_db_ip[32] = "127.0.0.1";
 int log_db_port = 3306;
@@ -77,6 +70,14 @@ char log_db_id[32] = "ragnarok";
 char log_db_pw[32] = "ragnarok";
 char log_db_db[32] = "log";
 Sql* logmysql_handle;
+
+// database de itens, skills, monstros e etc
+char db_ip[32] = "127.0.0.1";
+int db_port = 3306;
+char db_id[32] = "ragnarok";
+char db_pw[32] = "ragnarok";
+char db_db2name[32] = "db";
+Sql* dbmysql_handle;
 
 // This param using for sending mainchat
 // messages like whispers to this nick. [LuzZza]
@@ -3169,7 +3170,7 @@ int parse_console(const char* buf)
 		m = map_mapname2mapid(map);
 		if( m < 0 )
 		{
-			ShowWarning("Console: Unknown map.\n");
+			ShowWarning("Console: Mapa desconhecido.\n");
 			return 0;
 		}
 		sd.bl.m = m;
@@ -3314,7 +3315,7 @@ int map_config_read(char *cfgName)
 		else if (strcmpi(w1, "import") == 0)
 			map_config_read(w2);
 		else
-			ShowWarning("Unknown setting '%s' in file %s\n", w1, cfgName);
+			ShowWarning("Op%c%co '%s' desconhecida no arquivo %s\n", 135, 198, w1, cfgName);
 	}
 
 	fclose(fp);
@@ -3355,7 +3356,7 @@ void map_reloadnpc_sub(char *cfgName)
 		else if (strcmpi(w1, "import") == 0)
 			map_reloadnpc_sub(w2);
 		else
-			ShowWarning("Unknown setting '%s' in file %s\n", w1, cfgName);
+			ShowWarning("Op%c%co '%s' desconhecida no arquivo %s\n", 135, 198, w1, cfgName);
 	}
 
 	fclose(fp);
@@ -3393,18 +3394,6 @@ int inter_config_read(char *cfgName)
 		if(strcmpi(w1, "main_chat_nick")==0)
 			safestrncpy(main_chat_nick, w2, sizeof(main_chat_nick));
 		else
-		if(strcmpi(w1,"item_db_db")==0)
-			strcpy(item_db_db,w2);
-		else
-		if(strcmpi(w1,"mob_db_db")==0)
-			strcpy(mob_db_db,w2);
-		else
-		if(strcmpi(w1,"item_db2_db")==0)
-			strcpy(item_db2_db,w2);
-		else
-		if(strcmpi(w1,"mob_db2_db")==0)
-			strcpy(mob_db2_db,w2);
-		else
 		//Map Server SQL DB
 		if(strcmpi(w1,"map_server_ip")==0)
 			strcpy(map_server_ip, w2);
@@ -3438,6 +3427,21 @@ int inter_config_read(char *cfgName)
 		else
 		if(strcmpi(w1,"log_db_db")==0)
 			strcpy(log_db_db, w2);
+		else	
+		if(!strcmpi(w1,"db_ip"))
+			strncpy(db_ip, w2, sizeof(db_ip));
+		else
+		if(!strcmpi(w1,"db_id"))
+			strncpy(db_id, w2, sizeof(db_id));
+		else
+		if(!strcmpi(w1,"db_pw"))
+			strncpy(db_pw, w2, sizeof(db_pw));
+		else
+		if(!strcmpi(w1,"db_port"))
+			db_port = atoi(w2);
+		else
+		if(!strcmpi(w1,"db_name"))
+			strncpy(db_db2name, w2, sizeof(db_db2name));
 		else
 		if( mapreg_config_read(w1,w2) )
 			continue;
@@ -3467,15 +3471,15 @@ void sv_readsqldb (char* name, char* next_name, int param_size, int max_allowed,
 			else
 				break;
 		}
-		if (SQL_ERROR == Sql_Query(mmysql_handle, "SELECT * FROM `%s`", db_name[i])){
-			Sql_ShowDebug(mmysql_handle);
+		if (SQL_ERROR == Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", db_name[i])){
+			Sql_ShowDebug(dbmysql_handle);
 			if (i != 1)
 				continue;
 			else
 				break;
 		}
 	
-		while (SQL_SUCCESS == Sql_NextRow(mmysql_handle)){
+		while (SQL_SUCCESS == Sql_NextRow(dbmysql_handle)){
 			char *str[MAX_QUERY_ROWS];
 			int8 j;
 			++lines;
@@ -3487,7 +3491,7 @@ void sv_readsqldb (char* name, char* next_name, int param_size, int max_allowed,
 
 			str[(param_size + 1)] = '\0';
 			for (j = 0; j < param_size; ++j){
-				Sql_GetData(mmysql_handle, j, &str[j], NULL);
+				Sql_GetData(dbmysql_handle, j, &str[j], NULL);
 				if (str[j] == NULL)
 					str[j] = "";
 			}
@@ -3498,7 +3502,7 @@ void sv_readsqldb (char* name, char* next_name, int param_size, int max_allowed,
 		}
 		
 		ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", count, db_name[i]);
-		Sql_FreeResult(mmysql_handle);
+		Sql_FreeResult(dbmysql_handle);
 	}
 }
 
@@ -3595,6 +3599,8 @@ int map_sql_close(void)
 	ShowStatus("Fechada conex%co com banco de dados do map-server....\n", 198);
 	Sql_Free(mmysql_handle);
 	mmysql_handle = NULL;
+	Sql_Free(dbmysql_handle);
+	dbmysql_handle = NULL;
 #ifndef BETA_THREAD_TEST
 	if (log_config.sql_logs)
 	{
@@ -3621,6 +3627,19 @@ int log_sql_init(void)
 		if ( SQL_ERROR == Sql_SetEncoding(logmysql_handle, default_codepage) )
 			Sql_ShowDebug(logmysql_handle);
 #endif
+	return 0;
+}
+
+int db_sql_init(void)
+{
+	dbmysql_handle = Sql_Malloc();
+
+	ShowInfo("Conectando com o banco de dados geral "CL_WHITE"%s"CL_RESET" em "CL_WHITE"%s"CL_RESET"...\n", db_db2name, db_ip);
+	
+	if(SQL_ERROR == Sql_Connect(dbmysql_handle, db_id, db_pw, db_ip, db_port, db_db2name))
+		exit(EXIT_FAILURE);
+		
+	ShowStatus("Conex%co efetuada com sucesso no banco de dados '"CL_WHITE"%s"CL_RESET"'.\n", 198, db_db2name);
 	return 0;
 }
 
@@ -3908,7 +3927,7 @@ int do_init(int argc, char *argv[])
 
 		if( arg[0] != '-' && ( arg[0] != '/' || arg[1] == '-' ) )
 		{// -, -- and /
-			ShowError("Unknown option '%s'.\n", argv[i]);
+			ShowError("Op%c%co desconhecida '%s'.\n", 135, 198, argv[i]);
 			exit(EXIT_FAILURE);
 		}
 		else if( (++arg)[0] == '-' )
@@ -4041,6 +4060,8 @@ int do_init(int argc, char *argv[])
 	map_sql_init();
 	if (log_config.sql_logs)
 		log_sql_init();
+		
+	db_sql_init();
 
 	mapindex_init();
 	if(enable_grf)

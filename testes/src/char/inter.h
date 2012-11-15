@@ -25,6 +25,7 @@ extern Sql* sql_handle;
 extern Sql* lsql_handle;
 
 extern char main_chat_nick[16];
+extern char tmp_db_name[32];
 
 int inter_accreg_tosql(int account_id, int char_id, struct accreg *reg, int type);
 

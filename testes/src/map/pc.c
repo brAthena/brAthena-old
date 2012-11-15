@@ -9381,13 +9381,13 @@ int pc_readdb(void)
 	memset(statp,0,sizeof(statp));
 	i=1;
 	
-	if(SQL_ERROR == Sql_Query(mmysql_handle, "SELECT * FROM `%s`", get_database_name(53)))
-		Sql_ShowDebug(mmysql_handle);
+	if(SQL_ERROR == Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", get_database_name(53)))
+		Sql_ShowDebug(dbmysql_handle);
 	
-	while(SQL_SUCCESS == Sql_NextRow(mmysql_handle))
+	while(SQL_SUCCESS == Sql_NextRow(dbmysql_handle))
 	{
 		int stat;
-		Sql_GetData(mmysql_handle, 0, &row, NULL);
+		Sql_GetData(dbmysql_handle, 0, &row, NULL);
 			
 		if(!(stat=atoi(row)))
 			stat = 0;
@@ -9399,7 +9399,7 @@ int pc_readdb(void)
 		i++;
 	}
 	ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", (i > 1 ? i-1 : 0), get_database_name(53));
-	Sql_FreeResult(mmysql_handle);
+	Sql_FreeResult(dbmysql_handle);
 
 	// generate the remaining parts of the db if necessary
 	k = battle_config.use_statpoint_table; //save setting

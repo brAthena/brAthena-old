@@ -291,18 +291,18 @@ int quest_read_db(void)
 {
 	int QuestLoop, QueryLoop, MaxQuestLoop = 0;
 	
-	if(SQL_ERROR == Sql_Query(mmysql_handle, "SELECT * FROM `%s`", get_database_name(50)))
+	if(SQL_ERROR == Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", get_database_name(50)))
 	{
-		Sql_ShowDebug(mmysql_handle);
+		Sql_ShowDebug(dbmysql_handle);
 		return -1;
 	}
 	
-	while(SQL_SUCCESS == Sql_NextRow(mmysql_handle) && MaxQuestLoop < MAX_QUEST_DB)
+	while(SQL_SUCCESS == Sql_NextRow(dbmysql_handle) && MaxQuestLoop < MAX_QUEST_DB)
 	{
 		char* row[9];
 		
 		for(QueryLoop = 0; QueryLoop < 9; ++QueryLoop)
-			Sql_GetData(mmysql_handle, QueryLoop, &row[QueryLoop], NULL);
+			Sql_GetData(dbmysql_handle, QueryLoop, &row[QueryLoop], NULL);
 
 		memset(&quest_db[MaxQuestLoop], 0, sizeof(quest_db[0]));
 
@@ -323,7 +323,7 @@ int quest_read_db(void)
 	}
 
 	ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", MaxQuestLoop, get_database_name(50));
-	Sql_FreeResult(mmysql_handle);
+	Sql_FreeResult(dbmysql_handle);
 	return 0;
 }
 
