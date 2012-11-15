@@ -8,11 +8,11 @@
 //   |                                                        |	
 //   |                    brAthena Script                     |	
 //   |--------------------------------------------------------|	
-//   | Nome do Script: pvp.txt                                |	
+//   | Nome do Script: Portais para mapas de PvP              |	
 //   |--------------------------------------------------------|	
 //   | Criado por: eA/rA/brA Dev. Team                        |	
 //   |--------------------------------------------------------|	
-//   | Versões eA/rA/brA: 1.1/1.0                             |	
+//   | Versões eA/rA/brA: 1.1/1.1/1.0                         |	
 //   |--------------------------------------------------------|	
 //   | Descrição: Portais da Arena de Prontera e Mapas PvP.   |	
 //   |--------------------------------------------------------|	
@@ -166,15 +166,6 @@ ordeal_3-4,153,180,0	warp	ord34-5	1,1,ordeal_3-4,144,284
 ordeal_3-4,172,135,0	warp	ord34-6	1,1,ordeal_3-4,284,24
 ordeal_3-4,172,172,0	warp	ord34-7	1,1,ordeal_3-4,284,284
 ordeal_3-4,180,154,0	warp	ord34-8	1,1,ordeal_3-4,284,164
-//Este mapa não existe. É ordeal_a02 ou ordea_la00?
-//ordeal_a04,128,154,0	warp	orda1	0,0,ordeal_a04,24,154
-//ordeal_a04,136,136,0	warp	orda2	0,0,ordeal_a04,24,24
-//ordeal_a04,136,172,0	warp	orda3	0,0,ordeal_a04,24,284
-//ordeal_a04,153,128,0	warp	orda4	0,0,ordeal_a04,153,23
-//ordeal_a04,153,180,0	warp	orda5	0,0,ordeal_a04,144,284
-//ordeal_a04,172,135,0	warp	orda6	0,0,ordeal_a04,284,24
-//ordeal_a04,172,172,0	warp	orda7	0,0,ordeal_a04,284,284
-//ordeal_a04,180,154,0	warp	orda8	0,0,ordeal_a04,284,164
 
 // Mais Portais do PvP Nightmare
 pvp_n_8-4,33,122,0	warp	Link#pt_link_1-11	0,2,pvp_n_8-4,0,0
@@ -185,6 +176,3 @@ pvp_n_8-4,99,180,0	warp	Link#pt_link_1-31	2,1,pvp_n_8-4,0,0
 pvp_n_8-4,137,84,0	warp	Link#pt_link_1-32	1,1,pvp_n_8-4,0,0
 pvp_n_8-4,150,71,0	warp	Link#pt_link_1-41	1,1,pvp_n_8-4,0,0
 pvp_n_8-4,144,166,0	warp	Link#pt_link_1-42	1,1,pvp_n_8-4,0,0
-// Portal Inválido
-//pvp_n_8-5,30,30,0	warp	 a	3,3,pvp_n_8-5,100,100
-
