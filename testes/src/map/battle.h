@@ -468,8 +468,8 @@ extern struct Battle_Config
 	int bg_misc_damage_rate;
 	int bg_flee_penalty;
 	
-	// brAthena
-	int server_lang, devotion_rdamage, warp_no_ress, attack_castle_monsters;
+	// [brAthena]
+	int server_lang, devotion_rdamage, warp_no_ress, attack_castle_monsters, gm_cant_attack;
 	
 	// rAthena
 	int max_third_parameter;
