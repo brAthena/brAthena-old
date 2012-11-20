@@ -701,8 +701,6 @@ static int inter_config_read(const char* cfgName)
 		return 1;
 	}
 
-	ShowInfo("Carregando arquivo %s...\n", cfgName);
-
 	while(fgets(line, sizeof(line), fp))
 	{
 		i = sscanf(line, "%[^:]: %[^\r\n]", w1, w2);
@@ -711,27 +709,21 @@ static int inter_config_read(const char* cfgName)
 
 		if(!strcmpi(w1,"char_server_ip")) {
 			strcpy(char_server_ip,w2);
-			ShowStatus ("Definindo char_server_ip : %s\n", w2);
 		} else
 		if(!strcmpi(w1,"char_server_port")) {
 			char_server_port = atoi(w2);
-			ShowStatus ("Definindo char_server_port : %s\n", w2);
 		} else
 		if(!strcmpi(w1,"char_server_id")) {
 			strcpy(char_server_id,w2);
-			ShowStatus ("Definindo char_server_id : %s\n", w2);
 		} else
 		if(!strcmpi(w1,"char_server_pw")) {
 			strcpy(char_server_pw,w2);
-			ShowStatus ("Definindo char_server_pw : %s\n", w2);
 		} else
 		if(!strcmpi(w1,"char_server_db")) {
 			strcpy(char_server_db,w2);
-			ShowStatus ("Definindo char_server_db : %s\n", w2);
 		} else
 		if(!strcmpi(w1,"default_codepage")) {
 			strcpy(default_codepage,w2);
-			ShowStatus ("Definindo default_codepage : %s\n", w2);
 		}
 		else if(!strcmpi(w1,"party_share_level"))
 			party_share_level = atoi(w2);
@@ -776,7 +768,6 @@ int inter_init_sql(const char *file)
 {
 	//int i;
 
-	ShowInfo ("inicializando interserver...\n");
 	inter_config_read(file);
 
 	//DB connection initialized
