@@ -9169,7 +9169,7 @@ int skill_castend_id(int tid, unsigned int tick, int id, intptr_t data)
 		}
 
       // Proíbe ataque de contas [GMs/ADM's] -  [Holy]
-      if( battle_config.gm_cant_attack && inf&BCT_ENEMY && pc_get_group_id(sd) > 3 && (target->type == BL_PC || target->type == BL_MOB) )
+      if( battle_config.gm_cant_attack && inf&BCT_ENEMY && pc_get_group_level(sd) > 0 && (target->type == BL_PC || target->type == BL_MOB) )
         break;
 
 		if( sd )

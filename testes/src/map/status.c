@@ -1910,6 +1910,9 @@ static unsigned short status_base_atk(const struct block_list *bl, const struct 
 	str += dstr*dstr;
 	if (bl->type == BL_PC)
 #ifdef RENEWAL
+    if ( battle_config.bRO_Renewal ) // Fórmula de ataque base [brAthena - bRO]
+    str = (rstr*12/10 + dex/5 + status->luk/3 + ((TBL_PC*)bl)->status.base_level/4);
+    else
 		str = (rstr*10 + dex*10/5 + status->luk*10/3 + ((TBL_PC*)bl)->status.base_level*10/4)/10;	
 #else
 		str+= dex/5 + status->luk/5;
@@ -1964,6 +1967,7 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int lev
 	status->hit += level + status->dex + status->luk/3 + 175; //base level + ( every 1 dex = +1 hit ) + (every 3 luk = +1 hit) + 175
 	status->flee += level + status->agi + status->luk/5 + 100; //base level + ( every 1 agi = +1 flee ) + (every 5 luk = +1 flee) + 100
 	if ( battle_config.bRO_Renewal ) {
+	status->def2 += (status->vit/2) + (status->agi/5) + (status->str/5) + (level/6); // Defesa fisíca por atributos - [brAthena - bRO]
 	status->mdef2 += (status->int_ / 2) + (status->vit / 5) + (status->dex / 4) + (level/6); // Defesa mágica por atributos - [brAthena - bRO]
 	}	else {
 	status->def2 += (int)(((float)level + status->vit)/2 + ((float)status->agi/5)); //base level + (every 2 vit = +1 def) + (every 5 agi = +1 def)
