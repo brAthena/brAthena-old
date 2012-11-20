@@ -17768,14 +17768,14 @@ static void skill_readdb(void)
 
 	skill_init_unit_layout();
 	
-	sv_readsqldb(get_database_name(6),  NULL, 4,  -1, skill_parse_row_producedb);
-	sv_readsqldb(get_database_name(7),  NULL, 3,  -1, skill_parse_row_createarrowdb);
+	sv_readsqldb(get_database_name(6),  NULL, 4+2*MAX_PRODUCE_RESOURCE,  -1, skill_parse_row_producedb);
+	sv_readsqldb(get_database_name(7),  NULL, 1+2*MAX_ARROW_RESOURCE,  -1, skill_parse_row_createarrowdb);
 	sv_readsqldb(get_database_name(8),  NULL, 4,  -1, skill_parse_row_abradb);
 	sv_readsqldb(get_database_name(9),  NULL, 3,  -1, skill_parse_row_spellbookdb);
 	sv_readsqldb(get_database_name(10), NULL, 1,  -1, skill_parse_row_magicmushroomdb);
 	sv_readsqldb(get_database_name(11), NULL, 1,  -1, skill_parse_row_reproducedb);
 	sv_readsqldb(get_database_name(12), NULL, 2,  -1, skill_parse_row_improvisedb);
-	sv_readsqldb(get_database_name(13), NULL, 5,  -1, skill_parse_row_changematerialdb);
+	sv_readsqldb(get_database_name(13), NULL, 4+2*5,  -1, skill_parse_row_changematerialdb);
 
 }
 

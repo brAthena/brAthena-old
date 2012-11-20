@@ -3875,49 +3875,43 @@ static bool mob_parse_dbrow(char** str)
  *------------------------------------------*/
 static int mob_read_sqldb(void)
 {
-	const char* mob_db_name[] = { "mob_db" };
-	int fi;
-	
-	for( fi = 0; fi < ARRAYLENGTH(mob_db_name); ++fi ) {
-		uint32 lines = 0, count = 0;
+	uint32 lines = 0, count = 0;
 		
-		// retrieve all rows from the mob database
-		if( SQL_ERROR == Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", mob_db_name[fi]) ) {
-			Sql_ShowDebug(dbmysql_handle);
-			continue;
-		}
-		
-		// process rows one by one
-		while( SQL_SUCCESS == Sql_NextRow(dbmysql_handle) ) {
-			// wrap the result into a TXT-compatible format
-			char line[1024];
-			char* str[31+2*MAX_MVP_DROP+2*MAX_MOB_DROP];
-			char* p;
-			int i;
-			
-			lines++;
-			for(i = 0, p = line; i < 31+2*MAX_MVP_DROP+2*MAX_MOB_DROP; i++)
-			{
-				char* data;
-				size_t len;
-				Sql_GetData(dbmysql_handle, i, &data, &len);
-				
-				strcpy(p, data);
-				str[i] = p;
-				p+= len + 1;
-			}
-			
-			if (!mob_parse_dbrow(str))
-				continue;
-			
-			count++;
-		}
-		
-		// free the query result
-		Sql_FreeResult(dbmysql_handle);
-
-		ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", count, mob_db_name[fi]);
+	// retrieve all rows from the mob database
+	if( SQL_ERROR == Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", get_database_name(56)) ) {
+		Sql_ShowDebug(dbmysql_handle);
+		return -1;
 	}
+		
+	// process rows one by one
+	while( SQL_SUCCESS == Sql_NextRow(dbmysql_handle) ) {
+	// wrap the result into a TXT-compatible format
+		char line[1024];
+		char* str[31+2*MAX_MVP_DROP+2*MAX_MOB_DROP];
+		char* p;
+		int i;
+			
+		lines++;
+		for(i = 0, p = line; i < 31+2*MAX_MVP_DROP+2*MAX_MOB_DROP; i++)
+		{
+			char* data;
+			size_t len;
+			Sql_GetData(dbmysql_handle, i, &data, &len);
+				
+			strcpy(p, data);
+			str[i] = p;
+			p+= len + 1;
+		}
+			
+		if (!mob_parse_dbrow(str))
+			continue;
+			
+		count++;
+	}
+		
+	// free the query result
+	Sql_FreeResult(dbmysql_handle);
+	ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", count, get_database_name(56));
 	return 0;
 }
 

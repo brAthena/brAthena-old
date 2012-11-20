@@ -1018,40 +1018,35 @@ static bool itemdb_parse_dbrow(char** str, const char* source, int line, int scr
  *======================================*/
 static int itemdb_read_sqldb(void) {
 
-	const char* item_db_name[] = { "item_db"" };
-	int fi;
-	
-	for( fi = 0; fi < ARRAYLENGTH(item_db_name); ++fi ) {
-		uint32 lines = 0, count = 0;
+	uint32 lines = 0, count = 0;
 
-		// retrieve all rows from the item database
-		if( SQL_ERROR == Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", item_db_name[fi]) ) {
-			Sql_ShowDebug(dbmysql_handle);
-			continue;
-		}
-
-		// process rows one by one
-		while( SQL_SUCCESS == Sql_NextRow(dbmysql_handle) ) {// wrap the result into a TXT-compatible format
-			char* str[22];
-			char* dummy = "";
-			int i;
-			++lines;
-			for( i = 0; i < 22; ++i ) {
-				Sql_GetData(dbmysql_handle, i, &str[i], NULL);
-				if( str[i] == NULL )
-					str[i] = dummy; // get rid of NULL columns
-			}
-
-			if (!itemdb_parse_dbrow(str, item_db_name[fi], lines, SCRIPT_IGNORE_EXTERNAL_BRACKETS))
-				continue;
-			++count;
-		}
-
-		// free the query result
-		Sql_FreeResult(dbmysql_handle);
-
-		ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", count, item_db_name[fi]);
+	// retrieve all rows from the item database
+	if( SQL_ERROR == Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", get_database_name(55)) ) {
+		Sql_ShowDebug(dbmysql_handle);
+		return -1;
 	}
+
+	// process rows one by one
+	while( SQL_SUCCESS == Sql_NextRow(dbmysql_handle) ) {// wrap the result into a TXT-compatible format
+		char* str[22];
+		char* dummy = "";
+		int i;
+		++lines;
+		for( i = 0; i < 22; ++i ) {
+			Sql_GetData(dbmysql_handle, i, &str[i], NULL);
+			if( str[i] == NULL )
+				str[i] = dummy; // get rid of NULL columns
+		}
+
+		if (!itemdb_parse_dbrow(str, get_database_name(55), lines, SCRIPT_IGNORE_EXTERNAL_BRACKETS))
+			continue;
+		++count;
+	}
+
+	// free the query result
+	Sql_FreeResult(dbmysql_handle);
+
+	ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", count, get_database_name(55));
 
 	return 0;
 }

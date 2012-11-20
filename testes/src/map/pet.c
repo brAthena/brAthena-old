@@ -1199,8 +1199,7 @@ int pet_skill_support_timer(int tid, unsigned int tick, int id, intptr_t data)
  *------------------------------------------*/ 
 int read_petdb()
 {
-	char* filename[] = { get_database_name(48) };
-	int nameid,i,j; 
+	int nameid,i,j, rows = 0; 
 
 	// Remove any previous scripts in case reloaddb was invoked.
 	for( j = 0; j < MAX_PET_DB; j++ )
@@ -1221,72 +1220,68 @@ int read_petdb()
 	memset(pet_db,0,sizeof(pet_db));
 
 	j = 0; // entry counter
-	for( i = 0; i < ARRAYLENGTH(filename); i++ )
-	{
-		int rows = 0;
 		
-		if(SQL_ERROR == Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", filename[i]))
+	if(SQL_ERROR == Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", get_database_name(48)))
+	{
+		Sql_ShowDebug(dbmysql_handle);
+		return -1;
+	}
+		
+	while(SQL_SUCCESS == Sql_NextRow(dbmysql_handle))
+	{
+		char *str[22];
+		int q = 0;
+		rows++;
+			
+		for(; q < 22; ++q)
+			Sql_GetData(dbmysql_handle, q, &str[q], NULL);
+
+		if( (nameid = atoi(str[0])) <= 0 )
+			continue;
+
+		if( !mobdb_checkid(nameid) )
 		{
-			Sql_ShowDebug(dbmysql_handle);
+			ShowWarning("pet_db reading: Mob inválido %d, pet não carregado!.\n", nameid);
 			continue;
 		}
-		
-		while(SQL_SUCCESS == Sql_NextRow(dbmysql_handle))
-		{
-			char *str[22];
-			int q = 0;
-			rows++;
-			
-			for(; q < 22; ++q)
-				Sql_GetData(dbmysql_handle, q, &str[q], NULL);
 
-			if( (nameid = atoi(str[0])) <= 0 )
-				continue;
+		pet_db[j].class_ = nameid;
+		safestrncpy(pet_db[j].name,str[1],NAME_LENGTH);
+		safestrncpy(pet_db[j].jname,str[2],NAME_LENGTH);
+		pet_db[j].itemID=atoi(str[3]);
+		pet_db[j].EggID=atoi(str[4]);
+		pet_db[j].AcceID=atoi(str[5]);
+		pet_db[j].FoodID=atoi(str[6]);
+		pet_db[j].fullness=atoi(str[7]);
+		pet_db[j].hungry_delay=atoi(str[8])*1000;
+		pet_db[j].r_hungry=atoi(str[9]);
+		if( pet_db[j].r_hungry <= 0 )
+			pet_db[j].r_hungry=1;
+		pet_db[j].r_full=atoi(str[10]);
+		pet_db[j].intimate=atoi(str[11]);
+		pet_db[j].die=atoi(str[12]);
+		pet_db[j].capture=atoi(str[13]);
+		pet_db[j].speed=atoi(str[14]);
+		pet_db[j].s_perfor=(char)atoi(str[15]);
+		pet_db[j].talk_convert_class=atoi(str[16]);
+		pet_db[j].attack_rate=atoi(str[17]);
+		pet_db[j].defence_attack_rate=atoi(str[18]);
+		pet_db[j].change_target_rate=atoi(str[19]);
+		pet_db[j].pet_script = NULL;
+		pet_db[j].equip_script = NULL;
 
-			if( !mobdb_checkid(nameid) )
-			{
-				ShowWarning("pet_db reading: Mob inválido %d, pet não carregado!.\n", nameid);
-				continue;
-			}
-
-			pet_db[j].class_ = nameid;
-			safestrncpy(pet_db[j].name,str[1],NAME_LENGTH);
-			safestrncpy(pet_db[j].jname,str[2],NAME_LENGTH);
-			pet_db[j].itemID=atoi(str[3]);
-			pet_db[j].EggID=atoi(str[4]);
-			pet_db[j].AcceID=atoi(str[5]);
-			pet_db[j].FoodID=atoi(str[6]);
-			pet_db[j].fullness=atoi(str[7]);
-			pet_db[j].hungry_delay=atoi(str[8])*1000;
-			pet_db[j].r_hungry=atoi(str[9]);
-			if( pet_db[j].r_hungry <= 0 )
-				pet_db[j].r_hungry=1;
-			pet_db[j].r_full=atoi(str[10]);
-			pet_db[j].intimate=atoi(str[11]);
-			pet_db[j].die=atoi(str[12]);
-			pet_db[j].capture=atoi(str[13]);
-			pet_db[j].speed=atoi(str[14]);
-			pet_db[j].s_perfor=(char)atoi(str[15]);
-			pet_db[j].talk_convert_class=atoi(str[16]);
-			pet_db[j].attack_rate=atoi(str[17]);
-			pet_db[j].defence_attack_rate=atoi(str[18]);
-			pet_db[j].change_target_rate=atoi(str[19]);
-			pet_db[j].pet_script = NULL;
-			pet_db[j].equip_script = NULL;
-
-			if( *str[20] )
-				pet_db[j].pet_script = parse_script(str[20], filename[i], rows, 0);
-			if( *str[21] )
-				pet_db[j].equip_script = parse_script(str[21], filename[i], rows, 0);	
-			j++;
-		}
-
-		if( j >= MAX_PET_DB )
-			ShowWarning("petdb: Número máximo de pets atingido [%d].\n ", MAX_PET_DB);
-			
-		ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", rows, filename[i]);
-		Sql_FreeResult(dbmysql_handle);
+		if( *str[20] )
+			pet_db[j].pet_script = parse_script(str[20], get_database_name(48), rows, 0);
+		if( *str[21] )
+			pet_db[j].equip_script = parse_script(str[21], get_database_name(48), rows, 0);	
+		j++;
 	}
+
+	if( j >= MAX_PET_DB )
+		ShowWarning("petdb: Número máximo de pets atingido [%d].\n ", MAX_PET_DB);
+			
+	ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", rows, get_database_name(48));
+	Sql_FreeResult(dbmysql_handle);
 	return 0;
 }
 
