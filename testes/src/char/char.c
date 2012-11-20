@@ -4591,7 +4591,7 @@ int char_config_read(const char* cfgName)
 		} else if (strcmpi(w1, "chars_per_account") == 0) { //maxchars per account [Sirius]
 			char_per_account = atoi(w2);
 			if( char_per_account > MAX_CHARS ) {
-				ShowWarning("N%cmero m%cximo de personagem por conta '%d' limite excedido. Padr%co '%d'.\n", 163, 160, char_per_account, MAX_CHARS, 198);
+				ShowWarning("N%cmero m%cximo de personagem por conta '%d' limite excedido. Padr%co '%d'.\n", 163, 160, char_per_account, 198, MAX_CHARS);
 				char_per_account = MAX_CHARS;
 			}
 		} else if (strcmpi(w1, "char_del_level") == 0) { //disable/enable char deletion by its level condition [Lupus]

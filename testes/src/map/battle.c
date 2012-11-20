@@ -4466,7 +4466,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 	return md;
 }
 /*==========================================
- * ƒ_??[ƒWŒvŽZˆêŠ‡?ˆ—?—p
+ * ï¿½_??[ï¿½Wï¿½vï¿½Zï¿½êŠ‡?ï¿½ï¿½?ï¿½p
  *------------------------------------------*/
 struct Damage battle_calc_attack(int attack_type,struct block_list *bl,struct block_list *target,int skill_num,int skill_lv,int count)
 {
@@ -4506,7 +4506,7 @@ int battle_calc_return_damage(struct block_list* bl, struct block_list *src, int
 		rdamage = (*dmg) * sc->data[SC_REFLECTDAMAGE]->val2 / 100;
 		if( rdamage > max_damage ) rdamage = max_damage;
 	}else if( sc && sc->data[SC_CRESCENTELBOW] && !is_boss(src) && rnd()%100 < sc->data[SC_CRESCENTELBOW]->val2 ){
-		//ATK [{(Target’s HP / 100) x Skill Level} x Caster’s Base Level / 125] % + [Received damage x {1 + (Skill Level x 0.2)}]
+		//ATK [{(Targetï¿½s HP / 100) x Skill Level} x Casterï¿½s Base Level / 125] % + [Received damage x {1 + (Skill Level x 0.2)}]
 		int ratio = (status_get_hp(src) / 100) * sc->data[SC_CRESCENTELBOW]->val1 * status_get_lv(bl) / 125;
 		if (ratio > 5000) ratio = 5000; // Maximum of 5000% ATK
 		rdamage = rdamage * ratio / 100 + (*dmg) * (10 + sc->data[SC_CRESCENTELBOW]->val1 * 20 / 10) / 10;
@@ -5819,6 +5819,7 @@ static const struct _battle_data {
 	{ "warp_no_ress",                       &battle_config.warp_no_ress,                      0,    0,              1,      },
 	{ "attack_castle_monsters",             &battle_config.attack_castle_monsters,            0,    0,              1,      },
 	{ "gm_cant_attack",                     &battle_config.gm_cant_attack,                    0,    0,              1,      },
+	{ "bRO_Renewal",    		            &battle_config.bRO_Renewal,    		              1,    0,              1,      },
 };
 #ifndef STATS_OPT_OUT
 /**

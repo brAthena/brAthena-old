@@ -1856,14 +1856,9 @@ int status_base_amotion_pc(struct map_session_data* sd, struct status_data* stat
 	amotion = (sd->status.weapon < MAX_WEAPON_TYPE)
 	 ? (aspd_base[pc_class2idx(sd->status.class_)][sd->status.weapon]) // single weapon
 	 : (aspd_base[pc_class2idx(sd->status.class_)][sd->weapontype1] + aspd_base[pc_class2idx(sd->status.class_)][sd->weapontype2])*7/10; // dual-wield
-	
-	#ifdef RENEWAL_ASPD_KRO	
-		// percentual delay reduction from stats of kRO formula
-		amotion -= (int)(((float)sqrt((float)((float)pow((float)status->agi,2)/2) + ((float)pow((float)status->dex,2)/5) )/4)*10 + (bonus*status->agi/200));
-	#else
-		// percentual delay reduction from stats of iRO/bRO formula
-		amotion -= amotion * (4*status->agi + status->dex)/1000;
-	#endif
+	 
+	 	// percentual delay reduction from stats
+	amotion -= amotion * (4*status->agi + status->dex)/1000;
 #endif
 	// raw delay adjustment from bAspd bonus
 	amotion += sd->bonus.aspd_add;
@@ -1939,6 +1934,9 @@ static inline unsigned short status_base_matk_min(const struct status_data* stat
 #endif
 {
 #ifdef RENEWAL
+  if ( battle_config.bRO_Renewal ) // Fórmula de ataque mágico [brAthena - bRO]
+	return status->int_+(status->int_*15/10)+(status->dex/5)+(status->luk/3)+(lvl/4);
+	else
 	return status->int_+(status->int_/2)+(status->dex/5)+(status->luk/3)+(lvl/4);
 #else
 	return status->int_+(status->int_/7)*(status->int_/7);
@@ -1965,8 +1963,12 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int lev
 #ifdef RENEWAL // renewal formulas
 	status->hit += level + status->dex + status->luk/3 + 175; //base level + ( every 1 dex = +1 hit ) + (every 3 luk = +1 hit) + 175
 	status->flee += level + status->agi + status->luk/5 + 100; //base level + ( every 1 agi = +1 flee ) + (every 5 luk = +1 flee) + 100
+	if ( battle_config.bRO_Renewal ) {
+	status->mdef2 += (status->int_ / 2) + (status->vit / 5) + (status->dex / 4) + (level/6); // Defesa mágica por atributos - [brAthena - bRO]
+	}	else {
 	status->def2 += (int)(((float)level + status->vit)/2 + ((float)status->agi/5)); //base level + (every 2 vit = +1 def) + (every 5 agi = +1 def)
 	status->mdef2 += (int)(status->int_ + ((float)level/4) + ((float)status->dex/5) + ((float)status->vit/5)); //(every 4 base level = +1 mdef) + (every 1 int = +1 mdef) + (every 5 dex = +1 mdef) + (every 5 vit = +1 mdef)
+  }
 #else
 	status->hit += level + status->dex;
 	status->flee += level + status->agi;
@@ -3848,6 +3850,10 @@ void status_calc_bl_main(struct block_list *bl, /*enum scb_flag*/int flag)
 			if(status->aspd_rate != 1000)
 				amotion = amotion*status->aspd_rate/1000;
 #else
+      // Fórmula de velocidade de ataque [brAthena - bRO]
+			if ( battle_config.bRO_Renewal )
+           amotion -= (int)(sqrt((pow(status->agi, 2) / 2) + (pow(status->dex, 2)/5)) / 4 + (status_calc_aspd(bl, sc, 1) * status->agi/200));
+
 			// aspd = baseaspd + floor(sqrt((agi^2/2) + (dex^2/5))/4 + (potskillbonus*agi/200))
 			amotion -= (int)(sqrt( (pow(status->agi, 2) / 2) + (pow(status->dex, 2) / 5) ) / 4 + (status_calc_aspd(bl, sc, 1) * status->agi / 200)) * 10;
 			
