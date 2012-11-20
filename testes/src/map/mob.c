@@ -3875,7 +3875,7 @@ static bool mob_parse_dbrow(char** str)
  *------------------------------------------*/
 static int mob_read_sqldb(void)
 {
-	const char* mob_db_name[] = { "mob_db", "mob_db2" };
+	const char* mob_db_name[] = { "mob_db" };
 	int fi;
 	
 	for( fi = 0; fi < ARRAYLENGTH(mob_db_name); ++fi ) {
@@ -4355,7 +4355,7 @@ static bool mob_parse_row_mobskilldb(char** str, int columns, int current)
  */
 static int mob_read_sqlskilldb(void)
 {
-	const char* mob_skill_db_name[] = { "mob_skill_db", "mob_skill_db2" };
+	const char* mob_skill_db_name[] = { "mob_skill_db" };
 	int fi;
 	
 	if( battle_config.mob_skill_rate == 0 ) {

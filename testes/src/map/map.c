@@ -3563,7 +3563,7 @@ char* get_database_name(int database_id)
 		case 46: db_name = "mob_race2_db"; break;
 		case 47: db_name = "skill_tree_db"; break;
 		case 48: db_name = "pet_db"; break;
-		case 49: db_name = "pet_db2"; break;
+		//case 49: db_name = "pet_db2"; break;
 		case 50: db_name = "quest_db"; break;
 		case 51: db_name = "size_fix_db"; break;
 		case 52: db_name = "exp_homun_db"; break;

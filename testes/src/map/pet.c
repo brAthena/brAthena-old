@@ -1199,7 +1199,7 @@ int pet_skill_support_timer(int tid, unsigned int tick, int id, intptr_t data)
  *------------------------------------------*/ 
 int read_petdb()
 {
-	char* filename[] = { get_database_name(48), get_database_name(49) };
+	char* filename[] = { get_database_name(48) };
 	int nameid,i,j; 
 
 	// Remove any previous scripts in case reloaddb was invoked.

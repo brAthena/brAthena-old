@@ -1018,7 +1018,7 @@ static bool itemdb_parse_dbrow(char** str, const char* source, int line, int scr
  *======================================*/
 static int itemdb_read_sqldb(void) {
 
-	const char* item_db_name[] = { "item_db", "item_db2" };
+	const char* item_db_name[] = { "item_db"" };
 	int fi;
 	
 	for( fi = 0; fi < ARRAYLENGTH(item_db_name); ++fi ) {
