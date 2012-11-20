@@ -1044,6 +1044,7 @@ void initChangeTables(void) {
 	StatusChangeStateTable[SC_DEEPSLEEP]           |= SCS_NOCAST;
 	StatusChangeStateTable[SC_SATURDAYNIGHTFEVER]  |= SCS_NOCAST;
 	StatusChangeStateTable[SC_CURSEDCIRCLE_TARGET] |= SCS_NOCAST;
+	StatusChangeStateTable[SC_SILENCE]             |= SCS_NOCAST;
 	
 	//Homon S
 	StatusChangeStateTable[SC_PARALYSIS]               |= SCS_NOMOVE;
