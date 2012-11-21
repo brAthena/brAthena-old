@@ -1199,7 +1199,7 @@ int pet_skill_support_timer(int tid, unsigned int tick, int id, intptr_t data)
  *------------------------------------------*/ 
 int read_petdb()
 {
-	int nameid,i,j, rows = 0; 
+	int nameid,j, rows = 0; 
 
 	// Remove any previous scripts in case reloaddb was invoked.
 	for( j = 0; j < MAX_PET_DB; j++ )
