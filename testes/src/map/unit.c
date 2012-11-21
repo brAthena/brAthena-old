@@ -1545,7 +1545,7 @@ int unit_attack(struct block_list *src,int target_id,int continuous)
 			npc_click(sd,(TBL_NPC*)target); // submitted by leinsirk10 [Celest]
 			return 0;
 		}
-		if( pc_is90overweight(sd) || pc_isridingwug(sd) || battle_config.gm_cant_attack && pc_get_group_level(sd) > 0 && (target->type == BL_PC || target->type == BL_MOB) ) { // Acima do peso - Montado no Lobo - Proíbe ataque de contas [GM/ADM] -  [Holy]
+		if( pc_is90overweight(sd) || pc_isridingwug(sd) ) {
 			unit_stop_attack(src);
 			return 0;
 		}

@@ -5092,6 +5092,9 @@ int battle_check_target( struct block_list *src, struct block_list *target,int f
 
 	if( (s_bl = battle_get_master(src)) == NULL )
 		s_bl = src;
+		
+	if( battle_config.gm_cant_attack && (s_bl->type == BL_PC) && (t_bl->type != BL_NUL) && pc_get_group_level((TBL_PC*)s_bl) > 0)
+        return 0;
 
 	if ( s_bl->type == BL_PC ) {
 		switch( t_bl->type ) {
