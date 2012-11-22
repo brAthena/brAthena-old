@@ -12287,7 +12287,7 @@ REPLACE INTO `skill_cast_db` VALUES(2299, '1000', '2000', '0', '5000:10000:15000
 REPLACE INTO `skill_cast_db` VALUES(2300, '1000', '2000', '0', '4000:8000:12000', '0', '0\r\n');
 REPLACE INTO `skill_cast_db` VALUES(2301, '2000', '2000', '0', '5000:10000:15000', '30000', '0\r\n');
 REPLACE INTO `skill_cast_db` VALUES(2302, '2000', '2000', '0', '7000:14000:21000', '0', '0\r\n');
-REPLACE INTO `skill_cast_db` VALUES(2303, '2000', '2000', '0', '10000:20000:30000', '30000', '0\r\n');
+REPLACE INTO `skill_cast_db` VALUES(2303, '2000', '2000', '0', '10000:20000:30000', '0', '180000\r\n');
 REPLACE INTO `skill_cast_db` VALUES(2304, '1000', '0', '0', '1000', '0', '5000\r\n');
 REPLACE INTO `skill_cast_db` VALUES(2307, '0', '0', '0', '0', '0', '2000\r\n');
 REPLACE INTO `skill_cast_db` VALUES(2309, '0', '1000', '0', '0', '0', '0\r\n');
@@ -19971,7 +19971,7 @@ REPLACE INTO `skill_unit_db` VALUES(2273, '0xe2', '', '1', '0', 500, 'friend', '
 REPLACE INTO `skill_unit_db` VALUES(2274, '0xe3', '', '1', '0', 500, 'all', '0x000\r\n');
 REPLACE INTO `skill_unit_db` VALUES(2299, '0xcc', '', '0', '1', 1000, 'all', '0x006\r\n');
 REPLACE INTO `skill_unit_db` VALUES(2300, '0xcd', '', '0', '1', 1000, 'all', '0x006\r\n');
-REPLACE INTO `skill_unit_db` VALUES(2301, '0xce', '', '0', '2', 0, 'enemy', '0x00E\r\n');
+REPLACE INTO `skill_unit_db` VALUES(2301, '0xce', '', '0', '2', 0, 'all', '0x00E\r\n');
 REPLACE INTO `skill_unit_db` VALUES(2302, '0xcf', '', '0', '2', 0, 'enemy', '0x002\r\n');
 REPLACE INTO `skill_unit_db` VALUES(2303, '0xd0', '', '0', '2', 0, 'enemy', '0x018\r\n');
 REPLACE INTO `skill_unit_db` VALUES(2304, '0xd1', '', '0', '2', 0, 'enemy', '0x000\r\n');
