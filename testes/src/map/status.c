@@ -1359,9 +1359,6 @@ int status_damage(struct block_list *src,struct block_list *target,int hp, int s
 		clif_clearunit_area(target,CLR_DEAD);
 		skill_unit_move(target,gettick(),4);
 		skill_cleartimerskill(target);
-
-		if(target->type == BL_PC && ((TBL_PC*)target)->npc_id && flag == 1)
-			npc_event_dequeue((TBL_PC*)target);
 	}
 
 	return hp+sp;
@@ -8871,11 +8868,13 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 	return 1;
 }
 /*==========================================
- * ステータス異常全解除
+ * Ending all status except those listed.
+ * @TODO maybe usefull for dispel instead reseting a liste there.
  * type:
- * 0 - ???
- * 1 - ???
- * 2 - ???
+ * 0 - PC killed -> Place here statuses that do not dispel on death.
+ * 1 - If for some reason status_change_end decides to still keep the status when quitting.
+ * 2 - Do clif
+ * 3 - Do not remove some permanent/time-independent effects
  *------------------------------------------*/
 int status_change_clear(struct block_list* bl, int type)
 {
@@ -8944,6 +8943,18 @@ int status_change_clear(struct block_list* bl, int type)
 		case SC_PUSH_CART:
 			continue;
 
+		}
+		
+		if( type == 3 )
+		{
+			switch (i)
+			{// TODO: This list may be incomplete
+				case SC_WEIGHT50:
+				case SC_WEIGHT90:
+				case SC_NOCHAT:
+				case SC_PUSH_CART:
+					continue;
+			}
 		}
 
 		status_change_end(bl, (sc_type)i, INVALID_TIMER);

@@ -403,7 +403,7 @@ void* grfio_reads(const char* fname, int* size)
 			declen = ftell(in);
 			fseek(in,0,SEEK_SET);
 			buf2 = (unsigned char *)aMalloc(declen+1);  // +1 for resnametable zero-termination
-			(void)fread(buf2, 1, declen, in);
+			if(fread(buf2, 1, declen, in) != declen) printf("Ocorreu um erro no grfio_reads de fread, fname=%s \n",fname);
 			fclose(in);
 
 			if( size )
@@ -422,16 +422,17 @@ void* grfio_reads(const char* fname, int* size)
 		char* grfname = gentry_table[entry->gentry - 1];
 		FILE* in = fopen(grfname, "rb");
 		if( in != NULL ) {
-			unsigned char *buf = (unsigned char *)aMalloc(entry->srclen_aligned);
+			int fsize = entry->srclen_aligned;
+			unsigned char *buf = (unsigned char *)aMalloc(fsize);
 			fseek(in, entry->srcpos, 0);
-			(void)fread(buf, 1, entry->srclen_aligned, in);
+			if(fread(buf, 1, fsize, in) != fsize) printf("Ocorreu um erro no fread em grfio_reads, grfname=%s\n",grfname);
 			fclose(in);
 
 			buf2 = (unsigned char *)aMalloc(entry->declen+1);  // +1 for resnametable zero-termination
 			if( entry->type & FILELIST_TYPE_FILE )
 			{// file
 				uLongf len;
-				grf_decode(buf, entry->srclen_aligned, entry->type, entry->srclen);
+				grf_decode(buf, fsize, entry->type, entry->srclen);
 				len = entry->declen;
 				decode_zip(buf2, &len, buf, entry->srclen);
 				if (len != (uLong)entry->declen) {
@@ -507,7 +508,7 @@ static int grfio_entryread(const char* grfname, int gentry)
 	grf_size = ftell(fp);
 	fseek(fp,0,SEEK_SET);
 
-	(void)fread(grf_header,1,0x2e,fp);
+	if(fread(grf_header,1,0x2e,fp) != 0x2e) { ShowError("N%co foi poss%cvel ler todo o elemento de grf_header %s \n", 198, 214, grfname); }
 	if( strcmp((const char*)grf_header,"Master of Magic") != 0 || fseek(fp,getlong(grf_header+0x1e),SEEK_CUR) != 0 ) {
 		fclose(fp);
 		ShowError("GRF %s read error\n", grfname);
@@ -519,7 +520,7 @@ static int grfio_entryread(const char* grfname, int gentry)
 	if( grf_version == 0x01 ) {// ****** Grf version 01xx ******
 		list_size = grf_size - ftell(fp);
 		grf_filelist = (unsigned char *) aMalloc(list_size);
-		(void)fread(grf_filelist,1,list_size,fp);
+		if(fread(grf_filelist,1,list_size,fp) != list_size) { ShowError("N%co foi poss%cvel ler todo o elemento de grf_header %s \n", 198, 214, grfname); }
 		fclose(fp);
 
 		entrys = getlong(grf_header+0x26) - getlong(grf_header+0x22) - 7;
@@ -566,7 +567,7 @@ static int grfio_entryread(const char* grfname, int gentry)
 		unsigned char *rBuf;
 		uLongf rSize, eSize;
 
-		(void)fread(eheader,1,8,fp);
+		if(fread(eheader,1,8,fp) != 8) ShowError("Ocorreu um erro no fread ao ler o buffer de cabe%calho\n", 135);
 		rSize = getlong(eheader);	// Read Size
 		eSize = getlong(eheader+4);	// Extend Size
 
@@ -578,7 +579,7 @@ static int grfio_entryread(const char* grfname, int gentry)
 
 		rBuf = (unsigned char *)aMalloc(rSize);	// Get a Read Size
 		grf_filelist = (unsigned char *)aMalloc(eSize);	// Get a Extend Size
-		(void)fread(rBuf,1,rSize,fp);
+		if(fread(rBuf,1,rSize,fp) != rSize) ShowError("Ocorreu um erro no fread \n");
 		fclose(fp);
 		decode_zip(grf_filelist, &eSize, rBuf, rSize);	// Decode function
 		aFree(rBuf);

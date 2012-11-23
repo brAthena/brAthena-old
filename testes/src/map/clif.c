@@ -13763,6 +13763,8 @@ void clif_parse_Mail_getattach(int fd, struct map_session_data *sd)
 	int i;
 	bool fail = false;
 
+	if( !chrif_isconnected() )
+		return;
 	if( mail_id <= 0 )
 		return;
 	if( mail_invalid_operation(sd) )
@@ -13827,6 +13829,8 @@ void clif_parse_Mail_delete(int fd, struct map_session_data *sd)
 	int mail_id = RFIFOL(fd,2);
 	int i;
 
+	if( !chrif_isconnected() )
+		return;
 	if( mail_id <= 0 )
 		return;
 	if( mail_invalid_operation(sd) )
@@ -13876,6 +13880,8 @@ void clif_parse_Mail_setattach(int fd, struct map_session_data *sd)
 	int amount = RFIFOL(fd,4);
 	unsigned char flag;
 
+	if( !chrif_isconnected() )
+		return;
 	if (idx < 0 || amount < 0)
 		return;
 
@@ -13908,6 +13914,8 @@ void clif_parse_Mail_send(int fd, struct map_session_data *sd)
 	struct mail_message msg;
 	int body_len;
 
+	if( !chrif_isconnected() )
+		return;
 	if( sd->state.trading )
 		return;
 

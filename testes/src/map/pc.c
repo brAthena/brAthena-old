@@ -6420,6 +6420,19 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 			npc_event(sd, bg->die_event, 0);
 	}
 	
+	// Clear anything NPC-related when you die and was interacting with one.
+	if (sd->npc_id)
+	{
+		if (sd->state.using_fake_npc)
+			sd->state.using_fake_npc = 0;
+		if (sd->state.menu_or_input)
+			sd->state.menu_or_input = 0;
+		if (sd->npc_menu)
+			sd->npc_menu = 0;
+	 
+		npc_event_dequeue(sd);
+	}
+	
 	npc_script_event(sd,NPCE_DIE);
 
 	/* e.g. not killed thru pc_damage */

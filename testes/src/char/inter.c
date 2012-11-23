@@ -384,7 +384,7 @@ void geoip_readdb(void){
 	FILE *db=fopen("./db/GeoIP.dat","r");
 	fstat(fileno(db), &bufa);
 	geoip_cache = (unsigned char *) malloc(sizeof(unsigned char) * bufa.st_size);
-	(void)fread(geoip_cache, sizeof(unsigned char), bufa.st_size, db);
+	if(fread(geoip_cache, sizeof(unsigned char), bufa.st_size, db) != bufa.st_size) { ShowError("geoip_cache leitura n%co leu todos os elementos.", 198);}
 	fclose(db);
 	ShowStatus("Leitura de "CL_GREEN"GeoIP"CL_RESET" Finalizada.\n");
 }
