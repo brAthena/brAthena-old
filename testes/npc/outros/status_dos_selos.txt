@@ -12,35 +12,35 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.2/1.0                             |
+//   | Versões eA/rA/brA: 1.2/1.2/1.1                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Status de selo dos Item dos Deuses.         |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [cleyton]                           |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-
-prontera,113,294,3	script	Sign Post	837,{
-	mes "======== God Seal Status ========";
+prontera,113,294,3	script	Selos	837,{
+	mes "======== Condição dos Selos ========";
 	setarray .@n$[1], "Sleipnir","Megingjard","Brisingamen","Mjolnir";
 	for(set .@i,1; .@i<5; set .@i,.@i+1) {
-		if (getd("$god"+.@i) == 0) mes .@n$[.@i]+" Seal: Unseen";
-		else if (getd("$god"+.@i) < 50) mes .@n$[.@i]+" Seal: Active";
-		else if (getd("$god"+.@i) < 100) mes .@n$[.@i]+" Seal: Appeared";
-		else mes .@n$[.@i]+" Seal: Released";
+		if (getd("$god"+.@i) == 0) mes .@n$[.@i]+" Seal: Fechado";
+		else if (getd("$god"+.@i) < 50) mes .@n$[.@i]+" Seal: Disponível";
+		else if (getd("$god"+.@i) < 100) mes .@n$[.@i]+" Seal: Apareceu";
+		else mes .@n$[.@i]+" Seal: Liberado";
 	}
 	mes " ";
-	mes "======= Your Seal Status ========";
-	if (god_sl_1 < 51) mes "^ff0000Sleipnir Seal: Not Completed^000000";
-		else mes "^00ff00Sleipnir Seal: Completed^000000";
-	if (god_eremes < 28) mes "^ff0000Megingjard Seal: Not Completed^000000";
-		else mes "^00ff00Megingjard Seal: Completed^000000";
-	if (god_brising < 50) mes "^ff0000Brisingamen Seal: Not Completed^000000";
-		else mes "^00ff00Brisingamen Seal: Completed^000000";
-	if (god_mjo_0 < 11) mes "^ff0000Mjolnir Seal: Not Completed^000000";
-		else mes "^00ff00Mjolnir Seal: Completed^000000";
+	mes "======= Seu Status dos Selos ========";
+	if (god_sl_1 < 51) mes "^ff0000Selo de Sleipnir: Incompleto^000000";
+		else mes "^00ff00Selo de Sleipnir: Completo^000000";
+	if (god_eremes < 28) mes "^ff0000Selo de Megingjard: Incompleto^000000";
+		else mes "^00ff00Selo de Megingjard: Completo^000000";
+	if (god_brising < 50) mes "^ff0000Selo de Brisingamen: Incompleto^000000";
+		else mes "^00ff00Selo de Brisingamen: Completo^000000";
+	if (god_mjo_0 < 11) mes "^ff0000Selo de Mjolnir: Incompleto^000000";
+		else mes "^00ff00Selo de Mjolnir: Completo^000000";
 	close;
 }

@@ -15,7 +15,7 @@
 // | Descrição: Database das classes                             |
 // |-------------------------------------------------------------|
 // | Estrutura do Database:                                      |
-// | JobID,Peso,FatorHP,MultiplicadorHP,FatorSP,DesarRobô,       |
+// | JobID,Peso,FatorHP,MultiplicadorHP,FatorSP,Desarmado,       |
 // | Adaga,Espada (2 mãos),Lança,Lança (2 mãos),Machado,         |
 // | Machado (2 mãos),Maça,Maça (2 mãos),Cajado,Arco,Garra,      |
 // | Instrumento,Chicote,Livro,Katar,Revólver,Rifle,             |
