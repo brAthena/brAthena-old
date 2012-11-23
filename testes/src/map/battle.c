@@ -5822,7 +5822,8 @@ static const struct _battle_data {
 	{ "warp_no_ress",                       &battle_config.warp_no_ress,                      0,    0,              1,      },
 	{ "attack_castle_monsters",             &battle_config.attack_castle_monsters,            0,    0,              1,      },
 	{ "gm_cant_attack",                     &battle_config.gm_cant_attack,                    0,    0,              1,      },
-	{ "bRO_Renewal",    		            &battle_config.bRO_Renewal,    		              1,    0,              1,      },
+	{ "bRO_Renewal",                        &battle_config.bRO_Renewal,                       1,    0,              1,      },
+	{ "alliance_in_woe",                    &battle_config.alliance_in_woe,                   0,    0,              1,      },
 };
 #ifndef STATS_OPT_OUT
 /**
