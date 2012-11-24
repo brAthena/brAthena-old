@@ -1482,6 +1482,9 @@ void clif_send_homdata(struct map_session_data *sd, int state, int param)
 {	//[orn]
 	int fd = sd->fd;
 
+	if ( (state == SP_INTIMATE) && (param >= 910) && (sd->hd->homunculus.class_ == sd->hd->homunculusDB->evo_class) )
+		merc_hom_calc_skilltree(sd->hd, 0);
+
 	WFIFOHEAD(fd, packet_len(0x230));
 	WFIFOW(fd,0)=0x230;
 	WFIFOB(fd,2)=0;
