@@ -24,47 +24,47 @@
 //   \________________________________________________________/
 
 // Agência Pata de Gato
-manuk,304,195,5	script	Soldier#ep13pa829	454,{
+manuk,304,195,5	script	Soldado#ep13pa829	454,{
 	if (isequipped(2782) == 1) {
-		mes "[Food Provider]";
-		mes "O sustento da família Manuk consiste principalmente no refinamento de Hollows Cinzas que foram enterrados há muito tempo no fundo da terra.";
+		mes "[Fornecedor de Alimentos]";
+		mes "O sustento da família Manuk consiste principalmente no refinamento de Cinzas Hollows que foram enterrados há muito tempo no fundo da terra.";
 		close;
 	}
 	else {
-		mes "[Food Provider]";
+		mes "[Fornecedor de Alimentos]";
 		mes "Gdiios duuie Dssoas pogggd fdrul fdddoweet";
 		close;
 	}
 }
 
-manuk,274,239,5	script	Soldier#ep13_2	455,{
+manuk,274,239,5	script	Soldado#ep13_2	455,{
 	if (isequipped(2782) == 1) {
-		mes "[Injured Manuk Soldier]";
+		mes "[Soldado ferido de Manuk]";
 		mes "Não posso absorver a Essência de Bradium por causa do meu ferimento fatal.";
 		mes "Aquelas fadas perversas me atacaram e me deixaram assim.";
 		close;
-		mes "[Injured Manuk Soldier]";
+		mes "[Soldado ferido de Manuk]";
 		mes "Eu gostaria de poder matar todas as fadas...";
 		close;
 	}
 	else {
-		mes "[Injured Manuk Soldier";
+		mes "[Soldado ferido de Manuk]";
 		mes "Bhiio aaas dgwer fdds rrrrrpppp Ee";
 		close;
-		mes "[Injured Manuk Soldier]";
+		mes "[Soldado ferido de Manuk]";
 		mes "Foi dsddff gggeeeerr pqowe";
 		close;
 	}
 }
 
-manuk,107,233,5	script	Soldier#ep13_3	454,{
+manuk,107,233,5	script	Soldado#ep13_3	454,{
 	if (isequipped(2782) == 1) {
-		mes "[Anxious Soldier]";
+		mes "[Soldado Ansioso]";
 		mes "Depressa, estou em apuros. Perdi todas as moedas Manuk. Eu acho que as perdi na neve. Nossa, eu as vi antes de dormir!";
 		close;
 	}
 	else {
-		mes "[Anxious Soldier]";
+		mes "[Soldado Ansioso]";
 		mes "Qosi dhhui rffd poaner ouh.";
 		close;
 	}
@@ -298,7 +298,7 @@ manuk,245,124,3	script	Piom#ep13_2_4	455,{
 man_in01,346,135,0	script	 Operário#ep13bsg1	454,{
 	if (isequipped(2782) == 1) {
 		mes "[Operário]";
-		mes "É perigoso se a válvula não está devidamente verificada.";
+		mes "É perigoso se a válvula não estiver devidamente verificada.";
 		mes "Na verdade, houve um incidente.";
 		mes "Me dá arrepios só de pensar nisso.";
 		close;

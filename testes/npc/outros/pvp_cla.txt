@@ -24,7 +24,6 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-
 pvp_y_room,77,85,4	script	Guia de Batalha dos Clãs	105,{
 
 	mes "[Guia de Batalha dos Clãs]";

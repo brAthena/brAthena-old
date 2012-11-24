@@ -38,7 +38,7 @@
 aldeba_in,96,181,4	script	Kafra Service	113,{
 	cutin "kafra_05",2;
 	mes "[Kafra Leila]";
-	mes "Hm...?";
+	mes "Hum...?";
 	mes "Seja bem-vindo à sede da Corporação Kafra";
 	mes "Precisa de alguma coisa?";
 	mes "alguma coisa?";
@@ -224,7 +224,7 @@ prontera,152,326,3	script	Funcionária Kafra::kaf_prontera	112,{
 	mes "[Funcionária Kafra]";
 	mes "Bem-vindo à corporação kafra.";
 	mes "Os serviços da corporação estão aqui para dar suporte a você.";
-	mes "Como posso ajudá-lo útil hoje?";
+	mes "Como posso ajudá-lo hoje?";
 	callfunc "F_Kafra",5,0,0,40,800;
 	savepoint "prontera",157,327;
 	callfunc "F_KafEnd",0,1,"na cidade de Prontera";
@@ -257,7 +257,7 @@ prontera,282,200,2	script	Funcionária Kafra::kaf_prontera4	114,{
 	cutin "kafra_04",2;
 	callfunc "F_KafSet";
 	mes "[Funcionária Kafra]";
-	mes "Bem-vindo! A corporação kafra sempre dará suporte para os aventureiros de Rune-Midigard com excelentes serviços.";
+	mes "Bem-vindo! A corporação kafra sempre dará suporte para os aventureiros de Rune-Midgard com excelentes serviços.";
 	mes "Como posso ajudá-lo hoje?";
 	callfunc "F_Kafra",5,0,0,40,800;
 	savepoint "prontera",281,203;
@@ -269,7 +269,7 @@ prontera,146,89,6	script	Funcionária Kafra::kaf_prontera5	117,{
 	callfunc "F_KafSet";
 	mes "[Funcionária Kafra]";
 	mes "Bem-vindo à corporação kafra.";
-	mes "Os serviços da corporação kafra sempre estarão ao seu lado.";
+	mes "Os serviços da corporação kafra estarão sempre ao seu lado.";
 	mes "Como posso ajudá-lo?";
 	callfunc "F_Kafra",5,0,0,40,800;
 	savepoint "prontera",116,73;
