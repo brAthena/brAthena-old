@@ -10173,21 +10173,18 @@ void clif_parse_UseItem(int fd, struct map_session_data *sd)
 		return;
 	}
 
-	if (sd->sc.opt1 > 0 && sd->sc.opt1 != OPT1_STONEWAIT && sd->sc.opt1 != OPT1_BURNING)
-		return;
-	
 	//This flag enables you to use items while in an NPC. [Skotlex]
 	if (sd->npc_id) {
 		if (sd->npc_id != sd->npc_item_flag)
 			return;
-	} 
+	}
 	else if (pc_istrading(sd))
 		return;
 
 	//Whether the item is used or not is irrelevant, the char ain't idle. [Skotlex]
 	sd->idletime = last_tick;
 	n = RFIFOW(fd,packet_db[sd->packet_ver][RFIFOW(fd,0)].pos[0])-2;
-	
+
 	if(n <0 || n >= MAX_INVENTORY)
 		return;
 	if (!pc_useitem(sd,n))

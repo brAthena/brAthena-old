@@ -125,10 +125,10 @@ unsigned short mapindex_name2id(const char* name)
 
 	for (i = 1; i < max_index; i++)
 	{
-		if (strcmp(indexes[i].name,map_name)==0)
+		if (strcmpi(indexes[i].name,map_name)==0)
 			return i;
 	}
-	ShowDebug("mapindex_name2id: Map \"%s\" not found in index list!\n", map_name);
+	ShowDebug("mapindex_name2id: Mapa \"%s\" n%co encontrado na lista de %cndice!\n", map_name, 198, 214);
 	return 0;
 }
 

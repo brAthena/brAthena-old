@@ -1192,7 +1192,7 @@ static bool read_homunculus_skilldb_sub(char* split[], int columns, int current)
 int read_homunculus_skilldb(void)
 {
 	memset(hskill_tree,0,sizeof(hskill_tree));
-	sv_readsqldb(get_database_name(16), NULL, 13, -1, &read_homunculus_skilldb_sub);
+	sv_readsqldb(get_database_name(16), NULL, 15, -1, &read_homunculus_skilldb_sub);
 
 	return 0;
 }

@@ -2598,8 +2598,10 @@ ACMD_FUNC(zeny)
 	    if((ret=pc_getzeny(sd,zeny,LOG_TYPE_COMMAND,NULL)) == 1)
 		clif_displaymessage(fd, msg_txt(149)); // Unable to increase the number/value.
 	}
-	else if((ret=pc_payzeny(sd,-zeny,LOG_TYPE_COMMAND,NULL)) == 1){
-	    clif_displaymessage(fd, msg_txt(41)); // Unable to decrease the number/value.
+	else {
+	    if( sd->status.zeny < -zeny ) zeny = -sd->status.zeny;
+	    if((ret=pc_payzeny(sd,-zeny,LOG_TYPE_COMMAND,NULL)) == 1)
+		clif_displaymessage(fd, msg_txt(41)); // Unable to decrease the number/value.
 	}
 	if(!ret) clif_displaymessage(fd, msg_txt(176)); //ret=0 mean cmd success
 	return 0;
@@ -7600,17 +7602,17 @@ ACMD_FUNC(fakename)
 ACMD_FUNC(mapflag) {
 #define checkflag( cmd ) if ( map[ sd->bl.m ].flag.cmd ) clif_displaymessage(sd->fd,#cmd)
 #define setflag( cmd ) \
-	if ( strcmp( flag_name , #cmd ) == 0 && ( flag == 0 || flag == 1 ) ){\
+	if ( strcmp( flag_name , #cmd ) == 0 ){\
 		map[ sd->bl.m ].flag.cmd = flag;\
 		sprintf(atcmd_output,"[ @mapflag ] %s flag has been set to %s",#cmd,flag?"On":"Off");\
 		clif_displaymessage(sd->fd,atcmd_output);\
 		return 0;\
 	}
 	unsigned char flag_name[100];
-	int flag=9,i;
+	int flag=0,i;
 	nullpo_retr(-1, sd);
 	memset(flag_name, '\0', sizeof(flag_name));
-	
+
 	if (!message || !*message || (sscanf(message, "%99s %d", flag_name, &flag) < 1)) {
 		clif_displaymessage(sd->fd,msg_txt(1311)); // Enabled Mapflags in this map:
 		clif_displaymessage(sd->fd,"----------------------------------");
@@ -7632,7 +7634,7 @@ ACMD_FUNC(mapflag) {
 		return 1;
 	}
 	for (i = 0; flag_name[i]; i++) flag_name[i] = tolower(flag_name[i]); //lowercase
-			
+
 	setflag(autotrade);			setflag(allowks);			setflag(nomemo);			setflag(noteleport);
 	setflag(noreturn);			setflag(monster_noteleport);setflag(nosave);			setflag(nobranch);
 	setflag(noexppenalty);		setflag(pvp);				setflag(pvp_noparty);		setflag(pvp_noguild);

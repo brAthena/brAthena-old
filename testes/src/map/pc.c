@@ -4146,25 +4146,46 @@ int pc_useitem(struct map_session_data *sd,int n)
 	if( !pc_isUseitem(sd,n) )
 		return 0;
 
-	 //Prevent mass item usage. [Skotlex]
-	if( DIFF_TICK(sd->canuseitem_tick, tick) > 0 ||
-		(itemdb_iscashfood(sd->status.inventory[n].nameid) && DIFF_TICK(sd->canusecashfood_tick, tick) > 0)
-	)
+	// Store information for later use before it is lost (via pc_delitem) [Paradox924X]
+	nameid = sd->inventory_data[n]->nameid;
+
+	if (nameid != ITEMID_NAUTHIZ && sd->sc.opt1 > 0 && sd->sc.opt1 != OPT1_STONEWAIT && sd->sc.opt1 != OPT1_BURNING)
 		return 0;
 
-	if( sd->sc.count && (
+	if( sd->sc.count){
+	     if((nameid == ITEMID_NAUTHIZ) && ( //bugreport 6751
+		    sd->sc.data[SC_FREEZE] ||
+		    sd->sc.data[SC_STUN] ||
+		    sd->sc.data[SC_DEEPSLEEP] ||
+		    sd->sc.data[SC_STONE] ||
+		    sd->sc.data[SC_CRYSTALIZE]
+		    )
+		){
+			 sd->sc.opt1 = 0; //remove option and status to allow skill
+			 status_change_end(&sd->bl,SC_FREEZE,INVALID_TIMER);
+			 status_change_end(&sd->bl,SC_STUN,INVALID_TIMER);
+			 status_change_end(&sd->bl,SC_DEEPSLEEP,INVALID_TIMER);
+			 status_change_end(&sd->bl,SC_STONE,INVALID_TIMER);
+			 status_change_end(&sd->bl,SC_CRYSTALIZE,INVALID_TIMER);
+	     }  //let us continue
+		else if(
 		sd->sc.data[SC_BERSERK] || sd->sc.data[SC__BLOODYLUST] ||
 		(sd->sc.data[SC_GRAVITATION] && sd->sc.data[SC_GRAVITATION]->val3 == BCT_SELF) ||
 		sd->sc.data[SC_TRICKDEAD] ||
 		sd->sc.data[SC_HIDING] ||
 		sd->sc.data[SC__SHADOWFORM] ||
+		sd->sc.data[SC__MANHOLE] ||
 		sd->sc.data[SC_KAGEHUMI] ||
 		(sd->sc.data[SC_NOCHAT] && sd->sc.data[SC_NOCHAT]->val1&MANNER_NOITEM)
-	))
+	    )
 		return 0;
+	}
 
-	// Store information for later use before it is lost (via pc_delitem) [Paradox924X]
-	nameid = sd->inventory_data[n]->nameid;
+	//Prevent mass item usage. [Skotlex]
+	if( DIFF_TICK(sd->canuseitem_tick, tick) > 0 ||
+		(itemdb_iscashfood(nameid) && DIFF_TICK(sd->canusecashfood_tick, tick) > 0)
+	)
+		return 0;
 
 	/* Items with delayed consume are not meant to work while in mounts except reins of mount(12622) */
 	if( sd->inventory_data[n]->flag.delay_consume ) {
@@ -4190,11 +4211,11 @@ int pc_useitem(struct map_session_data *sd,int n)
 					int e_tick = DIFF_TICK(sd->item_delay[i].tick, tick)/1000;
 					char e_msg[100];
 					if( e_tick > 99 )
-						sprintf(e_msg,"Falha ao usar item. [%s] possui um delay. Espere %.1f minuto(s).",
+						sprintf(e_msg,"Item Failed. [%s] is cooling down. wait %.1f minutes.",
 										itemdb_jname(sd->status.inventory[n].nameid),
 										(double)e_tick / 60);
 					else
-						sprintf(e_msg,"Falha ao usar item. [%s] possui um delay. Espere %d segundo(s).",
+						sprintf(e_msg,"Item Failed. [%s] is cooling down. wait %d seconds.",
 										itemdb_jname(sd->status.inventory[n].nameid),
 										e_tick+1);
 					clif_colormes(sd,COLOR_RED,e_msg);
