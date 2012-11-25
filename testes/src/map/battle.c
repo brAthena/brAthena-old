@@ -5824,6 +5824,7 @@ static const struct _battle_data {
 	{ "gm_cant_attack",                     &battle_config.gm_cant_attack,                    0,    0,              1,      },
 	{ "bRO_Renewal",                        &battle_config.bRO_Renewal,                       1,    0,              1,      },
 	{ "alliance_in_woe",                    &battle_config.alliance_in_woe,                   0,    0,              1,      },
+	{ "use_item_in_status",                 &battle_config.use_item_in_status,                0,    0,              1,      },	
 };
 #ifndef STATS_OPT_OUT
 /**
