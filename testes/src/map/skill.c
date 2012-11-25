@@ -10204,7 +10204,8 @@ int skill_castend_map (struct map_session_data *sd, short skill_num, const char 
 		(sd->sc.data[SC_STASIS] && skill_block_check(&sd->bl, SC_STASIS, skill_num)) ||
 		(sd->sc.data[SC_KAGEHUMI] && skill_block_check(&sd->bl, SC_KAGEHUMI, skill_num)) ||
 		sd->sc.data[SC_OBLIVIONCURSE] ||
-		sd->sc.data[SC__MANHOLE]
+		sd->sc.data[SC__MANHOLE] ||
+		(sd->sc.data[SC_ASH] && rnd()%2) //50% fail chance under ASH
 	 )) {
 		skill_failed(sd);
 		return 0;
@@ -11119,7 +11120,7 @@ static int skill_unit_onplace (struct skill_unit *src, struct block_list *bl, un
 	
 	case UNT_VOLCANIC_ASH:
 		if (!sce)
-		    sc_start(bl, SC_ASH, 50, sg->skill_lv, skill_get_time(MH_VOLCANIC_ASH, sg->skill_lv)); //50% chance
+		    sc_start(bl, SC_ASH, 100, sg->skill_lv, skill_get_time(MH_VOLCANIC_ASH, sg->skill_lv));
 		break;
 		
 	case UNT_GD_LEADERSHIP:
@@ -15992,8 +15993,35 @@ int skill_produce_mix (struct map_session_data *sd, int skill_id, int nameid, in
 			 * Rune Knight
 			 **/
 			case RK_RUNEMASTERY:
-				make_per = 5 * (sd->itemid + pc_checkskill(sd,skill_id)) * 100;
+			    {
+				int A = 100 * (51 + 2 * pc_checkskill(sd, skill_id));
+				int B = 100 * status->dex / 30 + 10 * (status->luk + sd->status.job_level);
+				int C = 100 * cap_value(sd->itemid,0,100); //itemid depend on makerune()
+				int D = 0;
+				switch (nameid) { //rune rank it_diff 9 craftable rune
+				    case ITEMID_BERKANA:
+					D = -2000;
+					break; //Rank S
+				    case ITEMID_NAUTHIZ:
+				    case ITEMID_URUZ:
+					D = -1500;
+					break; //Rank A
+				    case ITEMID_ISA:
+				    case ITEMID_WYRD:
+					D = -1000;
+					break; //Rank B
+				    case ITEMID_RAIDO:
+				    case ITEMID_THURISAZ:
+				    case ITEMID_HAGALAZ:
+				    case ITEMID_OTHILA:
+					D = -500;
+					break; //Rank C
+				    default: D = -1500;
+					break; //not specified =-15%
+				}
+				make_per = A + B + C + D;
 				break;
+			    }
 			/**
 			 * Guilotine Cross
 			 **/

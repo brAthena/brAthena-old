@@ -272,6 +272,8 @@ struct mob_data* mob_spawn_dataset(struct spawn_data *data)
 	md->class_ = data->class_;
 	md->state.boss = data->state.boss;
 	md->db = mob_db(md->class_);
+	if (data->level > 0 && data->level <= MAX_LEVEL)
+		md->level = data->level;
 	memcpy(md->name, data->name, NAME_LENGTH);
 	if (data->state.ai)
 		md->special_state.ai = data->state.ai;
@@ -287,7 +289,7 @@ struct mob_data* mob_spawn_dataset(struct spawn_data *data)
 	status_set_viewdata(&md->bl, md->class_);
 	status_change_init(&md->bl);
 	unit_dataset(&md->bl);
-	
+
 	map_addiddb(&md->bl);
 	return md;
 }
