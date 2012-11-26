@@ -8,23 +8,23 @@
 //   |                                                        |
 //   |                    brAthena Script                     |
 //   |--------------------------------------------------------|
-//   | Nome do Script: nguild_funcoes.txt                     |
+//   | Nome do Script: NGuild - Funções                       |
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.5/1.0                             |
+//   | Versões eA/rA/brA: 1.5/1.5/1.1                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Funções de Eventos da NGuild.               |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [cleyton]                           |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-
-
-// Function for OnAgitStart =========================================
+// Função para OnAgitStart
+//============================================================
 function	script	F_AgitStart	{
 	set .@map$, getarg(0);
 	set .@castle$, getarg(1);
@@ -38,21 +38,22 @@ function	script	F_AgitStart	{
 	end;
 }
 
-// Function for OnGuildBreak ======================================
+// Função para OnGuildBreak
+//============================================================
 function	script	F_GuildBreak	{
 	set .@map$, getarg(0);
 	set .@castle$, getarg(1);
 
 	killmonsterall .@map$;
 
-	Announce "Guild Base [" + GetCastleName(.@map$) + "] has been abandoned.",0;
-	disablenpc "Kafra Staff#"+.@castle$;
-
+	Announce "O castelo [" + GetCastleName(.@map$) + "] foi abandonado.",0;
+	disablenpc "Assistente Kafra#"+.@castle$;
 	SetCastleData .@map$,0,0;
 	return;
 }
 
-// Function for OnAgitBreak ======================================
+// Função para OnAgitBreak
+//============================================================
 function	script	F_AgitBreak	{
 	set .@map$, getarg(0);
 	set .@castle$, getarg(1);
@@ -69,17 +70,17 @@ function	script	F_AgitBreak	{
 	SetCastleData .@map$, 3, .@Defence;
 
 	SetCastleData .@map$,1, .@GID;
-	MapAnnounce .@map$,"The emperium has been destroyed.",bc_map,0x00CCFF;
-	Announce "The [" + GetCastleName(.@map$) + "] castle has been conquered by the [" + GetGuildName(.@GID) + "] guild.",bc_all;
-	donpcevent "::OnRecvCastle"+.@castle$;
+	MapAnnounce .@map$,"O Emperium foi destruído!",bc_map,0x00CCFF;
+	Announce "O castelo [" + GetCastleName(.@map$) + "] foi conquistado pelo Clã [" + GetGuildName(.@GID) + "].",bc_all;
+	GetCastleData .@map$,0,"::OnRecvCastle"+.@castle$;
 
-	disablenpc "Kafra Staff#"+.@castle$;
+	disablenpc "Assistente Kafra#"+.@castle$;
 
-	// remove investment data and kafra
+	// Removendo dados de investimento e kafra
 	for( set .@i, 4; .@i <= 9; set .@i, .@i+1 )
 		SetCastleData .@map$, .@i, 0;
 
-	// if the new guild doesn't have Guardian Research, erase guardians
+	// Se a guilda não tiver habilidades para usod e guardiões, removê-los
 	if( getgdskilllv(.@GID,10002) == 0 )
 		for( set .@i, 10; .@i <= 17; set .@i, .@i+1 )
 			SetCastleData .@map$, .@i, 0;
@@ -87,25 +88,24 @@ function	script	F_AgitBreak	{
 	return;
 }
 
-
-// Function for OnAgitEnd ======================================
+// Função para OnAgitEnd
+//============================================================
 function	script	F_AgitEnd	{
 	set .@map$, getarg(0);
 	set .@castle$, getarg(1);
 
 	GvgOff .@map$;
-	// Disable the following if statment to keep empty
-	// castles from being aquired after after WoE ends.
 	if (GetCastleData(.@map$,1) == 0) return;
 	MapRespawnGuildID .@map$,GetCastleData(.@map$,1),4;
 	KillMonster .@map$,"Agit_"+.@castle$+"::OnAgitBreak";
 	end;
 }
 
-// Castle 1 ================================================================
+// 1° Castelo
+//============================================================
 nguild_alde,0,0,0	script	Agit_N01	-1,{
 OnInterIfInitOnce:
-	donpcevent "::OnRecvCastleN01";
+	GetCastleData "nguild_alde",0,"::OnRecvCastleN01";
 	end;
 OnRecvCastleN01:
 	RequestGuildInfo GetCastleData("nguild_alde",1);
@@ -129,10 +129,11 @@ OnAgitEnd:
 	end;
 }
 
-// Castle 2 ================================================================
+// 2° Castelo
+//============================================================
 nguild_gef,0,0,0	script	Agit_N02	-1,{
 OnInterIfInitOnce:
-	donpcevent "::OnRecvCastleN02";
+	GetCastleData "nguild_gef",0,"::OnRecvCastleN02";
 	end;
 OnRecvCastleN02:
 	RequestGuildInfo GetCastleData("nguild_gef",1);
@@ -156,10 +157,11 @@ OnAgitEnd:
 	end;
 }
 
-// Castle 3 ================================================================
+// 3° Castelo
+//============================================================
 nguild_pay,0,0,0	script	Agit_N03	-1,{
 OnInterIfInitOnce:
-	donpcevent "::OnRecvCastleN03";
+	GetCastleData "nguild_pay",0,"::OnRecvCastleN03";
 	end;
 OnRecvCastleN03:
 	RequestGuildInfo GetCastleData("nguild_pay",1);
@@ -183,10 +185,11 @@ OnAgitEnd:
 	end;
 }
 
-// Castle 4 ================================================================
+// 4° Castelo
+//============================================================
 nguild_prt,0,0,0	script	Agit_N04	-1,{
 OnInterIfInitOnce:
-	donpcevent "::OnRecvCastleN04";
+	GetCastleData "nguild_prt",0,"::OnRecvCastleN04";
 	end;
 OnRecvCastleN04:
 	RequestGuildInfo GetCastleData("nguild_prt",1);
@@ -210,8 +213,8 @@ OnAgitEnd:
 	end;
 }
 
-// Treasure Spawn Time
-//========================================
+// Tempo de Spawn dos Tesouros
+//============================================================
 -	script	TreasSpawn	-1,{
 	end;
 

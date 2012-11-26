@@ -12,81 +12,94 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.7/1.0                             |
+//   | Versões eA/rA/brA: 1.7/1.7/1.1                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Teleportador do NGuild.                     |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [cleyton]                           |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-
-
-prontera,146,163,6	script	Novice Castles	729,{
+prontera,146,163,6	script	Castelos de Novatos	729,{
 	mes "[Cita]";
-	if (!getcharid(2)) {
-		mes "^FF0000You have to enter a guild to be able to hit Emperium!^000000";
-	} else if (getgdskilllv(getcharid(2),10013) || 
-	         (getgdskilllv(getcharid(2),10000) +
-	          getgdskilllv(getcharid(2),10001) +
-	          getgdskilllv(getcharid(2),10002) +
-	          getgdskilllv(getcharid(2),10003) +
-	          getgdskilllv(getcharid(2),10004) +
-	          getgdskilllv(getcharid(2),10005) +
-	          getgdskilllv(getcharid(2),10006) +
-	          getgdskilllv(getcharid(2),10007) +
-	          getgdskilllv(getcharid(2),10008) +
-	          getgdskilllv(getcharid(2),10009) +
-	          getgdskilllv(getcharid(2),10010) +
-	          getgdskilllv(getcharid(2),10011) +
-	          getgdskilllv(getcharid(2),10012) +
-	          getgdskilllv(getcharid(2),10013) +
-	          getgdskilllv(getcharid(2),10014) > 9)
-	          ) {
-		mes "I see... your guild has Emergency Call mastered.";
-		mes "You cannot enter the Novice Castle area.";
-		emotion e_hmm;
-		emotion e_wah,1;
-	} else {
-		mes "I'm a new usher of Novice Castles.";
-		next;
-		mes "[Cita]";
-		if ((eaclass()&(EAJL_2|EAJL_UPPER)) || BaseLevel>=60) {
-			mes "I'm sorry, you can't enter the sacred Novice Castles place.";
-			emotion e_sry;
-		} else if (select("Warp me to Novice Castles","Cancel") == 1) {
-			// remove several unallowed buffs
-			sc_end SC_ASSUMPTIO;
-			sc_end SC_IMPOSITIO;
-			sc_end SC_SUFFRAGIUM;
-			sc_end SC_MAGNIFICAT;
-			sc_end SC_WEAPONPERFECTION;
-			sc_end SC_GOSPEL;
-			sc_end SC_BASILICA;
-			sc_end SC_MAGICPOWER;
-			sc_end SC_MARIONETTE;
-			sc_end SC_MARIONETTE2;
-			sc_end SC_DEVOTION;
-			sc_end SC_SACRIFICE;
-			sc_end SC_MAXOVERTHRUST;
-			sc_end SC_SPIRIT;
-			warp "n_castle",102,93+rand(14);
+	if(getcharid(2)!=0){
+		if(getgdskilllv(getcharid(2),10013)){
+			mes "Estou vendo que seu Clã tem a habilidade de 'Chamado Urgente' dominada.";
+			mes "Você não pode entrar na área de castelo para Novatos.";
+			emotion e_hmm;
+			emotion e_wah,1;
+			close;
 		}
+		if(
+			getgdskilllv(getcharid(2),10000) +
+			getgdskilllv(getcharid(2),10001) +
+			getgdskilllv(getcharid(2),10002) +
+			getgdskilllv(getcharid(2),10003) +
+			getgdskilllv(getcharid(2),10004) +
+			getgdskilllv(getcharid(2),10005) +
+			getgdskilllv(getcharid(2),10006) +
+			getgdskilllv(getcharid(2),10007) +
+			getgdskilllv(getcharid(2),10008) +
+			getgdskilllv(getcharid(2),10009) +
+			getgdskilllv(getcharid(2),10010) +
+			getgdskilllv(getcharid(2),10011) +
+			getgdskilllv(getcharid(2),10012) +
+			getgdskilllv(getcharid(2),10013) +
+			getgdskilllv(getcharid(2),10014) > 9
+		){
+			mes "Estou vendo que seu Clã tem a habilidade de 'Chamado Urgente' dominada.";
+			mes "Você não pode entrar na área de castelo para Novatos.";
+			emotion e_hmm;
+			emotion e_wah,1;
+			close;
+		}
+	} else {
+		mes "^FF0000Você precisa entrar em um Clã que seja capaz de acertar o Emperium!^000000";
 	}
+	mes "Eu sou o recepcionista para o castelo dos Novatos";
+	next;
+	if( !(eaclass()&(EAJL_2|EAJL_UPPER)) && BaseLevel<60 )
+		menu "Me teleporte para os castelos dos novatos.",M_WARP,"Cancelar.",-;
+
+	mes "[Cita]";
+	mes "Eu lamento, mas você não pode entrar no local sagrado dos castelos dos novatos.";
+	emotion e_sry;
+	close;
+
+M_WARP:
+	//Remoção de Buffs Inaptos aos NGuild
+	sc_end SC_ASSUMPTIO;
+	sc_end SC_IMPOSITIO;
+	sc_end SC_SUFFRAGIUM;
+	sc_end SC_MAGNIFICAT;
+	sc_end SC_WEAPONPERFECTION;
+	sc_end SC_GOSPEL;
+	sc_end SC_BASILICA;
+	sc_end SC_MAGICPOWER;
+	sc_end SC_MARIONETTE;
+	sc_end SC_MARIONETTE2;
+	sc_end SC_DEVOTION;
+	sc_end SC_SACRIFICE;
+	sc_end SC_MAXOVERTHRUST;
+	sc_end SC_SPIRIT;
+	warp "n_castle",102,93+rand(14);
 	close;
 }
 
 n_castle,102,107,5	script	Cita	729,{
 	mes "[Cita]";
-	mes "Hello, "+ strcharinfo(0) +". Can I help you?";
+	mes "Olá, "+ strcharinfo(0) +".";
+	mes "Como posso ajudar-lhe?";
 	next;
-	if (select("Warp me to Prontera!","Cancel") == 1) {
+	menu "Me teleporte para Prontera!",-,"Cancelar.",LEnd;
+
 		warp "prontera",155,177+rand(5);
-	} else {
+		close;
+	LEnd:
 		mes "[Cita]";
-		mes "Ok.";
-	}
-	close;
+		mes "Está bem.";
+		close;
 }
