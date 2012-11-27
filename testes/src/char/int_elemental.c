@@ -76,7 +76,7 @@ bool mapif_elemental_load(int ele_id, int char_id, struct s_elemental *ele) {
 	Sql_GetData(sql_handle, 12, &data, NULL); ele->life_time = atoi(data);
 	Sql_FreeResult(sql_handle);
 	if( save_log )
-		ShowInfo("Elemental loaded (%d - %d).\n", ele->elemental_id, ele->char_id);
+		ShowInfo("Elemental carregado (%d - %d).\n", ele->elemental_id, ele->char_id);
 	
 	return true;
 }

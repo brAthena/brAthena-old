@@ -518,7 +518,7 @@ int parse_fromchar(int fd)
 			// how many users on world? (update)
 			if( server[id].users != users )
 			{
-				ShowStatus("set users %s : %d\n", server[id].name, users);
+				ShowStatus("Jogadores online em %s : %d\n", server[id].name, users);
 
 				server[id].users = users;
 			}

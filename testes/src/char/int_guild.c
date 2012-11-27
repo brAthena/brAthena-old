@@ -125,7 +125,7 @@ int inter_guild_tosql(struct guild *g,int flag)
 	if (g->guild_id<=0 && g->guild_id != -1) return 0;
 	
 #ifdef NOISY
-	ShowInfo("Save guild request ("CL_BOLD"%d"CL_RESET" - flag 0x%x).",g->guild_id, flag);
+	ShowInfo("Solicita%c%co de salvar cl%c ("CL_BOLD"%d"CL_RESET" - flag 0x%x).", 135, 198, 198, g->guild_id, flag);
 #endif
 
 	Sql_EscapeStringLen(sql_handle, esc_name, g->name, strnlen(g->name, NAME_LENGTH));
@@ -330,7 +330,7 @@ int inter_guild_tosql(struct guild *g,int flag)
 	}
 
 	if (save_log)
-		ShowInfo("Saved guild (%d - %s):%s\n",g->guild_id,g->name,t_info);
+		ShowInfo("Cl%c salvo (%d - %s):%s\n", 198, g->guild_id,g->name,t_info);
 	return 1;
 }
 
@@ -351,7 +351,7 @@ struct guild * inter_guild_fromsql(int guild_id)
 		return g;
 
 #ifdef NOISY
-	ShowInfo("Guild load request (%d)...\n", guild_id);
+	ShowInfo("Solicitação de carregamento de cl%c (%d)...\n", 198, guild_id);
 #endif
 
 	if( SQL_ERROR == Sql_Query(sql_handle, "SELECT g.`name`,c.`name`,g.`guild_lv`,g.`connect_member`,g.`max_member`,g.`average_lv`,g.`exp`,g.`next_exp`,g.`skill_point`,g.`mes1`,g.`mes2`,g.`emblem_len`,g.`emblem_id`,g.`emblem_data` "
@@ -540,7 +540,7 @@ int inter_guildcastle_tosql(struct guild_castle *gc)
 	if (SQL_ERROR == Sql_Query(sql_handle, StringBuf_Value(&buf)))
 		Sql_ShowDebug(sql_handle);
 	else if(save_log)
-		ShowInfo("Saved guild castle (%d)\n", gc->castle_id);
+		ShowInfo("Castelo do cl%c salvo (%d)\n", 198, gc->castle_id);
 
 	StringBuf_Destroy(&buf);
 	return 0;
@@ -903,7 +903,7 @@ int mapif_guild_created(int fd,int account_id,struct guild *g)
 	if(g != NULL)
 	{
 		WFIFOL(fd,6)=g->guild_id;
-		ShowInfo("int_guild: Guild created (%d - %s)\n",g->guild_id,g->name);
+		ShowInfo("int_guild: Cl%c criado (%d - %s)\n", 198, g->guild_id,g->name);
 	} else
 		WFIFOL(fd,6)=0;
 
@@ -992,7 +992,7 @@ int mapif_guild_broken(int guild_id,int flag)
 	WBUFL(buf,2)=guild_id;
 	WBUFB(buf,6)=flag;
 	mapif_sendall(buf,7);
-	ShowInfo("int_guild: Guild broken (%d)\n",guild_id);
+	ShowInfo("int_guild: Cl%c desfeito (%d)\n", 198, guild_id);
 	return 0;
 }
 

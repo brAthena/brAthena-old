@@ -16340,19 +16340,19 @@ static int clif_parse(int fd)
 				//Disassociate character from the socket connection.
 				session[fd]->session_data = NULL;
 				sd->fd = 0;
-				ShowInfo("Character '"CL_WHITE"%s"CL_RESET"' logged off (using @autotrade).\n", sd->status.name);
+				ShowInfo("Personagem '"CL_WHITE"%s"CL_RESET"' desconectado (usando @autotrade).\n", sd->status.name);
 			} else
 			if (sd->state.active) {
 				// Player logout display [Valaris]
-				ShowInfo("Character '"CL_WHITE"%s"CL_RESET"' logged off.\n", sd->status.name);
+				ShowInfo("Personagem '"CL_WHITE"%s"CL_RESET"' desconectado.\n", sd->status.name);
 				clif_quitsave(fd, sd);
 			} else {
 				//Unusual logout (during log on/off/map-changer procedure)
-				ShowInfo("Player AID:%d/CID:%d logged off.\n", sd->status.account_id, sd->status.char_id);
+				ShowInfo("Jogador AID:%d/CID:%d desconectado.\n", sd->status.account_id, sd->status.char_id);
 				map_quit(sd);
 			}
 		} else {
-			ShowInfo("Closed connection from '"CL_WHITE"%s"CL_RESET"'.\n", ip2str(session[fd]->client_addr, NULL));
+			ShowInfo("Conex%co fechada de '"CL_WHITE"%s"CL_RESET"'.\n", 198, ip2str(session[fd]->client_addr, NULL));
 		}
 		do_close(fd);
 		return 0;
@@ -16370,7 +16370,7 @@ static int clif_parse(int fd)
 		// check authentification packet to know packet version
 		packet_ver = clif_guess_PacketVer(fd, 0, &err);
 		if( err ) {// failed to identify packet version
-			ShowInfo("clif_parse: Disconnecting session #%d with unknown packet version%s (p:0x%04x,l:%d).\n", fd, (
+			ShowInfo("clif_parse: Desconectado #%d vers%co de pacote desconhecida%s (p:0x%04x,l:%d).\n", fd, 198, (
 				err == 1 ? "" :
 				err == 2 ? ", possibly for having an invalid account_id" :
 				err == 3 ? ", possibly for having an invalid char_id." :
