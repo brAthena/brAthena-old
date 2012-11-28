@@ -4705,7 +4705,7 @@ int do_init(int argc, char **argv)
 	sql_config_read(SQL_CONF_NAME);
 
 	if (strcmp(userid, "s1")==0 && strcmp(passwd, "p1")==0) {
-		ShowError("Utilizar o usu%crio/senha padr%co 's1/p1' n%co %c recomendado.\n", 160, 198, 198, 130);
+		ShowWarning("Utilizar o usu%crio/senha padr%co 's1/p1' n%co %c recomendado.\n", 160, 198, 198, 130);
 		ShowNotice("Por favor edite sua tabela 'login' para criar usu%crio/senha corretos para o inter-server (sexo 'S')\n", 160);
 		ShowNotice("Ap%cs isso, modifique usu%crio/senha utilizados no conf/char_athena.conf (ou conf/import/char_conf.txt)\n", 162, 160);
 	}
