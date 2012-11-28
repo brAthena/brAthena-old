@@ -8,40 +8,40 @@
 //   |                                                        |
 //   |                    brAthena Script                     |
 //   |--------------------------------------------------------|
-//   | Nome do Script: rachel.txt                             |
+//   | Nome do Script: Aeroplano de Rachel                    |
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: ??/1.0/1.0                          |
+//   | Versões eA/rA/brA: ??/1.0/1.2                          |
 //   |--------------------------------------------------------|
 //   | Descrição: Equipe do aeroplano de Rachel.              |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Protimus]                        |
+//   | 1.1 Tradução PT-BR    [Holy]                           |
+//   | 1.2 Otimização        [Holy]                           |
 //   | - Anotações                                            |
 //   \________________________________________________________/ 
 
-ra_fild12,295,208,0	script	toairplane#rachel	45,1,1,{
+ra_fild12,295,208,0	script	paraoaeroplano#rachel	45,1,1,{
 	end;
 OnTouch:
-	mes "To use the airship, you are required to pay 1,200 zeny or a Free Airship Ticket.";
-	mes "Would you like to use the service?";
+	mes "Para usar o aeroplano, você precisa pagar uma taxa de 1,200 zeny ou possuir um Bilhete para Aeroplano.";
+	mes "Você deseja usar o serviço?";
 	next;
-	if (select("Yes:No") == 1) {
-		if (countitem(7311) > 0) {
-			delitem 7311,1; //Free_Flying_Ship_Ticket
+	if (select("Sim:Não") == 1) {
+			if (countitem(7311) > 0)
+				delitem 7311,1; // Bilhete para Aeroplano
+			else if (Zeny >= 1200)
 			warp "airplane_01",245,60;
 			end;
 		}
-		if (Zeny >= 1200) {
-			set Zeny, Zeny - 1200;
-			warp "airplane_01",245,60;
-			end;
-		}
-		mes "I am sorry, but you do not have enough money.";
-		mes "Please remember, you are required to pay 1,200 zeny to use the service.";
-		close;
-	}
-	mes "Thank you, please come again.";
-	close;
+			mes "[Equipe do Aeroporto]";
+			mes "Me desculpe, mas você não";
+			mes "possui um Bilhete para";
+			mes "Aeroplano e você não possui";
+			mes "a quantidade de zenys suficientes";
+			mes "para embarcar. Lembre, a";
+			mes "taxa de embarque é 1,200 zeny.";
+			close;
 }
