@@ -2955,6 +2955,9 @@ ACMD_FUNC(recall) {
 		clif_displaymessage(fd, msg_txt(1020)); // You are not authorized to warp this player from their map.
 		return -1;
 	}
+	if (pl_sd->bl.m == sd->bl.m && pl_sd->bl.x == sd->bl.x && pl_sd->bl.y == sd->bl.y) {
+        return -1;
+    }
 	pc_setpos(pl_sd, sd->mapindex, sd->bl.x, sd->bl.y, CLR_RESPAWN);
 	sprintf(atcmd_output, msg_txt(46), pl_sd->status.name); // %s recalled!
 	clif_displaymessage(fd, atcmd_output);
@@ -3635,20 +3638,21 @@ ACMD_FUNC(recallall)
 	iter = mapit_getallusers();
 	for( pl_sd = (TBL_PC*)mapit_first(iter); mapit_exists(iter); pl_sd = (TBL_PC*)mapit_next(iter) )
 	{
-		if (sd->status.account_id != pl_sd->status.account_id && pc_get_group_level(sd) >= pc_get_group_level(pl_sd))
-		{
-			if (pl_sd->bl.m >= 0 && map[pl_sd->bl.m].flag.nowarp && !pc_has_permission(sd, PC_PERM_WARP_ANYWHERE))
-				count++;
-			else {
-				if (pc_isdead(pl_sd)) { //Wake them up
-					pc_setstand(pl_sd);
-					pc_setrestartvalue(pl_sd,1);
-				}
-				pc_setpos(pl_sd, sd->mapindex, sd->bl.x, sd->bl.y, CLR_RESPAWN);
-			}
-		}
-	}
-	mapit_free(iter);
+		if (sd->status.account_id != pl_sd->status.account_id && pc_get_group_level(sd) >= pc_get_group_level(pl_sd)) {
+            if (pl_sd->bl.m == sd->bl.m && pl_sd->bl.x == sd->bl.x && pl_sd->bl.y == sd->bl.y)
+                continue; // Don't waste time warping the character to the same place.
+            if (pl_sd->bl.m >= 0 && map[pl_sd->bl.m].flag.nowarp && !pc_has_permission(sd, PC_PERM_WARP_ANYWHERE))
+                count++;
+            else {
+                if (pc_isdead(pl_sd)) { //Wake them up
+                    pc_setstand(pl_sd);
+                    pc_setrestartvalue(pl_sd,1);
+                }
+                pc_setpos(pl_sd, sd->mapindex, sd->bl.x, sd->bl.y, CLR_RESPAWN);
+            }
+        }
+    }
+    mapit_free(iter);
 
 	clif_displaymessage(fd, msg_txt(92)); // All characters recalled!
 	if (count) {
@@ -3698,7 +3702,7 @@ ACMD_FUNC(guildrecall)
 	{
 		if (sd->status.account_id != pl_sd->status.account_id && pl_sd->status.guild_id == g->guild_id)
 		{
-			if (pc_get_group_level(pl_sd) > pc_get_group_level(sd))
+			if (pc_get_group_level(pl_sd) > pc_get_group_level(sd) || (pl_sd->bl.m == sd->bl.m && pl_sd->bl.x == sd->bl.x && pl_sd->bl.y == sd->bl.y))
 				continue; //Skip GMs greater than you.
 			if (pl_sd->bl.m >= 0 && map[pl_sd->bl.m].flag.nowarp && !pc_has_permission(sd, PC_PERM_WARP_ANYWHERE))
 				count++;
@@ -3757,7 +3761,7 @@ ACMD_FUNC(partyrecall)
 	{
 		if (sd->status.account_id != pl_sd->status.account_id && pl_sd->status.party_id == p->party.party_id)
 		{
-			if (pc_get_group_level(pl_sd) > pc_get_group_level(sd))
+			if (pc_get_group_level(pl_sd) > pc_get_group_level(sd) || (pl_sd->bl.m == sd->bl.m && pl_sd->bl.x == sd->bl.x && pl_sd->bl.y == sd->bl.y))
 				continue; //Skip GMs greater than you.
 			if (pl_sd->bl.m >= 0 && map[pl_sd->bl.m].flag.nowarp && !pc_has_permission(sd, PC_PERM_WARP_ANYWHERE))
 				count++;
@@ -6162,24 +6166,39 @@ ACMD_FUNC(mobsearch)
 }
 
 /*==========================================
- * @cleanmap - cleans items on the ground
+ * @cleanarea - cleans items on the ground within an specified area
  *------------------------------------------*/
-static int atcommand_cleanmap_sub(struct block_list *bl, va_list ap)
+static int atcommand_cleanfloor_sub(struct block_list *bl, va_list ap)
 {
-	nullpo_ret(bl);
-	map_clearflooritem(bl);
+    nullpo_ret(bl);
+    map_clearflooritem(bl);
 
-	return 0;
+    return 0;
 }
 
 ACMD_FUNC(cleanmap)
 {
-	map_foreachinarea(atcommand_cleanmap_sub, sd->bl.m,
-		sd->bl.x-AREA_SIZE*2, sd->bl.y-AREA_SIZE*2,
-		sd->bl.x+AREA_SIZE*2, sd->bl.y+AREA_SIZE*2,
-		BL_ITEM);
-	clif_displaymessage(fd, msg_txt(1221)); // All dropped items have been cleaned up.
-	return 0;
+    map_foreachinmap(atcommand_cleanfloor_sub, sd->bl.m, BL_ITEM);
+    clif_displaymessage(fd, msg_txt(1221)); // All dropped items have been cleaned up.
+    return 0;
+}
+
+ACMD_FUNC(cleanarea)
+{
+    int x0 = 0, y0 = 0, x1 = 0, y1 = 0;
+
+    if (!message || !*message || sscanf(message, "%d %d %d %d", &x0, &y0, &x1, &y1) < 1) {
+        map_foreachinarea(atcommand_cleanfloor_sub, sd->bl.m, sd->bl.x - (AREA_SIZE * 2), sd->bl.y - (AREA_SIZE * 2), sd->bl.x + (AREA_SIZE * 2), sd->bl.y + (AREA_SIZE * 2), BL_ITEM);
+    }
+    else if (sscanf(message, "%d %d %d %d", &x0, &y0, &x1, &y1) == 1) {
+        map_foreachinarea(atcommand_cleanfloor_sub, sd->bl.m, sd->bl.x - x0, sd->bl.y - x0, sd->bl.x + x0, sd->bl.y + x0, BL_ITEM);
+    }
+    else if (sscanf(message, "%d %d %d %d", &x0, &y0, &x1, &y1) == 4) {
+        map_foreachinarea(atcommand_cleanfloor_sub, sd->bl.m, x0, y0, x1, y1, BL_ITEM);
+    }
+
+    clif_displaymessage(fd, msg_txt(1221)); // All dropped items have been cleaned up.
+    return 0;
 }
 
 /*==========================================
@@ -8986,6 +9005,7 @@ void atcommand_basecommands(void) {
 		ACMD_DEF(misceffect),
 		ACMD_DEF(mobsearch),
 		ACMD_DEF(cleanmap),
+		ACMD_DEF(cleanarea),
 		ACMD_DEF(npctalk),
 		ACMD_DEF(pettalk),
 		ACMD_DEF(users),
