@@ -9228,8 +9228,10 @@ void clif_parse_LoadEndAck(int fd,struct map_session_data *sd)
 	}
 
 	//homunculus [blackhole89]
-	if( merc_is_hom_active(sd->hd) )
-	{
+	if( merc_is_hom_active(sd->hd) ) {
+	 if( !battle_config.supports_castle_gvg && map_flag_gvg(sd->bl.m) ) {
+		clif_hominfo(sd, sd->hd, 0);
+		} else {
 		map_addblock(&sd->hd->bl);
 		clif_spawn(&sd->hd->bl);
 		clif_send_homdata(sd,SP_ACK,0);
@@ -9241,16 +9243,24 @@ void clif_parse_LoadEndAck(int fd,struct map_session_data *sd)
 		if( !(battle_config.hom_setting&0x2) )
 			skill_unit_move(&sd->hd->bl,gettick(),1); // apply land skills immediately
 	}
+}
 
 	if( sd->md ) {
+	 if( !battle_config.supports_castle_gvg && map_flag_gvg(sd->bl.m) ) {
+	  merc_delete(sd->md, 0);
+	} else {
 		map_addblock(&sd->md->bl);
 		clif_spawn(&sd->md->bl);
 		clif_mercenary_info(sd);
 		clif_mercenary_skillblock(sd);
 		status_calc_bl(&sd->md->bl, SCB_SPEED); //Mercenary mimic their master's speed on each map change
 	}
+}
 
 	if( sd->ed ) {
+	 if( !battle_config.supports_castle_gvg && map_flag_gvg(sd->bl.m) ) {
+	  elemental_delete(sd->ed, 0);
+	  } else {
 		map_addblock(&sd->ed->bl);
 		clif_spawn(&sd->ed->bl);
 		clif_elemental_info(sd);
@@ -9259,7 +9269,8 @@ void clif_parse_LoadEndAck(int fd,struct map_session_data *sd)
 		clif_elemental_updatestatus(sd,SP_SP);
 		status_calc_bl(&sd->ed->bl, SCB_SPEED); //Elemental mimic their master's speed on each map change
 	}
-	
+}
+
 	if(sd->state.connect_new) {
 		int lv;
 		sd->state.connect_new = 0;
