@@ -2586,13 +2586,9 @@ int pc_bonus(struct map_session_data *sd,int type,int val)
 		if(sd->state.lr_flag != 2)
 			sd->bonus.itemhealrate2 += val;
 		break;
-	case SP_WEAPON_MATK:
+	case SP_EMATK:
 		if(sd->state.lr_flag != 2)
-			sd->bonus.sp_weapon_matk += val;
-		break;
-	case SP_BASE_MATK:
-		if(sd->state.lr_flag != 2)
-			sd->bonus.sp_base_matk += val;
+			sd->bonus.ematk += val;
 		break;
 	case SP_FIXCASTRATE:
 		if(sd->state.lr_flag != 2)
@@ -2603,7 +2599,7 @@ int pc_bonus(struct map_session_data *sd,int type,int val)
 			sd->bonus.varcastrate -= val;
 		break;
 	default:
-		ShowWarning("pc_bonus: unknown type %d %d !\n",type,val);
+		ShowWarning("pc_bonus: Tipo desconhecido %d %d !\n",type,val);
 		break;
 	}
 	return 0;
