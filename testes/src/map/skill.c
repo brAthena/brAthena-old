@@ -9244,7 +9244,7 @@ int skill_castend_id(int tid, unsigned int tick, int id, intptr_t data)
 
 		if( !sd || sd->skillitem != ud->skillid || skill_get_delay(ud->skillid,ud->skilllv) )
 			ud->canact_tick = tick + skill_delayfix(src, ud->skillid, ud->skilllv); //Tests show wings don't overwrite the delay but skill scrolls do. [Inkfish]
-		if( sd && skill_get_cooldown(ud->skillid,ud->skilllv) > 0 ){
+		if (sd) { //Cooldown application
 			int i, cooldown = skill_get_cooldown(ud->skillid, ud->skilllv);
 			for (i = 0; i < ARRAYLENGTH(sd->skillcooldown) && sd->skillcooldown[i].id; i++) { // Increases/Decreases cooldown of a skill by item/card bonuses.
 				if (sd->skillcooldown[i].id == ud->skillid){
@@ -9252,7 +9252,8 @@ int skill_castend_id(int tid, unsigned int tick, int id, intptr_t data)
 					break;
 				}
 			}
-			skill_blockpc_start(sd, ud->skillid, cooldown);
+			if(cooldown)
+				skill_blockpc_start(sd, ud->skillid, cooldown);
 		}
 		if( battle_config.display_status_timers && sd )
 			clif_status_change(src, SI_ACTIONDELAY, 1, skill_delayfix(src, ud->skillid, ud->skilllv), 0, 0, 0);
@@ -9473,7 +9474,7 @@ int skill_castend_pos(int tid, unsigned int tick, int id, intptr_t data)
 
 		if( !sd || sd->skillitem != ud->skillid || skill_get_delay(ud->skillid,ud->skilllv) )
 			ud->canact_tick = tick + skill_delayfix(src, ud->skillid, ud->skilllv);
-		if( sd && skill_get_cooldown(ud->skillid,ud->skilllv) > 0 ){
+		if (sd) { //Cooldown application
 			int i, cooldown = skill_get_cooldown(ud->skillid, ud->skilllv);
 			for (i = 0; i < ARRAYLENGTH(sd->skillcooldown) && sd->skillcooldown[i].id; i++) { // Increases/Decreases cooldown of a skill by item/card bonuses.
 				if (sd->skillcooldown[i].id == ud->skillid){
@@ -9481,7 +9482,8 @@ int skill_castend_pos(int tid, unsigned int tick, int id, intptr_t data)
 					break;
 				}
 			}
-			skill_blockpc_start(sd, ud->skillid, cooldown);
+			if(cooldown)
+				skill_blockpc_start(sd, ud->skillid, cooldown);
 		}
 		if( battle_config.display_status_timers && sd )
 			clif_status_change(src, SI_ACTIONDELAY, 1, skill_delayfix(src, ud->skillid, ud->skilllv), 0, 0, 0);

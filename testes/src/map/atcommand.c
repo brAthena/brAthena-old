@@ -992,7 +992,6 @@ ACMD_FUNC(hide)
  *------------------------------------------*/
 ACMD_FUNC(jobchange)
 {
-	//FIXME: redundancy, potentially wrong code, should use job_name() or similar instead of hardcoding the table [ultramage]
 	int job = 0, upper = 0;
 	const char* text;
 	nullpo_retr(-1, sd);
@@ -1000,214 +999,27 @@ ACMD_FUNC(jobchange)
 	if (!message || !*message || sscanf(message, "%d %d", &job, &upper) < 1)
 	{
 		int i, found = 0;
-		const struct { char name[24]; int id; } jobs[] = {
-			{ "aprendiz",				   0 },
-			{ "espadachim",				   1 },
-			{ "mago",					   2 },
-			{ "maga",					   2 },
-			{ "arqueiro",				   3 },
-			{ "arqueira",				   3 },
-			{ "noviço",					   4 },
-			{ "noviça",					   4 },
-			{ "mercador",				   5 },
-			{ "mercadora",				   5 },
-			{ "gatuno",					   6 },
-			{ "gatuna",					   6 },
-			{ "cavaleiro",				   7 },
-			{ "cavaleira",				   7 },
-			{ "sacerdote",				   8 },
-			{ "sacerdotiza",			   8 },
-			{ "bruxo",					   9 },
-			{ "bruxa",					   9 },
-			{ "ferreiro",				  10 },
-			{ "ferreira",				  10 },
-			{ "caçador",				  11 },
-			{ "caçadora",				  11 },
-			{ "mercenário",				  12 },
-			{ "mercenária",				  12 },
-			{ "templário",				  14 },
-			{ "templária",				  14 },
-			{ "monge",					  15 },
-			{ "monja",					  15 },
-			{ "sábio",					  16 },
-			{ "sábia",					  16 },
-			{ "arruaceiro",				  17 },
-			{ "arruaceira",				  17 },
-			{ "alquimista",				  18 },
-			{ "bardo",					  19 },
-			{ "odalisca",				  20 },
-			{ "super aprendiz",			  23 },
-			{ "justiceiro",				  24 },
-			{ "justiceira",				  24 },
-			{ "ninja",					  25 },
-			{ "aprendiz t",				4001 },
-			{ "espadachim t",			4002 },
-			{ "mago t",					4003 },
-			{ "maga t",					4003 },
-			{ "arqueiro t",				4004 },
-			{ "arqueira t",				4004 },
-			{ "noviço t",				4005 },
-			{ "noviça t",				4005 },
-			{ "mercador t",				4006 },
-			{ "mercadora t",			4006 },
-			{ "gatuno t",				4007 },
-			{ "gatuna t",				4007 },
-			{ "lorde",					4008 },
-			{ "lady",					4008 },
-			{ "sumo sacerdote",			4009 },
-			{ "sumo sacerdotisa",		4009 },
-			{ "arquimago",				4010 },
-			{ "arquimaga",				4010 },
-			{ "mestre ferreiro",		4011 },
-			{ "mestre ferreira",		4011 },
-			{ "atirador de elite",		4012 },
-			{ "algoz",					4013 },
-			{ "paladino",				4015 },
-			{ "paladina",				4015 },
-			{ "mestre",					4016 },
-			{ "mestra",					4016 },
-			{ "professor",				4017 },
-			{ "professora",				4017 },
-			{ "desordeiro",				4018 },
-			{ "desordeira",				4018 },
-			{ "criador",				4019 },
-			{ "criadora",				4019 },
-			{ "menestrel",				4020 },
-			{ "cigana",					4021 },
-			{ "mini aprendiz",			4023 },
-			{ "mini espadachim",		4024 },
-			{ "mini mago",				4025 },
-			{ "mini maga",				4025 },
-			{ "mini arqueiro",			4026 },
-			{ "mini arqueira",			4026 },
-			{ "mini noviço",			4027 },
-			{ "mini noviça",			4027 },
-			{ "mini mercador",			4028 },
-			{ "mini mercadora",			4028 },
-			{ "mini gatuno",			4029 },
-			{ "mini gatuna",			4029 },
-			{ "mini cavaleiro",			4030 },
-			{ "mini cavaleira",			4030 },
-			{ "mini sacerdote",			4031 },
-			{ "mini sacerdotisa",		4031 },
-			{ "mini bruxo",				4032 },
-			{ "mini bruxa",				4032 },
-			{ "mini ferreiro",			4033 },
-			{ "mini ferreira",			4033 },
-			{ "mini caçador",			4034 },
-			{ "mini caçadora",			4034 },
-			{ "mini mercenário",		4035 },
-			{ "mini mercenária",		4035 },
-			{ "mini templário",			4037 },
-			{ "mini templária",			4037 },
-			{ "mini monge",				4038 },
-			{ "mini monja",				4038 },
-			{ "mini sábio",				4039 },
-			{ "mini sábia",				4039 },
-			{ "mini arruaceiro",		4040 },
-			{ "mini arruaceira",		4040 },
-			{ "mini alquimista",		4041 },
-			{ "mini bardo",				4042 },
-			{ "mini odalisca",			4043 },
-			{ "mini super aprendiz",	4045 },
-			{ "taekwon",				4046 },
-			{ "mestre taekwon",			4047 },
-			{ "espiritualista",			4049 },
-			{ "gangsi",					4050 },
-			{ "bongun",					4050 },
-			{ "munak",					4050 },
-			{ "death knight",			4051 },
-			{ "dark collector",			4052 },
-			{ "cavaleiro rúnico",		4054 },
-			{ "cavaleira rúnica",		4054 },
-			{ "arcano",					4055 },
-			{ "arcana",					4055 },
-			{ "sentinela",				4056 },
-			{ "arcebispo",				4057 },
-			{ "arcebispa",				4057 },
-			{ "mecânico",				4058 },
-			{ "mecânica",				4058 },
-			{ "sicário",				4059 },
-			{ "sicária",				4059 },
-			{ "cavaleiro rúnico t",		4060 },
-			{ "cavaleira rúnica t",		4060 },
-			{ "arcano t",				4061 },
-			{ "arcana t",				4061 },
-			{ "sentinela t",			4062 },
-			{ "arcebispo t",			4063 },
-			{ "arcebispa t",			4063 },
-			{ "mecânico t",				4064 },
-			{ "mecânica t",				4064 },
-			{ "sicário t",				4065 },
-			{ "sicária t",				4065 },
-			{ "guardião real",			4066 },
-			{ "guardiã real",			4066 },
-			{ "feiticeiro",				4067 },
-			{ "feiticeira",				4067 },
-			{ "trovador",				4068 },
-			{ "musa",					4069 },
-			{ "shura",					4070 },
-			{ "bioquímico",				4071 },
-			{ "bioquímica",				4071 },
-			{ "renegado",				4072 },
-			{ "renegada",				4072 },
-			{ "guardião real t",		4073 },
-			{ "guardiã real t",			4073 },
-			{ "feiticeiro t",			4074 },
-			{ "feiticeira t",			4074 },
-			{ "trovador t",				4075 },
-			{ "musa t",					4076 },
-			{ "shura t",				4077 },
-			{ "bioquímico t",			4078 },
-			{ "bioquímica t",			4078 },
-			{ "renegado t",				4079 },
-			{ "renegada t",				4079 },
-			{ "mini cavaleiro rúnico",	4096 },
-			{ "mini cavaleira rúnica",	4096 },
-			{ "mini arcano",			4097 },
-			{ "mini arcana",			4097 },
-			{ "mini sentinela",			4098 },
-			{ "mini arcebispo",			4099 },
-			{ "mini arcebispa",			4099 },
-			{ "mini mecânico",			4100 },
-			{ "mini mecânica",			4100 },
-			{ "mini sicário",			4101 },
-			{ "mini sicaria",			4101 },
-			{ "mini guardião real",		4102 },
-			{ "mini guardiã real",		4102 },
-			{ "mini feiticeiro",		4103 },
-			{ "mini feiticeira",		4103 },
-			{ "mini trovador",			4104 },
-			{ "mini musa",				4105 },
-			{ "mini shura",				4106 },
-			{ "mini bioquímico",		4107 },
-			{ "mini bioquímica",		4107 },
-			{ "mini renegado",			4108 },
-			{ "mini renegada",			4108 },
-			{ "super aprendiz t",		4190 },
-			{ "mini super aprendiz t",	4191 },
-			{ "kagerou",			    4211 },
-			{ "oboro",				    4212 },
-		};
 
-		for (i=0; i < ARRAYLENGTH(jobs); i++) {
-			if (strncmpi(message, jobs[i].name, 16) == 0) {
-				job = jobs[i].id;
-				upper = 0;
-				found = 1;
-				break;
-			}
-		}
+		for (i = JOB_NOVICE; i < JOB_MAX; ++i) {
+            if (strncmpi(message, job_name(i), 16) == 0) {
+                job = i;
+                upper = 0;
+                found = 1;
+                break;
+            }
+        }
 
 		if (!found) {
 			text = atcommand_help_string(command);
-			if (text) clif_displaymessage(fd, text);
+			if (text)
+				clif_displaymessage(fd, text);
 			return -1;
 		}
 	}
 
-	if (job == 13 || job == 21 || job == 22 || job == 26 || job == 27 || job == 4014 || job == 4022 || job == 4036 || job == 4044 || job == 4048
-		 || (job >= JOB_RUNE_KNIGHT2 && job <= JOB_MECHANIC_T2) || (job >= JOB_BABY_RUNE2 && job <= JOB_BABY_MECHANIC2)
+	if (job == JOB_KNIGHT2 || job == JOB_CRUSADER2 || job == JOB_WEDDING || job == JOB_XMAS || job == JOB_SUMMER
+        || job == JOB_LORD_KNIGHT2 || job == JOB_PALADIN2 || job == JOB_BABY_KNIGHT2 || job == JOB_BABY_CRUSADER2 || job == JOB_STAR_GLADIATOR2
+        || (job >= JOB_RUNE_KNIGHT2 && job <= JOB_MECHANIC_T2) || (job >= JOB_BABY_RUNE2 && job <= JOB_BABY_MECHANIC2)
 	) // Deny direct transformation into dummy jobs
 		{clif_displaymessage(fd, msg_txt(923)); //"You can not change to this job by command."
 		return 0;}
@@ -1221,12 +1033,14 @@ ACMD_FUNC(jobchange)
  		  }
 	} else {
 		text = atcommand_help_string(command);
-		if (text) clif_displaymessage(fd, text);
+		if (text)
+			clif_displaymessage(fd, text);
 		return -1;
 	}
+	
 	if(pc_jobchange(sd, job, upper) == 0 && !pc_isriding(sd) || !pc_isridingdragon(sd) && job != 7 && job != 14 && job != 4008 && job != 4015 )
-	clif_status_load(&sd->bl,SI_RIDING,0);
- 	return 0;
+		clif_status_load(&sd->bl,SI_RIDING,0);
+		return 0;
 }
 
 /*==========================================
