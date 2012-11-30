@@ -10126,7 +10126,7 @@ void clif_parse_TakeItem(int fd, struct map_session_data *sd)
 		if( sd->sc.cant.pickup )
 			break;
 		
-		if (pc_cant_act(sd))
+		if (pc_cant_act(sd) || !pc_has_permission(sd, PC_PERM_TAKE_ITEM))
 			break;
 
 		if (!pc_takeitem(sd, fitem))

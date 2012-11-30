@@ -43,6 +43,7 @@ enum e_pc_permission {
 	PC_PERM_DISABLE_PVM			= 0x040000,
 	PC_PERM_DISABLE_PVP			= 0x080000,
 	PC_PERM_DISABLE_CMD_DEAD    = 0x100000,
+	PC_PERM_TAKE_ITEM    = 0x200000,
 };
 
 static const struct {
@@ -70,6 +71,7 @@ static const struct {
 	{ "disable_pvm", PC_PERM_DISABLE_PVM },
 	{ "disable_pvp", PC_PERM_DISABLE_PVP },
 	{ "disable_commands_when_dead", PC_PERM_DISABLE_CMD_DEAD },
+	{ "take_item", PC_PERM_TAKE_ITEM },
 };
 
 #endif // _PC_GROUPS_H_
