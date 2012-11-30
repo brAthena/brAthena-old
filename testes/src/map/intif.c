@@ -2129,13 +2129,13 @@ void intif_request_accinfo( int u_fd, int aid, int group_id, char* query ) {
 	WFIFOL(inter_fd,2) = u_fd;
 	WFIFOL(inter_fd,6) = aid;
 	WFIFOL(inter_fd,10) = group_id;
-	safestrncpy(WFIFOP(inter_fd,14), query, NAME_LENGTH);
-	
+	safestrncpy((char *)WFIFOP(inter_fd,14), query, NAME_LENGTH);
+
 	WFIFOSET(inter_fd,2 + 4 + 4 + 4 + NAME_LENGTH);
-	
+
 	return;
 }
-	
+
 void intif_parse_MessageToFD(int fd) {
 	int u_fd = RFIFOL(fd,4);
 
