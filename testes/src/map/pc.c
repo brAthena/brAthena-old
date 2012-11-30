@@ -5954,9 +5954,7 @@ int pc_allskillup(struct map_session_data *sd)
 		int inf2;
 		for(i=0;i < MAX_SKILL_TREE && (id=skill_tree[pc_class2idx(sd->status.class_)][i].id)>0;i++){
 			inf2 = skill_get_inf2(id);
-			if (
-				(inf2&INF2_QUEST_SKILL && !battle_config.quest_skill_learn) ||
-				(inf2&(INF2_WEDDING_SKILL|INF2_SPIRIT_SKILL)) ||
+			if ( (inf2&(INF2_WEDDING_SKILL|INF2_SPIRIT_SKILL)) ||
 				id==SG_DEVIL
 			)
 				continue; //Cannot be learned normally.
