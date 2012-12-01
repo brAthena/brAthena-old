@@ -173,7 +173,7 @@ alberta,62,156,2	script	Sonya	102,{
 }
 
 alberta,93,174,2	script	Vovó Alma	103,{
-	mes "[Grandmother Alma]";
+	mes "[Vovó Alma]";
 	mes "A um tempo atrás, tinha um navio abandonado a caminho do Porto de Alberta.";
 	next;
 	mes "[Vovó Alma]";
@@ -232,7 +232,7 @@ alb2trea,39,50,6	script	Fisk#a2t	100,{
 	close;
 }
 
-alberta,195,151,2	script	Paul	86,{
+alberta,195,151,4	script	Paul	86,{
 	mes "[Paul]";
 	mes "Bom dia!";
 	mes "Você gostaria de";
@@ -259,7 +259,7 @@ alberta,195,151,2	script	Paul	86,{
 		}
 	}
 	mes "[Paul]";
-	mes "Vamos lá, bem...";
+	mes "Bem...";
 	mes "Vou está por perto caso pense em voltar atrás...";
 	close;
 }
