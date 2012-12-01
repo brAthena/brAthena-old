@@ -617,7 +617,7 @@ int pet_change_name(struct map_session_data *sd,char *name)
 	nullpo_retr(1, sd);
 
 	pd = sd->pd;
-	if((pd == NULL) || ( !battle_config.pet_rename))
+	if((pd == NULL) || (pd->pet.rename_flag == 1 && !battle_config.pet_rename))
 		return 1;
 
 	for(i=0;i<NAME_LENGTH && name[i];i++){
@@ -642,6 +642,7 @@ int pet_change_name_ack(struct map_session_data *sd, char* name, int flag)
 	}
 	memcpy(pd->pet.name, name, NAME_LENGTH);
 	clif_charnameack (0,&pd->bl);
+	pd->pet.rename_flag = 1;
 	clif_pet_equip_area(pd);
 	clif_send_petstatus(sd);
 	return 1;
