@@ -512,28 +512,28 @@ REPLACE INTO create_arrow_db VALUES(7753,1762,50,1770,10,1761,20,NULL,NULL,NULL,
 
 CREATE TABLE IF NOT EXISTS `elemental_db` (
   `ID` smallint unsigned NOT NULL,
-  `Sprite_Name` varchar(20) NOT NULL,
-  `Name` varchar(20) NOT NULL,
+  `Sprite_Name` varchar(30) NOT NULL,
+  `Name` varchar(30) NOT NULL,
   `LV` tinyint NOT NULL,
   `HP` smallint unsigned NOT NULL,
   `SP` smallint unsigned NOT NULL,
-  `Range1` tinyint NOT NULL,
+  `Range1` smallint NOT NULL,
   `ATK1` smallint unsigned NOT NULL,
   `ATK2` smallint unsigned NOT NULL,
   `DEF` tinyint NOT NULL,
   `MDEF` tinyint NOT NULL,
-  `STR` tinyint NOT NULL,
-  `AGI` tinyint NOT NULL,
-  `VIT` tinyint NOT NULL,
-  `INT` tinyint NOT NULL,
-  `DEX` tinyint NOT NULL,
-  `LUK` tinyint NOT NULL,
-  `Range2` tinyint NOT NULL,
-  `Range3` tinyint NOT NULL,
+  `STR` smallint NOT NULL,
+  `AGI` smallint NOT NULL,
+  `VIT` smallint NOT NULL,
+  `INT` smallint NOT NULL,
+  `DEX` smallint NOT NULL,
+  `LUK` smallint NOT NULL,
+  `Range2` smallint NOT NULL,
+  `Range3` smallint NOT NULL,
   `Scale` tinyint NOT NULL,
   `Race` tinyint NOT NULL,
   `Element` tinyint NOT NULL,
-  `Speed` tinyint NOT NULL,
+  `Speed` smallint NOT NULL,
   `aDelay` smallint unsigned NOT NULL,
   `aMotion` smallint unsigned NOT NULL,
   `dMotion` smallint unsigned NOT NULL,
@@ -657,7 +657,7 @@ REPLACE INTO guild_skill_tree_db VALUES(10014,1,0,0,0,0,0,0,0,0,0,0);
 CREATE TABLE IF NOT EXISTS `homunculus_db` (
   `Class` smallint unsigned NOT NULL,
   `EvoClass` smallint unsigned NOT NULL,
-  `Name` varchar(20) NOT NULL,
+  `Name` varchar(30) NOT NULL,
   `FoodID` smallint unsigned NOT NULL,
   `HungryDelay` int(5) unsigned NOT NULL,
   `BaseSize` tinyint NOT NULL DEFAULT '0',
@@ -666,17 +666,17 @@ CREATE TABLE IF NOT EXISTS `homunculus_db` (
   `Element` tinyint NOT NULL DEFAULT '0',
   `bASPD` smallint unsigned NOT NULL,
   `bHp` smallint unsigned NOT NULL,
-  `bSp` tinyint NOT NULL,
+  `bSp` smallint NOT NULL,
   `bSTR` tinyint NOT NULL,
   `bAGI` tinyint NOT NULL,
   `bVIT` tinyint NOT NULL,
   `bINT` tinyint NOT NULL,
   `bDEX` tinyint NOT NULL,
   `bLUK` tinyint NOT NULL,
-  `gnHP` tinyint NOT NULL,
-  `gxHP` tinyint NOT NULL,
-  `gnSP` tinyint NOT NULL,
-  `gxSP` tinyint NOT NULL,
+  `gnHP` smallint NOT NULL,
+  `gxHP` smallint NOT NULL,
+  `gnSP` smallint NOT NULL,
+  `gxSP` smallint NOT NULL,
   `gnSTR` tinyint NOT NULL,
   `gxSTR` tinyint NOT NULL,
   `gnAGI` tinyint NOT NULL,
@@ -851,7 +851,7 @@ REPLACE INTO item_avail_db VALUES(2240,2241);
 
 CREATE TABLE IF NOT EXISTS `item_delay_db` (
   `ItemID` smallint unsigned NOT NULL,
-  `Delay` int(6) unsigned NOT NULL DEFAULT '0',
+  `Delay` int unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`ItemID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -879,7 +879,7 @@ REPLACE INTO item_delay_db VALUES(11525,5000);
 CREATE TABLE IF NOT EXISTS `item_findingore_db` (
   `GroupID` tinyint NOT NULL,
   `ItemID` smallint unsigned NOT NULL,
-  `Rate` tinyint NOT NULL,
+  `Rate` smallint NOT NULL,
   PRIMARY KEY (`GroupID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -965,28 +965,28 @@ REPLACE INTO magicmushroom_db VALUES(531);
 
 CREATE TABLE IF NOT EXISTS `mercenary_db` (
   `ID` smallint unsigned NOT NULL,
-  `Sprite_Name` varchar(20) NOT NULL,
-  `Name` varchar(20) NOT NULL,
-  `LV` tinyint NOT NULL,
-  `HP` int unsigned NOT NULL,
+  `Sprite_Name` varchar(30) NOT NULL,
+  `Name` varchar(30) NOT NULL,
+  `LV` smallint NOT NULL,
+  `HP` smallint unsigned NOT NULL,
   `SP` smallint unsigned NOT NULL,
   `Range1` tinyint NOT NULL,
   `ATK1` smallint unsigned NOT NULL,
   `ATK2` smallint unsigned NOT NULL,
   `DEF` tinyint NOT NULL,
   `MDEF` tinyint NOT NULL,
-  `STR` tinyint NOT NULL,
-  `AGI` tinyint NOT NULL,
-  `VIT` tinyint NOT NULL,
-  `INT` tinyint NOT NULL,
-  `DEX` tinyint NOT NULL,
-  `LUK` tinyint NOT NULL,
-  `Range2` tinyint NOT NULL,
-  `Range3` tinyint NOT NULL,
+  `STR` smallint NOT NULL,
+  `AGI` smallint NOT NULL,
+  `VIT` smallint NOT NULL,
+  `INT` smallint NOT NULL,
+  `DEX` smallint NOT NULL,
+  `LUK` smallint NOT NULL,
+  `Range2` smallint NOT NULL,
+  `Range3` smallint NOT NULL,
   `Scale` tinyint NOT NULL,
   `Race` tinyint NOT NULL,
   `Element` tinyint NOT NULL,
-  `Speed` tinyint NOT NULL,
+  `Speed` smallint NOT NULL,
   `aDelay` smallint unsigned NOT NULL,
   `aMotion` smallint unsigned NOT NULL,
   `dMotion` smallint unsigned NOT NULL,
@@ -1172,18 +1172,18 @@ REPLACE INTO mercenary_skill_db VALUES(2060,8226,1);
 --
 
 CREATE TABLE IF NOT EXISTS `mob_avail_db` (
-  `MobID` smallint(4) unsigned NOT NULL,
+  `MobID` smallint unsigned NOT NULL,
   `SpriteID` smallint DEFAULT NULL,
   `Sex` tinyint DEFAULT NULL,
   `Hair_Style` tinyint DEFAULT NULL,
-  `Hair_Color` smallint(3) unsigned DEFAULT NULL,
+  `Hair_Color` smallint unsigned DEFAULT NULL,
   `Weapon` smallint unsigned DEFAULT NULL,
   `Shield` smallint unsigned DEFAULT NULL,
   `Head_Top` smallint unsigned DEFAULT NULL,
   `Head_Middle` smallint unsigned DEFAULT NULL,
   `Head_Bottom` smallint unsigned DEFAULT NULL,
   `Option` smallint unsigned DEFAULT NULL,
-  `Dye_Color` smallint(3) DEFAULT NULL
+  `Dye_Color` smallint DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- REPLACE INTO mob_avail_db VALUES(1002,1039,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
@@ -1207,7 +1207,7 @@ CREATE TABLE IF NOT EXISTS `mob_avail_db` (
 
 CREATE TABLE IF NOT EXISTS `mob_chat_db` (
   `Line_ID` tinyint NOT NULL,
-  `Color_Code` int(12) unsigned DEFAULT NULL,
+  `Color_Code` int unsigned DEFAULT NULL,
   `Dialog` tinytext NOT NULL,
   PRIMARY KEY (`Line_ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -1258,9 +1258,9 @@ REPLACE INTO `mob_chat_db` VALUES(40,0xFF0000,'Sim! Desejar a sua liberdade nest
 --
 
 CREATE TABLE IF NOT EXISTS `mob_classchange_db` (
-  `MobID` smallint(4) unsigned NOT NULL,
+  `MobID` smallint unsigned NOT NULL,
   `DummyName` varchar(30) NOT NULL,
-  `Rate` int(7) unsigned NOT NULL DEFAULT '0'
+  `Rate` int unsigned NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 REPLACE INTO mob_classchange_db VALUES(0,'Bafomé',1039);
@@ -1295,8 +1295,8 @@ REPLACE INTO mob_classchange_db VALUES(1583,'Tao Gunka',1000000);
 
 CREATE TABLE IF NOT EXISTS `mob_item_ratio_db` (
   `ItemID` smallint unsigned NOT NULL DEFAULT '0',
-  `Ratio` int(11) unsigned NOT NULL DEFAULT '0',
-  `MonsterID` smallint(6) unsigned NOT NULL DEFAULT '0'
+  `Ratio` int unsigned NOT NULL DEFAULT '0',
+  `MonsterID` smallint unsigned NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
@@ -1646,26 +1646,26 @@ REPLACE INTO mob_pouch_db VALUES(1622,'Ursinho',142857);
 --
 
 CREATE TABLE IF NOT EXISTS `pet_db` (
-  `MobID` smallint(4) unsigned NOT NULL,
+  `MobID` smallint unsigned NOT NULL,
   `Name` varchar(30) NOT NULL,
   `JName` varchar(30) NOT NULL,
-  `LureID` smallint(4) unsigned NOT NULL,
-  `EggID` smallint(4) unsigned NOT NULL,
-  `EquipID` smallint(4) unsigned NOT NULL,
-  `FoodID` smallint(4) unsigned NOT NULL,
-  `Fullness` smallint(4) unsigned NOT NULL,
-  `HungryDelay` smallint(4) unsigned NOT NULL,
-  `R_Hungry` smallint(4) unsigned NOT NULL,
-  `R_Full` smallint(4) unsigned NOT NULL,
-  `Intimate` smallint(4) unsigned NOT NULL,
-  `Die` smallint(4) unsigned NOT NULL,
-  `Capture` smallint(4) unsigned NOT NULL,
-  `Speed` smallint(4) unsigned NOT NULL,
-  `S_Performance` smallint(4) unsigned NOT NULL,
-  `Talk_Convert_Class` smallint(4) unsigned NOT NULL,
-  `Attack_Rate` smallint(4) unsigned NOT NULL,
-  `Defence_Attack_Rate` smallint(4) unsigned NOT NULL,
-  `Change_Target_Rate` smallint(4) unsigned NOT NULL,
+  `LureID` smallint unsigned NOT NULL,
+  `EggID` smallint unsigned NOT NULL,
+  `EquipID` smallint unsigned NOT NULL,
+  `FoodID` smallint unsigned NOT NULL,
+  `Fullness` smallint unsigned NOT NULL,
+  `HungryDelay` smallint unsigned NOT NULL,
+  `R_Hungry` smallint unsigned NOT NULL,
+  `R_Full` smallint unsigned NOT NULL,
+  `Intimate` smallint unsigned NOT NULL,
+  `Die` smallint unsigned NOT NULL,
+  `Capture` smallint unsigned NOT NULL,
+  `Speed` smallint unsigned NOT NULL,
+  `S_Performance` smallint unsigned NOT NULL,
+  `Talk_Convert_Class` smallint unsigned NOT NULL,
+  `Attack_Rate` smallint unsigned NOT NULL,
+  `Defence_Attack_Rate` smallint unsigned NOT NULL,
+  `Change_Target_Rate` smallint unsigned NOT NULL,
   `Pet_Script` text NOT NULL,
   `Loyal_Script` text NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -2033,18 +2033,18 @@ REPLACE INTO produce_db VALUES(12475,29,2497,1,6285,0,511,20,522,1,525,5,610,1,1
 --
 
 CREATE TABLE IF NOT EXISTS `skill_changematerial_db` (
-  `ProductID` int(6) unsigned NOT NULL,
-  `BaseRate` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `MakeAmount1` tinyint DEFAULT NULL,
-  `MakeAmountRate1` smallint(4) unsigned DEFAULT NULL,
-  `MakeAmount2` tinyint DEFAULT NULL,
-  `MakeAmountRate2` smallint(4) unsigned DEFAULT NULL,
+  `ProductID` int unsigned NOT NULL,
+  `BaseRate` smallint unsigned NOT NULL DEFAULT '0',
+  `MakeAmount1` smallint DEFAULT NULL,
+  `MakeAmountRate1` smallint unsigned DEFAULT NULL,
+  `MakeAmount2` smallint DEFAULT NULL,
+  `MakeAmountRate2` smallint unsigned DEFAULT NULL,
   `MakeAmount3` tinyint DEFAULT NULL,
-  `MakeAmountRate3` smallint(4) unsigned DEFAULT NULL,
+  `MakeAmountRate3` smallint unsigned DEFAULT NULL,
   `MakeAmount4` tinyint DEFAULT NULL,
-  `MakeAmountRate4` smallint(4) unsigned DEFAULT NULL,
+  `MakeAmountRate4` smallint unsigned DEFAULT NULL,
   `MakeAmount5` tinyint DEFAULT NULL,
-  `MakeAmountRate5` smallint(4) unsigned DEFAULT NULL,
+  `MakeAmountRate5` smallint unsigned DEFAULT NULL,
   PRIMARY KEY (`ProductID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -4375,7 +4375,7 @@ REPLACE INTO size_fix_db VALUES(100,50,75,100,100,100,100,100,100,100,100,75,50,
 CREATE TABLE IF NOT EXISTS `item_bluebox_db` (
   `GroupID` tinyint unsigned NOT NULL,
   `ItemID` smallint unsigned NOT NULL,
-  `Rate` tinyint unsigned NOT NULL
+  `Rate` smallint unsigned NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 REPLACE INTO item_bluebox_db VALUES(1,501,12);
@@ -6475,7 +6475,7 @@ REPLACE INTO item_buyingstore_db VALUES(11024);
 CREATE TABLE IF NOT EXISTS `item_cardalbum_db` (
   `GroupID` tinyint NOT NULL,
   `ItemID` smallint unsigned NOT NULL,
-  `Rate` tinyint NOT NULL
+  `Rate` smallint NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 REPLACE INTO item_cardalbum_db VALUES(3,4001,10);
@@ -7044,7 +7044,7 @@ REPLACE INTO item_combo_db VALUES('18507:18539','{ bonus bUseSPrate,-3; }');
 CREATE TABLE IF NOT EXISTS `item_giftbox_db` (
   `GroupID` tinyint NOT NULL,
   `ItemID` smallint unsigned NOT NULL,
-  `Rate` tinyint NOT NULL
+  `Rate` smallint NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 REPLACE INTO item_giftbox_db VALUES(4,501,1);
@@ -7672,7 +7672,7 @@ REPLACE INTO item_giftbox_db VALUES(43,5272,40);
 CREATE TABLE IF NOT EXISTS `item_misc_db` (
   `GroupID` tinyint NOT NULL,
   `ItemID` smallint unsigned NOT NULL,
-  `Rate` tinyint NOT NULL
+  `Rate` smallint NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 REPLACE INTO item_misc_db VALUES(7,529,5);
@@ -8227,7 +8227,7 @@ REPLACE INTO item_noequip_db VALUES(14529,2048);
 
 CREATE TABLE IF NOT EXISTS `item_trade_db` (
   `ItemID` smallint unsigned NOT NULL,
-  `TradeMask` smallint(3) unsigned NOT NULL,
+  `TradeMask` smallint unsigned NOT NULL,
   `GMLvl` tinyint NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -9866,7 +9866,7 @@ REPLACE INTO item_trade_db VALUES(5822,499,100);
 CREATE TABLE IF NOT EXISTS `item_violetbox_db` (
   `GroupID` tinyint NOT NULL,
   `ItemID` smallint unsigned NOT NULL,
-  `Rate` tinyint unsigned NOT NULL
+  `Rate` smallint unsigned NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 REPLACE INTO item_violetbox_db VALUES(2,501,14);
@@ -10798,7 +10798,7 @@ REPLACE INTO item_violetbox_db VALUES(2,13304,1);
 --
 
 CREATE TABLE IF NOT EXISTS `mob_boss_db` (
-  `MobID` int(6) unsigned NOT NULL,
+  `MobID` int unsigned NOT NULL,
   `DummyName` varchar(30) NOT NULL,
   `Rate` int unsigned NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -10854,7 +10854,7 @@ REPLACE INTO mob_boss_db VALUES(2022,'Sombra de Nidhogg',1000000);
 --
 
 CREATE TABLE IF NOT EXISTS `mob_branch_db` (
-  `MobID` int(6) unsigned NOT NULL,
+  `MobID` int unsigned NOT NULL,
   `DummyName` varchar(30) NOT NULL,
   `Rate` int unsigned NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
@@ -19763,7 +19763,7 @@ REPLACE INTO skill_unit_db VALUES(10009,'0xc4',NULL,'2','0','-1','guild','0x040'
 --
 
 CREATE TABLE IF NOT EXISTS `exp_guild_db` (
-  `exp` int(9) unsigned NOT NULL,
+  `exp` int unsigned NOT NULL,
   PRIMARY KEY (`exp`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -19822,7 +19822,7 @@ REPLACE INTO exp_guild_db VALUES(1999999999);
 --
 
 CREATE TABLE IF NOT EXISTS `exp_homun_db` (
-  `exp` int(7) unsigned NOT NULL,
+  `exp` int unsigned NOT NULL,
   PRIMARY KEY (`exp`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -20197,7 +20197,7 @@ REPLACE INTO statpoint_db VALUES(7185);
 
 CREATE TABLE IF NOT EXISTS `refine_db` (
   `Type` tinyint NOT NULL,
-  `StatsPerLevel` smallint(3) unsigned NOT NULL,
+  `StatsPerLevel` smallint unsigned NOT NULL,
   `RandomBonusStartLevel` tinyint NOT NULL DEFAULT '0',
   `RandomBonusValue` smallint unsigned NOT NULL DEFAULT '0',
   `Chance1` tinytext NOT NULL,
@@ -20224,28 +20224,28 @@ REPLACE INTO refine_db VALUES(4,700,5,1300,'100:0','100:0','100:0','100:0','60:0
 
 CREATE TABLE IF NOT EXISTS `item_db` (
   `id` smallint(5) unsigned NOT NULL DEFAULT '0',
-  `name_english` varchar(40) NOT NULL DEFAULT '',
-  `name_japanese` varchar(40) NOT NULL DEFAULT '',
+  `name_english` varchar(50) NOT NULL DEFAULT '',
+  `name_japanese` varchar(50) NOT NULL DEFAULT '',
   `type` tinyint(2) unsigned NOT NULL DEFAULT '0',
-  `price_buy` mediumint unsigned DEFAULT NULL,
-  `price_sell` mediumint unsigned DEFAULT NULL,
-  `weight` smallint unsigned NOT NULL DEFAULT '0',
-  `attack` smallint(3) unsigned default NULL,
-  `defence` smallint NULL default NULL,
-  `range` tinyint DEFAULT NULL,
-  `slots` tinyint DEFAULT NULL,
+  `price_buy` mediumint(10) unsigned DEFAULT NULL,
+  `price_sell` mediumint(10) unsigned DEFAULT NULL,
+  `weight` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `attack` smallint(3) unsigned DEFAULT NULL,
+  `defence` smallint(5) NULL DEFAULT NULL,
+  `range` tinyint(2) unsigned DEFAULT NULL,
+  `slots` tinyint(2) unsigned DEFAULT NULL,
   `equip_jobs` int(12) unsigned DEFAULT NULL,
-  `equip_upper` tinyint DEFAULT NULL,
-  `equip_genders` tinyint DEFAULT NULL,
-  `equip_locations` smallint unsigned DEFAULT NULL,
-  `weapon_level` tinyint DEFAULT NULL,
-  `equip_level` varchar(10) DEFAULT '',
-  `refineable` tinyint DEFAULT NULL,
-  `view` smallint unsigned DEFAULT NULL,
+  `equip_upper` tinyint(8) unsigned DEFAULT NULL,
+  `equip_genders` tinyint(2) unsigned DEFAULT NULL,
+  `equip_locations` smallint(4) unsigned DEFAULT NULL,
+  `weapon_level` tinyint(2) unsigned DEFAULT NULL,
+  `equip_level` tinyint(3) unsigned DEFAULT NULL,
+  `refineable` tinyint(1) unsigned DEFAULT NULL,
+  `view` smallint(3) unsigned DEFAULT NULL,
   `script` text,
   `equip_script` text,
   `unequip_script` text,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY  (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 REPLACE INTO item_db VALUES(501,'Red_Potion','Poção Vermelha','0',50,NULL,'70',NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'itemheal rand(45,65),0;',NULL,NULL);
@@ -26477,64 +26477,64 @@ REPLACE INTO `item_db` VALUES (18581,'Máscara_de_Tigre_Vermelha','Máscara de Tig
 --
 
 CREATE TABLE IF NOT EXISTS `mob_db` (
-  `ID` smallint(4) unsigned NOT NULL DEFAULT '0',
-  `Sprite` tinytext NOT NULL,
-  `kName` tinytext NOT NULL,
-  `iName` tinytext NOT NULL,
-  `LV` tinyint unsigned NOT NULL DEFAULT '0',
-  `HP` mediumint unsigned NOT NULL DEFAULT '0',
-  `SP` mediumint unsigned NOT NULL DEFAULT '0',
-  `EXP` mediumint unsigned NOT NULL DEFAULT '0',
-  `JEXP` mediumint unsigned NOT NULL DEFAULT '0',
-  `Range1` tinyint unsigned NOT NULL DEFAULT '0',
-  `ATK1` mediumint unsigned NOT NULL DEFAULT '0',
-  `ATK2` mediumint unsigned NOT NULL DEFAULT '0',
-  `DEF` smallint unsigned NOT NULL DEFAULT '0',
-  `MDEF` smallint unsigned NOT NULL DEFAULT '0',
-  `STR` smallint unsigned NOT NULL DEFAULT '0',
-  `AGI` smallint unsigned NOT NULL DEFAULT '0',
-  `VIT` smallint unsigned NOT NULL DEFAULT '0',
-  `INT` smallint unsigned NOT NULL DEFAULT '0',
-  `DEX` smallint unsigned NOT NULL DEFAULT '0',
-  `LUK` smallint unsigned NOT NULL DEFAULT '0',
-  `Range2` tinyint unsigned NOT NULL DEFAULT '0',
-  `Range3` tinyint unsigned NOT NULL DEFAULT '0',
-  `Scale` tinyint unsigned NOT NULL DEFAULT '0',
-  `Race` tinyint unsigned NOT NULL DEFAULT '0',
-  `Element` tinyint unsigned NOT NULL DEFAULT '0',
-  `Mode` smallint unsigned NOT NULL default '0',
-  `Speed` smallint unsigned NOT NULL DEFAULT '0',
-  `aDelay` smallint unsigned NOT NULL DEFAULT '0',
-  `aMotion` smallint unsigned NOT NULL DEFAULT '0',
-  `dMotion` smallint unsigned NOT NULL DEFAULT '0',
-  `MEXP` mediumint unsigned NOT NULL DEFAULT '0',
-  `MVP1id` smallint unsigned NOT NULL DEFAULT '0',
-  `MVP1per` smallint unsigned NOT NULL DEFAULT '0',
-  `MVP2id` smallint unsigned NOT NULL DEFAULT '0',
-  `MVP2per` smallint unsigned NOT NULL DEFAULT '0',
-  `MVP3id` smallint unsigned NOT NULL DEFAULT '0',
-  `MVP3per` smallint unsigned NOT NULL DEFAULT '0',
-  `Drop1id` smallint unsigned NOT NULL DEFAULT '0',
-  `Drop1per` smallint unsigned NOT NULL DEFAULT '0',
-  `Drop2id` smallint unsigned NOT NULL DEFAULT '0',
-  `Drop2per` smallint unsigned NOT NULL DEFAULT '0',
-  `Drop3id` smallint unsigned NOT NULL DEFAULT '0',
-  `Drop3per` smallint unsigned NOT NULL DEFAULT '0',
-  `Drop4id` smallint unsigned NOT NULL DEFAULT '0',
-  `Drop4per` smallint unsigned NOT NULL DEFAULT '0',
-  `Drop5id` smallint unsigned NOT NULL DEFAULT '0',
-  `Drop5per` smallint unsigned NOT NULL DEFAULT '0',
-  `Drop6id` smallint unsigned NOT NULL DEFAULT '0',
-  `Drop6per` smallint unsigned NOT NULL DEFAULT '0',
-  `Drop7id` smallint unsigned NOT NULL DEFAULT '0',
-  `Drop7per` smallint unsigned NOT NULL DEFAULT '0',
-  `Drop8id` smallint unsigned NOT NULL DEFAULT '0',
-  `Drop8per` smallint unsigned NOT NULL DEFAULT '0',
-  `Drop9id` smallint unsigned NOT NULL DEFAULT '0',
-  `Drop9per` smallint unsigned NOT NULL DEFAULT '0',
-  `DropCardid` smallint unsigned NOT NULL DEFAULT '0',
-  `DropCardper` smallint unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`ID`)
+  `ID` mediumint(9) unsigned NOT NULL DEFAULT '0',
+  `Sprite` text NOT NULL,
+  `kName` text NOT NULL,
+  `iName` text NOT NULL,
+  `LV` tinyint(6) unsigned NOT NULL DEFAULT '0',
+  `HP` int(9) unsigned NOT NULL DEFAULT '0',
+  `SP` mediumint(9) unsigned NOT NULL DEFAULT '0',
+  `EXP` mediumint(9) unsigned NOT NULL DEFAULT '0',
+  `JEXP` mediumint(9) unsigned NOT NULL DEFAULT '0',
+  `Range1` tinyint(4) unsigned NOT NULL DEFAULT '0',
+  `ATK1` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `ATK2` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `DEF` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `MDEF` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `STR` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `AGI` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `VIT` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `INT` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `DEX` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `LUK` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `Range2` tinyint(4) unsigned NOT NULL DEFAULT '0',
+  `Range3` tinyint(4) unsigned NOT NULL DEFAULT '0',
+  `Scale` tinyint(4) unsigned NOT NULL DEFAULT '0',
+  `Race` tinyint(4) unsigned NOT NULL DEFAULT '0',
+  `Element` tinyint(4) unsigned NOT NULL DEFAULT '0',
+  `Mode` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `Speed` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `aDelay` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `aMotion` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `dMotion` smallint(6) unsigned NOT NULL DEFAULT '0',
+  `MEXP` mediumint(9) unsigned NOT NULL DEFAULT '0',
+  `MVP1id` smallint(9) unsigned NOT NULL DEFAULT '0',
+  `MVP1per` smallint(9) unsigned NOT NULL DEFAULT '0',
+  `MVP2id` smallint(9) unsigned NOT NULL DEFAULT '0',
+  `MVP2per` smallint(9) unsigned NOT NULL DEFAULT '0',
+  `MVP3id` smallint(9) unsigned NOT NULL DEFAULT '0',
+  `MVP3per` smallint(9) unsigned NOT NULL DEFAULT '0',
+  `Drop1id` smallint(9) unsigned NOT NULL DEFAULT '0',
+  `Drop1per` smallint(9) unsigned NOT NULL DEFAULT '0',
+  `Drop2id` smallint(9) unsigned NOT NULL DEFAULT '0',
+  `Drop2per` smallint(9) unsigned NOT NULL DEFAULT '0',
+  `Drop3id` smallint(9) unsigned NOT NULL DEFAULT '0',
+  `Drop3per` smallint(9) unsigned NOT NULL DEFAULT '0',
+  `Drop4id` smallint(9) unsigned NOT NULL DEFAULT '0',
+  `Drop4per` smallint(9) unsigned NOT NULL DEFAULT '0',
+  `Drop5id` smallint(9) unsigned NOT NULL DEFAULT '0',
+  `Drop5per` smallint(9) unsigned NOT NULL DEFAULT '0',
+  `Drop6id` smallint(9) unsigned NOT NULL DEFAULT '0',
+  `Drop6per` smallint(9) unsigned NOT NULL DEFAULT '0',
+  `Drop7id` smallint(9) unsigned NOT NULL DEFAULT '0',
+  `Drop7per` smallint(9) unsigned NOT NULL DEFAULT '0',
+  `Drop8id` smallint(9) unsigned NOT NULL DEFAULT '0',
+  `Drop8per` smallint(9) unsigned NOT NULL DEFAULT '0',
+  `Drop9id` smallint(9) unsigned NOT NULL DEFAULT '0',
+  `Drop9per` smallint(9) unsigned NOT NULL DEFAULT '0',
+  `DropCardid` smallint(9) unsigned NOT NULL DEFAULT '0',
+  `DropCardper` smallint(9) unsigned NOT NULL DEFAULT '0',
+  PRIMARY KEY  (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 REPLACE INTO mob_db VALUES(1001,'SCORPION','Escorpião','Escorpião',24,1109,0,287,176,1,80,135,30,0,1,24,24,5,52,5,10,12,0,4,23,0x3195,200,1564,864,576,0,0,0,0,0,0,0,990,70,904,5500,757,57,943,210,7041,100,508,200,625,20,0,0,0,0,4068,1);
@@ -27548,25 +27548,25 @@ REPLACE INTO mob_db VALUES(2308,'KO_ZANZOU','Zanzou','Zanzou',1,50,0,0,0,1,1,1,0
 --
 
 CREATE TABLE IF NOT EXISTS `mob_skill_db` (
-  `MobID` smallint NOT NULL,
-  `Info` tinytext NOT NULL,
-  `State` tinytext NOT NULL,
-  `SkillID` smallint unsigned NOT NULL,
-  `SkillLV` tinyint NOT NULL,
-  `Rate` smallint unsigned NOT NULL,
-  `CastTime` smallint unsigned NOT NULL,
-  `Delay` smallint unsigned NOT NULL,
-  `Cancelable` tinytext NOT NULL,
-  `Target` tinytext NOT NULL,
-  `Condition` tinytext NOT NULL,
-  `Condition_Value` text,
-  `Val1` tinyint DEFAULT NULL,
-  `Val2` tinyint DEFAULT NULL,
-  `Val3` tinyint DEFAULT NULL,
-  `Val4` tinyint DEFAULT NULL,
-  `Val5` tinyint DEFAULT NULL,
-  `Emotion` tinytext DEFAULT NULL,
-  `Chat` tinytext DEFAULT NULL
+  `MOB_ID` smallint(6) NOT NULL,
+  `INFO` text NOT NULL,
+  `STATE` text NOT NULL,
+  `SKILL_ID` smallint(6) NOT NULL,
+  `SKILL_LV` tinyint(4) NOT NULL,
+  `RATE` smallint(4) NOT NULL,
+  `CASTTIME` mediumint(9) NOT NULL,
+  `DELAY` int(9) NOT NULL,
+  `CANCELABLE` text NOT NULL,
+  `TARGET` text NOT NULL,
+  `CONDITION` text NOT NULL,
+  `CONDITION_VALUE` text,
+  `VAL1` mediumint(9) DEFAULT NULL,
+  `VAL2` mediumint(9) DEFAULT NULL,
+  `VAL3` mediumint(9) DEFAULT NULL,
+  `VAL4` mediumint(9) DEFAULT NULL,
+  `VAL5` mediumint(9) DEFAULT NULL,
+  `EMOTION` text,
+  `CHAT` text
 ) ENGINE=MyISAM;
 
 REPLACE INTO mob_skill_db VALUES(1001,'Scorpion@NPC_FIREATTACK','attack',186,1,2000,0,5000,'yes','target','always','0',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
@@ -33093,7 +33093,7 @@ CREATE TABLE IF NOT EXISTS `level_penalty` (
   `Type` tinyint NOT NULL DEFAULT '0',
   `Race` tinyint NOT NULL DEFAULT '0',
   `Level difference` smallint NOT NULL,
-  `Rate` tinyint NOT NULL DEFAULT '0'
+  `Rate` smallint NOT NULL DEFAULT '0'
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 REPLACE INTO level_penalty VALUES(1,11,16,40);
