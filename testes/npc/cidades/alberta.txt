@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.5/1.5/1.2                         |
+//   | Versões eA/rA/brA: 1.5/1.6/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição: NPCs da Cidade de Alberta.                  |
 //   |--------------------------------------------------------|
@@ -213,8 +213,11 @@ alberta,189,151,5	script	Fisk	100,{
 				close;
 			}
 			set Zeny,Zeny - 500;
-			warp "izlude",176,182;
-			end;
+			if(checkre(0))
+				warp "izlude",195,212;
+			else
+				warp "izlude",176,182;
+				end;
 		case 3:
 			mes "[Fisk]";
 			mes "Muito bem...";
