@@ -11892,7 +11892,7 @@ void clif_parse_OpenVending(int fd, struct map_session_data* sd)
 
 	if( sd->sc.data[SC_NOCHAT] && sd->sc.data[SC_NOCHAT]->val1&MANNER_NOROOM )
 		return;
-	if( map[sd->bl.m].flag.novending ) {
+	if( map[sd->bl.m].flag.novending || pc_has_permission(sd,PC_PERM_CAN_SHOP) ) {
 		clif_displaymessage (sd->fd, msg_txt(276)); // "You can't open a shop on this map"
 		return;
 	}
@@ -13937,7 +13937,7 @@ void clif_parse_Mail_send(int fd, struct map_session_data *sd)
 		return;
 	}
 
-	if( DIFF_TICK(sd->cansendmail_tick, gettick()) > 0 )
+	if( DIFF_TICK(sd->cansendmail_tick, gettick()) > 0 || pc_has_permission(sd,PC_PERM_CAN_SHOP))
 	{
 		clif_displaymessage(sd->fd,msg_txt(675)); //"Cannot send mails too fast!!."
 		clif_Mail_send(fd, true); // fail
@@ -14188,7 +14188,7 @@ void clif_parse_Auction_register(int fd, struct map_session_data *sd)
 	}
 
 	// Auction checks...
-	if( sd->status.zeny < (auction.hours * battle_config.auction_feeperhour) )
+	if( sd->status.zeny < (auction.hours * battle_config.auction_feeperhour) || pc_has_permission(sd,PC_PERM_CAN_SHOP))
 	{
 		clif_Auction_message(fd, 5); // You do not have enough zeny to pay the Auction Fee.
 		return;

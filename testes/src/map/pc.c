@@ -3878,7 +3878,7 @@ int pc_dropitem(struct map_session_data *sd,int n,int amount)
 		)
 		return 0;
 
-	if( map[sd->bl.m].flag.nodrop )
+	if( map[sd->bl.m].flag.nodrop || pc_has_permission(sd,PC_PERM_CAN_DROPS))
 	{
 		clif_displaymessage (sd->fd, msg_txt(271));
 		return 0; //Can't drop items in nodrop mapflag maps.
@@ -5589,6 +5589,9 @@ int pc_gainexp(struct map_session_data *sd, struct block_list *src, unsigned int
 
 	if(!battle_config.pvp_exp && map[sd->bl.m].flag.pvp)  // [MouseJstr]
 		return 0; // no exp on pvp maps
+
+	if( pc_has_permission(sd,PC_PERM_DISABLE_EXP) )
+		return 0;
 
 	if(sd->status.guild_id>0)
 		base_exp-=guild_payexp(sd,base_exp);
