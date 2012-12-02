@@ -5849,6 +5849,7 @@ static const struct _battle_data {
 	{ "alliance_in_woe",                    &battle_config.alliance_in_woe,                   0,    0,              1,      },
 	{ "use_item_in_status",                 &battle_config.use_item_in_status,                0,    0,              1,      },
 	{ "supports_castle_gvg",                &battle_config.supports_castle_gvg,               1,    0,              1,      },
+	{ "max_atk",                            &battle_config.max_atk,                           99,   0,        INT_MAX,      },
 };
 #ifndef STATS_OPT_OUT
 /**

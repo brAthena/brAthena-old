@@ -1917,7 +1917,7 @@ static unsigned short status_base_atk(const struct block_list *bl, const struct 
 #else
 		str+= dex/5 + status->luk/5;
 #endif
-	return cap_value(str, 0, USHRT_MAX);
+	return cap_value(str, 0, battle_config.max_atk);
 }
 
 #ifndef RENEWAL
