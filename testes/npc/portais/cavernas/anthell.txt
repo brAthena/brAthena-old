@@ -21,7 +21,6 @@
 //   | - Anotações                                            |	
 //   \________________________________________________________/	
 
-
 /* Versão pré 2010-06-09adata_x1.gpf
  * Requer que o mapcache e client-side sejam modificados.
  */
