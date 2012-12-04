@@ -68,7 +68,7 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 			close;
 		}
 	}
-	if ( !checkre(1) ) {
+	if ( !checkre(0) ) {
 	if(q_job_thief == 1) {
 		mes "[Gatuna Ajudante]";
 		mes "É... Parece que você é "+(Sex?"filho":"filha")+" de uma família rica, mas por que você está aqui neste lugar sujo?";

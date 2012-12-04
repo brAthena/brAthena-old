@@ -21,9 +21,9 @@
 //   | 1.1 Tradução PT-BR    [Holy]                           |
 //   | 1.2 Otimização        [Holy]                           |
 //   | - Anotações                                            |
-//   \________________________________________________________/ 
+//   \________________________________________________________/
 
-lhz_airport,143,43,5	script	Equipe do Aeroporto#lhz_air1a::lhz_aeroporto1	90,{
+lhz_airport,143,43,5	script	Equipe do Aeroporto#lhz_ar1a::lhz_aeroporto1	90,{
 	mes "[Equipe do Aeroporto]";
 	mes "Bem-vindo";
 	mes "ao Aeroporto de Lighthalzen,";
@@ -62,10 +62,10 @@ lhz_airport,143,43,5	script	Equipe do Aeroporto#lhz_air1a::lhz_aeroporto1	90,{
 	close;
 }
 
-lhz_airport,158,43,5	duplicate(lhz_aeroporto1)	Equipe do Aeroporto#lhz_air1b	90
-lhz_airport,126,43,5	duplicate(lhz_aeroporto1)	Equipe do Aeroporto#lhz_air1c	90
+lhz_airport,158,43,5	duplicate(lhz_aeroporto1)	Equipe do Aeroporto#lhz_ar1b	90
+lhz_airport,126,43,5	duplicate(lhz_aeroporto1)	Equipe do Aeroporto#lhz_ar1c	90
 
-lhz_airport,143,49,3	script	Equipe de Recepção#lhz_air2a::lhz_aeroporto2	90,{
+lhz_airport,143,49,3	script	Equipe de Recepção#lhz_ar2a::lhz_aeroporto2	90,{
 	mes "[Equipe de Recepção]";
 	mes "Bem-vindo ao Aeroporto de Lighthalzen.";
 	mes "Se você acaba de chegar do seu";
@@ -93,5 +93,5 @@ lhz_airport,143,49,3	script	Equipe de Recepção#lhz_air2a::lhz_aeroporto2	90,{
 	close;
 }
 
-lhz_airport,126,51,3	duplicate(lhz_aeroporto2)	Equipe de Recepção#lhz_air2b	90
-lhz_airport,158,50,3	duplicate(lhz_aeroporto2)	Equipe de Recepção#lhz_air2c	90
+lhz_airport,126,51,3	duplicate(lhz_aeroporto2)	Equipe de Recepção#lhz_ar2b	90
+lhz_airport,158,50,3	duplicate(lhz_aeroporto2)	Equipe de Recepção#lhz_ar2c	90

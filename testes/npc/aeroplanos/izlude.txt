@@ -1,4 +1,3 @@
-
 //    ________________________________________________________
 //   /                                                        \
 //   |       _           _   _   _                            |
@@ -22,7 +21,7 @@
 //   | 1.1 Tradução PT-BR     [Holy]                          |
 //   | 1.2 Otimização         [Holy]                          |
 //   | - Anotações                                            |
-//   \________________________________________________________/ 
+//   \________________________________________________________/
 
 izlude,204,75,3	script	Equipe do Aeroporto#izlude	90,{
 
@@ -38,7 +37,7 @@ izlude,204,75,3	script	Equipe do Aeroporto#izlude	90,{
 		mes "é 1,200 zeny, mas se você";
 		mes "possuir um Bilhete para Aeroplano,";
 		mes "a taxa não será cobrada. Você";
-		mes "deseja embarcar no Dirigível?";
+		mes "deseja embarcar?";
 		next;
 		if (select("Sim:Não") == 1) {
 			if (countitem(7311) > 0)
