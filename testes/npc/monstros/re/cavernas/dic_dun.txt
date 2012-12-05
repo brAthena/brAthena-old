@@ -49,6 +49,6 @@ dic_dun03,0,0,0,0	monster	Scaraba Galhado	2163,50,0,0,0
 dic_dun03,0,0,0,0	monster	Scaraba Ancinho	2164,45,0,0,0
 dic_dun03,0,0,0,0	monster	Ovo de Scaraba de Um Chifre	2166,15,0,0,0
 dic_dun03,0,0,0,0	monster	Ovo de Scaraba de Dois Chifres	2167,15,0,0,0
-dic_dun03,0,0,0,0	monster	Ovo Scaraba Galhado	2168,15,0,0,0
+dic_dun03,0,0,0,0	monster	Ovo de Scaraba Galhado	2168,15,0,0,0
 dic_dun03,0,0,0,0	monster	Ovo de Scaraba Ancinho	2169,15,0,0,0
 dic_dun03,0,0,0,0	boss_monster	Rainha Scaraba	2165,1,7200000,600000,1
