@@ -8622,12 +8622,8 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 		case SC_STONE:  sc->opt1 = OPT1_STONEWAIT; break;
 		case SC_FREEZE: sc->opt1 = OPT1_FREEZE;    break;
 		case SC_STUN:   sc->opt1 = OPT1_STUN;      break;
-		case SC_SLEEP:
-		case SC_DEEPSLEEP:
-			if(type == SC_DEEPSLEEP)
-				opt_flag = 0;
-            sc->opt1 = OPT1_SLEEP;
-            break;
+		case SC_DEEPSLEEP:    opt_flag = 0;
+		case SC_SLEEP:   sc->opt1 = OPT1_SLEEP;		break;
 		case SC_BURNING:		sc->opt1 = OPT1_BURNING;	break; // Burning need this to be showed correctly. [pakpil]
 		case SC_WHITEIMPRISON:  sc->opt1 = OPT1_IMPRISON;	break;
 		case SC_CRYSTALIZE:		sc->opt1 = OPT1_CRYSTALIZE;	break;
