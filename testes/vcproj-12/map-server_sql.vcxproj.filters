@@ -353,6 +353,7 @@
     </ClInclude>
     <ClInclude Include="..\src\config\const.h" />
     <ClInclude Include="..\src\config\core.h" />
+    <ClInclude Include="..\src\config\renewal.h" />
     <ClInclude Include="..\src\config\secure.h" />
     <ClInclude Include="..\src\config\classes\general.h" />
     <ClInclude Include="..\src\common\conf.h">
@@ -403,7 +404,6 @@
     <ClInclude Include="..\src\common\raconf.h">
       <Filter>common</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\config\renewal.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="common">
