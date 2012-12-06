@@ -8,48 +8,49 @@
 //   |                                                        |
 //   |                    brAthena Script                     |
 //   |--------------------------------------------------------|
-//   | Nome do Script: eden_serviços.txt                      |
+//   | Nome do Script: Armazém de Bens Eden                   |
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: ??/1.1/1.0                          |
+//   | Versões eA/rA/brA: ??/1.1/1.1                          |
 //   |--------------------------------------------------------|
-//   | Descrição: Acesso ao armazém grupo do paraíso.         |
+//   | Descrição: Acesso ao armazém de Grupos Éden.           |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR     [Holy]                          |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
--	script	Goods Cabinet#00::pggc	-1,{
-	mes "It is a Goods Storage Cabinet.";
-	mes "A message is written on a piece of paper.";
+-	script	Armazém de Bens#00::pggc	-1,{
+	mes "Esse é um Gabinete que armazena de bens.";
+	mes "A mensagem está escrita em um pedaço de papel.";
 	next;
-	mes "+ Cabinet is exclusively +";
-	mes "+ for the Eden group +";
-	mes "If you want to use this";
-	mes "cabinet please check";
-	mes "the following:";
+	mes "+ o Armazém é exclusivo +";
+	mes "+ para membros do grupo Eden +";
+	mes "Se você deseja usar esse";
+	mes "gabinete por favor verifique";
+	mes "o seguinte:";
 	next;
-	mes "1.Are you a member";
-	mes "   of Eden group?";
-	mes "2.Have you learned";
-	mes "   enough basic skills?";
-	mes "3.Cabinet fee is";
+	mes "1.Você é um membro";
+	mes "   do Grupo Eden?";
+	mes "2.Você possui todas";
+	mes "   as habilidades básicas necessárias?";
+	mes "3.A taxa para usar o gabinete é";
 	mes "  ^4d4dff500 zeny^000000!";
 	next;
 	if (countitem(6219) > 0) {
-		mes "You need to insert zeny to use the cabinet.";
-		mes "Cost : 500 Zeny ";
-		mes "Would you like to use it?";
+		mes "Você precisa pagar uma taxa de zenys.";
+		mes "Custo : 500 Zeny ";
+		mes "Você deseja prosseguir?";
 		next;
-		switch(select("Use the Cabinet.:Cancel.")) {
+		switch(select("Usar o Gabinet.:Cancelar.")) {
 			case 1:
 				if (Zeny > 499) {
 					if (getskilllv("NV_BASIC") < 6) {
-						mes "The cabinet is not working for me.";
-						mes "Maybe I am not yet qualified to use Cabinet.";
+						mes "O gabinete não pode ser utilizado por você.";
+						mes "Talvez eu ainda não esteja qualificado para usar Gabinete.";
 						close;
 					}
 					set Zeny, Zeny - 500;
@@ -57,17 +58,17 @@
 					openstorage;
 					end;
 				}
-				mes "I don't have enough zeny.";
-				mes "I need at least 500 zeny to use the Cabinet.";
+				mes "Você não possui zeny suficiente.";
+				mes "É preciso de pelo menos 500 zeny para usar o Gabinete.";
 				close;
 			case 2:
-				mes "I will use it next time.";
+				mes "Vou deixar para uma próxima.";
 				close;
 		}
 	}
-	mes "I need an Eden Group Mark to use this Cabinet.";
+	mes "Eu preciso de um Grupo Eden registrado para permitir o uso do Gabinete.";
 	close;
 }
 
-moc_para01,173,120,0	duplicate(pggc)	Goods Cabinet#01	111
-moc_para01,170,120,0	duplicate(pggc)	Goods Cabinet#02	111
+moc_para01,173,120,0	duplicate(pggc)	Armazém de Bens#01	111
+moc_para01,170,120,0	duplicate(pggc)	Armazém de Bens#02	111

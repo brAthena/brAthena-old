@@ -15,8 +15,6 @@
 //   | Versões eA/rA/brA: ??/3.7/1.0                          |
 //   |--------------------------------------------------------|
 //   | Descrição: Quest para abrir as portas para Geffenia.   |
-//   | Este script usa sign_01.bmp - sign_04.bmp, estes serão |
-//   | encontrados na língua do seu cliente.                  |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |

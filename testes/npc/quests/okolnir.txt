@@ -24,7 +24,6 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-
 -	script	Guia SE::guiaSE	-1,{
 	if(strnpcinfo(1) == "Guia SE") end;
 	if(compare(strnpcinfo(2),"aru")) set .cas$,"aru";
