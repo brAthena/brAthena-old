@@ -9816,15 +9816,18 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 	case SC_SIGHT:
 	case SC_RUWACH:
 	case SC_SIGHTBLASTER:
-		map_foreachinrange( status_change_timer_sub, bl, sce->val3, BL_CHAR, bl, sce, type, tick);
+		if(type == SC_SIGHTBLASTER)
+			map_foreachinrange( status_change_timer_sub, bl, sce->val3, BL_CHAR|BL_SKILL, bl, sce, type, tick);
+		else
+			map_foreachinrange( status_change_timer_sub, bl, sce->val3, BL_CHAR, bl, sce, type, tick);
 
 		if( --(sce->val2)>0 ){
-			sce->val4 += 250; // use for Shadow Form 2 seconds checking. 
+			sce->val4 += 250; // use for Shadow Form 2 seconds checking.
 			sc_timer_next(250+tick, status_change_timer, bl->id, data);
 			return 0;
 		}
 		break;
-		
+
 	case SC_PROVOKE:
 		if(sce->val2) { //Auto-provoke (it is ended in status_heal)
 			sc_timer_next(1000*60+tick,status_change_timer, bl->id, data );
@@ -10600,7 +10603,8 @@ int status_change_timer_sub(struct block_list* bl, va_list ap)
 			status_check_skilluse(src, bl, WZ_SIGHTBLASTER, 2))
 		{
 			skill_attack(BF_MAGIC,src,src,bl,WZ_SIGHTBLASTER,1,tick,0);
-			if (sce) sce->val2 = 0; //This signals it to end.
+			if (sce && !(bl->type&BL_SKILL)) //The hit is not counted if it's against a trap
+				sce->val2 = 0; //This signals it to end.
 		}
 		break;
 	case SC_CLOSECONFINE:
