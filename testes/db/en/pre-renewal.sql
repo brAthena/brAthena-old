@@ -3810,6 +3810,7 @@ REPLACE INTO quest_db VALUES(12212,0,0,0,0,0,0,0,'\"Red Herb Doc.\"');
 REPLACE INTO quest_db VALUES(12213,0,0,0,0,0,0,0,'\"Carrot Doc.\"');
 REPLACE INTO quest_db VALUES(12214,0,0,0,0,0,0,0,'\"Cactus Needle Doc.\"');
 REPLACE INTO quest_db VALUES(12215,0,0,0,0,0,0,0,'\"Stone Heart Doc.\"');
+REPLACE INTO quest_db VALUES(12216,21600,0,0,0,0,0,0,'\"Pouty Jahbong.\"');
 REPLACE INTO quest_db VALUES(12217,0,0,0,0,0,0,0,'\"Request - Traces of wild boar hunt\"');
 REPLACE INTO quest_db VALUES(12218,0,0,0,0,0,0,0,'\"How to make lava elixir\"');
 REPLACE INTO quest_db VALUES(12219,0,0,0,0,0,0,0,'\"How to creat flame elixir\"');

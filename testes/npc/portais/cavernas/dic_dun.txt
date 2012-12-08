@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.1/1.0/1.1                         |
+//   | Versões eA/rA/brA: 1.1/1.1/1.1                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Portais da Caverna de El Dicastes.          |
 //   |--------------------------------------------------------|
@@ -22,13 +22,13 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-dic_dun01,88,212,0	warp	scarababuraco0001	1,1,dic_dun01,168,228
-dic_dun01,164,228,0	warp	scarababuraco0002	1,1,dic_dun01,84,212
+dic_dun01,87,212,0	warp	scarababuraco0001	1,1,dic_dun01,169,227
+dic_dun01,165,227,0	warp	scarababuraco0002	1,1,dic_dun01,83,212
 dic_dun01,371,228,0	warp	scarababuraco0003	1,1,dic_dun01,32,156
 dic_dun01,28,156,0	warp	scarababuraco0004	1,1,dic_dun01,367,228
 dic_dun01,371,172,0	warp	scarababuraco0005	1,1,dic_dun01,32,100
 dic_dun01,28,100,0	warp	scarababuraco0006	1,1,dic_dun01,367,172
-dic_dun02,102,148,0	warp	scarababuraco0007	1,1,dic_dun01,290,103
-dic_dun01,370,100,0	warp	scarababuraco0008	1,1,dic_dun01,33,44
-dic_dun01,29,44,0	warp	scarababuraco0009	1,1,dic_dun01,366,100
-dic_dun03,102,148,0	warp	scarababuraco0010	1,1,dic_dun01,290,103
+dic_dun02,102,148,0	warp	scarababuraco0007	1,1,dic_dun01,290,99
+dic_dun01,371,100,0	warp	scarababuraco0008	1,1,dic_dun01,33,43
+dic_dun01,29,43,0	warp	scarababuraco0009	1,1,dic_dun01,367,100
+dic_dun03,101,148,0	warp	scarababuraco0010	1,1,dic_dun01,286,102

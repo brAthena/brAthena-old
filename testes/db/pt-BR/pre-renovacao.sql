@@ -3852,6 +3852,7 @@ REPLACE INTO quest_db VALUES(12212,0,0,0,0,0,0,0,'\"Documentos sobre Ervas Verme
 REPLACE INTO quest_db VALUES(12213,0,0,0,0,0,0,0,'\"Documentos sobre Cenouras.\"');
 REPLACE INTO quest_db VALUES(12214,0,0,0,0,0,0,0,'\"Documentos sobre Espinhos de Cactus.\"');
 REPLACE INTO quest_db VALUES(12215,0,0,0,0,0,0,0,'\"Documentos sobre Coração de Pedra.\"');
+REPLACE INTO quest_db VALUES(12216,21600,0,0,0,0,0,0,'\"Pouty Jahbong.\"');
 REPLACE INTO quest_db VALUES(12217,0,0,0,0,0,0,0,'\"Missão do Grupo Valhalla\"');
 REPLACE INTO quest_db VALUES(12218,0,0,0,0,0,0,0,'\"Como fazer um elixir em lava\"');
 REPLACE INTO quest_db VALUES(12219,0,0,0,0,0,0,0,'\"Como fazer um elixir em chama\"');
