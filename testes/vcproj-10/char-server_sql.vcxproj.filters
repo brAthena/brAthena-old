@@ -40,6 +40,9 @@
     <ClCompile Include="..\src\common\utils.c">
       <Filter>common</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\common\conf.c">
+      <Filter>common</Filter>
+    </ClCompile>
     <ClCompile Include="..\src\char\char.c">
       <Filter>char_sql</Filter>
     </ClCompile>

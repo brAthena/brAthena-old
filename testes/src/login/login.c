@@ -1317,7 +1317,7 @@ int parse_login(int fd)
 
 	if( session[fd]->flag.eof )
 	{
-		ShowInfo("Conex%co fechada de '"CL_WHITE"%s"CL_RESET"'.\n", 198, ip);
+		ShowInfo(read_message("Source", "login_eof_ck"), CL_WHITE, ip, CL_RESET);
 		do_close(fd);
 		return 0;
 	}

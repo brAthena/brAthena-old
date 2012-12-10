@@ -143,18 +143,18 @@ const char* read_message(char group[], char param[])
 **/
 const char* read_server_lang()
 {
-	const char *config_file_name = "conf/battle/brathena.conf", *tmpvar = "";
+	const char *tmpvar = "conf/battle/brathena.conf";
 	static char lang_file[1024];
 	config_t configFile;
 
     config_init(&configFile);
 
-    if(!config_read_file(&configFile, config_file_name)){
+    if(!config_read_file(&configFile, tmpvar)){
         ShowInfo("read_server_lang erro: %s:%d - %s\n", config_error_file(&configFile), config_error_line(&configFile), config_error_text(&configFile));
         config_destroy(&configFile);
-        return tmpvar;
+        return "";
     }
-	
+
 	config_lookup_string(&configFile, "lang_file", &tmpvar);
 	snprintf(lang_file, sizeof(lang_file), "%s", tmpvar);
 	config_destroy(&configFile);
