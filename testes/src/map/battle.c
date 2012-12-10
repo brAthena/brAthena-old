@@ -6103,7 +6103,7 @@ int battle_config_read(const char* cfgName)
 			if (strcmpi(w1, "import") == 0)
 				battle_config_read(w2);
 			else
-			if (battle_set_value(w1, w2) == 0)
+			if (battle_set_value(w1, w2) == 0 && strcmp(w1, "lang_file"))
 				ShowWarning("Configura%c%co desconhecida '%s' no arquivo %s\n", 135, 198, w1, cfgName);
 		}
 

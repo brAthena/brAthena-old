@@ -470,7 +470,7 @@ extern struct Battle_Config
 	int bg_flee_penalty;
 	
 	// [brAthena]
-	int server_lang, devotion_rdamage, warp_no_ress, attack_castle_monsters, gm_cant_attack, bRO_Renewal, alliance_in_woe, use_item_in_status, supports_castle_gvg, max_atk;
+	int devotion_rdamage, warp_no_ress, attack_castle_monsters, gm_cant_attack, bRO_Renewal, alliance_in_woe, use_item_in_status, supports_castle_gvg, max_atk;
 	
 	// rAthena
 	int max_third_parameter;

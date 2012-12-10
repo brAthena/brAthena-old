@@ -3472,7 +3472,7 @@ void sv_readsqldb (char* name, char* next_name, int param_size, int max_allowed,
 			count++;
 		}
 		
-		ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", count, db_name[i]);
+		ShowSQL(read_message("Source", "map_sv_readsqldb"), CL_WHITE, count, CL_RESET, CL_WHITE, db_name[i], CL_RESET);
 		Sql_FreeResult(dbmysql_handle);
 	}
 }
@@ -3607,7 +3607,7 @@ int db_sql_init(void)
 {
 	dbmysql_handle = Sql_Malloc();
 
-	ShowInfo("Conectando com o banco de dados geral "CL_WHITE"%s"CL_RESET" em "CL_WHITE"%s"CL_RESET"...\n", db_db2name, db_ip);
+	ShowInfo(read_message("Source", "map_db_sql_init"), CL_WHITE, db_db2name, CL_RESET, CL_WHITE, db_ip, CL_RESET);
 	
 	if(SQL_ERROR == Sql_Connect(dbmysql_handle, db_id, db_pw, db_ip, db_port, db_db2name))
 		exit(EXIT_FAILURE);
@@ -3889,7 +3889,6 @@ int do_init(int argc, char *argv[])
 	ATCOMMAND_CONF_FILENAME = "conf/atcommand_athena.conf";
 	SCRIPT_CONF_NAME = "conf/script_athena.conf";
 	MSG_CONF_NAME = "conf/msg_athena.conf";
-	LANG_FILENAME = (!battle_config.server_lang ? "conf/lang/pt_br.conf" : "conf/lang/en.conf");
 	GRF_PATH_FILENAME = "conf/grf-files.txt";
 
 	rnd_init();

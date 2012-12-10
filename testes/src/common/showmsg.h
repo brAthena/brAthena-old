@@ -96,4 +96,7 @@ extern void ShowError(const char *, ...);
 extern void ShowFatalError(const char *, ...);
 extern void ShowConfigWarning(config_setting_t *config, const char *string, ...);
 
+extern const char* read_message(char group[], char param[]);
+extern const char* read_server_lang();
+
 #endif /* _SHOWMSG_H_ */
