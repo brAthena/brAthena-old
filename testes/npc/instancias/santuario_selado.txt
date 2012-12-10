@@ -19,8 +19,9 @@
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Protimus]                        |
 //   | 1.1 Tradução PT-BR [Avassalador]                       |
+//   |--------------------------------------------------------|
 //   | - Anotações                                            |
-//   \________________________________________________________/ 
+//   \________________________________________________________/
 
 // Entrada da Catacumba Selada
 //============================================================
@@ -35,8 +36,7 @@ monk_test,309,146,3	script	Frei Patrick#edq	412,{
 	if (countitem(6004) > 0) {
 		set .@doll,1;
 		set .@selection,select("Que lugar é este?:Eu quero entrar.:Sobre o Boneco de Baphomet Amaldiçoado.:Cancelar.");
-	}
-	else {
+	} else {
 		set .@selection,select("Que lugar é este?:Eu quero entrar.:Cancelar.");
 	}
 	switch(.@selection) {
@@ -114,8 +114,7 @@ monk_test,309,146,3	script	Frei Patrick#edq	412,{
 						mes "O nome do grupo é  "+getpartyname(.@party_id)+"...";
 						mes "O nome do líder é "+.@partymembername$[0]+"...";
 						mes "Hum... Mais parece que temos um problema aqui... Irei checar rapidamente. Por-favor aguarde.";
-					}
-					else {
+					} else {
 
 						for( set .@i, 1; .@i <= 2; set .@i, .@i + 1 ) {
 							if( instance_attachmap("" + .@i + "@cata", .@instance) == "" )
@@ -184,20 +183,17 @@ monk_test,309,146,3	script	Frei Patrick#edq	412,{
 						mes "[Frei Patrick]";
 						mes "Por exemplo, habilidades como ^0000FFEscudo Mágico e Assumptio^000000... Então é melhor você estar preparado entes de entrar no santuário.";
 					}
-				}
-				else {
+				} else {
 					mes "[Frei Patrick]";
 					mes "Humm... Eu reconheço usa coragem, porém... Não posso permitir qualquer um entrar nesse lugar. Eu só permito o líder do grupo a entrar primeiro.";
 					next;
 					mes "[Frei Patrick]";
 					mes "Uma vez que o líder grupo foi permitido, o resto do grupo pode entrar. Isto é uma regra deste monastério, por favor a entenda.";
 				}
-			}
-			else if (.@ins_bapho_check == 0 || .@ins_bapho_check == 1) {
+			} else if (.@ins_bapho_check == 0 || .@ins_bapho_check == 1) {
 				mes "[Frei Patrick]";
 				mes "Parece que você entrou no santuário recentemente... Você não pode entrar novamente pois a Maldição de Baphomet ainda continua. A maldição de Baphomet só desaparece quando um certo período de tempo se passa.";
-			}
-			else if (.@ins_bapho_check == 2) {
+			} else if (.@ins_bapho_check == 2) {
 				mes "[Frei Patrick]";
 				mes "Umm... Parece que a Maldição de Baphomet se enfraqueceu. Eu posso retira-la agora.";
 				next;
@@ -211,10 +207,9 @@ monk_test,309,146,3	script	Frei Patrick#edq	412,{
 				mes "[Frei Patrick]";
 				mes "Huu... Acabou. Agora que retirei a Maldição de Baphomet, você pode entrar novamente.";
 			}
-		}
-		else {
+		} else {
 			mes "[Frei Patrick]";
-			mes "Umm... Você precisa treinar mais para entrar nesse lugar perigoso... Você tem que estar no mínimo no nível 75 para poder entrar aqui.";
+			mes "Hum... Você precisa treinar mais para entrar nesse lugar perigoso... Você tem que estar no mínimo no nível 75 para poder entrar aqui.";
 			next;
 			mes "[Frei Patrick]";
 			mes "Treine mais e volte novamente.";
@@ -347,8 +342,7 @@ prt_monk,261,91,3	script	Rust Blackhand#edq	826,{
 			mes "[Rust Blackhand]";
 			mes "Não aceito reclamações sobre meu serviço. Então vá...";
 			close;
-		}
-		else {
+		} else {
 			mes "[Rust Blackhand]";
 			mes "Huu... Você não entendeu o que eu disse. Você não pode fazer nada com esses ingredientes.";
 			next;
@@ -359,8 +353,7 @@ prt_monk,261,91,3	script	Rust Blackhand#edq	826,{
 			mes "^0000FFBoneco de Baphomet Amaldiçoado, Chifres Magestosos, 30 Cristais da Escuridão, 50 Fragmentos da Escuridão^000000, e o mais importante, o custo da produção é de ^0000FF 990000^000000 Zeny.";
 			close;
 		}
-	}
-	else if ((.@new_maje == -1) && (countitem(6004) > 0)) {
+	} else if ((.@new_maje == -1) && (countitem(6004) > 0)) {
 		switch(select("Sobre o Boneco de Baphomet Amaldiçoado:Terminar conversa.")) {
 		case 1:
 			mes "[Rust Blackhand]";
@@ -412,13 +405,11 @@ prt_monk,261,91,3	script	Rust Blackhand#edq	826,{
 			mes "Que menino chato é esse?... huh...";
 			close;
 		}
-	}
-	else if ((.@new_maje == -1) && (countitem(6004) == 0)) {
+	} else if ((.@new_maje == -1) && (countitem(6004) == 0)) {
 		mes "[Rust Blackhand]";
 		mes "Se não tiver nada a fazer, vá embora! Como você pode ver, eu só faço equipamentos para os irmãos do monastério.";
 		close;
-	}
-	else if ((.@new_maje == 2) && (countitem(6004) > 0)) {
+	} else if ((.@new_maje == 2) && (countitem(6004) > 0)) {
 		switch(select("Sobre o Boneco de Baphomet Amaldiçoado:Terminar conversa.")) {
 		case 1:
 			mes "[Rust Blackhand]";
@@ -468,8 +459,7 @@ prt_monk,261,91,3	script	Rust Blackhand#edq	826,{
 			mes "Que menino chato é esse?... huh...";
 			close;
 		}
-	}
-	else if ((.@new_maje == 2) && (countitem(6004) == 0)) {
+	} else if ((.@new_maje == 2) && (countitem(6004) == 0)) {
 		mes "[Rust Blackhand]";
 		mes "O está fazendo aqui? Se não quer os ^4d4dffChifres Magestosos Giganetes^000000, saia daqui";
 		close;
@@ -776,8 +766,7 @@ OnMyMobDead:
 				close;
 			}
 		}
-	}
-	else if ('ins_baphomet == 1) {
+	} else if ('ins_baphomet == 1) {
 		mes "[Túmulo do Herói]";
 		mes "O poder de Baphomet pode quebrar o selo que fizemos. Se eu não reativá-los... Ele irá finalmente renascer.";
 		next;
@@ -787,8 +776,7 @@ OnMyMobDead:
 		mes "[Túmulo do Herói]";
 		mes "Para isso você deve achar o meu corpo que deve estar dentro de algum desses túmulos.";
 		close;
-	}
-	else if (('ins_baphomet == 2) && (getpartyleader(.@party_id,2) == getcharid(0))) {
+	} else if (('ins_baphomet == 2) && (getpartyleader(.@party_id,2) == getcharid(0))) {
 		mes "[Túmulo do Herói]";
 		mes "Encontraram meu pingente?";
 		next;
@@ -806,8 +794,7 @@ OnMyMobDead:
 			instance_announce 0, "Alma do Herói : Esperarei no altar de fogo no centro do mapa.",bc_map,"0xFFFF00";
 			mes "Posso ouvir uma voz fraca.";
 			close;
-		}
-		else {
+		} else {
 			mes "[Túmulo do Herói]";
 			mes "Ainda está aqui? Traga meu Pingente o mais rápido possível.";
 			next;
@@ -815,8 +802,7 @@ OnMyMobDead:
 			mes "Você pode encontrar meu corpo com meu pingente nesse mapa.";
 			close;
 		}
-	}
-	else {
+	} else {
 		mes "[Túmulo do Herói]";
 		mes "Eu quero falar com o ^0000FFlíder do grupo^000000. Outros, aguardem aqui.";
 		close;
@@ -910,8 +896,7 @@ OnTouch:
 					mes "[Alma do Herói]";
 					mes "Me avise quando todos estiverem prontos que irei abrir a ponte selada.";
 					next;
-				}
-				else {
+				} else {
 					mes "[Alma do Herói]";
 					mes "Esteja certo que o Líder do Grupo escutou minhas explicações para o andamento a instância";
 					next;
@@ -934,8 +919,7 @@ OnTouch:
 					mes "Está pronto? Irei abrir a ponte agora mesmo.";
 					next;
 					set .@exitloop,1;
-				}
-				else {
+				} else {
 					cutin "ins_cata_champ_a",2;
 					mes "[Alma do Herói]";
 					mes "Parece ser difícil mas espero que sua bravura e suas habilidades sejam o suficiente para isso.";
@@ -955,8 +939,7 @@ OnTouch:
 			donpcevent instance_npcname("ins_baphomet_1f_timer", instance_id())+"::OnEnable";
 			donpcevent instance_npcname("ins_baphomet_lotto2", instance_id())+"::OnEnable";
 			donpcevent instance_npcname("ins_baphomet_lotto3", instance_id())+"::OnEnable";
-		}
-		else {
+		} else {
 			mes "[Alma do Herói]";
 			mes "Lembrando novamente, só posso ficar aqui por uma hora. Então devem finalizar o trabalho dentro desse tempo.";
 			//set 'ins_baphomet,3;
@@ -964,8 +947,7 @@ OnTouch:
 		close2;
 		cutin "",255;
 		end;
-	}
-	else if (('ins_baphomet == 3) && (getpartyleader(.@party_id,2) == getcharid(0))) {
+	} else if (('ins_baphomet == 3) && (getpartyleader(.@party_id,2) == getcharid(0))) {
 		cutin "ins_cata_champ_n",2;
 		mes "[Alma do Herói]";
 		mes "Você pegou as 10^0000FFEssências de Fogo^000000 e o ^0000FFSímbolo do Apóstolo^000000?";
@@ -975,16 +957,14 @@ OnTouch:
 			set 'ins_baphomet,4;
 			mes "[Alma do Herói]";
 			mes "Ok. Você fez seu trabalho. Agora cheque com seus companheiros se eles já terminaram.";
-		}
-		else {
+		} else {
 			mes "[Alma do Herói]";
 			mes "Não estão prontos ainda? eu preciso que você traga para mim ^FFAA0010 Essências de Fogo^000000 encontradas nas tochas desse lugar e o ^0000FFSímbolo do Apóstolo^000000 dos Apóstolos de Bafomé.";
 		}
 		close2;
 		cutin "",255;
 		end;
-	}
-	else if ('ins_baphomet == 3) {
+	} else if ('ins_baphomet == 3) {
 		cutin "ins_cata_champ_n",2;
 		mes "[Alma do Herói]";
 		mes "Você tem o ^0000FFSímbolo do Apóstolo^000000?";
@@ -993,16 +973,14 @@ OnTouch:
 			set 'ins_baphomet,4;
 			mes "[Alma do Herói]";
 			mes "Ok. Você fez seu trabalho. Agora cheque com seus companheiros se eles já terminaram.";
-		}
-		else {
+		} else {
 			mes "[Alma do Herói]";
 			mes "Ainda não? eu preciso do ^0000FFSímbolo do Apóstolo^000000 dos Apóstolos de Bafomé.";
 		}
 		close2;
 		cutin "",255;
 		end;
-	}
-	else if (('ins_baphomet == 4) && (getpartyleader(.@party_id,2) == getcharid(0))) {
+	} else if (('ins_baphomet == 4) && (getpartyleader(.@party_id,2) == getcharid(0))) {
 		cutin "ins_cata_champ_n",2;
 		mes "[Alma do Herói]";
 		mes "Está pronto? Abri a ponte neste momento. Para passar pela ponte, você deve levar o ^0000FFSímbolo do Apóstolo^000000.";
@@ -1021,8 +999,7 @@ OnTouch:
 		cutin "",255;
 		instance_announce 0, "Alma do Herói : Agora já podem ir ao Altar Principal. Ele está localizado no Sudeste do mapa",bc_map,"0xFFFF00";
 		close;
-	}
-	else if ('ins_baphomet == 4) {
+	} else if ('ins_baphomet == 4) {
 		cutin "ins_cata_champ_n",2;
 		mes "[Alma do Herói]";
 		mes "Está pronto? Abri a ponte nesse momento. Para passar pela ponte, você deve levar o ^0000FFSímbolo do Apóstolo^000000.";
@@ -1031,15 +1008,13 @@ OnTouch:
 		mes "Irei abrir a ponte quando o Líder do grupo estiver pronto.";
 		cutin "",255;
 		close;
-	}
-	else if ('ins_baphomet == 5) {
+	} else if ('ins_baphomet == 5) {
 		cutin "ins_cata_champ_n",2;
 		mes "[Alma do Herói]";
 		mes "O que está fazendo? A entrada para o Altar está aberta, vá e lute! A entrada se encontra no sudeste do mapa.";
 		cutin "",255;
 		close;
-	}
-	else {
+	} else {
 		cutin "ins_cata_champ_n",2;
 		mes "[Alma do Herói]";
 		mes "Não tenho nada a falar com você...";
@@ -1055,8 +1030,7 @@ OnTouch:
 		set 'ins_baphomet,5;
 		warp "2@cata",80,144;
 		end;
-	}
-	else {
+	} else {
 		mes "[Alma do Herói]";
 		mes "Cadê seu Símbolo do Apóstolo? Eu disse que precisava dele para passar pela ponte.";
 		close;
@@ -1074,8 +1048,7 @@ OnTouch:
 		mes "[" + strcharinfo(0) + "]";
 		mes "Eu acho que é o pingente...";
 		close;
-	}
-	else {
+	} else {
 		mes "Posso sentir a tristeza vinda desse túmulo.";
 		close;
 	}
@@ -1127,17 +1100,14 @@ OnTouch:
 			mes "O símbolo do herdeiro brilha. Nisso um pequeno cristal cai da tocha.";
 			disablenpc instance_npcname(strnpcinfo(0), instance_id());
 			close;
-		}
-		else if (('ins_baphomet == 3) && (countitem(6001) > 10)) {
+		} else if (('ins_baphomet == 3) && (countitem(6001) > 10)) {
 			mes "Você já tem 10 Essências de Fogo. Você não precisa mais pegar nenhuma.";
 			close;
-		}
-		else {
+		} else {
 			mes "Você não precisa mais pegar as Essências de Fogo.";
 			close;
 		}
-	}
-	else {
+	} else {
 		mes "Uma antiga tocha parece que pode queimar tudo que está a minha volta.";
 		next;
 		mes "[Voz Misteriosa]";
@@ -1353,8 +1323,7 @@ OnTouch:
 		donpcevent instance_npcname("ins_2f_hero_broad", instance_id())+"::OnEnable";
 		disablenpc instance_npcname("The Main Altar#ss", instance_id());
 		close;
-	}
-	else {
+	} else {
 		mes "Um poder malígno, terrível demais para descrever, passa pelo altar irradiando uma cor violeta.";
 		next;
 		mes "Pergaminhos Mágicos piscam rapidamente, na tentativa de suprimir esse poder terrível.";

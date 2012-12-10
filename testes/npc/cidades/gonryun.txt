@@ -1,4 +1,4 @@
-//    ________________________________________________________ 
+//    ________________________________________________________
 //   /                                                        \
 //   |       _           _   _   _                            |
 //   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-// Kunlun Transportação
+// Kunlun - Transportação
 //============================================================ 
 alberta,245,69,3	script	Apreciador de Kunlun#gon	776,{
 	mes "[Wa Bai Hu]";
@@ -347,8 +347,7 @@ gonryun,166,196,3	script	Soldado#gon	780,{
 		mes "Reino dos Céus. Mas eles falharam";
 		mes "miseravelmente. Monstros começaram a aparecer...";
 		close;
-	}
-	else if ((b_sword > 6) && (b_sword < 10)) {
+	} else if ((b_sword > 6) && (b_sword < 10)) {
 		mes "[Wa Qiu Wu]";
 		mes "Não achou a noite passada";
 		mes "muito barulhenta? Tudo por causa";

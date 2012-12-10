@@ -55,12 +55,12 @@ prt_church,184,41,4	script	Bispo Tomas Cerbantes#nov	60,{
 				mes "[Tomas Cerbantes]";
 				mes "Agora, aventure-se e procure aqueles que necessitam de sua ajuda. Que Deus ilumine seu caminho.";
 				close;
-			}else{
+			} else{
 				mes "[Tomas Cerbantes]";
 				mes "Agora, aventure-se e procure aqueles que necessitam de sua ajuda. Que Deus ilumine vocês.";
 				close;
 			}
-		}else{
+		} else{
 			mes "[Tomas Cerbantes]";
 			mes "Sinto que você passou por uma experiência de vida passada. Você deve ter aprendido muitas coisas antes de entrar em Valhalla.";
 			next;
@@ -209,11 +209,11 @@ prt_church,184,41,4	script	Bispo Tomas Cerbantes#nov	60,{
 			mes "[Tomas Cerbantes]";
 			if(Class == Job_Acolyte) {
 				mes "Você está se sentindo bem hoje? Eu posso dizer pelo seu traje que você já é um Noviço. Você não está brincando, você está?";
-			}else{
+			} else{
 				mes "Sinto muito, mas parece que você já tem a sua própria classe, não é?";
 			}
 			close;
-		}else{
+		} else{
 			mes "[Tomas Cerbantes]";
 			mes "Você realmente deseja se tornar um servo de Deus?";
 			mes "Vamos ver se você está pronto para isso ou não... Hum...";
@@ -288,8 +288,7 @@ prt_fild03,365,255,2	script	Irmão Simão#nov	89,{
 				savepoint "prt_fild03",361,255;
 				set job_acolyte_q,6;
 				end;
-			}
-			else {
+			} else {
 				mes "Ah...";
 				mes "Você é um dos";
 				mes "candidatos a Noviço...?";
@@ -304,8 +303,7 @@ prt_fild03,365,255,2	script	Irmão Simão#nov	89,{
 				mes "Por que você não volta para o Santuário de Prontera e verifica novamente?";
 				close;
 			}
-		}
-		else {
+		} else {
 			mes "Hum? O que te traz aqui? Este é um lugar muito perigoso para uma principiante como você!";
 			close;
 		}
@@ -318,8 +316,7 @@ prt_fild03,365,255,2	script	Irmão Simão#nov	89,{
 			mes "[Simão]";
 			mes "Bem-vindo. Sinta-se livre para sentar e contemplar a mensagem de Deus comigo. Este lugar é bonito, mesmo se o perigo acompanha a sua sensação de serenidade...";
 			close;
-		}
-		else {
+		} else {
 			mes "Nossa...";
 			mes "Você veio para até aqui para treinar? Ou você é apenas um Andarilho?";
 			next;
@@ -356,8 +353,7 @@ moc_fild07,41,355,4	script	Irmã Matilda#2nov	95,{
 				savepoint "moc_fild07",35,355;
 				set job_acolyte_q,7;
 				end;
-			}
-			else {
+			} else {
 				mes "Ah...!";
 				mes "Você deve ser um";
 				mes "dos candidatos a Noviço.";
@@ -376,8 +372,7 @@ moc_fild07,41,355,4	script	Irmã Matilda#2nov	95,{
 				mes "Talvez você deva retornar ao Santuário de Prontera e verificar o destino do seu julgamento de penitência mais uma vez.";
 				close;
 			}
-		}
-		else {
+		} else {
 			mes "...";
 			close;
 		}
@@ -433,8 +428,7 @@ prt_fild00,208,218,6	script	Irmão Bartolomeu#3nov	98,{
 				savepoint "prt_fild00",206,230;
 				set job_acolyte_q,8;
 				end;
-			}
-			else {
+			} else {
 				mes "Ei.";
 				mes "Você parece um dos candidatos a Noviço. Eu estou certo?";
 				next;
@@ -448,8 +442,7 @@ prt_fild00,208,218,6	script	Irmão Bartolomeu#3nov	98,{
 				mes "Você provavelmente cometeu um erro. Volte para o Santuário, e verifique com o bispo.";
 				close;
 			}
-		}
-		else {
+		} else {
 			mes "Você...";
 			mes "Aprendiz.";
 			mes "Há algo que";

@@ -1,4 +1,4 @@
-//    ________________________________________________________ 
+//    ________________________________________________________
 //   /                                                        \
 //   |       _           _   _   _                            |
 //   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.1/1.0                             |
+//   | Versões eA/rA/brA: 1.1/1.1a/1.0                        |
 //   |--------------------------------------------------------|
 //   | Descrição: Guerra dos porings.                         |
 //   |--------------------------------------------------------|
@@ -21,7 +21,6 @@
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
-
 
 // Poring War Recruiter
 //============================================================
@@ -73,7 +72,7 @@ prt_fild08,159,371,3	script	Poring War Recruiter#wop	909,{
 	}
 }
 
-// Poring Vending Machine
+// Poring Máquina de Vendas
 //============================================================
 poring_w01,100,97,3	script	Poring Vending Machine#w	909,{
 	if (checkweight(714,3) == 0) {
@@ -226,7 +225,7 @@ S_PoringVending:
 	close;
 }
 
-// Information
+// Informação
 //============================================================
 poring_w01,96,97,3	script	Sweet Devi#wop	738,{
 	if (MaxWeight-Weight < 2000 || checkweight(1201,1) == 0) {
@@ -400,8 +399,7 @@ OnStartArena:
 		set $@wop_teamcount,1;
 		donpcevent "Poring#wop_door_d::OnDevilingStart";
 		donpcevent "#wop_warp_rtry::OnStop";
-	}
-	else if($@wop_teamcount == 1) {
+	} else if($@wop_teamcount == 1) {
 		donpcevent "#wop_master::OnStart";
 		donpcevent "Poring#wop_door_d::OnStop";
 		stopnpctimer;
@@ -492,8 +490,7 @@ OnStartArena:
 		set $@wop_teamcount,1;
 		donpcevent "Poring#wop_door_a::OnAngelingStart";
 		donpcevent "#wop_warp_rtry::OnStop";
-	}
-	else if($@wop_teamcount == 1) {
+	} else if($@wop_teamcount == 1) {
 		donpcevent "#wop_master::OnStart";
 		donpcevent "Poring#wop_door_a::OnStop";
 		stopnpctimer;
@@ -672,8 +669,7 @@ poring_w02,26,181,3	script	Mr. Doppel#wop_team_a	739,{
 					warp "poring_w02",44,82;
 					end;
 				}
-			}
-			else {
+			} else {
 				mes "[Mr. Doppel]";
 				mes "Right. I'm gonna send you to the battle staging area.";
 				mes "Wait for all the other party members there.";
@@ -684,8 +680,7 @@ poring_w02,26,181,3	script	Mr. Doppel#wop_team_a	739,{
 				end;
 			}
 		}
-	}
-	else {
+	} else {
 		if((getpartyleader(getcharid(1),2) == getcharid(0))) {
 			if($@wop_team_a == 0) {
 				mes "[Mr. Doppel]";
@@ -719,8 +714,7 @@ poring_w02,26,181,3	script	Mr. Doppel#wop_team_a	739,{
 					mes "The clock is ticking. Make up your mind and register as soon as you can.";
 					close;
 				}
-			}
-			else {
+			} else {
 				mes "[Mr. Doppel]";
 				mes "So, you are the leader of the party.";
 				mes "Haven't you finished the party registration yet?";
@@ -732,8 +726,7 @@ poring_w02,26,181,3	script	Mr. Doppel#wop_team_a	739,{
 				mes "Please, confirm.";
 				close;
 			}
-		}
-		else {
+		} else {
 			mes "[Mr. Doppel]";
 			mes "If you aren't a registered member of the party, you can't join the battle.";
 			next;
@@ -803,7 +796,7 @@ poring_w02,170,181,3	script	Mr. Doppel#wop_team_d	739,{
 					warp "poring_w02",153,82;
 					end;
 				}
-			}else{
+			} else{
 				mes "[Mr. Doppel]";
 				mes "Right. I'm gonna send you to the battle staging area.";
 				mes "Wait for all the other party members there.";
@@ -814,7 +807,7 @@ poring_w02,170,181,3	script	Mr. Doppel#wop_team_d	739,{
 				end;
 			}
 		}
-	}else{
+	} else{
 		if((getpartyleader(getcharid(1),2) == getcharid(0))) {
 			if($@wop_team_d == 0) {
 				mes "[Mr. Doppel]";
@@ -848,7 +841,7 @@ poring_w02,170,181,3	script	Mr. Doppel#wop_team_d	739,{
 					mes "The clock is ticking. Make up your mind and register as soon as you can.";
 					close;
 				}
-			}else{
+			} else{
 				mes "[Mr. Doppel]";
 				mes "So, you are the leader of the party.";
 				mes "Haven't you finished the party registration yet?";
@@ -860,7 +853,7 @@ poring_w02,170,181,3	script	Mr. Doppel#wop_team_d	739,{
 				mes "Please, confirm.";
 				close;
 			}
-		}else{
+		} else{
 			mes "[Mr. Doppel]";
 			mes "If you aren't a registered member of the party, you can't join the battle.";
 			next;
@@ -1132,8 +1125,7 @@ OnMyMobDead:
 	if($@wop_deadcount_a == 1) {
 		mapannounce "poring_w02","Mr. Doppel: The Angeling on the 2nd base has been killed! 1 point lost!!",0,0x00ff00;
 		initnpctimer;
-	}
-	else {
+	} else {
 		donpcevent "#wop_angellium1::OnReset";
 		donpcevent "#wop_angellium2::OnReset";
 		donpcevent "#wop_devillium1::OnReset";
@@ -1246,8 +1238,7 @@ poring_w02,99,201,3	script	Deviruchi#wop_endmaster	738,{
 				getitem 7539,3; // Poring_Coin
 				warp "prt_fild08",150,370;
 				end;
-			}
-			else {
+			} else {
 				mes "[Devi]";
 				mes "Wait a minute, you look suspicious!!";
 				mes "Ah, I got it! You are on the side of the Devilings?!";
@@ -1258,8 +1249,7 @@ poring_w02,99,201,3	script	Deviruchi#wop_endmaster	738,{
 				warp "prt_fild08",150,370;
 				end;
 			}
-		}
-		else if(.@a_point == .@d_point) {
+		} else if(.@a_point == .@d_point) {
 			mes "[Devi]";
 			mes "You did the best you could.";
 			mes "I' ts a shame the battle was tied...";
@@ -1272,8 +1262,7 @@ poring_w02,99,201,3	script	Deviruchi#wop_endmaster	738,{
 				getitem 7539,1; // Poring_Coin
 				warp "prt_fild08",150,370;
 				end;
-			}
-			else {
+			} else {
 				mes "[Devi]";
 				mes "Wait a minute, you look suspicious!!";
 				mes "Ah, I got it! You are on the side of the Devilings?!";
@@ -1285,8 +1274,7 @@ poring_w02,99,201,3	script	Deviruchi#wop_endmaster	738,{
 				warp "prt_fild08",150,370;
 				end;
 			}
-		}
-		else {
+		} else {
 			if(wop_team == 1) {
 				mes "[Devi]";
 				mes "Well, I guess we had bad luck...";
@@ -1297,8 +1285,7 @@ poring_w02,99,201,3	script	Deviruchi#wop_endmaster	738,{
 				close2;
 				warp "prt_fild08",150,370;
 				end;
-			}
-			else {
+			} else {
 				mes "[Devi]";
 				mes "Wait a minute... There is a traitor here!";
 				mes "Ah, I got it! You are on the side of the Devilings?!";
@@ -1312,8 +1299,7 @@ poring_w02,99,201,3	script	Deviruchi#wop_endmaster	738,{
 				end;
 			}
 		}
-	}
-	else if(getcharid(1) == $@wop_team_d) {
+	} else if(getcharid(1) == $@wop_team_d) {
 		if (.@a_point > .@d_point) {
 			mes "[Devi]";
 			mes "Good work!";
@@ -1327,8 +1313,7 @@ poring_w02,99,201,3	script	Deviruchi#wop_endmaster	738,{
 				getitem 7539,3; // Poring_Coin
 				warp "prt_fild08",150,370;
 				end;
-			}
-			else {
+			} else {
 				mes "[Devi]";
 				mes "Wait a minute, you look suspicious!!";
 				mes "Ah, I got it! You are on the side of the Angelings?!";
@@ -1339,8 +1324,7 @@ poring_w02,99,201,3	script	Deviruchi#wop_endmaster	738,{
 				warp "prt_fild08",150,370;
 				end;
 			}
-		}
-		else if(.@a_point == .@d_point) {
+		} else if(.@a_point == .@d_point) {
 			mes "[Devi]";
 			mes "You did the best you could.";
 			mes "It's a shame the battle was tied...";
@@ -1353,8 +1337,7 @@ poring_w02,99,201,3	script	Deviruchi#wop_endmaster	738,{
 				getitem 7539,1; // Poring_Coin
 				warp "prt_fild08",150,370;
 				end;
-			}
-			else {
+			} else {
 				mes "[Devi]";
 				mes "Wait a minute, you look suspicious!!";
 				mes "Ah, I got it! You are on the side of the Angelings?!";
@@ -1366,8 +1349,7 @@ poring_w02,99,201,3	script	Deviruchi#wop_endmaster	738,{
 				warp "prt_fild08",150,370;
 				end;
 			}
-		}
-		else {
+		} else {
 			if(wop_team == 2) {
 				mes "[Devi]";
 				mes "Well, I guess we had bad luck...";
@@ -1378,8 +1360,7 @@ poring_w02,99,201,3	script	Deviruchi#wop_endmaster	738,{
 				close2;
 				warp "prt_fild08",150,370;
 				end;
-			}
-			else {
+			} else {
 				mes "[Devi]";
 				mes "Wait a minute, you look suspicious!!";
 				mes "Ah, I got it! You are on the side of the Angelings?!";
@@ -1393,8 +1374,7 @@ poring_w02,99,201,3	script	Deviruchi#wop_endmaster	738,{
 				end;
 			}
 		}
-	}
-	else {
+	} else {
 		mes "[Devi]";
 		mes "This is weird...Your party name ain't registered.";
 		mes "Im sorry, but rules are rules. I can't help you if your party ain't registered.";
@@ -1478,14 +1458,12 @@ poring_w02,99,52,0	script	Angeling Guardian#wop_da	111,{
 							donpcevent "#aroom_outgate_wop::OnEnable";
 						}
 						close2;
-					}
-					else {
+					} else {
 						mes "All War Badges equipped.";
 						mes "No need to equip any more.";
 						close2;
 					}
-				}
-				else {
+				} else {
 					mes "^4d4dff - War Badge missing. You can obtain a War badge by killing members of the other team. - ^000000";
 					close2;
 				}
@@ -1494,14 +1472,12 @@ poring_w02,99,52,0	script	Angeling Guardian#wop_da	111,{
 				mes "Cancel.";
 				close2;
 			}
-		}
-		else {
+		} else {
 			mes "There is a device to equip a War Badge.";
 			mes "Be carefull to not allow the enemy to take and equip your War Badge here.";
 			close2;
 		}
-	}
-	else {
+	} else {
 		mes "All War Badges have been equipped.";
 		close2;
 	}
@@ -1575,14 +1551,12 @@ poring_w02,98,113,0	script	Deviling Guardian#wop_dd	111,{
 							donpcevent "#droom_outgate_wop::OnEnable";
 						}
 						close2;
-					}
-					else {
+					} else {
 						mes "All War Badges equipped.";
 						mes "No need to equip any more.";
 						close2;
 					}
-				}
-				else {
+				} else {
 					mes "^4d4dff - War Badge missing. You can obtain a War badge by killing members of the other team. - ^000000";
 					close2;
 				}
@@ -1591,14 +1565,12 @@ poring_w02,98,113,0	script	Deviling Guardian#wop_dd	111,{
 				mes "Cancel.";
 				close2;
 			}
-		}
-		else {
+		} else {
 			mes "There is a device to equip a War Badge.";
 			mes "Be carefull to not allow the enemy to take and equip your War Badge here.";
 			close2;
 		}
-	}
-	else {
+	} else {
 		mes "All War Badges have been equipped.";
 		close2;
 	}
@@ -1695,8 +1667,7 @@ OnTouch:
 		mes "Oh my god... Nice, ring!";
 		mes "Poring~ Poring~ Poooooo~";
 		mes "Party of Angeling~ Popopo, Poring!";
-	}
-	else if(wop_team == 2) {
+	} else if(wop_team == 2) {
 		mes "[Porings]";
 		mes "Wait, YOU! Aren't you on the side of the Devilings?!";
 		mes "Get out now! Leave!!";
@@ -1706,8 +1677,7 @@ OnTouch:
 		emotion e_omg,0,"Angeling Side Poring#wa3";
 		emotion e_an,0,"Angeling Side Poring#wa4";
 		emotion e_gasp,0,"Angeling Side Poring#wa5";
-	}
-	else {
+	} else {
 		mes "[Porings]";
 		mes "Hey, human. How about fighting for us Porings on Angeling's side??!";
 		emotion e_hlp,0,"Angeling Side Poring#wa1";
@@ -1747,8 +1717,7 @@ OnTouch:
 		mes "Ohhhh... Here is the warrior that fought for us!!";
 		mes "Amazing!";
 		mes "This proves that humans recognize us as true monsters!!";
-	}
-	else if(wop_team == 1) {
+	} else if(wop_team == 1) {
 		mes "[Marins]";
 		mes "Wait, YOU! Aren't you on the side of the Angelings?!";
 		mes "Get out now! Leave!!";
@@ -1758,8 +1727,7 @@ OnTouch:
 		emotion e_omg,0,"Deviling Side Marin#wd3";
 		emotion e_an,0,"Deviling Side Marin#wd4";
 		emotion e_gasp,0,"Deviling Side Marin#wd5";
-	}
-	else {
+	} else {
 		mes "[Marins]";
 		mes "Hey, human. Don't you wanna fight for Deviling, the noble of darkness? What do you say?!";
 		emotion e_hlp,0,"Deviling Side Marin#wd1";

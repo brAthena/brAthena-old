@@ -1,4 +1,4 @@
-//    ________________________________________________________ 
+//    ________________________________________________________
 //   /                                                        \
 //   |       _           _   _   _                            |
 //   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
@@ -124,7 +124,7 @@ moscovia,166,53,4	script	Oficial de Moscovia#2	960,{
 
 // NPCs Genéricos de Moscovia
 //============================================================
-moscovia,253,166,4	script	Soldado#mosk1	966,{
+moscovia,253,166,4	script	Soldado#mosc1	966,{
 	mes "[Soldado]";
 	mes "Nosso querido Czar Alexsay III ainda está no palácio.";
 	mes "Ele governa Moscovia.";
@@ -134,13 +134,13 @@ moscovia,253,166,4	script	Soldado#mosk1	966,{
 
 // Palácio de Moscovia
 //============================================================
--	script	Soldado#mosk::MoscSoldier	966,{
+-	script	Soldado#mosc::MoscSoldier	966,{
 	mes "[Soldado]";
 	mes "Não faça barulho ou o Czar ficará bravo.";
 	close;
 }
 
-mosk_in,118,66,5	duplicate(MoscSoldier)	Soldado#mosk02	966
-mosk_in,133,110,3	duplicate(MoscSoldier)	Soldado#mosk03	966
-mosk_in,133,73,3	duplicate(MoscSoldier)	Soldado#mosk04	966
-mosk_in,113,124,5	duplicate(MoscSoldier)	Soldado#mosk05	966
+mosk_in,118,66,5	duplicate(MoscSoldier)	Soldado#mosc02	966
+mosk_in,133,110,3	duplicate(MoscSoldier)	Soldado#mosc03	966
+mosk_in,133,73,3	duplicate(MoscSoldier)	Soldado#mosc04	966
+mosk_in,113,124,5	duplicate(MoscSoldier)	Soldado#mosc05	966

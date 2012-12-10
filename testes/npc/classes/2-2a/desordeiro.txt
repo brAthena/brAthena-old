@@ -1,4 +1,4 @@
-//    ________________________________________________________ 
+//    ________________________________________________________
 //   /                                                        \
 //   |       _           _   _   _                            |
 //   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
@@ -48,8 +48,7 @@ valkyrie,53,58,3	script	Desordeiro#Valquiria	747,{
 		mes "Eu preciso deles e";
 		mes "eles precisam de mim.";
 		close;
-	}
-	else if (ADVJOB == Job_Desordeiro && Class == Job_Thief_High && JobLevel > 39) {
+	} else if (ADVJOB == Job_Desordeiro && Class == Job_Thief_High && JobLevel > 39) {
 		mes "[Desordeiro]";
 		mes "Esse mundo precisa";
 		mes "de mais heróis que estão";

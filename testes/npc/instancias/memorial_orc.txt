@@ -20,8 +20,9 @@
 //   | 1.0 Criado Cabeçalho [Protimus]                        |
 //   | 1.1 Script Traduzido [insidemybrain]                   |
 //   | 1.2 Script Otimizado [Mark]                            |
+//   |--------------------------------------------------------|
 //   | - Anotações                                            |
-//   \________________________________________________________/ 
+//   \________________________________________________________/
 
 // Entrada
 //============================================================
@@ -166,8 +167,7 @@ gef_fild10,242,202,0	script	Memorial Orc	406,{
 		case 2:
 			close;
 		}
-	}
-	else if (.@orctime == 2) {
+	} else if (.@orctime == 2) {
 		mes "^0000ff0000ffTodos os registros relacionados ao Calabouço Memorial dos Orcs foram deletados. Agora você pode entrar novamente no Calabouço dos Orcs.^000000";
 		set party_instance_id3,0;
 		erasequest 12059;
@@ -185,8 +185,7 @@ gef_fild10,238,202,6	script	Cientista Maluco#orc	865,{
 	if (mad > 1) {
 		set mad,1;
 		close;
-	}
-	else if (mad < 1) {
+	} else if (mad < 1) {
 		mes "[Cientista Maluco]";
 		mes "Haha, nenhum orc está vindo me atacar!";
 		mes "O poder da Máquina do Tempo é invencível!!";
@@ -226,8 +225,7 @@ gef_fild10,238,202,6	script	Cientista Maluco#orc	865,{
 			mes "Tudo bem... então que assim seja!";
 			close;
 		}
-	}
-	else {
+	} else {
 		mes "[Cientista Maluco]";
 		mes "Hm? Ponha suas mãos na Estátua de Monemus se você quiser experimentar a viagem através das dimensões!";
 		close;
@@ -289,20 +287,17 @@ OnMyMobDead:
 		set .@mob_ran,rand(1,30);
 		if (.@mob_ran > 29) {
 			monster "1@orcs",0,0,"Guerreiro Orc",1023,.@mob_dead_num,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
-		}
-		else if ((.@mob_ran > 28) && (.@mob_ran < 30)) {
+		} else if ((.@mob_ran > 28) && (.@mob_ran < 30)) {
 			monster "1@orcs",0,0,"Grande Orc",1213,.@mob_dead_num,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
 			if (rand(1,10) == 9) {
 				instance_announce 0, "Grande Orc: Precisamos de mais defesa! Arranje mais guerreiros para cá!",bc_map,"0xff4444";
 			}
-		}
-		else if ((.@mob_ran > 26) && (.@mob_ran < 29)) {
+		} else if ((.@mob_ran > 26) && (.@mob_ran < 29)) {
 			areamonster "1@orcs",41,91,51,81,"Grande Orc",1213,.@mob_dead_num,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
 			if (rand(1,10) == 9) {
 				instance_announce 0, "Onde estão os Grand Orc's!? Precisamos deles para deter os inimigos!",bc_map,"0xff4444";
 			}
-		}
-		else {
+		} else {
 			areamonster "1@orcs",17,187,27,177,"Grande Orc",1213,.@mob_dead_num,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
 			if (rand(1,5) == 3) {
 				instance_announce 0, "Perigo: O exército está se concentrando na zona No. 4.",bc_map,"0x77ff77";
@@ -320,7 +315,7 @@ OnTimer10:
 
 OnTimer4010:
 	instance_announce 0, "Golem Estalactíticos estão cavando profundamente o subsolo.",bc_map,"0x77ff77";
-	areamonster "1@orcs",17,187,27,177,"Stalactic Golem",1278,20,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
+	areamonster "1@orcs",17,187,27,177,"Golem Estalactítico",1278,20,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
 	stopnpctimer;
 	end;
 }
@@ -363,8 +358,7 @@ OnMyMobDead:
 		if (.@mob_dead_num > 0) {
 			monster "1@orcs",0,0,"Lobo Treinado",1106,.@mob_dead_num,instance_npcname("#Monstros Ressuscitados2", instance_id())+"::OnMyMobDead";
 		}
-	}
-	else {
+	} else {
 		if (.@mob_dead_num > 0) {
 			areamonster "1@orcs",17,187,27,177,"Lobo Treinado",1106,.@mob_dead_num,instance_npcname("#Monstros Ressuscitados2", instance_id())+"::OnMyMobDead";
 		}
@@ -411,16 +405,14 @@ OnMyMobDead:
 		if (.@mob_dead_num > 0) {
 			monster "1@orcs",0,0,"Orc Arqueiro",1189,.@mob_dead_num,instance_npcname("#Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
 		}
-	}
-	else if ((.@mob_ran > 26) && (.@mob_ran < 30)) {
+	} else if ((.@mob_ran > 26) && (.@mob_ran < 30)) {
 		if (.@mob_dead_num > 0) {
 			areamonster "1@orcs",43,155,47,159,"Orc Arqueiro",1189,.@mob_dead_num,instance_npcname("#Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
 			if (rand(1,3) == 3) {
-				instance_announce 0, "Grande Orc: Attack them from behind! Cut off their support!",bc_map,"0xff4444";
+				instance_announce 0, "Grande Orc: Ataquem eles pelas costas! Acabem com os seus reforços!",bc_map,"0xff4444";
 			}
 		}
-	}
-	else {
+	} else {
 		if (.@mob_dead_num > 0) {
 			areamonster "1@orcs",17,187,27,177,"Orc Arqueiro",1189,.@mob_dead_num,instance_npcname("#Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
 		}
@@ -700,18 +692,15 @@ OnMyMobDead:
 		set .@mob_ran,rand(1,30);
 		if (.@mob_ran > 29) {
 			monster "2@orcs",0,0,"Orc Vingativo",1152,.@mob_dead_num,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
-		}
-		else if ((.@mob_ran > 28) && (.@mob_ran < 30)) {
+		} else if ((.@mob_ran > 28) && (.@mob_ran < 30)) {
 			monster "2@orcs",0,0,"Grande Orc",1213,.@mob_dead_num,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
 			set mob_ran2,rand(1,10);
-		}
-		else if ((.@mob_ran > 26) && (.@mob_ran < 29)) {
+		} else if ((.@mob_ran > 26) && (.@mob_ran < 29)) {
 			areamonster "2@orcs",157,112,167,122,"Grande Orc",1213,.@mob_dead_num,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
 			if (rand(1,10) == 9) {
 				instance_announce 0, "Aviso: Grand Orcs estão reunidos perto da Área 3.",bc_map,"0xff4444";
 			}
-		}
-		else {
+		} else {
 			areamonster "2@orcs",173,13,183,23,"Grande Orc",1213,.@mob_dead_num,instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
 			if (rand(1,5) == 3) {
 				instance_announce 0, "Perigo: As forças começaram a se concentrar no altar do Orc Xamã.",bc_map,"0x77ff77";
@@ -769,16 +758,14 @@ OnMyMobDead:
 		if (.@mob_dead_num > 0) {
 			monster "2@orcs",0,0,"Orc Arqueiro",1189,.@mob_dead_num,instance_npcname("#2Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
 		}
-	}
-	else if ((.@mob_ran > 6) && (.@mob_ran < 30)) {
+	} else if ((.@mob_ran > 6) && (.@mob_ran < 30)) {
 		if (.@mob_dead_num > 0) {
 			areamonster "2@orcs",168,10,184,26,"Orc Arqueiro",1189,.@mob_dead_num,instance_npcname("#2Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
 			if (rand(1,15) == 3) {
 				instance_announce 0, "Aviso: As equipes de Orcs Arqueiros estão se juntando próximo ao altar.",bc_map,"0xff4444";
 			}
 		}
-	}
-	else {
+	} else {
 		if (.@mob_dead_num > 0) {
 			areamonster "2@orcs",168,21,184,21,"Orc Arqueiro",1189,.@mob_dead_num,instance_npcname("#2Monstros Ressuscitados3", instance_id())+"::OnMyMobDead";
 		}
@@ -1263,17 +1250,13 @@ OnMyMobDead:
 	set .@mob_ran,rand(1,5);
 	if (.@mob_ran == 1) {
 		instance_announce 0, "Xamã Cargalache: Como... Como poderia acontecer... Como poderia alguém como você...!!",bc_map,"0xffff00";
-	}
-	else if (.@mob_ran == 2) {
+	} else if (.@mob_ran == 2) {
 		instance_announce 0, "Xamã Cargalache: Como fui dominado por meros humanos!",bc_map,"0xffff00";
-	}
-	else if (.@mob_ran == 3) {
+	} else if (.@mob_ran == 3) {
 		instance_announce 0, "Xamã Cargalache: Isso... Isso não pode ser o fim...",bc_map,"0xffff00";
-	}
-	else if (.@mob_ran == 4) {
+	} else if (.@mob_ran == 4) {
 		instance_announce 0, "Xamã Cargalache: Eu... não posso morrer... ainda...!",bc_map,"0xffff00";
-	}
-	else {
+	} else {
 		instance_announce 0, "Xamã Cargalache: Derrotado por um bando de imbecis... Isso não pode estar acontecendo...!",bc_map,"0xffff00";
 	}
 	donpcevent instance_npcname("#2Monstros Ressuscitados1", instance_id())+"::OnDisable";
@@ -1322,8 +1305,7 @@ OnTouch:
 		mes "*Kruger gostaria de dizer mais alguma coisa, porém deu seu último suspiro e se foi...*";
 		set yong_odun,2;
 		close;
-	}
-	else {
+	} else {
 		mes "Você vê o corpo de Kruger estirado no chão, pacificamente.";
 		close;
 	}

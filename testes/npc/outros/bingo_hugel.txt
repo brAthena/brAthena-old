@@ -1,4 +1,4 @@
-//    ________________________________________________________ 
+//    ________________________________________________________
 //   /                                                        \
 //   |       _           _   _   _                            |
 //   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.8/1.0                             |
+//   | Versões eA/rA/brA: 1.8/1.8/1.0                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Bingo de Hugel.                             |
 //   |--------------------------------------------------------|
@@ -21,7 +21,6 @@
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
-
 
 que_bingo,48,84,5	script	Bingo Waiting Room	124,{
 	end;
@@ -87,16 +86,14 @@ OnTouch:
 	set @bingo_case,1;
 L_Fill:
 	set @bingo_fill,callfunc("Func_Bingo",@bingo_case);
-	if(!@bingo_fill)
-	{
+	if(!@bingo_fill) {
 		mes "The numbers you have entered";
   		mes "exceed the limit, or you have";
 		mes "already entered these numbers.";
 		mes "Please enter your numbers again.";
 		next;
 	}
-	else if(@bingo_fill)
-	{
+	else if(@bingo_fill) {
 		if(@bingoplate[25] < 10) set @bingo_e5$,"0"+@bingoplate[25]+""; else set @bingo_e5$,@bingoplate[25];
 		donpcevent "start#bingo::OnEnter";
 		mes "["+@bingo_a1$+"] ["+@bingo_a2$+"] ["+@bingo_a3$+"] ["+@bingo_a4$+"] ["+@bingo_a5$+"]";
@@ -123,8 +120,7 @@ OnStart:
 	end;
 	
 OnEnter:
-	if($hu_bingoa == 4)
-	{
+	if($hu_bingoa == 4) {
 		set $hu_bingoa,5;
 		donpcevent "start2#bingo::OnStart";
 		stopnpctimer;
@@ -198,8 +194,7 @@ OnTimer5000:
 	mapannounce "que_bingo","Eukran: Now, let the game begin!",1,0xFFAB54;
 	setarray $@bingoarray[0],1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25;
 	set .@max_index, 24;
-	for(set .@i,0; .@i < 25; set .@i,.@i +1)
-	{
+	for(set .@i,0; .@i < 25; set .@i,.@i +1) {
 		set $@bingo0,rand(0,.@max_index);
 		set $bingo[.@i],$@bingoarray[$@bingo0];
 		set $@bingoarray[$@bingo0], $@bingoarray[.@max_index];
@@ -605,10 +600,8 @@ OnTouch:
 	mes "["+@bingo_d1$+"] ["+@bingo_d2$+"] ["+@bingo_d3$+"] ["+@bingo_d4$+"] ["+@bingo_d5$+"]";
 	mes "["+@bingo_e1$+"] ["+@bingo_e2$+"] ["+@bingo_e3$+"] ["+@bingo_e4$+"] ["+@bingo_e5$+"]";
 	mes "[Currently Finished Lines - "+@bingowin+" ]";
-	if($@bingoresult > 15)
-	{
-		if(@bingowin > 4)
-		{
+	if($@bingoresult > 15) {
+		if(@bingowin > 4) {
 			next;
 			mes "We just have made 5 lines!";
 			mes "Say ^ff0000Bingo^000000!";
@@ -629,8 +622,7 @@ OnTouch:
 					close;
 
 				}
-				else if($hu_bingoa == 6)
-				{
+				else if($hu_bingoa == 6) {
 					next;
 					mes "Oh no! I'm sorry, but";
 					mes "someone already yelled";
@@ -641,8 +633,7 @@ OnTouch:
 					close;
 				}
 			}
-			else
-			{
+			else {
 				next;
 				mes "I'm sorry, but you";
 				mes "said it wrong. Next time,";
@@ -780,7 +771,6 @@ que_bingo,45,121,0	duplicate(1a#bingo)	22e#bingo	139,1,1
 que_bingo,45,121,0	duplicate(1a#bingo)	23e#bingo	139,1,1
 que_bingo,45,121,0	duplicate(1a#bingo)	24e#bingo	139,1,1
 que_bingo,45,121,0	duplicate(1a#bingo)	25e#bingo	139,1,1
-
 
 que_bingo,79,19,0	script	win1a#bingo	139,4,4,{
 	end;
@@ -924,19 +914,15 @@ OnTouch:
 
 function	script	Func_Bingo	{
 
-
-	for( set .@i,getarg(0); .@i < 26; set .@i,.@i +1)
-	{
+	for( set .@i,getarg(0); .@i < 26; set .@i,.@i +1) {
 		if(@bingoplate[1] < 10) set @bingo_a1$,"0"+@bingoplate[1]+""; else set @bingo_a1$,@bingoplate[1];
 		if(@bingoplate[2] < 10) set @bingo_a2$,"0"+@bingoplate[2]+""; else set @bingo_a2$,@bingoplate[2];
 		if(@bingoplate[3] < 10) set @bingo_a3$,"0"+@bingoplate[3]+""; else set @bingo_a3$,@bingoplate[3];
 		if(@bingoplate[4] < 10) set @bingo_a4$,"0"+@bingoplate[4]+""; else set @bingo_a4$,@bingoplate[4];
 		if(@bingoplate[5] < 10) set @bingo_a5$,"0"+@bingoplate[5]+""; else set @bingo_a5$,@bingoplate[5];
 		if(.@i > 5) mes "["+@bingo_a1$+"] ["+@bingo_a2$+"] ["+@bingo_a3$+"] ["+@bingo_a4$+"] ["+@bingo_a5$+"]";
-		else
-		{
-			switch(.@i)
-			{
+		else {
+			switch(.@i) {
 				case 1: mes "^ff0000[__]^000000 [   ] [   ] [   ] [   ]"; break;
 				case 2: mes "["+@bingo_a1$+"] ^ff0000[__]^000000 [   ] [   ] [   ]"; break;
 				case 3:	mes "["+@bingo_a1$+"] ["+@bingo_a2$+"] ^ff0000[__]^000000 [   ] [   ]"; break;
@@ -951,10 +937,8 @@ function	script	Func_Bingo	{
 		if(@bingoplate[10] < 10) set @bingo_b5$,"0"+@bingoplate[10]+""; else set @bingo_b5$,@bingoplate[10];
 		if(.@i > 10) mes "["+@bingo_b1$+"] ["+@bingo_b2$+"] ["+@bingo_b3$+"] ["+@bingo_b4$+"] ["+@bingo_b5$+"]";
 		else if(.@i < 6) mes "[   ] [   ] [   ] [   ] [   ]";
-		else
-		{
-			switch(.@i)
-			{
+		else {
+			switch(.@i) {
 				case 6: mes "^ff0000[__]^000000 [   ] [   ] [   ] [   ]"; break;
 				case 7: mes "["+@bingo_b1$+"] ^ff0000[__]^000000 [   ] [   ] [   ]"; break;
 				case 8:	mes "["+@bingo_b1$+"] ["+@bingo_b2$+"] ^ff0000[__]^000000 [   ] [   ]"; break;
@@ -969,10 +953,8 @@ function	script	Func_Bingo	{
 		if(@bingoplate[15] < 10) set @bingo_c5$,"0"+@bingoplate[15]+""; else set @bingo_c5$,@bingoplate[15];
 		if(.@i > 15) mes "["+@bingo_c1$+"] ["+@bingo_c2$+"] ["+@bingo_c3$+"] ["+@bingo_c4$+"] ["+@bingo_c5$+"]";
 		else if(.@i < 11) mes "[   ] [   ] [   ] [   ] [   ]";
-		else
-		{
-			switch(.@i)
-			{
+		else {
+			switch(.@i) {
 				case 11: mes "^ff0000[__]^000000 [   ] [   ] [   ] [   ]"; break;
 				case 12: mes "["+@bingo_c1$+"] ^ff0000[__]^000000 [   ] [   ] [   ]"; break;
 				case 13: mes "["+@bingo_c1$+"] ["+@bingo_c2$+"] ^ff0000[__]^000000 [   ] [   ]"; break;
@@ -987,10 +969,8 @@ function	script	Func_Bingo	{
 		if(@bingoplate[20] < 10) set @bingo_d5$,"0"+@bingoplate[20]+""; else set @bingo_d5$,@bingoplate[20];
 		if(.@i > 20) mes "["+@bingo_d1$+"] ["+@bingo_d2$+"] ["+@bingo_d3$+"] ["+@bingo_d4$+"] ["+@bingo_d5$+"]";
 		else if(.@i < 16) mes "[   ] [   ] [   ] [   ] [   ]";
-		else
-		{
-			switch(.@i)
-			{
+		else {
+			switch(.@i) {
 				case 16: mes "^ff0000[__]^000000 [   ] [   ] [   ] [   ]"; break;
 				case 17: mes "["+@bingo_d1$+"] ^ff0000[__]^000000 [   ] [   ] [   ]"; break;
 				case 18: mes "["+@bingo_d1$+"] ["+@bingo_d2$+"] ^ff0000[__]^000000 [   ] [   ]"; break;
@@ -1003,10 +983,8 @@ function	script	Func_Bingo	{
 		if(@bingoplate[23] < 10) set @bingo_e3$,"0"+@bingoplate[23]+""; else set @bingo_e3$,@bingoplate[23];
 		if(@bingoplate[24] < 10) set @bingo_e4$,"0"+@bingoplate[24]+""; else set @bingo_e4$,@bingoplate[24];
 		if(.@i < 21) mes "[   ] [   ] [   ] [   ] [   ]";
-		else
-		{
-			switch(.@i)
-			{
+		else {
+			switch(.@i) {
 				case 21: mes "^ff0000[__]^000000 [   ] [   ] [   ] [   ]"; break;
 				case 22: mes "["+@bingo_e1$+"] ^ff0000[__]^000000 [   ] [   ] [   ]"; break;
 				case 23: mes "["+@bingo_e1$+"] ["+@bingo_e2$+"] ^ff0000[__]^000000 [   ] [   ]"; break;
@@ -1155,5 +1133,4 @@ que_bingo,54,17,5	script	Arcade Owner	712,{
 		close;
 	break;
 	}
-	
 }

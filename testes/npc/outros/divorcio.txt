@@ -1,4 +1,4 @@
-//    ________________________________________________________ 
+//    ________________________________________________________
 //   /                                                        \
 //   |       _           _   _   _                            |
 //   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
@@ -52,8 +52,7 @@ nif_in,190,112,5	script	Deviruchi#divorce	738,{
 			mes "de um solitário solteirão do sexo masculino.";
 			mes "Tenho quase 100 por cento de certeza";
 			mes "que você quer distância de um altar de casamento.";
-		}
-		else {
+		} else {
 			mes "eles são apenas preenchidos com  a ";
 			mes "dor de  uma solteirona--!";
 			mes "não foi possível suportar  um cara pobre";
@@ -131,8 +130,7 @@ nif_in,190,112,5	script	Deviruchi#divorce	738,{
 		mes "como sua esposa e se importando com ela,";
 		mes "não sei...Você não";
 		mes "quer se ver livre dela?^000000";
-	}
-	else {
+	} else {
 		mes "^555555Suas promessas, seu marido";
 		mes "nem sequer tem que saber";
 		mes "sobre isso... você merece";
@@ -179,8 +177,7 @@ nif_in,190,112,5	script	Deviruchi#divorce	738,{
 			mes "você se livrasse ";
 			mes "finalmente da sua esposa";
 			mes "e se libertasse de vez dessa coisa velha";
-		}
-		else {
+		} else {
 			mes "Como seu marido é  horrível.";
 			mes "e  isso seria um alívio";
 			mes "pra você se livrar deste bixo feio~";

@@ -21,7 +21,7 @@
 //   | 1.1 Tradução PT-BR    [Holy]                           |
 //   | 1.2 Otimização        [Holy]                           |
 //   | - Anotações                                            |
-//   \________________________________________________________/ 
+//   \________________________________________________________/
 
 airport,143,43,5	script	Equipe do Aeroporto#aeroporto1a::aeroporto1	90,{
 	mes "[Equipe do Aeroporto]";

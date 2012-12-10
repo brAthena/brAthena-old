@@ -19,10 +19,11 @@
 //   | Changelog:                                             |
 //   | 1.0 Cabeçalho Criado [Holy]                            |
 //   | 1.1 Tradução PT-BR  [HoriaN]                           |
+//   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-alberta,26,229,0	script	Funcionária Kafra#bunny	83,{
+alberta,26,229,0	script	Funcionária Kafra#coe	83,{
 	if (BUNYBND == 1) {
 		mes "[Funcionária Kafra]";
 		mes "Olá você aí!~!";

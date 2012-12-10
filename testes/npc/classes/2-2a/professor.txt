@@ -1,4 +1,4 @@
-//    ________________________________________________________ 
+//    ________________________________________________________
 //   /                                                        \
 //   |       _           _   _   _                            |
 //   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
@@ -47,8 +47,7 @@ valkyrie,53,47,3	script	Professor#Valquiria	743,{
 		mes "Não existe fim no";
 		mes "processo de aprendizagem...";
 		close;
-	}
-	else if (ADVJOB == Job_Professor && Class == Job_Mage_High && JobLevel > 39) {
+	} else if (ADVJOB == Job_Professor && Class == Job_Mage_High && JobLevel > 39) {
 		mes "[Scholar]";
 		mes "Rune-Midgard não";
 		mes "tem Professores suficientes";

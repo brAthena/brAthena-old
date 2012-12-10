@@ -20,12 +20,12 @@
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
 //   | 1.1 Tradução PT-BR [Mark]                              |
 //   | 1.2 Otimização [Mark]                                  |
+//   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
 payon_in01,5,134,5	script	Inventor Jaax	89,{
 	if (checkweight(1201,1) == 0) {
-		mes "[Inventor Jaax]";
 		mes "[Inventor Jaax]";
 		mes "Ei, você está carregando muitas coisas.";
 		mes "Por que você não guarda suas coisas no Armazém da Kafra? Podemos conversar após você ter feito isso, certo?";
@@ -67,11 +67,6 @@ payon_in01,5,134,5	script	Inventor Jaax	89,{
 		case 11: callsub S_BuyQuiver,1757,12014;
 		case 12: callsub S_BuyQuiver,1762,12015;
 	}
-	//Não parece ser acessível...
-	//mes "[Inventor Jaax]";
-	//mes "Is there";
-	//mes "anything you want?";
-	//close;
 
 S_BuyQuiver:
 	if (countitem(getarg(0)) > 499) {
@@ -107,8 +102,7 @@ S_BuyQuiver:
 					mes "Então...";
 					mes "Apenas tenha controle da quantidade que você carrega por vez e tudo ficará bem.";
 					close;
-				}
-				else {
+				} else {
 					mes "[Inventor Jaax]";
 					mes "Me desculpe, mas você não tem Zeny o suficiente.";
 					mes "Eu não posso dá-las por nada depois de anos de trabalho para criar essa tecnologia revolucionária!";
@@ -132,8 +126,7 @@ S_BuyQuiver:
 				mes "Então...";
 				mes "Apenas tenha controle da quantidade que você carrega por vez e tudo ficará bem.";
 				close;
-			}
-			else {
+			} else {
 				mes "[Inventor Jaax]";
 				mes "Você não tem nem 500 Zeny?";
 				mes "Me desculpe. Eu não tinha idéia que você era tão...";
@@ -146,8 +139,7 @@ S_BuyQuiver:
 			mes "Você não viu que essa invenção pode mudar para sempre a forma que as Flechas são carregadas?! O Futuro é agora!";
 			close;
 		}
-	}
-	else {
+	} else {
 		mes "[Inventor Jaax]";
 		mes "Você pode carregar no máximo 500 Flechas dentro deste Aljave. Isso foi feito usando meu método secreto,";
 		mes "para que o peso total de Flechas e Aljaves juntos é menor do que se carregasse apenas Flechas.";

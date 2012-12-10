@@ -45,8 +45,7 @@ valkyrie,44,47,5	script	Arquimago#Valquíria	735,{
 		mes "o que aconteceria se o nosso poder";
 		mes "for colocado em mãos erradas?!";
 		close;
-	}
-	else if (ADVJOB == Job_High_Wizard && Class == Job_Mage_High && JobLevel > 39) {
+	} else if (ADVJOB == Job_High_Wizard && Class == Job_Mage_High && JobLevel > 39) {
 		mes "[Arquimago]";
 		mes "Chegou a hora.";
 		mes "E Rune-Midgard está";

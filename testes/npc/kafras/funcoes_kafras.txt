@@ -1,4 +1,4 @@
-//    ________________________________________________________ 
+//    ________________________________________________________
 //   /                                                        \
 //   |       _           _   _   _                            |
 //   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
@@ -38,9 +38,7 @@ function	script	F_Kafra	{
 		default:
 		case 0:
 			mes "[Funcionária Kafra]";
-			mes "Bem vindo à corporação kafra. Os serviços da corporação kafra sempre estarão ao seu lado.";
-			mes "sempre estarão ao seu lado.";
-			mes "Como posso lhe ajudar?";
+			mes "Bem vindo à corporação kafra. Os serviços da corporação kafra sempre estarão ao seu lado. Como posso lhe ajudar ?";
 			break;
 		// Niflheim mensagem específica			
 		case 1:

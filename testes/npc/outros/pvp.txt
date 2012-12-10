@@ -1,4 +1,4 @@
-//    ___________________________________________________________ 
+//    ___________________________________________________________
 //   /                                                           \
 //   |       _           _   _   _                               |
 //   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _          |
@@ -181,7 +181,7 @@
 	close;
 }
 
-//Guia do PVP - Duplicatas
+// Guia do PVP - Duplicatas
 morocc_in,144,138,4	duplicate(pvpe)	Guia do PVP#pe1	84
 alberta_in,22,146,4	duplicate(pvpe)	Guia do PVP#pe2	84
 prt_in,56,140,4	duplicate(pvpe)	Guia do PVP#pe3	84
@@ -189,7 +189,7 @@ geffen_in,67,63,4	duplicate(pvpe)	Guia do PVP#pe4	84
 payon_in01,142,50,4	duplicate(pvpe)	Guia do PVP#pe5	84
 geffen_in,67,63,4	duplicate(pvpe)	Guia do PVP#pe6	84
 
-//Porteiro
+// Porteiro
 -	script	Porteiro::gkut	-1,{
 	mes "[Porteiro]";
 	mes "Fico feliz em ser útil.";
@@ -267,7 +267,7 @@ geffen_in,67,63,4	duplicate(pvpe)	Guia do PVP#pe6	84
 	close;
 }
 
-// Porteiro Duplicates
+// Porteiro Duplicatas
 morocc_in,144,142,4	duplicate(gkut)	Porteiro#gke1	83
 alberta_in,26,146,4	duplicate(gkut)	Porteiro#gke2	83
 prt_in,52,140,4	duplicate(gkut)	Porteiro#gke3	83

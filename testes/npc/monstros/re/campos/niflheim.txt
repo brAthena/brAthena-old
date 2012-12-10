@@ -1,4 +1,4 @@
-//    ________________________________________________________ 
+//    ________________________________________________________
 //   /                                                        \
 //   |       _           _   _   _                            |
 //   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
@@ -135,22 +135,22 @@ OnInit:
 		break;
 	}
 	
-	monster "niflheim",154,95,"Disguise",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
-	monster "niflheim",115,65,"Disguise",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
-	monster "niflheim",330,195,"Disguise",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
-	monster "niflheim",151,83,"Disguise",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
-	monster "niflheim",285,245,"Disguise",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
-	monster "niflheim",235,135,"Disguise",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
-	monster "niflheim",265,48,"Disguise",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
-	monster "niflheim",186,139,"Disguise",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
-	monster "niflheim",166,267,"Disguise",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
-	monster "niflheim",82,202,"Disguise",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
-	monster "niflheim",219,44,"Disguise",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
-	monster "niflheim",287,44,"Disguise",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
-	monster "niflheim",275,165,"Disguise",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
-	monster "niflheim",138,204,"Disguise",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
-	monster "niflheim",299,39,"Disguise",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
-	monster "niflheim",31,154,"Disguise",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",154,95,"Mascarado",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",115,65,"Mascarado",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",330,195,"Mascarado",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",151,83,"Mascarado",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",285,245,"Mascarado",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",235,135,"Mascarado",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",265,48,"Mascarado",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",186,139,"Mascarado",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",166,267,"Mascarado",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",82,202,"Mascarado",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",219,44,"Mascarado",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",287,44,"Mascarado",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",275,165,"Mascarado",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",138,204,"Mascarado",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",299,39,"Mascarado",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
+	monster "niflheim",31,154,"Mascarado",1506,1,strnpcinfo(3)+"::OnInvasionMonsters";
 	monster "niflheim",154,96,"Dullahan",1504,1,strnpcinfo(3)+"::OnInvasionMonsters";
 	monster "niflheim",116,65,"Dullahan",1504,1,strnpcinfo(3)+"::OnInvasionMonsters";
 	monster "niflheim",151,84,"Dullahan",1504,1,strnpcinfo(3)+"::OnInvasionMonsters";

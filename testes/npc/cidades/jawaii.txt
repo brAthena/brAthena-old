@@ -1,4 +1,4 @@
-//    ________________________________________________________ 
+//    ________________________________________________________
 //   /                                                        \
 //   |       _           _   _   _                            |
 //   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
@@ -417,7 +417,7 @@ jawaii,214,168,5	script	Auxiliar Lua de Mel#Jawaii	71,{
 	close;
 }
 
-// Inside Jawaii
+// Interior de Jawaii
 //============================================================
 jawaii_in,25,94,0	script	Funcionaria#jaw1	724,{
 	mes "[Funcionária Tryteh]";
@@ -430,8 +430,7 @@ jawaii_in,25,94,0	script	Funcionaria#jaw1	724,{
 		mes "Eles podem estar bêbados e comportarem-se mal.";
 		mes "Sabe como é...";
 		close;
-	}
-	else if (!getpartnerid()) {
+	} else if (!getpartnerid()) {
 		mes "Espero que aproveite sua";
 		mes "estadia aqui. Mas tente";
 		mes "não beber muito~";
@@ -461,8 +460,7 @@ jawaii_in,25,96,0	script	Funcionaria#jaw2	724,{
 		mes "Seria absolutamente perfeito se não fossem esses estranhos da 'Armada dos Solteiros Invencíveis'. Eles apareceram";
 		mes "aqui por algum motivo. Que vão para o inferno!";
 		close;
-	}
-	else if (!getpartnerid()) {
+	} else if (!getpartnerid()) {
 		mes "Divirta-se! Mas por favor";
 		mes "tente não atrapalhar os recém-casados daqui!";
 		close;
@@ -491,8 +489,7 @@ jawaii_in,25,98,0	script	Funcionaria#jaw3	724,{
 		mes "Awwww, gostaria de";
 		mes "me casar em breve~!";
 		close;
-	}
-	else if (!getpartnerid()) {
+	} else if (!getpartnerid()) {
 		next;
 		mes "[Funcionária Buffy]";
 		mes "Hmm...?";
@@ -531,8 +528,7 @@ jawaii_in,25,100,0	script	Funcionaria#jaw4	724,{
 		mes "por estar aqui com a";
 		mes "sua amada! Que beleza~";
 		close;
-	}
-	else if (!getpartnerid()) {
+	} else if (!getpartnerid()) {
 		mes "Espero que aproveite";
 		mes "a sua est--";
 		mes "Espere um pouco...!";
@@ -570,8 +566,7 @@ jawaii_in,30,94,4	script	Funcionaria#jaw5	724,{
 		mes "^666666*Suspiro...*^000000";
 		mes "^333333Espero que esses caras da Armada dos Solteiros não fiquem bêbados e façam besteiras de novo...";
 		close;
-	}
-	else if (!getpartnerid()) {
+	} else if (!getpartnerid()) {
 		mes "Espere. Você...!";
 		next;
 		mes "[Funcionária Tonia]";
@@ -600,8 +595,7 @@ jawaii_in,30,96,4	script	Funcionaria#jaw6	724,{
 		mes "Ah Deus...!";
 		mes "Ultimamente estou tendo que lidar com bêbados demais aqui! É difícil tomar conta de tudo...";
 		close;
-	}
-	else if (!getpartnerid()) {
+	} else if (!getpartnerid()) {
 		mes "Entendo que você queira relaxar, mas tome cuidado e não beba demais.";
 		close;
 	}
@@ -631,8 +625,7 @@ jawaii_in,30,98,4	script	Funcionaria#jaw7	724,{
 		mes "e Chris Chan...?";
 		mes "Hummmm....";
 		close;
-	}
-	else if (!getpartnerid()) {
+	} else if (!getpartnerid()) {
 		next;
 		mes "[Funcionária Amy]";
 		mes "Hmm, não acho que esse seja o lugar certo para você. Mas posso deixá-lo beber e se divertir, desde que";
@@ -656,8 +649,7 @@ jawaii_in,30,100,4	script	Funcionaria#jaw8	724,{
 	if (getpartnerid()) {
 		mes "Assim como a lua e as estrelas, vocês são perfeitos juntos. Estou muito feliz por vocês!";
 		close;
-	}
-	else if (!getpartnerid()) {
+	} else if (!getpartnerid()) {
 		next;
 		mes "[Funcionária Yasmine]";
 		mes "Acho que aqui não é o lugar certo para você, mas espero que encontre a sua alma gêmea algum dia. Divirta-se!";
@@ -1164,8 +1156,7 @@ jawaii_in,41,106,3	script	Cliente#Cage	98,{
 			mes "moça para sempre!";
 			mes "Entendeu?!";
 			mes "UM TOLO!";
-		}
-		else {
+		} else {
 			mes "Olhe pra você!";
 			mes "Você é uma tola";
 			mes "por amarrar-se em um";
@@ -1330,8 +1321,7 @@ prt_in,173,13,4	script	Cliente#SoloHan	86,{
 		}
 		warp "jawaii_in",44,124;
 		end;
-	}
-	else if (getpartnerid()) {
+	} else if (getpartnerid()) {
 		mes "Nossa...";
 		mes "Acho que estou bêbado~";
 		mes "*Hiccup!*";
@@ -1344,8 +1334,7 @@ prt_in,173,13,4	script	Cliente#SoloHan	86,{
 			mes "Você parece um";
 			mes "daqueles maridos que só";
 			mes "obedece a mulher!";
-		}
-		else {
+		} else {
 			next;
 			mes "[SoloHan]";
 			mes "Acho que sei reconhecer uma";
@@ -1412,8 +1401,7 @@ izlude,102,150,6	script	Auxiliar Lua de Mel	92,{
 			mes "Hummm....";
 			mes "Infelizmente, solteiros não são permitidos na ilha. Porque você não vai esquecer sua solidão no barzinho de Prontera?";
 			close;
-		}
-		else if (zeny > 99999) {
+		} else if (zeny > 99999) {
 			set zeny,zeny-100000;
 			mes "Bon Voyage...!!";
 			mes "Deixe-me guiar";

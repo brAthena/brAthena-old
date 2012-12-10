@@ -12,12 +12,13 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.0                                 |
+//   | Versões eA/rA/brA: 1.0/1.0/1.0                         |
 //   |--------------------------------------------------------|
-//   | Descrição: Negociador de ??.                           |
+//   | Descrição: Negociador de Refrescos.                    |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
+//   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
@@ -59,8 +60,7 @@ prontera,218,218,3	script	Pet Enthusiast	96,{
 				mes "Hehe, well just let me know if you change your mind.";
 				close;
 			}
-		}
-		else {
+		} else {
 			mes "[Pet Enthusiast Jenny]";
 			mes "Actually, right now I can help you get Spirit Liquor for Wanderer pets.";
 			next;

@@ -19,8 +19,9 @@
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Protimus]                        |
 //   | 1.1 Tradução PT-BR  [SoulSyntax]                       |
+//   |--------------------------------------------------------|
 //   | - Anotações                                            |
-//   \________________________________________________________/ 
+//   \________________________________________________________/
 
 alberta,214,77,6	script	Capitão Jassen	709,{
 	if (checkweight(1201,1) == 0) {
@@ -56,8 +57,7 @@ alberta,214,77,6	script	Capitão Jassen	709,{
 		mes "^0000ff*Pelo menos metade de sua história soou muito exagerada, mas algo chamou sua atenção: ele insiste que uma torre monstruosa existe no oceano, e que é tão alta, que raspa no céu.*^000000";
 		set in_102tower,2;
 		close;
-	}
-	else if (in_102tower == 2) {
+	} else if (in_102tower == 2) {
 		mes "[Capitão Jassen]";
 		mes "Então tudo que eu podia fazer era lançar a âncora naquela torre monstruosa depois que minha frota foi destruída. No início, éramos para ficar lá somente até que a temPesteade acabasse, mas não chegou a acabar tão cedo quanto esperávamos.";
 		next;
@@ -101,8 +101,7 @@ alberta,214,77,6	script	Capitão Jassen	709,{
 		mes "Bem vindo à bo° andaro, primeiro marujo.";
 		set in_102tower,3;
 		close;
-	}
-	else if (in_102tower == 3) {
+	} else if (in_102tower == 3) {
 		mes "[Capitão Jassen]";
 		mes "Vamos partir agora?";
 		next;
@@ -118,8 +117,7 @@ alberta,214,77,6	script	Capitão Jassen	709,{
 			mes "Claro, sem problemas. Volte quando estiver pronto.";
 			close;
 		}
-	}
-	else if (in_102tower > 3) {
+	} else if (in_102tower > 3) {
 		mes "[Capitão Jassen]";
 		mes "Bem, para viajar pelo oceano novamente, precisamos repor os suprimentos. Se você me der 10.000 zenys, eu cuido do resto.";
 		next;
@@ -136,8 +134,7 @@ alberta,214,77,6	script	Capitão Jassen	709,{
 				mes "[Capitão Jassen]";
 				mes "Me desculpe, mas você não tem dinheiro suficiente. Eu preciso de pelo menos 10.000 zenys para reabastecer os nossos suprimentos...";
 				close;
-			}
-			else {
+			} else {
 				mes "[Capitão Jassen]";
 				mes "Excelente! Agora estamos pronto para ir. Vamos levantar a âncora de novo!";
 				set zeny,zeny-10000;
@@ -146,8 +143,7 @@ alberta,214,77,6	script	Capitão Jassen	709,{
 				end;
 			}
 		}
-	}
-	else {
+	} else {
 		mes "[Capitão Jassen]";
 		mes "Desculpe-me, você é um aventureiro?";
 		next;
@@ -172,8 +168,7 @@ alberta,214,77,6	script	Capitão Jassen	709,{
 				mes "[Capitão Janssen]";
 				mes "...Sinto muito, mas eu não acho que você tenha 10.000 zenys. Obrigado pela sua gentileza, mas eu preciso mais do que isso.";
 				close;
-			}
-			else {
+			} else {
 				mes "["+.@name$+"]";
 				mes "Eu não sei porque você precisa de tanto dinheiro, mas aqui está. Pode pegar.";
 				next;
@@ -405,8 +400,7 @@ e_tower,1,1,2	script	#102Administrador Modo104	844,{
 			break;
 		}
 		close;
-	}
-	else {
+	} else {
 		mes "Entre com a senha correta.";
 		close;
 	}
@@ -465,8 +459,7 @@ e_tower,151,185,4	script	Pedra da Purificação#et2	844,{
 			mes "-Aviso-";
 			mes "Para ir ao 26° andar, você precisa de 1 Cinza da Escuridão.";
 			close;
-		}
-		else {
+		} else {
 			delitem 6000,1; // Cinzas da Escuridão
 			instance_announce 0, .@move_name$ + ". Você será teleportado para o 26° andar.",bc_map,"0x00ff99";
 			warp "2@tower",52,354;
@@ -477,8 +470,7 @@ e_tower,151,185,4	script	Pedra da Purificação#et2	844,{
 			mes "-Aviso-";
 			mes "Para ir ao 51° andar, você precisa de 2 Cinzas da Escuridão.";
 			close;
-		}
-		else {
+		} else {
 			delitem 6000,2; // Cinzas da Escuridão
 			instance_announce 0, .@move_name$ + ". Você será teleportado para o 51° andar.",bc_map,"0x00ff99";
 			warp "3@tower",52,354;
@@ -489,8 +481,7 @@ e_tower,151,185,4	script	Pedra da Purificação#et2	844,{
 			mes "-Warning-";
 			mes "Para ir ao 76° andar, você precisa de 3 Cinzas da Escuridão.";
 			close;
-		}
-		else {
+		} else {
 			delitem 6000,3; // Cinzas da Escuridão
 			instance_announce 0, .@move_name$ + ". Você será teleportado para o 76° andar.",bc_map,"0x00ff99";
 			warp "4@tower",52,354;
@@ -518,8 +509,7 @@ OnMyMobDead:
 		instance_announce 0, "Todos os monstros no 1° andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("1FGate102tower", instance_id())+"::OnEnable";
 		//SetItemPartyInMap in_102floor 1
-	}
-	else
+	} else
 		instance_announce 0, "Monstros vivos no 1° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
@@ -547,9 +537,7 @@ OnMyMobDead:
 	if (.@mob_dead_num < 1) {
 		instance_announce 0, "Todos os monstros no 2° andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("2FGate102tower", instance_id())+"::OnEnable";
-		//SetItemPartyInMap in_102floor 2
-	}
-	else
+	} else
 		instance_announce 0, "Monstros vivos no 2° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
@@ -580,9 +568,7 @@ OnMyMobDead:
 	if (.@mob_dead_num < 1) {
 		instance_announce 0, "Todos os monstros no 3° andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("3FGate102tower", instance_id())+"::OnEnable";
-		//SetItemPartyInMap in_102floor 3
-	}
-	else
+	} else
 		instance_announce 0, "Monstros vivos no 3° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
@@ -613,9 +599,7 @@ OnMyMobDead:
 	if (.@mob_dead_num < 1) {
 		instance_announce 0, "Todos os monstros no 4° andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("4FGate102tower", instance_id())+"::OnEnable";
-		//SetItemPartyInMap in_102floor 4
-	}
-	else
+	} else
 		instance_announce 0, "Monstros vivos no 4° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
@@ -645,9 +629,7 @@ OnMyMobDead:
 	if (.@mob_dead_num < 1) {
 		instance_announce 0, "Todos os monstros no 5° andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("5FGate102tower", instance_id())+"::OnEnable";
-		//SetItemPartyInMap in_102floor 5
-	}
-	else
+	} else
 		instance_announce 0, "Monstros vivos no 5° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
@@ -676,9 +658,7 @@ OnMyMobDead:
 	if (.@mob_dead_num < 1) {
 		instance_announce 0, "Todos os monstros no 6° andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("6FGate102tower", instance_id())+"::OnEnable";
-		//SetItemPartyInMap in_102floor 6
-	}
-	else
+	} else
 		instance_announce 0, "Monstros vivos no 6° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
@@ -707,9 +687,7 @@ OnMyMobDead:
 	if (.@mob_dead_num < 1) {
 		instance_announce 0, "Todos os montros do 7° andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("7FGate102tower", instance_id())+"::OnEnable";
-		//SetItemPartyInMap in_102floor 7
-	}
-	else
+	} else
 		instance_announce 0, "Monstros vivos no 7° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
@@ -736,9 +714,7 @@ OnMyMobDead:
 	if (.@mob_dead_num < 1) {
 		instance_announce 0, "Todos os montros do 8° andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("8FGate102tower", instance_id())+"::OnEnable";
-		//SetItemPartyInMap in_102floor 8
-	}
-	else
+	} else
 		instance_announce 0, "Monstros vivos no 8° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
@@ -766,9 +742,7 @@ OnMyMobDead:
 	if (.@mob_dead_num < 1) {
 		instance_announce 0, "Todos os montros do 9° andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("9FGate102tower", instance_id())+"::OnEnable";
-		//SetItemPartyInMap in_102floor 9
-	}
-	else
+	} else
 		instance_announce 0, "Monstros vivos no 9° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
@@ -796,9 +770,7 @@ OnMyMobDead:
 	if (.@mob_dead_num < 1) {
 		instance_announce 0, "Todos os montros do 10° andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("10FGate102tower", instance_id())+"::OnEnable";
-		//SetItemPartyInMap in_102floor 10
-	}
-	else
+	} else
 		instance_announce 0, "Monstros vivos no 10° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
@@ -827,9 +799,7 @@ OnMyMobDead:
 	if (.@mob_dead_num < 1) {
 		instance_announce 0, "Todos os montros do 11° andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("11FGate102tower", instance_id())+"::OnEnable";
-		//SetItemPartyInMap in_102floor 11
-	}
-	else
+	} else
 		instance_announce 0, "Monstros vivos no 11° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
@@ -856,9 +826,7 @@ OnMyMobDead:
 	if (.@mob_dead_num < 1) {
 		instance_announce 0, "Todos os montros do 12° andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("12FGate102tower", instance_id())+"::OnEnable";
-		//SetItemPartyInMap in_102floor 12
-	}
-	else
+	} else
 		instance_announce 0, "Monstros vivos no 12° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
@@ -886,9 +854,7 @@ OnMyMobDead:
 	if (.@mob_dead_num < 1) {
 		instance_announce 0, "Todos os montros do 13° andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("13FGate102tower", instance_id())+"::OnEnable";
-		//SetItemPartyInMap in_102floor 13
-	}
-	else
+	} else
 		instance_announce 0, "Monstros vivos no 13° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
@@ -918,9 +884,7 @@ OnMyMobDead:
 	if (.@mob_dead_num < 1) {
 		instance_announce 0, "Todos os montros do 14° andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("14FGate102tower", instance_id())+"::OnEnable";
-		//SetItemPartyInMap in_102floor 14
-	}
-	else
+	} else
 		instance_announce 0, "Monstros vivos no 14° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
@@ -952,9 +916,7 @@ OnMyMobDead:
 	if (.@mob_dead_num < 1) {
 		instance_announce 0, "Todos os montros do 15° andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("15FGate102tower", instance_id())+"::OnEnable";
-		//SetItemPartyInMap in_102floor 15
-	}
-	else
+	} else
 		instance_announce 0, "Monstros vivos no 15° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
@@ -983,9 +945,7 @@ OnMyMobDead:
 	if (.@mob_dead_num < 1) {
 		instance_announce 0, "Todos os montros do 16° andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("16FGate102tower", instance_id())+"::OnEnable";
-		//SetItemPartyInMap in_102floor 16
-	}
-	else
+	} else
 		instance_announce 0, "Monstros vivos no 16° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
@@ -1014,9 +974,7 @@ OnMyMobDead:
 	if (.@mob_dead_num < 1) {
 		instance_announce 0, "Todos os montros do 17° andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("17FGate102tower", instance_id())+"::OnEnable";
-		//SetItemPartyInMap in_102floor 17
-	}
-	else
+	} else
 		instance_announce 0, "Monstros vivos no 17° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
@@ -1043,9 +1001,7 @@ OnMyMobDead:
 	if (.@mob_dead_num < 1) {
 		instance_announce 0, "Todos os montros do 18° andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("18FGate102tower", instance_id())+"::OnEnable";
-		//SetItemPartyInMap in_102floor 18
-	}
-	else
+	} else
 		instance_announce 0, "Monstros vivos no 18° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
@@ -1074,9 +1030,7 @@ OnMyMobDead:
 	if (.@mob_dead_num < 1) {
 		instance_announce 0, "Todos os montros do 19° andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("19FGate102tower", instance_id())+"::OnEnable";
-		//SetItemPartyInMap in_102floor 19
-	}
-	else
+	} else
 		instance_announce 0, "Monstros vivos no 19° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
@@ -1103,9 +1057,7 @@ OnMyMobDead:
 	if (.@mob_dead_num < 1) {
 		instance_announce 0, "Todos os montros do 20° andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("20FGate102tower", instance_id())+"::OnEnable";
-		//SetItemPartyInMap in_102floor 20
-	}
-	else
+	} else
 		instance_announce 0, "Monstros vivos no 20° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
@@ -1135,9 +1087,7 @@ OnMyMobDead:
 	if (.@mob_dead_num < 1) {
 		instance_announce 0, "Todos os montros do 21° Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("21FGate102tower", instance_id())+"::OnEnable";
-		//SetItemPartyInMap in_102floor 21
-	}
-	else
+	} else
 		instance_announce 0, "Monstros vivos no 21° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
@@ -1168,9 +1118,7 @@ OnMyMobDead:
 	if (.@mob_dead_num < 1) {
 		instance_announce 0, "Todos os montros do 22° andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("22FGate102tower", instance_id())+"::OnEnable";
-		//SetItemPartyInMap in_102floor 22
-	}
-	else
+	} else
 		instance_announce 0, "Monstros vivos no 22° andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }
@@ -1200,9 +1148,7 @@ OnMyMobDead:
 	if (.@mob_dead_num < 1) {
 		instance_announce 0, "Todos os montros do 23° andar Andar foram derrotados.",bc_map,"0xffff00";
 		donpcevent instance_npcname("23FGate102tower", instance_id())+"::OnEnable";
-		//SetItemPartyInMap in_102floor 23
-	}
-	else
+	} else
 		instance_announce 0, "Monstros vivos no 23° andar andar - " + .@mob_dead_num,bc_map,"0x00ff99";
 	end;
 }

@@ -1,4 +1,4 @@
-//    ________________________________________________________ 
+//    ________________________________________________________
 //   /                                                        \
 //   |       _           _   _   _                            |
 //   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
@@ -22,7 +22,6 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
  
-
 function	script	Esseray_Ex	{
 	if (BaseLevel > 98 && JobLevel > 98) {
 		if (EXSUPNOV_Q > 0 && EXSUPNOV_Q < 6) {
@@ -110,8 +109,7 @@ beach_dun2,119,92,4	script	Fishing Novice#sp2	567,{
 			next;
 			mes "[Fishing Novice]";
 			mes "So what do you want from me?";
-		}
-		else {
+		} else {
 			mes "[Fishing Novice]";
 			mes "What?! He isn't?";
 			mes "Then where is Esseray from?";
@@ -174,8 +172,7 @@ beach_dun2,119,92,4	script	Fishing Novice#sp2	567,{
 		next;
 		mes "- Talk to him again. -";
 		close;
-	}
-	else if (checkquest(5093) >= 0) {
+	} else if (checkquest(5093) >= 0) {
 		mes "[Nodor]";
 		mes "Emmhmm ----- !!";
 		next;
@@ -277,8 +274,7 @@ beach_dun2,119,92,4	script	Fishing Novice#sp2	567,{
 		mes "Rembember, no questions!";
 		mes "Don't come back until you've hunted 1,000.";
 		close;
-	}
-	else if (checkquest(5094) >= 0 || checkquest(5095) >= 0 || checkquest(5096) >= 0 || checkquest(5097) >= 0) {
+	} else if (checkquest(5094) >= 0 || checkquest(5095) >= 0 || checkquest(5096) >= 0 || checkquest(5097) >= 0) {
 		mes "["+strcharinfo(0)+"]";
 		mes "Hey, Nodor!";
 		next;
@@ -330,8 +326,7 @@ beach_dun2,119,92,4	script	Fishing Novice#sp2	567,{
 		mes "Okay! So far so good.";
 		mes "I will let you know how to overcome your strength deficiencies.";
 		close;
-	}
-	else if (checkquest(5098) >= 0) {
+	} else if (checkquest(5098) >= 0) {
 		if (rand(10) != 1) {
 			mes "[Nodor]";
 			mes "Oh! You already came here?";
@@ -352,8 +347,7 @@ beach_dun2,119,92,4	script	Fishing Novice#sp2	567,{
 			mes "[Nodor]";
 			mes "You should read more!";
 			next;
-		}
-		else {
+		} else {
 			mes "["+strcharinfo(0)+"]";
 			mes "Tsk*... Ok...";
 			next;
@@ -386,8 +380,7 @@ beach_dun2,119,92,4	script	Fishing Novice#sp2	567,{
 		mes "[Nodor]";
 		mes "You can give some to my bro. He's up in the airship.";
 		close;
-	}
-	else if (checkquest(5099) >= 0) {
+	} else if (checkquest(5099) >= 0) {
 		mes "[Nodor]";
 		mes "Have you visited already?";
 		next;
@@ -401,8 +394,7 @@ beach_dun2,119,92,4	script	Fishing Novice#sp2	567,{
 		mes "1,000,000 zeny is okay~";
 		mes "10,000,000 zeny is okay~";
 		close;
-	}
-	else if (checkquest(5100) >= 0) {
+	} else if (checkquest(5100) >= 0) {
 		if (EXSUPNOV_Q_ == 3) set .@str$,"300,000";
 		else if (EXSUPNOV_Q_ == 4) set .@str$,"1,000,000";
 		else set .@str$,"100,000";
@@ -532,8 +524,7 @@ beach_dun2,119,92,4	script	Fishing Novice#sp2	567,{
 		mes "Now march to the world and live as a Novice and enjoy your free, happy life!";
 		mes "That's it!";
 		close;
-	}
-	else if (EXSUPNOV_Q == 5) {
+	} else if (EXSUPNOV_Q == 5) {
 		mes "[Nodor]";
 		mes "(Pouting) ------------- !!";
 		mes "So you're finally back.";
@@ -582,8 +573,7 @@ beach_dun2,119,92,4	script	Fishing Novice#sp2	567,{
 		mes "Let Super Novice "+strcharinfo(0)+" be blessed with the Super Novice Guardian!";
 		set EXSUPNOV_Q,6;
 		close;
-	}
-	else if (EXSUPNOV_Q > 5) {
+	} else if (EXSUPNOV_Q > 5) {
 		mes "[Nodor]";
 		mes "Don't forget that you are a Novice.";
 		mes "Be a Novice always!";
@@ -629,8 +619,7 @@ airplane,33,47,5	script	Nudor#sp2	729,{
 			close2;
 			warp "airplane",70,93;
 			end;
-		}
-		else if (.@i < 5) {
+		} else if (.@i < 5) {
 			switch(.@i) {
 				case 2: set .@str$,"100,000"; set .@n,100000; break;
 				case 3: set .@str$,"300,000"; set .@n,300000; break;
@@ -643,8 +632,7 @@ airplane,33,47,5	script	Nudor#sp2	729,{
 				mes "What? But where is "+.@str$+" Zeny?";
 				close;
 			}
-		}
-		else {
+		} else {
 			mes "Oh... oh my gosh, are you really giving me all the Zeny you have? Really?";
 			next;
 			if(select("No, not really...:Give it all") == 1) {
@@ -679,8 +667,7 @@ airplane,33,47,5	script	Nudor#sp2	729,{
 		mes "- You feel like you're being -";
 		mes "- tricked, so go back to Nodor. -";
 		close;
-	}
-	else if (checkquest(5100) >= 0) {
+	} else if (checkquest(5100) >= 0) {
 		mes "[Nudor]";
 		mes "I cannot believe that my bro sent me money... I love it~";
 		next;

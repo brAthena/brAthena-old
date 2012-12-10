@@ -1,4 +1,4 @@
-//    ________________________________________________________ 
+//    ________________________________________________________
 //   /                                                        \
 //   |       _           _   _   _                            |
 //   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
@@ -39,8 +39,7 @@ yuno,184,173,4	script	Freidrich#juno	729,{
 		mes "[Freidrich]";
 		mes "Desde que muitos estudiosos vieram a Juno para estudar e investigar esta fonte de poder, nossa cidade é basicamente uma capital dos estudiosos.";
 		close;
-	}
-	else {
+	} else {
 		mes "[Freidrich]";
 		mes "A cidade dos sábios,";
 		mes "^3355FFJuno,^000000 é constituída por";
@@ -89,15 +88,13 @@ yuno,337,227,4	script	Avó de Juno#juno	103,{
 			mes "[Avó]";
 			mes "Sim, esta certo. Agora você tem que perguntar a si mesmo porquer não aceitou o doce que eu ofereci.";
 			close;
-		}
-		else {
+		} else {
 			mes "*Risos risos*";
 			mes "A hora chegou.";
 			mes "Pois bem...";
 			close;
 		}
-	}
-	else {
+	} else {
 		mes "Sou a Sábia Avó que tudo prevê...";
 		next;
 		mes "[Avó]";
@@ -181,13 +178,11 @@ yuno,165,111,4	script	Sábio de Juno#juno	123,,{
 			close2;
 			warp "pay_dun03",200,222;
 			end;
-		}
-		else {
+		} else {
 			mes "Hmm. Desculpe dizer que você perdeu uma chance de ouro. No entando, preciso lhe contar que você não têm dinheiro para levar esta maravilha.";
 			close;
 		}
-	}
-	else {
+	} else {
 		mes "^3355FFApocalipse^000000...";
 		mes "É o nome do androide que costumava proteger Juno há muito tempo.";
 		next;
@@ -382,8 +377,7 @@ S_Warp:
 		set zeny,zeny-1800;
 		warp getarg(0),getarg(1),getarg(2);
 		end;
-	}
-	else {
+	} else {
 		mes "[Representante do Dirigível]";
 		mes "Lamento dizer que você não tem zeny sufciente consigo.";
 		mes "Por favor, verifique quantos zeny você tem.";

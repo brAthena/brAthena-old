@@ -1,4 +1,4 @@
-//    ________________________________________________________ 
+//    ________________________________________________________
 //   /                                                        \
 //   |       _           _   _   _                            |
 //   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
@@ -41,8 +41,7 @@ alberta,246,82,3	script	Marinheiro#bra2	100,{
 			close2;
 			warp "brasilis",314,60;
 			end;
-		}
-		else {
+		} else {
 			mes "[Marinheiro]";
 			mes "Eu disse 10,000 zeny.";
 			close;
@@ -122,14 +121,12 @@ brasilis,137,77,5	script	Sorveteiro	85,{
 				mes "Nada?";
 				mes "Então saia daqui, eu tenho muitos clientes para atender.";
 				close;
-			}
-			else if ((.@input < 0) || (.@input > 5)) {
+			} else if ((.@input < 0) || (.@input > 5)) {
 				mes "[Sorveteiro]";
 				mes "Uau.";
 				mes "Você pediu uma quantidade não permitida.";
 				next;
-			}
-			else
+			} else
 				break;
 		}
 		set .@icecream_hap,.@input*100;

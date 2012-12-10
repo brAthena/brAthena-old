@@ -53,7 +53,7 @@ izlude_in,74,172,4	script	Chefe Espadachim#swd	119,{
 			mes "[Chefe Espadachim]";
 			mes "Hum... Você parece um Espadachim bem experiente. Ainda assim, eu tenho certeza que você deve treinar para melhorar suas habilidades e ganhar força!";
 			close;
-		}else{
+		} else {
 			mes "[Chefe Espadachim]";
 			mes "Hum...?";
 			mes "Você é um guerreiro";
@@ -208,12 +208,12 @@ izlude_in,74,172,4	script	Chefe Espadachim#swd	119,{
 			if(Class == Job_Swordman) {
 				mes "Você já é um excelente Espadachim, não é?";
 				mes "Apenas dedique-se a isso, seja um grande Espadachim.";
-			}else{
+			} else {
 				mes "Você já possui uma outra classe, não é?";
 				mes "Você foi longe demais com essa piada.";
 			}
 			close;
-		}else{
+		} else {
 			if (getskilllv("NV_BASIC") < 9) {
 				mes "[Chefe Espadachim]";
 				mes "Sinto muito dizer em isso, mas para ser um Espadachim você deve possuir pelo menos ^4A4AFFNível de Classe 10^000000.";
@@ -306,8 +306,7 @@ izlude_in,30,163,0	script	Equipe de Testes do Salão#swd_1	105,{
 		close2;
 		warp "izlude_in",66,170;
 		end;
-	}
-	else if (BaseJob != Job_Novice) {
+	} else if (BaseJob != Job_Novice) {
 		mes "Quem é você?! Este é o local do Teste de Espadachim, você não devia estar aqui! Saia agora!";
 		close2;
 		warp "izlude_in",66,170;
@@ -319,13 +318,11 @@ izlude_in,30,163,0	script	Equipe de Testes do Salão#swd_1	105,{
 		mes "[Equipe de Testes do Salão]";
 		mes "Relaxe e continue com o bom trabalho. Este curso não é difícil..";
 		set job_sword_q,2;
-	}
-	else if (job_sword_q == 2) {
+	} else if (job_sword_q == 2) {
 		mes "Testando novamente....? Como quiser, eu gosto de pessoas que não temem um desafio! Tome isto e anime-se!";
 		getitem 512,5; // Maçã
 		set job_sword_q,3;
-	}
-	else if (job_sword_q == 3)
+	} else if (job_sword_q == 3)
 		mes "Não desista jamais! Testando novamente!";
 	close2;
 	warp "job_sword1",10,245;

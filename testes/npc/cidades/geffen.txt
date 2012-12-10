@@ -1,4 +1,4 @@
-//    ________________________________________________________ 
+//    ________________________________________________________
 //   /                                                        \
 //   |       _           _   _   _                            |
 //   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
@@ -133,14 +133,12 @@ geffen,111,48,0	script	Stacey	101,{
 		if (sex) {
 			mes "Você parece tão...";
 			mes "Forte e bonitão~";
-		}
-		else {
+		} else {
 			mes "Oooh~!";
 			mes "Que inveja!";
 		}
 		close;
-	}
-	else if (getequipid(1) == 5094) {
+	} else if (getequipid(1) == 5094) {
 		mes "[Stacey]";
 		mes "Oh...";
 		mes "Uau...";
@@ -158,14 +156,12 @@ geffen,111,48,0	script	Stacey	101,{
 			Emotion e_lv;
 			mes "[Stacey]";
 			mes "E eu não sou uma exceção.";
-		}
-		else {
+		} else {
 			mes "Nossa, você deve ser muito forte!";
 			mes "Mas eu pensei que só membros da tribo dos Orcs pudessem usar esse elmo!";
 		}
 		close;
-	}
-	else {
+	} else {
 		mes "[Stacey]";
 		mes "Olá~!";
 		mes "Ah, você é um";
@@ -262,14 +258,12 @@ OnTouch:
 				else
 					mes "E-espereee! Você não me deixou explicar como Red Potions te ajudam a perder e ganhar peso nos lugares certos! Espereeee!";
 				close;
-			}
-			else if (.@input > 100) {
+			} else if (.@input > 100) {
 				mes "[Cara Suspeito]";
 				mes "Uau...";
 				mes "Não posso te vender tantas. Mas não é porque elas contenham impurezas...";
 				next;
-			}
-			else
+			} else
 				break;
 		}
 		set .@Red_potion_hap,.@input * 500;
@@ -296,8 +290,7 @@ OnTouch:
 			mes "Agora...";
 			mes "O que você realmente";
 			mes "precisa é de uma ^FF3333faca para homem^000000.";
-		}
-		else {
+		} else {
 			mes "Uma boa moça como você querendo uma faca? Ah, facas de cozinha são para esposas donas de casa.";
 			next;
 			mes "[Cara Suspeito]";
@@ -332,14 +325,12 @@ OnTouch:
 				mes "deixaria passar também.";
 				close;
 
-			}
-			else if (.@input > 100) {
+			} else if (.@input > 100) {
 				mes "[Cara Suspeito]";
 				mes "Uau!";
 				mes "Não posso te vender tantas! Isso chamaria a atenção da Cavalaria de Pront--Digo, é, eu ia doar algumas adagas para... Crianças carentes?";
 				next;
-			}
-			else
+			} else
 				break;
 		}
 		set .@Main_gauche_hap,.@input * 9400;
@@ -384,14 +375,12 @@ OnTouch:
 				mes "Ahhh...";
 				mes "Não foi por causa do fecho, né?";
 				close;
-			}
-			else if (.@input > 100) {
+			} else if (.@input > 100) {
 				mes "[Cara Suspeito]";
 				mes "Nossa~!";
 				mes "Não posso vender tantos! O que você está fazendo, tentando tirar vantagem?";
 				next;
-			}
-			else
+			} else
 				break;
 		}
 		set .@Hood__hap,.@input * 930;
@@ -430,8 +419,7 @@ geffen_in,22,125,1	script	Crumpler	52,{
 	if (Class == Job_Mage) {
 		mes "^3355FFAlgum dia, você promete a si mesmo, você se vingará desse bêbado que difamou os Magos. Algum dia...^000000";
 		close;
-	}
-	else if (Class == Job_Wizard) {
+	} else if (Class == Job_Wizard) {
 		select("Na verdade, sou um Mago.");
 		mes "[Crumpler]";
 		mes "Ahh que medo!";
@@ -488,8 +476,7 @@ geffen_in,22,125,1	script	Crumpler	52,{
 			mes "Por nada!";
 			close;
 		}
-	}
-	else if (Class == Job_Sage) {
+	} else if (Class == Job_Sage) {
 		select("Na verdade, senhor, sou um Sage.");
 		mes "[Crumpler]";
 		mes "Um...";
@@ -503,8 +490,7 @@ geffen_in,22,125,1	script	Crumpler	52,{
 		mes "Entãooo...";
 		mes "Quer beber comigo?";
 		close;
-	}
-	else {
+	} else {
 		mes "[Crumpler]";
 		mes "Espere um momento...";
 		mes "Você não é um mago!";
@@ -761,8 +747,7 @@ geffen_in,70,67,3	script	Garçonete#elise	90,{
 				next;
 				mes "^3355FFQue assustador...!";
 				mes "Parece que o amor de pai é eterno, mesmo no além.^000000";
-			}
-			else {
+			} else {
 				mes "Mas...";
 				mes "Eu sou uma garota também!";
 				next;
@@ -808,8 +793,7 @@ geffen_in,79,76,2	script	Mercador Daven	120,{
 		if (BaseJob == Job_Mage) {
 			mes "[Mercador Daven]";
 			mes "Mages são estudantes de feitiçaria. Mas você sabe ainda mais sobre isso, não?";
-		}
-		else {
+		} else {
 			mes "[Mercador Daven]";
 			mes "Mages e Wizards estão sempre carregando livros e estudando mágica. Eles são assim.";
 			next;
@@ -828,8 +812,7 @@ geffen_in,79,76,2	script	Mercador Daven	120,{
 			mes "[Mercador Daven]";
 			mes "A economia...?";
 			mes "Bem, isso é graças aos Blacksmiths! Mas você já sabia disso, não?";
-		}
-		else {
+		} else {
 			mes "[Mercador Daven]";
 			mes "Bem, você pode agradecer aos Blacksmiths pela economia de Geffen. Eles estão sempre sujos, suados, fedorentos e são meio rudes...";
 			next;
@@ -850,8 +833,7 @@ geffen_in,79,76,2	script	Mercador Daven	120,{
 			mes "Opa, opa!";
 			mes "Foi só uma brincadeira!";
 			mes "Me desculpe!";
-		}
-		else {
+		} else {
 			mes "[Mercador Daven]";
 			mes "Magnum Break?";
 			mes "Mas você nem pode usar essa habilidade, pode?";
@@ -895,9 +877,8 @@ geffen_in,114,73,5	script	Hadenheim	709,{
 	else if (Class == Job_Novice) {
 		mes "Acho...";
 		mes "Que todos esses conceitos talvez sejam muito complicados para você.";
-	}
-	else
-		mes "Enfim...";
+	} else
+	mes "Enfim...";
 	next;
 	mes "[Hans Hadenheim]";
 	mes "Você foi a alguma das terras novas? Elas são muito interessantes, e você pode aprender muito com a cultura estrangeira.";
@@ -1065,8 +1046,7 @@ geffen_in,39,127,2	script	Vidente	704,{
 				if (sex) {
 					mes "O que eu quis dizer na verdade foi que";
 					mes "^3355FFvocê encontrará a mulher perfeita em breve^000000. Sim, foi isso que eu quis dizer!";
-				}
-				else {
+				} else {
 					mes "O que eu quis dizer na verdade foi que";
 					mes "^3355FFvocê encontrará o homem perfeito em breve^000000. Sim, foi isso que eu quis dizer!";
 				}

@@ -1,4 +1,4 @@
-//    ________________________________________________________ 
+//    ________________________________________________________
 //   /                                                        \
 //   |       _           _   _   _                            |
 //   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
@@ -162,8 +162,7 @@ ayothaya,171,152,5	script	Menina#Lalitha	838,{
 		mes "Tome cuidado e";
 		mes "aproveite a viagem!";
 		close;
-	}
-	else if (.@sit > 2 && .@sit < 6) {
+	} else if (.@sit > 2 && .@sit < 6) {
 		mes "[Lalitha]";
 		mes "Se você for ao Oriente a partir";
 		mes "dessa vila, irá chegar às ruínas de um velho santuário. Ele é hoje";

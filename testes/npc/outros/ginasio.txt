@@ -1,4 +1,4 @@
-//    ________________________________________________________ 
+//    ________________________________________________________
 //   /                                                        \
 //   |       _           _   _   _                            |
 //   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
@@ -88,8 +88,7 @@ payon,173,141,4	script	Ripped Cabus#GymPass	899,{
 				set gympassmemory,.@add_carry;
 				skill "ALL_INCCARRY",.@add_carry,0;
 				close;
-			}
-			else {
+			} else {
 				mes "[Ripped]";
 				mes "Cara, você trouxe o que te pedi?";
 				mes "Você tem que me trazer a sua";
@@ -98,8 +97,7 @@ payon,173,141,4	script	Ripped Cabus#GymPass	899,{
 				mes "os seus músculos.";
 				close;
 			}
-		}
-		else {
+		} else {
 			mes "[Ripped]";
 			mes "Cara, acho que não podemos";
 			mes "trabalhar em seus";
@@ -144,8 +142,7 @@ payon,173,141,4	script	Ripped Cabus#GymPass	899,{
 			mes "novamente, ok?";
 			skill "ALL_INCCARRY",gympassmemory,0;
 			close;
-		}
-		else {
+		} else {
 			mes "[Ripped]";
 			mes "Uhh...";
 			mes "Nosso trabalho não ";

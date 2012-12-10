@@ -1,4 +1,4 @@
-//    ________________________________________________________ 
+//    ________________________________________________________
 //   /                                                        \
 //   |       _           _   _   _                            |
 //   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-// Louyang Trasportação
+// Louyang - Trasportação
 //============================================================
 alberta,245,45,3	script	Garota#0lou	815,{
 	mes "[Garota]";
@@ -127,8 +127,7 @@ lou_fild01,190,100,7	script	Garota#1lou	815,{
 		mes "E por vista...";
 		mes "Quero dizer garotas!";
 		mes "Tee hee~";
-	}
-	else {
+	} else {
 		mes "[Garota]";
 		mes "E os meninos também";
 		mes "não são nada feios~";
@@ -317,8 +316,7 @@ louyang,84,254,0	script	Saída#lou	111,{
 			percentheal -99,0;
 			warp "louyang",86,269;
 			mapannounce "louyang",""+strnpcinfo(0)+" : Meu Deus, estou caiiiiiiiiiiiiiiindo~~!!!!",bc_map;
-		}
-		else {
+		} else {
 			warp "lou_in01",10,18;
 		}
 		end;

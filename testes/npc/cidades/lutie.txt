@@ -1,4 +1,4 @@
-//    ________________________________________________________ 
+//    ________________________________________________________
 //   /                                                        \
 //   |       _           _   _   _                            |
 //   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
@@ -125,8 +125,7 @@ xmas_in,167,173,4	script	Duffle	711,{
 		mes "Feliz Natal!!";
 		set xmas_npc,2;
 		close;
-	}
-	else if (xmas_npc > 1) {
+	} else if (xmas_npc > 1) {
 		mes "[Duffle]";
 		mes "Você já conversou com o homem de neve daqui? Aquele que é bem solitário...";
 		next;
@@ -148,8 +147,7 @@ xmas_in,167,173,4	script	Duffle	711,{
 		mes "[Duffle]";
 		mes "Acho que você deveria falar com os outros moradores de Lutie para aprender mais sobre a história do Snowysnow...";
 		close;
-	}
-	else {
+	} else {
 		mes "[Duffle]";
 		mes "Oh...!";
 		mes "Não se esqueça de visitar o verdadeiro Papai Noel! Ele mora aqui em Lutie!";
@@ -391,7 +389,7 @@ xmas,176,236,4	script	Tio Peludo	712,{
 			mes "^3355FFThachentze^000000, a mulher dos vegetais, sabe mais sobre isso. Você devia ir falar com ela. Feliz Natal!";
 			set xmas_npc,5;
 			close;
-		}else{
+		} else{
 			mes "[Cantata]";
 			mes "Humm... Foi Poze quem falou sobre mim? He he he! Sei sim sobre Snowysnow. Pode me considerar com o ponto fraco dele, já que...";
 			next;
@@ -418,8 +416,7 @@ xmas,176,236,4	script	Tio Peludo	712,{
 			mes "Wahhahaha! Por que está me olhando assim?! Meu gosto não é da sua conta! Ao trabalho~!";
 			close;
 		}
-	}
-	else {
+	} else {
 		mes "[Cantata]";
 		mes "Feliz Natal!";
 		mes "Bem vindo a Lutie!";
@@ -514,7 +511,7 @@ xmas,134,112,4	script	Boneco de Neve	710,{
 			mes "[Snowysnow]";
 			mes "Então, quer ser meu amigo? Se você for, serei seu amigo também~!";
 			close2;	cutin "",255;	end;
-		}else{
+		} else{
 			switch(xmas_npc) {
 			case 2:
 				cutin "rutie_snownow01.bmp",2;
@@ -793,7 +790,7 @@ xmas,146,136,4	script	Hashokii	715,{
 			mes "Por que você não procura as crianças? Eles talvez te contem a história completa. Boa sorte~!";
 			set xmas_npc,9;
 			close;
-		}else{
+		} else{
 			mes "[Hashokii]";
 			mes "Ah... ^3355FFSnowysnow^000000?";
 			mes "Claro que conheço ele! Qualquer um que não conheça com certeza não mora aqui! De vez em quando vou lá conversar com ele...";

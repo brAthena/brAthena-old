@@ -1,4 +1,4 @@
-//    ________________________________________________________ 
+//    ________________________________________________________
 //   /                                                        \
 //   |       _           _   _   _                            |
 //   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
@@ -768,16 +768,14 @@ aldeba_in,84,166,4	script	Kafra Denise#alde	117,{
 			close2;
 			cutin "",255;
 			end;
-		}
-		else {
+		} else {
 			set .@kafrapassmoney,countitem(1084)*2000;
 			mes "[Kafra Denise]";
 			mes "Vamos ver...";
 			if (countitem(1084) == 1) {
 				mes "Você tem 1 bilhete de kafra.";
 				mes "Você pode nos vender por 2000 zeny. Você gostaria de revender esse Bilhete de Kafra para a Corporação Kafra?";
-			}
-			else {
+			} else {
 				mes "Você tem "+ countitem(1084) +" Bilhetes de Kafra.";
 				mes "se você quiser nos vender, você receberá "+ .@kafrapassmoney +" zenys. Você gostaria de vender estes de volta para a Corporação Kafra?";
 			}
@@ -1453,8 +1451,7 @@ function	script	F_ClockTowerGate	{
 			delitem getarg(1),1;
 			warp getarg(2),getarg(3),getarg(4);
 			end;
-		}
-		else {
+		} else {
 			mes "[Guardião do Portal]";
 			mes ". . . . . .";
 			mes "Infelizmente você não tem um privilégio";

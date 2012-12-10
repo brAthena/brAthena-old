@@ -1,27 +1,28 @@
-//    ________________________________________________________	
-//   /                                                        \	
-//   |       _           _   _   _                            |	
-//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |	
-//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |	
-//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |	
-//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |	
-//   |                                                        |	
-//   |                    brAthena Script                     |	
-//   |--------------------------------------------------------|	
-//   | Nome do Script: yuno.txt                               |	
-//   |--------------------------------------------------------|	
-//   | Criado por: eA/rA/brA Dev. Team                        |	
-//   |--------------------------------------------------------|	
-//   | Versões eA/rA/brA: 1.1/1.0                             |	
-//   |--------------------------------------------------------|	
-//   | Descrição: Portais da Cidade de Juno.                  |	
-//   |--------------------------------------------------------|	
-//   | Changelog:                                             |	
-//   | 1.0 Criado Cabeçalho [Megasantos]                      |	
-//   | - Anotações                                            |	
-//   \________________________________________________________/	
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: yuno.txt                               |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.1/1.9/1.0                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Portais da Cidade de Juno.                  |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
 
-//= Cidade Juno ================================================
+// Cidade Juno
 yuno,158,15,0	warp	yun-yunfild	1,1,yuno_fild04,231,284
 yuno,117,135,0	warp	yun01	1,1,yuno_in01,116,37
 yuno_in01,116,40,0	warp	yun02	1,1,yuno,120,138
@@ -88,7 +89,7 @@ yuno_in05,196,194,0	warp	yun62	1,1,yuno_in02,85,14
 yuno,245,147,0	warp	yun65	1,1,yuno_in01,101,88
 yuno_in01,101,85,0	warp	yun66	1,1,yuno,245,144
 
-// Yuno In05 (Entrando em Portais Aleatórios) -------------------------------------------
+// Yuno In05 (Entrando em Portais Aleatórios)
 yuno_in05,153,141,0	script	#yun63	45,1,1,{
 	if(rand(2)){
 		warp "yuno_in05",192,102;
@@ -97,7 +98,7 @@ yuno_in05,153,141,0	script	#yun63	45,1,1,{
 	}
 	end;
 }
-// Yuno In05 (Portais Aleatórios - Forma de Cruz) -------------------------------------
+// Yuno In05 (Portais Aleatórios - Forma de Cruz)
 yuno_in05,196,102,0	script	#yun64	45,1,1,{
 	set @warp0,rand(3);
 	if(@warp0==1) goto w2;
@@ -130,7 +131,7 @@ yuno_in05,181,91,0	script	#yun67	45,1,1,{
 	}
 	end;
 }
-// Yuno In05 (Portais Aleatórios - Forma de T) -----------------------------------------
+// Yuno In05 (Portais Aleatórios - Forma de T)
 yuno_in05,148,82,0	script	#yun68	45,1,1,{
 	set @warp0,rand(3);
 	if(@warp0==1) goto w2;
@@ -155,7 +156,7 @@ yuno_in05,136,71,0	script	#yun70	45,1,1,{
 w2:	warp "yuno_in05",16,185;  end;
 w3:	warp "yuno_in05",176,48;  end;
 }
-// Yuno In05 (Portais Aleatórios - Outro) --------------------------------------------
+// Yuno In05 (Portais Aleatórios - Outro)
 yuno_in05,16,188,0	script	#yun71	45,1,1,{
 	set @warp0,rand(3);
 	if(@warp0==1) goto w2;
@@ -180,7 +181,7 @@ yuno_in05,176,52,0	script	#yun73	45,1,1,{
 w2:	warp "yuno_in05",176,13; end;
 w3:	warp "yuno_in05",136,75; end;
 }
-// Yuno In05 (Destino - Sala) ----------------------------------------------
+// Yuno In05 (Destino - Sala)
 yuno_in05,40,178,0	script	#yun74	45,1,1,{
 	set @warp0,rand(3);
 	if(@warp0==1) goto w2;
@@ -197,11 +198,11 @@ yuno_in05,47,186,0	script	#yun75	45,1,1,{
 w2:	warp "yuno_in05",176,13; end;
 w3:	warp "yuno_in05",136,75; end;
 }
-// Yuno In05 (Destino - Escapar Portais Aleatórios) ------------------------------
+// Yuno In05 (Destino - Escapar Portais Aleatórios)
 yuno_in05,31,167,0	warp	yun76	1,1,yuno_in05,50,85
 yuno_in05,50,88,0	warp	yun77	1,1,yuno_in02,85,14
 
-// Construções do Governo de Juno ---------------------------------------------------
+// Construções do Governo de Juno
 yuno_pre,52,22,0	warp	yungvn01	1,1,yuno_pre,37,23
 yuno_pre,87,22,0	warp	yungvn02	1,1,yuno_pre,102,22
 yuno_pre,41,23,0	warp	yungvn03	1,1,yuno_pre,56,22

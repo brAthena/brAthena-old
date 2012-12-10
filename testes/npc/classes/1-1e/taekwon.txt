@@ -1,4 +1,4 @@
-//    ________________________________________________________ 
+//    ________________________________________________________
 //   /                                                        \
 //   |       _           _   _   _                            |
 //   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
@@ -387,11 +387,10 @@ payon,157,141,5	script	Phoenix#TKJobChange	753,{
 			mes "You are still young, so";
 			mes "I assume you'll want a job";
 			mes "title. Mm. In that case, you";
-			if(Sex == 0) {
+			if(Sex == 0)
 				mes "are now a ^FF0000Taekwon Girl^000000.";
-			} else {
+			else
 				mes "are now a ^FF0000Taekwon Boy^000000.";
-			}
 			mes "Yes, that sounds good. ";
 			next;
 			mes "[Phoenix]";
@@ -425,4 +424,3 @@ payon,157,141,5	script	Phoenix#TKJobChange	753,{
 		close;
 	}
 }
-

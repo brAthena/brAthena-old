@@ -1,4 +1,4 @@
-//    ________________________________________________________ 
+//    ________________________________________________________
 //   /                                                        \
 //   |       _           _   _   _                            |
 //   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
@@ -194,7 +194,7 @@ rachel,272,141,3	script	Himuhimu#aru	921,{
 	close;
 }
 
-rachel,268,120,1	script	Guarda de Rachel#1aru::RaGuard	934,{
+rachel,268,120,1	script	Guarda de Rachel#1aru::RaGuarda	934,{
 	mes "[Guarda de Rachel]";
 	mes "Bem-Vindo à Rachel";
 	mes "a capital de Arunafeltz.";
@@ -205,8 +205,8 @@ rachel,268,120,1	script	Guarda de Rachel#1aru::RaGuard	934,{
 	close;
 }
 
-rachel,125,33,5	duplicate(RaGuard)	Guarda de Rachel#2aru	934
-rachel,31,130,3	duplicate(RaGuard)	Guarda de Rachel#3aru	934
+rachel,125,33,5	duplicate(RaGuarda)	Guarda de Rachel#2aru	934
+rachel,31,130,3	duplicate(RaGuarda)	Guarda de Rachel#3aru	934
 
 rachel,76,77,3	script	Sacerdote de Rachel	927,{
 	mes "[Sacerdote de Rachel]";
@@ -228,7 +228,6 @@ ra_fild12,45,230,3	script	Guia do Dirigível#Fild	934,{
 	close;
 }
 
-//rachel,201,174,3	script	Discípulo de Freya	927,{
 rachel,201,174,3	script	Discípulo de Freya	926,{
 	mes "[Discípulo de Freya]";
 	mes "Todos nós de Arunafeltz acreditamos";
@@ -436,8 +435,6 @@ ra_temin,138,64,5	script	Criança Seguidora#in1	921,{
 	close;
 }
 
-
-//===== Set 2 ================================================
 ra_fild12,283,208,3	script	Aprendiz de Monge	914,{
 	if ($rachel_donate < 10000) {
 		mes "[Papaii]";

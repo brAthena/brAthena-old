@@ -1,4 +1,4 @@
-//    ________________________________________________________ 
+//    ________________________________________________________
 //   /                                                        \
 //   |       _           _   _   _                            |
 //   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
@@ -547,8 +547,7 @@ lighthalzen,182,102,3	script	Lucius#zen5	866,{
 				mes "para fazer uma doação aos";
 				mes "necessitados, jovem.";
 				close;
-			}
-			else if (.@input == 0) {
+			} else if (.@input == 0) {
 				mes "[Lucius]";
 				mes "Que decepcionante.";
 				mes "Mas você deve ter suas";
@@ -870,14 +869,13 @@ lhz_in02,283,276,4	script	Customer#amano12	815,{
 	mes "quer me chamar para sair ou algo assim?";
 	next;
 	mes "[Sei]";
-	if (Sex) {	//Testar (Architest)
+	if (Sex == 1) {
 		mes "Bem, se ele quiser,";
 		mes "ele não deveria ser mais";
 		mes "corajoso? Ou vocês,";
 		mes "garotos, são mais tímidos do";
 		mes "que eu pensava?";
-	}
-	else {
+	} else {
 		mes "Bem, ele até que é";
 		mes "bonitinho. Nossa, isso";
 		mes "seria tão mais fácil se";
@@ -3183,5 +3181,6 @@ lhz_in01,221,131,7	script	Cientista#li_01	865,{
 		end;
 	}
 }
+
 // Cogumelo de Lighthalzen
 lhz_in01,157,54,0,0	monster	Cogumelo Vermelho	1085,1,120000,100000,0

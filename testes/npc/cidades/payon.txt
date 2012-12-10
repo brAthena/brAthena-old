@@ -1,4 +1,4 @@
-//    ________________________________________________________ 
+//    ________________________________________________________
 //   /                                                        \
 //   |       _           _   _   _                            |
 //   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
@@ -816,8 +816,8 @@ payon_in03,99,190,4	script	Chefe#payon	107,2,2,{
 OnTouch:
 	if (BaseLevel < 30) {
 		mes "[Guarda]";
-		mes "Hey...";
-		mes "Hey...!";
+		mes "Ei...";
+		mes "E...!";
 		mes "Mostre o seu respeito";
 		mes " ao nosso chefe!";
 		close;
@@ -825,9 +825,9 @@ OnTouch:
 	if (BaseLevel > 30) {
 		set .@oldman_random,rand(1,2);
 		if (.@oldman_random == 1) {
-			mes "[Guard]";
-			mes "Hey...";
-			mes "Hey...!";
+			mes "[Guarda]";
+			mes "Ei...";
+			mes "Ei...!";
 			mes "mostre respeito";
 			mes "ao nosso chefe!";
 			next;
@@ -937,23 +937,14 @@ OnTouch:
 		mes "É melhor descansar um pouco.";
 		mes "Por favor, se";
 		mes "cuide bem.";
-
-		//This actually never happens on iRO
-		//if (.@oldman_random == 2) {
-		//	mes "[Guard]";
-		//	mes "The Chief is";
-		//	mes "taking a rest.";
-		//	mes "Would you mind";
-		//	mes "coming back later?";
-		//}
 	}
 	close;
 }
 
-payon_in03,102,185,5	script	Guard#payon	708,{
-	mes "[Guard]";
+payon_in03,102,185,5	script	Guarda#payon2	708,{
+	mes "[Guarda]";
 	if (BaseLevel < 30) {
-		mes "Hey...!";
+		mes "Ei...!";
 		mes "Você não está autorizado";
 		mes "a ficar aqui!";
 		mes "Volte agora!";
@@ -966,7 +957,7 @@ payon_in03,102,185,5	script	Guard#payon	708,{
 	close;
 }
 
-// Payon Archer Village
+// Vilarejo dos Arqueiros - Payon
 //============================================================
 pay_arche,77,131,2	script	Arqueiro Joe#payon	88,{
 	mes "[Arqueiro Joe]";

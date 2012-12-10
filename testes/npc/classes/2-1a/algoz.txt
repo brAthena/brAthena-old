@@ -50,8 +50,7 @@ valkyrie,44,58,5	script	Algoz#Valquíria	725,{
 		mes "nos vê se não de baixo.";
 		mes "Ninguém...";
 		close;
-	}
-	else if (ADVJOB == Job_Assassin_Cross && Class == Job_Thief_High && JobLevel > 39) {
+	} else if (ADVJOB == Job_Assassin_Cross && Class == Job_Thief_High && JobLevel > 39) {
 		mes "[Algoz]";
 		mes "O momento chegou.";
 		mes "O mundo precisa de você...";

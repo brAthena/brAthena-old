@@ -1,4 +1,4 @@
-//    ________________________________________________________ 
+//    ________________________________________________________
 //   /                                                        \
 //   |       _           _   _   _                            |
 //   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
@@ -26,15 +26,15 @@
 
 // Prontera
 //============================================================
-prontera,160,330,0	script	Guarda#pront::prtguard	105,{
+prontera,160,330,0	script	Guarda#pront::prtguarda	105,{
 	mes "[Prontera Guard]";
 	mes "Bem vindo á  Prontera.";
 	close;
 }
 
-prontera,223,99,1	duplicate(prtguard)	Guarda#2pront	105
-prontera,229,104,5	duplicate(prtguard)	Guarda#3pront	105
-prontera,47,339,5	duplicate(prtguard)	Guarda#4pront	105
+prontera,223,99,1	duplicate(prtguarda)	Guarda#2pront	105
+prontera,229,104,5	duplicate(prtguarda)	Guarda#3pront	105
+prontera,47,339,5	duplicate(prtguarda)	Guarda#4pront	105
 
 prontera,101,288,3	script	Shuger#pront	98,{
 	mes "[Shuger]";
@@ -156,15 +156,13 @@ prontera,216,70,2	script	Strife#pront	48,{
 			mes "[Strife]";
 			mes "Heh! Eu vou com certeza! 'Strife, o cavaleiro corajoso. Soa legal, não é?";
 			close;
-		}
-		else {
+		} else {
 			mes "[Strife]";
 			mes "Lute...!";
 			mes "lute, lute...LUTE!!";
 			close;
 		}
-	}
-	else if (Class != Job_Novice) {
+	} else if (Class != Job_Novice) {
 		if (event_prt_nov_dreamtalk == 1) {
 			mes "[Strife]";
 			mes "Ei...!";
@@ -181,8 +179,7 @@ prontera,216,70,2	script	Strife#pront	48,{
 			mes "[Strife]";
 			mes "Bom, isto é pra você para te ajudar a ficar ainda mais forte. Acho que devo lhe agradecer por ser um bom exemplo";
 			close;
-		}
-		else if (event_prt_nov_dreamtalk == 2) {
+		} else if (event_prt_nov_dreamtalk == 2) {
 			mes "[Strife]";
 			mes "Lute! Lute!";
 			close;

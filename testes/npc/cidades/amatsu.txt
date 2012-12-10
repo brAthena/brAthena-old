@@ -1,4 +1,4 @@
-//    ________________________________________________________ 
+//    ________________________________________________________
 //   /                                                        \
 //   |       _           _   _   _                            |
 //   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
@@ -156,9 +156,9 @@ amatsu,194,79,5	script	Capitão do Mar#ama2	709,{
 	close;
 }
 
-// Generic Amatsu NPCs
+// NPCs Genéricos de Amatsu
 //=====================================================
-amatsu,230,160,3	script	Well-side Maiden#ama	757,{
+amatsu,230,160,3	script	Yuuko#ama	757,{
 	mes "[Yuuko]";
 	mes "Costumo vir até esse poço para";
 	mes "pegar água, mas nunca venho se o";

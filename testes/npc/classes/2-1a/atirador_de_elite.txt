@@ -40,8 +40,7 @@ valkyrie,44,55,5	script	Atirador de Elite#Valquíria	727,{
 		mes "visão para estilos";
 		mes "de batalha.";
 		close;
-	}
-	else if (ADVJOB == Job_Sniper && Class == Job_Archer_High && JobLevel > 39) {
+	} else if (ADVJOB == Job_Sniper && Class == Job_Archer_High && JobLevel > 39) {
 		mes "[Atirador de Elite]";
 		mes "O mundo está";
 		mes "necessitando de Arqueiros poderosos";

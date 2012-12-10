@@ -50,7 +50,7 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 				mes "[Gatuna Ajudante]";
 				mes "Ao se tornar um gatuno, irá viver como um Gatuno. Agora, vá em frente! Próximo~";
 				close;
-			}else{
+			} else{
 				mes "[Gatuna Ajudante]";
 				if (sex)
 					mes "Ei, cara.";
@@ -58,7 +58,7 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 					mes "Ei, moça~";
 				close;
 			}
-		}else{
+		} else{
 			mes "[Gatuna Ajudante]";
 			if (sex)
 				mes "Ei, cara.";
@@ -522,8 +522,7 @@ moc_ruins,141,125,3	script	Bogus	83,{
 		mes "Como você já é um Gatuno, não pode entrar aqui... Esse lugar é apenas para aprendizes que querem se tornar Gatunos.";
 		mes "Por que você não sai dessa cidade e se torna ainda mais forte?";
 		close;
-	}
-	else if (BaseJob != Job_Novice && BaseJob != Job_Thief) {
+	} else if (BaseJob != Job_Novice && BaseJob != Job_Thief) {
 		mes "[Bogus]";
 		switch(rand(4)) {
 		case 1:
@@ -559,8 +558,7 @@ moc_ruins,141,125,3	script	Bogus	83,{
 		case 4: warp "job_thief1",196,331; end;
 		default: warp "job_thief1",309,234; end;
 		}
-	}
-	else if (job_thief_q == 2) {
+	} else if (job_thief_q == 2) {
 		mes "[Bogus]";
 		mes "Humm... Você veio aqui fazer o teste, não é?";
 		mes "Qual o seu nome? "+strcharinfo(0)+"? ... é... é o que está escrito aqui na lista...";
@@ -574,8 +572,7 @@ moc_ruins,141,125,3	script	Bogus	83,{
 		case 4: warp "job_thief1",196,331; end;
 		default: warp "job_thief1",309,234; end;
 		}
-	}
-	else if (job_thief_q == 1) {
+	} else if (job_thief_q == 1) {
 		mes "[Bogus]";
 		mes "....Sinto um cheiro estranho.....";
 		mes "Você é um.....candidato a Gatuno...?";

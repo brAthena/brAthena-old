@@ -1,4 +1,4 @@
-//    ________________________________________________________ 
+//    ________________________________________________________
 //   /                                                        \
 //   |       _           _   _   _                            |
 //   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.1/1.0                             |
+//   | Versões eA/rA/brA: 1.1/1.8/1.0                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Configuração Mapflag que desabilita uso de  |
 //   | Galho Seco nos mapas.                                  |
@@ -23,8 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-
-// Cidades ======================
+// ========== Cidades ==========
 ayo_in01	mapflag	nobranch
 ayo_in02	mapflag	nobranch
 alb_ship	mapflag	nobranch
@@ -111,7 +110,7 @@ ve_in02	mapflag	nobranch
 thor_camp	mapflag	nobranch
 cave	mapflag	nobranch
 
-// Quests das Classes ==================
+// ========== Quests das Classes ==========
 job_sword1	mapflag	nobranch
 job_thief1	mapflag	nobranch
 // 2-1
@@ -134,7 +133,7 @@ que_ng	mapflag	nobranch
 job_soul	mapflag	nobranch
 job_star	mapflag	nobranch
 
-// Quests Especiais =======
+// ======= Quests Especiais =======
 que_god01	mapflag	nobranch
 que_god02	mapflag	nobranch
 que_bingo	mapflag	nobranch
@@ -151,7 +150,7 @@ que_rachel	mapflag	nobranch
 que_san04	mapflag	nobranch
 que_thor	mapflag	nobranch
 
-// Castelos ===============
+// ======= Castelos =======
 //alde_gld	mapflag	nobranch
 aldeg_cas01	mapflag	nobranch
 aldeg_cas02	mapflag	nobranch
@@ -175,13 +174,12 @@ prtg_cas02	mapflag	nobranch
 prtg_cas03	mapflag	nobranch
 prtg_cas04	mapflag	nobranch
 prtg_cas05	mapflag	nobranch
-//schg_gld
 schg_cas01	mapflag	nobranch
 schg_cas02	mapflag	nobranch
 schg_cas03	mapflag	nobranch
 schg_cas04	mapflag	nobranch
 schg_cas05	mapflag	nobranch
-//aru_gld
+
 arug_cas01	mapflag	nobranch
 arug_cas02	mapflag	nobranch
 arug_cas03	mapflag	nobranch
@@ -194,14 +192,14 @@ nguild_gef	mapflag	nobranch
 nguild_pay	mapflag	nobranch
 nguild_prt	mapflag	nobranch
 
-// Arenas GvG ==================
+// ======= Arenas GvG =======
 guild_vs1	mapflag	nobranch
 guild_vs2	mapflag	nobranch
 guild_vs3	mapflag	nobranch
 guild_vs4	mapflag	nobranch
 guild_vs5	mapflag	nobranch
 
-// Arenas ======================
+// ======= Arenas =======
 arena_room	mapflag	nobranch
 force_1-1	mapflag	nobranch
 force_1-2	mapflag	nobranch
@@ -235,11 +233,11 @@ prt_are01	mapflag	nobranch
 //wizard_2-1	mapflag	nobranch
 //wizard_3-1	mapflag	nobranch
 
-// Arenas PvP ==================
+// ======= Arenas PvP =======
 pvp_y_room	mapflag	nobranch
 pvp_n_room	mapflag	nobranch
 
-// Mapas das cidades principais ==============
+// ======= Mapas das cidades principais =======
 alberta	mapflag	nobranch
 aldebaran	mapflag	nobranch
 amatsu	mapflag	nobranch
@@ -265,7 +263,7 @@ yuno	mapflag	nobranch
 rachel	mapflag	nobranch
 veins	mapflag	nobranch
 
-// Aldebaran Turbo Track ========
+// ======= Aldebaran Turbo Track =======
 turbo_room	mapflag	nobranch
 turbo_n_1	mapflag	nobranch
 turbo_n_4	mapflag	nobranch
@@ -275,11 +273,11 @@ turbo_e_4	mapflag	nobranch
 turbo_e_8	mapflag	nobranch
 turbo_e_16	mapflag	nobranch
 
-// Corridas de Monstros ===============
+// ======= Corridas de Monstros =======
 p_track01	mapflag	nobranch
 p_track02	mapflag	nobranch
 
-// Visões de Okolnir ===========
+// ======= Visões de Okolnir =======
 que_qsch01	mapflag	nobranch
 que_qsch02	mapflag	nobranch
 que_qsch03	mapflag	nobranch
@@ -291,7 +289,7 @@ que_qaru03	mapflag	nobranch
 que_qaru04	mapflag	nobranch
 que_qaru05	mapflag	nobranch
 
-// Episódio 12 ===========
+// ======= Episódio 12 =======
 1@cata	mapflag	nobranch
 2@cata	mapflag	nobranch
 e_tower	mapflag	nobranch
@@ -302,7 +300,7 @@ e_tower	mapflag	nobranch
 5@tower	mapflag	nobranch
 6@tower	mapflag	nobranch
 
-// Episódio 13.1 ===========
+// ======= Episódio 13.1 =======
 mid_camp	mapflag	nobranch
 mid_campin	mapflag	nobranch
 man_fild01	mapflag	nobranch
@@ -314,7 +312,7 @@ arug_que01	mapflag	nobranch
 1@orcs	mapflag	nobranch
 2@orcs	mapflag	nobranch
 
-// Batalhas Campais ==============
+// ======= Batalhas Campais =======
 bat_c01	mapflag	nobranch
 bat_c02	mapflag	nobranch
 bat_c03	mapflag	nobranch
@@ -324,7 +322,7 @@ bat_b02	mapflag	nobranch
 bat_a01	mapflag	nobranch
 bat_a02	mapflag	nobranch
 
-// Episódio 13.2 ===========
+// ======= Episódio 13.2 =======
 1@nyd	mapflag	nobranch
 2@nyd	mapflag	nobranch
 manuk	mapflag	nobranch
@@ -334,7 +332,7 @@ splendide	mapflag	nobranch
 spl_in01	mapflag	nobranch
 spl_in02	mapflag	nobranch
 
-// Mapas das classes 3rd ===========
+// ======= Mapas das classes 3rd =======
 moc_para01	mapflag	nobranch
 job3_arch01	mapflag	nobranch
 job3_arch02	mapflag	nobranch
@@ -351,23 +349,23 @@ job3_war01	mapflag	nobranch
 job3_war02	mapflag	nobranch
 jupe_core2	mapflag	nobranch
 
-// Brasilis ===========
+// ======= Brasilis =======
 brasilis	mapflag	nobranch
 bra_in01	mapflag	nobranch
 
-// Episódio 13.3 ===========
+// ======= Episódio 13.3 =======
 dicastes01	mapflag	nobranch
 dicastes02	mapflag	nobranch
 dic_in01	mapflag	nobranch
 s_atelier	mapflag	nobranch
 
-// Episódio 14.1 & Dewata ===========
+// ======= Episódio 14.1 & Dewata =======
 mora	mapflag	nobranch
 1@mist	mapflag	nobranch
 dewata	mapflag	nobranch
 dew_in01	mapflag	nobranch
 
-// Episódio Zero & Porto de Malaya ===========
+// ======= Episódio Zero & Porto de Malaya =======
 malangdo	mapflag	nobranch
 mal_in01	mapflag	nobranch
 mal_in02	mapflag	nobranch
@@ -382,7 +380,7 @@ ma_in01	mapflag	nobranch
 1@ma_c	mapflag	nobranch
 1@ma_b	mapflag	nobranch
 
-// Episódio 14.2 ===========
+// ======= Episódio 14.2 =======
 eclage	mapflag	nobranch
 ecl_in01	mapflag	nobranch
 ecl_in02	mapflag	nobranch
@@ -393,6 +391,6 @@ ecl_hub01	mapflag	nobranch
 
 //evt_zombie	mapflag	nobranch
 
-// Guerra dos Porings ==================
+// ======= Guerra dos Porings =======
 poring_w01	mapflag	nobranch
 poring_w02	mapflag	nobranch

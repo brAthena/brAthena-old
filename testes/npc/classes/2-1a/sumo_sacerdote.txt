@@ -39,8 +39,7 @@ valkyrie,44,42,5	script	Sumo-Sacerdote#Valquíria	60,{
 		mes "e proteção. Livra-nos";
 		mes "das forças do mal...";
 		close;
-	}
-	else if (ADVJOB == Job_High_Priest && Class == Job_Acolyte_High && JobLevel > 39) {
+	} else if (ADVJOB == Job_High_Priest && Class == Job_Acolyte_High && JobLevel > 39) {
 		mes "[Sumo-Sacerdote]";
 		mes "Nosso mundo está";
 		mes "precisando de pessoas com";
