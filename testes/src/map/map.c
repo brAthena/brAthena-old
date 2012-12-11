@@ -3472,7 +3472,7 @@ void sv_readsqldb (char* name, char* next_name, int param_size, int max_allowed,
 			count++;
 		}
 		
-		ShowSQL(read_message("Source", "map_sv_readsqldb"), CL_WHITE, count, CL_RESET, CL_WHITE, db_name[i], CL_RESET);
+		ShowSQL(read_message("Source.map.map_sv_readsqldb"), CL_WHITE, count, CL_RESET, CL_WHITE, db_name[i], CL_RESET);
 		Sql_FreeResult(dbmysql_handle);
 	}
 }
@@ -3607,7 +3607,7 @@ int db_sql_init(void)
 {
 	dbmysql_handle = Sql_Malloc();
 
-	ShowInfo(read_message("Source", "map_db_sql_init"), CL_WHITE, db_db2name, CL_RESET, CL_WHITE, db_ip, CL_RESET);
+	ShowInfo(read_message("Source.map.map_db_sql_init"), CL_WHITE, db_db2name, CL_RESET, CL_WHITE, db_ip, CL_RESET);
 	
 	if(SQL_ERROR == Sql_Connect(dbmysql_handle, db_id, db_pw, db_ip, db_port, db_db2name))
 		exit(EXIT_FAILURE);

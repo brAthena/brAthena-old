@@ -1317,7 +1317,7 @@ int parse_login(int fd)
 
 	if( session[fd]->flag.eof )
 	{
-		ShowInfo(read_message("Source", "login_eof_ck"), CL_WHITE, ip, CL_RESET);
+		ShowInfo(read_message("Source.login.login_eof_ck"), CL_WHITE, ip, CL_RESET);
 		do_close(fd);
 		return 0;
 	}
