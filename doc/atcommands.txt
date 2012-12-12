@@ -3,7 +3,7 @@
 //===== By: ==================================================
 //= rAthena Dev Team
 //===== Current Version: =====================================
-//= 20120915
+//= 20121127
 //===== Description: =========================================
 //= List of available atcommands and their functions.
 //============================================================
@@ -64,7 +64,7 @@ Server Uptime: 3 days, 8 hours, 6 minutes, 4 seconds.
 
 @refresh
 
-Syncronizes the player's position on the client with the one stored on the server.
+Synchronizes the player's position on the client with the one stored on the server.
 
 ---------------------------------------
 
@@ -190,16 +190,17 @@ Sets a mapflag for the current map (1 = On, 0 = Off).
 
 ---------------------------------------
 
-@addwarp <map> <x> <y>
+@addwarp <map> <x> <y> <npc name>
 
 Creates a warp portal on the character's current coordinates that lasts until the next reboot.
-The name of the new warp portal will be displayed only once in the chat window.
+The name parameter is mandatory and if it already exists, the server will automagically assign a name,
+and it will be displayed only once in the chat window.
 
 Example:
-@addwarp prontera 50 50
+@addwarp prontera 50 50 my_warp_sample
 
 Output:
-New warp NPC 'warp_4_170_198' created.
+New warp NPC 'my_warp_sample' created.
 
 ---------------------------------------
 
@@ -280,7 +281,7 @@ prontera (x= 165, y= 198) 01 00 00 00 00
 | 2. Database Commands |
 ========================
 
-@monsterinfo <mob name/ID>
+@mobinfo <mob name/ID>
 
 Displays monster information (rates, stats, drops, MVP data).
 
@@ -504,6 +505,26 @@ If @jail was used, the chat window will display "You have been jailed indefinite
 
 ---------------------------------------
 
+@accinfo <player name/account id>
+
+Searches for an account by ID or a character name, and outputs detailed information.
+Password will only be displayed for group levels lower than yours.
+To search partial names, "%" can be used as a wildcard.
+
+Example:
+@accinfo Test%
+
+Output:
+-- Account 2000001 --
+User: user123 | GM Group: 0 | State: 0
+Password: password123
+Account e-mail: a@a.com
+Last IP: 127.0.0.1 (Unknown)
+This user has logged 27 times, the last time were at 2012-11-24 17:29:07
+-- Character Details --
+[Slot/CID: 0/150001] Test1 | High Swordsman | Level: 99/50 | Off
+[Slot/CID: 1/150002] Test2 | Rune Knight | Level: 150/50 | On
+
 ======================
 | 4. Action Commands |
 ======================
@@ -645,7 +666,7 @@ Drops all inventory and equipped items onto the floor.
 
 @storeall
 
-Places all inventory and equpiped items directly into your Kafra Storage.
+Places all inventory and equipped items directly into your Kafra Storage.
 
 ---------------------------------------
 
@@ -655,9 +676,10 @@ Deletes all inventory items (not equipped items).
 
 ---------------------------------------
 
+@cleanarea
 @cleanmap
 
-Deletes floor items in sight range.
+Deletes floor items in sight range or across the entire map.
 
 ---------------------------------------
 
@@ -704,11 +726,11 @@ If no coordinates are entered, a random location will be chosen.
 
 ---------------------------------------
 
-@goto <player name/ID>
+@jumpto <player name/ID>
 @follow <player name>
 
 Warps to the specified player.
-Aditionally, @follow will track the player's movements until turned off.
+Additionally, @follow will track the player's movements until turned off.
 
 ---------------------------------------
 
@@ -721,7 +743,7 @@ Additionally, @recallall will recall the entire server.
 
 ---------------------------------------
 
-@tonpc <NPC Name>
+@tonpc <npc name>
 
 Warps to the specified npc.
 
@@ -790,7 +812,7 @@ Resets a Star Gladiator's marked maps.
 
 ---------------------------------------
 
-@job <job name/ID>
+@jobchange <job name/ID>
 
 Changes your job.
 If no job is given, a list of all available jobs will be returned.
@@ -896,16 +918,16 @@ Fully heals HP and SP.
 @raisemap
 @raise
 
-Ressurection commands.
+Resurrection commands.
 @alive will revive the attached player.
 @raisemap will revive all players on the map.
 @raise will revive all players on the server.
 
 ---------------------------------------
 
-@disguise <monster/NPC name/ID>
+@disguise <monster/npc name/ID>
 @undisguise
-@disguiseall <monster/NPC name/ID>
+@disguiseall <monster/npc name/ID>
 @undisguiseall
 
 Disguises or undisguises player as a monster/NPC sprite.
@@ -913,7 +935,7 @@ Additionally, @disguiseall/@undisguiseall will disguise all online players.
 
 ---------------------------------------
 
-@battleignore
+@monsterignore
 
 Makes you immune to attacks (monsters/players/skills cannot target/hit you).
 
@@ -926,7 +948,7 @@ Toggles GM Hide (total invisibility to characters and monsters).
 
 ---------------------------------------
 
-@npctalk <NPC Name> <message>
+@npctalk <npc name> <message>
 
 Command what other npcs say.
 Displays the message above the NPC's head (like the 'npctalk' script command).
@@ -999,11 +1021,13 @@ Except for /nb and /nlb, the message will be prefixed with the name of the attac
 @kami <message>
 @kamib <message>
 @kamic <color> <message>
+@lkami <message>
 
 Announces a message without a name prefix.
 @kami will broadcast in yellow text.
 @kamib will broadcast in blue text.
 @kamic will broadcast in the specified color (a hexadecimal value).
+@lkami will broadcast on the attached character's current map.
 
 Example:
 @kamic FF0000 This message is in red.
@@ -1133,14 +1157,14 @@ If no permission is given, a list of available permissions will be returned.
 
 ---------------------------------------
 
-@npcmove <x> <y> <npc_name>
+@npcmove <x> <y> <npc name>
 
 Moves an NPC to a specified coordinate on its map.
 
 ---------------------------------------
 
-@hidenpc <NPC Name>
-@shownpc <NPC Name>
+@hidenpc <npc name>
+@shownpc <npc name>
 
 Toggles the visibility of an NPC's sprite.
 
@@ -1155,7 +1179,7 @@ Example:
 
 ---------------------------------------
 
-@unloadnpc <NPC Name>
+@unloadnpc <npc name>
 
 Unloads an NPC.
 
@@ -1227,7 +1251,7 @@ You must be the guildmaster to use this command.
 
 ---------------------------------------
 
-@gstorage
+@guildstorage
 
 Opens your guild storage.
 
@@ -1239,7 +1263,7 @@ Changes guild level by the specified amount.
 
 ---------------------------------------
 
-@disguiseguild <monster/NPC name/ID> <guild name/ID>
+@disguiseguild <monster/npc name/ID> <guild name/ID>
 @undisguiseguild
 
 Disguises or undisguises all online characters of a guild.
@@ -1312,13 +1336,13 @@ Sets the hunger level of your pet, with 100 being "Stuffed".
 | 9. Homunculus Commands |
 ==========================
 
-@makehomun <homunculus ID>
+@makehomun <Homunculus ID>
 
 Creates the specified homunculus.
 
 ---------------------------------------
 
-@homevolve
+@homevolution
 
 Evolves your homunculus, if possible.
 
@@ -1361,7 +1385,7 @@ Command what the player's homunculus will say.
 
 ---------------------------------------
 
-@hlvl <+/- amount>
+@homlevel <+/- amount>
 
 Changes homunculus level by the specified amount.
 
