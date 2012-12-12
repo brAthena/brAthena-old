@@ -293,3 +293,12 @@ pay_arche,99,167,4	duplicate(Mercenary Manager#main)	Mercenary Manager#Bow	732
 }
 prontera,30,337,4	duplicate(MercMerchant)	Mercenary Merchant#Spear	700
 pay_arche,102,167,5	duplicate(MercMerchant)	Mercenary Merchant#Bow	879
+
+/*Pré-renovação*/
+izlude,47,139,5	duplicate(Mercenary Manager#main)	Mercenary Manager#Sword	734
+izlude,56,139,4	duplicate(MercMerchant)	Mercenary Merchant#Sword	892
+
+/*Renovação*/
+izlude,47,169,5	duplicate(Mercenary Manager#main)	Mercenary Manager#Sword	734
+izlude,56,169,4	duplicate(MercMerchant)	Mercenary Merchant#Sword	892
+
