@@ -540,18 +540,18 @@ CREATE TABLE IF NOT EXISTS `elemental_db` (
   PRIMARY KEY (`ID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
-REPLACE INTO elemental_db VALUES(2114,'EL_AGNI_S','Agni',100,5000,1,1,100,100,10,10,1,1,1,1,1,1,5,12,0,0,83,200,504,1020,360);
-REPLACE INTO elemental_db VALUES(2115,'EL_AGNI_M','Agni',100,7500,1,1,250,250,25,25,1,1,1,1,1,1,5,12,1,0,83,200,504,1020,360);
-REPLACE INTO elemental_db VALUES(2116,'EL_AGNI_L','Agni',100,10000,1,1,500,500,50,50,1,1,1,1,1,1,5,12,2,0,83,200,504,1020,360);
-REPLACE INTO elemental_db VALUES(2117,'EL_AQUA_S','Aqua',100,5000,1,1,100,100,10,10,1,1,1,1,1,1,5,12,0,0,81,200,504,1020,360);
-REPLACE INTO elemental_db VALUES(2118,'EL_AQUA_M','Aqua',100,7500,1,1,250,250,25,25,1,1,1,1,1,1,5,12,1,0,81,200,504,1020,360);
-REPLACE INTO elemental_db VALUES(2119,'EL_AQUA_L','Aqua',100,10000,1,1,500,500,50,50,1,1,1,1,1,1,5,12,2,0,81,200,504,1020,360);
-REPLACE INTO elemental_db VALUES(2120,'EL_VENTUS_S','Ventus',100,5000,1,4,100,100,10,10,1,1,1,1,1,1,5,12,0,0,84,200,504,1020,360);
-REPLACE INTO elemental_db VALUES(2121,'EL_VENTUS_M','Ventus',100,7500,1,4,250,250,25,25,1,1,1,1,1,1,5,12,1,0,84,200,504,1020,360);
-REPLACE INTO elemental_db VALUES(2122,'EL_VENTUS_L','Ventus',100,10000,1,4,500,500,50,50,1,1,1,1,1,1,5,12,2,0,84,200,504,1020,360);
-REPLACE INTO elemental_db VALUES(2123,'EL_TERA_S','Tera',100,5000,1,1,100,100,10,10,1,1,1,1,1,1,5,12,0,0,82,200,504,1020,360);
-REPLACE INTO elemental_db VALUES(2124,'EL_TERA_M','Tera',100,7500,1,1,250,250,25,25,1,1,1,1,1,1,5,12,1,0,82,200,504,1020,360);
-REPLACE INTO elemental_db VALUES(2125,'EL_TERA_L','Tera',100,10000,1,1,500,500,50,50,1,1,1,1,1,1,5,12,2,0,82,200,504,1020,360);
+REPLACE INTO elemental_db VALUES(2114,'EL_AGNI_S','Agni',100,0,1,1,0,0,0,0,0,0,0,0,0,0,5,12,0,0,83,200,504,1020,360);
+REPLACE INTO elemental_db VALUES(2115,'EL_AGNI_M','Agni',100,0,1,1,0,0,0,0,0,0,0,0,0,0,5,12,1,0,83,200,504,1020,360);
+REPLACE INTO elemental_db VALUES(2116,'EL_AGNI_L','Agni',100,0,1,1,0,0,0,0,0,0,0,0,0,0,5,12,2,0,83,200,504,1020,360);
+REPLACE INTO elemental_db VALUES(2117,'EL_AQUA_S','Varuna',100,0,1,1,0,0,0,0,0,0,0,0,0,0,5,12,0,0,81,200,504,1020,360);
+REPLACE INTO elemental_db VALUES(2118,'EL_AQUA_M','Varuna',100,0,1,1,0,0,0,0,0,0,0,0,0,0,5,12,1,0,81,200,504,1020,360);
+REPLACE INTO elemental_db VALUES(2119,'EL_AQUA_L','Varuna',100,0,1,1,0,0,0,0,1,1,1,1,1,1,5,12,2,0,81,200,504,1020,360);
+REPLACE INTO elemental_db VALUES(2120,'EL_VENTUS_S','Vayu',100,0,1,1,0,0,0,0,0,0,0,0,0,0,5,12,0,0,84,200,504,1020,360);
+REPLACE INTO elemental_db VALUES(2121,'EL_VENTUS_M','Vayu',100,0,1,1,0,0,0,0,0,0,0,0,0,0,5,12,1,0,84,200,504,1020,360);
+REPLACE INTO elemental_db VALUES(2122,'EL_VENTUS_L','Vayu',100,0,1,1,0,0,0,0,0,0,0,0,0,0,5,12,2,0,84,200,504,1020,360);
+REPLACE INTO elemental_db VALUES(2123,'EL_TERA_S','Chandra',100,0,1,1,0,0,0,0,0,0,0,0,0,0,5,12,0,0,82,200,504,1020,360);
+REPLACE INTO elemental_db VALUES(2124,'EL_TERA_M','Chandra',100,0,1,1,0,0,0,0,0,0,0,0,0,0,5,12,1,0,82,200,504,1020,360);
+REPLACE INTO elemental_db VALUES(2125,'EL_TERA_L','Chandra',100,0,1,1,0,0,0,0,0,0,0,0,0,0,5,12,2,0,82,200,504,1020,360);
 
 --
 -- Table structure for table `elemental_skill_db`
@@ -12105,7 +12105,9 @@ REPLACE INTO skill_cast_db VALUES(8422,'0','0','0','-1','0','0');
 REPLACE INTO skill_cast_db VALUES(8423,'0','0','0','-1','0','0');
 REPLACE INTO skill_cast_db VALUES(8424,'0','0','0','-1','0','0');
 REPLACE INTO skill_cast_db VALUES(8433,'0','0','0','-1','0','0');
-REPLACE INTO skill_cast_db VALUES(8437,'0','0','0','15000','0','0');
+REPLACE INTO skill_cast_db VALUES(8434,'1000','0','0','0','0','0','-1');
+REPLACE INTO skill_cast_db VALUES(8435,'1000','0','0','0','0','0','-1');
+REPLACE INTO skill_cast_db VALUES(8437,'1000','0','0','15000','0','0','-1');
 REPLACE INTO skill_cast_db VALUES(8439,'0','0','0','5000','0','0');
 REPLACE INTO skill_cast_db VALUES(8440,'0','0','0','15000','0','0');
 REPLACE INTO skill_cast_db VALUES(8441,'0','0','0','15000','0','0');
@@ -13220,8 +13222,8 @@ REPLACE INTO skill_db VALUES(8433,'9',6,1,'1','0','1',1,'1','no',0,'0','0','weap
 REPLACE INTO skill_db VALUES(8434,'11',6,1,'4','0','0',1,'1','no',0,'0','0','weapon','0','EL_WIND_SLASH','Wind Slasher');
 REPLACE INTO skill_db VALUES(8435,'11',6,1,'4','0','1',1,'1','no',0,'0','0','weapon','0','EL_HURRICANE','Hurricane Rage');
 REPLACE INTO skill_db VALUES(8436,'7',6,1,'4','0','0',1,'1','no',0,'0','0','magic','0','EL_HURRICANE_ATK','Hurricane Rage Attack');
-REPLACE INTO skill_db VALUES(8437,'11',6,1,'4','0','1',1,'1','no',0,'0','0','weapon','0','EL_TYPOON_MIS','Typhoon Missile');
-REPLACE INTO skill_db VALUES(8438,'11',6,1,'4','0','1',1,'1','no',0,'0','0','magic','0','EL_TYPOON_MIS_ATK','Typhoon Missile Attack');
+REPLACE INTO skill_db VALUES(8437,'11',8,1,'4','0','1',1,'-3','no',0,'0','0','weapon','0','EL_TYPOON_MIS','Typhoon Missile');
+REPLACE INTO skill_db VALUES(8438,'11',8,1,'4','0','1',1,'-3','no',0,'0','0','magic','0','EL_TYPOON_MIS_ATK','Typhoon Missile Attack');
 REPLACE INTO skill_db VALUES(8439,'5',6,1,'2','0','0',1,'1','no',0,'0','0','weapon','0','EL_STONE_HAMMER','Stone Hammer');
 REPLACE INTO skill_db VALUES(8440,'3',6,1,'2','0','1',1,'1','no',0,'0','0','weapon','0','EL_ROCK_CRUSHER','Rock Launcher');
 REPLACE INTO skill_db VALUES(8441,'5',6,1,'2','0','1',1,'1','no',0,'0','0','magic','0','EL_ROCK_CRUSHER_ATK','Rock Launcher Attack');
