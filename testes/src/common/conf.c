@@ -6,6 +6,8 @@
 
 #include "../common/showmsg.h" // ShowError
 
+static char lang_file[256] = "conf/lang/pt_br.conf"; // default pt-br
+
 int conf_read_file(config_t *config, const char *config_filename)
 {
 	config_init(config);
@@ -108,11 +110,14 @@ int config_setting_copy(config_setting_t *parent, const config_setting_t *src)
 	return CONFIG_TRUE;
 }
 
-/**
-	Retorna a mensagem conforme o grupo da linguagem definida.
-	read_message("param");
-**/
-const char* read_message(char param[])
+// ----------------------------------------------------------------------------------------
+// Sistema Multilinguagem
+// ----------------------------------------------------------------------------------------
+// read_message("Grupo.SubGrupo.String");
+// ----------------------------------------------------------------------------------------
+// http://www.hyperrealm.com/libconfig/libconfig_manual.html 
+// ----------------------------------------------------------------------------------------
+char* read_message(char param[])
 {
 	static char message[1024];
 	config_setting_t *str;
@@ -120,7 +125,7 @@ const char* read_message(char param[])
 	
 	config_init(&configLang);
 
-    if(!config_read_file(&configLang, read_server_lang())){
+    if(!config_read_file(&configLang, lang_file)){
 		ShowError("read_message erro: %s:%d - %s\n", config_error_file(&configLang), config_error_line(&configLang), config_error_text(&configLang));
         config_destroy(&configLang);
         return "";
@@ -137,33 +142,18 @@ const char* read_message(char param[])
 	return message;
 }
 
-/**
-	Retorna o arquivo definido em brathena.conf.
-	- conf/lang/pt_br.conf para português
-	- conf/lang/en.conf para inglês
-	** Novos arquivos de outras linguagens serão lidos assim que adicionados e conforme configurados.
-**/
-const char* read_server_lang()
+void read_server_lang(void)
 {
-	const char *tmpvar = "conf/battle/brathena.conf";
-	static char lang_file[256];
+	char *tmpvar = "conf/battle/brathena.conf";
 	config_t configFile;
 	
 	config_init(&configFile);
 
-    if(!config_read_file(&configFile, tmpvar)){
+    if(!config_read_file(&configFile, tmpvar) || !config_lookup_string(&configFile, "lang_file", &tmpvar)){
 		ShowError("read_server_lang erro: %s:%d - %s\n", config_error_file(&configFile), config_error_line(&configFile), config_error_text(&configFile));
         config_destroy(&configFile);
-        return "";
-    }
-
-	if(!config_lookup_string(&configFile, "lang_file", &tmpvar)){
-		ShowError("read_server_lang erro: %s:%d - %s\n", config_error_file(&configFile), config_error_line(&configFile), config_error_text(&configFile));
-        config_destroy(&configFile);
-        return "";
     }
 
 	snprintf(lang_file, sizeof(lang_file), "%s", tmpvar);
 	config_destroy(&configFile);
-	return lang_file;
 }
