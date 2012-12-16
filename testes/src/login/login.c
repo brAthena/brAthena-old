@@ -332,7 +332,7 @@ int login_lan_config_read(const char *lancfgName)
 
 		if(sscanf(line,"%[^:]: %[^:]:%[^:]:%[^\r\n]", w1, w2, w3, w4) != 4)
 		{
-			ShowWarning(read_message("Source.login.login_error_syntax"), lancfgName, line_num);
+			ShowWarning(read_message("Source.reuse.reuse_error_syntax"), lancfgName, line_num);
 			continue;
 		}
 
@@ -364,20 +364,20 @@ int login_lan_config_read(const char *lancfgName)
 //-----------------------
 int parse_console(const char* command)
 {
-	ShowNotice(read_message("Source.login.login_pconsole_sw"), command);
+	ShowNotice(read_message("Source.reuse.reuse_pconsole_sw"), command);
 
 	if( strcmpi("shutdown", command) == 0 || strcmpi("exit", command) == 0 || strcmpi("quit", command) == 0 || strcmpi("end", command) == 0 )
 		runflag = 0;
 	else if( strcmpi("alive", command) == 0 || strcmpi("status", command) == 0 )
-		ShowInfo(read_message("Source.login.login_pconsole_si1"), CL_CYAN, CL_BOLD, CL_RESET);
+		ShowInfo(read_message("Source.reuse.reuse_pconsole_si1"), CL_CYAN, CL_BOLD, CL_RESET);
 	else if( strcmpi("help", command) == 0 )
 	{
-		ShowInfo(read_message("Source.login.login_pconsole_help1"));
-		ShowInfo(read_message("Source.login.login_pconsole_help2"));
-		ShowInfo(read_message("Source.login.login_pconsole_help3"));
-		ShowInfo(read_message("Source.login.login_pconsole_help4"));
-		ShowInfo(read_message("Source.login.login_pconsole_help5"));
-		ShowInfo(read_message("Source.login.login_pconsole_help6"));
+		ShowInfo(read_message("Source.reuse.reuse_pconsole_help1"));
+		ShowInfo(read_message("Source.reuse.reuse_pconsole_help2"));
+		ShowInfo(read_message("Source.reuse.reuse_pconsole_help3"));
+		ShowInfo(read_message("Source.reuse.reuse_pconsole_help4"));
+		ShowInfo(read_message("Source.reuse.reuse_pconsole_help5"));
+		ShowInfo(read_message("Source.reuse.reuse_pconsole_help6"));
 	}
 	else
 	{// commands with parameters
@@ -394,16 +394,16 @@ int parse_console(const char* command)
 
 			if( sscanf(params, "%23s %23s %c", username, password, &sex) < 3 || strnlen(username, sizeof(username)) < 4 || strnlen(password, sizeof(password)) < 1 )
 			{
-				ShowWarning(read_message("Source.login.login_pconsole_si2"), cmd, cmd);
+				ShowWarning(read_message("Source.reuse.reuse_pconsole_si2"), cmd, cmd);
 				return 0;
 			}
 
 			if( mmo_auth_new(username, password, TOUPPER(sex), "0.0.0.0") != -1 )
 			{
-				ShowError(read_message("Source.login.login_pconsole_accerror"));
+				ShowError(read_message("Source.reuse.reuse_pconsole_accerror"));
 				return 0;
 			}
-			ShowStatus(read_message("Source.login.login_pconsole_accok"), username);
+			ShowStatus(read_message("Source.reuse.reuse_pconsole_accok"), username);
 		}
 	}
 
@@ -1610,13 +1610,13 @@ int login_config_read(const char* cfgName)
 		else if(!strcmpi(w1,"console_silent")) {
 			msg_silent = atoi(w2);
 			if( msg_silent ) /* only bother if we actually have this enabled */
-				ShowInfo(read_message("Source.login.login_cfg_read_s1"), atoi(w2));
+				ShowInfo(read_message("Source.reuse.reuse_console_sm"), atoi(w2));
 		}
 		else if( !strcmpi(w1, "bind_ip") ) {
 			char ip_str[16];
 			login_config.login_ip = host2ip(w2);
 			if( login_config.login_ip )
-				ShowStatus(read_message("Source.login.login_cfg_read_s2"), w2, ip2str(login_config.login_ip, ip_str));
+				ShowStatus(read_message("Source.login.login_cfg_read_s1"), w2, ip2str(login_config.login_ip, ip_str));
 		}
 		else if( !strcmpi(w1, "login_port") ) {
 			login_config.login_port = (uint16)atoi(w2);
