@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.0/1.0/1.1                         |
+//   | Versões eA/rA/brA: 1.0/1.1/1.1                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Configurações callfunc "F_Kafra".           |
 //   | arg(0):                                                |
@@ -384,7 +384,10 @@ izlude,128,148,6	script	Funcionária Kafra#izlude	117,{
 	mes "Os serviços da corporação kafra sempre estarão ao seu lado.";
 	mes "Como posso ajudá-lo?";
 	callfunc "F_Kafra",5,0,1,40,820;
-	savepoint "izlude",94,103;
+	if (checkre(0))
+		savepoint "izlude",129,97;
+	else
+		savepoint "izlude",94,103;
 	callfunc "F_KafEnd",0,1,"na cidade de Izlude";
 }
 
