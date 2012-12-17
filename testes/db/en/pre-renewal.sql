@@ -11757,7 +11757,7 @@ REPLACE INTO skill_cast_db VALUES(2006,'1000','0','0','0','0','2000');
 REPLACE INTO skill_cast_db VALUES(2008,'0:0:0:1000:1000:1000:1500:1500:2000:2000','2000','0','10000','0','0');
 REPLACE INTO skill_cast_db VALUES(2009,'0','0','0','15000','0','10000');
 REPLACE INTO skill_cast_db VALUES(2011,'0','1000','0','180000','0','60000');
-REPLACE INTO skill_cast_db VALUES(2012,'0','0','0','0','0','30000');
+REPLACE INTO skill_cast_db VALUES(2012,'0','0','0','180000','0','30000');
 REPLACE INTO skill_cast_db VALUES(2013,'0','0','0','60000','0','120000');
 REPLACE INTO skill_cast_db VALUES(2014,'0','0','0','180000','0','0');
 REPLACE INTO skill_cast_db VALUES(2015,'0','0','0','180000','10000','0');
@@ -12796,7 +12796,7 @@ REPLACE INTO skill_db VALUES(2008,'9',6,2,'3','0xC2','1:1:1:2:2:2:3:3:4:4',10,'1
 REPLACE INTO skill_db VALUES(2009,'0',6,4,'0','0x3','3:4:5:6:7',5,'1','yes',0,'0','0','weapon','0','RK_DRAGONHOWLING','Dragon Howling');
 REPLACE INTO skill_db VALUES(2010,'0',0,0,'0','0','0',10,'0','no',0,'0','0','none','0','RK_RUNEMASTERY','Rune Mastery');
 REPLACE INTO skill_db VALUES(2011,'0',6,4,'0','0x1','0',1,'1','yes',0,'0','0','none','0','RK_MILLENNIUMSHIELD','Millenium Shield');
-REPLACE INTO skill_db VALUES(2012,'1',6,1,'-1','0','0x8',1,'1','yes',0,'0','0','weapon','0','RK_CRUSHSTRIKE','Crush Strike');
+REPLACE INTO skill_db VALUES(2012,'1',6,4,'-1','0','0x8',1,'1','yes',0,'0','0','weapon','0','RK_CRUSHSTRIKE','Crush Strike');
 REPLACE INTO skill_db VALUES(2013,'0',6,4,'0','0x1','0',1,'1','yes',0,'0','0','none','0','RK_REFRESH','Refresh');
 REPLACE INTO skill_db VALUES(2014,'0',6,4,'0','0x1','0',1,'1','yes',0,'0','0','none','0','RK_GIANTGROWTH','Giant Growth');
 REPLACE INTO skill_db VALUES(2015,'0',6,4,'0','0x1','0',1,'1','yes',0,'0','0','none','0','RK_STONEHARDSKIN','Stone Hard Skin');
