@@ -2660,7 +2660,7 @@ REPLACE INTO quest_db VALUES(3134,0,0,0,0,0,0,0,'\"Z Gang Wanted - Clean Sweep o
 REPLACE INTO quest_db VALUES(3135,259200,0,0,0,0,0,0,'\"Nidhoggur\'s Nest\"');
 REPLACE INTO quest_db VALUES(3136,14400,0,0,0,0,0,0,'\"Nidhoggur\'s Nest Time Limit\"');
 REPLACE INTO quest_db VALUES(3200,0,0,0,0,0,0,0,'\"Job changes to Rune knight - Recommendation for Rune knight\"');
-REPLACE INTO quest_db VALUES(3201,0,0,0,0,0,0,0,'\"Job changes to Rune knight - Secret rendezvous of Rune knigh\"');
+REPLACE INTO quest_db VALUES(3201,0,0,0,0,0,0,0,'\"Job changes to Rune knight - Secret rendezvous of Rune knight\"');
 REPLACE INTO quest_db VALUES(3202,0,0,0,0,0,0,0,'\"Job changes to Rune knight - The first test\"');
 REPLACE INTO quest_db VALUES(3203,0,0,0,0,0,0,0,'\"Job changes to Rune knight - The first test\"');
 REPLACE INTO quest_db VALUES(3204,0,0,0,0,0,0,0,'\"Job changes to Rune knight - Pass the first test\"');
@@ -2678,7 +2678,7 @@ REPLACE INTO quest_db VALUES(3215,0,0,0,0,0,0,0,'\"Job changes to Rune knight - 
 REPLACE INTO quest_db VALUES(3216,0,0,0,0,0,0,0,'\"Job changes to Rune knight - The final test\"');
 REPLACE INTO quest_db VALUES(3217,0,0,0,0,0,0,0,'\"Job changes to Rune knight - The final test\"');
 REPLACE INTO quest_db VALUES(3218,0,0,0,0,0,0,0,'\"Job changes to Rune knight - Pass the final test\"');
-REPLACE INTO quest_db VALUES(3219,0,0,0,0,0,0,0,'\"Job changes to Rune knight - The end of all tes\"');
+REPLACE INTO quest_db VALUES(3219,0,0,0,0,0,0,0,'\"Job changes to Rune knight - The end of all test\"');
 REPLACE INTO quest_db VALUES(3220,600,0,0,0,0,0,0,'\"Job changes to Rune knight - Waiting time of test\"');
 REPLACE INTO quest_db VALUES(3250,0,1041,30,0,0,0,0,'\"Request - What is this bandage for?\"');
 REPLACE INTO quest_db VALUES(3251,0,1271,30,0,0,0,0,'\"Request - An alligator of Counterattack\"');

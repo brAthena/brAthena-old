@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 6.6/6.6/1.2                         |
+//   | Versões eA/rA/brA: 6.6/6.7/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição:  Funções referente as Kafras.               |
 //   | Aluguel de carrinho,teleporte entre outra funções.     |
@@ -94,6 +94,8 @@ function	script	F_Kafra	{
 				case 7:	setarray @K_Menu0$[0],"Salvar","Usar Armazém","Alugar Carrinho","Cancelar"; break;
 				// Opção de Salvar, Usar Armazém, Checar outra informação
 				case 8: setarray @K_Menu0$[0],"Salvar","Usar Armazém","Checar outra informação","Cancelar"; break;
+				// No Save (Rune Knight) 
+				case 9: setarray @K_Menu0$[0],"Usar Armazém","Alugar Carrinho","Usar Serviço de Teleporte",Checar outra informação","Cancelar"; break;
 				// Mensagem Padrão.
 				default: setarray @K_Menu0$[0],"Salvar","Usar Armazém","Usar Serviço de Teleporte","Alugar Carrinho","Checar outra informação","Cancelar"; break;
 			}
@@ -274,7 +276,7 @@ function	script	F_KafTele	{
 //===================================================
 function	script	F_KafCart	{
 	// Ensure that the class wanting to rent a pushcart is a merchant
-	if(baseClass != Job_Merchant){
+	if(BaseClass != Job_Merchant){
 		mes "[Funcionária Kafra]";
 		mes "Eu lamento, mas o serviço de aluguel de carrinho está disponível somente para Mercadores,Ferreiros, Mestre Ferreiros,Alquimistas e Criadores";
 		close;
@@ -313,7 +315,8 @@ function	script	F_KafInfo	{
 	// Descomente a próxima linha para remover a Proteção Kafra
 	//	set .@block, 1;
 		setarray .@m$, "Checar reserva de pontos especiais.","Senha do Armazém","Localização das Funcionárias","Cancelar";
-		if (.@block) deletearray .@m$[1],1;
+		if (getarg(0) == 2) deletearray .@m$[1],2; // Rune Knight
+		else if (.@block) deletearray .@m$[1],1;
 	while (1) {
 		set .@j, select(implode(.@m$,":")) - 1;
 		if (.@m$[.@j] == "Checar reserva de pontos especiais.") {
@@ -554,10 +557,12 @@ function	script	F_KafSet	{
 		setarray @wrpD$[0], "Al De Baran";
 		setarray @wrpP[0], 1200;
 		setarray @viewpX[0], 328, 278, 153, 0;
-		setarray @viewpY[0], 108, 221, 187, 0;
+	} else if (strnpcinfo(4) == "job3_rune01") {
+		setarray @wrpD$[0], "Izlude", "Geffen", "Payon", "Morroc", "Alberta";
+		setarray @wrpP[0], 600, 1200, 1200, 1200, 1800;
 	}
 	for (set .@i, 0; .@i < getarraysize(@wrpD$); set .@i, .@i + 1)
 		setd "@wrpC$["+.@i+"]",getd("@wrpD$["+.@i+"]")+" -> "+getd("@wrpP["+.@i+"]");
 	setd "@wrpC$["+getarraysize(@wrpC$)+"]","Cancelar";
 	return;
-}		
+}
