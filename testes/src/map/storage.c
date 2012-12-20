@@ -378,6 +378,9 @@ int storage_guild_storageopen(struct map_session_data* sd)
 	}
 	if(gstor->storage_status)
 		return 1;
+		
+	if( gstor->lock )
+		return 1;
 	
 	gstor->storage_status = 1;
 	sd->state.storage_flag = 2;
@@ -387,6 +390,12 @@ int storage_guild_storageopen(struct map_session_data* sd)
 	return 0;
 }
 
+/*==========================================
+* Attempt to add an item in guild storage, then refresh it
+* return
+* 	0 : success
+* 	1 : fail
+ *------------------------------------------*/
 int guild_storage_additem(struct map_session_data* sd, struct guild_storage* stor, struct item* item_data, int amount)
 {
 	struct item_data *data;
@@ -439,6 +448,12 @@ int guild_storage_additem(struct map_session_data* sd, struct guild_storage* sto
 	return 0;
 }
 
+/*==========================================
+* Attempt to delete an item in guild storage, then refresh it
+* return
+* 	0 : success
+* 	1 : fail
+ *------------------------------------------*/
 int guild_storage_delitem(struct map_session_data* sd, struct guild_storage* stor, int n, int amount)
 {
 	nullpo_retr(1, sd);
@@ -458,6 +473,13 @@ int guild_storage_delitem(struct map_session_data* sd, struct guild_storage* sto
 	return 0;
 }
 
+/*==========================================
+* Attempt to add an item in guild storage from inventory, then refresh it
+* @index : inventory idx
+* return
+* 	0 : fail
+* 	1 : succes
+ *------------------------------------------*/
 int storage_guild_storageadd(struct map_session_data* sd, int index, int amount)
 {
 	struct guild_storage *stor;
@@ -476,6 +498,11 @@ int storage_guild_storageadd(struct map_session_data* sd, int index, int amount)
 	
 	if( amount < 1 || amount > sd->status.inventory[index].amount )
 		return 0;
+		
+	if( stor->lock ) {
+		storage_guild_storageclose(sd);
+		return 0;
+	}
 
 	if(guild_storage_additem(sd,stor,&sd->status.inventory[index],amount)==0)
 		pc_delitem(sd,index,amount,0,4,LOG_TYPE_GSTORAGE);
@@ -483,6 +510,13 @@ int storage_guild_storageadd(struct map_session_data* sd, int index, int amount)
 	return 1;
 }
 
+/*==========================================
+* Attempt to retrieve an item from guild storage to inventory, then refresh it
+* @index : storage idx
+* return
+* 	0 : fail
+* 	1 : succes
+ *------------------------------------------*/
 int storage_guild_storageget(struct map_session_data* sd, int index, int amount)
 {
 	struct guild_storage *stor;
@@ -502,6 +536,11 @@ int storage_guild_storageget(struct map_session_data* sd, int index, int amount)
 	
 	if(amount < 1 || amount > stor->items[index].amount)
 	  	return 0;
+		
+	if( stor->lock ) {
+		storage_guild_storageclose(sd);
+		return 0;
+	}
 
 	if((flag = pc_additem(sd,&stor->items[index],amount,LOG_TYPE_GSTORAGE)) == 0)
 		guild_storage_delitem(sd,stor,index,amount);
@@ -512,6 +551,13 @@ int storage_guild_storageget(struct map_session_data* sd, int index, int amount)
 	return 0;
 }
 
+/*==========================================
+* Attempt to add an item in guild storage from cart, then refresh it
+* @index : cart inventory idx
+* return
+* 	0 : fail
+* 	1 : succes
+ *------------------------------------------*/
 int storage_guild_storageaddfromcart(struct map_session_data* sd, int index, int amount)
 {
 	struct guild_storage *stor;

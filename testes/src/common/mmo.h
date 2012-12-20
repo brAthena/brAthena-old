@@ -253,7 +253,8 @@ struct guild_storage {
 	int guild_id;
 	short storage_status;
 	short storage_amount;
-	struct item items[MAX_GUILD_STORAGE];
+	struct item items[MAX_GUILD_STORAGE]; 
+	unsigned short lock;
 };
 
 struct s_pet {
