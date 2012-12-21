@@ -1,4 +1,4 @@
-//    ________________________________________________________ 
+//    ________________________________________________________
 //   /                                                        \
 //   |       _           _   _   _                            |
 //   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
@@ -32,7 +32,7 @@ prt_maze01,139,140,21,21	monster	Percevejo	1174,5,120000,40000,1
 prt_maze01,139,180,21,21	monster	Caramelo	1103,5,120000,40000,1
 prt_maze01,99,180,21,21	monster	Poeira	1114,5,120000,40000,1
 prt_maze01,59,100,21,21	monster	Besouro-Chifre	1128,5,120000,40000,1
-prt_maze01,99,100,21,21	monster	ChonChon	1011,5,120000,40000,1
+prt_maze01,99,100,21,21	monster	Chonchon	1011,5,120000,40000,1
 prt_maze01,59,180,21,21	monster	Martin	1145,5,120000,40000,1
 prt_maze01,19,60,21,21	monster	Lobo	1013,5,120000,40000,1
 prt_maze01,59,60,21,21	monster	Jibóia	1025,5,120000,40000,1
@@ -44,7 +44,7 @@ prt_maze01,59,20,21,21	monster	Pupa	1008,5,120000,40000,1
 prt_maze01,19,20,21,21	monster	Poporing	1031,5,120000,40000,1
 prt_maze01,179,60,21,21	monster	Rocker	1052,5,120000,40000,1
 prt_maze01,139,60,21,21	monster	Pé Grande	1060,5,120000,40000,1
-prt_maze01,19,140,21,21	monster	Chon Chon de Aço	1042,5,120000,40000,1
+prt_maze01,19,140,21,21	monster	Chonchon de Aço	1042,5,120000,40000,1
 prt_maze01,59,140,21,21	monster	Yoyo	1057,4,120000,40000,1
 prt_maze01,19,180,21,21	monster	Selvagem	1166,3,120000,40000,1
 prt_maze01,179,100,21,21	monster	Argiope	1099,3,120000,40000,1

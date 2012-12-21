@@ -124,7 +124,7 @@ pay_fild09,198,217,30,30	monster	Planta Brilhante	1083,1,1800000,900000,1
 // pay_fild10 - Floresta de Payon
 //==================================================
 pay_fild10,0,0,0,0	monster	Guardião da Floresta	1277,100,5000,0,0
-pay_fild10,0,0,0,0	monster	Encouraçado	1494,50,5000,0,0
+pay_fild10,0,0,0,0	monster	Besouro-Rei	1494,50,5000,0,0
 pay_fild10,0,0,0,0	monster	Selvagem	1166,50,5000,0,0
 pay_fild10,0,0,0,0	boss_monster	Eddga	1115,1,7200000,600000,1
 pay_fild10,213,157,10,10	monster	Planta Verde	1080,5,360000,180000,1

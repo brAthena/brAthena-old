@@ -12,9 +12,9 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.2/1.1/1.0                         |
+//   | Versões eA/rA/brA: 1.2/1.0/1.0                         |
 //   |--------------------------------------------------------|
-//   | Descrição:  Monstros das cavernas de Abbey.            |
+//   | Descrição:  Monstros da Ilha Esquecida e do Monastério.|
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
@@ -105,43 +105,43 @@ abbey01,260,100,35,30	monster	Carniçal	1036,4,0,0,1
 abbey02,150,66,36,64	monster	Massacre	1864,30,60000,0,1
 abbey02,150,66,36,64	monster	Zumbi Dilacerado	1865,10,0,0,1
 abbey02,150,66,36,64	monster	Crânio Flamejante	1869,3,0,0,1
-abbey02,150,66,36,64	monster	Necromancer	1870,1,0,0,1
+abbey02,150,66,36,64	monster	Necromante	1870,1,0,0,1
 abbey02,67,75,46,54	monster	Massacre	1864,30,124000,0,1
 abbey02,67,75,46,54	monster	Zumbi Dilacerado	1865,10,0,0,1
 abbey02,67,75,46,54	monster	Crânio Flamejante	1869,3,0,0,1
-abbey02,67,75,46,54	monster	Necromancer	1870,1,0,0,1
+abbey02,67,75,46,54	monster	Necromante	1870,1,0,0,1
 abbey02,232,76,46,54	monster	Massacre	1864,30,63000,0,1
 abbey02,232,76,46,54	monster	Zumbi Dilacerado	1865,10,0,0,1
 abbey02,232,76,46,54	monster	Crânio Flamejante	1869,3,0,0,1
-abbey02,232,76,46,54	monster	Necromancer	1870,1,0,0,1
+abbey02,232,76,46,54	monster	Necromante	1870,1,0,0,1
 abbey02,236,78,21,18	boss_monster	Bispo Decadente	1871,1,7200000,600000,1
 abbey02,150,153,142,23	monster	Massacre	1864,30,122000,0,1
 abbey02,150,153,142,23	monster	Zumbi Dilacerado	1865,10,0,0,1
 abbey02,150,153,142,23	monster	Crânio Flamejante	1869,3,0,0,1
-abbey02,150,153,142,23	monster	Necromancer	1870,1,0,0,1
+abbey02,150,153,142,23	monster	Necromante	1870,1,0,0,1
 abbey02,68,220,46,58	monster	Massacre	1864,30,6000,0,1
 abbey02,68,220,46,58	monster	Zumbi Dilacerado	1865,10,0,0,1
 abbey02,68,220,46,58	monster	Crânio Flamejante	1869,3,0,0,1
-abbey02,68,220,46,58	monster	Necromancer	1870,1,0,0,1
+abbey02,68,220,46,58	monster	Necromante	1870,1,0,0,1
 abbey02,150,240,35,44	monster	Massacre	1864,30,120000,0,1
 abbey02,150,240,35,44	monster	Zumbi Dilacerado	1865,10,0,0,1
 abbey02,150,240,35,44	monster	Crânio Flamejante	1869,3,0,0,1
-abbey02,150,240,35,44	monster	Necromancer	1870,1,0,0,1
+abbey02,150,240,35,44	monster	Necromante	1870,1,0,0,1
 abbey02,232,220,46,58	monster	Massacre	1864,30,60000,0,1
 abbey02,232,220,46,58	monster	Zumbi Dilacerado	1865,10,0,0,1
 abbey02,232,220,46,58	monster	Crânio Flamejante	1869,3,0,0,1
-abbey02,232,220,46,58	monster	Necromancer	1870,1,0,0,1
+abbey02,232,220,46,58	monster	Necromante	1870,1,0,0,1
 
 //==================================================
 // Monastério Maldito Caverna 3
 //==================================================
 abbey03,0,0,0,0	boss_monster	Beelzebu	1873,1,43200000,600000,1
-abbey03,120,212,116,24	monster	Necromancer	1870,10,0,0,1
+abbey03,120,212,116,24	monster	Necromante	1870,10,0,0,1
 abbey03,120,212,116,24	monster	Banshee	1867,10,0,0,1
 abbey03,120,212,116,24	monster	Crânio Flamejante	1869,5,0,0,1
-abbey03,122,152,111,36	monster	Necromancer	1870,20,0,0,1
+abbey03,122,152,111,36	monster	Necromante	1870,20,0,0,1
 abbey03,122,152,111,36	monster	Banshee	1867,10,0,0,1
 abbey03,122,152,111,36	monster	Crânio Flamejante	1869,10,0,0,1
-abbey03,120,64,117,53	monster	Necromancer	1870,30,0,0,1
+abbey03,120,64,117,53	monster	Necromante	1870,30,0,0,1
 abbey03,120,64,117,53	monster	Banshee	1867,10,0,0,1
 abbey03,120,64,117,53	monster	Crânio Flamejante	1869,10,0,0,1

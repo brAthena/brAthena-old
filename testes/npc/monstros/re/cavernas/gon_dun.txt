@@ -1,4 +1,4 @@
-//    ________________________________________________________ 
+//    ________________________________________________________
 //   /                                                        \
 //   |       _           _   _   _                            |
 //   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
@@ -47,6 +47,6 @@ gon_dun02,0,0,0,0	monster	Planta Amarela	1081,10,5000,0,0
 //==================================================
 gon_dun03,0,0,0,0	monster	Ninfa Perversa	1416,50,5000,0,0
 gon_dun03,0,0,0,0	monster	Ermitão Maligno	1412,30,5000,0,0
-gon_dun03,0,0,0,0	monster	Ginseng Selvagem	1413,20,5000,0,0
+gon_dun03,0,0,0,0	monster	Ermitão Selvagem	1413,20,5000,0,0
 gon_dun03,0,0,0,0	boss_monster	Serpente Suprema	1418,1,5650000,600000,0
 gon_dun03,0,0,0,0	monster	Planta Branca	1082,10,5000,0,0

@@ -12,34 +12,36 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.1/1.0                             |
+//   | Versões eA/rA/brA: 1.1/1.0/1.1                         |
 //   |--------------------------------------------------------|
 //   | Descrição:  Monstros dos Campos de Manuk.              |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
+//   | 1.1 Tradução PT-BR [Holy]                              |
+//   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
 //============================================================
-// man_fild01 - Manuk Field
+// man_fild01 - Campo de Manuk
 //============================================================
 man_fild01,0,0,0,0	monster	Nepenthes	1988,105,0,0,0
-man_fild01,0,0,0,0	monster	Hillthion	1989,10,0,0,0
-man_fild01,0,0,0,0	monster	Centipede Larva	1999,30,0,0,0
-man_fild01,0,0,0,0	monster	Centipede	1987,2,0,0,0
+man_fild01,0,0,0,0	monster	Leão da Montanha	1989,10,0,0,0
+man_fild01,0,0,0,0	monster	Larva de Centopéia	1999,30,0,0,0
+man_fild01,0,0,0,0	monster	Centopéia	1987,2,0,0,0
 
 //============================================================
-// man_fild02 - Manuk Field
+// man_fild02 - Campo de Manuk
 //============================================================
-man_fild02,0,0,0,0	monster	Bradium Golem	2024,50,0,0,0
-man_fild02,0,0,0,0	monster	Centipede	1987,35,0,0,0
+man_fild02,0,0,0,0	monster	Golem de Bradium	2024,50,0,0,0
+man_fild02,0,0,0,0	monster	Centopéia	1987,35,0,0,0
 man_fild02,0,0,0,0	monster	Tatacho	1986,25,0,0,0
 
 //============================================================
-// man_fild03 - Manuk Field
+// man_fild03 - Campo de Manuk
 //============================================================
-man_fild03,0,0,0,0	monster	Hillthion	1989,25,0,0,0
+man_fild03,0,0,0,0	monster	Leão da Montanha	1989,25,0,0,0
 man_fild03,0,0,0,0	monster	Tatacho	1986,25,0,0,0
-man_fild03,0,0,0,0	monster	Centipede	1987,25,0,0,0
-man_fild03,0,0,0,0	monster	Hardrock Mammoth	1990,1,14400000,0,0
+man_fild03,0,0,0,0	monster	Centopéia	1987,25,0,0,0
+man_fild03,0,0,0,0	monster	Mamute Rochoso	1990,1,14400000,0,0

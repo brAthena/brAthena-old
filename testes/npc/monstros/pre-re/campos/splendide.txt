@@ -12,31 +12,33 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.1/1.0                             |
+//   | Versões eA/rA/brA: 1.1/1.0/1.1                         |
 //   |--------------------------------------------------------|
-//   | Descrição:  Monstros dos Campos de Splendide.          |
+//   | Descrição:  Monstros dos Campos de Esplendor.          |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
+//   | 1.1 Tradução PT-BR [Holy]                              |
+//   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
 //==================================================
-// spl_fild01 - Splendide Field
+// spl_fild01 - Campo Esplendor
 //==================================================
 spl_fild01,0,0,0,0	monster	Pinguicula	1995,50,0,0,0
 spl_fild01,0,0,0,0	monster	Naga	1993,35,0,0,0
 spl_fild01,0,0,0,0	monster	Cornus	1992,25,0,0,0
 
- // spl_fild02 - Splendide Field
+ // spl_fild02 - Campo Esplendor
 //==================================================
 spl_fild02,0,0,0,0	monster	Pinguicula	1995,95,0,0,0
-spl_fild02,0,0,0,0	monster	Luciola Vespa	1994,15,0,0,0
+spl_fild02,0,0,0,0	monster	Vespa Luciola	1994,15,0,0,0
 
 //==================================================
-// spl_fild03 - Splendide Field
+// spl_fild03 - Campo Esplendor
 //==================================================
-spl_fild03,0,0,0,0	monster	Luciola Vespa	1994,35,0,0,0
+spl_fild03,0,0,0,0	monster	Vespa Luciola	1994,35,0,0,0
 spl_fild03,0,0,0,0	monster	Cornus	1992,25,0,0,0
 spl_fild03,0,0,0,0	monster	Naga	1993,20,0,0,0
-spl_fild03,0,0,0,0	monster	Tendril Lion	1991,1,3600000,0,0
+spl_fild03,0,0,0,0	boss_monster	Leão de Vinhas	1991,1,3600000,0,0

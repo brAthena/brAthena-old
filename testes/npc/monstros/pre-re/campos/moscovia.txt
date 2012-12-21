@@ -12,21 +12,23 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.0                                 |
+//   | Versões eA/rA/brA: 1.0/1.0/1.1                         |
 //   |--------------------------------------------------------|
 //   | Descrição:  Monstros dos Campos de Moscovia.           |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
+//   | 1.1 Tradução PT-BR [Holy]                              |
+//   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
 //==================================================
-// mosk_fild02 - Moscovia Field
+// mosk_fild02 - Campo de Moscovia
 //==================================================
-mosk_fild02,0,0,0,0	monster	Bigfoot	1060,40,0,0,0
-mosk_fild02,0,0,0,0	monster	Caramel	1103,20,0,0,0
-mosk_fild02,0,0,0,0	monster	Mantis	1139,30,0,0,0
+mosk_fild02,0,0,0,0	monster	Pé Grande	1060,40,0,0,0
+mosk_fild02,0,0,0,0	monster	Caramelo	1103,20,0,0,0
+mosk_fild02,0,0,0,0	monster	Louva-a-Deus	1139,30,0,0,0
 mosk_fild02,0,0,0,0	monster	Poring	1002,10,0,0,0
-mosk_fild02,0,0,0,0	monster	Yellow Plant	1081,5,0,0,0
-mosk_fild02,0,0,0,0	monster	White Plant	1082,5,10000,0,0
+mosk_fild02,0,0,0,0	monster	Planta Amarela	1081,5,0,0,0
+mosk_fild02,0,0,0,0	monster	Planta Branca	1082,5,10000,0,0

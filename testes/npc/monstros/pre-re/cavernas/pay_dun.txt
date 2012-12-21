@@ -12,12 +12,13 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.3/1.2/1.1/1.0                     |
+//   | Versões eA/rA/brA: 1.3/1.0/1.0                         |
 //   |--------------------------------------------------------|
-//   | Descrição:  Monstros das cavernas de Pay_dun           |
+//   | Descrição:  Monstros das cavernas de Payon             |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
+//   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
@@ -25,7 +26,7 @@
 // pay_dun00 - Caverna de Payon 1
 //==================================================
 pay_dun00,0,0,0,0	monster	Familiar	1005,15,0,0,0
-pay_dun00,0,0,0,0	monster	Zombie	1015,20,0,0,0
+pay_dun00,0,0,0,0	monster	Zumbi	1015,20,0,0,0
 pay_dun00,0,0,0,0	monster	Esqueleto	1076,35,0,0,0
 pay_dun00,0,0,0,0	monster	Poporing	1031,15,0,0,0
 pay_dun00,0,0,0,0	monster	Planta Vermelha	1078,15,180000,90000,1
