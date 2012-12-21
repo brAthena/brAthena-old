@@ -4484,6 +4484,8 @@ int pc_steal_item(struct map_session_data *sd,struct block_list *bl, int lv)
 	tmp_item.nameid = itemid;
 	tmp_item.amount = 1;
 	tmp_item.identify = itemdb_isidentified(itemid);
+	if(battle_config.mob_drop_identified)
+	tmp_item.identify = 1;
 	flag = pc_additem(sd,&tmp_item,1,LOG_TYPE_PICKDROP_PLAYER);
 
 	//TODO: Should we disable stealing when the item you stole couldn't be added to your inventory? Perhaps players will figure out a way to exploit this behaviour otherwise?

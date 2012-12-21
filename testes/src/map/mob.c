@@ -1796,6 +1796,8 @@ static struct item_drop* mob_setdropitem(int nameid, int qty)
 	drop->item_data.nameid = nameid;
 	drop->item_data.amount = qty;
 	drop->item_data.identify = itemdb_isidentified(nameid);
+	if(battle_config.mob_drop_identified)
+	drop->item_data.identify = 1;
 	drop->next = NULL;
 	return drop;
 }
@@ -2519,7 +2521,9 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 
 				memset(&item,0,sizeof(item));
 				item.nameid=mdrop_id[i];
-				item.identify= itemdb_isidentified(item.nameid);
+				item.identify = itemdb_isidentified(item.nameid);
+				if(battle_config.mob_drop_identified)
+				item.identify = 1;
 				clif_mvp_item(mvp_sd,item.nameid);
 				log_mvp[0] = item.nameid;
 				

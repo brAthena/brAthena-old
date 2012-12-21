@@ -43,10 +43,11 @@ enum e_pc_permission {
 	PC_PERM_DISABLE_PVM			= 0x040000,
 	PC_PERM_DISABLE_PVP			= 0x080000,
 	PC_PERM_DISABLE_CMD_DEAD    = 0x100000,
-	PC_PERM_TAKE_ITEM    		= 0x200000,
-	PC_PERM_CAN_SHOP       		= 0x400000,  // [Megasantos]
-	PC_PERM_CAN_DROPS         	= 0x800000,  // [Megasantos]
-	PC_PERM_DISABLE_EXP			= 0x1000000, // [Megasantos]
+	PC_PERM_TAKE_ITEM    		= 0x200000,    // [Holy]
+	PC_PERM_CAN_SHOP    		= 0x400000,    // [Megasantos]
+	PC_PERM_CAN_DROPS    		= 0x800000,    // [Megasantos]
+	PC_PERM_DISABLE_EXP    		= 0x1000000,   // [Megasantos]
+	PC_PERM_CAN_ATTACK    		= 0x2000000,   // [Holy]
 };
 
 static const struct {
@@ -74,11 +75,11 @@ static const struct {
 	{ "disable_pvm", PC_PERM_DISABLE_PVM },
 	{ "disable_pvp", PC_PERM_DISABLE_PVP },
 	{ "disable_commands_when_dead", PC_PERM_DISABLE_CMD_DEAD },
-	{ "take_item", PC_PERM_TAKE_ITEM },
-	{ "can_shop", PC_PERM_CAN_SHOP }, // [Megasantos]
-	{ "can_drops", PC_PERM_CAN_DROPS }, // [Megasantos]
+	{ "take_item", PC_PERM_TAKE_ITEM },     // [Holy]
+	{ "can_shop", PC_PERM_CAN_SHOP },       // [Megasantos]
+	{ "can_drops", PC_PERM_CAN_DROPS },     // [Megasantos]
 	{ "disable_exp", PC_PERM_DISABLE_EXP }, // [Megasantos]
-	
+  { "can_attack", PC_PERM_CAN_ATTACK },   // [Holy]
 };
 
 #endif // _PC_GROUPS_H_

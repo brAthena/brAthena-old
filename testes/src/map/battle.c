@@ -5093,9 +5093,6 @@ int battle_check_target( struct block_list *src, struct block_list *target,int f
 
 	if( (s_bl = battle_get_master(src)) == NULL )
 		s_bl = src;
-		
-	if( battle_config.gm_cant_attack && (s_bl->type == BL_PC) && (t_bl->type != BL_NUL) && pc_get_group_level((TBL_PC*)s_bl) > 0)
-        return 0;
 
 	if ( s_bl->type == BL_PC ) {
 		switch( t_bl->type ) {
@@ -5262,6 +5259,8 @@ int battle_check_target( struct block_list *src, struct block_list *target,int f
 		case BL_PC:
 		{
 			struct map_session_data *sd = BL_CAST(BL_PC, s_bl);
+			if( !pc_has_permission(sd, PC_PERM_CAN_ATTACK) && (t_bl->type != BL_NUL) )
+        return 0;
 			if( s_bl != t_bl )
 			{
 				if( sd->state.killer )
@@ -5809,7 +5808,7 @@ static const struct _battle_data {
 	 **/
 	{ "max_third_parameter",                &battle_config.max_third_parameter,             120,    10,     10000,          },
 	{ "max_baby_third_parameter",           &battle_config.max_baby_third_parameter,        108,    10,     10000,          },
-	{ "atcommand_max_stat_bypass",          &battle_config.atcommand_max_stat_bypass,       0,      0,      100,            },          
+	{ "atcommand_max_stat_bypass",          &battle_config.atcommand_max_stat_bypass,       0,      0,      100,            },
 	{ "skill_amotion_leniency",             &battle_config.skill_amotion_leniency,          90,     0,      100             },
 	{ "mvp_tomb_enabled",                   &battle_config.mvp_tomb_enabled,                1,      0,      1               },
 	{ "feature.atcommand_suggestions",      &battle_config.atcommand_suggestions_enabled,   0,      0,      1               },
@@ -5817,17 +5816,18 @@ static const struct _battle_data {
 	{ "atcommand_mobinfo_type",             &battle_config.atcommand_mobinfo_type,          0,      0,      1               },
 	{ "homunculus_max_level",               &battle_config.hom_max_level,                   99,     0,      MAX_LEVEL,      },
 	{ "homunculus_S_max_level",             &battle_config.hom_S_max_level,                 150,    0,      MAX_LEVEL,      },
-	{ "mob_size_influence",					&battle_config.mob_size_influence,				0,		0,		1,				},
-	//brAthena
+	{ "mob_size_influence",                 &battle_config.mob_size_influence,              0,      0,      1,              },
+
+  // brAthena
 	{ "devotion_rdamage",                   &battle_config.devotion_rdamage,                  0,    0,              1,      },
 	{ "warp_no_ress",                       &battle_config.warp_no_ress,                      0,    0,              1,      },
 	{ "attack_castle_monsters",             &battle_config.attack_castle_monsters,            0,    0,              1,      },
-	{ "gm_cant_attack",                     &battle_config.gm_cant_attack,                    0,    0,              1,      },
+	{ "mob_drop_identified",                &battle_config.mob_drop_identified,               0,    0,              1,      },
 	{ "bRO_Renewal",                        &battle_config.bRO_Renewal,                       1,    0,              1,      },
 	{ "alliance_in_woe",                    &battle_config.alliance_in_woe,                   0,    0,              1,      },
 	{ "use_item_in_status",                 &battle_config.use_item_in_status,                0,    0,              1,      },
 	{ "supports_castle_gvg",                &battle_config.supports_castle_gvg,               1,    0,              1,      },
-	{ "max_atk",                            &battle_config.max_atk,                           99,   0,        INT_MAX,      },
+	{ "max_atk",                            &battle_config.max_atk,                       10000,    0,        INT_MAX,      },
 };
 #ifndef STATS_OPT_OUT
 /**
