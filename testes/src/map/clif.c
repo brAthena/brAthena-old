@@ -6692,7 +6692,7 @@ void clif_sendegg(struct map_session_data *sd)
 	nullpo_retv(sd);
 
 	fd=sd->fd;
-	if (battle_config.pet_no_gvg && map_flag_gvg(sd->bl.m))
+	if ( !battle_config.supports_castle_gvg && map_flag_gvg(sd->bl.m))
 	{	//Disable pet hatching in GvG grounds during Guild Wars [Skotlex]
 		clif_displaymessage(fd, msg_txt(666));
 		return;
@@ -9210,15 +9210,11 @@ void clif_parse_LoadEndAck(int fd,struct map_session_data *sd)
 	map_foreachinarea(clif_getareachar, sd->bl.m, sd->bl.x-AREA_SIZE, sd->bl.y-AREA_SIZE, sd->bl.x+AREA_SIZE, sd->bl.y+AREA_SIZE, BL_ALL, sd);
 
 	// pet
-	if( sd->pd )
-	{
-		if( battle_config.pet_no_gvg && map_flag_gvg(sd->bl.m) )
-		{	//Return the pet to egg. [Skotlex]
+	if( sd->pd ) {
+		if( !battle_config.supports_castle_gvg && map_flag_gvg(sd->bl.m) ) {	//Return the pet to egg. [Skotlex]
 			clif_displaymessage(sd->fd, msg_txt(666));
 			pet_menu(sd, 3); //Option 3 is return to egg.
-		}
-		else
-		{
+		} else {
 			map_addblock(&sd->pd->bl);
 			clif_spawn(&sd->pd->bl);
 			clif_send_petdata(sd,sd->pd,0,0);
