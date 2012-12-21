@@ -18,7 +18,7 @@
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
-//   | 1.1 Adição de Array de NPCs Pré-RE [Holy]              |
+//   | 1.1 Adição de Array de NPCs Pré-RE e RE [Holy]         |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -40,7 +40,7 @@ end;
  
 // ---------------------------- Pré-Renovação ------------------------------
  
-else if( !checkre(0) ) {
+if( !checkre(0) ) {
  
 setarray  .@PREListaNPCs$[0] , "Sprakki#nv1", "Brade#nv", "Jinha#nv", "Chocolat#nv", "Kafra#nv", "Cool Event Staff#nv", "Soldier#nv", "Brade#nvs", "Swordman Guide#nv", "Mage Guide#nv", "Thief Guide#nv", "Merchant Guide#nvs", "Archer Guide#nv", "Acolyte Guide#nv", "Eden Group Officer#nv", "Level 1 Trainer#nv", "Bruce#nvs", "Dragon Breeder", "Riding Creature Master", "Peco Peco Remover", "Magic Gear Master", "Hotel Keeper#bra1", "Black Marketeer#ein", "Guide#01alberta", "Guide#01aldebaran", "Amatsu Guide#amatsu", "Ayothaya Guide Noi#01ay", "Ayothaya Guide Noa#01ay", "Comodo Guide#01comodo", "Einbroch Guide#ein01", "Einbech Guide#einbech01", "Guide#01geffen", "Kunlun Guide#01gonryun", "Hugel Guide Granny#hugel", "Guide Rich King#hugel", "Guide#01izlude", "Juno Guide#yuno01", "Lighthalzen Guide#lhz01", "Louyang Guide#01louyang", "Guide#01morocc", "Guide#01ruins", "Moscovia Guide#02mosc", "Niflheim Guide#01nif", "Guide#01payon", "Guide#05payon", "Guide#01prontera", "Rachel Guide#rachel", "Umbala Guide#01umbala", "Veins Guide#veins01", "Funcionária Kafra#brasilis", "VeF06S_VeF04S", "izd07", "izd07-1", "ygGate_yg1";
  
@@ -65,7 +65,7 @@ movenpc "Edgar#izlude", 182,186,2;
 movenpc "Scamp#2", 186,57,5;
 movenpc "Smile Assistance#iz", 129,118;
 movenpc "Funcionária Kafra#izlude", 134,87,3;
-movenpc "Mercenary_Manager_Sword", 47,139;
+movenpc "Mercenary Manager#main", 47,139;
 movenpc "Mercenary Merchant#Sword", 56,139; 
 for(set(.@i,0); .@i < getarraysize(.@PREListaNPCs$); set .@i,.@i+1) 
 unloadnpc .@PREListaNPCs$[.@i];

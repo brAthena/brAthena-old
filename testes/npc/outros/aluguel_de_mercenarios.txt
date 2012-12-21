@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
--	script	Mercenary Manager#main	-1,{
+prontera,41,337,5	script	Mercenary Manager#main	105,{
 	setarray .@name$, 	"Spear", 			"Sword", 			"Bow";
 	setarray .@faith$, 	"SPEAR_MERC_GUILD",	"SWORD_MERC_GUILD",	"ARCH_MERC_GUILD";
 	setarray .@item, 	12182,				12172,				12162;
@@ -218,7 +218,7 @@ pay_arche,99,167,4	duplicate(Mercenary Manager#main)	Mercenary Manager#Bow	732
 
 // Mercenary Merchant NPCs
 //============================================================
--	script	Mercenary Merchant#dummy::MercMerchant	-1,{
+izlude,56,169,4	script	Mercenary Merchant#Sword	892,{
 	mes "[Mercenary Goods Merchant]";
 	mes "Hello, I sell goods";
 	mes "that Mercenaries can";
@@ -291,5 +291,5 @@ pay_arche,99,167,4	duplicate(Mercenary Manager#main)	Mercenary Manager#Bow	732
 	getitem .@item[.@m], .@input;
 	close;
 }
-prontera,30,337,4	duplicate(MercMerchant)	Mercenary Merchant#Spear	700
-pay_arche,102,167,5	duplicate(MercMerchant)	Mercenary Merchant#Bow	879
+prontera,30,337,4	duplicate(Mercenary Merchant#Sword)	Mercenary Merchant#Spear	700
+pay_arche,102,167,5	duplicate(Mercenary Merchant#Sword)	Mercenary Merchant#Bow	879

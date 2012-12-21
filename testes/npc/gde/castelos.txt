@@ -28,13 +28,14 @@ function	script	Bandeiras#1	{
 
 	set .@GID, GetCastleData(getarg(0),1);
 
-		mes " [ Decreto do Reino de Midgard ]";
 	if (.@GID == 0) {
+		mes " [ Decreto do Reino de Midgard ]";
 		mes " ";
 		mes "1. Conforme o pacto do Reino de Midgard e o Feudo de Luina, declaro que este Castelo não possui um Senhor.";
 		mes " ";
 		mes "2. Aquele que superar terríveis desafios e destruir o Emperium, receberá a posse do castelo com o apoio do nosso rei.";
-	} else if ( getcharid(2) == .@GID ) {
+		close;
+	} if ( getcharid(2) == .@GID ) {
     mes "Bravo guerreiro...";
     mes "Você deseja retornar ao seu lugar de honra?";
 		next;
