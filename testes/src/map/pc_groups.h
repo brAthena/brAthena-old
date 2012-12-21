@@ -79,7 +79,7 @@ static const struct {
 	{ "can_shop", PC_PERM_CAN_SHOP },       // [Megasantos]
 	{ "can_drops", PC_PERM_CAN_DROPS },     // [Megasantos]
 	{ "disable_exp", PC_PERM_DISABLE_EXP }, // [Megasantos]
-  { "can_attack", PC_PERM_CAN_ATTACK },   // [Holy]
+	{ "can_attack", PC_PERM_CAN_ATTACK },   // [Holy]
 };
 
 #endif // _PC_GROUPS_H_

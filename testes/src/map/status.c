@@ -1920,7 +1920,11 @@ static unsigned short status_base_atk(const struct block_list *bl, const struct 
 static inline unsigned short status_base_matk_min(const struct status_data* status){ return status->int_+(status->int_/7)*(status->int_/7); }
 static inline unsigned short status_base_matk_max(const struct status_data* status){ return status->int_+(status->int_/5)*(status->int_/5); }
 #else
-unsigned short status_base_matk(const struct status_data* status, int level){ return status->int_+(status->int_/2)+(status->dex/5)+(status->luk/3)+(level/4); }
+unsigned short status_base_matk(const struct status_data* status, int level){ 
+if ( battle_config.bRO_Renewal ) // Fórmula de ataque mágico [brAthena - bRO]
+return status->int_+(status->int_*15/10)+(status->dex/5)+(status->luk/3)+(level/4);
+else
+return status->int_+(status->int_/2)+(status->dex/5)+(status->luk/3)+(level/4); }
 #endif
 
 //Fills in the misc data that can be calculated from the other status info (except for level)
