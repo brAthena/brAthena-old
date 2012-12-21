@@ -117,7 +117,7 @@ int config_setting_copy(config_setting_t *parent, const config_setting_t *src)
 // ----------------------------------------------------------------------------------------
 // http://www.hyperrealm.com/libconfig/libconfig_manual.html 
 // ----------------------------------------------------------------------------------------
-char* read_message(char param[])
+char* read_message(const char* param)
 {
 	static char message[1024];
 	config_setting_t *str;
@@ -144,7 +144,7 @@ char* read_message(char param[])
 
 void read_server_lang(void)
 {
-	char *tmpvar = "conf/battle/brathena.conf";
+	const char* tmpvar = "conf/battle/brathena.conf";
 	config_t configFile;
 	
 	config_init(&configFile);
