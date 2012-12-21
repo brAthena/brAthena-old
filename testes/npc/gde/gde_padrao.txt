@@ -93,7 +93,7 @@ OnAgitBreak:
 
 	// Refresh castle data, disable Kafra and reset Invest information.
 	donpcevent strnpcinfo(0)+"::OnRecvCastle";
-	disablenpc "Kafra Staff#"+strnpcinfo(2);
+	disablenpc "Funcionária Kafra#"+strnpcinfo(2);
 	for( set .@i, 4; .@i <= 9; set .@i, .@i+1 ) {
 		SetCastleData strnpcinfo(2), .@i, 0;
 	}
@@ -126,7 +126,7 @@ OnGuildBreak:
 	if (strnpcinfo(0) == "Gld_Agit_Manager") end;
 	// Kill guardians, disable the Kafra, and set owner to 0.
 	killmonster strnpcinfo(2),"Guardian#"+strnpcinfo(2)+"::OnGuardianDied";
-	disablenpc "Kafra Staff#"+strnpcinfo(2);
+	disablenpc "Funcionária Kafra#"+strnpcinfo(2);
 	SetCastleData strnpcinfo(2),0,0;
 	// Wait before refreshing guild information.
 	sleep 7000;
@@ -242,7 +242,7 @@ OnRecvCastle:
 		}
 		donpcevent "Agit#"+strnpcinfo(2)+"::OnStartArena";
 		// Disable Kafra Staff...
-		disablenpc "Kafra Staff#"+strnpcinfo(2);
+		disablenpc "Funcionária Kafra#"+strnpcinfo(2);
 		end;
 	} else {
 		// Otherwise place the guild emblem on flags.
@@ -273,14 +273,14 @@ OnRecvCastle:
 		// And load purchased Guardian in castles.
 		donpcevent "Guardian#"+strnpcinfo(2)+"::OnSpawnGuardians";
 		// And display Kafra if purchased.
-		if (GetCastleData(strnpcinfo(2),9) < 1) disablenpc "Kafra Staff#"+strnpcinfo(2);
+		if (GetCastleData(strnpcinfo(2),9) < 1) disablenpc "Funcionária Kafra#"+strnpcinfo(2);
 	}
 	end;
 }
 
 // WoE : Guild Kafras
 //============================================================
--	script	Kafra Staff#woe::guildkafra	-1,{
+-	script	Funcionária Kafra#woe::guildkafra	-1,{
 
 	set .@GID,GetCastleData(strnpcinfo(2),1);
 
@@ -790,7 +790,7 @@ OnRecvCastle:
 				mes "She worked hard in my opinion. It was a good decision to keep her.";
 				close;
 			}
-			disablenpc "Kafra Staff#"+strnpcinfo(2);
+			disablenpc "Funcionária Kafra#"+strnpcinfo(2);
 			SetCastleData strnpcinfo(2),9,0;
 			mes "["+strnpcinfo(1)+"]";
 			mes "....";
