@@ -3596,6 +3596,39 @@ ACMD_FUNC(partyrecall)
 }
 
 /*==========================================
+ * Recarrega dados do servidor
+ *------------------------------------------*/
+ACMD_FUNC(reload)
+{
+	const char* opt[] = { "item_db", "mob_db", "skill_db"};
+	int option;
+	
+	memset(atcmd_output, '\0', sizeof(atcmd_output));
+	nullpo_retr(-1, sd);
+	
+	if(!message || !*message){
+		clif_displaymessage(fd, "Opções: item_db, mob_db e skill_db.");
+		clif_displaymessage(fd, "Modo de uso: @reload <opção>");
+		return -1;
+	}
+
+	for(option = 0; option < ARRAYLENGTH(opt); ++option)
+		if(!strcmp(message, opt[option]))
+			break;
+	
+	switch(option){
+		case 0: itemdb_reload(); break;
+		case 1: mob_reload(); read_petdb(); merc_reload(); read_mercenarydb(); reload_elementaldb(); break;
+		case 2: skill_reload(); merc_skill_reload(); reload_elemental_skilldb(); read_mercenary_skilldb(); break;
+		default: message = "Digite um opção válida."; option = -2; break;
+	}
+	
+	snprintf(atcmd_output, sizeof(atcmd_output), (option!=-2?"%s recarregado.":"%s"), message);
+	clif_displaymessage(fd, atcmd_output);
+	return 0;
+}
+
+/*==========================================
  * @reloadatcommand - reloads atcommand_athena.conf groups.conf
  *------------------------------------------*/
 void atcommand_doload();
@@ -8994,7 +9027,8 @@ void atcommand_basecommands(void) {
 		ACMD_DEF2("rmvperm", addperm),
 		ACMD_DEF(unloadnpcfile),
 		ACMD_DEF(cart),
-		ACMD_DEF(mount2)
+		ACMD_DEF(mount2),
+		ACMD_DEF(reload)
 	};
 	AtCommandInfo* atcommand;
 	int i;

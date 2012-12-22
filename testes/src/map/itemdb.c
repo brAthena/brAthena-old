@@ -1116,6 +1116,73 @@ static int itemdb_final_sub(DBKey key, DBData *data, va_list ap)
 	return 0;
 }
 
+void itemdb_reload(void)
+{
+	struct s_mapiterator* iter;
+	struct map_session_data* sd;
+
+	int i,d,k;
+	
+	// clear the previous itemdb data
+	for( i = 0; i < ARRAYLENGTH(itemdb_array); ++i )
+		if( itemdb_array[i] )
+			destroy_item_data(itemdb_array[i], 1);
+
+	itemdb_other->clear(itemdb_other, itemdb_final_sub);
+
+	memset(itemdb_array, 0, sizeof(itemdb_array));
+		
+	// read new data
+	itemdb_read();
+	
+	//Epoque's awesome @reloaditemdb fix - thanks! [Ind]
+	//- Fixes the need of a @reloadmobdb after a @reloaditemdb to re-link monster drop data
+	for( i = 0; i < MAX_MOB_DB; i++ ) {
+		struct mob_db *entry;
+		if( !((i < 1324 || i > 1363) && (i < 1938 || i > 1946)) )
+			continue;
+		entry = mob_db(i);
+		for(d = 0; d < MAX_MOB_DROP; d++) {
+			struct item_data *id;
+			if( !entry->dropitem[d].nameid )
+				continue;
+			id = itemdb_search(entry->dropitem[d].nameid);
+
+			for (k = 0; k < MAX_SEARCH; k++) {
+				if (id->mob[k].chance <= entry->dropitem[d].p)
+					break;
+			}
+
+			if (k == MAX_SEARCH)
+				continue;
+			
+			if (id->mob[k].id != i)
+				memmove(&id->mob[k+1], &id->mob[k], (MAX_SEARCH-k-1)*sizeof(id->mob[0]));
+			id->mob[k].chance = entry->dropitem[d].p;
+			id->mob[k].id = i;
+		}
+	}
+
+	// readjust itemdb pointer cache for each player
+	iter = mapit_geteachpc();
+	for( sd = (struct map_session_data*)mapit_first(iter); mapit_exists(iter); sd = (struct map_session_data*)mapit_next(iter) ) {
+		memset(sd->item_delay, 0, sizeof(sd->item_delay));  // reset item delays
+		pc_setinventorydata(sd);
+		/* clear combo bonuses */
+		if( sd->combos.count ) {
+			aFree(sd->combos.bonus);
+			aFree(sd->combos.id);
+			sd->combos.bonus = NULL;
+			sd->combos.id = NULL;
+			sd->combos.count = 0;
+			if( pc_load_combo(sd) > 0 )
+				status_calc_pc(sd,0);
+		}
+
+	}
+	mapit_free(iter);
+}
+
 void do_final_itemdb(void)
 {
 	int i;
