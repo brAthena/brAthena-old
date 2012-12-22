@@ -26464,6 +26464,16 @@ REPLACE INTO `item_db` VALUES (18575,'Disfarce_de_Solid_Sorrateiro','Disfarce de
 REPLACE INTO `item_db` VALUES (18581,'Máscara_de_Tigre_Vermelha','Máscara de Tigre Vermelha',5,10000,NULL,400,NULL,2,NULL,0,0xFFFFFFFF,7,2,768,NULL,50,1,747,'bonus bStr,3; bonus bMaxHp,200;',NULL,NULL);
 
 --
+-- Estrutura da tabela `item_bro`
+--
+
+CREATE TABLE IF NOT EXISTS `item_bro` (
+  `GroupID` tinyint NOT NULL,
+  `ItemID` smallint unsigned NOT NULL,
+  `Rate` smallint NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
 -- Estrutura da tabela `mob_db`
 --
 

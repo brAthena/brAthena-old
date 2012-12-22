@@ -516,7 +516,7 @@ static bool itemdb_read_itemavail(char* str[], int columns, int current)
  *------------------------------------------*/
 int itemdb_read_itemgroup_sub()
 {
-	const char* db[] = { get_database_name(26), get_database_name(27), get_database_name(28), get_database_name(29), get_database_name(30), get_database_name(31) };
+	const char* db[] = { get_database_name(26), get_database_name(27), get_database_name(28), get_database_name(29), get_database_name(30), get_database_name(31), get_database_name(57) };
 	int dbQuery, dbRows, groupid, nameid, k, j, i;
 	
 	for(i = 0; i < ARRAYLENGTH(db); ++i)
