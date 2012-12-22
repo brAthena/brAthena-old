@@ -3472,7 +3472,7 @@ void sv_readsqldb (char* name, char* next_name, int param_size, int max_allowed,
 			count++;
 		}
 		
-		ShowSQL(read_message("Source.map.map_sv_readsqldb"), CL_WHITE, count, CL_RESET, CL_WHITE, db_name[i], CL_RESET);
+		ShowSQL(read_message("Source.reuse.reuse_readsql"), CL_WHITE, count, CL_RESET, CL_WHITE, db_name[i], CL_RESET);
 		Sql_FreeResult(dbmysql_handle);
 	}
 }
