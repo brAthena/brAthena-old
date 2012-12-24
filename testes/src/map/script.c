@@ -8390,7 +8390,7 @@ BUILDIN_FUNC(checkwug)
 	if( sd == NULL )
 		return 0;// no player attached, report source
 
-	if( pc_iswug(sd) )
+	if( pc_iswug(sd) || pc_isridingwug(sd) )
 		script_pushint(st, 1);
 	else
 		script_pushint(st, 0);
@@ -10082,7 +10082,6 @@ BUILDIN_FUNC(homunculus_evolution)
 BUILDIN_FUNC(homunculus_mutate)
 {
 	int homun_id, m_class, m_id;
-	int homun_array[5] = {6048,6049,6050,6051,6052};
 	TBL_PC *sd;
 
 	sd = script_rid2sd(st);
@@ -10092,7 +10091,7 @@ BUILDIN_FUNC(homunculus_mutate)
 	if(script_hasdata(st,2))
 		homun_id = script_getnum(st,2);
 	else
-		homun_id = homun_array[rnd() % 5];
+		homun_id = 6048 + (rnd() % 4);
 
 	if(merc_is_hom_active(sd->hd)) {
 		m_class = hom_class2mapid(sd->hd->homunculus.class_);
@@ -13721,7 +13720,7 @@ BUILDIN_FUNC(explode)
 	}
 
 	while(str[i] != '\0') {
-		if(str[i] == delimiter && start < 127) { //break at delimiter but ignore after reaching last array index
+		if(str[i] == delimiter && start < SCRIPT_MAX_ARRAYSIZE-1) { //break at delimiter but ignore after reaching last array index
 			temp[j] = '\0';
 			set_reg(st, sd, reference_uid(id, start++), name, (void*)temp, reference_getref(data));
 			j = 0;
@@ -17189,7 +17188,7 @@ BUILDIN_FUNC(getrandgroupitem) {
 }
 
 /* cleanmap <map_name>;
- * cleanfloor <map_name, <x0>, <y0>, <x1>, <y1>; */
+ * cleanarea <map_name, <x0>, <y0>, <x1>, <y1>; */
 static int atcommand_cleanfloor_sub(struct block_list *bl, va_list ap)
 {
     nullpo_ret(bl);

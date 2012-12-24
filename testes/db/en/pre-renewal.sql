@@ -317,7 +317,7 @@ CREATE TABLE IF NOT EXISTS `castle_db` (
 
 REPLACE INTO castle_db VALUES(0,'aldeg_cas01','Neuschwanstein','Agit#aldeg_cas01',1);
 REPLACE INTO castle_db VALUES(1,'aldeg_cas02','Hohenschwangau','Agit#aldeg_cas02',1);
-REPLACE INTO castle_db VALUES(2,'aldeg_cas03','Nuenberg','Agit#aldeg_cas03',1);
+REPLACE INTO castle_db VALUES(2,'aldeg_cas03','Nuernberg','Agit#aldeg_cas03',1);
 REPLACE INTO castle_db VALUES(3,'aldeg_cas04','Wuerzburg','Agit#aldeg_cas04',1);
 REPLACE INTO castle_db VALUES(4,'aldeg_cas05','Rothenburg','Agit#aldeg_cas05',1);
 REPLACE INTO castle_db VALUES(5,'gefg_cas01','Repherion','Agit#gefg_cas01',1);
