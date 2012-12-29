@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 4.7/4.7/1.0                         |
+//   | Versões eA/rA/brA: 4.7/4.8/1.0                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Quests Lighthalzen                          |
 //   |--------------------------------------------------------|
@@ -22,6 +22,8 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
+// Gangster Alert [Official Conversion]
+//============================================================
 lighthalzen,1,1,0	script	Law Enforcement	-1,{
 	end;
 
@@ -5210,13 +5212,13 @@ OnTouch_:
 		set lhz_curse,26;
 		changequest 2093,2094;
 		if (BaseLevel < 70)
-			getexp 80000,30000;
+			getexp 800000,300000;
 		else if ((BaseLevel > 69) && (BaseLevel < 80))
-			getexp 100000,50000;
+			getexp 1000000,500000;
 		else if ((BaseLevel > 79) && (BaseLevel < 90))
-			getexp 150000,80000;
-		else if ((BaseLevel > 89) && (BaseLevel < 151))
-			getexp 200000,100000;
+			getexp 1500000,800000;
+		else if (BaseLevel > 89)
+			getexp 2000000,1000000;
 	}
 	close;
 }

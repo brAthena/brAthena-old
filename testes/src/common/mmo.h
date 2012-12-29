@@ -98,7 +98,7 @@
 #define MAX_GUILDSKILL	15 // increased max guild skills because of new skills [Sara-chan]
 #define MAX_GUILDLEVEL 50
 #define MAX_GUARDIANS 8	//Local max per castle. [Skotlex]
-#define MAX_QUEST_DB 2000 //Max quests that the server will load
+#define MAX_QUEST_DB 2200 //Max quests that the server will load
 #define MAX_QUEST_OBJECTIVES 3 //Max quest objectives for a quest
 
 // for produce
@@ -177,7 +177,7 @@ enum item_types {
 	IT_AMMO,    //10
 	IT_DELAYCONSUME,//11
 	IT_CASH = 18,
-	IT_MAX 
+	IT_MAX
 };
 
 
@@ -293,6 +293,8 @@ struct s_homunculus {	//[orn]
 	int int_ ;
 	int dex ;
 	int luk ;
+
+	char spiritball; //for homun S [lighta]
 };
 
 struct s_mercenary {
@@ -417,7 +419,7 @@ struct auction_data {
 	char seller_name[NAME_LENGTH];
 	int buyer_id;
 	char buyer_name[NAME_LENGTH];
-	
+
 	struct item item;
 	// This data is required for searching, as itemdb is not read by char server
 	char item_name[ITEM_NAME_LENGTH];
@@ -540,7 +542,7 @@ struct fame_list {
 	char name[NAME_LENGTH];
 };
 
-enum { //Change Guild Infos 
+enum { //Change Guild Infos
 	GBI_EXP	=1,		// Guild Experience (EXP)
 	GBI_GUILDLV,		// Guild level
 	GBI_SKILLPOINT,		// Guild skillpoints

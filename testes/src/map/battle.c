@@ -1121,10 +1121,10 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 
 		if( sd && (sce = sc->data[SC_FORCEOFVANGUARD]) && flag&BF_WEAPON && rnd()%100 < sce->val2 )
 			pc_addspiritball(sd,skill_get_time(LG_FORCEOFVANGUARD,sce->val1),sce->val3);
-		if (sc->data[SC_STYLE_CHANGE] && rnd() % 100 < 50) {
-            TBL_HOM *hd = BL_CAST(BL_HOM,bl);
-            if (hd) hom_addspiritball(hd, 10); //add a sphere
-        }
+		if (sc->data[SC_STYLE_CHANGE] && rnd()%2) {
+                    TBL_HOM *hd = BL_CAST(BL_HOM,bl);
+                    if (hd) hom_addspiritball(hd, 10); //add a sphere
+                }
 
 		if( sc->data[SC__DEADLYINFECT] && damage > 0 && rnd()%100 < 65 + 5 * sc->data[SC__DEADLYINFECT]->val1 )
 			status_change_spread(bl, src); // Deadly infect attacked side
@@ -1143,7 +1143,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 					if( s_bl->type == BL_PC )
 						((TBL_PC*)s_bl)->shadowform_id = 0;
 				} else {
-					status_damage(src, s_bl, damage, 0, clif_damage(s_bl, s_bl, gettick(), 500, 500, damage, -1, 0, 0), 0);
+					status_damage(bl, s_bl, damage, 0, clif_damage(s_bl, s_bl, gettick(), 500, 500, damage, -1, 0, 0), 0);
 					return ATK_NONE;
 				}
 			}
@@ -2825,7 +2825,10 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					RE_LVL_DMOD(100);
 					break;
 				case WM_SEVERE_RAINSTORM_MELEE:
-					skillratio = 50 + 50 * skill_lv;
+					//ATK [{(Caster’s DEX + AGI) x (Skill Level / 5)} x Caster’s Base Level / 100] %
+					skillratio = (sstatus->dex + sstatus->agi) * (skill_lv * 2);
+					RE_LVL_DMOD(100);
+					skillratio /= 10;
 					break;
 				case WM_GREAT_ECHO:
 					skillratio += 800 + 100 * skill_lv;
@@ -2928,6 +2931,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case MH_LAVA_SLIDE:
 					skillratio = 70 * skill_lv;
 					break;
+				case MH_TINDER_BREAKER:
 				case MH_MAGMA_FLOW:
 					skillratio += -100 + 100 * skill_lv;
 					break;
@@ -2980,9 +2984,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case SR_GATEOFHELL:
 					ATK_ADD (sstatus->max_hp - status_get_hp(src));
 					if(sc && sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == SR_FALLENEMPIRE){
-						ATK_ADD ( ((int64)sstatus->sp * (1 + skill_lv * 2 / 10)) + 10 * status_get_lv(src) );
-					}else{
 						ATK_ADD ( ((int64)sstatus->max_sp * (1 + skill_lv * 2 / 10)) + 40 * status_get_lv(src) );
+					}else{
+						ATK_ADD ( ((int64)sstatus->sp * (1 + skill_lv * 2 / 10)) + 10 * status_get_lv(src) );
 					}
 					break;
 				case SR_TIGERCANNON: // (Tiger Cannon skill level x 240) + (Target Base Level x 40)
@@ -3048,8 +3052,8 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				}
 			}
 			if(sc->data[SC_STYLE_CHANGE]){
-                TBL_HOM *hd = BL_CAST(BL_HOM,src);
-                if (hd) ATK_ADD(hd->spiritball * 3);
+					TBL_HOM *hd = BL_CAST(BL_HOM,src);
+					if (hd) ATK_ADD(hd->homunculus.spiritball * 3);
             }
 
 		}
@@ -3173,9 +3177,14 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			}
 			//Vitality reduction from rodatazone: http://rodatazone.simgaming.net/mechanics/substats.php#def
 			if (tsd)	//Sd vit-eq
-			{	//[VIT*0.5] + rnd([VIT*0.3], max([VIT*0.3],[VIT^2/150]-1))
+			{	
+#ifndef RENEWAL
+				//[VIT*0.5] + rnd([VIT*0.3], max([VIT*0.3],[VIT^2/150]-1))
 				vit_def = def2*(def2-15)/150;
 				vit_def = def2/2 + (vit_def>0?rnd()%vit_def:0);
+#else
+				vit_def = def2;
+#endif
 				
 				if((battle_check_undead(sstatus->race,sstatus->def_ele) || sstatus->race==RC_DEMON) && //This bonus already doesnt work vs players
 					src->type == BL_MOB && (skill=pc_checkskill(tsd,AL_DP)) > 0)
@@ -3183,37 +3192,49 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				if( src->type == BL_MOB && (skill=pc_checkskill(tsd,RA_RANGERMAIN))>0 && 
 					(sstatus->race == RC_BRUTE || sstatus->race == RC_FISH || sstatus->race == RC_PLANT) )
 					vit_def += skill*5;
-			} else { //Mob-Pet vit-eq
+			} 
+			else { //Mob-Pet vit-eq
+#ifndef RENEWAL
 				//VIT + rnd(0,[VIT/20]^2-1)
 				vit_def = (def2/20)*(def2/20);
 				vit_def = def2 + (vit_def>0?rnd()%vit_def:0);
+#else
+				vit_def = def2;
+#endif
 			}
-			
+
 			if (battle_config.weapon_defense_type) {
 				vit_def += def1*battle_config.weapon_defense_type;
 				def1 = 0;
 			}
 			#ifdef RENEWAL
 				/**
-				 * In Renewal 100% damage reduction is 900 DEF
-				 * Formula: (1+(900-def1)/9)%
-				 **/
-				if (def1 > 900) def1 = 900;
-				ATK_RATE2(
-					flag.idef ?100:(flag.pdef ? (flag.pdef*(def1+vit_def)) : (1+(900-def1)/9)),
-			 		flag.idef2?100:(flag.pdef2 ? (flag.pdef2*(def1+vit_def)) : (1+(900-def1)/9))
-				);
+			* RE DEF Reduction
+			* Damage = Attack * (4000+eDEF)/(4000+eDEF) - sDEF
+			* Icepick no longer bypasses defense, but gains 1 atk per def
+			**/
+
+			ATK_ADD2(
+				flag.pdef ?(def1+vit_def):0,
+				flag.pdef2?(def1+vit_def):0
+			);
+			if (!flag.idef || !flag.idef2){
+				wd.damage = wd.damage * (4000+def1) / (4000+10*def1) - vit_def;
+				if(flag.lh)
+					wd.damage2 = wd.damage2 * (4000+def1) / (4000+10*def1) - vit_def;
+			}
+
 			#else
 				if (def1 > 100) def1 = 100;
 				ATK_RATE2(
 					flag.idef ?100:(flag.pdef ? (flag.pdef*(def1+vit_def)) : (100-def1)),
 			 		flag.idef2?100:(flag.pdef2? (flag.pdef2*(def1+vit_def)) : (100-def1))
 				);
+				ATK_ADD2(
+					flag.idef ||flag.pdef ?0:-vit_def,
+					flag.idef2||flag.pdef2?0:-vit_def
+				);
 			#endif
-			ATK_ADD2(
-				flag.idef ||flag.pdef ?0:-vit_def,
-				flag.idef2||flag.pdef2?0:-vit_def
-			);
 		}
 
 		//Post skill/vit reduction damage increases
@@ -3902,9 +3923,13 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 					case WM_METALICSOUND:
 						skillratio += 120 * skill_lv + 60 * ( sd? pc_checkskill(sd, WM_LESSON) : 10 ) - 100;
 						break;
-					case WM_SEVERE_RAINSTORM:
+					/*case WM_SEVERE_RAINSTORM:
 						skillratio += 50 * skill_lv;
 						break;
+						
+						WM_SEVERE_RAINSTORM just set a unit place,
+						refer to WM_SEVERE_RAINSTORM_MELEE to set the formula.
+					*/
 					case WM_REVERBERATION_MAGIC:
 						// MATK [{(Skill Level x 100) + 100} x Casters Base Level / 100] %
 						skillratio += 100 * (sd ? pc_checkskill(sd, WM_REVERBERATION) : 1);
@@ -4052,15 +4077,13 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 			}
 		#ifdef RENEWAL
 			/**
-			 * RE MDEF Reduction (from doddler:?title=Renewal_Changes#MDEF)
-			 * Damage from magic = Magic Attack * 111.5/(111.5+eMDEF) 
-			 * Damage = Magic Attack * 111.5/(111.5+eMDEF) - sMDEF 
+			 * RE MDEF Reduction
+			 * Damage = Magic Attack * (1000+eMDEF)/(1000+eMDEF) - sMDEF
 			 **/
-			if(mdef < -111) mdef = -111; // value smaller -111 brings back the damage to origin up to -223.
-			if ( battle_config.bRO_Renewal ) // FÃ³rmula de Defesa MÃ¡gica por Equipamentos [brAthena - bRO]
+			if ( battle_config.bRO_Renewal ) // Fórmula de Defesa Mágica por Equipamentos [brAthena - bRO]
 				ad.damage = ad.damage * 1115 / (1115 - mdef2) / 2;
 			else 
-        ad.damage = ad.damage * 1115 / (1115 + mdef * 10) - mdef2;
+				ad.damage = ad.damage * (1000 + mdef) / (1000 + mdef * 10) - mdef2;
 		#else
 			if(battle_config.magic_defense_type)
 				ad.damage = ad.damage - mdef*battle_config.magic_defense_type - mdef2;

@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 2.2/2.4a/1.0                        |
+//   | Versões eA/rA/brA: 2.2/2.6a/1.0                        |
 //   |--------------------------------------------------------|
 //   | Descrição: Coleção de Quests do Episódio 13.2          |
 //   |--------------------------------------------------------|
@@ -22,6 +22,8 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
+// Onward to the New World
+//============================================================ 
 prontera,163,53,3	script	Promotional Staff#prt	100,{
 	mes "[Promotional Staff]";
 	mes "We are looking for adventurers who are super curious and extremely brave.";
@@ -8519,8 +8521,7 @@ mid_camp,69,144,0	script	Ferocious Gorurug	421,{
 			}
 		}
 		else if ((ep13_yong1 > 59) && (ep13_yong1 < 300)) {
-			skilleffect "AL_HEAL",816;
-			heal 816,0;
+			npcskill "AL_HEAL",8,50,50;
 			if (countitem(6039) > 9) {
 				mes "[Ferocious Gorurug]";
 				mes "You've brough Pieces of Fish!";

@@ -3284,7 +3284,9 @@ static int skill_timerskill(int tid, unsigned int tick, int id, intptr_t data)
 				case CH_PALMSTRIKE:
 					{
 						struct status_change* tsc = status_get_sc(target);
-						if( tsc && tsc->option&OPTION_HIDE ){
+						struct status_change* sc = status_get_sc(src);
+						if( tsc && tsc->option&OPTION_HIDE ||
+							sc && sc->option&OPTION_HIDE ){
 							skill_blown(src,target,skill_get_blewcount(skl->skill_id, skl->skill_lv), -1, 0x0 );
 							break;
 						}
@@ -4609,9 +4611,22 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, int 
 		    map_foreachinrange(skill_area_sub, bl, skill_get_splash(skillid, skilllv), splash_target(src), src, skillid, skilllv, tick, flag | BCT_ENEMY | SD_SPLASH | 1, skill_castend_damage_id);
 		}
 		break;
+
 	case MH_STAHL_HORN:
 	case MH_NEEDLE_OF_PARALYZE:
 		skill_attack(BF_WEAPON, src, src, bl, skillid, skilllv, tick, flag);
+		break;
+	case MH_TINDER_BREAKER:
+			if (unit_movepos(src, bl->x, bl->y, 1, 1)) {
+#if PACKETVER >= 20111005
+			clif_snap(src, bl->x, bl->y);
+#else
+			clif_skill_poseffect(src,skillid,skilllv,bl->x,bl->y,tick);
+#endif
+		}
+			clif_skill_nodamage(src,bl,skillid,skilllv,
+			sc_start4(bl,SC_CLOSECONFINE2,100,skilllv,src->id,0,0,skill_get_time(skillid,skilllv)));
+			skill_attack(BF_WEAPON, src, src, bl, skillid, skilllv, tick, flag);
 		break;
 				
 	case 0:/* no skill - basic/normal attack */
@@ -13139,7 +13154,17 @@ int skill_check_condition_castbegin(struct map_session_data* sd, short skill, sh
                 clif_skill_fail(sd, skill, USESKILL_FAIL_CONDITION, 0);
                 return 0;
             }
-            break;        
+            break;
+        case ST_MH_FIGHTING:
+            if (!(sc && sc->data[SC_STYLE_CHANGE] && sc->data[SC_STYLE_CHANGE]->val2 == MH_MD_FIGHTING)){
+                clif_skill_fail(sd,skill,USESKILL_FAIL_LEVEL,0);
+                return 0;
+            }
+        case ST_MH_GRAPPLING:
+            if (!(sc && sc->data[SC_STYLE_CHANGE] && sc->data[SC_STYLE_CHANGE]->val2 == MH_MD_GRAPPLING)){
+                clif_skill_fail(sd,skill,USESKILL_FAIL_LEVEL,0);
+                return 0;
+            }
 	}
 
 	if(require.mhp > 0 && get_percentage(status->hp, status->max_hp) > require.mhp) {
@@ -13838,9 +13863,8 @@ int skill_vfcastfix (struct block_list *bl, double time, int skill_id, int skill
 	if( !(skill_get_castnodex(skill_id, skill_lv)&1) )// reduction from status point
 		time = (1 - sqrt( ((float)(status_get_dex(bl)*2 + status_get_int(bl)) / battle_config.vcast_stat_scale) )) * time;
 	// underflow checking/capping
-	time = max(time, 0) + (1 - (float)min(fixcast_r, 100) / 100) * fixed;
+	time = max(time, 0) + (1 - (float)min(fixcast_r, 100) / 100) * max(fixed,0);
 
-//       ShowInfo("Casttime vfcastfix = %d\n",time);
 	return (int)time;
 }
 #endif
@@ -17576,7 +17600,9 @@ static bool skill_parse_row_requiredb(char* split[], int columns, int current)
 	else if( strcmpi(split[10],"mado")==0 ) skill_db[i].state = ST_MADO;
 	else if( strcmpi(split[10],"elementalspirit")==0 ) skill_db[i].state = ST_ELEMENTALSPIRIT;
 	else if( strcmpi(split[10], "poisonweapon") == 0) skill_db[i].state = ST_POISONINGWEAPON;
-    else if( strcmpi(split[10], "rollingcutter") == 0) skill_db[i].state = ST_ROLLINGCUTTER;
+	else if( strcmpi(split[10], "rollingcutter") == 0) skill_db[i].state = ST_ROLLINGCUTTER;
+	else if (strcmpi(split[10], "mh_fighting") == 0) skill_db[i].state = ST_MH_FIGHTING;
+	else if (strcmpi(split[10], "mh_grappling") == 0) skill_db[i].state = ST_MH_GRAPPLING;
 	/**
 	 * Unknown or no state
 	 **/

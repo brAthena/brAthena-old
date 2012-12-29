@@ -3405,7 +3405,7 @@ static const char* npc_parse_mapflag(char* w1, char* w2, char* w3, char* w4, con
 //@runOnInit should we exec OnInit when it's done ?
 void npc_parsesrcfile(const char* filepath, bool runOnInit)
 {
-	int m, lines = 0;
+	int m, x, y, lines = 0;
 	FILE* fp;
 	size_t len;
 	char* buffer;
@@ -3486,11 +3486,12 @@ void npc_parsesrcfile(const char* filepath, bool runOnInit)
 
 		if( strcmp(w1,"-") !=0 && strcasecmp(w1,"function") != 0 )
 		{// w1 = <map name>,<x>,<y>,<facing>
-			char mapname[2048];
-			sscanf(w1,"%[^,]",mapname);
+			char mapname[MAP_NAME_LENGTH*2];
+			x = y = 0;
+			sscanf(w1,"%23[^,],%d,%d[^,]",mapname,&x,&y);
 			if( !mapindex_name2id(mapname) )
 			{// Incorrect map, we must skip the script info...
-				ShowError("Mapa desconhecido '%s' no arquivo '%s', linha '%d'. Ignorando linha...\n", mapname, filepath, strline(buffer,p-buffer));
+				ShowError("npc_parsesrcfile: Mapa desconhecido '%s' no arquivo '%s', linha '%d'. Pulando linha...\n", mapname, filepath, strline(buffer,p-buffer));
 				if( strcasecmp(w2,"script") == 0 && count > 3 )
 				{
 					if((p = npc_skip_script(p,buffer,filepath)) == NULL)
@@ -3504,6 +3505,18 @@ void npc_parsesrcfile(const char* filepath, bool runOnInit)
 			m = map_mapname2mapid(mapname);
 			if( m < 0 )
 			{// "mapname" is not assigned to this server, we must skip the script info...
+				if( strcasecmp(w2,"script") == 0 && count > 3 )
+				{
+					if((p = npc_skip_script(p,buffer,filepath)) == NULL)
+					{
+						break;
+					}
+				}
+				p = strchr(p,'\n');// next line
+				continue;
+			}
+			if (x < 0 || x >= map[m].xs || y < 0 || y >= map[m].ys) {
+				ShowError("npc_parsesrcfile: Coordenadas desconhecidas ('%d', '%d') para mapa '%s' no arquivo '%s', line '%d'. Pulando linha...\n", x, y, mapname, filepath, strline(buffer,p-buffer));
 				if( strcasecmp(w2,"script") == 0 && count > 3 )
 				{
 					if((p = npc_skip_script(p,buffer,filepath)) == NULL)

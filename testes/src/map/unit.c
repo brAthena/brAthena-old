@@ -1276,7 +1276,11 @@ int unit_skilluse_id2(struct block_list *src, int target_id, short skill_num, sh
 #else
 	casttime = skill_vfcastfix(src, casttime, skill_num, skill_lv); 
 #endif
-	
+
+	if (src->type == BL_NPC) { // NPC-objects do not have cast time
+		casttime = 0;
+	}
+
 	if(!ud->state.running) //need TK_RUN or WUGDASH handler to be done before that, see bugreport:6026
 		unit_stop_walking(src,1);// eventhough this is not how official works but this will do the trick. bugreport:6829
 	clif_skillcasting(src, src->id, target_id, 0,0, skill_num, skill_get_ele(skill_num, skill_lv), casttime);
@@ -1438,6 +1442,10 @@ int unit_skilluse_pos2( struct block_list *src, short skill_x, short skill_y, sh
 #else
 	casttime = skill_vfcastfix(src, casttime, skill_num, skill_lv );
 #endif
+
+	if (src->type == BL_NPC) { // NPC-objects do not have cast time
+		casttime = 0;
+	}
 	
 
 	ud->state.skillcastcancel = castcancel&&casttime>0?1:0;

@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 2.4/1.4/1.0                         |
+//   | Versões eA/rA/brA: 2.4/1.4a/1.0                        |
 //   |--------------------------------------------------------|
 //   | Descrição: Mudança de Classe para Aprendiz.            |
 //   |--------------------------------------------------------|
@@ -950,8 +950,7 @@ new_1-3,96,30,4	script	Brade#nvs	733,{
 		mes "Kill enough Porings.";
 		mes "Porings are easy to deal with, so cheer up.";
 		mes "Try again.";
-		percentheal 100,100;
-		skilleffect 28,9999;
+		npcskill "AL_HEAL",10,99,60;
 		close;
 	}
 	mes "[Brade]";
@@ -964,8 +963,7 @@ new_1-3,96,30,4	script	Brade#nvs	733,{
 	mes "[Brade]";
 	mes "Try using the job manuals to find out the characteristics of each job's skills.";
 	mes "I will restore your HP and SP... Keep it up.";
-	percentheal 100,100;
-	skilleffect 28,9999;
+	npcskill "AL_HEAL",10,99,60;
 	close;
 }
 

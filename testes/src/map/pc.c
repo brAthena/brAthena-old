@@ -2054,10 +2054,14 @@ int pc_bonus(struct map_session_data *sd,int type,int val)
 		break;
 	case SP_BASE_ATK:
 		if(sd->state.lr_flag != 2) {
+//#ifdef RENEWAL
+//            sd->bonus.eatk += val;
+//#else
 			bonus = status->batk + val;
 			status->batk = cap_value(bonus, 0, USHRT_MAX);
+//#endif
 		}
-		break;
+		break;;
 	case SP_DEF1:
 		if(sd->state.lr_flag != 2) {
 			bonus = status->def + val;
@@ -2172,6 +2176,9 @@ int pc_bonus(struct map_session_data *sd,int type,int val)
 		val += (int)status->max_sp;
 		status->max_sp = (unsigned int)val;
 		break;
+#ifndef RENEWAL_CAST
+	case SP_VARCASTRATE:
+#endif
 	case SP_CASTRATE:
 		if(sd->state.lr_flag != 2)
 			sd->castrate+=val;
@@ -2594,10 +2601,12 @@ int pc_bonus(struct map_session_data *sd,int type,int val)
 		if(sd->state.lr_flag != 2)
 			sd->bonus.fixcastrate -= val;
 		break;
+#ifdef RENEWAL_CAST
 	case SP_VARCASTRATE:
 		if(sd->state.lr_flag != 2)
 			sd->bonus.varcastrate -= val;
 		break;
+#endif
 	default:
 		ShowWarning("pc_bonus: Tipo desconhecido %d %d !\n",type,val);
 		break;
@@ -2606,7 +2615,7 @@ int pc_bonus(struct map_session_data *sd,int type,int val)
 }
 
 /*==========================================
- * ? 備品による能力等のボ?ナス設定
+ * Player bonus (type) with args type2 and val, called trough bonus2 (npc)
  *------------------------------------------*/
 int pc_bonus2(struct map_session_data *sd,int type,int type2,int val)
 {
@@ -2946,6 +2955,9 @@ int pc_bonus2(struct map_session_data *sd,int type,int type2,int val)
 		}
 		break;
 
+#ifndef RENEWAL_CAST
+	case SP_VARCASTRATE:
+#endif
 	case SP_CASTRATE:
 		if(sd->state.lr_flag == 2)
 			break;
@@ -3132,6 +3144,7 @@ int pc_bonus2(struct map_session_data *sd,int type,int type2,int val)
 			sd->skillvarcast[i].val = val;
 		}
 		break;
+#ifdef RENEWAL_CAST
 	case SP_VARCASTRATE:
 		if(sd->state.lr_flag == 2)
 			break;
@@ -3148,6 +3161,7 @@ int pc_bonus2(struct map_session_data *sd,int type,int type2,int val)
 			sd->skillcast[i].val -= val;
 		}
 		break;
+#endif
 	case SP_SKILL_USE_SP: //bonus2 bSkillUseSP,n,x;
 		if(sd->state.lr_flag == 2)
 			break;
@@ -6781,7 +6795,7 @@ int pc_readparam(struct map_session_data* sd,int type)
  *------------------------------------------*/
 int pc_setparam(struct map_session_data *sd,int type,int val)
 {
-	int i = 0, statlimit;
+	int i = 0;
 
 	nullpo_ret(sd);
 
@@ -6878,28 +6892,22 @@ int pc_setparam(struct map_session_data *sd,int type,int val)
 		}
 		break;
 	case SP_STR:
-		statlimit = pc_maxparameter(sd);
-		sd->status.str = cap_value(val, 1, statlimit);
+		sd->status.str = cap_value(val, 1, pc_maxparameter(sd));
 		break;
 	case SP_AGI:
-		statlimit = pc_maxparameter(sd);
-		sd->status.agi = cap_value(val, 1, statlimit);
+		sd->status.agi = cap_value(val, 1, pc_maxparameter(sd));
 		break;
 	case SP_VIT:
-		statlimit = pc_maxparameter(sd);
-		sd->status.vit = cap_value(val, 1, statlimit);
+		sd->status.vit = cap_value(val, 1, pc_maxparameter(sd));
 		break;
 	case SP_INT:
-		statlimit = pc_maxparameter(sd);
-		sd->status.int_ = cap_value(val, 1, statlimit);
+		sd->status.int_ = cap_value(val, 1, pc_maxparameter(sd));
 		break;
 	case SP_DEX:
-		statlimit = pc_maxparameter(sd);
-		sd->status.dex = cap_value(val, 1, statlimit);
+		sd->status.dex = cap_value(val, 1, pc_maxparameter(sd));
 		break;
 	case SP_LUK:
-		statlimit = pc_maxparameter(sd);
-		sd->status.luk = cap_value(val, 1, statlimit);
+		sd->status.luk = cap_value(val, 1, pc_maxparameter(sd));
 		break;
 	case SP_KARMA:
 		sd->status.karma = val;
@@ -7147,6 +7155,17 @@ int pc_jobchange(struct map_session_data *sd,int job, int upper)
 	sd->class_ = (unsigned short)b_class;
 	sd->status.job_level=1;
 	sd->status.job_exp=0;
+
+	if (sd->status.base_level > pc_maxbaselv(sd)) {
+		sd->status.base_level = pc_maxbaselv(sd);
+		sd->status.base_exp=0;
+		pc_resetstate(sd);
+		clif_updatestatus(sd,SP_STATUSPOINT);
+		clif_updatestatus(sd,SP_BASELEVEL);
+		clif_updatestatus(sd,SP_BASEEXP);
+		clif_updatestatus(sd,SP_NEXTBASEEXP);
+	}
+
 	clif_updatestatus(sd,SP_JOBLEVEL);
 	clif_updatestatus(sd,SP_JOBEXP);
 	clif_updatestatus(sd,SP_NEXTJOBEXP);
@@ -7154,7 +7173,7 @@ int pc_jobchange(struct map_session_data *sd,int job, int upper)
 	for(i=0;i<EQI_MAX;i++) {
 		if(sd->equip_index[i] >= 0)
 			if(!pc_isequip(sd,sd->equip_index[i]))
-				pc_unequipitem(sd,sd->equip_index[i],2);	// ?備外し
+				pc_unequipitem(sd,sd->equip_index[i],2);	// unequip invalid item for class
 	}
 
 	//Change look, if disguised, you need to undisguise 

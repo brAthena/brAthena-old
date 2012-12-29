@@ -11608,7 +11608,10 @@ BUILDIN_FUNC(strmobinfo)
 
 	if(!mobdb_checkid(class_))
 	{
-		script_pushint(st,0);
+		if (num < 3) //requested a string
+			script_pushconststr(st,"");
+		else
+			script_pushint(st,0);
 		return 0;
 	}
 
@@ -17212,21 +17215,70 @@ BUILDIN_FUNC(cleanmap)
         return 1;
 
     if ((script_lastdata(st) - 2) < 4) {
-        map_foreachinmap(atcommand_cleanfloor_sub, m, BL_ITEM);
-    } else {
-        x0 = script_getnum(st, 3);
+		map_foreachinmap(atcommand_cleanfloor_sub, m, BL_ITEM);
+	} else {
+		x0 = script_getnum(st, 3);
 		y0 = script_getnum(st, 4);
 		x1 = script_getnum(st, 5);
 		y1 = script_getnum(st, 6);
-        if (x0 > 0 && y0 > 0 && x1 > 0 && y1 > 0) {
-            map_foreachinarea(atcommand_cleanfloor_sub, m, x0, y0, x1, y1, BL_ITEM);
-        } else {
-            ShowError("cleanarea: invalid coordinate defined!\n");
-            return 1;
-        }
-    }
-    
-    return 0;
+		if (x0 > 0 && y0 > 0 && x1 > 0 && y1 > 0) {
+			map_foreachinarea(atcommand_cleanfloor_sub, m, x0, y0, x1, y1, BL_ITEM);
+		} else {
+			ShowError("cleanarea: invalid coordinate defined!\n");
+			return 1;
+		}
+	}
+	
+	return 0;
+}
+
+/* Cast a skill on the attached player.
+ * npcskill <skill id>, <skill lvl>, <stat point>, <NPC level>;
+ * npcskill "<skill name>", <skill lvl>, <stat point>, <NPC level>; */
+BUILDIN_FUNC(npcskill)
+{
+	unsigned int skill_id;
+	unsigned short skill_level;
+	unsigned int stat_point;
+	unsigned int npc_level;
+	struct npc_data *nd;
+	struct map_session_data *sd;
+
+	skill_id	= script_isstring(st, 2) ? skill_name2id(script_getstr(st, 2)) : script_getnum(st, 2);
+	skill_level	= script_getnum(st, 3);
+	stat_point	= script_getnum(st, 4);
+	npc_level	= script_getnum(st, 5);
+	sd			= script_rid2sd(st);
+	nd			= (struct npc_data *)map_id2bl(sd->npc_id);
+
+	if (stat_point > battle_config.max_third_parameter) {
+		ShowError("npcskill: stat point exceeded maximum of %d.\n",battle_config.max_third_parameter );
+		return 1;
+	}
+	if (npc_level > MAX_LEVEL) {
+		ShowError("npcskill: level exceeded maximum of %d.\n", MAX_LEVEL);
+		return 1;
+	}
+	if (sd == NULL || nd == NULL) { //ain't possible, but I don't trust people.
+		return 1;
+	}
+
+	nd->level = npc_level;
+	nd->stat_point = stat_point;
+
+	if (!nd->status.hp) {
+		status_calc_npc(nd, true);
+	} else {
+		status_calc_npc(nd, false);
+	}
+
+	if (skill_get_inf(skill_id)&INF_GROUND_SKILL) {
+		unit_skilluse_pos(&nd->bl, sd->bl.x, sd->bl.y, skill_id, skill_level);
+	} else {
+		unit_skilluse_id(&nd->bl, sd->bl.id, skill_id, skill_level);
+	}
+
+	return 0;
 }
 
 /*================================
@@ -17684,9 +17736,10 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(is_function,"s"),
 	BUILDIN_DEF(get_revision,""),
 	BUILDIN_DEF(freeloop,"i"),
-	BUILDIN_DEF(getrandgroupitem, "ii"),
-	BUILDIN_DEF(cleanmap, "s"),
-    BUILDIN_DEF2(cleanmap, "cleanarea", "siiii"),
+	BUILDIN_DEF(getrandgroupitem,"ii"),
+	BUILDIN_DEF(cleanmap,"s"),
+	BUILDIN_DEF2(cleanmap,"cleanarea","siiii"),
+	BUILDIN_DEF(npcskill,"viii"),
 	/**
 	 * @commands (script based)
 	 **/

@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: ??/1.4/1.0                          |
+//   | Versões eA/rA/brA: ??/1.4a/1.0                         |
 //   |--------------------------------------------------------|
 //   | Descrição: NPC's de quest do grupo Eden.               |
 //   |--------------------------------------------------------|
@@ -1186,7 +1186,7 @@ moc_fild11,180,253,5	script	Talking Dog#para03	972,{
 		mes "Oh, if you are tired I will help you.";
 		next;
 		mes "-When the dog barked, your HP and SP recovered.-";
-//		UseSkillToPC 28 10 99 60;
+		npcskill "AL_HEAL",10,99,60;
 		percentheal 100,100;
 		close;
 	}
@@ -1224,7 +1224,7 @@ moc_fild11,180,253,5	script	Talking Dog#para03	972,{
 		mes "Oh, if you are tired I will help you.";
 		next;
 		mes "-When the dog barked, your HP and SP recovered.-";
-//		UseSkillToPC 28 10 99 60;
+		npcskill "AL_HEAL",10,99,60;
 		percentheal 100,100;
 		close;
 	}
@@ -1280,7 +1280,7 @@ moc_fild11,180,253,5	script	Talking Dog#para03	972,{
 		mes "Oh, if you are tired I will help you.";
 		next;
 		mes "-When the dog barked, your HP and SP recovered.-";
-//		UseSkillToPC 28 10 99 60;
+		npcskill "AL_HEAL",10,99,60;
 		percentheal 100,100;
 		close;
 	}
@@ -1426,7 +1426,7 @@ prt_sewb1,131,262,3	script	Timid Cat#para04	422,{
 		mes "[Timid Cat]";
 		mes "Take care to check your map so you don't get lost.";
 		mes "It's a service meeow.";
-//		UseSkillToPC 28 10 99 60;
+		npcskill "AL_HEAL",10,99,60;
 		percentheal 0,100;
 		close;
 	}
@@ -1464,7 +1464,7 @@ prt_sewb1,131,262,3	script	Timid Cat#para04	422,{
 		mes "[Timid Cat]";
 		mes "I will help you a little.";
 		mes "Here, I have recovered your strengh meow..";
-//		UseSkillToPC 28 10 99 60;
+		npcskill "AL_HEAL",10,99,60;
 		percentheal 100,100;
 		close;
 	}
@@ -1499,7 +1499,7 @@ prt_sewb1,131,262,3	script	Timid Cat#para04	422,{
 		mes "It's the last course so cheer up.";
 		mes "I will help you a little.";
 		mes "Here, I have recovered your strengh meow..";
-//		UseSkillToPC 28 10 99 60;
+		npcskill "AL_HEAL",10,99,60;
 		percentheal 0,100;
 		close;
 	}
@@ -1611,7 +1611,7 @@ pay_arche,41,136,3	script	Eden Member Karl#para05	904,{
 		mes "[Karl]";
 		mes "Just in case I will recover all your energy.";
 		mes "It's the last step so be careful.";
-//		UseSkillToPC 28 10 99 60;
+		npcskill "AL_HEAL",10,99,60;
 		percentheal 100,100;
 		close;
 	}
@@ -1642,7 +1642,7 @@ pay_arche,41,136,3	script	Eden Member Karl#para05	904,{
 		mes "[Karl]";
 		mes "Just in case I will recover all your energy.";
 		mes "It's the last step so be careful.";
-//		UseSkillToPC 28 10 99 60;
+		npcskill "AL_HEAL",10,99,60;
 		percentheal 0,100;
 		close;
 	}
@@ -1765,7 +1765,7 @@ anthell01,29,264,5	script	Eden Member Cloud#para06	899,{
 		mes "What do you think of Ant Hell?";
 		mes "Can you stay longer?";
 		mes "Ok, I will recover your strengh so, keep going.";
-//		UseSkillToPC 28 10 99 60;
+		npcskill "AL_HEAL",10,99,60;
 		percentheal 100,100;
 		close;
 	}
@@ -1804,7 +1804,7 @@ anthell01,29,264,5	script	Eden Member Cloud#para06	899,{
 		mes "[Cloud]";
 		mes "See, to cheer you up I will heal you until you finish the training.";
 		mes "Chin up and cheer up.";
-//		UseSkillToPC 28 10 99 60;
+		npcskill "AL_HEAL",10,99,60;
 		percentheal 100,100;
 		close;
 	}
@@ -1832,7 +1832,7 @@ anthell01,29,264,5	script	Eden Member Cloud#para06	899,{
 		mes "[Cloud]";
 		mes "Just Vitata, isn't that an easy opponent?";
 		mes "If you see Maya just run away.";
-//		UseSkillToPC 28 10 99 60;
+		npcskill "AL_HEAL",10,99,60;
 		percentheal 100,100;
 		close;
 	}
@@ -1947,7 +1947,7 @@ in_orcs01,38,175,3	script	Eden Member Hooksha	803,{
 		mes "[Hooksha]";
 		mes "You look tired I will recover your health.";
 		mes "If you are in trouble just come back here to safety.";
-//		UseSkillToPC 28 10 99 60;
+		npcskill "AL_HEAL",10,99,60;
 		percentheal 100,100;
 		close;
 	}
@@ -1978,7 +1978,7 @@ in_orcs01,38,175,3	script	Eden Member Hooksha	803,{
 		mes "[Hooksha]";
 		mes "You look tired, I will recover your health.";
 		mes "If you are in trouble just come back here to safety.";
-//		UseSkillToPC 28 10 99 60;
+		npcskill "AL_HEAL",10,99,60;
 		percentheal 100,100;
 		close;
 	}
@@ -2004,7 +2004,7 @@ in_orcs01,38,175,3	script	Eden Member Hooksha	803,{
 		mes "[Hooksha]";
 		mes "You look tired, I will recover your health.";
 		mes "If you are in trouble just come back here to safety.";
-//		UseSkillToPC 28 10 99 60;
+		npcskill "AL_HEAL",10,99,60;
 		percentheal 100,100;
 		close;
 	}
@@ -2077,7 +2077,7 @@ in_orcs01,38,175,3	script	Eden Member Hooksha	803,{
 		mes "Can you stay longer?";
 		mes "You look tired, I will recover your health.";
 		mes "If you are in trouble just come back here to safety.";
-//		UseSkillToPC 28 10 99 60;
+		npcskill "AL_HEAL",10,99,60;
 		percentheal 100,100;
 		close;
 	}
@@ -2101,7 +2101,7 @@ in_orcs01,38,175,3	script	Eden Member Hooksha	803,{
 		mes "Can you stay longer?";
 		mes "You look tired I will recover your health.";
 		mes "If you are in trouble just come back here to safety.";
-//		UseSkillToPC 28 10 99 60;
+		npcskill "AL_HEAL",10,99,60;
 		percentheal 100,100;
 		close;
 	}
@@ -2205,7 +2205,7 @@ iz_dun04,43,46,3	script	Eden Member Callandiva	745,{
 		mes "Oh are you tired?";
 		mes "Mermans are not easy opponents.";
 		mes "I will help you recover so cheer up.";
-//		UseSkillToPC 28 10 99 60;
+		npcskill "AL_HEAL",10,99,60;
 		percentheal 0,100;
 		close;
 	}
@@ -2239,7 +2239,7 @@ iz_dun04,43,46,3	script	Eden Member Callandiva	745,{
 		mes "Oh are you tired?";
 		mes "Strouf are not easy opponents.";
 		mes "I can help you recover so cheer up.";
-//		UseSkillToPC 28 10 99 60
+		npcskill "AL_HEAL",10,99,60;
 		percentheal 100,100;
 		close;
 	}
@@ -4461,75 +4461,88 @@ moc_para01,111,83,3	script	Toren	813,{
 					1197,"Slayer","Two-handed Sword, 200 Atk", //P.Slayer III
 					13434,"Saber","One-handed Sword, 185 Atk", //P.Saber III
 					1434,"Spear","One-handed, 165 Atk"; //P.Spear I
-			} else if (BaseClass == Job_Merchant) {
+			}
+			else if (BaseClass == Job_Merchant) {
 				mes "Merchant Class gets a choice of weapons, would you like to have an axe, dagger or a sword?";
 				callsub L_Select,
 					1391,"Axe","Two-handed, 195 Atk", //P.Two-Handed Axe I
 					13066,"Dagger","One-handed, 165 Atk, 80 Matk", //P.Dagger III
 					13434,"Sword","One-handed, 185 Atk"; //P.Saber III
-			} else if (BaseJob == Job_Assassin) {
+			}
+			else if (BaseJob == Job_Assassin) {
 				mes "Assassin Class gets a choice of weapons, would you like to have a katar, dagger or a sword?";
 				callsub L_Select,
 					1289,"Katar","Two-handed, 155 Atk", //P.Katar I
 					13066,"Dagger","One-handed, 165 Atk, 80 Matk", //P.Dagger III
 					13434,"Sword","One-handed, 185 Atk"; //P.Saber III
-			} else if (BaseJob == Job_Rogue) {
+			}
+			else if (BaseJob == Job_Rogue) {
 				mes "Rogue Class gets a choice of weapons, would you like to have a dagger, bow or a sword?";
 				callsub L_Select,
 					13066,"Dagger","One-handed, 165 Atk, 80 Matk", //P.Dagger III
 					18106,"Bow","Two-handed, 140 Atk", //P.Bow III
 					13434,"Sword","One-handed, 185 Atk"; //P.Saber III
-			} else if (BaseJob == Job_Thief) {
+			}
+			else if (BaseJob == Job_Thief) {
 				mes "Thief Class gets a choice of weapons, would you like to have a dagger or a sword?";
 				callsub L_Select,
 					13066,"Dagger","One-handed, 165 Atk, 80 Matk", //P.Dagger III
 					13434,"Sword","One-handed, 185 Atk"; //P.Saber III
-			} else if (BaseJob == Job_Bard) {
+			}
+			else if (BaseJob == Job_Bard) {
 				mes "Bard Class gets a choice of weapons, would you like to have a guitar, bow or a dagger?";
 				callsub L_Select,
 					1931,"Guitar","One-handed, 125 Atk", //P.Guitar I
 					18106,"Bow","Two-handed, 140 Atk", //P.Bow III
 					13066,"Dagger","One-handed, 165 Atk, 80 Matk"; //P.Dagger III
-			} else if (BaseJob == Job_Dancer) {
+			}
+			else if (BaseJob == Job_Dancer) {
 				mes "Dancer Class gets a choice of weapons, would you like to have a whip, bow or a dagger?";
 				callsub L_Select,
 					1986,"Whip","One-handed, 125 Atk", //P.Tail I
 					18106,"Bow","Two-handed, 140 Atk", //P.Bow III
 					13066,"Dagger","One-handed, 165 Atk, 80 Matk"; //P.Dagger III
-			} else if (BaseClass == Job_Archer) {
+			}
+			else if (BaseClass == Job_Archer) {
 				mes "Archer Class gets a choice of weapons, would you like to have a bow or a dagger?";
 				callsub L_Select,
 					18106,"Bow","Two-handed, 140 Atk", //P.Bow III
 					13066,"Dagger","One-handed, 165 Atk, 80 Matk"; //P.Dagger III
-			} else if (BaseJob == Job_Priest) {
+			}
+			else if (BaseJob == Job_Priest) {
 				mes "Priest Class gets a choice of weapons, would you like to have a staff, mace or a book?";
 				callsub L_Select,
 					1658,"Staff","One-handed, 60 Atk, 170 Matk, 4 Int", //P.Staff III
 					16014,"Mace","One-handed, 172 Atk", //P.Mace III
 					1583,"Book","One-handed, 135 Atk, 110 Matk"; //P.Book I
-			} else if (BaseJob == Job_Monk) {
+			}
+			else if (BaseJob == Job_Monk) {
 				mes "Monk Class gets a choice of weapons, would you like to have a knuckle, mace or a staff?";
 				callsub L_Select,
 					1831,"Knuckle","One-handed, 120 Atk", //P.Knuckle I
 					16014,"Mace","One-handed, 172 Atk", //P.Mace III
 					1658,"Staff","One-handed, 60 Atk, 170 Matk, 4 Int"; //P.Staff III
-			} else if (BaseJob == Job_Acolyte) {
+			}
+			else if (BaseJob == Job_Acolyte) {
 				mes "Acolyte Class gets a choice of weapons, would you like to have a staff or a mace?";
 				callsub L_Select,
 					1658,"Staff","One-handed, 60 Atk, 170 Matk, 4 Int", //P.Staff III
 					16014,"Mace","One-handed, 172 Atk"; //P.Mace III
-			} else if (BaseJob == Job_Sage) {
+			}
+			else if (BaseJob == Job_Sage) {
 				mes "Sage Class gets a choice of weapons, would you like to have a staff, book or a dagger?";
 				callsub L_Select,
 					1658,"Staff","One-handed, 60 Atk, 170 Matk, 4 Int", //P.Staff III
 					1583,"Book","One-handed, 135 Atk, 110 Matk", //P.Book I
 					13066,"Dagger","One-handed, 165 Atk, 80 Matk"; //P.Dagger III
-			} else if (BaseClass == Job_Mage || Class == Job_Soul_Linker) {
+			}
+			else if (BaseClass == Job_Mage || Class == Job_Soul_Linker) {
 				mes "Mage and Soul Linker Class gets a choice of weapons, would you like to have a staff or a dagger?";
 				callsub L_Select,
 					1658,"Staff","One-handed, 60 Atk, 170 Matk, 4 Int", //P.Staff III
 					13066,"Dagger","One-handed, 165 Atk, 80 Matk"; //P.Dagger III
-			} else if (Class == Job_Ninja) {
+			}
+			else if (Class == Job_Ninja) {
 				mes "Ninja Class gets a choice of weapons, would you like to have a huuma suriken or a dagger?";
 				callsub L_Select,
 					13310,"Huuma Suriken","Two-handed, 170 Atk, 50 Matk", //P.Huuma Suriken I
@@ -4764,75 +4777,88 @@ moc_para01,112,79,3	script	Weapons Expert	851,{
 						1197,"Slayer","Two-handed Sword, 200 Atk", //P.Slayer III
 						13434,"Saber","One-handed Sword, 185 Atk", //P.Saber III
 						1434,"Spear","One-handed, 165 Atk"; //P.Spear I
-				} else if (BaseClass == Job_Merchant) {
+				}
+				else if (BaseClass == Job_Merchant) {
 					mes "Merchant Class gets a choice of weapons, would you like to have an axe, dagger or a sword?";
 					callsub L_Select,
 						1391,"Axe","Two-handed, 195 Atk", //P.Two-Handed Axe I
 						13066,"Dagger","One-handed, 165 Atk, 80 Matk", //P.Dagger III
 						13434,"Sword","One-handed, 185 Atk"; //P.Saber III
-				} else if (BaseJob == Job_Assassin) {
+				}
+				else if (BaseJob == Job_Assassin) {
 					mes "Assassin Class gets a choice of weapons, would you like to have a katar, dagger or a sword?";
 					callsub L_Select,
 						1289,"Katar","Two-handed, 155 Atk", //P.Katar I
 						13066,"Dagger","One-handed, 165 Atk, 80 Matk", //P.Dagger III
 						13434,"Sword","One-handed, 185 Atk"; //P.Saber III
-				} else if (BaseJob == Job_Rogue) {
+				}
+				else if (BaseJob == Job_Rogue) {
 					mes "Rogue Class gets a choice of weapons, would you like to have a dagger, bow or a sword?";
 					callsub L_Select,
 						13066,"Dagger","One-handed, 165 Atk, 80 Matk", //P.Dagger III
 						18106,"Bow","Two-handed, 140 Atk", //P.Bow III
 						13434,"Sword","One-handed, 185 Atk"; //P.Saber III
-				} else if (BaseJob == Job_Thief) {
+				}
+				else if (BaseJob == Job_Thief) {
 					mes "Thief Class gets a choice of weapons, would you like to have a dagger or a sword?";
 					callsub L_Select,
 						13066,"Dagger","One-handed, 165 Atk, 80 Matk", //P.Dagger III
 						13434,"Sword","One-handed, 185 Atk"; //P.Saber III
-				} else if (BaseJob == Job_Bard) {
+				}
+				else if (BaseJob == Job_Bard) {
 					mes "Bard Class gets a choice of weapons, would you like to have a guitar, bow or a dagger?";
 					callsub L_Select,
 						1931,"Guitar","One-handed, 125 Atk", //P.Guitar I
 						18106,"Bow","Two-handed, 140 Atk", //P.Bow III
 						13066,"Dagger","One-handed, 165 Atk, 80 Matk"; //P.Dagger III
-				} else if (BaseJob == Job_Dancer) {
+				}
+				else if (BaseJob == Job_Dancer) {
 					mes "Dancer Class gets a choice of weapons, would you like to have a whip, bow or a dagger?";
 					callsub L_Select,
 						1986,"Whip","One-handed, 125 Atk", //P.Tail I
 						18106,"Bow","Two-handed, 140 Atk", //P.Bow III
 						13066,"Dagger","One-handed, 165 Atk, 80 Matk"; //P.Dagger III
-				} else if (BaseClass == Job_Archer) {
+				}
+				else if (BaseClass == Job_Archer) {
 					mes "Archer Class gets a choice of weapons, would you like to have a bow or a dagger?";
 					callsub L_Select,
 						18106,"Bow","Two-handed, 140 Atk", //P.Bow III
 						13066,"Dagger","One-handed, 165 Atk, 80 Matk"; //P.Dagger III
-				} else if (BaseJob == Job_Priest) {
+				}
+				else if (BaseJob == Job_Priest) {
 					mes "Priest Class gets a choice of weapons, would you like to have a staff, mace or a book?";
 					callsub L_Select,
 						1658,"Staff","One-handed, 60 Atk, 170 Matk, 4 Int", //P.Staff III
 						16014,"Mace","One-handed, 172 Atk", //P.Mace III
 						1583,"Book","One-handed, 135 Atk, 110 Matk"; //P.Book I
-				} else if (BaseJob == Job_Monk) {
+				}
+				else if (BaseJob == Job_Monk) {
 					mes "Monk Class gets a choice of weapons, would you like to have a knuckle, mace or a staff?";
 					callsub L_Select,
 						1831,"Knuckle","One-handed, 120 Atk", //P.Knuckle I
 						16014,"Mace","One-handed, 172 Atk", //P.Mace III
 						1658,"Staff","One-handed, 60 Atk, 170 Matk, 4 Int"; //P.Staff III
-				} else if (BaseJob == Job_Acolyte) {
+				}
+				else if (BaseJob == Job_Acolyte) {
 					mes "Acolyte Class gets a choice of weapons, would you like to have a staff or a mace?";
 					callsub L_Select,
 						1658,"Staff","One-handed, 60 Atk, 170 Matk, 4 Int", //P.Staff III
 						16014,"Mace","One-handed, 172 Atk"; //P.Mace III
-				} else if (BaseJob == Job_Sage) {
+				}
+				else if (BaseJob == Job_Sage) {
 					mes "Sage Class gets a choice of weapons, would you like to have a staff, book or a dagger?";
 					callsub L_Select,
 						1658,"Staff","One-handed, 60 Atk, 170 Matk, 4 Int", //P.Staff III
 						1583,"Book","One-handed, 135 Atk, 110 Matk", //P.Book I
 						13066,"Dagger","One-handed, 165 Atk, 80 Matk"; //P.Dagger III
-				} else if (BaseClass == Job_Mage || Class == Job_Soul_Linker) {
+				}
+				else if (BaseClass == Job_Mage || Class == Job_Soul_Linker) {
 					mes "Mage and Soul Linker Class gets a choice of weapons, would you like to have a staff or a dagger?";
 					callsub L_Select,
 						1658,"Staff","One-handed, 60 Atk, 170 Matk, 4 Int", //P.Staff III
 						13066,"Dagger","One-handed, 165 Atk, 80 Matk"; //P.Dagger III
-				} else if (Class == Job_Ninja) {
+				}
+				else if (Class == Job_Ninja) {
 					mes "Ninja Class gets a choice of weapons, would you like to have a huuma suriken or a dagger?";
 					callsub L_Select,
 						13310,"Huuma Suriken","Two-handed, 170 Atk, 50 Matk", //P.Huuma Suriken I

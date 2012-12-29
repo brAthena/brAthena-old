@@ -509,6 +509,8 @@ void initChangeTables(void) {
 	set_sc(MH_PAIN_KILLER, SC_PAIN_KILLER, SI_PAIN_KILLER, SCB_ASPD);
 
 	add_sc(MH_STYLE_CHANGE, SC_STYLE_CHANGE);
+	set_sc( MH_TINDER_BREAKER      , SC_CLOSECONFINE2   , SI_CLOSECONFINE2   , SCB_NONE );
+	set_sc( MH_TINDER_BREAKER      , SC_CLOSECONFINE    , SI_CLOSECONFINE    , SCB_FLEE );
 	
 	add_sc( MER_CRASH            , SC_STUN            );
 	set_sc( MER_PROVOKE          , SC_PROVOKE         , SI_PROVOKE         , SCB_DEF|SCB_DEF2|SCB_BATK|SCB_WATK );
@@ -3065,7 +3067,7 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 		if( sc->data[SC_FIRE_CLOAK_OPTION] ) {
 			i = sc->data[SC_FIRE_CLOAK_OPTION]->val2;
 			sd->subele[ELE_FIRE] += i;
-			sd->subele[ELE_EARTH] -= i;
+			sd->subele[ELE_WATER] -= i;
 		}
 		if( sc->data[SC_WATER_DROP_OPTION] ) {
 			i = sc->data[SC_WATER_DROP_OPTION]->val2;
@@ -3075,7 +3077,7 @@ int status_calc_pc_(struct map_session_data* sd, bool first)
 		if( sc->data[SC_WIND_CURTAIN_OPTION] ) {
 			i = sc->data[SC_WIND_CURTAIN_OPTION]->val2;
 			sd->subele[ELE_WIND] += i;
-			sd->subele[ELE_WATER] -= i;
+			sd->subele[ELE_EARTH] -= i;
 		}
 		if( sc->data[SC_STONE_SHIELD_OPTION] ) {
 			i = sc->data[SC_STONE_SHIELD_OPTION]->val2;
@@ -3255,6 +3257,40 @@ int status_calc_elemental_(struct elemental_data *ed, bool first) {
 	return 0;
 }
 
+int status_calc_npc_(struct npc_data *nd, bool first) {
+	struct status_data *status = &nd->status;
+	
+	if (!nd)
+		return 0;
+	
+	if (first) {
+		status->hp = 1;
+		status->sp = 1;
+		status->max_hp = 1;
+		status->max_sp = 1;
+		
+		status->def_ele = ELE_NEUTRAL;
+		status->ele_lv = 1;
+		status->race = RC_DEMIHUMAN;
+		status->size = nd->size;
+		status->rhw.range = 1 + status->size;
+		status->mode = MD_CANMOVE|MD_CANATTACK;
+		status->speed = nd->speed;
+	}
+
+	status->str = nd->stat_point;
+	status->agi = nd->stat_point;
+	status->vit = nd->stat_point;
+	status->int_= nd->stat_point;
+	status->dex = nd->stat_point;
+	status->luk = nd->stat_point;
+	
+	status_calc_misc(&nd->bl, status, nd->level);
+	status_cpy(&nd->status, status);
+
+	return 0;
+}
+
 static unsigned short status_calc_str(struct block_list *,struct status_change *,int);
 static unsigned short status_calc_agi(struct block_list *,struct status_change *,int);
 static unsigned short status_calc_vit(struct block_list *,struct status_change *,int);
@@ -3292,7 +3328,7 @@ static unsigned short status_calc_ematk(struct block_list *,struct status_change
 void status_calc_regen(struct block_list *bl, struct status_data *status, struct regen_data *regen)
 {
 	struct map_session_data *sd;
-	int val, skill;
+	int val, skill, reg_flag;
 
 	if( !(bl->type&BL_REGEN) || !regen )
 		return;
@@ -3303,7 +3339,9 @@ void status_calc_regen(struct block_list *bl, struct status_data *status, struct
 	if( sd && sd->hprecov_rate != 100 )
 		val = val*sd->hprecov_rate/100;
 
-	regen->hp = cap_value(val, 1, SHRT_MAX);
+	reg_flag = bl->type == BL_PC ? 0 : 1;	
+		
+	regen->hp = cap_value(val, reg_flag, SHRT_MAX);
 
 	val = 1 + (status->int_/6) + (status->max_sp/100);
 	if( status->int_ >= 120 )
@@ -3312,7 +3350,7 @@ void status_calc_regen(struct block_list *bl, struct status_data *status, struct
 	if( sd && sd->sprecov_rate != 100 )
 		val = val*sd->sprecov_rate/100;
 
-	regen->sp = cap_value(val, 1, SHRT_MAX);
+	regen->sp = cap_value(val, reg_flag, SHRT_MAX);
 
 	if( sd )
 	{
@@ -3382,7 +3420,7 @@ void status_calc_regen(struct block_list *bl, struct status_data *status, struct
 	} else if( bl->type == BL_ELEM ) {
 		val = (status->max_hp * status->vit / 10000 + 1) * 6;
 		regen->hp = cap_value(val, 1, SHRT_MAX);
-		
+
 		val = (status->max_sp * (status->int_ + 10) / 750) + 1;
 		regen->sp = cap_value(val, 1, SHRT_MAX);
 	}
@@ -3556,7 +3594,11 @@ void status_calc_bl_main(struct block_list *bl, /*enum scb_flag*/int flag)
 
 	if(flag&SCB_AGI) {
 		status->agi = status_calc_agi(bl, sc, b_status->agi);
-		flag|=SCB_FLEE;
+		flag|=SCB_FLEE
+#ifdef RENEWAL
+			|SCB_DEF2
+#endif			
+			;
 		if( bl->type&(BL_PC|BL_HOM) )
 			flag |= SCB_ASPD|SCB_DSPD;
 	}
@@ -3581,7 +3623,11 @@ void status_calc_bl_main(struct block_list *bl, /*enum scb_flag*/int flag)
 
 	if(flag&SCB_DEX) {
 		status->dex = status_calc_dex(bl, sc, b_status->dex);
-		flag|=SCB_BATK|SCB_HIT;
+		flag|=SCB_BATK|SCB_HIT
+#ifdef RENEWAL
+			|SCB_MATK|SCB_MDEF2
+#endif
+			;
 		if( bl->type&(BL_PC|BL_HOM) )
 			flag |= SCB_ASPD;
 		if( bl->type&BL_HOM )
@@ -3590,7 +3636,11 @@ void status_calc_bl_main(struct block_list *bl, /*enum scb_flag*/int flag)
 
 	if(flag&SCB_LUK) {
 		status->luk = status_calc_luk(bl, sc, b_status->luk);
-		flag|=SCB_BATK|SCB_CRI|SCB_FLEE2;
+		flag|=SCB_BATK|SCB_CRI|SCB_FLEE2
+#ifdef RENEWAL
+			|SCB_MATK|SCB_HIT|SCB_FLEE
+#endif
+			;
 	}
 
 	if(flag&SCB_BATK && b_status->batk) {
@@ -3631,17 +3681,33 @@ void status_calc_bl_main(struct block_list *bl, /*enum scb_flag*/int flag)
 	}
 
 	if(flag&SCB_HIT) {
-		if (status->dex == b_status->dex)
+		if (status->dex == b_status->dex
+#ifdef RENEWAL
+			&& status->luk == b_status->luk
+#endif
+			)
 			status->hit = status_calc_hit(bl, sc, b_status->hit);
 		else
-			status->hit = status_calc_hit(bl, sc, b_status->hit +(status->dex - b_status->dex));
+			status->hit = status_calc_hit(bl, sc, b_status->hit + (status->dex - b_status->dex)
+#ifdef RENEWAL
+			 + (status->luk/3 - b_status->luk/3)
+#endif
+			 );
 	}
 
 	if(flag&SCB_FLEE) {
-		if (status->agi == b_status->agi)
+		if (status->agi == b_status->agi
+#ifdef RENEWAL
+			&& status->luk == b_status->luk
+#endif
+			)
 			status->flee = status_calc_flee(bl, sc, b_status->flee);
 		else
-			status->flee = status_calc_flee(bl, sc, b_status->flee +(status->agi - b_status->agi));
+			status->flee = status_calc_flee(bl, sc, b_status->flee +(status->agi - b_status->agi)
+#ifdef RENEWAL
+			+ (status->luk/5 - b_status->luk/5)
+#endif
+			);
 	}
 
 	if(flag&SCB_DEF)
@@ -3653,10 +3719,20 @@ void status_calc_bl_main(struct block_list *bl, /*enum scb_flag*/int flag)
 	}
 
 	if(flag&SCB_DEF2) {
-		if (status->vit == b_status->vit)
+		if (status->vit == b_status->vit
+#ifdef RENEWAL
+			&& status->agi == b_status->agi
+#endif
+			)
 			status->def2 = status_calc_def2(bl, sc, b_status->def2);
 		else
-			status->def2 = status_calc_def2(bl, sc, b_status->def2 + (status->vit - b_status->vit));
+			status->def2 = status_calc_def2(bl, sc, b_status->def2 
+#ifdef RENEWAL
+			+ (int)( ((float)status->vit/2 + (float)b_status->vit/2) + ((float)status->agi/5 + (float)b_status->agi/5) )
+#else
+			+ (status->vit - b_status->vit)
+#endif
+		);
 	}
 
 	if(flag&SCB_MDEF)
@@ -3668,10 +3744,20 @@ void status_calc_bl_main(struct block_list *bl, /*enum scb_flag*/int flag)
 	}
 		
 	if(flag&SCB_MDEF2) {
-		if (status->int_ == b_status->int_ && status->vit == b_status->vit)
+		if (status->int_ == b_status->int_ && status->vit == b_status->vit
+#ifdef RENEWAL
+			&& status->dex == b_status->dex
+#endif
+			)
 			status->mdef2 = status_calc_mdef2(bl, sc, b_status->mdef2);
 		else
-			status->mdef2 = status_calc_mdef2(bl, sc, b_status->mdef2 +(status->int_ - b_status->int_) +((status->vit - b_status->vit)>>1));
+			status->mdef2 = status_calc_mdef2(bl, sc, b_status->mdef2 +(status->int_ - b_status->int_) 
+#ifdef RENEWAL
+			+ (int)( ((float)status->dex/5 - (float)b_status->dex/5) + ((float)status->vit/5 + (float)b_status->vit/5) )
+#else
+			+ ((status->vit - b_status->vit)>>1)
+#endif
+			);
 	}
 
 	if(flag&SCB_SPEED) {
@@ -3949,6 +4035,7 @@ void status_calc_bl_(struct block_list* bl, enum scb_flag flag, bool first)
 		case BL_HOM: status_calc_homunculus_(BL_CAST(BL_HOM,bl), first); break;
 		case BL_MER: status_calc_mercenary_(BL_CAST(BL_MER,bl), first);  break;
 		case BL_ELEM: status_calc_elemental_(BL_CAST(BL_ELEM,bl), first);  break;
+		case BL_NPC: status_calc_npc_(BL_CAST(BL_NPC,bl), first); break;
 		}
 	}
 
@@ -5728,6 +5815,7 @@ int status_get_lv(struct block_list *bl) {
 		case BL_HOM: return ((TBL_HOM*)bl)->homunculus.level;
 		case BL_MER: return ((TBL_MER*)bl)->db->lv;
 		case BL_ELEM: return ((TBL_ELEM*)bl)->db->lv;
+		case BL_NPC: return ((TBL_NPC*)bl)->level;
 	}
 	return 1;
 }
@@ -5756,6 +5844,7 @@ struct status_data *status_get_status_data(struct block_list *bl)
 		case BL_HOM: return &((TBL_HOM*)bl)->battle_status;
 		case BL_MER: return &((TBL_MER*)bl)->battle_status;
 		case BL_ELEM: return &((TBL_ELEM*)bl)->battle_status;
+		case BL_NPC: return ((mobdb_checkid(((TBL_NPC*)bl)->class_) == 0) ? &((TBL_NPC*)bl)->status : &dummy_status);
 		default:
 			return &dummy_status;
 	}
@@ -5771,6 +5860,7 @@ struct status_data *status_get_base_status(struct block_list *bl)
 		case BL_HOM: return &((TBL_HOM*)bl)->base_status;
 		case BL_MER: return &((TBL_MER*)bl)->base_status;
 		case BL_ELEM: return &((TBL_ELEM*)bl)->base_status;
+		case BL_NPC: return ((mobdb_checkid(((TBL_NPC*)bl)->class_) == 0) ? &((TBL_NPC*)bl)->status : NULL);
 		default:
 			return NULL;
 	}
@@ -8543,6 +8633,11 @@ int status_change_start(struct block_list* bl,enum sc_type type,int rate,int val
 			    if(sc->data[SC_PARALYSIS])
 				sc_start(bl, SC_ENDURE, 100, val1, tick); //start endure for same duration
 			    break;
+			case SC_STYLE_CHANGE: //[Lighta] need real info
+				tick = -1;
+				if(val2 == MH_MD_FIGHTING) val2 = MH_MD_GRAPPLING;
+				else val2 = MH_MD_FIGHTING; 
+				break;
 		default:
 			if( calc_flag == SCB_NONE && StatusSkillChangeTable[type] == 0 && StatusIconChangeTable[type] == 0 )
 			{	//Status change with no calc, no icon, and no skill associated...? 
