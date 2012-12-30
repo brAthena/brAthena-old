@@ -519,6 +519,8 @@ int itemdb_read_itemgroup_sub()
 	const char* db[] = { get_database_name(26), get_database_name(27), get_database_name(28), get_database_name(29), get_database_name(30), get_database_name(31), get_database_name(57) };
 	int dbQuery, dbRows, groupid, nameid, k, j, i;
 	
+	memset(itemgroup_db, 0, sizeof(itemgroup_db));
+	
 	for(i = 0; i < ARRAYLENGTH(db); ++i)
 	{
 		dbRows = 0;
