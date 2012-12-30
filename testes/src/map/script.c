@@ -17286,13 +17286,12 @@ BUILDIN_FUNC(npcskill)
   ================================ */
 BUILDIN_FUNC(unloadnpc)
 {
-  struct npc_data *nd = npc_name2id(script_getstr(st, 2));
+  struct npc_data *nd;
   
-  if( ( nd = npc_name2id(script_getstr(st,2)) ) == NULL )
-  return 1;
+  if( !( nd = npc_name2id(script_getstr(st,2)) ) )
+	return 1;
   
-  npc_unload_duplicates(nd);
-  npc_unload(nd,true);
+  npc_unload(nd, true);
   return 0;
 }
 
