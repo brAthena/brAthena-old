@@ -7180,6 +7180,18 @@ REPLACE INTO item_combo_db VALUES('5358:5653','{ bonus bAgi,1; bonus bFlee,3; }'
 REPLACE INTO item_combo_db VALUES('5401:5653','{ bonus bInt,1; bonus bMatkRate,2; }');
 REPLACE INTO item_combo_db VALUES('13034:13035','{ bonus bMaxSP,20; bonus bMaxHPRate,5; bonus bHit,10; bonus2 bAddSize,Size_Large,30; autobonus "{ bonus bAspdRate,100; }",1,7000,0,"{ specialeffect2 EF_POTION_BERSERK; }\"; }');
 REPLACE INTO item_combo_db VALUES('18507:18539','{ bonus bUseSPrate,-3; }');
+--
+-- Itens bRO
+--
+REPLACE INTO item_combo_db VALUES('18619:4139', '{ bonus bAgi,1; bonus bDex,1; bonus bInt,-1; }');
+REPLACE INTO item_combo_db VALUES('5782:2153', '{ bonus2 bSubRace,RC_Boss,5; bonus2 bSubRace,RC_NonBoss,5; bonus bDef,2; }');
+REPLACE INTO item_combo_db VALUES('5782:1407', '{ bonus2 bAddRace,RC_NonBoss,3; bonus2 bAddRace,RC_Boss,3; }');
+REPLACE INTO item_combo_db VALUES('5782:1408', '{ bonus2 bAddRace,RC_NonBoss,3; bonus2 bAddRace,RC_Boss,3; }');
+REPLACE INTO item_combo_db VALUES('5782:1409', '{ bonus2 bAddRace,RC_NonBoss,3; bonus2 bAddRace,RC_Boss,3; }');
+REPLACE INTO item_combo_db VALUES('5782:1219', '{ bonus2 bAddRace,RC_NonBoss,3; bonus2 bAddRace,RC_Boss,3; }');
+REPLACE INTO item_combo_db VALUES('5782:1220', '{ bonus2 bAddRace,RC_NonBoss,3; bonus2 bAddRace,RC_Boss,3; }');
+REPLACE INTO item_combo_db VALUES('5782:1221', '{ bonus2 bAddRace,RC_NonBoss,3; bonus2 bAddRace,RC_Boss,3; }');
+REPLACE INTO item_combo_db VALUES('2584:5579', '{ skill\"TF_DOUBLE\",1; if(getrefine()>= 4) {skill\"TF_DOUBLE\",5; if(getrefine()>= 6) skill\"TF_DOUBLE\",10; }');
 
 --
 -- Estrutura da tabela `item_giftbox_db`
@@ -26557,24 +26569,8 @@ REPLACE INTO `item_db` VALUES (16756,'Caixa_de_Mega-Elunium','Caixa de Mega-Elun
 REPLACE INTO `item_db` VALUES (16753,'Caixa_de_Omni-Oridecon','Caixa de Omni-Oridecon',2,10000,NULL,10,NULL,NULL,NULL,NULL,0x03CADFFF,7,2,NULL,NULL,NULL,NULL,NULL,'getitem 6438,1;',NULL,NULL);
 REPLACE INTO `item_db` VALUES (5654,'Chapéu_da_Banda_Celestial','Chapéu da Banda Celestial',5,10000,NULL,200,NULL,2,NULL,1,0xFFFFFFFF,7,2,256,NULL,10,1,587,'bonus3 bAutoSpell,\"PR_ASPERSIO\",5,10;',NULL,NULL);
 REPLACE INTO `item_db` VALUES (5776,'Sol_Radiante','Sol Radiante',5,10000,NULL,500,NULL,0,NULL,0,0xFFFFFFFF,7,2,256,NULL,10,0,654,'bonus2 bCastrate,\"MG_FIREBOLT\",5; bonus2 bCastrate,\"MG_FIREBALL\",5; bonus2 bSkillAtk,\"MG_FIREWALL\",5; bonus2 bSkillAtK,\"WZ_METEOR\",5; bonus bUseSPrate,5;',NULL,NULL);
-REPLACE INTO `item_db` VALUES (19507,'Sol Risonho','Sol Risonho',5,0,NULL,0,NULL,0,NULL,0,0xFFFFFFFF,7,2,1024,NULL,1,0,654,NULL,NULL,NULL);
-REPLACE INTO `item_db` VALUES (19509,'Asas de Borboleta','Asas de Borboleta',5,0,NULL,0,NULL,0,NULL,0,0xFFFFFFFF,7,2,2048,NULL,1,0,695,NULL,NULL,NULL);
-REPLACE INTO `item_db` VALUES (19510,'Parafusos_Soltos','Parafusos Soltos',5,0,NULL,0,NULL,0,NULL,0,0xFFFFFFFF,7,2,2048,NULL,1,0,696,NULL,NULL,NULL);
-REPLACE INTO `item_db` VALUES (19513,'Bico_de_Galinha','Bico de Galinha',5,0,NULL,0,NULL,0,NULL,0,0xFFFFFFFF,7,2,4096,NULL,1,0,699,NULL,NULL,NULL);
-REPLACE INTO `item_db` VALUES (19514,'Bigode_de_Vassoura','Bigode de Vassoura',5,0,NULL,0,NULL,0,NULL,0,0xFFFFFFFF,7,2,4096,NULL,1,0,700,NULL,NULL,NULL);
-REPLACE INTO `item_db` VALUES (19515,'Chapéu_Amarelo_com_Pluma','Chapéu Amarelo com Pluma',5,0,NULL,0,NULL,0,NULL,0,0xFFFFFFFF,7,2,1024,NULL,1,0,701,NULL,NULL,NULL);
-REPLACE INTO `item_db` VALUES (19516,'Passarinho_de_Canto_Agudo','Passarinho de Canto Agudo',5,0,NULL,0,NULL,0,NULL,0,0xFFFFFFFF,7,2,1024,NULL,1,0,702,NULL,NULL,NULL);
-REPLACE INTO `item_db` VALUES (19517,'Crista_de_Galo','Crista de Galo',5,0,NULL,0,NULL,0,NULL,0,0xFFFFFFFF,7,2,1024,NULL,1,0,703,NULL,NULL,NULL);
-REPLACE INTO `item_db` VALUES (19518,'Arco_Íris','Arco Íris',5,0,NULL,0,NULL,0,NULL,0,0xFFFFFFFF,7,2,1024,NULL,1,0,704,NULL,NULL,NULL);
-REPLACE INTO `item_db` VALUES (19519,'Nuvem_com_Raios','Nuvem com Raios',5,0,NULL,0,NULL,0,NULL,0,0xFFFFFFFF,7,2,1024,NULL,1,0,688,NULL,NULL,NULL);
-REPLACE INTO `item_db` VALUES (19520,'Nuvem_Chuvosa','Nuvem Chuvosa',5,0,NULL,0,NULL,0,NULL,0,0xFFFFFFFF,7,2,1024,NULL,1,0,705,NULL,NULL,NULL);
-REPLACE INTO `item_db` VALUES (19521,'Chapéu_Antigo','Chapéu Antigo',5,0,NULL,0,NULL,0,NULL,0,0xFFFFFFFF,7,2,1024,NULL,1,0,706,NULL,NULL,NULL);
-REPLACE INTO `item_db` VALUES (19522,'Minicoroa','Minicoroa',5,0,NULL,0,NULL,0,NULL,0,0xFFFFFFFF,7,2,1024,NULL,1,0,707,NULL,NULL,NULL);
-REPLACE INTO `item_db` VALUES (5788,'Óculos_3D','Óculos 3D',5,10000,NULL,150,NULL,0,NULL,0,0xFFFFFFFF,7,2,512,NULL,10,0,661,NULL,NULL,NULL);
 REPLACE INTO `item_db` VALUES (5671,'Boneca_da_Vaidade','Boneca_da_Vaidade',5,10000,NULL,300,NULL,0,NULL,0,0xFFFFFFFF,7,2,256,NULL,1,0,600,'bonus bSPGainValue,2; bonus4 bAutoSpellWhenHit,673,2,5,1;',NULL,NULL);
 REPLACE INTO `item_db` VALUES (18521,'Lucky_Clover','Trevo da Sorte',5,20,NULL,100,NULL,2,NULL,0,0xFFFFFFFF,7,2,1,NULL,1,0,571,'bonus bLuk,1; bonus bMaxSP,20;',NULL,NULL);
-REPLACE INTO `item_db` VALUES (18522,'Chápeu_de_parada_do_Mal','Chápeu de parada do Mal',5,10000,NULL,500,NULL,10,NULL,0,0xFFFFFFFF,7,2,256,NULL,1,1,687,NULL,NULL,NULL);
-REPLACE INTO `item_db` VALUES (18525,'Watermelon_Hat','Boné de Melancia',5,20,NULL,100,NULL,4,NULL,1,0xFFFFFFFF,7,2,256,NULL,30,1,690,'bonus bMdef,4; bonus bVit,1; bonus bLuk,1;',NULL,NULL);
 REPLACE INTO `item_db` VALUES (18527,'Dark_Pumpkin_Hat','Cabeça de Abóbora 2010',5,20,NULL,500,NULL,5,NULL,0,0xFFFFFFFF,7,2,256,NULL,45,1,691,NULL,NULL,NULL);
 REPLACE INTO `item_db` VALUES (18577,'Parafusos_de_Ragenstein','Parafusos de Ragenstein',5,10000,NULL,200,NULL,0,NULL,0,0xFFFFFFFF,7,2,512,NULL,10,0,696,'bonus2 bMagicAddRace,1,4; bonus2 bSubRace,1,5;',NULL,NULL);
 REPLACE INTO `item_db` VALUES (18550,'Bênção_de_Asgard','Bênção de Asgard',5,10000,NULL,300,NULL,3,NULL,0,0xFFFFFFFF,7,2,256,NULL,10,1,724,'bonus bAllstats,2; bonus2 bSubRace,RC_Boss,5;  bonus2 bSubEle,Ele_earth,5; bonus2 bSubEle,Ele_fire,5; bonus2 bSubEle,Ele_water,5; bonus2 bSubele,Ele_Neutral,5; bonus2 bSubEle,Ele_Wind,5; bonus2 bSubEle,Ele_Ghost,5; bonus2 bSubEle,Ele_Undead,5; bonus2 bSubEle,Ele_Dark,5; bonus2 bSPRegenRate,1,10000; bonus2 bHPRegenRate,2,10000;',NULL,NULL);
@@ -26588,8 +26584,8 @@ REPLACE INTO `item_db` VALUES (18543,'Chapéu_de_Bruxa','Chapéu de Bruxa',5,20,NU
 REPLACE INTO `item_db` VALUES (18538,'Sussurro_da_Maldade','Sussurro da Maldade',5,10000,NULL,300,NULL,3,NULL,0,0xFFFFFFFF,7,2,512,NULL,10,1,712,'bonus bMdef,3; bonus2 bSubRace,8,1; bonus2 bSubRace,6,1; bonus3 bAddMonsterDropItem,523,RC_Angel,30; bonus3 bAddMonsterDropItem,523,RC_Demon,30;',NULL,NULL);
 REPLACE INTO `item_db` VALUES (18508,'Coroa_do_Garuda','Coroa do Garuda',5,20,NULL,10,NULL,4,NULL,1,0xFFFFFFFF,7,2,256,NULL,30,1,677,'bonus bLuk,5; bonus bMdef,3; bonus bHit,10; bonus bDelayRate,-5; if(getrefine()>7){ bonus2 bAddMonsterDropItem,522,200; } if(agitcheck()||agitcheck2()==0){ bonus2 bSubRace,RC_NonBoss,5; }',NULL,NULL);
 REPLACE INTO `item_db` VALUES (18630,'Boneca_de_Alicel','Boneca de Alicel',5,10000,NULL,500,NULL,6,NULL,0,0xFFFFFFFE,7,2,256,NULL,70,1,784,'bonus2 bAddRace,RC_DemiHuman,10; if(getrefine() > 5 ) {autobonus \"{ bonus bAspdRate,100; }\",7,10000,0,\"{ specialeffect2 EF_POTION_BERSERK; }\"; }',NULL,NULL);
-REPLACE INTO `item_db` VALUES (19573,'Tiara_do_Amor','Tiara do Amor',5,10000,NULL,500,NULL,6,NULL,0,0xFFFFFFFE,7,2,256,NULL,20,1,476,NULL,NULL,NULL);
-REPLACE INTO `item_db` VALUES (18619,'Disfarce_do_Arruaceiro','Disfarce do Arruaceiro',5,10000,NULL,200,NULL,1,NULL,1,0xFFFFFFFE,7,2,769,NULL,20,1,776,'autobonus \"RG_SNATCHER\",1,10; if(isequipped(4139)) { skill \"RG_SNATCHER\",5,10; bonus bAgi,1; bonus bDex,1; bonus bInt,-1; }',NULL,NULL);
+REPLACE INTO `item_db` VALUES (19573,'Tiara_do_Amor','Tiara do Amor',5,10000,NULL,500,NULL,6,NULL,0,0xFFFFFFFF,7,2,1024,NULL,20,1,733,NULL,NULL,NULL);
+REPLACE INTO `item_db` VALUES (18619,'Disfarce_do_Arruaceiro','Disfarce do Arruaceiro',5,10000,NULL,200,NULL,1,NULL,1,0xFFFFFFFE,7,2,769,NULL,20,1,776,'bonus5 bAutoSpell,"RG_SNATCHER",1,10,BF_SHORT|BF_WEAPON,0;',NULL,NULL);
 REPLACE INTO `item_db` VALUES (18613,'Chapéu_Negro_de_Borobudur','Chapéu Negro de Borobudur',5,10000,NULL,400,NULL,1,NULL,0,0xFFFFFFFF,7,2,256,NULL,20,1,771,'bonus bInt,2; bonus bDex,2; bonus bAgi,1;',NULL,NULL);
 REPLACE INTO `item_db` VALUES (18612,'Chapéu_Branco_de_Borobudur','Chapéu Branco de Borobudur',5,10000,NULL,400,NULL,1,NULL,0,0xFFFFFFFF,7,2,256,NULL,20,1,770,'bonus bStr,2; bonus bVit,2; bonus bLuk,1;',NULL,NULL);
 REPLACE INTO `item_db` VALUES (18593,'Coroa_do_Poder','Coroa do Poder',5,10000,NULL,100,NULL,2,NULL,1,0xFFFFFFFF,7,2,256,NULL,30,1,707,'bonus bMatkRate,3; bonus bHealpower2,3; bonus buseSPrate,3;',NULL,NULL);
@@ -26599,7 +26595,7 @@ REPLACE INTO `item_db` VALUES (13070,'Garra_Escarlate','Garra Escarlate',4,10000
 REPLACE INTO `item_db` VALUES (5664,'Asas_de_Filir','Asas de Filir',5,10000,NULL,100,NULL,1,NULL,0,0xFFFFFFFF,7,2,512,NULL,10,0,595,'bonus bDelayRate,2; bonus bAspdRate,5;',NULL,NULL);
 REPLACE INTO `item_db` VALUES (2589,'Asas_de_Arcanjo_Caído','Asas de Arcanjo Caído',5,10000,NULL,200,NULL,18,NULL,0,0xFFFFFFFF,7,2,4,NULL,1,0,1,'bonus bLuk,2; bonus2 bSubRace,RC_DemiHuman,10; bonus2 bSubRace,Rc_Demon,30; bonus2 bSubEle,6,-30;',NULL,NULL);
 REPLACE INTO `item_db` VALUES (15049,'Armadura_da_Fé_de_Odin','Armadura da Fé de Odin',5,10000,NULL,1000,NULL,70,NULL,0,0xFFFFFFFF,7,2,16,NULL,50,1,0,'bonus bAllStats,4; bonus2 bSubRace,Rc_DemiHuman,10;',NULL,NULL);
-REPLACE INTO `item_db` VALUES (5782,'Elmo_Espartano','Elmo Espartano',5,10000,NULL,700,NULL,4,NULL,0,0xFFFFFFFF,7,2,769,NULL,70,0,660,'bonus bMaxHPrate,3; if(isequipped(2153)){ bonus2 bSubRace,RC_Boss,5; bonus2 bSubRace,RC_NonBoss,5; bonus bDef,2; }',NULL,NULL);
+REPLACE INTO `item_db` VALUES (5782,'Elmo_Espartano','Elmo Espartano',5,10000,NULL,700,NULL,4,NULL,0,0xFFFFFFFF,7,2,769,NULL,70,0,660,'bonus bMaxHPrate,3;',NULL,NULL);
 REPLACE INTO `item_db` VALUES (17033,'Pacote_de_Revestimento','Pacote de Revestimento',2,10000,NULL,1000,NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'getitem 7139,10;',NULL,NULL);
 REPLACE INTO `item_db` VALUES (6484,'Livro_do_Encantamento','Livro do Encantamento',2,10000,NULL,1000,NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 REPLACE INTO `item_db` VALUES (21000,'Espada_Aprimorada_de_Duas_Mãos','Espada Aprimorada de Duas Mãos',4,10000,NULL,1500,100,NULL,1,1,0x00004082,7,2,34,3,1,1,3,'if (getrefine() ){ bonus bAtk,12; bonus bMatk,5; }',NULL,NULL);
@@ -26607,13 +26603,12 @@ REPLACE INTO `item_db` VALUES (18112,'Arco_Aprimorado','Arco Aprimorado',4,10000
 REPLACE INTO `item_db` VALUES (16019,'Maça_Aprimorada','Maça Aprimorada',4,10000,NULL,800,80,NULL,1,1,0x0004C5B3,7,2,2,3,1,1,8,'if(getrefine()) { bonus bAtk,10; bonus bHealPower,getrefine()+1; }',NULL,NULL);
 REPLACE INTO `item_db` VALUES (13115,'Pistola__Aprimorada','Pistola  Aprimorada',4,10000,NULL,500,35,NULL,5,1,0x01000000,7,2,34,3,1,1,17,'if(getrefine()) { bonus bAtk,5; bonus bLongAtkRate,getrefine()+2; }',NULL,NULL);
 REPLACE INTO `item_db` VALUES (13071,'Adaga__Aprimorada','Adaga  Aprimorada',4,10000,NULL,600,55,NULL,1,1,0x028F5EEF,7,2,2,3,1,1,1,'if(getrefine()) { bonus bAtk,10; bonus bLongAtkRate,getrefine()*5; }',NULL,NULL);
-REPLACE INTO `item_db` VALUES (2015,'Cajado__Aprimorado','Cajado  Aprimorado',4,10000,NULL,1000,50,NULL,1,1,0x00818314,7,2,2,3,1,1,10,'bonus bWMatk,70;',NULL,NULL);
-REPLACE INTO `item_db` VALUES (1585,'Livro__Aprimorado','Livro  Aprimorado',4,10000,NULL,600,45,NULL,5,1,0x00410000,7,2,2,3,1,1,15,'bonus bWMatk,20;',NULL,NULL);
+REPLACE INTO `item_db` VALUES (2015,'Cajado__Aprimorado','Cajado  Aprimorado',4,10000,NULL,1000,50,NULL,1,1,0x00818314,7,2,2,3,1,1,10,' bonus bMatk,70;',NULL,NULL);
+REPLACE INTO `item_db` VALUES (1585,'Livro__Aprimorado','Livro  Aprimorado',4,10000,NULL,600,45,NULL,5,1,0x00410000,7,2,2,3,1,1,15,' bonus bMatk,20;',NULL,NULL);
 REPLACE INTO `item_db` VALUES (1491,'Lança__Aprimorada_de_duas_Mãos','Lança  Aprimorada de duas Mãos',4,10000,NULL,1500,105,NULL,1,1,0x00004082,7,2,34,3,1,1,5,NULL,NULL,NULL);
 REPLACE INTO `item_db` VALUES (1394,'Machado__Aprimorado_de_duas_Mãos','Machado  Aprimorado de duas Mãos',4,10000,NULL,2000,110,NULL,1,1,0x000444A0,7,2,34,3,1,1,7,NULL,NULL,NULL);
 REPLACE INTO `item_db` VALUES (1292,'Katar_Aprimorada','Katar Aprimorada',4,10000,NULL,1000,80,NULL,1,1,0x00001000,7,2,34,3,1,1,16,NULL,NULL,NULL);
-REPLACE INTO `item_db` VALUES (18595,'Chifre_do_Patriarca','Chifre do Patriarca',5,10000,NULL,400,NULL,8,NULL,1,0xFFFFFFFF,7,2,256,NULL,50,1,757,'if (getrefine () >7 ) { autobonus \"{ bonus bBaseAtk,100; }\",10,10000,BF_WEAPON,\"{ specialeffect2 EF_ENHANCE; }\"; }',NULL,NULL);
-REPLACE INTO `item_db` VALUES (1291,'Katar_do_sicário','Katar do sicário',4,10000,NULL,1500,200,NULL,1,1,0x00001000,7,2,34,4,140,1,16,'bonus bDex,2; bonus bFlee,-30; bonus2 batkRace,Rc_DemiHuman,50; bonus2 bSkillAtk,GC_CROSSIMPACT,30;',NULL,NULL);
+REPLACE INTO `item_db` VALUES (18595,'Chifre_do_Patriarca','Chifre do Patriarca',5,10000,NULL,400,NULL,8,NULL,1,0xFFFFFFFF,7,2,256,NULL,50,1,757,'if (getrefine () >= 7 ) { autobonus \"{ bonus bBaseAtk,100; }\",10,10000,BF_WEAPON,\"{ specialeffect2 EF_ENHANCE; }\"; }',NULL,NULL);
 REPLACE INTO `item_db` VALUES (2584,'Manto_do_Andarilho','Manto do Andarilho',5,10000,NULL,500,NULL,8,NULL,1,0xFFFFFFFF,7,2,4,NULL,10,1,0,'bonus bFlee,1; bonus bUnbreakableGarment,0;',NULL,NULL);
 REPLACE INTO `item_db` VALUES (18575,'Disfarce_de_Solid_Sorrateiro','Disfarce de Solid Sorrateiro',5,10000,NULL,500,NULL,10,NULL,1,0xFFFFFFFF,7,2,769,NULL,20,1,743,'bonus bMdef,10;',NULL,NULL);
 REPLACE INTO `item_db` VALUES (18581,'Máscara_de_Tigre_Vermelha','Máscara de Tigre Vermelha',5,10000,NULL,400,NULL,2,NULL,0,0xFFFFFFFF,7,2,768,NULL,50,1,747,'bonus bStr,3; bonus bMaxHp,200;',NULL,NULL);
@@ -26643,7 +26638,7 @@ REPLACE INTO `item_db` VALUES (17091,'Caixa_com_Maça_Aprimorada','Caixa com Maça
 REPLACE INTO `item_db` VALUES (17092,'Caixa_com_Arco_Aprimorado','Caixa com Arco Aprimorado',2,10000,NULL,10,NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'getitem 18112,1;',NULL,NULL);
 REPLACE INTO `item_db` VALUES (17093,'Caixa_com_Espada_Aprimorada_de_Duas_Mãos','Caixa com Espada Aprimorada de Duas Mãos',2,10000,NULL,10,NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'getitem 21000,1;',NULL,NULL);
 REPLACE INTO `item_db` VALUES (17208,'Caixa_do_Pergaminho_do_Eddga','Caixa do Pergaminho do Eddga',2,10000,NULL,10,NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,'getitem 12801,10;',NULL,NULL);
-REPLACE INTO `item_db` VALUES (4480,'Carta_Selada_Kiel','Carta Selada Kiel',6,20,NULL,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,769,NULL,NULL,NULL,NULL,'bonus bDelayRate,-15; if(getrefine()>== 14) { bonus bDelayRate,-5; }',NULL,NULL);
+REPLACE INTO `item_db` VALUES (4480,'Carta_Selada_Kiel','Carta Selada Kiel',6,20,NULL,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,769,NULL,NULL,NULL,NULL,'bonus bDelayRate,-15; if(getrefine()>= 14) { bonus bDelayRate,-5; }',NULL,NULL);
 REPLACE INTO `item_db` VALUES (4481,'Carta_Selada_Ktullanux','Carta Selada Ktullanux',6,20,NULL,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,16,NULL,NULL,NULL,NULL,'bonus2 bAddEle,Ele_Fire,25; bonus5 bAutoSpellWhenHit,\"WZ_FROSTNOVA\",10,20,BF_WEAPON|BF_MAGIC,0; if(getrefine()>= 14) { bonus2 bAddEle,Ele_Fire,10; }',NULL,NULL);
 REPLACE INTO `item_db` VALUES (4482,'Carta_selada_Egnigem_Cenia','Carta selada Egnigem Cenia',6,20,NULL,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,16,NULL,NULL,NULL,NULL,'bonus2 bHPRegenRate,50,15000; bonus2 bSPRegenRate,10,15000; bonus bMaxHPrate,5; bonus bMaxSPrate,5; if(getrefine()>= 14) { bonus2 bHPRegenRate,50,-5000; bonus2 bSPRegenRate,10,-5000; bonus bMaxHPrate,5; bonus bMaxSPrate,5; }',NULL,NULL);
 REPLACE INTO `item_db` VALUES (4483,'Carta_Selada_Dracula','Carta Selada Dracula',6,20,NULL,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL,NULL,NULL,NULL,'bonus2 bSpDrainRate,50,5; if(getrefine()>= 14) { bonus2 bSpDrainRate,50,2; }',NULL,NULL);
@@ -26654,7 +26649,7 @@ REPLACE INTO `item_db` VALUES (4499,'Carta_Selada_do_Samurai_Encarnado','Carta S
 REPLACE INTO `item_db` VALUES (4500,'Carta_Selada_do_Senhor_dos_Orcs','Carta Selada do Senhor dos Orcs',6,20,NULL,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,16,NULL,NULL,NULL,NULL,'bonus bShortWeaponDamageReturn,15; if(getrefine()>= 15) { bonus bShortWeaponDamageReturn,10; }',NULL,NULL);
 REPLACE INTO `item_db` VALUES (4494,'Carta_General_Tartaruga_Selada','Carta General Tartaruga Selada',6,20,NULL,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL,NULL,NULL,NULL,'bonus2 bAddRace,RC_NonBoss,10; bonus2 bAddRace,RC_Boss,10; bonus3 bAutoSpell,\"SM_MAGNUM\",10,15; if(getrefine()>= 15) { bonus2 bAddRace,RC_NonBoss,5; bonus2 bAddRace,RC_Boss,5; }',NULL,NULL);
 REPLACE INTO `item_db` VALUES (4495,'Carta_Amon_Ra_Selada','Carta Amon Ra Selada',6,20,NULL,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,64,NULL,NULL,NULL,NULL,'bonus bAllStats,1; bonus3 bAutoSpellWhenHit,\"PR_KYRIE\",5,(15+35*(readparam(bInt)>=99)); if(getrefine()>= 15) { bonus3 bAutoSpellWhenHit,\"PR_KYRIE\",8,(15+35*(readparam(bInt)>=99)); }',NULL,NULL);
-REPLACE INTO `item_db` VALUES (4486,'Carta_Belzebu_Selada','Carta Belzebu Selada',6,20,NULL,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,136,NULL,NULL,NULL,NULL,'bonus2 bCastrate,-15;',NULL,NULL);
+REPLACE INTO `item_db` VALUES (4486,'Carta_Belzebu_Selada','Carta Belzebu Selada',6,20,NULL,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,136,NULL,NULL,NULL,NULL,'bonus bCastrate,-15;',NULL,NULL);
 REPLACE INTO `item_db` VALUES (4504,'Carta_Eddga_Selada','Carta Eddga Selada',6,20,NULL,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,64,NULL,NULL,NULL,NULL,'bonus bMaxHPrate,-50; if(getrefine()>= 15) { bonus bMaxHPrate,15; }','sc_start4 SC_ENDURE,60000,10,0,0,1;','sc_end SC_ENDURE;');
 REPLACE INTO `item_db` VALUES (4502,'Carta_Mestre-ferreiro_Howard_Selada','Carta Mestre-ferreiro Howard Selada',6,20,NULL,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL,NULL,NULL,NULL,'bonus bBreakWeaponRate,500; bonus bBreakArmorRate,400; if(getrefine()>= 15) { bonus bBreakWeaponRate,300; bonus bBreakArmorRate,200; }',NULL,NULL);
 REPLACE INTO `item_db` VALUES (4501,'Carta_Sumo-Sacerdotisa_Margareta_Selada','Carta Sumo-Sacerdotisa Margareta Selada',6,20,NULL,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,16,NULL,NULL,NULL,NULL,'bonus5 bAutoSpellWhenHit,\"HP_ASSUMPTIO\",1,25,BF_WEAPON|BF_MAGIC,0; if(getrefine()>= 15) {  bonus5 bAutoSpellWhenHit,\"HP_ASSUMPTIO\",1,10,BF_WEAPON|BF_MAGIC,0; }',NULL,NULL);
