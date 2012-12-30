@@ -2032,8 +2032,7 @@ CREATE TABLE IF NOT EXISTS `skill_changematerial_db` (
   `MakeAmount4` tinyint DEFAULT NULL,
   `MakeAmountRate4` smallint unsigned DEFAULT NULL,
   `MakeAmount5` tinyint DEFAULT NULL,
-  `MakeAmountRate5` smallint unsigned DEFAULT NULL,
-  PRIMARY KEY (`ProductID`)
+  `MakeAmountRate5` smallint unsigned DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 REPLACE INTO skill_changematerial_db VALUES(703,4,800,2,200,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
@@ -7191,7 +7190,7 @@ REPLACE INTO item_combo_db VALUES('5782:1409', '{ bonus2 bAddRace,RC_NonBoss,3; 
 REPLACE INTO item_combo_db VALUES('5782:1219', '{ bonus2 bAddRace,RC_NonBoss,3; bonus2 bAddRace,RC_Boss,3; }');
 REPLACE INTO item_combo_db VALUES('5782:1220', '{ bonus2 bAddRace,RC_NonBoss,3; bonus2 bAddRace,RC_Boss,3; }');
 REPLACE INTO item_combo_db VALUES('5782:1221', '{ bonus2 bAddRace,RC_NonBoss,3; bonus2 bAddRace,RC_Boss,3; }');
-REPLACE INTO item_combo_db VALUES('2584:5579', '{ skill\"TF_DOUBLE\",1; if(getrefine()>= 4) {skill\"TF_DOUBLE\",5; if(getrefine()>= 6) skill\"TF_DOUBLE\",10; }');
+REPLACE INTO item_combo_db VALUES('2584:5579', '{ skill\"TF_DOUBLE\",1; if(getequiprefinerycnt(EQI_GARMENT) >= 4) skill\"TF_DOUBLE\",5; if(getequiprefinerycnt(EQI_GARMENT) >= 6 ) skill\"TF_DOUBLE\",10; }');
 
 --
 -- Estrutura da tabela `item_giftbox_db`
@@ -11539,8 +11538,7 @@ CREATE TABLE IF NOT EXISTS `skill_cast_db` (
   `AfterCastWalkDelay` tinytext NOT NULL,
   `Duration1` tinytext NOT NULL,
   `Duration2` tinytext NOT NULL,
-  `CoolDown` tinytext NOT NULL,
-  PRIMARY KEY (`SkillID`)
+  `CoolDown` tinytext NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 REPLACE INTO skill_cast_db VALUES(6,'0','0','0','30000','0','1000');

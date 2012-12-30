@@ -2032,8 +2032,7 @@ CREATE TABLE IF NOT EXISTS `skill_changematerial_db` (
   `MakeAmount4` tinyint DEFAULT NULL,
   `MakeAmountRate4` smallint unsigned DEFAULT NULL,
   `MakeAmount5` tinyint DEFAULT NULL,
-  `MakeAmountRate5` smallint unsigned DEFAULT NULL,
-  PRIMARY KEY (`ProductID`)
+  `MakeAmountRate5` smallint unsigned DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 REPLACE INTO skill_changematerial_db VALUES(703,4,800,2,200,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
@@ -11527,8 +11526,7 @@ CREATE TABLE IF NOT EXISTS `skill_cast_db` (
   `AfterCastWalkDelay` tinytext NOT NULL,
   `Duration1` tinytext NOT NULL,
   `Duration2` tinytext NOT NULL,
-  `CoolDown` tinytext NOT NULL,
-  PRIMARY KEY (`SkillID`)
+  `CoolDown` tinytext NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 REPLACE INTO skill_cast_db VALUES(6,'0','0','0','30000','0','1000');
