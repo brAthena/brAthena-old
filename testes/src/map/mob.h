@@ -79,7 +79,7 @@ enum ai {
 
 struct mob_skill {
 	enum MobSkillState state;
-	short skill_id,skill_lv;
+	uint16 skill_id,skill_lv;
 	short permillage;
 	int casttime,delay;
 	short cancel;
@@ -100,7 +100,7 @@ struct spawn_info {
 	unsigned short mapindex;
 	unsigned short qty;
 };
- 
+
 struct mob_db {
 	char sprite[NAME_LENGTH],name[NAME_LENGTH],jname[NAME_LENGTH];
 	unsigned int base_exp,job_exp;
@@ -151,7 +151,7 @@ struct mob_data {
 		unsigned char attacked_count; //For rude attacked.
 		int provoke_flag; // Celest
 	} state;
-	struct guardian_data* guardian_data; 
+	struct guardian_data* guardian_data;
 	struct {
 		int id;
 		unsigned int dmg;
@@ -171,11 +171,11 @@ struct mob_data {
 	short move_fail_count;
 	short lootitem_count;
 	short min_chase;
-	
+
 	int deletetimer;
 	int master_id,master_dist;
 
-	short skillidx;
+	uint16 skill_idx;
 	unsigned int skilldelay[MAX_MOBSKILL];
 	char npc_event[EVENT_NAME_LENGTH];
 	/**
@@ -238,7 +238,7 @@ struct item_drop {
 	struct item_drop* next;
 };
 struct item_drop_list {
-	int m, x, y;                       // coordinates
+	int16 m, x, y;                       // coordinates
 	int first_charid, second_charid, third_charid; // charid's of players with higher pickup priority
 	struct item_drop* item;            // linked list of drops
 };
@@ -249,19 +249,19 @@ int mobdb_searchname_array(struct mob_db** data, int size, const char *str);
 int mobdb_checkid(const int id);
 struct view_data* mob_get_viewdata(int class_);
 
-struct mob_data *mob_once_spawn_sub(struct block_list *bl, int m,
+struct mob_data *mob_once_spawn_sub(struct block_list *bl, int16 m,
 	short x, short y, const char *mobname, int class_, const char *event, unsigned int size, unsigned int ai);
 
-int mob_once_spawn(struct map_session_data* sd, int m, short x, short y,
+int mob_once_spawn(struct map_session_data* sd, int16 m, int16 x, int16 y,
 	const char* mobname, int class_, int amount, const char* event, unsigned int size, unsigned int ai);
 
-int mob_once_spawn_area(struct map_session_data* sd, int m,
-	int x0, int y0, int x1, int y1, const char* mobname, int class_, int amount, const char* event, unsigned int size, unsigned int ai);
+int mob_once_spawn_area(struct map_session_data* sd, int16 m,
+	int16 x0, int16 y0, int16 x1, int16 y1, const char* mobname, int class_, int amount, const char* event, unsigned int size, unsigned int ai);
 
 bool mob_ksprotected (struct block_list *src, struct block_list *target);
 
-int mob_spawn_guardian(const char* mapname, short x, short y, const char* mobname, int class_, const char* event, int guardian, bool has_index);	// Spawning Guardians [Valaris]
-int mob_spawn_bg(const char* mapname, short x, short y, const char* mobname, int class_, const char* event, unsigned int bg_id);
+int mob_spawn_guardian(const char* mapname, int16 x, int16 y, const char* mobname, int class_, const char* event, int guardian, bool has_index);	// Spawning Guardians [Valaris]
+int mob_spawn_bg(const char* mapname, int16 x, int16 y, const char* mobname, int class_, const char* event, unsigned int bg_id);
 int mob_guardian_guildchange(struct mob_data *md); //Change Guardian's ownership. [Skotlex]
 
 int mob_randomwalk(struct mob_data *md,unsigned int tick);
@@ -302,13 +302,13 @@ int mobskill_use(struct mob_data *md,unsigned int tick,int event);
 int mobskill_event(struct mob_data *md,struct block_list *src,unsigned int tick, int flag);
 int mobskill_castend_id( int tid, unsigned int tick, int id,int data );
 int mobskill_castend_pos( int tid, unsigned int tick, int id,int data );
-int mob_summonslave(struct mob_data *md2,int *value,int amount,int skill_id);
+int mob_summonslave(struct mob_data *md2,int *value,int amount,uint16 skill_id);
 int mob_countslave(struct block_list *bl);
 int mob_count_sub(struct block_list *bl, va_list ap);
 
 int mob_is_clone(int class_);
 
-int mob_clone_spawn(struct map_session_data *sd, int m, int x, int y, const char *event, int master_id, int mode, int flag, unsigned int duration);
+int mob_clone_spawn(struct map_session_data *sd, int16 m, int16 x, int16 y, const char *event, int master_id, int mode, int flag, unsigned int duration);
 int mob_clone_delete(struct mob_data *md);
 
 void mob_reload(void);

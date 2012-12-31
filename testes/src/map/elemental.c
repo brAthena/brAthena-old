@@ -280,10 +280,10 @@ int elemental_data_received(struct s_elemental *ele, bool flag) {
 	return 1;
 }
 
-int elemental_clean_single_effect(struct elemental_data *ed, int skill_num) {
+int elemental_clean_single_effect(struct elemental_data *ed, uint16 skill_id) {
 	struct block_list *bl;
-	sc_type type = status_skill2sc(skill_num);
-	
+	sc_type type = status_skill2sc(skill_id);
+
 	nullpo_ret(ed);
 	
 	bl = battle_get_master(&ed->bl);
@@ -389,26 +389,26 @@ int elemental_clean_effect(struct elemental_data *ed) {
 
 int elemental_action(struct elemental_data *ed, struct block_list *bl, unsigned int tick) {
 	struct skill_condition req;
-	short skillnum, skilllv;
+	uint16 skill_id, skill_lv;
 	int i;
-	
+
 	nullpo_ret(ed);
 	nullpo_ret(bl);
-	
+
 	if( !ed->master )
 		return 0;
-	
+
 	if( ed->target_id )
 		elemental_unlocktarget(ed);	// Remove previous target.
-	
+
 	ARR_FIND(0, MAX_ELESKILLTREE, i, ed->db->skill[i].id && (ed->db->skill[i].mode&EL_SKILLMODE_AGGRESSIVE));
 	if( i == MAX_ELESKILLTREE )
 		return 0;
-	
-	skillnum = ed->db->skill[i].id;
-	skilllv = ed->db->skill[i].lv;
-	
-	if( elemental_skillnotok(skillnum, ed) )
+
+	skill_id = ed->db->skill[i].id;
+	skill_lv = ed->db->skill[i].lv;
+
+	if( elemental_skillnotok(skill_id, ed) )
 		return 0;
 	
 	if( ed->ud.skilltimer != INVALID_TIMER )
@@ -420,31 +420,31 @@ int elemental_action(struct elemental_data *ed, struct block_list *bl, unsigned 
 	ed->last_thinktime = tick;
 	
 	// Not in skill range.
-	if( !battle_check_range(&ed->bl,bl,skill_get_range(skillnum,skilllv)) ) {
+	if( !battle_check_range(&ed->bl,bl,skill_get_range(skill_id,skill_lv)) ) {
 		// Try to walk to the target.
-		if( !unit_walktobl(&ed->bl, bl, skill_get_range(skillnum,skilllv), 2) )
+		if( !unit_walktobl(&ed->bl, bl, skill_get_range(skill_id,skill_lv), 2) )
 			elemental_unlocktarget(ed);
 		else {
 			// Walking, waiting to be in range. Client don't handle it, then we must handle it here.
-			int walk_dist = distance_bl(&ed->bl,bl) - skill_get_range(skillnum,skilllv);
-			ed->ud.skillid = skillnum;
-			ed->ud.skilllv = skilllv;
-			
-			if( skill_get_inf(skillnum) & INF_GROUND_SKILL )
+			int walk_dist = distance_bl(&ed->bl,bl) - skill_get_range(skill_id,skill_lv);
+			ed->ud.skill_id = skill_id;
+			ed->ud.skill_lv = skill_lv;
+
+			if( skill_get_inf(skill_id) & INF_GROUND_SKILL )
 				ed->ud.skilltimer = add_timer( tick+status_get_speed(&ed->bl)*walk_dist, skill_castend_pos, ed->bl.id, 0 );
 			else
 				ed->ud.skilltimer = add_timer( tick+status_get_speed(&ed->bl)*walk_dist, skill_castend_id, ed->bl.id, 0 );
 		}
 		return 1;
-		
+
 	}
 
-	req = elemental_skill_get_requirements(skillnum, skilllv);
+	req = elemental_skill_get_requirements(skill_id, skill_lv);
 
 	if(req.hp || req.sp){
 		struct map_session_data *sd = BL_CAST(BL_PC, battle_get_master(&ed->bl));
 		if( sd ){
-			if( sd->skillid_old != SO_EL_ACTION && //regardless of remaining HP/SP it can be cast
+			if( sd->skill_id_old != SO_EL_ACTION && //regardless of remaining HP/SP it can be cast
 				(status_get_hp(&ed->bl) < req.hp || status_get_sp(&ed->bl) < req.sp) )
 				return 1;
 			else
@@ -453,14 +453,14 @@ int elemental_action(struct elemental_data *ed, struct block_list *bl, unsigned 
 	}
 
 	//Otherwise, just cast the skill.
-	if( skill_get_inf(skillnum) & INF_GROUND_SKILL )
-		unit_skilluse_pos(&ed->bl, bl->x, bl->y, skillnum, skilllv);
+	if( skill_get_inf(skill_id) & INF_GROUND_SKILL )
+		unit_skilluse_pos(&ed->bl, bl->x, bl->y, skill_id, skill_lv);
 	else
-		unit_skilluse_id(&ed->bl, bl->id, skillnum, skilllv);
-	
+		unit_skilluse_id(&ed->bl, bl->id, skill_id, skill_lv);
+
 	// Reset target.
 	ed->target_id = 0;
-	
+
 	return 1;
 }
 
@@ -470,7 +470,7 @@ int elemental_action(struct elemental_data *ed, struct block_list *bl, unsigned 
  *-------------------------------------------------------------*/
 int elemental_change_mode_ack(struct elemental_data *ed, int mode) {
 	struct block_list *bl = &ed->master->bl;
-	short skillnum, skilllv;
+	uint16 skill_id, skill_lv;
 	int i;
 	
 	nullpo_ret(ed);
@@ -482,11 +482,11 @@ int elemental_change_mode_ack(struct elemental_data *ed, int mode) {
 	ARR_FIND(0, MAX_ELESKILLTREE, i, ed->db->skill[i].id && (ed->db->skill[i].mode&mode));
 	if( i == MAX_ELESKILLTREE )
 		return 0;
-	
-	skillnum = ed->db->skill[i].id;
-	skilllv = ed->db->skill[i].lv;
-	
-	if( elemental_skillnotok(skillnum, ed) )
+
+	skill_id = ed->db->skill[i].id;
+	skill_lv = ed->db->skill[i].lv;
+
+	if( elemental_skillnotok(skill_id, ed) )
 		return 0;
 	
 	if( ed->ud.skilltimer != INVALID_TIMER )
@@ -496,12 +496,12 @@ int elemental_change_mode_ack(struct elemental_data *ed, int mode) {
 	
 	ed->target_id = bl->id;	// Set new target
 	ed->last_thinktime = gettick();
-	
-	if( skill_get_inf(skillnum) & INF_GROUND_SKILL )
-		unit_skilluse_pos(&ed->bl, bl->x, bl->y, skillnum, skilllv);
+
+	if( skill_get_inf(skill_id) & INF_GROUND_SKILL )
+		unit_skilluse_pos(&ed->bl, bl->x, bl->y, skill_id, skill_lv);
 	else
-		unit_skilluse_id(&ed->bl,bl->id,skillnum,skilllv);
-	
+		unit_skilluse_id(&ed->bl,bl->id,skill_id,skill_lv);
+
 	ed->target_id = 0;	// Reset target after casting the skill  to avoid continious attack.
 	
 	return 1;
@@ -553,30 +553,30 @@ int elemental_unlocktarget(struct elemental_data *ed) {
 	return 0;
 }
 
-int elemental_skillnotok(int skillid, struct elemental_data *ed) {
-	int i = skill_get_index(skillid);
+int elemental_skillnotok(uint16 skill_id, struct elemental_data *ed) {
+	int idx = skill_get_index(skill_id);
 	nullpo_retr(1,ed);
-	
-	if (i == 0)
+
+	if (idx == 0)
 		return 1; // invalid skill id
-	
-	return skillnotok(skillid, ed->master);
+
+	return skillnotok(skill_id, ed->master);
 }
 
-struct skill_condition elemental_skill_get_requirements(int skill, int lv){
+struct skill_condition elemental_skill_get_requirements(uint16 skill_id, uint16 skill_lv){
 	struct skill_condition req;
-	int id = skill_get_index(skill);
+	int idx = skill_get_index(skill_id);
 
 	memset(&req,0,sizeof(req));
 
-	if( id == 0 ) // invalid skill id
+	if( idx == 0 ) // invalid skill id
   		return req;
 
-	if( lv < 1 || lv > MAX_SKILL_LEVEL )
+	if( skill_lv < 1 || skill_lv > MAX_SKILL_LEVEL )
 		return req;
 
-	req.hp = skill_db[id].hp[lv-1];
-	req.sp = skill_db[id].sp[lv-1];
+	req.hp = skill_db[idx].hp[skill_lv-1];
+	req.sp = skill_db[idx].sp[skill_lv-1];
 
 	return req;
 }
@@ -839,7 +839,7 @@ int read_elementaldb(void)
 int read_elemental_skilldb(void) {
 
 	struct s_elemental_db *db;
-	int i, j = 0, k = 0, class_, skillid, skilllv, skillmode;
+	int i, j = 0, k = 0, class_, skill_id, skill_lv, skillmode;
 
 	if(SQL_ERROR == Sql_Query(dbmysql_handle, "SELECT * FROM `%s`", get_database_name(37)))
 	{
@@ -864,15 +864,15 @@ int read_elemental_skilldb(void) {
 			continue;
 		}
 		
-		skillid = atoi(row[1]);
-		if(skillid < EL_SKILLBASE || skillid >= EL_SKILLBASE + MAX_ELEMENTALSKILL)
+		skill_id = atoi(row[1]);
+		if(skill_id < EL_SKILLBASE || skill_id >= EL_SKILLBASE + MAX_ELEMENTALSKILL)
 		{
 			ShowError("read_elemental_skilldb : Habilidade fora do alcance, ROW %d.\n", k);
 			continue;
 		}
 		
 		db = &elemental_db[i];
-		skilllv = atoi(row[2]);
+		skill_lv = atoi(row[2]);
 		
 		skillmode = atoi(row[3]);
 		if(skillmode < EL_SKILLMODE_PASIVE || skillmode > EL_SKILLMODE_AGGRESSIVE)
@@ -881,15 +881,15 @@ int read_elemental_skilldb(void) {
 			continue;
 		}
 		
-		ARR_FIND(0, MAX_ELESKILLTREE, i, db->skill[i].id == 0 || db->skill[i].id == skillid);
+		ARR_FIND(0, MAX_ELESKILLTREE, i, db->skill[i].id == 0 || db->skill[i].id == skill_id);
 		if(i == MAX_ELESKILLTREE)
 		{
-			ShowWarning("Não foi possível carregar habilidade %d em Elemental %d's árvore. O número máximo de capacidade por elementar foi atingido.\n", skillid, class_);
+			ShowWarning("Não foi possível carregar habilidade %d em Elemental %d's árvore. O número máximo de capacidade por elementar foi atingido.\n", skill_id, class_);
 			continue;
 		}
 		
-		db->skill[i].id = skillid;
-		db->skill[i].lv = skilllv;
+		db->skill[i].id = skill_id;
+		db->skill[i].lv = skill_lv;
 		db->skill[i].mode = skillmode;
 		j++;
 	}

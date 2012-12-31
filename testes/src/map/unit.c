@@ -77,7 +77,7 @@ int unit_walktoxy_sub(struct block_list *bl)
 	if (ud->target_to && ud->chaserange>1) {
 		//Generally speaking, the walk path is already to an adjacent tile
 		//so we only need to shorten the path if the range is greater than 1.
-		int dir;
+		uint8 dir;
 		//Trim the last part of the path to account for range,
 		//but always move at least one cell when requested to move.
 		for (i = ud->chaserange*10; i > 0 && ud->walkpath.path_len>1;) {
@@ -213,7 +213,7 @@ static int unit_walktoxy_timer(int tid, unsigned int tick, int id, intptr_t data
 			!(ud->walk_count%WALK_SKILL_INTERVAL) &&
 			mobskill_use(md, tick, -1))
 	  	{
-			if (!(ud->skillid == NPC_SELFDESTRUCTION && ud->skilltimer != INVALID_TIMER))
+			if (!(ud->skill_id == NPC_SELFDESTRUCTION && ud->skilltimer != INVALID_TIMER))
 			{	//Skill used, abort walking
 				clif_fixpos(bl); //Fix position as walk has been cancelled.
 				return 0;
@@ -586,7 +586,7 @@ int unit_wugdash(struct block_list *bl, struct map_session_data *sd) {
 //Makes bl attempt to run dist cells away from target. Uses hard-paths.
 int unit_escape(struct block_list *bl, struct block_list *target, short dist)
 {
-	int dir = map_calc_dir(target, bl->x, bl->y);
+	uint8 dir = map_calc_dir(target, bl->x, bl->y);
 	while( dist > 0 && map_getcell(bl->m, bl->x + dist*dirx[dir], bl->y + dist*diry[dir], CELL_CHKNOREACH) )
 		dist--;
 	return ( dist > 0 && unit_walktoxy(bl, bl->x + dist*dirx[dir], bl->y + dist*diry[dir], 0) );
@@ -865,14 +865,14 @@ int unit_stop_walking(struct block_list *bl,int type)
 	return 1;
 }
 
-int unit_skilluse_id(struct block_list *src, int target_id, short skill_num, short skill_lv)
+int unit_skilluse_id(struct block_list *src, int target_id, uint16 skill_id, uint16 skill_lv)
 {
-	if(skill_num < 0) return 0;
+	if(skill_id < 0) return 0;
 
 	return unit_skilluse_id2(
-		src, target_id, skill_num, skill_lv,
-		skill_castfix(src, skill_num, skill_lv),
-		skill_get_castcancel(skill_num)
+		src, target_id, skill_id, skill_lv,
+		skill_castfix(src, skill_id, skill_lv),
+		skill_get_castcancel(skill_id)
 	);
 }
 
@@ -900,8 +900,8 @@ int unit_can_move(struct block_list *bl)
 	
 	if (!ud)
 		return 0;
-	
-	if (ud->skilltimer != INVALID_TIMER && ud->skillid != LG_EXEEDBREAK && (!sd || !pc_checkskill(sd, SA_FREECAST) || skill_get_inf2(ud->skillid)&INF2_GUILD_SKILL))
+
+	if (ud->skilltimer != INVALID_TIMER && ud->skill_id != LG_EXEEDBREAK && (!sd || !pc_checkskill(sd, SA_FREECAST) || skill_get_inf2(ud->skill_id)&INF2_GUILD_SKILL))
 		return 0; // prevent moving while casting
 	
 	if (DIFF_TICK(ud->canmove_tick, gettick()) > 0)
@@ -950,11 +950,11 @@ int unit_resume_running(int tid, unsigned int tick, int id, intptr_t data)
 	TBL_PC * sd = map_id2sd(id);
 
 	if(sd && pc_isridingwug(sd))
-		clif_skill_nodamage(ud->bl,ud->bl,RA_WUGDASH,ud->skilllv,
-			sc_start4(ud->bl,status_skill2sc(RA_WUGDASH),100,ud->skilllv,unit_getdir(ud->bl),0,0,1));
+		clif_skill_nodamage(ud->bl,ud->bl,RA_WUGDASH,ud->skill_lv,
+			sc_start4(ud->bl,status_skill2sc(RA_WUGDASH),100,ud->skill_lv,unit_getdir(ud->bl),0,0,1));
 	else
-		clif_skill_nodamage(ud->bl,ud->bl,TK_RUN,ud->skilllv,
-			sc_start4(ud->bl,status_skill2sc(TK_RUN),100,ud->skilllv,unit_getdir(ud->bl),0,0,0));
+		clif_skill_nodamage(ud->bl,ud->bl,TK_RUN,ud->skill_lv,
+			sc_start4(ud->bl,status_skill2sc(TK_RUN),100,ud->skill_lv,unit_getdir(ud->bl),0,0,0));
 
 	if (sd) clif_walkok(sd);
 
@@ -1010,7 +1010,7 @@ int unit_set_walkdelay(struct block_list *bl, unsigned int tick, int delay, int 
 	return 1;
 }
 
-int unit_skilluse_id2(struct block_list *src, int target_id, short skill_num, short skill_lv, int casttime, int castcancel)
+int unit_skilluse_id2(struct block_list *src, int target_id, uint16 skill_id, uint16 skill_lv, int casttime, int castcancel)
 {
 	struct unit_data *ud;
 	struct status_data *tstatus;
@@ -1033,20 +1033,20 @@ int unit_skilluse_id2(struct block_list *src, int target_id, short skill_num, sh
 		sc = NULL; //Unneeded
 
 	//temp: used to signal combo-skills right now.
-	if (sc && sc->data[SC_COMBO] && (sc->data[SC_COMBO]->val1 == skill_num ||
-		(sd?skill_check_condition_castbegin(sd,skill_num,skill_lv):0) )) {
+	if (sc && sc->data[SC_COMBO] && (sc->data[SC_COMBO]->val1 == skill_id ||
+		(sd?skill_check_condition_castbegin(sd,skill_id,skill_lv):0) )) {
 		if (sc->data[SC_COMBO]->val2)
 			target_id = sc->data[SC_COMBO]->val2;
 		else
 			target_id = ud->target;
 
-		if( skill_get_inf(skill_num)&INF_SELF_SKILL && skill_get_nk(skill_num)&NK_NO_DAMAGE )// exploit fix
+		if( skill_get_inf(skill_id)&INF_SELF_SKILL && skill_get_nk(skill_id)&NK_NO_DAMAGE )// exploit fix
 			target_id = src->id;
 		temp = 1;
 	} else
 	if ( target_id == src->id &&
-		skill_get_inf(skill_num)&INF_SELF_SKILL &&
-		skill_get_inf2(skill_num)&INF2_NO_TARGET_SELF )
+		skill_get_inf(skill_id)&INF_SELF_SKILL &&
+		skill_get_inf2(skill_id)&INF2_NO_TARGET_SELF )
 	{
 		target_id = ud->target; //Auto-select target. [Skotlex]
 		temp = 1;
@@ -1054,10 +1054,10 @@ int unit_skilluse_id2(struct block_list *src, int target_id, short skill_num, sh
 	
 	if (sd) {
 		//Target_id checking.
-		if(skillnotok(skill_num, sd)) // [MouseJstr]
+		if(skillnotok(skill_id, sd)) // [MouseJstr]
 			return 0;
 
-		switch(skill_num)
+		switch(skill_id)
 		{	//Check for skills that auto-select target
 		case MO_CHAINCOMBO:
 			if (sc && sc->data[SC_BLADESTOP]){
@@ -1071,7 +1071,7 @@ int unit_skilluse_id2(struct block_list *src, int target_id, short skill_num, sh
 				return 0;
 			target = (struct block_list*)map_charid2sd(sd->status.partner_id);
 			if (!target) {
-				clif_skill_fail(sd,skill_num,USESKILL_FAIL_LEVEL,0);
+				clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 				return 0;
 			}
 			break;
@@ -1080,7 +1080,7 @@ int unit_skilluse_id2(struct block_list *src, int target_id, short skill_num, sh
 			target_id = target->id;
 	}
 	if (src->type==BL_HOM)
-	switch(skill_num)
+	switch(skill_id)
 	{ //Homun-auto-target skills.
 		case HLIF_HEAL:
 		case HLIF_AVOID:
@@ -1101,32 +1101,32 @@ int unit_skilluse_id2(struct block_list *src, int target_id, short skill_num, sh
 		return 0;
 
 	//Normally not needed because clif.c checks for it, but the at/char/script commands don't! [Skotlex]
-	if(ud->skilltimer != INVALID_TIMER && skill_num != SA_CASTCANCEL && skill_num != SO_SPELLFIST)
+	if(ud->skilltimer != INVALID_TIMER && skill_id != SA_CASTCANCEL && skill_id != SO_SPELLFIST)
 		return 0;
 
-	if(skill_get_inf2(skill_num)&INF2_NO_TARGET_SELF && src->id == target_id)
+	if(skill_get_inf2(skill_id)&INF2_NO_TARGET_SELF && src->id == target_id)
 		return 0;
 
-	if(!status_check_skilluse(src, target, skill_num, 0))
+	if(!status_check_skilluse(src, target, skill_id, 0))
 		return 0;
 
 	tstatus = status_get_status_data(target);
-	//直前のスキル状況の記録
+	// Record the status of the previous skill)
 	if(sd) {
-		switch(skill_num){
+		switch(skill_id){
 		case SA_CASTCANCEL:
-			if(ud->skillid != skill_num){
-				sd->skillid_old = ud->skillid;
-				sd->skilllv_old = ud->skilllv;
+			if(ud->skill_id != skill_id){
+				sd->skill_id_old = ud->skill_id;
+				sd->skill_lv_old = ud->skill_lv;
 			}
 			break;
 		case BD_ENCORE:
-			//Prevent using the dance skill if you no longer have the skill in your tree. 
-			if(!sd->skillid_dance || pc_checkskill(sd,sd->skillid_dance)<=0){
-				clif_skill_fail(sd,skill_num,USESKILL_FAIL_LEVEL,0);
+			//Prevent using the dance skill if you no longer have the skill in your tree.
+			if(!sd->skill_id_dance || pc_checkskill(sd,sd->skill_id_dance)<=0){
+				clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 				return 0;
 			}
-			sd->skillid_old = skill_num;
+			sd->skill_id_old = skill_id;
 			break;
 		case BD_LULLABY:
 		case BD_RICHMANKIM:
@@ -1137,31 +1137,31 @@ int unit_skilluse_id2(struct block_list *src, int target_id, short skill_num, sh
 		case BD_INTOABYSS:
 		case BD_SIEGFRIED:
 		case CG_MOONLIT:
-			if (skill_check_pc_partner(sd, skill_num, &skill_lv, 1, 0) < 1)
+			if (skill_check_pc_partner(sd, skill_id, &skill_lv, 1, 0) < 1)
 			{
-				clif_skill_fail(sd,skill_num,USESKILL_FAIL_LEVEL,0);
+				clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 				return 0;
 			}
 			break;
 		case WL_WHITEIMPRISON:
 			if( battle_check_target(src,target,BCT_SELF|BCT_ENEMY) < 0 ) {
-				clif_skill_fail(sd,skill_num,USESKILL_FAIL_TOTARGET,0);
+				clif_skill_fail(sd,skill_id,USESKILL_FAIL_TOTARGET,0);
 				return 0;
 			}
 			break;
 		case MG_FIREBOLT:
 		case MG_LIGHTNINGBOLT:
 		case MG_COLDBOLT:
-			sd->skillid_old = skill_num;
-			sd->skilllv_old = skill_lv;
+			sd->skill_id_old = skill_id;
+			sd->skill_lv_old = skill_lv;
 			break;
 		}
-		if (!skill_check_condition_castbegin(sd, skill_num, skill_lv))
+		if (!skill_check_condition_castbegin(sd, skill_id, skill_lv))
 			return 0;
 	}
 
 	if( src->type == BL_MOB )
-		switch( skill_num )
+		switch( skill_id )
 		{
 			case NPC_SUMMONSLAVE:
 			case NPC_SUMMONMONSTER:
@@ -1173,13 +1173,13 @@ int unit_skilluse_id2(struct block_list *src, int target_id, short skill_num, sh
 	//Check range when not using skill on yourself or is a combo-skill during attack
 	//(these are supposed to always have the same range as your attack)
 	if( src->id != target_id && (!temp || ud->attacktimer == INVALID_TIMER) ) {
-		if( skill_get_state(ud->skillid) == ST_MOVE_ENABLE ) {
-			if( !unit_can_reach_bl(src, target, skill_get_range2(src, skill_num,skill_lv) + 1, 1, NULL, NULL) )
+		if( skill_get_state(ud->skill_id) == ST_MOVE_ENABLE ) {
+			if( !unit_can_reach_bl(src, target, skill_get_range2(src, skill_id,skill_lv) + 1, 1, NULL, NULL) )
 				return 0; // Walk-path check failed.
-		} else if( src->type == BL_MER && skill_num == MA_REMOVETRAP ) {
-			if( !battle_check_range(battle_get_master(src), target, skill_get_range2(src, skill_num, skill_lv) + 1) )
+		} else if( src->type == BL_MER && skill_id == MA_REMOVETRAP ) {
+			if( !battle_check_range(battle_get_master(src), target, skill_get_range2(src, skill_id, skill_lv) + 1) )
 				return 0; // Aegis calc remove trap based on Master position, ignoring mercenary O.O
-		} else if( !battle_check_range(src, target, skill_get_range2(src, skill_num,skill_lv) + (skill_num == RG_CLOSECONFINE?0:2)) ) {
+		} else if( !battle_check_range(src, target, skill_get_range2(src, skill_id,skill_lv) + (skill_id == RG_CLOSECONFINE?0:2)) ) {
 			return 0; // Arrow-path check failed.
 		}
 	}
@@ -1193,8 +1193,8 @@ int unit_skilluse_id2(struct block_list *src, int target_id, short skill_num, sh
 
 	//temp: Used to signal force cast now.
 	temp = 0;
-	
-	switch(skill_num){
+
+	switch(skill_id){
 	case ALL_RESURRECTION:
 		if(battle_check_undead(tstatus->race,tstatus->def_ele)) {
 			temp = 1;
@@ -1261,9 +1261,9 @@ int unit_skilluse_id2(struct block_list *src, int target_id, short skill_num, sh
 	case EL_TIDAL_WEAPON:
 		if( src->type == BL_ELEM ){
 			sd = BL_CAST(BL_PC, battle_get_master(src));
-			if( sd && sd->skillid_old == SO_EL_ACTION ){
+			if( sd && sd->skill_id_old == SO_EL_ACTION ){
 				casttime = -1;
-				sd->skillid_old = 0;
+				sd->skill_id_old = 0;
 			}
 		}
 		break;
@@ -1271,10 +1271,10 @@ int unit_skilluse_id2(struct block_list *src, int target_id, short skill_num, sh
 	
 	// moved here to prevent Suffragium from ending if skill fails
 #ifndef RENEWAL_CAST
-	if (!(skill_get_castnodex(skill_num, skill_lv)&2))
+	if (!(skill_get_castnodex(skill_id, skill_lv)&2))
 		casttime = skill_castfix_sc(src, casttime);
 #else
-	casttime = skill_vfcastfix(src, casttime, skill_num, skill_lv); 
+	casttime = skill_vfcastfix(src, casttime, skill_id, skill_lv);
 #endif
 
 	if (src->type == BL_NPC) { // NPC-objects do not have cast time
@@ -1283,7 +1283,8 @@ int unit_skilluse_id2(struct block_list *src, int target_id, short skill_num, sh
 
 	if(!ud->state.running) //need TK_RUN or WUGDASH handler to be done before that, see bugreport:6026
 		unit_stop_walking(src,1);// eventhough this is not how official works but this will do the trick. bugreport:6829
-	clif_skillcasting(src, src->id, target_id, 0,0, skill_num, skill_get_ele(skill_num, skill_lv), casttime);
+	// in official this is triggered even if no cast time.
+	clif_skillcasting(src, src->id, target_id, 0,0, skill_id, skill_get_ele(skill_id, skill_lv), casttime);
 	if( casttime > 0 || temp )
 	{ 
 		if (sd && target->type == BL_MOB)
@@ -1318,11 +1319,11 @@ int unit_skilluse_id2(struct block_list *src, int target_id, short skill_num, sh
 	if( casttime <= 0 )
 		ud->state.skillcastcancel = 0;
 
-	if( !sd || sd->skillitem != skill_num || skill_get_cast(skill_num,skill_lv) )
+	if( !sd || sd->skillitem != skill_id || skill_get_cast(skill_id,skill_lv) )
 		ud->canact_tick = tick + casttime + 100;
 	if( sd )
 	{
-		switch( skill_num )
+		switch( skill_id )
 		{
 		case CG_ARROWVULCAN:
 			sd->canequip_tick = tick + casttime;
@@ -1332,17 +1333,17 @@ int unit_skilluse_id2(struct block_list *src, int target_id, short skill_num, sh
 	ud->skilltarget  = target_id;
 	ud->skillx       = 0;
 	ud->skilly       = 0;
-	ud->skillid      = skill_num;
-	ud->skilllv      = skill_lv;
+	ud->skill_id      = skill_id;
+	ud->skill_lv      = skill_lv;
 
 	if( sc ) {
 		/**
 		 * why the if else chain: these 3 status do not stack, so its efficient that way.
 		 **/
- 		if( sc->data[SC_CLOAKING] && !(sc->data[SC_CLOAKING]->val4&4) && skill_num != AS_CLOAKING ) {
+ 		if( sc->data[SC_CLOAKING] && !(sc->data[SC_CLOAKING]->val4&4) && skill_id != AS_CLOAKING ) {
 			status_change_end(src, SC_CLOAKING, INVALID_TIMER);
 			if (!src->prev) return 0; //Warped away!
-		} else if( sc->data[SC_CLOAKINGEXCEED] && !(sc->data[SC_CLOAKINGEXCEED]->val4&4) && skill_num != GC_CLOAKINGEXCEED ) {
+		} else if( sc->data[SC_CLOAKINGEXCEED] && !(sc->data[SC_CLOAKINGEXCEED]->val4&4) && skill_id != GC_CLOAKINGEXCEED ) {
 			status_change_end(src,SC_CLOAKINGEXCEED, INVALID_TIMER);
 			if (!src->prev) return 0;
 		}
@@ -1352,7 +1353,7 @@ int unit_skilluse_id2(struct block_list *src, int target_id, short skill_num, sh
 	if( casttime > 0 )
 	{
 		ud->skilltimer = add_timer( tick+casttime, skill_castend_id, src->id, 0 );
-		if( sd && (pc_checkskill(sd,SA_FREECAST) > 0 || skill_num == LG_EXEEDBREAK) )
+		if( sd && (pc_checkskill(sd,SA_FREECAST) > 0 || skill_id == LG_EXEEDBREAK) )
 			status_calc_bl(&sd->bl, SCB_SPEED);
 	}
 	else
@@ -1361,18 +1362,18 @@ int unit_skilluse_id2(struct block_list *src, int target_id, short skill_num, sh
 	return 1;
 }
 
-int unit_skilluse_pos(struct block_list *src, short skill_x, short skill_y, short skill_num, short skill_lv)
+int unit_skilluse_pos(struct block_list *src, short skill_x, short skill_y, uint16 skill_id, uint16 skill_lv)
 {
-	if(skill_num < 0)
+	if(skill_id < 0)
 		return 0;
 	return unit_skilluse_pos2(
-		src, skill_x, skill_y, skill_num, skill_lv,
-		skill_castfix(src, skill_num, skill_lv),
-		skill_get_castcancel(skill_num)
+		src, skill_x, skill_y, skill_id, skill_lv,
+		skill_castfix(src, skill_id, skill_lv),
+		skill_get_castcancel(skill_id)
 	);
 }
 
-int unit_skilluse_pos2( struct block_list *src, short skill_x, short skill_y, short skill_num, short skill_lv, int casttime, int castcancel)
+int unit_skilluse_pos2( struct block_list *src, short skill_x, short skill_y, uint16 skill_id, uint16 skill_lv, int casttime, int castcancel)
 {
 	struct map_session_data *sd = NULL;
 	struct unit_data        *ud = NULL;
@@ -1398,69 +1399,68 @@ int unit_skilluse_pos2( struct block_list *src, short skill_x, short skill_y, sh
 	
 	if( sd )
 	{
-		if( skillnotok(skill_num, sd) || !skill_check_condition_castbegin(sd, skill_num, skill_lv) )
+		if( skillnotok(skill_id, sd) || !skill_check_condition_castbegin(sd, skill_id, skill_lv) )
 			return 0;
 		/**
 		 * "WHY IS IT HEREE": pneuma cannot be cancelled past this point, the client displays the animation even,
 		 * if we cancel it from nodamage_id, so it has to be here for it to not display the animation.
 		 **/
-		if( skill_num == AL_PNEUMA && map_getcell(src->m, skill_x, skill_y, CELL_CHKLANDPROTECTOR) ) {
-			clif_skill_fail(sd,skill_num,USESKILL_FAIL_LEVEL,0);
+		if( skill_id == AL_PNEUMA && map_getcell(src->m, skill_x, skill_y, CELL_CHKLANDPROTECTOR) ) {
+			clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 			return 0;
 		}
 	}
 
-	if (!status_check_skilluse(src, NULL, skill_num, 0))
+	if (!status_check_skilluse(src, NULL, skill_id, 0))
 		return 0;
 
 	if( map_getcell(src->m, skill_x, skill_y, CELL_CHKWALL) )
 	{// can't cast ground targeted spells on wall cells
-		if (sd) clif_skill_fail(sd,skill_num,USESKILL_FAIL_LEVEL,0);
+		if (sd) clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 		return 0;
 	}
 
-	/* 射程と障害物チェック */
+    /* Check range and obstacle */
 	bl.type = BL_NUL;
 	bl.m = src->m;
 	bl.x = skill_x;
 	bl.y = skill_y;
 
-	if( skill_get_state(ud->skillid) == ST_MOVE_ENABLE )
+	if( skill_get_state(ud->skill_id) == ST_MOVE_ENABLE )
 	{
-		if( !unit_can_reach_bl(src, &bl, skill_get_range2(src, skill_num,skill_lv) + 1, 1, NULL, NULL) )
+		if( !unit_can_reach_bl(src, &bl, skill_get_range2(src, skill_id,skill_lv) + 1, 1, NULL, NULL) )
 			return 0; //Walk-path check failed.
 	}
-	else if( !battle_check_range(src, &bl, skill_get_range2(src, skill_num,skill_lv) + 1) )
+	else if( !battle_check_range(src, &bl, skill_get_range2(src, skill_id,skill_lv) + 1) )
 		return 0; //Arrow-path check failed.
 
 	unit_stop_attack(src);
 
 	// moved here to prevent Suffragium from ending if skill fails
 #ifndef RENEWAL_CAST
-	if (!(skill_get_castnodex(skill_num, skill_lv)&2))
+	if (!(skill_get_castnodex(skill_id, skill_lv)&2))
 		casttime = skill_castfix_sc(src, casttime);
 #else
-	casttime = skill_vfcastfix(src, casttime, skill_num, skill_lv );
+	casttime = skill_vfcastfix(src, casttime, skill_id, skill_lv );
 #endif
 
 	if (src->type == BL_NPC) { // NPC-objects do not have cast time
 		casttime = 0;
 	}
-	
 
 	ud->state.skillcastcancel = castcancel&&casttime>0?1:0;
-	if( !sd || sd->skillitem != skill_num || skill_get_cast(skill_num,skill_lv) )
+	if( !sd || sd->skillitem != skill_id || skill_get_cast(skill_id,skill_lv) )
 		ud->canact_tick  = tick + casttime + 100;
 //	if( sd )
 //	{
-//		switch( skill_num )
+//		switch( skill_id )
 //		{
 //		case ????:
 //			sd->canequip_tick = tick + casttime;
 //		}
 //	}
-	ud->skillid      = skill_num;
-	ud->skilllv      = skill_lv;
+	ud->skill_id      = skill_id;
+	ud->skill_lv      = skill_lv;
 	ud->skillx       = skill_x;
 	ud->skilly       = skill_y;
 	ud->skilltarget  = 0;
@@ -1477,14 +1477,14 @@ int unit_skilluse_pos2( struct block_list *src, short skill_x, short skill_y, sh
 			if (!src->prev) return 0;
 		}
 	}
-	
+
 	unit_stop_walking(src,1);
 	// in official this is triggered even if no cast time.
-	clif_skillcasting(src, src->id, 0, skill_x, skill_y, skill_num, skill_get_ele(skill_num, skill_lv), casttime);
+	clif_skillcasting(src, src->id, 0, skill_x, skill_y, skill_id, skill_get_ele(skill_id, skill_lv), casttime);
 	if( casttime > 0 )
 	{
 		ud->skilltimer = add_timer( tick+casttime, skill_castend_pos, src->id, 0 );
-		if( (sd && pc_checkskill(sd,SA_FREECAST) > 0) || skill_num == LG_EXEEDBREAK)
+		if( (sd && pc_checkskill(sd,SA_FREECAST) > 0) || skill_id == LG_EXEEDBREAK)
 			status_calc_bl(&sd->bl, SCB_SPEED);
 	}
 	else
@@ -1538,7 +1538,7 @@ int unit_unattackable(struct block_list *bl)
 		ud->state.attack_continue = 0;
 		unit_set_target(ud, 0);
 	}
-	
+
 	if(bl->type == BL_MOB)
 		mob_unlocktarget((struct mob_data*)bl, gettick()) ;
 	else if(bl->type == BL_PET)
@@ -1547,8 +1547,8 @@ int unit_unattackable(struct block_list *bl)
 }
 
 /*==========================================
- * 攻撃要求
- * typeが1なら継続攻撃
+ * Attack request
+ * If type is an ongoing attack
  *------------------------------------------*/
 int unit_attack(struct block_list *src,int target_id,int continuous)
 {
@@ -1569,7 +1569,7 @@ int unit_attack(struct block_list *src,int target_id,int continuous)
 			npc_click(sd,(TBL_NPC*)target); // submitted by leinsirk10 [Celest]
 			return 0;
 		}
-		if( pc_is90overweight(sd) || pc_isridingwug(sd) ) {
+		if( pc_is90overweight(sd) || pc_isridingwug(sd) ) { // overweight or mounted on warg - stop attacking
 			unit_stop_attack(src);
 			return 0;
 		}
@@ -1673,9 +1673,9 @@ bool unit_can_reach_bl(struct block_list *bl,struct block_list *tbl, int range, 
 	return path_search(NULL,bl->m,bl->x,bl->y,tbl->x-dx,tbl->y-dy,easy,CELL_CHKNOREACH);
 }
 /*==========================================
- * Calculates position of Pet/Mercenary/Homunculus
+ * Calculates position of Pet/Mercenary/Homunculus/Elemental
  *------------------------------------------*/
-int	unit_calc_pos(struct block_list *bl, int tx, int ty, int dir)
+int	unit_calc_pos(struct block_list *bl, int tx, int ty, uint8 dir)
 {
 	int dx, dy, x, y, i, k;
 	struct unit_data *ud = unit_bl2ud(bl);
@@ -1726,12 +1726,12 @@ int	unit_calc_pos(struct block_list *bl, int tx, int ty, int dir)
 	}
 	ud->to_x = x;
 	ud->to_y = y;
-	
+
 	return 0;
 }
 
 /*==========================================
- * PCの攻撃 (timer関数)
+ * Continuous Attack (function timer)
  *------------------------------------------*/
 static int unit_attack_timer_sub(struct block_list* src, int tid, unsigned int tick)
 {
@@ -1741,7 +1741,7 @@ static int unit_attack_timer_sub(struct block_list* src, int tid, unsigned int t
 	struct map_session_data *sd = NULL;
 	struct mob_data *md = NULL;
 	int range;
-	
+
 	if( (ud=unit_bl2ud(src))==NULL )
 		return 0;
 	if( ud->attacktimer != tid )
@@ -1901,16 +1901,16 @@ int unit_skillcastcancel(struct block_list *bl,int type)
 	ud->canact_tick = tick;
 
 	if(type&1 && sd)
-		skill = sd->skillid_old;
+		skill = sd->skill_id_old;
 	else
-		skill = ud->skillid;
-	
+		skill = ud->skill_id;
+
 	if (skill_get_inf(skill) & INF_GROUND_SKILL)
 		ret=delete_timer( ud->skilltimer, skill_castend_pos );
 	else
 		ret=delete_timer( ud->skilltimer, skill_castend_id );
 	if(ret<0)
-		ShowError("delete timer error : skillid : %d\n",ret);
+		ShowError("delete timer error : skill_id : %d\n",ret);
 
 	ud->skilltimer = INVALID_TIMER;
 
@@ -1927,13 +1927,13 @@ int unit_skillcastcancel(struct block_list *bl,int type)
 		}
 	}
 
-	if(bl->type==BL_MOB) ((TBL_MOB*)bl)->skillidx  = -1;
+	if(bl->type==BL_MOB) ((TBL_MOB*)bl)->skill_idx  = -1;
 
 	clif_skillcastcancel(bl);
 	return 1;
 }
 
-// unit_data の初期化処理
+// unit_data initialization process
 void unit_dataset(struct block_list *bl)
 {
 	struct unit_data *ud;
@@ -1974,7 +1974,7 @@ int unit_fixdamage(struct block_list *src,struct block_list *target,unsigned int
 }
 
 /*==========================================
- * 見た目のサイズを変更する
+ * To change the size of the char (player or mob only)
  *------------------------------------------*/
 int unit_changeviewsize(struct block_list *bl,short size)
 {

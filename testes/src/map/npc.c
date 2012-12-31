@@ -874,7 +874,7 @@ int npc_touchnext_areanpc(struct map_session_data* sd, bool leavemap)
 /*==========================================
  * Exec OnTouch for player if in range of area event
  *------------------------------------------*/
-int npc_touch_areanpc(struct map_session_data* sd, int m, int x, int y)
+int npc_touch_areanpc(struct map_session_data* sd, int16 m, int16 x, int16 y)
 {
 	int xs,ys;
 	int f = 1;
@@ -1023,7 +1023,7 @@ int npc_touch_areanpc2(struct mob_data *md)
 //Flag determines the type of object to check for:
 //&1: NPC Warps
 //&2: NPCs with on-touch events.
-int npc_check_areanpc(int flag, int m, int x, int y, int range)
+int npc_check_areanpc(int flag, int16 m, int16 x, int16 y, int16 range)
 {
 	int i;
 	int x0,y0,x1,y1;
@@ -1034,7 +1034,7 @@ int npc_check_areanpc(int flag, int m, int x, int y, int range)
 	y0 = max(y-range, 0);
 	x1 = min(x+range, map[m].xs-1);
 	y1 = min(y+range, map[m].ys-1);
-	
+
 	//First check for npc_cells on the range given
 	i = 0;
 	for (ys = y0; ys <= y1 && !i; ys++) {
@@ -1230,7 +1230,7 @@ int npc_scriptcont(struct map_session_data* sd, int id)
 }
 
 /*==========================================
- *
+ * Chk if valid call then open buy or selling list
  *------------------------------------------*/
 int npc_buysellsel(struct map_session_data* sd, int id, int type)
 {
@@ -1247,7 +1247,7 @@ int npc_buysellsel(struct map_session_data* sd, int id, int type)
 			sd->npc_id=0;
 		return 1;
 	}
-	if (nd->sc.option&OPTION_INVISIBLE)	// –³Œø‰»‚³‚ê‚Ä‚¢‚é
+    if (nd->sc.option & OPTION_INVISIBLE) // can't buy if npc is not visible (hack?)
 		return 1;
 	if( nd->class_ < 0 && !sd->state.callshop )
 	{// not called through a script and is not a visible NPC so an invalid call
@@ -1734,7 +1734,7 @@ int npc_selllist(struct map_session_data* sd, int n, unsigned short* item_list)
 //This doesn't remove it from map_db
 int npc_remove_map(struct npc_data* nd)
 {
-	int m,i;
+	int16 m,i;
 	nullpo_retr(1, nd);
 
 	if(nd->bl.prev == NULL || nd->bl.m < 0)
@@ -2261,7 +2261,7 @@ static const char* npc_parse_shop(char* w1, char* w2, char* w3, char* w4, const 
 }
 
 /**
- * NPC???????????? 
+ * NPC other label
  * Not sure, seem to add label in a chainlink
  * @see DBApply
  */
@@ -2652,9 +2652,9 @@ const char* npc_parse_duplicate(char* w1, char* w2, char* w3, char* w4, const ch
 	return end;
 }
 
-int npc_duplicate4instance(struct npc_data *snd, int m) {
-	char newname[NPC_NAME_LENGTH];
-	
+int npc_duplicate4instance(struct npc_data *snd, int16 m) {
+	char newname[NAME_LENGTH];
+
 	if( map[m].instance_id == 0 )
 		return 1;
 
@@ -2725,10 +2725,10 @@ int npc_duplicate4instance(struct npc_data *snd, int m) {
 	return 0;
 }
 
-//Set mapcell CELL_NPC to trigger event later 
+//Set mapcell CELL_NPC to trigger event later
 void npc_setcells(struct npc_data* nd)
 {
-	int m = nd->bl.m, x = nd->bl.x, y = nd->bl.y, xs, ys;
+	int16 m = nd->bl.m, x = nd->bl.x, y = nd->bl.y, xs, ys;
 	int i,j;
 
 	switch(nd->subtype)
@@ -2768,7 +2768,7 @@ int npc_unsetcells_sub(struct block_list* bl, va_list ap)
 
 void npc_unsetcells(struct npc_data* nd)
 {
-	int m = nd->bl.m, x = nd->bl.x, y = nd->bl.y, xs, ys;
+	int16 m = nd->bl.m, x = nd->bl.x, y = nd->bl.y, xs, ys;
 	int i,j, x0, x1, y0, y1;
 
 	if (nd->subtype == WARP) {
@@ -2798,9 +2798,9 @@ void npc_unsetcells(struct npc_data* nd)
 	map_foreachinarea( npc_unsetcells_sub, m, x0, y0, x1, y1, BL_NPC, nd->bl.id );
 }
 
-void npc_movenpc(struct npc_data* nd, int x, int y)
+void npc_movenpc(struct npc_data* nd, int16 x, int16 y)
 {
-	const int m = nd->bl.m;
+	const int16 m = nd->bl.m;
 	if (m < 0 || nd->bl.prev == NULL) return;	//Not on a map.
 
 	x = cap_value(x, 0, map[m].xs-1);
@@ -3140,7 +3140,7 @@ static const char* npc_parse_mob(char* w1, char* w2, char* w3, char* w4, const c
  *------------------------------------------*/
 static const char* npc_parse_mapflag(char* w1, char* w2, char* w3, char* w4, const char* start, const char* buffer, const char* filepath)
 {
-	int m;
+	int16 m;
 	char mapname[32];
 	int state = 1;
 
@@ -3405,7 +3405,8 @@ static const char* npc_parse_mapflag(char* w1, char* w2, char* w3, char* w4, con
 //@runOnInit should we exec OnInit when it's done ?
 void npc_parsesrcfile(const char* filepath, bool runOnInit)
 {
-	int m, x, y, lines = 0;
+	int16 m, x, y;
+	int lines = 0;
 	FILE* fp;
 	size_t len;
 	char* buffer;
@@ -3488,7 +3489,7 @@ void npc_parsesrcfile(const char* filepath, bool runOnInit)
 		{// w1 = <map name>,<x>,<y>,<facing>
 			char mapname[MAP_NAME_LENGTH*2];
 			x = y = 0;
-			sscanf(w1,"%23[^,],%d,%d[^,]",mapname,&x,&y);
+			sscanf(w1,"%23[^,],%hd,%hd[^,]",mapname,&x,&y);
 			if( !mapindex_name2id(mapname) )
 			{// Incorrect map, we must skip the script info...
 				ShowError("npc_parsesrcfile: Mapa desconhecido '%s' no arquivo '%s', linha '%d'. Pulando linha...\n", mapname, filepath, strline(buffer,p-buffer));
@@ -3654,7 +3655,7 @@ void npc_clear_pathlist(void) {
 //Clear then reload npcs files
 int npc_reload(void) {
 	struct npc_src_list *nsl;
-	int m, i;
+	int16 m, i;
 	int npc_new_min = npc_id;
 	struct s_mapiterator* iter;
 	struct block_list* bl;
@@ -3787,7 +3788,7 @@ int do_final_npc(void) {
 
 static void npc_debug_warps_sub(struct npc_data* nd)
 {
-	int m;
+	int16 m;
 	if (nd->bl.type != BL_NPC || nd->subtype != WARP || nd->bl.m < 0)
 		return;
 
@@ -3813,7 +3814,7 @@ static void npc_debug_warps_sub(struct npc_data* nd)
 
 static void npc_debug_warps(void)
 {
-	int m, i;
+	int16 m, i;
 	for (m = 0; m < map_num; m++)
 		for (i = 0; i < map[m].npc_num; i++)
 			npc_debug_warps_sub(map[m].npc[i]);

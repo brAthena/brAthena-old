@@ -174,7 +174,7 @@ struct map_session_data {
 	unsigned short mapindex;
 	unsigned char head_dir; //0: Look forward. 1: Look right, 2: Look left.
 	unsigned int client_tick;
-	int npc_id,areanpc_id,npc_shopid,touching_id;
+	int npc_id,areanpc_id,npc_shopid,touching_id; //for script follow scriptoid;   ,npcid
 	int npc_item_flag; //Marks the npc_id with which you can use items during interactions with said npc (see script command enable_itemuse)
 	int npc_menu; // internal variable, used in npc menu handling
 	int npc_amount;
@@ -199,8 +199,8 @@ struct map_session_data {
 	time_t emotionlasttime; // to limit flood with emotion packets
 
 	short skillitem,skillitemlv;
-	short skillid_old,skilllv_old;
-	short skillid_dance,skilllv_dance;
+	uint16 skill_id_old,skill_lv_old;
+	uint16 skill_id_dance,skill_lv_dance;
 	short cook_mastery; // range: [0,1999] [Inkfish]
 	unsigned char blockskill[MAX_SKILL];
 	int cloneskill_id, reproduceskill_id;
@@ -535,7 +535,7 @@ enum ammo_type {
 
 //Equip position constants
 enum equip_pos {
-	EQP_HEAD_LOW = 0x0001, 
+	EQP_HEAD_LOW = 0x0001,
 	EQP_HEAD_MID = 0x0200, //512
 	EQP_HEAD_TOP = 0x0100, //256
 	EQP_HAND_R   = 0x0002,
@@ -561,7 +561,7 @@ enum equip_pos {
 /// Equip positions that use a visible sprite
 #if PACKETVER < 20110111
 	#define EQP_VISIBLE EQP_HELM
-#else	
+#else
 	#define EQP_VISIBLE (EQP_HELM|EQP_GARMENT|EQP_COSTUME)
 #endif
 
@@ -610,7 +610,7 @@ enum equip_index {
 #define pc_is50overweight(sd) ( (sd)->weight*100 >= (sd)->max_weight*battle_config.natural_heal_weight_rate )
 #define pc_is90overweight(sd) ( (sd)->weight*10 >= (sd)->max_weight*9 )
 #define pc_maxparameter(sd)   ( ((((sd)->class_&MAPID_UPPERMASK) == MAPID_KAGEROUOBORO) || (sd)->class_&JOBL_THIRD ? ((sd)->class_&JOBL_BABY ? battle_config.max_baby_third_parameter : battle_config.max_third_parameter) : ((sd)->class_&JOBL_BABY ? battle_config.max_baby_parameter : battle_config.max_parameter)) )
-/** 
+/**
  * Ranger
  **/
 #define pc_iswug(sd)       ( (sd)->sc.option&OPTION_WUG )
@@ -692,7 +692,7 @@ int pc_isequip(struct map_session_data *sd,int n);
 int pc_equippoint(struct map_session_data *sd,int n);
 int pc_setinventorydata(struct map_session_data *sd);
 
-int pc_checkskill(struct map_session_data *sd,int skill_id);
+int pc_checkskill(struct map_session_data *sd,uint16 skill_id);
 int pc_checkallowskill(struct map_session_data *sd);
 int pc_checkequip(struct map_session_data *sd,int pos);
 
@@ -749,7 +749,7 @@ int pc_skill(struct map_session_data* sd, int id, int level, int flag);
 
 int pc_insert_card(struct map_session_data *sd,int idx_card,int idx_equip);
 
-int pc_steal_item(struct map_session_data *sd,struct block_list *bl, int skilllv);
+int pc_steal_item(struct map_session_data *sd,struct block_list *bl, uint16 skill_lv);
 int pc_steal_coin(struct map_session_data *sd,struct block_list *bl);
 
 int pc_modifybuyvalue(struct map_session_data*,int);
@@ -771,7 +771,7 @@ int pc_gets_status_point(int);
 int pc_need_status_point(struct map_session_data *,int,int);
 int pc_statusup(struct map_session_data*,int);
 int pc_statusup2(struct map_session_data*,int,int);
-int pc_skillup(struct map_session_data*,int);
+int pc_skillup(struct map_session_data*,uint16 skill_id);
 int pc_allskillup(struct map_session_data*);
 int pc_resetlvl(struct map_session_data*,int type);
 int pc_resetstate(struct map_session_data*);
@@ -783,9 +783,9 @@ int pc_unequipitem(struct map_session_data*,int,int);
 int pc_checkitem(struct map_session_data*);
 int pc_useitem(struct map_session_data*,int);
 
-int pc_skillatk_bonus(struct map_session_data *sd, int skill_num);
-int pc_skillheal_bonus(struct map_session_data *sd, int skill_num);
-int pc_skillheal2_bonus(struct map_session_data *sd, int skill_num);
+int pc_skillatk_bonus(struct map_session_data *sd, uint16 skill_id);
+int pc_skillheal_bonus(struct map_session_data *sd, uint16 skill_id);
+int pc_skillheal2_bonus(struct map_session_data *sd, uint16 skill_id);
 
 void pc_damage(struct map_session_data *sd,struct block_list *src,unsigned int hp, unsigned int sp);
 int pc_dead(struct map_session_data *sd,struct block_list *src);
@@ -910,7 +910,7 @@ bool pc_isautolooting(struct map_session_data *sd, int nameid);
 
 void pc_overheat(struct map_session_data *sd, int val);
 
-int pc_banding(struct map_session_data *sd, short skill_lv);
+int pc_banding(struct map_session_data *sd, uint16 skill_lv);
 
 void pc_itemcd_do(struct map_session_data *sd, bool load);
 

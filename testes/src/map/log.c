@@ -172,7 +172,7 @@ void log_branch(struct map_session_data* sd)
 }
 
 /// logs item transactions (generic)
-void log_pick(int id, int m, e_log_pick_type type, int amount, struct item* itm)
+void log_pick(int id, int16 m, e_log_pick_type type, int amount, struct item* itm)
 {
 	nullpo_retv(itm);
 	if( ( log_config.enable_logs&type ) == 0 )

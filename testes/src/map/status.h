@@ -633,18 +633,19 @@ typedef enum sc_type {
 	SC_AKAITSUKI,
 	
 	//homon S
-	SC_STYLE_CHANGE,
-	SC_GOLDENE_FERSE,
-	SC_ANGRIFFS_MODUS,
-	SC_ERASER_CUTTER,
-	SC_OVERED_BOOST,
-	SC_LIGHT_OF_REGENE,
-	SC_ASH,
-	SC_GRANITIC_ARMOR,
-	SC_MAGMA_FLOW,
-	SC_PYROCLASTIC,
-	SC_PARALYSIS,
-	SC_PAIN_KILLER,
+	SC_STYLE_CHANGE,        
+    SC_GOLDENE_FERSE,
+    SC_ANGRIFFS_MODUS,
+    SC_ERASER_CUTTER,
+    SC_OVERED_BOOST,        
+    SC_LIGHT_OF_REGENE,
+    SC_ASH,
+    SC_GRANITIC_ARMOR,
+    SC_MAGMA_FLOW,
+    SC_PYROCLASTIC,
+    SC_PARALYSIS,
+    SC_PAIN_KILLER,
+
 	
 #ifdef RENEWAL	
 	SC_EXTREMITYFIST2,
@@ -1799,7 +1800,7 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int lev
 void status_calc_regen(struct block_list *bl, struct status_data *status, struct regen_data *regen);
 void status_calc_regen_rate(struct block_list *bl, struct regen_data *regen, struct status_change *sc);
 
-int status_check_skilluse(struct block_list *src, struct block_list *target, int skill_num, int flag); // [Skotlex]
+int status_check_skilluse(struct block_list *src, struct block_list *target, uint16 skill_id, int flag); // [Skotlex]
 int status_check_visibility(struct block_list *src, struct block_list *target); //[Skotlex]
 
 int status_change_spread( struct block_list *src, struct block_list *bl );

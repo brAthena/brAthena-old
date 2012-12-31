@@ -96,7 +96,7 @@ int guild_skill_get_max (int id)
 	return guild_skill_tree[id-GD_SKILLBASE].max;
 }
 
-// Retrive skilllv learned by guild
+// Retrive skill_lv learned by guild
 
 int guild_checkskill(struct guild *g, int id) {
     int idx = id - GD_SKILLBASE;
@@ -110,18 +110,18 @@ int guild_checkskill(struct guild *g, int id) {
  *------------------------------------------*/
 static bool guild_read_guildskill_tree_db(char* split[], int columns, int current)
 {// <skill id>,<max lv>,<req id1>,<req lv1>,<req id2>,<req lv2>,<req id3>,<req lv3>,<req id4>,<req lv4>,<req id5>,<req lv5>
-	int k, id, skillid;
+	int k, id, skill_id;
 
-	skillid = atoi(split[0]);
-	id = skillid - GD_SKILLBASE;
+	skill_id = atoi(split[0]);
+	id = skill_id - GD_SKILLBASE;
 
 	if( id < 0 || id >= MAX_GUILDSKILL )
 	{
-		ShowWarning("guild_read_guildskill_tree_db: ID de habilidade %d invalido.\n", skillid);
+		ShowWarning("guild_read_guildskill_tree_db: ID de habilidade %d invalido.\n", skill_id);
 		return false;
 	}
 
-	guild_skill_tree[id].id = skillid;
+	guild_skill_tree[id].id = skill_id;
 	guild_skill_tree[id].max = atoi(split[1]);
 
 	if( guild_skill_tree[id].id == GD_GLORYGUILD && battle_config.require_glory_guild && guild_skill_tree[id].max == 0 )
@@ -397,7 +397,7 @@ int guild_create(struct map_session_data *sd, const char *name)
 	return 1;
 }
 
-//Whether or not to create guilde 
+//Whether or not to create guild
 int guild_created(int account_id,int guild_id)
 {
 	struct map_session_data *sd=map_id2sd(account_id);
@@ -405,14 +405,14 @@ int guild_created(int account_id,int guild_id)
 	if(sd==NULL)
 		return 0;
 	if(!guild_id) {
-		clif_guild_created(sd,2);	// Creation failure (presence of the same name Guild)
+        clif_guild_created(sd, 2); // Creation failure (presence of the same name Guild)
 		return 0;
 	}
 	//struct guild *g;
 	sd->status.guild_id=guild_id;
 	clif_guild_created(sd,0);
 	if(battle_config.guild_emperium_check)
-		pc_delitem(sd,pc_search_inventory(sd,ITEMID_EMPERIUM),1,0,0,LOG_TYPE_CONSUME);  //emperium consumption
+		pc_delitem(sd,pc_search_inventory(sd,ITEMID_EMPERIUM),1,0,0,LOG_TYPE_CONSUME);	//emperium consumption
 	return 0;
 }
 
@@ -422,7 +422,7 @@ int guild_request_info(int guild_id)
 	return intif_guild_request_info(guild_id);
 }
 
-//Information request with event 
+//Information request with event
 int guild_npc_request_info(int guild_id,const char *event)
 {
 	if( guild_search(guild_id) )
@@ -491,7 +491,7 @@ int guild_recv_noinfo(int guild_id)
 	return 0;
 }
 
-//Get and display information for all member 
+//Get and display information for all member
 int guild_recv_info(struct guild *sg)
 {
 	struct guild *g,before;
@@ -509,7 +509,7 @@ int guild_recv_info(struct guild *sg)
 		idb_put(guild_db,sg->guild_id,g);
 		before=*sg;
 
-		// Perform the check on the user because the first load 
+        //Perform the check on the user because the first load
 		guild_check_member(sg);
 		if ((sd = map_nick2sd(sg->master)) != NULL)
 		{
@@ -587,10 +587,9 @@ int guild_recv_info(struct guild *sg)
 /*=============================================
  * Player sd send a guild invatation to player tsd to join his guild
  *--------------------------------------------*/
-int guild_invite(struct map_session_data *sd,struct map_session_data *tsd)
-{
-	struct guild *g;
-	int i;
+int guild_invite(struct map_session_data *sd, struct map_session_data *tsd) {
+    struct guild *g;
+    int i;
 
 	nullpo_ret(sd);
 
@@ -603,7 +602,7 @@ int guild_invite(struct map_session_data *sd,struct map_session_data *tsd)
 		return 0; //Invite permission.
 
 	if(!battle_config.invite_request_check) {
-		if (tsd->party_invite > 0 || tsd->trade_partner || tsd->adopt_invite) { //checking if there no other invitation pending
+        if (tsd->party_invite > 0 || tsd->trade_partner || tsd->adopt_invite) { //checking if there no other invitation pending
 			clif_guild_inviteack(sd,0);
 			return 0;
 		}
@@ -622,7 +621,7 @@ int guild_invite(struct map_session_data *sd,struct map_session_data *tsd)
 		return 0;
 	}
 
-	// Search an empty spot in guild 
+    //search an empty spot in guild
 	ARR_FIND( 0, g->max_member, i, g->member[i].account_id == 0 );
 	if(i==g->max_member){
 		clif_guild_inviteack(sd,3);
@@ -732,7 +731,7 @@ int guild_member_added(int guild_id,int account_id,int char_id,int flag)
 		return 0;
 
 	if(sd==NULL || sd->guild_invite==0){
-		// Cancel if player not present or invalide guild_id invitation
+        // cancel if player not present or invalide guild_id invitation
 		if (flag == 0) {
 			ShowError("guild: Erro ao adicionar membro %d nao esta online\n",account_id);
  			intif_guild_leave(guild_id,account_id,char_id,0,"** Erro de Dados **");
@@ -743,13 +742,13 @@ int guild_member_added(int guild_id,int account_id,int char_id,int flag)
 	sd->guild_invite = 0;
 	sd->guild_invite_account = 0;
 
-	if (flag == 1) { //failure
+    if (flag == 1) { //failure
 		if( sd2!=NULL )
 			clif_guild_inviteack(sd2,3);
 		return 0;
 	}
 
-	//if all ok add player to guild
+    //if all ok add player to guild
 	sd->status.guild_id = g->guild_id;
 	sd->guild_emblem_id = g->emblem_id;
 	//Packets which were sent in the previous 'guild_sent' implementation.
@@ -929,7 +928,7 @@ int guild_recv_memberinfoshort(int guild_id,int account_id,int char_id,int onlin
 	}
 	
 	if(idx == -1 || c == 0) {
-		//Treat char_id who doesn't match guild_id (not found as member)
+        //Treat char_id who doesn't match guild_id (not found as member)
 		struct map_session_data *sd = map_id2sd(account_id);
 		if(sd && sd->status.char_id == char_id) {
 			sd->status.guild_id=0;
@@ -1239,13 +1238,13 @@ int guild_getexp(struct map_session_data *sd,int exp)
 }
 
 /*====================================================
- * Ask to increase guildskill skill_num
+ * Ask to increase guildskill skill_id
  *---------------------------------------------------*/
-int guild_skillup(TBL_PC* sd, int skill_num)
+int guild_skillup(TBL_PC* sd, uint16 skill_id)
 {
 	struct guild* g;
-	int idx = skill_num - GD_SKILLBASE;
-	int max = guild_skill_get_max(skill_num);
+	int idx = skill_id - GD_SKILLBASE;
+	int max = guild_skill_get_max(skill_id);
 
 	nullpo_ret(sd);
 
@@ -1257,15 +1256,15 @@ int guild_skillup(TBL_PC* sd, int skill_num)
 	if( g->skill_point > 0 &&
 			g->skill[idx].id != 0 &&
 			g->skill[idx].lv < max )
-		intif_guild_skillup(g->guild_id, skill_num, sd->status.account_id, max);
+		intif_guild_skillup(g->guild_id, skill_id, sd->status.account_id, max);
 
 	return 0;
 }
 
 /*====================================================
- * Notification of guildskill skill_num increase request
+ * Notification of guildskill skill_id increase request
  *---------------------------------------------------*/
-int guild_skillupack(int guild_id,int skill_num,int account_id)
+int guild_skillupack(int guild_id,uint16 skill_id,int account_id)
 {
 	struct map_session_data *sd=map_id2sd(account_id);
 	struct guild *g=guild_search(guild_id);
@@ -1273,15 +1272,15 @@ int guild_skillupack(int guild_id,int skill_num,int account_id)
 	if(g==NULL)
 		return 0;
 	if( sd != NULL ) {
-		clif_guild_skillup(sd,skill_num,g->skill[skill_num-GD_SKILLBASE].lv);
+		clif_guild_skillup(sd,skill_id,g->skill[skill_id-GD_SKILLBASE].lv);
 
 		/* Guild Aura handling */
-		switch( skill_num ) {
+		switch( skill_id ) {
 			case GD_LEADERSHIP:
 			case GD_GLORYWOUNDS:
 			case GD_SOULCOLD:
 			case GD_HAWKEYES:
-					guild_guildaura_refresh(sd,skill_num,g->skill[skill_num-GD_SKILLBASE].lv);
+					guild_guildaura_refresh(sd,skill_id,g->skill[skill_id-GD_SKILLBASE].lv);
 				break;
 		}
 	}
@@ -1293,9 +1292,10 @@ int guild_skillupack(int guild_id,int skill_num,int account_id)
 
 	return 0;
 }
-void guild_guildaura_refresh(struct map_session_data *sd, int skill_num, int skill_lv) {
+
+void guild_guildaura_refresh(struct map_session_data *sd, uint16 skill_id, uint16 skill_lv) {
 	struct skill_unit_group* group = NULL;
-	int type = status_skill2sc(skill_num);
+	int type = status_skill2sc(skill_id);
 	if( !(battle_config.guild_aura&((agit_flag || agit2_flag)?2:1)) &&
 			!(battle_config.guild_aura&(map_flag_gvg2(sd->bl.m)?8:4)) )
 		return;
@@ -1305,7 +1305,7 @@ void guild_guildaura_refresh(struct map_session_data *sd, int skill_num, int ski
 		skill_delunitgroup(group);
 		status_change_end(&sd->bl,type,INVALID_TIMER);
 	}
-	group = skill_unitsetting(&sd->bl,skill_num,skill_lv,sd->bl.x,sd->bl.y,0);
+	group = skill_unitsetting(&sd->bl,skill_id,skill_lv,sd->bl.x,sd->bl.y,0);
 	if( group ) {
 		sc_start4(&sd->bl,type,100,(battle_config.guild_aura&16)?0:skill_lv,0,0,group->group_id,600000);//duration doesn't matter these status never end with val4
 	}
@@ -1335,10 +1335,10 @@ int guild_get_alliance_count(struct guild *g,int flag)
 // Blocks all guild skills which have a common delay time.
 void guild_block_skill(struct map_session_data *sd, int time)
 {
-	int skill_num[] = { GD_BATTLEORDER, GD_REGENERATION, GD_RESTORE, GD_EMERGENCYCALL };
+	uint16 skill_id[] = { GD_BATTLEORDER, GD_REGENERATION, GD_RESTORE, GD_EMERGENCYCALL };
 	int i;
 	for (i = 0; i < 4; i++)
-		skill_blockpc_start_(sd, skill_num[i], time , true);
+		skill_blockpc_start_(sd, skill_id[i], time , true);
 }
 
 /*====================================================
@@ -1370,7 +1370,7 @@ int guild_reqalliance(struct map_session_data *sd,struct map_session_data *tsd)
 	int i;
 
 	if(agit_flag || agit2_flag)	{	// Disable alliance creation during woe [Valaris]
-		clif_displaymessage(sd->fd,msg_txt(676)); //"Alliances cannot be made during Guild Wars!" 
+		clif_displaymessage(sd->fd,msg_txt(676)); //"Alliances cannot be made during Guild Wars!"
 		return 0;
 	}	// end addition [Valaris]
 
@@ -1404,7 +1404,7 @@ int guild_reqalliance(struct map_session_data *sd,struct map_session_data *tsd)
 		return 0;
 	}
 
-	for(i=0;i<MAX_GUILDALLIANCE;i++){	// check if already allied
+    for (i = 0; i < MAX_GUILDALLIANCE; i++) { // check if already allied
 		if(	g[0]->alliance[i].guild_id==tsd->status.guild_id &&
 			g[0]->alliance[i].opposition==0){
 			clif_guild_allianceack(sd,0);
@@ -1433,13 +1433,13 @@ int guild_reply_reqalliance(struct map_session_data *sd,int account_id,int flag)
 		return 0;
 	}
 
-	if(sd->guild_alliance!=tsd->status.guild_id) // proposed guild_id alliance doesn't match tsd guildid
+    if (sd->guild_alliance != tsd->status.guild_id) // proposed guild_id alliance doesn't match tsd guildid
 		return 0;
 
-	if(flag==1){	// consent
+    if (flag == 1) { // consent
 		int i;
 
-		struct guild *g,*tg;	// Reconfirm the number of alliance
+        struct guild *g, *tg; // Reconfirm the number of alliance
 		g=guild_search(sd->status.guild_id);
 		tg=guild_search(tsd->status.guild_id);
 		

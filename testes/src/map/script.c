@@ -283,9 +283,9 @@ static struct {
 		int count;
 		int flag;
 		struct linkdb_node *case_label;
-	} curly[256];		// 右カッコの情報
-	int curly_count;	// 右カッコの数
-	int index;			// スクリプト内で使用した構文の数
+	} curly[256];		// Information right parenthesis
+	int curly_count;	// The number of right brackets
+	int index;			// Number of the syntax used in the script
 } syntax;
 
 const char* parse_curly_close(const char* p);
@@ -338,7 +338,7 @@ struct {
 #endif
 
 /*==========================================
- * ローカルプロトタイプ宣言 (必要な物のみ)
+ * (Only those needed) local declaration prototype
  *------------------------------------------*/
 const char* parse_subexpr(const char* p,int limit);
 int run_func(struct script_state *st);
@@ -618,7 +618,7 @@ static void script_reportfunc(struct script_state* st)
 
 
 /*==========================================
- * エラーメッセージ出力
+ * Output error message
  *------------------------------------------*/
 static void disp_error_message2(const char *mes,const char *pos,int report)
 {
@@ -801,7 +801,7 @@ static void add_scripti(int a)
 
 ///
 /// @param l The id of the str_data entry
-// 最大16Mまで
+// Maximum up to 16M
 static void add_scriptl(int l)
 {
 	int backpatch = str_data[l].backpatch;
@@ -816,7 +816,7 @@ static void add_scriptl(int l)
 		break;
 	case C_NOP:
 	case C_USERFUNC:
-		// ラベルの可能性があるのでbackpatch用データ埋め込み
+		// Embedded data backpatch there is a possibility of label
 		add_scriptc(C_NAME);
 		str_data[l].backpatch = script_pos;
 		add_scriptb(backpatch);
@@ -838,7 +838,7 @@ static void add_scriptl(int l)
 }
 
 /*==========================================
- * ラベルを解決する
+ * Resolve the label
  *------------------------------------------*/
 void set_label(int l,int pos, const char* script_pos)
 {
@@ -1211,7 +1211,7 @@ const char* parse_variable(const char* p) {
 }
 
 /*==========================================
- * 項の解析
+ * Analysis section
  *------------------------------------------*/
 const char* parse_simpleexpr(const char *p)
 {
@@ -1313,7 +1313,7 @@ const char* parse_simpleexpr(const char *p)
 }
 
 /*==========================================
- * 式の解析
+ * Analysis of the expression
  *------------------------------------------*/
 const char* parse_subexpr(const char* p,int limit)
 {
@@ -1375,7 +1375,7 @@ const char* parse_subexpr(const char* p,int limit)
 }
 
 /*==========================================
- * 式の評価
+ * Evaluation of the expression
  *------------------------------------------*/
 const char* parse_expr(const char *p)
 {
@@ -1389,7 +1389,7 @@ const char* parse_expr(const char *p)
 }
 
 /*==========================================
- * 行の解析
+ * Analysis of the line
  *------------------------------------------*/
 const char* parse_line(const char* p)
 {
@@ -1397,7 +1397,7 @@ const char* parse_line(const char* p)
 
 	p=skip_space(p);
 	if(*p==';') {
-		// if(); for(); while(); のために閉じ判定
+		//Close decision for if(); for(); while();
 		p = parse_syntax_close(p + 1);
 		return p;
 	}
@@ -1414,8 +1414,8 @@ const char* parse_line(const char* p)
 	} else if(p[0] == '}') {
 		return parse_curly_close(p);
 	}
-		
-	// 構文関連の処理
+
+	// Syntax-related processing
 	p2 = parse_syntax(p);
 	if(p2 != NULL)
 		return p2;
@@ -1439,13 +1439,13 @@ const char* parse_line(const char* p)
 			disp_error_message("parse_line: ';' necessario",p);
 	}
 
-	// if, for , while の閉じ判定
+	//Binding decision for if(), for(), while()
 	p = parse_syntax_close(p+1);
 
 	return p;
 }
 
-// { ... } の閉じ処理
+// { ... } Closing process
 const char* parse_curly_close(const char* p)
 {
 	if(syntax.curly_count <= 0) {
@@ -1453,46 +1453,46 @@ const char* parse_curly_close(const char* p)
 		return p + 1;
 	} else if(syntax.curly[syntax.curly_count-1].type == TYPE_NULL) {
 		syntax.curly_count--;
-		// if, for , while の閉じ判定
+		//Close decision  if, for , while
 		p = parse_syntax_close(p + 1);
 		return p;
 	} else if(syntax.curly[syntax.curly_count-1].type == TYPE_SWITCH) {
-		// switch() 閉じ判定
+		//Closing switch()
 		int pos = syntax.curly_count-1;
 		char label[256];
 		int l;
-		// 一時変数を消す
+		// Remove temporary variables
 		sprintf(label,"set $@__SW%x_VAL,0;",syntax.curly[pos].index);
 		syntax.curly[syntax.curly_count++].type = TYPE_NULL;
 		parse_line(label);
 		syntax.curly_count--;
 
-		// 無条件で終了ポインタに移動
+		// Go to the end pointer unconditionally
 		sprintf(label,"goto __SW%x_FIN;",syntax.curly[pos].index);
 		syntax.curly[syntax.curly_count++].type = TYPE_NULL;
 		parse_line(label);
 		syntax.curly_count--;
 
-		// 現在地のラベルを付ける
+		// You are here labeled
 		sprintf(label,"__SW%x_%x",syntax.curly[pos].index,syntax.curly[pos].count);
 		l=add_str(label);
 		set_label(l,script_pos, p);
 
 		if(syntax.curly[pos].flag) {
-			// default が存在する
+			//Exists default
 			sprintf(label,"goto __SW%x_DEF;",syntax.curly[pos].index);
 			syntax.curly[syntax.curly_count++].type = TYPE_NULL;
 			parse_line(label);
 			syntax.curly_count--;
 		}
 
-		// 終了ラベルを付ける
+		// Label end
 		sprintf(label,"__SW%x_FIN",syntax.curly[pos].index);
 		l=add_str(label);
 		set_label(l,script_pos, p);
 		linkdb_final(&syntax.curly[pos].case_label);	// free the list of case label
 		syntax.curly_count--;
-		// if, for , while の閉じ判定
+		//Closing decision if, for , while
 		p = parse_syntax_close(p + 1);
 		return p;
 	} else {
@@ -1501,9 +1501,9 @@ const char* parse_curly_close(const char* p)
 	}
 }
 
-// 構文関連の処理
+// Syntax-related processing
 //	 break, case, continue, default, do, for, function,
-//	 if, switch, while をこの内部で処理します。
+//	 if, switch, while ? will handle this internally.
 const char* parse_syntax(const char* p)
 {
 	const char *p2 = skip_word(p);
@@ -1512,7 +1512,7 @@ const char* parse_syntax(const char* p)
 	case 'B':
 	case 'b':
 		if(p2 - p == 5 && !strncasecmp(p,"break",5)) {
-			// break の処理
+			// break Processing
 			char label[256];
 			int pos = syntax.curly_count - 1;
 			while(pos >= 0) {
@@ -1540,8 +1540,8 @@ const char* parse_syntax(const char* p)
 			}
 			p = skip_space(p2);
 			if(*p != ';')
-				disp_error_message("parse_syntax: ';' necessario",p);
-			// if, for , while の閉じ判定
+				disp_error_message("parse_syntax: need ';'",p);
+			// Closing decision if, for , while
 			p = parse_syntax_close(p + 1);
 			return p;
 		}
@@ -1549,7 +1549,7 @@ const char* parse_syntax(const char* p)
 	case 'c':
 	case 'C':
 		if(p2 - p == 4 && !strncasecmp(p,"case",4)) {
-			// case の処理
+			//Processing case
 			int pos = syntax.curly_count-1;
 			if(pos < 0 || syntax.curly[pos].type != TYPE_SWITCH) {
 				disp_error_message("parse_syntax: 'case' inesperado",p);
@@ -1559,18 +1559,18 @@ const char* parse_syntax(const char* p)
 				int  l,v;
 				char *np;
 				if(syntax.curly[pos].count != 1) {
-					// FALLTHRU 用のジャンプ
+					//Jump for FALLTHRU
 					sprintf(label,"goto __SW%x_%xJ;",syntax.curly[pos].index,syntax.curly[pos].count);
 					syntax.curly[syntax.curly_count++].type = TYPE_NULL;
 					parse_line(label);
 					syntax.curly_count--;
 
-					// 現在地のラベルを付ける
+					// You are here labeled
 					sprintf(label,"__SW%x_%x",syntax.curly[pos].index,syntax.curly[pos].count);
 					l=add_str(label);
 					set_label(l,script_pos, p);
 				}
-				// switch 判定文
+				//Decision statement switch
 				p = skip_space(p2);
 				if(p == p2) {
 					disp_error_message("parse_syntax: espaco esperado ' '",p);
@@ -1598,12 +1598,12 @@ const char* parse_syntax(const char* p)
 				sprintf(label,"if(%d != $@__SW%x_VAL) goto __SW%x_%x;",
 					v,syntax.curly[pos].index,syntax.curly[pos].index,syntax.curly[pos].count+1);
 				syntax.curly[syntax.curly_count++].type = TYPE_NULL;
-				// ２回parse しないとダメ
+				// Bad I do not parse twice
 				p2 = parse_line(label);
 				parse_line(p2);
 				syntax.curly_count--;
 				if(syntax.curly[pos].count != 1) {
-					// FALLTHRU 終了後のラベル
+					// Label after the completion of FALLTHRU
 					sprintf(label,"__SW%x_%xJ",syntax.curly[pos].index,syntax.curly[pos].count);
 					l=add_str(label);
 					set_label(l,script_pos,p);
@@ -1622,13 +1622,13 @@ const char* parse_syntax(const char* p)
 			}
 			return p + 1;
 		} else if(p2 - p == 8 && !strncasecmp(p,"continue",8)) {
-			// continue の処理
+			// Processing continue
 			char label[256];
 			int pos = syntax.curly_count - 1;
 			while(pos >= 0) {
 				if(syntax.curly[pos].type == TYPE_DO) {
 					sprintf(label,"goto __DO%x_NXT;",syntax.curly[pos].index);
-					syntax.curly[pos].flag = 1; // continue 用のリンク張るフラグ
+					syntax.curly[pos].flag = 1; //Flag put the link for continue
 					break;
 				} else if(syntax.curly[pos].type == TYPE_FOR) {
 					sprintf(label,"goto __FR%x_NXT;",syntax.curly[pos].index);
@@ -1666,7 +1666,7 @@ const char* parse_syntax(const char* p)
 			} else {
 				char label[256];
 				int l;
-				// 現在地のラベルを付ける
+				// Put the label location
 				p = skip_space(p2);
 				if(*p != ':') {
 					disp_error_message("parse_syntax: ':' necessario",p);
@@ -1675,13 +1675,13 @@ const char* parse_syntax(const char* p)
 				l=add_str(label);
 				set_label(l,script_pos,p);
 
-				// 無条件で次のリンクに飛ばす
+				// Skip to the next link w/o condition
 				sprintf(label,"goto __SW%x_%x;",syntax.curly[pos].index,syntax.curly[pos].count+1);
 				syntax.curly[syntax.curly_count++].type = TYPE_NULL;
 				parse_line(label);
 				syntax.curly_count--;
 
-				// default のラベルを付ける
+				// The default label
 				sprintf(label,"__SW%x_DEF",syntax.curly[pos].index);
 				l=add_str(label);
 				set_label(l,script_pos,p);
@@ -1699,7 +1699,7 @@ const char* parse_syntax(const char* p)
 			syntax.curly[syntax.curly_count].count = 1;
 			syntax.curly[syntax.curly_count].index = syntax.index++;
 			syntax.curly[syntax.curly_count].flag  = 0;
-			// 現在地のラベル形成する
+			// Label of the (do) form here
 			sprintf(label,"__DO%x_BGN",syntax.curly[syntax.curly_count].index);
 			l=add_str(label);
 			set_label(l,script_pos,p);
@@ -1725,22 +1725,22 @@ const char* parse_syntax(const char* p)
 				disp_error_message("parse_syntax: '(' necessario",p);
 			p++;
 
-			// 初期化文を実行する
+			// Execute the initialization statement
 			syntax.curly[syntax.curly_count++].type = TYPE_NULL;
 			p=parse_line(p);
 			syntax.curly_count--;
 
-			// 条件判断開始のラベル形成する
+			// Form the start of label decision
 			sprintf(label,"__FR%x_J",syntax.curly[pos].index);
 			l=add_str(label);
 			set_label(l,script_pos,p);
 
 			p=skip_space(p);
 			if(*p == ';') {
-				// for(;;) のパターンなので必ず真
+				// For (; Because the pattern of always true ;)
 				;
 			} else {
-				// 条件が偽なら終了地点に飛ばす
+				// Skip to the end point if the condition is false
 				sprintf(label,"__FR%x_FIN",syntax.curly[pos].index);
 				add_scriptl(add_str("jump_zero"));
 				add_scriptc(C_ARG);
@@ -4998,7 +4998,7 @@ BUILDIN_FUNC(warp)
 	return 0;
 }
 /*==========================================
- * エリア指定ワープ
+ * Warp a specified area
  *------------------------------------------*/
 static int buildin_areawarp_sub(struct block_list *bl,va_list ap)
 {
@@ -5035,7 +5035,7 @@ static int buildin_areawarp_sub(struct block_list *bl,va_list ap)
 }
 BUILDIN_FUNC(areawarp)
 {
-	int m, x0,y0,x1,y1, x2,y2,x3=0,y3=0;
+	int16 m, x0,y0,x1,y1, x2,y2,x3=0,y3=0;
 	unsigned int index;
 	const char *str;
 	const char *mapname;
@@ -5048,7 +5048,7 @@ BUILDIN_FUNC(areawarp)
 	str = script_getstr(st,7);
 	x2  = script_getnum(st,8);
 	y2  = script_getnum(st,9);
-	
+
 	if( script_hasdata(st,10) && script_hasdata(st,11) ) { // Warp area to area
 		if( (x3 = script_getnum(st,10)) < 0 || (y3 = script_getnum(st,11)) < 0 ){
 			x3 = 0;
@@ -5287,7 +5287,7 @@ BUILDIN_FUNC(warpguild)
 	return 0;
 }
 /*==========================================
- *
+ * Force Heal a player (hp and sp)
  *------------------------------------------*/
 BUILDIN_FUNC(heal)
 {
@@ -5303,7 +5303,7 @@ BUILDIN_FUNC(heal)
 	return 0;
 }
 /*==========================================
- *
+ * Heal a player by item (get vit bonus etc)
  *------------------------------------------*/
 BUILDIN_FUNC(itemheal)
 {
@@ -6107,7 +6107,11 @@ BUILDIN_FUNC(countitem2)
 }
 
 /*==========================================
- * 重量チェック
+ * Check if item with this amount can fit in inventory
+ * Checking : weight, stack amount >32k, slots amount >(MAX_INVENTORY)
+ * Return
+ *	0 : fail
+ *	1 : success (npc side only)
  *------------------------------------------*/
 BUILDIN_FUNC(checkweight)
 {
@@ -6411,7 +6415,7 @@ BUILDIN_FUNC(getitem2)
 	c3=(short)script_getnum(st,9);
 	c4=(short)script_getnum(st,10);
 
-	if(nameid<0) { // ランダム
+	if(nameid<0) { // Invalide nameid
 		nameid = -nameid;
 		flag = 1;
 	}
@@ -6976,7 +6980,8 @@ BUILDIN_FUNC(disableitemuse)
 }
 
 /*==========================================
- *キャラ関係のパラメータ取得
+ * return the basic stats of sd
+ * chk pc_readparam for available type
  *------------------------------------------*/
 BUILDIN_FUNC(readparam)
 {
@@ -6998,8 +7003,15 @@ BUILDIN_FUNC(readparam)
 
 	return 0;
 }
+
 /*==========================================
- *キャラ関係のID取得
+ * Return charid identification
+ * return by @num :
+ *	0 : char_id
+ *	1 : party_id
+ *	2 : guild_id
+ *	3 : account_id
+ *	4 : bg_id
  *------------------------------------------*/
 BUILDIN_FUNC(getcharid)
 {
@@ -7062,7 +7074,8 @@ BUILDIN_FUNC(getnpcid)
 	return 0;
 }
 /*==========================================
- *指定IDのPT名取得
+ * Return the name of the party_id
+ * null if not found
  *------------------------------------------*/
 BUILDIN_FUNC(getpartyname)
 {
@@ -7081,8 +7094,14 @@ BUILDIN_FUNC(getpartyname)
 	}
 	return 0;
 }
+
 /*==========================================
- *指定IDのPT人数とメンバーID取得
+ * Get the information of the members of a party by type
+ * @party_id, @type
+ * return by @type :
+ *	- : nom des membres
+ *	1 : char_id des membres
+ *	2 : account_id des membres
  *------------------------------------------*/
 BUILDIN_FUNC(getpartymember)
 {
@@ -7154,7 +7173,8 @@ BUILDIN_FUNC(getpartyleader)
 }
 
 /*==========================================
- *指定IDのギルド名取得
+ * Return the name of the @guild_id
+ * null if not found
  *------------------------------------------*/
 BUILDIN_FUNC(getguildname)
 {
@@ -7175,7 +7195,8 @@ BUILDIN_FUNC(getguildname)
 }
 
 /*==========================================
- *指定IDのGuildMaster名取得
+ * Return the name of the guild master of @guild_id
+ * null if not found
  *------------------------------------------*/
 BUILDIN_FUNC(getguildmaster)
 {
@@ -7214,7 +7235,13 @@ BUILDIN_FUNC(getguildmasterid)
 }
 
 /*==========================================
- * キャラクタの名前
+ * Get char string information by type :
+ * Return by @type :
+ *	0 : char_name
+ *	1 : party_name or ""
+ *	2 : guild_name or ""
+ *	3 : map_name
+ *	- : ""
  *------------------------------------------*/
 BUILDIN_FUNC(strcharinfo)
 {
@@ -7266,7 +7293,13 @@ BUILDIN_FUNC(strcharinfo)
 }
 
 /*==========================================
- * 呼び出し元のNPC情報を取得する
+ * Get npc string information by type
+ * return by @type:
+ *	0 : name
+ *	1 : str#
+ *	2 : #str
+ *	3 : ::str
+ *	4 : map name
  *------------------------------------------*/
 BUILDIN_FUNC(strnpcinfo)
 {
@@ -7344,7 +7377,7 @@ BUILDIN_FUNC(getequipid)
 		script_pushint(st,-1);
 		return 0;
 	}
-		
+
 	item = sd->inventory_data[i];
 	if( item != 0 )
 		script_pushint(st,item->nameid);
@@ -7355,7 +7388,8 @@ BUILDIN_FUNC(getequipid)
 }
 
 /*==========================================
- * 装備名文字列（精錬メニュー用）
+ * Get the equipement name at pos
+ * return item jname or ""
  *------------------------------------------*/
 BUILDIN_FUNC(getequipname)
 {
@@ -7481,7 +7515,7 @@ BUILDIN_FUNC(repairall)
 }
 
 /*==========================================
- * 装備チェック
+ * Chk if player have something equiped at pos
  *------------------------------------------*/
 BUILDIN_FUNC(getequipisequiped)
 {
@@ -7504,7 +7538,11 @@ BUILDIN_FUNC(getequipisequiped)
 }
 
 /*==========================================
- * 装備品精錬可能チェック
+ * Chk if the player have something equiped at pos
+ * if so chk if this item ain't marked not refinable or rental
+ * return (npc)
+ *	1 : true
+ *	0 : false
  *------------------------------------------*/
 BUILDIN_FUNC(getequipisenableref)
 {
@@ -7527,7 +7565,10 @@ BUILDIN_FUNC(getequipisenableref)
 }
 
 /*==========================================
- * 装備品鑑定チェック
+ * Chk if the item equiped at pos is identify (huh ?)
+ * return (npc)
+ *	1 : true
+ *	0 : false
  *------------------------------------------*/
 BUILDIN_FUNC(getequipisidentify)
 {
@@ -7550,7 +7591,10 @@ BUILDIN_FUNC(getequipisidentify)
 }
 
 /*==========================================
- * 装備品精錬度
+ * Get the item refined value at pos
+ * return (npc)
+ *	x : refine amount
+ *	0 : false (not refined)
  *------------------------------------------*/
 BUILDIN_FUNC(getequiprefinerycnt)
 {
@@ -7573,7 +7617,11 @@ BUILDIN_FUNC(getequiprefinerycnt)
 }
 
 /*==========================================
- * 装備品武器LV
+ * Get the weapon level value at pos
+ * (pos should normally only be EQI_HAND_L or EQI_HAND_R)
+ * return (npc)
+ *	x : weapon level
+ *	0 : false
  *------------------------------------------*/
 BUILDIN_FUNC(getequipweaponlv)
 {
@@ -7596,7 +7644,10 @@ BUILDIN_FUNC(getequipweaponlv)
 }
 
 /*==========================================
- * 装備品精錬成功率
+ * Get the item refine chance (from refine.txt) for item at pos
+ * return (npc)
+ *	x : refine chance
+ *	0 : false (max refine level or unequip..)
  *------------------------------------------*/
 BUILDIN_FUNC(getequippercentrefinery)
 {
@@ -7619,7 +7670,7 @@ BUILDIN_FUNC(getequippercentrefinery)
 }
 
 /*==========================================
- * 精錬成功
+ * Refine +1 item at pos and log and display refine
  *------------------------------------------*/
 BUILDIN_FUNC(successrefitem)
 {
@@ -7673,7 +7724,7 @@ BUILDIN_FUNC(successrefitem)
 }
 
 /*==========================================
- * 精錬失敗
+ * Show a failed Refine +1 attempt
  *------------------------------------------*/
 BUILDIN_FUNC(failedrefitem)
 {
@@ -7689,13 +7740,12 @@ BUILDIN_FUNC(failedrefitem)
 		i=pc_checkequip(sd,equip[num-1]);
 	if(i >= 0) {
 		sd->status.inventory[i].refine = 0;
-		pc_unequipitem(sd,i,3);
-		// 精錬失敗エフェクトのパケット
-		clif_refine(sd->fd,1,i,sd->status.inventory[i].refine);
+		pc_unequipitem(sd,i,3); //recalculate bonus
+		clif_refine(sd->fd,1,i,sd->status.inventory[i].refine); //notify client of failure
 
 		pc_delitem(sd,i,1,0,2,LOG_TYPE_SCRIPT);
-		// 他の人にも失敗を通知
-		clif_misceffect(&sd->bl,2);
+
+		clif_misceffect(&sd->bl,2); 	// display failure effect
 	}
 
 	return 0;
@@ -8080,7 +8130,7 @@ BUILDIN_FUNC(getskilllv)
 BUILDIN_FUNC(getgdskilllv)
 {
 	int guild_id;
-	int skill_id;
+	uint16 skill_id;
 	struct guild* g;
 
 	guild_id = script_getnum(st,2);
@@ -8568,7 +8618,7 @@ BUILDIN_FUNC(gettimestr)
 }
 
 /*==========================================
- * カプラ倉庫を開く
+ * Open player storage
  *------------------------------------------*/
 BUILDIN_FUNC(openstorage)
 {
@@ -8597,7 +8647,7 @@ BUILDIN_FUNC(guildopenstorage)
 }
 
 /*==========================================
- * アイテムによるスキル発動
+ * Make player use a skill trought item usage
  *------------------------------------------*/
 /// itemskill <skill id>,<level>
 /// itemskill "<skill name>",<level>
@@ -8620,7 +8670,7 @@ BUILDIN_FUNC(itemskill)
 	return 0;
 }
 /*==========================================
- * アイテム作成
+ * Attempt to create an item
  *------------------------------------------*/
 BUILDIN_FUNC(produce)
 {
@@ -8652,7 +8702,7 @@ BUILDIN_FUNC(cooking)
 	return 0;
 }
 /*==========================================
- * NPCでペット作る
+ * Create a pet
  *------------------------------------------*/
 BUILDIN_FUNC(makepet)
 {
@@ -8680,7 +8730,7 @@ BUILDIN_FUNC(makepet)
 	return 0;
 }
 /*==========================================
- * NPCで経験値上げる
+ * Give player exp base,job * quest_exp_rate/100
  *------------------------------------------*/
 BUILDIN_FUNC(getexp)
 {
@@ -8750,7 +8800,12 @@ BUILDIN_FUNC(guildchangegm)
 }
 
 /*==========================================
- * モンスター発生
+ * Spawn a monster :
+ @mapn,x,y : location
+ @str : monster name
+ @class_ : mob_id
+ @amount : nb to spawn
+ @event : event to attach to mob
  *------------------------------------------*/
 BUILDIN_FUNC(monster)
 {
@@ -8765,7 +8820,7 @@ BUILDIN_FUNC(monster)
 	unsigned int ai		= AI_NONE;
 
 	struct map_session_data* sd;
-	int m;
+	int16 m;
 
 	if (script_hasdata(st, 8))
 	{
@@ -8855,7 +8910,7 @@ BUILDIN_FUNC(getmobdrops)
 	return 0;
 }
 /*==========================================
- * モンスター発生
+ * Same as monster but randomize location in x0,x1,y0,y1 area
  *------------------------------------------*/
 BUILDIN_FUNC(areamonster)
 {
@@ -8872,7 +8927,7 @@ BUILDIN_FUNC(areamonster)
 	unsigned int ai		= AI_NONE;
 
 	struct map_session_data* sd;
-	int m;
+	int16 m;
 
 	if (script_hasdata(st,10))
 	{
@@ -8921,7 +8976,7 @@ BUILDIN_FUNC(areamonster)
 	return 0;
 }
 /*==========================================
- * モンスター削除
+ * KillMonster subcheck, verify if mob to kill ain't got an even to handle, could be force kill by allflag
  *------------------------------------------*/
  static int buildin_killmonster_sub_strip(struct block_list *bl,va_list ap)
 { //same fix but with killmonster instead - stripping events from mobs.
@@ -8959,7 +9014,7 @@ static int buildin_killmonster_sub(struct block_list *bl,va_list ap)
 BUILDIN_FUNC(killmonster)
 {
 	const char *mapname,*event;
-	int m,allflag=0;
+	int16 m,allflag=0;
 	mapname=script_getstr(st,2);
 	event=script_getstr(st,3);
 	if(strcmp(event,"All")==0)
@@ -9005,7 +9060,7 @@ static int buildin_killmonsterall_sub(struct block_list *bl,va_list ap)
 BUILDIN_FUNC(killmonsterall)
 {
 	const char *mapname;
-	int m;
+	int16 m;
 	mapname=script_getstr(st,2);
 	
 	if( (m = map_mapname2mapid(mapname))<0 )
@@ -9076,7 +9131,6 @@ BUILDIN_FUNC(clone)
 	return 0;
 }
 /*==========================================
- * イベント実行
  *------------------------------------------*/
 BUILDIN_FUNC(doevent)
 {
@@ -9093,7 +9147,6 @@ BUILDIN_FUNC(doevent)
 	return 0;
 }
 /*==========================================
- * NPC主体イベント実行
  *------------------------------------------*/
 BUILDIN_FUNC(donpcevent)
 {
@@ -9122,7 +9175,6 @@ BUILDIN_FUNC(cmdothernpc)	// Added by RoVeRT
 }
 
 /*==========================================
- * イベントタイマー追加
  *------------------------------------------*/
 BUILDIN_FUNC(addtimer)
 {
@@ -9139,7 +9191,6 @@ BUILDIN_FUNC(addtimer)
 	return 0;
 }
 /*==========================================
- * イベントタイマー削除
  *------------------------------------------*/
 BUILDIN_FUNC(deltimer)
 {
@@ -9156,7 +9207,6 @@ BUILDIN_FUNC(deltimer)
 	return 0;
 }
 /*==========================================
- * イベントタイマーのカウント値追加
  *------------------------------------------*/
 BUILDIN_FUNC(addtimercount)
 {
@@ -9176,7 +9226,6 @@ BUILDIN_FUNC(addtimercount)
 }
 
 /*==========================================
- * NPCタイマー初期化
  *------------------------------------------*/
 BUILDIN_FUNC(initnpctimer)
 {
@@ -9225,7 +9274,6 @@ BUILDIN_FUNC(initnpctimer)
 	return 0;
 }
 /*==========================================
- * NPCタイマー開始
  *------------------------------------------*/
 BUILDIN_FUNC(startnpctimer)
 {
@@ -9272,7 +9320,6 @@ BUILDIN_FUNC(startnpctimer)
 	return 0;
 }
 /*==========================================
- * NPCタイマー停止
  *------------------------------------------*/
 BUILDIN_FUNC(stopnpctimer)
 {
@@ -9314,7 +9361,6 @@ BUILDIN_FUNC(stopnpctimer)
 	return 0;
 }
 /*==========================================
- * NPCタイマー情報所得
  *------------------------------------------*/
 BUILDIN_FUNC(getnpctimer)
 {
@@ -9327,7 +9373,7 @@ BUILDIN_FUNC(getnpctimer)
 		nd = npc_name2id(script_getstr(st,3));
 	else
 		nd = (struct npc_data *)map_id2bl(st->oid);
-	
+
 	if( !nd || nd->bl.type != BL_NPC )
 	{
 		script_pushint(st,0);
@@ -9359,7 +9405,6 @@ BUILDIN_FUNC(getnpctimer)
 	return 0;
 }
 /*==========================================
- * NPCタイマー値設定
  *------------------------------------------*/
 BUILDIN_FUNC(setnpctimer)
 {
@@ -9455,7 +9500,6 @@ BUILDIN_FUNC(playerattached)
 }
 
 /*==========================================
- * 天の声アナウンス
  *------------------------------------------*/
 BUILDIN_FUNC(announce)
 {
@@ -9494,7 +9538,6 @@ BUILDIN_FUNC(announce)
 	return 0;
 }
 /*==========================================
- * 天の声アナウンス（特定マップ）
  *------------------------------------------*/
 static int buildin_announce_sub(struct block_list *bl, va_list ap)
 {
@@ -9523,7 +9566,7 @@ BUILDIN_FUNC(mapannounce)
 	int         fontSize  = script_hasdata(st,7) ? script_getnum(st,7) : 12;    // default fontSize
 	int         fontAlign = script_hasdata(st,8) ? script_getnum(st,8) : 0;     // default fontAlign
 	int         fontY     = script_hasdata(st,9) ? script_getnum(st,9) : 0;     // default fontY
-	int m;
+	int16 m;
 
 	if ((m = map_mapname2mapid(mapname)) < 0)
 		return 0;
@@ -9533,7 +9576,6 @@ BUILDIN_FUNC(mapannounce)
 	return 0;
 }
 /*==========================================
- * 天の声アナウンス（特定エリア）
  *------------------------------------------*/
 BUILDIN_FUNC(areaannounce)
 {
@@ -9549,7 +9591,7 @@ BUILDIN_FUNC(areaannounce)
 	int         fontSize  = script_hasdata(st,11) ? script_getnum(st,11) : 12;    // default fontSize
 	int         fontAlign = script_hasdata(st,12) ? script_getnum(st,12) : 0;     // default fontAlign
 	int         fontY     = script_hasdata(st,13) ? script_getnum(st,13) : 0;     // default fontY
-	int m;
+	int16 m;
 
 	if ((m = map_mapname2mapid(mapname)) < 0)
 		return 0;
@@ -9560,7 +9602,6 @@ BUILDIN_FUNC(areaannounce)
 }
 
 /*==========================================
- * ユーザー数所得
  *------------------------------------------*/
 BUILDIN_FUNC(getusers)
 {
@@ -9634,7 +9675,8 @@ BUILDIN_FUNC(getusersname)
 BUILDIN_FUNC(getmapguildusers)
 {
 	const char *str;
-	int m, gid;
+	int16 m;
+	int gid;
 	int i=0,c=0;
 	struct guild *g = NULL;
 	str=script_getstr(st,2);
@@ -9657,12 +9699,11 @@ BUILDIN_FUNC(getmapguildusers)
 	return 0;
 }
 /*==========================================
- * マップ指定ユーザー数所得
  *------------------------------------------*/
 BUILDIN_FUNC(getmapusers)
 {
 	const char *str;
-	int m;
+	int16 m;
 	str=script_getstr(st,2);
 	if( (m=map_mapname2mapid(str))< 0){
 		script_pushint(st,-1);
@@ -9672,7 +9713,6 @@ BUILDIN_FUNC(getmapusers)
 	return 0;
 }
 /*==========================================
- * エリア指定ユーザー数所得
  *------------------------------------------*/
 static int buildin_getareausers_sub(struct block_list *bl,va_list ap)
 {
@@ -9683,7 +9723,7 @@ static int buildin_getareausers_sub(struct block_list *bl,va_list ap)
 BUILDIN_FUNC(getareausers)
 {
 	const char *str;
-	int m,x0,y0,x1,y1,users=0;
+	int16 m,x0,y0,x1,y1,users=0; //doubt we can have more then 32k users on
 	str=script_getstr(st,2);
 	x0=script_getnum(st,3);
 	y0=script_getnum(st,4);
@@ -9700,7 +9740,6 @@ BUILDIN_FUNC(getareausers)
 }
 
 /*==========================================
- * エリア指定ドロップアイテム数所得
  *------------------------------------------*/
 static int buildin_getareadropitem_sub(struct block_list *bl,va_list ap)
 {
@@ -9716,7 +9755,8 @@ static int buildin_getareadropitem_sub(struct block_list *bl,va_list ap)
 BUILDIN_FUNC(getareadropitem)
 {
 	const char *str;
-	int m,x0,y0,x1,y1,item,amount=0;
+	int16 m,x0,y0,x1,y1;
+	int item,amount=0;
 	struct script_data *data;
 
 	str=script_getstr(st,2);
@@ -9746,7 +9786,6 @@ BUILDIN_FUNC(getareadropitem)
 	return 0;
 }
 /*==========================================
- * NPCの有効化
  *------------------------------------------*/
 BUILDIN_FUNC(enablenpc)
 {
@@ -9756,7 +9795,6 @@ BUILDIN_FUNC(enablenpc)
 	return 0;
 }
 /*==========================================
- * NPCの無効化
  *------------------------------------------*/
 BUILDIN_FUNC(disablenpc)
 {
@@ -9767,7 +9805,6 @@ BUILDIN_FUNC(disablenpc)
 }
 
 /*==========================================
- * 隠れているNPCの表示
  *------------------------------------------*/
 BUILDIN_FUNC(hideoffnpc)
 {
@@ -9777,7 +9814,6 @@ BUILDIN_FUNC(hideoffnpc)
 	return 0;
 }
 /*==========================================
- * NPCをハイディング
  *------------------------------------------*/
 BUILDIN_FUNC(hideonnpc)
 {
@@ -9956,7 +9992,7 @@ BUILDIN_FUNC(sc_end)
 }
 
 /*==========================================
- * 状態異常耐性を計算した確率を返す
+ * @FIXME atm will return reduced tick, 0 immune, 1 no tick
  *------------------------------------------*/
 BUILDIN_FUNC(getscrate)
 {
@@ -9965,7 +10001,7 @@ BUILDIN_FUNC(getscrate)
 
 	type=script_getnum(st,2);
 	rate=script_getnum(st,3);
-	if( script_hasdata(st,4) ) //指定したキャラの耐性を計算する
+	if( script_hasdata(st,4) ) //get for the bl assigned
 		bl = map_id2bl(script_getnum(st,4));
 	else
 		bl = map_id2bl(st->rid);
@@ -10039,7 +10075,6 @@ BUILDIN_FUNC(debugmes)
 }
 
 /*==========================================
- *捕獲アイテム使用
  *------------------------------------------*/
 BUILDIN_FUNC(catchpet)
 {
@@ -10096,7 +10131,7 @@ BUILDIN_FUNC(homunculus_mutate)
 	if(merc_is_hom_active(sd->hd)) {
 		m_class = hom_class2mapid(sd->hd->homunculus.class_);
 		m_id    = hom_class2mapid(homun_id);
-		
+
 		if ( m_class != -1 && m_id != -1 && m_class&HOM_EVO && m_id&HOM_S && sd->hd->homunculus.level >= 99 )
 			hom_mutate(sd->hd, homun_id);
 		else
@@ -10177,6 +10212,11 @@ BUILDIN_FUNC(birthpet)
 
 /*==========================================
  * Added - AppleGirl For Advanced Classes, (Updated for Cleaner Script Purposes)
+ * @type
+ *	1 : make like after rebirth
+ *	2 : blvl,jlvl=1, skillpoint=0
+ * 	3 : don't reset skill, blvl=1
+ *	4 : jlvl=0
  *------------------------------------------*/
 BUILDIN_FUNC(resetlvl)
 {
@@ -10192,7 +10232,7 @@ BUILDIN_FUNC(resetlvl)
 	return 0;
 }
 /*==========================================
- * ステータスリセット
+ * Reset a player status point
  *------------------------------------------*/
 BUILDIN_FUNC(resetstatus)
 {
@@ -10263,7 +10303,7 @@ BUILDIN_FUNC(changebase)
 }
 
 /*==========================================
- * 性別変換
+ * Unequip all item and request for a changesex to char-serv
  *------------------------------------------*/
 BUILDIN_FUNC(changesex)
 {
@@ -10576,7 +10616,7 @@ BUILDIN_FUNC(isloggedin)
  *------------------------------------------*/
 BUILDIN_FUNC(setmapflagnosave)
 {
-	int m,x,y;
+	int16 m,x,y;
 	unsigned short mapindex;
 	const char *str,*str2;
 
@@ -10599,7 +10639,7 @@ BUILDIN_FUNC(setmapflagnosave)
 
 BUILDIN_FUNC(getmapflag)
 {
-	int m,i;
+	int16 m,i;
 	const char *str;
 
 	str=script_getstr(st,2);
@@ -10684,7 +10724,7 @@ static int script_mapflag_pvp_sub(struct block_list *bl,va_list ap) {
 }
 BUILDIN_FUNC(setmapflag)
 {
-	int m,i;
+	int16 m,i;
 	const char *str;
 	int val=0;
 
@@ -10770,7 +10810,7 @@ BUILDIN_FUNC(setmapflag)
 
 BUILDIN_FUNC(removemapflag)
 {
-	int m,i;
+	int16 m,i;
 	const char *str;
 	int val=0;
 
@@ -10856,7 +10896,7 @@ BUILDIN_FUNC(removemapflag)
 
 BUILDIN_FUNC(pvpon)
 {
-	int m;
+	int16 m;
 	const char *str;
 	TBL_PC* sd = NULL;
 	struct s_mapiterator* iter;
@@ -10903,7 +10943,7 @@ static int buildin_pvpoff_sub(struct block_list *bl,va_list ap)
 
 BUILDIN_FUNC(pvpoff)
 {
-	int m;
+	int16 m;
 	const char *str;
 
 	str=script_getstr(st,2);
@@ -10916,14 +10956,14 @@ BUILDIN_FUNC(pvpoff)
 
 	if(battle_config.pk_mode) // disable ranking options if pk_mode is on [Valaris]
 		return 0;
-	
+
 	map_foreachinmap(buildin_pvpoff_sub, m, BL_PC);
 	return 0;
 }
 
 BUILDIN_FUNC(gvgon)
 {
-	int m;
+	int16 m;
 	const char *str;
 
 	str=script_getstr(st,2);
@@ -10937,7 +10977,7 @@ BUILDIN_FUNC(gvgon)
 }
 BUILDIN_FUNC(gvgoff)
 {
-	int m;
+	int16 m;
 	const char *str;
 
 	str=script_getstr(st,2);
@@ -10988,7 +11028,7 @@ BUILDIN_FUNC(emotion)
 
 static int buildin_maprespawnguildid_sub_pc(struct map_session_data* sd, va_list ap)
 {
-	int m=va_arg(ap,int);
+	int16 m=va_arg(ap,int);
 	int g_id=va_arg(ap,int);
 	int flag=va_arg(ap,int);
 
@@ -11019,7 +11059,7 @@ BUILDIN_FUNC(maprespawnguildid)
 	int g_id=script_getnum(st,3);
 	int flag=script_getnum(st,4);
 
-	int m=map_mapname2mapid(mapname);
+	int16 m=map_mapname2mapid(mapname);
 
 	if(m == -1)
 		return 0;
@@ -11183,7 +11223,6 @@ BUILDIN_FUNC(setcastledata)
 }
 
 /* =====================================================================
- * ギルド情報を要求する
  * ---------------------------------------------------------------------*/
 BUILDIN_FUNC(requestguildinfo)
 {
@@ -11261,18 +11300,18 @@ BUILDIN_FUNC(successremovecards) {
 			item_tmp.nameid   = sd->status.inventory[i].card[c];
 			item_tmp.identify = 1;
 
-			if((flag=pc_additem(sd,&item_tmp,1,LOG_TYPE_SCRIPT))){	// 持てないならドロップ
+			if((flag=pc_additem(sd,&item_tmp,1,LOG_TYPE_SCRIPT))){	// get back the cart in inventory
 				clif_additem(sd,0,0,flag);
 				map_addflooritem(&item_tmp,1,sd->bl.m,sd->bl.x,sd->bl.y,0,0,0,0);
 			}
 		}
 	}
 
-	if(cardflag == 1) {// カードを取り除いたアイテム所得
+	if(cardflag == 1) {//if card was remove remplace item with no card
 		int flag;
 		struct item item_tmp;
 		memset(&item_tmp,0,sizeof(item_tmp));
-		
+
 		item_tmp.nameid      = sd->status.inventory[i].nameid;
 		item_tmp.identify    = 1;
 		item_tmp.refine      = sd->status.inventory[i].refine;
@@ -11438,7 +11477,7 @@ static int buildin_mobcount_sub(struct block_list *bl,va_list ap)	// Added by Ro
 BUILDIN_FUNC(mobcount)	// Added by RoVeRT
 {
 	const char *mapname,*event;
-	int m;
+	int16 m;
 	mapname=script_getstr(st,2);
 	event=script_getstr(st,3);
 
@@ -11987,7 +12026,11 @@ BUILDIN_FUNC(petloot)
 	return 0;
 }
 /*==========================================
- * PCの所持品情報読み取り
+ * Set arrays with info of all sd inventory :
+ * @inventorylist_id, @inventorylist_amount, @inventorylist_equip,
+ * @inventorylist_refine, @inventorylist_identify, @inventorylist_attribute,
+ * @inventorylist_card(0..3), @inventorylist_expire
+ * @inventorylist_count = scalar
  *------------------------------------------*/
 BUILDIN_FUNC(getinventorylist)
 {
@@ -12085,9 +12128,8 @@ BUILDIN_FUNC(undisguise)
 }
 
 /*==========================================
- * NPCクラスチェンジ
- * classは変わりたいclass
- * typeは通常0なのかな？
+ * Transform a bl to another _class,
+ * @type unused
  *------------------------------------------*/
 BUILDIN_FUNC(classchange)
 {
@@ -12103,7 +12145,7 @@ BUILDIN_FUNC(classchange)
 }
 
 /*==========================================
- * NPCから発生するエフェクト
+ * Display an effect
  *------------------------------------------*/
 BUILDIN_FUNC(misceffect)
 {
@@ -12190,7 +12232,7 @@ BUILDIN_FUNC(playBGMall)
 }
 
 /*==========================================
- * サウンドエフェクト
+ * Play a .wav sound for sd
  *------------------------------------------*/
 BUILDIN_FUNC(soundeffect)
 {
@@ -12430,11 +12472,11 @@ BUILDIN_FUNC(skilleffect)
 {
 	TBL_PC *sd;
 
-	int skillid=( script_isstring(st,2) ? skill_name2id(script_getstr(st,2)) : script_getnum(st,2) );
-	int skilllv=script_getnum(st,3);
+	uint16 skill_id=( script_isstring(st,2) ? skill_name2id(script_getstr(st,2)) : script_getnum(st,2) );
+	uint16 skill_lv=script_getnum(st,3);
 	sd=script_rid2sd(st);
 
-	clif_skill_nodamage(&sd->bl,&sd->bl,skillid,skilllv,1);
+	clif_skill_nodamage(&sd->bl,&sd->bl,skill_id,skill_lv,1);
 
 	return 0;
 }
@@ -12448,13 +12490,13 @@ BUILDIN_FUNC(npcskilleffect)
 {
 	struct block_list *bl= map_id2bl(st->oid);
 
-	int skillid=( script_isstring(st,2) ? skill_name2id(script_getstr(st,2)) : script_getnum(st,2) );
-	int skilllv=script_getnum(st,3);
+	uint16 skill_id=( script_isstring(st,2) ? skill_name2id(script_getstr(st,2)) : script_getnum(st,2) );
+	uint16 skill_lv=script_getnum(st,3);
 	int x=script_getnum(st,4);
 	int y=script_getnum(st,5);
 
 	if (bl)
-		clif_skill_poseffect(bl,skillid,skilllv,x,y,gettick());
+		clif_skill_poseffect(bl,skill_id,skill_lv,x,y,gettick());
 
 	return 0;
 }
@@ -12604,7 +12646,7 @@ BUILDIN_FUNC(recovery)
 	return 0;
 }
 /*==========================================
- * Get your pet info: getpetinfo(n)  
+ * Get your pet info: getpetinfo(n)
  * n -> 0:pet_id 1:pet_class 2:pet_name
  * 3:friendly 4:hungry, 5: rename flag.
  *------------------------------------------*/
@@ -12613,7 +12655,7 @@ BUILDIN_FUNC(getpetinfo)
 	TBL_PC *sd=script_rid2sd(st);
 	TBL_PET *pd;
 	int type=script_getnum(st,2);
-	
+
 	if(!sd || !sd->pd) {
 		if (type == 2)
 			script_pushconststr(st,"null");
@@ -12637,7 +12679,7 @@ BUILDIN_FUNC(getpetinfo)
 }
 
 /*==========================================
- * Get your homunculus info: gethominfo(n)  
+ * Get your homunculus info: gethominfo(n)
  * n -> 0:hom_id 1:class 2:name
  * 3:friendly 4:hungry, 5: rename flag.
  * 6: level
@@ -14064,12 +14106,6 @@ BUILDIN_FUNC(sscanf){
         *(buf_p-len+1) = '*';
     }
 
-    // Passed more, than needed
-    if(arg<argc){
-        ShowWarning("buildin_sscanf: Unused arguments passed.\n");
-        script_reportsrc(st);
-    }
-
     script_pushint(st, arg);
     if(buf) aFree(buf);
     if(ref_str) aFree(ref_str);
@@ -14999,7 +15035,7 @@ BUILDIN_FUNC(searchitem)
 int axtoi(const char *hexStg)
 {
 	int n = 0;         // position in string
-	int m = 0;         // position in digit[] to shift
+	int16 m = 0;         // position in digit[] to shift
 	int count;         // loop index
 	int intValue = 0;  // integer value of hex string
 	int digit[11];      // hold values to convert
@@ -15182,7 +15218,7 @@ BUILDIN_FUNC(unitwarp)
 	mapname = script_getstr(st, 3);
 	x = (short)script_getnum(st,4);
 	y = (short)script_getnum(st,5);
-	
+
 	if (!unit_id) //Warp the script's runner
 		bl = map_id2bl(st->rid);
 	else
@@ -15339,8 +15375,8 @@ BUILDIN_FUNC(unitemote)
 BUILDIN_FUNC(unitskilluseid)
 {
 	int unit_id;
-	int skill_id;
-	int skill_lv;
+	uint16 skill_id;
+	uint16 skill_lv;
 	int target_id;
 	struct block_list* bl;
 
@@ -15363,8 +15399,8 @@ BUILDIN_FUNC(unitskilluseid)
 BUILDIN_FUNC(unitskillusepos)
 {
 	int unit_id;
-	int skill_id;
-	int skill_lv;
+	uint16 skill_id;
+	uint16 skill_lv;
 	int skill_x;
 	int skill_y;
 	struct block_list* bl;
@@ -15604,9 +15640,9 @@ BUILDIN_FUNC(openauction)
 /// @see cell_chk* constants in const.txt for the types
 BUILDIN_FUNC(checkcell)
 {
-	int m = map_mapname2mapid(script_getstr(st,2));
-	int x = script_getnum(st,3);
-	int y = script_getnum(st,4);
+	int16 m = map_mapname2mapid(script_getstr(st,2));
+	int16 x = script_getnum(st,3);
+	int16 y = script_getnum(st,4);
 	cell_chk type = (cell_chk)script_getnum(st,5);
 
 	script_pushint(st, map_getcell(m, x, y, type));
@@ -15621,11 +15657,11 @@ BUILDIN_FUNC(checkcell)
 /// @see cell_* constants in const.txt for the types
 BUILDIN_FUNC(setcell)
 {
-	int m = map_mapname2mapid(script_getstr(st,2));
-	int x1 = script_getnum(st,3);
-	int y1 = script_getnum(st,4);
-	int x2 = script_getnum(st,5);
-	int y2 = script_getnum(st,6);
+	int16 m = map_mapname2mapid(script_getstr(st,2));
+	int16 x1 = script_getnum(st,3);
+	int16 y1 = script_getnum(st,4);
+	int16 x2 = script_getnum(st,5);
+	int16 y2 = script_getnum(st,6);
 	cell_t type = (cell_t)script_getnum(st,7);
 	bool flag = (bool)script_getnum(st,8);
 
@@ -16085,7 +16121,8 @@ BUILDIN_FUNC(bg_destroy)
 BUILDIN_FUNC(bg_getareausers)
 {
 	const char *str;
-	int m, x0, y0, x1, y1, bg_id;
+	int16 m, x0, y0, x1, y1;
+	int bg_id;
 	int i = 0, c = 0;
 	struct battleground_data *bg = NULL;
 	struct map_session_data *sd;
@@ -16120,7 +16157,7 @@ BUILDIN_FUNC(bg_getareausers)
 BUILDIN_FUNC(bg_updatescore)
 {
 	const char *str;
-	int m;
+	int16 m;
 
 	str = script_getstr(st,2);
 	if( (m = map_mapname2mapid(str)) < 0 )
@@ -16220,10 +16257,10 @@ BUILDIN_FUNC(instance_destroy)
 BUILDIN_FUNC(instance_attachmap)
 {
 	const char *name;
-	int m;
+	int16 m;
 	int instance_id;
 	bool usebasename = false;
-	
+
 	name = script_getstr(st,2);
 	instance_id = script_getnum(st,3);
 	if( script_hasdata(st,4) && script_getnum(st,4) > 0)
@@ -16236,7 +16273,7 @@ BUILDIN_FUNC(instance_attachmap)
 		return 0;
 	}
 	script_pushconststr(st, map[m].name);
-	
+
 	return 0;
 }
 
@@ -16245,8 +16282,9 @@ BUILDIN_FUNC(instance_detachmap)
 	struct map_session_data *sd;
 	struct party_data *p;
 	const char *str;
-	int m, instance_id;
- 	
+	int16 m;
+	int instance_id;
+
 	str = script_getstr(st, 2);
 	if( script_hasdata(st, 3) )
 		instance_id = script_getnum(st, 3);
@@ -16411,8 +16449,9 @@ BUILDIN_FUNC(has_instance)
 	struct map_session_data *sd;
 	struct party_data *p;
  	const char *str;
-	int m, instance_id = 0;
- 
+	int16 m;
+	int instance_id = 0;
+
  	str = script_getstr(st, 2);
 	if( script_hasdata(st, 3) )
 		instance_id = script_getnum(st, 3);
@@ -16434,7 +16473,8 @@ BUILDIN_FUNC(has_instance)
 BUILDIN_FUNC(instance_warpall)
 {
 	struct map_session_data *pl_sd;
-	int m, i, instance_id;
+	int16 m, i;
+	int instance_id;
 	const char *mapn;
 	int x, y;
 	unsigned short mapindex;
@@ -16546,8 +16586,8 @@ static int buildin_mobuseskill_sub(struct block_list *bl,va_list ap)
 	TBL_MOB* md		= (TBL_MOB*)bl;
 	struct block_list *tbl;
 	int mobid		= va_arg(ap,int);
-	int skillid		= va_arg(ap,int);
-	int skilllv		= va_arg(ap,int);
+	uint16 skill_id		= va_arg(ap,int);
+	uint16 skill_lv		= va_arg(ap,int);
 	int casttime	= va_arg(ap,int);
 	int cancel		= va_arg(ap,int);
 	int emotion		= va_arg(ap,int);
@@ -16562,7 +16602,7 @@ static int buildin_mobuseskill_sub(struct block_list *bl,va_list ap)
 		case 0: tbl = map_id2bl(md->bl.id); break;
 		case 1: tbl = map_id2bl(md->target_id); break;
 		case 2: tbl = map_id2bl(md->master_id); break;
-		default:tbl = battle_getenemy(&md->bl, DEFAULT_ENEMY_TYPE(md),skill_get_range2(&md->bl, skillid, skilllv)); break;
+		default:tbl = battle_getenemy(&md->bl, DEFAULT_ENEMY_TYPE(md),skill_get_range2(&md->bl, skill_id, skill_lv)); break;
 	}
 
 	if( !tbl )
@@ -16571,10 +16611,10 @@ static int buildin_mobuseskill_sub(struct block_list *bl,va_list ap)
 	if( md->ud.skilltimer != INVALID_TIMER ) // Cancel the casting skill.
 		unit_skillcastcancel(bl,0);
 
-	if( skill_get_casttype(skillid) == CAST_GROUND )
-		unit_skilluse_pos2(&md->bl, tbl->x, tbl->y, skillid, skilllv, casttime, cancel);
+	if( skill_get_casttype(skill_id) == CAST_GROUND )
+		unit_skilluse_pos2(&md->bl, tbl->x, tbl->y, skill_id, skill_lv, casttime, cancel);
 	else
-		unit_skilluse_id2(&md->bl, tbl->id, skillid, skilllv, casttime, cancel);
+		unit_skilluse_id2(&md->bl, tbl->id, skill_id, skill_lv, casttime, cancel);
 
 	clif_emotion(&md->bl, emotion);
 
@@ -16586,7 +16626,8 @@ static int buildin_mobuseskill_sub(struct block_list *bl,va_list ap)
 BUILDIN_FUNC(areamobuseskill)
 {
 	struct block_list center;
-	int m,range,mobid,skillid,skilllv,casttime,emotion,target,cancel;
+	int16 m;
+	int range,mobid,skill_id,skill_lv,casttime,emotion,target,cancel;
 
 	if( (m = map_mapname2mapid(script_getstr(st,2))) < 0 )
 	{
@@ -16602,16 +16643,16 @@ BUILDIN_FUNC(areamobuseskill)
 	center.y = script_getnum(st,4);
 	range = script_getnum(st,5);
 	mobid = script_getnum(st,6);
-	skillid = ( script_isstring(st,7) ? skill_name2id(script_getstr(st,7)) : script_getnum(st,7) );
-	if( (skilllv = script_getnum(st,8)) > battle_config.mob_max_skilllvl )
-		skilllv = battle_config.mob_max_skilllvl;
+	skill_id = ( script_isstring(st,7) ? skill_name2id(script_getstr(st,7)) : script_getnum(st,7) );
+	if( (skill_lv = script_getnum(st,8)) > battle_config.mob_max_skilllvl )
+		skill_lv = battle_config.mob_max_skilllvl;
 
 	casttime = script_getnum(st,9);
 	cancel = script_getnum(st,10);
 	emotion = script_getnum(st,11);
 	target = script_getnum(st,12);
-	
-	map_foreachinrange(buildin_mobuseskill_sub, &center, range, BL_MOB, mobid, skillid, skilllv, casttime, cancel, emotion, target);
+
+	map_foreachinrange(buildin_mobuseskill_sub, &center, range, BL_MOB, mobid, skill_id, skill_lv, casttime, cancel, emotion, target);
 	return 0;
 }
 
@@ -16639,7 +16680,8 @@ BUILDIN_FUNC(progressbar)
 
 BUILDIN_FUNC(pushpc)
 {
-	int direction, cells, dx, dy;
+	uint8 dir;
+	int cells, dx, dy;
 	struct map_session_data* sd;
 
 	if((sd = script_rid2sd(st))==NULL)
@@ -16647,15 +16689,15 @@ BUILDIN_FUNC(pushpc)
 		return 0;
 	}
 
-	direction = script_getnum(st,2);
+	dir = script_getnum(st,2);
 	cells     = script_getnum(st,3);
 
-	if(direction<0 || direction>7)
+	if(dir<0 || dir>7)
 	{
-		ShowWarning("buildin_pushpc: Invalid direction %d specified.\n", direction);
+		ShowWarning("buildin_pushpc: Invalid direction %d specified.\n", dir);
 		script_reportsrc(st);
 
-		direction%= 8;  // trim spin-over
+		dir%= 8;  // trim spin-over
 	}
 
 	if(!cells)
@@ -16664,12 +16706,12 @@ BUILDIN_FUNC(pushpc)
 	}
 	else if(cells<0)
 	{// pushing backwards
-		direction = (direction+4)%8;  // turn around
+		dir = (dir+4)%8;  // turn around
 		cells     = -cells;
 	}
 
-	dx = dirx[direction];
-	dy = diry[direction];
+	dx = dirx[dir];
+	dy = diry[dir];
 
 	unit_blown(&sd->bl, dx, dy, cells, 0);
 	return 0;
@@ -17203,15 +17245,12 @@ static int atcommand_cleanfloor_sub(struct block_list *bl, va_list ap)
 BUILDIN_FUNC(cleanmap)
 {
     const char *map;
-    int m = -1, index = -1;
-    short x0 = 0, y0 = 0, x1 = 0, y1 = 0;
-    
-    map = script_getstr(st, 2);
-    index = mapindex_name2id(map);
-    if (index)
-        m = map_mapindex2mapid(index);
+    int16 m = -1;
+    int16 x0 = 0, y0 = 0, x1 = 0, y1 = 0;
 
-	if (!m)
+    map = script_getstr(st, 2);
+    m = map_mapname2mapid(map);
+    if (!m)
         return 1;
 
     if ((script_lastdata(st) - 2) < 4) {
@@ -17237,7 +17276,7 @@ BUILDIN_FUNC(cleanmap)
  * npcskill "<skill name>", <skill lvl>, <stat point>, <NPC level>; */
 BUILDIN_FUNC(npcskill)
 {
-	unsigned int skill_id;
+	uint16 skill_id;
 	unsigned short skill_level;
 	unsigned int stat_point;
 	unsigned int npc_level;
