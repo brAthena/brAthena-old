@@ -137,7 +137,7 @@ static int unit_walktoxy_timer(int tid, unsigned int tick, int id, intptr_t data
 		return 0;
 	}
 	ud->walktimer = INVALID_TIMER;
-	if( bl->prev == NULL ) return 0; // block_list から抜けているので移動停止する
+	if (bl->prev == NULL) return 0; // Stop moved because it is missing from the block_list
 
 	if(ud->walkpath.path_pos>=ud->walkpath.path_len)
 		return 0;
@@ -155,9 +155,8 @@ static int unit_walktoxy_timer(int tid, unsigned int tick, int id, intptr_t data
 
 	if(map_getcell(bl->m,x+dx,y+dy,CELL_CHKNOPASS))
 		return unit_walktoxy_sub(bl);
-	
-	// バシリカ判定
 
+	//Refresh view for all those we lose sight
 	map_foreachinmovearea(clif_outsight, bl, AREA_SIZE, dx, dy, sd?BL_ALL:BL_PC, bl);
 
 	x += dx;
@@ -346,8 +345,8 @@ int unit_walktoxy( struct block_list *bl, short x, short y, int flag)
 		map_random_dir(bl, &ud->to_x, &ud->to_y);
 
 	if(ud->walktimer != INVALID_TIMER) {
-		// 現在歩いている最中の目的地変更なのでマス目の中心に来た時に
-		// timer関数からunit_walktoxy_subを呼ぶようにする
+		// When you come to the center of the grid because the change of destination while you're walking right now
+		// Call a function from a timer unit_walktoxy_sub
 		ud->state.change_walk_target = 1;
 		return 1;
 	}
@@ -1018,11 +1017,11 @@ int unit_skilluse_id2(struct block_list *src, int target_id, uint16 skill_id, ui
 	struct map_session_data *sd = NULL;
 	struct block_list * target = NULL;
 	unsigned int tick = gettick();
-	int temp = 0;
+	int temp = 0, range;
 
 	nullpo_ret(src);
 	if(status_isdead(src))
-		return 0; // 死んでいないか
+		return 0; //Do not continue source is dead
 
 	sd = BL_CAST(BL_PC, src);
 	ud = unit_bl2ud(src);
@@ -1170,16 +1169,21 @@ int unit_skilluse_id2(struct block_list *src, int target_id, uint16 skill_id, ui
 					return 0;
 		}
 
+	if (src->type == BL_NPC) // NPC-objects can override cast distance
+		range = AREA_SIZE; // Maximum visible distance before NPC goes out of sight
+	else
+		range = skill_get_range2(src, skill_id, skill_lv); // Skill cast distance from database
+
 	//Check range when not using skill on yourself or is a combo-skill during attack
 	//(these are supposed to always have the same range as your attack)
 	if( src->id != target_id && (!temp || ud->attacktimer == INVALID_TIMER) ) {
 		if( skill_get_state(ud->skill_id) == ST_MOVE_ENABLE ) {
-			if( !unit_can_reach_bl(src, target, skill_get_range2(src, skill_id,skill_lv) + 1, 1, NULL, NULL) )
+			if( !unit_can_reach_bl(src, target, range + 1, 1, NULL, NULL) )
 				return 0; // Walk-path check failed.
 		} else if( src->type == BL_MER && skill_id == MA_REMOVETRAP ) {
-			if( !battle_check_range(battle_get_master(src), target, skill_get_range2(src, skill_id, skill_lv) + 1) )
+			if( !battle_check_range(battle_get_master(src), target, range + 1) )
 				return 0; // Aegis calc remove trap based on Master position, ignoring mercenary O.O
-		} else if( !battle_check_range(src, target, skill_get_range2(src, skill_id,skill_lv) + (skill_id == RG_CLOSECONFINE?0:2)) ) {
+		} else if( !battle_check_range(src, target, range + (skill_id == RG_CLOSECONFINE?0:2)) ) {
 			return 0; // Arrow-path check failed.
 		}
 	}
@@ -1188,7 +1192,7 @@ int unit_skilluse_id2(struct block_list *src, int target_id, uint16 skill_id, ui
 		unit_stop_attack(src);
 	else if(ud->attacktimer != INVALID_TIMER) //Elsewise, delay current attack sequence
 		ud->attackabletime = tick + status_get_adelay(src);
-	
+
 	ud->state.skillcastcancel = castcancel;
 
 	//temp: Used to signal force cast now.
@@ -1380,6 +1384,7 @@ int unit_skilluse_pos2( struct block_list *src, short skill_x, short skill_y, ui
 	struct status_change *sc;
 	struct block_list    bl;
 	unsigned int tick = gettick();
+	int range;
 
 	nullpo_ret(src);
 
@@ -1426,12 +1431,17 @@ int unit_skilluse_pos2( struct block_list *src, short skill_x, short skill_y, ui
 	bl.x = skill_x;
 	bl.y = skill_y;
 
+	if (src->type == BL_NPC) // NPC-objects can override cast distance
+		range = AREA_SIZE; // Maximum visible distance before NPC goes out of sight
+	else
+		range = skill_get_range2(src, skill_id, skill_lv); // Skill cast distance from database
+
 	if( skill_get_state(ud->skill_id) == ST_MOVE_ENABLE )
 	{
-		if( !unit_can_reach_bl(src, &bl, skill_get_range2(src, skill_id,skill_lv) + 1, 1, NULL, NULL) )
+		if( !unit_can_reach_bl(src, &bl, range + 1, 1, NULL, NULL) )
 			return 0; //Walk-path check failed.
 	}
-	else if( !battle_check_range(src, &bl, skill_get_range2(src, skill_id,skill_lv) + 1) )
+	else if( !battle_check_range(src, &bl, range + 1) )
 		return 0; //Arrow-path check failed.
 
 	unit_stop_attack(src);

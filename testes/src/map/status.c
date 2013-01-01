@@ -794,6 +794,8 @@ void initChangeTables(void) {
 	StatusIconChangeTable[SC_SPL_DEF] = SI_SPL_DEF;
 	StatusIconChangeTable[SC_MANU_MATK] = SI_MANU_MATK;
 	StatusIconChangeTable[SC_SPL_MATK] = SI_SPL_MATK;
+	StatusIconChangeTable[SC_ATKPOTION] = SI_PLUSATTACKPOWER;
+	StatusIconChangeTable[SC_MATKPOTION] = SI_PLUSMAGICPOWER;
 	//Cash Items
 	StatusIconChangeTable[SC_FOOD_STR_CASH] = SI_FOOD_STR_CASH;
 	StatusIconChangeTable[SC_FOOD_AGI_CASH] = SI_FOOD_AGI_CASH;
@@ -1049,18 +1051,18 @@ void initChangeTables(void) {
 	StatusChangeStateTable[SC_SATURDAYNIGHTFEVER]  |= SCS_NOCAST;
 	StatusChangeStateTable[SC_CURSEDCIRCLE_TARGET] |= SCS_NOCAST;
 	StatusChangeStateTable[SC_SILENCE]             |= SCS_NOCAST;
-	
+
 	//Homon S
 	StatusChangeStateTable[SC_PARALYSIS]               |= SCS_NOMOVE;
-	
+
 }
 
 static void initDummyData(void)
 {
 	memset(&dummy_status, 0, sizeof(dummy_status));
-	dummy_status.hp = 
-	dummy_status.max_hp = 
-	dummy_status.max_sp = 
+	dummy_status.hp =
+	dummy_status.max_hp =
+	dummy_status.max_sp =
 	dummy_status.str =
 	dummy_status.agi =
 	dummy_status.vit =
@@ -1947,7 +1949,7 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int lev
 	if ( battle_config.bRO_Renewal ) {
 	status->def2 += (status->vit/2) + (status->agi/5) + (status->str/5) + (level/6); // Defesa fisíca por atributos - [brAthena - bRO]
 	status->mdef2 += (status->int_ / 2) + (status->vit / 5) + (status->dex / 4) + (level/6); // Defesa mágica por atributos - [brAthena - bRO]
-	}	else {
+	} else {
 	status->def2 += (int)(((float)level + status->vit)/2 + ((float)status->agi/5)); //base level + (every 2 vit = +1 def) + (every 5 agi = +1 def)
 	status->mdef2 += (int)(status->int_ + ((float)level/4) + ((float)status->dex/5) + ((float)status->vit/5)); //(every 4 base level = +1 mdef) + (every 1 int = +1 mdef) + (every 5 dex = +1 mdef) + (every 5 vit = +1 mdef)
   }
@@ -2015,7 +2017,7 @@ int status_calc_mob_(struct mob_data* md, bool first)
 	//Check if we need custom base-status
 	if (battle_config.mobs_level_up && md->level > md->db->lv)
 		flag|=1;
-	
+
 	if (md->special_state.size)
 		flag|=2;
 
