@@ -87,6 +87,7 @@ alberta,26,229,0	script	Funcionária Kafra#coe	83,{
 			mes "nos Serviços Kafra~";
 			close;
 		case 2:
+			mes "[Funcionária Kafra]";
 			mes "Para agradecer os nossos valiosos";
 			mes "clientes, Corporação Kafra";
 			mes "preparou um evento especial";
@@ -139,31 +140,30 @@ alberta,26,229,0	script	Funcionária Kafra#coe	83,{
 		mes "esperando por você aqui.~";
 		close;
 	case 2:
-		break;
+    mes "[Funcionária Kafra]";
+    mes "Para agradecer os nossos valiosos";
+    mes "clientes, Corporação Kafra";
+    mes "preparou um evento especial";
+    mes "onde a funcionária Kafra irá montar";
+    mes "Orelhas de Coelho para os aventureiros";
+    mes "que trouxerem os itens necessários.";
+    next;
+    mes "[Funcionária Kafra]";
+    mes "Para este tipo de item ";
+    mes "muito especial, você deve";
+    mes "trazer 100 Plumas,";
+    mes "1 Trevo de Quatro Folhas,";
+    mes "1 Orelha de Gato e";
+    mes "1 Pérola.";
+    next;
+    mes "[Funcionária Kafra]";
+    mes "Quando estiver pronto,";
+    mes "volte e traga";
+    mes "os itens para mim.";
+    mes "(Patrocinado pela";
+    mes "Corporação de Mercadores de Alberta).";
+    close;
 	case 3:
 		close;
 	}
-L_Info:
-	mes "Para agradecer os nossos valiosos";
-	mes "clientes, Corporação Kafra";
-	mes "preparou um evento especial";
-	mes "onde a funcionária Kafra irá montar";
-	mes "Orelhas de Coelho para os aventureiros";
-	mes "que trouxerem os itens necessários.";
-	next;
-	mes "[Funcionária Kafra]";
-	mes "Para este tipo de item ";
-	mes "muito especial, você deve";
-	mes "trazer 100 Plumas,";
-	mes "1 Trevo de Quatro Folhas,";
-	mes "1 Orelha de Gato e";
-	mes "1 Pérola.";
-	next;
-	mes "[Funcionária Kafra]";
-	mes "Quando estiver pronto,";
-	mes "volte e traga";
-	mes "os itens para mim.";
-	mes "(Patrocinado pela";
-	mes "Corporação de Mercadores de Alberta).";
-	close;
 }

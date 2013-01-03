@@ -169,11 +169,11 @@ ordeal_3-4,172,172,0	warp	ord34-7	1,1,ordeal_3-4,284,284
 ordeal_3-4,180,154,0	warp	ord34-8	1,1,ordeal_3-4,284,164
 
 // Mais Portais do PvP Nightmare
-pvp_n_8-4,33,122,0	warp	Link#pt_link_1-11	0,2,pvp_n_8-4,0,0
-pvp_n_8-4,62,84,0	warp	Link#pt_link_1-12	1,1,pvp_n_8-4,0,0
-pvp_n_8-4,49,71,0	warp	Link#pt_link_1-21	1,1,pvp_n_8-4,0,0
-pvp_n_8-4,56,166,0	warp	Link#pt_link_1-22	1,1,pvp_n_8-4,0,0
-pvp_n_8-4,99,180,0	warp	Link#pt_link_1-31	2,1,pvp_n_8-4,0,0
-pvp_n_8-4,137,84,0	warp	Link#pt_link_1-32	1,1,pvp_n_8-4,0,0
-pvp_n_8-4,150,71,0	warp	Link#pt_link_1-41	1,1,pvp_n_8-4,0,0
-pvp_n_8-4,144,166,0	warp	Link#pt_link_1-42	1,1,pvp_n_8-4,0,0
+pvp_n_8-4,33,122,0	warp	Portal#pt_1-11	0,2,pvp_n_8-4,0,0
+pvp_n_8-4,62,84,0	warp	Portal#pt_1-12	1,1,pvp_n_8-4,0,0
+pvp_n_8-4,49,71,0	warp	Portal#pt_1-21	1,1,pvp_n_8-4,0,0
+pvp_n_8-4,56,166,0	warp	Portal#pt_1-22	1,1,pvp_n_8-4,0,0
+pvp_n_8-4,99,180,0	warp	Portal#pt_1-31	2,1,pvp_n_8-4,0,0
+pvp_n_8-4,137,84,0	warp	Portal#pt_1-32	1,1,pvp_n_8-4,0,0
+pvp_n_8-4,150,71,0	warp	Portal#pt_1-41	1,1,pvp_n_8-4,0,0
+pvp_n_8-4,144,166,0	warp	Portal#pt_1-42	1,1,pvp_n_8-4,0,0

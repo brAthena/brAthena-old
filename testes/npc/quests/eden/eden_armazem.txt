@@ -18,12 +18,12 @@
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
-//   | 1.1 Tradução PT-BR     [Holy]                          |
+//   | 1.1 Tradução PT-BR [Holy]                              |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
--	script	Armazém de Bens#00::pggc	-1,{
+moc_para01,173,120,0	script	Armazém de Bens#01	111,{
 	mes "Esse é um Gabinete que armazena de bens.";
 	mes "A mensagem está escrita em um pedaço de papel.";
 	next;
@@ -45,7 +45,7 @@
 		mes "Custo : 500 Zeny ";
 		mes "Você deseja prosseguir?";
 		next;
-		switch(select("Usar o Gabinet.:Cancelar.")) {
+		switch(select("Usar o Gabinete.:Cancelar.")) {
 			case 1:
 				if (Zeny > 499) {
 					if (getskilllv("NV_BASIC") < 6) {
@@ -70,5 +70,4 @@
 	close;
 }
 
-moc_para01,173,120,0	duplicate(pggc)	Armazém de Bens#01	111
-moc_para01,170,120,0	duplicate(pggc)	Armazém de Bens#02	111
+moc_para01,170,120,0	duplicate(Armazém de Bens#01)	Armazém de Bens#02	111

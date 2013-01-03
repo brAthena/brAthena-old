@@ -43,8 +43,8 @@ function	script	F_Kafra	{
 		// Niflheim mensagem específica			
 		case 1:
 			mes "[Funcionária Kafra]";
-			mes "^666666B-Be-BeeeemmmV-vindooo";
-			mes "para a c-cooorpoor-r-raaçãaaoo";
+			mes "^666666B-Be-Beeeemmm V-vindooo";
+			mes "a c-cooorpoor-r-raaçãaaoo";
 			mes "K-k-kafraaaa...^000000";
 			break;
 		// Castelo - Mensagem Kafra
@@ -315,7 +315,7 @@ function	script	F_KafInfo	{
 	// Descomente a próxima linha para remover a Proteção Kafra
 	//	set .@block, 1;
 		setarray .@m$, "Checar reserva de pontos especiais.","Senha do Armazém","Localização das Funcionárias","Cancelar";
-		if (getarg(0) == 2) deletearray .@m$[1],2; // Rune Knight
+		if (getarg(0) == 2) deletearray .@m$[1],2; // Cavaleiro Rúnico
 		else if (.@block) deletearray .@m$[1],1;
 	while (1) {
 		set .@j, select(implode(.@m$,":")) - 1;
@@ -543,7 +543,7 @@ function	script	F_KafSet	{
 		setarray @wrpD$[0], "Geffen", "Payon", "Morroc", "Al De Baran";
 		setarray @wrpP[0], 1200, 1200, 1200, 1800;
 	} else if (strnpcinfo(4) == "morocc") {
-		setarray @wrpD$[0], "Prontera", "Payon", "Alberta", "Comodo", "Comodo Pharos Beacon";
+		setarray @wrpD$[0], "Prontera", "Payon", "Alberta", "Comodo", "Farol de Comodo";
 		setarray @wrpP[0], 1200, 1200, 1800, 1800, 1200;
 		setarray @viewpX[0], 156, 163, 28, 292;
 		setarray @viewpY[0], 97, 260, 167, 211;

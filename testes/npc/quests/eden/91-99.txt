@@ -28,7 +28,7 @@ moc_para01,48,177,3	script	Missão [91 - 99]	857,{
 	if (countitem(6219) < 1) {
 		mes "- Apenas membros do -";
 		mes "- Grupo Eden podem -";
-		mes "- ler este boletin de bordo. -";
+		mes "- ler este boletim de bordo. -";
 		close;
 	}
 	if (BaseLevel < 91) {

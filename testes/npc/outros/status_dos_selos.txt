@@ -27,10 +27,10 @@ prontera,113,294,3	script	Selos	837,{
 	mes "======== Condição dos Selos ========";
 	setarray .@n$[1], "Sleipnir","Megingjard","Brisingamen","Mjolnir";
 	for(set .@i,1; .@i<5; set .@i,.@i+1) {
-		if (getd("$god"+.@i) == 0) mes .@n$[.@i]+" Seal: Fechado";
-		else if (getd("$god"+.@i) < 50) mes .@n$[.@i]+" Seal: Disponível";
-		else if (getd("$god"+.@i) < 100) mes .@n$[.@i]+" Seal: Apareceu";
-		else mes .@n$[.@i]+" Seal: Liberado";
+		if (getd("$god"+.@i) == 0) mes .@n$[.@i]+" Selo: Fechado";
+		else if (getd("$god"+.@i) < 50) mes .@n$[.@i]+" Selo: Disponível";
+		else if (getd("$god"+.@i) < 100) mes .@n$[.@i]+" Selo: Apareceu";
+		else mes .@n$[.@i]+" Selo: Liberado";
 	}
 	mes " ";
 	mes "======= Seu Status dos Selos ========";

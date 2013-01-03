@@ -14,7 +14,7 @@
 //   |--------------------------------------------------------|
 //   | Versões eA/rA/brA: ??/1.4/1.0                          |
 //   |--------------------------------------------------------|
-//   | Descrição: Vende Lança, espada e Arcos, mercenários.   |
+//   | Descrição: Vende Lança, Espada e Arcos, mercenários.   |
 //   | Vende itens de mercenários e relacionados.             |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-prontera,41,337,5	script	Mercenary Manager#main	105,{
+izlude,47,169,5	script	Mercenary Manager#main	105,{
 	setarray .@name$, 	"Spear", 			"Sword", 			"Bow";
 	setarray .@faith$, 	"SPEAR_MERC_GUILD",	"SWORD_MERC_GUILD",	"ARCH_MERC_GUILD";
 	setarray .@item, 	12182,				12172,				12162;

@@ -1,18 +1,27 @@
-//===== rAthena Script ======================================= 
-//= Novice Skills Quests
-//===== By: ================================================== 
-//= kobra_k88
-//===== Current Version: ===================================== 
-//= 1.7
-//===== Compatible With: ===================================== 
-//= rAthena SVN
-//===== Description: ========================================= 
-//= Quest for skills: First Aid, Trick Dead
-//===== Additional Comments: ================================= 
-//= 1.5 Rescripted to Aegis 10.3 stadards. [L0ne_W0lf]
-//= 1.6 Corrected NPC names to fall within proper restrictions. [L0ne_W0lf]
-//= 1.7 Updated to latest available official file. [Masao]
-//============================================================ 
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: Quest Habilidades de Platina: Aprendiz |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.4a/1.7/1.0                        |
+//   |--------------------------------------------------------|
+//   | Descrição: Quests das habilidades Primeiros Socorros e |
+//   | Fingir de Morto.                                       |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Cabeçalho Criado [Holy]                            |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
 
 prt_in,234,133,4	script	Nami	66,{
 	if ((Class == Job_Novice) && (JobLevel > 3 || BaseLevel > 11) && (skill_nov < 3)) {
@@ -467,14 +476,3 @@ prt_castle,175,146,4	script	Nursing Instructor	50,{
 	mes "GET OUT OF HERE! ! ! ! ! !";
 	close;
 }
-
-//============================================================ 
-// Old changelog
-//============================================================ 
-//= Fully working
-//= 1.2 Added Baby Class Support [Lupus]
-//= 1.3 Fixed a Zeny exploit, made more variables clear
-//= on finishing quests. [Lupus]
-//= 1.4 Fixed exploits [Lupus]
-//= 1.4a Fixed some typos [IVBela]
-//============================================================ 

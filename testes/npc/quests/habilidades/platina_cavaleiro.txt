@@ -8,7 +8,7 @@
 //   |                                                        |
 //   |                    brAthena Script                     |
 //   |--------------------------------------------------------|
-//   | Nome do Script: Quest das Habilidades de Cavaleiro     |
+//   | Nome do Script: Quest Habilidade de Platina: Cavaleiro |
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
@@ -19,6 +19,7 @@
 //   | Changelog:                                             |
 //   | 1.0 Cabeçalho Criado [Holy]                            |
 //   | 1.1 Tradução PT-BR   [brn0]                            |
+//   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 

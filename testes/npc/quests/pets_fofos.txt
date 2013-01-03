@@ -41,9 +41,7 @@
 		mes "Você não pode mais realizar trocas.";
 		close;
 	}
-	
 	callfunc "treinador_pet_fofos",.@com_id,.@com_quant,.@caca_id,.@caca_quant,.@mob_id,TPF_um,.@domar,.@caca_id2,.@caca_quant2;
-
 }
 
 -	script	TPF2	750,{
@@ -65,9 +63,7 @@
 		mes "Você não pode mais realizar trocas.";
 		close;
 	}
-	
 	callfunc "treinador_pet_fofos",.@com_id,.@com_quant,.@caca_id,.@caca_quant,.@mob_id,TPF_dois,.@domar,.@caca_id2,.@caca_quant2;
-
 }
 
 -	script	TPF3	750,{
@@ -90,9 +86,7 @@
 		mes "Você não pode mais realizar trocas.";
 		close;
 	}
-	
 	callfunc "treinador_pet_fofos",.@com_id,.@com_quant,.@caca_id,.@caca_quant,.@mob_id,TPF_tres,.@domar,.@caca_id2,.@caca_quant2;
-
 }
 
 function	script	treinador_pet_fofos	{
@@ -197,15 +191,12 @@ function	script	treinador_pet_fofos	{
 prontera,67,212,5	duplicate(TPF1)	Treinador de Pets Fofos#1	750
 prontera,242,92,3	duplicate(TPF2)	Treinador de Pets Fofos#2	750
 prontera,179,92,3	duplicate(TPF3)	Treinador de Pets Fofos#3	750
-
 geffen,180,125,5	duplicate(TPF1)	Treinador de Pets Fofos#4	750
 geffen,152,66,3	duplicate(TPF2)	Treinador de Pets Fofos#5	750
 geffen,197,95,3	duplicate(TPF3)	Treinador de Pets Fofos#6	750
-
 morocc,115,83,5	duplicate(TPF1)	Treinador de Pets Fofos#7	750
 morocc,218,130,3	duplicate(TPF2)	Treinador de Pets Fofos#8	750
 morocc,236,225,3	duplicate(TPF3)	Treinador de Pets Fofos#9	750
-
 payon,109,278,5	duplicate(TPF1)	Treinador de Pets Fofos#10	750
 payon,157,124,3	duplicate(TPF2)	Treinador de Pets Fofos#11	750
 payon,85,237,3	duplicate(TPF3)	Treinador de Pets Fofos#12	750
