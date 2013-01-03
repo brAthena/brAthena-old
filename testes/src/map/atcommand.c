@@ -3175,7 +3175,7 @@ ACMD_FUNC(questskill)
 
 		return -1;
 	}
-	if (skill_id < 0 && skill_id >= MAX_SKILL_DB) {
+	if (skill_id >= MAX_SKILL_DB) {
 		clif_displaymessage(fd, msg_txt(198)); // This skill number doesn't exist.
 		return -1;
 	}
@@ -3208,7 +3208,7 @@ ACMD_FUNC(lostskill)
 
 		// attempt to find the text corresponding to this command
 		text = atcommand_help_string( command );
-		
+
 		// send the error message as always
 		clif_displaymessage(fd, msg_txt(1027)); // Please enter a quest skill number.
 
@@ -3219,7 +3219,7 @@ ACMD_FUNC(lostskill)
 
 		return -1;
 	}
-	if (skill_id < 0 && skill_id >= MAX_SKILL) {
+	if (skill_id >= MAX_SKILL) {
 		clif_displaymessage(fd, msg_txt(198)); // This skill number doesn't exist.
 		return -1;
 	}
@@ -3547,7 +3547,7 @@ ACMD_FUNC(guildrecall)
 		if (sd->status.account_id != pl_sd->status.account_id && pl_sd->status.guild_id == g->guild_id)
 		{
 			if (pc_get_group_level(pl_sd) > pc_get_group_level(sd) || (pl_sd->bl.m == sd->bl.m && pl_sd->bl.x == sd->bl.x && pl_sd->bl.y == sd->bl.y))
-				continue; //Skip GMs greater than you.
+				continue; // Skip GMs greater than you...             or chars already on the cell
 			if (pl_sd->bl.m >= 0 && map[pl_sd->bl.m].flag.nowarp && !pc_has_permission(sd, PC_PERM_WARP_ANYWHERE))
 				count++;
 			else
@@ -3606,7 +3606,7 @@ ACMD_FUNC(partyrecall)
 		if (sd->status.account_id != pl_sd->status.account_id && pl_sd->status.party_id == p->party.party_id)
 		{
 			if (pc_get_group_level(pl_sd) > pc_get_group_level(sd) || (pl_sd->bl.m == sd->bl.m && pl_sd->bl.x == sd->bl.x && pl_sd->bl.y == sd->bl.y))
-				continue; //Skip GMs greater than you.
+				continue; // Skip GMs greater than you...             or chars already on the cell
 			if (pl_sd->bl.m >= 0 && map[pl_sd->bl.m].flag.nowarp && !pc_has_permission(sd, PC_PERM_WARP_ANYWHERE))
 				count++;
 			else
@@ -5406,13 +5406,13 @@ ACMD_FUNC(useskill)
 	char target[100];
 	nullpo_retr(-1, sd);
 
-	if(!message || !*message || sscanf(message, "%hui %hui %23[^\n]", &skill_id, &skill_lv, target) != 3) {
+	if(!message || !*message || sscanf(message, "%hu %hu %23[^\n]", &skill_id, &skill_lv, target) != 3) {
 		clif_displaymessage(fd, msg_txt(1165)); // Usage: @useskill <skill ID> <skill level> <target>
 		return -1;
 	}
 
-	if ( (pl_sd = map_nick2sd(target)) == NULL )
-	{
+	if(!strcmp(target,"self")) pl_sd = sd; //quick keyword
+	else if ( (pl_sd = map_nick2sd(target)) == NULL ){
 		clif_displaymessage(fd, msg_txt(3)); // Character not found.
 		return -1;
 	}
@@ -5450,7 +5450,7 @@ ACMD_FUNC(displayskill)
 	uint16 skill_lv = 1;
 	nullpo_retr(-1, sd);
 
-	if (!message || !*message || sscanf(message, "%hui %hui", &skill_id, &skill_lv) < 1)
+	if (!message || !*message || sscanf(message, "%hu %hu", &skill_id, &skill_lv) < 1)
 	{
 		clif_displaymessage(fd, msg_txt(1166)); // Usage: @displayskill <skill ID> {<skill level>}
 		return -1;
@@ -5476,7 +5476,7 @@ ACMD_FUNC(skilltree)
 	struct skill_tree_entry *ent;
 	nullpo_retr(-1, sd);
 
-	if(!message || !*message || sscanf(message, "%hui %23[^\r\n]", &skill_id, target) != 2) {
+	if(!message || !*message || sscanf(message, "%hu %23[^\r\n]", &skill_id, target) != 2) {
 		clif_displaymessage(fd, msg_txt(1167)); // Usage: @skilltree <skill ID> <target>
 		return -1;
 	}
@@ -6129,6 +6129,7 @@ ACMD_FUNC(mobsearch)
 }
 
 /*==========================================
+ * @cleanmap - cleans items on the ground
  * @cleanarea - cleans items on the ground within an specified area
  *------------------------------------------*/
 static int atcommand_cleanfloor_sub(struct block_list *bl, va_list ap)

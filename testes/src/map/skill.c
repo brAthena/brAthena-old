@@ -524,7 +524,7 @@ int skillnotok (uint16 skill_id, struct map_session_data *sd)
 	// allowing a skill to be cast. This is to prevent no-delay ACT files from spamming skills such as
 	// AC_DOUBLE which do not have a skill delay and are not regarded in terms of attack motion.
 	if( !sd->state.autocast && sd->skillitem != skill_id && sd->canskill_tick &&
-		DIFF_TICK(gettick(), sd->canskill_tick) < (sd->battle_status.amotion * (100 + battle_config.skill_amotion_leniency) / 100) )
+		DIFF_TICK(gettick(), sd->canskill_tick) < (sd->battle_status.amotion * (battle_config.skill_amotion_leniency) / 100) )
 	{// attempted to cast a skill before the attack motion has finished
 		return 1;
 	}
@@ -724,7 +724,6 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, uint
 	nullpo_ret(src);
 	nullpo_ret(bl);
 
-	if(skill_id < 0) return 0;
 	if(skill_id > 0 && skill_lv <= 0) return 0;	// don't forget auto attacks! - celest
 
 	if( dmg_lv < ATK_BLOCK ) // Don't apply effect if miss.
@@ -1748,7 +1747,6 @@ int skill_counter_additional_effect (struct block_list* src, struct block_list *
 	nullpo_ret(src);
 	nullpo_ret(bl);
 
-	if(skill_id < 0) return 0;
 	if(skill_id > 0 && skill_lv <= 0) return 0;	// don't forget auto attacks! - celest
 
 	sd = BL_CAST(BL_PC, src);
