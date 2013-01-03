@@ -6,11 +6,10 @@
  |                 | |_) | | / ___ \ |_| | | |  __/ | | | (_| |            |
  |                 |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|            |
  |                                                                         |
- |                       brAthena © 2012 - Database                        |
+ |                       brAthena © 2013 - Database                        |
  |                   Convert tables of MyISAM to InnoDB.                   |
  \_________________________________________________________________________/
 */
-
 
 ALTER TABLE `auction` ENGINE = InnoDB;
 ALTER TABLE `cart_inventory` ENGINE = InnoDB;

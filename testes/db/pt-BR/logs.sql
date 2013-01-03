@@ -6,11 +6,10 @@
  |                 | |_) | | / ___ \ |_| | | |  __/ | | | (_| |            |
  |                 |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|            |
  |                                                                         |
- |                       brAthena © 2012 - Banco de Dados                  |
+ |                       brAthena © 2013 - Banco de Dados                  |
  |             Contém as tabelas de logs para ações no emulador            |
  \_________________________________________________________________________/
 */
-
 
 # PickLog tipos (M)onstros - Itens Derrubados, Jogador - Itens Derrubados (P) / Obtidos, Monstros Ladrões Itens (L) - Dropados / Obtidos,
 # Jogadores (N)egociações Recebidos / Entregues, (V) Jogadores Venda / Compra, (S) Loja de NPCs Venda / Compra, (N)PC Compra / Venda,
@@ -35,7 +34,7 @@ CREATE TABLE `picklog` (
   `map` varchar(11) NOT NULL default '',
   PRIMARY KEY  (`id`),
   INDEX (`type`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM AUTO_INCREMENT=1;
 
 #ZenyLog tipos (M)onstros,(T)roca,(V) Venda / Compra,(S)hop Venda / Compra,(N)PC Quantidade,(A)dministradores,(E)Mail,(B)Comércio
 #Database: ragnarok
@@ -64,7 +63,7 @@ CREATE TABLE `branchlog` (
   PRIMARY KEY  (`branch_id`),
   INDEX (`account_id`),
   INDEX (`char_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM AUTO_INCREMENT=1;
 
 #Database: ragnarok
 #Table: mvplog
@@ -92,7 +91,7 @@ CREATE TABLE `atcommandlog` (
   PRIMARY KEY  (`atcommand_id`),
   INDEX (`account_id`),
   INDEX (`char_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM AUTO_INCREMENT=1;
 
 #Database: ragnarok
 #Table: npclog
@@ -107,7 +106,7 @@ CREATE TABLE `npclog` (
   PRIMARY KEY  (`npc_id`),
   INDEX (`account_id`),
   INDEX (`char_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM AUTO_INCREMENT=1;
 
 #ChatLog tipos (O) Global,(W)hisper / PM,Grupo (P),(G) Clã,(M) Chat Público
 #Database: ragnarok
@@ -127,7 +126,7 @@ CREATE TABLE `chatlog` (
   PRIMARY KEY  (`id`),
   INDEX (`src_accountid`),
   INDEX (`src_charid`)
-) ENGINE=MyISAM AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM AUTO_INCREMENT=1;
 
 #Database: ragnarok
 #Table: loginlog
@@ -138,4 +137,4 @@ CREATE TABLE `loginlog` (
   `rcode` tinyint(4) NOT NULL default '0',
   `log` varchar(255) NOT NULL default '',
   INDEX (`ip`)
-) ENGINE=MyISAM ;
+) ENGINE=MyISAM;
