@@ -588,6 +588,7 @@ struct map_data {
 	// Instance Variables
 	int instance_id;
 	int instance_src_map;
+	int set_castle; // [Shiraz]
 };
 
 /// Stores information about a remote map (for multi-mapserver setups).

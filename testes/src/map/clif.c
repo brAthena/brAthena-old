@@ -9365,6 +9365,28 @@ void clif_parse_LoadEndAck(int fd,struct map_session_data *sd)
 			sprintf(output, "[ Kill Steal Protection Disable. KS is allowed in this map ]");
 			clif_broadcast(&sd->bl, output, strlen(output) + 1, 0x10, SELF);
 		}
+		
+		if(map[sd->bl.m].flag.gvg_castle && map[sd->bl.m].set_castle && map[sd->bl.m].set_castle != 1)
+		{ /* mapflag set_castle [Shiraz] */
+			int warp_sd = 0;
+			
+			if(map[sd->bl.m].set_castle == 2 && !(sd->status.class_ >= 4023 && sd->status.class_ <= 4045)){
+				clif_displaymessage(sd->fd, "Castelo habilitado para classes bebês.");
+				warp_sd = 1;
+			} else if(map[sd->bl.m].set_castle == 3 && !(sd->status.class_ >= 7 && sd->status.class_ <= 20)){
+				clif_displaymessage(sd->fd, "Castelo habilitado para classes 2-1 e 2-2.");
+				warp_sd = 1;
+			} else if(map[sd->bl.m].set_castle == 4 && !(sd->status.class_ >= 4008 && sd->status.class_ <= 4021)){
+				clif_displaymessage(sd->fd, "Castelo habilitado para transclasses 2-1 e 2-2.");
+				warp_sd = 1;
+			} else if(map[sd->bl.m].set_castle == 5 && !(sd->status.class_ >= 4060 && sd->status.class_ <= 4079)){
+				clif_displaymessage(sd->fd, "Castelo habilitado para classes 3.");
+				warp_sd = 1;
+			}
+			
+			if(warp_sd)
+				pc_setpos(sd, sd->status.save_point.map, sd->status.save_point.x, sd->status.save_point.y, CLR_OUTSIGHT);
+		}
 
 		map_iwall_get(sd); // Updates Walls Info on this Map to Client
 		sd->state.changemap = false;

@@ -108,7 +108,6 @@ OnRecvCastleA05:
 
 // Geffen
 // =================================
-
 gef_fild13,148,51,5	script	Arsulf#1::BandeirasG1	722,{
 
   callfunc "Bandeiras#1","gefg_cas01",197,36;
@@ -156,7 +155,6 @@ OnRecvCastleG05:
 
 // Payon
 // =================================
-
 pay_gld,125,236,4	script	Palácio do Sol#1::BandeirasPA1	722,{
 
   callfunc "Bandeiras#1","payg_cas01",54,144;
@@ -204,7 +202,6 @@ OnRecvCastlePy05:
 
 // Prontera
 // =================================
-
 prt_gld,131,60,6	script	Kriemhild#1::BandeirasPR1	722,{
 
   callfunc "Bandeiras#1","prtg_cas01",96,173;
@@ -249,6 +246,7 @@ OnRecvCastlePt05:
 	end;
 }
 
+// Duplicatas
 alde_gld,61,79,6	duplicate(BandeirasA1)	Sirius#2	722
 alde_gld,45,87,8	duplicate(BandeirasA1)	Sirius#3	722
 alde_gld,51,87,8	duplicate(BandeirasA1)	Sirius#4	722
@@ -306,7 +304,6 @@ prt_gld,197,236,2	duplicate(BandeirasPR5)	Gondul#4	722
 
 // Aldebaran
 // =================================
-
 aldeg_cas01,30,248,4	script	Sirius#3::InsideFlagsA1	722,{
 	end;
 
@@ -349,7 +346,6 @@ OnRecvCastleA05:
 
 // Geffen
 // =================================
-
 gefg_cas01,28,157,4	script	Arsulf#5::InsideFlagsG1	722,{
 	end;
 
@@ -392,7 +388,6 @@ OnRecvCastleG05:
 
 // Payon
 // =================================
-
 payg_cas01,238,67,4	script	Palácio do Sol#7::InsideFlagsPA1	722,{
 	end;
 
@@ -435,7 +430,6 @@ OnRecvCastlePy05:
 
 // Prontera
 // =================================
-
 prtg_cas01,58,56,4	script	Kriemhild#9::InsideFlagsPR1	722,{
 	end;
 
@@ -476,6 +470,7 @@ OnRecvCastlePt05:
 	end;
 }
 
+// Duplicatas
 aldeg_cas01,30,248,4	duplicate(InsideFlagsA1)	Sirius#6	722
 aldeg_cas01,37,248,4	duplicate(InsideFlagsA1)	Sirius#7	722
 aldeg_cas01,37,246,4	duplicate(InsideFlagsA1)	Sirius#8	722
