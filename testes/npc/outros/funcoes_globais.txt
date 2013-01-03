@@ -64,6 +64,14 @@
 	end();
 }
 
+// Funções Itens brAthena
+
+-	script	Itens	-1,{
+OnPCDieEvent:
+sleep2(100);
+if ( countitem(6413) > 0 ) { sc_start SC_LIFEINSURANCE,1800000,0; delitem 6413,1; } end;
+}
+
 //////////////////////////////////////////////////////////////////////////////////
 // Function that clears job quest variables
 //////////////////////////////////////////////////////////////////////////////////

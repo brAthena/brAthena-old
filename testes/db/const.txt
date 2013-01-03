@@ -746,6 +746,16 @@ IG_S_Grade_Coin_Bag	59
 IG_A_Grade_Coin_Bag	60
 IG_Advanced_Weapons_Box	61
 IG_Splendid_Box	62
+IG_Item_bRO1	70
+IG_Item_bRO2	71
+IG_Item_bRO3	72
+IG_Item_bRO4	73
+IG_Item_bRO5	74
+IG_Item_bRO6	75
+IG_Item_bRO7	76
+IG_Item_bRO8	77
+IG_Item_bRO9	78
+IG_Item_bRO10	79
 
 SC_ALL	-1
 SC_STONE	0
