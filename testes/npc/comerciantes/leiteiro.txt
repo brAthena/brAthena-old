@@ -32,7 +32,7 @@ prontera,73,140,0	script	Vendedor de Leite	86,{
 		close;
 	}
 	mes "[Vendedor de Leite]";
-	mes "Hey, hey...";
+	mes "Ei, ei...";
 	mes "Se você me trouxer 1 Garrafa Vazia e 15 Zenys, poderei trocá-los por 1 Leite.";
 	mes "Isso parece ser bom para você?";
 	next;

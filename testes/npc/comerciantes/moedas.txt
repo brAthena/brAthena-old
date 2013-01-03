@@ -24,7 +24,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
--	script	::merchant_13_2	-1,{
+man_in01,286,16,1	script	Mercador de Manuk	439,{
 	set .@n$, "["+strnpcinfo(1)+"]";
 	mes .@n$;
 	if (isequipped(2782) && ep13_2_rhea == 100) {
@@ -41,8 +41,7 @@
 			set .@Livro,11019; // Itens de Esplendor à Venda
 			set .@Moeda,6080;  // Moeda Manuk
 			set .@i, select("Ver a descrição dos itens:Oportunidade de Manuk:Coragem de Manuk:Fé de Manuk:Cancelar");
-		}
-		else {
+		} else {
 			setarray .@Items[2],12344,12345,12349;
 			set .@Livro,11018; // Itens de Esplendor à Venda
 			set .@Moeda,6081;  // Moeda Esplendor
@@ -54,8 +53,7 @@
 			close2;
 			ReadBook .@Livro,1;
 			end;
-		}
-		else if (.@i < 5) {
+		} else if (.@i < 5) {
 			mes "Eu posso lhe vender 3 "+getitemname(.@Items[.@i])+" por ^3131FF1 moedas^000000.";
 			next;
 			switch(select("Comprar:Não comprar")) {
@@ -66,8 +64,7 @@
 					delitem .@Moeda,1; 
 					getitem .@Items[.@i],3;
 					close;
-				}
-				else {
+				} else {
 					mes .@n$;
 					mes "Você não tem moedas o suficente.";
 					close;
@@ -79,8 +76,7 @@
 		}
 		mes "Volte caso mude de ideia.";
 		close;
-	}
-	else {
+	} else {
 		if (strnpcinfo(1) == "Mercador de Manuk") {
 			mes "Rtt od d";
 			mes "Qwo hd is d irr";
@@ -92,5 +88,4 @@
 		close;
 	}
 }
-man_in01,286,16,1	duplicate(merchant_13_2)	Mercador de Manuk	454
-spl_in01,110,326,5	duplicate(merchant_13_2)	Mercador de Esplendido	439
+spl_in01,110,326,5	duplicate(Mercador de Manuk)	Mercador de Esplendido	439
