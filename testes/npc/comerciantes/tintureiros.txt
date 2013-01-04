@@ -12,12 +12,13 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 2.5/1.2/1.1/1.0                     |
+//   | Versões eA/rA/brA: 1.4/1.4/1.1                         |
 //   |--------------------------------------------------------|
-//   | Descrição: Criador de Tintas.                          |
+//   | Descrição: Criador de Tinturas.                        |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
+//   | 1.1 Tradução PT-BR [Holy]                              |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -31,58 +32,58 @@ morocc_in,146,99,3	script	Java Dullihan	58,{
 		mes "- após guardar alguns de seus itens no Armazém Kafra. -";
 		close;
 	}
-	mes "[Dye Maker Java Dullihan]";
+	mes "[Criador de Tinturas Java Dullihan]";
 	mes "Uau...";
-	mes "É um ótimo dia. Days like this are perfect to make dyes.";
+	mes "É um ótimo dia. Um dia perfeito para se criar Tinturas.";
 	next;
 	switch(select("Conversar:Criar Tinturas:Cancelar")) {
 	case 1:
-		mes "[Dye Maker Java Dullihan]";
-		mes "Erm, I don't really have much to say to you. But, if you would like me to tell you about my life, I can do that. It's a little long and boring, but would you like to listen?";
+		mes "[Criador de Tinturas Java Dullihan]";
+		mes "Erm, realmente não tenho muito a dizer para você. Mas, se você quiser que eu conte sobre minha vida, poderei fazer isso. É um pouco longa e chata, mas você gostaria de ouvir?";
 		next;
-		if (select("Listen:Don't Listen") == 1) {
-			mes "[Dye Maker Java Dullihan]";
-			mes "As long as I can remember, my father has been making dyes. He used to spend countless hours making dyes of different colors. Even when my mother passed away, he never stopped.";
+		if (select("Ouvir:Não ouvir") == 1) {
+			mes "[Criador de Tinturas Java Dullihan]";
+			mes "Pelo que lembro, meu pai foi quem começou entre nós a fazer Tinturas.. Ele costumava passar inúmeras horas fazendo tinturas de cores diferentes. Até quando minha mãe faleceu ele não parou de fazê-las.";
 			next;
-			mes "[Dye Maker Java Dullihan]";
-			mes "At one point in my life, I became rebellious and ran away from home. I didn't want to be stuck to the family business and wanted to try other things.";
+			mes "[Criador de Tinturas Java Dullihan]";
+			mes "Em um momento na minha vida, me tornei rebelde e fugi de casa.Eu não queria ser preso e prejudicar os negócios da família, mas também queria experimentar outras coisas.";
 			next;
-			mes "[Dye Maker Java Dullihan]";
-			mes "Anyways...";
-			mes "I eventually wound up back home to carry on the family tradition, making dyes for 15 years already. I guess it was really in my blood.";
+			mes "[Criador de Tinturas Java Dullihan]";
+			mes "De qualquer forma...";
+			mes "Eventualmente já fazem 15 anos que acabei voltando para minha casa 15 para continuar a tradição de família. Acho que isso realmente está no sangue.";
 			next;
-			mes "[Dye Maker Java Dullihan]";
-			mes "Something I realized these days is that now I can understand my father. Why my father devoted everything to making dyes...";
+			mes "[Criador de Tinturas Java Dullihan]";
+			mes "Percebi algo esses dias, agora eu posso entender meu pai. E o por quê do meu pai ter dedicado toda sua vida a fazer tinturas...";
 			next;
-			mes "[Dye Maker Java Dullihan]";
-			mes "In the middle of all that tedious and hard work, he probably felt the magic of those colors passing on so many dreams for other people.";
+			mes "[Criador de Tinturas Java Dullihan]";
+			mes "No meio de todo desse difícil e tedioso trabalho, provavelmente ele sentiu a magia dessas cores que são passadas através dos sonhos para as pessoas.";
 			next;
-			mes "[Dye Maker Java Dullihan]";
-			mes "It was probably for those dreams that he tried so hard to make dyes for his customers...";
+			mes "[Criador de Tinturas Java Dullihan]";
+			mes "E foi provavelmente através desses sonhos que ele tentou arduamente fazer tinturas para seus clientes...";
 			next;
-			mes "[Dye Maker Java Dullihan]";
-			mes "Heh... How do I know this? Well, that's the way I feel right now. Since a couple years ago, I've been able to hear what the colors were saying...";
+			mes "[Criador de Tinturas Java Dullihan]";
+			mes "Hehe... Como sei disso? Bem, essa é a maneira que percebo agora. A alguns anos atrás, comecei a ser capaz de ouvir o que as cores diziam...";
 			next;
-			mes "[Dye Maker Java Dullian]";
-			mes "Just watch. Someday, I'm going to succeed in making the color my father wanted to, but never got the chance to make.";
+			mes "[Criador de Tinturas Java Dullian]";
+			mes "Acredite. Um dia, eu irei conseguir fazer a cor que meu pai queria, mas nunca teve a chance de fazê-la.";
 			close;
 		}
-		mes "[Dye Maker Java Dullihan]";
+		mes "[Criador de Tinturas Java Dullihan]";
 		mes "Ahahahaha...";
-		mes "Well, I guess no one would want to listen to a measly dyemaker's story anyway. Hahaha....";
+		mes "Bem, já imaginava que ninguém quisesse ouvir minha misera história de Criador de Tinturas. Hahaha....";
 		close;
 
 	case 2:
-		mes "[Dye Maker Java Dullihan]";
-		mes "Great! If you want it, I'll make it for you. I promise I'll make you the color you want. But what color dye would you like to make? The fee is different depending on the color.";
+		mes "[Criador de Tinturas Java Dullihan]";
+		mes "Ótimo! Se você quiser a farei para você. Prometo que farei a cor que você quiser. Mas dependendo da cor a taxa em zenys é diferente.";
 		next;
-		mes "[Dye Maker Java Dullihan]";
-		mes "Why, do you ask? Just remember that there are colors that are easy to make, and those that require more effort and work. Please don't think the fee is too expensive.";
+		mes "[Criador de Tinturas Java Dullihan]";
+		mes "Por quê? Lembre-se de que existem cores que são fáceis de se fazer e aquelas que exigem mais esforço e trabalho. Por favor, não ache a taxa cara.";
 		next;
-		mes "[Dye Maker Java Dullihan]";
-		mes "The color of the dye is special, made with all my heart and soul.";
+		mes "[Criador de Tinturas Java Dullihan]";
+		mes "A cor da tintura é especial, elas são feitas com todo meu coração e alma.";
 		next;
-		switch(select("Scarlet Dyestuffs:Lemon Dyestuffs:Cobaltblue Dyestuffs:Darkgreen Dyestuffs:Orange Dyestuffs:Violet Dyestuffs:White Dyestuffs:Black Dyestuffs:Cancel")) {
+		switch(select("Tintura Vermelha:Tintura Amarela:Tintura Azul:Tintura Verde:Tintura Laranja:Tintura Violeta:Tintura Branca:Tintura Preta:Cancelar")) {
 		case 1: callsub S_MakeDye,1,1; break;
 		case 2: callsub S_MakeDye,2,1; break;
 		case 3: callsub S_MakeDye,3,2; break;
@@ -92,71 +93,71 @@ morocc_in,146,99,3	script	Java Dullihan	58,{
 		case 7: callsub S_MakeDye,7,4; break;
 		case 8: callsub S_MakeDye,8,4; break;
 		case 9:
-			mes "[Dye Maker Java Dullihan]";
-			mes "Eeeehhhh!! What's this? You change your mind now!? So disappointing...";
+			mes "[Criador de Tinturas Java Dullihan]";
+			mes "Eeeehhhh!! O quê? Você muda de idéia agora!? É tão lamentável...";
 			close;
 		}
 
 	case 3:
-		mes "[Dye Maker Java Dullihan]";
-		mes "I'm not bragging or anything. But I have the skills to make dyestuff. If you ever need dyestuff, please come to me. I'll make them for you at a reasonable price.";
+		mes "[Criador de Tinturas Java Dullihan]";
+		mes "Não estou me vangloriando ou algo do tipo. Mas eu tenho as habilidades necessárias para se fazer tinturas. Se você precisar delas, por favor venha até mim e eu irei fazê-las para você.";
 		close;
 	}
 
 S_MakeDye:
-	mes "[Dye Maker Java Dullihan]";
+	mes "[Criador de Tinturas Java Dullihan]";
 	switch(getarg(0)) {
 	case 1:
-		mes "Hum... I need 30 Red Herbs, 1 Counteragent, and 1 Empty Bottle to make Red Dyestuffs. The fee is only 3000 zeny to make it.";
+		mes "Hum... Eu irei precisar de 30 Ervas Vermelha, 1 Antígeno, e 1 Garrafa Vazia para fazer a Tintura Vermelha. A taxa de criação são apenas 3000 zeny.";
 		setarray .@item[0], 507, 973, 713;
 		setarray .@count[0], 30,   1,   1;
 		set .@cost,3000;
 		set .@dyestuff,975;
 		break;
 	case 2:
-		mes "Hum... I need 30 Yellow Herbs, 1 Couneragent, and 1 Empty Bottle to make Lemon Dyestuffs. The fee is only 3000 zeny to make it.";
+		mes "Hum... Eu irei precisar de 30 Ervas Amarela, 1 Antígeno, e 1 Garrafa Vazia para fazer a Tintura Amarela. A taxa de criação são apenas 3000 zeny .";
 		setarray .@item[0], 508, 973, 713;
 		setarray .@count[0], 30,   1,   1;
 		set .@cost,3000;
 		set .@dyestuff,976;
 		break;
 	case 3:
-		mes "Hum... I need 20 Blue Herbs, 1 Counteragent, and 1 Empty Bottle to make Cobaltblue Dyestuff. It's hard to use the Blue Herb, so the fee is going to be 3500 zeny.";
+		mes "Hum... Eu irei precisar de 20 Ervas Azul, 1 Antígeno, e 1 Garrafa Vazia para fazer a Tintura Azul. É muito difícil de se manipular Ervas Azuis, por isso a taaxa de criação será de 3500 zeny.";
 		setarray .@item[0], 510, 973, 713;
 		setarray .@count[0], 20,   1,   1;
 		set .@cost,3500;
 		set .@dyestuff,978;
 		break;
 	case 4:
-		mes "Hum... I need 5 Blue Herbs, 20 Green Herbs, 20 Yellow Herbs, 1 Counteragent, 1 Mixture, and 1 Empty Bottle to make Darkgreen Dyestuffs. Don't get all of the materials confused. The fee is only 5000 zeny.";
+		mes "Hum... Eu irei precisar de 5 Ervas Azuis, 20 Ervas Verde, 20 Ervas Amarela, 1 Antígeno, 1 Místura, e 1 Garrafa Vazia para criar uma Tintura Verde. Não confunda os materiais. A taxa de criação são apenas 5000 zeny.";
 		setarray .@item[0], 510, 511, 508, 974, 973, 713;
 		setarray .@count[0],  5,  20,  20,   1,   1,   1;
 		set .@cost,5000;
 		set .@dyestuff,979;
 		break;
 	case 5:
-		mes "Hum... I need 20 Red Herbs, 20 Yellow Herbs, 1 Counteragent, 1 Mixture, and 1 Empty Bottle to make Orange Dyestuff. The fee is going to be 5000 zeny.";
+		mes "Hum... Eu irei precisar de 20 Ervas Vermelha, 20 Ervas Amarela, 1 Antígeno, 1 Místura, e 1 Garrafa Vazia para criar a Tintura Laranja. A taxa será de 5000 zeny.";
 		setarray .@item[0], 507, 508, 974, 973, 713;
 		setarray .@count[0], 20,  20,   1,   1,   1;
 		set .@cost,5000;
 		set .@dyestuff,980;
 		break;
 	case 6:
-		mes "Hum... I need 10 Blue Herbs, 30 Red Herbs, 1 Counteragent, 1 Mixture, and 1 Empty Bottle to make Violet Dyestuffs. The fee will be 5000 zeny.";
+		mes "Hum... Eu irei precisar de 10 Ervas Azuis, 30 Ervas Vermelha, 1 Antígeno, 1 Místura, e 1 Garrafa Vazia para criar a Tintura Violeta. A taxa será de 5000 zeny.";
 		setarray .@item[0], 510, 507, 974, 973, 713;
 		setarray .@count[0], 10,  30,   1,   1,   1;
 		set .@cost,5000;
 		set .@dyestuff,981;
 		break;
 	case 7:
-		mes "Hum... I need 30 White Herbs, 1 Counteragent, and 1 Empty bottle to make White Dyestuffs. The fee will be 3000 zeny.";
+		mes "Hum... Eu irei precisar de 30 Ervas Brancas, 1 Antígeno, e 1 Garrafa Vazia para criar a Tintura Branca. A taxa será de 3000 zeny.";
 		setarray .@item[0], 509, 973, 713;
 		setarray .@count[0], 30,   1,   1; 
 		set .@cost,3000;
 		set .@dyestuff,982;
 		break;
 	case 8:
-		mes "Hum... I need 30 of each Red, Yellow, and Green Herb, 5 Blue Herbs, 1 Counteragent, 1 Mixture, and 1 Empty Bottle. The process takes longer and more effort than the others, so it is going to be 7000 zeny.";
+		mes "Hum... Eu irei precisar de 30 ervas de cada: Vermelha, Amarela, e Verde, 5 Ervas Azuis, 1 Antígeno, 1 Místura, e 1 Garrafa Vazia. O processo leva mais tempo e também mais esforço do que os outros, por isso a taxa será de 7000 zeny.";
 		setarray .@item[0], 507, 508, 511, 510, 974, 973, 713;
 		setarray .@count[0], 30,  30,  30,   5,   1,   1,   1;
 		set .@cost,7000;
@@ -164,12 +165,12 @@ S_MakeDye:
 		break;
 	}
 	next;
-	mes "[Dye Maker Java Dullihan]";
+	mes "[Criador de Tinturas Java Dullihan]";
 	switch(getarg(1)) {
-	case 1: mes "Ah! I think you would have everything ready. Would you like to start the process?"; break;
-	case 2: mes "Okay! I believe you would have everything ready. Would you like to start the process?"; break;
-	case 3: mes "Okay! I believe you would have everything ready. Shall we begin the process?"; break;
-	case 4: mes "Okay! I believe you would have everything prepared. Would you like to start the process?"; break;
+	case 1: mes "Ah! Acredito que você já tenha tudo pronto. Gostaria de iniciar o processo?"; break;
+	case 2: mes "Ok! Acredito que você já tenha tudo pronto. Deseja iniciar o processo?"; break;
+	case 3: mes "Ok! Acredito que você já tenha tudo pronto. Devemos iniciar o processo?"; break;
+	case 4: mes "Ok! Acredito que você já tenha tudo pronto. Gostaria de iniciar o processo?"; break;
 	}
 	next;
 	if (select("Criar Tinturas:Cancelar") == 1) {
@@ -178,9 +179,9 @@ S_MakeDye:
 			if( countitem(.@item[.@i]) < .@count[.@i] )
 				break;
 		if( .@i < .@size || Zeny < .@cost ) {
-			mes "[Dye Maker Java Dullihan]";
-			mes "Humm. Not enough...";
-			mes "I don't think I'll be able to make the color you want with those materials. Why don't you go get some more materials...?";
+			mes "[Criador de Tinturas Java Dullihan]";
+			mes "Humm. Não é o suficiente...";
+			mes "Não acho que serei capaz de fazer a cor que você deseja apenas com esses materiais. Por que você não consegue mais alguns materiais...?";
 			close;
 		}
 		for (set .@i, 0; .@i < .@size ; set .@i, .@i+1)
@@ -188,15 +189,15 @@ S_MakeDye:
 		set zeny,zeny-.@cost;
 		getitem .@dyestuff,1;
 		
-		mes "[Dye Maker Java Dullihan]";
-		mes "Hum... It came out pretty well. A very rich color. Of course I'll be trying harder to make a more charming color...";
+		mes "[Criador de Tinturas Java Dullihan]";
+		mes "Hum... Ela ficou muito boa. Uma cor muito rica. E é claro que é mais difícil de se fazer uma cor mais charmosa como essa...";
 		next;
-		mes "[Dye Maker Java Dullihan]";
-		mes "Well, then. Stop by whenever you need more dyes.";
+		mes "[Criador de Tinturas Java Dullihan]";
+		mes "Bem, então. Venha sempre aqui caso precise de mais tinturas.";
 		close;
 	}
-	mes "[Dye Maker Java Dullihan]";
-	mes "Eeeehhhh!! What's this?";
-	mes "You change your mind now!? So disappointing...";
+	mes "[Criador de Tinturas Java Dullihan]";
+	mes "Eeeehhhh!! O quê??";
+	mes "Você muda de idéia agora!? É tão lamentável...";
 	return;
 }

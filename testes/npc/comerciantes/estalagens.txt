@@ -12,236 +12,131 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 2.9/2.4a/1.0                        |
+//   | Versões eA/rA/brA: 2.9/2.4a/1.1                        |
 //   |--------------------------------------------------------|
 //   | Descrição: Sistema de estalagens.                      |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
+//   | 1.1 Tradução PT-BR [Holy]                              |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
 //======================== Prontera ===================================
-// West Side Inn -------------------
-prt_in,244,135,2	script	Inn Employee#Sammy	53,{
+// ------------------- Oeste, Interior -------------------
+prt_in,244,135,2	script	Funcionária#Sammy	53,{
 
-	callfunc "F_InnMaid","[Employee Sammy]","Nenkaras","prt_in",238,130;
+	callfunc "F_InnMaid","[Funcionária Sammy]","Nenkaras.","prt_in",238,130;
 	warp "prt_in",247,104; end;
 }
-// East Side Inn ------------------
-prt_in,61,141,2	script	Inn Employee#Ahlma	53,{
+// ------------------- Leste, Interior -------------------
+prt_in,61,141,2	script	Funcionária#Ahlma	53,{
 
-	callfunc "F_InnMaid","[Employee Ahlma]","Nenkaras","prt_in",64,136;
+	callfunc "F_InnMaid","[Funcionária Ahlma]","Nenkaras.","prt_in",64,136;
 	warp "prt_in",60,166; end;
 }
 
 //======================== Alberta ====================================
-alberta_in,32,142,3	script	Inn Employee#Jennie	53,{
+alberta_in,32,142,3	script	Funcionária#Jennie	53,{
 
-	callfunc "F_InnMaid","[Employee Jennie]","'Fisherman Inn'!","alberta_in",26,142;
+	callfunc "F_InnMaid","[Funcionária Jennie]","Hotel de Pescadores!","alberta_in",26,142;
 	warp "alberta_in",18,188; end;
 }
 
 //====================== Geffen ======================================
-geffen_in,70,64,5	script	Inn Employee#Cena	53,{
+geffen_in,70,64,5	script	Funcionária#Cena	53,{
 
-	callfunc "F_InnMaid","[Employee Cena]","'Ifrit,' the only Inn in the city of Geffen.","geffen_in",70,59;
+	callfunc "F_InnMaid","[Funcionária Cena]","Ifrit, o único Hotel na cidade de Geffen.","geffen_in",70,59;
 	warp "geffen_in",31,31; end;
 }
 
 //======================= Payon ======================================
-payon_in01,132,62,5	script	Inn Employee#Ahee	53,{
+payon_in01,132,62,5	script	Funcionária#Ahee	53,{
 
-	callfunc "F_InnMaid","[Employee Ahee]","Payon Inn","payon_in01",136,61;
+	callfunc "F_InnMaid","[Funcionária Ahee]","Hotel de Payon.","payon_in01",136,61;
 	warp "payon_in01",132,11; end;
 }
 
 //======================== Morocc ====================================
-// North East --------------------------
+// ---------------------- Nordeste ----------------------
 /*
-morocc_in,147,141,3	script	Inn Employee#Hasna	53,{
+morocc_in,147,141,3	script	Funcionária#Hasna	53,{
 
-	callfunc "F_InnMaid","[Employee Hasna]","Morroc Inn","morocc_in",142,140;
+	callfunc "F_InnMaid","[Funcionária Hasna]","Interior de Morroc.","morocc_in",142,140;
 	warp "morocc_in",173,135; end;
 }
-// South --------------------------------
-morocc_in,80,100,5	script	Inn Employee#Manar	53,{
+// ---------------------- Sul ----------------------
+morocc_in,80,100,5	script	Funcionária#Manar	53,{
 
-	callfunc "F_InnMaid","[Employee Manar]","Morroc Inn","morocc_in",78,95;
+	callfunc "F_InnMaid","[Funcionária Manar]","Interior de Morroc","morocc_in",78,95;
 	warp "morocc_in",79,123; end;
 }
 */
 
 //====================== Aldebaran ===================================
-aldeba_in,92,58,5	script	Inn Maid#Rilim	53,{
+aldeba_in,92,58,5	script	Funcionária#Rilim	53,{
 
-	callfunc "F_InnMaid","[Rilim]","Al De Baran Inn","aldeba_in",92,50;
+	callfunc "F_InnMaid","[Funcionária Rilim]","Interior de Aldebaran.","aldeba_in",92,50;
 	warp "aldeba_in",92,112; end;
 }
 
 //======================== Rachel ====================================
-ra_in01,376,69,4	script	Inn Keeper#Annie	931,{
+ra_in01,376,69,4	script	Funcionário#Annie	931,{
 
-	callfunc "F_InnMaid","[Annie]","Rachel Inn","ra_in01",375,58;
+	callfunc "F_InnMaid","[Funcionário Annie]","Interior de Rachel.","ra_in01",375,58;
 	warp "ra_in01",384,128; end;
 }
 
 //====================== Lighthalzen =================================
-lhz_in02,230,284,4	script	Hotel Employee#01	86,{
-	mes "[Hotel Employee]";
-	mes "Welcome to";
-	mes "the Royal Dragon,";
-	mes "where you can find the";
-	mes "finest accomodations";
-	mes "and the best service.";
-	next;
-	switch(select("Save Point:Rest - 5,000 zeny:Cancel")) {
-	case 1:
-		savepoint "lhz_in02",209,275;
-		mes "[Hotel Employee]";
-		mes "Thank you, your";
-		mes "Respawn Point has";
-		mes "been saved here in";
-		mes "the Royal Dragon.";
-		close;
-	case 2:
-		if(Zeny < 5000) {
-			mes "[Hotel Employee]";
-			mes "I'm sorry, but";
-			mes "you need 5,000 zeny";
-			mes "in order to check in.";
-			close;
-		}
-		set Zeny,Zeny - 5000;
-		mes "[Hotel Employee]";
-		mes "Thank you~";
-		mes "I hope you enjoy";
-		mes "your stay in the";
-		mes "Royal Dragon.";
-		close2;
-		warp "lhz_in02",219,150;
-		percentheal 100,100;
-		npcskill "AL_BLESSING",10,99,99;
-		end;
-	case 3:
-		mes "[Hotel Employee]";
-		mes "Thank you and";
-		mes "have a nice day.";
-		close;
-	}
+lhz_in02,230,284,4	script	Funcionário do Hotel#01	86,{
+
+	callfunc "F_InnMaid","[Funcionário do Hotel]","Dragão Real.","lhz_in02",209,275;
+	warp "lhz_in02",219,150;
 }
 
 //======================== Hugel ====================================
-hu_in01,246,107,3	script	Inn Maid#Receptionist	53,{
+hu_in01,246,107,3	script	Recepcionista#Recepcionista	53,{
 
-	callfunc "F_InnMaid","[Receptionist]","Hugel Inn","hu_in01",263,95;
+	callfunc "F_InnMaid","[Recepcionista]","Interior de Hugel.","hu_in01",263,95;
 	warp "hu_in01",267,5; end;
 }
 
 //======================== Veins ====================================
-ve_in,157,219,5	script	Inn Master#Receptionist	709,{
-	mes "[Inn Master]";
-	mes "Good day~";
-	mes "Welcome to the";
-	mes "most comfortable";
-	mes "inn here in Veins~";
-	next;
-	switch(select("Save:Take a Rest -> 5000 zeny:Quit")) {
-	case 1:
-		mes "[Inn Master]";
-		mes "Your Respawn Point";
-		mes "has been saved in Veins.";
-		mes "Enjoy your stay in town~";
-		savepoint "ve_in",157,209;
-		close;
-	case 2:
-		mes "[Inn Master]";
-		if(Zeny < 5000){
-			mes "I'm sorry, but I don't";
-			mes "think you have enough";
-			mes "money to check in. The";
-			mes "service charge is 5,000 zeny.";
-			close;
-		}
-		mes "Enjoy your stay~";
-		close2;
-		set Zeny,Zeny - 5000;
-		percentheal 100,100;
-		warp "ve_in",184,228;
-		end;
-	case 3:
-		mes "[Inn Master]";
-		mes "Please come again.";
-		close;
-	}
-}
+ve_in,157,219,5	script	Recepcionista#Re	709,{
 
+	callfunc "F_InnMaid","[Recepcionista]","melhor hotel de Veins.","ve_in",157,209;
+	warp "ve_in",184,228;
+}
 // Brasilis
 //============================================================
-bra_in01,27,24,3	script	Hotel Keeper#bra1	478,{
-	mes "[Hotel Keeper]";
-	mes "Welcome to the beautiful Brasilis Hotel.";
-	next;
-	switch(select("Save:Rest -5000 zeny")) {
-	case 1:
-		mes "[Hotel Keeper]";
-		mes "Do you want to save here at the Brasilis Hotel?";
-		next;
-		switch(select("No thank you.:Absolutely.")) {
-		case 1:
-			mes "[Hotel Keeper]";
-			mes "Ok then, enjoy your stay.";
-			close;
-		case 2:
-			mes "[Hotel Keeper]";
-			mes "Your respawn has been saved here at the hotel. I hope that you enjoy your stay here in Brasilis.";
-			savepoint "bra_in01",144,69;
-			close;
-		}
-	case 2:
-		if (Zeny > 4999) {
-			mes "[Hotel Keeper]";
-			mes "I will show you a great room.";
-			close2;
-			set zeny,zeny-5000;
-			percentheal 100,100;
-			warp "bra_in01",144,69;
-			end;
-		}
-		else {
-			mes "[Hotel Keeper]";
-			mes "I'm sorry, but the service charge is 5,000 zeny per night.";
-			close;
-		}
-	}
+bra_in01,27,24,3	script	Recepcionista#bras1	478,{
+
+	callfunc "F_InnMaid","[Recepcionista]","melhor hotel de Brasilis.","bra_in01",144,69;
+	warp "bra_in01",144,69;
 }
 
-//======================= Inn Function ==============================
+//======================= Função ==============================
 function	script	F_InnMaid	{
 	mes getarg(0);
-	mes "Welcome to";
-	mes getarg(1) + ".";
-	mes "How may I help you?";
+	mes "Bem-vindo ao "+getarg(1)+"";
+	mes "Como posso te ajudar?";
 	next;
-	switch(select("Save:Take a Rest -> 5000 zeny:Cancel")) {
+	switch(select("Salvar:Descansar -> 5000 zeny:Cancelar")) {
 	case 1:
 		mes getarg(0);
-		mes "Your respawn point";
-		mes "has been saved.";
-		mes "Thank you,";
-		mes "please come again.";
+		mes "Seu ponto de retorno foi salvo.";
+		mes "Obrigado, e por favor volte novamente.";
 		savepoint getarg(2),getarg(3),getarg(4);
 		close;
 	case 2:
 		mes getarg(0);
 		if(Zeny < 5000){
-			mes "I'm sorry, but the service charge is 5,000 zeny. Please make sure that you have enough money to check in next time, okay?";
+			mes "Me desculpe, mas o serviço irá custar 5,000 zeny. Por favor certifique-se de que você possui o dinheiro suficiente para utilizar o serviço da próxima vez, certo?";
 			close;
 		}
-		mes "Thank you.";
-		mes "I hope you";
-		mes "enjoy your rest~";
+		mes "Obrigado.";
+		mes "E espero que você aproveite sua estadia.";
 		close2;
 		set Zeny,Zeny - 5000;
 		percentheal 100,100;
