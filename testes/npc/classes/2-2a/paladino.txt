@@ -14,7 +14,7 @@
 //   |--------------------------------------------------------|
 //   | Versões eA/rA/brA: 1.3/1.3/1.1                         |
 //   |--------------------------------------------------------|
-//   | Descrição: Mudança de Classe para Paladioo.            |
+//   | Descrição: Mudança de Classe para Paladino.            |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
@@ -83,7 +83,7 @@ valkyrie,53,39,3	script	Paladino#Valquiria	752,{
 	mes "a Valhalla,";
 	mes "o Salão da Honra.";
 	next;
-	mes "[Lorde]";
+	mes "[Paladino]";
 	mes "Por favor fique";
 	mes "a vontade";
 	mes "enquanto estiver aqui.";

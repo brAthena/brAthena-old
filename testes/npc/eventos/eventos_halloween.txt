@@ -8,18 +8,26 @@
 //   |                                                             |
 //   |                    brAthena Script                          |
 //   |-------------------------------------------------------------|
-//   | Nome do Script: halloween_2006.txt                          |
+//   | Nome do Script: eventos_halloween.txt                       |
 //   |-------------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                             |
 //   |-------------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.4/1.0                                  |
+//   | Versões eA/rA/brA: 1.4/1.0/1.1                              |
 //   |-------------------------------------------------------------|
-//   | Descrição: Evento Halloween. (2006)                         |
+//   | Descrição: Eventos de Halloween (2006,2008,2009)            |
+//   | - 2006 -                                                    |
 //   | Evento 1: Resgatar "Mojo de Abóbora" para Chapéu de Abóbora.|
 //   | Evento 2: Crie o item "Torta de Abóbora".                   |
+//   | - 2008 -                                                    |
+//   | Evento: Resgatar Bilhetes para prêmio.                      |
+//   | - 2009 -                                                    |
+//   | Evento 1: Quest para Estranho Chapéu de Abóbora.            |
+//   | Evento 2: Doces ou Travessuras.                             |
+//   | Evento 3: Monstros de evento nas cidades.                   | 
 //   |-------------------------------------------------------------|
 //   | Changelog:                                                  |
 //   | 1.0 Criado Cabeçalho [Megasantos]                           |
+//   | 1.1 União de NPCs [Holy]                                    |
 //   |-------------------------------------------------------------|
 //   | - Anotações                                                 |
 //   \_____________________________________________________________/
@@ -1102,33 +1110,25 @@ ra_fild10,0,0,0,0	monster	Lude	1812,3,0,0,0
 ra_fild11,0,0,0,0	monster	Lude	1812,3,0,0,0
 ra_fild12,0,0,0,0	monster	Lude	1812,3,0,0,0
 ra_fild13,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 ra_san01,0,0,0,0	monster	Lude	1812,3,0,0,0
 ra_san02,0,0,0,0	monster	Lude	1812,3,0,0,0
 ra_san03,0,0,0,0	monster	Lude	1812,3,0,0,0
 ra_san04,0,0,0,0	monster	Lude	1812,3,0,0,0
 ra_san05,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 ice_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
 ice_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
 ice_dun03,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 odin_tem01,0,0,0,0	monster	Lude	1812,3,0,0,0
 odin_tem02,0,0,0,0	monster	Lude	1812,3,0,0,0
 odin_tem03,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 kh_kiehl01,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 kh_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
 kh_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 yuno_fild06,0,0,0,0	monster	Lude	1812,3,0,0,0
 yuno_fild10,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 ein_fild01,0,0,0,0	monster	Lude	1812,3,0,0,0
 ein_fild02,0,0,0,0	monster	Lude	1812,3,0,0,0
 ein_fild05,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 hu_fild01,0,0,0,0	monster	Lude	1812,3,0,0,0
 hu_fild02,0,0,0,0	monster	Lude	1812,3,0,0,0
 hu_fild03,0,0,0,0	monster	Lude	1812,3,0,0,0
@@ -1136,7 +1136,6 @@ hu_fild04,0,0,0,0	monster	Lude	1812,3,0,0,0
 hu_fild05,0,0,0,0	monster	Lude	1812,3,0,0,0
 hu_fild06,0,0,0,0	monster	Lude	1812,3,0,0,0
 hu_fild07,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 tha_t01,0,0,0,0	monster	Lude	1812,3,0,0,0
 tha_t02,0,0,0,0	monster	Lude	1812,3,0,0,0
 tha_t03,0,0,0,0	monster	Lude	1812,3,0,0,0
@@ -1149,25 +1148,20 @@ tha_t09,0,0,0,0	monster	Lude	1812,3,0,0,0
 tha_t10,0,0,0,0	monster	Lude	1812,3,0,0,0
 tha_t11,0,0,0,0	monster	Lude	1812,3,0,0,0
 tha_t12,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 abyss_01,0,0,0,0	monster	Lude	1812,3,0,0,0
 abyss_02,0,0,0,0	monster	Lude	1812,3,0,0,0
 abyss_03,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 juperos_01,0,0,0,0	monster	Lude	1812,3,0,0,0
 juperos_02,0,0,0,0	monster	Lude	1812,3,0,0,0
 jupe_core,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 lhz_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
 lhz_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
 lhz_dun03,0,0,0,0	monster	Lude	1812,3,0,0,0
 lhz_fild01,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 lhz_fild02,0,0,0,0	monster	Lude	1812,3,0,0,0
 lhz_fild03,0,0,0,0	monster	Lude	1812,3,0,0,0
 ein_fild03,0,0,0,0	monster	Lude	1812,3,0,0,0
 ein_fild04,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 ein_fild06,0,0,0,0	monster	Lude	1812,3,0,0,0
 ein_fild07,0,0,0,0	monster	Lude	1812,3,0,0,0
 ein_fild08,0,0,0,0	monster	Lude	1812,3,0,0,0
@@ -1175,37 +1169,30 @@ ein_fild09,0,0,0,0	monster	Lude	1812,3,0,0,0
 ein_fild10,0,0,0,0	monster	Lude	1812,3,0,0,0
 ein_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
 ein_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 gefenia01,0,0,0,0	monster	Lude	1812,3,0,0,0
 gefenia02,0,0,0,0	monster	Lude	1812,3,0,0,0
 gefenia03,0,0,0,0	monster	Lude	1812,3,0,0,0
 gefenia04,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 yuno_fild05,0,0,0,0	monster	Lude	1812,3,0,0,0
 yuno_fild07,0,0,0,0	monster	Lude	1812,3,0,0,0
 yuno_fild08,0,0,0,0	monster	Lude	1812,3,0,0,0
 yuno_fild09,0,0,0,0	monster	Lude	1812,3,0,0,0
 yuno_fild11,0,0,0,0	monster	Lude	1812,3,0,0,0
 yuno_fild12,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 ayo_fild01,0,0,0,0	monster	Lude	1812,3,0,0,0
 ayo_fild02,0,0,0,0	monster	Lude	1812,3,0,0,0
 ayo_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
 ayo_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 gon_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
 gon_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
 gon_dun03,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 ama_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
 ama_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
 ama_dun03,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 lou_fild01,0,0,0,0	monster	Lude	1812,3,0,0,0
 lou_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
 lou_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
 lou_dun03,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 um_fild01,0,0,0,0	monster	Lude	1812,3,0,0,0
 um_fild02,0,0,0,0	monster	Lude	1812,3,0,0,0
 um_fild03,0,0,0,0	monster	Lude	1812,3,0,0,0
@@ -1213,21 +1200,17 @@ um_fild04,0,0,0,0	monster	Lude	1812,3,0,0,0
 um_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
 um_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
 yggdrasil01,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 mag_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
 mag_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 beach_dun,0,0,0,0	monster	Lude	1812,3,0,0,0
 beach_dun2,0,0,0,0	monster	Lude	1812,3,0,0,0
 beach_dun3,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 gon_fild01,0,0,0,0	monster	Lude	1812,3,0,0,0
 ama_fild01,0,0,0,0	monster	Lude	1812,3,0,0,0
 yuno_fild01,0,0,0,0	monster	Lude	1812,3,0,0,0
 yuno_fild02,0,0,0,0	monster	Lude	1812,3,0,0,0
 yuno_fild03,0,0,0,0	monster	Lude	1812,3,0,0,0
 yuno_fild04,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 prt_fild00,0,0,0,0	monster	Lude	1812,3,0,0,0
 prt_fild01,0,0,0,0	monster	Lude	1812,3,0,0,0
 prt_fild02,0,0,0,0	monster	Lude	1812,3,0,0,0
@@ -1240,7 +1223,6 @@ prt_fild08,0,0,0,0	monster	Lude	1812,3,0,0,0
 prt_fild09,0,0,0,0	monster	Lude	1812,3,0,0,0
 prt_fild10,0,0,0,0	monster	Lude	1812,3,0,0,0
 prt_fild11,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 moc_fild01,0,0,0,0	monster	Lude	1812,3,0,0,0
 moc_fild02,0,0,0,0	monster	Lude	1812,3,0,0,0
 moc_fild03,0,0,0,0	monster	Lude	1812,3,0,0,0
@@ -1259,7 +1241,6 @@ moc_fild15,0,0,0,0	monster	Lude	1812,3,0,0,0
 moc_fild16,0,0,0,0	monster	Lude	1812,3,0,0,0
 moc_fild17,0,0,0,0	monster	Lude	1812,3,0,0,0
 moc_fild18,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 pay_fild01,0,0,0,0	monster	Lude	1812,3,0,0,0
 pay_fild02,0,0,0,0	monster	Lude	1812,3,0,0,0
 pay_fild03,0,0,0,0	monster	Lude	1812,3,0,0,0
@@ -1271,7 +1252,6 @@ pay_fild08,0,0,0,0	monster	Lude	1812,3,0,0,0
 pay_fild09,0,0,0,0	monster	Lude	1812,3,0,0,0
 pay_fild10,0,0,0,0	monster	Lude	1812,3,0,0,0
 pay_fild11,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 gef_fild00,0,0,0,0	monster	Lude	1812,3,0,0,0
 gef_fild01,0,0,0,0	monster	Lude	1812,3,0,0,0
 gef_fild02,0,0,0,0	monster	Lude	1812,3,0,0,0
@@ -1287,7 +1267,6 @@ gef_fild11,0,0,0,0	monster	Lude	1812,3,0,0,0
 gef_fild12,0,0,0,0	monster	Lude	1812,3,0,0,0
 gef_fild13,0,0,0,0	monster	Lude	1812,3,0,0,0
 gef_fild14,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 cmd_fild01,0,0,0,0	monster	Lude	1812,3,0,0,0
 cmd_fild02,0,0,0,0	monster	Lude	1812,3,0,0,0
 cmd_fild03,0,0,0,0	monster	Lude	1812,3,0,0,0
@@ -1297,7 +1276,6 @@ cmd_fild06,0,0,0,0	monster	Lude	1812,3,0,0,0
 cmd_fild07,0,0,0,0	monster	Lude	1812,3,0,0,0
 cmd_fild08,0,0,0,0	monster	Lude	1812,3,0,0,0
 cmd_fild09,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 mjolnir_01,0,0,0,0	monster	Lude	1812,3,0,0,0
 mjolnir_02,0,0,0,0	monster	Lude	1812,3,0,0,0
 mjolnir_03,0,0,0,0	monster	Lude	1812,3,0,0,0
@@ -1310,106 +1288,758 @@ mjolnir_09,0,0,0,0	monster	Lude	1812,3,0,0,0
 mjolnir_10,0,0,0,0	monster	Lude	1812,3,0,0,0
 mjolnir_11,0,0,0,0	monster	Lude	1812,3,0,0,0
 mjolnir_12,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 xmas_fild01,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 sec_in02,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 gl_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
 gl_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 gl_knt02,0,0,0,0	monster	Lude	1812,3,0,0,0
 gl_knt01,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 gl_step,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 gl_sew04,0,0,0,0	monster	Lude	1812,3,0,0,0
 gl_sew03,0,0,0,0	monster	Lude	1812,3,0,0,0
 gl_sew02,0,0,0,0	monster	Lude	1812,3,0,0,0
 gl_sew01,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 gl_chyard,0,0,0,0	monster	Lude	1812,3,0,0,0
 gl_church,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 glast_01,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 gl_prison1,0,0,0,0	monster	Lude	1812,3,0,0,0
 gl_prison,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 gl_in01,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 gl_cas02,0,0,0,0	monster	Lude	1812,3,0,0,0
 gl_cas01,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 tur_dun04,0,0,0,0	monster	Lude	1812,3,0,0,0
 tur_dun03,0,0,0,0	monster	Lude	1812,3,0,0,0
 tur_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
 tur_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 alde_dun04,0,0,0,0	monster	Lude	1812,3,0,0,0
 alde_dun03,0,0,0,0	monster	Lude	1812,3,0,0,0
 alde_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
 alde_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 c_tower1,0,0,0,0	monster	Lude	1812,3,0,0,0
 c_tower2,0,0,0,0	monster	Lude	1812,3,0,0,0
 c_tower3,0,0,0,0	monster	Lude	1812,3,0,0,0
 c_tower4,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 in_sphinx5,0,0,0,0	monster	Lude	1812,3,0,0,0
 in_sphinx4,0,0,0,0	monster	Lude	1812,3,0,0,0
 in_sphinx3,0,0,0,0	monster	Lude	1812,3,0,0,0
 in_sphinx2,0,0,0,0	monster	Lude	1812,3,0,0,0
 in_sphinx1,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 prt_maze03,0,0,0,0	monster	Lude	1812,3,0,0,0
 prt_maze02,0,0,0,0	monster	Lude	1812,3,0,0,0
 prt_maze01,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 treasure02,0,0,0,0	monster	Lude	1812,3,0,0,0
 treasure01,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 moc_pryd06,0,0,0,0	monster	Lude	1812,3,0,0,0
 moc_pryd05,0,0,0,0	monster	Lude	1812,3,0,0,0
 moc_pryd04,0,0,0,0	monster	Lude	1812,3,0,0,0
 moc_pryd03,0,0,0,0	monster	Lude	1812,3,0,0,0
 moc_pryd02,0,0,0,0	monster	Lude	1812,3,0,0,0
 moc_pryd01,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 gef_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
 gef_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
 gef_dun00,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 iz_dun00,0,0,0,0	monster	Lude	1812,3,0,0,0
 iz_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
 iz_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
 iz_dun03,0,0,0,0	monster	Lude	1812,3,0,0,0
 iz_dun04,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 pay_dun00,0,0,0,0	monster	Lude	1812,3,0,0,0
 pay_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
 pay_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
 pay_dun03,0,0,0,0	monster	Lude	1812,3,0,0,0
 pay_dun04,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 xmas_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
 xmas_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 anthell02,0,0,0,0	monster	Lude	1812,3,0,0,0
 anthell01,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 orcsdun02,0,0,0,0	monster	Lude	1812,3,0,0,0
 orcsdun01,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 mjo_dun03,0,0,0,0	monster	Lude	1812,3,0,0,0
 mjo_dun02,0,0,0,0	monster	Lude	1812,3,0,0,0
 mjo_dun01,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 prt_sewb4,0,0,0,0	monster	Lude	1812,3,0,0,0
 prt_sewb3,0,0,0,0	monster	Lude	1812,3,0,0,0
 prt_sewb2,0,0,0,0	monster	Lude	1812,3,0,0,0
 prt_sewb1,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 nif_fild01,0,0,0,0	monster	Lude	1812,3,0,0,0
-
 nif_fild02,0,0,0,0	monster	Lude	1812,3,0,0,0
+
+// ------------------------- Eventos Halloween 2008 -------------------------
+
+payon,162,176,4	script	Halloween Magician#iRO08	704,{
+	
+	if(Hallow08 < 1) {
+		mes "[Halloween Magician]";
+		mes "Kkkkkkkkk!";
+		mes "I have a special event this Halloween that tests your luck and agility.";
+		mes "Are you interested?";
+		next;
+		mes "[Halloween Magician]";
+		mes "Come on! Don't be a wuss!";
+		mes "If you collect enough tickets you can get good prizes!";
+		mes "So what do you say?";
+		next;
+		goto MainMenu;
+	}
+
+	if (Hallow08Kill == 1) {
+		mes "[Halloween Magician]";
+		mes "You a 'fraidy cat or something?!";
+		mes "You know you want to try again...";
+		mes "Do you know the rules?";
+		next;
+		set Hallow08Kill,0;
+		if(select("Yes, I know.:No, I don't know.") == 2) {
+			goto Rules;
+		}
+		goto Participate;
+	}
+
+	if (Hallow08Kill == 2) {
+		mes "[Halloween Magician]";
+		mes "Oh, well done! You are alright!";
+		mes "Isn't it fun with zombies??";
+		mes "You know, zombies were people too!";
+		mes "Ha!";
+		mes "Kkkkkkk.";
+		next;
+		getitem 7941,1;
+		set Hallow08Kill,0;
+		mes "[Halloween Magician]";
+		mes "As I promised";
+		mes "You can get Halloween tickets for cool items.";
+		close;
+	}
+
+	if(Hallow08 > 0) {
+		mes "[Halloween Magician]";
+		mes "Well, do you want to hear the rules again or, just get back to it...";
+		next;
+		goto MainMenu2;
+	}
+	
+		Rules:
+			mes "[Halloween Magician]";
+			mes "This village is like a virtual Payon.";
+			mes "There are zombies and ghouls roaming around and three southern exits, but only one works.";
+			mes "That's up to you to find out.";
+			next;
+			mes "[Halloween Magician]";
+			mes "You can't use any skills to kill the ghouls or zombies.";
+			mes "And one more thing...";
+			mes "you shouldn't forget...";
+			next;
+			mes "[Halloween Magician]";
+			mes "All participants should be wearing nothing.";
+			mes "Put all belongings in your storage and come back here when your weight is '0'.";
+			next;
+			mes "[Halloween Magician]";
+			mes "Oh and one more thing!";
+			mes "You can't be riding a PecoPeco or have a Cart.";
+			mes "If you are, then I will remove them before you enter.";
+			mes "Got it?";
+			next;
+			mes "[Halloween Magician]";
+			mes "Remember, there are three exits but only one works randomly, the zombies and ghouls roaming around there can't be killed and you can't be wearing anything.";
+			next;
+			if (Hallow08 > 0) {
+				mes "[Halloween Magician]";
+				mes "Hey...";
+				mes "Come back once you're ready.";
+				close;
+			}else{
+				goto MainMenu;
+			}
+			
+		Participate:
+			mes "[Halloween Magician]";
+			mes "Ok, you are ready.";
+			mes "Let me check your weight.";
+			next;
+			if (Weight > 0) {
+				mes "[Halloween Magician]";
+				mes "Gosh!";
+				mes "There's always a black sheep anywhere.";
+				next;
+				mes "[Halloween Magician]";
+				mes "You think I wouldn't notice that your weight is above '0'?";
+				mes "You're overweight...";
+				close;
+			}else{
+				mes "[Halloween Magician]";
+				mes "You seem good to go, and your weight is just right.";
+				next;
+				mes "[Halloween Magician]";
+				mes "I was quite swamped with my work, so I'm exhausted.";
+				next;
+				mes "[Halloween Magician]";
+				mes "I sometimes forget to send you there...";
+				next;
+				mes "[Halloween Magician]";
+				mes "I hope you come back well.";
+				close2;
+				if (Hallow08 < 1) {
+					set Hallow08,1;
+				}
+				set Hallow08Kill,1;
+				set @Hallow08Warp, rand(1,3);
+				percentheal -98,0;
+				setriding 0;
+				setcart 0;
+				warp "evt_zombie",155,246;
+				end;
+			}
+			
+		TicketExchange:
+			mes "[Halloween Magician]";
+			mes "You want to exchange tickets for prizes?";
+			mes "Good job! Kkkkkk!";
+			next;
+			mes "[Halloween Magician]";
+			mes "Lemme tell you what items you can exchange for.";
+			next;
+			mes "[Halloween Magician]";
+			mes "5 tickets for Pumpkin Pie.";
+			mes "20 tickets for Pumpkin-Head.";
+			mes "50 tickets for Old Blue Box.";
+			mes "70 tickets for Old Purple Box.";
+			mes "200 tickets for Old Card Album.";
+			next;
+			mes "[Halloween Magician]";
+			mes "What would you like to exchange for?";
+			next;
+			switch(select("Pumpkin Pie:Pumpkin-Head:Old Blue Box:Old Purple Box:Old Card Album")) {
+				case 1:
+					if(countitem(7941) < 5) {
+						goto NotEnough;
+					}else{
+						delitem 7941,5;
+						getitem 12192,1;
+						goto Enough;
+					}
+					break;
+				case 2:
+					if(countitem(7941) < 20) {
+						goto NotEnough;
+					}else{
+						delitem 7941,20;
+						getitem 5134,1;
+						goto Enough;
+					}
+					break;
+				case 3:
+					if(countitem(7941) < 50) {
+						goto NotEnough;
+					}else{
+						delitem 7941,50;
+						getitem 603,1;
+						goto Enough;
+					}
+					break;
+				case 4:
+					if(countitem(7941) < 70) {
+						goto NotEnough;
+					}else{
+						delitem 7941,70;
+						getitem 617,1;
+						goto Enough;
+					}
+					break;
+				case 5:
+					if(countitem(7941) < 200) {
+						goto NotEnough;
+					}else{
+						delitem 7941,200;
+						getitem 616,1;
+						goto Enough;
+					}
+			}
+					
+		NextTime:
+			mes "[Halloween Magician]";
+			mes "Ok, see you then.";
+			mes "Kkkkkkkk.";
+			close;
+
+	MainMenu:
+		menu "Explain it to me.",Rules,"I want to participate.",Participate,"I want to exchange tickets for prizes.",TicketExchange,"I'll come back next time.",NextTime;
+
+	MainMenu2:
+		menu "Get me back there now!",Participate,"Please, tell me the rules",Rules,"I want to exchange tickets for prizes.",TicketExchange,"I'll come back next time.",NextTime;
+
+	NotEnough:
+		mes "[Halloween Magician]";
+		mes "You don't have enough tickets!";
+		mes "Can't you even count?";
+		mes "Please come here with the right number of tickets.";
+		close;
+
+	Enough:
+		mes "[Halloween Magician]";
+		mes "Here it is.";
+		mes "Do you need...";
+		mes "anything else?";
+		next;
+		if (Hallow08 == 1) {
+			goto MainMenu2;
+		}else{
+			goto MainMenu;
+		}
+}
+
+evt_zombie,16,142,1	script	zombiewarp001	45,2,2,{
+OnTouch:
+	if (@Hallow08Warp == 1) {
+		set Hallow08Kill,2;
+		specialeffect 16;
+		warp "payon",28,142;
+	}
+	end;
+}
+
+evt_zombie,122,27,1	script	zombiewarp002	45,2,2,{
+OnTouch:
+	if (@Hallow08Warp == 2) {
+		set Hallow08Kill,2;
+		specialeffect 16;
+		warp "payon",121,40;
+	}
+	end;
+}
+
+evt_zombie,267,89,1	script	zombiewarp003	45,2,2,{
+OnTouch:
+	if (@Hallow08Warp == 3) {
+		set Hallow08Kill,2;
+		specialeffect 16;
+		warp "payon",253,95;
+	}
+	end;
+}
+
+evt_zombie,0,0,0,0	monster	Zombie	3000,150,0,0,0
+evt_zombie,0,0,0,0	monster	Ghoul	3001,80,0,0,0
+evt_zombie,0,0,0,0	monster	Zombie Master	3002,20,0,0,0
+
+// ------------------------- Eventos Halloween 2009 -------------------------
+
+// Headgear Quest - Pumpkin Hat
+//============================================================
+prontera,152,192,5	script	Pumpkin Hat Researcher	712,{
+	if(BaseLevel < 45) {
+		mes "[Pumpkin Hat Researcher]";
+		mes "Shoo, I don't need a child. Shoo! I don't talk to novices.";
+		next;
+		mes "[Pumpkin Hat Researcher]";
+		mes "Go reach a level that can fight with stronger monsters and come back.";
+		close;
+	}
+	mes "[Pumpkin Hat Researcher]";
+	mes "Say do you like Pumpkin Pies?";
+	next;
+	mes "[Pumpkin Hat Researcher]";
+	mes "I'm a Pumpkin Hat researcher, Why don't you listen to my story?";
+	next;
+	while(1) {
+		switch(select("Listen to the story.:Ask about Pumpkin Hat.:Get a Pumpkin Hat.:Stop the conversation.")) {
+			case 1:
+				mes "[Pumpkin Hat Researcher]";
+				mes "I've been studying about an upgraded Pumpkin Hat.";
+				mes "I have discovered that it is a very simple process.";
+				next;
+				mes "[Pumpkin Hat Researcher]";
+				mes "The process is quite simple.";
+				mes "If you bring me ^4a4aff20 Jack o' Pumpkin^000000 I can show you.";
+				mes "Isn't that a tempting proposal?";
+				next;
+				break;
+			case 2:
+				mes "[Pumpkin Hat Researcher]";
+				mes "This upgraded pumpkin hat is powerful stuff!";
+				next;
+				mes "[Pumpkin Hat Researcher]";
+				mes "It can make a Pumpkin Pie that restores a large percentage of HP & SP using condensed energy to the person who wears it.";
+				next;
+				mes "[Pumpkin Hat Researcher]";
+				mes "All you need is ^4a4aff20 Jack o' Pumpkin^000000s.";
+				next;
+				break;
+			case 3:
+				mes "[Pumpkin Hat Researcher]";
+				mes "Do you want to get Pumpkin Pies? Okay, let me count the Jack o' Pumpkins you've brought.";
+				next;
+				if(countitem(1062) < 20) {
+					mes "[Pumpkin Hat Researcher]";
+					mes "I need ^4a4aff20 Jack o' Pumpkin^000000.";
+					mes "I'm not an alchemist or a wizard to create something from nothing.";
+					next;
+					mes "[Pumpkin Hat Researcher]";
+					mes "Okay, go hunting monsters and come back.";
+					mes "I'm going to stay here for a while so take your time.";
+					next;
+					break;
+				}else{
+					mes "[Pumpkin Hat Researcher]";
+					mes "I hope this will be useful to you. Don't forget to wear it while fighting to get your Pumpkin Pies.";
+					delitem 1062,20;	// Jack o' Pumpkin
+					getitem 5668,1;		// Weird Pumpkin Hat
+					next;
+					mes "[Pumpkin Hat Researcher]";
+					mes "I guess that I should get back to my research.";
+					close;
+				}
+			case 4:
+				mes "[Pumpkin Hat Researcher]";
+				mes "Bye, until we'll see each other again.";
+				mes "I wish you well...";
+				close;
+		}
+	}
+}
+
+// Buffs - Trick or Treaters
+//============================================================
+-	script	Trick or Treater::09Treats	706,2,2,{
+OnTouch:
+	hideoffnpc strnpcinfo(3);
+	initnpctimer;
+	mes "[Trick or Treater]";
+	mes "Hooray! hooray! Hooray!";
+	mes "Trick or Treat?";
+	next;
+	if(select("Trick.:Treat.") == 1) {
+		mes "[Trick or Treater]";
+		mes "!!!!";
+		mes "Fine. I have no choice but to trick you back!";
+		sc_start SC_Stun,5000,0;
+		close;
+	}
+	mes "[Trick or Treater]";
+	mes "Oh yay! What kind of treat do you have?";
+	next;
+	switch(select("Candy:Candy Cane:Well-baked Cookie:Nothing")) {
+		case 1:
+			if(countitem(529) > 0) {
+				mes "[Trick or Treater]";
+				mes "Yay thank you!";
+				mes "Here, take this for being so nice!";
+				sc_start SC_STRFood, 1800000, 5;
+				sc_start SC_INTFood, 1800000, 5;
+				sc_start SC_VITFood, 1800000, 5;
+				sc_start SC_AGIFood, 1800000, 5;
+				sc_start SC_DEXFood, 1800000, 5;
+				sc_start SC_LUKFood, 1800000, 5;
+				sc_start SC_FLEEFOOD, 1800000, 15;
+				delitem 529,1;	// Candy
+				close;
+			}else{
+				mes "[Trick or Treater]";
+				mes "At least a Candy, a Candy Cane or a Well-baked Cookie is all I ask for a treat.";
+				mes "Fine. I have no choice but to trick you!";
+				sc_start SC_Stun,5000,0;
+				close;
+			}
+		case 2:
+			if(countitem(530) > 0) {
+				mes "[Trick or Treater]";
+				mes "Yay thank you!";
+				mes "Here, take this for being so nice!";
+				sc_start SC_STRFood, 1800000, 5;
+				sc_start SC_INTFood, 1800000, 5;
+				sc_start SC_VITFood, 1800000, 5;
+				sc_start SC_AGIFood, 1800000, 5;
+				sc_start SC_DEXFood, 1800000, 5;
+				sc_start SC_LUKFood, 1800000, 5;
+				sc_start SC_FLEEFOOD, 1800000, 15;
+				delitem 530,1;	// Candy Cane
+				close;
+			}else{
+				mes "[Trick or Treater]";
+				mes "At least a Candy, a Candy Cane or a Well-baked Cookie is all I ask for a treat.";
+				mes "Fine. I have no choice but to trick you!";
+				sc_start SC_Stun,5000,0;
+				close;
+			}
+		case 3:
+			if(countitem(538) > 0) {
+				mes "[Trick or Treater]";
+				mes "Yay thank you!";
+				mes "Here, take this for being so nice!";
+				sc_start SC_STRFood, 1800000, 5;
+				sc_start SC_INTFood, 1800000, 5;
+				sc_start SC_VITFood, 1800000, 5;
+				sc_start SC_AGIFood, 1800000, 5;
+				sc_start SC_DEXFood, 1800000, 5;
+				sc_start SC_LUKFood, 1800000, 5;
+				sc_start SC_FLEEFOOD, 1800000, 15;
+				delitem 538,1;	// Well-baked Cookie
+				close;
+			}else{
+				mes "[Trick or Treater]";
+				mes "At least a Candy, a Candy Cane or a Well-baked Cookie is all I ask for a treat.";
+				mes "Fine. I have no choice but to trick you!";
+				sc_start SC_Stun,5000,0;
+				close;
+			}
+		case 4:
+			mes "[Trick or Treater]";
+			mes "At least a Candy, a Candy Cane or a Well-baked Cookie is all I ask for a treat.";
+			mes "Fine. I have no choice but to trick you!";
+			sc_start SC_Stun,5000,0;
+			close;
+	}
+OnInit:
+	hideonnpc "Trick or Treater#iRO1";
+	hideonnpc "Trick or Treater#iRO2";
+	hideonnpc "Trick or Treater#iRO3";
+	hideonnpc "Trick or Treater#iRO4";
+	hideonnpc "Trick or Treater#iRO5";
+	hideonnpc "Trick or Treater#iRO6";
+	hideonnpc "Trick or Treater#iRO7";
+	hideonnpc "Trick or Treater#iRO8";
+	end;
+	
+OnEnableTreat:
+	enablenpc strnpcinfo(3);
+	hideonnpc strnpcinfo(3);
+	end;
+	
+OnTimer15000:
+	hideonnpc strnpcinfo(3);
+	disablenpc strnpcinfo(3);
+	end;
+		
+OnTimer300000:
+	donpcevent strnpcinfo(3)+"::OnEnableTreat";
+	stopnpctimer;
+	end;
+}
+prontera,151,173,5	duplicate(09Treats)	Trick or Treater#iRO1	706,2,2
+prontera,270,350,5	duplicate(09Treats)	Trick or Treater#iRO2	706,2,2
+prontera,234,310,5	duplicate(09Treats)	Trick or Treater#iRO3	706,2,2
+prontera,156,321,5	duplicate(09Treats)	Trick or Treater#iRO4	706,2,2
+prontera,156,283,5	duplicate(09Treats)	Trick or Treater#iRO5	706,2,2
+prontera,142,214,5	duplicate(09Treats)	Trick or Treater#iRO6	706,2,2
+prontera,134,125,5	duplicate(09Treats)	Trick or Treater#iRO7	706,2,2
+prontera,220,72,5	duplicate(09Treats)	Trick or Treater#iRO8	706,2,2
+
+// Monster Summoning - Halloween Wizard
+//============================================================
+-	script	Halloween Wizard#iRO09::09HallowWiz	737,{
+	mes "[Halloween Wizard]";
+	mes "...";
+	mes "Do you want to play a trick on someone?";
+	next;
+	while(1) {
+		switch(select("What trick?:Sure:No.")) {
+			case 1:
+				mes "[Halloween Wizard]";
+				mes "I can summon monsters in other parts of the world with just a few materials.";
+				next;
+				mes "[Halloween Wizard]";
+				mes "Sounds interesting huh?";
+				next;
+				mes "[Halloween Wizard]";
+				mes "If you bring me Fabric, Jack o' Pumpkins, Worn Fabric, or Crushed Pumpkins I can summon the monsters.";
+				next;
+				break;
+			case 2:
+				mes "[Halloween Wizard]";
+				mes "Which town do you want to play a trick on?";
+				next;
+				getmapxy(.@mapname$,.@mapx,.@mapy,0,""+strcharinfo(0)+"");
+				if (.@mapname$ == "prontera") {
+					switch(select("Geffen:Payon:Alberta:Aldebaran")) {
+						case 1:
+							set .@HallowTown,3;
+							break;
+						case 2:
+							set .@HallowTown,2;
+							break;
+						case 3:
+							set .@HallowTown,4;
+							break;
+						case 4:
+							set .@HallowTown,5;
+							break;
+					}
+				}
+				else if (.@mapname$ == "payon") {
+					switch(select("Prontera:Geffen:Alberta:Aldebaran")) {
+						case 1:
+							set .@HallowTown,1;
+							break;
+						case 2:
+							set .@HallowTown,3;
+							break;
+						case 3:
+							set .@HallowTown,4;
+							break;
+						case 4:
+							set .@HallowTown,5;
+							break;
+					}
+				}
+				else if (.@mapname$ == "geffen") {
+					switch(select("Prontera:Payon:Alberta:Aldebaran")) {
+						case 1:
+							set .@HallowTown,1;
+							break;
+						case 2:
+							set .@HallowTown,2;
+							break;
+						case 3:
+							set .@HallowTown,4;
+							break;
+						case 4:
+							set .@HallowTown,5;
+							break;
+					}
+				}
+				else if (.@mapname$ == "alberta") {
+					switch(select("Prontera:Geffen:Payon:Aldebaran")) {
+						case 1:
+							set .@HallowTown,1;
+							break;
+						case 2:
+							set .@HallowTown,3;
+							break;
+						case 3:
+							set .@HallowTown,2;
+							break;
+						case 4:
+							set .@HallowTown,5;
+							break;
+					}
+				}
+				else if (.@mapname$ == "aldebaran") {
+					switch(select("Prontera:Geffen:Payon:Alberta")) {
+						case 1:
+							set .@HallowTown,1;
+							break;
+						case 2:
+							set .@HallowTown,3;
+							break;
+						case 3:
+							set .@HallowTown,2;
+							break;
+						case 4:
+							set .@HallowTown,4;
+							break;
+					}
+				}
+				setarray .@HallowTowns$[1],"prontera","payon","geffen","alberta","aldebaran";
+				mes "[Halloween Wizard]";
+				mes "Ok then let's go to the next step.";
+				next;
+				mes "[Halloween Wizard]";
+				mes "How many Fabrics or Jack o' Pumpkins do you want to use? Don't go over 100 because that is the max amount that I can use.";
+				next;
+				input .@input;
+				if (.@input == 0) {
+					mes "[Halloween Wizard]";
+					mes "You have no definite idea.";
+					mes "It's not a big deal.";
+					mes "Let me know.";
+					next;
+					break;
+				}
+				else if (.@input > 100) {
+					mes "[Halloween Wizard]";
+					mes "I told you that it must be between 1 to 100!";
+					mes "You didn't pay attention!";
+					next;
+					break;
+				}
+				else {
+					set .@fabric,countitem(1059);
+					set .@jack,countitem(1062);
+					set .@worn,countitem(6299);
+					set .@crushed,countitem(6298);
+					set .@whispers,0;
+					set .@darklords,0;
+
+					set .@total,.@fabric + .@jack + .@worn + .@crushed;
+
+					if(.@total < .@input) {
+						mes "[Halloween Wizard]";
+						mes "Recount the number of items you have and tell me the total.";
+						mes "Huhuhuhuhuhu...";
+						next;
+						break;
+					}
+
+					if(.@fabric > 0) {
+						if(.@fabric >= .@input) {
+							delitem 1059,.@input;
+							set .@whispers,.@whispers+.@input;
+							set .@input,0;
+						}
+						else{
+							delitem 1059,.@fabric;
+							set .@input,.@input - .@fabric;
+							set .@whispers,.@whispers+.@fabric;
+						}
+					}
+					if(.@worn > 0 && .@input != 0) {
+						if(.@worn >= .@input) {
+							delitem 6299,.@input;
+							set .@whispers,.@whispers+.@input;
+							set .@input,0;
+						}
+						else{
+							delitem 6299,.@worn;
+							set .@input,.@input - .@worn;
+							set .@whispers,.@whispers+.@worn;
+						}
+					}
+					if(.@jack > 0 && .@input != 0) {
+						if(.@jack >= .@input) {
+							delitem 1062,.@input;
+							set .@darklords,.@darklords+.@input;
+							set .@input,0;
+						}
+						else{
+							delitem 1062,.@jack;
+							set .@input,.@input - .@jack;
+							set .@darklords,.@darklords+.@jack;
+						}
+					}
+					if(.@crushed > 0 && .@input != 0) {
+						if(.@crushed >= .@input) {
+							delitem 6298,.@input;
+							set .@darklords,.@darklords+.@input;
+							set .@input,0;
+						}
+						else{
+							delitem 6298,.@crushed;
+							set .@input,.@input - .@crushed;
+							set .@darklords,.@darklords+.@crushed;
+						}
+					}
+					if (.@input > 0) {
+						mes "Theres a problem.";
+						close;
+					}
+					monster ""+.@HallowTowns$[.@HallowTown]+"",0,0,"Halloween Whisper",3014,.@whispers;
+					monster ""+.@HallowTowns$[.@HallowTown]+"",0,0,"Halloween Dark Lord",3015,.@darklords;
+					mes "[Halloween Wizard]";
+					mes "Here's what you wanted.";
+					mes "Imagine what the people must be thinking in the other villages?";
+					mes "Muahahaha";
+					close;
+				}
+			case 3:
+				mes "[Halloween Wizard]";
+				mes "If you change your mind, come back here...";
+				mes "I'll stay here for a while...";
+				mes "Kkkk...";
+				close;
+		}
+	}
+}
+prontera,156,195,5	duplicate(09HallowWiz)	Halloween Wizard#1	737
+geffen,133,122,5	duplicate(09HallowWiz)	Halloween Wizard#2	737
+payon,156,196,5	duplicate(09HallowWiz)	Halloween Wizard#3	737
+alberta,96,57,5	duplicate(09HallowWiz)	Halloween Wizard#4	737
+aldebaran,146,122,5	duplicate(09HallowWiz)	Halloween Wizard#5	737
