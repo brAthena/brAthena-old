@@ -2734,7 +2734,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					RE_LVL_DMOD(100);
 					break;
 				case LG_RAYOFGENESIS:
-					skillratio = skillratio + 200 + 300 * skill_lv;
+					skillratio = 300 + 300 * skill_lv;
 					RE_LVL_DMOD(100);
 					break;
 				case LG_EARTHDRIVE:
@@ -2936,7 +2936,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case MH_LAVA_SLIDE:
 					skillratio = 70 * skill_lv;
 					break;
-				case MH_TINDER_BREAKER:
+                                case MH_TINDER_BREAKER:
 				case MH_MAGMA_FLOW:
 					skillratio += -100 + 100 * skill_lv;
 					break;
@@ -2992,12 +2992,6 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					if(sd)
 						ATK_ADD(30*pc_checkskill(sd, RA_TOOTHOFWUG));
 					break;
-				case LG_RAYOFGENESIS:
-					if( sc && sc->data[SC_BANDING] ) {// Increase only if the RG is under Banding.
-						short lv = (short)skill_lv;
-						ATK_ADDRATE( 190 * ((sd) ? skill_check_pc_partner(sd,(short)skill_id,&lv,skill_get_splash(skill_id,skill_lv),0) : 1));
-					}
-					break;
 				case SR_GATEOFHELL:
 					ATK_ADD (sstatus->max_hp - status_get_hp(src));
 					if(sc && sc->data[SC_COMBO] && sc->data[SC_COMBO]->val1 == SR_FALLENEMPIRE){
@@ -3008,7 +3002,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					break;
 				case SR_TIGERCANNON: // (Tiger Cannon skill level x 240) + (Target Base Level x 40)
 					ATK_ADD( skill_lv * 240 + status_get_lv(target) * 40 );
-					if( sc && sc->data[SC_COMBO] 
+					if( sc && sc->data[SC_COMBO]
 						&& sc->data[SC_COMBO]->val1 == SR_FALLENEMPIRE ) // (Tiger Cannon skill level x 500) + (Target Base Level x 40)
 							ATK_ADD( skill_lv * 500 + status_get_lv(target) * 40 );
 					break;
@@ -3933,14 +3927,19 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 						RE_LVL_DMOD(100);
 						break;
 					case LG_RAYOFGENESIS:
-						skillratio = (skillratio + 200) * skill_lv;
-						RE_LVL_DMOD(100);
-						break;
+					{
+						int16 lv = skill_lv;
+						int bandingBonus = 0;
+						if( sc && sc->data[SC_BANDING] )
+							bandingBonus = 200 * (sd ? skill_check_pc_partner(sd,skill_id,&lv,skill_get_splash(skill_id,skill_lv),0) : 1);
+						skillratio = ((300 * skill_lv) + bandingBonus) * (sd ? sd->status.job_level : 1) / 25;
+					}
+					break;
 					case LG_SHIELDSPELL:// [(Casters Base Level x 4) + (Shield MDEF x 100) + (Casters INT x 2)] %
-						if( sd ) { 
+						if( sd ) {
 							skillratio = status_get_lv(src) * 4 + sd->bonus.shieldmdef * 100 + status_get_int(src) * 2;
 						} else
-							skillratio += 1900;	//2000%	
+							skillratio += 1900;	//2000%
 						break;
 					case WM_METALICSOUND:
 						skillratio += 120 * skill_lv + 60 * ( sd? pc_checkskill(sd, WM_LESSON) : 10 ) - 100;
@@ -3948,7 +3947,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 					/*case WM_SEVERE_RAINSTORM:
 						skillratio += 50 * skill_lv;
 						break;
-						
+
 						WM_SEVERE_RAINSTORM just set a unit place,
 						refer to WM_SEVERE_RAINSTORM_MELEE to set the formula.
 					*/

@@ -15024,7 +15024,7 @@ BUILDIN_FUNC(searchitem)
 
 	for( i = 0; i < count; ++start, ++i )
 	{// Set array
-		void* v = (void*)__64BPRTSIZE(items[i]->nameid);
+		void* v = (void*)__64BPRTSIZE((int)items[i]->nameid);
 		set_reg(st, sd, reference_uid(id, start), name, v, reference_getref(data));
 	}
 
