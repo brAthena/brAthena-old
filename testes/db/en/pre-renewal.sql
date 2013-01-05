@@ -26540,6 +26540,16 @@ REPLACE INTO item_db VALUES(19506,'T_Valkyrie_Feather_Band','T Valkyrie Feather 
 REPLACE INTO item_db VALUES(19507,'Clear_Sun','Clear Sun','5',0,NULL,'0',NULL,0,NULL,0,0xFFFFFFFF,7,2,1024,NULL,1,0,654,NULL,NULL,NULL);
 
 --
+-- Estrutura da tabela `item_bro`
+--
+
+CREATE TABLE IF NOT EXISTS `item_bro` (
+  `GroupID` tinyint NOT NULL,
+  `ItemID` smallint unsigned NOT NULL,
+  `Rate` smallint NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+--
 -- Table structure for table `mob_db`
 --
 
