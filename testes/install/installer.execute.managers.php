@@ -67,6 +67,14 @@ $ssh_command = ssh2_exec($ssh_connect, '/usr/bin/svn co http://svn.brathena.org/
 	}
 	stream_set_blocking($ssh_command, true); // Return a correct execution
 	break;
+	
+/* Creating MySQL database and user. */
+$ssh_command = ssh2_exec($ssh_connect, '/../brathena/install/managers/mysql.sh');
+	if ($ssh_command == false) { // If ssh or subversion doesn't is installed
+		die("Failed to execute command");
+	}
+	stream_set_blocking($ssh_command, true); // Return a correct execution
+	break;
 
 /* Change packetver. */
 
