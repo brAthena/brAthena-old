@@ -45,8 +45,5 @@
 /// - Algumas habilidades e itens mudam a fórmula de bonificar velocidade de ataque, para valores fixos.
 #define RENEWAL_ASPD
 
-/// Velocidade de ataque da renovação, conforme kRO [Protimus]
-//#define RENEWAL_ASPD_KRO
-
 #endif // _CONFIG_RENEWAL_H_
 #endif // _RENEWAL
