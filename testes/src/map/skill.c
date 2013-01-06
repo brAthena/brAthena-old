@@ -724,7 +724,7 @@ int skill_additional_effect (struct block_list* src, struct block_list *bl, uint
 	nullpo_ret(src);
 	nullpo_ret(bl);
 
-	if(skill_id > 0 && skill_lv <= 0) return 0;	// don't forget auto attacks! - celest
+	if(skill_id > 0 && !skill_lv) return 0;	// don't forget auto attacks! - celest
 
 	if( dmg_lv < ATK_BLOCK ) // Don't apply effect if miss.
 		return 0;
@@ -1747,7 +1747,7 @@ int skill_counter_additional_effect (struct block_list* src, struct block_list *
 	nullpo_ret(src);
 	nullpo_ret(bl);
 
-	if(skill_id > 0 && skill_lv <= 0) return 0;	// don't forget auto attacks! - celest
+	if(skill_id > 0 && !skill_lv) return 0;	// don't forget auto attacks! - celest
 
 	sd = BL_CAST(BL_PC, src);
 	dstsd = BL_CAST(BL_PC, bl);
@@ -2234,8 +2234,8 @@ int skill_attack (int attack_type, struct block_list* src, struct block_list *ds
 		if (pd->a_skill && pd->a_skill->div_ && pd->a_skill->id == skill_id)
 		{
 			int element = skill_get_ele(skill_id, skill_lv);
-			if (skill_id == -1)
-				element = sstatus->rhw.ele;
+			/*if (skill_id == -1) Does it ever worked?
+				element = sstatus->rhw.ele;*/
 			if (element != ELE_NEUTRAL || !(battle_config.attack_attr_none&BL_PET))
 				dmg.damage=battle_attr_fix(src, bl, skill_lv, element, tstatus->def_ele, tstatus->ele_lv);
 			else
@@ -3703,18 +3703,20 @@ int skill_castend_damage_id (struct block_list* src, struct block_list *bl, uint
 			short x, y, i = 2; // Move 2 cells for Issen(from target)
 			struct block_list *mbl = bl;
 			short dir = 0;
+			
+			skill_attack(BF_WEAPON,src,src,bl,skill_id,skill_lv,tick,flag);
 
 			if( skill_id == MO_EXTREMITYFIST )
 			{
 				mbl = src;
 				i = 3; // for Asura(from caster)
+				status_set_sp(src, 0, 0);
 				status_change_end(src, SC_EXPLOSIONSPIRITS, INVALID_TIMER);
 				status_change_end(src, SC_BLADESTOP, INVALID_TIMER);
 #ifdef RENEWAL
 				sc_start(src,SC_EXTREMITYFIST2,100,skill_lv,skill_get_time(skill_id,skill_lv));
 #endif
 			}
-			skill_attack(BF_WEAPON,src,src,bl,skill_id,skill_lv,tick,flag);
 
 			dir = map_calc_dir(src,bl->x,bl->y);
 			if( dir > 0 && dir < 4) x = -i;
@@ -7829,10 +7831,12 @@ int skill_castend_nodamage_id (struct block_list *src, struct block_list *bl, ui
 				skill_blockpc_start(sd,skill_id,4000);
 
 			if( !(tsc && tsc->data[type]) ){
-				if( i )
-					break;
+				i = sc_start2(bl,type,rate,skill_lv,src->id,(src == bl)?5000:(bl->type == BL_PC)?skill_get_time(skill_id,skill_lv):skill_get_time2(skill_id, skill_lv)); 
+				clif_skill_nodamage(src,bl,skill_id,skill_lv,i); 
+				if( !i )
+					clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 			}
-		}
+		}else
 		if( sd )
 			clif_skill_fail(sd,skill_id,USESKILL_FAIL_TOTARGET,0);
 		break;
@@ -9356,7 +9360,7 @@ int skill_castend_id(int tid, unsigned int tick, int id, intptr_t data)
 #endif
 		}
 		if (target && target->m == src->m)
-		{	//Move character to target anyway.			
+		{	//Move character to target anyway.
 			if (unit_movepos(src, src->x+3, src->y+3, 1, 1))
 			{	//Display movement + animation.
 				clif_slide(src,src->x,src->y);
@@ -13573,7 +13577,8 @@ struct skill_condition skill_get_requirement(struct map_session_data* sd, uint16
 			}
 		}
 		if( skill_id >= HT_SKIDTRAP && skill_id <= HT_TALKIEBOX && pc_checkskill(sd, RA_RESEARCHTRAP) > 0){
-			if( pc_search_inventory(sd,req.itemid[i]) < 0  || ( idx >= 0 && sd->status.inventory[idx].amount < req.amount[i] ) ){
+			int16 itIndex;
+			if( (itIndex = pc_search_inventory(sd,req.itemid[i])) < 0  || ( itIndex >= 0 && sd->status.inventory[itIndex].amount < req.amount[i] ) ){
 				req.itemid[i] = ITEMID_TRAP_ALLOY;
 				req.amount[i] = 1;
 			}

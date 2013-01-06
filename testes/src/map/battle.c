@@ -2341,7 +2341,6 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 						//You'd need something like 6K SP to reach this max, so should be fine for most purposes.
 						if (ratio > 60000) ratio = 60000; //We leave some room here in case skillratio gets further increased.
 						skillratio = (unsigned short)ratio;
-						status_set_sp(src, 0, 0);
 					}
 					break;
 				case MO_TRIPLEATTACK:
@@ -2385,7 +2384,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					if (sd && index >= 0 &&
 						sd->inventory_data[index] &&
 						sd->inventory_data[index]->type == IT_WEAPON)
-							weight = sd->inventory_data[index]->weight/20;					
+							weight = sd->inventory_data[index]->weight/20;
 					ATK_ADD(weight * skill_lv)
 					skillratio += 50*skill_lv;
 				}
@@ -2490,6 +2489,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio += 50 + 150*skill_lv;
 					break;
 				case NJ_TATAMIGAESHI:
+#ifdef RENEWAL
+					ATK_RATE(200);
+#endif
 					skillratio += 10*skill_lv;
 					break;
 				case NJ_KASUMIKIRI:
@@ -2502,7 +2504,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					{
 					int k = (wflag-1)/3; //+100% every 3 cells of distance
 					if( k > 2 ) k = 2; // ...but hard-limited to 300%.
-					skillratio += 100 * k; 
+					skillratio += 100 * k;
 					}
 					break;
 				case HT_PHANTASMIC:
@@ -2936,7 +2938,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				case MH_LAVA_SLIDE:
 					skillratio = 70 * skill_lv;
 					break;
-                                case MH_TINDER_BREAKER:
+				case MH_TINDER_BREAKER:
 				case MH_MAGMA_FLOW:
 					skillratio += -100 + 100 * skill_lv;
 					break;
@@ -3047,7 +3049,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			if( sc->data[SC_EDP] ){
 				switch(skill_id){
 					case AS_SPLASHER:       case AS_VENOMKNIFE:
-					case AS_GRIMTOOTH:      
+					case AS_GRIMTOOTH:
 					break;
 #ifndef RENEWAL_EDP
 					case ASC_BREAKER:       case ASC_METEORASSAULT: break;
@@ -3087,7 +3089,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					ATK_ADDRATE(50);
 				break;
 		}
-		
+
 		if( sd )
 		{
 			if (skill_id && (i = pc_skillatk_bonus(sd, skill_id)))

@@ -1687,7 +1687,7 @@ int	unit_calc_pos(struct block_list *bl, int tx, int ty, uint8 dir)
 	struct unit_data *ud = unit_bl2ud(bl);
 	nullpo_ret(ud);
 
-	if( dir < 0 || dir > 7 )
+	if(dir > 7)
 		return 1;
 
 	ud->to_x = tx;
@@ -1781,7 +1781,7 @@ static int unit_attack_timer_sub(struct block_list* src, int tid, unsigned int t
 
 	if( ud->skilltimer != INVALID_TIMER && !(sd && pc_checkskill(sd,SA_FREECAST) > 0) )
 		return 0; // can't attack while casting
-	
+
 	if( !battle_config.sdelay_attack_enable && DIFF_TICK(ud->canact_tick,tick) > 0 && !(sd && pc_checkskill(sd,SA_FREECAST) > 0) )
 	{ // attacking when under cast delay has restrictions:
 		if( tid == INVALID_TIMER )
