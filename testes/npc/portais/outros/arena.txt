@@ -47,7 +47,7 @@ DLGTEMP:
 		mes "Erro!";
 		close;
 	}
- if (@input_arena == 1357) {
+  else if (@input_arena == 1357) {
 		mes "Abrindo o Painel de Controle";
 		mes "' A - R - E - N - A '";
 		next;
@@ -58,15 +58,13 @@ DLGTEMP:
 				misceffect EF_ENHANCE;
 				enablenpc "recepção_arena";
 				next;
-				break;
-			case 2:
+				} else {
 				mes "Atualmente a arena está fechada.";
 				misceffect EF_EXIT;
 				disablenpc "recepção_arena";
 				next;
-				break;
+				}
 		}
-	}
 		mes "Fechando o controle do painel.";
 		close;
 }

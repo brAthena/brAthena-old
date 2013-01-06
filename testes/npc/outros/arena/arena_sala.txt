@@ -19,6 +19,7 @@
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
 //   | 1.1 Tradução PT-BR [Thor]                              |
+//   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
@@ -571,7 +572,7 @@ sec_in02,72,180,3	script	Administrador da Arena	802,{
 	close;
 }
 
-sec_in02,79,171,3	script	Administrador de Recompensas	802,{
+sec_in02,79,171,3	script	Adm. de Recompensas	802,{
 
 	input .@arena;
 	if(!.@arena)
