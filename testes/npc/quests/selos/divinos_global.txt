@@ -19,15 +19,12 @@
 //   | Changelog:                                             |
 //   | 1.0 Cabeçalho Criado [Holy]                            |
 //   | 1.1 Tradução PT-BR [CaroLPunk]                         |
+//   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
 sec_in02,15,170,0	script	Variável Global	817,{
-	//mes "[Verificador]";
-	//mes "Por favor, digite a senha.";
-	//next;
-	//set .@check,68392411;
-	//if (check == input){
+
 	if (getgmlevel() > 98) {
 		mes "[Verificador]";
 		mes "Escolha um menu.";
@@ -138,7 +135,6 @@ sec_in02,15,170,0	script	Variável Global	817,{
 	}
 	else {
 		mes "[Verificador]";
-		//mes "Senha incorreta.";
 		mes "Você não pode acessar este NPC.";
 		close;
 	}

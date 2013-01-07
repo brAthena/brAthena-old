@@ -78,10 +78,10 @@ prontera,146,91,5	script	Pandit Chacha#crianca07	61,{
 			mes "Aqui, irei trocar por 50 Poções Infantis.";
 			mes "Depois de conseguir as 50 poções infantis, eu estou sem mais nenhuma delas.";
 			close2;
-			delitem 745,1; //Buquê de Casamento
-			delitem 748,1; //Rosa Eterna
+			delitem 745,1; // Buquê de Casamento
+			delitem 748,1; // Rosa Eterna
 			set evento_semana_crianca9,2;
-			getitem 11705,50; //Poção Infantil
+			getitem 11705,50; // Poção Infantil
 			end;
 		}
 		mes "[Pandit Chacha]";

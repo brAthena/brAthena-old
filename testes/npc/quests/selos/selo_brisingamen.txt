@@ -1,23 +1,26 @@
-//===== rAthena Script ======================================= 
-//= Brisingamen seal unlocking NPCs.
-//===== By: ================================================== 
-//= SinSloth
-//===== Current Version: ===================================== 
-//= 1.5
-//===== Compatible With: ===================================== 
-//= rAthena
-//===== Description: ========================================= 
-//= Quest for breaking the seal of Brisingamen.
-//===== Additional Comments: =================================
-//= 1.0 First version. Thanks to SinSloth for scripting it. [MasterOfMuppets]
-//= 1.0a Removed duplicates [Toms]
-//= 1.1 Corrected NPC names to fall within proper restrictions. [L0ne_W0lf]
-//= 1.2 Updated several aspects of the script. [L0ne_W0lf]
-//= 1.3 Minor Touchups to quest. [L0ne_W0lf]
-//= 1.3a Changed some " + name +" to strcharinfo(0) [Samuray22]
-//= 1.4 Replaced effect numerics with constants. [Samuray22]
-//= 1.5 Corrected serverwide announcement. [L0ne_W0lf]
-//============================================================
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: Selo de Brisigamen                     |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.5/1.5/1.0                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Quest do rompimento do Selo de Brisigamen.  |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Cabeçalho Criado [Holy]                            |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
 
 prt_fild08,175,374,3	script	Bard#brising	51,{
 	cutin "god_nelluad01",2;
