@@ -3,9 +3,9 @@
 //===== By: ==================================================
 //= rAthena Dev Team
 //===== Current Version: =====================================
-//= $Revision: 17019 $
+//= $Revision: 17075 $
 //===== Last Updated: ========================================
-//= $LastChangedDate: 2012-12-12 04:24:02 -0200 (qua, 12 dez 2012) $
+//= $LastChangedDate: 2013-01-04 16:38:44 -0200 (Fri, 04 Jan 2013) $
 //===== Description: =========================================
 //= A reference manual for the rAthena scripting language.
 //= Commands are sorted depending on their functionality.
@@ -844,9 +844,10 @@ execution with 'goto', 'menu' and 'jump_zero' commands, invoked with 'doevent'
 and 'donpcevent' commands and are otherwise essential. A label's name may not be 
 longer than 22 characters. (23rd is the ':'.) There is some confusion in the 
 source about whether it's 22, 23 or 24 all over the place, so keeping labels 
-under 22 characters could be wise. In addition to labels you name yourself, 
-there are also some special labels which the script engine will start execution 
-from if a special event happens:
+under 22 characters could be wise. It may only contain alphanumeric characters 
+and underscore. In addition to labels you name yourself, there are also some 
+special labels which the script engine will start execution from if a special 
+event happens:
 
 OnClock<hour><minute>:
 OnMinute<minute>:
@@ -894,6 +895,11 @@ OnTouch:
 This label will be executed if a trigger area is defined for the NPC object it's 
 in. If it isn't present, the execution will start from the beginning of the NPC 
 code. The RID of the triggering character object will be attached.
+
+OnTouch_:
+
+Similar to OnTouch, but will only run one instance. Another character is
+chosen once the triggering character leaves the area.
 
 OnPCLoginEvent:
 OnPCLogoutEvent:
@@ -1645,6 +1651,7 @@ result in error and termination of the script.
 
 This works like callfunc, and is used for cleaner and faster scripting. The function
 must be defined and used within a script, and works like a label with arguments.
+Note that the name may only contain alphanumeric characters and underscore.
 
 Usage:
 
@@ -3631,7 +3638,7 @@ in February 2005, but it will work just fine in normal NPC scripts.
 This function is similar to 'isequipped', but instead of 1 or 0, it will return 
 the number of cards in the list given that were found on the invoking character.
 
-    if (isequippedcnt(4001,4005,4033,4196)=4) mes "Finally got all four poring cards?";
+    if (isequippedcnt(4001,4005,4033,4196) == 4) mes "Finally got all four poring cards?";
 
 ---------------------------------------
 
@@ -4315,7 +4322,7 @@ If the map name is given as "this", the map the invoking character is on will be
 
 ---------------------------------------
 
-*cleanfloor "<map name>",<x1>,<y1>,<x2>,<y2>;
+*cleanarea "<map name>",<x1>,<y1>,<x2>,<y2>;
 *cleanmap "<map name>";
 
 These commands will clear all items lying on the ground on the specified map, either
@@ -5412,7 +5419,7 @@ If it doesn't work, the /swt emotion is shown.
 
 To evolve a homunculus, the invoking player must have a homunculus,
 the homunculus must not be the last evolution and
-the homunculus must have above 91000 intimacy with it's owner.
+the homunculus must have above 91000 intimacy with its owner.
 
 ---------------------------------------
 
@@ -6288,8 +6295,7 @@ Type indicates what information to return:
 
 These commands will make the NPC object in question move around the map. As they 
 currently are, they are a bit buggy and are not useful for much more than making 
-an NPC move randomly around the map. (see 'npc/custom/devnpc.txt' for an example 
-of such usage)
+an NPC move randomly around the map.
 
 'npcspeed' will set the NPCs walking speed to a specified value. As in the 
 @speed GM command, 200 is the slowest possible speed while 0 is the fastest 
@@ -6336,9 +6342,8 @@ Example:
 This command will send the message to the server console (map-server window). It 
 will not be displayed anywhere else.
 
-    debugmes strcharinfo(0)+" has just done this that and the other";
-    // You would see in the map-server window "NAME has just done this that and 
-    // the other"
+    // Displays "NAME has clicked me!" in the map-server window.
+    debugmes strcharinfo(0)+" has clicked me!";
 
 ---------------------------------------
 
@@ -6620,6 +6625,24 @@ GID as the other unit* commands (See 'GID').
 
 Skill ID is the ID of the skill, skill level is the level of the skill.
 For the position, the x and y are given in the unitSkillUsePos.
+
+---------------------------------------
+
+*npcskill <skill id>,<skill lvl>,<stat point>,<NPC level>;
+*npcskill "<skill name>",<skill lvl>,<stat point>,<NPC level>;
+
+This command causes the attached NPC object to cast a skill on the attached
+player. The skill will have no cast time or cooldown. The player must be
+within the default skill range or the command will fail silently.
+
+The "stat point" parameter temporarily sets all NPC stats to the given value,
+and "NPC level" is the temporary level of the NPC (used in some skills).
+Neither value can be greater than the max level defined in config, and will
+not work properly if the NPC has a mob sprite.
+
+    // Casts Level 10 Heal on the attached player, calculated with
+    // all stats 99 and base level 60.
+    npcskill "AL_HEAL",10,99,60;
 
 ---------------------------------------
 
