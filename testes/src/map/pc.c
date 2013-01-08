@@ -3837,6 +3837,10 @@ int pc_additem(struct map_session_data *sd,struct item *item_data,int amount,e_l
 		sd->inventory_data[i] = data;
 		clif_additem(sd,i,amount,0);
 	}
+#ifdef NSI_UNIQUE_ID
+	if( !itemdb_isstackable2(data) && !item_data->nsiuid )
+		sd->status.inventory[i].nsiuid = itemdb_nsiuid(0,0);
+#endif
 	log_pick_pc(sd, log_type, amount, &sd->status.inventory[i]);
 	
 	sd->weight += w;

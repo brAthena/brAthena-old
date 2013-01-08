@@ -936,9 +936,7 @@ static int clif_set_unit_idle(struct block_list* bl, unsigned char* buffer, bool
 #if PACKETVER < 20091103
 	bool type = !pcdb_checkid(vd->class_);
 #endif
-#if PACKETVER >= 7
 	unsigned short offset = 0;
-#endif
 #if PACKETVER >= 20091103
 	const char *name;
 #endif
@@ -1335,13 +1333,13 @@ int clif_spawn(struct block_list *bl)
 	vd = status_get_viewdata(bl);
 	if( !vd || vd->class_ == INVISIBLE_CLASS )
 		return 0;
-		
+
 	/**
 	* Hide NPC from maya purple card.
 	**/
 	if(bl->type == BL_NPC && !((TBL_NPC*)bl)->chat_id && (((TBL_NPC*)bl)->sc.option&OPTION_INVISIBLE))
 		return 0;
-		
+
 	len = clif_set_unit_idle(bl, buf,true);
 	clif_send(buf, len, bl, AREA_WOS);
 	if (disguised(bl))
@@ -1349,7 +1347,7 @@ int clif_spawn(struct block_list *bl)
 
 	if (vd->cloth_color)
 		clif_refreshlook(bl,bl->id,LOOK_CLOTHES_COLOR,vd->cloth_color,AREA_WOS);
-		
+
 	switch (bl->type)
 	{
 	case BL_PC:
@@ -10145,7 +10143,7 @@ void clif_parse_TakeItem(int fd, struct map_session_data *sd)
 
 		if( sd->sc.cant.pickup )
 			break;
-		
+
 		if (pc_cant_act(sd) || !pc_has_permission(sd, PC_PERM_TAKE_ITEM))
 			break;
 

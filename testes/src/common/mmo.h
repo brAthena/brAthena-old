@@ -51,7 +51,7 @@
 #endif
 
 //Remove/Comment this line to disable sc_data saving. [Skotlex]
-#define ENABLE_SC_SAVING 
+#define ENABLE_SC_SAVING
 //Remove/Comment this line to disable server-side hot-key saving support [Skotlex]
 //Note that newer clients no longer save hotkeys in the registry!
 #define HOTKEY_SAVING
@@ -80,9 +80,9 @@
 #define MAX_FAME 1000000000
 #define MAX_CART 100
 #define MAX_SKILL 3100
-#define GLOBAL_REG_NUM 256 // max permanent character variables per char
-#define ACCOUNT_REG_NUM 64 // max permanent local account variables per account
-#define ACCOUNT_REG2_NUM 16 // max permanent global account variables per account
+#define GLOBAL_REG_NUM 256   // max permanent character variables per char
+#define ACCOUNT_REG_NUM 64   // max permanent local account variables per account
+#define ACCOUNT_REG2_NUM 16  // max permanent global account variables per account
 //Should hold the max of GLOBAL/ACCOUNT/ACCOUNT2 (needed for some arrays that hold all three)
 #define MAX_REG_NUM 256
 #define DEFAULT_WALK_SPEED 150
@@ -202,6 +202,7 @@ struct item {
 	short card[MAX_SLOTS];
 	unsigned int expire_time;
 	char favorite;
+	uint64 nsiuid;
 };
 
 struct point {
@@ -253,7 +254,7 @@ struct guild_storage {
 	int guild_id;
 	short storage_status;
 	short storage_amount;
-	struct item items[MAX_GUILD_STORAGE]; 
+	struct item items[MAX_GUILD_STORAGE];
 	unsigned short lock;
 };
 
@@ -546,7 +547,7 @@ enum { //Change Guild Infos
 	GBI_EXP	=1,		// Guild Experience (EXP)
 	GBI_GUILDLV,		// Guild level
 	GBI_SKILLPOINT,		// Guild skillpoints
-	GBI_SKILLLV,		// Guild skilllv ?? seem unused
+	GBI_SKILLLV,		// Guild skill_lv ?? seem unused
 };
 
 enum { //Change Member Infos

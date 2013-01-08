@@ -12,7 +12,6 @@
 #include "../common/strlib.h"
 #include "../common/timer.h"
 #include "../common/utils.h"
-#include "inter.h"
 #include "int_guild.h"
 #include "int_homun.h"
 #include "int_mercenary.h"
@@ -20,6 +19,7 @@
 #include "int_party.h"
 #include "int_storage.h"
 #include "char.h"
+#include "inter.h"
 
 #include <sys/types.h>
 #include <time.h>
@@ -241,7 +241,7 @@ void set_char_online(int map_id, int char_id, int account_id)
 {
 	struct online_char_data* character;
 	struct mmo_charstatus *cp;
-	
+
 	//Update DB
 	if( SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `online`='1' WHERE `char_id`='%d' LIMIT 1", char_db, char_id) )
 		Sql_ShowDebug(sql_handle);
@@ -809,7 +809,7 @@ int memitemdata_to_sql(const struct item items[], int max, int id, int tableswit
 	SqlStmt_Free(stmt);
 
 	StringBuf_Clear(&buf);
-	StringBuf_Printf(&buf, "INSERT INTO `%s`(`%s`, `nameid`, `amount`, `equip`, `identify`, `refine`, `attribute`, `expire_time`", tablename, selectoption);
+	StringBuf_Printf(&buf, "INSERT INTO `%s`(`%s`, `nameid`, `amount`, `equip`, `identify`, `refine`, `attribute`, `expire_time`, `nsiuid`", tablename, selectoption);
 	for( j = 0; j < MAX_SLOTS; ++j )
 		StringBuf_Printf(&buf, ", `card%d`", j);
 	StringBuf_AppendStr(&buf, ") VALUES ");
@@ -827,12 +827,15 @@ int memitemdata_to_sql(const struct item items[], int max, int id, int tableswit
 		else
 			found = true;
 
-		StringBuf_Printf(&buf, "('%d', '%d', '%d', '%d', '%d', '%d', '%d', '%u'",
-			id, items[i].nameid, items[i].amount, items[i].equip, items[i].identify, items[i].refine, items[i].attribute, items[i].expire_time);
+		StringBuf_Printf(&buf, "('%d', '%d', '%d', '%d', '%d', '%d', '%d', '%u', '%"PRIu64"'",
+			id, items[i].nameid, items[i].amount, items[i].equip, items[i].identify, items[i].refine, items[i].attribute, items[i].expire_time, items[i].nsiuid);
 		for( j = 0; j < MAX_SLOTS; ++j )
 			StringBuf_Printf(&buf, ", '%d'", items[i].card[j]);
 		StringBuf_AppendStr(&buf, ")");
+		
+		updateLastUid(items[i].nsiuid); // Unique Non Stackable Item ID
 	}
+	dbUpdateUid(sql_handle); // Unique Non Stackable Item ID
 
 	if( found && SQL_ERROR == Sql_QueryStr(sql_handle, StringBuf_Value(&buf)) )
 	{
@@ -856,19 +859,19 @@ int inventory_to_sql(const struct item items[], int max, int id) {
 	bool* flag; // bit array for inventory matching
 	bool found;
 	int errors = 0;
-		
-	
+
+
 	// The following code compares inventory with current database values
 	// and performs modification/deletion/insertion only on relevant rows.
 	// This approach is more complicated than a trivial delete&insert, but
 	// it significantly reduces cpu load on the database server.
-	
+
 	StringBuf_Init(&buf);
 	StringBuf_AppendStr(&buf, "SELECT `id`, `nameid`, `amount`, `equip`, `identify`, `refine`, `attribute`, `expire_time`, `favorite`");
 	for( j = 0; j < MAX_SLOTS; ++j )
 		StringBuf_Printf(&buf, ", `card%d`", j);
 	StringBuf_Printf(&buf, " FROM `%s` WHERE `char_id`='%d'", inventory_db, id);
-	
+
 	stmt = SqlStmt_Malloc(sql_handle);
 	if( SQL_ERROR == SqlStmt_PrepareStr(stmt, StringBuf_Value(&buf))
 	   ||  SQL_ERROR == SqlStmt_Execute(stmt) )
@@ -878,7 +881,7 @@ int inventory_to_sql(const struct item items[], int max, int id) {
 		StringBuf_Destroy(&buf);
 		return 1;
 	}
-	
+
 	SqlStmt_BindColumn(stmt, 0, SQLDT_INT,       &item.id,          0, NULL, NULL);
 	SqlStmt_BindColumn(stmt, 1, SQLDT_SHORT,     &item.nameid,      0, NULL, NULL);
 	SqlStmt_BindColumn(stmt, 2, SQLDT_SHORT,     &item.amount,      0, NULL, NULL);
@@ -944,9 +947,9 @@ int inventory_to_sql(const struct item items[], int max, int id) {
 		}
 	}
 	SqlStmt_Free(stmt);
-	
+
 	StringBuf_Clear(&buf);
-	StringBuf_Printf(&buf, "INSERT INTO `%s` (`char_id`, `nameid`, `amount`, `equip`, `identify`, `refine`, `attribute`, `expire_time`, `favorite`", inventory_db);
+	StringBuf_Printf(&buf, "INSERT INTO `%s` (`char_id`, `nameid`, `amount`, `equip`, `identify`, `refine`, `attribute`, `expire_time`, `favorite`, `nsiuid`", inventory_db);
 	for( j = 0; j < MAX_SLOTS; ++j )
 		StringBuf_Printf(&buf, ", `card%d`", j);
 	StringBuf_AppendStr(&buf, ") VALUES ");
@@ -962,22 +965,25 @@ int inventory_to_sql(const struct item items[], int max, int id) {
 			StringBuf_AppendStr(&buf, ",");
 		else
 			found = true;
-		
-		StringBuf_Printf(&buf, "('%d', '%d', '%d', '%d', '%d', '%d', '%d', '%u', '%d'",
-						 id, items[i].nameid, items[i].amount, items[i].equip, items[i].identify, items[i].refine, items[i].attribute, items[i].expire_time, items[i].favorite);
+
+		StringBuf_Printf(&buf, "('%d', '%d', '%d', '%d', '%d', '%d', '%d', '%u', '%d', '%"PRIu64"'",
+						 id, items[i].nameid, items[i].amount, items[i].equip, items[i].identify, items[i].refine, items[i].attribute, items[i].expire_time, items[i].favorite, items[i].nsiuid);
 		for( j = 0; j < MAX_SLOTS; ++j )
 			StringBuf_Printf(&buf, ", '%d'", items[i].card[j]);
 		StringBuf_AppendStr(&buf, ")");
+
+		updateLastUid(items[i].nsiuid);// Unique Non Stackable Item ID
 	}
-	
+	dbUpdateUid(sql_handle);
+
 	if( found && SQL_ERROR == Sql_QueryStr(sql_handle, StringBuf_Value(&buf)) ) {
 		Sql_ShowDebug(sql_handle);
 		errors++;
 	}
-	
+
 	StringBuf_Destroy(&buf);
 	aFree(flag);
-	
+
 	return errors;
 }
 
@@ -1088,7 +1094,7 @@ int mmo_char_fromsql(int char_id, struct mmo_charstatus* p, bool load_everything
 #endif
 
 	memset(p, 0, sizeof(struct mmo_charstatus));
-	
+
 	if (save_log) ShowInfo(read_message("Source.char.char_mmo_char_fromsql_s1"), char_id);
 
 	stmt = SqlStmt_Malloc(sql_handle);
@@ -1201,9 +1207,9 @@ int mmo_char_fromsql(int char_id, struct mmo_charstatus* p, bool load_everything
 	strcat(t_msg, " memo");
 
 	//read inventory
-	//`inventory` (`id`,`char_id`, `nameid`, `amount`, `equip`, `identify`, `refine`, `attribute`, `card0`, `card1`, `card2`, `card3`)
+	//`inventory` (`id`,`char_id`, `nameid`, `amount`, `equip`, `identify`, `refine`, `attribute`, `card0`, `card1`, `card2`, `card3`, `expire_time`, `favorite`, `nsiuid`)
 	StringBuf_Init(&buf);
-	StringBuf_AppendStr(&buf, "SELECT `id`, `nameid`, `amount`, `equip`, `identify`, `refine`, `attribute`, `expire_time`, `favorite`");
+	StringBuf_AppendStr(&buf, "SELECT `id`, `nameid`, `amount`, `equip`, `identify`, `refine`, `attribute`, `expire_time`, `favorite`, `nsiuid`");
 	for( i = 0; i < MAX_SLOTS; ++i )
 		StringBuf_Printf(&buf, ", `card%d`", i);
 	StringBuf_Printf(&buf, " FROM `%s` WHERE `char_id`=? LIMIT %d", inventory_db, MAX_INVENTORY);
@@ -1219,10 +1225,11 @@ int mmo_char_fromsql(int char_id, struct mmo_charstatus* p, bool load_everything
 	||	SQL_ERROR == SqlStmt_BindColumn(stmt, 5, SQLDT_CHAR,      &tmp_item.refine, 0, NULL, NULL)
 	||	SQL_ERROR == SqlStmt_BindColumn(stmt, 6, SQLDT_CHAR,      &tmp_item.attribute, 0, NULL, NULL)
 	||	SQL_ERROR == SqlStmt_BindColumn(stmt, 7, SQLDT_UINT,      &tmp_item.expire_time, 0, NULL, NULL)
-	||	SQL_ERROR == SqlStmt_BindColumn(stmt, 8, SQLDT_CHAR,      &tmp_item.favorite, 0, NULL, NULL) )
+	||	SQL_ERROR == SqlStmt_BindColumn(stmt, 8, SQLDT_CHAR,      &tmp_item.favorite, 0, NULL, NULL)
+	||	SQL_ERROR == SqlStmt_BindColumn(stmt, 9, SQLDT_ULONGLONG, &tmp_item.nsiuid, 0, NULL, NULL) )
 		SqlStmt_ShowDebug(stmt);
 	for( i = 0; i < MAX_SLOTS; ++i )
-		if( SQL_ERROR == SqlStmt_BindColumn(stmt, 9+i, SQLDT_SHORT, &tmp_item.card[i], 0, NULL, NULL) )
+		if( SQL_ERROR == SqlStmt_BindColumn(stmt, 10+i, SQLDT_SHORT, &tmp_item.card[i], 0, NULL, NULL) )
 			SqlStmt_ShowDebug(stmt);
 
 	for( i = 0; i < MAX_INVENTORY && SQL_SUCCESS == SqlStmt_NextRow(stmt); ++i )
@@ -1231,9 +1238,9 @@ int mmo_char_fromsql(int char_id, struct mmo_charstatus* p, bool load_everything
 	strcat(t_msg, " inventory");
 
 	//read cart
-	//`cart_inventory` (`id`,`char_id`, `nameid`, `amount`, `equip`, `identify`, `refine`, `attribute`, `card0`, `card1`, `card2`, `card3`)
+	//`cart_inventory` (`id`,`char_id`, `nameid`, `amount`, `equip`, `identify`, `refine`, `attribute`, `card0`, `card1`, `card2`, `card3`, expire_time`, `nsiuid`)
 	StringBuf_Clear(&buf);
-	StringBuf_AppendStr(&buf, "SELECT `id`, `nameid`, `amount`, `equip`, `identify`, `refine`, `attribute`, `expire_time`");
+	StringBuf_AppendStr(&buf, "SELECT `id`, `nameid`, `amount`, `equip`, `identify`, `refine`, `attribute`, `expire_time`, `nsiuid`");
 	for( j = 0; j < MAX_SLOTS; ++j )
 		StringBuf_Printf(&buf, ", `card%d`", j);
 	StringBuf_Printf(&buf, " FROM `%s` WHERE `char_id`=? LIMIT %d", cart_db, MAX_CART);
@@ -1248,10 +1255,11 @@ int mmo_char_fromsql(int char_id, struct mmo_charstatus* p, bool load_everything
 	||	SQL_ERROR == SqlStmt_BindColumn(stmt, 4, SQLDT_CHAR,        &tmp_item.identify, 0, NULL, NULL)
 	||	SQL_ERROR == SqlStmt_BindColumn(stmt, 5, SQLDT_CHAR,        &tmp_item.refine, 0, NULL, NULL)
 	||	SQL_ERROR == SqlStmt_BindColumn(stmt, 6, SQLDT_CHAR,        &tmp_item.attribute, 0, NULL, NULL)
-	||	SQL_ERROR == SqlStmt_BindColumn(stmt, 7, SQLDT_UINT,        &tmp_item.expire_time, 0, NULL, NULL) )
+	||	SQL_ERROR == SqlStmt_BindColumn(stmt, 7, SQLDT_UINT,        &tmp_item.expire_time, 0, NULL, NULL)
+	||	SQL_ERROR == SqlStmt_BindColumn(stmt, 8, SQLDT_ULONGLONG,   &tmp_item.nsiuid, 0, NULL, NULL) )
 		SqlStmt_ShowDebug(stmt);
 	for( i = 0; i < MAX_SLOTS; ++i )
-		if( SQL_ERROR == SqlStmt_BindColumn(stmt, 8+i, SQLDT_SHORT, &tmp_item.card[i], 0, NULL, NULL) )
+		if( SQL_ERROR == SqlStmt_BindColumn(stmt, 9+i, SQLDT_SHORT, &tmp_item.card[i], 0, NULL, NULL) )
 			SqlStmt_ShowDebug(stmt);
 
 	for( i = 0; i < MAX_CART && SQL_SUCCESS == SqlStmt_NextRow(stmt); ++i )
@@ -1590,26 +1598,17 @@ int delete_char_sql(int char_id)
 		return -1;
 	}
 
-	Sql_GetData(sql_handle, 0, &data, &len); 
-	safestrncpy(name, data, NAME_LENGTH);
-	Sql_GetData(sql_handle, 1, &data, NULL); 
-	account_id = atoi(data);
-	Sql_GetData(sql_handle, 2, &data, NULL); 
-	party_id = atoi(data);
-	Sql_GetData(sql_handle, 3, &data, NULL); 
-	guild_id = atoi(data);
-	Sql_GetData(sql_handle, 4, &data, NULL); 
-	base_level = atoi(data);
-	Sql_GetData(sql_handle, 5, &data, NULL); 
-	hom_id = atoi(data);
-	Sql_GetData(sql_handle, 6, &data, NULL); 
-	partner_id = atoi(data);
-	Sql_GetData(sql_handle, 7, &data, NULL); 
-	father_id = atoi(data);
-	Sql_GetData(sql_handle, 8, &data, NULL); 
-	mother_id = atoi(data);
-	Sql_GetData(sql_handle, 9, &data, NULL);
-    elemental_id = atoi(data);
+	Sql_GetData(sql_handle, 0, &data, &len); safestrncpy(name, data, NAME_LENGTH);
+	Sql_GetData(sql_handle, 1, &data, NULL); account_id = atoi(data);
+	Sql_GetData(sql_handle, 2, &data, NULL); party_id = atoi(data);
+	Sql_GetData(sql_handle, 3, &data, NULL); guild_id = atoi(data);
+	Sql_GetData(sql_handle, 4, &data, NULL); base_level = atoi(data);
+	Sql_GetData(sql_handle, 5, &data, NULL); hom_id = atoi(data);
+	Sql_GetData(sql_handle, 6, &data, NULL); partner_id = atoi(data);
+	Sql_GetData(sql_handle, 7, &data, NULL); father_id = atoi(data);
+	Sql_GetData(sql_handle, 8, &data, NULL); mother_id = atoi(data);
+        Sql_GetData(sql_handle, 9, &data, NULL);
+        elemental_id = atoi(data);
 
 	Sql_EscapeStringLen(sql_handle, esc_name, name, min(len, NAME_LENGTH));
 	Sql_FreeResult(sql_handle);

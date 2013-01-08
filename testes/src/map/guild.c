@@ -1299,7 +1299,7 @@ void guild_guildaura_refresh(struct map_session_data *sd, uint16 skill_id, uint1
 	if( !(battle_config.guild_aura&((agit_flag || agit2_flag)?2:1)) &&
 			!(battle_config.guild_aura&(map_flag_gvg2(sd->bl.m)?8:4)) )
 		return;
-	if( skill_lv <= 0 )
+	if( !skill_lv )
 		return;
 	if( sd->sc.data[type] && (group = skill_id2group(sd->sc.data[type]->val4)) ) {
 		skill_delunitgroup(group);
@@ -1471,7 +1471,7 @@ int guild_reply_reqalliance(struct map_session_data *sd,int account_id,int flag)
 		intif_guild_alliance( sd->status.guild_id,tsd->status.guild_id,
 			sd->status.account_id,tsd->status.account_id,0 );
 		return 0;
-	}else{		// deny
+    } else { // deny
 		sd->guild_alliance=0;
 		sd->guild_alliance_account=0;
 		if(tsd!=NULL)
