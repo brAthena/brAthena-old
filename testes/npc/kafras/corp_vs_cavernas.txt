@@ -115,13 +115,13 @@ OnTimer60000:
 							set $DTS_KafraWins,$DTS_KafraWins+1;
 							set $DTS_Result,1;
 							set $DTS_Time,0;
-							donpcevent "Scrutiny Associação#6::OnEnable";
+							donpcevent "Associação Scrutiny#6::OnEnable";
 							donpcevent "Tempo de Votação2#ein::OnEnable";
 						}
 						else if ($DTS_KafraWins == 2) {
 							set $DTS_Result,1;
 							set $DTS_Time,0;
-							donpcevent "Scrutiny Associação#6::OnEnable";
+							donpcevent "Associação Scrutiny#6::OnEnable";
 							donpcevent "Tempo de Votação2#ein::OnEnable";
 						}
 					}
@@ -130,13 +130,13 @@ OnTimer60000:
 							set $DTS_KafraWins,$DTS_KafraWins+1;
 							set $DTS_Result,1;
 							set $DTS_Time,0;
-							donpcevent "Scrutiny Associação#6::OnEnable";
+							donpcevent "Associação Scrutiny#6::OnEnable";
 							donpcevent "Tempo de Votação2#ein::OnEnable";
 						}
 						else {
 							set $DTS_Time,0;
 							set $DTS_Result,1;
-							donpcevent "Scrutiny Associação#6::OnEnable";
+							donpcevent "Associação Scrutiny#6::OnEnable";
 							donpcevent "Tempo de Votação3#ein::OnEnable";
 						}
 					}
@@ -145,13 +145,13 @@ OnTimer60000:
 							set $DTS_KafraWins,$DTS_KafraWins+1;
 							set $DTS_Result,1;
 							set $DTS_Time,0;
-							donpcevent "Scrutiny Associação#6::OnEnable";
+							donpcevent "Associação Scrutiny#6::OnEnable";
 							donpcevent "Tempo de Votação2#ein::OnEnable";
 						}
 						else {
 							set $DTS_Result,1;
 							set $DTS_Time,0;
-							donpcevent "Scrutiny Associação#6::OnEnable";
+							donpcevent "Associação Scrutiny#6::OnEnable";
 							donpcevent "Tempo de Votação3#ein::OnEnable";
 						}
 					}
@@ -162,13 +162,13 @@ OnTimer60000:
 							set $DTS_JondaWins,$DTS_JondaWins+1;
 							set $DTS_Result,2;
 							set $DTS_Time,0;
-							donpcevent "Scrutiny Associação#7::OnEnable";
+							donpcevent "Associação Scrutiny#7::OnEnable";
 							donpcevent "Tempo de Votação2#ein::OnEnable";
 						}
 						else {
 							set $DTS_Result,2;
 							set $DTS_Time,0;
-							donpcevent "Scrutiny Associação#7::OnEnable";
+							donpcevent "Associação Scrutiny#7::OnEnable";
 							donpcevent "Tempo de Votação2#ein::OnEnable";
 						}
 					}
@@ -177,13 +177,13 @@ OnTimer60000:
 							set $DTS_JondaWins,$DTS_JondaWins+1;
 							set $DTS_Result,2;
 							set $DTS_Time,0;
-							donpcevent "Scrutiny Associação#7::OnEnable";
+							donpcevent "Associação Scrutiny#7::OnEnable";
 							donpcevent "Tempo de Votação2#ein::OnEnable";
 						}
 						else {
 							set $DTS_Result,2;
 							set $DTS_Time,0;
-							donpcevent "Scrutiny Associação#7::OnEnable";
+							donpcevent "Associação Scrutiny#7::OnEnable";
 							donpcevent "Tempo de Votação4#ein::OnEnable";
 						}
 					}
@@ -192,13 +192,13 @@ OnTimer60000:
 							set $DTS_JondaWins,$DTS_JondaWins+1;
 							set $DTS_Result,2;
 							set $DTS_Time,0;
-							donpcevent "Scrutiny Associação#7::OnEnable";
+							donpcevent "Associação Scrutiny#7::OnEnable";
 							donpcevent "Tempo de Votação2#ein::OnEnable";
 						}
 						else {
 							set $DTS_Result,2;
 							set $DTS_Time,0;
-							donpcevent "Scrutiny Associação#7::OnEnable";
+							donpcevent "Associação Scrutiny#7::OnEnable";
 							donpcevent "Tempo de Votação4#ein::OnEnable";
 						}
 					}
@@ -1073,7 +1073,7 @@ alberta,114,70,6	duplicate(VotingStaffCCE)	Funcionário#alb	874
 aldebaran,138,102,6	duplicate(VotingStaffCCE)	Funcionário#alde	874
 lighthalzen,154,60,6	duplicate(VotingStaffCCE)	Funcionário#lhz	874
 
-yuno,103,225,0	script	Scrutiny Associação#5	-1,{
+yuno,103,225,0	script	Associação Scrutiny#5	-1,{
 OnInit:
 	initnpctimer;
 	end;
@@ -1087,11 +1087,11 @@ OnTimer7200000:
 	if (($DTS_Result == 0) || ($DTS_Result == 3)) {
 		announce "Atualmente a eleição para quem vai fornecer o serviço de teleporte para as dungeons está sendo realizado nas grandes cidades. Sua participação é importante.",bc_all,"0x70dbdb";
 	}
-	donpcevent "Scrutiny Associação#5::OnEnable";
+	donpcevent "Associação Scrutiny#5::OnEnable";
 	end;
 }
 
-einbroch,248,71,0	script	Scrutiny Associação#6	-1,{
+einbroch,248,71,0	script	Associação Scrutiny#6	-1,{
 OnEnable:
 	initnpctimer;
 	end;

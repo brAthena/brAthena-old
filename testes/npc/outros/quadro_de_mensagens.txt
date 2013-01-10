@@ -12,15 +12,10 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.6/1.0                             |
+//   | Versões eA/rA/brA: 1.6/1.0/1.0                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Mensagens de placa para:                    |
-//   | - Prontera                                             |
-//   | - Morroc                                               |
-//   | - Geffen                                               |
-//   | - Al De Baran                                          |
-//   | - Izlude                                               |
-//   | - Alberta                                              |
+//   | Prontera, Morroc, Geffen, Aldebaran, Izlude e Alberta. |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
@@ -201,7 +196,7 @@ geffen,183,61,1	script	Quadro#Gef6	111,{
 	close;
 }
 
-// Al De Baran
+// Aldebaran
 //============================================================
 aldebaran,181,172,1	script	Aviso#Alde1	111,{
 	mes "^993300- Quadro de avisos -^000000";

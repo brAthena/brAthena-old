@@ -30,7 +30,7 @@
 //   | - Anotações                                               |
 //   \___________________________________________________________/
 
--	script	Guia do PVP::pvpe	-1,{
+morocc_in,144,138,4	script	Guia do PVP	84,{
 	mes "[Guia do PVP]";
 	mes "Olá e bem vindo!";
 	mes "Eu sou ";
@@ -182,15 +182,14 @@
 }
 
 // Guia do PVP - Duplicatas
-morocc_in,144,138,4	duplicate(pvpe)	Guia do PVP#pe1	84
-alberta_in,22,146,4	duplicate(pvpe)	Guia do PVP#pe2	84
-prt_in,56,140,4	duplicate(pvpe)	Guia do PVP#pe3	84
-geffen_in,67,63,4	duplicate(pvpe)	Guia do PVP#pe4	84
-payon_in01,142,50,4	duplicate(pvpe)	Guia do PVP#pe5	84
-geffen_in,67,63,4	duplicate(pvpe)	Guia do PVP#pe6	84
+alberta_in,22,146,4	duplicate(Guia do PVP)	Guia do PVP#pe2	84
+prt_in,56,140,4	duplicate(Guia do PVP)	Guia do PVP#pe3	84
+geffen_in,67,63,4	duplicate(Guia do PVP)	Guia do PVP#pe4	84
+payon_in01,142,50,4	duplicate(Guia do PVP)	Guia do PVP#pe5	84
+geffen_in,67,63,4	duplicate(Guia do PVP)	Guia do PVP#pe6	84
 
 // Porteiro
--	script	Porteiro::gkut	-1,{
+morocc_in,144,142,4	script	Porteiro	83,{
 	mes "[Porteiro]";
 	mes "Fico feliz em ser útil.";
 	mes "Eu vou abrir o modo de";
@@ -268,13 +267,12 @@ geffen_in,67,63,4	duplicate(pvpe)	Guia do PVP#pe6	84
 }
 
 // Porteiro Duplicatas
-morocc_in,144,142,4	duplicate(gkut)	Porteiro#gke1	83
 alberta_in,26,146,4	duplicate(gkut)	Porteiro#gke2	83
 prt_in,52,140,4	duplicate(gkut)	Porteiro#gke3	83
 geffen_in,63,63,4	duplicate(gkut)	Porteiro#gke4	83
 payon_in01,140,53,4	duplicate(gkut)	Porteiro#gke5	83
 
--	script	FSRS::fsr	-1,{
+pvp_y_room,86,85,4	script	Recepção	105,{
 	if(strnpcinfo(4) == "pvp_y_room") {
 		setarray .@Maps$[0],"pvp_y_8-1","pvp_y_8-2","pvp_y_8-3","pvp_y_8-4","pvp_y_8-5";
 		setarray .@Name$[0],"Prontera","Izlude","Payon","Alberta","Morroc";
@@ -301,8 +299,7 @@ OnInit:
 end;
 }
 
-pvp_y_room,86,85,4	duplicate(fsr)	Recepção#f1	105
-pvp_n_room,30,85,4	duplicate(fsr)	Recepção#f2	105
+pvp_n_room,30,85,4	duplicate(Recepção)	Recepção#f2	105
 
 pvp_n_8-4,33,122,0	warp	Link_1-11	0,2,pvp_n_8-4,0,0
 pvp_n_8-4,62,84,0	warp	Link_1-12	1,1,pvp_n_8-4,0,0
@@ -387,7 +384,7 @@ OnInit:
 }
 
 //============================================================ 
--	script	Espectador#dum::PVPSEspectador	-1,{
+pvp_room,62,85,4	script	Espectador#dum	105,{
 	if (countitem(7029) == 0) {
 		mes "[Equipe de Registro para arena PVP]";
 		mes "Essa é a entrada para os telespectadores.";
@@ -414,13 +411,12 @@ OnInit:
 	end;
 }
 
-pvp_room,62,85,4	duplicate(PVPSEspectador)	Espectador#1	105
-pvp_room,70,85,4	duplicate(PVPSEspectador)	Espectador#2	105
-pvp_room,78,85,4	duplicate(PVPSEspectador)	Espectador#3	105
-pvp_room,86,85,4	duplicate(PVPSEspectador)	Espectador#4	105
+pvp_room,70,85,4	duplicate(Espectador#dum)	Espectador#2	105
+pvp_room,78,85,4	duplicate(Espectador#dum)	Espectador#3	105
+pvp_room,86,85,4	duplicate(Espectador#dum)	Espectador#4	105
 
 //============================================================ 
--	script	Equipe da Arena de Combate#dum::PVPEspec	-1,{
+pvp_2vs2,5,4,0	script	Equipe da Arena de Combate#dum::PVPEspec	45,1,1,{
 OnTouch:
 	mes "[Equipe da Arena de Combate]";
 	mes "Como posso ajudar?";
@@ -432,10 +428,9 @@ OnTouch:
 	end;
 }
 
-pvp_2vs2,5,4,0	duplicate(PVPEspec)	Equipe Arena de Combate#1	45,1,1
-pvp_2vs2,5,74,0	duplicate(PVPEspec)	Equipe Arena de Combate#2	45,1,1
-pvp_2vs2,74,74,0	duplicate(PVPEspec)	Equipe Arena de Combate#3	45,1,1
-pvp_2vs2,74,5,0	duplicate(PVPEspec)	Equipe Arena de Combate#4	45,1,1
+pvp_2vs2,5,74,0	duplicate(Equipe da Arena de Combate#dum)	Equipe Arena de Combate#2	45,1,1
+pvp_2vs2,74,74,0	duplicate(Equipe da Arena de Combate#dum)	Equipe Arena de Combate#3	45,1,1
+pvp_2vs2,74,5,0	duplicate(Equipe da Arena de Combate#dum)	Equipe Arena de Combate#4	45,1,1
 pvp_2vs2,40,40,0	script	Equipe Arena de Combate#5	45,1,1,{
 	mes "[Equipe da Arena de Combate]";
 	mes "Como posso ajduar?";
