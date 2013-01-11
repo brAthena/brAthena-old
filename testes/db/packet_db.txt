@@ -1742,6 +1742,7 @@ packet_ver: 30
 0x08D7,28,battlegroundreg,2:4 //Adicionado para prevenir desconexões
 0x08CF,10 //Espíritos do Amuleto
 0x0977,14 //HP dos Monstros
+0x08FC,30 // Rename
 
 //Adicione novos pacotes abaixo.
 //packet_ver: 31
