@@ -1,18 +1,18 @@
 // Copyright (c) Athena Dev Teams - Licensed under GNU GPL
 // For more information, see LICENCE in the main folder
 
-#ifndef	_SOCKET_H_
+#ifndef _SOCKET_H_
 #define _SOCKET_H_
 
 #include "../common/cbasetypes.h"
 
 #ifdef WIN32
-	#include "../common/winapi.h"
-	typedef long in_addr_t;
+#include "../common/winapi.h"
+typedef long in_addr_t;
 #else
-	#include <sys/types.h>
-	#include <sys/socket.h>
-	#include <netinet/in.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
 #endif
 
 #include <time.h>
@@ -71,8 +71,7 @@ typedef int (*RecvFunc)(int fd);
 typedef int (*SendFunc)(int fd);
 typedef int (*ParseFunc)(int fd);
 
-struct socket_data
-{
+struct socket_data {
 	struct {
 		unsigned char eof : 1;
 		unsigned char server : 1;
@@ -91,13 +90,13 @@ struct socket_data
 	SendFunc func_send;
 	ParseFunc func_parse;
 
-	void* session_data; // stores application-specific data related to the session
+	void *session_data; // stores application-specific data related to the session
 };
 
 
 // Data prototype declaration
 
-extern struct socket_data* session[FD_SETSIZE];
+extern struct socket_data *session[FD_SETSIZE];
 
 extern int fd_max;
 
@@ -131,21 +130,21 @@ extern void set_nonblocking(int fd, unsigned long yes);
 void set_defaultparse(ParseFunc defaultparse);
 
 // hostname/ip conversion functions
-uint32 host2ip(const char* hostname);
-const char* ip2str(uint32 ip, char ip_str[16]);
-uint32 str2ip(const char* ip_str);
+uint32 host2ip(const char *hostname);
+const char *ip2str(uint32 ip, char ip_str[16]);
+uint32 str2ip(const char *ip_str);
 #define CONVIP(ip) ((ip)>>24)&0xFF,((ip)>>16)&0xFF,((ip)>>8)&0xFF,((ip)>>0)&0xFF
 #define MAKEIP(a,b,c,d) (uint32)( ( ( (a)&0xFF ) << 24 ) | ( ( (b)&0xFF ) << 16 ) | ( ( (c)&0xFF ) << 8 ) | ( ( (d)&0xFF ) << 0 ) )
 uint16 ntows(uint16 netshort);
 
-int socket_getips(uint32* ips, int max);
+int socket_getips(uint32 *ips, int max);
 
 extern uint32 addr_[16];   // ip addresses of local host (host byte order)
 extern int naddr_;   // # of ip addresses
 
 void set_eof(int fd);
 
-/// Use a shortlist of sockets instead of iterating all sessions for sockets 
+/// Use a shortlist of sockets instead of iterating all sessions for sockets
 /// that have data to send or need eof handling.
 /// Adapted to use a static array instead of a linked list.
 ///

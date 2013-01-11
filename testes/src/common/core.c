@@ -28,7 +28,7 @@
 void (*shutdown_callback)(void) = NULL;
 
 #if defined(BUILDBOT)
-	int buildbotflag = 0;
+int buildbotflag = 0;
 #endif
 
 int runflag = CORE_ST_RUN;
@@ -38,14 +38,14 @@ char **arg_v = NULL;
 char *SERVER_NAME = NULL;
 char SERVER_TYPE = ATHENA_SERVER_NONE;
 
-#ifndef MINICORE	// minimalist Core
+#ifndef MINICORE    // minimalist Core
 // Added by Gabuzomeu
 //
 // This is an implementation of signal() using sigaction() for portability.
 // (sigaction() is POSIX; signal() is not.)  Taken from Stevens' _Advanced
 // Programming in the UNIX Environment_.
 //
-#ifdef WIN32	// windows don't have SIGPIPE
+#ifdef WIN32    // windows don't have SIGPIPE
 #define SIGPIPE SIGINT
 #endif
 
@@ -60,10 +60,10 @@ sigfunc *compat_signal(int signo, sigfunc *func)
 	sigemptyset(&sact.sa_mask);
 	sact.sa_flags = 0;
 #ifdef SA_INTERRUPT
-	sact.sa_flags |= SA_INTERRUPT;	/* SunOS */
+	sact.sa_flags |= SA_INTERRUPT;  /* SunOS */
 #endif
 
-	if (sigaction(signo, &sact, &oact) < 0)
+	if(sigaction(signo, &sact, &oact) < 0)
 		return (SIG_ERR);
 
 	return (oact.sa_handler);
@@ -71,72 +71,71 @@ sigfunc *compat_signal(int signo, sigfunc *func)
 #endif
 
 /*======================================
- *	CORE : Console events for Windows
+ *  CORE : Console events for Windows
  *--------------------------------------*/
 #ifdef _WIN32
 static BOOL WINAPI console_handler(DWORD c_event)
 {
-    switch(c_event)
-    {
-    case CTRL_CLOSE_EVENT:
-    case CTRL_LOGOFF_EVENT:
-    case CTRL_SHUTDOWN_EVENT:
-		if( shutdown_callback != NULL )
-			shutdown_callback();
-		else
-			runflag = CORE_ST_STOP;// auto-shutdown
-        break;
-	default:
-		return FALSE;
-    }
-    return TRUE;
+	switch(c_event) {
+		case CTRL_CLOSE_EVENT:
+		case CTRL_LOGOFF_EVENT:
+		case CTRL_SHUTDOWN_EVENT:
+			if(shutdown_callback != NULL)
+				shutdown_callback();
+			else
+				runflag = CORE_ST_STOP;// auto-shutdown
+			break;
+		default:
+			return FALSE;
+	}
+	return TRUE;
 }
 
 static void cevents_init()
 {
-	if (SetConsoleCtrlHandler(console_handler,TRUE)==FALSE)
-		ShowWarning ("Nao e possivel instalar o manipulador do console!\n");
+	if(SetConsoleCtrlHandler(console_handler,TRUE)==FALSE)
+		ShowWarning("Nao e possivel instalar o manipulador do console!\n");
 }
 #endif
 
 /*======================================
- *	CORE : Signal Sub Function
+ *  CORE : Signal Sub Function
  *--------------------------------------*/
 static void sig_proc(int sn)
 {
 	static int is_called = 0;
 
-	switch (sn) {
-	case SIGINT:
-	case SIGTERM:
-		if (++is_called > 3)
-			exit(EXIT_SUCCESS);
-		if( shutdown_callback != NULL )
-			shutdown_callback();
-		else
-			runflag = CORE_ST_STOP;// auto-shutdown
-		break;
-	case SIGSEGV:
-	case SIGFPE:
-		do_abort();
-		// Pass the signal to the system's default handler
-		compat_signal(sn, SIG_DFL);
-		raise(sn);
-		break;
+	switch(sn) {
+		case SIGINT:
+		case SIGTERM:
+			if(++is_called > 3)
+				exit(EXIT_SUCCESS);
+			if(shutdown_callback != NULL)
+				shutdown_callback();
+			else
+				runflag = CORE_ST_STOP;// auto-shutdown
+			break;
+		case SIGSEGV:
+		case SIGFPE:
+			do_abort();
+			// Pass the signal to the system's default handler
+			compat_signal(sn, SIG_DFL);
+			raise(sn);
+			break;
 #ifndef _WIN32
-	case SIGXFSZ:
-		// ignore and allow it to set errno to EFBIG
-		ShowWarning ("Tamanho maximo do arquivo alcancado!\n");
-		//run_flag = 0;	// should we quit?
-		break;
-	case SIGPIPE:
-		//ShowInfo ("Broken pipe found... closing socket\n");	// set to eof in socket.c
-		break;	// does nothing here
+		case SIGXFSZ:
+			// ignore and allow it to set errno to EFBIG
+			ShowWarning("Tamanho maximo do arquivo alcancado!\n");
+			//run_flag = 0; // should we quit?
+			break;
+		case SIGPIPE:
+			//ShowInfo ("Broken pipe found... closing socket\n");   // set to eof in socket.c
+			break;  // does nothing here
 #endif
 	}
 }
 
-void signals_init (void)
+void signals_init(void)
 {
 	compat_signal(SIGTERM, sig_proc);
 	compat_signal(SIGINT, sig_proc);
@@ -155,17 +154,17 @@ void signals_init (void)
 #endif
 
 #ifdef SVNVERSION
-	const char *get_svn_revision(void)
-	{
-		return EXPAND_AND_QUOTE(SVNVERSION);
-	}
+const char *get_svn_revision(void)
+{
+	return EXPAND_AND_QUOTE(SVNVERSION);
+}
 #else// not SVNVERSION
-const char* get_svn_revision(void)
+const char *get_svn_revision(void)
 {
 	static char svn_version_buffer[16] = "";
 	FILE *fp;
 
-	if( svn_version_buffer[0] != '\0' )
+	if(svn_version_buffer[0] != '\0')
 		return svn_version_buffer;
 
 	// subversion 1.7 uses a sqlite3 database
@@ -173,39 +172,37 @@ const char* get_svn_revision(void)
 	// - ignores database file structure
 	// - assumes the data in NODES.dav_cache column ends with "!svn/ver/<revision>/<path>)"
 	// - since it's a cache column, the data might not even exist
-	if( (fp = fopen(".svn"PATHSEP_STR"wc.db", "rb")) != NULL || (fp = fopen(".."PATHSEP_STR".svn"PATHSEP_STR"wc.db", "rb")) != NULL )
-	{
-	#ifndef SVNNODEPATH
+	if((fp = fopen(".svn"PATHSEP_STR"wc.db", "rb")) != NULL || (fp = fopen(".."PATHSEP_STR".svn"PATHSEP_STR"wc.db", "rb")) != NULL) {
+#ifndef SVNNODEPATH
 		//not sure how to handle branches, so i'll leave this overridable define until a better solution comes up
-		#define SVNNODEPATH testes
-	#endif
-		const char* prefix = "!svn/ver/";
-		const char* postfix = "/"EXPAND_AND_QUOTE(SVNNODEPATH)")"; // there should exist only 1 entry like this
+#define SVNNODEPATH testes
+#endif
+		const char *prefix = "!svn/ver/";
+		const char *postfix = "/"EXPAND_AND_QUOTE(SVNNODEPATH)")"; // there should exist only 1 entry like this
 		size_t prefix_len = strlen(prefix);
 		size_t postfix_len = strlen(postfix);
 		size_t i,j,len;
-		char* buffer;
+		char *buffer;
 
 		// read file to buffer
 		fseek(fp, 0, SEEK_END);
 		len = ftell(fp);
-		buffer = (char*)aMalloc(len + 1);
+		buffer = (char *)aMalloc(len + 1);
 		fseek(fp, 0, SEEK_SET);
 		len = fread(buffer, 1, len, fp);
 		buffer[len] = '\0';
 		fclose(fp);
 
 		// parse buffer
-		for( i = prefix_len + 1; i + postfix_len <= len; ++i )
-		{
-			if( buffer[i] != postfix[0] || memcmp(buffer + i, postfix, postfix_len) != 0 )
+		for(i = prefix_len + 1; i + postfix_len <= len; ++i) {
+			if(buffer[i] != postfix[0] || memcmp(buffer + i, postfix, postfix_len) != 0)
 				continue; // postfix missmatch
-			for( j = i; j > 0; --j )
-			{// skip digits
-				if( !ISDIGIT(buffer[j - 1]) )
+			for(j = i; j > 0; --j) {
+				// skip digits
+				if(!ISDIGIT(buffer[j - 1]))
 					break;
 			}
-			if( memcmp(buffer + j - prefix_len, prefix, prefix_len) != 0 )
+			if(memcmp(buffer + j - prefix_len, prefix, prefix_len) != 0)
 				continue; // prefix missmatch
 			// done
 			snprintf(svn_version_buffer, sizeof(svn_version_buffer), "%d", atoi(buffer + j));
@@ -213,41 +210,39 @@ const char* get_svn_revision(void)
 		}
 		aFree(buffer);
 
-		if( svn_version_buffer[0] != '\0' )
+		if(svn_version_buffer[0] != '\0')
 			return svn_version_buffer;
 	}
 
 	// subversion 1.6 and older?
-	if ((fp = fopen(".svn/entries", "r")) != NULL)
-	{
+	if((fp = fopen(".svn/entries", "r")) != NULL) {
 		char line[1024];
 		int rev;
 		// Check the version
-		if (fgets(line, sizeof(line), fp))
-		{
-			if(!ISDIGIT(line[0]))
-			{
+		if(fgets(line, sizeof(line), fp)) {
+			if(!ISDIGIT(line[0])) {
 				// XML File format
-				while (fgets(line,sizeof(line),fp))
-					if (strstr(line,"revisao=")) break;
-				if (sscanf(line," %*[^\"]\"%d%*[^\n]", &rev) == 1) {
+				while(fgets(line,sizeof(line),fp))
+					if(strstr(line,"revisao=")) break;
+				if(sscanf(line," %*[^\"]\"%d%*[^\n]", &rev) == 1) {
 					snprintf(svn_version_buffer, sizeof(svn_version_buffer), "%d", rev);
 				}
-			}
-			else
-			{
+			} else {
 				// Bin File format
-				if ( fgets(line, sizeof(line), fp) == NULL ) { printf("Não é possível obter o nome de bin\n"); } // Get the name
-				if ( fgets(line, sizeof(line), fp) == NULL ) { printf("Não é possível obter entradas tipo\n"); } // Get the entries kind
-				if(fgets(line, sizeof(line), fp)) // Get the rev numver
-				{
+				if(fgets(line, sizeof(line), fp) == NULL) {
+					printf("Nï¿½o ï¿½ possï¿½vel obter o nome de bin\n");    // Get the name
+				}
+				if(fgets(line, sizeof(line), fp) == NULL) {
+					printf("Nï¿½o ï¿½ possï¿½vel obter entradas tipo\n");    // Get the entries kind
+				}
+				if(fgets(line, sizeof(line), fp)) { // Get the rev numver
 					snprintf(svn_version_buffer, sizeof(svn_version_buffer), "%d", atoi(line));
 				}
 			}
 		}
 		fclose(fp);
 
-		if( svn_version_buffer[0] != '\0' )
+		if(svn_version_buffer[0] != '\0')
 			return svn_version_buffer;
 	}
 
@@ -258,7 +253,7 @@ const char* get_svn_revision(void)
 #endif
 
 /*======================================
- *	CORE : Display title
+ *  CORE : Display title
  *  ASCII By CalciumKid 1/12/2011
  *--------------------------------------*/
 static void display_title(void)
@@ -283,22 +278,22 @@ static void display_title(void)
 void usercheck(void)
 {
 #ifndef _WIN32
-    if (geteuid() == 0) {
-		ShowWarning ("Voce esta executando o brAthena com privilegios root.\n");
-    }
+	if(geteuid() == 0) {
+		ShowWarning("Voce esta executando o brAthena com privilegios root.\n");
+	}
 #endif
 }
 
 /*======================================
- *	CORE : MAINROUTINE
+ *  CORE : MAINROUTINE
  *--------------------------------------*/
-int main (int argc, char **argv)
+int main(int argc, char **argv)
 {
-	{// initialize program arguments
+	{
+		// initialize program arguments
 		char *p1 = SERVER_NAME = argv[0];
 		char *p2 = p1;
-		while ((p1 = strchr(p2, '/')) != NULL || (p1 = strchr(p2, '\\')) != NULL)
-		{
+		while((p1 = strchr(p2, '/')) != NULL || (p1 = strchr(p2, '\\')) != NULL) {
 			SERVER_NAME = ++p1;
 			p2 = p1;
 		}
@@ -307,7 +302,7 @@ int main (int argc, char **argv)
 	}
 
 	malloc_init();// needed for Show* in display_title() [FlavioJS]
-	
+
 	read_server_lang();
 
 #ifdef MINICORE // minimalist Core
@@ -334,9 +329,10 @@ int main (int argc, char **argv)
 
 	do_init(argc,argv);
 
-	{// Main runtime cycle
+	{
+		// Main runtime cycle
 		int next;
-		while (runflag != CORE_ST_STOP) {
+		while(runflag != CORE_ST_STOP) {
 			next = do_timer(gettick_nocache());
 			do_sockets(next);
 		}

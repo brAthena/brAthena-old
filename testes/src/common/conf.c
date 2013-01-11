@@ -11,7 +11,7 @@ static char lang_file[256] = "conf/lang/pt_br.conf"; // default pt-br
 int conf_read_file(config_t *config, const char *config_filename)
 {
 	config_init(config);
-	if (!config_read_file(config, config_filename)) {
+	if(!config_read_file(config, config_filename)) {
 		ShowError("%s:%d - %s\n", config_error_file(config),
 		          config_error_line(config), config_error_text(config));
 		config_destroy(config);
@@ -30,26 +30,25 @@ int config_setting_copy(config_setting_t *parent, const config_setting_t *src);
 
 void config_setting_copy_simple(config_setting_t *parent, const config_setting_t *src)
 {
-	if (config_setting_is_aggregate(src)) {
+	if(config_setting_is_aggregate(src)) {
 		config_setting_copy_aggregate(parent, src);
-	}
-	else {
+	} else {
 		config_setting_t *set = config_setting_add(parent, config_setting_name(src), config_setting_type(src));
 
-		if (set == NULL)
+		if(set == NULL)
 			return;
 
-		if (CONFIG_TYPE_INT == config_setting_type(src)) {
+		if(CONFIG_TYPE_INT == config_setting_type(src)) {
 			config_setting_set_int(set, config_setting_get_int(src));
 			config_setting_set_format(set, src->format);
-		} else if (CONFIG_TYPE_INT64 == config_setting_type(src)) {
+		} else if(CONFIG_TYPE_INT64 == config_setting_type(src)) {
 			config_setting_set_int64(set, config_setting_get_int64(src));
 			config_setting_set_format(set, src->format);
-		} else if (CONFIG_TYPE_FLOAT == config_setting_type(src)) {
+		} else if(CONFIG_TYPE_FLOAT == config_setting_type(src)) {
 			config_setting_set_float(set, config_setting_get_float(src));
-		} else if (CONFIG_TYPE_STRING == config_setting_type(src)) {
+		} else if(CONFIG_TYPE_STRING == config_setting_type(src)) {
 			config_setting_set_string(set, config_setting_get_string(src));
-		} else if (CONFIG_TYPE_BOOL == config_setting_type(src)) {
+		} else if(CONFIG_TYPE_BOOL == config_setting_type(src)) {
 			config_setting_set_bool(set, config_setting_get_bool(src));
 		}
 	}
@@ -59,19 +58,19 @@ void config_setting_copy_elem(config_setting_t *parent, const config_setting_t *
 {
 	config_setting_t *set = NULL;
 
-	if (config_setting_is_aggregate(src))
+	if(config_setting_is_aggregate(src))
 		config_setting_copy_aggregate(parent, src);
-	else if (CONFIG_TYPE_INT == config_setting_type(src)) {
+	else if(CONFIG_TYPE_INT == config_setting_type(src)) {
 		set = config_setting_set_int_elem(parent, -1, config_setting_get_int(src));
 		config_setting_set_format(set, src->format);
-	} else if (CONFIG_TYPE_INT64 == config_setting_type(src)) {
+	} else if(CONFIG_TYPE_INT64 == config_setting_type(src)) {
 		set = config_setting_set_int64_elem(parent, -1, config_setting_get_int64(src));
-		config_setting_set_format(set, src->format);   
-	} else if (CONFIG_TYPE_FLOAT == config_setting_type(src)) {
+		config_setting_set_format(set, src->format);
+	} else if(CONFIG_TYPE_FLOAT == config_setting_type(src)) {
 		config_setting_set_float_elem(parent, -1, config_setting_get_float(src));
-	} else if (CONFIG_TYPE_STRING == config_setting_type(src)) {
+	} else if(CONFIG_TYPE_STRING == config_setting_type(src)) {
 		config_setting_set_string_elem(parent, -1, config_setting_get_string(src));
-	} else if (CONFIG_TYPE_BOOL == config_setting_type(src)) {
+	} else if(CONFIG_TYPE_BOOL == config_setting_type(src)) {
 		config_setting_set_bool_elem(parent, -1, config_setting_get_bool(src));
 	}
 }
@@ -83,14 +82,14 @@ void config_setting_copy_aggregate(config_setting_t *parent, const config_settin
 
 	newAgg = config_setting_add(parent, config_setting_name(src), config_setting_type(src));
 
-	if (newAgg == NULL)
+	if(newAgg == NULL)
 		return;
 
 	n = config_setting_length(src);
-	
-	for (i = 0; i < n; i++) {
-		if (config_setting_is_group(src)) {
-			config_setting_copy_simple(newAgg, config_setting_get_elem(src, i));            
+
+	for(i = 0; i < n; i++) {
+		if(config_setting_is_group(src)) {
+			config_setting_copy_simple(newAgg, config_setting_get_elem(src, i));
 		} else {
 			config_setting_copy_elem(newAgg, config_setting_get_elem(src, i));
 		}
@@ -99,10 +98,10 @@ void config_setting_copy_aggregate(config_setting_t *parent, const config_settin
 
 int config_setting_copy(config_setting_t *parent, const config_setting_t *src)
 {
-	if (!config_setting_is_group(parent) && !config_setting_is_list(parent))
+	if(!config_setting_is_group(parent) && !config_setting_is_list(parent))
 		return CONFIG_FALSE;
 
-	if (config_setting_is_aggregate(src)) {
+	if(config_setting_is_aggregate(src)) {
 		config_setting_copy_aggregate(parent, src);
 	} else {
 		config_setting_copy_simple(parent, src);
@@ -115,28 +114,28 @@ int config_setting_copy(config_setting_t *parent, const config_setting_t *src)
 // ----------------------------------------------------------------------------------------
 // read_message("Grupo.SubGrupo.String");
 // ----------------------------------------------------------------------------------------
-// http://www.hyperrealm.com/libconfig/libconfig_manual.html 
+// http://www.hyperrealm.com/libconfig/libconfig_manual.html
 // ----------------------------------------------------------------------------------------
-char* read_message(const char* param)
+char *read_message(const char *param)
 {
 	static char message[1024];
 	config_setting_t *str;
 	config_t configLang;
-	
+
 	config_init(&configLang);
 
-    if(!config_read_file(&configLang, lang_file)){
+	if(!config_read_file(&configLang, lang_file)) {
 		ShowError("read_message erro: %s:%d - %s\n", config_error_file(&configLang), config_error_line(&configLang), config_error_text(&configLang));
-        config_destroy(&configLang);
-        return "";
-    }
-	
-    if(!(str = config_lookup(&configLang, param))){
+		config_destroy(&configLang);
+		return "";
+	}
+
+	if(!(str = config_lookup(&configLang, param))) {
 		ShowError("read_message erro: %s:%d - %s\n", config_error_file(&configLang), config_error_line(&configLang), config_error_text(&configLang));
-        config_destroy(&configLang);
-        return "";
-    }
-	
+		config_destroy(&configLang);
+		return "";
+	}
+
 	snprintf(message, sizeof(message), "%s", config_setting_get_string(str));
 	config_destroy(&configLang);
 	return message;
@@ -144,15 +143,15 @@ char* read_message(const char* param)
 
 void read_server_lang(void)
 {
-	const char* tmpvar = "conf/battle/brathena.conf";
+	const char *tmpvar = "conf/battle/brathena.conf";
 	config_t configFile;
-	
+
 	config_init(&configFile);
 
-    if(!config_read_file(&configFile, tmpvar) || !config_lookup_string(&configFile, "lang_file", &tmpvar)){
+	if(!config_read_file(&configFile, tmpvar) || !config_lookup_string(&configFile, "lang_file", &tmpvar)) {
 		ShowError("read_server_lang erro: %s:%d - %s\n", config_error_file(&configFile), config_error_line(&configFile), config_error_text(&configFile));
-        config_destroy(&configFile);
-    }
+		config_destroy(&configFile);
+	}
 
 	snprintf(lang_file, sizeof(lang_file), "%s", tmpvar);
 	config_destroy(&configFile);

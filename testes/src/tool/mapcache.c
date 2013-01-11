@@ -57,49 +57,49 @@ struct map_info {
 int16 MakeShortLE(int16 val)
 {
 	unsigned char buf[2];
-	buf[0] = (unsigned char)( (val & 0x00FF)         );
-	buf[1] = (unsigned char)( (val & 0xFF00) >> 0x08 );
-	return *((int16*)buf);
+	buf[0] = (unsigned char)((val & 0x00FF));
+	buf[1] = (unsigned char)((val & 0xFF00) >> 0x08);
+	return *((int16 *)buf);
 }
 
 // Converts an int32 from current machine order to little-endian
 int32 MakeLongLE(int32 val)
 {
 	unsigned char buf[4];
-	buf[0] = (unsigned char)( (val & 0x000000FF)         );
-	buf[1] = (unsigned char)( (val & 0x0000FF00) >> 0x08 );
-	buf[2] = (unsigned char)( (val & 0x00FF0000) >> 0x10 );
-	buf[3] = (unsigned char)( (val & 0xFF000000) >> 0x18 );
-	return *((int32*)buf);
+	buf[0] = (unsigned char)((val & 0x000000FF));
+	buf[1] = (unsigned char)((val & 0x0000FF00) >> 0x08);
+	buf[2] = (unsigned char)((val & 0x00FF0000) >> 0x10);
+	buf[3] = (unsigned char)((val & 0xFF000000) >> 0x18);
+	return *((int32 *)buf);
 }
 
 // Reads an uint16 in little-endian from the buffer
-uint16 GetUShort(const unsigned char* buf)
+uint16 GetUShort(const unsigned char *buf)
 {
-	return	 ( ((uint16)(buf[0]))         )
-			|( ((uint16)(buf[1])) << 0x08 );
+	return (((uint16)(buf[0])))
+	       |(((uint16)(buf[1])) << 0x08);
 }
 
 // Reads an uint32 in little-endian from the buffer
-uint32 GetULong(const unsigned char* buf)
+uint32 GetULong(const unsigned char *buf)
 {
-	return	 ( ((uint32)(buf[0]))         )
-			|( ((uint32)(buf[1])) << 0x08 )
-			|( ((uint32)(buf[2])) << 0x10 )
-			|( ((uint32)(buf[3])) << 0x18 );
+	return (((uint32)(buf[0])))
+	       |(((uint32)(buf[1])) << 0x08)
+	       |(((uint32)(buf[2])) << 0x10)
+	       |(((uint32)(buf[3])) << 0x18);
 }
 
 // Reads an int32 in little-endian from the buffer
-int32 GetLong(const unsigned char* buf)
+int32 GetLong(const unsigned char *buf)
 {
 	return (int32)GetULong(buf);
 }
 
 // Reads a float (32 bits) from the buffer
-float GetFloat(const unsigned char* buf)
+float GetFloat(const unsigned char *buf)
 {
 	uint32 val = GetULong(buf);
-	return *((float*)(void*)&val);
+	return *((float *)(void *)&val);
 }
 
 
@@ -116,7 +116,7 @@ int read_map(char *name, struct map_data *m)
 	// Open map GAT
 	sprintf(filename,"data\\%s.gat", name);
 	gat = (unsigned char *)grfio_read(filename);
-	if (gat == NULL)
+	if(gat == NULL)
 		return 0;
 
 	// Open map RSW
@@ -124,7 +124,7 @@ int read_map(char *name, struct map_data *m)
 	rsw = (unsigned char *)grfio_read(filename);
 
 	// Read water height
-	if (rsw) {
+	if(rsw) {
 		water_height = (int)GetFloat(rsw+166);
 		aFree(rsw);
 	} else
@@ -133,7 +133,7 @@ int read_map(char *name, struct map_data *m)
 	// Read map size and allocate needed memory
 	m->xs = (int16)GetULong(gat+6);
 	m->ys = (int16)GetULong(gat+10);
-	if (m->xs <= 0 || m->ys <= 0) {
+	if(m->xs <= 0 || m->ys <= 0) {
 		aFree(gat);
 		return 0;
 	}
@@ -142,15 +142,14 @@ int read_map(char *name, struct map_data *m)
 
 	// Set cell properties
 	off = 14;
-	for (xy = 0; xy < num_cells; xy++)
-	{
+	for(xy = 0; xy < num_cells; xy++) {
 		// Height of the bottom-left corner
-		height = GetFloat( gat + off      );
+		height = GetFloat(gat + off);
 		// Type of cell
-		type   = GetULong( gat + off + 16 );
+		type   = GetULong(gat + off + 16);
 		off += 20;
 
-		if (type == 0 && water_height != NO_WATER && height > water_height)
+		if(type == 0 && water_height != NO_WATER && height > water_height)
 			type = 3; // Cell is 0 (walkable) but under water level, set to 3 (walkable water)
 
 		m->cells[xy] = (unsigned char)type;
@@ -175,8 +174,8 @@ void cache_map(char *name, struct map_data *m)
 	encode_zip(write_buf, &len, m->cells, m->xs*m->ys);
 
 	// Fill the map header
-	if (strlen(name) > MAP_NAME_LENGTH) // It does not hurt to warn that there are maps with name longer than allowed.
-		ShowWarning ("Nome do mapa '%s' tamanho '%d' %c muito longo. Truncar para '%d'.\n", name, strlen(name), 130, MAP_NAME_LENGTH);
+	if(strlen(name) > MAP_NAME_LENGTH)  // It does not hurt to warn that there are maps with name longer than allowed.
+		ShowWarning("Nome do mapa '%s' tamanho '%d' %c muito longo. Truncar para '%d'.\n", name, strlen(name), 130, MAP_NAME_LENGTH);
 	strncpy(info.name, name, MAP_NAME_LENGTH);
 	info.xs = MakeShortLE(m->xs);
 	info.ys = MakeShortLE(m->ys);
@@ -219,10 +218,10 @@ char *remove_extension(char *mapname)
 {
 	char *ptr, *ptr2;
 	ptr = strchr(mapname, '.');
-	if (ptr) { //Check and remove extension.
-		while (ptr[1] && (ptr2 = strchr(ptr+1, '.')))
+	if(ptr) {  //Check and remove extension.
+		while(ptr[1] && (ptr2 = strchr(ptr+1, '.')))
 			ptr = ptr2; //Skip to the last dot.
-		if (strcmp(ptr,".gat") == 0)
+		if(strcmp(ptr,".gat") == 0)
 			*ptr = '\0'; //Remove extension.
 	}
 	return mapname;
@@ -249,7 +248,7 @@ void process_args(int argc, char *argv[])
 
 }
 
-int do_init(int argc, char** argv)
+int do_init(int argc, char **argv)
 {
 	FILE *list;
 	char line[1024];
@@ -262,7 +261,7 @@ int do_init(int argc, char** argv)
 #else
 	sprintf(map_cache_file,"db/map_cache_pre-re.dat");
 #endif
-			
+
 	// Process the command-line arguments
 	process_args(argc, argv);
 
@@ -301,14 +300,15 @@ int do_init(int argc, char** argv)
 		header.file_size = sizeof(struct main_header);
 		header.map_count = 0;
 	} else {
-		if(fread(&header, sizeof(struct main_header), 1, map_cache_fp) != 1){ printf("Um erro ocorreu durante a leitura de map_cache_fp \n"); }
+		if(fread(&header, sizeof(struct main_header), 1, map_cache_fp) != 1) {
+			printf("Um erro ocorreu durante a leitura de map_cache_fp \n");
+		}
 		header.file_size = GetULong((unsigned char *)&(header.file_size));
 		header.map_count = GetUShort((unsigned char *)&(header.map_count));
 	}
 
 	// Read and process the map list
-	while(fgets(line, sizeof(line), list))
-	{
+	while(fgets(line, sizeof(line), list)) {
 		if(line[0] == '/' && line[1] == '/')
 			continue;
 

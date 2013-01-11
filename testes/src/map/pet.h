@@ -4,8 +4,8 @@
 #ifndef _PET_H_
 #define _PET_H_
 
-#define MAX_PET_DB	300
-#define MAX_PETLOOT_SIZE	30
+#define MAX_PET_DB  300
+#define MAX_PETLOOT_SIZE    30
 
 struct s_pet_db {
 	short class_;
@@ -35,16 +35,16 @@ extern struct s_pet_db pet_db[MAX_PET_DB];
 enum { PET_CLASS,PET_CATCH,PET_EGG,PET_EQUIP,PET_FOOD };
 
 struct pet_recovery { //Stat recovery
-	enum sc_type type;	//Status Change id
+	enum sc_type type;  //Status Change id
 	unsigned short delay; //How long before curing (secs).
 	int timer;
 };
 
 struct pet_bonus {
 	unsigned short type; //bStr, bVit?
-	unsigned short val;	//Qty
+	unsigned short val; //Qty
 	unsigned short duration; //in secs
-	unsigned short delay;	//Time before RENEWAL_CAST (secs)
+	unsigned short delay;   //Time before RENEWAL_CAST (secs)
 	int timer;
 };
 
@@ -87,13 +87,13 @@ struct pet_data {
 	} state;
 	int move_fail_count;
 	unsigned int next_walktime,last_thinktime;
-	short rate_fix;	//Support rate as modified by intimacy (1000 = 100%) [Skotlex]
+	short rate_fix; //Support rate as modified by intimacy (1000 = 100%) [Skotlex]
 
-	struct pet_recovery* recovery;
-	struct pet_bonus* bonus;
-	struct pet_skill_attack* a_skill;
-	struct pet_skill_support* s_skill;
-	struct pet_loot* loot;
+	struct pet_recovery *recovery;
+	struct pet_bonus *bonus;
+	struct pet_skill_attack *a_skill;
+	struct pet_skill_support *s_skill;
+	struct pet_loot *loot;
 
 	struct map_session_data *msd;
 };
@@ -117,7 +117,7 @@ int pet_catch_process2(struct map_session_data *sd,int target_id);
 int pet_get_egg(int account_id,int pet_id,int flag);
 int pet_menu(struct map_session_data *sd,int menunum);
 int pet_change_name(struct map_session_data *sd,char *name);
-int pet_change_name_ack(struct map_session_data *sd, char* name, int flag);
+int pet_change_name_ack(struct map_session_data *sd, char *name, int flag);
 int pet_equipitem(struct map_session_data *sd,int index);
 int pet_lootitem_drop(struct pet_data *pd,struct map_session_data *sd);
 int pet_attackskill(struct pet_data *pd, int target_id);

@@ -5,10 +5,10 @@
 #include "../common/timer.h" // gettick
 #include "random.h"
 #if defined(WIN32)
-	#include "../common/winapi.h"
+#include "../common/winapi.h"
 #elif defined(HAVE_GETPID) || defined(HAVE_GETTID)
-	#include <sys/types.h>
-	#include <unistd.h>
+#include <sys/types.h>
+#include <unistd.h>
 #endif
 #include <time.h> // time
 #include <mt19937ar.h> // init_genrand, genrand_int32, genrand_res53
@@ -60,7 +60,7 @@ uint32 rnd_roll(uint32 dice_faces)
 /// Returns min if range is invalid.
 int32 rnd_value(int32 min, int32 max)
 {
-	if( min >= max )
+	if(min >= max)
 		return min;
 	return min + (int32)(rnd_uniform()*(max-min+1));
 }

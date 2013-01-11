@@ -17,11 +17,12 @@
 
 #define MAX_HEAP 150
 
-struct tmp_path { short x,y,dist,before,cost,flag;};
+struct tmp_path {
+	short x,y,dist,before,cost,flag;
+};
 #define calc_index(x,y) (((x)+(y)*MAX_WALKPATH) & (MAX_WALKPATH*MAX_WALKPATH-1))
 
-const char walk_choices [3][3] =
-{
+const char walk_choices [3][3] = {
 	{1,0,7},
 	{2,-1,6},
 	{3,4,5},
@@ -37,7 +38,7 @@ static void push_heap_path(int *heap,struct tmp_path *tp,int index)
 	h = heap[0];
 	heap[0]++;
 
-	for( i = (h-1)/2; h > 0 && tp[index].cost < tp[heap[i+1]].cost; i = (h-1)/2 )
+	for(i = (h-1)/2; h > 0 && tp[index].cost < tp[heap[i+1]].cost; i = (h-1)/2)
 		heap[h+1] = heap[i+1], h = i;
 
 	heap[h+1] = index;
@@ -51,14 +52,13 @@ static void update_heap_path(int *heap,struct tmp_path *tp,int index)
 {
 	int i,h;
 
-	ARR_FIND( 0, heap[0], h, heap[h+1] == index );
-	if( h == heap[0] )
-	{
+	ARR_FIND(0, heap[0], h, heap[h+1] == index);
+	if(h == heap[0]) {
 		ShowError("update_heap_path bug\n");
 		exit(EXIT_FAILURE);
 	}
 
-	for( i = (h-1)/2; h > 0 && tp[index].cost < tp[heap[i+1]].cost; i = (h-1)/2 )
+	for(i = (h-1)/2; h > 0 && tp[index].cost < tp[heap[i+1]].cost; i = (h-1)/2)
 		heap[h+1] = heap[i+1], h = i;
 
 	heap[h+1] = index;
@@ -72,23 +72,22 @@ static int pop_heap_path(int *heap,struct tmp_path *tp)
 	int i,h,k;
 	int ret,last;
 
-	if( heap[0] <= 0 )
+	if(heap[0] <= 0)
 		return -1;
 	ret = heap[1];
 	last = heap[heap[0]];
 	heap[0]--;
 
-	for( h = 0, k = 2; k < heap[0]; k = k*2+2 )
-	{
-		if( tp[heap[k+1]].cost > tp[heap[k]].cost )
+	for(h = 0, k = 2; k < heap[0]; k = k*2+2) {
+		if(tp[heap[k+1]].cost > tp[heap[k]].cost)
 			k--;
 		heap[h+1] = heap[k+1], h = k;
 	}
 
-	if( k == heap[0] )
+	if(k == heap[0])
 		heap[h+1] = heap[k], h = k-1;
 
-	for( i = (h-1)/2; h > 0 && tp[heap[i+1]].cost > tp[last].cost; i = (h-1)/2 )
+	for(i = (h-1)/2; h > 0 && tp[heap[i+1]].cost > tp[last].cost; i = (h-1)/2)
 		heap[h+1] = heap[i+1], h = i;
 
 	heap[h+1]=last;
@@ -115,14 +114,12 @@ static int add_path(int *heap,struct tmp_path *tp,int16 x,int16 y,int dist,int b
 
 	i = calc_index(x,y);
 
-	if( tp[i].x == x && tp[i].y == y )
-	{
-		if( tp[i].dist > dist )
-		{
+	if(tp[i].x == x && tp[i].y == y) {
+		if(tp[i].dist > dist) {
 			tp[i].dist = dist;
 			tp[i].before = before;
 			tp[i].cost = cost;
-			if( tp[i].flag )
+			if(tp[i].flag)
 				push_heap_path(heap,tp,i);
 			else
 				update_heap_path(heap,tp,i);
@@ -131,7 +128,7 @@ static int add_path(int *heap,struct tmp_path *tp,int16 x,int16 y,int dist,int b
 		return 0;
 	}
 
-	if( tp[i].x || tp[i].y )
+	if(tp[i].x || tp[i].y)
 		return 1;
 
 	tp[i].x = x;
@@ -153,36 +150,34 @@ int path_blownpos(int16 m,int16 x0,int16 y0,int16 dx,int16 dy,int count)
 {
 	struct map_data *md;
 
-	if( !map[m].cell )
+	if(!map[m].cell)
 		return -1;
 	md = &map[m];
 
-	if( count>25 ){ //Cap to prevent too much processing...?
+	if(count>25) {  //Cap to prevent too much processing...?
 		ShowWarning("path_blownpos: count too many %d !\n",count);
 		count=25;
 	}
-	if( dx > 1 || dx < -1 || dy > 1 || dy < -1 ){
+	if(dx > 1 || dx < -1 || dy > 1 || dy < -1) {
 		ShowError("path_blownpos: illegal dx=%d or dy=%d !\n",dx,dy);
 		dx=(dx>0)?1:((dx<0)?-1:0);
 		dy=(dy>0)?1:((dy<0)?-1:0);
 	}
 
-	while( count > 0 && (dx != 0 || dy != 0) )
-	{
-		if( !map_getcellp(md,x0+dx,y0+dy,CELL_CHKPASS) )
-		{// attempt partial movement
-			int fx = ( dx != 0 && map_getcellp(md,x0+dx,y0,CELL_CHKPASS) );
-			int fy = ( dy != 0 && map_getcellp(md,x0,y0+dy,CELL_CHKPASS) );
-			if( fx && fy )
-			{
+	while(count > 0 && (dx != 0 || dy != 0)) {
+		if(!map_getcellp(md,x0+dx,y0+dy,CELL_CHKPASS)) {
+			// attempt partial movement
+			int fx = (dx != 0 && map_getcellp(md,x0+dx,y0,CELL_CHKPASS));
+			int fy = (dy != 0 && map_getcellp(md,x0,y0+dy,CELL_CHKPASS));
+			if(fx && fy) {
 				if(rnd()&1)
 					dx=0;
 				else
 					dy=0;
 			}
-			if( !fx )
+			if(!fx)
 				dx=0;
-			if( !fy )
+			if(!fy)
 				dy=0;
 		}
 
@@ -205,15 +200,15 @@ bool path_search_long(struct shootpath_data *spd,int16 m,int16 x0,int16 y0,int16
 	struct map_data *md;
 	struct shootpath_data s_spd;
 
-	if( spd == NULL )
+	if(spd == NULL)
 		spd = &s_spd; // use dummy output variable
 
-	if (!map[m].cell)
+	if(!map[m].cell)
 		return false;
 	md = &map[m];
 
 	dx = (x1 - x0);
-	if (dx < 0) {
+	if(dx < 0) {
 		swap(x0, x1);
 		swap(y0, y1);
 		dx = -dx;
@@ -225,10 +220,10 @@ bool path_search_long(struct shootpath_data *spd,int16 m,int16 x0,int16 y0,int16
 	spd->x[0] = x0;
 	spd->y[0] = y0;
 
-	if (map_getcellp(md,x1,y1,cell))
+	if(map_getcellp(md,x1,y1,cell))
 		return false;
 
-	if (dx > abs(dy)) {
+	if(dx > abs(dy)) {
 		weight = dx;
 		spd->ry = 1;
 	} else {
@@ -236,25 +231,23 @@ bool path_search_long(struct shootpath_data *spd,int16 m,int16 x0,int16 y0,int16
 		spd->rx = 1;
 	}
 
-	while (x0 != x1 || y0 != y1)
-	{
-		if (map_getcellp(md,x0,y0,cell))
+	while(x0 != x1 || y0 != y1) {
+		if(map_getcellp(md,x0,y0,cell))
 			return false;
 		wx += dx;
 		wy += dy;
-		if (wx >= weight) {
+		if(wx >= weight) {
 			wx -= weight;
 			x0++;
 		}
-		if (wy >= weight) {
+		if(wy >= weight) {
 			wy -= weight;
 			y0++;
-		} else if (wy < 0) {
+		} else if(wy < 0) {
 			wy += weight;
 			y0--;
 		}
-		if( spd->len<MAX_WALKPATH )
-		{
+		if(spd->len<MAX_WALKPATH) {
 			spd->x[spd->len] = x0;
 			spd->y[spd->len] = y0;
 			spd->len++;
@@ -279,21 +272,21 @@ bool path_search(struct walkpath_data *wpd,int16 m,int16 x0,int16 y0,int16 x1,in
 	struct map_data *md;
 	struct walkpath_data s_wpd;
 
-	if( wpd == NULL )
+	if(wpd == NULL)
 		wpd = &s_wpd; // use dummy output variable
 
-	if( !map[m].cell )
+	if(!map[m].cell)
 		return false;
 	md = &map[m];
 
 #ifdef CELL_NOSTACK
 	//Do not check starting cell as that would get you stuck.
-	if( x0 < 0 || x0 >= md->xs || y0 < 0 || y0 >= md->ys )
+	if(x0 < 0 || x0 >= md->xs || y0 < 0 || y0 >= md->ys)
 #else
-	if( x0 < 0 || x0 >= md->xs || y0 < 0 || y0 >= md->ys /*|| map_getcellp(md,x0,y0,cell)*/ )
+	if(x0 < 0 || x0 >= md->xs || y0 < 0 || y0 >= md->ys /*|| map_getcellp(md,x0,y0,cell)*/)
 #endif
 		return false;
-	if( x1 < 0 || x1 >= md->xs || y1 < 0 || y1 >= md->ys || map_getcellp(md,x1,y1,cell) )
+	if(x1 < 0 || x1 >= md->xs || y1 < 0 || y1 >= md->ys || map_getcellp(md,x1,y1,cell))
 		return false;
 
 	// calculate (sgn(x1-x0), sgn(y1-y0))
@@ -304,31 +297,30 @@ bool path_search(struct walkpath_data *wpd,int16 m,int16 x0,int16 y0,int16 x1,in
 	x = x0;
 	y = y0;
 	i = 0;
-	while( i < ARRAYLENGTH(wpd->path) )
-	{
+	while(i < ARRAYLENGTH(wpd->path)) {
 		wpd->path[i] = walk_choices[-dy + 1][dx + 1];
 		i++;
 
 		x += dx;
 		y += dy;
 
-		if( x == x1 ) dx = 0;
-		if( y == y1 ) dy = 0;
+		if(x == x1) dx = 0;
+		if(y == y1) dy = 0;
 
-		if( dx == 0 && dy == 0 )
+		if(dx == 0 && dy == 0)
 			break; // success
-		if( map_getcellp(md,x,y,cell) )
+		if(map_getcellp(md,x,y,cell))
 			break; // obstacle = failure
 	}
 
-	if( x == x1 && y == y1 )
-	{ //easy path successful.
+	if(x == x1 && y == y1) {
+		//easy path successful.
 		wpd->path_len = i;
 		wpd->path_pos = 0;
 		return true;
 	}
 
-	if( flag&1 )
+	if(flag&1)
 		return false;
 
 	memset(tp,0,sizeof(tp));
@@ -342,12 +334,11 @@ bool path_search(struct walkpath_data *wpd,int16 m,int16 x0,int16 y0,int16 x1,in
 	tp[i].flag=0;
 	heap[0]=0;
 	push_heap_path(heap,tp,calc_index(x0,y0));
-    xs = md->xs - 1; // Place by subtracting a pre-
+	xs = md->xs - 1; // Place by subtracting a pre-
 	ys = md->ys-1;
 
-	for(;;)
-	{
-		int e=0,f=0,dist,cost,dc[4]={0,0,0,0};
+	for(;;) {
+		int e=0,f=0,dist,cost,dc[4]= {0,0,0,0};
 
 		if(heap[0]==0)
 			return false;
@@ -381,38 +372,38 @@ bool path_search(struct walkpath_data *wpd,int16 m,int16 x0,int16 y0,int16 x1,in
 			f |= 8; dc[3] = (x >= x1 ? 20 : 0);
 			e+=add_path(heap,tp,x+1,y  ,dist,rp,cost+dc[3]); // (x+1, y  )
 		}
-		if( (f & (2+1)) == (2+1) && !map_getcellp(md,x-1,y+1,cell))
-			e+=add_path(heap,tp,x-1,y+1,dist+4,rp,cost+dc[1]+dc[0]-6);		// (x-1, y+1)
-		if( (f & (2+4)) == (2+4) && !map_getcellp(md,x-1,y-1,cell))
-			e+=add_path(heap,tp,x-1,y-1,dist+4,rp,cost+dc[1]+dc[2]-6);		// (x-1, y-1)
-		if( (f & (8+4)) == (8+4) && !map_getcellp(md,x+1,y-1,cell))
-			e+=add_path(heap,tp,x+1,y-1,dist+4,rp,cost+dc[3]+dc[2]-6);		// (x+1, y-1)
-		if( (f & (8+1)) == (8+1) && !map_getcellp(md,x+1,y+1,cell))
-			e+=add_path(heap,tp,x+1,y+1,dist+4,rp,cost+dc[3]+dc[0]-6);		// (x+1, y+1)
+		if((f & (2+1)) == (2+1) && !map_getcellp(md,x-1,y+1,cell))
+			e+=add_path(heap,tp,x-1,y+1,dist+4,rp,cost+dc[1]+dc[0]-6);      // (x-1, y+1)
+		if((f & (2+4)) == (2+4) && !map_getcellp(md,x-1,y-1,cell))
+			e+=add_path(heap,tp,x-1,y-1,dist+4,rp,cost+dc[1]+dc[2]-6);      // (x-1, y-1)
+		if((f & (8+4)) == (8+4) && !map_getcellp(md,x+1,y-1,cell))
+			e+=add_path(heap,tp,x+1,y-1,dist+4,rp,cost+dc[3]+dc[2]-6);      // (x+1, y-1)
+		if((f & (8+1)) == (8+1) && !map_getcellp(md,x+1,y+1,cell))
+			e+=add_path(heap,tp,x+1,y+1,dist+4,rp,cost+dc[3]+dc[0]-6);      // (x+1, y+1)
 		tp[rp].flag=1;
 		if(e || heap[0]>=MAX_HEAP-5)
 			return false;
 	}
 
-	if( !(x==x1 && y==y1) ) // will never happen...
+	if(!(x==x1 && y==y1))   // will never happen...
 		return false;
 
-	for(len=0,i=rp;len<100 && i!=calc_index(x0,y0);i=tp[i].before,len++);
+	for(len=0,i=rp; len<100 && i!=calc_index(x0,y0); i=tp[i].before,len++);
 	if(len==100 || len>=sizeof(wpd->path))
 		return false;
 
 	wpd->path_len = len;
 	wpd->path_pos = 0;
-	for(i=rp,j=len-1;j>=0;i=tp[i].before,j--) {
+	for(i=rp,j=len-1; j>=0; i=tp[i].before,j--) {
 		int dx  = tp[i].x - tp[tp[i].before].x;
 		int dy  = tp[i].y - tp[tp[i].before].y;
 		uint8 dir;
-		if( dx == 0 ) {
+		if(dx == 0) {
 			dir = (dy > 0 ? 0 : 4);
-		} else if( dx > 0 ) {
-			dir = (dy == 0 ? 6 : (dy < 0 ? 5 : 7) );
+		} else if(dx > 0) {
+			dir = (dy == 0 ? 6 : (dy < 0 ? 5 : 7));
 		} else {
-			dir = (dy == 0 ? 2 : (dy > 0 ? 1 : 3) );
+			dir = (dy == 0 ? 2 : (dy > 0 ? 1 : 3));
 		}
 		wpd->path[j] = dir;
 	}
@@ -428,8 +419,8 @@ int check_distance(int dx, int dy, int distance)
 	//In this case, we just do a square comparison. Add 1 tile grace for diagonal range checks.
 	return (dx*dx + dy*dy <= distance*distance + (dx&&dy?1:0));
 #else
-	if (dx < 0) dx = -dx;
-	if (dy < 0) dy = -dy;
+	if(dx < 0) dx = -dx;
+	if(dy < 0) dy = -dy;
 	return ((dx<dy?dy:dx) <= distance);
 #endif
 }
@@ -439,26 +430,25 @@ unsigned int distance(int dx, int dy)
 #ifdef CIRCULAR_AREA
 	unsigned int min, max;
 
-	if ( dx < 0 ) dx = -dx;
-	if ( dy < 0 ) dy = -dy;
+	if(dx < 0) dx = -dx;
+	if(dy < 0) dy = -dy;
 	//There appears to be something wrong with the aproximation below when either dx/dy is 0! [Skotlex]
-	if ( dx == 0 ) return dy;
-	if ( dy == 0 ) return dx;
+	if(dx == 0) return dy;
+	if(dy == 0) return dx;
 
-	if ( dx < dy )
-	{
+	if(dx < dy) {
 		min = dx;
 		max = dy;
 	} else {
 		min = dy;
 		max = dx;
 	}
-   // coefficients equivalent to ( 123/128 * max ) and ( 51/128 * min )
-	return ((( max << 8 ) + ( max << 3 ) - ( max << 4 ) - ( max << 1 ) +
-		( min << 7 ) - ( min << 5 ) + ( min << 3 ) - ( min << 1 )) >> 8 );
+	// coefficients equivalent to ( 123/128 * max ) and ( 51/128 * min )
+	return (((max << 8) + (max << 3) - (max << 4) - (max << 1) +
+	         (min << 7) - (min << 5) + (min << 3) - (min << 1)) >> 8);
 #else
-	if (dx < 0) dx = -dx;
-	if (dy < 0) dy = -dy;
+	if(dx < 0) dx = -dx;
+	if(dy < 0) dy = -dy;
 	return (dx<dy?dy:dx);
 #endif
 }

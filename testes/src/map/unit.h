@@ -30,7 +30,7 @@ struct unit_data {
 	int   target_to;
 	int   attacktimer;
 	int   walktimer;
-	int	chaserange;
+	int chaserange;
 	unsigned int attackabletime;
 	unsigned int canact_tick;
 	unsigned int canmove_tick;
@@ -53,85 +53,85 @@ struct view_data {
 #endif
 	unsigned short
 #ifndef __64BIT__
-		class_,
+	class_,
 #endif
-		weapon,
-		shield, //Or left-hand weapon.
-		robe,
-		head_top,
-		head_mid,
-		head_bottom,
-		hair_style,
-		hair_color,
-		cloth_color;
+	weapon,
+	shield, //Or left-hand weapon.
+	robe,
+	head_top,
+	head_mid,
+	head_bottom,
+	hair_style,
+	hair_color,
+	cloth_color;
 	char sex;
 	unsigned dead_sit : 2;
 };
 
-// PC, MOB, PET ‚É‹¤’Ê‚·‚éˆ—‚ğ‚P‚Â‚É‚Ü‚Æ‚ß‚éŒv‰æ
+// PC, MOB, PET ï¿½É‹ï¿½ï¿½Ê‚ï¿½ï¿½éˆï¿½ï¿½ï¿½ï¿½ï¿½Pï¿½Â‚É‚Ü‚Æ‚ß‚ï¿½ï¿½vï¿½ï¿½
 
-// •àsŠJn
-//     –ß‚è’l‚ÍA0 ( ¬Œ÷ ), 1 ( ¸”s )
-int unit_walktoxy( struct block_list *bl, short x, short y, int easy);
-int unit_walktobl( struct block_list *bl, struct block_list *target, int range, int easy);
+// ï¿½ï¿½ï¿½sï¿½Jï¿½n
+//     ï¿½ß‚ï¿½ï¿½lï¿½ÍA0 ( ï¿½ï¿½ï¿½ï¿½ ), 1 ( ï¿½ï¿½ï¿½s )
+int unit_walktoxy(struct block_list *bl, short x, short y, int easy);
+int unit_walktobl(struct block_list *bl, struct block_list *target, int range, int easy);
 int unit_run(struct block_list *bl);
 int unit_calc_pos(struct block_list *bl, int tx, int ty, uint8 dir);
 
-// •às’â~
-// type‚ÍˆÈ‰º‚Ì‘g‚İ‡‚í‚¹ : 
-//     1: ˆÊ’uî•ñ‚Ì‘—M( ‚±‚ÌŠÖ”‚ÌŒã‚ÉˆÊ’uî•ñ‚ğ‘—M‚·‚éê‡‚Í•s—v )
-//     2: ƒ_ƒ[ƒWƒfƒBƒŒƒC—L‚è
-//     4: •s–¾(MOB‚Ì‚İH)
+// ï¿½ï¿½ï¿½sï¿½ï¿½ï¿½~
+// typeï¿½ÍˆÈ‰ï¿½ï¿½Ì‘gï¿½İï¿½ï¿½í‚¹ :
+//     1: ï¿½Ê’uï¿½ï¿½ï¿½ï¿½ï¿½Ì‘ï¿½ï¿½M( ï¿½ï¿½ï¿½ÌŠÖï¿½ï¿½ÌŒï¿½ï¿½ÉˆÊ’uï¿½ï¿½ï¿½ï¿½ï¿½ğ‘—Mï¿½ï¿½ï¿½ï¿½ï¿½ê‡ï¿½Í•sï¿½v )
+//     2: ï¿½_ï¿½ï¿½ï¿½[ï¿½Wï¿½fï¿½Bï¿½ï¿½ï¿½Cï¿½Lï¿½ï¿½
+//     4: ï¿½sï¿½ï¿½(MOBï¿½Ì‚İH)
 int unit_stop_walking(struct block_list *bl,int type);
 int unit_can_move(struct block_list *bl);
 int unit_is_walking(struct block_list *bl);
 int unit_set_walkdelay(struct block_list *bl, unsigned int tick, int delay, int type);
 
 int unit_escape(struct block_list *bl, struct block_list *target, short dist);
-// ˆÊ’u‚Ì‹­§ˆÚ“®(‚«”ò‚Î‚µ‚È‚Ç)
+// ï¿½Ê’uï¿½Ì‹ï¿½ï¿½ï¿½ï¿½Ú“ï¿½(ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î‚ï¿½ï¿½È‚ï¿½)
 int unit_movepos(struct block_list *bl, short dst_x, short dst_y, int easy, bool checkpath);
 int unit_warp(struct block_list *bl, short map, short x, short y, clr_type type);
 int unit_setdir(struct block_list *bl,unsigned char dir);
 uint8 unit_getdir(struct block_list *bl);
-int unit_blown(struct block_list* bl, int dx, int dy, int count, int flag);
+int unit_blown(struct block_list *bl, int dx, int dy, int count, int flag);
 
-// ‚»‚±‚Ü‚Å•às‚Å‚½‚Ç‚è’…‚¯‚é‚©‚Ì”»’è
+// ï¿½ï¿½ï¿½ï¿½ï¿½Ü‚Å•ï¿½ï¿½sï¿½Å‚ï¿½ï¿½Ç‚è’…ï¿½ï¿½ï¿½é‚©ï¿½Ì”ï¿½ï¿½ï¿½
 bool unit_can_reach_pos(struct block_list *bl,int x,int y,int easy);
 bool unit_can_reach_bl(struct block_list *bl,struct block_list *tbl, int range, int easy, short *x, short *y);
 
-// UŒ‚ŠÖ˜A
+// ï¿½Uï¿½ï¿½ï¿½Ö˜A
 int unit_stop_attack(struct block_list *bl);
 int unit_attack(struct block_list *src,int target_id,int continuous);
 int unit_cancel_combo(struct block_list *bl);
 
-// ƒXƒLƒ‹g—p
+// ï¿½Xï¿½Lï¿½ï¿½ï¿½gï¿½p
 int unit_skilluse_id(struct block_list *src, int target_id, uint16 skill_id, uint16 skill_lv);
 int unit_skilluse_pos(struct block_list *src, short skill_x, short skill_y, uint16 skill_id, uint16 skill_lv);
 
-// ƒXƒLƒ‹g—p( •â³Ï‚İƒLƒƒƒXƒgŠÔAƒLƒƒƒ“ƒZƒ‹•s‰Âİ’è•t‚« )
+// ï¿½Xï¿½Lï¿½ï¿½ï¿½gï¿½p( ï¿½â³ï¿½Ï‚İƒLï¿½ï¿½ï¿½Xï¿½gï¿½ï¿½ï¿½ÔAï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½ï¿½ï¿½sï¿½Âİ’ï¿½ï¿½tï¿½ï¿½ )
 int unit_skilluse_id2(struct block_list *src, int target_id, uint16 skill_id, uint16 skill_lv, int casttime, int castcancel);
-int unit_skilluse_pos2( struct block_list *src, short skill_x, short skill_y, uint16 skill_id, uint16 skill_lv, int casttime, int castcancel);
+int unit_skilluse_pos2(struct block_list *src, short skill_x, short skill_y, uint16 skill_id, uint16 skill_lv, int casttime, int castcancel);
 
-// ‰r¥ƒLƒƒƒ“ƒZƒ‹
+// ï¿½rï¿½ï¿½ï¿½Lï¿½ï¿½ï¿½ï¿½ï¿½Zï¿½ï¿½
 int unit_skillcastcancel(struct block_list *bl,int type);
 
 int unit_counttargeted(struct block_list *bl);
-int unit_set_target(struct unit_data* ud, int target_id);
+int unit_set_target(struct unit_data *ud, int target_id);
 
-// unit_data ‚Ì‰Šú‰»ˆ—
+// unit_data ï¿½Ìï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 void unit_dataset(struct block_list *bl);
 
 int unit_fixdamage(struct block_list *src,struct block_list *target,unsigned int tick,int sdelay,int ddelay,int damage,int div,int type,int damage2);
-// ‚»‚Ì‘¼
-struct unit_data* unit_bl2ud(struct block_list *bl);
+// ï¿½ï¿½ï¿½Ì‘ï¿½
+struct unit_data *unit_bl2ud(struct block_list *bl);
 void unit_remove_map_pc(struct map_session_data *sd, clr_type clrtype);
 void unit_free_pc(struct map_session_data *sd);
 #define unit_remove_map(bl,clrtype) unit_remove_map_(bl,clrtype,__FILE__,__LINE__,__func__)
-int unit_remove_map_(struct block_list *bl, clr_type clrtype, const char* file, int line, const char* func);
+int unit_remove_map_(struct block_list *bl, clr_type clrtype, const char *file, int line, const char *func);
 int unit_free(struct block_list *bl, clr_type clrtype);
 int unit_changeviewsize(struct block_list *bl,short size);
 
-// ‰Šú‰»ƒ‹[ƒ`ƒ“
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½[ï¿½`ï¿½ï¿½
 int do_init_unit(void);
 int do_final_unit(void);
 /**

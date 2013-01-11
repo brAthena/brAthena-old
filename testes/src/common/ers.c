@@ -51,13 +51,11 @@
 #define ERS_ROOT_SIZE 256
 #define ERS_BLOCK_ENTRIES 4096
 
-struct ers_list
-{
+struct ers_list {
 	struct ers_list *Next;
 };
 
-typedef struct ers_cache
-{
+typedef struct ers_cache {
 	// Allocated object size, including ers_list size
 	unsigned int ObjectSize;
 
@@ -70,12 +68,12 @@ typedef struct ers_cache
 	// Memory blocks array
 	unsigned char **Blocks;
 
-	// Max number of blocks 
+	// Max number of blocks
 	unsigned int Max;
 
 	// Free objects count
 	unsigned int Free;
-	
+
 	// Used objects count
 	unsigned int Used;
 
@@ -83,11 +81,10 @@ typedef struct ers_cache
 	struct ers_cache *Next, *Prev;
 } ers_cache_t;
 
-typedef struct
-{
+typedef struct {
 	// Interface to ERS
 	struct eri VTable;
-	
+
 	// Name, used for debbuging purpouses
 	char *Name;
 
@@ -109,8 +106,8 @@ static ers_cache_t *ers_find_cache(unsigned int size)
 {
 	ers_cache_t *cache;
 
-	for (cache = CacheList; cache; cache = cache->Next)
-		if (cache->ObjectSize == size)
+	for(cache = CacheList; cache; cache = cache->Next)
+		if(cache->ObjectSize == size)
 			return cache;
 
 	CREATE(cache, ers_cache_t, 1);
@@ -121,13 +118,10 @@ static ers_cache_t *ers_find_cache(unsigned int size)
 	cache->Free = 0;
 	cache->Used = 0;
 	cache->Max = 0;
-	
-	if (CacheList == NULL)
-	{
+
+	if(CacheList == NULL) {
 		CacheList = cache;
-	}
-	else
-	{
+	} else {
 		cache->Next = CacheList;
 		cache->Next->Prev = cache;
 		CacheList = cache;
@@ -141,13 +135,13 @@ static void ers_free_cache(ers_cache_t *cache, bool remove)
 {
 	unsigned int i;
 
-	for (i = 0; i < cache->Used; i++)
+	for(i = 0; i < cache->Used; i++)
 		aFree(cache->Blocks[i]);
 
-	if (cache->Next)
+	if(cache->Next)
 		cache->Next->Prev = cache->Prev;
 
-	if (cache->Prev)
+	if(cache->Prev)
 		cache->Prev->Next = cache->Next;
 	else
 		CacheList = cache->Next;
@@ -161,26 +155,19 @@ static void *ers_obj_alloc_entry(ERS self)
 	ers_instance_t *instance = (ers_instance_t *)self;
 	void *ret;
 
-	if (instance == NULL) 
-	{
+	if(instance == NULL) {
 		ShowError("ers_obj_alloc_entry: NULL object, aborting entry freeing.\n");
 		return NULL;
 	}
 
-	if (instance->Cache->ReuseList != NULL)
-	{
+	if(instance->Cache->ReuseList != NULL) {
 		ret = (void *)((unsigned char *)instance->Cache->ReuseList + sizeof(struct ers_list));
 		instance->Cache->ReuseList = instance->Cache->ReuseList->Next;
-	} 
-	else if (instance->Cache->Free > 0) 
-	{
+	} else if(instance->Cache->Free > 0) {
 		instance->Cache->Free--;
 		ret = &instance->Cache->Blocks[instance->Cache->Used - 1][instance->Cache->Free * instance->Cache->ObjectSize + sizeof(struct ers_list)];
-	} 
-	else 
-	{
-		if (instance->Cache->Used == instance->Cache->Max) 
-		{
+	} else {
+		if(instance->Cache->Used == instance->Cache->Max) {
 			instance->Cache->Max = (instance->Cache->Max * 4) + 3;
 			RECREATE(instance->Cache->Blocks, unsigned char *, instance->Cache->Max);
 		}
@@ -202,13 +189,10 @@ static void ers_obj_free_entry(ERS self, void *entry)
 	ers_instance_t *instance = (ers_instance_t *)self;
 	struct ers_list *reuse = (struct ers_list *)((unsigned char *)entry - sizeof(struct ers_list));
 
-	if (instance == NULL) 
-	{
+	if(instance == NULL) {
 		ShowError("ers_obj_free_entry: NULL object, aborting entry freeing.\n");
 		return;
-	} 
-	else if (entry == NULL) 
-	{
+	} else if(entry == NULL) {
 		ShowError("ers_obj_free_entry: NULL entry, nothing to free.\n");
 		return;
 	}
@@ -222,11 +206,10 @@ static size_t ers_obj_entry_size(ERS self)
 {
 	ers_instance_t *instance = (ers_instance_t *)self;
 
-	if (instance == NULL) 
-	{
+	if(instance == NULL) {
 		ShowError("ers_obj_entry_size: NULL object, aborting entry freeing.\n");
 		return 0;
-	} 
+	}
 
 	return instance->Cache->ObjectSize;
 }
@@ -235,17 +218,16 @@ static void ers_obj_destroy(ERS self)
 {
 	ers_instance_t *instance = (ers_instance_t *)self;
 
-	if (instance == NULL) 
-	{
+	if(instance == NULL) {
 		ShowError("ers_obj_destroy: NULL object, aborting entry freeing.\n");
 		return;
 	}
 
-	if (instance->Count > 0)
-		if (!(instance->Options & ERS_OPT_CLEAR))
+	if(instance->Count > 0)
+		if(!(instance->Options & ERS_OPT_CLEAR))
 			ShowWarning("Memory leak detected at ERS '%s', %d objects not freed.\n", instance->Name, instance->Count);
 
-	if (--instance->Cache->ReferenceCount <= 0)
+	if(--instance->Cache->ReferenceCount <= 0)
 		ers_free_cache(instance->Cache, true);
 
 	aFree(instance);
@@ -257,7 +239,7 @@ ERS ers_new(uint32 size, char *name, enum ERSOptions options)
 	CREATE(instance, ers_instance_t, 1);
 
 	size += sizeof(struct ers_list);
-	if (size % ERS_ALIGNED)
+	if(size % ERS_ALIGNED)
 		size += ERS_ALIGNED - size % ERS_ALIGNED;
 
 	instance->VTable.alloc = ers_obj_alloc_entry;
@@ -284,9 +266,9 @@ void ers_report(void)
 void ers_force_destroy_all(void)
 {
 	ers_cache_t *cache;
-	
-	for (cache = CacheList; cache; cache = cache->Next)
-			ers_free_cache(cache, false);
+
+	for(cache = CacheList; cache; cache = cache->Next)
+		ers_free_cache(cache, false);
 }
 
 #endif

@@ -6,22 +6,22 @@
 #include <string.h>
 #include "nullpo.h"
 #include "../common/showmsg.h"
-// #include "logs.h" // •zÎ‚µ‚Ä‚İ‚é
+// #include "logs.h" // ï¿½zï¿½Î‚ï¿½ï¿½Ä‚İ‚ï¿½
 
-static void nullpo_info_core(const char *file, int line, const char *func, 
+static void nullpo_info_core(const char *file, int line, const char *func,
                              const char *fmt, va_list ap);
 
 /*======================================
- * Nullƒ`ƒFƒbƒN ‹y‚Ñ î•ño—Í
+ * Nullï¿½`ï¿½Fï¿½bï¿½N ï¿½yï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½oï¿½ï¿½
  *--------------------------------------*/
 int nullpo_chk_f(const char *file, int line, const char *func, const void *target,
                  const char *fmt, ...)
 {
 	va_list ap;
-	
-	if (target != NULL)
+
+	if(target != NULL)
 		return 0;
-	
+
 	va_start(ap, fmt);
 	nullpo_info_core(file, line, func, fmt, ap);
 	va_end(ap);
@@ -30,22 +30,22 @@ int nullpo_chk_f(const char *file, int line, const char *func, const void *targe
 
 int nullpo_chk(const char *file, int line, const char *func, const void *target)
 {
-	if (target != NULL)
+	if(target != NULL)
 		return 0;
-	
+
 	nullpo_info_core(file, line, func, NULL, NULL);
 	return 1;
 }
 
 
 /*======================================
- * nullpoî•ño—Í(ŠO•”ŒÄo‚µŒü‚¯ƒ‰ƒbƒp)
+ * nullpoï¿½ï¿½ï¿½ï¿½ï¿½oï¿½ï¿½(ï¿½Oï¿½ï¿½ï¿½Äoï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½bï¿½p)
  *--------------------------------------*/
-void nullpo_info_f(const char *file, int line, const char *func, 
-                 const char *fmt, ...)
+void nullpo_info_f(const char *file, int line, const char *func,
+                   const char *fmt, ...)
 {
 	va_list ap;
-	
+
 	va_start(ap, fmt);
 	nullpo_info_core(file, line, func, fmt, ap);
 	va_end(ap);
@@ -58,34 +58,32 @@ void nullpo_info(const char *file, int line, const char *func)
 
 
 /*======================================
- * nullpoî•ño—Í(Main)
+ * nullpoï¿½ï¿½ï¿½ï¿½ï¿½oï¿½ï¿½(Main)
  *--------------------------------------*/
-static void nullpo_info_core(const char *file, int line, const char *func, 
+static void nullpo_info_core(const char *file, int line, const char *func,
                              const char *fmt, va_list ap)
 {
-	if (file == NULL)
+	if(file == NULL)
 		file = "??";
-	
+
 	func =
-		func == NULL    ? "unknown":
-		func[0] == '\0' ? "unknown":
-		                  func;
-	
+	    func == NULL    ? "unknown":
+	    func[0] == '\0' ? "unknown":
+	    func;
+
 	ShowMessage("--- nullpo info --------------------------------------------\n");
 	ShowMessage("%s:%d: in func `%s'\n", file, line, func);
-	if (fmt != NULL)
-	{
-		if (fmt[0] != '\0')
-		{
+	if(fmt != NULL) {
+		if(fmt[0] != '\0') {
 			vprintf(fmt, ap);
-			
-			// ÅŒã‚É‰üs‚µ‚½‚©Šm”F
-			if (fmt[strlen(fmt)-1] != '\n')
+
+			// ï¿½ÅŒï¿½ï¿½É‰ï¿½ï¿½sï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½mï¿½F
+			if(fmt[strlen(fmt)-1] != '\n')
 				ShowMessage("\n");
 		}
 	}
 	ShowMessage("--- end nullpo info ----------------------------------------\n");
-	
-	// ‚±‚±‚ç‚ÅnullpoƒƒO‚ğƒtƒ@ƒCƒ‹‚É‘‚«o‚¹‚½‚ç
-	// ‚Ü‚Æ‚ß‚Ä’ño‚Å‚«‚é‚È‚Æv‚Á‚Ä‚¢‚½‚èB
+
+	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½nullpoï¿½ï¿½ï¿½Oï¿½ï¿½ï¿½tï¿½@ï¿½Cï¿½ï¿½ï¿½Éï¿½ï¿½ï¿½ï¿½oï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	// ï¿½Ü‚Æ‚ß‚Ä’ï¿½ï¿½oï¿½Å‚ï¿½ï¿½ï¿½ï¿½È‚Ævï¿½ï¿½Ä‚ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½B
 }

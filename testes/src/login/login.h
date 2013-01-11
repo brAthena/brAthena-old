@@ -7,11 +7,10 @@
 #include "../common/mmo.h" // NAME_LENGTH,SEX_*
 #include "../common/core.h" // CORE_ST_LAST
 
-enum E_LOGINSERVER_ST
-{
-	LOGINSERVER_ST_RUNNING = CORE_ST_LAST,
-	LOGINSERVER_ST_SHUTDOWN,
-	LOGINSERVER_ST_LAST
+enum E_LOGINSERVER_ST {
+    LOGINSERVER_ST_RUNNING = CORE_ST_LAST,
+    LOGINSERVER_ST_SHUTDOWN,
+    LOGINSERVER_ST_LAST
 };
 
 #define LOGIN_CONF_NAME "conf/login_athena.conf"
@@ -87,8 +86,8 @@ struct Login_Config {
 
 	char account_engine[256];                       // name of the engine to use (defaults to auto, for the first available engine)
 
-	int client_hash_check;							// flags for checking client md5
-	struct client_hash_node *client_hash_nodes;		// linked list containg md5 hash for each gm group
+	int client_hash_check;                          // flags for checking client md5
+	struct client_hash_node *client_hash_nodes;     // linked list containg md5 hash for each gm group
 };
 
 #define sex_num2str(num) ( (num ==  SEX_FEMALE  ) ? 'F' : (num ==  SEX_MALE  ) ? 'M' : 'S' )

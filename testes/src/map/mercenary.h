@@ -11,9 +11,9 @@
 #define MAX_MER_DISTANCE 15
 
 enum {
-	ARCH_MERC_GUILD,
-	SPEAR_MERC_GUILD,
-	SWORD_MERC_GUILD,
+    ARCH_MERC_GUILD,
+    SPEAR_MERC_GUILD,
+    SWORD_MERC_GUILD,
 };
 
 struct s_mercenary_db {
@@ -44,13 +44,13 @@ struct mercenary_data {
 
 	struct map_session_data *master;
 	int contract_timer;
-	
+
 	unsigned devotion_flag : 1;
 	unsigned int masterteleport_timer;
 };
 
 bool merc_class(int class_);
-struct view_data * merc_get_viewdata(int class_);
+struct view_data *merc_get_viewdata(int class_);
 
 int merc_create(struct map_session_data *sd, int class_, unsigned int lifetime);
 int merc_data_received(struct s_mercenary *merc, bool flag);

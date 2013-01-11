@@ -28,9 +28,9 @@ enum { HOMUNCULUS_CLASS, HOMUNCULUS_FOOD };
 enum { MH_MD_FIGHTING=1, MH_MD_GRAPPLING };
 
 enum {
-	SP_ACK      = 0x0,
-	SP_INTIMATE = 0x1,
-	SP_HUNGRY   = 0x2,
+    SP_ACK      = 0x0,
+    SP_INTIMATE = 0x1,
+    SP_HUNGRY   = 0x2,
 };
 
 struct homun_data {
@@ -40,13 +40,13 @@ struct homun_data {
 	struct status_data base_status, battle_status;
 	struct status_change sc;
 	struct regen_data regen;
-	struct s_homunculus_db *homunculusDB;	//[orn]
-	struct s_homunculus homunculus;	//[orn]
+	struct s_homunculus_db *homunculusDB;   //[orn]
+	struct s_homunculus homunculus; //[orn]
 
 	struct map_session_data *master; //pointer back to its master
-	int hungry_timer;	//[orn]
+	int hungry_timer;   //[orn]
 	unsigned int exp_next;
-	char blockskill[MAX_SKILL];	// [orn]
+	char blockskill[MAX_SKILL]; // [orn]
 };
 
 #define MAX_HOM_SKILL_REQUIRE 5
@@ -68,21 +68,21 @@ struct homun_skill_tree_entry {
 
 enum {
 // Normal Homunculus
-	MAPID_LIF = HOM_REG|0x0,
-	MAPID_AMISTR,
-	MAPID_FILIR,
-	MAPID_VANILMIRTH,
+    MAPID_LIF = HOM_REG|0x0,
+    MAPID_AMISTR,
+    MAPID_FILIR,
+    MAPID_VANILMIRTH,
 // Evolved Homunulus
-	MAPID_LIF_E = HOM_REG|HOM_EVO|0x0,
-	MAPID_AMISTR_E,
-	MAPID_FILIR_E,
-	MAPID_VANILMIRTH_E,
+    MAPID_LIF_E = HOM_REG|HOM_EVO|0x0,
+    MAPID_AMISTR_E,
+    MAPID_FILIR_E,
+    MAPID_VANILMIRTH_E,
 // Homunculus S
-	MAPID_EIRA = HOM_S|0x0,
-	MAPID_BAYERI,
-	MAPID_SERA,
-	MAPID_DIETER,
-	MAPID_ELANOR,
+    MAPID_EIRA = HOM_S|0x0,
+    MAPID_BAYERI,
+    MAPID_SERA,
+    MAPID_DIETER,
+    MAPID_ELANOR,
 };
 
 #define homdb_checkid(id) (id >=  HM_CLASS_BASE && id <= HM_CLASS_MAX)
@@ -91,7 +91,7 @@ enum {
 #define merc_is_hom_active(x) (x && x->homunculus.vaporize != 1 && x->battle_status.hp > 0)
 int do_init_merc(void);
 int merc_hom_recv_data(int account_id, struct s_homunculus *sh, int flag); //albator
-struct view_data* merc_get_hom_viewdata(int class_);
+struct view_data *merc_get_hom_viewdata(int class_);
 int hom_class2mapid(int hom_class);
 void merc_damage(struct homun_data *hd);
 int merc_hom_dead(struct homun_data *hd);
@@ -116,13 +116,13 @@ int merc_menu(struct map_session_data *sd,int menunum);
 int merc_hom_food(struct map_session_data *sd, struct homun_data *hd);
 int merc_hom_hungry_timer_delete(struct homun_data *hd);
 int merc_hom_change_name(struct map_session_data *sd,char *name);
-int merc_hom_change_name_ack(struct map_session_data *sd, char* name, int flag);
+int merc_hom_change_name_ack(struct map_session_data *sd, char *name, int flag);
 #define merc_stop_walking(hd, type) unit_stop_walking(&(hd)->bl, type)
 #define merc_stop_attack(hd) unit_stop_attack(&(hd)->bl)
-int merc_hom_increase_intimacy(struct homun_data * hd, unsigned int value);
-int merc_hom_decrease_intimacy(struct homun_data * hd, unsigned int value);
+int merc_hom_increase_intimacy(struct homun_data *hd, unsigned int value);
+int merc_hom_decrease_intimacy(struct homun_data *hd, unsigned int value);
 int merc_skill_tree_get_max(int id, int b_class);
-void merc_hom_init_timers(struct homun_data * hd);
+void merc_hom_init_timers(struct homun_data *hd);
 void merc_skill_reload(void);
 void merc_reload(void);
 
