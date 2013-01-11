@@ -3786,7 +3786,14 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 #ifdef RENEWAL
 					sc_start(src,SC_EXTREMITYFIST2,100,skill_lv,skill_get_time(skill_id,skill_lv));
 #endif
-				}
+			}else
+				status_set_hp(src, 
+#ifdef RENEWAL
+				max(status_get_max_hp(src)/100, 1)
+#else
+				1
+#endif
+				, 0);
 
 				dir = map_calc_dir(src,bl->x,bl->y);
 				if(dir > 0 && dir < 4) x = -i;

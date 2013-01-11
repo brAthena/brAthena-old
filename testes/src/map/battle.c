@@ -2023,7 +2023,6 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			case NJ_ISSEN:
 				wd.damage = 40*sstatus->str +skill_lv*(sstatus->hp/10 + 35);
 				wd.damage2 = 0;
-				status_set_hp(src, 1, 0);
 				break;
 			case LK_SPIRALPIERCE:
 			case ML_SPIRALPIERCE:
@@ -2916,7 +2915,6 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					// Damage = (current HP + atk * skill_lv) - (sdef+edef)
 					ATK_ADD(sstatus->hp);
 					wd.damage2 = 0;// needs more info if this really 0 for dual weilding KG/OB. [malufett]
-					status_set_hp(src, max(sstatus->hp/100, 1), 0);
 					if(sc && sc->data[SC_BUNSINJYUTSU] && (i=sc->data[SC_BUNSINJYUTSU]->val2) > 0) {
 						wd.div_ = -(i + 2);   // mirror image number of hits + 2
 						ATK_ADDRATE(20 + i*20); // (20 + 20 * mirror image) %
@@ -3082,7 +3080,10 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 			short vit_def;
 			defType def1 = status_get_def(target); //Don't use tstatus->def1 due to skill timer reductions.
 			short def2 = tstatus->def2;
-
+#ifdef RENEWAL
+			if( tsc && tsc->data[SC_ASSUMPTIO] )
+				def1 <<= 1; // only eDEF is doubled
+#endif
 			if(sd) {
 				i = sd->ignore_def[is_boss(target)?RC_BOSS:RC_NONBOSS];
 				i += sd->ignore_def[tstatus->race];
@@ -4006,6 +4007,10 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 		if(!flag.imdef) {
 			defType mdef = tstatus->mdef;
 			int mdef2= tstatus->mdef2;
+#ifdef RENEWAL
+			if(tsc && tsc->data[SC_ASSUMPTIO])
+				mdef <<= 1; // only eMDEF is doubled
+#endif
 			if(sd) {
 				i = sd->ignore_mdef[is_boss(target)?RC_BOSS:RC_NONBOSS];
 				i+= sd->ignore_mdef[tstatus->race];
