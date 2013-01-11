@@ -189,7 +189,7 @@ payon_in01,142,50,4	duplicate(Guia do PVP)	Guia do PVP#pe5	84
 geffen_in,67,63,4	duplicate(Guia do PVP)	Guia do PVP#pe6	84
 
 // Porteiro
-morocc_in,144,142,4	script	Porteiro	83,{
+morocc_in,144,142,4	script	Porteiro#PvP	83,{
 	mes "[Porteiro]";
 	mes "Fico feliz em ser útil.";
 	mes "Eu vou abrir o modo de";
@@ -267,10 +267,10 @@ morocc_in,144,142,4	script	Porteiro	83,{
 }
 
 // Porteiro Duplicatas
-alberta_in,26,146,4	duplicate(gkut)	Porteiro#gke2	83
-prt_in,52,140,4	duplicate(gkut)	Porteiro#gke3	83
-geffen_in,63,63,4	duplicate(gkut)	Porteiro#gke4	83
-payon_in01,140,53,4	duplicate(gkut)	Porteiro#gke5	83
+alberta_in,26,146,4	duplicate(Porteiro#PvP)	Porteiro#gke2	83
+prt_in,52,140,4	duplicate(Porteiro#PvP)	Porteiro#gke3	83
+geffen_in,63,63,4	duplicate(Porteiro#PvP)	Porteiro#gke4	83
+payon_in01,140,53,4	duplicate(Porteiro#PvP)	Porteiro#gke5	83
 
 pvp_y_room,86,85,4	script	Recepção	105,{
 	if(strnpcinfo(4) == "pvp_y_room") {
@@ -414,9 +414,8 @@ OnInit:
 pvp_room,70,85,4	duplicate(Espectador#dum)	Espectador#2	105
 pvp_room,78,85,4	duplicate(Espectador#dum)	Espectador#3	105
 pvp_room,86,85,4	duplicate(Espectador#dum)	Espectador#4	105
-
 //============================================================ 
-pvp_2vs2,5,4,0	script	Equipe da Arena de Combate#dum::PVPEspec	45,1,1,{
+pvp_2vs2,5,4,0	script	Equipe Arena de Combate#pvp	45,1,1,{
 OnTouch:
 	mes "[Equipe da Arena de Combate]";
 	mes "Como posso ajudar?";
@@ -428,9 +427,10 @@ OnTouch:
 	end;
 }
 
-pvp_2vs2,5,74,0	duplicate(Equipe da Arena de Combate#dum)	Equipe Arena de Combate#2	45,1,1
-pvp_2vs2,74,74,0	duplicate(Equipe da Arena de Combate#dum)	Equipe Arena de Combate#3	45,1,1
-pvp_2vs2,74,5,0	duplicate(Equipe da Arena de Combate#dum)	Equipe Arena de Combate#4	45,1,1
+pvp_2vs2,5,74,0	duplicate(Equipe Arena de Combate#pvp)	Equipe Arena de Combate#2	45,1,1
+pvp_2vs2,74,74,0	duplicate(Equipe Arena de Combate#pvp)	Equipe Arena de Combate#3	45,1,1
+pvp_2vs2,74,5,0	duplicate(Equipe Arena de Combate#pvp)	Equipe Arena de Combate#4	45,1,1
+//============================================================
 pvp_2vs2,40,40,0	script	Equipe Arena de Combate#5	45,1,1,{
 	mes "[Equipe da Arena de Combate]";
 	mes "Como posso ajduar?";

@@ -3182,8 +3182,8 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 #else
 			if(def1 > 100) def1 = 100;
 			ATK_RATE2(
-			    flag.idef ?100:(flag.pdef ? (int64)flag.pdef *) : (100-def1)),
-			              flag.idef2?100:(flag.pdef2? (int64)flag.pdef2 *) : (100-def1))
+			    flag.idef ?100:(flag.pdef ? (int64)flag.pdef*(def1+vit_def) : (100-def1)),
+			    flag.idef2?100:(flag.pdef2? (int64)flag.pdef2*(def1+vit_def) : (100-def1))
 			);
 			ATK_ADD2(
 			    flag.idef ||flag.pdef ?0:-vit_def,
