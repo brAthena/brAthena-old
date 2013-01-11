@@ -12126,7 +12126,7 @@ que_lhz,147,224,3	script	Researcher#ins3	865,{
 	end;
 }
 
--	script	Awake Specimen#lhz	-1,{
+/*-	script	Awake Specimen#lhz	-1,{
 	end;
 OnInit:
 OnDisable:
@@ -12246,7 +12246,7 @@ OnMyMobDead:
 		end;
 	}
 	end;
-}
+}*/
 
 -	script	#controllhz4b	-1,{
 OnInit:

@@ -446,7 +446,7 @@ pvp_2vs2,40,40,0	script	Equipe Arena de Combate#5	45,1,1,{
 }
 
 //============================================================ 
-pvp_room,51,19,0	script	Saída#eventpvp	45,4,2,{
+pvp_room,51,19,0	script	Saída#eventopvp	45,4,2,{
 OnTouch:
 	mes "[Equipe da Arena de Combate]";
 	mes "Você se divertiu na arena de batalha?";

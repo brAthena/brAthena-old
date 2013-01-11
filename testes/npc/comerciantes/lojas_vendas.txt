@@ -26,7 +26,7 @@
 
 // Mercado Negro (Compra de Licenças - Classes que não sejam Mercador e Evoluções)
 //============================================================ 
-que_job01,68,84,1	script	Mercado Negro#Buying	881,{
+que_job01,68,84,1	script	Mercado Negro#Compras	881,{
 	if (getskilllv("ALL_BUYING_STORE") == 1) {
 		mes "[Sr. Jass]";
 		mes "Ei, você já fez um contrato com Hugh.";
@@ -104,7 +104,7 @@ que_job01,68,84,1	script	Mercado Negro#Buying	881,{
 
 // Equipe de Compras (Aprender Habilidades - Classe Mercadpr)
 //============================================================ 
-alberta_in,58,52,4	script	Equipe de Compras#Compra	59,{
+alberta_in,58,52,4	script	Equipe de Compras#Compras	59,{
 	mes "[Sr. Hugh]";
 	if (BaseClass == Job_Merchant && getskilllv("MC_VENDING") >= 1) {
 		if (getskilllv("ALL_BUYING_STORE") == 1) {
@@ -282,7 +282,7 @@ moc_para01,22,16,5	script	Catalogador Mágico#catal01	704,{
 	next;
 	switch(select("Comprar ^007373Catálogo de Vendas Prata^000000:Eu não preciso disso!:Você não é vendedor... É?")) {
 	case 1:
-		mes "[Catalog Magician]";
+		mes "[Catalogador Mágico]";
 		mes "Você... Quer comprar os 50?";
 		mes "Quantos... Quantos gostaria de comprar?";
 		next;
