@@ -1,12 +1,18 @@
-//
-// Event Dispatcher Abstraction for EPOLL
-//
-// Author: Florian Wilkemeyer <fw@f-ws.de>
-//
-// Copyright (c) rAthena Project (www.rathena.org) - Licensed under GNU GPL
-// For more information, see LICENCE in the main folder
-//
-//
+/****************************************************************************!
+*                _           _   _   _                                       *    
+*               | |__  _ __ / \ | |_| |__   ___ _ __   __ _                  *  
+*               | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                 *   
+*               | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                 *    
+*               |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                 *    
+*                                                                            *
+*                                                                            *
+* \file src/common/db.h                                                      *
+* Descrição Primária.                                                        *
+* Descrição mais elaborada sobre o arquivo.                                  *
+* \author brAthena, rAthena                                                  *
+* \date ?                                                                    *
+* \todo ?                                                                    *  
+*****************************************************************************/
 
 #include <stdio.h>
 #include <errno.h>

@@ -1,5 +1,19 @@
-// Copyright (c) rAthena Dev Teams - Licensed under GNU GPL
-// For more information, see LICENCE in the main folder
+/****************************************************************************!
+*                _           _   _   _                                       *    
+*               | |__  _ __ / \ | |_| |__   ___ _ __   __ _                  *  
+*               | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                 *   
+*               | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                 *    
+*               |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                 *    
+*                                                                            *
+*                                                                            *
+* \file src/config/core.h                                                    *
+* Descrição Primária.                                                        *
+* Descrição mais elaborada sobre o arquivo.                                  *
+* \author brAthena, rAthena                                                  *
+* \date ?                                                                    *
+* \todo ?                                                                    *  
+*****************************************************************************/
+
 #ifndef _CONFIG_CORE_H_
 #define _CONFIG_CORE_H_
 

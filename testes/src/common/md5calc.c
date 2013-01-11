@@ -1,10 +1,18 @@
-/***********************************************************
- * md5 calculation algorithm
- *
- * The source code referred to the following URL.
- * http://www.geocities.co.jp/SiliconValley-Oakland/8878/lab17/lab17.html
- *
- ***********************************************************/
+/****************************************************************************!
+*                _           _   _   _                                       *    
+*               | |__  _ __ / \ | |_| |__   ___ _ __   __ _                  *  
+*               | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |                 *   
+*               | |_) | | / ___ \ |_| | | |  __/ | | | (_| |                 *    
+*               |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|                 *    
+*                                                                            *
+*                                                                            *
+* \file src/common/md5calc.c                                                 *
+* Descrição Primária.                                                        *
+* Descrição mais elaborada sobre o arquivo.                                  *
+* \author brAthena, Athena                                                   *
+* \date ?                                                                    *
+* \todo ?                                                                    *  
+*****************************************************************************/
 
 #include "../common/random.h"
 #include "md5calc.h"
