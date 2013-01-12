@@ -7,8 +7,8 @@
 *                                                                            *
 *                                                                            *
 * \file src/login/ipban.h                                                    *
-* Descrição Primária.                                                        *
-* Descrição mais elaborada sobre o arquivo.                                  *
+* Declarações do Banimento de IP.                                            *
+* Códigos de declaração para ipban_sql.c                                     *
 * \author brAthena, Athena, eAthena                                          *
 * \date ?                                                                    *
 * \todo ?                                                                    *   

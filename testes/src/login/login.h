@@ -7,8 +7,8 @@
 *                                                                            *
 *                                                                            *
 * \file src/login/login.h                                                    *
-* Descrição Primária.                                                        *
-* Descrição mais elaborada sobre o arquivo.                                  *
+* Declarações do Servidor de Entrada (Login).                                *
+* Códigos de declaração para login.c                                         *
 * \author brAthena, Athena, eAthena                                          *
 * \date ?                                                                    *
 * \todo ?                                                                    *  

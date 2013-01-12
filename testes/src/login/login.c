@@ -7,8 +7,8 @@
 *                                                                            *
 *                                                                            *
 * \file src/login/login.c                                                    *
-* Descrição Primária.                                                        *
-* Descrição mais elaborada sobre o arquivo.                                  *
+* Servidor de Entrada (Login).                                               *
+* Código para gerenciamento de entrada e autenticação do usuário.            *
 * \author brAthena, Athena, eAthena                                          *
 * \date ?                                                                    *
 * \todo ?                                                                    *  

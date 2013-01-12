@@ -7,8 +7,8 @@
 *                                                                            *
 *                                                                            *
 * \file src/login/loginlog.h                                                 *
-* Descrição Primária.                                                        *
-* Descrição mais elaborada sobre o arquivo.                                  *
+* Declarações de Logs do Servidor de Entrada (Login).                        *
+* Códigos de declaração para loginlog_sql.c                                  *
 * \author brAthena, Athena, eAthena                                          *
 * \date ?                                                                    *
 * \todo ?                                                                    *  

@@ -7,8 +7,8 @@
 *                                                                            *
 *                                                                            *
 * \file src/login/account_sql.c                                              *
-* Descrição Primária.                                                        *
-* Descrição mais elaborada sobre o arquivo.                                  *
+* Contas em SQL.                                                             *
+* Códigos de interação das contas com o SQL.                                 *
 * \author brAthena, Athena, eAthena                                          *
 * \date ?                                                                    *
 * \todo ?                                                                    *  

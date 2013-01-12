@@ -7,8 +7,8 @@
 *                                                                            *
 *                                                                            *
 * \file src/login/loginlog_sql.c                                             *
-* Descrição Primária.                                                        *
-* Descrição mais elaborada sobre o arquivo.                                  *
+* Logs do Servidor de Entrada (Login).                                       *
+* Realiza processo de logs para o servidor de entrada.                       *
 * \author brAthena, Athena, eAthena                                          *
 * \date ?                                                                    *
 * \todo ?                                                                    *  

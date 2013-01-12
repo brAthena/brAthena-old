@@ -7,8 +7,8 @@
 *                                                                            *
 *                                                                            *
 * \file src/login/account.h                                                  *
-* Descrição Primária.                                                        *
-* Descrição mais elaborada sobre o arquivo.                                  *
+* Declarações de Contas em SQL.                                              *
+* Códigos de declaração para account_sql.c                                   *
 * \author brAthena, Athena, eAthena                                          *
 * \date ?                                                                    *
 * \todo ?                                                                    *  
