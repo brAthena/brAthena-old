@@ -3436,7 +3436,7 @@ char *get_database_name(int database_id)
 		case 31: db_name = "item_misc_db"; break;
 		case 32: db_name = "mob_chat_db"; break;
 		case 33: db_name = "refine_db"; break;
-		case 34: db_name = "job_db1"; break;
+		case 34: db_name = "job_db1_db"; break;
 		case 35: db_name = "job_db2"; break;
 		case 36: db_name = "elemental_db"; break;
 		case 37: db_name = "elemental_skill_db"; break;
@@ -3456,7 +3456,7 @@ char *get_database_name(int database_id)
 		case 51: db_name = "size_fix_db"; break;
 		case 52: db_name = "exp_homun_db"; break;
 		case 53: db_name = "statpoint_db"; break;
-		case 54: db_name = "level_penalty"; break;
+		case 54: db_name = "level_penalty_db"; break;
 		case 55: db_name = "item_db"; break;
 		case 56: db_name = "mob_db"; break;
 		case 57: db_name = "item_bro"; break;
