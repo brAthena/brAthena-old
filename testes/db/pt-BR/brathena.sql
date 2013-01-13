@@ -461,7 +461,7 @@ CREATE TABLE IF NOT EXISTS `login` (
 
 -- Adicionar a conta de comunicação com dados padrões é ALTAMENTE INSEGURO!!!
 
-INSERT INTO `login` (`account_id`, `userid`, `user_pass`, `sex`, `email`) VALUES ('1', 's1', 'p1', 'S','brathena@brathena.com');
+INSERT INTO `login` (`account_id`, `userid`, `user_pass`, `sex`, `email`) VALUES ('1', 's1', 'p1', 'S','brathena@brathena.org');
 
 --
 -- Estrutura da tabela `mapreg`

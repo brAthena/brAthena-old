@@ -11092,7 +11092,7 @@ static bool status_readdb_refine(char *fields[], int columns, int current)
 * Read status db
 * job1.txt
 * job2.txt
-* size_fixe.txt
+* size_fix.txt
 * refine_db.txt
 */
 int status_readdb(void)
@@ -11102,13 +11102,13 @@ int status_readdb(void)
 	// initialize databases to default
 	//
 
-	// reset job_db1.txt data
+	// reset job_db1 data
 	memset(max_weight_base, 0, sizeof(max_weight_base));
 	memset(hp_coefficient, 0, sizeof(hp_coefficient));
 	memset(hp_coefficient2, 0, sizeof(hp_coefficient2));
 	memset(sp_coefficient, 0, sizeof(sp_coefficient));
 	memset(aspd_base, 0, sizeof(aspd_base));
-	// reset job_db2.txt data
+	// reset job_db2 data
 	memset(job_bonus,0,sizeof(job_bonus)); // Job-specific stats bonus
 
 	// size_fix.txt
@@ -11128,13 +11128,12 @@ int status_readdb(void)
 	// read databases
 	//
 
-
 #ifdef RENEWAL_ASPD
 	sv_readsqldb(get_database_name(34), NULL,     6+MAX_WEAPON_TYPE,    -1,   &status_readdb_job1);
 #else
 	sv_readsqldb(get_database_name(34), NULL,     5+MAX_WEAPON_TYPE,    -1,   &status_readdb_job1);
 #endif
-	sv_readdb(db_path, "job_db2.txt",          ',',                 1,       1+MAX_LEVEL,                       -1,      &status_readdb_job2);
+	sv_readsqldb(get_database_name(35), NULL,             100, -1, &status_readdb_job2);
 	sv_readsqldb(get_database_name(51), NULL, MAX_WEAPON_TYPE, -1, &status_readdb_sizefix);
 	sv_readsqldb(get_database_name(33), NULL,    4+MAX_REFINE, -1, &status_readdb_refine);
 

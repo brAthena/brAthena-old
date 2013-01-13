@@ -119,7 +119,7 @@ static DBMap *regen_db=NULL; // int id -> struct block_list* (status_natural_hea
 static int map_users=0;
 
 // brAthena
-#define MAX_QUERY_ROWS 64
+#define MAX_QUERY_ROWS 100
 
 #define BLOCK_SIZE 8
 #define block_free_max 1048576
@@ -3436,7 +3436,7 @@ char *get_database_name(int database_id)
 		case 31: db_name = "item_misc_db"; break;
 		case 32: db_name = "mob_chat_db"; break;
 		case 33: db_name = "refine_db"; break;
-		case 34: db_name = "job_db1_db"; break;
+		case 34: db_name = "job_db1"; break;
 		case 35: db_name = "job_db2"; break;
 		case 36: db_name = "elemental_db"; break;
 		case 37: db_name = "elemental_skill_db"; break;
