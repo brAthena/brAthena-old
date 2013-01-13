@@ -6324,7 +6324,7 @@ void pc_damage(struct map_session_data *sd,struct block_list *src,unsigned int h
  *------------------------------------------*/
 int pc_dead(struct map_session_data *sd,struct block_list *src)
 {
-	int i=0,j=0,k=0;
+	int i=0,j=0,k=0,l=0;
 	unsigned int tick = gettick();
 
 	for(k = 0; k < 5; k++)
@@ -6389,6 +6389,16 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 		if(sd->st && sd->st->state != END)
 			sd->st->state = END;
 	}
+	
+#ifdef RENEWAL
+	// Seguro Estendido - remove o item e evita a perda de EXP. ~ tmp fix
+	for(; l < MAX_INVENTORY; ++l) {
+		if(sd && sd->status.inventory[l].nameid == 6413) {
+			status_change_start(&sd->bl, SC_LIFEINSURANCE, 10000, 1, 0, 0, 0, 1800000, 2);
+			pc_delitem(sd, l, 1, 0, 0, LOG_TYPE_COMMAND);
+		}
+	}
+#endif
 
 	npc_script_event(sd,NPCE_DIE);
 
