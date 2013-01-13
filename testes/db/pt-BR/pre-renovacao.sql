@@ -33349,15 +33349,15 @@ REPLACE INTO `statpoint_db` VALUES(7185);
  `Row` tinyint DEFAULT NULL,
  `Column` tinyint DEFAULT NULL,
  `Neut` tinyint DEFAULT NULL,
- `watr` tinyint DEFAULT NULL,
- `Erth` tinyint DEFAULT NULL,
- `Fire` tinyint DEFAULT NULL,
- `wind` tinyint DEFAULT NULL,
- `Pois` tinyint DEFAULT NULL,
- `Holy` tinyint DEFAULT NULL,
- `Shdw` tinyint DEFAULT NULL,
+ `watr` smallint DEFAULT NULL,
+ `Erth` smallint DEFAULT NULL,
+ `Fire` smallint DEFAULT NULL,
+ `wind` smallint DEFAULT NULL,
+ `Pois` smallint DEFAULT NULL,
+ `Holy` smallint DEFAULT NULL,
+ `Shdw` smallint DEFAULT NULL,
  `Gho` tinyint DEFAULT NULL,
- `Und` tinyint DEFAULT NULL
+ `Und` smallint DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 REPLACE INTO attr_fix_db VALUES (1,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL); -- Tabela de Atributo Nv1

@@ -33217,15 +33217,15 @@ REPLACE INTO level_penalty_db VALUES(2,10,0,100);
  `Row` tinyint DEFAULT NULL,
  `Column` tinyint DEFAULT NULL,
  `Neut` tinyint DEFAULT NULL,
- `watr` tinyint DEFAULT NULL,
- `Erth` tinyint DEFAULT NULL,
- `Fire` tinyint DEFAULT NULL,
- `wind` tinyint DEFAULT NULL,
- `Pois` tinyint DEFAULT NULL,
- `Holy` tinyint DEFAULT NULL,
- `Shdw` tinyint DEFAULT NULL,
+ `watr` smallint DEFAULT NULL,
+ `Erth` smallint DEFAULT NULL,
+ `Fire` smallint DEFAULT NULL,
+ `wind` smallint DEFAULT NULL,
+ `Pois` smallint DEFAULT NULL,
+ `Holy` smallint DEFAULT NULL,
+ `Shdw` smallint DEFAULT NULL,
  `Gho` tinyint DEFAULT NULL,
- `Und` tinyint DEFAULT NULL
+ `Und` smallint DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 REPLACE INTO attr_fix_db VALUES (1,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL); -- lv1 Attribute table
@@ -33264,7 +33264,7 @@ REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100, 100, 100, 100,   0, 175, 
 REPLACE INTO attr_fix_db VALUES (    NULL,NULL,0,  50,  50,  50,  50,  50,  25,  25, 175, 150); -- Ghost
 REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100,  50,  50,  50,  50,   0, 150,   0, 100,   0); -- Undead
 
-REPLACE INTO attr_fix_db VALUES (4,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL); --lv4 Attribute table
+REPLACE INTO attr_fix_db VALUES (4,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL); -- lv4 Attribute table
 REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100, 100, 100, 100, 100, 100, 100,   0, 100); -- Neutral
 REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, -50, 100, 200,   0,  75,   0,  25, 100, 150); -- Water
 REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100, -25,   0, 200,  75,   0,  25, 100,  50); -- Earth
