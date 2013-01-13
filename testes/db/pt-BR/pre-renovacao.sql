@@ -33342,6 +33342,73 @@ REPLACE INTO `statpoint_db` VALUES(7132);
 REPLACE INTO `statpoint_db` VALUES(7185);
 
 --
+-- Estrutura da tabela `attr_fix_db`
+--
+
+/*CREATE TABLE IF NOT EXISTS `attr_fix_db` (
+ `Row` tinyint DEFAULT NULL,
+ `Column` tinyint DEFAULT NULL,
+ `Neut` tinyint DEFAULT NULL,
+ `watr` tinyint DEFAULT NULL,
+ `Erth` tinyint DEFAULT NULL,
+ `Fire` tinyint DEFAULT NULL,
+ `wind` tinyint DEFAULT NULL,
+ `Pois` tinyint DEFAULT NULL,
+ `Holy` tinyint DEFAULT NULL,
+ `Shdw` tinyint DEFAULT NULL,
+ `Gho` tinyint DEFAULT NULL,
+ `Und` tinyint DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+REPLACE INTO attr_fix_db VALUES (1,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL); -- Tabela de Atributo Nv1
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100, 100, 100, 100, 100, 100, 100,  25, 100); -- Neutro
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100,  25, 100, 150,  50, 100,  75, 100, 100, 100); -- Água
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100, 100,  50, 150, 100,  75, 100, 100, 100); -- Terra
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100,  50, 150,  25, 100, 100,  75, 100, 100, 125); -- Fogo
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 175,  50, 100,  25, 100,  75, 100, 100, 100); -- Vento
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100, 125, 125, 125,   0,  75,  50, 100, -25); -- Veneno
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100, 100, 100, 100, 100,   0, 125, 100, 150); -- Sagrado
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100, 100, 100, 100,  50, 125,   0, 100, -25); -- Sombrio
+REPLACE INTO attr_fix_db VALUES (   NULL,NULL,25, 100, 100, 100, 100, 100,  75,  75, 125, 100); -- Fantasma
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100, 100, 100, 100,  50, 100,   0, 100,   0); -- Morto-Vivo
+
+REPLACE INTO attr_fix_db VALUES (2,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL); -- Tabela de Atributo Nv2
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100, 100, 100, 100, 100, 100, 100,  25, 100); -- Neutro
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100,   0, 100, 175,  25, 100,  50,  75, 100, 100); -- Água
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100,  50,  25, 175, 100,  50,  75, 100, 100); -- Terra
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100,  25, 175,   0, 100, 100,  50,  75, 100, 150); -- Fogo
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 175,  25, 100,   0, 100,  50,  75, 100, 100); -- Vento
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100,  75, 125, 125, 125,   0,  50,  25,  75, -50); -- Veneno
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100, 100, 100, 100, 100, -25, 150, 100, 175); -- Sagrado
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100, 100, 100, 100,  25, 150, -25, 100, -50); -- Sombrio
+REPLACE INTO attr_fix_db VALUES (    NULL,NULL,0,  75,  75,  75,  75,  75,  50,  50, 150, 125); -- Fantasma
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100,  75,  75,  75,  75,  25, 125,   0, 100,   0); -- Morto-Vivo
+
+REPLACE INTO attr_fix_db VALUES (3,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL); -- Tabela de Atributo Nv3
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100, 100, 100, 100, 100, 100, 100,   0, 100); -- Neutro
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, -25, 100, 200,   0, 100,  25,  50, 100, 125); -- Água
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100,   0,   0, 200, 100,  25,  50, 100,  75); -- Terra
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100,   0, 200, -25, 100, 100,  25,  50, 100, 175); -- Fogo
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 200,   0, 100, -25, 100,  25,  50, 100, 100); -- Vento
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100,  50, 100, 100, 100,   0,  25,   0,  50, -75); -- Veneno
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100, 100, 100, 100, 125, -50, 175, 100, 200); -- Sagrado
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100, 100, 100, 100,   0, 175, -50, 100, -75); -- Sombrio
+REPLACE INTO attr_fix_db VALUES (    NULL,NULL,0,  50,  50,  50,  50,  50,  25,  25, 175, 150); -- Fantasma
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100,  50,  50,  50,  50,   0, 150,   0, 100,   0); -- Morto-Vivo
+
+REPLACE INTO attr_fix_db VALUES (4,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);  -- Tabela de Atributo Nv4
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100, 100, 100, 100, 100, 100, 100,   0, 100); -- Neutro
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, -50, 100, 200,   0,  75,   0,  25, 100, 150); -- Água
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100, -25,   0, 200,  75,   0,  25, 100,  50); -- Terra
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100,   0, 200, -50, 100,  75,   0,  25, 100, 200); -- Fogo
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 200,   0, 100, -50,  75,   0,  25, 100, 100); -- Vento
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100,  25,  75,  75,  75,   0,   0, -25,  25,-100); -- Veneno
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100,  75,  75,  75,  75, 125,-100, 200, 100, 200); -- Sagrado
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100,  75,  75,  75,  75, -25, 200,-100, 100,-100); -- Sombrio
+REPLACE INTO attr_fix_db VALUES (    NULL,NULL,0,  25,  25,  25,  25,  25,   0,   0, 200, 175); -- Fantasma
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100,  25,  25,  25,  25, -25, 175,   0, 100,   0); -- Morto-Vivo*/
+
+--
 -- Estrutura da tabela `job_db1`
 --
 

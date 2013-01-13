@@ -33210,6 +33210,73 @@ REPLACE INTO level_penalty_db VALUES(2,11,-16,50);
 REPLACE INTO level_penalty_db VALUES(2,10,0,100);
 
 --
+-- Table structure for table `attr_fix_db`
+--
+ 
+/*CREATE TABLE IF NOT EXISTS `attr_fix_db` (
+ `Row` tinyint DEFAULT NULL,
+ `Column` tinyint DEFAULT NULL,
+ `Neut` tinyint DEFAULT NULL,
+ `watr` tinyint DEFAULT NULL,
+ `Erth` tinyint DEFAULT NULL,
+ `Fire` tinyint DEFAULT NULL,
+ `wind` tinyint DEFAULT NULL,
+ `Pois` tinyint DEFAULT NULL,
+ `Holy` tinyint DEFAULT NULL,
+ `Shdw` tinyint DEFAULT NULL,
+ `Gho` tinyint DEFAULT NULL,
+ `Und` tinyint DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+
+REPLACE INTO attr_fix_db VALUES (1,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL); -- lv1 Attribute table
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100, 100, 100, 100, 100, 100, 100,  25, 100); -- Neutral
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100,  25, 100, 150,  50, 100,  75, 100, 100, 100); -- Water
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100, 100,  50, 150, 100,  75, 100, 100, 100); -- Earth
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100,  50, 150,  25, 100, 100,  75, 100, 100, 125); -- Fire
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 175,  50, 100,  25, 100,  75, 100, 100, 100); -- Wind
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100, 125, 125, 125,   0,  75,  50, 100, -25); -- Poison
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100, 100, 100, 100, 100,   0, 125, 100, 150); -- Holy
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100, 100, 100, 100,  50, 125,   0, 100, -25); -- Shadow
+REPLACE INTO attr_fix_db VALUES (   NULL,NULL,25, 100, 100, 100, 100, 100,  75,  75, 125, 100); -- Ghost
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100, 100, 100, 100,  50, 100,   0, 100,   0); -- Undead
+
+REPLACE INTO attr_fix_db VALUES (2,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL); -- lv2 Attribute table
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100, 100, 100, 100, 100, 100, 100,  25, 100); -- Neutral
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100,   0, 100, 175,  25, 100,  50,  75, 100, 100); -- Water
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100,  50,  25, 175, 100,  50,  75, 100, 100); -- Earth
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100,  25, 175,   0, 100, 100,  50,  75, 100, 150); -- Fire
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 175,  25, 100,   0, 100,  50,  75, 100, 100); -- Wind
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100,  75, 125, 125, 125,   0,  50,  25,  75, -50); -- Poison
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100, 100, 100, 100, 100, -25, 150, 100, 175); -- Holy
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100, 100, 100, 100,  25, 150, -25, 100, -50); -- Shadow
+REPLACE INTO attr_fix_db VALUES (    NULL,NULL,0,  75,  75,  75,  75,  75,  50,  50, 150, 125); -- Ghost
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100,  75,  75,  75,  75,  25, 125,   0, 100,   0); -- Undead
+
+REPLACE INTO attr_fix_db VALUES (3,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL); -- lv3 Attribute table
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100, 100, 100, 100, 100, 100, 100,   0, 100); -- Neutral
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, -25, 100, 200,   0, 100,  25,  50, 100, 125); -- Water
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100,   0,   0, 200, 100,  25,  50, 100,  75); -- Earth
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100,   0, 200, -25, 100, 100,  25,  50, 100, 175); -- Fire
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 200,   0, 100, -25, 100,  25,  50, 100, 100); -- Wind
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100,  50, 100, 100, 100,   0,  25,   0,  50, -75); -- Poison
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100, 100, 100, 100, 125, -50, 175, 100, 200); -- Holy
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100, 100, 100, 100,   0, 175, -50, 100, -75); -- Shadow
+REPLACE INTO attr_fix_db VALUES (    NULL,NULL,0,  50,  50,  50,  50,  50,  25,  25, 175, 150); -- Ghost
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100,  50,  50,  50,  50,   0, 150,   0, 100,   0); -- Undead
+
+REPLACE INTO attr_fix_db VALUES (4,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL); --lv4 Attribute table
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100, 100, 100, 100, 100, 100, 100,   0, 100); -- Neutral
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, -50, 100, 200,   0,  75,   0,  25, 100, 150); -- Water
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 100, -25,   0, 200,  75,   0,  25, 100,  50); -- Earth
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100,   0, 200, -50, 100,  75,   0,  25, 100, 200); -- Fire
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100, 200,   0, 100, -50,  75,   0,  25, 100, 100); -- Wind
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100,  25,  75,  75,  75,   0,   0, -25,  25,-100); -- Poison
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100,  75,  75,  75,  75, 125,-100, 200, 100, 200); -- Holy
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100,  75,  75,  75,  75, -25, 200,-100, 100,-100); -- Shadow
+REPLACE INTO attr_fix_db VALUES (    NULL,NULL,0,  25,  25,  25,  25,  25,   0,   0, 200, 175); -- Ghost
+REPLACE INTO attr_fix_db VALUES (  NULL,NULL,100,  25,  25,  25,  25, -25, 175,   0, 100,   0); -- Undead*/
+
+--
 -- Table structure for table `job_db1`
 --
 
