@@ -12530,6 +12530,11 @@ BUILDIN_FUNC(npcwalkto)
 	y=script_getnum(st,3);
 
 	if(nd) {
+		if (!nd->status.hp) {
+			status_calc_npc(nd, true);
+		} else {
+			status_calc_npc(nd, false);
+		}
 		unit_walktoxy(&nd->bl,x,y,0);
 	}
 

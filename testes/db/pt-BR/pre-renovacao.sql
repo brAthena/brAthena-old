@@ -25987,7 +25987,7 @@ REPLACE INTO `skill_db` VALUES(2229,'0',6,4,'2','0x1','0',5,'1','yes',0,'0','0',
 REPLACE INTO `skill_db` VALUES(2230,'11',8,1,'0','0','0',2,'1','yes',0,'0','0','magic','0','WL_RELEASE','Disparo Arcano');
 REPLACE INTO `skill_db` VALUES(2231,'0',6,4,'0','0x1','0',1,'1','yes',0,'0','0','magic','0','WL_READING_SB','Estudo Arcano');
 REPLACE INTO `skill_db` VALUES(2232,'0',0,0,'0','0','0',5,'0','no',0,'0','0','none','0','WL_FREEZE_SP','Estudo Arcano Avançado');
-REPLACE INTO `skill_db` VALUES(2021,'5',6,1,'0','0x1','0',5,'1','no',0,'0','0','none','0','GC_VENOMIMPRESS','Potencializar Veneno');
+REPLACE INTO `skill_db` VALUES(2021,'10',6,1,'0','0x1','0',5,'1','no',0,'0','0','none','0','GC_VENOMIMPRESS','Potencializar Veneno');
 REPLACE INTO `skill_db` VALUES(2022,'3',8,1,'-1','0','0',5,'-7','no',0,'0','0','weapon','0','GC_CROSSIMPACT','Lâminas Retalhadoras');
 REPLACE INTO `skill_db` VALUES(2023,'3:4:5:6:7',6,1,'-1','0','0',5,'1','no',0,'0','0','weapon','0','GC_DARKILLUSION','Passo Sombrio');
 REPLACE INTO `skill_db` VALUES(2024,'0',0,0,'0','0','0',10,'0','no',0,'0','0','none','0','GC_RESEARCHNEWPOISON','Pesquisa de Toxinas');
@@ -26157,7 +26157,7 @@ REPLACE INTO `skill_db` VALUES(2418,'9',6,2,'-1','0x1','0',5,'1','yes',0,'0','0'
 REPLACE INTO `skill_db` VALUES(2419,'9',6,2,'0','0x3','1',5,'1','yes',0,'0x80','5','none','0','WM_POEMOFNETHERWORLD','Poema de Nifflheim');
 REPLACE INTO `skill_db` VALUES(2420,'0',6,4,'0','0x2','2:3:4:5:6',5,'1','yes',0,'0','0','none','0','WM_VOICEOFSIREN','Canto da Sereia');
 REPLACE INTO `skill_db` VALUES(2421,'7',6,16,'0','0x1','0',5,'1','yes',0,'0','0','none','0','WM_DEADHILLHERE','Réquiem de Orfeu');
-REPLACE INTO `skill_db` VALUES(2422,'7',6,2,'0','0x3','5:6:7:8:9',5,'1','yes',0,'0','0','none','0','WM_LULLABY_DEEPSLEEP','Melodia de Morfeu');
+REPLACE INTO `skill_db` VALUES(2422,'7',6,4,'0','0x3','5:6:7:8:9',5,'1','yes',0,'0','0','none','0','WM_LULLABY_DEEPSLEEP','Melodia de Morfeu');
 REPLACE INTO `skill_db` VALUES(2423,'0',6,4,'0','0x3','3:4:5:6:7',5,'1','yes',0,'0','0','none','0','WM_SIRCLEOFNATURE','Sibilo de Eir');
 REPLACE INTO `skill_db` VALUES(2424,'9',6,4,'0','0x1','0',5,'1','yes',0,'0','0','magic','0','WM_RANDOMIZESPELL','Improviso');
 REPLACE INTO `skill_db` VALUES(2425,'9',6,16,'0','0x1','0',5,'1','yes',0,'0','0','none','0','WM_GLOOMYDAY','Ode a Hela');
@@ -26183,7 +26183,7 @@ REPLACE INTO `skill_db` VALUES(2451,'9',6,16,'0','0x1','0',5,'1','yes',0,'0','0'
 REPLACE INTO `skill_db` VALUES(2452,'9',6,2,'3','0x1','0',5,'1','yes',0,'0','0','magic','0','SO_WARMER','Aquecer Terreno');
 REPLACE INTO `skill_db` VALUES(2453,'9',6,2,'0','0x1','0',5,'1','yes',0,'0','0','magic','0','SO_VACUUM_EXTREME','Tornado');
 REPLACE INTO `skill_db` VALUES(2454,'9',6,1,'4','0x2','1:1:2:2:3',5,'1','yes',0,'0','0','magic','0','SO_VARETYR_SPEAR','Lanças de Aesir');
-REPLACE INTO `skill_db` VALUES(2455,'9',6,1,'0','0x3','1:1:2:2:3',5,'1','yes',0,'0','0','magic','0','SO_ARRULLO','Onda Hipnótica');
+REPLACE INTO `skill_db` VALUES(2455,'9',6,2,'0','0x3','1:1:2:2:3',5,'1','yes',0,'0','0','magic','0','SO_ARRULLO','Onda Hipnótica');
 REPLACE INTO `skill_db` VALUES(2456,'0',6,4,'0','0x1','0',4,'1','yes',0,'0','0','none','0','SO_EL_CONTROL','Domínio Elemental');
 REPLACE INTO `skill_db` VALUES(2457,'0',6,4,'3','0x1','0',3,'1','yes',0,'0','0','none','0','SO_SUMMON_AGNI','Invocar Agni');
 REPLACE INTO `skill_db` VALUES(2458,'0',6,4,'1','0x1','0',3,'1','yes',0,'0','0','none','0','SO_SUMMON_AQUA','Invocar Varuna');

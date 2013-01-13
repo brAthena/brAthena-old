@@ -34,9 +34,10 @@ prontera,146,86,0	script	Caixa de Correio	888,{
 	mes "Você deseja usar";
 	mes "sua caixa de correio agora?";
 	next;
-	if (select("Sim.:Não.") == 1) {
+	switch(select("Yes.:No.")) {
+	case 1:
+		mes "[Correio]";
 		if (Zeny < 130) {
-			mes "[Correio]";
 			mes "Lamento, mas você";
 			mes "verficar o seu";
 			mes "dinheiro novamente? Você não";
@@ -52,10 +53,12 @@ prontera,146,86,0	script	Caixa de Correio	888,{
 		set Zeny,Zeny-130;
 		openmail;
 		close;
+
+	case 2:
+		mes "[Correio]";
+		mes "Obrigado e volte novamente.";
+		close;
 	}
-	mes "[Correio]";
-	mes "Obrigado e volte novamente.";
-	close;
 }
 
 // Prontera

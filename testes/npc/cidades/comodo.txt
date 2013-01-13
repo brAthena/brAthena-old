@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.9/1.9/1.1                         |
+//   | Versões eA/rA/brA: 1.9/2.0/1.1                         |
 //   |--------------------------------------------------------|
 //   | Descrição: NPCs da Cidade de Comodo.                   |
 //   |--------------------------------------------------------|
@@ -339,7 +339,8 @@ cmd_fild07,52,280,4	script	Hallosu#cmd	100,{
 }
 
 cmd_fild07,299,83,4	script	Zain#cmd	100,{
-	mes "[Zain]";
+	set .@n$,"["+strnpcinfo(1)+"]";
+	mes .@n$;
 	mes "Você gostaria de";
 	mes "embarcar em um navio";
 	mes "da rota Reudelus?";
@@ -348,29 +349,20 @@ cmd_fild07,299,83,4	script	Zain#cmd	100,{
 	next;
 	switch(select("Alberta - 600 Zeny:Izlude - 800 Zeny:Cancelar")) {
 	case 1:
-		if (Zeny < 600) {
-			mes "[Zain]";
-			mes "Sinto muito, mas você";
-			mes "não tem dinheiro suficiente";
-			mes "para o embarque.";
-			close;
-		}
+		if (Zeny < 600) break;
 		set zeny,zeny-600;
 		warp "alberta",192,169;
 		end;
 	case 2:
-		if (Zeny < 800) {
-			mes "[Zain]";
-			mes "Sinto muito, mas você";
-			mes "não tem dinheiro suficiente";
-			mes "para o embarque.";
-			close;
-		}
+		if (Zeny < 800) break;
 		set zeny,zeny-800;
-		warp "izlude",176,182;
+		if(checkre(0))
+			warp "izlude",195,212;
+		else
+			warp "izlude",176,182;
 		end;
 	case 3:
-		mes "[Zain]";
+		mes .@n$;
 		mes "Navios ainda são meios de";
 		mes "transporte seguros e eficientes.";
 		mes "Nós convidamos você para";
@@ -378,49 +370,13 @@ cmd_fild07,299,83,4	script	Zain#cmd	100,{
 		mes "quando quiser!";
 		close;
 	}
+	mes .@n$;
+	mes "Sinto muito, mas você";
+	mes "não tem dinheiro suficiente";
+	mes "para o embarque.";
+	close;
 }
-
-cmd_fild07,94,134,4	script	Sarumane#cmd	100,{
-	mes "[Sarumane]";
-	mes "Você gostaria de";
-	mes "embarcar em um navio";
-	mes "da rota Reudelus?";
-	mes "Você pode viajar";
-	mes "para Alberta ou Izlude.";
-	next;
-	switch(select("Alberta - 600 Zeny:Izlude - 800 Zeny:Cancelar")) {
-	case 1:
-		if (Zeny < 600) {
-			mes "[Sarumane]";
-			mes "Sinto muito, mas você";
-			mes "não tem dinheiro suficiente";
-			mes "para o embarque.";
-			close;
-		}
-		set zeny,zeny-600;
-		warp "alberta",192,169;
-		end;
-	case 2:
-		if (Zeny < 800) {
-			mes "[Sarumane]";
-			mes "Sinto muito, mas você";
-			mes "não tem dinheiro suficiente";
-			mes "para o embarque.";
-			close;
-		}
-		set zeny,zeny-800;
-		warp "izlude",176,182;
-		end;
-	case 3:
-		mes "[Sarumane]";
-		mes "Navios ainda são meios de";
-		mes "transporte seguros e eficientes.";
-		mes "Nós convidamos você para";
-		mes "viajar pela rota Reudelus";
-		mes "quando quiser!";
-		close;
-	}
-}
+cmd_fild07,94,134,4	duplicate(Zain#cmd)	Sarumane#cmd	100
 
 
 cmd_in02,146,180,4	script	Funcionária Kafra::kaf_comodo2	721,{
