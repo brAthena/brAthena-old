@@ -997,14 +997,7 @@ int mmo_auth(struct login_session_data *sd, bool isServer)
 
 	if(!check_password(sd->md5key, sd->passwdenc, sd->passwd, acc.pass)) {
 		ShowNotice(read_message("Source.login.login_mmo_auth_s3"), sd->userid, acc.pass, sd->passwd, ip);
-		{
-			int fd = sd->fd;
-
-			WFIFOHEAD(fd,3);
-			WFIFOW(fd,0) = 0x6c;
-			WFIFOB(fd,2) = 0;
-			WFIFOSET(fd,3);
-		}
+		return 1; // 1 = Senha incorreta
 	}
 
 	if(acc.expiration_time != 0 && acc.expiration_time < time(NULL)) {
