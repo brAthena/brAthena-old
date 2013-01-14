@@ -25,7 +25,7 @@
 
 // Teleporte para Lutie
 //============================================================
-aldebaran,223,222,4	script	Sr. Claus	718,{
+aldebaran,223,222,4	script	Sr. Noel	718,{
 	mes "[Senhor Noel]";
 	mes "Ho Ho Ho~";
 	mes "Feliz Natal!!";
@@ -73,9 +73,9 @@ aldebaran,223,222,4	script	Sr. Claus	718,{
 }
 
 
-// Inside Lutie
+// Interior de Lutie
 //============================================================
-xmas_in,100,96,4	script	Santa Claus	718,{
+xmas_in,100,96,4	script	Papai Noel	718,{
 	mes "[Papai Noel]";
 	mes "Ho Ho Ho~";
 	mes "Feliiiiz Nataaal !!";

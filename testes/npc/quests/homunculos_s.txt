@@ -103,7 +103,7 @@ job3_gen01,12,44,4	script	Viorel#job3_gen01	542,{
 			set .@i, select("Eira:Bayeri:Sera:Dieter:Elanor:Cancelar");
 			if (.@i == 6) {
 				mes "[Viorel]";
-				mes "So long~!";
+				mes "Até logo~!";
 				close;
 			}
 		case 2:
@@ -131,7 +131,7 @@ job3_gen01,12,44,4	script	Viorel#job3_gen01	542,{
 			close;
 		case 3:
 			mes "[Viorel]";
-			mes "So long~!";
+			mes "Até logo~!";
 			close;
 		}
 	case 2:
