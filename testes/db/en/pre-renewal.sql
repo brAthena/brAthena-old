@@ -13018,7 +13018,7 @@ REPLACE INTO skill_db VALUES(2209,'0',6,4,'0','0x3','9:10:11:12:13',5,'1','yes',
 REPLACE INTO skill_db VALUES(2210,'11',6,1,'0','0','0',5,'1','yes',0,'0','0','magic','0','WL_DRAINLIFE','Drain Life');
 REPLACE INTO skill_db VALUES(2211,'11',8,1,'3','0x2','3',5,'-7','yes',0,'0','0','magic','3','WL_CRIMSONROCK','Crimson Rock');
 REPLACE INTO skill_db VALUES(2212,'11',6,1,'3','0','0',5,'1','yes',0,'0','0','magic','0','WL_HELLINFERNO','Hell Inferno');
-REPLACE INTO skill_db VALUES(2213,'11',8,2,'0','0x2','15',5,'-20','yes',0,'0','0','magic','2','WL_COMET','Comet //CHECK AoE in official code appears to be 15 x 15');
+REPLACE INTO skill_db VALUES(2213,'11',8,2,'0','0x2','7',5,'-20','yes',0,'0','0','magic','2','WL_COMET','Comet');
 REPLACE INTO skill_db VALUES(2214,'11',6,1,'0','0','3',5,'1','yes',0,'0','0','magic','0','WL_CHAINLIGHTNING','Chain Lightning //CHECK Is the splash being used for the target search?');
 REPLACE INTO skill_db VALUES(2215,'11',6,1,'4','0','0',5,'1','no',0,'0','0','magic','0','WL_CHAINLIGHTNING_ATK','Chain Lightning Attack');
 REPLACE INTO skill_db VALUES(2216,'3',8,2,'2','0','0',5,'-6:-7:-8:-9:-10','yes',0,'0','0','magic','0','WL_EARTHSTRAIN','Earth Strain');
