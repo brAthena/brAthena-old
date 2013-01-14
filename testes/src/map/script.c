@@ -183,7 +183,7 @@
 		(t)=script_getnum(st,n);
 
 /// Maximum amount of elements in script arrays
-#define SCRIPT_MAX_ARRAYSIZE 128
+#define SCRIPT_MAX_ARRAYSIZE 128+50
 
 #define SCRIPT_BLOCK_SIZE 512
 enum { LABEL_NEXTLINE=1,LABEL_START };
