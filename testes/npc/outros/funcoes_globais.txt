@@ -55,10 +55,10 @@
 		movenpc("Loja de Bichinhos#iz",164,138);
 		movenpc("Edgar#izlude",182,186,2);
 		movenpc("Scamp#2",186,57,5);
-		movenpc("Smile Assistance#iz",129,118);
+		movenpc("Assistente Sorriso#iz",129,118);
 		movenpc("Funcionária Kafra#izlude",134,87,3);
-		movenpc("Mercenary Manager#main",47,139);
-		movenpc("Mercenary Merchant#Sword",56,139);
+		movenpc("Locador de Mercenários#Espadachim",47,139);
+		movenpc("Artigos para Mercenários#Espadachim",56,139);
 	}
 
 	end();
