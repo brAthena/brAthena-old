@@ -2823,7 +2823,9 @@ int map_addmap(char *mapname)
 
 static void map_delmapid(int id)
 {
-	ShowNotice("Removendo mapa [ %s ] da lista de mapas."CL_CLL"\n",map[id].name);
+	if(id != 762)
+		ShowNotice("Removendo mapa [ %s ] da lista de mapas %d."CL_CLL"\n",map[id].name,id);
+		
 	memmove(map+id, map+id+1, sizeof(map[0])*(map_num-id-1));
 	map_num--;
 }
