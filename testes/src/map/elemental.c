@@ -940,8 +940,10 @@ void reload_elemental_skilldb(void)
 
 int do_init_elemental(void)
 {
+#ifdef RENEWAL
 	read_elementaldb();
 	read_elemental_skilldb();
+#endif
 
 	add_timer_func_list(elemental_ai_timer,"elemental_ai_timer");
 	add_timer_interval(gettick()+MIN_ELETHINKTIME,elemental_ai_timer,0,0,MIN_ELETHINKTIME);

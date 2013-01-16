@@ -507,102 +507,6 @@ REPLACE INTO create_arrow_db VALUES(7752,1767,50,1761,50,NULL,NULL,NULL,NULL,NUL
 REPLACE INTO create_arrow_db VALUES(7753,1762,50,1770,10,1761,20,NULL,NULL,NULL,NULL);
 
 --
--- Table structure for table `elemental_db`
---
-
-CREATE TABLE IF NOT EXISTS `elemental_db` (
-  `ID` smallint unsigned NOT NULL,
-  `Sprite_Name` varchar(30) NOT NULL,
-  `Name` varchar(30) NOT NULL,
-  `LV` tinyint NOT NULL,
-  `HP` smallint unsigned NOT NULL,
-  `SP` smallint unsigned NOT NULL,
-  `Range1` smallint NOT NULL,
-  `ATK1` smallint unsigned NOT NULL,
-  `ATK2` smallint unsigned NOT NULL,
-  `DEF` tinyint NOT NULL,
-  `MDEF` tinyint NOT NULL,
-  `STR` smallint NOT NULL,
-  `AGI` smallint NOT NULL,
-  `VIT` smallint NOT NULL,
-  `INT` smallint NOT NULL,
-  `DEX` smallint NOT NULL,
-  `LUK` smallint NOT NULL,
-  `Range2` smallint NOT NULL,
-  `Range3` smallint NOT NULL,
-  `Scale` tinyint NOT NULL,
-  `Race` tinyint NOT NULL,
-  `Element` tinyint NOT NULL,
-  `Speed` smallint NOT NULL,
-  `aDelay` smallint unsigned NOT NULL,
-  `aMotion` smallint unsigned NOT NULL,
-  `dMotion` smallint unsigned NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-REPLACE INTO elemental_db VALUES(2114,'EL_AGNI_S','Agni',100,0,1,1,0,0,0,0,0,0,0,0,0,0,5,12,0,0,83,200,504,1020,360);
-REPLACE INTO elemental_db VALUES(2115,'EL_AGNI_M','Agni',100,0,1,1,0,0,0,0,0,0,0,0,0,0,5,12,1,0,83,200,504,1020,360);
-REPLACE INTO elemental_db VALUES(2116,'EL_AGNI_L','Agni',100,0,1,1,0,0,0,0,0,0,0,0,0,0,5,12,2,0,83,200,504,1020,360);
-REPLACE INTO elemental_db VALUES(2117,'EL_AQUA_S','Varuna',100,0,1,1,0,0,0,0,0,0,0,0,0,0,5,12,0,0,81,200,504,1020,360);
-REPLACE INTO elemental_db VALUES(2118,'EL_AQUA_M','Varuna',100,0,1,1,0,0,0,0,0,0,0,0,0,0,5,12,1,0,81,200,504,1020,360);
-REPLACE INTO elemental_db VALUES(2119,'EL_AQUA_L','Varuna',100,0,1,1,0,0,0,0,1,1,1,1,1,1,5,12,2,0,81,200,504,1020,360);
-REPLACE INTO elemental_db VALUES(2120,'EL_VENTUS_S','Vayu',100,0,1,1,0,0,0,0,0,0,0,0,0,0,5,12,0,0,84,200,504,1020,360);
-REPLACE INTO elemental_db VALUES(2121,'EL_VENTUS_M','Vayu',100,0,1,1,0,0,0,0,0,0,0,0,0,0,5,12,1,0,84,200,504,1020,360);
-REPLACE INTO elemental_db VALUES(2122,'EL_VENTUS_L','Vayu',100,0,1,1,0,0,0,0,0,0,0,0,0,0,5,12,2,0,84,200,504,1020,360);
-REPLACE INTO elemental_db VALUES(2123,'EL_TERA_S','Chandra',100,0,1,1,0,0,0,0,0,0,0,0,0,0,5,12,0,0,82,200,504,1020,360);
-REPLACE INTO elemental_db VALUES(2124,'EL_TERA_M','Chandra',100,0,1,1,0,0,0,0,0,0,0,0,0,0,5,12,1,0,82,200,504,1020,360);
-REPLACE INTO elemental_db VALUES(2125,'EL_TERA_L','Chandra',100,0,1,1,0,0,0,0,0,0,0,0,0,0,5,12,2,0,82,200,504,1020,360);
-
---
--- Table structure for table `elemental_skill_db`
---
-
-CREATE TABLE IF NOT EXISTS `elemental_skill_db` (
-  `ElementalID` smallint unsigned NOT NULL,
-  `SkillID` smallint unsigned NOT NULL,
-  `SkillLevel` tinyint NOT NULL,
-  `ReqMode` tinyint NOT NULL,
-  PRIMARY KEY (`ElementalID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-REPLACE INTO elemental_skill_db VALUES(2114,8413,1,1);
-REPLACE INTO elemental_skill_db VALUES(2114,8401,1,2);
-REPLACE INTO elemental_skill_db VALUES(2114,8425,1,4);
-REPLACE INTO elemental_skill_db VALUES(2115,8414,1,1);
-REPLACE INTO elemental_skill_db VALUES(2115,8402,1,2);
-REPLACE INTO elemental_skill_db VALUES(2115,8426,1,4);
-REPLACE INTO elemental_skill_db VALUES(2116,8415,1,1);
-REPLACE INTO elemental_skill_db VALUES(2116,8403,1,2);
-REPLACE INTO elemental_skill_db VALUES(2116,8428,1,4);
-REPLACE INTO elemental_skill_db VALUES(2117,8416,1,1);
-REPLACE INTO elemental_skill_db VALUES(2117,8404,1,2);
-REPLACE INTO elemental_skill_db VALUES(2117,8430,1,4);
-REPLACE INTO elemental_skill_db VALUES(2118,8417,1,1);
-REPLACE INTO elemental_skill_db VALUES(2118,8405,1,2);
-REPLACE INTO elemental_skill_db VALUES(2118,8431,1,4);
-REPLACE INTO elemental_skill_db VALUES(2119,8418,1,1);
-REPLACE INTO elemental_skill_db VALUES(2119,8406,1,2);
-REPLACE INTO elemental_skill_db VALUES(2119,8433,1,4);
-REPLACE INTO elemental_skill_db VALUES(2120,8419,1,1);
-REPLACE INTO elemental_skill_db VALUES(2120,8407,1,2);
-REPLACE INTO elemental_skill_db VALUES(2120,8434,1,4);
-REPLACE INTO elemental_skill_db VALUES(2121,8420,1,1);
-REPLACE INTO elemental_skill_db VALUES(2121,8408,1,2);
-REPLACE INTO elemental_skill_db VALUES(2121,8435,1,4);
-REPLACE INTO elemental_skill_db VALUES(2122,8421,1,1);
-REPLACE INTO elemental_skill_db VALUES(2122,8409,1,2);
-REPLACE INTO elemental_skill_db VALUES(2122,8437,1,4);
-REPLACE INTO elemental_skill_db VALUES(2123,8422,1,1);
-REPLACE INTO elemental_skill_db VALUES(2123,8410,1,2);
-REPLACE INTO elemental_skill_db VALUES(2123,8439,1,4);
-REPLACE INTO elemental_skill_db VALUES(2124,8423,1,1);
-REPLACE INTO elemental_skill_db VALUES(2124,8411,1,2);
-REPLACE INTO elemental_skill_db VALUES(2124,8440,1,4);
-REPLACE INTO elemental_skill_db VALUES(2125,8424,1,1);
-REPLACE INTO elemental_skill_db VALUES(2125,8412,1,2);
-REPLACE INTO elemental_skill_db VALUES(2125,8442,1,4);
-
---
 -- Table structure for table `guild_skill_tree_db`
 --
 
@@ -1174,20 +1078,20 @@ CREATE TABLE IF NOT EXISTS `mob_avail_db` (
   `Dye_Color` smallint DEFAULT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- REPLACE INTO mob_avail_db VALUES(1002,1039,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
--- REPLACE INTO mob_avail_db VALUES(1970,1002,10013,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
--- REPLACE INTO mob_avail_db VALUES(1920,1047,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
--- REPLACE INTO mob_avail_db VALUES(1921,1093,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
--- REPLACE INTO mob_avail_db VALUES(1900,4013,1,1,1,1254,0,67,12,54,16,1);
--- REPLACE INTO mob_avail_db VALUES(1901,6,1,1,1,1219,2101,67,12,54,0,1);
--- REPLACE INTO mob_avail_db VALUES(1902,14,1,6,6,1101,2105,0,0,0,32,3);
--- REPLACE INTO mob_avail_db VALUES(1903,4012,1,21,0,1720,0,102,184,57,16,0);
--- REPLACE INTO mob_avail_db VALUES(1904,1286,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
--- REPLACE INTO mob_avail_db VALUES(3000,1015,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
--- REPLACE INTO mob_avail_db VALUES(3001,1036,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
--- REPLACE INTO mob_avail_db VALUES(3002,1298,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
--- REPLACE INTO mob_avail_db VALUES(3014,1179,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
--- REPLACE INTO mob_avail_db VALUES(3015,1272,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+/* REPLACE INTO mob_avail_db VALUES(1002,1039,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+REPLACE INTO mob_avail_db VALUES(1970,1002,10013,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+REPLACE INTO mob_avail_db VALUES(1920,1047,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+REPLACE INTO mob_avail_db VALUES(1921,1093,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+REPLACE INTO mob_avail_db VALUES(1900,4013,1,1,1,1254,0,67,12,54,16,1);
+REPLACE INTO mob_avail_db VALUES(1901,6,1,1,1,1219,2101,67,12,54,0,1);
+REPLACE INTO mob_avail_db VALUES(1902,14,1,6,6,1101,2105,0,0,0,32,3);
+REPLACE INTO mob_avail_db VALUES(1903,4012,1,21,0,1720,0,102,184,57,16,0);
+REPLACE INTO mob_avail_db VALUES(1904,1286,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+REPLACE INTO mob_avail_db VALUES(3000,1015,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+REPLACE INTO mob_avail_db VALUES(3001,1036,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+REPLACE INTO mob_avail_db VALUES(3002,1298,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+REPLACE INTO mob_avail_db VALUES(3014,1179,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+REPLACE INTO mob_avail_db VALUES(3015,1272,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL); */
 
 --
 -- Table structure for table `mob_chat_db`
@@ -2275,14 +2179,6 @@ REPLACE INTO skill_reproduce_db VALUES(2518);
 REPLACE INTO skill_reproduce_db VALUES(2413);
 REPLACE INTO skill_reproduce_db VALUES(2414);
 REPLACE INTO skill_reproduce_db VALUES(2418);
-REPLACE INTO skill_reproduce_db VALUES(2443);
-REPLACE INTO skill_reproduce_db VALUES(2444);
-REPLACE INTO skill_reproduce_db VALUES(2446);
-REPLACE INTO skill_reproduce_db VALUES(2447);
-REPLACE INTO skill_reproduce_db VALUES(2448);
-REPLACE INTO skill_reproduce_db VALUES(2449);
-REPLACE INTO skill_reproduce_db VALUES(2450);
-REPLACE INTO skill_reproduce_db VALUES(2454);
 REPLACE INTO skill_reproduce_db VALUES(2479);
 REPLACE INTO skill_reproduce_db VALUES(2480);
 REPLACE INTO skill_reproduce_db VALUES(2481);
@@ -12146,31 +12042,6 @@ REPLACE INTO skill_cast_db VALUES(2431,'1000','1000','0','20000:30000:40000:5000
 REPLACE INTO skill_cast_db VALUES(2432,'100','1000','0','20000:30000:40000:50000:60000','0','180000');
 REPLACE INTO skill_cast_db VALUES(2433,'1000','1000','0','20000:30000:40000:50000:60000','0','180000');
 REPLACE INTO skill_cast_db VALUES(2434,'1000','1000','0','60000:90000:120000:150000:180000','0','110000:120000:130000:140000:150000');
-REPLACE INTO skill_cast_db VALUES(2443,'1000','1000','0','12000','0','0');
-REPLACE INTO skill_cast_db VALUES(2444,'1000','1000','0','12000','0','0');
-REPLACE INTO skill_cast_db VALUES(2445,'0','1000','0','20000:25000:30000:35000:40000','0','0');
-REPLACE INTO skill_cast_db VALUES(2446,'2200:2400:2600:2800:3000','1000','0','500','8000:11000:14000:17000:20000','5000');
-REPLACE INTO skill_cast_db VALUES(2447,'5000:5500:6000:6500:7000','1000','0','500','12000:14000:16000:18000:20000','5000');
-REPLACE INTO skill_cast_db VALUES(2450,'2200:3400:4600:5800:7000','1000','0','0','0','2000');
-REPLACE INTO skill_cast_db VALUES(2449,'8000:9000:10000:11000:12000','1000','0','1200:1700:2200:2700:3200','0','5000');
-REPLACE INTO skill_cast_db VALUES(2450,'2300:2500:2700:2900:3100','1000','0','8000:10000:12000:14000:16000','10000:15000:20000:25000:30000','5000');
-REPLACE INTO skill_cast_db VALUES(2451,'1000','1000','0','60000','0','2000');
-REPLACE INTO skill_cast_db VALUES(2452,'2200:2400:2600:2800:3000','1000','0','40000:45000:50000:55000:60000','30000','35000:40000:45000:50000:55000');
-REPLACE INTO skill_cast_db VALUES(2453,'1000:1500:2000:2500:3000','1000','0','4000:6000:8000:10000:12000','0','5000');
-REPLACE INTO skill_cast_db VALUES(2454,'2200:2400:2600:2800:3000','1000','0','0','2200:2400:2600:2800:3000','2000');
-REPLACE INTO skill_cast_db VALUES(2455,'2200:2400:2600:2800:3000','1000','0','8000:10000:12000:14000:16000','0','5000:6000:7000:8000:9000');
-REPLACE INTO skill_cast_db VALUES(2456,'2000','0','0','0','0','5000');
-REPLACE INTO skill_cast_db VALUES(2457,'1000:2000:3000','0','0','600000:900000:1200000','0','60000');
-REPLACE INTO skill_cast_db VALUES(2458,'1000:2000:3000','0','0','600000:900000:1200000','0','60000');
-REPLACE INTO skill_cast_db VALUES(2459,'1000:2000:3000','0','0','600000:900000:1200000','0','60000');
-REPLACE INTO skill_cast_db VALUES(2460,'1000:2000:3000','0','0','600000:900000:1200000','0','60000');
-REPLACE INTO skill_cast_db VALUES(2461,'0','0','0','0','0','5000');
-REPLACE INTO skill_cast_db VALUES(2462,'0','0','0','0','0','0');
-REPLACE INTO skill_cast_db VALUES(2464,'2000','1000','0','0','0','0');
-REPLACE INTO skill_cast_db VALUES(2465,'1000','0','0','60000','0','60000');
-REPLACE INTO skill_cast_db VALUES(2466,'1000','0','0','60000','0','60000');
-REPLACE INTO skill_cast_db VALUES(2467,'1000','0','0','60000','0','60000');
-REPLACE INTO skill_cast_db VALUES(2468,'1000','0','0','60000','0','60000');
 REPLACE INTO skill_cast_db VALUES(2476,'0','500','0','5000','0','0:500:1000:1500:2000');
 REPLACE INTO skill_cast_db VALUES(2477,'1000:1500:2000:2500:3000','500','0','0','0','0');
 REPLACE INTO skill_cast_db VALUES(2478,'1500','500','0','90000','0','0');
@@ -12282,36 +12153,6 @@ REPLACE INTO skill_cast_db VALUES(8236,'0','3000','0','30000:35000:40000:45000:5
 REPLACE INTO skill_cast_db VALUES(8238,'2000','2000','0','120000','0','0');
 REPLACE INTO skill_cast_db VALUES(8239,'0','0','0','60000:80000:100000:120000:140000:160000:180000:200000:220000:240000','0','0');
 REPLACE INTO skill_cast_db VALUES(8240,'1000','1000','0','60000:80000:100000:120000:140000:160000:180000:200000:220000:240000','0','0');
-REPLACE INTO skill_cast_db VALUES(8401,'0','0','0','-1','0','0');
-REPLACE INTO skill_cast_db VALUES(8402,'0','0','0','-1','0','0');
-REPLACE INTO skill_cast_db VALUES(8403,'0','0','0','15000','0','0');
-REPLACE INTO skill_cast_db VALUES(8404,'0','0','0','-1','0','0');
-REPLACE INTO skill_cast_db VALUES(8405,'0','0','0','-1','0','0');
-REPLACE INTO skill_cast_db VALUES(8406,'1000','0','0','15000','0','0');
-REPLACE INTO skill_cast_db VALUES(8407,'0','0','0','-1','0','0');
-REPLACE INTO skill_cast_db VALUES(8408,'0','0','0','-1','0','0');
-REPLACE INTO skill_cast_db VALUES(8409,'0','0','0','15000','0','0');
-REPLACE INTO skill_cast_db VALUES(8411,'0','0','0','-1','0','0');
-REPLACE INTO skill_cast_db VALUES(8412,'0','0','0','15000','0','0');
-REPLACE INTO skill_cast_db VALUES(8413,'0','0','0','-1','0','0');
-REPLACE INTO skill_cast_db VALUES(8414,'0','0','0','-1','0','0');
-REPLACE INTO skill_cast_db VALUES(8415,'0','0','0','-1','0','0');
-REPLACE INTO skill_cast_db VALUES(8416,'0','0','0','-1','0','0');
-REPLACE INTO skill_cast_db VALUES(8417,'0','0','0','-1','0','0');
-REPLACE INTO skill_cast_db VALUES(8418,'0','0','0','-1','0','0');
-REPLACE INTO skill_cast_db VALUES(8419,'0','0','0','-1','0','0');
-REPLACE INTO skill_cast_db VALUES(8420,'0','0','0','-1','0','0');
-REPLACE INTO skill_cast_db VALUES(8421,'0','0','0','-1','0','0');
-REPLACE INTO skill_cast_db VALUES(8422,'0','0','0','-1','0','0');
-REPLACE INTO skill_cast_db VALUES(8423,'0','0','0','-1','0','0');
-REPLACE INTO skill_cast_db VALUES(8424,'0','0','0','-1','0','0');
-REPLACE INTO skill_cast_db VALUES(8433,'0','0','0','-1','0','0');
-REPLACE INTO skill_cast_db VALUES(8434,'1000','0','0','0','0','0');
-REPLACE INTO skill_cast_db VALUES(8435,'1000','0','0','0','0','0');
-REPLACE INTO skill_cast_db VALUES(8437,'1000','0','0','15000','0','0');
-REPLACE INTO skill_cast_db VALUES(8439,'0','0','0','5000','0','0');
-REPLACE INTO skill_cast_db VALUES(8440,'0','0','0','15000','0','0');
-REPLACE INTO skill_cast_db VALUES(8441,'0','0','0','15000','0','0');
 REPLACE INTO skill_cast_db VALUES(10006,'0','0','0','300000','0','0');
 REPLACE INTO skill_cast_db VALUES(10007,'0','0','0','300000','0','0');
 REPLACE INTO skill_cast_db VALUES(10008,'0','0','0','300000','0','0');
@@ -13222,32 +13063,6 @@ REPLACE INTO skill_db VALUES(2432,'0',6,4,'0','0x3','5',5,'1','yes',0,'0x4000','
 REPLACE INTO skill_db VALUES(2433,'0',6,4,'0','0x3','5',5,'1','yes',0,'0x4000','0','none','0','WM_BEYOND_OF_WARCRY','Warcry of Beyond');
 REPLACE INTO skill_db VALUES(2434,'0',6,4,'0','0x3','5',5,'1','yes',0,'0x4000','0','none','0','WM_UNLIMITED_HUMMING_VOICE','Unlimited Humming Voice');
 REPLACE INTO skill_db VALUES(2516,'11',6,1,'-1','0x2','5',5,'1','no',0,'0','0','weapon','0','WM_SEVERE_RAINSTORM_MELEE','Severe Rainstorm Melee');
-REPLACE INTO skill_db VALUES(2443,'0',6,4,'3','0','0',5,'1','yes',0,'0','8:10:12:14:16','magic','0','SO_FIREWALK','Fire Walk //CHECK Video and data shows each cell only hits once.');
-REPLACE INTO skill_db VALUES(2444,'0',6,4,'4','0','0',5,'1','yes',0,'0','8:10:12:14:16','magic','0','SO_ELECTRICWALK','Electric Walk');
-REPLACE INTO skill_db VALUES(2445,'0',6,4,'0','0x1','0',5,'1','no',0,'0','0','none','0','SO_SPELLFIST','Spell Fist');
-REPLACE INTO skill_db VALUES(2446,'9',6,2,'2','0','0',5,'-3','yes',0,'0','0','magic','0','SO_EARTHGRAVE','Earth Grave');
-REPLACE INTO skill_db VALUES(2447,'9',6,2,'1','0','0',5,'-5','yes',0,'0','0','magic','0','SO_DIAMONDDUST','Diamond Dust');
-REPLACE INTO skill_db VALUES(2448,'9',6,1,'5','0x2','1:1:1:1:2',5,'1','yes',0,'0','0','magic','0','SO_POISON_BUSTER','Poison Buster');
-REPLACE INTO skill_db VALUES(2449,'9',6,2,'0','0','0',5,'1','yes',0,'0','0','magic','0','SO_PSYCHIC_WAVE','Psychic Wave');
-REPLACE INTO skill_db VALUES(2450,'9',6,2,'5','0','0',5,'1','yes',0,'0','0','magic','0','SO_CLOUD_KILL','Cloud Kill');
-REPLACE INTO skill_db VALUES(2451,'9',6,16,'0','0x1','0',5,'1','yes',0,'0','0','none','0','SO_STRIKING','Striking //CHECK Data shows a % for increased successful refine rate. Is this true?');
-REPLACE INTO skill_db VALUES(2452,'9',6,2,'3','0x1','0',5,'1','yes',0,'0','0','magic','0','SO_WARMER','Warmer');
-REPLACE INTO skill_db VALUES(2453,'9',6,2,'0','0x1','0',5,'1','yes',0,'0','0','magic','0','SO_VACUUM_EXTREME','Vacuum Extreme');
-REPLACE INTO skill_db VALUES(2454,'9',6,1,'4','0x2','1:1:2:2:3',5,'1','yes',0,'0','0','magic','0','SO_VARETYR_SPEAR','Varetyr Spear');
-REPLACE INTO skill_db VALUES(2455,'9',6,2,'0','0x3','1:1:2:2:3',5,'1','yes',0,'0','0','magic','0','SO_ARRULLO','Arrullo');
-REPLACE INTO skill_db VALUES(2456,'0',6,4,'0','0x1','0',4,'1','yes',0,'0','0','none','0','SO_EL_CONTROL','Spirit Control');
-REPLACE INTO skill_db VALUES(2457,'0',6,4,'3','0x1','0',3,'1','yes',0,'0','0','none','0','SO_SUMMON_AGNI','Summon Fire Spirit Agni');
-REPLACE INTO skill_db VALUES(2458,'0',6,4,'1','0x1','0',3,'1','yes',0,'0','0','none','0','SO_SUMMON_AQUA','Summon Water Spirit Aqua');
-REPLACE INTO skill_db VALUES(2459,'0',6,4,'4','0x1','0',3,'1','yes',0,'0','0','none','0','SO_SUMMON_VENTUS','Summon Wind Spirit Ventus');
-REPLACE INTO skill_db VALUES(2460,'0',6,4,'2','0x1','0',3,'1','yes',0,'0','0','none','0','SO_SUMMON_TERA','Summon Earth Spirit Tera');
-REPLACE INTO skill_db VALUES(2461,'5',6,1,'0','0x1','0',1,'1','no',0,'0','0','none','0','SO_EL_ACTION','Elemental Action');
-REPLACE INTO skill_db VALUES(2462,'0',6,4,'0','0x1','0',2,'1','yes',0,'0','0','none','0','SO_EL_ANALYSIS','Four Spirit Analysis');
-REPLACE INTO skill_db VALUES(2463,'0',0,0,'0','0','0',5,'0','no',0,'0','0','none','0','SO_EL_SYMPATHY','Spirit Sympathy');
-REPLACE INTO skill_db VALUES(2464,'0',6,4,'0','0x1','0',1,'1','yes',0,'0','0','none','0','SO_EL_CURE','Spirit Recovery');
-REPLACE INTO skill_db VALUES(2465,'9',6,2,'3','0x1','0',3,'1','yes',0,'0','1','magic','0','SO_FIRE_INSIGNIA','Fire Insignia //CHECK All 4 insignia skills can be targeted and animations work');
-REPLACE INTO skill_db VALUES(2466,'9',6,2,'1','0x1','0',3,'1','yes',0,'0','1','magic','0','SO_WATER_INSIGNIA','Water Insignia // but its effects havent been coded yet.');
-REPLACE INTO skill_db VALUES(2467,'9',6,2,'4','0x1','0',3,'1','yes',0,'0','1','magic','0','SO_WIND_INSIGNIA','Wind Insignia');
-REPLACE INTO skill_db VALUES(2468,'9',6,2,'2','0x1','0',3,'1','yes',0,'0','1','magic','0','SO_EARTH_INSIGNIA','Earth Insignia');
 REPLACE INTO skill_db VALUES(2474,'0',0,0,'0','0','0',5,'0','no',0,'0','0','none','0','GN_TRAINING_SWORD','Sword Training');
 REPLACE INTO skill_db VALUES(2475,'0',0,0,'0','0','0',5,'0','no',0,'0','0','none','0','GN_REMODELING_CART','Cart Remodeling');
 REPLACE INTO skill_db VALUES(2476,'0',6,4,'-1','0x2','2',5,'1','no',0,'0','0','weapon','2','GN_CART_TORNADO','Cart Tornado');
@@ -13387,48 +13202,6 @@ REPLACE INTO skill_db VALUES(8237,'9',6,1,'0','0x1','0',1,'1','yes',0,'0','0','m
 REPLACE INTO skill_db VALUES(8238,'9',6,16,'0','0x1','0',10,'1','yes',0,'0','0','magic','0','MER_KYRIE','Kyrie Eleison');
 REPLACE INTO skill_db VALUES(8239,'9',6,16,'0','0x1','0',10,'1','yes',0,'0','0','magic','0','MER_BLESSING','Blessing');
 REPLACE INTO skill_db VALUES(8240,'9',6,16,'0','0x1','0',10,'1','yes',0,'0','0','magic','0','MER_INCAGI','Increase Agility');
-REPLACE INTO skill_db VALUES(8401,'0',6,4,'3','0','0',1,'1','no',0,'0','0','weapon','2','EL_CIRCLE_OF_FIRE','Circle of Fire');
-REPLACE INTO skill_db VALUES(8402,'0',6,4,'0','0x1','0',1,'1','no',0,'0','0','none','0','EL_FIRE_CLOAK','Fire Cloak');
-REPLACE INTO skill_db VALUES(8403,'0',6,4,'3','0','0',1,'1','no',0,'0','3','magic','2','EL_FIRE_MANTLE','Fire Mantle');
-REPLACE INTO skill_db VALUES(8404,'0',6,4,'0','0x1','0',1,'1','no',0,'0','0','none','0','EL_WATER_SCREEN','Water Screen');
-REPLACE INTO skill_db VALUES(8405,'0',6,4,'0','0x1','0',1,'1','no',0,'0','0','none','0','EL_WATER_DROP','Water Drop');
-REPLACE INTO skill_db VALUES(8406,'0',6,4,'0','0x1','0',1,'1','no',0,'0','0','none','0','EL_WATER_BARRIER','Water Barrier');
-REPLACE INTO skill_db VALUES(8407,'0',6,4,'0','0x1','0',1,'1','no',0,'0','0','none','5','EL_WIND_STEP','Wind Step');
-REPLACE INTO skill_db VALUES(8408,'0',6,4,'0','0x1','0',1,'1','no',0,'0','0','none','0','EL_WIND_CURTAIN','Wind Curtain');
-REPLACE INTO skill_db VALUES(8409,'0',6,4,'0','0x1','0',1,'1','no',0,'0','0','none','0','EL_ZEPHYR','Zephyr');
-REPLACE INTO skill_db VALUES(8410,'0',6,4,'0','0x1','0',1,'1','no',0,'0','0','none','0','EL_SOLID_SKIN','Solid Skin');
-REPLACE INTO skill_db VALUES(8411,'0',6,4,'0','0x1','0',1,'1','no',0,'0','0','none','0','EL_STONE_SHIELD','Stone Shield');
-REPLACE INTO skill_db VALUES(8412,'0',6,4,'0','0x1','0',1,'1','no',0,'0','0','none','0','EL_POWER_OF_GAIA','Power of Gaia');
-REPLACE INTO skill_db VALUES(8413,'0',6,4,'0','0x1','0',1,'1','no',0,'0','0','none','0','EL_PYROTECHNIC','Pyrotechnic');
-REPLACE INTO skill_db VALUES(8414,'0',6,4,'0','0x1','0',1,'1','no',0,'0','0','none','0','EL_HEATER','Heater');
-REPLACE INTO skill_db VALUES(8415,'0',6,4,'0','0x1','0',1,'1','no',0,'0','0','none','0','EL_TROPIC','Tropic');
-REPLACE INTO skill_db VALUES(8416,'0',6,4,'0','0x1','0',1,'1','no',0,'0','0','none','0','EL_AQUAPLAY','Aqua Play');
-REPLACE INTO skill_db VALUES(8417,'0',6,4,'0','0x1','0',1,'1','no',0,'0','0','none','0','EL_COOLER','Cooler');
-REPLACE INTO skill_db VALUES(8418,'0',6,4,'0','0x1','0',1,'1','no',0,'0','0','none','0','EL_CHILLY_AIR','Cool Air');
-REPLACE INTO skill_db VALUES(8419,'0',6,4,'0','0x1','0',1,'1','no',0,'0','0','none','0','EL_GUST','Gust');
-REPLACE INTO skill_db VALUES(8420,'0',6,4,'0','0x1','0',1,'1','no',0,'0','0','none','0','EL_BLAST','Blast');
-REPLACE INTO skill_db VALUES(8421,'0',6,4,'0','0x1','0',1,'1','no',0,'0','0','none','0','EL_WILD_STORM','Wild Storm');
-REPLACE INTO skill_db VALUES(8422,'0',6,4,'0','0x1','0',1,'1','no',0,'0','0','none','0','EL_PETROLOGY','Petrology');
-REPLACE INTO skill_db VALUES(8423,'0',6,4,'0','0x1','0',1,'1','no',0,'0','0','none','0','EL_CURSED_SOIL','Cursed Soil');
-REPLACE INTO skill_db VALUES(8424,'0',6,4,'0','0x1','0',1,'1','no',0,'0','0','none','0','EL_UPHEAVAL','Upheaval');
-REPLACE INTO skill_db VALUES(8425,'6',6,1,'3','0','0',1,'1','no',0,'0','0','magic','0','EL_FIRE_ARROW','Fire Arrow');
-REPLACE INTO skill_db VALUES(8426,'6',6,1,'3','0','1',1,'1','no',0,'0','0','magic','0','EL_FIRE_BOMB','Fire Bomb');
-REPLACE INTO skill_db VALUES(8427,'6',6,1,'3','0','1',1,'1','no',0,'0','0','weapon','0','EL_FIRE_BOMB_ATK','Fire Bomb Attack');
-REPLACE INTO skill_db VALUES(8428,'6',6,1,'3','0','1',1,'1','no',0,'0','0','magic','0','EL_FIRE_WAVE','Fire Wave');
-REPLACE INTO skill_db VALUES(8429,'6',6,1,'3','0','1',1,'1','no',0,'0','0','weapon','0','EL_FIRE_WAVE_ATK','Fire Wave Attack');
-REPLACE INTO skill_db VALUES(8430,'9',6,1,'1','0','0',1,'1','no',0,'0','0','magic','0','EL_ICE_NEEDLE','Ice Needle');
-REPLACE INTO skill_db VALUES(8431,'9',6,1,'1','0','1',1,'1','no',0,'0','0','magic','0','EL_WATER_SCREW','Water Screw');
-REPLACE INTO skill_db VALUES(8432,'9',6,1,'1','0','1',1,'1','no',0,'0','0','weapon','0','EL_WATER_SCREW_ATK','Water Screw Attack');
-REPLACE INTO skill_db VALUES(8433,'9',6,1,'1','0','1',1,'1','no',0,'0','0','weapon','0','EL_TIDAL_WEAPON','Tidal Weapon');
-REPLACE INTO skill_db VALUES(8434,'11',6,1,'4','0','0',1,'1','no',0,'0','0','weapon','0','EL_WIND_SLASH','Wind Slasher');
-REPLACE INTO skill_db VALUES(8435,'11',6,1,'4','0','1',1,'1','no',0,'0','0','weapon','0','EL_HURRICANE','Hurricane Rage');
-REPLACE INTO skill_db VALUES(8436,'7',6,1,'4','0','0',1,'1','no',0,'0','0','magic','0','EL_HURRICANE_ATK','Hurricane Rage Attack');
-REPLACE INTO skill_db VALUES(8437,'11',8,1,'4','0','1',1,'-3','no',0,'0','0','weapon','0','EL_TYPOON_MIS','Typhoon Missile');
-REPLACE INTO skill_db VALUES(8438,'11',8,1,'4','0','1',1,'-3','no',0,'0','0','magic','0','EL_TYPOON_MIS_ATK','Typhoon Missile Attack');
-REPLACE INTO skill_db VALUES(8439,'5',6,1,'2','0','0',1,'1','no',0,'0','0','weapon','0','EL_STONE_HAMMER','Stone Hammer');
-REPLACE INTO skill_db VALUES(8440,'3',6,1,'2','0','1',1,'1','no',0,'0','0','weapon','0','EL_ROCK_CRUSHER','Rock Launcher');
-REPLACE INTO skill_db VALUES(8441,'5',6,1,'2','0','1',1,'1','no',0,'0','0','magic','0','EL_ROCK_CRUSHER_ATK','Rock Launcher Attack');
-REPLACE INTO skill_db VALUES(8442,'9',6,1,'2','0','1',1,'-5','no',0,'0','0','weapon','0','EL_STONE_RAIN','Stone Rain');
 REPLACE INTO skill_db VALUES(10000,'0',0,0,'0','0','0',1,'0','no',0,'0x10','0','none','0','GD_APPROVAL','Official Guild Approval');
 REPLACE INTO skill_db VALUES(10001,'0',0,0,'0','0','0',1,'0','no',0,'0x10','0','none','0','GD_KAFRACONTRACT','Kafra Contract');
 REPLACE INTO skill_db VALUES(10002,'0',0,0,'0','0','0',1,'0','no',0,'0x10','0','none','0','GD_GUARDRESEARCH','Guardian Research');
@@ -14217,31 +13990,6 @@ REPLACE INTO skill_require_db VALUES(2431,'0','0','120:130:140:150:160','0','0',
 REPLACE INTO skill_require_db VALUES(2432,'0','0','120:130:140:150:160','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 REPLACE INTO skill_require_db VALUES(2433,'0','0','120:130:140:150:160','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 REPLACE INTO skill_require_db VALUES(2434,'0','0','120:130:140:150:160','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(2443,'0','0','30:34:38:42:46','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(2444,'0','0','30:34:38:42:46','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(2445,'0','0','40:44:48:52:56','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(2446,'0','0','62:70:78:86:94','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(2447,'0','0','50:56:62:68:74','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(2448,'0','0','70:90:110:130:150','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(2449,'0','0','48:56:64:70:78','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(2450,'0','0','48:56:64:70:78','0','0',0,'99',0,'0','none','0',716,2,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(2451,'0','0','50:55:60:65:70','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(2452,'0','0','40:52:64:76:88','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(2453,'0','0','34:42:50:58:66','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(2454,'0','0','55:62:69:76:83','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(2455,'0','0','30:35:40:45:50','0','0',0,'99',0,'0','none','0',715,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(2456,'0','0','10','0','0',0,'99',0,'0','elementalspirit','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(2457,'0','0','100:150:200','0','0',0,'99',0,'0','none','0',990,3,990,6,994,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(2458,'0','0','100:150:200','0','0',0,'99',0,'0','none','0',991,3,991,6,995,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(2459,'0','0','100:150:200','0','0',0,'99',0,'0','none','0',992,3,992,6,996,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(2460,'0','0','100:150:200','0','0',0,'99',0,'0','none','0',993,3,993,6,997,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(2461,'0','0','50','0','0',0,'99',0,'0','elementalspirit','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(2462,'0','0','10:20','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(2464,'0','0','10','0','0',0,'99',0,'0','elementalspirit','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(2465,'0','0','22:30:38','0','0',0,'99',0,'0','none','0',6360,1,6360,2,6360,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(2466,'0','0','22:30:38','0','0',0,'99',0,'0','none','0',6361,1,6361,2,6361,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(2467,'0','0','22:30:38','0','0',0,'99',0,'0','none','0',6362,1,6362,2,6362,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(2468,'0','0','22:30:38','0','0',0,'99',0,'0','none','0',6363,1,6363,2,6363,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 REPLACE INTO skill_require_db VALUES(2476,'0','0','30','0','0',0,'99',0,'0','cart','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 REPLACE INTO skill_require_db VALUES(2477,'0','0','40:42:46:48:50','0','0',0,'99',8,'1','cart','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 REPLACE INTO skill_require_db VALUES(2478,'0','0','20:24:28:32:36','0','0',0,'99',0,'0','cart','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
@@ -14377,48 +14125,6 @@ REPLACE INTO skill_require_db VALUES(8237,'0','0','10','0','0',0,'99',0,'0','non
 REPLACE INTO skill_require_db VALUES(8238,'0','0','20:20:20:25:25:25:30:30:30:35','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 REPLACE INTO skill_require_db VALUES(8239,'0','0','28:32:36:40:44:48:52:56:60:64','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 REPLACE INTO skill_require_db VALUES(8240,'15','0','18:21:24:27:30:33:36:39:42:45','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8401,'0','0','40','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8402,'0','0','60','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8403,'0','0','80','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8404,'0','0','40','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8405,'0','0','60','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8406,'0','0','80','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8407,'0','0','40','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8408,'0','0','60','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8409,'0','0','80','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8410,'0','0','40','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8411,'0','0','60','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8412,'0','0','80','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8413,'0','0','1','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8414,'0','0','1','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8415,'0','0','1','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8416,'0','0','1','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8417,'0','0','1','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8418,'0','0','1','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8419,'0','0','1','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8420,'0','0','1','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8421,'0','0','1','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8422,'0','0','1','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8423,'0','0','1','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8424,'0','0','1','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8425,'0','0','40','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8426,'0','0','60','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8427,'0','0','1','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8428,'0','0','80','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8429,'0','0','1','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8430,'0','0','40','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8431,'0','0','60','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8432,'0','0','1','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8433,'0','0','80','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8434,'0','0','40','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8435,'0','0','60','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8436,'0','0','1','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8437,'0','0','80','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8438,'0','0','1','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8439,'0','0','40','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8440,'0','0','60','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8441,'0','0','1','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_require_db VALUES(8442,'0','0','80','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 
 --
 -- Table structure for table `skill_tree_db`
@@ -17341,75 +17047,6 @@ REPLACE INTO skill_tree_db VALUES(4066,2322,5,248,3,0,0,0,0,0,0,0,0);
 REPLACE INTO skill_tree_db VALUES(4066,2323,5,2311,3,0,0,0,0,0,0,0,0);
 REPLACE INTO skill_tree_db VALUES(4066,2324,5,2318,3,2319,3,0,0,0,0,0,0);
 REPLACE INTO skill_tree_db VALUES(4066,2325,5,2315,3,2321,4,2322,5,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,1,9,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,142,1,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,9,10,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,10,1,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,11,10,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,12,10,11,7,13,5,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,13,10,11,4,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,14,10,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,15,10,14,5,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,16,10,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,17,10,19,4,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,18,10,17,5,10,1,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,19,10,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,20,10,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,21,10,20,4,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,157,1,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,93,1,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,90,5,283,1,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,91,5,90,1,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,274,10,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,275,5,274,2,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,276,5,274,4,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,277,5,276,1,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,278,10,275,1,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,279,10,278,4,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,280,5,19,1,274,5,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,281,5,14,1,274,5,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,282,5,20,1,274,5,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,283,5,16,1,274,5,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,284,5,274,9,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,285,5,280,2,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,286,5,281,2,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,287,5,282,2,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,288,5,285,3,286,3,287,3,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,289,5,277,3,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,290,10,279,5,289,1,288,1,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,1007,1,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,1008,1,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,1017,1,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,1018,1,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,1019,1,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,410,1,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,681,1,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,2443,5,285,1,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,2444,5,287,1,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,2445,5,279,4,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,2446,5,90,5,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,2447,5,286,3,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,2448,5,2450,2,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,2449,5,289,2,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,2450,5,91,5,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,2451,5,280,1,281,1,282,1,283,1,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,2452,5,285,1,287,1,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,2453,5,288,2,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,2454,5,283,1,287,4,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,2455,5,2452,2,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,2456,4,2462,1,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,2457,3,2452,3,2456,1,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,2458,3,2447,3,2456,1,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,2459,3,2454,3,2456,1,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,2460,3,2446,3,2456,1,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,2461,1,2456,3,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,2462,2,280,1,281,1,282,1,283,1,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,2463,5,2456,3,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,2464,1,2463,1,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,2465,3,2457,3,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,2466,3,2458,3,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,2467,3,2459,3,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4067,2468,3,2460,3,0,0,0,0,0,0,0,0);
 REPLACE INTO skill_tree_db VALUES(4068,1,9,0,0,0,0,0,0,0,0,0,0);
 REPLACE INTO skill_tree_db VALUES(4068,142,1,0,0,0,0,0,0,0,0,0,0);
 REPLACE INTO skill_tree_db VALUES(4068,43,10,0,0,0,0,0,0,0,0,0,0);
@@ -17742,83 +17379,6 @@ REPLACE INTO skill_tree_db VALUES(4073,2322,5,248,3,0,0,0,0,0,0,0,0);
 REPLACE INTO skill_tree_db VALUES(4073,2323,5,2311,3,0,0,0,0,0,0,0,0);
 REPLACE INTO skill_tree_db VALUES(4073,2324,5,2318,3,2319,3,0,0,0,0,0,0);
 REPLACE INTO skill_tree_db VALUES(4073,2325,5,2315,3,2321,4,2322,5,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,1,9,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,142,1,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,9,10,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,10,1,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,11,10,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,12,10,11,7,13,5,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,13,10,11,4,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,14,10,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,15,10,14,5,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,16,10,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,17,10,19,4,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,18,10,10,1,17,5,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,19,10,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,20,10,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,21,10,20,4,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,90,5,283,1,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,91,5,90,1,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,93,1,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,157,1,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,274,10,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,275,5,274,2,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,276,5,274,4,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,277,5,276,1,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,278,10,275,1,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,279,10,278,4,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,280,5,19,1,274,5,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,281,5,14,1,274,5,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,282,5,20,1,274,5,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,283,5,16,1,274,5,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,284,5,274,9,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,285,5,280,2,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,286,5,281,2,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,287,5,282,2,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,288,5,285,3,286,3,287,3,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,289,5,277,3,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,290,10,279,5,288,1,289,1,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,1007,1,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,1008,1,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,1017,1,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,1018,1,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,1019,1,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,373,5,9,1,276,1,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,374,1,276,3,277,2,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,375,5,275,5,276,3,289,3,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,402,5,9,3,375,1,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,403,1,274,5,278,5,279,1,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,404,1,286,2,287,2,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,405,1,284,4,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,482,5,279,1,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,410,1,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,681,1,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,2443,5,285,1,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,2444,5,287,1,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,2445,5,279,4,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,2446,5,90,5,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,2447,5,286,3,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,2448,5,2450,2,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,2449,5,289,2,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,2450,5,91,5,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,2451,5,280,1,281,1,282,1,283,1,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,2452,5,285,1,287,1,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,2453,5,288,2,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,2454,5,283,1,287,4,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,2455,5,2452,2,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,2456,4,2462,1,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,2457,3,2452,3,2456,1,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,2458,3,2447,3,2456,1,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,2459,3,2454,3,2456,1,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,2460,3,2446,3,2456,1,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,2461,1,2456,3,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,2462,2,280,1,281,1,282,1,283,1,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,2463,5,2456,3,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,2464,1,2463,1,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,2465,3,2457,3,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,2466,3,2458,3,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,2467,3,2459,3,0,0,0,0,0,0,0,0);
-REPLACE INTO skill_tree_db VALUES(4074,2468,3,2460,3,0,0,0,0,0,0,0,0);
 REPLACE INTO skill_tree_db VALUES(4075,1,9,0,0,0,0,0,0,0,0,0,0);
 REPLACE INTO skill_tree_db VALUES(4075,142,1,0,0,0,0,0,0,0,0,0,0);
 REPLACE INTO skill_tree_db VALUES(4075,43,10,0,0,0,0,0,0,0,0,0,0);
@@ -19876,18 +19436,6 @@ REPLACE INTO skill_unit_db VALUES(2319,'0xec','0x000','0','3','5000','all','0x00
 REPLACE INTO skill_unit_db VALUES(2414,'0xda',NULL,'0','0','1000','enemy','0x008');
 REPLACE INTO skill_unit_db VALUES(2418,'0xdb',NULL,'0','5','300','enemy','0x800');
 REPLACE INTO skill_unit_db VALUES(2419,'0xde','0x014  ','0','1','1000','all','0x014  ');
-REPLACE INTO skill_unit_db VALUES(2443,'0xdc',NULL,'0','0','1000','enemy','0x00A');
-REPLACE INTO skill_unit_db VALUES(2444,'0xdd',NULL,'0','0','1000','enemy','0x00A');
-REPLACE INTO skill_unit_db VALUES(2446,'0x86',NULL,'0','3:3:3:4:4','1000','enemy','0x018');
-REPLACE INTO skill_unit_db VALUES(2447,'0x86',NULL,'0','3:3:3:4:4','1000','enemy','0x018');
-REPLACE INTO skill_unit_db VALUES(2449,'0xdf','0x018','0','3:3:4:4:5','500','enemy','0x018');
-REPLACE INTO skill_unit_db VALUES(2450,'0xe0',NULL,'0','3','500','enemy','0x010');
-REPLACE INTO skill_unit_db VALUES(2452,'0xe4','0x010','0','3','3000','all','0x010');
-REPLACE INTO skill_unit_db VALUES(2453,'0xeb',NULL,'0','1:1:2:2:3','1000','enemy','0x010');
-REPLACE INTO skill_unit_db VALUES(2465,'0xf1','0x010','0','1','1000','all','0x010');
-REPLACE INTO skill_unit_db VALUES(2466,'0xf2','0x010','0','1','1000','all','0x010');
-REPLACE INTO skill_unit_db VALUES(2467,'0xf3','0x010','0','1','1000','all','0x010');
-REPLACE INTO skill_unit_db VALUES(2468,'0xf4','0x010','0','1','1000','all','0x010');
 REPLACE INTO skill_unit_db VALUES(2479,'0xe5',NULL,'0','1','1000','enemy','0x000');
 REPLACE INTO skill_unit_db VALUES(2482,'0xe6','0x7f','-1','1','-1','all','0x000');
 REPLACE INTO skill_unit_db VALUES(2484,'0x86',NULL,'0','1','100','enemy','0x080');
@@ -19910,10 +19458,6 @@ REPLACE INTO skill_unit_db VALUES(8209,'0x90',NULL,'0','1','1000','enemy','0x006
 REPLACE INTO skill_unit_db VALUES(8210,'0x93',NULL,'0','0','1000','enemy','0x006');
 REPLACE INTO skill_unit_db VALUES(8211,'0x95',NULL,'0','1','1000','enemy','0x006');
 REPLACE INTO skill_unit_db VALUES(8212,'0x97',NULL,'0','1','1000','enemy','0x006');
-REPLACE INTO skill_unit_db VALUES(8403,'0xed',NULL,'-1','1','1000','enemy','0x018 ');
-REPLACE INTO skill_unit_db VALUES(8406,'0xee',NULL,'0','1','-1','friend','0x018');
-REPLACE INTO skill_unit_db VALUES(8409,'0xef',NULL,'0','1','-1','friend','0x018');
-REPLACE INTO skill_unit_db VALUES(8412,'0xf0',NULL,'0','1','-1','friend','0x018');
 REPLACE INTO skill_unit_db VALUES(10006,'0xc1',NULL,'2','0','-1','guild','0x040');
 REPLACE INTO skill_unit_db VALUES(10007,'0xc2',NULL,'2','0','-1','guild','0x040');
 REPLACE INTO skill_unit_db VALUES(10008,'0xc3',NULL,'2','0','-1','guild','0x040');
