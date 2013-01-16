@@ -608,11 +608,6 @@ REPLACE INTO homunculus_db VALUES(6005,6013,'Lif',537,60000,0,1,7,0,700,150,40,1
 REPLACE INTO homunculus_db VALUES(6006,6014,'Amistr',912,60000,0,1,2,0,700,320,10,20,17,35,11,24,12,80,130,1,4,8,20,4,20,4,20,1,10,3,19,3,19,10,20,1,10,1,10,1,5,4,10,1,3,1,4,1,5);
 REPLACE INTO homunculus_db VALUES(6007,6015,'Filir',910,60000,0,1,2,0,700,90,25,29,35,9,8,30,9,45,75,3,6,4,20,8,20,1,10,3,19,4,20,3,19,5,15,5,15,4,10,1,10,1,3,1,4,1,5,1,5);
 REPLACE INTO homunculus_db VALUES(6008,6016,'Vanilmirth',911,60000,0,1,0,0,700,80,11,11,11,11,11,11,11,30,150,0,7,1,30,1,30,1,30,1,30,1,30,1,30,1,30,1,30,1,10,1,10,1,10,1,10,1,10,1,10);
-REPLACE INTO homunculus_db VALUES(6048,6048,'Eira',6098,60000,1,1,7,0,700,150,40,17,20,15,35,24,12,60,100,4,9,5,19,5,19,5,19,4,20,6,20,6,20,1,10,10,20,1,5,1,4,1,5,4,10,1,10,1,3);
-REPLACE INTO homunculus_db VALUES(6049,6049,'Bayeri',6112,60000,1,1,2,0,700,320,10,20,17,35,11,24,12,80,130,1,4,8,20,4,20,4,20,1,10,3,19,3,19,10,20,1,10,1,10,1,5,4,10,1,3,1,4,1,5);
-REPLACE INTO homunculus_db VALUES(6050,6050,'Sera',6108,60000,1,1,4,0,700,90,25,29,35,9,8,30,9,45,75,3,6,4,20,8,20,1,10,3,19,4,20,3,19,5,15,5,15,4,10,1,10,1,3,1,4,1,5,1,5);
-REPLACE INTO homunculus_db VALUES(6051,6051,'Dieter',6104,60000,1,1,0,0,700,80,11,11,11,11,11,11,11,30,150,0,7,1,30,1,30,1,30,1,30,1,30,1,30,1,30,1,30,1,10,1,10,1,10,1,10,1,10,1,10);
-REPLACE INTO homunculus_db VALUES(6052,6052,'Eleanor',6115,60000,1,1,2,0,700,320,10,20,17,35,11,24,12,80,130,1,4,8,20,4,20,4,20,1,10,3,19,3,19,10,20,1,10,1,10,1,5,4,10,1,3,1,4,1,5);
 
 --
 -- Table structure for table `homun_skill_tree_db`
@@ -691,32 +686,6 @@ REPLACE INTO homun_skill_tree_db VALUES(6016,8013,5,0,0,0,0,0,0,0,0,0,0,0);
 REPLACE INTO homun_skill_tree_db VALUES(6016,8014,5,8013,3,0,0,0,0,0,0,0,0,0);
 REPLACE INTO homun_skill_tree_db VALUES(6016,8015,5,8013,5,0,0,0,0,0,0,0,0,0);
 REPLACE INTO homun_skill_tree_db VALUES(6016,8016,3,0,0,0,0,0,0,0,0,0,0,910);
-REPLACE INTO homun_skill_tree_db VALUES(6048,8022,5,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO homun_skill_tree_db VALUES(6048,8023,5,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO homun_skill_tree_db VALUES(6048,8024,5,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO homun_skill_tree_db VALUES(6048,8025,5,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO homun_skill_tree_db VALUES(6048,8026,5,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO homun_skill_tree_db VALUES(6049,8031,5,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO homun_skill_tree_db VALUES(6049,8032,5,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO homun_skill_tree_db VALUES(6049,8033,5,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO homun_skill_tree_db VALUES(6049,8034,5,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO homun_skill_tree_db VALUES(6049,8035,5,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO homun_skill_tree_db VALUES(6050,8018,5,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO homun_skill_tree_db VALUES(6050,8019,5,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO homun_skill_tree_db VALUES(6050,8020,5,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO homun_skill_tree_db VALUES(6050,8021,5,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO homun_skill_tree_db VALUES(6051,8039,5,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO homun_skill_tree_db VALUES(6051,8040,5,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO homun_skill_tree_db VALUES(6051,8041,5,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO homun_skill_tree_db VALUES(6051,8042,5,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO homun_skill_tree_db VALUES(6051,8043,5,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO homun_skill_tree_db VALUES(6052,8027,1,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO homun_skill_tree_db VALUES(6052,8028,5,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO homun_skill_tree_db VALUES(6052,8029,5,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO homun_skill_tree_db VALUES(6052,8030,5,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO homun_skill_tree_db VALUES(6052,8036,5,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO homun_skill_tree_db VALUES(6052,8037,5,0,0,0,0,0,0,0,0,0,0,0);
-REPLACE INTO homun_skill_tree_db VALUES(6052,8038,5,0,0,0,0,0,0,0,0,0,0,0);
 
 --
 -- Table structure for table `item_avail_db`
@@ -32705,53 +32674,6 @@ REPLACE INTO mob_skill_db VALUES(2046,'Magic Decoy Wind@MG_LIGHTNINGBOLT','chase
 REPLACE INTO mob_skill_db VALUES(2046,'Magic Decoy Wind@AL_HEAL','chase',28,10,10000,0,1000,'no','self','myhpltmaxrate','99',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 REPLACE INTO mob_skill_db VALUES(2046,'Magic Decoy Wind@AL_HEAL','idle',28,10,10000,0,1000,'no','self','myhpltmaxrate','99',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 REPLACE INTO mob_skill_db VALUES(2046,'Magic Decoy Wind@AL_HEAL','attack',28,10,10000,0,1000,'no','self','myhpltmaxrate','99',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
-
---
--- Table structure for table `level_penalty_db`
---
-
-CREATE TABLE IF NOT EXISTS `level_penalty_db` (
-  `Type` tinyint NOT NULL DEFAULT '0',
-  `Race` tinyint NOT NULL DEFAULT '0',
-  `Level difference` smallint NOT NULL,
-  `Rate` smallint NOT NULL DEFAULT '0'
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-REPLACE INTO level_penalty_db VALUES(1,11,16,40);
-REPLACE INTO level_penalty_db VALUES(1,11,15,115);
-REPLACE INTO level_penalty_db VALUES(1,11,14,120);
-REPLACE INTO level_penalty_db VALUES(1,11,13,125);
-REPLACE INTO level_penalty_db VALUES(1,11,12,130);
-REPLACE INTO level_penalty_db VALUES(1,11,11,135);
-REPLACE INTO level_penalty_db VALUES(1,11,10,140);
-REPLACE INTO level_penalty_db VALUES(1,11,9,135);
-REPLACE INTO level_penalty_db VALUES(1,11,8,130);
-REPLACE INTO level_penalty_db VALUES(1,11,7,125);
-REPLACE INTO level_penalty_db VALUES(1,11,6,120);
-REPLACE INTO level_penalty_db VALUES(1,11,5,115);
-REPLACE INTO level_penalty_db VALUES(1,11,4,110);
-REPLACE INTO level_penalty_db VALUES(1,11,3,105);
-REPLACE INTO level_penalty_db VALUES(1,11,0,100);
-REPLACE INTO level_penalty_db VALUES(1,11,-1,100);
-REPLACE INTO level_penalty_db VALUES(1,11,-6,95);
-REPLACE INTO level_penalty_db VALUES(1,11,-11,90);
-REPLACE INTO level_penalty_db VALUES(1,11,-16,85);
-REPLACE INTO level_penalty_db VALUES(1,11,-21,60);
-REPLACE INTO level_penalty_db VALUES(1,11,-26,35);
-REPLACE INTO level_penalty_db VALUES(1,11,-31,10);
-REPLACE INTO level_penalty_db VALUES(1,10,0,100);
-REPLACE INTO level_penalty_db VALUES(2,11,16,50);
-REPLACE INTO level_penalty_db VALUES(2,11,13,60);
-REPLACE INTO level_penalty_db VALUES(2,11,10,70);
-REPLACE INTO level_penalty_db VALUES(2,11,7,80);
-REPLACE INTO level_penalty_db VALUES(2,11,4,90);
-REPLACE INTO level_penalty_db VALUES(2,11,0,100);
-REPLACE INTO level_penalty_db VALUES(2,11,-4,90);
-REPLACE INTO level_penalty_db VALUES(2,11,-7,80);
-REPLACE INTO level_penalty_db VALUES(2,11,-10,70);
-REPLACE INTO level_penalty_db VALUES(2,11,-13,60);
-REPLACE INTO level_penalty_db VALUES(2,11,-16,50);
-REPLACE INTO level_penalty_db VALUES(2,10,0,100);
 
 --
 -- Table structure for table `attr_fix_db`
