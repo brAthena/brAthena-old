@@ -11783,7 +11783,7 @@ void clif_parse_OpenVending(int fd, struct map_session_data *sd)
 		return;
 	}
 	if(map_getcell(sd->bl.m,sd->bl.x,sd->bl.y,CELL_CHKNOVENDING)) {
-		clif_displaymessage(sd->fd, msg_txt(204));  // "You can't open a shop on this cell."
+		clif_displaymessage(sd->fd, msg_txt(1398));  // "You can't open a shop on this cell."
 		return;
 	}
 
