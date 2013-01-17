@@ -11090,28 +11090,6 @@ REPLACE INTO `item_noequip_db` VALUES(601,128);
 REPLACE INTO `item_noequip_db` VALUES(14529,2048);
 
 --
--- Estrutura da tabela `item_stack_db`
---
-
-CREATE TABLE IF NOT EXISTS `item_stack_db` (
-  `ItemID` smallint unsigned NOT NULL,
-  `Amount` smallint unsigned NOT NULL,
-  `Type` tinyint NOT NULL,
-  PRIMARY KEY (`ItemID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-REPLACE INTO `item_stack_db` VALUES(12725,20,1);
-REPLACE INTO `item_stack_db` VALUES(12726,20,1);
-REPLACE INTO `item_stack_db` VALUES(12727,20,1);
-REPLACE INTO `item_stack_db` VALUES(12728,20,1);
-REPLACE INTO `item_stack_db` VALUES(12729,20,1);
-REPLACE INTO `item_stack_db` VALUES(12730,20,1);
-REPLACE INTO `item_stack_db` VALUES(12731,20,1);
-REPLACE INTO `item_stack_db` VALUES(12732,20,1);
-REPLACE INTO `item_stack_db` VALUES(12733,20,1);
-REPLACE INTO `item_stack_db` VALUES(12333,3,1);
-
---
 -- Estrutura da tabela `item_trade_db`
 --
 
