@@ -1830,21 +1830,37 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 		} else if(sd->weapontype1 == W_REVOLVER && (skill_lv = pc_checkskill(sd,GS_CHAINACTION)) > 0 && rnd()%100 < 5*skill_lv) {
 			wd.div_ = skill_get_num(GS_CHAINACTION,skill_lv);
 			wd.type = 0x08;
-		} else if(sc && sc->data[SC_FEARBREEZE] && sd->weapontype1==W_BOW && (i = sd->equip_index[EQI_AMMO]) >= 0 && sd->inventory_data[i] && sd->status.inventory[i].amount > 1) {
-			short rate[] = { 4, 4, 7, 9, 10 };
-			if(sc->data[SC_FEARBREEZE]->val1 > 0 && sc->data[SC_FEARBREEZE]->val1 < 6 && rand()%100 < rate[sc->data[SC_FEARBREEZE]->val1-1]) {
+		} else if(sc && sc->data[SC_FEARBREEZE] && sd->weapontype1==W_BOW
+			&& (i = sd->equip_index[EQI_AMMO]) >= 0 && sd->inventory_data[i] && sd->status.inventory[i].amount > 1){
+				int chance = rand()%100;
 				wd.type = 0x08;
-				wd.div_ = 2;
-				if(sc->data[SC_FEARBREEZE]->val1 > 2) {
-					int chance = rand()%100;
-					wd.div_ += (chance >= 40) + (chance >= 70) + (chance >= 90);
-					wd.div_ = min(wd.div_,sc->data[SC_FEARBREEZE]->val1);
+				switch(sc->data[SC_FEARBREEZE]->val1){
+					case 5:
+						if(chance < 3){// 3 % chance to attack 5 times.
+							wd.div_ = 5;
+							break;
+						}
+					case 4:
+						if(chance < 7){// 6 % chance to attack 4 times.
+							wd.div_ = 4;
+							break;
+						}
+					case 3:
+						if(chance < 10){// 9 % chance to attack 3 times.
+							wd.div_ = 3;
+							break;
+						}
+					case 2:
+					case 1:
+						if(chance < 13){// 12 % chance to attack 2 times.
+							wd.div_ = 2;
+							break;
+						}
 				}
 				wd.div_ = min(wd.div_,sd->status.inventory[i].amount);
 				sc->data[SC_FEARBREEZE]->val4 = wd.div_-1;
 			}
 		}
-	}
 
 	//Check for critical
 	if(!flag.cri && !(wd.type&0x08) && sstatus->cri &&
