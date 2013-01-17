@@ -36,7 +36,7 @@
 		unloadnpc((!.@version?.@unload_pre$[.@i]:.@unload_re$[.@i]));
 		
 	if(!.@version){ // pre-re
-		movenpc("Equipe do Aeroporto#izlude",206,55);
+		movenpc("Equipe do Aeroporto#Izlude",206,55);
 		movenpc("Marinheiro#izlude",201,181,2);
 		movenpc("Bonne#izlude",55,74);
 		movenpc("Charfri#izlude",135,78,2);
