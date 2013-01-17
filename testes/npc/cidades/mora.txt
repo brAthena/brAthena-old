@@ -98,7 +98,7 @@ mora,52,138,8	script	Cidadão de Mora#2	516,{
 	mes "Eu só preciso saber uma coisa";
 	mes "antes de lhe dizer mais sobre";
 	mes "o encatamento de equipamentos em Mora!";
-	mes "Então diga-m, qual é sua classe?";
+	mes "Então diga-me, qual é sua classe?";
 	next;
 	switch(select("Arcano.:Arcebispo.:Sentinela.:Sicário.:Cavaleiro Rúnico.:Outra.:Sair.")) {
 	case 1:

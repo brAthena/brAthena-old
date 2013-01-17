@@ -1,62 +1,64 @@
-//    ________________________________________________________	
-//   /                                                        \	
-//   |       _           _   _   _                            |	
-//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |	
-//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |	
-//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |	
-//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |	
-//   |                                                        |	
-//   |                    brAthena Script                     |	
-//   |--------------------------------------------------------|	
-//   | Nome do Script: guia_lutie.txt                         |	
-//   |--------------------------------------------------------|	
-//   | Criado por: eA/rA/brA Dev. Team                        |	
-//   |--------------------------------------------------------|	
-//   | Versões eA/rA/brA: 1.1/1.0                             |	
-//   |--------------------------------------------------------|	
-//   | Descrição: Guias da Cidade de Lutie.                   |	
-//   |--------------------------------------------------------|	
-//   | Changelog:                                             |	
-//   | 1.0 Criado Cabeçalho [Megasantos]                      |	
-//   | - Anotações                                            |	
-//   \________________________________________________________/	
+//    ________________________________________________________
+//   /                                                        \
+//   |       _           _   _   _                            |
+//   |      | |__  _ __ / \ | |_| |__   ___ _ __   __ _       |
+//   |      | '_ \| '__/ _ \| __| '_ \ / _ \ '_ \ / _` |      |
+//   |      | |_) | | / ___ \ |_| | | |  __/ | | | (_| |      |
+//   |      |_.__/|_|/_/   \_\__|_| |_|\___|_| |_|\__,_|      |
+//   |                                                        |
+//   |                    brAthena Script                     |
+//   |--------------------------------------------------------|
+//   | Nome do Script: guia_lutie.txt                         |
+//   |--------------------------------------------------------|
+//   | Criado por: eA/rA/brA Dev. Team                        |
+//   |--------------------------------------------------------|
+//   | Versões eA/rA/brA: 1.1/1.0/1.1                         |
+//   |--------------------------------------------------------|
+//   | Descrição: Guias da Cidade de Lutie.                   |
+//   |--------------------------------------------------------|
+//   | Changelog:                                             |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Tradução PT-BR [Holy]                              |
+//   |--------------------------------------------------------|
+//   | - Anotações                                            |
+//   \________________________________________________________/
 
-xmas,140,137,3	script	Lutie Guide#xmas	717,{
-	mes "[Lutie Guide]";
-	mes "Welcome to ^8B4513Lutie^000000,";
-	mes "the Snow Village.";
-	mes "Do you need help navigating the village?";
+xmas,140,137,3	script	Guia de Lutie#xmas	717,{
+	mes "[Guia de Lutie]";
+	mes "Bem-vindo a ^8B4513Lutie^000000,";
+	mes "o Vilarejo da Neve.";
+	mes "Você precisa de orientação?";
 	while (1) {
 		next;
-		switch(select("[ Gift Shop ]:[ Church ]:[ Weapon & Armor Shop ]:[ Tool Shop ]:[ Santa's House ]:[ Toy Factory ]:Remove Marks from Mini-Map:Cancel")) {
+		switch(select("[ Loja de Presentes ]:[ Igreja ]:[ Loja de Armas & Armaduras ]:[ Loja de Utilidades ]:[ Casa do Papai Noel ]:[ Fábrica de Brinquedos ]:Remover marcas do mini-mapa:Cancelar")) {
 		case 1:
-			callsub L_Mark,"^008080Gift Shop";
+			callsub L_Marca,"^008080Loja de Presentes";
 			viewpoint 1,172,131,2,0x008080;
 			break;
 		case 2:
-			callsub L_Mark,"^006400Church";
+			callsub L_Marca,"^006400Igreja";
 			viewpoint 1,104,287,1,0xAAFF00;
 			break;
 		case 3:
-			callsub L_Mark,"^FF1493Weapon & Armor Shop";
+			callsub L_Marca,"^FF1493Loja de Armas & Armaduras";
 			viewpoint 1,171,158,3,0xFF1493;
 			break;
 		case 4:
-			callsub L_Mark,"^8B4513Tool Shop";
+			callsub L_Marca,"^8B4513Loja de Utilidades";
 			viewpoint 1,122,131,4,0x8B4513;
 			break;
 		case 5:
-			callsub L_Mark,"^B9062FSanta's House",1;
+			callsub L_Marca,"^B9062FCasa do Papai Noel",1;
 			viewpoint 1,149,237,5,0x9400D3;
 			break;
 		case 6:
-			callsub L_Mark,"^9400D3Toy Factory";
+			callsub L_Marca,"^9400D3Fábrica de Brinquedos";
 			viewpoint 1,143,312,6,0xFF0000;
 			break;
 		case 7:
-			mes "[Lutie Guide]";
-			mes "Sure, I'll remove all marks from your mini-map.";
-			mes "Is there anything else I can do for you?";
+			mes "[Guia de Lutie]";
+			mes "Claro, eu irei remover as marcas do seu mini-mapa.";
+			mes "Se houver algo mais que possa fazer por você, fique a vontade para voltar.";
 			viewpoint 2,1,1,0,0xFFFFFF;
 			viewpoint 2,1,1,1,0xFFFFFF;
 			viewpoint 2,1,1,2,0xFFFFFF;
@@ -66,17 +68,17 @@ xmas,140,137,3	script	Lutie Guide#xmas	717,{
 			viewpoint 2,1,1,6,0xFFFFFF;
 			break;
 		case 8:
-			mes "[Lutie Guide]";
-			mes "Be safe on your travels.";
+			mes "[Guia de Lutie]";
+			mes "Fique seguro em suas viagens.";
 			close;
 		}
 	}
 	end;
-L_Mark:
-	mes "[Lutie Guide]";
-	mes "Let me mark the location of "+((getarg(1,0))?"":"the");
+L_Marca:
+	mes "[Guia de Lutie]";
+	mes "Verifique a marca da";
 	mes getarg(0)+"^000000";
-	mes "on your mini-map.";
-	mes "Would you like to check any other locations?";
+	mes "em seu mini-mapa.";
+	mes "Você deseja adicionar outras localidades a seu mini-mapa?";
 	return;
 }
