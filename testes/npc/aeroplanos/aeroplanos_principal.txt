@@ -1012,7 +1012,7 @@ function	script	jogodamaçã	{
 	}
 	mes "^3355FF*Rolando*^000000";
 	next;
-	set .@darmaçã, .@amount*2;
+	set .@darmaca, .@amount*2;
 	set .@tabela1, rand(1,6);
 	set .@tabela2, rand(1,6);
 	set .@tabelasub, .@tabela1 + .@tabela2;
@@ -1077,7 +1077,6 @@ function	script	jogodamaçã	{
 		mes "["+getarg(0)+"]";
 		if (.@jogadorsub > .@tabelasub)
 			mes "Entendo, você não quer correr o risco de perder o jogo. Ok, deixe lançar o dado mais uma vez.";
-		}
 		else if (.@jogadorsub == .@tabelasub) {
 			if (.@tabelasub > 8) {
 				mes "Entendo, você não quer correr o risco de perder o jogo. Nem eu, vamos acabar com esse jogo em um empate. Jogaremos denovo uma outra hora~";
@@ -1105,13 +1104,13 @@ function	script	jogodamaçã	{
 	if (.@tabelatotal > 12) {
 		mes "Eu possuo ^0000FF" + .@tabela3 + "^000000 e meu total agora é ^0000FF" + .@tabelatotal + "^000000. Eu perdi o jogo por que meu total excedeu 12. Irei lhe dar as Maçãs. Parabéns, você jogou muito bem.";
 		close2;
-		getitem 512,.@darmaçã; // Maçã
+		getitem 512,.@darmaca; // Maçã
 		end;
 	}
 	else if (.@jogadortotal > .@tabelatotal) {
 		mes "Eu possuo ^0000FF" + .@tabela3 + "^000000 e meu total agora é ^0000FF" + .@tabelatotal + "^000000. Como você já possui o total de ^FF0000" + .@jogadortotal + "^000000 você venceu o jogo, ^FF0000" + strcharinfo(0) + "^000000. Irei lhe dar as maçãs. Foi um grande jogo e espero que possamos jogar denovo em uma outra hora.";
 		close2;
-		getitem 512,.@darmaçã; // Maçã
+		getitem 512,.@darmaca; // Maçã
 		end;
 	}
 	else if (.@jogadortotal == .@tabelatotal) {

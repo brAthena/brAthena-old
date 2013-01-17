@@ -171,7 +171,7 @@ OnMyMobDead:
 		donpcevent "Terapeuta de Batalha#a02_a::OnStop";
 		donpcevent "Terapeuta de Batalha#a02_b::OnStop";
 		set $@TierraBG2_Victory, 2;
-		enablenpc "Guillaume Vintenar#a02_a";
+		enablenpc "Vintenar Guillaume#a02_a";
 		enablenpc "Croix Vintenar#a02_b";
 		mapannounce "bat_a02", "Vintenar Croix Swandery: Nós destruímos os Suprimentos dos Guillaumes. Nós vencemos esta! Uau!",bc_map,"0xFFCE00";
 		bg_warp $@TierraBG2_id1,"bat_a02",50,374;
@@ -194,7 +194,7 @@ OnMyMobDead:
 		donpcevent "Terapeuta de Batalha#a02_a::OnStop";
 		donpcevent "Terapeuta de Batalha#a02_b::OnStop";
 		set $@TierraBG2_Victory, 1;
-		enablenpc "Guillaume Vintenar#a02_a";
+		enablenpc "Vintenar Guillaume#a02_a";
 		enablenpc "Croix Vintenar#a02_b";
 		mapannounce "bat_a02", "Vintenar Guillaume Axl Rose : Nós destruímos os Suprimentos dos Croixs. Nós vencemos esta! Uau!",bc_map,"0xFFCE00";
 		bg_warp $@TierraBG2_id1,"bat_a02",50,374;
@@ -777,7 +777,7 @@ bat_a02,53,377,3	script	Vintenar Guillaume#a02_a	419,{
 	end;
 
 OnInit:
-	disablenpc "Guillaume Vintenar#a02_a";
+	disablenpc "Vintenar Guillaume#a02_a";
 	end;
 }
 
