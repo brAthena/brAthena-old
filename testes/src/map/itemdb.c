@@ -1099,9 +1099,7 @@ static void itemdb_read(void)
 	sv_readsqldb(get_database_name(21), NULL, 2, -1, &itemdb_read_noequip);
 	sv_readsqldb(get_database_name(22), NULL, 3, -1, &itemdb_read_itemtrade);
 	sv_readsqldb(get_database_name(23), NULL, 2, -1, &itemdb_read_itemdelay);
-#ifdef RENEWAL
 	sv_readsqldb(get_database_name(24), NULL, 3, -1, &itemdb_read_stack);
-#endif
 	sv_readsqldb(get_database_name(25), NULL, 1, -1, &itemdb_read_buyingstore);
 
 	itemdb_uid_load();

@@ -3401,7 +3401,7 @@ void sv_readsqldb(char *name, char *next_name, int param_size, int max_allowed, 
 
 char *get_database_name(int database_id)
 {
-	char *db_name = "";
+	char *db_name = NULL;
 
 	switch(database_id) {
 		case 0: db_name = "skill_db"; break;
@@ -3413,10 +3413,14 @@ char *get_database_name(int database_id)
 		case 6: db_name = "produce_db"; break;
 		case 7: db_name = "create_arrow_db"; break;
 		case 8: db_name = "abra_db"; break;
+		#ifdef RENEWAL
 		case 9: db_name = "spellbook_db"; break;
+		#endif
 		case 10: db_name = "magicmushroom_db"; break;
+		#ifdef RENEWAL
 		case 11: db_name = "skill_reproduce_db"; break;
 		case 12: db_name = "skill_improvise_db"; break;
+		#endif
 		case 13: db_name = "skill_changematerial_db"; break;
 		case 14: db_name = "castle_db"; break;
 		case 15: db_name = "homunculus_db"; break;
@@ -3428,7 +3432,9 @@ char *get_database_name(int database_id)
 		case 21: db_name = "item_noequip_db"; break;
 		case 22: db_name = "item_trade_db"; break;
 		case 23: db_name = "item_delay_db"; break;
+		#ifdef RENEWAL
 		case 24: db_name = "item_stack_db"; break;
+		#endif
 		case 25: db_name = "item_buyingstore_db"; break;
 		case 26: db_name = "item_bluebox_db"; break;
 		case 27: db_name = "item_violetbox_db"; break;

@@ -23,15 +23,10 @@ CREATE TABLE IF NOT EXISTS `abra_db` (
   PRIMARY KEY (`SkillID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- REPLACE INTO `abra_db` VALUES(1,'Habilidades Básicas',1,0);
--- REPLACE INTO `abra_db` VALUES(2,'Perícia com Espada',1,0);
--- REPLACE INTO `abra_db` VALUES(3,'Perícia com Espada de Duas Mãos',1,0);
--- REPLACE INTO `abra_db` VALUES(4,'Aumentar Recuperação de HP',1,0);
 REPLACE INTO `abra_db` VALUES(5,'Golpe Fulminante',1,5000);
 REPLACE INTO `abra_db` VALUES(6,'Provocar',1,5000);
 REPLACE INTO `abra_db` VALUES(7,'Impacto Explosivo',1,5000);
 REPLACE INTO `abra_db` VALUES(8,'Vigor',1,5000);
--- REPLACE INTO `abra_db` VALUES(9,'Aumentar Recuperação de SP',1,0);
 REPLACE INTO `abra_db` VALUES(10,'Chama Reveladora',1,5000);
 REPLACE INTO `abra_db` VALUES(11,'Ataque Espiritual',1,5000);
 REPLACE INTO `abra_db` VALUES(12,'Escudo Mágico',4,5000);
@@ -44,8 +39,6 @@ REPLACE INTO `abra_db` VALUES(18,'Barreira de Fogo',4,5000);
 REPLACE INTO `abra_db` VALUES(19,'Lanças de Fogo',1,5000);
 REPLACE INTO `abra_db` VALUES(20,'Relâmpago',1,5000);
 REPLACE INTO `abra_db` VALUES(21,'Tempestade de Raios',2,5000);
--- REPLACE INTO `abra_db` VALUES(22,'Proteção Divina',1,0);
--- REPLACE INTO `abra_db` VALUES(23,'Flagelo do Mal',1,0);
 REPLACE INTO `abra_db` VALUES(24,'Revelação',1,5000);
 REPLACE INTO `abra_db` VALUES(25,'Escudo Sagrado',6,5000);
 REPLACE INTO `abra_db` VALUES(26,'Teleporte',2,5000);
@@ -58,26 +51,17 @@ REPLACE INTO `abra_db` VALUES(32,'Signum Crusis',1,5000);
 REPLACE INTO `abra_db` VALUES(33,'Angelus',1,5000);
 REPLACE INTO `abra_db` VALUES(34,'Bênção',2,5000);
 REPLACE INTO `abra_db` VALUES(35,'Medicar',1,5000);
--- REPLACE INTO `abra_db` VALUES(36,'Aumentar Capacidade de Carga',1,0);
--- REPLACE INTO `abra_db` VALUES(37,'Desconto',1,0);
--- REPLACE INTO `abra_db` VALUES(38,'Superfaturar',1,0);
--- REPLACE INTO `abra_db` VALUES(39,'Usar Carrinho',1,0);
 REPLACE INTO `abra_db` VALUES(40,'Identificar Item',1,5000);
 REPLACE INTO `abra_db` VALUES(41,'Comércio',4,5000);
 REPLACE INTO `abra_db` VALUES(42,'Mammonita',1,5000);
--- REPLACE INTO `abra_db` VALUES(43,'Precisão',1,0);
--- REPLACE INTO `abra_db` VALUES(44,'Olhos de Águia',1,0);
 REPLACE INTO `abra_db` VALUES(45,'Concentração',4,5000);
 REPLACE INTO `abra_db` VALUES(46,'Rajada de Flechas',1,5000);
 REPLACE INTO `abra_db` VALUES(47,'Chuva de Flechas',2,5000);
--- REPLACE INTO `abra_db` VALUES(48,'Ataque Duplo',1,0);
--- REPLACE INTO `abra_db` VALUES(49,'Perícia em Esquiva',1,0);
 REPLACE INTO `abra_db` VALUES(50,'Furto',2,5000);
 REPLACE INTO `abra_db` VALUES(51,'Esconderijo',2,5000);
 REPLACE INTO `abra_db` VALUES(52,'Envenenar',1,5000);
 REPLACE INTO `abra_db` VALUES(53,'Desintoxicar',1,5000);
 REPLACE INTO `abra_db` VALUES(54,'Ressuscitar',1,5000);
--- REPLACE INTO `abra_db` VALUES(55,'Perícia com Lança',1,0);
 REPLACE INTO `abra_db` VALUES(56,'Perfurar',2,4000);
 REPLACE INTO `abra_db` VALUES(57,'Brandir Lança',6,4000);
 REPLACE INTO `abra_db` VALUES(58,'Estocada',1,4000);
@@ -85,9 +69,6 @@ REPLACE INTO `abra_db` VALUES(59,'Lança Bumerangue',4,4000);
 REPLACE INTO `abra_db` VALUES(60,'Rapidez com Duas Mãos',1,4000);
 REPLACE INTO `abra_db` VALUES(61,'Contra-Ataque',2,4000);
 REPLACE INTO `abra_db` VALUES(62,'Impacto de Tyr',6,4000);
--- REPLACE INTO `abra_db` VALUES(63,'Montaria',1,0);
--- REPLACE INTO `abra_db` VALUES(64,'Perícia em Montaria',1,0);
--- REPLACE INTO `abra_db` VALUES(65,'Perícia com Maça',1,0);
 REPLACE INTO `abra_db` VALUES(66,'Impositio Manus',1,4000);
 REPLACE INTO `abra_db` VALUES(67,'Suffragium',2,4000);
 REPLACE INTO `abra_db` VALUES(68,'Aspersio',2,4000);
@@ -104,7 +85,6 @@ REPLACE INTO `abra_db` VALUES(78,'Lex Aeterna',4,4000);
 REPLACE INTO `abra_db` VALUES(79,'Magnus Exorcismus',6,4000);
 REPLACE INTO `abra_db` VALUES(80,'Coluna de Fogo',2,4000);
 REPLACE INTO `abra_db` VALUES(81,'Supernova',2,4000);
--- REPLACE INTO `abra_db` VALUES(82,'Fire Ivy',1,0);
 REPLACE INTO `abra_db` VALUES(83,'Chuva de Meteoros',6,4000);
 REPLACE INTO `abra_db` VALUES(84,'Trovão de Júpiter',2,4000);
 REPLACE INTO `abra_db` VALUES(85,'Ira de Thor',6,4000);
@@ -116,22 +96,7 @@ REPLACE INTO `abra_db` VALUES(90,'Coluna de Pedra',1,4000);
 REPLACE INTO `abra_db` VALUES(91,'Fúria da Terra',2,4000);
 REPLACE INTO `abra_db` VALUES(92,'Pântano dos Mortos',4,4000);
 REPLACE INTO `abra_db` VALUES(93,'Sentido Sobrenatural',1,4000);
--- REPLACE INTO `abra_db` VALUES(94,'Trabalhar Ferro',1,0);
--- REPLACE INTO `abra_db` VALUES(95,'Trabalhar Aço',1,0);
--- REPLACE INTO `abra_db` VALUES(96,'Produzir Pedra Fundamental',1,0);
--- REPLACE INTO `abra_db` VALUES(97,'Perícia com Oridecon',1,0);
--- REPLACE INTO `abra_db` VALUES(98,'Forjar Adaga',1,0);
--- REPLACE INTO `abra_db` VALUES(99,'Forjar Espada',1,0);
--- REPLACE INTO `abra_db` VALUES(100,'Forjar Espada de Duas Mãos',1,0);
--- REPLACE INTO `abra_db` VALUES(101,'Forjar Machado',1,0);
--- REPLACE INTO `abra_db` VALUES(102,'Forjar Maça',1,0);
--- REPLACE INTO `abra_db` VALUES(103,'Forjar Soqueira',1,0);
--- REPLACE INTO `abra_db` VALUES(104,'Forjar Lança',1,0);
--- REPLACE INTO `abra_db` VALUES(105,'Punho Firme',1,0);
--- REPLACE INTO `abra_db` VALUES(106,'Encontrar Minério',1,0);
--- REPLACE INTO `abra_db` VALUES(107,'Perícia em Armamento',1,0);
 REPLACE INTO `abra_db` VALUES(108,'Consertar Armas',1,0);
--- REPLACE INTO `abra_db` VALUES(109,'Resistência ao Fogo',1,0);
 REPLACE INTO `abra_db` VALUES(110,'Martelo de Thor',1,4000);
 REPLACE INTO `abra_db` VALUES(111,'Adrenalina Pura',2,4000);
 REPLACE INTO `abra_db` VALUES(112,'Manejo Perfeito',4,4000);
@@ -148,15 +113,9 @@ REPLACE INTO `abra_db` VALUES(122,'Instalar Mina',4,4000);
 REPLACE INTO `abra_db` VALUES(123,'Armadilha Explosiva',6,4000);
 REPLACE INTO `abra_db` VALUES(124,'Remover Armadilha',1,4000);
 REPLACE INTO `abra_db` VALUES(125,'Mensagem Secreta',1,4000);
--- REPLACE INTO `abra_db` VALUES(126,'Flagelo das Feras',1,0);
--- REPLACE INTO `abra_db` VALUES(127,'Adestrar Falcão',1,0);
--- REPLACE INTO `abra_db` VALUES(128,'Garras de Aço',1,0);
 REPLACE INTO `abra_db` VALUES(129,'Ataque Aéreo',4,4000);
 REPLACE INTO `abra_db` VALUES(130,'Alerta',1,4000);
 REPLACE INTO `abra_db` VALUES(131,'Desativar Armadilha',1,4000);
--- REPLACE INTO `abra_db` VALUES(132,'Perícia com Mão Direita',1,0);
--- REPLACE INTO `abra_db` VALUES(133,'Perícia com Mão Esquerda',1,0);
--- REPLACE INTO `abra_db` VALUES(134,'Perícia com Katar',1,0);
 REPLACE INTO `abra_db` VALUES(135,'Furtividade',2,4000);
 REPLACE INTO `abra_db` VALUES(136,'Lâminas Destruidoras',2,4000);
 REPLACE INTO `abra_db` VALUES(137,'Tocaia',4,4000);
@@ -166,8 +125,6 @@ REPLACE INTO `abra_db` VALUES(140,'Névoa Tóxica',4,4000);
 REPLACE INTO `abra_db` VALUES(141,'Explosão Tóxica',4,4000);
 REPLACE INTO `abra_db` VALUES(142,'Primeiros Socorros',1,5000);
 REPLACE INTO `abra_db` VALUES(143,'Fingir de Morto',1,5000);
--- REPLACE INTO `abra_db` VALUES(144,'Recuperar HP em Movimento',1,0);
--- REPLACE INTO `abra_db` VALUES(145,'Ataque Fatal',1,0);
 REPLACE INTO `abra_db` VALUES(146,'Instinto de Sobrevivência',1,0);
 REPLACE INTO `abra_db` VALUES(147,'Fabricar Flechas',1,5000);
 REPLACE INTO `abra_db` VALUES(148,'Disparo Violento',1,5000);
@@ -180,10 +137,8 @@ REPLACE INTO `abra_db` VALUES(154,'Personalizar Carrinho',1,5000);
 REPLACE INTO `abra_db` VALUES(155,'Grito de Guerra',1,5000);
 REPLACE INTO `abra_db` VALUES(156,'Luz Divina',1,5000);
 REPLACE INTO `abra_db` VALUES(157,'Proteção Arcana',1,5000);
--- REPLACE INTO `abra_db` VALUES(210,'Mãos Leves',1,0);
 REPLACE INTO `abra_db` VALUES(211,'Afanar',1,4000);
 REPLACE INTO `abra_db` VALUES(212,'Apunhalar',4,4000);
--- REPLACE INTO `abra_db` VALUES(213,'Túnel de Fuga',1,0);
 REPLACE INTO `abra_db` VALUES(214,'Ataque Surpresa',2,4000);
 REPLACE INTO `abra_db` VALUES(215,'Remover Arma',4,4000);
 REPLACE INTO `abra_db` VALUES(216,'Remover Escudo',4,4000);
@@ -193,11 +148,6 @@ REPLACE INTO `abra_db` VALUES(219,'Rapto',4,4000);
 REPLACE INTO `abra_db` VALUES(220,'Grafitti',1,4000);
 REPLACE INTO `abra_db` VALUES(221,'Pichar',1,0);
 REPLACE INTO `abra_db` VALUES(222,'Faxina',4,4000);
--- REPLACE INTO `abra_db` VALUES(223,'Malandragem',1,0);
--- REPLACE INTO `abra_db` VALUES(224,'Extorquir',1,0);
--- REPLACE INTO `abra_db` VALUES(225,'Plágio',1,0);
--- REPLACE INTO `abra_db` VALUES(226,'Perícia com Machado e Espada',1,0);
--- REPLACE INTO `abra_db` VALUES(227,'Pesquisa de Poções',1,0);
 REPLACE INTO `abra_db` VALUES(228,'Preparar Poção',1,4000);
 REPLACE INTO `abra_db` VALUES(229,'Fogo Grego',2,4000);
 REPLACE INTO `abra_db` VALUES(230,'Terror Ácido',2,4000);
@@ -208,17 +158,6 @@ REPLACE INTO `abra_db` VALUES(234,'Revestir Arma',4,4000);
 REPLACE INTO `abra_db` VALUES(235,'Revestir Escudo',4,4000);
 REPLACE INTO `abra_db` VALUES(236,'Revestir Armadura',4,4000);
 REPLACE INTO `abra_db` VALUES(237,'Revestir Capacete',4,4000);
--- REPLACE INTO `abra_db` VALUES(238,'Bioética',1,0);
--- REPLACE INTO `abra_db` VALUES(239,'Biotechnology',1,0);
--- REPLACE INTO `abra_db` VALUES(240,'Life Creation',1,0);
--- REPLACE INTO `abra_db` VALUES(241,'Cultivation',1,0);
--- REPLACE INTO `abra_db` VALUES(242,'Flame control',1,0);
--- REPLACE INTO `abra_db` VALUES(243,'Criar Homunculus',1,0);
--- REPLACE INTO `abra_db` VALUES(244,'Vaporizar',1,0);
--- REPLACE INTO `abra_db` VALUES(245,'Drillmaster',1,0);
--- REPLACE INTO `abra_db` VALUES(246,'Heal Homunculus',1,0);
--- REPLACE INTO `abra_db` VALUES(247,'Ressuscitar Homunculus',1,0);
--- REPLACE INTO `abra_db` VALUES(248,'Fé',1,0);
 REPLACE INTO `abra_db` VALUES(249,'Bloqueio',1,4000);
 REPLACE INTO `abra_db` VALUES(250,'Punição Divina',2,4000);
 REPLACE INTO `abra_db` VALUES(251,'Escudo Bumerangue',2,4000);
@@ -229,13 +168,9 @@ REPLACE INTO `abra_db` VALUES(255,'Redenção',4,4000);
 REPLACE INTO `abra_db` VALUES(256,'Divina Providência',2,4000);
 REPLACE INTO `abra_db` VALUES(257,'Aura Sagrada',4,4000);
 REPLACE INTO `abra_db` VALUES(258,'Rapidez com Lança',1,4000);
--- REPLACE INTO `abra_db` VALUES(259,'Punhos de Ferro',1,0);
--- REPLACE INTO `abra_db` VALUES(260,'Meditação',1,0);
 REPLACE INTO `abra_db` VALUES(261,'Invocar Esfera Espiritual',1,4000);
 REPLACE INTO `abra_db` VALUES(262,'Absorver Esferas Espirituais',1,4000);
--- REPLACE INTO `abra_db` VALUES(263,'Combo Triplo',1,0);
 REPLACE INTO `abra_db` VALUES(264,'Passo Etéreo',4,4000);
--- REPLACE INTO `abra_db` VALUES(265,'Cair das Pétalas',1,0);
 REPLACE INTO `abra_db` VALUES(266,'Impacto Psíquico',2,4000);
 REPLACE INTO `abra_db` VALUES(267,'Disparo de Esferas Espirituais',2,4000);
 REPLACE INTO `abra_db` VALUES(268,'Corpo Fechado',4,4000);
@@ -244,17 +179,14 @@ REPLACE INTO `abra_db` VALUES(270,'Fúria Interior',2,4000);
 REPLACE INTO `abra_db` VALUES(271,'Punho Supremo de Asura',6,4000);
 REPLACE INTO `abra_db` VALUES(272,'Combo Quádruplo',1,0);
 REPLACE INTO `abra_db` VALUES(273,'O Último Dragão',1,0);
--- REPLACE INTO `abra_db` VALUES(274,'Estudo de Livros',1,0);
 REPLACE INTO `abra_db` VALUES(275,'Cancelar magia',1,4000);
 REPLACE INTO `abra_db` VALUES(276,'Espelho Mágico',1,4000);
 REPLACE INTO `abra_db` VALUES(277,'Desconcentrar',2,4000);
--- REPLACE INTO `abra_db` VALUES(278,'Conjuração Livre',1,0);
 REPLACE INTO `abra_db` VALUES(279,'Desejo Arcano',2,4000);
 REPLACE INTO `abra_db` VALUES(280,'Encantar com Chama',2,4000);
 REPLACE INTO `abra_db` VALUES(281,'Encantar com Geada',2,4000);
 REPLACE INTO `abra_db` VALUES(282,'Encantar com Ventania',2,4000);
 REPLACE INTO `abra_db` VALUES(283,'Encantar com Terremoto',2,4000);
--- REPLACE INTO `abra_db` VALUES(284,'Dragonologia',1,0);
 REPLACE INTO `abra_db` VALUES(285,'Vulcão',4,4000);
 REPLACE INTO `abra_db` VALUES(286,'Dilúvio',4,4000);
 REPLACE INTO `abra_db` VALUES(287,'Furacão',4,4000);
@@ -266,11 +198,9 @@ REPLACE INTO `abra_db` VALUES(292,'Transformação',8,2500);
 REPLACE INTO `abra_db` VALUES(293,'Invocar Monstro',6,3500);
 REPLACE INTO `abra_db` VALUES(294,'Transformação Orc',4,5000);
 REPLACE INTO `abra_db` VALUES(295,'Extermínio',8,2000);
--- REPLACE INTO `abra_db` VALUES(296,'Toque de Midas',6,4000);
 REPLACE INTO `abra_db` VALUES(297,'Hipnose',6,4000);
 REPLACE INTO `abra_db` VALUES(298,'Interrogatório',4,5000);
 REPLACE INTO `abra_db` VALUES(299,'Gravity',4,5000);
--- REPLACE INTO `abra_db` VALUES(300,'Level Up!',10,500);
 REPLACE INTO `abra_db` VALUES(301,'Suicídio',4,2000);
 REPLACE INTO `abra_db` VALUES(302,'Recuperação',8,3000);
 REPLACE INTO `abra_db` VALUES(303,'Coma',4,4000);
@@ -284,8 +214,6 @@ REPLACE INTO `abra_db` VALUES(310,'Anel dos Nibelungos',1,0);
 REPLACE INTO `abra_db` VALUES(311,'Lamento de Loki',1,0);
 REPLACE INTO `abra_db` VALUES(312,'Canção Preciosa',1,0);
 REPLACE INTO `abra_db` VALUES(313,'Ode a Siegfried',1,0);
--- REPLACE INTO `abra_db` VALUES(314,'Ragnarok',1,0);
--- REPLACE INTO `abra_db` VALUES(315,'Lições de Música',1,0);
 REPLACE INTO `abra_db` VALUES(316,'Flecha Melódica',1,4000);
 REPLACE INTO `abra_db` VALUES(317,'Dissonância',1,0);
 REPLACE INTO `abra_db` VALUES(318,'Piada Infame',2,4000);
@@ -293,7 +221,6 @@ REPLACE INTO `abra_db` VALUES(319,'Assovio',1,0);
 REPLACE INTO `abra_db` VALUES(320,'Crepúsculo Sangrento',1,0);
 REPLACE INTO `abra_db` VALUES(321,'Poema de Bragi',1,0);
 REPLACE INTO `abra_db` VALUES(322,'Maçãs de Idun',1,0);
--- REPLACE INTO `abra_db` VALUES(323,'Lições de Dança',1,0);
 REPLACE INTO `abra_db` VALUES(324,'Estilingue',1,4000);
 REPLACE INTO `abra_db` VALUES(325,'Dança do Ventre',1,0);
 REPLACE INTO `abra_db` VALUES(326,'Escândalo',2,4000);
@@ -343,12 +270,12 @@ REPLACE INTO `castle_db` VALUES(24,'schg_cas01','Himinn','Agit_Sc01',1);
 REPLACE INTO `castle_db` VALUES(25,'schg_cas02','Andlangr','Agit_Sc02',1);
 REPLACE INTO `castle_db` VALUES(26,'schg_cas03','Viblainn','Agit_Sc03',1);
 REPLACE INTO `castle_db` VALUES(27,'schg_cas04','Hljod','Agit_Sc04',1);
-REPLACE INTO `castle_db` VALUES(28,'schg_cas05','Skatyrnir','Agit_Sc05',1);
+REPLACE INTO `castle_db` VALUES(28,'schg_cas05','Skidbladnir','Agit_Sc05',1);
 REPLACE INTO `castle_db` VALUES(29,'arug_cas01','Mardol','Agit_Ar01',1);
-REPLACE INTO `castle_db` VALUES(30,'arug_cas02','Syr','Agit_Ar02',1);
+REPLACE INTO `castle_db` VALUES(30,'arug_cas02','Cyr','Agit_Ar02',1);
 REPLACE INTO `castle_db` VALUES(31,'arug_cas03','Horn','Agit_Ar03',1);
 REPLACE INTO `castle_db` VALUES(32,'arug_cas04','Gefn','Agit_Ar04',1);
-REPLACE INTO `castle_db` VALUES(33,'arug_cas05','Vanadis','Agit_Ar05',1);
+REPLACE INTO `castle_db` VALUES(33,'arug_cas05','Bandis','Agit_Ar05',1);
 
 --
 -- Estrutura da tabela `create_arrow_db`
@@ -867,13 +794,13 @@ CREATE TABLE IF NOT EXISTS `item_avail_db` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 REPLACE INTO `item_avail_db` VALUES(2240,2241);
--- REPLACE INTO `item_avail_db` VALUES(7950,7021);
--- REPLACE INTO `item_avail_db` VALUES(7951,7042);
--- REPLACE INTO `item_avail_db` VALUES(1998,1250);
--- REPLACE INTO `item_avail_db` VALUES(1999,1472);
--- REPLACE INTO `item_avail_db` VALUES(12715,7721);
--- REPLACE INTO `item_avail_db` VALUES(7915,673);
--- REPLACE INTO `item_avail_db` VALUES(7916,67);
+/* REPLACE INTO `item_avail_db` VALUES(7950,7021);
+REPLACE INTO `item_avail_db` VALUES(7951,7042);
+REPLACE INTO `item_avail_db` VALUES(1998,1250);
+REPLACE INTO `item_avail_db` VALUES(1999,1472);
+REPLACE INTO `item_avail_db` VALUES(12715,7721);
+REPLACE INTO `item_avail_db` VALUES(7915,673);
+REPLACE INTO `item_avail_db` VALUES(7916,67); */
 
 --
 -- Estrutura da tabela `item_bluebox_db`
@@ -3553,17 +3480,6 @@ REPLACE INTO `item_combo_db` VALUES('5358:5653','{ bonus bAgi,1; bonus bFlee,3; 
 REPLACE INTO `item_combo_db` VALUES('5401:5653','{ bonus bInt,1; bonus bMatkRate,2; }');
 REPLACE INTO `item_combo_db` VALUES('13034:13035','{ bonus bMaxSP,20; bonus bMaxHPRate,5; bonus bHit,10; bonus2 bAddSize,Size_Large,30; autobonus "{ bonus bAspdRate,100; }",1,7000,0,"{ specialeffect2 EF_POTION_BERSERK; }\"; }');
 REPLACE INTO `item_combo_db` VALUES('18507:18539','{ bonus bUseSPrate,-3; }');
---
--- Itens bRO
---
-REPLACE INTO `item_combo_db` VALUES('18619:4139', '{ bonus bAgi,1; bonus bDex,1; bonus bInt,-1; }');
-REPLACE INTO `item_combo_db` VALUES('5782:1407', '{ bonus2 bAddRace,RC_NonBoss,3; bonus2 bAddRace,RC_Boss,3; }');
-REPLACE INTO `item_combo_db` VALUES('5782:1408', '{ bonus2 bAddRace,RC_NonBoss,3; bonus2 bAddRace,RC_Boss,3; }');
-REPLACE INTO `item_combo_db` VALUES('5782:1409', '{ bonus2 bAddRace,RC_NonBoss,3; bonus2 bAddRace,RC_Boss,3; }');
-REPLACE INTO `item_combo_db` VALUES('5782:1219', '{ bonus2 bAddRace,RC_NonBoss,3; bonus2 bAddRace,RC_Boss,3; }');
-REPLACE INTO `item_combo_db` VALUES('5782:1220', '{ bonus2 bAddRace,RC_NonBoss,3; bonus2 bAddRace,RC_Boss,3; }');
-REPLACE INTO `item_combo_db` VALUES('5782:1221', '{ bonus2 bAddRace,RC_NonBoss,3; bonus2 bAddRace,RC_Boss,3; }');
-REPLACE INTO `item_combo_db` VALUES('2584:5579', '{ skill\"TF_DOUBLE\",1; if(getequiprefinerycnt(EQI_GARMENT) >= 4) skill\"TF_DOUBLE\",5; if(getequiprefinerycnt(EQI_GARMENT) >= 6 ) skill\"TF_DOUBLE\",10; }');
 
 --
 -- Estrutura da tabela `item_db`
@@ -9856,12 +9772,12 @@ CREATE TABLE IF NOT EXISTS `item_delay_db` (
   PRIMARY KEY (`ItemID`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
--- REPLACE INTO `item_delay_db` VALUES(12202,60000);
--- REPLACE INTO `item_delay_db` VALUES(12203,60000);
--- REPLACE INTO `item_delay_db` VALUES(12204,60000);
--- REPLACE INTO `item_delay_db` VALUES(12205,60000);
--- REPLACE INTO `item_delay_db` VALUES(12206,60000);
--- REPLACE INTO `item_delay_db` VALUES(12207,60000);
+/* REPLACE INTO `item_delay_db` VALUES(12202,60000);
+REPLACE INTO `item_delay_db` VALUES(12203,60000);
+REPLACE INTO `item_delay_db` VALUES(12204,60000);
+REPLACE INTO `item_delay_db` VALUES(12205,60000);
+REPLACE INTO `item_delay_db` VALUES(12206,60000);
+REPLACE INTO `item_delay_db` VALUES(12207,60000); */
 REPLACE INTO `item_delay_db` VALUES(12208,60000);
 REPLACE INTO `item_delay_db` VALUES(12210,60000);
 REPLACE INTO `item_delay_db` VALUES(14538,300000);
@@ -14391,7 +14307,7 @@ REPLACE INTO `mob_avail_db` VALUES(3000,1015,0,NULL,NULL,NULL,NULL,NULL,NULL,NUL
 REPLACE INTO `mob_avail_db` VALUES(3001,1036,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 REPLACE INTO `mob_avail_db` VALUES(3002,1298,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 REPLACE INTO `mob_avail_db` VALUES(3014,1179,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
-REPLACE INTO `mob_avail_db` VALUES(3015,1272,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);*/
+REPLACE INTO `mob_avail_db` VALUES(3015,1272,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL); */
 
 --
 -- Estrutura da tabela `mob_boss_db`
@@ -22813,24 +22729,24 @@ REPLACE INTO `quest_db` VALUES(4010,0,0,0,0,0,0,0,'\"Mudança de Classe: Caçador\
 REPLACE INTO `quest_db` VALUES(4011,0,0,0,0,0,0,0,'\"Mudança de Classe: Caçador - Teste\"');
 REPLACE INTO `quest_db` VALUES(4012,0,0,0,0,0,0,0,'\"Mudança de Classe: Caçador\"');
 REPLACE INTO `quest_db` VALUES(4013,0,0,0,0,0,0,0,'\"Mudança de Classe: Caçador\"');
--- REPLACE INTO `quest_db` VALUES(4015,0,0,0,0,0,0,0,'\"Becoming an Adventurer Appraiser\"');
--- REPLACE INTO `quest_db` VALUES(4016,0,0,0,0,0,0,0,'\"Proof of Qualification\"');
--- REPLACE INTO `quest_db` VALUES(4017,0,0,0,0,0,0,0,'\"Qualification Test\"');
--- REPLACE INTO `quest_db` VALUES(4018,0,0,0,0,0,0,0,'\"Preparations for Meeting Princes\"');
--- REPLACE INTO `quest_db` VALUES(4020,0,0,0,0,0,0,0,'\"Interview with the Prince\"');
--- REPLACE INTO `quest_db` VALUES(4021,0,0,0,0,0,0,0,'\"Interview with the Prince\"');
--- REPLACE INTO `quest_db` VALUES(4022,0,0,0,0,0,0,0,'\"Interview with the Prince\"');
--- REPLACE INTO `quest_db` VALUES(4023,0,0,0,0,0,0,0,'\"Interview with the Prince\"');
--- REPLACE INTO `quest_db` VALUES(4024,0,0,0,0,0,0,0,'\"Interview with the Prince\"');
--- REPLACE INTO `quest_db` VALUES(4025,0,0,0,0,0,0,0,'\"Interview with the Prince\"');
--- REPLACE INTO `quest_db` VALUES(4026,0,0,0,0,0,0,0,'\"Interview with the Prince\"');
--- REPLACE INTO `quest_db` VALUES(4027,0,0,0,0,0,0,0,'\"Interview with the Prince\"');
--- REPLACE INTO `quest_db` VALUES(4028,0,0,0,0,0,0,0,'\"The prince');
--- REPLACE INTO `quest_db` VALUES(4029,0,0,0,0,0,0,0,'\"The Girls Favor');
--- REPLACE INTO `quest_db` VALUES(4030,0,0,0,0,0,0,0,'\"The Story of Ahrum and Ernst');
--- REPLACE INTO `quest_db` VALUES(4031,0,0,0,0,0,0,0,'\"The Story of Ahrum and Ernst');
--- REPLACE INTO `quest_db` VALUES(4032,0,0,0,0,0,0,0,'\"Conspiracy of the two families');
--- REPLACE INTO `quest_db` VALUES(4033,0,0,0,0,0,0,0,'Death of Ahrum');
+/* REPLACE INTO `quest_db` VALUES(4015,0,0,0,0,0,0,0,'\"Becoming an Adventurer Appraiser\"');
+REPLACE INTO `quest_db` VALUES(4016,0,0,0,0,0,0,0,'\"Proof of Qualification\"');
+REPLACE INTO `quest_db` VALUES(4017,0,0,0,0,0,0,0,'\"Qualification Test\"');
+REPLACE INTO `quest_db` VALUES(4018,0,0,0,0,0,0,0,'\"Preparations for Meeting Princes\"');
+REPLACE INTO `quest_db` VALUES(4020,0,0,0,0,0,0,0,'\"Interview with the Prince\"');
+REPLACE INTO `quest_db` VALUES(4021,0,0,0,0,0,0,0,'\"Interview with the Prince\"');
+REPLACE INTO `quest_db` VALUES(4022,0,0,0,0,0,0,0,'\"Interview with the Prince\"');
+REPLACE INTO `quest_db` VALUES(4023,0,0,0,0,0,0,0,'\"Interview with the Prince\"');
+REPLACE INTO `quest_db` VALUES(4024,0,0,0,0,0,0,0,'\"Interview with the Prince\"');
+REPLACE INTO `quest_db` VALUES(4025,0,0,0,0,0,0,0,'\"Interview with the Prince\"');
+REPLACE INTO `quest_db` VALUES(4026,0,0,0,0,0,0,0,'\"Interview with the Prince\"');
+REPLACE INTO `quest_db` VALUES(4027,0,0,0,0,0,0,0,'\"Interview with the Prince\"');
+REPLACE INTO `quest_db` VALUES(4028,0,0,0,0,0,0,0,'\"The prince');
+REPLACE INTO `quest_db` VALUES(4029,0,0,0,0,0,0,0,'\"The Girls Favor');
+REPLACE INTO `quest_db` VALUES(4030,0,0,0,0,0,0,0,'\"The Story of Ahrum and Ernst');
+REPLACE INTO `quest_db` VALUES(4031,0,0,0,0,0,0,0,'\"The Story of Ahrum and Ernst');
+REPLACE INTO `quest_db` VALUES(4032,0,0,0,0,0,0,0,'\"Conspiracy of the two families');
+REPLACE INTO `quest_db` VALUES(4033,0,0,0,0,0,0,0,'Death of Ahrum'); */
 REPLACE INTO `quest_db` VALUES(4133,0,0,0,0,0,0,0,'Iara');
 REPLACE INTO `quest_db` VALUES(4134,0,0,0,0,0,0,0,'Iara');
 REPLACE INTO `quest_db` VALUES(4135,86400,0,0,0,0,0,0,'\"Iara\"');
@@ -23727,12 +23643,12 @@ REPLACE INTO `quest_db` VALUES(11019,0,0,0,0,0,0,0,'\"Explorando Juperos\"');
 REPLACE INTO `quest_db` VALUES(11020,0,0,0,0,0,0,0,'\"Explorando Juperos\"');
 REPLACE INTO `quest_db` VALUES(11021,0,0,0,0,0,0,0,'\"Explorando Juperos\"');
 REPLACE INTO `quest_db` VALUES(11022,0,0,0,0,0,0,0,'\"Explorando Juperos\"');
--- REPLACE INTO `quest_db` VALUES(11023,0,0,0,0,0,0,0,'\"Help Mr. Zabaroo - 1\"');
--- REPLACE INTO `quest_db` VALUES(11024,0,0,0,0,0,0,0,'\"Help Mr. Zabaroo - 2\"');
--- REPLACE INTO `quest_db` VALUES(11025,0,0,0,0,0,0,0,'\"Help Mr. Zabaroo - 3\"');
--- REPLACE INTO `quest_db` VALUES(11026,0,0,0,0,0,0,0,'\"Help Mr. Zabaroo - 4\"');
--- REPLACE INTO `quest_db` VALUES(11027,0,0,0,0,0,0,0,'\"Help Mr. Zabaroo - 5\"');
--- REPLACE INTO `quest_db` VALUES(11028,0,0,0,0,0,0,0,'\"Help Mr. Zabaroo - 6\"');
+/* REPLACE INTO `quest_db` VALUES(11023,0,0,0,0,0,0,0,'\"Velho com Dores - 1\"');
+REPLACE INTO `quest_db` VALUES(11024,0,0,0,0,0,0,0,'\"Velho com Dores - 2\"');
+REPLACE INTO `quest_db` VALUES(11025,0,0,0,0,0,0,0,'\"Velho com Dores - 3\"');
+REPLACE INTO `quest_db` VALUES(11026,0,0,0,0,0,0,0,'\"Velho com Dores - 4\"');
+REPLACE INTO `quest_db` VALUES(11027,0,0,0,0,0,0,0,'\"Velho com Dores- 5\"');
+REPLACE INTO `quest_db` VALUES(11028,0,0,0,0,0,0,0,'\"Velho com Dores - 6\"'); */
 REPLACE INTO `quest_db` VALUES(11029,0,0,0,0,0,0,0,'\"Indo para a Ilha da Tartaruga..\"');
 REPLACE INTO `quest_db` VALUES(11030,0,0,0,0,0,0,0,'\"Indo para a Ilha da Tartaruga..\"');
 REPLACE INTO `quest_db` VALUES(11031,0,0,0,0,0,0,0,'\"Indo para a Ilha da Tartaruga..\"');
@@ -23837,7 +23753,7 @@ REPLACE INTO `quest_db` VALUES(11142,0,0,0,0,0,0,0,'\"Som metálico temível\"');
 REPLACE INTO `quest_db` VALUES(11143,0,0,0,0,0,0,0,'\"Torre de Thanatos\"');
 REPLACE INTO `quest_db` VALUES(11144,0,0,0,0,0,0,0,'\"Gerente de Juno : clique\"');
 REPLACE INTO `quest_db` VALUES(11145,0,1622,33,0,0,0,0,'\"Eu quero começar um \"');
-REPLACE INTO `quest_db` VALUES(11146,0,0,0,0,0,0,0,'\"túnel de gelo...\"');
+REPLACE INTO `quest_db` VALUES(11146,0,0,0,0,0,0,0,'\"Túnel de gelo...\"');
 REPLACE INTO `quest_db` VALUES(11147,0,0,0,0,0,0,0,'\"Orvalho de Lared\"');
 REPLACE INTO `quest_db` VALUES(11148,0,0,0,0,0,0,0,'\"Rumo a Comodo com o Arco\"');
 REPLACE INTO `quest_db` VALUES(11149,0,0,0,0,0,0,0,'\"Basta derramar a água. Derrame! Derrame!...\"');
@@ -24580,11 +24496,6 @@ REPLACE INTO `quest_db` VALUES(60307,0,1713,100,0,0,0,0,'\"Caçando Dragão\"');
 REPLACE INTO `quest_db` VALUES(60308,0,1713,200,0,0,0,0,'\"Caçando Dragão\"');
 REPLACE INTO `quest_db` VALUES(60309,0,1716,100,0,0,0,0,'\"Caçando Dragão\"');
 REPLACE INTO `quest_db` VALUES(60310,0,1716,200,0,0,0,0,'\"Caçando Dragão\"');
-REPLACE INTO `quest_db` VALUES(60351,0,0,0,0,0,0,0,'\"Loira do Banheiro\"');
-REPLACE INTO `quest_db` VALUES(60352,0,0,0,0,0,0,0,'\"Loira do Banheiro\"');
-REPLACE INTO `quest_db` VALUES(60353,0,0,0,0,0,0,0,'\"Loira do Banheiro\"');
-REPLACE INTO `quest_db` VALUES(60354,0,0,0,0,0,0,0,'\"Loira do Banheiro\"');
-REPLACE INTO `quest_db` VALUES(60355,0,0,0,0,0,0,0,'\"Loira do Banheiro\"');
 
 --
 -- Estrutura da tabela `refine_db`
@@ -26534,42 +26445,6 @@ REPLACE INTO `skill_db` VALUES(10013,'0',0,4,'0','0x3','0',1,'0','yes',0,'0x10',
 REPLACE INTO `skill_db` VALUES(10014,'0',0,0,'0','0','0',1,'0','no',0,'0x10','0','none','0','GD_DEVELOPMENT','Desenvolvimento Permanente');
 
 --
--- Estrutura da tabela `skill_improvise_db`
---
-
-CREATE TABLE IF NOT EXISTS `skill_improvise_db` (
-  `SkillID` smallint unsigned NOT NULL,
-  `Rate` smallint unsigned NOT NULL DEFAULT '0',
-  PRIMARY KEY (`SkillID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-REPLACE INTO `skill_improvise_db` VALUES(10,5000);
-REPLACE INTO `skill_improvise_db` VALUES(11,5000);
-REPLACE INTO `skill_improvise_db` VALUES(12,5000);
-REPLACE INTO `skill_improvise_db` VALUES(13,5000);
-REPLACE INTO `skill_improvise_db` VALUES(14,5000);
-REPLACE INTO `skill_improvise_db` VALUES(15,5000);
-REPLACE INTO `skill_improvise_db` VALUES(16,5000);
-REPLACE INTO `skill_improvise_db` VALUES(17,5000);
-REPLACE INTO `skill_improvise_db` VALUES(18,5000);
-REPLACE INTO `skill_improvise_db` VALUES(19,5000);
-REPLACE INTO `skill_improvise_db` VALUES(20,5000);
-REPLACE INTO `skill_improvise_db` VALUES(21,5000);
-REPLACE INTO `skill_improvise_db` VALUES(80,2500);
-REPLACE INTO `skill_improvise_db` VALUES(81,2500);
-REPLACE INTO `skill_improvise_db` VALUES(83,2500);
-REPLACE INTO `skill_improvise_db` VALUES(84,2500);
-REPLACE INTO `skill_improvise_db` VALUES(85,2500);
-REPLACE INTO `skill_improvise_db` VALUES(86,2500);
-REPLACE INTO `skill_improvise_db` VALUES(87,2500);
-REPLACE INTO `skill_improvise_db` VALUES(88,2500);
-REPLACE INTO `skill_improvise_db` VALUES(89,2500);
-REPLACE INTO `skill_improvise_db` VALUES(90,2500);
-REPLACE INTO `skill_improvise_db` VALUES(91,2500);
-REPLACE INTO `skill_improvise_db` VALUES(92,2500);
-REPLACE INTO `skill_improvise_db` VALUES(93,2500);
-
---
 -- Estrutura da tabela `skill_nocast_db`
 --
 
@@ -26684,141 +26559,6 @@ REPLACE INTO `skill_nocast_db` VALUES(1013,2048);
 REPLACE INTO `skill_nocast_db` VALUES(2299,2048);
 REPLACE INTO `skill_nocast_db` VALUES(2419,2048);
 REPLACE INTO `skill_nocast_db` VALUES(2482,2048);
-
---
--- Estrutura da tabela `skill_reproduce_db`
---
-
-CREATE TABLE IF NOT EXISTS `skill_reproduce_db` (
-  `SkillID` smallint unsigned NOT NULL,
-  PRIMARY KEY (`SkillID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-REPLACE INTO `skill_reproduce_db` VALUES(5);
-REPLACE INTO `skill_reproduce_db` VALUES(7);
-REPLACE INTO `skill_reproduce_db` VALUES(11);
-REPLACE INTO `skill_reproduce_db` VALUES(13);
-REPLACE INTO `skill_reproduce_db` VALUES(14);
-REPLACE INTO `skill_reproduce_db` VALUES(15);
-REPLACE INTO `skill_reproduce_db` VALUES(17);
-REPLACE INTO `skill_reproduce_db` VALUES(18);
-REPLACE INTO `skill_reproduce_db` VALUES(19);
-REPLACE INTO `skill_reproduce_db` VALUES(20);
-REPLACE INTO `skill_reproduce_db` VALUES(21);
-REPLACE INTO `skill_reproduce_db` VALUES(24);
-REPLACE INTO `skill_reproduce_db` VALUES(28);
-REPLACE INTO `skill_reproduce_db` VALUES(42);
-REPLACE INTO `skill_reproduce_db` VALUES(46);
-REPLACE INTO `skill_reproduce_db` VALUES(47);
-REPLACE INTO `skill_reproduce_db` VALUES(52);
-REPLACE INTO `skill_reproduce_db` VALUES(54);
-REPLACE INTO `skill_reproduce_db` VALUES(62);
-REPLACE INTO `skill_reproduce_db` VALUES(68);
-REPLACE INTO `skill_reproduce_db` VALUES(69);
-REPLACE INTO `skill_reproduce_db` VALUES(70);
-REPLACE INTO `skill_reproduce_db` VALUES(77);
-REPLACE INTO `skill_reproduce_db` VALUES(79);
-REPLACE INTO `skill_reproduce_db` VALUES(80);
-REPLACE INTO `skill_reproduce_db` VALUES(81);
-REPLACE INTO `skill_reproduce_db` VALUES(83);
-REPLACE INTO `skill_reproduce_db` VALUES(84);
-REPLACE INTO `skill_reproduce_db` VALUES(85);
-REPLACE INTO `skill_reproduce_db` VALUES(86);
-REPLACE INTO `skill_reproduce_db` VALUES(88);
-REPLACE INTO `skill_reproduce_db` VALUES(89);
-REPLACE INTO `skill_reproduce_db` VALUES(90);
-REPLACE INTO `skill_reproduce_db` VALUES(91);
-REPLACE INTO `skill_reproduce_db` VALUES(116);
-REPLACE INTO `skill_reproduce_db` VALUES(121);
-REPLACE INTO `skill_reproduce_db` VALUES(122);
-REPLACE INTO `skill_reproduce_db` VALUES(123);
-REPLACE INTO `skill_reproduce_db` VALUES(141);
-REPLACE INTO `skill_reproduce_db` VALUES(148);
-REPLACE INTO `skill_reproduce_db` VALUES(152);
-REPLACE INTO `skill_reproduce_db` VALUES(156);
-REPLACE INTO `skill_reproduce_db` VALUES(212);
-REPLACE INTO `skill_reproduce_db` VALUES(229);
-REPLACE INTO `skill_reproduce_db` VALUES(230);
-REPLACE INTO `skill_reproduce_db` VALUES(250);
-REPLACE INTO `skill_reproduce_db` VALUES(251);
-REPLACE INTO `skill_reproduce_db` VALUES(253);
-REPLACE INTO `skill_reproduce_db` VALUES(254);
-REPLACE INTO `skill_reproduce_db` VALUES(263);
-REPLACE INTO `skill_reproduce_db` VALUES(266);
-REPLACE INTO `skill_reproduce_db` VALUES(267);
-REPLACE INTO `skill_reproduce_db` VALUES(271);
-REPLACE INTO `skill_reproduce_db` VALUES(272);
-REPLACE INTO `skill_reproduce_db` VALUES(337);
-REPLACE INTO `skill_reproduce_db` VALUES(421);
-REPLACE INTO `skill_reproduce_db` VALUES(526);
-REPLACE INTO `skill_reproduce_db` VALUES(527);
-REPLACE INTO `skill_reproduce_db` VALUES(528);
-REPLACE INTO `skill_reproduce_db` VALUES(529);
-REPLACE INTO `skill_reproduce_db` VALUES(531);
-REPLACE INTO `skill_reproduce_db` VALUES(534);
-REPLACE INTO `skill_reproduce_db` VALUES(536);
-REPLACE INTO `skill_reproduce_db` VALUES(537);
-REPLACE INTO `skill_reproduce_db` VALUES(539);
-REPLACE INTO `skill_reproduce_db` VALUES(540);
-REPLACE INTO `skill_reproduce_db` VALUES(541);
-REPLACE INTO `skill_reproduce_db` VALUES(542);
-REPLACE INTO `skill_reproduce_db` VALUES(1001);
-REPLACE INTO `skill_reproduce_db` VALUES(1004);
-REPLACE INTO `skill_reproduce_db` VALUES(1006);
-REPLACE INTO `skill_reproduce_db` VALUES(1009);
-REPLACE INTO `skill_reproduce_db` VALUES(1015);
-REPLACE INTO `skill_reproduce_db` VALUES(2002);
-REPLACE INTO `skill_reproduce_db` VALUES(2005);
-REPLACE INTO `skill_reproduce_db` VALUES(2006);
-REPLACE INTO `skill_reproduce_db` VALUES(2022);
-REPLACE INTO `skill_reproduce_db` VALUES(2023);
-REPLACE INTO `skill_reproduce_db` VALUES(2034);
-REPLACE INTO `skill_reproduce_db` VALUES(2038);
-REPLACE INTO `skill_reproduce_db` VALUES(2040);
-REPLACE INTO `skill_reproduce_db` VALUES(2051);
-REPLACE INTO `skill_reproduce_db` VALUES(2054);
-REPLACE INTO `skill_reproduce_db` VALUES(2202);
-REPLACE INTO `skill_reproduce_db` VALUES(2203);
-REPLACE INTO `skill_reproduce_db` VALUES(2204);
-REPLACE INTO `skill_reproduce_db` VALUES(2210);
-REPLACE INTO `skill_reproduce_db` VALUES(2211);
-REPLACE INTO `skill_reproduce_db` VALUES(2212);
-REPLACE INTO `skill_reproduce_db` VALUES(2213);
-REPLACE INTO `skill_reproduce_db` VALUES(2214);
-REPLACE INTO `skill_reproduce_db` VALUES(2216);
-REPLACE INTO `skill_reproduce_db` VALUES(2233);
-REPLACE INTO `skill_reproduce_db` VALUES(2236);
-REPLACE INTO `skill_reproduce_db` VALUES(2239);
-REPLACE INTO `skill_reproduce_db` VALUES(2253);
-REPLACE INTO `skill_reproduce_db` VALUES(2254);
-REPLACE INTO `skill_reproduce_db` VALUES(2284);
-REPLACE INTO `skill_reproduce_db` VALUES(2288);
-REPLACE INTO `skill_reproduce_db` VALUES(2304);
-REPLACE INTO `skill_reproduce_db` VALUES(2310);
-REPLACE INTO `skill_reproduce_db` VALUES(2315);
-REPLACE INTO `skill_reproduce_db` VALUES(2316);
-REPLACE INTO `skill_reproduce_db` VALUES(2320);
-REPLACE INTO `skill_reproduce_db` VALUES(2323);
-REPLACE INTO `skill_reproduce_db` VALUES(2326);
-REPLACE INTO `skill_reproduce_db` VALUES(2327);
-REPLACE INTO `skill_reproduce_db` VALUES(2328);
-REPLACE INTO `skill_reproduce_db` VALUES(2330);
-REPLACE INTO `skill_reproduce_db` VALUES(2332);
-REPLACE INTO `skill_reproduce_db` VALUES(2336);
-REPLACE INTO `skill_reproduce_db` VALUES(2337);
-REPLACE INTO `skill_reproduce_db` VALUES(2343);
-REPLACE INTO `skill_reproduce_db` VALUES(2344);
-REPLACE INTO `skill_reproduce_db` VALUES(2517);
-REPLACE INTO `skill_reproduce_db` VALUES(2518);
-REPLACE INTO `skill_reproduce_db` VALUES(2413);
-REPLACE INTO `skill_reproduce_db` VALUES(2414);
-REPLACE INTO `skill_reproduce_db` VALUES(2418);
-REPLACE INTO `skill_reproduce_db` VALUES(2479);
-REPLACE INTO `skill_reproduce_db` VALUES(2480);
-REPLACE INTO `skill_reproduce_db` VALUES(2481);
-REPLACE INTO `skill_reproduce_db` VALUES(2482);
-REPLACE INTO `skill_reproduce_db` VALUES(2483);
-REPLACE INTO `skill_reproduce_db` VALUES(2490);
 
 --
 -- Estrutura da tabela `skill_require_db`
@@ -32948,35 +32688,6 @@ REPLACE INTO `skill_unit_db` VALUES(10006,'0xc1',NULL,'2','0','-1','guild','0x04
 REPLACE INTO `skill_unit_db` VALUES(10007,'0xc2',NULL,'2','0','-1','guild','0x040');
 REPLACE INTO `skill_unit_db` VALUES(10008,'0xc3',NULL,'2','0','-1','guild','0x040');
 REPLACE INTO `skill_unit_db` VALUES(10009,'0xc4',NULL,'2','0','-1','guild','0x040');
-
---
--- Estrutura da tabela `spellbook_db`
---
-
-CREATE TABLE IF NOT EXISTS `spellbook_db` (
-  `SkillID` smallint unsigned NOT NULL,
-  `PreservePoints` tinyint NOT NULL,
-  `RequiredBook` smallint unsigned NOT NULL,
-  PRIMARY KEY (`SkillID`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
-REPLACE INTO `spellbook_db` VALUES(14,7,6190);
-REPLACE INTO `spellbook_db` VALUES(19,7,6189);
-REPLACE INTO `spellbook_db` VALUES(20,7,6191);
-REPLACE INTO `spellbook_db` VALUES(21,9,6197);
-REPLACE INTO `spellbook_db` VALUES(83,10,6194);
-REPLACE INTO `spellbook_db` VALUES(84,9,6198);
-REPLACE INTO `spellbook_db` VALUES(85,10,6193);
-REPLACE INTO `spellbook_db` VALUES(86,9,6199);
-REPLACE INTO `spellbook_db` VALUES(89,10,6192);
-REPLACE INTO `spellbook_db` VALUES(90,8,6201);
-REPLACE INTO `spellbook_db` VALUES(91,9,6200);
-REPLACE INTO `spellbook_db` VALUES(2210,8,6205);
-REPLACE INTO `spellbook_db` VALUES(2211,12,6204);
-REPLACE INTO `spellbook_db` VALUES(2213,22,6195);
-REPLACE INTO `spellbook_db` VALUES(2214,12,6203);
-REPLACE INTO `spellbook_db` VALUES(2216,12,6202);
-REPLACE INTO `spellbook_db` VALUES(2217,22,6196);
 
 --
 -- Estrutura da tabela `statpoint_db`
