@@ -79,7 +79,7 @@ int storage_fromsql(int account_id, struct storage_data *p)
 	p->storage_amount = i;
 	Sql_FreeResult(sql_handle);
 
-	ShowInfo("Carregamento de armazenamento completo na DB - id: %d (total: %d)\n", account_id, p->storage_amount);
+	ShowInfo(read_message("Source.char.storage_fromsql"), account_id, p->storage_amount);
 	return 1;
 }
 
@@ -87,7 +87,7 @@ int storage_fromsql(int account_id, struct storage_data *p)
 int guild_storage_tosql(int guild_id, struct guild_storage *p)
 {
 	memitemdata_to_sql(p->items, MAX_GUILD_STORAGE, guild_id, TABLE_GUILD_STORAGE);
-	ShowInfo("Armazenamento de cl%c salvando na DB - guild: %d\n", 198, guild_id);
+	ShowInfo(read_message("Source.char.storage_gtosql"), guild_id);
 	return 0;
 }
 
@@ -134,7 +134,7 @@ int guild_storage_fromsql(int guild_id, struct guild_storage *p)
 	p->storage_amount = i;
 	Sql_FreeResult(sql_handle);
 
-	ShowInfo("Carregamento de armazenamento de cl%c completo na DB - id: %d (total: %d)\n", 198, guild_id, p->storage_amount);
+	ShowInfo(read_message("Source.char.storage_gfromsql"), guild_id, p->storage_amount);
 	return 0;
 }
 
@@ -223,7 +223,7 @@ int mapif_parse_SaveGuildStorage(int fd)
 	len = RFIFOW(fd,2);
 
 	if(sizeof(struct guild_storage) != len - 12) {
-		ShowError("inter storage: data size error %d != %d\n", sizeof(struct guild_storage), len - 12);
+		ShowError(read_message("Source.char.storage_saveguildstorage"), sizeof(struct guild_storage), len - 12);
 	} else {
 		if(SQL_ERROR == Sql_Query(sql_handle, "SELECT `guild_id` FROM `%s` WHERE `guild_id`='%d'", guild_db, guild_id))
 			Sql_ShowDebug(sql_handle);

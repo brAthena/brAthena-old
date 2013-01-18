@@ -101,7 +101,7 @@ static int mail_fromsql(int char_id, struct mail_data *md)
 			md->unread++;
 	}
 
-	ShowInfo("Carregamento de correio completo na DB - id: %d (total: %d)\n", char_id, md->amount);
+	ShowInfo(read_message("Source.char.mail_fromsql"), char_id, md->amount);
 	return 1;
 }
 

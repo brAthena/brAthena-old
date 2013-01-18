@@ -107,7 +107,7 @@ int msg_config_read(const char *cfgName)
 	static int called = 1;
 
 	if((fp = fopen(cfgName, "r")) == NULL) {
-		ShowError("Mensagens de arquivo n%co encontrado: %s\n", 198, cfgName);
+		ShowError(read_message("Source.reuse.reuse_file_not_found"), cfgName);
 		return 1;
 	}
 
@@ -404,10 +404,10 @@ void geoip_readdb(void)
 	fstat(fileno(db), &bufa);
 	geoip_cache = (unsigned char *) malloc(sizeof(unsigned char) * bufa.st_size);
 	if(fread(geoip_cache, sizeof(unsigned char), bufa.st_size, db) != bufa.st_size) {
-		ShowError("geoip_cache leitura n%co leu todos os elementos. \n", 198);
+		ShowError(read_message("Source.char.inter_geoip_readdb_s1"));
 	}
 	fclose(db);
-	ShowStatus("Leitura de "CL_GREEN"GeoIP"CL_RESET" Finalizada.\n");
+	ShowStatus(read_message("Source.char.inter_geoip_readdb_s2"), CL_GREEN, CL_RESET);
 }
 /* [Dekamaster/Nightroad] */
 /* WHY NOT A DBMAP: There are millions of entries in GeoIP and it has its own algorithm to go quickly through them, a DBMap wouldn't be efficient */
@@ -481,10 +481,10 @@ void mapif_parse_accinfo(int fd)
 		if(SQL_ERROR == Sql_Query(sql_handle, "SELECT `account_id`,`name`,`class`,`base_level`,`job_level`,`online` FROM `char` WHERE `name` LIKE '%s' LIMIT 10", query_esq)
 		   || Sql_NumRows(sql_handle) == 0) {
 			if(Sql_NumRows(sql_handle) == 0) {
-				inter_to_fd(fd, u_fd, aid, "Nenhum resultado foi encontrado com seus crit�rios, '%s'",query);
+				inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s1"), query);
 			} else {
 				Sql_ShowDebug(sql_handle);
-				inter_to_fd(fd, u_fd, aid, "Ocorreu um erro, informe ao administrador.");
+				inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s2"));
 			}
 			Sql_FreeResult(sql_handle);
 			return;
@@ -494,7 +494,7 @@ void mapif_parse_accinfo(int fd)
 				Sql_GetData(sql_handle, 0, &data, NULL); account_id = atoi(data);
 				Sql_FreeResult(sql_handle);
 			} else {// more than one, listing... [Dekamaster/Nightroad]
-				inter_to_fd(fd, u_fd, aid, "Sua consulta retornou os seguintes resultados %d por favor seja mais espec�fico...",(int)Sql_NumRows(sql_handle));
+				inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s3"),(int)Sql_NumRows(sql_handle));
 				while(SQL_SUCCESS == Sql_NextRow(sql_handle)) {
 					int class_;
 					short base_level, job_level, online;
@@ -507,7 +507,7 @@ void mapif_parse_accinfo(int fd)
 					Sql_GetData(sql_handle, 4, &data, NULL); job_level = atoi(data);
 					Sql_GetData(sql_handle, 5, &data, NULL); online = atoi(data);
 
-					inter_to_fd(fd, u_fd, aid, "[AID: %d] %s | %s | Level: %d/%d | %s", account_id, name, job_name(class_), base_level, job_level, online?"Online":"Offline");
+					inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s4"), account_id, name, job_name(class_), base_level, job_level, online?"Online":"Offline");
 				}
 				Sql_FreeResult(sql_handle);
 				return;
@@ -523,9 +523,9 @@ void mapif_parse_accinfo(int fd)
 		if(SQL_ERROR == Sql_Query(sql_handle, "SELECT `userid`, `user_pass`, `email`, `last_ip`, `group_id`, `lastlogin`, `logincount`, `state` FROM `login` WHERE `account_id` = '%d' LIMIT 1", account_id)
 		   || Sql_NumRows(sql_handle) == 0) {
 			if(Sql_NumRows(sql_handle) == 0) {
-				inter_to_fd(fd, u_fd, aid,  "N�o foi encontrada nenhuma conta com ID '%d'.", account_id);
+				inter_to_fd(fd, u_fd, aid,  read_message("Source.char.inter_parse_accinfo_s5"), account_id);
 			} else {
-				inter_to_fd(fd, u_fd, aid, "Ocorreu um erro, informe ao administrador.");
+				inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s6"));
 				Sql_ShowDebug(sql_handle);
 			}
 		} else {
@@ -545,25 +545,25 @@ void mapif_parse_accinfo(int fd)
 		if(level == -1)
 			return;
 
-		inter_to_fd(fd, u_fd, aid, "-- Conta %d --", account_id);
-		inter_to_fd(fd, u_fd, aid, "Usu�rio: %s | Grupo de GM: %d | Estado: %d", userid, level, state);
+		inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s7"), account_id);
+		inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s8"), userid, level, state);
 
 		if(level < castergroup)  /* only show pass if your gm level is greater than the one you're searching for */
-			inter_to_fd(fd, u_fd, aid, "Senha: %s", user_pass);
+			inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s9"), user_pass);
 
-		inter_to_fd(fd, u_fd, aid, "Email da Conta: %s", email);
-		inter_to_fd(fd, u_fd, aid, "�ltimo ip: %s (%s)", last_ip, geoip_getcountry(str2ip(last_ip)));
-		inter_to_fd(fd, u_fd, aid, "Este usu�rio logou %d vezes, seu �ltimo login foi em %s", logincount, lastlogin);
-		inter_to_fd(fd, u_fd, aid, "-- Detalhes da Conta --");
+		inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s10"), email);
+		inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s11"), last_ip, geoip_getcountry(str2ip(last_ip)));
+		inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s12"), logincount, lastlogin);
+		inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s13"));
 
 
 		if(SQL_ERROR == Sql_Query(sql_handle, "SELECT `char_id`, `name`, `char_num`, `class`, `base_level`, `job_level`, `online` FROM `char` WHERE `account_id` = '%d' ORDER BY `char_num` LIMIT %d", account_id, MAX_CHARS)
 		   || Sql_NumRows(sql_handle) == 0) {
 
 			if(Sql_NumRows(sql_handle) == 0)
-				inter_to_fd(fd, u_fd, aid,"Esta conta n�o tem personagens.");
+				inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s14"));
 			else {
-				inter_to_fd(fd, u_fd, aid,"Erro na consulta do personagem, informe ao administrador.");
+				inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s15"));
 				Sql_ShowDebug(sql_handle);
 			}
 
@@ -581,7 +581,7 @@ void mapif_parse_accinfo(int fd)
 				Sql_GetData(sql_handle, 5, &data, NULL); job_level = atoi(data);
 				Sql_GetData(sql_handle, 6, &data, NULL); online = atoi(data);
 
-				inter_to_fd(fd, u_fd, aid, "[Slot/CID: %d/%d] %s | %s | N�vel: %d/%d | %s", char_num, char_id, name, job_name(class_), base_level, job_level, online?"On":"Off");
+				inter_to_fd(fd, u_fd, aid, read_message("Source.char.inter_parse_accinfo_s16"), char_num, char_id, name, job_name(class_), base_level, job_level, online?"On":"Off");
 			}
 		}
 		Sql_FreeResult(sql_handle);
@@ -615,10 +615,10 @@ int inter_accreg_tosql(int account_id, int char_id, struct accreg *reg, int type
 			char_id = 0;
 			break;
 		case 1: //Account2 Reg
-			ShowError("inter_accreg_tosql: Servidor de personagens nao deveria manusear valores de registro tipo 1 (##). Isso e trabalho do servidor de login!\n");
+			ShowError(read_message("Source.char.inter_accreg_tosql_s1"));
 			return 0;
 		default:
-			ShowError("inter_accreg_tosql:  Tipo invalido %d\n", type);
+			ShowError(read_message("Source.char.inter_accreg_tosql_s2"), type);
 			return 0;
 	}
 
@@ -679,10 +679,10 @@ int inter_accreg_fromsql(int account_id,int char_id, struct accreg *reg, int typ
 				Sql_ShowDebug(sql_handle);
 			break;
 		case 1: //account2 reg
-			ShowError("inter_accreg_fromsql: Servidor de personagens nao deveria manusear valores de registro tipo 1 (##). Isso e trabalho do servidor de login!\n");
+			ShowError(read_message("Source.char.inter_accreg_fromsql_s1"));
 			return 0;
 		default:
-			ShowError("inter_accreg_fromsql: Tipo invalido %d\n", type);
+			ShowError(read_message("Source.char.inter_accreg_fromsql_s2"), type);
 			return 0;
 	}
 	for(i = 0; i < MAX_REG_NUM && SQL_SUCCESS == Sql_NextRow(sql_handle); ++i) {
@@ -718,7 +718,7 @@ static int inter_config_read(const char *cfgName)
 
 	fp = fopen(cfgName, "r");
 	if(fp == NULL) {
-		ShowError("Arquivo n%co encontrado: %s\n", 198, cfgName);
+		ShowError(read_message("Source.reuse.reuse_file_not_found"), cfgName);
 		return 1;
 	}
 
@@ -754,7 +754,7 @@ static int inter_config_read(const char *cfgName)
 	}
 	fclose(fp);
 
-	ShowInfo("Carregamento de %s conclu%cdo.\n", cfgName, 214);
+	ShowInfo(read_message("Source.reuse.reuse_loadfile_ok"), cfgName);
 
 	return 0;
 }
@@ -786,7 +786,7 @@ int inter_init_sql(const char *file)
 
 	//DB connection initialized
 	sql_handle = Sql_Malloc();
-	ShowInfo("Conectando ao DB de personagens.... (Servidor de Personagens)\n");
+	ShowInfo(read_message("Source.char.inter_init_sql"));
 	if(SQL_ERROR == Sql_Connect(sql_handle, char_server_id, char_server_pw, char_server_ip, (uint16)char_server_port, char_server_db)) {
 		Sql_ShowDebug(sql_handle);
 		Sql_Free(sql_handle);
@@ -921,7 +921,7 @@ int mapif_account_reg_reply(int fd,int account_id,int char_id, int type)
 		}
 		WFIFOW(fd,2)=p;
 		if(p>= 5000)
-			ShowWarning("Muitos registros na conta %d:%d, nem todos os valores foram carregados.\n", account_id, char_id);
+			ShowWarning(read_message("Source.char.inter_account_reg"), account_id, char_id);
 	}
 	WFIFOSET(fd,WFIFOW(fd,2));
 	return 0;
@@ -969,7 +969,7 @@ int check_ttl_wisdata(void)
 		wis_db->foreach(wis_db, check_ttl_wisdata_sub, tick);
 		for(i = 0; i < wis_delnum; i++) {
 			struct WisData *wd = (struct WisData *)idb_get(wis_db, wis_dellist[i]);
-			ShowWarning("inter: wis data id=%d expirado : de %s para %s\n", wd->id, wd->src, wd->dst);
+			ShowWarning(read_message("Source.char.inter_checkttlwisdata"), wd->id, wd->src, wd->dst);
 			// removed. not send information after a timeout. Just no answer for the player
 			//mapif_wis_end(wd, 1); // flag: 0: success to send wisper, 1: target character is not loged in?, 2: ignored by target
 			idb_remove(wis_db, wd->id);
@@ -1005,10 +1005,10 @@ int mapif_parse_WisRequest(int fd)
 	}
 
 	if(RFIFOW(fd,2)-52 >= sizeof(wd->msg)) {
-		ShowWarning("inter: Tamanho da mensagem Wis muito grande.\n");
+		ShowWarning(read_message("Source.char.inter_parsewisrequest_s1"));
 		return 0;
 	} else if(RFIFOW(fd,2)-52 <= 0) {  // normaly, impossible, but who knows...
-		ShowError("inter: Mensagem Wis inexistente.\n");
+		ShowError(read_message("Source.char.inter_parsewisrequest_s2"));
 		return 0;
 	}
 
