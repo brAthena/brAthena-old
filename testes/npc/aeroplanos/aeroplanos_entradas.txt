@@ -48,7 +48,7 @@ izlude,204,75,3	script	Equipe do Aeroporto#Izlude	90,{
 		mes "taxa de embarque é de 1,200 Zenys.";
 		close;
 	}
-	if(countitem(7311) > 0)
+	if(countitem(7311))
 		delitem 7311,1;
 	else if(Zeny >= 1200)
 		set Zeny, Zeny - 1200;
@@ -81,7 +81,7 @@ airport,143,43,5	script	Equipe do Aeroporto#aeroporto1a::aeroporto1	90,{
 		mes "deseja embarcar no Dirigível?";
 		next;
 		if (select("Sim:Não") == 1) {
-			if (countitem(7311) > 0)
+			if (countitem(7311))
 				delitem 7311,1; // Bilhete para Aeroplano
 			else if (Zeny >= 1200)
         set Zeny, Zeny - 1200;
@@ -173,7 +173,7 @@ y_airport,143,43,5	script	Equipe do Aeroporto#juno	90,{
 		mes "deseja embarcar?";
 		next;
 		if (select("Sim:Não") == 1) {
-			if (countitem(7311) > 0)
+			if (countitem(7311))
 				delitem 7311,1; // Bilhete para Aeroplano
       else if (Zeny >= 1200)
 				set Zeny, Zeny - 1200;
