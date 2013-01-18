@@ -136,7 +136,7 @@ int msg_config_read(const char *cfgName)
 	static int called = 1;
 
 	if((fp = fopen(cfgName, "r")) == NULL) {
-		ShowError("Arquivo n%co encontrado: %s\n", 198, cfgName);
+		ShowError(read_message("Source.reuse.reuse_file_not_found"), cfgName);
 		return 1;
 	}
 
