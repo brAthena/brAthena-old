@@ -3482,6 +3482,23 @@ REPLACE INTO `item_combo_db` VALUES('13034:13035','{ bonus bMaxSP,20; bonus bMax
 REPLACE INTO `item_combo_db` VALUES('18507:18539','{ bonus bUseSPrate,-3; }');
 
 --
+-- Itens bRO
+--
+REPLACE INTO `item_combo_db` VALUES('18619:4139', '{ bonus bAgi,1; bonus bDex,1; bonus bInt,-1; }');
+REPLACE INTO `item_combo_db` VALUES('5782:2153', '{ bonus2 bSubRace,RC_Boss,5; bonus2 bSubRace,RC_NonBoss,5; bonus bDef,2; }');
+REPLACE INTO `item_combo_db` VALUES('5782:1407', '{ bonus2 bAddRace,RC_NonBoss,3; bonus2 bAddRace,RC_Boss,3; }');
+REPLACE INTO `item_combo_db` VALUES('5782:1408', '{ bonus2 bAddRace,RC_NonBoss,3; bonus2 bAddRace,RC_Boss,3; }');
+REPLACE INTO `item_combo_db` VALUES('5782:1409', '{ bonus2 bAddRace,RC_NonBoss,3; bonus2 bAddRace,RC_Boss,3; }');
+REPLACE INTO `item_combo_db` VALUES('5782:1219', '{ bonus2 bAddRace,RC_NonBoss,3; bonus2 bAddRace,RC_Boss,3; }');
+REPLACE INTO `item_combo_db` VALUES('5782:1220', '{ bonus2 bAddRace,RC_NonBoss,3; bonus2 bAddRace,RC_Boss,3; }');
+REPLACE INTO `item_combo_db` VALUES('5782:1221', '{ bonus2 bAddRace,RC_NonBoss,3; bonus2 bAddRace,RC_Boss,3; }');
+REPLACE INTO `item_combo_db` VALUES('2584:5579', '{ skill\"TF_DOUBLE\",1; if(getequiprefinerycnt(EQI_GARMENT) >= 4) skill\"TF_DOUBLE\",5; if(getequiprefinerycnt(EQI_GARMENT) >= 6 ) skill\"TF_DOUBLE\",10; }');
+REPLACE INTO `item_combo_db` VALUES('2881:2701', '{ bonus bMatk,20; }');
+REPLACE INTO `item_combo_db` VALUES('2881:2123', '{ bonus bCastrate,-15; }');
+REPLACE INTO `item_combo_db` VALUES('18507:18539', '{ bonus bUseSPrate,-3; }');
+REPLACE INTO `item_combo_db` VALUES('18529:5403', '{ bonus3 bAutoSpell,\"BS_GREED\",1,20; }');
+
+--
 -- Estrutura da tabela `item_db`
 --
 
@@ -9690,6 +9707,31 @@ REPLACE INTO `item_db` VALUES (2015,'Cajado__Aprimorado','Cajado  Aprimorado',4,
 REPLACE INTO `item_db` VALUES (1585,'Livro__Aprimorado','Livro  Aprimorado',4,10000,NULL,600,45,NULL,5,1,0x00410000,7,2,2,3,1,1,15,' bonus bMatk,20;',NULL,NULL);
 REPLACE INTO `item_db` VALUES (1491,'Lança__Aprimorada_de_duas_Mãos','Lança  Aprimorada de duas Mãos',4,10000,NULL,1500,105,NULL,1,1,0x00004082,7,2,34,3,1,1,5,NULL,NULL,NULL);
 REPLACE INTO `item_db` VALUES (1394,'Machado__Aprimorado_de_duas_Mãos','Machado  Aprimorado de duas Mãos',4,10000,NULL,2000,110,NULL,1,1,0x000444A0,7,2,34,3,1,1,7,NULL,NULL,NULL);
+-- RWC 2012
+REPLACE INTO `item_db` VALUES (4867,'MHP+3%','MaxHP+3%',6,20,NULL,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,16,NULL,NULL,NULL,NULL,'bonus bMaxHPrate,3;',NULL,NULL);
+REPLACE INTO `item_db` VALUES (4868,'MHP+4%','MaxHP+4%',6,20,NULL,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,16,NULL,NULL,NULL,NULL,'bonus bMaxHPrate,4;',NULL,NULL);
+REPLACE INTO `item_db` VALUES (4870,'MSP+25','MaxSP+25',6,20,NULL,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,16,NULL,NULL,NULL,NULL,'bonus bMaxSP,25;',NULL,NULL);
+REPLACE INTO `item_db` VALUES (4871,'MSP+75','MaxSP+75',6,20,NULL,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,16,NULL,NULL,NULL,NULL,'bonus bMaxSP,75;',NULL,NULL);
+REPLACE INTO `item_db` VALUES (1670,'Cajado_Memorável_do_RWC_2012','Cajado Memorável do RWC 2012',4,10,NULL,500,25,NULL,1,1,0x00818314,7,2,2,3,1,1,10,NULL,NULL,NULL);
+REPLACE INTO `item_db` VALUES (6665,'Aprimoramento_do_RWC_2012','Aprimoramento do RWC 2012',3,10,NULL,10,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+REPLACE INTO `item_db` VALUES (13092,'Adaga_Memorável_do_RWC_2012','Adaga Memorável do RWC 2012',4,10,NULL,650,50,NULL,1,1,0x02875EEF,7,2,2,3,1,1,1,NULL,NULL,NULL);
+REPLACE INTO `item_db` VALUES (14611,'Poção_Média_de_Defesa_Física_RWC','Poção Média de Defesa Física RWC',2,10,NULL,10,NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+REPLACE INTO `item_db` VALUES (14612,'Poção_Média_de_Defesa_Mágica_RWC','Poção Média de Defesa Mágica RWC',2,10,NULL,10,NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+REPLACE INTO `item_db` VALUES (14613,'Ovo_do_RWC_2012','Ovo do RWC 2012',2,10,NULL,10,NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+REPLACE INTO `item_db` VALUES (14614,'Poção_Especial_de_Defesa_do_RWC','Poção Especial de Defesa do RWC',2,10,NULL,10,NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+REPLACE INTO `item_db` VALUES (16026,'Maça_Memorável_do_RWC_2012','Maça Memorável do RWC 2012',4,10,NULL,800,100,NULL,1,1,0x0004C5B3,7,2,2,3,1,1,8,NULL,NULL,NULL);
+REPLACE INTO `item_db` VALUES (17262,'Caixa_de_Poções_de_Defesa_do_RWC','Caixa de Poções de Defesa do RWC',2,10,NULL,10,NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+REPLACE INTO `item_db` VALUES (18821,'Chapéu_de_Penas_Arco-íris','Chapéu de Penas Arco-íris',5,10,NULL,300,NULL,5,NULL,1,0xFFFFFFFF,7,2,256,NULL,1,1,934,NULL,NULL,NULL);
+REPLACE INTO `item_db` VALUES (19650,'Adorno_Arco-íris','Adorno Arco-íris',5,0,NULL,0,NULL,0,NULL,0,0xFFFFFFFF,7,2,1024,NULL,1,0,934,NULL,NULL,NULL);
+REPLACE INTO `item_db` VALUES (2966,'Anel_Memorável_RWC_2012','Anel Memorável RWC 2012',5,10,NULL,200,NULL,0,NULL,0,0xFFFFFFFF,7,2,136,NULL,1,0,0,NULL,NULL,NULL);
+REPLACE INTO `item_db` VALUES (2967,'Anel_Memorável_RWC_2012','Anel Memorável RWC 2012',5,10,NULL,200,NULL,0,NULL,0,0xFFFFFFFF,7,2,136,NULL,1,0,0,NULL,NULL,NULL);
+REPLACE INTO `item_db` VALUES (2968,'Colar_Memorável_RWC_2012','Colar Memorável RWC 2012',5,100,NULL,200,NULL,0,NULL,0,0xFFFFFFFF,7,2,136,NULL,20,0,0,NULL,NULL,NULL);
+REPLACE INTO `item_db` VALUES (2969,'Colar_Memorável_RWC_2012','Colar Memorável RWC 2012',5,100,NULL,200,NULL,0,NULL,0,0xFFFFFFFF,7,2,136,NULL,20,0,0,NULL,NULL,NULL);
+REPLACE INTO `item_db` VALUES (12887,'Asa_de_Mosca_Ilimitada','Asa de Mosca Ilimitada',2,10,NULL,10,NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+REPLACE INTO `item_db` VALUES (17251,'Cx._Asa_de_Mosca_Ilimitada_(3_dias)','Cx. Asa de Mosca Ilimitada (3 dias)',2,10,NULL,10,NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+REPLACE INTO `item_db` VALUES (17252,'Caixa_Memorável_do_RWC','Caixa Memorável do RWC',2,10,NULL,10,NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+REPLACE INTO `item_db` VALUES (17253,'Caixa_Memorável_do_Anel_RWC','Caixa Memorável do Anel RWC',2,10,NULL,10,NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+REPLACE INTO `item_db` VALUES (17254,'Caixa_Memorável_do_Colar_RWC','Caixa Memorável do Colar RWC',2,10,NULL,10,NULL,NULL,NULL,NULL,0xFFFFFFFF,7,2,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 
 --
 -- Estrutura da tabela `item_delay_db`
