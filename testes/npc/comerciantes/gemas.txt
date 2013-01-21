@@ -26,19 +26,19 @@
 
 payon,173,238,5	script	Jade#pay	754,{
 	if (checkweight(1201,1) == 0) {
-		mes "^3355FFEspere um pouco! Nesse momento, existem muitos itens com você. Por favor retorne após colocar alguns itens no Armazém da Kafra.^000000";
+		mes "^3355FFEspere um pouco! Nesse momento existem muitos itens com você. Por favor retorne após colocar alguns de seus itens no Armazém Kafra.^000000";
 		close;
 	}
 	mes "[Jade]";
 	mes "Traga para mim 2 Gemas da mesma cor, e eu vou trocá-las por Gemas de cores diferentes.";
 	next;
 	switch(select("Gemas Azuis para Vermelhas!:Gemas Vermelhas para Amarelas!:Gemas Amarelas para Azuis!")) {
-	case 1: callsub S_TradeGems,717,716;
-	case 2: callsub S_TradeGems,716,715;
-	case 3: callsub S_TradeGems,715,717;
+	case 1: callsub S_TrocaGemas,717,716;
+	case 2: callsub S_TrocaGemas,716,715;
+	case 3: callsub S_TrocaGemas,715,717;
 	}
 
-S_TradeGems:
+S_TrocaGemas:
 	if (countitem(getarg(0)) < 2) {
 		mes "[Jade]";
 		mes "Haha...!";
@@ -46,16 +46,15 @@ S_TradeGems:
 		mes "Eu não poderei fazer este serviço se você não me trouxer as 2 "+getitemname(getarg(0))+"s!";
 		close;
 	}
-	else {
-		set .@gems,countitem(getarg(0))/2;
+		set .@gemas,countitem(getarg(0))/2;
 		mes "[Jade]";
-		mes "Acredito que posso criar um total de " + .@gems + " " + getitemname(getarg(1)) + "s usando as "+getitemname(getarg(0))+"s que você tem no momento.";
+		mes "Acredito que posso criar um total de " + .@gemas + " " + getitemname(getarg(1)) + "s usando as "+getitemname(getarg(0))+"s que você tem no momento.";
 		mes "O que gostaria de fazer?";
 		next;
 		switch(select("Me dê quantas puder.:Quero digitar quantas preciso.:Deixa pra lá.")) {
 		case 1:
-			delitem getarg(0),.@gems * 2;
-			getitem getarg(1),.@gems;
+			delitem getarg(0),.@gemas * 2;
+			getitem getarg(1),.@gemas;
 			mes "[Jade]";
 			mes "Então aqui está!";
 			mes "Sinta-se livre para voltar quando quiser.";
@@ -86,7 +85,7 @@ S_TradeGems:
 				}
 			}
 
-			if (.@gems > .@input) {
+			if (.@gemas > .@input) {
 				delitem getarg(0),.@input * 2;
 				getitem getarg(1),.@input;
 				mes "[Jade]";
@@ -102,5 +101,4 @@ S_TradeGems:
 			mes "Volte quando quiser.";
 			close;
 		}
-	}
 }

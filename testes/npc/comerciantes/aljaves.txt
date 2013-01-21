@@ -25,13 +25,7 @@
 //   \________________________________________________________/
 
 payon_in01,5,134,5	script	Inventor Jaax	89,{
-	if (checkweight(1201,1) == 0) {
-		mes "[Inventor Jaax]";
-		mes "Ei, você está carregando muitas coisas.";
-		mes "Por que você não guarda suas coisas no Armazém da Kafra? Podemos conversar após você ter feito isso, certo?";
-		close;
-	}
-	if ((MaxWeight-Weight) < 2000) {
+	if (checkweight(1201,1) == 0 || (MaxWeight-Weight) < 2000) {
 		mes "[Inventor Jaax]";
 		mes "Ei, você está carregando muitas coisas.";
 		mes "Por que você não guarda suas coisas no Armazém da Kafra? Podemos conversar após você ter feito isso, certo?";
@@ -119,8 +113,8 @@ S_BuyQuiver:
 				mes "Aqui está!";
 				mes "Apenas relembrando, ^FF0000você não poderá utilizar os Aljaves caso seu peso seja maior que 90% do peso máximo^000000.";
 				set zeny,zeny-500;
-				delitem getarg(0),500; //Flecha
-				getitem getarg(1),1; //Aljave
+				delitem getarg(0),500; // Flecha
+				getitem getarg(1),1; // Aljave
 				next;
 				mes "[Inventor Jaax]";
 				mes "Então...";
