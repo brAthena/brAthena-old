@@ -106,7 +106,7 @@ int Sql_Connect(Sql *self, const char *user, const char *passwd, const char *hos
 
 	self->keepalive = Sql_P_Keepalive(self);
 	if(self->keepalive == INVALID_TIMER) {
-		ShowSQL("Failed to establish keepalive for DB connection!\n");
+		ShowSQL(read_message("Source.common.sql_keepalive"));
 		return SQL_ERROR;
 	}
 
@@ -141,14 +141,14 @@ int Sql_GetColumnNames(Sql *self, const char *table, char *out_buf, size_t buf_l
 	size_t len;
 	size_t off = 0;
 
-	if(self == NULL || SQL_ERROR == Sql_Query(self, "EXPLAIN `%s`", table))
+	if(self == NULL || SQL_ERROR == Sql_Query(self, (read_message("Source.common.sql_getcolumnames")), table))
 		return SQL_ERROR;
 
 	out_buf[off] = '\0';
 	while(SQL_SUCCESS == Sql_NextRow(self) && SQL_SUCCESS == Sql_GetData(self, 0, &data, &len)) {
 		len = strnlen(data, len);
 		if(off + len + 2 > buf_len) {
-			ShowDebug("Sql_GetColumns: output buffer is too small\n");
+			ShowDebug(read_message("Source.common.sql_getcolumnames2"));
 			*out_buf = '\0';
 			return SQL_ERROR;
 		}
@@ -189,7 +189,7 @@ int Sql_Ping(Sql *self)
 static int Sql_P_KeepaliveTimer(int tid, unsigned int tick, int id, intptr_t data)
 {
 	Sql *self = (Sql *)data;
-	ShowInfo("Pinging SQL server to keep connection alive...\n");
+	ShowInfo(read_message("Source.common.sql_keepalivetimer"));
 	Sql_Ping(self);
 	return 0;
 }
@@ -268,12 +268,12 @@ int Sql_QueryV(Sql *self, const char *query, va_list args)
 	StringBuf_Clear(&self->buf);
 	StringBuf_Vprintf(&self->buf, query, args);
 	if(mysql_real_query(&self->handle, StringBuf_Value(&self->buf), (unsigned long)StringBuf_Length(&self->buf))) {
-		ShowSQL("DB error - %s\n", mysql_error(&self->handle));
+		ShowSQL(read_message("Source.reuse.reuse_sql_queryv"), mysql_error(&self->handle));
 		return SQL_ERROR;
 	}
 	self->result = mysql_store_result(&self->handle);
 	if(mysql_errno(&self->handle) != 0) {
-		ShowSQL("DB error - %s\n", mysql_error(&self->handle));
+		ShowSQL(read_message("Source.reuse.reuse_sql_queryv"), mysql_error(&self->handle));
 		return SQL_ERROR;
 	}
 	return SQL_SUCCESS;
@@ -291,12 +291,12 @@ int Sql_QueryStr(Sql *self, const char *query)
 	StringBuf_Clear(&self->buf);
 	StringBuf_AppendStr(&self->buf, query);
 	if(mysql_real_query(&self->handle, StringBuf_Value(&self->buf), (unsigned long)StringBuf_Length(&self->buf))) {
-		ShowSQL("DB error - %s\n", mysql_error(&self->handle));
+		ShowSQL(read_message("Source.reuse.reuse_sql_queryv"), mysql_error(&self->handle));
 		return SQL_ERROR;
 	}
 	self->result = mysql_store_result(&self->handle);
 	if(mysql_errno(&self->handle) != 0) {
-		ShowSQL("DB error - %s\n", mysql_error(&self->handle));
+		ShowSQL(read_message("Source.reuse.reuse_sql_queryv"), mysql_error(&self->handle));
 		return SQL_ERROR;
 	}
 	return SQL_SUCCESS;
@@ -389,11 +389,11 @@ void Sql_FreeResult(Sql *self)
 void Sql_ShowDebug_(Sql *self, const char *debug_file, const unsigned long debug_line)
 {
 	if(self == NULL)
-		ShowDebug("at %s:%lu - self is NULL\n", debug_file, debug_line);
+		ShowDebug(read_message("Source.reuse.reuse_sql_showdebug"), debug_file, debug_line);
 	else if(StringBuf_Length(&self->buf) > 0)
-		ShowDebug("at %s:%lu - %s\n", debug_file, debug_line, StringBuf_Value(&self->buf));
+		ShowDebug(read_message("Source.reuse.reuse_sql_showdebug2"), debug_file, debug_line, StringBuf_Value(&self->buf));
 	else
-		ShowDebug("at %s:%lu\n", debug_file, debug_line);
+		ShowDebug(read_message("Source.reuse.reuse_sql_showdebug3"), debug_file, debug_line);
 }
 
 
@@ -428,7 +428,7 @@ static enum enum_field_types Sql_P_SizeToMysqlIntType(int sz)
 		case 4: return MYSQL_TYPE_LONG;
 		case 8: return MYSQL_TYPE_LONGLONG;
 		default:
-			ShowDebug("SizeToMysqlIntType: unsupported size (%d)\n", sz);
+			ShowDebug(read_message("Source.common.mysql_types"), sz);
 			return MYSQL_TYPE_NULL;
 	}
 }
@@ -497,7 +497,7 @@ static int Sql_P_BindSqlDataType(MYSQL_BIND *bind, enum SqlDataType buffer_type,
 		case SQLDT_BLOB: bind->buffer_type = MYSQL_TYPE_BLOB;
 			break;
 		default:
-			ShowDebug("Sql_P_BindSqlDataType: unsupported buffer type (%d)\n", buffer_type);
+			ShowDebug(read_message("Source.common.bindsqldatatype"), buffer_type);
 			return SQL_ERROR;
 	}
 	bind->buffer = buffer;
@@ -514,11 +514,11 @@ static int Sql_P_BindSqlDataType(MYSQL_BIND *bind, enum SqlDataType buffer_type,
 /// @private
 static void Sql_P_ShowDebugMysqlFieldInfo(const char *prefix, enum enum_field_types type, int is_unsigned, unsigned long length, const char *length_postfix)
 {
-	const char *sign = (is_unsigned ? "UNSIGNED " : "");
+	const char *sign = (is_unsigned ? (read_message("Source.common.signed ")) : "");
 	const char *type_string;
 	switch(type) {
 		default:
-			ShowDebug("%stype=%s%u, length=%d\n", prefix, sign, type, length);
+			ShowDebug(read_message("Source.common.signed_msg"), prefix, sign, type, length);
 			return;
 #define SHOW_DEBUG_OF(x) case x: type_string = #x; break
 			SHOW_DEBUG_OF(MYSQL_TYPE_TINY);
@@ -542,7 +542,7 @@ static void Sql_P_ShowDebugMysqlFieldInfo(const char *prefix, enum enum_field_ty
 			SHOW_DEBUG_OF(MYSQL_TYPE_NULL);
 #undef SHOW_DEBUG_TYPE_OF
 	}
-	ShowDebug("%stype=%s%s, length=%d%s\n", prefix, sign, type_string, length, length_postfix);
+	ShowDebug(read_message("Source.common.signed_msg2"), prefix, sign, type_string, length, length_postfix);
 }
 
 
@@ -558,8 +558,8 @@ static void SqlStmt_P_ShowDebugTruncatedColumn(SqlStmt *self, size_t i)
 
 	meta = mysql_stmt_result_metadata(self->stmt);
 	field = mysql_fetch_field_direct(meta, (unsigned int)i);
-	ShowSQL("DB error - data of field '%s' was truncated.\n", field->name);
-	ShowDebug("column - %lu\n", (unsigned long)i);
+	ShowSQL(read_message("Source.common.show_sql"), field->name);
+	ShowDebug(read_message("Source.common.show_sql_debug"), (unsigned long)i);
 	Sql_P_ShowDebugMysqlFieldInfo("data   - ", field->type, field->flags&UNSIGNED_FLAG, self->column_lengths[i].length, "");
 	column = &self->columns[i];
 	if(column->buffer_type == MYSQL_TYPE_STRING)
@@ -582,7 +582,7 @@ SqlStmt *SqlStmt_Malloc(Sql *sql)
 
 	stmt = mysql_stmt_init(&sql->handle);
 	if(stmt == NULL) {
-		ShowSQL("DB error - %s\n", mysql_error(&sql->handle));
+		ShowSQL(read_message("Source.reuse.reuse_sql_queryv"), mysql_error(&sql->handle));
 		return NULL;
 	}
 	CREATE(self, SqlStmt, 1);
@@ -626,7 +626,7 @@ int SqlStmt_PrepareV(SqlStmt *self, const char *query, va_list args)
 	StringBuf_Clear(&self->buf);
 	StringBuf_Vprintf(&self->buf, query, args);
 	if(mysql_stmt_prepare(self->stmt, StringBuf_Value(&self->buf), (unsigned long)StringBuf_Length(&self->buf))) {
-		ShowSQL("DB error - %s\n", mysql_stmt_error(self->stmt));
+		ShowSQL(read_message("Source.reuse.reuse_sql_queryv"), mysql_stmt_error(self->stmt));
 		return SQL_ERROR;
 	}
 	self->bind_params = false;
@@ -646,7 +646,7 @@ int SqlStmt_PrepareStr(SqlStmt *self, const char *query)
 	StringBuf_Clear(&self->buf);
 	StringBuf_AppendStr(&self->buf, query);
 	if(mysql_stmt_prepare(self->stmt, StringBuf_Value(&self->buf), (unsigned long)StringBuf_Length(&self->buf))) {
-		ShowSQL("DB error - %s\n", mysql_stmt_error(self->stmt));
+		ShowSQL(read_message("Source.reuse.reuse_sql_queryv"), mysql_stmt_error(self->stmt));
 		return SQL_ERROR;
 	}
 	self->bind_params = false;
@@ -705,12 +705,12 @@ int SqlStmt_Execute(SqlStmt *self)
 	SqlStmt_FreeResult(self);
 	if((self->bind_params && mysql_stmt_bind_param(self->stmt, self->params)) ||
 	   mysql_stmt_execute(self->stmt)) {
-		ShowSQL("DB error - %s\n", mysql_stmt_error(self->stmt));
+		ShowSQL(read_message("Source.reuse.reuse_sql_queryv"), mysql_stmt_error(self->stmt));
 		return SQL_ERROR;
 	}
 	self->bind_columns = false;
 	if(mysql_stmt_store_result(self->stmt)) { // store all the data
-		ShowSQL("DB error - %s\n", mysql_stmt_error(self->stmt));
+		ShowSQL(read_message("Source.reuse.reuse_sql_queryv"), mysql_stmt_error(self->stmt));
 		return SQL_ERROR;
 	}
 
@@ -749,7 +749,7 @@ int SqlStmt_BindColumn(SqlStmt *self, size_t idx, enum SqlDataType buffer_type, 
 
 	if(buffer_type == SQLDT_STRING || buffer_type == SQLDT_ENUM) {
 		if(buffer_len < 1) {
-			ShowDebug("SqlStmt_BindColumn: buffer_len(%d) is too small, no room for the nul-terminator\n", buffer_len);
+			ShowDebug(read_message("Source.common.bindcolumn"), buffer_len);
 			return SQL_ERROR;
 		}
 		--buffer_len;// nul-terminator
@@ -819,7 +819,7 @@ int SqlStmt_NextRow(SqlStmt *self)
 		my_bool truncated;
 
 		if(!self->bind_columns) {
-			ShowSQL("DB error - data truncated (unknown source, columns are not bound)\n");
+			ShowSQL(read_message("Source.common.sql_nextrow"));
 			return SQL_ERROR;
 		}
 
@@ -836,12 +836,12 @@ int SqlStmt_NextRow(SqlStmt *self)
 				return SQL_ERROR;
 			}
 		}
-		ShowSQL("DB error - data truncated (unknown source)\n");
+		ShowSQL(read_message("Source.common.sql_nextrows"));
 		return SQL_ERROR;
 	}
 #endif
 	if(err) {
-		ShowSQL("DB error - %s\n", mysql_stmt_error(self->stmt));
+		ShowSQL(read_message("Source.reuse.reuse_sql_queryv"), mysql_stmt_error(self->stmt));
 		return SQL_ERROR;
 	}
 
@@ -891,11 +891,11 @@ void SqlStmt_FreeResult(SqlStmt *self)
 void SqlStmt_ShowDebug_(SqlStmt *self, const char *debug_file, const unsigned long debug_line)
 {
 	if(self == NULL)
-		ShowDebug("at %s:%lu -  self is NULL\n", debug_file, debug_line);
+		ShowDebug(read_message("Source.reuse.reuse_sql_showdebug"), debug_file, debug_line);
 	else if(StringBuf_Length(&self->buf) > 0)
-		ShowDebug("at %s:%lu - %s\n", debug_file, debug_line, StringBuf_Value(&self->buf));
+		ShowDebug(read_message("Source.reuse.reuse_sql_showdebug2"), debug_file, debug_line, StringBuf_Value(&self->buf));
 	else
-		ShowDebug("at %s:%lu\n", debug_file, debug_line);
+		ShowDebug(read_message("Source.reuse.reuse_sql_showdebug3"), debug_file, debug_line);
 }
 
 

@@ -80,12 +80,12 @@ static void nullpo_info_core(const char *file, int line, const char *func,
 		file = "??";
 
 	func =
-	    func == NULL    ? "unknown":
-	    func[0] == '\0' ? "unknown":
+	    func == NULL    ? (read_message("svn_version_mes3")):
+	    func[0] == '\0' ? (read_message("svn_version_mes3")):
 	    func;
 
 	ShowMessage("--- nullpo info --------------------------------------------\n");
-	ShowMessage("%s:%d: in func `%s'\n", file, line, func);
+	ShowMessage(read_message("Source.common.nullpo_info_core"), file, line, func);
 	if(fmt != NULL) {
 		if(fmt[0] != '\0') {
 			vprintf(fmt, ap);

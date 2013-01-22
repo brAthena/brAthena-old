@@ -67,14 +67,14 @@ void netbuffer_init()
 
 	conf = raconf_parse("conf/network.conf");
 	if(conf == NULL) {
-		ShowFatalError("Failed to Parse required Configuration (conf/network.conf)");
+		ShowFatalError(read_message("Source.common.net_buffer_init"));
 		exit(EXIT_FAILURE);
 	}
 
 	// Get Values from config file
 	l_nPools = (sysint)raconf_getintEx(conf,  localsection,  "netbuffer", "num", 0);
 	if(l_nPools == 0) {
-		ShowFatalError("Netbuffer (network.conf) failure - requires at least 1 Pool.\n");
+		ShowFatalError(read_message("Source.common.net_buffer_init2"));
 		exit(EXIT_FAILURE);
 	}
 
@@ -90,7 +90,7 @@ void netbuffer_init()
 		sprintf(key, "pool_%u_size", (uint32)i+1);
 		l_poolElemSize[i] = (sysint)raconf_getintEx(conf, localsection, "netbuffer", key, 4096);
 		if(l_poolElemSize[i] < 32) {
-			ShowWarning("Netbuffer (network.conf) failure - minimum allowed buffer size is 32 byte) - fixed.\n");
+			ShowWarning(read_message("Source.common.net_buffer_init3"));
 			l_poolElemSize[i] = 32;
 		}
 
@@ -104,14 +104,14 @@ void netbuffer_init()
 		sprintf(key, "Netbuffer %u", (uint32)l_poolElemSize[i]); // name.
 
 		// Info
-		ShowInfo("NetBuffer: Creating Pool %u (Prealloc: %u, Realloc Step: %u) - %0.2f MiB\n", l_poolElemSize[i], num_prealloc, num_realloc, (float)((sizeof(struct netbuf) + l_poolElemSize[i] - 32)* num_prealloc)/1024.0f/1024.0f);
+		ShowInfo(read_message("Source.net_buffer_init4"), l_poolElemSize[i], num_prealloc, num_realloc, (float)((sizeof(struct netbuf) + l_poolElemSize[i] - 32)* num_prealloc)/1024.0f/1024.0f);
 
 		//
 		// Size Calculation:
 		//  struct netbuf  +  requested buffer size - 32 (because the struct already contains 32 byte buffer space at the end of struct)
 		l_pool[i] = mempool_create(key, (sizeof(struct netbuf) + l_poolElemSize[i] - 32),  num_prealloc,  num_realloc, NULL, NULL);
 		if(l_pool[i] == NULL) {
-			ShowFatalError("Netbuffer: cannot create Pool for %u byte buffers.\n", l_poolElemSize[i]);
+			ShowFatalError(read_message("Source.net_buffer_init5"), l_poolElemSize[i]);
 			// @leak: clean everything :D
 			exit(EXIT_FAILURE);
 		}
@@ -133,13 +133,13 @@ void netbuffer_final()
 		for(i = 0; i < l_nPools; i++) {
 			mempool_stats stats = mempool_get_stats(l_pool[i]);
 
-			ShowInfo("Netbuffer: Freeing Pool %u (Peak Usage: %u, Realloc Events: %u)\n", l_poolElemSize[i], stats.peak_nodes_used, stats.num_realloc_events);
+			ShowInfo(read_message("Source.net_buffer_final"), l_poolElemSize[i], stats.peak_nodes_used, stats.num_realloc_events);
 
 			mempool_destroy(l_pool[i]);
 		}
 
 		if(l_nEmergencyAllocations > 0) {
-			ShowWarning("Netbuffer: did %u Emergency Allocations, please tune your network.conf!\n", l_nEmergencyAllocations);
+			ShowWarning(read_message("Source.net_buffer-final2"), l_nEmergencyAllocations);
 			l_nEmergencyAllocations = 0;
 		}
 
@@ -171,8 +171,8 @@ netbuf netbuffer_get(sysint sz)
 
 	// No Bufferpool found that mets there quirements?.. (thats bad..)
 	if(nb == NULL) {
-		ShowWarning("Netbuffer: get(%u): => no appropriate pool found - emergency allocation required.\n", sz);
-		ShowWarning("Please reconfigure your network.conf!");
+		ShowWarning(read_message("Source.netbuffer_get"), sz);
+		ShowWarning(read_message("Source.netbuffer_get2"));
 
 		InterlockedIncrement(&l_nEmergencyAllocations);
 

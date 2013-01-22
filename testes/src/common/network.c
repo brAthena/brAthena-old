@@ -130,7 +130,7 @@ void network_do()
 					continue; // ..
 				}
 			} else {
-				ShowError("network_do: fd #%u has no onRecv proc set. - disconnecting\n", ev->fd);
+				ShowError(read_message("Source.common.network_do"), ev->fd);
 				network_disconnect(ev->fd);
 				continue;
 			}
@@ -145,7 +145,7 @@ void network_do()
 					continue;
 				}
 			} else {
-				ShowError("network_do: fd #%u has no onSend proc set. - disconnecting\n", ev->fd);
+				ShowError(read_message("Source.common.network_do2"), ev->fd);
 				network_disconnect(ev->fd);
 				continue;
 			}
@@ -207,7 +207,7 @@ static bool _network_accept(int32 fd)
 
 			// Otherwis .. we have serious problems :( seems tahat our listner has gone away..
 			// @TODO handle this ..
-			ShowError("_network_accept: accept() returned error. closing listener. (errno: %u / %s)\n", errno, strerror(errno));
+			ShowError(read_message("Source.common.network_accept"), errno, strerror(errno));
 
 			return false; // will call disconnect after return.
 			//break;
@@ -215,7 +215,7 @@ static bool _network_accept(int32 fd)
 
 #ifndef HAVE_ACCEPT4 // no accept4 means, we have to set nonblock by ourself. ..
 		if(_setnonblock(newfd) == false) {
-			ShowError("_network_accept: failed to set newly accepted connection nonblocking (errno: %u / %s). - disconnecting.\n", errno, strerror(errno));
+			ShowError(read_message("Source.common.network_accept2"), errno, strerror(errno));
 			close(newfd);
 			continue;
 		}
@@ -223,7 +223,7 @@ static bool _network_accept(int32 fd)
 
 		// Check connection limits.
 		if(newfd >= MAXCONN) {
-			ShowError("_network_accept: failed to accept connection - MAXCONN (%u) exceeded.\n", MAXCONN);
+			ShowError(read_message("network_accept3"), MAXCONN);
 			close(newfd);
 			continue; // we have to loop over the events (and disconnect them too ..) but otherwise we would leak event notifications.
 		}
@@ -239,7 +239,7 @@ static bool _network_accept(int32 fd)
 
 		// Register the new connection @ EVDP
 		if(evdp_addclient(newfd, &s->evdp_data) == false) {
-			ShowError("_network_accept: failed to accept connection - event subsystem returned an error.\n");
+			ShowError(read_message("Source.common.network_accept3"));
 			close(newfd);
 			s->type = NST_FREE;
 		}
@@ -336,7 +336,7 @@ int32 network_addlistener(bool v6,  const char *addr,  uint16 port)
 
 #if !defined(ENABLE_IPV6)
 	if(v6 == true) {
-		ShowError("network_addlistener(%c, '%s', %u):  this release has no IPV6 support.\n", (v6==true?'t':'f'),  addr, port);
+		ShowError(read_message("Source.common.network_addlistener"), (v6==true?'t':'f'),  addr, port);
 		return -1;
 	}
 #endif
@@ -351,13 +351,13 @@ int32 network_addlistener(bool v6,  const char *addr,  uint16 port)
 
 	// Error?
 	if(fd == -1) {
-		ShowError("network_addlistener(%c, '%s', %u):  socket() failed (errno: %u / %s)\n", (v6==true?'t':'f'),  addr, port,    errno, strerror(errno));
+		ShowError(read_message("Source.common.network_addlistener2"), (v6==true?'t':'f'),  addr, port,    errno, strerror(errno));
 		return -1;
 	}
 
 	// Too many connections?
 	if(fd >= MAXCONN) {
-		ShowError("network_addlistener(%c, '%s', %u):  cannot create listener, exceeds more than supported connections (%u).\n", (v6==true?'t':'f'),  addr, port, MAXCONN);
+		ShowError(read_message("Source.common.network_addlistener3"), (v6==true?'t':'f'),  addr, port, MAXCONN);
 		close(fd);
 		return -1;
 	}
@@ -365,7 +365,7 @@ int32 network_addlistener(bool v6,  const char *addr,  uint16 port)
 
 	s = &g_Session[fd];
 	if(s->type != NST_FREE) { // additional checks.. :)
-		ShowError("network_addlistener(%c, '%s', %u): failed, got fd #%u which is already in use in local session table?!\n", (v6==true?'t':'f'),  addr, port, fd);
+		ShowError(read_message("Source.common.network_addlistener4"), (v6==true?'t':'f'),  addr, port, fd);
 		close(fd);
 		return -1;
 	}
@@ -378,7 +378,7 @@ int32 network_addlistener(bool v6,  const char *addr,  uint16 port)
 		s->addr.v6.sin6_family = AF_INET6;
 		s->addr.v6.sin6_port = htons(port);
 		if(inet_pton(AF_INET6, addr, &s->addr.v6.sin6_addr) != 1) {
-			ShowError("network_addlistener(%c, '%s', %u): failed to parse the given IPV6 address.\n", (v6==true?'t':'f'),  addr, port);
+			ShowError(read_message("Source.common.network_addlistener5"), (v6==true?'t':'f'),  addr, port);
 			close(fd);
 			return -1;
 		}
@@ -405,14 +405,14 @@ int32 network_addlistener(bool v6,  const char *addr,  uint16 port)
 #ifdef ENABLE_IPV6
 	if(v6 == true) {
 		if(bind(fd, (struct sockaddr *)&s->addr.v6,  sizeof(s->addr.v6)) == -1) {
-			ShowError("network_addlistener(%c, '%s', %u): bind failed (errno: %u / %s)\n", (v6==true?'t':'f'),  addr, port, errno, strerror(errno));
+			ShowError(read_message("Source.common.add_listener6"), (v6==true?'t':'f'),  addr, port, errno, strerror(errno));
 			close(fd);
 			return -1;
 		}
 	} else {
 #endif
 		if(bind(fd, (struct sockaddr *)&s->addr.v4,  sizeof(s->addr.v4)) == -1) {
-			ShowError("network_addlistener(%c, '%s', %u): bind failed (errno: %u / %s)\n", (v6==true?'t':'f'),  addr, port, errno, strerror(errno));
+			ShowError(read_message("Source.common.add_listener6"), (v6==true?'t':'f'),  addr, port, errno, strerror(errno));
 			close(fd);
 			return -1;
 		}
@@ -421,7 +421,7 @@ int32 network_addlistener(bool v6,  const char *addr,  uint16 port)
 #endif
 
 	if(listen(fd, l_ListenBacklog) == -1) {
-		ShowError("network_addlistener(%c, '%s', %u): listen failed (errno: %u / %s)\n", (v6==true?'t':'f'),  addr, port, errno, strerror(errno));
+		ShowError(read_message("Source.common.add_listener7"), (v6==true?'t':'f'),  addr, port, errno, strerror(errno));
 		close(fd);
 		return -1;
 	}
@@ -429,7 +429,7 @@ int32 network_addlistener(bool v6,  const char *addr,  uint16 port)
 
 	// Set to nonblock!
 	if(_setnonblock(fd) == false) {
-		ShowError("network_addlistener(%c, '%s', %u): cannot set to nonblock (errno: %u / %s)\n", (v6==true?'t':'f'),  addr, port, errno, strerror(errno));
+		ShowError(read_message("Source.common.addlistener8"), (v6==true?'t':'f'),  addr, port, errno, strerror(errno));
 		close(fd);
 		return -1;
 	}
@@ -437,7 +437,7 @@ int32 network_addlistener(bool v6,  const char *addr,  uint16 port)
 
 	// Rgister @ evdp.
 	if(evdp_addlistener(fd, &s->evdp_data) != true) {
-		ShowError("network_addlistener(%c, '%s', %u): eventdispatcher subsystem returned an error.\n", (v6==true?'t':'f'),  addr, port);
+		ShowError(read_message("Source.common.addlistener9"), (v6==true?'t':'f'),  addr, port);
 		close(fd);
 		return -1;
 	}
@@ -450,7 +450,7 @@ int32 network_addlistener(bool v6,  const char *addr,  uint16 port)
 	s->type = NST_LISTENER;
 	s->onRecv = _network_accept;
 
-	ShowStatus("Added Listener on '%s':%u\n", addr, port, (v6==true ? "(ipv6)":"(ipv4)"));
+	ShowStatus(read_message("Source.common.add_listener10"), addr, port, (v6==true ? "(ipv6)":"(ipv4)"));
 
 	return fd;
 }//end: network_addlistener()
@@ -507,7 +507,7 @@ static bool _network_connect_establishedHandler(int32 fd)
 
 		s->onSend = NULL;
 
-		ShowStatus("#%u connection successfull!\n", fd);
+		ShowStatus(read_message("Source.common.network_connect_establishedHandler"), fd);
 	}
 
 	return true;
@@ -540,14 +540,14 @@ int32 network_connect(bool v6,
 #ifndef ENABLE_IPV6
 	// check..
 	if(v6 == true) {
-		ShowError("network_connect(%c, '%s', %u...): tried to create an ipv6 connection, IPV6 is not supported in this release.\n", (v6==true?'t':'f'),  addr, port);
+		ShowError(read_message("Source.common.network_connect_establishedHandler2"), (v6==true?'t':'f'),  addr, port);
 		return -1;
 	}
 #endif
 
 	// check connection limits.
 	if(fd >= MAXCONN) {
-		ShowError("network_connect(%c, '%s', %u...): cannot create new connection, exceeeds more than supported connections (%u)\n", (v6==true?'t':'f'),  addr, port);
+		ShowError(read_message("Source.common.network_connect_establishedHandler3", (v6==true?'t':'f'),  addr, port);
 		close(fd);
 		return -1;
 	}
@@ -568,7 +568,7 @@ int32 network_connect(bool v6,
 			ip6.sin6_port = htons(from_port);
 
 			if(inet_pton(AF_INET6, from_addr, &ip6.sin6_addr) != 1) {
-				ShowError("network_connect(%c, '%s', %u...): cannot parse originating (from) IPV6 address (errno: %u / %s)\n", (v6==true?'t':'f'),  addr, port, errno, strerror(errno));
+				ShowError(read_message("Source.common.network_connect_establishedHandler4"), (v6==true?'t':'f'),  addr, port, errno, strerror(errno));
 				close(fd);
 				return -1;
 			}
@@ -591,7 +591,7 @@ int32 network_connect(bool v6,
 
 	// Set non block
 	if(_setnonblock(fd) == false) {
-		ShowError("network_connect(%c, '%s', %u...): cannot set socket to nonblocking (errno: %u / %s)\n", (v6==true?'t':'f'),  addr, port, errno, strerror(errno));
+		ShowError(read_message("Source.common.network_connect"), (v6==true?'t':'f'),  addr, port, errno, strerror(errno));
 		close(fd);
 		return -1;
 	}
@@ -605,7 +605,7 @@ int32 network_connect(bool v6,
 		ip6.sin6_port = htons(port);
 
 		if(inet_pton(AF_INET6, addr, &ip6.sin6_addr) != 1) {
-			ShowError("network_connect(%c, '%s', %u...): cannot parse destination IPV6 address (errno: %u / %s)\n", (v6==true?'t':'f'),  addr, port, errno, strerror(errno));
+			ShowError(read_message("Source.common.network_connet2"), (v6==true?'t':'f'),  addr, port, errno, strerror(errno));
 			close(fd);
 			return -1;
 		}
@@ -639,7 +639,7 @@ int32 network_connect(bool v6,
 
 	// Register @ EVDP. as outgoing (see doc of the function)
 	if(evdp_addconnecting(fd, &s->evdp_data) == false) {
-		ShowError("network_connect(%c, '%s', %u...): eventdispatcher subsystem returned an error.\n", (v6==true?'t':'f'),  addr, port);
+		ShowError(read_message("Source.common.network_addlistener9"), (v6==true?'t':'f'),  addr, port);
 
 		// cleanup session x.x..
 		s->type = NST_FREE;
@@ -663,7 +663,7 @@ int32 network_connect(bool v6,
 
 	//
 	if(ret != 0 && errno != EINPROGRESS) {
-		ShowWarning("network_connect(%c, '%s', %u...): connection failed (errno: %u / %s)\n", (v6==true?'t':'f'),  addr, port, errno, strerror(errno));
+		ShowWarning(read_message("Source.common.network_connect3"), (v6==true?'t':'f'),  addr, port, errno, strerror(errno));
 
 		// Cleanup session ..
 		s->type = NST_FREE;
@@ -679,7 +679,7 @@ int32 network_connect(bool v6,
 
 
 	// ! The Info Message :~D
-	ShowStatus("network_connect fd#%u (%s:%u) in progress.. \n", fd, addr, port);
+	ShowStatus(read_message("Source.common.network_connect4"), fd, addr, port);
 
 	return fd;
 }//end: network_connect()
@@ -791,7 +791,7 @@ static bool _onRORecv(int32 fd)
 
 		default:
 			// .. the impossible gets possible ..
-			ShowError("_onRORecv: fd #%u has unknown read.state (%d) - disconnecting\n", fd, s->read.state);
+			ShowError(read_message("Source.common.network_connect5"), fd, s->read.state);
 			return false;
 			break;
 	}
@@ -840,7 +840,7 @@ static bool _onRORecv(int32 fd)
 
 				if(s->read.head[1] == ROPACKET_UNKNOWN) {
 					// unknown packet - disconnect
-					ShowWarning("_onRORecv: fd #%u got unlnown packet 0x%04x - disconnecting.\n", fd, s->read.head[0]);
+					ShowWarning(read_message("Source.common.network_connect6"), fd, s->read.head[0]);
 					return false;
 				} else if(s->read.head[1] == ROPACKET_DYNLEN) {
 					// dynamic length
@@ -917,7 +917,7 @@ static bool _onRORecv(int32 fd)
 					return true;
 				} else if(s->read.head[1] < 4) {
 					// invalid header.
-					ShowWarning("_onRORecv: fd #%u invalid header - got packet 0x%04x, reported length < 4 - INVALID - disconnecting\n", fd, s->read.head[0]);
+					ShowWarning(read_message("Source.common.network_connect7"), fd, s->read.head[0]);
 					return false;
 				} else {
 					// Data needed
@@ -968,7 +968,7 @@ static bool _onRORecv(int32 fd)
 
 			//
 		default:
-			ShowError("_onRORecv: fd #%u has unknown read.state (%d) [2] - disconnecting\n", fd, s->read.state);
+			ShowError(read_message("Source.common.network_connect8"), fd, s->read.state);
 			return false;
 			break;
 	}
@@ -984,7 +984,7 @@ void network_send(int32 fd,  netbuf buf)
 
 #ifdef PARANOID_CHECKS
 	if(fd >= MAXCONN) {
-		ShowError("network_send: tried to attach buffer to connection idientifer #%u which is out of bounds.\n", fd);
+		ShowError(read_message("Source.common.network_send"), fd);
 		_network_free_netbuf_async(buf);
 		return;
 	}
@@ -998,7 +998,7 @@ void network_send(int32 fd,  netbuf buf)
 	if((s->write.max_outstanding > 0)   &&
 	   (s->write.n_outstanding >= s->write.max_outstanding)) {
 
-		ShowWarning("network_send: fd #%u max Outstanding buffers exceeded. - disconnecting.\n", fd);
+		ShowWarning(read_message("Source.common.network_send2"), fd);
 		network_disconnect(fd);
 		//
 		_network_free_netbuf_async(buf);

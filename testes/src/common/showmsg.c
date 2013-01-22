@@ -93,7 +93,7 @@ int console_msg_log = 0;//[Ind] msg error logging
 		buf.d_ = StringBuf_Malloc();                    \
 		buf.l_ = StringBuf_Vprintf(buf.d_, fmt, args);  \
 		buf.v_ = StringBuf_Value(buf.d_);               \
-		ShowDebug("showmsg: dynamic buffer used, increase the static buffer size to %d or more.\n", buf.l_+1);\
+		ShowDebug(read_message("Source.common.showmsg"), buf.l_+1);\
 	}                                                   \
 	//define BUFVPRINTF
 
@@ -641,7 +641,7 @@ int _vShowMessage(enum msg_type flag, const char *string, va_list ap)
 #endif
 
 	if(!string || *string == '\0') {
-		ShowError("Empty string passed to _vShowMessage().\n");
+		ShowError(read_message("Source.common.vShowMessage"));
 		return 1;
 	}
 	/**
@@ -666,11 +666,11 @@ int _vShowMessage(enum msg_type flag, const char *string, va_list ap)
 			strftime(timestring, 254, "%m/%d/%Y %H:%M:%S", localtime(&curtime));
 			fprintf(log,"(%s) [ %s ] : ",
 			        timestring,
-			        flag == MSG_WARNING ? "Aviso" :
-			        flag == MSG_ERROR ? "Erro" :
-			        flag == MSG_SQL ? "SQL Erro" :
-			        flag == MSG_DEBUG ? "Depurar" :
-			        "Unknown");
+			        flag == MSG_WARNING ? ((read_message("Source.common.msg_warning"))) :
+			        flag == MSG_ERROR ? ((read_message("Source.common.msg_error"))) :
+			        flag == MSG_SQL ? ((read_message("Source.common.msg_sql"))) :
+			        flag == MSG_DEBUG ? ((read_message("Source.common.msg_debug"))) :
+			        (read_message(("Source.common.msg_desc"))));
 			va_copy(apcopy, ap);
 			vfprintf(log,string,apcopy);
 			va_end(apcopy);
@@ -722,7 +722,7 @@ int _vShowMessage(enum msg_type flag, const char *string, va_list ap)
 			strcat(prefix,CL_RED"[Erro Cr�tico]"CL_RESET":");
 			break;
 		default:
-			ShowError("Fun��o _vShowMessage() -> flag inv�lido.\n", 135, 198, 160);
+			ShowError(read_message("Source.common.msg_default"), 135, 198, 160);
 			return 1;
 	}
 
@@ -746,7 +746,7 @@ int _vShowMessage(enum msg_type flag, const char *string, va_list ap)
 	if(strlen(DEBUGLOGPATH) > 0) {
 		fp=fopen(DEBUGLOGPATH,"a");
 		if(fp == NULL) {
-			FPRINTF(STDERR, CL_RED"[ERROR]"CL_RESET": Could not open '"CL_WHITE"%s"CL_RESET"', access denied.\n", DEBUGLOGPATH);
+			FPRINTF(STDERR, (read_message("Source.common.msg_debug_log_map")), DEBUGLOGPATH);
 			FFLUSH(STDERR);
 		} else {
 			fprintf(fp,"%s ", prefix);
@@ -756,7 +756,7 @@ int _vShowMessage(enum msg_type flag, const char *string, va_list ap)
 			fclose(fp);
 		}
 	} else {
-		FPRINTF(STDERR, CL_RED"[ERROR]"CL_RESET": DEBUGLOGPATH not defined!\n");
+		FPRINTF(STDERR, (read_message("Source.common.msg_debug_log_maps")));
 		FFLUSH(STDERR);
 	}
 #endif

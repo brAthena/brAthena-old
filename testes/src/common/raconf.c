@@ -55,7 +55,7 @@ static struct conf_value *makeValue(const char *key, char *val, size_t val_len) 
 
 	v = (struct conf_value *)aCalloc(1, sizeof(struct conf_value));
 	if(v == NULL) {
-		ShowFatalError("raconf: makeValue => Out of Memory while allocating new node.\n");
+		ShowFatalError(read_message("Source.common.raconf_parse"));
 		return NULL;
 	}
 
@@ -150,7 +150,7 @@ static bool configParse(raconf inst,  const char *fileName)
 
 	fp = fopen(fileName, "r");
 	if(fp == NULL) {
-		ShowError("configParse: cannot open '%s' for reading.\n", fileName);
+		ShowError(read_message("Source.common.configParse"), fileName);
 		return false;
 	}
 
@@ -210,12 +210,12 @@ static bool configParse(raconf inst,  const char *fileName)
 				c = *p;
 
 				if(c == '\0') {
-					ShowError("Syntax Error: unterminated Section name in %s:%u (expected ']')\n", fileName, linecnt);
+					ShowError(read_message("Source.common.configParse2"), fileName, linecnt);
 					fclose(fp);
 					return false;
 				} else if(c == ']') { // closing backet (section name termination)
 					if((p - start + 1) > (sizeof(currentSection))) {
-						ShowError("Syntax Error: Section name in %s:%u is too large (max Supported length: %u chars)\n", fileName, linecnt, sizeof(currentSection)-1);
+						ShowError(read_message("Source.common.configParse3"), fileName, linecnt, sizeof(currentSection)-1);
 						fclose(fp);
 						return false;
 					}
@@ -231,7 +231,7 @@ static bool configParse(raconf inst,  const char *fileName)
 					// skip .. (allowed char / specifier)
 					continue;
 				} else {
-					ShowError("Syntax Error: Invalid Character '%c' in %s:%u (offset %u) for Section name.\n", c, fileName, linecnt, (p-line));
+					ShowError(read_message("Source.common.ConfigParse4"), c, fileName, linecnt, (p-line));
 					fclose(fp);
 					return false;
 				}
@@ -251,7 +251,7 @@ static bool configParse(raconf inst,  const char *fileName)
 				c = *p;
 
 				if(c == '\0') {
-					ShowError("Syntax Error: unterminated Variable name in %s:%u\n", fileName, linecnt);
+					ShowError(read_message("Source.common.configParse5"), fileName, linecnt);
 					fclose(fp);
 					return false;
 				} else if((c == '=') || (c == ':')) {
@@ -265,7 +265,7 @@ static bool configParse(raconf inst,  const char *fileName)
 					// skip .. allowed char
 					continue;
 				} else {
-					ShowError("Syntax Error: Invalid Character '%c' in %s:%u (offset %u) for Variable name.\n", c, fileName, linecnt, (p-line));
+					ShowError(read_message("Source.common.configParse4"), c, fileName, linecnt, (p-line));
 					fclose(fp);
 					return false;
 				}
@@ -274,11 +274,11 @@ static bool configParse(raconf inst,  const char *fileName)
 
 			start_len = (p-start);
 			if(start_len >= VARNAME_LEN) {
-				ShowError("%s:%u Variable length exceeds limit of %u Characters.\n", fileName, linecnt, VARNAME_LEN-1);
+				ShowError(read_message("Source.common.configParse6"), fileName, linecnt, VARNAME_LEN-1);
 				fclose(fp);
 				return false;
 			} else if(start_len == 0) {
-				ShowError("%s:%u Empty Variable name is not allowed.\n", fileName, linecnt);
+				ShowError(read_message("Source.common.configParse7"), fileName, linecnt);
 				fclose(fp);
 				return false;
 			}
@@ -335,7 +335,7 @@ static bool configParse(raconf inst,  const char *fileName)
 			// Buildin Hook:
 			if(stricmp(start, "import") == 0) {
 				if(configParse(inst, valuestart) != true) {
-					ShowError("%s:%u - Import of '%s' failed!\n", fileName, linecnt, valuestart);
+					ShowError(read_message("Source.common.configParse8"), fileName, linecnt, valuestart);
 				}
 			} else {
 				// put it to db.
@@ -372,7 +372,7 @@ static bool configParse(raconf inst,  const char *fileName)
 
 
 		} else {
-			ShowError("Syntax Error: unexpected Character '%c' in %s:%u (offset %u)\n", c, fileName, linecnt, (p-line));
+			ShowError(read_message("Source.common.configParse9"), c, fileName, linecnt, (p-line));
 			fclose(fp);
 			return false;
 		}
@@ -411,7 +411,7 @@ raconf  raconf_parse(const char *file_name)
 
 	rc = aCalloc(1, sizeof(struct raconf));
 	if(rc == NULL) {
-		ShowFatalError("raconf_parse: failed to allocate memory for new handle\n");
+		ShowFatalError(read_message("Source.common.raconf_parse2"));
 		return NULL;
 	}
 
@@ -419,7 +419,7 @@ raconf  raconf_parse(const char *file_name)
 	//
 
 	if(configParse(rc, file_name) != true) {
-		ShowError("Failed to Parse Configuration file '%s'\n", file_name);
+		ShowError(read_message("Source.common.raconf_parse3"), file_name);
 	}
 
 	return rc;

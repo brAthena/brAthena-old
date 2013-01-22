@@ -182,7 +182,7 @@ void findfile(const char *p, const char *pat, void (func)(const char *))
 	// open the directory for reading
 	dir = opendir(checkpath(path, path));
 	if(!dir) {
-		ShowError("Cannot read directory '%s'\n", path);
+		ShowError("Source.common.findfile", path);
 		return;
 	}
 
@@ -203,7 +203,7 @@ void findfile(const char *p, const char *pat, void (func)(const char *))
 		}
 		// check if it is a directory.
 		if(stat(tmppath, &dir_stat) == -1) {
-			ShowError("stat error %s\n': ", tmppath);
+			ShowError(read_message("Source.common.findfile2 "), tmppath);
 			continue;
 		}
 		// is this a directory?
@@ -231,7 +231,7 @@ uint8 GetByte(uint32 val, int idx)
 		case 3: return (uint8)((val & 0xFF000000) >> 0x18);
 		default:
 #if defined(DEBUG)
-			ShowDebug("GetByte: invalid index (idx=%d)\n", idx);
+			ShowDebug(read_message("Source.common.getbyte"), idx);
 #endif
 			return 0;
 	}
@@ -244,7 +244,7 @@ uint16 GetWord(uint32 val, int idx)
 		case 1: return (uint16)((val & 0xFFFF0000) >> 0x10);
 		default:
 #if defined(DEBUG)
-			ShowDebug("GetWord: invalid index (idx=%d)\n", idx);
+			ShowDebug(read_message("Source.common.getword"), idx);
 #endif
 			return 0;
 	}
@@ -268,14 +268,14 @@ unsigned int get_percentage(const unsigned int A, const unsigned int B)
 	double result;
 
 	if(B == 0) {
-		ShowError("get_percentage(): divison by zero! (A=%u,B=%u)\n", A, B);
+		ShowError(read_message("Source.common.get_percentage"), A, B);
 		return ~0U;
 	}
 
 	result = 100 * ((double)A / (double)B);
 
 	if(result > UINT_MAX) {
-		ShowError("get_percentage(): result percentage too high! (A=%u,B=%u,result=%g)\n", A, B, result);
+		ShowError(read_message("Source.common.get_percentages"), A, B, result);
 		return UINT_MAX;
 	}
 

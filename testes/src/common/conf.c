@@ -150,7 +150,7 @@ char *read_message(const char *param)
 	}
 
 	if(!(str = config_lookup(&configLang, param))) {
-		ShowError("read_message erro: %s:%d - %s\n", config_error_file(&configLang), config_error_line(&configLang), config_error_text(&configLang));
+		ShowError("read_message erro: %s\n", param);
 		config_destroy(&configLang);
 		return "";
 	}

@@ -407,7 +407,7 @@ void *grfio_reads(const char *fname, int *size)
 			declen = ftell(in);
 			fseek(in,0,SEEK_SET);
 			buf2 = (unsigned char *)aMalloc(declen+1);  // +1 for resnametable zero-termination
-			if(fread(buf2, 1, declen, in) != declen) ShowError("Ocorreu um erro no grfio_reads de fread, fname=%s \n",fname);
+			if(fread(buf2, 1, declen, in) != declen) ShowError(read_message("Source.common.grfio_read"),fname);
 			fclose(in);
 
 			if(size)
@@ -416,7 +416,7 @@ void *grfio_reads(const char *fname, int *size)
 			if(entry != NULL && entry->gentry < 0) {
 				entry->gentry = -entry->gentry; // local file checked
 			} else {
-				ShowError("grfio_reads: %s not found (local file: %s)\n", fname, lfname);
+				ShowError(read_message("Source.common.grfio_read2"), fname, lfname);
 				return NULL;
 			}
 		}
@@ -429,7 +429,7 @@ void *grfio_reads(const char *fname, int *size)
 			int fsize = entry->srclen_aligned;
 			unsigned char *buf = (unsigned char *)aMalloc(fsize);
 			fseek(in, entry->srcpos, 0);
-			if(fread(buf, 1, fsize, in) != fsize) ShowError("Ocorreu um erro no fread em grfio_reads, grfname=%s\n",grfname);
+			if(fread(buf, 1, fsize, in) != fsize) ShowError(read_message("Source.common.grfio_read3"),grfname);
 			fclose(in);
 
 			buf2 = (unsigned char *)aMalloc(entry->declen+1);  // +1 for resnametable zero-termination
@@ -440,7 +440,7 @@ void *grfio_reads(const char *fname, int *size)
 				len = entry->declen;
 				decode_zip(buf2, &len, buf, entry->srclen);
 				if(len != (uLong)entry->declen) {
-					ShowError("decode_zip size mismatch err: %d != %d\n", (int)len, entry->declen);
+					ShowError(read_message("Source.common.decode_zip"), (int)len, entry->declen);
 					aFree(buf);
 					aFree(buf2);
 					return NULL;
@@ -454,7 +454,7 @@ void *grfio_reads(const char *fname, int *size)
 
 			aFree(buf);
 		} else {
-			ShowError("grfio_reads: %s not found (GRF file: %s)\n", fname, grfname);
+			ShowError(read_message("Source.common.grfio_reads"), fname, grfname);
 			return NULL;
 		}
 	}
@@ -503,21 +503,21 @@ static int grfio_entryread(const char *grfname, int gentry)
 
 	FILE *fp = fopen(grfname, "rb");
 	if(fp == NULL) {
-		ShowWarning("GRF data file not found: '%s'\n",grfname);
+		ShowWarning(read_message("Source.common.grfio_entryread2"),grfname);
 		return 1;   // 1:not found error
 	} else
-		ShowInfo("GRF data file found: '%s'\n",grfname);
+		ShowInfo(read_message("Source.common.grfio_entryread2"),grfname);
 
 	fseek(fp,0,SEEK_END);
 	grf_size = ftell(fp);
 	fseek(fp,0,SEEK_SET);
 
 	if(fread(grf_header,1,0x2e,fp) != 0x2e) {
-		ShowError("N%co foi poss%cvel ler todo o elemento de grf_header %s \n", 198, 214, grfname);
+		ShowError(read_message("Source.common.grfio_entryread"), 198, 214, grfname);
 	}
 	if(strcmp((const char *)grf_header,"Master of Magic") != 0 || fseek(fp,getlong(grf_header+0x1e),SEEK_CUR) != 0) {
 		fclose(fp);
-		ShowError("GRF %s read error\n", grfname);
+		ShowError(read_message("Source.common.grfio_entryread2"), grfname);
 		return 2;   // 2:file format error
 	}
 
@@ -527,7 +527,7 @@ static int grfio_entryread(const char *grfname, int gentry)
 		list_size = grf_size - ftell(fp);
 		grf_filelist = (unsigned char *) aMalloc(list_size);
 		if(fread(grf_filelist,1,list_size,fp) != list_size) {
-			ShowError("N%co foi poss%cvel ler todo o elemento de grf_header %s \n", 198, 214, grfname);
+			ShowError(read_message("Source.common.grfio_entryread"), 198, 214, grfname);
 		}
 		fclose(fp);
 
@@ -544,7 +544,7 @@ static int grfio_entryread(const char *grfname, int gentry)
 				int srclen = getlong(grf_filelist+ofs2+0) - getlong(grf_filelist+ofs2+8) - 715;
 
 				if(strlen(fname) > sizeof(aentry.fn) - 1) {
-					ShowFatalError("GRF file name %s is too long\n", fname);
+					ShowFatalError(read_message("Source.common.grfio_entryread3"), fname);
 					aFree(grf_filelist);
 					exit(EXIT_FAILURE);
 				}
@@ -575,19 +575,19 @@ static int grfio_entryread(const char *grfname, int gentry)
 		unsigned char *rBuf;
 		uLongf rSize, eSize;
 
-		if(fread(eheader,1,8,fp) != 8) ShowError("Ocorreu um erro no fread ao ler o buffer de cabe%calho\n", 135);
+		if(fread(eheader,1,8,fp) != 8) ShowError(read_message("Source.common.grfio_entryread4"), 135);
 		rSize = getlong(eheader);   // Read Size
 		eSize = getlong(eheader+4); // Extend Size
 
 		if((long)rSize > grf_size-ftell(fp)) {
 			fclose(fp);
-			ShowError("Illegal data format: GRF compress entry size\n");
+			ShowError(read_message("Source.common.grfio_ilegal_data"));
 			return 4;
 		}
 
 		rBuf = (unsigned char *)aMalloc(rSize); // Get a Read Size
 		grf_filelist = (unsigned char *)aMalloc(eSize); // Get a Extend Size
-		if(fread(rBuf,1,rSize,fp) != rSize) ShowError("Ocorreu um erro no fread \n");
+		if(fread(rBuf,1,rSize,fp) != rSize) ShowError(read_message("Source.common.grfio_entryread5"));
 		fclose(fp);
 		decode_zip(grf_filelist, &eSize, rBuf, rSize);  // Decode function
 		aFree(rBuf);
@@ -603,7 +603,7 @@ static int grfio_entryread(const char *grfname, int gentry)
 			int type = grf_filelist[ofs2+12];
 
 			if(strlen(fname) > sizeof(aentry.fn)-1) {
-				ShowFatalError("GRF file name %s is too long\n", fname);
+				ShowFatalError(read_message("Source.common.grfio_entryread3"), fname);
 				aFree(grf_filelist);
 				exit(EXIT_FAILURE);
 			}
@@ -630,7 +630,7 @@ static int grfio_entryread(const char *grfname, int gentry)
 		aFree(grf_filelist);
 	} else {// ****** Grf Other version ******
 		fclose(fp);
-		ShowError("GRF version %04x not supported\n",getlong(grf_header+0x2a));
+		ShowError(read_message("Source.common.grfio_entryreads"),getlong(grf_header+0x2a));
 		return 4;
 	}
 
@@ -703,7 +703,7 @@ static void grfio_resourcecheck(void)
 		}
 
 		fclose(fp);
-		ShowStatus("Done reading '"CL_WHITE"%d"CL_RESET"' entries in '"CL_WHITE"%s"CL_RESET"'.\n", i, "resnametable.txt");
+		ShowStatus(read_message("Source.common.grfio_resourcecheck"), i, "resnametable.txt");
 		return; // we're done here!
 	}
 
@@ -723,7 +723,7 @@ static void grfio_resourcecheck(void)
 		}
 
 		aFree(buf);
-		ShowStatus("Done reading '"CL_WHITE"%d"CL_RESET"' entries in '"CL_WHITE"%s"CL_RESET"'.\n", i, "data\\resnametable.txt");
+		ShowStatus(read_message("Source.common.grfio_resourcecheck"), i, "data\\resnametable.txt");
 		return;
 	}
 }
@@ -802,11 +802,11 @@ void grfio_init(const char *fname)
 		}
 
 		fclose(data_conf);
-		ShowStatus("Done reading '"CL_WHITE"%s"CL_RESET"'.\n", fname);
+		ShowStatus(read_message("Source.reuse.reuse_sql_config_read"), fname);
 	}
 
 	if(grf_num == 0)
-		ShowInfo("No GRF loaded, using default data directory\n");
+		ShowInfo(read_message("Source.common.grfio_init"));
 
 	// Unneccessary area release of filelist
 	filelist_compact();

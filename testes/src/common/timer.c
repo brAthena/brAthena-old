@@ -83,7 +83,7 @@ int add_timer_func_list(TimerFunc func, char *name)
 		for(tfl=tfl_root; tfl != NULL; tfl=tfl->next) {
 			// check suspicious cases
 			if(func == tfl->func)
-				ShowWarning("add_timer_func_list: duplicating function %p(%s) as %s.\n",tfl->func,tfl->name,name);
+				ShowWarning(read_message("Source.common.add_timer_func_list"),tfl->func,tfl->name,name);
 			else if(strcmp(name,tfl->name) == 0)
 				ShowWarning("add_timer_func_list: function %p has the same name as %p(%s)\n",func,tfl->func,tfl->name);
 		}
@@ -132,7 +132,7 @@ static void rdtsc_calibrate()
 	uint64 t1, t2;
 	int32 i;
 
-	ShowStatus("Calibrating Timer Source, please wait... ");
+	ShowStatus(read_message("Source.common.rdtsc_calibrate "));
 
 	RDTSC_CLOCK = 0;
 
@@ -146,7 +146,7 @@ static void rdtsc_calibrate()
 
 	RDTSC_BEGINTICK = _rdtsc();
 
-	ShowMessage(" done. (Frequency: %u Mhz)\n", (uint32)(RDTSC_CLOCK/1000));
+	ShowMessage(read_message(" Source.common.rdtsc_calibrate2"), (uint32)(RDTSC_CLOCK/1000));
 }
 
 #endif
@@ -278,7 +278,7 @@ int add_timer_interval(unsigned int tick, TimerFunc func, int id, intptr_t data,
 	int tid;
 
 	if(interval < 1) {
-		ShowError("add_timer_interval: invalid interval (tick=%u %p[%s] id=%d data=%d diff_tick=%d)\n", tick, func, search_timer_func_list(func), id, data, DIFF_TICK(tick, gettick()));
+		ShowError(read_message("Source.common.add_timer_interval"), tick, func, search_timer_func_list(func), id, data, DIFF_TICK(tick, gettick()));
 		return INVALID_TIMER;
 	}
 
@@ -305,11 +305,11 @@ const struct TimerData *get_timer(int tid) {
 int delete_timer(int tid, TimerFunc func)
 {
 	if(tid < 0 || tid >= timer_data_num) {
-		ShowError("delete_timer error : no such timer %d (%p(%s))\n", tid, func, search_timer_func_list(func));
+		ShowError(read_message("Source.common.delete_timer_error"), tid, func, search_timer_func_list(func));
 		return -1;
 	}
 	if(timer_data[tid].func != func) {
-		ShowError("delete_timer error : function mismatch %p(%s) != %p(%s)\n", timer_data[tid].func, search_timer_func_list(timer_data[tid].func), func, search_timer_func_list(func));
+		ShowError(read_message("Source.common.delete_timer_error2"), timer_data[tid].func, search_timer_func_list(timer_data[tid].func), func, search_timer_func_list(func));
 		return -2;
 	}
 
@@ -335,7 +335,7 @@ int settick_timer(int tid, unsigned int tick)
 	// search timer position
 	ARR_FIND(0, BHEAP_LENGTH(timer_heap), i, BHEAP_DATA(timer_heap)[i] == tid);
 	if(i == BHEAP_LENGTH(timer_heap)) {
-		ShowError("settick_timer: no such timer %d (%p(%s))\n", tid, timer_data[tid].func, search_timer_func_list(timer_data[tid].func));
+		ShowError(read_message("Source.common.settic_timer"), tid, timer_data[tid].func, search_timer_func_list(timer_data[tid].func));
 		return -1;
 	}
 

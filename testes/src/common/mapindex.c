@@ -43,7 +43,7 @@ const char *mapindex_getmapname(const char *string, char *output)
 
 	size_t len = strnlen(string, MAP_NAME_LENGTH_EXT);
 	if(len == MAP_NAME_LENGTH_EXT) {
-		ShowWarning("(mapindex_normalize_name) Map name '%*s' is too long!\n", 2*MAP_NAME_LENGTH_EXT, string);
+		ShowWarning(read_message("Source.common.mapindex_getmapname"), 2*MAP_NAME_LENGTH_EXT, string);
 		len--;
 	}
 	if(len >= 4 && stricmp(&string[len-4], ".gat") == 0)
@@ -71,7 +71,7 @@ const char *mapindex_getmapname_ext(const char *string, char *output)
 	len = safestrnlen(buf, MAP_NAME_LENGTH);
 
 	if(len == MAP_NAME_LENGTH) {
-		ShowWarning("(mapindex_normalize_name) Map name '%*s' is too long!\n", 2*MAP_NAME_LENGTH, buf);
+		ShowWarning(read_message("Source.common.mapindex_getmapname"), 2*MAP_NAME_LENGTH, buf);
 		len--;
 	}
 	strncpy(dest, buf, len+1);
@@ -101,24 +101,24 @@ int mapindex_addmap(int index, const char *name)
 	}
 
 	if(index < 0 || index >= MAX_MAPINDEX) {
-		ShowError("(mapindex_add) Map index (%d) for \"%s\" out of range (max is %d)\n", index, name, MAX_MAPINDEX);
+		ShowError(read_message("Source.common.mapindex_add"), index, name, MAX_MAPINDEX);
 		return 0;
 	}
 
 	mapindex_getmapname(name, map_name);
 
 	if(map_name[0] == '\0') {
-		ShowError("(mapindex_add) Cannot add maps with no name.\n");
+		ShowError(read_message("Source.common.mapindex_add2"));
 		return 0;
 	}
 
 	if(strlen(map_name) >= MAP_NAME_LENGTH) {
-		ShowError("(mapindex_add) Map name %s is too long. Maps are limited to %d characters.\n", map_name, MAP_NAME_LENGTH);
+		ShowError(read_message("Source.common.mapindex_add3"), map_name, MAP_NAME_LENGTH);
 		return 0;
 	}
 
 	if(mapindex_exists(index))
-		ShowWarning("(mapindex_add) Overriding index %d: map \"%s\" -> \"%s\"\n", index, indexes[index].name, map_name);
+		ShowWarning(read_message("Source.common.mapindex_add4"), index, indexes[index].name, map_name);
 
 	safestrncpy(indexes[index].name, map_name, MAP_NAME_LENGTH);
 	if(max_index <= index)
@@ -139,14 +139,14 @@ unsigned short mapindex_name2id(const char *name)
 		if(strcmpi(indexes[i].name,map_name)==0)
 			return i;
 	}
-	ShowDebug("mapindex_name2id: Mapa \"%s\" n%co encontrado na lista de %cndice!\n", map_name, 198, 214);
+	ShowDebug(read_message("Source.common.mapindex_name2id"), map_name, 198, 214);
 	return 0;
 }
 
 const char *mapindex_id2name(unsigned short id)
 {
 	if(id > MAX_MAPINDEX || !mapindex_exists(id)) {
-		ShowDebug("mapindex_id2name: Requested name for non-existant map index [%d] in cache.\n", id);
+		ShowDebug(read_message("Source.common.mapindex_id2name"), id);
 		return indexes[0].name; // dummy empty string so that the callee doesn't crash
 	}
 	return indexes[id].name;
@@ -163,7 +163,7 @@ void mapindex_init(void)
 	memset(&indexes, 0, sizeof(indexes));
 	fp=fopen(mapindex_cfgfile,"r");
 	if(fp==NULL) {
-		ShowFatalError("Unable to read mapindex config file %s!\n", mapindex_cfgfile);
+		ShowFatalError(read_message("Source.common.mapindex_init"), mapindex_cfgfile);
 		exit(EXIT_FAILURE); //Server can't really run without this file.
 	}
 	while(fgets(line, sizeof(line), fp)) {

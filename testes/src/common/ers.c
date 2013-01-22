@@ -130,7 +130,7 @@ static void *ers_obj_alloc_entry(ERS self)
 	void *ret;
 
 	if(instance == NULL) {
-		ShowError("ers_obj_alloc_entry: NULL object, aborting entry freeing.\n");
+		ShowError(read_message("Source.common.ers_obj_alloc_entry"));
 		return NULL;
 	}
 
@@ -164,10 +164,10 @@ static void ers_obj_free_entry(ERS self, void *entry)
 	struct ers_list *reuse = (struct ers_list *)((unsigned char *)entry - sizeof(struct ers_list));
 
 	if(instance == NULL) {
-		ShowError("ers_obj_free_entry: NULL object, aborting entry freeing.\n");
+		ShowError(read_message("Source.common.ers_obj_alloc_entry"));
 		return;
 	} else if(entry == NULL) {
-		ShowError("ers_obj_free_entry: NULL entry, nothing to free.\n");
+		ShowError(read_message("Source.common.ers_obj_free_entry"));
 		return;
 	}
 
@@ -181,7 +181,7 @@ static size_t ers_obj_entry_size(ERS self)
 	ers_instance_t *instance = (ers_instance_t *)self;
 
 	if(instance == NULL) {
-		ShowError("ers_obj_entry_size: NULL object, aborting entry freeing.\n");
+		ShowError(read_message("Source.common.ers_obj_alloc_entry"));
 		return 0;
 	}
 
@@ -193,13 +193,13 @@ static void ers_obj_destroy(ERS self)
 	ers_instance_t *instance = (ers_instance_t *)self;
 
 	if(instance == NULL) {
-		ShowError("ers_obj_destroy: NULL object, aborting entry freeing.\n");
+		ShowError(read_message("Source.common.ers_obj_alloc_entry"));
 		return;
 	}
 
 	if(instance->Count > 0)
 		if(!(instance->Options & ERS_OPT_CLEAR))
-			ShowWarning("Memory leak detected at ERS '%s', %d objects not freed.\n", instance->Name, instance->Count);
+			ShowWarning(read_message("Source.common.ers_obj_destroy"), instance->Name, instance->Count);
 
 	if(--instance->Cache->ReferenceCount <= 0)
 		ers_free_cache(instance->Cache, true);

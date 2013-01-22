@@ -647,9 +647,7 @@ static void db_free_add(DBMap_impl *db, DBNode node, DBNode *root)
 
 	DB_COUNTSTAT(db_free_add);
 	if(db->free_lock == (unsigned int)~0) {
-		ShowFatalError("db_free_add: free_lock overflow\n"
-		               "Database allocated at %s:%d\n",
-		               db->alloc_file, db->alloc_line);
+		ShowFatalError(read_message("Source.common.db_free_add"),db->alloc_file, db->alloc_line);
 		exit(EXIT_FAILURE);
 	}
 	if(!(db->options&DB_OPT_DUP_KEY)) {  // Make sure we have a key until the node is freed
@@ -661,9 +659,7 @@ static void db_free_add(DBMap_impl *db, DBNode node, DBNode *root)
 		db->free_max = (db->free_max<<2) +3; // = db->free_max*4 +3
 		if(db->free_max <= db->free_count) {
 			if(db->free_count == (unsigned int)~0) {
-				ShowFatalError("db_free_add: free_count overflow\n"
-				               "Database allocated at %s:%d\n",
-				               db->alloc_file, db->alloc_line);
+				ShowFatalError(read_message("Source.common.db_free_count"),db->alloc_file, db->alloc_line);
 				exit(EXIT_FAILURE);
 			}
 			db->free_max = (unsigned int)~0;
@@ -705,7 +701,7 @@ static void db_free_remove(DBMap_impl *db, DBNode node)
 	}
 	node->deleted = 0;
 	if(i == db->free_count) {
-		ShowWarning("db_free_remove: node was not found - database allocated at %s:%d\n", db->alloc_file, db->alloc_line);
+		ShowWarning(read_message("Source.common.db_free_remove"), db->alloc_file, db->alloc_line);
 	} else {
 		db->free_count--;
 	}
@@ -1413,14 +1409,14 @@ static DBData *db_obj_get(DBMap *self, DBKey key)
 	DB_COUNTSTAT(db_get);
 	if(db == NULL) return NULL;  // nullpo candidate
 	if(!(db->options&DB_OPT_ALLOW_NULL_KEY) && db_is_key_null(db->type, key)) {
-		ShowError("db_get: Attempted to retrieve non-allowed NULL key for db allocated at %s:%d\n",db->alloc_file, db->alloc_line);
+		ShowError(read_message("Source.common.db_get"),db->alloc_file, db->alloc_line);
 		return NULL; // nullpo candidate
 	}
 
 	if(db->cache && db->cmp(key, db->cache->key, db->maxlen) == 0) {
 #if defined(DEBUG)
 		if(db->cache->deleted) {
-			ShowDebug("db_get: Cache contains a deleted node. Please report this!!!\n");
+			ShowDebug(read_message("Source.common.db_get2"));
 			return NULL;
 		}
 #endif
@@ -1573,11 +1569,11 @@ static DBData *db_obj_vensure(DBMap *self, DBKey key, DBCreateData create, va_li
 	DB_COUNTSTAT(db_vensure);
 	if(db == NULL) return NULL;  // nullpo candidate
 	if(create == NULL) {
-		ShowError("db_ensure: Create function is NULL for db allocated at %s:%d\n",db->alloc_file, db->alloc_line);
+		ShowError(read_message("Source.common.db_ensure"),db->alloc_file, db->alloc_line);
 		return NULL; // nullpo candidate
 	}
 	if(!(db->options&DB_OPT_ALLOW_NULL_KEY) && db_is_key_null(db->type, key)) {
-		ShowError("db_ensure: Attempted to use non-allowed NULL key for db allocated at %s:%d\n",db->alloc_file, db->alloc_line);
+		ShowError(read_message("Source.common.db_ensure2"),db->alloc_file, db->alloc_line);
 		return NULL; // nullpo candidate
 	}
 
@@ -1602,8 +1598,7 @@ static DBData *db_obj_vensure(DBMap *self, DBKey key, DBCreateData create, va_li
 	if(node == NULL) {
 		va_list argscopy;
 		if(db->item_count == UINT32_MAX) {
-			ShowError("db_vensure: item_count overflow, aborting item insertion.\n"
-			          "Database allocated at %s:%d",
+			ShowError(read_message("Source.common.db_vensure"),
 			          db->alloc_file, db->alloc_line);
 			return NULL;
 		}
@@ -1699,24 +1694,20 @@ static int db_obj_put(DBMap *self, DBKey key, DBData data, DBData *out_data)
 	DB_COUNTSTAT(db_put);
 	if(db == NULL) return 0;  // nullpo candidate
 	if(db->global_lock) {
-		ShowError("db_put: Database is being destroyed, aborting entry insertion.\n"
-		          "Database allocated at %s:%d\n",
-		          db->alloc_file, db->alloc_line);
+		ShowError(read_message("Source.common.db_put"),db->alloc_file, db->alloc_line);
 		return 0; // nullpo candidate
 	}
 	if(!(db->options&DB_OPT_ALLOW_NULL_KEY) && db_is_key_null(db->type, key)) {
-		ShowError("db_put: Attempted to use non-allowed NULL key for db allocated at %s:%d\n",db->alloc_file, db->alloc_line);
+		ShowError(read_message("Source.common.db_put2"),db->alloc_file, db->alloc_line);
 		return 0; // nullpo candidate
 	}
 	if(!(db->options&DB_OPT_ALLOW_NULL_DATA) && (data.type == DB_DATA_PTR && data.u.ptr == NULL)) {
-		ShowError("db_put: Attempted to use non-allowed NULL data for db allocated at %s:%d\n",db->alloc_file, db->alloc_line);
+		ShowError(read_message("Source.common.db_put2"),db->alloc_file, db->alloc_line);
 		return 0; // nullpo candidate
 	}
 
 	if(db->item_count == UINT32_MAX) {
-		ShowError("db_put: item_count overflow, aborting item insertion.\n"
-		          "Database allocated at %s:%d",
-		          db->alloc_file, db->alloc_line);
+		ShowError(read_message("Source.common.db_vensure"),db->alloc_file, db->alloc_line);
 		return 0;
 	}
 	// search for an equal node
@@ -2042,15 +2033,11 @@ static int db_obj_vdestroy(DBMap *self, DBApply func, va_list args)
 	DB_COUNTSTAT(db_vdestroy);
 	if(db == NULL) return 0;  // nullpo candidate
 	if(db->global_lock) {
-		ShowError("db_vdestroy: Database is already locked for destruction. Aborting second database destruction.\n"
-		          "Database allocated at %s:%d\n",
-		          db->alloc_file, db->alloc_line);
+		ShowError(read_message("Source.common.db_vdestroy"),db->alloc_file, db->alloc_line);
 		return 0;
 	}
 	if(db->free_lock)
-		ShowWarning("db_vdestroy: Database is still in use, %u lock(s) left. Continuing database destruction.\n"
-		            "Database allocated at %s:%d\n",
-		            db->free_lock, db->alloc_file, db->alloc_line);
+		ShowWarning(read_message("Source.common.db_vdestroy2"),db->free_lock, db->alloc_file, db->alloc_line);
 
 #ifdef DB_ENABLE_STATS
 	switch(db->type) {
@@ -2212,7 +2199,7 @@ DBOptions db_fix_options(DBType type, DBOptions options)
 			return (DBOptions)(options&~(DB_OPT_DUP_KEY|DB_OPT_RELEASE_KEY));
 
 		default:
-			ShowError("db_fix_options: Unknown database type %u with options %x\n", type, options);
+			ShowError(read_message("Source.common.db_fix_options"), type, options);
 		case DB_STRING:
 		case DB_ISTRING: // String databases, no fix required
 			return options;
@@ -2238,7 +2225,7 @@ DBComparator db_default_cmp(DBType type)
 		case DB_STRING:  return &db_string_cmp;
 		case DB_ISTRING: return &db_istring_cmp;
 		default:
-			ShowError("db_default_cmp: Unknown database type %u\n", type);
+			ShowError(read_message("Source.common.db_fix_options"), type);
 			return NULL;
 	}
 }
@@ -2262,7 +2249,7 @@ DBHasher db_default_hash(DBType type)
 		case DB_STRING:  return &db_string_hash;
 		case DB_ISTRING: return &db_istring_hash;
 		default:
-			ShowError("db_default_hash: Unknown database type %u\n", type);
+			ShowError(read_message("Source.common.db_fix_options"), type);
 			return NULL;
 	}
 }
@@ -2316,7 +2303,7 @@ DBReleaser db_custom_release(DBRelease which)
 		case DB_RELEASE_DATA:    return &db_release_data;
 		case DB_RELEASE_BOTH:    return &db_release_both;
 		default:
-			ShowError("db_custom_release: Unknown release options %u\n", which);
+			ShowError(read_message("Source.common.db_custom_release"), which);
 			return NULL;
 	}
 }

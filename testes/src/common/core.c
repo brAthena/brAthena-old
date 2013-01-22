@@ -107,7 +107,7 @@ static BOOL WINAPI console_handler(DWORD c_event)
 static void cevents_init()
 {
 	if(SetConsoleCtrlHandler(console_handler,TRUE)==FALSE)
-		ShowWarning("Nao e possivel instalar o manipulador do console!\n");
+		ShowWarning(read_message("Source.common.console_event"));
 }
 #endif
 
@@ -138,7 +138,7 @@ static void sig_proc(int sn)
 #ifndef _WIN32
 		case SIGXFSZ:
 			// ignore and allow it to set errno to EFBIG
-			ShowWarning("Tamanho maximo do arquivo alcancado!\n");
+			ShowWarning(read_message("Source.common.core_ssub_function"));
 			//run_flag = 0; // should we quit?
 			break;
 		case SIGPIPE:
@@ -218,6 +218,7 @@ const char *get_svn_revision(void)
 			if(memcmp(buffer + j - prefix_len, prefix, prefix_len) != 0)
 				continue; // prefix missmatch
 			// done
+			
 			snprintf(svn_version_buffer, sizeof(svn_version_buffer), "%d", atoi(buffer + j));
 			break;
 		}
@@ -243,10 +244,10 @@ const char *get_svn_revision(void)
 			} else {
 				// Bin File format
 				if(fgets(line, sizeof(line), fp) == NULL) {
-					printf("N�o � poss�vel obter o nome de bin\n");    // Get the name
+					printf(read_message("Source.common.svn_version_mes"));    // Get the name
 				}
 				if(fgets(line, sizeof(line), fp) == NULL) {
-					printf("N�o � poss�vel obter entradas tipo\n");    // Get the entries kind
+					printf(read_message("Source.common.svn_version_mes2"));    // Get the entries kind
 				}
 				if(fgets(line, sizeof(line), fp)) { // Get the rev numver
 					snprintf(svn_version_buffer, sizeof(svn_version_buffer), "%d", atoi(line));
@@ -260,7 +261,7 @@ const char *get_svn_revision(void)
 	}
 
 	// fallback
-	snprintf(svn_version_buffer, sizeof(svn_version_buffer), "Desconhecida");
+	snprintf(svn_version_buffer, sizeof(svn_version_buffer), read_message("Source.common.svn_version_mes3"));
 	return svn_version_buffer;
 }
 #endif
@@ -292,7 +293,7 @@ void usercheck(void)
 {
 #ifndef _WIN32
 	if(geteuid() == 0) {
-		ShowWarning("Voce esta executando o brAthena com privilegios root.\n");
+		ShowWarning(read_message("Source.common.user_check"));
 	}
 #endif
 }
@@ -315,7 +316,6 @@ int main(int argc, char **argv)
 	}
 
 	malloc_init();// needed for Show* in display_title() [FlavioJS]
-
 	read_server_lang();
 
 #ifdef MINICORE // minimalist Core

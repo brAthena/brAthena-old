@@ -152,7 +152,7 @@ void mempool_init()
 		return;
 
 	if(sizeof(struct node)%16 != 0) {
-		ShowFatalError("mempool_init: struct node alignment failure.  %u != multiple of 16\n", sizeof(struct node));
+		ShowFatalError(read_message("Source.common.mempool_init"), sizeof(struct node));
 		exit(EXIT_FAILURE);
 	}
 
@@ -167,7 +167,7 @@ void mempool_init()
 
 	l_async_thread = rathread_createEx(mempool_async_allocator, NULL, 1024*1024,  RAT_PRIO_NORMAL);
 	if(l_async_thread == NULL) {
-		ShowFatalError("mempool_init: cannot spawn Async Allocator Thread.\n");
+		ShowFatalError(read_message("Source.common.mempool_init2"));
 		exit(EXIT_FAILURE);
 	}
 
@@ -204,7 +204,7 @@ void mempool_final()
 
 		pn = p->next;
 
-		ShowWarning("Mempool [%s] was not properly destroyed - forcing destroy.\n", p->name);
+		ShowWarning(read_message("Source.common.mempool_final"), p->name);
 		mempool_destroy(p);
 
 		p = pn;
@@ -236,7 +236,7 @@ static void segment_allocate_add(mempool p,  uint64 count)
 	           + ((size_t)count * (sizeof(struct node) + (size_t)p->elem_size)) ;
 
 #ifdef MEMPOOL_DEBUG
-	ShowDebug("Mempool [%s] Segment AllocateAdd (num: %u, total size: %0.2fMiB)\n", p->name, count, (float)total_sz/1024.f/1024.f);
+	ShowDebug(read_message("Source.common.mempool_debug"), p->name, count, (float)total_sz/1024.f/1024.f);
 #endif
 
 	// allocate! (spin forever until weve got the memory.)
@@ -247,7 +247,7 @@ static void segment_allocate_add(mempool p,  uint64 count)
 
 		i++; // increase failcount.
 		if(!(i & 7)) {
-			ShowWarning("Mempool [%s] Segment AllocateAdd => System seems to be Out of Memory (%0.2f MiB). Try #%u\n", (float)total_sz/1024.f/1024.f,  i);
+			ShowWarning(read_message("Source.common.mempool_debug2"), (float)total_sz/1024.f/1024.f,  i);
 #ifdef WIN32
 			Sleep(1000);
 #else
@@ -326,7 +326,7 @@ mempool mempool_create(const char *name,
 	pool = (mempool)aCalloc(1,  sizeof(struct mempool));
 
 	if(pool == NULL) {
-		ShowFatalError("mempool_create: Failed to allocate %u bytes memory.\n", sizeof(struct mempool));
+		ShowFatalError(read_message("Source.common.mempool_create"), sizeof(struct mempool));
 		exit(EXIT_FAILURE);
 	}
 
@@ -362,7 +362,7 @@ mempool mempool_create(const char *name,
 
 	//
 #ifdef MEMPOOL_DEBUG
-	ShowDebug("Mempool [%s] Init (ElemSize: %u,  Initial Count: %u,  Realloc Count: %u)\n", pool->name,  pool->elem_size,  initial_count,  pool->elem_realloc_step);
+	ShowDebug(read_message("Source.common.mempool_create"), pool->name,  pool->elem_size,  initial_count,  pool->elem_realloc_step);
 #endif
 
 	// Allocate first segment directly :)
@@ -389,7 +389,7 @@ void mempool_destroy(mempool p)
 	int64 i;
 
 #ifdef MEMPOOL_DEBUG
-	ShowDebug("Mempool [%s] Destroy\n", p->name);
+	ShowDebug(read_message("Source.common.mempool_debug4"), p->name);
 #endif
 
 	// Unlink from global list.
@@ -428,7 +428,7 @@ void mempool_destroy(mempool p)
 
 
 	if(p->num_nodes_free != p->num_nodes_total)
-		ShowWarning("Mempool [%s] Destroy - %u nodes are not freed properly!\n", p->name, (p->num_nodes_total - p->num_nodes_free));
+		ShowWarning(read_message("Source.common.mempool_destroy"), p->name, (p->num_nodes_total - p->num_nodes_free));
 
 	// Free All Segments (this will also free all nodes)
 	// The segment pointer is the base pointer to the whole segment.
@@ -450,7 +450,7 @@ void mempool_destroy(mempool p)
 				ptr += p->elem_size;
 #ifdef MEMPOOLASSERT
 				if(niter->magic != NODE_MAGIC) {
-					ShowError("Mempool [%s] Destroy - walk over segment - node %p invalid magic!\n", p->name, niter);
+					ShowError(read_message("Source.common.mempool_destroy2"), p->name, niter);
 					continue;
 				}
 #endif
@@ -531,14 +531,14 @@ void mempool_node_put(mempool p, void *data)
 	node = DATA_TO_NODE(data);
 #ifdef MEMPOOLASSERT
 	if(node->magic != NODE_MAGIC) {
-		ShowError("Mempool [%s] node_put failed, given address (%p) has invalid magic.\n", p->name,  data);
+		ShowError(read_message("Source.common.mempool_node_put"), p->name,  data);
 		return; // lost,
 	}
 
 	{
 		struct pool_segment *node_seg = node->segment;
 		if(node_seg->pool != p) {
-			ShowError("Mempool [%s] node_put faild, given node (data address %p) doesnt belongs to this pool. ( Node Origin is [%s] )\n", p->name, data, node_seg->pool);
+			ShowError(read_message("Source.common.mempool_node_put2"), p->name, data, node_seg->pool);
 			return;
 		}
 	}

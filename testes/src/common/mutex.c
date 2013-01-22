@@ -65,7 +65,7 @@ ramutex ramutex_create()
 
 	m = (struct ramutex *)aMalloc(sizeof(struct ramutex));
 	if(m == NULL) {
-		ShowFatalError("ramutex_create: OOM while allocating %u bytes.\n", sizeof(struct ramutex));
+		ShowFatalError(read_message("Source.common.ramux_create"), sizeof(struct ramutex));
 		return NULL;
 	}
 
@@ -144,7 +144,7 @@ racond racond_create()
 
 	c = (struct racond *)aMalloc(sizeof(struct racond));
 	if(c == NULL) {
-		ShowFatalError("racond_create: OOM while allocating %u bytes\n", sizeof(struct racond));
+		ShowFatalError(read_message("Source.common.racon_create"), sizeof(struct racond));
 		return NULL;
 	}
 

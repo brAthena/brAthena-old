@@ -40,7 +40,7 @@ void evdp_init()
 
 	epoll_fd = epoll_create(EPOLL_MAX_PER_CYCLE);
 	if(epoll_fd == -1) {
-		ShowFatalError("evdp [EPOLL]: Cannot create event dispatcher (errno: %u / %s)\n", errno, strerror(errno));
+		ShowFatalError(read_message("Source.common.evdp_init"), errno, strerror(errno));
 		exit(1);
 	}
 
@@ -71,7 +71,7 @@ int32 evdp_wait(EVDP_EVENT *out_fds, int32 max_events, int32 timeout_ticks)
 	if(nfds == -1) {
 		// @TODO: check if core is in shutdown mode.  if - ignroe error.
 
-		ShowFatalError("evdp [EPOLL]: epoll_wait returned bad / unexpected status (errno: %u / %s)\n", errno, strerror(errno));
+		ShowFatalError(read_message("Source.common.evdp_wait"), errno, strerror(errno));
 		exit(1); //..
 	}
 
@@ -104,7 +104,7 @@ void evdp_remove(int32 fd,  EVDP_DATA *ep)
 	if(ep->ev_added == true) {
 
 		if(epoll_ctl(epoll_fd,  EPOLL_CTL_DEL,  fd,  &ep->ev_data)  != 0) {
-			ShowError("evdp [EPOLL]: evdp_remove - epoll_ctl (EPOLL_CTL_DEL) failed! fd #%u (errno %u / %s)\n", fd,  errno, strerror(errno));
+			ShowError(read_message("Source.common.evdp_remove"), fd,  errno, strerror(errno));
 		}
 
 		ep->ev_data.events = 0; // clear struct.
@@ -127,7 +127,7 @@ bool evdp_addlistener(int32 fd, EVDP_DATA *ep)
 	// listeners cannot be added twice.
 	//
 	if(epoll_ctl(epoll_fd,  EPOLL_CTL_ADD,  fd,  &ep->ev_data) != 0) {
-		ShowError("evdp [EPOLL]: evdp_addlistener - epoll_ctl (EPOLL_CTL_ADD) faield! fd #%u (errno %u / %s)\n", fd, errno, strerror(errno));
+		ShowError(read_message("Source.common.evdp_addlistener"), fd, errno, strerror(errno));
 		ep->ev_data.events = 0;
 		ep->ev_data.data.fd = -1;
 		return false;
@@ -150,7 +150,7 @@ bool evdp_addclient(int32 fd, EVDP_DATA *ep)
 	//
 
 	if(epoll_ctl(epoll_fd,  EPOLL_CTL_ADD,  fd, &ep->ev_data) != 0) {
-		ShowError("evdp [EPOLL]: evdp_addclient - epoll_ctl (EPOLL_CTL_ADD) failed! fd #%u (errno %u / %s)\n", fd, errno, strerror(errno));
+		ShowError(read_message("Source.common.evdp_addclient") fd, errno, strerror(errno));
 		ep->ev_data.events = 0;
 		ep->ev_data.data.fd = -1;
 		return false;
@@ -169,7 +169,7 @@ bool evdp_addconnecting(int32 fd, EVDP_DATA *ep)
 	ep->ev_data.data.fd = fd;
 
 	if(epoll_ctl(epoll_fd,  EPOLL_CTL_ADD,  fd, &ep->ev_data) != 0) {
-		ShowError("evdp [EPOLL]: evdp_addconnecting - epoll_ctl (EPOLL_CTL_ADD) failed! fd #%u (errno %u / %s)\n", fd, errno, strerror(errno));
+		ShowError(read_message("Source.common.evdp_addconnecting"), fd, errno, strerror(errno));
 		ep->ev_data.events = 0;
 		ep->ev_data.data.fd = -1;
 	}
@@ -186,7 +186,7 @@ bool evdp_outgoingconnection_established(int32 fd, EVDP_DATA *ep)
 
 	if(ep->ev_added != true) {
 		// !
-		ShowError("evdp [EPOLL]: evdp_outgoingconnection_established fd #%u is not added to event dispatcher! invalid call.\n", fd);
+		ShowError(read_message("", fd);
 		return false;
 	}
 
@@ -196,7 +196,7 @@ bool evdp_outgoingconnection_established(int32 fd, EVDP_DATA *ep)
 
 	if(epoll_ctl(epoll_fd,  EPOLL_CTL_MOD,  fd, &ep->ev_data) != 0) {
 		ep->ev_data.events = saved_mask; // restore old mask.
-		ShowError("evdp [EPOLL]: evdp_outgoingconnection_established - epoll_ctl (EPOLL_CTL_MOD) failed! fd #%u (errno %u / %s)\n", fd, errno, strerror(errno));
+		ShowError(read_message("Source.common.evdp_outgoingconnection_established"), fd, errno, strerror(errno));
 		return false;
 	}
 
@@ -208,7 +208,7 @@ bool evdp_writable_add(int32 fd, EVDP_DATA *ep)
 {
 
 	if(ep->ev_added != true) {
-		ShowError("evdp [EPOLL]: evdp_writable_add - tried to add not added fd #%u\n",fd);
+		ShowError(read_message("Source.common.evdp_writable_add"),fd);
 		return false;
 	}
 
@@ -216,7 +216,7 @@ bool evdp_writable_add(int32 fd, EVDP_DATA *ep)
 
 		ep->ev_data.events |= EPOLLOUT;
 		if(epoll_ctl(epoll_fd, EPOLL_CTL_MOD, fd, &ep->ev_data) != 0) {
-			ShowError("evdp [EPOLL]: evdp_writable_add - epoll_ctl (EPOLL_CTL_MOD) failed! fd #%u (errno: %u / %s)\n", fd, errno, strerror(errno));
+			ShowError(read_message("Source.common.evdp_writable_add"), fd, errno, strerror(errno));
 			ep->ev_data.events &= ~EPOLLOUT; // remove from local flagmask due to failed syscall.
 			return false;
 		}
@@ -230,7 +230,7 @@ void evdp_writable_remove(int32 fd, EVDP_DATA *ep)
 {
 
 	if(ep->ev_added != true) {
-		ShowError("evdp [EPOLL]: evdp_writable_remove - tried to remove not added fd #%u\n", fd);
+		ShowError(read_message("Source.common.evdp_writable_remove", fd);
 		return;
 	}
 
@@ -238,7 +238,7 @@ void evdp_writable_remove(int32 fd, EVDP_DATA *ep)
 
 		ep->ev_data.events &= ~EPOLLOUT;
 		if(epoll_ctl(epoll_fd, EPOLL_CTL_MOD, fd, &ep->ev_data) != 0) {
-			ShowError("evdp [EPOLL]: evdp_writable_remove - epoll_ctl (EPOLL_CTL_MOD) failed! fd #%u (errno %u / %s)\n", fd, errno, strerror(errno));
+			ShowError(read_message("Source.common.evdp_writable_remove2"), fd, errno, strerror(errno));
 			ep->ev_data.events |= EPOLLOUT; // add back to local flagmask because of failed syscall.
 			return;
 		}
