@@ -12,13 +12,14 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 2.2/2.2/1.1                         |
+//   | Versões eA/rA/brA: 2.2/2.2/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição: NPCs da Cidade de Lighthalzen.              |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [cleyton]                           |
+//   | 1.2 Otimização [Holy & Hold]                           |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -134,26 +135,26 @@ lighthalzen,233,121,3	script	Kariya#li_01	72,{
 
 lighthalzen,233,82,5	script	Sung#A	716,{
 	mes "[Sung]";
-	mes "When I grow up, I want";
-	mes "to become such a great";
-	mes "person that they'll make";
-	mes "a statue of me, just like";
-	mes "those statues over there.";
+	mes "Quando eu crescer, quero";
+	mes "quero me tornar uma pessoa";
+	mes "tão grande que até irão fazer";
+	mes "uma estátua de mim, assim como";
+	mes "outras estátuas que foram feitas.";
 	next;
 	mes "[Sung]";
-	mes "Then people would be like,";
-	mes "''Hey yo. That statue. That";
-	mes "guy must have been great!''";
-	mes "Just thinking about that";
-	mes "makes me feel so good!";
+	mes "Então as pessoas seriam como,";
+	mes "''Ei você. Aquela estátua. Esse";
+	mes "cara deve ter sido importante!''";
+	mes "Só de pensar que";
+	mes "isso me faz sentir tão bem!";
 	next;
 	mes "[Sung]";
-	mes "That's it. I'm gonna";
-	mes "grow up as soon as I can.";
-	mes "Ooh, and I better grow tall";
-	mes "and handsome so my statue";
-	mes "will be even more awesome.";
-	mes "Yeah. Yeah, good idea, Sung...";
+	mes "É isso aí. Eu vou";
+	mes "ser reconhecido assim também algum dia.";
+	mes "Nossa, e é melhor que eu cresça em tamanho";
+	mes "e fique bonito, para quando fizerem minha estátua";
+	mes "ela parecer ainda mais incrível.";
+	mes "Sim. Sim, boa idéia, Sung...";
 	close;
 }
 
@@ -524,8 +525,8 @@ lighthalzen,202,94,5	script	Wallace#zen2	847,{
 }
 
 lighthalzen,182,102,3	script	Lucius#zen5	866,{
-	if (Zeny < 90000) {
 		mes "[Lucius]";
+	if (Zeny < 90000) {
 		mes "Olá jovem~";
 		mes "Gostaria de fazer uma";
 		mes "doação para ajudar";
@@ -540,15 +541,14 @@ lighthalzen,182,102,3	script	Lucius#zen5	866,{
 			mes "cancelar, digite '0'.";
 			next;
 			input .@input;
+			mes "[Lucius]";
 			if (.@input > 30000 || .@input < 0) {
-				mes "[Lucius]";
 				mes "Por favor, insira um";
 				mes "valor de 1 a 30 000";
 				mes "para fazer uma doação aos";
 				mes "necessitados, jovem.";
 				close;
 			} else if (.@input == 0) {
-				mes "[Lucius]";
 				mes "Que decepcionante.";
 				mes "Mas você deve ter suas";
 				mes "razões. Bem, quando você";
@@ -557,15 +557,14 @@ lighthalzen,182,102,3	script	Lucius#zen5	866,{
 				mes "volte aqui.";
 				close;
 			}
-			mes "[Lucius]";
 			mes "Muito obrigado";
 			mes "por sua doação de " + .@input + " zennys.";
 			mes "Garanto que seu dinheiro";
 			mes "será usado apenas para";
 			mes "o benefício de quem necessita dele.";
 			next;
+			mes "[Lucius]";
 			if (Zeny < .@input) {
-				mes "[Lucius]";
 				mes "Ainda assim, estou um";
 				mes "pouco desapontado. Um";
 				mes "aventureiro como você";
@@ -574,7 +573,6 @@ lighthalzen,182,102,3	script	Lucius#zen5	866,{
 			}
 			set zeny,zeny-.@input;
 			set $donatedzeny,$donatedzeny + .@input;
-			mes "[Lucius]";
 			mes "Até agora, eu recebi";
 			mes "um total de " + $donatedzeny + " zennys em";
 			mes "doações. Estou muito feliz";
@@ -590,8 +588,8 @@ lighthalzen,182,102,3	script	Lucius#zen5	866,{
 				mes "como um símbolo da minha gratidão.";
 				mes "Que Deus o abençoe, aventureiro.";
 				set $donatedzeny,0;
-				getitem 603,1; //Old_Blue_Box
-				getitem 12016,1; //Speed_Up_Potion
+				getitem 603,1; 		// Velha Caixa Azul
+				getitem 12016,1;	// Poção do Vento
 			}
 			close;
 		}
@@ -604,10 +602,9 @@ lighthalzen,182,102,3	script	Lucius#zen5	866,{
 		mes "os benefícios serem imediatos.";
 		close;
 	}
-	mes "[Lucius]";
 	mes "Olá, jovem~";
 	mes "Você parece ser bastante";
-	mes "abastado. É bom ter";
+	mes "rico. É bom ter";
 	mes "dinheiro, mas tome cuidado";
 	mes "para não ficar obcecado com isso.";
 	next;
@@ -857,10 +854,9 @@ lhz_in02,287,273,3	script	Cliente#amano11	50,{
 	mes "na verdade. Agora por que você";
 	mes "não senta aqui comigo?";
 	close;
-	close;
 }
 
-lhz_in02,283,276,4	script	Customer#amano12	815,{
+lhz_in02,283,276,4	script	Sei#amano12	815,{
 	mes "[Sei]";
 	mes "Está vendo aquele cara?";
 	mes "Aquele ali está sempre";
@@ -869,19 +865,7 @@ lhz_in02,283,276,4	script	Customer#amano12	815,{
 	mes "quer me chamar para sair ou algo assim?";
 	next;
 	mes "[Sei]";
-	if (Sex == 1) {
-		mes "Bem, se ele quiser,";
-		mes "ele não deveria ser mais";
-		mes "corajoso? Ou vocês,";
-		mes "garotos, são mais tímidos do";
-		mes "que eu pensava?";
-	} else {
-		mes "Bem, ele até que é";
-		mes "bonitinho. Nossa, isso";
-		mes "seria tão mais fácil se";
-		mes "ele só levantasse e viesse";
-		mes "conversar comigo...";
-	}
+	mes "Bem, "+((Sex) ? "se ele quiser ele não deveria ser mais corajoso? Ou vocês garotos, são mais tímidos do que eu pensava?" : "ele até que é bonitinho. Nossa, isso seria tão mais fácil se ele só levantasse e viesse conversar comigo...")+"";
 	close;
 }
 
@@ -968,7 +952,7 @@ lighthalzen,296,239,3	script	Berru#lhz_01	706,{
 		emotion e_dots;
 		next;
 		mes "[Berru]";
-		mes "^333333*Snif...*^000000";
+		mes "^333333*Choro...*^000000";
 		mes "Mas estou com fome e";
 		mes "com saudade do papai!";
 		next;
@@ -1016,8 +1000,8 @@ OnTouch:
 	mes "dar algum dinheiro?";
 	next;
 	if (select("Dar dinheiro para ele.:Ignorar.") == 1) {
-		if (Zeny < 50) {
-			mes "[Pedinte]";
+			mes "[Carente]";
+			if (Zeny < 50) {
 			mes "Agradeço sua bondade,";
 			mes "mas parece que você";
 			mes "também precisa de alguns";
@@ -1031,7 +1015,7 @@ OnTouch:
 		mes "pegue.";
 		set zeny,zeny-50;
 		next;
-		mes "[Pedinte]";
+		mes "[Carente]";
 		mes "Muito obrigado.";
 		mes "Não posso oferecer nada";
 		mes "em troca, mas posso te";
@@ -1040,9 +1024,9 @@ OnTouch:
 		mes "que adquiri com o passar dos anos.";
 		emotion e_thx;
 		next;
+		mes "[Carente]";
 		switch(rand(1,3)) {
 		case 1:
-			mes "[Pedinte]";
 			mes "Todos já estiveram em uma";
 			mes "situação em que você";
 			mes "sente que precisa fazer";
@@ -1050,7 +1034,7 @@ OnTouch:
 			mes "a coisa certa ou fazer";
 			mes "o que você quer, não é?";
 			next;
-			mes "[Pedinte]";
+			mes "[Carente]";
 			mes "Você se sente acuado.";
 			mes "Bem, vou te contar, quando";
 			mes "existe um problema, as";
@@ -1058,7 +1042,7 @@ OnTouch:
 			mes "sempre são óbvias.";
 			mes "Então se acalme e pense.";
 			next;
-			mes "[Pedinte]";
+			mes "[Carente]";
 			mes "O que você pode ver";
 			mes "e entender talvez não";
 			mes "seja a realidade. Como estrelas, que estão no céu de dia, mas invisíveis.";
@@ -1079,20 +1063,19 @@ OnTouch:
 			mes ". . . . . . . . . . . .";
 			mes ". . . . . . . . . . . .";
 			next;
-			mes "[Pedinte]";
+			mes "[Carente]";
 			emotion e_what;
 			mes "Hmm...?";
 			mes "Você parece surpreso~";
 			close;
 		case 2:
-			mes "[Pedinte]";
 			mes "Eu acredito e não acredito";
 			mes "em destino. Deixe-me explicar";
 			mes "assim. Eu vivo cada dia,";
 			mes "cada um completando seu";
 			mes "ciclo com milagres de um lado e tragédias do outro.";
 			next;
-			mes "[Pedinte]";
+			mes "[Carente]";
 			mes "Então cada dia pode ter";
 			mes "experiências boas, más";
 			mes "ou ambas. Acredito que";
@@ -1100,7 +1083,7 @@ OnTouch:
 			mes "papel ativo em seu próprio";
 			mes "destino, dia após dia.";
 			next;
-			mes "[Pedinte]";
+			mes "[Carente]";
 			mes "Podem ter algumas coisas";
 			mes "que você não controla,";
 			mes "mas até o pior pessimista";
@@ -1108,7 +1091,7 @@ OnTouch:
 			mes "mundo não tem apenas tragédias,";
 			mes "mas milagres também.";
 			next;
-			mes "[Pedinte]";
+			mes "[Carente]";
 			mes "Levante-se quando cair";
 			mes "e viva com paixão. A capacidade de ocorrerem milagres sempre";
 			mes "estará lá e saiba";
@@ -1130,7 +1113,7 @@ OnTouch:
 			mes ". . . . . . . . . . . .";
 			mes ". . . . . . . . . . . .";
 			next;
-			mes "[Pedinte]";
+			mes "[Carente]";
 			emotion e_what;
 			mes "Não acredita?";
 			mes "Você verá por";
@@ -1138,7 +1121,6 @@ OnTouch:
 			mes "Existem muitas coisas boas em você.";
 			close;
 		case 3:
-			mes "[Pedinte]";
 			mes "Raiva. As pessoas lidam com";
 			mes "ela de formas diferentes.";
 			mes "Alguns abafam. Outros liberam.";
@@ -1146,21 +1128,21 @@ OnTouch:
 			mes "Para simplificar, digamos";
 			mes "que existem dois tipos de raiva.";
 			next;
-			mes "[Pedinte]";
+			mes "[Carente]";
 			mes "O primeiro é o tipo que não";
 			mes "é muito produtivo. Como uma";
 			mes "frustração que você pode mandar";
 			mes "embora. Alguém foi grosso com";
 			mes "você ou seu amigo esqueceu seu aniversário? Sem estresse.";
 			next;
-			mes "[Pedinte]";
+			mes "[Carente]";
 			mes "Não se deixe dominar por";
 			mes "esse tipo de raiva, ou vai";
 			mes "parecer um fracassado. Pense";
 			mes "no quando completo, e se continuar";
 			mes "chateado, reaja apropriadamente. Seja honesto sem machucar ninguém.";
 			next;
-			mes "[Pedinte]";
+			mes "[Carente]";
 			mes "O segundo tipo de raiva";
 			mes "é justificado. Sacanearam";
 			mes "você e você quer retribuir.";
@@ -1168,7 +1150,7 @@ OnTouch:
 			mes "direcioná-la erroneamente,";
 			mes "e responda de maneira apropriada.";
 			next;
-			mes "[Pedinte]";
+			mes "[Carente]";
 			mes "Entrar numa briga por raiva";
 			mes "justificada, digamos para proteger";
 			mes "alguém, fará de você um herói.";
@@ -1176,7 +1158,7 @@ OnTouch:
 			mes "frustração fará de você um";
 			mes "idiota. Saiba a diferença.";
 			next;
-			mes "[Pedinte]";
+			mes "[Carente]";
 			mes " ";
 			mes " ";
 			mes " ";
@@ -1198,7 +1180,7 @@ OnTouch:
 			mes ". . . . . . . . . . . .";
 			mes ". . . . . . . . . . . .";
 			next;
-			mes "[Pedinte]";
+			mes "[Carente]";
 			emotion e_what;
 			mes "Qual o problema?";
 			mes "Pode ser muita coisa";
@@ -1213,8 +1195,8 @@ OnTouch:
 }
 
 lighthalzen,311,194,3	script	Reuben#lhz_02	870,{
+	mes "[Reuben]";
 	if (rand(1,2)) {
-		mes "[Reuben]";
 		mes "Algum dia...";
 		mes "Algum dia eu virarei um";
 		mes "condutor de trem e";
@@ -1228,15 +1210,15 @@ lighthalzen,311,194,3	script	Reuben#lhz_02	870,{
 		mes "falando sozinho?";
 		mes "Droga! Preciso ser mais silencioso!";
 		emotion e_an;
-		close;
 	}
-	mes "[Reuben]";
+	else {
 	mes "Ei. Por que você";
 	mes "está me olhando?";
 	mes "Não conheço você";
 	mes "pelo Adam, então";
 	mes "dê o fora~";
 	emotion e_rock;
+	}
 	close;
 }
 
@@ -1487,7 +1469,7 @@ lhz_in01,110,40,3	script	Jorjerro#fhero	89,{
 
 lhz_in01,116,45,7	script	Joshua#aya	704,{
 	mes "[Joshua]";
-		mes "O que estou fazendo aqui?";
+	mes "O que estou fazendo aqui?";
 	mes "Estou esperando meu sonho,";
 	mes "que mulheres caiam no meu";
 	mes "colo, o que mais parece?";
@@ -1497,7 +1479,6 @@ lhz_in01,116,45,7	script	Joshua#aya	704,{
 	mes "de pele macia.";
 	mes "Isso aí. Venham a";
 	mes "Joshua, garotas.";
-	mes " ";
 	mes " ";
 	close;
 }
@@ -1530,7 +1511,7 @@ lighthalzen,326,249,5	script	Grinnel#zen6	870,{
 
 lhz_in03,192,19,3	script	Haggar#zen1	855,{
 	mes "[Haggar]";
-	mes "Uísque!";
+	mes "Wisk!";
 	mes "Eu preciso de uma";
 	mes "bebida forte agora!";
 	next;
@@ -1746,7 +1727,7 @@ lhz_in01,173,28,4	script	Guarda#01::LhzRekGuard	868,{
 
 lhz_in01,180,28,4	duplicate(LhzRekGuard)	Guard#03	868
 
-lhz_in01,72,209,5	script	Guide#lt0	862,{
+lhz_in01,72,209,5	script	Guia#lt0	862,{
 	mes "[Lasoei]";
 	mes "Ahh.";
 	mes "Os mesmos clientes";
@@ -1781,15 +1762,14 @@ lhz_in01,73,188,0	script	Guia#lt2	862,{
 }
 
 lhz_in01,35,226,5	script	Guarda Rekenber#li01	867,{
-	if (isequipped(2241) && isequipped(2243)) {
 		mes "[Guarda Rekenber]";
+	if (isequipped(2241) && isequipped(2243)) {
 		mes "^3355FF(Uau, é um membro da";
 		mes "diretoria!)^000000 Bom-dia!";
 		close2;
 		warp "lhz_in01",37,225;
 		end;
 	}
-	mes "[Guarda Rekenber]";
 	mes "Essa é uma área restrita!";
 	mes "Indentifique-se";
 	mes "imediatamente!";
@@ -1812,31 +1792,28 @@ lhz_in01,35,226,5	script	Guarda Rekenber#li01	867,{
 
 lhz_in01,23,132,3	script	Guarda Rekenber#li02	867,5,5,{
 OnTouch:
-	if (isequipped(2241) && isequipped(2243)) {
 		mes "[Guarda Rekenber]";
+	if (isequipped(2241) && isequipped(2243)) {
 		mes "Mantenha os olhos abertos.";
 		mes "Ouvi rumores de que aventureiros";
-		mes "de Rune-Midgarts estão tentando";
+		mes "de Rune-Midgard estão tentando";
 		mes "se infiltrar aqui! Sei que";
 		mes "a segurança aqui é muito";
 		mes "eficiente, mas mesmo assim...";
 		close;
-	}
-	else {
-		mes "[Guarda Rekenber]";
+		}
 		mes "Essa é uma área restrita ao";
 		mes "público! Quem é você e como";
 		mes "entrou?! Saia daqui";
 		mes "imediatamente!";
 		close2;
 		warp "lhz_in01",33,224;
-	}
-	end;
+		end;
 }
 
 lhz_in01,217,121,3	script	Mecânico#li_01	851,{
-	if (isequipped(2241) && isequipped(2243)) {
 		mes "[Mecânico]";
+	if (isequipped(2241) && isequipped(2243)) {
 		mes "Não é surpresa que esses aparelhos";
 		mes "quembrem o tempo todo!";
 		mes "Essas máquinas são abusadas";
@@ -1852,7 +1829,6 @@ lhz_in01,217,121,3	script	Mecânico#li_01	851,{
 		mes "muito cuidado.";
 		close;
 	}
-	else {
 		mes "[Mecânico]";
 		mes "Ei, você não trabalha--";
 		mes "G-guardas! Corram! Tem";
@@ -1861,14 +1837,13 @@ lhz_in01,217,121,3	script	Mecânico#li_01	851,{
 		close2;
 		warp "lhz_in01",33,224;
 		end;
-	}
 }
 
 lhz_in01,203,123,3	script	Cientista#li_02	750,{
-	if (isequipped(2241) && isequipped(2243)) {
 		mes "[Cientista]";
-		mes "Certo. Tirar um tubo de teste";
-		mes "da máquina, repor";
+		mes "Certo. Tirar um tubo de";
+		mes "teste da máquina, repor";
+	if (isequipped(2241) && isequipped(2243)) {
 		mes "esse outro tubo de teste";
 		mes "que está aqui e depois";
 		mes "limpar o primeiro tubo?";
@@ -1882,9 +1857,6 @@ lhz_in01,203,123,3	script	Cientista#li_02	750,{
 		mes "eu não tivesse perdido as instruções...";
 		close;
 	}
-	mes "[Cientista]";
-	mes "Certo. Tirar um tubo de";
-	mes "teste da máquina, repor";
 	mes "esse out--ei. Você não";
 	mes "é o Ralphie. Espera. Guardaaaaaas!";
 	mes "Socorro, tem um estranho aqui!";
@@ -1895,8 +1867,8 @@ lhz_in01,203,123,3	script	Cientista#li_02	750,{
 }
 
 lhz_in01,199,137,3	script	Cientista#li_03	865,{
-	if (isequipped(2241) && isequipped(2243)) {
 		mes "[Cientista]";
+	if (isequipped(2241) && isequipped(2243)) {
 		mes "Whoa whoa~!";
 		mes "Por favor não";
 		mes "toque em nada!";
@@ -1904,7 +1876,6 @@ lhz_in01,199,137,3	script	Cientista#li_03	865,{
 		mes "substâncias voláteis aqui!";
 		close;
 	}
-	mes "[Cientista]";
 	mes "Guardas! Rápido,";
 	mes "tem alguém aqui";
 	mes "e acho que é um";
@@ -1918,8 +1889,8 @@ lhz_in01,199,137,3	script	Cientista#li_03	865,{
 
 lhz_in01,46,125,3	script	Guarda Rekenber#li03	867,5,5,{
 OnTouch:
-	if (isequipped(2241) && isequipped(2243)) {
 		mes "[Guarda Rekenber]";
+	if (isequipped(2241) && isequipped(2243)) {
 		mes "......................";
 		next;
 		if (select("Belo dia, não?:Cancelar") == 1) {
@@ -1932,7 +1903,6 @@ OnTouch:
 		mes "...";
 		close;
 	}
-	mes "[Guarda Rekenber]";
 	mes "...!";
 	emotion e_gasp;
 	close2;
@@ -1947,8 +1917,8 @@ lhz_in01,25,141,4	script	Guarda Regenschirm	868,{
 		mes "Você quer ir ao";
 		mes "subterrâneo?";
 		next;
-		if(select("Sim:Não")==1){
-			if(isequipped(2657)){
+		if(select("Sim:Não")==1) {
+			if(isequipped(2657)) {
 				warp "lhz_dun01",150,288;
 				end;
 			}
@@ -2030,7 +2000,7 @@ lhz_in02,31,33,3	script	Gracie#5	863,{
 	close;
 }
 
-lhz_in02,21,38,7	script	Banco Clerk#1::BankClerk	86,{
+lhz_in02,21,38,7	script	Banco Clerk#1	86,{
 	mes "[Funcionário do Banco]";
 	mes "Devido a alguns erros críticos";
 	mes "do sistema, os serviços bancários";
@@ -2039,10 +2009,10 @@ lhz_in02,21,38,7	script	Banco Clerk#1::BankClerk	86,{
 	close;
 }
 
-lhz_in02,21,25,7	duplicate(BankClerk)	Banco Clerk#2	86
-lhz_in02,34,22,1	duplicate(BankClerk)	Banco Clerk#3	755
+lhz_in02,21,25,7	duplicate(Banco Clerk#1)	Banco Clerk#2	86
+lhz_in02,34,22,1	duplicate(Banco Clerk#1)	Banco Clerk#3	755
 
-// Lightalzen Prison Area -------------------------------------------------------------
+// Lightalzen Área da Prisão -------------------------------------------------------------
 
 lhz_in02,145,177,0	script	Togii#07	849,{
 	mes "[Togii]";
@@ -2099,7 +2069,7 @@ lhz_in02,153,206,4	script	Millette#05	853,{
 	close;
 }
 
-lhz_in02,147,222,3	script	Oficial Guo#06::off_guo	85,{
+lhz_in02,147,222,3	script	Oficial Guo#06	85,{
 	mes "[Oficial]";
 	mes "Fale...!";
 	mes "FALE...!";
@@ -2172,11 +2142,9 @@ lhz_in02,147,222,3	script	Oficial Guo#06::off_guo	85,{
 	close;
 }
 
-lhz_in02,142,222,6	duplicate(off_guo)	Suspect#6	870
+lhz_in02,142,222,6	duplicate(Oficial Guo#06)	Suspeito#6	870
 
-// New -----------------------------------------------------------------------
-
-lhz_in01,14,28,3	script	Funcionário banquete	109,{
+lhz_in01,14,28,3	script	Funcionário do Banquete	109,{
 	mes "[Funcionário]";
 	mes "Esse muro de Banquetes é";
 	mes "utilizado para realizar eventos";
@@ -2387,12 +2355,11 @@ lhz_in01,135,57,3	script	Placa Negra#li	111,{
 }
 
 lhz_in03,100,18,3	script	Rocky#li_house	81,{
+	mes "[Rocky]";
 	if (rand(2)) {
-		mes "[Rocky]";
 		mes "Woof woof!";
 		close;
 	}
-	mes "[Rocky]";
 	mes "Grrrrrrr...";
 	close;
 }
@@ -2493,7 +2460,6 @@ lighthalzen,162,304,7	script	Guarda Drew#li	868,{
 }
 
 lighthalzen,163,306,3	script	Guarda Tan#li	867,{
-	mes "[Rekenber Guard Tan]";
 	mes "[Guarda Tan]";
 	mes "Uau. Isso aqui...";
 	mes "Isso aqui é arte. A luz,";
@@ -2533,7 +2499,7 @@ lighthalzen,70,227,4	script	Delna#li_reken	102,{
 	close;
 }
 
-lhz_in02,289,277,3	script	Artista Marcial#1	753,{
+lhz_in02,289,277,3	script	Lutador Marcial#1	753,{
 	mes "[Lutador de Artes Marciais]";
 	mes "Droga...";
 	mes "Vim ao lugar errado";
@@ -2907,9 +2873,9 @@ lighthalzen,40,107,4	script	Vergil#zen4	869,{
 
 lhz_in01,144,53,3	script	Jorje#zero	98,1,1,{
 OnTouch:
+		mes "[Jorje]";
 	switch(rand(1,3)) {
 	case 1:
-		mes "[Jorje]";
 		mes "Aaarre, eu não";
 		mes "tenho tempo para";
 		mes "conversar! Estou no";
@@ -2917,14 +2883,12 @@ OnTouch:
 		mes "importante! Espere aí!";
 		close;
 	case 2:
-		mes "[Jorje]";
 		mes "N-não chegue mais";
 		mes "perto! Qualquer um";
 		mes "que chegar perto pode";
 		mes "me machucar! Saia daqui!";
 		close;
 	case 3:
-		mes "[Jorje]";
 		mes "Ah cara...";
 		mes "Eu tenho trabalhado tão";
 		mes "duro e nem fiz uma pausa";
@@ -2953,16 +2917,14 @@ lhz_in01,139,48,7	script	Leimi#mimir	73,{
 	mes "Posso ajudá-lo?";
 	emotion e_omg;
 	if (BaseJob == Job_Assassin) {
+	next;
+	mes "[Leimi]";
 		if (Sex) {
-			next;
-			mes "[Leimi]";
 			mes "Ah, você é um Assassino!";
 			mes "Vocês são tããão fofos!";
 			mes "E tão legais e misteriosos ao mesmo tempo! Eu amo vocês!";
 		}
 		else {
-			next;
-			mes "[Leimi]";
 			mes "Um Assassino...?";
 			mes "Ah, você por acaso conhece";
 			mes "algum menino Assassino que";
@@ -3029,8 +2991,7 @@ lhz_in02,36,274,4	script	Escritório de eventos#Saera	831,{
 			mes "deles nos escritórios das";
 			mes "companhias participantes. Obrigado pelo apoio~";
 			close;
-		}
-		else {
+			}
 			mes "[Saera]";
 			mes "Atualmente, a Corporação";
 			mes "Kafra e o Grupo de Eventos";
@@ -3059,7 +3020,6 @@ lhz_in02,36,274,4	script	Escritório de eventos#Saera	831,{
 			mes "encontrados em Prontera";
 			mes "e Juno. Muito obrigado.";
 			close;
-		}
 	case 3:
 		mes "[Saera]";
 		mes "Obrigado.";
@@ -3154,24 +3114,19 @@ lighthalzen,337,296,3	script	Empregado Rekenber#li_2	868,{
 }
 
 lhz_in01,221,131,7	script	Cientista#li_01	865,{
+			mes "[Cientista]";
 	if (isequipped(2241) && isequipped(2243)) {
 		if (hg_tre > 54) {
-			mes "[A Scientist]";
 			mes "O que aconteceu? Todas as máquinas estão em ruínas e o relatório de pesquisa sumiu ?! A história de Regenschirm foi roubada!";
 			close;
 		}
-		else {
-			mes "[Scientist]";
 			mes "Esperar tanto tempo para";
 			mes "este dispositivo processar";
 			mes "todos os dados e dar-me";
 			mes "todos os dados acaba";
 			mes "aumentando minha expectativa...";
 			close;
-		}
 	}
-	else {
-		mes "[Scientist]";
 		mes "Que?! Guardas!";
 		mes "Rápido, há um";
 		mes "intruzo aqui!";
@@ -3179,7 +3134,6 @@ lhz_in01,221,131,7	script	Cientista#li_01	865,{
 		close2;
 		warp "lhz_in01",33,224;
 		end;
-	}
 }
 
 // Cogumelo de Lighthalzen

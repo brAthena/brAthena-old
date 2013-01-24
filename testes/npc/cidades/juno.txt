@@ -12,13 +12,14 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.4/1.4/1.1                         |
+//   | Versões eA/rA/brA: 1.4/1.4/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição: NPCs da Cidade de Juno.                     |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [cleyton]                           |
+//   | 1.2 Otimização [Holy & Hold]                           |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -88,13 +89,12 @@ yuno,337,227,4	script	Avó de Juno#juno	103,{
 			mes "[Avó]";
 			mes "Sim, esta certo. Agora você tem que perguntar a si mesmo porquer não aceitou o doce que eu ofereci.";
 			close;
-		} else {
+		} 
 			mes "*Risos risos*";
 			mes "A hora chegou.";
 			mes "Pois bem...";
 			close;
-		}
-	} else {
+	} 
 		mes "Sou a Sábia Avó que tudo prevê...";
 		next;
 		mes "[Avó]";
@@ -106,10 +106,9 @@ yuno,337,227,4	script	Avó de Juno#juno	103,{
 		mes "[Avó]";
 		mes "Você já deve ter escolhido se vai enfrentar ou não o Senhor da Morte. Tudo que precisa fazer agora é saber porque você tomou essa decisão.";
 		close;
-	}
 }
 
-yuno,328,239,4	script	Juno Fighter#juno	732,{
+yuno,328,239,4	script	Lutador de Juno#juno	732,{
 	mes "[Sergiof]";
 	mes "Meu nome é Sergiof,";
 	mes "o lutador que";
@@ -166,7 +165,7 @@ yuno,165,111,4	script	Sábio de Juno#juno	123,,{
 				mes "[Le Morpheus]";
 				mes "A que você escolheu, vai te desligar de tudo e te mostrar alucinações.";
 				set zeny,zeny-5000;
-				getitem 507,1; //Red_Herb
+				getitem 507,1; // Erva Vermelha
 				close2;
 				warp "prontera",182,206;
 				end;
@@ -174,22 +173,20 @@ yuno,165,111,4	script	Sábio de Juno#juno	123,,{
 			mes "[Le Morpheus]";
 			mes "Você verá a verdade.";
 			set zeny,zeny-5000;
-			getitem 510,1; //Blue_Herb
+			getitem 510,1; // Erva Verde
 			close2;
 			warp "pay_dun03",200,222;
 			end;
-		} else {
+		}
 			mes "Hmm. Desculpe dizer que você perdeu uma chance de ouro. No entando, preciso lhe contar que você não têm dinheiro para levar esta maravilha.";
 			close;
-		}
-	} else {
+	} 
 		mes "^3355FFApocalipse^000000...";
 		mes "É o nome do androide que costumava proteger Juno há muito tempo.";
 		next;
 		mes "[Le Morpheus]";
 		mes "Devido sua inteligêngia artificial ter se corrompido com o passar do tempo, ele não pode mais distinguir inimigos de aliados. Infelizmente, este andróide não passa de um monstro estúpido agora.";
 		close;
-	}
 }
 
 yuno,157,205,4	script	Artesão de Juno#juno	54,{
@@ -240,98 +237,49 @@ yuno,150,283,4	script	Soldado de Juno#juno	105,{
 	mes "Bem-Vindo a Juno, a cidade da elevação de espírito.";
 	next;
 	mes "[Soldado de Juno]";
+	if ( strnpcinfo(0) == "Soldado de Juno#juno")
 	mes "Existe aqui perto um monstro chamado de Golem de Lava. Este Golem é feito de um coração de pedra cuja potência foi amplificada por magia.";
-	next;
-	mes "[Soldado de Juno]";
-	mes "A lava que fica escorrendo de seu corpo é tão quente que pode derreter as armaduras e armas feitas de aço de alta qualidade.";
-	next;
-	mes "[Soldado de Juno]";
-	mes "É melhor você tomar cuidado quando encontrar este monstro. Destruirá seus equipamentos em um piscar de olhos.";
-	close;
-}
-
-yuno,165,283,4	script	Soldado de Juno#2juno	105,{
-	mes "[Soldado de Juno]";
-	mes "Bem-Vindo a Juno, a cidade da elevação de espírito.";
-	next;
-	mes "[Soldado de Juno]";
-	mes "Planta Carnívora...";
-	mes "Este monstro parece uma flor brotando do chão.";
-	next;
-	mes "[Soldado de Juno]";
-	mes "Estranhamente, ela pode estender seu corpo a longas distâncias. Mesmo se você estiver de longe, ela pode ser uma ameaça.";
-	next;
-	mes "[Soldado de Juno]";
-	mes "O nome deste monstro, originou-se da história de um pobre geógrafo, que infelizmente, foi devorado por este monstro enquanto ele estava concentrado nos estudos.";
-	close;
-}
-
-yuno,227,292,4	script	Soldado de Juno#3juno	105,{
-	mes "[Soldado de Juno]";
-	mes "Bem-Vindo a Juno, a cidade da elevação de espírito.";
-	next;
-	mes "[Soldado de Juno]";
+	else if ( strnpcinfo(0) == "Soldado de Juno#2juno")
+	mes "Planta Carnívora... Este monstro parece uma flor brotando do chão.";
+	else if ( strnpcinfo(0) == "Soldado de Juno#3juno")
 	mes "Próximo a Juno, existe um falso anjo chamado 'Anjo Fajuto'. Ele finge ser inocente, parecendo abençoar aventureiros e então ele os ataca pelas costas, sem qualquer aviso.";
-	next;
-	mes "[Soldado de Juno]";
-	mes "Não se engane pelas aparências ou você vai ter sérios problemas.";
-	close;
-}
-
-yuno,165,228,4	script	Soldado de Juno#4juno	105,{
-	mes "[Soldado de Juno]";
-	mes "Bem-Vindo a Juno, a cidade da elevação de espírito.";
-	next;
-	mes "[Soldado de Juno]";
+	else if ( strnpcinfo(0) == "Soldado de Juno#4juno")
 	mes "'Bode' é um monstro que foi um antílope e vive em montanhas altas, agora não passa de um monstro qualquer.";
-	next;
-	mes "[Soldado de Juno]";
-	mes "Mesmo se você conseguir esquivar-se de seus chifres, ainda precisa tomar cuidado com suas poderosas pernas.";
-	next;
-	mes "[Soldado de Juno]";
-	mes "As pernas do Bode são muito fortes, porque está sempre escalando penhascos quando não está matando inocentes.";
-	close;
-}
-
-yuno,150,228,4	script	Soldado de Juno#5juno	105,{
-	mes "[Soldado de Juno]";
-	mes "Bem-Vindo a Juno, a cidade da elevação de espírito.";
-	next;
-	mes "[Soldado de Juno]";
-	mes "Você já viu";
-	mes "um Jellopy Tamanho Família?";
-	mes "Elas são enooormes!";
-	next;
-	mes "[Soldado de Juno]";
-	mes "É difícil de acreditar";
-	mes "mais é o maior e mais";
-	mes "brilhante jellopy que existe!";
-	close;
-}
-
-yuno,334,182,4	script	Soldado de Juno#6juno	105,{
-	mes "[Soldado de Juno]";
-	mes "Bem vindo à Juno, a cidade da elevação de espírito.";
-	next;
-	mes "[Soldado de Juno]";
+	else if ( strnpcinfo(0) == "Soldado de Juno#5juno")
+	mes "Você já viu um Jellopy Tamanho Família? Elas são enooormes!";
+	else if ( strnpcinfo(0) == "Soldado de Juno#6juno")
 	mes "Entre as armas dos Sábios, existe a 'Adaga Certeira'.";
-	next;
-	mes "[Soldado de Juno]";
-	mes "Seu uso é restrito a Sábios, e aumenta a chance de inflingir ataques críticos. Assim, para os Sábios, esta adaga pode ser muito útil, bem como dar mais estilo a eles em batalhas.";
-	close;
-}
-
-yuno,263,320,4	script	Soldado de Juno#7juno	105,{
-	mes "[Soldado de Juno]";
-	mes "Bem vindo à Juno, a cidade da elevação de espírito.";
-	next;
-	mes "[Soldado de Juno]";
+	else if ( strnpcinfo(0) == "Soldado de Juno#7juno")
 	mes "Aqui tem um escudo sagrado chamado 'Spiritus Sancti' e só pode ser usado por Templários.";
 	next;
 	mes "[Soldado de Juno]";
+	if ( strnpcinfo(0) == "Soldado de Juno#juno")
+	mes "A lava que fica escorrendo de seu corpo é tão quente que pode derreter as armaduras e armas feitas de aço de alta qualidade.";
+	else if ( strnpcinfo(0) == "Soldado de Juno#2juno")
+	mes "Estranhamente, ela pode estender seu corpo a longas distâncias. Mesmo se você estiver de longe, ela pode ser uma ameaça.";
+	else if ( strnpcinfo(0) == "Soldado de Juno#3juno")
+	mes "Não se engane pelas aparências ou você vai ter sérios problemas.";
+	else if ( strnpcinfo(0) == "Soldado de Juno#4juno")
+	mes "Mesmo se você conseguir esquivar-se de seus chifres, ainda precisa tomar cuidado com suas poderosas pernas.";
+	else if ( strnpcinfo(0) == "Soldado de Juno#5juno")
+	mes "É difícil de acreditar mais é o maior e mais brilhante jellopy que existe!";
+	else if ( strnpcinfo(0) == "Soldado de Juno#6juno")
+	mes "Seu uso é restrito a Sábios, e aumenta a chance de inflingir ataques críticos. Assim, para os Sábios, esta adaga pode ser muito útil, bem como dar mais estilo a eles em batalhas.";
+	else if ( strnpcinfo(0) == "Soldado de Juno#7juno")
 	mes "É um longo e estreito escudo com asas de anjo gravadas no centro da frente. é especialmente poderoso contra Demônios e Mortos-Vivos.";
+	if ( strnpcinfo(0) == "Soldado de Juno#juno" || strnpcinfo(0) == "Soldado de Juno#2juno") {
+	next;
+	mes "[Soldado de Juno]";
+	mes ""+((strnpcinfo(0) == "Soldado de Juno#juno") ? "É melhor você tomar cuidado quando encontrar este monstro. Destruirá seus equipamentos em um piscar de olhos.":"O nome deste monstro, originou-se da história de um pobre geógrafo, que infelizmente, foi devorado por este monstro enquanto ele estava concentrado nos estudos.")+"";
+	}
 	close;
 }
+yuno,165,283,4	duplicate(Soldado de Juno#juno)	Soldado de Juno#2juno	105
+yuno,227,292,4	duplicate(Soldado de Juno#juno)	Soldado de Juno#3juno	105
+yuno,165,228,4	duplicate(Soldado de Juno#juno)	Soldado de Juno#4juno	105
+yuno,150,228,4	duplicate(Soldado de Juno#juno)	Soldado de Juno#5juno	105
+yuno,334,182,4	duplicate(Soldado de Juno#juno)	Soldado de Juno#6juno	105
+yuno,263,320,4	duplicate(Soldado de Juno#juno)	Soldado de Juno#7juno	105
 
 yuno,142,183,5	script	Representante do Dirigível	100,{
 	mes "[Representante do Dirigível]";
@@ -362,19 +310,20 @@ yuno,142,183,5	script	Representante do Dirigível	100,{
 	mes "A taxa de teletransporte é 1,800 zeny, independente de onde queira ir, por favor, diga-me o local desejado.";
 	next;
 	switch(select("Prontera:Izlude:Geffen:Morroc:Payon:Alberta:Comodo:Cancelar")) {
-		case 1: callsub S_Warp,"prontera",116,72;
-		case 2: callsub S_Warp,"izlude",94,103;
-		case 3: callsub S_Warp,"geffen",120,39;
-		case 4: callsub S_Warp,"morocc",156,46;
-		case 5: callsub S_Warp,"payon",69,100;
-		case 6: callsub S_Warp,"alberta",117,56;
-		case 7: callsub S_Warp,"comodo",209,143;
+		case 1: callsub S_Portal,"prontera",116,72;
+		case 2: callsub S_Portal,"izlude",94,103;
+		case 3: callsub S_Portal,"geffen",120,39;
+		case 4: callsub S_Portal,"morocc",156,46;
+		case 5: callsub S_Portal,"payon",69,100;
+		case 6: callsub S_Portal,"alberta",117,56;
+		case 7: callsub S_Portal,"comodo",209,143;
 		case 8: close;
 	}
 
-S_Warp:
+S_Portal:
 	if (Zeny >= 1800) {
 		set zeny,zeny-1800;
+		close2;
 		warp getarg(0),getarg(1),getarg(2);
 		end;
 	} else {

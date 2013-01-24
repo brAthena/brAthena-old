@@ -948,13 +948,13 @@ payon_in03,102,185,5	script	Guarda#payon2	708,{
 		mes "Você não está autorizado";
 		mes "a ficar aqui!";
 		mes "Volte agora!";
-	} else {
+    close;
+    }
 		mes "Eu lamento";
 		mes "mas você não pode";
 		mes "ficar aqui.";
 		mes "Por favor, saia.";
-	}
-	close;
+    close;
 }
 
 // Vilarejo dos Arqueiros - Payon

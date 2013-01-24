@@ -92,7 +92,7 @@ morocc,37,287,0	script	Voluntário - Morroc#05	79,{
 	close;
 }
 
-morocc,223,102,0	script	Voluntário - Morroc#06::MocVolunteer	741,{
+morocc,223,102,0	script	Voluntário - Morroc#06	741,{
 	mes "[Voluntário]";
 	mes "Ugh... Isso aqui é meio assustador... Mesmo esse vento seco do deserto parece ter uma natureza negra.";
 	next;
@@ -131,7 +131,7 @@ morocc,223,102,0	script	Voluntário - Morroc#06::MocVolunteer	741,{
 	close;
 }
 
-morocc,226,102,4	duplicate(MocVolunteer)	Voluntário - Morroc#07	726
+morocc,226,102,4	duplicate(Voluntário - Morroc#06)	Voluntário - Morroc#07	726
 
 moc_ruins,123,154,0	script	Jovem#moc01	99,{
 	mes "[Jovem]";
@@ -742,7 +742,7 @@ morocc_in,166,76,3	script	Garçom#02	46,{
 
 // Guardas da Guilda dos Assassinos
 //===================================================
-moc_fild16,195,281,4	script	Guardião Assassino#1::SinGuard	707,{
+moc_fild16,195,281,4	script	Guardião Assassino#1	707,{
 	mes "[Guardião Assassino]";
 	if(BaseJob == Job_Assassin) {
 		mes "Bem-vindo.";
@@ -756,10 +756,10 @@ moc_fild16,195,281,4	script	Guardião Assassino#1::SinGuard	707,{
 	}
 }
 
-moc_fild16,204,281,4	duplicate(SinGuard)	Guardião Assassino#2	707
-moc_fild16,207,281,4	duplicate(SinGuard)	Guardião Assassino#3	707
-moc_fild16,216,281,4	duplicate(SinGuard)	Guardião Assassino#4	707
-moc_fild16,200,231,4	duplicate(SinGuard)	Guardião Assassino#5	707
-moc_fild16,211,231,4	duplicate(SinGuard)	Guardião Assassino#6	707
-moc_fild16,200,257,4	duplicate(SinGuard)	Guardião Assassino#7	707
-moc_fild16,211,257,4	duplicate(SinGuard)	Guardião Assassino#8	707
+moc_fild16,204,281,4	duplicate(Guardião Assassino#1)	Guardião Assassino#2	707
+moc_fild16,207,281,4	duplicate(Guardião Assassino#1)	Guardião Assassino#3	707
+moc_fild16,216,281,4	duplicate(Guardião Assassino#1)	Guardião Assassino#4	707
+moc_fild16,200,231,4	duplicate(Guardião Assassino#1)	Guardião Assassino#5	707
+moc_fild16,211,231,4	duplicate(Guardião Assassino#1)	Guardião Assassino#6	707
+moc_fild16,200,257,4	duplicate(Guardião Assassino#1)	Guardião Assassino#7	707
+moc_fild16,211,257,4	duplicate(Guardião Assassino#1)	Guardião Assassino#8	707

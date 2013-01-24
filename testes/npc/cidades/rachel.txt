@@ -138,7 +138,7 @@ rachel,74,150,7	script	Garota#1	914,{
 	close;
 }
 
-rachel,144,243,5	script	Guarda de Cheshrumnir::ChesGuard	934,{
+rachel,144,243,5	script	Guarda de Cheshrumnir	934,{
 	mes "[Guarda de Cheshrumnir]";
 	mes "Você está no Cheshrumnir,";
 	mes "os terrenos santificador ocupados";
@@ -149,7 +149,7 @@ rachel,144,243,5	script	Guarda de Cheshrumnir::ChesGuard	934,{
 	close;
 }
 
-rachel,155,243,3	duplicate(ChesGuard)	Guarda de Cheshrumnir	934
+rachel,155,243,3	duplicate(Guarda de Cheshrumnir)	Guarda de Cheshrumnir#2	934
 
 rachel,209,198,3	script	Kinos#aru	921,{
 	mes "[Criança]";
@@ -194,7 +194,7 @@ rachel,272,141,3	script	Himuhimu#aru	921,{
 	close;
 }
 
-rachel,268,120,1	script	Guarda de Rachel#1aru::RaGuarda	934,{
+rachel,268,120,1	script	Guarda de Rachel#1aru	934,{
 	mes "[Guarda de Rachel]";
 	mes "Bem-Vindo à Rachel";
 	mes "a capital de Arunafeltz.";
@@ -205,8 +205,8 @@ rachel,268,120,1	script	Guarda de Rachel#1aru::RaGuarda	934,{
 	close;
 }
 
-rachel,125,33,5	duplicate(RaGuarda)	Guarda de Rachel#2aru	934
-rachel,31,130,3	duplicate(RaGuarda)	Guarda de Rachel#3aru	934
+rachel,125,33,5	duplicate(Guarda de Rachel#1aru)	Guarda de Rachel#2aru	934
+rachel,31,130,3	duplicate(Guarda de Rachel#1aru)	Guarda de Rachel#3aru	934
 
 rachel,76,77,3	script	Sacerdote de Rachel	927,{
 	mes "[Sacerdote de Rachel]";
@@ -390,7 +390,6 @@ ra_temin,287,88,7	script	Discípulo Lekua	926,{
 	close;
 }
 
-//ra_temin,228,303,5	script	Discípulo de Freya#in1	927,{
 ra_temin,228,303,5	script	Discípulo de Freya#in1	926,{
 	mes "[Discípulo de Freya]";
 	mes "De novo, eu não tirei";
@@ -402,7 +401,6 @@ ra_temin,228,303,5	script	Discípulo de Freya#in1	926,{
 	close;
 }
 
-//ra_temin,230,303,3	script	Discípulo de Freya#in2	927,{
 ra_temin,230,303,3	script	Discípulo de Freya#in2	926,{
 	mes "[Discípulo de Freya]";
 	mes "Você fez bem,";
@@ -476,7 +474,7 @@ ra_fild12,283,208,3	script	Aprendiz de Monge	914,{
 			close;
 		}
 		mes "[Papaii]";
-		mes "Que Freya te abençôe.";
+		mes "Que Freya te abençoe.";
 		mes "se você tiver tempo, por favor";
 		mes "visite o nosso templo e faça";
 		mes "uma doação se você puder~";

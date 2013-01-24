@@ -19,7 +19,7 @@
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [cleyton]                           |
-//   | 1.2 Otimização [Architect]                             |
+//   | 1.2 Otimização [Holy & Hold]                           |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -87,7 +87,6 @@ comodo,171,137,1	script	Haith#um	92,{
 	if (select("Pagar 1000 zenys:Recusar-se a pagar") == 1) {
 		if (Zeny > 999) {
 			set zeny,zeny-1000;
-			mes "[Haith]";
 			mes "Hahahaha! Você é o cara!";
 			next;
 			mes "[La Ed]";
@@ -285,7 +284,7 @@ umbala,70,106,3	script	Pequeno Utan#um	781,{
 			if (zeny > 1000) {
 				set zeny,zeny-1000;
 				if (checkweight(517,1)) {
-					getitem 517,1; //Meat
+					getitem 517,1; // Carne
 				}
 				emotion e_swt2;
 			}
@@ -309,8 +308,7 @@ umbala,70,106,3	script	Pequeno Utan#um	781,{
 		mes "............*Suspiro*...";
 		emotion e_sob;
 		close;
-	}
-	else {
+    }
 		mes "[???]";
 		mes "Umbah?";
 		mes "Umbala umbabah umbah?";
@@ -367,12 +365,11 @@ umbala,70,106,3	script	Pequeno Utan#um	781,{
 		mes "........umbah..";
 		emotion e_heh;
 		close;
-	}
 }
 
 umbala,59,243,5	script	Pequeno Utan#1	787,{
-	if (event_umbala >= 3) {
 		mes "[Kotan]";
+	if (event_umbala >= 3) {
 		mes "............";
 		mes ".........poop!";
 		mes "....eu gosto carne.";
@@ -380,19 +377,18 @@ umbala,59,243,5	script	Pequeno Utan#1	787,{
 		emotion e_rock;
 		next;
 		if (select("Dar carne a ele.:Recusar.") == 1) {
-			if (countitem(517) > 0) {
 				mes "[Kotan]";
+			if (countitem(517) > 0) {
 				mes "Uau, você realmente está";
 				mes "me dando carne? Obrigado! Vou te";
 				mes "recompensar com isso.";
-				delitem 517,1; //Meat
-				getitem 909,2; //Jellopy
-				getitem 914,2; //Fluff
-				getitem 705,2; //Clover
+				delitem 517,1; // Carne
+				getitem 909,2; // Jellopy
+				getitem 914,2; // Felpa
+				getitem 705,2; // Trevo
 				emotion e_scissors;
 				close;
 			}
-			mes "[Kotan]";
 			mes "Ahh! Então você não tem";
 			mes "carne, mas fingiu que tem?!";
 			mes "Eu odeio pessoas que";
@@ -409,7 +405,6 @@ umbala,59,243,5	script	Pequeno Utan#1	787,{
 		emotion e_sob;
 		close;
 	}
-	else {
 		mes "[???]";
 		mes "............";
 		mes "........umbah.";
@@ -443,7 +438,6 @@ umbala,59,243,5	script	Pequeno Utan#1	787,{
 		emotion e_sob;
 		percentheal -1,0;
 		close;
-	}
 }
 
 umbala,177,153,3	script	Pasto#um	97,{
@@ -552,8 +546,8 @@ umbala,80,146,4	script	Yuwooki#um	753,{
 }
 
 umbala,140,157,6	script	Homem Utan#1	785,{
-	if (event_umbala >= 3) {
 		mes "[Jertan]";
+	if (event_umbala >= 3) {
 		mes "Bungee jumping é um esporte que";
 		mes "pode ser perigoso, e você pode";
 		mes "arriscar sua vida praticando-o. Nós,";
@@ -562,31 +556,27 @@ umbala,140,157,6	script	Homem Utan#1	785,{
 		mes "de passagem para tornar-nos adultos.";
 		close;
 	}
-	else {
 		mes "[???]";
 		mes "Umbaumbah humba.";
 		mes "Woo umbaumbaumbabah woo humbah";
 		mes "Umbababah umba umba.";
 		close;
-	}
 }
 
 umbala,146,157,4	script	Homem de Utan#2	786,{
-	if (event_umbala >= 3) {
 		mes "[Arotan]";
+	if (event_umbala >= 3) {
 		mes "Praticar o bungee jump é";
 		mes "um desafio e tanto.";
 		mes "Hoje, celebramos a vitória";
 		mes "daqueles que conseguiram e";
 		mes "mostraram sua coragem.";
 		close;
-	}
-	else {
+    }
 		mes "[???]";
 		mes "Woo umbaumbaumbabah woo humbah";
 		mes "Umbababah umba umba.";
 		close;
-	}
 }
 
 umbala,149,165,4	script	Criança de Utan#3	781,{
@@ -606,13 +596,11 @@ umbala,149,165,4	script	Criança de Utan#3	781,{
 		mes "para deixar de ser crianças.";
 		close;
 	}
-	else {
 		mes "[???]";
 		mes "Umbahumba umumbah.";
 		mes "Umbahumbah umbabah.";
 		mes "Umbahumhumbabahum.";
 		close;
-	}
 }
 
 umbala,92,159,4	script	Bertan#um	785,{
@@ -813,7 +801,6 @@ umbala,92,159,4	script	Bertan#um	785,{
 
 umbala,194,104,4	script	Criança de Utan#2	787,{
 	if (event_umbala >= 3) {
-		mes "[Boorkatan]";
 		mes "Hum? Você é de Rune-Midgard,";
 		mes "não é? Já praticou o bungee jumping?";
 		next;
@@ -834,8 +821,7 @@ umbala,194,104,4	script	Criança de Utan#2	787,{
 		mes "como adultos. Quando eu crescer, irei";
 		mes "praticar e mostrar para todos que sou um homem!";
 		close;
-	}
-	else {
+    }
 		mes "[???]";
 		mes "Umbaumbababah umhumba.";
 		mes "Umbabaumumba umbaumbah?";
@@ -851,35 +837,32 @@ umbala,194,104,4	script	Criança de Utan#2	787,{
 		mes "Umbahumbah umbabah.";
 		mes "Umbahumhumbabahum.";
 		close;
-	}
 }
 
 umbala,193,208,6	script	Homem de Utan#3	789,{
 	if (event_umbala >= 3) {
-		mes "[Weitan]";
-		mes "Eu também pratiquei o bungee";
-		mes "jump quando era mais novo.";
-		mes "Eu me lembro bem... Era a primeira";
-		mes "vez que eu praticava, e o chão parecia";
-		mes "vir rapidamente de encontro a mim...";
-		mes "Pensei que ia morrer...";
-		next;
-		mes "[Weitan]";
-		mes "Mas depois que terminou,";
-		mes "fiquei tão orgulhoso de mim~";
-		mes "Alguns Utans não concordam, mas";
-		mes "eu acho que  bungee jump é";
-		mes "uma parte importante da cerimônia";
-		mes "de passagem para a idade adulta.";
-		close;
-	}
-	else {
+    mes "[Weitan]";
+    mes "Eu também pratiquei o bungee";
+    mes "jump quando era mais novo.";
+    mes "Eu me lembro bem... Era a primeira";
+    mes "vez que eu praticava, e o chão parecia";
+    mes "vir rapidamente de encontro a mim...";
+    mes "Pensei que ia morrer...";
+    next;
+    mes "[Weitan]";
+    mes "Mas depois que terminou,";
+    mes "fiquei tão orgulhoso de mim~";
+    mes "Alguns Utans não concordam, mas";
+    mes "eu acho que  bungee jump é";
+    mes "uma parte importante da cerimônia";
+    mes "de passagem para a idade adulta.";
+    close;
+    }
 		mes "[???]";
 		mes "Umbahumba umumbah.";
 		mes "Umbahumbah umbabah.";
 		mes "Umbahumhumbabahum.";
 		close;
-	}
 }
 
 umbala,139,205,4	script	Homem de Utan#5	785,{
@@ -918,8 +901,7 @@ umbala,139,205,4	script	Homem de Utan#5	785,{
 		mes "Então se você ficar bêbado,";
 		mes "saia correndo daqui~!";
 		close;
-	}
-	else {
+    }
 		mes "[???]";
 		mes "Umbah umbah!";
 		mes "Umbaumbah bababah umbah.";
@@ -934,7 +916,6 @@ umbala,139,205,4	script	Homem de Utan#5	785,{
 		mes "Umbabah umbaumumum.";
 		mes "Umbaumbaubahum.";
 		close;
-	}
 }
 
 um_in,158,71,3	script	Morador de Utan#um	787,{
@@ -986,8 +967,7 @@ um_in,158,71,3	script	Morador de Utan#um	787,{
 		mes "Fica ao norte da minha vila,";
 		mes "então você poderia ir ver";
 		mes "essa árvore maravilhosa também!";
-	}
-	else {
+	} else {
 		mes "[??????]";
 		mes "Umbaumbah umbahbah woomhah!";
 		mes "Umbah umbah umbabah umbah";

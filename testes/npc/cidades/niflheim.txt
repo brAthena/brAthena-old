@@ -19,6 +19,7 @@
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [cleyton]                           |
+//   | 1.2 Otimização [Holy & Hold]                           |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -33,7 +34,7 @@ niflheim,52,147,3	script	Keedz#nif	796,{
 niflheim,195,211,6	script	Gigantia#nif	796,3,3,{
 	if (isequipped(5038) || isequipped(2257) || isequipped(2256)) {
 		mes "[" + strcharinfo(0) + "]";
-		mes "O que se passa?";
+		mes "O que está acontecendo?";
 		next;
 		mes "[Gigantia]";
 		mes "Apenas...";
@@ -71,12 +72,12 @@ nif_in,16,27,1	script	Frango Morto-Vivo#nif	800,{
 	mes "Eu vivi uma vida pacífica como um frango normal. Mas então veio o dia em que fui tragicamente morto e comido por seres humanos. Bem ... Heh ~! Agora é minha vez! * Risada Maléfica *";
 	next;
 	mes "["+ strcharinfo(0) +"]";
-	mes "Ouch...!";
+	mes "Ai...!";
 	mes "Um frango...";
 	mes "Ele me mordeu!";
 	next;
 	mes "[Frango Morto-Vivo]";
-	mes "Ho ho~!";
+	mes "Hoho~!";
 	mes "Eu posso falar de banquete";
 	mes "com seres humanos vivos!";
 	mes "Ser um zumbi é ótimo!";
@@ -161,7 +162,7 @@ nif_in,156,93,5	script	Criança#nifflheim	793,{
 }
 
 niflheim,350,258,1	script	Espírito Amaldiçoado#nif	802,{
-	killmonster "niflheim","Cursed Spirit#nif::OnMyMobDead";
+	killmonster "niflheim","Espírito Amaldiçoado#nif::OnMyMobDead";
 	mes "[Ashe Bruce]";
 	mes "Eu sinto, você está amaldiçoado ";
 	mes "por um poderoso feitiço ... ";
@@ -190,7 +191,7 @@ niflheim,350,258,1	script	Espírito Amaldiçoado#nif	802,{
 	next;
 	switch(select("Toque no primeiro livro.:Toque no segundo livro.:Toque no terceiro livro.:Okay, eu estou saindo.")) {
 	case 1:
-		monster "niflheim",349,259,"Rideword",1478,1,"Cursed Spirit#nif::OnMyMobDead";
+		monster "niflheim",349,259,"Rideword",1478,1,"Espírito Amaldiçoado#nif::OnMyMobDead";
 		mes "[Ashe Bruce]";
 		mes "...!...";
 		mes "Como se atreve a tocar os meus livros";
@@ -259,9 +260,9 @@ niflheim,350,258,1	script	Espírito Amaldiçoado#nif	802,{
 				mes "Umhaaaaaaaaaaaaaaaaa.....!";
 				close;
 			case 2:
-				if (thai_head == 1) {
-					set thai_head,2;
 					mes "[Ashe Bruce]";
+					if (thai_head == 1) {
+					set thai_head,2;
 					mes "O que é...";
 					mes "esse sentimento?";
 					next;
@@ -273,7 +274,6 @@ niflheim,350,258,1	script	Espírito Amaldiçoado#nif	802,{
 					mes "Por que seu feitiço tem que funcionar?!";
 					close;
 				}
-				mes "[Ashe Bruce]";
 				mes "Você...";
 				mes "lançou o feitiço correto?!";
 				next;
@@ -282,9 +282,9 @@ niflheim,350,258,1	script	Espírito Amaldiçoado#nif	802,{
 				mes "Mas você ainda está almodiçoado...";
 				close;
 			case 3:
-				if (thai_head == 8) {
-					set thai_head,7;
 					mes "[Ashe Bruce]";
+          if (thai_head == 8) {
+					set thai_head,7;
 					mes "Você... Você quebrou a maldição!";
 					mes "Quem lhe ensinou esse feitiço?!";
 					next;
@@ -303,7 +303,6 @@ niflheim,350,258,1	script	Espírito Amaldiçoado#nif	802,{
 					mes "NÃÃÃOOOOO!";
 					close;
 				}
-				mes "[Ashe Bruce]";
 				mes "...! Você lançou o feitiço correto?! ";
 				mes "...!...";
 				mes "Mas ... Você ainda está amaldiçoado ...";
@@ -318,13 +317,13 @@ niflheim,350,258,1	script	Espírito Amaldiçoado#nif	802,{
 				close;
 			}
 		}
-		monster "niflheim",345,259,"Orc Esqueleto",1462,1,"Cursed Spirit#nif::OnMyMobDead";
-		monster "niflheim",347,261,"Orc Esqueleto",1462,1,"Cursed Spirit#nif::OnMyMobDead";
-		monster "niflheim",344,253,"Orc Esqueleto",1462,1,"Cursed Spirit#nif::OnMyMobDead";
-		monster "niflheim",346,251,"Orc Esqueleto",1462,1,"Cursed Spirit#nif::OnMyMobDead";
-		monster "niflheim",349,249,"Orc Esqueleto",1462,1,"Cursed Spirit#nif::OnMyMobDead";
-		monster "niflheim",350,260,"Orc Esqueleto",1462,1,"Cursed Spirit#nif::OnMyMobDead";
-		monster "niflheim",353,256,"Orc Esqueleto",1462,1,"Cursed Spirit#nif::OnMyMobDead";
+		monster "niflheim",345,259,"Orc Esqueleto",1462,1,"Espírito Amaldiçoado#nif::OnMyMobDead";
+		monster "niflheim",347,261,"Orc Esqueleto",1462,1,"Espírito Amaldiçoado#nif::OnMyMobDead";
+		monster "niflheim",344,253,"Orc Esqueleto",1462,1,"Espírito Amaldiçoado#nif::OnMyMobDead";
+		monster "niflheim",346,251,"Orc Esqueleto",1462,1,"Espírito Amaldiçoado#nif::OnMyMobDead";
+		monster "niflheim",349,249,"Orc Esqueleto",1462,1,"Espírito Amaldiçoado#nif::OnMyMobDead";
+		monster "niflheim",350,260,"Orc Esqueleto",1462,1,"Espírito Amaldiçoado#nif::OnMyMobDead";
+		monster "niflheim",353,256,"Orc Esqueleto",1462,1,"Espírito Amaldiçoado#nif::OnMyMobDead";
 		mes "[Ashe Bruce]";
 		mes "Muhahahahahaha!";
 		mes "Esse não é o feitiço certo!";

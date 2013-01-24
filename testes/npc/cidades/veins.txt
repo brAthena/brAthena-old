@@ -362,7 +362,7 @@ veins,291,259,3	script	Velho#ve4	945,{
 	mes "Deixe-me ver isso antes de morrer!";
 	next;
 	mes "[Velho]";
-	mes "Eu nuca lamentei *tosse* minha fé por você, minha deusa!";
+	mes "Eu nunca lamentei *tosse* minha fé por você, minha deusa!";
 	mes "*náusea* Pode ser que o sofrimento de nossos inimigos os façam loucos e os mate antes de nós";
 	close;
 }

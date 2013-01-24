@@ -27,8 +27,8 @@
 // Prontera
 //============================================================
 prontera,160,330,0	script	Guarda#pront::prtguarda	105,{
-	mes "[Prontera Guard]";
-	mes "Bem vindo á  Prontera.";
+	mes "[Guarda de Prontera]";
+	mes "Bem vindo a Prontera.";
 	close;
 }
 
@@ -118,9 +118,9 @@ prontera,149,202,2	script	YuNa#pront	700,{
 }
 
 prontera,216,70,2	script	Strife#pront	48,{
+			mes "[Strife]";
 	if (Class == Job_Novice) {
 		if (event_prt_nov_dreamtalk == 0) {
-			mes "[Strife]";
 			mes "Ufa!";
 			mes "Homem oh homem...";
 			mes "Eu vou ser como";
@@ -156,15 +156,12 @@ prontera,216,70,2	script	Strife#pront	48,{
 			mes "[Strife]";
 			mes "Heh! Eu vou com certeza! 'Strife, o cavaleiro corajoso. Soa legal, não é?";
 			close;
-		} else {
-			mes "[Strife]";
+      }
 			mes "Lute...!";
 			mes "lute, lute...LUTE!!";
 			close;
-		}
 	} else if (Class != Job_Novice) {
 		if (event_prt_nov_dreamtalk == 1) {
-			mes "[Strife]";
 			mes "Ei...!";
 			mes "é assim *Gasp* Como você ficou ^993333forte^000000! Uau, isso é tão legaaal!";
 			next;
@@ -180,7 +177,6 @@ prontera,216,70,2	script	Strife#pront	48,{
 			mes "Bom, isto é pra você para te ajudar a ficar ainda mais forte. Acho que devo lhe agradecer por ser um bom exemplo";
 			close;
 		} else if (event_prt_nov_dreamtalk == 2) {
-			mes "[Strife]";
 			mes "Lute! Lute!";
 			close;
 		}
@@ -232,28 +228,8 @@ prontera,78,150,3	script	Dairenne#pront	90,{
 	close;
 }
 
-// inside Prontera
-//============================================================
-/*
-//This NPC has been disabled officiall.
-prt_in,178,92,0	script	Curador da Biblioteca#pront	57,{
-	mes "[Curador Guiss]";
-	mes "Aqui, no ramo ocidental da Biblioteca Prontera,";
-	mes "mantemos registros de monstros encontrados em vários locais espalhados por todo o Reino de Rune-Midgard.";
-	next;
-	mes "[Curador Guiss]";
-	mes "Você verá que esses Enciclopedias de  monstros,são de  grande  conveniência.";
-	mes "como criaturas são organizados pela masmorra em que residem.";
-	next;
-	mes "[Curador Guiss]";
-	mes "Devo dizer que esta é uma referência mais útil para você aventureiros. Ao lidar com animais, é bom estar informado e compreenda o que você está enfrentando.";
-	mes "Se você gostaria de examinar os registros dos  monstros organizado por suas propriedades, por favor visite o ramo oriental da nossa biblioteca.";
-	close;
-}
-*/
-
 prt_in,175,50,0	script	Garota da Biblioteca#pront	71,{
-	mes "[Library Girl Ellen]";
+	mes "[Garota da Biblioteca Ellen]";
 	mes "Aqui no ramo oriental da Biblioteca de Prontera, nós fornecemos Enciclopedias de  monstros, no qual as criaturas são organizados por suas propriedades. Temos também livros sobre Mercante e habilidades do ferreiro.";
 	mes "Ooh ~! O outro ramo da nossa biblioteca também tem muitas coisas interessantes para ler! Portanto, se você receber uma chance, você tem que  visitar.";
 	close;
@@ -334,7 +310,6 @@ prt_in,180,20,2	script	Garçon#pront	61,{
 			set .@drink,0;
 			break;
 		}
-
 	}
 	end;
 
@@ -413,9 +388,9 @@ prt_in,173,24,2	script	Shevild#pront	85,{
 }
 
 prt_in,177,20,2	script	TenSue#pront	97,{
+		mes "[TenSue]";
 	switch(rand(3)) {
 	case 1:
-		mes "[TenSue]";
 		mes "O que...?";
 		mes "Você já está doente e cansado de matar monstros nos campos e nas masmorras? Vamos lá ...";
 		next;
@@ -429,7 +404,6 @@ prt_in,177,20,2	script	TenSue#pront	97,{
 		mes "Eu não sei mesmo se você não gosta de receber ordens, mas se esse for o caso, por que você não faz seu próprio clã?";
 		close;
 	case 2:
-		mes "[TenSue]";
 		mes "Uma vez  eu andei todo o caminho para Al de Baran, em vez de tomar um portal . Foi muito perigoso com todos aqueles monstros!";
 		next;
 		mes "[TenSue]";
@@ -445,7 +419,6 @@ prt_in,177,20,2	script	TenSue#pront	97,{
 		mes "A sede Corporação  da Kafra  também está localizada em Al de Baran. Você realmente deve parar para checar tudo.";
 		close;
 	default:
-		mes "[TenSue]";
 		mes "O reino de";
 		mes "Rune-Midgarts é governado ";
 		mes "pelo benevolente ";
@@ -535,7 +508,7 @@ prt_in,284,168,3	script	Ginedin Rephere#pront	55,{
 	}
 }
 
-// Prontera Church
+// Igreja de Prontera
 //============================================================
 prt_church,103,76,0	script	Garnet#pront	67,{
 	mes "[Garnet]";
@@ -581,7 +554,7 @@ prt_church,103,76,0	script	Garnet#pront	67,{
 			mes "Agora, a habilidade ^6666CCAumentar AGI^000000 pode ser usada em você ou em  seus amigos. Durante algum tempo o seu estado  AGI é aumentado, fazendo com que você ataque mais rápido e evitar ataques dos  monstros com mais facilidade.";
 			next;
 			mes "[Garnet]";
-			mes "Se você é um Alcolyte  que queira aprender a  usar  ^6666CCAumentar AGI ^000000, você precisa aprender ^6666CCCurar Level 3^000000 primeiro.";
+			mes "Se você é um Noviço  que queira aprender a  usar  ^6666CCAumentar AGI ^000000, você precisa aprender ^6666CCCurar Level 3^000000 primeiro.";
 			next;
 			break;
 		case 4:

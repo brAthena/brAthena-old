@@ -12,13 +12,14 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: ??/1.2/1.1                          |
+//   | Versões eA/rA/brA: ??/1.2/1.2                          |
 //   |--------------------------------------------------------|
 //   | Descrição: NPCs da Vila de Mora.                       |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [Holy]                              |
+//   | 1.2 Otimização [Holy & Hold]                           |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -29,8 +30,7 @@ mora,185,163,5	script	Cidadão de Mora#1	516,{
 	mes "Eu sou Gary, um expert na área de encantamentos.";
 	mes "O que você deseja saber?";
 	next;
-	switch(select("Fundamentos do encantamento.:Nada.")) {
-	case 1:
+	if(select("Fundamentos do encantamento.:Nada.") == 1) {
 		mes "[Professor Gary]";
 		mes "Ah, imagino que você esteja interessado";
 		mes "em encantamentos!";
@@ -75,11 +75,10 @@ mora,185,163,5	script	Cidadão de Mora#1	516,{
 		mes "visitar meu mestre,";
 		mes "Gougueulé Tonami!";
 		close;
-	case 2:
+		}
 		mes "[Professor Gary]";
 		mes "Tchau, e boa sorte!";
 		close;
-	}
 }
 
 mora,52,138,8	script	Cidadão de Mora#2	516,{
@@ -262,20 +261,18 @@ mora,113,185,5	script	Cidadão de Mora#11	516,{
 	mes "Como você está, cara?";
 	mes "O que eu posso fazer por você, cara?";
 	next;
-	switch(select("Por que você me chama de 'cara'?:Tchau.")) {
-	case 1:
-		mes "[Ninkasi]";
-		mes "Por que sim?";
-		mes "Chamar os outros de 'cara'";
-		mes "é a minha marca.";
-		mes "Fique frio, cara, relaxe!";
-		mes "Aproveite a vida, cara!";
-		close;
-	case 2:
+  if(select("Por que você me chama de 'cara'?:Tchau.") == 1) {
+    mes "[Ninkasi]";
+    mes "Por que sim?";
+    mes "Chamar os outros de 'cara'";
+    mes "é a minha marca.";
+    mes "Fique frio, cara, relaxe!";
+    mes "Aproveite a vida, cara!";
+    close;
+    }
 		mes "[Ninkasi]";
 		mes "Nos vemos depois, cara!";
 		close;
-	}
 }
 
 mora,43,127,4	script	Cidadão de Mora#12	522,{

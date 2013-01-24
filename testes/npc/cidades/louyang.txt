@@ -12,13 +12,14 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 2.9/3.0/1.1                         |
+//   | Versões eA/rA/brA: 2.9/3.0/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição: NPCs da Cidade de Louyang.                  |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [cleyton]                           |
+//   | 1.2 Otimização [Holy & Hold]                           |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -70,8 +71,8 @@ alberta,245,45,3	script	Garota#0lou	815,{
 		mes "Então, vamos?";
 		next;
 		if (select("Sim!:Não.") == 1) {
-			if (Zeny > 9999) {
 				mes "[Garota]";
+			if (Zeny > 9999) {
 				mes "Okay~";
 				mes "Pronto!";
 				mes "Divirta-se!";
@@ -80,7 +81,6 @@ alberta,245,45,3	script	Garota#0lou	815,{
 				warp "lou_fild01",190,101;
 				end;
 			}
-			mes "[Garota]";
 			mes "...";
 			mes "Você não parece";
 			mes "ter 10 000 zenys...";
@@ -125,13 +125,12 @@ lou_fild01,190,100,7	script	Garota#1lou	815,{
 	mes "fica e aprecia a";
 	mes "comida e a vista?";
 	next;
-	if (Sex) {
 		mes "[Garota]";
+	if (Sex) {
 		mes "E por vista...";
 		mes "Quero dizer garotas!";
-		mes "Tee hee~";
+		mes "Hehe~";
 	} else {
-		mes "[Garota]";
 		mes "E os meninos também";
 		mes "não são nada feios~";
 	}
@@ -141,8 +140,8 @@ lou_fild01,190,100,7	script	Garota#1lou	815,{
 // NPCs Genéricos de Louyang
 //============================================================
 louyang,297,167,2	script	Mulher Musculosa#lou	815,{
-	if (!Sex) {
 		mes "[Zhi Ching Li]";
+	if (!Sex) {
 		mes "Todos os membros do Palácio da Donzela, incluindo eu e a mestra, são mulheres.";
 		next;
 		mes "[Zhi Ching Li]";
@@ -150,7 +149,6 @@ louyang,297,167,2	script	Mulher Musculosa#lou	815,{
 		emotion e_dots;
 		close;
 	}
-	mes "[Zhi Ching Li]";
 	mes "...";
 	next;
 	mes "[Zhi Ching Li]";
@@ -210,7 +208,7 @@ louyang,276,136,4	script	Primeiro Mestre#lou	819,{
 	close;
 }
 
-louyang,276,133,0	script	Aluno#1lou::LouTrainee	819,{
+louyang,276,133,0	script	Aluno#1lou	819,{
 	mes "[Aluno]";
 	mes "Yeeeyap~!";
 	mes "Taaaaaah~~!!";
@@ -257,12 +255,12 @@ louyang,274,129,0	script	Aluno#6lou	819,{
 	close;
 }
 
-louyang,278,133,0	duplicate(LouTrainee)	Aluno#7lou	819
-louyang,278,131,0	duplicate(LouTrainee)	Aluno#8lou	819
-louyang,278,129,0	duplicate(LouTrainee)	Aluno#9lou	819
-louyang,272,133,0	duplicate(LouTrainee)	Aluno#10lou	819
-louyang,272,131,0	duplicate(LouTrainee)	Aluno#11lou	819
-louyang,272,129,0	duplicate(LouTrainee)	Aluno#12lou	819
+louyang,278,133,0	duplicate(Aluno#1lou)	Aluno#7lou	819
+louyang,278,131,0	duplicate(Aluno#1lou)	Aluno#8lou	819
+louyang,278,129,0	duplicate(Aluno#1lou)	Aluno#9lou	819
+louyang,272,133,0	duplicate(Aluno#1lou)	Aluno#10lou	819
+louyang,272,131,0	duplicate(Aluno#1lou)	Aluno#11lou	819
+louyang,272,129,0	duplicate(Aluno#1lou)	Aluno#12lou	819
 
 // Louyang - Torre
 //============================================================
@@ -287,12 +285,11 @@ lou_in01,25,23,5	script	Olhando Senhorita Amigável#lo	817,{
 		mes "Você pode subir à Torre pegando o elevador aqui. Cobramos 500 zenys por pessoa.";
 		close;
 	case 2:
-		if (Zeny < 500) {
 			mes "[Hong Miao]";
+		if (Zeny < 500) {
 			mes "Sinto muito, você não tem dinheiro suficiente. Espero que volte depois para apreciar a Torre de Observação. Bom-dia.";
 			close;
 		}
-		mes "[Hong Miao]";
 		mes "Obrigado pelo apoio.";
 		mes "Tentamos providenciar o melhor serviço possível.";
 		mes "Por favor volte novamente.";

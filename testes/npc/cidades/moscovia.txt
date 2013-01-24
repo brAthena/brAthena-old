@@ -12,13 +12,14 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.1/1.2/1.1                         |
+//   | Versões eA/rA/brA: 1.1/1.2/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição: NPCs da Cidade de Moscóvia.                 |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [cleyton]                           |
+//   | 1.2 Otimização [Holy & Hold]                           |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -76,22 +77,20 @@ alberta,246,51,4	script	Oficial de Moscovia#1	960,{
 			mes "Estou sempre pronto para guiar alguém por Moscovia.";
 			close;
 		}
-		if (Zeny < 10000) {
 			mes "[Oficial de Moscovia]";
+      if (Zeny < 10000) {
 			mes "Sinto muito, mas você";
 			mes "não tem dinheiro suficiente.";
 			mes "Precisa de 10 000 zenys";
 			mes "para ir a Moscovia.";
 			mes "Obrigado.";
 			close;
-		} else {
-			mes "[Oficial de Moscovia]";
+      }
 			mes "Certo, estamos indo agora.";
 			close2;
 			set Zeny,Zeny - 10000;
 			warp "moscovia",163,55;
 			end;
-		}
 	case 3:
 		mes "[Oficial de Moscovia]";
 		mes "Se você está ocupado agora,";
@@ -106,7 +105,7 @@ moscovia,166,53,4	script	Oficial de Moscovia#2	960,{
 	mes "Como foi sua viagem?";
 	mes "Tem boas lembranças de Moscovia?";
 	mes "Um navio sairá agora";
-	mes "para Rune-Midgarts.";
+	mes "para Rune-Midgard.";
 	next;
 	if (select("Retornar para Alberta:Cancelar") == 2) {
 		mes "[Oficial de Moscovia]";
