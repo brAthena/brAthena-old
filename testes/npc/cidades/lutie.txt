@@ -501,7 +501,9 @@ xmas,134,112,4	script	Boneco de Neve	710,{
 			next;
 			mes "[Boneco de Neve]";
 			mes "Então, quer ser meu amigo? Se você for, serei seu amigo também~!";
-			break;
+			close2;
+			cutin "",255;
+			end;
 			}
 			cutin "rutie_snownow01.bmp",2;
 			mes "[Boneco de Neve]";
@@ -537,7 +539,7 @@ xmas,134,112,4	script	Boneco de Neve	710,{
 				next;
 				mes "^3355FFBoneco de Neve se perde em pensamentos^000000";
 				mes "^3355FFcom os olhos fixos no cartão de Poze.^000000";
-				close2;	cutin "",255;	end;
+				break;
 			case 4:
 				mes "Ah que legal!";
 				mes "Você conheceu Poze!";
@@ -640,8 +642,6 @@ xmas,134,112,4	script	Boneco de Neve	710,{
 				mes "^3355FF5"+((.@snownow == 7) ? "5":"10")+" Biscoito de Gengibre^000000!";
 				}
 				mes "Parabéns!";
-				break;
-
 				next;
 				mes "[Boneco de Neve]";
 				mes "Meu amigo, venha me visitar quando puder para conversarmos! Venha logo! E Feliz Natal!";
@@ -655,7 +655,6 @@ xmas,134,112,4	script	Boneco de Neve	710,{
 				mes "Você é sempre bem-vindo em Lutie, especialmente por mim, Boneco de Neve! Feliz Natal~!";
 				break;
 			}
-			default:
 			close2;
 			cutin "",255;
 			end;

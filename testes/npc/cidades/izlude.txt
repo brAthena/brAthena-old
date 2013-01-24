@@ -138,7 +138,7 @@ izlude,85,103,4	script	Dega#izlude	84,{
 	mes "[Dega]";
 	switch(rand(3)) {
 	case 1:
-		mes "O Monte Mjornir localiza-se ao";
+		mes "O Monte Mjolnir localiza-se ao";
 		mes "norte de Prontera. É alto e cheio de precipícios.";
 		next;
 		mes "[Dega]";
@@ -498,12 +498,9 @@ izlu2dun,108,27,0	script	Marinheiro#2izlude	100,{
 		end;
 }
 
-izlude,147,131,6	script	Ferreiro#izlude	726,{
-	end;
-}
+izlude,147,131,6	script	Ferreiro#izlude	726,{ end; }
 
 prt_fild08,350,219,4	script	Guarda#izlude	105,{
-
 	mes "[Guarda de Izlude]";
 	mes "Bem-vindo a Izlude.";
 	close;

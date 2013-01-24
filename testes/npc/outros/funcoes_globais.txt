@@ -59,6 +59,11 @@
 		movenpc("Funcionária Kafra#izlude",134,87,3);
 		movenpc("Locador de Mercenários#Espadachim",47,139);
 		movenpc("Artigos para Mercenários#Espadachim",56,139);
+		movenpc("iz01",109,151);
+		movenpc("iz02",148,148);
+		movenpc("iz03",216,129);
+		movenpc("iz001",30,78);
+		movenpc("iz04",52,140);
 	}
 
 	end();
