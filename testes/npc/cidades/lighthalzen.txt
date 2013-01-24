@@ -136,7 +136,7 @@ lighthalzen,233,121,3	script	Kariya#li_01	72,{
 lighthalzen,233,82,5	script	Sung#A	716,{
 	mes "[Sung]";
 	mes "Quando eu crescer, quero";
-	mes "quero me tornar uma pessoa";
+	mes "me tornar uma pessoa";
 	mes "tão grande que até irão fazer";
 	mes "uma estátua de mim, assim como";
 	mes "outras estátuas que foram feitas.";

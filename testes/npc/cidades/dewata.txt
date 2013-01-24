@@ -12,12 +12,13 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: ??/1.1/1.0                          |
+//   | Versões eA/rA/brA: ??/1.1/1.1                          |
 //   |--------------------------------------------------------|
 //   | Descrição: NPC's da Cidade de Dewata.                  |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.1 Otimização [Hold & Holy]                           |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -729,7 +730,8 @@ dewata,114,243,5	script	Lazy Young Man	536,1,1,{
 		if(select("Give:Don't give")==2) {
 			mes "[Lazy Young Man]";
 			mes "So be it~ Ok...";
-			close; }
+			close;
+		}
 		mes "[Lazy Young Man]";
 		mes "Really? For me?? I'll give you this in return... Thanks!";
 		delitem 11534,1;
@@ -781,7 +783,8 @@ dewata,75,122,5	script	Monk#dewata-1	834,{
 	if(select("I'm sightseeing:No reason")==2) {
 		mes "[Monk]";
 		mes "Good day to you...";
-		close; }
+		close;
+	}
 	mes "[Monk]";
 	mes "Oh, you are a tourist. This is the";
 	mes "'^0000FFPadoga^000000' worshiping the great";

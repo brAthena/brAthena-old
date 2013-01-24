@@ -12,13 +12,14 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.9/2.0/1.1                         |
+//   | Versões eA/rA/brA: 1.9/2.0/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição: NPCs da Cidade de Comodo.                   |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [cleyton]                           |
+//   | 1.2 Otimização [Hold & Holy]                           |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -208,7 +209,6 @@ cmd_in02,57,62,4	script	Moo#cmd	109,{
 		mes "precisarão arranjar caras ";
 		mes "novas! Ah--Desculpe, não vi";
 		mes "você parado aí~ Hahahaha~";
-		close;
 	} else {
 		mes "[Moo]";
 		mes "Saudações, sou Moo,";
@@ -230,9 +230,8 @@ cmd_in02,57,62,4	script	Moo#cmd	109,{
 		mes "sempre procurando tornar";
 		mes "muito agradável sua visita";
 		mes "ao nosso Cassino.";
-
-		close;
 	}
+	close;
 }
 
 // Comodo Campos

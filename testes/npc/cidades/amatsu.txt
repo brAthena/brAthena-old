@@ -19,7 +19,7 @@
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [cleyton]                           |
-//   | 1.2 Otimização [Architect]                             |
+//   | 1.2 Otimização [Hold & Holy]                           |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -427,9 +427,7 @@ amatsu,243,202,3	script	Professora de Drama#ama	760,{
 	close;
 }
 	
-amatsu,283,203,1	script	Bonubonu#ama1	1323,{
-	end;
-}
+amatsu,283,203,1	script	Bonubonu#ama1	1323,{ end; }
 
 amatsu,283,203,1	script	Bonubonu#ama2	111,{
 	set jap_tree,3;
