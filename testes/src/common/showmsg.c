@@ -707,7 +707,7 @@ int _vShowMessage(enum msg_type flag, const char *string, va_list ap)
 			strcat(prefix,CL_WHITE"[Info]"CL_RESET":");
 			break;
 		case MSG_NOTICE: //Bright White (Less than a warning)
-			sprintf(prefix, CL_WHITE"[Not%ccia]"CL_RESET":", 161);
+			sprintf(prefix,CL_LT_GREEN"[Not%ccia]"CL_RESET":", 161);
 			break;
 		case MSG_WARNING: //Bright Yellow
 			strcat(prefix,CL_YELLOW"[Aviso]"CL_RESET":");
@@ -719,7 +719,7 @@ int _vShowMessage(enum msg_type flag, const char *string, va_list ap)
 			strcat(prefix,CL_RED"[Erro]"CL_RESET":");
 			break;
 		case MSG_FATALERROR: //Bright Red (Fatal errors, abort(); if possible)
-			strcat(prefix,CL_RED"[Erro Cr�tico]"CL_RESET":");
+			sprintf(prefix,CL_LT_RED"[Erro Cr%ctico]"CL_RESET":", 161);
 			break;
 		default:
 			ShowError(read_message("Source.common.msg_default"), 135, 198, 160);

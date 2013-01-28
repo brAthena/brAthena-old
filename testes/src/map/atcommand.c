@@ -7,8 +7,8 @@
 *                                                                            *
 *                                                                            *
 * \file src/map/atcommand.c                                                  *
-* DescriÃ§Ã£o PrimÃ¡ria.                                                        *
-* DescriÃ§Ã£o mais elaborada sobre o arquivo.                                  *
+* Descrição Primária.                                                        *
+* Descrição mais elaborada sobre o arquivo.                                  *
 * \author brAthena, Athena, eAthena                                          *
 * \date ?                                                                    *
 * \todo ?                                                                    *  
@@ -3599,8 +3599,8 @@ ACMD_FUNC(reload)
 	nullpo_retr(-1, sd);
 
 	if(!message || !*message) {
-		clif_displaymessage(fd, "Opï¿½ï¿½es: item_db, mob_db e skill_db.");
-		clif_displaymessage(fd, "Modo de uso: @reload <opï¿½ï¿½o>");
+		clif_displaymessage(fd, "Opções: item_db, mob_db e skill_db.");
+		clif_displaymessage(fd, "Modo de uso: @reload <opção>");
 		return -1;
 	}
 
@@ -3612,7 +3612,7 @@ ACMD_FUNC(reload)
 		case 0: itemdb_reload(); break;
 		case 1: mob_reload(); read_petdb(); merc_reload(); read_mercenarydb(); reload_elementaldb(); break;
 		case 2: skill_reload(); merc_skill_reload(); reload_elemental_skilldb(); read_mercenary_skilldb(); break;
-		default: message = "Digite um opï¿½ï¿½o vï¿½lida."; option = -2; break;
+		default: message = "Digite um opção válida."; option = -2; break;
 	}
 
 	snprintf(atcmd_output, sizeof(atcmd_output), (option!=-2?"%s recarregado.":"%s"), message);
