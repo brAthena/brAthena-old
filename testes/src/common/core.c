@@ -7,8 +7,8 @@
 *                                                                            *
 *                                                                            *
 * \file src/common/core.c                                                    *
-* Descri√ß√£o Prim√°ria.                                                        *
-* Descri√ß√£o mais elaborada sobre o arquivo.                                  *
+* DescriÁ„o Prim·ria.                                                        *
+* DescriÁ„o mais elaborada sobre o arquivo.                                  *
 * \author brAthena, Athena, eAthena                                          *
 * \date ?                                                                    *
 * \todo ?                                                                    *   

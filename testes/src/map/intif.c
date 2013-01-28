@@ -7,8 +7,8 @@
 *                                                                            *
 *                                                                            *
 * \file src/map/intif.c                                                      *
-* DescriÃ§Ã£o PrimÃ¡ria.                                                        *
-* DescriÃ§Ã£o mais elaborada sobre o arquivo.                                  *
+* Descrição Primária.                                                        *
+* Descrição mais elaborada sobre o arquivo.                                  *
 * \author brAthena, Athena, eAthena                                          *
 * \date ?                                                                    *
 * \todo ?                                                                    *  
@@ -730,7 +730,7 @@ int intif_guild_skillup(int guild_id, uint16 skill_id, int account_id, int max)
 	return 0;
 }
 
-// Request a new guild relationshipï¿½
+// Request a new guild relationship?
 int intif_guild_alliance(int guild_id1,int guild_id2,int account_id1,int account_id2,int flag)
 {
 	if(CheckForCharServer())

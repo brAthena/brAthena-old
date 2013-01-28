@@ -7,8 +7,8 @@
 *                                                                            *
 *                                                                            *
 * \file src/map/storage.c                                                    *
-* DescriÃ§Ã£o PrimÃ¡ria.                                                        *
-* DescriÃ§Ã£o mais elaborada sobre o arquivo.                                  *
+* Descrição Primária.                                                        *
+* Descrição mais elaborada sobre o arquivo.                                  *
 * \author brAthena, Athena, eAthena                                          *
 * \date ?                                                                    *
 * \todo ?                                                                    *  
@@ -40,7 +40,7 @@
 static DBMap *guild_storage_db; // int guild_id -> struct guild_storage*
 
 /*==========================================
- * ï¿½qï¿½É“ï¿½ï¿½Aï¿½Cï¿½eï¿½ï¿½ï¿½\ï¿½[ï¿½g
+ * ?q????A?C?e???\?[?g
  *------------------------------------------*/
 static int storage_comp_item(const void *_i1, const void *_i2)
 {
@@ -66,9 +66,9 @@ static void storage_sortitem(struct item *items, unsigned int size)
 }
 
 /*==========================================
- * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ‚ï¿½
+ * ?????????
  *------------------------------------------*/
-int do_init_storage(void) // map.c::do_init()ï¿½ï¿½ï¿½ï¿½ï¿½Ä‚Î‚ï¿½ï¿½ï¿½
+int do_init_storage(void) // map.c::do_init()?????A????
 {
 	guild_storage_db=idb_alloc(DB_OPT_RELEASE_DATA);
 	return 1;

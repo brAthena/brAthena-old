@@ -7,8 +7,8 @@
 *                                                                            *
 *                                                                            *
 * \file src/map/homunculus.c                                                 *
-* DescriÃ§Ã£o PrimÃ¡ria.                                                        *
-* DescriÃ§Ã£o mais elaborada sobre o arquivo.                                  *
+* Descrição Primária.                                                        *
+* Descrição mais elaborada sobre o arquivo.                                  *
 * \author brAthena, Athena, eAthena                                          *
 * \date ?                                                                    *
 * \todo ?                                                                    *  
@@ -1222,7 +1222,7 @@ void read_homunculus_expdb(void)
 			break;
 
 		if(hexptbl[MAX_LEVEL - 1]) { // Last permitted level have to be 0!
-			ShowWarning("read_hexptbl: Nï¿½vel mï¿½ximo alcanï¿½ado em exp_homun_db [%d].\n ", MAX_LEVEL);
+			ShowWarning("read_hexptbl: N?vel m?ximo alcan?ado em exp_homun_db [%d].\n ", MAX_LEVEL);
 			hexptbl[MAX_LEVEL - 1] = 0;
 		}
 	}

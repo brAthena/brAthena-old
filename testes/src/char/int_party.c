@@ -7,8 +7,8 @@
 *                                                                            *
 *                                                                            *
 * \file src/char/int_party.c                                                 *
-* DescriÃ§Ã£o PrimÃ¡ria.                                                        *
-* DescriÃ§Ã£o mais elaborada sobre o arquivo.                                  *
+* Descrição Primária.                                                        *
+* Descrição mais elaborada sobre o arquivo.                                  *
 * \author brAthena, Athena, eAthena                                          *
 * \date ?                                                                    *
 * \todo ?                                                                    *  
@@ -521,7 +521,7 @@ int mapif_parse_CreateParty(int fd, char *name, int item, int item2, struct part
 
 	return 0;
 }
-// Party information requestï¿½
+// Party information request?
 static void mapif_parse_PartyInfo(int fd, int party_id, int char_id)
 {
 	struct party_data *p;
@@ -532,7 +532,7 @@ static void mapif_parse_PartyInfo(int fd, int party_id, int char_id)
 	else
 		mapif_party_noinfo(fd, party_id, char_id);
 }
-// Add a player to party requestï¿½
+// Add a player to party request?
 int mapif_parse_PartyAddMember(int fd, int party_id, struct party_member *member)
 {
 	struct party_data *p;
@@ -570,7 +570,7 @@ int mapif_parse_PartyAddMember(int fd, int party_id, struct party_member *member
 	return 0;
 }
 
-// Party setting change requestï¿½
+// Party setting change request?
 int mapif_parse_PartyChangeOption(int fd,int party_id,int account_id,int exp,int item)
 {
 	struct party_data *p;

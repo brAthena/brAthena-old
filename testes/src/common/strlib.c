@@ -7,8 +7,8 @@
 *                                                                            *
 *                                                                            *
 * \file src/common/strlib.c                                                  *
-* DescriÃ§Ã£o PrimÃ¡ria.                                                        *
-* DescriÃ§Ã£o mais elaborada sobre o arquivo.                                  *
+* Descrição Primária.                                                        *
+* Descrição mais elaborada sobre o arquivo.                                  *
 * \author brAthena, Athena                                                   *
 * \date ?                                                                    *
 * \todo ?                                                                    *  
@@ -331,7 +331,7 @@ int e_mail_check(char *email)
 
 //--------------------------------------------------
 // Return numerical value of a switch configuration
-// on/off, english, franï¿½ais, deutsch, espaï¿½ol
+// on/off, english, fran?ais, deutsch, espa?ol
 //--------------------------------------------------
 int config_switch(const char *str)
 {

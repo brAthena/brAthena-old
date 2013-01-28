@@ -7,8 +7,8 @@
 *                                                                            *
 *                                                                            *
 * \file src/map/pet.c                                                        *
-* DescriÃ§Ã£o PrimÃ¡ria.                                                        *
-* DescriÃ§Ã£o mais elaborada sobre o arquivo.                                  *
+* Descrição Primária.                                                        *
+* Descrição mais elaborada sobre o arquivo.                                  *
 * \author brAthena, Athena, eAthena                                          *
 * \date ?                                                                    *
 * \todo ?                                                                    *  
@@ -1027,7 +1027,7 @@ int pet_lootitem_drop(struct pet_data *pd,struct map_session_data *sd)
 	memset(pd->loot->item,0,pd->loot->max * sizeof(struct item));
 	pd->loot->count = 0;
 	pd->loot->weight = 0;
-	pd->ud.canact_tick = gettick()+10000;   //  10*1000msï¿½ÌŠÔEï¿½ï¿½ï¿½È‚ï¿½
+	pd->ud.canact_tick = gettick()+10000;   //  10*1000ms?°?E?????
 
 	if(dlist->item)
 		add_timer(gettick()+540,pet_delay_item_drop,0,(intptr_t)dlist);
@@ -1191,7 +1191,7 @@ int pet_skill_support_timer(int tid, unsigned int tick, int id, intptr_t data)
 }
 
 /*==========================================
- *ï¿½yï¿½bï¿½gï¿½fï¿½[ï¿½^ï¿½Ç‚Ýï¿½ï¿½ï¿½
+ *?y?b?g?f?[?^??????
  *------------------------------------------*/
 int read_petdb()
 {
@@ -1231,7 +1231,7 @@ int read_petdb()
 			continue;
 
 		if(!mobdb_checkid(nameid)) {
-			ShowWarning("pet_db reading: Mob invï¿½lido %d, pet nï¿½o carregado!.\n", nameid);
+			ShowWarning("pet_db reading: Mob inv?lido %d, pet n?o carregado!.\n", nameid);
 			continue;
 		}
 
@@ -1268,7 +1268,7 @@ int read_petdb()
 	}
 
 	if(j >= MAX_PET_DB)
-		ShowWarning("petdb: Nï¿½mero mï¿½ximo de pets atingido [%d].\n ", MAX_PET_DB);
+		ShowWarning("petdb: N?mero m?ximo de pets atingido [%d].\n ", MAX_PET_DB);
 
 	ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", rows, get_database_name(48));
 	Sql_FreeResult(dbmysql_handle);
@@ -1276,7 +1276,7 @@ int read_petdb()
 }
 
 /*==========================================
- * ï¿½Xï¿½Lï¿½ï¿½ï¿½ÖŒWï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+ * ?X?L????W??????????
  *------------------------------------------*/
 int do_init_pet(void)
 {

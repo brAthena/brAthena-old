@@ -7,8 +7,8 @@
 *                                                                            *
 *                                                                            *
 * \file src/map/trade.c                                                      *
-* DescriÃ§Ã£o PrimÃ¡ria.                                                        *
-* DescriÃ§Ã£o mais elaborada sobre o arquivo.                                  *
+* Descrição Primária.                                                        *
+* Descrição mais elaborada sobre o arquivo.                                  *
 * \author brAthena, Athena, eAthena                                          *
 * \date ?                                                                    *
 * \todo ?                                                                    *  
@@ -515,7 +515,7 @@ void trade_tradecancel(struct map_session_data *sd)
 }
 
 /*==========================================
- * ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½(tradeï¿½ï¿½ï¿½ï¿½)
+ * ????????(trade????)
  *------------------------------------------*/
 void trade_tradecommit(struct map_session_data *sd)
 {

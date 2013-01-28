@@ -7,8 +7,8 @@
 *                                                                            *
 *                                                                            *
 * \file src/map/battle.c                                                     *
-* DescriÃ§Ã£o PrimÃ¡ria.                                                        *
-* DescriÃ§Ã£o mais elaborada sobre o arquivo.                                  *
+* Descrição Primária.                                                        *
+* Descrição mais elaborada sobre o arquivo.                                  *
 * \author brAthena, Athena, eAthena                                          *
 * \date ?                                                                    *
 * \todo ?                                                                    *  
@@ -2847,7 +2847,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					} else
 						skillratio += 300;  // Bombs
 					break;
-				case SO_VARETYR_SPEAR://ATK [{( Striking Level x 50 ) + ( Varetyr Spear Skill Level x 50 )} x Casterï¿½s Base Level / 100 ] %
+				case SO_VARETYR_SPEAR://ATK [{( Striking Level x 50 ) + ( Varetyr Spear Skill Level x 50 )} x Caster?s Base Level / 100 ] %
 					skillratio =  50 * skill_lv + (sd ? pc_checkskill(sd, SO_STRIKING) * 50 : 0);
 					if(sc && sc->data[SC_BLAST_OPTION])
 						skillratio += sd ? sd->status.job_level * 5 : 0;
@@ -3948,7 +3948,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 									skillratio += sc->data[SC_CURSED_SOIL_OPTION]->val3;
 							}
 							break;
-						case SO_VARETYR_SPEAR: //MATK [{( Endow Tornado skill level x 50 ) + ( Casterï¿½s INT x Varetyr Spear Skill level )} x Casterï¿½s Base Level / 100 ] %
+						case SO_VARETYR_SPEAR: //MATK [{( Endow Tornado skill level x 50 ) + ( Caster?s INT x Varetyr Spear Skill level )} x Caster?s Base Level / 100 ] %
 							skillratio = status_get_int(src) * skill_lv + (sd ? pc_checkskill(sd, SA_LIGHTNINGLOADER) * 50 : 0);
 							RE_LVL_DMOD(100);
 							if(sc && sc->data[SC_BLAST_OPTION])
@@ -4051,7 +4051,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 			 * RE MDEF Reduction
 			 * Damage = Magic Attack * (1000+eMDEF)/(1000+eMDEF) - sMDEF
 			 **/
-			if(battle_config.bRO_Renewal)    // Fórmula de Defesa Mágica por Equipamentos [brAthena - bRO]
+			if(battle_config.bRO_Renewal)    // F??la de Defesa M?ca por Equipamentos [brAthena - bRO]
 				ad.damage = ad.damage * 1115 / (1115 - mdef2) / 2;
 			else
 				ad.damage = ad.damage * (1000 + mdef) / (1000 + mdef * 10) - mdef2;

@@ -7,8 +7,8 @@
 *                                                                            *
 *                                                                            *
 * \file src/map/itemdb.c                                                     *
-* DescriÃ§Ã£o PrimÃ¡ria.                                                        *
-* DescriÃ§Ã£o mais elaborada sobre o arquivo.                                  *
+* Descrição Primária.                                                        *
+* Descrição mais elaborada sobre o arquivo.                                  *
 * \author brAthena, Athena, eAthena                                          *
 * \date ?                                                                    *
 * \todo ?                                                                    *  
@@ -543,7 +543,7 @@ int itemdb_read_itemgroup_sub()
 
 			groupid = atoi(row[0]);
 			if(groupid < 0 || groupid >= MAX_ITEMGROUP) {
-				ShowWarning("itemdb_read_itemgroup: Grupo invï¿½lido %d em %s\n", groupid, db[i]);
+				ShowWarning("itemdb_read_itemgroup: Grupo inv?lido %d em %s\n", groupid, db[i]);
 				continue;
 			}
 
@@ -555,7 +555,7 @@ int itemdb_read_itemgroup_sub()
 
 			k = atoi(row[2]);
 			if(itemgroup_db[groupid].qty+k >= MAX_RANDITEM) {
-				ShowWarning("itemdb_read_itemgroup: Group %d estï¿½ cheio (%d entradas) em %s\n", groupid, MAX_RANDITEM, db[i]);
+				ShowWarning("itemdb_read_itemgroup: Group %d est? cheio (%d entradas) em %s\n", groupid, MAX_RANDITEM, db[i]);
 				continue;
 			}
 
@@ -767,7 +767,7 @@ void itemdb_read_combos()
 			Sql_GetData(dbmysql_handle, i, &row[i], NULL);
 
 		if((retcount = itemdb_combo_split_atoi(row[0], items)) < 2) {
-			ShowError("itemdb_read_combos: Nï¿½o tem elementos suficientes (min:2).\n");
+			ShowError("itemdb_read_combos: N?o tem elementos suficientes (min:2).\n");
 			continue;
 		}
 

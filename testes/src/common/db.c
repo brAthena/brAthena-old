@@ -7,8 +7,8 @@
 *                                                                            *
 *                                                                            *
 * \file src/common/db.h                                                      *
-* DescriÃ§Ã£o PrimÃ¡ria.                                                        *
-* DescriÃ§Ã£o mais elaborada sobre o arquivo.                                  *
+* Descrição Primária.                                                        *
+* Descrição mais elaborada sobre o arquivo.                                  *
 * \author brAthena, Athena                                                   *
 * \date ?                                                                    *
 * \todo ?                                                                    *  
@@ -2671,7 +2671,7 @@ void *linkdb_search(struct linkdb_node **head, void *key)
 	while(node) {
 		if(node->key == key) {
 			if(node->prev && n > 5) {
-				// ï¿½Moving the head in order to improve processing efficiency
+				// ?Moving the head in order to improve processing efficiency
 				if(node->prev) node->prev->next = node->next;
 				if(node->next) node->next->prev = node->prev;
 				node->next = *head;

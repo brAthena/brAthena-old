@@ -7,8 +7,8 @@
 *                                                                            *
 *                                                                            *
 * \file src/common/socket.c                                                  *
-* DescriÃ§Ã£o PrimÃ¡ria.                                                        *
-* DescriÃ§Ã£o mais elaborada sobre o arquivo.                                  *
+* Descrição Primária.                                                        *
+* Descrição mais elaborada sobre o arquivo.                                  *
 * \author brAthena, Athena                                                   *
 * \date ?                                                                    *
 * \todo ?                                                                    *  
@@ -1156,7 +1156,7 @@ void socket_final(void)
 		if(session[i])
 			do_close(i);
 
-	// session[0] ï¿½Ìƒ_ï¿½~ï¿½[ï¿½fï¿½[ï¿½^ï¿½ï¿½ï¿½íœ
+	// session[0] ?~_?~?[?f?[?^????
 	aFree(session[0]->rdata);
 	aFree(session[0]->wdata);
 	aFree(session[0]);

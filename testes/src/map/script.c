@@ -7,8 +7,8 @@
 *                                                                            *
 *                                                                            *
 * \file src/map/script.c                                                     *
-* Descrição Primária.                                                        *
-* Descrição mais elaborada sobre o arquivo.                                  *
+* Descri��o Prim�ria.                                                        *
+* Descri��o mais elaborada sobre o arquivo.                                  *
 * \author brAthena, Athena, eAthena                                          *
 * \date ?                                                                    *
 * \todo ?                                                                    *  
@@ -473,7 +473,7 @@ const char *script_op2name(int op)
 static void script_dump_stack(struct script_state *st)
 {
 	int i;
-	ShowMessage("\tcome�o = %d\n", st->start);
+	ShowMessage("\tcome?o = %d\n", st->start);
 	ShowMessage("\tfim   = %d\n", st->end);
 	ShowMessage("\tdefsp = %d\n", st->stack->defsp);
 	ShowMessage("\tsp    = %d\n", st->stack->sp);
@@ -1148,7 +1148,7 @@ const char *parse_variable(const char *p)
 
 	if(str_data[word].type == C_FUNC || str_data[word].type == C_USERFUNC || str_data[word].type == C_USERFUNC_POS) {
 		// cannot assign a variable which exists as a function or label
-		disp_error_message("N�o � poss�vel modificar uma vari�vel que tem o mesmo nome de uma fun��o ou um label.", p);
+		disp_error_message("N?o ? poss?vel modificar uma vari?vel que tem o mesmo nome de uma fun??o ou um label.", p);
 	}
 
 	if(p2) {  // process the variable index
@@ -1164,7 +1164,7 @@ const char *parse_variable(const char *p)
 		p3 = skip_space(p3);
 
 		if(*p3 != ']') {  // closing parenthesis is required for this script
-			disp_error_message("Falta de fechamento ']' par�ntese para a atribui��o de vari�vel.", p3);
+			disp_error_message("Falta de fechamento ']' par?ntese para a atribui??o de vari?vel.", p3);
 		}
 
 		// push the closing function stack operator onto the stack
@@ -1636,7 +1636,7 @@ const char *parse_syntax(const char *p)
 				p = skip_space(p2);
 				if(*p != ';')
 					disp_error_message("parse_syntax: ';' necessario",p);
-				// if, for , while �̕�����
+				// if, for , while ????????
 				p = parse_syntax_close(p + 1);
 				return p;
 			}
@@ -1644,7 +1644,7 @@ const char *parse_syntax(const char *p)
 		case 'd':
 		case 'D':
 			if(p2 - p == 7 && !strncasecmp(p,"default",7)) {
-				// switch - default �̏���
+				// switch - default ?????
 				int pos = syntax.curly_count-1;
 				if(pos < 0 || syntax.curly[pos].type != TYPE_SWITCH) {
 					disp_error_message("parse_syntax: 'default' inesperado",p);
@@ -1740,32 +1740,32 @@ const char *parse_syntax(const char *p)
 					disp_error_message("parse_syntax: ';' necessario",p);
 				p++;
 
-				// ���[�v�J�n�ɔ��΂�
+				// ???[?v?J?n??????
 				sprintf(label,"goto __FR%x_BGN;",syntax.curly[pos].index);
 				syntax.curly[syntax.curly_count++].type = TYPE_NULL;
 				parse_line(label);
 				syntax.curly_count--;
 
-				// ���̃��[�v�ւ̃��x���`������
+				// ???~??[?v??~??x???`??????
 				sprintf(label,"__FR%x_NXT",syntax.curly[pos].index);
 				l=add_str(label);
 				set_label(l,script_pos,p);
 
-				// ���̃��[�v�ɓ��鎞�̏���
-				// for �Ō��� ')' �� ';' �Ƃ��Ĉ����t���O
+				// ???~??[?v??????????
+				// for ?O??? ')' ?? ';' ????C????t???O
 				parse_syntax_for_flag = 1;
 				syntax.curly[syntax.curly_count++].type = TYPE_NULL;
 				p=parse_line(p);
 				syntax.curly_count--;
 				parse_syntax_for_flag = 0;
 
-				// ����菈���ɔ��΂�
+				// ?????????????
 				sprintf(label,"goto __FR%x_J;",syntax.curly[pos].index);
 				syntax.curly[syntax.curly_count++].type = TYPE_NULL;
 				parse_line(label);
 				syntax.curly_count--;
 
-				// ���[�v�J�n�̃��x���t��
+				// ???[?v?J?n?~??x???t??
 				sprintf(label,"__FR%x_BGN",syntax.curly[pos].index);
 				l=add_str(label);
 				set_label(l,script_pos,p);
@@ -1791,7 +1791,7 @@ const char *parse_syntax(const char *p)
 					else
 						disp_error_message("parse_syntax:function: function name is invalid", func_name);
 
-					// if, for , while �̕�����
+					// if, for , while ????????
 					p = parse_syntax_close(p2 + 1);
 					return p;
 				} else if(*p2 == '{') {
@@ -1831,7 +1831,7 @@ const char *parse_syntax(const char *p)
 		case 'i':
 		case 'I':
 			if(p2 - p == 2 && !strncasecmp(p,"if",2)) {
-				// if() �̏���
+				// if() ?????
 				char label[256];
 				p=skip_space(p2);
 				if(*p != '(') { //Prevent if this {} non-c syntax. from Rayce (jA)
@@ -1855,7 +1855,7 @@ const char *parse_syntax(const char *p)
 		case 's':
 		case 'S':
 			if(p2 - p == 6 && !strncasecmp(p,"switch",6)) {
-				// switch() �̏���
+				// switch() ?????
 				char label[256];
 				p=skip_space(p2);
 				if(*p != '(') {
@@ -1892,12 +1892,12 @@ const char *parse_syntax(const char *p)
 				syntax.curly[syntax.curly_count].count = 1;
 				syntax.curly[syntax.curly_count].index = syntax.index++;
 				syntax.curly[syntax.curly_count].flag  = 0;
-				// ����f�J�n�̃��x���`������
+				// ????f?J?n?~??x???`??????
 				sprintf(label,"__WL%x_NXT",syntax.curly[syntax.curly_count].index);
 				l=add_str(label);
 				set_label(l,script_pos,p);
 
-				// ����U�Ȃ��I���n�_�ɔ��΂�
+				// ????U????I???n?_??????
 				sprintf(label,"__WL%x_FIN",syntax.curly[syntax.curly_count].index);
 				syntax.curly_count++;
 				add_scriptl(add_str("jump_zero"));
@@ -1915,7 +1915,7 @@ const char *parse_syntax(const char *p)
 
 const char *parse_syntax_close(const char *p)
 {
-	// if(...) for(...) hoge(); �̂悤�ɁA�P�x�����ꂽ���ēx�������邩�m�F����
+	// if(...) for(...) hoge(); ?^???A?P?x??????????ex??????????m?F????
 	int flag;
 
 	do {
@@ -1924,9 +1924,9 @@ const char *parse_syntax_close(const char *p)
 	return p;
 }
 
-// if, for , while , do �̕�����
-//	 flag == 1 : �����ꂽ
-//	 flag == 0 : �������Ȃ�
+// if, for , while , do ????????
+//	 flag == 1 : ???????
+//	 flag == 0 : ??????????
 const char *parse_syntax_close_sub(const char *p,int *flag)
 {
 	char label[256];
@@ -1944,13 +1944,13 @@ const char *parse_syntax_close_sub(const char *p,int *flag)
 		// if-block and else-block end is a new line
 		parse_nextline(false, p);
 
-		// if �ŏI�ꏊ�֔��΂�
+		// if ?oI????????
 		sprintf(label,"goto __IF%x_FIN;",syntax.curly[pos].index);
 		syntax.curly[syntax.curly_count++].type = TYPE_NULL;
 		parse_line(label);
 		syntax.curly_count--;
 
-		// ���ݒn�̃��x�����t����
+		// ????n?~??x?????t????
 		sprintf(label,"__IF%x_%x",syntax.curly[pos].index,syntax.curly[pos].count);
 		l=add_str(label);
 		set_label(l,script_pos,p);
@@ -1986,14 +1986,14 @@ const char *parse_syntax_close_sub(const char *p,int *flag)
 				}
 			}
 		}
-		// if ��
+		// if ???
 		syntax.curly_count--;
-		// �ŏI�n�̃��x�����t����
+		// ?oI?n?~??x?????t????
 		sprintf(label,"__IF%x_FIN",syntax.curly[pos].index);
 		l=add_str(label);
 		set_label(l,script_pos,p);
 		if(syntax.curly[pos].flag == 1) {
-			// ����if�ɑ΂���else�����Ȃ��̂Ń|�C���^�̈ʒu�͓���
+			// ????if??????else????????^N|?C???^?�?u?????
 			return bp;
 		}
 		return p;
@@ -2003,13 +2003,13 @@ const char *parse_syntax_close_sub(const char *p,int *flag)
 		const char *p2;
 
 		if(syntax.curly[pos].flag) {
-			// ���ݒn�̃��x���`������(continue �ł����ɗ���)
+			// ????n?~??x???`??????(continue ?l????????)
 			sprintf(label,"__DO%x_NXT",syntax.curly[pos].index);
 			l=add_str(label);
 			set_label(l,script_pos,p);
 		}
 
-		// ����U�Ȃ��I���n�_�ɔ��΂�
+		// ????U????I???n?_??????
 		p = skip_space(p);
 		p2 = skip_word(p);
 		if(p2 - p != 5 || strncasecmp(p,"while",5))
@@ -2031,13 +2031,13 @@ const char *parse_syntax_close_sub(const char *p,int *flag)
 		add_scriptl(add_str(label));
 		add_scriptc(C_FUNC);
 
-		// �J�n�n�_�ɔ��΂�
+		// ?J?n?n?_??????
 		sprintf(label,"goto __DO%x_BGN;",syntax.curly[pos].index);
 		syntax.curly[syntax.curly_count++].type = TYPE_NULL;
 		parse_line(label);
 		syntax.curly_count--;
 
-		// ��I���n�_�̃��x���`������
+		// ??I???n?_?~??x???`??????
 		sprintf(label,"__DO%x_FIN",syntax.curly[pos].index);
 		l=add_str(label);
 		set_label(l,script_pos,p);
@@ -2053,13 +2053,13 @@ const char *parse_syntax_close_sub(const char *p,int *flag)
 		// for-block end is a new line
 		parse_nextline(false, p);
 
-		// ���̃��[�v�ɔ��΂�
+		// ???~??[?v??????
 		sprintf(label,"goto __FR%x_NXT;",syntax.curly[pos].index);
 		syntax.curly[syntax.curly_count++].type = TYPE_NULL;
 		parse_line(label);
 		syntax.curly_count--;
 
-		// for �I���̃��x���t��
+		// for ?I???~??x???t??
 		sprintf(label,"__FR%x_FIN",syntax.curly[pos].index);
 		l=add_str(label);
 		set_label(l,script_pos,p);
@@ -2069,13 +2069,13 @@ const char *parse_syntax_close_sub(const char *p,int *flag)
 		// while-block end is a new line
 		parse_nextline(false, p);
 
-		// while ����f�֔��΂�
+		// while ????f??????
 		sprintf(label,"goto __WL%x_NXT;",syntax.curly[pos].index);
 		syntax.curly[syntax.curly_count++].type = TYPE_NULL;
 		parse_line(label);
 		syntax.curly_count--;
 
-		// while �I���̃��x���t��
+		// while ?I???~??x???t??
 		sprintf(label,"__WL%x_FIN",syntax.curly[pos].index);
 		l=add_str(label);
 		set_label(l,script_pos,p);
@@ -2085,13 +2085,13 @@ const char *parse_syntax_close_sub(const char *p,int *flag)
 		int pos = syntax.curly_count-1;
 		char label[256];
 		int l;
-		// �߂�
+		// ???
 		sprintf(label,"return;");
 		syntax.curly[syntax.curly_count++].type = TYPE_NULL;
 		parse_line(label);
 		syntax.curly_count--;
 
-		// ���ݒn�̃��x�����t����
+		// ????n?~??x?????t????
 		sprintf(label,"__FN%x_FIN",syntax.curly[pos].index);
 		l=add_str(label);
 		set_label(l,script_pos,p);
@@ -2104,7 +2104,7 @@ const char *parse_syntax_close_sub(const char *p,int *flag)
 }
 
 /*==========================================
- * �g�ݍ��݊֐��̒ǉ�
+ * ?g???????????
  *------------------------------------------*/
 static void add_buildin_func(void)
 {
@@ -2174,7 +2174,7 @@ void script_set_constant(const char *name, int value, bool isparameter)
 }
 
 /*==========================================
- * �萔�f�[�^�x�[�X�̓ǂݍ���
+ * ???f?[?^?x?[?X???????
  *------------------------------------------*/
 static void read_constdb(void)
 {
@@ -2201,7 +2201,7 @@ static void read_constdb(void)
 }
 
 /*==========================================
- * �G���[�\��
+ * ?G???[?\??
  *------------------------------------------*/
 static const char *script_print_line(StringBuf *buf, const char *p, const char *mark, int line)
 {
@@ -2223,7 +2223,7 @@ static const char *script_print_line(StringBuf *buf, const char *p, const char *
 
 void script_error(const char *src, const char *file, int start_line, const char *error_msg, const char *error_pos)
 {
-	// �G���[�����������s��߂�
+	// ?G???[???????????s????
 	int j;
 	int line = start_line;
 	const char *p;
@@ -2258,7 +2258,7 @@ void script_error(const char *src, const char *file, int start_line, const char 
 }
 
 /*==========================================
- * �X�N���v�g�̉���
+ * ?X?N???v?g?????
  *------------------------------------------*/
 struct script_code *parse_script(const char *src,const char *file,int line,int options) {
 	const char *p,*tmpp;
@@ -2351,7 +2351,7 @@ struct script_code *parse_script(const char *src,const char *file,int line,int o
 	while(syntax.curly_count != 0 || *p != end) {
 		if(*p == '\0')
 			disp_error_message("fim de script inesperado",p);
-		// label������ꏈ��
+		// label?????????
 		tmpp=skip_space(skip_word(p));
 		if(*tmpp==':' && !(!strncasecmp(p,"default:",8) && p + 7 == tmpp)) {
 			i=add_word(p);
@@ -2363,7 +2363,7 @@ struct script_code *parse_script(const char *src,const char *file,int line,int o
 			continue;
 		}
 
-		// ���͑S���ꏏ����
+		// ????S????????
 		p=parse_line(p);
 		p=skip_space(p);
 
@@ -2913,7 +2913,7 @@ void pop_stack(struct script_state *st, int start, int end)
 ///
 
 /*==========================================
- * �X�N���v�g�ˑ��ϐ��A�֐��ˑ��ϐ��̉���
+ * ?X?N???v?g???????A??????????????
  *------------------------------------------*/
 void script_free_vars(struct DBMap *storage)
 {
@@ -2977,10 +2977,10 @@ void script_free_state(struct script_state *st)
 }
 
 //
-// ��s��main
+// ??s??main
 //
 /*==========================================
- * �R�}���h�̓ǂݎ���
+ * ?R?}???h???????
  *------------------------------------------*/
 c_op get_com(unsigned char *script,int *pos)
 {
@@ -2997,7 +2997,7 @@ c_op get_com(unsigned char *script,int *pos)
 }
 
 /*==========================================
- * ���l�̏���
+ * ???l?????
  *------------------------------------------*/
 int get_num(unsigned char *script,int *pos)
 {
@@ -3011,7 +3011,7 @@ int get_num(unsigned char *script,int *pos)
 }
 
 /*==========================================
- * �X�^�b�N�����l�������o��
+ * ?X?^?b?N?????l???????o??
  *------------------------------------------*/
 int pop_val(struct script_state *st)
 {
@@ -3447,7 +3447,7 @@ void script_stop_sleeptimers(int id)
 }
 
 /*==========================================
- * �w���m�[�h��sleep_db�����폜
+ * ?w???m?[?h??sleep_db??????
  *------------------------------------------*/
 struct linkdb_node *script_erase_sleepdb(struct linkdb_node *n) {
 	struct linkdb_node *retnode;
@@ -3462,11 +3462,11 @@ struct linkdb_node *script_erase_sleepdb(struct linkdb_node *n) {
 		n->next->prev = n->prev;
 	retnode = n->next;
 	aFree(n);
-	return retnode;     // ���̃m�[�h���Ԃ�
+	return retnode;     // ???~m?[?h?????
 }
 
 /*==========================================
- * sleep�p�^�C�}�[�֐�
+ * sleep?p?^?C?}?[???
  *------------------------------------------*/
 int run_script_timer(int tid, unsigned int tick, int id, intptr_t data)
 {
@@ -3563,7 +3563,7 @@ static void script_attach_state(struct script_state *st)
 }
 
 /*==========================================
- * �X�N���v�g�̎�s���C������
+ * ?X?N???v?g?"?s???C??????
  *------------------------------------------*/
 void run_script_main(struct script_state *st)
 {
@@ -4017,7 +4017,7 @@ static void *queryThread_main(void *x)
 }
 #endif
 /*==========================================
- * �I��
+ * ?I??
  *------------------------------------------*/
 int do_final_script()
 {
@@ -4128,7 +4128,7 @@ int do_final_script()
 	return 0;
 }
 /*==========================================
- * ������
+ * ??????
  *------------------------------------------*/
 int do_init_script()
 {
@@ -6434,7 +6434,7 @@ BUILDIN_FUNC(makeitem)
 	} else
 		m=map_mapname2mapid(mapname);
 
-	if(nameid<0) { // �����_��
+	if(nameid<0) { // ?????_??
 		nameid = -nameid;
 		flag = 1;
 	}
@@ -9992,16 +9992,16 @@ BUILDIN_FUNC(globalmes)
 	struct npc_data *nd = (struct npc_data *)bl;
 	const char *name=NULL,*mes;
 
-	mes=script_getstr(st,2);    // ���b�Z�[�W�̎擾
+	mes=script_getstr(st,2);    // ???b?Z?[?W?"?
 	if(mes==NULL) return 0;
 
-	if(script_hasdata(st,3)) {  // NPC���̎擾(123#456)
+	if(script_hasdata(st,3)) {  // NPC???"?(123#456)
 		name=script_getstr(st,3);
 	} else {
 		name=nd->name;
 	}
 
-	npc_globalmessage(name,mes);    // �O���[�o�����b�Z�[�W���M
+	npc_globalmessage(name,mes);    // ?O???[?o?????b?Z?[?W???M
 
 	return 0;
 }
@@ -10232,7 +10232,7 @@ static void script_detach_rid(struct script_state *st)
 }
 
 /*==========================================
- * RID�̃A�^�b�`
+ * RID?~A?^?b?`
  *------------------------------------------*/
 BUILDIN_FUNC(attachrid)
 {
@@ -10250,7 +10250,7 @@ BUILDIN_FUNC(attachrid)
 	return 0;
 }
 /*==========================================
- * RID�̃f�^�b�`
+ * RID?~f?^?b?`
  *------------------------------------------*/
 BUILDIN_FUNC(detachrid)
 {
@@ -10258,7 +10258,7 @@ BUILDIN_FUNC(detachrid)
 	return 0;
 }
 /*==========================================
- * ���݃`�F�b�N
+ * ????`?F?b?N
  *------------------------------------------*/
 BUILDIN_FUNC(isloggedin)
 {
@@ -10979,7 +10979,7 @@ BUILDIN_FUNC(successremovecards)
 			item_tmp.card[j]=sd->status.inventory[i].card[j];
 
 		pc_delitem(sd,i,1,0,3,LOG_TYPE_SCRIPT);
-		if((flag=pc_additem(sd,&item_tmp,1,LOG_TYPE_SCRIPT))) { // ���ĂȂ��Ȃ��h���b�v
+		if((flag=pc_additem(sd,&item_tmp,1,LOG_TYPE_SCRIPT))) { // ???A??????h???b?v
 			clif_additem(sd,0,0,flag);
 			map_addflooritem(&item_tmp,1,sd->bl.m,sd->bl.x,sd->bl.y,0,0,0,0);
 		}
@@ -11034,10 +11034,10 @@ BUILDIN_FUNC(failedremovecards)
 	}
 
 	if(cardflag == 1) {
-		if(typefail == 0 || typefail == 2) { // �����
+		if(typefail == 0 || typefail == 2) { // ??????
 			pc_delitem(sd,i,1,0,2,LOG_TYPE_SCRIPT);
 		}
-		if(typefail == 1) { // �J�[�h�̂ݑ����i�������Ԃ��j
+		if(typefail == 1) { // ?J?[?h?^?????i??????????j
 			int flag;
 			struct item item_tmp;
 
@@ -11436,7 +11436,7 @@ BUILDIN_FUNC(guardianinfo)
 }
 
 /*==========================================
- * ID����Item��
+ * ID????Item??
  *------------------------------------------*/
 BUILDIN_FUNC(getitemname)
 {

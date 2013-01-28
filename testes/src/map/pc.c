@@ -7,8 +7,8 @@
 *                                                                            *
 *                                                                            *
 * \file src/map/pc.c                                                         *
-* Descrição Primária.                                                        *
-* Descrição mais elaborada sobre o arquivo.                                  *
+* Descri��o Prim�ria.                                                        *
+* Descri��o mais elaborada sobre o arquivo.                                  *
 * \author brAthena, Athena, eAthena                                          *
 * \date ?                                                                    *
 * \todo ?                                                                    *  
@@ -563,7 +563,7 @@ int pc_makesavestatus(struct map_session_data *sd)
 }
 
 /*==========================================
- * ��?�b̏����?
+ * ????b??????
  *------------------------------------------*/
 int pc_setnewpc(struct map_session_data *sd, int account_id, int char_id, int login_id1, unsigned int client_tick, int sex, int fd)
 {
@@ -1068,7 +1068,7 @@ bool pc_authok(struct map_session_data *sd, int login_id2, time_t expiration_tim
 
 		if(battle_config.display_version == 1) {
 			char buf[256];
-			sprintf(buf, "SVN vers�o: %s", get_svn_revision());
+			sprintf(buf, "SVN vers?o: %s", get_svn_revision());
 			clif_displaymessage(sd->fd, buf);
 		}
 
@@ -1270,7 +1270,7 @@ static int pc_calc_skillpoint(struct map_session_data *sd)
 
 
 /*==========================================
- * ?���������X�L���̌v�Z
+ * ??????????X?L????v?Z
  *------------------------------------------*/
 int pc_calc_skilltree(struct map_session_data *sd)
 {
@@ -1958,7 +1958,7 @@ int pc_bonus_subele(struct map_session_data *sd, unsigned char ele, short rate, 
 }
 
 /*==========================================
- * ? ���i�ɂ����\�͓��̃{?�i�X�ݒ�
+ * ? ???i??????\????~{??i?X???
  *------------------------------------------*/
 int pc_bonus(struct map_session_data *sd,int type,int val)
 {
@@ -3367,7 +3367,7 @@ int pc_skill(TBL_PC *sd, int id, int level, int flag)
 	return 1;
 }
 /*==========================================
- * �J?�h?��
+ * ?J??h???
  *------------------------------------------*/
 int pc_insert_card(struct map_session_data *sd, int idx_card, int idx_equip)
 {
@@ -3421,7 +3421,7 @@ int pc_insert_card(struct map_session_data *sd, int idx_card, int idx_equip)
 }
 
 //
-// �A�C�e����
+// ?A?C?e????
 //
 
 /*==========================================
@@ -5602,7 +5602,7 @@ int pc_gainexp(struct map_session_data *sd, struct block_list *src, unsigned int
 	if(sd->state.showexp) {
 		char output[256];
 		sprintf(output,
-		        "Experi�ncia de Base:%u (%.2f%%) Job:%u (%.2f%%)",base_exp,nextbp*(float)100,job_exp,nextjp*(float)100);
+		        "Experi?ncia de Base:%u (%.2f%%) Job:%u (%.2f%%)",base_exp,nextbp*(float)100,job_exp,nextjp*(float)100);
 		clif_disp_onlyself(sd,output,strlen(output));
 	}
 
@@ -6665,7 +6665,7 @@ void pc_revive(struct map_session_data *sd,unsigned int hp, unsigned int sp)
 		guild_guildaura_refresh(sd,GD_HAWKEYES,guild_checkskill(sd->state.gmaster_flag,GD_HAWKEYES));
 	}
 }
-// script? �A
+// script? ?A
 //
 /*==========================================
  * script reading pc status registry

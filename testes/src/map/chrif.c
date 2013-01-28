@@ -7,8 +7,8 @@
 *                                                                            *
 *                                                                            *
 * \file src/map/chrif.c                                                      *
-* DescriÃ§Ã£o PrimÃ¡ria.                                                        *
-* DescriÃ§Ã£o mais elaborada sobre o arquivo.                                  *
+* Descrição Primária.                                                        *
+* Descrição mais elaborada sobre o arquivo.                                  *
 * \author brAthena, Athena, eAthena                                          *
 * \date ?                                                                    *
 * \todo ?                                                                    *  
@@ -908,7 +908,7 @@ static void chrif_char_ask_name_answer(int acc, const char *player_name, uint16 
 }
 
 /*==========================================
- * ï¿½Request char server to change sex of char (modified by Yor)
+ * ?Request char server to change sex of char (modified by Yor)
  *------------------------------------------*/
 int chrif_changedsex(int fd)
 {
@@ -1540,7 +1540,7 @@ int send_usercount_tochar(int tid, unsigned int tick, int id, intptr_t data)
 
 /*==========================================
  * timerFunction
- * ï¿½Send to char the number of client connected to map
+ * ?Send to char the number of client connected to map
  *------------------------------------------*/
 int send_users_tochar(void)
 {

@@ -7,8 +7,8 @@
 *                                                                            *
 *                                                                            *
 * \file src/common/nullpo.c                                                  *
-* Descrição Primária.                                                        *
-* Descrição mais elaborada sobre o arquivo.                                  *
+* Descri��o Prim�ria.                                                        *
+* Descri��o mais elaborada sobre o arquivo.                                  *
 * \author brAthena, Athena                                                   *
 * \date ?                                                                    *
 * \todo ?                                                                    *  
@@ -19,13 +19,13 @@
 #include <string.h>
 #include "nullpo.h"
 #include "../common/showmsg.h"
-// #include "logs.h" // �z�΂��Ă݂�
+// #include "logs.h" // ?z????A??
 
 static void nullpo_info_core(const char *file, int line, const char *func,
                              const char *fmt, va_list ap);
 
 /*======================================
- * Null�`�F�b�N �y�� �����o��
+ * Null?`?F?b?N ?y?? ?????o??
  *--------------------------------------*/
 int nullpo_chk_f(const char *file, int line, const char *func, const void *target,
                  const char *fmt, ...)
@@ -52,7 +52,7 @@ int nullpo_chk(const char *file, int line, const char *func, const void *target)
 
 
 /*======================================
- * nullpo�����o��(�O���ďo���������b�p)
+ * nullpo?????o??(?O???do?????????b?p)
  *--------------------------------------*/
 void nullpo_info_f(const char *file, int line, const char *func,
                    const char *fmt, ...)
@@ -71,7 +71,7 @@ void nullpo_info(const char *file, int line, const char *func)
 
 
 /*======================================
- * nullpo�����o��(Main)
+ * nullpo?????o??(Main)
  *--------------------------------------*/
 static void nullpo_info_core(const char *file, int line, const char *func,
                              const char *fmt, va_list ap)
@@ -90,13 +90,13 @@ static void nullpo_info_core(const char *file, int line, const char *func,
 		if(fmt[0] != '\0') {
 			vprintf(fmt, ap);
 
-			// �Ō��ɉ��s�������m�F
+			// ?O?????s???????m?F
 			if(fmt[strlen(fmt)-1] != '\n')
 				ShowMessage("\n");
 		}
 	}
 	ShowMessage("--- end nullpo info ----------------------------------------\n");
 
-	// ��������nullpo���O���t�@�C���ɏ����o������
-	// �܂Ƃ߂Ē��o�ł����ȂƎv��Ă������B
+	// ????????nullpo???O???t?@?C????????o??????
+	// ????E??o?l??????v??A??????B
 }

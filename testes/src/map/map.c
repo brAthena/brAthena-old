@@ -7,8 +7,8 @@
 *                                                                            *
 *                                                                            *
 * \file src/map/map.c                                                        *
-* DescriÃ§Ã£o PrimÃ¡ria.                                                        *
-* DescriÃ§Ã£o mais elaborada sobre o arquivo.                                  *
+* Descrição Primária.                                                        *
+* Descrição mais elaborada sobre o arquivo.                                  *
 * \author brAthena, Athena, eAthena                                          *
 * \date ?                                                                    *
 * \todo ?                                                                    *  
@@ -256,7 +256,7 @@ int map_freeblock_timer(int tid, unsigned int tick, int id, intptr_t data)
 }
 
 //
-// blockï¿½ï¿½?ï¿½ï¿½
+// block?????
 //
 /*==========================================
  * Handling of map_bl[]
@@ -3346,7 +3346,7 @@ int inter_config_read(char *cfgName)
 	return 0;
 }
 
-/* Funï¿½ï¿½o destinada a leitura dos banco de dados em formato SQL */
+/* Fun??o destinada a leitura dos banco de dados em formato SQL */
 
 void sv_readsqldb(char *name, char *next_name, int param_size, int max_allowed, bool (*sub_parse_row)(char *string[], int columns, int current))
 {
@@ -3397,7 +3397,7 @@ void sv_readsqldb(char *name, char *next_name, int param_size, int max_allowed, 
 	}
 }
 
-/* Funï¿½ï¿½o para identificaï¿½ï¿½o das databases [brAthena] */
+/* Fun??o para identifica??o das databases [brAthena] */
 
 char *get_database_name(int database_id)
 {

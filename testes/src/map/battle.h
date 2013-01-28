@@ -7,8 +7,8 @@
 *                                                                            *
 *                                                                            *
 * \file src/map/battle.h                                                     *
-* DescriÃ§Ã£o PrimÃ¡ria.                                                        *
-* DescriÃ§Ã£o mais elaborada sobre o arquivo.                                  *
+* Descrição Primária.                                                        *
+* Descrição mais elaborada sobre o arquivo.                                  *
 * \author brAthena, Athena, eAthena                                          *
 * \date ?                                                                    *
 * \todo ?                                                                    *  
@@ -61,7 +61,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 int battle_calc_gvg_damage(struct block_list *src,struct block_list *bl,int damage,int div_,uint16 skill_id,uint16 skill_lv,int flag);
 int battle_calc_bg_damage(struct block_list *src,struct block_list *bl,int damage,int div_,uint16 skill_id,uint16 skill_lv,int flag);
 
-enum {  // ï¿½Flag of the final calculation
+enum {  // ?Flag of the final calculation
     BF_WEAPON   = 0x0001,
     BF_MAGIC    = 0x0002,
     BF_MISC     = 0x0004,

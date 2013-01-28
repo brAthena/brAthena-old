@@ -7,8 +7,8 @@
 *                                                                            *
 *                                                                            *
 * \file src/map/elemental.c                                                  *
-* DescriÃ§Ã£o PrimÃ¡ria.                                                        *
-* DescriÃ§Ã£o mais elaborada sobre o arquivo.                                  *
+* Descrição Primária.                                                        *
+* Descrição mais elaborada sobre o arquivo.                                  *
 * \author brAthena, Athena, eAthena                                          *
 * \date ?                                                                    *
 * \todo ?                                                                    *  
@@ -91,27 +91,27 @@ int elemental_create(struct map_session_data *sd, int class_, unsigned int lifet
 	ele.mode = EL_MODE_PASSIVE; // Initial mode
 	i = db->status.size+1; // summon level
 
-	//[(Casterï¿½s Max HP/ 3 ) + (Casterï¿½s INT x 10 )+ (Casterï¿½s Job Level x 20 )] x [(Elemental Summon Level + 2) / 3]
+	//[(Caster?s Max HP/ 3 ) + (Caster?s INT x 10 )+ (Caster?s Job Level x 20 )] x [(Elemental Summon Level + 2) / 3]
 	ele.hp = ele.max_hp = (sd->battle_status.max_hp/3 + sd->battle_status.int_*10 + sd->status.job_level) * ((i + 2) / 3);
-	//Casterï¿½s Max SP /4
+	//Caster?s Max SP /4
 	ele.sp = ele.max_sp = sd->battle_status.max_sp/4;
-	//Casterï¿½s [ Max SP / (18 / Elemental Summon Skill Level) 1- 100 ]
+	//Caster?s [ Max SP / (18 / Elemental Summon Skill Level) 1- 100 ]
 	ele.atk = (sd->battle_status.max_sp / (18 / i)  * 1 - 100);
-	//Casterï¿½s [ Max SP / (18 / Elemental Summon Skill Level) ]
+	//Caster?s [ Max SP / (18 / Elemental Summon Skill Level) ]
 	ele.atk2 = sd->battle_status.max_sp / 18;
-	//Casterï¿½s HIT + (Casterï¿½s Base Level )
+	//Caster?s HIT + (Caster?s Base Level )
 	ele.hit = sd->battle_status.hit + sd->status.base_level;
-	//[Elemental Summon Skill Level x (Casterï¿½s INT / 2 + Casterï¿½s DEX / 4)]
+	//[Elemental Summon Skill Level x (Caster?s INT / 2 + Caster?s DEX / 4)]
 	ele.matk = i * (sd->battle_status.int_ / 2 + sd->battle_status.dex / 4);
-	//150 + [Casterï¿½s DEX / 10] + [Elemental Summon Skill Level x 3 ]
+	//150 + [Caster?s DEX / 10] + [Elemental Summon Skill Level x 3 ]
 	ele.amotion = 150 + sd->battle_status.dex / 10 + i * 3;
-	//Casterï¿½s DEF + (Casterï¿½s Base Level / (5 ï¿½ Elemental Summon Skill Level)
+	//Caster?s DEF + (Caster?s Base Level / (5 ? Elemental Summon Skill Level)
 	ele.def = sd->battle_status.def + sd->status.base_level / (5-i);
-	//Casterï¿½s MDEF + (Casterï¿½s INT / (5 - Elemental Summon Skill Level)
+	//Caster?s MDEF + (Caster?s INT / (5 - Elemental Summon Skill Level)
 	ele.mdef = sd->battle_status.mdef + sd->battle_status.int_ / (5-i);
-	//Casterï¿½s FLEE + (Casterï¿½s Base Level / (5 ï¿½ Elemental Summon Skill Level)
+	//Caster?s FLEE + (Caster?s Base Level / (5 ? Elemental Summon Skill Level)
 	ele.flee = sd->status.base_level / (5-i);
-	//Casterï¿½s HIT + (Casterï¿½s Base Level )
+	//Caster?s HIT + (Caster?s Base Level )
 	ele.hit = sd->battle_status.hit + sd->status.base_level;
 
 	//per individual bonuses
@@ -846,12 +846,12 @@ int read_elementaldb(void)
 		status->ele_lv = ele/20;
 
 		if(status->def_ele >= ELE_MAX) {
-			ShowWarning("Elemental %d tem o tipo de elemento invï¿½lido %d (elemento mï¿½ximo ï¿½ %d)\n", db->class_, status->def_ele, ELE_MAX - 1);
+			ShowWarning("Elemental %d tem o tipo de elemento inv?lido %d (elemento m?ximo ? %d)\n", db->class_, status->def_ele, ELE_MAX - 1);
 			status->def_ele = ELE_NEUTRAL;
 		}
 
 		if(status->ele_lv < 1 || status->ele_lv > 4) {
-			ShowWarning("Elemental %d tem nï¿½vel de elemento invï¿½lido %d (mï¿½ximo ï¿½ 4)\n", db->class_, status->ele_lv);
+			ShowWarning("Elemental %d tem n?vel de elemento inv?lido %d (m?ximo ? 4)\n", db->class_, status->ele_lv);
 			status->ele_lv = 1;
 		}
 
@@ -891,7 +891,7 @@ int read_elemental_skilldb(void)
 		ARR_FIND(0, MAX_ELEMENTAL_CLASS, i, class_ == elemental_db[i].class_);
 
 		if(i == MAX_ELEMENTAL_CLASS) {
-			ShowError("read_elemental_skilldb : Classe nï¿½o encontrada em elemental_db para a entrada de habilidade, ROW %d.\n", k);
+			ShowError("read_elemental_skilldb : Classe n?o encontrada em elemental_db para a entrada de habilidade, ROW %d.\n", k);
 			continue;
 		}
 
@@ -912,7 +912,7 @@ int read_elemental_skilldb(void)
 
 		ARR_FIND(0, MAX_ELESKILLTREE, i, db->skill[i].id == 0 || db->skill[i].id == skill_id);
 		if(i == MAX_ELESKILLTREE) {
-			ShowWarning("Nï¿½o foi possï¿½vel carregar habilidade %d em Elemental %d's ï¿½rvore. O nï¿½mero mï¿½ximo de capacidade por elementar foi atingido.\n", skill_id, class_);
+			ShowWarning("N?o foi poss?vel carregar habilidade %d em Elemental %d's ?rvore. O n?mero m?ximo de capacidade por elementar foi atingido.\n", skill_id, class_);
 			continue;
 		}
 
