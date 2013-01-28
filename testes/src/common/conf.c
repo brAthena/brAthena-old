@@ -18,10 +18,8 @@
 #include "libconfig.h"
 
 #include "../common/showmsg.h" // ShowError
-#include <string.h> // read_message
 
 static char lang_file[256] = "conf/lang/pt_br.conf"; // default pt-br
-static int next_ptr = 0;
 
 int conf_read_file(config_t *config, const char *config_filename)
 {
@@ -133,13 +131,9 @@ int config_setting_copy(config_setting_t *parent, const config_setting_t *src)
 // ----------------------------------------------------------------------------------------
 char *read_message(const char *param)
 {
+	static char message[1024];
 	config_setting_t *str;
 	config_t configLang;
-	int get_ptr = 0;
-	
-	for(; get_ptr < next_ptr; ++get_ptr)
-		if(!strcmp(param, serverlang[get_ptr].group))
-			return serverlang[get_ptr].string;
 
 	config_init(&configLang);
 
@@ -150,17 +144,14 @@ char *read_message(const char *param)
 	}
 
 	if(!(str = config_lookup(&configLang, param))) {
-		ShowError("read_message erro: %s\n", param);
+		ShowError("read_message erro: %s:%d - %s\n", config_error_file(&configLang), config_error_line(&configLang), config_error_text(&configLang));
 		config_destroy(&configLang);
 		return "";
 	}
 
-	strncpy(serverlang[next_ptr].group, param, sizeof((*serverlang).group));
-	strncpy(serverlang[next_ptr].string, config_setting_get_string(str), sizeof((*serverlang).string));
-	++next_ptr;
-	
+	snprintf(message, sizeof(message), "%s", config_setting_get_string(str));
 	config_destroy(&configLang);
-	return serverlang[next_ptr-1].string;
+	return message;
 }
 
 void read_server_lang(void)

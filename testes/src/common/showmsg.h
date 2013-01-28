@@ -97,12 +97,6 @@ enum msg_type {
     MSG_FATALERROR
 };
 
-struct read_message {
-	char group[1024], string[1024];
-};
-
-struct read_message serverlang[0x60000];
-
 extern void ClearScreen(void);
 extern void ShowMessage(const char *, ...);
 extern void ShowStatus(const char *, ...);
