@@ -227,7 +227,7 @@ void inter_auctions_fromsql(void)
 		item->expire_time = 0;
 
 		for(i = 0; i < MAX_SLOTS; i++) {
-			Sql_GetData(sql_handle, 14 + i, &data, NULL);
+			Sql_GetData(sql_handle, 15 + i, &data, NULL);
 			item->card[i] = atoi(data);
 		}
 

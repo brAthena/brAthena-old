@@ -127,7 +127,7 @@ OnGuildBreak:
 	// Kill guardians, disable the Kafra, and set owner to 0.
 	killmonster strnpcinfo(2),"Guardian#"+strnpcinfo(2)+"::OnGuardianDied";
 	disablenpc "Funcionária Kafra#"+strnpcinfo(2);
-	SetCastleData strnpcinfo(2),0,0;
+	SetCastleData strnpcinfo(2),1,0;
 	// Wait before refreshing guild information.
 	sleep 7000;
 	Announce "Guild Base [" + GetCastleName(strnpcinfo(2)) + "] has been abandoned.",0;

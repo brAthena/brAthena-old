@@ -1744,5 +1744,24 @@ packet_ver: 30
 0x0977,14 //HP dos Monstros
 0x08FC,30 // Rename
 
+//2012-04-18aRagexeRE
+packet_ver:31
+0x023B,26,friendslistadd,2
+0x0361,5,hommenu,2:4
+0x08A8,36,storagepassword,0
+0x0802,26,partyinvite2,2
+0x022D,19,wanttoconnection,2:6:10:14:18
+0x0281,-1,itemlistwindowselected,2:4:8
+0x035F,6,ticksend,2
+0x0202,5,changedir,2:4
+0x07E4,6,takeitem,2
+0x0362,6,dropitem,2:4
+0x07EC,8,movetokafra,2:4
+0x0364,8,movefromkafra,2:4
+0x096A,6,getcharnamerequest,2
+0x0368,6,solvecharname,2
+0x08E5,41,bookingregreq,2:4     //Added to prevent disconnections
+0x08d2,10
+
 //Adicione novos pacotes abaixo.
-//packet_ver: 31
+//packet_ver: 32
