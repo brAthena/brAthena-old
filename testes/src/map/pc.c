@@ -1068,7 +1068,7 @@ bool pc_authok(struct map_session_data *sd, int login_id2, time_t expiration_tim
 
 		if(battle_config.display_version == 1) {
 			char buf[256];
-			sprintf(buf, "SVN vers?o: %s", get_svn_revision());
+			sprintf(buf, "SVN versão: %s", get_svn_revision());
 			clif_displaymessage(sd->fd, buf);
 		}
 
@@ -5602,7 +5602,7 @@ int pc_gainexp(struct map_session_data *sd, struct block_list *src, unsigned int
 	if(sd->state.showexp) {
 		char output[256];
 		sprintf(output,
-		        "Experi?ncia de Base:%u (%.2f%%) Job:%u (%.2f%%)",base_exp,nextbp*(float)100,job_exp,nextjp*(float)100);
+		        "Experiência de Base:%u (%.2f%%) Job:%u (%.2f%%)",base_exp,nextbp*(float)100,job_exp,nextjp*(float)100);
 		clif_disp_onlyself(sd,output,strlen(output));
 	}
 

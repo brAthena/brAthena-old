@@ -1918,7 +1918,7 @@ static unsigned short status_base_atk(const struct block_list *bl, const struct 
 	str += dstr*dstr;
 	if(bl->type == BL_PC)
 #ifdef RENEWAL
-		if(battle_config.bRO_Renewal)    // F?rmula de ataque base [brAthena - bRO]
+		if(battle_config.bRO_Renewal)    // Fórmula de ataque base [brAthena - bRO]
 			str = (rstr*12/10 + dex/5 + status->luk/3 + ((TBL_PC *)bl)->status.base_level/4);
 		else
 			str = (rstr*10 + dex*10/5 + status->luk*10/3 + ((TBL_PC *)bl)->status.base_level*10/4)/10;
@@ -1940,7 +1940,7 @@ static inline unsigned short status_base_matk_max(const struct status_data *stat
 #else
 unsigned short status_base_matk(const struct status_data *status, int level)
 {
-	if(battle_config.bRO_Renewal)    // F?rmula de ataque m?gico [brAthena - bRO]
+	if(battle_config.bRO_Renewal)    // Fórmula de ataque mágico [brAthena - bRO]
 		return status->int_+(status->int_*15/10)+(status->dex/5)+(status->luk/3)+(level/4);
 	else
 		return status->int_+(status->int_/2)+(status->dex/5)+(status->luk/3)+(level/4);
@@ -1962,8 +1962,8 @@ void status_calc_misc(struct block_list *bl, struct status_data *status, int lev
 	status->hit += level + status->dex + status->luk/3 + 175; //base level + ( every 1 dex = +1 hit ) + (every 3 luk = +1 hit) + 175
 	status->flee += level + status->agi + status->luk/5 + 100; //base level + ( every 1 agi = +1 flee ) + (every 5 luk = +1 flee) + 100
 	if(battle_config.bRO_Renewal) {
-		status->def2 += (status->vit/2) + (status->agi/5) + (status->str/5) + (level/6); // Defesa fis?ca por atributos - [brAthena - bRO]
-		status->mdef2 += (status->int_ / 2) + (status->vit / 5) + (status->dex / 4) + (level/6); // Defesa m?gica por atributos - [brAthena - bRO]
+		status->def2 += (status->vit/2) + (status->agi/5) + (status->str/5) + (level/6); // Defesa fisíca por atributos - [brAthena - bRO]
+		status->mdef2 += (status->int_ / 2) + (status->vit / 5) + (status->dex / 4) + (level/6); // Defesa mágica por atributos - [brAthena - bRO]
 	} else {
 		status->def2 += (int)(((float)level + status->vit)/2 + ((float)status->agi/5)); //base level + (every 2 vit = +1 def) + (every 5 agi = +1 def)
 		status->mdef2 += (int)(status->int_ + ((float)level/4) + ((float)status->dex/5) + ((float)status->vit/5)); //(every 4 base level = +1 mdef) + (every 1 int = +1 mdef) + (every 5 dex = +1 mdef) + (every 5 vit = +1 mdef)
@@ -3920,7 +3920,7 @@ void status_calc_bl_main(struct block_list *bl, /*enum scb_flag*/int flag)
 			if(status->aspd_rate != 1000)
 				amotion = amotion*status->aspd_rate/1000;
 #else
-			// F?rmula de velocidade de ataque [brAthena - bRO]
+			// Fórmula de velocidade de ataque [brAthena - bRO]
 			if(battle_config.bRO_Renewal)
 				amotion -= (int)(sqrt((pow(status->agi, 2) / 2) + (pow(status->dex, 2)/5)) / 4 + (status_calc_aspd(bl, sc, 1) * status->agi/200));
 
@@ -6265,7 +6265,7 @@ int status_get_sc_def(struct block_list *bl, enum sc_type type, int rate, int ti
 			tick -= (status->int_ + status->luk) / 20 * 1000;
 			break;
 		case SC_STASIS:
-			//5 second (fixed) + { Stasis Skill level * 5 - (Target?s VIT + DEX) / 20 }
+			//5 second (fixed) + { Stasis Skill level * 5 - (Target's VIT + DEX) / 20 }
 			tick -= (status->vit + status->dex) / 20 * 1000;
 			break;
 		case SC_WHITEIMPRISON:
@@ -8354,9 +8354,9 @@ int status_change_start(struct block_list *bl,enum sc_type type,int rate,int val
 			case SC_GT_CHANGE: {
 					// take note there is no def increase as skill desc says. [malufett]
 					struct block_list *src;
-					val3 = status->agi * val1 / 60; // ASPD increase: [(Target?s AGI x Skill Level) / 60] %
+					val3 = status->agi * val1 / 60; // ASPD increase: [(Target's AGI x Skill Level) / 60] %
 					if((src = map_id2bl(val2)))
-						val4 = (200/status_get_int(src)) * val1;  // MDEF decrease: MDEF [(200 / Caster?s INT) x Skill Level]
+						val4 = (200/status_get_int(src)) * val1;  // MDEF decrease: MDEF [(200 / Caster's INT) x Skill Level]
 				}
 				break;
 			case SC_GT_REVITALIZE: {
@@ -8364,7 +8364,7 @@ int status_change_start(struct block_list *bl,enum sc_type type,int rate,int val
 					struct block_list *src;
 					val3 = val1 * 30 + 150; // Natural HP recovery increase: [(Skill Level x 30) + 50] %
 					if((src = map_id2bl(val2)))   // the stat def is not shown in the status window and it is process differently
-						val4 = (status_get_vit(src)/4) * val1;   // STAT DEF increase: [(Caster?s VIT / 4) x Skill Level]
+						val4 = (status_get_vit(src)/4) * val1;   // STAT DEF increase: [(Caster's VIT / 4) x Skill Level]
 				}
 				break;
 			case SC_PYROTECHNIC_OPTION:

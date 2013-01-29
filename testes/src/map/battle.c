@@ -4051,7 +4051,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 			 * RE MDEF Reduction
 			 * Damage = Magic Attack * (1000+eMDEF)/(1000+eMDEF) - sMDEF
 			 **/
-			if(battle_config.bRO_Renewal)    // F??la de Defesa M?ca por Equipamentos [brAthena - bRO]
+			if(battle_config.bRO_Renewal)    // Fórmula de Defesa Mágica por Equipamentos [brAthena - bRO]
 				ad.damage = ad.damage * 1115 / (1115 - mdef2) / 2;
 			else
 				ad.damage = ad.damage * (1000 + mdef) / (1000 + mdef * 10) - mdef2;

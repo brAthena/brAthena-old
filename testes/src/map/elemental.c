@@ -846,12 +846,12 @@ int read_elementaldb(void)
 		status->ele_lv = ele/20;
 
 		if(status->def_ele >= ELE_MAX) {
-			ShowWarning("Elemental %d tem o tipo de elemento inv?lido %d (elemento m?ximo ? %d)\n", db->class_, status->def_ele, ELE_MAX - 1);
+			ShowWarning("Elemental %d tem o tipo de elemento inválido %d (elemento máximo ? %d)\n", db->class_, status->def_ele, ELE_MAX - 1);
 			status->def_ele = ELE_NEUTRAL;
 		}
 
 		if(status->ele_lv < 1 || status->ele_lv > 4) {
-			ShowWarning("Elemental %d tem n?vel de elemento inv?lido %d (m?ximo ? 4)\n", db->class_, status->ele_lv);
+			ShowWarning("Elemental %d tem nível de elemento inválido %d (máximo ? 4)\n", db->class_, status->ele_lv);
 			status->ele_lv = 1;
 		}
 
@@ -912,7 +912,7 @@ int read_elemental_skilldb(void)
 
 		ARR_FIND(0, MAX_ELESKILLTREE, i, db->skill[i].id == 0 || db->skill[i].id == skill_id);
 		if(i == MAX_ELESKILLTREE) {
-			ShowWarning("N?o foi poss?vel carregar habilidade %d em Elemental %d's ?rvore. O n?mero m?ximo de capacidade por elementar foi atingido.\n", skill_id, class_);
+			ShowWarning("Não foi possível carregar habilidade %d em Elemental %d's árvore. O número máximo de capacidade por elementar foi atingido.\n", skill_id, class_);
 			continue;
 		}
 

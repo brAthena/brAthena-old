@@ -3346,7 +3346,7 @@ int inter_config_read(char *cfgName)
 	return 0;
 }
 
-/* Fun??o destinada a leitura dos banco de dados em formato SQL */
+/* Função destinada a leitura dos banco de dados em formato SQL */
 
 void sv_readsqldb(char *name, char *next_name, int param_size, int max_allowed, bool (*sub_parse_row)(char *string[], int columns, int current))
 {
@@ -3397,7 +3397,7 @@ void sv_readsqldb(char *name, char *next_name, int param_size, int max_allowed, 
 	}
 }
 
-/* Fun??o para identifica??o das databases [brAthena] */
+/* Função para identificação das databases [brAthena] */
 
 char *get_database_name(int database_id)
 {

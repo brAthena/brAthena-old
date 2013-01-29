@@ -1447,7 +1447,7 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 			else if(dstmd && !is_boss(bl))
 				sc_start(bl, SC_STUN, 100, skill_lv, 1000 + 1000 * (rnd() %3));
 			break;
-		case SR_GENTLETOUCH_QUIET:  //  [(Skill Level x 5) + (Caster?s DEX + Caster?s Base Level) / 10]
+		case SR_GENTLETOUCH_QUIET:  //  [(Skill Level x 5) + (Caster's DEX + Caster's Base Level) / 10]
 			sc_start(bl, SC_SILENCE, 5 * skill_lv + (sstatus->dex + status_get_lv(src)) / 10, skill_lv, skill_get_time(skill_id, skill_lv));
 			break;
 		case SR_EARTHSHAKER:
@@ -12774,7 +12774,7 @@ int skill_check_condition_castbegin(struct map_session_data *sd, uint16 skill_id
 				if(map_foreachinrange(mob_count_sub, &sd->bl, skill_get_splash(skill_id, skill_lv), BL_MOB,
 				                      MOBID_EMPERIUM, MOBID_GUARIDAN_STONE1, MOBID_GUARIDAN_STONE2)) {
 					char output[128];
-					sprintf(output, "Voc? est? muito perto de uma pedra ou emperium para usar esta habilidade");
+					sprintf(output, "Você está muito perto de uma pedra ou emperium para usar esta habilidade");
 					clif_colormes(sd, COLOR_RED, output);
 					return 0;
 				}

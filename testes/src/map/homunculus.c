@@ -1222,7 +1222,7 @@ void read_homunculus_expdb(void)
 			break;
 
 		if(hexptbl[MAX_LEVEL - 1]) { // Last permitted level have to be 0!
-			ShowWarning("read_hexptbl: N?vel m?ximo alcan?ado em exp_homun_db [%d].\n ", MAX_LEVEL);
+			ShowWarning("read_hexptbl: Nível máximo alcançado em exp_homun_db [%d].\n ", MAX_LEVEL);
 			hexptbl[MAX_LEVEL - 1] = 0;
 		}
 	}

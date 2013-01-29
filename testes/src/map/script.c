@@ -473,7 +473,7 @@ const char *script_op2name(int op)
 static void script_dump_stack(struct script_state *st)
 {
 	int i;
-	ShowMessage("\tcome?o = %d\n", st->start);
+	ShowMessage("\tcomeço = %d\n", st->start);
 	ShowMessage("\tfim   = %d\n", st->end);
 	ShowMessage("\tdefsp = %d\n", st->stack->defsp);
 	ShowMessage("\tsp    = %d\n", st->stack->sp);
@@ -1148,7 +1148,7 @@ const char *parse_variable(const char *p)
 
 	if(str_data[word].type == C_FUNC || str_data[word].type == C_USERFUNC || str_data[word].type == C_USERFUNC_POS) {
 		// cannot assign a variable which exists as a function or label
-		disp_error_message("N?o ? poss?vel modificar uma vari?vel que tem o mesmo nome de uma fun??o ou um label.", p);
+		disp_error_message("Não é possível modificar uma variável que tem o mesmo nome de uma função ou um label.", p);
 	}
 
 	if(p2) {  // process the variable index
@@ -1164,7 +1164,7 @@ const char *parse_variable(const char *p)
 		p3 = skip_space(p3);
 
 		if(*p3 != ']') {  // closing parenthesis is required for this script
-			disp_error_message("Falta de fechamento ']' par?ntese para a atribui??o de vari?vel.", p3);
+			disp_error_message("Falta de fechamento ']' parêntese para a atribuição de variável.", p3);
 		}
 
 		// push the closing function stack operator onto the stack

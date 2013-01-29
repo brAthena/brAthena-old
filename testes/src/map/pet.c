@@ -1231,7 +1231,7 @@ int read_petdb()
 			continue;
 
 		if(!mobdb_checkid(nameid)) {
-			ShowWarning("pet_db reading: Mob inv?lido %d, pet n?o carregado!.\n", nameid);
+			ShowWarning("pet_db reading: Mob inválido %d, pet não carregado!.\n", nameid);
 			continue;
 		}
 
@@ -1268,7 +1268,7 @@ int read_petdb()
 	}
 
 	if(j >= MAX_PET_DB)
-		ShowWarning("petdb: N?mero m?ximo de pets atingido [%d].\n ", MAX_PET_DB);
+		ShowWarning("petdb: Número máximo de pets atingido [%d].\n ", MAX_PET_DB);
 
 	ShowSQL("Leitura de '"CL_WHITE"%lu"CL_RESET"' entradas na tabela '"CL_WHITE"%s"CL_RESET"'.\n", rows, get_database_name(48));
 	Sql_FreeResult(dbmysql_handle);
