@@ -1010,7 +1010,6 @@ void initChangeTables(void)
 		StatusIconChangeTable[SC_HALLUCINATION] = SI_BLANK;
 
 	/* StatusChangeState (SCS_) NOMOVE */
-	StatusChangeStateTable[SC_ANKLE]               |= SCS_NOMOVE;
 	StatusChangeStateTable[SC_AUTOCOUNTER]         |= SCS_NOMOVE;
 	StatusChangeStateTable[SC_TRICKDEAD]           |= SCS_NOMOVE;
 	StatusChangeStateTable[SC_BLADESTOP]           |= SCS_NOMOVE;
@@ -6061,6 +6060,7 @@ void status_set_viewdata(struct block_list *bl, int class_)
 					sd->vd.hair_style = cap_value(sd->status.hair,0,battle_config.max_hair_style);
 					sd->vd.hair_color = cap_value(sd->status.hair_color,0,battle_config.max_hair_color);
 					sd->vd.cloth_color = cap_value(sd->status.clothes_color,0,battle_config.max_cloth_color);
+					sd->vd.robe = sd->status.robe;
 					sd->vd.sex = sd->status.sex;
 				} else if(vd)
 					memcpy(&sd->vd, vd, sizeof(struct view_data));
@@ -8587,7 +8587,6 @@ int status_change_start(struct block_list *bl,enum sc_type type,int rate,int val
 		case SC_CONFUSION:
 		case SC_CLOSECONFINE:
 		case SC_CLOSECONFINE2:
-		case SC_ANKLE:
 		case SC_SPIDERWEB:
 		case SC_ELECTRICSHOCKER:
 		case SC_BITE:
@@ -8602,6 +8601,10 @@ int status_change_start(struct block_list *bl,enum sc_type type,int rate,int val
 		case SC_KYOUGAKU:
 		case SC_PARALYSIS:
 			unit_stop_walking(bl,1);
+			break;
+		case SC_ANKLE:
+			if( battle_config.skill_trap_type )
+				unit_stop_walking(bl,1);
 			break;
 		case SC_HIDING:
 		case SC_CLOAKING:

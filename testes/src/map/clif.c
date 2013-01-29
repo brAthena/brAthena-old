@@ -1361,10 +1361,8 @@ int clif_spawn(struct block_list *bl)
 				if(sd->sc.data[SC_PUSH_CART])
 					clif_status_load_notick(&sd->bl, SI_ON_PUSH_CART, 2, sd->sc.data[SC_PUSH_CART]->val1, 0, 0);
 #endif
-#if PACKETVER <= 20120207
 				if(sd->status.robe)
 					clif_refreshlook(bl,bl->id,LOOK_ROBE,sd->status.robe,AREA);
-#endif
 			}
 			break;
 		case BL_MOB: {
@@ -4063,6 +4061,8 @@ void clif_getareachar_unit(struct map_session_data *sd,struct block_list *bl)
 					clif_sendbgemblem_single(sd->fd,tsd);
 				if(tsd->sc.data[SC_CAMOUFLAGE])
 					clif_status_load(bl,SI_CAMOUFLAGE,1);
+				if (tsd->status.robe)
+					clif_refreshlook(&sd->bl,bl->id,LOOK_ROBE,tsd->status.robe,SELF);
 			}
 			break;
 		case BL_MER: // Devotion Effects
