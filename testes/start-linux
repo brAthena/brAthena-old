@@ -9,7 +9,7 @@ M_SRV=map-server_sql
 
 print_start() {
 echo "brAthena Iniciando..."
-echo "            brAthena (c) 2009 ~ 2012"
+echo "            brAthena (c) 2009 ~ 2013"
 echo ""
 echo "checando..."
 }
