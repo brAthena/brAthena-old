@@ -756,6 +756,7 @@ IG_Item_bRO7	76
 IG_Item_bRO8	77
 IG_Item_bRO9	78
 IG_Item_bRO10	79
+IG_Item_bRO11	80
 
 SC_ALL	-1
 SC_STONE	0
