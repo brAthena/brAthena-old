@@ -12876,7 +12876,7 @@ int skill_check_condition_castbegin(struct map_session_data *sd, uint16 skill_id
 			}
 			break;
 		case ST_RIDING:
-			if(!pc_isriding(sd)) {
+			if(!pc_isriding(sd) || !pc_isridingdragon(sd)) {
 				clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 				return 0;
 			}
@@ -12938,45 +12938,30 @@ int skill_check_condition_castbegin(struct map_session_data *sd, uint16 skill_id
 				break;
 			clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 			return 0;
-			/**
-			 * Rune Knight
-			 **/
 		case ST_RIDINGDRAGON:
 			if(!pc_isridingdragon(sd)) {
 				clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 				return 0;
 			}
 			break;
-			/**
-			 * Wug
-			 **/
 		case ST_WUG:
 			if(!pc_iswug(sd)) {
 				clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 				return 0;
 			}
 			break;
-			/**
-			 * Riding Wug
-			 **/
 		case ST_RIDINGWUG:
 			if(!pc_isridingwug(sd)) {
 				clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 				return 0;
 			}
 			break;
-			/**
-			 * Mechanic
-			 **/
 		case ST_MADO:
 			if(!pc_ismadogear(sd)) {
 				clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 				return 0;
 			}
 			break;
-			/**
-			 * Sorcerer
-			 **/
 		case ST_ELEMENTALSPIRIT:
 			if(!sd->ed) {
 				clif_skill_fail(sd,skill_id,USESKILL_FAIL_EL_SUMMON,0);
@@ -13005,6 +12990,12 @@ int skill_check_condition_castbegin(struct map_session_data *sd, uint16 skill_id
 				clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 				return 0;
 			}
+		case ST_PECO:
+			if(!pc_isriding(sd)) {
+				clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
+				return 0;
+			}
+			break;
 	}
 
 	if(require.mhp > 0 && get_percentage(status->hp, status->max_hp) > require.mhp) {
@@ -17356,9 +17347,6 @@ static bool skill_parse_row_requiredb(char *split[], int columns, int current)
 	else if(strcmpi(split[10],"recover_weight_rate")==0) skill_db[idx].state = ST_RECOV_WEIGHT_RATE;
 	else if(strcmpi(split[10],"move_enable")==0) skill_db[idx].state = ST_MOVE_ENABLE;
 	else if(strcmpi(split[10],"water")==0) skill_db[idx].state = ST_WATER;
-	/**
-	 * New States
-	 **/
 	else if(strcmpi(split[10],"dragon")==0) skill_db[idx].state = ST_RIDINGDRAGON;
 	else if(strcmpi(split[10],"warg")==0) skill_db[idx].state = ST_WUG;
 	else if(strcmpi(split[10],"ridingwarg")==0) skill_db[idx].state = ST_RIDINGWUG;
@@ -17368,6 +17356,7 @@ static bool skill_parse_row_requiredb(char *split[], int columns, int current)
 	else if(strcmpi(split[10], "rollingcutter") == 0) skill_db[idx].state = ST_ROLLINGCUTTER;
 	else if(strcmpi(split[10], "mh_fighting") == 0) skill_db[idx].state = ST_MH_FIGHTING;
 	else if(strcmpi(split[10], "mh_grappling") == 0) skill_db[idx].state = ST_MH_GRAPPLING;
+	else if(strcmpi(split[10],"peco")== 0 ) skill_db[idx].state = ST_PECO;
 
 	/**
 	 * Unknown or no state
