@@ -12876,7 +12876,7 @@ int skill_check_condition_castbegin(struct map_session_data *sd, uint16 skill_id
 			}
 			break;
 		case ST_RIDING:
-			if(!pc_isriding(sd) || !pc_isridingdragon(sd)) {
+			if( !pc_isriding(sd) && !pc_isridingdragon(sd) ) {
 				clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 				return 0;
 			}
@@ -12987,11 +12987,6 @@ int skill_check_condition_castbegin(struct map_session_data *sd, uint16 skill_id
 			}
 		case ST_MH_GRAPPLING:
 			if(!(sc && sc->data[SC_STYLE_CHANGE] && sc->data[SC_STYLE_CHANGE]->val2 == MH_MD_GRAPPLING)) {
-				clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
-				return 0;
-			}
-		case ST_PECO:
-			if(!pc_isriding(sd)) {
 				clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 				return 0;
 			}
@@ -17356,7 +17351,6 @@ static bool skill_parse_row_requiredb(char *split[], int columns, int current)
 	else if(strcmpi(split[10], "rollingcutter") == 0) skill_db[idx].state = ST_ROLLINGCUTTER;
 	else if(strcmpi(split[10], "mh_fighting") == 0) skill_db[idx].state = ST_MH_FIGHTING;
 	else if(strcmpi(split[10], "mh_grappling") == 0) skill_db[idx].state = ST_MH_GRAPPLING;
-	else if(strcmpi(split[10],"peco")== 0 ) skill_db[idx].state = ST_PECO;
 
 	/**
 	 * Unknown or no state
