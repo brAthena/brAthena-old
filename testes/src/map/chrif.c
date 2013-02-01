@@ -269,7 +269,7 @@ int chrif_setip(const char *ip)
 		return 0;
 	}
 
-	strncpy(char_ip_str, ip, sizeof(char_ip_str));
+	safestrncpy(char_ip_str, ip, sizeof(char_ip_str));
 
 	ShowInfo("Endere%co de IP do char-server: '"CL_WHITE"%s"CL_RESET"' -> '"CL_WHITE"%s"CL_RESET"'.\n", 135, ip, ip2str(char_ip, ip_str));
 

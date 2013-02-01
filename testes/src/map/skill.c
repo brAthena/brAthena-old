@@ -1695,7 +1695,7 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 
 			if(skill == AS_SONICBLOW)
 				pc_stop_attack(sd); //Special case, Sonic Blow autospell should stop the player attacking.
-			if(skill == PF_SPIDERWEB)  //Special case, due to its nature of coding.
+			else if(skill == PF_SPIDERWEB)  //Special case, due to its nature of coding.
 				type = CAST_GROUND;
 
 			sd->state.autocast = 1;
@@ -10914,7 +10914,7 @@ static int skill_unit_onplace(struct skill_unit *src, struct block_list *bl, uns
 				// If you are fiberlocked and can't move, it will only increase your fireweakness level. [Inkfish]
 				sc->data[SC_SPIDERWEB]->val2++;
 				break;
-			} else if(sc) {
+			} else if(sc && battle_check_target(&sg->unit->bl,bl,sg->target_flag) > 0) {
 				int sec = skill_get_time2(sg->skill_id,sg->skill_lv);
 				if(status_change_start(bl,type,10000,sg->skill_lv,1,sg->group_id,0,sec,8)) {
 					const struct TimerData *td = sc->data[type]?get_timer(sc->data[type]->timer):NULL;

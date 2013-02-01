@@ -499,6 +499,7 @@ hu_in01,382,382,4	script	Guild Receptionist#cac	732,{
 		close;
 	}
 	else if (CACA_Q >= 3 && CACA_Q <= 9) {
+		if(checkre(0)) set .@i,1;
 		switch(CACA_Q) {
     // Antenas de Inseto / Garra de Lobo do Deserto, Tronco, Erva Branca
 		case 3: setarray .@items[0], (.@i?928:7030),5, 1019,5, 509,3, 10; break;

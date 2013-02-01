@@ -23,6 +23,7 @@
 #include "../common/showmsg.h"
 #include "../common/utils.h"
 #include "../common/random.h"
+#include "../common/strlib.h"
 
 #include "log.h"
 #include "clif.h"
@@ -816,8 +817,8 @@ int read_elementaldb(void)
 
 		db = &elemental_db[count];
 		db->class_ = atoi(row[0]);
-		strncpy(db->sprite, row[1], NAME_LENGTH);
-		strncpy(db->name, row[2], NAME_LENGTH);
+		safestrncpy(db->sprite, row[1], NAME_LENGTH);
+		safestrncpy(db->name, row[2], NAME_LENGTH);
 		db->lv = atoi(row[3]);
 
 		status = &db->status;

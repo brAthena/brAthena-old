@@ -215,7 +215,7 @@ int clif_setip(const char *ip)
 		return 0;
 	}
 
-	strncpy(map_ip_str, ip, sizeof(map_ip_str));
+	safestrncpy(map_ip_str, ip, sizeof(map_ip_str));
 	ShowInfo("Endere%co de IP do map-server: '"CL_WHITE"%s"CL_RESET"' -> '"CL_WHITE"%s"CL_RESET"'.\n", 135, ip, ip2str(map_ip, ip_str));
 	return 1;
 }
@@ -10060,7 +10060,7 @@ void clif_parse_DropItem(int fd, struct map_session_data *sd)
 		if(pc_isdead(sd))
 			break;
 
-		if(pc_cant_act(sd))
+		if (pc_cant_act2(sd))
 			break;
 
 		if(sd->sc.count && (
@@ -10098,7 +10098,7 @@ void clif_parse_UseItem(int fd, struct map_session_data *sd)
 	if(sd->npc_id) {
 		if(sd->npc_id != sd->npc_item_flag)
 			return;
-	} else if(pc_istrading(sd))
+	} else if(pc_istrading(sd) || sd->chatID)
 		return;
 
 	//Whether the item is used or not is irrelevant, the char ain't idle. [Skotlex]
@@ -10131,7 +10131,7 @@ void clif_parse_EquipItem(int fd,struct map_session_data *sd)
 			return;
 	} else if(sd->state.storage_flag || sd->sc.opt1)
 		; //You can equip/unequip stuff while storage is open/under status changes
-	else if(pc_cant_act(sd))
+	else if (pc_cant_act2(sd))
 		return;
 
 	if(!sd->status.inventory[index].identify) {
@@ -10168,7 +10168,7 @@ void clif_parse_UnequipItem(int fd,struct map_session_data *sd)
 
 	if(sd->state.storage_flag || sd->sc.opt1)
 		; //You can equip/unequip stuff while storage is open/under status changes
-	else if(pc_cant_act(sd))
+	else if (pc_cant_act2(sd))
 		return;
 
 	index = RFIFOW(fd,2)-2;
@@ -10190,7 +10190,7 @@ void clif_parse_NpcClicked(int fd,struct map_session_data *sd)
 		return;
 	}
 
-	if(pc_cant_act(sd))
+	if (pc_cant_act2(sd))
 		return;
 
 	bl = map_id2bl(RFIFOL(fd,2));
