@@ -3743,23 +3743,75 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 							skillratio += -60 + status_get_lv(src); //Base damage is 40% + lv%
 							break;
 						case NJ_KOUENKA:
+#ifdef RENEWAL
+							skillratio += 90;
+						//if(sd && sd->sc.data[SC_KAHU_ENTEN])
+							//skillratio += 20; // bônus de 20%
+#else
 							skillratio -= 10;
+#endif	
 							break;
+#ifdef RENEWAL
+						case NJ_HYOUSENSOU:
+							skillratio += 70;
+						//if(sd && sd->sc.data[SC_HYOUHU_HUBUKI])
+							//skillratio += 5; // bônus de 5%
+							break;
+#endif
 						case NJ_KAENSIN:
+#ifdef RENEWAL
+							skillratio += 90;
+						//if(sd && sd->sc.data[SC_KAHU_ENTEN])
+							//skillratio += 5; // bônus de 5%
+#else
 							skillratio -= 50;
+#endif
 							break;
 						case NJ_BAKUENRYU:
+#ifdef RENEWAL
+							skillratio += 150 + 150*skill_lv;
+						//if(sd && sd->sc.data[SC_KAHU_ENTEN])
+							//skillratio += 15; // bônus de 15%
+#else
 							skillratio += 50*(skill_lv-1);
+#endif
 							break;
 						case NJ_HYOUSYOURAKU:
+#ifdef RENEWAL
+							skillratio += 100 + 50*skill_lv;
+						//if(sd && sd->sc.data[SC_HYOUHU_HUBUKI])
+							//skillratio += 25; // bônus de 25%
+#else
 							skillratio += 50*skill_lv;
+#endif
 							break;
 						case NJ_RAIGEKISAI:
+#ifdef RENEWAL
+							skillratio += 160 + 40*skill_lv;
+						//if(sd && sd->sc.data[SC_KAZEHU_SEIRAN])
+							//skillratio += 15; // bônus de 15%
+#else
 							skillratio += 60 + 40*skill_lv;
+#endif
 							break;
 						case NJ_KAMAITACHI:
+#ifdef RENEWAL
+							skillratio += 100 + 100*skill_lv;
+						//if(sd && sd->sc.data[SC_KAZEHU_SEIRAN])
+							//skillratio += 10; // bônus de 10%
+#else
 						case NPC_ENERGYDRAIN:
 							skillratio += 100*skill_lv;
+#endif
+							break;
+						case NJ_HUUJIN:
+#ifdef RENEWAL
+							skillratio += 150;
+						//if(sd && sd->sc.data[SC_KAZEHU_SEIRAN])
+							//skillratio += 20; // bônus de 20%
+#else
+							skillratio += 50;
+#endif
 							break;
 						case NPC_EARTHQUAKE:
 							skillratio += 100 +100*skill_lv +100*(skill_lv/2);
@@ -3779,9 +3831,6 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 									ratio -= 10;
 								skillratio += ratio;
 							}
-							break;
-						case NJ_HUUJIN:
-							skillratio += 50;
 							break;
 #else
 						case WZ_VERMILION:
