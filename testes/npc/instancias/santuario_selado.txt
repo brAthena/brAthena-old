@@ -335,7 +335,7 @@ prt_monk,261,91,3	script	Rust Blackhand#edq	826,{
 			delitem 7798,50; // Fragmento da Escuridão
 			set zeny,zeny-990000;
 			completequest 3043;
-			getitem 5374,1;  // Chifres Majestosos Gigantes
+			getitem 5518,1;  // Chifres Místicos de Bafomé
 			mes "[Rust Blackhand]";
 			mes "Está pronto. Você já deve estar excitado. Eu entendo...";
 			next;
@@ -714,7 +714,7 @@ OnMyMobDead:
 	if (mobcount("1@cata",instance_npcname("ins_baphomet_lotto3", instance_id())+"::OnMyMobDead") < 1) {
 		instance_announce 0, "Todos os Apóstolos de Baphomet estão mortos!",bc_map,"0x00ff99";
 	}
-	getitem 6002,1; //Token_Of_Apostle
+	getitem 6002,1; // Medalhão do Apóstolo
 	end;
 }
 
@@ -1041,7 +1041,7 @@ OnTouch:
 //============================================================
 -	script	Túmulo#SS1	-1,{
 	if ('ins_baphomet == 1) {
-		getitem 6003,1; //Soul_Pendant
+		getitem 6003,1; // Pingente do Espírito
 		set 'ins_baphomet,2;
 		mes "Um pequeno objeto está brilhando abaixo do antigo túmulo.";
 		next;
