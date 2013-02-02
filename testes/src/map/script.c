@@ -3504,6 +3504,11 @@ static void script_detach_state(struct script_state *st, bool dequeue_event)
 	if(st->rid && (sd = map_id2sd(st->rid))!=NULL) {
 		sd->st = st->bk_st;
 		sd->npc_id = st->bk_npcid;
+		if(st->bk_st) {
+			//Remove tag for removal.
+			st->bk_st = NULL;
+			st->bk_npcid = 0;
+		} else if(dequeue_event) {
 		/**
 		 * For the Secure NPC Timeout option (check config/Secure.h) [RR]
 		 **/
@@ -3516,11 +3521,6 @@ static void script_detach_state(struct script_state *st, bool dequeue_event)
 			sd->npc_idle_timer = INVALID_TIMER;
 		}
 #endif
-		if(st->bk_st) {
-			//Remove tag for removal.
-			st->bk_st = NULL;
-			st->bk_npcid = 0;
-		} else if(dequeue_event) {
 			npc_event_dequeue(sd);
 		}
 	} else if(st->bk_st) {
