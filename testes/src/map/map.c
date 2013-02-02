@@ -3805,13 +3805,13 @@ int do_init(int argc, char *argv[])
 	GC_enable_incremental();
 #endif
 
-	INTER_CONF_NAME="conf/inter_athena.conf";
-	LOG_CONF_NAME="conf/log_athena.conf";
-	MAP_CONF_NAME = "conf/map_athena.conf";
-	BATTLE_CONF_FILENAME = "conf/battle_athena.conf";
-	ATCOMMAND_CONF_FILENAME = "conf/atcommand_athena.conf";
-	SCRIPT_CONF_NAME = "conf/script_athena.conf";
-	MSG_CONF_NAME = "conf/msg_athena.conf";
+	INTER_CONF_NAME="conf/inter_brathena.conf";
+	LOG_CONF_NAME="conf/log_brathena.conf";
+	MAP_CONF_NAME = "conf/map_brathena.conf";
+	BATTLE_CONF_FILENAME = "conf/battle_brathena.conf";
+	ATCOMMAND_CONF_FILENAME = "conf/atcommand_brathena.conf";
+	SCRIPT_CONF_NAME = "conf/script_brathena.conf";
+	MSG_CONF_NAME = "conf/msg_brathena.conf";
 	GRF_PATH_FILENAME = "conf/grf-files.txt";
 
 	rnd_init();
