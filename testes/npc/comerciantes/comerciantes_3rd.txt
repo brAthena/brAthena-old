@@ -65,7 +65,7 @@ job3_guil01,79,96,3	script	Ervas Tóxicas	877,{
 		getitem 7932+.@i,.@amount;
 		mes "Obrigado e até mais~!";
 		close;
-	} else {
+    }
 		mes "[Vendedor de Ervas Tóxicas]";
 		mes "Você pode comprar apenas";
 		mes "1 Kit de Veneno e o custo será de 5,000 zeny.";
@@ -87,7 +87,6 @@ job3_guil01,79,96,3	script	Ervas Tóxicas	877,{
 		mes "[Vendedor de Ervas Tóxicas]";
 		mes "Obrigado. Até mais~!";
 		close;
-	}
 }
 morocc,190,96,4	duplicate(Ervas Tóxicas)	Vendedor de Ervas Tóxicas#moc	877
 lhz_in02,16,205,4	duplicate(Ervas Tóxicas)	Vendedor de Ervas Tóxicas#lhz	877
@@ -198,11 +197,11 @@ gef_tower,105,172,5	script	Vendedor de Fragmentos#Feiticeiro	700,{
 		mes "- após remover um pouco de seu peso. -";
 		close;
 	}
-	mes "[Point Salesman]";
+	mes "[Vendedor de Fragmentos]";
 	mes "Olá. Eu sou o Vendedor de ^FF0000Fragmentos^000000 para Sábios. O que você procura?";
 	next;
 	set .@i, select("Fragmento Escarlate - 200z:Fragmento Verde - 200z:Fragmento Azul - 200z:Fragmento Amarelo - 200z:Cancelar")-1;
-	mes "[Point Salesman]";
+	mes "[Vendedor de Fragmentos]";
 	if (.@i == 4) {
 		mes "Você não conseguiu encontrar as coisas que você precisa?";
 		close;
@@ -214,7 +213,7 @@ gef_tower,105,172,5	script	Vendedor de Fragmentos#Feiticeiro	700,{
 	mes "Se você quiser cancelar, digite 0.";
 	next;
 	input .@amount;
-	mes "[Point Salesman]";
+	mes "[Vendedor de Fragmentos]";
 	if (.@amount == 0) {
 		mes "Você cancelou a negociação.";
 		close;
@@ -237,7 +236,7 @@ alberta,105,52,7	duplicate(Vendedor de Fragmentos#Feiticeiro)	Vendedor de Fragme
 veins,202,128,6	duplicate(Vendedor de Fragmentos#Feiticeiro)	Vendedor de Fragmentos#3	700
 
 einbroch,122,250,4	shop	Mercado Negro#ein	49,2139:-1,2800:-1,2801:-1,2802:-1,2803:-1,2804:-1,2805:-1,2806:-1,2807:-1,18000:-1,18001:-1,18002:-1,18003:-1,18004:-1,12392:-1,12393:-1,12394:-1,6145:-1,6146:-1,6147:-1,6186:-1,2808:-1
-lhz_in03,181,17,4	shop	Mercado Negro#lhz	49,2139:-1,2800:-1,2801:-1,2802:-1,2803:-1,2804:-1,2805:-1,2806:-1,2807:-1,18000:-1,18001:-1,18002:-1,18003:-1,18004:-1,12392:-1,12393:-1,12394:-1,6145:-1,6146:-1,6147:-1,6186:-1,2808:-1
-mid_camp,184,263,4	shop	Mercado Negro#cam	49,2139:-1,2800:-1,2801:-1,2802:-1,2803:-1,2804:-1,2805:-1,2806:-1,2807:-1,18000:-1,18001:-1,18002:-1,18003:-1,18004:-1,12392:-1,12393:-1,12394:-1,6145:-1,6146:-1,6147:-1,6186:-1,2808:-1
-prt_in,175,137,4	shop	Mercado Negro#prt	49,2139:-1,2800:-1,2801:-1,2802:-1,2803:-1,2804:-1,2805:-1,2806:-1,2807:-1,18000:-1,18001:-1,18002:-1,18003:-1,18004:-1,12392:-1,12393:-1,12394:-1,6145:-1,6146:-1,6147:-1,6186:-1,2808:-1
-ra_in01,257,266,4	shop	Mercado Negro#ra	49,2139:-1,2800:-1,2801:-1,2802:-1,2803:-1,2804:-1,2805:-1,2806:-1,2807:-1,18000:-1,18001:-1,18002:-1,18003:-1,18004:-1,12392:-1,12393:-1,12394:-1,6145:-1,6146:-1,6147:-1,6186:-1,2808:-1
+lhz_in03,181,17,4	duplicate(Mercado Negro#ein)	Mercado Negro#lhz	49
+mid_camp,184,263,4	duplicate(Mercado Negro#ein)	Mercado Negro#cam	49
+prt_in,175,137,4	duplicate(Mercado Negro#ein)	Mercado Negro#prt	49
+ra_in01,257,266,4	duplicate(Mercado Negro#ein)	Mercado Negro#ra	49

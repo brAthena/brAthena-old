@@ -83,7 +83,7 @@ aldeba_in,96,181,4	script	Serviço Kafra	113,{
 		mes "da Corporação Kafra";
 		mes "sobre qualquer um de nossos serviços.";
 		mes "Obrigado por usar nossos serviços.";
-		callfunc("F_CheckKafCode");    //check your storage password, if set
+		callfunc("F_CheckKafCode");    // Verifica se o armazém possui senha.
 		close2;
 		openstorage;
 		break;
@@ -297,7 +297,7 @@ yuno,327,108,4	script	Funcionária Kafra::kaf_yuno2	860,{
 	mes "Como posso ajudá-lo?";
 	callfunc "F_Kafra",5,0,0,40,800;
 	savepoint "yuno",328,101;
-	callfunc "F_KafEnd",0,1,"in the city of Juno";
+	callfunc "F_KafEnd",0,1,"na cidade de Juno";
 }
 
 yuno,277,221,4	script	Funcionária Kafra::kaf_yuno3	861,{
