@@ -18,6 +18,7 @@
 #include "libconfig.h"
 
 #include "../common/showmsg.h" // ShowError
+#include <string.h> // read_message
 
 static char lang_file[256] = "conf/lang/pt_br.conf"; // default pt-br
 
@@ -131,7 +132,7 @@ int config_setting_copy(config_setting_t *parent, const config_setting_t *src)
 // ----------------------------------------------------------------------------------------
 char *read_message(const char *param)
 {
-	static char message[1024];
+	static char message[512];
 	config_setting_t *str;
 	config_t configLang;
 
@@ -144,12 +145,12 @@ char *read_message(const char *param)
 	}
 
 	if(!(str = config_lookup(&configLang, param))) {
-		ShowError("read_message erro: %s:%d - %s\n", config_error_file(&configLang), config_error_line(&configLang), config_error_text(&configLang));
+		ShowError("read_message erro: %s\n", param);
 		config_destroy(&configLang);
 		return "";
 	}
-
-	snprintf(message, sizeof(message), "%s", config_setting_get_string(str));
+	
+	strncpy(message, config_setting_get_string(str), sizeof(message));
 	config_destroy(&configLang);
 	return message;
 }
@@ -166,6 +167,6 @@ void read_server_lang(void)
 		config_destroy(&configFile);
 	}
 
-	snprintf(lang_file, sizeof(lang_file), "%s", tmpvar);
+	strncpy(lang_file, tmpvar, sizeof(lang_file));
 	config_destroy(&configFile);
 }
