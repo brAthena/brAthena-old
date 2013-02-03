@@ -28,7 +28,10 @@
 #include <string.h>// strlen/strnlen/memcpy/memset
 #include <stdlib.h>// strtoul
 
+void brathena_mysql_error_handler(unsigned int ecode);
 
+int mysql_reconnect_type;
+unsigned int mysql_reconnect_count;
 
 /// Sql handle
 struct Sql {
@@ -84,7 +87,7 @@ Sql *Sql_Malloc(void)
 	self->lengths = NULL;
 	self->result = NULL;
 	self->keepalive = INVALID_TIMER;
-
+	self->handle.reconnect = 1;
 	return self;
 }
 
@@ -269,11 +272,13 @@ int Sql_QueryV(Sql *self, const char *query, va_list args)
 	StringBuf_Vprintf(&self->buf, query, args);
 	if(mysql_real_query(&self->handle, StringBuf_Value(&self->buf), (unsigned long)StringBuf_Length(&self->buf))) {
 		ShowSQL(read_message("Source.reuse.reuse_sql_queryv"), mysql_error(&self->handle));
+		brathena_mysql_error_handler(mysql_errno(&self->handle));
 		return SQL_ERROR;
 	}
 	self->result = mysql_store_result(&self->handle);
 	if(mysql_errno(&self->handle) != 0) {
 		ShowSQL(read_message("Source.reuse.reuse_sql_queryv"), mysql_error(&self->handle));
+		brathena_mysql_error_handler(mysql_errno(&self->handle));
 		return SQL_ERROR;
 	}
 	return SQL_SUCCESS;
@@ -292,11 +297,13 @@ int Sql_QueryStr(Sql *self, const char *query)
 	StringBuf_AppendStr(&self->buf, query);
 	if(mysql_real_query(&self->handle, StringBuf_Value(&self->buf), (unsigned long)StringBuf_Length(&self->buf))) {
 		ShowSQL(read_message("Source.reuse.reuse_sql_queryv"), mysql_error(&self->handle));
+		brathena_mysql_error_handler(mysql_errno(&self->handle));
 		return SQL_ERROR;
 	}
 	self->result = mysql_store_result(&self->handle);
 	if(mysql_errno(&self->handle) != 0) {
 		ShowSQL(read_message("Source.reuse.reuse_sql_queryv"), mysql_error(&self->handle));
+		brathena_mysql_error_handler(mysql_errno(&self->handle));
 		return SQL_ERROR;
 	}
 	return SQL_SUCCESS;
@@ -627,6 +634,7 @@ int SqlStmt_PrepareV(SqlStmt *self, const char *query, va_list args)
 	StringBuf_Vprintf(&self->buf, query, args);
 	if(mysql_stmt_prepare(self->stmt, StringBuf_Value(&self->buf), (unsigned long)StringBuf_Length(&self->buf))) {
 		ShowSQL(read_message("Source.reuse.reuse_sql_queryv"), mysql_stmt_error(self->stmt));
+		brathena_mysql_error_handler(mysql_stmt_errno(self->stmt));
 		return SQL_ERROR;
 	}
 	self->bind_params = false;
@@ -647,6 +655,7 @@ int SqlStmt_PrepareStr(SqlStmt *self, const char *query)
 	StringBuf_AppendStr(&self->buf, query);
 	if(mysql_stmt_prepare(self->stmt, StringBuf_Value(&self->buf), (unsigned long)StringBuf_Length(&self->buf))) {
 		ShowSQL(read_message("Source.reuse.reuse_sql_queryv"), mysql_stmt_error(self->stmt));
+		brathena_mysql_error_handler(mysql_stmt_errno(self->stmt));
 		return SQL_ERROR;
 	}
 	self->bind_params = false;
@@ -706,11 +715,13 @@ int SqlStmt_Execute(SqlStmt *self)
 	if((self->bind_params && mysql_stmt_bind_param(self->stmt, self->params)) ||
 	   mysql_stmt_execute(self->stmt)) {
 		ShowSQL(read_message("Source.reuse.reuse_sql_queryv"), mysql_stmt_error(self->stmt));
+		brathena_mysql_error_handler(mysql_stmt_errno(self->stmt));
 		return SQL_ERROR;
 	}
 	self->bind_columns = false;
 	if(mysql_stmt_store_result(self->stmt)) { // store all the data
 		ShowSQL(read_message("Source.reuse.reuse_sql_queryv"), mysql_stmt_error(self->stmt));
+		brathena_mysql_error_handler(mysql_stmt_errno(self->stmt));
 		return SQL_ERROR;
 	}
 
@@ -842,6 +853,7 @@ int SqlStmt_NextRow(SqlStmt *self)
 #endif
 	if(err) {
 		ShowSQL(read_message("Source.reuse.reuse_sql_queryv"), mysql_stmt_error(self->stmt));
+		brathena_mysql_error_handler(mysql_stmt_errno(self->stmt));
 		return SQL_ERROR;
 	}
 
@@ -915,4 +927,64 @@ void SqlStmt_Free(SqlStmt *self)
 		}
 		aFree(self);
 	}
+}
+/* receives mysql error codes during runtime (not on first-time-connects) */
+void brathena_mysql_error_handler(unsigned int ecode) {
+	static unsigned int retry = 1;
+	switch( ecode ) {
+		case 2003:/* Can't connect to MySQL (this error only happens here when failing to reconnect) */
+			if( mysql_reconnect_type == 1 ) {
+				if( ++retry > mysql_reconnect_count ) {
+					ShowFatalError("MySQL has been unreachable for too long, %d reconnects were attempted. Shutting Down\n", retry);
+					exit(EXIT_FAILURE);
+				}
+			}
+			break;
+	}
+}
+void Sql_inter_server_read(const char* cfgName, bool first) {
+	int i;
+	char line[1024], w1[1024], w2[1024];
+	FILE* fp;
+	
+	fp = fopen(cfgName, "r");
+	if(fp == NULL) {
+		if( first ) {
+			ShowFatalError("File not found: %s\n", cfgName);
+			exit(EXIT_FAILURE);
+		} else
+			ShowError("File not found: %s\n", cfgName);
+		return;
+	}
+	
+	while(fgets(line, sizeof(line), fp)) {
+		i = sscanf(line, "%[^:]: %[^\r\n]", w1, w2);
+		if(i != 2)
+			continue;
+		
+		if(!strcmpi(w1,"mysql_reconnect_type")) {
+			mysql_reconnect_type = atoi(w2);
+			switch( mysql_reconnect_type ) {
+				case 1:
+				case 2:
+					break;
+				default:
+					ShowError("%s::mysql_reconnect_type is set to %d which is not valid, defaulting to 1...\n", cfgName, mysql_reconnect_type);
+					mysql_reconnect_type = 1;
+					break;
+			}
+		} else if(!strcmpi(w1,"mysql_reconnect_count")) {
+			mysql_reconnect_count = atoi(w2);
+			if( mysql_reconnect_count < 1 )
+				mysql_reconnect_count = 1;
+		} else if(!strcmpi(w1,"import"))
+			Sql_inter_server_read(w2,false);
+	}
+	fclose(fp);
+		
+	return;
+}
+
+void Sql_Init(void) {
+	Sql_inter_server_read("conf/inter_brathena.conf",true);
 }
