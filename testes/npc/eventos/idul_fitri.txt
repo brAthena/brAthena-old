@@ -41,8 +41,7 @@ prontera,146,92,3	script	Cellerb	58,{
 	mes "[Membro da Equipe Idul Fitri]";
 	mes "Se você tem interesse em participar desse evento, eu vou cozinhar para você.";
 	next;
-	switch(select("Cero. Eu gostaria!!","Numa próxima.... Obrigado.")){
-	case 1:
+	if(select("Cero. Eu gostaria!!:Numa próxima.... Obrigado.") == 1) {
 		mes "[Membro da Equipe Idul Fitri]";
 		mes "Eu tenho algo que lhe interessa.";
 		mes "Preciso de todos os seguintes itens:";
@@ -75,10 +74,9 @@ prontera,146,92,3	script	Cellerb	58,{
 		mes "Nós agradecemos a sua participação nesse evento especial.";
 		emotion e_thx;
 		close;
-	case 2:
+		}
 		mes "[Membro da Equipe Idul Fitri]";
 		mes "Bem, talvez você possa participar da quest de amanhã.";
 		emotion e_hmm;
 		close;
-	}
 }
