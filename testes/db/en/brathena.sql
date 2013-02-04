@@ -124,7 +124,6 @@ CREATE TABLE IF NOT EXISTS `char` (
   KEY `account_id` (`account_id`),
   KEY `party_id` (`party_id`),
   KEY `guild_id` (`guild_id`),
-  KEY `name` (`name`),
   KEY `online` (`online`)
 ) ENGINE=MyISAM AUTO_INCREMENT=150000; 
 
@@ -194,8 +193,7 @@ CREATE TABLE IF NOT EXISTS `hotkey` (
 	`type` TINYINT(1) unsigned NOT NULL default '0',
 	`itemskill_id` INT(11) unsigned NOT NULL default '0',
 	`skill_lvl` TINYINT(4) unsigned NOT NULL default '0',
-	PRIMARY KEY (`char_id`,`hotkey`),
-	INDEX (`char_id`)
+	PRIMARY KEY (`char_id`,`hotkey`)
 ) ENGINE=MyISAM;
 
 --
@@ -209,8 +207,7 @@ CREATE TABLE IF NOT EXISTS `global_reg_value` (
   `type` tinyint(1) NOT NULL default '3',
   `account_id` int(11) unsigned NOT NULL default '0',
   PRIMARY KEY  (`char_id`,`str`,`account_id`),
-  KEY `account_id` (`account_id`),
-  KEY `char_id` (`char_id`)
+  KEY `account_id` (`account_id`)
 ) ENGINE=MyISAM;
 
 --
@@ -323,8 +320,7 @@ CREATE TABLE IF NOT EXISTS `guild_position` (
   `name` varchar(24) NOT NULL default '',
   `mode` tinyint(11) unsigned NOT NULL default '0',
   `exp_mode` tinyint(11) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`guild_id`,`position`),
-  KEY `guild_id` (`guild_id`)
+  PRIMARY KEY  (`guild_id`,`position`)
 ) ENGINE=MyISAM;
 
 --
@@ -635,8 +631,7 @@ CREATE TABLE IF NOT EXISTS `skill` (
   `char_id` int(11) unsigned NOT NULL default '0',
   `id` smallint(11) unsigned NOT NULL default '0',
   `lv` tinyint(4) unsigned NOT NULL default '0',
-  PRIMARY KEY  (`char_id`,`id`),
-  KEY `char_id` (`char_id`)
+  PRIMARY KEY  (`char_id`,`id`)
 ) ENGINE=MyISAM;
 
 --
@@ -647,8 +642,7 @@ CREATE TABLE IF NOT EXISTS `skill_homunculus` (
   `homun_id` int(11) NOT NULL,
   `id` int(11) NOT NULL,
   `lv` smallint(6) NOT NULL,
-  PRIMARY KEY  (`homun_id`,`id`),
-  KEY `homun_id` (`homun_id`)
+  PRIMARY KEY  (`homun_id`,`id`)
 ) ENGINE=MyISAM;
 
 --

@@ -19,7 +19,7 @@
 
 #Database: ragnarok
 #Table: picklog
-CREATE TABLE `picklog` (
+CREATE TABLE IF NOT EXISTS `picklog` (
   `id` int(11) NOT NULL auto_increment,
   `time` datetime NOT NULL default '0000-00-00 00:00:00',
   `char_id` int(11) NOT NULL default '0',
@@ -40,7 +40,7 @@ CREATE TABLE `picklog` (
 #ZenyLog tipos (M)onstros,(T)roca,(V) Venda / Compra,(S)hop Venda / Compra,(N)PC Quantidade,(A)dministradores,(E)Mail,(B)Comércio
 #Database: ragnarok
 #Table: zenylog
-CREATE TABLE `zenylog` (
+CREATE TABLE IF NOT EXISTS `zenylog` (
   `id` int(11) NOT NULL auto_increment,
   `time` datetime NOT NULL default '0000-00-00 00:00:00',
   `char_id` int(11) NOT NULL default '0',
@@ -54,7 +54,7 @@ CREATE TABLE `zenylog` (
 
 #Database: ragnarok
 #Table: branchlog
-CREATE TABLE `branchlog` (
+CREATE TABLE IF NOT EXISTS `branchlog` (
   `branch_id` mediumint(9) unsigned NOT NULL auto_increment,
   `branch_date` datetime NOT NULL default '0000-00-00 00:00:00',
   `account_id` int(11) NOT NULL default '0',
@@ -68,7 +68,7 @@ CREATE TABLE `branchlog` (
 
 #Database: ragnarok
 #Table: mvplog
-CREATE TABLE `mvplog` (
+CREATE TABLE IF NOT EXISTS `mvplog` (
   `mvp_id` mediumint(9) unsigned NOT NULL auto_increment,
   `mvp_date` datetime NOT NULL default '0000-00-00 00:00:00',
   `kill_char_id` int(11) NOT NULL default '0',
@@ -81,7 +81,7 @@ CREATE TABLE `mvplog` (
 
 #Database: ragnarok
 #Table: atcommandlog
-CREATE TABLE `atcommandlog` (
+CREATE TABLE IF NOT EXISTS `atcommandlog` (
   `atcommand_id` mediumint(9) unsigned NOT NULL auto_increment,
   `atcommand_date` datetime NOT NULL default '0000-00-00 00:00:00',
   `account_id` int(11) unsigned NOT NULL default '0',
@@ -96,7 +96,7 @@ CREATE TABLE `atcommandlog` (
 
 #Database: ragnarok
 #Table: npclog
-CREATE TABLE `npclog` (
+CREATE TABLE IF NOT EXISTS `npclog` (
   `npc_id` mediumint(9) unsigned NOT NULL auto_increment,
   `npc_date` datetime NOT NULL default '0000-00-00 00:00:00',
   `account_id` int(11) unsigned NOT NULL default '0',
@@ -112,7 +112,7 @@ CREATE TABLE `npclog` (
 #ChatLog tipos (O) Global,(W)hisper / PM,Grupo (P),(G) Clã,(M) Chat Público
 #Database: ragnarok
 #Table: chatlog
-CREATE TABLE `chatlog` (
+CREATE TABLE IF NOT EXISTS `chatlog` (
   `id` bigint(20) NOT NULL auto_increment,
   `time` datetime NOT NULL default '0000-00-00 00:00:00',
   `type` enum('O','W','P','G','M') NOT NULL default 'O',
@@ -131,7 +131,7 @@ CREATE TABLE `chatlog` (
 
 #Database: ragnarok
 #Table: loginlog
-CREATE TABLE `loginlog` (
+CREATE TABLE IF NOT EXISTS `loginlog` (
   `time` datetime NOT NULL default '0000-00-00 00:00:00',
   `ip` varchar(15) NOT NULL default '',
   `user` varchar(23) NOT NULL default '',
