@@ -25261,7 +25261,7 @@ REPLACE INTO `skill_db` VALUES(210,'0',0,0,'-1','0','0',10,'0','no',0,'0','0','w
 REPLACE INTO `skill_db` VALUES(211,'1',6,1,'0','0x1','0',10,'1','no',0,'0','0','weapon','0','RG_STEALCOIN','Mug');
 REPLACE INTO `skill_db` VALUES(212,'-1',6,1,'-1','0x40','0',10,'1','no',0,'0','0','weapon','0','RG_BACKSTAP','Back Stab');
 REPLACE INTO `skill_db` VALUES(213,'0',0,0,'0','0','0',5,'0','no',0,'0','0','none','0','RG_TUNNELDRIVE','Stalk');
-REPLACE INTO `skill_db` VALUES(214,'0',6,4,'-1','0x2','1',5,'1','no',0,'0','0','weapon','0','RG_RAID','Sightless Mind');
+REPLACE INTO `skill_db` VALUES(214,'0',6,4,'-1','0x2','9',5,'1','no',0,'0','0','weapon','0','RG_RAID','Sightless Mind');
 REPLACE INTO `skill_db` VALUES(215,'1',6,1,'0','0x1','0',5,'1','no',0,'0','0','weapon','0','RG_STRIPWEAPON','Divest Weapon');
 REPLACE INTO `skill_db` VALUES(216,'1',6,1,'0','0x1','0',5,'1','no',0,'0','0','weapon','0','RG_STRIPSHIELD','Divest Shield');
 REPLACE INTO `skill_db` VALUES(217,'1',6,1,'0','0x1','0',5,'1','no',0,'0','0','weapon','0','RG_STRIPARMOR','Divest Armor');
