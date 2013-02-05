@@ -3592,14 +3592,14 @@ ACMD_FUNC(partyrecall)
  *------------------------------------------*/
 ACMD_FUNC(reload)
 {
-	const char *opt[] = { "item_db", "mob_db", "skill_db"};
+	const char *opt[] = { "item_db", "mob_db", "skill_db", "status_db"};
 	int option;
 
 	memset(atcmd_output, '\0', sizeof(atcmd_output));
 	nullpo_retr(-1, sd);
 
 	if(!message || !*message) {
-		clif_displaymessage(fd, "Opções: item_db, mob_db e skill_db.");
+		clif_displaymessage(fd, "Opções: item_db, mob_db, skill_db e status_db.");
 		clif_displaymessage(fd, "Modo de uso: @reload <opção>");
 		return -1;
 	}
@@ -3610,8 +3610,17 @@ ACMD_FUNC(reload)
 
 	switch(option) {
 		case 0: itemdb_reload(); break;
-		case 1: mob_reload(); read_petdb(); merc_reload(); read_mercenarydb(); reload_elementaldb(); break;
-		case 2: skill_reload(); merc_skill_reload(); reload_elemental_skilldb(); read_mercenary_skilldb(); break;
+		case 1: mob_reload(); read_petdb(); merc_reload(); 
+		#ifdef RENEWAL
+		reload_elementaldb();
+		#endif
+		break;
+		case 2: skill_reload(); merc_skill_reload(); 
+    #ifdef RENEWAL
+		reload_elemental_skilldb();
+		#endif
+		read_mercenary_skilldb(); break;
+		case 3: status_readdb(); break;
 		default: message = "Digite um opção válida."; option = -2; break;
 	}
 
@@ -3692,15 +3701,6 @@ ACMD_FUNC(reloadbattleconf)
 		chrif_ragsrvinfo(battle_config.base_exp_rate, battle_config.job_exp_rate, battle_config.item_rate_common);
 	}
 	clif_displaymessage(fd, msg_txt(255));
-	return 0;
-}
-/*==========================================
- * @reloadstatusdb - reloads job_db1.txt job_db2.txt job_db2-2.txt refine_db.txt size_fix.txt
- *------------------------------------------*/
-ACMD_FUNC(reloadstatusdb)
-{
-	status_readdb();
-	clif_displaymessage(fd, msg_txt(256));
 	return 0;
 }
 /*==========================================
@@ -8765,7 +8765,6 @@ void atcommand_basecommands(void)
 		ACMD_DEF(reloadscript),
 		ACMD_DEF(reloadatcommand),
 		ACMD_DEF(reloadbattleconf),
-		ACMD_DEF(reloadstatusdb),
 		ACMD_DEF(reloadpcdb),
 		ACMD_DEF(reloadmotd),
 		ACMD_DEF(mapinfo),
