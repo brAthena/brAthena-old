@@ -986,5 +986,5 @@ void Sql_inter_server_read(const char* cfgName, bool first) {
 }
 
 void Sql_Init(void) {
-	Sql_inter_server_read("conf/inter_brathena.conf",true);
+	Sql_inter_server_read("conf/brathena_conf.conf",true);
 }
