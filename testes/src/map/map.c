@@ -3805,8 +3805,8 @@ int do_init(int argc, char *argv[])
 	GC_enable_incremental();
 #endif
 
-	INTER_CONF_NAME = "conf/brathena_conf.conf";
-	LOG_CONF_NAME = "conf/log_brathena.conf";
+	INTER_CONF_NAME="conf/inter_brathena.conf";
+	LOG_CONF_NAME="conf/log_brathena.conf";
 	MAP_CONF_NAME = "conf/map_brathena.conf";
 	BATTLE_CONF_FILENAME = "conf/battle_brathena.conf";
 	ATCOMMAND_CONF_FILENAME = "conf/atcommand_brathena.conf";

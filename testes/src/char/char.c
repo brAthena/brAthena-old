@@ -45,7 +45,7 @@
 // private declarations
 #define CHAR_CONF_NAME  "conf/char_brathena.conf"
 #define LAN_CONF_NAME   "conf/subnet_brathena.conf"
-#define SQL_CONF_NAME   "conf/brathena_conf.conf"
+#define SQL_CONF_NAME   "conf/inter_brathena.conf"
 
 char char_db[256] = "char";
 char scdata_db[256] = "sc_data";
