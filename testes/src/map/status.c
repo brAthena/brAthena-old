@@ -6044,6 +6044,8 @@ void status_set_viewdata(struct block_list *bl, int class_)
 						class_ = JOB_WEDDING;
 					else if(sd->sc.option&OPTION_SUMMER)
 						class_ = JOB_SUMMER;
+					else if(sd->sc.option&OPTION_HANBOK)
+						class_ = JOB_HANBOK;
 					else if(sd->sc.option&OPTION_XMAS)
 						class_ = JOB_XMAS;
 					else if(sd->sc.option&OPTION_RIDING) {
@@ -6146,6 +6148,7 @@ void status_set_viewdata(struct block_list *bl, int class_)
 	       (vd->class_==JOB_WEDDING && battle_config.wedding_ignorepalette)
 	       || (vd->class_==JOB_XMAS && battle_config.xmas_ignorepalette)
 	       || (vd->class_==JOB_SUMMER && battle_config.summer_ignorepalette)
+	       || (vd->class_==JOB_HANBOK && battle_config.hanbok_ignorepalette)
 	   ))
 		vd->cloth_color = 0;
 }
@@ -7375,6 +7378,7 @@ int status_change_start(struct block_list *bl,enum sc_type type,int rate,int val
 			case SC_WEDDING:
 			case SC_XMAS:
 			case SC_SUMMER:
+			case SC_HANBOK:
 				if(!vd) return 0;
 				//Store previous values as they could be removed.
 				val1 = vd->class_;
@@ -7384,7 +7388,7 @@ int status_change_start(struct block_list *bl,enum sc_type type,int rate,int val
 				unit_stop_attack(bl);
 				clif_changelook(bl,LOOK_WEAPON,0);
 				clif_changelook(bl,LOOK_SHIELD,0);
-				clif_changelook(bl,LOOK_BASE,type==SC_WEDDING?JOB_WEDDING:type==SC_XMAS?JOB_XMAS:JOB_SUMMER);
+				clif_changelook(bl,LOOK_BASE,type==SC_WEDDING?JOB_WEDDING:type==SC_XMAS?JOB_XMAS:type==SC_SUMMER?JOB_SUMMER:JOB_HANBOK);
 				clif_changelook(bl,LOOK_CLOTHES_COLOR,vd->cloth_color);
 				break;
 			case SC_NOCHAT:
@@ -8573,9 +8577,10 @@ int status_change_start(struct block_list *bl,enum sc_type type,int rate,int val
 			case SC_WEDDING:
 			case SC_XMAS:
 			case SC_SUMMER:
+			case SC_HANBOK:
 				clif_changelook(bl,LOOK_WEAPON,0);
 				clif_changelook(bl,LOOK_SHIELD,0);
-				clif_changelook(bl,LOOK_BASE,type==SC_WEDDING?JOB_WEDDING:type==SC_XMAS?JOB_XMAS:JOB_SUMMER);
+				clif_changelook(bl,LOOK_BASE,type==SC_WEDDING?JOB_WEDDING:type==SC_XMAS?JOB_XMAS:type==SC_SUMMER?JOB_SUMMER:SC_HANBOK);
 				clif_changelook(bl,LOOK_CLOTHES_COLOR,val4);
 				break;
 			case SC_KAAHI:
@@ -8782,6 +8787,9 @@ int status_change_start(struct block_list *bl,enum sc_type type,int rate,int val
 		case SC_SUMMER:
 			sc->option |= OPTION_SUMMER;
 			break;
+		case SC_HANBOK:
+			sc->option |= OPTION_HANBOK;
+			break;
 		case SC_ORCISH:
 			sc->option |= OPTION_ORCISH;
 			break;
@@ -8950,7 +8958,7 @@ int status_change_clear(struct block_list *bl, int type)
 		if(type == 0)
 			switch(i) {
 					//Type 0: PC killed -> Place here statuses that do not dispel on death.
-				case SC_ELEMENTALCHANGE://Only when its Holy or Dark that it doesn't dispell on death
+				case SC_ELEMENTALCHANGE: //Only when its Holy or Dark that it doesn't dispell on death
 					if(sc->data[i]->val2 != ELE_HOLY && sc->data[i]->val2 != ELE_DARK)
 						break;
 				case SC_WEIGHT50:
@@ -8959,6 +8967,7 @@ int status_change_clear(struct block_list *bl, int type)
 				case SC_MELTDOWN:
 				case SC_XMAS:
 				case SC_SUMMER:
+				case SC_HANBOK:
 				case SC_NOCHAT:
 				case SC_FUSION:
 				case SC_EARTHSCROLL:
@@ -9111,11 +9120,12 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 		case SC_WEDDING:
 		case SC_XMAS:
 		case SC_SUMMER:
+		case SC_HANBOK:
 			if(!vd) break;
 			if(sd) {
 				//Load data from sd->status.* as the stored values could have changed.
 				//Must remove OPTION to prevent class being rechanged.
-				sc->option &= type==SC_WEDDING?~OPTION_WEDDING:type==SC_XMAS?~OPTION_XMAS:~OPTION_SUMMER;
+				sc->option &= type==SC_WEDDING?~OPTION_WEDDING:type==SC_XMAS?~OPTION_XMAS:type==SC_SUMMER?~OPTION_SUMMER:~OPTION_HANBOK;
 				clif_changeoption(&sd->bl);
 				status_set_viewdata(bl, sd->status.class_);
 			} else {
@@ -9560,6 +9570,9 @@ int status_change_end_(struct block_list *bl, enum sc_type type, int tid, const 
 			break;
 		case SC_SUMMER:
 			sc->option &= ~OPTION_SUMMER;
+			break;
+		case SC_HANBOK:
+			sc->option &= ~OPTION_HANBOK;
 			break;
 		case SC_ORCISH:
 			sc->option &= ~OPTION_ORCISH;

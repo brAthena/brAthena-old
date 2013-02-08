@@ -3903,7 +3903,7 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 					case LG_MOONSLASHER:
 						clif_skill_damage(src,bl,tick, status_get_amotion(src), 0, -30000, 1, skill_id, skill_lv, 6);
 						break;
-					case NPC_EARTHQUAKE://FIXME: Isn't EarthQuake a ground skill after all?
+					case NPC_EARTHQUAKE: //FIXME: Isn't EarthQuake a ground skill after all?
 						skill_addtimerskill(src,tick+250,src->id,0,0,skill_id,skill_lv,2,flag|BCT_ENEMY|SD_SPLASH|1);
 					default:
 						break;
@@ -7722,7 +7722,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 						case SC__STRIPACCESSORY: case SC__ENERVATION: case SC__GROOMY:
 						case SC__IGNORANCE:  case SC__LAZINESS:   case SC__UNLUCKY:
 						case SC__WEAKNESS:   //case SC_SAVAGE_STEAK:  case SC_COCKTAIL_WARG_BLOOD:
-						case SC_MAGNETICFIELD://case SC_MINOR_BBQ:   case SC_SIROMA_ICE_TEA:
+						case SC_MAGNETICFIELD: //case SC_MINOR_BBQ:   case SC_SIROMA_ICE_TEA:
 							//case SC_DROCERA_HERB_STEAMED: case SC_PUTTI_TAILS_NOODLES:
 						case SC_NEUTRALBARRIER_MASTER: case SC_NEUTRALBARRIER:
 						case SC_STEALTHFIELD_MASTER: case SC_STEALTHFIELD:
@@ -11837,7 +11837,7 @@ int skill_unit_onout(struct skill_unit *src, struct block_list *bl, unsigned int
 	switch(sg->unit_id) {
 		case UNT_SAFETYWALL:
 		case UNT_PNEUMA:
-		case UNT_EPICLESIS://Arch Bishop
+		case UNT_EPICLESIS: //Arch Bishop
 		case UNT_NEUTRALBARRIER:
 		case UNT_STEALTHFIELD:
 			if(sce)
@@ -16906,7 +16906,7 @@ void skill_init_unit_layout(void)
 			switch(i) {
 				case MG_FIREWALL:
 				case WZ_ICEWALL:
-				case WL_EARTHSTRAIN://Warlock
+				case WL_EARTHSTRAIN: //Warlock
 					// these will be handled later
 					break;
 				case PR_SANCTUARY:

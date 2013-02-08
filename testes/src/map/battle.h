@@ -483,6 +483,8 @@ extern struct Battle_Config {
 	// [brAthena]
 	int devotion_rdamage, warp_no_ress, attack_castle_monsters, mob_drop_identified, bRO_Renewal, alliance_in_woe, use_item_in_status, supports_castle_gvg, max_atk;
 
+	int hanbok_ignorepalette; // [Megasantos]
+
 	// rAthena
 	int max_third_parameter;
 	int max_baby_third_parameter;
