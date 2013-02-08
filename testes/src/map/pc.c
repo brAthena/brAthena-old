@@ -4896,6 +4896,7 @@ int pc_jobid2mapid(unsigned short b_class)
 		case JOB_NINJA:                 return MAPID_NINJA;
 		case JOB_XMAS:                  return MAPID_XMAS;
 		case JOB_SUMMER:                return MAPID_SUMMER;
+		case JOB_HANBOK:                return MAPID_HANBOK;
 		case JOB_GANGSI:                return MAPID_GANGSI;
 			//2-1 Jobs
 		case JOB_SUPER_NOVICE:          return MAPID_SUPER_NOVICE;
@@ -5036,6 +5037,7 @@ int pc_mapid2jobid(unsigned short class_, int sex)
 		case MAPID_NINJA:                 return JOB_NINJA;
 		case MAPID_XMAS:                  return JOB_XMAS;
 		case MAPID_SUMMER:                return JOB_SUMMER;
+		case MAPID_HANBOK:                return JOB_HANBOK;
 		case MAPID_GANGSI:                return JOB_GANGSI;
 			//2-1 Jobs
 		case MAPID_SUPER_NOVICE:          return JOB_SUPER_NOVICE;
@@ -5198,6 +5200,9 @@ const char *job_name(int class_)
 
 		case JOB_SUMMER:
 			return msg_txt(621);
+			
+		case JOB_HANBOK:
+			return msg_txt(620);
 
 		case JOB_NOVICE_HIGH:
 		case JOB_SWORDMAN_HIGH:
@@ -7386,6 +7391,11 @@ int pc_setoption(struct map_session_data *sd,int type)
 	else if(!(type&OPTION_SUMMER) && p_type&OPTION_SUMMER)
 		new_look = -1;
 
+	if(type&OPTION_HANBOK && !(p_type&OPTION_HANBOK)) // Cliente 2013-01-30aRagexeRE ou acima. [Megasantos]
+		new_look = JOB_HANBOK;
+	else if(!(type&OPTION_HANBOK) && p_type&OPTION_HANBOK)
+		new_look = -1;
+
 	if(sd->disguise || !new_look)
 		return 0; //Disguises break sprite changes
 
@@ -9285,7 +9295,7 @@ int pc_readdb(void)
 	fclose(fp);
 	for(i = 0; i < JOB_MAX; i++) {
 		if(!pcdb_checkid(i)) continue;
-		if(i == JOB_WEDDING || i == JOB_XMAS || i == JOB_SUMMER)
+		if(i == JOB_WEDDING || i == JOB_XMAS || i == JOB_SUMMER || i == JOB_HANBOK)
 			continue; //Classes that do not need exp tables.
 		j = pc_class2idx(i);
 		if(!max_level[j][0])

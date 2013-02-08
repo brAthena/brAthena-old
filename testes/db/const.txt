@@ -47,6 +47,7 @@ Job_Gunslinger	24
 Job_Ninja	25
 Job_Xmas	26
 Job_Summer	27
+Job_Hanbok	28
 
 Job_Novice_High	4001
 Job_Swordman_High	4002
@@ -306,6 +307,7 @@ Option_Xmas	0x10000
 Option_Summer	0x40000
 Option_Wug	0x100000
 Option_Wugrider	0x200000
+Option_Hanbok	0x10000000
 
 bc_all	0
 bc_map	1
