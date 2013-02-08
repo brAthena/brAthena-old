@@ -22510,6 +22510,13 @@ REPLACE INTO `quest_db` VALUES(4033,0,0,0,0,0,0,0,'Death of Ahrum'); */
 REPLACE INTO `quest_db` VALUES(4133,0,0,0,0,0,0,0,'Iara');
 REPLACE INTO `quest_db` VALUES(4134,0,0,0,0,0,0,0,'Iara');
 REPLACE INTO `quest_db` VALUES(4135,86400,0,0,0,0,0,0,'\"Iara\"');
+REPLACE INTO `quest_db` VALUES(4154,0,0,0,0,0,0,0,'\"Homunculus Researcher\"');
+REPLACE INTO `quest_db` VALUES(4155,0,0,0,0,0,0,0,'\"Homunculus S Mutation Mission - 1\"');
+REPLACE INTO `quest_db` VALUES(4156,0,0,0,0,0,0,0,'\"Homunculus S Mutation Mission - 2\"');
+REPLACE INTO `quest_db` VALUES(4157,0,0,0,0,0,0,0,'\"Homunculus S Mutation Mission - 3\"');
+REPLACE INTO `quest_db` VALUES(4158,0,0,0,0,0,0,0,'\"Homunculus S Mutation Mission - 4\"');
+REPLACE INTO `quest_db` VALUES(4159,0,0,0,0,0,0,0,'\"Homunculus S Mutation Mission - 5\"');
+REPLACE INTO `quest_db` VALUES(4160,0,0,0,0,0,0,0,'\"Homunculus S Mutation Mission - 6\"');
 REPLACE INTO `quest_db` VALUES(4167,0,1321,30,0,0,0,0,'\"Eden: Cauda de Dragão\"');
 REPLACE INTO `quest_db` VALUES(4168,0,1322,30,0,0,0,0,'\"Eden: Coelho\"');
 REPLACE INTO `quest_db` VALUES(4169,0,1256,30,0,0,0,0,'\"Eden: Peste\"');
@@ -23642,7 +23649,8 @@ REPLACE INTO `quest_db` VALUES(12059,9600,0,0,0,0,0,0,'\"Acesso restrito ao Memo
 REPLACE INTO `quest_db` VALUES(12060,86400,0,0,0,0,0,0,'\"Pesacaria cancelada\"');
 REPLACE INTO `quest_db` VALUES(12061,0,0,0,0,0,0,0,'\"Concentração\"');
 REPLACE INTO `quest_db` VALUES(12062,86400,0,0,0,0,0,0,'\"Pesacaria cancelada\"');
-REPLACE INTO `quest_db` VALUES(12070,0,0,0,0,0,0,0,'\"Iluminação cancelada\"');
+REPLACE INTO `quest_db` VALUES(12070,14400,0,0,0,0,0,0,'\"Iluminação cancelada\"');
+REPLACE INTO `quest_db` VALUES(12071,86400,0,0,0,0,0,0,'\"Stamp a seal on the attendance book\"');
 REPLACE INTO `quest_db` VALUES(12072,0,1034,20,0,0,0,0,'\"Caçando Sapo de Thara\"');
 REPLACE INTO `quest_db` VALUES(12073,0,1248,15,0,0,0,0,'\"Caçando Soldado de Chumbo\"');
 REPLACE INTO `quest_db` VALUES(12074,0,1070,30,0,0,0,0,'\"Caçando Kukre\"');

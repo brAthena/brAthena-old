@@ -22600,6 +22600,13 @@ REPLACE INTO `quest_db` VALUES(4033,0,0,0,0,0,0,0,'\"Death of Ahrum\"'); */
 REPLACE INTO `quest_db` VALUES(4133,0,0,0,0,0,0,0,'\"Iara\"');
 REPLACE INTO `quest_db` VALUES(4134,0,0,0,0,0,0,0,'\"Iara\"');
 REPLACE INTO `quest_db` VALUES(4135,86400,0,0,0,0,0,0,'\"Iara\"');
+REPLACE INTO `quest_db` VALUES(4154,0,0,0,0,0,0,0,'\"Homunculus Researcher\"');
+REPLACE INTO `quest_db` VALUES(4155,0,0,0,0,0,0,0,'\"Homunculus S Mutation Mission - 1\"');
+REPLACE INTO `quest_db` VALUES(4156,0,0,0,0,0,0,0,'\"Homunculus S Mutation Mission - 2\"');
+REPLACE INTO `quest_db` VALUES(4157,0,0,0,0,0,0,0,'\"Homunculus S Mutation Mission - 3\"');
+REPLACE INTO `quest_db` VALUES(4158,0,0,0,0,0,0,0,'\"Homunculus S Mutation Mission - 4\"');
+REPLACE INTO `quest_db` VALUES(4159,0,0,0,0,0,0,0,'\"Homunculus S Mutation Mission - 5\"');
+REPLACE INTO `quest_db` VALUES(4160,0,0,0,0,0,0,0,'\"Homunculus S Mutation Mission - 6\"');
 REPLACE INTO `quest_db` VALUES(4167,0,1321,30,0,0,0,0,'\"Paradise: Dragon Tail Handling\"');
 REPLACE INTO `quest_db` VALUES(4168,0,1322,30,0,0,0,0,'\"Paradise: Spring Rabbit Handling\"');
 REPLACE INTO `quest_db` VALUES(4169,0,1256,30,0,0,0,0,'\"Paradise: Pest Handling\"');
@@ -23733,6 +23740,7 @@ REPLACE INTO `quest_db` VALUES(12060,86400,0,0,0,0,0,0,'\"Today\'s Fishing Close
 REPLACE INTO `quest_db` VALUES(12061,10,0,0,0,0,0,0,'\"Concentration\"');
 REPLACE INTO `quest_db` VALUES(12062,86400,0,0,0,0,0,0,'\"Today\'s Mining Closed\"');
 REPLACE INTO `quest_db` VALUES(12070,14400,0,0,0,0,0,0,'\"Limited time for enter\"');
+REPLACE INTO `quest_db` VALUES(12071,86400,0,0,0,0,0,0,'\"Stamp a seal on the attendance book\"');
 REPLACE INTO `quest_db` VALUES(12072,0,1034,20,0,0,0,0,'\"Hunt tharafrog\"');
 REPLACE INTO `quest_db` VALUES(12073,0,1248,15,0,0,0,0,'\"Remove Cruiser\"');
 REPLACE INTO `quest_db` VALUES(12074,0,1070,30,0,0,0,0,'\"Remove Kukre\"');
