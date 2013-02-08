@@ -2971,7 +2971,7 @@ void clif_changelook(struct block_list *bl,int type,int val)
 				       (vd->class_ == JOB_WEDDING && battle_config.wedding_ignorepalette) ||
 				       (vd->class_ == JOB_XMAS && battle_config.xmas_ignorepalette) ||
 				       (vd->class_ == JOB_SUMMER && battle_config.summer_ignorepalette) ||
-					   (vd->class_ == JOB_HANBOK && battle_config.hanbok_ignorepalette)
+				       (vd->class_ == JOB_HANBOK && battle_config.hanbok_ignorepalette)
 				   ))
 					clif_changelook(bl,LOOK_CLOTHES_COLOR,0);
 				break;
@@ -2995,7 +2995,7 @@ void clif_changelook(struct block_list *bl,int type,int val)
 				       (vd->class_ == JOB_WEDDING && battle_config.wedding_ignorepalette) ||
 				       (vd->class_ == JOB_XMAS && battle_config.xmas_ignorepalette) ||
 				       (vd->class_ == JOB_SUMMER && battle_config.summer_ignorepalette) ||
-					   (vd->class_ == JOB_HANBOK && battle_config.hanbok_ignorepalette)
+				       (vd->class_ == JOB_HANBOK && battle_config.hanbok_ignorepalette)
 				   ))
 					val = 0;
 				vd->cloth_color = val;

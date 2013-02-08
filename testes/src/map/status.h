@@ -658,7 +658,7 @@ typedef enum sc_type {
     SC_PYROCLASTIC,
     SC_PARALYSIS,
     SC_PAIN_KILLER,
-	/**
+    /**
     * Hanbok [Megasantos]
     **/
     SC_HANBOK = 600,

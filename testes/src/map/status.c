@@ -8580,7 +8580,7 @@ int status_change_start(struct block_list *bl,enum sc_type type,int rate,int val
 			case SC_HANBOK:
 				clif_changelook(bl,LOOK_WEAPON,0);
 				clif_changelook(bl,LOOK_SHIELD,0);
-				clif_changelook(bl,LOOK_BASE,type==SC_WEDDING?JOB_WEDDING:type==SC_XMAS?JOB_XMAS:type==SC_SUMMER?JOB_SUMMER:SC_HANBOK);
+				clif_changelook(bl,LOOK_BASE,type==SC_WEDDING?JOB_WEDDING:type==SC_XMAS?JOB_XMAS:type==SC_SUMMER?JOB_SUMMER:JOB_HANBOK);
 				clif_changelook(bl,LOOK_CLOTHES_COLOR,val4);
 				break;
 			case SC_KAAHI:
