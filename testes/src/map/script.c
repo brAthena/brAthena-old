@@ -4657,10 +4657,8 @@ BUILDIN_FUNC(callfunc)
 		if(data_isreference(data) && !data->ref) {
 			const char *name = reference_getname(data);
 			if(name[0] == '.') {
-				if(!ref)  {
 					ref = (struct DBMap **)aCalloc(sizeof(struct DBMap *), 1);
 					ref[0] = (name[1] == '@' ? st->stack->var_function : st->script->script_vars);
-				}
 				data->ref = ref;
 			}
 		}
@@ -13706,12 +13704,12 @@ BUILDIN_FUNC(sscanf)
 			if(sscanf(str, buf, ref_str)==0) {
 				break;
 			}
-			set_reg(st, sd, add_str(buf_p), buf_p, (void *)(ref_str), reference_getref(data));
+			set_reg(st, sd, reference_uid( reference_getid(data), reference_getindex(data) ), buf_p, (void *)(ref_str), reference_getref(data));
 		} else { // Number
 			if(sscanf(str, buf, &ref_int)==0) {
 				break;
 			}
-			set_reg(st, sd, add_str(buf_p), buf_p, (void *)__64BPRTSIZE(ref_int), reference_getref(data));
+			set_reg(st, sd, reference_uid( reference_getid(data), reference_getindex(data) ), buf_p, (void *)__64BPRTSIZE(ref_int), reference_getref(data));
 		}
 		arg++;
 
