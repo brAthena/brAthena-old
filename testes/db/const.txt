@@ -17,7 +17,6 @@
 // \_____________________________________________________________/
 //
 
-
 Job_Novice	0
 Job_Swordman	1
 Job_Mage	2
@@ -595,8 +594,10 @@ bVariableCastrate	2054
 bSkillUseSP	2055
 bMagicAtkEle 2056
 bFixedCast	2057
-
 bVariableCast	2058
+
+// [brAthena]
+bDouble_Attack	2059
 
 EQI_HEAD_TOP	1
 EQI_ARMOR	2

@@ -6002,7 +6002,7 @@ REPLACE INTO `item_db` VALUES(5384,'Santa_Hat_1','Gorro de Natal 2.0','5',20,NUL
 REPLACE INTO `item_db` VALUES(5385,'Yoyo_Hat','Chapéu de Yoyo','5',20,NULL,'300',NULL,1,NULL,0,0xFFFFFFFF,7,2,256,NULL,20,1,391,'skill \"TF_HIDING\", 1;',NULL,'sc_end SC_HIDING;');
 REPLACE INTO `item_db` VALUES(5386,'Ayam_','Ayam','5',0,NULL,'70',NULL,7,NULL,0,0xFFFFFFFF,7,2,256,NULL,1,0,228,'bonus bMdef,7; bonus bFlee,7; bonus2 bAddMonsterDropItem,12198,200;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(5387,'Neko_Mimi_Kafra','Tiara de Kafra Gatinha','5',20,NULL,'200',NULL,1,NULL,1,0xFFFFFFFF,7,2,256,NULL,30,1,392,'bonus bMdef,5;',NULL,NULL);
-REPLACE INTO `item_db` VALUES(5388,'Snake_Head','Chapéu de Jibóia','5',20,NULL,'200',NULL,1,NULL,1,0xFFFFFFFF,7,2,256,NULL,30,1,393,'skill \"TF_DOUBLE\", 5;',NULL,NULL);
+REPLACE INTO `item_db` VALUES(5388,'Snake_Head','Chapéu de Jibóia','5',20,NULL,'200',NULL,1,NULL,1,0xFFFFFFFF,7,2,256,NULL,30,1,393,'skill \"TF_DOUBLE\",5; bonus bDouble_Attack,1;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(5389,'Angel_Spirit','Espírito Olímpico','5',20,NULL,'200',NULL,0,NULL,0,0xFFFFFFFF,7,2,512,NULL,30,0,394,'bonus bStr,2; bonus bHit,15;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(5390,'Santa_Hat_2','Gorro Natalino de Gelo','5',20,NULL,'100',NULL,2,NULL,0,0xFFFFFFFF,7,2,256,NULL,0,1,395,'bonus2 bResEff, Eff_Freeze, 3000;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(5391,'Toast_C','Crunch Toast','5',20,NULL,'0',NULL,0,NULL,0,0xFFFFFFFF,7,2,1,NULL,0,0,188,'bonus bMaxHP,100; bonus2 bAddMonsterDropItem,617,10;',NULL,NULL);
