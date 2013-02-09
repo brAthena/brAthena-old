@@ -22712,8 +22712,8 @@ REPLACE INTO `quest_db` VALUES(7068,0,0,0,0,0,0,0,'\"Mensageiro - Prove a verdad
 REPLACE INTO `quest_db` VALUES(7069,0,0,0,0,0,0,0,'\"Mensageiro - Tarde demais!\"');
 REPLACE INTO `quest_db` VALUES(7070,0,0,0,0,0,0,0,'\"Mensageiro - O retorno de Terra\"');
 REPLACE INTO `quest_db` VALUES(7071,0,0,0,0,0,0,0,'\"Mensageiro - Convite\"');
--- REPLACE INTO `quest_db` VALUES(7072,0,0,0,0,0,0,0,'\"\"');
--- REPLACE INTO `quest_db` VALUES(7073,86400,0,0,0,0,0,0,'\"\"');
+/* REPLACE INTO `quest_db` VALUES(7072,0,0,0,0,0,0,0,'\"\"');
+REPLACE INTO `quest_db` VALUES(7073,86400,0,0,0,0,0,0,'\"\"'); */
 REPLACE INTO `quest_db` VALUES(7074,0,2017,1,0,0,0,0,'\"Caçando Rata\"');
 REPLACE INTO `quest_db` VALUES(7075,0,2018,1,0,0,0,0,'\"Caçando Duneyrr\"');
 REPLACE INTO `quest_db` VALUES(7076,0,2026,1,0,0,0,0,'\"Procurando: Dandelion\"');
@@ -23236,8 +23236,8 @@ REPLACE INTO `quest_db` VALUES(9016,0,0,0,0,0,0,0,'\"Mudança de Classe: Bruxo\"'
 REPLACE INTO `quest_db` VALUES(9017,0,0,0,0,0,0,0,'\"Mudança de Classe: Bruxo\"');
 REPLACE INTO `quest_db` VALUES(9018,0,0,0,0,0,0,0,'\"Certificado de Bruxo!\"');
 REPLACE INTO `quest_db` VALUES(9024,0,0,0,0,0,0,0,'\"O garoto de recados de Einbroch\"');
--- REPLACE INTO `quest_db` VALUES(9028,0,0,0,0,0,0,0,'\"strange Mouse\"');
--- REPLACE INTO `quest_db` VALUES(9029,86400,0,0,0,0,0,0,'\"Strange Mouse : present conditions\"');
+/* REPLACE INTO `quest_db` VALUES(9028,0,0,0,0,0,0,0,'\"strange Mouse\"');
+REPLACE INTO `quest_db` VALUES(9029,86400,0,0,0,0,0,0,'\"Strange Mouse : present conditions\"'); */
 REPLACE INTO `quest_db` VALUES(9028,0,0,0,0,0,0,0,'\"Hidra\"');
 REPLACE INTO `quest_db` VALUES(9029,86400,0,0,0,0,0,0,'\"Hidra : condições atuais\"');
 REPLACE INTO `quest_db` VALUES(9030,0,0,0,0,0,0,0,'\"Encontre um filhote de cachorro\"');
@@ -26187,11 +26187,11 @@ REPLACE INTO `skill_require_db` VALUES (1019,'0','0','30','0','0','0','99',0,'0'
 REPLACE INTO `skill_require_db` VALUES (2534,'0','0','1','0','0','0','99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 REPLACE INTO `skill_require_db` VALUES (2535,'0','0','1','0','0','0','99',0,'0','none','0',6377,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 REPLACE INTO `skill_require_db` VALUES (2536,'0','0','1','0','0','0','99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
--- REPLACE INTO `skill_require_db` VALUES (2537,'0','0','70:100','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
--- REPLACE INTO `skill_require_db` VALUES (2538,'0','0','1','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
--- REPLACE INTO `skill_require_db` VALUES (2542,'0','0','1','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
--- REPLACE INTO `skill_require_db` VALUES (2543,'0','0','1','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
--- REPLACE INTO `skill_require_db` VALUES (2544,'0','0','1','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+/* REPLACE INTO `skill_require_db` VALUES (2537,'0','0','70:100','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+REPLACE INTO `skill_require_db` VALUES (2538,'0','0','1','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+REPLACE INTO `skill_require_db` VALUES (2542,'0','0','1','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+REPLACE INTO `skill_require_db` VALUES (2543,'0','0','1','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
+REPLACE INTO `skill_require_db` VALUES (2544,'0','0','1','0','0',0,'99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0); */
 REPLACE INTO `skill_require_db` VALUES (10010,'0','0','1','0','0','0','99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 REPLACE INTO `skill_require_db` VALUES (10011,'0','0','1','0','0','0','99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
 REPLACE INTO `skill_require_db` VALUES (10012,'0','0','1','0','0','0','99',0,'0','none','0',0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0);
