@@ -722,7 +722,7 @@ OnMyMobDead:
 //============================================================
 1@cata,141,221,0	script	Túmulo#	844,3,3,{
 	set .@party_id,getcharid(1);
-	if ('ins_baphomet == 0) {
+	if (ins_baphomet == 0) {
 		mes "O Túmulo está trêmulo...";
 		next;
 		mes "Ao tocá-lo, posso ouvir uma voz";
@@ -759,14 +759,14 @@ OnMyMobDead:
 				next;
 				mes "[Túmulo do Herói]";
 				mes "Se o ^0000FFlíder do grupo^000000 trouxer meu pingente, minha alma será substancializada.";
-				set 'ins_baphomet,1;
+				set ins_baphomet,1;
 				close;
 			case 3:
 				mes "Posso ouvir uma voz fraca.";
 				close;
 			}
 		}
-	} else if ('ins_baphomet == 1) {
+	} else if (ins_baphomet == 1) {
 		mes "[Túmulo do Herói]";
 		mes "O poder de Baphomet pode quebrar o selo que fizemos. Se eu não reativá-los... Ele irá finalmente renascer.";
 		next;
@@ -776,7 +776,7 @@ OnMyMobDead:
 		mes "[Túmulo do Herói]";
 		mes "Para isso você deve achar o meu corpo que deve estar dentro de algum desses túmulos.";
 		close;
-	} else if (('ins_baphomet == 2) && (getpartyleader(.@party_id,2) == getcharid(0))) {
+	} else if ((ins_baphomet == 2) && (getpartyleader(.@party_id,2) == getcharid(0))) {
 		mes "[Túmulo do Herói]";
 		mes "Encontraram meu pingente?";
 		next;
@@ -810,7 +810,7 @@ OnMyMobDead:
 	end;
 
 OnTouch:
-	if ('ins_baphomet == 0) {
+	if (ins_baphomet == 0) {
 		mes "'Krrrr... Krrrr...'";
 		next;
 		mes "Eu posso sentir um sentimento estranho no túmulo. É como que alguém estivesse pedindo algo em silêncio...";
@@ -822,7 +822,7 @@ OnTouch:
 1@cata,176,119,4	script	Alma do Herói#1F	411,{
 	set .@party_id,getcharid(1);
 	cutin "ins_cata_champ_n",2;
-	if ('ins_baphomet == 2) {
+	if (ins_baphomet == 2) {
 		mes "[Alma do Herói]";
 		mes "Com sua ajuda, a minha alma pode ser substancializada. Eu quero falar, mais não temos tempo suficiente...";
 		next;
@@ -935,26 +935,26 @@ OnTouch:
 		if (getpartyleader(.@party_id,2) == getcharid(0)) {
 			mes "[Alma do Herói]";
 			mes "Lembrando novamente, só posso ficar aqui por uma hora. Então devem finalizar o trabalho dentro desse tempo.";
-			set 'ins_baphomet,3;
+			set ins_baphomet,3;
 			donpcevent instance_npcname("ins_baphomet_1f_timer", instance_id())+"::OnEnable";
 			donpcevent instance_npcname("ins_baphomet_lotto2", instance_id())+"::OnEnable";
 			donpcevent instance_npcname("ins_baphomet_lotto3", instance_id())+"::OnEnable";
 		} else {
 			mes "[Alma do Herói]";
 			mes "Lembrando novamente, só posso ficar aqui por uma hora. Então devem finalizar o trabalho dentro desse tempo.";
-			//set 'ins_baphomet,3;
+			//set ins_baphomet,3;
 		}
 		close2;
 		cutin "",255;
 		end;
-	} else if (('ins_baphomet == 3) && (getpartyleader(.@party_id,2) == getcharid(0))) {
+	} else if ((ins_baphomet == 3) && (getpartyleader(.@party_id,2) == getcharid(0))) {
 		cutin "ins_cata_champ_n",2;
 		mes "[Alma do Herói]";
 		mes "Você pegou as 10^0000FFEssências de Fogo^000000 e o ^0000FFSímbolo do Apóstolo^000000?";
 		next;
 		if ((countitem(6001) > 9) && (countitem(6002) > 0)) {
 			delitem 6001,countitem(6001); //Essence_Of_Fire
-			set 'ins_baphomet,4;
+			set ins_baphomet,4;
 			mes "[Alma do Herói]";
 			mes "Ok. Você fez seu trabalho. Agora cheque com seus companheiros se eles já terminaram.";
 		} else {
@@ -964,13 +964,13 @@ OnTouch:
 		close2;
 		cutin "",255;
 		end;
-	} else if ('ins_baphomet == 3) {
+	} else if (ins_baphomet == 3) {
 		cutin "ins_cata_champ_n",2;
 		mes "[Alma do Herói]";
 		mes "Você tem o ^0000FFSímbolo do Apóstolo^000000?";
 		next;
 		if (countitem(6002) > 0) {
-			set 'ins_baphomet,4;
+			set ins_baphomet,4;
 			mes "[Alma do Herói]";
 			mes "Ok. Você fez seu trabalho. Agora cheque com seus companheiros se eles já terminaram.";
 		} else {
@@ -980,12 +980,12 @@ OnTouch:
 		close2;
 		cutin "",255;
 		end;
-	} else if (('ins_baphomet == 4) && (getpartyleader(.@party_id,2) == getcharid(0))) {
+	} else if ((ins_baphomet == 4) && (getpartyleader(.@party_id,2) == getcharid(0))) {
 		cutin "ins_cata_champ_n",2;
 		mes "[Alma do Herói]";
 		mes "Está pronto? Abri a ponte neste momento. Para passar pela ponte, você deve levar o ^0000FFSímbolo do Apóstolo^000000.";
 		next;
-		set 'ins_baphomet,5;
+		set ins_baphomet,5;
 		specialeffect EF_TELEPORTATION;
 		enablenpc instance_npcname("ins_bapho_to_2f", instance_id());
 		mes "[Alma do Herói]";
@@ -999,7 +999,7 @@ OnTouch:
 		cutin "",255;
 		instance_announce 0, "Alma do Herói : Agora já podem ir ao Altar Principal. Ele está localizado no Sudeste do mapa",bc_map,"0xFFFF00";
 		close;
-	} else if ('ins_baphomet == 4) {
+	} else if (ins_baphomet == 4) {
 		cutin "ins_cata_champ_n",2;
 		mes "[Alma do Herói]";
 		mes "Está pronto? Abri a ponte nesse momento. Para passar pela ponte, você deve levar o ^0000FFSímbolo do Apóstolo^000000.";
@@ -1008,7 +1008,7 @@ OnTouch:
 		mes "Irei abrir a ponte quando o Líder do grupo estiver pronto.";
 		cutin "",255;
 		close;
-	} else if ('ins_baphomet == 5) {
+	} else if (ins_baphomet == 5) {
 		cutin "ins_cata_champ_n",2;
 		mes "[Alma do Herói]";
 		mes "O que está fazendo? A entrada para o Altar está aberta, vá e lute! A entrada se encontra no sudeste do mapa.";
@@ -1027,7 +1027,7 @@ OnTouch:
 OnTouch:
 	if (countitem(6002) > 0) {
 		delitem 6002,countitem(6002); // Medalhão do Apóstolo
-		set 'ins_baphomet,5;
+		set ins_baphomet,5;
 		warp "2@cata",80,144;
 		end;
 	} else {
@@ -1039,10 +1039,10 @@ OnTouch:
 
 // Túmulos
 //============================================================
--	script	Túmulo#SS1	-1,{
-	if ('ins_baphomet == 1) {
+1@cata,86,214,0	script	Túmulo#SS1	844,{
+	if (ins_baphomet == 1) {
 		getitem 6003,1; // Pingente do Espírito
-		set 'ins_baphomet,2;
+		set ins_baphomet,2;
 		mes "Um pequeno objeto está brilhando abaixo do antigo túmulo.";
 		next;
 		mes "[" + strcharinfo(0) + "]";
@@ -1053,7 +1053,6 @@ OnTouch:
 		close;
 	}
 }
-1@cata,86,214,0	duplicate(Túmulo#SS1)	Túmulo#1F_1T	844
 1@cata,200,209,0	duplicate(Túmulo#SS1)	Túmulo#1F_2T	844
 1@cata,230,195,0	duplicate(Túmulo#SS1)	Túmulo#1F_3T	844
 1@cata,118,182,0	duplicate(Túmulo#SS1)	Túmulo#1F_4T	844
@@ -1067,11 +1066,10 @@ OnTouch:
 1@cata,127,32,0	duplicate(Túmulo#SS1)	Túmulo#1F_12T	844
 1@cata,267,30,0	duplicate(Túmulo#SS1)	Túmulo#1F_13T	844
 
--	script	Túmulo#SS2	-1,{
-	mes "I can only feel gloom from this Túmulo.";
+1@cata,86,214,0	script	Túmulo#SS2	844,{
+	mes "Posso sentir a tristeza vinda desse túmulo.";
 	close;
 }
-1@cata,86,214,0	duplicate(Túmulo#SS2)	Túmulo#1F_1F	844
 1@cata,200,209,0	duplicate(Túmulo#SS2)	Túmulo#1F_2F	844
 1@cata,230,195,0	duplicate(Túmulo#SS2)	Túmulo#1F_3F	844
 1@cata,118,182,0	duplicate(Túmulo#SS2)	Túmulo#1F_4F	844
@@ -1087,10 +1085,10 @@ OnTouch:
 
 // Tochas
 //============================================================
--	script	Tocha#SS	-1,{
+1@cata,267,210,0	script	Tocha#SS	844,{
 	set .@party_id,getcharid(1);
 	if (getpartyleader(.@party_id,2) == getcharid(0)) {
-		if (('ins_baphomet == 3) && (countitem(6001) < 11)) {
+		if ((ins_baphomet == 3) && (countitem(6001) < 11)) {
 			mes "Uma antiga tocha parece que pode queimar tudo que está a minha volta.";
 			next;
 			mes "Sua grande aparência e o calor de suas chamas me faz voltar... Porém tive coragem e estiquei o braço para segurá-la.";
@@ -1100,7 +1098,7 @@ OnTouch:
 			mes "O símbolo do herdeiro brilha. Nisso um pequeno cristal cai da tocha.";
 			disablenpc instance_npcname(strnpcinfo(0), instance_id());
 			close;
-		} else if (('ins_baphomet == 3) && (countitem(6001) > 10)) {
+		} else if ((ins_baphomet == 3) && (countitem(6001) > 10)) {
 			mes "Você já tem 10 Essências de Fogo. Você não precisa mais pegar nenhuma.";
 			close;
 		} else {
@@ -1117,7 +1115,6 @@ OnTouch:
 		close;
 	}
 }
-1@cata,267,210,0	duplicate(Tocha#SS)	Tocha#1	844
 1@cata,85,182,0	duplicate(Tocha#SS)	Tocha#2	844
 1@cata,267,154,0	duplicate(Tocha#SS)	Tocha#3	844
 1@cata,157,139,0	duplicate(Tocha#SS)	Tocha#4	844
@@ -1274,7 +1271,7 @@ OnTouch:
 
 // Selo Mágicos
 //============================================================
--	script	Selo Mágico#SS	-1,{
+2@cata,79,81,0	script	Selo Mágico#SS	844,{
 	set .@seal_check,checkquest(3041,PLAYTIME);
 	if (.@seal_check == 0 || .@seal_check == 1) {
 		specialeffect2 EF_SILENCEATTACK;
@@ -1300,7 +1297,6 @@ OnTouch:
 	mes "Você não pode colocar o selo novamente durante 3 minutos pois perdeu seu SP com isso.";
 	close;
 }
-2@cata,79,81,0	duplicate(Selo Mágico#SS)	Selo Mágico#0	844
 2@cata,123,109,0	duplicate(Selo Mágico#SS)	Selo Mágico#2	844
 2@cata,123,22,0	duplicate(Selo Mágico#SS)	Selo Mágico#4	844
 2@cata,35,21,0	duplicate(Selo Mágico#SS)	Selo Mágico#8	844
@@ -1308,7 +1304,7 @@ OnTouch:
 
 2@cata,79,65,0	script	Altar Principal#ss	844,{
 	set .@party_id,getcharid(1);
-	if (('ins_baphomet == 5) && (getpartyleader(.@party_id,2) == getcharid(0))) {
+	if ((ins_baphomet == 5) && (getpartyleader(.@party_id,2) == getcharid(0))) {
 		mes "Um poder malígno, terrível demais para descrever, passa pelo altar irradiando uma cor violeta.";
 		next;
 		mes "Pergaminhos Mágicos piscam rapidamente, na tentativa de suprimir esse poder terrível.";
@@ -1319,9 +1315,9 @@ OnTouch:
 		specialeffect EF_METEORSTORM;
 		mes "[" + strcharinfo(0) + "]";
 		mes "Olhem! Algo... Algo está vindo.";
-		set 'ins_baphomet,6;
+		set ins_baphomet,6;
 		donpcevent instance_npcname("ins_2f_hero_broad", instance_id())+"::OnEnable";
-		disablenpc instance_npcname("The Main Altar#ss", instance_id());
+		disablenpc instance_npcname("Altar Principal#ss", instance_id());
 		close;
 	} else {
 		mes "Um poder malígno, terrível demais para descrever, passa pelo altar irradiando uma cor violeta.";
@@ -1339,8 +1335,6 @@ OnTouch:
 	mes "Bom trablaho, meus descendentes... Vocês realizaram meu desejo que muitos não cumprem faz tempo.";
 	next;
 	mes "[Alma do Herói]";
-	next;
-	mes "[Alma do Herói]";
 	mes "Realmente aprecio isso.";
 	mes "Suas almas finalmente podem descansar em paz...";
 	next;
@@ -1355,7 +1349,7 @@ OnTouch:
 		mes "[Alma do Herói]";
 		mes "Quando sair, diga um oi ao Patrick.";
 		cutin "",255;
-		set 'ins_baphomet,0;
+		set ins_baphomet,0;
 		warp "monk_test",310,150;
 		close;
 	case 2:
@@ -1418,7 +1412,7 @@ OnDisable:
 
 OnMyMobDead:
 	if (mobcount("2@cata",instance_npcname("control_baphomet", instance_id())+"::OnMyMobDead") < 1) {
-		set 'ins_baphomet,7;
+		set ins_baphomet,7;
 		erasequest 3041;
 		instance_announce 0, "Baphomet : Não! Nãoooo!Levarei isso como insulto, seus insetos!... Não!!...",bc_map,"0xdb7093";
 		enablenpc instance_npcname("Alma do Herói#2F", instance_id());

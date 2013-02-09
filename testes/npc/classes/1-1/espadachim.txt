@@ -12,21 +12,22 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 2.3/1.0/1.1                         |
+//   | Versões eA/rA/brA: 2.3/1.0/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Mudança de Classe para Espadachim.          |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [Holy e Protimus]                   |
+//   | 1.2 Otimização [Holy & Hold]                           |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
 izlude_in,74,172,4	script	Chefe Espadachim#swd	119,{
+			mes "[Chefe Espadachim]";
 	if (Upper == 1) {
 		if (Class == Job_Novice_High && (ADVJOB == Job_Lord_Knight || ADVJOB == Job_Paladin)) {
-			mes "[Chefe Espadachim]";
 			mes "Isso...";
 			mes "Não pode ser...";
 			mes "Você renasceu, não foi?";
@@ -34,15 +35,14 @@ izlude_in,74,172,4	script	Chefe Espadachim#swd	119,{
 			mes "[Chefe Espadachim]";
 			mes "Saiba que está se entregando ao caminho dos Espadachins! Uma vez que você se acostumou a brandir uma espada, você nunca poderá voltar atrás!!";
 			next;
+      mes "[Chefe Espadachim]";
 			if (getskilllv("NV_BASIC") < 9) {
-				mes "[Chefe Espadachim]";
 				mes "Hum? Ah, você deve primeiro dominar as habilidades básicas antes de estar pronto para se tornar um Espadachim.";
 				next;
 				mes "[Chefe Espadachim]";
 				mes "Volte aqui quando terminar de aprender as habilidades básicas de Aprendiz.";
 				close;
 			}
-			mes "[Chefe Espadachim]";
 			mes "Excelente! Deixe-me promovê-lo a um Espadachim imediatamente!";
 			next;
 			skill 143,0,0;
@@ -53,8 +53,7 @@ izlude_in,74,172,4	script	Chefe Espadachim#swd	119,{
 			mes "[Chefe Espadachim]";
 			mes "Hum... Você parece um Espadachim bem experiente. Ainda assim, eu tenho certeza que você deve treinar para melhorar suas habilidades e ganhar força!";
 			close;
-		} else {
-			mes "[Chefe Espadachim]";
+			}
 			mes "Hum...?";
 			mes "Você é um guerreiro";
 			mes "renascido, não é?";
@@ -67,26 +66,22 @@ izlude_in,74,172,4	script	Chefe Espadachim#swd	119,{
 			mes "mas não há nada que possa";
 			mes "fazer por você.";
 			close;
-		}
 	}
-	mes "[Chefe Espadachim]";
-  if( !checkre(0) ) { 
+  if( !checkre(0) ) {
 	mes "Bem-vindo à Associação dos Espadachins! Em que posso ajudá-lo?";
 	next;
 	switch(select("Mudança de Classe:Sobre os Espadachins:Sobre os requisitos da Classe:Cancelar")) {
 	case 1:
-		if (BaseJob == Job_Swordman) {
 			mes "[Chefe Espadachim]";
+		if (BaseJob == Job_Swordman) {
 			mes "Hahahaha! Você deve estar de brincadeira! Você já é um Espadachim!";
 			close;
 		} else if (BaseJob != Job_Novice) {
-			mes "[Chefe Espadachim]";
 			mes "Hahaha! Vejamos... eu recuso sua oferta em nome da Associação dos Espadachins.";
 			mes "Você já pertence a outra classe, não é?";
 			close;
-		}
+			}
 		if (job_sword_q == 0) {
-			mes "[Chefe Espadachim]";
 			mes "Você quer mudar de classe? Certo, inscreva-se primeiro.";
 			next;
 			if (select("Inscrever-se.:Cancelar.") == 1) {
@@ -111,11 +106,10 @@ izlude_in,74,172,4	script	Chefe Espadachim#swd	119,{
 					close;
 				}
 			}
-      mes "[Chefe Espadachim]";
-      mes "Ah é? Tudo bem, volte quando mudar de idéia.";
-      close;
-		}
-		mes "[Chefe Espadachim]";
+				mes "[Chefe Espadachim]";
+				mes "Ah é? Tudo bem, volte quando mudar de idéia.";
+				close;
+				}
 		if (getskilllv("NV_BASIC") < 9) {
 			mes "Ei, você não aprendeu todas as habilidades básicas necessárias para se tornar um Espadachim!";
 			next;
@@ -140,7 +134,7 @@ izlude_in,74,172,4	script	Chefe Espadachim#swd	119,{
 			mes "[Chefe Espadachim]";
 			mes "Mais uma vez, meus parabéns! Acredito que você esteja a caminho de ser um grande representante da Associação dos Espadachins.";
 			close;
-		}
+			}
 	case 2:
 		mes "[Chefe Espadachim]";
 		mes "Quer saber sobre os Espadachins? Está bem, eu explicarei para você.";
@@ -203,8 +197,8 @@ izlude_in,74,172,4	script	Chefe Espadachim#swd	119,{
 		mes "Na minha opinião, o Espadachim é a mais forte das classes!";
 		close;
 	case 2:
-		if(Class != Job_Novice) {
-			mes "[Chefe Espadachim]";
+		mes "[Chefe Espadachim]";
+      if(Class != Job_Novice) {
 			if(Class == Job_Swordman) {
 				mes "Você já é um excelente Espadachim, não é?";
 				mes "Apenas dedique-se a isso, seja um grande Espadachim.";
@@ -213,9 +207,8 @@ izlude_in,74,172,4	script	Chefe Espadachim#swd	119,{
 				mes "Você foi longe demais com essa piada.";
 			}
 			close;
-		} else {
+			}
 			if (getskilllv("NV_BASIC") < 9) {
-				mes "[Chefe Espadachim]";
 				mes "Sinto muito dizer em isso, mas para ser um Espadachim você deve possuir pelo menos ^4A4AFFNível de Classe 10^000000.";
 				mes "e ^4A4AFFNível de Habilidades Básicas 9^000000.";
 				next;
@@ -224,7 +217,6 @@ izlude_in,74,172,4	script	Chefe Espadachim#swd	119,{
 				mes "Você acha que ser um Espadachim é fácil?";
 				close;
 			}
-			mes "[Chefe Espadachim]";
 			mes "Hum, Verifique tanto o nível de classe como seu nível de habilidades básicas.";
 			mes "Bom. Você quer ser um Espadachim agora?";
 			next;
@@ -243,7 +235,7 @@ izlude_in,74,172,4	script	Chefe Espadachim#swd	119,{
 			callfunc "Job_Change",Job_Swordman;
 			getitem 13415,1; // Alfanje de Iniciante
 			close;
-		}
+
 	case 3:
 		close;
 	}
@@ -271,11 +263,10 @@ izlude_in,62,170,6	script	Espadachim#swd_2	85,{
 		mes "[Espadachim]";
 		mes "Se quiser, inscreva-se nesse formulário antes!";
 		close;
-	} else {
+    }
 		savepoint "izlude_in",65,165;
 		warp "izlude_in",39,170;
 		end;
-	}
 }
 
 izlude_in,30,175,4	script	Espadachim#swd_3	92,{
@@ -301,17 +292,14 @@ izlude_in,30,175,4	script	Espadachim#swd_3	92,{
 
 izlude_in,30,163,0	script	Equipe de Testes do Salão#swd_1	105,{
 	mes "[Equipe de Testes do Salão]";
-	if (BaseJob == Job_Swordman) {
+	if (BaseJob == Job_Swordman)
 		mes "Meu Deus! Como você entrou? Outros Espadachins não devem entrar aqui. Saia agora!";
+	else if (BaseJob != Job_Novice)
+    mes "Quem é você?! Este é o local do Teste de Espadachim, você não devia estar aqui! Saia agora!";
 		close2;
 		warp "izlude_in",66,170;
 		end;
-	} else if (BaseJob != Job_Novice) {
-		mes "Quem é você?! Este é o local do Teste de Espadachim, você não devia estar aqui! Saia agora!";
-		close2;
-		warp "izlude_in",66,170;
-		end;
-	}
+
 	if (job_sword_q == 1) {
 		mes "Então você é aquele que quer ser um Espadachim? Tudo bem! Você me parece confiável!";
 		next;
@@ -333,17 +321,36 @@ izlude_in,30,163,0	script	Equipe de Testes do Salão#swd_1	105,{
 //============================================================
 // 1-1
 job_sword1,230,245,2	script	Médico#swd_1	105,{
-	callfunc "F_JobSwdMedic","1st";
+  if(strnpcinfo(0) == "Médico#swd_1")
+  callsub "JobSwdMedic","1";
+  else if(strnpcinfo(0) == "Médico#2swd_2")
+	callsub "JobSwdMedic","2";
+
+  JobSwdMedic:
+	percentheal 100,0;
+	mes "[Médico]";
+	mes "Aqui é o "+getarg(0)+"º ponto de parada! Anime-se!";
+	close;
+
 }
 job_sword1,230,242,2	script	Equipe de Testes do Salão#swd_2	105,{
-	callfunc "F_JobSwdStaff",1;
+
+  mes "[Equipe de Testes do Salão]";
+  mes "Você desiste?";
+  next;
+  if (select("Sim.:Não.") == 1) {
+    mapannounce "job_sword1","O aspirante " + strcharinfo(0) + " desistiu do teste.",bc_map;
+    warp "izlude_in",65,165;
+    end;
+	}
+	mes "[Equipe de Testes do Salão]";
+	mes "Bravo! Tente novamente!";
+	close;
 }
-job_sword1,230,207,2	script	Médico#2swd_2	105,{
-	callfunc "F_JobSwdMedic","2nd";
-}
-job_sword1,230,204,2	script	Equipe de Testes do Salão#2swd_3	105,{
-	callfunc "F_JobSwdStaff",1;
-}
+
+job_sword1,230,207,2	duplicate(Médico#swd_1)	Médico#2swd_2	105
+job_sword1,230,204,2	duplicate(Equipe de Testes do Salão#swd_2)	Equipe de Testes do Salão#2swd_3	105
+
 job_sword1,223,167,2	script	Mae#swd_1_success	92,{
 	mapannounce "job_sword1"," O aspirante " + strcharinfo(0) + ". passou por todas as fases, concluíndo o teste com sucesso!",bc_map;
 	set job_sword_q,4;
@@ -355,30 +362,20 @@ job_sword1,223,167,2	script	Mae#swd_1_success	92,{
 	end;
 }
 
-// Funções dos NPCs durante o Teste.
-//============================================================
-function	script	F_JobSwdMedic	{
-	percentheal 100,0;
-	mes "[Médico]";
-	mes "Aqui é o "+getarg(0)+"º ponto de parada! Anime-se!";
-	close;
-}
+// Examinação 1º Etapa.
+//============================================================ 
+job_sword1,223,243,0	warp	checkp1-2#swd_1	1,1,job_sword1,11,206
+job_sword1,223,205,0	warp	checkp2-3#swd_1	1,1,job_sword1,11,168
 
-function	script	F_JobSwdStaff	{
-	mes "[Equipe de Testes do Salão]";
-	mes "Você desiste?";
-	next;
-	if (select("Sim.:Não.") == 1) {
-		mapannounce "job_sword1","O aspirante " + strcharinfo(0) + " desistiu do teste.",bc_map;
-		warp "izlude_in",65,165;
-		end;
-	}
-	mes "[Equipe de Testes do Salão]";
-	mes "Bravo! Tente novamente!";
-	close;
-}
+job_sword1,7,245,0	script	Equipe de Testes do Salão#swd_4	45,1,3,{
+	if(strnpcinfo(0) == "Equipe de Testes do Salão#swd_4")
+	callsub "JobSwdTestStaff",10,245;
+	else if(strnpcinfo(0) == "Equipe de Testes do Salão#swd_5")
+	callsub "JobSwdTestStaff",11,207;
+	else if(strnpcinfo(0) == "Equipe de Testes do Salão#swd_6")
+	callsub "JobSwdTestStaff",11,169;
 
-function	script	F_JobSwdTestStaff	{
+JobSwdTestStaff:
 OnTouch:
 	mes "[Equipe de Testes do Salão]";
 	mes "Você desiste?";
@@ -392,42 +389,27 @@ OnTouch:
 	end;
 }
 
-function	script	F_JobSwdTestStaff2	{
+job_sword1,8,207,0	duplicate(Equipe de Testes do Salão#swd_4)	Equipe de Testes do Salão#swd_5	45,1,6
+job_sword1,8,169,0	duplicate(Equipe de Testes do Salão#swd_4)	Equipe de Testes do Salão#swd_6	45,1,6
+
+job_sword1,192,244,0	script	Equipe de Testes do Salão#swd_7	45,1,3,{
+	if(strnpcinfo(0) == "Equipe de Testes do Salão#swd_7")
+	callsub "JobSwdTestStaff2","1°",215,244;
+	else if(strnpcinfo(0) == "Equipe de Testes do Salão#swd_8") {
+	callsub "JobSwdTestStaff2","2°",215,205;
+	warp "job_sword1",215,205;
+	} else if(strnpcinfo(0) == "Equipe de Testes do Salão#swd_9")
+	callsub "JobSwdTestStaff2","3°",215,167;
+  
+JobSwdTestStaff2:
 OnTouch:
 	mapannounce "job_sword1","O aspirante " + strcharinfo(0) + ". Passou da "+getarg(0)+"º etapa.",bc_map;
 	warp "job_sword1",getarg(1),getarg(2);
 	end;
 }
 
-// Examinação 1º Etapa.
-//============================================================ 
-job_sword1,223,243,0	warp	checkp1-2#swd_1	1,1,job_sword1,11,206
-job_sword1,223,205,0	warp	checkp2-3#swd_1	1,1,job_sword1,11,168
-
-job_sword1,7,245,0	script	Equipe de Testes do Salão#swd_4	45,1,3,{
-	callfunc "F_JobSwdTestStaff",10,245;
-}
-
-job_sword1,8,207,0	script	Equipe de Testes do Salão#swd_5	45,1,6,{
-	callfunc "F_JobSwdTestStaff",11,207;
-}
-
-job_sword1,8,169,0	script	Equipe de Testes do Salão#swd_6	45,1,6,{
-	callfunc "F_JobSwdTestStaff",11,169;
-}
-
-job_sword1,192,244,0	script	Equipe de Testes do Salão#swd_7	45,1,3,{
-	callfunc "F_JobSwdTestStaff2","1°",215,244;
-}
-
-job_sword1,193,207,0	script	Equipe de Testes do Salão#swd_8	45,1,3,{
-	callfunc "F_JobSwdTestStaff2","2°",215,205;
-	warp "job_sword1",215,205;
-}
-
-job_sword1,193,168,0	script	Equipe de Testes do Salão#swd_9	45,1,3,{
-	callfunc "F_JobSwdTestStaff2","3°",215,167;
-}
+job_sword1,193,207,0	duplicate(Equipe de Testes do Salão#swd_7)	Equipe de Testes do Salão#swd_8	45,1,3
+job_sword1,193,168,0	duplicate(Equipe de Testes do Salão#swd_7)	Equipe de Testes do Salão#swd_9	45,1,3
 
 // Armadilhas (1º Etapa)
 //============================================================ 
@@ -493,7 +475,6 @@ job_sword1,181,250,0	duplicate(EspArma1)	1_blank_13_c	-1,1,0
 job_sword1,180,238,0	duplicate(EspArma1)	1_blank_14_a	-1,0,1
 job_sword1,183,238,0	duplicate(EspArma1)	1_blank_14_b	-1,0,1
 job_sword1,181,239,0	duplicate(EspArma1)	1_blank_14_c	-1,1,0
-
 job_sword1,193,245,0	warp	1_resto	1,3,job_sword1,215,244
 
 // Armadilhas (2º Etapa)
@@ -518,7 +499,6 @@ job_sword1,56,203,0	duplicate(EspArma2)	2_blank_2_e	-1,40,0
 job_sword1,95,203,0	duplicate(EspArma2)	2_blank_2_f	-1,2,0
 job_sword1,56,201,0	duplicate(EspArma2)	2_blank_3_a	-1,40,0
 job_sword1,95,201,0	duplicate(EspArma2)	2_blank_3_b	-1,2,0
-
 job_sword1,113,212,0	duplicate(EspArma2)	2_blank_4_a	-1,14,0
 job_sword1,125,212,0	duplicate(EspArma2)	2_blank_4_b	-1,2,0
 job_sword1,113,210,0	duplicate(EspArma2)	2_blank_5_a	-1,14,0
@@ -529,7 +509,6 @@ job_sword1,113,203,0	duplicate(EspArma2)	2_blank_5_e	-1,14,0
 job_sword1,125,210,0	duplicate(EspArma2)	2_blank_5_f	-1,2,0
 job_sword1,113,201,0	duplicate(EspArma2)	2_blank_6_a	-1,14,0
 job_sword1,113,201,0	duplicate(EspArma2)	2_blank_6_b	-1,2,0
-
 job_sword1,155,212,0	duplicate(EspArma2)	2_blank_7_a	-1,21,0
 job_sword1,181,212,0	duplicate(EspArma2)	2_blank_7_b	-1,2,0
 job_sword1,155,210,0	duplicate(EspArma2)	2_blank_8_a	-1,21,0
