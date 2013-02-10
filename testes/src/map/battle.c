@@ -5848,6 +5848,8 @@ static const struct _battle_data {
 	{ "supports_castle_gvg",                &battle_config.supports_castle_gvg,               1,    0,              1,      },
 	{ "max_atk",                            &battle_config.max_atk,                       10000,    0,        INT_MAX,      },
 	{ "hanbok_ignorepalette",               &battle_config.hanbok_ignorepalette,              0,    0,       1,             },
+	{ "max_rename_char",                    &battle_config.max_rename_char,             	  0,    0,       INT_MAX,       },
+	{ "change_slot_system",                 &battle_config.change_slot_system,             	  0,    0,       INT_MAX,       },
 };
 #ifndef STATS_OPT_OUT
 /**
