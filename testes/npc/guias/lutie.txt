@@ -25,7 +25,7 @@
 
 xmas,140,137,3	script	Guia de Lutie#xmas	717,{
 	mes "[Guia de Lutie]";
-	mes "Bem-vindo á ^8B4513Lutie^000000,";
+	mes "Bem-vindo à ^8B4513Lutie^000000,";
 	mes "a Cidade da Neve.";
 	mes "Precisa de alguma ajuda para andar pela cidade?";
 	while (1) {

@@ -29,7 +29,7 @@ aldebaran,139,63,4	script	Guia#01aldebaran	105,{
 	if(checkre(0)) {
 		// Renewal
 		mes "[Guia de Al De Baran]";
-		mes "Bem-vindo á ^8B4513Al De Baran^000000,";
+		mes "Bem-vindo à ^8B4513Al De Baran^000000,";
 		mes "a cidade fronteira.";
 		mes "Precisa de alguma ajuda para se localizar?";
 		next;
