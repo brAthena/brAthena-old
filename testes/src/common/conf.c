@@ -20,7 +20,7 @@
 #include "../common/showmsg.h" // ShowError
 #include <string.h> // read_message
 
-static char lang_file[256] = "conf/lang/pt_br.conf"; // default pt-br
+struct brathena_config bra_config;
 
 int conf_read_file(config_t *config, const char *config_filename)
 {
@@ -138,7 +138,7 @@ char *read_message(const char *param)
 
 	config_init(&configLang);
 
-	if(!config_read_file(&configLang, lang_file)) {
+	if(!config_read_file(&configLang, (!strlen(bra_config.lang_file)?"conf/lang/pt_br.conf":bra_config.lang_file))) {
 		ShowError("read_message erro: %s:%d - %s\n", config_error_file(&configLang), config_error_line(&configLang), config_error_text(&configLang));
 		config_destroy(&configLang);
 		return "";
@@ -155,18 +155,27 @@ char *read_message(const char *param)
 	return message;
 }
 
-void read_server_lang(void)
+// Leitura de configurações exclusivas do brAthena.
+void read_brathena_config(void)
 {
-	const char *tmpvar = "conf/battle/brathena.conf";
-	config_t configFile;
+	const char *tmpchar;
+	int tmpint;
+	config_t configbrA;
+	
+	memset(&bra_config, 0, sizeof(bra_config));
+	config_init(&configbrA);
+	
+	if(!config_read_file(&configbrA, "conf/battle/brathena.conf")) {
+		ShowError("read_brathena_config erro: %s:%d - %s\n", config_error_file(&configbrA), config_error_line(&configbrA), config_error_text(&configbrA));
+		config_destroy(&configbrA);
+	}	
 
-	config_init(&configFile);
+	if(config_lookup_int(&configbrA, "max_rename_char", &tmpint))               // Max. rename system
+		bra_config.max_rename_char = tmpint;
+	if(config_lookup_string(&configbrA, "lang_file", &tmpchar))                 // Server lang
+		strncpy(bra_config.lang_file, tmpchar, sizeof(bra_config.lang_file));
+	if(config_lookup_int(&configbrA, "change_slot_system", &tmpint))            // Change slot system
+		bra_config.change_slot_system = tmpint;
 
-	if(!config_read_file(&configFile, tmpvar) || !config_lookup_string(&configFile, "lang_file", &tmpvar)) {
-		ShowError("read_server_lang erro: %s:%d - %s\n", config_error_file(&configFile), config_error_line(&configFile), config_error_text(&configFile));
-		config_destroy(&configFile);
-	}
-
-	strncpy(lang_file, tmpvar, sizeof(lang_file));
-	config_destroy(&configFile);
+	config_destroy(&configbrA);
 }

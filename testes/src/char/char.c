@@ -1432,6 +1432,10 @@ int make_new_char_sql(struct char_session_data *sd, char *name_, int str, int ag
 {
 #endif
 
+#if PACKETVER < 20111025
+	bra_config.max_rename_char = 0;
+#endif
+
 	char name[NAME_LENGTH];
 	char esc_name[NAME_LENGTH*2+1];
 	int char_id, flag;
@@ -1479,11 +1483,11 @@ int make_new_char_sql(struct char_session_data *sd, char *name_, int str, int ag
 #if PACKETVER >= 20120307
 	//Insert the new char entry to the database
 	if(SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s` (`account_id`, `char_num`, `name`, `zeny`, `status_point`,`str`, `agi`, `vit`, `int`, `dex`, `luk`, `max_hp`, `hp`,"
-	                          "`max_sp`, `sp`, `hair`, `hair_color`, `last_map`, `last_x`, `last_y`, `save_map`, `save_x`, `save_y`) VALUES ("
-	                          "'%d', '%d', '%s', '%d',  '%d','%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d','%d', '%d','%d', '%d', '%s', '%d', '%d', '%s', '%d', '%d')",
+	                          "`max_sp`, `sp`, `hair`, `hair_color`, `last_map`, `last_x`, `last_y`, `save_map`, `save_x`, `save_y`, `rename`) VALUES ("
+	                          "'%d', '%d', '%s', '%d',  '%d','%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d','%d', '%d','%d', '%d', '%s', '%d', '%d', '%s', '%d', '%d', '%d')",
 	                          char_db, sd->account_id , slot, esc_name, start_zeny, 48, str, agi, vit, int_, dex, luk,
 	                          (40 * (100 + vit)/100) , (40 * (100 + vit)/100), (11 * (100 + int_)/100), (11 * (100 + int_)/100), hair_style, hair_color,
-	                          mapindex_id2name(start_point.map), start_point.x, start_point.y, mapindex_id2name(start_point.map), start_point.x, start_point.y)) {
+	                          mapindex_id2name(start_point.map), start_point.x, start_point.y, mapindex_id2name(start_point.map), start_point.x, start_point.y, bra_config.max_rename_char)) {
 		Sql_ShowDebug(sql_handle);
 		return -2; //No, stop the procedure!
 	}
@@ -1491,10 +1495,10 @@ int make_new_char_sql(struct char_session_data *sd, char *name_, int str, int ag
 	//Insert the new char entry to the database
 	if(SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s` (`account_id`, `char_num`, `name`, `zeny`, `str`, `agi`, `vit`, `int`, `dex`, `luk`, `max_hp`, `hp`,"
 	                          "`max_sp`, `sp`, `hair`, `hair_color`, `last_map`, `last_x`, `last_y`, `save_map`, `save_x`, `save_y`) VALUES ("
-	                          "'%d', '%d', '%s', '%d',  '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d','%d', '%d','%d', '%d', '%s', '%d', '%d', '%s', '%d', '%d')",
+	                          "'%d', '%d', '%s', '%d',  '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d','%d', '%d','%d', '%d', '%s', '%d', '%d', '%s', '%d', '%d', '%d')",
 	                          char_db, sd->account_id , slot, esc_name, start_zeny, str, agi, vit, int_, dex, luk,
 	                          (40 * (100 + vit)/100) , (40 * (100 + vit)/100), (11 * (100 + int_)/100), (11 * (100 + int_)/100), hair_style, hair_color,
-	                          mapindex_id2name(start_point.map), start_point.x, start_point.y, mapindex_id2name(start_point.map), start_point.x, start_point.y)) {
+	                          mapindex_id2name(start_point.map), start_point.x, start_point.y, mapindex_id2name(start_point.map), start_point.x, start_point.y, bra_config.max_rename_char)) {
 		Sql_ShowDebug(sql_handle);
 		return -2; //No, stop the procedure!
 	}
@@ -1784,7 +1788,7 @@ int mmo_char_tobuf(uint8 *buffer, struct mmo_charstatus *p)
 #endif
 #if PACKETVER != 20111116 //2011-11-16 wants 136, ask gravity.
 #if PACKETVER >= 20110928
-	WBUFL(buf,132) = 0;  // change slot feature (0 = disabled, otherwise enabled)
+	WBUFL(buf,132) = bra_config.change_slot_system;  // change slot feature (0 = disabled, otherwise enabled)
 	offset += 4;
 #endif
 #if PACKETVER >= 20111025

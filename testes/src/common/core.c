@@ -317,7 +317,7 @@ int main(int argc, char **argv)
 	}
 
 	malloc_init();// needed for Show* in display_title() [FlavioJS]
-	read_server_lang();
+	read_brathena_config();
 
 #ifdef MINICORE // minimalist Core
 	display_title();

@@ -97,6 +97,11 @@ enum msg_type {
     MSG_FATALERROR
 };
 
+extern struct brathena_config {
+	int max_rename_char, change_slot_system;
+	char lang_file[128];
+} bra_config;
+
 extern void ClearScreen(void);
 extern void ShowMessage(const char *, ...);
 extern void ShowStatus(const char *, ...);
@@ -110,6 +115,6 @@ extern void ShowFatalError(const char *, ...);
 extern void ShowConfigWarning(config_setting_t *config, const char *string, ...);
 
 extern char *read_message(const char *param);
-extern void read_server_lang(void);
+extern void read_brathena_config(void);
 
 #endif /* _SHOWMSG_H_ */
