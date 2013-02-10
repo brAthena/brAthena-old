@@ -60,7 +60,7 @@ enum e_pc_permission {
 	PC_PERM_CAN_SHOP    		= 0x400000,    // [Megasantos]
 	PC_PERM_CAN_DROPS    		= 0x800000,    // [Megasantos]
 	PC_PERM_DISABLE_EXP    		= 0x1000000,   // [Megasantos]
-	PC_PERM_CAN_ATTACK    		= 0x2000000,   // [Holy]
+	PC_PERM_NOT_ATTACK    		= 0x2000000,   // [Holy]
 };
 
 static const struct {
@@ -92,7 +92,7 @@ static const struct {
 	{ "can_shop", PC_PERM_CAN_SHOP },       // [Megasantos]
 	{ "can_drops", PC_PERM_CAN_DROPS },     // [Megasantos]
 	{ "disable_exp", PC_PERM_DISABLE_EXP }, // [Megasantos]
-	{ "can_attack", PC_PERM_CAN_ATTACK },   // [Holy]
+	{ "not_attack", PC_PERM_NOT_ATTACK },   // [Holy]
 };
 
 #endif // _PC_GROUPS_H_

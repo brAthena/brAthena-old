@@ -5285,7 +5285,7 @@ int battle_check_target(struct block_list *src, struct block_list *target,int fl
 			//Checks on source master
 		case BL_PC: {
 				struct map_session_data *sd = BL_CAST(BL_PC, s_bl);
-				if(!pc_has_permission(sd, PC_PERM_CAN_ATTACK) && (t_bl->type != BL_NUL))
+				if(pc_has_permission(sd, PC_PERM_NOT_ATTACK) && (t_bl->type != BL_NUL))
 					return 0;
 				if(s_bl != t_bl) {
 					if(sd->state.killer) {
