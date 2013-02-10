@@ -29,9 +29,10 @@
 OnAgitInit2:
 OnRecvCastle2:
 	if (strnpcinfo(2) == "template") end;
+if(getmapflag(strnpcinfo(2),mf_set_castle) != 0 && agitcheck2()) {
 	if (!getcastledata(strnpcinfo(2),1)) {
 		donpcevent strnpcinfo(0)+"::OnStart";
-		// Monster spawns são idênticos for all castles.
+		// A invocação de monstro é idêntica em todos os castelos.
 		monster strnpcinfo(2),0,0,"Druída Maligno",1117,10;
 		monster strnpcinfo(2),0,0,"Khalitzburg",1132,4;
 		monster strnpcinfo(2),0,0,"Cavaleiro do Abismo",1219,3;
@@ -45,6 +46,7 @@ OnRecvCastle2:
 		monster strnpcinfo(2),0,0,"Cavaleiro Sanguinário",1268,2;
 		monster strnpcinfo(2),0,0,"Senhor das Trevas",1272,2;
 		monster strnpcinfo(2),0,0,"Gerente",1270,4;
+	}
 	}
 	if (getcastledata(strnpcinfo(2),9) < 1)
 		disablenpc "Funcionária Kafra#"+substr(strnpcinfo(2),0,1)+substr(strnpcinfo(2),8,9);
@@ -108,6 +110,7 @@ OnEmpSpawn:
 		else if (strnpcinfo(2) == "schg_cas03") setarray .@i[0],338,202;
 		else setarray .@i[0],120,272;	// Castelos 1,4,5 são idênticos.
 	}
+	if(getmapflag(strnpcinfo(2),mf_set_castle) != 0 && agitcheck2())
 	monster strnpcinfo(2),.@i[0],.@i[1],"Emperium",1288,1,"Mordomo#"+.@str$+"::OnStartArena";
 	end;
 
@@ -1461,7 +1464,7 @@ OnReset:
 	end;
 }
 
-// Runas Guardiãs Construção (2)
+// Construção das Runas Guardiãs (2)
 //============================================================
 -	script	df#template	-1,{
 OnEnable:
@@ -1509,7 +1512,7 @@ OnTimer300000:
 	end;
 }
 
-// Construção de Barricadas (4)
+// Construção das Barricadas (4)
 //============================================================
 -	script	RL#template	-1,{
 OnEnable:

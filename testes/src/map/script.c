@@ -417,7 +417,8 @@ enum {
     MF_MONSTER_NOTELEPORT,
     MF_PVP_NOCALCRANK,  //50
     MF_BATTLEGROUND,
-    MF_RESET
+    MF_RESET,
+    MF_SET_CASTLE
 };
 
 const char *script_op2name(int op)
@@ -10362,6 +10363,7 @@ BUILDIN_FUNC(getmapflag)
 			case MF_PVP_NOCALCRANK:     script_pushint(st,map[m].flag.pvp_nocalcrank); break;
 			case MF_BATTLEGROUND:       script_pushint(st,map[m].flag.battleground); break;
 			case MF_RESET:              script_pushint(st,map[m].flag.reset); break;
+			case MF_SET_CASTLE:         script_pushint(st,map[m].set_castle); break;
 		}
 	}
 

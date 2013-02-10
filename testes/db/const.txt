@@ -371,6 +371,9 @@ mf_pvp_nocalcrank	50
 mf_battleground	51
 mf_reset	52
 
+// [ brAthena]
+mf_set_castle	53
+
 cell_walkable	0
 cell_shootable	1
 cell_water	2
