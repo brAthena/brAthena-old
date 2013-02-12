@@ -84,20 +84,28 @@ ra_fild08,0,0,0,0	monster	Vento da Colina	1680,20,5000,0,0
 ra_fild08,0,0,0,0	monster	Filhote de Lobo	1107,10,5000,0,0
 ra_fild08,0,0,0,0	monster	Anopheles	1627,10,5000,0,0
 
+//==================================================
 // ra_fild09 - Desativado na Renovação
+//==================================================
+
 //==================================================
 // ra_fild10 - Desativado na Renovação
 //==================================================
+
+//==================================================
 // ra_fild11 - Desativado na Renovação
 //==================================================
+//ra_fild11,0,0,0,0	monster	Planta Amarela	1081,15,10000,0,1
+//ra_fild11,0,0,0,0	monster	Planta Azul	1078,5,10000,0,1
 
+//==================================================
 // ra_fild12 - Planície de Ida
 //==================================================
 ra_fild12,0,0,0,0	monster	Roween	1782,130,5000,0,0
 ra_fild12,0,0,0,0	monster	Anopheles	1627,30,5000,0,0
 ra_fild12,0,0,0,0	monster	Filhote de Lobo	1107,15,5000,0,0
-ra_fild12,0,0,0,0	monster	Planta Amarela	1081,15,5000,0,1
-ra_fild12,0,0,0,0	monster	Planta Vermelha	1078,5,5000,0,1
+ra_fild12,0,0,0,0	monster	Planta Amarela	1081,15,10000,0,1
+ra_fild12,0,0,0,0	monster	Planta Vermelha	1078,5,10000,0,1
 
 //==================================================
 // ra_fild13 - Desativado na Renovação

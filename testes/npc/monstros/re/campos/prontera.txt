@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: ??/1.5/1.1                          |
+//   | Versões eA/rA/brA: ??/1.6/1.1                          |
 //   |--------------------------------------------------------|
 //   | Descrição: Monstros dos Campos de Prontera.            |
 //   |--------------------------------------------------------|
@@ -61,7 +61,7 @@ prt_fild03,0,0,0,0	monster	Choco	1214,1,5000,0,0
 prt_fild03,296,58,15,15	monster	Planta Verde	1080,5,180000,90000,1
 prt_fild03,296,58,15,15	monster	Planta Azul	1079,2,900000,450000,1
 prt_fild03,307,75,5,5	monster	Planta Verde	1080,5,360000,180000,1
-//prt_fild03,147,319,5,5	monster	Planta Verde	1080,5,360000,180000,1
+prt_fild03,147,219,5,5	monster	Planta Verde	1080,5,360000,180000,1
 prt_fild03,148,107,5,5	monster	Planta Verde	1080,5,360000,180000,1
 
 //==================================================
@@ -87,8 +87,7 @@ prt_fild05,208,37,10,10	monster	Planta Azul	1079,1,900000,450000,1
 prt_fild06,0,0,0,0	monster	Fabre	1007,140,5000,0,0
 prt_fild06,0,0,0,0	monster	Poring	1002,30,5000,0,0
 prt_fild06,0,0,0,0	monster	Lunático	1063,30,5000,0,0
-/* prt_fild06,222,30,40,10	monster	Planta Verde	1080,15,900000,450000,1
-Linha comentada essas plantas não podem ser geradas de qualquer maneira, talvez a Gravity arrume qualquer dia. */
+prt_fild06,222,30,40,10	monster	Planta Verde	1080,15,900000,450000,1
 
 //==================================================
 // prt_fild07 - Arredores de Prontera 
