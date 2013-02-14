@@ -74,7 +74,6 @@ yuno_fild01,208,17,0	warp	yunfild-alde	1,1,aldebaran,140,242
 
 // =============== Campos de Hugel ===============
 yuno_fild05,372,325,0	warp	hu001	1,1,yuno_fild06,42,319
-yuno_fild06,40,319,0	warp	hu001a	1,1,yuno_fild05,370,325
 yuno_fild06,217,27,0	warp	hu002	1,1,yuno_fild03,214,381
 yuno_fild03,214,383,0	warp	hu002a	1,1,yuno_fild06,217,29
 yuno_fild06,369,136,0	warp	hu003	1,1,hu_fild04,28,126
@@ -85,11 +84,12 @@ yuno_fild06,149,369,0	warp	hu005	1,1,hu_fild01,139,37
 hu_fild01,139,35,0	warp	hu005a	1,1,yuno_fild06,151,369
 hu_fild04,381,187,0	warp	hu006	1,1,hu_fild05,34,202
 hu_fild05,32,202,0	warp	hu006a	1,1,hu_fild04,379,187
-hu_fild05,91,42,0	warp	hu007	1,1,hu_fild07,80,369
-hu_fild07,80,371,0	warp	hu007a	1,1,hu_fild05,91,44
-hu_fild07,35,351,0	warp	hu008	1,1,yuno_fild02,384,338
-yuno_fild02,384,340,0	warp	hu008a	1,1,hu_fild07,37,351
-hu_fild07,56,36,0	warp	hu009	1,1,yuno_fild09,47,375
-yuno_fild09,47,377,0	warp	hu009a	1,1,hu_fild07,56,38
-hu_fild07,226,36,0	warp	hu010	1,1,yuno_fild09,220,372
-yuno_fild09,220,374,0	warp	hu010a	1,1,hu_fild07,226,38
+hu_fild05,91,42,0	warp#pre	hu007	1,1,hu_fild07,80,369
+hu_fild07,80,371,0	warp#pre	hu007a	1,1,hu_fild05,91,44
+hu_fild07,35,351,0	warp#pre	hu008	1,1,yuno_fild02,384,338
+yuno_fild02,384,340,0	warp#pre	hu008a	1,1,hu_fild07,37,351
+hu_fild07,56,36,0	warp#pre	hu009	1,1,yuno_fild09,47,375
+yuno_fild09,47,377,0	warp#pre	hu009a	1,1,hu_fild07,56,38
+hu_fild07,226,36,0	warp#pre	hu010	1,1,yuno_fild09,220,372
+yuno_fild09,220,374,0	warp#pre	hu010a	1,1,hu_fild07,226,38
+yuno_fild06,40,319,0	warp#pre	hu001a	1,1,yuno_fild05,370,325,{}

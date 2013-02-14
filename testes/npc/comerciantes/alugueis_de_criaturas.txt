@@ -193,7 +193,7 @@ hu_in01,381,304,5	script	Adestrador de Falcões#hnt	105,{
 
 // -------------- Criador de Dragões --------------
 //============================================================
-job3_rune01,88,62,5	script	Criador de Dragões	105,{
+job3_rune01,88,62,5	script#re	Criador de Dragões	105,{
 	mes "[Criador de Dragões]";
 	if (Class == Job_Rune_Knight || Class == Job_Rune_Knight_T || Class == Job_Baby_Rune) {
 		mes "Bem-vindo. Você deseja adquirir um Dragão?";
@@ -224,7 +224,7 @@ job3_rune01,88,62,5	script	Criador de Dragões	105,{
 
 // -------------- Mestre de Dragões / Grifos --------------
 //============================================================
-prontera,130,213,5	script	Mestre em Criaturas de Montaria	105,{
+prontera,130,213,5	script#re	Mestre em Criaturas de Montaria	105,{
 	mes "[Mestre em Criaturas de Montaria]";
 	if (Class == Job_Rune_Knight || Class == Job_Rune_Knight_T || Class == Job_Baby_Rune) {
 		mes "Bem-vindo. Você deseja obter um Dragão?";
@@ -277,7 +277,7 @@ prontera,130,213,5	script	Mestre em Criaturas de Montaria	105,{
 
 // -------------- NPC Removedor de Pecopecos --------------
 //============================================================
-prontera,125,208,5	script	Removedor de Pecopecos	105,{
+prontera,125,208,5	script#re	Removedor de Pecopecos	105,{
 	mes "[Soldado]";
 	mes "Se voce deseja desmontar de seu Pecopeco";
 	mes "por alguma razão, por favor";
@@ -307,7 +307,7 @@ prontera,125,208,5	script	Removedor de Pecopecos	105,{
 
 // -------------- Aluguel de Robôs --------------
 //============================================================
-prontera,163,178,4	script	Artilheiro Mágico	105,{
+prontera,163,178,4	script#re	Artilheiro Mágico	105,{
 	mes "[Artilheiro Mágico]";
 	if (Class == Job_Mechanic || Class == Job_Mechanic_T || Class == Job_Baby_Mechanic) {
 		mes "Bem-vindo. Você deseja adquirir um Robô?";

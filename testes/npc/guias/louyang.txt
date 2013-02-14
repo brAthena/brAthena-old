@@ -226,7 +226,7 @@ louyang,224,104,4	script	Louyang Guide#01louyang	818,{
 	}
 }
 
-louyang,213,213,3	script	Soldier#Lou	825,{
+louyang,213,213,3	script#pre	Soldier#Lou	825,{
 	mes "[Soldier]";
 	mes "Welcome to Louyang,";
 	mes "a city with a long";
@@ -336,4 +336,4 @@ louyang,213,213,3	script	Soldier#Lou	825,{
 	close;
 }
 
-louyang,160,175,3	duplicate(Soldier#Lou)	Soldier#BB	825
+louyang,160,175,3	duplicatp(Soldier#Lou)	Soldier#BB	825,{}

@@ -2255,7 +2255,7 @@ static const char *npc_skip_script(const char *start, const char *buffer, const 
 
 	// initial bracket (assumes the previous part is ok)
 	p = strchr(start,'{');
-	if(p == NULL) {
+	if(!p) {
 		ShowError("npc_skip_script: Missing left curly in file '%s', line'%d'.", filepath, strline(buffer,start-buffer));
 		return NULL;// can't continue
 	}
@@ -2450,9 +2450,11 @@ const char *npc_parse_duplicate(char *w1, char *w2, char *w3, char *w4, const ch
 		ShowError("npc_parse_script: bad duplicate name in file '%s', line '%d' : %s\n", filepath, strline(buffer,start-buffer), w2);
 		return end;// next line, try to continue
 	}
+	
 	safestrncpy(srcname, w2+10, length-10);
 
 	dnd = npc_name2id(srcname);
+
 	if(dnd == NULL) {
 		ShowError("npc_parse_script: original npc not found for duplicate in file '%s', line '%d' : %s\n", filepath, strline(buffer,start-buffer), srcname);
 		return end;// next line, try to continue
@@ -3388,24 +3390,52 @@ void npc_parsesrcfile(const char *filepath, bool runOnInit)
 			}
 		}
 
-		if(strcasecmp(w2,"warp") == 0 && count > 3) {
+			#ifdef RENEWAL
+			if((!strcasecmp(w2,"warp") || !strcasecmp(w2,"warp#re")) && count > 3) {
+			#else
+			if((!strcasecmp(w2,"warp") ||	!strcasecmp(w2,"warp#pre")) && count > 3) {
+			#endif
 			p = npc_parse_warp(w1,w2,w3,w4, p, buffer, filepath);
-		} else if((!strcasecmp(w2,"shop") || !strcasecmp(w2,"cashshop")) && count > 3) {
+			#ifdef RENEWAL
+		} else if((strcasecmp(w2,"shop") == 0 || strcasecmp(w2,"cashshop") == 0 || strcasecmp(w2,"shop#re") == 0 || strcasecmp(w2,"cashshop#re") == 0) && count > 3) {
+			#else
+		} else if((strcasecmp(w2,"shop") == 0 || strcasecmp(w2,"cashshop") == 0 || strcasecmp(w2,"shop#pre") == 0 || strcasecmp(w2,"cashshop#pre") == 0) && count > 3) {
+			#endif
 			p = npc_parse_shop(w1,w2,w3,w4, p, buffer, filepath);
-		} else if(strcasecmp(w2,"script") == 0 && count > 3) {
+			#ifdef RENEWAL
+		} else if(strcasecmp(w2,"script") == 0 && count > 3 || strcasecmp(w2,"script#re") == 0 && count > 3) {
+			#else
+		} else if(strcasecmp(w2,"script") == 0 && count > 3 || strcasecmp(w2,"script#pre") == 0 && count > 3) {
+			#endif
 			if(strcasecmp(w1,"function") == 0)
 				p = npc_parse_function(w1, w2, w3, w4, p, buffer, filepath);
 			else
 				p = npc_parse_script(w1,w2,w3,w4, p, buffer, filepath,runOnInit);
-		} else if((i=0, sscanf(w2,"duplicate%n",&i), (i > 0 && w2[i] == '(')) && count > 3) {
+		}
+		#ifdef RENEWAL
+		else if((i=0, sscanf(w2,"duplicate%n",&i), (i > 0 && w2[i] == '(')) && count > 3 || (i=0, sscanf(w2,"duplicatr%n",&i), (i > 0 && w2[i] == '(')) && count > 3) {
+		#else
+		else if((i=0, sscanf(w2,"duplicate%n",&i), (i > 0 && w2[i] == '(')) && count > 3 || (i=0, sscanf(w2,"duplicatp%n",&i), (i > 0 && w2[i] == '(')) && count > 3) {
+		#endif
 			p = npc_parse_duplicate(w1,w2,w3,w4, p, buffer, filepath);
-		} else if((strcmpi(w2,"monster") == 0 || strcmpi(w2,"boss_monster") == 0) && count > 3) {
+			#ifdef RENEWAL
+		} else if((strcmpi(w2,"monster") == 0 || strcmpi(w2,"boss_monster") == 0 || !strcmpi(w2,"monster#re") || !strcmpi(w2,"boss_monster#re")) && count > 3) {
+			#else
+    } else if((strcmpi(w2,"monster") == 0 || strcmpi(w2,"boss_monster") == 0 || !strcmpi(w2,"monster#pre") || !strcmpi(w2,"boss_monster#pre")) && count > 3) {
+			#endif
 			p = npc_parse_mob(w1, w2, w3, w4, p, buffer, filepath);
 		} else if(strcmpi(w2,"mapflag") == 0 && count >= 3) {
 			p = npc_parse_mapflag(w1, w2, trim(w3), trim(w4), p, buffer, filepath);
-		} else {
-			ShowError("npc_parsesrcfile: Unable to parse, probably a missing or extra TAB in file '%s', line '%d'. Skipping line...\n * w1=%s\n * w2=%s\n * w3=%s\n * w4=%s\n", filepath, strline(buffer,p-buffer), w1, w2, w3, w4);
-			p = strchr(p,'\n');// skip and continue
+    } else {
+		#ifdef RENEWAL
+		if(strcmp(w2,"warp#re") || strcmp(w2,"shop#re") || strcmp(w2,"script#re") || strcmp(w1,"function#re") || strcmp(w2,"duplicatr") || strcmpi(w2,"monster#re") || strcmpi(w2,"boss_monster#re"))
+		#else
+		if(strcmp(w2,"warp#pre") || strcmp(w2,"shop#pre") || strcmp(w2,"script#pre") || strcmp(w1,"function#pre") || strcmp(w2,"duplicatp") || strcmpi(w2,"monster#pre") || strcmpi(w2,"boss_monster#pre"))
+		#endif
+				p = npc_skip_script(p,buffer,filepath);
+		else {
+			ShowError("npc_parsesrcfile: TESTANDO MENSAGEM.\n * w1=%s\n * w2=%s\n * w3=%s\n * w4=%s\n", w1, w2, w3, w4);
+			}
 		}
 	}
 	aFree(buffer);

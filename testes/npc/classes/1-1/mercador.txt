@@ -849,7 +849,7 @@ alberta_in,28,29,2	script	Merchant Guildsman#mer	83,{
 	}
 }
 
-morocc_in,140,102,4	script	Estudante de Tintas#mer	86,{
+morocc_in,140,102,4	script#pre	Estudante de Tintas#mer	86,{
 	if ((job_merchant_q == 4) || (job_merchant_q == 3)) {
 		mes "[Estudante de Tintas]";
 		mes "Você é da";
@@ -924,7 +924,7 @@ morocc_in,140,102,4	script	Estudante de Tintas#mer	86,{
 	}
 }
 
-geffen_in,155,122,4	script	Funcionário#mer	47,{
+geffen_in,155,122,4	script#pre	Funcionário#mer	47,{
 	if (job_merchant_q == 4 || job_merchant_q == 3) {
 		mes "[Funcionário]";
 		mes "Ah, você deve estar com a Guilda dos Mercadores. Finalmente, o meu pacote chegou! Beleza...!";
@@ -997,7 +997,7 @@ geffen_in,155,122,4	script	Funcionário#mer	47,{
 	}
 }
 
-prontera,248,42,0	script	Funcionária Kafra#mer	116,{
+prontera,248,42,0	script#pre	Funcionária Kafra#mer	116,{
 	cutin "kafra_02",2;
 	if (job_merchant_q == 6 || job_merchant_q == 5) && (job_merchant_q2 == 2 || job_merchant_q2 == 1) {
 		mes "[Funcionária Kafra]";

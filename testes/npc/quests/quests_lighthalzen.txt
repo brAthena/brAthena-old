@@ -11721,7 +11721,7 @@ OnTouch:
 
 // Somatology Laboratory F4
 //============================================================
-lighthalzen,303,304,5	script	Jerome Jameson#start	904,{
+lighthalzen,303,304,5	script#re	Jerome Jameson#start	904,{
 	if (lhz_dun04 == 0) {
 		mes "[Jerome Jameson]";
 		mes "Wow, what a "+((Sex)?"strong man!":"beautiful dame!");
@@ -11822,7 +11822,7 @@ lhz_dun04,245,61,0	warp	#warplhz4lhz3	1,1,lhz_dun03,240,74
 // Does this portal exist?
 que_lhz,245,61,0	warp	#warplhzqlhz3	1,1,lhz_dun03,240,74
 
-que_lhz,244,52,0	script	#lhz4mes1	-1,2,2,{
+que_lhz,244,52,0	script#re	#lhz4mes1	-1,2,2,{
 OnTouch:
 	mes "- You find another flight of";
 	mes "stairs that is raised and deviates";
@@ -11840,7 +11840,7 @@ OnEnable:
 	end;
 }
 
-lhz_dun04,151,276,3	script	Researcher#lhz4	865,{
+lhz_dun04,151,276,3	script#re	Researcher#lhz4	865,{
 	if (lhz_dun04 == 0) {
 		mes "[Researcher]";
 		mes "................";
@@ -11916,7 +11916,7 @@ lhz_dun04,151,276,3	script	Researcher#lhz4	865,{
 	end;
 }
 
-que_lhz,207,75,3	script	Researcher#ins	865,3,3,{
+que_lhz,207,75,3	script#re	Researcher#ins	865,3,3,{
 OnTouch:
 	if (lhz_dun04 == 1) {
 		mes "[Researcher]";
@@ -11963,7 +11963,7 @@ OnTouch:
 	close;
 }
 
-que_lhz,94,119,3	script	Researcher#ins2	865,{
+que_lhz,94,119,3	script#re	Researcher#ins2	865,{
 	if (lhz_dun04 == 2) {
 		mes "[Wolfchev]";
 		mes "Hehehe. You are really persistent. What do you want from someone like me?";
@@ -12001,7 +12001,7 @@ que_lhz,94,119,3	script	Researcher#ins2	865,{
 	mes "..........";
 	close;
 }
-que_lhz,147,224,3	script	Researcher#ins3	865,{
+que_lhz,147,224,3	script#re	Researcher#ins3	865,{
 	if (lhz_dun04 == 4 || mobcount("que_lhz","#controllhz4::OnMyMobDead") > 0) {
 		mes "[Wolfchev]";
 		mes "Wolfchev is freaking out. He is out of his mind.";
@@ -12271,7 +12271,7 @@ OnEnable:
 	end;
 }
 
-lhz_dun04,148,269,0	script	#lhz4mes2	-1,2,2,{
+lhz_dun04,148,269,0	script#re	#lhz4mes2	-1,2,2,{
 OnTouch:
 	if (lhz_dun04 == 6) {
 		heal -Hp/2,0; // To do: check HP value.

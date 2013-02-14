@@ -110,7 +110,7 @@ ve_in,157,219,5	script	Recepcionista#Re	709,{
 }
 // Brasilis
 //============================================================
-bra_in01,27,24,3	script	Recepcionista#bras1	478,{
+bra_in01,27,24,3	script#re	Recepcionista#bras1	478,{
 
 	callfunc "F_InnMaid","[Recepcionista]","melhor hotel de Brasilis.","bra_in01",144,69;
 	warp "bra_in01",144,69;

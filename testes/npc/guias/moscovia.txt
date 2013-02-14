@@ -23,7 +23,7 @@
 //   | - Anotações                                            |	
 //   \________________________________________________________/	
 
-moscovia,226,191,4	script	Moscovia Guide#02mosc	959,{
+moscovia,226,191,4	script#re	Moscovia Guide#02mosc	959,{
 	mes "[Moscovia Guide]";
 	mes "A paradise on the sea";
 	mes "beautiful wave and warm sunshine";

@@ -476,7 +476,7 @@ if( checkre(0) ) {
 	}
 }
 
-moc_ruins,141,125,3	script	Bogus	83,{
+moc_ruins,141,125,3	script#pre	Bogus	83,{
 		mes "[Bogus]";
 	if (BaseJob == Job_Thief) {
 		mes "Oh! Veja só que ótimo Gatuno você se tornou!";
