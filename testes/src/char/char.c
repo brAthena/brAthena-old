@@ -1432,13 +1432,13 @@ int make_new_char_sql(struct char_session_data *sd, char *name_, int str, int ag
 {
 #endif
 
-#if PACKETVER < 20111025
-	bra_config.max_rename_char = 0;
-#endif
-
 	char name[NAME_LENGTH];
 	char esc_name[NAME_LENGTH*2+1];
 	int char_id, flag;
+	
+#if PACKETVER < 20111025
+	bra_config.max_rename_char = 0;
+#endif
 
 	safestrncpy(name, name_, NAME_LENGTH);
 	normalize_name(name,TRIM_CHARS);
