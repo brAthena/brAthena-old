@@ -35,7 +35,7 @@ iz_dun01,41,32,0	warp	izd03-1	2,2,iz_dun00,39,46
 iz_dun02,236,198,0	warp	izd04-1	5,3,iz_dun01,118,165
 iz_dun02,339,331,0	warp	izd05	2,2,iz_dun03,32,63
 iz_dun03,264,245,0	warp	izd06	1,2,iz_dun04,26,27
-iz_dun03,29,63,0	warp	izd05-1	2,2,iz_dun02,339,328
+iz_dun04,129,233,0	warp#re	izd07	2,2,iz_dun05,141,187
+iz_dun05,141,190,0	warp#re	izd07-1	2,2,iz_dun04,129,230
+iz_dun03,29,63,0	warp	izd05-1	2,2,iz_dun02,339,328,{}
 iz_dun04,26,24,0	warp	izd06-1	2,2,iz_dun03,261,245
-iz_dun04,129,233,0	warp	izd07	2,2,iz_dun05,141,187
-iz_dun05,141,190,0	warp	izd07-1	2,2,iz_dun04,129,230
