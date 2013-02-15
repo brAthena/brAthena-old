@@ -256,11 +256,10 @@ alberta,195,151,4	script	Paul	86,{
 			mes "[Paul]";
 			mes "Parece que você não tem o dinheiro, mas por favor, volte quando for capaz de pagar.";
 			close;
-		} else {
+			}
 			set Zeny,Zeny - 200;
 			warp "alb2trea",62,69;
 			close;
-		}
 	}
 	mes "[Paul]";
 	mes "Bem...";
@@ -320,7 +319,7 @@ alberta,190,173,4	script	Phelix	85,{
 			input .@amount;
 			next;
 			mes "[Phelix]";
-			if (.@amount <= 0) {
+			if (!.@amount) {
 				mes "Muito obrigado, volte sempre.";
 				close;
 			}
@@ -367,7 +366,7 @@ alberta,190,173,4	script	Phelix	85,{
 		input .@amount;
 		next;
 		mes "[Phelix]";
-		if (.@amount == 0) {
+		if (!.@amount) {
 			mes "Muito bem, até a próxima.";
 			close;
 		}

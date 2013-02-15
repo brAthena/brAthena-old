@@ -113,7 +113,7 @@ function	script	EinTower	{
 			mes "para a Torre de Einbroch";
 			mes "custa 10 zenys.";
 			close;
-		} else {
+      }
 			mes "[" + getarg(0) + "]";
 			mes "Obrigado por utilizar";
 			mes "nossos serviços.";
@@ -123,7 +123,7 @@ function	script	EinTower	{
 			close2;
 			warp "einbroch",181,196;
 			end;
-		}
+
 	case 2:
 		if (Zeny < 20) {
 			mes "[" + getarg(0) + "]";
@@ -131,7 +131,7 @@ function	script	EinTower	{
 			mes "zenys suficientes. O Set Combo";
 			mes "da Maçã custa 20 zenys.";
 			close;
-		} else {
+      }
 			mes "[" + getarg(0) + "]";
 			mes "Antes de guiá-lo até a torre,";
 			mes "vou verificar seu status";
@@ -150,14 +150,13 @@ function	script	EinTower	{
 				close2;
 				warp "einbroch",174,204;
 				end;
-			} else {
+        }
 				mes "[" + getarg(0) + "]";
 				mes "Sinto muito, mas você está carregando";
 				mes "itens demais. Deposite algumas coisas antes de comprar";
 				mes "o Set Combo da Maçã.";
 				close;
-			}
-		}
+
 	case 3:
 		mes "[" + getarg(0) + "]";
 		mes "Entendo.";
@@ -195,13 +194,13 @@ einbroch,232,272,3	script	Funcionário Ferroviário#ein1::EinbrochTrain	852,{
 			set zeny,zeny-200;
 			warp "einbech",43,215;
 			end;
-		} else {
+      }
 			mes "[Funcionário]";
 			mes "Sinto muito, mas você";
 			mes "não tem zenys suficientes para";
 			mes "pagar a taxa de embarque.";
 			close;
-		}
+
 	case 2:
 		mes "[Funcionário]";
 		mes "Muito bem, então.";
@@ -821,7 +820,7 @@ ein_in01,206,224,3	script	Funcionário do Hotel#ein	855,{
 				percentheal 100,100;
 				warp "ein_in01",272,167;
 				end;
-			} else {
+        }
 				mes "[Funcionário do Hotel]";
 				mes "Sinto muito, mas a taxa";
 				mes "de acomodação é de";
@@ -829,7 +828,7 @@ ein_in01,206,224,3	script	Funcionário do Hotel#ein	855,{
 				mes "vez, traga dinheiro";
 				mes "suficiente, certo?";
 				close;
-			}
+
 		case 3:
 			mes "[Funcionário do Hotel]";
 			mes "Obrigado e";

@@ -975,7 +975,7 @@ new_5-3,96,30,4	duplicatr(Brade#nvs)	Brade#nv5	733
 // Job Guides (Real Combat Training)
 //============================================================
 // --------------------------- Deletion Function ------------------------------
-prontera,150,150,4	script	Teste	797,{
+function	script	F_NvErase,{
 	if (getarg(0,0)) {
 		if (checkquest(7123) == 0 || checkquest(7123) == 1) erasequest 7123;
 		if (checkquest(7124) == 0 || checkquest(7124) == 1) erasequest 7124;

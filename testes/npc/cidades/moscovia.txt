@@ -38,7 +38,7 @@ alberta,246,51,4	script	Oficial de Moscovia#1	960,{
 		mes "[Oficial de Moscovia]";
 		mes "Moscovia é um lindo reino,";
 		mes "uma ilha localizada no norte";
-		mes "de Rune-Midgarts.";
+		mes "de Rune-Midgard.";
 		next;
 		mes "[Oficial de Moscovia]";
 		mes "Sei que você ficará";
