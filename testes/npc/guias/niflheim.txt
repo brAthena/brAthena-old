@@ -23,7 +23,7 @@
 //   | - Anotações                                            |	
 //   \________________________________________________________/	
 
-niflheim,201,187,3	script	Niflheim Guide#01nif	849,{
+niflheim,201,187,3	script#re	Niflheim Guide#01nif	849,{
 	mes "[Niflheim Guide]";
 	mes "Welcome to.. ^8B4513Niflheim^000000...";
 	mes "the Realm of the Dead...";
@@ -72,7 +72,7 @@ L_Mark:
 	return;
 }
 
-niflheim,107,156,6	script	Roaming Man#nif	798,{
+niflheim,107,156,6	script#pre	Roaming Man#nif	798,{
 	mes "[Ricael]";
 	mes "You must be lost...";
 	mes "Why would anyone come";

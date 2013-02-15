@@ -51,5 +51,5 @@ ra_fild07,215,27,0	warp#pre	ra025b	1,1,ra_fild11,201,329
 ra_fild07,168,353,0	warp#pre	ra026	1,1,ra_fild02,171,45
 ra_fild02,168,36,0	warp#pre	ra027	1,1,ra_fild07,168,349
 ra_fild02,373,275,0	warp#pre	ra028	1,1,ra_fild03,28,294
-ra_fild03,23,294,0	warp#pre	ra029	1,1,ra_fild02,367,270
-ra_fild04,263,54,0	warp	ra007	1,1,ra_fild08,287,365,{}
+ra_fild03,23,294,0	warp#pre	ra029	1,1,ra_fild02,367,270,{}
+ra_fild04,263,54,0	warp	ra007	1,1,ra_fild08,287,365

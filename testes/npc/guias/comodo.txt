@@ -22,7 +22,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-comodo,322,178,4	script	Comodo Guide#01comodo	700,{
+comodo,322,178,4	script#re	Comodo Guide#01comodo	700,{
 	mes "[Comodo Guide]";
 	mes "Welcome to ^8B4513Comodo^000000,";
 	mes "the Beach Town of the Rune-Midgarts Kingdom.";
@@ -181,19 +181,19 @@ L_Mark:
 	return;
 }
 
-comodo,181,347,4	duplicate(Comodo Guide#01comodo)	Comodo Guide#02comodo	700
-comodo,197,149,3	duplicate(Comodo Guide#01comodo)	Comodo Guide#03comodo	700
-comodo,37,219,4	duplicate(Comodo Guide#01comodo)	Comodo Guide#04comodo	700
+comodo,181,347,4	duplicatr(Comodo Guide#01comodo)	Comodo Guide#02comodo	700
+comodo,197,149,3	duplicatr(Comodo Guide#01comodo)	Comodo Guide#03comodo	700
+comodo,37,219,4	duplicatr(Comodo Guide#01comodo)	Comodo Guide#04comodo	700
 
-comodo,322,178,4	script	Comodo Guide#cmd	700,{
+comodo,322,178,4	script#pre	Comodo Guide#cmd	700,{
 	callfunc "F_CmdGuide","Native Kokomo";
 }
 
-comodo,176,350,4	script	Comodo Guide#2cmd	700,{
+comodo,176,350,4	script#pre	Comodo Guide#2cmd	700,{
 	callfunc "F_CmdGuide","Native Nutcoco";
 }
 
-comodo,37,219,4	script	Guide#2cmd	700,{
+comodo,37,219,4	script#pre	Guide#2cmd	700,{
 	callfunc "F_CmdGuide","Native Papaya";
 }
 

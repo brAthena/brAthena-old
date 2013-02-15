@@ -99,7 +99,7 @@ moscovia,226,191,4	script#re	Moscovia Guide#02mosc	959,{
 	}
 }
 
-moscovia,161,76,4	script	Moscovia Guide#mosk	959,{
+moscovia,161,76,4	script#pre	Moscovia Guide#mosk	959,{
 	mes "[Moscovia Guide]";
 	mes "Welcome to Moscovia";
 	mes "Here is the paradise spreading on";

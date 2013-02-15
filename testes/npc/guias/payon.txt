@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-payon,163,64,3	script	Guide#01payon	708,{
+payon,163,64,3	script#re	Guide#01payon	708,{
 	cutin "pay_soldier",2;
 	mes "[Payon Guide]";
 	mes "Welcome to ^8B4513Payon^000000,";
@@ -200,11 +200,11 @@ L_Mark:
 	return;
 }
 
-payon,151,182,6	duplicate(Guide#01payon)	Guide#02payon	708
-payon,221,85,6	duplicate(Guide#01payon)	Guide#03payon	708
-payon,233,324,4	duplicate(Guide#01payon)	Guide#04payon	708
+payon,151,182,6	duplicatr(Guide#01payon)	Guide#02payon	708
+payon,221,85,6	duplicatr(Guide#01payon)	Guide#03payon	708
+payon,233,324,4	duplicatr(Guide#01payon)	Guide#04payon	708
 
-pay_arche,86,33,4	script	Guide#05payon	708,{
+pay_arche,86,33,4	script#re	Guide#05payon	708,{
 	cutin "pay_soldier",2;
 	mes "[Payon Guide]";
 	mes "Welcome to ^8B4513Archer Village^000000,";
@@ -300,7 +300,7 @@ pay_arche,86,33,4	script	Guide#05payon	708,{
 	}
 }
 
-payon,162,67,4	script	Guide#pay	708,{
+payon,162,67,4	script#pre	Guide#pay	708,{
 	cutin "pay_soldier",2;
 	mes "[Payon Guide]";
 	mes "Welcome to the";
@@ -469,7 +469,7 @@ payon,162,67,4	script	Guide#pay	708,{
 	end;
 }
 
-pay_arche,85,30,2	script	Guide#2pay	708,{
+pay_arche,85,30,2	script#pre	Guide#2pay	708,{
 	cutin "pay_soldier",2;
 	mes "[Payon Guide]";
 	mes "Welcome to the";

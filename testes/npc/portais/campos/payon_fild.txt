@@ -32,8 +32,8 @@ pay_fild05,127,378,0	warp#pre	payf04-1	4,2,pay_fild02,134,19
 pay_fild02,16,175,0	warp#pre	payf06	2,4,pay_fild11,294,135
 pay_fild11,297,135,0	warp#pre	payf06-1	2,4,pay_fild02,19,175
 pay_fild05,271,284,0	warp#pre	payf10	2,4,pay_fild06,31,288
-pay_fild06,28,288,0	warp#pre	payf10-1	2,2,pay_fild05,268,284
-pay_fild02,167,390,0	warp	payf02-1	20,3,pay_fild01,354,18,{}
+pay_fild06,28,288,0	warp#pre	payf10-1	2,2,pay_fild05,268,284,{}
+pay_fild02,167,390,0	warp	payf02-1	20,3,pay_fild01,354,18
 pay_fild02,284,108,0	warp	payf07	2,7,pay_fild03,20,110
 pay_fild02,83,386,0	warp	payf01-1	13,2,pay_fild01,278,18
 pay_fild03,15,110,0	warp	payf07-1	2,10,pay_fild02,280,108

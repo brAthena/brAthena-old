@@ -194,7 +194,7 @@ izlude,129,175,4	script#re	Guide#01izlude	105,{
 }
 
 izlude,133,113,4	duplicatr(Guide#01izlude)	Guide#03izlude	105
-izlude,120,206,4	duplicatr(Guide#01izlude)	Guide#04izlude	105
+izlude,120,206,4	duplicatr(Guide#01izlude)	Guide#04izlude	105,{}
 
 izlude,121,87,6	script#pre	Guide#iz	105,{
 	cutin "prt_soldier",2;

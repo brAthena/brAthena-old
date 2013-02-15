@@ -975,7 +975,7 @@ new_5-3,96,30,4	duplicatr(Brade#nvs)	Brade#nv5	733
 // Job Guides (Real Combat Training)
 //============================================================
 // --------------------------- Deletion Function ------------------------------
-function	script	F_NvErase	{
+prontera,150,150,4	script	Teste	797,{
 	if (getarg(0,0)) {
 		if (checkquest(7123) == 0 || checkquest(7123) == 1) erasequest 7123;
 		if (checkquest(7124) == 0 || checkquest(7124) == 1) erasequest 7124;
@@ -4027,10 +4027,10 @@ new_1-3,95,30,4	script#pre	Trainer#nv1	84,{
 	}
 }
 
-new_2-3,95,30,4	duplicatep(Trainer#nv1)	Trainer#nv2	84
-new_3-3,95,30,4	duplicatep(Trainer#nv1)	Trainer#nv3	84
-new_4-3,95,30,4	duplicatep(Trainer#nv1)	Trainer#nv4	84
-new_5-3,95,30,4	duplicatep(Trainer#nv1)	Trainer#nv5	84
+new_2-3,95,30,4	duplicatp(Trainer#nv1)	Trainer#nv2	84
+new_3-3,95,30,4	duplicatp(Trainer#nv1)	Trainer#nv3	84
+new_4-3,95,30,4	duplicatp(Trainer#nv1)	Trainer#nv4	84
+new_5-3,95,30,4	duplicatp(Trainer#nv1)	Trainer#nv5	84
 
 new_1-3,96,174,3	script#pre	Test Examiner#nv1	85,{
 	mes "[Keyman]";
@@ -4058,10 +4058,10 @@ new_1-3,96,174,3	script#pre	Test Examiner#nv1	85,{
 	}
 }
 
-new_2-3,96,174,3	duplicatep(Test Examiner#nv1)	Test Examiner#nv2	85
-new_3-3,96,174,3	duplicatep(Test Examiner#nv1)	Test Examiner#nv3	85
-new_4-3,96,174,3	duplicatep(Test Examiner#nv1)	Test Examiner#nv4	85
-new_5-3,96,174,3	duplicatep(Test Examiner#nv1)	Test Examiner#nv5	85
+new_2-3,96,174,3	duplicatp(Test Examiner#nv1)	Test Examiner#nv2	85
+new_3-3,96,174,3	duplicatp(Test Examiner#nv1)	Test Examiner#nv3	85
+new_4-3,96,174,3	duplicatp(Test Examiner#nv1)	Test Examiner#nv4	85
+new_5-3,96,174,3	duplicatp(Test Examiner#nv1)	Test Examiner#nv5	85
 
 // Random Stuff (Guards & Bulletin Board)
 //============================================================

@@ -449,8 +449,8 @@ L_Mark:
 }
 
 moc_ruins,70,164,3	duplicatr(Guide#01ruins)	Guide#02ruins	707
-moc_ruins,65,44,5	duplicatr(Guide#01ruins)	Guide#03ruins	707
-morocc,154,38,6	duplicate(Guide#01morocc)	Guide#02morocc	707,{}
+moc_ruins,65,44,5	duplicatr(Guide#01ruins)	Guide#03ruins	707,{}
+morocc,154,38,6	duplicate(Guide#01morocc)	Guide#02morocc	707
 morocc,28,170,5	duplicate(Guide#01morocc)	Guide#04morocc	707
 morocc,54,97,0	duplicate(Guide#01morocc)	Guide#2moc	707
 morocc,296,213,4	duplicate(Guide#01morocc)	Guide#03morocc	707

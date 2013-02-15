@@ -41,8 +41,8 @@ hu_fild03,288,19,0	warp#pre	hugel010a	1,1,hu_fild05,276,346
 hu_fild03,20,338,0	warp#pre	hugel012a	1,1,hu_fild02,370,339
 hu_fild03,25,163,0	warp#pre	hugel013a	1,1,hu_fild02,373,160
 yuno_fild09,377,184,0	warp#pre	hugel014	1,1,yuno_fild10,44,183
-yuno_fild10,39,183,0	warp#pre	hugel014a	1,1,yuno_fild09,371,184
-hu_fild01,366,185,0	warp	hugel007	1,1,hu_fild02,22,168,{}
+yuno_fild10,39,183,0	warp#pre	hugel014a	1,1,yuno_fild09,371,184,{}
+hu_fild01,366,185,0	warp	hugel007	1,1,hu_fild02,22,168
 hu_fild02,17,168,0	warp	hugel007a	1,1,hu_fild01,361,189
 hu_fild04,47,372,0	warp	hugel008	1,1,hu_fild02,40,27
 hu_fild02,40,22,0	warp	hugel008a	1,1,hu_fild04,48,368

@@ -18,7 +18,7 @@
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
-//   | 1.1 Adição de Array de NPCs Pré-RE e RE [Holy]         |
+//   | 1.1 Criação do NPC (Funções brAthena) [Holy]           |
 //   | 1.2 Otimização [Shiraz]                                |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
@@ -29,11 +29,6 @@
 	OnInit:
 
 	set(.@version, checkre(0));
-	setarray(.@unload_re$[0], "Comodo Guide#cmd", "Comodo Guide#2cmd", "Guide#2cmd", "Moscovia Guide#mosk", "Roaming Man#nif", "Guide#pay", "Guide#2pay");
-	setarray(.@unload_pre$[0], "Comodo Guide#01comodo", "Niflheim Guide#01nif", "Guide#01payon", "Guide#05payon", "Vendedor de Utilidades Myo");
- 
-	for(set(.@i,0); .@i < getarraysize((!.@version?.@unload_pre$:.@unload_re$)); set(.@i,.@i+1))
-		unloadnpc((!.@version?.@unload_pre$[.@i]:.@unload_re$[.@i]));
 		
 	if(!.@version){ // pre-re
 		movenpc("Equipe do Aeroporto#Izlude",206,55);
