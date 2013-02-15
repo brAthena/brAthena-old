@@ -1,4 +1,3 @@
-//============================================================
 //    ________________________________________________________
 //   /                                                        \
 //   |       _           _   _   _                            |
@@ -13,22 +12,22 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | VersÃµes eA/rA/brA: ??/??/1.0                           |
+//   | Versões eA/rA/brA: ??/??/1.0                           |
 //   |--------------------------------------------------------|
-//   | DescriÃ§Ã£o: Este mapflag permite que vocÃª controle a 	  |
-//   | duraÃ§Ã£o da unit skill em qualquer  mapa.	              |
-//   |  											          |
+//   | Descrição: Este mapflag permite que você controle a    |
+//   | duração da unit skill em qualquer  mapa.	              |
+//   |  						      |
 //   | Exemplo (1):                                           |
 //   | Prontera mapflag	adjust_unit_duration PR_SANCTUARY 50  |
-//   | Metade da duraÃ§Ã£o do santuÃ¡rio em Prontera.           |
+//   | Metade da duração do santuário em Prontera.            |
 //   |                                                        |
 //   | Exemplo (2):                                           |
 //   | Prontera mapflag adjust_unit_duration WZ_QUAGMIRE 250  |
-//   | Aumenta a duraÃ§Ã£o do PÃ¢ntano dos Mortos por 2,5        |
+//   | Aumenta a duração do Pântano dos Mortos por 2,5        |
 //   | vezes em Prontera.                                     |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
-//   | 1.0 CabeÃ§alho e TraduÃ§Ã£o [Megasantos]                  |
+//   | 1.0 Cabeçalho e Tradução [Megasantos]                  |
 //   |--------------------------------------------------------|
-//   | - AnotaÃ§Ãµes                                            |
+//   | - Anotações                                            |
 //   \________________________________________________________/
