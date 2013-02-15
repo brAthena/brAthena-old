@@ -282,7 +282,7 @@ moc_prydb1,39,129,2	script	Gatuna Ajudante#gatuno	69,{
 	close;
 }
   mes "[Gatuna Ajudante]";
-	if(Class != Job_Novice) {
+	if(Class != Job_Novice && Class != Job_Baby) {
 		if(Class == Job_Thief) {
 			mes "Ei~ Se você tiver algum problema, fale quando quiser, tudo bem?";
 			close;
@@ -372,7 +372,7 @@ if( checkre(0) ) {
 		mes "[Brad]";
 		mes "'"+strcharinfo(0)+".'";
 		mes "'Para aqueles que estão prontos, o luar deve abrir o caminho. Agora você está totalmente pronto, oficialmente permitem que você se torne um membro da Guilda dos Gatunos.'";
-		jobchange Job_Thief;
+		callfunc "Job_Change",Job_Thief;
 		set q_job_thief,0;
 		getitem 13041,1; // Main Gauche de Iniciante
 		next;
@@ -392,7 +392,7 @@ if( checkre(0) ) {
 		mes "Vejamos novamente.";
 		close;
 	}
-	if(Class != Job_Novice) {
+	if(Class != Job_Novice && Class != Job_Baby) {
 		if(Class == Job_Thief) {
 			mes "Eu não tenho quaisquer eventos especiais agora. Então, vá no seu caminho e voltar mais tarde.";
 		} else{

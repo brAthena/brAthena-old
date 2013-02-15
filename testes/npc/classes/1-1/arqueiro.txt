@@ -72,7 +72,7 @@ payon_in02,64,71,4	script	Guia dos Arqueiros#arqueiro	85,{
 	switch(select("Eu quero me tornar um Arqueiro.:Eu preciso saber dos requerimentos, por favor.:Nada, obrigado.")) {
 	case 1:
 			mes "[Guia dos Arqueiros]";
-			if(Class != Job_Novice) {
+			if(Class != Job_Novice && Class != Job_Baby) {
 			mes ""+((Class == Job_Archer) ? "Haha, você está brincando comigo.." : "Eu sinto muito, mas apenas Aprendizes podem mudar de classe. Você já tem a sua própria classe, não é?")+"";
 			close;
 			} if ( !checkre(0) ){
@@ -182,7 +182,7 @@ payon_in02,64,71,4	script	Guia dos Arqueiros#arqueiro	85,{
 			mes "[Guia dos Arqueiros]";
 			mes "Parabéns! Agora você é um Arqueiro! Também, esperamos que você participe ativamente em muitos programas de renascimento da Guilda de Arqueiros.";
 			mes "Ah, itens chegaram vindos do Departamento de Produção. Aqui, pegue! São todos seus!";
-			jobchange Job_Archer;
+			callfunc "Job_Change",Job_Archer;
 			getitem 1742,1;    // Arco Composto de Iniciante
 			getitem 12004,1;   // Aljave
 			getitem 12009,1;   // Aljave de Flechas de Prata

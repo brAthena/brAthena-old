@@ -21743,11 +21743,11 @@ REPLACE INTO `mob_skill_db` VALUES(2072,'Jaguar@NPC_GROUNDATTACK','attack',185,3
 REPLACE INTO `mob_skill_db` VALUES(2072,'Jaguar@NPC_COMBOATTACK','attack',171,1,500,500,5000,'no','target','always','0',NULL,NULL,NULL,NULL,NULL,'6',NULL);
 REPLACE INTO `mob_skill_db` VALUES(2072,'Jaguar@AS_SONICBLOW','attack',136,3,500,800,5000,'no','target','always','0',NULL,NULL,NULL,NULL,NULL,'0',NULL);
 REPLACE INTO `mob_skill_db` VALUES(2072,'Jaguar@NPC_DARKNESSATTACK','attack',190,1,2000,0,5000,'yes','target','always','0',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
-REPLACE INTO `mob_skill_db` VALUES(2072,'Jaguar@NPC_EMOTION','idle',197,1,2000,0,5000,'yes','self','always','0',7,0x3195,NULL,NULL,NULL,NULL,NULL);
+REPLACE INTO `mob_skill_db` VALUES(2072,'Jaguar@NPC_EMOTION','idle',197,1,2000,0,5000,'yes','self','always','0',7,0x3095,NULL,NULL,NULL,NULL,NULL);
 REPLACE INTO `mob_skill_db` VALUES(2072,'Jaguar@AL_TELEPORT','idle',26,1,10000,0,0,'yes','self','rudeattacked','0',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 REPLACE INTO `mob_skill_db` VALUES(2073,'Toucan@NPC_EMOTION','walk',197,1,2000,0,5000,'yes','self','always','0',2,NULL,NULL,NULL,NULL,NULL,NULL);
 REPLACE INTO `mob_skill_db` VALUES(2073,'Toucan@NPC_EMOTION','chase',197,1,200,0,5000,'yes','self','always','0',19,0x81,NULL,NULL,NULL,NULL,NULL);
-REPLACE INTO `mob_skill_db` VALUES(2073,'Toucan@NPC_EMOTION','idle',197,1,2000,0,5000,'yes','self','always','0',7,0x3195,NULL,NULL,NULL,NULL,NULL);
+REPLACE INTO `mob_skill_db` VALUES(2073,'Toucan@NPC_EMOTION','idle',197,1,2000,0,5000,'yes','self','always','0',7,0x3095,NULL,NULL,NULL,NULL,NULL);
 REPLACE INTO `mob_skill_db` VALUES(2073,'Toucan@NPC_TELEKINESISATTACK','chase',191,5,500,0,5000,'yes','target','always','0',NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 REPLACE INTO `mob_skill_db` VALUES(2073,'Toucan@NPC_WINDATTACK','attack',187,3,500,500,5000,'no','target','always','0',NULL,NULL,NULL,NULL,NULL,'6',NULL);
 REPLACE INTO `mob_skill_db` VALUES(2073,'Toucan@NPC_STOP','attack',342,1,500,500,5000,'no','target','always','0',NULL,NULL,NULL,NULL,NULL,'30',NULL);

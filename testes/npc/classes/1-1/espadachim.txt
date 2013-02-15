@@ -198,7 +198,7 @@ izlude_in,74,172,4	script	Chefe Espadachim#swd	119,{
 		close;
 	case 2:
 		mes "[Chefe Espadachim]";
-      if(Class != Job_Novice) {
+      if(Class != Job_Novice && Class != Job_Baby) {
 			if(Class == Job_Swordman) {
 				mes "Você já é um excelente Espadachim, não é?";
 				mes "Apenas dedique-se a isso, seja um grande Espadachim.";

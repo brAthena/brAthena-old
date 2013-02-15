@@ -2317,6 +2317,7 @@ int skill_attack(int attack_type, struct block_list *src, struct block_list *dsr
 	struct map_session_data *sd, *tsd;
 	int type,damage,rdamage=0;
 	int8 rmdamage=0;//magic reflected
+	bool additional_effects = true;
 
 	if(skill_id > 0 && !skill_lv) return 0;
 
@@ -2396,7 +2397,8 @@ int skill_attack(int attack_type, struct block_list *src, struct block_list *dsr
 					sc->data[SC_SPIRIT]->val3 = skill_id;
 					sc->data[SC_SPIRIT]->val4 = dsrc->id;
 				}
-			}
+			} else if(type != 2) /* Kaite bypasses */
+				additional_effects = false;
 
 			/**
 			 * Official Magic Reflection Behavior : damage reflected depends on gears caster wears, not target
@@ -2739,7 +2741,7 @@ int skill_attack(int attack_type, struct block_list *src, struct block_list *dsr
 		//Instant damage
 		if(!sc || (!sc->data[SC_DEVOTION] && skill_id != CR_REFLECTSHIELD))
 			status_fix_damage(src,bl,damage,dmg.dmotion); //Deal damage before knockback to allow stuff like firewall+storm gust combo.
-		if(!status_isdead(bl))
+		if(!status_isdead(bl) && additional_effects)
 			skill_additional_effect(src,bl,skill_id,skill_lv,dmg.flag,dmg.dmg_lv,tick);
 		if(damage > 0)   //Counter status effects [Skotlex]
 			skill_counter_additional_effect(src,bl,skill_id,skill_lv,dmg.flag,tick);
@@ -2813,7 +2815,7 @@ int skill_attack(int attack_type, struct block_list *src, struct block_list *dsr
 
 	//Delayed damage must be dealt after the knockback (it needs to know actual position of target)
 	if(dmg.amotion)
-		battle_delay_damage(tick, dmg.amotion,src,bl,dmg.flag,skill_id,skill_lv,damage,dmg.dmg_lv,dmg.dmotion);
+		battle_delay_damage(tick, dmg.amotion,src,bl,dmg.flag,skill_id,skill_lv,damage,dmg.dmg_lv,dmg.dmotion, additional_effects);
 
 	if(sc && sc->data[SC_DEVOTION] && skill_id != PA_PRESSURE) {
 		struct status_change_entry *sce = sc->data[SC_DEVOTION];
@@ -2866,7 +2868,7 @@ int skill_attack(int attack_type, struct block_list *src, struct block_list *dsr
 				map_foreachinshootrange(battle_damage_area,bl,skill_get_splash(LG_REFLECTDAMAGE,1),BL_CHAR,tick,bl,dmg.amotion,sstatus->dmotion,rdamage,tstatus->race);
 		} else {
 			if(dmg.amotion)
-				battle_delay_damage(tick, dmg.amotion,bl,src,0,CR_REFLECTSHIELD,0,rdamage,ATK_DEF,0);
+				battle_delay_damage(tick, dmg.amotion,bl,src,0,CR_REFLECTSHIELD,0,rdamage,ATK_DEF,0,additional_effects);
 			else
 				status_fix_damage(bl,src,rdamage,0);
 			clif_damage(src,src,tick, dmg.amotion,0,rdamage,1,4,0); // in aegis damage reflected is shown in single hit.
@@ -10439,6 +10441,14 @@ struct skill_unit_group *skill_unitsetting(struct block_list *src, uint16 skill_
 	unit_flag = skill_get_unit_flag(skill_id);
 	layout = skill_get_unit_layout(skill_id,skill_lv,src,x,y);
 
+	if(map[src->m].unit_count) {
+		ARR_FIND(0, map[src->m].unit_count, i, map[src->m].units[i]->skill_id == skill_id);
+
+		if(i < map[src->m].unit_count) {
+			limit = limit * map[src->m].units[i]->modifier / 100;
+		}
+	}
+
 	sd = BL_CAST(BL_PC, src);
 	status = status_get_status_data(src);
 	sc = status_get_sc(src);    // for traps, firewall and fogwall - celest
@@ -10810,9 +10820,6 @@ struct skill_unit_group *skill_unitsetting(struct block_list *src, uint16 skill_
 			case MA_SKIDTRAP:
 			case HT_CLAYMORETRAP:
 			case HT_BLASTMINE:
-				/**
-				 * Ranger
-				 **/
 			case RA_ELECTRICSHOCKER:
 			case RA_CLUSTERBOMB:
 			case RA_MAGENTATRAP:

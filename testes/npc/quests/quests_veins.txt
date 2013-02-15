@@ -7345,3 +7345,5 @@ ve_in,239,107,1	script	Male Customer#ve2	943,{
 	specialeffect EF_ASPERSIO;
 	close;
 }
+
+ve_fild02,337,314,4     duplicatr(WincingOldMan_veins)  Wincing Old Man#ve      945

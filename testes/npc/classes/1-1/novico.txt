@@ -202,7 +202,7 @@ prt_church,184,41,4	script	Bispo Tomas Cerbantes#nov	60,{
 	switch(select("Mudar de classe para Noviço.:Saber os requerimentos para se tornar um Noviço.:Sair.")) {
 	case 1:
 		mes "[Tomas Cerbantes]";
-		if(Class != Job_Novice) {
+		if(Class != Job_Novice && Class != Job_Baby) {
 			if(Class == Job_Acolyte) {
 				mes "Você está se sentindo bem hoje? Eu posso dizer pelo seu traje que você já é um Noviço. Você não está brincando, você está?";
 			} else{
@@ -222,7 +222,7 @@ prt_church,184,41,4	script	Bispo Tomas Cerbantes#nov	60,{
 		next;
 		mes "[Tomas Cerbantes]";
 		mes "Lembre-se de sempre ser grato a Deus, que cuida de nós o tempo todo. No caos e nos tempos de dificuldade enfrente tudo com fé inabalável.";
-		jobchange Job_Acolyte;
+		callfunc "Job_Change",Job_Acolyte;
 		getitem 1545,1;	// Maça de Iniciante
 		next;
 		mes "[Tomas Cerbantes]";

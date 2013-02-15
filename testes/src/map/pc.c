@@ -1246,7 +1246,7 @@ static int pc_calc_skillpoint(struct map_session_data *sd)
 			  ) {
 				if(sd->status.skill[i].flag == SKILL_FLAG_PERMANENT)
 					skill_point += skill;
-				else if(sd->status.skill[i].flag >= SKILL_FLAG_REPLACED_LV_0)
+				else if(sd->status.skill[i].flag == SKILL_FLAG_REPLACED_LV_0)
 					skill_point += (sd->status.skill[i].flag - SKILL_FLAG_REPLACED_LV_0);
 			}
 		}
@@ -1275,12 +1275,12 @@ int pc_calc_skilltree(struct map_session_data *sd)
 	c = pc_class2idx(c);
 
 	for(i = 0; i < MAX_SKILL; i++) {
-		if(sd->status.skill[i].flag != SKILL_FLAG_PLAGIARIZED)   //Don't touch plagiarized skills
+		if(sd->status.skill[i].flag != SKILL_FLAG_PLAGIARIZED && sd->status.skill[i].flag != SKILL_FLAG_PERM_GRANTED)   //Don't touch plagiarized skills
 			sd->status.skill[i].id = 0; //First clear skills.
 	}
 
 	for(i = 0; i < MAX_SKILL; i++) {
-		if(sd->status.skill[i].flag != SKILL_FLAG_PERMANENT && sd->status.skill[i].flag != SKILL_FLAG_PLAGIARIZED) {
+		if(sd->status.skill[i].flag != SKILL_FLAG_PERMANENT && sd->status.skill[i].flag != SKILL_FLAG_PERM_GRANTED && sd->status.skill[i].flag != SKILL_FLAG_PLAGIARIZED) {
 			// Restore original level of skills after deleting earned skills.
 			sd->status.skill[i].lv = (sd->status.skill[i].flag == SKILL_FLAG_TEMPORARY) ? 0 : sd->status.skill[i].flag - SKILL_FLAG_REPLACED_LV_0;
 			sd->status.skill[i].flag = SKILL_FLAG_PERMANENT;
@@ -1482,7 +1482,7 @@ int pc_clean_skilltree(struct map_session_data *sd)
 			sd->status.skill[i].id = 0;
 			sd->status.skill[i].lv = 0;
 			sd->status.skill[i].flag = 0;
-		} else if(sd->status.skill[i].flag >= SKILL_FLAG_REPLACED_LV_0) {
+		} else if(sd->status.skill[i].flag == SKILL_FLAG_REPLACED_LV_0) {
 			sd->status.skill[i].lv = sd->status.skill[i].flag - SKILL_FLAG_REPLACED_LV_0;
 			sd->status.skill[i].flag = 0;
 		}
@@ -3362,7 +3362,7 @@ int pc_skill(TBL_PC *sd, int id, int level, int flag)
 		case 0: //Set skill data overwriting whatever was there before.
 			sd->status.skill[id].id   = id;
 			sd->status.skill[id].lv   = level;
-			sd->status.skill[id].flag = SKILL_FLAG_PERMANENT;
+			sd->status.skill[id].flag = SKILL_FLAG_PERM_GRANTED;
 			if(level == 0) { //Remove skill.
 				sd->status.skill[id].id = 0;
 				clif_deleteskill(sd,id);
@@ -5929,7 +5929,7 @@ int pc_allskillup(struct map_session_data *sd)
 	nullpo_ret(sd);
 
 	for(i=0; i<MAX_SKILL; i++) {
-		if(sd->status.skill[i].flag != SKILL_FLAG_PERMANENT && sd->status.skill[i].flag != SKILL_FLAG_PLAGIARIZED) {
+		if(sd->status.skill[i].flag != SKILL_FLAG_PERMANENT && sd->status.skill[i].flag != SKILL_FLAG_PERM_GRANTED && sd->status.skill[i].flag != SKILL_FLAG_PLAGIARIZED) {
 			sd->status.skill[i].lv = (sd->status.skill[i].flag == SKILL_FLAG_TEMPORARY) ? 0 : sd->status.skill[i].flag - SKILL_FLAG_REPLACED_LV_0;
 			sd->status.skill[i].flag = SKILL_FLAG_PERMANENT;
 			if(sd->status.skill[i].lv == 0)
@@ -6196,6 +6196,9 @@ int pc_resetskill(struct map_session_data *sd, int flag)
 		if(i == NV_BASIC && (sd->class_&MAPID_UPPERMASK) != MAPID_NOVICE)
 			continue;
 
+		if( sd->status.skill[i].flag == SKILL_FLAG_PERM_GRANTED )
+			continue;
+
 		if(flag&4 && !skill_ischangesex(i))
 			continue;
 
@@ -6210,7 +6213,7 @@ int pc_resetskill(struct map_session_data *sd, int flag)
 		}
 		if(sd->status.skill[i].flag == SKILL_FLAG_PERMANENT)
 			skill_point += lv;
-		else if(sd->status.skill[i].flag >= SKILL_FLAG_REPLACED_LV_0)
+		else if(sd->status.skill[i].flag == SKILL_FLAG_REPLACED_LV_0)
 			skill_point += (sd->status.skill[i].flag - SKILL_FLAG_REPLACED_LV_0);
 
 		if(!(flag&2)) {
@@ -6754,6 +6757,106 @@ int pc_readparam(struct map_session_data *sd,int type)
 		case SP_KILLEDRID:   val = sd->killedrid; break;
 		case SP_CRITICAL:    val = sd->battle_status.cri/10; break;
 		case SP_ASPD:        val = (2000-sd->battle_status.amotion)/10; break;
+		case SP_BASE_ATK:	     val = sd->battle_status.batk; break;
+		case SP_DEF1:		     val = sd->battle_status.def; break;
+		case SP_DEF2:		     val = sd->battle_status.def2; break;
+		case SP_MDEF1:		     val = sd->battle_status.mdef; break;
+		case SP_MDEF2:		     val = sd->battle_status.mdef2; break;
+		case SP_HIT:		     val = sd->battle_status.hit; break;
+		case SP_FLEE1:		     val = sd->battle_status.flee; break;
+		case SP_FLEE2:		     val = sd->battle_status.flee2; break;
+		case SP_DEFELE:		     val = sd->battle_status.def_ele; break;
+#ifndef RENEWAL_CAST
+		case SP_VARCASTRATE:
+#endif	
+		case SP_CASTRATE:
+				val = sd->castrate+=val;
+			break;
+		case SP_MAXHPRATE:	     val = sd->hprate; break;
+		case SP_MAXSPRATE:	     val = sd->sprate; break;
+		case SP_SPRATE:		     val = sd->dsprate; break;
+		case SP_SPEED_RATE:	     val = sd->bonus.speed_rate; break;
+		case SP_SPEED_ADDRATE:   val = sd->bonus.speed_add_rate; break;
+		case SP_ASPD_RATE:
+#ifndef RENEWAL_ASPD
+			val = sd->battle_status.aspd_rate;
+#else
+			val = sd->battle_status.aspd_rate2;
+#endif
+			break;
+		case SP_HP_RECOV_RATE:   val = sd->hprecov_rate; break;
+		case SP_SP_RECOV_RATE:   val = sd->sprecov_rate; break;
+		case SP_CRITICAL_DEF:    val = sd->bonus.critical_def; break;
+		case SP_NEAR_ATK_DEF:    val = sd->bonus.near_attack_def_rate; break;
+		case SP_LONG_ATK_DEF:    val = sd->bonus.long_attack_def_rate; break;
+		case SP_DOUBLE_RATE:     val = sd->bonus.double_rate; break;
+		case SP_DOUBLE_ADD_RATE: val = sd->bonus.double_add_rate; break;
+		case SP_MATK_RATE:       val = sd->matk_rate; break;
+		case SP_ATK_RATE:        val = sd->bonus.atk_rate; break;
+		case SP_MAGIC_ATK_DEF:   val = sd->bonus.magic_def_rate; break;
+		case SP_MISC_ATK_DEF:    val = sd->bonus.misc_def_rate; break;
+		case SP_PERFECT_HIT_RATE:val = sd->bonus.perfect_hit; break;
+		case SP_PERFECT_HIT_ADD_RATE: val = sd->bonus.perfect_hit_add; break;
+		case SP_CRITICAL_RATE:   val = sd->critical_rate; break;
+		case SP_HIT_RATE:        val = sd->hit_rate; break;
+		case SP_FLEE_RATE:       val = sd->flee_rate; break;
+		case SP_FLEE2_RATE:      val = sd->flee2_rate; break;
+		case SP_DEF_RATE:        val = sd->def_rate; break;
+		case SP_DEF2_RATE:       val = sd->def2_rate; break;
+		case SP_MDEF_RATE:       val = sd->mdef_rate; break;
+		case SP_MDEF2_RATE:      val = sd->mdef2_rate; break;
+		case SP_RESTART_FULL_RECOVER: val = sd->special_state.restart_full_recover?1:0; break;
+		case SP_NO_CASTCANCEL:   val = sd->special_state.no_castcancel?1:0; break;
+		case SP_NO_CASTCANCEL2:  val = sd->special_state.no_castcancel2?1:0; break;
+		case SP_NO_SIZEFIX:      val = sd->special_state.no_sizefix?1:0; break;
+		case SP_NO_MAGIC_DAMAGE: val = sd->special_state.no_magic_damage; break;
+		case SP_NO_WEAPON_DAMAGE:val = sd->special_state.no_weapon_damage; break;
+		case SP_NO_MISC_DAMAGE:  val = sd->special_state.no_misc_damage; break;
+		case SP_NO_GEMSTONE:     val = sd->special_state.no_gemstone?1:0; break;
+		case SP_INTRAVISION:     val = sd->special_state.intravision?1:0; break;
+		case SP_NO_KNOCKBACK:    val = sd->special_state.no_knockback?1:0; break;
+		case SP_SPLASH_RANGE:    val = sd->bonus.splash_range; break;
+		case SP_SPLASH_ADD_RANGE:val = sd->bonus.splash_add_range; break;
+		case SP_SHORT_WEAPON_DAMAGE_RETURN: val = sd->bonus.short_weapon_damage_return; break;
+		case SP_LONG_WEAPON_DAMAGE_RETURN: val = sd->bonus.long_weapon_damage_return; break;
+		case SP_MAGIC_DAMAGE_RETURN: val = sd->bonus.magic_damage_return; break;
+		case SP_PERFECT_HIDE:    val = sd->special_state.perfect_hiding?1:0; break;
+		case SP_UNBREAKABLE:     val = sd->bonus.unbreakable; break;
+		case SP_UNBREAKABLE_WEAPON: val = (sd->bonus.unbreakable_equip&EQP_WEAPON)?1:0; break;
+		case SP_UNBREAKABLE_ARMOR: val = (sd->bonus.unbreakable_equip&EQP_ARMOR)?1:0; break;
+		case SP_UNBREAKABLE_HELM: val = (sd->bonus.unbreakable_equip&EQP_HELM)?1:0; break;
+		case SP_UNBREAKABLE_SHIELD: val = (sd->bonus.unbreakable_equip&EQP_SHIELD)?1:0; break;
+		case SP_UNBREAKABLE_GARMENT: val = (sd->bonus.unbreakable_equip&EQP_GARMENT)?1:0; break;
+		case SP_UNBREAKABLE_SHOES: val = (sd->bonus.unbreakable_equip&EQP_SHOES)?1:0; break;
+		case SP_CLASSCHANGE:     val = sd->bonus.classchange; break;
+		case SP_LONG_ATK_RATE:   val = sd->bonus.long_attack_atk_rate; break;
+		case SP_BREAK_WEAPON_RATE: val = sd->bonus.break_weapon_rate; break;
+		case SP_BREAK_ARMOR_RATE: val = sd->bonus.break_armor_rate; break;
+		case SP_ADD_STEAL_RATE:  val = sd->bonus.add_steal_rate; break;
+		case SP_DELAYRATE:       val = sd->delayrate; break;
+		case SP_CRIT_ATK_RATE:   val = sd->bonus.crit_atk_rate; break;
+		case SP_UNSTRIPABLE_WEAPON: val = (sd->bonus.unstripable_equip&EQP_WEAPON)?1:0; break;
+		case SP_UNSTRIPABLE:
+		case SP_UNSTRIPABLE_ARMOR:
+			val = (sd->bonus.unstripable_equip&EQP_ARMOR)?1:0;
+			break;
+		case SP_UNSTRIPABLE_HELM: val = (sd->bonus.unstripable_equip&EQP_HELM)?1:0; break;
+		case SP_UNSTRIPABLE_SHIELD: val = (sd->bonus.unstripable_equip&EQP_SHIELD)?1:0; break;
+		case SP_SP_GAIN_VALUE:   val = sd->bonus.sp_gain_value; break;
+		case SP_HP_GAIN_VALUE:   val = sd->bonus.hp_gain_value; break;
+		case SP_MAGIC_SP_GAIN_VALUE: val = sd->bonus.magic_sp_gain_value; break;
+		case SP_MAGIC_HP_GAIN_VALUE: val = sd->bonus.magic_hp_gain_value; break;
+		case SP_ADD_HEAL_RATE:   val = sd->bonus.add_heal_rate; break;
+		case SP_ADD_HEAL2_RATE:  val = sd->bonus.add_heal2_rate; break;
+		case SP_ADD_ITEM_HEAL_RATE: val = sd->bonus.itemhealrate2; break;
+		case SP_EMATK:           val = sd->bonus.ematk; break;
+		case SP_FIXCASTRATE:     val = sd->bonus.fixcastrate; break;
+		case SP_ADD_FIXEDCAST:   val = sd->bonus.add_fixcast; break;
+#ifdef RENEWAL_CAST
+		case SP_VARCASTRATE:     val = sd->bonus.varcastrate; break;
+		case SP_ADD_VARIABLECAST:val = sd->bonus.add_varcast; break;
+#endif
+
 	}
 
 	return val;

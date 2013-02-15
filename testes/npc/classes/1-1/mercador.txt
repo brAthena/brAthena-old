@@ -489,7 +489,7 @@ alberta_in,53,43,6	script	Mercador#mer	86,{
 	next;
 	switch(select("Eu quero me tornar um Mercador.:Quero saber mais sobre os comerciantes.:Saber os requerimentos para se tornar um Noviço.:Nada.")) {
 	case 1:
-		if(Class != Job_Novice) {
+		if(Class != Job_Novice && Class != Job_Baby) {
 			mes "[Chefe Mansur]";
 			if(Class == Job_Merchant) {
 				mes ".....? Desculpe? O que você está dizendo?";

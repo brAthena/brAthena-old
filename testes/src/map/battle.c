@@ -226,6 +226,7 @@ struct delay_damage {
 	uint16 skill_id;
 	enum damage_lv dmg_lv;
 	unsigned short attack_type;
+	bool additional_effects;
 };
 
 int battle_delay_damage_sub(int tid, unsigned int tick, int id, intptr_t data)
@@ -248,7 +249,7 @@ int battle_delay_damage_sub(int tid, unsigned int tick, int id, intptr_t data)
 		   check_distance_bl(src, target, dat->distance)) { //Check to see if you haven't teleported. [Skotlex]
 			map_freeblock_lock();
 			status_fix_damage(src, target, dat->damage, dat->delay);
-			if(dat->attack_type && !status_isdead(target))
+			if(dat->attack_type && !status_isdead(target) && dat->additional_effects)
 				skill_additional_effect(src,target,dat->skill_id,dat->skill_lv,dat->attack_type,dat->dmg_lv,tick);
 			if(dat->dmg_lv > ATK_BLOCK && dat->attack_type)
 				skill_counter_additional_effect(src,target,dat->skill_id,dat->skill_lv,dat->attack_type,tick);
@@ -266,7 +267,7 @@ int battle_delay_damage_sub(int tid, unsigned int tick, int id, intptr_t data)
 	return 0;
 }
 
-int battle_delay_damage(unsigned int tick, int amotion, struct block_list *src, struct block_list *target, int attack_type, uint16 skill_id, uint16 skill_lv, int damage, enum damage_lv dmg_lv, int ddelay)
+int battle_delay_damage (unsigned int tick, int amotion, struct block_list *src, struct block_list *target, int attack_type, uint16 skill_id, uint16 skill_lv, int damage, enum damage_lv dmg_lv, int ddelay, bool additional_effects)
 {
 	struct delay_damage *dat;
 	struct status_change *sc;
@@ -281,7 +282,7 @@ int battle_delay_damage(unsigned int tick, int amotion, struct block_list *src, 
 	if(!battle_config.delay_battle_damage || amotion <= 1) {
 		map_freeblock_lock();
 		status_fix_damage(src, target, damage, ddelay); // We have to seperate here between reflect damage and others [icescope]
-		if(attack_type && !status_isdead(target))
+		if(attack_type && !status_isdead(target) && additional_effects)
 			skill_additional_effect(src, target, skill_id, skill_lv, attack_type, dmg_lv, gettick());
 		if(dmg_lv > ATK_BLOCK && attack_type)
 			skill_counter_additional_effect(src, target, skill_id, skill_lv, attack_type, gettick());
@@ -298,6 +299,7 @@ int battle_delay_damage(unsigned int tick, int amotion, struct block_list *src, 
 	dat->dmg_lv = dmg_lv;
 	dat->delay = ddelay;
 	dat->distance = distance_bl(src, target)+10; //Attack should connect regardless unless you teleported.
+	dat->additional_effects = additional_effects;
 	if(src->type != BL_PC && amotion > 1000)
 		amotion = 1000; //Aegis places a damage-delay cap of 1 sec to non player attacks. [Skotlex]
 
@@ -1595,7 +1597,20 @@ static int battle_range_type(
 		return BF_SHORT;
 	return BF_LONG;
 }
+static inline int battle_adjust_skill_damage(int m, unsigned short skill_id) {
 
+	if(map[m].skill_count) {
+		int i;
+		ARR_FIND(0, map[m].skill_count, i, map[m].skills[i]->skill_id == skill_id);
+		
+		if(i < map[m].skill_count) {
+			return map[m].skills[i]->modifier;
+		}
+		
+	}
+
+	return 0;
+}
 static int battle_blewcount_bonus(struct map_session_data *sd, uint16 skill_id)
 {
 	int i;
@@ -3055,6 +3070,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				break;
 		}
 
+		if( (i = battle_adjust_skill_damage(src->m,skill_id)) )
+			ATK_RATE(i);
+
 		if(sd) {
 			if(skill_id && (i = pc_skillatk_bonus(sd, skill_id)))
 				ATK_ADDRATE(i);
@@ -4064,11 +4082,13 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 #ifdef RENEWAL
 		ad.damage = battle_calc_cardfix(BF_MAGIC, src, target, nk, s_ele, 0, ad.damage, 0, ad.flag);
 #endif
-
 		if(sd) {
 			//Damage bonuses
 			if((i = pc_skillatk_bonus(sd, skill_id)))
 				ad.damage += ad.damage*i/100;
+			
+			if((i = battle_adjust_skill_damage(src->m,skill_id)))
+				MATK_RATE(i);
 
 			//Ignore Defense?
 			if(!flag.imdef && (
@@ -4443,6 +4463,9 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 	if(sd && (i = pc_skillatk_bonus(sd, skill_id)))
 		md.damage += md.damage*i/100;
 
+	if((i = battle_adjust_skill_damage(src->m,skill_id)))
+		md.damage = md.damage * i / 100;
+
 	if(md.damage < 0)
 		md.damage = 0;
 	else if(md.damage && tstatus->mode &MD_PLANT) {
@@ -4659,7 +4682,7 @@ int battle_damage_area(struct block_list *bl, va_list ap)
 		if(src->type == BL_PC)
 			battle_drain((TBL_PC *)src, bl, damage, damage, status_get_race(bl), is_boss(bl));
 		if(amotion)
-			battle_delay_damage(tick, amotion,src,bl,0,CR_REFLECTSHIELD,0,damage,ATK_DEF,0);
+			battle_delay_damage(tick, amotion,src,bl,0,CR_REFLECTSHIELD,0,damage,ATK_DEF,0,true);
 		else
 			status_fix_damage(src,bl,damage,0);
 		clif_damage(bl,bl,tick,amotion,dmotion,damage,1,ATK_BLOCK,0);
@@ -4893,7 +4916,7 @@ enum damage_lv battle_weapon_attack(struct block_list *src, struct block_list *t
 	}
 	map_freeblock_lock();
 
-	battle_delay_damage(tick, wd.amotion, src, target, wd.flag, 0, 0, damage, wd.dmg_lv, wd.dmotion);
+	battle_delay_damage(tick, wd.amotion, src, target, wd.flag, 0, 0, damage, wd.dmg_lv, wd.dmotion, true);
 	if(tsc) {
 		if(tsc->data[SC_DEVOTION]) {
 			struct status_change_entry *sce = tsc->data[SC_DEVOTION];
@@ -5018,7 +5041,7 @@ enum damage_lv battle_weapon_attack(struct block_list *src, struct block_list *t
 	if(rdamage > 0 && !(tsc && tsc->data[SC_REFLECTDAMAGE])) {  //By sending attack type "none" skill_additional_effect won't be invoked. [Skotlex]
 		if(tsd && src != target)
 			battle_drain(tsd, src, rdamage, rdamage, sstatus->race, is_boss(src));
-		battle_delay_damage(tick, wd.amotion, target, src, 0, CR_REFLECTSHIELD, 0, rdamage, ATK_DEF, rdelay);
+		battle_delay_damage(tick, wd.amotion, target, src, 0, CR_REFLECTSHIELD, 0, rdamage, ATK_DEF, rdelay, true);
 	}
 
 	if(tsc) {
