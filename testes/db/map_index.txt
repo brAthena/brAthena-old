@@ -939,6 +939,7 @@ moro_cav
 1@dth3
 1@rev
 1@xm_d
+silk_lair
 
 // Adicione abaixo apenas mapas personalizados.
 //======================================================================================
