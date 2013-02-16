@@ -64,8 +64,8 @@ geffen_in,164,124,4	script	Maga Guardiã#maga	123,{
 			mes "Eu não sei por que você ainda está na minha frente, mas eu posso dizer que você não está destinado a ser um Mago.";
 			close;
 	}
-	if(Class != Job_Novice && Class != Job_Baby) {
-		if(Class == Job_Mage) {
+	if(BaseJob != Job_Novice) {
+		if(BaseJob == Job_Mage) {
 			mes "Ei, o que faz aqui? Você já é um Mago, bobo!";
 			mes "Um dia você irá perceber o poder que existe dentro de você quando puder fazer fogo com sua mente!";
 		} else {

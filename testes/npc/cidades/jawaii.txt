@@ -1372,7 +1372,7 @@ prt_in,170,14,0	script	Cliente#Bachewcca	89,{
 
 // Izlude
 //============================================================
-izlude,102,150,6	script	Auxiliar Lua de Mel	92,{
+izlude,180,224,6	script	Auxiliar Lua de Mel	92,{
 	mes "[Auxiliar]";
 	mes "Recém casados e";
 	mes "casais antigos...";

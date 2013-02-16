@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: ??/1.1/1.0                          |
+//   | Versões eA/rA/brA: ??/1.2/1.0                          |
 //   |--------------------------------------------------------|
 //   | Descrição: Mudança de Classe para Sicário.             |
 //   |--------------------------------------------------------|
@@ -2652,7 +2652,7 @@ ra_in01,175,196,3	script	Oresa Rava#3rdgc13	866,{
 	}
 }
 
-ve_fild05,327,308,3	script	Girl#3rdgc14	466,{
+ve_fild02,330,384,3	script	Girl#3rdgc14	466,{
 	if (job_3rd_gc > 14 && job_3rd_gc < 18) {
 		mes "[Renzak]";
 		if (job_3rd_gc == 15) {
@@ -2750,7 +2750,7 @@ OnTouch:
 	} else {
 		mes "You don't have to come here.";
 		close2;
-		warp "ve_fild05",341,303;
+		warp "ve_fild02",330,379;
 		set $@3rdgc_room02, 0;
 	}
 	end;
@@ -2758,7 +2758,7 @@ OnTimer900000:
 	mapannounce "job3_guil03","Renzak : Withdraw!",bc_map,"0xA8A8A8"; //FW_NORMAL 12 0 0
 	end;
 OnTimer901000:
-	mapwarp "job3_guil03","ve_fild05",341,303;
+	mapwarp "job3_guil03","ve_fild02",330,379;
 	end;
 OnTimer902000:
 	donpcevent "#3rdgc_event_master::OnReset";
@@ -3450,7 +3450,7 @@ job3_guil03,111,51,7	script	Priest from Rachel	928,{
 	mes "Who are you?";
 	mes "Get out of here.";
 	close2;
-	warp "ve_fild05",341,303;
+	warp "ve_fild02",330,379;
 	end;
 OnInit:
 OnDisable:
@@ -3477,7 +3477,7 @@ OnTimer40000:
 	mapannounce "job3_guil03","Renzak : Don't lag!",bc_map,"0x4d4dff"; //FW_NORMAL 12 0 0
 	end;
 OnTimer60000:
-	mapwarp "job3_guil03","ve_fild05",341,303;
+	mapwarp "job3_guil03","ve_fild02",330,379;
 	end;
 OnTimer61000:
 	donpcevent "#3rdgc_guard::OnStop";
@@ -3908,7 +3908,7 @@ job3_guil03,1,8,0	script	#GMhelper02_gc	844,{
 				donpcevent "#3rdgc_event01::OnEnable";
 				set $@3rdgc_room02, 0;
 				close2;
-				mapwarp "job3_guil03","ve_fild05",341,303;
+				mapwarp "job3_guil03","ve_fild02",330,379;
 				end;
 			}
 		case 2:
