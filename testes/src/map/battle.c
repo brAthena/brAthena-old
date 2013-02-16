@@ -2398,12 +2398,13 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio += 30*skill_lv;
 					break;
 				case WS_CARTTERMINATION:
-					i = 10 * (16 - skill_lv);
-					if(i < 1) i = 1;
 					//Preserve damage ratio when max cart weight is changed.
-					if(sd && sd->cart_weight)
+					if(sd && sd->cart_weight) {
+					if(battle_config.bRO_Renewal)
+						skillratio += sd->cart_weight/16-skill_lv * 80000/battle_config.max_cart_weight;
+						else
 						skillratio += sd->cart_weight/i * 80000/battle_config.max_cart_weight - 100;
-					else if(!sd)
+					} else if(!sd)
 						skillratio += 80000 / i - 100;
 					break;
 				case TK_DOWNKICK:
@@ -2616,6 +2617,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					 * Mechanic
 					 **/
 				case NC_BOOSTKNUCKLE:
+				if(battle_config.bRO_Renewal)
+					skillratio += 100 + 200 * skill_lv + sstatus->dex * status_get_lv(src)/120;
+					else
 					skillratio += 100 + 100 * skill_lv + sstatus->dex;
 					RE_LVL_DMOD(100);
 					break;
@@ -2634,9 +2638,9 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					break;
 				case NC_ARMSCANNON:
 					switch(tstatus->size) {
-						case SZ_SMALL: skillratio += 100 + 500 * skill_lv; break;// Small
-						case SZ_MEDIUM: skillratio += 100 + 400 * skill_lv; break;// Medium
-						case SZ_BIG: skillratio += 100 + 300 * skill_lv; break;// Large
+						case SZ_SMALL: if(battle_config.bRO_Renewal) skillratio += 400 + 300 * skill_lv * status_get_lv(src)/120; else skillratio += 100 + 500 * skill_lv; break; // Pequeno
+						case SZ_MEDIUM: if(battle_config.bRO_Renewal) skillratio += 350 + 300 * skill_lv * status_get_lv(src)/120; else skillratio += 100 + 400 * skill_lv; break; // Médio
+						case SZ_BIG: if(battle_config.bRO_Renewal) skillratio += 300 + 300 * skill_lv * status_get_lv(src)/120; else skillratio += 100 + 300 * skill_lv; break; // Grande
 					}
 					RE_LVL_DMOD(100);
 					//NOTE: Their's some other factors that affects damage, but not sure how exactly. Will recheck one day. [Rytech]
