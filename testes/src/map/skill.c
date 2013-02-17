@@ -698,6 +698,7 @@ int skillnotok(uint16 skill_id, struct map_session_data *sd)
 		case AL_WARP:
 		case RETURN_TO_ELDICASTES:
 		case ALL_GUARDIAN_RECALL:
+		case ECLAGE_RECALL:
 			if(map[m].flag.nowarp) {
 				clif_skill_teleportmessage(sd,0);
 				return 1;
@@ -8475,6 +8476,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 
 		case RETURN_TO_ELDICASTES:
 		case ALL_GUARDIAN_RECALL:
+		case ECLAGE_RECALL:
 			if(sd) {
 				short x, y; // Destiny position.
 				unsigned short mapindex;
@@ -8488,6 +8490,12 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 					y = 151;
 					mapindex  = mapindex_name2id(MAP_MORA);
 				}
+				if(skill_id == ECLAGE_RECALL)
+				{
+					x = 47;
+					y = 31;
+					mapindex  = mapindex_name2id("ecl_in01");
+				}
 
 				if(!mapindex) {
 					//Given map not found?
@@ -8498,6 +8506,42 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 				pc_setpos(sd, mapindex, x, y, CLR_TELEPORT);
 			}
 			break;
+
+	case ECL_SNOWFLIP: // brathena [Megasantos]
+	case ECL_PEONYMAMY:
+	case ECL_SADAGUI:
+	case ECL_SEQUOIADUST:
+		if ( skill_id == ECL_SNOWFLIP )
+		{
+			status_change_end(bl, SC_SLEEP, INVALID_TIMER);
+			status_change_end(bl, SC_BLEEDING, INVALID_TIMER);
+			status_change_end(bl, SC_BURNING, INVALID_TIMER);
+			status_change_end(bl, SC_DEEPSLEEP, INVALID_TIMER);
+		}
+		else if ( skill_id == ECL_PEONYMAMY )
+		{
+			status_change_end(bl, SC_FREEZE, INVALID_TIMER);
+			status_change_end(bl, SC_FREEZING, INVALID_TIMER);
+			status_change_end(bl, SC_CRYSTALIZE, INVALID_TIMER);
+		}
+		else if ( skill_id == ECL_SADAGUI )
+		{
+			status_change_end(bl, SC_STUN, INVALID_TIMER);
+			status_change_end(bl, SC_CONFUSION, INVALID_TIMER);
+			status_change_end(bl, SC_HALLUCINATION, INVALID_TIMER);
+			status_change_end(bl, SC_FEAR, INVALID_TIMER);
+		}
+		else if ( skill_id == ECL_SEQUOIADUST )
+		{
+			status_change_end(bl, SC_STONE, INVALID_TIMER);
+			status_change_end(bl, SC_POISON, INVALID_TIMER);
+			status_change_end(bl, SC_CURSE, INVALID_TIMER);
+			status_change_end(bl, SC_BLIND, INVALID_TIMER);
+			status_change_end(bl, SC_ORCISH, INVALID_TIMER);
+		}
+		clif_skill_nodamage(src, bl, skill_id, skill_lv, 1);
+		clif_skill_damage(src, bl, tick, status_get_amotion(src), 0, 0, 1, skill_id, -2, 6);
+		break;
 
 		case GM_SANDMAN:
 			if(tsc) {
@@ -12845,6 +12889,7 @@ int skill_check_condition_castbegin(struct map_session_data *sd, uint16 skill_id
 			}
 			break;
 		case RETURN_TO_ELDICASTES:
+		case ECLAGE_RECALL:
 			if(pc_ismadogear(sd)) {   //Cannot be used if Mado is equipped.
 				clif_skill_fail(sd,skill_id,USESKILL_FAIL_LEVEL,0);
 				return 0;
