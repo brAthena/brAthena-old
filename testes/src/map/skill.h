@@ -18,6 +18,7 @@
 #define _SKILL_H_
 
 #include "../common/mmo.h" // MAX_SKILL, struct square
+#include "../common/db.h"
 #include "map.h" // struct block_list
 struct map_session_data;
 struct homun_data;
@@ -34,6 +35,8 @@ struct status_change_entry;
 #define MAX_SKILL_IMPROVISE_DB 50
 
 #define MAX_SKILL_LEVEL 100
+
+DBMap* skilldb_name2id;
 
 //Constants to identify the skill's inf value:
 enum e_skill_inf {

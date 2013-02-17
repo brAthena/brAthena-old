@@ -3677,7 +3677,18 @@ int parse_char(int fd)
 
 					char_id = atoi(data);
 					Sql_FreeResult(sql_handle);
-					mmo_char_fromsql(char_id, &char_dat, true);
+
+					/* set char as online prior to loading its data so 3rd party applications will realise the sql data is not reliable */
+					set_char_online(-2,char_id,sd->account_id);
+					if( !mmo_char_fromsql(char_id, &char_dat, true) ) { /* failed? set it back offline */
+						set_char_offline(char_id, sd->account_id);
+						/* failed to load something. REJECT! */
+						WFIFOHEAD(fd,3);
+						WFIFOW(fd,0) = 0x6c;
+						WFIFOB(fd,2) = 0;
+						WFIFOSET(fd,3);
+						break;/* jump off this boat */
+					}
 
 					//Have to switch over to the DB instance otherwise data won't propagate [Kevin]
 					cd = (struct mmo_charstatus *)idb_get(char_db_, char_id);
@@ -3774,8 +3785,6 @@ int parse_char(int fd)
 					node->group_id = sd->group_id;
 					node->ip = ipl;
 					idb_put(auth_db, sd->account_id, node);
-
-					set_char_online(-2,node->char_id,sd->account_id);
 
 				}
 				break;
@@ -4713,8 +4722,13 @@ int do_init(int argc, char **argv)
 		Sql_ShowDebug(sql_handle);
 
 	set_defaultparse(parse_char);
-	char_fd = make_listen_bind(bind_ip, char_port);
+	if((char_fd = make_listen_bind(bind_ip,char_port)) == -1 ) {
+	ShowFatalError("Failed to bind to port '"CL_WHITE"%d"CL_RESET"'\n",char_port);
+		exit(EXIT_FAILURE);
+	}
+
 	ShowStatus(read_message("Source.char.char_doinit_s3"), CL_GREEN, CL_RESET, char_port);
+
 
 	if(runflag != CORE_ST_STOP) {
 		shutdown_callback = do_shutdown;
