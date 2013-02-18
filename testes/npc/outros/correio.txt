@@ -34,7 +34,7 @@ prontera,146,86,0	script	Caixa de Correio	888,{
 	mes "Você deseja usar";
 	mes "sua caixa de correio agora?";
 	next;
-	switch(select("Yes.:No.")) {
+	switch(select("Sim.:Não.")) {
 	case 1:
 		mes "[Correio]";
 		if (Zeny < 130) {

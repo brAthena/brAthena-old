@@ -2398,8 +2398,8 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio += 30*skill_lv;
 					break;
 				case WS_CARTTERMINATION:
-						i = 10 * (16 - skill_lv);
-						if(i < 1) i = 1;
+					i = 10 * (16 - skill_lv);
+					if(i < 1) i = 1;
 					//Preserve damage ratio when max cart weight is changed.
 					if(sd && sd->cart_weight) {
 					if(battle_config.bRO_Renewal)
