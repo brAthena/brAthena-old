@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 2.2/2.7/1.0                         |
+//   | Versões eA/rA/brA: 2.2/2.7a/1.0                        |
 //   |--------------------------------------------------------|
 //   | Descrição: Coleção de Quests do Episódio 13.2          |
 //   |--------------------------------------------------------|
@@ -8569,7 +8569,7 @@ mid_camp,69,144,0	script	Ferocious Gorurug	421,{
 				mes "You've brough Pieces of Fish!";
 				mes "GOOD JOB!";
 				delitem 6039,10; //Piece_Of_Fish
-				getexp 1500,0;
+				getexp 15000,0;
 				setquest 12060;
 				set ep13_yong1,ep13_yong1+1;
 				next;
@@ -14782,7 +14782,7 @@ OnTouch:
 		set mao_morocc2,18;
 		changequest 7026,7027;
 		close2;
-		warp "SavePoint",0,0;
+		consumeitem 602; //Wing_Of_Butterfly
 		end;
 	}
 	else if (mao_morocc2 == 19) {
@@ -14874,7 +14874,7 @@ que_dan02,115,53,3	script	Man#moc2_crazyR01	456,{
 		set mao_morocc2,20;
 		changequest 7028,7029;
 		close2;
-		warp "SavePoint",0,0;
+		consumeitem 602; //Wing_Of_Butterfly
 		donpcevent "Mr. Kidd#moc_extra01::OnDisable";
 	}
 	else {

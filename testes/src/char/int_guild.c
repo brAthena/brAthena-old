@@ -216,8 +216,8 @@ int inter_guild_tosql(struct guild *g,int flag)
 			strcat(t_info, " level");
 			if(add_comma)
 				StringBuf_AppendStr(&buf, ", ");
-			else
-				add_comma = true;
+			//else	//last condition using add_coma setting
+			//	add_comma = true;
 			StringBuf_Printf(&buf, "`guild_lv`=%d, `skill_point`=%d, `exp`=%"PRIu64", `next_exp`=%u, `max_member`=%d", g->guild_lv, g->skill_point, g->exp, g->next_exp, g->max_member);
 		}
 		StringBuf_Printf(&buf, " WHERE `guild_id`=%d", g->guild_id);
@@ -487,7 +487,7 @@ struct guild *inter_guild_fromsql(int guild_id) {
 	while(SQL_SUCCESS == Sql_NextRow(sql_handle)) {
 		int id;
 		Sql_GetData(sql_handle, 0, &data, NULL); id = atoi(data) - GD_SKILLBASE;
-		if(id < 0 && id >= MAX_GUILDSKILL)
+		if(id < 0 || id >= MAX_GUILDSKILL)
 			continue;// invalid guild skill
 		Sql_GetData(sql_handle, 1, &data, NULL); g->skill[id].lv = atoi(data);
 	}
@@ -1221,7 +1221,7 @@ int mapif_parse_GuildAddMember(int fd,int guild_id,struct guild_member *m)
 // Delete member from guild
 int mapif_parse_GuildLeave(int fd, int guild_id, int account_id, int char_id, int flag, const char *mes)
 {
-	int i, j;
+	int i;
 
 	struct guild *g = inter_guild_fromsql(guild_id);
 	if(g == NULL) {
@@ -1242,6 +1242,7 @@ int mapif_parse_GuildLeave(int fd, int guild_id, int account_id, int char_id, in
 	if(flag) {
 		// Write expulsion reason
 		// Find an empty slot
+		int j;
 		ARR_FIND(0, MAX_GUILDEXPULSION, j, g->expulsion[j].account_id == 0);
 		if(j == MAX_GUILDEXPULSION) {
 			// Expulsion list is full, flush the oldest one

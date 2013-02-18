@@ -1546,10 +1546,11 @@ int login_config_read(const char *cfgName)
 			if(msg_silent)   /* only bother if we actually have this enabled */
 				ShowInfo(read_message("Source.reuse.reuse_console_sm"), atoi(w2));
 		} else if(!strcmpi(w1, "bind_ip")) {
-			char ip_str[16];
 			login_config.login_ip = host2ip(w2);
-			if(login_config.login_ip)
+			if(login_config.login_ip) {
+			char ip_str[16];
 				ShowStatus(read_message("Source.login.login_cfg_read_s1"), w2, ip2str(login_config.login_ip, ip_str));
+			}
 		} else if(!strcmpi(w1, "login_port")) {
 			login_config.login_port = (uint16)atoi(w2);
 		} else if(!strcmpi(w1, "log_login"))
@@ -1592,10 +1593,10 @@ int login_config_read(const char *cfgName)
 		else if(!strcmpi(w1, "client_hash")) {
 			int group = 0;
 			char md5[33];
-			int i;
 
 			if(sscanf(w2, "%d, %32s", &group, md5) == 2) {
 				struct client_hash_node *nnode;
+				int i;
 				CREATE(nnode, struct client_hash_node, 1);
 
 				for(i = 0; i < 32; i += 2) {

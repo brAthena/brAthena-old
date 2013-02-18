@@ -804,7 +804,7 @@ void itemdb_read_combos()
 			id->combos[idx]->nameid[v] = items[v];
 
 		for(v = 1; v < retcount; v++) {
-			struct item_data *it = NULL;
+			struct item_data *it;
 			int index;
 
 			it = itemdb_exists(items[v]);
