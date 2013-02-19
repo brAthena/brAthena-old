@@ -2695,7 +2695,7 @@ int status_calc_pc_(struct map_session_data *sd, bool first)
 	sd->left_weapon.atkmods[1] = atkmods[1][sd->weapontype2];
 	sd->left_weapon.atkmods[2] = atkmods[2][sd->weapontype2];
 
-	if(pc_isriding(sd) &&
+	if(pc_isriding(sd) || pc_isridingdragon(sd) &&
 	   (sd->status.weapon==W_1HSPEAR || sd->status.weapon==W_2HSPEAR)) {
 		//When Riding with spear, damage modifier to mid-class becomes
 		//same as versus large size.
@@ -3526,6 +3526,8 @@ void status_calc_regen_rate(struct block_list *bl, struct regen_data *regen, str
 	   || (sc->data[SC_EARTH_INSIGNIA] && sc->data[SC_EARTH_INSIGNIA]->val1 == 1)
 	   || (sc->data[SC_WIND_INSIGNIA] && sc->data[SC_WIND_INSIGNIA]->val1 == 1))
 		regen->rate.hp *= 2;
+	if( sc->data[SC_VITALITYACTIVATION] )
+		regen->flag &=~RGN_SP;
 
 }
 void status_calc_state(struct block_list *bl, struct status_change *sc, enum scs_flag flag, bool start)
@@ -4695,7 +4697,7 @@ static unsigned short status_calc_matk(struct block_list *bl, struct status_chan
 	if(sc->data[SC_IZAYOI])
 		matk += 50 * sc->data[SC_IZAYOI]->val1;
 #endif
-	if(sc->data[SC_MAGICPOWER])
+	if(sc->data[SC_MAGICPOWER] && sc->data[SC_MAGICPOWER]->val4)
 		matk += matk * sc->data[SC_MAGICPOWER]->val3/100;
 	if(sc->data[SC_MINDBREAKER])
 		matk += matk * sc->data[SC_MINDBREAKER]->val2/100;
@@ -6457,12 +6459,20 @@ int status_change_start(struct block_list *bl,enum sc_type type,int rate,int val
 		if(type >= SC_COMMON_MIN && type <= SC_COMMON_MAX)  // Confirmed.
 			return 0; // Immune to status ailements
 		switch(type) {
-			case SC_QUAGMIRE://Tester said it protects against this and decrease agi.
-			case SC_DECREASEAGI:
+			case SC_DEEPSLEEP:
 			case SC_BURNING:
+			case SC_STUN:
+			case SC_SLEEP:
+			case SC_CURSE:
+			case SC_STONE:
+			case SC_POISON:
+			case SC_BLIND:
+			case SC_SILENCE:
+			case SC_BLEEDING:
+			case SC_FREEZE:
 			case SC_FREEZING:
-				//case SC_WHITEIMPRISON://Need confirm. Protected against this in the past. [Rytech]
-			case SC_MARSHOFABYSS:
+			//case SC_WHITEIMPRISON://Need confirm. Protected against this in the past. [Rytech]
+			case SC_CRYSTALIZE:
 			case SC_TOXIN:
 			case SC_PARALYSE:
 			case SC_VENOMBLEED:
@@ -6470,9 +6480,7 @@ int status_change_start(struct block_list *bl,enum sc_type type,int rate,int val
 			case SC_DEATHHURT:
 			case SC_PYREXIA:
 			case SC_OBLIVIONCURSE:
-			case SC_LEECHESEND:
-			case SC_CRYSTALIZE: ////08/31/2011 - Class Balance Changes
-			case SC_DEEPSLEEP:
+			case SC_MARSHOFABYSS:
 			case SC_MANDRAGORA:
 				return 0;
 		}
@@ -8021,7 +8029,7 @@ int status_change_start(struct block_list *bl,enum sc_type type,int rate,int val
 				tick_time = 10000; // [GodLesZ] tick time
 				break;
 			case SC_GIANTGROWTH:
-				val2 = 10; // Triple damage success rate.
+				val2 = 15; // Triple damage success rate.
 				break;
 				/**
 				 * Arch Bishop
@@ -10576,9 +10584,10 @@ int status_change_timer_sub(struct block_list *bl, va_list ap)
 		case SC_SIGHTBLASTER:
 			if(battle_check_target(src, bl, BCT_ENEMY) > 0 &&
 			   status_check_skilluse(src, bl, WZ_SIGHTBLASTER, 2)) {
-				skill_attack(BF_MAGIC,src,src,bl,WZ_SIGHTBLASTER,1,tick,0);
-				if(sce && !(bl->type&BL_SKILL))  //The hit is not counted if it's against a trap
+				if (sce && !(bl->type&BL_SKILL) //The hit is not counted if it's against a trap
+					&& skill_attack(BF_MAGIC,src,src,bl,WZ_SIGHTBLASTER,1,tick,0)){
 					sce->val2 = 0; //This signals it to end.
+				}
 			}
 			break;
 		case SC_CLOSECONFINE:

@@ -1256,7 +1256,7 @@ morocc,281,178,2	script	Cetsu#magum	97,{
 	close;
 }
 
-izlude_in,173,88,2	script	Nain#magum	102,{
+izlude_in,173,88,2	script#pre	Nain#magum	102,{
 	if (dmdswrd_Q2 == 4) {
 		mes "[Nain]";
 		mes "Não importa quão";

@@ -26,7 +26,7 @@
 // Entradas Simples
 // =====================================
 // Izlude
-izlude,204,75,3	script	Equipe do Aeroporto#Izlude	90,{
+izlude,202,75,3	script	Equipe do Aeroporto#Izlude	90,{
 	OnTouch:
 	set .@npc$, strnpcinfo(2);
 	
