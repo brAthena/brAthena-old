@@ -2823,9 +2823,7 @@ int map_addmap(char *mapname)
 
 static void map_delmapid(int id)
 {
-	if(id != 762)
-		ShowNotice("Removendo mapa [ %s ] da lista de mapas %d."CL_CLL"\n",map[id].name,id);
-		
+	ShowNotice("Removendo mapa [ %s ] da lista de mapas %d."CL_CLL"\n",map[id].name,id);
 	memmove(map+id, map+id+1, sizeof(map[0])*(map_num-id-1));
 	map_num--;
 }
@@ -3076,7 +3074,7 @@ int map_readallmaps(void)
 		map[i].index = mapindex_name2id(map[i].name);
 
 		if(uidb_get(map_db,(unsigned int)map[i].index) != NULL) {
-			ShowWarning("Mapa %s j%c est%c carregado!"CL_CLL"\n", 160, 160, map[i].name);
+			ShowWarning("Mapa %s já está carregado!"CL_CLL"\n", map[i].name);
 			if(map[i].cell) {
 				aFree(map[i].cell);
 				map[i].cell = NULL;

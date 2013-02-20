@@ -940,6 +940,10 @@ moro_cav
 1@rev
 1@xm_d
 silk_lair
+evt_swar_b	
+evt_swar_r
+evt_swar_s	
+evt_swar_t
 
 // Adicione abaixo apenas mapas personalizados.
 //======================================================================================
