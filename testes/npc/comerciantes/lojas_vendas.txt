@@ -8,13 +8,13 @@
 //   |                                                        |
 //   |                    brAthena Script                     |
 //   |--------------------------------------------------------|
-//   | Nome do Script: buying_shops.txt                       |
+//   | Nome do Script: lojas_vendas.txt                       |
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
 //   | Versões eA/rA/brA: ??/1.1/1.2                          |
 //   |--------------------------------------------------------|
-//   | Descrição: Compra de licenças de lojas.                |
+//   | Descrição: Compra de Licenças de lojas e Catálogos.    |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
@@ -246,4 +246,94 @@ alberta_in,58,52,4	script	Equipe de Compras#Compras	59,{
 	mes "[Sr. Hugh]";
 	mes "Meu tempo é dedicado exclusivamente aos nossos clientes na indústria do comercio.";
 	close;
+}
+
+// Catalogador Mágico
+//============================================================ 
+moc_para01,22,16,5	script#re	Catalogador Mágico#catal01	704,{
+	mes "[Catalogador Mágico]";
+	if (!checkweight(1201,2)) {
+		mes "- Você possui muitos itens. Por favor diminua seu peso. -";
+		close;
+	}
+	set .@ticket_cost, 200;
+	mes "Olha só... A Guilda dos Magos em Geffen";
+	mes "está comercializando diretamente";
+	mes "o novo item, ^007373Catálogo de Vendas Prata^000000!";
+	next;
+	mes "[Catalogador Mágico]";
+	mes "Ele está olhando para as palavras";
+	mes "escritas em sua própria mão.";
+	mes "Parece estar muito ocupado";
+	mes "para olhar para você.";
+	next;
+	mes "[Catalogador Mágico]";
+	mes "Esse novo item";
+	mes "foi lançado recentemente!";
+	mes "Você pode verificar";
+	mes "quais os itens que você poderá comercializar";
+	mes "e quais itens estão à venda";
+	mes "pelas lojas montadas na cidade em que estiver.";
+	next;
+	mes "[Catalogador Mágico]";
+	mes "^007373Catálogo de Vendas Prata^000000";
+	mes "Custa apenas 200z cada!";
+	mes "Você pode comprar apenas 50 de cada vez!";
+	next;
+	switch(select("Comprar ^007373Catálogo de Vendas Prata^000000:Eu não preciso disso!:Você não é vendedor... É?")) {
+	case 1:
+		mes "[Catalogador Mágico]";
+		mes "Você... Quer comprar os 50?";
+		mes "Quantos... Quantos gostaria de comprar?";
+		next;
+		while(input(.@quantidade,0,50)) {
+				mes "[Catalogador Mágico]";
+				mes "Você deve comprar até 50 itens por vez.";
+				next;
+			}
+		mes "[Catalogador Mágico]";
+		if(!.@quantidade) {
+		mes "A negociação não será concluída, mas...";
+		mes "Eu não sei o que fazer...";
+		mes "O que eu deveria fazer agora?";
+		emotion e_swt2,1;
+		close;
+		}
+		mes "O número total de catálogo(s) que";
+		mes "está comprando é de "+.@quantidade+" itens";
+		mes "e vai sair por apenas "+set(.@preco,.@quantidade*200)+" zenys.";
+		if(.@preco > Zeny) {
+		mes "Parece que não possui dinheiro suficiente.";
+		mes "Você pode vender seus equipamentos";
+		mes "para fazer mais dinheiro... o que acha?";
+		close;
+		}
+		mes "Ok, vamos lá.";
+		getitem 12580,.@quantidade;
+		close;
+	case 2:
+		mes "Argh... você realmente precisará";
+		mes "desses itens...";
+		mes "Você quer que eu lhe explique novamente?";
+		mes "Eu não sei o que devo fazer agora...";
+		mes "O que eu devo fazer?";
+		emotion e_swt2,1;
+		close;
+	case 3:
+		mes "Realmente minha classe é 'Mago'.";
+		mes "Eu fui aprender algumas técnicas de comércio na";
+		mes "Guilda dos Mercadores para poder";
+		mes "vender esse novo item.";
+		mes "É por isso que estou vendendo por conta própria.";
+		next;
+		mes "[Catalogador Mágico]";
+		mes "Existem muitos aventureiros aqui";
+		mes "que sempre vem e vão.";
+		mes "Tenho certeza que venderei todos";
+		mes "esses itens em breve.";
+		mes "Você não acha?";
+		mes "Então, vamos vender! Quer comprar mais alguns?";
+		mes "Por favor?!... POR FAVORRR?!";
+		close;
+	}
 }
