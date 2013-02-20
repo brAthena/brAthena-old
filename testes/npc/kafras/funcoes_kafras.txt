@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 6.6/6.7/1.2                         |
+//   | Versões eA/rA/brA: 6.6/6.7/1.2a                        |
 //   |--------------------------------------------------------|
 //   | Descrição:  Funções referente as Kafras.               |
 //   | Aluguel de carrinho,teleporte entre outra funções.     |
@@ -21,6 +21,7 @@
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [cleyton]                           |
 //   | 1.2 Revisão [Holy]                                     |
+//   | 1.2a Revisão [Architect]                               |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -38,21 +39,21 @@ function	script	F_Kafra	{
 		default:
 		case 0:
 			mes "[Funcionária Kafra]";
-			mes "Bem vindo à corporação kafra. Os serviços da corporação kafra sempre estarão ao seu lado. Como posso lhe ajudar ?";
+			mes "Bem vindo à Corporação Kafra. Os serviços da Corporação Kafra sempre estarão ao seu lado. Como posso lhe ajudar ?";
 			break;
 		// Niflheim mensagem específica			
 		case 1:
 			mes "[Funcionária Kafra]";
 			mes "^666666B-Be-Beeeemmm V-vindooo";
 			mes "a c-cooorpoor-r-raaçãaaoo";
-			mes "K-k-kafraaaa...^000000";
+			mes "K-k-Kafraaaa...^000000";
 			break;
 		// Castelo - Mensagem Kafra
 		case 2:
 			set @GID,getcharid(2);
 			mes "[Funcionária Kafra]";
 	 		mes "Bem vindo membro da guilda ^ff0000" + GetGuildName(@GID) + "^000000 .";
-			mes "A corporação Kafra, está aqui para atender você.";
+			mes "A Corporação Kafra, está aqui para atender você.";
 			break;
 		case 3:
 			// Amatsu mensagem específica
@@ -117,7 +118,7 @@ function	script	F_Kafra	{
 				mes "[Funcionária Kafra]";
 				mes "Por causa do ^FF0000Acordo de limite";
 				mes "de transporte^000000, a";
-				mes "corporação Kafra não pode";
+				mes "Corporação Kafra não pode";
 				mes "fornecer serviços de teletransporte";
 				mes "aqui na república de Schwaltzvalt.";
 				next;
@@ -185,16 +186,16 @@ function	script	F_KafStor	{
 				if (getarg(2) == 1) {
 					percentheal -50,-50;
 					mes "^666666Zeeeeeny...";
-					mes "P-Preeciso de z-zeny...!";
-					mes "P-Preciiiso de 150... zenys...";
+					mes "P-Preeciso de Z-Zeny...!";
+					mes "P-Preciiiso de 150... Zenys...";
 					mes "Ergh!!! T-tomando e-energia!";
 					return;
 				}
 				// Mensagem Padrão.
 				mes "Lamento, mas você não possui";
-				mes "zenys suficientes para usar";
+				mes "Zenys suficientes para usar";
 				mes "o serviço de armazém.";
-				mes "Para acessar o armazém o custo é: "+getarg(1)+" zenys.";
+				mes "Para acessar o armazém o custo é: "+getarg(1)+" Zenys.";
 				return;
 			}
 			set Zeny, Zeny-getarg(1);
@@ -243,9 +244,9 @@ function	script	F_KafTele	{
 		if (Zeny<@wrpP[.@j]){
 			mes "[Funcionária Kafra]";
 			mes "Sinto muito, mas você não possui";
-			mes "zenys para teleportar.";
+			mes "Zenys para teleportar.";
 			mes "O serviço de teleporte ";
-			mes "para"+@wrpD$[@num]+"custa"+@wrpP[@num]+" zenys.";
+			mes "para"+@wrpD$[@num]+"custa"+@wrpP[@num]+" Zenys.";
 			close2;
 			cutin "", 255;
 			end;
@@ -291,14 +292,14 @@ function	script	F_KafCart	{
 	else {
 		mes "[Funcionária Kafra]";
 		mes "O aluguel do carrinho de mão";
-		mes "custará "+getarg(1)+" zenys.";
+		mes "custará "+getarg(1)+" Zenys.";
 		mes "Você deseja alugar um carrinho de mão?";
 		next;
 		if (select("Alugar Carrinho.:Cancelar") == 2) return 0;
 			if(Zeny<getarg(1)){
 				mes "[Funcionária Kafra]";
-				mes "Lamento, mas você não possui zenys suficientes para alugar um carrinho.";
-				mes "O aluguel custa "+getarg(1)+" zenys.";
+				mes "Lamento, mas você não possui Zenys suficientes para alugar um carrinho.";
+				mes "O aluguel custa "+getarg(1)+" Zenys.";
 				close;
 			}
 			set Zeny,Zeny-getarg(1);
@@ -329,7 +330,7 @@ function	script	F_KafInfo	{
       mes "[Funcionária Kafra]";
       mes "Você pode trocar suas";
       mes "Reservas de pontos especiais por";
-      mes "recompensas no escritório da corporação Kafra em Aldebaran. Por favor,";
+      mes "recompensas no escritório da Corporação Kafra em Aldebaran. Por favor,";
       mes "utilize nossos serviços convenientes receber os benefícios do nosso programa de recompensas.";
 			next;
 			if(getarg(0) == 1) return;
@@ -358,9 +359,9 @@ function	script	F_KafEnd	{
 		mes "Seu ponto de renascimento";
 		mes "foi salvo aqui em: "+getarg(2)+"";
 		mes "Muito obrigado por usar";
-		mes "os serviços da corporação Kafra.";
+		mes "os serviços da Corporação Kafra.";
 	} else if(getarg(0)==0 || getarg(0)==5) {	
-		mes "Nós da corporação Kafra,";
+		mes "Nós da Corporação Kafra,";
 		mes "sempre estamos nos esforçando para proporcionoar os melhores serviços. Esperamos satisfazer as suas necessidades de aventureiro nos seus padrões de excelência.";
 	} else if(getarg(0)==1) {
 		percentheal 0,- 25;
@@ -426,7 +427,7 @@ function	script	F_SetKafCode	{
 				next;
 				mes getarg(0);
 				if(Zeny < 1000) {
-					mes "Você não possui zenys.";
+					mes "Você não possui Zenys.";
 					emotion e_cash;
 					break;
 				}
@@ -437,7 +438,7 @@ function	script	F_SetKafCode	{
           mes "Muito obrigado por usar os "+getarg(1)+".";
 					emotion e_thx;
 				} else {
-          mes "Senha errada! Não devolverei seus 1000 zenys.";
+          mes "Senha errada! Não devolverei seus 1000 Zenys.";
           mes "Por favor, na próxima entre com a senha correta.";
 					emotion e_sry;
 				}
@@ -470,7 +471,7 @@ S_SET:
 	next;
 	mes getarg(0);
 	if(Zeny < 5000) {
-		mes "Você não possui zeny suficiente.";
+		mes "Você não possui Zeny suficiente.";
 		emotion e_cash;
 		return;
 	}
