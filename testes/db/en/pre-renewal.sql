@@ -24731,7 +24731,7 @@ REPLACE INTO `skill_cast_db` VALUES(360,'0','0','0','300000','0','0');
 REPLACE INTO `skill_cast_db` VALUES(361,'1000:1500:2000:2500:3000','1100:1200:1300:1400:1500','0','20000:40000:60000:80000:100000','0','0');
 REPLACE INTO `skill_cast_db` VALUES(362,'5000:6000:7000:8000:9000','2000:3000:4000:5000:6000','0','20000:25000:30000:35000:40000','20000:25000:30000:35000:40000','0');
 REPLACE INTO `skill_cast_db` VALUES(365,'300','300','0','0','0','0');
-REPLACE INTO `skill_cast_db` VALUES(366,'700','0','0','30000','0','0');
+REPLACE INTO `skill_cast_db` VALUES(366,'750','0','0','30000','0','0');
 REPLACE INTO `skill_cast_db` VALUES(367,'2000:2500:3000:3500:4000','2000:2500:3000:3500:4000','0','0','2000:3000:4000:5000:6000','0');
 REPLACE INTO `skill_cast_db` VALUES(368,'0','2000','0','0','0','0');
 REPLACE INTO `skill_cast_db` VALUES(369,'0','0','0','60000','60000','0');
@@ -29213,11 +29213,11 @@ REPLACE INTO `statpoint_db` VALUES(7079);
 REPLACE INTO `statpoint_db` VALUES(7132);
 REPLACE INTO `statpoint_db` VALUES(7185);
 
---
+/*
 -- Table structure for table `attr_fix_db`
 --
  
-/*CREATE TABLE IF NOT EXISTS `attr_fix_db` (
+CREATE TABLE IF NOT EXISTS `attr_fix_db` (
  `Row` tinyint DEFAULT NULL,
  `Column` tinyint DEFAULT NULL,
  `Neut` tinyint DEFAULT NULL,
