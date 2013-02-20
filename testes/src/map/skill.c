@@ -1565,6 +1565,8 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 			// Self weapon breaking
 			rate = battle_config.equip_natural_break_rate;
 			if(sc) {
+				if(sc->data[SC_GIANTGROWTH])
+					rate += 10;
 				if(sc->data[SC_OVERTHRUST])
 					rate += 10;
 				if(sc->data[SC_MAXOVERTHRUST])
@@ -4206,7 +4208,7 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 			clif_skill_nodamage(src,bl,skill_id,skill_lv,1);
 
 			skill_blown(src,bl,distance_bl(src,bl)-1,unit_getdir(src),0);
-			if(battle_check_target(src,bl,BCT_ENEMY))
+			if(battle_check_target(src,bl,BCT_ENEMY)>0)
 				skill_attack(BF_WEAPON,src,src,bl,skill_id,skill_lv,tick,flag);
 			break;
 		case RK_CRUSHSTRIKE:
@@ -7789,7 +7791,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 			break;
 
 		case WL_WHITEIMPRISON:
-			if((src == bl || battle_check_target(src, bl, BCT_ENEMY)) && !is_boss(bl)) { // Should not work with bosses.
+			if((src == bl || battle_check_target(src, bl, BCT_ENEMY)>0) && !is_boss(bl)) { // Should not work with bosses.
 				int rate = (sd? sd->status.job_level : 50) / 4;
 
 				if(src == bl) rate = 100;   // Success Chance: On self, 100%
@@ -11692,11 +11694,11 @@ int skill_unit_onplace_timer(struct skill_unit *src, struct block_list *bl, unsi
 			break;
 
 		case UNT_SEVERE_RAINSTORM:
-			if(battle_check_target(&src->bl, bl, BCT_ENEMY))
+			if(battle_check_target(&src->bl, bl, BCT_ENEMY)> 0)
 				skill_attack(BF_WEAPON,ss,&src->bl,bl,WM_SEVERE_RAINSTORM_MELEE,sg->skill_lv,tick,0);
 			break;
 		case UNT_NETHERWORLD:
-			if(!(status_get_mode(bl)&MD_BOSS) && ss != bl && battle_check_target(&src->bl, bl, BCT_PARTY)) {
+			if(!(status_get_mode(bl)&MD_BOSS) && ss != bl && battle_check_target(&src->bl, bl, BCT_PARTY)> 0) {
 				if(!(tsc && tsc->data[type])) {
 					sc_start(bl, type, 100, sg->skill_lv, skill_get_time2(sg->skill_id,sg->skill_lv));
 					sg->limit = DIFF_TICK(tick,sg->tick);
@@ -11833,7 +11835,7 @@ int skill_unit_onplace_timer(struct skill_unit *src, struct block_list *bl, unsi
 			break;
 
 		case UNT_FIRE_MANTLE:
-			if(battle_check_target(&src->bl, bl, BCT_ENEMY))
+			if(battle_check_target(&src->bl, bl, BCT_ENEMY)> 0)
 				skill_attack(BF_MAGIC,ss,&src->bl,bl,sg->skill_id,sg->skill_lv,tick,0);
 			break;
 
