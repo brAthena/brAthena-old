@@ -1133,7 +1133,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 
 		if(sc && sc->data[SC__SHADOWFORM]) {
 			struct block_list *s_bl = map_id2bl(sc->data[SC__SHADOWFORM]->val2);
-			if(!s_bl) {   // If the shadow form target is not present remove the sc.
+			if(!s_bl || s_bl->m != bl->m) {   // If the shadow form target is not present remove the sc.
 				status_change_end(bl, SC__SHADOWFORM, INVALID_TIMER);
 			} else if(status_isdead(s_bl) || !battle_check_target(src,s_bl,BCT_ENEMY)) {  // If the shadow form target is dead or not your enemy remove the sc in both.
 				status_change_end(bl, SC__SHADOWFORM, INVALID_TIMER);
@@ -3695,8 +3695,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 				 * Arch Bishop
 				 **/
 			case AB_RENOVATIO:
-				//Damage calculation from iRO wiki. [Jobbie]
-				ad.damage = (int)((15 * status_get_lv(src)) + (1.5 * sstatus->int_));
+				ad.damage = status_get_lv(src) * 10 + sstatus->int_;
 				break;
 			default: {
 					if(sstatus->matk_max > sstatus->matk_min) {
@@ -3888,8 +3887,7 @@ struct Damage battle_calc_magic_attack(struct block_list *src,struct block_list 
 							 * Arch Bishop
 							 **/
 						case AB_JUDEX:
-							skillratio += 180 + 20 * skill_lv;
-							if(skill_lv > 4) skillratio += 20;
+							skillratio += 200 + 20 * skill_lv;
 							RE_LVL_DMOD(100);
 							break;
 						case AB_ADORAMUS:
@@ -5205,7 +5203,7 @@ int battle_check_target(struct block_list *src, struct block_list *target,int fl
 		case BL_MOB:
 			if(((((TBL_MOB *)target)->special_state.ai == 2 || //Marine Spheres
 			     (((TBL_MOB *)target)->special_state.ai == 3 && battle_config.summon_flora&1)) && //Floras
-			    s_bl->type == BL_PC && src->type != BL_MOB) || ((TBL_MOB *)target)->special_state.ai == 4) { //Zanzoe
+			    s_bl->type == BL_PC && src->type != BL_MOB) || ((TBL_MOB *)target)->special_state.ai == 4 && t_bl->id != src->id) { //Zanzoe
 				//Targettable by players
 				state |= BCT_ENEMY;
 				strip_enemy = 0;
