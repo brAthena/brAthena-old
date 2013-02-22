@@ -29,7 +29,7 @@
 xmas_fild01,0,0,0,0	monster#pre	Marin	1242,35,0,0,0
 xmas_fild01,0,0,0,0	monster#pre	Sasquatch	1243,20,0,0,0
 xmas_fild01,0,0,0,0	monster#pre	Filhote de Hatii	1515,1,1800000,0,0
-xmas_fild01,0,0,0,0	boss_monster#pre	Hatii	1252,1,7200000,600000,1
+xmas_fild01,0,0,0,0	boss_monster#pre	Hatii	1252,1,7200000,600000,1,{}
 
 //==================================================
 // [Renovação] xmas_fild01 - Arredores de Lutie

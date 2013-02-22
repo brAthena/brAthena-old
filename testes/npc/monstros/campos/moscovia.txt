@@ -31,7 +31,7 @@ mosk_fild02,0,0,0,0	monster#pre	Caramelo	1103,20,0,0,0
 mosk_fild02,0,0,0,0	monster#pre	Louva-a-Deus	1139,30,0,0,0
 mosk_fild02,0,0,0,0	monster#pre	Poring	1002,10,0,0,0
 mosk_fild02,0,0,0,0	monster#pre	Planta Amarela	1081,5,0,0,0
-mosk_fild02,0,0,0,0	monster#pre	Planta Branca	1082,5,10000,0,0
+mosk_fild02,0,0,0,0	monster#pre	Planta Branca	1082,5,10000,0,0,{}
 
 //==================================================
 // [Renovação] mosk_fild02 - Campo de Moscóvia

@@ -28,6 +28,7 @@
 ma_fild01,0,0,0,0	monster	Tikbalang	2313,50,0,0,0
 ma_fild01,0,0,0,0	monster	Tiyanak	2314,40,0,0,0
 ma_fild01,0,0,0,0	monster	Jejeling	2316,20,0,0,0
+
 //==================================================
 // ma_fild02 - Floresta de Malaya
 //==================================================

@@ -42,7 +42,7 @@ lou_fild01,224,315,100,50	monster#pre	Anaconda	1030,2,0,0,0
 lou_fild01,203,225,110,35	monster#pre	Anaconda	1030,1,0,0,0
 lou_fild01,273,128,75,50	monster#pre	Anaconda	1030,2,0,0,0
 lou_fild01,0,0,0,0	monster#pre	Cogumelo Negro	1084,5,0,0,0
-lou_fild01,0,0,0,0	monster#pre	Planta Amarela	1081,10,0,0,0
+lou_fild01,0,0,0,0	monster#pre	Planta Amarela	1081,10,0,0,0,{}
 
 //==================================================
 // [Renovação] lou_fild01 - Campo de Louyang

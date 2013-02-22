@@ -37,7 +37,7 @@ ayo_fild01,0,0,0,0	monster#pre	Planta Verde	1080,10,0,0,0
 ayo_fild02,0,0,0,0	monster#pre	Gato de Folha	1586,50,0,0,0
 ayo_fild02,0,0,0,0	monster#pre	Guerreiro Wotan	1499,20,0,0,0
 ayo_fild02,0,0,0,0	monster#pre	Besouro-Rei	1494,30,0,0,0
-ayo_fild02,0,0,0,0	monster#pre	Planta Amarela	1081,10,0,0,0
+ayo_fild02,0,0,0,0	monster#pre	Planta Amarela	1081,10,0,0,0,{}
 //==================================================
 // [Renovação] ayo_fild01 - Campo de Ayothaya
 //==================================================

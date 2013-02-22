@@ -35,7 +35,7 @@ mjolnir_01,75,85,25,25	monster#pre	Planta Brilhante	1083,1,1800000,900000,1
 mjolnir_01,78,219,25,25	monster#pre	Planta Brilhante	1083,1,1800000,900000,1
 mjolnir_01,75,85,25,25	monster#pre	Planta Verde	1080,5,180000,90000,1
 mjolnir_01,78,219,25,25	monster#pre	Planta Verde	1080,5,180000,90000,1
-mjolnir_01,311,271,25,25	monster#pre	Planta Azul	1079,5,360000,180000,1
+mjolnir_01,311,271,25,25	monster#pre	Planta Azul	1079,5,360000,180000,1,{}
 
 //==================================================
 // [Renovação] mjolnir_01 - Monte Mjolnir
@@ -48,7 +48,7 @@ mjolnir_01,75,85,25,25	monster#re	Planta Brilhante	1083,1,1800000,900000,1
 mjolnir_01,78,219,25,25	monster#re	Planta Brilhante	1083,1,1800000,900000,1
 mjolnir_01,75,85,25,25	monster#re	Planta Verde	1080,5,180000,90000,1
 mjolnir_01,78,219,25,25	monster#re	Planta Verde	1080,5,180000,90000,1
-mjolnir_01,311,271,25,25	monster#re	Planta Azul	1079,5,360000,180000,1
+mjolnir_01,311,271,25,25	monster#re	Planta Azul	1079,5,360000,180000,1,{}
 
 //==================================================
 // [Pré-Renovação] mjolnir_02 - Monte Mjolnir
@@ -91,7 +91,7 @@ mjolnir_02,254,155,0,0	monster#pre	Planta Vermelha	1078,1,180000,90000,1
 mjolnir_02,243,208,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1
 mjolnir_02,273,240,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1
 mjolnir_02,289,276,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1
-mjolnir_02,188,192,10,10	monster#pre	Planta Azul	1079,2,360000,180000,1
+mjolnir_02,188,192,10,10	monster#pre	Planta Azul	1079,2,360000,180000,1,{}
 
 //==================================================
 // [Renovação] mjolnir_02 - Monte Mjolnir
@@ -133,7 +133,7 @@ mjolnir_02,254,155,0,0	monster#re	Planta Vermelha	1078,1,180000,90000,1
 mjolnir_02,243,208,0,0	monster#re	Planta Verde	1080,1,180000,90000,1
 mjolnir_02,273,240,0,0	monster#re	Planta Verde	1080,1,180000,90000,1
 mjolnir_02,289,276,0,0	monster#re	Planta Verde	1080,1,180000,90000,1
-mjolnir_02,188,192,10,10	monster#re	Planta Azul	1079,2,360000,180000,1
+mjolnir_02,188,192,10,10	monster#re	Planta Azul	1079,2,360000,180000,1,{}
 
 //==================================================
 // [Pré-Renovação] mjolnir_03 - Monte Mjolnir
@@ -158,7 +158,7 @@ mjolnir_03,168,341,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1
 mjolnir_03,128,319,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1
 mjolnir_03,77,271,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1
 mjolnir_03,66,219,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1
-mjolnir_03,91,161,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1
+mjolnir_03,91,161,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1,{}
 
 //==================================================
 // [Renovação] mjolnir_03 - Monte Mjolnir
@@ -180,7 +180,7 @@ mjolnir_03,168,341,0,0	monster#re	Planta Verde	1080,1,180000,90000,1
 mjolnir_03,128,319,0,0	monster#re	Planta Verde	1080,1,180000,90000,1
 mjolnir_03,77,271,0,0	monster#re	Planta Verde	1080,1,180000,90000,1
 mjolnir_03,66,219,0,0	monster#re	Planta Verde	1080,1,180000,90000,1
-mjolnir_03,91,161,0,0	monster#re	Planta Verde	1080,1,180000,90000,1
+mjolnir_03,91,161,0,0	monster#re	Planta Verde	1080,1,180000,90000,1,{}
 
 //==================================================
 // [Pré-Renovação] mjolnir_04 - Monte Mjolnir
@@ -208,7 +208,7 @@ mjolnir_04,356,292,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1
 mjolnir_04,362,201,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1
 mjolnir_04,332,122,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1
 mjolnir_04,269,39,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1
-mjolnir_04,205,33,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1
+mjolnir_04,205,33,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1,{}
 
 //==================================================
 // [Renovação] mjolnir_04 - Monte Mjolnir
@@ -234,7 +234,7 @@ mjolnir_04,356,292,0,0	monster#re	Planta Verde	1080,1,180000,90000,1
 mjolnir_04,362,201,0,0	monster#re	Planta Verde	1080,1,180000,90000,1
 mjolnir_04,332,122,0,0	monster#re	Planta Verde	1080,1,180000,90000,1
 mjolnir_04,269,39,0,0	monster#re	Planta Verde	1080,1,180000,90000,1
-mjolnir_04,205,33,0,0	monster#re	Planta Verde	1080,1,180000,90000,1
+mjolnir_04,205,33,0,0	monster#re	Planta Verde	1080,1,180000,90000,1,{}
 
 //==================================================
 // [Pré-Renovação] mjolnir_05 - Monte Mjolnir
@@ -248,7 +248,7 @@ mjolnir_05,200,240,40,40	monster#pre	Planta Azul	1079,3,360000,180000,1
 mjolnir_05,200,240,40,40	monster#pre	Planta Brilhante	1083,1,1800000,900000,1
 mjolnir_05,134,103,20,20	monster#pre	Planta Azul	1079,3,360000,180000,1
 mjolnir_05,261,100,20,10	monster#pre	Planta Azul	1079,3,360000,180000,1
-mjolnir_05,0,0,0,0	monster#pre	Planta Vermelha	1078,10,180000,90000,1
+mjolnir_05,0,0,0,0	monster#pre	Planta Vermelha	1078,10,180000,90000,1,{}
 
 //==================================================
 // [Renovação] mjolnir_05 - Monte Mjolnir
@@ -260,7 +260,7 @@ mjolnir_05,200,240,40,40	monster#re	Planta Azul	1079,3,360000,180000,1
 mjolnir_05,200,240,40,40	monster#re	Planta Brilhante	1083,1,1800000,900000,1
 mjolnir_05,134,103,20,20	monster#re	Planta Azul	1079,3,360000,180000,1
 mjolnir_05,261,100,20,10	monster#re	Planta Azul	1079,3,360000,180000,1
-mjolnir_05,0,0,0,0	monster#re	Planta Vermelha	1078,10,180000,90000,1
+mjolnir_05,0,0,0,0	monster#re	Planta Vermelha	1078,10,180000,90000,1,{}
 
 //==================================================
 // [Pré-Renovação] mjolnir_06 - Monte Mjolnir
@@ -279,7 +279,7 @@ mjolnir_06,296,317,0,0	monster#pre	Cogumelo Vermelho	1085,1,180000,90000,1
 mjolnir_06,45,345,0,0	monster#pre	Cogumelo Vermelho	1085,1,180000,90000,1
 mjolnir_06,73,339,0,0	monster#pre	Cogumelo Vermelho	1085,1,180000,90000,1
 mjolnir_06,69,225,0,0	monster#pre	Cogumelo Vermelho	1085,1,180000,90000,1
-mjolnir_06,55,276,0,0	monster#pre	Cogumelo Vermelho	1085,1,180000,90000,1
+mjolnir_06,55,276,0,0	monster#pre	Cogumelo Vermelho	1085,1,180000,90000,1,{}
 
 //==================================================
 // [Renovação] mjolnir_06 - Monte Mjolnir
@@ -296,7 +296,7 @@ mjolnir_06,296,317,0,0	monster#re	Cogumelo Vermelho	1085,1,180000,90000,1
 mjolnir_06,45,345,0,0	monster#re	Cogumelo Vermelho	1085,1,180000,90000,1
 mjolnir_06,73,339,0,0	monster#re	Cogumelo Vermelho	1085,1,180000,90000,1
 mjolnir_06,69,225,0,0	monster#re	Cogumelo Vermelho	1085,1,180000,90000,1
-mjolnir_06,55,276,0,0	monster#re	Cogumelo Vermelho	1085,1,180000,90000,1
+mjolnir_06,55,276,0,0	monster#re	Cogumelo Vermelho	1085,1,180000,90000,1,{}
 
 //==================================================
 // [Pré-Renovação] mjolnir_07 - Monte Mjolnir
@@ -316,7 +316,7 @@ mjolnir_07,217,185,0,0	monster#pre	Cogumelo Vermelho	1085,1,180000,90000,1
 mjolnir_07,181,173,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1
 mjolnir_07,140,179,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1
 mjolnir_07,97,210,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1
-mjolnir_07,249,214,0,0	monster#pre	Planta Azul	1079,2,360000,180000,1
+mjolnir_07,249,214,0,0	monster#pre	Planta Azul	1079,2,360000,180000,1,{}
 
 //==================================================
 // [Renovação] mjolnir_07 - Monte Mjolnir
@@ -333,7 +333,7 @@ mjolnir_07,217,185,0,0	monster#re	Cogumelo Vermelho	1085,1,180000,90000,1
 mjolnir_07,181,173,0,0	monster#re	Planta Verde	1080,1,180000,90000,1
 mjolnir_07,140,179,0,0	monster#re	Planta Verde	1080,1,180000,90000,1
 mjolnir_07,97,210,0,0	monster#re	Planta Verde	1080,1,180000,90000,1
-mjolnir_07,249,214,0,0	monster#re	Planta Azul	1079,2,360000,180000,1
+mjolnir_07,249,214,0,0	monster#re	Planta Azul	1079,2,360000,180000,1,{}
 
 //==================================================
 // [Pré-Renovação] mjolnir_08 - Monte Mjolnir
@@ -349,7 +349,7 @@ mjolnir_08,176,153,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1
 mjolnir_08,169,204,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1
 mjolnir_08,207,232,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1
 mjolnir_08,180,282,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1
-mjolnir_08,149,328,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1
+mjolnir_08,149,328,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1,{}
 
 //==================================================
 // [Renovação] mjolnir_08 - Monte Mjolnir 
@@ -363,7 +363,7 @@ mjolnir_08,176,153,0,0	monster#re	Planta Verde	1080,1,180000,90000,1
 mjolnir_08,169,204,0,0	monster#re	Planta Verde	1080,1,180000,90000,1
 mjolnir_08,207,232,0,0	monster#re	Planta Verde	1080,1,180000,90000,1
 mjolnir_08,180,282,0,0	monster#re	Planta Verde	1080,1,180000,90000,1
-mjolnir_08,149,328,0,0	monster#re	Planta Verde	1080,1,180000,90000,1
+mjolnir_08,149,328,0,0	monster#re	Planta Verde	1080,1,180000,90000,1,{}
 
 //==================================================
 // [Pré-Renovação] mjolnir_09 - Monte Mjolnir
@@ -383,7 +383,7 @@ mjolnir_09,73,122,0,0	monster#pre	Cogumelo Vermelho	1085,1,180000,90000,1
 mjolnir_09,89,141,0,0	monster#pre	Cogumelo Vermelho	1085,1,180000,90000,1
 mjolnir_09,120,126,0,0	monster#pre	Cogumelo Vermelho	1085,1,180000,90000,1
 mjolnir_09,139,84,0,0	monster#pre	Cogumelo Vermelho	1085,1,180000,90000,1
-mjolnir_09,125,82,0,0	monster#pre	Cogumelo Vermelho	1085,1,180000,90000,1
+mjolnir_09,125,82,0,0	monster#pre	Cogumelo Vermelho	1085,1,180000,90000,1,{}
 
 //==================================================
 // [Renovação] mjolnir_09 - Monte Mjolnir
@@ -401,7 +401,7 @@ mjolnir_09,73,122,0,0	monster#re	Cogumelo Vermelho	1085,1,180000,90000,1
 mjolnir_09,89,141,0,0	monster#re	Cogumelo Vermelho	1085,1,180000,90000,1
 mjolnir_09,120,126,0,0	monster#re	Cogumelo Vermelho	1085,1,180000,90000,1
 mjolnir_09,139,84,0,0	monster#re	Cogumelo Vermelho	1085,1,180000,90000,1
-mjolnir_09,125,82,0,0	monster#re	Cogumelo Vermelho	1085,1,180000,90000,1
+mjolnir_09,125,82,0,0	monster#re	Cogumelo Vermelho	1085,1,180000,90000,1,{}
 
 //==================================================
 // [Pré-Renovação] mjolnir_10 - Monte Mjolnir
@@ -412,7 +412,7 @@ mjolnir_10,0,0,0,0	monster#pre	Argos	1100,60,0,0,0
 mjolnir_10,0,0,0,0	monster#pre	Poporing	1031,20,0,0,0
 mjolnir_10,0,0,0,0	monster#pre	Petite	1155,10,0,0,0
 mjolnir_10,123,331,10,10	monster#pre	Planta Brilhante	1083,1,1800000,900000,1
-mjolnir_10,0,0,0,0	monster#pre	Planta Verde	1080,10,180000,90000,1
+mjolnir_10,0,0,0,0	monster#pre	Planta Verde	1080,10,180000,90000,1,{}
 
 //==================================================
 // [Renovação] mjolnir_10 - Monte Mjolnir
@@ -421,7 +421,7 @@ mjolnir_10,0,0,0,0	monster#re	Argos	1100,140,5000,0,0
 mjolnir_10,0,0,0,0	monster#re	Besouro-Rei	1494,30,5000,0,0
 mjolnir_10,0,0,0,0	monster#re	Flora	1118,30,5000,0,0
 mjolnir_10,123,331,10,10	monster#re	Planta Brilhante	1083,1,1800000,900000,1
-mjolnir_10,0,0,0,0	monster#re	Planta Verde	1080,10,180000,90000,1
+mjolnir_10,0,0,0,0	monster#re	Planta Verde	1080,10,180000,90000,1,{}
 
 //==================================================
 // [Pré-Renovação] mjolnir_11 - Monte Mjolnir
@@ -443,7 +443,7 @@ mjolnir_11,198,210,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1
 mjolnir_11,231,277,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1
 mjolnir_11,332,327,0,0	monster#pre	Planta Azul	1079,1,360000,180000,1
 mjolnir_11,282,300,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1
-mjolnir_11,295,271,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1
+mjolnir_11,295,271,0,0	monster#pre	Planta Verde	1080,1,180000,90000,1,{}
 
 //==================================================
 // [Renovação] mjolnir_11 - Monte Mjolnir 
@@ -463,14 +463,14 @@ mjolnir_11,198,210,0,0	monster#re	Planta Verde	1080,1,180000,90000,1
 mjolnir_11,231,277,0,0	monster#re	Planta Verde	1080,1,180000,90000,1
 mjolnir_11,332,327,0,0	monster#re	Planta Azul	1079,1,360000,180000,1
 mjolnir_11,282,300,0,0	monster#re	Planta Verde	1080,1,180000,90000,1
-mjolnir_11,295,271,0,0	monster#re	Planta Verde	1080,1,180000,90000,1
+mjolnir_11,295,271,0,0	monster#re	Planta Verde	1080,1,180000,90000,1,{}
 
 //==================================================
 // [Pré-Renovação] mjolnir_12 - Monte Mjolnir
 //==================================================
 mjolnir_12,0,0,0,0	monster#pre	Talo de Verme	1215,20,0,0,0
 mjolnir_12,0,0,0,0	monster#pre	Poeira	1114,50,0,0,0
-mjolnir_12,0,0,0,0	monster#pre	Besouro-Ladrão Fêmea	1053,20,0,0,0
+mjolnir_12,0,0,0,0	monster#pre	Besouro-Ladrão Fêmea	1053,20,0,0,0,{}
 
 //==================================================
 // [Renovação] mjolnir_12 - Monte Mjolnir 

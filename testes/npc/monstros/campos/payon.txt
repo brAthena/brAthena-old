@@ -45,7 +45,7 @@ pay_fild01,57,85,0,0	monster#pre	Cogumelo Negro	1084,1,180000,90000,1
 pay_fild01,64,113,0,0	monster#pre	Cogumelo Negro	1084,1,180000,90000,1
 pay_fild01,64,190,0,0	monster#pre	Cogumelo Negro	1084,1,180000,90000,1
 pay_fild01,70,246,0,0	monster#pre	Cogumelo Negro	1084,1,180000,90000,1
-pay_fild01,0,0,0,0	monster#pre	Planta Verde	1080,5,180000,90000,1
+pay_fild01,0,0,0,0	monster#pre	Planta Verde	1080,5,180000,90000,1,{}
 
 //==================================================
 // [Renovação] pay_fild01 - Floresta de Payon
@@ -68,7 +68,7 @@ pay_fild01,57,85,0,0	monster#re	Cogumelo Negro	1084,1,180000,90000,1
 pay_fild01,64,113,0,0	monster#re	Cogumelo Negro	1084,1,180000,90000,1
 pay_fild01,64,190,0,0	monster#re	Cogumelo Negro	1084,1,180000,90000,1
 pay_fild01,70,246,0,0	monster#re	Cogumelo Negro	1084,1,180000,90000,1
-pay_fild01,0,0,0,0	monster#re	Planta Verde	1080,5,180000,90000,1
+pay_fild01,0,0,0,0	monster#re	Planta Verde	1080,5,180000,90000,1,{}
 
 //==================================================
 // [Pré-Renovação] pay_fild02 - Floresta de Payon
@@ -78,7 +78,7 @@ pay_fild02,0,0,0,0	monster#pre	Lobo	1013,70,0,0,0
 pay_fild02,0,0,0,0	monster#pre	Esporo	1014,10,0,0,0
 pay_fild02,0,0,0,0	monster#pre	Poporing	1031,20,0,0,0
 pay_fild02,105,256,10,10	monster#pre	Planta Verde	1080,4,360000,180000,1
-pay_fild02,105,256,10,10	monster#pre	Cogumelo Vermelho	1085,4,360000,180000,1
+pay_fild02,105,256,10,10	monster#pre	Cogumelo Vermelho	1085,4,360000,180000,1,{}
 
 //==================================================
 // [Renovação] pay_fild02 - Floresta de Payon 
@@ -87,7 +87,7 @@ pay_fild02,0,0,0,0	monster#re	Jibóia	1025,140,5000,0,0
 pay_fild02,0,0,0,0	monster#re	Rabo de Verme	1024,30,5000,0,0
 pay_fild02,0,0,0,0	monster#re	Esporo	1014,30,5000,0,0
 pay_fild02,105,256,10,10	monster#re	Cogumelo Vermelho	1085,4,360000,180000,1
-pay_fild02,105,256,10,10	monster#re	Planta Verde	1080,4,360000,180000,1
+pay_fild02,105,256,10,10	monster#re	Planta Verde	1080,4,360000,180000,1,{}
 
 //==================================================
 // [Pré-Renovação] pay_fild03 - Floresta de Payon
@@ -97,7 +97,7 @@ pay_fild03,0,0,0,0	monster#pre	Salgueiro	1010,30,0,0,0
 pay_fild03,0,0,0,0	monster#pre	Pupa	1008,50,0,0,0
 pay_fild03,0,0,0,0	monster#pre	Lunatic	1063,50,0,0,0
 pay_fild03,153,216,10,10	monster#pre	Cogumelo Vermelho	1085,6,900000,450000,1
-pay_fild03,372,64,15,15	monster#pre	Planta Verde	1080,4,180000,90000,1
+pay_fild03,372,64,15,15	monster#pre	Planta Verde	1080,4,180000,90000,1,{}
 
 //==================================================
 // [Renovação] pay_fild03 - Floresta de Payon
@@ -107,7 +107,7 @@ pay_fild03,0,0,0,0	monster#re	Poring	1002,25,5000,0,0
 pay_fild03,0,0,0,0	monster#re	Salgueiro	1010,25,5000,0,0
 pay_fild03,0,0,0,0	monster#re	Pupa	1008,20,5000,0,0
 pay_fild03,153,216,10,10	monster#re	Cogumelo Vermelho	1085,6,900000,450000,1
-pay_fild03,372,64,15,15	monster#re	Planta Verde	1080,4,180000,90000,1
+pay_fild03,372,64,15,15	monster#re	Planta Verde	1080,4,180000,90000,1,{}
 
 //==================================================
 // [Pré-Renovação] pay_fild04 - Deserto de Sograt
@@ -121,7 +121,7 @@ pay_fild04,0,0,0,0	monster#pre	Mastering	1090,1,3600000,1800000,1
 pay_fild04,0,0,0,0	monster#pre	Angeling	1096,1,3600000,1800000,1
 pay_fild04,0,0,0,0	monster#pre	Deviling	1582,1,7200000,3600000,1
 pay_fild04,346,335,5,5	monster#pre	Planta Brilhante	1083,1,1800000,900000,1
-pay_fild04,254,193,10,10	monster#pre	Planta Verde	1080,5,360000,180000,1
+pay_fild04,254,193,10,10	monster#pre	Planta Verde	1080,5,360000,180000,1,{}
 
 //==================================================
 // [Renovação] pay_fild04 - Deserto de Sograt 
@@ -135,7 +135,7 @@ pay_fild04,0,0,0,0	monster#re	Ghostring	1120,1,3600000,1800000,1
 pay_fild04,0,0,0,0	monster#re	Mastering	1090,1,3600000,1800000,1
 pay_fild04,0,0,0,0	monster#re	Deviling	1582,1,7200000,3600000,1
 pay_fild04,346,335,5,5	monster#re	Planta Brilhante	1083,1,1800000,900000,1
-pay_fild04,254,193,10,10	monster#re	Planta Verde	1080,5,360000,180000,1
+pay_fild04,254,193,10,10	monster#re	Planta Verde	1080,5,360000,180000,1,{}
 
 //==================================================
 // [Pré-Renovação] pay_fild05 - Floresta de Payon
@@ -144,13 +144,13 @@ pay_fild05,0,0,0,0	monster#pre	Lavadeira	1321,5,0,0,0
 pay_fild05,0,0,0,0	monster#pre	Poporing	1031,20,0,0,0
 pay_fild05,0,0,0,0	monster#pre	Esporo Venenoso	1077,65,0,0,0
 pay_fild05,95,147,5,5	monster#pre	Planta Verde	1080,4,900000,450000,1
-pay_fild05,86,90,5,5	monster#pre	Planta Verde	1080,4,900000,450000,1
+pay_fild05,86,90,5,5	monster#pre	Planta Verde	1080,4,900000,450000,1,{}
 
 //==================================================
 // [Renovação] pay_fild05 - Desativado na Renovação
 //==================================================
 //pay_fild05,95,147,5,5	monster#re	Planta Verde	1080,4,900000,450000,1
-//pay_fild05,86,90,5,5	monster#re	Planta Verde	1080,4,900000,450000,1
+//pay_fild05,86,90,5,5	monster#re	Planta Verde	1080,4,900000,450000,1,{}
 
 //==================================================
 // [Pré-Renovação] pay_fild06 - Floresta de Payon
@@ -161,7 +161,7 @@ pay_fild06,0,0,0,0	monster#pre	Poporing	1031,20,0,0,0
 pay_fild06,0,0,0,0	monster#pre	Besouro-Ladrão Fêmea	1053,40,0,0,0
 pay_fild06,211,191,2,10	monster#pre	Cogumelo Vermelho	1085,8,180000,90000,1
 pay_fild06,268,155,20,20	monster#pre	Planta Verde	1080,10,360000,180000,1
-pay_fild06,268,155,20,20	monster#pre	Planta Brilhante	1083,1,1800000,900000,1
+pay_fild06,268,155,20,20	monster#pre	Planta Brilhante	1083,1,1800000,900000,1,{}
 
 //==================================================
 // [Renovação] pay_fild06 - Floresta de Payon
@@ -171,7 +171,7 @@ pay_fild06,0,0,0,0	monster#re	Jibóia	1025,30,5000,0,0
 pay_fild06,0,0,0,0	monster#re	Esporo	1014,30,5000,0,0
 pay_fild06,211,191,2,10	monster#re	Cogumelo Vermelho	1085,8,180000,90000,1
 pay_fild06,268,155,20,20	monster#re	Planta Verde	1080,10,360000,180000,1
-pay_fild06,268,155,20,20	monster#re	Planta Brilhante	1083,1,1800000,900000,1
+pay_fild06,268,155,20,20	monster#re	Planta Brilhante	1083,1,1800000,900000,1,{}
 
 //==================================================
 // [Pré-Renovação] pay_fild07 - Floresta de Payon
@@ -181,7 +181,7 @@ pay_fild07,0,0,0,0	monster#pre	Eggyra	1116,40,0,0,0
 pay_fild07,0,0,0,0	monster#pre	Poporing	1031,20,0,0,0
 pay_fild07,0,0,0,0	monster#pre	Salgueiro	1010,20,0,0,0
 pay_fild07,0,0,0,0	monster#pre	Pé Grande	1060,30,0,0,0
-pay_fild07,171,331,20,20	monster#pre	Planta Verde	1080,8,900000,450000,1
+pay_fild07,171,331,20,20	monster#pre	Planta Verde	1080,8,900000,450000,1,{}
 
 //==================================================
 // [Renovação] pay_fild07 - Floresta de Payon
@@ -190,7 +190,7 @@ pay_fild07,0,0,0,0	monster#re	Pé Grande	1060,130,5000,0,0
 pay_fild07,0,0,0,0	monster#re	Caramelo	1103,30,5000,0,0
 pay_fild07,0,0,0,0	monster#re	Percevejo	1174,20,5000,0,0
 pay_fild07,0,0,0,0	monster#re	Creamy	1018,20,5000,0,0
-pay_fild07,171,331,20,20	monster#re	Planta Verde	1080,8,900000,450000,1
+pay_fild07,171,331,20,20	monster#re	Planta Verde	1080,8,900000,450000,1,{}
 
 //==================================================
 // [Pré-Renovação] pay_fild08 - Floresta de Payon
@@ -200,7 +200,7 @@ pay_fild08,0,0,0,0	monster#pre	Salgueiro	1010,50,0,0,0
 pay_fild08,0,0,0,0	monster#pre	Pupa	1008,20,0,0,0
 pay_fild08,0,0,0,0	monster#pre	Esporo	1014,70,0,0,0
 pay_fild08,0,0,0,0	monster#pre	Planta Verde	1080,10,60000,30000,1
-pay_fild08,143,156,40,40	monster#pre	Planta Brilhante	1083,1,3600000,1800000,1
+pay_fild08,143,156,40,40	monster#pre	Planta Brilhante	1083,1,3600000,1800000,1,{}
 
 //==================================================
 // [Renovação] pay_fild08 - Floresta de Payon
@@ -209,7 +209,7 @@ pay_fild08,0,0,0,0	monster#re	Esporo	1014,140,5000,0,0
 pay_fild08,0,0,0,0	monster#re	Rabo de Verme	1024,30,5000,0,0
 pay_fild08,0,0,0,0	monster#re	Jibóia	1025,30,5000,0,0
 pay_fild08,0,0,0,0	monster#re	Planta Verde	1080,10,60000,30000,1
-pay_fild08,143,156,40,40	monster#re	Planta Brilhante	1083,1,3600000,1800000,1
+pay_fild08,143,156,40,40	monster#re	Planta Brilhante	1083,1,3600000,1800000,1,{}
 
 //==================================================
 // [Pré-Renovação] pay_fild09 - Floresta de Payon
@@ -218,7 +218,7 @@ pay_fild09,0,0,0,0	monster#pre	Poporing	1031,20,0,0,0
 pay_fild09,0,0,0,0	monster#pre	Fumacento	1056,80,0,0,0
 pay_fild09,0,0,0,0	monster#pre	Pé Grande	1060,70,0,0,0
 pay_fild09,198,217,30,30	monster#pre	Planta Verde	1080,10,360000,180000,0
-pay_fild09,198,217,30,30	monster#pre	Planta Brilhante	1083,1,1800000,900000,1
+pay_fild09,198,217,30,30	monster#pre	Planta Brilhante	1083,1,1800000,900000,1,{}
 
 //==================================================
 // [Renovação] pay_fild09 - Floresta de Payon
@@ -227,7 +227,7 @@ pay_fild09,0,0,0,0	monster#re	Salgueiro Ancião	1033,140,5000,0,0
 pay_fild09,0,0,0,0	monster#re	Besouro-Chifre	1128,30,5000,0,0
 pay_fild09,0,0,0,0	monster#re	Koko	1104,30,5000,0,0
 pay_fild09,198,217,30,30	monster#re	Planta Verde	1080,10,360000,180000,1
-pay_fild09,198,217,30,30	monster#re	Planta Brilhante	1083,1,1800000,900000,1
+pay_fild09,198,217,30,30	monster#re	Planta Brilhante	1083,1,1800000,900000,1,{}
 
 //==================================================
 // [Pré-Renovação] pay_fild10 - Floresta de Payon
@@ -243,7 +243,7 @@ pay_fild10,281,307,10,10	monster#pre	Planta Verde	1080,5,360000,180000,1
 pay_fild10,66,332,10,10	monster#pre	Planta Verde	1080,5,360000,180000,1
 pay_fild10,213,157,10,10	monster#pre	Planta Azul	1079,1,360000,180000,1
 pay_fild10,281,307,10,10	monster#pre	Planta Azul	1079,1,360000,180000,1
-pay_fild10,66,332,10,10	monster#pre	Planta Azul	1079,1,360000,180000,1
+pay_fild10,66,332,10,10	monster#pre	Planta Azul	1079,1,360000,180000,1,{}
 
 //==================================================
 // [Renovação] pay_fild10 - Floresta de Payon
@@ -257,7 +257,7 @@ pay_fild10,281,307,10,10	monster#re	Planta Verde	1080,5,360000,180000,1
 pay_fild10,66,332,10,10	monster#re	Planta Verde	1080,5,360000,180000,1
 pay_fild10,213,157,10,10	monster#re	Planta Azul	1079,1,360000,180000,1
 pay_fild10,281,307,10,10	monster#re	Planta Azul	1079,1,360000,180000,1
-pay_fild10,66,332,10,10	monster#re	Planta Azul	1079,1,360000,180000,1
+pay_fild10,66,332,10,10	monster#re	Planta Azul	1079,1,360000,180000,1,{}
 
 //==================================================
 // [Pré-Renovação] pay_fild11 - Floresta de Payon
