@@ -1500,7 +1500,7 @@ int make_new_char_sql(struct char_session_data *sd, char *name_, int str, int ag
 #else
 	//Insert the new char entry to the database
 	if(SQL_ERROR == Sql_Query(sql_handle, "INSERT INTO `%s` (`account_id`, `char_num`, `name`, `zeny`, `str`, `agi`, `vit`, `int`, `dex`, `luk`, `max_hp`, `hp`,"
-	                          "`max_sp`, `sp`, `hair`, `hair_color`, `last_map`, `last_x`, `last_y`, `save_map`, `save_x`, `save_y`) VALUES ("
+	                          "`max_sp`, `sp`, `hair`, `hair_color`, `last_map`, `last_x`, `last_y`, `save_map`, `save_x`, `save_y`, `rename`) VALUES ("
 	                          "'%d', '%d', '%s', '%d',  '%d', '%d', '%d', '%d', '%d', '%d', '%d', '%d','%d', '%d','%d', '%d', '%s', '%d', '%d', '%s', '%d', '%d', '%d')",
 	                          char_db, sd->account_id , slot, esc_name, start_zeny, str, agi, vit, int_, dex, luk,
 	                          (40 * (100 + vit)/100) , (40 * (100 + vit)/100), (11 * (100 + int_)/100), (11 * (100 + int_)/100), hair_style, hair_color,
