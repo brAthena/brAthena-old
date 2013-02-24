@@ -9465,7 +9465,7 @@ int skill_castend_pos(int tid, unsigned int tick, int id, intptr_t data)
 		}
 
 		if(sd) {
-			if(!skill_check_condition_castend(sd, ud->skill_id, ud->skill_lv))
+			if(ud->skill_id != AL_WARP && !skill_check_condition_castend(sd, ud->skill_id, ud->skill_lv))
 				break;
 			else
 				skill_consume_requirement(sd,ud->skill_id,ud->skill_lv,1);
