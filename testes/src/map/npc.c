@@ -1204,7 +1204,7 @@ int npc_scriptcont(struct map_session_data *sd, int id, bool closing)
 	if(sd->progressbar.npc_id && DIFF_TICK(sd->progressbar.timeout,gettick()) > 0)
 		return 1;
 
-	if(closing)
+	if(closing && sd->st->state == CLOSE)
 		sd->st->state = END;
 
 	run_script_main(sd->st);

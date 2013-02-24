@@ -22548,6 +22548,7 @@ REPLACE INTO `quest_db` VALUES(4193,0,1614,30,0,0,0,0,'\"Eden: Mineral\"');
 REPLACE INTO `quest_db` VALUES(4194,0,1072,30,0,0,0,0,'\"Eden: Kaho\"');
 REPLACE INTO `quest_db` VALUES(4195,0,1255,30,0,0,0,0,'\"Eden: Nereida\"');
 REPLACE INTO `quest_db` VALUES(4196,0,1506,30,0,0,0,0,'\"Eden: Mascarado\"');
+REPLACE INTO `quest_db` VALUES(4197,10800,0,0,0,0,0,0,'\"Octopus\"');
 REPLACE INTO `quest_db` VALUES(5000,0,0,0,0,0,0,0,'\"O Corvo do Destino - 7\"');
 REPLACE INTO `quest_db` VALUES(5035,0,0,0,0,0,0,0,'\"Ajude o Velho Homem!\"');
 REPLACE INTO `quest_db` VALUES(5036,0,0,0,0,0,0,0,'\"Ajude o Velho Homem!\"');

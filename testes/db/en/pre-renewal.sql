@@ -22638,6 +22638,7 @@ REPLACE INTO `quest_db` VALUES(4193,0,1614,30,0,0,0,0,'\"Paradise: Mineral Handl
 REPLACE INTO `quest_db` VALUES(4194,0,1072,30,0,0,0,0,'\"Paradise: Kaho Handling\"');
 REPLACE INTO `quest_db` VALUES(4195,0,1255,30,0,0,0,0,'\"Paradise: Neraid Handling\"');
 REPLACE INTO `quest_db` VALUES(4196,0,1506,30,0,0,0,0,'\"Paradise: Disguise Handling\"');
+REPLACE INTO `quest_db` VALUES(4197,10800,0,0,0,0,0,0,'\"Octopus\"');
 REPLACE INTO `quest_db` VALUES(5000,0,0,0,0,0,0,0,'\"The Crow of the Fate - 7\"');
 REPLACE INTO `quest_db` VALUES(5035,0,0,0,0,0,0,0,'\"Help the old man!\"');
 REPLACE INTO `quest_db` VALUES(5036,0,0,0,0,0,0,0,'\"Help the old man!\"');
