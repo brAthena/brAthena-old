@@ -232,6 +232,7 @@ yuno,222,116,3	script	Kasis#LhzHat	851,{
 }
 
 lighthalzen,143,68,0	script	Strange Guy#LhzHat	47,{
+	disable_items;
 	if(DTHATQ == 0)
 	{
 		mes "[Strange Guy]";
@@ -1090,6 +1091,7 @@ lhz_in02,91,38,5	script	Margaret Mary#LhzHat	90,{
 }
 
 lighthalzen,182,89,0	script	Relaxed-Looking Lady	91,{
+	disable_items;
 	if(LHZBTQ == 0)
 	{
 		mes "[Relaxed-Looking Lady]";

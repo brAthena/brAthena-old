@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.0/1.3/1.1                         |
+//   | Versões eA/rA/brA: 1.0/2.0a/1.1                        |
 //   |--------------------------------------------------------|
 //   | Descrição: Encanta armaduras e armas com atributos.    |
 //   |--------------------------------------------------------|
@@ -24,6 +24,7 @@
 //   \________________________________________________________/
 
 prontera,165,60,2	script	Aprendiz de Artesão	73,{
+	disable_items;
 	mes "[Aprendiz de Artesão]";
 	if (Zeny > 399999) {
 		mes "[Aprendiz de Artesão]";
@@ -503,6 +504,7 @@ moc_ruins,154,86,3	duplicate(SocketEnchant2)	Leablem#moc	86
 
 function	script	Func_Socket2	{
 
+	disable_items;
 	mes "[Leablem]";
 	if(getarg(7,0) != 0 && getarg(8,0) != 0) {
 		mes getitemname(getarg(0)) + "... Ok, então você precisa me trazer:";
