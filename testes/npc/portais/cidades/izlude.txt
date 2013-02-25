@@ -41,4 +41,4 @@ izlude_in,65,84,0	warp	iz01-1	5,2,izlude,113,178
 izlude_in,74,158,0	warp	iz04-1	3,2,izlude,52,166
 izlude_in,87,169,0	warp	iz05-1	2,3,izlude_in,111,169
 izlude,213,161,0	warp#re	iz10	2,2,arena_room,100,30
-arena_room,99,24,0	warp#re	iz_arena	2,2,izlude,209,161
+arena_room,99,24,0	warp#re	iz_arena	2,2,izlude,209,161,{}
