@@ -12,16 +12,15 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: ??/1.0/1.0                          |
+//   | Versões eA/rA/brA: ??/1.0/1.0                         |
 //   |--------------------------------------------------------|
-//   | Descrição: Instância do Octopus.                       |
+//   | Descrição: Instância do Octopus.                    |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
-//   | 1.0 Criado Cabeçalho [Megasantos]                      |
+//   | 1.0 Criado Cabeçalho [Megasantos]                     |
 //   |--------------------------------------------------------|
-//   | - Anotações                                            |
+//   | - Anotações                                          |
 //   \________________________________________________________/
-
 
 mal_dun01,151,235,5	script	Starfish	551,{
 
@@ -684,6 +683,8 @@ OnDisable:
 	stopnpctimer;
 	killmonster "1@cash",instance_npcname("oct_boss_foot", instance_id())+"::OnMyMobDead"; // Not in official script.
 	disablenpc instance_npcname("oct_boss_foot", instance_id());
+	end;
+OnMyMobDead:
 	end;
 }
 
