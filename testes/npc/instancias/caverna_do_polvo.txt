@@ -8,18 +8,18 @@
 //   |                                                        |
 //   |                    brAthena Script                     |
 //   |--------------------------------------------------------|
-//   | Nome do Script: OctopusCave.txt                        |
+//   | Nome do Script: caverna_do_polvo.txt                   |
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: ??/1.0/1.0                         |
+//   | Versões eA/rA/brA: ??/1.0/1.0                          |
 //   |--------------------------------------------------------|
-//   | Descrição: Instância do Octopus.                    |
+//   | Descrição: Caverna do Polvo.                           |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
-//   | 1.0 Criado Cabeçalho [Megasantos]                     |
+//   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   |--------------------------------------------------------|
-//   | - Anotações                                          |
+//   | - Anotações                                            |
 //   \________________________________________________________/
 
 mal_dun01,151,235,5	script	Starfish	551,{
