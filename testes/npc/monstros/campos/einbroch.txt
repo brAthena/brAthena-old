@@ -31,7 +31,7 @@ ein_fild01,264,318,70,60	monster#pre	Demônio Pungus	1378,20,0,0,0
 ein_fild01,232,100,25,60	monster#pre	Demônio Pungus	1378,5,300000,60000,0
 ein_fild01,115,190,80,150	monster#pre	Punk	1199,25,0,0,0
 ein_fild01,264,318,70,60	monster#pre	Punk	1199,20,0,0,0
-ein_fild01,232,100,25,60	monster#pre	Punk	1199,5,300000,60000,0
+ein_fild01,232,100,25,60	monster#pre	Punk	1199,5,300000,60000,0,{}
 
 //==================================================
 // [Pré-Renovação] ein_fild02 - Campo de Einbroch
@@ -41,7 +41,7 @@ ein_fild02,259,269,90,70	monster#re	Furador	1380,15,0,0,0
 ein_fild02,287,117,55,70	monster#re	Furador	1380,10,0,0,0
 ein_fild02,108,88,60,60	monster#re	Furador	1380,10,0,0,0
 ein_fild02,0,0,0,0	monster#re	Demônio Pungus	1378,30,0,0,0
-ein_fild02,0,0,0,0	monster#re	Ungoliant	1618,1,75600000,75000000,0
+ein_fild02,0,0,0,0	monster#re	Ungoliant	1618,1,75600000,75000000,0,{}
 
 //==================================================
 // [Pré-Renovação] ein_fild03 - Campo de Einbroch
