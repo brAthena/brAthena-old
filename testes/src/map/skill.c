@@ -9200,11 +9200,6 @@ int skill_castend_id(int tid, unsigned int tick, int id, intptr_t data)
 				inf &= ~BCT_NEUTRAL;
 			}
 
-			if(sd && (inf2&INF2_CHORUS_SKILL) && skill_check_pc_partner(sd, ud->skill_id, &ud->skill_lv, 1, 0) < 1) { 
-				clif_skill_fail(sd, ud->skill_id, USESKILL_FAIL_NEED_HELPER, 0); 
-				break; 
-			} 
-
 			if(ud->skill_id >= SL_SKE && ud->skill_id <= SL_SKA && target->type == BL_MOB) {
 				if(((TBL_MOB *)target)->class_ == MOBID_EMPERIUM)
 					break;
@@ -12911,7 +12906,40 @@ int skill_check_condition_castbegin(struct map_session_data *sd, uint16 skill_id
 				} else
 					require.sp -= require.sp * 20 * count / 100; //  -20% each W/M in the party.
 			}
-			break;		
+			break;
+			
+		case WM_SONG_OF_MANA:
+		case WM_MELODYOFSINK:
+		case WM_BEYOND_OF_WARCRY:
+		case WM_DANCE_WITH_WUG:
+		case WM_SATURDAY_NIGHT_FEVER:
+		case WM_UNLIMITED_HUMMING_VOICE:
+		case WM_LERADS_DEW:
+		case WM_SOUND_OF_DESTRUCTION:
+		{
+		struct party_data *p = party_search(sd->status.party_id);
+		int i;
+		int foundMinWand = 0;
+
+    if(!p) {
+      clif_skill_fail(sd,skill_id,USESKILL_FAIL_NEED_HELPER,0);
+      return 0;
+    }
+
+      for (i = 0; i < MAX_PARTY; i++) {
+       struct map_session_data *psd = p->data[i].sd;
+
+        if (!psd || psd == sd || psd->bl.x < sd->bl.x - 11 || psd->bl.x > sd->bl.x + 11 || psd->bl.y < sd->bl.y - 11 || psd->bl.y > sd->bl.y + 11) continue;
+        if ((psd->class_&MAPID_THIRDMASK) == MAPID_MINSTRELWANDERER && foundMinWand++)
+        break;
+       }
+
+    if(!foundMinWand) {
+      clif_skill_fail(sd,skill_id,USESKILL_FAIL_NEED_HELPER,0);
+      return 0;
+    } 
+    }
+
 		case SO_FIREWALK:
 		case SO_ELECTRICWALK:   // Can't be casted until you've walked all cells.
 			if(sc && sc->data[SC_PROPERTYWALK] &&
