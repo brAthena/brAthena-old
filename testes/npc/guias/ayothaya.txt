@@ -194,7 +194,7 @@ ayothaya,203,169,4	script	Ayothaya Guide Noi#01ay	839,{
 	}
 }
 
-ayothaya,146,86,4	script	Ayothaya Guide Noa#01ay	839,{
+ayothaya,146,86,4	script#re	Ayothaya Guide Noa#01ay	839,{
 	mes "[Noa]";
 	mes "Hello~";
 	mes "Welcome to ^8B4513Ayothaya^000000.";

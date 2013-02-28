@@ -400,7 +400,7 @@ einbroch,72,202,4	script	Einbroch Guide#ein01	852,{
 
 einbroch,155,43,4	duplicate(Einbroch Guide#ein01)	Einbroch Guide#ein02	852
 einbroch,162,317,4	duplicate(Einbroch Guide#ein01)	Einbroch Guide#ein03	852
-einbroch,252,320,3	duplicate(Einbroch Guide#ein01)	Einbroch Guide#ein04	852
+einbroch,252,320,3	duplicatr(Einbroch Guide#ein01)	Einbroch Guide#ein04	852,{}
 
 einbech,67,37,4	script	Einbech Guide#einbech01	852,{
 	cutin "ein_soldier",2;

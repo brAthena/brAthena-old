@@ -212,4 +212,4 @@ umbala,128,94,3	script	Umbala Guide#01umbala	702,{
 	}
 }
 
-umbala,99,158,3	duplicate(Umbala Guide#01umbala)	Umbala Guide#02umbala	702
+umbala,99,158,3	duplicatr(Umbala Guide#01umbala)	Umbala Guide#02umbala	702,{}

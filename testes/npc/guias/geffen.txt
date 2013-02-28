@@ -323,5 +323,5 @@ geffen,203,116,4	script	Guia#01geffen	705,{
 }
 
 geffen,118,62,0	duplicate(Guia#01geffen)	Guide#02geffen	705
-geffen,36,123,6	duplicate(Guia#01geffen)	Guide#03geffen	705
-geffen,123,203,4	duplicate(Guia#01geffen)	Guide#04geffen	705
+geffen,36,123,6	duplicatr(Guia#01geffen)	Guide#03geffen	705
+geffen,123,203,4	duplicatr(Guia#01geffen)	Guide#04geffen	705,{}

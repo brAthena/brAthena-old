@@ -259,4 +259,4 @@ yuno,59,212,4	script	Juno Guide#yuno01	700,{
 	}
 }
 
-yuno,153,47,4	duplicate(Juno Guide#yuno01)	Juno Guide#yuno02	700
+yuno,153,47,4	duplicatr(Juno Guide#yuno01)	Juno Guide#yuno02	700,{}

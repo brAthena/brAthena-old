@@ -205,11 +205,11 @@ aldebaran,139,63,4	script	Guia#01aldebaran	105,{
 	}
 }
 
-aldebaran,243,143,2	duplicate(Guia#01aldebaran)	Guia#02aldebaran	105
-aldebaran,135,243,4	duplicate(Guia#01aldebaran)	Guia#03aldebaran	105
-aldebaran,36,135,6	duplicate(Guia#01aldebaran)	Guia#04aldebaran	105
+aldebaran,243,143,2	duplicatr(Guia#01aldebaran)	Guia#02aldebaran	105
+aldebaran,135,243,4	duplicatr(Guia#01aldebaran)	Guia#03aldebaran	105
+aldebaran,36,135,6	duplicatr(Guia#01aldebaran)	Guia#04aldebaran	105,{}
 
-aldebaran,133,108,4	script	Soldado#alde	105,{
+aldebaran,133,108,4	script#pre	Soldado#alde	105,{
 	cutin "prt_soldier",2;
 	mes "[Guarda de Al De Baran]";
 	mes "Eu sou só um";
