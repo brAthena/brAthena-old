@@ -18,47 +18,40 @@
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Cabeçalho Criado [Holy]                            |
-//   | 1.1 Script Traduzido (PT-BR) [Hold]                    |
+//   | 1.1 Script Traduzido (PT-BR) [Hold & Holy]             |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-izlude,125,175,4	script	Assistente Sorriso#iz	92,{
-	mes "[Garota Sorridente]";
+izlude,125,175,4	script	Dona Risadinha#iz	92,{
+	mes "[Dona Risadinha]";
 	mes "Olá ~ Olá ~";
-	mes "Eu sou uma Assistente Sorriso";
+	mes "Eu sou a Dona Risadinha";
 	mes "Como posso te ajudar?";
 	next;
-	switch(select("^3355FFMáscara Feliz^000000?:Construir ^3355FFMáscara Feliz^000000 :Sair")) {
+	switch(select("O que é uma ^3355FFMáscara Feliz^000000?:Eu quero fazer uma ^3355FFMáscara Feliz^000000.:Por que você tem esse nome")) {
 	case 1:
-		mes "[Garota Sorridente]";
-		mes "É um Evento Nacional organizado por ^5577FFVossa Majestade Tristam III^000000,";
-		mes "o objetivo é incentivar o povo do Reino de Rune-Midgarts";
-		mes "a conviver em uma atmosfera mais agradável!";
-		mes "Eu sou uma ^3355FF'Assitente Sorriso'^000000,";
-		mes "... nós quem realizamos o evento para tornar";
-		mes "^3355FFO Reino de Rune-Midgarts mais sorridente~^000000";
+		mes "[Dona Risadinha]";
+		mes "A Máscara Feliz é um item que instantaneamente te deixa sorrindo!";
+		mes "E se todos usarem Máscaras Feliz, o mundo de Ragnarök será um mundo mais feliz!";
+		mes "A Máscara Feliz ajuda a lembrar a todos que sempre devemos estar de bom-humor.";
 		next;
-		mes "[Garota Sorridente]";
-		mes "Com alguns items simples e fáceis de encontrar";
-		mes "Eu posso dar a você uma";
-		mes "^3355FF'Máscara Feliz'^000000.";
-		mes "Os items são os seguintes.";
+		mes "[Dona Risadinha]";
+		mes "Usamos materiais básicos que qualquer Aprendiz pode conseguir.";
+		mes "Irei lhe dizer quais são, preste atenção e anote!";
 		next;
-		mes "[Garota Sorridente]";
+		mes "[Dona Risadinha]";
 		mes "^3355FF10 Jellopys^000000";
 		mes "^3355FF10 Felpas^000000";
 		mes "^3355FF10 Trevos^000000";
 		next;
-		mes "[Garota Sorridente]";
-		mes "Com este evento";
-		mes "todo mundo será feliz e sorridente,";
-		mes "e juntos com as outras pessoas, tentaremos";
-		mes "fazer de Ragnarok o jogo mais divertido do mundo.";
+		mes "[Dona Risadinha]";
+		mes "É só você me trazer esses itens que eu farei para você uma Máscara feliz!";
+		mes "Agora apresse-se...";
 		close;
 	case 2:
+			mes "[Dona Risadinha]";
 		if (countitem(909) > 9 && countitem(914) > 9 && countitem(705) > 9) {
-			mes "[Garota Sorridente]";
 			mes "Parabéns!";
 			mes "Por favor aceite esta Máscara Feliz.";
 			next;
@@ -66,7 +59,7 @@ izlude,125,175,4	script	Assistente Sorriso#iz	92,{
 			delitem 914,10; // Felpa
 			delitem 705,10; // Trevo
 			getitem 2278,1; // Máscara Feliz
-			mes "[Garota Sorridente]";
+			mes "[Dona Risadinha]";
 			mes "Vossa majestade, Tristam III";
 			mes "prometeu dar seu melhor para tornar";
 			mes "Ragnarok um jogo melhor e mais agradável.";
@@ -76,39 +69,37 @@ izlude,125,175,4	script	Assistente Sorriso#iz	92,{
 			mes "Serviço de Informações do Reino de Rune-Midgarts.";
 			close;
 		}
-		else {
-			mes "[Garota Sorridente]";
-			mes "Oh, infelizmente";
-			mes "você não me trouxe os";
-			mes "items necessários para a Máscara Feliz.";
+			mes "Ah, mas que pena!";
+			mes "Você ainda não possui todos os itens necessários para";
+			mes "fazer uma Máscara Feliz!";
 			mes "^3355FF10 Jellopys^000000";
 			mes "^3355FF10 Felpas^000000";
 			mes "^3355FF10 Trevos^000000";
-			mes "Por favor veja os requerimentos acima.";
+			mes "Por favor veja os requerimentos acima e volte após coletá-los.";
 			close;
-		}
 	case 3:
-		mes "[Garota Sorridente]";
-		mes "Obrigada por nos visitar";
-		mes "Nós...";
-		mes "O Reino de Rune-Midgarts";
-		mes "está sempre tentando fazer de";
-		mes "Ragnarok ser um jogo melhor";
-		mes "e mais divertido.";
+		mes "[Dona Risadinha]";
+		mes "Hihihihihihi";
+		mes "Por que eu tenho esse nome?";
+		mes "É por que eu adoro rir!";
 		next;
-		mes "[Garota Sorridente]";
-		mes "Nós sinceramente pedimos";
-		mes "que você colabore.";
-		mes "O fato mencionado anteriormente";
-		mes "foi anunciado pelo Serviço de Informações do Reino de Rune-Midgarts.";
+		mes "[Dona Risadinha]";
+		mes "Adoro Máscaras Felizes e Piadas. Vou te contar uma piada:";
+    next;
+		mes "[Dona Risadinha]";
+		mes "Dois porings estavam pulando nos arredores de prontera...";
+		mes "Primeiro Poring: Cuidado com o Apren... *BLOSH*!";
+		mes " ";
+		mes "Segundo Poring: Que Apren... *BLOSH*!";
+		mes "Hahahahahahahahaha.";
 		close;
 	}
 }
 
-// Assistentes Sorriso adicionais
-alberta,113,53,4	duplicate(Assistente Sorriso#iz)	Assistente Sorriso#alb	92
-aldebaran,136,135,4	duplicate(Assistente Sorriso#iz)	Assistente Sorriso#alde	92
-geffen,119,107,4	duplicate(Assistente Sorriso#iz)	Assistente Sorriso#gef	92
-moc_ruins,59,154,3	duplicate(Assistente Sorriso#iz)	Assistente Sorriso#moc	92
-payon,186,104,5	duplicate(Assistente Sorriso#iz)	Assistente Sorriso#pay	92
-prontera,157,187,4	duplicate(Assistente Sorriso#iz)	Assistente Sorriso#prt	92
+// Duplicatas: Dona Risadinha
+alberta,113,53,4	duplicate(Dona Risadinha#iz)	Dona Risadinha#alb	92
+aldebaran,136,135,4	duplicate(Dona Risadinha#iz)	Dona Risadinha#alde	92
+geffen,119,107,4	duplicate(Dona Risadinha#iz)	Dona Risadinha#gef	92
+moc_ruins,59,154,3	duplicate(Dona Risadinha#iz)	Dona Risadinha#moc	92
+payon,186,104,5	duplicate(Dona Risadinha#iz)	Dona Risadinha#pay	92
+prontera,157,187,4	duplicate(Dona Risadinha#iz)	Dona Risadinha#prt	92
