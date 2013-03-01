@@ -6875,7 +6875,14 @@ ACMD_FUNC(makehomun)
 	}
 
 	if(!message || !*message) {
+	const char *text;
+	text = atcommand_help_string(command);
+
 		clif_displaymessage(fd, msg_txt(1256)); // Please enter a homunculus ID (usage: @makehomun <homunculus id>).
+
+		if(text) {
+		clif_displaymessage(fd, text);
+	}
 		return -1;
 	}
 
