@@ -944,6 +944,8 @@ evt_swar_b
 evt_swar_r
 evt_swar_s	
 evt_swar_t
+c_tower2_
+c_tower3_
 
 // Adicione abaixo apenas mapas personalizados.
 //======================================================================================
