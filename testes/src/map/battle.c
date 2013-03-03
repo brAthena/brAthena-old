@@ -623,8 +623,8 @@ int battle_calc_cardfix(int attack_type, struct block_list *src, struct block_li
 					cardfix = cardfix * (100 + sd->bonus.long_attack_atk_rate) / 100;
 #ifdef RENEWAL_EDP
 				if(sd->sc.data[SC_EDP]) {
-					cardfix = cardfix * (100 + sd->sc.data[SC_EDP]->val1 * 60) / 100;
-					cardfix_ = cardfix_ * (100 + sd->sc.data[SC_EDP]->val1 * 60) / 100;
+					cardfix = cardfix * (100 + sd->sc.data[SC_EDP]->val1 * 60) * battle_config.edp_rate / 10000;
+					cardfix_ = cardfix_ * (100 + sd->sc.data[SC_EDP]->val1 * 60) * battle_config.edp_rate / 10000;
 				}
 #endif
 				if((left&1) && cardfix_ != 1000)
@@ -5903,6 +5903,7 @@ static const struct _battle_data {
 	{ "supports_castle_gvg",                &battle_config.supports_castle_gvg,               1,    0,              1,      },
 	{ "max_atk",                            &battle_config.max_atk,                       10000,    0,        INT_MAX,      },
 	{ "hanbok_ignorepalette",               &battle_config.hanbok_ignorepalette,              0,    0,       1,             },
+	{ "edp_rate",               			&battle_config.edp_rate,             			100,    0,       100,           },
 };
 #ifndef STATS_OPT_OUT
 /**
