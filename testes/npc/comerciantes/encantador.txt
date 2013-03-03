@@ -26,7 +26,7 @@
 prontera,165,60,2	script	Aprendiz de Artesão	73,{
 	disable_items;
 	mes "[Aprendiz de Artesão]";
-	if (Zeny > 399999) {
+	if (Zeny > 400000) {
 		mes "[Aprendiz de Artesão]";
 		mes "Venho estudando maneiras de melhorar uma armadura para aumentar a sua real capacidade.";
 		next;
