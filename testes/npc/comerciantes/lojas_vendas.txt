@@ -309,6 +309,7 @@ moc_para01,22,16,5	script#re	Catalogador Mágico#catal01	704,{
 		close;
 		}
 		mes "Ok, vamos lá.";
+		set Zeny, Zeny - .@preco;
 		getitem 12580,.@quantidade;
 		close;
 	case 2:

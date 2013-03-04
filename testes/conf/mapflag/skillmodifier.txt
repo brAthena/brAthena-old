@@ -15,8 +15,8 @@
 //   | Versões eA/rA/brA: ??/??/1.0                           |
 //   |--------------------------------------------------------|
 //   | Descrição: Este mapflag permite que você modifique o   |
-//   | dano de qualquer habilidade em qualquer mapa.	        |
-//   |  	        				                                    |
+//   | dano de qualquer habilidade em qualquer mapa.          |
+//   |                                                        |
 //   | Exemplo (1):                                           |
 //   | Prontera mapflag	adjust_skill_damage MG_FIREBOLT 50    |
 //   | Metade do dano de Lanças de Fogo em Prontera.          |

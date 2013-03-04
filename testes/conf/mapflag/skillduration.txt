@@ -15,8 +15,8 @@
 //   | Versões eA/rA/brA: ??/??/1.0                           |
 //   |--------------------------------------------------------|
 //   | Descrição: Este mapflag permite que você controle a    |
-//   | duração da unit skill em qualquer  mapa.	              |
-//   |  						                                          |
+//   | duração da unit skill em qualquer  mapa.               |
+//   |                                                        |
 //   | Exemplo (1):                                           |
 //   | Prontera mapflag	adjust_unit_duration PR_SANCTUARY 50  |
 //   | Metade da duração do santuário em Prontera.            |
