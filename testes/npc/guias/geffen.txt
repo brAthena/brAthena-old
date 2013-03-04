@@ -12,13 +12,14 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.0/1.1/1.1                         |
+//   | Versões eA/rA/brA: 1.0/1.1/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Guias da Cidade de Geffen.                  |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Otimização [Holy & Hold]                           |
+//   | 1.2 Tradução PT-BR [Protimus]                          |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -26,7 +27,7 @@
 geffen,203,116,4	script	Guia#01geffen	705,{
 	cutin "gef_soldier",2;
 	if(checkre(0)) {
-		mes "[Geffen Guide]";
+		mes "[Guia de Geffen]";
 		mes "Welcome to ^8B4513Geffen^000000,";
 		mes "the City of Magic.";
 		mes "Do you need help navigating the city?";
@@ -38,7 +39,7 @@ geffen,203,116,4	script	Guia#01geffen	705,{
 				while (.@loop) {
 					switch(select("[ Magic Academy ]:[ Geffen Tower ]:[ Fountain ]:[ Tool Shop ]:[ Buy & Repair Equipment ]:[ Inn ]:[ Tavern ]:[ Christopher's Forge ]:Previous Menu")) {
 					case 1:
-						mes "[Geffen Guide]";
+						mes "[Guia de Geffen]";
 						mes "The ^B9062FMagic Academy^000000";
 						mes "handles all magic-related affairs,";
 						mes "including job changes.";
@@ -64,7 +65,7 @@ geffen,203,116,4	script	Guia#01geffen	705,{
 						next;
 						break;
 					case 5:
-						mes "[Geffen Guide]";
+						mes "[Guia de Geffen]";
 						mes "If you'd like to ^7F3300Buy or Repair Equipment^000000";
 						mes "then this is the place you'll want to visit.";
 						mes "Let me mark its location";
@@ -84,7 +85,7 @@ geffen,203,116,4	script	Guia#01geffen	705,{
 						next;
 						break;
 					case 8:
-						mes "[Geffen Guide]";
+						mes "[Guia de Geffen]";
 						mes "^0000FFChristopher's Forge^000000 is";
 						mes "where you can purchase";
 						mes "Refining materials.";
@@ -136,7 +137,7 @@ geffen,203,116,4	script	Guia#01geffen	705,{
 				}
 				break;
 			case 3:
-				mes "[Geffen Guide]";
+				mes "[Guia de Geffen]";
 				mes "Sure, I'll remove all marks from your mini-map.";
 				mes "Is there anything else I can do for you?";
 				viewpoint 2,1,1,0,0xFFFF00;
@@ -157,7 +158,7 @@ geffen,203,116,4	script	Guia#01geffen	705,{
 				next;
 				break;
 			case 4:
-				mes "[Geffen Guide]";
+				mes "[Guia de Geffen]";
 				mes "Enjoy your stay.";
 				close2;
 				cutin "gef_soldier",255;
@@ -166,32 +167,26 @@ geffen,203,116,4	script	Guia#01geffen	705,{
 		}
 		end;
 	L_Mark:
-		mes "[Geffen Guide]";
+		mes "[Guia de Geffen]";
 		mes "Let me mark the location of the";
 		mes getarg(0)+"^000000";
 		mes "on your mini-map.";
 		mes "Would you like to check any other locations?";
 		return;
 	} else {
-		mes "[Geffen Guide]";
-		mes "Welcome to Geffen,";
-		mes "the City of Magic. If you";
-		mes "need any guidance around";
-		mes "the city, feel free to ask me";
-		mes "and I'll do my best to assist you. ^FFFFFFcobo^000000";
+		mes "[Guia de Geffen]";
+		mes "Bem-vindo à Geffen, a cidade da magia.";
+		mes "Nós estamos aqui para ajudar os visitantes da cidade. Se você tem alguma dúvida, consulte-nos.";
+		mes "Se esta é a sua primeira vez utilizando um guia, por favor selecione 'Tutorial'.";
 		set .@loop1,1;
 		while (.@loop1) {
 			next;
-			switch(select("City Guide:Remove Marks from Mini-Map:Notice.:Cancel")) {
+			switch(select("Indicações.:Limpar indicações.:Tutorial.:Cancelar")) {
 			case 1:
-				mes "[Geffen Guide]";
-				mes "Please select";
-				mes "a location from";
-				mes "the following menu.";
+				mes "[Guia de Geffen]";
+				mes "Por favor, selecione uma das opções.";
 				if (compass_check == 0) {
-					mes "Would you like me";
-					mes "to mark locations";
-					mes "on your Mini-Map?";
+					mes "Você gostaria que as indicações permaneçam no mini-mapa?";
 					next;
 					if (select("Yes:No") == 1) set .@compass_check,1;
 				}
@@ -199,81 +194,58 @@ geffen,203,116,4	script	Guia#01geffen	705,{
 				while (.@loop2) {
 					if (.@wait_button_chk == 0) set .@wait_button_chk,1;
 					else next;
-					switch(select("^FF0000Magic Acedemy^000000:Forge Shop:Weapon Shop:Tool Shop:Pub:Inn:Geffen Tower:Cancel")) {
+					switch(select("^FF0000Academia de Magia.^000000:Refinaria.:Loja de Armas.:Loja de Ferramentas.:Bar.:Estalagem.:Torre de Geffen.:Cancelar.")) {
 					case 1:
-						mes "[Geffen Guide]";
-						mes "The Magic Academy in";
-						mes "northwest Geffen handles";
-						mes "Job Changes to the Mage class.";
+						mes "[Guia de Geffen]";
+						mes "A Academia de Magia é o lugar aonde os Aprendizes vão para se tornar Magos.";
 						if (.@compass_check)
 							viewpoint 1,61,180,2,0xFF0000;
 						break;
 					case 2:
-						mes "[Geffen Guide]";
-						mes "The Forge Shop is";
-						mes "located just southeast";
-						mes "from the center of Geffen.";
+						mes "[Guia de Geffen]";
+						mes "A Refinaria é aonde você pode aprimorar suas armas e armaduras. Ela se encontra à sudeste do centro da cidade.";
 						if (.@compass_check)
 							viewpoint 1,182,59,3,0x00FF00;
 						break;
 					case 3:
-						mes "[Geffen Guide]";
-						mes "The Weapon Shop";
-						mes "can be found northwest";
-						mes "from the center of Geffen.";
+						mes "[Guia de Geffen]";
+						mes "A Loja de Armas se encontra a noroeste do centro da cidade.";
 						if (.@compass_check)
 							viewpoint 1,99,140,4,0xFF00FF;
 						break;
 					case 4:
-						mes "[Geffen Guide]";
-						mes "You can find the";
-						mes "Tool Shop by heading";
-						mes "southwest from the";
-						mes "center of Geffen.";
+						mes "[Guia de Geffen]";
+						mes "A Loja de Ferramentas se encontra a sudoeste do centro da cidade.";
 						if (.@compass_check)
 							viewpoint 1,44,86,5,0xFF00FF;
 						break;
 					case 5:
-						mes "[Geffen Guide]";
-						mes "The Pub can be";
-						mes "found northeast";
-						mes "from the Geffen Tower.";
+						mes "[Guia de Geffen]";
+						mes "O Bar se encontra a nordeste da Torre de Geffen.";
 						if (.@compass_check)
 							viewpoint 1,138,138,6,0xFF00FF;
 						break;
 					case 6:
-						mes "[Geffen Guide]";
-						mes "The Inn can be";
-						mes "found by traveling";
-						mes "northeast from the";
-						mes "center of Geffen.";
+						mes "[Guia de Geffen]";
+						mes "A Estalagem se encontra a nordeste do centro da cidade.";
 						if (.@compass_check)
 							viewpoint 1,172,174,7,0xFF00FF;
 						break;
 					case 7:
-						mes "[Geffen Guide]";
-						mes "Geffen Tower is found";
-						mes "in the center of the city.";
-						mes "The Wizard Guild is at the";
-						mes "top, and there's even a dungeon";
-						mes "underneath it. There's many a";
-						mes "mystery surrounding that tower...";
+						mes "[Guia de Geffen]";
+						mes "A Torre de Geffen se encontra no centro da cidade.";
 						if (.@compass_check)
 							viewpoint 1,120,114,8,0x00FF00;
 						break;
 					case 8:
-						mes "[Geffen Guide]";
-						mes "Please ask me to ''Remove";
-						mes "Marks from Mini-Map'' if you";
-						mes "no longer wish to have the";
-						mes "location marks displayed";
-						mes "on your Mini-Map.";
+						mes "[Guia de Geffen]";
+						mes "Se você deseja apagar as indicações do seu mini-mapa, por favor selecione 'Limpar indicações'.";
 						set .@loop2,0;
 						break;
 					}
 				}
 				break;
-			case 2:
+		case 2:
 				viewpoint 2,237,41,2,0xFF0000;
 				viewpoint 2,237,41,3,0x00FF00;
 				viewpoint 2,46,345,4,0xFF00FF;
@@ -283,36 +255,19 @@ geffen,203,116,4	script	Guia#01geffen	705,{
 				viewpoint 2,204,214,8,0x00FF00;
 				set .@compass_check,0;
 				break;
-			case 3:
-				mes "[Geffen Guide]";
-				mes "Advances in sorcery and";
-				mes "technology have allowed";
-				mes "us to update our information";
-				mes "system, enabling up to mark";
-				mes "locations on your Mini-Map";
-				mes "for easier navigation.";
-				next;
-				mes "[Geffen Guide]";
-				mes "Your Mini-Map is located";
-				mes "in the upper right corner";
-				mes "of the screen. If you can't";
-				mes "see it, press the Ctrl + Tab";
-				mes "keys or click the ''Map'' button in your Basic Info Window.";
-				next;
-				mes "[Geffen Guide]";
-				mes "On your Mini-Map,";
-				mes "click on the ''+'' and ''-''";
-				mes "symbols to zoom in and";
-				mes "our of your Mini-Map. We";
-				mes "hope you enjoy your travels";
-				mes "here in the city of Geffen.";
-				break;
-			case 4:
-				mes "[Geffen Guide]";
-				mes "Alright, adventurer.";
-				mes "I wish you safety on";
-				mes "your journeys through";
-				mes "the lands you may travel...";
+		case 3:
+			mes "[Guia de Geffen]";
+			mes "Nós fomos exaustivamente treinados para serví-lo da melhor maneira possível e sem falhas.";
+			mes "Assim você tem a garantia das melhores indicações possíveis.";
+			next;
+			mes "[Guia de Geffen]";
+			mes "As indicações que lhe daremos podem ser marcadas no seu mini-mapa.";
+			mes "Para visualizar o seu mini-mapa, aperte 'ctrl+tab', ou clique no botão 'mapa' no menu principal.";
+			mes "Controle o seu 'zoom' no mini-mapa por meio dos símbolos '+' e '-'.";
+			break;
+		case 4:
+			mes "[Guia de Geffen]";
+			mes "Espero que você tenha uma jornada segura e aproveite sua estadia.";
 				close2;
 				set .@loop1,0;
 			}
@@ -322,6 +277,6 @@ geffen,203,116,4	script	Guia#01geffen	705,{
 	}
 }
 
-geffen,118,62,0	duplicate(Guia#01geffen)	Guide#02geffen	705
-geffen,36,123,6	duplicatr(Guia#01geffen)	Guide#03geffen	705
-geffen,123,203,4	duplicatr(Guia#01geffen)	Guide#04geffen	705,{}
+geffen,118,62,0	duplicate(Guia#01geffen)	Guia#02geffen	705
+geffen,36,123,6	duplicatr(Guia#01geffen)	Guia#03geffen	705
+geffen,123,203,4	duplicatr(Guia#01geffen)	Guia#04geffen	705,{}
