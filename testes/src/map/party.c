@@ -171,6 +171,11 @@ int party_create(struct map_session_data *sd,char *name,int item,int item2)
 		clif_party_created(sd,2);
 		return 0;
 	}
+	
+	if(!pc_has_permission(sd, PC_PERM_PARTY)) {
+  clif_displaymessage(sd->fd,msg_txt(1400));
+  return 0;
+  }
 
 	sd->party_creating = true;
 

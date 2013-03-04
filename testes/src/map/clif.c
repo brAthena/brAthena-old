@@ -10709,6 +10709,9 @@ void clif_parse_UseSkillToId(int fd, struct map_session_data *sd)
 		return;
 	}
 
+	if(pc_has_permission(sd, PC_PERM_NOT_USE_SKILL) || pc_cant_act(sd) && skill_id != RK_REFRESH && !(skill_id == SR_GENTLETOUCH_CURE && (sd->sc.opt1 == OPT1_STONE || sd->sc.opt1 == OPT1_FREEZE || sd->sc.opt1 == OPT1_STUN)))
+		return;
+
 	// Whether skill fails or not is irrelevant, the char ain't idle. [Skotlex]
 	sd->idletime = last_tick;
 
@@ -10718,8 +10721,7 @@ void clif_parse_UseSkillToId(int fd, struct map_session_data *sd)
 #endif
 		return;
 	}
-	if(pc_cant_act(sd) && skill_id != RK_REFRESH && !(skill_id == SR_GENTLETOUCH_CURE && (sd->sc.opt1 == OPT1_STONE || sd->sc.opt1 == OPT1_FREEZE || sd->sc.opt1 == OPT1_STUN)))
-		return;
+
 	if(pc_issit(sd))
 		return;
 

@@ -396,6 +396,11 @@ int guild_create(struct map_session_data *sd, const char *name)
 		return 0;
 	}
 
+  if(pc_has_permission(sd, PC_PERM_NO_CREATE_GUILD)){
+  clif_displaymessage(sd->fd, msg_txt(1401));
+  return 0;
+  }
+
 	guild_makemember(&m,sd);
 	m.position=0;
 	intif_guild_create(name,&m);
