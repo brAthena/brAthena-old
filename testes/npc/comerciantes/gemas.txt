@@ -19,42 +19,41 @@
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
 //   | 1.1 Tradução PT-BR [insidemybrain]                     |
-//   | 1.2 Otimização [Mark]                                  |
+//   | 1.2 Otimização [Mark & Clare]                          |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
 payon,173,238,5	script	Jade#pay	754,{
+	mes "[Jade]";
 	if (checkweight(1201,1) == 0) {
-		mes "^3355FFEspere um pouco! Nesse momento existem muitos itens com você. Por favor retorne após colocar alguns de seus itens no Armazém Kafra.^000000";
+		mes "^3355FFEspere um pouco! Nesse momento, existem muitos itens com você. Por favor retorne após colocar alguns itens no Armazém da Kafra.^000000";
 		close;
 	}
-	mes "[Jade]";
 	mes "Traga para mim 2 Gemas da mesma cor, e eu vou trocá-las por Gemas de cores diferentes.";
 	next;
 	switch(select("Gemas Azuis para Vermelhas!:Gemas Vermelhas para Amarelas!:Gemas Amarelas para Azuis!")) {
-	case 1: callsub S_TrocaGemas,717,716;
-	case 2: callsub S_TrocaGemas,716,715;
-	case 3: callsub S_TrocaGemas,715,717;
+	case 1: callsub S_TradeGems,717,716;
+	case 2: callsub S_TradeGems,716,715;
+	case 3: callsub S_TradeGems,715,717;
 	}
 
-S_TrocaGemas:
+S_TradeGems:
+	mes "[Jade]";
 	if (countitem(getarg(0)) < 2) {
-		mes "[Jade]";
 		mes "Haha...!";
 		mes "Você está de brincadeira comigo, certo?";
 		mes "Eu não poderei fazer este serviço se você não me trouxer as 2 "+getitemname(getarg(0))+"s!";
 		close;
 	}
-		set .@gemas,countitem(getarg(0))/2;
-		mes "[Jade]";
-		mes "Acredito que posso criar um total de " + .@gemas + " " + getitemname(getarg(1)) + "s usando as "+getitemname(getarg(0))+"s que você tem no momento.";
+		set .@gems,countitem(getarg(0))/2;
+		mes "Acredito que posso criar um total de " + .@gems + " " + getitemname(getarg(1)) + "s usando as "+getitemname(getarg(0))+"s que você tem no momento.";
 		mes "O que gostaria de fazer?";
 		next;
 		switch(select("Me dê quantas puder.:Quero digitar quantas preciso.:Deixa pra lá.")) {
 		case 1:
-			delitem getarg(0),.@gemas * 2;
-			getitem getarg(1),.@gemas;
+			delitem getarg(0),.@gems * 2;
+			getitem getarg(1),.@gems;
 			mes "[Jade]";
 			mes "Então aqui está!";
 			mes "Sinta-se livre para voltar quando quiser.";
@@ -67,25 +66,19 @@ S_TrocaGemas:
 			mes "O máximo que você poderá escolher é 100.";
 			next;
 			while(1) {
-				input .@input,0,101;
-				if (.@input == 0) {
+				input .@input;
+				if (.@input == 0) || (.@input > 100){
 					mes "[Jade]";
 					mes "Nenhuma!?";
 					mes "Acho que você precisa mudar de ideia...";
 					close;
-				}
-				else if (.@input > 100) {
-					mes "[Jade]";
-					mes "Errm...";
-					mes "Eu pedi que escrevesse um número menor do que 100, se lembra?";
-					next;
 				}
 				else {
 					break;
 				}
 			}
 
-			if (.@gemas > .@input) {
+			if (.@gems > .@input) {
 				delitem getarg(0),.@input * 2;
 				getitem getarg(1),.@input;
 				mes "[Jade]";

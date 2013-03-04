@@ -12,13 +12,14 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.7/1.2/1.1                         |
+//   | Versões eA/rA/brA: 1.7/1.2/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Vende materiais e manuais de Alquimia.      |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
 //   | 1.1 Tradução PT-BR [Holy e Mark]                       |
+//   | 1.2 Otimização [Clare]                                 |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -28,7 +29,7 @@ alde_alche,31,186,3	script	Vendedor de Livros de Alquímia#alde	883,{
 	mes "[Vendedor de Livros de Alquímia]";
 	mes "Bem-vindo.";
 	mes "Eu sou o Vendedor de";
-	mes "^0000FFslivros artesanais especiais^000000 para Genéticos.";
+	mes "^0000FFlivros artesanais especiais^000000 para Genéticos.";
 	next;
 	mes "[Vendedor de Livros de Alquímia]";
 	mes "Os Genéticos possuem algumas habilidades";
@@ -90,18 +91,16 @@ Venda_Manual:
 	mes "Custará "+getarg(1)+" zeny cada.";
 	mes "Quantos desse livro você gostaria de comprar?";
 	next;
+	mes "[Vendedor de Livros de Alquímia]";
 	input .@amount;
 	if (.@amount == 0) {
-		mes "[Vendedor de Livros de Alquímia]";
 		mes "Você gostaria de ver alguns livros diferentes? Tudo bem.";
 		close;
 	}
 	if (.@amount < 1 || .@amount > 99 ){
-		mes "[Vendedor de Livros de Alquímia]";
 		mes "Você não pode comprar mais de 100 Livros de uma só vez.";
 		close;
 	}
-	mes "[Vendedor de Livros de Alquímia]";
 	mes "Você escolheu "+.@amount+"x "+getitemname(getarg(0))+".";
 	mes "Que custarão "+getarg(1) * .@amount+" Zeny.";
 	mes "Você deseja continuar?";
@@ -128,8 +127,8 @@ Venda_Manual:
 		close;
 	}
 	mes "[Vendedor de Livros de Alquímia]";
-	mes "Please take your time";
-	mes "before you make your decision.";
+	mes "Por favor, pense um pouco";
+	mes "antes de tomar sua decisão.";
 	close;
 }
 
@@ -148,7 +147,7 @@ alde_alche,24,188,3	script	Comerciante da Guilda	740,{
 	next;
 	switch(select("Comprar materiais.:Comprar manuais de produção.:Sair.")) {
 	case 1:
-		mes "[Gever Al Sharp]";
+		mes "[Gever Al Sharp]";	
 		mes "O que você gostaria de comprar?";
 		next;
 		if (select("Vasilha de Mistura - 8 Zeny:Cancelar.") == 1) {
@@ -158,37 +157,33 @@ alde_alche,24,188,3	script	Comerciante da Guilda	740,{
 			next;
 			while(1) {
 				input .@input,0,2001;
+				mes "[Gever Al Sharp]";
 				if (.@input == 0) {
-					mes "[Gever Al Sharp]";
 					mes "A negociação foi cancelada.";
 					mes "Volte sempre.";
 					close;
 				} else if (.@input < 1 || .@input > 2000) {
-					mes "[Gever Al Sharp]";
 					mes "O número deve";
 					mes "ser menor que 2000.";
 					next;
-				} else {
-					break;
 				}
+					break;
 			}
 			set .@sell,.@input * 8;
 			set .@item_weight,.@input * 10;
+			mes "[Gever Al Sharp]";
 			if (Zeny < .@sell) {
-				mes "[Gever Al Sharp]";
 				mes "Você não possui zeny o suficiente.";
 				mes "Cheque quanto de Zeny você possui primeiramente.";
 				close;
 			}
 			if ((MaxWeight - Weight) < .@item_weight) {
-				mes "[Gever Al Sharp]";
 				mes "Me parece que você não pode carregar tudo.";
 				mes "Por favor, verifique o espaço em seu inventário.";
 				close;
 			}
 			set zeny,zeny-.@sell;
 			getitem 7134,.@input; // Vasilha de Mistura
-			mes "[Gever Al Sharp]";
 			mes "Obrigado.";
 			mes "Volte Sempre.";
 			close;
@@ -239,20 +234,19 @@ alde_alche,24,188,3	script	Comerciante da Guilda	740,{
 	}
 
 Venda_Manual:
+	mes "[Gever Al Sharp]";
 	if (Zeny < getarg(1)) {
-		mes "[Gever Al Sharp]";
 		mes "Você não possui zeny o suficiente.";
 		mes "Cheque quanto de zeny você possui primeiramente.";
 		close;
 	}
-	mes "[Gever Al Sharp]";
 	mes getitemname(getarg(0))+"?";
 	mes "Isso vai custar "+getarg(1)+" zeny.";
 	next;
 	if (select("Comprar.:Sair.") == 1) {
+		mes "[Gever Al Sharp]";
 		set zeny,zeny-getarg(1);
 		getitem getarg(0),1;
-		mes "[Gever Al Sharp]";
 		mes "Obrigado pela sua fidelidade.";
 		close;
 	}

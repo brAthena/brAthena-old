@@ -12,13 +12,14 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: ??/1.2/1.1                          |
+//   | Versões eA/rA/brA: ??/1.2/1.2                          |
 //   |--------------------------------------------------------|
 //   | Descrição: Comerciantes de itens para 3rd.             |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [Holy]                              |
+//   | 1.2 Otimização [Clare]                                 |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -84,7 +85,6 @@ job3_guil01,79,96,3	script	Ervas Tóxicas	877,{
 		}
 		set Zeny, Zeny-5000;
 		getitem 7931,1;
-		mes "[Vendedor de Ervas Tóxicas]";
 		mes "Obrigado. Até mais~!";
 		close;
 }
@@ -157,8 +157,8 @@ job3_guil01,91,93,3	script	Coletor de Ervas Raras	49,{
 		mes "- após remover um pouco de seu peso. -";
 		close;
 	}
+	mes "[Coletor de Ervas Raras]";
 	if (Class == Job_Guillotine_Cross || Class == Job_Guillotine_Cross_T || Class == Job_Baby_Cross) {
-		mes "[Coletor de Ervas Raras]";
 		mes "Eu ando ao redor do mundo e recolho ervas venenosas raras. Recentemente, estou cuidando especialmente de uma erva chamada Izidor. Se você estiver interessado, você pode comprá-la.";
 		next;
 		set .@i, select("Como posso comprá-la?:Trocá-la por um Sangue de Animal:Trocá-la por uma Erva Amarga:Trocá-la por uma Erva Letal:Trocá-la por uma Rosa de Gelo:Trocá-la por uma Menta:Trocá-la por uma Hinalle")-1;
@@ -169,21 +169,19 @@ job3_guil01,91,93,3	script	Coletor de Ervas Raras	49,{
 			mes "[Coletor de Ervas Raras]";
 			mes "Por que o dinheiro? Ele é apenas um retorno para pagar um grande Colecionador como eu...";
 			close;
-		} else {
+		}
 			setarray .@exchange[1],702,621,631,749,708,703;
 			mes "[Coletor de Ervas Raras]";
 			if (!countitem(.@exchange[.@i]) || Zeny < 10000) {
 				mes "Ei, tente novamente após você conseguir todos os requisitos para a troca.";
 				close;
-			}
-			mes "Obrigado. Eu recebi seu pagamento.";
-			delitem .@exchange[.@i],1;
-			set Zeny, Zeny-10000;
-			getitem 709,1;
-			close;
-		}
+				}
+				mes "Obrigado. Eu recebi seu pagamento.";
+				delitem .@exchange[.@i],1;
+				set Zeny, Zeny-10000;
+				getitem 709,1;
+				close;
 	}
-	mes "[Coletor de Ervas Raras]";
 	mes "Eu ando ao redor do mundo e recolho ervas venenosas raras. Mas eu não preciso ter que vender minhas ervas a uma pessoa como você. Hahaha...";
 	close;
 }

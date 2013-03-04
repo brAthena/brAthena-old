@@ -19,7 +19,7 @@
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
 //   | 1.1 Tradução PT-BR [insidemybrain]                     |
-//   | 1.2 Otimização [Mark]                                  |
+//   | 1.2 Otimização [Mark & Clare]                          |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -36,17 +36,10 @@ man_in01,286,16,1	script	Mercador de Manuk	439,{
 		mes "Olá.";
 		mes "O que você está procurando?";
 		next;
-		if (strnpcinfo(1) == "Mercador de Manuk") {
 			setarray .@Items[2],12342,12343,12348;
-			set .@Livro,11019; // Itens de Esplendor à Venda
-			set .@Moeda,6080;  // Moeda Manuk
-			set .@i, select("Ver a descrição dos itens:Oportunidade de Manuk:Coragem de Manuk:Fé de Manuk:Cancelar");
-		} else {
-			setarray .@Items[2],12344,12345,12349;
-			set .@Livro,11018; // Itens de Esplendor à Venda
-			set .@Moeda,6081;  // Moeda Esplendor
-			set .@i, select("Ver a descrição dos itens:Comprar Geleia de Fruta de Pinguicula:Comprar Geleia de Mel de Vagalume:Lágrimas de Cornus:Nada");
-		}
+			set .@Livro,( (strnpcinfo(1) == "Mercador de Manuk") ? 11019 : 11018); // Itens de Esplendor à Venda
+			set .@Moeda,( (strnpcinfo(1) == "Mercador de Manuk") ? 6080 : 6081);  // Moeda Manuk
+			set .@i, select(""+( (strnpcinfo(1) == "Mercador de Manuk") ? "Ver a descrição dos itens:Oportunidade de Manuk:Coragem de Manuk:Fé de Manuk:Cancelar" : "Ver a descrição dos itens:Comprar Geleia de Fruta de Pinguicula:Comprar Geleia de Mel de Vagalume:Lágrimas de Cornus:Nada")+"");
 		mes .@n$;
 		if (.@i == 1) {
 			mes "Aqui está a descrição dos itens.";
@@ -56,36 +49,28 @@ man_in01,286,16,1	script	Mercador de Manuk	439,{
 		} else if (.@i < 5) {
 			mes "Eu posso lhe vender 3 "+getitemname(.@Items[.@i])+" por ^3131FF1 moedas^000000.";
 			next;
-			switch(select("Comprar:Não comprar")) {
-			case 1:
+			if(select("Comprar:Não comprar") == 1) {
+				mes .@n$;
 				if (countitem(.@Moeda)) {
-					mes .@n$;
 					mes "Obrigado pelo bom negócio.";
 					delitem .@Moeda,1; 
 					getitem .@Items[.@i],3;
 					close;
-				} else {
-					mes .@n$;
+				}
 					mes "Você não tem moedas o suficente.";
 					close;
-				}
-			case 2:
+				}	
 				mes .@n$;
-				break;
-			}
 		}
 		mes "Volte caso mude de ideia.";
 		close;
-	} else {
+	}
 		if (strnpcinfo(1) == "Mercador de Manuk") {
 			mes "Rtt od d";
 			mes "Qwo hd is d irr";
 		}
-		else {
 			mes "BurWehAla";
 			mes "tasnarAndu Ie Ru";
-		}
 		close;
-	}
 }
 spl_in01,110,326,5	duplicate(Mercador de Manuk)	Mercador de Esplendido	439

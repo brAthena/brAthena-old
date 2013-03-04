@@ -19,19 +19,18 @@
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
 //   | 1.1 Tradução PT-BR [Mark]                              |
-//   | 1.2 Otimização [Mark]                                  |
+//   | 1.2 Otimização [Mark & Clare]                          |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
 payon_in01,5,134,5	script	Inventor Jaax	89,{
+	mes "[Inventor Jaax]";
 	if (checkweight(1201,1) == 0 || (MaxWeight-Weight) < 2000) {
-		mes "[Inventor Jaax]";
 		mes "Ei, você está carregando muitas coisas.";
 		mes "Por que você não guarda suas coisas no Armazém da Kafra? Podemos conversar após você ter feito isso, certo?";
 		close;
 	}
-	mes "[Inventor Jaax]";
 	mes "Meu nome é Jaxx.";
 	mes "Sem dúvidas, posso dizer que sou o ^663300maior inventor dos últimos tempos^000000.";
 	next;
@@ -63,8 +62,8 @@ payon_in01,5,134,5	script	Inventor Jaax	89,{
 	}
 
 S_BuyQuiver:
+	mes "[Inventor Jaax]";
 	if (countitem(getarg(0)) > 499) {
-		mes "[Inventor Jaax]";
 		mes "Excelente!";
 		mes "As flechas estão com você! Irei lhe providenciar um Aljave que pode carregar 500 de suas "+getitemname(getarg(0))+" por apenas^FF3131 500 Zeny^000000.";
 		next;
@@ -84,8 +83,8 @@ S_BuyQuiver:
 			mes "Você gostaria de comprar quantos Aljaves possíveis para as Flechas que você está carregando?";
 			next;
 			if (select("Sim:Cancelar") == 1) {
+				mes "[Inventor Jaax]";
 				if (.@arrow_zeny01 < Zeny) {
-					mes "[Inventor Jaax]";
 					mes "Aqui estão!";
 					mes "Apenas relembrando, ^FF0000você não poderá utilizar os Aljaves caso seu peso seja maior que 90% do peso máximo^000000.";
 					set zeny,zeny-.@arrow_zeny01;
@@ -96,20 +95,18 @@ S_BuyQuiver:
 					mes "Então...";
 					mes "Apenas tenha controle da quantidade que você carrega por vez e tudo ficará bem.";
 					close;
-				} else {
-					mes "[Inventor Jaax]";
+				}
 					mes "Me desculpe, mas você não tem Zeny o suficiente.";
 					mes "Eu não posso dá-las por nada depois de anos de trabalho para criar essa tecnologia revolucionária!";
 					close;
-				}
 			}
 			mes "[Inventor Jaax]";
 			mes "Você mudou de idéia?";
 			mes "Logo agora que a glória de possuir um Aljave estava tão perto?";
 			close;
 		case 2:
+			mes "[Inventor Jaax]";
 			if (zeny > 500) {
-				mes "[Inventor Jaax]";
 				mes "Aqui está!";
 				mes "Apenas relembrando, ^FF0000você não poderá utilizar os Aljaves caso seu peso seja maior que 90% do peso máximo^000000.";
 				set zeny,zeny-500;
@@ -120,26 +117,22 @@ S_BuyQuiver:
 				mes "Então...";
 				mes "Apenas tenha controle da quantidade que você carrega por vez e tudo ficará bem.";
 				close;
-			} else {
-				mes "[Inventor Jaax]";
+			}
 				mes "Você não tem nem 500 Zeny?";
 				mes "Me desculpe. Eu não tinha idéia que você era tão...";
 				mes "^333333Desprovido^000000.";
 				close;
-			}
 		case 3:
 			mes "[Inventor Jaax]";
 			mes "O que...?";
 			mes "Você não viu que essa invenção pode mudar para sempre a forma que as Flechas são carregadas?! O Futuro é agora!";
 			close;
 		}
-	} else {
-		mes "[Inventor Jaax]";
-		mes "Você pode carregar no máximo 500 Flechas dentro deste Aljave. Isso foi feito usando meu método secreto,";
-		mes "para que o peso total de Flechas e Aljaves juntos é menor do que se carregasse apenas Flechas.";
-		next;
-		mes "[Inventor Jaax]";
-		mes "Isso é um Milagre da Ciência! Você mesmo pode experimentar se você me trazer no mínimo 500 Flechas e 500 Zeny para cada Aljave.";
-		close;
 	}
+	mes "Você pode carregar no máximo 500 Flechas dentro deste Aljave. Isso foi feito usando meu método secreto,";
+	mes "para que o peso total de Flechas e Aljaves juntos é menor do que se carregasse apenas Flechas.";
+	next;
+	mes "[Inventor Jaax]";
+	mes "Isso é um Milagre da Ciência! Você mesmo pode experimentar se você me trazer no mínimo 500 Flechas e 500 Zeny para cada Aljave.";
+	close;
 }

@@ -21,6 +21,7 @@
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [Holy]                              |
+//   | 1.2 Otimização [Clare]                                 |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -65,14 +66,13 @@ hu_in01,386,306,3	script	Negociador de Flautas	51,{
 			close;
 		}
 		if (Zeny >= .@price) {
+			mes "[Negociador da Flauta do Falcão]";
 			if (countitem(12848) >= 1) {
-				mes "[Negociador da Flauta do Falcão]";
 				mes "Vejo que você já possui uma Flauta do Falcão!";
 				mes "Não se preocupe, meu jovem amigo, já que você comprou a flauta você não precisa de uma outra";
 				mes "desde que ela não despareça, não é ótimo?";
 				close;
 			}
-			mes "[Negociador da Flauta do Falcão]";
 			mes "Aqui, receba esta flauta.";
 			mes "Com ela você pode assobiar e chamar seu Falcão de qualquer lugar em que esteja.";
 		  	set Zeny, Zeny - .@price;
@@ -100,8 +100,8 @@ pay_arche,91,134,3	duplicate(Negociador de Flautas)	Negociador da Flauta do Falc
 
 tur_dun01,89,170,5	script	Criador de Flauta Avançada	59,{
 	if (Class == Job_Ranger || Class == Job_Ranger_T || Class == Job_Baby_Ranger) {
+		mes "[Criador de Flauta Avançada]";
 		if (countitem(6124)) {
-			mes "[Criador de Flauta Avançada]";
 			mes "A flauta que você possui foi feita por mim.";
 			mes "Você pode voltar aqui e me encontrar caso perca sua Flauta Uivante!";
 			next;
@@ -110,14 +110,13 @@ tur_dun01,89,170,5	script	Criador de Flauta Avançada	59,{
 			mes "E também é a única que posso criar!!";
 			close;
 		}
-		mes "[Criador de Flauta Avançada]";
 		mes "Precisa de alguma coisa?";
 		mes "Uma nova Flauta Uivante?";
 		next;
 		switch(select("Por favor me dê uma Flauta Uivante.:Não.")) {
 		case 1:
+			mes "[Criador de Flauta Avançada]";
 			if (countitem(7150) && Zeny >= 100000) {
-				mes "[Criador de Flauta Avançada]";
 				mes "Você trouxe todos os materiais?";
 				mes "Uau! Todos os materiais estão em bom estado!";
 				mes "Isso é o suficiente.";
@@ -130,7 +129,6 @@ tur_dun01,89,170,5	script	Criador de Flauta Avançada	59,{
 				getitem 6124,1; // Flauta Uivante
 				close;
 			}
-			mes "[Criador de Flauta Avançada]";
 			mes "Se você quer que eu crie uma nova Flauta Uivante, me traga ^4d4dff1 Pedaço de Bambu e 100,000 zeny.^000000";
 			next;
 			mes "[Criador de Flauta Avançada]";

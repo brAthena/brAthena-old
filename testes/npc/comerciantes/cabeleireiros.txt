@@ -8,18 +8,18 @@
 //   |                                                        |
 //   |                    brAthena Script                     |
 //   |--------------------------------------------------------|
-//   | Nome do Script: cabeleireiros.txt                       |
+//   | Nome do Script: cabelereiros.txt                       |
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.1/1.4/1.0                         |
+//   | Versões eA/rA/brA: 1.1/1.4/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Permite que você mude seu penteado.         |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
 //   | 1.1 Tradução PT-BR [Mark]                              |
-//   | 1.2 Otimização [Mark]                                  |
+//   | 1.2 Otimização [Mark & Clare]                          |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -39,229 +39,112 @@ alberta_in,55,142,7	script	Cabelereira	91,{
 		mes "Se deseja cancelar, digite 0.";
 		next;
 		input .@style;
+		mes "[Veronica]";
 		if(.@style > 19) {
-			mes "[Veronica]";
-			mes "Oopa, me desculpe, mas esse estilo não existe.";
+			mes "Opa, me desculpe, mas esse estilo não existe.";
 			mes "Lembre-se apenas números entre 1 e 19.";
 			next;
 		} else if(.@style == 0) {
-			mes "[Veronica]";
 			mes "Então, como você gosta do estilo?";
 			mes "Sinta-se à vontade para perguntar sobre qualquer estilo.";
 			mes "Vai ser um prazer estilizar seus cabelos.";
 			close;
-		} else {
+		}
 			callsub L_cutin,.@style;
-			mes "[Veronica]";
 			switch(.@style) {
 			case 1:
-				if(Sex == 1) {
-					mes "Oh, esse é estilo 'Engana Morte'!";
+					mes "Oh, esse é estilo "+(( Sex == 1 ) ? "'Engana Morte'" : "'Primeiros Socorros'")+"!";
 					mes "É um corte de cabelo básico.";
-					mes "Eu observo que geralmente os bonitinhos preferem este estilo.";
-					close2; cutin "",255; end;
-				}
-					mes "Oh, esse é estilo 'Primeiros Socorros'!";
-					mes "As mechas nos ombros são endireitados para aqueles não aventureiros.";
-					mes "Isso parece ser um estilo para novatos.";
+					mes "Eu observo que geralmente "+(( Sex == 1 ) ? "os bonitinhos":"as bonitinhas")+" preferem este estilo.";
 					close2; cutin "",255; end;
 			case 2:
-				if(Sex == 1) {
-					mes "Oh, esse é o estilo 'Perícia com Espadas de Duas Mãos'!";
+					mes "Oh, esse é estilo "+(( Sex == 1 ) ? "'Perícia com Espadas de Duas Mãos'":"'Golpe Fulminante'")+"!";
 					mes "Isso é perfeito para Espadachins que mechem seus cabelos enquanto balançam suas espadas o dia todo.";
 					close2; cutin "",255; end;
-				}
-					mes "Oh, esse é o estilo 'Golpe Fulminante'!";
-					mes "Para a mulher poderosa que não tem medo de ficar com sangue nas mãos,";
-					mes "mas sabe como grande vai parecer seu cabelo quando visto enquanto meio a uma batalha.";
-					close2; cutin "",255; end;
 			case 3:
-				if(Sex == 1) {
-					mes "Oh, esse é o estilo 'Napalm Beat'!";
+					mes "Oh, esse é estilo "+(( Sex == 1 ) ? "'Napalm Beat'":"'Rajada Congelante'")+"!";
 					mes "É um olhar único, com um toque de excentricidade que é compensado com uma porção de elegância.";
 					close2; cutin "",255; end;
-				}
-					mes "Oh, esse é o estilo 'Rajada Congelante'!";
-					mes "As tranças dão um inocente, olhar recatado para os Magos e Bruxos";
-					mes "que costumam assustar os meninos com suas magias.";
-					close2; cutin "",255; end;
 			case 4:
-				if(Sex == 1) {
-					mes "Oh, essse é o estilo 'Rajada de Flechas'!";
+					mes "Oh, esse é estilo "+(( Sex == 1 ) ? "'Rajada de Flechas'":"'Chuva de Flechas'")+"!";
 					mes "O arranjo do cabelo conduz a um ambiente estático de eletricidade, naturalmente limpando a mente.";
 					mes "Pelo menos, é o que aprendi na escola de moda.";
 					close2; cutin "",255; end;
-				}
-					mes "Oh, esse é o estilo 'Chuva de Flechas'!";
-					mes "Para arqueiras que não desejam que a moda interfira em sua percepção.";
-					mes "Muito mais atraentes que aqueles cabelos estilo da vovó.";
-					close2; cutin "",255; end;
 			case 5:
-				if(Sex == 1) {
-					mes "Oh, esse é o estilo 'Angelus'!";
+					mes "Oh, esse é estilo "+(( Sex == 1 ) ? "'Angelus'":"'Curar'")+"!";
 					mes "É para pessoas calmas e devotas, assim como para os tímidos.";
 					close2; cutin "",255; end;
-				}
-					mes "Oh, esse é o estilo 'Curar'!";
-					mes "Este está em tendência entre Sacerdores e Noviços, já que esse estilo";
-					mes "é apropriado para situações formais, mas também para prática na batalha.";
-					close2; cutin "",255; end;
 			case 6:
-				if(Sex == 1) {
+					mes "Oh, esse é estilo "+(( Sex == 1 ) ? "'Puchar Carrinho'":"'Comércio'")+"!";
 					mes "Oh, esse é o estilo 'Puchar Carrinho'!";
-					mes "Este foi baseado no designe de um carrinho...";
+					mes "Este é o penteado para fabricantes de dinheiro...";
 					mes "Pelo menos, foi o que eu aprendi na escola de moda.";
 					close2; cutin "",255; end;
-				}
-					mes "Oh, esse é o estilo 'Comércio'!";
-					mes "Este é o penteado para fabricantes de dinheiro...";
-					mes "E se não tenho certeza, é também econômico.";
-					close2; cutin "",255; end;
 			case 7:
-				if(Sex == 1) {
-					mes "Oh, esse é o estilo 'Envenenar'!";
-					mes "Parece ótimo para Gatunos e Mercenários quando estão envenenando pessoas e animais.";
+					mes "Oh, esse é estilo "+(( Sex == 1 ) ? "'Envenenar'":"'Ataque Duplo'")+"!";
+					mes "Parece ótimo para Gatunos e Mercenários.";
 					mes "É moda para o agressivo e eclético~!";
 					close2; cutin "",255; end;
-				}
-					mes "Oh, esse é o estilo 'Ataque Duplo'!";
-					mes "Um adorável rabo de cavalo, com um estilo provocativo para ajudá-la a roubar o coração de um cara bonito.";
-					close2; cutin "",255; end;
 			case 8:
-				if(Sex == 1) {
-					mes "Oh, esse é o estilo 'Impacto de Tyr'!";
-					mes "Um estilo popular entre os Cavaleiros, aparência robusta tende a atrair todas as mulheres.";
-					close2; cutin "",255; end;
-				}
-					mes "Oh, esse é um estilo 'Glória'!";
-					mes "Esse é muito elegante e cai bem em Sacerdotes.";
-					mes "Esse estilo é o mais atraente para mulheres, que não lutam com as mãos.";
+					mes "Oh, esse é estilo "+(( Sex == 1 ) ? "'Impacto de Tyr'":"'Glória'")+"!";
+					mes "Esse é muito elegante e cai bem, possui uma aparência robusta.";
 					close2; cutin "",255; end;
 			case 9:
-				if(Sex == 1) {
-					mes "Oh, esse é o estilo 'Névoa Tóxica'!";
-					mes "Definitivamente uma aparência para rebeldes, parece atrair meninas com uma atração fatal.";
+					mes "Oh, esse é estilo "+(( Sex == 1 ) ? "'Névoa Tóxica'":"'Recuperação de SP'")+"!";
+					mes "Parece adicionar mais corpo para o estilo especial destes estrondos.";
 					close2; cutin "",255; end;
-				}
-					mes "Oh, esse é o estilo 'Recuperação de SP'!";
-					mes "Para adicionar mais corpo para o estilo especial destes estrondos,";
-					mes "eu uso uma condição especial que faz você se sentir como se estivesse recuperando SP";
-					mes "...Embora, atualmente não funciona.";
-					close2; cutin "",255; end;
+
 			case 10:
-				if(Sex == 1) {
-					mes "Oh, esse é o estilo 'Esconjurar'!";
-					mes "Este é popular entre os Sacerdotes, que querem ser mais sérios, tendo uma aparência agressiva.";
-					mes "Definitivamente mais atraente que o estilo 'Luz Divina'.";
-					close2; cutin "",255; end;
-				}
-					mes "Oh, esse é o estilo 'Preparar Poção'!";
-					mes "As mechas queimadas são escolhidas por Alquimistas iniciantes, desde cedo";
-					mes "as experiências explosivas faria seu cabelo ficar assim de qualquer jeito.";
+					mes "Oh, esse é estilo "+(( Sex == 1 ) ? "'Esconjurar'":"'Preparar Poção'")+"!";
+					mes "Este é popular entre aqueles que querem ser mais sérios, tendo uma aparência agressiva.";
 					close2; cutin "",255; end;
 			case 11:
-				if(Sex == 1) {
-					mes "Oh, esse é o estilo 'Dragonologia'!";
-					mes "É um corte puro e limpo, perfeito para os estudiosos e ficam ótimos com óculos.";
+					mes "Oh, esse é estilo "+(( Sex == 1 ) ? "'Dragonologia'":"'Crux Magnum'")+"!";
+					mes "É um corte puro e limpo, ficam ótimos com óculos.";
 					mes "Essa é a forma adequada para intelectuais.";
 					close2; cutin "",255; end;
-				}
-					mes "Oh, esse é o estilo 'Crux Magnum'!";
-					mes "Este é um estilo entre os piedosos Templários que precisam que cabelos que não vão embarassar durante a luta.";
-					mes "Ainda é respeitável o suficiente para participar dos serviços religiosos.";
-					close2; cutin "",255; end;
 			case 12:
-				if(Sex == 1) {
-					mes "Oh, esse é o estilo 'Perícia com Maça'!";
+					mes "Oh, esse é estilo "+(( Sex == 1 ) ? "'Perícia com Maça'":"'Ataque Surpresa'")+"!";
 					mes "Muito cuidado ao fazer este estilo, seus cabelos vão dizer, 'Eu não me importo como olho para todos!'.";
 					close2; cutin "",255; end;
-				}
-					mes "Oh, esse é o estilo 'Ataque Surpresa'!";
-					mes "As Arruaceiras parecem gostar deste estilo...";
-					mes "embora eu imagino que a maioria iria preferir algo mais selvagem para combinar com elas...";
-					close2; cutin "",255; end;
 			case 13:
-				if(Sex == 1) {
-					mes "Oh, esse é o estilo 'Tempestade de Raios'!";
-					mes "Este penteado flamejante, parece descontrolado como um trovão.";
+					mes "Oh, esse é estilo "+(( Sex == 1 ) ? "'Tempestade de Raios'":"'Absorver Esferas Espirituais'")+"!";
+					mes "Neste mostra uma qualidade carismática para a moda: é duro, mas nem tanto, que pode não ser bonito.";
 					mes "...E você também com este novo olhar.";
 					close2; cutin "",255; end;
-				}
-					mes "Oh, esse é o estilo 'Absorver Esferas Espirituais'!";
-					mes "Neste mostra uma qualidade carismática para a moda: é duro, mas nem tanto, que pode não ser bonito.";
-					close2; cutin "",255; end;
 			case 14:
-				if(Sex == 1) {
-					mes "Oh, esse é o estilo 'Bis'!";
-					mes "O elegante fechamento de fluxo, se encaixa bem para Bardos, ou homens que apreciam a beleza.";
-					close2; cutin "",255; end;
-				}
-					mes "Oh, esse é o estilo 'Beijo da Odalisca'!";
-					mes "Odaliscas parecem gostar deste estilo, embora pessoalmente, eu acho que fica melhor com óculos.";
+					mes "Oh, esse é estilo "+(( Sex == 1 ) ? "'Bis'":"'Beijo da Odalisca'")+"!";
+					mes "O elegante fechamento de fluxo, se encaixa bem naqueles que apreciam a beleza.";
 					close2; cutin "",255; end;
 			case 15:
-				if(Sex == 1) {
-					mes "Oh, esse é o estilo 'Tocaia'!";
-					mes "Espetado e despenteado, este estilo é uma cultura de rua.";
-					mes "Você pode não querer usar este cabelo desta forma em um casamento...";
-					close2; cutin "",255; end;
-				}
-					mes "Oh, esse é o estilo 'Chute Tornado'!";
-					mes "Esta é uma visão intimidante para as meninas que dizem 'Você me acertou, eu vou acertá-lo de volta!'.";
-					mes "Isso realmente da ênfase à testa e bochechas.";
+					mes "Oh, esse é estilo "+(( Sex == 1 ) ? "'Tocaia'":"'Chute Tornado'")+"!";
+					mes "Este estilo é uma cultura de rua.";
 					close2; cutin "",255; end;
 			case 16:
-				if(Sex == 1) {
-					mes "Oh, esse é o estilo 'Ataque Aéreo'!";
-					mes "Uma forma divertida e animada, este estilo foi desenvolvido por um Caçador que gostava que franjas longas.";
-					close2; cutin "",255; end;
-				}
-					mes "Oh, esse é o estilo 'Instalar Armadilha'!";
-					mes "O estilo foi especialmente feito para Caçadoras que não gostam de cabelos emaranhados...";
-					mes "Afinal, que tipo de Caçadora deixa seu cabelo preso?";
+					mes "Oh, esse é estilo "+(( Sex == 1 ) ? "'Ataque Aéreo'":"'Instalar Armadilha'")+"!";
+					mes "Uma forma divertida e animada, este estilo foi desenvolvido por um Caçador.";
 					close2; cutin "",255; end;
 			case 17:
-				if(Sex == 1) {
-					mes "Oh, esse é o estilo 'Encontrar Minério'!";
+					mes "Oh, esse é estilo "+(( Sex == 1 ) ? "'Encontrar Minério'":"'Martelo de Thor'")+"!";
 					mes "É prático e econômico, é popular entre os Ferreiros.";
-					mes "Alguns dizem que assim ajudam eles à encontrar minérios, mas onde está a ciência nisso?";
-					close2; cutin "",255; end;
-				}
-					mes "Oh, esse é o estilo 'Martelo de Thor'!";
-					mes "Para a mulher que não quer seu cabelo no caminho quando carregando objetos pesados.";
-					mes "Claro, é um dos penteados favoritos entre as Ferreiras.";
 					close2; cutin "",255; end;
 			case 18:
-				if(Sex == 1) {
-					mes "Oh, esse é o estilo 'Coluna de Fogo'!";
-					mes "Um visual moderno que cobre um dos olhos criando um efeito intrigante.";
-					mes "O elemento do mistério está sempre na moda, não acha?";
-					close2; cutin "",255; end;
-				}
-					mes "Oh, esse é o estilo 'Trovão de Júpiter'!";
-					mes "Um visual que acerta como um trovão, sem agarrar ou emaranhar.";
+					mes "Oh, esse é estilo "+(( Sex == 1 ) ? "'Coluna de Fogo'":"'Trovão de Júpiter'")+"!";
 					mes "Este visual fica ótimo com chapéis de Mago.";
 					close2; cutin "",255; end;
 			case 19:
-				if(Sex == 1) {
-					mes "Oh, esse é o estilo 'Punho Supremo de Asura'!";
-					mes "Liso e penteado para trás, o topete mostra que você está sério para suas lutas...";
+					mes "Oh, esse é estilo "+(( Sex == 1 ) ? "'Punho Supremo de Asura'":"'Tornado'")+"!";
+					mes "Elegante, mostra que você está sério para suas lutas...";
 					mes "...ou apenas passivo.";
 					close2; cutin "",255; end;
-				}
-					mes "Oh, esse é o estilo 'Tornado'!";
-					mes "O favorito entre as estudiosas Sábias, o cabelo é amarrado para trás em uma trança elegante para que não voe devido magias de vento.";
-					close2; cutin "",255; end;
 			}
-		}
 	case 2:
+		mes "[Veronica]";
 		if(BaseLevel < 60) {
-			mes "[Veronica]";
 			mes "Oh, querido, você está fabuloso com seu cabelo atual.";
 			mes "Por que você não tenta um novo acessório para o cabelo?";
 			close;
 		} else if((countitem(973) < 3) || (countitem(974) < 3) || (countitem(901) <100) || (countitem(1094) <100) || (countitem(1020) <100) || (countitem(1060) <100) || (countitem(7152) <100) || (Zeny < 99800)) {
-			mes "[Veronica]";
 			mes "Se você deseja mudar seu cabelo, você deve me trazer alguns ingredientes.";
 			mes "Sugiro que você anote todos os itens que precisa.";
 			next;
@@ -281,35 +164,31 @@ alberta_in,55,142,7	script	Cabelereira	91,{
 			mes "Hohohohoho~";
 			close;
 		}
-		mes "[Veronica]";
 		mes "Certo, escolha o estilo de cabelo que deseja, entre o estilo 1 e o 19.";
 		mes "Farei meu melhor para que você fique muito mais elegante.";
 		next;
+		mes "[Veronica]";
 		input .@style;
 		if(.@style > 19) {
-			mes "[Veronica]";
 			mes "Me desculpe, você escolheu um estilo inexistente.";
 			mes "Tenha certeza que digitou o número correto.";
 			close;
 		} else if(.@style == 0) {
-			mes "[Veronica]";
 			mes "Você cancelou a negociação.";
 			close;
 		} else if(getlook(1) == .@style) {
-			mes "[Veronica]";
 			mes "Me desculpe, mas você já está com o estilo que escolheu.";
 			mes "Você poderia escolher um estilo diferente?";
 			close;
 		}
 			callsub L_cutin,.@style;
-			mes "[Veronica]";
 			mes "Você escolheu o estilo número (" + .@style + ").";
 			mes "Irei proceguir com seu pedido.";
 			mes "Você se importa?";
 			next;
 			if(select("Não, tudo bem.:Sim, deixe-me escolher outro.") == 1) {
+				mes "[Veronica]";
 				if(getlook(6) == 0) {
-					mes "[Veronica]";
 					mes "Oh, você não tingiu seu cabelo todo.";
 					mes "Você ficaria ainda mais fabuloso se tingisse seu cabelo...";
 					mes "Bem, irei fazer isso de graça.";
@@ -333,7 +212,6 @@ alberta_in,55,142,7	script	Cabelereira	91,{
 					}
 				}
 				nude;
-				mes "[Veronica]";
 				mes "Agora, vamos começar.";
 				mes "Tente ficar parado, querido.";
 				mes "Se você se mover, pode arruinar o visual perfeito que quero lhe dar.";
@@ -441,13 +319,12 @@ alberta,33,141,7	script	Cabelereiro Roving	87,{
 		mes "Você poderia começar com um corte Espadachim em seu cabelo, se você quiser ficar com um penteado horrível~!";
 		close;
 	case 2:
+		mes "[Rui Vishop]";
 		if(BaseLevel < 60) {
-			mes "[Rui Vishop]";
 			mes "Humm, Eu devo dizer, seu atual penteado lhe fica melhor.";
 			mes "Acredite, eu sei o que estou dizendo.";
 			close;
 		} else if(Zeny < 199800) {
-			mes "[Rui Vishop]";
 			mes "Ah, vejo que você pode reconhecer um gênio quando está perto de você.";
 			mes "A luz de seu bom gosto, apenas vou precisar de algum dinheiro para meu serviço.";
 			next;
@@ -457,7 +334,6 @@ alberta,33,141,7	script	Cabelereiro Roving	87,{
 			mes "Afinal, minha arte não tem preço!";
 			close;
 		}
-		mes "[Rui Vishop]";
 		mes "Certo, eu vou pegar minha taxa de 199.800 zeny para o serviço.";
 		next;
 		mes "[Rui Vishop]";
@@ -560,7 +436,10 @@ lhz_in02,100,143,3	script	Cabeleireiro#li	122,{
 					emotion e_lv,"Hair Dresser#i";
 					close;
 				}
-			} else {
+				close2;
+				cutin "",255;
+				end;
+			}
 				switch(select("Estilo Coelho:Estilo Harpia:Estilo Medusa:Estilo Ísis:Cancelar")) {
 				case 1:
 					cutin "hair_f_20",4;
@@ -597,8 +476,9 @@ lhz_in02,100,143,3	script	Cabeleireiro#li	122,{
 					emotion e_lv,"Hair Dresser#li";
 					close;
 				}
-			}
-			break;
+				close2;
+				cutin "",255;
+				end;
 		case 2:
 			if (Sex == 1) {
 				switch(select("Cura Emergêncial:Corte Energia Cortante:Poder Dançante:Corte Renovatio:Cancel")) {
@@ -635,7 +515,10 @@ lhz_in02,100,143,3	script	Cabeleireiro#li	122,{
 					emotion e_lv,"Hair Dresser#li";
 					close;
 				}
-			} else {
+				close2;
+				cutin "",255;
+				end;
+			}
 				switch(select("Assumptio Permanente:Corte Pácto dos Espíritos:Corte Tornado X:Corte Oratio:Cancel")) {
 				case 1:
 					cutin "hair_f_24",4;
@@ -672,20 +555,18 @@ lhz_in02,100,143,3	script	Cabeleireiro#li	122,{
 					emotion e_lv,"Hair Dresser#li";
 					close;
 				}
-			}
+				close2;
+				cutin "",255;
+				end;
 		}
-		close2;
-		cutin "",255;
-		end;
 	case 2:
+		mes "[Príncipe Shammi]";
 		if (BaseLevel < 60) {
-			mes "[Príncipe Shammi]";
 			mes "Oh, me desculpe, mas eu só posso realizar meus serviços em clientes que tem maturidade o suficiente.";
 			mes "Mas por favor volte quando tiver, ok?";
 			close;
 		}
 		else if ((countitem(973) < 3) || (countitem(974) < 3) || (countitem(901) < 100) || (countitem(1094) < 100) || (countitem(1020) < 100) || (countitem(1060) < 100) || (countitem(7152) < 100) || (Zeny < 99800)) {
-			mes "[Príncipe Shammi]";
 			mes "Se você já estiver decidido do penteado que deseja, tenha os materiais que preciso em mãos.";
 			mes "Para realizar este serviço, traga-me...";
 			next;
@@ -701,7 +582,6 @@ lhz_in02,100,143,3	script	Cabeleireiro#li	122,{
 			mes "Assim que me trouxer, irei fazer um milagre com seus cabelos!";
 			close;
 		}
-		mes "[Príncipe Shammi]";
 		mes "Certo, por favor escolha qual penteado você gostaria de ter do número 20 ao 25.";
 		mes "Aqui está a lista dos nomes dos penteados caso você precise~";
 		next;
@@ -715,7 +595,7 @@ lhz_in02,100,143,3	script	Cabeleireiro#li	122,{
 			mes "No. 25: Corte Aura Cortante";
 			mes "No. 26: Poder Dançante e";
 			mes "No. 27: Corte Renovatio.";
-		} else {
+		}
 			mes "No. 20: Estilo Coelho";
 			mes "No. 21: Estilo Harpia";
 			mes "No. 22: Estilo Medusa";
@@ -724,38 +604,34 @@ lhz_in02,100,143,3	script	Cabeleireiro#li	122,{
 			mes "No. 25: Corte Pácto dos Espíritos";
 			mes "No. 26: Corte Tornado X e";
 			mes "No. 27: Corte Oratio.";
-		}
 		next;
 		input .@input;
+		mes "[Príncipe Shammi]";
 		if (.@input == 0) {
-			mes "[Príncipe Shammi]";
 			mes "Oh...?";
 			mes "Você decidiu cancelar?";
 			mes "Bem, você sabe o melhor para você, eu creio.";
 			mes "Ainda assim, estou tão desapontado~";
 			close;
 		} else if ((.@input < 20) || (.@input > 27)) {
-			mes "[Príncipe Shammi]";
 			mes "Por favor digite um número entre '20' e '25' certo?";
 			mes "Então poderei fazer você ficar suuuuuper bonito!";
 			close;
 		} else if (getlook(VAR_HEAD) == .@input) {
-			mes "[Príncipe Shammi]";
 			mes "Oh querido, você não está gastando seu dinheiro para o mesmo penteado que tem agora, está?";
 			mes "Você pode mudar a cor de seu cabelo.";
 			close;
-		} else {
+		}
 			if (Sex == 1)
 				cutin "hair_m_"+.@input+".BMP",4;
 			else
 				cutin "hair_f_"+.@input+".BMP",4;
-			mes "[Príncipe Shammi]";
 			mes "Oooh! Agora sim, este é o penteado que você deseja?";
 			mes "Este é o No. "+.@input+", a propósito.";
 			next;
+			mes "[Príncipe Shammi]";
 			if(select("Sim.:Não.") == 1) {
 				if (getlook(VAR_HEADPALETTE) == 0) {
-					mes "[Príncipe Shammi]";
 					mes "Oh, Doces de Natal, eu quase esqueci!";
 					mes "Você gostaria de tingir seu cabelo de graça?";
 					mes "Isso é parte do meu serviço, então escolha a cor~";
@@ -771,7 +647,6 @@ lhz_in02,100,143,3	script	Cabeleireiro#li	122,{
 					case 8: set .@headpalette,7; break;
 					}
 				}
-				mes "[Príncipe Shammi]";
 				mes "Certo, vamos começar!";
 				mes "Mantenha sua cabeça parada. Sim, está ótimo...";
 				next;
@@ -802,6 +677,7 @@ lhz_in02,100,143,3	script	Cabeleireiro#li	122,{
 					mes "Absolutamente linda!";
 				}
 				emotion e_kis,"Hair Dresser#li";
+				cutin "",255;
 				next;
 				mes "[Príncipe Shammi]";
 				mes "Você adorou seu novo penteado, né?";
@@ -809,15 +685,12 @@ lhz_in02,100,143,3	script	Cabeleireiro#li	122,{
 				mes "Lhe deixarei a pessoa mais bonita do mundo inteiro!";
 				emotion e_no1,"Hair Dresser#li";
 				close;
-			} else {
-				mes "[Príncipe Shammi]";
+			}
 				mes "Oh, você esqueceu qual penteado você deseja?";
 				mes "Por favor cheque novamente!";
 				mes "Encontre aquele que é perfeito para você, certo?";
+				cutin "",255;
 				close;
-			}
-		}
-		break;
 	case 3:
 		mes "[Príncipe Shammi]";
 		mes "Humm?";
@@ -866,7 +739,7 @@ lhz_in02,91,155,5	script	Assistente de Cabeleireiro#li	862,{
 			mes "Eu sei que posso fazer um bom trabalho com seu cabelo!";
 			mes "Apenas entenda, se eu falhar. Não serei tão ruim, eu prometo~";
 			close;
-		} else {
+		}
 			mes "[Assistente de Cabeleireiro]";
 			mes "Você está realmente me dando uma chance?";
 			mes "Ah, eu te amo demais!";
@@ -941,16 +814,16 @@ lhz_in02,91,155,5	script	Assistente de Cabeleireiro#li	862,{
 				mes "Bwahahaha! Sucesso!";
 				if (.@input == .@style_r) {
 					mes "Então... O que achou do seu novo penteado? Eu adorei!";
-				} else {
+				}
 					mes "Quê...? Este não era o que você queria?";
 					mes "Humm.... Hamm...";
 					mes "Bem, na próxima eu sei que posso fazer um trabalho muito melhor!";
-				}
 				next;
 				mes "[Assistente de Cabeleireiro]";
 				mes "Oh, você é um amor por me ajudar!";
 				mes "Obrigado po r usar meus serviços e volte sempre~";
 				emotion e_kis,"Assistant Beautician#li";
+				cutin "",255;
 				close;
 			case 2:
 				mes "[Assistente de Cabeleireiro]";
@@ -959,7 +832,6 @@ lhz_in02,91,155,5	script	Assistente de Cabeleireiro#li	862,{
 				mes "Você está... Você está certo.";
 				close;
 			}
-		}
 	case 3:
 		mes "[Assistente de Cabeleireiro]";
 		mes "Príncipe Shammi?";

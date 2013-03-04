@@ -19,7 +19,7 @@
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
 //   | 1.1 Script Otimizado [Mark]                            |
-//   | 1.2 Otimização [Mark]                                  |
+//   | 1.2 Otimização [Mark & Clare]                          |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -40,8 +40,8 @@ alberta_in,16,28,4	script	Vovô Farmacêutico	61,{
 	switch(select("Fabricar Poção:Conversar:Instruções para fabricar poções:Cancelar")) {
 	case 1:
 		set .@weight,MaxWeight-Weight;
+		mes "[Vovô Farmacêutico]";
 		if ((.@weight) < 5000) {
-			mes "[Vovô Farmacêutico]";
 			mes "Por que você está carregando tanta coisa?";
 			mes "Não seja ganancioso, não carregue coisas desnecessárias!";
 			next;
@@ -49,8 +49,7 @@ alberta_in,16,28,4	script	Vovô Farmacêutico	61,{
 			mes "Você está com peso demais para carregar minhas poções...";
 			mes "Vá ao Armazém antes!";
 			close;
-		} else {
-			mes "[Vovô Farmacêutico]";
+		}
 			mes "Você tem todos os ingrediantes, certo? Qual poção você deseja?";
 			next;
 			switch(select("Poção Vermelha.","Poção Laranja.","Poção Amarela.","Poção Branca.","Poção Azul.","Poção Verde.","Atualmente, não quero nada.")) {
@@ -86,31 +85,25 @@ alberta_in,16,28,4	script	Vovô Farmacêutico	61,{
 					mes "[Vovô Farmacêutico]";
 					mes "Decida uma quantidade menor que 100. Se não quiser nenhuma, digite '0'. Com os materiais você pode fazer até "+.@max+" poções.";
 					input .@amount,0,101;
+					next;
+					mes "[Vovô Farmacêutico]";
 					if (.@amount == 0) {
-						next;
-						mes "[Vovô Farmacêutico]";
 						mes "Você vai mudar de idéia?!";
 						close;
 					}
 					if (.@amount > 100) {
-						next;
-						mes "[Vovô Farmacêutico]";
 						mes "Você é surdo? Eu disse menor que 100!";
 						close;
 					}
 					if ((countitem(507) < .@amount) || (countitem(508) < .@amount) || (countitem(713) < .@amount) || (Zeny < .@amount*3)) {
-						next;
-						mes "[Vovô Farmacêutico]";
 						mes "Safado! Você não tem todos os materiais que eu preciso para fabricar poções?!";
 						close;
 					}
-					next;
 					set Zeny,Zeny-(.@amount*5);
 					delitem 507,.@amount;	  // Erva Vermelha
 					delitem 508,.@amount;	  // Erva Amarela
 					delitem 713,.@amount;	  // Garrafa Vazia
 					getitem 502,.@amount; 	// Poção Laranja
-					mes "[Vovô Farmacêutico]";
 					mes "Pode ir. Está tudo pronto, pode pegar. Mas lembre! Medicamentos demais não é bom.";
 					close;
 				case 3:
@@ -138,7 +131,6 @@ alberta_in,16,28,4	script	Vovô Farmacêutico	61,{
 				mes "Vá embora!";
 				close;
 			}
-		}
 	case 2:
 		mes "[Vovô Farmacêutico]";
 		mes "Com medicamentos, você pode aumentar sua capacidade de regeneração. Porém, isto é bom até certo ponto. *Sigh* Estou começando a pensar nos dias que eu era jovem. Devo estar ficando velho.";
@@ -196,36 +188,30 @@ L_making:
 		delitem getarg(0),.@max*2;
 		delitem 713,.@max;	// Garrafa Vazia
 		getitem getarg(2),.@max;
-		break;
+		close;
 	case 2:
 		next;
 		mes "[Vovô Farmacêutico]";
 		mes "Decida uma quantidade menor que 100. Se não quiser nenhuma, digite '0'. Com os materiais você pode fazer até "+.@max+" poções.";
 		input .@amount;
+		next;
+		mes "[Vovô Farmacêutico]";
 		if (.@amount == 0) {
-			next;
-			mes "[Vovô Farmacêutico]";
 			mes "Você vai mudar de idéia?!";
 			close;
 		}
 		if (.@amount > 100) {
-			next;
-			mes "[Vovô Farmacêutico]";
 			mes "Você é surdo? Eu disse menor que 100!";
 			close;
 		}
 		if ((countitem(getarg(0)) < .@amount*2) || (countitem(713) < .@amount) || (Zeny < .@amount*getarg(1))) {
-			next;
-			mes "[Vovô Farmacêutico]";
 			mes "Safado! Você não tem todos os materiais que eu preciso para fabricar poções?!";
 			close;
 		}
-		next;
 		set Zeny,Zeny-(.@amount*getarg(1));
 		delitem getarg(0),.@amount*2;
 		delitem 713,.@amount;	// Garrafa Vazia
 		getitem getarg(2),.@amount;
-		mes "[Vovô Farmacêutico]";
 		mes "Pode ir. Está tudo pronto, pode pegar. Mas lembre! Medicamentos demais não é bom.";
 		close;
 	case 3:

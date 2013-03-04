@@ -12,13 +12,14 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.4/1.4/1.1                         |
+//   | Versões eA/rA/brA: 1.4/1.4/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Criador de Tinturas.                        |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
-//   | 1.1 Tradução PT-BR [Holy]                              |
+//   | 1.1 Tradução PT-BR [Holy]                              |  
+//   | 1.2 Otimização [Clare]                                 |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -106,95 +107,37 @@ morocc_in,146,99,3	script	Java Dullihan	58,{
 
 S_MakeDye:
 	mes "[Criador de Tinturas Java Dullihan]";
-	switch(getarg(0)) {
-	case 1:
-		mes "Hum... Eu irei precisar de 30 Ervas Vermelha, 1 Antígeno, e 1 Garrafa Vazia para fazer a Tintura Vermelha. A taxa de criação são apenas 3000 zeny.";
-		setarray .@item[0], 507, 973, 713;
-		setarray .@count[0], 30,   1,   1;
-		set .@cost,3000;
-		set .@dyestuff,975;
-		break;
-	case 2:
-		mes "Hum... Eu irei precisar de 30 Ervas Amarela, 1 Antígeno, e 1 Garrafa Vazia para fazer a Tintura Amarela. A taxa de criação são apenas 3000 zeny .";
-		setarray .@item[0], 508, 973, 713;
-		setarray .@count[0], 30,   1,   1;
-		set .@cost,3000;
-		set .@dyestuff,976;
-		break;
-	case 3:
-		mes "Hum... Eu irei precisar de 20 Ervas Azul, 1 Antígeno, e 1 Garrafa Vazia para fazer a Tintura Azul. É muito difícil de se manipular Ervas Azuis, por isso a taaxa de criação será de 3500 zeny.";
-		setarray .@item[0], 510, 973, 713;
-		setarray .@count[0], 20,   1,   1;
-		set .@cost,3500;
-		set .@dyestuff,978;
-		break;
-	case 4:
-		mes "Hum... Eu irei precisar de 5 Ervas Azuis, 20 Ervas Verde, 20 Ervas Amarela, 1 Antígeno, 1 Místura, e 1 Garrafa Vazia para criar uma Tintura Verde. Não confunda os materiais. A taxa de criação são apenas 5000 zeny.";
-		setarray .@item[0], 510, 511, 508, 974, 973, 713;
-		setarray .@count[0],  5,  20,  20,   1,   1,   1;
-		set .@cost,5000;
-		set .@dyestuff,979;
-		break;
-	case 5:
-		mes "Hum... Eu irei precisar de 20 Ervas Vermelha, 20 Ervas Amarela, 1 Antígeno, 1 Místura, e 1 Garrafa Vazia para criar a Tintura Laranja. A taxa será de 5000 zeny.";
-		setarray .@item[0], 507, 508, 974, 973, 713;
-		setarray .@count[0], 20,  20,   1,   1,   1;
-		set .@cost,5000;
-		set .@dyestuff,980;
-		break;
-	case 6:
-		mes "Hum... Eu irei precisar de 10 Ervas Azuis, 30 Ervas Vermelha, 1 Antígeno, 1 Místura, e 1 Garrafa Vazia para criar a Tintura Violeta. A taxa será de 5000 zeny.";
-		setarray .@item[0], 510, 507, 974, 973, 713;
-		setarray .@count[0], 10,  30,   1,   1,   1;
-		set .@cost,5000;
-		set .@dyestuff,981;
-		break;
-	case 7:
-		mes "Hum... Eu irei precisar de 30 Ervas Brancas, 1 Antígeno, e 1 Garrafa Vazia para criar a Tintura Branca. A taxa será de 3000 zeny.";
-		setarray .@item[0], 509, 973, 713;
-		setarray .@count[0], 30,   1,   1; 
-		set .@cost,3000;
-		set .@dyestuff,982;
-		break;
-	case 8:
-		mes "Hum... Eu irei precisar de 30 ervas de cada: Vermelha, Amarela, e Verde, 5 Ervas Azuis, 1 Antígeno, 1 Místura, e 1 Garrafa Vazia. O processo leva mais tempo e também mais esforço do que os outros, por isso a taxa será de 7000 zeny.";
-		setarray .@item[0], 507, 508, 511, 510, 974, 973, 713;
-		setarray .@count[0], 30,  30,  30,   5,   1,   1,   1;
-		set .@cost,7000;
-		set .@dyestuff,983;
-		break;
-	}
+	mes "Hum... Eu irei precisar de "+((getarg(0) == 1) ? "30 Ervas Vermelha" : (getarg(0) == 2) ? "30 Ervas Amarela" : (getarg(0) == 3) ? "20 Ervas Azul" : (getarg(0) == 4) ? "5 Ervas Azuis, 20 Ervas Verde, 20 Ervas Amarela" : (getarg(0) == 5) ? "20 Ervas Vermelha, 20 Ervas Amarela" : (getarg(0) == 6) ? "10 Ervas Azuis, 30 Ervas Vermelha" : (getarg(0) == 7) ? "30 Ervas Brancas" : "30 ervas de cada: Vermelha, Amarela, e Verde")+", 1 Antígeno, "+((getarg(0) == 4 || (getarg(0) == 5 || getarg(0) == 6 || getarg(0) == 8) ? "1 Mistura" : ""))+" e 1 Garrafa Vazia para fazer a Tintura "+((getarg(0) == 1) ? "Vermelha" : (getarg(0) == 2) ? "Amarela" : (getarg(0) == 3) ? "Azul" : (getarg(0) == 4) ? "Verde" : (getarg(0) == 5) ? "Laranja" : (getarg(0) == 6) ? "Violeta" : (getarg(0) == 7) ? "Branca" : "Preta")+". A taxa de criação são apenas "+((getarg(0) == 1) || (getarg(0) == 2) || (getarg(0) == 7) ? "3000" : (getarg(0) == 3) ? "3500" : (getarg(0) == 4) || (getarg(0) == 5) || (getarg(0) == 6) ? "5000" : "7000")+" zeny.";
+	setarray .@item[0],((getarg(0) == 1) ?  507 : (getarg(0) == 2) ? 508 : (getarg(0) == 3) ? 510 : (getarg(0) == 4) ? "510, 511, 508, 974" : (getarg(0) == 5) ? "507, 508, 974" : (getarg(0) == 6) ? "510, 507, 974" : (getarg(0) == 7) ? 509 : "507, 508, 511, 510, 974"), 973, 713;
+	setarray .@count[0],((getarg(0) == 1 || getarg(0) == 2) ?  30 : (getarg(0) == 3) ? 20 : (getarg(0) == 4) ? "5, 20, 20, 1" : (getarg(0) == 5) ? "20, 20, 1" : (getarg(0) == 6) ? "10, 30, 1" : (getarg(0) == 7) ? 30 : "30, 30, 30, 5, 1") , 1, 1;
+	set .@cost,((getarg(0) == 1) || (getarg(0) == 2) || (getarg(0) == 7) ? 3000 : (getarg(0) == 3) ? 3500 : (getarg(0) == 4) || (getarg(0) == 5) || (getarg(0) == 6) ? 5000 : 7000);
+	set .@dyestuff,((getarg(0) == 1) ? 975 : (getarg(0) == 2) ? 976 : (getarg(0) == 3) ? 978 : (getarg(0) == 4) ? 979 : (getarg(0) == 5) ? 980 : (getarg(0) == 6) ? 981 : (getarg(0) == 7) ? 982 : 983);
 	next;
+	if (getarg(1) && getarg(1) < 5) {
 	mes "[Criador de Tinturas Java Dullihan]";
-	switch(getarg(1)) {
-	case 1: mes "Ah! Acredito que você já tenha tudo pronto. Gostaria de iniciar o processo?"; break;
-	case 2: mes "Ok! Acredito que você já tenha tudo pronto. Deseja iniciar o processo?"; break;
-	case 3: mes "Ok! Acredito que você já tenha tudo pronto. Devemos iniciar o processo?"; break;
-	case 4: mes "Ok! Acredito que você já tenha tudo pronto. Gostaria de iniciar o processo?"; break;
-	}
+	mes "Ah! Acredito que você já tenha tudo pronto. Gostaria de iniciar o processo?";
 	next;
 	if (select("Criar Tinturas:Cancelar") == 1) {
-		set .@size, getarraysize(.@item);
-		for( set .@i,0 ; .@i < .@size ; set .@i,.@i+1 )
+		for( set .@i,0 ; .@i < getarraysize(.@item); set .@i,.@i+1 )
 			if( countitem(.@item[.@i]) < .@count[.@i] )
 				break;
-		if( .@i < .@size || Zeny < .@cost ) {
+		if( .@i < getarraysize(.@item) || Zeny < .@cost ) {
 			mes "[Criador de Tinturas Java Dullihan]";
 			mes "Humm. Não é o suficiente...";
 			mes "Não acho que serei capaz de fazer a cor que você deseja apenas com esses materiais. Por que você não consegue mais alguns materiais...?";
 			close;
 		}
-		for (set .@i, 0; .@i < .@size ; set .@i, .@i+1)
+		for (set .@i, 0; .@i < getarraysize(.@item); set .@i, .@i+1)
 			delitem .@item[.@i], .@count[.@i];
 		set zeny,zeny-.@cost;
 		getitem .@dyestuff,1;
-		
 		mes "[Criador de Tinturas Java Dullihan]";
 		mes "Hum... Ela ficou muito boa. Uma cor muito rica. E é claro que é mais difícil de se fazer uma cor mais charmosa como essa...";
 		next;
 		mes "[Criador de Tinturas Java Dullihan]";
 		mes "Bem, então. Venha sempre aqui caso precise de mais tinturas.";
 		close;
+	}
 	}
 	mes "[Criador de Tinturas Java Dullihan]";
 	mes "Eeeehhhh!! O quê??";

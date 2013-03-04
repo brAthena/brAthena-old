@@ -12,13 +12,14 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.1/1.1/1.1                         |
+//   | Versões eA/rA/brA: 1.1/1.1/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Negociador de pedras elementais.            |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
 //   | 1.1 Tradução PT-BR   [Holy]                            |
+//   | 1.2 Otimização   [Clare]                               |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -134,18 +135,17 @@ ama_in02,61,27,7	script	Alquimista#ama	749,{
 			mes "Necessário ^0000FF12^000000 pedras.";
 			next;
 			mes "[Gregório Laspuchin]";
-      mes "Traga-me pedras, escravo~!!";
-      mes "E mantenha a sua promessa! Heheheheheh...";
+			mes "Traga-me pedras, escravo~!!";
+			mes "E mantenha a sua promessa! Heheheheheh...";
 			close;
-		} else {
+			}
 			delitem .@i,8;
 			getitem .@Items[.@j],1;
 			mes "Heheheh! Você fez uma boa escolha!";
 			mes "Use-a bem...";
 			mes "Traga-me outras pedras se você tiver!";
 			close;
-		}
-	} else if (countitem(.@i)) {
+		} else if (countitem(.@i)) {
 		mes "Você não pode ajudar Laspuchin com apenas um par";
 		mes "de pedras encantadas... Eu disse 8!";
 		mes "Traga-me apenas 8 pedras!";

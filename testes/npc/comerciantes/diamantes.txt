@@ -12,13 +12,14 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: ??/1.5/1.1                          |
+//   | Versões eA/rA/brA: ??/1.5/1.2                          |
 //   |--------------------------------------------------------|
 //   | Descrição: Comerciante de diamantes raros.             |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Megasantos]                      |
 //   | 1.1 Tradução PT-BR [Holy]                              |
+//   | 1.2 Otimização [Clare]                                 |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -120,9 +121,9 @@ prontera,165,89,6	script	Vendedor de Diamantes Raros	58,{
 				mes "[Vendedor de Diamantes Raros]";
 				mes "Ótimo.";
 				mes "Tudo que resta agora é o pagamento.";
-				next;			
+				next;		
+				mes "[Vendedor de Diamantes Raros]";				
 				if (Zeny >= 501000000) {
-					mes "[Vendedor de Diamantes Raros]";
 					mes ". . . . . .";
 					next;	
 					mes "[Vendedor de Diamantes Raros]";
@@ -139,21 +140,18 @@ prontera,165,89,6	script	Vendedor de Diamantes Raros	58,{
 					mes "Obrigado pelo serviço.";
 					emotion e_thx;
 					close;
-				} else {
-					mes "[Vendedor de Diamantes Raros]";
+				}
 					mes "Hum?";
 					mes "Me desculpe, mas você não possui fundos suficientes.";
 					mes "Incluindo o serviço, a quantia total necessária é 501,000,000z.";
 					mes "Por favor verifique seus zenys e tente novamente.";
 					emotion e_hmm;
 					close;
-				}
-			} else {
+			}
 				mes "[Vendedor de Diamantes Raros]";
 				mes "Esta é realmente sua assinatura?";
 				mes "Quer assinar novamente para confirmar?";
 				next;
-			}
 		}
 	case 2:
 		mes "[Vendedor de Diamantes Raros]";
@@ -189,13 +187,12 @@ prontera,165,89,6	script	Vendedor de Diamantes Raros	58,{
 			}
 			
 			input .@charname$;
+			mes "[Vendedor de Diamantes Raros]";
 			if (.@charname$ == strcharinfo(0)) {
-				mes "[Vendedor de Diamantes Raros]";
 				mes "Sua assinatura foi recebida.";
 				mes "Agora irei receber seu ^FF82FF'Diamante de 17 Quilates'^000000..";
 				mes "Você receberá ^0000FF499,000,000z^000000 após isso.";
 				next;
-				
 				mes "[Vendedor de Diamantes Raros]";
 				mes "Obrigado pelo negócio.";
 				mes "Sempre que precisar de um ^FF82FF'Diamante de 17 Quilates'^000000,";
@@ -204,12 +201,10 @@ prontera,165,89,6	script	Vendedor de Diamantes Raros	58,{
 				delitem 6024, 1;
 				set Zeny, Zeny + 499000000;
 				close;
-			} else {
-				mes "[Vendedor de Diamantes Raros]";
+			}
 				mes "Esta é realmente sua assinatura?";
 				mes "Quer assinar novamente para confirmar?";
 				next;
-			}
 		}
 	}
 }
