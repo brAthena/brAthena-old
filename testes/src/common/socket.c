@@ -558,7 +558,7 @@ int make_connection(uint32 ip, uint16 port, bool silent)
 	result = sConnect(fd, (struct sockaddr *)(&remote_address), sizeof(struct sockaddr_in));
 	if(result == SOCKET_ERROR) {
 		if(!silent)
-			ShowError(read_message("Source.common.make_sConnect"), 198, fd, error_msg());
+			ShowError(read_message("Source.common.make_sConnect"), fd, error_msg());
 		do_close(fd);
 		return -1;
 	}
@@ -1329,7 +1329,7 @@ void socket_init(void)
 	add_timer_interval(gettick()+1000, connect_check_clear, 0, 0, 5*60*1000);
 #endif
 
-	ShowInfo(read_message("Source.common.socket_init_msg"), 130, rlim_cur, 228, 131);
+	ShowInfo(read_message("Source.common.socket_init_msg"), CL_WHITE, rlim_cur, CL_RESET);
 }
 
 
