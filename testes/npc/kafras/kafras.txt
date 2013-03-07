@@ -349,6 +349,15 @@ brasilis,197,221,4	script#re	Funcionária Kafra#brasilis	117,{
 		callfunc "F_KafEnd",0,1,"na cidade de Brasilis";
 }
 
+// Dewata
+//============================================================
+dewata,202,184,6	script#re	Kafra Employee::kaf_dewata	117,{
+	cutin "kafra_01",2;
+	callfunc "F_Kafra",0,10,1,40,700;
+	savepoint "dewata",206,174;
+	callfunc "F_KafEnd",0,1,"na ilha de Dewata";
+}
+
 // Comodo
 //============================================================
 comodo,195,150,4	script	Funcionária Kafra::kaf_comodo	721,{
