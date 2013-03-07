@@ -1148,6 +1148,9 @@ int npc_click(struct map_session_data *sd, struct npc_data *nd)
 	if(nd->class_ < 0 || nd->sc.option&(OPTION_INVISIBLE|OPTION_HIDE))
 		return 1;
 
+	if(nd->src_id && !map_id2bl(nd->src_id))
+		return 1;
+
 	switch(nd->subtype) {
 		case SHOP:
 			clif_npcbuysell(sd,nd->bl.id);
@@ -2885,7 +2888,15 @@ static const char *npc_parse_mob(char *w1, char *w2, char *w3, char *w4, const c
 
 	memset(&mob, 0, sizeof(struct spawn_data));
 
-	mob.state.boss = !strcmpi(w2,"boss_monster");
+	if(!strcmpi(w2,"boss_monster") ||
+#ifdef RENEWAL
+		!strcmpi(w2,"boss_monster#re"))
+#else
+		!strcmpi(w2,"boss_monster#pre"))
+#endif
+		mob.state.boss = 1;
+	else
+		mob.state.boss = 0;
 
 	// w1=<map name>,<x>,<y>,<xs>,<ys>
 	// w3=<mob name>{,<mob level>}
