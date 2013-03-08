@@ -176,13 +176,13 @@ cmd_fild06,0,0,0,0	monster#pre	Harpia	1376,1,1500000,1000000,0
 cmd_fild06,293,235,5,5	monster#pre	Planta Amarela	1081,2,1800000,900000,1
 cmd_fild06,84,375,10,10	monster#pre	Planta Amarela	1081,3,1800000,900000,1,{}
 
-//==================================================
-// [Renovação] cmd_fild07 - Fortaleza de Saint Darmain (Oeste)
-//==================================================
-cmd_fild07,0,0,0,0	monster#re	Raggler	1254,100,5000,0,0
-cmd_fild07,0,0,0,0	monster#re	Estrela do Mar	1266,30,5000,0,0
-cmd_fild07,0,0,0,0	monster#re	Molusco	1074,30,5000,0,0
-cmd_fild07,0,0,0,0	monster#re	Caranguejo	1073,30,5000,0,0,{}
+//==============================================================
+// [Renovação] cmd_fild06 - Fortaleza de Saint Darmain (Oeste)
+//==============================================================
+cmd_fild06,0,0,0,0	monster#re	Golem	1040,150,5000,0,0
+cmd_fild06,0,0,0,0	monster#re	Metaller	1058,50,5000,0,0
+cmd_fild06,293,235,5,5	monster#re	Planta Amarela	1081,2,1800000,900000,1
+cmd_fild06,84,375,10,10	monster#re	Planta Amarela	1081,3,1800000,900000,1,{}
 
 //==================================================
 // [Pré-Renovação] cmd_fild07 - Ilha do Farol, Pharos
@@ -199,9 +199,9 @@ cmd_fild07,0,0,0,0	monster#pre	Drops	1113,20,0,0,0
 cmd_fild07,239,105,40,90	monster#pre	Molusco	1074,2,60000,0,0
 cmd_fild07,104,180,40,90	monster#pre	Molusco	1074,3,60000,0,0,{}
 
-//==================================================
-// [Renovação] cmd_fild07 - Ilha do Farol, Pharos 
-//==================================================
+//===============================================================
+// [Renovação] cmd_fild07 - Fortaleza de Saint Darmain (Oeste)
+//===============================================================
 cmd_fild07,0,0,0,0	monster#re	Raggler	1254,100,5000,0,0
 cmd_fild07,0,0,0,0	monster#re	Estrela do Mar	1266,30,5000,0,0
 cmd_fild07,0,0,0,0	monster#re	Molusco	1074,30,5000,0,0

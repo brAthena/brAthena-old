@@ -254,16 +254,16 @@ tha_t09,50,129,35,35	monster#pre	Dama de Guarda	1700,5,420000,0,0
 tha_t09,50,129,35,35	monster#pre	Dolor de Thanatos	1707,1,1800000,1200000,0
 tha_t09,50,129,35,35	monster#pre	Dolor de Thanatos	1712,3,1800000,1200000,0,{}
 
-//==========================================================
-// [Renovação] tha_t08 - Torre de Thanatos (Andar Superior)
-//==========================================================
-tha_t08,0,0,0,0	monster#re	Baronesa da Retribuição	1702,20,5000,0,0
-tha_t08,0,0,0,0	monster#re	Palavra Morta	1698,10,5000,0,0
-tha_t08,0,0,0,0	monster#re	Mímico Antigo	1699,10,5000,0,0
-tha_t08,0,0,0,0	monster#re	Dama da Guarda	1700,5,5000,0,0
-tha_t08,0,0,0,0	monster#re	Senhora do Abrigo	1701,5,5000,0,0
-tha_t08,0,0,0,0	monster#re	Senhora do Conforto	1703,5,5000,0,0
-tha_t08,0,0,0,0	monster#re	Odium de Thanatos	1704,2,5000,0,0,{}
+//=============================================================
+// [Renovação] tha_t09 - Torre de Thanatos - (Andar Superior)
+//=============================================================
+tha_t09,0,0,0,0	monster#re	Senhora do Consolo	1703,20,5000,0,0
+tha_t09,0,0,0,0	monster#re	Dama de Guarda	1700,5,5000,0,0
+tha_t09,0,0,0,0	monster#re	Baronesa da Retribuição	1702,5,5000,0,0
+tha_t09,0,0,0,0	monster#re	Baronesa da Retribuição	1701,5,5000,0,0
+tha_t09,0,0,0,0	monster#re	Plasma	1694,5,5000,0,0
+tha_t09,0,0,0,0	monster#re	Dolor de Thanatos	1712,3,5000,0,0
+tha_t09,0,0,0,0	monster#re	Dolor de Thanatos	1707,1,5000,0,0,{}
 
 //================================================================
 // [Pré-Renovação] tha_t10 - Torre de Thanatos - Andar Superior

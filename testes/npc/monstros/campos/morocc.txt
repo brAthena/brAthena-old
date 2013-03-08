@@ -493,33 +493,3 @@ moc_fild22,0,0,0,0	monster#re	Sombra da Gula	1919,60,30000,0,0
 moc_fild22,0,0,0,0	monster#re	Sombra da Vaidade	1920,60,30000,0,0
 moc_fild22,0,0,0,0	monster#re	Sombra da Ira	1921,25,10000,0,0
 moc_fild22,0,0,0,0	boss_monster#re	Morroc Ferido	1917,1,43200000,600000,0,{}
-
-//============================================================ 
-// [Pré-Renovação] Teste para se tornar Gatuno.
-//============================================================ 
-job_thief1,0,0,0,0	monster#pre	Cogumelo	1182,180,0,0,0
-job_thief1,0,0,0,0	monster#pre	Fabre	1184,50,0,0,0
-job_thief1,0,0,0,0	monster#pre	Chonchon	1183,50,0,0,0
-job_thief1,0,0,0,0	monster#pre	Esporo	1014,30,0,0,0,{}
-
-//============================================================ 
-// [Pré-Renovação] Teste para se tornar Espadachim.
-//============================================================ 
-job_sword1,0,0,0,0	monster#pre	Chonchon	1183,20,0,0,0
-job_sword1,35,79,0,0	monster#pre	Fabre	1184,3,60000,30000,0
-job_sword1,50,108,0,0	monster#pre	Fabre	1184,3,60000,30000,0
-job_sword1,61,28,0,0	monster#pre	Fabre	1184,3,60000,30000,0
-job_sword1,61,92,0,0	monster#pre	Fabre	1184,3,60000,30000,0
-job_sword1,110,112,0,0	monster#pre	Fabre	1184,2,60000,30000,0
-job_sword1,161,94,0,0	monster#pre	Fabre	1184,2,60000,30000,0
-job_sword1,130,76,0,0	monster#pre	Fabre	1184,2,60000,30000,0
-job_sword1,103,58,0,0	monster#pre	Fabre	1184,2,60000,30000,0
-job_sword1,130,24,0,0	monster#pre	Fabre	1184,5,60000,30000,0
-job_sword1,201,36,0,0	monster#pre	Fabre	1184,2,60000,30000,0
-job_sword1,201,16,0,0	monster#pre	Fabre	1184,2,60000,30000,0
-job_sword1,239,44,0,0	monster#pre	Fabre	1184,3,60000,30000,0
-job_sword1,239,76,0,0	monster#pre	Fabre	1184,2,60000,30000,0
-job_sword1,231,101,0,0	monster#pre	Fabre	1184,2,60000,30000,0
-job_sword1,234,117,0,0	monster#pre	Fabre	1184,2,60000,30000,0
-job_sword1,198,91,0,0	monster#pre	Fabre	1184,2,60000,30000,0
-job_sword1,200,63,0,0	monster#pre	Fabre	1184,2,60000,30000,0,{}
