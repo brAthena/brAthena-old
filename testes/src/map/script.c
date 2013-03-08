@@ -16990,6 +16990,7 @@ BUILDIN_FUNC(unloadnpc)
 		return 1;
 
 	npc_unload(nd, true);
+	npc_unload_duplicates(nd);
 	return 0;
 }
 
