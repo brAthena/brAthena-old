@@ -543,6 +543,7 @@ int parse_fromchar(int fd)
 					int group_id = 0;
 					uint8 char_slots = 0;
 					char birthdate[10+1] = "";
+					char pincode[4+1] = "";
 
 					int account_id = RFIFOL(fd,2);
 					RFIFOSKIP(fd,6);
@@ -555,9 +556,10 @@ int parse_fromchar(int fd)
 						group_id = acc.group_id;
 						char_slots = acc.char_slots;
 						safestrncpy(birthdate, acc.birthdate, sizeof(birthdate));
+						safestrncpy(pincode, acc.pincode, sizeof(pincode));
 					}
 
-					WFIFOHEAD(fd,63);
+					WFIFOHEAD(fd,72);
 					WFIFOW(fd,0) = 0x2717;
 					WFIFOL(fd,2) = account_id;
 					safestrncpy((char *)WFIFOP(fd,6), email, 40);
@@ -565,7 +567,9 @@ int parse_fromchar(int fd)
 					WFIFOB(fd,50) = (unsigned char)group_id;
 					WFIFOB(fd,51) = char_slots;
 					safestrncpy((char*)WFIFOP(fd,52), birthdate, 10+1);
-					WFIFOSET(fd,63);
+					safestrncpy((char*)WFIFOP(fd,63), pincode, 4+1 );
+					WFIFOL(fd,68) = (uint32)acc.pincode_change;
+					WFIFOSET(fd,72);
 				}
 				break;
 
@@ -873,7 +877,55 @@ int parse_fromchar(int fd)
 				RFIFOSKIP(fd,2);
 				break;
 
-			default:
+		case 0x2738: // Alterar o código PIN para uma conta
+			if(RFIFOREST(fd) < 15)
+				return 0;
+
+		{
+			struct mmo_account acc;
+
+			if( accounts->load_num(accounts, &acc, RFIFOL(fd,2)))
+			{
+				strncpy(acc.pincode, (char*)RFIFOP(fd,6), 5);
+				acc.pincode_change = RFIFOL(fd,11);
+				if(acc.pincode_change > 0) {
+					acc.pincode_change += time(NULL);
+				}
+				accounts->save(accounts, &acc);
+			}
+
+			
+		}
+			RFIFOSKIP(fd,15);
+		break;
+
+		case 0x2739: // Código PIN foi digitado errado muitas vezes
+			if(RFIFOREST(fd) < 6)
+				return 0;
+
+		{
+			
+			struct mmo_account acc;
+
+			if(accounts->load_num(accounts, &acc, RFIFOL(fd,2)))
+			{
+				struct online_login_data* ld;
+
+				ld = (struct online_login_data*)idb_get(online_db,acc.account_id);
+
+				if( ld == NULL )
+					return 0;
+
+				login_log(host2ip(acc.last_ip), acc.userid, 100, "Código PIN falhou, verifique o código PIN ");
+			}
+
+			remove_online_user(acc.account_id);
+		}
+			
+			RFIFOSKIP(fd,6);
+		break;
+
+		default:
 				ShowError(read_message("Source.login.login_pfromchar_nook"), command);
 				set_eof(fd);
 				return 0;
@@ -925,6 +977,9 @@ int mmo_auth_new(const char *userid, const char *pass, const char sex, const cha
 	safestrncpy(acc.lastlogin, "0000-00-00 00:00:00", sizeof(acc.lastlogin));
 	safestrncpy(acc.last_ip, last_ip, sizeof(acc.last_ip));
 	safestrncpy(acc.birthdate, "0000-00-00", sizeof(acc.birthdate));
+	safestrncpy(acc.pincode, "", sizeof(acc.pincode));
+	acc.pincode_change = 0;
+
 	acc.char_slots = 0;
 
 	if(!accounts->create(accounts, &acc))
