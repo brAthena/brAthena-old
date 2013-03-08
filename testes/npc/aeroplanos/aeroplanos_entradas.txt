@@ -23,10 +23,40 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-// Entradas Simples
-// =====================================
-// Izlude
-izlude,202,75,3	script	Equipe do Aeroporto#Izlude	90,{
+// ==============================
+// Entradas Simples (Izlude)
+// ==============================
+izlude,202,75,3	script#re	Equipe do Aeroporto#Izlude	90,{
+	OnTouch:
+	set .@npc$, strnpcinfo(2);
+	
+	mes "[Equipe do Aeroporto]";
+	mes "Bem-vindo ao aeroplano de "+.@npc$+".";
+	mes "Gostaria de embarcar no vôo "+((.@npc$ == "Hugel") ? "de Hugel":"que parte para "+((.@npc$ == "Izlude") ? "Juno e Rachel":"Izlude e Juno"))+"?";
+	next;
+	mes "[Equipe do Aeroporto]";
+	mes "Para usar o aeroplano, você precisa pagar uma taxa de 1,200 Zenys ou possuir um Bilhete para Aeroplano.";
+	mes "Você deseja usar o serviço?";
+	next;
+	if(select("Sim:Não") == 2) close;
+	if(countitem(7311) < 1 && Zeny < 1200) {
+		mes "[Equipe do Aeroporto]";
+		mes "Me desculpe, mas você não";
+		mes "possui um Bilhete para Aeroplano";
+		mes "e nem a quantia necessária de Zenys";
+		mes "para embarcar. Lembre-se, a";
+		mes "taxa de embarque é de 1,200 Zenys.";
+		close;
+	}
+	if(countitem(7311))
+		delitem 7311,1;
+	else if(Zeny >= 1200)
+		set Zeny, Zeny - 1200;
+	warp "airplane_01",245,60;
+	end;
+}
+
+izlude,206,55,3	script#pre	Equipe do Aeroporto#Izlude	90,{
 	OnTouch:
 	set .@npc$, strnpcinfo(2);
 	

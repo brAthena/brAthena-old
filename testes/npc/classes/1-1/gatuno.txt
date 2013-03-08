@@ -537,3 +537,11 @@ moc_ruins,141,125,3	script#pre	Bogus	83,{
 		mes "Quem pode lhe dar mais informações a respeito da nossa guilda são os meus camaradas no subterrâneo da Pirâmide.";
 		close;
 }
+
+//============================================================ 
+// [Pré-Renovação] Teste para se tornar Gatuno.
+//============================================================ 
+job_thief1,0,0,0,0	monster#pre	Cogumelo	1182,180,0,0,0
+job_thief1,0,0,0,0	monster#pre	Fabre	1184,50,0,0,0
+job_thief1,0,0,0,0	monster#pre	Chonchon	1183,50,0,0,0
+job_thief1,0,0,0,0	monster#pre	Esporo	1014,30,0,0,0,{}

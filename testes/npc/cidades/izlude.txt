@@ -26,7 +26,7 @@
 
 // Izlude
 //============================================================
-izlude,197,205,1	script	Marinheiro#izlude	100,{
+izlude,197,205,1	script#re	Marinheiro#izlude	100,{
 	mes "[Marinheiro]";
 	mes "Ei todo mundo!";
 	mes "Atenção, atenção!";
@@ -34,25 +34,25 @@ izlude,197,205,1	script	Marinheiro#izlude	100,{
 	mes "sobre um navio fascinante!";
 	mes "Depressa, depressa!";
 	next;
-	switch(select("Ilha Byalan -> 150 Zeny.:Marina de Alberta -> 500 Zeny.:Cancelar.")) {
+	switch(select("Ilha Byalan -> 150 Zenys.:Marina de Alberta -> 500 Zenys.:Cancelar.")) {
 	case 1:
-		if (zeny < 150) {
 			mes "[Marinheiro]";
+		if (Zeny < 150) {
 			mes "150 Zeny!";
 			mes "Apenas 150 zeny o percurso!";
 			close;
 		}
-		set zeny,zeny-150;
+		set Zeny,Zeny-150;
 		warp "izlu2dun",107,50;
 		end;
 	case 2:
-		if (zeny < 500) {
 			mes "[Marinheiro]";
+		if (Zeny < 500) {
 			mes "500 Zeny!";
 			mes "Apenas 500 zeny o percurso!";
 			close;
 		}
-		set zeny,zeny-500;
+		set Zeny,Zeny-500;
 		warp "alberta",188,169;
 		end;
 	case 3:
@@ -60,7 +60,42 @@ izlude,197,205,1	script	Marinheiro#izlude	100,{
 	}
 }
 
-izlude,71,92,2	script	Bonne#izlude	90,{
+izlude,201,181,2	script#pre	Marinheiro#izlude	100,{
+	mes "[Marinheiro]";
+	mes "Ei todo mundo!";
+	mes "Atenção, atenção!";
+	mes "Venha e naveguem";
+	mes "sobre um navio fascinante!";
+	mes "Depressa, depressa!";
+	next;
+	switch(select("Ilha Byalan -> 150 Zenys.:Marina de Alberta -> 500 Zenys.:Cancelar.")) {
+	case 1:
+			mes "[Marinheiro]";
+		if (Zeny < 150) {
+			mes "150 Zeny!";
+			mes "Apenas 150 zeny o percurso!";
+			close;
+		}
+		set Zeny,Zeny-150;
+		warp "izlu2dun",107,50;
+		end;
+	case 2:
+			mes "[Marinheiro]";
+		if (Zeny < 500) {
+			mes "500 Zeny!";
+			mes "Apenas 500 zeny o percurso!";
+			close;
+		}
+		set Zeny,Zeny-500;
+		warp "alberta",188,169;
+		end;
+	case 3:
+		close;
+	}
+}
+
+
+izlude,71,92,2	script#re	Bonne#izlude	90,{
 	mes "[Bonne]";
 	mes "Saudações!";
 	mes "Os habitantes de Izlude lhe dão boas vindas.";
@@ -83,7 +118,30 @@ izlude,71,92,2	script	Bonne#izlude	90,{
 	close;
 }
 
-izlude,172,215,4	script	Charfri#izlude	91,{
+izlude,55,74,2	script#pre	Bonne#izlude	90,{
+	mes "[Bonne]";
+	mes "Saudações!";
+	mes "Os habitantes de Izlude lhe dão boas vindas.";
+	next;
+	mes "[Bonne]";
+	mes "Izlude é a cidade satélite de Prontera, capital do reino Rune-Midgard.";
+	next;
+	mes "[Bonne]";
+	mes "Izlude é a chave para o nosso reino, devido à Associação dos Espadachins localizada aqui, bem como o fato de Izlude estar encarregada de proteger o litoral de Rune-Midgard.";
+	next;
+	mes "[Bonne]";
+	mes "Eu sei, esta ponte pode parecer frágil, mas é realmente uma obra de arte, construída com a mais sofisticada tecnologia.";
+	next;
+	mes "[Bonne]";
+	mes "Não importa o quão fortes as tempestades podem ser, ou quantas pessoas podem ficar sobre ela, esta ponte NUNCA irá cair.";
+	next;
+	mes "[Bonne]";
+	mes "Boa sorte e desfrute de sua";
+	mes "estadia aqui em Izlude.";
+	close;
+}
+
+izlude,172,215,4	script#re	Charfri#izlude	91,{
 	mes "[Charfri]";
 	if (rand(2)) {
 		mes "Algumas pessoas podem pensar Izlude é apenas a cidade satélite de Prontera, e não vêem sua verdadeira beleza...";
@@ -112,7 +170,36 @@ izlude,172,215,4	script	Charfri#izlude	91,{
 	close;
 }
 
-izlude,127,175,4	script	Cuskoal#izlude	124,{
+izlude,135,78,2	script#pre	Charfri#izlude	91,{
+	mes "[Charfri]";
+	if (rand(2)) {
+		mes "Algumas pessoas podem pensar Izlude é apenas a cidade satélite de Prontera, e não vêem sua verdadeira beleza...";
+		next;
+		mes "[Charfri]";
+		mes "Izlude é uma bela cidade ao lado do oceano e com belos lugares, bem como a Ilha Byalan.";
+		next;
+		mes "[Charfri]";
+		mes "Você terá que ir até o navio no porto de nossa cidade para chegar à Ilha Byalan. Existem cavernas perigosas nessa ilha, por isso não vá bisbilhotando em qualquer lugar.";
+		close;
+	}
+	mes "A Ilha Byalan além de ser linda tem uma misteriosa e profunda masmorra que se estende sob o mar.";
+	next;
+	mes "[Charfri]";
+	mes "Pessoas que realmente estiveram lá dizem que se você ir a uma determinada profundidade a caverna fica submersa.";
+	next;
+	mes "[Charfri]";
+	mes "Surpreendentemente, uma vez que você está submergido, você pode respirar como um peixe. Talvez algum tipo de força sobrenatural atue lá.";
+	next;
+	mes "[Charfri]";
+	mes "Ah...";
+	mes "As pessoas que viram a paisagem debaixo d'água dizem que ela é tão fantástica que eles sonham com ela até hoje.";
+	next;
+	mes "[Charfri]";
+	mes "Mas, infelizmente, os monstros são muito fortes para um cidadão comum visitar o lugar. Ainda assim, apenas uma vez, gostaria de ir lá.";
+	close;
+}
+
+izlude,127,175,4	script#re	Cuskoal#izlude	124,{
 	mes "[Cuskoal]";
 	if (rand(2)) {
 		mes "A Arena é o lugar perfeito para pessoas jovens de todas as partes do Reino de Rune-Midgard desafiarem e testarem suas habilidades.";
@@ -133,6 +220,29 @@ izlude,127,175,4	script	Cuskoal#izlude	124,{
 	mes "Se você escutar cuidadosamente, você pode dar sorte e descobrir informações muito úteis.";
 	close;
 }
+
+izlude,119,121,2	script#pre	Cuskoal#izlude	124,{
+	mes "[Cuskoal]";
+	if (rand(2)) {
+		mes "A Arena é o lugar perfeito para pessoas jovens de todas as partes do Reino de Rune-Midgard desafiarem e testarem suas habilidades.";
+		next;
+		mes "[Cuskoal]";
+		mes "Você pode lutar com monstros de níveis diferentes. Então, por quantos estágios você irá sobreviver, a sua força que irá dizer.";
+		next;
+		mes "[Cuskoal]";
+		mes "Então, o que me diz?";
+		close;
+	}
+	mes "Os bares de Prontera estão sempre cheios de nativos e visitantes.";
+	next;
+	mes "[Cuskoal]";
+	mes "Há muitas informações e rumores, pois muitas pessoas entram e saem de lá.";
+	next;
+	mes "[Cuskoal]";
+	mes "Se você escutar cuidadosamente, você pode dar sorte e descobrir informações muito úteis.";
+	close;
+}
+
 
 izlude,85,103,4	script	Dega#izlude	84,{
 	mes "[Dega]";

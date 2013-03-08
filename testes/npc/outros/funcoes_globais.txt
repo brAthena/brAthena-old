@@ -31,11 +31,6 @@
 	set(.@version, checkre(0));
 		
 	if(!.@version){ // pre-re
-		movenpc("Equipe do Aeroporto#Izlude",206,55);
-		movenpc("Marinheiro#izlude",201,181,2);
-		movenpc("Bonne#izlude",55,74);
-		movenpc("Charfri#izlude",135,78,2);
-		movenpc("Cuskoal#izlude",119,121,2);
 		movenpc("Dega#izlude",150,118,2);
 		movenpc("Kylick#izlude",150,143,2);
 		movenpc("Red#izlude",56,126);

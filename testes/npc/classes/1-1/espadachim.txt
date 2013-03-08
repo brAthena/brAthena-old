@@ -241,6 +241,18 @@ izlude_in,74,172,4	script	Chefe Espadachim#swd	119,{
 	}
 }
 
+job_sword1,223,167,2	script	Mae#swd_1_success	92,{
+	mapannounce "job_sword1"," O aspirante " + strcharinfo(0) + ". passou por todas as fases, concluíndo o teste com sucesso!",bc_map;
+	set job_sword_q,4;
+	mes "[Mae]";
+	mes "Eu o parabenizo sinceramente por ter passado no teste!";
+	mes "Eu já enviei o resultado de seu teste para o departamento de classe. Fale com o oficial no centro. Obrigado.";
+	close2;
+	warp "izlude_in",66,173;
+	end;
+}
+
+
 izlude_in,62,170,6	script#pre	Espadachim#swd_2	85,{
 	mes "[Espadachim]";
 	if (BaseJob == Job_Swordman) {
@@ -317,9 +329,8 @@ izlude_in,30,163,0	script#pre	Equipe de Testes do Salão#swd_1	105,{
 	end;
 }
 
-// NPCs Chefes de Examinação do Teste.
+// NPCs Chefes de Examinação do Teste 1-1.
 //============================================================
-// 1-1
 job_sword1,230,245,2	script#pre	Médico#swd_1	105,{
   if(strnpcinfo(0) == "Médico#swd_1")
   callsub "JobSwdMedic","1";
@@ -463,7 +474,7 @@ job_sword1,183,251,0	duplicatp(EspArma1)	1_blank_13_b	-1,0,1
 job_sword1,181,250,0	duplicatp(EspArma1)	1_blank_13_c	-1,1,0
 job_sword1,180,238,0	duplicatp(EspArma1)	1_blank_14_a	-1,0,1
 job_sword1,183,238,0	duplicatp(EspArma1)	1_blank_14_b	-1,0,1
-job_sword1,181,239,0	duplicatp(EspArma1)	1_blank_14_c	-1,1,0
+job_sword1,181,239,0	duplicatp(EspArma1)	1_blank_14_c	-1,1,0,{}
 job_sword1,193,245,0	warp	1_resto	1,3,job_sword1,215,244
 
 // Armadilhas (2º Etapa)
@@ -622,13 +633,24 @@ job_sword1,176,163,0	duplicatp(EspArma3)	3_blank_30_a	-1,0,2
 job_sword1,177,163,0	duplicatp(EspArma3)	3_blank_30_b	-1,0,2
 job_sword1,181,163,0	duplicatp(EspArma3)	3_blank_30_c	-1,2,0
 
-job_sword1,223,167,2	script	Mae#swd_1_success	92,{
-	mapannounce "job_sword1"," O aspirante " + strcharinfo(0) + ". passou por todas as fases, concluíndo o teste com sucesso!",bc_map;
-	set job_sword_q,4;
-	mes "[Mae]";
-	mes "Eu o parabenizo sinceramente por ter passado no teste!";
-	mes "Eu já enviei o resultado de seu teste para o departamento de classe. Fale com o oficial no centro. Obrigado.";
-	close2;
-	warp "izlude_in",66,173;
-	end;
-}
+//============================================================ 
+// [Pré-Renovação] Teste para se tornar Espadachim.
+//============================================================ 
+job_sword1,0,0,0,0	monster#pre	Chonchon	1183,20,0,0,0
+job_sword1,35,79,0,0	monster#pre	Fabre	1184,3,60000,30000,0
+job_sword1,50,108,0,0	monster#pre	Fabre	1184,3,60000,30000,0
+job_sword1,61,28,0,0	monster#pre	Fabre	1184,3,60000,30000,0
+job_sword1,61,92,0,0	monster#pre	Fabre	1184,3,60000,30000,0
+job_sword1,110,112,0,0	monster#pre	Fabre	1184,2,60000,30000,0
+job_sword1,161,94,0,0	monster#pre	Fabre	1184,2,60000,30000,0
+job_sword1,130,76,0,0	monster#pre	Fabre	1184,2,60000,30000,0
+job_sword1,103,58,0,0	monster#pre	Fabre	1184,2,60000,30000,0
+job_sword1,130,24,0,0	monster#pre	Fabre	1184,5,60000,30000,0
+job_sword1,201,36,0,0	monster#pre	Fabre	1184,2,60000,30000,0
+job_sword1,201,16,0,0	monster#pre	Fabre	1184,2,60000,30000,0
+job_sword1,239,44,0,0	monster#pre	Fabre	1184,3,60000,30000,0
+job_sword1,239,76,0,0	monster#pre	Fabre	1184,2,60000,30000,0
+job_sword1,231,101,0,0	monster#pre	Fabre	1184,2,60000,30000,0
+job_sword1,234,117,0,0	monster#pre	Fabre	1184,2,60000,30000,0
+job_sword1,198,91,0,0	monster#pre	Fabre	1184,2,60000,30000,0
+job_sword1,200,63,0,0	monster#pre	Fabre	1184,2,60000,30000,0,{}
