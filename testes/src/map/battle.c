@@ -1185,7 +1185,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 		if(sc->data[SC__DEADLYINFECT] && damage > 0 && rnd()%100 < 65 + 5 * sc->data[SC__DEADLYINFECT]->val1)
 			status_change_spread(src, bl);
 		if(sc->data[SC_STYLE_CHANGE] && rnd()%2) {
-			TBL_HOM *hd = BL_CAST(BL_HOM,bl);
+			TBL_HOM *hd = BL_CAST(BL_HOM,src);
 			if(hd) hom_addspiritball(hd, 10);
 		}
 	}
@@ -2946,7 +2946,16 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					skillratio += 400 + 100 * skill_lv;
 					break;
 				case MH_LAVA_SLIDE:
-					skillratio = 70 * skill_lv;
+					skillratio += -100 + 70 * skill_lv;
+					break;
+				case MH_SONIC_CRAW:
+					skillratio += -100 + 40 * skill_lv;
+					break;
+				case MH_SILVERVEIN_RUSH:
+					skillratio += -100 + 150 * skill_lv;
+					break;
+				case MH_MIDNIGHT_FRENZY:
+					skillratio += -100 + 300 * skill_lv;
 					break;
 				case MH_TINDER_BREAKER:
 				case MH_MAGMA_FLOW:
@@ -5881,7 +5890,7 @@ static const struct _battle_data {
 	{ "skill_amotion_leniency",             &battle_config.skill_amotion_leniency,          90,     0,      300             },
 	{ "mvp_tomb_enabled",                   &battle_config.mvp_tomb_enabled,                1,      0,      1               },
 	{ "feature.atcommand_suggestions",      &battle_config.atcommand_suggestions_enabled,   0,      0,      1               },
-	{ "min_npc_vending_distance",           &battle_config.min_npc_vending_distance,        3,      0,      100             },
+	{ "min_npc_vendchat_distance",          &battle_config.min_npc_vendchat_distance,       3,      0,      100             },
 	{ "atcommand_mobinfo_type",             &battle_config.atcommand_mobinfo_type,          0,      0,      1               },
 	{ "homunculus_max_level",               &battle_config.hom_max_level,                   99,     0,      MAX_LEVEL,      },
 	{ "homunculus_S_max_level",             &battle_config.hom_S_max_level,                 150,    0,      MAX_LEVEL,      },

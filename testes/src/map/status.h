@@ -647,6 +647,9 @@ typedef enum sc_type {
 
     //homon S
     SC_STYLE_CHANGE,
+    SC_TINDER_BREAKER,
+    SC_CBC,
+    SC_EQC,
     SC_GOLDENE_FERSE,
     SC_ANGRIFFS_MODUS,
     SC_ERASER_CUTTER,
