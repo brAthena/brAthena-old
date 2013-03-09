@@ -162,7 +162,7 @@ int guild_exp_rate = 100;
 #define PINCODE_ASK 1
 #define PINCODE_NOTSET 2
 #define PINCODE_EXPIRED 3
-#define PINCODE_UNUSED 7
+#define PINCODE_UNUSED 4
 #define	PINCODE_WRONG 8
 
 int pincode_enabled = PINCODE_OK; // PINCODE_OK = off, PINCODE_ASK = on
