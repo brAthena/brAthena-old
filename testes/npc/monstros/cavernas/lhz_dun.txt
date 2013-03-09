@@ -59,7 +59,7 @@ lhz_dun01,192,61,18,30	monster#pre	Armeyer Dinze	1654,1,900000,800000,1
 lhz_dun01,192,61,18,30	monster#pre	Errende Ebecee	1655,1,900000,800000,1
 lhz_dun01,192,61,18,30	monster#pre	Kavach Icarus	1656,1,900000,800000,1
 lhz_dun01,192,61,18,30	monster#pre	Laurell Weinder	1657,1,900000,800000,1
-lhz_dun01,0,0,0,0	monster#pre	Gemini-S58	1681,1,7200000,5400000,0
+lhz_dun01,0,0,0,0	monster#pre	Gemini-S58	1681,1,7200000,5400000,0,{}
 
 //==================================================
 // [Renovação] lhz_dun01 - Laboratório de Somatologia (Primeiro Andar)
@@ -73,7 +73,7 @@ lhz_dun01,0,0,0,0	monster#re	Laurell Weinder	1657,11,5000,0,0
 lhz_dun01,0,0,0,0	monster#re	Wickebine Tres	1653,11,5000,0,0
 lhz_dun01,0,0,0,0	monster#re	Armeyer Dinze	1654,8,5000,0,0
 lhz_dun01,0,0,0,0	monster#re	Egnigem Cenia	1652,8,5000,0,0
-lhz_dun01,0,0,0,0	monster#re	Gemini-S58	1681,1,5000,0,0
+lhz_dun01,0,0,0,0	monster#re	Gemini-S58	1681,1,5000,0,0,{}
 
 //========================================================================================
 // [Pré-Renovação] lhz_dun02 - Laboratório de Somatologia (Segundo Andar)
