@@ -4681,7 +4681,7 @@ static unsigned short status_calc_ematk(struct block_list *bl, struct status_cha
 	if(sc->data[SC_ODINS_POWER])
 		matk += 40 + 30 * sc->data[SC_ODINS_POWER]->val1; //70 lvl1, 100lvl2
 	if(sc->data[SC_IZAYOI])
-		matk += 50 * sc->data[SC_IZAYOI]->val1;
+		matk += sc->data[SC_IZAYOI]->val2;
 	return (unsigned short)cap_value(matk,0,USHRT_MAX);
 }
 #endif
@@ -4708,7 +4708,7 @@ static unsigned short status_calc_matk(struct block_list *bl, struct status_chan
 	if(sc->data[SC_ODINS_POWER])
 		matk += 40 + 30 * sc->data[SC_ODINS_POWER]->val1; //70 lvl1, 100lvl2
 	if(sc->data[SC_IZAYOI])
-		matk += 50 * sc->data[SC_IZAYOI]->val1;
+		matk += sc->data[SC_IZAYOI]->val2;
 #endif
 	if(sc->data[SC_MAGICPOWER] && sc->data[SC_MAGICPOWER]->val4)
 		matk += matk * sc->data[SC_MAGICPOWER]->val3/100;
@@ -8545,17 +8545,16 @@ int status_change_start(struct block_list *bl,enum sc_type type,int rate,int val
 				val2 = 2*val1 + rand()%val1;
 				clif_status_change(bl,SI_ACTIVE_MONSTER_TRANSFORM,1,0,1002,0,0);
 				break;
+			case SC_IZAYOI:
+				val2 = 25 * val1;// Aumenta Matk.
+				break;
 			case SC_KAGEMUSYA:
 				val3 = val1 * 2;
-			case SC_IZAYOI:
-				val2 = tick/1000;
-				tick_time = 1000;
-				break;
 			case SC_ZANGETSU:
 				if((status_get_hp(bl)+status_get_sp(bl)) % 2 == 0)
-					val2 = status_get_lv(bl) / 2 + 50;
+					val2 = status_get_lv(bl) / 3 + 20;
 				else
-					val2 -= 50;
+					val2 -= 30;
 				break;
 			case SC_GENSOU: {
 					int hp = status_get_hp(bl), lv = 5;
@@ -10577,7 +10576,6 @@ int status_change_timer(int tid, unsigned int tick, int id, intptr_t data)
 				return 0;
 			}
 			break;
-		case SC_IZAYOI:
 		case SC_KAGEMUSYA:
 			if(--(sce->val2) > 0) {
 				if(!status_charge(bl, 0, 1)) break;

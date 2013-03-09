@@ -13932,6 +13932,8 @@ int skill_vfcastfix(struct block_list *bl, double time, uint16 skill_id, uint16 
 		// Fixed cast reduction bonuses
 		if(sc->data[SC__LAZINESS])
 			fixcast_r = max(fixcast_r, sc->data[SC__LAZINESS]->val2);
+		if (sc->data[SC_IZAYOI])
+			fixcast_r = 100;
 		if(sc->data[SC_SECRAMENT])
 			fixcast_r = max(fixcast_r, sc->data[SC_SECRAMENT]->val2);
 		if(sd && (skill_lv = pc_checkskill(sd, WL_RADIUS)) && skill_id >= WL_WHITEIMPRISON && skill_id <= WL_FREEZE_SP)
@@ -13939,8 +13941,6 @@ int skill_vfcastfix(struct block_list *bl, double time, uint16 skill_id, uint16 
 		// Fixed cast non percentage bonuses
 		if(sc->data[SC_MANDRAGORA])
 			fixed += sc->data[SC_MANDRAGORA]->val1 * 1000 / 2;
-		if(sc->data[SC_IZAYOI]  && (skill_id >= NJ_TOBIDOUGU && skill_id <= NJ_ISSEN))
-			fixed = 0;
 		if(sc->data[SC_GUST_OPTION] || sc->data[SC_BLAST_OPTION] || sc->data[SC_WILD_STORM_OPTION])
 			fixed -= 1000;
 	}
