@@ -402,3 +402,6 @@ REPLACE INTO `quest_db` VALUES(11308,0,0,0,0,0,0,0,'\"Nurse at Port Malaya-25\"'
 REPLACE INTO `quest_db` VALUES(11309,0,0,0,0,0,0,0,'\"Nurse at Port Malaya-26\"');
 REPLACE INTO `quest_db` VALUES(12278,0,0,0,0,0,0,0,'\"Towards Bakonawa Lake...\"');
 REPLACE INTO `quest_db` VALUES(12279,0,0,0,0,0,0,0,'\"Get Rid of Bakonawa\"');
+
+-- 2012/03/10
+ALTER TABLE `skill_db` MODIFY COLUMN `Element` tinytext NOT NULL;

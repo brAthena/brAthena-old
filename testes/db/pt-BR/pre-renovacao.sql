@@ -24460,7 +24460,7 @@ CREATE TABLE IF NOT EXISTS `skill_db` (
   `Range` tinytext NOT NULL,
   `Hit` smallint(2) NOT NULL,
   `Inf` smallint(2) NOT NULL,
-  `Element` tinyint NOT NULL,
+  `Element` tinytext NOT NULL,
   `Nk` tinytext NOT NULL,
   `Splash` tinytext NOT NULL,
   `Maxlv` tinytext NOT NULL,
