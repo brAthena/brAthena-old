@@ -999,7 +999,7 @@ int battle_calc_damage(struct block_list *src,struct block_list *bl,struct Damag
 			   (flag&(BF_LONG|BF_WEAPON)) == (BF_LONG|BF_WEAPON))
 				damage -= damage * 20 / 100;
 
-				if(sc->data[SC_FOGWALL] && skill_id != RK_DRAGONBREATH) {
+				if(sc->data[SC_FOGWALL] && skill_id != RK_DRAGONBREATH /*&& skill_id != RK_DRAGONBREATH_WATER*/) {
 					if(flag&BF_SKILL) //25% reduction
 						damage -= damage * 25 / 100;
 						else if((flag&(BF_LONG|BF_WEAPON)) == (BF_LONG|BF_WEAPON))
@@ -1332,6 +1332,7 @@ int battle_calc_gvg_damage(struct block_list *src,struct block_list *bl,int dama
 		case NJ_ZENYNAGE:
 		case KO_MUCHANAGE:
 		case RK_DRAGONBREATH:
+		/*case RK_DRAGONBREATH_WATER:*/	
 			break;
 		default:
 			/* Uncomment if you want god-mode Emperiums at 100 defense. [Kisuka]
@@ -4401,6 +4402,7 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		case NPC_EVILLAND:
 			md.damage = skill_calc_heal(src,target,skill_id,skill_lv,false);
 			break;
+		/*case RK_DRAGONBREATH_WATER: // Conforme informação dano é o RK_DRAGONBREATH*/
 		case RK_DRAGONBREATH:
 			md.damage = ((status_get_hp(src) / 50) + (status_get_max_sp(src) / 4)) * skill_lv;
 			RE_LVL_MDMOD(150);
@@ -5236,6 +5238,7 @@ int battle_check_target(struct block_list *src, struct block_list *target,int fl
 				if(skill_get_inf2(su->group->skill_id)&INF2_TRAP) {   //Only a few skills can target traps...
 					switch(battle_getcurrentskill(src)) {
 						case RK_DRAGONBREATH:// it can only hit traps in pvp/gvg maps
+						/*case RK_DRAGONBREATH_WATER:*/
 							if(!map[m].flag.pvp && !map[m].flag.gvg)
 								break;
 						case 0://you can hit them without skills
