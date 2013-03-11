@@ -16149,6 +16149,7 @@ int skill_produce_mix(struct map_session_data *sd, uint16 skill_id, int nameid, 
 					int D = 0;
 					switch(nameid) {  //rune rank it_diff 9 craftable rune
 						case ITEMID_BERKANA:
+						case ITEMID_LUX:
 							D = -2000;
 							break; //Rank S
 						case ITEMID_NAUTHIZ:
