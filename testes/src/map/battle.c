@@ -5920,8 +5920,9 @@ static const struct _battle_data {
 	{ "use_item_in_status",                 &battle_config.use_item_in_status,                0,    0,              1,      },
 	{ "supports_castle_gvg",                &battle_config.supports_castle_gvg,               1,    0,              1,      },
 	{ "max_atk",                            &battle_config.max_atk,                       10000,    0,        INT_MAX,      },
-	{ "hanbok_ignorepalette",               &battle_config.hanbok_ignorepalette,              0,    0,       1,             },
-	{ "edp_rate",                           &battle_config.edp_rate,                        100,    0,       100,           },
+	{ "hanbok_ignorepalette",               &battle_config.hanbok_ignorepalette,              0,    0,              1,      },
+	{ "edp_rate",                           &battle_config.edp_rate,                        100,    0,            100,      },
+	{ "walk_speed_default",                 &battle_config.walk_speed_default,              150,    0, MAX_WALK_SPEED,      },
 };
 #ifndef STATS_OPT_OUT
 /**
