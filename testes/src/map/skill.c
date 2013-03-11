@@ -10890,6 +10890,7 @@ struct skill_unit_group *skill_unitsetting(struct block_list *src, uint16 skill_
 			break;
 		case NJ_KAENSIN:
 			skill_clear_group(src, 1); //Delete previous Kaensins/Suitons
+			val2 = (skill_lv+2)/2 + 6;
 			break;
 		case NJ_SUITON:
 			skill_clear_group(src, 1);
