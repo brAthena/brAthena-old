@@ -3950,11 +3950,6 @@ void status_calc_bl_main(struct block_list *bl, /*enum scb_flag*/int flag)
 			if(status->aspd_rate != 1000)
 				amotion = amotion*status->aspd_rate/1000;
 #else
-			// Fórmula de velocidade de ataque [brAthena - bRO]
-			if(battle_config.bRO_Renewal)
-				amotion -= (int)(sqrt((pow(status->agi, 2) / 2) + (pow(status->dex, 2)/5)) / 4 + (status_calc_aspd(bl, sc, 1) * status->agi/200));
-
-			// aspd = baseaspd + floor(sqrt((agi^2/2) + (dex^2/5))/4 + (potskillbonus*agi/200))
 			amotion -= (int)(sqrt((pow(status->agi, 2) / 2) + (pow(status->dex, 2) / 5)) / 4 + (status_calc_aspd(bl, sc, 1) * status->agi / 200)) * 10;
 
 			if((status_calc_aspd(bl, sc, 2) + status->aspd_rate2) != 0)   // RE ASPD percertage modifier
