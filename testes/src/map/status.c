@@ -565,7 +565,7 @@ void initChangeTables(void)
 	set_sc(RK_DEATHBOUND        , SC_DEATHBOUND        , SI_DEATHBOUND        , SCB_NONE);
 	set_sc(RK_WINDCUTTER        , SC_FEAR              , SI_BLANK             , SCB_FLEE|SCB_HIT);
 	add_sc(RK_DRAGONBREATH      , SC_BURNING);
-	/*add_sc(RK_DRAGONBREATH_WATER      , SC_FREEZING);*/
+	add_sc(RK_DRAGONBREATH_WATER      , SC_FREEZING);
 	set_sc(RK_MILLENNIUMSHIELD  , SC_MILLENNIUMSHIELD  , SI_REUSE_MILLENNIUMSHIELD  , SCB_NONE);
 	set_sc(RK_REFRESH           , SC_REFRESH           , SI_REFRESH           , SCB_NONE);
 	set_sc(RK_GIANTGROWTH       , SC_GIANTGROWTH       , SI_GIANTGROWTH       , SCB_STR);

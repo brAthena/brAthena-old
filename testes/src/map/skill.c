@@ -1415,9 +1415,9 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 		case RK_DRAGONBREATH:
 			sc_start4(bl,SC_BURNING,5+5*skill_lv,skill_lv,1000,src->id,0,skill_get_time(skill_id,skill_lv));
 			break;
-		/*case RK_DRAGONBREATH_WATER:
+		case RK_DRAGONBREATH_WATER:
 			sc_start4(bl,SC_FREEZING,5+5*skill_lv,skill_lv,1000,src->id,0,skill_get_time(skill_id,skill_lv));
-			break;*/
+			break;
 		case AB_ADORAMUS:
 			if(tsc && !tsc->data[SC_DECREASEAGI])   //Prevent duplicate agi-down effect.
 				sc_start(bl, SC_ADORAMUS, skill_lv * 4 + (sd ? sd->status.job_level : 50) / 2, skill_lv, skill_get_time(skill_id, skill_lv));
@@ -2938,7 +2938,7 @@ int skill_attack(int attack_type, struct block_list *src, struct block_list *dsr
 		dmg.flag |= BF_WEAPON;
 
 	if(sd && src != bl && damage > 0 && (dmg.flag&BF_WEAPON ||
-	                                     (dmg.flag&BF_MISC && (skill_id == RA_CLUSTERBOMB || skill_id == RA_FIRINGTRAP || skill_id == RA_ICEBOUNDTRAP || skill_id == RK_DRAGONBREATH /*|| skill_id == RK_DRAGONBREATH_WATER*/)))) {
+	                                     (dmg.flag&BF_MISC && (skill_id == RA_CLUSTERBOMB || skill_id == RA_FIRINGTRAP || skill_id == RA_ICEBOUNDTRAP || skill_id == RK_DRAGONBREATH || skill_id == RK_DRAGONBREATH_WATER)))) {
 		if(battle_config.left_cardfix_to_right)
 			battle_drain(sd, bl, dmg.damage, dmg.damage, tstatus->race, tstatus->mode&MD_BOSS);
 		else
@@ -4217,7 +4217,7 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 			/**
 			 * Rune Knight
 			 **/
-		/*case RK_DRAGONBREATH_WATER:*/
+		case RK_DRAGONBREATH_WATER:
 		case RK_DRAGONBREATH: {
 				struct status_change *tsc = NULL;
 				if((tsc = status_get_sc(bl)) && (tsc->data[SC_HIDING])) {
@@ -10152,7 +10152,7 @@ int skill_castend_pos2(struct block_list *src, int x, int y, uint16 skill_id, ui
 		case NC_COLDSLOWER:
 		case NC_ARMSCANNON:
 		case RK_DRAGONBREATH:
-		/*case RK_DRAGONBREATH_WATER:*/
+		case RK_DRAGONBREATH_WATER:
 			i = skill_get_splash(skill_id,skill_lv);
 			map_foreachinarea(skill_area_sub,src->m,x-i,y-i,x+i,y+i,splash_target(src),
 			                  src,skill_id,skill_lv,tick,flag|BCT_ENEMY|1,skill_castend_damage_id);
