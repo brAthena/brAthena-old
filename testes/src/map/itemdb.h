@@ -62,7 +62,7 @@ enum {
     ITEMID_THURISAZ,
     ITEMID_WYRD,
     ITEMID_HAGALAZ,
-	ITEMID_LUX = 22540,
+    ITEMID_LUX = 22540,
 } rune_list;
 
 /**
