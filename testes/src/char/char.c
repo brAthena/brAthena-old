@@ -162,10 +162,10 @@ int guild_exp_rate = 100;
 #define PINCODE_ASK 1
 #define PINCODE_NOTSET 2
 #define PINCODE_EXPIRED 3
-#define PINCODE_UNUSED 4
+#define PINCODE_NEW 4
 #define	PINCODE_WRONG 8
 
-int pincode_enabled = PINCODE_OK; // PINCODE_OK = off, PINCODE_ASK = on
+bool pincode_enabled = true;
 int pincode_changetime = 0;
 int pincode_maxtry = 3;
 
@@ -227,6 +227,7 @@ struct online_char_data {
 	int fd;
 	int waiting_disconnect;
 	short server; // -2: unknown server, -1: not connected, 0+: id of server
+	bool pincode_success;
 };
 
 static DBMap *online_char_db; // int account_id -> struct online_char_data*
@@ -349,6 +350,7 @@ void set_char_offline(int char_id, int account_id)
 		if(character->char_id == char_id) {
 			character->char_id = -1;
 			character->server = -1;
+			character->pincode_success = false;
 		}
 
 		//FIXME? Why Kevin free'd the online information when the char was effectively in the map-server?
@@ -2161,15 +2163,26 @@ int parse_fromlogin(int fd)
 						// send characters to player
 						mmo_char_send006b(i, sd);
 #if PACKETVER >=  20110309
-					if( pincode_enabled ){
-						// PIN code system enabled
-						if(strlen( sd->pincode ) <= 0) {
-							// Não definiu-se ainda nenhum código PIN
-							pincode_sendstate(i, sd, PINCODE_UNUSED);
+					if(pincode_enabled) {
+						// Sistema de código PIN habilitado
+						if(strlen(sd->pincode) <= 0) {
+							// Não definiu ainda nenhum código PIN
+							if(pincode_enabled) {
+								pincode_sendstate(i, sd, PINCODE_NEW);
+							}else{
+								pincode_sendstate(i, sd, PINCODE_OK);
+							}
 						}else{
-							if(!pincode_changetime || sd->pincode_change > time(NULL)) {
-								// Pedir ao usuário o seu código PIN
-								pincode_sendstate(i, sd, PINCODE_ASK);
+							if(!pincode_changetime || ( sd->pincode_change + pincode_changetime) > time(NULL)) {
+								struct online_char_data* node = (struct online_char_data*)idb_get(online_char_db, sd->account_id);
+
+								if(node != NULL && node->pincode_success) {
+									// Usuário já passou da verificação
+									pincode_sendstate(i, sd, PINCODE_OK);
+								}else{
+									// Pedir ao usuário o seu código PIN
+									pincode_sendstate(i, sd, PINCODE_ASK);
+								}
 							}else{
 								// Usuário não mudou a muito tempo o seu código PIN
 								pincode_sendstate(i, sd, PINCODE_EXPIRED);
@@ -2810,7 +2823,7 @@ int parse_frommap(int fd)
 			case 0x2b02: // req char selection
 				if(RFIFOREST(fd) < 18)
 					return 0;
-				{
+				else{
 					int account_id = RFIFOL(fd,2);
 					uint32 login_id1 = RFIFOL(fd,6);
 					uint32 login_id2 = RFIFOL(fd,10);
@@ -2840,6 +2853,14 @@ int parse_frommap(int fd)
 
 						//Set char to "@ char select" in online db [Kevin]
 						set_char_charselect(account_id);
+
+						{
+							struct online_char_data* character = (struct online_char_data*)idb_get(online_char_db, account_id);
+						
+							if(character != NULL) {
+								character->pincode_success = true;
+							}
+						}
 
 						WFIFOHEAD(fd,7);
 						WFIFOW(fd,0) = 0x2b03;
@@ -4155,7 +4176,11 @@ int parse_char(int fd)
 			if(RFIFOL(fd,2) != sd->account_id)
 				break;
 
-			pincode_sendstate(fd, sd, PINCODE_NOTSET);
+			if(strlen(sd->pincode) <= 0) {
+				pincode_sendstate(fd, sd, PINCODE_NEW);
+			}else{
+				pincode_sendstate(fd, sd, PINCODE_ASK);
+			}
 
 			RFIFOSKIP(fd,6);
 		break;
@@ -4415,6 +4440,7 @@ void pincode_setnew(int fd, struct char_session_data* sd) {
 	pincode_decrypt(sd->pincode_seed,newpin);
 
 	pincode_notifyLoginPinUpdate(sd->account_id, newpin);
+	strncpy(sd->pincode, newpin, strlen(newpin));
 
 	pincode_sendstate(fd, sd, PINCODE_OK);
 }
@@ -4423,7 +4449,7 @@ void pincode_setnew(int fd, struct char_session_data* sd) {
 // 1 = Pedir PIN - cliente envia 0x8b8
 // 2 = Criar um novo PIN - cliente envia 0x8ba
 // 3 = PIN deve ser mudado - cliente 0x8be
-// 4 = Criar novo PIN ? - cliente envia 0x8ba
+// 4 = Criar novo PIN - cliente envia 0x8ba
 // 5 = Cliente mostra msgstr(1896)
 // 6 = Cliente mostra msgstr(1897) incapaz de usar seu número KSSN
 // 7 = Char selecionar janela mostra um botão - cliente envia 0x8c5
@@ -4438,12 +4464,11 @@ void pincode_sendstate(int fd, struct char_session_data* sd, uint16 state) {
 }
 
 void pincode_notifyLoginPinUpdate(int account_id, char* pin) {
-	WFIFOHEAD(login_fd,15);
+	WFIFOHEAD(login_fd,11);
 	WFIFOW(login_fd,0) = 0x2738;
 	WFIFOL(login_fd,2) = account_id;
-	strncpy((char*)WFIFOP(login_fd,6), pin, 5);
-	WFIFOL(login_fd,11) = pincode_changetime;
-	WFIFOSET(login_fd,15);
+	strncpy( (char*)WFIFOP(login_fd,6), pin, 5 );
+	WFIFOSET(login_fd,11);
 }
 
 void pincode_notifyLoginPinError(int account_id) {
@@ -4796,9 +4821,9 @@ int char_config_read(const char *cfgName)
 		} else if(strcmpi(w1, "guild_exp_rate") == 0) {
 			guild_exp_rate = atoi(w2);
 		} else if (strcmpi(w1, "pincode_enabled") == 0) {
-			pincode_enabled = atoi(w2);
+			pincode_enabled = config_switch(w2);
 		} else if (strcmpi(w1, "pincode_changetime") == 0) {
-			pincode_changetime = atoi(w2);
+			pincode_changetime = atoi(w2)*60*60*24;
 		} else if (strcmpi(w1, "pincode_maxtry") == 0) {
 			pincode_maxtry = atoi(w2);
 		} else if (strcmpi(w1, "import") == 0) {
