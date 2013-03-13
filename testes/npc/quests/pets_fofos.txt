@@ -23,7 +23,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
--	script	TPF1	750,{
+prontera,67,212,5	script	Treinador de Pets Fofos#1	750,{
 	
 	set .@npc$, "[Treinador de Pets Fofos]";
 	
@@ -44,7 +44,7 @@
 	callfunc "treinador_pet_fofos",.@com_id,.@com_quant,.@caca_id,.@caca_quant,.@mob_id,TPF_um,.@domar,.@caca_id2,.@caca_quant2;
 }
 
--	script	TPF2	750,{
+prontera,242,92,3	script	Treinador de Pets Fofos#2	750,{
 	
 	set .@npc$, "[Treinador de Pets Fofos]";
 	
@@ -66,7 +66,7 @@
 	callfunc "treinador_pet_fofos",.@com_id,.@com_quant,.@caca_id,.@caca_quant,.@mob_id,TPF_dois,.@domar,.@caca_id2,.@caca_quant2;
 }
 
--	script	TPF3	750,{
+prontera,179,92,3	script	Treinador de Pets Fofos#3	750,{
 	
 	set .@npc$, "[Treinador de Pets Fofos]";
 	
@@ -104,6 +104,7 @@ function	script	treinador_pet_fofos	{
 	mes "então eu vou dizer-lhe o monstro";
 	mes "que você pode domar com o item.";
 	next;
+	mes "[Treinador de Pets Fofos]";
 	mes "Também vou explicar o que materiais";
 	mes "você precisa para levar a fim de";
 	mes "obter o item domar.";
@@ -173,7 +174,7 @@ function	script	treinador_pet_fofos	{
 		mes "Sábia escolha.";
 		mes "Espero que você e seu animal de estimação se deêm bem.";
 		close;
-	} else {
+		}
 		mes "[Treinador de Pets Fofos]";
 		mes "Você escolheu " + getitemname(.@com_id) + ".";
 		mes "Você pode usá-lo para domar";
@@ -184,19 +185,15 @@ function	script	treinador_pet_fofos	{
 		mes "então você pode trocá-los";
 		mes "por uma " + getitemname(.@com_id) + ".";
 		close;
-	}
 }
 
 // Duplicatas
-prontera,67,212,5	duplicate(TPF1)	Treinador de Pets Fofos#1	750
-prontera,242,92,3	duplicate(TPF2)	Treinador de Pets Fofos#2	750
-prontera,179,92,3	duplicate(TPF3)	Treinador de Pets Fofos#3	750
-geffen,180,125,5	duplicate(TPF1)	Treinador de Pets Fofos#4	750
-geffen,152,66,3	duplicate(TPF2)	Treinador de Pets Fofos#5	750
-geffen,197,95,3	duplicate(TPF3)	Treinador de Pets Fofos#6	750
-morocc,115,83,5	duplicate(TPF1)	Treinador de Pets Fofos#7	750
-morocc,218,130,3	duplicate(TPF2)	Treinador de Pets Fofos#8	750
-morocc,236,225,3	duplicate(TPF3)	Treinador de Pets Fofos#9	750
-payon,109,278,5	duplicate(TPF1)	Treinador de Pets Fofos#10	750
-payon,157,124,3	duplicate(TPF2)	Treinador de Pets Fofos#11	750
-payon,85,237,3	duplicate(TPF3)	Treinador de Pets Fofos#12	750
+geffen,180,125,5	duplicate(Treinador de Pets Fofos#1)	Treinador de Pets Fofos#4	750
+geffen,152,66,3	duplicate(Treinador de Pets Fofos#2)	Treinador de Pets Fofos#5	750
+geffen,197,95,3	duplicate(Treinador de Pets Fofos#3)	Treinador de Pets Fofos#6	750
+morocc,115,83,5	duplicate(Treinador de Pets Fofos#1)	Treinador de Pets Fofos#7	750
+morocc,218,130,3	duplicate(Treinador de Pets Fofos#2)	Treinador de Pets Fofos#8	750
+morocc,236,225,3	duplicate(Treinador de Pets Fofos#3)	Treinador de Pets Fofos#9	750
+payon,109,278,5	duplicate(Treinador de Pets Fofos#1)	Treinador de Pets Fofos#10	750
+payon,157,124,3	duplicate(Treinador de Pets Fofos#2)	Treinador de Pets Fofos#11	750
+payon,85,237,3	duplicate(Treinador de Pets Fofos#3)	Treinador de Pets Fofos#12	750

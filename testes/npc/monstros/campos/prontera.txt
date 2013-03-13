@@ -161,13 +161,12 @@ prt_fild06,0,0,0,0	monster#pre	Poring	1002,60,0,0,0
 prt_fild06,222,30,40,10	monster#pre	Planta Verde	1080,15,900000,450000,1,{}
 
 //==================================================
-// [Renovação] prt_fild05 - Arredores de Prontera 
+// [Renovação] prt_fild06 - Arredores de Prontera 
 //==================================================
-prt_fild05,0,0,0,0	monster#re	Zangão	1004,140,5000,0,0
-prt_fild05,0,0,0,0	monster#re	Ovo de Besouro-Ladrão	1048,30,5000,0,0
-prt_fild05,0,0,0,0	monster#re	Besouro-Ladrão	1051,30,5000,0,0
-prt_fild05,208,37,10,10	monster#re	Planta Verde	1080,6,900000,450000,1
-prt_fild05,208,37,10,10	monster#re	Planta Azul	1079,1,900000,450000,1,{}
+prt_fild06,0,0,0,0	monster#re	Fabre	1007,140,5000,0,0
+prt_fild06,0,0,0,0	monster#re	Poring	1002,30,5000,0,0
+prt_fild06,0,0,0,0	monster#re	Lunático	1063,30,5000,0,0
+prt_fild06,222,30,40,10	monster#re	Planta Verde	1080,15,900000,450000,1,{}
 
 //==================================================
 // [Pré-Renovação] prt_fild07 - Arredores de Prontera
