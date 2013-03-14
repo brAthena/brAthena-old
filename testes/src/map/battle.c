@@ -1322,9 +1322,6 @@ int battle_calc_gvg_damage(struct block_list *src,struct block_list *bl,int dama
 		}
 	}
 
-	if(src->type != BL_MOB && map[src->m].flag.gvg_castle && !agit_flag && !battle_config.attack_castle_monsters)
-		return 0;
-
 	switch(skill_id) {
 			//Skills with no damage reduction.
 		case PA_PRESSURE:
@@ -5913,7 +5910,6 @@ static const struct _battle_data {
 	// brAthena
 	{ "devotion_rdamage",                   &battle_config.devotion_rdamage,                  0,    0,              1,      },
 	{ "warp_no_ress",                       &battle_config.warp_no_ress,                      0,    0,              1,      },
-	{ "attack_castle_monsters",             &battle_config.attack_castle_monsters,            0,    0,              1,      },
 	{ "mob_drop_identified",                &battle_config.mob_drop_identified,               0,    0,              1,      },
 	{ "bRO_Renewal",                        &battle_config.bRO_Renewal,                       1,    0,              1,      },
 	{ "alliance_in_woe",                    &battle_config.alliance_in_woe,                   0,    0,              1,      },
