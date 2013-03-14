@@ -143,10 +143,13 @@ struct char_session_data {
 	uint8 clienttype;
 	char new_name[NAME_LENGTH];
 	char birthdate[10+1];  // YYYY-MM-DD
+	// Sistema de PIN
 	char pincode[4+1];
 	uint16 pincode_seed;
 	time_t pincode_change;
 	uint16 pincode_try;
+	// Sistema de mudar slot
+	unsigned int char_moves[MAX_CHARS]; // personagem se move à esquerda
 };
 
 int max_connect_user = -1;
@@ -177,6 +180,14 @@ void pincode_notifyLoginPinUpdate( int account_id, char* pin );
 void pincode_notifyLoginPinError( int account_id );
 void pincode_decrypt( unsigned long userSeed, char* pin );
 int pincode_compare( int fd, struct char_session_data* sd, char* pin );
+
+// Sistema de mudar slot
+bool char_move_enabled = true;
+bool char_movetoused = true;
+bool char_moves_unlimited = false;
+
+void moveCharSlot( int fd, struct char_session_data* sd, unsigned short from, unsigned short to );
+void moveCharSlotReply( int fd, struct char_session_data* sd, unsigned short index, short reason );
 
 //Custom limits for the fame lists. [Skotlex]
 int fame_list_size_chemist = MAX_FAME_LIST;
@@ -503,7 +514,7 @@ int mmo_char_tosql(int char_id, struct mmo_charstatus *p)
 	    (p->pet_id != cp->pet_id) || (p->weapon != cp->weapon) || (p->hom_id != cp->hom_id) ||
 	    (p->ele_id != cp->ele_id) || (p->shield != cp->shield) || (p->head_top != cp->head_top) ||
 	    (p->head_mid != cp->head_mid) || (p->head_bottom != cp->head_bottom) || (p->delete_date != cp->delete_date) ||
-	    (p->rename != cp->rename) || (p->robe != cp->robe)
+	    (p->rename != cp->rename) || (p->robe != cp->robe) || (p->character_moves != cp->character_moves)
 	) {
 		//Save status
 		if(SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `base_level`='%d', `job_level`='%d',"
@@ -513,7 +524,7 @@ int mmo_char_tosql(int char_id, struct mmo_charstatus *p)
 		                          "`option`='%d',`party_id`='%d',`guild_id`='%d',`pet_id`='%d',`homun_id`='%d',`elemental_id`='%d',"
 		                          "`weapon`='%d',`shield`='%d',`head_top`='%d',`head_mid`='%d',`head_bottom`='%d',"
 		                          "`last_map`='%s',`last_x`='%d',`last_y`='%d',`save_map`='%s',`save_x`='%d',`save_y`='%d', `rename`='%d',"
-		                          "`delete_date`='%lu',`robe`='%d'"
+		                          "`delete_date`='%lu',`robe`='%d',`moves`='%d'"
 		                          " WHERE  `account_id`='%d' AND `char_id` = '%d'",
 		                          char_db, p->base_level, p->job_level,
 		                          p->base_exp, p->job_exp, p->zeny,
@@ -524,7 +535,7 @@ int mmo_char_tosql(int char_id, struct mmo_charstatus *p)
 		                          mapindex_id2name(p->last_point.map), p->last_point.x, p->last_point.y,
 		                          mapindex_id2name(p->save_point.map), p->save_point.x, p->save_point.y, p->rename,
 		                          (unsigned long)p->delete_date,  // FIXME: platform-dependent size
-		                          p->robe,
+		                          p->robe,p->character_moves,
 		                          p->account_id, p->char_id)) {
 			Sql_ShowDebug(sql_handle);
 			errors++;
@@ -1017,7 +1028,7 @@ int mmo_chars_fromsql(struct char_session_data *sd, uint8 *buf)
 	                                "`str`,`agi`,`vit`,`int`,`dex`,`luk`,`max_hp`,`hp`,`max_sp`,`sp`,"
 	                                "`status_point`,`skill_point`,`option`,`karma`,`manner`,`hair`,`hair_color`,"
 	                                "`clothes_color`,`weapon`,`shield`,`head_top`,`head_mid`,`head_bottom`,`last_map`,`rename`,`delete_date`,"
-	                                "`robe`"
+	                                "`robe`,`moves`"
 	                                " FROM `%s` WHERE `account_id`='%d' AND `char_num` < '%d'", char_db, sd->account_id, MAX_CHARS)
 	   ||  SQL_ERROR == SqlStmt_Execute(stmt)
 	   ||  SQL_ERROR == SqlStmt_BindColumn(stmt, 0,  SQLDT_INT,    &p.char_id, 0, NULL, NULL)
@@ -1056,18 +1067,27 @@ int mmo_chars_fromsql(struct char_session_data *sd, uint8 *buf)
 	   ||  SQL_ERROR == SqlStmt_BindColumn(stmt, 33, SQLDT_SHORT,  &p.rename, 0, NULL, NULL)
 	   ||  SQL_ERROR == SqlStmt_BindColumn(stmt, 34, SQLDT_UINT32, &p.delete_date, 0, NULL, NULL)
 	   ||  SQL_ERROR == SqlStmt_BindColumn(stmt, 35, SQLDT_SHORT,  &p.robe, 0, NULL, NULL)
+	   ||  SQL_ERROR == SqlStmt_BindColumn(stmt, 36, SQLDT_UINT,   &p.character_moves, 0, NULL, NULL)
 	  ) {
 		SqlStmt_ShowDebug(stmt);
 		SqlStmt_Free(stmt);
 		return 0;
 	}
+
+	for(i = 0; i < MAX_CHARS; i++) {
+		sd->found_char[i] = -1;
+		sd->char_moves[i] = 0;
+	}
+
 	for(i = 0; i < MAX_CHARS && SQL_SUCCESS == SqlStmt_NextRow(stmt); i++) {
 		p.last_point.map = mapindex_name2id(last_map);
-		sd->found_char[i] = p.char_id;
+		sd->found_char[p.slot] = p.char_id;
 		j += mmo_char_tobuf(WBUFP(buf, j), &p);
+
+		// Sistema de mudar slot
+		// armazena a informação necessária para a sessão
+		sd->char_moves[p.slot] = p.character_moves;
 	}
-	for(; i < MAX_CHARS; i++)
-		sd->found_char[i] = -1;
 
 	memset(sd->new_name,0,sizeof(sd->new_name));
 
@@ -1111,7 +1131,7 @@ int mmo_char_fromsql(int char_id, struct mmo_charstatus *p, bool load_everything
 	                                "`str`,`agi`,`vit`,`int`,`dex`,`luk`,`max_hp`,`hp`,`max_sp`,`sp`,"
 	                                "`status_point`,`skill_point`,`option`,`karma`,`manner`,`party_id`,`guild_id`,`pet_id`,`homun_id`,`elemental_id`,`hair`,"
 	                                "`hair_color`,`clothes_color`,`weapon`,`shield`,`head_top`,`head_mid`,`head_bottom`,`last_map`,`last_x`,`last_y`,"
-	                                "`save_map`,`save_x`,`save_y`,`partner_id`,`father`,`mother`,`child`,`fame`,`rename`,`delete_date`,`robe`"
+	                                "`save_map`,`save_x`,`save_y`,`partner_id`,`father`,`mother`,`child`,`fame`,`rename`,`delete_date`,`robe`, `moves`"
 	                                " FROM `%s` WHERE `char_id`=? LIMIT 1", char_db)
 	   ||  SQL_ERROR == SqlStmt_BindParam(stmt, 0, SQLDT_INT, &char_id, 0)
 	   ||  SQL_ERROR == SqlStmt_Execute(stmt)
@@ -1167,6 +1187,7 @@ int mmo_char_fromsql(int char_id, struct mmo_charstatus *p, bool load_everything
 	   ||  SQL_ERROR == SqlStmt_BindColumn(stmt, 49, SQLDT_SHORT,  &p->rename, 0, NULL, NULL)
 	   ||  SQL_ERROR == SqlStmt_BindColumn(stmt, 50, SQLDT_UINT32, &p->delete_date, 0, NULL, NULL)
 	   ||  SQL_ERROR == SqlStmt_BindColumn(stmt, 51, SQLDT_SHORT,  &p->robe, 0, NULL, NULL)
+	   ||  SQL_ERROR == SqlStmt_BindColumn(stmt, 52, SQLDT_UINT32, &p->character_moves, 0, NULL, NULL)
 	  ) {
 		SqlStmt_ShowDebug(stmt);
 		SqlStmt_Free(stmt);
@@ -1827,7 +1848,13 @@ int mmo_char_tobuf(uint8 *buffer, struct mmo_charstatus *p)
 #endif
 #if PACKETVER != 20111116 //2011-11-16 wants 136, ask gravity.
 #if PACKETVER >= 20110928
-	WBUFL(buf,132) = bra_config.change_slot_system;  // change slot feature (0 = disabled, otherwise enabled)
+	// change slot feature (0 = disabled, otherwise enabled)
+		if(!char_move_enabled)
+			WBUFL(buf,132) = 0;
+		else if(char_moves_unlimited)
+			WBUFL(buf,132) = 1;
+		else
+			WBUFL(buf,132) = max(0, (int)p->character_moves);
 	offset += 4;
 #endif
 #if PACKETVER >= 20111025
@@ -4211,6 +4238,16 @@ int parse_char(int fd)
 			RFIFOSKIP(fd,10);
 		break;
 
+		// solicitação para movimentar o personagem
+		case 0x8d4:
+			if(RFIFOREST(fd) < 8)
+				return 0;
+
+			moveCharSlot(fd, sd, RFIFOW(fd, 2), RFIFOW(fd, 4));
+
+			RFIFOSKIP(fd,8);
+		break;
+
 		// unknown packet received
 			default:
 				ShowError(read_message("Source.char.char_parse_char_s8"), CL_WHITE, RFIFOW(fd,0), CL_RESET, CL_WHITE, ip2str(ipl, NULL), CL_RESET);
@@ -4498,6 +4535,69 @@ void pincode_decrypt(unsigned long userSeed, char* pin) {
 	}
 
 	sprintf(pin, "%d%d%d%d", pin[0], pin[1], pin[2], pin[3]);
+}
+
+//------------------------------------------------
+//Sistema de mudar slot
+//------------------------------------------------
+void moveCharSlot(int fd, struct char_session_data* sd, unsigned short from, unsigned short to) {
+	// mudaram muitas vezes, ou ele está desabilitado ?
+	if(!char_move_enabled || (!char_moves_unlimited && sd->char_moves[from] <= 0)) {
+		moveCharSlotReply(fd, sd, from, 1);
+		return;
+	}
+
+	// Não tem nenhum personagem de slot escolhido ?
+	if(sd->found_char[from] <= 0) {
+		moveCharSlotReply(fd, sd, from, 1);
+		return;
+	}
+
+	if(sd->found_char[to] > 0) {
+		// Tentando colocar char em um slot ocupado
+		if(char_movetoused) { // TODO:  verificar se o alvo está em processo de exclusão
+			// Admin usa troca em triângulo
+			if(	   SQL_ERROR == Sql_QueryStr(sql_handle, "START TRANSACTION")
+				|| SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `char_num`='%d' WHERE `char_id` = '%d'", char_db, to, sd->found_char[from])
+				|| SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `char_num`='%d' WHERE `char_id` = '%d'", char_db, from, sd->found_char[to])
+				|| SQL_ERROR == Sql_QueryStr(sql_handle, "COMMIT")
+				){
+				moveCharSlotReply(fd, sd, from, 1);
+				Sql_ShowDebug(sql_handle);
+				Sql_QueryStr(sql_handle,"ROLLBACK");
+				return;
+			}
+		}else{
+			// Admin não permite
+			moveCharSlotReply(fd, sd, from, 1);
+			return;
+		}
+	}else if(SQL_ERROR == Sql_Query(sql_handle, "UPDATE `%s` SET `char_num`='%d' WHERE `char_id`='%d'", char_db, to, sd->found_char[from])) {
+		Sql_ShowDebug(sql_handle);
+		moveCharSlotReply( fd, sd, from, 1 );
+		return;
+	}
+
+	if(!char_moves_unlimited) {
+		sd->char_moves[from]--;
+		Sql_Query(sql_handle, "UPDATE `%s` SET `moves`='%d' WHERE `char_id`='%d'", char_db, sd->char_moves[from], sd->found_char[from]);
+	}
+
+	// Personagem movido com êxito - tempo para notificar o cliente
+	moveCharSlotReply(fd, sd, from, 0);
+	mmo_char_send006b(fd, sd);
+}
+
+// razão
+// 0: successo
+// 1: falhou
+void moveCharSlotReply(int fd, struct char_session_data* sd, unsigned short index, short reason) {
+	WFIFOHEAD(fd,8);
+	WFIFOW(fd,0) = 0x8d5;
+	WFIFOW(fd,2) = 8;
+	WFIFOW(fd,4) = reason;
+	WFIFOW(fd,6) = sd->char_moves[index];
+	WFIFOSET(fd,8);
 }
 
 //------------------------------------------------
@@ -4826,6 +4926,12 @@ int char_config_read(const char *cfgName)
 			pincode_changetime = atoi(w2)*60*60*24;
 		} else if (strcmpi(w1, "pincode_maxtry") == 0) {
 			pincode_maxtry = atoi(w2);
+		} else if (strcmpi(w1, "char_move_enabled") == 0) {
+			char_move_enabled = config_switch(w2);
+		} else if (strcmpi(w1, "char_movetoused") == 0) {
+			char_movetoused = config_switch(w2);
+		} else if (strcmpi(w1, "char_moves_unlimited") == 0) {
+			char_moves_unlimited = config_switch(w2);
 		} else if (strcmpi(w1, "import") == 0) {
 			char_config_read(w2);
 		}

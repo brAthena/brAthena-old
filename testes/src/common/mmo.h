@@ -395,6 +395,9 @@ struct mmo_charstatus {
 	short rename;
 
 	time_t delete_date;
+
+	// Sistema mudança de slot
+	unsigned int character_moves;
 };
 
 typedef enum mail_status {

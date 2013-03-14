@@ -375,6 +375,7 @@ enum _sp {
 	SP_KILLERRID=121,
 	SP_KILLEDRID=122,
 	SP_SITTING=123,
+	SP_CHARMOVE=124,
 
 	// Mercenaries
 	SP_MERCFLEE=165, SP_MERCKILLS=189, SP_MERCFAITH=190,
@@ -436,9 +437,9 @@ enum _look {
 	LOOK_CLOTHES_COLOR,
 	LOOK_SHIELD,
 	LOOK_SHOES,
-	LOOK_BODY,
-	LOOK_FLOOR,
-	LOOK_ROBE,
+	LOOK_BODY,			//Purpose Unknown. Doesen't appear to do anything.
+	LOOK_RESET_COSTUMES,//Makes all headgear sprites on player vanish when activated.
+	LOOK_ROBE
 };
 
 // used by map_setcell()
