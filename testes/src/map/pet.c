@@ -533,6 +533,7 @@ int pet_catch_process2(struct map_session_data *sd, int target_id)
 
 	if(rnd()%10000 < pet_catch_rate) {
 		unit_remove_map(&md->bl,CLR_OUTSIGHT);
+		md->lootitem_count = 0;
 		status_kill(&md->bl);
 		clif_pet_roulette(sd,1);
 		intif_create_pet(sd->status.account_id,sd->status.char_id,pet_db[i].class_,mob_db(pet_db[i].class_)->lv,
