@@ -4421,8 +4421,6 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 				int researchskill_lv = pc_checkskill(sd,RA_RESEARCHTRAP);
 				if(researchskill_lv)
 					md.damage = md.damage * 20 * researchskill_lv / (skill_id == RA_CLUSTERBOMB?50:100);
-				else
-					md.damage = 0;
 			} else
 				md.damage = md.damage * 200 / (skill_id == RA_CLUSTERBOMB?50:100);
 
