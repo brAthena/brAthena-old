@@ -4388,6 +4388,9 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 		case HVAN_EXPLOSION:    //[orn]
 			md.damage = sstatus->max_hp * (50 + 50 * skill_lv) / 100;
 			break ;
+		case NPC_DISSONANCE:
+			md.damage = 30 + skill_lv * 10;
+			break;
 		case ASC_BREAKER:
 			md.damage = 500+rnd()%500 + 5*skill_lv * sstatus->int_;
 			nk|=NK_IGNORE_FLEE|NK_NO_ELEFIX; //These two are not properties of the weapon based part.
