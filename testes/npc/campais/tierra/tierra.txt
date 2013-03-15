@@ -12,7 +12,7 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.3/1.0/1.3                         |
+//   | Versões eA/rA/brA: 1.3/1.0/1.4                         |
 //   |--------------------------------------------------------|
 //   | Descrição: NPC's de Tierra 01 e 02.                    |
 //   | - NPC's da Sala de Espera                              |
@@ -23,6 +23,7 @@
 //   | 1.1 Tradução PT-BR [Tyler]                             |
 //   | 1.2 Otimizações [Holy & Hold]                          |
 //   | 1.3 Arquivos unidos [Holy & Hold]                      |
+//   | 1.4 Feitas algumas correções [Hold]                    |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -121,7 +122,7 @@ OnEnable:
 		donpcevent .@doev$[.@i];
 		
 	for(set .@i, 0; .@i < getarraysize(.@disb$); set .@i, .@i+1)
-		donpcevent .@disb$[.@i];
+		disablenpc .@disb$[.@i];
 	
 	end;
 
@@ -835,7 +836,7 @@ OnEnable:
 		donpcevent .@doev$[.@i];
 		
 	for(set .@i, 0; .@i < getarraysize(.@disb$); set .@i, .@i+1)
-		donpcevent .@disb$[.@i];
+		disablenpc .@disb$[.@i];
 	end;
 
 OnGuillaumeQuit:
@@ -884,7 +885,7 @@ OnMyMobDead:
 		donpcevent "Terapeuta de Batalha#a02_b::OnStop";
 		set $@TierraBG2_Victory, 2;
 		enablenpc "Vintenar Guillaume#a02_a";
-		enablenpc "Croix Vintenar#a02_b";
+		enablenpc "Vintenar Croix#a02_b";
 		mapannounce "bat_a02", "Vintenar Croix Swandery: Nós destruímos os Suprimentos dos Guillaumes. Nós vencemos esta! Uau!",bc_map,"0xFFCE00";
 		bg_warp $@TierraBG2_id1,"bat_a02",50,374;
 		bg_warp $@TierraBG2_id2,"bat_a02",42,16;
@@ -907,7 +908,7 @@ OnMyMobDead:
 		donpcevent "Terapeuta de Batalha#a02_b::OnStop";
 		set $@TierraBG2_Victory, 1;
 		enablenpc "Vintenar Guillaume#a02_a";
-		enablenpc "Croix Vintenar#a02_b";
+		enablenpc "Vintenar Croix#a02_b";
 		mapannounce "bat_a02", "Vintenar Guillaume Axl Rose : Nós destruímos os Suprimentos dos Croixs. Nós vencemos esta! Uau!",bc_map,"0xFFCE00";
 		bg_warp $@TierraBG2_id1,"bat_a02",50,374;
 		bg_warp $@TierraBG2_id2,"bat_a02",42,16;
@@ -1418,48 +1419,43 @@ bat_a02,53,377,3	script	Vintenar Guillaume#a02_a	419,{
 			mes "Tome esta derrota somente como lição, na próxima vez você irá se sair vitorioso com certeza.";
 			close2;
 			getitem 7828,((.@medal_gap) ? 1 : .@medal_gap);		// BF_Badge1
+		}
 	}
-	}
-	else {
 	bg_leave;
 	warp "bat_room",154,150;
 	end;
-	}
 OnInit:
 	disablenpc "Vintenar Guillaume#a02_a";
 	end;
 }
 
-bat_a02,45,19,3	script	Croix Vintenar#a02_b	415,{
+bat_a02,45,19,3	script	Vintenar Croix#a02_b	415,{
 	if (getcharid(4) == $@TierraBG2_id2) {
 		set .@your_medal,countitem(7828);
 		set .@medal_gap, 500 - .@your_medal;
 		if ($@TierraBG2_Victory == 2) {
-				mes "[Swandery]";
-				mes "Abençoado Croix!";
-				mes "Vamos comemorar a nossa gloriosa vitória!";
-				mes strcharinfo(0)+", isto é um sinal que reflete a nossa vitória.";
-				close2;
-				getitem 7828,((.@medal_gap > 2) ? 3 : .@medal_gap); //BF_Badge1
-
+			mes "[Swandery]";
+			mes "Abençoado Croix!";
+			mes "Vamos comemorar a nossa gloriosa vitória!";
+			mes strcharinfo(0)+", isto é um sinal que reflete a nossa vitória.";
+			close2;
+			getitem 7828,((.@medal_gap > 2) ? 3 : .@medal_gap); //BF_Badge1
 		}
 		else {
-				mes "[Swandery]";
-				mes "Oh, "+strcharinfo(0)+". Não fique triste.";
-				mes "Mesmo que não tenhamos vencido, nós demos nosso melhor.";
-				mes "Este é o majestoso presente do nosso Croix e por favor, não esqueça esta batalha. Nós ganharemos com toda certeza a próxima batalha.";
-				close2;
-				getitem 7828,((.@medal_gap) ? 1 : .@medal_gap); //BF_Badge1
-			}
+			mes "[Swandery]";
+			mes "Oh, "+strcharinfo(0)+". Não fique triste.";
+			mes "Mesmo que não tenhamos vencido, nós demos nosso melhor.";
+			mes "Este é o majestoso presente do nosso Croix e por favor, não esqueça esta batalha. Nós ganharemos com toda certeza a próxima batalha.";
+			close2;
+			getitem 7828,((.@medal_gap) ? 1 : .@medal_gap); //BF_Badge1
+		}
 	}
-	else {
 	bg_leave;
 	warp "bat_room",154,150;
 	end;
-	}
 
 OnInit:
-	disablenpc "Croix Vintenar#a02_b";
+	disablenpc "Vintenar Croix#a02_b";
 	end;
 }
 
