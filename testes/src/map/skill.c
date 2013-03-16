@@ -849,7 +849,7 @@ int skillnotok_hom(uint16 skill_id, struct homun_data *hd)
 			case MH_SONIC_CRAW:
 			case MH_SILVERVEIN_RUSH:
 			case MH_MIDNIGHT_FRENZY:
-			    if (!(sce->val1 == MH_MD_FIGHTING)){
+			    if (sce && !(sce->val1 == MH_MD_FIGHTING)){
 				    clif_colormes(sd,COLOR_RED,"Homon need to be in fighting mode to use that skill");
 				    return 1;
 			    }
@@ -858,7 +858,7 @@ int skillnotok_hom(uint16 skill_id, struct homun_data *hd)
 			case MH_TINDER_BREAKER:
 			case MH_CBC:
 			case MH_EQC:
-			    if (!(sce->val1 == MH_MD_GRAPPLING)){
+			    if (sce && !(sce->val1 == MH_MD_GRAPPLING)){
 				    clif_colormes(sd,COLOR_RED,"Homon need to be in grappling mode to use that skill");
 				    return 1;
 			    }
@@ -868,16 +868,16 @@ int skillnotok_hom(uint16 skill_id, struct homun_data *hd)
 		    //now let really be specific
 		    switch(skill_id){
 			case MH_TINDER_BREAKER:
-			    if(sce->val3 == MH_EQC && (gettick() - sce->val4 <= 2000)) break;
+			    if(sce && sce->val3 == MH_EQC && (gettick() - sce->val4 <= 2000)) break;
 			    else break; //im not a combo what should I do ??
-			case MH_CBC: if(sce->val3 == MH_TINDER_BREAKER && (gettick() - sce->val4 <= 2000)) break;
-			case MH_EQC: if(sce->val3 == MH_CBC && (gettick() - sce->val4 <= 2000)) break;
+			case MH_CBC: if(sce && sce->val3 == MH_TINDER_BREAKER && (gettick() - sce->val4 <= 2000)) break;
+			case MH_EQC: if(sce && sce->val3 == MH_CBC && (gettick() - sce->val4 <= 2000)) break;
 
 			case MH_SONIC_CRAW:
-			    if(sce->val3 == MH_MIDNIGHT_FRENZY && (gettick() - sce->val4 <= 2000)) break;
+			    if(sce && sce->val3 == MH_MIDNIGHT_FRENZY && (gettick() - sce->val4 <= 2000)) break;
 			    else break; //im not a combo what should I do ??
-			case MH_SILVERVEIN_RUSH: if(sce->val3 == MH_SONIC_CRAW && (gettick() - sce->val4 <= 2000)) break;
-			case MH_MIDNIGHT_FRENZY: if(sce->val3 == MH_SILVERVEIN_RUSH && (gettick() - sce->val4 <= 2000)) break;
+			case MH_SILVERVEIN_RUSH: if(sce && sce->val3 == MH_SONIC_CRAW && (gettick() - sce->val4 <= 2000)) break;
+			case MH_MIDNIGHT_FRENZY: if(sce && sce->val3 == MH_SILVERVEIN_RUSH && (gettick() - sce->val4 <= 2000)) break;
 			default:
 			    return 1;
 		    }
