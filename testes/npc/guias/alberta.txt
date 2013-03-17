@@ -361,5 +361,5 @@ alberta,23,238,4	script	Guia#01alberta	105,{
 	}
 }
 
-alberta,120,60,3	duplicate(Guide#01alberta)	Guia#02alberta	105
-alberta,184,143,4	duplicatr(Guide#01alberta)	Guia#03alberta	105,{}
+alberta,120,60,3	duplicate(Guia#01alberta)	Guia#02alberta	105
+alberta,184,143,4	duplicatr(Guia#01alberta)	Guia#03alberta	105,{}
