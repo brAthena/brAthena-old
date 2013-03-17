@@ -3762,7 +3762,6 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 		case NC_PILEBUNKER:
 		case NC_VULCANARM:
 		case NC_COLDSLOWER:
-		case NC_ARMSCANNON:
 			if(sd) pc_overheat(sd,1);
 		case RK_WINDCUTTER:
 			skill_attack(BF_WEAPON,src,src,bl,skill_id,skill_lv,tick,flag|SD_ANIMATION);
@@ -3959,6 +3958,7 @@ int skill_castend_damage_id(struct block_list *src, struct block_list *bl, uint1
 		case RA_WUGDASH:
 		case NC_SELFDESTRUCTION:
 		case NC_AXETORNADO:
+		case NC_ARMSCANNON:
 		case GC_ROLLINGCUTTER:
 		case GC_COUNTERSLASH:
 		case LG_MOONSLASHER:
