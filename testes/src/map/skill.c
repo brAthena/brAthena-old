@@ -1115,6 +1115,11 @@ int skill_additional_effect(struct block_list *src, struct block_list *bl, uint1
 		case AS_SONICBLOW:
 			sc_start(bl,SC_STUN,(2*skill_lv+10),skill_lv,skill_get_time2(skill_id,skill_lv));
 			break;
+#ifdef RENEWAL
+		case NJ_KAENSIN:
+			unit_set_walkdelay(bl, tick, skill_get_unit_interval(skill_id) * 2, 1);
+			break;
+#endif
 
 		case WZ_FIREPILLAR:
 			unit_set_walkdelay(bl, tick, skill_get_time2(skill_id, skill_lv), 1);
