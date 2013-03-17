@@ -12,14 +12,14 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 1.7/2.2/1.1                         |
+//   | Versões eA/rA/brA: 1.7/2.2/1.2                         |
 //   |--------------------------------------------------------|
 //   | Descrição: Instância do Santuário Selado               |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Protimus]                        |
 //   | 1.1 Tradução PT-BR [Avassalador]                       |
-// 	 | 1.2 Otimizações [Protimus]                             |
+//   | 1.2 Otimizações [Protimus]                             |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -116,7 +116,7 @@ monk_test,309,146,3	script	Frei Patrick#edq	412,{
 					if (.@instance < 0) {
 						mes "[Frei Patrick]";
 						mes "O nome do grupo é  "+.@p_name$+"";
-						mes "O nome do líder é "+.@p_reader$+"";
+						mes "O nome do líder é "+.@p_leader$+"";
 						mes "Hum... Mais parece que temos um problema aqui... Irei checar rapidamente. Por-favor aguarde.";
 					} else {
 
@@ -169,7 +169,7 @@ monk_test,309,146,3	script	Frei Patrick#edq	412,{
 
 						mes "[Frei Patrick]";
 						mes "O nome do grupo é "+.@p_name$+"";
-						mes "O nome do líder é "+.@p_reader$+"";
+						mes "O nome do líder é "+.@p_leader$+"";
 						mes "Ok... Irei ajustar o selo do santuário para você e seu grupo possam entrar..";
 						next;
 						mes "[Frei Patrick]";

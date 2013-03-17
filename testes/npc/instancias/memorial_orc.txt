@@ -295,7 +295,7 @@ OnMyMobDead:
 		} else if ((.@mob_ran > 26) && (.@mob_ran < 29)) {
 			areamonster "1@orcs",41,91,51,81,"Grande Orc",1213,.@mob_dead_num,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";
 			if (rand(1,10) == 9) {
-				instance_announce 0, "Onde estão os Grand Orc's!? Precisamos deles para deter os inimigos!",bc_map,"0xff4444";
+				instance_announce 0, "Onde estão os Grandes Orc's!? Precisamos deles para deter os inimigos!",bc_map,"0xff4444";
 			}
 		} else {
 			areamonster "1@orcs",17,187,27,177,"Grande Orc",1213,.@mob_dead_num,instance_npcname("#Monstros Ressuscitados1", instance_id())+"::OnMyMobDead";

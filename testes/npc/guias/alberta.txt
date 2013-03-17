@@ -24,7 +24,7 @@
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-alberta,23,238,4	script	Guide#01alberta	105,{
+alberta,23,238,4	script	Guia#01alberta	105,{
 	cutin "prt_soldier",2;
 	mes "[Guia de Alberta]";
 	mes "Welcome to ^8B4513Alberta^000000,";
@@ -361,5 +361,5 @@ alberta,23,238,4	script	Guide#01alberta	105,{
 	}
 }
 
-alberta,120,60,3	duplicate(Guide#01alberta)	Guide#02alberta	105
-alberta,184,143,4	duplicate(Guide#01alberta)	Guide#03alberta	105,{}
+alberta,120,60,3	duplicate(Guide#01alberta)	Guia#02alberta	105
+alberta,184,143,4	duplicatr(Guide#01alberta)	Guia#03alberta	105,{}
