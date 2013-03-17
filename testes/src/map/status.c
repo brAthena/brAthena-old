@@ -2930,7 +2930,7 @@ int status_calc_pc_(struct map_session_data *sd, bool first)
 #ifndef RENEWAL
 	if(!battle_config.weapon_defense_type && status->def > battle_config.max_def) {
 		status->def2 += battle_config.over_def_bonus*(status->def -battle_config.max_def);
-		status->def = (unsigned char)battle_config.max_def;
+		status->def = (signed short)battle_config.max_def;
 	}
 #endif
 
@@ -2950,7 +2950,7 @@ int status_calc_pc_(struct map_session_data *sd, bool first)
 #ifndef RENEWAL
 	if(!battle_config.magic_defense_type && status->mdef > battle_config.max_def) {
 		status->mdef2 += battle_config.over_def_bonus*(status->mdef -battle_config.max_def);
-		status->mdef = (signed char)battle_config.max_def;
+		status->mdef = (signed short)battle_config.max_def;
 	}
 #endif
 
