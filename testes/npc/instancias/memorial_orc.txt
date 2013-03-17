@@ -32,7 +32,7 @@ gef_fild10,242,202,0	script	Memorial Orc	406,{
 	set .@ins_mas,getpartyleader(.@party_id,1);
 	set .@p_name$,getpartyname(.@party_id);
 	set .@p_leader$,rid2name(.@ins_mas);
-	set .@md_name$,"Orc's Memory";
+	set .@md_name$,"Memorial Orc";
 
 	if(!instance_check_party(.@party_id,2,30,80)){
 		mes "Me desculpe mas seu grupo não cumpre o requisíto de nível necessário.";
@@ -49,7 +49,7 @@ gef_fild10,242,202,0	script	Memorial Orc	406,{
 				set .@instance,instance_create(.@md_name$,.@party_id);
 				if (.@instance < 0) {
 					mes "Nome do Grupo: "+.@p_name$+"";
-					mes "Líder do Grupo: "+.@p_reader$+"";
+					mes "Líder do Grupo: "+.@p_leader$+"";
 					mes "^0000ff"+.@md_name$+" ^000000 - Falha ao reservar.";
 					close;
 				} else {

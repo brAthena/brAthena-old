@@ -19,13 +19,21 @@
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Protimus]                        |
 //   | 1.1 Tradução PT-BR [Avassalador]                       |
+// 	 | 1.2 Otimizações [Protimus]                             |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
 // Entrada da Catacumba Selada
 //============================================================
-monk_test,309,146,3	script	Frei Patrick#edq	412,{
+monk_test,309,146,3	script	Frei Patrick#edq	412,{	
+
+	set .@party_id,getcharid(1);
+	set .@ins_bapho_check,getpartyleader(.@party_id,1);
+	set .@p_name$,getpartyname(.@party_id);
+	set .@p_leader$,rid2name(.@ins_bapho_check);
+	set .@md_name$,"Santuário Selado";
+	
 	cutin "ins_cata_pri_n",2;
 	mes "[Frei Patrick]";
 	mes "A paz do mundo jamais pode durar para sempre... As mãos do Mal estão chegando ao mundo novamente...";
@@ -89,17 +97,13 @@ monk_test,309,146,3	script	Frei Patrick#edq	412,{
 		break;
 	case 2:
 		if (BaseLevel > 74) {
-
 			set .@party_id,getcharid(1);
-
 			mes "[Frei Patrick]";
 			mes "Está certo que você irá ao santuário e selar Baphomet novamente?";
 			next;
 
 			// 12 horas de intervalo.
 			set .@ins_bapho_check,checkquest(3040,PLAYTIME);
-			// Limite de duas horas.
-			//set .@ins_bapho_check2,checkquest(3045,PLAYTIME);
 
 			if(!instance_check_party(.@party_id,2,75)){
 				mes "Me desculpe mas seu grupo não cumpre os requisitos necesários do Santuário Selado.";
@@ -108,11 +112,11 @@ monk_test,309,146,3	script	Frei Patrick#edq	412,{
 
 			if (.@ins_bapho_check == -1) {
 				if (getpartyleader(.@party_id,2) == getcharid(0)) {
-					set .@instance, instance_create("Sealed Catacombs", .@party_id);
+				set .@instance,instance_create(.@md_name$,.@party_id);
 					if (.@instance < 0) {
 						mes "[Frei Patrick]";
-						mes "O nome do grupo é  "+getpartyname(.@party_id)+"...";
-						mes "O nome do líder é "+.@partymembername$[0]+"...";
+						mes "O nome do grupo é  "+.@p_name$+"";
+						mes "O nome do líder é "+.@p_reader$+"";
 						mes "Hum... Mais parece que temos um problema aqui... Irei checar rapidamente. Por-favor aguarde.";
 					} else {
 
@@ -164,8 +168,8 @@ monk_test,309,146,3	script	Frei Patrick#edq	412,{
 						donpcevent instance_npcname("ins_1f_spawn_mobs", instance_id())+"::OnEnable";
 
 						mes "[Frei Patrick]";
-						mes "O nome do grupo é "+getpartyname(.@party_id)+"...";
-						mes "O nome do líder é "+.@partymembername$[0]+"...";
+						mes "O nome do grupo é "+.@p_name$+"";
+						mes "O nome do líder é "+.@p_reader$+"";
 						mes "Ok... Irei ajustar o selo do santuário para você e seu grupo possam entrar..";
 						next;
 						mes "[Frei Patrick]";

@@ -43,10 +43,10 @@
 1@nyd	mapflag	partylock
 2@nyd	mapflag	partylock
 
-// Labirinto da Floresta Mística
+// Labirinto da Neblina
 1@mist	mapflag	partylock
 
-// Caverna de Octopus
+// Caverna do Polvo
 1@cash	mapflag	partylock
 
 // Canalização
