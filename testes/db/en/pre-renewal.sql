@@ -6087,7 +6087,7 @@ REPLACE INTO `item_db` VALUES(5491,'Hat_Of_Outlaw','Bandit Hat','5',20,NULL,'800
 REPLACE INTO `item_db` VALUES(5492,'Boys_Cap_I','Student Cap','5',0,NULL,'0',NULL,5,NULL,0,0xFFFFFFFE,7,2,256,NULL,0,0,102,'bonus bMdef,3; bonus2 bAddRace,RC_DemiHuman,5;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(5493,'Ulle_Cap_I','Ulles Cap','5',0,NULL,'0',NULL,3,NULL,0,0xFFFFFFFE,7,2,256,NULL,0,0,254,'bonus bDex,2; bonus bAgi,1;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(5494,'Spinx_Helm_I','Sphinx Hat','5',0,NULL,'0',NULL,5,NULL,0,0x00004082,7,2,257,NULL,0,0,137,'bonus bStr,5;',NULL,NULL);
-REPLACE INTO `item_db` VALUES(5495,'Power_Of_Thor','Power Of Thor','5',20,NULL,'100',NULL,6,NULL,1,0xFFFFFFFF,7,2,256,NULL,75,1,493,'bonus bInt,1; bonus bDex,1; bonus bMdef,3; bonus bFlee,5;',NULL,NULL);
+REPLACE INTO `item_db` VALUES(5495,'Power_Of_Thor','Power Of Thor','5',20,NULL,'100',NULL,6,NULL,1,0xFFFFFFFF,7,2,256,NULL,75,1,493,'bonus bAllStats,5; bonus bFlee,5;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(5496,'Dice_Hat','Dice Hat','5',20,NULL,'300',NULL,3,NULL,0,0xFFFFFFFF,7,2,256,NULL,50,0,494,'bonus bLuk, 4;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(5497,'King_Tiger_Doll_Hat','King Tiger Doll Hat','5',20,NULL,'400',NULL,3,NULL,1,0xFFFFFFFE,7,2,256,NULL,30,1,495,'bonus bStr, 2;',NULL,NULL);
 REPLACE INTO `item_db` VALUES(5498,'Wondering_Wolf_Helm','Wandering Wolf Helm','5',20,NULL,'600',NULL,5,NULL,0,0xFFFFFFFE,7,2,768,NULL,50,0,490,'bonus bVit, 5; bonus bFlee, 10;',NULL,NULL);
