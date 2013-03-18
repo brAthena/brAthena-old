@@ -5655,6 +5655,7 @@ static const struct _battle_data {
 	{ "max_parameter",                      &battle_config.max_parameter,                   99,     10,     10000,          },
 	{ "max_baby_parameter",                 &battle_config.max_baby_parameter,              80,     10,     10000,          },
 	{ "max_def",                            &battle_config.max_def,                         99,     0,      INT_MAX,        },
+	{ "max_mdef",                           &battle_config.max_mdef,                        99,     0,      INT_MAX,        },
 	{ "over_def_bonus",                     &battle_config.over_def_bonus,                  0,      0,      1000,           },
 	{ "skill_log",                          &battle_config.skill_log,                       BL_NUL, BL_NUL, BL_ALL,         },
 	{ "battle_log",                         &battle_config.battle_log,                      0,      0,      1,              },
@@ -6098,8 +6099,11 @@ void battle_adjust_conf()
 	battle_config.max_walk_speed = 100*DEFAULT_WALK_SPEED/battle_config.max_walk_speed;
 	battle_config.max_cart_weight *= 10;
 
-	if(battle_config.max_def > 100 && !battle_config.weapon_defense_type) // added by [Skotlex]
-		battle_config.max_def = 100;
+	if(battle_config.max_def > 99 && !battle_config.weapon_defense_type) // added by [Skotlex]
+		battle_config.max_def = 99;
+	
+	if(battle_config.max_mdef > 99 && !battle_config.magic_defense_type)
+		battle_config.max_mdef = 99;
 
 	if(battle_config.min_hitrate > battle_config.max_hitrate)
 		battle_config.min_hitrate = battle_config.max_hitrate;
