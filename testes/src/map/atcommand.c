@@ -1038,7 +1038,7 @@ ACMD_FUNC(jobchange)
 		return -1;
 	}
 
-	if(pc_jobchange(sd, job, upper) == 0 && !pc_isriding(sd) || !pc_isridingdragon(sd) && job != 7 && job != 14 && job != 4008 && job != 4015)
+	if(pc_jobchange(sd, job, upper) == 0 && (!pc_isriding(sd) || !pc_isridingdragon(sd)) && (job != 7 && job != 14 && job != 4008 && job != 4015))
 		clif_status_load(&sd->bl,SI_RIDING,0);
 	return 0;
 }
@@ -6798,7 +6798,7 @@ ACMD_FUNC(showmobs)
 ACMD_FUNC(homlevel)
 {
 	TBL_HOM *hd;
-	int level = 0, i = 0;
+	int level = 0;
 
 	nullpo_retr(-1, sd);
 

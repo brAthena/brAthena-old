@@ -10136,13 +10136,13 @@ void clif_parse_EquipItem(int fd,struct map_session_data *sd)
 	if(index < 0 || index >= MAX_INVENTORY)
 		return; //Out of bounds check.
 
-	if(sd->npc_id)
+	if(sd->npc_id) {
 		if (!sd->npc_item_flag)
 			return;
-	else if (sd->state.storage_flag || sd->sc.opt1)
-		; //You can equip/unequip stuff while storage is open/under status changes
+	else if (sd->state.storage_flag || sd->sc.opt1); //You can equip/unequip stuff while storage is open/under status changes
 	else if (pc_cant_act2(sd))
 		return;
+	}
 
 	if(!sd->status.inventory[index].identify) {
 		clif_equipitemack(sd,index,0,0);    // fail
@@ -10176,16 +10176,15 @@ void clif_parse_UnequipItem(int fd,struct map_session_data *sd)
 		return;
 	}
 
-	if(sd->npc_id)
+	if(sd->npc_id) {
 		if (!sd->npc_item_flag)
 			return;
-	else if (sd->state.storage_flag || sd->sc.opt1)
-		; //You can equip/unequip stuff while storage is open/under status changes
+	else if (sd->state.storage_flag || sd->sc.opt1); //You can equip/unequip stuff while storage is open/under status changes
 	else if (pc_cant_act2(sd))
 		return;
-
+	}
+	
 	index = RFIFOW(fd,2)-2;
-
 	pc_unequipitem(sd,index,1);
 }
 
@@ -10716,7 +10715,7 @@ void clif_parse_UseSkillToId(int fd, struct map_session_data *sd)
 		return;
 	}
 
-	if(pc_has_permission(sd, PC_PERM_NOT_USE_SKILL) || pc_cant_act(sd) && skill_id != RK_REFRESH && !(skill_id == SR_GENTLETOUCH_CURE && (sd->sc.opt1 == OPT1_STONE || sd->sc.opt1 == OPT1_FREEZE || sd->sc.opt1 == OPT1_STUN)))
+	if((pc_has_permission(sd, PC_PERM_NOT_USE_SKILL) || pc_cant_act(sd)) && (skill_id != RK_REFRESH) && !(skill_id == SR_GENTLETOUCH_CURE && (sd->sc.opt1 == OPT1_STONE || sd->sc.opt1 == OPT1_FREEZE || sd->sc.opt1 == OPT1_STUN)))
 		return;
 
 	// Whether skill fails or not is irrelevant, the char ain't idle. [Skotlex]
