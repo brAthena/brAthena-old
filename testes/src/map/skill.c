@@ -5120,7 +5120,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 		case AL_DECAGI:
 		case MER_DECAGI:
 			clif_skill_nodamage(src, bl, skill_id, skill_lv,
-			                    sc_start(bl, type, (40 + skill_lv * 2 + (status_get_lv(src) + sstatus->int_)/5), skill_lv, skill_get_time(skill_id,skill_lv)));
+			                    sc_start(bl, type, (50 + skill_lv * 3 + (status_get_lv(src) + sstatus->int_)/5), skill_lv, skill_get_time(skill_id,skill_lv)));
 			break;
 
 		case AL_CRUCIS:
@@ -6593,8 +6593,8 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 						case SC_DONTFORGETME:
 						case SC_FORTUNE:
 						case SC_SERVICE4U:
-							if(tsc->data[i]->val4)   //val4 = out-of-song-area
-								continue;
+							if(tsc->data[i]->val4==0)
+								continue; //if in song-area don't end it
 							break;
 						case SC_ASSUMPTIO:
 							if(bl->type == BL_MOB)
@@ -11294,11 +11294,10 @@ static int skill_unit_onplace(struct skill_unit *src, struct block_list *bl, uns
 			if(!sc) return 0;
 			if(!sce)
 				sc_start4(bl,type,100,sg->skill_lv,sg->val1,sg->val2,0,sg->limit);
-			else if(sce->val4 == 1) {
-				//Readjust timers since the effect will not last long.
-				sce->val4 = 0;
+			else if(sce->val4 == 1) { //Readjust timers since the effect will not last long.
+				sce->val4 = 0; //remove the mark that we stepped out
 				delete_timer(sce->timer, status_change_timer);
-				sce->timer = add_timer(tick+sg->limit, status_change_timer, bl->id, type);
+				sce->timer = add_timer(tick+sg->limit, status_change_timer, bl->id, type); //put duration back to 3min
 			}
 			break;
 
@@ -15682,7 +15681,10 @@ int skill_unit_timer(int tid, unsigned int tick, int id, intptr_t data)
 
 static int skill_unit_temp[20];  // temporary storage for tracking skill unit skill ids as players move in/out of them
 /*==========================================
- *
+ * flag :
+ *	1 : store that skill_unit in array
+ *	2 : clear that skill_unit
+ *	4 : call_on_left
  *------------------------------------------*/
 int skill_unit_move_sub(struct block_list *bl, va_list ap)
 {

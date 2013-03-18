@@ -3073,14 +3073,15 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 				ATK_ADDRATE(sc->data[SC_GLOOMYDAY_SK]->val2);
 			if(sc->data[SC_EDP]) {
 				switch(skill_id) {
-					case AS_SPLASHER:       case AS_VENOMKNIFE:
-#ifdef RENEWAL
-					case AS_GRIMTOOTH:
-#endif
-						break;
+					case AS_SPLASHER:
 #ifndef RENEWAL_EDP
-					case ASC_BREAKER:       case ASC_METEORASSAULT: break;
+					case ASC_BREAKER:       case ASC_METEORASSAULT:
 #else
+					case AS_GRIMTOOTH:	case AS_VENOMKNIFE:
+#endif
+					break; //skills above have no effect with edp
+
+#ifdef RENEWAL_EDP
 					case AS_SONICBLOW:
 					case ASC_BREAKER:
 					case GC_COUNTERSLASH:
@@ -5831,8 +5832,6 @@ static const struct _battle_data {
 	{ "status_cast_cancel",                 &battle_config.sc_castcancel,                   BL_NUL, BL_NUL, BL_ALL,         },
 	{ "pc_status_def_rate",                 &battle_config.pc_sc_def_rate,                  100,    0,      INT_MAX,        },
 	{ "mob_status_def_rate",                &battle_config.mob_sc_def_rate,                 100,    0,      INT_MAX,        },
-	{ "pc_luk_status_def",                  &battle_config.pc_luk_sc_def,                   300,    1,      INT_MAX,        },
-	{ "mob_luk_status_def",                 &battle_config.mob_luk_sc_def,                  300,    1,      INT_MAX,        },
 	{ "pc_max_status_def",                  &battle_config.pc_max_sc_def,                   100,    0,      INT_MAX,        },
 	{ "mob_max_status_def",                 &battle_config.mob_max_sc_def,                  100,    0,      INT_MAX,        },
 	{ "sg_miracle_skill_ratio",             &battle_config.sg_miracle_skill_ratio,          1,      0,      10000,          },
