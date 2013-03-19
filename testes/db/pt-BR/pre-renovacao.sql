@@ -4380,7 +4380,7 @@ REPLACE INTO `item_db` VALUES(1647,'Croce_Staff','Cajado da Cruz','4',20,NULL,'5
 REPLACE INTO `item_db` VALUES(1648,'Staff_Of_Bordeaux','Cajado do Maestro','4',20,NULL,'500',30,NULL,1,0,0x00010204,2,2,2,4,50,1,10,'bonus bMatkRate,15; bonus bInt,2; bonus bDex,1; if(getskilllv("SA_DRAGONOLOGY")==5) { bonus bUseSPrate,-15; bonus bInt,3; }',NULL,NULL);
 REPLACE INTO `item_db` VALUES(1701,'Bow','Arco','4',1000,NULL,'500',15,NULL,5,3,0x000A0848,7,2,34,1,4,1,11,NULL,NULL,NULL);
 REPLACE INTO `item_db` VALUES(1702,'Bow_','Arco','4',1000,NULL,'500',15,NULL,5,4,0x000A0848,7,2,34,1,4,1,11,NULL,NULL,NULL);
-REPLACE INTO `item_db` VALUES(1703,'Bow__','Arco','4',1000,NULL,'0',15,NULL,5,0,0x000A0848,7,2,34,1,4,1,11,'bonus2 bAddDamageClass,1002,500; bonus2 bAddDamageClass,1113,500; bonus2 bAddDamageClass,1031,500; bonus2 bAddDamageClass,1242,500;',NULL,NULL);
+REPLACE INTO `item_db` VALUES(1703,'Bow__','Arco','4',1000,NULL,'0',15,NULL,5,0,0x000A0848,7,2,34,1,4,1,11,NULL,NULL,NULL);
 REPLACE INTO `item_db` VALUES(1704,'Composite_Bow','Arco Composto','4',2500,NULL,'600',29,NULL,5,3,0x000A0848,7,2,34,1,4,1,11,NULL,NULL,NULL);
 REPLACE INTO `item_db` VALUES(1705,'Composite_Bow_','Arco Composto','4',2500,NULL,'600',29,NULL,5,4,0x000A0848,7,2,34,1,4,1,11,NULL,NULL,NULL);
 REPLACE INTO `item_db` VALUES(1706,'Composite_Bow__','Arco Composto','4',2500,NULL,'600',29,NULL,5,0,0x000A0848,7,2,34,1,4,1,11,NULL,NULL,NULL);
