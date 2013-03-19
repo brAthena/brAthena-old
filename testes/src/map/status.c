@@ -4526,7 +4526,7 @@ static unsigned short status_calc_batk(struct block_list *bl, struct status_chan
 	if(sc->data[SC_FULL_SWING_K])
 		batk += sc->data[SC_FULL_SWING_K]->val1;
 	if(sc->data[SC_ODINS_POWER])
-		batk += 70;
+		batk += 40 + 30 * sc->data[SC_ODINS_POWER]->val1;
 	if(sc->data[SC_ASH] && (bl->type==BL_MOB)) {
 		if(status_get_element(bl) == ELE_WATER) //water type
 			batk /= 2;

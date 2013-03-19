@@ -5489,6 +5489,7 @@ int skill_castend_nodamage_id(struct block_list *src, struct block_list *bl, uin
 		case SR_LIGHTNINGWALK:
 		case SR_GENTLETOUCH_ENERGYGAIN:
 		case GN_CARTBOOST:
+		case ALL_ODINS_POWER:
 		case KO_MEIKYOUSISUI:
 			clif_skill_nodamage(src,bl,skill_id,skill_lv,
 			                    sc_start(bl,type,100,skill_lv,skill_get_time(skill_id,skill_lv)));
