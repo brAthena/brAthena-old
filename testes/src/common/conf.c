@@ -174,8 +174,18 @@ void read_brathena_config(void)
 		bra_config.max_rename_char = tmpint;
 	if(config_lookup_string(&configbrA, "lang_file", &tmpchar))                 // Server lang
 		strncpy(bra_config.lang_file, tmpchar, sizeof(bra_config.lang_file));
-	if(config_lookup_int(&configbrA, "change_slot_system", &tmpint))            // Change slot system
-		bra_config.change_slot_system = tmpint;
+	
+	//------------------------------------------------------------------------
+	// Sistema Vip Oficial
+	//------------------------------------------------------------------------
+	if(config_lookup_int(&configbrA, "enable_system_vip", &tmpint))
+		bra_config.enable_system_vip = tmpint;
+	if(config_lookup_int(&configbrA, "level_vip", &tmpint))
+		bra_config.level_vip = tmpint;
+	if(config_lookup_int(&configbrA, "extra_exp_vip", &tmpint))
+		bra_config.extra_exp_vip = tmpint;
+	if(config_lookup_int(&configbrA, "penalty_exp_vip", &tmpint))
+		bra_config.penalty_exp_vip = tmpint;
 
 	config_destroy(&configbrA);
 }

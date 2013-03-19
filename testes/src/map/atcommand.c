@@ -7327,6 +7327,12 @@ ACMD_FUNC(rates)
 
 	nullpo_ret(sd);
 	memset(buf, '\0', sizeof(buf));
+	
+	// Adição de rates VIP.
+	if(bra_config.enable_system_vip && pc_isvip(sd)) {
+		battle_config.base_exp_rate += bra_config.extra_exp_vip;
+		battle_config.job_exp_rate  += bra_config.extra_exp_vip;
+	}
 
 	snprintf(buf, CHAT_SIZE_MAX, msg_txt(1298), // Experience rates: Base %.2fx / Job %.2fx
 	         battle_config.base_exp_rate/100., battle_config.job_exp_rate/100.);

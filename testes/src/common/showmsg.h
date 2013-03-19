@@ -98,8 +98,15 @@ enum msg_type {
 };
 
 extern struct brathena_config {
-	int max_rename_char, change_slot_system;
+
+	int max_rename_char,
+	enable_system_vip,
+	level_vip,
+	extra_exp_vip,
+	penalty_exp_vip;
+	
 	char lang_file[128];
+	
 } bra_config;
 
 extern void ClearScreen(void);

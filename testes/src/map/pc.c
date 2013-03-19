@@ -6596,6 +6596,10 @@ int pc_dead(struct map_session_data *sd,struct block_list *src)
 	   && !map[sd->bl.m].flag.noexppenalty && !map_flag_gvg(sd->bl.m)
 	   && !sd->sc.data[SC_BABY] && !sd->sc.data[SC_LIFEINSURANCE]) {
 		unsigned int base_penalty =0;
+		if(bra_config.enable_system_vip && pc_isvip(sd)) {
+			battle_config.death_penalty_base -= bra_config.penalty_exp_vip;
+			battle_config.death_penalty_job  -= bra_config.penalty_exp_vip;
+		}
 		if(battle_config.death_penalty_base > 0) {
 			switch(battle_config.death_penalty_type) {
 				case 1:

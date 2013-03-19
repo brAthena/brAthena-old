@@ -940,6 +940,8 @@ int pc_del_talisman(struct map_session_data *sd,int count,int type);
 
 void pc_baselevelchanged(struct map_session_data *sd);
 
+#define pc_isvip(sd) ((sd->group_id==bra_config.level_vip?1:0)) // Verificação vip de forma rápida.
+
 #if defined(RENEWAL_DROP) || defined(RENEWAL_EXP)
 int pc_level_penalty_mod(struct map_session_data *sd, int mob_level, uint32 mob_race, uint32 mob_mode, int type);
 #endif
