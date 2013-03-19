@@ -3475,9 +3475,9 @@ void npc_parsesrcfile(const char *filepath, bool runOnInit)
 			#endif
 			p = npc_parse_shop(w1,w2,w3,w4, p, buffer, filepath);
 			#ifdef RENEWAL
-		} else if((strcasecmp(w2,"script") == 0) && (count > 3 || strcasecmp(w2,"script#re") == 0) && count > 3) {
+		} else if((strcasecmp(w2,"script") == 0 || strcasecmp(w2,"script#re") == 0) && count > 3) {
 			#else
-		} else if((strcasecmp(w2,"script") == 0) && (count > 3 || strcasecmp(w2,"script#pre") == 0) && count > 3) {
+		} else if((strcasecmp(w2,"script") == 0 || strcasecmp(w2,"script#pre") == 0) && count > 3) {
 			#endif
 			if(strcasecmp(w1,"function") == 0)
 				p = npc_parse_function(w1, w2, w3, w4, p, buffer, filepath);
@@ -3485,9 +3485,9 @@ void npc_parsesrcfile(const char *filepath, bool runOnInit)
 				p = npc_parse_script(w1,w2,w3,w4, p, buffer, filepath,runOnInit);
 		}
 		#ifdef RENEWAL
-		else if((i=0, sscanf(w2,"duplicate%n",&i), (i > 0 && w2[i] == '(')) && (count > 3 || (i=0, sscanf(w2,"duplicatr%n",&i), (i > 0 && w2[i] == '('))) && count > 3) {
+		else if(((i=0, sscanf(w2,"duplicate%n",&i), (i > 0 && w2[i] == '(')) || (i=0, sscanf(w2,"duplicatr%n",&i), (i > 0 && w2[i] == '('))) && count > 3) {
 		#else
-		else if((i=0, sscanf(w2,"duplicate%n",&i), (i > 0 && w2[i] == '(')) && (count > 3 || (i=0, sscanf(w2,"duplicatp%n",&i), (i > 0 && w2[i] == '('))) && count > 3) {
+		else if(((i=0, sscanf(w2,"duplicate%n",&i), (i > 0 && w2[i] == '(')) || (i=0, sscanf(w2,"duplicatp%n",&i), (i > 0 && w2[i] == '('))) && count > 3) {
 		#endif
 			p = npc_parse_duplicate(w1,w2,w3,w4, p, buffer, filepath);
 			#ifdef RENEWAL
