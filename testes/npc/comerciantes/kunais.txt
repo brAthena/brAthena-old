@@ -19,7 +19,7 @@
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
 //   | 1.1 Tradução PT-BR [insidemybrain]                     |
-//   | 1.2 Otimização [Mark]                                  |
+//   | 1.2 Otimização [Mark & Clare]                          |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
@@ -31,11 +31,11 @@ que_ng,72,29,3	script	Mercador de Kunais	83,{
 		mes "Dê uma olhada e me diga se você está interessado em alguns dos itens que tenho.";
 		next;
 		switch(select("10 Kunais - Veneno Mortal:10 Kunais - Nevasca:10 Kunais - Sopro do Vento:10 Kunais - Terra Negra:10 Kunais - Onda de Calor:Cancelar")) {
-		case 1: callfunc "Kunai_Trade",13250,20,7524,1,13259; break;
-		case 2: callfunc "Kunai_Trade",13251,8,7522,2,13255; break;
-		case 3: callfunc "Kunai_Trade",13252,4,7523,2,13257; break;
-		case 4: callfunc "Kunai_Trade",13253,2,7524,1,13256; break;
-		case 5: callfunc "Kunai_Trade",13254,1,7521,2,13258; break;
+		case 1: callsub Kunai_Trade,13250,20,7524,1,13259; break;
+		case 2: callsub Kunai_Trade,13251,8,7522,2,13255; break;
+		case 3: callsub Kunai_Trade,13252,4,7523,2,13257; break;
+		case 4: callsub Kunai_Trade,13253,2,7524,1,13256; break;
+		case 5: callsub Kunai_Trade,13254,1,7521,2,13258; break;
 		case 6:
 			mes "[Kashin]";
 			mes "Bem, obrigado então por visitar a minha loja.";
@@ -48,9 +48,8 @@ que_ng,72,29,3	script	Mercador de Kunais	83,{
 	mes "Sou Kashin, distribuidor de Kunais para Ninjas.";
 	mes "Se você tem alguns amigos que sejam Ninjas, conte para eles sobre mim.";
 	close;
-}
 
-function	script	Kunai_Trade	{
+Kunai_trade:
 	mes "[Kashin]";
 	mes "Você pode trocar:";
 	mes ""+getarg(1)+" "+getitemname(getarg(0))+" and";
@@ -63,30 +62,27 @@ function	script	Kunai_Trade	{
 	mes "pacotes de Kunai você gostaria?";
 	next;
 	input .@amount;
+	mes "[Kashin]";
 	if(.@amount < 1 || .@amount > 500) {
-		mes "[Kashin]";
 		mes "Hã? Me desculpe eu não posso lhe dar esse número de pacotes de Kunais.";
 		mes "Por favor, escreva um valor menor que 500.";
 		close;
 	}
 	if(countitem(getarg(0)) < .@amount*getarg(1) || countitem(getarg(2)) < .@amount*getarg(3)) {
-		mes "[Kashin]";
 		mes "Hmm, você não tem";
 		mes "a quantidade de item certa para esse pacote de Kunai.";
 		mes "Por favor reveja seus itens e volte.";
 		close;
  	}
 	if(checkweight(getarg(4), .@amount*10) == 0) {
-		mes "[Kashin]";
 		mes "Hmm, parece que você não tem espaço no seu inventório.";
 		mes "Arrume algum espaço nele e volte para que podemos finalizar a nossa negociação.";
 		close;
 	}
-	mes "[Kashin]";
 	mes "Ótimo, está tudo em ordem, agora só é preciso completar a negociação.";
 	mes "Tenho certeza que você ficará muito satisfeito com essas Kunais.";
 	delitem getarg(0),getarg(1)*.@amount;
 	delitem getarg(2),getarg(3)*.@amount;
 	getitem getarg(4),10*.@amount;
 	close;
-}
+}	

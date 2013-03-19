@@ -19,18 +19,19 @@
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
 //   | 1.1 Tradução PT-BR [insidemybrain]                     |
-//   | 1.2 Otimização [Mark]                                  |
+//   | 1.2 Otimização [Mark & Clare]                          |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
--	script	Sorveteiro::IceCreamer	-1,{
+alberta,120,45,2	script	Sorveteiro#alb	85,{
 	mes "[Sorveteiro]";
 	mes "Um sorvete fresco feito com a neve de Lutie!";
 	mes "Aproveite, ele não esterá à venda por muito tempo!";
 	mes "^3355FF100 Zeny^000000 por Sorvete!";
 	next;
 	if(select("Me dê sorvete!:Cancelar") == 2) {
+		mes "[Sorveteiro]";
 		mes "Você tem certeza que não quer nada?";
 		mes "Não estarei vendendo por muito tempo, e quando acabar de vender, não voltarei mais!!!";
 		close;
@@ -39,7 +40,6 @@
 	mes "Um sorvete fresco feito com a neve de Lutie!";
 	mes "Todos querem meus deliciosos sorvetes, mas nós temos uma certa quantia, então você só poderá comprar 5 por vez!!";
 	next;
-	while(1) {
 		input .@input;
 		if(.@input < 1) {
 			mes "[Sorveteiro]";
@@ -52,8 +52,7 @@
 			mes "Eita!";
 			mes "Você quer sorvetes demais.";
 			mes "Querido cliente, se você comer mais do que 5 Sorvetes, terá de ir ao banheiro várias vezes à noite....";
-			next;
-		}
+			close;
 	}
 	if(Zeny<.@input*100) {
 		mes "[Sorveteiro]";
@@ -72,11 +71,8 @@
 	close;
 }
 
-// Alberta
-alberta,120,45,2	duplicate(IceCreamer)	Sorveteiro#1	85
-
 // Campo de Morroc
-moc_fild16,88,304,4	duplicate(IceCreamer)	Sorveteiro#2	85
+moc_fild16,88,304,4	duplicate(Sorveteiro#alb)	Sorveteiro#moc1	85
 
 // Morroc
-//morocc,160,144,4	duplicate(IceCreamer)	Sorveteiro#3	85
+//morocc,160,144,4	duplicate(Sorveteiro#alb)	Sorveteiro#moc2	85

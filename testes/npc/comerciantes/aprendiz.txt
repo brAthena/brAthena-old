@@ -19,48 +19,33 @@
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
 //   | 1.1 Tradução PT-BR [Mark e Holy]                       |
-//   | 1.2 Otimização [Mark]                                  |
+//   | 1.2 Otimização [Mark & Clare]                          |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
 prontera,123,102,5	script	Mercador#pron	85,{
-	callfunc "TrocaPoção",935,5,914,10;
-	end;
-}
+	if(strnpcinfo(0) == "Mercador#pron")
+	callsub TrocaPocao,935,5,914,10;
+	else if(strnpcinfo(0) == "Mercador#morroc")
+	callsub TrocaPocao,935,5,916,7;
+	else if(strnpcinfo(0) == "Mercador#pay")
+	callsub TrocaPocao,902,6,916,7;
+	else if(strnpcinfo(0) == "Mercador#alde")
+	callsub TrocaPocao,955,1,916,7;
+	else if(strnpcinfo(0) == "Mercador#gef")
+	callsub TrocaPocao,935,5,915,6;
 
-morocc,180,259,3	script	Mercador#morroc	85,{
-	callfunc "TrocaPoção",935,5,916,7;
-	end;
-}
-
-payon,200,134,5	script	Mercador#pay	85,{
-	callfunc "TrocaPoção",902,6,916,7;
-	end;
-}
-
-aldebaran,152,63,5	script	Mercador#alde	85,{
-	callfunc "TrocaPoção",955,1,916,7;
-	end;
-}
-
-geffen,173,88,5	script	Mercador#geff	85,{
-	callfunc "TrocaPoção",935,5,915,6;
-	end;
-}
-
-function	script	TrocaPoção	{
-
+TrocaPocao:
 	set .@now_weight,MaxWeight-Weight;
+	mes "[Mercador]";
 	if (.@now_weight < 6301 || checkweight(1201,1) == 0) {
-		mes "[Mercador]";
 		mes "Haha!";
 		mes "O que você é, o Super-Homem?";
 		mes "Você está carregando muitos itens!";
 		mes "Melhor deixar algumas coisas no Armazém da Kafra~";
 		close;
 	}
-	mes "[Mercador]";
 	mes "Bom dia!";
 	mes "Você tem algum";
 	mes getitemname(getarg(0))+" ou "+getitemname(getarg(2))+"?";
@@ -80,9 +65,9 @@ function	script	TrocaPoção	{
 		mes "ou Jellopies?";
 		next;
 		switch(select(getitemname(getarg(0))+":"+getitemname(getarg(2))+":Jellopy:Cancelar")) {
-		case 1: callfunc "F_TrocaPoção",getarg(0),getarg(1);
-		case 2: callfunc "F_TrocaPoção",getarg(2),getarg(3);
-		case 3: callfunc "F_TrocaPoção",909,10;
+		case 1: callsub TrocaPocao2,getarg(0),getarg(1);
+		case 2: callsub TrocaPocao2,getarg(2),getarg(3);
+		case 3: callsub TrocaPocao2,909,10;
 		case 4:
 			mes "[Mercador]";
 			mes "Tudo bem~";
@@ -100,16 +85,14 @@ function	script	TrocaPoção	{
 		mes "Se mudar de idéia volte até mim.";
 		close;
 	}
-}
 
-function	script	F_TrocaPoção	{
+TrocaPocao2:
+	mes "[Mercador]";
 	if (countitem(getarg(0)) < getarg(1)) {
-		mes "[Mercador]";
 		mes "Ei, onde estão todos os "+getitemname(getarg(0))+" que você prometeu?";
 		mes "Me dê "+getitemname(getarg(0))+"!";
 		close;
-	} else {
-		mes "[Mercador]";
+	}
 		mes "Certo, deixe-me ver quantos "+getitemname(getarg(0))+" você tem. Humm...";
 		next;
 		mes "[Mercador]";
@@ -120,8 +103,8 @@ function	script	F_TrocaPoção	{
 		mes "O que você me diz?";
 		mes "Temos um negócio?";
 		next;
+		mes "[Mercador]";
 		if (select("Negociar.:Cancelar.") == 1) {
-			mes "[Mercador]";
 			mes "Você sabe quantas Poções Vermelhas vai receber por estes "+getitemname(getarg(0))+", não sabe?";
 			next;
 			mes "[Mercador]";
@@ -130,28 +113,25 @@ function	script	F_TrocaPoção	{
 			next;
 			while(1) {
 				input .@input,0,101;
+				mes "[Mercador]";
 				if (.@input == 0) {
-					mes "[Mercador]";
 					mes "Que...?";
 					mes "Por que você ainda está falando comigo?";
 					mes "Bem indeciso, você né?";
 					close;
 				} else if (.@input > 100) {
-					mes "[Mercador]";
 					mes "Não posso lhe dar mais que 100 Poções Vermelhas por vez.";
 					mes "Vamos tentar novamente.";
 					next;
-				} else {
-					break;
 				}
+					break;
 			}
 			set .@put_out_item,.@input * getarg(1);
+			mes "[Mercador]";
 			if (countitem(getarg(0)) < .@put_out_item) {
-				mes "[Mercador]";
 				mes "Uh oh, o número que você digitou parece incorreto. Melhor checar novamente o número de poções que posso lhe dar.";
 				close;
 			}
-			mes "[Mercador]";
 			mes "Aqui está!";
 			mes "Olhe quantas Poções Vermelhas eu lhe dei, isso deve ser bom.";
 			mes "Obrigado, foi uma boa negociação~";
@@ -159,10 +139,14 @@ function	script	F_TrocaPoção	{
 			getitem 501,.@input; // Poção Vermelha
 			close;
 		}
-		mes "[Mercador]";
 		mes "Huh~";
 		mes "Tudo bem.";
 		mes "Poções Vermelhas não seriam melhores para um aventureiro como você?";
 		close;
-	}
+	
 }
+
+morocc,180,259,3	duplicate(Mercador#pron)	Mercador#morroc	85
+payon,200,134,5	duplicate(Mercador#pron)	Mercador#pay	85
+aldebaran,152,63,5	duplicate(Mercador#pron)	Mercador#alde	85
+geffen,173,88,5	duplicate(Mercador#pron)	Mercador#geff	85

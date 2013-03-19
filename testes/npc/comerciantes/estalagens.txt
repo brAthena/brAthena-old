@@ -12,112 +12,58 @@
 //   |--------------------------------------------------------|
 //   | Criado por: eA/rA/brA Dev. Team                        |
 //   |--------------------------------------------------------|
-//   | Versões eA/rA/brA: 2.9/2.4a/1.1                        |
+//   | Versões eA/rA/brA: 2.9/2.4a/1.2                        |
 //   |--------------------------------------------------------|
 //   | Descrição: Sistema de estalagens.                      |
 //   |--------------------------------------------------------|
 //   | Changelog:                                             |
 //   | 1.0 Criado Cabeçalho [Shiraz]                          |
 //   | 1.1 Tradução PT-BR [Holy]                              |
+//   | 1.2 Otimização [Clare]                                 |
 //   |--------------------------------------------------------|
 //   | - Anotações                                            |
 //   \________________________________________________________/
 
-//======================== Prontera ===================================
-// ------------------- Oeste, Interior -------------------
 prt_in,244,135,2	script	Funcionária#Sammy	53,{
 
-	callfunc "F_InnMaid","[Funcionária Sammy]","Nenkaras.","prt_in",238,130;
-	warp "prt_in",247,104; end;
-}
-// ------------------- Leste, Interior -------------------
-prt_in,61,141,2	script	Funcionária#Ahlma	53,{
-
-	callfunc "F_InnMaid","[Funcionária Ahlma]","Nenkaras.","prt_in",64,136;
-	warp "prt_in",60,166; end;
-}
-
-//======================== Alberta ====================================
-alberta_in,32,142,3	script	Funcionária#Jennie	53,{
-
-	callfunc "F_InnMaid","[Funcionária Jennie]","Hotel de Pescadores!","alberta_in",26,142;
-	warp "alberta_in",18,188; end;
-}
-
-//====================== Geffen ======================================
-geffen_in,70,64,5	script	Funcionária#Cena	53,{
-
-	callfunc "F_InnMaid","[Funcionária Cena]","Ifrit, o único Hotel na cidade de Geffen.","geffen_in",70,59;
-	warp "geffen_in",31,31; end;
-}
-
-//======================= Payon ======================================
-payon_in01,132,62,5	script	Funcionária#Ahee	53,{
-
-	callfunc "F_InnMaid","[Funcionária Ahee]","Hotel de Payon.","payon_in01",136,61;
-	warp "payon_in01",132,11; end;
-}
-
-//======================== Morocc ====================================
-// ---------------------- Nordeste ----------------------
-/*
-morocc_in,147,141,3	script	Funcionária#Hasna	53,{
-
-	callfunc "F_InnMaid","[Funcionária Hasna]","Interior de Morroc.","morocc_in",142,140;
-	warp "morocc_in",173,135; end;
-}
-// ---------------------- Sul ----------------------
-morocc_in,80,100,5	script	Funcionária#Manar	53,{
-
-	callfunc "F_InnMaid","[Funcionária Manar]","Interior de Morroc","morocc_in",78,95;
-	warp "morocc_in",79,123; end;
-}
-*/
-
-//====================== Aldebaran ===================================
-aldeba_in,92,58,5	script	Funcionária#Rilim	53,{
-
-	callfunc "F_InnMaid","[Funcionária Rilim]","Interior de Aldebaran.","aldeba_in",92,50;
-	warp "aldeba_in",92,112; end;
-}
-
-//======================== Rachel ====================================
-ra_in01,376,69,4	script	Funcionário#Annie	931,{
-
-	callfunc "F_InnMaid","[Funcionário Annie]","Interior de Rachel.","ra_in01",375,58;
-	warp "ra_in01",384,128; end;
-}
-
-//====================== Lighthalzen =================================
-lhz_in02,230,284,4	script	Funcionário do Hotel#01	86,{
-
-	callfunc "F_InnMaid","[Funcionário do Hotel]","Dragão Real.","lhz_in02",209,275;
+	if ( strnpcinfo(0) == "Funcionária#Sammy" ) {
+	callsub InnMaid,"[Funcionária Sammy]","Nenkaras.","prt_in",238,130;
+	warp "prt_in",247,104;
+	} else if ( strnpcinfo(0) == "Funcionária#Ahlma" ) {
+	callsub InnMaid,"[Funcionária Ahlma]","Nenkaras.","prt_in",64,136;
+	warp "prt_in",60,166;
+	} else if ( strnpcinfo(0) == "Funcionária#Jennie" ) {
+	callsub InnMaid,"[Funcionária Jennie]","Hotel de Pescadores!","alberta_in",26,142;
+	warp "alberta_in",18,188;
+	} else if ( strnpcinfo(0) == "Funcionária#Cena" ) {
+	callsub InnMaid,"[Funcionária Cena]","Ifrit, o único Hotel na cidade de Geffen.","geffen_in",70,59;
+	warp "geffen_in",31,31;
+	} else if ( strnpcinfo(0) == "Funcionária#Ahee" ) {
+	callsub F_InnMaid,"[Funcionária Ahee]","Hotel de Payon.","payon_in01",136,61;
+	warp "payon_in01",132,11;	
+	} else if ( strnpcinfo(0) == "Funcionária#Rilim" ) {
+	callsub InnMaid,"[Funcionária Rilim]","Interior de Aldebaran.","aldeba_in",92,50;
+	warp "aldeba_in",92,112;
+	} else if ( strnpcinfo(0) == "Funcionário#Annie" ) {
+	callsub InnMaid,"[Funcionário Annie]","Interior de Rachel.","ra_in01",375,58;
+	warp "ra_in01",384,128;
+	} else if ( strnpcinfo(0) == "Funcionário do Hotel#01" ) {
+	callsub InnMaid,"[Funcionário do Hotel]","Dragão Real.","lhz_in02",209,275;
 	warp "lhz_in02",219,150;
-}
-
-//======================== Hugel ====================================
-hu_in01,246,107,3	script	Recepcionista#Recepcionista	53,{
-
-	callfunc "F_InnMaid","[Recepcionista]","Interior de Hugel.","hu_in01",263,95;
-	warp "hu_in01",267,5; end;
-}
-
-//======================== Veins ====================================
-ve_in,157,219,5	script	Recepcionista#Re	709,{
-
-	callfunc "F_InnMaid","[Recepcionista]","melhor hotel de Veins.","ve_in",157,209;
+	} else if ( strnpcinfo(0) == "Recepcionista#Recepcionista" ) {
+	callsub InnMaid,"[Recepcionista]","Interior de Hugel.","hu_in01",263,95;
+	warp "hu_in01",267,5;
+	} else if ( strnpcinfo(0) == "Recepcionista#Re" ) {
+	callsub InnMaid,"[Recepcionista]","melhor hotel de Veins.","ve_in",157,209;
 	warp "ve_in",184,228;
-}
-// Brasilis
-//============================================================
-bra_in01,27,24,3	script#re	Recepcionista#bras1	478,{
-
-	callfunc "F_InnMaid","[Recepcionista]","melhor hotel de Brasilis.","bra_in01",144,69;
+	} else if ( strnpcinfo(0) == "Recepcionista#bras1" ) {
+	callsub InnMaid,"[Recepcionista]","melhor hotel de Brasilis.","bra_in01",144,69;
 	warp "bra_in01",144,69;
-}
+	}
+	end;
 
-//======================= Função ==============================
-function	script	F_InnMaid	{
+InnMaid:
+
 	mes getarg(0);
 	mes "Bem-vindo ao "+getarg(1)+"";
 	mes "Como posso te ajudar?";
@@ -143,5 +89,16 @@ function	script	F_InnMaid	{
 		return;
 	case 3:
 		close;
-	}
+	}	
 }
+
+prt_in,61,141,2	duplicate(Funcionária#Sammy)	Funcionária#Ahlma	53
+alberta_in,32,142,3	duplicate(Funcionária#Sammy)	Funcionária#Jennie	53
+aldeba_in,92,58,5	duplicate(Funcionária#Sammy)	Funcionária#Rilim	53
+ra_in01,376,69,4	duplicate(Funcionária#Sammy)	Funcionária#Annie	53
+geffen_in,70,64,5	duplicate(Funcionária#Sammy)	Funcionária#Cena	53
+payon_in01,132,62,5	duplicate(Funcionária#Sammy)	Funcionária#Ahee	53
+lhz_in02,230,284,4	duplicate(Funcionária#Sammy)	Funcionário do Hotel#01	86,{
+hu_in01,246,107,3	duplicate(Funcionária#Sammy)	Recepcionista#Recepcionista	53,{
+ve_in,157,219,5	duplicate(Funcionária#Sammy)	Recepcionista#Re	709,{
+bra_in01,27,24,3	duplicate(Funcionária#Sammy)	Recepcionista#bras1	478,{
