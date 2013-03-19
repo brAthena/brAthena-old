@@ -4290,9 +4290,12 @@ struct Damage battle_calc_misc_attack(struct block_list *src,struct block_list *
 	}
 
 	s_ele = skill_get_ele(skill_id, skill_lv);
-	if(s_ele < 0 && s_ele != -3)  //Attack that takes weapon's element for misc attacks? Make it neutral [Skotlex]
-		s_ele = ELE_NEUTRAL;
-	else if(s_ele == -3)  //Use random element
+	/* Recepção de elemento da arma (-1), Recepção do elemento através de status / efeitos(-2) & Recepção de elemento aleatório(-3) [brAthena] */
+	if(s_ele == -1)
+		s_ele = sstatus->rhw.ele;
+	else if(s_ele == -2)
+	  s_ele = s_ele = status_get_attack_sc_element(src,status_get_sc(src));
+	else if(s_ele == -3)
 		s_ele = rnd()%ELE_MAX;
 
 	//Skill Range Criteria
