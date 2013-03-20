@@ -2617,7 +2617,7 @@ static struct Damage battle_calc_weapon_attack(struct block_list *src,struct blo
 					 * Ranger
 					 **/
 				case RA_ARROWSTORM:
-					skillratio += 900 + 80 * skill_lv;
+					skillratio += 1000 + 80 * skill_lv;
 					RE_LVL_DMOD(100);
 					break;
 				case RA_AIMEDBOLT:
